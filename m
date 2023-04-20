@@ -2,81 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19AA16E98C7
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 17:52:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 186D16E98CE
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 17:54:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232685AbjDTPw5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 11:52:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48570 "EHLO
+        id S233677AbjDTPyL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 11:54:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231573AbjDTPw4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 11:52:56 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABCB4E4A
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 08:52:55 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-504e232fe47so1149556a12.2
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 08:52:55 -0700 (PDT)
+        with ESMTP id S231261AbjDTPyK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 11:54:10 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAD5410C0
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 08:54:08 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id xd13so7498304ejb.4
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 08:54:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682005974; x=1684597974;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=linaro.org; s=google; t=1682006047; x=1684598047;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=iWHDIdcxmRtBeoS4vbcXHNgCDUZ9mrNN4CpZaerEDtw=;
-        b=bZJ618le2ELw5ph78JjrUu5vL10YhthrZv+82TUTyWvPI8n9EGNfQBVgb5D2g0dcWx
-         u1oh9w4mpLpFJQflmlNuz8fsklVXvj10KcnsVKhll+TzMxAYf58Jr7bL7MtTN8CQpWPL
-         i/IlZM70psKrM8urMyBS0lV4Y9pvc/HrzTw+swEho+jF9D3PLH19JXlAu1r51RODrjhU
-         LBjTDzv7rUl/tZDLYGXhkePidU2BF7ewrajiKMNaN0ZlDUAYQXdUivC5HGnNy4EUNGPN
-         NwsPqt7t7P2yOuJNTl9evXWMMFNj2hEDbl62J8LpnPLcjgRMNiX8R9+O9AVpvQ6zg7Z7
-         HrAw==
+        bh=sRADTVdMf038RUtmLUrTdNQgEB/Pts//XGZF2FideHg=;
+        b=elPnFYLrMgd7ANxjO5QiB+95Xsn+6rCrQjnsZkjOdxN2XTxvQfHwutdWG9Xuv7dSOX
+         jJwnS4unJwGCayk97rAyqd8v7X7dvEefbChH/6+ZFeJrJ2E6Qd30XCvFwZ8x4OkbMAri
+         KyJ4KIqkQJ4EdYdHb426hMPFPZPoBB2OMbCXSukBCy54zec5ogCfZCRohAoqhzZMQKi5
+         iGeUBAztW5xDYZ8f1djcaOU1TvjOHdHN8PP7cmvDhnGnj844bTdAkjj070sfX01SMR5k
+         GCTiuoLd41ozzpM0hVRQOiNfW0HfaCAstqwbc6pOXXhU0iPryazNOSghhGa/4wu7v1tQ
+         gzJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682005974; x=1684597974;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=1e100.net; s=20221208; t=1682006047; x=1684598047;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iWHDIdcxmRtBeoS4vbcXHNgCDUZ9mrNN4CpZaerEDtw=;
-        b=RUlpXjEICNYpTbhf91+7W783F8rrLsvyTGlTq0idkKQrlJGAwnv3/muUo055gQ38SI
-         c+YjSUxQbGX1LY/G3lnKlt/sEpsMPIDUgcBjjjiolr4fnrfXDHOlXqXqqzmeF2msnumy
-         kor3ePjHZqVeUM3ES8XAKucRWxJuGTwjc0WaSTvtXdGv+gToh9BSpliAwItd58Ackf9Q
-         OG88gRTuaIAGLQSh+Fo/Z8kswxOn49owlUcgN75r5yFpFAfUYVhXgDQB2NiAzDDb3KMB
-         CupEDT8t6wlKwwjCIu8zoo3r3brhmB/PLFfX1RhSLLwQpA0lzS/eK8Folh65dzxc1htE
-         tp6A==
-X-Gm-Message-State: AAQBX9dtJACy822ect/1IJFXqOUjWKEPzqDs4izRkbJ9607LFnXlGatF
-        IUSevNOMnHpGENpxXNNSBTINOg==
-X-Google-Smtp-Source: AKy350ZPNoJjAsHQnrgBtcWjAkVjOybxjn4aKwAelHOmXaeNNRU9fsNDAzKgv2Ix3OECExzWGt3nyw==
-X-Received: by 2002:aa7:d858:0:b0:4fe:97a2:4b86 with SMTP id f24-20020aa7d858000000b004fe97a24b86mr2374559eds.8.1682005974175;
-        Thu, 20 Apr 2023 08:52:54 -0700 (PDT)
+        bh=sRADTVdMf038RUtmLUrTdNQgEB/Pts//XGZF2FideHg=;
+        b=hXzlN5uCrEpPVXLtKfMA9O1RGf596D+6AvtMAJYyEFR5qpX9xZv+OfbjK9v06QfXWC
+         cyEH5pLRyICPFkAaCSrLwjJo322CTEsprd4IGShdv0d4QCdkF1Tv/z0fjTTeRnQITbCF
+         4Z+ILAqyqjsFYDrDFgW+7RjKM/ngvssvWcUiLMK38vjtOkpu1hsOkVWpgn/J41IuR0KU
+         1z8HQGmUC48eax3JopxogY74eTbOrskXPZjSkuULX0v/YxgNsxjciucnKHoFB3GFf+TS
+         yTqbeZSjApyUDG6D8XEcz8wRJzQEdI3k0GVmFwCZfnKa5R10jML1gWtSEAZF0oqiNaz+
+         rMRQ==
+X-Gm-Message-State: AAQBX9fNLuVfedNgAzvkxyDelg3aY0Kenr1mNZvyG/9Y0Bjk3YnHILh6
+        /wupbnc62Fv6XLhIGxtgKHon4BBg4FPrg+H8EwwI0g==
+X-Google-Smtp-Source: AKy350ZydiiFFVqHq5xXCdVmtWQyNeU3Amyj+OLiWJ01CcMe40w12xEHakcsPkg2i5Dyb93yj3c/7g==
+X-Received: by 2002:a17:906:a51:b0:953:43a1:1988 with SMTP id x17-20020a1709060a5100b0095343a11988mr1720288ejf.46.1682006047291;
+        Thu, 20 Apr 2023 08:54:07 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:bcb8:77e6:8f45:4771? ([2a02:810d:15c0:828:bcb8:77e6:8f45:4771])
-        by smtp.gmail.com with ESMTPSA id u11-20020aa7d0cb000000b0050687dbb5dasm888594edo.31.2023.04.20.08.52.53
+        by smtp.gmail.com with ESMTPSA id g13-20020a170906348d00b0095337c5da35sm903769ejb.15.2023.04.20.08.54.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Apr 2023 08:52:53 -0700 (PDT)
-Message-ID: <4bd883fd-91b1-5284-cc95-c4917f837be9@linaro.org>
-Date:   Thu, 20 Apr 2023 17:52:52 +0200
+        Thu, 20 Apr 2023 08:54:06 -0700 (PDT)
+Message-ID: <1af930f6-51ae-c986-3eeb-556b2fa34047@linaro.org>
+Date:   Thu, 20 Apr 2023 17:54:05 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: pwm: mediatek: Add mediatek,mt7981
- compatible
+Subject: Re: [PATCH v13 1/2] thermal: loongson-2: add thermal management
+ support
 Content-Language: en-US
-To:     Daniel Golle <daniel@makrotopia.org>, devicetree@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        John Crispin <john@phrozen.org>
-References: <cover.1681992038.git.daniel@makrotopia.org>
- <2662c29ec80458852bb8c9041656bca46e2662dd.1681992038.git.daniel@makrotopia.org>
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>,
+        Liu Peibao <liupeibao@loongson.cn>, wanghongliang@loongson.cn,
+        zhanghongchen <zhanghongchen@loongson.cn>
+References: <20230221095355.9799-1-zhuyinbo@loongson.cn>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <2662c29ec80458852bb8c9041656bca46e2662dd.1681992038.git.daniel@makrotopia.org>
+In-Reply-To: <20230221095355.9799-1-zhuyinbo@loongson.cn>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,17 +84,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/04/2023 14:35, Daniel Golle wrote:
-> Add compatible string for the PWM unit found of the MediaTek MT7981 SoC.
-> This is in preparation to adding support in the pwm-mediatek.c driver.
+On 21/02/2023 10:53, Yinbo Zhu wrote:
+> This patch adds the support for Loongson-2 thermal sensor controller,
+> which can support maximum 4 sensors, each sensor contains a sampling
+> register and a control register. The sampling register is used to obtain
+> the temperature in real time, the control register GATE field is used to
+> set the threshold of high or low temperature, when the input temperature
+> is higher than the high temperature threshold or lower than the low
+> temperature threshold, an interrupt will occur.
 > 
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Signed-off-by: zhanghongchen <zhanghongchen@loongson.cn>
+> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
 > ---
-> No changes since v1.
+> Change in v13:
+> 		1. Add a description about that how works the sensor.
+> 		2. Drop the COMPILE_TEST.
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Why? We want to compile test. We really, really want.
 
 Best regards,
 Krzysztof
