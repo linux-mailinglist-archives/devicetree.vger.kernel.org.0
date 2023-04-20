@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AE136E8A7A
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 08:36:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EA186E8A80
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 08:36:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233964AbjDTGgY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 02:36:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40748 "EHLO
+        id S233969AbjDTGg0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 02:36:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233687AbjDTGgW (ORCPT
+        with ESMTP id S233961AbjDTGgW (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 02:36:22 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D7BC4EE3
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 23:36:20 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-5055141a8fdso532593a12.3
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 23:36:20 -0700 (PDT)
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 353F24C01
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 23:36:21 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id vc20so3883080ejc.10
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 23:36:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681972578; x=1684564578;
+        d=linaro.org; s=google; t=1681972579; x=1684564579;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=JSQAIWvdCVohIV0GOWaX7A128s/QvmbJgXiSsuBadpo=;
-        b=WnAiY1KZMCu4JsltZJNV4wNjM6YiuAGD7WHTF9kQRC3wkPHZfma3X70Cthy422jfpB
-         xz+JknS+kkOMwXzaKojQ8GE3v3MUixQNNlO8e3SnsvP/YvHzO3gpwILvY/7k+tFSxi1N
-         LC/+g5/a4sNLNslsrhiyT53I05GbfwQc6B+9a7QpEtWxOd3PhZq98h3I5BT3s4bIrVOG
-         mbz+8IL+3wqZ+Fj7wd3Dv4qWzYxCdnYvId7kQDoaLtrsraDZ7jdOVsGrghe+ElZe4RxY
-         4n66UgRG8Ms5VfBNqHfv2x9RZqFTyKfOHLqEZXTQktno4SN4gTYsrMb+ZpAmnQ8X+pgW
-         prUQ==
+        bh=4e07kv/4q6KeHpZgMzvQluY3QgK3NgwgMWFjGACLw8Y=;
+        b=CuzL+F/bOCk0vKDAq2RYc1Om8HkP3oHnFLGVDMn9JVHrHaacgZ+deX3dH5iwRJfoAS
+         jv2/HaVAgJQVbBqQcgWIMoSQYoMN8D0kqfvIO6b+5R9h9aRPbw21JoDLJe2U3TEusbTU
+         heEIDYF9Q4ubBnExtQLDNSFfYwf0f3Qo+qIwQRcMLIWq50MR23qNd+kTRM30gBMssGaB
+         mGa5y2WASbYeeYbHlnpxzNRQpj6Ee0LpFg87W3U6OA2u4bmoJX1OeqwhgnX3+Tj0GEUN
+         H2eSPnJya8CTdrsUMMiIaRVPFNVvQd449VmPm/bsDb6Ay+QIQFvgopzdU9147fGQyDIP
+         71Uw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681972578; x=1684564578;
+        d=1e100.net; s=20221208; t=1681972579; x=1684564579;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=JSQAIWvdCVohIV0GOWaX7A128s/QvmbJgXiSsuBadpo=;
-        b=eTxwbgU8VGve+zQW56gjIFvQ0kOEhhoIxFrKKVCanzSUuGuSWs8FqXZCElDuo0Zxj1
-         MS43TuoFNOY1yk4w8EtM+qnmPqPFNbb8grzj9CET8ejMTDS/0z32DSZVDqjUx0naACBv
-         nSTkIcqgCAQqXDGl8co8sa1JRWReQg5N+2ReQbdHf4JECBm+7NEsqLn4FLb6LCKxMPWh
-         xb45IM4FPmoiPp5UGFtaH8WcBqGHH3kR3g5R/J5FAbRXgeqWo//ymA4knCXyR5pJGLe0
-         GrYCuG5la3ojens/ccojr+RVPQai7FvyoOiZFxv3h0SpRcHgQougRtULqzefIC9CkdBe
-         SQEw==
-X-Gm-Message-State: AAQBX9fzfehVvUNSgJo80wW0v6m2QE6ZstRzN2JVqfSnQPWrIFQDl6iV
-        bmLlMLWYJtRcdcLXyUf4eoSE3g==
-X-Google-Smtp-Source: AKy350bsrbXqm4eL0swCm/f9TxBhexgF/zazKiU/v5Ld3FBjXvvcsjGzGogLC9qfLSvRgVxNxLpDUw==
-X-Received: by 2002:aa7:c6d6:0:b0:504:894b:1bc9 with SMTP id b22-20020aa7c6d6000000b00504894b1bc9mr674926eds.26.1681972578732;
-        Wed, 19 Apr 2023 23:36:18 -0700 (PDT)
+        bh=4e07kv/4q6KeHpZgMzvQluY3QgK3NgwgMWFjGACLw8Y=;
+        b=jYom1yS5Invi2+jjc43utDy+4S3NSY6yiXulOTMLIu4aKQLE9e9yHKgHS2wwh5xJrw
+         t8RXPQ1o1/ykmFtXfJZcn4y1miO2J6Lz5U9KBByvx+Upx9jy2AOKeiN0QlFTwYZ5TwNS
+         7Zghr17D7u7i8ayKSGVxC/gPzNbsyZexScHhH6WuwRn5SC/ohhSUrt6RYtmxRRltO2lv
+         Fdx0iEam/4gg3pedLe7EtzQYtKJXrQ9mp7fkcEwb7FI19eD3ypT7ysUd13TeUX2/ydm6
+         iZA4dydP+Qnm55uKycDjG0WfwfjjXJdaphOo9KrN1nlaWgBqscvOGbMK24Neg93lnZLC
+         Yxaw==
+X-Gm-Message-State: AAQBX9cuoy0Et0w7Swy93HIGVLbKxo3pZqPHk7FHYCSDlTxY9YTJxnem
+        lM2qOMHk4Pe7gcLoxNm0kDbANg==
+X-Google-Smtp-Source: AKy350bqe1e1XIOfR/Oepw5GKFqb1ykVNLs/2QCxPskYa55yeAANnIE8vp9q0wKOvtMJoi4xGhN5sQ==
+X-Received: by 2002:a17:907:990c:b0:94a:7da2:d339 with SMTP id ka12-20020a170907990c00b0094a7da2d339mr606952ejc.26.1681972579673;
+        Wed, 19 Apr 2023 23:36:19 -0700 (PDT)
 Received: from krzk-bin.. ([2a02:810d:15c0:828:bcb8:77e6:8f45:4771])
-        by smtp.gmail.com with ESMTPSA id f7-20020a05640214c700b004fa380a14e7sm395342edx.77.2023.04.19.23.36.17
+        by smtp.gmail.com with ESMTPSA id f7-20020a05640214c700b004fa380a14e7sm395342edx.77.2023.04.19.23.36.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Apr 2023 23:36:18 -0700 (PDT)
+        Wed, 19 Apr 2023 23:36:19 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -58,9 +58,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 5/7] arm64: dts: qcom: msm8998: add unit address to soc node
-Date:   Thu, 20 Apr 2023 08:36:08 +0200
-Message-Id: <20230420063610.11068-5-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 6/7] arm64: dts: qcom: sdm630: add unit address to soc node
+Date:   Thu, 20 Apr 2023 08:36:09 +0200
+Message-Id: <20230420063610.11068-6-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230420063610.11068-1-krzysztof.kozlowski@linaro.org>
 References: <20230420063610.11068-1-krzysztof.kozlowski@linaro.org>
@@ -82,19 +82,19 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/msm8998.dtsi | 2 +-
+ arch/arm64/boot/dts/qcom/sdm630.dtsi | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-index b150437a8355..803a1f1f2597 100644
---- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-@@ -800,7 +800,7 @@ timer {
- 			     <GIC_PPI 0 IRQ_TYPE_LEVEL_LOW>;
+diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+index b31424544b19..a7d475f23bea 100644
+--- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+@@ -548,7 +548,7 @@ modem_smp2p_in: slave-kernel {
+ 		};
  	};
  
--	soc: soc {
-+	soc: soc@0 {
+-	soc {
++	soc@0 {
  		#address-cells = <1>;
  		#size-cells = <1>;
  		ranges = <0 0 0 0xffffffff>;
