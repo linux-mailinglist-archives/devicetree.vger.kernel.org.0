@@ -2,63 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E593D6E8C50
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 10:11:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4C5B6E8C7A
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 10:14:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234195AbjDTILE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 04:11:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45710 "EHLO
+        id S234358AbjDTIOT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 04:14:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231458AbjDTILD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 04:11:03 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E2D2173A;
-        Thu, 20 Apr 2023 01:11:03 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 94573645CB;
-        Thu, 20 Apr 2023 08:11:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3371AC433D2;
-        Thu, 20 Apr 2023 08:11:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1681978262;
-        bh=cRkJJtkBCNc6QMnaPnruYpRLA9mN0/qvOe5piHP2PL0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=KwyuRbNTuY014OIygJWopqNWMjjzNCDieFS4GhXJ2NSLsERU+0C9VWL2CWYisnvjb
-         R0Djg8vlgNA6K+bSAsN1QAztj87ny2HdQkF3o14W2QbblQUdKKMV0sFP3AIACuKpOh
-         n1c8YZX7x9fW2TdV06CoYnVQo8Rr6CKHZjLrBx68=
-Date:   Thu, 20 Apr 2023 10:10:58 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Peng Fan <peng.fan@nxp.com>,
-        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        Xu Yang <xu.yang_2@nxp.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>, Jun Li <jun.li@nxp.com>
-Subject: Re: [PATCH V7 10/10] ARM64: dts: imx7ulp: update usb compatible
-Message-ID: <ZEDzkhtUiUxQ0V4d@kroah.com>
-References: <20230322052504.2629429-1-peng.fan@oss.nxp.com>
- <20230322052504.2629429-11-peng.fan@oss.nxp.com>
- <20230405130649.GA11367@dragon>
- <DU0PR04MB94178755C624BCBE25D8073C88919@DU0PR04MB9417.eurprd04.prod.outlook.com>
- <20230406014013.GJ11367@dragon>
+        with ESMTP id S234202AbjDTIOS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 04:14:18 -0400
+Received: from mail-il1-x12e.google.com (mail-il1-x12e.google.com [IPv6:2607:f8b0:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1A163580
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 01:14:16 -0700 (PDT)
+Received: by mail-il1-x12e.google.com with SMTP id e9e14a558f8ab-329518648ebso5609295ab.0
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 01:14:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1681978455; x=1684570455;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=UOFwzNtaLVqFygjM/4R82fQk6PYg4HBP91sBbADRHBE=;
+        b=GiIM57M5UJ4BlkggtD5fVCHEITsZTKOVB0NOFXV+wZ8jZIq+FtzLkNHpDOTSHNquDV
+         dFuHcleEKQhTrgrJYRYrlgZBR0LC2q/HpEGO+cJzF45r3JuirTnz7em9890w3DtQIYmS
+         SsSu8kW01AoehruOUKM0vTzrhm657wr6hqkrY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681978455; x=1684570455;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=UOFwzNtaLVqFygjM/4R82fQk6PYg4HBP91sBbADRHBE=;
+        b=NpHIT8pu/qT72a9lGm28Z+rxqMJNr21GKZiVkFMCJz+dMxfMig7XnyW3wG+FNsPkOo
+         CcZuupYu5xJmvIAcDLE4QF5iT7XPjwRFVDhuyVxYsIvRm8ce9VvtgmBp+MKHgjc4yUse
+         wQlxtKi3kHXDOXpl6mNiCw0T+RemDzz0rQbfq5zh6H96lXwaH4ElMsum743FSGVJuW5c
+         xXLW/NmMD+j+WQ8gdHFIFGCwxB85C33nOj/w6lZi2M6Drn4/u6/T7CucmAb+V9PKk4oq
+         uskpkp4BNsOikQWbeVWn15CCG3eSXXHHzOmaynxiPnMs53XZz4ApuZlFhwAY5DGIJHFs
+         M5qg==
+X-Gm-Message-State: AAQBX9ezUu6AsRiQGBXzt5OBO7PDcSQAtJaYLG/UCPHC2fC9Bzhkb/Tw
+        kI4al+HR0Sa4h7jc7rTFq62thKr2bR733AaZomE=
+X-Google-Smtp-Source: AKy350YD5TKBjuXNXZkerkDHRdmXqXkKPrs5uM5Q2PYVQWVR6pL4mTUhyicbwkuOVG3cFv4M3g+ueg==
+X-Received: by 2002:a92:d20b:0:b0:32c:faac:a57b with SMTP id y11-20020a92d20b000000b0032cfaaca57bmr617543ily.0.1681978455461;
+        Thu, 20 Apr 2023 01:14:15 -0700 (PDT)
+Received: from mail-il1-f178.google.com (mail-il1-f178.google.com. [209.85.166.178])
+        by smtp.gmail.com with ESMTPSA id j4-20020a92c204000000b00326d5c6c1easm307437ilo.54.2023.04.20.01.14.14
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Apr 2023 01:14:14 -0700 (PDT)
+Received: by mail-il1-f178.google.com with SMTP id e9e14a558f8ab-329627dabfbso6541315ab.0
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 01:14:14 -0700 (PDT)
+X-Received: by 2002:a02:852a:0:b0:40f:7c3d:2b12 with SMTP id
+ g39-20020a02852a000000b0040f7c3d2b12mr275549jai.0.1681978454242; Thu, 20 Apr
+ 2023 01:14:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230406014013.GJ11367@dragon>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+References: <20230418124953.3170028-1-fshao@chromium.org> <20230418124953.3170028-2-fshao@chromium.org>
+ <ZD8z57MBvcfExJx8@nixie71> <CAC=S1ngBt9DmBobMkQXWhqE1UUxFv2U6iFd42nT=1N7r8+pFUg@mail.gmail.com>
+ <CAD=FV=U_i26a8uJYmqYf6PUgmTUgmEB5L2DkVga0zDX_iDcGQg@mail.gmail.com>
+ <ZEAGTiGyvynGA9P1@nixie71> <CAD=FV=UB393Z1zhK54Apgr-iRcvgiK0t36jt6-t5-5zz3m8OZQ@mail.gmail.com>
+In-Reply-To: <CAD=FV=UB393Z1zhK54Apgr-iRcvgiK0t36jt6-t5-5zz3m8OZQ@mail.gmail.com>
+From:   Fei Shao <fshao@chromium.org>
+Date:   Thu, 20 Apr 2023 16:13:37 +0800
+X-Gmail-Original-Message-ID: <CAC=S1nj8VTXOovvianPWDYnsrbek0APD76SBNquFObaw8Vg4BQ@mail.gmail.com>
+Message-ID: <CAC=S1nj8VTXOovvianPWDYnsrbek0APD76SBNquFObaw8Vg4BQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: input: goodix: Add powered-in-suspend property
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Jeff LaBundy <jeff@labundy.com>,
+        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-mediatek <linux-mediatek@lists.infradead.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -67,47 +84,163 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 06, 2023 at 09:40:13AM +0800, Shawn Guo wrote:
-> On Thu, Apr 06, 2023 at 01:18:43AM +0000, Peng Fan wrote:
-> > Hi Shawn,
-> > 
-> > > Subject: Re: [PATCH V7 10/10] ARM64: dts: imx7ulp: update usb compatible
-> > > 
-> > > On Wed, Mar 22, 2023 at 01:25:04PM +0800, Peng Fan (OSS) wrote:
-> > > > From: Peng Fan <peng.fan@nxp.com>
+Hi,
+
+On Wed, Apr 19, 2023 at 11:41=E2=80=AFPM Doug Anderson <dianders@chromium.o=
+rg> wrote:
+>
+> Hi,
+>
+> On Wed, Apr 19, 2023 at 8:18=E2=80=AFAM Jeff LaBundy <jeff@labundy.com> w=
+rote:
+> >
+> > Hi Doug and Fei,
+> >
+> > Thank you for the informative discussion; I can empathize with the pain
+> > these issues bring.
+> >
+> > On Wed, Apr 19, 2023 at 07:38:13AM -0700, Doug Anderson wrote:
+> > > Hi,
+> > >
+> > > On Wed, Apr 19, 2023 at 3:44=E2=80=AFAM Fei Shao <fshao@chromium.org>=
+ wrote:
 > > > >
-> > > > Per binding doc, update the compatible
+> > > > Hi Jeff,
 > > > >
-> > > > Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> > > 
-> > > ARM: dts: imx7ulp: ...
-> > > 
-> > > Fixed it up and applied all DTS patches.
-> > [Peng Fan] 
-> > 
-> > Thanks for the fix. But I think Greg already applied the patchset.
-> 
-> Okay, I will drop them from my tree, but ...
-> 
-> Greg,
-> 
-> May I suggest a couple of things on the future process?
-> 
-> - Could you leave i.MX DTS patches to me, so that we can avoid potential
->   merge conflicts?
+> > > > On Wed, Apr 19, 2023 at 8:21=E2=80=AFAM Jeff LaBundy <jeff@labundy.=
+com> wrote:
+> > > > >
+> > > > > Hi Fei,
+> > > > >
+> > > > > On Tue, Apr 18, 2023 at 08:49:51PM +0800, Fei Shao wrote:
+> > > > > > We observed that on Chromebook device Steelix, if Goodix GT7375=
+P
+> > > > > > touchscreen is powered in suspend (because, for example, it con=
+nects to
+> > > > > > an always-on regulator) and with the reset GPIO asserted, it wi=
+ll
+> > > > > > introduce about 14mW power leakage.
+> > > > > >
+> > > > > > This property is used to indicate that the touchscreen is power=
+ed in
+> > > > > > suspend. If it's set, the driver will stop asserting the reset =
+GPIO in
+> > > > > > power-down, and it will do it in power-up instead to ensure tha=
+t the
+> > > > > > state is always reset after resuming.
+> > > > > >
+> > > > > > Signed-off-by: Fei Shao <fshao@chromium.org>
+> > > > > > ---
+> > > > >
+> > > > > This is an interesting problem; were you able to root-cause why t=
+he silicon
+> > > > > exhibits this behavior? Simply asserting reset should not cause i=
+t to draw
+> > > > > additional power, let alone 14 mW. This almost sounds like a back=
+-powering
+> > > > > problem during suspend.
+> > > > >
+> > > > There was a fix for this behavior before so I didn't dig into it on
+> > > > the silicon side.
+> > > > I can ask internally and see if we can have Goodix to confirm this =
+is
+> > > > a known HW erratum.
+> > >
+> > > Certainly it doesn't hurt to check, but it's not really that shocking
+> > > to me that asserting reset could cause a power draw on some hardware.
+> > > Reset puts hardware into a default state and that's not necessarily
+> > > low power. I guess ideally hardware would act like it's "off" when
+> > > reset is asserted and then then init to the default state on the edge
+> > > as reset was deasserted, but I not all hardware is designed in an
+> > > ideal way.
+> >
+> > While that is true in theory, I have never, ever seen that to be the ca=
+se
+> > when there is not some other underlying problem.
+> >
+> > What I have seen, however, is that asserting reset actually causes the =
+GPIO
+> > to sink current from some other supply and through the IC. I loosely su=
+spect
+> > that if you probe the IC's rails and digital I/O during the failure con=
+dition,
+> > you may find one of them resting at some mid-rail voltage or diode drop=
+. It
+> > seems you have a similar suspicion.
+> >
 
-How am I supposed to know this?  Our tools take the whole patch series,
-not individual ones.  If someone wants patches to go through different
-trees, then they need to submit them as different patch series,
-otherwise it makes no sense.
+I reached out to our EE with your thoughts.
+He said that he understands the concern, but this doesn't apply in our
+schematics because there's only one supply.
+Also he simulated a few scenarios that could explain the
+back-powering, but none of them is possible without having the
+problematic circuit/rsense layout from within the IC itself.
 
-> - Would you update your patch robot to reply the applying message to all
->   recipients, so that everyone knows the status?
+> > In that case, it may mean that some other supply in the system should a=
+ctually
+> > be kept on, or that supplies are being brought down out of order. In wh=
+ich
+> > case, the solution should actually be a patch to the affected platform(=
+s) dts
+> > and not the mainline driver.
+>
+> I agree that it's a bandaid, but I'm not hopeful that a better
+> solution will be found.
+>
+> Specifically, I'd expect a current leak in the system when you turn a
+> supply off and then assert a GPIO high. That's when the device can
+> start backpowering itself from a GPIO. In this case, it's the
+> opposite. We're keeping the supply on and asserting the (active low)
+> reset GPIO to cause the higher power draw. In another design it was
+> confirmed that the power draw went away when we were able to turn the
+> regulator off (but still keep the active low reset GPIO asserted).
+> We've also confirmed that power is good if we keep the supply on and
+> _don't_ assert the reset GPIO. Both of these two experiments provide
+> some evidence that the system is configured properly and we're not
+> backpowering something.
+>
+> I guess I should revise the above, though. I could believe that there
+> is a current leak but on the touchscreen controller board itself,
+> which is a black box to us. I have certainly been involved in products
+> in the past where the default state of the system at reset caused a
+> minor current leak (I remember an EE telling me that as soon as
+> software started running I should quickly change the direction of a
+> GPIO) and it wouldn't shock me if the touchscreen controller board had
+> a problem like this. If there is a problem like this on the
+> touchscreen controller board there's not much we can do to workaround
+> it.
+>
+> Unfortunately, if the problem ends up needing a hardware change to fix
+> more correctly (which I suspect it does), our hands are tied a bit.
+> This is not prototype hardware but is final hardware.
+>
+> I guess one further note is that, at least on the project I was
+> involved in that had a similar problem, folks in China did a bunch of
+> analysis on this and went as far as adding an extra regulator to the
+> main board schematic to "fix" it. Had the issue just been something
+> where we were misconfiguing GPIOs or leaving a regulator in the wrong
+> state then they (probably) would have identified it rather than
+> spinning the board.
 
-Can't really do that, it only responds to those that are on the patch
-signed-off-by list itself, as the other cc: metadata is gone after the
-patch is applied.
+Thank you Doug for providing the details and explanation, and sorry
+that I also missed your original reply...
+I only considered the ideal scenarios for the always_on usage but not
+the cases you brought up. The concerns make sense to me.
 
-thanks,
+I'm still awaiting the response from Goodix, but +1 that if it turns
+out to be a GT7375P hw issue, we're not able to do much about that
+except relying on the driver workaround.
+One more note I want to add is that the first attempt of the fix was
+added ~2yrs ago, so it's not an one-off on a particular platform, plus
+`sc7180-trogdor-homestar` and `mt8186-corsola-steelix` are two
+different designs come from two different teams, but they ended up
+with the same symptom.
+With that said, I think we have more confidence to say it's a
+component misbehavior, and we just fell into the edge case that was
+not covered or considered by its design.
 
-greg k-h
+Regards,
+Fei
+
+>
+> -Doug
