@@ -2,78 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BEC76E9491
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 14:36:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E2E26E94B5
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 14:39:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231787AbjDTMgL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 08:36:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57058 "EHLO
+        id S232385AbjDTMji (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 08:39:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231715AbjDTMgD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 08:36:03 -0400
-Received: from fudo.makrotopia.org (fudo.makrotopia.org [IPv6:2a07:2ec0:3002::71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71B356EB9;
-        Thu, 20 Apr 2023 05:35:58 -0700 (PDT)
-Received: from local
-        by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-         (Exim 4.96)
-        (envelope-from <daniel@makrotopia.org>)
-        id 1ppTW0-0005Vz-2e;
-        Thu, 20 Apr 2023 14:35:56 +0200
-Date:   Thu, 20 Apr 2023 13:35:51 +0100
-From:   Daniel Golle <daniel@makrotopia.org>
-To:     devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        John Crispin <john@phrozen.org>
-Subject: [PATCH v2 1/2] dt-bindings: pwm: mediatek: Add mediatek,mt7981
- compatible
-Message-ID: <2662c29ec80458852bb8c9041656bca46e2662dd.1681992038.git.daniel@makrotopia.org>
-References: <cover.1681992038.git.daniel@makrotopia.org>
+        with ESMTP id S232541AbjDTMjg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 08:39:36 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FBD1C7
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 05:39:20 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id kt6so6260297ejb.0
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 05:39:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681994358; x=1684586358;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=frO9xA4qGK3Raq8henddER4Gj7fo5Lq3c6EyPmzA39U=;
+        b=fZuH5/hhYDl86HJZlXgWEAdKy2Wjj+YkTxAJWzXAxlVaW20zc/QIbLhxvG7FguXpji
+         j3jQo2H6JIIS3vfjtTD1LQCEFuw1F7fA+RPYkLR8upP1HzWFo69xMN16ojn8VHZvcN7c
+         iPMsHojPU6fjNazNFkf5fb8WeSN/FJc1oW20XxS4AmUgdX4cm1gA9vcIm7Lx9RaFk/a7
+         jFmDgFM+9MtCJnA8dcLqFdbM2+JrZtq7PrEe+2pEHABehxt/r3XEBpGLpRza769JogAG
+         37YlkV6IsSQo7iCplci3XENs4Qk7kmXk4UQYAGI033ehf28WxSN796KDfZxHVRzwmCIA
+         z+vg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681994358; x=1684586358;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=frO9xA4qGK3Raq8henddER4Gj7fo5Lq3c6EyPmzA39U=;
+        b=BVrO/eOU2fycbLBTbDcI6kDAOOx7FjGxEOh6IFO6ph2uvJFc1VAwX32McLUjrcNJfv
+         0UDyOa7uO6bxW+bST/oVpHZS5lrd3KiBktTlyV88F6/0WETWo62Q0Xi3Vu4LWPCrazCd
+         zSwABV+nvHRFyndacaRKrF8EGK3buKEUBzImLcIjdoEfHPKakWc+KR/auKkw8TLZfqzg
+         WNJEfixH7YwU99mGEqmGhW80t8qO6OVO5OJe+UhLQvJafWE+ZQ5Pv6YR1/IDHVgKo0wi
+         OUDATQZG/1Ko+apThainGttnD+xrRB/AQ8/gz+KBD4KSkc3mx6RkHoKOeRXCedfcrY8z
+         FR1w==
+X-Gm-Message-State: AAQBX9fcJXqyr6AZGqgkSnyN1tb5Yv2RyrGPrQY1D2fOGgTQDC6iGHhG
+        kiyYJcSYwuT0S0pdqtl4mfX5hA==
+X-Google-Smtp-Source: AKy350Z8LjQ8yEXBqV1QNKNQSYXwoxzmB7xhaYEUEDq6AZRkT+w7troCaBLcm+1WAcJyPN8xGEfDeA==
+X-Received: by 2002:a17:906:115a:b0:94e:8431:4767 with SMTP id i26-20020a170906115a00b0094e84314767mr1528797eja.38.1681994358651;
+        Thu, 20 Apr 2023 05:39:18 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:bcb8:77e6:8f45:4771? ([2a02:810d:15c0:828:bcb8:77e6:8f45:4771])
+        by smtp.gmail.com with ESMTPSA id fh22-20020a1709073a9600b0094efc389980sm689608ejc.58.2023.04.20.05.39.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Apr 2023 05:39:18 -0700 (PDT)
+Message-ID: <a28766ff-39aa-7e10-394a-6f4db524fff9@linaro.org>
+Date:   Thu, 20 Apr 2023 14:39:17 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1681992038.git.daniel@makrotopia.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [RFC PATCH 1/2] arm64: amlogic: add new ARCH_AMLIPC for IPC SoC
+Content-Language: en-US
+To:     Kelvin Zhang <kelvin.zhang@amlogic.com>,
+        Dmitry Rokosov <ddrokosov@sberdevices.ru>,
+        Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     =Xianwei Zhao <xianwei.zhao@amlogic.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+References: <20230419073834.972273-1-xianwei.zhao@amlogic.com>
+ <20230419073834.972273-2-xianwei.zhao@amlogic.com>
+ <20230419131416.cns3xvkbzjeyrnux@CAB-WSD-L081021>
+ <661cea17-a4dd-75d1-6a7e-16efa5aea52b@linaro.org>
+ <20230419160405.d7qfir3nv6tlxx2a@CAB-WSD-L081021>
+ <427e79ef-156d-027e-9296-6f4e6513a04d@linaro.org>
+ <20230419170043.auzfa32weevmrt4e@CAB-WSD-L081021>
+ <1c7322c9-8d2d-1cd1-95dc-dd9ec861981f@amlogic.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1c7322c9-8d2d-1cd1-95dc-dd9ec861981f@amlogic.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible string for the PWM unit found of the MediaTek MT7981 SoC.
-This is in preparation to adding support in the pwm-mediatek.c driver.
+On 20/04/2023 10:43, Kelvin Zhang wrote:
+>>>>>>> +config ARCH_AMLIPC
+>>>>>> Do we really need a different ARCH for Amlogic IPC?
+>>>>>> I can imagine that it's not the Meson architecture at all.
+>>>>>> But maybe a better solution is just to rename ARCH_MESON to ARCH_AMLOGIC?
+>>>>> It should be changed treewide, and is it worth it ?
+>>>> As far as I understand, the A1 and S4 families are not fully compatible
+>>>> with the Meson architecture, and we haven't provided additional ARCH_*
+>>>> for them.
+>>> The GXBB, GXL/GXM, G12A, G12B & SM1 are also not fully compatible,
+>>> but they lie under the "MESON" umbrella which covers SoC since the
+>>> Meson6 architecture. It's a facility to include/exclude Amlogic
+>>> drivers/DT, nothing else.
+> GXBB, GXL/GXM, G12A, G12B , SM1 and S4 belong to media box.
+> So, "MESON" represents the media box series.
+> Up to now, "MESON" works well for all existing chips except A1 and AXG.
+>>> If you compare it to BCM or NXP, it's different situation, the
+>>> different ARCH_* actually targets totally different SoCs from
+>>> completely different Business Units or from companies acquisitions.
+> Firstly, the new C series is totally different from previous MESON series.
+>  From the perspective of application, the new C series is designed for 
+> smart IP camera applications,
+> while MESON series is designed for hybrid OTT/ IP Set Top Box  and 
+> high-end media box applications.
+>  From the perspective of architecture, the new C series integrates the 
+> sensor interface, image signal processing unit, Dewarp, video encoder, 
+> neural networking processing unit,
+> which MESON series does not and will never have.
+> Secondly, there are C1 and C2 besides C3.
+> Moreover, more other series are on the way, such as T series.
+> If we always stick to "MESON", people will get more and more confused.
+> Therefore, I think it is the right time to add ARCH_AMLIPC.
 
-Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
-No changes since v1.
+Your DTS uses compatibles from meson, so I would argue that it is still
+part of the same architecture.
 
- Documentation/devicetree/bindings/pwm/mediatek,mt2712-pwm.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Anyway, this is just config symbol, so it does not matter. There will be
+no confusion and no problem of keeping it ARCH_MESON.
 
-diff --git a/Documentation/devicetree/bindings/pwm/mediatek,mt2712-pwm.yaml b/Documentation/devicetree/bindings/pwm/mediatek,mt2712-pwm.yaml
-index 8e176ba7a525f..0fbe8a6469eb2 100644
---- a/Documentation/devicetree/bindings/pwm/mediatek,mt2712-pwm.yaml
-+++ b/Documentation/devicetree/bindings/pwm/mediatek,mt2712-pwm.yaml
-@@ -22,6 +22,7 @@ properties:
-           - mediatek,mt7623-pwm
-           - mediatek,mt7628-pwm
-           - mediatek,mt7629-pwm
-+          - mediatek,mt7981-pwm
-           - mediatek,mt7986-pwm
-           - mediatek,mt8183-pwm
-           - mediatek,mt8365-pwm
--- 
-2.40.0
+
+>>> We should have named it ARCH_AMLOGIC since the beginning, but we
+>>> can't change history.
+> Shouldn't we deserve a chance to make it right?
+>>>> In my opinion, it's a good time to split the Meson architecture into
+>>>> proper subsets, or rename it treewide (maybe only config option
+>>>> ARCH_MESON => ARCH_AMLOGIC).
+>>> MESON is only a codename to differentiate from other SoC vendors
+>>> because Amlogic used it as a codename for a long time.
+>>> Compare this to Allwinner's "sunxi" or Qualcomm's "msm".
+>>>
+>>> This config has no functional mean, it's only a config namespace.
+>>>
+>>> Renaming it would need renaming it in all subsystems Kconfig/Makefiles
+>>> and will certainly break builds with custom kernel configs
+>>> in various publicly used builds like Armbian, meta-meson, LibreELEC,
+>>> Debian, Suse, ...
+> Let's get back to ARCH_AMLIPC.
+> We just need to add ARCH_AMLIPC in the necessary subsystems 
+> Kconfig/Makefile.
+> This change will keep the existing MESON related code,  and will neither 
+> involve renaming nor break any builds.
+
+It is also not necessary and not justified. We do not have multiple
+top-level subarchs for one architecture. We had such talks already and
+there was no consensus to change it.
+
+Best regards,
+Krzysztof
 
