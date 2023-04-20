@@ -2,103 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE2E06E8FC6
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 12:15:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 544FE6E8FFA
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 12:21:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234725AbjDTKOi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 06:14:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54786 "EHLO
+        id S231936AbjDTKVz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 06:21:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234540AbjDTKOH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 06:14:07 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 551C519A2
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 03:12:11 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4ec94eb6dcaso443375e87.3
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 03:12:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681985529; x=1684577529;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=B1gg5qH9FVKEIvZx9IgwaMQ/p/pcxPmbM2nNSvflA+Y=;
-        b=oGF+NGmUcuKNfYKptKRvcA/mqBwJP3vVKuFesYiVXRdyTFgOoercusxcIZm6AB4RE8
-         /wRmO/0CDcuj9QTn+vHkn6mrx/DuytmBsRSzskfwvb0UDt3Gf6H0c3kE9rOL763teqFl
-         IeHCZIap55eiRWQFwdNU9nDGVj5cWc/nVmvjIM7tqxBkrRWdCoSm3HSMHPCo3tLuyUB+
-         zNZLX5K8573+XXXjDBREn7WlXbSCjv2O153I2thYxjoJ1PFi5xTmzksQv0SF2vk28b0+
-         u0gJwnTPdUCAKmZgt637xMuWdIqW6AgN2R4HzYxUXecvTMz9WyYgRVksLixG7kmkYWnJ
-         RiJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681985529; x=1684577529;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=B1gg5qH9FVKEIvZx9IgwaMQ/p/pcxPmbM2nNSvflA+Y=;
-        b=Ks79fEdoTFStv55CdJk3bhvBWUEbnv2psFdlgJ/U769993YgBwe7ukU0+eh53+yX0z
-         OapIAfjQrkkrQPWJD7CA01K4WDd/hM8czyABihK5iccnX48PY84tmQNV3glh8WmA4FhC
-         vewbBa+llLsmrgtvFyXYvN5isMWSMem9WFtGoZWQCHXtjNB8ZfGZlkWrbiM1V+c8UWpE
-         5UwwF0vSJp5878hy2WHhmmM7l2W7Yi54meLjrxZM45O5Ycq0dwRD6Ou3eifr4p6TcqPx
-         Tex0NSHg6NRVuJVeT72TjgqNdkBJBagHlN6r+QB4Gw25OoWPDTkXH2+fSqvPlRpCX8kj
-         5iOg==
-X-Gm-Message-State: AAQBX9drAK0y13Nuia4Jwk/PGJA+j9kFkGH2qVAajX6uJUvOqQU9xgft
-        hG6N9TT4MvV8kTyH2OLTNteVlw==
-X-Google-Smtp-Source: AKy350ZLeDAg/Z65XdnFNNxyJxECDLyd0G1w1LAFz9U3aeC7C/mcAJ4Bbx0in4YxGwlg5oYVk58TSQ==
-X-Received: by 2002:a05:6512:204:b0:4ed:befc:9b4e with SMTP id a4-20020a056512020400b004edbefc9b4emr363243lfo.3.1681985529604;
-        Thu, 20 Apr 2023 03:12:09 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id f21-20020ac251b5000000b004cb45148027sm166060lfk.203.2023.04.20.03.12.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Apr 2023 03:12:09 -0700 (PDT)
-Message-ID: <d757326e-9dd1-36ea-9340-2a95c3cce70c@linaro.org>
-Date:   Thu, 20 Apr 2023 13:12:08 +0300
+        with ESMTP id S234782AbjDTKV2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 06:21:28 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AA284C30;
+        Thu, 20 Apr 2023 03:20:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1681986026; x=1713522026;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=p04UFiXEk3VmCHfHIzOZk2Ms3A+ezDFOWY1y5ayhRR0=;
+  b=kzmaXkhdAzZsybw377rJ8D2Bl6b5eGjOwhcalyRgVao6MrDvn5jC+qfe
+   R54/CDmfbGdGdpzarOHFKbW3UfT0d0ib0c0lfotlPIRG0MMLrev33yAS2
+   1vg/TKYRK6DiIwDV+X2jSyDkT/RFmhLU/I1HMcKUFCj1tiOUED5ndmxrd
+   s/DVPVKClWXvRs7ZCrjPPjsqZuBcPwge7z241pjNV5+sqZ6CjvjHTGh4I
+   FBqRNC3R5Fx/557dga1UgOF+5bcanqyxFS1qoPrjWoPRJDTtup08PacwU
+   12FU5sCvJPNKqdkc/d+R4GAnnDf4JHQ99JU0GbkTrt+BISXROBZdOoAEw
+   w==;
+X-IronPort-AV: E=Sophos;i="5.99,212,1677567600"; 
+   d="asc'?scan'208";a="221784309"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 20 Apr 2023 03:20:25 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Thu, 20 Apr 2023 03:20:25 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Thu, 20 Apr 2023 03:20:22 -0700
+Date:   Thu, 20 Apr 2023 11:20:05 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Nylon Chen <nylon.chen@sifive.com>
+CC:     <aou@eecs.berkeley.edu>, <conor@kernel.org>,
+        <emil.renner.berthing@canonical.com>, <geert+renesas@glider.be>,
+        <heiko@sntech.de>, <krzysztof.kozlowski+dt@linaro.org>,
+        <palmer@dabbelt.com>, <paul.walmsley@sifive.com>,
+        <robh+dt@kernel.org>, <thierry.reding@gmail.com>,
+        <u.kleine-koenig@pengutronix.de>, <devicetree@vger.kernel.org>,
+        <linux-pwm@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <nylon7717@gmail.com>,
+        <zong.li@sifive.com>, <greentime.hu@sifive.com>,
+        <vincent.chen@sifive.com>
+Subject: Re: [PATCH v3 1/2] riscv: dts: sifive: unleashed/unmatched: Remove
+ PWM controlled LED's active-low properties
+Message-ID: <20230420-backshift-negotiate-1c3d508582d2@wendy>
+References: <20230420093457.18936-1-nylon.chen@sifive.com>
+ <20230420093457.18936-2-nylon.chen@sifive.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v2 2/8] pinctrl: qcom: spmi-gpio: Add PMI632 support
-Content-Language: en-GB
-To:     Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
-        phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>
-Cc:     linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-leds@vger.kernel.org, linux-iio@vger.kernel.org,
-        linux-doc@vger.kernel.org
-References: <20230414-pmi632-v2-0-98bafa909c36@z3ntu.xyz>
- <20230414-pmi632-v2-2-98bafa909c36@z3ntu.xyz>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230414-pmi632-v2-2-98bafa909c36@z3ntu.xyz>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="pPcnETLhjtC5Ocdl"
+Content-Disposition: inline
+In-Reply-To: <20230420093457.18936-2-nylon.chen@sifive.com>
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/04/2023 19:43, Luca Weiss wrote:
-> Add support for the 8 GPIOs found on PMI632.
-> 
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> ---
->   drivers/pinctrl/qcom/pinctrl-spmi-gpio.c | 1 +
->   1 file changed, 1 insertion(+)
+--pPcnETLhjtC5Ocdl
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+On Thu, Apr 20, 2023 at 05:34:56PM +0800, Nylon Chen wrote:
+> This removes the active-low properties of the PWM-controlled LEDs in
+> the HiFive Unmatched device tree.
+>=20
+> The reference is hifive-unleashed-a00.pdf[0] and hifive-unmatched-schemat=
+ics-v3.pdf[1].
+>=20
+> Link: https://sifive.cdn.prismic.io/sifive/c52a8e32-05ce-4aaf-95c8-7bf845=
+3f8698_hifive-unleashed-a00-schematics-1.pdf [0]
+> Link: https://sifive.cdn.prismic.io/sifive/6a06d6c0-6e66-49b5-8e9e-e68ce7=
+6f4192_hifive-unmatched-schematics-v3.pdf [1]
+>=20
 
--- 
-With best wishes
-Dmitry
+Just a minor nit here, there should not be a blank line between the
+link:s and the rest of the trailers.
 
+Cheers,
+Conor.
+
+--pPcnETLhjtC5Ocdl
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZEER1QAKCRB4tDGHoIJi
+0pdYAQCPVswMeIM5oND35Up46NzXuOHouWn5KIqzUs0HHAlgLQD/QKvS9/hYcyAB
+eE/lmP3GQ/5SacVC8RcfI3No2qzVJQI=
+=PEvj
+-----END PGP SIGNATURE-----
+
+--pPcnETLhjtC5Ocdl--
