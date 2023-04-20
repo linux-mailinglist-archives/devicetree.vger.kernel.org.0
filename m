@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4BBF6E8A75
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 08:36:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA7526E8A79
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 08:36:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233951AbjDTGgV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 02:36:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40694 "EHLO
+        id S233945AbjDTGgX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 02:36:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233687AbjDTGgU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 02:36:20 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD11949F6
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 23:36:16 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-5050491cb04so552667a12.0
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 23:36:16 -0700 (PDT)
+        with ESMTP id S233949AbjDTGgV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 02:36:21 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0581449DF
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 23:36:18 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-504eccc8fc8so539237a12.2
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 23:36:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681972575; x=1684564575;
+        d=linaro.org; s=google; t=1681972576; x=1684564576;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=/fd+WmOuvZDqpOrb3c5W9KpeObjjYn8+pBoDPkIFF8g=;
-        b=r3p2Ka6ztFemVweAY7E0l9pl5aAbRBDgiC+59fmR1QaqnyOIz+5oN7dCXk/Rt2qTcI
-         oBkhSF64FwIRbEDxVsaNeOJDvXDHE+vaRPTCONU8412BgiTZ2hKnDda895bln1IaM3tK
-         I73C4Eaxcb+CUHyfoPNzUI95XWFShpPoSbwHBYo7rFPsVaXTC89kFvZNBj/O3qMYebwE
-         zJeegvkByzobSIxKnff3PBeZ0F/fFs4N1daleyHlFWpsJe0zC+vAIlJEu+R5vYlGznvJ
-         6qgcIKOVx1k8AEKDFptJcmU0MVn7/bFIapitrIyj/boGw79BLYkgO33yP21868sy5nSo
-         mTow==
+        bh=qbEmKfVYY8C8sMjL/DQ/gdFG3u/uYvGT8W0gHSHLPto=;
+        b=GCAfm1cyBiYWdqlkXFclWG9u8VJtCU1aaaS1jCLA+C1aObfqqz0T+ChaYxRAGxdw9U
+         MGmb2bOa1lVoD9XrTrRrOyqH/p9J3EolFW9OjupRnTzKC2zxxb4/bIyYb1Ti0jQgz2Ie
+         CflcqWtsjTBJ/lBRconpaiWdqT14tGLmfYFiaNC3nBRrezDDOk8IvV8lNf/7Gp9sCwPo
+         nupi9hVPlPOXiWv+ymR/94ikzLG7FH5TivLZUlrC9Q2hPyVvTsdTJ70F2GAVNkSHbYmW
+         ds6uzeHyHTOGmigOF//b2QWHJeseNjryudSH7m44yY9lUyw3woWsyq4BmsGlkrCYRbW+
+         sKhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681972575; x=1684564575;
+        d=1e100.net; s=20221208; t=1681972576; x=1684564576;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=/fd+WmOuvZDqpOrb3c5W9KpeObjjYn8+pBoDPkIFF8g=;
-        b=CLH/ip0on1xB4g9OjU7zO8Sch6+40yTUqyzWOUYtEN461KEuZi/qL6HWbSPbGIYoUz
-         Z9uThHfkrBle0PZqV0na2Ly2mLP7G8IIO8dfr3v965oMEsJH2ib6aDGCKHklWnV6kiKw
-         mRUkg5dStSra3TpDoJMgh+P3Nrw7/8AN7FtVV3RVx5boRlMhqi3nFb35YXt0UEblWfm4
-         V/fEwBuZEA8KwqvA2PhqSuOXqB5MbQH/hV7E9OhFf+NstF+9LncGiAMPT8NJybMO4lJU
-         qbK6LMT8zCA0fQHLe2dDTond1kOUCEVBYhoy4a8CDQHvtYrutkU1+MjvBrMLGk05ZeW9
-         x1dw==
-X-Gm-Message-State: AAQBX9c1vVs15hUHdxdIuj/u0i2AQwYPqY5Vfu2LEQJmqnmF80SlwYl2
-        X++zqWlI0lL0ttXDRqGXIvn02EJjlW7iioOu+NExwA==
-X-Google-Smtp-Source: AKy350ZWIRqLA0WOSh07l+hVGAh/6mTcl0qoyuNhKqQCAAJLGWwLMekF2sfdkP//YA+PXWsb63Ha+A==
-X-Received: by 2002:a05:6402:510:b0:504:9394:188c with SMTP id m16-20020a056402051000b005049394188cmr614146edv.9.1681972575362;
-        Wed, 19 Apr 2023 23:36:15 -0700 (PDT)
+        bh=qbEmKfVYY8C8sMjL/DQ/gdFG3u/uYvGT8W0gHSHLPto=;
+        b=NG3BJbxRIlRjWgg6s4I86wD2ngNDk0UxtTmogE1flUrLi3S6GMfiPnF1hKaNoA3Tnw
+         KULq5RvioKufR2FEDYZOk1rB1ewFlSbOi4uonQhQyzHiSZEvYsy7bIX+zownarH7EDCt
+         wChTiHV9QdNfLiuaJDpnpizEUH6nsNbMEltZMTgYtmTNtf+nYuV3gfGGU7SowKEPPE8u
+         uSO+0WDYLxK2BDMCQng1LkAiZ+qlkH0sTOcfW7Jh2wNAqX54PdQP1hDLWZuZ4JFLydHI
+         XMinqk/a+vOuGu84WszBY/heAW845sXeD+P4zmwQ9WMX3UV+SSSiUSZb6h7Uv82zNNGU
+         /jVw==
+X-Gm-Message-State: AAQBX9dyMOBlVG9pZQP7otKg1NLRppj49bhimr65H6OWRWQqypAq9H7q
+        jOy45L1pZ3L6gn7t7aa4lxvpJA==
+X-Google-Smtp-Source: AKy350YZ82raRIzUrhhnIOg0JaAXUWzLEKzuTYsji+cOOuYLa0g+8x6W7ka1kt296eXNrwjd37XA5g==
+X-Received: by 2002:a05:6402:5170:b0:504:b323:fdf1 with SMTP id d16-20020a056402517000b00504b323fdf1mr803762ede.21.1681972576441;
+        Wed, 19 Apr 2023 23:36:16 -0700 (PDT)
 Received: from krzk-bin.. ([2a02:810d:15c0:828:bcb8:77e6:8f45:4771])
-        by smtp.gmail.com with ESMTPSA id f7-20020a05640214c700b004fa380a14e7sm395342edx.77.2023.04.19.23.36.14
+        by smtp.gmail.com with ESMTPSA id f7-20020a05640214c700b004fa380a14e7sm395342edx.77.2023.04.19.23.36.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Apr 2023 23:36:14 -0700 (PDT)
+        Wed, 19 Apr 2023 23:36:15 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -58,9 +58,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/7] arm64: dts: qcom: ipq8074: add unit address to soc node
-Date:   Thu, 20 Apr 2023 08:36:05 +0200
-Message-Id: <20230420063610.11068-2-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 3/7] arm64: dts: qcom: msm8994: add unit address to soc node
+Date:   Thu, 20 Apr 2023 08:36:06 +0200
+Message-Id: <20230420063610.11068-3-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230420063610.11068-1-krzysztof.kozlowski@linaro.org>
 References: <20230420063610.11068-1-krzysztof.kozlowski@linaro.org>
@@ -68,7 +68,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,21 +82,22 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/ipq8074.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/msm8994.dtsi | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-index 84e715aa4310..c9d679bfc10b 100644
---- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-@@ -105,7 +105,7 @@ scm {
+diff --git a/arch/arm64/boot/dts/qcom/msm8994.dtsi b/arch/arm64/boot/dts/qcom/msm8994.dtsi
+index 4041f3a690fe..184bdde5c78d 100644
+--- a/arch/arm64/boot/dts/qcom/msm8994.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8994.dtsi
+@@ -340,8 +340,7 @@ modem_smp2p_in: slave-kernel {
  		};
  	};
  
 -	soc: soc {
+-
 +	soc: soc@0 {
- 		#address-cells = <0x1>;
- 		#size-cells = <0x1>;
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
  		ranges = <0 0 0 0xffffffff>;
 -- 
 2.34.1
