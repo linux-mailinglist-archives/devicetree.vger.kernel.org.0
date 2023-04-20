@@ -2,144 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B56BB6E8C99
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 10:22:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A82EA6E8CA7
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 10:24:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233947AbjDTIWj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 04:22:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52894 "EHLO
+        id S234148AbjDTIYV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 04:24:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234411AbjDTIWh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 04:22:37 -0400
-Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 433ED448F
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 01:22:34 -0700 (PDT)
-Received: by mail-pf1-x42f.google.com with SMTP id d2e1a72fcca58-63b4a64c72bso671127b3a.0
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 01:22:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1681978954; x=1684570954;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4DMeRQEVjnGvjTdMi1WDO2hzeB7OEvrm9xDgZ4E+Odo=;
-        b=QsRx8DNEii1hHTwSRfTSltb2l0lXFk0fCbxNCvZISBIq4XBmSA7sjqnLDT4TA64nOo
-         UKTDF4H9mkYwEHsMrO7V7z9BsqqFg1yIOa6Nytq8FbIicP6QIILbOiPHslcqmwe+KqVI
-         iO4yxMkWXD4mbVcGfk+MLYRSPkD+ux4z5oUgr4A+j016QJ9JeX87mwRf20WWczPa2Ca7
-         EDTFqYcfYAkDxxJHRgUN7ut5KPblRJ5QCBwkVanjaap/PPrm9JZutQnItT/6n4cFCgcW
-         xDdgFajk0Ad2Uw/DiCJtT3FPplUIbO+z9GuJPNymyj+41I6M+5Ptlt41v4CjVxjLm6Lt
-         AekA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681978954; x=1684570954;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4DMeRQEVjnGvjTdMi1WDO2hzeB7OEvrm9xDgZ4E+Odo=;
-        b=ZAZIsBmkCnpRY8NCuzuqXq+IEei3lwNUGCXwJ+7gSLygzDnF0GEkDRapB3Lf+yiq7U
-         CGog/OFxbwFOVaJ0/w7YhUKDUCu4aeaIL9dJdyGuZQ2hSn8K76rSCsL94I9y82nyR7So
-         NM1QFEnxGAEqFl/uEvdxkubZi8IC9edMP5QGl3m5qJrBngQIiiSGR+8LHd0R5pfBXnDk
-         UqXB1I3uCoJknQQFQSBxjKzCj0/R2aZaSQF6y7G36uBVY7F9jnyWnM2gRgeNDyP70Vk/
-         fEu2iDkvgOgQPGoNjj9RM0+H82C+gaGkj4uQFlM5B79FTsIendMo+h9cPmQ4o6YK8blA
-         h58Q==
-X-Gm-Message-State: AAQBX9ccg//qCqIzzIo4IjVbp2aM+4XyL1cFTFRrc7vkwIrZ+kPOO1cQ
-        2y09fHuaHhCSjYyu94dN7SlzIA==
-X-Google-Smtp-Source: AKy350anJUB02TZaTTaDOpXkS2MoMiQXMYqeZve3utmSFoK5bryH/5VMg+DIE9xO6tLGwF/vrZcZsA==
-X-Received: by 2002:a17:902:c40d:b0:1a9:2823:dac2 with SMTP id k13-20020a170902c40d00b001a92823dac2mr1138514plk.57.1681978953690;
-        Thu, 20 Apr 2023 01:22:33 -0700 (PDT)
-Received: from ?IPV6:2405:201:d02f:d855:461d:14be:2cce:b776? ([2405:201:d02f:d855:461d:14be:2cce:b776])
-        by smtp.gmail.com with ESMTPSA id p18-20020a170902c71200b001a240f053aasm669738plp.180.2023.04.20.01.22.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Apr 2023 01:22:33 -0700 (PDT)
-Message-ID: <9f425205-c395-648a-3f42-a776c7580a8f@9elements.com>
-Date:   Thu, 20 Apr 2023 13:52:30 +0530
+        with ESMTP id S233989AbjDTIYU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 04:24:20 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A124D49ED;
+        Thu, 20 Apr 2023 01:23:59 -0700 (PDT)
+Received: from [192.168.4.220] ([84.160.205.173]) by mrelayeu.kundenserver.de
+ (mreue009 [212.227.15.167]) with ESMTPSA (Nemesis) id
+ 1MLR5f-1pYZHO38HT-00IYbr; Thu, 20 Apr 2023 10:23:29 +0200
+Message-ID: <b3d0844b-201d-d591-7135-3743dcfa3413@in-circuit.de>
+Date:   Thu, 20 Apr 2023 10:23:27 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH 1/2] dt-bindings: regulator: Add dt property
-To:     Zev Weiss <zev@bewilderbeest.net>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230418145051.4192963-1-Naresh.Solanki@9elements.com>
- <0da2b301-8780-48c0-a5dc-326474011e8d@hatter.bewilderbeest.net>
-Content-Language: en-US
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-In-Reply-To: <0da2b301-8780-48c0-a5dc-326474011e8d@hatter.bewilderbeest.net>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v2 1/1] arm: dts: sunxi: Add ICnova A20 ADB4006 board
+ support
+Content-Language: de-DE
+To:     samuel@sholland.org, jernej.skrabec@gmail.com, wens@csie.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        andre.przywara@arm.com
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <20230419121229.1384024-1-ludwig.kormann@in-circuit.de>
+ <b84537c0-cb58-621a-2b6d-3bbaac5091de@linaro.org>
+From:   Ludwig Kormann <ludwig.kormann@in-circuit.de>
+Organization: In-Circuit GmbH
+In-Reply-To: <b84537c0-cb58-621a-2b6d-3bbaac5091de@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Provags-ID: V03:K1:uwSwinWE2zyzH414JgI//6zeIseL890YUCt8ItivNXQOD+r9N+X
+ F9Sr8KVe/zdsOK3Ct+/UyGSgWZhsnTsI6yluWviDYSKEUZLFJOmGAWxEwe5QH51/4M7ORGi
+ Iw8omK0/gYRbvdQOHHUUg9fe5mAy6abqgNSD5/Its7XncilSjywTqdC89hSSXeWUGHin+wL
+ zt90FKAZ1CorV9RE7jagg==
+UI-OutboundReport: notjunk:1;M01:P0:84XnnK0ERPU=;ob6/E8NufdQLTh8WXBTwVybtSRg
+ pX4dAZqv2PeenP5TD2je/lhVEcGl3VI5VZKKWPUBgN2JeaNUDhdhLmZFhiKWfEeMJLK657UR6
+ A5gS3riwdMvS1SShBJJIIKaREff8s+PXDbQmZpG2nOAauJKg6jVT3TrJX6GtibF8ON5amFLoa
+ YijU2Je/qbuLOEmkOp4f15NB9kRj6jBNuo51ocXfbt89MZW7QazgU6xsC6zNM7X5ylHI0Btig
+ R4/YNjurLS9Iv/C9KXSy6MDBNF/1ohUjyQmoz59BuxYT6BvIhqN92nffVm7lzCN/uXeeeWv8K
+ UxFtVnsgfian/ugOTdxmd/FshPSzBmoP3XyTQR5BtF3cRWyM9u7w+lpnbBvMQ+8gWYLMYXv5B
+ 8K10kybDkWk59O3N364BzLklw5weZa3TaGYIZFBDC2lDuy3d0smzKqCkI1nLcxEoepesC5MmM
+ ntXi0NwG6719rr2Vn7CKQmS6yTuA+4zgwuKZhLPkU8jPx6A04GMoptHzrd9hboSFeUM7WMq7D
+ j7sB5P9c0hH1/YgANinA48Dl8FjU4RLKK7REbpvM5RW1X2Hxq3UjeWZ7w6JETUV3k+eYe/3kc
+ 8fOgWk+j2pm6Ll61huAY69qwEKF7TqeIpO7ZJtLnD2+BCjQdE2nu8RIDZdYxv/wVA5HOkVlLO
+ xDrnvT1W+wM+FtaSkdFWvJX+eki2vCkZBQRAkvR9BA==
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Zev,
+Hi,
 
-On 20-04-2023 05:31 am, Zev Weiss wrote:
-> On Tue, Apr 18, 2023 at 07:50:50AM PDT, Naresh Solanki wrote:
->> Add DT property regulator-supplies.
->> This enables us to couple one or more regulator output to gether. This
->> is use in case of Single connector having 2 or more supplies.
+thanks for your review.
+
+Am 19.04.23 um 15:05 schrieb Krzysztof Kozlowski:
+> On 19/04/2023 14:12, Ludwig Kormann wrote:
+>> Add board support for ICnova A20 SomPi compute module on
+>> ICnova ADB4006 development board.
 >>
->> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+>> Specification:
+>> SoM
+>> - Processor: Allwinner A20 Cortex-A7 Dual Core at 1GHz
+>> - 512MB DDR3 RAM
+>> - Fast Ethernet (Phy: Realtek RTL8201CP)
+>> ADB4006
+>> - I2C
+>> - 2x USB 2.0
+>> - 1x Fast Ethernet port
+>> - 1x SATA
+>> - 2x buttons (PWRON, Boot)
+>> - 2x LEDS
+>> - serial console
+>> - HDMI
+>> - µSD-Card slot
+>> - Audio Line-In / Line-Out
+>> - GPIO pinheaders
+>>
+>> https://wiki.in-circuit.de/index.php5?title=ICnova_ADB4006
+>> https://wiki.in-circuit.de/index.php5?title=ICnova_A20_SODIMM
+>>
 >> ---
->> .../bindings/regulator/regulator-output.yaml         | 12 +++++++++---
->> 1 file changed, 9 insertions(+), 3 deletions(-)
 >>
->> diff --git 
->> a/Documentation/devicetree/bindings/regulator/regulator-output.yaml 
->> b/Documentation/devicetree/bindings/regulator/regulator-output.yaml
->> index 078b37a1a71a..17f683d3c1f3 100644
->> --- a/Documentation/devicetree/bindings/regulator/regulator-output.yaml
->> +++ b/Documentation/devicetree/bindings/regulator/regulator-output.yaml
->> @@ -21,13 +21,19 @@ properties:
->>   compatible:
->>     const: regulator-output
+>> changes in v2:
+>> - use short licensing header
+>> - remove deprecated elements from led nodes
+>> - disable csi power supply
+>> - add missing pins in usbphy node
+>> - split dts into SoM dtsi and carrier board dts
 >>
->> -  vout-supply:
->> +  regulator-supplies:
->>     description:
->> -      Phandle of the regulator supplying the output.
->> +      Specifies the name of the output supply provided by the regulator.
->> +      Defaults to "vout".
->> +    default: "vout"
+>> v1 of this patch was sent to the uboot mailing list [1].
+>>
+>> [1] https://lists.denx.de/pipermail/u-boot/2023-April/514605.html
+>>
+>> Signed-off-by: Ludwig Kormann <ludwig.kormann@in-circuit.de>
+>> ---
+>>   .../devicetree/bindings/arm/sunxi.yaml        |   6 +
+> Bindings are always separate patches. checkpatch did not complain?
+>
+
+I just ran checkpatch.pl, you're right, it does complain. I will move 
+the bindings to a seperate patch.
+
+>> arch/arm/boot/dts/Makefile                    |   1 +
+>>   .../boot/dts/sun7i-a20-icnova-a20-adb4006.dts | 137 ++++++++++++++++++
+>>   arch/arm/boot/dts/sun7i-a20-icnova-a20.dtsi   |  63 ++++++++
+>>   4 files changed, 207 insertions(+)
+>>   create mode 100644 arch/arm/boot/dts/sun7i-a20-icnova-a20-adb4006.dts
+>>   create mode 100644 arch/arm/boot/dts/sun7i-a20-icnova-a20.dtsi
+>>
+>> diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml 
+>> b/Documentation/devicetree/bindings/arm/sunxi.yaml
+>> index 013821f4a7b8..12f0c236f17b 100644
+>> --- a/Documentation/devicetree/bindings/arm/sunxi.yaml
+>> +++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
+>> @@ -305,6 +305,12 @@ properties:
+>>             - const: allwinner,i12-tvbox
+>>             - const: allwinner,sun7i-a20
+>>   +      - description: ICNova A20 ADB4006
+>> +        items:
+>> +          - const: incircuit,icnova-a20-adb4006
+>> +          - const: incircuit,icnova-a20
+>> +          - const: allwinner,sun7i-a20
 >> +
-> 
-> Was this meant to be specified as a string-array to allow providing 
-> multiple names?
-Yes. This is string-array.
-> 
->> +patternProperties:
->> +  ".*-supply":
->> +    description:
->> +      Specified the phandle for various supplies
->>
->> required:
->>   - compatible
->> -  - vout-supply
->>
->> additionalProperties: false
->>
->>
-> 
-> I think it would be nice to also update the examples to show what a 
-> multi-supply instance would look like.
-Ack. Will do that.
-> 
-> A slightly more descriptive subject line would also be good -- "Add dt 
-> property" is a bit vague.
-Suggestion ?
-How about like 'Allow multiple supplies' or 'Add support for multiple 
-supplies'
-> 
->> base-commit: c55470f8b0616b0adb758077dbae9b19c5aac005
->> -- 
->> 2.39.1
->>
-Regards,
-Naresh
+>>         - description: ICNova A20 SWAC
+>>           items:
+>>             - const: incircuit,icnova-a20-swac
+>> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+>> index 3cc32722c394..b6b408417261 100644
+>> --- a/arch/arm/boot/dts/Makefile
+>> +++ b/arch/arm/boot/dts/Makefile
+>> @@ -1321,6 +1321,7 @@ dtb-$(CONFIG_MACH_SUN7I) += \
+>>       sun7i-a20-hummingbird.dtb \
+>>       sun7i-a20-itead-ibox.dtb \
+>>       sun7i-a20-i12-tvbox.dtb \
+>> +    sun7i-a20-icnova-a20-adb4006.dtb \
+>>       sun7i-a20-icnova-swac.dtb \
+>>       sun7i-a20-lamobo-r1.dtb \
+>>       sun7i-a20-linutronix-testbox-v2.dtb \
+>> diff --git a/arch/arm/boot/dts/sun7i-a20-icnova-a20-adb4006.dts 
+>> b/arch/arm/boot/dts/sun7i-a20-icnova-a20-adb4006.dts
+>> new file mode 100644
+>> index 000000000000..c1606c085e4e
+>> --- /dev/null
+>> +++ b/arch/arm/boot/dts/sun7i-a20-icnova-a20-adb4006.dts
+>> @@ -0,0 +1,137 @@
+>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> Unusual license. Are you sure you are ok with GPLv5.0?
+
+Thanks for the hint. I will remove the '+' and update the licensing to 
+"GPL-2.0 OR MIT".
+
+>
+> Also, at the end of your files - drop stray blank lines.
+
+I will remove them.
+
+
+I will implement the changes and provide patch series v3.
+
+kind regards,
+Ludwig
+
+>
+> Best regards,
+> Krzysztof
+>
