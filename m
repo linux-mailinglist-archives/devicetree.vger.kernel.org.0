@@ -2,76 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2B5D6E98C0
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 17:50:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B7726E98C4
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 17:52:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232111AbjDTPuI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 11:50:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47054 "EHLO
+        id S232235AbjDTPw0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 11:52:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232168AbjDTPuH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 11:50:07 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83ECCE6D
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 08:50:04 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id u3so7308565ejj.12
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 08:50:04 -0700 (PDT)
+        with ESMTP id S232953AbjDTPwZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 11:52:25 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB1F419A2
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 08:52:23 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-94a342f7c4cso90191266b.0
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 08:52:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682005803; x=1684597803;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=linaro.org; s=google; t=1682005942; x=1684597942;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=wUjeJFJdOehqKEp3EDu0sSCTfsxNh9OJznbyLrn6SLw=;
-        b=m1uCicstQI0hGkjAbWwIjd6vTdAVf/qeZzy2/WT9nB1gaGJ9o3ZqJPJmXWHfBHS1VJ
-         3NsRzNmjx9ceKmK3fkJ9sDCBkMYhsIGmtCH25In5054W972Ukpvzh7O/qgdXGM/hkE41
-         /17KDplrFzJ1ZoNlsFQUo1AxzDXRMFX6DnlVstd73ClggwDM+BlTOxAyOYeuWV1ZJqAs
-         8nY6t14Q1+BTBF9UkHCyCC1FVIzqIX0JjWiNtg4FZII1mMhufsmrOxPf8lvHf16cN6yi
-         hKsIZ0g7PCGyMrR4XOkoz3/X4z8D4KnJx+VgEoAeDs1sX+noLysE/wYOiZz8Sc5Uzp7+
-         Sc3A==
+        bh=6wNV6vuEnDx323qiEZUPunRODUIJ2Mg30GBaFfSSX3w=;
+        b=KUtGBpFZ4K9dSucECVZlT2qy5FvnWxP46zuHOMVJsi91f5wQw9RmX+hqV9rMJRjNWC
+         bvim1ZW9BruSUXh7t24xkD3E9qIDDtOL2WfURgKcM2ITYHMdr0ZBeDhuidNarsqaSc0r
+         yqe4GJjZQs13isZMujvMrIcwjP1EtTq/AmwONYNGk84c30P61LpkPI1ihZgK/5a/kcsQ
+         b+tH1uPgz8oc1SstFQE1V/sba0WNunH5lWfib68TvZme9Q0X4I1rsPIlqiwAowJyjdgq
+         gP7z4PD2Y24KMaDINb0teLYR4fj+RqFRpQcUOZpkLkSVfPnN3Vau0dNrArU1iweUL6p1
+         +hyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682005803; x=1684597803;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=1e100.net; s=20221208; t=1682005942; x=1684597942;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wUjeJFJdOehqKEp3EDu0sSCTfsxNh9OJznbyLrn6SLw=;
-        b=QscYzcvM6WGfXxfb6+ecJkSLjl3r5uVFaGqKJqVgAIYhAWQLGlXze0jo4IJc7dMc2w
-         MjeAIl2bFH+aDe+OuVGwBFLr82h4JaI7RXELSc/ICcyMjqo6EKyFh6xSJPLp0DcjBEj2
-         YXMd8VYYhtws6HNShpCLjmucyabefNweaIETIT1GASt43z4Q4U5UxPfsbljebjCkw+XQ
-         EcRS5/WbqCywrFg+sKaSlEBBy+IRgiNOMGavTwAEH8DPCIxxHFNoNfJNgqCGFtncXJJX
-         4JGQzKO5Tpn/X/bcC6JhU9fpB5NRUcMIbddB8U8mCkJxhz0Fa3LWnhiyIbANt1pe/2C0
-         P7Fw==
-X-Gm-Message-State: AAQBX9fL8S96NpI29srdhXxBD367Opbs7jLXFNtYRKyI/VFcWAqcP1V2
-        3iHecJW5PqWlWYsuAv004phUfQ==
-X-Google-Smtp-Source: AKy350YDaBKhwl+5wu1izAvYdwnvSzsDrXYRCK39dnDeHVpecX+2NV53mczkEOPg1LURkaolRvl+xw==
-X-Received: by 2002:a17:906:b20c:b0:94f:3804:5cd6 with SMTP id p12-20020a170906b20c00b0094f38045cd6mr1813554ejz.66.1682005802986;
-        Thu, 20 Apr 2023 08:50:02 -0700 (PDT)
+        bh=6wNV6vuEnDx323qiEZUPunRODUIJ2Mg30GBaFfSSX3w=;
+        b=FE6N3mrDGyMtl49UMDEhCke+D3D1DCEivhV9jHErcfj9CnxPhW3Kvc3tzsJf8Et4mV
+         TM0qXOZjIXLdXTaw+IWLGJXm5SpbYPXDB0qcd8wEvzwlUr8t3nKH1M6hD40cdak86K9z
+         CJfm9Ob4hsnMCcmc9MFBJ/+JMrqFXDQi/6VtZnX80WvJE2z4Ac/b7WeG67i2XpbQhsRY
+         ARDrD+zqi+sfGx2toBuShUiykjU4Rz6KsZLziML4Bwo8UiDoE9QkyFAPNtYHHCIWsFil
+         ragAqN1akTPAuUV+xhIUeIjU8JuGKw6TKSwBzLvqlcJ6Xm3sdSn410AT680zRWb2Ywf3
+         lzwg==
+X-Gm-Message-State: AAQBX9ehEsIB12N9niYTT/v7a5e/rFAlS6RAa4eZhvLHHArrhh5Vs3dR
+        +RPMxJqQJbmG8Q7qtIYwAnXMBg==
+X-Google-Smtp-Source: AKy350aPmsWqtsiLlXtFEKjMdEfdFTHARCOQr/LjyoR6a22xRet0wGy1eSSq3Rw+P0/E+xbmTBCyWg==
+X-Received: by 2002:a05:6402:6d9:b0:506:833c:abcf with SMTP id n25-20020a05640206d900b00506833cabcfmr2405927edy.42.1682005942297;
+        Thu, 20 Apr 2023 08:52:22 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:bcb8:77e6:8f45:4771? ([2a02:810d:15c0:828:bcb8:77e6:8f45:4771])
-        by smtp.gmail.com with ESMTPSA id qn7-20020a170907210700b0094e44899367sm838732ejb.101.2023.04.20.08.50.01
+        by smtp.gmail.com with ESMTPSA id k10-20020aa7c04a000000b005076635b02bsm884526edo.13.2023.04.20.08.52.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Apr 2023 08:50:02 -0700 (PDT)
-Message-ID: <2adfd25a-c4f0-db3f-2148-5fd150a6a49e@linaro.org>
-Date:   Thu, 20 Apr 2023 17:50:01 +0200
+        Thu, 20 Apr 2023 08:52:21 -0700 (PDT)
+Message-ID: <75231886-cdf6-cfde-d6b9-183b1fbf98da@linaro.org>
+Date:   Thu, 20 Apr 2023 17:52:20 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH 1/2] dt-bindings: pwm: mediatek: Add mediatek,mt7981
- compatible
+Subject: Re: [PATCH V3 1/2] dt-bindings: interrupt-controller: Add Loongson
+ EIOINTC
 Content-Language: en-US
-To:     Daniel Golle <daniel@makrotopia.org>, devicetree@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+To:     Binbin Zhou <zhoubb.aaron@gmail.com>
+Cc:     Binbin Zhou <zhoubinbin@loongson.cn>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        WANG Xuerui <kernel@xen0n.name>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        John Crispin <john@phrozen.org>
-References: <cover.1681932165.git.daniel@makrotopia.org>
- <4877689269af862ea9ddd199d8aa96b2d7fcf6fe.1681932165.git.daniel@makrotopia.org>
+        Jianmin Lv <lvjianmin@loongson.cn>,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
+        loongarch@lists.linux.dev, devicetree@vger.kernel.org,
+        loongson-kernel@lists.loongnix.cn
+References: <cover.1681887790.git.zhoubinbin@loongson.cn>
+ <3b9c4f05eaf14bc3b16aebec3ff84c8a2d52c4a5.1681887790.git.zhoubinbin@loongson.cn>
+ <f9b62f48-5c8b-2674-313d-4552c61c4302@linaro.org>
+ <CAMpQs4JjHvVOzQz-1Y-q9ut6tWUpakrHeozuwPg0dzoDcUFEGA@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <4877689269af862ea9ddd199d8aa96b2d7fcf6fe.1681932165.git.daniel@makrotopia.org>
+In-Reply-To: <CAMpQs4JjHvVOzQz-1Y-q9ut6tWUpakrHeozuwPg0dzoDcUFEGA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,17 +89,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/04/2023 21:24, Daniel Golle wrote:
-> Add compatible string for the PWM unit found of the MediaTek MT7981 SoC.
-> This is in preparation to adding support in the pwm-mediatek.c driver.
+On 20/04/2023 15:00, Binbin Zhou wrote:
+>>> +examples:
+>>> +  - |
+>>> +    eiointc: interrupt-controller@1fe11600 {
+>>> +      compatible = "loongson,ls2k0500-eiointc";
+>>> +      reg = <0x1fe11600 0x10>,
+>>> +            <0x1fe11700 0x10>,
+>>> +            <0x1fe11800 0x10>,
+>>> +            <0x1fe114c0 0x4>;
+>>
+>> Binding is OK, but are you sure you want to split the address space like
+>> this? It looks like two address spaces (enable+clear+status should be
+>> one). Are you sure this is correct?
+>>
+> Hi Krzysztof:
 > 
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> ---
->  Documentation/devicetree/bindings/pwm/mediatek,mt2712-pwm.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> These registers are all in the range of chip configuration registers,
+> in the case of LS2K0500, which has a base address of 0x1fe10000.
+> However, the individual register addresses are not contiguous with
+> each other, and most are distributed across modules, so I feel that
+> they should be listed in detail as they are used.
 
+Do you want to say that:
+Between 0x1fe11600 and 0x1fe11700 there are EIOINTC registers and other
+(independent) module registers?
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
