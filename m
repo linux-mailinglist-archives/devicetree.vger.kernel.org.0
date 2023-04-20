@@ -2,159 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E0316E962D
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 15:47:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E64AC6E9634
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 15:47:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229960AbjDTNrM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 09:47:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50268 "EHLO
+        id S229547AbjDTNrl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 09:47:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229547AbjDTNrL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 09:47:11 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D81892;
-        Thu, 20 Apr 2023 06:47:10 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E6E78649A4;
-        Thu, 20 Apr 2023 13:47:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 074D9C433D2;
-        Thu, 20 Apr 2023 13:47:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1681998429;
-        bh=1QyZRHlOCNh9KYcYd1u1wFLy/1mxyOjwo5PSkFTP51Y=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=S7KbwL3B37Ss08VH2w5iWaWpX9Jl6YME4jhFY3c8tFLqpQ16ldi0kp6YLjZ4L5QKH
-         EUKyNwzn2BqYWOpofJeddadPrTiicNAOoOnsiW76Plp8dZeB87tTpub5KknGRaeGTB
-         PpAKO0551ifA+rY5VD4PCGpp8twUlDNplmKCBsKh1WeWjHwIMFvwo6jds6K6I+bl49
-         uY/LpWRzxcPDknDfGFvSyIlP0VSxxhcX78w2I+rEs8NkuzepB6EWjCcu9oKldt0w4I
-         Ao5xZvvalV+RC9NJXFPB17qfXkZFueFyGRUx5eHCrDaG/zYCLeaqizq+a7w9EOIAQU
-         w1b4GUDOuYqYA==
-Date:   Thu, 20 Apr 2023 14:47:03 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Herve Codina <herve.codina@bootlin.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        with ESMTP id S229980AbjDTNrk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 09:47:40 -0400
+Received: from www381.your-server.de (www381.your-server.de [78.46.137.84])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28F3E3A86;
+        Thu, 20 Apr 2023 06:47:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=metafoo.de;
+        s=default2002; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID;
+        bh=wQ76rbsj87dJylzlZ6ZEzCin2KuP+RmRwobL0Htj8Wo=; b=ifAGo/6tGAxv+/wl5x/GoOOafq
+        g8M/AD55WXDDk0PZfNlAmDvXN6rUIpEv3PbAq26Y8HTDWCfa2yZ0p/VSxcxY2IrpjzSgMS5VfOqz5
+        mvMMx5RXIbQyg9N3I5RTarZqg+085plynvM4GzDSpewvRE/q1WNe6Kv1IeDwjK4c5XNvrueuiacHI
+        wghtynBifX8V5qn6Dzdxk3W3UhiJ4MhgX47CgXD6E3a+HBRNJbmKnVV8vhAY9hA8IdqGxC1uKLN3r
+        qa6f3DPH2u+gpGl7vzu9jrnSXC0VK9Yn3/m6uCr/WmGsWQbyBhjXPzw4c0i1LCG0h7rXcUmIq8F88
+        i0viJ5hA==;
+Received: from sslproxy05.your-server.de ([78.46.172.2])
+        by www381.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <lars@metafoo.de>)
+        id 1ppUdM-0002nT-6X; Thu, 20 Apr 2023 15:47:36 +0200
+Received: from [136.25.87.181] (helo=[192.168.86.26])
+        by sslproxy05.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <lars@metafoo.de>)
+        id 1ppUdL-000U3R-NG; Thu, 20 Apr 2023 15:47:35 +0200
+Message-ID: <85e214c8-b639-5197-70a1-7279f9418f66@metafoo.de>
+Date:   Thu, 20 Apr 2023 06:47:32 -0700
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 2/3] iio: potentiometer: Add support for the Renesas X9250
+ potentiometers
+Content-Language: en-US
+To:     Herve Codina <herve.codina@bootlin.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
         Christophe Leroy <christophe.leroy@csgroup.eu>,
         Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v6 3/7] mfd: Add support for the Lantiq PEF2256 framer
-Message-ID: <20230420134703.GC996918@google.com>
-References: <20230417171601.74656-1-herve.codina@bootlin.com>
- <20230417171601.74656-4-herve.codina@bootlin.com>
- <20230420123946.GB996918@google.com>
- <20230420151551.78c1288b@bootlin.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230420151551.78c1288b@bootlin.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230420121320.252884-1-herve.codina@bootlin.com>
+ <20230420121320.252884-3-herve.codina@bootlin.com>
+From:   Lars-Peter Clausen <lars@metafoo.de>
+In-Reply-To: <20230420121320.252884-3-herve.codina@bootlin.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Authenticated-Sender: lars@metafoo.de
+X-Virus-Scanned: Clear (ClamAV 0.103.8/26882/Thu Apr 20 09:26:46 2023)
+X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 20 Apr 2023, Herve Codina wrote:
+On 4/20/23 05:13, Herve Codina wrote:
+> The Renesas X9250 integrates four digitally controlled potentiometers.
+> On each potentiometer, the X9250T has a 100 kOhms total resistance and
+> the X9250U has a 50 kOhms total resistance.
+>
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 
-> On Thu, 20 Apr 2023 13:39:46 +0100
-> Lee Jones <lee@kernel.org> wrote:
-> 
-> > On Mon, 17 Apr 2023, Herve Codina wrote:
-> > 
-> > > The Lantiq PEF2256 is a framer and line interface component designed to
-> > > fulfill all required interfacing between an analog E1/T1/J1 line and the
-> > > digital PCM system highway/H.100 bus.
-> > > 
-> > > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> > > ---
-> > >  drivers/mfd/Kconfig         |  16 +
-> > >  drivers/mfd/Makefile        |   1 +
-> > >  drivers/mfd/pef2256-regs.h  | 250 ++++++++++
-> > >  drivers/mfd/pef2256.c       | 950 ++++++++++++++++++++++++++++++++++++  
-> > 
-> > 95% of this driver needs to be moved somewhere else.
-> > 
-> > What is a Framer?  Perhaps sound/ is a good candidate?
-> 
-> The pef2256 framer is a device that transfers data to/from a TDM (time-slots
-> data) from/to quite old telecommunication lines (E1 in my case).
-> Several subsystem can set/get data to/from the TDM. Each device using their
-> own time-slots set.
-> 
-> On my use-case, I have some audio consumer and a not yet upstreamed HDLC
-> consumer. Both of them uses the framer to know the E1 link state.
-> The framer needs to be initialized 'globally' and not by a specific consumer
-> as several consumers can use the framer.
+Hi,
 
-I can't think of a good place for this.
+Looks perfect! Just one small comment.
 
-If all else fails, it's drivers/misc
-
-> > >  include/linux/mfd/pef2256.h |  52 ++
-> > >  5 files changed, 1269 insertions(+)
-> > >  create mode 100644 drivers/mfd/pef2256-regs.h
-> > >  create mode 100644 drivers/mfd/pef2256.c
-> > >  create mode 100644 include/linux/mfd/pef2256.h  
-> > 
-> > [...]
-> > 
-> > > +static int pef2256_add_audio_devices(struct pef2256 *pef2256)
-> > > +{
-> > > +	const char *compatible = "lantiq,pef2256-codec";
-> > > +	struct mfd_cell *audio_devs;
-> > > +	struct device_node *np;
-> > > +	unsigned int count = 0;
-> > > +	unsigned int i;
-> > > +	int ret;
-> > > +
-> > > +	for_each_available_child_of_node(pef2256->dev->of_node, np) {
-> > > +		if (of_device_is_compatible(np, compatible))
-> > > +			count++;
-> > > +	}  
-> > 
-> > Converting Device Tree nodes into MFD cells to register with the
-> > Platform Device API is not a reasonable use-case of MFD.
-> > 
-> > Have the CODEC driver match on "lantiq,pef2256-codec" and let it
-> > instantiate itself.
-> 
-> As the framer is going to used by several subsystem, I cannot instantiate
-> it in the specific ASoC subsystem.
-> 
-> > 
-> > Your first version using of_platform_populate() was closer to the mark.
-> 
-> The issue was that I need MFD cells for the pinctrl part.
-
-Why can't it be represented in DT?
-
-> > > +	if (!count)
-> > > +		return 0;
-> > > +
-> > > +	audio_devs = kcalloc(count, sizeof(*audio_devs), GFP_KERNEL);
-> > > +	if (!audio_devs)
-> > > +		return -ENOMEM;
-> > > +
-> > > +	for (i = 0; i < count; i++) {
-> > > +		(audio_devs + i)->name = "lantiq-pef2256-codec";
-> > > +		(audio_devs + i)->of_compatible = compatible;
-> > > +		(audio_devs + i)->id = i;
-> > > +	}
-> > > +
-> > > +	ret = mfd_add_devices(pef2256->dev, 0, audio_devs, count, NULL, 0, NULL);
-> > > +	kfree(audio_devs);
-> > > +	return ret;
-> > > +}  
-
--- 
-Lee Jones [李琼斯]
+> +static int x9250_write8(struct x9250 *x9250, u8 cmd, u8 val)
+> +{
+> +	struct spi_transfer xfer = {
+> +		.tx_buf = &x9250->spi_tx_buf,
+> +		.len = 3,
+> +	};
+> +	int ret;
+> +
+> +	BUILD_BUG_ON(sizeof(x9250->spi_tx_buf) < 3);
+> +
+> +	mutex_lock(&x9250->lock);
+> +
+> +	x9250->spi_tx_buf[0] = 0x50;
+The 0x50 shows up as a magic constant in multiple places, a define for 
+it would be nice.
+> +	x9250->spi_tx_buf[1] = cmd;
+> +	x9250->spi_tx_buf[2] = val;
+> +
+> +	ret = spi_sync_transfer(x9250->spi, &xfer, 1);
+> +
+> +	mutex_unlock(&x9250->lock);
+> +
+> +	return ret;
+> +}
