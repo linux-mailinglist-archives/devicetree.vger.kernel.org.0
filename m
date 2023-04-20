@@ -2,61 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 966DC6E8AF7
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 09:10:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74C3F6E8B44
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 09:21:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233972AbjDTHKy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 03:10:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58882 "EHLO
+        id S234005AbjDTHVl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 03:21:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233933AbjDTHKx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 03:10:53 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B099E76;
-        Thu, 20 Apr 2023 00:10:49 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 09E7A24E270;
-        Thu, 20 Apr 2023 15:10:47 +0800 (CST)
-Received: from EXMBX067.cuchost.com (172.16.6.67) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 20 Apr
- 2023 15:10:46 +0800
-Received: from [192.168.125.89] (113.72.144.253) by EXMBX067.cuchost.com
- (172.16.6.67) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 20 Apr
- 2023 15:10:45 +0800
-Message-ID: <6ce407ab-0d2a-323f-61df-44b2ed8eb0ca@starfivetech.com>
-Date:   Thu, 20 Apr 2023 15:10:45 +0800
+        with ESMTP id S229612AbjDTHVk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 03:21:40 -0400
+Received: from mail-yw1-x1131.google.com (mail-yw1-x1131.google.com [IPv6:2607:f8b0:4864:20::1131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6AB935AF
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 00:21:39 -0700 (PDT)
+Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-54fa9da5e5bso30014197b3.1
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 00:21:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681975299; x=1684567299;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=oLbT5hVhYcV02p3hHaLqxtmtmMCjvhRv1rYkWERXbeU=;
+        b=QTGK+dypK6k2S08JVTdVcQRTWk6/eAHMseMqP91CuXmixFJWePFEeMJTR1JKJl3tJ6
+         Xaas7YsA+R/QNyA4Au7Y8APlHjS6HsFTAHr6FHEWnnNzWQKFg08OU/v49w+DjubKMxq/
+         aQRVPhrmsASYTDubT11E6/dIq2FMLNHZmdCrAJr3wvIFPemb5VSgBtkDhEWPk/Vlp6Eq
+         6un9yjjDJB3ST83t8czmvJy5WrMFspT816Hg8d7nUv8sZV8FU32xaoGsE5LdLcgioPoe
+         ICmLHfEXxdmuOzbDAElK0PewT0pLo39klytZTkbOJo1nU6XDeihrs+UJeuRG4B+y1Ia5
+         vlEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681975299; x=1684567299;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=oLbT5hVhYcV02p3hHaLqxtmtmMCjvhRv1rYkWERXbeU=;
+        b=WTa9PJqYeLcTq3s3ReTq43j4M1h9Sx9n/UmRxjbPWmsTDF5cJtH5xPVROdY7Xxj4UW
+         w44m69UAfImYu7K+qnRVN6k/1VFdPi9TJGYTkzM4X1GFaUJEh98Trj/qWH345Ovyk3Tw
+         fAjtLGqljmZCPxO89gkYjw08QI+rji5nTsniMIAbmq5sReRXz+P6LBf9zGbX3+Gy1zxt
+         MD/VmvFs0Q9G41AEHJ0Os8uyXMo6enKxWSEgo+NKrg4dpz2mfO9MLidLZX/A31HI3qCY
+         RIQqQDFy5MAQJSsB5nQHwBfHl8qJ8K66J0fBMWHOtNaQ+Um/W/GrLyumHDmX7JkE3uvA
+         QkNw==
+X-Gm-Message-State: AAQBX9cRF81Q/9zCUm3iGjdWn+/1gMWm90lXhm7zfTM45r6rjvWEq6EL
+        Wc+b+cb8AF2YKOnmLEpx5EnNT+9cpxPsg41S4s+qqw==
+X-Google-Smtp-Source: AKy350blgwHrEXE1ikzHbGGCBYjw9RVxglmRRKRDHlD7rvl6NARuY+TiiVgY2n0UW18b27VzRbT9IE9XH88uAfbAHfc=
+X-Received: by 2002:a81:4f89:0:b0:54f:9b17:c7db with SMTP id
+ d131-20020a814f89000000b0054f9b17c7dbmr160494ywb.10.1681975298893; Thu, 20
+ Apr 2023 00:21:38 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v2 3/3] riscv: dts: starfive: Add cpu scaling for JH7110
- SoC
-To:     Conor Dooley <conor@kernel.org>
-CC:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Shengyu Qu <wiagn233@outlook.com>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>
-References: <20230417063942.3141-1-mason.huo@starfivetech.com>
- <20230417063942.3141-4-mason.huo@starfivetech.com>
- <20230418-talcum-unthread-618a5bd2758a@spud>
-Content-Language: en-US
-From:   Mason Huo <mason.huo@starfivetech.com>
-In-Reply-To: <20230418-talcum-unthread-618a5bd2758a@spud>
+References: <20230416131632.31673-1-aweber.kernel@gmail.com> <20230416131632.31673-2-aweber.kernel@gmail.com>
+In-Reply-To: <20230416131632.31673-2-aweber.kernel@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 20 Apr 2023 09:21:27 +0200
+Message-ID: <CACRpkdYhPSK40QOcsMry8yvKy_iP7cyX-=sHOw-N50N+q1qqrw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: display: panel: Add Samsung S6D7AA0
+ LCD panel controller
+To:     Artur Weber <aweber.kernel@gmail.com>
+Cc:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [113.72.144.253]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX067.cuchost.com
- (172.16.6.67)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -65,60 +72,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Artur,
 
+thanks for your patch!
 
-On 2023/4/19 1:28, Conor Dooley wrote:
-> Hey Mason,
-> 
-> Just one minor comment in passing..
-> 
-> On Mon, Apr 17, 2023 at 02:39:42PM +0800, Mason Huo wrote:
->> Add the operating-points-v2 to support cpu scaling on StarFive JH7110 SoC.
->> It supports up to 4 cpu frequency loads.
->> 
->> Signed-off-by: Mason Huo <mason.huo@starfivetech.com>
->> ---
->>  .../jh7110-starfive-visionfive-2.dtsi         | 17 ++++++++++
->>  arch/riscv/boot/dts/starfive/jh7110.dtsi      | 33 +++++++++++++++++++
->>  2 files changed, 50 insertions(+)
->> 
->> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
->> index cca1c8040801..b25e6d68ce53 100644
->> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
->> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
->> @@ -227,3 +227,20 @@ &uart0 {
->>  	pinctrl-0 = <&uart0_pins>;
->>  	status = "okay";
->>  };
->> +
->> +&U74_1 {
->> +	cpu-supply = <&vdd_cpu>;
->> +};
->> +
->> +&U74_2 {
->> +	cpu-supply = <&vdd_cpu>;
->> +};
->> +
->> +&U74_3 {
->> +	cpu-supply = <&vdd_cpu>;
->> +};
->> +
->> +&U74_4 {
->> +	cpu-supply = <&vdd_cpu>;
->> +};
->> +
-> 
-> Applying: riscv: dts: starfive: Add cpu scaling for JH7110 SoC
-> /stuff/linux/.git/rebase-apply/patch:30: new blank line at EOF.
-> +
-> warning: 1 line adds whitespace errors.
-> 
-> Cheers,
-> Conor.
-> 
-Hi Conor,
+On Sun, Apr 16, 2023 at 3:16=E2=80=AFPM Artur Weber <aweber.kernel@gmail.co=
+m> wrote:
 
-Will fix it soon.
+> Add bindings for the S6D7AA0 LCD panel controller, including the
+> S6D7AA0-LSL080AL02 panel used in the Samsung Galaxy Tab 3 8.0 family
+> of tablets.
+>
+> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+(...)
 
-Thanks
-Mason
+> +  reset-gpios: true
+(...)
+> +            reset-gpios =3D <&gpf0 4 GPIO_ACTIVE_LOW>;
+
+Since reset-gpios is always active low, add a description: to reset-gpios
+saying that it should nominally be tagged GPIO_ACTIVE_LOW.
+
+Yours.
+Linus Walleij
