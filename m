@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97B356E9109
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 12:53:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1CD16E910E
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 12:53:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234990AbjDTKx1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 06:53:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35056 "EHLO
+        id S235106AbjDTKxh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 06:53:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235004AbjDTKxA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 06:53:00 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 947466E85
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 03:50:32 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2a8bca69e8bso4104381fa.3
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 03:50:32 -0700 (PDT)
+        with ESMTP id S234675AbjDTKxS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 06:53:18 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 477746EA8
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 03:50:48 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-4ec816d64afso2139132e87.1
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 03:50:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681987796; x=1684579796;
+        d=linaro.org; s=google; t=1681987809; x=1684579809;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ISDDN/N0rEFfikck66+Z24/wyAdEVwOWe2CAWFioEtc=;
-        b=m7Jj8i9f+dxN4pwDEwqdt1rEmZEIpxG/BGeSJTz2aaCvdZtfxX4mijbyxzKdQhsINY
-         cLK4ReKiMRmU7R7Gdeb7JVzLDXsD0CuBQ8aCbSEABRzvzYMEAtYpLAXwPVVyVGTZHzNS
-         YLkMdS9vN6Zzt7Xefp9i1UEx0BaKUCavs8DsJitp9bECMMZcxpEcJHHmzCtnZIdwwWZK
-         w7VquKC6iZJJGtOnVF6zSFGmgeySkYB1lpv2pFOMztHe9IOn3ki7XxPXHeDjTIV1pjZB
-         YF7//5t0yfzHbpq8EnciSB/5/EXbz+N7+wx5KzC9EnE10oBZT5F9+uDdnVyJYXxF0Yw7
-         dS/g==
+        bh=wsuGonmVVT/P8PzW1UgdDZUkfV/coJTd41srnQP/L1Y=;
+        b=povzuPmBKadPmNepbESXEWPhBd5ZQfHvUvQLA2KEb+0tE4sczCphjX/srlTTTBRL35
+         kksH7X3mAmHK26aKRAOhUrjjsuLNnLFFE64vc1dTKnnjYuaFdTpqwU16rP1wME1vryEq
+         x61RivlY85QPDdiNtSe58Q/g4qdTcJNORNxQpssUpNQYsh3dYokQPuZWk7PFOnGOSUrw
+         v6+b7WdkDCEsV/1+2JDJchHLDeNaO/sw9Ta6B6G+3vpBZVjILKk5Sg71cOkL9DRTwcFY
+         eYM/k1KSJ9m4PXW5bx9W2Q0m8qEZzuIKL4b2cATbR/qqDCUM4HdZwTNd9zrgw195Dp4q
+         R7ag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681987796; x=1684579796;
+        d=1e100.net; s=20221208; t=1681987809; x=1684579809;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ISDDN/N0rEFfikck66+Z24/wyAdEVwOWe2CAWFioEtc=;
-        b=A9YC5ePAuhSn9s2ZOojPcjqPC0RaVS7gsdNhjsIY3sRjDdcP6s2ScGFzBNMrXNRueO
-         ++pQbJDMFxIuplO0cbEtIosqrABw9lnOH9n4KutGk08OibY+7rEmp0fLLcrV42uXBf1r
-         5iqAnTNkfuam8e7yELk9ulI9u+3R6/FBFhMt+1aw885KKOBgpQrFS3E1KVWPsP3khNQC
-         AXwZggzB2HnYkJfhZHUoioEM7Mu5MATNLsNJ1beoZRwhH/iwBT98mLC5NtUCnrdV5dDD
-         JqxOpqgSk7+2eUmJnCCZjXmbLKXl6RjTIFI1aiCTdZ181U4muriftoOzchfrRoGTBgU0
-         4cxg==
-X-Gm-Message-State: AAQBX9eFKvQGDcG2rN1SuAShjKsplHzqd0TBHU8o5wx32NzVeGTJFTiN
-        UDHiZMoq91/T5KJZoRVlvCjdX9gjju5C13vvzGc=
-X-Google-Smtp-Source: AKy350btW5RbCt9icEEmJrgaBl4QuZbI3JbV48JNxQtlsfwxW2WyBcP/31up+3Eh0wFNc3zDvvCuIA==
-X-Received: by 2002:ac2:4905:0:b0:4ed:c9b0:6a42 with SMTP id n5-20020ac24905000000b004edc9b06a42mr369436lfi.12.1681987796498;
-        Thu, 20 Apr 2023 03:49:56 -0700 (PDT)
+        bh=wsuGonmVVT/P8PzW1UgdDZUkfV/coJTd41srnQP/L1Y=;
+        b=kMqHWYtaci5KlTSR9ZKCoIpxKe2NwPLUR4DxSj2UstnzGNpsxRzVSKD4QRfIG8YA2Q
+         2wp5qbN5k99oCUJRf9qm2cfDQM+6KDJzi8j2/4vO0uMnJ4RKgaGnbRIGUVSLLV6qrOeH
+         WSidEIqStsXW3dlPhC8ABvnUaF8x1UY81FWZeUOv4HHLB6Z68CtHHixYsxzXRb793l+F
+         GJVAN4P0NnyMa7RYKUvNnPpBo9psg8FTnCf98zb2gcTvtGUgX5Mf9jPDG8Q7vRihRgGZ
+         kEjQg6Rmm+6xJWK1p74BgCQ8yL02aGn2Mu/cma68kM0E9zakP5aK6GVufb3s3xAP46r/
+         evbg==
+X-Gm-Message-State: AAQBX9cmqJKZNw2npOPZFvXzDhsh/ESwqwMyf1VKLK89uy74XCZ65zZN
+        G8b9wRwNELHvQyirzWxL+ndCOg==
+X-Google-Smtp-Source: AKy350ZQHsxw1fubI3+qZWCtWR514wVu8rTk/7JP4nFGl7/RQW+p2UNtdR3B83ZtkGABc0xqpPT9mA==
+X-Received: by 2002:a05:6512:2244:b0:4eb:4258:bf62 with SMTP id i4-20020a056512224400b004eb4258bf62mr1614918lfu.8.1681987809163;
+        Thu, 20 Apr 2023 03:50:09 -0700 (PDT)
 Received: from [192.168.1.101] (abyj144.neoplus.adsl.tpnet.pl. [83.9.29.144])
-        by smtp.gmail.com with ESMTPSA id h15-20020ac2596f000000b004cca1658a41sm175011lfp.300.2023.04.20.03.49.55
+        by smtp.gmail.com with ESMTPSA id j17-20020a2e6e11000000b002a9ef98116asm198966ljc.49.2023.04.20.03.50.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Apr 2023 03:49:56 -0700 (PDT)
-Message-ID: <ae2d4903-9147-fe8f-1911-d49ef5a4cb51@linaro.org>
-Date:   Thu, 20 Apr 2023 12:49:54 +0200
+        Thu, 20 Apr 2023 03:50:08 -0700 (PDT)
+Message-ID: <2222caa7-84e7-dd99-56f4-76083cda1f87@linaro.org>
+Date:   Thu, 20 Apr 2023 12:50:07 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [PATCH 09/10] ARM: dts: qcom: msm8960-cdp: move regulator out of
- simple-bus
+Subject: Re: [PATCH 10/10] ARM: dts: qcom: apq8084: correct thermal sensor
+ unit-address
 Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -65,14 +65,14 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230420075053.41976-1-krzysztof.kozlowski@linaro.org>
- <20230420075053.41976-9-krzysztof.kozlowski@linaro.org>
+ <20230420075053.41976-10-krzysztof.kozlowski@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230420075053.41976-9-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230420075053.41976-10-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,43 +83,28 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 20.04.2023 09:50, Krzysztof Kozlowski wrote:
-> Regulators is not a bus, so drop incomplete simple-bus usage to fix dtbs
-> W=1 warning:
+> Match unit-address to reg entry to fix dtbs W=1 warnings:
 > 
->   Warning (simple_bus_reg): /regulators/gpio-regulator: missing or empty reg/ranges property
+>   Warning (simple_bus_reg): /soc/thermal-sensor@fc4a8000: simple-bus unit address format error, expected "fc4a9000"
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
->  arch/arm/boot/dts/qcom-msm8960-cdp.dts | 16 ++++++----------
->  1 file changed, 6 insertions(+), 10 deletions(-)
+>  arch/arm/boot/dts/qcom-apq8084.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm/boot/dts/qcom-msm8960-cdp.dts b/arch/arm/boot/dts/qcom-msm8960-cdp.dts
-> index 8fa2befa629a..6c1bc3818883 100644
-> --- a/arch/arm/boot/dts/qcom-msm8960-cdp.dts
-> +++ b/arch/arm/boot/dts/qcom-msm8960-cdp.dts
-> @@ -15,16 +15,12 @@ chosen {
->  		stdout-path = "serial0:115200n8";
->  	};
+> diff --git a/arch/arm/boot/dts/qcom-apq8084.dtsi b/arch/arm/boot/dts/qcom-apq8084.dtsi
+> index 83839e1ec4d1..8f178bc87e1d 100644
+> --- a/arch/arm/boot/dts/qcom-apq8084.dtsi
+> +++ b/arch/arm/boot/dts/qcom-apq8084.dtsi
+> @@ -507,7 +507,7 @@ tsens_s4_p2_backup: s4-p2_backup@44e {
+>  			};
+>  		};
 >  
-> -	regulators {
-> -		compatible = "simple-bus";
-> -
-> -		ext_l2: gpio-regulator {
-> -			compatible = "regulator-fixed";
-> -			regulator-name = "ext_l2";
-> -			gpio = <&msmgpio 91 0>;
-> -			startup-delay-us = <10000>;
-> -			enable-active-high;
-> -		};
-> +	ext_l2: gpio-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "ext_l2";
-> +		gpio = <&msmgpio 91 0>;
-> +		startup-delay-us = <10000>;
-> +		enable-active-high;
->  	};
->  };
->  
+> -		tsens: thermal-sensor@fc4a8000 {
+> +		tsens: thermal-sensor@fc4a9000 {
+>  			compatible = "qcom,msm8974-tsens", "qcom,tsens-v0_1";
+>  			reg = <0xfc4a9000 0x1000>, /* TM */
+>  			      <0xfc4a8000 0x1000>; /* SROT */
