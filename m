@@ -2,67 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61D4E6E9EB9
-	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 00:23:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A50B76E9ED0
+	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 00:31:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230200AbjDTWXu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 18:23:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47364 "EHLO
+        id S232033AbjDTWbZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 18:31:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233011AbjDTWXp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 18:23:45 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCE4130F7
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 15:23:41 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7102460B39
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 22:23:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1707C4339C
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 22:23:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1682029420;
-        bh=TK78CSVwe2MVKl/Akspq+ZTZzHADfto5V/d7VPTH/qQ=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=P7lTXaA2BCb4gT3s/9AOGpOYXpvQe0w275Ge3A2uZ5QnmgfpLAoQmJ8L7DZAuJ2Ux
-         KyIofP1+sRAueqK5VRacBXqZFOMWto+QmDC3NfVf95jZrUGfbTr6omP1j3MenDnQ2B
-         wI/RsAcIqWKvnGSLc5qKDaBktidbgDtCfkGN4pZtR+ikpFhiNQkC42HQaYlUyMQfpM
-         xWq1dffis2dfel4bTxe9UC5chQi4W4BqJJNBDX4QWIGQ0WAMWy+s4oLpS8iABqwEhG
-         1BA6ukTjel/O7+tL/AH0KBDlKql5oXqOKY/MQke8PTbQQ1+JWkad65YyK0brPDoOPL
-         BiDYYbMe6V26g==
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5050491cb04so1404336a12.0
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 15:23:40 -0700 (PDT)
-X-Gm-Message-State: AAQBX9d1dmJnWgiW5/VJzxgPhHHNS+SbOjQ61IsNrqxqtQJeD5xJ4Q5D
-        69DgEVW61bAmoRFpTTMHRo7QODw4N04VQOVVRa8eAA==
-X-Google-Smtp-Source: AKy350YRvc1c5/x9Ju6w2w31NCvB0mLlC9kkPyAzm+txB1+HHBy7WJqF48Tkb4o2CdB63r+Jw/WxLenE4GJSH2atRUA=
-X-Received: by 2002:a17:906:a18c:b0:928:796d:71e8 with SMTP id
- s12-20020a170906a18c00b00928796d71e8mr438986ejy.3.1682029419018; Thu, 20 Apr
- 2023 15:23:39 -0700 (PDT)
+        with ESMTP id S231939AbjDTWbY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 18:31:24 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BB3D30F2
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 15:31:23 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4ec9c7c6986so951723e87.0
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 15:31:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1682029881; x=1684621881;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=iMnuWFGrM/PJwZOBdpXu7uMemkHRjRrJAO+mKqn+Jmk=;
+        b=aQsMXg/NOus9+GeChd10f8ubKVxsiA78PImgqubhQEHY5WoCIbJu4YybU8rMVoSuld
+         uy6BpwEjlBXe/EP6hWAOmUFcLsbq5W1icBVy9URUpeXff8kscJrMtnZiKt+Ajf5IdIFJ
+         vrRDdKhokID2wOPcpfWBkWd/LRpOW1f/ToPU/5A/isgSkUyUdhl152A2D1aI3KMyv1cj
+         DrsjbhjpflFGNoH+DKn1HqtZIgr/Kj7oV68qQA18810aCMr5F5gvXlVUuIrQvIw9NUCT
+         Tvglrbhi/EtIJ5qDidlI2tZhQIFozwjBpjB4S/c7FBx3iPRjGbBCVs4WtnHoi44/sKU/
+         rtGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682029881; x=1684621881;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iMnuWFGrM/PJwZOBdpXu7uMemkHRjRrJAO+mKqn+Jmk=;
+        b=k76MgwXzKIhPCQsutk5B/fpzJYOxG8PO80UG4lFEZnoLToCAkCP1qjOA2GWIt3Xhu9
+         POm3ZxzNe2Xll5NpfPnt4/j4LwgwUANoGCpKvl1T0CBd9JbnW0+IU1vFPKVs58VNIOuf
+         swCOq8OFsaZrY/zWpk/3Fx1pU0/mdtcQ/vQ4R1/iQT8qeXy76/g+94A3ymueT2cBJnam
+         fAzc/Zbu0VcViRpjllWhPkUnUIlx22vb332ur1lnVeRipOJVmnnppWk6VxaAfG0hFGI+
+         6dMmTzlwQO5diGLIoYTDWfhMUp+jo8gWXKTnomCO8bnuN+q/6w1E1ngsvuzKoRO4MTLR
+         UQpA==
+X-Gm-Message-State: AAQBX9dtVFBwRgrJjoxbl6yXYz1TjIVMuuRMqXNVFBbvGcmsJM5IiBH5
+        o+MEDgXc02AlrIp709k6YkjFUg==
+X-Google-Smtp-Source: AKy350ZchB20U9dl/pPfuLW+KcxMRjqr9dfU+8ds5x9ciZBLjLgvH9CvctlFQjn361GPRBpjNUyrnw==
+X-Received: by 2002:ac2:46f9:0:b0:4eb:40d4:e0d2 with SMTP id q25-20020ac246f9000000b004eb40d4e0d2mr917031lfo.38.1682029881593;
+        Thu, 20 Apr 2023 15:31:21 -0700 (PDT)
+Received: from [192.168.1.101] (abyj144.neoplus.adsl.tpnet.pl. [83.9.29.144])
+        by smtp.gmail.com with ESMTPSA id w8-20020ac25d48000000b004eedb66983csm324256lfd.273.2023.04.20.15.31.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Apr 2023 15:31:21 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH v2 00/13] SM63(50|75) DPU support
+Date:   Fri, 21 Apr 2023 00:31:09 +0200
+Message-Id: <20230411-topic-straitlagoon_mdss-v2-0-5def73f50980@linaro.org>
 MIME-Version: 1.0
-References: <20230420072429.36255-1-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230420072429.36255-1-krzysztof.kozlowski@linaro.org>
-From:   Amit Kucheria <amitk@kernel.org>
-Date:   Fri, 21 Apr 2023 03:53:28 +0530
-X-Gmail-Original-Message-ID: <CAHLCerPBnvp_XD-ZR79nZBzdbBEiYZFuLfUpAQtuopgZ8GC=ZQ@mail.gmail.com>
-Message-ID: <CAHLCerPBnvp_XD-ZR79nZBzdbBEiYZFuLfUpAQtuopgZ8GC=ZQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: thermal: qcom-tsens: correct unit address
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAC69QWQC/4WNWwqDMBAAryL5boquD0q/eo8iJcZVF9JEdtPQI
+ t69qRfo5wwMsylBJhR1LTbFmEgo+AxwKpRdjJ9R05hZQQl12VSVjmElqyWyoejMHIJ/PEcRfZn
+ qxho7tgidyvVgBPXAxtsl9/7lXJYr40TvY3fvMy8kMfDnuCf42f+jBLrUdTfZKu86gPbmyBsO5
+ 8Cz6vd9/wKUXfip1AAAAA==
+To:     Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux.dev, Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1682029879; l=2429;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=adALUm2UDCuq+jHiF5r/gGrJmlODjVUWz+k4+ab309g=;
+ b=/nzsoNRh05ssUpKUu6os3JNQO8PfbruXwKRIX2V2kNWnyhJDQ0rvJRZ62p8t4kMlbM/yaNOLOWjg
+ xCPJJiuWAxaRmTiAW3QO8qBjR0fRzd5jjjsP6RDamuXawInqU///
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -71,42 +95,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 20, 2023 at 12:54=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> Match unit-address to first reg entry.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+v1 -> v2:
+- Rebase on the DPU catalog rework and INTF_TE
+- Fix QSEED(3L/4) discrepancies
+- Fixed DMA/cursor discrepancies for 6350
+- No deduplication, that's gonna be handled in catalogrework 2:
+  "the return of the catalogrework"
+- Split MDSS & DPU binding additions
+- Drop "Allow variable SSPP/INTF_BLK size", that got in w/ the rework
+- Split MDSS and DPU additions
+- Pick up Rob's acks
 
-Acked-by: Amit Kucheria <amitk@kernel.org>
+Depends on (and based on): https://lore.kernel.org/linux-arm-msm/20230411-dpu-intf-te-v2-0-ef76c877eb97@somainline.org/T/#t
 
-> ---
->  Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/=
-Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-> index b6452ed78802..d9aa54c11663 100644
-> --- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-> +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-> @@ -328,7 +328,7 @@ examples:
->    - |
->      #include <dt-bindings/interrupt-controller/arm-gic.h>
->      // Example 1 (new calbiration data: for pre v1 IP):
-> -    thermal-sensor@900000 {
-> +    thermal-sensor@4a9000 {
->          compatible =3D "qcom,msm8916-tsens", "qcom,tsens-v0_1";
->          reg =3D <0x4a9000 0x1000>, /* TM */
->                <0x4a8000 0x1000>; /* SROT */
-> @@ -358,7 +358,7 @@ examples:
->    - |
->      #include <dt-bindings/interrupt-controller/arm-gic.h>
->      // Example 1 (legacy: for pre v1 IP):
-> -    tsens1: thermal-sensor@900000 {
-> +    tsens1: thermal-sensor@4a9000 {
->             compatible =3D "qcom,msm8916-tsens", "qcom,tsens-v0_1";
->             reg =3D <0x4a9000 0x1000>, /* TM */
->                   <0x4a8000 0x1000>; /* SROT */
-> --
-> 2.34.1
->
+v1: https://lore.kernel.org/linux-arm-msm/20230211122656.1479141-1-konrad.dybcio@linaro.org/
+
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Konrad Dybcio (13):
+      dt-bindings: display/msm: dsi-controller-main: Add SM6350
+      dt-bindings: display/msm: dsi-controller-main: Add SM6375
+      dt-bindings: display/msm: Add SM6350 DPU
+      dt-bindings: display/msm: Add SM6350 MDSS
+      dt-bindings: display/msm: Add SM6375 DPU
+      dt-bindings: display/msm: Add SM6375 MDSS
+      drm/msm/dpu: Add SM6350 support
+      drm/msm: mdss: Add SM6350 support
+      drm/msm/dpu: Add SM6375 support
+      drm/msm: mdss: Add SM6375 support
+      iommu/arm-smmu-qcom: Add SM6375 DPU compatible
+      iommu/arm-smmu-qcom: Add SM6350 DPU compatible
+      iommu/arm-smmu-qcom: Sort the compatible list alphabetically
+
+ .../bindings/display/msm/dsi-controller-main.yaml  |   4 +
+ .../bindings/display/msm/qcom,sm6350-dpu.yaml      |  94 +++++++++
+ .../bindings/display/msm/qcom,sm6350-mdss.yaml     | 214 ++++++++++++++++++++
+ .../bindings/display/msm/qcom,sm6375-dpu.yaml      | 106 ++++++++++
+ .../bindings/display/msm/qcom,sm6375-mdss.yaml     | 216 +++++++++++++++++++++
+ .../gpu/drm/msm/disp/dpu1/catalog/dpu_6_4_sm6350.h | 186 ++++++++++++++++++
+ .../gpu/drm/msm/disp/dpu1/catalog/dpu_6_9_sm6375.h | 152 +++++++++++++++
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c     |  15 ++
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h     |   4 +
+ drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c            |   2 +
+ drivers/gpu/drm/msm/msm_mdss.c                     |  19 ++
+ drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c         |   6 +-
+ 12 files changed, 1016 insertions(+), 2 deletions(-)
+---
+base-commit: eaf6956f6dfdbba2c53a668248f8213b9e01bc51
+change-id: 20230411-topic-straitlagoon_mdss-8f34cacd5e26
+
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@linaro.org>
+
