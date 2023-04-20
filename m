@@ -2,104 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 372686E894C
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 06:51:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70AE46E87A4
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 03:50:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232403AbjDTEvV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 00:51:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57452 "EHLO
+        id S230157AbjDTBu1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 21:50:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231368AbjDTEvU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 00:51:20 -0400
-X-Greylist: delayed 11177 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 19 Apr 2023 21:51:18 PDT
-Received: from mail.heimpalkorhaz.hu (mail.heimpalkorhaz.hu [193.224.51.23])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA9174225;
-        Wed, 19 Apr 2023 21:51:18 -0700 (PDT)
-Received: from mail.heimpalkorhaz.hu (localhost [127.0.0.1])
-        (Authenticated sender: lmateisz@heimpalkorhaz.hu)
-        by mail.heimpalkorhaz.hu (Postfix) with ESMTPA id B8B56384A3B54E;
-        Thu, 20 Apr 2023 03:03:25 +0200 (CEST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mail.heimpalkorhaz.hu B8B56384A3B54E
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=heimpalkorhaz.hu;
-        s=default; t=1681952606;
-        bh=EK7FNzGPLm9pid/gmdFBrbarvHS9H0a48U7GgrEq6Uo=;
-        h=Date:From:To:Subject:Reply-To:From;
-        b=e+YYeoSi9gFuUUsYVTgqCtsuWLbjx/MgxaBQ06G7vUbL+5B9Kn5pzlk31uPlW67Ur
-         jGo++8aCl2duaFvkpzG753JU737w/FapzbKklpE8qixd9APLiynQqsdlgSlNa0KhQA
-         jHhj11L5Oht8IDe9Tme+8B8mKKjuCm/5M/h4cNI4x7TNw5ReFaGtgj2xgxcaDHIYTr
-         PQwtbdDj44s8AWZkVY0yDPPSBGM0ZgJd76AwWvSxpUQB8p+27cToklJ+3C6Wnw4N2M
-         KDGj9xm3xEyVWUKxz2wd+G82CvnHDqTI0CCCo/nN3v1Vqch1+VofVQJiV9Q2GMEQjL
-         fZ658WACXn5Hw==
+        with ESMTP id S231241AbjDTBuZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 21:50:25 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5511449C5
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 18:50:20 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2a8bca69e8bso1994411fa.3
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 18:50:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681955418; x=1684547418;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=nizPB57M3kviIBPTCEgCjkwcM2uwJN4yH7DbrqfjL/U=;
+        b=ijQFQOl0D+QxNYBLRsK03sCXvJSoXgkQ1tUoaxJ05thU2CniCDwmoENBu7lAqIOemt
+         9YrZQ1wxTOAqcrtydHSRhMzT9DozrQz9PnEF0lis0N7rI62uSCRqghv+Zwrle9os8HAN
+         gulc/qnPAky5h3942ws0EVPI4lF88ABikgUsbx1du9dmIIm1QH463wt9nvl7EOcSUu2y
+         pLezI17uxqXEUa5kRlmt+zUyf9BeG2e+E9GifCyK1IU+sl0+vRaD9tuOksNSwpl3oFFQ
+         Fp2DLHNRg1fp07/nPoC+prTmzfrdrNI75sUpODnTM2fjIYommNuGaebDkP9f/zInnXja
+         VdPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681955418; x=1684547418;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nizPB57M3kviIBPTCEgCjkwcM2uwJN4yH7DbrqfjL/U=;
+        b=HNBG1pjeJSIv3ifGJV/ExltOqnjYIC3On/zDylCIaH0XAwNsn80j4XicMJUDcQvRmD
+         BQkCeLLWSA1c3UA7pbadLNp7A7LDdoZ6qNi3ut2GUj3AvMqbZmT71E3x9HKWllpLpIh3
+         nhqx0GfRouhAZvYPlzTRCbEc/1zcRawDx+qUfc7T3l1HxKdjMyQXNuJs4yb/oz/taTyR
+         CnYfsPx+FijAXAj1Cm3XADnyFEMc5zzJzPMk6/gSXTUhijd5uhZ1YNRnUat6bHUOg+La
+         fC4DJYFVi5LdL/0jzXP1rjLZBPceYgrrgVe5TmMW00INXNFMnnxY5EvMTJD/KQs3FJ2G
+         0gCw==
+X-Gm-Message-State: AAQBX9eBtAzGJD9WnWvSA0HrHptSrfb6JI1H8wjabnta+MIYpS/SVdSi
+        egXUWIwPmd0N3pJNkit97VWYpQ==
+X-Google-Smtp-Source: AKy350ZBHPNjSoDhsEErAWQW3i0ayKz28VoblspqqpkAPk69WKIMkGhhqmI1kaVf9dno1FI7mXTyGA==
+X-Received: by 2002:ac2:4c1a:0:b0:4eb:1606:48db with SMTP id t26-20020ac24c1a000000b004eb160648dbmr4418362lfq.22.1681955418544;
+        Wed, 19 Apr 2023 18:50:18 -0700 (PDT)
+Received: from [192.168.1.101] (abyj144.neoplus.adsl.tpnet.pl. [83.9.29.144])
+        by smtp.gmail.com with ESMTPSA id v20-20020ac25614000000b004edd4566110sm58915lfd.286.2023.04.19.18.50.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 19 Apr 2023 18:50:18 -0700 (PDT)
+Message-ID: <66c41caf-bf21-61af-c6e4-52b34b69c1ce@linaro.org>
+Date:   Thu, 20 Apr 2023 03:50:16 +0200
 MIME-Version: 1.0
-Date:   Thu, 20 Apr 2023 03:03:25 +0200
-From:   MK <mk@heimpalkorhaz.hu>
-To:     undisclosed-recipients:;
-Subject: ***SPAM*** Hello sunshine, how are you?
-Reply-To: marion.k07081@gmail.com
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <466fbbf6cecf3c08d86265114eddc4e0@heimpalkorhaz.hu>
-X-Sender: mk@heimpalkorhaz.hu
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH RFT v2 00/14] SMD RPMCC sleep preparations
+Content-Language: en-US
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org, Shawn Guo <shawn.guo@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+References: <20230303-topic-rpmcc_sleep-v2-0-ae80a325fe94@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230303-topic-rpmcc_sleep-v2-0-ae80a325fe94@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [15.83 / 20.00];
-        FUZZY_DENIED(10.51)[1:edab46d5f3:1.00:txt];
-        R_UNDISC_RCPT(3.00)[];
-        FORGED_RECIPIENTS(2.00)[m:,s:acmccue@unc.edu,s:kara.hume@unc.edu,s:miriam.grenon@unc.edu.ar,s:silvia.lopezdeblanc@unc.edu.ar,s:sherry.liu@uncbusiness.net,s:lwilson-jones@uncfsu.edu,s:pliu@unch.unc.edu,s:maria.bullis@unchealth.unc.edu,s:jessi.nicola@UND.edu,s:adelarosav@undac.edu.pe,s:ndf@undershorts.org,s:aefnuc.cub@undp.org,s:violeta.zuna@undp.org,s:amotta@uneb.br,s:skaringi@uneca.org,s:nancy.yung@unemat.br,s:nilcem@unemat.br,s:rabelo@unemat.br,s:y.zhou@unesco-ihe.org,s:n.gul@unesco.org,s:celso.rocha@unesp.br,s:claudio.oliveira@unesp.br,s:e.deffune@unesp.br,s:roxana.herrera@unesp.br,s:aneta@unet.com.mk,s:vetinst@unet.com.mk,s:jguerre@unet.edu.ve,s:vgil@unex.es,s:jariberth@unf.se,s:alessels@unfccc.int,s:rpittman@unfoundation.org,s:melnour@unfpa.org,s:maja.heller@ungaornar.se,s:Nathan.Jorgensen@unh.edu,s:reybetd@unhcr.org,s:fisnik.morina@unhz.eu,s:ibish.mazreku@unhz.eu,s:olaf.kruse@uni-bielefeld.de,s:bodemer@uni-due.de,s:walter.buzina@uni-graz.at,s:bernd.witzigmann@uni-kassel.de,s:an
- ja.mueller@uni-leipzig.de,s:miriam.hamburger@uni-leipzig.de,s:al.pastorini@uni-med.net,s:p.romano@uni-med.net,s:alexander.ahrens@uni-tuebingen.de,s:dominik.dier@uni-ulm.de,s:stella.maerz@uni-vechta.de,s:abinakhm@uni.coventry.ac.uk,s:S2109357@uni.cumbria.ac.uk,s:Jayowin@uni.edu,s:nurguel.dursun@uni.li,s:anna.kowalcze@uni.lodz.pl,s:pawel.glodek@uni.lodz.pl,s:bchoros@uni.opole.pl,s:kbadora@uni.opole.pl,s:klinikaprawa@uni.opole.pl,s:sylwia.frach@uni.opole.pl,s:gmb14153@uni.strath.ac.uk,s:Magdalena.Valsikova@uniag.sk,s:Valsikova@uniag.sk,s:aj.lopez@uniandes.edu.co,s:anders.larsson@uniarts.se,s:andreas.erhardt@unibas.ch,s:m.kaeser@unibas.ch,s:nadia.pinardi@unibo.it,s:lachowicz@unica.it,s:terenzio.congiu@unica.it,s:christian.ballot@unicaen.fr,s:a.reitano@unical.it,s:acorrer@unicamp.br,s:pvelho@unicamp.br,s:Francesca.Fantini@unicatt.it,s:richardmp@unicauca.edu.co,s:ahoundeganme@unicef.org,s:pnepal@unicef.org,s:snkwenkeufils@unicef.org,s:cinzia.tutino@unict.it,s:nlaneri@unict.it,s:cpsmith@un
- idosporutuado.org,s:eda.cela@uniel.edu.al,s:milena.vidotto@unifesp.br,s:nathalia.kozikas@unifesp.br,s:simone.orlandini@unifi.it,s:umberto.allegretti@unifi.it,s:ora.hazak@unifr.ch,s:Herb.Reid@Unify.com,s:DeLaHarpe@unige.ch,s:emmanuel.rayner@unige.ch,s:julia.koerholz@uniklinikum-dresden.de,s:marinete@unilavras.edu.br,s:mahamoodmr@unilorin.edu.ng,s:ldiaz@unimagdalena.edu.co,s:smondello@unime.it,s:stefano.agosta@unime.it,s:wilfred.brimblecombe@unimelb.edu.au,s:elena.dozio@unimi.it,s:giovanni.montini@unimi.it,s:francesca.lanfranconi@unimib.it];
-        SUBJECT_ENDS_QUESTION(1.00)[];
-        GENERIC_REPUTATION(-0.59)[-0.58788261292158];
-        MIME_GOOD(-0.10)[text/plain];
-        BAYES_SPAM(0.00)[25.79%];
-        RCVD_COUNT_ZERO(0.00)[0];
-        FROM_EQ_ENVFROM(0.00)[];
-        MIME_TRACE(0.00)[0:+];
-        RCPT_COUNT_ONE(0.00)[1];
-        MID_RHS_MATCH_FROM(0.00)[];
-        FROM_HAS_DN(0.00)[];
-        TO_DN_ALL(0.00)[];
-        FREEMAIL_ENVRCPT(0.00)[uol.com.br,upcmail.nl,usa.com,usa.net,verizon.net,VERIZON.NET,versatel.nl,videotron.ca,vip.126.com,vip.163.com,vip.onet.pl,vip.sina.com,virgilio.it];
-        FREEMAIL_REPLYTO(0.00)[gmail.com];
-        REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-        HAS_REPLYTO(0.00)[marion.k07081@gmail.com]
-X-Rspamd-Queue-Id: B8B56384A3B54E
-X-Rspamd-Server: mail.heimpalkorhaz.hu
-X-Spam-Status: No, score=1.8 required=5.0 tests=BAYES_00,DATE_IN_PAST_03_06,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        FREEMAIL_FORGED_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
-X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I am sorry to bother you and intrude your privacy. I am single,
-  lonely and in need of a caring, loving and romantic companion.
-
-I am a secret admirer and would like to explore the opportunity to
-learn more about each other. I know it is strange to contact you
-this way and I hope you can forgive me. I am a shy person and
-this is the only way I know I could get your attention. I just want
-to know what you think and my intention is not to offend you.
-I hope we can be friends if that is what you want, although I wish
-to be more than just a friend. I know you have a few questions to
-ask and I hope I can satisfy some of your curiosity with a few
-answers.
-
-I believe in the saying that 'to the world you are just one person,
-but to someone special you are the world'. All I want is love,
-romantic care and attention from a special companion which I am
-hoping would be you.
-
-I hope this message will be the beginning of a long term
-communication between us, simply send a reply to this message, it
-will make me happy.
 
 
-Hugs and kisses,
+On 8.03.2023 22:35, Konrad Dybcio wrote:
+> v1 -> v2:
+> - Use CLK_IS_CRITICAL instead of leaving a clk enable vote, expand macros
+>   to do so
+> - Fix the keepalive clocks for 8998 & 660 (CNoC -> PNoC, it was
+>   confusingly named cnoc_periph downstream)
+> - Introduce .determinte_rate to ensure we don't set keepalive clocks'
+>   rates below 19.2 MHz
+> - Add a (!conditional!) way to test the ultimate goal of all these changes
+>   by essentially enabling unused clk cleanup through a dt property (for
+>   legacy reasons)
+> 
+> v2 was tested on:
+> 
+> - MSM8996 Sony Kagura (can disable unused)
+> - MSM8998 Sony Maple (can disable unused with OOT icc)
+> - SM6375 Sony PDX225 (can disable unused with OOT icc)
+> 
+> v1: https://lore.kernel.org/r/20230303-topic-rpmcc_sleep-v1-0-d9cfaf9b27a7@linaro.org
+> 
+> This series brings support for a couple of things necessary for the full
+> system idle on SMD RPM SoCs, namely unused clk shutdown and keepalive
+> votes (permanent active votes that are required on certain clocks for the
+> platform to function).
+> 
+> Tested on MSM8996 and SM6375, does not seem to introduce any additional
+> regressions.
+> 
+> Keepalive clocks for other platforms were gathered by digging in old
+> downstream kernels, please give them a test.
+I have an implementation of rpmcc-within-icc ready(ish) locally. Turns out
+some SoCs need a keepalive (19.2MHz, active-only) vote on clocks that
+are NOT governed by interconnect.. So before we can disable clocks,
+both will need to be implemented.. ugh... I was hoping we could avoid
+having it in rpmcc..
 
-Marion.
+Konrad
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+> Konrad Dybcio (11):
+>       dt-bindings: clock: qcom,rpmcc: Add a way to enable unused clock cleanup
+>       clk: qcom: smd-rpm_ Make __DEFINE_CLK_SMD_RPM_BRANCH_PREFIX accept flags
+>       clk: qcom: smd-rpm: Make DEFINE_CLK_SMD_RPM_BRANCH_A accept flags
+>       clk: qcom: smd-rpm: Make BI_TCXO_AO critical
+>       clk: qcom: smd-rpm: Make __DEFINE_CLK_SMD_RPM_PREFIX accept flags
+>       clk: qcom: smd-rpm: Separate out a macro for defining an AO clock
+>       clk: qcom: smd-rpm: Add support for keepalive votes
+>       clk: qcom: smd-rpm: Introduce DEFINE_CLK_SMD_RPM_BUS_KEEPALIVE
+>       clk: qcom: smd-rpm: Hook up PCNoC_0 keep_alive
+>       clk: qcom: smd-rpm: Hook up CNoC_1 and SNoC_2 keep_alive
+>       arm64: dts: qcom: msm8996: Enable rpmcc unused clk disablement
+> 
+> Shawn Guo (3):
+>       clk: qcom: smd-rpm: Add .is_enabled hook
+>       clk: qcom: smd-rpm: Add .is_prepared hook
+>       clk: qcom: smd-rpm: Mark clock enabled in clk_smd_rpm_handoff()
+> 
+>  .../devicetree/bindings/clock/qcom,rpmcc.yaml      |   6 +
+>  arch/arm64/boot/dts/qcom/msm8996.dtsi              |   1 +
+>  drivers/clk/qcom/clk-smd-rpm.c                     | 133 +++++++++++++++------
+>  3 files changed, 106 insertions(+), 34 deletions(-)
+> ---
+> base-commit: fc31900c948610e7b5c2f15fb7795832c8325327
+> change-id: 20230303-topic-rpmcc_sleep-d67aad9f3012
+> 
+> Best regards,
