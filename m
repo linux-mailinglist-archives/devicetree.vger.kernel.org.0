@@ -2,161 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A2D0D6E9BDF
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 20:47:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12A2A6E9C37
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 21:06:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231643AbjDTSr1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 14:47:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54302 "EHLO
+        id S229625AbjDTTGb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 15:06:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231704AbjDTSrY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 14:47:24 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E55C30C5;
-        Thu, 20 Apr 2023 11:47:23 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 251D664B47;
-        Thu, 20 Apr 2023 18:47:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACA34C433D2;
-        Thu, 20 Apr 2023 18:47:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1682016442;
-        bh=gIDrAb2DLZxHW/UfFYvFg8ZkNoELTe4cNyI1YhHhsUc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=qc+6ooEQtzPf4HhwXsVsY5wZMyL8TlT4I4maWGru69JSD+ChHQZATlXR2f+XdVQan
-         eobkKFtfxAgi/DnoXUt3pRJerjXWRpc3k2jC2jhV6Kn9Ka757+APzQAuikfZC13LYM
-         zmPdSARFhZC4GX8iKVUTb6ILSy1f/psLW3JeOElO0+c6aBQH1xHYfXIkriUegRURXd
-         6gGkNZfw9f2k0oIQauZteFrauOYWiS1oVzkpQXjKi7jsU0mv9qNce1GdPdBaVXeZc+
-         FCvPX5O/9imZKrZInVHCejqUYHTUdKtIYYRKQy4yrptyeYSpou9z8R1f8/nbSo8hWV
-         njLrbmk4WGM7Q==
-Date:   Thu, 20 Apr 2023 20:47:16 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230118AbjDTTG3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 15:06:29 -0400
+Received: from the.earth.li (the.earth.li [IPv6:2a00:1098:86:4d:c0ff:ee:15:900d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D2672108;
+        Thu, 20 Apr 2023 12:06:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=earth.li;
+        s=the; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:
+        Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=XcF8YitubdrlVVq61vFiY7n8l4J1XfxeL5mXCzPntYY=; b=EPHwvB3GslDJ+Sn+7RhDg0+EVC
+        F7mwGVAR48099+1uUizWmamElC50qVWut9o9KHoCdkXUYM48f1RxCgfbSJJhHW64smRpPw+KZOL5f
+        edyzb/KW/nxzQYbDhrebvVM79AJBJboMNdr2DTFgR2yvgxrBglAhGVYjRMb1pdVXIOYMRUxLzO/Iu
+        0wOAOqWEqH5RiiNudJF9MMjFS/3IoF7Ol5nyyx2WG6sZ9Ae61PoZHNuFsDD4PQbt66Gw1yCeRjdqc
+        Ip3Lvf05kHM/J4QstwjK6LPVVucxcoqqyooNVXsBXq4LAm2vOczh1Rs1yjbU81sSHGK1BazdBqQxS
+        teQg4muA==;
+Received: from noodles by the.earth.li with local (Exim 4.94.2)
+        (envelope-from <noodles@earth.li>)
+        id 1ppZbd-002TL6-RO; Thu, 20 Apr 2023 20:06:09 +0100
+Date:   Thu, 20 Apr 2023 20:06:09 +0100
+From:   Jonathan McDowell <noodles@earth.li>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Andy Shevchenko <andriy.shevchenko@intel.com>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Mike Pagano <mpagano@gentoo.org>,
-        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
-        Marek Vasut <marex@denx.de>,
-        Satish Nagireddy <satish.nagireddy@getcruise.com>,
-        Rob Herring <robh@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: Re: [PATCH v10 5/8] dt-bindings: media: add TI DS90UB960 FPD-Link
- III Deserializer
-Message-ID: <ZEGItAqsvNGQm1l+@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Andy Shevchenko <andriy.shevchenko@intel.com>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>, Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Hans Verkuil <hverkuil@xs4all.nl>, Mike Pagano <mpagano@gentoo.org>,
-        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
-        Marek Vasut <marex@denx.de>,
-        Satish Nagireddy <satish.nagireddy@getcruise.com>,
-        Rob Herring <robh@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-References: <20230222132907.594690-1-tomi.valkeinen@ideasonboard.com>
- <20230222132907.594690-6-tomi.valkeinen@ideasonboard.com>
- <ZD6VwpRya6SGBAt5@shikoro>
- <b85a2198-dffd-6c1e-53ea-61bc4d14ce2a@ideasonboard.com>
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] ARM: dts: axp209: Add iio-hwmon node for internal
+ temperature
+Message-ID: <ZEGNIQdmf8NSUs7+@earth.li>
+References: <cover.1681580558.git.noodles@earth.li>
+ <a40b6d46209f9b5626cd5a147c31daf5d19c9439.1681580558.git.noodles@earth.li>
+ <25a8dcf9-fd1b-0eb3-eced-7a1e158ca7fc@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="DLSvPqhBVl0l+K0b"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <b85a2198-dffd-6c1e-53ea-61bc4d14ce2a@ideasonboard.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <25a8dcf9-fd1b-0eb3-eced-7a1e158ca7fc@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sun, Apr 16, 2023 at 09:27:46AM +0200, Krzysztof Kozlowski wrote:
+> On 15/04/2023 19:47, Jonathan McDowell wrote:
+> > This adds a DT node to hook up the internal temperature ADC to the
+> 
+> Do not use "This commit/patch", but imperative mood. See:
+> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+> 
+> > iio-hwmon driver. The various voltage + current ADCs are consumed and
+> > exposed by their respective drivers, but this is not and is always
+> > available. Naming chosen to match the axp20x_ prefix the power sensors
+> > use.
+> 
+> Weird choice.
 
---DLSvPqhBVl0l+K0b
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+You think? I didn't choose the axp20x_ prefix for the others, but it
+made sense to me that all the sensors from the same device would be
+identifiable as such. From your comment below it sounds like you'd
+prefer I use the more generic pmic-temp as the node name? Will do for
+v2.
 
-Hi Tomi,
+> > Signed-off-by: Jonathan McDowell <noodles@earth.li>
+> > ---
+> >  arch/arm/boot/dts/axp209.dtsi | 7 +++++++
+> >  1 file changed, 7 insertions(+)
+> > 
+> > diff --git a/arch/arm/boot/dts/axp209.dtsi b/arch/arm/boot/dts/axp209.dtsi
+> > index ca240cd6f6c3..f00b5a7ec106 100644
+> > --- a/arch/arm/boot/dts/axp209.dtsi
+> > +++ b/arch/arm/boot/dts/axp209.dtsi
+> > @@ -48,6 +48,13 @@
+> >   * http://dl.linux-sunxi.org/AXP/AXP209%20Datasheet%20v1.0_cn.pdf
+> >   */
+> >  
+> > +/ {
+> > +	axp20x_temp {
+> 
+> No underscores in node names.
+> 
+> Node names should be generic.
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+> 
+> > +		compatible = "iio-hwmon";
+> > +		io-channels = <&axp_adc 4>; /* Internal temperature */
+> > +	};
+> > +};
+> > +
+> >  &axp209 {
+> >  	compatible = "x-powers,axp209";
+> >  	interrupt-controller;
 
-> How does this sound:
->=20
-> - If "i2c-alias-pool" is present in the DT data of the device passed to
-> i2c_atr_new(), i2c_atr_new() will parse the property. i2c-atr.c will expo=
-rt
-> functions to get a new alias and to release a previously reserved alias. =
-The
-> driver can use those functions in attach/detach_client() callbacks. In ot=
-her
-> words, the alias pool management wouldn't be fully automatic inside the
-> i2c-atr, but it would provide helpers for the driver to do the common wor=
-k.
->=20
-> - If "i2c-alias-pool" is not present, i2c-atr.c will behave as it does no=
-w,
-> and expects the driver to manage the aliases.
+J.
 
-So, how does a driver manage the aliases without a pool of available
-addresses? I can't imagine another way right now.
-
-In general, your above proposal sounds good to me. With my lack of
-imagination regarding a different alias handling, I could also see that
-i2c-atr already provides the alias to the attach callback. But if you
-teach me another way of alias handling, then I could agree that your
-proposal makes sense as is.
-
-And yes, the "i2c-alias-pool" is definately optional.
-
-Happy hacking,
-
-   Wolfram
-
-
---DLSvPqhBVl0l+K0b
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmRBiLAACgkQFA3kzBSg
-KbYJ1A/7BDFTBE8y9ItDYSASswnWFWHIO5wp/eXJwlpgBYacveFxf/APz0H9A34I
-BKLFU2j5vsI4sPZgaJRo9rsju5/wEQlokVgMcOaFXEeiNf6LJ2CtVUrVa7TaBTkX
-zb8eMQ5EmPQwX9d4/XJ/Jc8bPGiLMhQ0SrNW21g3ZVA++ZFzrRqAZQDicPAuT3c8
-li159KDrPg4X5bhIAfOf2zgqr+1eBFQdlY11zDZ5bMBSbJHUb4vjX2Zogtzl7Xx/
-8CziRiUJmSiNtSUTpBACic4X8rbU/rCn5lgr+811389JvnOPZtcmfg1fLqL4Wj9i
-29Wxyc0+mGs8Hg74aDuAn6kpeT7VLzLUuH2EhcrpqY4B8lP2pCKQmMnVt0ZXrdBc
-J24ia/JEQ7+Ua3lqFn4pni7Pk34/juwq0LS2hqF9vKM2r5Z4/KZ5izZxxyU9c3Xe
-FWSRP8xWwA+H7ewtmFPrcGVRV9EVrZj/twpJn8KxvvFdFqJjHYdCUIkkcpuFN3MF
-yo0qVBp4aOvyQkzn+eyRNvFXkL0xGYJxeU1OouuUDMM3k75hUflAN9JUZfrTaMNP
-RPFhsTBcEgELPM7LLJqV9UqSsG/oAbC1eFV9fMoGRzcWNrd21XDb/TfPz11uGM6v
-R0a8dVjmmZU9OJMOcYYp9HebKFHBJrTQZoNE1syC7Kxj6+lg1xc=
-=qWqp
------END PGP SIGNATURE-----
-
---DLSvPqhBVl0l+K0b--
+-- 
+"My house has this new innovation called "windows".  Even my bedroom
+has them. " -- Paul Tomblin
