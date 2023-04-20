@@ -2,63 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C96C6E9DC1
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 23:17:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D7D96E9DC2
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 23:17:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232101AbjDTVRs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 17:17:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44998 "EHLO
+        id S231206AbjDTVRt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 17:17:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229523AbjDTVRr (ORCPT
+        with ESMTP id S231845AbjDTVRr (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 17:17:47 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5233B4695
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 14:17:45 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4edb93139ddso867706e87.0
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02CE85263
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 14:17:46 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-4edcdfa8638so894060e87.2
         for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 14:17:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682025463; x=1684617463;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=i0Pj+AVFybiuMWHWYcZm+EIAYi+KrTLHdnCxLp8NU1c=;
-        b=lwDHnyU+dTm6lkohZg4kDlrRTFntofvIVqppVB0b8ucL+8Bkd0y+5fTwzeeCMWAog4
-         5m1Ce4x1U2iMx+TYJe1f2Qrs7zgncuB9KhPxTd2tkHBLVWtuCiel/yKNpdGKgsPB2K8c
-         5lFlffzW3BQcWuNYGXU/RnyvnwE631oc5wmeL422sc1wIjaKY5wRNYktRg5ugcTO1WO0
-         waFvCCq3/yGJopu2KoZmGwfSbjKm9h0QX67Txe6IF0RnWGVGlJFWGwm43MRA+/RAtPRZ
-         VsHgGoO27dxBBfPAsUY57oRAycpi1ww6Doj5RIsz0NpdihTGwtRC02mUWPamZsNXUqOm
-         m6Rw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682025463; x=1684617463;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1682025464; x=1684617464;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=i0Pj+AVFybiuMWHWYcZm+EIAYi+KrTLHdnCxLp8NU1c=;
-        b=eWe77OPu/TK2piE30Y94uVk7nI1TdRn0RbdIVvu34InIekGeif34ExKItmI+juyzT0
-         mETlgLA7AWQBtprPTcPU9FRU2Qov7l7dyJ+hb9WPgFrQ1XU5SCvARhhOSkno2JqMIzK2
-         RrMdnCI8rNodMKaoj2ADu7VP1yMdnW2NjsNUplyTWre5qQ4QxY7pMKFnLFhRvi129Nhc
-         98sGhwpFeBO088NijBkfyY2rEvx5TmoJbgqYNPQe3o12CLIV1DS+ZXhc/MyQtvmn7NjQ
-         ymk9aLBChafCFBf+AXrpQszw0gNmGstcQ72OIJNGsbMn8plA/cyHTe/m92ZqXCnl8SUg
-         B1ag==
-X-Gm-Message-State: AAQBX9cAjEvMTiZn9Jz+dJNAoanqcmlYufYxKYehmC9odHmZkuwyI0L8
-        4p36bt/HNiGzWGneo4LYyKIL6w==
-X-Google-Smtp-Source: AKy350YKP7KAS+NiQMgCENIJ3hf+Ib7qZphujaW1ycfkKv2FOIu6urQ2cjlpVvGzEXZBBq+pqh1u0A==
-X-Received: by 2002:ac2:46cb:0:b0:4eb:4002:a5ca with SMTP id p11-20020ac246cb000000b004eb4002a5camr671480lfo.66.1682025463586;
-        Thu, 20 Apr 2023 14:17:43 -0700 (PDT)
+        bh=38MnDmLtcYQkY2PJ8DXc4HeYBW4VWVTJbBajwrKtUQY=;
+        b=DZSO51QCviT1QjP1WhwzVKdJLh/f8M7hz/T60icFEz6grRPhQrz81Ec/tH9YA9UWQK
+         UHdBqh4mHTxVoNfIuFU34aLTAqSIaijFl9/Ui9JvGUaxQ8XEXNmfciK0sMTr10ArBdrc
+         ocaoF1OoyMYiELB3azBngOdBdA9tUc3PiR9DZJ3N0KbVx+Gb1uGYcTooebsdzLfSpo0s
+         35pONWIjFl6qmUF3phWTbl+syZ358CGfaxHiDThcR+LpwrIGtHfnRTnjJ8ExGbJ8IjWc
+         NmXJSMPTrq/cp8iFUxLCXtvrUURK4RAPQ/86YqxlA3WSqfCy3xkPxa72r/Qas5y5Jxqb
+         c7Gg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682025464; x=1684617464;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=38MnDmLtcYQkY2PJ8DXc4HeYBW4VWVTJbBajwrKtUQY=;
+        b=EV89NZGjY0hWUcJIqvZ8+NmjlXCQCXfxYFyZq1oeJrAuV5UguhHhHLwX7bOJnM6Miw
+         i/vOsKoxH74PzCcUFPNaYw15xRV3RlByeSw4tCgfLqFKbl6UaHUlvmPGY3cyGpqWKL3E
+         vC9otm9DCX83dDUfdSHQUhIjsQsbSpFQWfMnHcU9o3E8hN7jxM7sif+1rk10hdhfaUTW
+         jVNf7pSIBR66gE5LNFYEP0q4liF8UxrgYaVmTH3/XIZVpF+fWrlfi+Bu++9Yn5Kh8zWB
+         sw+NMOr6Ekf3qwMFjXMxsSiuGSZOgfTcNroIUG5iPEiZx5vzQAKBek4pcSepMkPdHIRU
+         xgJw==
+X-Gm-Message-State: AAQBX9c8xXu9aKX/E1jN9MVH21sTY94kSZO/1WKwuSQ7H9QDrEPvm8V8
+        HXCzZB9X3kzEoUn3ybUVxoMMDQ==
+X-Google-Smtp-Source: AKy350buOLCRnCD7f4c26vJuo+rS5/OSb0XJjewaHwuXto/FhtCR4Qkm7wExv2koM83rC7elA+FWaQ==
+X-Received: by 2002:ac2:532c:0:b0:4d5:8306:4e9a with SMTP id f12-20020ac2532c000000b004d583064e9amr779212lfh.46.1682025464375;
+        Thu, 20 Apr 2023 14:17:44 -0700 (PDT)
 Received: from [192.168.1.2] (c-05d8225c.014-348-6c756e10.bbcust.telenor.se. [92.34.216.5])
-        by smtp.gmail.com with ESMTPSA id g12-20020a19ee0c000000b004edd3f011cfsm332985lfb.43.2023.04.20.14.17.42
+        by smtp.gmail.com with ESMTPSA id g12-20020a19ee0c000000b004edd3f011cfsm332985lfb.43.2023.04.20.14.17.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Apr 2023 14:17:43 -0700 (PDT)
+        Thu, 20 Apr 2023 14:17:44 -0700 (PDT)
 From:   Linus Walleij <linus.walleij@linaro.org>
-Subject: [PATCH v2 0/2] SRAM dt binding and fix
-Date:   Thu, 20 Apr 2023 23:17:33 +0200
-Message-Id: <20230417-ux500-sram-v2-0-6e62ad551faa@linaro.org>
+Date:   Thu, 20 Apr 2023 23:17:34 +0200
+Subject: [PATCH v2 1/2] dt-bindings: sram: Add compatible for ST-Ericsson
+ U8500 eSRAM
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAO2rQWQC/22Nyw7CIBBFf8XM2jFAn7jyP0wX0GI7iYIZtKlp+
- u9C3bo895GzQnRMLsL5sAK7mSIFn0AdD9BPxo8OaUgMSqhClLLB91IJgZHNA3UtG103qh5sCel
- gTXRo2fh+ypff0uVpbp/sbrTsqmuXeKL4CvzZzbPM6V/JLFFgpVWp29batqgud/KGwynwCN22b
- V/uUng8wwAAAA==
+Message-Id: <20230417-ux500-sram-v2-1-6e62ad551faa@linaro.org>
+References: <20230417-ux500-sram-v2-0-6e62ad551faa@linaro.org>
+In-Reply-To: <20230417-ux500-sram-v2-0-6e62ad551faa@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Arnd Bergmann <arnd@arndb.de>,
@@ -77,35 +77,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds a DT binding for the U8500 SRAMs.
+This adds an SoC-specific binding for the banks of eSRAM
+available in the ST-Ericsson U8500.
 
-This patch series also fixes an issue with pool labels that I
-saw on U8500.
-
-I suppose SRAM patches will go in through the SoC tree, I kind
-of feel that SRAM is a SoC concept and the driver should
-actually be in drivers/soc...
-
+Acked-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
-Changes in v2:
-- Change to just use dev_name() for naming the SRAM partition
-  when no label is passed.
-- Link to v1: https://lore.kernel.org/r/20230417-ux500-sram-v1-0-5924988bb835@linaro.org
-
----
-Linus Walleij (2):
-      dt-bindings: sram: Add compatible for ST-Ericsson U8500 eSRAM
-      misc: sram: Generate unique names for subpools
-
  Documentation/devicetree/bindings/sram/sram.yaml | 1 +
- drivers/misc/sram.c                              | 9 +++++----
- 2 files changed, 6 insertions(+), 4 deletions(-)
----
-base-commit: fe15c26ee26efa11741a7b632e9f23b01aca4cc6
-change-id: 20230417-ux500-sram-961796726db4
+ 1 file changed, 1 insertion(+)
 
-Best regards,
+diff --git a/Documentation/devicetree/bindings/sram/sram.yaml b/Documentation/devicetree/bindings/sram/sram.yaml
+index 993430be355b..0922d1f71ba8 100644
+--- a/Documentation/devicetree/bindings/sram/sram.yaml
++++ b/Documentation/devicetree/bindings/sram/sram.yaml
+@@ -94,6 +94,7 @@ patternProperties:
+             - samsung,exynos4210-sysram
+             - samsung,exynos4210-sysram-ns
+             - socionext,milbeaut-smp-sram
++            - stericsson,u8500-esram
+ 
+       reg:
+         description:
+
 -- 
-Linus Walleij <linus.walleij@linaro.org>
+2.40.0
 
