@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C531E6E8BBC
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 09:51:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5B786E8BBE
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 09:51:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233687AbjDTHv1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 03:51:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56572 "EHLO
+        id S234137AbjDTHv2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 03:51:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233754AbjDTHvZ (ORCPT
+        with ESMTP id S234041AbjDTHvZ (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 03:51:25 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E0615BB0
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 00:50:59 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-94a34a14a54so51952566b.1
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 00:50:59 -0700 (PDT)
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C425F558E
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 00:51:00 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-50506ac462bso576357a12.3
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 00:51:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681977057; x=1684569057;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Zvf+xnGH2yVUbEYT1ZXq0LUu7O6EHY5uIO2OZEVZG8Y=;
-        b=f0rQsFU65XBxA2NjI7Z+NtW2TNGRRHPV7a212uJtzR325WSOB4EMmsVu0oAGEKSUEe
-         uSEff3ICptXsToLKrmRTEeoCDRixGVRVQWUK0KFYIk2NAT2cQVcCNHkV3wTveF6CLWfw
-         bYT+TIoh957zgu05MEpRhbkZ/7ElFABXLxUyTSpxsgZd6zA4Va5o3/4CUt1PYuOQNLMo
-         Cx9jnaA6MXNk67Sj79mOdnjDoBaJWMzAK9xd7kVurenR6J9o2ZofucyKbVoQnKJqGY+3
-         VsdQ7GyKTH8pyPO5j7GQKJA+uUzLV14AHT5fuUV2uJ5icZp+mpM+RvHUt2+dOg0VqRlE
-         PUPw==
+        d=linaro.org; s=google; t=1681977058; x=1684569058;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Y7TzpU6TgMuwz4sOGcNRBEuycSEzH4dOaJjh3nUn7qc=;
+        b=BArUazQatTX4uQ3lJntVFYlnVxalexNHsj8sRBSTE9SffYpweHYhMIKCC6QDByxHP6
+         v3x22KnSFv4rGHAcRLgiguR6DImfEgJe5C6JfE0fCZPa0+olU36NddJMwvkm11dTv53P
+         oLSsQ2bypcePdH5m02Daa1UkhfzjTTrHIvG+786F1ogCcjwCVdeOCKKF/g+HC3v1yyxz
+         ewfz23FJtY49Yro85mZNkzGsqochKhNdUGCPDOT9rrhKS8/FTxMrKp1UHrf+FTEDai5h
+         KBlh3xIB9WKUwld4Zr2hG8tnuEbP+dUrq4sL31WjYTMd0hK93kHO3SWJavFcMeaBNACo
+         m+rQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681977057; x=1684569057;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Zvf+xnGH2yVUbEYT1ZXq0LUu7O6EHY5uIO2OZEVZG8Y=;
-        b=FMbd27O6ZeciNc9UBP+JXvDGuEDrOioL1iEqH3gVdyL+QT2vN8j4ILB5Oj9fOBTOjl
-         hIvPKm6G5eoY9w12L07u6nEBS4dE08D569nj6r+T+16/kDdc4AT12Q0lESEZzLypG+pB
-         BgM69JLanTYA6nx1IRJqm/tkSNStZX870FFQmQwlvVVRsFMg18NqtIWjUdw0ezHWBRc0
-         yki8FTobBaSR8z/aTrW/jJ4kATRq6juIp/61WWY0bFYDlcWv1iruXvoBxBtRgAs/6nq2
-         ExPR3t7EEVc341OQNkMeBHmWSOeAKMBPWoTt5C3lHRq5f0PTMFvXjZRpBLXN9Yfx9BfJ
-         2qgg==
-X-Gm-Message-State: AAQBX9eTLrvjAfWPYZmTI4RGu+lfs592hsyrVGVUEwS3OjZ1XjRmtU9U
-        Uf7MVNEeg+UqLSwp+zPEChaJCA==
-X-Google-Smtp-Source: AKy350YmwYM3+AAw5pd+K/TsEn1m2WWGHkJmmJa8deTWxwnHuh0NkDfBYr5R1jyDDmBA8syQq9kNLA==
-X-Received: by 2002:a05:6402:4c6:b0:4ac:b687:f57e with SMTP id n6-20020a05640204c600b004acb687f57emr903824edw.1.1681977057187;
-        Thu, 20 Apr 2023 00:50:57 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1681977058; x=1684569058;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Y7TzpU6TgMuwz4sOGcNRBEuycSEzH4dOaJjh3nUn7qc=;
+        b=EuuWFhWNyKc+pT/z1tS+ljy00quu+DVvvX+2u0vwvn2jmReG9RbfouzOaayB0RrSAN
+         wtzBZmOYIwj1jdUYpXTXimLehA9gjsJByXjJ2RUSRVzSHBLDeGhlRO/Bv6b/RCrdlH94
+         KD+xDpJUKwsmucemgTFwpCE2OMcr71/Vz9+yzM/mv0sm69XG7VC1JGJFF7IvwbATD+VI
+         +hrJ7S/sEQw9p5LgrykcOoWkKalvMkWaFAJ+a+1cymlPD4vtjwubINs8jPv47tlJZXxy
+         Vf+sV7KHLpW1+kWVUIfIVLnY9rrxM87Yj+5SMPj+yIQZnoT8sGB1ZbMfODW9HvtBCT1Y
+         GO1w==
+X-Gm-Message-State: AAQBX9dfZiTF0u5dcli7Ol1VOCjpuXs3wfumtM8X/KZ95BeIyiVtRITl
+        7Z9fx05SXRnRwOJmFBNjeY/+Rw==
+X-Google-Smtp-Source: AKy350acwmM868Zvzlu6+qgmKVkLDKI5kLVRcybsnf/8BjFFKvlsHd+bG+TZOYysSgOJSNekdBPOvg==
+X-Received: by 2002:aa7:c393:0:b0:4fb:4fc2:e600 with SMTP id k19-20020aa7c393000000b004fb4fc2e600mr802826edq.42.1681977058238;
+        Thu, 20 Apr 2023 00:50:58 -0700 (PDT)
 Received: from krzk-bin.. ([2a02:810d:15c0:828:bcb8:77e6:8f45:4771])
-        by smtp.gmail.com with ESMTPSA id h25-20020a50ed99000000b00505060e4280sm447165edr.94.2023.04.20.00.50.56
+        by smtp.gmail.com with ESMTPSA id h25-20020a50ed99000000b00505060e4280sm447165edr.94.2023.04.20.00.50.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Apr 2023 00:50:56 -0700 (PDT)
+        Thu, 20 Apr 2023 00:50:57 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -57,10 +58,12 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 01/10] ARM: dts: qcom: ipq4019: correct syscon unit-address
-Date:   Thu, 20 Apr 2023 09:50:44 +0200
-Message-Id: <20230420075053.41976-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 02/10] ARM: dts: qcom: sdx55: correct rsc unit-address
+Date:   Thu, 20 Apr 2023 09:50:45 +0200
+Message-Id: <20230420075053.41976-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230420075053.41976-1-krzysztof.kozlowski@linaro.org>
+References: <20230420075053.41976-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -75,7 +78,7 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Match unit-address to reg entry to fix dtbs W=1 warnings:
 
-  Warning (simple_bus_reg): /soc/syscon@1fcb000: simple-bus unit address format error, expected "1fc0000"
+  Warning (simple_bus_reg): /soc/rsc@17840000: simple-bus unit address format error, expected "17830000"
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
@@ -83,18 +86,18 @@ Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/arm/boot/dts/qcom-sdx55.dtsi b/arch/arm/boot/dts/qcom-sdx55.dtsi
-index 342c3d14001e..72d82a9a6cc5 100644
+index 72d82a9a6cc5..06c2646dd673 100644
 --- a/arch/arm/boot/dts/qcom-sdx55.dtsi
 +++ b/arch/arm/boot/dts/qcom-sdx55.dtsi
-@@ -515,7 +515,7 @@ tcsr_mutex: hwlock@1f40000 {
- 			#hwlock-cells = <1>;
+@@ -792,7 +792,7 @@ frame@17829000 {
+ 			};
  		};
  
--		tcsr: syscon@1fcb000 {
-+		tcsr: syscon@1fc0000 {
- 			compatible = "qcom,sdx55-tcsr", "syscon";
- 			reg = <0x01fc0000 0x1000>;
- 		};
+-		apps_rsc: rsc@17840000 {
++		apps_rsc: rsc@17830000 {
+ 			compatible = "qcom,rpmh-rsc";
+ 			reg = <0x17830000 0x10000>, <0x17840000 0x10000>;
+ 			reg-names = "drv-0", "drv-1";
 -- 
 2.34.1
 
