@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB3E46E868E
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 02:31:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D24DD6E8691
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 02:32:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231608AbjDTAbO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Apr 2023 20:31:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39066 "EHLO
+        id S231693AbjDTAcH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Apr 2023 20:32:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231265AbjDTAbN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 20:31:13 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 553F55BAD
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 17:31:10 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id h8so970723ljf.3
-        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 17:31:10 -0700 (PDT)
+        with ESMTP id S231265AbjDTAcG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Apr 2023 20:32:06 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45DD73A82
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 17:32:04 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4eca19c3430so222333e87.1
+        for <devicetree@vger.kernel.org>; Wed, 19 Apr 2023 17:32:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681950668; x=1684542668;
+        d=linaro.org; s=google; t=1681950722; x=1684542722;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Fi7p0X7yko8Mx4oIRrg6YnMb1P1Vd3sNhAz3iheygcw=;
-        b=n8o+MuQNehdCavTYlTZeOI9vdjMwDW+cYtyJMDyCO3xHji7UBepRk7TvOjgn4zuB93
-         i2Bqs2O0B/H+ir8he/hX/I6mDZRrWT7C8sz54t8o17VPmhZDn0wtmRRTD3tEWJr8RFWk
-         g4oLbC/7ovXIoMCaFu5TkcMz/UUDSPjdHYgEHGT6xbMZ4bqo8QsZWHezTXlQ89CuZ1K3
-         JBoGRjbHN2pp0Gewe5kyTpdQoTBrM5drdwqtqQmT5emn2x0Qkj9uL+x7x//hAoyPmFB3
-         +2uXbVslAToxHXwmiWL+altupL0ZOyGQSEzDdhB68sMAIZPhH508PV7Ue0J7KrnKb567
-         AEGw==
+        bh=9Nd7HhhsmQrigh61dvTiVokWTk2+5/4WKyz3jRZXbJ4=;
+        b=a+40sUdKRlsWqlp51b0RhAxzrbuNll8UIcDmVP8tAIkAfLGz+KtdREVLHC01Jd4UUL
+         l/kqTYkR2KkldC8plqDQsctlU1Xg2Lfvyl56q4I/SBWMyXJAq+ubGmzwHIC93BoNMNiF
+         OBRtfwuVpCJbELT9UnzNwSpcrUv4lYol3z+3Z89d1pW66lmpO3K9ihBYxcgr8qU6rL7R
+         Wc5UCnoCrOiWMUrXngDGaxcJ03FoKaUfHK7Cv6D0or17FhYaQWIBOKAKGeuSbKkBdDw0
+         IxtnhP6CSYR7QehJB9NqRlZw3m60HVNlu5+YW0dGmynBRCzsORI+iOc3d4U+DZF2YHBM
+         yDjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681950668; x=1684542668;
+        d=1e100.net; s=20221208; t=1681950722; x=1684542722;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Fi7p0X7yko8Mx4oIRrg6YnMb1P1Vd3sNhAz3iheygcw=;
-        b=fM6xDKxArdVlOu5V6VkuZbJnGQtkQANLuM9PyB7S+DoZXEJRGP3MVDQ6x6hcSloJsd
-         aZPXOsah0zRT4hNrvNpkhNiCQs2lKJlbookkEJ523cf7GyT6WSca+M/OGoH0eTKPkp1P
-         /ZDlSvWgoMRkXmhCz0ybYejT6j1vDOHL4XvocPY40bJ8cWHs1wSNFtYd7IBTg5fjIAPZ
-         r0sHfPscAJ0P1yu+WxMrHjT02pLMh3DQV3uZIauflDPK1G/cXge6qUpQLQ7CGcOGkmNr
-         GfdxNiSwH365oiEMo6wDFGwVL+gz2rO/CwPoOsAYpT7p3Z1TdR7N0qIFBnTmTL7bZ5Lr
-         Jp3A==
-X-Gm-Message-State: AAQBX9fvyQDwmlwSmUJRLyVE+1DyxGZON6ZOSzwZg6I8Jw/QjW1BVdp2
-        Is/MM4burp24RlYgUUiePqapXQ==
-X-Google-Smtp-Source: AKy350ZIFzvoFFdXkm/nOq/57c5CQDUjJmj7zSd2AdJrCfHfyIPD9k7QvTzEC2VbqCTx89kkyxFAwQ==
-X-Received: by 2002:a2e:86ca:0:b0:298:9e7b:d07b with SMTP id n10-20020a2e86ca000000b002989e7bd07bmr2327446ljj.30.1681950668589;
-        Wed, 19 Apr 2023 17:31:08 -0700 (PDT)
+        bh=9Nd7HhhsmQrigh61dvTiVokWTk2+5/4WKyz3jRZXbJ4=;
+        b=JsKe/gKaAboMyZjQ3YKusxZZI0zpU5MMAiUd/ujxCOyGVVFfZBHJ2NK/tOW8TMC/Cj
+         ffUlWdbWjz5Tvbm9id/PwyETjTy8clz0DoL/80nY4CiF1GxV57OB3rZlp9N/U2Ou+Ndl
+         P63GLlU3LAyPMNBP9PLAuS7xBhtyba+/kgrL7tUPntIhGTl7o8LcWJ58II2UVD+lAbLd
+         qkGm4IB2k0YRNm1sCYE0CFOvVGItTy+KC4iepcCPRxNI95zuEi3tKKQa7wuglJUeS1Fs
+         DUVpyXumvJS0uhkvGnusqX8fknsIT6o0WZJiImYDfduW5bRhNNIrBKxxZMKh5mhJu0cQ
+         k5xA==
+X-Gm-Message-State: AAQBX9e86wB7mux+Frnr2JmepkBlHDxtoblvu4FMfj5oVMEqu8PBhPuv
+        OoPmU20ys09cXs//cPUxiB06cw==
+X-Google-Smtp-Source: AKy350YbBBV05nPshdqlgV2P6Dq/C9Pi9ijk/pMzjguyytXcyvtxrmAbivOyAiwCtHn5hF2Oibff4g==
+X-Received: by 2002:ac2:4423:0:b0:4ed:d250:1604 with SMTP id w3-20020ac24423000000b004edd2501604mr2651356lfl.57.1681950722649;
+        Wed, 19 Apr 2023 17:32:02 -0700 (PDT)
 Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id l24-20020ac24318000000b004dc48d91061sm49743lfh.304.2023.04.19.17.31.07
+        by smtp.gmail.com with ESMTPSA id g12-20020a19ee0c000000b004edd3f011cfsm55550lfb.43.2023.04.19.17.32.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Apr 2023 17:31:08 -0700 (PDT)
-Message-ID: <023a0e8c-651a-2248-a23e-dee8249a70fa@linaro.org>
-Date:   Thu, 20 Apr 2023 03:31:07 +0300
+        Wed, 19 Apr 2023 17:32:02 -0700 (PDT)
+Message-ID: <d4e25a0f-3bb4-6803-ac7f-eb19083cb04a@linaro.org>
+Date:   Thu, 20 Apr 2023 03:32:01 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v2 2/5] drm/msm/dpu1: Rename path references to mdp_path
+Subject: Re: [PATCH v2 3/5] drm/msm/mdss: Rename path references to mdp_path
 Content-Language: en-GB
 To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Clark <robdclark@gmail.com>,
@@ -69,9 +69,9 @@ Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
         freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230417-topic-dpu_regbus-v2-0-91a66d04898e@linaro.org>
- <20230417-topic-dpu_regbus-v2-2-91a66d04898e@linaro.org>
+ <20230417-topic-dpu_regbus-v2-3-91a66d04898e@linaro.org>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230417-topic-dpu_regbus-v2-2-91a66d04898e@linaro.org>
+In-Reply-To: <20230417-topic-dpu_regbus-v2-3-91a66d04898e@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,6 +86,9 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On 18/04/2023 15:10, Konrad Dybcio wrote:
 > The DPU1 driver needs to handle all MDPn<->DDR paths, as well as
+
+Nit: msm_mdss.c is not DPU1.
+
 > CPU<->SLAVE_DISPLAY_CFG. The former ones share how their values are
 > calculated, but the latter one has static predefines spanning all SoCs.
 > 
@@ -94,10 +97,8 @@ On 18/04/2023 15:10, Konrad Dybcio wrote:
 > 
 > Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
->   drivers/gpu/drm/msm/disp/dpu1/dpu_core_perf.c | 10 +++++-----
->   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c       | 12 ++++++------
->   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.h       |  4 ++--
->   3 files changed, 13 insertions(+), 13 deletions(-)
+>   drivers/gpu/drm/msm/msm_mdss.c | 20 ++++++++++----------
+>   1 file changed, 10 insertions(+), 10 deletions(-)
 
 Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
