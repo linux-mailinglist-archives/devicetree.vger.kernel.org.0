@@ -2,75 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DAA426E99F1
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 18:52:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E7176E9A34
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 19:03:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229799AbjDTQwc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 12:52:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33172 "EHLO
+        id S230328AbjDTRDL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 13:03:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229568AbjDTQwb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 12:52:31 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83B3DD2;
-        Thu, 20 Apr 2023 09:52:30 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 077A1641AF;
-        Thu, 20 Apr 2023 16:52:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6AFDC433EF;
-        Thu, 20 Apr 2023 16:52:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1682009549;
-        bh=U/Ed3Bf5iQDyeXK4sTAagfDBTCyOzfvKX4J+dgDoT2M=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MpUFunmkElXXI23HUs5s8c9qlu4z0uxsz8ZICJUQLo44UcO0tFwwejDMMwAJAqahg
-         f7pm5eVCz8UnNTuTFC0WlSnj6Doxxc1yYzHDf5YZLlnm0lGbZRkx1Jz9yGTqRJtWIW
-         pwdy1IfEQ1exI/Su4rCgVt8Kqm99RBDprvbHkmU9l25M1WMRXCRzyrA2PQcJbtOQye
-         7YQIOkw2znTEK6iKnrgj871XC/dI645BXONXY6VO3daDLJR9gf3Mvtsd4AvWoIaLM3
-         P/inYFJI5lRDwa5of98v5gBG3ovdbMQTrFr2hT36HygI8XHhDRZyb0xjqVBZyF/xQr
-         jo0mWM/he4XSg==
-Date:   Thu, 20 Apr 2023 17:52:21 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Lee Jones <lee@kernel.org>
-Cc:     Okan Sahin <okan.sahin@analog.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        Marcus Folkesson <marcus.folkesson@gmail.com>,
-        Ramona Bolboaca <ramona.bolboaca@analog.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        Haibo Chen <haibo.chen@nxp.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org
-Subject: Re: [PATCH v7 5/5] mfd: max77541: Add ADI MAX77541/MAX77540 PMIC
- Support
-Message-ID: <09eb8e4c-3e73-41f0-bf42-8ddf3c4254ec@sirena.org.uk>
-References: <20230412111256.40013-1-okan.sahin@analog.com>
- <20230412111256.40013-6-okan.sahin@analog.com>
- <20230420103438.GI9904@google.com>
+        with ESMTP id S230256AbjDTRDK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 13:03:10 -0400
+Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A973230CA;
+        Thu, 20 Apr 2023 10:03:09 -0700 (PDT)
+Received: by mail-oi1-x22d.google.com with SMTP id 5614622812f47-38c00f19654so532524b6e.2;
+        Thu, 20 Apr 2023 10:03:09 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682009873; x=1684601873;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=sskrH87l2JddzTI2ulk4grlY8ICMx+GkEeA1KtebY70=;
+        b=RnjI77ZDbTXXHvi4J6+N72aXu9CipAb0rOEhgVU6jwsHWxzcDtjZ3VKGkmXsCQ/DLo
+         WiPcW/cfTIr3EHWqkqWj4bAsava9z8zYt4r+bi4QUZilJ4PQG9FqxAd/eeJ7SLkus7Up
+         yscAcpNJnz0Gvt4psE8E/cPlPA8szkrt8N7mKxbdfndt4DXG+Q/ESml9Z0LwfxB+TPor
+         PaQUKHetaNzydlhwbwk4+g/KYkHnOseru50aivXVQ+znSnwsrPoQLOAhxFulXebcSDdj
+         L3dMoggKdUCkeKtHIILU1El8L4Sh5/N3TR6iUKOjq8vUqQXoTHsJVFWSXo1/tM1KiUJ9
+         PxTg==
+X-Gm-Message-State: AAQBX9eQLV7Nnvk6xIugO4lB3zSl1ucCH1t7zZAvaPty0laPi4LxtPpU
+        Wud019uhlCb1WlSO4py/YQ==
+X-Google-Smtp-Source: AKy350YBjL+oqX2R5+mr73qGeuIpf6viyx4+RGoEDkYDmMt6BGN9FChhDAsnd3DggYVvXwoK7BNF2g==
+X-Received: by 2002:a05:6808:2104:b0:38d:e623:bb1a with SMTP id r4-20020a056808210400b0038de623bb1amr1681315oiw.50.1682009873379;
+        Thu, 20 Apr 2023 09:57:53 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id r83-20020acaf356000000b003845f4991c7sm765305oih.11.2023.04.20.09.57.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Apr 2023 09:57:52 -0700 (PDT)
+Received: (nullmailer pid 3013188 invoked by uid 1000);
+        Thu, 20 Apr 2023 16:57:52 -0000
+Date:   Thu, 20 Apr 2023 11:57:52 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Peng Fan <peng.fan@nxp.com>, devicetree@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Xu Yang <xu.yang_2@nxp.com>, linux-usb@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH] dt-bindings: usb: ci-hdrc-usb2: allow multiple PHYs
+Message-ID: <168200987182.3013134.13057709706986760718.robh@kernel.org>
+References: <20230420065051.22994-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="enmX+yyvaFeCf0/m"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230420103438.GI9904@google.com>
-X-Cookie: Above all else -- sky.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230420065051.22994-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -78,49 +66,20 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---enmX+yyvaFeCf0/m
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Thu, 20 Apr 2023 08:50:51 +0200, Krzysztof Kozlowski wrote:
+> Qualcomm MSM8974 comes with USB HS phy in two variants, although final
+> DTS chooses only one.  Allow such combination in the ChipIdea USB2
+> bindings and also disallow any other properties in the ulpi node.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
+> 
+> DTS will be fixed separately.
+> ---
+>  Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+> 
 
-On Thu, Apr 20, 2023 at 11:34:38AM +0100, Lee Jones wrote:
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-> Once the regulator driver has been reviewed, I can take the set.
-
-> Please apply this if you have to resubmit:
-
-> For my own reference (apply this as-is to your sign-off block):
-
-> Acked-for-MFD-by: Lee Jones <lee@kernel.org>
-
-For situations like this where there's a depends on to the MFD it'd be
-great if you could just apply the MFD rather than waiting, the
-individual drivers can either get applied on top or just go via the
-subsystem and have everything sort itself out in the merge window.  It'd
-help things move along faster and be less confusing.
-
-These serieses tend to get so many resends that I'm often just not
-looking at them, previously I'd have just applied the function driver
-when it's ready but with the complaints when the core ends up missing
-the merge window but function drivers are going in I stopped.  In the=20
-past I've ended up missing things because either there's multiple
-serieses for similarly named devices out at once or (less often) some
-change results in a repeat review being needed so it's easier to just
-wait for things to settle down.
-
---enmX+yyvaFeCf0/m
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmRBbcQACgkQJNaLcl1U
-h9AEGwf/cZ5jz601ThWLKn8DrgHpVkT4V1DcOQlZnAAuvef8R6TLj17mP5voXh4d
-6H1KXgNljwwO755+9o8YBPLWo0MKybFlD/L+vElU5SU9Z4nhBirPvFhMOP+7VY2n
-IEn0TnMW7+ELbwuhlp2uYw38CX8AztWvR6tWCKko6uyMm/nCBfFpON+rlEkZ63+4
-abvINbrTEggEly0giW4MnlmNMuF9d5yqZMq2A9+3K2RFRVwa3KOCOcIkyPStqxqD
-JimllAVHjijGGkgk1Xe4zwma4omY389whj17TAANkgFdEIAL4hL1+PQG/XwjBeth
-E+4lngNuk7ooRmgKkS7hHzTwfNFaPA==
-=RCMr
------END PGP SIGNATURE-----
-
---enmX+yyvaFeCf0/m--
