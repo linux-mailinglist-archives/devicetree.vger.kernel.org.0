@@ -2,60 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F50F6E8E4E
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 11:38:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 909E86E8E45
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 11:37:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234053AbjDTJht (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 05:37:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51740 "EHLO
+        id S233876AbjDTJhT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 05:37:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234353AbjDTJgr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 05:36:47 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA52840E5
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 02:36:29 -0700 (PDT)
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1ppQi7-0007zh-Cf; Thu, 20 Apr 2023 11:36:15 +0200
-Received: from pengutronix.de (unknown [172.20.34.65])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id D72831B3CD1;
-        Thu, 20 Apr 2023 09:36:12 +0000 (UTC)
-Date:   Thu, 20 Apr 2023 11:36:12 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     "Mendez, Judith" <jm@ti.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-can@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Andrew Davis <afd@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Nishanth Menon <nm@ti.com>,
-        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [RFC PATCH 0/5] Enable multiple MCAN on AM62x
-Message-ID: <20230420-scarf-landscape-86202cc821ca-mkl@pengutronix.de>
-References: <20230413223051.24455-1-jm@ti.com>
- <20230414-tubular-service-3404c64c6c62-mkl@pengutronix.de>
- <6eb588ef-ab12-186d-b0d3-35fc505a225a@ti.com>
- <20230419-stretch-tarantula-e0d21d067483-mkl@pengutronix.de>
- <52a37e51-4143-9017-42ee-8d17c67028e3@ti.com>
+        with ESMTP id S234254AbjDTJgq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 05:36:46 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E31C4EDF
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 02:36:27 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2a8afef50f2so3759461fa.2
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 02:36:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1681983386; x=1684575386;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hfsZM67OXbAlzVD+uHneuvtJvIsoB/dlohyx55svOjw=;
+        b=mMrxmnCh6cK34iMsXHT6we3TE3HE2XWlq8fH3NKmU0GnJbuuDmkuKeN18CGlJCP2+G
+         GkWDOm6egtzIZD4q1hutug9vMuk9ScjgB/G6l5Idnsk3aAAhgYEh3KEs8avXsCB1WwPm
+         1Dy0IYNMwOZMlEDqWU2+Byj7r6VeeVqC/O9afOWGvSDQdHQfnRSIg3WkpYIDgHX4B40e
+         qsyr/l/Zur5+MXYi7ubHKJq4hQ+gh/IoBjMf+qVXzvqJkYkp3lFXGdmXcI8vz165n3di
+         +dZ/jID2kuWv15n82fKrgHWEEuD2yr23jpgpOyq+6V7CuG/5EK6Wp+TvyS9wCxGhITQr
+         Xx7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681983386; x=1684575386;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hfsZM67OXbAlzVD+uHneuvtJvIsoB/dlohyx55svOjw=;
+        b=ZqJxZqd+1nz7v21NZsI0reaYsDSMtTexKCPPDx8cEfdXlE7KlVYnGdyitgrrz1wfVc
+         E+n5rLeYsmABS0HDn810ufm4+WEqqjC4lQ9A3Ab20bf/l6sS03Yb89MGEwXpBeyevohI
+         QOHvyri3K/ai7eKOVZvQf4OGfJ4sqixUdQpQhJDEIDwgy0IKPQvPi7H1/SoJH62iDill
+         1LGvrOSw6sZtJoFFEJOZa66Vr8y+XOwHGLdD5jFC8a/JX1CxGIlWIKYuEJlayYh6WeWV
+         Bl1y8N6phbNoXmnes9YPjvPlczuTk+HXmhy17MqIjQmPAAflJj2ps4ZVRPzS/Id5fe4H
+         MRog==
+X-Gm-Message-State: AAQBX9eOBoPdKr32HkxWVvM1rmqTD+a3wVbxXWSkw3x2SRYS6V27sKM4
+        q3T/jxdc8upw7PfOLOHm3ywX1g==
+X-Google-Smtp-Source: AKy350ai9s+joKTQe7jfoz4hBNP9alfMfO6WPChONY+2B39f63l8Q02pLjKEKfzsAR5R+3/qer65/w==
+X-Received: by 2002:a05:6512:481:b0:4ed:c8ba:df9e with SMTP id v1-20020a056512048100b004edc8badf9emr305180lfq.63.1681983386212;
+        Thu, 20 Apr 2023 02:36:26 -0700 (PDT)
+Received: from [192.168.1.101] (abyj144.neoplus.adsl.tpnet.pl. [83.9.29.144])
+        by smtp.gmail.com with ESMTPSA id i20-20020ac25234000000b004eb07f5cde6sm155791lfl.297.2023.04.20.02.36.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Apr 2023 02:36:25 -0700 (PDT)
+Message-ID: <6175f709-8c88-6ec3-4c31-cac9f2440b52@linaro.org>
+Date:   Thu, 20 Apr 2023 11:36:24 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="4xgtlkkfta6kixje"
-Content-Disposition: inline
-In-Reply-To: <52a37e51-4143-9017-42ee-8d17c67028e3@ti.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH RFT v2 00/14] SMD RPMCC sleep preparations
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org, Shawn Guo <shawn.guo@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+References: <20230303-topic-rpmcc_sleep-v2-0-ae80a325fe94@linaro.org>
+ <66c41caf-bf21-61af-c6e4-52b34b69c1ce@linaro.org>
+ <ZEDwLB3RwT6mHIu4@gerhold.net>
+Content-Language: en-US
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <ZEDwLB3RwT6mHIu4@gerhold.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,116 +86,23 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---4xgtlkkfta6kixje
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On 19.04.2023 15:40:24, Mendez, Judith wrote:
-> Hello Marc,
->=20
-> On 4/19/2023 1:10 AM, Marc Kleine-Budde wrote:
-> > On 18.04.2023 11:15:35, Mendez, Judith wrote:
-> > > Hello Marc,
-> > >=20
-> > > On 4/14/2023 12:49 PM, Marc Kleine-Budde wrote:
-> > > > On 13.04.2023 17:30:46, Judith Mendez wrote:
-> > > > > On AM62x there is one MCAN in MAIN domain and two in MCU domain.
-> > > > > The MCANs in MCU domain were not enabled since there is no
-> > > > > hardware interrupt routed to A53 GIC interrupt controller.
-> > > > > Therefore A53 Linux cannot be interrupted by MCU MCANs.
-> > > >=20
-> > > > Is this a general hardware limitation, that effects all MCU domain
-> > > > peripherals? Is there a mailbox mechanism between the MCU and the M=
-AIN
-> > > > domain, would it be possible to pass the IRQ with a small firmware =
-on
-> > > > the MCU? Anyways, that's future optimization.
-> > >=20
-> > > This is a hardware limitation that affects AM62x SoC and has been car=
-ried
-> > > over to at least 1 other SoC. Using the MCU is an idea that we have j=
-uggled
-> > > around for a while, we will definitely keep it in mind for future
-> > > optimization. Thanks for your feedback.
-> >=20
-> > Once you have a proper IRQ de-multiplexer, you can integrate it into the
-> > system with a DT change only. No need for changes in the m_can driver.
-> >=20
->=20
-> Is this a recommendation for the current patch?
+On 20.04.2023 09:56, Stephan Gerhold wrote:
+> On Thu, Apr 20, 2023 at 03:50:16AM +0200, Konrad Dybcio wrote:
+>> On 8.03.2023 22:35, Konrad Dybcio wrote:
+>>> Keepalive clocks for other platforms were gathered by digging in old
+>>> downstream kernels, please give them a test.
+>> I have an implementation of rpmcc-within-icc ready(ish) locally. Turns out
+>> some SoCs need a keepalive (19.2MHz, active-only) vote on clocks that
+>> are NOT governed by interconnect.. So before we can disable clocks,
+>> both will need to be implemented.. ugh... I was hoping we could avoid
+>> having it in rpmcc..
+>>
+> 
+> Can you give an example? Which clocks are affected on which SoC?
+msm8998/sdm660 and PNoC
 
-It is a recommendation on how to get around the hardware limitation,
-instead of falling back to polling.
-
-> The reason I am asking is because adding firmware for the M4 to forward
-> a mailbox with the IRQ to the A53 sounds like a good idea and we have been
-> juggling the idea, but it is not an ideal solution if customers are
-> using the M4 for other purposes like safety.
-
-Of course, the feasibility of this approach depends on your system
-design.
-
-> > > > > This solution instantiates a hrtimer with 1 ms polling interval
-> > > > > for a MCAN when there is no hardware interrupt. This hrtimer
-> > > > > generates a recurring software interrupt which allows to call the
-> > > > > isr. The isr will check if there is pending transaction by reading
-> > > > > a register and proceed normally if there is.
-> > > > >=20
-> > > > > On AM62x this series enables two MCU MCAN which will use the hrti=
-mer
-> > > > > implementation. MCANs with hardware interrupt routed to A53 Linux
-> > > > > will continue to use the hardware interrupt as expected.
-> > > > >=20
-> > > > > Timer polling method was tested on both classic CAN and CAN-FD
-> > > > > at 125 KBPS, 250 KBPS, 1 MBPS and 2.5 MBPS with 4 MBPS bitrate
-> > > > > switching.
-> > > > >=20
-> > > > > Letency and CPU load benchmarks were tested on 3x MCAN on AM62x.
-> > > > > 1 MBPS timer polling interval is the better timer polling interval
-> > > > > since it has comparable latency to hardware interrupt with the wo=
-rse
-> > > > > case being 1ms + CAN frame propagation time and CPU load is not
-> > > > > substantial. Latency can be improved further with less than 1 ms
-> > > > > polling intervals, howerver it is at the cost of CPU usage since =
-CPU
-> > > > > load increases at 0.5 ms and lower polling periods than 1ms.
-> >=20
-> > Have you seen my suggestion of the poll-interval?
-> >=20
-> > Some Linux input drivers have the property poll-interval, would it make
-> > sense to ass this here too?
->=20
-> Looking at some examples, I do think we could implement this poll-interval
-> attribute, then read in the driver and initialize the hrtimer based on th=
-is.
-> I like the idea to submit as a future optimization patch, thanks!
-
-I would like to have the DT bindings in place, as handling legacy DT
-without poll interval adds unnecessary complexity.
-
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---4xgtlkkfta6kixje
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmRBB4kACgkQvlAcSiqK
-BOi3tQgAncJzwRYQqm5rHunLZQBQJZ76dTGRYf7AFrYVzqwbbW1wO2e2uv8H4Drg
-hCSh+DaPGLyBBi0ZCUtvO0dql90ZD0wLvX/Eis8q2R/qkWdor3VTNiWBhwGcuTIa
-WITJE1rmdTBbpRXZ6M6KMyJi4MFaM8mKr11VXsHK2HJIRVDcL3nMy6DM5/mMhjzf
-n8JgumGKM5+VxTNSdyQVWpZxe9GSQC3yYrSTYvIw/VGcrITBdnSn92Svpc6jE+PF
-DNLcCOMBYU3cNtdqEsNsej7TCKEJQIYY+ImhaQ8ya9bE3coIwdVqq2BPJW19q5TN
-BgEwQXsNBy+Eq9WSPE4QKLyWvKxHRA==
-=JDN9
------END PGP SIGNATURE-----
-
---4xgtlkkfta6kixje--
+Konrad
+> 
+> Thanks,
+> Stephan
