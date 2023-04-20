@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42D7B6E913C
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 12:57:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BBD36E9141
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 12:57:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234489AbjDTK5Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 06:57:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40406 "EHLO
+        id S235197AbjDTK5m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 06:57:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235135AbjDTK5B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 06:57:01 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D197D9ED8
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 03:54:26 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id j11so2240868ljq.10
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 03:54:26 -0700 (PDT)
+        with ESMTP id S234659AbjDTK5V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 06:57:21 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F420268A
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 03:54:46 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2a8eb8db083so3907261fa.3
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 03:54:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681988064; x=1684580064;
+        d=linaro.org; s=google; t=1681988082; x=1684580082;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=24JXeGlkkCliqYb2eVhfqy45HNK+Kpe6rgX3GQC2Wnw=;
-        b=z24FxfOri5/lpWMIu2FfGwYIL1QayyjzC4uqJfhQmrIy+5kmrB3lsFLFXKaulumeyi
-         x6cnEikwmsoVpVurOfpEREzAt33CvuhYjOcEUCHpFrKqlfmiNMY+vT4A9wkpW8mmonvw
-         Ed/qNvjDQYfDHIb7Wgc1nsFWrVAftbQkJGl1LVaJLA5PdlcEpNOsQ+4zH52x8MIXddCn
-         YuRdOnOyWTp1NYX1VPoB39nbble13gvn7kMD3WhQQvneqi6BHuL8RWJVJ+jGOXC+gCVS
-         xQyqOV4p77yqYsUi35zIw/Vonbqhu1I9+/4d6QMXiWCZS30PAvBNVJ5SnMoTY0R6QWth
-         bItg==
+        bh=tUcJ/S5FIQy5sMfQQcxjZiNiAJcc8yGlyy+Yq8sepqo=;
+        b=lMGekLaHRWvYIJh4QlGZ4JOliSQuYOKxK7Di6xiKzxj1bjf+/JeR1c+mESZOEZWdB/
+         A2Ed40eIpk81jTRWAjGw2Z8QL1ruGVivRc5mXpEeAn+vbihYMRpCRPipST32OJCDxBvt
+         y7rhChB5Fqpeebjgws5JzwJfs5n1/y6neHampW34uTVVwjX6brXcUb3XV2AlyP4eW6Jn
+         UgmIyW2ImY5AQF5LqQZya7w5EIe6HxPc2Sp8J4YdAh4jGlqKiTa8ih8RQANBsS2RzQ/F
+         +qO1qDmsNv2MA7x99BZrxnHYHvz7P9VSPxPCCFZ2DSYVAMnSEFyiV2jK1od625TyNRvh
+         tX0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681988064; x=1684580064;
+        d=1e100.net; s=20221208; t=1681988082; x=1684580082;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=24JXeGlkkCliqYb2eVhfqy45HNK+Kpe6rgX3GQC2Wnw=;
-        b=SfB1oqCJZMROBvMke09gyUda6SFZkOn13uhByayCDLZHGcLI/EI1ZZtddpn+GtUkAG
-         Aj+vr6INPx83hUm6txd6gYf+FjvYZ+KZ99c8cEficrzEnxIUh5FTf5//j0en437qKha0
-         HywR8mHf/aLWj/VEIzKW7zfkLeEya3FXj30npGJQRFiazOySfJc+exHApFhwcG6f/TY+
-         lRaweHPTd7ZkmMGjiYoQqxrgitd9eObiVtoU4Qb7vV2R1DYs8XrcSiELVhi4PuD7WTbv
-         l1NYTFD3ThNKZXnwv4dymssqYVrQBx8qPtXh7S2xcHMQ8G7Lvp7uo0p6W1itcHs/Nnl5
-         nrtw==
-X-Gm-Message-State: AAQBX9e5OSufO5zAdcoEDsu51NoewEOoEugMgo/uZSRJ7oM6WxPzgOkh
-        yq4aCItulZ8wl+D7QRDb4ZDGZQ==
-X-Google-Smtp-Source: AKy350aZblPJn8EYpBXD60CODEbQC2hcdAGhMLnf43vCDhUDw3gWfAxZGKUMRT9AudjZxk2PyaOCEg==
-X-Received: by 2002:a2e:8846:0:b0:2a8:b9e2:43ba with SMTP id z6-20020a2e8846000000b002a8b9e243bamr334982ljj.12.1681988063862;
-        Thu, 20 Apr 2023 03:54:23 -0700 (PDT)
+        bh=tUcJ/S5FIQy5sMfQQcxjZiNiAJcc8yGlyy+Yq8sepqo=;
+        b=FI6YPN592iwbu36zPwGm+vzlZxPui2lxbbNWysopi0fPbViFMMfxV12ea6sHC/Pl4a
+         +LXpK4NqxZ759j46kpSM8pCQ5aPl3oz756F8R9MC3TnB9LRlnAioEMse6WEoX+dvynx2
+         XfNox805ex3mZ/TMPY3zdtC0c22Yx8Ebt+khTbCyCQSJcBe1wbGqNSKW9lh1Fa6EX+ka
+         EcEIQwtgblVR5c+jtea1eqMmyH2vQY1Xu6fvX5kNl28dNPueQSFfnsCarOzSiK1HGutO
+         lBgubcp7K0sf+8KlHlpBjLQX98A8tAP6rxP2p6LGoVhLaAqJVtdcm57CF+gB9o++OcKU
+         tG0w==
+X-Gm-Message-State: AAQBX9dVhetYKggGWUtZfGsLGQB5SZgxQf4EGmTWlbfzfklXPeVxflS7
+        A148OvWsWAUPYzx3RuULhl1agg==
+X-Google-Smtp-Source: AKy350bxZk1oZ9fuhN7CSzBAYt9mYTMr/zsJ11YgoB0W20eOxwuEMZTaevjqoDGMCNdpl51Gd1GfIA==
+X-Received: by 2002:ac2:4358:0:b0:4ea:fa07:1182 with SMTP id o24-20020ac24358000000b004eafa071182mr349314lfl.14.1681988081907;
+        Thu, 20 Apr 2023 03:54:41 -0700 (PDT)
 Received: from [192.168.1.101] (abyj144.neoplus.adsl.tpnet.pl. [83.9.29.144])
-        by smtp.gmail.com with ESMTPSA id j17-20020a2e6e11000000b002a9ef98116asm200403ljc.49.2023.04.20.03.54.21
+        by smtp.gmail.com with ESMTPSA id w25-20020a19c519000000b004eb4074f40fsm176565lfe.241.2023.04.20.03.54.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Apr 2023 03:54:23 -0700 (PDT)
-Message-ID: <adbc9939-8912-48fa-3802-a2d960f6ad15@linaro.org>
-Date:   Thu, 20 Apr 2023 12:54:21 +0200
+        Thu, 20 Apr 2023 03:54:41 -0700 (PDT)
+Message-ID: <d5ce920b-c203-35b5-7dd6-d4e2ed75c029@linaro.org>
+Date:   Thu, 20 Apr 2023 12:54:39 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [PATCH 10/18] arm64: dts: qcom: sdm630: correct camss unit
+Subject: Re: [PATCH 11/18] arm64: dts: qcom: sdm845: correct camss unit
  address
 Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
@@ -83,9 +83,9 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230419211856.79332-1-krzysztof.kozlowski@linaro.org>
- <20230419211856.79332-10-krzysztof.kozlowski@linaro.org>
+ <20230419211856.79332-11-krzysztof.kozlowski@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230419211856.79332-10-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230419211856.79332-11-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -103,27 +103,27 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 19.04.2023 23:18, Krzysztof Kozlowski wrote:
 > Match unit-address to reg entry to fix dtbs W=1 warnings:
 > 
->   Warning (simple_bus_reg): /soc/camss@ca00000: simple-bus unit address format error, expected "ca00020"
+>   Warning (simple_bus_reg): /soc@0/camss@a00000: simple-bus unit address format error, expected "acb3000"
 > 
-> Fixes: f3d5d3cc6971 ("arm64: dts: qcom: sdm630: Configure the camera subsystem")
+> Fixes: d48a6698a6b7 ("arm64: dts: qcom: sdm845: Add CAMSS ISP node")
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
->  arch/arm64/boot/dts/qcom/sdm630.dtsi | 2 +-
+>  arch/arm64/boot/dts/qcom/sdm845.dtsi | 2 +-
 >  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> index eaead2f7beb4..ab04903fa3ff 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> @@ -1894,7 +1894,7 @@ pil-reloc@94c {
->  			};
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> index cdeb05e95674..8f99e79ba3fd 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> @@ -4238,7 +4238,7 @@ videocc: clock-controller@ab00000 {
+>  			#reset-cells = <1>;
 >  		};
 >  
-> -		camss: camss@ca00000 {
-> +		camss: camss@ca00020 {
->  			compatible = "qcom,sdm660-camss";
->  			reg = <0x0ca00020 0x10>,
->  			      <0x0ca30000 0x100>,
+> -		camss: camss@a00000 {
+> +		camss: camss@acb3000 {
+>  			compatible = "qcom,sdm845-camss";
+>  
+>  			reg = <0 0x0acb3000 0 0x1000>,
