@@ -2,111 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A64C56E98D2
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 17:56:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2E2E6E98E3
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 17:58:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231547AbjDTPz7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 11:55:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50494 "EHLO
+        id S231435AbjDTP6Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 11:58:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230033AbjDTPz6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 11:55:58 -0400
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A276110;
-        Thu, 20 Apr 2023 08:55:55 -0700 (PDT)
-Received: (Authenticated sender: herve.codina@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id B9ECF24000D;
-        Thu, 20 Apr 2023 15:55:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1682006154;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=xQDee/z2XFFx22IZQpnFIHOpdjrphmkJhT/9/bX1Hfw=;
-        b=MZIrzR5vcXk+QIdU0DBYFiZ8VpLh3+pN+/9gahku9fhSPxd4xeQxLbNko7Ng5fOKSLx6DZ
-        m7Ha6qpLN9luRExbHmVyqzfl/5j2ef5lDZP7zQyAjfo6YD/nZtDdwxmgJIWJsPrIRyVb1o
-        OjZ2/fcekT5xGQzTWlJH/QSVNyUlsJHUGnC4qbSNNzUaGOJsmyJ39BgAGra6UjLPJHIV60
-        1sKP93jU6l2efIowgo+cWhvpdSSWGfyV0l9i7mHPcP8IGcoN+/qQvCJkhP9uyEsCB9tHX5
-        wtn0MakQvi/8cmFlF9RLk2anCQDf10I+2/dQLplWmVkO2vWMpO0qMVrSyZbouQ==
-Date:   Thu, 20 Apr 2023 17:55:52 +0200
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Lars-Peter Clausen <lars@metafoo.de>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 2/3] iio: potentiometer: Add support for the Renesas
- X9250 potentiometers
-Message-ID: <20230420175552.58b15819@bootlin.com>
-In-Reply-To: <85e214c8-b639-5197-70a1-7279f9418f66@metafoo.de>
-References: <20230420121320.252884-1-herve.codina@bootlin.com>
-        <20230420121320.252884-3-herve.codina@bootlin.com>
-        <85e214c8-b639-5197-70a1-7279f9418f66@metafoo.de>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-redhat-linux-gnu)
+        with ESMTP id S233921AbjDTP6P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 11:58:15 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB83E35B5
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 08:57:57 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4edbd6cc46bso661549e87.2
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 08:57:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1682006275; x=1684598275;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vNUf+/1kABmy7fyuOrfNxFVz/b750ayYzUND39pLMfE=;
+        b=gOzPqTG52EcJJcC8fSMrLBACgoU65xT1Z+2PjNPM5cnkRbYSCM9JE5KV4kM6VHLMD+
+         m/cGI6Q7aQc4PWxGUHI9ii+DnQOezZgZ6e5RFr+OOsCjgmPIU/Rpnrt+MoyUW1J32WAO
+         7DjiXhHxpe5rlclutblk1w9ENYHmCaD9M5cJ2AnL18YIxDMs265nUu44Qkzdsv+f6dkZ
+         8xqreK1i0x72eG7mKXPs2hZASBf9YxBwKtht08gqQxYSeSAxs1U+5qqQjFEea/9X/t2n
+         aX8Bajyb+mbUKSd5Fc44amn3GVSbJiZCNf8kaEdrUy+0I67ioo5gNgOvCFrMBsb7mCOo
+         9QyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682006275; x=1684598275;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vNUf+/1kABmy7fyuOrfNxFVz/b750ayYzUND39pLMfE=;
+        b=X3d5SrXF9Tc8SQ+NRVJvZ9nwq8iKmRoY4wABM9+pmqQ1do2+4YCpbsuIcvm1tb6vEw
+         If87oyQSR/pSYbJSXz31u4EgvKLhAn75AWbKk/90kpctaJFy4gYfs8cFshF+hBv4g3cF
+         6sYJLaCAqbSlea4Gw72AMgeHeqvdFoKYuqItXTBnFkQnGY/LH69CkS9I8HpQ2whNt68Y
+         O2Tm4Gzo6e2OkXpSw0+mxfYa8BKJV/2EWKU7Nx3cwXv6p15hLX7xD5XLDkQ4O7lBV4J8
+         OyKYHWMfCL9LWMWt2uXmLGP7amUk+NYBURH9EoQvFuzND62KXsUCqzBdFRDGnsRVKdub
+         jCxA==
+X-Gm-Message-State: AAQBX9fwEsZ9mr6GSRJIizrI4Jc1pp5VkRyHtiCOszvRuDfBNcSXgtiH
+        +8LELI5i5/vY/fqMltFVTrCFfFgHNlrg8W2Qbx8=
+X-Google-Smtp-Source: AKy350arn52bKLxZfJWKLLKPNIrb1lNv+4X1nIWe0dPWFxR0J7UgHvmPzDdNeiVmfrlAhRPBheO41g==
+X-Received: by 2002:ac2:490b:0:b0:4eb:50ba:cb06 with SMTP id n11-20020ac2490b000000b004eb50bacb06mr669625lfi.49.1682006275410;
+        Thu, 20 Apr 2023 08:57:55 -0700 (PDT)
+Received: from [192.168.1.101] (abyj144.neoplus.adsl.tpnet.pl. [83.9.29.144])
+        by smtp.gmail.com with ESMTPSA id d2-20020ac25ec2000000b004edc4928f2asm255230lfq.71.2023.04.20.08.57.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Apr 2023 08:57:54 -0700 (PDT)
+Message-ID: <e3bd41d8-f0c5-6756-13bf-bf29c786ab5c@linaro.org>
+Date:   Thu, 20 Apr 2023 17:57:53 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH RFT v2 00/14] SMD RPMCC sleep preparations
+Content-Language: en-US
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org, Shawn Guo <shawn.guo@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+References: <20230303-topic-rpmcc_sleep-v2-0-ae80a325fe94@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230303-topic-rpmcc_sleep-v2-0-ae80a325fe94@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 20 Apr 2023 06:47:32 -0700
-Lars-Peter Clausen <lars@metafoo.de> wrote:
 
-> On 4/20/23 05:13, Herve Codina wrote:
-> > The Renesas X9250 integrates four digitally controlled potentiometers.
-> > On each potentiometer, the X9250T has a 100 kOhms total resistance and
-> > the X9250U has a 50 kOhms total resistance.
-> >
-> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>  
+
+On 8.03.2023 22:35, Konrad Dybcio wrote:
+> v1 -> v2:
+> - Use CLK_IS_CRITICAL instead of leaving a clk enable vote, expand macros
+>   to do so
+> - Fix the keepalive clocks for 8998 & 660 (CNoC -> PNoC, it was
+>   confusingly named cnoc_periph downstream)
+> - Introduce .determinte_rate to ensure we don't set keepalive clocks'
+>   rates below 19.2 MHz
+> - Add a (!conditional!) way to test the ultimate goal of all these changes
+>   by essentially enabling unused clk cleanup through a dt property (for
+>   legacy reasons)
 > 
-> Hi,
+> v2 was tested on:
 > 
-> Looks perfect! Just one small comment.
+> - MSM8996 Sony Kagura (can disable unused)
+> - MSM8998 Sony Maple (can disable unused with OOT icc)
+> - SM6375 Sony PDX225 (can disable unused with OOT icc)
 > 
-> > +static int x9250_write8(struct x9250 *x9250, u8 cmd, u8 val)
-> > +{
-> > +	struct spi_transfer xfer = {
-> > +		.tx_buf = &x9250->spi_tx_buf,
-> > +		.len = 3,
-> > +	};
-> > +	int ret;
-> > +
-> > +	BUILD_BUG_ON(sizeof(x9250->spi_tx_buf) < 3);
-> > +
-> > +	mutex_lock(&x9250->lock);
-> > +
-> > +	x9250->spi_tx_buf[0] = 0x50;  
-> The 0x50 shows up as a magic constant in multiple places, a define for 
-> it would be nice.
+> v1: https://lore.kernel.org/r/20230303-topic-rpmcc_sleep-v1-0-d9cfaf9b27a7@linaro.org
+> 
+> This series brings support for a couple of things necessary for the full
+> system idle on SMD RPM SoCs, namely unused clk shutdown and keepalive
+> votes (permanent active votes that are required on certain clocks for the
+> platform to function).
+> 
+> Tested on MSM8996 and SM6375, does not seem to introduce any additional
+> regressions.
+> 
+> Keepalive clocks for other platforms were gathered by digging in old
+> downstream kernels, please give them a test.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+> Konrad Dybcio (11):
+>       dt-bindings: clock: qcom,rpmcc: Add a way to enable unused clock cleanup
 
-Sure, a define will be present in next iteration.
+>       clk: qcom: smd-rpm_ Make __DEFINE_CLK_SMD_RPM_BRANCH_PREFIX accept flags
+>       clk: qcom: smd-rpm: Make DEFINE_CLK_SMD_RPM_BRANCH_A accept flags
+>       clk: qcom: smd-rpm: Make BI_TCXO_AO critical
+Stephen, parallel to all of the discussions, would you be willing to
+take patches 4-6 as they are? XO_A being critical is something that
+won't hurt without the rest.
 
-> > +	x9250->spi_tx_buf[1] = cmd;
-> > +	x9250->spi_tx_buf[2] = val;
-> > +
-> > +	ret = spi_sync_transfer(x9250->spi, &xfer, 1);
-> > +
-> > +	mutex_unlock(&x9250->lock);
-> > +
-> > +	return ret;
-> > +}  
+Konrad
 
-Thanks for the review,
-Hervé
-
--- 
-Hervé Codina, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+>       clk: qcom: smd-rpm: Make __DEFINE_CLK_SMD_RPM_PREFIX accept flags
+>       clk: qcom: smd-rpm: Separate out a macro for defining an AO clock
+>       clk: qcom: smd-rpm: Add support for keepalive votes
+>       clk: qcom: smd-rpm: Introduce DEFINE_CLK_SMD_RPM_BUS_KEEPALIVE
+>       clk: qcom: smd-rpm: Hook up PCNoC_0 keep_alive
+>       clk: qcom: smd-rpm: Hook up CNoC_1 and SNoC_2 keep_alive
+>       arm64: dts: qcom: msm8996: Enable rpmcc unused clk disablement
+> 
+> Shawn Guo (3):
+>       clk: qcom: smd-rpm: Add .is_enabled hook
+>       clk: qcom: smd-rpm: Add .is_prepared hook
+>       clk: qcom: smd-rpm: Mark clock enabled in clk_smd_rpm_handoff()
+> 
+>  .../devicetree/bindings/clock/qcom,rpmcc.yaml      |   6 +
+>  arch/arm64/boot/dts/qcom/msm8996.dtsi              |   1 +
+>  drivers/clk/qcom/clk-smd-rpm.c                     | 133 +++++++++++++++------
+>  3 files changed, 106 insertions(+), 34 deletions(-)
+> ---
+> base-commit: fc31900c948610e7b5c2f15fb7795832c8325327
+> change-id: 20230303-topic-rpmcc_sleep-d67aad9f3012
+> 
+> Best regards,
