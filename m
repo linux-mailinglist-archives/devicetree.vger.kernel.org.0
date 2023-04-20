@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB8206E8BC2
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 09:51:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A64736E8BC4
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 09:51:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234207AbjDTHvb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 03:51:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56568 "EHLO
+        id S234209AbjDTHvc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 03:51:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234122AbjDTHv2 (ORCPT
+        with ESMTP id S234187AbjDTHv2 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 03:51:28 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02B1055B4
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68F0559D5
         for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 00:51:05 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id fy21so4285432ejb.9
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 00:51:04 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-504e232fe47so707732a12.2
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 00:51:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681977060; x=1684569060;
+        d=linaro.org; s=google; t=1681977061; x=1684569061;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=nFqKpCWwuZDAdPXnzzE7gsC8SfOjkfQgs5s8XBZ8aZk=;
-        b=ukQ0Le6TMEKtwl1qb0k1IeiFAR0NkPtd3mYrddufs7v2M5uNHpAbl1167aNvZB6ogh
-         qkcck/TwJxS0lhvqLD9xRMFzpp51JJPjmUAU/UYDCaIh6ua3MrcHhJChD4hxMtKusFPh
-         tOwd1X5l5EqfG85mZRnwvx367LuDUG4BZOGEWS4udvQVAREfd8HKATkgDUwYyTE/svnU
-         Th/ZG3VrDLU8I+vlTdCzn2J2uw5gGIDvoqTwqCgjQujXao+yZVuFh8cAWPC/O3Erd1p5
-         PPI69gycuh8ZZu5xJABMoINP9vpUIXCZj6fVoJ5PLH7nGX4YF40ZwOjNT5FnZlp0ON6V
-         zCkw==
+        bh=CWHnHNToGasJrGjvR3eKDTStQb2y8kbHp8eaclo2u2U=;
+        b=CWBUgIitVWJxSHspzz20QTWtGG4QoDPwz45NNAy97Bs8k9/z8qwIhY05CsBC57Zbws
+         CBuy0OaJ+NpzPDf6OruNTx4lwwX+hqXCfIWKZUgv9ZFd+ZQ3R2A4HhuPnfjsW3hyrfVr
+         oBbDKx9ss/y1QBREkryRrj8ha9EzVsoD1LBrfzGLW4b0Kct8HQNJnlkUcA9k38SvoEhh
+         aRb3aZ0gWbPww7zREf3P513/0h3cA0vz6VDyBQhASkga87z67YxkFPaHsSbD06W137CD
+         UzbDP7acxlpKaP5zgAV/P3v6rvNah2VsrgwrWKwz6+9T6qwWqXEr4zoZuR/3TQXN/HVH
+         5hig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681977060; x=1684569060;
+        d=1e100.net; s=20221208; t=1681977061; x=1684569061;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=nFqKpCWwuZDAdPXnzzE7gsC8SfOjkfQgs5s8XBZ8aZk=;
-        b=WnNtCeXsxWlC+Hhmk0aESdTFU1Qzq55Sf90saldmAAXDvQEHzAWr4KP0JDw8E4/fB0
-         yndrE0YTn0MoisqwjkzgTGaxZxUmoFOxsyc8k1JQMyaJ2kLUNm+QaaJSPqJk4zE2UXt/
-         TnHqJCcqg6lh9qVwCyArO2G4f8iHpMpAJ9lOn7Tjd3UQvlTIhFoS6D4+blZ22M5gTwef
-         QGNFZMdeSsdjDm//PEl4vVlz6L/XRV2ISG+UatrpBfatz+7p2cAAjNiJ52uV1sHE5vjm
-         JlHfa/S4m8w7O2P6qyAnCh5o58EJbZMhbZuJaxF9t+I88UKxF5K6WUiCbJ765iwx6NBV
-         JhsA==
-X-Gm-Message-State: AAQBX9fYnEHZrVFt1uewzIe/2bYt7ImSzeLViR269phkgoaHQrV4PSDr
-        xbWRHdWj11ISgBGTZlTsasxfYQ==
-X-Google-Smtp-Source: AKy350Y2TcNWboWKh2QDy2Qdikod1p913oFrr5wHNBogRDNZFJOAiFU39DD+VrEDkwxsjp9gf9DMlg==
-X-Received: by 2002:a17:906:ce2b:b0:94f:6218:191c with SMTP id sd11-20020a170906ce2b00b0094f6218191cmr689403ejb.18.1681977060507;
-        Thu, 20 Apr 2023 00:51:00 -0700 (PDT)
+        bh=CWHnHNToGasJrGjvR3eKDTStQb2y8kbHp8eaclo2u2U=;
+        b=AN+NJCh/WMBBd0hkTeA9giGB8u29gToP9Z7mH7bidUbc7/j+PI1g2zpmikr3KLj65j
+         YO6GVBv0AwQRSEf7RWqKfYDhlB5eRk03xTYgLxNGjwOotZcUaPL9oABWou5gbkXO0kDe
+         GzepoOfYGTm/sruCnNXCPwIKss/N1Vu2q+zHnk2qXNR46n/GyDsGNPdvHdrzfynOZnBR
+         50VxOPQdX7+A3BApxcpgsu0H4FE5qDB6S+MrlA5oNJNcZftGl9M3rdxpwXkmKrSjlEKM
+         RBOGORDEBd5Ot+tYwtHVe5b1Moe2CYQkOzE6f2gUIZu+dL/O1wYPSL6pEszi1Z0cs36n
+         MMOg==
+X-Gm-Message-State: AAQBX9eL2b9buCwu49i7aLZNusOTdldX6wLEb/QKacbfm3v8veyaCOun
+        FUynJSpPvnYQbQ06RXJ0+Pfqtg==
+X-Google-Smtp-Source: AKy350bu2rvyxOdNXkK9xZupPFlAfRpbBcdy7kevrPzIpYFwmBrXlEUqDtpbzPDUHW+XKWXims0z0g==
+X-Received: by 2002:a50:e61a:0:b0:506:bcd6:b125 with SMTP id y26-20020a50e61a000000b00506bcd6b125mr845212edm.40.1681977061521;
+        Thu, 20 Apr 2023 00:51:01 -0700 (PDT)
 Received: from krzk-bin.. ([2a02:810d:15c0:828:bcb8:77e6:8f45:4771])
-        by smtp.gmail.com with ESMTPSA id h25-20020a50ed99000000b00505060e4280sm447165edr.94.2023.04.20.00.50.59
+        by smtp.gmail.com with ESMTPSA id h25-20020a50ed99000000b00505060e4280sm447165edr.94.2023.04.20.00.51.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Apr 2023 00:51:00 -0700 (PDT)
+        Thu, 20 Apr 2023 00:51:01 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -58,9 +58,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 04/10] ARM: dts: qcom: ipq8064: drop leading 0 from unit-address
-Date:   Thu, 20 Apr 2023 09:50:47 +0200
-Message-Id: <20230420075053.41976-4-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 05/10] ARM: dts: qcom: ipq8064: drop invalid GCC thermal-sensor unit-address
+Date:   Thu, 20 Apr 2023 09:50:48 +0200
+Message-Id: <20230420075053.41976-5-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230420075053.41976-1-krzysztof.kozlowski@linaro.org>
 References: <20230420075053.41976-1-krzysztof.kozlowski@linaro.org>
@@ -76,9 +76,10 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Unit-address should not start with 0:
+GCC comes with syscon compatible so the thermal-sensor child node should
+not have unit-address (bindings also do not expect it):
 
-  Warning (simple_bus_reg): /soc/syscon@03000000: simple-bus unit address format error, expected "3000000"
+  Warning (unit_address_vs_reg): /soc/clock-controller@900000/thermal-sensor@900000: node has a unit name, but no reg or ranges property
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
@@ -86,18 +87,18 @@ Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/arm/boot/dts/qcom-ipq8064.dtsi b/arch/arm/boot/dts/qcom-ipq8064.dtsi
-index 621edf508a88..182018d79a7b 100644
+index 182018d79a7b..49310520da1c 100644
 --- a/arch/arm/boot/dts/qcom-ipq8064.dtsi
 +++ b/arch/arm/boot/dts/qcom-ipq8064.dtsi
-@@ -609,7 +609,7 @@ saw1: regulator@2099000 {
- 			regulator;
- 		};
+@@ -522,7 +522,7 @@ gcc: clock-controller@900000 {
+ 			#reset-cells = <1>;
+ 			#power-domain-cells = <1>;
  
--		nss_common: syscon@03000000 {
-+		nss_common: syscon@3000000 {
- 			compatible = "syscon";
- 			reg = <0x03000000 0x0000FFFF>;
- 		};
+-			tsens: thermal-sensor@900000 {
++			tsens: thermal-sensor {
+ 				compatible = "qcom,ipq8064-tsens";
+ 
+ 				nvmem-cells = <&tsens_calib>, <&tsens_calib_backup>;
 -- 
 2.34.1
 
