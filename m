@@ -2,64 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70A496E9A8C
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 19:20:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A578C6E9A90
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 19:21:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229522AbjDTRUs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 13:20:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55596 "EHLO
+        id S231446AbjDTRVC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 13:21:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229878AbjDTRUq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 13:20:46 -0400
-Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21BD23AA6
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 10:20:33 -0700 (PDT)
-Received: by mail-yb1-xb36.google.com with SMTP id j15so2674216ybl.10
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 10:20:33 -0700 (PDT)
+        with ESMTP id S230514AbjDTRU7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 13:20:59 -0400
+Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A5A84692
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 10:20:56 -0700 (PDT)
+Received: by mail-yb1-xb33.google.com with SMTP id m14so2768096ybk.4
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 10:20:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1682011231; x=1684603231;
+        d=chromium.org; s=google; t=1682011255; x=1684603255;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=npIvl3QgC8NcszelNQAZW8/zRVotzvOXnUNhHUMiAZ8=;
-        b=Y4lxgJ8dXJFv6D8mG0p63NO1+LiD8itf6x/IdvAfy49o4anv6IxZjJ27+tMOkiH+s4
-         wB4iRiyjVT5WojC/IMdUYWMbnFcAiwKjAyCphylzb60vXOxANHZkIK5apN9UeDiSvPO/
-         D/ROpxIVKlTozwIBNBdMlraSUw+Y8AL1VFndk=
+        bh=ASlcFMe+UBtl/yEkw/ihBI+w8rG6+336g8ZGmASVmQA=;
+        b=b/4+/nMZ6aynqFmw6ukRQJ6kN5aO9iGKZziVH89g5HjOChwnrAToiWKV0Nqh2ldrXU
+         USCRfiAOtZk15vo2BOeRn8xQGP6n5n3S40HFCb0cKuXP/z1Ycm1zI9ndUbYp9qTxPQ/t
+         iFQQ7elgHeKTv2UDBjGZrp24qsbTc63nNKgnk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682011231; x=1684603231;
+        d=1e100.net; s=20221208; t=1682011255; x=1684603255;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=npIvl3QgC8NcszelNQAZW8/zRVotzvOXnUNhHUMiAZ8=;
-        b=APrRSIl2JoKbZFomSfM/hX6Y/Np0DW5qIp6dOep3vUGqPZ7kYXuNCVjMM+/yoNNgGV
-         Rv5X1D2e82AAjiPeRimokW6vNquhGEE2wI8y/ixO8qtApHLQ4+eiWFzdTxtz9AFUmkPx
-         gSev4bC+d71IL0ccRReLSzbbQsz/agRaCMWXoLOjw7atbIfLIV++6fmGQJREIuhVm6EF
-         I1tf3WphMI8SanGDehiBCn8YRgUR1L1RWBpO8D9RtqMEfVbEiH6fcdBb3x0qjKS/2W1j
-         0llt2IAXwIXyfyyrLjW82V90U6vCLYUApJJYHF1VW6JMCP0CSL4e2FwanR5YI8RflRVp
-         qmFA==
-X-Gm-Message-State: AAQBX9cTNkxpLyDG74OVdk5RkaJoZC//8rkiBmEu+dfm++ln50brTsVv
-        F0cjHu1qFEVT6kKgFB21WAt0EHCwLduSLW+GBSs=
-X-Google-Smtp-Source: AKy350Yx78wO6cR8Dopl5CWlwD9Gy3tkyh8ScsJWb0wIYfuX4WLiqYIbVGZEXispgctriANaTyaGeg==
-X-Received: by 2002:a25:5c7:0:b0:b95:78ba:a39 with SMTP id 190-20020a2505c7000000b00b9578ba0a39mr2429262ybf.37.1682011231720;
-        Thu, 20 Apr 2023 10:20:31 -0700 (PDT)
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com. [209.85.219.181])
-        by smtp.gmail.com with ESMTPSA id h204-20020a256cd5000000b00b7b0aba5cccsm409865ybc.22.2023.04.20.10.20.28
+        bh=ASlcFMe+UBtl/yEkw/ihBI+w8rG6+336g8ZGmASVmQA=;
+        b=a+xdYnoJQZ2K3vvL2UtQjjR8B/YQ1oJVzeeXCWiD04F2zP17eLON81LnNSva/2VOH0
+         unJQhM45vjKiMw5gWQmYjSgExfn/PU83LPSCRwi4jLZqARlOsAF+UdBFwNX+lVhss2bz
+         WPzFLvlY4ySht+gphmCYzvY29essrXBTf9r3iQpV1OyBeWAghCfZ3mIzKhZ1zRs9mwnD
+         fLRs+HsE3pIbfTiIUc9NVUtKxSQPq3AJMe/vZEop7KrCA70ciMv4ICL4yooi7l6LQPpP
+         KRiGthnRBemO0jLJNcaF++4Xr1IXdmQr9S5WXEKyldFYlSGSchart9zG3VO46TMh7QSP
+         ITsw==
+X-Gm-Message-State: AAQBX9eBk9Lt4gLasJAgNdnF2wFzPIOIsYJcrkURwx4FI8bsyCmQ8kho
+        NdeiluIYJ1DhvcnJsYtl5z5ZE/8IKd5zo4xZM4U=
+X-Google-Smtp-Source: AKy350axmPomM7Sjz+Y3qOgENU9xj/7Ce9AxZCysvV5Ocsdj29T9x01FS8UpPQkA5+Aj5LzpTSHQ1Q==
+X-Received: by 2002:a25:ad4e:0:b0:b72:4ca:b3ce with SMTP id l14-20020a25ad4e000000b00b7204cab3cemr2232775ybe.16.1682011254756;
+        Thu, 20 Apr 2023 10:20:54 -0700 (PDT)
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
+        by smtp.gmail.com with ESMTPSA id t2-20020a259ac2000000b00b7e0d092f91sm409543ybo.18.2023.04.20.10.20.51
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Apr 2023 10:20:29 -0700 (PDT)
-Received: by mail-yb1-f181.google.com with SMTP id u13so2742408ybu.5
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 10:20:28 -0700 (PDT)
-X-Received: by 2002:a25:cacc:0:b0:b98:6352:be17 with SMTP id
- a195-20020a25cacc000000b00b986352be17mr882764ybg.0.1682011227804; Thu, 20 Apr
- 2023 10:20:27 -0700 (PDT)
+        Thu, 20 Apr 2023 10:20:51 -0700 (PDT)
+Received: by mail-yb1-f174.google.com with SMTP id n17so2787538ybq.2
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 10:20:51 -0700 (PDT)
+X-Received: by 2002:a25:c807:0:b0:b95:2315:a2c4 with SMTP id
+ y7-20020a25c807000000b00b952315a2c4mr1169128ybf.0.1682011250803; Thu, 20 Apr
+ 2023 10:20:50 -0700 (PDT)
 MIME-Version: 1.0
-References: <1681996394-13099-1-git-send-email-quic_vnivarth@quicinc.com> <1681996394-13099-3-git-send-email-quic_vnivarth@quicinc.com>
-In-Reply-To: <1681996394-13099-3-git-send-email-quic_vnivarth@quicinc.com>
+References: <1681996394-13099-1-git-send-email-quic_vnivarth@quicinc.com> <1681996394-13099-4-git-send-email-quic_vnivarth@quicinc.com>
+In-Reply-To: <1681996394-13099-4-git-send-email-quic_vnivarth@quicinc.com>
 From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 20 Apr 2023 10:20:15 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=WyVRxRc7WuW1vhFXWDG81cAu7g5WiC9sggGoEuQOA4Cw@mail.gmail.com>
-Message-ID: <CAD=FV=WyVRxRc7WuW1vhFXWDG81cAu7g5WiC9sggGoEuQOA4Cw@mail.gmail.com>
-Subject: Re: [PATCH v4 2/5] arm64: dts: qcom: sc7180: Add stream-id of qspi to iommus
+Date:   Thu, 20 Apr 2023 10:20:38 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XxbLsaxJc7YKH+beaPFTxq7x_jS_oQQ+KHXXQ=LgX3ag@mail.gmail.com>
+Message-ID: <CAD=FV=XxbLsaxJc7YKH+beaPFTxq7x_jS_oQQ+KHXXQ=LgX3ag@mail.gmail.com>
+Subject: Re: [PATCH v4 3/5] arm64: dts: qcom: sc7280: Add stream-id of qspi to iommus
 To:     Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>
 Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
         broonie@kernel.org, robh+dt@kernel.org,
@@ -89,7 +89,10 @@ On Thu, Apr 20, 2023 at 6:13=E2=80=AFAM Vijaya Krishna Nivarthi
 >
 > Signed-off-by: Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>
 > ---
->  arch/arm64/boot/dts/qcom/sc7180.dtsi | 1 +
+> v2 -> v3:
+> - modified commit message
+> ---
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 1 +
 >  1 file changed, 1 insertion(+)
 
 Reviewed-by: Douglas Anderson <dianders@chromium.org>
