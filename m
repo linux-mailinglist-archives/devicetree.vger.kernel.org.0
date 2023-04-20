@@ -2,64 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C6AC56E9AAC
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 19:26:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70A496E9A8C
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 19:20:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230150AbjDTR0G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 13:26:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60894 "EHLO
+        id S229522AbjDTRUs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 13:20:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231500AbjDTR0E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 13:26:04 -0400
-Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0F541FE3
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 10:26:02 -0700 (PDT)
-Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-54fe82d8bf5so52252007b3.3
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 10:26:02 -0700 (PDT)
+        with ESMTP id S229878AbjDTRUq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 13:20:46 -0400
+Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21BD23AA6
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 10:20:33 -0700 (PDT)
+Received: by mail-yb1-xb36.google.com with SMTP id j15so2674216ybl.10
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 10:20:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1682011561; x=1684603561;
+        d=chromium.org; s=google; t=1682011231; x=1684603231;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Q9sg0JiAMa7Mt8FAozcEUBataC+98aRjbjSpG582JJA=;
-        b=BpCLupAE2ivCdrdMPIG0bF58oTcdal2MyAsY8/t1EZ/mZCOrzx+TPmqGUOFHUShR4q
-         EApKdFYlDfZwVWhJkIb2pisUgHTqxUmOj5Nd2YJ3ltT5SQly89DqfvATjLRzpomw2fN7
-         KUbjuxX/Fp4C43sDpx+1YiPOdqgA+4foRDXeI=
+        bh=npIvl3QgC8NcszelNQAZW8/zRVotzvOXnUNhHUMiAZ8=;
+        b=Y4lxgJ8dXJFv6D8mG0p63NO1+LiD8itf6x/IdvAfy49o4anv6IxZjJ27+tMOkiH+s4
+         wB4iRiyjVT5WojC/IMdUYWMbnFcAiwKjAyCphylzb60vXOxANHZkIK5apN9UeDiSvPO/
+         D/ROpxIVKlTozwIBNBdMlraSUw+Y8AL1VFndk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682011561; x=1684603561;
+        d=1e100.net; s=20221208; t=1682011231; x=1684603231;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Q9sg0JiAMa7Mt8FAozcEUBataC+98aRjbjSpG582JJA=;
-        b=SVWWxWblO32fcgMTfD+VYxncbuFy7yFQcA62EStY50cfF/w8LL0L2sGO34dw84R0ig
-         yqHNpdIql2KMc4I83Brkz3hDNylnfHFfIY7TCSHOVx8jlffFQ6V3fSBXTtDeYdrAORYB
-         BxpMCLHp8/9ez86vqR1ZIzvbY0DGfZ1JvZTvYhokJ2axxBN35TMuTwF3X4om9ec0iIWV
-         FInAMKv2wXp4OV8AT9tSBI7KPJDwWt9KP5j1cSiBsSIo8z53yF/FMJgg0GH9LTuwaBNW
-         COIVkASpv6GUEZypbkhjYZCz0dkLxUOZefuOupWpvbNpmGNJ5OsHPxbYXznmEi/2KQwT
-         vSCg==
-X-Gm-Message-State: AAQBX9fg0TxlwE5AOSaMQpNgi5FoLiKDu1adKXjkDQkutoLpgGuUTneQ
-        61iJxyGeYksQA2SwZy0FlGcj2zVR4X7WywnNkYM=
-X-Google-Smtp-Source: AKy350aS09q7lhu5+7Qav2figBy5ejGR02O5xJvsoAbMsAqofOhaqqkMmEsoDhSJiY3WxiVubwPEdQ==
-X-Received: by 2002:a0d:df04:0:b0:545:637c:3ed7 with SMTP id i4-20020a0ddf04000000b00545637c3ed7mr1457764ywe.1.1682011561461;
-        Thu, 20 Apr 2023 10:26:01 -0700 (PDT)
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com. [209.85.219.175])
-        by smtp.gmail.com with ESMTPSA id w13-20020a81a20d000000b0054fae5ed408sm449092ywg.45.2023.04.20.10.26.01
+        bh=npIvl3QgC8NcszelNQAZW8/zRVotzvOXnUNhHUMiAZ8=;
+        b=APrRSIl2JoKbZFomSfM/hX6Y/Np0DW5qIp6dOep3vUGqPZ7kYXuNCVjMM+/yoNNgGV
+         Rv5X1D2e82AAjiPeRimokW6vNquhGEE2wI8y/ixO8qtApHLQ4+eiWFzdTxtz9AFUmkPx
+         gSev4bC+d71IL0ccRReLSzbbQsz/agRaCMWXoLOjw7atbIfLIV++6fmGQJREIuhVm6EF
+         I1tf3WphMI8SanGDehiBCn8YRgUR1L1RWBpO8D9RtqMEfVbEiH6fcdBb3x0qjKS/2W1j
+         0llt2IAXwIXyfyyrLjW82V90U6vCLYUApJJYHF1VW6JMCP0CSL4e2FwanR5YI8RflRVp
+         qmFA==
+X-Gm-Message-State: AAQBX9cTNkxpLyDG74OVdk5RkaJoZC//8rkiBmEu+dfm++ln50brTsVv
+        F0cjHu1qFEVT6kKgFB21WAt0EHCwLduSLW+GBSs=
+X-Google-Smtp-Source: AKy350Yx78wO6cR8Dopl5CWlwD9Gy3tkyh8ScsJWb0wIYfuX4WLiqYIbVGZEXispgctriANaTyaGeg==
+X-Received: by 2002:a25:5c7:0:b0:b95:78ba:a39 with SMTP id 190-20020a2505c7000000b00b9578ba0a39mr2429262ybf.37.1682011231720;
+        Thu, 20 Apr 2023 10:20:31 -0700 (PDT)
+Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com. [209.85.219.181])
+        by smtp.gmail.com with ESMTPSA id h204-20020a256cd5000000b00b7b0aba5cccsm409865ybc.22.2023.04.20.10.20.28
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Apr 2023 10:26:01 -0700 (PDT)
-Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-b98415ba97aso297590276.0
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 10:26:01 -0700 (PDT)
-X-Received: by 2002:a25:d797:0:b0:b8f:557f:f8f1 with SMTP id
- o145-20020a25d797000000b00b8f557ff8f1mr1132306ybg.0.1682011153798; Thu, 20
- Apr 2023 10:19:13 -0700 (PDT)
+        Thu, 20 Apr 2023 10:20:29 -0700 (PDT)
+Received: by mail-yb1-f181.google.com with SMTP id u13so2742408ybu.5
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 10:20:28 -0700 (PDT)
+X-Received: by 2002:a25:cacc:0:b0:b98:6352:be17 with SMTP id
+ a195-20020a25cacc000000b00b986352be17mr882764ybg.0.1682011227804; Thu, 20 Apr
+ 2023 10:20:27 -0700 (PDT)
 MIME-Version: 1.0
-References: <1681996394-13099-1-git-send-email-quic_vnivarth@quicinc.com> <1681996394-13099-6-git-send-email-quic_vnivarth@quicinc.com>
-In-Reply-To: <1681996394-13099-6-git-send-email-quic_vnivarth@quicinc.com>
+References: <1681996394-13099-1-git-send-email-quic_vnivarth@quicinc.com> <1681996394-13099-3-git-send-email-quic_vnivarth@quicinc.com>
+In-Reply-To: <1681996394-13099-3-git-send-email-quic_vnivarth@quicinc.com>
 From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 20 Apr 2023 10:19:01 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=VU9Zdk2wz=90cjmuBWxaVz9w+UxzrTtW_ny-jrwVLV3w@mail.gmail.com>
-Message-ID: <CAD=FV=VU9Zdk2wz=90cjmuBWxaVz9w+UxzrTtW_ny-jrwVLV3w@mail.gmail.com>
-Subject: Re: [PATCH v4 5/5] spi: spi-qcom-qspi: Add DMA mode support
+Date:   Thu, 20 Apr 2023 10:20:15 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=WyVRxRc7WuW1vhFXWDG81cAu7g5WiC9sggGoEuQOA4Cw@mail.gmail.com>
+Message-ID: <CAD=FV=WyVRxRc7WuW1vhFXWDG81cAu7g5WiC9sggGoEuQOA4Cw@mail.gmail.com>
+Subject: Re: [PATCH v4 2/5] arm64: dts: qcom: sc7180: Add stream-id of qspi to iommus
 To:     Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>
 Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
         broonie@kernel.org, robh+dt@kernel.org,
@@ -85,393 +85,11 @@ Hi,
 On Thu, Apr 20, 2023 at 6:13=E2=80=AFAM Vijaya Krishna Nivarthi
 <quic_vnivarth@quicinc.com> wrote:
 >
-> @@ -137,11 +155,29 @@ enum qspi_clocks {
->         QSPI_NUM_CLKS
->  };
+> As part of DMA mode support to qspi driver.
 >
-> +enum qspi_xfer_mode {
-> +       QSPI_FIFO,
-> +       QSPI_DMA
-> +};
-> +
-> +/*
-> + * Number of entries in sgt returned from spi framework that-
-> + * will be supported. Can be modified as required.
-> + * In practice, given max_dma_len is 64KB, the number of
-> + * entries is not expected to exceed 1.
-> + */
-> +#define QSPI_MAX_SG 5
+> Signed-off-by: Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sc7180.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
 
-I actually wonder if this would be more nicely done just using a
-linked list, which naturally mirrors how SGs work anyway. You'd add
-"struct list_head" to the end of "struct qspi_cmd_desc" and just store
-a pointer to the head in "struct qcom_qspi".
-
-For freeing, you can always get back the "virtual" address because
-it's just the address of each node. You can always get back the
-physical address because it's stored in "data_address".
-
-
-> @@ -223,6 +261,16 @@ static void qcom_qspi_handle_err(struct spi_master *=
-master,
->         spin_lock_irqsave(&ctrl->lock, flags);
->         writel(0, ctrl->base + MSTR_INT_EN);
-
-Can you also clear all interrupts here? That will make sure that if
-the interrupt somehow fires after you run that it will detect that
-there's nothing to do.
-
-
->         ctrl->xfer.rem_bytes =3D 0;
-> +
-> +       if (ctrl->xfer_mode =3D=3D QSPI_DMA) {
-> +               int i;
-> +
-> +               /* free cmd descriptors */
-> +               for (i =3D 0; i < ctrl->n_cmd_desc; i++)
-> +                       dma_pool_free(ctrl->dma_cmd_pool, ctrl->virt_cmd_=
-desc[i],
-> +                                         ctrl->dma_cmd_desc[i]);
-> +               ctrl->n_cmd_desc =3D 0;
-> +       }
-
-Instead of checking for ctrl->xfer_mode, why not just check for
-ctrl->n_cmd_desc? Then you can get rid of "ctrl->xfer_mode".
-
-
-> @@ -258,6 +306,120 @@ static int qcom_qspi_set_speed(struct qcom_qspi *ct=
-rl, unsigned long speed_hz)
->         return 0;
->  }
->
-> +#define QSPI_ALIGN_REQ 32
-
-nit: put this at the top of the file with other #defines.
-
-
-> +static int qcom_qspi_alloc_desc(struct qcom_qspi *ctrl, dma_addr_t dma_p=
-tr,
-> +                       uint32_t n_bytes)
-> +{
-> +       struct qspi_cmd_desc *virt_cmd_desc, *prev;
-> +       dma_addr_t dma_cmd_desc;
-> +
-> +       /* allocate for dma cmd descriptor */
-> +       virt_cmd_desc =3D (struct qspi_cmd_desc *)dma_pool_alloc(ctrl->dm=
-a_cmd_pool,
-> +               GFP_KERNEL, &dma_cmd_desc);
-
-Remove unnecessary cast; "void *" assigns fine w/out a cast.
-
-Add "| GFP_ZERO" and then get rid of the need to clear the "reserved"
-and "next_descriptor" stuff below.
-
-
-> +       if (!virt_cmd_desc) {
-> +               dev_err(ctrl->dev,
-> +                       "Could not allocate for cmd_desc\n");
-> +               return -ENOMEM;
-> +       }
-
-You never need to add an extra message for allocation failures (they
-already splat). Remove it.
-
-
-> +       ctrl->virt_cmd_desc[ctrl->n_cmd_desc] =3D virt_cmd_desc;
-> +       ctrl->dma_cmd_desc[ctrl->n_cmd_desc] =3D dma_cmd_desc;
-> +       ctrl->n_cmd_desc++;
-> +
-> +       /* setup cmd descriptor */
-> +       virt_cmd_desc->data_address =3D dma_ptr;
-> +       virt_cmd_desc->next_descriptor =3D 0;
-> +       virt_cmd_desc->direction =3D ctrl->xfer.dir;
-> +       virt_cmd_desc->multi_io_mode =3D qspi_buswidth_to_iomode(ctrl, ct=
-rl->xfer.buswidth);
-> +       virt_cmd_desc->reserved1 =3D 0;
-> +       virt_cmd_desc->fragment =3D ctrl->xfer.is_last ? 0 : 1;
-
-virt_cmd_desc->fragment =3D !ctrl->xfer.is_last;
-
-
-> +       virt_cmd_desc->reserved2 =3D 0;
-> +       virt_cmd_desc->length =3D n_bytes;
-> +
-> +       /* update previous descriptor */
-> +       if (ctrl->n_cmd_desc >=3D 2) {
-> +               prev =3D (ctrl->virt_cmd_desc)[ctrl->n_cmd_desc - 2];
-> +               prev->next_descriptor =3D dma_cmd_desc;
-> +               prev->fragment =3D 1;
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static int qcom_qspi_setup_dma_desc(struct qcom_qspi *ctrl,
-> +                               struct spi_transfer *xfer)
-> +{
-> +       int ret;
-> +       struct sg_table *sgt;
-> +       unsigned int sg_total_len =3D 0;
-> +       dma_addr_t dma_ptr_sg;
-> +       unsigned int dma_len_sg;
-> +       int i;
-> +
-> +       if (ctrl->n_cmd_desc) {
-> +               dev_err(ctrl->dev, "Remnant dma buffers n_cmd_desc-%d\n",=
- ctrl->n_cmd_desc);
-> +               return -EIO;
-> +       }
-> +
-> +       sgt =3D (ctrl->xfer.dir =3D=3D QSPI_READ) ? &xfer->rx_sg : &xfer-=
->tx_sg;
-> +       if (!sgt->nents || sgt->nents > QSPI_MAX_SG) {
-> +               dev_err(ctrl->dev, "Cannot handle %d entries in scatter l=
-ist\n", sgt->nents);
-> +               return -EAGAIN;
-
-If you're retrying, don't use "dev_err" but instead "dev_warn".
-Similar in other places.
-
-
-> +       }
-> +
-> +       for (i =3D 0; i < sgt->nents; i++) {
-> +               dma_ptr_sg =3D sg_dma_address(sgt->sgl + i);
-> +               if (!IS_ALIGNED(dma_ptr_sg, QSPI_ALIGN_REQ)) {
-> +                       dev_err(ctrl->dev, "dma address-%pad not aligned =
-to %d\n",
-> +                               &dma_ptr_sg, QSPI_ALIGN_REQ);
-
-In general it's not good practice to put pointer values into the error
-log as it can be an attack vector. Probably the %p will be replaced
-with something bogus anyway, but it'll look weird.
-
-
-> +                       return -EAGAIN;
-> +               }
-> +               sg_total_len +=3D sg_dma_len(sgt->sgl + i);
-> +       }
-> +
-> +       if (sg_total_len !=3D xfer->len) {
-> +               dev_err(ctrl->dev, "Data lengths mismatch\n");
-> +               return -EAGAIN;
-> +       }
-
-This feels like overly defensive programming. The SPI framework is
-what's in charge of setting up the scatter gather lists and it can be
-trusted to give you something where the total transfer length matches.
-IMO, drop that validation. I'm OK w/ keeping the double-check of the
-alignment since that's handled by the client drivers and they are less
-trustworthy.
-
-
-> +
-> +       for (i =3D 0; i < sgt->nents; i++) {
-> +               dma_ptr_sg =3D sg_dma_address(sgt->sgl + i);
-> +               dma_len_sg =3D sg_dma_len(sgt->sgl + i);
-> +
-> +               ret =3D qcom_qspi_alloc_desc(ctrl, dma_ptr_sg, dma_len_sg=
-);
-> +               if (ret)
-> +                       goto cleanup;
-> +       }
-> +       return 0;
-> +
-> +cleanup:
-> +       dev_err(ctrl->dev, "ERROR cleanup in setup_dma_desc\n");
-
-Drop above print--we should have already printed any relevant errors.
-
-
-> @@ -290,8 +454,37 @@ static int qcom_qspi_transfer_one(struct spi_master =
-*master,
->         ctrl->xfer.is_last =3D list_is_last(&xfer->transfer_list,
->                                           &master->cur_msg->transfers);
->         ctrl->xfer.rem_bytes =3D xfer->len;
-> +
-> +       if (xfer->rx_sg.nents || xfer->tx_sg.nents) {
-> +               /* do DMA transfer */
-> +               ctrl->xfer_mode =3D QSPI_DMA;
-> +               if (!(mstr_cfg & DMA_ENABLE)) {
-> +                       mstr_cfg |=3D DMA_ENABLE;
-> +                       writel(mstr_cfg, ctrl->base + MSTR_CONFIG);
-> +               }
-> +
-> +               ret =3D qcom_qspi_setup_dma_desc(ctrl, xfer);
-> +               if (ret) {
-> +                       if (ret =3D=3D -EAGAIN) {
-> +                               dev_err_once(ctrl->dev, "DMA failure, fal=
-ling back to PIO");
-> +                               goto do_pio;
-> +                       }
-> +                       spin_unlock_irqrestore(&ctrl->lock, flags);
-> +                       return ret;
-> +               }
-> +               qcom_qspi_dma_xfer(ctrl);
-> +               goto end;
-> +       }
-> +
-> +do_pio:
-
-A bit nitty, but the "do_pio" label feels like a slight stretch from
-what I consider the acceptable uses of "goto". Maybe it's better to
-avoid it? The "end" label is OK w/ me, though usually I see it called
-"exit". AKA:
-
-  ...
-  ret =3D qcom_qspi_setup_dma_desc(ctrl, xfer);
-  if (ret !=3D -EAGAIN) {
-    if (!ret)
-      qcom_qspi_dma_xfer(ctrl);
-    goto exit;
-  }
-  dev_warn_once(...);
-  ret =3D 0; /* We'll retry w/ PIO */
-}
-
-...
-...
-
-exit:
-  spin_unlock_irqrestore(&ctrl->lock, flags);
-
-  if (ret)
-    return ret;
-
-  /* We'll call spi_finalize_current_transfer() when done */
-  return 1;
-
-
-> @@ -328,6 +521,17 @@ static int qcom_qspi_prepare_message(struct spi_mast=
-er *master,
->         return 0;
->  }
->
-> +static int qcom_qspi_alloc_dma(struct qcom_qspi *ctrl)
-> +{
-> +       /* allocate for cmd descriptors pool */
-
-The above comment doesn't add much. Drop?
-
-
-> @@ -426,27 +630,48 @@ static irqreturn_t qcom_qspi_irq(int irq, void *dev=
-_id)
->         int_status =3D readl(ctrl->base + MSTR_INT_STATUS);
->         writel(int_status, ctrl->base + MSTR_INT_STATUS);
->
-> -       if (ctrl->xfer.dir =3D=3D QSPI_WRITE) {
-> -               if (int_status & WR_FIFO_EMPTY)
-> -                       ret =3D pio_write(ctrl);
-> -       } else {
-> -               if (int_status & RESP_FIFO_RDY)
-> -                       ret =3D pio_read(ctrl);
-> -       }
-> -
-> -       if (int_status & QSPI_ERR_IRQS) {
-> -               if (int_status & RESP_FIFO_UNDERRUN)
-> -                       dev_err(ctrl->dev, "IRQ error: FIFO underrun\n");
-> -               if (int_status & WR_FIFO_OVERRUN)
-> -                       dev_err(ctrl->dev, "IRQ error: FIFO overrun\n");
-> -               if (int_status & HRESP_FROM_NOC_ERR)
-> -                       dev_err(ctrl->dev, "IRQ error: NOC response error=
-\n");
-> -               ret =3D IRQ_HANDLED;
-> -       }
-> -
-> -       if (!ctrl->xfer.rem_bytes) {
-> -               writel(0, ctrl->base + MSTR_INT_EN);
-> -               spi_finalize_current_transfer(dev_get_drvdata(ctrl->dev))=
-;
-> +       switch (ctrl->xfer_mode) {
-> +       case QSPI_FIFO:
-> +               if (ctrl->xfer.dir =3D=3D QSPI_WRITE) {
-> +                       if (int_status & WR_FIFO_EMPTY)
-> +                               ret =3D pio_write(ctrl);
-> +               } else {
-> +                       if (int_status & RESP_FIFO_RDY)
-> +                               ret =3D pio_read(ctrl);
-> +               }
-> +
-> +               if (int_status & QSPI_ERR_IRQS) {
-> +                       if (int_status & RESP_FIFO_UNDERRUN)
-> +                               dev_err(ctrl->dev, "IRQ error: FIFO under=
-run\n");
-> +                       if (int_status & WR_FIFO_OVERRUN)
-> +                               dev_err(ctrl->dev, "IRQ error: FIFO overr=
-un\n");
-> +                       if (int_status & HRESP_FROM_NOC_ERR)
-> +                               dev_err(ctrl->dev, "IRQ error: NOC respon=
-se error\n");
-> +                       ret =3D IRQ_HANDLED;
-> +               }
-> +
-> +               if (!ctrl->xfer.rem_bytes) {
-> +                       writel(0, ctrl->base + MSTR_INT_EN);
-> +                       spi_finalize_current_transfer(dev_get_drvdata(ctr=
-l->dev));
-> +               }
-> +               break;
-> +       case QSPI_DMA:
-> +               if (int_status & DMA_CHAIN_DONE) {
-> +                       int i;
-> +
-> +                       writel(0, ctrl->base + MSTR_INT_EN);
-> +
-> +                       for (i =3D 0; i < ctrl->n_cmd_desc; i++)
-> +                               dma_pool_free(ctrl->dma_cmd_pool, ctrl->v=
-irt_cmd_desc[i],
-> +                                                 ctrl->dma_cmd_desc[i]);
-> +                       ctrl->n_cmd_desc =3D 0;
-> +
-> +                       ret =3D IRQ_HANDLED;
-> +                       spi_finalize_current_transfer(dev_get_drvdata(ctr=
-l->dev));
-> +               }
-> +               break;
-> +       default:
-> +               dev_err(ctrl->dev, "Unknown xfer mode:%d", ctrl->xfer_mod=
-e);
-
-I'm still of the opinion that you should drop xfer_mode, which means
-deleting it from above.
-
-
-> @@ -517,7 +742,14 @@ static int qcom_qspi_probe(struct platform_device *p=
-dev)
->                 return ret;
->         }
->
-> +       ret =3D dma_set_mask_and_coherent(dev, DMA_BIT_MASK(32));
-> +       if (ret)
-> +               return dev_err_probe(dev, ret, "could not set DMA mask\n"=
-);
-> +
->         master->max_speed_hz =3D 300000000;
-> +       master->max_dma_len =3D 65536; /* as per HPG */
-> +       /* intimate protocal drivers about alignment requirement */
-
-Comment above doesn't add much and is already in the comment in the
-definition of the structure. Drop it.
-
-
-> +       master->dma_alignment =3D QSPI_ALIGN_REQ;
->         master->num_chipselect =3D QSPI_NUM_CS;
->         master->bus_num =3D -1;
->         master->dev.of_node =3D pdev->dev.of_node;
-> @@ -528,6 +760,7 @@ static int qcom_qspi_probe(struct platform_device *pd=
-ev)
->         master->prepare_message =3D qcom_qspi_prepare_message;
->         master->transfer_one =3D qcom_qspi_transfer_one;
->         master->handle_err =3D qcom_qspi_handle_err;
-> +       master->can_dma =3D qcom_qspi_can_dma;
->         master->auto_runtime_pm =3D true;
->
->         ret =3D devm_pm_opp_set_clkname(&pdev->dev, "core");
-> @@ -540,6 +773,11 @@ static int qcom_qspi_probe(struct platform_device *p=
-dev)
->                 return ret;
->         }
->
-> +       /* allocate for DMA descriptor pools */
-
-Above comment is obvious from the name of the function you're calling.
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
