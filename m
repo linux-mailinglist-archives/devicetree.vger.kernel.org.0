@@ -2,171 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C380C6E9A95
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 19:21:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A11E26E9ACA
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 19:33:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230399AbjDTRVT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 13:21:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56072 "EHLO
+        id S231583AbjDTRc7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 13:32:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231483AbjDTRVO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 13:21:14 -0400
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00F6CE5A;
-        Thu, 20 Apr 2023 10:21:10 -0700 (PDT)
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4Q2PZS65dvz9sTS;
-        Thu, 20 Apr 2023 19:21:04 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mariushoch.de;
-        s=MBO0001; t=1682011264;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=hDcMmxBtkKkSUHZeVxIXXpyPKTciaaqs1ASjEx9+mnM=;
-        b=TUNuIIKbsWhVz3dtfNXcA78yEahkQBwGrGEz+N2KmrKrdfXTmatGWkQ6HLNY8BQ0cA8irt
-        G0a7q/dTYGUrCrASz98nWGDouNPyrh4dYNHBDZ+RaKkSfWiy9Kb+ooxZig6pCh0+HZbnhj
-        YeEGGdt9iXS6K27SeU+tvx3vAfKpmcne1e7uQm261mI97W6PHfX9Q4U1EL+vVPMYhN///7
-        R7wRKx/1ef5C3r3nVl1rFOeEX1MfwO6RgjRXFQmP1m6dyulCTM4dWUfOzRQiUigHNuxZWQ
-        Bv6vYTyXF3t1JbY+TmX1l9dtcS1fEkvAEc24YQZXvCUNaFDfI8lcljYQKZMSDQ==
-Message-ID: <5fb32c56-ac2d-0e1d-370d-d199f5b92775@mariushoch.de>
-Date:   Thu, 20 Apr 2023 19:21:02 +0200
+        with ESMTP id S229506AbjDTRc6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 13:32:58 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BD7C40C7
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 10:32:55 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id h2so3594182ljh.13
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 10:32:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1682011973; x=1684603973;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=PMu93c2gYoXnO7B9slEwJygFJeopiwqYcQo4P3f1t+8=;
+        b=iOcSFGPT5NJMqkObNfENlnMWQuLzr8RN5hOMtxdkuzAlNCuVD2FzhRLMQfJHnD/rcL
+         9vYI7APHo51IEmPTUGT9PWxkRFkt14t1iIm4ZTKCuRRTtByxzY8NUgGNU8iaE7qspKJO
+         cJ9t75rLBwYhMeSNGlDJJgIsLCql7UQCEhGmSLxT2StD12AIJtomZy+GI+GHpMQm7/M7
+         cWW8ZJO0A7o2r/4Jmeu1x96MVBHq1QzLRQK870r4N1jZdFLg0iA/8BNf/VK/YRxb7TMi
+         lfhT1kzv0N2abbRC4Y43TryISMWJEtgnXDHZ9xU5+qOnM8t5lMojeoAKC+UCKnqofrFq
+         +Swg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682011973; x=1684603973;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PMu93c2gYoXnO7B9slEwJygFJeopiwqYcQo4P3f1t+8=;
+        b=K09I+ZZMu3b6n+EoBuuujruwkUbLgDGNxJILuMOv70XY5/HZE5Bibo/XqCrYVUj3Rs
+         unY1NIcFluybY1rIa2Nl2lbzG55sAYjGIqB2bIqVArD9kk+wMzkcqDO2SHGGYKBy3C1J
+         tAn4H88Oh633sxt4N88XzarFlr67e2mw2MxhEohS3cZCqZ59SrCb5A4/TWLUIAtfrroo
+         //mKeaDR0c4jSFZOoD2sVwcZoNz1KrN0yD9XGmktuf7N8esChZqjywuoeIHWOMNIZo8P
+         VuG264c2M38QO0/ZKeawZ/Qa5p+6buBYXD2dIcBlJDpcJDaJUXHcMRX2kOT/+yj+8rOg
+         6jiQ==
+X-Gm-Message-State: AAQBX9e4yW55iq7PF2cDRPDKyGpnnT7xTdzsrbi6jbO8ZVCz3m2wSogN
+        1HFixCuG9jR/96YtxGSnfbnFDQ==
+X-Google-Smtp-Source: AKy350YCIvzoC3bQqiv88BMnSKxCl7YsUyoUIg1If3KsIYiPncBILvB5mXz90XG0MQbAiVWdugjCnw==
+X-Received: by 2002:a05:651c:312:b0:2a9:7985:b2f5 with SMTP id a18-20020a05651c031200b002a97985b2f5mr1705522ljp.24.1682011973237;
+        Thu, 20 Apr 2023 10:32:53 -0700 (PDT)
+Received: from [192.168.1.101] (abyj144.neoplus.adsl.tpnet.pl. [83.9.29.144])
+        by smtp.gmail.com with ESMTPSA id e22-20020a2e8ed6000000b002a8c1462ecbsm309597ljl.137.2023.04.20.10.32.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Apr 2023 10:32:52 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH v4 0/2] SM8350 VIDEOCC
+Date:   Thu, 20 Apr 2023 19:32:49 +0200
+Message-Id: <20230413-topic-lahaina_vidcc-v4-0-86c714a66a81@linaro.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v3 0/6] iio: st_sensors: Add lsm303d support
-To:     Hans de Goede <hdegoede@redhat.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEF3QWQC/43NTQrCMBAF4KtI1kbya6kr7yEiSZq2AyUpSQ1K6
+ d2ddieCdPlmeN+bSfYJfCaXw0ySL5AhBgzqeCCuN6HzFBrMRDAhmeKSTnEERwfTGwjmUaBxjlr
+ XGGtVpbUSBJvWZE9tMsH12A3PYcDjmHwLr23qdsfcQ55iem/Lha/X/yOFU0a5VG1thTDayuuAz
+ xRPMXVkBYvYgQhE2krwRrPKa61/ELkDkYgwr5iqzrqt1TeyLMsHXkaHplYBAAA=
+To:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Denis Ciocca <denis.ciocca@st.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230415231130.115094-1-mail@mariushoch.de>
- <3eb3de24-41b4-9566-9b11-a12d21904793@redhat.com>
-Content-Language: en-US
-From:   Marius Hoch <mail@mariushoch.de>
-Cc:     Marius Hoch <marius@mariushoch.de>
-In-Reply-To: <3eb3de24-41b4-9566-9b11-a12d21904793@redhat.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 4Q2PZS65dvz9sTS
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Taniya Das <tdas@codeaurora.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1682011971; l=1530;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=93PGuTesqpL9Pwcb1WJp1xK9V1diRq1o/c76V6de+NU=;
+ b=ythZ0cYRp+yVZKrwisW/OSq+a6uSM+i7d5ETgnwQsvLfui6DeWGYKABlE3Yf43lH9+ay5jIDl7eU
+ Vs9qZAFZAUXPBo6iysebo1QLgFiDr+5ymi1OHNoKskgLFDYIKNoV
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hans,
+v3 -> v4:
+- pick up rb
+- include qcom,gcc.yaml in the binding
 
-On 16/04/2023 22:19, Hans de Goede wrote:
-> Hi Marius,
->
-> On 4/16/23 01:11, Marius Hoch wrote:
->> Hi!
->>
->> This patch series adds support for the LSM303D accelerometer and
->> magnetometer. As the LSM303D is basically, as far as I can tell,
->> the LSM9DS0 without gyroscope, we can easily re-use its definitions.
->>
->> This was tested on a Lenovo Yoga Tablet 2 1051-F.
-> Thank you for your work on this. I have had this on my own todo list
-> since 2020 at least and I did not realize that Andy already added ST IMU
-> support in 2021 so this just needed some extra device-ids :)
->
-> I have tested this successfully on the following models:
->
-> Lenovo Yoga Tablet 2 851F (Windows version 8")
->
-> This version needs an accel-mount-matrix quick in hwdb since it has
-> a portrait screen rather then a landscape screen (so 90° rotated):
-> https://github.com/systemd/systemd/pull/27295
-> Note I've made sure that this quirk only applies to the 851 and not to the 1051.
->
-> Lenovo Yoga Tablet 2  830F (Android version 8")
->
-> Since the ACPI tables are broken in the Android BIOS these need
-> a patch to x86-android-tablets to instantiate the i2c_client
-> for the sensor, I'm still finalizing this patch and I'll submit
-> it upstream when its finished.
->
-> Tested-by: Hans de Goede <hansg@kernel.org>
->
-> Regards,
->
-> Hans
->
->
-> p.s.
->
-> 1: I noticed that auto-screen rotation using iio-sensor-proxy is quite slow
-> so I wrote a patch to fix this :)   :
-> https://gitlab.freedesktop.org/hadess/iio-sensor-proxy/-/merge_requests/366
-Nice, that should make rotating fast (well, as fast these devices can 
-handle).
->
-> 2: There are some other unsupported sensors on these models too,
-> perhaps you are interested in adding support for these too?
->
-> Here are my personal notes on this:
->   -Light sensor should work with drivers/iio/light/al3320a.c
->    https://github.com/JideTechnology/remixos-kernel/commit/c52d55b4bd907e87b7b115b3943219f3e089a77a
-That indeed worked like a charm, I'll post the patch later today.
->
->   -MXM1120 HALL sensor, have datasheet, measures angle of kickstand thingie, use
->    for SW_TABLET_MODE. Do a pdx86 driver just for the Tab 2 which checks that the
->    kick stand is out *and* the BT keyboard is paired, in that case report
->    SW_TABLET_MODE=0, in all other cases report SW_TABLET_MODE=1 ??
->    For the commit msg:
->    Datasheet available here: http://haechitech.com/tech-support/
->    Requires creating an account, once you have an account you can immediately download
->    the provided datasheets (or let me know if you want me to email you a copy)
-Thanks for the pointers, that sounds like a nice little project. I'll 
-give it a shot :)
->
-> Especially the light sensor should be an easy win and light sensors
-> are already supported in e.g. iio-sensor-proxy
+v3: https://lore.kernel.org/r/20230413-topic-lahaina_vidcc-v3-0-0e404765f945@linaro.org
 
-Cheers,
-Marius
->
->
->
->
->
->
->
->
->
->> Changes in v3:
->> Simplified the ACPI tables in the LSM9DS0 IMU driver, per Jonathan Cameron.
->>
->> Marius Hoch (6):
->>    iio: accel: st_accel: Add LSM303D
->>    iio: magnetometer: st_accel: Add LSM303D
->>    iio: st_sensors: Add lsm303d support to the LSM9DS0 IMU driver
->>    iio: st_sensors: Add ACPI support for lsm303d to the LSM9DS0 IMU
->>      driver
->>    iio: Comment that the LSM303D also has the Magnetometer DRDY
->>    dt-bindings: iio: st-sensors: Add LSM303D accelerometer+magnetometer
->>
->>   .../devicetree/bindings/iio/st,st-sensors.yaml       |  1 +
->>   drivers/iio/accel/st_accel_core.c                    |  1 +
->>   drivers/iio/imu/st_lsm9ds0/Kconfig                   |  3 ++-
->>   drivers/iio/imu/st_lsm9ds0/st_lsm9ds0_i2c.c          | 12 ++++++++++++
->>   drivers/iio/imu/st_lsm9ds0/st_lsm9ds0_spi.c          | 12 ++++++++++++
->>   drivers/iio/magnetometer/st_magn_core.c              |  1 +
->>   include/linux/iio/common/st_sensors.h                |  1 +
->>   include/linux/platform_data/st_sensors_pdata.h       |  2 +-
->>   8 files changed, 31 insertions(+), 2 deletions(-)
->>
->>
->> base-commit: e62252bc55b6d4eddc6c2bdbf95a448180d6a08d
+v2 -> v3:
+- Use a consistent VIDEO_CC_ prefix for resets
+- Separate out the binding (and don't pick up the rb as a consequence)
+- drop all pm_clks code
+
+v2: https://lore.kernel.org/r/20230413-topic-lahaina_vidcc-v2-0-f721d507e555@linaro.org
+
+v1 -> v2:
+- "){" -> ") {"
+- subsys_initcall -> module_platform_driver
+- constify lucid_5lpe_vco & .hw.init
+- devm_add_action_or_reset -> devm_pm_runtime_enable
+
+v1: https://lore.kernel.org/r/20230413-topic-lahaina_vidcc-v1-0-134f9b22a5b3@linaro.org
+
+This serires brings support for SM8350 videocc and updates the
+related dt-bindings.
+
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Konrad Dybcio (2):
+      dt-bindings: clock: Add SM8350 VIDEOCC
+      clk: qcom: Introduce SM8350 VIDEOCC
+
+ .../bindings/clock/qcom,sm8350-videocc.yaml        |  68 +++
+ drivers/clk/qcom/Kconfig                           |   9 +
+ drivers/clk/qcom/Makefile                          |   1 +
+ drivers/clk/qcom/videocc-sm8350.c                  | 552 +++++++++++++++++++++
+ include/dt-bindings/clock/qcom,sm8350-videocc.h    |  35 ++
+ include/dt-bindings/reset/qcom,sm8350-videocc.h    |  18 +
+ 6 files changed, 683 insertions(+)
+---
+base-commit: 67d5d9f013d6c3829383c08162939cabff14fccc
+change-id: 20230413-topic-lahaina_vidcc-bcdabb475542
+
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@linaro.org>
 
