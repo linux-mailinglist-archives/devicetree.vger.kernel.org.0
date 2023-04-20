@@ -2,81 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BF8D6E8EE5
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 12:05:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5CC46E8F93
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 12:11:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234275AbjDTKFy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 06:05:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47216 "EHLO
+        id S234593AbjDTKLG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 06:11:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234424AbjDTKFb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 06:05:31 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D64DE30EE
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 03:05:13 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2a8bbea12d7so3927791fa.3
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 03:05:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681985112; x=1684577112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4RJXgo9mbZocth7W+W/DHGi5VI0a91D1/aaXffY9umQ=;
-        b=lqclOq7xlrh4i4oA0IR5rQP1xWRPVMmSK35utJZQag/nwUvQGNv6FiEPXi+2jROtAt
-         7lPtJwxfypHnbq18+ge0VMtkmmMjBfOJ710f6BF2zNhq9xMB5kZc04aShJyf/ZU92qgF
-         bWaxly6/XjxNzqmxDrlb1vcFfBZZKLblurYJ2BglxXkP20VGGOVs9vcZ+SzfJOUSuDUr
-         maRUNdq2FBC5lJxWzZyRNPBlNUa/qaK6vsnz7QG4TGTD2b+y58v8n0ZDILRjbVc/Ms0r
-         /8p5nNrcEeSaXQya0jGVsIyfdizF1Sto3MEohQp5IgPON2PIypCcUNryED+QDBpZZB6F
-         7v+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681985112; x=1684577112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4RJXgo9mbZocth7W+W/DHGi5VI0a91D1/aaXffY9umQ=;
-        b=F1zRlQAgckXTYd965fVK/5N32XC+tL/mCg+SxyLJpjKXV0xJmwE2LkBMO8J+mUaSLS
-         JdmHXOmoHt5DNunomXqkNg5S2rI+2wSJnWOlBKRngLuKbjgSr4IsLgKwRASe6IX4Gdoz
-         yj27FpcLTHIvojxZoQYSIQm10S3iy9pVFffgEvUGBFw8u6uTdwfXJH1Gbv4shYbhKjJ5
-         jyq3lSPq++UdXUVW1dquUx5r8G943e85ZgZg9y5zGInZx+j3iM1BbBV9gdCDboAcoJ9m
-         tCmJlFFadjz4ybGVDPmhcxT0y67hl/Wqz2GtUTUibKkamVdBNoUEVMwBQ+1QCcwPZIvG
-         wulQ==
-X-Gm-Message-State: AAQBX9eZgkfGPhfL/+IOs9Bpmfz5/f21VIJDixS9199VIxpUb4SHUbuQ
-        Vk4loaiEW8cCvlbrGQxm6XxlRQ==
-X-Google-Smtp-Source: AKy350a39HBh7R9jgbfr/UIn1pZgwf56M1oanLrDl7HkbyiiLwbA6+p08jkzA66//nGGXiIVdLaZhg==
-X-Received: by 2002:a19:c508:0:b0:4db:4530:2b2d with SMTP id w8-20020a19c508000000b004db45302b2dmr273139lfe.49.1681985112150;
-        Thu, 20 Apr 2023 03:05:12 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id r24-20020a2e9958000000b002a7af83ca1csm182840ljj.21.2023.04.20.03.05.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Apr 2023 03:05:11 -0700 (PDT)
-Message-ID: <aa547a69-e1d8-1349-bd8c-9265275bb7f1@linaro.org>
-Date:   Thu, 20 Apr 2023 13:05:11 +0300
+        with ESMTP id S233683AbjDTKKm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 06:10:42 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C68583D2;
+        Thu, 20 Apr 2023 03:07:50 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9C3A4646CD;
+        Thu, 20 Apr 2023 10:07:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A866C4339C;
+        Thu, 20 Apr 2023 10:07:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1681985250;
+        bh=53QLwZPPKzJH40ikLifxF/eEvsi/41eaVa72AdqOWj0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Fy54VTkK9JsIVbHK59MJW7TKmajmZH4XSyhXzKKmmdMJAkwMf7+2LFsx8+cuS+zbJ
+         7jm45I/rRK+JeOw1WOpBhRn+2l/zonfj4h3LWrNE/4gWAcoYgFNbX+pX+LSRi0a4E3
+         pxVhipwvhuM6EVsV/1XsVZnDCBOO0Is3sIpPGoDYZEVR3N/S9hhdvT6dDyB77nJq2V
+         ZpTcrGn2g2SB0xQyi92qYmh6B3Hbr2cVrmtHXiEAifxGwGoXkpxKDzU6WmedfusJcn
+         NRCXTVvdGbTzAZSKW26rgl6f/9dEvHOGYMnBJFtLGs+RKCS3vixvF9ligiFRW7HdGH
+         +gDxtC8ucgW1w==
+Date:   Thu, 20 Apr 2023 11:07:24 +0100
+From:   Lee Jones <lee@kernel.org>
+To:     Anjelique Melendez <quic_amelende@quicinc.com>
+Cc:     pavel@ucw.cz, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, andersson@kernel.org,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v2 1/3] dt-bindings: leds-qcom-lpg: Add qcom,pmk8550-pwm
+ compatible string
+Message-ID: <20230420100724.GD9904@google.com>
+References: <20230407223849.17623-1-quic_amelende@quicinc.com>
+ <20230407223849.17623-2-quic_amelende@quicinc.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 3/4] clk: qcom: rpmh: Add RPMH clocks support for SDX75
-Content-Language: en-GB
-To:     Taniya Das <quic_tdas@quicinc.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>
-Cc:     quic_skakitap@quicinc.com, Imran Shaik <quic_imrashai@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_rohiagar@quicinc.com, netdev@vger.kernel.org
-References: <20230419133013.2563-1-quic_tdas@quicinc.com>
- <20230419133013.2563-4-quic_tdas@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230419133013.2563-4-quic_tdas@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230407223849.17623-2-quic_amelende@quicinc.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,20 +59,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/04/2023 16:30, Taniya Das wrote:
-> From: Imran Shaik <quic_imrashai@quicinc.com>
-> 
-> Add support for RPMH clocks for SDX75 platform.
-> 
-> Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
-> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
-> ---
->   drivers/clk/qcom/clk-rpmh.c | 19 +++++++++++++++++++
->   1 file changed, 19 insertions(+)
+On Fri, 07 Apr 2023, Anjelique Melendez wrote:
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Add qcom,pmk8550-pwm compatible string for the Qualcomm Technologies, Inc.
+> PMK8550 PMIC which has two high resolution PWM channels.
+> 
+> Signed-off-by: Anjelique Melendez <quic_amelende@quicinc.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+
+Applied, thanks
 
 -- 
-With best wishes
-Dmitry
-
+Lee Jones [李琼斯]
