@@ -2,61 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D7D96E9DC2
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 23:17:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73B366E9DC3
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 23:17:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231206AbjDTVRt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S231845AbjDTVRt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Thu, 20 Apr 2023 17:17:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45018 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231845AbjDTVRr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 17:17:47 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02CE85263
+        with ESMTP id S232021AbjDTVRs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 17:17:48 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0677C559E
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 14:17:47 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4edbd6cc46bso900034e87.2
         for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 14:17:46 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-4edcdfa8638so894060e87.2
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 14:17:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682025464; x=1684617464;
+        d=linaro.org; s=google; t=1682025465; x=1684617465;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=38MnDmLtcYQkY2PJ8DXc4HeYBW4VWVTJbBajwrKtUQY=;
-        b=DZSO51QCviT1QjP1WhwzVKdJLh/f8M7hz/T60icFEz6grRPhQrz81Ec/tH9YA9UWQK
-         UHdBqh4mHTxVoNfIuFU34aLTAqSIaijFl9/Ui9JvGUaxQ8XEXNmfciK0sMTr10ArBdrc
-         ocaoF1OoyMYiELB3azBngOdBdA9tUc3PiR9DZJ3N0KbVx+Gb1uGYcTooebsdzLfSpo0s
-         35pONWIjFl6qmUF3phWTbl+syZ358CGfaxHiDThcR+LpwrIGtHfnRTnjJ8ExGbJ8IjWc
-         NmXJSMPTrq/cp8iFUxLCXtvrUURK4RAPQ/86YqxlA3WSqfCy3xkPxa72r/Qas5y5Jxqb
-         c7Gg==
+        bh=KqyMIYrZenERD+yF3K/aoB3sZGcu4giDZSstYVu8C3I=;
+        b=A1iTL73a01GVqC7lJ31QCFZkwN5U4aipeB3kURuPpCA6gdg4c/4A8D7K9CcyIBzINt
+         ASoyvHcAuS4F/9CmNfIfFzCQmwtDjDx0N+9JoAk6dzFFGvtTV2JTX9EjN0GK5W6h2lL2
+         5hgxtF+trm9cWn4MeLlDo53vIjb1XI3ELYuIAUoynEIZJacl9mYCuRXW9ThKw0OlheEF
+         6Z+vIyxmNxh4O8NgjUPU42bkLw3uKUmR+jB7I2G8g+/Q6xXCB6UdI8FHGgm7GnE98ooL
+         8jXXiu1NVFMf4v39cBD/Wj16KnAg+pOWPFz9BfBPgAI6GMe2DtEQjZERGkdVmNzFbLI7
+         LvOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682025464; x=1684617464;
+        d=1e100.net; s=20221208; t=1682025465; x=1684617465;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=38MnDmLtcYQkY2PJ8DXc4HeYBW4VWVTJbBajwrKtUQY=;
-        b=EV89NZGjY0hWUcJIqvZ8+NmjlXCQCXfxYFyZq1oeJrAuV5UguhHhHLwX7bOJnM6Miw
-         i/vOsKoxH74PzCcUFPNaYw15xRV3RlByeSw4tCgfLqFKbl6UaHUlvmPGY3cyGpqWKL3E
-         vC9otm9DCX83dDUfdSHQUhIjsQsbSpFQWfMnHcU9o3E8hN7jxM7sif+1rk10hdhfaUTW
-         jVNf7pSIBR66gE5LNFYEP0q4liF8UxrgYaVmTH3/XIZVpF+fWrlfi+Bu++9Yn5Kh8zWB
-         sw+NMOr6Ekf3qwMFjXMxsSiuGSZOgfTcNroIUG5iPEiZx5vzQAKBek4pcSepMkPdHIRU
-         xgJw==
-X-Gm-Message-State: AAQBX9c8xXu9aKX/E1jN9MVH21sTY94kSZO/1WKwuSQ7H9QDrEPvm8V8
-        HXCzZB9X3kzEoUn3ybUVxoMMDQ==
-X-Google-Smtp-Source: AKy350buOLCRnCD7f4c26vJuo+rS5/OSb0XJjewaHwuXto/FhtCR4Qkm7wExv2koM83rC7elA+FWaQ==
-X-Received: by 2002:ac2:532c:0:b0:4d5:8306:4e9a with SMTP id f12-20020ac2532c000000b004d583064e9amr779212lfh.46.1682025464375;
-        Thu, 20 Apr 2023 14:17:44 -0700 (PDT)
+        bh=KqyMIYrZenERD+yF3K/aoB3sZGcu4giDZSstYVu8C3I=;
+        b=e0oe9w7VuVdrI5dyMY03CW3w+SryrWg3J1EdnH59i3YP7mgwBo51TGm2ntXiZM3Jly
+         cu6vIUzl8offWUln1Jzbbb9CZfOWwYugObu8n1q6PftgOiqrcl9StaSGwoKZv+uKDVdh
+         Iaej4CrAhoR/sQRCHwnf62ydY3jmRwwO34G72VPUkB7H6aqA9FuQ1aVCuJOaXezU6el3
+         hRS8klaXo5XNkXkomB6nId/Fr4yYrq2pBArYKGKM8/NjXkFOw5I4CXmNkFcxOsN777Xz
+         1JU+6vgvOnDVcU2IGICnUG5jw6FDD+u4gb8owGiHpZ87U8epnWcRgLtvLqvlRV+19EQQ
+         pdbw==
+X-Gm-Message-State: AAQBX9cajIRVzyGoR8CHxzOaAjs8KBwfSIqSXyHHhDzSuzXzlvBbs4Sa
+        wb52e8/JzdqaEs6Mu79Tnkyy7A==
+X-Google-Smtp-Source: AKy350aa2d/vdkUV7yYKQIAaLjVceOkfBQAWRliCxTVlaTzps/o86XD2fxhJutxHQvf5PqL1Pz/RJg==
+X-Received: by 2002:a05:6512:3d0:b0:4e9:bf83:11a4 with SMTP id w16-20020a05651203d000b004e9bf8311a4mr740684lfp.7.1682025465234;
+        Thu, 20 Apr 2023 14:17:45 -0700 (PDT)
 Received: from [192.168.1.2] (c-05d8225c.014-348-6c756e10.bbcust.telenor.se. [92.34.216.5])
-        by smtp.gmail.com with ESMTPSA id g12-20020a19ee0c000000b004edd3f011cfsm332985lfb.43.2023.04.20.14.17.43
+        by smtp.gmail.com with ESMTPSA id g12-20020a19ee0c000000b004edd3f011cfsm332985lfb.43.2023.04.20.14.17.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Thu, 20 Apr 2023 14:17:44 -0700 (PDT)
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 20 Apr 2023 23:17:34 +0200
-Subject: [PATCH v2 1/2] dt-bindings: sram: Add compatible for ST-Ericsson
- U8500 eSRAM
+Date:   Thu, 20 Apr 2023 23:17:35 +0200
+Subject: [PATCH v2 2/2] misc: sram: Generate unique names for subpools
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230417-ux500-sram-v2-1-6e62ad551faa@linaro.org>
+Message-Id: <20230417-ux500-sram-v2-2-6e62ad551faa@linaro.org>
 References: <20230417-ux500-sram-v2-0-6e62ad551faa@linaro.org>
 In-Reply-To: <20230417-ux500-sram-v2-0-6e62ad551faa@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
@@ -69,7 +68,7 @@ Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
 X-Mailer: b4 0.12.2
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,27 +76,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds an SoC-specific binding for the banks of eSRAM
-available in the ST-Ericsson U8500.
+The current code will, if we do not specify unique labels
+for the SRAM subnodes, fail to register several nodes named
+the same.
 
-Acked-by: Rob Herring <robh@kernel.org>
+Example:
+
+sram@40020000 {
+  (...)
+  sram@0 {
+    (...)
+  };
+  sram@1000 {
+    (...)
+  };
+};
+
+Since the child->name in both cases will be "sram" the
+gen_pool_create() will fail because the name is not unique.
+
+Use dev_name() for the device as this will have bus ID
+set to the fully translated address for the node, and that
+will always be unique.
+
 Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
- Documentation/devicetree/bindings/sram/sram.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ChangeLog v1->v2:
+- Stop complicating things and just use dev_name()
+---
+ drivers/misc/sram.c | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/sram/sram.yaml b/Documentation/devicetree/bindings/sram/sram.yaml
-index 993430be355b..0922d1f71ba8 100644
---- a/Documentation/devicetree/bindings/sram/sram.yaml
-+++ b/Documentation/devicetree/bindings/sram/sram.yaml
-@@ -94,6 +94,7 @@ patternProperties:
-             - samsung,exynos4210-sysram
-             - samsung,exynos4210-sysram-ns
-             - socionext,milbeaut-smp-sram
-+            - stericsson,u8500-esram
- 
-       reg:
-         description:
+diff --git a/drivers/misc/sram.c b/drivers/misc/sram.c
+index f0e7f02605eb..f80c3adddf0b 100644
+--- a/drivers/misc/sram.c
++++ b/drivers/misc/sram.c
+@@ -240,10 +240,11 @@ static int sram_reserve_regions(struct sram_dev *sram, struct resource *res)
+ 				goto err_chunks;
+ 			}
+ 			if (!label)
+-				label = child->name;
+-
+-			block->label = devm_kstrdup(sram->dev,
+-						    label, GFP_KERNEL);
++				block->label = devm_kasprintf(sram->dev, GFP_KERNEL,
++							      "%s", dev_name(sram->dev));
++			else
++				block->label = devm_kstrdup(sram->dev,
++							    label, GFP_KERNEL);
+ 			if (!block->label) {
+ 				ret = -ENOMEM;
+ 				goto err_chunks;
 
 -- 
 2.40.0
