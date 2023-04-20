@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AFE716E9F48
-	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 00:49:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A9956E9F52
+	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 00:50:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232985AbjDTWtK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 18:49:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33946 "EHLO
+        id S232975AbjDTWu0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 18:50:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232944AbjDTWtJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 18:49:09 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5BB13A92
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 15:49:05 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-4edc114c716so976912e87.1
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 15:49:05 -0700 (PDT)
+        with ESMTP id S233006AbjDTWuZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 18:50:25 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF77D3A8D
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 15:50:22 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4ec94eb6dcaso972685e87.3
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 15:50:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682030944; x=1684622944;
+        d=linaro.org; s=google; t=1682031021; x=1684623021;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=fdP8MC3XaEqA32rWPdIckKxRCI4GJxh3IXEDH13XKh4=;
-        b=Uo5s2ZVJ8f0YtJNR2V/QAw9DClxjdNn9cqFYEbfOZQUbcrDWvI3kZIG/ZvuvSdVhU7
-         pfh5B5a9RphGrqWEwNIRlbMY45cfKU38pWY1e0FY61FUJh0Jb1svYJ9R0LJakfx9tu3m
-         nbekIr7F6ZW68EnD6s+zO6qcATzgxFBHn6w9fyAO0JcooAsehyLQcDBDOcntPm0NyGoN
-         Oifnhlo7c89uxuHM+wDtJ0RnSGZNiKDCUdarMsAhcx8sziEmaqPjUGiTtCmM0BS8tN6v
-         sj4Ln9lcUStQlwf/nzgnSZ0qMbfnh5CtcwwFPN++psWNdyfLRUKvJWy/6+3gbGTZVDBk
-         ty5Q==
+        bh=68FCGKUyFaiFbG/iXo9yWgITnRfiZGq9Rg8NWDS09CU=;
+        b=Hm9MQY+d3zWJ8HGp6gmLD/00DgcjBJwatAr7+3XYRS59EtbFDERsBX8/Ks3EPh6BG3
+         fQgoE2PFsLatuu5MA9UVvUlYPHKCcdjQ8E6SrVHzXj4Qs1mMw1EkHdacE/NdiUh8tfL5
+         LAKAHQABx64AXh8gWtXf1KIQFq1tsUa9uQY9PFxebAD67U7c5bHoSUbUc/Bn1jQDbS9n
+         Qf/iewahUJEDdjqzt+IFOixdGJwc2vN7gAfzL1LA7fLqCYA95/RQaLb5JvrgzBC1AH9K
+         OO0+VY1ADaQmiqr7YH+tv2T84hDNPMSaCgIKwTazyvmrQlot1YlBbzgv+pnfUckh3UJS
+         h3Rw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682030944; x=1684622944;
+        d=1e100.net; s=20221208; t=1682031021; x=1684623021;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fdP8MC3XaEqA32rWPdIckKxRCI4GJxh3IXEDH13XKh4=;
-        b=GP/KUSTxRP5w4Bk0b5SsieN1qtOeDqzJbGIx3yg5lfyYgCDCWrtlCe3rMDQAYLTDd1
-         GYfJjR/qvpzPCBnXE0OCbAQYQ31g9nnZ+cFcZmTEKptS5cxx3kPoIfQkR9tlr4yOkrhA
-         9UbJXShPMMUzSuSGdMvOMKZKmQXbTN168BAtrphTANqQWyB0Q0ShEQ6C9EX9aO0Lj2rC
-         VF5zHPfdaOBAYyO05nQZjv50sChedD5fayzTe5S5r8n3gQctKnv766hUwR17ZTqKivkp
-         0ZfT2C8BvgZdP8iH8WZCw3BuSaRh4UA+A2j/A0LMmhWcDfUNbPFBoR7UrbVnj4ADxzNO
-         jP9A==
-X-Gm-Message-State: AAQBX9cr0HuJYZ65URhXiWPiYxobUr1LbqPHfy9Z+gMk8yJHSOv2Fqdp
-        X+kxWgTFPM7yl6AHb82Rq5Cpaw==
-X-Google-Smtp-Source: AKy350ZInjPaVxyUTYhwDYw+L3xY8vOz8c952eS4vzPQ6cipzNOj58Pw/XifVqqdE8XeIyyL0HzukA==
-X-Received: by 2002:ac2:4905:0:b0:4ed:c9b0:6a42 with SMTP id n5-20020ac24905000000b004edc9b06a42mr780084lfi.12.1682030944156;
-        Thu, 20 Apr 2023 15:49:04 -0700 (PDT)
+        bh=68FCGKUyFaiFbG/iXo9yWgITnRfiZGq9Rg8NWDS09CU=;
+        b=Gry+RQGc0DGBDg4yt4O1EEoV4u9WfPj7+0L57owV3bd2P5rL/x7F/oWi/Ru4L6kSSw
+         jLxQkVOlRRpCouxSy5f3e/G5LAiDw0/a9ONxqoW4qP85Ntu6P0DQuwaG7g7rSBx9pK9r
+         DMTmPXKV8gwI9AalL6zFVUYj0caoPPB8rfal/4qG2mSMA/q7iEGQ/87SVG8IdnXAQmnq
+         yjfYCr5miW6EpNiTZ/1bOHKAwfU226r70ygMcgvW6cOUmRv0yUyXx4zSeZSGo2Ekb8eF
+         Uwv0Z1cOawFEH0pWnC1eyHNz4pqMz0OH56DlPvIEGBgtuVwss6cyq5Dw3i/K58mQWaNt
+         zEJQ==
+X-Gm-Message-State: AAQBX9eCcltu0DLhZfsji+MpP0EV4TEXw3A1tYzn8g0Mw402s/ttMWDt
+        xiF5fPxY2vSfGdyDfX8hUgiesA==
+X-Google-Smtp-Source: AKy350a7P9jnq3r/leHVLSe7itJb11Vk9eHPCVoGdSGTSX6RhfhyYLjGpLCW3dojQzCUqmMeF0OUDQ==
+X-Received: by 2002:ac2:5a4a:0:b0:4d7:ccef:6b52 with SMTP id r10-20020ac25a4a000000b004d7ccef6b52mr817486lfn.39.1682031021097;
+        Thu, 20 Apr 2023 15:50:21 -0700 (PDT)
 Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id x13-20020ac2488d000000b004ef11b30a17sm94609lfc.91.2023.04.20.15.49.03
+        by smtp.gmail.com with ESMTPSA id o14-20020a2e730e000000b002a8d41c8ebdsm404990ljc.122.2023.04.20.15.50.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Apr 2023 15:49:03 -0700 (PDT)
-Message-ID: <d2b6ebad-dd38-0bb3-7c98-27cda45c7ed9@linaro.org>
-Date:   Fri, 21 Apr 2023 01:49:03 +0300
+        Thu, 20 Apr 2023 15:50:20 -0700 (PDT)
+Message-ID: <26832d5c-f55c-1dd0-947a-0278bcbf08de@linaro.org>
+Date:   Fri, 21 Apr 2023 01:50:20 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
@@ -80,7 +80,7 @@ Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -95,8 +95,39 @@ On 21/04/2023 01:31, Konrad Dybcio wrote:
 > ---
 >   drivers/gpu/drm/msm/msm_mdss.c | 10 ++++++++++
 >   1 file changed, 10 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/msm/msm_mdss.c b/drivers/gpu/drm/msm/msm_mdss.c
+> index 4e3a5f0c303c..f2470ce699f7 100644
+> --- a/drivers/gpu/drm/msm/msm_mdss.c
+> +++ b/drivers/gpu/drm/msm/msm_mdss.c
+> @@ -546,6 +546,15 @@ static const struct msm_mdss_data sm6350_data = {
+>   	.highest_bank_bit = 1,
+>   };
+>   
+> +static const struct msm_mdss_data sm6375_data = {
+> +	.ubwc_version = UBWC_2_0,
+> +	.ubwc_dec_version = UBWC_2_0,
+> +	.ubwc_swizzle = 6,
+> +	.ubwc_static = 0x1e,
+> +	/* Possibly 0 for LPDDR3 */
+> +	.highest_bank_bit = 1,
+> +};
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Nit: we can use sm6350 data here, can't we?
+
+> +
+>   static const struct msm_mdss_data sm8150_data = {
+>   	.ubwc_version = UBWC_3_0,
+>   	.ubwc_dec_version = UBWC_3_0,
+> @@ -580,6 +589,7 @@ static const struct of_device_id mdss_dt_match[] = {
+>   	{ .compatible = "qcom,sc8280xp-mdss", .data = &sc8280xp_data },
+>   	{ .compatible = "qcom,sm6115-mdss", .data = &sm6115_data },
+>   	{ .compatible = "qcom,sm6350-mdss", .data = &sm6350_data },
+> +	{ .compatible = "qcom,sm6375-mdss", .data = &sm6375_data },
+>   	{ .compatible = "qcom,sm8150-mdss", .data = &sm8150_data },
+>   	{ .compatible = "qcom,sm8250-mdss", .data = &sm8250_data },
+>   	{ .compatible = "qcom,sm8350-mdss", .data = &sm8250_data },
+> 
 
 -- 
 With best wishes
