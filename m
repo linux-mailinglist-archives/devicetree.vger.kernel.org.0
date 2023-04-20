@@ -2,192 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 245E36E9541
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 15:01:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 678486E955B
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 15:07:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230352AbjDTNBZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 09:01:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49596 "EHLO
+        id S229593AbjDTNHL convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 20 Apr 2023 09:07:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230424AbjDTNBY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 09:01:24 -0400
-Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB3117A9B;
-        Thu, 20 Apr 2023 06:00:58 -0700 (PDT)
-Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-54fb615ac3dso40498997b3.2;
-        Thu, 20 Apr 2023 06:00:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681995658; x=1684587658;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cOz2vJX6O8WYQA+86dOvET6FW/q2m4As7J1doBwYieQ=;
-        b=SFRtVWPbBXUIMuQ5P64CLBS539wch2e8cP9vsCUiPg+MkKM1b6+nHJeIRma1Q6nfuK
-         2Xkt9YhXhCLJJDY4Eoj+HOSRlAOi29R+7GNtTRQCr3rFvzIYFrhx+tN6A5ZJAoKEVNt/
-         dIkO8/SDhE2/lJXuibw7QLyOZr6gn3O/YEZWSYPJLs/Sr6VIcUskUVRD4N1SsU88+i3c
-         x/R6malWXYad5p55JNi/JMAm/sKSADuSZz9GhivHU1NIf/Ozptz6YpIjuysVjzULsfsj
-         cFZ1oD6bSFQON9lmQnOkarivg3aQZT7ejPxI8tF/48fBVWJKbcshoVRRuctm1+Pk23Ud
-         QIBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681995658; x=1684587658;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cOz2vJX6O8WYQA+86dOvET6FW/q2m4As7J1doBwYieQ=;
-        b=K7GJ+/ZbxVdD6BYEsEznRoGDvP4YwN94wcFwIA1FWRjnm0PBTD4hpwXZuZazCW8gsC
-         g/ymRW9AWfpaSD6J1sbUqD0JZ7vKYRZTv09krRxR5TxUHmunaFYOJ+zAB8wbDWmtV2j9
-         +xNWi9uROBaep8F10Imnlf93MoOK8YnAjNArs3xgt4gBuh204u+hfNqldjxOVPgI+eeV
-         7he0LF4ssXLrOIwKBpKuehgWdXvP2plAv+72f6lGzlMQTwtIZ+10TpBuGfXL1ONufoU9
-         77oK/+bOnxLyRQX+snvuwHtzBTmhOdpXFYE7lxzsf0nhx+CTifS2HenlmbJD8R0X6VZY
-         H41Q==
-X-Gm-Message-State: AAQBX9cmc7MimmaYOQbcPuJWxHpFNUNMAgDjIh6hbFauNUQPeG+f9imQ
-        MfMTRvcYFQrXchJTHZjxHcJFeJuotseAfibim2s=
-X-Google-Smtp-Source: AKy350ZkKzpMEQFQALpd3cUpdAhLhNufP4l2LeGvrYz2hiijurncKr1W1aLvwH6jsswb6m6sGIjecPmAmxB6QTrh0pk=
-X-Received: by 2002:a0d:e0c1:0:b0:54c:1405:2ce with SMTP id
- j184-20020a0de0c1000000b0054c140502cemr712660ywe.49.1681995657810; Thu, 20
- Apr 2023 06:00:57 -0700 (PDT)
-MIME-Version: 1.0
-References: <cover.1681887790.git.zhoubinbin@loongson.cn> <3b9c4f05eaf14bc3b16aebec3ff84c8a2d52c4a5.1681887790.git.zhoubinbin@loongson.cn>
- <f9b62f48-5c8b-2674-313d-4552c61c4302@linaro.org>
-In-Reply-To: <f9b62f48-5c8b-2674-313d-4552c61c4302@linaro.org>
-From:   Binbin Zhou <zhoubb.aaron@gmail.com>
-Date:   Thu, 20 Apr 2023 21:00:42 +0800
-Message-ID: <CAMpQs4JjHvVOzQz-1Y-q9ut6tWUpakrHeozuwPg0dzoDcUFEGA@mail.gmail.com>
-Subject: Re: [PATCH V3 1/2] dt-bindings: interrupt-controller: Add Loongson EIOINTC
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Binbin Zhou <zhoubinbin@loongson.cn>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229568AbjDTNHK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 09:07:10 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4DB4198B
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 06:07:07 -0700 (PDT)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1ppTzu-0005Ar-MN; Thu, 20 Apr 2023 15:06:50 +0200
+Message-ID: <f42a2a11c1a2df4d773b61a449e8f4d5a9a010d1.camel@pengutronix.de>
+Subject: Re: [PATCH 1/6] drm: bridge: samsung-dsim: Support multi-lane
+ calculations
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Adam Ford <aford173@gmail.com>
+Cc:     dri-devel@lists.freedesktop.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
-        loongarch@lists.linux.dev, devicetree@vger.kernel.org,
-        loongson-kernel@lists.loongnix.cn
+        aford@beaconembedded.com,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Fabio Estevam <festevam@gmail.com>, m.szyprowski@samsung.com,
+        marex@denx.de, Robert Foss <rfoss@kernel.org>,
+        David Airlie <airlied@gmail.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Inki Dae <inki.dae@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>
+Date:   Thu, 20 Apr 2023 15:06:45 +0200
+In-Reply-To: <CAHCN7xK8K+DsNAFTVAezwJQzZ7RCDb2CjCBZ8dNb=S8d1BmtMA@mail.gmail.com>
+References: <20230415104104.5537-1-aford173@gmail.com>
+         <3e47f0d1017fe4c9f71a5de65f32c6ba1662efe2.camel@pengutronix.de>
+         <CAHCN7xL4+9NogrnXA1PEWorwY7JpSGBozDtHT83JvzjfinmS+A@mail.gmail.com>
+         <CAHCN7xK8K+DsNAFTVAezwJQzZ7RCDb2CjCBZ8dNb=S8d1BmtMA@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
+MIME-Version: 1.0
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 20, 2023 at 4:09=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 19/04/2023 09:17, Binbin Zhou wrote:
-> > Add Loongson Extended I/O Interrupt controller binding with DT schema
-> > format using json-schema.
-> >
-> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> > ---
-> >  .../loongson,eiointc.yaml                     | 74 +++++++++++++++++++
-> >  1 file changed, 74 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/interrupt-control=
-ler/loongson,eiointc.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/loo=
-ngson,eiointc.yaml b/Documentation/devicetree/bindings/interrupt-controller=
-/loongson,eiointc.yaml
-> > new file mode 100644
-> > index 000000000000..4ab4efb061e1
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/interrupt-controller/loongson,e=
-iointc.yaml
-> > @@ -0,0 +1,74 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/interrupt-controller/loongson,eioin=
-tc.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Loongson Extended I/O Interrupt Controller
-> > +
-> > +maintainers:
-> > +  - Binbin Zhou <zhoubinbin@loongson.cn>
-> > +
-> > +description: |
-> > +  This interrupt controller is found on the Loongson-3 family chips an=
-d
-> > +  Loongson-2K series chips and is used to distribute interrupts direct=
-ly to
-> > +  individual cores without forwarding them through the HT's interrupt =
-line.
-> > +
-> > +allOf:
-> > +  - $ref: /schemas/interrupt-controller.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - loongson,ls2k0500-eiointc
-> > +      - loongson,ls2k2000-eiointc
-> > +
-> > +  reg:
-> > +    items:
-> > +      - description: Interrupt enable registers
-> > +      - description: Interrupt status registers
-> > +      - description: Interrupt clear registers
-> > +      - description: Interrupt routing configuration registers
-> > +
-> > +  reg-names:
-> > +    items:
-> > +      - const: enable
-> > +      - const: status
-> > +      - const: clear
-> > +      - const: route
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  interrupt-controller: true
-> > +
-> > +  '#interrupt-cells':
-> > +    const: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - interrupt-controller
-> > +  - '#interrupt-cells'
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    eiointc: interrupt-controller@1fe11600 {
-> > +      compatible =3D "loongson,ls2k0500-eiointc";
-> > +      reg =3D <0x1fe11600 0x10>,
-> > +            <0x1fe11700 0x10>,
-> > +            <0x1fe11800 0x10>,
-> > +            <0x1fe114c0 0x4>;
->
-> Binding is OK, but are you sure you want to split the address space like
-> this? It looks like two address spaces (enable+clear+status should be
-> one). Are you sure this is correct?
->
-Hi Krzysztof:
+Hi Adam,
 
-These registers are all in the range of chip configuration registers,
-in the case of LS2K0500, which has a base address of 0x1fe10000.
-However, the individual register addresses are not contiguous with
-each other, and most are distributed across modules, so I feel that
-they should be listed in detail as they are used.
+Am Mittwoch, dem 19.04.2023 um 05:47 -0500 schrieb Adam Ford:
+> On Mon, Apr 17, 2023 at 6:55 AM Adam Ford <aford173@gmail.com> wrote:
+> > 
+> > On Mon, Apr 17, 2023 at 3:43 AM Lucas Stach <l.stach@pengutronix.de> wrote:
+> > > 
+> > > Hi Adam,
+> > > 
+> > > Am Samstag, dem 15.04.2023 um 05:40 -0500 schrieb Adam Ford:
+> > > > If there is more than one lane, the HFP, HBP, and HSA is calculated in
+> > > > bytes/pixel, then they are divided amongst the different lanes with some
+> > > > additional overhead. This is necessary to achieve higher resolutions while
+> > > > keeping the pixel clocks lower as the number of lanes increase.
+> > > > 
+> > > 
+> > > In the testing I did to come up with my patch "drm: bridge: samsung-
+> > > dsim: fix blanking packet size calculation" the number of lanes didn't
+> > > make any difference. My testing might be flawed, as I could only
+> > > measure the blanking after translation from MIPI DSI to DPI, so I'm
+> > > interested to know what others did here. How did you validate the
+> > > blanking with your patch? Would you have a chance to test my patch and
+> > > see if it works or breaks in your setup?
+> 
+> Lucas,
+> 
+> I tried your patch instead of mine.  Yours is dependent on the
+> hs_clock being always set to the burst clock which is configured by
+> the device tree.  I unrolled a bit of my stuff and replaced it with
+> yours.  It worked at 1080p, but when I tried a few other resolutions,
+> they did not work.  I assume it's because the DSI clock is fixed and
+> not changing based on the pixel clock.  In the version I did, I only
+> did that math when the lanes were > 1. In your patch, you divide by 8,
+> and in mine, I fetch the bits-per-pixel (which is 8) and I divide by
+> that just in case the bpp ever changes from 8.  Overall,  I think our
+> patches basically do the same thing.
 
-Thanks.
-Binbin
+The calculations in your and my patch are quite different. I'm not
+taking into account the number of lanes or the MIPI format. I'm basing
+the blanking size purely on the ratio between MIPI DSI byte clock and
+the DPI interface clock. It's quite counter-intuitive that the host
+would scale the blanking to the number of lanes automatically, but
+still require the MIPI packet offset removed, but that's what my
+measurements showed to produce the correct blanking after translation
+to DPI by the TC358767 bridge chip.
 
-> Best regards,
-> Krzysztof
->
->
+If you dynamically scale the HS clock, then you would need to input the
+real used HS clock to the calculation in my patch, instead of the fixed
+burst mode rate.
+
+Regards,
+Lucas
