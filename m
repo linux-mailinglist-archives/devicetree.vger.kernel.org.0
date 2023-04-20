@@ -2,153 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 140CE6E9881
-	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 17:40:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B520D6E9892
+	for <lists+devicetree@lfdr.de>; Thu, 20 Apr 2023 17:42:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231547AbjDTPkV convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 20 Apr 2023 11:40:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39526 "EHLO
+        id S232058AbjDTPmH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 11:42:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230342AbjDTPkU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 11:40:20 -0400
-Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com [209.85.219.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D7BC1727;
-        Thu, 20 Apr 2023 08:40:19 -0700 (PDT)
-Received: by mail-yb1-f169.google.com with SMTP id t16so2364547ybi.13;
-        Thu, 20 Apr 2023 08:40:19 -0700 (PDT)
+        with ESMTP id S231817AbjDTPmG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 11:42:06 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A3A03C3C
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 08:42:03 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id dm2so7334792ejc.8
+        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 08:42:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1682005322; x=1684597322;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KnJpp8n/D0kUuMw5srBtiHxWnY5agaKj5jAEcqN8M30=;
+        b=d7l1XYePBoWBNgg+K9TiUXnEeE1sNHrY5RlzHQid8iJYdL41erTXfy7aPeIm4TeOFX
+         9RkBJBANWPmKeZXEJLBg22JkFYJPaK2qH+GnUQ9KUKjHJ2TJ1IkVkIZ21Tn6lb7Hz0vB
+         HhtpVKng1rKja4iFnwW7odp1E5EHbCV47OLlPiTmNLHMRrbLzepCvMgM1ETRgmvqdZpU
+         fNV/PuLVsgBerGE6ikKNNXeCBrxwuu+MLin13ualf7pm82WlE5pJWO9ggd850PQohLcg
+         wZI9SAHcXop2U2VXX5C9CDNsquagEwYH+zZ5yrNyh2nVC0XTnut3uvHr2sGgkwNL/+a9
+         bNgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682005218; x=1684597218;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=R1CbDl2sZnXbCY7AReBr1CM3aUijWiPVhGOXUZHxRKE=;
-        b=EO7Od2kM0MgMnSAJmUDP/X6Ll/jMADldzGbv9j40MLtHMqUbTkNBncjO6SmM2WWfvF
-         QYN5B5vK3AZXEUzUDG6GBHEMhLywc9KgtHryValH5hlcVCDZqGwcOt6EG5QTORMrx/3Q
-         WyRGoitIf7NR+W8Q9NrSO2nRB7uYhRdr3xTgdVL3svKhzjiAA8jJkB5o6i50Hh8t+Eu2
-         Vc0NpwtX4K31H7ZAVxg6X+L6qF3x1pgbgl3Yu5ODPixoz542Bg5Ya9wap0HP1/neW5pH
-         Iudf/G992qQom7SM1GrssvrRaSep3qd9UjhJRN0aIY11Cg809EPAUVN5nicCtH4SJlpS
-         HlHw==
-X-Gm-Message-State: AAQBX9fWA7J5/C424IRyDWf61Eg7BwpwFL4JXU2iuFqHCDoqXDNKmcct
-        HQT/jeuz5wJVYSi7Yvm5wtn8sCJCD0B9cqch
-X-Google-Smtp-Source: AKy350ZfraFBSDuTesG+HuCEdRFxv3uUxmzYQyRsqjfptlOGPsz2bwNTbHYpMkM6yCDZqUU5WpF4Wg==
-X-Received: by 2002:a25:e7c6:0:b0:b92:46ac:b6eb with SMTP id e189-20020a25e7c6000000b00b9246acb6ebmr1947698ybh.20.1682005218226;
-        Thu, 20 Apr 2023 08:40:18 -0700 (PDT)
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com. [209.85.128.171])
-        by smtp.gmail.com with ESMTPSA id d14-20020a81ab4e000000b0054f885d381esm393015ywk.135.2023.04.20.08.40.17
+        d=1e100.net; s=20221208; t=1682005322; x=1684597322;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KnJpp8n/D0kUuMw5srBtiHxWnY5agaKj5jAEcqN8M30=;
+        b=bGVKixzigQSpb2JiXfaRnuXWhPhgE+jirB6Ztm7LxJNU9NWesjPZcskNEuK4DYG2cy
+         PKX3keLzCItmLw4/4G/ndwjJHZfAWhFyzVQY4OK5Y2vMECa+It8deO+y6f+tQu5tW8Ms
+         7A3IFaMMI75L/tL90rIFfusuKKDJqG5X7PMli9Yxs9TIk5/rzGydrMW7W9BaHhYfsS2A
+         ODTiXU/k2XQekUc/JCPFoiHQM+OX9siAFzb4swE17KDvFpicJdVeh0Z6gksApHLkgT9H
+         Tb3c+mLn27yySSzfFbJYZ7PHvAiANUMbYGmKfuSa4sX3fZeZefb6Yd7z/HR2qERGlBuO
+         QZgQ==
+X-Gm-Message-State: AAQBX9cJZ+XbngijKCxDJUFBYbF7BEHyiVOZRSmPKQ8Hcz1QpCJhsdtg
+        MMj5GUknRm/5I2CB5b4wXhqOzqQtVJMSis3rY7cN8w==
+X-Google-Smtp-Source: AKy350aUUUuiHPcRVrmXlKjxRMAKQP2h9+Dfv/GAZvKgaHmZyTTXiJnohkiGrcI/uqV5UoEmIm3qzQ==
+X-Received: by 2002:a17:906:5281:b0:956:f636:cc93 with SMTP id c1-20020a170906528100b00956f636cc93mr878092ejm.15.1682005322054;
+        Thu, 20 Apr 2023 08:42:02 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:bcb8:77e6:8f45:4771? ([2a02:810d:15c0:828:bcb8:77e6:8f45:4771])
+        by smtp.gmail.com with ESMTPSA id x16-20020a170906805000b00953285b937asm842463ejw.189.2023.04.20.08.42.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Apr 2023 08:40:17 -0700 (PDT)
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-54f6a796bd0so46765127b3.12;
-        Thu, 20 Apr 2023 08:40:17 -0700 (PDT)
-X-Received: by 2002:a81:6fd4:0:b0:54e:ffbd:7a7e with SMTP id
- k203-20020a816fd4000000b0054effbd7a7emr1082887ywc.45.1682005216897; Thu, 20
- Apr 2023 08:40:16 -0700 (PDT)
+        Thu, 20 Apr 2023 08:42:01 -0700 (PDT)
+Message-ID: <0d096ba8-1bb2-249e-153f-eb430a9f5e8e@linaro.org>
+Date:   Thu, 20 Apr 2023 17:42:00 +0200
 MIME-Version: 1.0
-References: <20230417090159.191346-1-biju.das.jz@bp.renesas.com> <20230417090159.191346-3-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20230417090159.191346-3-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 20 Apr 2023 17:40:05 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXQ9NLra76pknQ+ASNiRVK2RWSh2jG=Ub+tZpC6uiwK6g@mail.gmail.com>
-Message-ID: <CAMuHMdXQ9NLra76pknQ+ASNiRVK2RWSh2jG=Ub+tZpC6uiwK6g@mail.gmail.com>
-Subject: Re: [PATCH 3/3] arm64: dts: renesas: rzg2l-smarc: Enable MTU3a
- counter using DT overlay
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v3 1/2] dt-bindings: arm: sunxi: add ICnova A20 ADB4006
+ binding
+Content-Language: en-US
+To:     Ludwig Kormann <ludwig.kormann@in-circuit.de>, samuel@sholland.org,
+        jernej.skrabec@gmail.com, wens@csie.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, andre.przywara@arm.com
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <20230420102409.1394618-1-ludwig.kormann@in-circuit.de>
+ <20230420102409.1394618-2-ludwig.kormann@in-circuit.de>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230420102409.1394618-2-ludwig.kormann@in-circuit.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+On 20/04/2023 12:24, Ludwig Kormann wrote:
+> Document board compatible names for In-Circuit ICnova A20 ADB4006
+> development board.
+> 
+> Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+> Signed-off-by: Ludwig Kormann <ludwig.kormann@in-circuit.de>
+> ---
 
-On Mon, Apr 17, 2023 at 11:02 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Enable mtu3 node using dt overlay and disable scif2 node and delete
-> {sd1_mux,sd1_mux_uhs} nodes as the pins are shared with mtu3 external
-> clock input pins and Z phase signal(MTIOC1A).
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-Thanks for your patch!
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc-pmod.dtso
-> @@ -0,0 +1,43 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Device Tree Source for the RZ/{G2L,V2L} SMARC EVK PMOD parts
+Best regards,
+Krzysztof
 
-Please add a comment here to document what exactly this provides.
-
-> + *
-> + * Copyright (C) 2023 Renesas Electronics Corp.
-> + */
-> +
-> +/dts-v1/;
-> +/plugin/;
-> +
-> +#include <dt-bindings/pinctrl/rzg2l-pinctrl.h>
-> +
-> +&mtu3 {
-> +       pinctrl-0 = <&mtu3_pins>;
-> +       pinctrl-names = "default";
-> +
-> +       status = "okay";
-> +};
-> +
-> +&pinctrl {
-> +       mtu3_pins: mtu3 {
-> +               mtu3-zphase-clk {
-> +                       pinmux = <RZG2L_PORT_PINMUX(19, 0, 3)>; /* MTIOC1A */
-> +               };
-
-Unless I'm missing something, this signal is not available on the PMOD
-connector?
-
-> +
-> +               mtu3-ext-clk-input-pin {
-> +                       pinmux = <RZG2L_PORT_PINMUX(48, 0, 4)>, /* MTCLKA */
-> +                                <RZG2L_PORT_PINMUX(48, 1, 4)>; /* MTCLKB */
-> +               };
-
-So this provides two external clock inputs on the pins on the PMOD
-connector that usually provides a UART?
-
-> +       };
-> +};
-> +
-> +&scif2 {
-> +       status = "disabled";
-> +};
-> +
-> +&sdhi1_pins {
-> +       /delete-node/ sd1_mux;
-> +};
-> +
-> +&sdhi1_pins_uhs {
-> +       /delete-node/ sd1_mux_uhs;
-> +};
-
-As you disable CD functionality, don't you need to add "broken-cd" to
-the sdhi1 node?
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
