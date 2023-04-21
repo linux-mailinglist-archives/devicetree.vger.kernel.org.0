@@ -2,81 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E4556EA450
-	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 09:07:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B77B6EA47C
+	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 09:18:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229572AbjDUHHe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Apr 2023 03:07:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51156 "EHLO
+        id S230148AbjDUHSB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Apr 2023 03:18:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229900AbjDUHHc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 03:07:32 -0400
-Received: from mail-ua1-x92d.google.com (mail-ua1-x92d.google.com [IPv6:2607:f8b0:4864:20::92d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04CA67DBF
-        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 00:07:29 -0700 (PDT)
-Received: by mail-ua1-x92d.google.com with SMTP id a1e0cc1a2514c-779701b7265so406394241.2
-        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 00:07:28 -0700 (PDT)
+        with ESMTP id S230207AbjDUHR7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 03:17:59 -0400
+Received: from smtp1.axis.com (smtp1.axis.com [195.60.68.17])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F06FABC;
+        Fri, 21 Apr 2023 00:17:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1682060848; x=1684652848;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LSYmFIBvo/39//HYsPHxDg04iiAQgWsffOlw6b/gJqc=;
-        b=MSuKI7etY84g7qPA6Ywqcgqm89D6KVhjjgiAsSocKkQSQSFdYhnYHtJ0dMfO2sswY8
-         yEAldvBimU9hLPOTZALoxeIWDfKszFJN4t2z3OSHPX4c5z4jD27y4UDG8XdekTUjEKGV
-         9GzeLmCMTLHjYQ7YtEL8aA0Jtb4dAX8Do+TPg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682060848; x=1684652848;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LSYmFIBvo/39//HYsPHxDg04iiAQgWsffOlw6b/gJqc=;
-        b=kuqpJBXYNrxC/O0x4lclusaJfRN4Ll3L/j7P+rRv+I/ztt286al6HtLK6j7hMYSM7G
-         9CChWB6AYS5IivcBjvcwgBK4oWhUfpZKaWT2JOgCDBRplAbX1hDVtp//WntsD6+xtozo
-         Kv4YaD8jWKfrTFv8vTxf7YLqcfVDyL7F9n3rPOz4otzsYs5NgqGtY1UzVTunhacu0icc
-         McfaT7ts0dRZQ6HyjwyWi8xGio17G5iiMUOjPF0EjZLzhnItbmAIwC2rcU2sZGsSnunO
-         2ZNUAeJ5OgGVopiHXHh0Rzw0SDbj3HuPO99abNEnd4aNvxifa4DR280K0iJEeDOYJ3Q5
-         L9xg==
-X-Gm-Message-State: AAQBX9c38vPATuxREpeYG1nPDAkzCrZmG8gh4UVzhJ5IU19gd4tPgpxO
-        qp5Xu6w72o8Ib+j4LvG/ShHr74YQf0/YtiLsmKmj7A==
-X-Google-Smtp-Source: AKy350acAl/SE2HRNGSc35n0Xobw7Q6eRphLA9qWh3FvDA1yrtZsodgQn6llJUsD9hRFeXzrI4cIXFlpeq/s5aOrZfI=
-X-Received: by 2002:a67:b10b:0:b0:42c:79a7:f2ed with SMTP id
- w11-20020a67b10b000000b0042c79a7f2edmr2164074vsl.34.1682060848155; Fri, 21
- Apr 2023 00:07:28 -0700 (PDT)
+  d=axis.com; q=dns/txt; s=axis-central1; t=1682061451;
+  x=1713597451;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=NCdrh6crw/OWqv2/q77cIZCMSofFpJzwyXynpdc8ASs=;
+  b=D7aY8kB6qeqXpVgoWG5O7pPkvmNleygVF4SbvdVRxuEP+r7ssXYUOmbM
+   6DziiifFhvxWqw9/8IDy7wxXmmEYbu5b4McqojVbjCRqBziaDjG3yTSmW
+   K0fDeJtpROBTuq5j/awYd7burRbuWYmDxo5LKqVSvMvUEy1iWNK1I981P
+   h+Q6ONWe6o7xF522MRiANegvPi8qSaYb+Nzjm31/IsT4mCT8qLNk0ompv
+   kWGUksRnqwfzzFrwcYvicgZhtiGHhBFfbv77LlqDR+rTcdCfXTgs/hGGO
+   M2xlrwTI/213lZ9mmeEhTtliv8IG+Uvyx+ygFnv0ioomwVl0cDuW+Eq3X
+   Q==;
+From:   Hermes Zhang <chenhuiz@axis.com>
+To:     <jic23@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <robh+dt@kernel.org>,
+        Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>
+CC:     <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <kernel@axis.com>, Hermes Zhang <chenhuiz@axis.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        <devicetree@vger.kernel.org>
+Subject: [PATCH 2/2] dt-bindings: iio: imu: mpu6050: Add icm20600 bindings to mpu6050
+Date:   Fri, 21 Apr 2023 15:16:30 +0800
+Message-ID: <20230421071630.524822-3-chenhuiz@axis.com>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20230421071630.524822-1-chenhuiz@axis.com>
+References: <20230421071630.524822-1-chenhuiz@axis.com>
 MIME-Version: 1.0
-References: <20230420094433.42794-1-angelogioacchino.delregno@collabora.com> <20230420094433.42794-5-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230420094433.42794-5-angelogioacchino.delregno@collabora.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Fri, 21 Apr 2023 15:07:17 +0800
-Message-ID: <CAGXv+5Fiqpzn-M2yEGSETCyReGJRnTk45wrOyNBi9k=qymOW1Q@mail.gmail.com>
-Subject: Re: [PATCH 4/5] arm64: dts: mediatek: cherry: Enable PCI-Express
- ports for WiFi
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, kernel@collabora.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 20, 2023 at 5:45=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> On the Cherry platform, a MT7621 WiFi+Bluetooth combo is connected
-> over PCI-Express (for WiFi) and USB (for BT): enable the PCIe ports
-> to enable enumerating this chip.
->
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
+Adding the invensense ICM-20600 to the compatible list of the mpu6050
+driver
 
-Tested-by: Chen-Yu Tsai <wenst@chromium.org>
+Signed-off-by: Hermes Zhang <chenhuiz@axis.com>
+---
+ .../devicetree/bindings/iio/imu/invensense,mpu6050.yaml          | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/iio/imu/invensense,mpu6050.yaml b/Documentation/devicetree/bindings/iio/imu/invensense,mpu6050.yaml
+index ec64d7877fe5..67711bc0ee6c 100644
+--- a/Documentation/devicetree/bindings/iio/imu/invensense,mpu6050.yaml
++++ b/Documentation/devicetree/bindings/iio/imu/invensense,mpu6050.yaml
+@@ -20,6 +20,7 @@ properties:
+           - invensense,icm20608
+           - invensense,icm20609
+           - invensense,icm20689
++          - invensense,icm20600
+           - invensense,icm20602
+           - invensense,icm20690
+           - invensense,mpu6000
+-- 
+2.30.2
+
