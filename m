@@ -2,81 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 520FD6EAF70
-	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 18:45:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B24F66EAF77
+	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 18:49:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232163AbjDUQpp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Apr 2023 12:45:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54304 "EHLO
+        id S233223AbjDUQtL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Apr 2023 12:49:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229920AbjDUQpo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 12:45:44 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 099FBC172
-        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 09:45:43 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-956ff2399b1so242971266b.3
-        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 09:45:42 -0700 (PDT)
+        with ESMTP id S233220AbjDUQtJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 12:49:09 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D1EA13F89
+        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 09:49:08 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-94f6c285d92so317426666b.3
+        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 09:49:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682095541; x=1684687541;
+        d=linaro.org; s=google; t=1682095746; x=1684687746;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=vnmiQ74ckbmCHzXsPF3khRNGWST2xYm7Uu52Oav4tVM=;
-        b=bhlmxaKOXCCVEKNTkJGozcV/ndNqekoqUUD7wxypm14K6Ajrke8cV04HxxIrorS9y2
-         owzU36YCZwD/rXEpGtDG9HXbPX3xEV4vLVpphDBJ5lOFg7rMNCmYIDVAHwGnhCVS/09V
-         pwE7ocXB7vCj6zInIT2Cnaj1dSDiOdjkuQWTXhDi5zn5ALEuLy16bu3e7XBr5nhej5lG
-         P4jNoB+jn8TSq+uUR6z5FF3vd0xt6CZRIMz08Y/88DyKtgHtJooTUT6Udm4qCjltuHc4
-         Ta9/SwC7vn8Rxqw4IzlKD7O+WO92WPp6iWN+CnioiHesps9l8sAcrJ2gxYzrkdsAyvtU
-         iu+Q==
+        bh=KFbWjqroS73UgyNshkyA6Chv3Wv27it6AC9kt6qa+fY=;
+        b=PzIC3uXtnwpJnedkTaOM5p7GiQ1Rhk6L5+p19qvC4Dt+WoNwyw8dJ62aCObABctUsO
+         cOmzEjKGZsvTXItoUYAXMyeib9ZMPW1s51xCnBqxQYztcItD770tgmj/WfBrfrAtscb3
+         4tYPaqbpBrFgrYEggHBFPy1cNhiahnMVpeeOC8BdLqhTcxKKeuzZe2+msZZp5BMG+kAH
+         Z3gEoiKrzXnU/CLJtPJLruPByTcdWectUyuyUWSfgkk/vBs8N3umqpBdKoswd/YP5iQH
+         cw2r/l9dE05JPz0tAhc8xISgNiyc3pbcq+nTQoFOxzRR6p7w9bBsOOpQKRoeLXP+Gp50
+         dDiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682095541; x=1684687541;
+        d=1e100.net; s=20221208; t=1682095746; x=1684687746;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vnmiQ74ckbmCHzXsPF3khRNGWST2xYm7Uu52Oav4tVM=;
-        b=Q3Nxp5mpZgzJzUSRAhFi0iIaW/MPx5KdgtDenaF/uVdn87XcVu45XVqG7rTJ5KGidp
-         8sEmCpejBD9YsLC5lI4JtL4Yc64ZUrkYGKGY9s4wGrzFPfJg5YyJKB8R9qdDdOpOE4tm
-         LXcqYJ2WX3/cmGdzLGA67O6CCRyAEdSfaKyUON3aIIzUfr0E4Ah7hbdcwjPmD/dbyQW/
-         SOexXO75FMj9FwAOD7F5BBiocrDByyAV4STKvqB9Ww2CGuIJYuWTjr9JwuLGtITRipEd
-         0cXeehZPAXjHkOexv+G/h5G47XalPG0Veb4bKkcAolYI05yOU8ZKND8YilCBRBLNxboN
-         DuCw==
-X-Gm-Message-State: AAQBX9f15dku7AC4vxRE7kOXec8k+zXFlq9mnTeR57RJwifccziD+dLl
-        3NrDnT3MiBrNJQj9yhZO8CdAYQ==
-X-Google-Smtp-Source: AKy350a/T3bzp7xAMZP7/4+Ww9RoW1CuKYiHrcjkbeEKNilScolbMPJ2NDBvrevmBgyuxzGRAdY0DA==
-X-Received: by 2002:a17:907:2da7:b0:94e:d7b0:64d4 with SMTP id gt39-20020a1709072da700b0094ed7b064d4mr3220771ejc.47.1682095541531;
-        Fri, 21 Apr 2023 09:45:41 -0700 (PDT)
+        bh=KFbWjqroS73UgyNshkyA6Chv3Wv27it6AC9kt6qa+fY=;
+        b=a14Y70+RkpBGasAsubueoGqPWbsONHpKPuF2AIOs2iDEtM0YsePMGO1RWqgqo71Gr8
+         0CZIjmWAks3nMkO5OYF5sODlMdfV0F9UTCRcFJZqzfuhvGtB5HW++fZy3/LWVCZOinpO
+         EhinBK3ujeu5MwrZ3tzpItCYOJYXCjJ+yfyyGdUQ2AZp0/B5I3//f9++OXCo4BmuQ5I7
+         AoTqjDWWBM9ubT/SlY4dT6//wZrXcyBBQgyukRf3R1uwzxrTnXE3459SDTyPSTGE21tL
+         b05WXr4MeQcgoyN69yGwJUOkb71dV5NHPQ36z1M15yXqP2sB/VQ9iwJPs6fwjbsy7mVp
+         yv4A==
+X-Gm-Message-State: AAQBX9fam0zAL4GrVzFEWrPYIAmuZwPxzChptaGpOgC95wbkQrfsHBV9
+        4Z+TtL8lgRtseq3SOFTSfkAlGw==
+X-Google-Smtp-Source: AKy350aLL9GGW0waHbazfqEBHSm937gbyp54HerbiEHZb9mjsANA7SEFAHMq5ViLjxtlKbP9F6b5pQ==
+X-Received: by 2002:a17:906:90c8:b0:92b:e1ff:be30 with SMTP id v8-20020a17090690c800b0092be1ffbe30mr2564169ejw.4.1682095746454;
+        Fri, 21 Apr 2023 09:49:06 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:687d:8c5:41cb:9883? ([2a02:810d:15c0:828:687d:8c5:41cb:9883])
-        by smtp.gmail.com with ESMTPSA id q27-20020a170906361b00b0094e1026bc66sm2295111ejb.140.2023.04.21.09.45.40
+        by smtp.gmail.com with ESMTPSA id h11-20020a170906828b00b0094f23480619sm2302695ejx.172.2023.04.21.09.49.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Apr 2023 09:45:41 -0700 (PDT)
-Message-ID: <184f0a80-34bc-5ebf-58bb-82a310eb91f6@linaro.org>
-Date:   Fri, 21 Apr 2023 18:45:40 +0200
+        Fri, 21 Apr 2023 09:49:05 -0700 (PDT)
+Message-ID: <49e0e62e-3746-1387-fb9a-49739423fb63@linaro.org>
+Date:   Fri, 21 Apr 2023 18:49:04 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH RESEND v2 1/2] dt-bindings: display: simple: add support
- for InnoLux G070ACE-L01
+Subject: Re: [PATCH 1/2] dt-bindings: phy: qcom,qmp-pcie: Add ipq9574 bindings
 Content-Language: en-US
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     richard.leitner@linux.dev,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
+        kishon@kernel.org, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        Richard Leitner <richard.leitner@skidata.com>
-References: <20230201-innolux-g070ace-v2-0-2371e251dd40@skidata.com>
- <20230201-innolux-g070ace-v2-1-2371e251dd40@skidata.com>
- <CAD=FV=XJCtqep+92h3gLfs4o2TwvL4MORjc9ydTSpZiZ0dsR0w@mail.gmail.com>
- <fb93e95f-181f-917d-9216-a81dec1a2959@linaro.org>
- <CAD=FV=Vs8UEfBZ56fYb3i1cmFbCSPrbgaedXB4+UvDTOyhzCzw@mail.gmail.com>
+        linux-phy@lists.infradead.org
+Cc:     quic_srichara@quicinc.com, quic_sjaganat@quicinc.com,
+        quic_kathirav@quicinc.com, quic_arajkuma@quicinc.com,
+        quic_anusha@quicinc.com, quic_ipkumar@quicinc.com
+References: <20230421124150.21190-1-quic_devipriy@quicinc.com>
+ <20230421124150.21190-2-quic_devipriy@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAD=FV=Vs8UEfBZ56fYb3i1cmFbCSPrbgaedXB4+UvDTOyhzCzw@mail.gmail.com>
+In-Reply-To: <20230421124150.21190-2-quic_devipriy@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
@@ -87,65 +81,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/04/2023 18:37, Doug Anderson wrote:
-> Hi,
+On 21/04/2023 14:41, Devi Priya wrote:
+> Add bindings for the PCIe QMP PHYs found on IPQ9574.
 > 
-> On Fri, Apr 21, 2023 at 9:26 AM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 21/04/2023 18:15, Doug Anderson wrote:
->>> Hi,
->>>
->>> On Mon, Mar 13, 2023 at 12:51 AM <richard.leitner@linux.dev> wrote:
->>>>
->>>> From: Richard Leitner <richard.leitner@skidata.com>
->>>>
->>>> Add Innolux G070ACE-L01 7" WVGA (800x480) TFT LCD panel compatible
->>>> string.
->>>>
->>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>> Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
->>>
->>> nit: as I understand it, ordering of tags is usually supposed to be
->>> chronological. You signed off on this patch before Krzysztof acked it,
->>> so the SoB should be above. I'll fix that when applying.
->>
->> Some people agree with this... but b4 disagrees, so I would say the
->> tools should implement the right process and right decisions. We should
->> not be correcting the tools' output, unless the tools are not correct -
->> then fix the tools.
-> 
-> Ah, interesting. I checked and as far as I could tell Richard had
-> manually added the tag when sending v2, so I didn't assume it as a
-> tool-added tag. I'm happy to let "b4" be the canonical thing that says
-> what the order should be.
-> 
-> OK, so I just tried this and I'm confused. I ran:
-> 
-> b4 am -P_ 20230201-innolux-g070ace-v2-2-2371e251dd40@skidata.com
-> 
-> ...and when I check the patch that b4 spits out my "Reviewed-by" tag
-> is _after_ the "Signed-off-by" tag, just like I asked for.
-> 
-> Just in case Acked-by was somehow different than Reviewed-by, I went
-> back to the original version where you added the Acked-by:
-> 
->  b4 am -P_ 20221118075856.401373-1-richard.leitner@linux.dev
-> 
-> ...and, again, it matches the order that I thought was right. In other
-> words, the patch file generated says:
-> 
->> Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
->> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
+> ---
+>  Changes in V1:
+> 	- Introduced a new binding for ipq9574 as suggested by Krzysztof
 
-We talk about `b4 trailers`, because the tag is applied by the
-submitter, not by the maintainer.
+It looks it depends on the clock header.
+
+Either mention the dependency here or better convert the clock IDs to
+numerical values. With the second approach the patch can be applied
+independently from clock headers patch.
 
 > 
-> Did I get something wrong in the above?
+>  .../phy/qcom,ipq9574-qmp-pcie-phy.yaml        | 90 +++++++++++++++++++
+>  1 file changed, 90 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/qcom,ipq9574-qmp-pcie-phy.yaml
+> 
 
-Your `b4 am` will of course put the tag later, because it is you who
-applies the tag.
+Assuming you tested it (as Rob's bot cannot due to dependency):
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
