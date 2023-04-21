@@ -2,290 +2,250 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AFD26EB4EC
-	for <lists+devicetree@lfdr.de>; Sat, 22 Apr 2023 00:33:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0B9B6EB527
+	for <lists+devicetree@lfdr.de>; Sat, 22 Apr 2023 00:46:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233962AbjDUWdg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Apr 2023 18:33:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34090 "EHLO
+        id S233932AbjDUWqc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Apr 2023 18:46:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233316AbjDUWc4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 18:32:56 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53DFA30D2
-        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 15:32:23 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-94a342f7c4cso374137566b.0
-        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 15:32:23 -0700 (PDT)
+        with ESMTP id S233934AbjDUWqc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 18:46:32 -0400
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68B9526A1
+        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 15:46:30 -0700 (PDT)
+Received: by mail-pl1-x634.google.com with SMTP id d9443c01a7336-1a6e5be6224so524295ad.1
+        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 15:46:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682116336; x=1684708336;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=wXy9a0k4qOMAVmB2/btPHugUWWK8+3AF8yRhIQLtz+Y=;
-        b=DM6PmEj4eUkKcPpVDXkfsDteoHuobt27uIXJLIpn+BYC22GAEQJOF4FCpVXv3FGI2/
-         oREsHOBNEeUhEaIfTm9KRW6BZ8jm8y2obWKWRnsxS6CB4xFECO0M2grKOCpkX3fwVihh
-         LmtIj+toKD6qDroDMD4m/Jl2NdmEfY1It4vUMWaSCScRWxtjeAnZGUIWseFs/1QCZMfg
-         +PqYzVuNh9HPM/x7SWZEIwMckN8jqFssN+rwCCg86KiWAmQtI35O4OwdIoV3RaTaaFAk
-         AV0rvG7wwX9pdwGnRR5Q+KhSjKlhEKa7hbAPkCLebr3ErPLckHaUS5EqlguoB61kXdcA
-         jPlA==
+        d=google.com; s=20221208; t=1682117190; x=1684709190;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=grxtbYgBEZhFXTnkmUQSXwfMPjYR4qLeWhU06c7fEJo=;
+        b=LdfV8328hCSEL7clgImntNqsjxIE6gpJx7G924HHBO4P0LLmlWh8r1f3M78lmOqsRH
+         K+MZax8iX6iDU5iiSuYpt+qdLoo+bv2RWJAD+kVPJqPvLLMgJ3RmPEe00lXzp9BZEzih
+         RDm/s5YUQ4LdcojdFDlLWMdzD/HNSCKxBhwEHbcStUiYbKSwSxZtLJqScw2X/tMQpNue
+         7Q0v7GD4Btpw/0sEet7FiJXs6P+S6HShG3YS6btnZHQB8FQwsnzh7dTn6/15dAZQLq7q
+         pIDEvozCPbIlWuVAL0jx8yOg2gF0BVGzdzG/4ZTRpHyFG6Jwvwsesg6fu3nd9+s/ceqP
+         w9wA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682116336; x=1684708336;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wXy9a0k4qOMAVmB2/btPHugUWWK8+3AF8yRhIQLtz+Y=;
-        b=ROdwLCF42B8t5C3eS2iJ4gbqWkinrmPIGq6Gdk89NFwogZ4+DCB1kzb9xkngo1AJKv
-         oKJ2MWxsgoWHBJOyFjDC/ex+oNe/QYCHVqXOJfNdrncssToT5fjmFF0R6booVq1TuN54
-         jxiJ0Afg3RhOb4OSeq1eg1KT0SI7v8Q4LXOMFv8DOFkG5fJ01IuYtTBV2Wty7Uise6fR
-         uh9DegZ5ugzE9s9WoxYP32YC16QlVBS0H5XzijvWhIR8xAQz+tHzv9BuZsnBdPbgrf3w
-         ipH36WkAwYuMiZuMYfdSsgvzF8yRSdU2JjMAV2C7wRq/RyVjcI0QdyVXS4UlePqCL/tJ
-         S1vg==
-X-Gm-Message-State: AAQBX9fD+EBcLalzOnIRkb/BiuxSdjdLzhhnSjc8Be+jI8qOQPek0ip0
-        YpIxs61M6MW/ggnEjOuA0P88YNinxSECXd3aMUntcQ==
-X-Google-Smtp-Source: AKy350YoFlkWWENwH15S0t5/MZMb58+9Lmn7vyViDHVSRvvEYizgRWMin3TPvkImSP6Kt0QD3GTydQ==
-X-Received: by 2002:a17:906:5647:b0:94f:36a0:da45 with SMTP id v7-20020a170906564700b0094f36a0da45mr3626056ejr.29.1682116336643;
-        Fri, 21 Apr 2023 15:32:16 -0700 (PDT)
-Received: from krzk-bin.. ([2a02:810d:15c0:828:687d:8c5:41cb:9883])
-        by smtp.gmail.com with ESMTPSA id j19-20020a17090686d300b0094f109a5b3asm2586821ejy.135.2023.04.21.15.32.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Apr 2023 15:32:16 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Wei Xu <xuwei5@hisilicon.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] arm64: dts: hisilicon: add missing cache properties
-Date:   Sat, 22 Apr 2023 00:32:14 +0200
-Message-Id: <20230421223215.115666-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        d=1e100.net; s=20221208; t=1682117190; x=1684709190;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=grxtbYgBEZhFXTnkmUQSXwfMPjYR4qLeWhU06c7fEJo=;
+        b=DjOydO52lTSagw6ufY5AIgyj5JuSf8kV+XKyojTDb20baMQGwjcjOJoL9OWn6PSTJk
+         evHd5Nq/ZkHNnfraJccRfiH6hd9GUO1IrEftVxPkKbFRaM50EG1QVxAiZfKGi3MDCgGI
+         oIsYoAi6hj5EMz4OsTEXSSM67pKMMZ4pX62LRGs9mtq/UbCvDy28KEaNN2YRNgnu+bHb
+         M/vyV5QEoqHDEW2m82EHiUygmv6MkS6zYki5jhrrB69Zy43rczDThk8sSyj88ajYOcUE
+         uzSpnlhwn4clpuMFDZEV++H5G9en4rP+Ujq04jTvlmh7tydtAiwoFU3Z+m+32fTI17nI
+         elQA==
+X-Gm-Message-State: AAQBX9e7R+Psqc+fcg9eynIfZUOG3fAqVB9BuENsg9EOExFtWxNy2jzI
+        XXAhaxoFEqRAAYuC2wnX4bDPE2NO6NUezbPh6jtIW2EbC90TaTAUvpM=
+X-Google-Smtp-Source: AKy350bEB1pKwAM1VUR5fdz9R+Z9KrwHyX5kQUSH/7E09sGk0HXwt+4pGmiw/MQ0eSqZeYh7EZsxftVWrQdX7cbk71U=
+X-Received: by 2002:a17:902:ecc9:b0:198:af4f:de07 with SMTP id
+ a9-20020a170902ecc900b00198af4fde07mr25570plh.7.1682117189428; Fri, 21 Apr
+ 2023 15:46:29 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <cover.1681580558.git.noodles@earth.li> <f26d11e613df7bd55822ff3fb7689e36bf9e4f7a.1681580558.git.noodles@earth.li>
+ <20230416012421.255bfd19@slackpad.lan> <ZEGOk1isRhaekk3h@earth.li>
+ <CAGETcx-UnEK3CPC38Ef3gmHcq46nXSJbA9QAwEsF+Xt2bDKEWA@mail.gmail.com> <ZEJJGGeIu8QW44mh@earth.li>
+In-Reply-To: <ZEJJGGeIu8QW44mh@earth.li>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Fri, 21 Apr 2023 15:45:52 -0700
+Message-ID: <CAGETcx8JDYUT2bdDhJ0PN8_CPmHJ37jCfnuoav6CGFJoovfSqA@mail.gmail.com>
+Subject: Re: [PATCH 1/3] ARM: dts: sun5i: chip: Enable bluetooth
+To:     Jonathan McDowell <noodles@earth.li>
+Cc:     Andre Przywara <andre.przywara@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED,USER_IN_DEF_DKIM_WL,
+        USER_IN_DEF_SPF_WL autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As all level 2 and level 3 caches are unified, add required
-cache-unified properties to fix warnings like:
+On Fri, Apr 21, 2023 at 1:28=E2=80=AFAM Jonathan McDowell <noodles@earth.li=
+> wrote:
+>
+> On Thu, Apr 20, 2023 at 06:43:06PM -0700, Saravana Kannan wrote:
+> > On Thu, Apr 20, 2023 at 12:12=E2=80=AFPM Jonathan McDowell <noodles@ear=
+th.li> wrote:
+> > > On Sun, Apr 16, 2023 at 01:24:21AM +0100, Andre Przywara wrote:
+> > > > On Sat, 15 Apr 2023 18:46:03 +0100
+> > > > Jonathan McDowell <noodles@earth.li> wrote:
+> > > >
+> > > > > The C.H.I.P has an rtl8723bs device with the bluetooth interface =
+hooked
+> > > > > up on UART3. Support for this didn't exist in mainline when the D=
+TS was
+> > > > > initially added, but it does now, so enable it.
+> > > > >
+> > > > > Signed-off-by: Jonathan McDowell <noodles@earth.li>
+> > > > > ---
+> > > > >  arch/arm/boot/dts/sun5i-r8-chip.dts | 4 ++++
+> > > > >  1 file changed, 4 insertions(+)
+> > > > >
+> > > > > diff --git a/arch/arm/boot/dts/sun5i-r8-chip.dts b/arch/arm/boot/=
+dts/sun5i-r8-chip.dts
+> > > > > index fd37bd1f3920..4d72a181d8aa 100644
+> > > > > --- a/arch/arm/boot/dts/sun5i-r8-chip.dts
+> > > > > +++ b/arch/arm/boot/dts/sun5i-r8-chip.dts
+> > > > > @@ -255,6 +255,10 @@ &uart3 {
+> > > > >     pinctrl-0 =3D <&uart3_pg_pins>,
+> > > > >                 <&uart3_cts_rts_pg_pins>;
+> > > > >     status =3D "okay";
+> > > > > +
+> > > > > +   bluetooth {
+> > > > > +           compatible =3D "realtek,rtl8723bs-bt";
+> > > > > +   }
+> > > >
+> > > > As the kernel test robot already pointed out, there is a semicolon
+> > > > missing here.
+> > > > Otherwise looks good (dt-validate passes), but don't know if there =
+are
+> > > > any wakeup GPIOs connected (can't seem to find a schematic?).
+> > >
+> > > So there are wakeups, but if I add:
+> > >
+> > >         device-wake-gpios =3D <&axp_gpio 3 GPIO_ACTIVE_LOW>;
+> > >         host-wake-gpios =3D <&pio 1 3 GPIO_ACTIVE_HIGH>; /* PB3 */
+> > >
+> > > then some odd sort of dependency issue happens where the serial port
+> > > load is deferred waiting for the GPIO to appear, and then the device
+> > > doesn't work.
+> >
+> > When you say your device doesn't work, are you saying it never probes?
 
-  hi3660-hikey960.dtb: l2-cache0: 'cache-unified' is a required property
+Read your whole email and it's a strange issue. Also, going forward to
+avoid confusion, only reply to questions with respect to 6.3-rc7.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> The bluetooth device (realtek,rtl8723bs-bt) never appears, apparently
+> because the UART it's attached to never loads - it doesn't even try to
+> load the firmware.
+>
+> > <debugfs>/devices_deferred should tell you what devices have deferred a=
+nd why.
+>
+> root@chip:~# cat /sys/kernel/debug/devices_deferred
+> serial0-0
 
----
+Do you see this in 6.3-rc7 too?
 
-Please take the patch via sub-arch SoC tree.
----
- arch/arm64/boot/dts/hisilicon/hi3660.dtsi |  2 ++
- arch/arm64/boot/dts/hisilicon/hi6220.dtsi |  2 ++
- arch/arm64/boot/dts/hisilicon/hip05.dtsi  |  4 ++++
- arch/arm64/boot/dts/hisilicon/hip06.dtsi  |  4 ++++
- arch/arm64/boot/dts/hisilicon/hip07.dtsi  | 16 ++++++++++++++++
- 5 files changed, 28 insertions(+)
+> > > Error in dmesg is:
+> > >
+> > > serial serial0-0: deferred probe pending
+> > >
+> > > on 6.3-rc and on 6.1 I get:
+> > >
+> > > dw-apb-uart 1c28c00.serial: Failed to create device link (0x180) with=
+ axp20x-gpio
+> >
+> > This error message doesn't block anything. So I don't think this is
+> > the cause of your blocking issue. But I still want to understand why
+> > this error message is showing up.
+> >
+> > > I'm not clear why it's trying to link the serial port to the GPIO; it
+> > > seems that it should be the bluetooth device that depends on both the
+> > > UART and the GPIO,
+> >
+> > A fix for the device link error message went in on v6.3-rc3. Is that
+> > the 6.3 version you tested this on?
+>
+> I originally tried on 6.1.21, which is where I got the "Failed to create
+> device link" message. I then moved to 6.3-rc7 as I saw there had been
+> further changes recently. There I just get the:
+>
+> serial serial0-0: deferred probe pending
 
-diff --git a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
-index a57f35eb5ef6..7e137a884ae5 100644
---- a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
-+++ b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
-@@ -204,11 +204,13 @@ CLUSTER_SLEEP_1: cluster-sleep-1 {
- 		A53_L2: l2-cache0 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 
- 		A73_L2: l2-cache1 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 	};
- 
-diff --git a/arch/arm64/boot/dts/hisilicon/hi6220.dtsi b/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
-index f6d3202b0d1a..872e9c73c422 100644
---- a/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
-+++ b/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
-@@ -187,11 +187,13 @@ cpu7: cpu@103 {
- 		CLUSTER0_L2: l2-cache0 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 
- 		CLUSTER1_L2: l2-cache1 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 	};
- 
-diff --git a/arch/arm64/boot/dts/hisilicon/hip05.dtsi b/arch/arm64/boot/dts/hisilicon/hip05.dtsi
-index 5b2b1bfd0d2a..65ddc0698f82 100644
---- a/arch/arm64/boot/dts/hisilicon/hip05.dtsi
-+++ b/arch/arm64/boot/dts/hisilicon/hip05.dtsi
-@@ -212,21 +212,25 @@ cpu15: cpu@20303 {
- 		cluster0_l2: l2-cache0 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 
- 		cluster1_l2: l2-cache1 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 
- 		cluster2_l2: l2-cache2 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 
- 		cluster3_l2: l2-cache3 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 	};
- 
-diff --git a/arch/arm64/boot/dts/hisilicon/hip06.dtsi b/arch/arm64/boot/dts/hisilicon/hip06.dtsi
-index 291c2ee38288..c588848bfdeb 100644
---- a/arch/arm64/boot/dts/hisilicon/hip06.dtsi
-+++ b/arch/arm64/boot/dts/hisilicon/hip06.dtsi
-@@ -212,21 +212,25 @@ cpu15: cpu@10303 {
- 		cluster0_l2: l2-cache0 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 
- 		cluster1_l2: l2-cache1 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 
- 		cluster2_l2: l2-cache2 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 
- 		cluster3_l2: l2-cache3 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 	};
- 
-diff --git a/arch/arm64/boot/dts/hisilicon/hip07.dtsi b/arch/arm64/boot/dts/hisilicon/hip07.dtsi
-index 8a9436ca2531..595abe339c5d 100644
---- a/arch/arm64/boot/dts/hisilicon/hip07.dtsi
-+++ b/arch/arm64/boot/dts/hisilicon/hip07.dtsi
-@@ -843,81 +843,97 @@ cpu63: cpu@70303 {
- 		cluster0_l2: l2-cache0 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 
- 		cluster1_l2: l2-cache1 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 
- 		cluster2_l2: l2-cache2 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 
- 		cluster3_l2: l2-cache3 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 
- 		cluster4_l2: l2-cache4 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 
- 		cluster5_l2: l2-cache5 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 
- 		cluster6_l2: l2-cache6 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 
- 		cluster7_l2: l2-cache7 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 
- 		cluster8_l2: l2-cache8 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 
- 		cluster9_l2: l2-cache9 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 
- 		cluster10_l2: l2-cache10 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 
- 		cluster11_l2: l2-cache11 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 
- 		cluster12_l2: l2-cache12 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 
- 		cluster13_l2: l2-cache13 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 
- 		cluster14_l2: l2-cache14 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 
- 		cluster15_l2: l2-cache15 {
- 			compatible = "cache";
- 			cache-level = <2>;
-+			cache-unified;
- 		};
- 	};
- 
--- 
-2.34.1
+If the deferral is related to fw_devlink, you should see the reason
+for deferring in the devices_deferred file. So I don't think the issue
+is related to fw_devlink.
 
+> message.
+>
+> > Also, I tried looking into the UART driver
+> > (drivers/tty/serial/8250/8250_dw.c) but it wasn't clear how it ends up
+> > populating the bluetooth serial device. If you can point that out,
+> > that'd be helpful (assuming 6.3-rc3 still shows that error message).
+>
+> I have the following in my device tree:
+>
+> &uart3 {
+>         pinctrl-names =3D "default";
+>         pinctrl-0 =3D <&uart3_pg_pins>,
+>                     <&uart3_cts_rts_pg_pins>;
+>         status =3D "okay";
+>
+>         bluetooth {
+>                 compatible =3D "realtek,rtl8723bs-bt";
+>                 device-wake-gpios =3D <&axp_gpio 3 GPIO_ACTIVE_LOW>;
+>                 host-wake-gpios =3D <&pio 1 3 GPIO_ACTIVE_HIGH>; /* PB3 *=
+/
+>         };
+> };
+>
+> uart3 is a snps,dw-apb-uart, defined in arch/arm/boot/dts/sun5i.dtsi
+>
+> The UART and AXP209 device drivers are compiled into the kernel:
+>
+> CONFIG_PINCTRL_AXP209=3Dy
+> CONFIG_SERIAL_8250=3Dy
+> CONFIG_SERIAL_8250_DW=3Dy
+>
+> The bluetooth bits are modules (btrtl, hci_uart).
+>
+> If I remove the device-wake-gpios line then the Bluetooth device works
+> fine, and /sys/kernel/debug/devices_deferred is empty.
+>
+> Somehow it seems like the GPIO is being parsed as a dependency for the
+> serial port, even though the serial port + GPIO are both dependencies
+> for the bluetooth device.
+
+I'm fairly sure that fw_devlink isn't causing that. Because even
+without bluetooth, fw_devlink doesn't consider any suppliers listed in
+child DT nodes as mandatory suppliers. That has been the case since
+the beginning.
+
+> Even with that, given both are built-in I
+> don't understand why the serial port never completes setup.
+
+My guess is that the driver itself has some bug that's sensitive to
+device probe order even though it shouldn't.
+
+Can you add #define DEBUG 1 to the top of drivers/base/core.c and
+share the boot log? I can try and help debug it.
+
+-Saravana
+
+> > > and that the GPIO is actually optional so shouldn't
+> > > hold up loading, but I can't see how that should be represented.
+> >
+> > Optional dependencies should get ignored after the default
+> > deferred_probe_timeout runs out and the supplier driver hasn't been
+> > loaded yet.
+>
+> When I say it's optional I mean if it's not listed everything works
+> fine, but I don't believe there's anyway to express that in the DTS.
+> It's certainly not required for the serial port, just the bluetooth
+> device.
+>
+> J.
+>
+> --
+> Web [                     Don't be a stranger.                     ]
+> site: https:// [                                          ]      Made by
+> www.earth.li/~noodles/  [                      ]         HuggieTag 0.0.24
