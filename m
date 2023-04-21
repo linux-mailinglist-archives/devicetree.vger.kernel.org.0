@@ -2,97 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9549F6EA561
-	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 09:57:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BE846EA570
+	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 09:59:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231363AbjDUH5B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Apr 2023 03:57:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34104 "EHLO
+        id S231381AbjDUH7n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Apr 2023 03:59:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36030 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231461AbjDUH43 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 03:56:29 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCC6A9EDD
-        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 00:56:06 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-504fce3d7fbso1955549a12.2
-        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 00:56:06 -0700 (PDT)
+        with ESMTP id S230388AbjDUH7e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 03:59:34 -0400
+Received: from mail-vk1-xa33.google.com (mail-vk1-xa33.google.com [IPv6:2607:f8b0:4864:20::a33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D6FB8A54
+        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 00:59:33 -0700 (PDT)
+Received: by mail-vk1-xa33.google.com with SMTP id 71dfb90a1353d-4403744aa44so485258e0c.2
+        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 00:59:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682063765; x=1684655765;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=o/hF7YS1JXj10nBbSZ+Qi8Uah3qSsyNus94sL6M1gzA=;
-        b=alzFSNMKCMSWX5/Mj3d0A5TlGxT4IEQSzZbBtlkInBbjJHtdT5ci1AW0xgOwpCNwP0
-         JoUoI7G1xJ+GVO6ygcCW6DP7J5OrUEUgriP5+9sHuWrhRWpTPSjaWnC2znpow9mOwqIs
-         kTknhnDzxd2SkRxHEPU79yQfca3bNaitgZtIdGaI9P5yKUeExDk8a2y47Wt4852UUTKr
-         m3ntgboR1IslTIYB6xdtpj/7c0/1MKktv8gMk7pgH1uf6QrSQQczfYqsYTFHrPeUWBVB
-         D+p1mxJL+yCIsrIWddg3FYQOn3e8P+rY3MQrytEM83EdELOLXULgJ47x3xHe+mOhM3JP
-         MBkw==
+        d=chromium.org; s=google; t=1682063972; x=1684655972;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TsFQTffpj1Xt6EEubhQjH3aWod2zGCnn4KBG/LKkMVc=;
+        b=Tmi1HPl8De+dM8cYuH01zP1eu7WpzTHXIIRqdP2r7MJimFSp9mhE22JjnelGT42cbi
+         4MuEOlCB4DO4bsrcvDXMkOL1dOq7Hl6OF4sgZ1947z7xRCsKGAjTYq4aY1ujkzSfq48s
+         HgOa/j95PnjLn4uUVg7sFgeOVGZnivQsUeqCI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682063765; x=1684655765;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=o/hF7YS1JXj10nBbSZ+Qi8Uah3qSsyNus94sL6M1gzA=;
-        b=U/sQ+orkJ0an5DkO/+5hDA/yaKd6aolzpyCRJ2RGHo4QIUUqHs52svRIToTdmqgjCe
-         +VrYL51pikvKXbNoZOUE0/IdBwYz6B8Gov2Gomi4+N5zVFpljKomOJtcvvuBIOGB6OPw
-         g851Ow+yTMFKYNl8DHcCyJTz2UyCg23KFk9XPys8IecuRfF+7G199OIl6Gst+vMhEalC
-         0pNZ6Wv+XB/aHPWndyal3C7+cfZgXe4oQqoCISlFFuddhhCHyUCLRDxRQW4pbrHtehl/
-         7vyiNuWV0zbyJKiYAermlBbmyePPGMNdXk/lNUtQkMX+yugc5HXVFPdNGC3U2V0Tp38z
-         ef6A==
-X-Gm-Message-State: AAQBX9eSZRmVuZvc8XSECtzQrl50a+vlvYMbJf589kmCedkAmz7+AP7g
-        /b2WD1bMLZ07Pd27SirvQLrKcQ==
-X-Google-Smtp-Source: AKy350YEEZtGZN2b6N4rT0q2b7Jl5HiciSTCRErgLiixS3WyRnwyNxGxv2aXXoIoHCWVsnlgs4ihCw==
-X-Received: by 2002:aa7:d94d:0:b0:504:80a4:d019 with SMTP id l13-20020aa7d94d000000b0050480a4d019mr4456746eds.12.1682063765182;
-        Fri, 21 Apr 2023 00:56:05 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:668b:1e57:3caa:4d06? ([2a02:810d:15c0:828:668b:1e57:3caa:4d06])
-        by smtp.gmail.com with ESMTPSA id d12-20020a50fb0c000000b004bf999f8e57sm1575248edq.19.2023.04.21.00.56.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Apr 2023 00:56:04 -0700 (PDT)
-Message-ID: <1068b0ea-22ef-b9fb-cb9e-431337fb445b@linaro.org>
-Date:   Fri, 21 Apr 2023 09:56:03 +0200
+        d=1e100.net; s=20221208; t=1682063972; x=1684655972;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TsFQTffpj1Xt6EEubhQjH3aWod2zGCnn4KBG/LKkMVc=;
+        b=My5OfPL54ZicwpvAuAbH/bRJmBT+zSMwsxT9R67exdi8jtWYCFHj+2wjVdsJEtBM1W
+         jGy8zbP2BVOzxM6bjWR9oJz4BLGLLtDqfcCz0/z6UWLbJTfInyYviWoMl6G0asvWLuai
+         TJ9Pd+nZ0x5k+hiDQ+X0CEfis0Ygz6wYhp5wDAykaAQPjMZXo8as3xxnXTnHBP6Nb7lQ
+         6v9tIobi8QbI4IwccSUkmMj/38xNvLbaWQk7KP8+2LeuSOxFZYUuCUL/jehhJ1r46mA/
+         mCpNKpcPRyeMjb58Wfw+izaVvHs6RIYQMCH5jEWwOH+YqB6Udas6iifLW2HvH1qtSxUz
+         CByQ==
+X-Gm-Message-State: AAQBX9cftduSyhxsN37WrlOdVR/qLJUpPWecymDHJ84QF4fnl9Rb/Voi
+        GVG5P+MjfLsoM0lLN3QOST+IbE96EhqFFGr2KxGdUg==
+X-Google-Smtp-Source: AKy350abxmzPvOdsOw+/nW5Sft49OJtVLhvaAiOW8MiTGTePQk9FTNcoDjKCrAk7Yi89F46K7XNWaTPhPpGDXRijY9o=
+X-Received: by 2002:a1f:cb02:0:b0:43f:a097:5e8c with SMTP id
+ b2-20020a1fcb02000000b0043fa0975e8cmr337979vkg.16.1682063972345; Fri, 21 Apr
+ 2023 00:59:32 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v3 1/3] dt-bindings: nvmem: rmem: Add
- raspberrypi,bootloader-public-key
-Content-Language: en-US
-To:     "Ivan T. Ivanov" <iivanov@suse.de>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Stefan Wahren <stefan.wahren@i2se.com>,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-References: <20230420122924.37997-1-iivanov@suse.de>
- <20230420122924.37997-2-iivanov@suse.de>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230420122924.37997-2-iivanov@suse.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+References: <20230420094433.42794-1-angelogioacchino.delregno@collabora.com> <20230420094433.42794-6-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230420094433.42794-6-angelogioacchino.delregno@collabora.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Fri, 21 Apr 2023 15:59:21 +0800
+Message-ID: <CAGXv+5GJroyKkj8oZw+BQxiUkiGCb-RBOxnKRkURQz5T6=EvNQ@mail.gmail.com>
+Subject: Re: [PATCH 5/5] arm64: dts: mediatek: cherry-tomato-r1: Enable NVMe
+ PCI-Express port
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, kernel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/04/2023 14:29, Ivan T. Ivanov wrote:
-> On RPi4 the bootloader[1] will copy the binary public key blob
-> (if present) into memory location specified by this node, for
-> use by the OS.
-> 
-> [1] https://www.raspberrypi.com/documentation/computers/configuration.html#nvmem-nodes
-> 
-> Signed-off-by: Ivan T. Ivanov <iivanov@suse.de>
+On Thu, Apr 20, 2023 at 5:45=E2=80=AFPM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> On Tomato rev1 the PCIe0 controller is used for NVMe storage.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This was slightly confusing for me. AFAIK rev1 is not an actual Tomato
+device. It should be the prototype board, which is the original Cherry
+reference design by Google [1].
 
-Best regards,
-Krzysztof
+There is an actual Cherry derived device that has NVMe, though it's under
+another brand and another name.
 
+ChenYu
+
+[1] Much like Kukui & Jacuzzi (MT8183), and Asurada (MT8192) are the
+    reference designs.  I don't think we ever upstream the reference
+    boards because they don't really end up in the hands of people
+    outside of the project, and the ones we do have tend to be quite
+    beaten up or no longer working due to extensive testing.
+
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
+abora.com>
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts | 7 +++++++
+>  1 file changed, 7 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts b/a=
+rch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts
+> index 2d5e8f371b6d..11fc83ddf236 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts
+> @@ -20,6 +20,13 @@ &sound {
+>         model =3D "mt8195_r1019_5682";
+>  };
+>
+> +&pcie0 {
+> +       status =3D "okay";
+> +
+> +       pinctrl-names =3D "default";
+> +       pinctrl-0 =3D <&pcie0_pins_default>;
+> +};
+> +
+>  &ts_10 {
+>         status =3D "okay";
+>  };
+> --
+> 2.40.0
+>
+>
