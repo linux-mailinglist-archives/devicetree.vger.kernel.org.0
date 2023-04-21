@@ -2,206 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9329A6EA6C9
-	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 11:20:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FB706EA6E0
+	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 11:26:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231345AbjDUJUY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Apr 2023 05:20:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34408 "EHLO
+        id S231602AbjDUJ0n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Apr 2023 05:26:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230248AbjDUJUX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 05:20:23 -0400
-Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77DF418E
-        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 02:20:21 -0700 (PDT)
-Received: by mail-yb1-xb2a.google.com with SMTP id 3f1490d57ef6-b8f557b241fso570003276.0
-        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 02:20:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682068820; x=1684660820;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NhFBbTnrvqR6mDfvWnCP3LyOJMAtBUaFpuunhT+4e7o=;
-        b=r4wR+IdH7jTYl36uiLsjBKZrp9iQ9mcyzeIWA44aVLaBmlLsWoIZ7cP5hlZ8NO+ORj
-         WwePE2341vBNNZfHqIIYHIt4CnJ1AReRi+ypauq6Ze6bIMn1FBRrqj0HKlN7+8utv+us
-         65eqT3H25qcKogf2NRKY226L/5xLzPtveVD0yR3NPgucuGdo67xvDMxbWy/JPqVh4TQY
-         BKt+MKQZ4yxIzYH92REUq3Bp8LWpIkty+/4kMy5sjswYVAU7inR0jYbcGgbeHmJpEz15
-         UxxVsLDklf5Un6UshQfEqSW3wL0SH6Ox3Jbt+T7xAFMexIrEsKsVu6hlR+tqCiDe5RnE
-         ZjrA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682068820; x=1684660820;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NhFBbTnrvqR6mDfvWnCP3LyOJMAtBUaFpuunhT+4e7o=;
-        b=GNmU1W9QwXC2qWayhoTSqPTafT1vif23FUcIXiInOJgTYMOZS11MS+mpkwILFtv8T1
-         A6aaSemQT3yYPVqA8pz5q+mCJk/9aAD73x3BGO+hq3Vb8HGdcY9KtJ1ISWy0Rw+gWyig
-         E0ZTPI3EjGylTMjLw4wuGOLOR0i9o9h5FMo1SuDWIr5KnPS1vUbKd8xrGTrDkb38535H
-         ET8tOCaboNpPOiizkNN502a3KaGw+s22BE3VRvyCAIcS0Vke7rIqn9RZE3x9J+GA2lwP
-         kf19H3L//o51OOa4kydHyaP3OZUQaD/najwdJhx95V/QFzzfJzpKaK5cif+7bmuXmN+v
-         4Fqw==
-X-Gm-Message-State: AAQBX9eZ9ELVRfAf2WPPjjOUMBqokcbnoLXQ+hxjHdzCqLsJRvf0R1M0
-        E/s86a8ZN8h4nAO7Z/mKQpM77ZRddNFun1Fn0zb8jQ==
-X-Google-Smtp-Source: AKy350Y4W5hG73IZ75W6wgz54If12e+2sonMIXOyKihzzRuCVU/aZi/kzOyU8POiZSBlgrP8DzO4b6g85DAQW7VxLG8=
-X-Received: by 2002:a81:910b:0:b0:54f:b994:e258 with SMTP id
- i11-20020a81910b000000b0054fb994e258mr1362753ywg.4.1682068820563; Fri, 21 Apr
- 2023 02:20:20 -0700 (PDT)
-MIME-Version: 1.0
-References: <cover.1681646904.git.jahau@rocketmail.com> <9275af790e6e21b5cf661a2444effe4caf2be02e.1681646904.git.jahau@rocketmail.com>
- <CACRpkdZEtG=OjTECDO=SvFk89MqL10sKKMOABPEs-xxYv1hmqw@mail.gmail.com>
- <CACRpkdaRkJ-JVNqAOQLuOgDztDfUP7DBQU9QP7AMbnK=eN2HWQ@mail.gmail.com> <662eeda8-8605-4124-75d3-9df6bd81bcb7@rocketmail.com>
-In-Reply-To: <662eeda8-8605-4124-75d3-9df6bd81bcb7@rocketmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 21 Apr 2023 11:20:09 +0200
-Message-ID: <CACRpkdaYaE+1GKNv5SczC+Xn8UuBonZcW4RSdbsU53HWTR_tTg@mail.gmail.com>
-Subject: Re: [PATCH v2 9/9] dt-bindings: Add documentation for rt5033 mfd,
- regulator and charger
-To:     Jakob Hauser <jahau@rocketmail.com>
-Cc:     Sebastian Reichel <sre@kernel.org>, Lee Jones <lee@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231318AbjDUJ0l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 05:26:41 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD6D276A6
+        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 02:26:40 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1ppn28-000382-VH; Fri, 21 Apr 2023 11:26:24 +0200
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1ppn27-0002MM-22; Fri, 21 Apr 2023 11:26:23 +0200
+Date:   Fri, 21 Apr 2023 11:26:23 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Richard Leitner <richard.leitner@linux.dev>
+Cc:     Marek Vasut <marex@denx.de>, linux-clk@vger.kernel.org,
+        Peng Fan <peng.fan@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Adam Ford <aford173@gmail.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Abel Vesa <abelvesa@kernel.org>, Jacky Bai <ping.bai@nxp.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Beomho Seo <beomho.seo@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Raymond Hackley <raymondhackley@protonmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Axel Lin <axel.lin@ingics.com>,
-        ChiYuan Huang <cy_huang@richtek.com>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v7 4/5] arm64: dts: imx8mp: Add SAI, SDMA, AudioMIX
+Message-ID: <20230421092623.jz7qxd7pkj2egzts@pengutronix.de>
+References: <20230301163257.49005-1-marex@denx.de>
+ <20230301163257.49005-4-marex@denx.de>
+ <ZACNuAOJd+uXBKyJ@g0hl1n.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZACNuAOJd+uXBKyJ@g0hl1n.net>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jakob,
+Hi Shawn,
 
-On Thu, Apr 20, 2023 at 11:16=E2=80=AFPM Jakob Hauser <jahau@rocketmail.com=
-> wrote:
-> > On Thu, Apr 20, 2023 at 9:59=E2=80=AFAM Linus Walleij <linus.walleij@li=
-naro.org> wrote:
+On 23-03-02, Richard Leitner wrote:
+> On Wed, Mar 01, 2023 at 05:32:56PM +0100, Marek Vasut wrote:
+> > Add all SAI nodes, SDMA2 and SDMA3 nodes, and AudioMIX node. This is
+> > needed to get audio operational on i.MX8MP .
+> > 
+> > Acked-by: Peng Fan <peng.fan@nxp.com>
+> > Reviewed-by: Fabio Estevam <festevam@gmail.com>
+> > Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> > Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
+> > Tested-by: Adam Ford <aford173@gmail.com> #imx8mp-beacon-kit
+> > Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> > Signed-off-by: Marek Vasut <marex@denx.de>
+> 
+> Hi Marek,
+> I've successfully tested this patch on a custom i.MX8MP board. Therefore
+> please feel free to add:
+> 
+> Tested-by: Richard Leitner <richard.leitner@skidata.com>
 
-> > On second thought, these are really weird properties to have on the
-> > *charger* isn't it?
-> >
-> > It is really *battery* restrictions.
-> >
-> > A charger can charge many different batteries with different CC/CV
-> > settings.
+Can you please pick patch 4 and 5? Patch 1-3 is already picked by Abel.
 
-(...)
-> I was first a bit confused by the term "battery". I associated that term
-> with the driver "rt5033-battery". But I think that thought was wrong.
-> The driver "rt5033-battery" is just the fuel gauge.
-
-Yeah that is a different thing altogether, it should be named
-rt5033-fuel-gauge if I could turn back time, I would review it
-and say this, perhaps the confusion can be fixed. Mistakes
-were made.
-
-> The properties we talk about here are the settings for the charger. They
-> tell the charger how it should behave. It makes sense to process those
-> settings within the charger driver.
-
-It may make sense to *parse* this in the charger driver, by
-following the monitored-battery phandle to inspect the battery
-properties and get the information you need.
-
-The architecture of any Linux driver does not really concern
-the DT bindings, the bindings should reflect the hardware.
-The hardware has a charger, and the charger is monitoring
-a battery, so it needs to be its own DT node.
-
-> The fuel gauge, on the other hand,
-> returns information like actual voltage and percentage.
-
-The fuel gauge should probably have a phandle to the same
-battery for compleness sake, but may not need it. If it ever needs
-any battery properties, it should definately have that.
-
-> According to your remarks, the properties could be "outsourced" into a
-> battery node. (Btw. I have double-checked the property names.)
->
->      battery: battery {
->          compatible =3D "simple-battery";
->          precharge-current-microamp =3D <450000>;
->          constant-charge-current-max-microamp =3D <1000000>;
->          charge-term-current-microamp =3D <150000>;
->          precharge-upper-limit-microvolt =3D <3500000>;
->          constant-charge-voltage-max-microvolt =3D <4350000>;
->      };
->
->      pmic@34 {
->          compatible =3D "richtek,rt5033";
->          ....
->          charger {
->              compatible =3D "richtek,rt5033-charger";
->              monitored-battery =3D <&battery>;
->              extcon =3D <&muic>;
->          };
->      };
-
-Yups this is how it should look :)
-
-> Personally I would choose the current implementation for two reasons
-> (possibly weak ones):
-
-The device tree binding isn't any "implementation", and make sure
-to not go into the trap that DT bindings should be done to be
-convenient for any specific Linux driver to use.
-
-> 2) At least in my mind it's still the setup for the charger. It sets up
-> a the charging behavior of a certain consumer device. And the choice of
-> their values is limited to the hardware of the charger. Accordingly the
-> dt-bindings would say what the charger hardware is capable to do.
-> Therefore I'd say it's reasonable to have those values in the charger
-> node and use vendor properties.
->
-> I agree to you that actually the physical battery is determining how
-> these values should be set. In the end, as far as I can see, it is a
-> representation thing in the devicetree. At least in our case here.
-
-The DT bindings should reflect the hardware, and not what some
-or any driver "would like to see" (to make its life easier...)
-
-As these things are programmed into registers, clearly the
-hardware is adoptable for different batteries, and the purpose
-of these registers is to support different batteries. Ergo: they
-belong in a battery node.
-
-> Not sure how to proceed here. I would stick to the current
-> implementation. If someone strongly prefers the "battery" representation
-> style, I'm open to switch to this.
-
-Again this is not an implementation but a hardware description.
-
-It should use a phandle to a montored-battery and follow that to
-read the battery properties.
-
-> However, I'm not sure how the dt-bindings would look like in that case.
-
-Just like you sketched above, just reuse simple-battery if the battery
-is hardcoded into the platform, such as soldered in or has a form
-factor such that no different battery can be fitted.
-
-> Those battery properties would not be part of the RT5033 node, thus they
-> basically would not be part of the RT5033 documentation. Again I think
-> it makes sense to handle those properties within the charger node as
-> "charger settings" properties.
-
-Why?
-
-This is like saying that the number of pixels on your monitor should
-be part of the graphics card DT node as "configuration". And we
-clearly do not do that.
-
-Yours,
-Linus Walleij
+Thanks,
+  Marco
