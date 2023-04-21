@@ -2,66 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B76806EB150
-	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 20:01:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D2386EB155
+	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 20:04:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231610AbjDUSBl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Apr 2023 14:01:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58978 "EHLO
+        id S229578AbjDUSEW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Apr 2023 14:04:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230406AbjDUSBd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 14:01:33 -0400
-Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7597D172C;
-        Fri, 21 Apr 2023 11:01:32 -0700 (PDT)
-Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-18665c1776dso1760581fac.2;
-        Fri, 21 Apr 2023 11:01:32 -0700 (PDT)
+        with ESMTP id S232531AbjDUSEJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 14:04:09 -0400
+Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68795C5;
+        Fri, 21 Apr 2023 11:04:08 -0700 (PDT)
+Received: by mail-ot1-f52.google.com with SMTP id 46e09a7af769-6a437526b7cso2123734a34.1;
+        Fri, 21 Apr 2023 11:04:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682100092; x=1684692092;
+        d=1e100.net; s=20221208; t=1682100247; x=1684692247;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=nnmTMZtvA/f6TPhezgaB/eM/0Kt2Nz3CF0RXPywChaE=;
-        b=Vghxhr6U7Cb/tTXVnZLqZWNTURAJoIClkTSV/9F25DsHwk3vjI2BHC8dkhekZ9u3bo
-         6YOCkFoSUOEfsYm2UKq2F83MxvR7FhNTSJRw1saHHO/EMGtoBNLwST1AIeAe1Xj+M3tb
-         ziu+WDnbiIy4VcqZEoEKMAAT/CfkGYgujs1a68TOZWnVm/Eo4xfs8mEcFoq5Sqlcq2C3
-         cIPLJB1AT+61IT7nZJHLLmRnH86JNG7kt2Niaj2O6iTHBUnjEdly255+3AOmcyYAW3vp
-         Xbt1p4y69HNGz+TuNap/TNgbDrh/WweeKAdgelceIGLmebZM6qD7Mi48yW024Xquig5e
-         r19g==
-X-Gm-Message-State: AAQBX9flw9JUKbI7tVnz8JmEcn21RTj9d0bLMwbMp1GsdytdMyjywH9q
-        5r09ppfnggMB6grnbp7Qkg==
-X-Google-Smtp-Source: AKy350bS6Yt9+puose4G3XnzK+iG2RBGcT82lno6wn46NVV3zf3nyr8BIptdf9X2gnZJqGbUtRaqFw==
-X-Received: by 2002:a05:6871:84:b0:17f:e13:9c96 with SMTP id u4-20020a056871008400b0017f0e139c96mr4884396oaa.51.1682100091343;
-        Fri, 21 Apr 2023 11:01:31 -0700 (PDT)
+        bh=Co8FuF/c7gAHcCMjkVAi9/q3BiFxF8PNVGRX/kGO2qM=;
+        b=ToYKNvXrHzodHx1P5xep1z2DkwX3p4jnovK97hoaWu5fBN3yNBkIw+/jU+Ku9IiaG3
+         oCkNUrdB2M0JmQGGyjYCuEpeTsD6AMLOXCFYQ5FdKLy8ispoQZJvAI95oiAZc+Ivf2fM
+         ZXoQs8PmM9Oyby3dkqFvfutpC7MKVmXqC0ReFewbdqX9Vg1YF2YMFzGXS5B9xe8KEmBm
+         RzI5P5Cy5DbNxMaEzXsp+VWQ3jM7AqmWab5LpCL/NdXR8VJ5P9niSnFhSlL6eosyZvNM
+         ZbTNs7t8TvmzSBwZ/9Ya96JormacyVp3apq5SBNbowGtlg2Sfgw3ilHj9w2Jh7odHZ8k
+         MP2A==
+X-Gm-Message-State: AAQBX9fd7UHbH67YqxFA84EsivInuhR+cWCIOmv95MkbNnyaOzVr/Ucq
+        0ZjC9zQVFSf/u491dlfNKA==
+X-Google-Smtp-Source: AKy350b90WVQIgDMVoGX/eXhcr5LX9Nl02T1b/9WRvffRkjKaJKT+ujN9ynrH6QEh/f6dMog/WyyiQ==
+X-Received: by 2002:a9d:6d95:0:b0:6a5:b8e0:d62a with SMTP id x21-20020a9d6d95000000b006a5b8e0d62amr3112088otp.27.1682100247667;
+        Fri, 21 Apr 2023 11:04:07 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id c3-20020a056870b28300b0018b22156e84sm1790729oao.38.2023.04.21.11.01.30
+        by smtp.gmail.com with ESMTPSA id t4-20020a9d66c4000000b006a4244d2a7asm239565otm.9.2023.04.21.11.04.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Apr 2023 11:01:30 -0700 (PDT)
-Received: (nullmailer pid 1552920 invoked by uid 1000);
-        Fri, 21 Apr 2023 18:01:29 -0000
-Date:   Fri, 21 Apr 2023 13:01:29 -0500
+        Fri, 21 Apr 2023 11:04:07 -0700 (PDT)
+Received: (nullmailer pid 1557202 invoked by uid 1000);
+        Fri, 21 Apr 2023 18:04:06 -0000
+Date:   Fri, 21 Apr 2023 13:04:06 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>
-Cc:     linux-usb@vger.kernel.org, hanjie.lin@amlogic.com,
-        gregkh@linuxfoundation.org, linux-kernel@vger.kernel.org,
-        yue.wang@amlogic.com, rockosov@gmail.com, robh+dt@kernel.org,
-        hminas@synopsys.com, martin.blumenstingl@googlemail.com,
-        mturquette@baylibre.com, linux-arm-kernel@lists.infradead.org,
-        jbrunet@baylibre.com, neil.armstrong@linaro.org,
-        linux-phy@lists.infradead.org, vkoul@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-amlogic@lists.infradead.org, khilman@baylibre.com,
-        kishon@kernel.org, Thinh.Nguyen@synopsys.com,
-        kernel@sberdevices.ru, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/5] dt-bindings: usb: dwc2: add support for Amlogic
- A1 SoC USB peripheral
-Message-ID: <168210008936.1552867.8929832255980698687.robh@kernel.org>
-References: <20230418111612.19479-1-ddrokosov@sberdevices.ru>
- <20230418111612.19479-4-ddrokosov@sberdevices.ru>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     robh+dt@kernel.org, linux-pci@vger.kernel.org,
+        lpieralisi@kernel.org, marek.vasut+renesas@gmail.com,
+        fancer.lancer@gmail.com, kw@linux.com, jingoohan1@gmail.com,
+        kishon@kernel.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org, gustavo.pimentel@synopsys.com,
+        bhelgaas@google.com, mani@kernel.org
+Subject: Re: [PATCH v13 16/22] dt-bindings: PCI: dwc: Update maxItems of reg
+ and reg-names
+Message-ID: <168210024605.1557152.8860596690613716414.robh@kernel.org>
+References: <20230418122403.3178462-1-yoshihiro.shimoda.uh@renesas.com>
+ <20230418122403.3178462-17-yoshihiro.shimoda.uh@renesas.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230418111612.19479-4-ddrokosov@sberdevices.ru>
+In-Reply-To: <20230418122403.3178462-17-yoshihiro.shimoda.uh@renesas.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -74,14 +69,15 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Tue, 18 Apr 2023 14:16:10 +0300, Dmitry Rokosov wrote:
-> Provide the appropriate compatible string for the DWC2 IP that is found
-> inside the Amlogic A1 SoC and used in peripheral mode.
+On Tue, 18 Apr 2023 21:23:57 +0900, Yoshihiro Shimoda wrote:
+> Update maxItems of reg and reg-names on both host and endpoint
+> for supporting a new SoC later.
 > 
-> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 > ---
->  Documentation/devicetree/bindings/usb/dwc2.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/pci/snps,dw-pcie-ep.yaml | 4 ++--
+>  Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml    | 4 ++--
+>  2 files changed, 4 insertions(+), 4 deletions(-)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
