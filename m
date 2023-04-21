@@ -2,124 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 96D476EAB4B
-	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 15:13:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9D8C6EAB8E
+	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 15:27:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232119AbjDUNNE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Apr 2023 09:13:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41594 "EHLO
+        id S231693AbjDUN1c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Apr 2023 09:27:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232354AbjDUNND (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 09:13:03 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16A909ECF;
-        Fri, 21 Apr 2023 06:13:02 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A8AB463E7D;
-        Fri, 21 Apr 2023 13:13:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FF73C433D2;
-        Fri, 21 Apr 2023 13:12:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1682082781;
-        bh=LTVF3UalAmWiwiNCKiCSSsd5kOFARhJPHx3eV2qtZfE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=EnFjT+cLXDWGzZ2ck7tAXbOS238fadx5OvphD1h6WpDW1zxp9KWxta5nCszqE9qla
-         fYPHZjk9NQowBxU3/tAjfuR3PXl2la+L7blgf4Uik7rocsNEiItVlmtKF3f9Bz7YCV
-         ZavqiwSgBqkoUYe9VZtdMrZ7GWCN2KrIACfuWa+t35WCl0wPeUMqmulVuXWKIB1LEP
-         Vedfm7zHiUttnBzzwPoI2slNA45yN2Ge2eyBtuaYld0fIUWLG8P5ypIqq3DFyALVLM
-         2bbufYNlOCmRPfLLio26ExAslQCDv7uABZm3Ux+jlLvoqFQXxydbpMRe3FqKvWVpid
-         zqsO7350CAuEQ==
-Date:   Fri, 21 Apr 2023 15:12:53 +0200
-From:   Lorenzo Pieralisi <lpieralisi@kernel.org>
-To:     Sumit Gupta <sumitg@nvidia.com>
-Cc:     treding@nvidia.com, krzysztof.kozlowski@linaro.org,
-        dmitry.osipenko@collabora.com, viresh.kumar@linaro.org,
-        rafael@kernel.org, jonathanh@nvidia.com, robh+dt@kernel.org,
-        helgaas@kernel.org, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
-        mmaddireddy@nvidia.com, kw@linux.com, bhelgaas@google.com,
-        vidyas@nvidia.com, sanjayc@nvidia.com, ksitaraman@nvidia.com,
-        ishah@nvidia.com, bbasu@nvidia.com
-Subject: Re: [Patch v6 7/9] PCI: tegra194: Fix possible array out of bounds
- access
-Message-ID: <ZEKL1XzYzOwcEkHK@lpieralisi>
-References: <20230411110002.19824-1-sumitg@nvidia.com>
- <20230411110002.19824-8-sumitg@nvidia.com>
+        with ESMTP id S231452AbjDUN1b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 09:27:31 -0400
+Received: from mxout3.routing.net (mxout3.routing.net [IPv6:2a03:2900:1:a::8])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B944D324;
+        Fri, 21 Apr 2023 06:27:22 -0700 (PDT)
+Received: from mxbox2.masterlogin.de (unknown [192.168.10.89])
+        by mxout3.routing.net (Postfix) with ESMTP id B836F60506;
+        Fri, 21 Apr 2023 13:20:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+        s=20200217; t=1682083253;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=2RYbc1C9+H/WQ9WMzIcpwV9sAdZeEPo9IAoHwZnSuyo=;
+        b=Lfvi7Eem9Nhmj57IAOhyO1lmXsp8sH5Aec6EXGS1PJapNBZqDUQP3YvPNXrNJgNcOH07jM
+        cnivTjWsKHhywBWQv24qmlZn327p1ZbRNacG1z8sDDAy1BNidID1KiqduqP8/DYeOn6BvR
+        tN4PRrFIUVrpZSuW6Np7i40wHbme6a0=
+Received: from frank-G5.. (fttx-pool-217.61.159.143.bambit.de [217.61.159.143])
+        by mxbox2.masterlogin.de (Postfix) with ESMTPSA id 7541110072A;
+        Fri, 21 Apr 2023 13:20:52 +0000 (UTC)
+From:   Frank Wunderlich <linux@fw-web.de>
+To:     linux-mediatek@lists.infradead.org
+Cc:     Frank Wunderlich <frank-w@public-files.de>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        "Hui.Liu" <hui.liu@mediatek.com>,
+        Zhiyong Tao <zhiyong.tao@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Lala Lin <lala.lin@mediatek.com>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Daniel Golle <daniel@makrotopia.org>
+Subject: Subject: [PATCH v1 0/7] Add mt7986 thermal and pwm
+Date:   Fri, 21 Apr 2023 15:20:40 +0200
+Message-Id: <20230421132047.42166-1-linux@fw-web.de>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230411110002.19824-8-sumitg@nvidia.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Mail-ID: e11c7872-5256-4a48-ae62-b36e397cf910
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 11, 2023 at 04:30:00PM +0530, Sumit Gupta wrote:
-> Add check to fix the possible array out of bounds violation by
-> making speed equal to GEN1_CORE_CLK_FREQ when its value is more
-> than the size of "pcie_gen_freq" array. This array has size of
-> four but possible speed (CLS) values are from "0 to 0xF". So,
-> "speed - 1" values are "-1 to 0xE". This change was suggested by
-> "Bjorn Helgaas" in the below link.
+From: Frank Wunderlich <frank-w@public-files.de>
 
-There is a Suggested-by tag and a Link: tag remove the last
-sentence, that's duplicate information.
+This series add thermal and pwm related devicetree-nodes and necessary
+dt-bindings.
 
-> Suggested-by: Bjorn Helgaas <helgaas@kernel.org>
-> Signed-off-by: Sumit Gupta <sumitg@nvidia.com>
-> Link: https://lore.kernel.org/lkml/72b9168b-d4d6-4312-32ea-69358df2f2d0@nvidia.com/
-> ---
->  drivers/pci/controller/dwc/pcie-tegra194.c | 13 +++++++++++--
->  1 file changed, 11 insertions(+), 2 deletions(-)
+I left pwm-fan for r3 for now as i cannot test this completely due to
+missing 2 pin-jack and 3v3 pwm-level which my fan cannot handle (starts
+spinning at ~3V).
 
-Acked-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
+Daniel Golle (4):
+  arm64: dts: mt7986: add thermal and efuse
+  arm64: dts: mt7986: add PWM
+  arm64: dts: mt7986: add thermal-zones
+  arm64: dts: mt7986: add pwm-fan and cooling-maps to BPI-R3 dts
 
-> diff --git a/drivers/pci/controller/dwc/pcie-tegra194.c b/drivers/pci/controller/dwc/pcie-tegra194.c
-> index 09825b4a075e..e6eec85480ca 100644
-> --- a/drivers/pci/controller/dwc/pcie-tegra194.c
-> +++ b/drivers/pci/controller/dwc/pcie-tegra194.c
-> @@ -223,6 +223,7 @@
->  #define EP_STATE_ENABLED	1
->  
->  static const unsigned int pcie_gen_freq[] = {
-> +	GEN1_CORE_CLK_FREQ,	/* PCI_EXP_LNKSTA_CLS == 0; undefined */
->  	GEN1_CORE_CLK_FREQ,
->  	GEN2_CORE_CLK_FREQ,
->  	GEN3_CORE_CLK_FREQ,
-> @@ -459,7 +460,11 @@ static irqreturn_t tegra_pcie_ep_irq_thread(int irq, void *arg)
->  
->  	speed = dw_pcie_readw_dbi(pci, pcie->pcie_cap_base + PCI_EXP_LNKSTA) &
->  		PCI_EXP_LNKSTA_CLS;
-> -	clk_set_rate(pcie->core_clk, pcie_gen_freq[speed - 1]);
-> +
-> +	if (speed >= ARRAY_SIZE(pcie_gen_freq))
-> +		speed = 0;
-> +
-> +	clk_set_rate(pcie->core_clk, pcie_gen_freq[speed]);
->  
->  	if (pcie->of_data->has_ltr_req_fix)
->  		return IRQ_HANDLED;
-> @@ -1020,7 +1025,11 @@ static int tegra_pcie_dw_start_link(struct dw_pcie *pci)
->  
->  	speed = dw_pcie_readw_dbi(pci, pcie->pcie_cap_base + PCI_EXP_LNKSTA) &
->  		PCI_EXP_LNKSTA_CLS;
-> -	clk_set_rate(pcie->core_clk, pcie_gen_freq[speed - 1]);
-> +
-> +	if (speed >= ARRAY_SIZE(pcie_gen_freq))
-> +		speed = 0;
-> +
-> +	clk_set_rate(pcie->core_clk, pcie_gen_freq[speed]);
->  
->  	tegra_pcie_enable_interrupts(pp);
->  
-> -- 
-> 2.17.1
-> 
+Frank Wunderlich (3):
+  dt-bindings: nvmem: mediatek: efuse: add support for mt7986
+  dt-bindings: iio: adc: Add support for MT7986
+  arm64: dts: mt7986: add PWM to BPI-R3
+
+ .../iio/adc/mediatek,mt2701-auxadc.yaml       |  1 +
+ .../bindings/nvmem/mediatek,efuse.yaml        |  1 +
+ .../dts/mediatek/mt7986a-bananapi-bpi-r3.dts  | 44 +++++++++
+ arch/arm64/boot/dts/mediatek/mt7986a.dtsi     | 89 +++++++++++++++++++
+ 4 files changed, 135 insertions(+)
+
+-- 
+2.34.1
+
