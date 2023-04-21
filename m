@@ -2,81 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F9D76EB005
-	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 19:03:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55BB46EB085
+	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 19:25:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232932AbjDURCd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Apr 2023 13:02:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44334 "EHLO
+        id S229805AbjDURZq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Apr 2023 13:25:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233015AbjDURC1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 13:02:27 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A92F115467
-        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 10:01:57 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-50685f1b6e0so3349458a12.0
-        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 10:01:57 -0700 (PDT)
+        with ESMTP id S231955AbjDURZY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 13:25:24 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B22AB76F
+        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 10:25:23 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-94ed301bba0so324252166b.0
+        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 10:25:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682096489; x=1684688489;
+        d=linaro.org; s=google; t=1682097921; x=1684689921;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Q5IrP6nJv/30opFVXoSmH56HbviMUJyPl8PflHFRUSs=;
-        b=Pcx1wOVGUvDKJYeaYL0Os0ifTloJxfsdBvmuPqUHJrP22lXDOsEK5FCBcY8xPSSaRs
-         gq6t/J1i1kev1Gm05Ca9cs75jZFoM54CH5r5SpkuFNDNJp9ZzyYG2PV+jpEEwejKETtK
-         eJPDpEFKA6ARwjzLJZrupsX0NmrE3puBI4xkf0cBkURTX+khhrhRsG3VkgvLn4j2JPp+
-         PbD5HEVLc3P//JLUOpNac+adCs4SLZaGJG7TzFo4CmZNkSyV/6VVnj3Ai9E54K6xcuvx
-         hH8FNYBGy4Oi3d5WdqSba/mcQhr6xrbkZQx49pHgZCrh/7QA3v8ZqZO158L35TbHzLxF
-         azpQ==
+        bh=KuR1QTA5de2XpIRxwF6wkpWoxygn8gWhtK3M4m5P0yo=;
+        b=Vn1pb6ehuFwl3wRaUgASiDignPRsqNKSAol5FaiF0SheHyxVCprP/+QoCMfMUp+MjU
+         ssO0wpHBSlzJMTEvG1JgnRKVkck5isRzEzVXwNIFtYxJr37MNBTzLQtxQy9tbychWwDH
+         PKWwZLTyTKb75qUQrVDxBZ5Q9u71P4Kz1+wLi/RqosCl2NyGLrS48BSaIZzz8Sdc/hEW
+         +mK/bGu7nqBdyN8J9w6DrfMVl42HLCIYbjjx7Ajhvi1qsqELNASaAaZKoA+Fau+ejKxv
+         bO9buZEOgqYPeu9nzaMX7qE4W3RQVyo5NuIahkbzqN7moGAzyEnvoIyyd9VDfBrzp+eO
+         Jg6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682096489; x=1684688489;
+        d=1e100.net; s=20221208; t=1682097921; x=1684689921;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Q5IrP6nJv/30opFVXoSmH56HbviMUJyPl8PflHFRUSs=;
-        b=TtuHsciyEYkJHMW7vX95Vaji3Cr0WvIkq8oe5AOl1gPC/8cYY8ExLzZKYkDYmiZhAz
-         ZjmuHaNipvL3bCNNOn81eAWwERYXV+/cWpOzVq6KqwtvrR2su/eG1Gji/1oe9jeuJeMF
-         oTwbFr4ozJHT6oT5DHNyFKTWbE9WjQxQYRBqpI4HHMLgKxZwXSi42Bls9oKgD0gECup2
-         Wir4qDKBDf6hCJikdScOhD/UxOoTBje+jz5vovwYGn+ua2hb8uVKLa7AVrk2Sfa1M/RW
-         IVViHz0vRF2w/dXOOJ19E5myCTF/RCENAxhgP783cyvVZunv6xW/uqjGsb5Ghg2K59X1
-         /f/w==
-X-Gm-Message-State: AAQBX9ezdeeviiC4dhShb1Ji/0Pro9ycMxRRHoPQEnmMn0YbtpVd5DGC
-        2sniTCiDbmwLu+ExwP6iQzjgWw==
-X-Google-Smtp-Source: AKy350baFTEWrZDpHVjwi+mtMc0tjDZ/FRCxGqk1vFR7EqSo4UrFw3nAmUJVjjLMT/zjJRbOGeipaw==
-X-Received: by 2002:a50:ea84:0:b0:4fb:b0ce:3f63 with SMTP id d4-20020a50ea84000000b004fbb0ce3f63mr4641257edo.28.1682096488884;
-        Fri, 21 Apr 2023 10:01:28 -0700 (PDT)
+        bh=KuR1QTA5de2XpIRxwF6wkpWoxygn8gWhtK3M4m5P0yo=;
+        b=kBKGa5Yrg90LChv0qFAWGscop0ZHagmYv2wUdoBsqiQOcpMTqo2MEH9/AtkGKe3stI
+         NmGHfH7f+wxTVZJhWRz3DqUmvpRFwHx8j8LKzrD3Y0UzGQgFjmH9KaDb15QxnbTMHldb
+         KguCaEcMp6Gk9hOJmNM6EMtY9MjsSKp3kXwIBed/L/F6pc7jHvIlrKgCYoKWGzEuQX4W
+         CQmuhnySWvh4bCxdL1k0Y1cMwV+qrjuKmkGUW9T4vu4bmMFw0If+Tv+xV1zL6zxMZm7s
+         11eHiFnuCMahrRVQYYMBiI0m518uv7DnfT6TDBklFLvkvfsldBAyCZGZpOAiq9Erikk3
+         MZCA==
+X-Gm-Message-State: AAQBX9cpPFTdwiUEVDh4ljQtvUAdIGStSLD0dlz3QWv83mnd9QzIm5CU
+        Hjaps5fiVHOkfYGcf2a3cXRECQ==
+X-Google-Smtp-Source: AKy350akQcwHtVGFCaVm9vH8T6/N5IsWemFtVpqLTZasE7IGcZlk4RlNsMzNd2z0PCpZeEIJU9aQxQ==
+X-Received: by 2002:a17:906:ecb7:b0:8b1:3467:d71b with SMTP id qh23-20020a170906ecb700b008b13467d71bmr3000598ejb.48.1682097921527;
+        Fri, 21 Apr 2023 10:25:21 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:687d:8c5:41cb:9883? ([2a02:810d:15c0:828:687d:8c5:41cb:9883])
-        by smtp.gmail.com with ESMTPSA id e21-20020a50ec95000000b00502689a06b2sm1994858edr.91.2023.04.21.10.01.27
+        by smtp.gmail.com with ESMTPSA id bj1-20020a170906b04100b0094f7acbafe0sm1243769ejb.177.2023.04.21.10.25.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Apr 2023 10:01:28 -0700 (PDT)
-Message-ID: <2d7d8462-4e75-bbd2-4ae5-6403eda43020@linaro.org>
-Date:   Fri, 21 Apr 2023 19:01:27 +0200
+        Fri, 21 Apr 2023 10:25:20 -0700 (PDT)
+Message-ID: <fde5c0af-8691-6066-3238-01b500000e11@linaro.org>
+Date:   Fri, 21 Apr 2023 19:25:19 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH RESEND v2 1/2] dt-bindings: display: simple: add support
- for InnoLux G070ACE-L01
+Subject: Re: [PATCH v3 1/3] dt-bindings: iio: potentiometer: Add the Renesas
+ X9250 potentiometers
 Content-Language: en-US
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     richard.leitner@linux.dev,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+To:     Herve Codina <herve.codina@bootlin.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        Richard Leitner <richard.leitner@skidata.com>
-References: <20230201-innolux-g070ace-v2-0-2371e251dd40@skidata.com>
- <20230201-innolux-g070ace-v2-1-2371e251dd40@skidata.com>
- <CAD=FV=XJCtqep+92h3gLfs4o2TwvL4MORjc9ydTSpZiZ0dsR0w@mail.gmail.com>
- <fb93e95f-181f-917d-9216-a81dec1a2959@linaro.org>
- <CAD=FV=Vs8UEfBZ56fYb3i1cmFbCSPrbgaedXB4+UvDTOyhzCzw@mail.gmail.com>
- <184f0a80-34bc-5ebf-58bb-82a310eb91f6@linaro.org>
- <CAD=FV=WLHpddAMo7GQwj98TtDn0xw6UzgYUKyVhSDZw1acKpCg@mail.gmail.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20230421085245.302169-1-herve.codina@bootlin.com>
+ <20230421085245.302169-2-herve.codina@bootlin.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAD=FV=WLHpddAMo7GQwj98TtDn0xw6UzgYUKyVhSDZw1acKpCg@mail.gmail.com>
+In-Reply-To: <20230421085245.302169-2-herve.codina@bootlin.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -89,36 +82,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/04/2023 18:51, Doug Anderson wrote:
->>> ...and, again, it matches the order that I thought was right. In other
->>> words, the patch file generated says:
->>>
->>>> Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
->>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>
->> We talk about `b4 trailers`, because the tag is applied by the
->> submitter, not by the maintainer.
->>
->>>
->>> Did I get something wrong in the above?
->>
->> Your `b4 am` will of course put the tag later, because it is you who
->> applies the tag.
+On 21/04/2023 10:52, Herve Codina wrote:
+> The Renesas X9250 is a quad digitally controlled potentiometers.
 > 
-> Ah, got it. So I guess from the perspective of "b4" every time the
-> author modifies a patch (like adding new tags to it) then it's a new
-> application of Signed-off-by and thus the old Signed-off-by is removed
-> from the top and a new one is added below all the tags that have been
-> received. Thus if b4 grabs all the tags off the mailing list for
-> applying it ends up in a different order than if it grabs all the tags
-> off the mailing list for sending a new version.
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> ---
+>  .../iio/potentiometer/renesas,x9250.yaml      | 54 +++++++++++++++++++
+>  1 file changed, 54 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/potentiometer/renesas,x9250.yaml
 > 
-> OK, I can understand that perspective. I'll keep it in mind.
+> diff --git a/Documentation/devicetree/bindings/iio/potentiometer/renesas,x9250.yaml b/Documentation/devicetree/bindings/iio/potentiometer/renesas,x9250.yaml
+> new file mode 100644
+> index 000000000000..dfa36b23eb0d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/potentiometer/renesas,x9250.yaml
+> @@ -0,0 +1,54 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/potentiometer/renesas,x9250.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas X9250 quad potentiometers
+> +
+> +maintainers:
+> +  - Herve Codina <herve.codina@bootlin.com>
+> +
+> +description:
+> +  The Renesas X9250 integrates four digitally controlled potentiometers.
+> +  On each potentiometer, the X9250T has a 100 kOhms total resistance and the
+> +  X9250U has a 50 kOhms total resistance.
+> +
+> +allOf:
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml
+> +  - $ref: /schemas/iio/iio.yaml
 
-Yeah. I actually agree with your point that submitter's SoB should
-always be the last one, but I agree more with using process via
-standardized tools. IOW, since I cannot change in this matter b4, I need
-to agree with it. :)
+Apologies, I missed it last time - you do not need iio.yaml. It's coming
+from core schema and is always selected. You won't find its usage
+anywhere in the kernel (git grep iio.yaml)
+
+With iio.yaml dropped:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
