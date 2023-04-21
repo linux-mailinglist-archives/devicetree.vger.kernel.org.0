@@ -2,560 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D0D966EAB95
-	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 15:28:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12CEA6EAB9B
+	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 15:28:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231898AbjDUN21 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Apr 2023 09:28:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48936 "EHLO
+        id S231452AbjDUN2a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Apr 2023 09:28:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48994 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231991AbjDUN2Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 09:28:25 -0400
-X-Greylist: delayed 62 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 21 Apr 2023 06:28:06 PDT
-Received: from ewsoutbound.kpnmail.nl (ewsoutbound.kpnmail.nl [195.121.94.185])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1ACA1D324
-        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 06:28:05 -0700 (PDT)
-X-KPN-MessageId: 28358edf-e048-11ed-80ce-005056999439
-Received: from smtp.kpnmail.nl (unknown [10.31.155.8])
-        by ewsoutbound.so.kpn.org (Halon) with ESMTPS
-        id 28358edf-e048-11ed-80ce-005056999439;
-        Fri, 21 Apr 2023 15:26:43 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=xs4all.nl; s=xs4all01;
-        h=content-type:from:to:subject:mime-version:date:message-id;
-        bh=vWi/x44lcKq+zBKIxmLKE7euy7KJH7Kft9+PezLNV48=;
-        b=CD005T9bJeuRAh5Q4wgIWt85uqOkx9p8FU3uSvhTm5FSNOb2Ky3OrralmCIBW2/yiBQ5QZxf8lxV6
-         Dpy19hA84tPIRerz+bbT8OkD8yK7EJ0cc0oS9pGVLiT+XEJbKE3XUEzJDfjWKFPMuTpPOkT+Dmttnm
-         AG41NU5j4C99GplEKh5bTvMOWmaEZjfSa0selVJ0IOjlllrr+p9MipCqlJMhpnJrC3ZH3hZrbvvJIK
-         Mfr1izkufxZiE7pfZmALV8NVNuL66NO9mFESrNTinyDq8j5eZR98zlTVTnLlc1HBNfeYmqiwoVMSoh
-         niVK79qTw2mVAfan4LNSenuwQ00CPNQ==
-X-KPN-MID: 33|FpNjAt2YJPmYxjhhTwrVaN2WV/BCrU0VrLF2OTcB6m7OcCr/FP74Ydqk4lFQXU7
- 8PkgFC8cVzI0PTlXA6NVlsw==
-X-KPN-VerifiedSender: Yes
-X-CMASSUN: 33|GQeUAJciaWJZk5xmJ4c0P0I17cSA8sj9F/6qI/CcTDVr/Gy7vs19kLz2PT696jE
- B3QCVcEsQsWI7sOgmOW5uTg==
-X-Originating-IP: 173.38.220.44
-Received: from [10.47.77.214] (unknown [173.38.220.44])
-        by smtp.xs4all.nl (Halon) with ESMTPSA
-        id 300021a7-e048-11ed-b306-00505699d6e5;
-        Fri, 21 Apr 2023 15:26:58 +0200 (CEST)
-Message-ID: <85a999b2-ae13-2ab7-6706-477b9d302efa@xs4all.nl>
-Date:   Fri, 21 Apr 2023 15:26:56 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 2/4] drm/msm: add hdmi cec support
+        with ESMTP id S231459AbjDUN21 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 09:28:27 -0400
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2049.outbound.protection.outlook.com [40.107.223.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E10781258A;
+        Fri, 21 Apr 2023 06:28:09 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=jxNC7wAf0AulZ6a/lGb7U1ip3Q9Z1BlOrxTcGfS49wunN5DxSxbYguX2UDITka00caxWMmHtlCQ8/oxPaluXM7CLFLgpQk6d556G+6ZTTFwKaqDpEPeOAowKZLuaRDKWjboIDQ108g081adA0SambYMqNjaz1zI7DTG0jVBfF86Ny61QF6NUWwbe49P0ZDmw43bFBU56R5bkQz8pInkvZD1z4v+KEFonoKvNN3rBT/CBmHkfaJt024u7aFuUW0mzLLKpFE1L30pVzVUUSZQk6sBGhfvb4/zaDOvSooaZhDJ/i1VGB9T8lvASIp7GhnGX+ZtiRhv+VwtPlDiCA38t9w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vW47UN/vh/G+N87F7Y8wqtXEzR+PWSef1azKjLRw7mU=;
+ b=iD7mblZWoOo5ksl2WGPWqiL+qEv7CVkoXFTjRlPxGmeAmY8cBOhEI3xX5MINYwPipIFzmmyTV6QYKI/uwiOauwOTNLTElYrTK5JqU68l6KwLrmBzgUYk7Ns8H6PDnneRveHKDUm5j/ceQ5HSdS6Y2Fk/CWV++J7Aov54nuOu5oKCh3DUxn6cBHWh5lvvspcWeZDKvbtgCckzoi1Is6jTXRVJF7d5BUYnMGXs1QOyJ8oNrOOJElEBe7EYcQH7VBNl5/r/G1mW6XIkUj6FlntwzC0cSju7wUgNNlFQ/W4EGmYGp5ytK+hzX1caqwakEqzXQ3ndBSn6BooSm/hvlpN+sA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vW47UN/vh/G+N87F7Y8wqtXEzR+PWSef1azKjLRw7mU=;
+ b=2krrEtMgwCMnuz1ExtLatFl36n1BNi1pwQGE6GPqbqxzRsCWqSG24UJVRrf4xQC6ofcQTcqQXRAl1+AlMJO9x/4LmGpAxPYkqVATssXl4vHi6DBSJ3Z+rgkLgJRth21EdKB8msR8hzDxScJx0s7GhlKRHDj0GMSOkXV8H2COyG8=
+Received: from MN2PR12MB4333.namprd12.prod.outlook.com (2603:10b6:208:1d3::23)
+ by PH8PR12MB7424.namprd12.prod.outlook.com (2603:10b6:510:228::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6277.33; Fri, 21 Apr
+ 2023 13:28:04 +0000
+Received: from MN2PR12MB4333.namprd12.prod.outlook.com
+ ([fe80::82c1:97bc:de0:7bf6]) by MN2PR12MB4333.namprd12.prod.outlook.com
+ ([fe80::82c1:97bc:de0:7bf6%5]) with mapi id 15.20.6319.022; Fri, 21 Apr 2023
+ 13:28:03 +0000
+From:   "Mehta, Piyush" <piyush.mehta@amd.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "michal.simek@xilinx.com" <michal.simek@xilinx.com>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Simek, Michal" <michal.simek@amd.com>,
+        "Paladugu, Siva Durga Prasad" <siva.durga.prasad.paladugu@amd.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "git (AMD-Xilinx)" <git@amd.com>
+Subject: RE: [PATCH] dt-bindings: usb: dwc3: xilinx: Add interrupt-names to
+ include hibernation interrupt
+Thread-Topic: [PATCH] dt-bindings: usb: dwc3: xilinx: Add interrupt-names to
+ include hibernation interrupt
+Thread-Index: AQHZbQWTnoxb1Gh2F0KbBkWHL5rgVq8xcHAAgAQebNA=
+Date:   Fri, 21 Apr 2023 13:28:03 +0000
+Message-ID: <MN2PR12MB4333134E60DC454D29BFE2F588609@MN2PR12MB4333.namprd12.prod.outlook.com>
+References: <20230412060843.149283-1-piyush.mehta@amd.com>
+ <20230418184026.GA2099329-robh@kernel.org>
+In-Reply-To: <20230418184026.GA2099329-robh@kernel.org>
+Accept-Language: en-US
 Content-Language: en-US
-To:     Arnaud Vrac <avrac@freebox.fr>, Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org
-References: <20230418-msm8998-hdmi-cec-v1-0-176479fb2fce@freebox.fr>
- <20230418-msm8998-hdmi-cec-v1-2-176479fb2fce@freebox.fr>
-From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
-In-Reply-To: <20230418-msm8998-hdmi-cec-v1-2-176479fb2fce@freebox.fr>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: MN2PR12MB4333:EE_|PH8PR12MB7424:EE_
+x-ms-office365-filtering-correlation-id: 045037dd-c1c6-4c35-30b0-08db426c3c4c
+x-ld-processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: +QZvp+5tv+OILLGAXCTBXAuNdn8sA2rK3Ux5uXJLP2jzmSK6n6ZqDPdn1fPUN8bKAiilYLtasabTTT6bw7ADqsF7WgQdXHyqsR6En5uGjUM3DVr9tExgTsi0DrrZv8A7Gl7jWNtN+n9lAYL1iwrrjsv9j/Hbjmw2EaA8pjememi15zjJibUWjtprdnoU693E8/GJJq5cbYe6uNdioNXvjd/UCec0O3Ak9CoDwQuKVGQjJg9HiccWKCreZalceHTw7xlR1Ud7wpJwrlYY8I65sLniLqkUZOEDQVNaxEDeHC+WOevjtanf+WHVB1sgOorv4qfnCSeJnNpanw3dAOBNKcETNNDnNn1ntJsWhphD4FKoEHP7Yj82NGghV+0J1V6EZ2hhSQdtsRzC50kEGEfOpCcSSRTNTBnFmCK6qDyAjh06qhBK7NZZKFExQ/l6bFQm2Hqv+KhsuujK1bHSjWCmLZ2sid59vXB85ly5VNZ90TrwDGJ9aiEvMhsWOsLmiZzxmpI/N3aqLXF1mWCG/dxZxb8Cpc/JNHaDFfdfc9Fp4DKsMoTYsMyxVnkjUwzBIo8MXbUtTOcCBmfNKHpdttIg//I7pm39IE34MBZqBZaSYefUj4ISgFTT6RYBKa6bdzWNU7JKeUN4jQ7mAb26RzeAAw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR12MB4333.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(376002)(396003)(366004)(136003)(346002)(451199021)(86362001)(33656002)(55016003)(2906002)(83380400001)(26005)(66556008)(66946007)(186003)(53546011)(6916009)(478600001)(66476007)(76116006)(66446008)(8676002)(54906003)(7696005)(41300700001)(71200400001)(8936002)(52536014)(316002)(64756008)(4326008)(5660300002)(38100700002)(9686003)(6506007)(966005)(38070700005)(122000001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?e2fL7lG6pkw0DmI9e707HkwqXtD8uu+ZHjJZt0OEcJiAQJeIiVxU4hLrgex5?=
+ =?us-ascii?Q?yERMOWJ2wQZxduX5OwMgN6ZtMkgw1DZPLKK2pd6qDEpm6MI27gpvRvyGe0JP?=
+ =?us-ascii?Q?jqHjMh6+GsDJ6QXnDZS2co09QJz9kZi8k04NoQ32Kq7cAqOGpyt1/kvNSabC?=
+ =?us-ascii?Q?IfdnSXH6+BQNrPrQLI3eRU+R667e6ze8tE4IVDCzo2q2ptOzJo9pg3dOD7p9?=
+ =?us-ascii?Q?ZljYe1A4+rm9c7DQ283rZybqVtIbPGfrq26lEzNsRw6k6blBVneqGiYgpuMH?=
+ =?us-ascii?Q?AkbhAatQaD2w5V6AX8b3iTX9pc6WmeTpGz0uyWLTAzCtXm5eGdHAh8Sh+9oX?=
+ =?us-ascii?Q?747GXrwXqiQ5Hx2Zf8gUpmv23WOakCBKKLSjqHbSVoKxfw244P04A05S60Tn?=
+ =?us-ascii?Q?NctcbE35D57WgBra1cUFjzR39KELJOXj+sYqnegmAkqpoG0Rps3YDpQtOlvS?=
+ =?us-ascii?Q?a3OAwXbSealNU/PS+VBgOlYSRsx7bP+boltYvPTxMQVof0GsNc0z83F5xtXs?=
+ =?us-ascii?Q?DpJHWnyQ6yWijCUVhYiwQXIceUiojJoCduOx6DcxfSoy3C0ufUvAdyeWMLVl?=
+ =?us-ascii?Q?wIUZrQ8fMsyFnUPf9fpctSX4zqsyhCARsqmYJIx3JTax86t0PYMM2IuIqNGj?=
+ =?us-ascii?Q?npn+eB+8dGnsHqsdJ3kAjAv0JL0xRkZRLpnPY7Hqn7Sp4Z3/miEixpl+USrl?=
+ =?us-ascii?Q?UvisZ1V19yECHmDPtyohMj5V5M3kX2xgDj/9uGPS2hEtZkAHBz66twp/22l4?=
+ =?us-ascii?Q?u19HdyD6JK0bz5wqK6l/I41QjtBiR/yCV7Xf5h7AL5xFyj/Qz4MiP6f6cXa2?=
+ =?us-ascii?Q?sqEyL8zdWP56zQZPutgzUacn5ump/y3lhzmInROVbceIIBwib4u1khfIYyng?=
+ =?us-ascii?Q?ZiqPpecmVd63Sc5v0ZK+N0mWz1ReD8IbZbipFZ2sJwwcLY18GWZUzJm3PQZ4?=
+ =?us-ascii?Q?eiJtlJlg3IYiSZb37MvYlkXBwlrjh3JbBO+oHuYKfMOHaQrD7ow5v90Y5ZbM?=
+ =?us-ascii?Q?pIpBkE4dJbRjpO8Pzi2dOb9XBHHXNHQMIEbnGY3Xl00NUvh3Hpd752n5Wlko?=
+ =?us-ascii?Q?cOL9K5Ws538XmJCYj0oRqsVvB3uleLXTH/Ca2PdAzQt3ATz2UuV+oPk+oJHJ?=
+ =?us-ascii?Q?vjmnbYrC7BVY/DUW55c7rPjhyau0INGfS5NzsjCckrU/1XqDuT1px121LZ7i?=
+ =?us-ascii?Q?p8rJklk8SYzrtfnZxJ1K3MvqEt7BeAYmndgBOpZ9g4YEdsy5/xTJd0ThUY3X?=
+ =?us-ascii?Q?hTP6wlOp1jLctM3oRlC/AyTMf1qtt1H8+o+8GtW76qfQpthC+EKGVib2RMKY?=
+ =?us-ascii?Q?Ndkqibdm0hQ/9FfA26sIH++CVA67k2+JdUV24HJBUjJqO/2qzNgjcrAas1E+?=
+ =?us-ascii?Q?SKyEkwxspKXwIkWJHIxqTI3NrkTDZC4mNf7UAszlLZR34Rg7b78rOsqc5w1Q?=
+ =?us-ascii?Q?gn5r7RErPSyaKsd6adZ6pZJGZSvZ0fbnbhxQep1YUxrKq3HuvQKZiGmRGaYf?=
+ =?us-ascii?Q?pzEW65FQkMpclZXxQvVy/PhQlg5m/yEc25GvSm/19wVZLlXbvdzezHFyK3BO?=
+ =?us-ascii?Q?J/Iq8b+RX6D84jVkahM=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4333.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 045037dd-c1c6-4c35-30b0-08db426c3c4c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Apr 2023 13:28:03.8321
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: UjQEWLyhK3QmAC9A4nWvJlLABdTcoB0GtS1Zu++pMHkc0T0RJGXXmQ3Xer42O/Nb
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB7424
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Arnaud,
+Hi
 
-Some review comments below...
+> -----Original Message-----
+> From: Rob Herring <robh@kernel.org>
+> Sent: Wednesday, April 19, 2023 12:10 AM
+> To: Mehta, Piyush <piyush.mehta@amd.com>
+> Cc: gregkh@linuxfoundation.org; krzysztof.kozlowski+dt@linaro.org;
+> michal.simek@xilinx.com; linux-usb@vger.kernel.org;
+> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; Simek, Michal
+> <michal.simek@amd.com>; Paladugu, Siva Durga Prasad
+> <siva.durga.prasad.paladugu@amd.com>; linux-arm-
+> kernel@lists.infradead.org; git (AMD-Xilinx) <git@amd.com>
+> Subject: Re: [PATCH] dt-bindings: usb: dwc3: xilinx: Add interrupt-names =
+to
+> include hibernation interrupt
+>=20
+> On Wed, Apr 12, 2023 at 11:38:43AM +0530, Piyush Mehta wrote:
+> > The hibernation feature enabled for Xilinx Versal NET SoC in DWC3 IP.
+> > Added host mode interrupts and "usb-wakeup" interrupt-names optional
+> > property in the binding schema to capture remote-wakeup and connect/
+> > disconnect event in the hibernation state.
+> >
+> > Xilinx dwc3-core uses "host" and "otg" interrupts interrupt-names DT
+> > properties from dwc3-core.
+>=20
+> Is wakeup really not implemented in the DWC3 core, but outside it?
 
-On 4/18/23 20:10, Arnaud Vrac wrote:
-> Some Qualcomm SoCs that support HDMI also support CEC, including MSM8996
-> and MSM8998. The hardware block can handle a single CEC logical address
-> and broadcast messages.
-> 
-> Port the CEC driver from downstream msm-4.4 kernel. It has been tested
-> on MSM8998 and passes the cec-compliance tool tests.
+Wakeup is implemented inside the dwc3-core.
 
-Just to verify: did you run the cec-compliance --test-adapter test? That's
-the important one to verify your own driver.
+Initially we planned to implement wakeup interrupt name/interrupt optional =
+property in the dwc3-core.
+However, looking at other vendor wakeup interrupt implementation (Commit: d=
+d566faebe9f dt-bindings: usb: qcom,dwc3: refine interrupt requirements)
+we moved wakeup property to xilinx USB binding.
 
-> 
-> Signed-off-by: Arnaud Vrac <avrac@freebox.fr>
-> ---
->  drivers/gpu/drm/msm/Kconfig         |   8 ++
->  drivers/gpu/drm/msm/Makefile        |   1 +
->  drivers/gpu/drm/msm/hdmi/hdmi.c     |  15 ++
->  drivers/gpu/drm/msm/hdmi/hdmi.h     |  18 +++
->  drivers/gpu/drm/msm/hdmi/hdmi_cec.c | 280 ++++++++++++++++++++++++++++++++++++
->  5 files changed, 322 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/msm/Kconfig b/drivers/gpu/drm/msm/Kconfig
-> index 85f5ab1d552c4..2a02c74207935 100644
-> --- a/drivers/gpu/drm/msm/Kconfig
-> +++ b/drivers/gpu/drm/msm/Kconfig
-> @@ -165,3 +165,11 @@ config DRM_MSM_HDMI_HDCP
->  	default y
->  	help
->  	  Choose this option to enable HDCP state machine
-> +
-> +config DRM_MSM_HDMI_CEC
-> +	bool "Enable HDMI CEC support in MSM DRM driver"
-> +	depends on DRM_MSM && DRM_MSM_HDMI
-> +	select CEC_CORE
-> +	default y
-> +	help
-> +	  Choose this option to enable CEC support
-> diff --git a/drivers/gpu/drm/msm/Makefile b/drivers/gpu/drm/msm/Makefile
-> index 7274c41228ed9..0237a2f219ac2 100644
-> --- a/drivers/gpu/drm/msm/Makefile
-> +++ b/drivers/gpu/drm/msm/Makefile
-> @@ -131,6 +131,7 @@ msm-$(CONFIG_DRM_MSM_DP)+= dp/dp_aux.o \
->  
->  msm-$(CONFIG_DRM_FBDEV_EMULATION) += msm_fbdev.o
->  
-> +msm-$(CONFIG_DRM_MSM_HDMI_CEC) += hdmi/hdmi_cec.o
->  msm-$(CONFIG_DRM_MSM_HDMI_HDCP) += hdmi/hdmi_hdcp.o
->  
->  msm-$(CONFIG_DRM_MSM_DSI) += dsi/dsi.o \
-> diff --git a/drivers/gpu/drm/msm/hdmi/hdmi.c b/drivers/gpu/drm/msm/hdmi/hdmi.c
-> index 3132105a2a433..1dde3890e25c0 100644
-> --- a/drivers/gpu/drm/msm/hdmi/hdmi.c
-> +++ b/drivers/gpu/drm/msm/hdmi/hdmi.c
-> @@ -11,6 +11,8 @@
->  #include <drm/drm_bridge_connector.h>
->  #include <drm/drm_of.h>
->  
-> +#include <media/cec.h>
-> +
->  #include <sound/hdmi-codec.h>
->  #include "hdmi.h"
->  
-> @@ -53,6 +55,9 @@ static irqreturn_t msm_hdmi_irq(int irq, void *dev_id)
->  	if (hdmi->hdcp_ctrl)
->  		msm_hdmi_hdcp_irq(hdmi->hdcp_ctrl);
->  
-> +	/* Process CEC: */
-> +	msm_hdmi_cec_irq(hdmi);
-> +
->  	/* TODO audio.. */
->  
->  	return IRQ_HANDLED;
-> @@ -66,6 +71,8 @@ static void msm_hdmi_destroy(struct hdmi *hdmi)
->  	 */
->  	if (hdmi->workq)
->  		destroy_workqueue(hdmi->workq);
-> +
-> +	msm_hdmi_cec_exit(hdmi);
->  	msm_hdmi_hdcp_destroy(hdmi);
->  
->  	if (hdmi->i2c)
-> @@ -139,6 +146,8 @@ static int msm_hdmi_init(struct hdmi *hdmi)
->  		hdmi->hdcp_ctrl = NULL;
->  	}
->  
-> +	msm_hdmi_cec_init(hdmi);
-> +
->  	return 0;
->  
->  fail:
-> @@ -198,6 +207,12 @@ int msm_hdmi_modeset_init(struct hdmi *hdmi,
->  
->  	drm_connector_attach_encoder(hdmi->connector, hdmi->encoder);
->  
-> +	if (hdmi->cec_adap) {
-> +		struct cec_connector_info conn_info;
-> +		cec_fill_conn_info_from_drm(&conn_info, hdmi->connector);
-> +		cec_s_conn_info(hdmi->cec_adap, &conn_info);
-> +	}
-> +
->  	ret = devm_request_irq(dev->dev, hdmi->irq,
->  			msm_hdmi_irq, IRQF_TRIGGER_HIGH,
->  			"hdmi_isr", hdmi);
-> diff --git a/drivers/gpu/drm/msm/hdmi/hdmi.h b/drivers/gpu/drm/msm/hdmi/hdmi.h
-> index e8dbee50637fa..c639bd87f4b8f 100644
-> --- a/drivers/gpu/drm/msm/hdmi/hdmi.h
-> +++ b/drivers/gpu/drm/msm/hdmi/hdmi.h
-> @@ -29,6 +29,7 @@ struct hdmi_audio {
->  };
->  
->  struct hdmi_hdcp_ctrl;
-> +struct cec_adapter;
->  
->  struct hdmi {
->  	struct drm_device *dev;
-> @@ -73,6 +74,7 @@ struct hdmi {
->  	struct workqueue_struct *workq;
->  
->  	struct hdmi_hdcp_ctrl *hdcp_ctrl;
-> +	struct cec_adapter *cec_adap;
->  
->  	/*
->  	* spinlock to protect registers shared by different execution
-> @@ -261,4 +263,20 @@ static inline void msm_hdmi_hdcp_off(struct hdmi_hdcp_ctrl *hdcp_ctrl) {}
->  static inline void msm_hdmi_hdcp_irq(struct hdmi_hdcp_ctrl *hdcp_ctrl) {}
->  #endif
->  
-> +/*
-> + * cec
-> + */
-> +#ifdef CONFIG_DRM_MSM_HDMI_CEC
-> +int msm_hdmi_cec_init(struct hdmi *hdmi);
-> +void msm_hdmi_cec_exit(struct hdmi *hdmi);
-> +void msm_hdmi_cec_irq(struct hdmi *hdmi);
-> +#else
-> +static inline int msm_hdmi_cec_init(struct hdmi *hdmi)
-> +{
-> +	return -ENXIO;
-> +}
-> +static inline void msm_hdmi_cec_exit(struct hdmi *hdmi) {}
-> +static inline void msm_hdmi_cec_irq(struct hdmi *hdmi) {}
-> +#endif
-> +
->  #endif /* __HDMI_CONNECTOR_H__ */
-> diff --git a/drivers/gpu/drm/msm/hdmi/hdmi_cec.c b/drivers/gpu/drm/msm/hdmi/hdmi_cec.c
-> new file mode 100644
-> index 0000000000000..51326e493e5da
-> --- /dev/null
-> +++ b/drivers/gpu/drm/msm/hdmi/hdmi_cec.c
-> @@ -0,0 +1,280 @@
-> +#include <linux/iopoll.h>
-> +#include <media/cec.h>
-> +
-> +#include "hdmi.h"
-> +
-> +#define HDMI_CEC_INT_MASK ( \
-> +	HDMI_CEC_INT_TX_DONE_MASK | \
-> +	HDMI_CEC_INT_TX_ERROR_MASK | \
-> +	HDMI_CEC_INT_RX_DONE_MASK)
-> +
-> +struct hdmi_cec_ctrl {
-> +	struct hdmi *hdmi;
-> +	struct work_struct work;
-> +	spinlock_t lock;
-> +	u32 irq_status;
-> +	u32 tx_status;
-> +	u32 tx_retransmits;
-> +};
-> +
-> +static int msm_hdmi_cec_adap_enable(struct cec_adapter *adap, bool enable)
-> +{
-> +	struct hdmi_cec_ctrl *cec_ctrl = adap->priv;
-> +	struct hdmi *hdmi = cec_ctrl->hdmi;
-> +
-> +	if (enable) {
-> +		/* timer frequency, 19.2Mhz * 0.05ms / 1000ms = 960 */
-> +		hdmi_write(hdmi, REG_HDMI_CEC_REFTIMER,
-> +			   HDMI_CEC_REFTIMER_REFTIMER(960) |
-> +			   HDMI_CEC_REFTIMER_ENABLE);
-> +
-> +		/* read and write timings */
-> +		hdmi_write(hdmi, REG_HDMI_CEC_RD_RANGE, 0x30AB9888);
-> +		hdmi_write(hdmi, REG_HDMI_CEC_WR_RANGE, 0x888AA888);
-> +		hdmi_write(hdmi, REG_HDMI_CEC_RD_START_RANGE, 0x88888888);
-> +		hdmi_write(hdmi, REG_HDMI_CEC_RD_TOTAL_RANGE, 0x99);
-> +
-> +		/* start bit low pulse duration, 3.7ms */
-> +		hdmi_write(hdmi, REG_HDMI_CEC_RD_ERR_RESP_LO, 74);
-> +
-> +		/* signal free time, 7 * 2.4ms */
-> +		hdmi_write(hdmi, REG_HDMI_CEC_TIME,
-> +			   HDMI_CEC_TIME_SIGNAL_FREE_TIME(7 * 48) |
-> +			   HDMI_CEC_TIME_ENABLE);
-
-The Signal Free Time changes depending on the situation (3, 5 or 7 bit
-periods). Does the hardware take care of that, or do you need to update
-this register in the transmit op as well?
-
-> +
-> +		hdmi_write(hdmi, REG_HDMI_CEC_COMPL_CTL, 0xF);
-> +		hdmi_write(hdmi, REG_HDMI_CEC_WR_CHECK_CONFIG, 0x4);
-> +		hdmi_write(hdmi, REG_HDMI_CEC_RD_FILTER, BIT(0) | (0x7FF << 4));
-> +
-> +		hdmi_write(hdmi, REG_HDMI_CEC_INT, HDMI_CEC_INT_MASK);
-> +		hdmi_write(hdmi, REG_HDMI_CEC_CTRL, HDMI_CEC_CTRL_ENABLE);
-> +	} else {
-> +		hdmi_write(hdmi, REG_HDMI_CEC_INT, 0);
-> +		hdmi_write(hdmi, REG_HDMI_CEC_CTRL, 0);
-> +		cancel_work_sync(&cec_ctrl->work);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int msm_hdmi_cec_adap_log_addr(struct cec_adapter *adap, u8 logical_addr)
-> +{
-> +	struct hdmi_cec_ctrl *cec_ctrl = adap->priv;
-> +	struct hdmi *hdmi = cec_ctrl->hdmi;
-> +
-> +	hdmi_write(hdmi, REG_HDMI_CEC_ADDR, logical_addr & 0xF);
-
-So to disable the logical address you set this to 0xf, right? Since
-CEC_LOG_ADDR_INVALID is 0xff.
-
-> +
-> +	return 0;
-> +}
-> +
-> +static int msm_hdmi_cec_adap_transmit(struct cec_adapter *adap, u8 attempts,
-> +				      u32 signal_free_time, struct cec_msg *msg)
-
-Note that the SFT is passed in as an argument for those hardware devices
-that do not keep track of it themselves.
-
-> +{
-> +	struct hdmi_cec_ctrl *cec_ctrl = adap->priv;
-> +	struct hdmi *hdmi = cec_ctrl->hdmi;
-> +	u8 retransmits;
-> +	u32 broadcast;
-> +	u32 status;
-> +	int i;
-> +
-> +	/* toggle cec in order to flush out bad hw state, if any */
-> +	hdmi_write(hdmi, REG_HDMI_CEC_CTRL, 0);
-> +	hdmi_write(hdmi, REG_HDMI_CEC_CTRL, HDMI_CEC_CTRL_ENABLE);
-> +
-> +	/* flush register writes */
-> +	wmb();
-> +
-> +	retransmits = attempts ? (attempts - 1) : 0;
-> +	hdmi_write(hdmi, REG_HDMI_CEC_RETRANSMIT,
-> +		   HDMI_CEC_RETRANSMIT_ENABLE |
-> +		   HDMI_CEC_RETRANSMIT_COUNT(retransmits));
-> +
-> +	broadcast = cec_msg_is_broadcast(msg) ? HDMI_CEC_WR_DATA_BROADCAST : 0;
-> +	for (i = 0; i < msg->len; i++) {
-> +		hdmi_write(hdmi, REG_HDMI_CEC_WR_DATA,
-> +			   HDMI_CEC_WR_DATA_DATA(msg->msg[i]) | broadcast);
-> +	}
-> +
-> +	/* check line status */
-> +	if (read_poll_timeout(hdmi_read, status, !(status & HDMI_CEC_STATUS_BUSY),
-> +			      5, 1000, false, hdmi, REG_HDMI_CEC_STATUS)) {
-> +		pr_err("CEC line is busy. Retry failed\n");
-
-This doesn't look right. Normally it is the CEC hardware that will wait for the
-bus to become free, and then it will start the transmit. That is not something
-you should have to do in the driver. And this waits for just 1 ms, right? That's
-much too short if a message is currently being received.
-
-Is there documentation of the CEC hardware available somewhere? Or can you
-explain a bit about it?
-
-> +		return -EBUSY;
-> +	}
-> +
-> +	cec_ctrl->tx_retransmits = retransmits;
-> +
-> +	/* start transmission */
-> +	hdmi_write(hdmi, REG_HDMI_CEC_CTRL,
-> +		   HDMI_CEC_CTRL_ENABLE |
-> +		   HDMI_CEC_CTRL_SEND_TRIGGER |
-> +		   HDMI_CEC_CTRL_FRAME_SIZE(msg->len) |
-> +		   HDMI_CEC_CTRL_LINE_OE);
-> +
-> +	return 0;
-> +}
-> +
-> +static void msm_hdmi_cec_adap_free(struct cec_adapter *adap)
-> +{
-> +	struct hdmi_cec_ctrl *cec_ctrl = adap->priv;
-> +
-> +	cec_ctrl->hdmi->cec_adap = NULL;
-> +	kfree(cec_ctrl);
-> +}
-> +
-> +static const struct cec_adap_ops msm_hdmi_cec_adap_ops = {
-> +	.adap_enable = msm_hdmi_cec_adap_enable,
-> +	.adap_log_addr = msm_hdmi_cec_adap_log_addr,
-> +	.adap_transmit = msm_hdmi_cec_adap_transmit,
-> +	.adap_free = msm_hdmi_cec_adap_free,
-> +};
-> +
-> +#define CEC_IRQ_FRAME_WR_DONE 0x01
-> +#define CEC_IRQ_FRAME_RD_DONE 0x02
-> +
-> +static void msm_hdmi_cec_handle_rx_done(struct hdmi_cec_ctrl *cec_ctrl)
-> +{
-> +	struct hdmi *hdmi = cec_ctrl->hdmi;
-> +	struct cec_msg msg = {};
-> +	u32 data;
-> +	int i;
-> +
-> +	data = hdmi_read(hdmi, REG_HDMI_CEC_RD_DATA);
-> +	msg.len = (data & 0x1f00) >> 8;
-> +	if (msg.len < 1 || msg.len > CEC_MAX_MSG_SIZE)
-> +		return;
-> +
-> +	msg.msg[0] = data & 0xff;
-> +	for (i = 1; i < msg.len; i++)
-> +		msg.msg[i] = hdmi_read(hdmi, REG_HDMI_CEC_RD_DATA) & 0xff;
-> +
-> +	cec_received_msg(hdmi->cec_adap, &msg);
-> +}
-> +
-> +static void msm_hdmi_cec_handle_tx_done(struct hdmi_cec_ctrl *cec_ctrl)
-> +{
-> +	struct hdmi *hdmi = cec_ctrl->hdmi;
-> +	u32 tx_status;
-> +
-> +	tx_status = (cec_ctrl->tx_status & HDMI_CEC_STATUS_TX_STATUS__MASK) >>
-> +		HDMI_CEC_STATUS_TX_STATUS__SHIFT;
-> +
-> +	switch (tx_status) {
-> +	case 0:
-> +		cec_transmit_done(hdmi->cec_adap,
-> +				  CEC_TX_STATUS_OK, 0, 0, 0, 0);
-> +		break;
-> +	case 1:
-> +		cec_transmit_done(hdmi->cec_adap,
-> +				  CEC_TX_STATUS_NACK, 0, 1, 0, 0);
-
-It's not clear to me who does the retransmits. There are two possibilities:
-the hardware takes care of that, and so you just get the final result
-and you OR this status with CEC_TX_STATUS_MAX_RETRIES to indicate that
-the CEC framework shouldn't attempt to retry.
-
-Or the hardware just does a single transmit, and in that case you never
-supply the CEC_TX_STATUS_MAX_RETRIES and just leave it up to the framework
-to reissue a transmit.
-
-So here you do no supply MAX_RETRIES...
-
-> +		break;
-> +	case 2:
-> +		cec_transmit_done(hdmi->cec_adap,
-> +				  CEC_TX_STATUS_ARB_LOST, 1, 0, 0, 0);
-
-... and also not here...
-
-> +		break;
-> +	case 3:
-> +		cec_transmit_done(hdmi->cec_adap,
-> +				  CEC_TX_STATUS_MAX_RETRIES |
-> +				  CEC_TX_STATUS_NACK,
-> +				  0, cec_ctrl->tx_retransmits + 1, 0, 0);
-
-...but here you do.
-
-> +		break;
-> +	default:
-> +		cec_transmit_done(hdmi->cec_adap,
-> +				  CEC_TX_STATUS_ERROR, 0, 0, 0, 1);
-> +		break;
-> +	}
-> +}
-> +
-> +static void msm_hdmi_cec_work(struct work_struct *work)
-> +{
-> +	struct hdmi_cec_ctrl *cec_ctrl =
-> +		container_of(work, struct hdmi_cec_ctrl, work);
-> +	unsigned long flags;
-> +
-> +	spin_lock_irqsave(&cec_ctrl->lock, flags);
-> +
-> +	if (cec_ctrl->irq_status & CEC_IRQ_FRAME_WR_DONE)
-> +		msm_hdmi_cec_handle_tx_done(cec_ctrl);
-> +
-> +	if (cec_ctrl->irq_status & CEC_IRQ_FRAME_RD_DONE)
-> +		msm_hdmi_cec_handle_rx_done(cec_ctrl);
-> +
-> +	cec_ctrl->irq_status = 0;
-> +	cec_ctrl->tx_status = 0;
-> +
-> +	spin_unlock_irqrestore(&cec_ctrl->lock, flags);
-> +}
-> +
-> +void msm_hdmi_cec_irq(struct hdmi *hdmi)
-> +{
-> +	struct hdmi_cec_ctrl *cec_ctrl;
-> +	unsigned long flags;
-> +	u32 int_status;
-> +
-> +	if (!hdmi->cec_adap)
-> +		return;
-> +
-> +	cec_ctrl = hdmi->cec_adap->priv;
-> +
-> +	int_status = hdmi_read(hdmi, REG_HDMI_CEC_INT);
-> +	if (!(int_status & HDMI_CEC_INT_MASK))
-> +		return;
-> +
-> +	spin_lock_irqsave(&cec_ctrl->lock, flags);
-> +
-> +	if (int_status & (HDMI_CEC_INT_TX_DONE | HDMI_CEC_INT_TX_ERROR)) {
-> +		cec_ctrl->tx_status = hdmi_read(hdmi, REG_HDMI_CEC_STATUS);
-> +		cec_ctrl->irq_status |= CEC_IRQ_FRAME_WR_DONE;
-> +	}
-> +
-> +	if (int_status & HDMI_CEC_INT_RX_DONE)
-> +		cec_ctrl->irq_status |= CEC_IRQ_FRAME_RD_DONE;
-> +
-> +	spin_unlock_irqrestore(&cec_ctrl->lock, flags);
-> +
-> +	hdmi_write(hdmi, REG_HDMI_CEC_INT, int_status);
-> +	queue_work(hdmi->workq, &cec_ctrl->work);
-> +}
-> +
-> +int msm_hdmi_cec_init(struct hdmi *hdmi)
-> +{
-> +	struct platform_device *pdev = hdmi->pdev;
-> +	struct hdmi_cec_ctrl *cec_ctrl;
-> +	struct cec_adapter *cec_adap;
-> +	int ret;
-> +
-> +	cec_ctrl = kzalloc(sizeof (*cec_ctrl), GFP_KERNEL);
-> +	if (!cec_ctrl)
-> +		return -ENOMEM;
-> +
-> +	cec_ctrl->hdmi = hdmi;
-> +	INIT_WORK(&cec_ctrl->work, msm_hdmi_cec_work);
-> +
-> +	cec_adap = cec_allocate_adapter(&msm_hdmi_cec_adap_ops,
-> +					cec_ctrl, "msm",
-> +					CEC_CAP_DEFAULTS |
-> +					CEC_CAP_CONNECTOR_INFO, 1);
-> +	ret = PTR_ERR_OR_ZERO(cec_adap);
-> +	if (ret < 0) {
-> +		kfree(cec_ctrl);
-> +		return ret;
-> +	}
-> +
-> +	/* Set the logical address to Unregistered */
-> +	hdmi_write(hdmi, REG_HDMI_CEC_ADDR, 0xf);
-> +
-> +	ret = cec_register_adapter(cec_adap, &pdev->dev);
-> +	if (ret < 0) {
-> +		cec_delete_adapter(cec_adap);
-> +		return ret;
-> +	}
-> +
-> +	hdmi->cec_adap = cec_adap;
-> +
-> +	return 0;
-> +}
-> +
-> +void msm_hdmi_cec_exit(struct hdmi *hdmi)
-> +{
-> +	cec_unregister_adapter(hdmi->cec_adap);
-> +}
-> 
-
-Final question: is this CEC device able to transmit messages when the hotplug detect
-pin is low? Some displays pull the HPD low when in Standby, but it is still possible
-to wake them up with a <Image View On> message. It is important to check that.
-
-If this is really not possible, then the CEC_CAP_NEEDS_HPD should be set.
-
-Regards,
-
-	Hans
+>=20
+> >
+> > Signed-off-by: Piyush Mehta <piyush.mehta@amd.com>
+> > ---
+> > Note:
+> > - Xilinx uses dwc3-cores interrupt-names DT property.
+> >   Link:
+> >   Xilinx-dwc3 core:
+> https://github.com/torvalds/linux/blob/master/Documentation/devicetree/bi
+> ndings/usb/dwc3-xilinx.yaml#L129
+> >   dwc3-core:
+> > https://github.com/torvalds/linux/blob/master/Documentation/devicetree
+> > /bindings/usb/snps%2Cdwc3.yaml#L42
+> > ---
+> >  Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml | 9 +++++++++
+> >  1 file changed, 9 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
+> > b/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
+> > index 098b73134a1b..abc32db2448a 100644
+> > --- a/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
+> > +++ b/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
+> > @@ -44,6 +44,15 @@ properties:
+> >        - const: bus_clk
+> >        - const: ref_clk
+> >
+> > +  interrupts:
+> > +    items:
+> > +      - description: Handle to the line usb-wakeup used to wake
+> > +          up the host processor.
+> > +
+> > +  interrupt-names:
+> > +    items:
+> > +      - const: usb-wakeup
+>=20
+> 'wakeup' is the standard name. And you also need 'wakeup-source'
+> property.
+>=20
+> > +
+> >    resets:
+> >      description:
+> >        A list of phandles for resets listed in reset-names.
+> > --
+> > 2.25.1
+> >
