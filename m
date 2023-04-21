@@ -2,70 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 177286EA6E2
-	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 11:26:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2F956EA71F
+	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 11:36:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231682AbjDUJ0y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Apr 2023 05:26:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37620 "EHLO
+        id S230127AbjDUJg1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Apr 2023 05:36:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230052AbjDUJ0x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 05:26:53 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 836EE76A6;
-        Fri, 21 Apr 2023 02:26:51 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 20E8264F43;
-        Fri, 21 Apr 2023 09:26:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64FF0C433D2;
-        Fri, 21 Apr 2023 09:26:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1682069210;
-        bh=V4sdsVOUsepYZTjE1sLvK3nR6G8EVYU9R8GdYObEEvc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=My36iI0dhWRkKXWHsstC4Ri45laeNZFmNEJZVDi9qspdjYu1xSzngDfgnr6Myz6YH
-         dr/J7zgKIjoaDHda2XgoIPuuzjb2Dv5VQaEPXXtCSD3y680WhzBILiaoaxL0CbcYoD
-         4H8g3c7MrI1QaSMPY4VcuYWPxG4mEziKqkkDCTDbAbIj06Rq/aIxfW1ywCTNOuY33y
-         NUcvo1lnHuZk/Be3JojEF2x3j2IJBWRxDGIqz2x4cEHCSVvKJfekOepR3Kj04VDYDt
-         YAI7KjKZYQqoDWkfDhwP1/INht5r5iKRcV1NmZyMeUDiEC2YpBWizPHVrcBWTVrtWj
-         me735zoPNvQIA==
-Date:   Fri, 21 Apr 2023 11:26:42 +0200
-From:   Lorenzo Pieralisi <lpieralisi@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rick Wertenbroek <rick.wertenbroek@gmail.com>,
-        alberto.dassatti@heig-vd.ch, xxm@rock-chips.com,
-        dlemoal@kernel.org, Shawn Lin <shawn.lin@rock-chips.com>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Caleb Connolly <kc@postmarketos.org>,
-        Corentin Labbe <clabbe@baylibre.com>,
-        Brian Norris <briannorris@chromium.org>,
-        Johan Jonker <jbx6244@gmail.com>,
-        Judy Hsiao <judyhsiao@chromium.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Hugh Cole-Baker <sigmaris@gmail.com>,
-        Arnaud Ferraris <arnaud.ferraris@collabora.com>,
-        linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 06/11] dt-bindings: PCI: Update the RK3399 example to
- a valid one
-Message-ID: <ZEJW0giyXAlNMYTz@lpieralisi>
-References: <20230418074700.1083505-1-rick.wertenbroek@gmail.com>
- <20230418074700.1083505-7-rick.wertenbroek@gmail.com>
- <172c46b7-256e-b09d-3940-880fa8989b49@linaro.org>
+        with ESMTP id S229938AbjDUJg0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 05:36:26 -0400
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6577D93CF;
+        Fri, 21 Apr 2023 02:36:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1682069785; x=1713605785;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=ZdhPVeSYHPtv0zuACx4Eqg5I8pftb2XTKuKHkbl9AJ0=;
+  b=Yb3PXKOBfMh0IgF/yzrg1OGxLn8V/prPTa9Ih9i1BR7k9NCRYTpL9xhQ
+   jMsxEyuF3LTavZYyux3mBuXEgHYdMbzKEZu9DgVBZiTD3aRdLrPwSlx9p
+   wRx7vpIXFA/sM84Nc+7JWftdZOHtFNIqWZ3JF3Z1/w+BBkGnRIap2+AYi
+   3uWsNT5VgFcl4xixjZ5v+kRJHy2XsPhjH5DbvTZg1+5QpjwlJjkbPuK4+
+   LFsJPJlsR/zseqEkRbXEqwBh/7U1M6zOpOXDKGgYeVuhwMVZRQD9GjUGP
+   eq3qfT4FHoQmbOROh2ZeUM7WB3jLgMSCtX5kK8FOsINaS2NfTPpHcedWR
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10686"; a="326283980"
+X-IronPort-AV: E=Sophos;i="5.99,214,1677571200"; 
+   d="scan'208";a="326283980"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Apr 2023 02:36:24 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10686"; a="692216444"
+X-IronPort-AV: E=Sophos;i="5.99,214,1677571200"; 
+   d="scan'208";a="692216444"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga002.jf.intel.com with ESMTP; 21 Apr 2023 02:36:21 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1ppnBj-0035cy-3C;
+        Fri, 21 Apr 2023 12:36:19 +0300
+Date:   Fri, 21 Apr 2023 12:36:19 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Dinh Nguyen <dinh.nguyen@linux.intel.com>
+Cc:     Guenter Roeck <linux@roeck-us.net>, linux-hwmon@vger.kernel.org,
+        dinguyen@kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-kernel@vger.kernel.org, jdelvare@suse.com
+Subject: Re: [PATCH 3/5] hwmon: (socfpga) Add hardware monitoring support on
+ SoCFPGA platforms
+Message-ID: <ZEJZE5bxyXsrAZPJ@smile.fi.intel.com>
+References: <20230410153314.27127-1-dinh.nguyen@linux.intel.com>
+ <20230410153314.27127-3-dinh.nguyen@linux.intel.com>
+ <09730359-8731-e21e-3335-bf60ba7f1280@roeck-us.net>
+ <a3e966f8-8e9d-7081-1665-9d2e87acb310@linux.intel.com>
+ <8d158880-1e6a-5fdd-dae7-a7647794eb60@roeck-us.net>
+ <a1a34c32-dbd4-7a77-ab7e-5e34af85900f@linux.intel.com>
+ <ZD/UsuzhZmK3AFJn@smile.fi.intel.com>
+ <f6e4a78d-0199-3135-f85d-800457a731b0@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <172c46b7-256e-b09d-3940-880fa8989b49@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <f6e4a78d-0199-3135-f85d-800457a731b0@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,51 +76,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 19, 2023 at 10:01:25PM +0200, Krzysztof Kozlowski wrote:
-> On 18/04/2023 09:46, Rick Wertenbroek wrote:
-> > Update the example in the documentation to a valid example.
-> > Address for mem-base was invalid, it pointed to address
-> > 0x8000'0000 which is the upper region of the DDR which
-> > is not necessarily populated depending on the board.
-> > This address should point to the base of the memory
-> > window region of the controller which is 0xfa00'0000.
-> > Add missing pinctrl.
+On Thu, Apr 20, 2023 at 09:46:20AM -0500, Dinh Nguyen wrote:
+> On 4/19/2023 6:46 AM, Andy Shevchenko wrote:
+> > On Tue, Apr 18, 2023 at 12:29:40PM -0500, Dinh Nguyen wrote:
+> > > On 4/17/2023 4:51 PM, Guenter Roeck wrote:
+> > > > On 4/17/23 13:55, Dinh Nguyen wrote:
+
+...
+
+> > > > ... and this contradict each other. If bit 31 indicates an error,
+> > > > this can not be a signed 32-bit value.
+> > > > 
+> > > You're right! I've re-read the spec and should have the the code look for
+> > > the specific error values:
+> > > 
+> > > 0x80000000 - inactive
+> > > 0x80000001 - old value
+> > > 0x80000002 - invalid channel
+> > > 0x80000003 -  corrupted.
+> > No, they are not hex. Probably you need to define an error space with it, but
+> > at least just use signed _decimal_ values.
 > > 
-> > Signed-off-by: Rick Wertenbroek <rick.wertenbroek@gmail.com>
-> > ---
-> >  .../devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml      | 4 +++-
-> >  1 file changed, 3 insertions(+), 1 deletion(-)
+> > Instead of BIT(31) this should go as
 > > 
-> > diff --git a/Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml b/Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml
-> > index 88386a6d7011..6b62f6f58efe 100644
-> > --- a/Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml
-> > +++ b/Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml
-> > @@ -47,7 +47,7 @@ examples:
-> >  
-> >          pcie-ep@f8000000 {
-> >              compatible = "rockchip,rk3399-pcie-ep";
-> > -            reg = <0x0 0xfd000000 0x0 0x1000000>, <0x0 0x80000000 0x0 0x20000>;
-> > +            reg = <0x0 0xfd000000 0x0 0x1000000>, <0x0 0xfa000000 0x0 0x2000000>;
-> >              reg-names = "apb-base", "mem-base";
-> >              clocks = <&cru ACLK_PCIE>, <&cru ACLK_PERF_PCIE>,
-> >                <&cru PCLK_PCIE>, <&cru SCLK_PCIE_PM>;
-> > @@ -63,6 +63,8 @@ examples:
-> >              phys = <&pcie_phy 0>, <&pcie_phy 1>, <&pcie_phy 2>, <&pcie_phy 3>;
-> >              phy-names = "pcie-phy-0", "pcie-phy-1", "pcie-phy-2", "pcie-phy-3";
-> >              rockchip,max-outbound-regions = <16>;
-> > +            pinctrl-names = "default";
-> > +            pinctrl-0 = <&pcie_clkreqnb_cpm>;
+> > #define ..._ERR_BASE   INT_MIN // or equivalent if the type is not int
+> > #define ..._ERR_MAX ... // or whatever name is better
+> > 
+> > Then in your code
+> > 
+> > 	if (value >= _ERR_MAX)
+> > 		return 0;
+> > 
+> > 	err = _ERR_MAX - value;
+> > 	switch (err) {
+> > 		...
+> > 	}
+> > 
+> > P.S. I asked during internal review if the values are bit fielded when errors.
+> > AFAIU that time they are, now it seems different.
 > 
-> This is just example of the binding, you do not need to fill all
-> unrelated (generic) properties like pinctrl.
+> Can I ask what's wrong with this simple implementation?
 
-Should I merge it as-is ?
+Technically, nothing, but from understanding point of view it would be better
+to have explicit ranges of error number space vs. actual value space.
 
-Thanks,
-Lorenzo
+The idea in the firmware of that device seems to me similar to what we have in
+the Linux kernel. Note, it may be not _so_ explicitly, but the error number
+space is limited by a PAGE_SIZE. All the same may be applied here.
 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> static int socfpga_hwmon_err_to_errno(struct socfpga_hwmon_priv *priv)
+> {
+>         int value = priv->temperature.value;
 > 
-> Best regards,
-> Krzysztof
-> 
+>         switch (value) {
+>         case ETEMP_NOT_PRESENT:
+>                 return -ENOENT;
+>         case ETEMP_CORRUPT:
+>         case ETEMP_NOT_INITIALIZED:
+>                 return -ENODATA;
+>         case ETEMP_BUSY:
+>                 return -EBUSY;
+>         case ETEMP_INACTIVE:
+>         case ETEMP_TIMEOUT:
+>         case ETEMP_TOO_OLD:
+>                 return -EAGAIN;
+>         default:
+>                 /* No error */
+>                 return 0;
+>         }
+> }
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
