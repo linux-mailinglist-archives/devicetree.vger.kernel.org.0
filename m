@@ -2,76 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7E876EA553
-	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 09:54:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFD8D6EA559
+	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 09:55:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231511AbjDUHyi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Apr 2023 03:54:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60864 "EHLO
+        id S231492AbjDUHy6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Apr 2023 03:54:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231478AbjDUHye (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 03:54:34 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6168B9022
-        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 00:54:06 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-94f4b911570so176093166b.0
-        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 00:54:06 -0700 (PDT)
+        with ESMTP id S231520AbjDUHyj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 03:54:39 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54DD7903E
+        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 00:54:28 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-9505214c47fso211312166b.1
+        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 00:54:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682063645; x=1684655645;
+        d=linaro.org; s=google; t=1682063667; x=1684655667;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=qQTDHxY3+OfXFRoJ5a/+GsFtonll6cxrCx06KzcINrc=;
-        b=pEf+67+V340JAx9qEdRrdGbzU7eOm/ClgZszYQbbqw3kdqILRaCywqUKCPCCpQFNnT
-         IYI+YJY4CPGWlhTnhpdxgZuiWaGbDLe5Ayjio2CPb+LF36msiZ+WyZwuKENbWh5k+Lao
-         Ww7IIentp+02Ar/BdhunVg/3qlhqZIpHVOqDg4KiAie8O5HrDJytTK/2DghOYjWZ+sSn
-         DTqPQ+QV80L0ysTKU18+XbCWdgWw/ND286PbkXt7/o1+r9/1Rw6SfOtzKFourWQYwgTM
-         lxHpfJr4MC6DhDpU/W7BR8THFa8dy1kNRtn3adteO2Fsp4ON8l2xqXG2s73SHqxrdf+r
-         pCOQ==
+        bh=K9W4urLR8mWK8sCFh3b7i91w7oT8Xwt3fC2F/e5DHvg=;
+        b=t2H+i9zs9fkUhS/MkqIXwD+0jUNQxDD8tydDlQotidbdpn64BDdOn3WB2+Xay5M7x+
+         69eQBlM0+cfZkFy29SRRoQfshninnskCE1gZ2uMz4krelV4rMNntzClbl2u+oyFg0l6C
+         OMgqPldEGsy3StjtJy9GDJDCVDWXXYmw1iBw4INcZi2dAgj+l7BiPtna6OSTBu3kIQ/g
+         XHo/F6iVb6VxKMuoM/pXoEX5QzAxO6OJQHK3O0q/Wxk01lKWi8vaGxcGJHtim4OmrslE
+         WS46Lw0pMyxQJmOhGtucXygB53qhvJ52R94RyKN95a/vG6DORYNe8FgP29sh0ziUggLj
+         7IZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682063645; x=1684655645;
+        d=1e100.net; s=20221208; t=1682063667; x=1684655667;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qQTDHxY3+OfXFRoJ5a/+GsFtonll6cxrCx06KzcINrc=;
-        b=Eph4BAFa4jI4/K5VgaZWykIOVzGwVZWgM13KLRRHOjq6wWwWWkOoi/0tgT/8IrTbAp
-         RwPojbwVccO/CCIiV631U2//7qQXyk8fVA2XGlKCApZePD/k3oiwbZwGfEyznco+6hy+
-         6Hm5kds/LJEX2sjHKi/qLADObiJ14SUKPylOHhQiY6j1codYl3gvcx7F5qcLTSgNvJCa
-         jm8xN2r4omsXjugTY4VAdNyEqbdbiU1FtvuFmNT0o31JS59vBENmqLb+iFIhTeYsdidw
-         oZiySLYrsJvkhZN4zDE5cfY4jtiseFMvJnGg739wYabifR8ILa4afzB9Q9qqWmXl845o
-         yRfQ==
-X-Gm-Message-State: AAQBX9ets/Cs0NY64vds3a9SdMiNWbY4JeJ/AN2zjfo57Kt7nDmJKGD0
-        BNplmCEJJztmj4zlxwpk8xH6PQ==
-X-Google-Smtp-Source: AKy350ZkS1Pk2e+lQ/jDIPIibYgYq7xT0UhKLTyOfaFYL9XNjlfG+ZwpVMxiceJjxWF8G4SVvAb9Kw==
-X-Received: by 2002:a17:906:dda:b0:94f:694e:b953 with SMTP id p26-20020a1709060dda00b0094f694eb953mr1214235eji.59.1682063644671;
-        Fri, 21 Apr 2023 00:54:04 -0700 (PDT)
+        bh=K9W4urLR8mWK8sCFh3b7i91w7oT8Xwt3fC2F/e5DHvg=;
+        b=NP5RQQk8XIgCY8cPB9NJCiLoBrzF5b6+RfD0Lcc9Ai0q+cFRebJd0QqvC/PbKK6b6k
+         4siEMlbMhWnkp9DnpEekHmtUtOW7PeXTd+zIyNL7X/HKGJELH8mkMNW/oDA170SJYxFY
+         Vl5YIQnnNAMLDlIFJnqvEIH6B6UlUKiYRjKBZAgj91E4mnrPbfEPcVFDUIqG7FHD8wST
+         ud0IBlHp2fAVipNZwfRY4dWF/T6YRhgBrkrN9HY00Y65qVPBvJHeRbDjnbhMDMCsI9B4
+         KxnZzpvKC7WBWQGDKVZx+mjTi06si37q+qBHBPL9iUZsgLwA/+jYnYTOmhu77Lh9ZTjb
+         ZP/w==
+X-Gm-Message-State: AAQBX9fjLSmSCHh/4fE7BzVUpf102k0k9UB7zvQY+ZkZZ0nzeEpwuG6y
+        2pd+LGjqTONXXipsMh6riA/sluhM3ysfc7ighbU=
+X-Google-Smtp-Source: AKy350YKBg6EHkxRTkS3t1kXGVTRKhTivgCsGpj9wD4D+VlZ6ArZihamBnL0PsnTO7bKlOLL14hZ6Q==
+X-Received: by 2002:a17:907:6d23:b0:953:1fba:7803 with SMTP id sa35-20020a1709076d2300b009531fba7803mr1551774ejc.15.1682063666874;
+        Fri, 21 Apr 2023 00:54:26 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:668b:1e57:3caa:4d06? ([2a02:810d:15c0:828:668b:1e57:3caa:4d06])
-        by smtp.gmail.com with ESMTPSA id f22-20020a170906c09600b0094f7cc13a69sm1703637ejz.181.2023.04.21.00.54.03
+        by smtp.gmail.com with ESMTPSA id ke15-20020a17090798ef00b0095328ce9c8bsm1739752ejc.67.2023.04.21.00.54.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Apr 2023 00:54:04 -0700 (PDT)
-Message-ID: <64dc4a6d-ae39-479b-f4df-34018a43eae0@linaro.org>
-Date:   Fri, 21 Apr 2023 09:54:03 +0200
+        Fri, 21 Apr 2023 00:54:26 -0700 (PDT)
+Message-ID: <0d9740e7-bb03-dc16-5a1e-a551343b213f@linaro.org>
+Date:   Fri, 21 Apr 2023 09:54:25 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH v4 1/2] dt-bindings: clock: Add SM8350 VIDEOCC
+Subject: Re: [PATCH v2 1/3] dt-bindings: iio: potentiometer: Add the Renesas
+ X9250 potentiometers
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+To:     Herve Codina <herve.codina@bootlin.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Taniya Das <tdas@codeaurora.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230413-topic-lahaina_vidcc-v4-0-86c714a66a81@linaro.org>
- <20230413-topic-lahaina_vidcc-v4-1-86c714a66a81@linaro.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20230420161052.270366-1-herve.codina@bootlin.com>
+ <20230420161052.270366-2-herve.codina@bootlin.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230413-topic-lahaina_vidcc-v4-1-86c714a66a81@linaro.org>
+In-Reply-To: <20230420161052.270366-2-herve.codina@bootlin.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,17 +82,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/04/2023 19:32, Konrad Dybcio wrote:
-> SM8350, like most recent higher-end chips has a separate clock
-> controller block just for the Venus IP. Document it.
+On 20/04/2023 18:10, Herve Codina wrote:
+> The Renesas X9250 is a quad digitally controlled potentiometers.
 > 
-> The binding was separated as the driver, unlike the earlier ones, doesn't
-> expect clock-names to keep it easier to maintain.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 > ---
+>  .../iio/potentiometer/renesas,x9250.yaml      | 56 +++++++++++++++++++
+>  1 file changed, 56 insertions(+)
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+My comments for v1 apply, I guess.
 
 Best regards,
 Krzysztof
