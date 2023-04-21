@@ -2,69 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D6B086EADFC
-	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 17:26:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8BA76EAE34
+	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 17:43:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232762AbjDUP0f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Apr 2023 11:26:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58248 "EHLO
+        id S230188AbjDUPnb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Apr 2023 11:43:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232496AbjDUP0e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 11:26:34 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 828FBBB89;
-        Fri, 21 Apr 2023 08:26:33 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-3f1958d3a85so4689855e9.1;
-        Fri, 21 Apr 2023 08:26:33 -0700 (PDT)
+        with ESMTP id S229712AbjDUPna (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 11:43:30 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04645C14D
+        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 08:43:29 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-3f19323259dso7967555e9.3
+        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 08:43:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682090792; x=1684682792;
+        d=amarulasolutions.com; s=google; t=1682091807; x=1684683807;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Sj/J7bBG6FjM8tAyQNQhnbZ2Rmtu2/+gz7MFzMP1cA8=;
-        b=MHvBTVrIttJbs0SZk5eiJLxbUaG74Sfr1EvU0Edd7JVzcuWZvu9RcVyYv6JxRZDfzP
-         f9YEQo1Okn+muqR7g6/eg7VcWVTy9NGGRiuRLlafK08Bpf8F3XyKf8LaxGul7OiTECaO
-         5oKzQwe7R9xqU35OEJ/8qALhWkKSNK1ogkbb1oIT19oZbj+s/Ayx5oWA5F9Ls1IBS//8
-         ZDL5UW2TId5MgsixOw6CiW2hvkuNAiHZX3bCsdV4ytX67STBSNEOVudgmyy+Ep8sRSGM
-         uzm0Is0qWofMsM5wDLWadusSdtn64uKwK0gwZSGzTEBio4rnkxNRND34+QrTwb7m/eiQ
-         TBlg==
+        bh=sMEnXGj3u+SXU62VeCg+ELIQZXSDTJJuwOrlP/w5GEs=;
+        b=bdUvv3JfOrVw/zILmIes6bmwuMa+wnr3MHyk5xmXizhrYrELmhf88wjSE2cmqquS3a
+         fWkYFNsTAITXrjT18M9bgM1Dh+1PDe5JLBYYdc01bsQz4Ic1bTUPxA2yME+bnBil0/zO
+         vKvbP/OAgkv4PS4aibBMZF8S757anBEQEaIrM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682090792; x=1684682792;
+        d=1e100.net; s=20221208; t=1682091807; x=1684683807;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Sj/J7bBG6FjM8tAyQNQhnbZ2Rmtu2/+gz7MFzMP1cA8=;
-        b=M58HZaPNrVACsProyXRGwthfvpaQDmca272mk3NlPF8QZulwGgnHxCTucbxV8PpJgF
-         lZjBlrVzlgwpwU5ryNogZi5FAWwtJw1+RFedf25HWBnw8YU3K+55Z8O9zZ2hDUIoxPZV
-         djKFjqGp+cV6/jCaf+UMQ9E8FUh/NVoUMu9y3MIcSLFkOC5lLpT1OQH7FEFqOAEcKNho
-         fqKxpGlQ4UnWs5FxRInMXgz275p3MJjrPlL+pHte1qLj9IKpFF++7R9L1YP10jDNFR1h
-         YBjwWCOD0EQ9LxCFhLe4HcsnNKPmlSkdoiCWXMGOUX8b4IP15ltINeNuklI+zz5hjjV9
-         ZBrg==
-X-Gm-Message-State: AAQBX9f1kzRPIsD0RmpIceZVH2uMMyo3IpUjAETjp6/YPO2LwLfefnP2
-        gV/RUuFVweopor90hpKVBvc=
-X-Google-Smtp-Source: AKy350Yxinw9SGq3XrBKhx6z7PPrrBznT5wZk4Zl9gpfkCIh1CtMRhsQD2QqD1qHq6nHgxWbSXUeZQ==
-X-Received: by 2002:a1c:cc04:0:b0:3f0:9f9b:1665 with SMTP id h4-20020a1ccc04000000b003f09f9b1665mr2276223wmb.3.1682090791749;
-        Fri, 21 Apr 2023 08:26:31 -0700 (PDT)
-Received: from archbox.v.cablecom.net (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
-        by smtp.gmail.com with ESMTPSA id a12-20020a05600c224c00b003f1788eeffesm8363153wmm.43.2023.04.21.08.26.30
+        bh=sMEnXGj3u+SXU62VeCg+ELIQZXSDTJJuwOrlP/w5GEs=;
+        b=Jxxx/B3nd9PtRRkbKGdzgGODPZRZZ78o7I6M/+M1auedaD9/WyhgPus83HNLxvdsht
+         vHTIUFOYEK6j03dKTXjLX5r8hestZsTPnbonVN0+54GVUKEUVjUgVWQlQ35o0Rqne9EI
+         SB27OkN/IjcemqOudXSmTGD5wzZeA+G/uWmuja+0Z3hx40kzPcsDECJ6312jqegfwpCO
+         QOThki4+AY8+XaN0ooQsf1W9em3fSZM16HBRQ4Vz6f/H4OfRZfKueH/lPiE/Xeu8FDBP
+         VCHSQhoAhojrrM11h/PgJnGRRCdj84M+FDDvpfTUEv/Y3Gcxd4571Hh4Zj3KGwq4epQE
+         bgaw==
+X-Gm-Message-State: AAQBX9czGp/T3vwYiulT7SpRjHZ5A3DFDO1hVWpNQbMZJRGeKEbt5IRy
+        a7U3FhDOtj4y91QJ3qTdWJdPpQ==
+X-Google-Smtp-Source: AKy350YnSQtq123y2pQ09gEzQfB5N3RkWCbeSE+y7DhwsFraKIM8xPzW/lvSXmN6tH+XvnykN9Qt2w==
+X-Received: by 2002:a7b:cb47:0:b0:3f0:967e:2cfb with SMTP id v7-20020a7bcb47000000b003f0967e2cfbmr2410174wmj.36.1682091807382;
+        Fri, 21 Apr 2023 08:43:27 -0700 (PDT)
+Received: from dario-ThinkPad-T14s-Gen-2i.. ([37.159.127.129])
+        by smtp.gmail.com with ESMTPSA id g18-20020a5d5552000000b002e51195a3e2sm4651609wrw.79.2023.04.21.08.43.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Apr 2023 08:26:31 -0700 (PDT)
-From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        Fri, 21 Apr 2023 08:43:26 -0700 (PDT)
+From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     michael@amarulasolutions.com,
+        Amarula patchwork <linux-amarula@amarulasolutions.com>,
+        Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+        Adam Ford <aford173@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>
-Cc:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2] arm64: dts: rockchip: fix nEXTRST on SOQuartz
-Date:   Fri, 21 Apr 2023 17:26:10 +0200
-Message-Id: <20230421152610.21688-1-frattaroli.nicolas@gmail.com>
-X-Mailer: git-send-email 2.40.0
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Marek Vasut <marex@denx.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 0/7] add displays support for bsh-smm-s2/pro boards
+Date:   Fri, 21 Apr 2023 17:43:01 +0200
+Message-Id: <20230421154308.527128-1-dario.binacchi@amarulasolutions.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,120 +83,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In pre-production prototypes (of which I only know one person
-having one, Peter Geis), GPIO0 pin A5 was tied to the SDMMC
-power enable pin on the CM4 connector. On all production models,
-this is not the case; instead, this pin is used for the nEXTRST
-signal, and the SDMMC power enable pin is always pulled high.
+The series adds drivers for the displays used by bsh-smm-s2/pro boards.
+It has been tested applying it on top of these patches:
 
-Since everyone currently using the SOQuartz device trees will
-want this change, it is made to the tree without splitting the
-trees into two separate ones of which users will then inevitably
-choose the wrong one.
+Adam Ford <aford173@gmail.com> (6)
+  arm64: dts: imx8mn: Add display peripherals
+  drm: bridge: samsung-dsim: Dynamically configure DPHY timing
+  drm: bridge: samsung-dsim: Fetch pll-clock-frequency automatically
+  drm: bridge: samsung-dsim: Fix PMS Calculator on imx8m[mnp]
+  drm: bridge: samsung-dsim: Support non-burst mode
+  drm: bridge: samsung-dsim: Support multi-lane calculations
 
-This fixes USB and PCIe on a wide variety of CM4IO-compatible
-boards which use the nEXTRST signal.
+Series "drm: Add Samsung MIPI DSIM bridge" (https://lwn.net/Articles/925754/)
+Marek Vasut <marex@denx.de> (1):
+0adce1be8dc0 drm: bridge: samsung-dsim: Add i.MX8M Plus support
 
-Fixes: 5859b5a9c3ac ("arm64: dts: rockchip: add SoQuartz CM4IO dts")
-Signed-off-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
----
-Changes in v2:
- - use GPIO hog instead of a fake regulator
+Jagan Teki <jagan@amarulasolutions.com> (9):
+0a98655a08cc dt-bindings: display: exynos: dsim: Add NXP i.MX8M Plus support
+b25b5384e27d drm: bridge: samsung-dsim: Add i.MX8M Mini/Nano support
+ee83295c036d dt-bindings: display: exynos: dsim: Add NXP i.MX8M Mini/Nano support
+f18605b9b682 drm: bridge: Generalize Exynos-DSI driver into a Samsung DSIM bridge
+8ab12dbce060 drm: exynos: dsi: Add host helper for te_irq_handler
+c37c8e89af38 drm: exynos: dsi: Consolidate component and bridge
+11276ea9964a drm: exynos: dsi: Add atomic_get_input_bus_fmts
+2fe8a5f92c08 drm: exynos: dsi: Add input_bus_flags
+5d79cf173994 drm: exynos: dsi: Add atomic check
 
- .../boot/dts/rockchip/rk3566-soquartz-cm4.dts | 18 +++++++-----
- .../boot/dts/rockchip/rk3566-soquartz.dtsi    | 29 +++++++++----------
- 2 files changed, 24 insertions(+), 23 deletions(-)
+Marek Szyprowski <m.szyprowski@samsung.com> (1):
+b9ad1112014d drm: exynos: dsi: Handle proper host initialization
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts b/arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts
-index 263ce40770dd..cddf6cd2fecb 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts
-@@ -28,6 +28,16 @@ vcc_5v: vcc-5v-regulator {
- 		regulator-max-microvolt = <5000000>;
- 		vin-supply = <&vcc12v_dcin>;
- 	};
-+
-+	vcc_sd_pwr: vcc-sd-pwr-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_sd_pwr";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc3v3_sys>;
-+	};
- };
- 
- /* phy for pcie */
-@@ -130,13 +140,7 @@ &saradc {
- };
- 
- &sdmmc0 {
--	vmmc-supply = <&sdmmc_pwr>;
--	status = "okay";
--};
--
--&sdmmc_pwr {
--	regulator-min-microvolt = <3300000>;
--	regulator-max-microvolt = <3300000>;
-+	vmmc-supply = <&vcc_sd_pwr>;
- 	status = "okay";
- };
- 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-soquartz.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-soquartz.dtsi
-index ce7165d7f1a1..3036985e2567 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-soquartz.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-soquartz.dtsi
-@@ -104,16 +104,6 @@ vcc3v3_sys: vcc3v3-sys-regulator {
- 		regulator-max-microvolt = <3300000>;
- 		vin-supply = <&vcc5v0_sys>;
- 	};
--
--	sdmmc_pwr: sdmmc-pwr-regulator {
--		compatible = "regulator-fixed";
--		enable-active-high;
--		gpio = <&gpio0 RK_PA5 GPIO_ACTIVE_HIGH>;
--		pinctrl-names = "default";
--		pinctrl-0 = <&sdmmc_pwr_h>;
--		regulator-name = "sdmmc_pwr";
--		status = "disabled";
--	};
- };
- 
- &cpu0 {
-@@ -155,6 +145,19 @@ &gmac1m0_clkinout
- 	status = "disabled";
- };
- 
-+&gpio0 {
-+	nextrst-hog {
-+		gpio-hog;
-+		/*
-+		 * GPIO_ACTIVE_LOW + output-low here means that the pin is set
-+		 * to high, because output-low decides the value pre-inversion.
-+		 */
-+		gpios = <RK_PA5 GPIO_ACTIVE_LOW>;
-+		output-low;
-+		line-name = "nEXTRST";
-+	};
-+};
-+
- &gpu {
- 	mali-supply = <&vdd_gpu>;
- 	status = "okay";
-@@ -538,12 +541,6 @@ wifi_enable_h: wifi-enable-h {
- 			rockchip,pins = <2 RK_PC2 RK_FUNC_GPIO &pcfg_pull_none>;
- 		};
- 	};
--
--	sdmmc-pwr {
--		sdmmc_pwr_h: sdmmc-pwr-h {
--			rockchip,pins = <0 RK_PA5 RK_FUNC_GPIO &pcfg_pull_none>;
--		};
--	};
- };
- 
- &pmu_io_domains {
+Jagan Teki <jagan@amarulasolutions.com> (5):
+93b2ce0c329d drm: exynos: dsi: Introduce hw_type platform data
+83d704dc0cf6 drm: exynos: dsi: Add platform PLL_P (PMS_P) offset
+f25b304ea948 drm: exynos: dsi: Mark PHY as optional
+6c59da2ae519 drm: exynos: dsi: Lookup OF-graph or Child node devices
+2186e15100de drm: exynos: dsi: Drop explicit call to bridge detach
+
+
+
+Michael Trimarchi (7):
+  dt-bindings: display: panel: Add synaptics r63353 panel controller
+  drm/panel: Add Synaptics R63353 panel driver
+  arm64: dts: imx8mn-bsh-smm-s2/pro: add display setup
+  dt-bindings: display: panel: Add Ilitek ili9805 panel controller
+  drm/panel: Add Ilitek ILI9805 panel driver
+  dt-bindings: ili9805: add compatible string for Tianma TM041XDHG01
+  drm/panel: ilitek-ili9805: add support for Tianma TM041XDHG01 panel
+
+ .../display/panel/ilitek,ili9805.yaml         |  61 +++
+ .../display/panel/synaptics,r63353.yaml       |  58 +++
+ MAINTAINERS                                   |  12 +
+ .../freescale/imx8mn-bsh-smm-s2-common.dtsi   |   1 +
+ .../freescale/imx8mn-bsh-smm-s2-display.dtsi  | 111 +++++
+ drivers/gpu/drm/panel/Kconfig                 |  16 +
+ drivers/gpu/drm/panel/Makefile                |   2 +
+ drivers/gpu/drm/panel/panel-ilitek-ili9805.c  | 418 ++++++++++++++++++
+ .../gpu/drm/panel/panel-synaptics-r63353.c    | 376 ++++++++++++++++
+ 9 files changed, 1055 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/ilitek,ili9805.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/panel/synaptics,r63353.yaml
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-display.dtsi
+ create mode 100644 drivers/gpu/drm/panel/panel-ilitek-ili9805.c
+ create mode 100644 drivers/gpu/drm/panel/panel-synaptics-r63353.c
+
 -- 
-2.40.0
+2.32.0
 
