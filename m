@@ -2,95 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B7B306EA5E2
-	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 10:31:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 67F246EA5FC
+	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 10:38:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230047AbjDUIbM convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 21 Apr 2023 04:31:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55692 "EHLO
+        id S229709AbjDUIiM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Apr 2023 04:38:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231386AbjDUIbK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 04:31:10 -0400
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E76898A54;
-        Fri, 21 Apr 2023 01:31:09 -0700 (PDT)
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-54f9e41dfa7so4562927b3.3;
-        Fri, 21 Apr 2023 01:31:09 -0700 (PDT)
+        with ESMTP id S229580AbjDUIiL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 04:38:11 -0400
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3BCF7EE7
+        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 01:38:09 -0700 (PDT)
+Received: by mail-yb1-xb2c.google.com with SMTP id 3f1490d57ef6-b992ed878ebso1230455276.0
+        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 01:38:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1682066289; x=1684658289;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0Na+mhLlCZP4BYt7q+bkQvLPhWmuuQ6MH0k/Crose/0=;
+        b=o/EKk3sjC92+m0clgEBPpTglulEDVrMenkttM9C0Sge1sKkbW7fnOoUxH5Sa1K66mO
+         51FGwA96yHzSvunI7675/Ksjtfc4vf9N3ocoM+ANDleoPOufIFlc1vVg7lkoQFs4blyF
+         +x9SZLzA+fNEiAFYdLWoCaCFxl9pQV2kw+B1dfxMhr/iEbhpcOC2WJthJIcRdcoolI7q
+         UOfW9YnB5ULrS9QepBgYtvzjyRcpOShMubLqgwuteKvlYQdxNZ4C5HnjbeXDOcvhkfC0
+         0SVsW42xcPSFWpraF/ARdeE7KczE/zh8r7YhxDVgGmSB5fAow2ZNMJIfdGLtcc40Mv6+
+         Q20w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682065869; x=1684657869;
+        d=1e100.net; s=20221208; t=1682066289; x=1684658289;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=XJk3HTBeWzZb2MBrPdY3fa4qSP22CufNx4/oB5AHnas=;
-        b=bsxp1q6Ed3cmYewioVSdXEZZ7wIXq5Mu00h8HZRZmNgavVYi3vEqpikeCEalDZFs2i
-         hWfv0TM/MXzpcVJ9Q71uwp41HG1wY6tDkl32JLkDp6QzoixkY85hzW1NL5GJ5ReLR3PT
-         0gCkt1euuPZliMopOmV8Vhr4kxSlW6aH9fQnlq4bovAxRe0OiS/o+afzDgcwVL81aj3m
-         cpAYwv8nhj8bQJSJI6ZlMMJIMlqyB9I/LKNUT70G/ypRbDouGlVarvTmw7wg7nDXwfzv
-         XWmZPPEgQGEv+hfmJsE+uix99Ih1nst63QKGpww0aEjDnSK12hU4PsSDlDdsguCVPpfq
-         VHdw==
-X-Gm-Message-State: AAQBX9eIcdYmfCMSOV20pf3QFPjIEpfr2/V3NpEzYVdvt2V2MTrMB33c
-        192F/AHdGyu9GP8u//OCnN8DXk38UB71THWs
-X-Google-Smtp-Source: AKy350bT7Fikl+l0vtTOYb6J9xjiW/Ls2ail2HfQVCcjbi34sSLCc4U6vvzPn9DgtxEC/sqIY/0z6g==
-X-Received: by 2002:a81:4f81:0:b0:54f:9b17:c7db with SMTP id d123-20020a814f81000000b0054f9b17c7dbmr1124686ywb.10.1682065868988;
-        Fri, 21 Apr 2023 01:31:08 -0700 (PDT)
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
-        by smtp.gmail.com with ESMTPSA id y3-20020a0dd603000000b0054e82b6a95esm829855ywd.42.2023.04.21.01.31.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Apr 2023 01:31:08 -0700 (PDT)
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-54f9e41dfa7so4562827b3.3;
-        Fri, 21 Apr 2023 01:31:08 -0700 (PDT)
-X-Received: by 2002:a0d:df8d:0:b0:545:637c:3ed7 with SMTP id
- i135-20020a0ddf8d000000b00545637c3ed7mr1500731ywe.1.1682065867983; Fri, 21
- Apr 2023 01:31:07 -0700 (PDT)
+        bh=0Na+mhLlCZP4BYt7q+bkQvLPhWmuuQ6MH0k/Crose/0=;
+        b=IMjlPZadGXlY1p480yLjBEH9MfONEgFjpJjKb2IE9HTGiWQE+yVmNuRzQs/RzxtL9T
+         yxXfeiEFqm/95JxCfBtIj0iN3WAWCUqMm5I3XIrmGll2JPENb/QYXCyCz1w/DopfH0fG
+         wFX85LGv1M/CXBbQ7IekMTAsJ6chDhjT+nWGafodabWRVOLPKufJFkdfHKR7SUresGmY
+         Co1HOdIZpghZolxWWQmX1YMfq7Zy/pOOX8pZ1xERHrgsQesTRzDTA26IUlytKp5lHfQH
+         iQv2Nn6JlbJqgS3YBBZTgXOjP//G9Gwe4Ruzm7BwiXgTaie0rHIMVLP9fmUeR43YVG3e
+         vZMw==
+X-Gm-Message-State: AAQBX9eTUebfiL3CHE0+rQfgf+YSeds0kl7MBiyEvAGPcdDHZfJVG4be
+        X8BSl9wGY0idWqx3VJpCick4F0a/vbbJNccqe8nNhw==
+X-Google-Smtp-Source: AKy350ZE/0wxNoQSE2KS3FY23vGXEFddblhhoDADF08iPkctflkmc0uTDpm56sQpI8oiVEWuPEnqA1BOSsEaj9xoB2o=
+X-Received: by 2002:a0d:d68d:0:b0:54f:9b37:c1af with SMTP id
+ y135-20020a0dd68d000000b0054f9b37c1afmr1454890ywd.1.1682066288945; Fri, 21
+ Apr 2023 01:38:08 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230413114016.16068-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdUNfcu=opFMSTP2E_VkgWXHazHFL2_Z4B0gFvQ7k8z7ZA@mail.gmail.com>
-In-Reply-To: <CAMuHMdUNfcu=opFMSTP2E_VkgWXHazHFL2_Z4B0gFvQ7k8z7ZA@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 21 Apr 2023 10:30:56 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVm=ahKaWZR2fK=T7GQwgBpnJ8xgYj_iBF0TxN3Ra5xcA@mail.gmail.com>
-Message-ID: <CAMuHMdVm=ahKaWZR2fK=T7GQwgBpnJ8xgYj_iBF0TxN3Ra5xcA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: rg2lc-smarc: Enable CRU, CSI support
-To:     Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20230417061337.6552-1-quic_devipriy@quicinc.com>
+In-Reply-To: <20230417061337.6552-1-quic_devipriy@quicinc.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 21 Apr 2023 10:37:57 +0200
+Message-ID: <CACRpkdabXUHUcE3Aq=t1ixYVvXWptnet1mqarLv7aK9CRAx3Gw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: pinctrl: qcom: Add few missing functions
+To:     Devi Priya <quic_devipriy@quicinc.com>
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_srichara@quicinc.com, quic_sjaganat@quicinc.com,
+        quic_kathirav@quicinc.com, quic_arajkuma@quicinc.com,
+        quic_anusha@quicinc.com
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 20, 2023 at 3:49 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> On Thu, Apr 13, 2023 at 1:40 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Enable CRU, CSI on RZ/G2LC SMARC EVK and tie the CSI to the OV5645 sensor
-> > using Device Tree overlay.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Mon, Apr 17, 2023 at 8:14=E2=80=AFAM Devi Priya <quic_devipriy@quicinc.c=
+om> wrote:
+
+> Added the missing functions cri_trng2, gpio and removed the
+> duplicate entry qdss_tracedata_b
 >
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> i.e. will queue in renesas-devel for v6.5.
+> Fixes: 5b63ccb69ee8 ("dt-bindings: pinctrl: qcom: Add support for IPQ9574=
+")
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
 
-With s/rg2lc-smarc/rzg2lc-smarc/.
+Patch applied.
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Yours,
+Linus Walleij
