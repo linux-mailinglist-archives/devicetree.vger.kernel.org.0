@@ -2,111 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D1CE6EA7B1
-	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 11:57:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8245C6EA7B9
+	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 11:59:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231879AbjDUJ5p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Apr 2023 05:57:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34696 "EHLO
+        id S231317AbjDUJ7S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Apr 2023 05:59:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231819AbjDUJ5n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 05:57:43 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90357AD05
-        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 02:57:41 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-504eccc8fc8so2071448a12.2
-        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 02:57:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682071060; x=1684663060;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ll096wS+rMglwJUqHd7/WviOAK7D+NwskZNxj/VNilE=;
-        b=x7/VlZitTyclDzd4sI/XDO8hgRJmkhaUmI9qAJFg/WWdopJe/xPdFJtXHOWMBmHchF
-         SG7gMPPK3FCjaV+WIkN20GtRm1fo4/IXGT0W36JTywqUu7upngxjS16nlKRnDzkUlVRu
-         /hMEm9VpDBY9mSTq8fNB/Ea3yz5MS0YXEnr0ckIffzwD7SqxCJMjY/SG5HTNpnVw/zGj
-         u3oW9vGYwe6dNesRbHa8w1anFUjvNL27Z+nRJwnhFHyAiUgqmKQAvpyRlaFSOt4QN5mm
-         6kVTvkrnQk523qfuauWKWHvh8ZxQZzOLKTIlbFTF9Wzh7c/Q5asD+s44mwrPYuAbkwTC
-         JxeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682071060; x=1684663060;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ll096wS+rMglwJUqHd7/WviOAK7D+NwskZNxj/VNilE=;
-        b=WAVq209D16wKmHedRfotFVhTF7bp690xkuufQGzygXFH1f4yBNNL1zqHovZBpNs0nM
-         9LaaCzlCDxJs78wQj1JUO7UGRvXji1tVZNWBs1+4Y3nNuySyLvbHgPu3NJKLooRZCfKu
-         FRkMlEQwvWYX9I91MR930M40tAA5fBHVuHRP1DCvZEzM5sm7j5gB1WgNxuVUikE/u71W
-         nHeLViq4wIGs31wd/YVsyXOfsYJ1/YdZGNn9cqQcPxhXBCk0F4l1ASyhtBfpZPXrXcFm
-         0te3wdRFdb82IPbwhs2NHntZaX2FKW4Gp7dcoK8ZZRohnBEN6eNboMoiUiIF9DFue6JI
-         uS6g==
-X-Gm-Message-State: AAQBX9dMKrge4E4ia9SeiGu/fkT+NHDYGf/5Bx1i8AD+IlOjES9LTXtB
-        Kjim9g5eumQZUOulZtuJVLo2oQ==
-X-Google-Smtp-Source: AKy350Ze8DH2vV1SQhJHC1mCp9M5Zia3JaHxu3ktakvGrCE/pUS0tx+VxY0PsWOLP6ct7di+QhLOAw==
-X-Received: by 2002:aa7:d683:0:b0:506:be43:e1ae with SMTP id d3-20020aa7d683000000b00506be43e1aemr4163022edr.34.1682071060070;
-        Fri, 21 Apr 2023 02:57:40 -0700 (PDT)
-Received: from krzk-bin.. ([2a02:810d:15c0:828:668b:1e57:3caa:4d06])
-        by smtp.gmail.com with ESMTPSA id f7-20020a05640214c700b004fa380a14e7sm1686062edx.77.2023.04.21.02.57.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Apr 2023 02:57:39 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     replicant@osuosl.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Jonathan Bakker <xc-racer2@live.ca>,
-        Pawel Chmiel <pawel.mikolaj.chmiel@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 4/4] ARM: dts: s5pv210: add dummy 5V regulator for backlight on SMDKv210
-Date:   Fri, 21 Apr 2023 11:57:21 +0200
-Message-Id: <20230421095721.31857-4-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230421095721.31857-1-krzysztof.kozlowski@linaro.org>
-References: <20230421095721.31857-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S231273AbjDUJ7R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 05:59:17 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B51B8AF38;
+        Fri, 21 Apr 2023 02:59:15 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33L9Zl95013077;
+        Fri, 21 Apr 2023 09:58:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
+ cc : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=qcppdkim1; bh=mH1yRwdyfBGlx7ue1iz6rfx3JzGxQNBiTPZdXuAKA20=;
+ b=gnXAnoEu3DjamoQMVwxHSzwbt4OWXcBgneGzmScoe0XZubpD0XNvTGOFbBglCf9i4v3b
+ xt8qhwymRk432lsTO2Zdu5ueuCyXRTPqDdvP+zZPFVS19jb+/Ius3hdwWxUXSxEa9F6w
+ BxNpswsJzdOUu3sgpDcbSEWIjkRaEwfHLSkVktKAvP7B92CTVuGuHfVU//P76QOFiP3d
+ SgM+LFbVsHxfg6/SkP/hky3+t29L40GqU8gi1vYfEqNtjtA51OTnUrcsOtkTc9Ttx+4C
+ /eNOHxHBtfHVn26rJTHiiYWs/xnlUzrHpoZHSba4SYmCmEnIckseagv8OfJBJQ9uiYWl ZQ== 
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q3dcmh9cc-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 21 Apr 2023 09:58:50 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+        by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33L9wnt1026221
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 21 Apr 2023 09:58:49 GMT
+Received: from varda-linux.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Fri, 21 Apr 2023 02:58:43 -0700
+Date:   Fri, 21 Apr 2023 15:28:39 +0530
+From:   Varadarajan Narayanan <quic_varada@quicinc.com>
+To:     Johan Hovold <johan@kernel.org>
+CC:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <vkoul@kernel.org>,
+        <kishon@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <gregkh@linuxfoundation.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <quic_wcheng@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>
+Subject: Re: [PATCH v8 2/8] dt-bindings: phy: qcom,qmp-usb: Add IPQ9574 USB3
+ PHY
+Message-ID: <20230421095838.GA5813@varda-linux.qualcomm.com>
+References: <cover.1680693149.git.quic_varada@quicinc.com>
+ <1efa9a64499767d939efadd0aef897ac4a6e54eb.1680693149.git.quic_varada@quicinc.com>
+ <0a66e291-a86d-1ff9-e674-839b8cc8f1da@linaro.org>
+ <ZDz9t9TkBqZ1fcfn@hovoldconsulting.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <ZDz9t9TkBqZ1fcfn@hovoldconsulting.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: HkjpSBWiKHcIpBqiN8ceaiazLMOuKFFz
+X-Proofpoint-GUID: HkjpSBWiKHcIpBqiN8ceaiazLMOuKFFz
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-21_03,2023-04-20_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ lowpriorityscore=0 adultscore=0 phishscore=0 spamscore=0 impostorscore=0
+ mlxlogscore=999 malwarescore=0 suspectscore=0 clxscore=1011 mlxscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303200000 definitions=main-2304210085
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Backlight is supplied by DC5V regulator.  The DTS has no PMIC node, so
-just add a regulator-fixed to solve it and fix dtbs_check warning:
+On Mon, Apr 17, 2023 at 10:05:11AM +0200, Johan Hovold wrote:
+> On Thu, Apr 06, 2023 at 09:41:49AM +0200, Krzysztof Kozlowski wrote:
+> > On 05/04/2023 13:41, Varadarajan Narayanan wrote:
+> > > Add dt-bindings for USB3 PHY found on Qualcomm IPQ9574
+> > >
+> > > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> > > ---
+> > >  Changes in v8:
+> > > 	- Update clock names for ipq9574
+> > >
+> > >  Changes in v6:
+> > > 	- Made power-domains optional
+> > >
+> > > Note: In the earlier patch sets, had used the (legacy)
+> > > specification available in qcom,msm8996-qmp-usb3-phy.yaml. Moved
+> > > to newer specification in qcom,sc8280xp-qmp-usb3-uni-phy.yaml
+> > > ---
+> > >  .../phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml        | 43 +++++++++++++++++++---
+> > >  1 file changed, 37 insertions(+), 6 deletions(-)
+>
+> > > +        clock-names:
+> > > +          items:
+> > > +            - const: aux
+> > > +            - const: ref
+> > > +            - const: com_aux
+> >
+> > Can anyone explain me why do we name these (here and other Qualcomm
+> > bindings) based on clock name, not input? Just because different clock
+> > is fed to the block, does not necessarily mean the input should be named
+> > differently.
+>
+> I guess part of the answer is that this has just been copied from the
+> vendor dts and (almost) no one but Qualcomm has access to the
+> documentation. What would the input names be here?
+>
+> Also note that there are SoCs that enable both 'cfg_ahb' and 'com_aux'
+> (e.g. sc7180).
 
-  s5pv210-smdkv210.dtb: backlight: 'power-supply' is a required property
+The clock name definitions are auto-generated based on the clock
+tree definitions provided by the h/w team. We followed the naming
+pattern done in the previous SoCs.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm/boot/dts/s5pv210-smdkv210.dts | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Thanks
+Varada
 
-diff --git a/arch/arm/boot/dts/s5pv210-smdkv210.dts b/arch/arm/boot/dts/s5pv210-smdkv210.dts
-index fbae768d65e2..6e26c67e0a26 100644
---- a/arch/arm/boot/dts/s5pv210-smdkv210.dts
-+++ b/arch/arm/boot/dts/s5pv210-smdkv210.dts
-@@ -55,6 +55,14 @@ backlight {
- 		default-brightness-level = <6>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pwm3_out>;
-+		power-supply = <&dc5v_reg>;
-+	};
-+
-+	dc5v_reg: regulator-0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "DC5V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
- 	};
- };
- 
--- 
-2.34.1
-
+>
+> > > +            - const: pipe
+> > > +
+> > >  examples:
+> > >    - |
+> > >      #include <dt-bindings/clock/qcom,gcc-sc8280xp.h>
+>
+> Johan
