@@ -2,165 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BB6F6EA12A
-	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 03:43:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 081AD6EA15A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 04:00:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233147AbjDUBnp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 21:43:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43054 "EHLO
+        id S232996AbjDUCAu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 22:00:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229689AbjDUBno (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 21:43:44 -0400
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED1051724
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 18:43:43 -0700 (PDT)
-Received: by mail-pl1-x633.google.com with SMTP id d9443c01a7336-1a9290a6f96so216325ad.1
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 18:43:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20221208; t=1682041423; x=1684633423;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dIxy13HfCmUT7EC5y5m4UCU0YeS0VjV5fZQ5jhML6eE=;
-        b=qw8MaCUvrN0Zk46JopzDu1i95viE1y9QMcRYLwicZ7IUpzsNd4mLhxoglU3f6L67tD
-         XcHwkffp88Zp+CzDTdY0ZDrRe/0OpumfRosvaqq/M9HtwUW9JNTdtiqDzE6giLTNmfut
-         F3FiSaMXOj4IirV4/0xlNrpPfnNEsfSOg61PM2JDllV/+Xk4aKiYJP9QM0ZaNA/PoVmy
-         TP3aixmciyyj/ICJb85pAPLqFEW7VHzwO8TTIJDXTRDDVVRoPnHlrrl+W6hizmnSsnAp
-         s66LEehvPywdjmkjlJi0ZAVxnyQj8dk96ylVOMAcK4MRhtGNcJCjpMp0splqkZs50TCu
-         9SSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682041423; x=1684633423;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dIxy13HfCmUT7EC5y5m4UCU0YeS0VjV5fZQ5jhML6eE=;
-        b=jHtcpTz+DjwbNIKLiPYUOL0qBv6ieic03YEP0ZG5x+Z+0tyCg4vca0hW5pl7TxNvOt
-         Vb8hH26pSWR5FoBlVCmYbAnLX3kwM0N2xc0o6MPkp9fnmyIztDJbAJFF61lxb1g+SKTs
-         22azaoFPW0+e49NZHE/N+hwKiO7OwI5o2QKvr759kzRZqs5NPjLktGkzKyMQxkWLWvw+
-         p5P36fnt3cv966BDW963ImYDmjjYk4y1qqbNONh3iqP+ajY3P1PJNl/60OxP4RUe6hjX
-         QmPxrH3Bcx5c7drScf+K2PsGKxoMCc18xztpq2SvLsyi+p2mQo2JLBFCVvyet64eLeAK
-         XjwA==
-X-Gm-Message-State: AAQBX9cA+N7SU+c0fGc+j+QfUx2NTkv6lOxImVpV4p5yt/G26hpfuW/y
-        IxDA2cqMF6T/ejgszondM6JNeP+OMtvR06uXhiH89w==
-X-Google-Smtp-Source: AKy350aS2eg9ZuypDmu9bYDHvI0CqyL2p3mLuHY04xWLwJca+BkbuN4FFuxU81uvAcWXOwQQKjaQmXxLG+p3pbWr7Rs=
-X-Received: by 2002:a17:902:eb8c:b0:1a9:23a7:7c57 with SMTP id
- q12-20020a170902eb8c00b001a923a77c57mr135908plg.10.1682041423159; Thu, 20 Apr
- 2023 18:43:43 -0700 (PDT)
-MIME-Version: 1.0
-References: <cover.1681580558.git.noodles@earth.li> <f26d11e613df7bd55822ff3fb7689e36bf9e4f7a.1681580558.git.noodles@earth.li>
- <20230416012421.255bfd19@slackpad.lan> <ZEGOk1isRhaekk3h@earth.li>
-In-Reply-To: <ZEGOk1isRhaekk3h@earth.li>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Thu, 20 Apr 2023 18:43:06 -0700
-Message-ID: <CAGETcx-UnEK3CPC38Ef3gmHcq46nXSJbA9QAwEsF+Xt2bDKEWA@mail.gmail.com>
-Subject: Re: [PATCH 1/3] ARM: dts: sun5i: chip: Enable bluetooth
-To:     Jonathan McDowell <noodles@earth.li>
-Cc:     Andre Przywara <andre.przywara@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        with ESMTP id S229660AbjDUCAu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 22:00:50 -0400
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 86F41183;
+        Thu, 20 Apr 2023 19:00:47 -0700 (PDT)
+Received: from loongson.cn (unknown [10.20.42.35])
+        by gateway (Coremail) with SMTP id _____8AxEk5O7kFkF84fAA--.38221S3;
+        Fri, 21 Apr 2023 10:00:46 +0800 (CST)
+Received: from [10.20.42.35] (unknown [10.20.42.35])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8BxXbNN7kFkqEoyAA--.2723S3;
+        Fri, 21 Apr 2023 10:00:45 +0800 (CST)
+Subject: Re: [PATCH v13 1/2] thermal: loongson-2: add thermal management
+ support
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=ham autolearn_force=no version=3.4.6
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>,
+        Liu Peibao <liupeibao@loongson.cn>, wanghongliang@loongson.cn,
+        zhanghongchen <zhanghongchen@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
+References: <20230221095355.9799-1-zhuyinbo@loongson.cn>
+ <1af930f6-51ae-c986-3eeb-556b2fa34047@linaro.org>
+From:   zhuyinbo <zhuyinbo@loongson.cn>
+Message-ID: <070bd997-b70b-ede1-fe71-dcf410aa3c1a@loongson.cn>
+Date:   Fri, 21 Apr 2023 10:00:45 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
+MIME-Version: 1.0
+In-Reply-To: <1af930f6-51ae-c986-3eeb-556b2fa34047@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8BxXbNN7kFkqEoyAA--.2723S3
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvJXoW7Zw1fAF17Wr4DAr4UGFyxuFg_yoW8JFW5p3
+        y2ka98KF4qgr1v9a13K34fWF98ua93Xr4DAwn5Ww4kC3y5W34fKrnrtFyY93WkCw4SgrWU
+        CF4Dt34kGa1DAFJanT9S1TB71UUUUUJqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        bDxFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
+        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28E
+        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Cr0_Gr1UM2
+        8EF7xvwVC2z280aVCY1x0267AKxVW8Jr0_Cr1UM2kKe7AKxVWUXVWUAwAS0I0E0xvYzxvE
+        52x082IY62kv0487Mc804VCY07AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I
+        80ewAv7VC0I7IYx2IY67AKxVWUXVWUAwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCj
+        c4AY6r1j6r4UM4x0Y48IcVAKI48JMxk0xIA0c2IEe2xFo4CEbIxvr21lc7CjxVAaw2AFwI
+        0_JF0_Jw1l42xK82IYc2Ij64vIr41l42xK82IY6x8ErcxFaVAv8VWrMxC20s026xCaFVCj
+        c4AY6r1j6r4UMxCIbckI1I0E14v26r1Y6r17MI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxV
+        Cjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY
+        6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42IY6x
+        AIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY
+        1x0267AKxVWUJVW8JbIYCTnIWIevJa73UjIFyTuYvjxU2-txDUUUU
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 20, 2023 at 12:12=E2=80=AFPM Jonathan McDowell <noodles@earth.l=
-i> wrote:
->
-> On Sun, Apr 16, 2023 at 01:24:21AM +0100, Andre Przywara wrote:
-> > On Sat, 15 Apr 2023 18:46:03 +0100
-> > Jonathan McDowell <noodles@earth.li> wrote:
-> >
-> > > The C.H.I.P has an rtl8723bs device with the bluetooth interface hook=
-ed
-> > > up on UART3. Support for this didn't exist in mainline when the DTS w=
-as
-> > > initially added, but it does now, so enable it.
-> > >
-> > > Signed-off-by: Jonathan McDowell <noodles@earth.li>
-> > > ---
-> > >  arch/arm/boot/dts/sun5i-r8-chip.dts | 4 ++++
-> > >  1 file changed, 4 insertions(+)
-> > >
-> > > diff --git a/arch/arm/boot/dts/sun5i-r8-chip.dts b/arch/arm/boot/dts/=
-sun5i-r8-chip.dts
-> > > index fd37bd1f3920..4d72a181d8aa 100644
-> > > --- a/arch/arm/boot/dts/sun5i-r8-chip.dts
-> > > +++ b/arch/arm/boot/dts/sun5i-r8-chip.dts
-> > > @@ -255,6 +255,10 @@ &uart3 {
-> > >     pinctrl-0 =3D <&uart3_pg_pins>,
-> > >                 <&uart3_cts_rts_pg_pins>;
-> > >     status =3D "okay";
-> > > +
-> > > +   bluetooth {
-> > > +           compatible =3D "realtek,rtl8723bs-bt";
-> > > +   }
-> >
-> > As the kernel test robot already pointed out, there is a semicolon
-> > missing here.
-> > Otherwise looks good (dt-validate passes), but don't know if there are
-> > any wakeup GPIOs connected (can't seem to find a schematic?).
->
-> So there are wakeups, but if I add:
->
->         device-wake-gpios =3D <&axp_gpio 3 GPIO_ACTIVE_LOW>;
->         host-wake-gpios =3D <&pio 1 3 GPIO_ACTIVE_HIGH>; /* PB3 */
->
-> then some odd sort of dependency issue happens where the serial port
-> load is deferred waiting for the GPIO to appear, and then the device
-> doesn't work.
 
-When you say your device doesn't work, are you saying it never probes?
-<debugfs>/devices_deferred should tell you what devices have deferred and w=
-hy.
 
-> Error in dmesg is:
->
-> serial serial0-0: deferred probe pending
->
-> on 6.3-rc and on 6.1 I get:
->
-> dw-apb-uart 1c28c00.serial: Failed to create device link (0x180) with axp=
-20x-gpio
+在 2023/4/20 下午11:54, Krzysztof Kozlowski 写道:
+> On 21/02/2023 10:53, Yinbo Zhu wrote:
+>> This patch adds the support for Loongson-2 thermal sensor controller,
+>> which can support maximum 4 sensors, each sensor contains a sampling
+>> register and a control register. The sampling register is used to obtain
+>> the temperature in real time, the control register GATE field is used to
+>> set the threshold of high or low temperature, when the input temperature
+>> is higher than the high temperature threshold or lower than the low
+>> temperature threshold, an interrupt will occur.
+>>
+>> Signed-off-by: zhanghongchen <zhanghongchen@loongson.cn>
+>> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+>> ---
+>> Change in v13:
+>> 		1. Add a description about that how works the sensor.
+>> 		2. Drop the COMPILE_TEST.
+> 
+> Why? We want to compile test. We really, really want.
+> 
 
-This error message doesn't block anything. So I don't think this is
-the cause of your blocking issue. But I still want to understand why
-this error message is showing up.
+I noted a commit "8df4ef3eaa62b" that accoring to Daniel's reminder.
 
-> I'm not clear why it's trying to link the serial port to the GPIO; it
-> seems that it should be the bluetooth device that depends on both the
-> UART and the GPIO,
+That commit "8df4ef3eaa62b" patch said "Since commit 0166dc11be91 ("of:
+make CONFIG_OF user selectable"), it is possible to test-build any
+driver which depends on OF on any architecture by explicitly
+selecting OF. Therefore depending on COMPILE_TEST as an alternative is
+no longer needed."
 
-A fix for the device link error message went in on v6.3-rc3. Is that
-the 6.3 version you tested this on?
+Thanks.
 
-Also, I tried looking into the UART driver
-(drivers/tty/serial/8250/8250_dw.c) but it wasn't clear how it ends up
-populating the bluetooth serial device. If you can point that out,
-that'd be helpful (assuming 6.3-rc3 still shows that error message).
+> Best regards,
+> Krzysztof
+> 
 
-> and that the GPIO is actually optional so shouldn't
-> hold up loading, but I can't see how that should be represented.
-
-Optional dependencies should get ignored after the default
-deferred_probe_timeout runs out and the supplier driver hasn't been
-loaded yet.
-
--Saravana
-
-> Adding Greg + Saravana in the hope they can tell me what I've done wrong
-> here. The LED driver using a different GPIO line on the axp209 works
-> fine, so the device is definitely loaded and working ok.
