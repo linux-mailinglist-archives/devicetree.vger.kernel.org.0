@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 40F7B6EAE3C
-	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 17:44:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D2C36EAE3A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 17:44:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232646AbjDUPnp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Apr 2023 11:43:45 -0400
+        id S232440AbjDUPns (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Apr 2023 11:43:48 -0400
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232628AbjDUPnn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 11:43:43 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 856AA125A2
-        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 08:43:36 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-3f178da21b5so13607665e9.3
-        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 08:43:36 -0700 (PDT)
+        with ESMTP id S232802AbjDUPnp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 11:43:45 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8B8612C9B
+        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 08:43:41 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-3f1957e80a2so14837975e9.1
+        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 08:43:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1682091815; x=1684683815;
+        d=amarulasolutions.com; s=google; t=1682091820; x=1684683820;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=/Rh5L0vsYaIJ9UtaeVaKtzuEvdISSccm2v33XZZjkI4=;
-        b=Nf5g+P/2+GOnJtcEETuFuhmiT6sxWDb6M/P8XwlazYJzQwW+ryb8LT/aCq3QZmzpHg
-         0jyLaje0Akfc1PqNEne8n2TBpyR4vRHCS8Bl5tfmjXt5I9o1krBiH9+pXPXGLo/yiOoL
-         f0MfOzY040ehJ8oafyUGYk1kmQpoEkpb43mNk=
+        bh=TSTxzI2UL4iyV0x1qsc6iOOIHOUmxegUBSvF/ZUcYNk=;
+        b=i40TYNbdQuSpdWFF00dXQx786i/9MjaamcmD6i7fvKTAN3xxgc2TJNs2u1oep1YUPB
+         KzvgUjujGlJKhd6gCCnxGMP3GyH3L8F0lpfgRfzddPiVm+e+EuWXZLuXv2E2zdVJ4L8P
+         vM1h1S1JpUDsWTlxclBSN439k8JqgZKD8j5WI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682091815; x=1684683815;
+        d=1e100.net; s=20221208; t=1682091820; x=1684683820;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=/Rh5L0vsYaIJ9UtaeVaKtzuEvdISSccm2v33XZZjkI4=;
-        b=fJEaeKAPAYcbPkXffBiR1oZqUtXJzPzCCRTk8DYhIGow7Pf57p2C8FBHELLJi5wljU
-         zi9Cu9cn5e7PPPajnhjL6qf0IBSJxT7xI8O95YAeo+kDB51Oa7xMX0Xw0GPz1ZCQO8P7
-         DVSS4TUriqJMWEwwcSE2wQ9MseDgaeQ6r6qYgZeyI/AY7BLtfPHUEySnYmZ63qHOwl2r
-         +HjyZInLRMj+cGQ9morLc3OrT053eC+FeOYqfrgz/tlzg7S9E3HgoY8fQfppvHg/Ez+P
-         LaRHrlc37OMYt8E1g89UqR5g8TL6Ic6RSLXMac1G5OO+DeppBHtYOrNPLbv6OUItQvi7
-         dfMQ==
-X-Gm-Message-State: AAQBX9dZV7jZwn7khg/uQuYbx/ScKUjI6wFAu1xOlPcXWX1RM8BmPyuu
-        EVhdSbiMl9kSl+CTm0d+Hah/WQ==
-X-Google-Smtp-Source: AKy350Z4jDGfwkjgv5nKn5t4OLHWR40djybZIow/2j2qoDHhl3eeH7HhQlGAOSGiV0g/WfUXMy3PmQ==
-X-Received: by 2002:a05:6000:1b85:b0:2fb:2a43:4a97 with SMTP id r5-20020a0560001b8500b002fb2a434a97mr4068854wru.39.1682091815035;
-        Fri, 21 Apr 2023 08:43:35 -0700 (PDT)
+        bh=TSTxzI2UL4iyV0x1qsc6iOOIHOUmxegUBSvF/ZUcYNk=;
+        b=aVfPTUryIng9aYa/K75tAnByFLD3gNNHMw/BJgvcwByr0A2PygWc5SIIZ+Um6/4dQX
+         4Qo/iBOvQ6Wj6C2ivBg6VJ5cvSKhw5WQOLXcDQ2xBjVxE9IL65kLG/1HDsWP1VLFgQZp
+         QHL6JZbzFg7mpnIqjBz+WUiTTBEXp84W21YqZPjGAjuyI9kBxcUYhd1aw7z9x/KiDaPj
+         mg5vE6oP48IWHuyfD0XM5cgmcPZO5D4hlEYZ/7YSgciH0Oa+W7ZoooOmpeJf5vIuIvpQ
+         8pePfTeEkCTmHVpXIg2/1lpg2v/wz058D42TMuXZwEH8eLBmsgKW+KY3Og1397MLYdOn
+         oRAg==
+X-Gm-Message-State: AAQBX9cN0JUEgBO32vN+9Qnd7vi8aiUB34zHg4mFikpLCwdtk7YDlSdJ
+        mLaIF1vVTuWyy7vOjq/KupeFbw==
+X-Google-Smtp-Source: AKy350Z4srGvgKG10mBjRPzYdYpuxudfGWzNDz/qzD+shoAncKiAblL4cxYi1jVsAyWCzfyuso0tLg==
+X-Received: by 2002:adf:e689:0:b0:2f9:805f:eecb with SMTP id r9-20020adfe689000000b002f9805feecbmr4493211wrm.3.1682091820245;
+        Fri, 21 Apr 2023 08:43:40 -0700 (PDT)
 Received: from dario-ThinkPad-T14s-Gen-2i.. ([37.159.127.129])
-        by smtp.gmail.com with ESMTPSA id g18-20020a5d5552000000b002e51195a3e2sm4651609wrw.79.2023.04.21.08.43.33
+        by smtp.gmail.com with ESMTPSA id g18-20020a5d5552000000b002e51195a3e2sm4651609wrw.79.2023.04.21.08.43.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Apr 2023 08:43:34 -0700 (PDT)
+        Fri, 21 Apr 2023 08:43:39 -0700 (PDT)
 From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
 To:     linux-kernel@vger.kernel.org
 Cc:     michael@amarulasolutions.com,
@@ -58,9 +58,9 @@ Cc:     michael@amarulasolutions.com,
         Sam Ravnborg <sam@ravnborg.org>,
         Thierry Reding <thierry.reding@gmail.com>,
         devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-Subject: [PATCH 4/7] dt-bindings: display: panel: Add Ilitek ili9805 panel controller
-Date:   Fri, 21 Apr 2023 17:43:05 +0200
-Message-Id: <20230421154308.527128-5-dario.binacchi@amarulasolutions.com>
+Subject: [PATCH 6/7] dt-bindings: ili9805: add compatible string for Tianma TM041XDHG01
+Date:   Fri, 21 Apr 2023 17:43:07 +0200
+Message-Id: <20230421154308.527128-7-dario.binacchi@amarulasolutions.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20230421154308.527128-1-dario.binacchi@amarulasolutions.com>
 References: <20230421154308.527128-1-dario.binacchi@amarulasolutions.com>
@@ -78,82 +78,30 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Michael Trimarchi <michael@amarulasolutions.com>
 
-Add documentation for "ilitek,ili9805" panel.
+Add Tianma TM041XDHG01 that utilizes an Ilitek ILI9805 controller chip,
+so its compatible string should be added to ilitek,ili9805 file.
+
+Add the compatible string for it.
 
 Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
 Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 ---
 
- .../display/panel/ilitek,ili9805.yaml         | 60 +++++++++++++++++++
- 1 file changed, 60 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/panel/ilitek,ili9805.yaml
+ .../devicetree/bindings/display/panel/ilitek,ili9805.yaml        | 1 +
+ 1 file changed, 1 insertion(+)
 
 diff --git a/Documentation/devicetree/bindings/display/panel/ilitek,ili9805.yaml b/Documentation/devicetree/bindings/display/panel/ilitek,ili9805.yaml
-new file mode 100644
-index 000000000000..57c36cf22e4a
---- /dev/null
+index 57c36cf22e4a..6065ef5ec385 100644
+--- a/Documentation/devicetree/bindings/display/panel/ilitek,ili9805.yaml
 +++ b/Documentation/devicetree/bindings/display/panel/ilitek,ili9805.yaml
-@@ -0,0 +1,60 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/panel/ilitek,ili9805.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Ilitek ILI9805 based MIPI-DSI panels
-+
-+maintainers:
-+  - Michael Trimarchi <michael@amarulasolutions.com>
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - giantplus,gpm1790a0
-+      - const: ilitek,ili9805
-+
-+  avdd-supply: true
-+  dvdd-supply: true
-+  power-supply: true
-+  port: true
-+  reg: true
-+  reset-gpios: true
-+  backlight: true
-+
-+required:
-+  - compatible
-+  - avdd-supply
-+  - dvdd-supply
-+  - reg
-+  - reset-gpios
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    dsi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        panel@0 {
-+            compatible = "giantplus,gpm1790a0", "ilitek,ili9805";
-+            reg = <0>;
-+            power-supply = <&reg_display>;
-+            avdd-supply = <&avdd_display>;
-+            dvdd-supply = <&dvdd_display>;
-+            reset-gpios = <&r_pio 0 5 GPIO_ACTIVE_LOW>; /* PL05 */
-+
-+            port {
-+                panel_in: endpoint {
-+                    remote-endpoint = <&mipi_dsi_out>;
-+                };
-+            };
-+        };
-+    };
-+
-+...
+@@ -14,6 +14,7 @@ properties:
+     items:
+       - enum:
+           - giantplus,gpm1790a0
++          - tianma,tm041xdhg01
+       - const: ilitek,ili9805
+ 
+   avdd-supply: true
 -- 
 2.32.0
 
