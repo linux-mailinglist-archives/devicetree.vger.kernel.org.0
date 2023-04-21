@@ -2,250 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F0B9B6EB527
-	for <lists+devicetree@lfdr.de>; Sat, 22 Apr 2023 00:46:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 816036EB5AD
+	for <lists+devicetree@lfdr.de>; Sat, 22 Apr 2023 01:20:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233932AbjDUWqc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Apr 2023 18:46:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46206 "EHLO
+        id S233741AbjDUXUf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Apr 2023 19:20:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233934AbjDUWqc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 18:46:32 -0400
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68B9526A1
-        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 15:46:30 -0700 (PDT)
-Received: by mail-pl1-x634.google.com with SMTP id d9443c01a7336-1a6e5be6224so524295ad.1
-        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 15:46:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20221208; t=1682117190; x=1684709190;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=grxtbYgBEZhFXTnkmUQSXwfMPjYR4qLeWhU06c7fEJo=;
-        b=LdfV8328hCSEL7clgImntNqsjxIE6gpJx7G924HHBO4P0LLmlWh8r1f3M78lmOqsRH
-         K+MZax8iX6iDU5iiSuYpt+qdLoo+bv2RWJAD+kVPJqPvLLMgJ3RmPEe00lXzp9BZEzih
-         RDm/s5YUQ4LdcojdFDlLWMdzD/HNSCKxBhwEHbcStUiYbKSwSxZtLJqScw2X/tMQpNue
-         7Q0v7GD4Btpw/0sEet7FiJXs6P+S6HShG3YS6btnZHQB8FQwsnzh7dTn6/15dAZQLq7q
-         pIDEvozCPbIlWuVAL0jx8yOg2gF0BVGzdzG/4ZTRpHyFG6Jwvwsesg6fu3nd9+s/ceqP
-         w9wA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682117190; x=1684709190;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=grxtbYgBEZhFXTnkmUQSXwfMPjYR4qLeWhU06c7fEJo=;
-        b=DjOydO52lTSagw6ufY5AIgyj5JuSf8kV+XKyojTDb20baMQGwjcjOJoL9OWn6PSTJk
-         evHd5Nq/ZkHNnfraJccRfiH6hd9GUO1IrEftVxPkKbFRaM50EG1QVxAiZfKGi3MDCgGI
-         oIsYoAi6hj5EMz4OsTEXSSM67pKMMZ4pX62LRGs9mtq/UbCvDy28KEaNN2YRNgnu+bHb
-         M/vyV5QEoqHDEW2m82EHiUygmv6MkS6zYki5jhrrB69Zy43rczDThk8sSyj88ajYOcUE
-         uzSpnlhwn4clpuMFDZEV++H5G9en4rP+Ujq04jTvlmh7tydtAiwoFU3Z+m+32fTI17nI
-         elQA==
-X-Gm-Message-State: AAQBX9e7R+Psqc+fcg9eynIfZUOG3fAqVB9BuENsg9EOExFtWxNy2jzI
-        XXAhaxoFEqRAAYuC2wnX4bDPE2NO6NUezbPh6jtIW2EbC90TaTAUvpM=
-X-Google-Smtp-Source: AKy350bEB1pKwAM1VUR5fdz9R+Z9KrwHyX5kQUSH/7E09sGk0HXwt+4pGmiw/MQ0eSqZeYh7EZsxftVWrQdX7cbk71U=
-X-Received: by 2002:a17:902:ecc9:b0:198:af4f:de07 with SMTP id
- a9-20020a170902ecc900b00198af4fde07mr25570plh.7.1682117189428; Fri, 21 Apr
- 2023 15:46:29 -0700 (PDT)
+        with ESMTP id S231282AbjDUXUd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 19:20:33 -0400
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E031E1706;
+        Fri, 21 Apr 2023 16:20:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1682119231; x=1713655231;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=+aOGfveR5QxLDNBV2uv6FM0FuGsHyyWTmz3hqDhOUGw=;
+  b=PGKPCRL1IsCNuUwR05mhdFAVAgRcu9WXfFAZcGQd0E33M3t5G/nbP5YA
+   ndOHT2bGsIxVszCHDLyyyy7bNuLW3soFHzu4LyWyQQDKZER899uCsKTBL
+   p5GSBRUxOS5FW2CGyuTBCAwHM2Rfh858FruV1yzEmPZFJujpfyV5dkSDn
+   zW+xled0dFvW7OKWDVumqhx0bR+Cwv0F3uwUVrD+cxGMqHg8wpgC/CptM
+   tpZnFF7//aeToURDcYFMWwGk4Y27m2blBb4W7ee7L4+BFOf6MBcnYrpw+
+   FZW53bDD7zRSojOiSyaJ0Zh3QEDUDteVS+asuD9UPYBA4/7EkQtFHHDyt
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10687"; a="326430844"
+X-IronPort-AV: E=Sophos;i="5.99,216,1677571200"; 
+   d="scan'208";a="326430844"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Apr 2023 16:20:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10687"; a="669868629"
+X-IronPort-AV: E=Sophos;i="5.99,216,1677571200"; 
+   d="scan'208";a="669868629"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by orsmga006.jf.intel.com with ESMTP; 21 Apr 2023 16:20:28 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pq03H-000gvK-0A;
+        Fri, 21 Apr 2023 23:20:27 +0000
+Date:   Sat, 22 Apr 2023 07:19:44 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Mehdi Djait <mehdi.djait.k@gmail.com>, jic23@kernel.org,
+        mazziesaccount@gmail.com
+Cc:     oe-kbuild-all@lists.linux.dev, krzysztof.kozlowski+dt@linaro.org,
+        andriy.shevchenko@linux.intel.com, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Mehdi Djait <mehdi.djait.k@gmail.com>
+Subject: Re: [PATCH v2 5/5] iio: accel: Add support for Kionix/ROHM
+ KX132-1211 accelerometer
+Message-ID: <202304220729.FCofPRvH-lkp@intel.com>
+References: <cef09595632a40eff8a0864fea2e0eb6653930a5.1682019544.git.mehdi.djait.k@gmail.com>
 MIME-Version: 1.0
-References: <cover.1681580558.git.noodles@earth.li> <f26d11e613df7bd55822ff3fb7689e36bf9e4f7a.1681580558.git.noodles@earth.li>
- <20230416012421.255bfd19@slackpad.lan> <ZEGOk1isRhaekk3h@earth.li>
- <CAGETcx-UnEK3CPC38Ef3gmHcq46nXSJbA9QAwEsF+Xt2bDKEWA@mail.gmail.com> <ZEJJGGeIu8QW44mh@earth.li>
-In-Reply-To: <ZEJJGGeIu8QW44mh@earth.li>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Fri, 21 Apr 2023 15:45:52 -0700
-Message-ID: <CAGETcx8JDYUT2bdDhJ0PN8_CPmHJ37jCfnuoav6CGFJoovfSqA@mail.gmail.com>
-Subject: Re: [PATCH 1/3] ARM: dts: sun5i: chip: Enable bluetooth
-To:     Jonathan McDowell <noodles@earth.li>
-Cc:     Andre Przywara <andre.przywara@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED,USER_IN_DEF_DKIM_WL,
-        USER_IN_DEF_SPF_WL autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cef09595632a40eff8a0864fea2e0eb6653930a5.1682019544.git.mehdi.djait.k@gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 21, 2023 at 1:28=E2=80=AFAM Jonathan McDowell <noodles@earth.li=
-> wrote:
->
-> On Thu, Apr 20, 2023 at 06:43:06PM -0700, Saravana Kannan wrote:
-> > On Thu, Apr 20, 2023 at 12:12=E2=80=AFPM Jonathan McDowell <noodles@ear=
-th.li> wrote:
-> > > On Sun, Apr 16, 2023 at 01:24:21AM +0100, Andre Przywara wrote:
-> > > > On Sat, 15 Apr 2023 18:46:03 +0100
-> > > > Jonathan McDowell <noodles@earth.li> wrote:
-> > > >
-> > > > > The C.H.I.P has an rtl8723bs device with the bluetooth interface =
-hooked
-> > > > > up on UART3. Support for this didn't exist in mainline when the D=
-TS was
-> > > > > initially added, but it does now, so enable it.
-> > > > >
-> > > > > Signed-off-by: Jonathan McDowell <noodles@earth.li>
-> > > > > ---
-> > > > >  arch/arm/boot/dts/sun5i-r8-chip.dts | 4 ++++
-> > > > >  1 file changed, 4 insertions(+)
-> > > > >
-> > > > > diff --git a/arch/arm/boot/dts/sun5i-r8-chip.dts b/arch/arm/boot/=
-dts/sun5i-r8-chip.dts
-> > > > > index fd37bd1f3920..4d72a181d8aa 100644
-> > > > > --- a/arch/arm/boot/dts/sun5i-r8-chip.dts
-> > > > > +++ b/arch/arm/boot/dts/sun5i-r8-chip.dts
-> > > > > @@ -255,6 +255,10 @@ &uart3 {
-> > > > >     pinctrl-0 =3D <&uart3_pg_pins>,
-> > > > >                 <&uart3_cts_rts_pg_pins>;
-> > > > >     status =3D "okay";
-> > > > > +
-> > > > > +   bluetooth {
-> > > > > +           compatible =3D "realtek,rtl8723bs-bt";
-> > > > > +   }
-> > > >
-> > > > As the kernel test robot already pointed out, there is a semicolon
-> > > > missing here.
-> > > > Otherwise looks good (dt-validate passes), but don't know if there =
-are
-> > > > any wakeup GPIOs connected (can't seem to find a schematic?).
-> > >
-> > > So there are wakeups, but if I add:
-> > >
-> > >         device-wake-gpios =3D <&axp_gpio 3 GPIO_ACTIVE_LOW>;
-> > >         host-wake-gpios =3D <&pio 1 3 GPIO_ACTIVE_HIGH>; /* PB3 */
-> > >
-> > > then some odd sort of dependency issue happens where the serial port
-> > > load is deferred waiting for the GPIO to appear, and then the device
-> > > doesn't work.
-> >
-> > When you say your device doesn't work, are you saying it never probes?
+Hi Mehdi,
 
-Read your whole email and it's a strange issue. Also, going forward to
-avoid confusion, only reply to questions with respect to 6.3-rc7.
+kernel test robot noticed the following build warnings:
 
-> The bluetooth device (realtek,rtl8723bs-bt) never appears, apparently
-> because the UART it's attached to never loads - it doesn't even try to
-> load the firmware.
->
-> > <debugfs>/devices_deferred should tell you what devices have deferred a=
-nd why.
->
-> root@chip:~# cat /sys/kernel/debug/devices_deferred
-> serial0-0
+[auto build test WARNING on jic23-iio/togreg]
+[also build test WARNING on next-20230421]
+[cannot apply to linus/master v6.3-rc7]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Do you see this in 6.3-rc7 too?
+url:    https://github.com/intel-lab-lkp/linux/commits/Mehdi-Djait/dt-bindings-iio-Add-KX132-1211-accelerometer/20230421-042531
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
+patch link:    https://lore.kernel.org/r/cef09595632a40eff8a0864fea2e0eb6653930a5.1682019544.git.mehdi.djait.k%40gmail.com
+patch subject: [PATCH v2 5/5] iio: accel: Add support for Kionix/ROHM KX132-1211 accelerometer
+config: mips-randconfig-s031-20230421 (https://download.01.org/0day-ci/archive/20230422/202304220729.FCofPRvH-lkp@intel.com/config)
+compiler: mips64-linux-gcc (GCC) 12.1.0
+reproduce:
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # apt-get install sparse
+        # sparse version: v0.6.4-39-gce1a6720-dirty
+        # https://github.com/intel-lab-lkp/linux/commit/38837f58c549d688da8cb7cfb1aea0bd65a12548
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Mehdi-Djait/dt-bindings-iio-Add-KX132-1211-accelerometer/20230421-042531
+        git checkout 38837f58c549d688da8cb7cfb1aea0bd65a12548
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__' O=build_dir ARCH=mips olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__' O=build_dir ARCH=mips SHELL=/bin/bash drivers/iio/accel/
 
-> > > Error in dmesg is:
-> > >
-> > > serial serial0-0: deferred probe pending
-> > >
-> > > on 6.3-rc and on 6.1 I get:
-> > >
-> > > dw-apb-uart 1c28c00.serial: Failed to create device link (0x180) with=
- axp20x-gpio
-> >
-> > This error message doesn't block anything. So I don't think this is
-> > the cause of your blocking issue. But I still want to understand why
-> > this error message is showing up.
-> >
-> > > I'm not clear why it's trying to link the serial port to the GPIO; it
-> > > seems that it should be the bluetooth device that depends on both the
-> > > UART and the GPIO,
-> >
-> > A fix for the device link error message went in on v6.3-rc3. Is that
-> > the 6.3 version you tested this on?
->
-> I originally tried on 6.1.21, which is where I got the "Failed to create
-> device link" message. I then moved to 6.3-rc7 as I saw there had been
-> further changes recently. There I just get the:
->
-> serial serial0-0: deferred probe pending
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202304220729.FCofPRvH-lkp@intel.com/
 
-If the deferral is related to fw_devlink, you should see the reason
-for deferring in the devices_deferred file. So I don't think the issue
-is related to fw_devlink.
+sparse warnings: (new ones prefixed by >>)
+>> drivers/iio/accel/kionix-kx022a.c:698:20: sparse: sparse: invalid assignment: &=
+>> drivers/iio/accel/kionix-kx022a.c:698:20: sparse:    left side has type restricted __le16
+>> drivers/iio/accel/kionix-kx022a.c:698:20: sparse:    right side has type unsigned short
 
-> message.
->
-> > Also, I tried looking into the UART driver
-> > (drivers/tty/serial/8250/8250_dw.c) but it wasn't clear how it ends up
-> > populating the bluetooth serial device. If you can point that out,
-> > that'd be helpful (assuming 6.3-rc3 still shows that error message).
->
-> I have the following in my device tree:
->
-> &uart3 {
->         pinctrl-names =3D "default";
->         pinctrl-0 =3D <&uart3_pg_pins>,
->                     <&uart3_cts_rts_pg_pins>;
->         status =3D "okay";
->
->         bluetooth {
->                 compatible =3D "realtek,rtl8723bs-bt";
->                 device-wake-gpios =3D <&axp_gpio 3 GPIO_ACTIVE_LOW>;
->                 host-wake-gpios =3D <&pio 1 3 GPIO_ACTIVE_HIGH>; /* PB3 *=
-/
->         };
-> };
->
-> uart3 is a snps,dw-apb-uart, defined in arch/arm/boot/dts/sun5i.dtsi
->
-> The UART and AXP209 device drivers are compiled into the kernel:
->
-> CONFIG_PINCTRL_AXP209=3Dy
-> CONFIG_SERIAL_8250=3Dy
-> CONFIG_SERIAL_8250_DW=3Dy
->
-> The bluetooth bits are modules (btrtl, hci_uart).
->
-> If I remove the device-wake-gpios line then the Bluetooth device works
-> fine, and /sys/kernel/debug/devices_deferred is empty.
->
-> Somehow it seems like the GPIO is being parsed as a dependency for the
-> serial port, even though the serial port + GPIO are both dependencies
-> for the bluetooth device.
+vim +698 drivers/iio/accel/kionix-kx022a.c
 
-I'm fairly sure that fw_devlink isn't causing that. Because even
-without bluetooth, fw_devlink doesn't consider any suppliers listed in
-child DT nodes as mandatory suppliers. That has been the case since
-the beginning.
+   684	
+   685	static int kx132_get_fifo_bytes(struct kx022a_data *data)
+   686	{
+   687		struct device *dev = regmap_get_device(data->regmap);
+   688		__le16 buf_status;
+   689		int ret, fifo_bytes;
+   690	
+   691		ret = regmap_bulk_read(data->regmap, data->chip_info->buf_status1,
+   692				       &buf_status, sizeof(buf_status));
+   693		if (ret) {
+   694			dev_err(dev, "Error reading buffer status\n");
+   695			return ret;
+   696		}
+   697	
+ > 698		buf_status &= data->chip_info->buf_smp_lvl_mask;
+   699		fifo_bytes = le16_to_cpu(buf_status);
+   700	
+   701		return fifo_bytes;
+   702	}
+   703	
 
-> Even with that, given both are built-in I
-> don't understand why the serial port never completes setup.
-
-My guess is that the driver itself has some bug that's sensitive to
-device probe order even though it shouldn't.
-
-Can you add #define DEBUG 1 to the top of drivers/base/core.c and
-share the boot log? I can try and help debug it.
-
--Saravana
-
-> > > and that the GPIO is actually optional so shouldn't
-> > > hold up loading, but I can't see how that should be represented.
-> >
-> > Optional dependencies should get ignored after the default
-> > deferred_probe_timeout runs out and the supplier driver hasn't been
-> > loaded yet.
->
-> When I say it's optional I mean if it's not listed everything works
-> fine, but I don't believe there's anyway to express that in the DTS.
-> It's certainly not required for the serial port, just the bluetooth
-> device.
->
-> J.
->
-> --
-> Web [                     Don't be a stranger.                     ]
-> site: https:// [                                          ]      Made by
-> www.earth.li/~noodles/  [                      ]         HuggieTag 0.0.24
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
