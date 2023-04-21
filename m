@@ -2,72 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 471896EAA9D
-	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 14:42:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D5BB6EAACD
+	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 14:50:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231939AbjDUMmg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Apr 2023 08:42:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45154 "EHLO
+        id S231838AbjDUMuI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Apr 2023 08:50:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232110AbjDUMmf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 08:42:35 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03BEB118C5;
-        Fri, 21 Apr 2023 05:42:09 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0444F63E9A;
-        Fri, 21 Apr 2023 12:42:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 649D0C433EF;
-        Fri, 21 Apr 2023 12:42:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1682080926;
-        bh=1viMKIx6sqkhuLg2xAjcicJimbx0TA+4g/Mnc+kkj3c=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=BW24TVib54lA9ORge5qtx6oE5Hj4K0FUcHqURggViP0rNx3DKw07WK5sfUU2pLfTo
-         daTK1gAQpA6Nr/MsoJgx+iQ9ufT7JNri4s0aQMOfHntfaefeArkjKsMvjyxMvX5ZkV
-         9YZs4YRKTJdGeVCLIlhrnqK9mODAo2K5zvncMP3jxeqgfSynQXaU5bXmv8UTpIiCp6
-         304dM4VX4jjleJLiVsyrh8vRsVQz2QqXUEbAGg7e+En8MmlOH4vGIBe8jh2UeX9SIq
-         3N4SXgj6JGpOGc3WLzuoTponSdoU6Gk4LVeR6nleFE9/ZeQd7whAuSJO+T6JdVvBhv
-         LPuvlUp3Ox5OQ==
-Date:   Fri, 21 Apr 2023 13:41:57 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Okan Sahin <okan.sahin@analog.com>
-Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Ramona Bolboaca <ramona.bolboaca@analog.com>,
-        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Leonard =?iso-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        Haibo Chen <haibo.chen@nxp.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org
-Subject: Re: [PATCH v7 2/5] regulator: max77541: Add ADI MAX77541/MAX77540
- Regulator Support
-Message-ID: <0f8ffae5-1267-4373-8979-1989318497ec@sirena.org.uk>
-References: <20230412111256.40013-1-okan.sahin@analog.com>
- <20230412111256.40013-3-okan.sahin@analog.com>
+        with ESMTP id S231203AbjDUMuH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 08:50:07 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D56725FE6;
+        Fri, 21 Apr 2023 05:50:06 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33LCa4vt006338;
+        Fri, 21 Apr 2023 12:50:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=j+anIc/zyqM8GYYlJwcDN4VcfAgHFFiFBkybSsnzCBA=;
+ b=TDMZYm2spLuV56SeohQXCWq4A83uoYO7V0omSDiw4RCxhCzNQjPAxZEHMF1S/E55r2jK
+ 2/IcmXifqbepdTVsh41w+A1CqbFNeNytA4E/MeUJp5/UjnFWV43EAJDGEizwDLntTqZf
+ ZszuzvW/nYVGqdJplaPwUezrnwpLEModjuG86gBAcwYjs8+SGR+iAk+JTc5OakAKbDrX
+ TUOR5laXIb3sZXgu0Vd6A7trEsiuamSW0aYln1D1l7n+QiVIE19Ib8XtT12pvncVSyuI
+ 1zbSPzocBAy8iFODFAvd6vWIbR4+k5VEz3+j4QGphh+6ajpfpmGhDr4TEfckj6cRWJw0 dw== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q3tmer0yk-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 21 Apr 2023 12:50:00 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33LCnx2R004241
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 21 Apr 2023 12:49:59 GMT
+Received: from devipriy-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Fri, 21 Apr 2023 05:49:52 -0700
+From:   Devi Priya <quic_devipriy@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <lpieralisi@kernel.org>,
+        <kw@linux.com>, <robh@kernel.org>, <bhelgaas@google.com>,
+        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <mani@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>
+CC:     <quic_srichara@quicinc.com>, <quic_sjaganat@quicinc.com>,
+        <quic_kathirav@quicinc.com>, <quic_arajkuma@quicinc.com>,
+        <quic_anusha@quicinc.com>, <quic_ipkumar@quicinc.com>
+Subject: [PATCH V3 0/6] Add PCIe support for IPQ9574
+Date:   Fri, 21 Apr 2023 18:19:32 +0530
+Message-ID: <20230421124938.21974-1-quic_devipriy@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="1FRzun8VXwn6ZIl1"
-Content-Disposition: inline
-In-Reply-To: <20230412111256.40013-3-okan.sahin@analog.com>
-X-Cookie: Hailing frequencies open, Captain.
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 7GVp4J9scmF8d4gF01OcTlwtyLnjRiWT
+X-Proofpoint-ORIG-GUID: 7GVp4J9scmF8d4gF01OcTlwtyLnjRiWT
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-21_06,2023-04-21_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1011
+ adultscore=0 priorityscore=1501 impostorscore=0 lowpriorityscore=0
+ bulkscore=0 mlxlogscore=683 phishscore=0 suspectscore=0 malwarescore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303200000 definitions=main-2304210112
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,33 +80,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series adds support for enabling the PCIe host devices (PCIe0, PCIe1,
+PCIe2, PCIe3) found on IPQ9574 platform.
+The PCIe0 & PCIe1 are 1-lane Gen3 host and PCIe2 & PCIe3 
+are 2-lane Gen3 host.
 
---1FRzun8VXwn6ZIl1
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+DTS patch is based on the below series
+https://lore.kernel.org/linux-arm-msm/20230329053726.14860-1-quic_kathirav@quicinc.com/
 
-On Wed, Apr 12, 2023 at 02:12:43PM +0300, Okan Sahin wrote:
+Changes in V3:
+	- Dropped the phy driver and binding patches as they have been 
+	  posted as a separate series.
+	- Dropped the pinctrl binding fix patch as it is unrelated to the series
+	  dt-bindings: pinctrl: qcom: Add few missing functions.
+	- Rebased on linux-next/master.
+	- Detailed change logs are added to the respective patches.
+	
+Changes in V2:
+https://lore.kernel.org/linux-arm-msm/20230404164828.8031-1-quic_devipriy@quicinc.com/
+	- Reordered the patches and splitted the board DT changes
+	  into a separate patch as suggested
+	- Detailed change logs are added to the respective patches
 
-> Regulator driver for both MAX77541 and MAX77540.
-> The MAX77541 is a high-efficiency step-down converter
-> with two 3A switching phases for single-cell Li+ battery
-> and 5VDC systems.
+[V1]
+https://lore.kernel.org/linux-arm-msm/20230214164135.17039-1-quic_devipriy@quicinc.com/
 
-Reviewed-by: Mark Brown <broonie@kernel.org>
+Devi Priya (6):
+  dt-bindings: clock: Add PCIe pipe clock definitions
+  clk: qcom: gcc-ipq9574: Add PCIe pipe clocks
+  dt-bindings: PCI: qcom: Add IPQ9574
+  arm64: dts: qcom: ipq9574: Add PCIe PHYs and controller nodes
+  arm64: dts: qcom: ipq9574: Enable PCIe PHYs and controllers
+  PCI: qcom: Add support for IPQ9574
 
---1FRzun8VXwn6ZIl1
-Content-Type: application/pgp-signature; name="signature.asc"
+ .../devicetree/bindings/pci/qcom,pcie.yaml    |  40 ++
+ arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts   |  62 +++
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi         | 375 +++++++++++++++++-
+ drivers/clk/qcom/gcc-ipq9574.c                |  76 ++++
+ drivers/pci/controller/dwc/pcie-qcom.c        |  61 ++-
+ include/dt-bindings/clock/qcom,ipq9574-gcc.h  |   4 +
+ 6 files changed, 595 insertions(+), 23 deletions(-)
 
------BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmRChJUACgkQJNaLcl1U
-h9BgwAf9FFeuk/6y+CZ9pA0Rp+BYHqdrTxCmBMSO+UPH2NliQymSV+sHGkDOq02r
-iqh0AK+SAs6dEZmN+Xx6k98CsM6N0m4Rh+fF8cR9O27WOsNH06QSPuDWCLeno1ZA
-H1jKKF6ByRumicUzziIma9kOjA1ufx0AAVfUbdBt1ZCgJeuZv0yWb3d+jAvHOWcH
-lSDTkN7jwo1UjFFowTkH6MzmElS43JdiZ5eXdLYFRJAs4aTv0r4MKQoksckGMt/u
-wOZ8arow4RwJz0f+akvSvyFaOm3F4IoLCf4Hz+gPdVOQIuKX2PKunGluODN63GRI
-wZPgsp5OEw0pWsLo6Ko4eI3K/WgEjw==
-=Ut0n
------END PGP SIGNATURE-----
+base-commit: 44bf136283e567b2b62653be7630e7511da41da2
+-- 
+2.17.1
 
---1FRzun8VXwn6ZIl1--
