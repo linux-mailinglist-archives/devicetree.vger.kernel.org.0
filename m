@@ -2,63 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE35E6EB4D0
-	for <lists+devicetree@lfdr.de>; Sat, 22 Apr 2023 00:32:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D80B26EB4D2
+	for <lists+devicetree@lfdr.de>; Sat, 22 Apr 2023 00:32:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233922AbjDUWcN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Apr 2023 18:32:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32794 "EHLO
+        id S233941AbjDUWcW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Apr 2023 18:32:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232177AbjDUWb7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 18:31:59 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECE6935A3
-        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 15:31:52 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-94f1a6e66c9so372647866b.2
-        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 15:31:52 -0700 (PDT)
+        with ESMTP id S233847AbjDUWcD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 18:32:03 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E0742D5B
+        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 15:31:55 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-94f1d0d2e03so299258166b.0
+        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 15:31:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682116312; x=1684708312;
+        d=linaro.org; s=google; t=1682116314; x=1684708314;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=z/JXh3KMYvLK06HDirT25EHs53ovQgqJ5TzbHwT/AYg=;
-        b=DWPXztrUVvPQULYZ1j30gTAOTD/rB0+B0XLM56SuuRqMQKSwX9sCdFLa7sewsDZrui
-         JwS9pXvO9h0VnLxjjJ3l+xH1MPmymodCX/LI3xD8bZ3GMldEBLRTty38maVbC3FhiB36
-         fB2ig0ujglejO6dVgr21LPaj6ud9Ivd9waoFleBroyp32Dku4Sc76NBWjwedinGT3TRJ
-         X1m3BIMtEGiopADUyxz/3W5CelN/dbIXnGssWG5CIrUrRURlHUVITtY8O7Tj4xqTZYqA
-         ujWSfKMqmU15SNYWKxq5SREIQl9jDpq9haa9VBVLYbBa4DXvHeKF1j0aT1AsKbYB+/wM
-         zp4Q==
+        bh=ikgfKWd5j9eJ+n4oOSpchtAyPf2HU4vbB61uGglqV1k=;
+        b=AtGAQtK2tuG3D6OZu2TboiKtIaXNzBvBtfo6WL7a779+GIfd/lY3hjY0BVsIQIrKBR
+         2Ctgk6cN9N52tW/lRsrS14GgbSRnB7GDCZZB2njO1i5565dh2TOZ+i9vtUH6teakeb/J
+         QLm1duysZF8ws5S1hQk1KZvHy12OvEVFRxOIHWZ0qzhmvSyfpa9vR4y1DFuQUFNZN7/w
+         BMyQxvzz1KJbIqqfkcsib1h8w+f80bssKo9ca6xcA+Muc0QdMNYK0J0b6hDUMtisFG9u
+         O+vA0BoLGb+Vt+Abe6Ugs7ua6u0htfkT/yfJ2GgCz5UecIYM+ApQmmS6KZcdGcgLSNey
+         jW5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682116312; x=1684708312;
+        d=1e100.net; s=20221208; t=1682116314; x=1684708314;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=z/JXh3KMYvLK06HDirT25EHs53ovQgqJ5TzbHwT/AYg=;
-        b=RxgAXIuyj+MFxsU3kff0NWWJ/DvG2xawoT8NplWb2csTMxerAOnJ/jA2aEDi0jfqXz
-         JJpwNFAMurQvV/LGG2QDOGSikLx7CAiG5RIohgyOxMsnBx1LqwvgP87tNq9EtwRzSUwl
-         RvuE93kW5H1sCR9Whp2dQ7Ys/Tb9EL9u6+WOwDRl9eM80FCnUrolOCAppn3Js7GopHO/
-         +w08vMj4V+Gko6B/NKOaX9KxIVVKMJJH+ySHCztAqa3AcTOA//wAylKpRwfPhHJ9d7aO
-         XyJrw1ONmyUvzxOWcYYKmBIVGSx401r0iKgby6WJZAsRMU/4GFwmaDNo6Na3abVaK1QX
-         jZ6Q==
-X-Gm-Message-State: AAQBX9erQFzqa/i+0BZnVWknTKZ8fubdXfZSojukhzxcbTPUvln5s6oJ
-        qSuf4BbPGUlowj/N1SKhJ8eSNA==
-X-Google-Smtp-Source: AKy350YmcK1D5WYWTu1lCCnLsNdzO3Hik5EGsJBcczUkgtnr30yP7c3gLlS149BrTtCSghRjxAMyPQ==
-X-Received: by 2002:a17:906:fcc:b0:94f:250b:2536 with SMTP id c12-20020a1709060fcc00b0094f250b2536mr3229726ejk.28.1682116312383;
-        Fri, 21 Apr 2023 15:31:52 -0700 (PDT)
+        bh=ikgfKWd5j9eJ+n4oOSpchtAyPf2HU4vbB61uGglqV1k=;
+        b=cMk8vt/3r3KwBRHz2nmyLZfjRfq8QzoXQjqUj31qyc32qFS8wrT1lBaGQPwC0n7LFQ
+         iFpG7B10ntZrIi7Wi3bbYjQ4S53RMZOPzAWk5I3/dcBxZujPAi+4nibpVxMHsE2GZOIS
+         xBY9MqrkbVbgVKjs0YMACQIkP8hWdm+SntFpTSm0dsgrHYO2jwMyEUeZhmbtMre6qHOE
+         EWr7MWcNJpfZPjQgifxcz9Lz61oz06pfa8g+AL6yBtDJ/tr3WlsIkCHinOavFtOTfp0r
+         M9A8pimVX58yPC/ndYZZzXEMvFGe8aaBi+q843dvfRnEWSWVV2ZRsrWnKPo/QnA/3Vgv
+         8R6Q==
+X-Gm-Message-State: AAQBX9cmWTtc2wbHpFuPX/G054lRCGz7Oj5t++USZGj57m2z2/1AKj3f
+        OGEtoUsJj58wHmVAL40CWQgZIA==
+X-Google-Smtp-Source: AKy350b2O3rWHFLy6+XzE6dz4ucQ7s0zpqUYq2p/4OGHUudHr3W12BQ0vF5fNXZNuyIXtJZIMv8Jkw==
+X-Received: by 2002:a17:906:ecb7:b0:933:3a22:8513 with SMTP id qh23-20020a170906ecb700b009333a228513mr3669254ejb.53.1682116313951;
+        Fri, 21 Apr 2023 15:31:53 -0700 (PDT)
 Received: from krzk-bin.. ([2a02:810d:15c0:828:687d:8c5:41cb:9883])
-        by smtp.gmail.com with ESMTPSA id k1-20020a170906a38100b0094ece70481csm2537895ejz.197.2023.04.21.15.31.51
+        by smtp.gmail.com with ESMTPSA id sd22-20020a1709076e1600b009572bd99281sm1077908ejc.224.2023.04.21.15.31.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Apr 2023 15:31:52 -0700 (PDT)
+        Fri, 21 Apr 2023 15:31:53 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-realtek-soc@lists.infradead.org, devicetree@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] arm64: dts: realtek: add missing cache properties
-Date:   Sat, 22 Apr 2023 00:31:50 +0200
-Message-Id: <20230421223151.115243-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] arm64: dts: tegra210: add missing cache properties
+Date:   Sat, 22 Apr 2023 00:31:52 +0200
+Message-Id: <20230421223152.115285-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -73,10 +73,9 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 As all level 2 and level 3 caches are unified, add required
-cache-unified and cache-level properties to fix warnings like:
+cache-unified property to fix warnings like:
 
-  rtd1293-ds418j.dtb: l2-cache: 'cache-level' is a required property
-  rtd1293-ds418j.dtb: l2-cache: 'cache-unified' is a required property
+  tegra210-p2371-0000.dtb: l2-cache: 'cache-unified' is a required property
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
@@ -84,81 +83,17 @@ Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Please take the patch via sub-arch SoC tree.
 ---
- arch/arm64/boot/dts/realtek/rtd1293.dtsi | 2 ++
- arch/arm64/boot/dts/realtek/rtd1295.dtsi | 2 ++
- arch/arm64/boot/dts/realtek/rtd1296.dtsi | 2 ++
- arch/arm64/boot/dts/realtek/rtd1395.dtsi | 2 ++
- arch/arm64/boot/dts/realtek/rtd16xx.dtsi | 4 ++++
- 5 files changed, 12 insertions(+)
+ arch/arm64/boot/dts/nvidia/tegra210.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/realtek/rtd1293.dtsi b/arch/arm64/boot/dts/realtek/rtd1293.dtsi
-index 2d92b56ac94d..d0c9387ac17a 100644
---- a/arch/arm64/boot/dts/realtek/rtd1293.dtsi
-+++ b/arch/arm64/boot/dts/realtek/rtd1293.dtsi
-@@ -30,6 +30,8 @@ cpu1: cpu@1 {
- 
- 		l2: l2-cache {
+diff --git a/arch/arm64/boot/dts/nvidia/tegra210.dtsi b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
+index 0e463b3cbe01..617583ff2736 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra210.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
+@@ -2000,6 +2000,7 @@ CPU_SLEEP: cpu-sleep {
+ 		L2: l2-cache {
  			compatible = "cache";
-+			cache-level = <2>;
-+			cache-unified;
- 		};
- 	};
- 
-diff --git a/arch/arm64/boot/dts/realtek/rtd1295.dtsi b/arch/arm64/boot/dts/realtek/rtd1295.dtsi
-index 1402abe80ea1..b7f63102f2dd 100644
---- a/arch/arm64/boot/dts/realtek/rtd1295.dtsi
-+++ b/arch/arm64/boot/dts/realtek/rtd1295.dtsi
-@@ -44,6 +44,8 @@ cpu3: cpu@3 {
- 
- 		l2: l2-cache {
- 			compatible = "cache";
-+			cache-level = <2>;
-+			cache-unified;
- 		};
- 	};
- 
-diff --git a/arch/arm64/boot/dts/realtek/rtd1296.dtsi b/arch/arm64/boot/dts/realtek/rtd1296.dtsi
-index fb864a139c97..4f805f576cef 100644
---- a/arch/arm64/boot/dts/realtek/rtd1296.dtsi
-+++ b/arch/arm64/boot/dts/realtek/rtd1296.dtsi
-@@ -44,6 +44,8 @@ cpu3: cpu@3 {
- 
- 		l2: l2-cache {
- 			compatible = "cache";
-+			cache-level = <2>;
-+			cache-unified;
- 		};
- 	};
- 
-diff --git a/arch/arm64/boot/dts/realtek/rtd1395.dtsi b/arch/arm64/boot/dts/realtek/rtd1395.dtsi
-index 05c9216a87ee..2efe5b25c83c 100644
---- a/arch/arm64/boot/dts/realtek/rtd1395.dtsi
-+++ b/arch/arm64/boot/dts/realtek/rtd1395.dtsi
-@@ -44,6 +44,8 @@ cpu3: cpu@3 {
- 
- 		l2: l2-cache {
- 			compatible = "cache";
-+			cache-level = <2>;
-+			cache-unified;
- 		};
- 	};
- 
-diff --git a/arch/arm64/boot/dts/realtek/rtd16xx.dtsi b/arch/arm64/boot/dts/realtek/rtd16xx.dtsi
-index bf4d9e917925..34802cc62983 100644
---- a/arch/arm64/boot/dts/realtek/rtd16xx.dtsi
-+++ b/arch/arm64/boot/dts/realtek/rtd16xx.dtsi
-@@ -88,11 +88,15 @@ cpu5: cpu@500 {
- 		l2: l2-cache {
- 			compatible = "cache";
- 			next-level-cache = <&l3>;
-+			cache-level = <2>;
-+			cache-unified;
- 
- 		};
- 
- 		l3: l3-cache {
- 			compatible = "cache";
-+			cache-level = <3>;
+ 			cache-level = <2>;
 +			cache-unified;
  		};
  	};
