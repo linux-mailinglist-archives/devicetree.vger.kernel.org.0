@@ -2,116 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B546F6EAEC2
-	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 18:09:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86EC16EAEDF
+	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 18:13:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232540AbjDUQJ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Apr 2023 12:09:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57898 "EHLO
+        id S231720AbjDUQNQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Apr 2023 12:13:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232330AbjDUQJ0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 12:09:26 -0400
-Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AD821444A;
-        Fri, 21 Apr 2023 09:09:24 -0700 (PDT)
-Received: by mail-ot1-f54.google.com with SMTP id 46e09a7af769-6a5f21a0604so1769468a34.2;
-        Fri, 21 Apr 2023 09:09:24 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682093363; x=1684685363;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Dy8PONCFIhkTcUEPgQ+0ISj/L7cH8cV88i3Z2JVEn8I=;
-        b=dVhgD6ApEd9IGpLAGpb0LbXCEXG6Eu8QEg9tQqykI4QCfZQ4sp1xuqcg12GsxM2Aq2
-         Vf18R/kjBDaeWLq1mKi3r251wdGrRXL/kumXJvL6EV3wHMe212wYdzR/wndDmoWR0Sf/
-         zqOBh18t4TzfAf3vxI7uqEKihAA9eLar2W95NAOTvlgctS+XEtk08mQ7XPijJOI6p76Z
-         7jISBeioWcqpwIMba7R22tz9AIG7NnL/pnr1rNom5dn+B9eX35eSP7hKuH/2LyW4Xl2I
-         kIkySXyiBnNHEVnsottDG2EGCImC1eEIg59CiRQjKTeatPza0YRsgBC6zMp3n0jMkWNK
-         1efw==
-X-Gm-Message-State: AAQBX9f1UPTGqodCaHvFst7UM+10fMpfwi6tBL3l35onwEo6w6FFWcH3
-        fxtXXU8PST9JlAM778gzrg==
-X-Google-Smtp-Source: AKy350by7amp0emL+mL2CpzJ0zhDlakUU2+NGUL4HO/d07ZTE3P2I7Im/lYMDDV6YK4JiOm2Espbyw==
-X-Received: by 2002:a05:6808:151:b0:38e:46ed:7738 with SMTP id h17-20020a056808015100b0038e46ed7738mr2927007oie.0.1682093363590;
-        Fri, 21 Apr 2023 09:09:23 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id a38-20020a4a98a9000000b0053a7aaa85a0sm1916335ooj.0.2023.04.21.09.09.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Apr 2023 09:09:23 -0700 (PDT)
-Received: (nullmailer pid 1412184 invoked by uid 1000);
-        Fri, 21 Apr 2023 16:09:21 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+        with ESMTP id S233082AbjDUQNM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 12:13:12 -0400
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C35414F7D;
+        Fri, 21 Apr 2023 09:13:03 -0700 (PDT)
+Authenticated-By: 
+X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 33LGCXn14002175, This message is accepted by code: ctloc85258
+Received: from mail.realtek.com (rtexh36506.realtek.com.tw[172.21.6.27])
+        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 33LGCXn14002175
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
+        Sat, 22 Apr 2023 00:12:33 +0800
+Received: from RTEXMBS03.realtek.com.tw (172.21.6.96) by
+ RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.17; Sat, 22 Apr 2023 00:12:34 +0800
+Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
+ RTEXMBS03.realtek.com.tw (172.21.6.96) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.7; Sat, 22 Apr 2023 00:12:33 +0800
+Received: from RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d]) by
+ RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d%5]) with mapi id
+ 15.01.2375.007; Sat, 22 Apr 2023 00:12:33 +0800
+From:   =?utf-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?= 
+        <stanley_chang@realtek.com>
+To:     Rob Herring <robh+dt@kernel.org>
+CC:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH v3 2/2] dt-bindings: usb: snps,dwc3: Add 'snps,global-regs-starting-offset' quirk
+Thread-Topic: [PATCH v3 2/2] dt-bindings: usb: snps,dwc3: Add
+ 'snps,global-regs-starting-offset' quirk
+Thread-Index: AQHZdBkVGzo+T+kwpkqSDn6NeDDx1681NUYAgAC6KHA=
+Date:   Fri, 21 Apr 2023 16:12:33 +0000
+Message-ID: <6273cc836dee42809f6ac5c5cdbcec04@realtek.com>
+References: <20230421061825.2233-1-stanley_chang@realtek.com>
+ <20230421061825.2233-2-stanley_chang@realtek.com>
+ <CAL_JsqJBDuxCAnZmHBnHuMkjTXTLet2d3o5kLRZQ_YuqVB9Pcw@mail.gmail.com>
+In-Reply-To: <CAL_JsqJBDuxCAnZmHBnHuMkjTXTLet2d3o5kLRZQ_YuqVB9Pcw@mail.gmail.com>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.21.190.159]
+x-kse-serverinfo: RTEXMBS03.realtek.com.tw, 9
+x-kse-antispam-interceptor-info: fallback
+x-kse-antivirus-interceptor-info: fallback
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Devi Priya <quic_devipriy@quicinc.com>
-Cc:     linux-phy@lists.infradead.org, quic_arajkuma@quicinc.com,
-        linux-arm-msm@vger.kernel.org, quic_kathirav@quicinc.com,
-        quic_srichara@quicinc.com, linux-kernel@vger.kernel.org,
-        agross@kernel.org, quic_ipkumar@quicinc.com,
-        quic_anusha@quicinc.com, konrad.dybcio@linaro.org,
-        vkoul@kernel.org, kishon@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        andersson@kernel.org, quic_sjaganat@quicinc.com
-In-Reply-To: <20230421124150.21190-2-quic_devipriy@quicinc.com>
-References: <20230421124150.21190-1-quic_devipriy@quicinc.com>
- <20230421124150.21190-2-quic_devipriy@quicinc.com>
-Message-Id: <168209295793.1394458.6036002891116983900.robh@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: phy: qcom,qmp-pcie: Add ipq9574
- bindings
-Date:   Fri, 21 Apr 2023 11:09:21 -0500
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Fri, 21 Apr 2023 18:11:49 +0530, Devi Priya wrote:
-> Add bindings for the PCIe QMP PHYs found on IPQ9574.
-> 
-> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
-> ---
->  Changes in V1:
-> 	- Introduced a new binding for ipq9574 as suggested by Krzysztof
-> 
->  .../phy/qcom,ipq9574-qmp-pcie-phy.yaml        | 90 +++++++++++++++++++
->  1 file changed, 90 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/qcom,ipq9574-qmp-pcie-phy.yaml
-> 
-
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/phy/qcom,ipq9574-qmp-pcie-phy.example.dts:18:18: fatal error: dt-bindings/clock/qcom,ipq9574-gcc.h: No such file or directory
-   18 |         #include <dt-bindings/clock/qcom,ipq9574-gcc.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[1]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/phy/qcom,ipq9574-qmp-pcie-phy.example.dtb] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1512: dt_binding_check] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230421124150.21190-2-quic_devipriy@quicinc.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+SGkgUm9iLA0KDQo+IEFnYWluLCB3ZSdyZSBub3QgZ29pbmcgdG8ga2VlcCBhZGRpbmcgcHJvcGVy
+dGllcyBmb3IgZXZlcnkgRFdDMyB2YXJpYXRpb24uIElmDQo+IGl0IGlzIGJvYXJkIHNwZWNpZmlj
+LCB0aGVuIHllcyBhIHByb3BlcnR5IGlzIGFwcHJvcHJpYXRlLiBJZiBpdCBpcyBTb0Mgc3BlY2lm
+aWMsIHRoZW4NCj4gaW1wbHkgaXQgZnJvbSB0aGUgY29tcGF0aWJsZS4NCj4gT3IgaW4gdGhpcyBj
+YXNlLCB5b3UgY291bGQgcG9zc2libHkgYWRkIGFub3RoZXIgcmVnIGVudHJ5Lg0KPiANCj4gUm9i
+DQo+IA0KTGV0IG1lIHRyeSB0byB1bmRlcnN0YW5kIHlvdXIgY29uY2VybnMuDQoNClRoZSBkZXZp
+Y2UtdHJlZSBwcm9wZXJ0eSBzaG91bGQgd29yayBmb3IgYWxsIGR3YzMgSVBzIGFuZCBjYW4gYmUg
+c3BlY2lmaWVkIGJ5IGRpZmZlcmVudCBib2FyZHMuDQpGb3IgYSBTb0Mgc3BlY2lmaWMsIGl0IHNo
+b3VsZCB1c2UgYSBjb21wYXRpYmxlIG9yIHJlZ2lzdHJ5IGVudHJ5IHRvIGNoYW5nZSBpdC4NClNv
+IHlvdSB0aGluayB3ZSBjYW4ndCB1c2UgYSBwcm9wZXJ0eSB0byBzcGVjaWZ5IHRoaXMgb2Zmc2V0
+Lg0KDQpJcyBteSB1bmRlcnN0YW5kaW5nIGNvcnJlY3Q/DQoNCklmIGl0IGlzIHJpZ2h0LCB1c2lu
+ZyBwcm9wZXJ0eSB0byBzb2x2ZSB0aGlzIHByb2JsZW0gd2FzIG15IG1pc3Rha2UuDQpJIHdpbGwg
+dGhpbmsgYSBuZXcgbWV0aG9kIHRvIHJlc29sdmUgaXQuDQoNCg==
