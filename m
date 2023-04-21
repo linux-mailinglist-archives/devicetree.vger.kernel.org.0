@@ -2,111 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 93D516EAEFD
-	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 18:26:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E382B6EAF0C
+	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 18:28:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231404AbjDUQ05 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Apr 2023 12:26:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40206 "EHLO
+        id S233075AbjDUQ2H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Apr 2023 12:28:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231282AbjDUQ04 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 12:26:56 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E8C77A89
-        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 09:26:55 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-94a34a14a54so314368366b.1
-        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 09:26:55 -0700 (PDT)
+        with ESMTP id S233084AbjDUQ2E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 12:28:04 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AE9C13F8E
+        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 09:28:01 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-506b20efd4cso3105877a12.3
+        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 09:28:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682094413; x=1684686413;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1682094479; x=1684686479;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=vIEVML4IO5anh889+aalXEgSW3X6EwyG+xKSv5s4BBU=;
-        b=vNf7B7OMSpTvkt/QhbB/PsdtgWBg1pW9dMi93H7w5lWvBEWhimVzdKHM56ubv9YdOi
-         MhSrry6TwNkGNklCPZ61WR+7zLhsd1Cp/go24HmMDtFzKEaH0KV3bPz+YzXwGXo3NdFa
-         AZqalVa8nxwpxvHRp77seyGRegReWeSrY7c+XCBK741gPSfK13cdMNmKo65eIZSU4jCj
-         irpenpQa2kKEPFolx2roZEow6EovgxA3f+ypHKWdATTLEmonSrskN/EDE0xdJ3gSoUol
-         QfjO3WbZ6W1HG4z7biEvEPaZ4rGDWbPI3rvS2yfP9tiTxb3SYT5RsEk1ClZTElkIxVu2
-         ikHw==
+        bh=S51TzJEKK9WWVDYr4Tc1gJpcMzkHWh1WXqblt4YDlC0=;
+        b=CETPV90ihN3b3DZOnlv9hQKr0fh4gspi1VCr9VdP4hwDkdtmZ9AgF5tdmnECAHPp+V
+         RKWp1KvQD2X5o8mx+dj5hshVZywtPp011NNTJ1RVMADvlgve1fngNYOOtu8/mkGQv8S3
+         UQ4bja+i7aMHCdtiERCr0Kgvko21kA8OJ2FNFCa6SRpFiBUyyaljnZWHdVDyu8sksfeI
+         h/qQuwtNvzj1lVvuYVJr/87Ah+oIUnGt4mEOfV5eBH3noIbpPg+/FxLR9om20wPDR89K
+         TyR4zf0P3Hb8lkQ6duOweA3p9nR6TklUsLo05M+ge6x8oJzsaY0bBFh/y2FVuvSzXZaw
+         IJhA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682094413; x=1684686413;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1682094479; x=1684686479;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vIEVML4IO5anh889+aalXEgSW3X6EwyG+xKSv5s4BBU=;
-        b=TU70HQA1MnwTb6oiqjQWSDNEJdBpZDEYaUATFsoeNSUwc2uuQBToPGzFA6ksVRAYtU
-         WnFv/MC1m3/5xG3POfoWPb6QvDJpaDZXzCPD+bBJOC0OIAu3yDr7NRCI5QgF/NBv28in
-         5gLsUjH7/5cUbLDWPMCtBujisto2QST4rXHfBrvmGJRIKdvbhUYQ9Lrig2f1Tbgn53fm
-         vRbJaqMlWrYHrn7KNtVdJogOpcGTcP2EN0PxKCYKw4rCXdX1cyRrGIa6zjidG5Bp77OC
-         5455byS2VwMzYolKaGEyz8qjz+HnORjMmGE7tGjfdsLR9KnlXlShaNYQPhITakcDdMkO
-         uK4A==
-X-Gm-Message-State: AAQBX9fHM4lw8tonRoZn4dxUo4SLfI74XlYb3iydKC2QPYg522Xv4Xa5
-        1v/yQndVTh5YFPZ4uClGJK0jZQ==
-X-Google-Smtp-Source: AKy350ZlepiYHICnCvkKxXgRvs5qFi+tujr0SqeW/avud6pnNBIJ6AakgyIPJCcworE7G0FK8U1oBA==
-X-Received: by 2002:a17:906:194d:b0:94e:c938:1987 with SMTP id b13-20020a170906194d00b0094ec9381987mr2928538eje.7.1682094413624;
-        Fri, 21 Apr 2023 09:26:53 -0700 (PDT)
+        bh=S51TzJEKK9WWVDYr4Tc1gJpcMzkHWh1WXqblt4YDlC0=;
+        b=O9zGCchUt6EwWsY3XjVVUKTZxUQDydzmwZT+a48LNM7vT9mW7jTZ3gde0EayeHJbg6
+         H6e3DFX8i8gM4+Mk+w0Hzgw6+FnqPaxOEIOjaCvN1ANTliePKnCGR5h/OAT5utqDNzJl
+         WrzGvOZZeCYpEhlajvJ1AOqurg6qvq63gLGRqN2XkLrRYdhuThoKoahLgbl/w5x7SdOf
+         caLp/1tX4bkx/pcXXjqgZQbdS/AMjCjs6qmjboI0teKcE7eUK+FLsiOU7w2lZve5s1fR
+         WsaesbmUTJKav6vrNCiEhxslnnTxqtfUd8kIRqTg57irwJMTmnI3gFV1hJm09rjLNyhX
+         yzgA==
+X-Gm-Message-State: AAQBX9eftDIQfMQ+FvkDiQ3Lh6VlMcxDBF2RIaiSLkKSQnud8/joq86K
+        ns3XOewBpeJ6k3dZ4kAiqKfDhQ==
+X-Google-Smtp-Source: AKy350YDsOgKLoK5tAIioZExs34dWYBZrpIx7o0tWafmx6898YyxY8cwVVzZn6+Qk1owXo7rwySlYg==
+X-Received: by 2002:a05:6402:6c7:b0:504:9345:ffa4 with SMTP id n7-20020a05640206c700b005049345ffa4mr7172456edy.21.1682094479554;
+        Fri, 21 Apr 2023 09:27:59 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:687d:8c5:41cb:9883? ([2a02:810d:15c0:828:687d:8c5:41cb:9883])
-        by smtp.gmail.com with ESMTPSA id gn5-20020a1709070d0500b0094f29a53129sm2190915ejc.205.2023.04.21.09.26.52
+        by smtp.gmail.com with ESMTPSA id v1-20020aa7dbc1000000b005029c47f814sm1983225edt.49.2023.04.21.09.27.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Apr 2023 09:26:53 -0700 (PDT)
-Message-ID: <fb93e95f-181f-917d-9216-a81dec1a2959@linaro.org>
-Date:   Fri, 21 Apr 2023 18:26:51 +0200
+        Fri, 21 Apr 2023 09:27:59 -0700 (PDT)
+Message-ID: <f8aae62c-e3c5-5fca-7a56-0bc9c0efbd66@linaro.org>
+Date:   Fri, 21 Apr 2023 18:27:57 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH RESEND v2 1/2] dt-bindings: display: simple: add support
- for InnoLux G070ACE-L01
-To:     Doug Anderson <dianders@chromium.org>, richard.leitner@linux.dev
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        Richard Leitner <richard.leitner@skidata.com>
-References: <20230201-innolux-g070ace-v2-0-2371e251dd40@skidata.com>
- <20230201-innolux-g070ace-v2-1-2371e251dd40@skidata.com>
- <CAD=FV=XJCtqep+92h3gLfs4o2TwvL4MORjc9ydTSpZiZ0dsR0w@mail.gmail.com>
+Subject: Re: [PATCH v8 2/8] dt-bindings: phy: qcom,qmp-usb: Add IPQ9574 USB3
+ PHY
 Content-Language: en-US
+To:     Varadarajan Narayanan <quic_varada@quicinc.com>,
+        Johan Hovold <johan@kernel.org>
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        vkoul@kernel.org, kishon@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
+        mturquette@baylibre.com, sboyd@kernel.org, quic_wcheng@quicinc.com,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-clk@vger.kernel.org
+References: <cover.1680693149.git.quic_varada@quicinc.com>
+ <1efa9a64499767d939efadd0aef897ac4a6e54eb.1680693149.git.quic_varada@quicinc.com>
+ <0a66e291-a86d-1ff9-e674-839b8cc8f1da@linaro.org>
+ <ZDz9t9TkBqZ1fcfn@hovoldconsulting.com>
+ <20230421095838.GA5813@varda-linux.qualcomm.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAD=FV=XJCtqep+92h3gLfs4o2TwvL4MORjc9ydTSpZiZ0dsR0w@mail.gmail.com>
+In-Reply-To: <20230421095838.GA5813@varda-linux.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/04/2023 18:15, Doug Anderson wrote:
-> Hi,
+On 21/04/2023 11:58, Varadarajan Narayanan wrote:
+> On Mon, Apr 17, 2023 at 10:05:11AM +0200, Johan Hovold wrote:
+>> On Thu, Apr 06, 2023 at 09:41:49AM +0200, Krzysztof Kozlowski wrote:
+>>> On 05/04/2023 13:41, Varadarajan Narayanan wrote:
+>>>> Add dt-bindings for USB3 PHY found on Qualcomm IPQ9574
+>>>>
+>>>> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+>>>> ---
+>>>>  Changes in v8:
+>>>> 	- Update clock names for ipq9574
+>>>>
+>>>>  Changes in v6:
+>>>> 	- Made power-domains optional
+>>>>
+>>>> Note: In the earlier patch sets, had used the (legacy)
+>>>> specification available in qcom,msm8996-qmp-usb3-phy.yaml. Moved
+>>>> to newer specification in qcom,sc8280xp-qmp-usb3-uni-phy.yaml
+>>>> ---
+>>>>  .../phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml        | 43 +++++++++++++++++++---
+>>>>  1 file changed, 37 insertions(+), 6 deletions(-)
+>>
+>>>> +        clock-names:
+>>>> +          items:
+>>>> +            - const: aux
+>>>> +            - const: ref
+>>>> +            - const: com_aux
+>>>
+>>> Can anyone explain me why do we name these (here and other Qualcomm
+>>> bindings) based on clock name, not input? Just because different clock
+>>> is fed to the block, does not necessarily mean the input should be named
+>>> differently.
+>>
+>> I guess part of the answer is that this has just been copied from the
+>> vendor dts and (almost) no one but Qualcomm has access to the
+>> documentation. What would the input names be here?
+>>
+>> Also note that there are SoCs that enable both 'cfg_ahb' and 'com_aux'
+>> (e.g. sc7180).
 > 
-> On Mon, Mar 13, 2023 at 12:51 AM <richard.leitner@linux.dev> wrote:
->>
->> From: Richard Leitner <richard.leitner@skidata.com>
->>
->> Add Innolux G070ACE-L01 7" WVGA (800x480) TFT LCD panel compatible
->> string.
->>
->> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
-> 
-> nit: as I understand it, ordering of tags is usually supposed to be
-> chronological. You signed off on this patch before Krzysztof acked it,
-> so the SoB should be above. I'll fix that when applying.
+> The clock name definitions are auto-generated based on the clock
+> tree definitions provided by the h/w team. We followed the naming
+> pattern done in the previous SoCs.
 
-Some people agree with this... but b4 disagrees, so I would say the
-tools should implement the right process and right decisions. We should
-not be correcting the tools' output, unless the tools are not correct -
-then fix the tools.
-
-
+Are you sure? We talk about clock inputs here.
 
 Best regards,
 Krzysztof
