@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0588A6EA496
-	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 09:22:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 559306EA49A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 09:22:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230103AbjDUHWY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Apr 2023 03:22:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32942 "EHLO
+        id S229533AbjDUHWu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Apr 2023 03:22:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229991AbjDUHWX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 03:22:23 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84397132
-        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 00:22:22 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-506c04dd879so2178159a12.3
-        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 00:22:22 -0700 (PDT)
+        with ESMTP id S230385AbjDUHWt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 03:22:49 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADCDE132
+        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 00:22:43 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-5069097bac7so2230129a12.0
+        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 00:22:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682061741; x=1684653741;
+        d=linaro.org; s=google; t=1682061762; x=1684653762;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=eOhi8HfXhG6nrONx0n37reZUUHb906oWET36sxtB2q0=;
-        b=hYjJttCWpE1eKKtYJz39bJzIZmPnc29Szim5rA9wNGMM36+2zdYYVkSddXUHeQJEW6
-         NIxxzP/9jTAnY2bkZSMX0OKnSqvleuDiQHv+BOEIjwiNe9Za7HhoZC79R1jIuwv9piiu
-         3eky9+aXbMaTjnBW+L2L3OYQSBjh8lCeTiURJ2iHHoZwCRboaXhENFntvXzPMh9s4jcX
-         6qarnNF6Y4g98bx/SQ1zJCDrgIpIoqv/8fU2v9ziCNlIHG0jusdOMaePsBWf0srK6hCj
-         lYkDueULAPoQBrxwf3nDWhgMJD20M1UFGvgwklPsHnpqNa/l6zvUVj75398THKCpSMno
-         yI9A==
+        bh=G94r1kDoCSrrnnh54D3AYOlzXClm73g5y+LROkaOI1o=;
+        b=Vhz2Vgqf74V7QRPjCEVknXhpyMq/VVhwbH4NmgDhbdAIAN/LxlGEWkEWxflKOLCxcx
+         gzy78QL3hpQLN+uGutghd45oqwQtDVqF1HSzX0JQo1DgUoJaW0Qd3o9Tnds8+BH53k9w
+         JdyZTpvJqQdzizyZsyE/KnkBgNJBYlHRk9nzW5YVgwOQYROvyu17ubHvWzHsv41jrdYX
+         j91y7PliaCWouQeaO5t06qcBmQdz9q1C+U1F48LLYftVj/C+eoh7eQQv96P324vTF4lu
+         3yjCNyBHsWozheAebLprpoWzHqpxpyErurRXbmUa7paScii9oDNuX8hS3trrFWYSltD7
+         tHew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682061741; x=1684653741;
+        d=1e100.net; s=20221208; t=1682061762; x=1684653762;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eOhi8HfXhG6nrONx0n37reZUUHb906oWET36sxtB2q0=;
-        b=K/Rq4n2l8zhbN10H7abru0GPyxy1CokR2CXpmu0995TlkwePYikxL6dExHCicMRshU
-         MD7Rg/wzV3AjrZVLI5eMSTud/UtsjdJTXVCuD0Og7LiOOCeORRfEpZ2hXY+iecTkhfav
-         QMhCOwxpyfSRXEo0qirkmJtH1MxjunyfHNJQ6kIhSIQqD2PMk/j2entKVd8BU95H5gV+
-         ME2M+ZSqGG6UJLCcc8GosyBCgj5XINGZCXqpOC1RO2UQ7nYLAM8IEs/o3JnVFeh+HMWt
-         vug110Q4uZY93UPKb6eI2QPLhRCzg5A5eI+g+i7yxXhB/cETaVjLUJhnPven8P2zd2sW
-         mwRg==
-X-Gm-Message-State: AAQBX9c4p/ntyJ8YSh/F01BqAEXCZN+PTz6gdeFHWKbJm09XR4HHHfnp
-        s48rEue+nC6cQfB0ZZ5ae5wqxA==
-X-Google-Smtp-Source: AKy350Z09y1seEry/ehr6BbrL9Mclu/atTvpIxybSDKCEkYDGlznj8Y5qPILcVDPNcV5yhkIn3KBag==
-X-Received: by 2002:a17:906:57d6:b0:94f:4bd4:36f with SMTP id u22-20020a17090657d600b0094f4bd4036fmr1443162ejr.64.1682061741036;
-        Fri, 21 Apr 2023 00:22:21 -0700 (PDT)
+        bh=G94r1kDoCSrrnnh54D3AYOlzXClm73g5y+LROkaOI1o=;
+        b=gH6arUK/nE7gsruL5bB2WGxPV8DlH4f2Cenv72YMcsv+hvDuRLKBrQKFcqJBkeMa/b
+         UGygIeuBTNGExpKR0mLCkUfEj7FSy60bybUTUtUrUtEqkrBE9VsZcKC57w04qPx7f9L8
+         vNGyBl2y6NkDrx1d3DFosc8cmAU927G4I+mscyHotogS4B5EwnLwgJKOd43EVSv8jY25
+         NzS4224su8mP+ptpgc/iWkYj+QpzXVXXW/taFPKer0hY7udYYZbmO5sJSXvNdbHBP5G/
+         c5PR936m41HhgRVvzrXdUF1bSw+C5qP46NW93a5PUIKsTY/HOZ6MtN+qSAWZifkX4BBX
+         8GfQ==
+X-Gm-Message-State: AAQBX9d8ge4tb0cx2wS9K0pS0tW7NI3gwNJfGb4AzTP26/ZWcL51iuZl
+        mK3VpUWj8x93mAZqTYGT6QQp/A==
+X-Google-Smtp-Source: AKy350bP3yXrNVbDGJwdj6jyg5xHgrUduFWRxyie0GM7RBpam0YfmCTrtvKfLvQpad9yZYFGsiSYnQ==
+X-Received: by 2002:aa7:de92:0:b0:506:c096:18a9 with SMTP id j18-20020aa7de92000000b00506c09618a9mr4135575edv.32.1682061762149;
+        Fri, 21 Apr 2023 00:22:42 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:668b:1e57:3caa:4d06? ([2a02:810d:15c0:828:668b:1e57:3caa:4d06])
-        by smtp.gmail.com with ESMTPSA id bf18-20020a0564021a5200b00506b88e4f17sm1545869edb.68.2023.04.21.00.22.19
+        by smtp.gmail.com with ESMTPSA id j19-20020aa7c0d3000000b005065141d1f4sm1549251edp.20.2023.04.21.00.22.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Apr 2023 00:22:20 -0700 (PDT)
-Message-ID: <fce46f1f-a544-7a84-ff5e-12c39ca253fc@linaro.org>
-Date:   Fri, 21 Apr 2023 09:22:19 +0200
+        Fri, 21 Apr 2023 00:22:41 -0700 (PDT)
+Message-ID: <e960b01e-96f4-56bf-366d-12cbad33f815@linaro.org>
+Date:   Fri, 21 Apr 2023 09:22:40 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
@@ -76,7 +76,7 @@ Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -90,21 +90,10 @@ On 18/04/2023 08:46, Souradeep Chowdhury wrote:
 > compatible string.
 > 
 > Signed-off-by: Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+> ---
 
-This is a friendly reminder during the review process.
 
-It looks like you received a tag and forgot to add it.
-
-If you do not know the process, here is a short explanation:
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions. However, there's no need to repost patches *only* to add the
-tags. The upstream maintainer will do that for acks received on the
-version they apply.
-
-https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
-
-If a tag was not added on purpose, please state why and what changed.
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
