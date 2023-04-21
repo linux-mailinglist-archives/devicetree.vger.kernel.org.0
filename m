@@ -2,198 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA1B36EAC34
-	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 16:02:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FE3F6EAC68
+	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 16:11:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231340AbjDUOBq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Apr 2023 10:01:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41886 "EHLO
+        id S229877AbjDUOLq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Apr 2023 10:11:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232501AbjDUOBd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 10:01:33 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B8A2E55;
-        Fri, 21 Apr 2023 07:01:28 -0700 (PDT)
-Received: from notapiano (unknown [IPv6:2600:4041:5b1a:cd00:524d:e95d:1a9c:492a])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: nfraprado)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 54ED26603276;
-        Fri, 21 Apr 2023 15:01:26 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1682085687;
-        bh=1vgwclP5B6vfVz7wXujyKjNoyVDTIACdOwUdXtZG1fg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=CMON1N7KEo0dGRHeB/EiSYBZlhMPw0PYScmX0/QFGDPPFm+oWqrpAvR76ZxglqN+o
-         NwyR7DrKTqyh2Wi++ziTgeKQX9wIcPovn7nnYxELH5D03DoKmCwinXpQmF5WmROY46
-         wmw3xa7D4gf/HrbOiRWLyWOeobTzGJh0HrxLgNlVdDSB9zujcekTqpnP6VEjhSrYrW
-         InfVmI/WgAuTgxPK4CnBkfecqVfYte4BGNHUL3w2Is9yenf0BlvKqPtloyYfYEibza
-         uDZFA4GYDnAZjXmytM9CTjKWdwjXV62zGhbcQPDwRGWff6RtgzZUEj1kmlR9uvgT7Z
-         OxKbvf+8rfYVg==
-Date:   Fri, 21 Apr 2023 10:01:22 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     Chen-Yu Tsai <wenst@chromium.org>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8192-asurada-hayato: Enable
- Bluetooth
-Message-ID: <872e8b77-c1ea-410a-b978-dd8f49f9904b@notapiano>
-References: <20230421110327.2395804-1-wenst@chromium.org>
+        with ESMTP id S229709AbjDUOLp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 10:11:45 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C7A9B76B
+        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 07:11:43 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-94f109b1808so285094366b.1
+        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 07:11:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1682086302; x=1684678302;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=EPD5TcepChIUyB1x+7Snz5I2ALaHEaijNEsj7LUHZPA=;
+        b=SGnUbBPtbMuGlGP7xgkjvYNprt/tmwJukkiW4SLbD+eD/CdrjoXNA0p80kH6A46gFO
+         maSZwJRhDipvRmudtViB0d3B5aAUO3EALglvWabl8Maxr0x0PjQYyCoaDYKRdchvf3AF
+         1XTScpJja6tJ5FirRR1MFIPnMT6WOVnNLAw1O38AqrafLFWIDlfw7/v68W+Zw+42Xo34
+         1fFoyz/wz7dOgbI200Bt88lDOK6wFt5Rjx51JU3oRmjlT36eWayGqlP4PARwVGNhEf60
+         HaesoU6a/AbcpRozeREASEWLEbTgSACsCCgM8V0nqINY32A4/PKAqHI4FatAFO7VnSgI
+         OsYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682086302; x=1684678302;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EPD5TcepChIUyB1x+7Snz5I2ALaHEaijNEsj7LUHZPA=;
+        b=JLbrMcIOYrRvJrMPGTRh3Y016uHZfOf3c1xAOS4BOZDbN6sPTVtOFrtUeo0erW7ltC
+         N5xTnfs8oJYRYpiF8HSVyA1AXfPoQKs4K4D/It/kKGESALJhKnCqR8zPQgmy4Qr7n/Q3
+         0i1u633lCiBS6In7px/cJ88LeMg7vi/LTAusRw9H0DhWwvKAkwq+vHhcqVrkEkRBIb8q
+         Sfjb+7ShVad9K3CF+thPo6F3rU8rfyddlbp9ZbOXyAT2vdBLv8zuTu3x1HHI/V9se3vE
+         za4px3OiExwxrMa1EF0bcNgG0lzwFXdvf0XZzEzTXzkwjLGr21HksS4XX3JTi9rYO8ZD
+         BenA==
+X-Gm-Message-State: AAQBX9eQBVNZS+6dHiyoGS89ehSgpwV3Dvt9H9DF5M3GWYGZxQMJKUzH
+        X8zPktrABG+DhBybxC5Q0UcmIw==
+X-Google-Smtp-Source: AKy350azULtknnyQgZXmslDuOdRO/uK9oaFqyUGWWmEXSB8R6Pd3XgFf/p61ksQZOPAwTDxYV8cQSw==
+X-Received: by 2002:a17:906:9c44:b0:94b:4a4:2836 with SMTP id fg4-20020a1709069c4400b0094b04a42836mr2241258ejc.69.1682086301764;
+        Fri, 21 Apr 2023 07:11:41 -0700 (PDT)
+Received: from [172.16.220.31] (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id mb20-20020a170906eb1400b0094f432f2429sm2104299ejb.109.2023.04.21.07.11.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 Apr 2023 07:11:41 -0700 (PDT)
+From:   Luca Weiss <luca.weiss@fairphone.com>
+Subject: [PATCH RFC 0/4] Add WCN3988 Bluetooth support for Fairphone 4
+Date:   Fri, 21 Apr 2023 16:11:37 +0200
+Message-Id: <20230421-fp4-bluetooth-v1-0-0430e3a7e0a2@fairphone.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230421110327.2395804-1-wenst@chromium.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJmZQmQC/x2NQQrCMBAAv1L27EKaFq1eBR/gVXrIxq1ZCElJW
+ imU/t3F4wwMs0PlIlzh1uxQ+CtVclJoTw344NKHUd7KYI3tTG9bnOYeKa685LwEpO7sDA8Xuvo
+ BtCFXGam45INWaY1R5Vx4ku0/ecHzcYfxOH6EglTSeQAAAA==
+To:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Balakrishna Godavarthi <bgodavar@codeaurora.org>,
+        Rocky Liao <rjliao@codeaurora.org>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        Luca Weiss <luca.weiss@fairphone.com>
+X-Mailer: b4 0.12.2
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 21, 2023 at 07:03:27PM +0800, Chen-Yu Tsai wrote:
-> Hayato's Realtek WiFi/BT module has it's Bluetooth function wired to
-> UART1.
-> 
-> Add and enable the relevant device nodes for it.
-> 
-> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-> ---
->  .../dts/mediatek/mt8192-asurada-hayato-r1.dts | 80 +++++++++++++++++++
->  1 file changed, 80 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r1.dts b/arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r1.dts
-> index 43a823990a92..6a7d7870525b 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r1.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r1.dts
-> @@ -40,9 +40,89 @@ CROS_STD_MAIN_KEYMAP
->  	>;
->  };
->  
-> +&pio {
-> +	bt_pins: bt-pins {
-> +		bt_kill: pins-bt-kill {
+Just to start with the important part why this is an RFC:
 
-Drop this label and for the other pinconfigs below as they'll never be
-referenced.
+While Bluetooth chip init works totally fine and bluez seems to be
+fairly happy with it, there's a (major) problem with scanning, as shown
+with this bluetoothctl snippet and dmesg snippet:
 
-> +			pinmux = <PINMUX_GPIO144__FUNC_GPIO144>; /* BT_KILL_L */
+  [bluetooth]# scan on
+  Failed to start discovery: org.bluez.Error.InProgress
 
-I'd also drop this and the other comments, as they're already documented in the
-gpio-line-names property.
+  [  202.371374] Bluetooth: hci0: Opcode 0x200b failed: -16
 
-> +			output-low;
-> +		};
-> +
-> +		bt_wake: pins-bt-wake {
-> +			pinmux = <PINMUX_GPIO22__FUNC_GPIO22>;  /* bt to wake ap */
-> +			bias-pull-up;
-> +		};
-> +
-> +		ap_wake_bt: pins-ap-wake-bt {
-> +			pinmux = <PINMUX_GPIO168__FUNC_GPIO168>; /* AP_WAKE_BT_H */
-> +			output-low;
-> +		};
-> +	};
-> +
-> +	uart1_pins: uart1-pins {
-> +		pins-rx {
-> +			pinmux = <PINMUX_GPIO94__FUNC_URXD1>;
-> +			input-enable;
-> +			bias-pull-up;
-> +		};
-> +
-> +		pins-tx {
-> +			pinmux = <PINMUX_GPIO95__FUNC_UTXD1>;
-> +		};
-> +
-> +		pins-cts {
-> +			pinmux = <PINMUX_GPIO166__FUNC_UCTS1>;
-> +			input-enable;
-> +		};
-> +
-> +		pins-rts {
-> +			pinmux = <PINMUX_GPIO167__FUNC_URTS1>;
-> +			output-enable;
+This opcode should be the following:
 
-Looks like the dt-binding doesn't currently support output-enable, but the
-driver does, so please just add a patch with
+  include/net/bluetooth/hci.h:#define HCI_OP_LE_SET_SCAN_PARAM    0x200b
 
-          output-enable: true
-	
-on mediatek,mt8192-pinctrl.yaml
+Unfortunately trying various existing code branches in the Bluetooth
+driver doesn't show any sign of making this work and I don't really know
+where to look to debug this further.
 
-> +		};
-> +	};
-> +
-> +	uart1_pins_sleep: uart1-pins-sleep {
+On the other hand "discoverable on" makes the device show up on other
+devices during scanning , so the RF parts of the Bluetooth chip are
+generally functional for sure.
 
-"-pins" needs to come last in the name otherwise the dt-binding will complain.
+Any ideas are welcome.
 
-> +		pins-rx {
-> +			pinmux = <PINMUX_GPIO94__FUNC_GPIO94>;
-> +			input-enable;
-> +			bias-pull-up;
-> +		};
-> +		pins-tx {
-> +			pinmux = <PINMUX_GPIO95__FUNC_UTXD1>;
-> +		};
-> +		pins-cts {
-> +			pinmux = <PINMUX_GPIO166__FUNC_UCTS1>;
-> +			input-enable;
-> +		};
-> +		pins-rts {
-> +			pinmux = <PINMUX_GPIO167__FUNC_URTS1>;
-> +			output-enable;
-> +		};
-> +	};
-> +};
-> +
->  &touchscreen {
->  	compatible = "hid-over-i2c";
->  	post-power-on-delay-ms = <10>;
->  	hid-descr-addr = <0x0001>;
->  	vdd-supply = <&pp3300_u>;
->  };
-> +
-> +&uart1 {
-> +	status = "okay";
-> +	pinctrl-names = "default", "sleep";
-> +	pinctrl-0 = <&uart1_pins>;
-> +	pinctrl-1 = <&uart1_pins_sleep>;
-> +	/delete-property/ interrupts;
-> +	interrupts-extended = <&gic GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH 0>,
-> +			      <&pio 94 IRQ_TYPE_EDGE_FALLING>;
-> +
-> +	bluetooth: bluetooth {
+@Bjorn: Patch "arm64: dts: qcom: sm6350: add uart1 node" should be fine
+to take regardless the RFC status, I don't think the problem is caused
+there.
 
-I'd also drop this label and only introduce it if/when needed.
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+---
+Luca Weiss (4):
+      dt-bindings: net: qualcomm: Add WCN3988
+      Bluetooth: btqca: Add WCN3988 support
+      arm64: dts: qcom: sm6350: add uart1 node
+      arm64: dts: qcom: sm7225-fairphone-fp4: Add Bluetooth
 
-Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+ .../bindings/net/bluetooth/qualcomm-bluetooth.yaml |  2 +
+ arch/arm64/boot/dts/qcom/sm6350.dtsi               | 63 ++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts  | 17 ++++++
+ drivers/bluetooth/btqca.c                          | 13 ++++-
+ drivers/bluetooth/btqca.h                          | 12 ++++-
+ drivers/bluetooth/hci_qca.c                        | 12 +++++
+ 6 files changed, 115 insertions(+), 4 deletions(-)
+---
+base-commit: cf4c0112a0350cfe8a63b5eb3377e2366f57545b
+change-id: 20230421-fp4-bluetooth-b36a0e87b9c8
 
-Thanks,
-Nícolas
+Best regards,
+-- 
+Luca Weiss <luca.weiss@fairphone.com>
 
-> +		compatible = "realtek,rtl8822cs-bt";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&bt_pins>;
-> +
-> +		enable-gpios = <&pio 144 GPIO_ACTIVE_HIGH>;
-> +		device-wake-gpios = <&pio 168 GPIO_ACTIVE_HIGH>;
-> +		host-wake-gpios = <&pio 22 GPIO_ACTIVE_LOW>;
-> +	};
-> +};
-> -- 
-> 2.40.0.634.g4ca3ef3211-goog
-> 
