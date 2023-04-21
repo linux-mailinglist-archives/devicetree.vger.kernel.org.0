@@ -2,157 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D66986EACAF
-	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 16:20:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5680F6EADBA
+	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 17:09:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232671AbjDUOU1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Apr 2023 10:20:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55748 "EHLO
+        id S231128AbjDUPJB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Apr 2023 11:09:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232577AbjDUOUM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 10:20:12 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9057013F81
-        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 07:20:01 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-4ec9c7c6986so1766134e87.0
-        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 07:20:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682086800; x=1684678800;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=yK3yIe9a1wbBKj0KZBkdEoQSsxDKw5meLrRh6nS/NAs=;
-        b=HNYSW9WtRin1UpYDmy5oqGTtPdRzatgSNcyZxKuAWL2njrWAmsO23bnSw/FaV5FsTk
-         3NaGs3ayknlAPebHS811STIn/tK01k7aVJddOrK/tE7mFCHeRhw3DWgQizrqy6YbHKFn
-         awnt9C3M3RAYwuQs6+fVDrW8uG1bcPKDEpRuCsqSt0Ei+RdxYa8T2YvxEH+bZxeWe8J7
-         SsZ7Dck9wf5ax5MSLqxBXeuSKSSPTxhp4UchJ/B4CLrX8WJiLWSG8mrj2aa4rU1t5TNS
-         ubMafmsHzR1v7NzXeHnXhbFNyBhH9vrTPdaGMnzaVXPPZ1NJFjuMnPKYB0UMca/j1cis
-         TnNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682086800; x=1684678800;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yK3yIe9a1wbBKj0KZBkdEoQSsxDKw5meLrRh6nS/NAs=;
-        b=ZrBRX7Q5wbzstfQ5x1+73tqqVbfV7LybiWChx8fnKUWGOE+va7EwVG2PCWbK7N8j+w
-         t0iL+/ZZYN/DNQ3bwM4dfX1qK43UFTx2FDNdPYELI3GhS1Qzj+VmjM4eZNT+1ek+fzJi
-         xNfOeEYZWf81q2bQEegDFcMnY0gURPbTn8Ea1Vg42EaJexo2OubR4nf46I1IeYiwqc8S
-         TXm+yovIFfC1Thfy8n1nNF8UbfI8OkJlTZeyvS780RC41Z3Pb/wMMYLIRXo7Wnmhcngd
-         Vpk5Da2mkO5zmgBhz9QzrGZzqFX/7EQOQCIbgk9BoRGj+UQzpgJ9e4uyfptZRM5zcM1F
-         tjYA==
-X-Gm-Message-State: AAQBX9cE1M+U5eavhufK6iIvmPihGPJ1p3YFOKw3RQ1Z4KR3MFZTn6D6
-        op6kYSKWVEggV49Xdjti6uWNSQ==
-X-Google-Smtp-Source: AKy350Z3MlSM4frPMB2jDj6hRgEKBnQ0rSplMEGlIjVYqo2u0QTPdtI8l9nJrdrQA3sqCVG865KqkQ==
-X-Received: by 2002:ac2:47eb:0:b0:4eb:43f5:73a1 with SMTP id b11-20020ac247eb000000b004eb43f573a1mr1423815lfp.44.1682086799707;
-        Fri, 21 Apr 2023 07:19:59 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id m15-20020a056512014f00b004e7fa99f2b5sm574358lfo.186.2023.04.21.07.19.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Apr 2023 07:19:59 -0700 (PDT)
-Message-ID: <6750910d-22a0-7bed-f163-db57424133c6@linaro.org>
-Date:   Fri, 21 Apr 2023 17:19:58 +0300
+        with ESMTP id S229612AbjDUPJB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 11:09:01 -0400
+Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01olkn2018.outbound.protection.outlook.com [40.92.98.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EB61C65E;
+        Fri, 21 Apr 2023 08:08:59 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=IfIswbHLZxcGf8FxSV0Cj4Pg/bLtKG8LKDw6LwgX/f453pnORg13jPtKM5Al2+L1uQBL0xUQqjZYZLUysfJ/Gf85E5Yj+z705GVlcaWpP6ul9NIIYUb1iWyz8EiQmmOB+E58DR6z27J/3qR2H5zgiSFs+j5V1LU+j0CdCObMsEFwsyIrvH48rlWqYhiOx9x3mLNYbMPle1GXwOf+W/NeLX1WvWEK7jkqCVYAVMhaDw2H1UxCIZOUq7UtwTTnHBYLu5+Te/hDE9wpojCewIstJTApRKpRyv4z9aOHTPnen6wFGrBsPInhy/k/3+RdRcZ8pDeaZSp0DJaKG6Z0z872BQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qMW+pixCxm0LQrW0u8l/1WmRGidmYM6tFHAbsrn+xcg=;
+ b=YINXUFz52rPY5bsQ9fSZo8ZbvwGwuHoepd67Fc1YrADZ/Y7slxrdg5byf1661YGVmfkbOH3L3KRsJYsD6kWtZGawFRovm6ll/xvqgcUzPhj6Cl/4x77+QH/j8mE6R3/8atwkgj/eWqL9SvBiBOKK7AKGYi5Jp3pxJjIPqBu07Nrrq/86q+0BthL0cYbLyXchl2wu7VaXwE8pw8cvwcRZ0B+1PTw92rjj1hbZnN7Q0tOiixIvcos41jnGU/oxwA0keAjkqAJv5ympUDW5xPHbDrJh9ScsZ4OETXaH4MnB1dSOEG39l8Or9R4uSDWzF/BQ7P/SKC3ezT6pFXarN+yP/g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qMW+pixCxm0LQrW0u8l/1WmRGidmYM6tFHAbsrn+xcg=;
+ b=cA1zPIIzE454DN6pGdlcUjRCgUMkCDcPJJaYhnmH/TSQDTC++c/DsMMDMpPqxkMSk+Pcy0fVW4MkLTA7oOlQp7v9y3cM5UpQtW0oxbuf76D+C7jvSFg44Ycdi7mQg8rs1L7jT4rbxUZmFkIGeeTpHb+kz2rtJxNT40Jf3WyDGzPZQtkxFysQ+sLrVZMn4u/40nG2C1RPe0XlsP5uaqhJQmnocxv+74EnT4nWzltXdgQ7EbfkGLi06Va7voa1EtRQk4tBkOKhjg5D/T9V0xo/2HocnV0Iny8XL5mgn3lEpeeKBBS29nTEFbhxWp7rDgsJLJhmPFLRmV+vS5SohU+ikw==
+Received: from TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM (2603:1096:400:252::12)
+ by TY3P286MB3505.JPNP286.PROD.OUTLOOK.COM (2603:1096:400:3b5::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6319.21; Fri, 21 Apr
+ 2023 15:08:55 +0000
+Received: from TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM
+ ([fe80::5805:16d6:6ab7:6639]) by TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM
+ ([fe80::5805:16d6:6ab7:6639%2]) with mapi id 15.20.6319.022; Fri, 21 Apr 2023
+ 15:08:54 +0000
+From:   Shengyu Qu <wiagn233@outlook.com>
+To:     lee@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, wens@csie.org,
+        lgirdwood@gmail.com, broonie@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     andre.przywara@arm.com, conor.dooley@microchip.com,
+        Shengyu Qu <wiagn233@outlook.com>
+Subject: [PATCH v3 0/3] Add X-Powers AXP15060 PMIC support
+Date:   Fri, 21 Apr 2023 23:08:13 +0800
+Message-ID: <TY3P286MB26114581A9F347B5ABE54E6498609@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
+X-Mailer: git-send-email 2.40.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TMN:  [GDCsPcj1Uiwdf+bsSRrt8Pr72rY4DOQr]
+X-ClientProxiedBy: SJ0PR13CA0168.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c7::23) To TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:252::12)
+X-Microsoft-Original-Message-ID: <20230421150816.10513-1-wiagn233@outlook.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v8 2/8] dt-bindings: phy: qcom,qmp-usb: Add IPQ9574 USB3
- PHY
-Content-Language: en-GB
-To:     Varadarajan Narayanan <quic_varada@quicinc.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        vkoul@kernel.org, kishon@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
-        mturquette@baylibre.com, sboyd@kernel.org, quic_wcheng@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-clk@vger.kernel.org
-References: <cover.1680693149.git.quic_varada@quicinc.com>
- <1efa9a64499767d939efadd0aef897ac4a6e54eb.1680693149.git.quic_varada@quicinc.com>
- <b9763bee-c0c8-86be-14de-2ed077b1f1d5@linaro.org>
- <20230421101345.GB5813@varda-linux.qualcomm.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230421101345.GB5813@varda-linux.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TY3P286MB2611:EE_|TY3P286MB3505:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0607ba91-d3f5-4b54-7bdd-08db427a52d4
+X-MS-Exchange-SLBlob-MailProps: Om8TgR6f4EDXF+C/Fo+05XB94T6n38Pv8l3AyQv92FLUWBmnFKsxzggkVGKNQ0BACvpJqo8PQipBW55DSnYlxQXvkrDIlPLl/Fy9Mr7pfwjc0ig63oErstUExjXFdbn+nqH8iVrSGbxtr7wSlyKHauJ9k6TpANHmyXwVTT8/kmAAxqY7cG1EPH8rEtWA7HzIGCDWwoBOnZwIo1NCnVulIW8jGnpaPB8W8jFn9fvn2oebmHcD3/hJa+8SLvPqskuHBHTEivFcHpiZftCG5bSRfVfecAxdcAvBga655uWcTbrGxgrMt6cXTEpPE/F/4XOnB3e1dZ/C+qI7oCdMqw0eEPmAPZSHgIICRM3JRHfTU4bEHhtpyNTMcA0ezViTwEbJhlCEtFB7PwvsxpotNyWcm+fYdeZT9p+c8JnGQd2FN8Zc9HDhdV//BfTMUW2Q2NDGd5odIFNnT1r6GuPZYhiUbifGUHch1j9/a6Qc1D9lMEyEeyLcUK72O6LVGFKrN019A282HPRPKwCwoyPy2BZEhSnbE11W65eewo4kty3U6Ydv3oExnezbvXc5qymC+QtK7blfWDMa4Lk1IjKHaYFdwZpRekDLSGdF60yCizmoZ1ACvENtI3bJ09JUQcm2JCsLZeyjy0fhQ1patV1psKKwWKtJ3Ce7CbMMUHev4fTTn668ewu95dPzTrRT+szNtRHB33qxY1+57y2O44+bYePNPL1jr67CX5cWE7uINbIppHuoXBHdtuEOycoH+4Hi/Fvb2nUDyqSHDO3e9SUUcv/DL6x8Wc+LEpEp1eWiJLlaH22G9ZwxGjHfzuBYRQ4654/CCgCbEhjb3hd855v1ngikZO+L6LANHSza
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: jJNBpxBXLRHlZMujOCZtxBGVzaG4HSDYdi0Nmgqr8O7WVChZDpFOxn6fjsjuef+FOaIBXcncwunLPfYQS8RW7tf4qzfwWWxfzTfMAA9G/EKyhtfNdVTO1ZPdhUdyCT9PPgq8llqJqgYcqCgouTg+GlNKPCgC90a7JSTCVGNTV9Zwc3sn2gDCGJG+vY2jBfy7Zwq8IQiOyq1rvSbU6WMbHDh7eKbCTc5nMrkbfYzxY4NIFubZQ5Mp74sQTSL9GII8PpLuuYon+KC0YTX64d86jCnK0rdqB5NhWbI0EjT3KLkxJxY5XxlawSeM4iudTEJwZVZqb+t3wPZvdV0wBE4xgFu+KwJ1NIn9U6PhsHePffI7srg7tthxQCMSaLqYvpUv0mj6dIOWl9AzY7lIFbvU4i74rJVIJGyYuwv6eQkaRynCebxC0IsrjExzFGsFSDTF1m9p9tVPeBpXYqRhbrsH2olbcp/Sqzcvsneg+mRYDyBsmEC/GF6CBFD2N6PrtWsCOcKtfLfZLKBXK8BzUzO1juOl/jMkjhgxhpVOkaX7r5p5+G3kD/UKMKVhbXmem2jKqqfETNVwgz/wAKQ8RRlk+y6NakfXTOStXIi8NfZYELY=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Ht6W0tLq+e3cdftMd0kIcEQFRkJA7HJgcA9vSXXEfAFcRPLqNln6I/l3KEYO?=
+ =?us-ascii?Q?fvayragcBvoGO4gAEwOrhQYlfjgJAUlrgmfb5Qc+bEfpjhE+OnoIVBCAoycp?=
+ =?us-ascii?Q?J3G7mYNoDYmmO39AVVly2Uqjz/JQelpSy+qNPR/t+cDZyvO7OcMO+f/CB5Uh?=
+ =?us-ascii?Q?EALdDqIEMsp+IhkCZucMMxQS3LLZghihN7Q/z8DUxJ5vrTl5wzoi4BbDRTDO?=
+ =?us-ascii?Q?ugTF6mBYmvHgO9/Ao9P8vfOQYq4KRJYlyVRsD908sjiBddef80LY/whoKBHv?=
+ =?us-ascii?Q?3wx+3g2YR98/tQxP6Aa7//t5bySuGZikYDLVFD25qn9dbhAoYAdWyNx6ixr5?=
+ =?us-ascii?Q?gMMSQU/cryrE9P3OpTG6X79gv95K3hb3IMdYqqbQuQSLOJtEaR73P8itQEGO?=
+ =?us-ascii?Q?ZwPVe5pJcK1SwZ2KhQ+XHdit/n6rQPmhakiLDPFbjfg4jbyQUNiTnMvM/CN5?=
+ =?us-ascii?Q?G/n8qCW2bdk7Z3av23dRaOpZP0Kwq7ca2uNAZH6Hhky/424rHgy48sTzm/VE?=
+ =?us-ascii?Q?QzudoqLzrJQ1k9tAQfnYq4uHZpnc0oqxz6L7685bBHnIe3ERfej/bIndRTiW?=
+ =?us-ascii?Q?zlQtjKJgKQLoo/VF5lJhHBj+TOShWDRdmGfx3HXZMy3WnJE9iCTB+lVXJbN4?=
+ =?us-ascii?Q?DZZgTWmxakvoF8SCUdM1+FhYqaTX8UJJnLvKslFeShRCDA/lHzd3M6EeNgzM?=
+ =?us-ascii?Q?oCME7WjM3bUr1tJ0T7XjKIhTBSgQV8R4VLPzUyeupAYUZaOmf1TEHtfyud73?=
+ =?us-ascii?Q?JilWG/xoWSaqHz81qkPu8kQTyCFrIB2vnTlrjeKjPgeOfkw4yLWsQvkVvRV7?=
+ =?us-ascii?Q?YJUepyUx6tLPByCEeNTzjDWS0ecxcx2DC06IiQoFxgvKt/V6udbsGzaNxQj4?=
+ =?us-ascii?Q?KlCSOtvUtWItIIaut+QjHHN6DdWwu8l6OQIsu4cu7VQQJFvk0d6rDymnOrjQ?=
+ =?us-ascii?Q?4mi0uGD2erNZ/BVAeuYBWJe5TAMrAoKQn+iJNTgHwWXGyIpOalGspzFi1nGX?=
+ =?us-ascii?Q?D93E/jMobTRUfcQRw9qKXu560SljCn9/gb8KTRuRUhB74X8OIqvC1zdGjwd2?=
+ =?us-ascii?Q?wpbFx2uRja7FOnrW5dXlmPnDvioPHmsiZV+YF4oAXevQRlSV7xU1wGwSyr3g?=
+ =?us-ascii?Q?p/ErkZguErshuE4yot3DW3+UaOkSAidRdJOr629R0SE6i/g7uOwIMuS6fl/n?=
+ =?us-ascii?Q?2UUL7f9l73O2PFf9WSoebGpdZGc3tUm7y1W4ig=3D=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0607ba91-d3f5-4b54-7bdd-08db427a52d4
+X-MS-Exchange-CrossTenant-AuthSource: TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Apr 2023 15:08:54.9036
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY3P286MB3505
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/04/2023 13:13, Varadarajan Narayanan wrote:
-> On Thu, Apr 06, 2023 at 09:42:31AM +0200, Krzysztof Kozlowski wrote:
->> On 05/04/2023 13:41, Varadarajan Narayanan wrote:
->>> Add dt-bindings for USB3 PHY found on Qualcomm IPQ9574
->>>
->>> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
->>> ---
->>>   Changes in v8:
->>> 	- Update clock names for ipq9574
->>>
->>>   Changes in v6:
->>> 	- Made power-domains optional
->>>
->>> Note: In the earlier patch sets, had used the (legacy)
->>> specification available in qcom,msm8996-qmp-usb3-phy.yaml. Moved
->>> to newer specification in qcom,sc8280xp-qmp-usb3-uni-phy.yaml
->>> ---
->>>   .../phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml        | 43 +++++++++++++++++++---
->>>   1 file changed, 37 insertions(+), 6 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml
->>> index 16fce10..e902a0d 100644
->>> --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml
->>> +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml
->>> @@ -16,6 +16,7 @@ description:
->>>   properties:
->>>     compatible:
->>>       enum:
->>> +      - qcom,ipq9574-qmp-usb3-phy
->>>         - qcom,sc8280xp-qmp-usb3-uni-phy
->>>
->>>     reg:
->>> @@ -25,11 +26,7 @@ properties:
->>>       maxItems: 4
->>>
->>>     clock-names:
->>> -    items:
->>> -      - const: aux
->>> -      - const: ref
->>> -      - const: com_aux
->>> -      - const: pipe
->>> +    maxItems: 4
->>>
->>>     power-domains:
->>>       maxItems: 1
->>> @@ -60,7 +57,6 @@ required:
->>>     - reg
->>>     - clocks
->>>     - clock-names
->>> -  - power-domains
->>
->> Power domains are required. Commit msg does not explain why this should
->> be now optional.
-> 
-> Since IPQ9574 doesn't have power switches couldn't provide power-domains details.
-> So, had to make it optional to pass 'make dtbs_check'.
+This patch series adds support for the X-Powers AXP15060 PMIC, which is
+a general purpose PMIC seen on different boards with different SOC.
+This series were tested on Starfive Visionfive 2 board.
 
-This should be a part of the commit message, so that the next developer 
-understands your intentions without going to mail archives.
+On this board, IRQ line from PMIC isn't connected so PEK function is
+completely unable to use, so IRQ existence detection is added to patch 2
+to avoid initialization failure.
 
-> 
-> Thanks
-> Varada
-> 
->> Best regards,
->> Krzysztof
->>
+Besides, its GPIO/LDO control logic is quite different from other chips
+and is not easy to add support for it basing on existing axp20x GPIO
+driver, so I didn't add support for it in this series. Maybe others
+could do this.
+
+---
+Changes since v2:
+ - Rebase to AXP313a series v10 [1] + newest (20230420) -next branch
+ Patch 1:
+  - Disables DC-DC frequency setting (Andre Przywara)
+ Patch 2:
+  - Add axp_regulator_only_cells rather than directly using axp806_cells
+    for cases that IRQ line isn't connected.
+ Patch 3:
+  - Fix some whitespace (Andre Przywara)
+  - Rename swout to sw to keep up with bindings (Andre Przywara)
+  - Add check for setting DC-DC frequency (Andre Przywara)
+
+
+Changes since v1:
+ - Move cpusldo before drivevbus (Krzysztof Kozlowski)
+
+[1] https://lore.kernel.org/linux-sunxi/20230401001850.4988-1-andre.przywara@arm.com/
+
+Shengyu Qu (3):
+  dt-bindings: mfd: x-powers,axp152: Document the AXP15060 variant
+  mfd: axp20x: Add support for AXP15060 PMIC
+  regulator: axp20x: Add AXP15060 support
+
+ .../bindings/mfd/x-powers,axp152.yaml         |   7 +-
+ drivers/mfd/axp20x-i2c.c                      |   2 +
+ drivers/mfd/axp20x.c                          | 107 ++++++++
+ drivers/regulator/axp20x-regulator.c          | 232 +++++++++++++++++-
+ include/linux/mfd/axp20x.h                    |  85 +++++++
+ 5 files changed, 422 insertions(+), 11 deletions(-)
 
 -- 
-With best wishes
-Dmitry
+2.40.0
 
