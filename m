@@ -2,239 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12E056EA4FA
-	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 09:38:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AFFE6EA4F8
+	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 09:38:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230299AbjDUHiL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Apr 2023 03:38:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46482 "EHLO
+        id S231267AbjDUHiH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Apr 2023 03:38:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229533AbjDUHiG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 03:38:06 -0400
-Received: from mail-ua1-x935.google.com (mail-ua1-x935.google.com [IPv6:2607:f8b0:4864:20::935])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA96C35B0
-        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 00:38:04 -0700 (PDT)
-Received: by mail-ua1-x935.google.com with SMTP id a1e0cc1a2514c-77858d8dcb5so5618534241.1
-        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 00:38:04 -0700 (PDT)
+        with ESMTP id S231282AbjDUHiD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 03:38:03 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5301F2D56
+        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 00:37:56 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-504eb1155d3so9723815a12.1
+        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 00:37:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1682062684; x=1684654684;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CVNW4QtM4eTYVeGO7r8lt2e44dC/9lAoYvvcxGHxL4k=;
-        b=Jee43CIGNJgbOBrV5pWsmi+0WPPMRJW5I1mjdMBMB268AsQiiDgXfUTx6oDl9GQaRh
-         WNVJg2vLzv+wRwbBMmwNilPBHGp5ui6+jcAMWwbuIfhei4Uvx3cBv2Rm1d3UNmw0to9D
-         PT+M5UqLbnfUE/tTkY4u2CX7GIy7TZVRWkc84=
+        d=linaro.org; s=google; t=1682062675; x=1684654675;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dU/wzPur9jjATRLtk1fYjzdd6mnHYVT0LlPVIPw2/Ic=;
+        b=sLBzuFEOxTlhEoJEoFQdavHHX30AWw6KYDP71wPBx0tb+rU492gxsWksT3Xp5eFfz9
+         /qvnmMq2b9ByOgnobT7iCEcCSq7lLFqxnfjMggI+n1OqnPRCAP760pK7pEPx+6td3DAi
+         pe8KqUVpRnMiZ/TKEqYLj7bJZnYkPtGOOUsmMHMH23cnx6fH4Ui2ipYC6xUqyzxDR9Bs
+         78J3y10JNrDtt1v0tSNZhL008r05fOZ/gUatR2Riy+O6fQh9ZH3JLfR0QOH8xzFPmtUU
+         eYNGVW/YlBy1AUI190AKrrMk8bsLm5cKIa4b5CtyhMWwJjeGxJo/7HwEc1CT8Qf7NUQZ
+         nxlQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682062684; x=1684654684;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CVNW4QtM4eTYVeGO7r8lt2e44dC/9lAoYvvcxGHxL4k=;
-        b=YLq2YLXwScdMDALY+LUFEsKuzK63SYjtJW9ngllpgHmcDf2a84TyvhL2r9I9hkfnmn
-         P3K1AKcP+MjERqMjnNFbdSJWPn+b/DvA1S2CC+df3IICsEbvySlt9GfD8w7VoiQqqmUc
-         xl4gPCJqJpyuW3A/79VMAJLbtYqhmpFdj7C7bhDIQKanCRq9Jsno8H9+2hBnRY3RSaT/
-         9bfB0yC8l2STeXGQQH5uJVnW85g/TB0uwXa6czLcBUEoy12FPstUHD3T0lj0z0OTa6AC
-         35geENIZBthe5bSi+mKM4Duwt3DqqNeIDXnRywxK42twO9RN/sw/9YTxow3UuKsVLrzY
-         KZiA==
-X-Gm-Message-State: AAQBX9dsHnqiKTWTNyHPlKZg18w02RDC5yDfOLxFGsfHuGa7SWpqeHSd
-        6rO0/b/tCY/rXHoNC63wJr5QYutMd5zHe2oM91O2oA==
-X-Google-Smtp-Source: AKy350agsBRG1USF1qYsYNGubTVbRzycwG/Aa/FdFtPpGxXj4pmd4WA8jiiMmMO66I2WyjRV+oR4zhbDbgYoI3GSimo=
-X-Received: by 2002:a1f:3d93:0:b0:446:b3d7:5fee with SMTP id
- k141-20020a1f3d93000000b00446b3d75feemr699665vka.0.1682062683846; Fri, 21 Apr
- 2023 00:38:03 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1682062675; x=1684654675;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dU/wzPur9jjATRLtk1fYjzdd6mnHYVT0LlPVIPw2/Ic=;
+        b=lL1kj3+7wr4kDot90Tbu8gs7aAVZkTZYBFAzPGcNbXY6l6TxTy4z3IEy/+cl/UgHPg
+         J5fms2L7ZNo9z82OSJbTMa7lNachIxFBqoxTqapiEwbHvCfRRt6hCVtwOoIldhSWGqtw
+         I2K3nrieS3BNAtuoOkpG1N5MPXPrPLc7Z/C5aI1jjDI/ZoyTlYqzWPVt4pGb5HYmgc70
+         EkCj+TgTTBu3fRqmPN4FrCiR8i6qheHG8bh9/UFJc8N6TQZlNVA3HwhPPJnRuMuTf+M9
+         QugY4wTreOChTu8pOQ1/a1EYhRAbkmFtCjcZ9FL5T+vzkqHjp7jv1Hj1OTIp6jfaCZHQ
+         L68g==
+X-Gm-Message-State: AAQBX9fV1u4+PV533qHQvHuV90w05rtOffUG3y4iAypx2pIXuH7v3DMx
+        x/+SF5OOXb/aJ79g9QiilW/uBw==
+X-Google-Smtp-Source: AKy350YEPrxwQ9Ho252JkN5olWUzdrxx8UtWLi0TO2wIuJp4nvNyytG8yqv4k+Nlp4cRefThVFsQNg==
+X-Received: by 2002:a05:6402:254c:b0:4ea:a9b0:a518 with SMTP id l12-20020a056402254c00b004eaa9b0a518mr8130393edb.17.1682062674786;
+        Fri, 21 Apr 2023 00:37:54 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:668b:1e57:3caa:4d06? ([2a02:810d:15c0:828:668b:1e57:3caa:4d06])
+        by smtp.gmail.com with ESMTPSA id x20-20020aa7d394000000b00504803f4071sm1570543edq.44.2023.04.21.00.37.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 21 Apr 2023 00:37:54 -0700 (PDT)
+Message-ID: <76e57634-75dd-01e8-9c56-36ed7de17812@linaro.org>
+Date:   Fri, 21 Apr 2023 09:37:53 +0200
 MIME-Version: 1.0
-References: <20230420094433.42794-1-angelogioacchino.delregno@collabora.com> <20230420094433.42794-2-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230420094433.42794-2-angelogioacchino.delregno@collabora.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Fri, 21 Apr 2023 15:37:52 +0800
-Message-ID: <CAGXv+5GuEQMxYTKrnia1ipYHLt_B2h6By7EejE7MjCypfavnFg@mail.gmail.com>
-Subject: Re: [PATCH 1/5] arm64: dts: mediatek: cherry: Add platform thermal configuration
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, kernel@collabora.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: Add max6639
+Content-Language: en-US
+To:     Naresh Solanki <naresh.solanki@9elements.com>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Marcello Sylvester Bauer <sylv@sylv.io>,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230420111759.2687001-1-Naresh.Solanki@9elements.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230420111759.2687001-1-Naresh.Solanki@9elements.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 20, 2023 at 5:45=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> This platform has three auxiliary NTC thermistors, connected to the
-> SoC's ADC pins. Enable the auxadc in order to be able to read the
-> ADC values, add a generic-adc-thermal LUT for each and finally assign
-> them to the SoC's thermal zones.
->
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
+On 20/04/2023 13:17, Naresh Solanki wrote:
+> From: Marcello Sylvester Bauer <sylv@sylv.io>
+> 
+> Add Devicetree binding documentation for Maxim MAX6639 temperature
+> monitor with PWM fan-speed controller.
+> 
+> Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
+> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+> ...
+
+Wrong syntax. '...' do not mean anything, it's ---
+
+> Changes in V2:
+> - Update subject
+> - Drop blank lines
 > ---
->  .../boot/dts/mediatek/mt8195-cherry.dtsi      | 105 ++++++++++++++++++
->  1 file changed, 105 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/arm64=
-/boot/dts/mediatek/mt8195-cherry.dtsi
-> index 8ac80a136c37..0820e9ba3829 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-> @@ -114,6 +114,77 @@ ppvar_sys: regulator-ppvar-sys {
->                 regulator-boot-on;
->         };
->
-> +       /* Murata NCP03WF104F05RL */
-> +       tboard_thermistor1: thermal-sensor-t1 {
-> +               compatible =3D "generic-adc-thermal";
-> +               #thermal-sensor-cells =3D <0>;
-> +               io-channels =3D <&auxadc 0>;
-> +               io-channel-names =3D "sensor-channel";
-> +               temperature-lookup-table =3D <    (-10000) 1553
-> +                                               (-5000) 1485
-> +                                               0 1406
-> +                                               5000 1317
-> +                                               10000 1219
-> +                                               15000 1115
-> +                                               20000 1007
-> +                                               25000 900
-> +                                               30000 796
-> +                                               35000 697
-> +                                               40000 605
-> +                                               45000 523
-> +                                               50000 449
-> +                                               55000 384
-> +                                               60000 327
-> +                                               65000 279
-> +                                               70000 237
-> +                                               75000 202
-> +                                               80000 172
-> +                                               85000 147
-> +                                               90000 125
-> +                                               95000 107
-> +                                               100000 92
-> +                                               105000 79
-> +                                               110000 68
-> +                                               115000 59
-> +                                               120000 51
-> +                                               125000 44>;
-> +       };
+>  .../bindings/hwmon/maxim,max6639.yaml         | 52 +++++++++++++++++++
+>  1 file changed, 52 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+> new file mode 100644
+> index 000000000000..1aaedfd7cee0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+> @@ -0,0 +1,52 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwmon/maxim,max6639.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +       tboard_thermistor2: thermal-sensor-t2 {
-> +               compatible =3D "generic-adc-thermal";
-> +               #thermal-sensor-cells =3D <0>;
-> +               io-channels =3D <&auxadc 1>;
-> +               io-channel-names =3D "sensor-channel";
-> +               temperature-lookup-table =3D <    (-10000) 1553
-> +                                               (-5000) 1485
-> +                                               0 1406
-> +                                               5000 1317
-> +                                               10000 1219
-> +                                               15000 1115
-> +                                               20000 1007
-> +                                               25000 900
-> +                                               30000 796
-> +                                               35000 697
-> +                                               40000 605
-> +                                               45000 523
-> +                                               50000 449
-> +                                               55000 384
-> +                                               60000 327
-> +                                               65000 279
-> +                                               70000 237
-> +                                               75000 202
-> +                                               80000 172
-> +                                               85000 147
-> +                                               90000 125
-> +                                               95000 107
-> +                                               100000 92
-> +                                               105000 79
-> +                                               110000 68
-> +                                               115000 59
-> +                                               120000 51
-> +                                               125000 44>;
-> +       };
-> +
->         usb_vbus: regulator-5v0-usb-vbus {
->                 compatible =3D "regulator-fixed";
->                 regulator-name =3D "usb-vbus";
-> @@ -260,6 +331,10 @@ &gpu {
->         mali-supply =3D <&mt6315_7_vbuck1>;
->  };
->
-> +&auxadc {
-> +       status =3D "okay";
-> +};
-> +
->  &i2c0 {
->         status =3D "okay";
->
-> @@ -1098,6 +1173,36 @@ mt6315_7_vbuck1: vbuck1 {
->         };
->  };
->
-> +&thermal_zones {
-> +       soc_area_ntc {
-> +               polling-delay =3D <1000>;
-> +               polling-delay-passive =3D <250>;
-> +               thermal-sensors =3D <&tboard_thermistor1>;
-> +
-> +               trips {
-> +                       trip-crit {
-> +                               temperature =3D <95000>;
-> +                               hysteresis =3D <2000>;
-> +                               type =3D "critical";
-> +                       };
-> +               };
-> +       };
-> +
-> +       pmic_area_ntc {
-> +               polling-delay =3D <1000>;
-> +               polling-delay-passive =3D <0>;
-> +               thermal-sensors =3D <&tboard_thermistor2>;
-> +
-> +               trips {
-> +                       trip-crit {
-> +                               temperature =3D <95000>;
-> +                               hysteresis =3D <2000>;
-> +                               type =3D "critical";
-> +                       };
-> +               };
-> +       };
+> +title: Maxim max6639
 
-I'm still getting:
+What is this device? fan controller?
 
-thermal_sys: Failed to find 'trips' node
-thermal_sys: Failed to find trip points for thermal-sensor-t1 id=3D0
-generic-adc-thermal thermal-sensor-t1: Thermal zone sensor register failed:=
- -22
-generic-adc-thermal: probe of thermal-sensor-t1 failed with error -22
-thermal_sys: Failed to find 'trips' node
-thermal_sys: Failed to find trip points for thermal-sensor-t2 id=3D0
-generic-adc-thermal thermal-sensor-t2: Thermal zone sensor register failed:=
- -22
-generic-adc-thermal: probe of thermal-sensor-t2 failed with error -22
-thermal_sys: Failed to find 'trips' node
-thermal_sys: Failed to find trip points for thermal-sensor-t3 id=3D0
-generic-adc-thermal thermal-sensor-t3: Thermal zone sensor register failed:=
- -22
-generic-adc-thermal: probe of thermal-sensor-t3 failed with error -22
-
-
-
-> +};
 > +
->  &u3phy0 {
->         status =3D "okay";
->  };
-> --
-> 2.40.0
->
->
+> +maintainers:
+> +  - Naresh Solanki <Naresh.Solanki@9elements.com>
+> +
+> +description: |
+> +  The MAX6639 is a 2-channel temperature monitor with dual, automatic, PWM
+> +  fan-speed controller.  It monitors its own temperature and one external
+> +  diode-connected transistor or the temperatures of two external diode-connected
+> +  transistors, typically available in CPUs, FPGAs, or GPUs.
+> +
+> +  Datasheets:
+> +    https://datasheets.maximintegrated.com/en/ds/MAX6639-MAX6639F.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - maxim,max6639
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+
+Why do you need these two properties?
+
+Anyway, the binding looks incomplete. Where are the supplies? Interrupts?
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      fan-controller@10 {
+> +        compatible = "maxim,max6639";
+> +        reg = <0x10>;
+> +      };
+> +    };
+> +...
+> 
+> base-commit: b8610e0fe08f1476895f141be60f8dd842f0adac
+
+Best regards,
+Krzysztof
+
