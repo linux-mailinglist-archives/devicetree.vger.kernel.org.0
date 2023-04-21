@@ -2,94 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 163D16EA255
-	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 05:28:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80D8C6EA265
+	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 05:36:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230258AbjDUD2H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 23:28:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39734 "EHLO
+        id S233380AbjDUDga (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 23:36:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230260AbjDUD2C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 23:28:02 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF8C91FCE;
-        Thu, 20 Apr 2023 20:28:00 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 2B5D424E197;
-        Fri, 21 Apr 2023 11:27:59 +0800 (CST)
-Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 21 Apr
- 2023 11:27:55 +0800
-Received: from [192.168.125.106] (113.72.144.253) by EXMBX162.cuchost.com
- (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 21 Apr
- 2023 11:27:54 +0800
-Message-ID: <8ce740ac-54e9-bf31-1e03-2f3e0e9ef63c@starfivetech.com>
-Date:   Fri, 21 Apr 2023 11:27:52 +0800
+        with ESMTP id S229521AbjDUDg3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 23:36:29 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2C4B272C;
+        Thu, 20 Apr 2023 20:36:27 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4ec9ccab8bbso1133937e87.2;
+        Thu, 20 Apr 2023 20:36:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1682048186; x=1684640186;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8TNUub0/4AH0hGM/PjLlH8GSLkYNvyx9t8iPbGCbpFs=;
+        b=UAPFUzUQyJx/7S5gVHGaKlqzAs3E1pbjFiFCwUvRnqKYgRkVPVAxAxq3h1wUZOTIKs
+         sdrL5WeEVCYNQ/QRsqE7MdBgdtTXLtxiysE5Ef4G0H3Mr70jmVF3BoV63hxt30H29Svu
+         /Vv27EFTfwEYbPrxQn1HpQ0Stmg+XbdOFxroV9a6i0ObXKRHx16pbJffS69JSf1RgCJN
+         5w7PpS1DOK+dMkoNosrKoL6ZW3Iln6ULoiT9R5Y5hv86pUc/K7IYZMBSJQ5HJyiL/9DB
+         rj6S44MohHDv9+UDGpLbI2/w4XU8b6bWaF5+dwoLUDayWv42jH1IcXbmkmAjrQ7Td0Xk
+         P4gQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682048186; x=1684640186;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8TNUub0/4AH0hGM/PjLlH8GSLkYNvyx9t8iPbGCbpFs=;
+        b=MPUz1nWjKiTTZcKmGFdLldufezCUbIFjFbbU2KRnrtYbkGoXJ4bXQT/rxCnek2Awr/
+         RT2ggQvDSIYdLClWuBz5HHzMtRM2wS6gfr4iMc0yw/jc2KTkcaf9Fzr5JInEJ+otZ8hC
+         nqTOs7JfCvYfqQ6LgHd9Co0IQ0Ni6sVvgxtrO0ezg4IKlFKi1BBR4jdQV8+bT5SMzVGl
+         bEwi4fzTbjslWODAvnsY7uSVi4AWPXIbdlqcPIYjzY3orcoQmx/XMB4jhWuvGNw75r+7
+         cvkOojNHRPB33TdcFBwUtevMFvtFLvvXyIoxO8m3j8Bt48bYGWDNC0YU22FweaIE7SH+
+         TtvQ==
+X-Gm-Message-State: AAQBX9fx4nHn0AkOhbJy4UriLTVEAWtMf6Jz7n7uArHWGXAEztVa5uJU
+        3h5+z8eO5qSXnYo8D2mldVY4txwpMXU=
+X-Google-Smtp-Source: AKy350aRN/2NU8E6owIwGpmiVpOkqeyKR/foJGda11DjrE3dEkamv+c+l1O2814+FF2+IrVPb0StiA==
+X-Received: by 2002:a19:f703:0:b0:4ec:85f6:5bf3 with SMTP id z3-20020a19f703000000b004ec85f65bf3mr781044lfe.21.1682048185721;
+        Thu, 20 Apr 2023 20:36:25 -0700 (PDT)
+Received: from [192.168.1.111] (62-78-225-252.bb.dnainternet.fi. [62.78.225.252])
+        by smtp.gmail.com with ESMTPSA id l8-20020a19c208000000b004cb24a027d2sm413621lfc.48.2023.04.20.20.36.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Apr 2023 20:36:25 -0700 (PDT)
+Message-ID: <fbf40215-390b-bda9-c88e-2a45ddb6c070@gmail.com>
+Date:   Fri, 21 Apr 2023 06:36:24 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [RESEND v2 4/6] soc: starfive: Extract JH7110 pmu private
- operations
-Content-Language: en-US
-To:     Conor Dooley <conor@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Walker Chen <walker.chen@starfivetech.com>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>
-References: <20230419035646.43702-1-changhuang.liang@starfivetech.com>
- <20230419035646.43702-5-changhuang.liang@starfivetech.com>
- <20230419-atypical-unbounded-99cbbff3091a@spud>
-From:   Changhuang Liang <changhuang.liang@starfivetech.com>
-In-Reply-To: <20230419-atypical-unbounded-99cbbff3091a@spud>
-Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [PATCH v2 1/5] dt-bindings: iio: Add KX132-1211 accelerometer
+Content-Language: en-US, en-GB
+To:     Mehdi Djait <mehdi.djait.k@gmail.com>, jic23@kernel.org
+Cc:     krzysztof.kozlowski+dt@linaro.org,
+        andriy.shevchenko@linux.intel.com, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <cover.1682019544.git.mehdi.djait.k@gmail.com>
+ <68466b01b967efbdd1bf2de0747d35f28f94fddb.1682019544.git.mehdi.djait.k@gmail.com>
+From:   Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <68466b01b967efbdd1bf2de0747d35f28f94fddb.1682019544.git.mehdi.djait.k@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [113.72.144.253]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX162.cuchost.com
- (172.16.6.72)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 2023/4/20 1:47, Conor Dooley wrote:
-> On Tue, Apr 18, 2023 at 08:56:44PM -0700, Changhuang Liang wrote:
->> Move JH7110 private operation into private data of compatible.
->> Convenient to expand different compatible.
+On 4/20/23 23:22, Mehdi Djait wrote:
+> Extend the kionix,kx022a.yaml file to support the kx132-1211 device
 > 
-> I prefer how the code looks in v2, thanks.
-> However, just as in the prior patch, "Convenient to expand different
-> compatible" isn't really a justification - specifically, supporting the
-> power domain controller serving the dphy is your motivation here. The
-> important difference being that it uses a regmap from a syscon and has
-> no interrupts nor the encourage features.
-> 
+> Signed-off-by: Mehdi Djait <mehdi.djait.k@gmail.com>
 
-So should I expand the commit message which called "in order to add the 
-aon power domain" although the patch is applied behind current patch.
+Acked-by: Matti Vaittinen <mazziesaccount@gmail.com>
 
-> Although, given the only real similarity the code driving each of the
-> PMUs is the variable names, I guess you could argue that this driver
-> should be left alone and the "aon dphy" should be a different driver
-> altogether.
-> 
+-- 
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
 
-I have tried independent this aon pmu, but it code is very similar to the
-original pmu, so I think they can put together, reduce linux kernel bloat.
+~~ When things go utterly wrong vim users can always type :help! ~~
 
-> I don't have a strong opinion though & if it's fine with Walker and
-> noone else objects, it's fine with me...
