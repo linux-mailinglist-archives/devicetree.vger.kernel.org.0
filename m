@@ -2,86 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86EC16EAEDF
-	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 18:13:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 514B36EAEE6
+	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 18:16:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231720AbjDUQNQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Apr 2023 12:13:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33722 "EHLO
+        id S230310AbjDUQQA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Apr 2023 12:16:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233082AbjDUQNM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 12:13:12 -0400
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C35414F7D;
-        Fri, 21 Apr 2023 09:13:03 -0700 (PDT)
-Authenticated-By: 
-X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 33LGCXn14002175, This message is accepted by code: ctloc85258
-Received: from mail.realtek.com (rtexh36506.realtek.com.tw[172.21.6.27])
-        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 33LGCXn14002175
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
-        Sat, 22 Apr 2023 00:12:33 +0800
-Received: from RTEXMBS03.realtek.com.tw (172.21.6.96) by
- RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.17; Sat, 22 Apr 2023 00:12:34 +0800
-Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
- RTEXMBS03.realtek.com.tw (172.21.6.96) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.7; Sat, 22 Apr 2023 00:12:33 +0800
-Received: from RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d]) by
- RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d%5]) with mapi id
- 15.01.2375.007; Sat, 22 Apr 2023 00:12:33 +0800
-From:   =?utf-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?= 
-        <stanley_chang@realtek.com>
-To:     Rob Herring <robh+dt@kernel.org>
-CC:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v3 2/2] dt-bindings: usb: snps,dwc3: Add 'snps,global-regs-starting-offset' quirk
-Thread-Topic: [PATCH v3 2/2] dt-bindings: usb: snps,dwc3: Add
- 'snps,global-regs-starting-offset' quirk
-Thread-Index: AQHZdBkVGzo+T+kwpkqSDn6NeDDx1681NUYAgAC6KHA=
-Date:   Fri, 21 Apr 2023 16:12:33 +0000
-Message-ID: <6273cc836dee42809f6ac5c5cdbcec04@realtek.com>
-References: <20230421061825.2233-1-stanley_chang@realtek.com>
- <20230421061825.2233-2-stanley_chang@realtek.com>
- <CAL_JsqJBDuxCAnZmHBnHuMkjTXTLet2d3o5kLRZQ_YuqVB9Pcw@mail.gmail.com>
-In-Reply-To: <CAL_JsqJBDuxCAnZmHBnHuMkjTXTLet2d3o5kLRZQ_YuqVB9Pcw@mail.gmail.com>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.21.190.159]
-x-kse-serverinfo: RTEXMBS03.realtek.com.tw, 9
-x-kse-antispam-interceptor-info: fallback
-x-kse-antivirus-interceptor-info: fallback
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S233025AbjDUQP7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 12:15:59 -0400
+Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com [IPv6:2607:f8b0:4864:20::730])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3A7B13C1E
+        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 09:15:54 -0700 (PDT)
+Received: by mail-qk1-x730.google.com with SMTP id af79cd13be357-74e0180b7d3so113619185a.2
+        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 09:15:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1682093753; x=1684685753;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9QZZtA/5NWdnQgb0jJuRZbKZ4eCkzSLiidtnIgHAhGA=;
+        b=ctHvTjO/5U4CovqOB/IKUYhR5Rb84nnSGabYqdPB4zLuTXbLdPUDXWNgiX5PxrfrC+
+         M1BwvxR2MVfL5nSisBMT8K22lGTd5mopnPhKLw8gHS6j4pJPDj5w3TTEsiewVZeH453B
+         8+tiS0Bdao4gH8YxugF/N7GrF+RNYmINQeVa0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682093753; x=1684685753;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9QZZtA/5NWdnQgb0jJuRZbKZ4eCkzSLiidtnIgHAhGA=;
+        b=SVlGsZESlnPDdVQektZ301a49ks9F8ftreVaMsgwqKZ66lj7qBe6nLgB2cEt9XYC7+
+         UfCtAMwi0zXt0YvL5TVrno0nF4kHflUgrJYusCDfYO3qCpzQiC9R2eWa96tb6vPt1JWz
+         bTYtJ4FXhYmOOCjtOsZrV3T5phfmYyB9BFI+YPIabLZzqKZ/u8d/7B7DJZc5UcI7tL0g
+         MJS4kHfA24UIiFP+ABueofGwqO6jWBqRXEZJRtZKFXMrCD9XB6gBB34JcC59zd3HfYaM
+         QK+HxR02TvTK9yiRRxcVKHKWdFfxDn11Y20UfS2t8dbCVeT6QID/pmtQIhi3JvJMuEJP
+         pCZA==
+X-Gm-Message-State: AAQBX9cjKdLFUeltXMxAhmnS/A7fvWaIzebpA7qWKOeBeTiPPGLx0Bpg
+        MF4jPAAQ5TyK03Y5L9sNYI11vmkJ93qCrE0h94I=
+X-Google-Smtp-Source: AKy350aiqweEHvrl3cXKTOSr9PaI9rCWZfLMEMCeYRZElBXMuQrQCkj4oY1pZJHGs2yGjwGbFiSt+A==
+X-Received: by 2002:a05:6214:3011:b0:5c2:6493:f631 with SMTP id ke17-20020a056214301100b005c26493f631mr8016616qvb.51.1682093753297;
+        Fri, 21 Apr 2023 09:15:53 -0700 (PDT)
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com. [209.85.160.179])
+        by smtp.gmail.com with ESMTPSA id b9-20020a0ccd09000000b005e5b2c560d0sm1270665qvm.7.2023.04.21.09.15.50
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 21 Apr 2023 09:15:51 -0700 (PDT)
+Received: by mail-qt1-f179.google.com with SMTP id d75a77b69052e-3ef34c49cb9so1167761cf.1
+        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 09:15:50 -0700 (PDT)
+X-Received: by 2002:a05:622a:1906:b0:3db:1c01:9d95 with SMTP id
+ w6-20020a05622a190600b003db1c019d95mr440522qtc.4.1682093750390; Fri, 21 Apr
+ 2023 09:15:50 -0700 (PDT)
 MIME-Version: 1.0
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230201-innolux-g070ace-v2-0-2371e251dd40@skidata.com> <20230201-innolux-g070ace-v2-1-2371e251dd40@skidata.com>
+In-Reply-To: <20230201-innolux-g070ace-v2-1-2371e251dd40@skidata.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 21 Apr 2023 09:15:37 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XJCtqep+92h3gLfs4o2TwvL4MORjc9ydTSpZiZ0dsR0w@mail.gmail.com>
+Message-ID: <CAD=FV=XJCtqep+92h3gLfs4o2TwvL4MORjc9ydTSpZiZ0dsR0w@mail.gmail.com>
+Subject: Re: [PATCH RESEND v2 1/2] dt-bindings: display: simple: add support
+ for InnoLux G070ACE-L01
+To:     richard.leitner@linux.dev
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Richard Leitner <richard.leitner@skidata.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgUm9iLA0KDQo+IEFnYWluLCB3ZSdyZSBub3QgZ29pbmcgdG8ga2VlcCBhZGRpbmcgcHJvcGVy
-dGllcyBmb3IgZXZlcnkgRFdDMyB2YXJpYXRpb24uIElmDQo+IGl0IGlzIGJvYXJkIHNwZWNpZmlj
-LCB0aGVuIHllcyBhIHByb3BlcnR5IGlzIGFwcHJvcHJpYXRlLiBJZiBpdCBpcyBTb0Mgc3BlY2lm
-aWMsIHRoZW4NCj4gaW1wbHkgaXQgZnJvbSB0aGUgY29tcGF0aWJsZS4NCj4gT3IgaW4gdGhpcyBj
-YXNlLCB5b3UgY291bGQgcG9zc2libHkgYWRkIGFub3RoZXIgcmVnIGVudHJ5Lg0KPiANCj4gUm9i
-DQo+IA0KTGV0IG1lIHRyeSB0byB1bmRlcnN0YW5kIHlvdXIgY29uY2VybnMuDQoNClRoZSBkZXZp
-Y2UtdHJlZSBwcm9wZXJ0eSBzaG91bGQgd29yayBmb3IgYWxsIGR3YzMgSVBzIGFuZCBjYW4gYmUg
-c3BlY2lmaWVkIGJ5IGRpZmZlcmVudCBib2FyZHMuDQpGb3IgYSBTb0Mgc3BlY2lmaWMsIGl0IHNo
-b3VsZCB1c2UgYSBjb21wYXRpYmxlIG9yIHJlZ2lzdHJ5IGVudHJ5IHRvIGNoYW5nZSBpdC4NClNv
-IHlvdSB0aGluayB3ZSBjYW4ndCB1c2UgYSBwcm9wZXJ0eSB0byBzcGVjaWZ5IHRoaXMgb2Zmc2V0
-Lg0KDQpJcyBteSB1bmRlcnN0YW5kaW5nIGNvcnJlY3Q/DQoNCklmIGl0IGlzIHJpZ2h0LCB1c2lu
-ZyBwcm9wZXJ0eSB0byBzb2x2ZSB0aGlzIHByb2JsZW0gd2FzIG15IG1pc3Rha2UuDQpJIHdpbGwg
-dGhpbmsgYSBuZXcgbWV0aG9kIHRvIHJlc29sdmUgaXQuDQoNCg==
+Hi,
+
+On Mon, Mar 13, 2023 at 12:51=E2=80=AFAM <richard.leitner@linux.dev> wrote:
+>
+> From: Richard Leitner <richard.leitner@skidata.com>
+>
+> Add Innolux G070ACE-L01 7" WVGA (800x480) TFT LCD panel compatible
+> string.
+>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
+
+nit: as I understand it, ordering of tags is usually supposed to be
+chronological. You signed off on this patch before Krzysztof acked it,
+so the SoB should be above. I'll fix that when applying.
+
+> ---
+>  Documentation/devicetree/bindings/display/panel/panel-simple.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple=
+.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> index 18241f4051d2..fd3e5ad769dc 100644
+> --- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> +++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> @@ -174,6 +174,8 @@ properties:
+>        - innolux,at043tn24
+>          # Innolux AT070TN92 7.0" WQVGA TFT LCD panel
+>        - innolux,at070tn92
+> +        # Innolux G070ACE-L01 7" WVGA (800x480) TFT LCD panel
+> +      - innolux,g070ace-l01
+
+I think panel-simple currently has no active maintainers. Given that
+I've touched all these files in the past, I don't mind applying.
+
+Pushed to drm-misc-next:
+
+4b4b96826ba9 dt-bindings: display: simple: add support for InnoLux G070ACE-=
+L01
