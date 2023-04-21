@@ -2,155 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 284E96EA42C
-	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 08:57:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38A676EA44A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 09:07:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230273AbjDUG5l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Apr 2023 02:57:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45956 "EHLO
+        id S229744AbjDUHHZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Apr 2023 03:07:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230042AbjDUG5j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 02:57:39 -0400
-Received: from mail-vk1-xa32.google.com (mail-vk1-xa32.google.com [IPv6:2607:f8b0:4864:20::a32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69FB759D5
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 23:57:38 -0700 (PDT)
-Received: by mail-vk1-xa32.google.com with SMTP id 71dfb90a1353d-44058ece4f3so831828e0c.1
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 23:57:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1682060257; x=1684652257;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SJKGDTicdDOydwAyS5XLugqVzczoGrGZVxyOPeyI0mE=;
-        b=Idit8eCqCgTG3r3YDXJ4riHvsH9dFKDnOm4WUrpndwWlD5IUcVzFvKa9odfDNhtPfP
-         1aco9mVjUHcqvupq4gv2tRpyTSeCR91veQ0NNgA6NppySxMU22vOB4DF3UhsVTL5PeiF
-         46bvAdmy4tRKYKlptuX6lbpjqLIh+0srq8WnI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682060257; x=1684652257;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SJKGDTicdDOydwAyS5XLugqVzczoGrGZVxyOPeyI0mE=;
-        b=gaemNwozyVcl0mtcCXj3uHVsaZVRIXcfP9tU82FW00QVz3tMMcz8b6kX/paALOt0iT
-         oq90hQgRGfaaS31PTfkAQM6LMMxufQKbjOcFDYf3ZkPB3DWxFJI0/mDumlAKnX9AsNa1
-         KjaK7F8qK7NGIrY+sxPXV+nKnw57aVQoDis/GucRn0CQsSwHnYgU6X4ZIWWixVDjzuav
-         TfUkQaMTWGHcexHzthrgT0+39oBzGzBY4t6M1F2R6UtOHPkMwcvWcSEiBymZek7kkMtH
-         ZyrFiw6DET9ZSMlAo388FhAmOVRuRQJWLKS99ZeMHo/EcS1ONZ3QFxkG/k+yPAlUbmrU
-         F3HQ==
-X-Gm-Message-State: AAQBX9e7+sth0QwLsHiMevKXjtdX32HqFL9m1C1l7aDXw+snms9YPeRR
-        SJGXiYu2aLGnZzZklMs5rUdcWrAiZe+cCLc5f8xLmg==
-X-Google-Smtp-Source: AKy350baBuLFoDL6dTLHo8N9DcJGnnvarEUOSLvi+u2GONsBq5/4u9NgF9Gejms6x5qeKN4B4rq7fak2/O9S3xQEQDE=
-X-Received: by 2002:a1f:4349:0:b0:43f:cc0e:6eae with SMTP id
- q70-20020a1f4349000000b0043fcc0e6eaemr533384vka.10.1682060257462; Thu, 20 Apr
- 2023 23:57:37 -0700 (PDT)
+        with ESMTP id S229572AbjDUHHX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 03:07:23 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1B002101;
+        Fri, 21 Apr 2023 00:07:21 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4643364E2C;
+        Fri, 21 Apr 2023 07:07:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 950C6C433D2;
+        Fri, 21 Apr 2023 07:07:17 +0000 (UTC)
+Message-ID: <e9bb9952-c2ef-c7a6-a787-aa2597c3ed4e@xs4all.nl>
+Date:   Fri, 21 Apr 2023 09:07:15 +0200
 MIME-Version: 1.0
-References: <20230420094433.42794-1-angelogioacchino.delregno@collabora.com> <20230420094433.42794-4-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230420094433.42794-4-angelogioacchino.delregno@collabora.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Fri, 21 Apr 2023 14:57:26 +0800
-Message-ID: <CAGXv+5GXuvw+o=JEjLP+hkKzL=stzmEHWZ18N2RJDbcWeioxnQ@mail.gmail.com>
-Subject: Re: [PATCH 3/5] arm64: dts: mediatek: cherry: Configure eDP and
- internal display
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 1/3] dt-bindings: display: synopsys,dw-hdmi: Add property
+ for disabling CEC
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc:     andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+        rfoss@kernel.org, krzysztof.kozlowski+dt@linaro.org, wens@csie.org,
+        samuel@sholland.org, Laurent.pinchart@ideasonboard.com,
+        jonas@kwiboo.se, airlied@gmail.com, daniel@ffwll.ch,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, kernel@collabora.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        linux-sunxi@lists.linux.dev, linux-media@vger.kernel.org
+References: <20230415104613.61224-1-jernej.skrabec@gmail.com>
+ <20230415104613.61224-2-jernej.skrabec@gmail.com>
+ <20230418214115.GA2376963-robh@kernel.org>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <20230418214115.GA2376963-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 20, 2023 at 5:45=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Add the required nodes to enable the DisplayPort interface, connected
-> to the Embedded DisplayPort port, where we have an internal display.
->
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
-> ---
->  .../boot/dts/mediatek/mt8195-cherry.dtsi      | 32 +++++++++++++++++++
->  1 file changed, 32 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/arm64=
-/boot/dts/mediatek/mt8195-cherry.dtsi
-> index 918380697a9a..46f1c8091498 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-> @@ -49,6 +49,18 @@ memory@40000000 {
->                 reg =3D <0 0x40000000 0 0x80000000>;
->         };
->
-> +       pp3300_disp_x: regulator-pp3300-disp-x {
-> +               compatible =3D "regulator-fixed";
-> +               regulator-name =3D "pp3300_disp_x";
-> +               regulator-min-microvolt =3D <3300000>;
-> +               regulator-max-microvolt =3D <3300000>;
+On 18/04/2023 23:41, Rob Herring wrote:
+> On Sat, Apr 15, 2023 at 12:46:11PM +0200, Jernej Skrabec wrote:
+>> Even though some DW-HDMI controllers have perfectly usable HDMI-CEC
+>> implementation, some boards might prefer not to use it or even use
+>> software implementation instead.
+>>
+>> Add property for disabling CEC so driver doesn't expose unused CEC
+>> interface, if CEC pin isn't connected anywhere.
+> 
+> Isn't this all true for any bridge supporting CEC? Make this common.
 
-From the schematics:
-                  vin-supply =3D <&pp3300_z2>;
+I agree with that, there was a similar case in the past:
 
-Also, this is an RT9742. The datasheet says the typical enable time is
-2.1ms. For a bit of margin, I'd say we could model it as 2.5ms? So:
+https://lore.kernel.org/linux-media/20180323125915.13986-1-hverkuil@xs4all.nl/
 
-                  regulator-enable-ramp-delay =3D <2500>;
+I never followed up to that, but I believe this is generic for any HDMI transmitter
+or receiver with built-in CEC support where the CEC line is not actually hooked
+up to the HDMI pin.
 
-ChenYu
+There is no way for the CEC driver to detect that, so this has to be communicated
+in the device tree.
 
-> +               enable-active-high;
-> +               gpio =3D <&pio 55 GPIO_ACTIVE_HIGH>;
-> +               pinctrl-names =3D "default";
-> +               pinctrl-0 =3D <&panel_fixed_pins>;
-> +               regulator-always-on;
-> +       };
-> +
->         /* system wide LDO 3.3V power rail */
->         pp3300_z5: regulator-pp3300-ldo-z5 {
->                 compatible =3D "regulator-fixed";
-> @@ -290,6 +302,20 @@ port@1 {
->                         reg =3D <1>;
->                         edp_out: endpoint {
->                                 data-lanes =3D <0 1 2 3>;
-> +                               remote-endpoint =3D <&panel_in>;
-> +                       };
-> +               };
-> +       };
-> +
-> +       aux-bus {
-> +               panel {
-> +                       compatible =3D "edp-panel";
-> +                       power-supply =3D <&pp3300_disp_x>;
-> +                       backlight =3D <&backlight_lcd0>;
-> +                       port {
-> +                               panel_in: endpoint {
-> +                                       remote-endpoint =3D <&edp_out>;
-> +                               };
->                         };
->                 };
->         };
-> @@ -929,6 +955,12 @@ pins-cs {
->                 };
->         };
->
-> +       panel_fixed_pins: panel-pwr-default-pins {
-> +               pins-vreg-en {
-> +                       pinmux =3D <PINMUX_GPIO55__FUNC_GPIO55>;
-> +               };
-> +       };
-> +
->         pio_default: pio-default-pins {
->                 pins-wifi-enable {
->                         pinmux =3D <PINMUX_GPIO58__FUNC_GPIO58>;
-> --
-> 2.40.0
->
->
+For standalone CEC devices you can just disable them in the device tree, of course,
+but if it is incorporated into the HDMI device itself, then it needs to be told.
+
+Regards,
+
+	Hans
+
+> 
+>>
+>> Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+>> ---
+>>  .../devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml | 5 +++++
+>>  1 file changed, 5 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml b/Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml
+>> index 4b7e54a8f037..624d32c024f6 100644
+>> --- a/Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml
+>> +++ b/Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml
+>> @@ -48,6 +48,11 @@ properties:
+>>    interrupts:
+>>      maxItems: 1
+>>  
+>> +  snps,disable-cec:
+>> +    $ref: /schemas/types.yaml#/definitions/flag
+>> +    description:
+>> +      Disable HDMI-CEC.
+>> +
+>>  additionalProperties: true
+>>  
+>>  ...
+>> -- 
+>> 2.40.0
+>>
+
