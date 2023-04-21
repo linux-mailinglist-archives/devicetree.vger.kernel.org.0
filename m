@@ -2,210 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12CEA6EAB9B
-	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 15:28:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF69E6EABBA
+	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 15:33:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231452AbjDUN2a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Apr 2023 09:28:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48994 "EHLO
+        id S232316AbjDUNdi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Apr 2023 09:33:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231459AbjDUN21 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 09:28:27 -0400
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2049.outbound.protection.outlook.com [40.107.223.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E10781258A;
-        Fri, 21 Apr 2023 06:28:09 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jxNC7wAf0AulZ6a/lGb7U1ip3Q9Z1BlOrxTcGfS49wunN5DxSxbYguX2UDITka00caxWMmHtlCQ8/oxPaluXM7CLFLgpQk6d556G+6ZTTFwKaqDpEPeOAowKZLuaRDKWjboIDQ108g081adA0SambYMqNjaz1zI7DTG0jVBfF86Ny61QF6NUWwbe49P0ZDmw43bFBU56R5bkQz8pInkvZD1z4v+KEFonoKvNN3rBT/CBmHkfaJt024u7aFuUW0mzLLKpFE1L30pVzVUUSZQk6sBGhfvb4/zaDOvSooaZhDJ/i1VGB9T8lvASIp7GhnGX+ZtiRhv+VwtPlDiCA38t9w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vW47UN/vh/G+N87F7Y8wqtXEzR+PWSef1azKjLRw7mU=;
- b=iD7mblZWoOo5ksl2WGPWqiL+qEv7CVkoXFTjRlPxGmeAmY8cBOhEI3xX5MINYwPipIFzmmyTV6QYKI/uwiOauwOTNLTElYrTK5JqU68l6KwLrmBzgUYk7Ns8H6PDnneRveHKDUm5j/ceQ5HSdS6Y2Fk/CWV++J7Aov54nuOu5oKCh3DUxn6cBHWh5lvvspcWeZDKvbtgCckzoi1Is6jTXRVJF7d5BUYnMGXs1QOyJ8oNrOOJElEBe7EYcQH7VBNl5/r/G1mW6XIkUj6FlntwzC0cSju7wUgNNlFQ/W4EGmYGp5ytK+hzX1caqwakEqzXQ3ndBSn6BooSm/hvlpN+sA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vW47UN/vh/G+N87F7Y8wqtXEzR+PWSef1azKjLRw7mU=;
- b=2krrEtMgwCMnuz1ExtLatFl36n1BNi1pwQGE6GPqbqxzRsCWqSG24UJVRrf4xQC6ofcQTcqQXRAl1+AlMJO9x/4LmGpAxPYkqVATssXl4vHi6DBSJ3Z+rgkLgJRth21EdKB8msR8hzDxScJx0s7GhlKRHDj0GMSOkXV8H2COyG8=
-Received: from MN2PR12MB4333.namprd12.prod.outlook.com (2603:10b6:208:1d3::23)
- by PH8PR12MB7424.namprd12.prod.outlook.com (2603:10b6:510:228::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6277.33; Fri, 21 Apr
- 2023 13:28:04 +0000
-Received: from MN2PR12MB4333.namprd12.prod.outlook.com
- ([fe80::82c1:97bc:de0:7bf6]) by MN2PR12MB4333.namprd12.prod.outlook.com
- ([fe80::82c1:97bc:de0:7bf6%5]) with mapi id 15.20.6319.022; Fri, 21 Apr 2023
- 13:28:03 +0000
-From:   "Mehta, Piyush" <piyush.mehta@amd.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "michal.simek@xilinx.com" <michal.simek@xilinx.com>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Simek, Michal" <michal.simek@amd.com>,
-        "Paladugu, Siva Durga Prasad" <siva.durga.prasad.paladugu@amd.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "git (AMD-Xilinx)" <git@amd.com>
-Subject: RE: [PATCH] dt-bindings: usb: dwc3: xilinx: Add interrupt-names to
- include hibernation interrupt
-Thread-Topic: [PATCH] dt-bindings: usb: dwc3: xilinx: Add interrupt-names to
- include hibernation interrupt
-Thread-Index: AQHZbQWTnoxb1Gh2F0KbBkWHL5rgVq8xcHAAgAQebNA=
-Date:   Fri, 21 Apr 2023 13:28:03 +0000
-Message-ID: <MN2PR12MB4333134E60DC454D29BFE2F588609@MN2PR12MB4333.namprd12.prod.outlook.com>
-References: <20230412060843.149283-1-piyush.mehta@amd.com>
- <20230418184026.GA2099329-robh@kernel.org>
-In-Reply-To: <20230418184026.GA2099329-robh@kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: MN2PR12MB4333:EE_|PH8PR12MB7424:EE_
-x-ms-office365-filtering-correlation-id: 045037dd-c1c6-4c35-30b0-08db426c3c4c
-x-ld-processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: +QZvp+5tv+OILLGAXCTBXAuNdn8sA2rK3Ux5uXJLP2jzmSK6n6ZqDPdn1fPUN8bKAiilYLtasabTTT6bw7ADqsF7WgQdXHyqsR6En5uGjUM3DVr9tExgTsi0DrrZv8A7Gl7jWNtN+n9lAYL1iwrrjsv9j/Hbjmw2EaA8pjememi15zjJibUWjtprdnoU693E8/GJJq5cbYe6uNdioNXvjd/UCec0O3Ak9CoDwQuKVGQjJg9HiccWKCreZalceHTw7xlR1Ud7wpJwrlYY8I65sLniLqkUZOEDQVNaxEDeHC+WOevjtanf+WHVB1sgOorv4qfnCSeJnNpanw3dAOBNKcETNNDnNn1ntJsWhphD4FKoEHP7Yj82NGghV+0J1V6EZ2hhSQdtsRzC50kEGEfOpCcSSRTNTBnFmCK6qDyAjh06qhBK7NZZKFExQ/l6bFQm2Hqv+KhsuujK1bHSjWCmLZ2sid59vXB85ly5VNZ90TrwDGJ9aiEvMhsWOsLmiZzxmpI/N3aqLXF1mWCG/dxZxb8Cpc/JNHaDFfdfc9Fp4DKsMoTYsMyxVnkjUwzBIo8MXbUtTOcCBmfNKHpdttIg//I7pm39IE34MBZqBZaSYefUj4ISgFTT6RYBKa6bdzWNU7JKeUN4jQ7mAb26RzeAAw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR12MB4333.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(376002)(396003)(366004)(136003)(346002)(451199021)(86362001)(33656002)(55016003)(2906002)(83380400001)(26005)(66556008)(66946007)(186003)(53546011)(6916009)(478600001)(66476007)(76116006)(66446008)(8676002)(54906003)(7696005)(41300700001)(71200400001)(8936002)(52536014)(316002)(64756008)(4326008)(5660300002)(38100700002)(9686003)(6506007)(966005)(38070700005)(122000001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?e2fL7lG6pkw0DmI9e707HkwqXtD8uu+ZHjJZt0OEcJiAQJeIiVxU4hLrgex5?=
- =?us-ascii?Q?yERMOWJ2wQZxduX5OwMgN6ZtMkgw1DZPLKK2pd6qDEpm6MI27gpvRvyGe0JP?=
- =?us-ascii?Q?jqHjMh6+GsDJ6QXnDZS2co09QJz9kZi8k04NoQ32Kq7cAqOGpyt1/kvNSabC?=
- =?us-ascii?Q?IfdnSXH6+BQNrPrQLI3eRU+R667e6ze8tE4IVDCzo2q2ptOzJo9pg3dOD7p9?=
- =?us-ascii?Q?ZljYe1A4+rm9c7DQ283rZybqVtIbPGfrq26lEzNsRw6k6blBVneqGiYgpuMH?=
- =?us-ascii?Q?AkbhAatQaD2w5V6AX8b3iTX9pc6WmeTpGz0uyWLTAzCtXm5eGdHAh8Sh+9oX?=
- =?us-ascii?Q?747GXrwXqiQ5Hx2Zf8gUpmv23WOakCBKKLSjqHbSVoKxfw244P04A05S60Tn?=
- =?us-ascii?Q?NctcbE35D57WgBra1cUFjzR39KELJOXj+sYqnegmAkqpoG0Rps3YDpQtOlvS?=
- =?us-ascii?Q?a3OAwXbSealNU/PS+VBgOlYSRsx7bP+boltYvPTxMQVof0GsNc0z83F5xtXs?=
- =?us-ascii?Q?DpJHWnyQ6yWijCUVhYiwQXIceUiojJoCduOx6DcxfSoy3C0ufUvAdyeWMLVl?=
- =?us-ascii?Q?wIUZrQ8fMsyFnUPf9fpctSX4zqsyhCARsqmYJIx3JTax86t0PYMM2IuIqNGj?=
- =?us-ascii?Q?npn+eB+8dGnsHqsdJ3kAjAv0JL0xRkZRLpnPY7Hqn7Sp4Z3/miEixpl+USrl?=
- =?us-ascii?Q?UvisZ1V19yECHmDPtyohMj5V5M3kX2xgDj/9uGPS2hEtZkAHBz66twp/22l4?=
- =?us-ascii?Q?u19HdyD6JK0bz5wqK6l/I41QjtBiR/yCV7Xf5h7AL5xFyj/Qz4MiP6f6cXa2?=
- =?us-ascii?Q?sqEyL8zdWP56zQZPutgzUacn5ump/y3lhzmInROVbceIIBwib4u1khfIYyng?=
- =?us-ascii?Q?ZiqPpecmVd63Sc5v0ZK+N0mWz1ReD8IbZbipFZ2sJwwcLY18GWZUzJm3PQZ4?=
- =?us-ascii?Q?eiJtlJlg3IYiSZb37MvYlkXBwlrjh3JbBO+oHuYKfMOHaQrD7ow5v90Y5ZbM?=
- =?us-ascii?Q?pIpBkE4dJbRjpO8Pzi2dOb9XBHHXNHQMIEbnGY3Xl00NUvh3Hpd752n5Wlko?=
- =?us-ascii?Q?cOL9K5Ws538XmJCYj0oRqsVvB3uleLXTH/Ca2PdAzQt3ATz2UuV+oPk+oJHJ?=
- =?us-ascii?Q?vjmnbYrC7BVY/DUW55c7rPjhyau0INGfS5NzsjCckrU/1XqDuT1px121LZ7i?=
- =?us-ascii?Q?p8rJklk8SYzrtfnZxJ1K3MvqEt7BeAYmndgBOpZ9g4YEdsy5/xTJd0ThUY3X?=
- =?us-ascii?Q?hTP6wlOp1jLctM3oRlC/AyTMf1qtt1H8+o+8GtW76qfQpthC+EKGVib2RMKY?=
- =?us-ascii?Q?Ndkqibdm0hQ/9FfA26sIH++CVA67k2+JdUV24HJBUjJqO/2qzNgjcrAas1E+?=
- =?us-ascii?Q?SKyEkwxspKXwIkWJHIxqTI3NrkTDZC4mNf7UAszlLZR34Rg7b78rOsqc5w1Q?=
- =?us-ascii?Q?gn5r7RErPSyaKsd6adZ6pZJGZSvZ0fbnbhxQep1YUxrKq3HuvQKZiGmRGaYf?=
- =?us-ascii?Q?pzEW65FQkMpclZXxQvVy/PhQlg5m/yEc25GvSm/19wVZLlXbvdzezHFyK3BO?=
- =?us-ascii?Q?J/Iq8b+RX6D84jVkahM=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S231739AbjDUNdh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 09:33:37 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02BCCE6B;
+        Fri, 21 Apr 2023 06:33:35 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 875D060EB3;
+        Fri, 21 Apr 2023 13:33:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50B0FC433D2;
+        Fri, 21 Apr 2023 13:33:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1682084014;
+        bh=3Qm//CBVeUe9SBOSAX18g++Nk/w3euOpimYciN7RDGI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=UO8A3bAe91kpm5Dh6H2Nnke+sw0QjxXwJUPxTGWVeP7iFKBzdU59DYBnl8VJEK6Ld
+         aceSBJ9yoZ2yqHNxpD3lHa8PzThHiU4MLFoblRBLD2MOypc9pkuRJrBHqP69c0mbL8
+         gxwRc9JmDlBOvtYM991zXgSJOVZTCinCazh2iKcW3M2h5rNpO0kxU6qCDYpHLyJQtK
+         dOnBvi4R9LS2DKL2gane6a5ToSSOjDyia+/NUFYgTjUGlvTw9oPfy+xi1mzkh7Dil3
+         UslbToe+wuBV0jEyTC00OK+zb5nnFZ0PBRg9Qt2GrJzmeroKO/OPbcm4DTWGT4INx4
+         ChC1pAEwtMh3w==
+Date:   Fri, 21 Apr 2023 14:33:27 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Lee Jones <lee@kernel.org>
+Cc:     Okan Sahin <okan.sahin@analog.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        Marcus Folkesson <marcus.folkesson@gmail.com>,
+        Ramona Bolboaca <ramona.bolboaca@analog.com>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        ChiaEn Wu <chiaen_wu@richtek.com>,
+        Haibo Chen <haibo.chen@nxp.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org
+Subject: Re: [PATCH v7 5/5] mfd: max77541: Add ADI MAX77541/MAX77540 PMIC
+ Support
+Message-ID: <82612171-46d7-4d82-a8fc-c7d6a99d57e9@sirena.org.uk>
+References: <20230412111256.40013-1-okan.sahin@analog.com>
+ <20230412111256.40013-6-okan.sahin@analog.com>
+ <20230420103438.GI9904@google.com>
+ <09eb8e4c-3e73-41f0-bf42-8ddf3c4254ec@sirena.org.uk>
+ <20230421073938.GO996918@google.com>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4333.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 045037dd-c1c6-4c35-30b0-08db426c3c4c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Apr 2023 13:28:03.8321
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: UjQEWLyhK3QmAC9A4nWvJlLABdTcoB0GtS1Zu++pMHkc0T0RJGXXmQ3Xer42O/Nb
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB7424
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="w/lvOMfkBujeu9yC"
+Content-Disposition: inline
+In-Reply-To: <20230421073938.GO996918@google.com>
+X-Cookie: Hailing frequencies open, Captain.
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
 
-> -----Original Message-----
-> From: Rob Herring <robh@kernel.org>
-> Sent: Wednesday, April 19, 2023 12:10 AM
-> To: Mehta, Piyush <piyush.mehta@amd.com>
-> Cc: gregkh@linuxfoundation.org; krzysztof.kozlowski+dt@linaro.org;
-> michal.simek@xilinx.com; linux-usb@vger.kernel.org;
-> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; Simek, Michal
-> <michal.simek@amd.com>; Paladugu, Siva Durga Prasad
-> <siva.durga.prasad.paladugu@amd.com>; linux-arm-
-> kernel@lists.infradead.org; git (AMD-Xilinx) <git@amd.com>
-> Subject: Re: [PATCH] dt-bindings: usb: dwc3: xilinx: Add interrupt-names =
-to
-> include hibernation interrupt
->=20
-> On Wed, Apr 12, 2023 at 11:38:43AM +0530, Piyush Mehta wrote:
-> > The hibernation feature enabled for Xilinx Versal NET SoC in DWC3 IP.
-> > Added host mode interrupts and "usb-wakeup" interrupt-names optional
-> > property in the binding schema to capture remote-wakeup and connect/
-> > disconnect event in the hibernation state.
-> >
-> > Xilinx dwc3-core uses "host" and "otg" interrupts interrupt-names DT
-> > properties from dwc3-core.
->=20
-> Is wakeup really not implemented in the DWC3 core, but outside it?
+--w/lvOMfkBujeu9yC
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Wakeup is implemented inside the dwc3-core.
+On Fri, Apr 21, 2023 at 08:39:38AM +0100, Lee Jones wrote:
 
-Initially we planned to implement wakeup interrupt name/interrupt optional =
-property in the dwc3-core.
-However, looking at other vendor wakeup interrupt implementation (Commit: d=
-d566faebe9f dt-bindings: usb: qcom,dwc3: refine interrupt requirements)
-we moved wakeup property to xilinx USB binding.
+> I'll try anything once!
 
->=20
-> >
-> > Signed-off-by: Piyush Mehta <piyush.mehta@amd.com>
-> > ---
-> > Note:
-> > - Xilinx uses dwc3-cores interrupt-names DT property.
-> >   Link:
-> >   Xilinx-dwc3 core:
-> https://github.com/torvalds/linux/blob/master/Documentation/devicetree/bi
-> ndings/usb/dwc3-xilinx.yaml#L129
-> >   dwc3-core:
-> > https://github.com/torvalds/linux/blob/master/Documentation/devicetree
-> > /bindings/usb/snps%2Cdwc3.yaml#L42
-> > ---
-> >  Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml | 9 +++++++++
-> >  1 file changed, 9 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
-> > b/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
-> > index 098b73134a1b..abc32db2448a 100644
-> > --- a/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
-> > +++ b/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
-> > @@ -44,6 +44,15 @@ properties:
-> >        - const: bus_clk
-> >        - const: ref_clk
-> >
-> > +  interrupts:
-> > +    items:
-> > +      - description: Handle to the line usb-wakeup used to wake
-> > +          up the host processor.
-> > +
-> > +  interrupt-names:
-> > +    items:
-> > +      - const: usb-wakeup
->=20
-> 'wakeup' is the standard name. And you also need 'wakeup-source'
-> property.
->=20
-> > +
-> >    resets:
-> >      description:
-> >        A list of phandles for resets listed in reset-names.
-> > --
-> > 2.25.1
-> >
+> Fair warning, I think this is going to massively complicate things.=20
+
+> Either we're going to be left with a situation where child-driver
+> maintainers are scrabbling around looking for previous versions for the
+> MFD pull-request or contributors being forced to wait a full cycle for
+> their dependencies to arrive in the maintainer's base.
+
+If people are resending after the MFD has gone in they really ought to
+be including the pull request in the cover letter, with some combination
+of either referencing the mail or just saying "this depends on the
+signed tag at url+tag", the same way they would for any other dependency.
+
+I can't see how you applying stuff when you can slow things down TBH,
+the MFD bits will be applied faster and either people can pull in a
+shared tag or you can apply more commits on top of the existing core
+driver.
+
+> I'm not sure why simply providing your Ack when you're happy with the
+> driver and forgetting about the set until the pull-request arrives, like
+> we've been doing for nearly a decade now, isn't working for you anymore
+> but I'm mostly sure this method will be a regression.
+
+Like I said I've not been doing that, I've mostly been just applying the
+driver when it's ready.  This might not have been so visible to you
+since it means that the regulator driver doesn't appear in the series by
+the time the MFD settles down.  The whole "Acked-for-MFD" has always
+been a bit confusing TBH, it's not a normal ack ("go ahead and apply
+this, I'm fine with it") so it was never clear what the intention was.
+
+Before I started just applying the drivers there used to be constant
+problems with things like tags going missing (which some of the time is
+the submitter just not carrying them but can also be the result of some
+churn causing them to be deliberately dropped due to changes) or
+forgetting the series as you suggest and then not looking at some other
+very similarly named series that was also getting lots of versions after
+thinking it was one that had been reviewed already.  It was all very
+frustrating.  Not doing the tags until the dependencies have settled
+down means that if it's in my inbox it at least consistently needs some
+kind of attention and that the submitter didn't drop tags or anything so
+I know why there's no tag on it even though the version number is high,
+though it's not ideal either.
+
+--w/lvOMfkBujeu9yC
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmRCkKYACgkQJNaLcl1U
+h9Dpfwf8Dh2GPrH7cGwBbc/TaazUhpmNsJOqTl3322vTv5HohfkjwHZJFvoN0EWH
+r9n3YTcTQY9dv2BFSUNMmv5SBZqzWgJrRopbrKtK43ieuq18tqvLowpyTwFWXb/2
+obkdKaySl0cW2JLEm2XX6S0ZmA+hfL7DF+tAy3iTfu2VyWBGw2hpNRFyIqD5BJrV
+LqIWRwn54+SBYuqeTr9Oxk4VpPtlGkuJs4ZF2l1c3Nho9AkQNNzzAVnwGy9a6tv1
+STJv4eYTnHZGPleSdET9Ne9jHd54863nUUoNunqROn4OR5Qy/dmw+hMTAC7+V0vz
+ofmDSxmMt/kmGlQJe2ZBaMhO7pxSaA==
+=dsIM
+-----END PGP SIGNATURE-----
+
+--w/lvOMfkBujeu9yC--
