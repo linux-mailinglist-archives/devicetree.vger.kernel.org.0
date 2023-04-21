@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A15816EA547
-	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 09:53:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 500236EA549
+	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 09:53:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231315AbjDUHxQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Apr 2023 03:53:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59408 "EHLO
+        id S231442AbjDUHxR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Apr 2023 03:53:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231309AbjDUHxO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 03:53:14 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA05A8A62
-        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 00:53:10 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-95316faa3a8so217916366b.2
-        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 00:53:10 -0700 (PDT)
+        with ESMTP id S231343AbjDUHxP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 03:53:15 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8FF2902D
+        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 00:53:11 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-94f0dd117dcso168341666b.3
+        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 00:53:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mind.be; s=google; t=1682063589; x=1684655589;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=njOMebupF1nfguyxa2HVeQ44xxQhsRp/Byzj17JlSeo=;
-        b=SiRwBt6/PH4AkBNRp3X3mI7Vdejak84wcvbF9wKaNnDdhl/35eO94s2T0IwsZ2U9QI
-         ShTKJvRE8kCEttdris04yYqTLjhq1MC7Thuc76WqfWUcuVORwyp4dtonXFWBftQUYzl4
-         Kd9/KiI6TgmcQfljVGloP8kWRo/OJ2s8QIduoXhRhKs95wkkujbDciTPf+U6qgbUBEFO
-         7EmejfxUO0i7OIGjjcuOBvR3Y89acDZSjNRZ4N/37YDZMXmEqsb8h5tRGrQrr/eirVaJ
-         Uehk+aoQFt0SYluRqNccehZ+DbT81wOcfT5Leh+8/2N39xbW+DDt6zj4qdvEGsEd0rmo
-         b3/Q==
+        d=mind.be; s=google; t=1682063590; x=1684655590;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=P/ZpcQ9NIqFHjhvx0ngEtTv4dAJPVMJ7EISKXYvQAAs=;
+        b=BHlMJvYJT9gYXlzOIQmmVpfVb0CBhuWzkOwXRjI7ferZ2YvexT9oXFEF+ZX8pF0dHA
+         arpdbDhrseUsOF7xgJK85M3MPneF8kWk1xmEA1bn9H7EtQC/EOzkWhTotFYPIceIBLRP
+         aR7dWBQl3vvg91cf1yf7A9BdwnyAnS15sf+jL1dTpzTQ0mVMDop6yUxVTXZjC2mBdLXE
+         tKXPMrMDPvt+a0ffDrcb5D6dHg9Ybnonf7mOLxhl/3CCP9LTHc+6EWeXKCQGi61nLDIf
+         AF7+mY3RudNDaaHJyPFM0grCGO0OBU0i0Fzh3pbJ/6xiaWYlVaaAps15pgBl9/Ap8Tgs
+         jozw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682063589; x=1684655589;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=njOMebupF1nfguyxa2HVeQ44xxQhsRp/Byzj17JlSeo=;
-        b=LBZzxRLvS1T9rcKuQFSTXjVS7UKB5iAteVipceoN5PC7vKGDWmJXfsMBX0T2bSU4vi
-         qnBYxRFb5lylCBOyII7+bK7Nb3Uj5bgWlUhkqJZuQf8EgFIZJlHv2n8N2wfr2YcRRerR
-         ShdNqX5wMaOXGWMRa4Jh90/VuiyINfknC+6ITEZ/WrnXZP6ZxvauZS0j9NjpBCmrYDfj
-         0MoyvDkxNq/rYKJE8mJErF680tG31CfF+HMPMFhvzUi/MeQ5MAIr2z22p5FoLXyT9Ofr
-         kMxtzvBmjLWEhKBj5XB5mg5A5IBN1bpjFuRi/uv8xG8cglchKUZ+J9qxX5bh3wAHH8zC
-         k+zw==
-X-Gm-Message-State: AAQBX9cCuJ6a99tOAhDkldv2uwg77dT5Appba2q/YR41tUUOJ0w7D6lp
-        p9YlETwVI2ggw772x0LmxRncsg==
-X-Google-Smtp-Source: AKy350ZrPOyb5gNqJDCECrzhUNI+s0cndb1LmsWNk9uyVe6i2HFgL1SS9e2xdOpAxGc2SwfEA3auVA==
-X-Received: by 2002:a17:906:34cb:b0:953:42c0:86e7 with SMTP id h11-20020a17090634cb00b0095342c086e7mr1478572ejb.4.1682063589337;
-        Fri, 21 Apr 2023 00:53:09 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1682063590; x=1684655590;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=P/ZpcQ9NIqFHjhvx0ngEtTv4dAJPVMJ7EISKXYvQAAs=;
+        b=HGSd6wqwjkDoWGHjQSHkN53lnW/Hs1GIH71PEPmeLhtG62YLQSXalQvPbNaO4tftnk
+         5HJxGKjQXn3/M6GU7FxDoxopvjjQS1fQOTtKg3r5Ooezmd25yXV6cLHaCH2+MrsH9r9g
+         hmBcEIGh/2SJxQh9hR6IxPGgGJ+gwa41NZ+Tn1EmJwWjIltCNEEZajG3ZslRS9QqFBru
+         RHVBCGX2KpN+AxF7m3RXJ28f2WRwkwyvputTcMycrVHhpJOq88vn+UwxLWCoXEEST7Gg
+         oIxhioMKz1jEMNUmDShb2GmBQUURfU1dtvS5BEMva4i56EJjkGUiUMB5LYWjRCr/z8sk
+         9e4w==
+X-Gm-Message-State: AAQBX9fc8U9wTjLjDRRVzHKmgCKyx5XmVSTOYKcPve1ZKDsLIDHJSDdS
+        gvy+zlx9NKXJfRpBdUyNR/RC6Q==
+X-Google-Smtp-Source: AKy350Z/N0Lv4hhPKzOWY9FR2RrEeUTreU3lCFbsxOSp3Gi0zSmeRP/eX6Od6tlsEEybQek6EwsJ3w==
+X-Received: by 2002:a17:906:b6c4:b0:94a:4fc5:4c2e with SMTP id ec4-20020a170906b6c400b0094a4fc54c2emr1305414ejb.49.1682063590295;
+        Fri, 21 Apr 2023 00:53:10 -0700 (PDT)
 Received: from dtpc.zanders.be (78-22-137-109.access.telenet.be. [78.22.137.109])
-        by smtp.gmail.com with ESMTPSA id vp3-20020a170907a48300b0094f14286f86sm1716329ejc.48.2023.04.21.00.53.08
+        by smtp.gmail.com with ESMTPSA id vp3-20020a170907a48300b0094f14286f86sm1716329ejc.48.2023.04.21.00.53.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Apr 2023 00:53:08 -0700 (PDT)
+        Fri, 21 Apr 2023 00:53:09 -0700 (PDT)
 From:   Maarten Zanders <maarten.zanders@mind.be>
 To:     Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -55,11 +56,14 @@ To:     Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
         Jacek Anaszewski <jacek.anaszewski@gmail.com>
 Cc:     Maarten Zanders <maarten.zanders@mind.be>,
         linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v8 0/2] leds: lp55xx: configure internal charge pump
-Date:   Fri, 21 Apr 2023 09:53:03 +0200
-Message-Id: <20230421075305.37597-1-maarten.zanders@mind.be>
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v8 1/2] dt-bindings: leds-lp55xx: add ti,charge-pump-mode
+Date:   Fri, 21 Apr 2023 09:53:04 +0200
+Message-Id: <20230421075305.37597-2-maarten.zanders@mind.be>
 X-Mailer: git-send-email 2.37.3
+In-Reply-To: <20230421075305.37597-1-maarten.zanders@mind.be>
+References: <20230421075305.37597-1-maarten.zanders@mind.be>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -72,42 +76,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A new option in the devicetree "ti,charge-pump-mode" allows the user to
-configure the charge pump in a certain mode. The previous implementation
-was "auto" mode, which remains the default.
+Add a binding to configure the internal charge pump for lp55xx.
 
-v1 of the patch implemented a bool to disable the charge pump and had some
-issues in the yaml binding.
+Signed-off-by: Maarten Zanders <maarten.zanders@mind.be>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+Notes:
+    v1: implement as bool to disable charge pump
+    v2: rewrite to use string configuration, supporting all modes
+    v3: simplification by replacing string option by u8 constant,
+        removing previous Reviewed-by tags as it's a complete
+        rewrite of the patch.
+    v4: added notes
+    v5: dual license, change property type to u32
+    v6: change license type for leds-lp-55xx.h to preferred tag
+    v8: documentation: add default & maximum constraints
 
-v2 implemented all options of the charge pump as a string which was too
-complex to parse & check.
-
-v3 replaces the string by constants.
-
-v4 resend with changelog (notes) in each patch
-
-v5 dual license in dt header, change property type to u32
-
-v6 change license type, simplify DT parameter check
-
-v7 formatting changes, adapt to max 100 char line length
-
-v8 devicetree binding documentation: add default & maximum constraints
-
-Maarten Zanders (2):
-  dt-bindings: leds-lp55xx: add ti,charge-pump-mode
-  leds: lp55xx: configure internal charge pump
-
- .../devicetree/bindings/leds/leds-lp55xx.yaml      | 10 ++++++++++
- drivers/leds/leds-lp5521.c                         | 11 +++++------
- drivers/leds/leds-lp5523.c                         | 14 +++++++++-----
- drivers/leds/leds-lp55xx-common.c                  |  9 +++++++++
- drivers/leds/leds-lp8501.c                         |  8 +++++---
- include/dt-bindings/leds/leds-lp55xx.h             | 10 ++++++++++
- include/linux/platform_data/leds-lp55xx.h          |  3 +++
- 7 files changed, 51 insertions(+), 14 deletions(-)
+ .../devicetree/bindings/leds/leds-lp55xx.yaml          | 10 ++++++++++
+ include/dt-bindings/leds/leds-lp55xx.h                 | 10 ++++++++++
+ 2 files changed, 20 insertions(+)
  create mode 100644 include/dt-bindings/leds/leds-lp55xx.h
 
+diff --git a/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml b/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
+index ae607911f1db..058be1fedbc8 100644
+--- a/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
++++ b/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
+@@ -66,6 +66,14 @@ properties:
+   '#size-cells':
+     const: 0
+ 
++  ti,charge-pump-mode:
++    description:
++      Set the operating mode of the internal charge pump as defined in
++      <dt-bindings/leds/leds-lp55xx.h>.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    default: 3 # auto
++    maximum: 3
++
+ patternProperties:
+   '^multi-led@[0-8]$':
+     type: object
+@@ -152,6 +160,7 @@ additionalProperties: false
+ examples:
+   - |
+     #include <dt-bindings/leds/common.h>
++    #include <dt-bindings/leds/leds-lp55xx.h>
+ 
+     i2c {
+         #address-cells = <1>;
+@@ -164,6 +173,7 @@ examples:
+             reg = <0x32>;
+             clock-mode = /bits/ 8 <2>;
+             pwr-sel = /bits/ 8 <3>;	/* D1~9 connected to VOUT */
++            ti,charge-pump-mode = <LP55XX_CP_BYPASS>;
+ 
+             led@0 {
+                 reg = <0>;
+diff --git a/include/dt-bindings/leds/leds-lp55xx.h b/include/dt-bindings/leds/leds-lp55xx.h
+new file mode 100644
+index 000000000000..a4fb4567715d
+--- /dev/null
++++ b/include/dt-bindings/leds/leds-lp55xx.h
+@@ -0,0 +1,10 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
++#ifndef _DT_BINDINGS_LEDS_LP55XX_H
++#define _DT_BINDINGS_LEDS_LP55XX_H
++
++#define LP55XX_CP_OFF		0
++#define LP55XX_CP_BYPASS	1
++#define LP55XX_CP_BOOST		2
++#define LP55XX_CP_AUTO		3
++
++#endif /* _DT_BINDINGS_LEDS_LP55XX_H */
 -- 
 2.37.3
 
