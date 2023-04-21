@@ -2,180 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 928536EA8C2
-	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 13:03:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1A276EA917
+	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 13:25:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229690AbjDULDk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Apr 2023 07:03:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44678 "EHLO
+        id S229938AbjDULZk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Apr 2023 07:25:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229624AbjDULDj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 07:03:39 -0400
-Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34CCF9016
-        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 04:03:38 -0700 (PDT)
-Received: by mail-pf1-x42e.google.com with SMTP id d2e1a72fcca58-63b620188aeso2608326b3a.0
-        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 04:03:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1682075017; x=1684667017;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=m0I1sPCdYN0SbjWyDhk4aoTpPCovY0PSzi4d7N1NDJg=;
-        b=mc1zwRaK4FAH7g6eSmoxngIMQ+5NXpyIKsfLdgr5W8xUrUlq9W7TbZkKtInZhi+DfH
-         +otn/a7Mxi6OW2qTj0rtw+7PHVob4Hzgl+wa8tfdAwGGhx5SPWFzGlHv/cNk6hzFBOUP
-         y+jq2HY6gxEhJJlakAZcN6zK4wg1LXE4/we4Y=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682075017; x=1684667017;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=m0I1sPCdYN0SbjWyDhk4aoTpPCovY0PSzi4d7N1NDJg=;
-        b=EhMSNN7yeAwlz6pDg7DwBDK+QFWI3uyH1K1gJL8Tlsl2hSeUGHA+CNbT6AYldukICd
-         P+BJN9oYN/zxupkFB6NDOWVezDVZmSPt3OQkR27/0dxMji1nC42om027k1R438qyHI9e
-         j57MkGLSYOTnuZo8PGn7F2BRo/GggCaOaCWUmtCxst4CfuyDJJ3j1chMokQqXBcOAJgm
-         bxexxseGJNVEDZlIjWWkRqUtIL5a7Sj3NpPAU98dUi9gjkXHw31KdA6fsvvnKFS121Lu
-         C0Nz+BVOF9hkf4KiNzjHRNv4IAoHPnIRxgDUtFJCQvITHNXULyO16sSPPLZsqdo5aaTT
-         9Bog==
-X-Gm-Message-State: AAQBX9dIK5T9Jhb3zxennT4jjKgZ3FJG9ByoFx7CN0wnykZlcMrUV8VI
-        jw0jCBRA0tTP2My0K+VH3VGnDA==
-X-Google-Smtp-Source: AKy350bwnnxLR6pYSUpKWU0Q4r+z54dq3jUrc4qFIiJZ2/JeH/C++AywzL44Oskd0E07kjJUUHSwww==
-X-Received: by 2002:a05:6a20:4323:b0:ef:acca:9e19 with SMTP id h35-20020a056a20432300b000efacca9e19mr6865535pzk.14.1682075017705;
-        Fri, 21 Apr 2023 04:03:37 -0700 (PDT)
-Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:47fa:fa8d:a971:f6ac])
-        by smtp.gmail.com with ESMTPSA id fb31-20020a056a002d9f00b005e5b11335b3sm2801286pfb.57.2023.04.21.04.03.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Apr 2023 04:03:37 -0700 (PDT)
-From:   Chen-Yu Tsai <wenst@chromium.org>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     Chen-Yu Tsai <wenst@chromium.org>,
-        =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
-        <nfraprado@collabora.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: [PATCH] arm64: dts: mediatek: mt8192-asurada-hayato: Enable Bluetooth
-Date:   Fri, 21 Apr 2023 19:03:27 +0800
-Message-ID: <20230421110327.2395804-1-wenst@chromium.org>
-X-Mailer: git-send-email 2.40.0.634.g4ca3ef3211-goog
+        with ESMTP id S229504AbjDULZj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 07:25:39 -0400
+Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15E5693C5
+        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 04:25:32 -0700 (PDT)
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20230421112529euoutp01f17f00674beec7eef2a6235909b19802~X74JuTKo62550325503euoutp01X
+        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 11:25:29 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20230421112529euoutp01f17f00674beec7eef2a6235909b19802~X74JuTKo62550325503euoutp01X
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1682076329;
+        bh=X9Uc8/wiA5Xs838ROjL7g0Ad87gfoAq/y+Io8xsD7P8=;
+        h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+        b=eF5WL1cOCRIvScF5JHW8nJ0vD/ti/rBF1RbjE0NVv45+mu+jeY/cuMORpTu4DeCjz
+         K4jVR6DKk02nBJE/j7hpzJ8uhm4aN+deqYFVS0vPqyWokk4EgwYv97cUAZnBQudTZn
+         2laSjYnlhk0+cDgKId+06gf6uuvR1QHeRBlZxHUE=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20230421112528eucas1p2c36a166fe8a830b0b661643a70693641~X74JUbLYJ2901129011eucas1p2l;
+        Fri, 21 Apr 2023 11:25:28 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges1new.samsung.com (EUCPMTA) with SMTP id ED.5D.09503.8A272446; Fri, 21
+        Apr 2023 12:25:28 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20230421112528eucas1p202ae1e38ffbc63d3ff968ca9d8141d94~X74IyZduT3120531205eucas1p2i;
+        Fri, 21 Apr 2023 11:25:28 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20230421112528eusmtrp28fd5e92e7d1e7ed2ff2de6ae20c3b1ba~X74IxqX7f1838318383eusmtrp2L;
+        Fri, 21 Apr 2023 11:25:28 +0000 (GMT)
+X-AuditID: cbfec7f2-ea5ff7000000251f-f9-644272a8aaad
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id 9E.DD.34412.8A272446; Fri, 21
+        Apr 2023 12:25:28 +0100 (BST)
+Received: from [106.210.134.192] (unknown [106.210.134.192]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20230421112527eusmtip11e24bee1308db329ce428ae9f7dab24c~X74HlSgIj0246502465eusmtip1r;
+        Fri, 21 Apr 2023 11:25:26 +0000 (GMT)
+Message-ID: <28219b3d-e2cc-63b1-555b-c3845300f45a@samsung.com>
+Date:   Fri, 21 Apr 2023 13:25:26 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0)
+        Gecko/20100101 Thunderbird/102.10.0
+Subject: Re: [PATCH 3/6] drm: bridge: samsung-dsim: Fetch
+ pll-clock-frequency automatically
+Content-Language: en-US
+To:     Adam Ford <aford173@gmail.com>, dri-devel@lists.freedesktop.org
+Cc:     marex@denx.de, aford@beaconembedded.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Inki Dae <inki.dae@samsung.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+From:   Marek Szyprowski <m.szyprowski@samsung.com>
+In-Reply-To: <20230415104104.5537-3-aford173@gmail.com>
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA02SfUxbVRjGc+69vb1067wUZo9MxDXDOBQKbhkngREpRK9x6rLpNMNFmvUG
+        iC2QlvpBIHa6wegUC4ubK58bKKxZIatNN5AOZSuUoIxtBVwBK4EI1DJgIDg+Nm0vKv897/O+
+        v/Oe5+RQuKieDKOysvNYdbZcKSEFhK3zQW90o1qmiK1vk6LhoR4cfd9/io+cgxcw5KmbJ9Aj
+        WxmOam708pDrzxkSjfa/gco9BgItWAwkmqhpAqjb108g01ctBCqdHMVRSVk9H1nGBnhIv3wR
+        R3daK0nkKzoG0EyLG6Dy6rs8dMJ+g4/WrlgINGkVvwgZ85yHx0w16HCm2ugkGPtiLcG0GEf4
+        TMXJczymrm0KYyymEpJxGm5jzPBAG8l4TnVhzHf1nzCX713FmC/XYplSqwkw85an9tOHBYkK
+        Vpn1AauWJqULMn+6f5HItdEfVSyc4evACaEeBFGQ3g2PN9fieiCgRHQjgKtVf/H9DRG9AODQ
+        1CGuMQ/gnaZqUg+oAHF+Rsn5DQDarSaMK+YA1HfYCD8tpJPgalkV4QcIOhKuXk/h7GDYfW48
+        MLKVZuGnFT6+fySEPgKt7Xv8Nk6LoXu8BvPrUDoFdq8tBo7H6eskHPI5AixJx0H9tJ706yA6
+        HlZ8W0pycAS8Ml0ZSANpswAWrdhJLmYq/Pm4A3A6BHq7rHxOPwkftdRgHFAMYO2KZ70wAKib
+        cK8TCXC4dzkQH6d3wuZWKWcnw0sDXpx7lS3wl+lg7hJbYLnt7LothCeLRNz0M9DY1fTf2h/7
+        buMGIDFueBbjhvzGDXGM/++tBYQJiFmtRpXBauKy2Q9jNHKVRpudEXM0R2UB/3zknodd96+C
+        Ku9cTAfAKNABIIVLQoUzsTKFSKiQf5zPqnPeU2uVrKYDbKMIiVj43N7uoyI6Q57Hvs+yuaz6
+        3y5GBYXpMHHxiKVgYnO4fTrcsjP5YJriB9uy4pCr52ZskKw56olJu6oh/c12z4j7i+3PXogS
+        ppT52jaN/3rk97Cb7xpmT1dt3Sd/rCWSzKqbe6270Lzv7czf4Fxq6crewVsearFzsDHRsTT+
+        yoMd+de+Pnj4ckH+kgfi2x8mnhfLdqmSFjI37U47cMt9r3B/dGX6seJXawr7PptV992devmd
+        BF8wGRmv7Wx3Sr2zVPZZXV1qZKEqLbr2j4XNuTmO8j1pwY7PzSV5oS8p3pLpkh8fbS42W7VO
+        V3yIMtw14tUcGFvNk5a0Er0ZFdtcUQ1j1y6lFaPnI05HLMleKPgmxZZ4Zhf++o7ohKclhCZT
+        HheFqzXyvwEgL8bWNwQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrBKsWRmVeSWpSXmKPExsVy+t/xu7oripxSDK7P57C4c/s0s8Xuq93s
+        FieuL2KyuL/4M4vF/20TmS3mHznHanHl63s2i4dX/S0m3Z/AYvFl0wQ2i+fz1zFanHxzlcVi
+        1dSdLBZ9Lx4yW3ROXMJusenxNVaLrl8rmS0u75rDZvGmrZHR4v3OW4wWk+bdZLVo3XuE3eLv
+        9k0sFi+2iDtIeKz9eJ/V4+XyBmaPebNOsHjs/baAxWPnrLvsHrM7ZrJ6LN7zkslj06pONo8T
+        Ey4xedy5tofN4373cSaPzUvqPTa+28Hk0f/XwKNvyypGj8+b5AIEovRsivJLS1IVMvKLS2yV
+        og0tjPQMLS30jEws9QyNzWOtjEyV9O1sUlJzMstSi/TtEvQyznxayVKwTaBi9pdp7A2Mrbxd
+        jBwcEgImEgvf53QxcnEICSxllFi7fDZzFyMnUFxG4uS0BlYIW1jiz7UuNoii94wSV2btAEvw
+        CthJ/Jk4lwVkEIuAqsSfw84QYUGJkzOfsIDYogKpEjf2/GEDsYUFYiXaH1xlBLGZBcQlbj2Z
+        zwRiiwg4S5z8+40JZD6zwFE2iROPvzJDLNvOKHFj4j6wSWwChhJdb7vAJnEKmEvMXtbHBjHJ
+        TKJraxfUVHmJ7W/nME9gFJqF5JBZSBbOQtIyC0nLAkaWVYwiqaXFuem5xUZ6xYm5xaV56XrJ
+        +bmbGIFJaNuxn1t2MK589VHvECMTB+MhRgkOZiUR3vcGTilCvCmJlVWpRfnxRaU5qcWHGE2B
+        gTGRWUo0OR+YBvNK4g3NDEwNTcwsDUwtzYyVxHk9CzoShQTSE0tSs1NTC1KLYPqYODilGpi4
+        f3WGp69zONK/T8LPgf/S7h0TeXrYf/as+Dd/j2Hr27ssaeEBeqURW49vaxK6YPXe72rY3W0z
+        dpswSj3RTC3Nu2KV9UwovWRNSk+b2aPSc2tWyDkzTBb+1BB5tzPsVNzERm4Frncqi1zvsSWF
+        rjmuubtDo3viXLtfcXOWaizcF9ulMnNukF/SoeRfG58qPN3/4fZ/iT3bEwMEDyys2HvmnZDg
+        4fM+XfNqNv44ojvTNPekRbnUltDnQtc4GRoY+Kd1X7khsKYl2dx5/cbpT1babDrV7bJQYMOj
+        igBb1TijD96su/bf28E7+SyXitR8gbpDJzd8KHnXWr1m2pvHh00LjAuqOSepT7ZcaHi/7Zy9
+        EktxRqKhFnNRcSIANn5Fx8sDAAA=
+X-CMS-MailID: 20230421112528eucas1p202ae1e38ffbc63d3ff968ca9d8141d94
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20230415104123eucas1p103250c1748170354509932778b233900
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20230415104123eucas1p103250c1748170354509932778b233900
+References: <20230415104104.5537-1-aford173@gmail.com>
+        <CGME20230415104123eucas1p103250c1748170354509932778b233900@eucas1p1.samsung.com>
+        <20230415104104.5537-3-aford173@gmail.com>
+X-Spam-Status: No, score=-10.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hayato's Realtek WiFi/BT module has it's Bluetooth function wired to
-UART1.
+On 15.04.2023 12:41, Adam Ford wrote:
+> Fetch the clock rate of "sclk_mipi" (or "pll_clk") instead of
+> having an entry in the device tree for samsung,pll-clock-frequency.
+>
+> Signed-off-by: Adam Ford <aford173@gmail.com>
 
-Add and enable the relevant device nodes for it.
+This one breaks DSI panel operation on my Exynos-based Trats, Trats2 and 
+TM2e boards. I've didn't check the details, but probably something is 
+missing in the dts to make it working properly. Surprisingly the display 
+is still working fine on Arndale board with DSI TC358764 bridge.
 
-Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
----
- .../dts/mediatek/mt8192-asurada-hayato-r1.dts | 80 +++++++++++++++++++
- 1 file changed, 80 insertions(+)
+> ---
+>   drivers/gpu/drm/bridge/samsung-dsim.c | 12 ++++++------
+>   1 file changed, 6 insertions(+), 6 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/bridge/samsung-dsim.c b/drivers/gpu/drm/bridge/samsung-dsim.c
+> index 9fec32b44e05..73f0c3fbbdf5 100644
+> --- a/drivers/gpu/drm/bridge/samsung-dsim.c
+> +++ b/drivers/gpu/drm/bridge/samsung-dsim.c
+> @@ -1744,11 +1744,6 @@ static int samsung_dsim_parse_dt(struct samsung_dsim *dsi)
+>   	struct device_node *node = dev->of_node;
+>   	int ret;
+>   
+> -	ret = samsung_dsim_of_read_u32(node, "samsung,pll-clock-frequency",
+> -				       &dsi->pll_clk_rate);
+> -	if (ret < 0)
+> -		return ret;
+> -
+>   	ret = samsung_dsim_of_read_u32(node, "samsung,burst-clock-frequency",
+>   				       &dsi->burst_clk_rate);
+>   	if (ret < 0)
+> @@ -1823,13 +1818,18 @@ int samsung_dsim_probe(struct platform_device *pdev)
+>   		if (IS_ERR(dsi->clks[i])) {
+>   			if (strcmp(clk_names[i], "sclk_mipi") == 0) {
+>   				dsi->clks[i] = devm_clk_get(dev, OLD_SCLK_MIPI_CLK_NAME);
+> -				if (!IS_ERR(dsi->clks[i]))
+> +				if (!IS_ERR(dsi->clks[i])) {
+> +					dsi->pll_clk_rate = clk_get_rate(dsi->clks[i]);
+>   					continue;
+> +				}
+>   			}
+>   
+>   			dev_info(dev, "failed to get the clock: %s\n", clk_names[i]);
+>   			return PTR_ERR(dsi->clks[i]);
+>   		}
+> +
+> +		if (strcmp(clk_names[i], "sclk_mipi") == 0)
+> +			dsi->pll_clk_rate = clk_get_rate(dsi->clks[i]);
+>   	}
+>   
+>   	dsi->reg_base = devm_platform_ioremap_resource(pdev, 0);
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r1.dts b/arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r1.dts
-index 43a823990a92..6a7d7870525b 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r1.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r1.dts
-@@ -40,9 +40,89 @@ CROS_STD_MAIN_KEYMAP
- 	>;
- };
- 
-+&pio {
-+	bt_pins: bt-pins {
-+		bt_kill: pins-bt-kill {
-+			pinmux = <PINMUX_GPIO144__FUNC_GPIO144>; /* BT_KILL_L */
-+			output-low;
-+		};
-+
-+		bt_wake: pins-bt-wake {
-+			pinmux = <PINMUX_GPIO22__FUNC_GPIO22>;  /* bt to wake ap */
-+			bias-pull-up;
-+		};
-+
-+		ap_wake_bt: pins-ap-wake-bt {
-+			pinmux = <PINMUX_GPIO168__FUNC_GPIO168>; /* AP_WAKE_BT_H */
-+			output-low;
-+		};
-+	};
-+
-+	uart1_pins: uart1-pins {
-+		pins-rx {
-+			pinmux = <PINMUX_GPIO94__FUNC_URXD1>;
-+			input-enable;
-+			bias-pull-up;
-+		};
-+
-+		pins-tx {
-+			pinmux = <PINMUX_GPIO95__FUNC_UTXD1>;
-+		};
-+
-+		pins-cts {
-+			pinmux = <PINMUX_GPIO166__FUNC_UCTS1>;
-+			input-enable;
-+		};
-+
-+		pins-rts {
-+			pinmux = <PINMUX_GPIO167__FUNC_URTS1>;
-+			output-enable;
-+		};
-+	};
-+
-+	uart1_pins_sleep: uart1-pins-sleep {
-+		pins-rx {
-+			pinmux = <PINMUX_GPIO94__FUNC_GPIO94>;
-+			input-enable;
-+			bias-pull-up;
-+		};
-+		pins-tx {
-+			pinmux = <PINMUX_GPIO95__FUNC_UTXD1>;
-+		};
-+		pins-cts {
-+			pinmux = <PINMUX_GPIO166__FUNC_UCTS1>;
-+			input-enable;
-+		};
-+		pins-rts {
-+			pinmux = <PINMUX_GPIO167__FUNC_URTS1>;
-+			output-enable;
-+		};
-+	};
-+};
-+
- &touchscreen {
- 	compatible = "hid-over-i2c";
- 	post-power-on-delay-ms = <10>;
- 	hid-descr-addr = <0x0001>;
- 	vdd-supply = <&pp3300_u>;
- };
-+
-+&uart1 {
-+	status = "okay";
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&uart1_pins>;
-+	pinctrl-1 = <&uart1_pins_sleep>;
-+	/delete-property/ interrupts;
-+	interrupts-extended = <&gic GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH 0>,
-+			      <&pio 94 IRQ_TYPE_EDGE_FALLING>;
-+
-+	bluetooth: bluetooth {
-+		compatible = "realtek,rtl8822cs-bt";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&bt_pins>;
-+
-+		enable-gpios = <&pio 144 GPIO_ACTIVE_HIGH>;
-+		device-wake-gpios = <&pio 168 GPIO_ACTIVE_HIGH>;
-+		host-wake-gpios = <&pio 22 GPIO_ACTIVE_LOW>;
-+	};
-+};
+Best regards
 -- 
-2.40.0.634.g4ca3ef3211-goog
+Marek Szyprowski, PhD
+Samsung R&D Institute Poland
 
