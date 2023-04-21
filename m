@@ -2,74 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D1C986EA737
-	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 11:38:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9DA56EA758
+	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 11:43:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229554AbjDUJil (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Apr 2023 05:38:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46356 "EHLO
+        id S231469AbjDUJnk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Apr 2023 05:43:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232073AbjDUJia (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 05:38:30 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 061829ED9;
-        Fri, 21 Apr 2023 02:38:24 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4ec816d64afso6486954e87.1;
-        Fri, 21 Apr 2023 02:38:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682069902; x=1684661902;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=+puYzROBtSGvQ+bB1lDEXoa3ZhtBvmdV2BDyw8+XGDI=;
-        b=kDA0siLwuDxBz7jmiKRO6O5bcpU/j9MIy81WG1OJXhrQz440tOwWGjSuyfdn+IcMDL
-         ynakRNHY9D3w4cuO2ERLCUxGOj9ZdBlZsASI1kthkFr1Ak0cfS6MkO55lxMoslcQBxe1
-         NIAaGFnwoR++8WMhAz6OOv7fAAHwYAT7DDqrqqJiPZIhQj9rI1dSwWMocSPC1jvfxG8K
-         gkKlb4rXhzN8b045zgtUDakfB4CAmTYCorjbUgfxHiILnuMjeZqIelN+wM5JM5teqVtm
-         V+Dr9+GgWrbC+Lqaxts2EhTnn8iLX1FUsWCjthqID8UUj2tPzC3o4Cnsk1P8CIhqeGUe
-         BuEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682069902; x=1684661902;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+puYzROBtSGvQ+bB1lDEXoa3ZhtBvmdV2BDyw8+XGDI=;
-        b=aCBfCYd4Sffusz3ptRp2be7mjSl66djDI72MVP3XAzg4kueB/lkFgpsu92994aFOdA
-         izJ6KZ3k5hPuMbat5QX2pnocDFDocC8Ny68TXMN5tZYki5DKoKVnf+O12eHR9hE0t3RP
-         QlhPvmERg9MxXAMzYXkQtkAhaN18Ymr2d7mQ8En2laXKtc+zGsEasmUZXWjmAoyWJPWe
-         H+tBuR3uf+861TomwdByNq/HDRRWIX1j6jiWdy8atSpKJ5qxli3pnGUNW3dpzBspfab3
-         ejiVJrrroBIeReWngPyzjwm9cCRkFkb2Fz9YS/TBcwJ0bTOmO+eJLyQSQzo2pr6WVD6i
-         G+EQ==
-X-Gm-Message-State: AAQBX9exdZgFfr9A/efAmtbceVB1+Yx4hc8PxS1MaHtCCc2ifc01/j1Y
-        2nX0+d7Sw/T/gOlEof0qSja0BX/yIlw=
-X-Google-Smtp-Source: AKy350amIvjk2h7dze+LRP9A5Hz0YQ28O13F49yYY6qSZgJNu7w8kPRzsn96xcY/8HVF1zsHHoMRXA==
-X-Received: by 2002:a05:6512:1081:b0:4ec:9d13:9d09 with SMTP id j1-20020a056512108100b004ec9d139d09mr2729509lfg.34.1682069902230;
-        Fri, 21 Apr 2023 02:38:22 -0700 (PDT)
-Received: from fedora (62-78-225-252.bb.dnainternet.fi. [62.78.225.252])
-        by smtp.gmail.com with ESMTPSA id v3-20020a056512048300b004ebae99cc1dsm497134lfq.159.2023.04.21.02.38.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Apr 2023 02:38:21 -0700 (PDT)
-Date:   Fri, 21 Apr 2023 12:38:16 +0300
-From:   Matti Vaittinen <mazziesaccount@gmail.com>
-To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Matti Vaittinen <mazziesaccount@gmail.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matti Vaittinen <mazziesaccount@gmail.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v1 1/3] dt-bindings: iio: light: ROHM BU27008
-Message-ID: <30daff0d94cd4d05de0194808ab9a6984caf78dc.1682067567.git.mazziesaccount@gmail.com>
-References: <cover.1682067567.git.mazziesaccount@gmail.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="A7z/K2sA5slhMnG3"
-Content-Disposition: inline
-In-Reply-To: <cover.1682067567.git.mazziesaccount@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        with ESMTP id S231396AbjDUJnh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 05:43:37 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B1C4AF00;
+        Fri, 21 Apr 2023 02:43:31 -0700 (PDT)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33L9YXQW011214;
+        Fri, 21 Apr 2023 09:43:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id; s=qcppdkim1;
+ bh=4jr5yrLucktb45hL8zakgFj6AedY561gZkDUZHmfI6E=;
+ b=bw99ggVLtgxlWk+jaTZZc0SeRyNTbEiGk84VD787XRZUUyeqngOypxCRrEPEobzIsJAr
+ uYJxoW+J0kiNKy3sTsg9m89OHhx9KWPAl+DQwyQfgeGidsPnRF9GSG1o4CbAE1GE7qDb
+ 7HNgVyz8+ae0h09U7g9s5echwukFE3KjFKixmdSk8snBi+vIaMmsq5S7Lt4a4wXHiOjI
+ DIHm6MmdMUZ5lRSftmNpLRF3Py8RTmrcOSMmAnPpke7EEUfg765/wNvjDlnwu0cnFQ0y
+ 1d3XX0VshY9/bVY8PdWAy3lgrwXeurVa3Nf7errzoJOcG6Yn3hhYkQjjId5lXPC6NfNK FQ== 
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q3f3ts3ch-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 21 Apr 2023 09:43:27 +0000
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+        by APBLRPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 33L9hNIE025453;
+        Fri, 21 Apr 2023 09:43:23 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 3pyn0kpscm-1;
+        Fri, 21 Apr 2023 09:43:23 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 33L9hNsc025426;
+        Fri, 21 Apr 2023 09:43:23 GMT
+Received: from hu-sgudaval-hyd.qualcomm.com (hu-rohiagar-hyd.qualcomm.com [10.213.106.138])
+        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 33L9hMjc025417;
+        Fri, 21 Apr 2023 09:43:23 +0000
+Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 3970568)
+        id 46F975072; Fri, 21 Apr 2023 15:13:22 +0530 (+0530)
+From:   Rohit Agarwal <quic_rohiagar@quicinc.com>
+To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        linus.walleij@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, richardcochran@gmail.com,
+        manivannan.sadhasivam@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, Rohit Agarwal <quic_rohiagar@quicinc.com>
+Subject: [PATCH v2 0/2] Add pinctrl support for SDX75
+Date:   Fri, 21 Apr 2023 15:13:14 +0530
+Message-Id: <1682070196-980-1-git-send-email-quic_rohiagar@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: stsxsMkoo7uHUySPXY8hLI1yQCoFjnfP
+X-Proofpoint-ORIG-GUID: stsxsMkoo7uHUySPXY8hLI1yQCoFjnfP
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-21_03,2023-04-20_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 malwarescore=0
+ spamscore=0 mlxscore=0 bulkscore=0 suspectscore=0 clxscore=1015
+ priorityscore=1501 impostorscore=0 adultscore=0 mlxlogscore=614
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303200000 definitions=main-2304210083
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
         URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,112 +79,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---A7z/K2sA5slhMnG3
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Changes in v2:
+ - Updated the bindings to clear the bindings check.
 
-The ROHM BU27008 is a sensor with 5 photodiodes (red, green, blue, clear
-and IR) with four configurable channels. Red and green being always
-available and two out of the rest three (blue, clear, IR) can be
-selected to be simultaneously measured. Typical application is adjusting
-LCD backlight of TVs, mobile phones and tablet PCs.
+This patch series adds pinctrl bindings and tlmm support for SDX75.
 
-Add BU27008 dt-bindings.
+Thanks,
+Rohit.
 
-Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
----
- .../bindings/iio/light/rohm-bu27008.yaml      | 49 +++++++++++++++++++
- 1 file changed, 49 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/light/rohm-bu2700=
-8.yaml
+Rohit Agarwal (2):
+  dt-bindings: pinctrl: qcom: Add SDX75 pinctrl devicetree compatible
+  pinctrl: qcom: Add SDX75 pincontrol driver
 
-diff --git a/Documentation/devicetree/bindings/iio/light/rohm-bu27008.yaml =
-b/Documentation/devicetree/bindings/iio/light/rohm-bu27008.yaml
-new file mode 100644
-index 000000000000..d942c2817680
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/light/rohm-bu27008.yaml
-@@ -0,0 +1,49 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/light/bu27008.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ROHM BU27008 color sensor
-+
-+maintainers:
-+  - Matti Vaittinen <mazziesaccount@gmail.com>
-+
-+description: |
-+  The ROHM BU27008 is a sensor with 5 photodiodes (red, green, blue, clear
-+  and IR) with four configurable channels. Red and green being always
-+  available and two out of the rest three (blue, clear, IR) can be
-+  selected to be simultaneously measured. Typical application is adjusting
-+  LCD backlight of TVs, mobile phones and tablet PCs.
-+
-+properties:
-+  compatible:
-+    const: rohm,bu27008
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  vdd-supply: true
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+      #address-cells =3D <1>;
-+      #size-cells =3D <0>;
-+
-+      light-sensor@38 {
-+        compatible =3D "rohm,bu27008";
-+        reg =3D <0x38>;
-+      };
-+    };
-+
-+...
---=20
-2.40.0
+ .../bindings/pinctrl/qcom,sdx75-tlmm.yaml          |  177 +++
+ drivers/pinctrl/qcom/Kconfig                       |   30 +-
+ drivers/pinctrl/qcom/Makefile                      |    3 +-
+ drivers/pinctrl/qcom/pinctrl-sdx75.c               | 1536 ++++++++++++++++++++
+ 4 files changed, 1735 insertions(+), 11 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sdx75-tlmm.yaml
+ create mode 100644 drivers/pinctrl/qcom/pinctrl-sdx75.c
 
+-- 
+2.7.4
 
---=20
-Matti Vaittinen, Linux device drivers
-ROHM Semiconductors, Finland SWDC
-Kiviharjunlenkki 1E
-90220 OULU
-FINLAND
-
-~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
-Simon says - in Latin please.
-~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
-Thanks to Simon Glass for the translation =3D]=20
-
---A7z/K2sA5slhMnG3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmRCWYgACgkQeFA3/03a
-ocV94Qf/e1GtM0XXcFQvt69AZKaPENSQSPdnatWY6bNvTQnTLud33tmuh3l743ex
-RmzNZtpOPZ2fuBffUaU9E2uUKjJzEtnuK7Sg+1Cw0T1G2DXPLLZsErY6PHLUx+y5
-a5GUJn3FrXcdM5Lud9KU+KB3rO2lANjjH7xKoBVqsfoX2wqVBGMv/aeuRIPGNWxU
-jOveSvxWTCyzwZb7p1jR0y/Jhf2ePveDZl3ya7oMu+LshlH7l8ei524tzUcpZlti
-Kcme77TKumS0fW5KNzP6PrHx1fFyraD7HppjpPwUHY9rcFapn11p+1Cjioan9fLf
-aGm1qT5xoDab9/u1vDLvWxc+bwmkoA==
-=sipe
------END PGP SIGNATURE-----
-
---A7z/K2sA5slhMnG3--
