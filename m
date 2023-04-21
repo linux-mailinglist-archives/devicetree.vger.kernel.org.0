@@ -2,188 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 73A686EA3A3
-	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 08:17:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 669C56EA3B0
+	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 08:19:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229633AbjDUGRF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Apr 2023 02:17:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53372 "EHLO
+        id S229540AbjDUGTW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Apr 2023 02:19:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229650AbjDUGQm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 02:16:42 -0400
-Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEC1B83C5
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 23:16:39 -0700 (PDT)
-Received: by mail-yb1-xb2f.google.com with SMTP id 3f1490d57ef6-b983027d0faso1134295276.0
-        for <devicetree@vger.kernel.org>; Thu, 20 Apr 2023 23:16:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1682057799; x=1684649799;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=a5ffUiM3M7NTUSgdHiwJ5XZXqrjEjLlNt36O7ostYWk=;
-        b=JB6iEZoqs5uLEzGwULGqVV4cERqxyNBtzx7gNRZ1bSE1KMivgF0Fn7pTjSfSLh/v5x
-         ted6xSS2RGuVwdR0XrqxiNV0nDm6TMXe3iJ0XOJLlbPJ2NXmlZS27pE4/gGcUkjGHDGR
-         yCclIpmnbAqom8URegkT3f/ZPV21ZZ1UnnWNkiWN9wauicAbh/xE4DI9Nye5YfNfRoif
-         c7VUtVEq1235OLz58UjZCGOlLrm6ftcAdTh6ilMsacMV9Z57NY9IgE9vWzpvmr0oQvMW
-         4/SWqvQKDnZmENVsZhwQ619HlrLODLmsOOGbxOWlV9gYmvuLvG/HhqSOOSmMWyKQhsHV
-         J2ig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682057799; x=1684649799;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=a5ffUiM3M7NTUSgdHiwJ5XZXqrjEjLlNt36O7ostYWk=;
-        b=E1Oo8ff7Bprh+M1qLq9XU2gLZLbKwjvP2ENs3WVOXUnUT9mTyo0xjxkCYZv8eP+Fw3
-         bFbxpEkqG2SWi5Re8p67bReymaO4mTrgwZpelpS+/xdyeYkP7io9J6NprrwY9l8PelkO
-         l/zjprrdIoL3E0kuJr0QrUpO7Gvs5KznYzfanNvMKNA9UjKxLwjTy//TouzEUqJqPJyc
-         +hT4TfGgki1PIUDdhTLdVUDhY+6k2cnDQYKzjl2u08W/2SC/xCWXuLC++hV7wGBaTuYx
-         QaM7WsgELCGAyeav1ytybRwed13zw3InGZ6Yr1m3mQKO0+WN89GUaaH1uf70gNIc9qRo
-         diow==
-X-Gm-Message-State: AAQBX9fl0EBDROrAFy5iNKjKAUSH3r4cX9T3yHOj59/viNlsLe5oH+2e
-        SyJYjH5P4uUjGMOHEMF3+93BpDuwrCPPEts0l3X2yg==
-X-Google-Smtp-Source: AKy350ZexKT0FdkSUu7TV2c7ttWACVFUUKWEIojp3MuZ+qD5tK1QUFURvuyY/kflECcD05OtJMczaJGwujJYMNpQTZ0=
-X-Received: by 2002:a25:245:0:b0:b92:2a33:c00 with SMTP id 66-20020a250245000000b00b922a330c00mr1663080ybc.24.1682057798787;
- Thu, 20 Apr 2023 23:16:38 -0700 (PDT)
+        with ESMTP id S229670AbjDUGSx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 02:18:53 -0400
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE67A2729;
+        Thu, 20 Apr 2023 23:18:42 -0700 (PDT)
+Authenticated-By: 
+X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 33L6IPuxC024547, This message is accepted by code: ctloc85258
+Received: from mail.realtek.com (rtexh36505.realtek.com.tw[172.21.6.25])
+        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 33L6IPuxC024547
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
+        Fri, 21 Apr 2023 14:18:26 +0800
+Received: from RTEXMBS03.realtek.com.tw (172.21.6.96) by
+ RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.32; Fri, 21 Apr 2023 14:18:26 +0800
+Received: from RTEXH36506.realtek.com.tw (172.21.6.27) by
+ RTEXMBS03.realtek.com.tw (172.21.6.96) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.7; Fri, 21 Apr 2023 14:18:25 +0800
+Received: from localhost.localdomain (172.21.252.101) by
+ RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server id
+ 15.1.2507.17 via Frontend Transport; Fri, 21 Apr 2023 14:18:25 +0800
+From:   Stanley Chang <stanley_chang@realtek.com>
+To:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+CC:     Stanley Chang <stanley_chang@realtek.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Felipe Balbi <balbi@kernel.org>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v3 1/2] usb: dwc3: core: add support for remapping global register start address
+Date:   Fri, 21 Apr 2023 14:18:23 +0800
+Message-ID: <20230421061825.2233-1-stanley_chang@realtek.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-References: <20230420093457.18936-1-nylon.chen@sifive.com> <20230420093457.18936-3-nylon.chen@sifive.com>
- <CAJM55Z-smXpgL+QyTSeAWt=B-RS_qtbrFZtJpP-cQS0gsQnDSw@mail.gmail.com>
- <CAHh=Yk86AV542Y7wG6rkHTc4va1Gof3uXtj84zzK5m+khL_Aiw@mail.gmail.com> <CAJM55Z9TPVyJyWwWAS2FznSc8FvnR7qMxQ412eMzBkD=5abp6g@mail.gmail.com>
-In-Reply-To: <CAJM55Z9TPVyJyWwWAS2FznSc8FvnR7qMxQ412eMzBkD=5abp6g@mail.gmail.com>
-From:   Nylon Chen <nylon.chen@sifive.com>
-Date:   Fri, 21 Apr 2023 14:16:20 +0800
-Message-ID: <CAHh=Yk9mBDtFM4TRKEknNgrMN9qK4XtmPWLAT2E2P3RHwVh6ww@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] pwm: sifive: change the PWM controlled LED algorithm
-To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc:     aou@eecs.berkeley.edu, conor@kernel.org, geert+renesas@glider.be,
-        heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
-        palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org,
-        thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
-        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        nylon7717@gmail.com, zong.li@sifive.com, greentime.hu@sifive.com,
-        vincent.chen@sifive.com, Conor Dooley <conor.dooley@microchip.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-KSE-ServerInfo: RTEXMBS03.realtek.com.tw, 9
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-KSE-Antivirus-Interceptor-Info: fallback
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-KSE-ServerInfo: RTEXH36505.realtek.com.tw, 9
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-KSE-Antivirus-Interceptor-Info: fallback
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Emil,
+The RTK DHC SoCs were designed the global register address offset at
+0x8100. The default address offset is constant at DWC3_GLOBALS_REGS_START
+(0xc100). Therefore, add the property of device-tree to adjust this
+address offset.
 
-Emil Renner Berthing <emil.renner.berthing@canonical.com> =E6=96=BC 2023=E5=
-=B9=B44=E6=9C=8820=E6=97=A5
-=E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=886:46=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> On Thu, 20 Apr 2023 at 12:41, Nylon Chen <nylon.chen@sifive.com> wrote:
-> >
-> > Hi, Emil
-> >
-> > Emil Renner Berthing <emil.renner.berthing@canonical.com> =E6=96=BC 202=
-3=E5=B9=B44=E6=9C=8820=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=886:04=
-=E5=AF=AB=E9=81=93=EF=BC=9A
-> > >
-> > > On Thu, 20 Apr 2023 at 11:35, Nylon Chen <nylon.chen@sifive.com> wrot=
-e:
-> > > >
-> > > > The `frac` variable represents the pulse inactive time, and the res=
-ult of
-> > > > this algorithm is the pulse active time. Therefore, we must reverse=
- the
-> > > > result.
-> > > >
-> > > > The reference is SiFive FU740-C000 Manual[0]
-> > > >
-> > > > Link: https://sifive.cdn.prismic.io/sifive/1a82e600-1f93-4f41-b2d8-=
-86ed8b16acba_fu740-c000-manual-v1p6.pdf [0]
-> > > >
-> > > > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> > > > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> > > > Signed-off-by: Nylon Chen <nylon.chen@sifive.com>
-> > > > Signed-off-by: Vincent Chen <vincent.chen@sifive.com>
-> > > > ---
-> > > >  drivers/pwm/pwm-sifive.c | 9 ++++++---
-> > > >  1 file changed, 6 insertions(+), 3 deletions(-)
-> > > >
-> > > > diff --git a/drivers/pwm/pwm-sifive.c b/drivers/pwm/pwm-sifive.c
-> > > > index 393a4b97fc19..d5d5f36da297 100644
-> > > > --- a/drivers/pwm/pwm-sifive.c
-> > > > +++ b/drivers/pwm/pwm-sifive.c
-> > > > @@ -132,13 +132,13 @@ static int pwm_sifive_apply(struct pwm_chip *=
-chip, struct pwm_device *pwm,
-> > > >  {
-> > > >         struct pwm_sifive_ddata *ddata =3D pwm_sifive_chip_to_ddata=
-(chip);
-> > > >         struct pwm_state cur_state;
-> > > > -       unsigned int duty_cycle;
-> > > > +       unsigned int duty_cycle, period;
-> > > >         unsigned long long num;
-> > > >         bool enabled;
-> > > >         int ret =3D 0;
-> > > >         u32 frac;
-> > > >
-> > > > -       if (state->polarity !=3D PWM_POLARITY_INVERSED)
-> > > > +       if (state->polarity !=3D PWM_POLARITY_NORMAL && state->pola=
-rity !=3D PWM_POLARITY_INVERSED)
-> > > >                 return -EINVAL;
-> > > >
-> > > >         cur_state =3D pwm->state;
-> > > > @@ -154,10 +154,13 @@ static int pwm_sifive_apply(struct pwm_chip *=
-chip, struct pwm_device *pwm,
-> > > >          * calculating the register values first and then writing t=
-hem
-> > > >          * consecutively
-> > > >          */
-> > > > +       period =3D max(state->period, ddata->approx_period);
-> > >
-> > > Hi Nylon,
-> > >
-> > > I don't understand this patch. You introduce this new variable,
-> > > period, and set it here but you never seem to use it. If you planned
-> > > to use it instead of state->period below, why should it be the max of
-> > > the old period and what is requested? What happens if the consumer
-> > > wants to lower the period?
-> > Sorry this was an oversight on my part, there was a line correction tha=
-t didn't change to
-> > - frac =3D DIV64_U64_ROUND_CLOSEST(num, state->period);
-> > + frac =3D DIV64_U64_ROUND_CLOSEST(num, period);
->
-> I see, so then my second question was why period needs to be the
-> larger of the previous period and the requested period.
->
-> What happens if the requested period, state->period, is lower than the
-> old period, ddata->approx_period? Then the period will be changed to
-> state->period below, but the calculations will be made using period =3D
-> ddata->approx_period, right?
+Signed-off-by: Stanley Chang <stanley_chang@realtek.com>
+---
+ v2 to v3 change:
+1.  Fix the dtschema validation error.
 
-Your understanding is correct. According to the new algorithm proposed
-by Uwe, the goal is to:
-Pick the biggest period length possible that is not bigger than the
-requested period.
->
-> > >
-> > > Also above you now allow both PWM_POLARITY_NORMAL and
-> > > PWM_POLARITY_INVERSED but you treat both cases the same.
-> > I may have misunderstood what Uwe means here, I will confirm again here
-> > >
-> > > /Emil
-> > >
-> > > >         num =3D (u64)duty_cycle * (1U << PWM_SIFIVE_CMPWIDTH);
-> > > >         frac =3D DIV64_U64_ROUND_CLOSEST(num, state->period);
-> > > > -       /* The hardware cannot generate a 100% duty cycle */
-> > > >         frac =3D min(frac, (1U << PWM_SIFIVE_CMPWIDTH) - 1);
-> > > > +       /* The hardware cannot generate a 100% duty cycle */
-> > > > +       frac =3D (1U << PWM_SIFIVE_CMPWIDTH) - 1 - frac;
-> > > > +
-> > > >
-> > > >         mutex_lock(&ddata->lock);
-> > > >         if (state->period !=3D ddata->approx_period) {
-> > > > --
-> > > > 2.40.0
-> > > >
+ v1 to v2 change:
+1. Change the name of the property "snps,global-regs-starting-offset".
+2. Adjust the format of comment.
+3. Add initial value of the global_regs_starting_offset
+4. Remove the log of dev_info.
+---
+ drivers/usb/dwc3/core.c | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+
+diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
+index 476b63618511..8c1d1afbdc65 100644
+--- a/drivers/usb/dwc3/core.c
++++ b/drivers/usb/dwc3/core.c
+@@ -1785,6 +1785,21 @@ static int dwc3_probe(struct platform_device *pdev)
+ 	dwc_res = *res;
+ 	dwc_res.start += DWC3_GLOBALS_REGS_START;
+ 
++	/*
++	 * For some dwc3 controller, the dwc3 global register start address is
++	 * not at DWC3_GLOBALS_REGS_START (0xc100).
++	 */
++	if (dev->of_node) {
++		int global_regs_starting_offset = 0;
++
++		device_property_read_u32(dev, "snps,global-regs-starting-offset",
++			    &global_regs_starting_offset);
++		if (global_regs_starting_offset) {
++			dwc_res.start -= DWC3_GLOBALS_REGS_START;
++			dwc_res.start += global_regs_starting_offset;
++		}
++	}
++
+ 	regs = devm_ioremap_resource(dev, &dwc_res);
+ 	if (IS_ERR(regs))
+ 		return PTR_ERR(regs);
+-- 
+2.34.1
+
