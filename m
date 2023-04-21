@@ -2,71 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 458C16EB391
-	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 23:24:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F36C76EB3B4
+	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 23:37:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232989AbjDUVX7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Apr 2023 17:23:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57862 "EHLO
+        id S232058AbjDUVhD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Apr 2023 17:37:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34376 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233381AbjDUVX5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 17:23:57 -0400
-Received: from mail-oo1-f51.google.com (mail-oo1-f51.google.com [209.85.161.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2E6E26AF;
-        Fri, 21 Apr 2023 14:23:55 -0700 (PDT)
-Received: by mail-oo1-f51.google.com with SMTP id 006d021491bc7-5424b046c6bso764691eaf.1;
-        Fri, 21 Apr 2023 14:23:55 -0700 (PDT)
+        with ESMTP id S229821AbjDUVhC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 17:37:02 -0400
+Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6CDC113;
+        Fri, 21 Apr 2023 14:37:01 -0700 (PDT)
+Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-18665c1776dso1897428fac.2;
+        Fri, 21 Apr 2023 14:37:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682112235; x=1684704235;
+        d=1e100.net; s=20221208; t=1682113021; x=1684705021;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=IbaXCpUXe4iUKhx65n7G15ksj7GhXIVMeVUGx6UoeCY=;
-        b=In6hZNOab0GghfXCBOxQF56pTX2Jmm5XdpCn8LYHDbhjeBoSP9PQvqQvip9cG9wfHQ
-         yeU1g2oc+C92Uwq3Qw7VTKcsgE8MuwH2avldG4NZ/3HvA2v2p+AiplGPvSVqGDq7RfKR
-         sJfwmuF3o7qkO8OV+3waHgAXlRgEIfpsFKyi6lhwo4irZ4Kqx3v1A/Pl0JH4BPqI8r6L
-         PxgcajL66m2L7DG7yNy1u9Bsk4F60hpJmglSbSdsx4Jy0Fcw8wFkx32keSrZBnpZXVhh
-         jnwqY2qsx0P9bQABbe5PN399/k0ONk3buHFV6bIfy8D3CRoFhno3bhXElGGeKCyUpgbZ
-         1hAw==
-X-Gm-Message-State: AAQBX9f4uAl0FHckPRXNs0PwhjKt03FDQOqaYy8u1uzw8ibk4t30DsIs
-        bihuLpFUUIshvzoGBpih1A==
-X-Google-Smtp-Source: AKy350bHXXS6OurY5nmMtPS/MaZh5XGH97e5KRD0bzQucEfG8t+AZTkCzTlqn5WIELiRv7gofzvDNA==
-X-Received: by 2002:a4a:cb1a:0:b0:547:6879:e9aa with SMTP id r26-20020a4acb1a000000b005476879e9aamr549944ooq.5.1682112234455;
-        Fri, 21 Apr 2023 14:23:54 -0700 (PDT)
+        bh=wGdrdfDi3Lq6WvVDhiuJ7kQri9Uadj4krtd1AJ3qJwk=;
+        b=OGGYrq6deeaKGnApJ3OrX+fBjsTAzgi+z3SVVPk1r5T5awKUohUNL13Ygb55KFEGbX
+         CvvnFvZceALUgnEgJsQUZJdxMN2j4jTxTCYoMP9uB098zhcpUxNT0n2jznDp6N8cW6/N
+         f5kKrgsJ6X6S8rJ0kuFyrqvPiiVDq+CZgMKteKjbWMdLP83DVS/hU7pFQtq5ywf36O6I
+         FH5i2I+2EuBKVmVtDYAwO/opS7lYFuuVt0GcaJVvn9VxKx9w68i6obsZ63n0H7us2E99
+         +YS2cKBd74AZ6UhGKdBaD3HeS5ZFNNgpYpU25fzOsb1l9SucZgxbJsBlbRds+zKKuUxZ
+         vTfA==
+X-Gm-Message-State: AAQBX9dCaym5mY9xRtPsxUJ5E39lAYdYL4gVlL5mdfvDFdtXsOaSYUVG
+        1onuaJ/4RKa+Fx2B4ef6IXeK3jL98A==
+X-Google-Smtp-Source: AKy350b66fHcYy0v/TQundiSahCAnJ1NbesgLLJNdtRNbXFMyCG3ZlpmEHSwtYMpYVhku12BwUI3Hw==
+X-Received: by 2002:a05:6871:84:b0:17f:e13:9c96 with SMTP id u4-20020a056871008400b0017f0e139c96mr5263310oaa.51.1682113020868;
+        Fri, 21 Apr 2023 14:37:00 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q123-20020a4a4b81000000b00546daaf33cfsm2156853ooa.14.2023.04.21.14.23.53
+        by smtp.gmail.com with ESMTPSA id 26-20020a056870135a00b001765b2f6c53sm2180223oac.9.2023.04.21.14.37.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Apr 2023 14:23:54 -0700 (PDT)
-Received: (nullmailer pid 1785271 invoked by uid 1000);
-        Fri, 21 Apr 2023 21:23:53 -0000
-Date:   Fri, 21 Apr 2023 16:23:53 -0500
+        Fri, 21 Apr 2023 14:37:00 -0700 (PDT)
+Received: (nullmailer pid 1799330 invoked by uid 1000);
+        Fri, 21 Apr 2023 21:36:59 -0000
+Date:   Fri, 21 Apr 2023 16:36:59 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Minda Chen <minda.chen@starfivetech.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mason Huo <mason.huo@starfivetech.com>,
+To:     Naresh Solanki <naresh.solanki@9elements.com>
+Cc:     zev@bewilderbeest.net, Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Roger Quadros <rogerq@kernel.org>,
-        Pawel Laszczak <pawell@cadence.com>,
-        Peter Chen <peter.chen@kernel.org>, linux-usb@vger.kernel.org,
-        linux-riscv@lists.infradead.org, Albert Ou <aou@eecs.berkeley.edu>,
-        Conor Dooley <conor@kernel.org>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        devicetree@vger.kernel.org,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/7] dt-bindings: phy: Add StarFive JH7110 PCIe PHY
-Message-ID: <168211223285.1785232.7377797349982243568.robh@kernel.org>
-References: <20230420110052.3182-1-minda.chen@starfivetech.com>
- <20230420110052.3182-3-minda.chen@starfivetech.com>
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: regulator: Add support for multiple
+ supplies
+Message-ID: <20230421213659.GA1786000-robh@kernel.org>
+References: <20230420192402.3695265-1-Naresh.Solanki@9elements.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230420110052.3182-3-minda.chen@starfivetech.com>
+In-Reply-To: <20230420192402.3695265-1-Naresh.Solanki@9elements.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -78,18 +65,73 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Thu, 20 Apr 2023 19:00:47 +0800, Minda Chen wrote:
-> Add StarFive JH7110 SoC PCIe 2.0 PHY dt-binding.
-> PCIe PHY0 (phy@10210000) can be used as USB 3.0 PHY.
+On Thu, Apr 20, 2023 at 09:24:01PM +0200, Naresh Solanki wrote:
+> Add optional DT property 'regulator-supplies' to handle connectors with
+> multiple supplies.
+> If this property is present, it will determine all regulator supplies.
+> Otherwise, the 'vout' supply will be used as a fallback.
 > 
-> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
-> Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
+> This change improves support for connector like PCIe connectors on
+> mainboards that can be powered by 12V and 3.3V supplies.
+> 
+> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+> ...
+> Change in V2:
+> - Added example
+> - Update property type & description.
+> - Improve commit message
 > ---
->  .../phy/starfive,jh7110-pcie-phy.yaml         | 58 +++++++++++++++++++
->  1 file changed, 58 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/starfive,jh7110-pcie-phy.yaml
+>  .../bindings/regulator/regulator-output.yaml  | 21 ++++++++++++++++---
+>  1 file changed, 18 insertions(+), 3 deletions(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/regulator/regulator-output.yaml b/Documentation/devicetree/bindings/regulator/regulator-output.yaml
+> index 078b37a1a71a..a9dce26991ff 100644
+> --- a/Documentation/devicetree/bindings/regulator/regulator-output.yaml
+> +++ b/Documentation/devicetree/bindings/regulator/regulator-output.yaml
+> @@ -21,13 +21,22 @@ properties:
+>    compatible:
+>      const: regulator-output
+>  
+> -  vout-supply:
+> +  regulator-supplies:
+> +    $ref: /schemas/types.yaml#/definitions/string-array
+>      description:
+> -      Phandle of the regulator supplying the output.
+> +      Optional property that specifies supply names provided by
+> +      the regulator. Defaults to "vout" if not specified. The
+> +      array contains a list of supply names.
+> +      Each supply name corresponds to a phandle in the
+> +      patternProperties.
+> +
+> +patternProperties:
+> +  ".*-supply":
+> +    description:
+> +      Specifies the phandle for various supplies
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+While you say use 'vout-supply' for a single supply, nothing enforces 
+that anymore.
 
+>  
+>  required:
+>    - compatible
+> -  - vout-supply
+>  
+>  additionalProperties: false
+>  
+> @@ -37,3 +46,9 @@ examples:
+>            compatible = "regulator-output";
+>            vout-supply = <&output_reg>;
+>        };
+> +      out2 {
+> +          compatible = "regulator-output";
+> +          regulator-supplies = "sw0", "sw1";
+> +          sw0-supply = <&out2_sw0>;
+> +          sw1-supply = <&out2_sw1>;
+
+Names in the consumer are relative to the consumer. You appear to be 
+naming these by the supplier. Just add vout[0-9]-supply and iterate over 
+that name in the driver. Then you don't need "regulator-supplies". 
+Really, you never did. You could just find all properties ending in 
+"-supply".
+
+Rob
