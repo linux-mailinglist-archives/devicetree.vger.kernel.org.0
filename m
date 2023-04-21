@@ -2,86 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0971D6EA24B
-	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 05:20:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 163D16EA255
+	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 05:28:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230250AbjDUDUJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Apr 2023 23:20:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37686 "EHLO
+        id S230258AbjDUD2H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Apr 2023 23:28:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230134AbjDUDUH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 23:20:07 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAF38119;
-        Thu, 20 Apr 2023 20:20:05 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3494064D81;
-        Fri, 21 Apr 2023 03:20:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D107C433EF;
-        Fri, 21 Apr 2023 03:20:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1682047204;
-        bh=XU+D0MdM+YuBJFtISsPPujMJGfbkv33ya3jIvOXJCvw=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=f8qE5M0Ln+2SklnsUE/El9UWMoOegIKTAjfQqITYvnkL6N6QChoIcnwDfpxQG1spX
-         8xDwq2mCo2EvAdZ0V5l6BOmIbwSoAVLoxbzAgMnrWBiCb3kfdB62E8/KlxSJaNfKCf
-         j/WsmEkX18Or9KOLe3Oxl8KrWBaAOBda7MvWWOqqltYStUL17Trf80osEvbWk9c80t
-         mDV5v401fqjZs7rC5k+orUXD3pPiV2Mj/h+YQ8pEWuhpPCGM1lmFaNUw+cT9gOm8aA
-         SoCIMLIicF5JEclqOosRoKz4vHb6wT15qZ74IwJsbFRwIDBYFwgdOVtedw0ajv2tih
-         USITon0RQCS+Q==
-Date:   Thu, 20 Apr 2023 20:20:03 -0700
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Shmuel Hazan <shmuel.h@siklu.com>
-Cc:     Russell King <linux@armlinux.org.uk>,
-        Marcin Wojtas <mw@semihalf.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        horatiu.vultur@microchip.com, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/3] net: mvpp2: tai: add refcount for ptp worker
-Message-ID: <20230420202003.1e9af9e0@kernel.org>
-In-Reply-To: <20230419151457.22411-2-shmuel.h@siklu.com>
-References: <20230419151457.22411-1-shmuel.h@siklu.com>
-        <20230419151457.22411-2-shmuel.h@siklu.com>
+        with ESMTP id S230260AbjDUD2C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Apr 2023 23:28:02 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF8C91FCE;
+        Thu, 20 Apr 2023 20:28:00 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 2B5D424E197;
+        Fri, 21 Apr 2023 11:27:59 +0800 (CST)
+Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 21 Apr
+ 2023 11:27:55 +0800
+Received: from [192.168.125.106] (113.72.144.253) by EXMBX162.cuchost.com
+ (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 21 Apr
+ 2023 11:27:54 +0800
+Message-ID: <8ce740ac-54e9-bf31-1e03-2f3e0e9ef63c@starfivetech.com>
+Date:   Fri, 21 Apr 2023 11:27:52 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [RESEND v2 4/6] soc: starfive: Extract JH7110 pmu private
+ operations
+Content-Language: en-US
+To:     Conor Dooley <conor@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Walker Chen <walker.chen@starfivetech.com>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>
+References: <20230419035646.43702-1-changhuang.liang@starfivetech.com>
+ <20230419035646.43702-5-changhuang.liang@starfivetech.com>
+ <20230419-atypical-unbounded-99cbbff3091a@spud>
+From:   Changhuang Liang <changhuang.liang@starfivetech.com>
+In-Reply-To: <20230419-atypical-unbounded-99cbbff3091a@spud>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [113.72.144.253]
+X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX162.cuchost.com
+ (172.16.6.72)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 19 Apr 2023 18:14:55 +0300 Shmuel Hazan wrote:
-> +static void mvpp22_tai_stop_unlocked(struct mvpp2_tai *tai)
-> +{
-> +	tai->poll_worker_refcount--;
-> +	if (tai->poll_worker_refcount)
-> +		return;
-> +	ptp_cancel_worker_sync(tai->ptp_clock);
 
-How can you cancel it _sync() when the work takes the same
-lock you're already holding? 
 
-https://elixir.bootlin.com/linux/v6.3-rc7/source/drivers/net/ethernet/marvell/mvpp2/mvpp2_tai.c#L246
+On 2023/4/20 1:47, Conor Dooley wrote:
+> On Tue, Apr 18, 2023 at 08:56:44PM -0700, Changhuang Liang wrote:
+>> Move JH7110 private operation into private data of compatible.
+>> Convenient to expand different compatible.
+> 
+> I prefer how the code looks in v2, thanks.
+> However, just as in the prior patch, "Convenient to expand different
+> compatible" isn't really a justification - specifically, supporting the
+> power domain controller serving the dphy is your motivation here. The
+> important difference being that it uses a regmap from a syscon and has
+> no interrupts nor the encourage features.
+> 
 
->  void mvpp22_tai_stop(struct mvpp2_tai *tai)
->  {
-> -	ptp_cancel_worker_sync(tai->ptp_clock);
-> +	unsigned long flags;
-> +
-> +	spin_lock_irqsave(&tai->lock, flags);
-> +	mvpp22_tai_stop_unlocked(tai);
+So should I expand the commit message which called "in order to add the 
+aon power domain" although the patch is applied behind current patch.
 
--- 
-pw-bot: cr
+> Although, given the only real similarity the code driving each of the
+> PMUs is the variable names, I guess you could argue that this driver
+> should be left alone and the "aon dphy" should be a different driver
+> altogether.
+> 
+
+I have tried independent this aon pmu, but it code is very similar to the
+original pmu, so I think they can put together, reduce linux kernel bloat.
+
+> I don't have a strong opinion though & if it's fine with Walker and
+> noone else objects, it's fine with me...
