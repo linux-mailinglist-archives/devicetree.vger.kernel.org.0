@@ -2,238 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 725496EB30D
-	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 22:53:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 786216EB323
+	for <lists+devicetree@lfdr.de>; Fri, 21 Apr 2023 22:55:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229821AbjDUUxM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Apr 2023 16:53:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42966 "EHLO
+        id S231194AbjDUUza (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Apr 2023 16:55:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229543AbjDUUxL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 16:53:11 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C81961FD5;
-        Fri, 21 Apr 2023 13:53:08 -0700 (PDT)
-Received: from notapiano (unknown [IPv6:2600:4041:5b1a:cd00:524d:e95d:1a9c:492a])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: nfraprado)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 13317660327C;
-        Fri, 21 Apr 2023 21:53:05 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1682110387;
-        bh=fnT9RDQavvIKBkmdeIY564q2m/UajYumE4RK3iuUElc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PnIU0vlo5rtx9wiuXhFSN4epaUL3RfZISYxZuHDKXz0WogABPf3NvgRNS8FTcOf4C
-         y2jxn/0Ux3d8ERo0JuLzuvh9hbphi2cc1ItOkrfWRQUDqyQx15qKKrn2clT0iIcht7
-         BYxrPzWZnNtgqrBeTNgSdT4EuGo0LHcowv/VgWglY4iBppyjWYz8gcnykY0kHbJXJS
-         MsqJTDEkvDEQn+Qyh5x8XYNv6gcA4aoqN6TsbWtTY++h2P1ce4cwbqGgG5kFEXm4gM
-         D189oWQURbDxbOljpGo2Zm1whXenUSayDykvIHESNbY4T6W3TZ/MdIbHKlMemOeBo1
-         yRdnUjILMGwsw==
-Date:   Fri, 21 Apr 2023 16:53:01 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     Chen-Yu Tsai <wenst@chromium.org>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, matthias.bgg@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        with ESMTP id S231282AbjDUUz3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 16:55:29 -0400
+Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com [209.85.161.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FFD71FD5;
+        Fri, 21 Apr 2023 13:54:53 -0700 (PDT)
+Received: by mail-oo1-f44.google.com with SMTP id 006d021491bc7-546db536a6bso1271871eaf.1;
+        Fri, 21 Apr 2023 13:54:53 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682110493; x=1684702493;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=W84o70SFFAn33dQVLvp99vQMoIhhXVO36lCwloIL3Jk=;
+        b=dwmimoBj5692sLUqgCCW4PgQMVTOROa5+MboUjCApV9CxCHTMBLzDiBYgh6UkkcXXR
+         hYFEw6bEYoFd9O/NB08211YkwpotVln0Wdoi2WHjjDb4aSi6Br/yUPqJLfOgixfxC2tU
+         pVkDYAQpl2M5TT+V4ItbwpYt1nEOVaYGRwNyutH6aSRUoPUXSbEUjPK/X1HpyavdIxQw
+         u9lC8UJWKLOFOzW3BLt09NzFdiO8WIwsHYjSAXMR+ncnzeOWlabgbpeO2LDN4YcMiQPl
+         Qu0Z7R3J0xFWP/sr07zWngI5s1w91OsMDuJJ9NpDkHhvTaiDAEn/V+TMYgEcJqSmy9sd
+         Tswg==
+X-Gm-Message-State: AAQBX9cqzW0T76MaYsKj/EJKIuvxTvFBgEF5VhlA6GvJrhpqBoVUK4fn
+        p3JXyHGf043iTLvlnL5icQ==
+X-Google-Smtp-Source: AKy350bAhxx/BDKWjYLTicqHbDU8c5LjsZeqGtx7qDZou8uAl5wb3yZZpJCfX44nckE5zh0R6I27zg==
+X-Received: by 2002:a05:6808:209f:b0:386:9720:77da with SMTP id s31-20020a056808209f00b00386972077damr3883015oiw.26.1682110492770;
+        Fri, 21 Apr 2023 13:54:52 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id p82-20020acad855000000b00383ef567cfdsm1984996oig.21.2023.04.21.13.54.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 Apr 2023 13:54:52 -0700 (PDT)
+Received: (nullmailer pid 1750051 invoked by uid 1000);
+        Fri, 21 Apr 2023 20:54:51 -0000
+Date:   Fri, 21 Apr 2023 15:54:51 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Jim Quinlan <jim2101024@gmail.com>
+Cc:     linux-rpi-kernel@lists.infradead.org,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH 1/5] arm64: dts: mediatek: cherry: Add platform thermal
- configuration
-Message-ID: <5ede9421-54d6-4dda-91af-2acbf46c2d3e@notapiano>
-References: <20230420094433.42794-1-angelogioacchino.delregno@collabora.com>
- <20230420094433.42794-2-angelogioacchino.delregno@collabora.com>
- <CAGXv+5GuEQMxYTKrnia1ipYHLt_B2h6By7EejE7MjCypfavnFg@mail.gmail.com>
+        Phil Elwell <phil@raspberrypi.com>, james.quinlan@broadcom.com,
+        Cyril Brulebois <kibi@debian.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        bcm-kernel-feedback-list@broadcom.com
+Subject: Re: [PATCH v3 1/3] dt-bindings: PCI: brcmstb:
+ brcm,{enable-l1ss,completion-timeout-us} props
+Message-ID: <168211049118.1749998.10567032742795047284.robh@kernel.org>
+References: <20230419165721.29533-1-jim2101024@gmail.com>
+ <20230419165721.29533-2-jim2101024@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAGXv+5GuEQMxYTKrnia1ipYHLt_B2h6By7EejE7MjCypfavnFg@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20230419165721.29533-2-jim2101024@gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 21, 2023 at 03:37:52PM +0800, Chen-Yu Tsai wrote:
-> On Thu, Apr 20, 2023 at 5:45 PM AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com> wrote:
-> >
-> > This platform has three auxiliary NTC thermistors, connected to the
-> > SoC's ADC pins. Enable the auxadc in order to be able to read the
-> > ADC values, add a generic-adc-thermal LUT for each and finally assign
-> > them to the SoC's thermal zones.
-> >
-> > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> > ---
-> >  .../boot/dts/mediatek/mt8195-cherry.dtsi      | 105 ++++++++++++++++++
-> >  1 file changed, 105 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-> > index 8ac80a136c37..0820e9ba3829 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-> > @@ -114,6 +114,77 @@ ppvar_sys: regulator-ppvar-sys {
-> >                 regulator-boot-on;
-> >         };
-> >
-> > +       /* Murata NCP03WF104F05RL */
-> > +       tboard_thermistor1: thermal-sensor-t1 {
-> > +               compatible = "generic-adc-thermal";
-> > +               #thermal-sensor-cells = <0>;
-> > +               io-channels = <&auxadc 0>;
-> > +               io-channel-names = "sensor-channel";
-> > +               temperature-lookup-table = <    (-10000) 1553
-> > +                                               (-5000) 1485
-> > +                                               0 1406
-> > +                                               5000 1317
-> > +                                               10000 1219
-> > +                                               15000 1115
-> > +                                               20000 1007
-> > +                                               25000 900
-> > +                                               30000 796
-> > +                                               35000 697
-> > +                                               40000 605
-> > +                                               45000 523
-> > +                                               50000 449
-> > +                                               55000 384
-> > +                                               60000 327
-> > +                                               65000 279
-> > +                                               70000 237
-> > +                                               75000 202
-> > +                                               80000 172
-> > +                                               85000 147
-> > +                                               90000 125
-> > +                                               95000 107
-> > +                                               100000 92
-> > +                                               105000 79
-> > +                                               110000 68
-> > +                                               115000 59
-> > +                                               120000 51
-> > +                                               125000 44>;
-> > +       };
-> > +
-> > +       tboard_thermistor2: thermal-sensor-t2 {
-> > +               compatible = "generic-adc-thermal";
-> > +               #thermal-sensor-cells = <0>;
-> > +               io-channels = <&auxadc 1>;
-> > +               io-channel-names = "sensor-channel";
-> > +               temperature-lookup-table = <    (-10000) 1553
-> > +                                               (-5000) 1485
-> > +                                               0 1406
-> > +                                               5000 1317
-> > +                                               10000 1219
-> > +                                               15000 1115
-> > +                                               20000 1007
-> > +                                               25000 900
-> > +                                               30000 796
-> > +                                               35000 697
-> > +                                               40000 605
-> > +                                               45000 523
-> > +                                               50000 449
-> > +                                               55000 384
-> > +                                               60000 327
-> > +                                               65000 279
-> > +                                               70000 237
-> > +                                               75000 202
-> > +                                               80000 172
-> > +                                               85000 147
-> > +                                               90000 125
-> > +                                               95000 107
-> > +                                               100000 92
-> > +                                               105000 79
-> > +                                               110000 68
-> > +                                               115000 59
-> > +                                               120000 51
-> > +                                               125000 44>;
-> > +       };
-> > +
-> >         usb_vbus: regulator-5v0-usb-vbus {
-> >                 compatible = "regulator-fixed";
-> >                 regulator-name = "usb-vbus";
-> > @@ -260,6 +331,10 @@ &gpu {
-> >         mali-supply = <&mt6315_7_vbuck1>;
-> >  };
-> >
-> > +&auxadc {
-> > +       status = "okay";
-> > +};
-> > +
-> >  &i2c0 {
-> >         status = "okay";
-> >
-> > @@ -1098,6 +1173,36 @@ mt6315_7_vbuck1: vbuck1 {
-> >         };
-> >  };
-> >
-> > +&thermal_zones {
-> > +       soc_area_ntc {
 
-Not sure if that's what's causing the issue, but the thermal zone name should
-end with -thermal as per the binding. Also note that it needs to be under 20
-characters otherwise it will fail to be registered with -22 like below.
-(Also, node names shouldn't contain underscore)
+On Wed, 19 Apr 2023 12:57:18 -0400, Jim Quinlan wrote:
+> This commit introduces two new properties:
+> 
+> brcm,enable-l1ss (bool):
+> 
+>   The Broadcom STB/CM PCIe HW -- a core that is also used by RPi SOCs --
+>   requires the driver probe() to deliberately place the HW one of three
+>   CLKREQ# modes:
+> 
+>   (a) CLKREQ# driven by the RC unconditionally
+>   (b) CLKREQ# driven by the EP for ASPM L0s, L1
+>   (c) Bidirectional CLKREQ#, as used for L1 Substates (L1SS).
+> 
+>   The HW+driver can tell the difference between downstream devices that
+>   need (a) and (b), but does not know when to configure (c).  All devices
+>   should work fine when the driver chooses (a) or (b), but (c) may be
+>   desired to realize the extra power savings that L1SS offers.  So we
+>   introduce the boolean "brcm,enable-l1ss" property to inform the driver
+>   that (c) is desired.  Setting this property only makes sense when the
+>   downstream device is L1SS-capable and the OS is configured to activate
+>   this mode (e.g. policy==superpowersave).
+> 
+>   This property is already present in the Raspian version of Linux, but the
+>   upstream driver implementaion that follows adds more details and discerns
+>   between (a) and (b).
+> 
+> brcm,completion-timeout-us (u32):
+> 
+>   Our HW will cause a CPU abort on any PCI transaction completion abort
+>   error.  It makes sense then to increase the timeout value for this type
+>   of error in hopes that the response is merely delayed.  Further,
+>   L1SS-capable devices may have a long L1SS exit time and may require a
+>   custom timeout value: we've been asked by our customers to make this
+>   configurable for just this reason.
+> 
+> Signed-off-by: Jim Quinlan <jim2101024@gmail.com>
+> ---
+>  .../devicetree/bindings/pci/brcm,stb-pcie.yaml   | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+> 
 
-Thanks,
-Nícolas
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-> > +               polling-delay = <1000>;
-> > +               polling-delay-passive = <250>;
-> > +               thermal-sensors = <&tboard_thermistor1>;
-> > +
-> > +               trips {
-> > +                       trip-crit {
-> > +                               temperature = <95000>;
-> > +                               hysteresis = <2000>;
-> > +                               type = "critical";
-> > +                       };
-> > +               };
-> > +       };
-> > +
-> > +       pmic_area_ntc {
-> > +               polling-delay = <1000>;
-> > +               polling-delay-passive = <0>;
-> > +               thermal-sensors = <&tboard_thermistor2>;
-> > +
-> > +               trips {
-> > +                       trip-crit {
-> > +                               temperature = <95000>;
-> > +                               hysteresis = <2000>;
-> > +                               type = "critical";
-> > +                       };
-> > +               };
-> > +       };
-> 
-> I'm still getting:
-> 
-> thermal_sys: Failed to find 'trips' node
-> thermal_sys: Failed to find trip points for thermal-sensor-t1 id=0
-> generic-adc-thermal thermal-sensor-t1: Thermal zone sensor register failed: -22
-> generic-adc-thermal: probe of thermal-sensor-t1 failed with error -22
-> thermal_sys: Failed to find 'trips' node
-> thermal_sys: Failed to find trip points for thermal-sensor-t2 id=0
-> generic-adc-thermal thermal-sensor-t2: Thermal zone sensor register failed: -22
-> generic-adc-thermal: probe of thermal-sensor-t2 failed with error -22
-> thermal_sys: Failed to find 'trips' node
-> thermal_sys: Failed to find trip points for thermal-sensor-t3 id=0
-> generic-adc-thermal thermal-sensor-t3: Thermal zone sensor register failed: -22
-> generic-adc-thermal: probe of thermal-sensor-t3 failed with error -22
-> 
-> 
-> 
-> > +};
-> > +
-> >  &u3phy0 {
-> >         status = "okay";
-> >  };
-> > --
-> > 2.40.0
-> >
-> >
