@@ -2,79 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD76B6EBA16
-	for <lists+devicetree@lfdr.de>; Sat, 22 Apr 2023 17:57:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04CBD6EBA2F
+	for <lists+devicetree@lfdr.de>; Sat, 22 Apr 2023 18:09:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229693AbjDVP5O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Apr 2023 11:57:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42114 "EHLO
+        id S229717AbjDVQJL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Apr 2023 12:09:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229669AbjDVP5M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Apr 2023 11:57:12 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74C40119;
-        Sat, 22 Apr 2023 08:57:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net; s=s31663417;
-        t=1682178995; i=j.neuschaefer@gmx.net;
-        bh=UFyq5axvJcNsz0Fjz36jtW09WWOe6XfQ8XnSNYq26OM=;
-        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
-        b=jhCwElgzyVzcf6zhLYMPdR8LNrsTH1p2aOeja5J1VeX8w1QqVr4hwlneJ84mKHWAx
-         HdRY4P2N//q/bqGCME7wdPh/tlIWk24Tz71xyGbqA7AqbO/1Z6hGEhv50xDz/kDFwC
-         1VFhxLOPAWMfDmtwtD4/YzEM9T18ZItzx+AN2HnOBvKScGMFd5FCvc8QPJisK0G1tK
-         t/MHrY49vE5+xiCjY2oAhWGMV7yUovqiJ+rc3ht0LbqG6L6wXPV98ttR5Y7hiNs7MS
-         15fmYYRNxbPpr/Kn+qYIdWaGIo5UxZuVCwI57WOdy66pgSa08q5xhPFScm9yNEFE5m
-         V5uwwtU/RXgUg==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from probook ([95.223.44.193]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1Mulm5-1q8sRl3ifz-00rsCB; Sat, 22
- Apr 2023 17:56:35 +0200
-Date:   Sat, 22 Apr 2023 17:56:32 +0200
-From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Cc:     j.neuschaefer@gmx.net, avifishman70@gmail.com,
-        benjaminfair@google.com, daniel.lezcano@linaro.org,
-        devicetree@vger.kernel.org, krzk+dt@kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, linux@roeck-us.net,
-        mturquette@baylibre.com, openbmc@lists.ozlabs.org,
-        p.zabel@pengutronix.de, robh+dt@kernel.org, sboyd@kernel.org,
-        tali.perry1@gmail.com, tglx@linutronix.de, tmaimon77@gmail.com,
-        venture@google.com, wim@linux-watchdog.org, yuenn@google.com
-Subject: Re: [PATCH v6 2/2] clk: wpcm450: Add Nuvoton WPCM450 clock/reset
- controller driver
-Message-ID: <ZEQDsLYaRywV9IbF@probook>
-References: <20230415111355.696738-1-j.neuschaefer@gmx.net>
- <20230415111355.696738-3-j.neuschaefer@gmx.net>
- <c04038f2-b7aa-7c37-df93-6950831579f6@wanadoo.fr>
- <ZEBiuRH3DjVUO/Kp@probook>
- <1f1b088c-85d2-13ed-bbb1-043409dbe894@wanadoo.fr>
+        with ESMTP id S229556AbjDVQJK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Apr 2023 12:09:10 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D944C1BE3;
+        Sat, 22 Apr 2023 09:09:08 -0700 (PDT)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33MFu61S009541;
+        Sat, 22 Apr 2023 16:08:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : from : to : cc : references : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=82bzTA9forC2gL1CVr/H9J1y4F0eFZKRnesgn480eEw=;
+ b=pR/EkArY26U6sD7qGo8R6BqzOa5gqayXA87M8BcFj9IGFGj6snHoeBAVwbRBJi4M/qNE
+ mo5WVBkxpejcf3xMDd3p0AWoQIquM3E5eTB1D01XhBDNoLcI+1I9XQNxdipzaYlNz97Z
+ klU1NOq9x/1SzsLfdrgFjKF5jX9rE1wHsfyYYnD7EE8uRiLENavcSIgzEiTLwV3JQcvJ
+ UrZqW5QyBd7yZnjQfrkPqfIZWTg16+Rm/0e7uC1oKHxF6bPsfa4+/uvUvH4/aBybMq+s
+ 4q1bo/LH7MOamquIXm9WMnrHH2zB9CPGf3wW04WeFgpX+Y+NRxxrtX4aqht+NJA74sRY 5g== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q48bq0mdt-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Sat, 22 Apr 2023 16:08:55 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33MG8tLC021226
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Sat, 22 Apr 2023 16:08:55 GMT
+Received: from [10.216.16.28] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Sat, 22 Apr
+ 2023 09:08:48 -0700
+Message-ID: <28a58bf9-5ad8-4084-11d6-cd1b0d3a2998@quicinc.com>
+Date:   Sat, 22 Apr 2023 21:38:44 +0530
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="wBtEmj/GHkQArSVj"
-Content-Disposition: inline
-In-Reply-To: <1f1b088c-85d2-13ed-bbb1-043409dbe894@wanadoo.fr>
-X-Provags-ID: V03:K1:ylmmr/4kgHp15Xb1RvW1UVIaEunANbl10H6e0zPe9HHJJwa69i9
- OK8KpchVwUVb1Yp17kuenenlhkiRgUgMHqVt3vxHcPJ/KeWzRjr45JXCSTGMzrR9Y30jgNC
- UrcL3OberlEPUu90dCuqiknKtifX12y3FdlcXoCHV8lRkyfMSodJI1KRZsfWyLdb2/e/zKE
- zwA4auX2wBUod8gCT1NCg==
-UI-OutboundReport: notjunk:1;M01:P0:97RAzFhE8GI=;jQrFiJ4qzZ+dN4UftPaapw/hkj4
- 0jc9UjTbASAf/W4Vb0PHOu0bnnztUdn59FBN8ntko7pFeo6b7yKh5tewLZcZ8dYIhjAJAiefD
- ZhjyjSGx5CJ0Ugczh2ph7jcP4bVTO9oWr5Z+Uvc3orUp9kJZNiRVT9k9mjaN6IV2Ptqb4h7gE
- 7aO6h+K/rPLIShMZDKV8x/v0uLm8HqrovZcB+3E1CwSqeO28RAPzaxeQ3HGNA2hO7McHrSRuF
- 2l1Fisdfw/TpPmWHfrcV555Sty1AMkRdWeG9RxfPRlUr1/mi9XXtxaNR123bfTf3CvWpNlzwT
- iLBwTUJ3eaJTyWu49KJE0YTsSctARqeV04eidR27Z7UXs4Uud20QbZ4XgNY+SU7Zlki5hk809
- Yaol7YPIq7lmbD89k+jrAAW5RzFEo7zU/+UlHAPpg1jLelQB/WKUZ8uFOUmVQbe4VB7U83Wlj
- nlhQXvLgNvcH3yAuDQL5fze6DugzFKN7KRZsZ4XjNHGjrGjdpdBHsr3psxK7A6YKtgUjEADkh
- M8vG5D7GlC5qGRe1mUVVZRqi6im0J2b/N5nEtHk1WsWMePmKRDPl3pGsEfrrwOZnXlk4gRgYV
- dZ5f5Wca2qCDB8Eph41P0hkfU9/ON23sE9SkOk8wj2NL5RbxmTqOOLZ0iiqANS0nFyRRuHYH9
- hjqyGolutav+wUMToJeG8IrPbOSRbdaZpwK7JvFBdQPTC2jtjl3MYSkzdNoz3xETIOcSIF2it
- n3xeADDiUV6dSgfirmYLp+LDCJUz+q9LA3PF7+beZtQYP0v9OFRCbXOfDaOAwxbQPrmWRsxpW
- ZgbEnPgGkfkOMQoT+wborxIigG24uMfl9F8jdqKYRoHgs4bAj4G0Bc9DRIsrWOYESdNN2Xpag
- armu3PIYJYWtei8NSWYZRb8fdmOfI81PkqC2Za+ttLUfuo4wBdq56NG47E+5uwTAhZypSrZZz
- B51RHYqL/WfamVhyFQZ2SYCpXH4=
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v6 6/8] arm64: dts: qcom: sc8280xp: Add multiport
+ controller node for SC8280
+Content-Language: en-US
+From:   Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+To:     Andrew Halaney <ahalaney@redhat.com>,
+        Johan Hovold <johan+linaro@kernel.org>
+CC:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Andy Gross" <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <quic_pkondeti@quicinc.com>, <quic_ppratap@quicinc.com>,
+        <quic_wcheng@quicinc.com>, <quic_jackp@quicinc.com>,
+        <quic_harshq@quicinc.com>, <quic_shazhuss@quicinc.com>
+References: <20230405125759.4201-1-quic_kriskura@quicinc.com>
+ <20230405125759.4201-7-quic_kriskura@quicinc.com>
+ <20230414154527.vsjtgtfsd5kc7vww@halaney-x13s>
+ <333ce700-8ca2-e230-3b5a-a95e4c021e45@quicinc.com>
+In-Reply-To: <333ce700-8ca2-e230-3b5a-a95e4c021e45@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 9D_524ipiLzJk5v9Fic9Igv8FOO5EkHr
+X-Proofpoint-ORIG-GUID: 9D_524ipiLzJk5v9Fic9Igv8FOO5EkHr
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-21_08,2023-04-21_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 bulkscore=0
+ malwarescore=0 mlxlogscore=999 priorityscore=1501 clxscore=1011
+ impostorscore=0 adultscore=0 phishscore=0 suspectscore=0
+ lowpriorityscore=0 spamscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2303200000 definitions=main-2304220147
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,72 +95,136 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---wBtEmj/GHkQArSVj
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Apr 20, 2023 at 07:32:07AM +0200, Christophe JAILLET wrote:
-> Le 19/04/2023 =C3=A0 23:52, Jonathan Neusch=C3=A4fer a =C3=A9crit=C2=A0:
-> > On Sat, Apr 15, 2023 at 02:16:09PM +0200, Christophe JAILLET wrote:
-> > > Le 15/04/2023 =C3=A0 13:13, Jonathan Neusch=C3=A4fer a =C3=A9crit=C2=
-=A0:
-[...]
-> > > > +	// Enables/gates
-> > > > +	for (i =3D 0; i < ARRAY_SIZE(clken_data); i++) {
-> > > > +		const struct wpcm450_clken_data *data =3D &clken_data[i];
-> > > > +
-> > > > +		hw =3D clk_hw_register_gate_parent_data(NULL, data->name, &data-=
->parent, data->flags,
-> > > > +						      clk_base + REG_CLKEN, data->bitnum,
-> > > > +						      data->flags, &wpcm450_clk_lock);
-> > >=20
-> > > If an error occures in the 'for' loop or after it, should this be
-> > > clk_hw_unregister_gate()'ed somewhere?
-> >=20
-> > Ideally yes =E2=80=94
-> >=20
-> > in this case, if the clock driver fails, the system is arguably in such
-> > a bad state that there isn't much point in bothering.
-> >=20
->=20
-> Ok, but below we care about freeing clk_data->hws in the error handling
-> path.
->=20
-> Why do we handle just half of the resources?
-> Shouldn't it be all (to be clean, if it makes sense) or nothing (to reduce
-> the LoC and have a smaller driver)?
+On 4/16/2023 12:34 AM, Krishna Kurapati PSSNV wrote:
+> 
+> 
+> On 4/14/2023 9:15 PM, Andrew Halaney wrote:
+>> On Wed, Apr 05, 2023 at 06:27:57PM +0530, Krishna Kurapati wrote:
+>>> Add USB and DWC3 node for tertiary port of SC8280 along with multiport
+>>> IRQ's and phy's. This will be used as a base for SA8295P and SA8295-Ride
+>>> platforms.
+>>>
+>>> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+>>> ---
+>>> Link to v5: 
+>>> https://lore.kernel.org/all/20230310163420.7582-7-quic_kriskura@quicinc.com/
+>>>
+>>>   arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 58 ++++++++++++++++++++++++++
+>>>   1 file changed, 58 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi 
+>>> b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+>>> index 42bfa9fa5b96..7b81f2b0449d 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+>>> @@ -3108,6 +3108,64 @@ usb_1_role_switch: endpoint {
+>>>               };
+>>>           };
+>>> +        usb_2: usb@a4f8800 {
+>>> +            compatible = "qcom,sc8280xp-dwc3", "qcom,dwc3";
+>>> +            reg = <0 0x0a4f8800 0 0x400>;
+>>> +            #address-cells = <2>;
+>>> +            #size-cells = <2>;
+>>> +            ranges;
+>>> +
+>>> +            clocks = <&gcc GCC_CFG_NOC_USB3_MP_AXI_CLK>,
+>>> +                 <&gcc GCC_USB30_MP_MASTER_CLK>,
+>>> +                 <&gcc GCC_AGGRE_USB3_MP_AXI_CLK>,
+>>> +                 <&gcc GCC_USB30_MP_SLEEP_CLK>,
+>>> +                 <&gcc GCC_USB30_MP_MOCK_UTMI_CLK>,
+>>> +                 <&gcc GCC_AGGRE_USB_NOC_AXI_CLK>,
+>>> +                 <&gcc GCC_AGGRE_USB_NOC_NORTH_AXI_CLK>,
+>>> +                 <&gcc GCC_AGGRE_USB_NOC_SOUTH_AXI_CLK>,
+>>> +                 <&gcc GCC_SYS_NOC_USB_AXI_CLK>;
+>>> +            clock-names = "cfg_noc", "core", "iface", "sleep", 
+>>> "mock_utmi",
+>>> +                      "noc_aggr", "noc_aggr_north", 
+>>> "noc_aggr_south", "noc_sys";
+>>> +
+>>> +            assigned-clocks = <&gcc GCC_USB30_MP_MOCK_UTMI_CLK>,
+>>> +                      <&gcc GCC_USB30_MP_MASTER_CLK>;
+>>> +            assigned-clock-rates = <19200000>, <200000000>;
+>>> +
+>>> +            interrupts-extended = <&pdc 127 IRQ_TYPE_EDGE_RISING>,
+>>> +                        <&pdc 126 IRQ_TYPE_EDGE_RISING>,
+>>> +                        <&pdc 16 IRQ_TYPE_LEVEL_HIGH>;
+>>> +
+>>> +            interrupt-names = "dp_hs_phy_irq", "dm_hs_phy_irq",
+>>> +                        "ss_phy_irq";
+>>> +
+>>
+>> This is breaking the current schema (with the full series applied),
+>> I am not sure if a pwr_event IRQ exists or but it maybe necessary to
+>> modify qcom,dwc3.yaml in order to explain hardware if it doesn't exist:
+>>
+>> (dtschema) ahalaney@halaney-x13s ~/git/linux-next (git)-[718f2024524f] 
+>> % make CHECK_DTBS=y DT_SCHEMA_FILES=/usb/qcom,dwc3.yaml 
+>> qcom/sa8540p-ride.dtb                                                                                   :(
+>>    LINT    Documentation/devicetree/bindings
+>>    CHKDT   Documentation/devicetree/bindings/processed-schema.json
+>>    SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+>>    DTC_CHK arch/arm64/boot/dts/qcom/sa8540p-ride.dtb
+>> /home/ahalaney/git/linux-next/arch/arm64/boot/dts/qcom/sa8540p-ride.dtb: usb@a4f8800: interrupt-names:0: 'pwr_event' was expected
+>>     From schema: 
+>> /home/ahalaney/git/linux-next/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+>> /home/ahalaney/git/linux-next/arch/arm64/boot/dts/qcom/sa8540p-ride.dtb: usb@a4f8800: interrupt-names:1: 'dp_hs_phy_irq' was expected
+>>     From schema: 
+>> /home/ahalaney/git/linux-next/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+>> /home/ahalaney/git/linux-next/arch/arm64/boot/dts/qcom/sa8540p-ride.dtb: usb@a4f8800: interrupt-names:2: 'dm_hs_phy_irq' was expected
+>>     From schema: 
+>> /home/ahalaney/git/linux-next/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+>> /home/ahalaney/git/linux-next/arch/arm64/boot/dts/qcom/sa8540p-ride.dtb: usb@a4f8800: interrupt-names: ['dp_hs_phy_irq', 'dm_hs_phy_irq', 'ss_phy_irq'] is too short
+>>     From schema: 
+>> /home/ahalaney/git/linux-next/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+>> /home/ahalaney/git/linux-next/arch/arm64/boot/dts/qcom/sa8540p-ride.dtb: usb@a4f8800: interrupts-extended: [[99, 127, 1], [99, 126, 1], [99, 16, 4]] is too short
+>>     From schema: 
+>> /home/ahalaney/git/linux-next/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+>> make CHECK_DTBS=y DT_SCHEMA_FILES=/usb/qcom,dwc3.yaml 
+>> qcom/sa8540p-ride.dtb  22.61s user 0.54s system 99% cpu 23.172 total
+>> (dtschema) ahalaney@halaney-x13s ~/git/linux-next (git)-[718f2024524f] %
+>>
+>> Thanks,
+>> Andrew
+>>
+> 
+> Hi Andrew,
+> 
+>   Thanks for pointing it out. Let me check and get back on the 
+> pwr_event_irq.
+> 
+> Probably I might have missed it 😅. If so, will make sure to add it in 
+> next version.
+> 
+> Regards,
+> Krishna,
 
-I thought about it for a bit, and I think I'm ok with reducing the
-deallocation in this driver to nothing. I'll spin a new version.
 
-Conversely, if I were to implement proper error handling here, I'd
-convert it into a platform driver and use devm_* functions, because
-dealing with all the little clock objects is just too painful and
-fragile for my taste.
+Hi Andrew, Johan,
 
+   I was looking at the pwr_event_irq interrupts for Multiport 
+controller and see that there are two of them as per HW specs. All 
+targets till date have only 1 pwr_event_irq required.
 
-Thanks,
-Jonathan
+The reason I thought I missed pwr_event_irq in my patches is because in 
+downstream this is a required IRQ for all targets, so I was under 
+assumption that we need it for upstream targets as well. But upstream 
+qcom driver doesn't have support for this IRQ yet. And this has been 
+made a required one only for SC8280 [1]/[2].
 
---wBtEmj/GHkQArSVj
-Content-Type: application/pgp-signature; name="signature.asc"
+Probably we can proceed in one of the following ways:
+1. Remove pwr_event_irq in both bindings and DT as driver support is not 
+present currently.
+2. Update the bindings for SC8280 to include an optional secondary 
+pwr_event_irq for multiport controller.
 
------BEGIN PGP SIGNATURE-----
+I would prefer option-1 as removing them would be better because they 
+are not being used. Please let me know your thoughts on this.
 
-iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmREA4gACgkQCDBEmo7z
-X9vELw//XtgZ45bo+nh7sRo2vLpDjlAMfwsWrnL/cHpN2rA/vinTR2rOZ8LwJAhG
-iuL5Smhp3DQv8H6ZUxvhyy2xZ3qXAxej5h8PVaUZlxLNwmG9Ro4Gyoy+n8VJagCz
-/FClvZ9sK6yGJXKayQwFZPdAGSZAN9CFpDiU10hteChB9U7UcoA5+UjUnY+15m6G
-NwK1x6u4UHUu6uQRBFapTX9RMBMMmc7zfJcq4nXvVfMaw+g9V6wPeiCJHetTnXC3
-A9q28JWdro6ZTu/DxfdEobpemv+gOM515g1HNZjORwy24vbfW6CuVxmAW64S3cwU
-Vu+OSfC7k4xY71pOGB2VrXpTqeSipobJmx3tU59wyjypysp3Mp/tUldd56eJGpko
-SMOrlH+LK866KMwUs7/qXNHdtDnsX4UtbdsiwwNCePgUeMqMcGLTd9wueVlUn/vj
-13SRz6wsdtKrvFA1daTP/7m1eFZ6dnLEU6AJAcZGVk60Bvq7NHYD7tnyMIJnM1xt
-3L82jBDW/58n290YMgVTKGt+zS+ZrFcn11ReMksvdWRKCUJRczmVLqhtLPA2IHjU
-D8vpmqO52/qEVskIwIJ+I/nlmY+3JnFBakdP8EQkSKGkfCJSrEBfehrYLeNDmgFg
-I/NeOR+jh1tSTebpHJGeeuWUKGO8AZeOs5IgrElfVRvkxiLRJeU=
-=+Ar6
------END PGP SIGNATURE-----
+[1]: 
+https://lore.kernel.org/all/20220713131340.29401-2-johan+linaro@kernel.org/
+[2]: 
+https://lore.kernel.org/all/20220713131340.29401-6-johan+linaro@kernel.org/
 
---wBtEmj/GHkQArSVj--
+Regards,
+Krishna,
