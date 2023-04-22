@@ -2,118 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A4D56EB9D1
-	for <lists+devicetree@lfdr.de>; Sat, 22 Apr 2023 17:04:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0B096EB9F2
+	for <lists+devicetree@lfdr.de>; Sat, 22 Apr 2023 17:16:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229716AbjDVPEB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Apr 2023 11:04:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60912 "EHLO
+        id S229548AbjDVPP6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Apr 2023 11:15:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229556AbjDVPEA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Apr 2023 11:04:00 -0400
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 191B819BD;
-        Sat, 22 Apr 2023 08:04:00 -0700 (PDT)
-Received: by mail-pl1-x636.google.com with SMTP id d9443c01a7336-1a526aa3dd5so34363415ad.3;
-        Sat, 22 Apr 2023 08:04:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682175839; x=1684767839;
-        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FfAo/dxreW/uigF9ipHrmiuIgnfgix7IRNyvfV3apuQ=;
-        b=kplYe/cTNPWzdBDRIgkzD26gPlImuWavD9OmX9VrLT29miTb1ufHqQ8QbB7VP1Vq+D
-         lo0TTohsHVN/bZaZO8800FE8/Bd4GDZ8/7PMaS6sJVnkv7OXuTbUm4nO1uQzYsUuUZfO
-         GXL1S6QPNnvjuCZNyk6UaKckTxnojK3GD4G6gQs2ATmh6ScmDebfD20PW8/fzDGf8S1E
-         3pjvc8UBq3YML0YLuWHVkuH4Qh1T2Al8jUw326nz1oijGwuJNqNpcwXU5FDBrOf1sGZc
-         fRa/zMiw2MdhyioWYfyzsskWsK6Aio85SMsQa/RB8ArweR8Wa62b8U4unh+mF1XB5LKH
-         WbKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682175839; x=1684767839;
-        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FfAo/dxreW/uigF9ipHrmiuIgnfgix7IRNyvfV3apuQ=;
-        b=gSh6B5GApGSTkGNyZ4YOOwZDZ11f8RCzoZfTqnZpJOaus5fpsOd6gC0wuPYw7YtEwd
-         S5Zzm05p8W/CPQwG+/jLoUskURAS697bMi7r621LzfSWFRslt+oYbxznDlrf8fuZQLLY
-         5tRqlHvhBzCGYXFqxI9bhmZjsbEYOetpqqNysm3UTvvOE3ga5zicD6KijHbI08PIKpDq
-         qPCSypog54uvvNTLu+4+sq3oW4+v2gEWC1EgAN0UkAnMMu0CwHz8IPvnNHqEymMqtef2
-         iS4PuyPvdMgcRhvkMIburi02JcQHNisiO1jOjk2Ny9AVyrZQTGpu7MJbKLf7Ha40cpcS
-         Z/hg==
-X-Gm-Message-State: AAQBX9dUp8AZkNqZ4bJorBhcpeXxE7OgqgVRkB1fTHKdBsq+3Oox+rPX
-        uPDUHMGbdqlomL/NRik4eiQ=
-X-Google-Smtp-Source: AKy350Z7G1Y/sgwTVvFKh+wH/R8tXE0+c/A/R974D7kOo4c0Z/Hhx+30zhWyEBqI8bPHDIhpGi+oWQ==
-X-Received: by 2002:a17:903:32cc:b0:1a1:f5dd:2dce with SMTP id i12-20020a17090332cc00b001a1f5dd2dcemr10828357plr.6.1682175839453;
-        Sat, 22 Apr 2023 08:03:59 -0700 (PDT)
-Received: from localhost.localdomain ([117.172.46.191])
-        by smtp.gmail.com with ESMTPSA id jh21-20020a170903329500b001a52abb3be3sm4163497plb.201.2023.04.22.08.03.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 22 Apr 2023 08:03:59 -0700 (PDT)
-From:   "logic.yu" <hymmsx.yu@gmail.com>
-To:     robh+dt@kernel.org
-Cc:     frowand.list@gmail.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] of:Use remote_parent instead of remote
-Date:   Sat, 22 Apr 2023 08:03:43 -0700
-Message-Id: <20230422150343.43569-1-hymmsx.yu@gmail.com>
-X-Mailer: git-send-email 2.17.1
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229533AbjDVPP5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Apr 2023 11:15:57 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FF4F9E;
+        Sat, 22 Apr 2023 08:15:56 -0700 (PDT)
+Received: from [192.168.1.90] (unknown [188.27.34.213])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: cristicc)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id D430F6603273;
+        Sat, 22 Apr 2023 16:15:53 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1682176554;
+        bh=X0mUkWfbzwnY1styVLWorvkjJxYiao2ZcpZFSg7WGBg=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=Dk0lIkG1Nxu4OoOc57Mos8kM5WKz6Le9oR0FGuBfBl/8YsoaZEZ4VmF2D8Qw4qTnG
+         24wwzRrzRTnu9lKWsl9MFO1RysppuzJj+emZpRBYwVgtTm5YH7OZxui2W1jv7yPWJx
+         HGpGV9WVZPs4ohtJ8oMI9U2I4B51O7nfFH6EmIvRGinyXXnh7Vnfp27FHDuxdoD3cn
+         V9CZ9SFC/K76uVE5eFB1StC084yIgAX/S07bdXc0PD4sY/g/IdDepyYpuU4WYTnbfi
+         I6q80HOxTO8xC+25Py9ryjyxCHM+NWqrSxllj23cN24cZx75drgKUm2i8SDIp5gDmV
+         zlTdwdc/3BFHw==
+Message-ID: <80d23bb9-b55a-57c5-4aa1-d29a919b04ae@collabora.com>
+Date:   Sat, 22 Apr 2023 18:15:51 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v3 0/3] Enable rk3588 timer support
+Content-Language: en-US
+To:     Vincent Legoll <vincent.legoll@gmail.com>
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Sugar Zhang <sugar.zhang@rock-chips.com>,
+        Shreeya Patel <shreeya.patel@collabora.com>,
+        Kever Yang <kever.yang@rock-chips.com>,
+        Johan Jonker <jbx6244@gmail.com>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, kernel@collabora.com
+References: <20230419181309.338354-1-cristian.ciocaltea@collabora.com>
+ <CAEwRq=o71XMoj6_QU-mKrrrBqz80=C0g4fMwejv7fN-vAop89w@mail.gmail.com>
+From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <CAEwRq=o71XMoj6_QU-mKrrrBqz80=C0g4fMwejv7fN-vAop89w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since the parent node of the remote node is obtained here,
-it is more reasonable to change it to the remote_parent
+On 4/22/23 16:17, Vincent Legoll wrote:
+> Hello,
+> 
+> On Wed, Apr 19, 2023 at 6:13 PM Cristian Ciocaltea
+> <cristian.ciocaltea@collabora.com> wrote:
+>> This patchset enables Rockchip RK3588/RK3588S SoC timer support.
+>> While here, it also handles a minor DT binding issue related to RK3288.
+> 
+> I tested this on a QuartzPro64 dev board, I applied your series top of my tree:
+> Collabora's rk3588 + some DT patches to add support for the qp64 board.
+> 
+> Here is the output from the commands you told me to try:
+> 
+> bash-5.1# grep rk_timer /sys/bus/clockevents/devices/*/current_device
+> /sys/bus/clockevents/devices/broadcast/current_device:rk_timer
+> 
+> bash-5.1# grep -B3 -A14 'Device: rk_timer' /proc/timer_list
+> 
+> Tick Device: mode:     1
+> Broadcast device
+> Clock Event Device: rk_timer
+>  max_delta_ns:   178956969070
+>  min_delta_ns:   1000
+>  mult:           51539608
+>  shift:          31
+>  mode:           3
+>  next_event:     150944000000 nsecs
+>  set_next_event: rk_timer_set_next_event
+>  shutdown:       rk_timer_shutdown
+>  periodic:       rk_timer_set_periodic
+>  event_handler:  tick_handle_oneshot_broadcast
+> 
+>  retries:        0
+> 
+> tick_broadcast_mask: ff
+> 
+> bash-5.1# head -1 /proc/interrupts ; grep rk_timer /proc/interrupts;
+> sleep 10; grep rk_timer /proc/interrupts
+>            CPU0       CPU1       CPU2       CPU3       CPU4       CPU5
+>       CPU6       CPU7
+>  25:        742        210         52         49       2197       1640
+>       1089       2341     GICv3 321 Level     rk_timer
+>  25:        754        222         52         49       2252       1727
+>       1146       2404     GICv3 321 Level     rk_timer
+> 
+> So it looks like this is working.
+> 
+> Thanks for your work.
+> 
+> You can add my:
+> 
+> Tested-by: Vincent Legoll <vincent.legoll@gmail.com>
 
-Signed-off-by: logic.yu <hymmsx.yu@gmail.com>
----
- drivers/of/property.c | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+Thanks for taking the time to test this!
 
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index ddc75cd50825..ee5f0c008b40 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -835,7 +835,7 @@ EXPORT_SYMBOL(of_graph_get_endpoint_count);
- struct device_node *of_graph_get_remote_node(const struct device_node *node,
- 					     u32 port, u32 endpoint)
- {
--	struct device_node *endpoint_node, *remote;
-+	struct device_node *endpoint_node, *remote_parent;
- 
- 	endpoint_node = of_graph_get_endpoint_by_regs(node, port, endpoint);
- 	if (!endpoint_node) {
-@@ -844,20 +844,20 @@ struct device_node *of_graph_get_remote_node(const struct device_node *node,
- 		return NULL;
- 	}
- 
--	remote = of_graph_get_remote_port_parent(endpoint_node);
-+	remote_parent = of_graph_get_remote_port_parent(endpoint_node);
- 	of_node_put(endpoint_node);
--	if (!remote) {
--		pr_debug("no valid remote node\n");
-+	if (!remote_parent) {
-+		pr_debug("no valid remote_parent node\n");
- 		return NULL;
- 	}
- 
--	if (!of_device_is_available(remote)) {
--		pr_debug("not available for remote node\n");
--		of_node_put(remote);
-+	if (!of_device_is_available(remote_parent)) {
-+		pr_debug("not available for remote_parent node\n");
-+		of_node_put(remote_parent);
- 		return NULL;
- 	}
- 
--	return remote;
-+	return remote_parent;
- }
- EXPORT_SYMBOL(of_graph_get_remote_node);
- 
--- 
-2.17.1
-
+Regards,
+Cristian
