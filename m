@@ -2,71 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A86F6EB92A
-	for <lists+devicetree@lfdr.de>; Sat, 22 Apr 2023 14:29:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DECBE6EB946
+	for <lists+devicetree@lfdr.de>; Sat, 22 Apr 2023 15:17:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229696AbjDVM3W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Apr 2023 08:29:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53744 "EHLO
+        id S229838AbjDVNQ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Apr 2023 09:16:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229565AbjDVM3V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Apr 2023 08:29:21 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0E971BCB
-        for <devicetree@vger.kernel.org>; Sat, 22 Apr 2023 05:29:20 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2a7b02615f1so25634901fa.0
-        for <devicetree@vger.kernel.org>; Sat, 22 Apr 2023 05:29:20 -0700 (PDT)
+        with ESMTP id S229642AbjDVNQ5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Apr 2023 09:16:57 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99C3CE65
+        for <devicetree@vger.kernel.org>; Sat, 22 Apr 2023 06:16:55 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4edcdfa8638so2813326e87.2
+        for <devicetree@vger.kernel.org>; Sat, 22 Apr 2023 06:16:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682166559; x=1684758559;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=linaro.org; s=google; t=1682169414; x=1684761414;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=c/sd8+90mWOvfj0mCOmTgWR1MxRpJMuPvMYRFU54ny4=;
-        b=JwvxIRx7wnqJYQpaovZKej+sEnuMtC3tpvW7MnDhW8U9zwGPdlr6r5gTEwspjpZ3b/
-         qoOvtO0swuoTixlSWKf17NdNUhzI33DpCcOASOkNr+ryREqQV3MDwbhIZPr2Gwln8Sx5
-         ByIo5tSRHhux8+eOvFvNbz0TVUKRpOh1EA8zeYwxZOle2Mp9vzHrB8BDte21Uy9c4xl+
-         sIjlvGAHzbfm8CKKaw4es4QqqTXwbAP4yJ56PZ3nWaERmRI8etDKQHyUeuAleyhUvPoB
-         DlOKz1nOLVn1JN2+v4IqYDQGA5JGzlmRKJO/CbeFz8DXBa0fu+DeiXxA0AiUTOpdrTfs
-         B2ew==
+        bh=7jncnPx2grC6G7RQ2ee63CUWNqLMx/tnK4MbO+O2gC8=;
+        b=WznNI5log6OLCbjQlAgJDM6uaGoe5+ZWNN90yr1TwLrATj5HxPWoXA0nJvRAECdubD
+         eYt7BXA9lilWzB+oSXeCec55lmW/W57h4s3Fso8BB1x3oCCetwbfGNNKDMvW3j88LF8d
+         lGvdx44Oz4IsNBaNJrcu0adxD5m0vTQORqBq13Ng8B4YIJYGbVOYqQpBaw1KWOjNnqUp
+         2P3DBAw91/qdvfmsDL8U8OVUY4qSwG5ZTlzyjCjMBLZddXbUI7f+ipOjOqTA24AJD7OP
+         akcZNObRY7dzggSxnw06sJz1fjVr+occq0Q8apN6DZmKb0pIBbdMrw8lyARHGId0lCXW
+         ou6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682166559; x=1684758559;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=1e100.net; s=20221208; t=1682169414; x=1684761414;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=c/sd8+90mWOvfj0mCOmTgWR1MxRpJMuPvMYRFU54ny4=;
-        b=lXVOP+o3LTQR2raai4nrw2oMQWS0ztuar3BSftEaFSQkcBbISewgl+TTKLclqs2cSN
-         tBwsUNlg5FazODoYc91jWbSUHA7wBwN47ict5hvCQ1kjDwJGIHGsSmbwbNL+qdxpKz9t
-         xN4InJ5rm215ilDo2NAnESt+VPTzJV/OxUup4DDifx50QmOz4DAbSLuPyX/6qXcunMCj
-         kb9NSzk+0O2cNf5ojfuvmR8uj+a/CMNnP14TbjYTDPeVrl9wtrgM10l43JJP9n0EhMY2
-         Y0j2OwIwi7bUhMvJFItJuExG4M+iI7Gn1uPIrHPTb8loY93l0Ld5HHI97ayboepKg+ba
-         MtLg==
-X-Gm-Message-State: AAQBX9fnxn6fGWpD3Y00IraJ5Q8Llem8TzrRp8FtLqwJb1xpSnW3PFnz
-        YPo3rnJ5leZehqtD/Yku9oUCOg==
-X-Google-Smtp-Source: AKy350ZnxLlEHGU0yVQpDZlzCuo1hlwMOdcu3otyXWFQM6LKiqgYXp8f1zOrb9MK9k1mA8vm/Smemw==
-X-Received: by 2002:a2e:3213:0:b0:2a8:e642:8cdb with SMTP id y19-20020a2e3213000000b002a8e6428cdbmr1205087ljy.49.1682166558915;
-        Sat, 22 Apr 2023 05:29:18 -0700 (PDT)
+        bh=7jncnPx2grC6G7RQ2ee63CUWNqLMx/tnK4MbO+O2gC8=;
+        b=bs152I0tOhDs+48L13cPui5rYV7V7wbmZLPisZ9cVYNmDIXgRoZAca/IhjLmQ9MXvf
+         vejfiLEEgel2WO89dDHFDTOLJXKHKHMVcbkzCl0e2wvhNGE/uiCR9JrAIkruRp966Onk
+         m6+lhuAEo5L2kevQAVmndwnR2rjDQ320yQuQn3XsHA/rm1DbzRfrkYs1dYyAUDI5Pmtg
+         6cqoEmIGKFqGrBGbW4T0aDGxA+mof31goxyDBxrRx/YtmZSGL7mkvixboIonyCN7WO4V
+         ToKRD2RkXx24sjPxMCuYwvxEgRXCfhUjL0O7Y+6ns2Bcpds/g7PnNb6LuEZBjkuiqK8P
+         Bj3Q==
+X-Gm-Message-State: AAQBX9c9u1x0Pp4SrGNHZXsTPOChpzRJBszLouHmVySjZAxOJ6MGTTGO
+        YOa0XTwN+97ajOZlJtbHi8r9ng==
+X-Google-Smtp-Source: AKy350YnsIfKVhADdDt9MtMQHuIgPc/rStDXoyg0rQ3Pw7Ei3do+mb9dXvAAn9bNaoB5X+pr7sQSVQ==
+X-Received: by 2002:ac2:52af:0:b0:4b4:8f01:f8b1 with SMTP id r15-20020ac252af000000b004b48f01f8b1mr1982021lfm.31.1682169413906;
+        Sat, 22 Apr 2023 06:16:53 -0700 (PDT)
 Received: from [192.168.1.101] (abyj144.neoplus.adsl.tpnet.pl. [83.9.29.144])
-        by smtp.gmail.com with ESMTPSA id x23-20020a2e7c17000000b002a5f554d263sm970784ljc.46.2023.04.22.05.29.17
+        by smtp.gmail.com with ESMTPSA id y3-20020ac24e63000000b004eca2b8b6bdsm898504lfs.4.2023.04.22.06.16.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 22 Apr 2023 05:29:18 -0700 (PDT)
-Message-ID: <a3117f35-bf2d-09f9-439f-b656aa1278dc@linaro.org>
-Date:   Sat, 22 Apr 2023 14:29:17 +0200
+        Sat, 22 Apr 2023 06:16:53 -0700 (PDT)
+Message-ID: <dac3b12e-8160-2566-5835-996d0b37a52a@linaro.org>
+Date:   Sat, 22 Apr 2023 15:16:51 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [RFT PATCH 1/3] arm64: dts: qcom: msm8996: correct /soc/bus
- ranges
+Subject: Re: [PATCH v10 09/10] arm64: dts: qcom: sc7180: Add support for HDCP
+ in dp-controller
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+To:     Mark Yacoub <markyacoub@chromium.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230420180746.860934-1-krzysztof.kozlowski@linaro.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     seanpaul@chromium.org, suraj.kandpal@intel.com,
+        dianders@chromium.org, dmitry.baryshkov@linaro.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230419154321.1993419-1-markyacoub@google.com>
+ <20230419154321.1993419-10-markyacoub@google.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230420180746.860934-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230419154321.1993419-10-markyacoub@google.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,40 +85,55 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 20.04.2023 20:07, Krzysztof Kozlowski wrote:
-> The bus@0 node should have reg or ranges to fix dtbs W=1 warnings:
+On 19.04.2023 17:43, Mark Yacoub wrote:
+> From: Sean Paul <seanpaul@chromium.org>
 > 
->   Warning (unit_address_vs_reg): /soc@0/bus@0: node has a unit name, but no reg or ranges property
->   Warning (simple_bus_reg): /soc@0/bus@0: missing or empty reg/ranges property
+> Add the register ranges required for HDCP key injection and
+> HDCP TrustZone interaction as described in the dt-bindings for the
+> sc7180 dp controller.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> Signed-off-by: Sean Paul <seanpaul@chromium.org>
+> Signed-off-by: Mark Yacoub <markyacoub@chromium.org>
 > 
 > ---
-> 
-> Please kindly test on hardware.
-> ---
-PCIe Wi-Fi still comes up and connects to the network
-(it doesn't really work reliably but it never quite did -
-brcmfmac is brcmfmac :/)
+Looks like only patch 9 and 10 ever made it to linux-arm-msm and
+only patch 9 ever made it to me, even though I'm R: in MAINTAINERS?
 
-Tested-by: Konrad Dybcio <konrad.dybcio@linaro.org> # MSM8996 Kagura
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Please fix your cc scripts.
 
 Konrad
-
->  arch/arm64/boot/dts/qcom/msm8996.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> Changes in v3:
+> -Split off into a new patch containing just the dts change (Stephen)
+> -Add hdcp compatible string (Stephen)
+> Changes in v4:
+> -Rebase on Bjorn's multi-dp patchset
+> Changes in v5:
+> -Put the tz register offsets in trogdor dtsi (Rob C)
+> Changes in v6:
+> -Rebased: Removed modifications in sc7180.dtsi as it's already upstream
+> Changes in v7:
+> -Change registers offset
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> index e160d5e6863f..a88d0a9bb7e5 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> @@ -1832,7 +1832,7 @@ bus@0 {
->  			compatible = "simple-pm-bus";
->  			#address-cells = <1>;
->  			#size-cells = <1>;
-> -			ranges;
-> +			ranges = <0x0 0x0 0xffffffff>;
+>  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> index 423630c4d02c7..89d913fa6e3eb 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> @@ -822,6 +822,14 @@ &mdss_dp {
+>  	status = "okay";
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&dp_hot_plug_det>;
+> +
+> +	reg = <0 0x0ae90000 0 0x200>,
+> +	      <0 0x0ae90200 0 0x200>,
+> +	      <0 0x0ae90400 0 0xc00>,
+> +	      <0 0x0ae91000 0 0x400>,
+> +	      <0 0x0ae91400 0 0x400>,
+> +	      <0 0x0aed1000 0 0x174>,
+> +	      <0 0x0aee1000 0 0x2c>;
+>  };
 >  
->  			pcie0: pcie@600000 {
->  				compatible = "qcom,pcie-msm8996";
+>  &mdss_dp_out {
