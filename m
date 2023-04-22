@@ -2,56 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F7836EB635
-	for <lists+devicetree@lfdr.de>; Sat, 22 Apr 2023 02:09:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B48246EB63C
+	for <lists+devicetree@lfdr.de>; Sat, 22 Apr 2023 02:11:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233416AbjDVAJQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Apr 2023 20:09:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48772 "EHLO
+        id S233765AbjDVALM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Apr 2023 20:11:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49928 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233561AbjDVAJO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 20:09:14 -0400
-Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EC792110
-        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 17:09:12 -0700 (PDT)
-Received: by mail-yb1-xb2d.google.com with SMTP id 3f1490d57ef6-b8f5400de9eso3149205276.3
-        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 17:09:12 -0700 (PDT)
+        with ESMTP id S232120AbjDVALL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 20:11:11 -0400
+Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69F261FF1
+        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 17:11:10 -0700 (PDT)
+Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-54fc94476e2so26760497b3.1
+        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 17:11:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682122151; x=1684714151;
+        d=linaro.org; s=google; t=1682122269; x=1684714269;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=MmdtSh1w/AUsFLevVQK84fJ32J2WUs/jp0y/0rXdHOc=;
-        b=lbNqDq7FL+eHY0F/4x20VfGmaNxBVQkHRX1smlrAvAwO2PYd7PPVRyF6nDKQUWSynF
-         aaT8ElQtpKBYzL8CilDIeZontx72c77/FYA2K4RWLELEKk+0VNVOI7C6ODyC5LuMQ8cW
-         2gVlJltSlPoLhI73VglEjQ2UpeXnlEIwNEK404tdG0E3ROhZV9wlzt0Ufn4GKpNhX/OT
-         FRPTTzPa8pYITQzBwEq1Ekbyg3ENyqcWAJDGptbpnYR3dWXMfHfHRjjZSHkl7IXp0ol+
-         foU5BKQg95VeZ1DX/rZH9UsOG0qJPBN1gq+fIMhiehZ9S5qBBqK6RnjK8nI5PindSbCR
-         emlQ==
+        bh=r3HVdBHp8ZBwMLtZhZM5THuZ2ayBVN8mjzgRnQU8doU=;
+        b=TjWZ3JK9IrZTvA1Bv6JMW20hD5ah5RMXp0tjjtzTlUyd+jMQ+x4f1teFgMqG+4lqaI
+         m+7CzrP2VyA1O97vbAgY8i76DQ0mHZjwNk5w98X0C6Mgm3Q9cNOl1POlCNpQVjWAw4pP
+         Hv8qDMxEK5hdPhwikYvjsU9I8ENe3RW9dyYETQwruOElgdzEEtUOry3T97pqvJlkYdWa
+         Zcny1b0NrqcW3tqnWqIBpxv7JVQBsyWjrCQQlcfJbHDz+yNkf3H2BqR7TuIvN5+qdbCK
+         8mKGbkwQEZgEQxm4iiHHv94lf2GfHuaNBrZkxaGGUvbfwcsZw8VlJNALiCt/xoeVx+Oc
+         UYHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682122151; x=1684714151;
+        d=1e100.net; s=20221208; t=1682122269; x=1684714269;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=MmdtSh1w/AUsFLevVQK84fJ32J2WUs/jp0y/0rXdHOc=;
-        b=NWhk+2MmyrKxQP9YN5yUmQd3Jkn21YREYfWhpfByvFE3I5ZxRec5aE2qfGD1f4Px0G
-         yK+SIxcqtgTghOI5cOASjIOU1av3Fm9LmysImGtIGKbmtu9Doq/xwcfcbImdygdJ9Zts
-         SXDnkrcbYophjME6hbNujKsn/pO4SkJtMWmyzQpwZKba0qt6lgYm5+ycT6uXTflRUuNG
-         EShBemL0ppqXrhQce0nJrAiW7IaVe+z6hkyoAX0j0FA60x35uJ4uOjaWjXH/9XR3FEpV
-         9tf1qiUuPdAxdTjSRO65d2igkyuDNcUGXTh95H/rBLXY+E1TPAgV8ACSNfZhio9Kpd7f
-         yefg==
-X-Gm-Message-State: AAQBX9eOCwEVEz1YMwHEYMseNJA2gB74ojIqtpiwe5sUTRqzRihhXPpG
-        GwsoiSFy4MNnEtWvFCTD2RbBT3eCfuwdb2AboK4Mjg==
-X-Google-Smtp-Source: AKy350b+L7wCHVqP/UYw/lYuSGq2eOHagsapMSK+wVxHlAmrKjAoUyAzY8gAYEeJb7AKvcAd6Hno1NVDdenS+k1+P0I=
-X-Received: by 2002:a25:e0d5:0:b0:b98:41a9:8db9 with SMTP id
- x204-20020a25e0d5000000b00b9841a98db9mr4365078ybg.0.1682122151678; Fri, 21
- Apr 2023 17:09:11 -0700 (PDT)
+        bh=r3HVdBHp8ZBwMLtZhZM5THuZ2ayBVN8mjzgRnQU8doU=;
+        b=bV7l2W/8sJ96LS2tQSpDMTGFIfzaQFQvhHt96BOhuq54xT9SDi9t/DrauXa/WxBx/D
+         MN9etGOcmOd+7lCXYl1bj7Ji94mjwrPcEhSdQEVfMk9xPtbEAEYlhxqyUk9+pu3TgN8K
+         NTtv20ifnGXUu0Q81OQYSVBdJvOHKFqJHMo4h4Zu9cHom6emSIf/j7oNJZD1S+YC+nK8
+         NdLWzMHaao94aphKK0PcvWFJ7SFoCi+fEPHXoLjWB7rCyqJD/LGpzaM1NJqBdM7HejC0
+         ygYPxNYAADir7zslqPhnLeU9vgzCrPaVbyvJp90y26OIdcchVcTD1xDHEiIK1tLk7C0c
+         Z8ig==
+X-Gm-Message-State: AAQBX9dcYw+E1heXTT1uJkLgFx8MdP+mFH35n6hSbiP5OMvrules8Cuf
+        lEcoKJALScu4uaw+WPEffRvBT9xcuHWGtyhaQmEtzw==
+X-Google-Smtp-Source: AKy350axjsvBsIM3jCVhZmPPFcVSlFJAhwx2i17gUtOdiELJB+ptq7C/I/6poiIDNXWz2u2AhTVw2PMBoYbPM4q2pZo=
+X-Received: by 2002:a81:61c2:0:b0:552:b9ad:f2e4 with SMTP id
+ v185-20020a8161c2000000b00552b9adf2e4mr3038639ywb.51.1682122269662; Fri, 21
+ Apr 2023 17:11:09 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230421133922.8520-1-quic_shazhuss@quicinc.com> <20230421133922.8520-5-quic_shazhuss@quicinc.com>
-In-Reply-To: <20230421133922.8520-5-quic_shazhuss@quicinc.com>
+References: <20230421133922.8520-1-quic_shazhuss@quicinc.com> <20230421133922.8520-7-quic_shazhuss@quicinc.com>
+In-Reply-To: <20230421133922.8520-7-quic_shazhuss@quicinc.com>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Sat, 22 Apr 2023 03:09:00 +0300
-Message-ID: <CAA8EJppLfk4DZ8Qc8qKH=--vXGQcVY_eZ8hQCb5s3CGR54v2Hg@mail.gmail.com>
-Subject: Re: [PATCH v1 4/6] phy: qcom-qmp: Add SA8775P USB3 UNI phy
+Date:   Sat, 22 Apr 2023 03:10:58 +0300
+Message-ID: <CAA8EJpov_2TS65NZimVmXe0meNV8rz_wXyNDz_0wK-qQJHW7tQ@mail.gmail.com>
+Subject: Re: [PATCH v1 6/6] arm64: dts: qcom: sa8775p-ride: enable USB nodes
 To:     Shazad Hussain <quic_shazhuss@quicinc.com>
 Cc:     agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org,
@@ -67,7 +67,7 @@ Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -76,17 +76,12 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Fri, 21 Apr 2023 at 16:41, Shazad Hussain <quic_shazhuss@quicinc.com> wrote:
 >
-> The SA8775P platform has 5nm USB3 UNI phy attached to the USB0 and USB1
-> controllers.
->
-> Add QMP PHY config, pcs entries and support for the new compatible for
-> SA8775P platform.
+> Enable usb0, usb1 and usb2 nodes and their respective phy's.
 >
 > Signed-off-by: Shazad Hussain <quic_shazhuss@quicinc.com>
 > ---
->  drivers/phy/qualcomm/phy-qcom-qmp-usb.c | 45 +++++++++++++++++++++++++
->  1 file changed, 45 insertions(+)
->
+>  arch/arm64/boot/dts/qcom/sa8775p-ride.dts | 92 +++++++++++++++++++++++
+>  1 file changed, 92 insertions(+)
 
 Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
