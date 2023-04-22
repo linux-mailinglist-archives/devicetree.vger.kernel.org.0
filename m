@@ -2,167 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 718B66EB8F6
-	for <lists+devicetree@lfdr.de>; Sat, 22 Apr 2023 13:51:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DF076EB8FB
+	for <lists+devicetree@lfdr.de>; Sat, 22 Apr 2023 14:03:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229868AbjDVLvl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Apr 2023 07:51:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42880 "EHLO
+        id S229753AbjDVMDD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Apr 2023 08:03:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229841AbjDVLvh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Apr 2023 07:51:37 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10AF72710;
-        Sat, 22 Apr 2023 04:51:10 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 11DFE618D1;
-        Sat, 22 Apr 2023 11:51:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A24E9C433D2;
-        Sat, 22 Apr 2023 11:50:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1682164261;
-        bh=xIoO3eZDrwDqrFgoJa0RyU+GcZJKbqPExwzMeblx2V0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=pwqC+EhyZrUTl4DhvzcQkhLy1N9hBvrOIvQMZqcAQHdk9OG0Fgm90mPjafk+CgOnP
-         HOXJUXn+NziQFVj3YjI3z7T0/S4Y+Tr2Vxk8wFS57EkqKNDDTpH6EkXid3AAj+lLhK
-         vQ1zZl+q5cOV6FuDmmFQCUYs6byqjA1rWaUJ95S6LgPYN3Lw07n8NOrtAxxmYEYUNZ
-         5MEUxulul71xfXgc0u9aWDvIzvpxLXs18hQlaILVrL/rnbhKt9PC5QFLIWkGtxYEW1
-         ZD8As/QBxM3oKjqfE0NL6Jox500ygXGGs02Tg7duyQ7t6fSaVwUzDX4SFTDol4Juqr
-         WBWz+8q0K0MTw==
-Date:   Sat, 22 Apr 2023 17:20:53 +0530
-From:   Manivannan Sadhasivam <mani@kernel.org>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
-        fancer.lancer@gmail.com, lpieralisi@kernel.org, robh+dt@kernel.org,
-        kw@linux.com, bhelgaas@google.com, kishon@kernel.org,
-        marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v13 11/22] PCI: dwc: Add dw_pcie_link_set_max_width()
-Message-ID: <20230422115053.GH4769@thinkpad>
-References: <20230418122403.3178462-1-yoshihiro.shimoda.uh@renesas.com>
- <20230418122403.3178462-12-yoshihiro.shimoda.uh@renesas.com>
+        with ESMTP id S229575AbjDVMDC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Apr 2023 08:03:02 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED5D41FC8
+        for <devicetree@vger.kernel.org>; Sat, 22 Apr 2023 05:03:00 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-4ec81773cf7so2683875e87.2
+        for <devicetree@vger.kernel.org>; Sat, 22 Apr 2023 05:03:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1682164979; x=1684756979;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=LMpowFFCWmM3rVMyXfWNb/dLjegfYdzz7y/Qzjd515w=;
+        b=asLj9VLy8P3Y58bBWycscKgWy2tu0GhHMrGwj6GeKRghTEArysetbEHTP6cLhJrwAo
+         mnhYJp6SHzs0m6a1I7ZQHaewhcqiH1HMGH+etz6RsrNUNiH+uqg5Hd12XlZ0JeNlXT6N
+         A/nAf6OKdO8nfNw1Dk6UIxpLhC9IN957sozdiGsjLzZ7HqUH0lH9jguAfzZz5dNVMKEU
+         675CVLKzUgid3s41+EIQwu8gQRPbDc8PU8dTshwn5De3mRzf/yqJQAeel+Hpi8W5eRq4
+         ZAmSOf1Ql6rSbmGdGS9Rdi0jvwDjPS+Tx+Cy8v18hBWuYFXmnWbLVN3DE/nBQ1vapk+y
+         kB4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682164979; x=1684756979;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=LMpowFFCWmM3rVMyXfWNb/dLjegfYdzz7y/Qzjd515w=;
+        b=JM/m9T64Dv/XAV2BqHyeaiHeEv6MqV0tu2oy6rUFtbBKGApzshk/Q4sMxfTr6uTDo9
+         XtWXEiAfCsrSKlt5qmRuf2AcV3PXvgAcIX2gBC3HHZd9rrKd4zngcjw6IbdJw7zH0PeV
+         LPxELg2W89Azf5Ct5bybvbSeMkbyArebmmTuX59S6JZofC/XzDgfsq1iTA5KrUQUt6re
+         dk4peem5/sad1ND5XNLOKaryigAch0pFku1qF66egCuWr36Lb/HgmrM9yjWMRPAGBodc
+         OSiTSCpld4yIoqaBqzSEH9E/xbwwdnJVJC1uFyniqKf6TeUqLQodEq5/ou4d6ja9C7HK
+         P5kw==
+X-Gm-Message-State: AAQBX9d1DZsKfH/VcY8D8w1dRe52Fy7oj0O4xgWSrlGpE/4cW0OYp7C/
+        zoXj8RUJ7r/Jfx/wiTcw81fntg==
+X-Google-Smtp-Source: AKy350b48bJnbPxK8Ol5pthEK65hc0r6cDf5IGtM0H/TGDsEa5YleAfBhwrSrPh6CK1XZohjbp473g==
+X-Received: by 2002:ac2:44cc:0:b0:4ed:c4c7:e63a with SMTP id d12-20020ac244cc000000b004edc4c7e63amr1994193lfm.6.1682164979188;
+        Sat, 22 Apr 2023 05:02:59 -0700 (PDT)
+Received: from [192.168.1.101] (abyj144.neoplus.adsl.tpnet.pl. [83.9.29.144])
+        by smtp.gmail.com with ESMTPSA id z6-20020ac24186000000b004edc0fc3c35sm884804lfh.5.2023.04.22.05.02.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 22 Apr 2023 05:02:58 -0700 (PDT)
+Message-ID: <bfd77567-9375-2bd6-2f4e-df0c2ba8fe2f@linaro.org>
+Date:   Sat, 22 Apr 2023 14:02:57 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230418122403.3178462-12-yoshihiro.shimoda.uh@renesas.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH] arm64: dts: qcom: Add BLSP DMAs for I2C
+Content-Language: en-US
+To:     Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
+        phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230422-msm8953-blsp-dma-v1-1-0024801bb587@z3ntu.xyz>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230422-msm8953-blsp-dma-v1-1-0024801bb587@z3ntu.xyz>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 18, 2023 at 09:23:52PM +0900, Yoshihiro Shimoda wrote:
-> To improve code readability, add dw_pcie_link_set_max_width().
-> The original code writes the PCIE_PORT_LINK_CONTROL register twice
-> if the pci->num_lanes is not zero. But, it should avoid to write
-> the register twice. So, refactor it.
+
+
+On 22.04.2023 13:39, Luca Weiss wrote:
+> MSM8953 has two DMA controllers for the various I2C, SPI and UART
+> busses. Add the nodes and configure all the I2C nodes so that the driver
+> can use the DMA.
 > 
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> ---Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Konrad
+>  arch/arm64/boot/dts/qcom/msm8953.dtsi | 48 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 48 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/msm8953.dtsi b/arch/arm64/boot/dts/qcom/msm8953.dtsi
+> index 602cb188a635..c9b589353918 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8953.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8953.dtsi
+> @@ -1274,6 +1274,19 @@ opp-200000000 {
+>  			};
+>  		};
+>  
+> +		blsp1_dma: dma-controller@7884000 {
+> +			compatible = "qcom,bam-v1.7.0";
+> +			reg = <0x07884000 0x1f000>;
+> +			interrupts = <GIC_SPI 238 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&gcc GCC_BLSP1_AHB_CLK>;
+> +			clock-names = "bam_clk";
+> +			num-channels = <12>;
+> +			#dma-cells = <1>;
+> +			qcom,ee = <0>;
+> +			qcom,num-ees = <4>;
+> +			qcom,controlled-remotely;
+> +		};
+> +
+>  		uart_0: serial@78af000 {
+>  			compatible = "qcom,msm-uartdm-v1.4", "qcom,msm-uartdm";
+>  			reg = <0x078af000 0x200>;
+> @@ -1292,6 +1305,8 @@ i2c_1: i2c@78b5000 {
+>  			clock-names = "core", "iface";
+>  			clocks = <&gcc GCC_BLSP1_QUP1_I2C_APPS_CLK>,
+>  				 <&gcc GCC_BLSP1_AHB_CLK>;
+> +			dmas = <&blsp1_dma 4>, <&blsp1_dma 5>;
+> +			dma-names = "tx", "rx";
+>  
+>  			pinctrl-names = "default", "sleep";
+>  			pinctrl-0 = <&i2c_1_default>;
+> @@ -1310,6 +1325,8 @@ i2c_2: i2c@78b6000 {
+>  			clock-names = "core", "iface";
+>  			clocks = <&gcc GCC_BLSP1_QUP2_I2C_APPS_CLK>,
+>  				 <&gcc GCC_BLSP1_AHB_CLK>;
+> +			dmas = <&blsp1_dma 6>, <&blsp1_dma 7>;
+> +			dma-names = "tx", "rx";
+>  
+>  			pinctrl-names = "default", "sleep";
+>  			pinctrl-0 = <&i2c_2_default>;
+> @@ -1328,6 +1345,9 @@ i2c_3: i2c@78b7000 {
+>  			clock-names = "core", "iface";
+>  			clocks = <&gcc GCC_BLSP1_QUP3_I2C_APPS_CLK>,
+>  				 <&gcc GCC_BLSP1_AHB_CLK>;
+> +			dmas = <&blsp1_dma 8>, <&blsp1_dma 9>;
+> +			dma-names = "tx", "rx";
+> +
+>  			pinctrl-names = "default", "sleep";
+>  			pinctrl-0 = <&i2c_3_default>;
+>  			pinctrl-1 = <&i2c_3_sleep>;
+> @@ -1345,6 +1365,9 @@ i2c_4: i2c@78b8000 {
+>  			clock-names = "core", "iface";
+>  			clocks = <&gcc GCC_BLSP1_QUP4_I2C_APPS_CLK>,
+>  				 <&gcc GCC_BLSP1_AHB_CLK>;
+> +			dmas = <&blsp2_dma 10>, <&blsp2_dma 11>;
+> +			dma-names = "tx", "rx";
+> +
+>  			pinctrl-names = "default", "sleep";
+>  			pinctrl-0 = <&i2c_4_default>;
+>  			pinctrl-1 = <&i2c_4_sleep>;
+> @@ -1355,6 +1378,19 @@ i2c_4: i2c@78b8000 {
+>  			status = "disabled";
+>  		};
+>  
+> +		blsp2_dma: dma-controller@7ac4000 {
+> +			compatible = "qcom,bam-v1.7.0";
+> +			reg = <0x07ac4000 0x1f000>;
+> +			interrupts = <GIC_SPI 239 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&gcc GCC_BLSP2_AHB_CLK>;
+> +			clock-names = "bam_clk";
+> +			num-channels = <12>;
+> +			#dma-cells = <1>;
+> +			qcom,ee = <0>;
+> +			qcom,num-ees = <4>;
+> +			qcom,controlled-remotely;
+> +		};
+> +
+>  		i2c_5: i2c@7af5000 {
+>  			compatible = "qcom,i2c-qup-v2.2.1";
+>  			reg = <0x07af5000 0x600>;
+> @@ -1362,6 +1398,9 @@ i2c_5: i2c@7af5000 {
+>  			clock-names = "core", "iface";
+>  			clocks = <&gcc GCC_BLSP2_QUP1_I2C_APPS_CLK>,
+>  				 <&gcc GCC_BLSP2_AHB_CLK>;
+> +			dmas = <&blsp2_dma 4>, <&blsp2_dma 5>;
+> +			dma-names = "tx", "rx";
+> +
+>  			pinctrl-names = "default", "sleep";
+>  			pinctrl-0 = <&i2c_5_default>;
+>  			pinctrl-1 = <&i2c_5_sleep>;
+> @@ -1379,6 +1418,9 @@ i2c_6: i2c@7af6000 {
+>  			clock-names = "core", "iface";
+>  			clocks = <&gcc GCC_BLSP2_QUP2_I2C_APPS_CLK>,
+>  				 <&gcc GCC_BLSP2_AHB_CLK>;
+> +			dmas = <&blsp2_dma 6>, <&blsp2_dma 7>;
+> +			dma-names = "tx", "rx";
+> +
+>  			pinctrl-names = "default", "sleep";
+>  			pinctrl-0 = <&i2c_6_default>;
+>  			pinctrl-1 = <&i2c_6_sleep>;
+> @@ -1396,6 +1438,9 @@ i2c_7: i2c@7af7000 {
+>  			clock-names = "core", "iface";
+>  			clocks = <&gcc GCC_BLSP2_QUP3_I2C_APPS_CLK>,
+>  				 <&gcc GCC_BLSP2_AHB_CLK>;
+> +			dmas = <&blsp2_dma 8>, <&blsp2_dma 9>;
+> +			dma-names = "tx", "rx";
+> +
+>  			pinctrl-names = "default", "sleep";
+>  			pinctrl-0 = <&i2c_7_default>;
+>  			pinctrl-1 = <&i2c_7_sleep>;
+> @@ -1413,6 +1458,9 @@ i2c_8: i2c@7af8000 {
+>  			clock-names = "core", "iface";
+>  			clocks = <&gcc GCC_BLSP2_QUP4_I2C_APPS_CLK>,
+>  				 <&gcc GCC_BLSP2_AHB_CLK>;
+> +			dmas = <&blsp2_dma 10>, <&blsp2_dma 11>;
+> +			dma-names = "tx", "rx";
+> +
+>  			pinctrl-names = "default", "sleep";
+>  			pinctrl-0 = <&i2c_8_default>;
+>  			pinctrl-1 = <&i2c_8_sleep>;
+> 
 > ---
->  drivers/pci/controller/dwc/pcie-designware.c | 65 ++++++++++----------
->  1 file changed, 34 insertions(+), 31 deletions(-)
+> base-commit: 347e9b4e41bfff51993807962eb1082f6d8ab439
+> change-id: 20230422-msm8953-blsp-dma-1174277859f2
 > 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
-> index 69358dc202f0..c76fa78c6468 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware.c
-> @@ -737,6 +737,39 @@ static void dw_pcie_link_set_max_speed(struct dw_pcie *pci, u32 link_gen)
->  	dw_pcie_writel_dbi(pci, offset + PCI_EXP_LNKCAP, cap | link_speed);
->  }
->  
-> +static void dw_pcie_link_set_max_width(struct dw_pcie *pci, u32 num_lanes)
-> +{
-> +	u32 val;
-> +
-> +	/* Set the number of lanes */
-> +	val = dw_pcie_readl_dbi(pci, PCIE_PORT_LINK_CONTROL);
-> +	val &= ~PORT_LINK_FAST_LINK_MODE;
-> +	val |= PORT_LINK_DLL_LINK_EN;
-> +
-> +	/* Mask LINK_MODE if num_lanes is not zero */
-> +	if (num_lanes)
-> +		val &= ~PORT_LINK_MODE_MASK;
-> +
-> +	switch (num_lanes) {
-> +	case 1:
-> +		val |= PORT_LINK_MODE_1_LANES;
-> +		break;
-> +	case 2:
-> +		val |= PORT_LINK_MODE_2_LANES;
-> +		break;
-> +	case 4:
-> +		val |= PORT_LINK_MODE_4_LANES;
-> +		break;
-> +	case 8:
-> +		val |= PORT_LINK_MODE_8_LANES;
-> +		break;
-> +	default:
-> +		dev_dbg(pci->dev, "Using h/w default number of lanes\n");
-> +		return;
-
-Here you are not updating the LINK_CONTROL register. You should break instead of
-returning.
-
-> +	}
-
-Newline here.
-
-- Mani
-
-> +	dw_pcie_writel_dbi(pci, PCIE_PORT_LINK_CONTROL, val);
-> +}
-> +
->  static void dw_pcie_link_set_max_link_width(struct dw_pcie *pci, u32 num_lanes)
->  {
->  	u32 val;
-> @@ -1040,36 +1073,6 @@ void dw_pcie_setup(struct dw_pcie *pci)
->  		dw_pcie_writel_dbi(pci, PCIE_PL_CHK_REG_CONTROL_STATUS, val);
->  	}
->  
-> -	val = dw_pcie_readl_dbi(pci, PCIE_PORT_LINK_CONTROL);
-> -	val &= ~PORT_LINK_FAST_LINK_MODE;
-> -	val |= PORT_LINK_DLL_LINK_EN;
-> -	dw_pcie_writel_dbi(pci, PCIE_PORT_LINK_CONTROL, val);
-> -
-> -	if (!pci->num_lanes) {
-> -		dev_dbg(pci->dev, "Using h/w default number of lanes\n");
-> -		return;
-> -	}
-> -
-> -	/* Set the number of lanes */
-> -	val &= ~PORT_LINK_MODE_MASK;
-> -	switch (pci->num_lanes) {
-> -	case 1:
-> -		val |= PORT_LINK_MODE_1_LANES;
-> -		break;
-> -	case 2:
-> -		val |= PORT_LINK_MODE_2_LANES;
-> -		break;
-> -	case 4:
-> -		val |= PORT_LINK_MODE_4_LANES;
-> -		break;
-> -	case 8:
-> -		val |= PORT_LINK_MODE_8_LANES;
-> -		break;
-> -	default:
-> -		dev_err(pci->dev, "num-lanes %u: invalid value\n", pci->num_lanes);
-> -		return;
-> -	}
-> -	dw_pcie_writel_dbi(pci, PCIE_PORT_LINK_CONTROL, val);
-> -
-> +	dw_pcie_link_set_max_width(pci, pci->num_lanes);
->  	dw_pcie_link_set_max_link_width(pci, pci->num_lanes);
->  }
-> -- 
-> 2.25.1
-> 
-
--- 
-மணிவண்ணன் சதாசிவம்
+> Best regards,
