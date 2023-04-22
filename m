@@ -2,67 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B48246EB63C
-	for <lists+devicetree@lfdr.de>; Sat, 22 Apr 2023 02:11:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 581F76EB64B
+	for <lists+devicetree@lfdr.de>; Sat, 22 Apr 2023 02:13:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233765AbjDVALM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Apr 2023 20:11:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49928 "EHLO
+        id S233943AbjDVANz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Apr 2023 20:13:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232120AbjDVALL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 20:11:11 -0400
-Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69F261FF1
-        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 17:11:10 -0700 (PDT)
-Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-54fc94476e2so26760497b3.1
-        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 17:11:10 -0700 (PDT)
+        with ESMTP id S233926AbjDVANx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Apr 2023 20:13:53 -0400
+Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59E16269A
+        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 17:13:51 -0700 (PDT)
+Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-54f8e81c3f3so33500317b3.1
+        for <devicetree@vger.kernel.org>; Fri, 21 Apr 2023 17:13:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682122269; x=1684714269;
+        d=linaro.org; s=google; t=1682122430; x=1684714430;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=r3HVdBHp8ZBwMLtZhZM5THuZ2ayBVN8mjzgRnQU8doU=;
-        b=TjWZ3JK9IrZTvA1Bv6JMW20hD5ah5RMXp0tjjtzTlUyd+jMQ+x4f1teFgMqG+4lqaI
-         m+7CzrP2VyA1O97vbAgY8i76DQ0mHZjwNk5w98X0C6Mgm3Q9cNOl1POlCNpQVjWAw4pP
-         Hv8qDMxEK5hdPhwikYvjsU9I8ENe3RW9dyYETQwruOElgdzEEtUOry3T97pqvJlkYdWa
-         Zcny1b0NrqcW3tqnWqIBpxv7JVQBsyWjrCQQlcfJbHDz+yNkf3H2BqR7TuIvN5+qdbCK
-         8mKGbkwQEZgEQxm4iiHHv94lf2GfHuaNBrZkxaGGUvbfwcsZw8VlJNALiCt/xoeVx+Oc
-         UYHg==
+        bh=GzjW1lq0MJ52FFDUmy1RMun3dw9kCODZzOkNuQoKVFQ=;
+        b=J8zz0xzVEVTmuO+QCchnyLOACpU2OxMwN76VmUoQNxeJD7lSyHM4h0YEOymgGKgAsY
+         5x97hyE/nqCLpE6W9A6gTiqMRgVb/ZKus6pzuNQu9QEvkESDmRTL1HNYKD9T8IqGfdfY
+         I5WeVtMLpijK+KscUwWaVcwhYvndgz1r6HhkopfxHiRZNYwfVad9c+OV5I1Jh9fSlRep
+         U8qXNVrEXbFla9nl8q/sFG+xaCiVnOmEokum3DXsBPteVMaqmHWBPmx1Yw7kUoRHPnZL
+         dw4QD4IIYU8g42uQ68aklxRgIM4dFOmcBOPMNy/vsMGfaTepKxctuVTV123jbhPFDY90
+         Q+4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682122269; x=1684714269;
+        d=1e100.net; s=20221208; t=1682122430; x=1684714430;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=r3HVdBHp8ZBwMLtZhZM5THuZ2ayBVN8mjzgRnQU8doU=;
-        b=bV7l2W/8sJ96LS2tQSpDMTGFIfzaQFQvhHt96BOhuq54xT9SDi9t/DrauXa/WxBx/D
-         MN9etGOcmOd+7lCXYl1bj7Ji94mjwrPcEhSdQEVfMk9xPtbEAEYlhxqyUk9+pu3TgN8K
-         NTtv20ifnGXUu0Q81OQYSVBdJvOHKFqJHMo4h4Zu9cHom6emSIf/j7oNJZD1S+YC+nK8
-         NdLWzMHaao94aphKK0PcvWFJ7SFoCi+fEPHXoLjWB7rCyqJD/LGpzaM1NJqBdM7HejC0
-         ygYPxNYAADir7zslqPhnLeU9vgzCrPaVbyvJp90y26OIdcchVcTD1xDHEiIK1tLk7C0c
-         Z8ig==
-X-Gm-Message-State: AAQBX9dcYw+E1heXTT1uJkLgFx8MdP+mFH35n6hSbiP5OMvrules8Cuf
-        lEcoKJALScu4uaw+WPEffRvBT9xcuHWGtyhaQmEtzw==
-X-Google-Smtp-Source: AKy350axjsvBsIM3jCVhZmPPFcVSlFJAhwx2i17gUtOdiELJB+ptq7C/I/6poiIDNXWz2u2AhTVw2PMBoYbPM4q2pZo=
-X-Received: by 2002:a81:61c2:0:b0:552:b9ad:f2e4 with SMTP id
- v185-20020a8161c2000000b00552b9adf2e4mr3038639ywb.51.1682122269662; Fri, 21
- Apr 2023 17:11:09 -0700 (PDT)
+        bh=GzjW1lq0MJ52FFDUmy1RMun3dw9kCODZzOkNuQoKVFQ=;
+        b=OhyEkRTrBbulrmak+qEga9ABVi6RLhYMzvXa0UoGoI/bP2X9qsOtPPa1HOwJECAmKv
+         PA++pYg0mPH/8yHV3DjALvNYYQo7SmGl6vA1awP43ZP7Qqb4gtg8RZ+XVrqhrRbzFiMn
+         /+Paz5o27ph2t4dDsAALWO1qYhXgnGnu1pgzv7LjGS8NoDcnJqWuEd7Un+PbR02t+MGG
+         VR59gG6lkUzd2sU9Rra+J6MgCYN908JOQ4xAG33tN/L8NOG5i2cf3ryJP0hhbfq2laJs
+         R1QkXO2qRPPmIsy11/ueOsBioeY5yHy+KwAv1+94xMuUBFjMf+0uUejtt6wKr9tc54ic
+         2V3Q==
+X-Gm-Message-State: AAQBX9dP3/Ooko7KTpMIPsqkXk5Mn+5H1FcyywA9xUVlCYYRilBEw+ri
+        JNsXwx6LJN1QzW0qn3eZYe9Ihyz3l3oFQSANSSsWTQ==
+X-Google-Smtp-Source: AKy350YD/7d1h1phzQfoDhjdI8jO1aJLgkfA7UGVDvuyuI4QrGdpzww8tQUWXQoC+TO38zUmAMs0m9bqWMHMnsrhCow=
+X-Received: by 2002:a81:4fd7:0:b0:54b:fcc4:b3f4 with SMTP id
+ d206-20020a814fd7000000b0054bfcc4b3f4mr3162136ywb.19.1682122430289; Fri, 21
+ Apr 2023 17:13:50 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230421133922.8520-1-quic_shazhuss@quicinc.com> <20230421133922.8520-7-quic_shazhuss@quicinc.com>
-In-Reply-To: <20230421133922.8520-7-quic_shazhuss@quicinc.com>
+References: <20230421124938.21974-1-quic_devipriy@quicinc.com> <20230421124938.21974-6-quic_devipriy@quicinc.com>
+In-Reply-To: <20230421124938.21974-6-quic_devipriy@quicinc.com>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Sat, 22 Apr 2023 03:10:58 +0300
-Message-ID: <CAA8EJpov_2TS65NZimVmXe0meNV8rz_wXyNDz_0wK-qQJHW7tQ@mail.gmail.com>
-Subject: Re: [PATCH v1 6/6] arm64: dts: qcom: sa8775p-ride: enable USB nodes
-To:     Shazad Hussain <quic_shazhuss@quicinc.com>
-Cc:     agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org
+Date:   Sat, 22 Apr 2023 03:13:39 +0300
+Message-ID: <CAA8EJpqx1jv_xEnS-2rOOGCtEB=1vo477H7XLGGvH=o7NHJD7w@mail.gmail.com>
+Subject: Re: [PATCH V3 5/6] arm64: dts: qcom: ipq9574: Enable PCIe PHYs and controllers
+To:     Devi Priya <quic_devipriy@quicinc.com>
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
+        bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org,
+        mturquette@baylibre.com, sboyd@kernel.org, mani@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-clk@vger.kernel.org, quic_srichara@quicinc.com,
+        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
+        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
+        quic_ipkumar@quicinc.com
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
@@ -74,16 +74,116 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 21 Apr 2023 at 16:41, Shazad Hussain <quic_shazhuss@quicinc.com> wrote:
+On Fri, 21 Apr 2023 at 15:51, Devi Priya <quic_devipriy@quicinc.com> wrote:
 >
-> Enable usb0, usb1 and usb2 nodes and their respective phy's.
+> Enable the PCIe controller and PHY nodes corresponding to
+> RDP 433.
 >
-> Signed-off-by: Shazad Hussain <quic_shazhuss@quicinc.com>
+> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
 > ---
->  arch/arm64/boot/dts/qcom/sa8775p-ride.dts | 92 +++++++++++++++++++++++
->  1 file changed, 92 insertions(+)
+>  Changes in V3:
+>         - No change
+>
+>  arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts | 62 +++++++++++++++++++++
+>  1 file changed, 62 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
+> index 7be578017bf7..3ae38cf327ea 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
+> +++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
+> @@ -8,6 +8,7 @@
+>
+>  /dts-v1/;
+>
+> +#include <dt-bindings/gpio/gpio.h>
+>  #include "ipq9574.dtsi"
+>
+>  / {
+> @@ -43,6 +44,42 @@
+>         };
+>  };
+>
+> +&pcie1_phy {
+> +       status = "okay";
+> +};
+> +
+> +&pcie1 {
+> +       pinctrl-names = "default";
+> +       pinctrl-0 = <&pcie_1_pin>;
+> +
+> +       perst-gpios = <&tlmm 26 GPIO_ACTIVE_LOW>;
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Usually qcom PCIe hosts also define wake-gpios.
+
+> +       status = "okay";
+> +};
+> +
+> +&pcie2_phy {
+> +       status = "okay";
+> +};
+> +
+> +&pcie2 {
+> +       pinctrl-names = "default";
+> +       pinctrl-0 = <&pcie_2_pin>;
+> +
+> +       perst-gpios = <&tlmm 29 GPIO_ACTIVE_LOW>;
+> +       status = "okay";
+> +};
+> +
+> +&pcie3_phy {
+> +       status = "okay";
+> +};
+> +
+> +&pcie3 {
+> +       pinctrl-names = "default";
+> +       pinctrl-0 = <&pcie_3_pin>;
+> +
+> +       perst-gpios = <&tlmm 32 GPIO_ACTIVE_LOW>;
+> +       status = "okay";
+> +};
+> +
+>  &sdhc_1 {
+>         pinctrl-0 = <&sdc_default_state>;
+>         pinctrl-names = "default";
+> @@ -60,6 +97,31 @@
+>  };
+>
+>  &tlmm {
+> +
+> +       pcie_1_pin: pcie-1-state {
+> +               pins = "gpio26";
+> +               function = "gpio";
+> +               drive-strength = <8>;
+> +               bias-pull-down;
+> +               output-low;
+
+No clkreq and no wake gpios?
+
+> +       };
+> +
+> +       pcie_2_pin: pcie-2-state {
+> +               pins = "gpio29";
+> +               function = "gpio";
+> +               drive-strength = <8>;
+> +               bias-pull-down;
+> +               output-low;
+> +       };
+> +
+> +       pcie_3_pin: pcie-3-state {
+> +               pins = "gpio32";
+> +               function = "gpio";
+> +               drive-strength = <8>;
+> +               bias-pull-up;
+> +               output-low;
+> +       };
+> +
+>         sdc_default_state: sdc-default-state {
+>                 clk-pins {
+>                         pins = "gpio5";
+> --
+> 2.17.1
+>
+
 
 -- 
 With best wishes
