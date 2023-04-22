@@ -2,78 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EA3E6EB9C8
-	for <lists+devicetree@lfdr.de>; Sat, 22 Apr 2023 16:53:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A4D56EB9D1
+	for <lists+devicetree@lfdr.de>; Sat, 22 Apr 2023 17:04:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229747AbjDVOxQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Apr 2023 10:53:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59232 "EHLO
+        id S229716AbjDVPEB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Apr 2023 11:04:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229583AbjDVOxP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Apr 2023 10:53:15 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CE5A173B
-        for <devicetree@vger.kernel.org>; Sat, 22 Apr 2023 07:53:14 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-4ec9ccab8bbso2769086e87.2
-        for <devicetree@vger.kernel.org>; Sat, 22 Apr 2023 07:53:13 -0700 (PDT)
+        with ESMTP id S229556AbjDVPEA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Apr 2023 11:04:00 -0400
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 191B819BD;
+        Sat, 22 Apr 2023 08:04:00 -0700 (PDT)
+Received: by mail-pl1-x636.google.com with SMTP id d9443c01a7336-1a526aa3dd5so34363415ad.3;
+        Sat, 22 Apr 2023 08:04:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682175192; x=1684767192;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5QiuEHyuEVtBRzcyBFE0SWW5sqcYBYGFxWhmKx74IZ8=;
-        b=Th/CwVCXT4rTyRaAz1noHSnkdLNoKTfuOM+TrtVbtMSZIcWpDQDwjN7n1tfoEVnvjI
-         6hCutSz4I0vQ3gJLJAB8UhaZ7GwgKb7W3Oy+h5RvPlw1W3Mbm3jD2g1oooMVZjQ9lD5r
-         qarAWgnR5yNuFpkAXayyL5kre/7fOFEeFr6EaeksMqLOOz0JJ3aT20LFSeDuBGKlnuG5
-         EAZ3o8GMc+zLJ/KqvKbBtB2TDsa6D4sPMaHqogHO28p0/K4rwBkPwWlBADYx19/PS73z
-         onMF/h4YAcqKi2P92Xf4T8ZSQQUCTY7ZvxAPWQ6sC3wLeNf/qk/wQDaBHs/FD6kiIv1x
-         A20w==
+        d=gmail.com; s=20221208; t=1682175839; x=1684767839;
+        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FfAo/dxreW/uigF9ipHrmiuIgnfgix7IRNyvfV3apuQ=;
+        b=kplYe/cTNPWzdBDRIgkzD26gPlImuWavD9OmX9VrLT29miTb1ufHqQ8QbB7VP1Vq+D
+         lo0TTohsHVN/bZaZO8800FE8/Bd4GDZ8/7PMaS6sJVnkv7OXuTbUm4nO1uQzYsUuUZfO
+         GXL1S6QPNnvjuCZNyk6UaKckTxnojK3GD4G6gQs2ATmh6ScmDebfD20PW8/fzDGf8S1E
+         3pjvc8UBq3YML0YLuWHVkuH4Qh1T2Al8jUw326nz1oijGwuJNqNpcwXU5FDBrOf1sGZc
+         fRa/zMiw2MdhyioWYfyzsskWsK6Aio85SMsQa/RB8ArweR8Wa62b8U4unh+mF1XB5LKH
+         WbKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682175192; x=1684767192;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5QiuEHyuEVtBRzcyBFE0SWW5sqcYBYGFxWhmKx74IZ8=;
-        b=ByGfkbMzgYjV1KQc2QXIYq0PKGBlkSnd+8scUlRHkHbR2GbZn0XcoSKU4eQfl1uufx
-         k7zlhKs4IBHtycdmOiSXEt7q+OaUlpnMHYQg5plcGqNPLu1DykB8nGyomwsW4m6LBirM
-         DguWhaQ6XldC91XVH0b5+fZOyCLod+hTwErH1n+Tb5iqz5G0hWWV8JuHmLqzLPGCiqDc
-         ox3IvKERCxApLH7vfZH3TG3COUit1GzM2ySMszbSAxkX/EBEPRiaIGZUVzXEmXEHr+Br
-         lpE8S4DPMDXr/ngr49jyNZSXf4AWrQ//UHo0VocweiISEzjd4okGQPBIfe2CFIu6Pb6i
-         fnTA==
-X-Gm-Message-State: AAQBX9exKTZ4n08sKklDVzNIrHlcko844eLx0YmTN4ASk2s0+Ceab9GA
-        mSfvBbqARTeHBvWbpKir05VbYA==
-X-Google-Smtp-Source: AKy350aS5rCVAH7NM9Ys5LmRcmqCGbhFgBWCpE7TWaSLkEFqfkYjTCWiRhBmIuzdFWVtJQGL99DamA==
-X-Received: by 2002:a2e:93d6:0:b0:298:a840:ec65 with SMTP id p22-20020a2e93d6000000b00298a840ec65mr1218001ljh.36.1682175192235;
-        Sat, 22 Apr 2023 07:53:12 -0700 (PDT)
-Received: from [192.168.1.101] (abyj144.neoplus.adsl.tpnet.pl. [83.9.29.144])
-        by smtp.gmail.com with ESMTPSA id g11-20020a2eb0cb000000b002a9f966f4b3sm793957ljl.26.2023.04.22.07.53.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 22 Apr 2023 07:53:11 -0700 (PDT)
-Message-ID: <0cd2b623-a625-11d7-f562-3af97367bfec@linaro.org>
-Date:   Sat, 22 Apr 2023 16:53:10 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v5 11/14] arm64: dts: qcom: qrb5165-rb5: Switch on TCPM
- usb-role-switching for usb_1
-Content-Language: en-US
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, linux@roeck-us.net,
-        heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org,
-        andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-usb@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     caleb.connolly@linaro.org, subbaram@quicinc.com, jackp@quicinc.com,
-        robertom@qti.qualcomm.com
-References: <20230413113438.1577658-1-bryan.odonoghue@linaro.org>
- <20230413113438.1577658-12-bryan.odonoghue@linaro.org>
- <31bf025d-decf-c30c-8ffe-7e935bb31790@linaro.org>
-In-Reply-To: <31bf025d-decf-c30c-8ffe-7e935bb31790@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        d=1e100.net; s=20221208; t=1682175839; x=1684767839;
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=FfAo/dxreW/uigF9ipHrmiuIgnfgix7IRNyvfV3apuQ=;
+        b=gSh6B5GApGSTkGNyZ4YOOwZDZ11f8RCzoZfTqnZpJOaus5fpsOd6gC0wuPYw7YtEwd
+         S5Zzm05p8W/CPQwG+/jLoUskURAS697bMi7r621LzfSWFRslt+oYbxznDlrf8fuZQLLY
+         5tRqlHvhBzCGYXFqxI9bhmZjsbEYOetpqqNysm3UTvvOE3ga5zicD6KijHbI08PIKpDq
+         qPCSypog54uvvNTLu+4+sq3oW4+v2gEWC1EgAN0UkAnMMu0CwHz8IPvnNHqEymMqtef2
+         iS4PuyPvdMgcRhvkMIburi02JcQHNisiO1jOjk2Ny9AVyrZQTGpu7MJbKLf7Ha40cpcS
+         Z/hg==
+X-Gm-Message-State: AAQBX9dUp8AZkNqZ4bJorBhcpeXxE7OgqgVRkB1fTHKdBsq+3Oox+rPX
+        uPDUHMGbdqlomL/NRik4eiQ=
+X-Google-Smtp-Source: AKy350Z7G1Y/sgwTVvFKh+wH/R8tXE0+c/A/R974D7kOo4c0Z/Hhx+30zhWyEBqI8bPHDIhpGi+oWQ==
+X-Received: by 2002:a17:903:32cc:b0:1a1:f5dd:2dce with SMTP id i12-20020a17090332cc00b001a1f5dd2dcemr10828357plr.6.1682175839453;
+        Sat, 22 Apr 2023 08:03:59 -0700 (PDT)
+Received: from localhost.localdomain ([117.172.46.191])
+        by smtp.gmail.com with ESMTPSA id jh21-20020a170903329500b001a52abb3be3sm4163497plb.201.2023.04.22.08.03.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 22 Apr 2023 08:03:59 -0700 (PDT)
+From:   "logic.yu" <hymmsx.yu@gmail.com>
+To:     robh+dt@kernel.org
+Cc:     frowand.list@gmail.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] of:Use remote_parent instead of remote
+Date:   Sat, 22 Apr 2023 08:03:43 -0700
+Message-Id: <20230422150343.43569-1-hymmsx.yu@gmail.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,64 +65,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Since the parent node of the remote node is obtained here,
+it is more reasonable to change it to the remote_parent
 
+Signed-off-by: logic.yu <hymmsx.yu@gmail.com>
+---
+ drivers/of/property.c | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-On 22.04.2023 16:52, Konrad Dybcio wrote:
-> 
-> 
-> On 13.04.2023 13:34, Bryan O'Donoghue wrote:
->> Switch on usb-role-switching for usb_1 via TCPM. We need to declare
->> usb-role-switch in &usb_1 and associate with the remote-endpoint in TCPM
->> which provides the necessary signal.
->>
->> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
->> ---
-> This belongs to the SoC DTSI as it describes the capabilities
-> of the USB controllers on the chip.
-> 
-> Also please add a newline before each subnode.
-To be clear, I meant the port definitions and properties,
-not the DWC<->PMIC_TCPM port assignments
+diff --git a/drivers/of/property.c b/drivers/of/property.c
+index ddc75cd50825..ee5f0c008b40 100644
+--- a/drivers/of/property.c
++++ b/drivers/of/property.c
+@@ -835,7 +835,7 @@ EXPORT_SYMBOL(of_graph_get_endpoint_count);
+ struct device_node *of_graph_get_remote_node(const struct device_node *node,
+ 					     u32 port, u32 endpoint)
+ {
+-	struct device_node *endpoint_node, *remote;
++	struct device_node *endpoint_node, *remote_parent;
+ 
+ 	endpoint_node = of_graph_get_endpoint_by_regs(node, port, endpoint);
+ 	if (!endpoint_node) {
+@@ -844,20 +844,20 @@ struct device_node *of_graph_get_remote_node(const struct device_node *node,
+ 		return NULL;
+ 	}
+ 
+-	remote = of_graph_get_remote_port_parent(endpoint_node);
++	remote_parent = of_graph_get_remote_port_parent(endpoint_node);
+ 	of_node_put(endpoint_node);
+-	if (!remote) {
+-		pr_debug("no valid remote node\n");
++	if (!remote_parent) {
++		pr_debug("no valid remote_parent node\n");
+ 		return NULL;
+ 	}
+ 
+-	if (!of_device_is_available(remote)) {
+-		pr_debug("not available for remote node\n");
+-		of_node_put(remote);
++	if (!of_device_is_available(remote_parent)) {
++		pr_debug("not available for remote_parent node\n");
++		of_node_put(remote_parent);
+ 		return NULL;
+ 	}
+ 
+-	return remote;
++	return remote_parent;
+ }
+ EXPORT_SYMBOL(of_graph_get_remote_node);
+ 
+-- 
+2.17.1
 
-Konrad
-> 
-> Konrad
->>  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 19 ++++++++++++++++++-
->>  1 file changed, 18 insertions(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
->> index 1e0b6fd59abc9..b5cc45358a474 100644
->> --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
->> +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
->> @@ -1273,7 +1273,13 @@ &usb_1 {
->>  };
->>  
->>  &usb_1_dwc3 {
->> -	dr_mode = "peripheral";
->> +	dr_mode = "otg";
->> +	usb-role-switch;
->> +	port {
->> +		dwc3_role_switch_in: endpoint {
->> +			remote-endpoint = <&pm8150b_role_switch_out>;
->> +		};
->> +	};
->>  };
->>  
->>  &usb_1_hsphy {
->> @@ -1359,5 +1365,16 @@ connector {
->>  					 PDO_FIXED_DUAL_ROLE |
->>  					 PDO_FIXED_USB_COMM |
->>  					 PDO_FIXED_DATA_SWAP)>;
->> +		ports {
->> +			#address-cells = <1>;
->> +			#size-cells = <0>;
->> +
->> +			port@0 {
->> +				reg = <0>;
->> +				pm8150b_role_switch_out: endpoint {
->> +					remote-endpoint = <&dwc3_role_switch_in>;
->> +				};
->> +			};
->> +		};
->>  	};
->>  };
