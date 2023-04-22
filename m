@@ -2,102 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F9F96EB9C5
-	for <lists+devicetree@lfdr.de>; Sat, 22 Apr 2023 16:51:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C40E66EB9C6
+	for <lists+devicetree@lfdr.de>; Sat, 22 Apr 2023 16:52:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229673AbjDVOvq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Apr 2023 10:51:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58732 "EHLO
+        id S229742AbjDVOwI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Apr 2023 10:52:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229451AbjDVOvq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Apr 2023 10:51:46 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40A221723;
-        Sat, 22 Apr 2023 07:51:45 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id CD990617ED;
-        Sat, 22 Apr 2023 14:51:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91B0BC433EF;
-        Sat, 22 Apr 2023 14:51:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1682175104;
-        bh=KeQQKkot+tXQJMDWgdwmy79BKsRWMCpyn3+/1yDukH4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Y1EDmmXkMHXvJ0cctvCcimDFMWMc3juo4kjBCSxUO78Yv0tJuMix6SDgtqNhkOe1K
-         BghfL5F833QEQdqXjyByDszuMAj/KTLotiPxukUnAEF28TE+4koGHBIHU8jgmGoNX6
-         MwGKi8nTToou4+XHus0Qxx1Ud/XAmkziTrbW7L2KSymtZB19QWwKCZnBWTklZal+cn
-         QNp1ky3FmQapJjscBJ5I7TV2+8qILk8++7ixlTa12l+ZHkTtmiWKBylPrCCNznL+Qk
-         TVvcfdneoflf1/njm0RUXrcCIAU9HEclXyVw9hSfF0hrAZi83T59VISPjsLGPdXTAW
-         4Ewe5UR8UtR9w==
-Date:   Sat, 22 Apr 2023 20:21:36 +0530
-From:   Manivannan Sadhasivam <mani@kernel.org>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
-        fancer.lancer@gmail.com, lpieralisi@kernel.org, robh+dt@kernel.org,
-        kw@linux.com, bhelgaas@google.com, kishon@kernel.org,
-        marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v13 22/22] misc: pci_endpoint_test: Add Device ID for
- R-Car S4-8 PCIe controller
-Message-ID: <20230422145136.GS4769@thinkpad>
-References: <20230418122403.3178462-1-yoshihiro.shimoda.uh@renesas.com>
- <20230418122403.3178462-23-yoshihiro.shimoda.uh@renesas.com>
+        with ESMTP id S229451AbjDVOwH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Apr 2023 10:52:07 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B57331726
+        for <devicetree@vger.kernel.org>; Sat, 22 Apr 2023 07:52:05 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-4ec8da7aaf8so2844745e87.2
+        for <devicetree@vger.kernel.org>; Sat, 22 Apr 2023 07:52:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1682175124; x=1684767124;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ywAzN0uwbepU/kzWWxbD8/+wKk3qdyKFmWyIzqUzcGQ=;
+        b=JFJkSdKtcHg59NvHIer99gkKAEicInvefBh6FZHy9yKQu1SenWhI66HF4xGkIUxm1Q
+         Pkg5W6ri5pkEVPnCfDezi+wDbaRRtrEn4CKDtlAgHrYwC+GvgEhJghghVpX2YGRgLlkc
+         lcm4wAxqDZKg3FUJeKCTA9DGAZeAQdSm/e/+1PwMtKoZsTjzW1RZQGZXuanLWDyJFyBR
+         uJUjmI4MzdCbfcqion3yjOA2sI1aUHmkR0pSTSjHZBcj2qfFbyYozPzjKQ9cMz+tLvgN
+         /5fWqTjgmeL8tVbIhJSUY6zepUm1LIFjJz/LuwVYYkaAg4bWRvF8v7fXFwnoFYF3zOcs
+         aLuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682175124; x=1684767124;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ywAzN0uwbepU/kzWWxbD8/+wKk3qdyKFmWyIzqUzcGQ=;
+        b=dlm7CEkvzC+fEUYX9mt4bPQDdYf7Qm/84N24kwjRpybAzAgTv4lx3fgQ2d5DyOz1jT
+         k+6QQ17wXHvLaTR9uq5lEZ+206k33+T9s591qHCR4ZmikdDU6U5ggPZ1DhYIeEmxRHYr
+         GS/MET2XWXn9ivajzBT+uf4j71bFEjxpejlakbLWGX7rdu2l1A6ghUnPBQU1EbLczp3Z
+         8pftI28qWMZY3QVhCGJSR4RNA9kmoEZ9RM7htSlAYzqiHoyNL9kfrJSYH6Eo+Ztt+JQy
+         S/QCfQuEDUQEg/mjnMppBnmU0tYYJjLuln/BTOaAQ6mUF/I/zz0HykdDfdym6e9rSwU4
+         lReg==
+X-Gm-Message-State: AAQBX9eWvbJgGnYRiDleT3ga2fxZEmhBftC2xPp5bHQigkCLSSxfRQBi
+        wkVdrxQU28hUIzqCdePx1cf6YA==
+X-Google-Smtp-Source: AKy350Yy9He00JyxJYgCrhoncnpgPUu+lmynJn6gPzpunftRFikNXDR8nvbg2gAzLONeNNn+6T+e3Q==
+X-Received: by 2002:ac2:490e:0:b0:4d7:59e6:388e with SMTP id n14-20020ac2490e000000b004d759e6388emr1973780lfi.46.1682175123979;
+        Sat, 22 Apr 2023 07:52:03 -0700 (PDT)
+Received: from [192.168.1.101] (abyj144.neoplus.adsl.tpnet.pl. [83.9.29.144])
+        by smtp.gmail.com with ESMTPSA id q2-20020ac25a02000000b004b4cbc942a3sm923986lfn.127.2023.04.22.07.52.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 22 Apr 2023 07:52:03 -0700 (PDT)
+Message-ID: <31bf025d-decf-c30c-8ffe-7e935bb31790@linaro.org>
+Date:   Sat, 22 Apr 2023 16:52:01 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230418122403.3178462-23-yoshihiro.shimoda.uh@renesas.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v5 11/14] arm64: dts: qcom: qrb5165-rb5: Switch on TCPM
+ usb-role-switching for usb_1
+Content-Language: en-US
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, linux@roeck-us.net,
+        heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-usb@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     caleb.connolly@linaro.org, subbaram@quicinc.com, jackp@quicinc.com,
+        robertom@qti.qualcomm.com
+References: <20230413113438.1577658-1-bryan.odonoghue@linaro.org>
+ <20230413113438.1577658-12-bryan.odonoghue@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230413113438.1577658-12-bryan.odonoghue@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 18, 2023 at 09:24:03PM +0900, Yoshihiro Shimoda wrote:
-> Add Renesas R8A779F0 in pci_device_id table so that pci-epf-test
-> can be used for testing PCIe EP on R-Car S4-8.
+
+
+On 13.04.2023 13:34, Bryan O'Donoghue wrote:
+> Switch on usb-role-switching for usb_1 via TCPM. We need to declare
+> usb-role-switch in &usb_1 and associate with the remote-endpoint in TCPM
+> which provides the necessary signal.
 > 
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-
-Acked-by: Manivannan Sadhasivam <mani@kernel.org>
-
-- Mani
-
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 > ---
->  drivers/misc/pci_endpoint_test.c | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/drivers/misc/pci_endpoint_test.c b/drivers/misc/pci_endpoint_test.c
-> index a7244de081ec..1d8f72b42c0a 100644
-> --- a/drivers/misc/pci_endpoint_test.c
-> +++ b/drivers/misc/pci_endpoint_test.c
-> @@ -81,6 +81,7 @@
->  #define PCI_DEVICE_ID_RENESAS_R8A774B1		0x002b
->  #define PCI_DEVICE_ID_RENESAS_R8A774C0		0x002d
->  #define PCI_DEVICE_ID_RENESAS_R8A774E1		0x0025
-> +#define PCI_DEVICE_ID_RENESAS_R8A779F0		0x0031
->  
->  static DEFINE_IDA(pci_endpoint_test_ida);
->  
-> @@ -993,6 +994,9 @@ static const struct pci_device_id pci_endpoint_test_tbl[] = {
->  	{ PCI_DEVICE(PCI_VENDOR_ID_RENESAS, PCI_DEVICE_ID_RENESAS_R8A774B1),},
->  	{ PCI_DEVICE(PCI_VENDOR_ID_RENESAS, PCI_DEVICE_ID_RENESAS_R8A774C0),},
->  	{ PCI_DEVICE(PCI_VENDOR_ID_RENESAS, PCI_DEVICE_ID_RENESAS_R8A774E1),},
-> +	{ PCI_DEVICE(PCI_VENDOR_ID_RENESAS, PCI_DEVICE_ID_RENESAS_R8A779F0),
-> +	  .driver_data = (kernel_ulong_t)&default_data,
-> +	},
->  	{ PCI_DEVICE(PCI_VENDOR_ID_TI, PCI_DEVICE_ID_TI_J721E),
->  	  .driver_data = (kernel_ulong_t)&j721e_data,
->  	},
-> -- 
-> 2.25.1
-> 
+This belongs to the SoC DTSI as it describes the capabilities
+of the USB controllers on the chip.
 
--- 
-மணிவண்ணன் சதாசிவம்
+Also please add a newline before each subnode.
+
+Konrad
+>  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 19 ++++++++++++++++++-
+>  1 file changed, 18 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> index 1e0b6fd59abc9..b5cc45358a474 100644
+> --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> @@ -1273,7 +1273,13 @@ &usb_1 {
+>  };
+>  
+>  &usb_1_dwc3 {
+> -	dr_mode = "peripheral";
+> +	dr_mode = "otg";
+> +	usb-role-switch;
+> +	port {
+> +		dwc3_role_switch_in: endpoint {
+> +			remote-endpoint = <&pm8150b_role_switch_out>;
+> +		};
+> +	};
+>  };
+>  
+>  &usb_1_hsphy {
+> @@ -1359,5 +1365,16 @@ connector {
+>  					 PDO_FIXED_DUAL_ROLE |
+>  					 PDO_FIXED_USB_COMM |
+>  					 PDO_FIXED_DATA_SWAP)>;
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@0 {
+> +				reg = <0>;
+> +				pm8150b_role_switch_out: endpoint {
+> +					remote-endpoint = <&dwc3_role_switch_in>;
+> +				};
+> +			};
+> +		};
+>  	};
+>  };
