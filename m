@@ -2,90 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF0FD6EB94F
-	for <lists+devicetree@lfdr.de>; Sat, 22 Apr 2023 15:20:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40B836EB953
+	for <lists+devicetree@lfdr.de>; Sat, 22 Apr 2023 15:22:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229670AbjDVNUX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Apr 2023 09:20:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35652 "EHLO
+        id S229635AbjDVNWx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Apr 2023 09:22:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229635AbjDVNUW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Apr 2023 09:20:22 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33E76B6;
-        Sat, 22 Apr 2023 06:20:21 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BE49360B1B;
-        Sat, 22 Apr 2023 13:20:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 193C2C4339B;
-        Sat, 22 Apr 2023 13:20:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1682169620;
-        bh=rNqJt/U2DV7UKK5IXLG+r8263C65IuFuKNAfZWXNhuk=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=MARTSRX7DCUmlPFHgkUi4Bvzba/MLqwBXnFyqT5hRKrs9o/bn+eHf3iG7h9jI3sN+
-         8ccZTuA2SAuZt/0vIcB6amWZe93lTSfX5zww/Ep1MUO9RPFK8+eLZ5r4U4Jfwp0nP5
-         473Nszs8PSoEML1VCh2Ec9tKUiPau6dcyuUg0H3arDNUClujouVTQKSHKlcaCDwJHV
-         fvHOEELQ0eDtiCwarmibZE3F3eOFhaSjftTpdWyS+t+eMXvk/0Irrtu2xr4aO0uzvZ
-         w4l17hhDORxaYz8xFRdb4G5BX69mv+GjR3wS1R0csYJdM8BLYg8VQjZaOZRF18Dqzz
-         LpFIY53l2ElFQ==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id EAAB6E270DA;
-        Sat, 22 Apr 2023 13:20:19 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S229479AbjDVNWw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Apr 2023 09:22:52 -0400
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0D4A10E2;
+        Sat, 22 Apr 2023 06:22:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1682169770; x=1713705770;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=4hmqW8jviqLT2Gn4j6xIteHxG2TJ3+3ga9V3vfgYALA=;
+  b=fkvQOP/7PQ9QED+8hhgRWYg0Wp6sYbUaaJMKlW0kvOmX3iRGBCCCe469
+   ZXPJYth3Y+yEG1YI2aEYAJnmEohSQeMyFGMilZZolMmH56hFZRQRxJLjg
+   WIQJYV6FTN+rI+IUo3ROmWBHL28vGTeKlCbUqyS0t0zo7VUrrf1nnpf4G
+   4OY7RoYIROc8jOY3XpPPZbw4vXbA90NYqBxAwcHBJ1UHsH3b2XLhETDRf
+   e/ZPR1atcr55MCB5Ltw4qCn6XbDeD92NoWZO4Usjf9lCEe/WJdEnvS87c
+   ULsW81xWxzyTaUN9VlqrD3YtD8E8iRAHhLizsKOFPhNqaRpHzGN/C9qqh
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10688"; a="325753878"
+X-IronPort-AV: E=Sophos;i="5.99,218,1677571200"; 
+   d="scan'208";a="325753878"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Apr 2023 06:22:50 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10688"; a="938787159"
+X-IronPort-AV: E=Sophos;i="5.99,218,1677571200"; 
+   d="scan'208";a="938787159"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by fmsmga006.fm.intel.com with ESMTP; 22 Apr 2023 06:22:45 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pqDCO-000hJw-2F;
+        Sat, 22 Apr 2023 13:22:44 +0000
+Date:   Sat, 22 Apr 2023 21:22:35 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Nylon Chen <nylon.chen@sifive.com>, aou@eecs.berkeley.edu,
+        conor@kernel.org, emil.renner.berthing@canonical.com,
+        geert+renesas@glider.be, heiko@sntech.de,
+        krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com,
+        paul.walmsley@sifive.com, robh+dt@kernel.org,
+        thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
+        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     oe-kbuild-all@lists.linux.dev, nylon.chen@sifive.com,
+        nylon7717@gmail.com, zong.li@sifive.com, greentime.hu@sifive.com,
+        vincent.chen@sifive.com, Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v3 2/2] pwm: sifive: change the PWM controlled LED
+ algorithm
+Message-ID: <202304222135.B9PoQ5w3-lkp@intel.com>
+References: <20230420093457.18936-3-nylon.chen@sifive.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v2 0/2] net: ethernet: mtk_eth_soc: use WO firmware for MT7981
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <168216961994.26753.10467952224917211812.git-patchwork-notify@kernel.org>
-Date:   Sat, 22 Apr 2023 13:20:19 +0000
-References: <cover.1681994362.git.daniel@makrotopia.org>
-In-Reply-To: <cover.1681994362.git.daniel@makrotopia.org>
-To:     Daniel Golle <daniel@makrotopia.org>
-Cc:     devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        nbd@nbd.name, john@phrozen.org, sean.wang@mediatek.com,
-        Mark-MC.Lee@mediatek.com, lorenzo@kernel.org, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-        matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230420093457.18936-3-nylon.chen@sifive.com>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+Hi Nylon,
 
-This series was applied to netdev/net.git (main)
-by David S. Miller <davem@davemloft.net>:
+kernel test robot noticed the following build warnings:
 
-On Thu, 20 Apr 2023 17:04:02 +0100 you wrote:
-> In order to support wireless offloading on MT7981 we need to load the
-> appropriate firmware. Recognize MT7981 by introducing a new DT compatible
-> and load mt7981_wo.bin if it is set.
-> 
-> Changes since v1:
->  * retain alphabetic order in dt-bindings
-> 
-> [...]
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on thierry-reding-pwm/for-next rockchip/for-next linus/master v6.3-rc7 next-20230421]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Here is the summary with links:
-  - [v2,1/2] dt-bindings: net: mediatek: add WED RX binding for MT7981 eth driver
-    https://git.kernel.org/netdev/net/c/cf88231d9739
-  - [v2,2/2] net: ethernet: mtk_eth_soc: use WO firmware for MT7981
-    https://git.kernel.org/netdev/net/c/86ce0d09e424
+url:    https://github.com/intel-lab-lkp/linux/commits/Nylon-Chen/riscv-dts-sifive-unleashed-unmatched-Remove-PWM-controlled-LED-s-active-low-properties/20230420-173619
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20230420093457.18936-3-nylon.chen%40sifive.com
+patch subject: [PATCH v3 2/2] pwm: sifive: change the PWM controlled LED algorithm
+config: sparc64-randconfig-s031-20230421 (https://download.01.org/0day-ci/archive/20230422/202304222135.B9PoQ5w3-lkp@intel.com/config)
+compiler: sparc64-linux-gcc (GCC) 12.1.0
+reproduce:
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # apt-get install sparse
+        # sparse version: v0.6.4-39-gce1a6720-dirty
+        # https://github.com/intel-lab-lkp/linux/commit/f2d706bf61190a45a8f90f1f455bc943d4ac7b6e
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Nylon-Chen/riscv-dts-sifive-unleashed-unmatched-Remove-PWM-controlled-LED-s-active-low-properties/20230420-173619
+        git checkout f2d706bf61190a45a8f90f1f455bc943d4ac7b6e
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__' O=build_dir ARCH=sparc64 olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__' O=build_dir ARCH=sparc64 SHELL=/bin/bash drivers/pwm/
 
-You are awesome, thank you!
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202304222135.B9PoQ5w3-lkp@intel.com/
+
+sparse warnings: (new ones prefixed by >>)
+>> drivers/pwm/pwm-sifive.c:157:18: sparse: sparse: incompatible types in comparison expression (different type sizes):
+>> drivers/pwm/pwm-sifive.c:157:18: sparse:    unsigned long long const *
+>> drivers/pwm/pwm-sifive.c:157:18: sparse:    unsigned int *
+
+vim +157 drivers/pwm/pwm-sifive.c
+
+   129	
+   130	static int pwm_sifive_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+   131				    const struct pwm_state *state)
+   132	{
+   133		struct pwm_sifive_ddata *ddata = pwm_sifive_chip_to_ddata(chip);
+   134		struct pwm_state cur_state;
+   135		unsigned int duty_cycle, period;
+   136		unsigned long long num;
+   137		bool enabled;
+   138		int ret = 0;
+   139		u32 frac;
+   140	
+   141		if (state->polarity != PWM_POLARITY_NORMAL && state->polarity != PWM_POLARITY_INVERSED)
+   142			return -EINVAL;
+   143	
+   144		cur_state = pwm->state;
+   145		enabled = cur_state.enabled;
+   146	
+   147		duty_cycle = state->duty_cycle;
+   148		if (!state->enabled)
+   149			duty_cycle = 0;
+   150	
+   151		/*
+   152		 * The problem of output producing mixed setting as mentioned at top,
+   153		 * occurs here. To minimize the window for this problem, we are
+   154		 * calculating the register values first and then writing them
+   155		 * consecutively
+   156		 */
+ > 157		period = max(state->period, ddata->approx_period);
+   158		num = (u64)duty_cycle * (1U << PWM_SIFIVE_CMPWIDTH);
+   159		frac = DIV64_U64_ROUND_CLOSEST(num, state->period);
+   160		frac = min(frac, (1U << PWM_SIFIVE_CMPWIDTH) - 1);
+   161		/* The hardware cannot generate a 100% duty cycle */
+   162		frac = (1U << PWM_SIFIVE_CMPWIDTH) - 1 - frac;
+   163	
+   164	
+   165		mutex_lock(&ddata->lock);
+   166		if (state->period != ddata->approx_period) {
+   167			/*
+   168			 * Don't let a 2nd user change the period underneath the 1st user.
+   169			 * However if ddate->approx_period == 0 this is the first time we set
+   170			 * any period, so let whoever gets here first set the period so other
+   171			 * users who agree on the period won't fail.
+   172			 */
+   173			if (ddata->user_count != 1 && ddata->approx_period) {
+   174				mutex_unlock(&ddata->lock);
+   175				return -EBUSY;
+   176			}
+   177			ddata->approx_period = state->period;
+   178			pwm_sifive_update_clock(ddata, clk_get_rate(ddata->clk));
+   179		}
+   180		mutex_unlock(&ddata->lock);
+   181	
+   182		/*
+   183		 * If the PWM is enabled the clk is already on. So only enable it
+   184		 * conditionally to have it on exactly once afterwards independent of
+   185		 * the PWM state.
+   186		 */
+   187		if (!enabled) {
+   188			ret = clk_enable(ddata->clk);
+   189			if (ret) {
+   190				dev_err(ddata->chip.dev, "Enable clk failed\n");
+   191				return ret;
+   192			}
+   193		}
+   194	
+   195		writel(frac, ddata->regs + PWM_SIFIVE_PWMCMP(pwm->hwpwm));
+   196	
+   197		if (!state->enabled)
+   198			clk_disable(ddata->clk);
+   199	
+   200		return 0;
+   201	}
+   202	
+
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
