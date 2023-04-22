@@ -2,225 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 91D516EB8D6
-	for <lists+devicetree@lfdr.de>; Sat, 22 Apr 2023 13:39:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72D446EB8D8
+	for <lists+devicetree@lfdr.de>; Sat, 22 Apr 2023 13:40:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229640AbjDVLjV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Apr 2023 07:39:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36290 "EHLO
+        id S229650AbjDVLkC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Apr 2023 07:40:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229451AbjDVLjU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Apr 2023 07:39:20 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B27BB1BF2;
-        Sat, 22 Apr 2023 04:39:19 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 42FB260180;
-        Sat, 22 Apr 2023 11:39:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FC5EC433D2;
-        Sat, 22 Apr 2023 11:39:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1682163558;
-        bh=pK0qgiNlLboL2fI/esuWJM9FvkpFccUxCjSyFGuRaz0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SLs28FaD8rt1EkkaYryi0jB/vsv8K1XClDsIyh7vk72HwII7dCc1vyIHiL7k4DvDH
-         /W7KH5e8R2/mbWK+OydUsjJPonSYrSzS2wizwuNn/vUGewGqzsOSPNgxIWq3E5Iqxm
-         9fUgOKE+rC1Bf6IOMSk++ak3h+nlxijvtZXleqUMmUqZGJvU3VmiGi4jEfPLfmYngF
-         rU5VP1GFDJxDYifFyj+fFkM1VrhuqL11qCO9y1JbNmZRlBr7vzUHuhwOfPxxikMpiB
-         8spvI7t3SBNIex6WqhvNXXgorEEaAfPnQUao2z7sWCtd0+Z0UPRBbplNcU7m8hauyl
-         rqA6ZXUY4vOrw==
-Date:   Sat, 22 Apr 2023 17:09:08 +0530
-From:   Manivannan Sadhasivam <mani@kernel.org>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
-        fancer.lancer@gmail.com, lpieralisi@kernel.org, robh+dt@kernel.org,
-        kw@linux.com, bhelgaas@google.com, kishon@kernel.org,
-        marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v13 09/22] PCI: dwc: Add support for triggering INTx IRQs
-Message-ID: <20230422113908.GF4769@thinkpad>
-References: <20230418122403.3178462-1-yoshihiro.shimoda.uh@renesas.com>
- <20230418122403.3178462-10-yoshihiro.shimoda.uh@renesas.com>
+        with ESMTP id S229451AbjDVLkB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Apr 2023 07:40:01 -0400
+Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBD671FC8;
+        Sat, 22 Apr 2023 04:39:59 -0700 (PDT)
+Received: from [192.168.178.23] (unknown [62.108.10.64])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id E33A2C4126;
+        Sat, 22 Apr 2023 11:39:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1682163568; bh=4ON6nYYRMHx4lFKX8BnlCFsjoxRKgmTsvbLAUz+qINs=;
+        h=From:Date:Subject:To:Cc;
+        b=CEYAgVaXwuQTFIx91XxjNV1nHTigel1r7l1WYjmlmfv5BOyl7OFIyTXZY5FR74Yfk
+         4AajuuNOw8SzfGHcNzRXpLXiTXiitCLuu3Z4msV+qGrMGX0WUsvaXjEkArXOR4CxlC
+         +H0MSxyYK6QYJ0X6Izbo0U0jP2VzXTjLIUXgTeHY=
+From:   Luca Weiss <luca@z3ntu.xyz>
+Date:   Sat, 22 Apr 2023 13:39:16 +0200
+Subject: [PATCH] arm64: dts: qcom: Add BLSP DMAs for I2C
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230418122403.3178462-10-yoshihiro.shimoda.uh@renesas.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20230422-msm8953-blsp-dma-v1-1-0024801bb587@z3ntu.xyz>
+X-B4-Tracking: v=1; b=H4sIAGPHQ2QC/x2N0QqDMAwAf0XyvICNSnW/MvbQapyBtpMGx0D89
+ 4U93sFxJyhXYYV7c0Llj6i8i4G7NTBvobwYZTEGaqlreyLMmsdp6DAm3XHJAZ3zPXk/DtNKYFk
+ MyhhrKPNmYTlSMrlXXuX7/zye1/UDrySB33cAAAA=
+To:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Luca Weiss <luca@z3ntu.xyz>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4530; i=luca@z3ntu.xyz;
+ h=from:subject:message-id; bh=4ON6nYYRMHx4lFKX8BnlCFsjoxRKgmTsvbLAUz+qINs=;
+ b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBkQ8drwGpA4Flz3H1qKPic0J7y+WVA0qPL4rY9V
+ gTckqIVxEiJAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCZEPHawAKCRBy2EO4nU3X
+ VmP5D/9h8dtAS/7sHgOM12VeVGV3Sexu85JWFXgPoufs6wgQF7vccOa2gboX/MF9YBmOv2yWcqp
+ E0/n5qiRbV2G5xEYynqY93ktCFFrnWlGAXRuyR1PwalBd3kpGu1Avw/g1u3GuMrUuauDoqF1R+2
+ 13k9UoNep4mfCZ3jvdnF+8TvAhFDyqjKIwXBwgx1Gjv24u7XZUJ7mwLbP11ud1sslkA6c6FWPoU
+ o+IwU7fa6Nqz3eYkurs5/rWruFCXA6Fkfygr5uoe0kNorRQo8Rwsr5xKfwmzZG0HgFIQLm8Ie0W
+ sLLN8Uf9dXzZM7Y/d4m3yZJZuiAsn8/0cKds2YNpqWYodvDDC2Qy6GyQcMJk+XJjXcnMozXjO1J
+ 4x5oFqKZdj4NYbY6av5UK0a19H61Sd55x+iA4bQXGy57EaX1wDYpn12NthcrKHN/PfQ5rlkhw48
+ 4if9MiS/ow9Lw8Vjk8CBPuqR51z7//LJv/2uNNEiEzFCtMGZAlpT1htFMzd2DFGYFGjI8O0Fumq
+ AmG5RGgOXgdhhilhuJZPuLha5qSuhjVrC2PTa56kfby70MuPGuGCpD2gkikWu7bz+1OQctgSviW
+ 2bxKMkdF/rF2970T1HnnbepftrggrQmmqeFD8rUBLypc7octzwft8NZcpLaq9UKKSmb7MtbgMbD
+ ma7bZV0Po2j12sg==
+X-Developer-Key: i=luca@z3ntu.xyz; a=openpgp;
+ fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 18, 2023 at 09:23:50PM +0900, Yoshihiro Shimoda wrote:
+MSM8953 has two DMA controllers for the various I2C, SPI and UART
+busses. Add the nodes and configure all the I2C nodes so that the driver
+can use the DMA.
 
-It's good to add "endpoint drivers" in subject as below:
+Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+---
+ arch/arm64/boot/dts/qcom/msm8953.dtsi | 48 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 48 insertions(+)
 
-PCI: dwc: Add support for triggering INTx IRQs from endpoint drivers
+diff --git a/arch/arm64/boot/dts/qcom/msm8953.dtsi b/arch/arm64/boot/dts/qcom/msm8953.dtsi
+index 602cb188a635..c9b589353918 100644
+--- a/arch/arm64/boot/dts/qcom/msm8953.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8953.dtsi
+@@ -1274,6 +1274,19 @@ opp-200000000 {
+ 			};
+ 		};
+ 
++		blsp1_dma: dma-controller@7884000 {
++			compatible = "qcom,bam-v1.7.0";
++			reg = <0x07884000 0x1f000>;
++			interrupts = <GIC_SPI 238 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&gcc GCC_BLSP1_AHB_CLK>;
++			clock-names = "bam_clk";
++			num-channels = <12>;
++			#dma-cells = <1>;
++			qcom,ee = <0>;
++			qcom,num-ees = <4>;
++			qcom,controlled-remotely;
++		};
++
+ 		uart_0: serial@78af000 {
+ 			compatible = "qcom,msm-uartdm-v1.4", "qcom,msm-uartdm";
+ 			reg = <0x078af000 0x200>;
+@@ -1292,6 +1305,8 @@ i2c_1: i2c@78b5000 {
+ 			clock-names = "core", "iface";
+ 			clocks = <&gcc GCC_BLSP1_QUP1_I2C_APPS_CLK>,
+ 				 <&gcc GCC_BLSP1_AHB_CLK>;
++			dmas = <&blsp1_dma 4>, <&blsp1_dma 5>;
++			dma-names = "tx", "rx";
+ 
+ 			pinctrl-names = "default", "sleep";
+ 			pinctrl-0 = <&i2c_1_default>;
+@@ -1310,6 +1325,8 @@ i2c_2: i2c@78b6000 {
+ 			clock-names = "core", "iface";
+ 			clocks = <&gcc GCC_BLSP1_QUP2_I2C_APPS_CLK>,
+ 				 <&gcc GCC_BLSP1_AHB_CLK>;
++			dmas = <&blsp1_dma 6>, <&blsp1_dma 7>;
++			dma-names = "tx", "rx";
+ 
+ 			pinctrl-names = "default", "sleep";
+ 			pinctrl-0 = <&i2c_2_default>;
+@@ -1328,6 +1345,9 @@ i2c_3: i2c@78b7000 {
+ 			clock-names = "core", "iface";
+ 			clocks = <&gcc GCC_BLSP1_QUP3_I2C_APPS_CLK>,
+ 				 <&gcc GCC_BLSP1_AHB_CLK>;
++			dmas = <&blsp1_dma 8>, <&blsp1_dma 9>;
++			dma-names = "tx", "rx";
++
+ 			pinctrl-names = "default", "sleep";
+ 			pinctrl-0 = <&i2c_3_default>;
+ 			pinctrl-1 = <&i2c_3_sleep>;
+@@ -1345,6 +1365,9 @@ i2c_4: i2c@78b8000 {
+ 			clock-names = "core", "iface";
+ 			clocks = <&gcc GCC_BLSP1_QUP4_I2C_APPS_CLK>,
+ 				 <&gcc GCC_BLSP1_AHB_CLK>;
++			dmas = <&blsp2_dma 10>, <&blsp2_dma 11>;
++			dma-names = "tx", "rx";
++
+ 			pinctrl-names = "default", "sleep";
+ 			pinctrl-0 = <&i2c_4_default>;
+ 			pinctrl-1 = <&i2c_4_sleep>;
+@@ -1355,6 +1378,19 @@ i2c_4: i2c@78b8000 {
+ 			status = "disabled";
+ 		};
+ 
++		blsp2_dma: dma-controller@7ac4000 {
++			compatible = "qcom,bam-v1.7.0";
++			reg = <0x07ac4000 0x1f000>;
++			interrupts = <GIC_SPI 239 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&gcc GCC_BLSP2_AHB_CLK>;
++			clock-names = "bam_clk";
++			num-channels = <12>;
++			#dma-cells = <1>;
++			qcom,ee = <0>;
++			qcom,num-ees = <4>;
++			qcom,controlled-remotely;
++		};
++
+ 		i2c_5: i2c@7af5000 {
+ 			compatible = "qcom,i2c-qup-v2.2.1";
+ 			reg = <0x07af5000 0x600>;
+@@ -1362,6 +1398,9 @@ i2c_5: i2c@7af5000 {
+ 			clock-names = "core", "iface";
+ 			clocks = <&gcc GCC_BLSP2_QUP1_I2C_APPS_CLK>,
+ 				 <&gcc GCC_BLSP2_AHB_CLK>;
++			dmas = <&blsp2_dma 4>, <&blsp2_dma 5>;
++			dma-names = "tx", "rx";
++
+ 			pinctrl-names = "default", "sleep";
+ 			pinctrl-0 = <&i2c_5_default>;
+ 			pinctrl-1 = <&i2c_5_sleep>;
+@@ -1379,6 +1418,9 @@ i2c_6: i2c@7af6000 {
+ 			clock-names = "core", "iface";
+ 			clocks = <&gcc GCC_BLSP2_QUP2_I2C_APPS_CLK>,
+ 				 <&gcc GCC_BLSP2_AHB_CLK>;
++			dmas = <&blsp2_dma 6>, <&blsp2_dma 7>;
++			dma-names = "tx", "rx";
++
+ 			pinctrl-names = "default", "sleep";
+ 			pinctrl-0 = <&i2c_6_default>;
+ 			pinctrl-1 = <&i2c_6_sleep>;
+@@ -1396,6 +1438,9 @@ i2c_7: i2c@7af7000 {
+ 			clock-names = "core", "iface";
+ 			clocks = <&gcc GCC_BLSP2_QUP3_I2C_APPS_CLK>,
+ 				 <&gcc GCC_BLSP2_AHB_CLK>;
++			dmas = <&blsp2_dma 8>, <&blsp2_dma 9>;
++			dma-names = "tx", "rx";
++
+ 			pinctrl-names = "default", "sleep";
+ 			pinctrl-0 = <&i2c_7_default>;
+ 			pinctrl-1 = <&i2c_7_sleep>;
+@@ -1413,6 +1458,9 @@ i2c_8: i2c@7af8000 {
+ 			clock-names = "core", "iface";
+ 			clocks = <&gcc GCC_BLSP2_QUP4_I2C_APPS_CLK>,
+ 				 <&gcc GCC_BLSP2_AHB_CLK>;
++			dmas = <&blsp2_dma 10>, <&blsp2_dma 11>;
++			dma-names = "tx", "rx";
++
+ 			pinctrl-names = "default", "sleep";
+ 			pinctrl-0 = <&i2c_8_default>;
+ 			pinctrl-1 = <&i2c_8_sleep>;
 
-> Add support for triggering INTx IRQs by using outbound iATU.
-> Outbound iATU is utilized to send assert and de-assert INTx TLPs.
-> The message is generated based on the payloadless Msg TLP with type
-> 0x14, where 0x4 is the routing code implying the Terminate at
-> Receiver message. The message code is specified as b1000xx for
-> the INTx assertion and b1001xx for the INTx de-assertion.
-> 
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> ---
->  .../pci/controller/dwc/pcie-designware-ep.c   | 70 +++++++++++++++++--
->  drivers/pci/controller/dwc/pcie-designware.h  |  2 +
->  2 files changed, 68 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-ep.c b/drivers/pci/controller/dwc/pcie-designware-ep.c
-> index 96375b0aba82..304ed093f551 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-ep.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-ep.c
-> @@ -6,6 +6,7 @@
->   * Author: Kishon Vijay Abraham I <kishon@ti.com>
->   */
->  
-> +#include <linux/delay.h>
->  #include <linux/of.h>
->  #include <linux/platform_device.h>
->  
-> @@ -485,14 +486,62 @@ static const struct pci_epc_ops epc_ops = {
->  	.get_features		= dw_pcie_ep_get_features,
->  };
->  
-> +static int dw_pcie_ep_send_msg(struct dw_pcie_ep *ep, u8 func_no, u8 code,
-> +			       u8 routing)
-> +{
-> +	struct dw_pcie_outbound_atu atu = { 0 };
-> +	struct pci_epc *epc = ep->epc;
-> +	int ret;
-> +
-> +	atu.func_no = func_no;
-> +	atu.code = code;
-> +	atu.routing = routing;
-> +	atu.type = PCIE_ATU_TYPE_MSG;
-> +	atu.cpu_addr = ep->intx_mem_phys;
-> +	atu.size = epc->mem->window.page_size;
+---
+base-commit: 347e9b4e41bfff51993807962eb1082f6d8ab439
+change-id: 20230422-msm8953-blsp-dma-1174277859f2
 
-Newline here.
-
-> +	ret = dw_pcie_ep_outbound_atu(ep, &atu);
-> +	if (ret)
-> +		return ret;
-> +
-> +	writel(0, ep->intx_mem);
-> +
-> +	dw_pcie_ep_unmap_addr(epc, func_no, 0, ep->intx_mem_phys);
-> +
-> +	return 0;
-> +}
-> +
-> +static int __dw_pcie_ep_raise_intx_irq(struct dw_pcie_ep *ep, u8 func_no,
-> +					 int intx)
-> +{
-> +	int ret;
-> +
-> +	ret = dw_pcie_ep_send_msg(ep, func_no, PCI_CODE_ASSERT_INTA + intx,
-> +				  PCI_MSG_ROUTING_LOCAL);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/*
-> +	 * The documents of PCIe and the controller don't mention how long
-> +	 * the INTx should be asserted. If 10 usec, sometimes it failed.
-> +	 * So, asserted for 50 usec.
-> +	 */
-> +	usleep_range(50, 100);
-> +
-> +	return dw_pcie_ep_send_msg(ep, func_no, PCI_CODE_DEASSERT_INTA + intx,
-> +				   PCI_MSG_ROUTING_LOCAL);
-> +}
-> +
->  int dw_pcie_ep_raise_intx_irq(struct dw_pcie_ep *ep, u8 func_no)
->  {
->  	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
->  	struct device *dev = pci->dev;
->  
-> -	dev_err(dev, "EP cannot trigger INTx IRQs\n");
-> +	if (!ep->intx_mem) {
-> +		dev_err(dev, "EP cannot trigger INTx IRQs\n");
-
-INTx not supported.
-
-> +		return -EINVAL;
-
--ENOTSUPP
-
-- Mani
-
-> +	}
->  
-> -	return -EINVAL;
-> +	return __dw_pcie_ep_raise_intx_irq(ep, func_no, 0);
->  }
->  EXPORT_SYMBOL_GPL(dw_pcie_ep_raise_intx_irq);
->  
-> @@ -623,6 +672,10 @@ void dw_pcie_ep_exit(struct dw_pcie_ep *ep)
->  
->  	dw_pcie_edma_remove(pci);
->  
-> +	if (ep->intx_mem)
-> +		pci_epc_mem_free_addr(epc, ep->intx_mem_phys, ep->intx_mem,
-> +				      epc->mem->window.page_size);
-> +
->  	pci_epc_mem_free_addr(epc, ep->msi_mem_phys, ep->msi_mem,
->  			      epc->mem->window.page_size);
->  
-> @@ -794,9 +847,14 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
->  		goto err_exit_epc_mem;
->  	}
->  
-> +	ep->intx_mem = pci_epc_mem_alloc_addr(epc, &ep->intx_mem_phys,
-> +					      epc->mem->window.page_size);
-> +	if (!ep->intx_mem)
-> +		dev_warn(dev, "Failed to reserve memory for INTx\n");
-> +
->  	ret = dw_pcie_edma_detect(pci);
->  	if (ret)
-> -		goto err_free_epc_mem;
-> +		goto err_free_epc_mem_intx;
->  
->  	if (ep->ops->get_features) {
->  		epc_features = ep->ops->get_features(ep);
-> @@ -813,7 +871,11 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
->  err_remove_edma:
->  	dw_pcie_edma_remove(pci);
->  
-> -err_free_epc_mem:
-> +err_free_epc_mem_intx:
-> +	if (ep->intx_mem)
-> +		pci_epc_mem_free_addr(epc, ep->intx_mem_phys, ep->intx_mem,
-> +				      epc->mem->window.page_size);
-> +
->  	pci_epc_mem_free_addr(epc, ep->msi_mem_phys, ep->msi_mem,
->  			      epc->mem->window.page_size);
->  
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-> index 954d504890a1..8c08159ea08e 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.h
-> +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> @@ -369,6 +369,8 @@ struct dw_pcie_ep {
->  	unsigned long		*ob_window_map;
->  	void __iomem		*msi_mem;
->  	phys_addr_t		msi_mem_phys;
-> +	void __iomem		*intx_mem;
-> +	phys_addr_t		intx_mem_phys;
->  	struct pci_epf_bar	*epf_bar[PCI_STD_NUM_BARS];
->  };
->  
-> -- 
-> 2.25.1
-> 
-
+Best regards,
 -- 
-மணிவண்ணன் சதாசிவம்
+Luca Weiss <luca@z3ntu.xyz>
+
