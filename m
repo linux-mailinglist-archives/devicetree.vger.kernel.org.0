@@ -2,148 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 516186EBC15
-	for <lists+devicetree@lfdr.de>; Sun, 23 Apr 2023 01:30:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10BC86EBBE7
+	for <lists+devicetree@lfdr.de>; Sun, 23 Apr 2023 00:02:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229699AbjDVXaB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Apr 2023 19:30:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47440 "EHLO
+        id S229643AbjDVWCY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Apr 2023 18:02:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229556AbjDVXaA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Apr 2023 19:30:00 -0400
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D30C213D;
-        Sat, 22 Apr 2023 16:29:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1682206199; x=1713742199;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=mk/rUj7xZQRo0wJpLXl0vUvyBjGAGS0GDp1KvZ8ywtY=;
-  b=UoL4LXvPoiGlOnYHwheXZtEUEvL1NSWHDO3PWJCWFFbcg5zQTJlVUwL0
-   W4PJQswd5xW0ZaDUEmIEUVXmFYZRpKRjApFOkYgROLQ/eoHmUITCsYmQ4
-   zSmmsJSqCbI6ZiqURc6qLcLT2ysRK+9OownHzdMkzgQpzkYkWc2Clq8RO
-   cz+WXqkwpK4fEmGRqqiX2b1jLJBLhxRtXo96Kab3skzLEfiMh/rMs999Q
-   /HP9vudGfVf6fi/ugfNyeowuWfCqP1z9sErcAl5jfd3FwsGNw/HySjoMM
-   W1KhNWL4YxKbmXlFca6CSBwjrStQJ5Yc1aImEM2EbSoqLxw2GAJYNSogE
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10688"; a="335096975"
-X-IronPort-AV: E=Sophos;i="5.99,219,1677571200"; 
-   d="scan'208";a="335096975"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Apr 2023 16:29:59 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10688"; a="781954255"
-X-IronPort-AV: E=Sophos;i="5.99,219,1677571200"; 
-   d="scan'208";a="781954255"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
-  by FMSMGA003.fm.intel.com with ESMTP; 22 Apr 2023 16:29:55 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pqMfz-000hZ8-0g;
-        Sat, 22 Apr 2023 23:29:55 +0000
-Date:   Sun, 23 Apr 2023 07:29:37 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Souradeep Chowdhury <quic_schowdhu@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     oe-kbuild-all@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Sibi Sankar <quic_sibis@quicinc.com>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>,
-        Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-Subject: Re: [PATCH V5 2/3] soc: qcom: boot_stat: Add Driver Support for Boot
- Stats
-Message-ID: <202304230707.TM8MomW0-lkp@intel.com>
-References: <142bfd034c12c245cda9f1dee20a05188b63494d.1681799201.git.quic_schowdhu@quicinc.com>
+        with ESMTP id S229500AbjDVWCX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Apr 2023 18:02:23 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB52A268B;
+        Sat, 22 Apr 2023 15:02:22 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4eed6ddcae1so13075226e87.0;
+        Sat, 22 Apr 2023 15:02:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1682200941; x=1684792941;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=2dGkZFDJrBb5dcOlpUDOnjcit/4DMIiT8lgxh76O1Fc=;
+        b=kTHd1OPTWLjdiO0sjUTsgDsPQL1IkmIscMklw6ifSCdcLo6jz6HVZaCkehqdfFJxFG
+         AMPUWA+Epr+9/Ql6jnMBEwtlZG4pSii5meYGrWbjBv3tIST/7gX3zedg71xp+iISH/sI
+         rIoBSs5bgzPGM5ZbfKj+DQrJbNyUlRAWwke104suSNtsyLWOJ0OnNVr3RawaLQWusvHZ
+         MWrUDGHh+tSEqTwgGxF5i4ws48OkYKGldUM1TCUjCCSMbvc2OYbTybjHZgCpq6mzmGyY
+         z+EZ3ZvNB3RGi+bCARx83XrUneR4kSh2a4wwdBsl7+tAr16G72fzh9DlVQIG5k7pwxig
+         eHHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682200941; x=1684792941;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2dGkZFDJrBb5dcOlpUDOnjcit/4DMIiT8lgxh76O1Fc=;
+        b=H6j/g4rlNJ1nfqhm/D9DfV4Kk26xx5dflIaDS4hOuiOSkaTHswvhJTPy1Jl6WiQX9R
+         MImXu5n9Lm+t2Bbj6Zf+fcN+I4G7+m25sWO0hxPvAl3aSKEFMPemCbrecIv1C+II0GoR
+         BjZiJ9KdS4m7BHyPyHiNvc92oAb98gFct6q6mbuSZCtcdZX57beOR7q1noLQ0gESqyRh
+         orajGTIAluVHA1JLDqRnWZTJ5JouKihaT47E6WDGZ5uvWn+A/H5M5nKEG4HwYJx2xwrc
+         UiWdSuEELi+4++u4CIRB74xwI7TrQyE9ezKPLYxGaYZZNVhlgM+9qyPnQuRwZbxIEIVZ
+         vk1w==
+X-Gm-Message-State: AAQBX9fxxMw++JvBmEKJll56ZpvBtUwP3GhzT6xDxnA+wYdHEa7FYLmL
+        sswkXwgVtFnNz9lKPHiPvq5bjimTUibybWGq
+X-Google-Smtp-Source: AKy350YyP9Mx6PKHYDySzsYS4Kng3481t/YYrpHXjc3ubrI6JKgUZryv6iZz/w3Cd/K9xjSzXPQgvA==
+X-Received: by 2002:ac2:4c54:0:b0:4d8:86c1:4782 with SMTP id o20-20020ac24c54000000b004d886c14782mr4428578lfk.23.1682200940808;
+        Sat, 22 Apr 2023 15:02:20 -0700 (PDT)
+Received: from [100.119.4.164] (93-80-67-109.broadband.corbina.ru. [93.80.67.109])
+        by smtp.gmail.com with ESMTPSA id w4-20020ac25d44000000b004eb0c51780bsm1043563lfd.29.2023.04.22.15.02.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 22 Apr 2023 15:02:20 -0700 (PDT)
+Message-ID: <38eff1f50343a576edd115be9283f6bd28bd2008.camel@gmail.com>
+Subject: Re: [PATCH 3/4] net/ftgmac100: add mac-address-increment option for
+ GMA command from NC-SI
+From:   Ivan Mikhaylov <fr0st61te@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Samuel Mendoza-Jonas <sam@mendozajonas.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Paul Fertser <fercerpav@gmail.com>,
+        openbmc@lists.ozlabs.org
+Date:   Sun, 23 Apr 2023 01:02:17 +0000
+In-Reply-To: <20230418185445.GA2111443-robh@kernel.org>
+References: <20230413002905.5513-1-fr0st61te@gmail.com>
+         <20230413002905.5513-4-fr0st61te@gmail.com>
+         <20230418185445.GA2111443-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.3 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <142bfd034c12c245cda9f1dee20a05188b63494d.1681799201.git.quic_schowdhu@quicinc.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Souradeep,
+On Tue, 2023-04-18 at 13:54 -0500, Rob Herring wrote:
+> On Thu, Apr 13, 2023 at 12:29:04AM +0000, Ivan Mikhaylov wrote:
+> > Add s32 mac-address-increment option for Get MAC Address command
+> > from
+> > NC-SI.
+> >=20
+> > Signed-off-by: Paul Fertser <fercerpav@gmail.com>
+> > Signed-off-by: Ivan Mikhaylov <fr0st61te@gmail.com>
+> > ---
+> > =C2=A0Documentation/devicetree/bindings/net/ftgmac100.txt | 4 ++++
+> > =C2=A01 file changed, 4 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/net/ftgmac100.txt
+> > b/Documentation/devicetree/bindings/net/ftgmac100.txt
+> > index 29234021f601..7ef5329d888d 100644
+> > --- a/Documentation/devicetree/bindings/net/ftgmac100.txt
+> > +++ b/Documentation/devicetree/bindings/net/ftgmac100.txt
+> > @@ -22,6 +22,10 @@ Optional properties:
+> > =C2=A0- use-ncsi: Use the NC-SI stack instead of an MDIO PHY. Currently
+> > assumes
+> > =C2=A0=C2=A0 rmii (100bT) but kept as a separate property in case NC-SI=
+ grows
+> > support
+> > =C2=A0=C2=A0 for a gigabit link.
+> > +- mac-address-increment: Increment the MAC address taken by GMA
+> > command via
+> > +=C2=A0 NC-SI. Specifies a signed number to be added to the host MAC
+> > address as
+> > +=C2=A0 obtained by the OEM GMA command. If not specified, 1 is used by
+> > default
+> > +=C2=A0 for Broadcom and Intel network cards, 0 otherwise.
+>=20
+> This would need to be common. There's been some attempts around how
+> to=20
+> support a base MAC address with a transform per instance. So far it's
+> not clear that something in DT works for everyone. Until there's=20
+> something common (if ever), you need platform specific code somewhere
+> to=20
+> handle this. The nvmem binding has had some extensions to support
+> that.
+>=20
+> Rob
 
-kernel test robot noticed the following build warnings:
+Rob, I agree but unfortunately there isn't a generic option for such
+case, maybe something should be added into net/ethernet-
+controller.yaml? As example, `mac-address-increment` option using
+widely in openwrt project. About nvmem, are we talking `nvmem-cell-
+names` option or reverse_mac_address in drivers/nvmem/imx-ocotp.c?
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on krzk-dt/for-next linus/master v6.3-rc7 next-20230421]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+I'll do the transfer into DT schema, that's not a problem but after
+naming resolve.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Souradeep-Chowdhury/dt-bindings-sram-qcom-imem-Add-Boot-Stat-region-within-IMEM/20230418-144757
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/142bfd034c12c245cda9f1dee20a05188b63494d.1681799201.git.quic_schowdhu%40quicinc.com
-patch subject: [PATCH V5 2/3] soc: qcom: boot_stat: Add Driver Support for Boot Stats
-config: nios2-randconfig-s033-20230423 (https://download.01.org/0day-ci/archive/20230423/202304230707.TM8MomW0-lkp@intel.com/config)
-compiler: nios2-linux-gcc (GCC) 12.1.0
-reproduce:
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # apt-get install sparse
-        # sparse version: v0.6.4-39-gce1a6720-dirty
-        # https://github.com/intel-lab-lkp/linux/commit/1e2fc43bcc0869349f7e3698fceebbcc8333d1f3
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Souradeep-Chowdhury/dt-bindings-sram-qcom-imem-Add-Boot-Stat-region-within-IMEM/20230418-144757
-        git checkout 1e2fc43bcc0869349f7e3698fceebbcc8333d1f3
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__' O=build_dir ARCH=nios2 olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__' O=build_dir ARCH=nios2 SHELL=/bin/bash drivers/soc/qcom/
+Adding openbmc community, maybe they have some ideas about this one.
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202304230707.TM8MomW0-lkp@intel.com/
-
-sparse warnings: (new ones prefixed by >>)
->> drivers/soc/qcom/boot_stats.c:70:36: sparse: sparse: incorrect type in argument 4 (different address spaces) @@     expected void *data @@     got struct boot_stats [noderef] __iomem *b_stats @@
-   drivers/soc/qcom/boot_stats.c:70:36: sparse:     expected void *data
-   drivers/soc/qcom/boot_stats.c:70:36: sparse:     got struct boot_stats [noderef] __iomem *b_stats
-   drivers/soc/qcom/boot_stats.c:71:72: sparse: sparse: incorrect type in argument 4 (different address spaces) @@     expected void *data @@     got struct boot_stats [noderef] __iomem *b_stats @@
-   drivers/soc/qcom/boot_stats.c:71:72: sparse:     expected void *data
-   drivers/soc/qcom/boot_stats.c:71:72: sparse:     got struct boot_stats [noderef] __iomem *b_stats
-
-vim +70 drivers/soc/qcom/boot_stats.c
-
-    52	
-    53	static int boot_stats_probe(struct platform_device *pdev)
-    54	{
-    55		struct device *bootstat_dev = &pdev->dev;
-    56		struct bs_data *drvdata;
-    57	
-    58		drvdata = devm_kzalloc(bootstat_dev, sizeof(*drvdata), GFP_KERNEL);
-    59		platform_set_drvdata(pdev, drvdata);
-    60	
-    61		drvdata->dbg_dir = debugfs_create_dir(dev_name(bootstat_dev), NULL);
-    62		if (IS_ERR(drvdata->dbg_dir))
-    63			return dev_err_probe(bootstat_dev, -ENOENT, "failed to create debugfs directory");
-    64	
-    65		drvdata->b_stats = devm_of_iomap(bootstat_dev, bootstat_dev->of_node, 0, NULL);
-    66		if (!drvdata->b_stats)
-    67			return dev_err_probe(bootstat_dev, -ENOMEM, "failed to map imem region\n");
-    68	
-    69		debugfs_create_file("pre_abl_time", 0200, drvdata->dbg_dir,
-  > 70				    drvdata->b_stats, &pre_abl_time_fops);
-    71		debugfs_create_file("abl_time", 0200, drvdata->dbg_dir, drvdata->b_stats, &abl_time_fops);
-    72	
-    73		return 0;
-    74	}
-    75	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+Thanks.
