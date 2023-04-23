@@ -2,188 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4528B6EC0FB
-	for <lists+devicetree@lfdr.de>; Sun, 23 Apr 2023 18:15:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2D9C6EC152
+	for <lists+devicetree@lfdr.de>; Sun, 23 Apr 2023 19:25:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229497AbjDWQPA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Apr 2023 12:15:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49292 "EHLO
+        id S229966AbjDWRZn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Apr 2023 13:25:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229493AbjDWQO7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Apr 2023 12:14:59 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7CD2E71;
-        Sun, 23 Apr 2023 09:14:57 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-3f195b164c4so12224735e9.1;
-        Sun, 23 Apr 2023 09:14:57 -0700 (PDT)
+        with ESMTP id S229572AbjDWRZl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Apr 2023 13:25:41 -0400
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 263BFE5E
+        for <devicetree@vger.kernel.org>; Sun, 23 Apr 2023 10:25:40 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-3f1738d0d4cso22220975e9.1
+        for <devicetree@vger.kernel.org>; Sun, 23 Apr 2023 10:25:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682266496; x=1684858496;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=N2WWfegOvU9upeAYp5N/FtKW0M+GO0T69Pg9FL709S0=;
-        b=TD9d+0KQJAarLZpQwxytUyPLHXa2EsOUK3r/D6NbT/DxXnjd2FOkaxu8Mk8vdRAnFn
-         DsrPnLq6gn/k+PKrO1L5N49Qm6geWjzDMA348U4qPWplSIcm3qRC8WnAuXeQO8evDyFL
-         v1MAtrchYLwO1SnAsRqsiKq0I5WpQpR+cL5CEX+uJY+05khydhAOD8VfvDT0dIY9JAdH
-         VZ7GjpxE4qiLtOjOw5h+clJXEMV/eCeLUeMGc5cZnQqQYxEfOQTdZJNpnZuCgW4MAQZj
-         cww9HA/gEzFgxDq14nNQSQ8kDmVyYKIHTt5MSV9a2I+SXU9ndu0zm+amomyB9KBvjK0H
-         g24A==
+        d=amarulasolutions.com; s=google; t=1682270738; x=1684862738;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=uL5yPRaPsceCGbvCtDdOlsKWMRHlRugtX8iMSJPTZDk=;
+        b=mH0TBJ+YAOpAbtbc1vKOUVVwzrk15k/GVhEPrxPHJvV1gC4gYIpH8Jn37Y1287nzdZ
+         uyd2mE82dzvqUKHv5JESijMtiCwVlPHGKy7Hv+b1CD7YGIbgTTrPAjzad6wzxpbgYCaS
+         2mzyqaG6llYkQOqYL7XWP6exZu4mULi+zs/JE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682266496; x=1684858496;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=N2WWfegOvU9upeAYp5N/FtKW0M+GO0T69Pg9FL709S0=;
-        b=mIJtANuTJ3Fdt/ncOPEVJJKR0pb7LjD8/hQ52Bf/N8naT1+sGH1NCtzOs3rGE4bR9e
-         CS/5zkD+KcRlL32vmtOP4KiHdnhe/y0zyRfjApONeynON6ge4VKhgC8NhBfoGAjLEd9K
-         do+WEfy4m0DkWJySAOh/Iy1CN8UlptIKwnFVob6SA6FLVy2WWfSPzO+4Raj+/sh3CEMe
-         yggXOOx0aGfY6pWqBa9fPqFqF9bsGe3fEeDu1X8Nli5iXAw8AxEZJbceEGBqkoeDMQgz
-         pu+Zch8KeXWoZ6syMVGF3qDY7Crkf34bV1VKuTHRJh5SwRN5MwhLHW/UaQ2E2aG9oFkt
-         yRZQ==
-X-Gm-Message-State: AAQBX9dFEv08Ef5fabGGc6tCS1S+S8gva/1B3MP3Rc754XoQdKsJGo/2
-        NLaO93lMIDmzMJ91ONh1ZkjR9/9Kyvpa5Q==
-X-Google-Smtp-Source: AKy350aHIVkamCMPlOPpFZw2ZbUuMbgbHBDImVPNzIaacdaeezzqVOSR2Wz9LAlWItGA0V/4te5p/w==
-X-Received: by 2002:a1c:7404:0:b0:3f1:7123:5f82 with SMTP id p4-20020a1c7404000000b003f171235f82mr6314095wmc.12.1682266496075;
-        Sun, 23 Apr 2023 09:14:56 -0700 (PDT)
-Received: from standask-GA-A55M-S2HP ([188.123.113.247])
-        by smtp.gmail.com with ESMTPSA id l14-20020a7bc44e000000b003f195d2f1a9sm5562665wmi.15.2023.04.23.09.14.55
+        d=1e100.net; s=20221208; t=1682270738; x=1684862738;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uL5yPRaPsceCGbvCtDdOlsKWMRHlRugtX8iMSJPTZDk=;
+        b=k515fXrXLlvt3fL2Sb+mvbjyx4278Qiy/G2ZZBa+b5Mz9geml9vnV/EXgxUcnwJuwl
+         vbhrGlOuRcsP4UWUmZsTk7B4fKKxOhwVlQNhDpvrILXdljpd7pme04daDlODnaJoSAAx
+         wuZzpNEdQ+dHkq58mXv65ESUhy/iVAZcLHGNlWEexuIgfOnM9Hx+F+vDsH0Pl98ncIWS
+         B8XEBnebnXpTUT0ZgnrtK/vOd5n0m0ZYmi9YBlYqcQg1BhE4oc99bOeOIMEOHm7m7QJP
+         AHKGTjWpB1NnTJ9uAsV63vY6ntORDM192xm4yw1n6PftG43FIsj/jJxfNNIAo5QPhvIt
+         ZNYQ==
+X-Gm-Message-State: AAQBX9fGD7vHH624ogq2Hsy+eokQtP5pvOL/N5K+J6S2zyaIQnFXVB/3
+        z0GGYy8+Cw/bJPIRsrd2qoPM1A==
+X-Google-Smtp-Source: AKy350YCZkiNToumnXq7+bIHyotRHqEZokos7hy69QN8FWGz3YKB3GeKCYoy3JtFDIpfTe7nhp6uOA==
+X-Received: by 2002:a7b:c84d:0:b0:3f1:7129:6b25 with SMTP id c13-20020a7bc84d000000b003f171296b25mr6361534wml.18.1682270738546;
+        Sun, 23 Apr 2023 10:25:38 -0700 (PDT)
+Received: from dario-ThinkPad-T14s-Gen-2i.. ([37.159.119.249])
+        by smtp.gmail.com with ESMTPSA id j32-20020a05600c1c2000b003f173987ec2sm13511653wms.22.2023.04.23.10.25.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 23 Apr 2023 09:14:55 -0700 (PDT)
-Date:   Sun, 23 Apr 2023 18:14:53 +0200
-From:   Stanislav Jakubek <stano.jakubek@gmail.com>
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        Sun, 23 Apr 2023 10:25:38 -0700 (PDT)
+From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Amarula patchwork <linux-amarula@amarulasolutions.com>,
+        michael@amarulasolutions.com,
+        Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH,RESEND] dt-bindings: watchdog: brcm,kona-wdt: convert to
- YAML
-Message-ID: <20230423161453.GA13078@standask-GA-A55M-S2HP>
-References: <20230423143951.GA10743@standask-GA-A55M-S2HP>
- <4641afaf-9797-3a29-7eb1-8dadbf3b713d@roeck-us.net>
+        Lee Jones <lee@kernel.org>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-can@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com, netdev@vger.kernel.org
+Subject: [PATCH 0/4] can: bxcan: add support for single peripheral configuration
+Date:   Sun, 23 Apr 2023 19:25:24 +0200
+Message-Id: <20230423172528.1398158-1-dario.binacchi@amarulasolutions.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4641afaf-9797-3a29-7eb1-8dadbf3b713d@roeck-us.net>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Apr 23, 2023 at 08:28:23AM -0700, Guenter Roeck wrote:
-> On 4/23/23 07:39, Stanislav Jakubek wrote:
-> > Convert Broadcom Kona family watchdog timer bindings to DT schema.
-> > 
-> > Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
-> > ---
-> > RESEND because I originally sent this to the wrong maintainers and
-> > mailing lists by accident. Sorry for the noise.
-> > 
-> 
-> Is this patch supposed to replace / compete with the other patch
-> doing the same ?
-> https://patchwork.kernel.org/project/linux-watchdog/patch/20230418170341.28805-1-n2h9z4@gmail.com/
 
-I simply did not see that patch, thank you for pointing it out.
+The series adds support for managing bxCAN controllers in single peripheral
+configuration.
+Unlike stm32f4 SOCs, where bxCAN controllers are only in dual peripheral
+configuration, stm32f7 SOCs contain three CAN peripherals, CAN1 and CAN2
+in dual peripheral configuration and CAN3 in single peripheral
+configuration:
+- Dual CAN peripheral configuration:
+ * CAN1: Primary bxCAN for managing the communication between a secondary
+   bxCAN and the 512-byte SRAM memory.
+ * CAN2: Secondary bxCAN with no direct access to the SRAM memory.
+   This means that the two bxCAN cells share the 512-byte SRAM memory and
+   CAN2 can't be used without enabling CAN1.
+- Single CAN peripheral configuration:
+ * CAN3: Primary bxCAN with dedicated Memory Access Controller unit and
+   512-byte SRAM memory.
 
-> 
-> What is the difference, and what is the purpose ?
+The driver has been tested on the stm32f769i-discovery board with a
+kernel version 5.19.0-rc2 in loopback + silent mode:
 
-I believe both patches serve the same purpose - get DT validation for the
-Broadcom Kona watchdog.
+ip link set can[0-2] type can bitrate 125000 loopback on listen-only on
+ip link set up can0
+candump can[0-2] -L &
+cansend can[0-2] 300#AC.AB.AD.AE.75.49.AD.D1
 
-Looking at the two patches, there's very little difference:
- - capitalization of title (*F*amily *W*atchdog *T*imer)
- - maintainers
- - the brcm,bcm11351-wdt compatible listed as const vs. as enum with
-   a single entry (I think the enum is better for future additions,
-   but no strong opinion on that)
- - the other patch has a description (which IMO is unnecessary)
 
-Since that patch came before mine, you can drop this one if you want.
 
-Stanislav
+Dario Binacchi (4):
+  dt-bindings: mfd: stm32f7: add binding definition for CAN3
+  ARM: dts: stm32: add CAN support on stm32f746
+  ARM: dts: stm32: add pin map for CAN controller on stm32f7
+  can: bxcan: add support for single peripheral configuration
 
-> 
-> Guenter
-> 
-> >   .../bindings/watchdog/brcm,kona-wdt.txt       | 15 --------
-> >   .../bindings/watchdog/brcm,kona-wdt.yaml      | 37 +++++++++++++++++++
-> >   2 files changed, 37 insertions(+), 15 deletions(-)
-> >   delete mode 100644 Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.txt
-> >   create mode 100644 Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.txt b/Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.txt
-> > deleted file mode 100644
-> > index 2b86a00e351d..000000000000
-> > --- a/Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.txt
-> > +++ /dev/null
-> > @@ -1,15 +0,0 @@
-> > -Broadcom Kona Family Watchdog Timer
-> > ------------------------------------
-> > -
-> > -This watchdog timer is used in the following Broadcom SoCs:
-> > -  BCM11130, BCM11140, BCM11351, BCM28145, BCM28155
-> > -
-> > -Required properties:
-> > -  - compatible = "brcm,bcm11351-wdt", "brcm,kona-wdt";
-> > -  - reg: memory address & range
-> > -
-> > -Example:
-> > -	watchdog@35002f40 {
-> > -		compatible = "brcm,bcm11351-wdt", "brcm,kona-wdt";
-> > -		reg = <0x35002f40 0x6c>;
-> > -	};
-> > diff --git a/Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.yaml b/Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.yaml
-> > new file mode 100644
-> > index 000000000000..5de1b022847b
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.yaml
-> > @@ -0,0 +1,37 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/watchdog/brcm,kona-wdt.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Broadcom Kona family watchdog timer
-> > +
-> > +maintainers:
-> > +  - Florian Fainelli <f.fainelli@gmail.com>
-> > +
-> > +allOf:
-> > +  - $ref: watchdog.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - enum:
-> > +          - brcm,bcm11351-wdt
-> > +      - const: brcm,kona-wdt
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    watchdog@35002f40 {
-> > +        compatible = "brcm,bcm11351-wdt", "brcm,kona-wdt";
-> > +        reg = <0x35002f40 0x6c>;
-> > +    };
-> > +...
-> 
+ arch/arm/boot/dts/stm32f7-pinctrl.dtsi | 82 ++++++++++++++++++++++++++
+ arch/arm/boot/dts/stm32f746.dtsi       | 39 ++++++++++++
+ drivers/net/can/bxcan.c                | 20 ++++++-
+ include/dt-bindings/mfd/stm32f7-rcc.h  |  1 +
+ 4 files changed, 139 insertions(+), 3 deletions(-)
+
+-- 
+2.32.0
+
