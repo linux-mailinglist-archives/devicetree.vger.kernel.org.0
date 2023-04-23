@@ -2,71 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 996A76EBF7D
-	for <lists+devicetree@lfdr.de>; Sun, 23 Apr 2023 14:40:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BB806EBF96
+	for <lists+devicetree@lfdr.de>; Sun, 23 Apr 2023 14:53:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229792AbjDWMkY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Apr 2023 08:40:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58586 "EHLO
+        id S229476AbjDWMxU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Apr 2023 08:53:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229441AbjDWMkX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Apr 2023 08:40:23 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 436E91726;
-        Sun, 23 Apr 2023 05:40:22 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-2f95231618aso2060130f8f.1;
-        Sun, 23 Apr 2023 05:40:22 -0700 (PDT)
+        with ESMTP id S230336AbjDWMxD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Apr 2023 08:53:03 -0400
+Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5962B10D0;
+        Sun, 23 Apr 2023 05:53:02 -0700 (PDT)
+Received: by mail-ed1-x542.google.com with SMTP id 4fb4d7f45d1cf-5058181d58dso5970371a12.1;
+        Sun, 23 Apr 2023 05:53:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682253621; x=1684845621;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=zo9wJCHv4Oo4xHmcfbocaOEILn2riMVbCffKcYD70nU=;
-        b=FLL8vAzlZWtV+BbaSTC75869ZSmC5pSjZ8ceJoWgnpgy1s+pe5zAb8e2MQA96PVk6R
-         6FA5u/Ijc9pQmzG8kyR8V/0SQ0hotstpegRt39vcHn6SvJjR1SzlLGaVKGVfD1I0fw1P
-         F1lpAC54YKfJtfJRC+W+hkr0SFSzy+gA2CoyR3zHKBVxfx744anSZNHodpYTT6fSaQxp
-         olguK7uZBjPGbThp0Sx9mumF7FtWt2WYiX27WGIYWYa8mcHe+h7a/7+SwvbgtaAJft7f
-         v6V2NwrIEgrsdjhtYvLFdsE0KilqefDZEn51ubSHzWRXXKdWYELICdiqWqVHNGi3tRAR
-         xjGw==
+        d=gmail.com; s=20221208; t=1682254381; x=1684846381;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=iytNL3ionK0y40hikstW/BCZlPf3T/1Wm7ZwrV0sJlw=;
+        b=mxFY2HrILM2cerTaYDSv71GR+WQ2TxeE3y9At9pEM0MB96S0zeycHmvj5b2o2Nyfah
+         8Hl6doywdvO32gzAWuXTOUT7U2gYPyaTtw08w4VvSPX7Ciu6zck0aaLKatWWicqz0szb
+         IRmEldsEp1zTkz495xH/zXysU/vFiKUiGzyvNn7aSQE7K0RkI0v9udqJrqic2TQ2bNwn
+         cZcriicgvgEM8HKLukppbCVWxS5Wztoc8HBi9T6Hpy8HogBf7Dg3UEEfv1/j8RSxD1GD
+         S2VJGecIOyRBelHB9ALxDbN5CJd5KkrmJEWVjCMVNimtYnhkWEcLruPlcm57ib1JZTC1
+         Cjng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682253621; x=1684845621;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zo9wJCHv4Oo4xHmcfbocaOEILn2riMVbCffKcYD70nU=;
-        b=MMFdaS89Qpei+GN6g6bBPqzYREccT2zIxYxPCpeDA4362hxdxMy9PLSYQTigQXfhXx
-         g/0KUy2vlNYsMHjU8FhaHmFJNDt3yoE02UnGzPMq8vgK/OOCSEKEXIZ1d0p/J1/AYBNC
-         lZcMwGIFT3xofHEwg+Uo4oFcNaAnaeVFzW0EyWXEcXp3OlUI4I032qiYwiibOtRPgaal
-         vTgQ0WQJmInJK7Y8qByQF2b/l7em9aNiwz359L8L9iURBEm6J7P3SEpWu+vpE2fgjpID
-         3ZrdF8O3eoWGuUtkqTF5ZzbtgSbPlDjxYzVW57JoF3guf6i9Y1XRhHISYs0E39cTX5Mj
-         B/DQ==
-X-Gm-Message-State: AAQBX9cY78C4rS+FRRFBcMRltr9O13Z1g3CqWHNR1gsEcB0OtJxky+bv
-        lPfXc9xuL0yVk2TKNlxXKpw=
-X-Google-Smtp-Source: AKy350ale8DTeU3rstHGIHi+s8KZ+KcjckZueD1LAWiwhKV4Kc/QSjBAbrxaTpJEd4hPzsVk9jE17g==
-X-Received: by 2002:adf:d4c6:0:b0:2ce:aa2d:c625 with SMTP id w6-20020adfd4c6000000b002ceaa2dc625mr7343766wrk.22.1682253620512;
-        Sun, 23 Apr 2023 05:40:20 -0700 (PDT)
-Received: from standask-GA-A55M-S2HP ([188.123.113.247])
-        by smtp.gmail.com with ESMTPSA id k6-20020a5d5246000000b002fe87e0706bsm8550789wrc.97.2023.04.23.05.40.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 23 Apr 2023 05:40:20 -0700 (PDT)
-Date:   Sun, 23 Apr 2023 14:40:18 +0200
-From:   Stanislav Jakubek <stano.jakubek@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>
-Cc:     bcm-kernel-feedback-list@broadcom.com, linux-i2c@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] dt-bindings: i2c: brcm,kona-i2c: convert to YAML
-Message-ID: <72ba28004afb733224f7294a146fc2a6a5a834a7.1682252615.git.stano.jakubek@gmail.com>
-References: <9875ec0211187e4f5e2a4379c63eacdb69b31d7a.1682252615.git.stano.jakubek@gmail.com>
+        d=1e100.net; s=20221208; t=1682254381; x=1684846381;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=iytNL3ionK0y40hikstW/BCZlPf3T/1Wm7ZwrV0sJlw=;
+        b=HwVlsVKpHYSVNm7yqFgG+1kXXHQzQCQsYHt3X13aKd+lvpjVAIE1FGo00XVvLVKKcF
+         Cf4GtwMpNteY3p0El13f6u1JdK3nm5P5uBJc9wuxFfkj359cB+5FqHNvzkQvDijIbxrk
+         PCHEYFNnxq9uYG3vK5bm+HIBOb/yMfmY8gavF7hizcN4jOez/suFDslH+yMBiWhhBCGz
+         pojp5xJMhurlbcTA2iAtLnaqtbUgLGdnaRQ076U6rFcWgzk3B64OXTKLLExKWi1ASWka
+         jHgwNQ6YVmaXDmWkUdlOWlAhNm56cMjZXxkUQwtJRMRX+fE/OKLOPkgh5iX85aRAYHfb
+         zqUg==
+X-Gm-Message-State: AAQBX9frco1oStuokQmgCdyJreA1J/fWUoFKK6W4Yg9jvzSQKgX+Lp9k
+        uZFBKGkgkoKynOkuN8sDwSo=
+X-Google-Smtp-Source: AKy350bSWYI/SvP558yd57KKjIp5PRfYPqiEM6lRUyYP8OmlVk45UlwzWUqDELXx4SoaZLUxhRnKcA==
+X-Received: by 2002:a05:6402:641:b0:504:921b:825 with SMTP id u1-20020a056402064100b00504921b0825mr9276422edx.36.1682254380636;
+        Sun, 23 Apr 2023 05:53:00 -0700 (PDT)
+Received: from [192.168.50.244] (83.11.224.11.ipv4.supernova.orange.pl. [83.11.224.11])
+        by smtp.gmail.com with ESMTPSA id i21-20020a05640200d500b00501d73cfc86sm3847476edu.9.2023.04.23.05.52.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 23 Apr 2023 05:53:00 -0700 (PDT)
+Message-ID: <c717e975-092a-5090-89de-ec08237388a3@gmail.com>
+Date:   Sun, 23 Apr 2023 14:52:58 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9875ec0211187e4f5e2a4379c63eacdb69b31d7a.1682252615.git.stano.jakubek@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v2 12/12] ARM: dts: exynos: Add Samsung Galaxy Tab 3 8.0
+ boards
+Content-Language: en-US
+To:     Henrik Grimler <henrik@grimler.se>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>, soc@kernel.org,
+        Russell King <linux@armlinux.org.uk>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Kukjin Kim <kgene@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-phy@lists.infradead.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+References: <20230416133422.1949-1-aweber.kernel@gmail.com>
+ <20230416133422.1949-13-aweber.kernel@gmail.com> <ZEBN2AciChG03FpM@L14.lan>
+From:   Artur Weber <aweber.kernel@gmail.com>
+In-Reply-To: <ZEBN2AciChG03FpM@L14.lan>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -75,133 +95,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert Broadcom Kona family I2C bindings to DT schema.
+Hi,
 
-Changes during conversion:
-  - add used, but previously undocumented SoC-specific compatibles
-  - drop references to SoCs that are not upstream
-  - add supported clock frequencies according to the Linux driver [1]
+On 19/04/2023 22:23, Henrik Grimler wrote:
+>> +	memory@40000000 {
+>> +		device_type = "memory";
+>> +
+>> +		/* Technically 2GB, but last 1GB is flaky, so we ignore it for now */
+>> +		reg = <0x40000000 0x3FC00000>;
+> 
+> Comment says 1GB but you are skipping 1GB+4MB.  Is the entire region
+> flaky or perhaps just the 4MB region in the middle?
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/i2c/busses/i2c-bcm-kona.c#n731
+I copied the memory bank configuration from downstream: according to
+boot logs and ATAG data from the stock bootloader, there are two memory
+regions: one starting at 0x40000000 (size: 1020M) and one starting at
+0x80000000 (size: 1024M). Here, only the first bank is added, since the
+second one doesn't work.
 
-Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
----
-Changes in v2:
- - add missing arm-gic.h include
- - fix indentation to 4 spaces
- 
- .../devicetree/bindings/i2c/brcm,kona-i2c.txt | 35 -----------
- .../bindings/i2c/brcm,kona-i2c.yaml           | 59 +++++++++++++++++++
- 2 files changed, 59 insertions(+), 35 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/i2c/brcm,kona-i2c.txt
- create mode 100644 Documentation/devicetree/bindings/i2c/brcm,kona-i2c.yaml
+I tried changing the size of this first bank to the full 1024M, and it
+seems to be booting fine; still, I'd rather leave this at the same size
+as claimed by downstream and ATAG.
 
-diff --git a/Documentation/devicetree/bindings/i2c/brcm,kona-i2c.txt b/Documentation/devicetree/bindings/i2c/brcm,kona-i2c.txt
-deleted file mode 100644
-index 1b87b741fa8e..000000000000
---- a/Documentation/devicetree/bindings/i2c/brcm,kona-i2c.txt
-+++ /dev/null
-@@ -1,35 +0,0 @@
--Broadcom Kona Family I2C
--=========================
--
--This I2C controller is used in the following Broadcom SoCs:
--
--  BCM11130
--  BCM11140
--  BCM11351
--  BCM28145
--  BCM28155
--
--Required Properties
---------------------
--- compatible: "brcm,bcm11351-i2c", "brcm,kona-i2c"
--- reg: Physical base address and length of controller registers
--- interrupts: The interrupt number used by the controller
--- clocks: clock specifier for the kona i2c external clock
--- clock-frequency: The I2C bus frequency in Hz
--- #address-cells: Should be <1>
--- #size-cells: Should be <0>
--
--Refer to clocks/clock-bindings.txt for generic clock consumer
--properties.
--
--Example:
--
--i2c@3e016000 {
--	compatible = "brcm,bcm11351-i2c","brcm,kona-i2c";
--	reg = <0x3e016000 0x80>;
--	interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
--	clocks = <&bsc1_clk>;
--	clock-frequency = <400000>;
--	#address-cells = <1>;
--	#size-cells = <0>;
--};
-diff --git a/Documentation/devicetree/bindings/i2c/brcm,kona-i2c.yaml b/Documentation/devicetree/bindings/i2c/brcm,kona-i2c.yaml
-new file mode 100644
-index 000000000000..7a694af90fc6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/i2c/brcm,kona-i2c.yaml
-@@ -0,0 +1,59 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/i2c/brcm,kona-i2c.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Broadcom Kona family I2C controller
-+
-+maintainers:
-+  - Florian Fainelli <f.fainelli@gmail.com>
-+
-+allOf:
-+  - $ref: /schemas/i2c/i2c-controller.yaml#
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - brcm,bcm11351-i2c
-+          - brcm,bcm21664-i2c
-+          - brcm,bcm23550-i2c
-+      - const: brcm,kona-i2c
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-frequency:
-+    enum: [ 100000, 400000, 1000000, 3400000 ]
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-frequency
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c@3e016000 {
-+        compatible = "brcm,bcm11351-i2c", "brcm,kona-i2c";
-+        reg = <0x3e016000 0x80>;
-+        interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&bsc1_clk>;
-+        clock-frequency = <400000>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+    };
-+...
--- 
-2.25.1
+The second memory bank (anything past 0x80000000) doesn't work, as
+downstream has some weird special behavior regarding it: that region
+contains "page holes", and there's a check that discards every second
+page frame in that region[1][2]. That also means my comment is incorrect
+- indeed, 2GB of memory are passed to the kernel, but the second 1GB is
+effectively halved, leaving us with 1.5GB. (That's an oversight on my
+part - I wasn't aware of this when writing the DTS initially, and only
+checked this more in-depth now.)
 
+I'm not sure if there's a way to re-create this behavior in mainline;
+the closest thing I can think of is making a separate entry in reg for
+each of the working pages, but that would leave us with hundreds of
+lines, which is not ideal... so it's much easier to just leave it unused
+for now.
+
+Best regards
+Artur Weber
+
+[1]
+https://github.com/gr8nole/android_kernel_samsung_smdk4x12/blob/786b1473b93aabf40c18a2dca035503cce5ecac7/arch/arm/mm/init.c#L413-L414
+[2]
+https://github.com/gr8nole/android_kernel_samsung_smdk4x12/blob/786b1473b93aabf40c18a2dca035503cce5ecac7/arch/arm/mach-exynos/include/mach/memory.h#L30-L38
