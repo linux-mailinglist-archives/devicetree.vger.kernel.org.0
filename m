@@ -2,140 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BB806EBF96
-	for <lists+devicetree@lfdr.de>; Sun, 23 Apr 2023 14:53:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 056266EBF89
+	for <lists+devicetree@lfdr.de>; Sun, 23 Apr 2023 14:47:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229476AbjDWMxU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Apr 2023 08:53:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36856 "EHLO
+        id S230009AbjDWMrV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Apr 2023 08:47:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230336AbjDWMxD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Apr 2023 08:53:03 -0400
-Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5962B10D0;
-        Sun, 23 Apr 2023 05:53:02 -0700 (PDT)
-Received: by mail-ed1-x542.google.com with SMTP id 4fb4d7f45d1cf-5058181d58dso5970371a12.1;
-        Sun, 23 Apr 2023 05:53:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682254381; x=1684846381;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=iytNL3ionK0y40hikstW/BCZlPf3T/1Wm7ZwrV0sJlw=;
-        b=mxFY2HrILM2cerTaYDSv71GR+WQ2TxeE3y9At9pEM0MB96S0zeycHmvj5b2o2Nyfah
-         8Hl6doywdvO32gzAWuXTOUT7U2gYPyaTtw08w4VvSPX7Ciu6zck0aaLKatWWicqz0szb
-         IRmEldsEp1zTkz495xH/zXysU/vFiKUiGzyvNn7aSQE7K0RkI0v9udqJrqic2TQ2bNwn
-         cZcriicgvgEM8HKLukppbCVWxS5Wztoc8HBi9T6Hpy8HogBf7Dg3UEEfv1/j8RSxD1GD
-         S2VJGecIOyRBelHB9ALxDbN5CJd5KkrmJEWVjCMVNimtYnhkWEcLruPlcm57ib1JZTC1
-         Cjng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682254381; x=1684846381;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iytNL3ionK0y40hikstW/BCZlPf3T/1Wm7ZwrV0sJlw=;
-        b=HwVlsVKpHYSVNm7yqFgG+1kXXHQzQCQsYHt3X13aKd+lvpjVAIE1FGo00XVvLVKKcF
-         Cf4GtwMpNteY3p0El13f6u1JdK3nm5P5uBJc9wuxFfkj359cB+5FqHNvzkQvDijIbxrk
-         PCHEYFNnxq9uYG3vK5bm+HIBOb/yMfmY8gavF7hizcN4jOez/suFDslH+yMBiWhhBCGz
-         pojp5xJMhurlbcTA2iAtLnaqtbUgLGdnaRQ076U6rFcWgzk3B64OXTKLLExKWi1ASWka
-         jHgwNQ6YVmaXDmWkUdlOWlAhNm56cMjZXxkUQwtJRMRX+fE/OKLOPkgh5iX85aRAYHfb
-         zqUg==
-X-Gm-Message-State: AAQBX9frco1oStuokQmgCdyJreA1J/fWUoFKK6W4Yg9jvzSQKgX+Lp9k
-        uZFBKGkgkoKynOkuN8sDwSo=
-X-Google-Smtp-Source: AKy350bSWYI/SvP558yd57KKjIp5PRfYPqiEM6lRUyYP8OmlVk45UlwzWUqDELXx4SoaZLUxhRnKcA==
-X-Received: by 2002:a05:6402:641:b0:504:921b:825 with SMTP id u1-20020a056402064100b00504921b0825mr9276422edx.36.1682254380636;
-        Sun, 23 Apr 2023 05:53:00 -0700 (PDT)
-Received: from [192.168.50.244] (83.11.224.11.ipv4.supernova.orange.pl. [83.11.224.11])
-        by smtp.gmail.com with ESMTPSA id i21-20020a05640200d500b00501d73cfc86sm3847476edu.9.2023.04.23.05.52.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 23 Apr 2023 05:53:00 -0700 (PDT)
-Message-ID: <c717e975-092a-5090-89de-ec08237388a3@gmail.com>
-Date:   Sun, 23 Apr 2023 14:52:58 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v2 12/12] ARM: dts: exynos: Add Samsung Galaxy Tab 3 8.0
- boards
-Content-Language: en-US
-To:     Henrik Grimler <henrik@grimler.se>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
+        with ESMTP id S229749AbjDWMrU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Apr 2023 08:47:20 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 439AAE57;
+        Sun, 23 Apr 2023 05:47:19 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id CAED360E33;
+        Sun, 23 Apr 2023 12:47:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6B9FC433EF;
+        Sun, 23 Apr 2023 12:47:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1682254038;
+        bh=eGIoQHOJZfoILARB2pz6hMBq1nDSmvzLHJKWEe0ma+w=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=T7mQuPTQFPWuWy1mJDy7UEmWdGrDE2z68wNTYlADK1cY+MHtDCBpyPlSLQa4/no5p
+         q8b/8MVcD1U927TGdXuiNm8cIT4wPGJPms35oCY35Xik4tzPFlwETQdDQJjaXxS6J4
+         jzmDMqOgTXKg1wgq4c+Hp2xN7cVeumCgFJ2v8U0ZNVRI7SsBO8rF1swtCaynXAMHEO
+         jY9kYSBOM7JXLD64g0tBOUI+IPsLyGXzUJWKMkiiVSixWSbRTqoP/+Iv/sp878U2J9
+         wldxbB2P6SEIuPqoxh+FHoC04X1o4iJ1Uu2rs/rqdTzU7wQRVgVxWuH/zob+INIpfu
+         b/1MQtu4ds3Bw==
+Date:   Sun, 23 Apr 2023 14:02:52 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Frank Wunderlich <linux@fw-web.de>
+Cc:     linux-mediatek@lists.infradead.org,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>, soc@kernel.org,
-        Russell King <linux@armlinux.org.uk>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Kukjin Kim <kgene@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        "Hui.Liu" <hui.liu@mediatek.com>,
+        Zhiyong Tao <zhiyong.tao@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Lala Lin <lala.lin@mediatek.com>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-phy@lists.infradead.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <20230416133422.1949-1-aweber.kernel@gmail.com>
- <20230416133422.1949-13-aweber.kernel@gmail.com> <ZEBN2AciChG03FpM@L14.lan>
-From:   Artur Weber <aweber.kernel@gmail.com>
-In-Reply-To: <ZEBN2AciChG03FpM@L14.lan>
-Content-Type: text/plain; charset=UTF-8
+        Daniel Golle <daniel@makrotopia.org>
+Subject: Re: [PATCH v1 2/7] dt-bindings: iio: adc: Add support for MT7986
+Message-ID: <20230423140252.7b018c46@jic23-huawei>
+In-Reply-To: <20230421132047.42166-3-linux@fw-web.de>
+References: <20230421132047.42166-1-linux@fw-web.de>
+        <20230421132047.42166-3-linux@fw-web.de>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Fri, 21 Apr 2023 15:20:42 +0200
+Frank Wunderlich <linux@fw-web.de> wrote:
 
-On 19/04/2023 22:23, Henrik Grimler wrote:
->> +	memory@40000000 {
->> +		device_type = "memory";
->> +
->> +		/* Technically 2GB, but last 1GB is flaky, so we ignore it for now */
->> +		reg = <0x40000000 0x3FC00000>;
+> From: Frank Wunderlich <frank-w@public-files.de>
 > 
-> Comment says 1GB but you are skipping 1GB+4MB.  Is the entire region
-> flaky or perhaps just the 4MB region in the middle?
+> Add compatible string and specific clock property for mt7986.
+> 
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
 
-I copied the memory bank configuration from downstream: according to
-boot logs and ATAG data from the stock bootloader, there are two memory
-regions: one starting at 0x40000000 (size: 1020M) and one starting at
-0x80000000 (size: 1024M). Here, only the first bank is added, since the
-second one doesn't work.
+Given how trivial this is, I'll apply it without waiting for the DT maintainers
+to get to it.
 
-I tried changing the size of this first bank to the full 1024M, and it
-seems to be booting fine; still, I'd rather leave this at the same size
-as claimed by downstream and ATAG.
+Applied to the togreg branch of iio.git and pushed out as testing for 0-day
+to take a look at it.
 
-The second memory bank (anything past 0x80000000) doesn't work, as
-downstream has some weird special behavior regarding it: that region
-contains "page holes", and there's a check that discards every second
-page frame in that region[1][2]. That also means my comment is incorrect
-- indeed, 2GB of memory are passed to the kernel, but the second 1GB is
-effectively halved, leaving us with 1.5GB. (That's an oversight on my
-part - I wasn't aware of this when writing the DTS initially, and only
-checked this more in-depth now.)
+Thanks,
 
-I'm not sure if there's a way to re-create this behavior in mainline;
-the closest thing I can think of is making a separate entry in reg for
-each of the working pages, but that would leave us with hundreds of
-lines, which is not ideal... so it's much easier to just leave it unused
-for now.
+Jonathan
 
-Best regards
-Artur Weber
+> ---
+>  .../devicetree/bindings/iio/adc/mediatek,mt2701-auxadc.yaml      | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/mediatek,mt2701-auxadc.yaml b/Documentation/devicetree/bindings/iio/adc/mediatek,mt2701-auxadc.yaml
+> index 7f79a06e76f5..6168b44ea72c 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/mediatek,mt2701-auxadc.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/mediatek,mt2701-auxadc.yaml
+> @@ -26,6 +26,7 @@ properties:
+>            - mediatek,mt2712-auxadc
+>            - mediatek,mt6765-auxadc
+>            - mediatek,mt7622-auxadc
+> +          - mediatek,mt7986-auxadc
+>            - mediatek,mt8173-auxadc
+>        - items:
+>            - enum:
 
-[1]
-https://github.com/gr8nole/android_kernel_samsung_smdk4x12/blob/786b1473b93aabf40c18a2dca035503cce5ecac7/arch/arm/mm/init.c#L413-L414
-[2]
-https://github.com/gr8nole/android_kernel_samsung_smdk4x12/blob/786b1473b93aabf40c18a2dca035503cce5ecac7/arch/arm/mach-exynos/include/mach/memory.h#L30-L38
