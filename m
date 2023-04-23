@@ -2,63 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B73D96EC066
-	for <lists+devicetree@lfdr.de>; Sun, 23 Apr 2023 16:30:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4064A6EC06E
+	for <lists+devicetree@lfdr.de>; Sun, 23 Apr 2023 16:40:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229441AbjDWOab (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Apr 2023 10:30:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47650 "EHLO
+        id S229706AbjDWOj6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Apr 2023 10:39:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229476AbjDWOa3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Apr 2023 10:30:29 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64BFEE3;
-        Sun, 23 Apr 2023 07:30:28 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-3f182d745deso34729575e9.0;
-        Sun, 23 Apr 2023 07:30:28 -0700 (PDT)
+        with ESMTP id S229453AbjDWOj5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Apr 2023 10:39:57 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FFA7E6A;
+        Sun, 23 Apr 2023 07:39:55 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-3f20215fa70so2465025e9.0;
+        Sun, 23 Apr 2023 07:39:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682260227; x=1684852227;
+        d=gmail.com; s=20221208; t=1682260794; x=1684852794;
         h=content-disposition:mime-version:message-id:subject:cc:to:from:date
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Hmz02kgYSIPTVGE2YzP1t9u5jmmiCjYgtKyhAhJJpAU=;
-        b=KQ/354GpPjBr/GF7Ev1Y2jkdF14nbEgnAMPYLzm9bKofG5mQa5wPu0OqnZpy2RISao
-         jddj2N/u1Pgifdz/7vD+2GGfWX2vyZb4b/dU5bqFzOEJ14qsT/nj4GUBPYVoLMEaHh5P
-         KGYEjpRYP641hmbk94/umFPA9aWC4DLHs1yUCjSTzNtDYGuYVBqQnOfyAGuhH9Ym+XBM
-         4uPy7yRRL3Xplm1kP3esQU5ean/nImylay62lRzRHMT1PYrqwDCRX3QMfMXmegkAY08f
-         cBnjbrcA4mGqFa0fLDNpa7+wvU/wkBRYAoUucZK65utrhWF76aJXqn2K8qGpctVApO0Q
-         B3bw==
+        bh=DxascrpnkHsxUo0LirHOTOs03IZF0Zd8/Rtbdyketmg=;
+        b=mPuZ9Ir1i7hak/yYSbI/PcvjGSebu/6dMaWjhg55ov7WSNXRhaQw9SdwF5hrpiFfYD
+         6Gw7veIFxdQz2CDqrpcSFRoMHHJ/KQ83s+xtiAJqbf7kfPd7CVkvaVTiMn8gpRHeL2sX
+         rnVt5BdYYN1q00XBsrppf8tuTqqB2NGePafK9LsC/vumSRZZqUBIYB0zRMj/JWU10+5f
+         kreoR565uQzQLI8/L1amA1gJxBE8nC6gyz7Qr1XPJ0NGT2W7NXrAHmrGg6p1m21uEDZv
+         T7Yzpp0eIU5ZPwQxN5falUUhIj6zpqQ5BsWeyYQDOkdNhYiS8JIn4o5SD6uXSulofFFO
+         uicw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682260227; x=1684852227;
+        d=1e100.net; s=20221208; t=1682260794; x=1684852794;
         h=content-disposition:mime-version:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Hmz02kgYSIPTVGE2YzP1t9u5jmmiCjYgtKyhAhJJpAU=;
-        b=IP0w2NXNEHVwzASK3Pm73iSQ6RS9UXLDUT7kldn31uDsls0+G/uDytnaAwWANu0RRu
-         yB5XzWyL132ZGhNMEfglwsu5KW5EaggYT8ZvihYS31kwBwdG48yLD4iuppKtVZ9A0Y38
-         j0+OrDNVcJrmKVNaqu2PeJ1xh3kdXkfHgzEPMH6pIRKu+dZmOolaWYgTbXNZSSOTR2RS
-         CHa9/bKnn9pVV2ocf/KPAJA0Vvn1qZR79VoseOELLlu6wSYUSUncdqaRJC7lIFwn4PQJ
-         5PcaSPbIVhiPYdgfM2vRx/wMEDRvJA7YOxTF7QccIeWg+M3x5NnDrkH3NKP6h1cSjNhd
-         g4RQ==
-X-Gm-Message-State: AAQBX9fJtqlD0ATmbTaqgrUXOVAPiQHRqPpCmMElDQ5HpEG8t3MEGk3K
-        NMQFd4nlwmpUipm2nCFDpNAbDYqkc924Lw==
-X-Google-Smtp-Source: AKy350YFG1XWLlzDerdjqq1cTqz6QsInPmJyhb5q+UOAbjM1BuxXV+707QxfrCa3w8mGQbVrwAluNA==
-X-Received: by 2002:a7b:c5c7:0:b0:3f1:75d0:6151 with SMTP id n7-20020a7bc5c7000000b003f175d06151mr5878554wmk.1.1682260226832;
-        Sun, 23 Apr 2023 07:30:26 -0700 (PDT)
+        bh=DxascrpnkHsxUo0LirHOTOs03IZF0Zd8/Rtbdyketmg=;
+        b=ZtAnBk17Eu1oW5PN8xgjth78NGoffRVO0MHIvs0NiZ4W59mU/MYcSjwKB32ECJ0c9l
+         jwAsnQ/vHRxfrQhpCgftkUmEkArozMvivZn8dyBfs+U3c5gMSbYQfjlgP/4Xe1rZ1EHA
+         rtxbgoeeUSML6+F7NWXR7s/lutcePNQO/UK5Q/V3aQZ/xuGDbXlCunYQARtHdpcc4myY
+         9HsZXqllCcz+LauDJ4fx91NQuO44VRSImRgsECc9+W82GIh9CWACVJ0liWfHiAXb0o3s
+         eFPlBrBUA/T7fwpzhLSZaO8cKEWllOd7Hl1LVJyYNtazCBqnnQfOyAJTXvWtxCoiCJ0v
+         eKnQ==
+X-Gm-Message-State: AAQBX9fTVIRp7IdGD0kY56Q0LwJoL5iVmLAIoF+QKjGg9NNe2ep4y/VF
+        hOavkj0LkuNI+YwtnIZId8A=
+X-Google-Smtp-Source: AKy350aPyZPa0CtW4ev4K4hqS4De6YZ1OaWbU9d9U5y6hhqvznG19xTAbpwfSf+xzBGdLdwhFEVBRQ==
+X-Received: by 2002:a1c:7201:0:b0:3ee:775:c573 with SMTP id n1-20020a1c7201000000b003ee0775c573mr5550759wmc.20.1682260793646;
+        Sun, 23 Apr 2023 07:39:53 -0700 (PDT)
 Received: from standask-GA-A55M-S2HP ([188.123.113.247])
-        by smtp.gmail.com with ESMTPSA id g9-20020a05600c000900b003f0aa490336sm13068176wmc.26.2023.04.23.07.30.26
+        by smtp.gmail.com with ESMTPSA id r6-20020a05600c458600b003f195d540d9sm5362328wmo.14.2023.04.23.07.39.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 23 Apr 2023 07:30:26 -0700 (PDT)
-Date:   Sun, 23 Apr 2023 16:30:24 +0200
+        Sun, 23 Apr 2023 07:39:53 -0700 (PDT)
+Date:   Sun, 23 Apr 2023 16:39:51 +0200
 From:   Stanislav Jakubek <stano.jakubek@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Florian Fainelli <f.fainelli@gmail.com>,
         Ray Jui <rjui@broadcom.com>,
         Scott Branden <sbranden@broadcom.com>
-Cc:     bcm-kernel-feedback-list@broadcom.com, linux-i2c@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+Cc:     bcm-kernel-feedback-list@broadcom.com,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: watchdog: brcm,kona-wdt: convert to YAML
-Message-ID: <20230423143024.GA10503@standask-GA-A55M-S2HP>
+Subject: [PATCH,RESEND] dt-bindings: watchdog: brcm,kona-wdt: convert to YAML
+Message-ID: <20230423143951.GA10743@standask-GA-A55M-S2HP>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
@@ -76,6 +78,9 @@ Convert Broadcom Kona family watchdog timer bindings to DT schema.
 
 Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
 ---
+RESEND because I originally sent this to the wrong maintainers and
+mailing lists by accident. Sorry for the noise.
+
  .../bindings/watchdog/brcm,kona-wdt.txt       | 15 --------
  .../bindings/watchdog/brcm,kona-wdt.yaml      | 37 +++++++++++++++++++
  2 files changed, 37 insertions(+), 15 deletions(-)
