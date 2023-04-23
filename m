@@ -2,145 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 570E26EBE00
-	for <lists+devicetree@lfdr.de>; Sun, 23 Apr 2023 10:31:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63FFD6EBE51
+	for <lists+devicetree@lfdr.de>; Sun, 23 Apr 2023 11:47:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229458AbjDWIbO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Apr 2023 04:31:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43844 "EHLO
+        id S229441AbjDWJqt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Apr 2023 05:46:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59148 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229693AbjDWIbN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Apr 2023 04:31:13 -0400
-Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB21E19A6;
-        Sun, 23 Apr 2023 01:31:12 -0700 (PDT)
-Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-54f8af6dfa9so47945067b3.2;
-        Sun, 23 Apr 2023 01:31:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682238672; x=1684830672;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7QYHi1U0H8xeoz+ojliRlXjskKQpNh5ZppQiWqXTPmg=;
-        b=n29GfRgV2KM71xU0PJGUus7tcaVrQNRqxRyd9+C9ZSMxc8Yq/JBo/iyYfjmiVoYYVj
-         qyYpoSFV4EujOpAf8Wg1c+bCAVeXWsCkfQ2qKGa6aDClLJX5kdMICEN5JxRZPiOnrkjZ
-         qk8nMo0M7GYahnpKfhmGCnZ2lgiCs82VuqTGk/yZSDcJrz9qMsp44xHGI8IK2GGFO1HA
-         GyjMDS0KD10qaZ9TDbZt84E4LOQ5QQnu+EG/eKNjMOhMSRaOXXguE6q9kSopTiTOtl/k
-         Ekx4/5wyneuO1PYQCELdkr6kn6rI2Vtz5FpnjdZPRMk3rnc9ySYn59vCp02SK2gn1IL/
-         uRYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682238672; x=1684830672;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7QYHi1U0H8xeoz+ojliRlXjskKQpNh5ZppQiWqXTPmg=;
-        b=ZoJbyuTPEOy0lV8epccSQuhV71kkqpuvokxgNk5Nj0K3r4nPSYZYCDZPvFsBQC/GrI
-         Ii8ZWx4Guy3jYjtj7fdcmeKoRi2MXUiH3m/VK/GgDONU5YJbqjUI+t6cEaWvZXP0a+dh
-         1BSosqGndsWAxh2gMLHkywwQT0cLjnBCBvTwquDji09n0Stna5WfffPqczkHPe9udpmg
-         sKb8OYeW0BUD06LAqKR1dh/0Gt59lV43FkBPb37Jpqt7uvpqXKVM1E2TAU78gRYKgpbo
-         PjNpovYhA7m6RlgLgxIso76PfDvO8WvY+yyTDsfKQOdn9Jy+OsoOtQNNEOsEWGYEbfo+
-         OvZQ==
-X-Gm-Message-State: AAQBX9dvUsIsQU2OqLAySRyBjf82cl+SDAEAqkYoHveqm3hdi1Dw8+ej
-        6OLyedjfWjor2xg0YpXC7HF2MVVtQjmNufjWkbo=
-X-Google-Smtp-Source: AKy350ao+/7bEok4Abt9/zxZOar007y/ULFW6xkLcjzlu7/jxRV1Ag/ua7DsMXMSEICNjxr3Wld7QUpS6J0Lp/BeZVM=
-X-Received: by 2002:a0d:df4a:0:b0:54f:b4fa:3271 with SMTP id
- i71-20020a0ddf4a000000b0054fb4fa3271mr5522576ywe.21.1682238671839; Sun, 23
- Apr 2023 01:31:11 -0700 (PDT)
+        with ESMTP id S230032AbjDWJqs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Apr 2023 05:46:48 -0400
+Received: from sonic308-17.consmr.mail.ir2.yahoo.com (sonic308-17.consmr.mail.ir2.yahoo.com [77.238.178.145])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 995E91FDF
+        for <devicetree@vger.kernel.org>; Sun, 23 Apr 2023 02:46:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rocketmail.com; s=s2048; t=1682243204; bh=OcYa52vQ8WeJe4+ms4WziRNK4p5jlYgdUzE9iJMV0sE=; h=Date:Subject:To:Cc:References:From:In-Reply-To:From:Subject:Reply-To; b=uCvLg6y7SnMkOjHBNkDHfhnaFf0MKxMlkTqESnRbzRNVYmBP7otR+yoMYrRpjSONy2V+x0EyOVOjgN071pKba84ufyXUdqEDPxyMcTDC93+vepR/C4moEsLq1On+aCOIWlXmJi1SxhpcbrEpSyXadOhtTtyEi5A+9G3dm3oFG4/ZkSlycqn+Envn58NoggkanTk/6qm0Q35y0T0b8lRvKSJzDEjmIiNkqbVMDe/7LlL2P20DEf+r/3IJDSThNHMPYtkTwKcHsV8LQds5xQOLPQUDLWDKah1ot6L1JCRc6aIduoVibFNUew5Gx7jUziguKRHX/fL5i5FCCGq/B1rxog==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1682243204; bh=/pPdbPiI5+CqQI+RDxa5x11I9VUAQ8EPEnGsBKBepOt=; h=X-Sonic-MF:Date:Subject:To:From:From:Subject; b=oFk2rrcpNYM+3bWp98639gM3+TjvnQMKKXw32S95vd93FsHyvMP3wTNd8R0wJDq2qJL7aEVV2KRt+ooytV0jEqylI5TIw47yewPwFVmj5ISTlP3w0oPe8Lmw4bMLprjHBmHWlAorXfLmLvAEvIx3MpHf7oN1k6al9UA4Z/pizSCBTkx7/m0+qCDIrZUODKj0EoNB79jo+AnClS3ZPaIetKLoGuviFVKgiYVgaz9peyevafWZcrxbAGa9GC04MycvUdApK++nmB+UEAr09B2pz3/FZ/NLFGoMnNynCVTKFA6plwrV1wJvCO0125TALs13YCETtvFOEJq8XQTcdK9pKQ==
+X-YMail-OSG: k2IJ99QVM1n1V2Ra_ZGhIccEcFwmfKO7u6r2A8WDqsSj6e4mzJqMLDOoYKGRH3j
+ Ignw55X8nsin2xNUlMXreS5aIlBwJx.OAKb_baW_RCfo_kA1oc4tiwhwscG_eXcCU15NZQ.nIPxr
+ xBHjaBRbWlhC_UAcx_5Bhupp3Kz2NasBOIVPrY22OI10ApzNMcVqByKX04s4xlmh40p0qql9WAWU
+ Sffyj_9ct7VWJzeKlAKgKSLkbc.DepHsaOEvDMbtOEl32HYTiazLivfsJHeH2WyvGH4DF7YFXrgi
+ ytI9LxIft2SSU8vDXGkaXxftsDXbGplMnXKm2NUmPcqTlRUWoRakmGd7cmG_PibDbtvdu7MjRvY.
+ 7VIHayVl667MgbN9IAHKVrKCp_koubciRtY22PWin5LZgodGV3govOGo8W_Z1b_zs.dOZ8KB_jaG
+ bwgiDTBPb9WpACjW0ydJPCaGX2E_kZMllDDcb_5KzvonefcGYFPw.Q6q8.XQ4wRsa7JI4G6nRboF
+ HN9B2.MXkUyYZzuqghBi.8gXTWUvZ6FdmcTs93Bk3IpznedczhhH3QDq53zu4NHu8DMnvuHxLiLU
+ ciAuEkR5AK38ikhBCsaIX8uBSI7_njc5PYDF1xoXEs5DCcMEvcBl8v9Z4xfs.ubO5Xm8eqoXkx.H
+ KnbSBkG_B7pshab6QJaen.GalhrDhBExXTjve2JzeZUFuRZ33EAU7qSOWFj6v5D.2FcrDjXNPDBl
+ pnMbW61JuBlcntHPnDYabqTgMQF3b9xGCA69xBCbkElRHovVB0HJDGw.k.aycjzOrXE6H4X2mSyl
+ 7L2V8BUbN6xpt6f.VKyWmOW3hdaggljdSgf5yGKmesYVzDMIu4W8q9nzf2nvw.Zz71RP.RnYGXSa
+ zq6olK4WN869p_li7a4OAL6q41aiOMcxNv83Z5.oXLBwgMYluUyUfYCnkjevdTBfHeYRWGTEwBTx
+ MdVgyifK9aNoMyO8BWBnOd891lcABoqPJ5vZhf6aJd5wud._KdsGHfy25tvusGt6TaByi5CM4Vqm
+ UnB2ltc2CCyugCWiSnTWLhpA_DBW0PAdHnb0yT8FZ4762brpzlbO1Pa4_oub0O1hoX1OEVfVGQXo
+ edYNPco9q_df3aO.mzQHVPjeLzVZiZts68Mfaw2iiNpcV28LP6p5Ic7aoGHPP_WqgOwxQxKzCdNU
+ PUUh1UFFNNT3H2R9STNP6bfZx1R6u3PJE3krXIy4VPnI5Gm2wArO91x.zTLYGKdIaB18JCSM8dki
+ OcwzYourRhC4bMl9VDnddcJyk737mAiia0Cq.MDbS3IuTLC5FQnxz3Coi4mi0mWdX8ucVJAJWFj9
+ _cC5_Z0RC3LE6JOgxrsjvUjMOV.ZmiYF75Woj_PSR_iBdHmMNixeyt.WS.9erAaD.j9_UW7oCJwq
+ Vij0CGH0By5PjEsJfp_6HCTOSxIZV3eLycJE1aSdelHZUs0C.pN2erSboAzRyLNBE7NlMDKYg.U5
+ C4B7rV2gpSe8pTAp9K4EeUKReRCxtC8hq.qQE3DQ24LQC4ATVfn8UzZRrQlsKVeqbc3.Rj.0YMPv
+ njZLltNOpcYfdTUKp3o2w7EuYN3HsJiE6CHqo6nkjfQvYrSrS0ieZ4e_C7OEHX5xYVhn20iYBA41
+ 4JgdSFAmOMKRHUsqwi9TlzSD3um2OB9PfI_buMaHszl64wJsR.uMem.hgB3k7vw4k3zfcF.majLt
+ vufrWHINHenfGh_DNvUJUNy4ellfNJiOE3pbSuOZRCkhGZf.GV8QuflIlI7_bmMET0HaU67kpkwJ
+ 0R83fdftKJPWEo3947SKdOHn1JQERpkMtXiKMC8.czrY30LY5pY2s2kxzIAE..blzE334sKIVm41
+ uwh1_eMaddYOTZLELjeUZEQNfrdKQntTWn_5Z_SCphHMeGVtCnmInZSbqHOGDIUgBNdUECP3GD_g
+ GK2IopXbjqxZbpdiVOrTUPrjvGhOPHlnYkcthLexL3TuC9xEuYAca36HLcs7B8FPdvTw30wJgf8.
+ 1cmebVYEz2WeZULGoko8cLg3HTPf3oLbph5WQl61WId6bg9AXyX4JwTN4nIGFHjXWqUsdrg0bdck
+ sOJkCxx0NA0fr.n.4CIS9Q6pngJLERSc4NtJgeixuo5G1vX2a6zE9k1kwoo1STkYH4OZW82Ji6PH
+ yGoo4nUFRFMd6lKXyDmj7yUv9GcQtI9H1GKXJqSCEFHTXSkD7wC2MU4Bd76oj6bhgl0wTlJ5LS8e
+ C0DDrNtvUGF5FxIWIfMQOlqsIHHK6ak.ne5zTzYlgLAWWeNxHeIdI6wg1mqz8LJ1mdmf1OM8.BNi
+ 7kxAmog3HOTKYzprMH4Qw8puPGrU-
+X-Sonic-MF: <jahau@rocketmail.com>
+X-Sonic-ID: 1a952371-5450-4346-ad4d-349de2415052
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic308.consmr.mail.ir2.yahoo.com with HTTP; Sun, 23 Apr 2023 09:46:44 +0000
+Received: by hermes--production-ir2-74cd8fc864-d5c78 (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID c8c0720dde66fb34599bc20c5da29528;
+          Sun, 23 Apr 2023 09:46:39 +0000 (UTC)
+Message-ID: <15a1ad2b-c07b-7470-6c4b-2c8feab667c5@rocketmail.com>
+Date:   Sun, 23 Apr 2023 11:46:37 +0200
 MIME-Version: 1.0
-References: <cover.1681887790.git.zhoubinbin@loongson.cn> <3b9c4f05eaf14bc3b16aebec3ff84c8a2d52c4a5.1681887790.git.zhoubinbin@loongson.cn>
- <f9b62f48-5c8b-2674-313d-4552c61c4302@linaro.org> <CAMpQs4JjHvVOzQz-1Y-q9ut6tWUpakrHeozuwPg0dzoDcUFEGA@mail.gmail.com>
- <75231886-cdf6-cfde-d6b9-183b1fbf98da@linaro.org>
-In-Reply-To: <75231886-cdf6-cfde-d6b9-183b1fbf98da@linaro.org>
-From:   Binbin Zhou <zhoubb.aaron@gmail.com>
-Date:   Sun, 23 Apr 2023 16:30:57 +0800
-Message-ID: <CAMpQs4Jp8WPKJEuJD-_83oRPBbPELxS5ufqp-nHow0D9D+R+ig@mail.gmail.com>
-Subject: Re: [PATCH V3 1/2] dt-bindings: interrupt-controller: Add Loongson EIOINTC
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Binbin Zhou <zhoubinbin@loongson.cn>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2 8/9] power: supply: rt5033_battery: Adopt status
+ property from charger
+To:     Sebastian Reichel <sre@kernel.org>
+Cc:     Lee Jones <lee@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
-        loongarch@lists.linux.dev, devicetree@vger.kernel.org,
-        loongson-kernel@lists.loongnix.cn
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        Beomho Seo <beomho.seo@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Raymond Hackley <raymondhackley@protonmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Axel Lin <axel.lin@ingics.com>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+References: <cover.1681646904.git.jahau@rocketmail.com>
+ <23260904aab2566faf86d2ac01a31e7f1e024e66.1681646904.git.jahau@rocketmail.com>
+Content-Language: en-US
+From:   Jakob Hauser <jahau@rocketmail.com>
+In-Reply-To: <23260904aab2566faf86d2ac01a31e7f1e024e66.1681646904.git.jahau@rocketmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailer: WebService/1.1.21365 mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 20, 2023 at 11:52=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 20/04/2023 15:00, Binbin Zhou wrote:
-> >>> +examples:
-> >>> +  - |
-> >>> +    eiointc: interrupt-controller@1fe11600 {
-> >>> +      compatible =3D "loongson,ls2k0500-eiointc";
-> >>> +      reg =3D <0x1fe11600 0x10>,
-> >>> +            <0x1fe11700 0x10>,
-> >>> +            <0x1fe11800 0x10>,
-> >>> +            <0x1fe114c0 0x4>;
-> >>
-> >> Binding is OK, but are you sure you want to split the address space li=
-ke
-> >> this? It looks like two address spaces (enable+clear+status should be
-> >> one). Are you sure this is correct?
-> >>
-> > Hi Krzysztof:
-> >
-> > These registers are all in the range of chip configuration registers,
-> > in the case of LS2K0500, which has a base address of 0x1fe10000.
-> > However, the individual register addresses are not contiguous with
-> > each other, and most are distributed across modules, so I feel that
-> > they should be listed in detail as they are used.
->
-> Do you want to say that:
-> Between 0x1fe11600 and 0x1fe11700 there are EIOINTC registers and other
-> (independent) module registers?
+Hi Sebastian,
 
-No, this section is all EIO-related configuration, but there will be
-undefined space here.
+I noticed a small mistake in patch 8.
 
-Throughout the chip configuration space, there are some relatively
-common areas, such as the definition of 0x1fe1_14c0.
-Because our chip supports two interrupt modes, node legacy I/O
-interrupt and extended I/O interrupt, both modes require interrupt
-routing registers.
-Their registers are then defined together: the legacy interrupt I/O
-start address is 0x1fe1_1400, while the extended I/O interrupt start
-address is 0x1fe1_14c0.
+On 16.04.23 14:44, Jakob Hauser wrote:
+> The rt5033-battery fuelgauge can't get a status by itself. The rt5033-charger
+> can, let's get this value.
+> 
+> Tested-by: Raymond Hackley <raymondhackley@protonmail.com>
+> Signed-off-by: Jakob Hauser <jahau@rocketmail.com>
+> ---
+>   drivers/power/supply/rt5033_battery.c | 24 ++++++++++++++++++++++++
+>   1 file changed, 24 insertions(+)
+> 
+> diff --git a/drivers/power/supply/rt5033_battery.c b/drivers/power/supply/rt5033_battery.c
+> index 5c04cf305219..48d4cccce4f6 100644
+> --- a/drivers/power/supply/rt5033_battery.c
+> +++ b/drivers/power/supply/rt5033_battery.c
+> @@ -12,6 +12,26 @@
+>   #include <linux/mfd/rt5033-private.h>
+>   #include <linux/mfd/rt5033.h>
+>   
+> +static int rt5033_battery_get_status(struct i2c_client *client)
+> +{
+> +	struct power_supply *charger;
+> +	union power_supply_propval val;
+> +	int ret;
+> +
+> +	charger = power_supply_get_by_name("rt5033-charger");
+> +	if (!charger)
+> +		return -ENODEV;
+> +
+> +	ret = power_supply_get_property(charger, POWER_SUPPLY_PROP_STATUS, &val);
+> +	if (ret) {
+> +		power_supply_put(charger);
+> +		return POWER_SUPPLY_STATUS_UNKNOWN;
+> +	}
+> +
+> +	power_supply_put(charger);
+> +	return val.intval;
+> +}
+> +
 
-Then I have carefully compared the chip configuration space in
-LS2K0500 and LS2K2000 and can see that:
+If the rt5033-charger driver is not available, this function returns 
+"-ENODEV". Instead of an error, in fact the status node in sysfs just 
+reports "-19" then. Userspace layer UPower makes status "unknown" out of 
+this.
 
-1. The chip configuration space base addresses are different, but they
-both have a size of 64KB;
-2. The offset addresses of the EIO related registers are the same, for
-example the offset of the enable register is 0x1600.
+An error message would spam dmesg anyway, as it would be issued every 
+time the battery gets polled by UPower, which is quite regularly. The 
+scenario of a missing rt5033-charger driver is not unlikely for devices 
+where it's not yet implemented in the devicetree or in the configs of 
+the compiled kernel. For the displayed battery icon, UPower assumes 
+"discharging" for a single battery in "unknown" state.
 
-Wouldn't it be better to declare the entire configuration space (64KB)
-directly in the dts and use the offsets to access the corresponding
-registers?
+It makes more sense to return "POWER_SUPPLY_STATUS_UNKNOWN" right away. 
+I'll change that line in v3.
 
-Example:
-reg =3D <0x1fe10000 0x10000>.
+>   static int rt5033_battery_get_capacity(struct i2c_client *client)
+>   {
+>   	struct rt5033_battery *battery = i2c_get_clientdata(client);
+> @@ -84,6 +104,9 @@ static int rt5033_battery_get_property(struct power_supply *psy,
+>   	case POWER_SUPPLY_PROP_CAPACITY:
+>   		val->intval = rt5033_battery_get_capacity(battery->client);
+>   		break;
+> +	case POWER_SUPPLY_PROP_STATUS:
+> +		val->intval = rt5033_battery_get_status(battery->client);
+> +		break;
+>   	default:
+>   		return -EINVAL;
+>   	}
+> @@ -96,6 +119,7 @@ static enum power_supply_property rt5033_battery_props[] = {
+>   	POWER_SUPPLY_PROP_VOLTAGE_OCV,
+>   	POWER_SUPPLY_PROP_PRESENT,
+>   	POWER_SUPPLY_PROP_CAPACITY,
+> +	POWER_SUPPLY_PROP_STATUS,
+>   };
+>   
+>   static const struct regmap_config rt5033_battery_regmap_config = {
 
-Thanks.
-Binbin
-
->
-> Best regards,
-> Krzysztof
+Kind regards,
+Jakob
