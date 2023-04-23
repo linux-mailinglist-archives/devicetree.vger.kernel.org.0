@@ -2,116 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 327B36EBD22
-	for <lists+devicetree@lfdr.de>; Sun, 23 Apr 2023 07:06:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CC196EBDF8
+	for <lists+devicetree@lfdr.de>; Sun, 23 Apr 2023 10:25:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230017AbjDWFG1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Apr 2023 01:06:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38136 "EHLO
+        id S229694AbjDWIZu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Apr 2023 04:25:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229797AbjDWFG0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Apr 2023 01:06:26 -0400
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BF591FEF
-        for <devicetree@vger.kernel.org>; Sat, 22 Apr 2023 22:06:21 -0700 (PDT)
-Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
-        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20230423050617epoutp02dfa7d74e12ed3c64164a3046dbe580ae~Yd-o5kBDc2902729027epoutp02w
-        for <devicetree@vger.kernel.org>; Sun, 23 Apr 2023 05:06:17 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20230423050617epoutp02dfa7d74e12ed3c64164a3046dbe580ae~Yd-o5kBDc2902729027epoutp02w
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1682226377;
-        bh=uxiSEk/esPlWCRRTZnSGg1y8KEbrKWSrSrE4p9D0d4A=;
-        h=From:To:In-Reply-To:Subject:Date:References:From;
-        b=qfamblvhwYYQ11bYWBDNedtDjSUyjIR0dQIayDUeYkzUJcua6GnnBzsWD7l9a0zxI
-         zsrUQqCaBJzaLzg4ceWoXnUMVK/9JqmPNR7gFSBVHWufLFca/DmSbspChwSKrvxuJJ
-         Hmi61/iL4bf1SEf6+sAttda+L89SYG0NepE4R978=
-Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
-        epcas5p3.samsung.com (KnoxPortal) with ESMTP id
-        20230423050616epcas5p3aebf0eac048e389fc317deb6271e5290~Yd-oguGUG0894908949epcas5p3U;
-        Sun, 23 Apr 2023 05:06:16 +0000 (GMT)
-Received: from epsmges5p3new.samsung.com (unknown [182.195.38.177]) by
-        epsnrtp3.localdomain (Postfix) with ESMTP id 4Q3x7B5zRvz4x9Pr; Sun, 23 Apr
-        2023 05:06:14 +0000 (GMT)
-Received: from epcas5p2.samsung.com ( [182.195.41.40]) by
-        epsmges5p3new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        48.45.09987.6CCB4446; Sun, 23 Apr 2023 14:06:14 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
-        20230423050614epcas5p3d55915ba1d10d112e71894107a7ca070~Yd-mO1RvN0894908949epcas5p3R;
-        Sun, 23 Apr 2023 05:06:14 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20230423050614epsmtrp1d3eb14916e7336fcaa1e046c55c5f955~Yd-mOIA0w1321413214epsmtrp1d;
-        Sun, 23 Apr 2023 05:06:14 +0000 (GMT)
-X-AuditID: b6c32a4b-7fbff70000002703-26-6444bcc68618
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        EC.19.08279.6CCB4446; Sun, 23 Apr 2023 14:06:14 +0900 (KST)
-Received: from alimakhtar04 (unknown [107.122.12.5]) by epsmtip1.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20230423050613epsmtip12d9b89458ab5ac84fe1c9c9e177cc1fa~Yd-lFRO_U2405324053epsmtip1B;
-        Sun, 23 Apr 2023 05:06:13 +0000 (GMT)
-From:   "Alim Akhtar" <alim.akhtar@samsung.com>
-To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
-        "'Rob Herring'" <robh+dt@kernel.org>,
-        "'Krzysztof Kozlowski'" <krzysztof.kozlowski+dt@linaro.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-samsung-soc@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-In-Reply-To: <20230421190202.15471-1-krzysztof.kozlowski@linaro.org>
-Subject: RE: [PATCH] ARM: dts: s5pv210: remove empty camera pinctrl
- configuration
-Date:   Sun, 23 Apr 2023 10:36:11 +0530
-Message-ID: <340901d975a1$53de6ad0$fb9b4070$@samsung.com>
+        with ESMTP id S229652AbjDWIZs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Apr 2023 04:25:48 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6180619A6
+        for <devicetree@vger.kernel.org>; Sun, 23 Apr 2023 01:25:46 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-504dfc87927so5564475a12.0
+        for <devicetree@vger.kernel.org>; Sun, 23 Apr 2023 01:25:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1682238345; x=1684830345;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qETio9rQ+I+ApbmjseQZz+b4a2GrMopfzyspvxvfmDI=;
+        b=CNlnud9ixhpA7rN5EkdFypqZA/9EHtbHo0dnoloz/zm9AmQu9Q7dFAPSj4qpSWmA20
+         LojHlppqQf6E2hQUooLbrCEqRzfDtZLvo/byw7QN4ujUSkjLnpmj3Ejl9UP4EoVVkVJJ
+         5js84TxfRY5fzJBR9v7M6CZkkJz11L7tpmtrEsbML+0/W5NrrY2NHnQV0Y86EoVyi4tG
+         dFteiFaIqHvaV4yAmni+nFeReHPTtKmlzPNBhQyj4eEC6dYOPxKpOgh7Fesd9EpWlnIp
+         bB7P6hgsKucCZU2KN3vOd2+7LnBC+WlY/jANPYX1BQ0wf8f8O0Bm1xBwgY0eYj70aW5E
+         hD9g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682238345; x=1684830345;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qETio9rQ+I+ApbmjseQZz+b4a2GrMopfzyspvxvfmDI=;
+        b=BhahYJNRZnSS8iWVP9aLTTyk62E0ukS4xYAm2rqMj4GNxZGbEP2K/SNP9GyQdAiu86
+         Yv0brJpvoda9QfGmrUqPbdE2hymmvyeZUyIbNUAvu4Dokp27d9sa6/25EIZVLXUUFpJS
+         RDAXaoZNylGtAbAvEeXv1+cmzNvfJ4dUHn2TLj1Y5GfRRGV/YZYgLxvqQyTf4KkfGhKx
+         fKM4THyOvM40pSVbiQspEoiCEwOWMM/vok0n8Gcv1+I1HvU43cPPkQNyioC6ohWua3sW
+         IQb8OuuXVJCcqMEcyQT81hr0QzMkrqtQAE7VNnhi4S5nWHIvlEjpIioQo1gAD7vmPr+7
+         /Jxg==
+X-Gm-Message-State: AAQBX9fhQBuT0ThdhP/A6SroGXO8ivJitKco9xFsFw3Un2gPeDKnWZ63
+        SGeNK9aWz+w0OVO785EhcjDvEA==
+X-Google-Smtp-Source: AKy350a52plHENuAAwWUdq2bp/DaP8sNnY6cqie/09b6KCgt6I5FlFz697CL/6UK2AIp1gEeHdBZUg==
+X-Received: by 2002:a05:6402:74c:b0:506:976e:5242 with SMTP id p12-20020a056402074c00b00506976e5242mr8618775edy.25.1682238344819;
+        Sun, 23 Apr 2023 01:25:44 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:5d52:d466:d57f:118c? ([2a02:810d:15c0:828:5d52:d466:d57f:118c])
+        by smtp.gmail.com with ESMTPSA id p21-20020a056402075500b0050684020babsm3464665edy.27.2023.04.23.01.25.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 23 Apr 2023 01:25:44 -0700 (PDT)
+Message-ID: <80c6cfbd-5661-ba39-2193-c6ae8eba3648@linaro.org>
+Date:   Sun, 23 Apr 2023 10:25:42 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v2 12/12] ARM: dts: exynos: Add Samsung Galaxy Tab 3 8.0
+ boards
+Content-Language: en-US
+To:     Artur Weber <aweber.kernel@gmail.com>
+Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>, soc@kernel.org,
+        Russell King <linux@armlinux.org.uk>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Kukjin Kim <kgene@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-phy@lists.infradead.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+References: <20230416133422.1949-1-aweber.kernel@gmail.com>
+ <20230416133422.1949-13-aweber.kernel@gmail.com>
+ <9aba4c1d-93f3-7613-6fb5-0591a281ec0a@linaro.org>
+ <5818b5be-f9cc-8009-e2a4-1049d84a944d@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <5818b5be-f9cc-8009-e2a4-1049d84a944d@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQGoG4MPsMzRMzzdGHd0mLCSi9wmTAIxB2sIr4mDHrA=
-Content-Language: en-us
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprEJsWRmVeSWpSXmKPExsWy7bCmhu6xPS4pBk1fdC3mHznHatH34iGz
-        xd7XW9ktNj2+xmpxedccNosZ5/cxWbTuPcLuwO6xaVUnm8eda3vYPDYvqff4vEkugCUq2yYj
-        NTEltUghNS85PyUzL91WyTs43jne1MzAUNfQ0sJcSSEvMTfVVsnFJ0DXLTMH6AAlhbLEnFKg
-        UEBicbGSvp1NUX5pSapCRn5xia1SakFKToFJgV5xYm5xaV66Xl5qiZWhgYGRKVBhQnbGrd6d
-        zAU/uCsuvn/K2sD4k7OLkZNDQsBE4l/nRkYQW0hgN6PEwoVVEPYnRon7K7m6GLmA7G+MEi8n
-        TmGBaTizdQkjRGIvo8SBv3PZIJyXjBJnJl0GG8UmoCuxY3EbWEJEYBOTxJf9e9m7GDk4OAVc
-        JCZdkgExhQWCJX7cywQpZxFQlVjVdosJxOYVsJQ4vPQJK4QtKHFy5hOwxcwC8hLb385hhjhC
-        QeLn02VgNSICVhIHzmxig6gRl3h59Ag7yFoJgVYOiZc3u6AaXCQeTrkA9YGwxKvjW9ghbCmJ
-        l/1tYKdJCHhILPojBRHOkHi7fD0jhG0vceDKHBaQEmYBTYn1u/QhVvFJ9P5+wgTRySvR0SYE
-        Ua0q0fzuKtQiaYmJ3d2sELaHxP7Ni1khITWdUeLb3AlsExgVZiH5chaSL2ch+WYWwuYFjCyr
-        GCVTC4pz01OLTQuM81LL4bGdnJ+7iRGcOLW8dzA+evBB7xAjEwfjIUYJDmYlEV6PUqcUId6U
-        xMqq1KL8+KLSnNTiQ4ymwKCfyCwlmpwPTN15JfGGJpYGJmZmZiaWxmaGSuK86rYnk4UE0hNL
-        UrNTUwtSi2D6mDg4pRqYUs78/n7qkzOrUa9nddKCmfyHrxf2rFcQmLtvqoLQyaqCuCktLCVf
-        v55/MaFs3ctf8xdl8izYIvH/o/QELu+pd1cI/VqYrab+kW/Le92qXVlbgyf7S32bWFy58ESA
-        8pX6j3F8+70Ftnju0E6qdlCqn+s+tamm/MHC1IMy16dXOmyou3U7bkag/5UwE3eGM83r2ASZ
-        P71ewcqev3unxfrX5lLvrJ4fPDjV1XDndWXjhuwvmeXhWi/+Hp6TsY03b63GR/P1OxwZaz++
-        EXh3d/XTKw9C8tt6t95V9mZfZHrE66eC25xLnlZZalvP7b7+uyLiQ7PQ3XM3YiZ7N3kIb+JV
-        M41dezi+WEtoisjyJK3JS5VYijMSDbWYi4oTARjoyc8lBAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrALMWRmVeSWpSXmKPExsWy7bCSnO6xPS4pBjdWSVrMP3KO1aLvxUNm
-        i72vt7JbbHp8jdXi8q45bBYzzu9jsmjde4Tdgd1j06pONo871/aweWxeUu/xeZNcAEsUl01K
-        ak5mWWqRvl0CV8at3p3MBT+4Ky6+f8rawPiTs4uRk0NCwETizNYljF2MXBxCArsZJX7sPc0M
-        kZCWuL5xAjuELSyx8t9zdoii54wSp95dYgJJsAnoSuxY3MYGkhAR2MYksar5DxtE1VRGiQ9X
-        zwBVcXBwCrhITLokA9IgLBAocfnYDLANLAKqEqvaboEN4hWwlDi89AkrhC0ocXLmExaQVmYB
-        PYm2jYwgYWYBeYntb+dAHacg8fPpMrByEQEriQNnNrFB1IhLvDx6hH0Co9AsJJNmIUyahWTS
-        LCQdCxhZVjFKphYU56bnFhsWGOallusVJ+YWl+al6yXn525iBEeKluYOxu2rPugdYmTiYDzE
-        KMHBrCTC61HqlCLEm5JYWZValB9fVJqTWnyIUZqDRUmc90LXyXghgfTEktTs1NSC1CKYLBMH
-        p1QD0+RENc4rK7j6HjIphbRGKyhdEXk56aylsudMLe2lt63cLurem/XV4ff3+ryA8xP8K5/b
-        npjIyGIQs0rZ27Uy6OUKt6Z59zq+LTgulVZ/7/tF4/tTzugfN5cPtm+emKN/tqZ1u6p934tJ
-        G1/KTOqb+ueH1eLO871/S/58WNt2b4m6ZUtf4fELcepMp1L/zH25py9nlfy6CSFCX7bKKW34
-        dH7bJYeLrye/vBL6f5Lx+cx+iXS7DdoMv07PlDz531xsZmoJ/2a1HYk1XxWrujS2CSQ79XKz
-        3Zpzukxapz22KUp0g1xBvXZO7DWbeAult+1XarMUNffZ7kiefqRfPW9i5DHd2SJS0s6W11d8
-        eGFvrsRSnJFoqMVcVJwIAEsqoIUDAwAA
-X-CMS-MailID: 20230423050614epcas5p3d55915ba1d10d112e71894107a7ca070
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20230421190209epcas5p1ad0aa67d1b9d19f746f42412c4424f15
-References: <CGME20230421190209epcas5p1ad0aa67d1b9d19f746f42412c4424f15@epcas5p1.samsung.com>
-        <20230421190202.15471-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -119,50 +96,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 22/04/2023 15:50, Artur Weber wrote:
+> Hi,
+> 
+> thank you for the review.
+> 
+> On 16/04/2023 20:26, Krzysztof Kozlowski wrote:
+>> On 16/04/2023 15:34, Artur Weber wrote:
+>> [...]
+>>> +
+>>> +		backlight: backlight@2c {
+>>> +			compatible = "ti,lp8556";
+>>
+>> You need to convert bindings to DT schema first. I don't accept any new
+>> usages of TXT bindings anymore, sorry.
+>>
+> 
+> I'll be taking a look at the conversion (will likely submit it as a
+> separate patchset, since I've been looking into some minor driver-side
+> changes there as well...), although I have one question - who should I
+> list as the bindings maintainer ("maintainers" field in YAML format)? Is
+
+Anyone who has interest in the device/driver, like driver maintainer,
+device developers, you erc.
+
+> this someone specific for that subsystem, or the author of the driver,
+> or someone else? (It's worth noting that there isn't a maintainer listed
+> for the lp855x driver in the MAINTAINERS file.)
+> Documentation/devicetree/bindings/writing-schema.rst doesn't really
+> mention anything about this.
+> 
+>>> +&bus_acp {
+>>
+>> Order label/phandle overrides by name, so acp before dmc.
+>>
+> 
+> Out of curiosity - should I order the children of the / node 
+
+Yes.
+
+> or the
+> pinctrl nodes by name as well?
+
+These are usually by pin name.
 
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Sent: Saturday, April 22, 2023 12:32 AM
-> To: Rob Herring <robh+dt@kernel.org>; Krzysztof Kozlowski
-> <krzysztof.kozlowski+dt@linaro.org>; Alim Akhtar
-> <alim.akhtar@samsung.com>; devicetree@vger.kernel.org; linux-arm-
-> kernel@lists.infradead.org; linux-samsung-soc@vger.kernel.org; linux-
-> kernel@vger.kernel.org
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Subject: [PATCH] ARM: dts: s5pv210: remove empty camera pinctrl
-> configuration
-> 
-> The camera's pinctrl configuration is simply empty and not effective.
-> Remove it to fix dtbs_check warnings like:
-> 
->   s5pv210-torbreck.dtb: camera@fa600000: pinctrl-0: True is not of type
-> 'array'
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-
-Reviewed-by: Alim Akhtar <alim.akhtar@samsung.com>
-
->  arch/arm/boot/dts/s5pv210.dtsi | 2 --
->  1 file changed, 2 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/s5pv210.dtsi
-> b/arch/arm/boot/dts/s5pv210.dtsi index d9436bbf77c8..faa3682ab5dd
-> 100644
-> --- a/arch/arm/boot/dts/s5pv210.dtsi
-> +++ b/arch/arm/boot/dts/s5pv210.dtsi
-> @@ -549,8 +549,6 @@ i2c1: i2c@fab00000 {
-> 
->  		camera: camera@fa600000 {
->  			compatible = "samsung,fimc";
-> -			pinctrl-names = "default";
-> -			pinctrl-0 = <>;
->  			clocks = <&clocks SCLK_CAM0>, <&clocks
-> SCLK_CAM1>;
->  			clock-names = "sclk_cam0", "sclk_cam1";
->  			#address-cells = <1>;
-> --
-> 2.34.1
-
+Best regards,
+Krzysztof
 
