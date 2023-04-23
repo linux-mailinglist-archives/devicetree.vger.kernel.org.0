@@ -2,73 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5449C6EBEC4
-	for <lists+devicetree@lfdr.de>; Sun, 23 Apr 2023 12:56:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8AF36EBF0B
+	for <lists+devicetree@lfdr.de>; Sun, 23 Apr 2023 13:06:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229544AbjDWK45 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Apr 2023 06:56:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52352 "EHLO
+        id S230005AbjDWLGA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Apr 2023 07:06:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229506AbjDWK44 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Apr 2023 06:56:56 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F182713A
-        for <devicetree@vger.kernel.org>; Sun, 23 Apr 2023 03:56:54 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-50847469a7fso4795130a12.0
-        for <devicetree@vger.kernel.org>; Sun, 23 Apr 2023 03:56:54 -0700 (PDT)
+        with ESMTP id S229610AbjDWLFx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Apr 2023 07:05:53 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24ADA30C4
+        for <devicetree@vger.kernel.org>; Sun, 23 Apr 2023 04:05:39 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-508418b6d59so5978091a12.3
+        for <devicetree@vger.kernel.org>; Sun, 23 Apr 2023 04:05:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682247413; x=1684839413;
+        d=linaro.org; s=google; t=1682247937; x=1684839937;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=3oR2jR/vrQrziFbROxVUT6HuFzazoTPoyzPiYyzPDjw=;
-        b=YuU5pZ4rylSTnFHqxKrtxfbLMtRr5pCPOA1Kj8sYWHb1r17/AbhUfdlGILUTToBoPZ
-         5hID9s+VuUC92l0M8isB5Wo6q+u16K5iqtrT9WIEkAA9eRICAwSzkTbHjpB1AASC3RvQ
-         rngvsUS3Z6r2KMarel6hjcK73KUTQnbQmpp8Rbtz/+Gq9XtEzBo70DIKbApDXlcsy3FC
-         wMALGoKC+Es7XLoXSWiPSGn9/s/uvVLyO9ZzHbnWoz6vlCTJ3fHQy7ECVeI9V0CLvUB/
-         yQ2epCEdNmSzQ5GXl8e20PFPUpwtwHQ0RYDwoJquMbWp+vWryI78HUBssdoN+Zi1P22A
-         LcJg==
+        bh=4oBnCQEBGXtSAEIanLhSekClnyHSr24Ok+VnVMLZrEI=;
+        b=hv77IVehUa9xkU3c4CDNCnhlAG5dlsNmPUNm6jZ3PWzcrnMy5fI+z0sIajzCfXGJy7
+         Ycxfr9xH+wFiFAM/gYRit8kTE+aej+eqdoAVOMta58gih1+KUjG/FPFpJsJhbmp6e9FE
+         kg6b2q11cN9HORCLf6H84PgsgHftBzT1fWdDICqGh9M+kxYaR60O9UqL6rLJFdeJlT8v
+         8IbeMnq/aQ/B5+LPSVj7Ir3JRDEmJL2P8bZmAZMqRlcr0st7TKc77hrDkWdHrCibhVP+
+         k+qOhdY6+wSV/SWIMGJ8WoKe0i/Nw3ugTRsE+q3M6Q9hlAk/9p29WaimxTKk56SeG7rb
+         q+pQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682247413; x=1684839413;
+        d=1e100.net; s=20221208; t=1682247937; x=1684839937;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3oR2jR/vrQrziFbROxVUT6HuFzazoTPoyzPiYyzPDjw=;
-        b=ER6xMVmIF+FXz1EsZOjrSdP1NC35Q2RAGu2TTz2M7TKQ9Fn4ILZniFxCQbjUv/sZT9
-         9RjGKhYJYgOiybl8QTYzqxfY1JwRlQLQQSCrp1G03g3LHihTxa7bnPzLLwUyjx7s+xst
-         Dajkw6W7V8eMDPAJB0KABL3E1PCh9H2RD7JJdbaXfG5E5mzo/FbwzuT2JJI+jkjx9Uwf
-         J9D+r04JiN7EyvCIR6qdvRD9uTncV4puh/yVxf1itMZckARO+MXyjpBUsQNyoH+UwCfv
-         Fq/H2es+WPj4ldJZ/SlYMZnahAiDdn4IAWyOsm9uloi6IBLkvuwjvFRTZqPKWInlHHXx
-         yG+g==
-X-Gm-Message-State: AAQBX9cEbqtyw5ZLD8me3PMjTx878n/8ER8ex2CrxHCfiHBoBrRSdCFV
-        b2+97NDTebi1/sxMpcc55CFH7A==
-X-Google-Smtp-Source: AKy350YHSpjSlgKIvLCNAnY834ZVNfHVrLLNfGEV0BO2XWtwfYC20rtmNJ0pCR3RvoID5ybuxj2EIQ==
-X-Received: by 2002:a17:907:10c2:b0:94e:aa8e:b56e with SMTP id rv2-20020a17090710c200b0094eaa8eb56emr7696516ejb.33.1682247413469;
-        Sun, 23 Apr 2023 03:56:53 -0700 (PDT)
+        bh=4oBnCQEBGXtSAEIanLhSekClnyHSr24Ok+VnVMLZrEI=;
+        b=Co2kIB//adkqwUzAbxQu21U9oEa7VHLudksJqF0EtPRTirtStQYlfS0ceaiLRGfW9T
+         qV22H51W49c1BFzAkuHMtB5L3UwQUPEzZopmBxJ33VQURHPhI8/Nbj/kYNcohlN8vVz5
+         l5i9G03Nk4mL9trnFrD8cFD+13pLnc87qyljNw6OuKvx3tu3a/QAPCWstDFZ7Z3Yo2wH
+         TODCsR+3/WFkd1JjPpEqHbMzD4oh6w3ibQ/Y2lKbqkJaEoovGW9c1YlKiQHUYmxczyBv
+         bKBaptds8xcc+TgOO78z5Qa8M+JWMhe0Gp2/ZYxnBOB/+UM8/nUAV7ETt2DyPfUru5n3
+         FYZg==
+X-Gm-Message-State: AAQBX9ckW/9TVY8iGnjWJnwF5JocfZg4WmjHmwSHHRWUWS5rYlz6hxKO
+        UCkpmGq/i47PF5N87J5nnkf5uw==
+X-Google-Smtp-Source: AKy350b1gZdRRS99FXwzdyRQvuYGxvtRfTqL3wNCEdC9oTnowvf0c3qWXdTnD0zdTodXYGJA5CPqbA==
+X-Received: by 2002:a05:6402:14e:b0:505:7d54:db93 with SMTP id s14-20020a056402014e00b005057d54db93mr9808233edu.21.1682247937604;
+        Sun, 23 Apr 2023 04:05:37 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:5d52:d466:d57f:118c? ([2a02:810d:15c0:828:5d52:d466:d57f:118c])
-        by smtp.gmail.com with ESMTPSA id n20-20020aa7d054000000b004fc01b0aa55sm3677247edo.4.2023.04.23.03.56.52
+        by smtp.gmail.com with ESMTPSA id o10-20020aa7c50a000000b0050504648fc4sm3603764edq.80.2023.04.23.04.05.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 23 Apr 2023 03:56:53 -0700 (PDT)
-Message-ID: <c0da0e22-eea4-a03b-672e-fd8a52d02f12@linaro.org>
-Date:   Sun, 23 Apr 2023 12:56:52 +0200
+        Sun, 23 Apr 2023 04:05:37 -0700 (PDT)
+Message-ID: <b58bdaf6-f0a4-41aa-e271-53cd223e9bb3@linaro.org>
+Date:   Sun, 23 Apr 2023 13:05:36 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH 1/3] dt-bindings: pinctrl: qcom,pmic-gpio: add PM8953
+Subject: Re: [PATCH] ASoC: dt-bindings: More dropping unneeded quotes
 Content-Language: en-US
-To:     Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
-        phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+To:     Rob Herring <robh@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230421-pm8953-gpio-v1-0-3d33e2de47e3@z3ntu.xyz>
- <20230421-pm8953-gpio-v1-1-3d33e2de47e3@z3ntu.xyz>
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Banajit Goswami <bgoswami@quicinc.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, patches@opensource.cirrus.com
+References: <20230421214810.1811962-1-robh@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230421-pm8953-gpio-v1-1-3d33e2de47e3@z3ntu.xyz>
+In-Reply-To: <20230421214810.1811962-1-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,13 +84,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/04/2023 23:56, Luca Weiss wrote:
-> Document the 8 GPIOs found on PM8953.
+On 21/04/2023 23:48, Rob Herring wrote:
+> Another batch of dropping unneeded quotes on $id and $schema which were
+> missed in the last round. Once all these are fixed, checking for this can
+> be enabled in yamllint.
 > 
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> ---
->  Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+> Signed-off-by: Rob Herring <robh@kernel.org>
+
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
