@@ -2,59 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9322D6EC922
-	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 11:38:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE1036EC926
+	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 11:40:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230430AbjDXJit (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Apr 2023 05:38:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36768 "EHLO
+        id S231137AbjDXJk3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Apr 2023 05:40:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230072AbjDXJis (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 05:38:48 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E6661729;
-        Mon, 24 Apr 2023 02:38:41 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33O9cTsN058073;
-        Mon, 24 Apr 2023 04:38:29 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1682329109;
-        bh=ITVPUVnnfgkGMB3knFuO7Z6qcBUOl6T8Xv3HE/MDZC8=;
-        h=From:To:CC:Subject:Date;
-        b=rm1SUf/Uc57XAQaYZkLO4dg9yyUMKGOj4OIMftizY0eQ3/Dfd/7d2G1m6/V5fOZEq
-         43jLkgA/wu9/9JLW6IwJHYhAYI9vw2wR7iJY82MnnwMSiToX8Nwb6Uu4pgWPyyoNar
-         w6jH/zCCatCFYkg/RlzpkEuHAXGgcSQRhrK09Was=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33O9cTYO023889
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 24 Apr 2023 04:38:29 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 24
- Apr 2023 04:38:28 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Mon, 24 Apr 2023 04:38:28 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33O9cROk023312;
-        Mon, 24 Apr 2023 04:38:28 -0500
-From:   Bhavya Kapoor <b-kapoor@ti.com>
-To:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC:     <b-kapoor@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
-        <kristo@kernel.org>, <vigneshr@ti.com>, <nm@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-j721e-main: Update delay select values for MMC subsystems
-Date:   Mon, 24 Apr 2023 15:08:27 +0530
-Message-ID: <20230424093827.1378602-1-b-kapoor@ti.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S230287AbjDXJkY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 05:40:24 -0400
+Received: from mail-ua1-x92e.google.com (mail-ua1-x92e.google.com [IPv6:2607:f8b0:4864:20::92e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C66B1FE2
+        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 02:40:22 -0700 (PDT)
+Received: by mail-ua1-x92e.google.com with SMTP id a1e0cc1a2514c-7782debbc4bso2962074241.2
+        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 02:40:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1682329221; x=1684921221;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EaXLftvxjCBeC906n/at9r2xXYG41ZOrYJY1BY3wajs=;
+        b=N+qMDfTgvmyDHwiwdSgAKqD/8b+FZZIt/1CN9rv43TUa/sFm80RtpPh1TR7QmdzQo4
+         /cjKZbr/HE89ruu0up/r+ccgBVet7v+8dafpPnnobAJH3x548T57//lSSc/UQQssAaXk
+         NzSZbL0n1/slaXx5AXAF8O7UcwjIWvN2sRbF8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682329221; x=1684921221;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=EaXLftvxjCBeC906n/at9r2xXYG41ZOrYJY1BY3wajs=;
+        b=a4m5dXIfNwrMNQlBYomMLJRdKBCmr57MIFW5sRHDH9B8c8hJXEdKM78RFGm9RZwg31
+         kXO61DXbAaYu6n7knn9vqoD+cetu2CKl5f9qelmB5oaxKOE6YwC4H+fX3LnsJWRQTTY4
+         UdE/5iGKjr2C/Nbuwt18B7pqDfmiKTFFqJ8Rm/lszx21VVRDPPF4h0V9c5QwwYke+u4o
+         beNjA09zNAUtNiQnpQRe41wtAtYGfCPuNudYivAnF6WQPkm9abNQwmASznPSv5WuD4hc
+         1vfLKU4ukE8CRn0SbrrGVR1/0gyMn/6XxLdk+dqIwkreC+GTgj2bSSpAYMWejn4iWKY2
+         p7og==
+X-Gm-Message-State: AAQBX9dar8hEoja+kRXMMt0h0/jaadpG8525gKfsgyG99Mpi92El2OlK
+        oQVTp5VcGUUja9uPYD7/aRtCImOrdNmkWiyyVZ3HaQ==
+X-Google-Smtp-Source: AKy350YxdbDyEjTzriRuO2TWblbu0fAwk4xyw2DQQkDDUJffTyUmd9G/ij8d63XVVHL46wq3+f/VaG6UpDJg+FmEYF4=
+X-Received: by 2002:a67:eb4d:0:b0:42c:9732:d17f with SMTP id
+ x13-20020a67eb4d000000b0042c9732d17fmr5911119vso.1.1682329221452; Mon, 24 Apr
+ 2023 02:40:21 -0700 (PDT)
 MIME-Version: 1.0
+References: <20230420094433.42794-1-angelogioacchino.delregno@collabora.com>
+ <20230420094433.42794-6-angelogioacchino.delregno@collabora.com>
+ <CAGXv+5GJroyKkj8oZw+BQxiUkiGCb-RBOxnKRkURQz5T6=EvNQ@mail.gmail.com> <eb78450a-1eed-f914-58be-ee18d85a2d62@collabora.com>
+In-Reply-To: <eb78450a-1eed-f914-58be-ee18d85a2d62@collabora.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Mon, 24 Apr 2023 17:40:10 +0800
+Message-ID: <CAGXv+5E5Ei9YffWQednLcmWBr2eXfsfjXBFRzxKJd+=O290xdQ@mail.gmail.com>
+Subject: Re: [PATCH 5/5] arm64: dts: mediatek: cherry-tomato-r1: Enable NVMe
+ PCI-Express port
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, kernel@collabora.com
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,62 +71,77 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the delay values for various speed modes supported, based on
-the revised august 2021 J721E Datasheet.
+On Mon, Apr 24, 2023 at 4:13=E2=80=AFPM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> Il 21/04/23 09:59, Chen-Yu Tsai ha scritto:
+> > On Thu, Apr 20, 2023 at 5:45=E2=80=AFPM AngeloGioacchino Del Regno
+> > <angelogioacchino.delregno@collabora.com> wrote:
+> >>
+> >> On Tomato rev1 the PCIe0 controller is used for NVMe storage.
+> >
+> > This was slightly confusing for me. AFAIK rev1 is not an actual Tomato
+> > device. It should be the prototype board, which is the original Cherry
+> > reference design by Google [1].
+> >
+> > There is an actual Cherry derived device that has NVMe, though it's und=
+er
+> > another brand and another name.
+> >
+>
+> If revision 1 is not an actual Tomato device, and you can confirm that it=
+ is
+> the prototype board... I can send a commit to entirely drop R1 as having =
+it
+> upstream would be of no use at all.
 
-[1] - Table 7-77. MMC0 DLL Delay Mapping for All Timing Modes and
-Table 7-86. MMC1/2 DLL Delay Mapping for All Timing Modes, in
-https://www.ti.com/lit/ds/symlink/tda4vm.pdf,
-(SPRSP36J – FEBRUARY 2019 – REVISED AUGUST 2021)
+From what I gathered from my colleagues, revision 1 was a Tomato prototype,
+and also the second Cherry prototype board. There shouldn't be any of these
+out in the wild.
 
-Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 10 ++++++----
- 1 file changed, 6 insertions(+), 4 deletions(-)
+FTR, the production version of Tomato is revision 4. Rev 2 and rev 3
+engineering samples are available to partners, but otherwise limited.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-index 10c8a5fb4ee2..c249cc3d1fba 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-@@ -1287,8 +1287,8 @@ main_sdhci0: mmc@4f80000 {
- 		bus-width = <8>;
- 		mmc-hs200-1_8v;
- 		mmc-ddr-1_8v;
--		ti,otap-del-sel-legacy = <0xf>;
--		ti,otap-del-sel-mmc-hs = <0xf>;
-+		ti,otap-del-sel-legacy = <0x0>;
-+		ti,otap-del-sel-mmc-hs = <0x0>;
- 		ti,otap-del-sel-ddr52 = <0x5>;
- 		ti,otap-del-sel-hs200 = <0x6>;
- 		ti,otap-del-sel-hs400 = <0x0>;
-@@ -1309,11 +1309,12 @@ main_sdhci1: mmc@4fb0000 {
- 		assigned-clocks = <&k3_clks 92 0>;
- 		assigned-clock-parents = <&k3_clks 92 1>;
- 		ti,otap-del-sel-legacy = <0x0>;
--		ti,otap-del-sel-sd-hs = <0xf>;
-+		ti,otap-del-sel-sd-hs = <0x0>;
- 		ti,otap-del-sel-sdr12 = <0xf>;
- 		ti,otap-del-sel-sdr25 = <0xf>;
- 		ti,otap-del-sel-sdr50 = <0xc>;
- 		ti,otap-del-sel-ddr50 = <0xc>;
-+		ti,otap-del-sel-sdr104 = <0x5>;
- 		ti,itap-del-sel-legacy = <0x0>;
- 		ti,itap-del-sel-sd-hs = <0x0>;
- 		ti,itap-del-sel-sdr12 = <0x0>;
-@@ -1335,11 +1336,12 @@ main_sdhci2: mmc@4f98000 {
- 		assigned-clocks = <&k3_clks 93 0>;
- 		assigned-clock-parents = <&k3_clks 93 1>;
- 		ti,otap-del-sel-legacy = <0x0>;
--		ti,otap-del-sel-sd-hs = <0xf>;
-+		ti,otap-del-sel-sd-hs = <0x0>;
- 		ti,otap-del-sel-sdr12 = <0xf>;
- 		ti,otap-del-sel-sdr25 = <0xf>;
- 		ti,otap-del-sel-sdr50 = <0xc>;
- 		ti,otap-del-sel-ddr50 = <0xc>;
-+		ti,otap-del-sel-sdr104 = <0x5>;
- 		ti,itap-del-sel-legacy = <0x0>;
- 		ti,itap-del-sel-sd-hs = <0x0>;
- 		ti,itap-del-sel-sdr12 = <0x0>;
--- 
-2.34.1
+ChenYu
 
+> Cheers,
+> Angelo
+>
+> > ChenYu
+> >
+> > [1] Much like Kukui & Jacuzzi (MT8183), and Asurada (MT8192) are the
+> >      reference designs.  I don't think we ever upstream the reference
+> >      boards because they don't really end up in the hands of people
+> >      outside of the project, and the ones we do have tend to be quite
+> >      beaten up or no longer working due to extensive testing.
+> >
+> >> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@c=
+ollabora.com>
+> >> ---
+> >>   arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts | 7 +++++++
+> >>   1 file changed, 7 insertions(+)
+> >>
+> >> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts =
+b/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts
+> >> index 2d5e8f371b6d..11fc83ddf236 100644
+> >> --- a/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts
+> >> +++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts
+> >> @@ -20,6 +20,13 @@ &sound {
+> >>          model =3D "mt8195_r1019_5682";
+> >>   };
+> >>
+> >> +&pcie0 {
+> >> +       status =3D "okay";
+> >> +
+> >> +       pinctrl-names =3D "default";
+> >> +       pinctrl-0 =3D <&pcie0_pins_default>;
+> >> +};
+> >> +
+> >>   &ts_10 {
+> >>          status =3D "okay";
+> >>   };
+> >> --
+> >> 2.40.0
+> >>
+> >>
+>
