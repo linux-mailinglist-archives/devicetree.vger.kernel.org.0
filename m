@@ -2,187 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C1926ED2C0
-	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 18:44:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE0B46ED2DA
+	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 18:52:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230319AbjDXQo2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Apr 2023 12:44:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57498 "EHLO
+        id S229625AbjDXQwe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Apr 2023 12:52:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232120AbjDXQo1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 12:44:27 -0400
-Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA2D85FDB
-        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 09:44:25 -0700 (PDT)
-Received: by mail-pf1-x42d.google.com with SMTP id d2e1a72fcca58-63d2ba63dddso3832138b3a.2
-        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 09:44:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1682354665; x=1684946665;
-        h=in-reply-to:mime-version:user-agent:date:message-id:from:references
-         :to:subject:from:to:cc:subject:date:message-id:reply-to;
-        bh=FFV8CagacJXxt90GbA01g2LkOryUaKi4YV3HpHX1L5g=;
-        b=gwqFhLVjDIsbMOg8h0YWep5Xi+20MGXrXd+7jSJSEPOSG96PAdXKiv9JJX7CAYDje4
-         8u1b/vWGQbZHrhNW7oy4ptuNwNZ2sAVAc4sBpoFUg5lzy1DxsGbvBbv2Vr0kRcCWrqrm
-         32OxUu/I8X041kkXsfLZ30jpboQiifsSKmRds=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682354665; x=1684946665;
-        h=in-reply-to:mime-version:user-agent:date:message-id:from:references
-         :to:subject:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=FFV8CagacJXxt90GbA01g2LkOryUaKi4YV3HpHX1L5g=;
-        b=eyzFqTjqCGz4hvWSo/TS8cyyi0L5HB80udWkbaYhif/GyB43sUykGMtAV4eU8sj+0v
-         bJXSShnT4DjYitX7iTCTLZZ1ur3C0gDCJeg/Uv1aeQSqBGiCBZprI9uxLFDirQKX6up/
-         qznMAZ8Wd812hLzezwVJmGEd8TThVXztF+qAp+BVhuaEmG2/b2xoEsX/+ruGe9xwdawg
-         G4EN2icfi6h+c+/PN/NOdJYi6I4f+G6NOdgLbeAdgl/Q3rEXv4zos0slB+m7wofwOoe6
-         NcK0FlJnTC1LNBKkizZee04YuYIQYnBvHwZtONrZ8T2aPOqQ+cM+Wy+3BoaqLBVX7lR6
-         av1g==
-X-Gm-Message-State: AAQBX9cpPIfYl9UAAE2x9Cmwk6Jo0rGlUnyjm1KsWkQ15iN6P6ib+R4u
-        ikG5Z9sTHZvRVXx/xgRLVROZKg==
-X-Google-Smtp-Source: AKy350YJqeeHmdypcKQiEuzqAebuyapqcmrTSMOq+CBrAP2bXH+SmCGpeKIhGjzvybhARmNLAgHzgw==
-X-Received: by 2002:a05:6a00:1a0b:b0:62d:8376:3712 with SMTP id g11-20020a056a001a0b00b0062d83763712mr15560312pfv.28.1682354665286;
-        Mon, 24 Apr 2023 09:44:25 -0700 (PDT)
-Received: from bcacpedev-irv-3.lvn.broadcom.net ([192.19.161.250])
-        by smtp.gmail.com with ESMTPSA id g7-20020aa78747000000b0063f15cc9c38sm6357370pfo.99.2023.04.24.09.44.23
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 24 Apr 2023 09:44:24 -0700 (PDT)
-Subject: Re: [PATCH] ARM: dts: broadcom: add missing cache properties
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231784AbjDXQwb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 12:52:31 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B43C3C0D;
+        Mon, 24 Apr 2023 09:52:29 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 31C6B61A0D;
+        Mon, 24 Apr 2023 16:52:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3F60C433D2;
+        Mon, 24 Apr 2023 16:52:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1682355148;
+        bh=4dY2lhCrM10R5LeBARPmKkqvvI9U2quAejbu+lxfOTY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=bZmO8JEi6qzEqNA0EaJPi86lAmpWLp7Z3rqsp32sOfQadboT2ylNc3rsVkZx2XFB/
+         l32F6pneY6AN1ArZAZEEzptSR2+VWuwtKfhdr8xtaKnlBh2oKb4bTsz08sH1Fy8908
+         YOWqdtEdsEhMDdSz6uIAmvEeLbZvbD8ZMvsiZureGkA4nO5VEaYPiQ0BVUeW4irell
+         QFQmQ234FqIxdqNoOXDGcmlKRCRJU9P3qC/4oKZ9PvMl0Zg/VTnC11GjoXfKNkmBIQ
+         03BvTZCPzmqYikVlk+KWVByY5KsQBYa0mAL2wBeWybRtOo1TebxGevYdgJaD3z5lou
+         e/jSi6unuDTsg==
+Date:   Mon, 24 Apr 2023 17:52:23 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Changhuang Liang <changhuang.liang@starfivetech.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Anand Gore <anand.gore@broadcom.com>,
-        Kursad Oney <kursad.oney@broadcom.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20230423150943.118576-1-krzysztof.kozlowski@linaro.org>
-From:   William Zhang <william.zhang@broadcom.com>
-Message-ID: <c3991ca3-a703-4cfc-887f-249f799ef8dc@broadcom.com>
-Date:   Mon, 24 Apr 2023 09:44:23 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
- Thunderbird/52.4.0
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Walker Chen <walker.chen@starfivetech.com>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, vkoul@kernel.org,
+        linux-phy@lists.infradead.org
+Subject: Re: [RESEND v2 1/6] dt-bindings: power: Add JH7110 AON PMU support
+Message-ID: <20230424-baffle-punch-ec73098f2b6a@spud>
+References: <20230419035646.43702-1-changhuang.liang@starfivetech.com>
+ <20230419035646.43702-2-changhuang.liang@starfivetech.com>
+ <20230419-labored-camper-644d51a7ca96@spud>
+ <1a5b15fa-4f20-51c2-2ba1-a04a2911a694@starfivetech.com>
 MIME-Version: 1.0
-In-Reply-To: <20230423150943.118576-1-krzysztof.kozlowski@linaro.org>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="0000000000003b763105fa17b83a"
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="6HlvDwIotWNMJfjO"
+Content-Disposition: inline
+In-Reply-To: <1a5b15fa-4f20-51c2-2ba1-a04a2911a694@starfivetech.com>
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---0000000000003b763105fa17b83a
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
 
+--6HlvDwIotWNMJfjO
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+Hey Changhuang,
 
-On 04/23/2023 08:09 AM, Krzysztof Kozlowski wrote:
-> As all level 2 and level 3 caches are unified, add required
-> cache-unified properties to fix warnings like:
-> 
->    bcm963148.dtb: l2-cache0: 'cache-unified' is a required property
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->   arch/arm/boot/dts/bcm47622.dtsi | 1 +
->   arch/arm/boot/dts/bcm63148.dtsi | 1 +
->   arch/arm/boot/dts/bcm63178.dtsi | 1 +
->   arch/arm/boot/dts/bcm6756.dtsi  | 1 +
->   arch/arm/boot/dts/bcm6846.dtsi  | 1 +
->   arch/arm/boot/dts/bcm6855.dtsi  | 1 +
->   arch/arm/boot/dts/bcm6878.dtsi  | 1 +
->   7 files changed, 7 insertions(+)
-> 
+On Thu, Apr 20, 2023 at 03:00:10PM +0800, Changhuang Liang wrote:
+> On 2023/4/20 2:29, Conor Dooley wrote:
+> > On Tue, Apr 18, 2023 at 08:56:41PM -0700, Changhuang Liang wrote:
+> >> Add AON PMU for StarFive JH7110 SoC, it can be used to turn on/off DPHY
+> >> rx/tx power switch, and it don't need the properties of reg and
+> >> interrupts.
+> >=20
+> > Putting this here since the DT guys are more likely to see it this way..
+> > Given how the implementation of the code driving this new
+> > power-controller and the code driving the existing one are rather
+> > different (you've basically re-written the entire driver in this series=
+),
+> > should the dphy driver implement its own power-controller?
+> >=20
+> > I know originally Changuang had tried something along those lines:
+> > https://lore.kernel.org/linux-riscv/5dc4ddc2-9d15-ebb2-38bc-8a544ca67e0=
+d@starfivetech.com/
+> >=20
+> > I see that that was shut down pretty much, partly due to the
+> > non-standard property, hence this series adding the dphy power domain to
+> > the existing driver.
+> >=20
+> > If it was done by looking up the pmu with a
+> > of_find_compatible_node(NULL, "power-controller", "starfive,jh7110-aon-=
+pmu")
+> > type thing, would that make sense? Although, maybe that is not a
+> > question for you, and this series may actually have been better entirely
+> > bundled with the dphy series so the whole thing can be reviewed as a
+> > unit. I've added=20
+> >=20
+> > IOW, don't change this patch, or the dts patch, but move all of the
+> > code back into the phy driver..
+> >=20
+>=20
+> Maybe this way can not do that? power domain is binding before driver pro=
+be,
+> if I use "of_find_compatible_node" it phy(DPHY rx) probe. Maybe I can onl=
+y operate=20
+> this power switch in my phy(DPHY rx) driver, so the all patch of this ser=
+ies isn't=20
+> make sense.
 
-Reviewed-by: William Zhang <william.zhang@broadcom.com>
+I'm a wee bit lost here, as I unfortunately know little about how Linux
+handles this power-domain stuff. If the DPHY tries to probe and some
+pre-requisite does not yet exist, you can return -EPROBE_DEFER right?
 
+But I don't think that's what you are asking, as using
+of_find_compatible_node() doesn't depend on there being a driver AFAIU.
 
---0000000000003b763105fa17b83a
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
+> In my opinion, We will also submit DPHY TX module later which use this se=
+ries.
+> Maybe this series should independent?
 
-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
-YDZuuBJwnyCzevMoPtVYPharioL5H3BRnQi8YoTXH7/uRo33dewYFm474yFjwwnt82TFtveVZkVq
-6h4WIQ4wTcwFfET8zMkELnGzS5SHCl8sPD+lNxxJ1JDZYwIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
-BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
-YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
-BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
-MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
-YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
-Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
-HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
-BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUq65GzwZxydFHjjYEU/9h
-xHhPWlwwDQYJKoZIhvcNAQELBQADggEBAA2hGG3JPAdGPH0ZdohGUCIVjKz+U+EFuIDbS6A/5jqX
-VhYAxZlzj7tSjUIM7G7IhyfqPC46GKJ/4x+Amz1Z6YxNGy71L68kYD6hIbBcA5AM42QBUufly6Oa
-/ppSz3WoflVyFFQ5YXniZ+eU+2/cdnYZg4aVUnFjimOF5o3NfMLzOkhQNxbaDjFUfUYD8hKmU6v4
-0vUBj8KZ9Gi1LIagLKUREn8jku0lcLsRbnJ5Ey5ScajC/FESPyYWasOW8j8/1EoJksmhbYGKNS6C
-urb/KlmDGfVrIRYDbL0ckhGQIP5c6L+kSQZ2sHnQK0e0WgIaZYxaPYeY5u0GLCOze+3vyRMxggJt
-MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
-VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwxuh2XG3FXRL1W
-JOEwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIFg3im0igypD6Aa51hpnXjcRYstn
-lRE6Qtnn/ICZMXy0MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIz
-MDQyNDE2NDQyNVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
-CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
-AwQCATANBgkqhkiG9w0BAQEFAASCAQCngZutTTpjKON9WCS351jJU6wULzZtpSnjyUgMpMPOSQEN
-6I2Z9kJJmC60e1WxDrBFizP8y8E1LxPoyaZaru2q4EMkQNPi1mm9+dmbRM5A4LE1HqTq2jYrpIYo
-PhZJs+6HH8sr3+CsHPokqfrTQ2mqvxMqUL2r0aVoRlUEhYOiM6bEn1uR2FwM18zd86svNF9uheWu
-Re3BvilZHWQodtldqMrxf8a0Q+7bkaGCXDwrDKlAwLIijp5AVDVYVxPr2po4N3bFQKA0CXaoasu2
-e+/B9bfrSfR3WdFsOb1SCmQx5b2G1lOg23CTz97lPE8so6VxybnIGR9EFO3DjZqpnMb7
---0000000000003b763105fa17b83a--
+Is the DPHY tx module a different driver to the rx one?
+If yes, does it have a different bit you must set in the syscon?
+
++CC Walker, do you have a register map for the jh7110? My TRM only says
+what the registers are, but not the bits in them. Would make life easier
+if I had that info.
+
+I'm fine with taking this code, I just want to make sure that the soc
+driver doing this is the right thing to do.
+I was kinda hoping that combining with the DPHY-rx series might allow
+the PHY folk to spot if you are doing something here with the power
+domains that doesn't make sense.
+
+> > Sorry for not asking this sooner Changhuang,
+> > Conor.
+> >=20
+> > (hopefully this didn't get sent twice, mutt complained of a bad email
+> > addr during sending the first time)
+> >=20
+>=20
+> I'm sorry for that, I will notice later.
+
+No, this was my mail client doing things that I was unsure of. You
+didn't do anything wrong.
+
+> >> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
+> >> ---
+> >>  .../bindings/power/starfive,jh7110-pmu.yaml       | 15 +++++++++++++--
+> >>  include/dt-bindings/power/starfive,jh7110-pmu.h   |  3 +++
+> >>  2 files changed, 16 insertions(+), 2 deletions(-)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/power/starfive,jh7110-p=
+mu.yaml b/Documentation/devicetree/bindings/power/starfive,jh7110-pmu.yaml
+> >> index 98eb8b4110e7..c50507c38e14 100644
+> >> --- a/Documentation/devicetree/bindings/power/starfive,jh7110-pmu.yaml
+> >> +++ b/Documentation/devicetree/bindings/power/starfive,jh7110-pmu.yaml
+> >> @@ -8,6 +8,7 @@ title: StarFive JH7110 Power Management Unit
+> >> =20
+> >>  maintainers:
+> >>    - Walker Chen <walker.chen@starfivetech.com>
+> >> +  - Changhuang Liang <changhuang.liang@starfivetech.com>
+> >> =20
+> >>  description: |
+> >>    StarFive JH7110 SoC includes support for multiple power domains whi=
+ch can be
+> >> @@ -17,6 +18,7 @@ properties:
+> >>    compatible:
+> >>      enum:
+> >>        - starfive,jh7110-pmu
+> >> +      - starfive,jh7110-aon-pmu
+
+I was speaking to Rob about this over the weekend, he asked:
+'Why isn't "starfive,jh7110-aon-syscon" just the power-domain provider
+itself?'
+Do we actually need to add a new binding for this at all?
+
+Cheers,
+Conor.
+
+> >> =20
+> >>    reg:
+> >>      maxItems: 1
+> >> @@ -29,10 +31,19 @@ properties:
+> >> =20
+> >>  required:
+> >>    - compatible
+> >> -  - reg
+> >> -  - interrupts
+> >>    - "#power-domain-cells"
+> >> =20
+> >> +allOf:
+> >> +  - if:
+> >> +      properties:
+> >> +        compatible:
+> >> +          contains:
+> >> +            const: starfive,jh7110-pmu
+> >> +    then:
+> >> +      required:
+> >> +        - reg
+> >> +        - interrupts
+> >> +
+> >>  additionalProperties: false
+> >> =20
+> >>  examples:
+> >> diff --git a/include/dt-bindings/power/starfive,jh7110-pmu.h b/include=
+/dt-bindings/power/starfive,jh7110-pmu.h
+> >> index 132bfe401fc8..0bfd6700c144 100644
+> >> --- a/include/dt-bindings/power/starfive,jh7110-pmu.h
+> >> +++ b/include/dt-bindings/power/starfive,jh7110-pmu.h
+> >> @@ -14,4 +14,7 @@
+> >>  #define JH7110_PD_ISP		5
+> >>  #define JH7110_PD_VENC		6
+> >> =20
+> >> +#define JH7110_PD_DPHY_TX	0
+> >> +#define JH7110_PD_DPHY_RX	1
+> >> +
+> >>  #endif
+> >> --=20
+> >> 2.25.1
+> >>
+
+--6HlvDwIotWNMJfjO
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZEazxwAKCRB4tDGHoIJi
+0osdAQCISGBqGlz7YM9o2HVnpF3isrb+g/3DjUcQStBOFWMoIQEAqiq89P/KpxGn
+wIK++nWkOGweBlPSKaS8ogGe/h/+tQE=
+=Y2pV
+-----END PGP SIGNATURE-----
+
+--6HlvDwIotWNMJfjO--
