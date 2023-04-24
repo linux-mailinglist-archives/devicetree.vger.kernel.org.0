@@ -2,52 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 746806ECA11
-	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 12:20:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41E4F6EC931
+	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 11:43:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231654AbjDXKUo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Apr 2023 06:20:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44270 "EHLO
+        id S231143AbjDXJnY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Apr 2023 05:43:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231289AbjDXKUk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 06:20:40 -0400
-X-Greylist: delayed 2706 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 24 Apr 2023 03:20:38 PDT
-Received: from forward501c.mail.yandex.net (forward501c.mail.yandex.net [IPv6:2a02:6b8:c03:500:1:45:d181:d501])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C224719B3;
-        Mon, 24 Apr 2023 03:20:38 -0700 (PDT)
+        with ESMTP id S229522AbjDXJnX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 05:43:23 -0400
+Received: from forward500b.mail.yandex.net (forward500b.mail.yandex.net [178.154.239.144])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BF6E1BE6;
+        Mon, 24 Apr 2023 02:43:22 -0700 (PDT)
 Received: from mail-nwsmtp-smtp-production-main-39.myt.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-39.myt.yp-c.yandex.net [IPv6:2a02:6b8:c12:261e:0:640:2e3d:0])
-        by forward501c.mail.yandex.net (Yandex) with ESMTP id 7117B5E6FB;
-        Mon, 24 Apr 2023 12:35:37 +0300 (MSK)
-Received: by mail-nwsmtp-smtp-production-main-39.myt.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id JZBb1pbWwKo0-hYJwwRUe;
-        Mon, 24 Apr 2023 12:35:37 +0300
+        by forward500b.mail.yandex.net (Yandex) with ESMTP id F26065EB6B;
+        Mon, 24 Apr 2023 12:35:39 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-39.myt.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id JZBb1pbWwKo0-Qivh3H9j;
+        Mon, 24 Apr 2023 12:35:39 +0300
 X-Yandex-Fwd: 1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maquefel.me; s=mail; t=1682328937;
-        bh=LuvwFxFGRS5iNfT4J+WUehyL2rZj86DmXsjlr5Rkiuo=;
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maquefel.me; s=mail; t=1682328939;
+        bh=hEtxBdyI2HO9wKRIi0w86SPEAP4jiwD5d234QJI8KJM=;
         h=Message-Id:Date:In-Reply-To:Cc:Subject:References:To:From;
-        b=odwNcFIKvpgD7Mxs61sPi/mM0t5sONtn8X+zNZFoC++6LweyKj1K0ogUCqcp7G4DB
-         MzgAu4cBnHr7FWS8qEq4FTsMtOG9R9JjeljUMwPy2cX/EV6XVN2P/40L1sViD/JHuX
-         +8Ap7ni0mGO63qd1SeqIylq2dbUz3UlKA/vu1nIw=
+        b=Pg41pce8J2/HqfIkzznYYKb27LAhjQIPZtMdsv3D+qt7YuC0/8oxQoFXvEn0EqM3W
+         UN8oZZhVzsrAJzCSlh+T+xFIHBcbrZa3nxmvcjspMYDf5nBw9oqWdbsBsCPgbaFX80
+         6qTLA2T8nbT1YDP1JQXfH+GC6cneDlP2iMEdrdq8=
 Authentication-Results: mail-nwsmtp-smtp-production-main-39.myt.yp-c.yandex.net; dkim=pass header.i=@maquefel.me
 From:   Nikita Shubin <nikita.shubin@maquefel.me>
 Cc:     Arnd Bergmann <arnd@kernel.org>, Linus Walleij <linusw@kernel.org>,
         Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 03/43] dt-bindings: pinctrl: Add DT bindings ep93xx pinctrl
-Date:   Mon, 24 Apr 2023 15:34:19 +0300
-Message-Id: <20230424123522.18302-4-nikita.shubin@maquefel.me>
+        Hartley Sweeten <hsweeten@visionengravers.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH 05/43] dt-bindings: timers: add DT bindings for Cirrus EP93xx
+Date:   Mon, 24 Apr 2023 15:34:21 +0300
+Message-Id: <20230424123522.18302-6-nikita.shubin@maquefel.me>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230424123522.18302-1-nikita.shubin@maquefel.me>
 References: <20230424123522.18302-1-nikita.shubin@maquefel.me>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 To:     unlisted-recipients:; (no To-header on input)
@@ -55,96 +54,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add YAML bindings ep93xx SoC.
+This adds device tree bindings for the Cirrus Logic EP93xx
+timer block used in these SoCs.
 
 Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 ---
 
 Notes:
-    rfc->v0:
-    - dropped separate bindings description, left only one with all groups,
-      functions and etc...
-    - added Alexander Sverdlin to maintainers
-    - added Linus Reviwed-by tags, through i shoudn't =) too many changes
-    - fixed warning and added seq_file header
+    Arnd Bergmann:
+    - replaced ep93xx wildcard with ep9301
 
- .../pinctrl/cirrus,ep93xx-pinctrl.yaml        | 66 +++++++++++++++++++
- 1 file changed, 66 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pinctrl/cirrus,ep93xx-pinctrl.yaml
+ .../bindings/timer/cirrus,ep93xx-timer.yaml   | 41 +++++++++++++++++++
+ 1 file changed, 41 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/timer/cirrus,ep93xx-timer.yaml
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/cirrus,ep93xx-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/cirrus,ep93xx-pinctrl.yaml
+diff --git a/Documentation/devicetree/bindings/timer/cirrus,ep93xx-timer.yaml b/Documentation/devicetree/bindings/timer/cirrus,ep93xx-timer.yaml
 new file mode 100644
-index 000000000000..cba4be7c5994
+index 000000000000..ce8b8a5cb90a
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/pinctrl/cirrus,ep93xx-pinctrl.yaml
-@@ -0,0 +1,66 @@
++++ b/Documentation/devicetree/bindings/timer/cirrus,ep93xx-timer.yaml
+@@ -0,0 +1,41 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/pinctrl/cirrus,ep93xx-pinctrl.yaml#
++$id: http://devicetree.org/schemas/timer/cirrus,ep93xx-timer.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Cirrus ep93xx pins mux controller
++title: Cirrus Logic EP93xx timers bindings
 +
 +maintainers:
-+  - Nikita Shubin <nikita.shubin@maquefel.me>
++  - Hartley Sweeten <hsweeten@visionengravers.com>
 +  - Alexander Sverdlin <alexander.sverdlin@gmail.com>
 +
 +properties:
 +  compatible:
-+    enum:
-+      - cirrus,ep9301-pinctrl
-+      - cirrus,ep9307-pinctrl
-+      - cirrus,ep9312-pinctrl
-+  regmap:
-+    description: phandle to syscon
++    const: cirrus,ep9301-timer
 +
-+patternProperties:
-+  '^pinctrl-':
-+    type: object
-+    description: pin node
-+    $ref: pinmux-node.yaml#
++  reg:
++    maxItems: 1
 +
-+    properties:
-+      function:
-+        enum: [ spi, ac97, i2s, pwm, keypad, pata, lcd, gpio1, gpio2, gpio3,
-+                gpio4, gpio6, gpio7 ]
-+      groups:
-+        minItems: 1
-+        maxItems: 2
-+        items:
-+          enum: [ ssp, ac97, i2s_on_ssp, i2s_on_ac97, pwm1, gpio1agrp,
-+                  gpio2agrp, gpio3agrp, gpio4agrp, gpio6agrp, gpio7agrp,
-+                  rasteronsdram0grp, rasteronsdram3grp, keypadgrp, idegrp]
++  interrupts:
++    maxItems: 1
 +
-+    required:
-+      - function
-+      - groups
++  resets:
++    maxItems: 1
 +
 +required:
 +  - compatible
-+  - regmap
++  - reg
++  - interrupts
 +
 +additionalProperties: false
 +
 +examples:
 +  - |
-+    syscon: syscon@80930000 {
-+        compatible = "cirrus,ep9301-syscon",
-+                     "syscon", "simple-mfd";
-+        reg = <0x80930000 0x1000>;
-+        #clock-cells = <1>;
-+        #reset-cells = <1>;
-+        pinctrl: pinctrl {
-+                compatible = "cirrus,ep9312-pinctrl";
-+                regmap = <&syscon>;
-+                spi_default_pins: pinctrl-spi {
-+                        function = "spi";
-+                        groups = "ssp";
-+                };
-+        };
++    timer@80810000 {
++        compatible = "cirrus,ep9301-timer";
++        reg = <0x80810000 0x100>;
++        interrupt-parent = <&vic1>;
++        interrupts = <19>;
 +    };
++...
 -- 
 2.39.2
 
