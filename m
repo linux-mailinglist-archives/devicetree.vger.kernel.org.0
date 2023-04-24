@@ -2,197 +2,330 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F7496ED849
-	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 01:04:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56B896ED85F
+	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 01:16:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233160AbjDXXD6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Apr 2023 19:03:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60992 "EHLO
+        id S232442AbjDXXQh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Apr 2023 19:16:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232791AbjDXXDq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 19:03:46 -0400
-Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B43D9763
-        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 16:03:44 -0700 (PDT)
-Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-54fae5e9ec7so57186907b3.1
-        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 16:03:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682377423; x=1684969423;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=xRrth/2rPlHJRD57ZDquRzBPnCdvHhyHdVMWOLBhruc=;
-        b=pwTi6X4Nah2HOzAB1Ma+a9krICtX2pHckFVINb88v52GBWheZ7jNNAHDVo8Dnp5zsZ
-         wuJDfJTRWf9GdX6CanriP+Pu1yBthY4U12nueDOM1sq+a9AYrud+7bkuee8qPbzhqQNS
-         eSF8AfTN5oMY3xh7hUEhIiu5DCIlMS8bs+rduoF78daKpkxi+ykuz0ImcKQt4grSnFyx
-         O3tIl8t1S3YoAf+71PDzbzsIStpGrhiNCSpgRfO8l1LD20TmV+aOAm4DdrhMmbHJXXtM
-         9nWRUsfqJeEv+wO+5qHzsDsCN5nmk6Mg96rCymIFnFZk+Az51S7i5tUAwERWVkxY3c1p
-         dK2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682377423; x=1684969423;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xRrth/2rPlHJRD57ZDquRzBPnCdvHhyHdVMWOLBhruc=;
-        b=UlRCuj2OH+m+TcHSlHUq4ZSJehenM4oHbTfrgWKrruzshci20T9wPT6C74fESx4ewm
-         O64DKeZLsBkYnedndV9zRNUFCh3/iAJi1eV29puipWaz26gpudLG0P3OKjhkGiOt93Jt
-         7/CN75hsUfJxVnjV3tqkMzjziW5WHy11eM50anB+XwLXf8uV/R/N+3jblk3cJFR+5xv5
-         wTqQJyRzhzgnnO5gjoDQqpBzhHtmIy1Nsi59bPtVJ2kvePGoZtNdh31l1T1Axs8De/cN
-         XxdO2eVbD4mMkhb6omeCx4CYBkaoJYVnHHBJa5RBMfeDVBqzxtDz27oSEG3IuqpZRDvD
-         lbIA==
-X-Gm-Message-State: AAQBX9fsSKJgHUqE1vqrmlX+2y7zT3FdT7z8djEieq54tmwdQzkAa/68
-        Ps6seVg2Yhp7PigndJN1cLk2jNPSf0hZZWbFffWi0g==
-X-Google-Smtp-Source: AKy350bUIDhOyA/75JWrk6ft3Se2t9sPXfgR909GdW/OWl6txSewv5q6VCQpcF8tzR9yOS7WWg8fvn4NqZyvM03Udk8=
-X-Received: by 2002:a0d:e68b:0:b0:54f:9e41:df5a with SMTP id
- p133-20020a0de68b000000b0054f9e41df5amr9223949ywe.15.1682377423165; Mon, 24
- Apr 2023 16:03:43 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230421133922.8520-1-quic_shazhuss@quicinc.com> <ZEcEGJiikEC2wIVE@fedora>
-In-Reply-To: <ZEcEGJiikEC2wIVE@fedora>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Tue, 25 Apr 2023 02:03:32 +0300
-Message-ID: <CAA8EJpr27=2jAXbamN6J7yF+7G=L5Af8+XReB5UnFuihcEwMQA@mail.gmail.com>
-Subject: Re: [PATCH v1 0/6] arm64: qcom: sa8775p: add support for USB
-To:     Adrien Thierry <athierry@redhat.com>
-Cc:     Shazad Hussain <quic_shazhuss@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
+        with ESMTP id S229755AbjDXXQg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 19:16:36 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B6B4126;
+        Mon, 24 Apr 2023 16:16:34 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33ON3LFe019448;
+        Mon, 24 Apr 2023 23:16:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=iQ7VnyxO1qPvs8HMUoEtRg5bjjSA+GabCMD0yY6tri8=;
+ b=DmD+ZoTrL0nF1Zt0sErjgv0Q3WDfXVMM1kVCdh3cTKRjyXTbt9hQWHj0zYsuvOVKkydB
+ Rx87lJuN/RP6653rEf2asL7Vci/OvJej5uTmWPrwnm7+06AfHzIPY6nOAKm8+DhoUAbE
+ fV1RqZ22UjGQw4L+EpbbU56XNSnjSt595OEDNF7b+RgRcZ8rCEpksbalDItTqrn089Ln
+ 58nDSzyTRCGmmevvNJk6nSKG20YKOZYGyQgybkpEcqNB/YiZToFZoAyMFHtQX4T/7vPC
+ TwUSxFNbvMZQY/erpvy5thV3vYr3vrSB6qjixCtofQrTJItnPxB+j0VYjhmUTmTTpYKE fg== 
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q5wrb0q0v-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 24 Apr 2023 23:16:16 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33ONGExx024094
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 24 Apr 2023 23:16:14 GMT
+Received: from hu-eberman-lv.qualcomm.com (10.49.16.6) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Mon, 24 Apr 2023 16:16:13 -0700
+From:   Elliot Berman <quic_eberman@quicinc.com>
+To:     Alex Elder <elder@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+CC:     Elliot Berman <quic_eberman@quicinc.com>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        "Srivatsa Vaddagiri" <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Will Deacon <will@kernel.org>, Andy Gross <agross@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH v12 00/25] Drivers for Gunyah hypervisor
+Date:   Mon, 24 Apr 2023 16:15:33 -0700
+Message-ID: <20230424231558.70911-1-quic_eberman@quicinc.com>
+X-Mailer: git-send-email 2.40.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 9bkZh2CRg-KqnWeW2DywNuu1opP-c0rH
+X-Proofpoint-ORIG-GUID: 9bkZh2CRg-KqnWeW2DywNuu1opP-c0rH
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-24_11,2023-04-21_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 mlxlogscore=999
+ bulkscore=0 clxscore=1015 malwarescore=0 suspectscore=0 spamscore=0
+ priorityscore=1501 phishscore=0 adultscore=0 impostorscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303200000 definitions=main-2304240211
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 25 Apr 2023 at 01:36, Adrien Thierry <athierry@redhat.com> wrote:
->
-> Hi Shazad,
->
-> On Fri, Apr 21, 2023 at 07:09:15PM +0530, Shazad Hussain wrote:
-> > Update relavent DT bindings for USB, add new config to the phy driver,
-> > add USB and PHY nodes to the .dtsi and enable them in the board .dts
-> > for the sa8775p-ride platform.
-> >
-> > Shazad Hussain (6):
-> >   dt-bindings: usb: qcom,dwc3: Add bindings for SA8775P
-> >   dt-bindings: phy: qcom,usb-snps-femto-v2: Add bindings for SA8775P
-> >   dt-bindings: phy: qcom,sc8280xp-qmp-usb3-uni: Add SA8775P USB PHY
-> >     binding
-> >   phy: qcom-qmp: Add SA8775P USB3 UNI phy
-> >   arm64: dts: qcom: sa8775p: add USB nodes
-> >   arm64: dts: qcom: sa8775p-ride: enable USB nodes
-> >
-> >  .../phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml   |   1 +
-> >  .../bindings/phy/qcom,usb-snps-femto-v2.yaml  |   1 +
-> >  .../devicetree/bindings/usb/qcom,dwc3.yaml    |   5 +
-> >  arch/arm64/boot/dts/qcom/sa8775p-ride.dts     |  92 +++++++
-> >  arch/arm64/boot/dts/qcom/sa8775p.dtsi         | 239 +++++++++++++++++-
-> >  drivers/phy/qualcomm/phy-qcom-qmp-usb.c       |  45 ++++
-> >  6 files changed, 381 insertions(+), 2 deletions(-)
-> >
-> > --
-> > 2.17.1
-> >
->
-> Thanks for posting this. I tested the series on the sa8775p, and it seems
-> initialization for the controller at a400000 sometimes fails with a
-> timeout (-110) error:
->
->     dwc3 a400000.usb: Adding to iommu group 2
->     xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
->     xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 1
->     xhci-hcd xhci-hcd.0.auto: can't setup: -110
->     xhci-hcd xhci-hcd.0.auto: USB bus 1 deregistered
->     xhci-hcd: probe of xhci-hcd.0.auto failed with error -110
+Gunyah is a Type-1 hypervisor independent of any
+high-level OS kernel, and runs in a higher CPU privilege level. It does
+not depend on any lower-privileged OS kernel/code for its core
+functionality. This increases its security and can support a much smaller
+trusted computing base than a Type-2 hypervisor.
 
-Semi-random suggestion, but could you please try using
-clk_regmap_phy_mux/clk_regmap_phy_mux_ops for USB pipe clk src?
+Gunyah is an open source hypervisor. The source repo is available at
+https://github.com/quic/gunyah-hypervisor.
+
+The diagram below shows the architecture.
+
+::
+
+         VM A                    VM B
+     +-----+ +-----+  | +-----+ +-----+ +-----+
+     |     | |     |  | |     | |     | |     |
+ EL0 | APP | | APP |  | | APP | | APP | | APP |
+     |     | |     |  | |     | |     | |     |
+     +-----+ +-----+  | +-----+ +-----+ +-----+
+ ---------------------|-------------------------
+     +--------------+ | +----------------------+
+     |              | | |                      |
+ EL1 | Linux Kernel | | |Linux kernel/Other OS |   ...
+     |              | | |                      |
+     +--------------+ | +----------------------+
+ --------hvc/smc------|------hvc/smc------------
+     +----------------------------------------+
+     |                                        |
+ EL2 |            Gunyah Hypervisor           |
+     |                                        |
+     +----------------------------------------+
+
+Gunyah provides these following features.
+
+- Threads and Scheduling: The scheduler schedules virtual CPUs (VCPUs) on
+physical CPUs and enables time-sharing of the CPUs.
+- Memory Management: Gunyah tracks memory ownership and use of all memory
+under its control. Memory partitioning between VMs is a fundamental
+security feature.
+- Interrupt Virtualization: All interrupts are handled in the hypervisor
+and routed to the assigned VM.
+- Inter-VM Communication: There are several different mechanisms provided
+for communicating between VMs.
+- Device Virtualization: Para-virtualization of devices is supported using
+inter-VM communication. Low level system features and devices such as
+interrupt controllers are supported with emulation where required.
+
+This series adds the basic framework for detecting that Linux is running
+under Gunyah as a virtual machine, communication with the Gunyah Resource
+Manager, and a sample virtual machine manager capable of launching virtual machines.
+
+The series relies on two other patches posted separately:
+ - https://lore.kernel.org/all/20230213181832.3489174-1-quic_eberman@quicinc.com/
+ - https://lore.kernel.org/all/20230213232537.2040976-2-quic_eberman@quicinc.com/
+
+Changes in v12:
+ - Stylistic/cosmetic tweaks suggested by Alex
+ - Remove patch "virt: gunyah: Identify hypervisor version" and squash the
+   check that we're running under a reasonable Gunyah hypervisor into RM driver
+ - Refactor platform hooks into a separate module per suggestion from Srini
+ - GFP_KERNEL_ACCOUNT and account_locked_vm() for page pinning
+ - enum-ify related constants
+ - Allow removal of VM functions by function-specific comparison -- specifically to allow
+   removing irqfd by label only and not requiring original FD to be provided.
+
+Changes in v11: https://lore.kernel.org/all/20230304010632.2127470-1-quic_eberman@quicinc.com/
+ - Rename struct gh_vm_dtb_config:gpa -> guest_phys_addr & overflow checks for this
+ - More docstrings throughout
+ - Make resp_buf and resp_buf_size optional
+ - Replace deprecated idr with xarray
+ - Refconting on misc device instead of RM's platform device
+ - Renaming variables, structs, etc. from gunyah_ -> gh_
+ - Drop removal of user mem regions
+ - Drop mem_lend functionality; to converge with restricted_memfd later
+
+Changes in v10: https://lore.kernel.org/all/20230214211229.3239350-1-quic_eberman@quicinc.com/
+ - Fix bisectability (end result of series is same, --fixups applied to wrong commits)
+ - Convert GH_ERROR_* and GH_RM_ERROR_* to enums
+ - Correct race condition between allocating/freeing user memory
+ - Replace offsetof with struct_size
+ - Series-wide renaming of functions to be more consistent
+ - VM shutdown & restart support added in vCPU and VM Manager patches
+ - Convert VM function name (string) to type (number)
+ - Convert VM function argument to value (which could be a pointer) to remove memory wastage for arguments
+ - Remove defensive checks of hypervisor correctness
+ - Clean ups to ioeventfd as suggested by Srivatsa
+
+Changes in v9: https://lore.kernel.org/all/20230120224627.4053418-1-quic_eberman@quicinc.com/
+ - Refactor Gunyah API flags to be exposed as feature flags at kernel level
+ - Move mbox client cleanup into gunyah_msgq_remove()
+ - Simplify gh_rm_call return value and response payload
+ - Missing clean-up/error handling/little endian fixes as suggested by Srivatsa and Alex in v8 series
+
+Changes in v8: https://lore.kernel.org/all/20221219225850.2397345-1-quic_eberman@quicinc.com/
+ - Treat VM manager as a library of RM
+ - Add patches 21-28 as RFC to support proxy-scheduled vCPUs and necessary bits to support virtio
+   from Gunyah userspace
+
+Changes in v7: https://lore.kernel.org/all/20221121140009.2353512-1-quic_eberman@quicinc.com/
+ - Refactor to remove gunyah RM bus
+ - Refactor allow multiple RM device instances
+ - Bump UAPI to start at 0x0
+ - Refactor QCOM SCM's platform hooks to allow CONFIG_QCOM_SCM=Y/CONFIG_GUNYAH=M combinations
+
+Changes in v6: https://lore.kernel.org/all/20221026185846.3983888-1-quic_eberman@quicinc.com/
+ - *Replace gunyah-console with gunyah VM Manager*
+ - Move include/asm-generic/gunyah.h into include/linux/gunyah.h
+ - s/gunyah_msgq/gh_msgq/
+ - Minor tweaks and documentation tidying based on comments from Jiri, Greg, Arnd, Dmitry, and Bagas.
+
+Changes in v5: https://lore.kernel.org/all/20221011000840.289033-1-quic_eberman@quicinc.com/
+ - Dropped sysfs nodes
+ - Switch from aux bus to Gunyah RM bus for the subdevices
+ - Cleaning up RM console
+
+Changes in v4: https://lore.kernel.org/all/20220928195633.2348848-1-quic_eberman@quicinc.com/
+ - Tidied up documentation throughout based on questions/feedback received
+ - Switched message queue implementation to use mailboxes
+ - Renamed "gunyah_device" as "gunyah_resource"
+
+Changes in v3: https://lore.kernel.org/all/20220811214107.1074343-1-quic_eberman@quicinc.com/
+ - /Maintained/Supported/ in MAINTAINERS
+ - Tidied up documentation throughout based on questions/feedback received
+ - Moved hypercalls into arch/arm64/gunyah/; following hyper-v's implementation
+ - Drop opaque typedefs
+ - Move sysfs nodes under /sys/hypervisor/gunyah/
+ - Moved Gunyah console driver to drivers/tty/
+ - Reworked gh_device design to drop the Gunyah bus.
+
+Changes in v2: https://lore.kernel.org/all/20220801211240.597859-1-quic_eberman@quicinc.com/
+ - DT bindings clean up
+ - Switch hypercalls to follow SMCCC 
+
+v1: https://lore.kernel.org/all/20220223233729.1571114-1-quic_eberman@quicinc.com/
+
+Elliot Berman (25):
+  docs: gunyah: Introduce Gunyah Hypervisor
+  dt-bindings: Add binding for gunyah hypervisor
+  gunyah: Common types and error codes for Gunyah hypercalls
+  virt: gunyah: Add hypercalls to identify Gunyah
+  virt: gunyah: msgq: Add hypercalls to send and receive messages
+  mailbox: Add Gunyah message queue mailbox
+  gunyah: rsc_mgr: Add resource manager RPC core
+  gunyah: rsc_mgr: Add VM lifecycle RPC
+  gunyah: vm_mgr: Introduce basic VM Manager
+  gunyah: rsc_mgr: Add RPC for sharing memory
+  gunyah: vm_mgr: Add/remove user memory regions
+  gunyah: vm_mgr: Add ioctls to support basic non-proxy VM boot
+  samples: Add sample userspace Gunyah VM Manager
+  gunyah: rsc_mgr: Add platform ops on mem_lend/mem_reclaim
+  firmware: qcom_scm: Register Gunyah platform ops
+  docs: gunyah: Document Gunyah VM Manager
+  virt: gunyah: Translate gh_rm_hyp_resource into gunyah_resource
+  gunyah: vm_mgr: Add framework for VM Functions
+  virt: gunyah: Add resource tickets
+  virt: gunyah: Add IO handlers
+  virt: gunyah: Add proxy-scheduled vCPUs
+  virt: gunyah: Add hypercalls for sending doorbell
+  virt: gunyah: Add irqfd interface
+  virt: gunyah: Add ioeventfd
+  MAINTAINERS: Add Gunyah hypervisor drivers section
+
+ .../bindings/firmware/gunyah-hypervisor.yaml  |  82 ++
+ .../userspace-api/ioctl/ioctl-number.rst      |   1 +
+ Documentation/virt/gunyah/index.rst           | 114 +++
+ Documentation/virt/gunyah/message-queue.rst   |  71 ++
+ Documentation/virt/gunyah/vm-manager.rst      | 142 +++
+ Documentation/virt/index.rst                  |   1 +
+ MAINTAINERS                                   |  13 +
+ arch/arm64/Kbuild                             |   1 +
+ arch/arm64/gunyah/Makefile                    |   3 +
+ arch/arm64/gunyah/gunyah_hypercall.c          | 140 +++
+ arch/arm64/include/asm/gunyah.h               |  24 +
+ drivers/mailbox/Makefile                      |   2 +
+ drivers/mailbox/gunyah-msgq.c                 | 210 ++++
+ drivers/virt/Kconfig                          |   2 +
+ drivers/virt/Makefile                         |   1 +
+ drivers/virt/gunyah/Kconfig                   |  59 ++
+ drivers/virt/gunyah/Makefile                  |  11 +
+ drivers/virt/gunyah/gunyah_ioeventfd.c        | 117 +++
+ drivers/virt/gunyah/gunyah_irqfd.c            | 167 ++++
+ drivers/virt/gunyah/gunyah_platform_hooks.c   |  80 ++
+ drivers/virt/gunyah/gunyah_qcom.c             | 147 +++
+ drivers/virt/gunyah/gunyah_vcpu.c             | 456 +++++++++
+ drivers/virt/gunyah/rsc_mgr.c                 | 910 ++++++++++++++++++
+ drivers/virt/gunyah/rsc_mgr.h                 |  19 +
+ drivers/virt/gunyah/rsc_mgr_rpc.c             | 500 ++++++++++
+ drivers/virt/gunyah/vm_mgr.c                  | 792 +++++++++++++++
+ drivers/virt/gunyah/vm_mgr.h                  |  70 ++
+ drivers/virt/gunyah/vm_mgr_mm.c               | 256 +++++
+ include/linux/gunyah.h                        | 207 ++++
+ include/linux/gunyah_rsc_mgr.h                | 162 ++++
+ include/linux/gunyah_vm_mgr.h                 | 124 +++
+ include/uapi/linux/gunyah.h                   | 293 ++++++
+ samples/Kconfig                               |  10 +
+ samples/Makefile                              |   1 +
+ samples/gunyah/.gitignore                     |   2 +
+ samples/gunyah/Makefile                       |   6 +
+ samples/gunyah/gunyah_vmm.c                   | 270 ++++++
+ samples/gunyah/sample_vm.dts                  |  68 ++
+ 38 files changed, 5534 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
+ create mode 100644 Documentation/virt/gunyah/index.rst
+ create mode 100644 Documentation/virt/gunyah/message-queue.rst
+ create mode 100644 Documentation/virt/gunyah/vm-manager.rst
+ create mode 100644 arch/arm64/gunyah/Makefile
+ create mode 100644 arch/arm64/gunyah/gunyah_hypercall.c
+ create mode 100644 arch/arm64/include/asm/gunyah.h
+ create mode 100644 drivers/mailbox/gunyah-msgq.c
+ create mode 100644 drivers/virt/gunyah/Kconfig
+ create mode 100644 drivers/virt/gunyah/Makefile
+ create mode 100644 drivers/virt/gunyah/gunyah_ioeventfd.c
+ create mode 100644 drivers/virt/gunyah/gunyah_irqfd.c
+ create mode 100644 drivers/virt/gunyah/gunyah_platform_hooks.c
+ create mode 100644 drivers/virt/gunyah/gunyah_qcom.c
+ create mode 100644 drivers/virt/gunyah/gunyah_vcpu.c
+ create mode 100644 drivers/virt/gunyah/rsc_mgr.c
+ create mode 100644 drivers/virt/gunyah/rsc_mgr.h
+ create mode 100644 drivers/virt/gunyah/rsc_mgr_rpc.c
+ create mode 100644 drivers/virt/gunyah/vm_mgr.c
+ create mode 100644 drivers/virt/gunyah/vm_mgr.h
+ create mode 100644 drivers/virt/gunyah/vm_mgr_mm.c
+ create mode 100644 include/linux/gunyah.h
+ create mode 100644 include/linux/gunyah_rsc_mgr.h
+ create mode 100644 include/linux/gunyah_vm_mgr.h
+ create mode 100644 include/uapi/linux/gunyah.h
+ create mode 100644 samples/gunyah/.gitignore
+ create mode 100644 samples/gunyah/Makefile
+ create mode 100644 samples/gunyah/gunyah_vmm.c
+ create mode 100644 samples/gunyah/sample_vm.dts
 
 
->     dwc3 a600000.usb: Adding to iommu group 3
->     dwc3 a800000.usb: Adding to iommu group 4
->     xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
->     xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned bus number 1
->     xhci-hcd xhci-hcd.1.auto: hcc params 0x0110ffc5 hci version 0x110 quirks 0x0000000000010010
->     xhci-hcd xhci-hcd.1.auto: irq 162, io mem 0x0a800000
->     xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
->     xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned bus number 2
->     xhci-hcd xhci-hcd.1.auto: Host supports USB 3.1 Enhanced SuperSpeed
->     hub 1-0:1.0: USB hub found
->     hub 1-0:1.0: 1 port detected
->     usb usb2: We don't know the algorithms for LPM for this host, disabling LPM.
->     hub 2-0:1.0: USB hub found
->     hub 2-0:1.0: 1 port detected
->
-> In this case, only usb devices for a800000 are showing:
->
->     dracut:/# ls -alh /sys/bus/usb/devices
->     total 0
->     drwxr-xr-x 2 root root 0 Feb 27 00:00 .
->     drwxr-xr-x 4 root root 0 Feb 27 00:00 ..
->     lrwxrwxrwx 1 root root 0 Feb 27 00:00 1-0:1.0 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.1.auto/usb1/1-0:1.0
->     lrwxrwxrwx 1 root root 0 Feb 27 00:00 2-0:1.0 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.1.auto/usb2/2-0:1.0
->     lrwxrwxrwx 1 root root 0 Feb 27 00:00 usb1 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.1.auto/usb1
->     lrwxrwxrwx 1 root root 0 Feb 27 00:00 usb2 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.1.auto/usb2
->
-> This happens approximately 1 out of 2 reboots. Here's the kernel output
-> when initialization succeeds:
->
->     dwc3 a600000.usb: Adding to iommu group 2
->     dwc3 a800000.usb: Adding to iommu group 3
->     xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
->     xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 1
->     xhci-hcd xhci-hcd.0.auto: hcc params 0x0110ffc5 hci version 0x110 quirks 0x0000000000010010
->     xhci-hcd xhci-hcd.0.auto: irq 161, io mem 0x0a800000
->     xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
->     xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 2
->     xhci-hcd xhci-hcd.0.auto: Host supports USB 3.1 Enhanced SuperSpeed
->     hub 1-0:1.0: USB hub found
->     hub 1-0:1.0: 1 port detected
->     usb usb2: We don't know the algorithms for LPM for this host, disabling LPM.
->     hub 2-0:1.0: USB hub found
->     hub 2-0:1.0: 1 port detected
->     dwc3 a400000.usb: Adding to iommu group 4
->     xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
->     xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned bus number 3
->     xhci-hcd xhci-hcd.1.auto: USB3 root hub has no ports
->     xhci-hcd xhci-hcd.1.auto: hcc params 0x0220fe65 hci version 0x110 quirks 0x0000000000010010
->     xhci-hcd xhci-hcd.1.auto: irq 162, io mem 0x0a400000
->     hub 3-0:1.0: USB hub found
->     hub 3-0:1.0: 1 port detected
->
-> And the list of usb devices:
->
->     dracut:/# ls -alh /sys/bus/usb/devices
->     total 0
->     drwxr-xr-x 2 root root 0 Feb 27 00:00 .
->     drwxr-xr-x 4 root root 0 Feb 27 00:00 ..
->     lrwxrwxrwx 1 root root 0 Feb 27 00:00 1-0:1.0 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.0.auto/usb1/1-0:1.0
->     lrwxrwxrwx 1 root root 0 Feb 27 00:00 2-0:1.0 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.0.auto/usb2/2-0:1.0
->     lrwxrwxrwx 1 root root 0 Feb 27 00:00 3-0:1.0 -> ../../../devices/platform/soc@0/a4f8800.usb/a400000.usb/xhci-hcd.1.auto/usb3/3-0:1.0
->     lrwxrwxrwx 1 root root 0 Feb 27 00:00 usb1 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.0.auto/usb1
->     lrwxrwxrwx 1 root root 0 Feb 27 00:00 usb2 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.0.auto/usb2
->     lrwxrwxrwx 1 root root 0 Feb 27 00:00 usb3 -> ../../../devices/platform/soc@0/a4f8800.usb/a400000.usb/xhci-hcd.1.auto/usb3
->
-> Have you also encountered this?
->
-> Best,
->
-> Adrien
->
-
-
+base-commit: d71ee0d6ee72138dd4fda646a955a15286c46544
 -- 
-With best wishes
-Dmitry
+2.40.0
+
