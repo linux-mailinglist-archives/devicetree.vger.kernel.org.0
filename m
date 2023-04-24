@@ -2,227 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D2D36EC7F6
-	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 10:39:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B36746EC9C2
+	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 12:06:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230346AbjDXIj1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Apr 2023 04:39:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60980 "EHLO
+        id S230299AbjDXKGf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Apr 2023 06:06:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229603AbjDXIj0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 04:39:26 -0400
-X-Greylist: delayed 1402 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 24 Apr 2023 01:39:24 PDT
-Received: from egress-ip4a.ess.de.barracuda.com (egress-ip4a.ess.de.barracuda.com [18.184.203.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7DCAE48
-        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 01:39:24 -0700 (PDT)
-Received: from mail-il1-f200.google.com (mail-il1-f200.google.com [209.85.166.200]) by mx-outbound10-206.eu-central-1a.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Mon, 24 Apr 2023 08:39:07 +0000
-Received: by mail-il1-f200.google.com with SMTP id e9e14a558f8ab-32abae1ff3aso70212385ab.2
-        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 01:39:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mistralsolutions.com; s=google; t=1682325546; x=1684917546;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EiE2A4//DbxZQ7lVU5qUMOosuU5KxI1VpQT9EEvu6k8=;
-        b=F4qLFUMQnGV/OM+E7720yzy15/EpstuRK6+hg1R9xPbRI88Ez0awxzlVjl1jqaCMLa
-         H+ZrmUg9E5pHQAt3OSRwiZ31KaZGg8pWHPSb5cXoXHaxw/LA0cHhEPlc6rrorJxPYOxI
-         2CMokVGo79uvxAdODX8P/ACZ2gLbHBAs48igk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682325546; x=1684917546;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EiE2A4//DbxZQ7lVU5qUMOosuU5KxI1VpQT9EEvu6k8=;
-        b=ZkamJfqnBenuRTBai+OTecg7mgI0oOCiLtevARfxNIDHFvLJozN2SDoWOh5+1hs0Ra
-         m7Kwk7KmZ9ytd8gMiVlZb1Bvg7O2zCOa0hhG1Ebkfb7x6IKxrZdZiWQMVoQZwvAeV5UV
-         6hA88EsCFqphI5NVmy73AjjoOIm9NRMf/tECGZBRd2IYRpFgnXeZDDPoTDygcdau6FyM
-         MEbHBuGsSsYqu9sn8KuhmMhihn48DpHICspbP5j7piDDet+8tBCc2z5cOj5et+8Jbdzj
-         pwFnwsnA/J+sUQdVzduUFpPNtSULyfYG5pudOS7K+fAIKAYf+ApSP0iosLCZx9TV8xXr
-         RYvQ==
-X-Gm-Message-State: AAQBX9e9BjZdI4uaFNwD5mKEX+xt2IsfMJg6JapqN+fsDouads/Y8O9s
-        TqwqdP6ZoBM3J6khXvF1+KDotMic0MEx1IPShtdl8z/dG50W/TMiMwkmVRjeAzDQwbuOTwXeNcb
-        q9s2yxhngGCdYYgsswAbIh43oaUSBOZ/HKIZQRvuflasulA6Xj4qZy1jXfg==
-X-Received: by 2002:a17:902:aa87:b0:1a4:fc40:bef6 with SMTP id d7-20020a170902aa8700b001a4fc40bef6mr12715635plr.36.1682324154588;
-        Mon, 24 Apr 2023 01:15:54 -0700 (PDT)
-X-Google-Smtp-Source: AKy350bd72n0dllaIWEHcGe5n8pW0pNoaRnxje5U6txXgl6lUStWkA6zPFgYvc5zPQRSCGluT8g3oQ==
-X-Received: by 2002:a17:902:aa87:b0:1a4:fc40:bef6 with SMTP id d7-20020a170902aa8700b001a4fc40bef6mr12715618plr.36.1682324154256;
-        Mon, 24 Apr 2023 01:15:54 -0700 (PDT)
-Received: from localhost.localdomain ([49.207.195.237])
-        by smtp.gmail.com with ESMTPSA id x10-20020a1709029a4a00b001a9293597efsm6089868plv.246.2023.04.24.01.15.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Apr 2023 01:15:53 -0700 (PDT)
-From:   Sinthu Raja <sinthu.raja@mistralsolutions.com>
-X-Google-Original-From: Sinthu Raja <sinthu.raja@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Sinthu Raja <sinthu.raja@ti.com>
-Subject: [PATCH V4 3/3] arm64: dts: ti: k3-am68-sk-base-board: Add pinmux for RPi Header
-Date:   Mon, 24 Apr 2023 13:45:36 +0530
-Message-Id: <20230424081536.12123-4-sinthu.raja@ti.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20230424081536.12123-1-sinthu.raja@ti.com>
-References: <20230424081536.12123-1-sinthu.raja@ti.com>
+        with ESMTP id S229603AbjDXKGe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 06:06:34 -0400
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 338E81BD3
+        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 03:06:32 -0700 (PDT)
+Received: from loongson.cn (unknown [112.20.110.102])
+        by gateway (Coremail) with SMTP id _____8CxOuqnVEZk8gEAAA--.31S3;
+        Mon, 24 Apr 2023 18:06:31 +0800 (CST)
+Received: from [192.168.100.131] (unknown [112.20.110.102])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8Dx97XlOkZk1Xc4AA--.10755S3;
+        Mon, 24 Apr 2023 16:16:38 +0800 (CST)
+Message-ID: <5bcbd96e-6acb-6027-445c-2eb3a9e0be34@loongson.cn>
+Date:   Mon, 24 Apr 2023 16:16:36 +0800
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH] docs: dt: fix documented Primecell compatible string
+To:     Baruch Siach <baruch@tkos.co.il>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     devicetree@vger.kernel.org, Alex Shi <alexs@kernel.org>
+References: <8ced22f59980fdfdae869acb91119dadd34987c0.1672847681.git.baruch@tkos.co.il>
+ <87sfcpbuwo.fsf@tarshish>
+Content-Language: en-US
+From:   Yanteng Si <siyanteng@loongson.cn>
+In-Reply-To: <87sfcpbuwo.fsf@tarshish>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-BESS-ID: 1682325546-302766-5455-1223-1
-X-BESS-VER: 2019.1_20230419.1731
-X-BESS-Apparent-Source-IP: 209.85.166.200
-X-BESS-Parts: H4sIAAAAAAACA4uuVkqtKFGyUirNy1bSUcovVrIyMTU1AbIygIIGBubGBsmpho
-        kWZkaJlolGZuam5gZGaRaG5ikWJpapBkq1sQC+wbMHQQAAAA==
-X-BESS-Outbound-Spam-Score: 0.50
-X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.247697 [from 
-        cloudscan15-15.eu-central-1a.ess.aws.cudaops.com]
-        Rule breakdown below
-         pts rule name              description
-        ---- ---------------------- --------------------------------
-        0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
-        0.50 BSF_RULE7568M          META: Custom Rule 7568M 
-        0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-X-BESS-Outbound-Spam-Status: SCORE=0.50 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_SC0_MISMATCH_TO, BSF_RULE7568M, BSF_BESS_OUTBOUND
-X-BESS-BRTS-Status: 1
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-CM-TRANSID: AQAAf8Dx97XlOkZk1Xc4AA--.10755S3
+X-CM-SenderInfo: pvl1t0pwhqwqxorr0wxvrqhubq/
+X-Coremail-Antispam: 1Uk129KBjvJXoWxWw15Cw4xArW8tw1rtw4ruFg_yoW5Ww45pF
+        929rWftFyIgF1jgws2gF18Zr4xA3WIyw4fKry8Kw1Fg3Z8JrWFyFyftF98KF97XFW8KayY
+        qr45t3Z7GFW2vFJanT9S1TB71UUUUUJqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        bSxYFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20xvaj40_Wr0E3s
+        1l1IIY67AEw4v_Jrv_JF1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2x7M28EF7xv
+        wVC0I7IYx2IY67AKxVWDJVCq3wA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVW8Jr0_Cr1UM2
+        8EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j6F4U
+        JwAaw2AFwI0_Jrv_JF1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4
+        CE44I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_JF0_Jw1lYx0E
+        x4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvEwIxGrwCYjI0Sjx
+        kI62AI1cAE67vIY487MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMxCI
+        bckI1I0E14v26r1Y6r17MI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_Jr
+        I_JrWlx4CE17CEb7AF67AKxVWUAVWUtwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v2
+        6r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42IY6xAIw20EY4v20xvaj4
+        0_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVWUJVW8
+        JbIYCTnIWIevJa73UjIFyTuYvjxUc0eHDUUUU
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sinthu Raja <sinthu.raja@ti.com>
 
-Add pinmux required to bring out the i2c and gpios on 40-pin RPi
-expansion header on the AM68 SK board.
+在 4/24/23 15:24, Baruch Siach 写道:
+> Hi Rob, Krzysztof,
+>
+> On Wed, Jan 04 2023, Baruch Siach wrote:
+>> Only arm,primecell is documented as compatible string for Primecell
+>> peripherals. Current code agrees with that.
+> I guess this fell between the cracks. I can't find this patch in
+> patchwork. Maybe the Chinese text made patchwork reject this path. But
+> the email is archived at lore:
+>
+>    https://lore.kernel.org/linux-devicetree/8ced22f59980fdfdae869acb91119dadd34987c0.1672847681.git.baruch@tkos.co.il/
+>
+> Should I send separate patches for the main document and its
+> translation?
 
-Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
----
+Yes, we will split this patch in most cases.
 
-Changes in V4:
- * Correct the pinctrl node offsets as per the newly split wkup_pmx*
-   and main_pmx* nodes.
 
- .../boot/dts/ti/k3-am68-sk-base-board.dts     | 77 ++++++++++++++++++-
- 1 file changed, 76 insertions(+), 1 deletion(-)
+Thanks,
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-index a811a512262b..ff859b78def7 100644
---- a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-@@ -171,6 +171,32 @@ J721S2_IOPAD(0x0a0, PIN_INPUT, 0) /* (AB25) MCASP0_AXR12.MCAN7_RX */
- 			J721S2_IOPAD(0x09c, PIN_INPUT, 0) /* (T24) MCASP0_AXR11.MCAN7_TX */
- 		>;
- 	};
-+
-+	main_i2c4_pins_default: main-i2c4-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_IOPAD(0x010, PIN_INPUT_PULLUP, 8) /* (AF28) MCAN13_RX.I2C4_SDA */
-+			J721S2_IOPAD(0x014, PIN_INPUT_PULLUP, 8) /* (AD25) MCAN14_TX.I2C4_SCL */
-+		>;
-+	};
-+
-+	rpi_header_gpio0_pins_default: rpi-header-gpio0-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_IOPAD(0x0a8, PIN_INPUT, 7) /* (U24)  MCASP0_AXR14.GPIO0_42 */
-+			J721S2_IOPAD(0x090, PIN_INPUT, 7) /* (W24) MCASP0_AXR8.GPIO0_36 */
-+			J721S2_IOPAD(0x0bc, PIN_INPUT, 7) /* (V28) MCASP1_AFSX.GPIO0_47 */
-+			J721S2_IOPAD(0x06c, PIN_INPUT, 7) /* (V26) MCAN1_TX.GPIO0_27 */
-+			J721S2_IOPAD(0x004, PIN_INPUT, 7) /* (W25) MCAN12_TX.GPIO0_1 */
-+			J721S2_IOPAD(0x008, PIN_INPUT, 7) /* (AC24) MCAN12_RX.GPIO0_2 */
-+			J721S2_IOPAD(0x0b8, PIN_INPUT, 7) /* (AA24) MCASP1_ACLKX.GPIO0_46 */
-+			J721S2_IOPAD(0x00c, PIN_INPUT, 7) /* (AE28) MCAN13_TX.GPIO0_3 */
-+			J721S2_IOPAD(0x034, PIN_INPUT, 7) /* (AD24) PMIC_WAKE0.GPIO0_13 */
-+			J721S2_IOPAD(0x0a4, PIN_INPUT, 7) /* (T23) MCASP0_AXR13.GPIO0_41 */
-+			J721S2_IOPAD(0x0c0, PIN_INPUT, 7) /* (T28) MCASP1_AXR0.GPIO0_48 */
-+			J721S2_IOPAD(0x0b4, PIN_INPUT, 7) /* (U25) MCASP1_AXR4.GPIO0_45 */
-+			J721S2_IOPAD(0x0cc, PIN_INPUT, 7) /* (AE27) SPI0_CS0.GPIO0_51 */
-+			J721S2_IOPAD(0x08c, PIN_INPUT, 7) /* (T25) MCASP0_AXR7.GPIO0_35 */
-+		>;
-+	};
- };
- 
- &main_pmx1 {
-@@ -221,12 +247,46 @@ J721S2_WKUP_IOPAD(0x068, PIN_OUTPUT, 0) /* (C23) WKUP_GPIO0_4.MCU_MCAN1_TX*/
- 		>;
- 	};
- 
-+	mcu_i2c0_pins_default: mcu-i2c0-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_WKUP_IOPAD(0x098, PIN_INPUT, 0) /*(H24) WKUP_GPIO0_63.MCU_I2C0_SCL*/
-+			J721S2_WKUP_IOPAD(0x09C, PIN_INPUT, 0) /*(H27) WKUP_GPIO0_64.MCU_I2C0_SDA*/
-+		>;
-+	};
-+
- 	mcu_i2c1_pins_default: mcu-i2c1-pins-default {
- 		pinctrl-single,pins = <
- 			J721S2_WKUP_IOPAD(0x078, PIN_INPUT, 0) /* (F24) WKUP_GPIO0_8.MCU_I2C1_SCL */
- 			J721S2_WKUP_IOPAD(0x07c, PIN_INPUT, 0) /* (H26) WKUP_GPIO0_9.MCU_I2C1_SDA */
- 		>;
- 	};
-+
-+	mcu_rpi_header_gpio0_pins0_default: mcu-rpi-header-gpio0-pins0-default {
-+		pinctrl-single,pins = <
-+			J721S2_WKUP_IOPAD(0x118, PIN_INPUT, 7) /* (G25) WKUP_GPIO0_66 */
-+			J721S2_WKUP_IOPAD(0x05C, PIN_INPUT, 7) /* (E24) MCU_SPI1_D0.WKUP_GPIO0_1 */
-+			J721S2_WKUP_IOPAD(0x060, PIN_INPUT, 7) /* (C28) MCU_SPI1_D1.WKUP_GPIO0_2 */
-+			J721S2_WKUP_IOPAD(0x058, PIN_INPUT, 7) /* (D26) MCU_SPI1_CLK.WKUP_GPIO0_0 */
-+			J721S2_WKUP_IOPAD(0x094, PIN_INPUT, 7) /* (D25) MCU_SPI1_CS2.WKUP_GPIO0_15*/
-+			J721S2_WKUP_IOPAD(0x0B8, PIN_INPUT, 7) /* (G27) WKUP_GPIO0_56 */
-+			J721S2_WKUP_IOPAD(0x114, PIN_INPUT, 7) /* (J26) WKUP_GPIO0_57 */
-+			J721S2_WKUP_IOPAD(0x11C, PIN_INPUT, 7) /* (J27) WKUP_GPIO0_67 */
-+			J721S2_WKUP_IOPAD(0x064, PIN_INPUT, 7) /* (C27) MCU_SPI1_CS0.WKUP_GPIO0_3 */
-+		>;
-+	};
-+};
-+
-+&wkup_pmx3 {
-+	mcu_rpi_header_gpio0_pins1_default: mcu-rpi-header-gpio0-pins1-default {
-+		pinctrl-single,pins = <
-+			J721S2_WKUP_IOPAD(0x000, PIN_INPUT, 7) /* (K26) WKUP_GPIO0_49 */
-+		>;
-+	};
-+};
-+
-+&main_gpio0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&rpi_header_gpio0_pins_default>;
- };
- 
- &main_gpio2 {
-@@ -242,7 +302,8 @@ &main_gpio6 {
- };
- 
- &wkup_gpio0 {
--	status = "disabled";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcu_rpi_header_gpio0_pins0_default &mcu_rpi_header_gpio0_pins1_default>;
- };
- 
- &wkup_gpio1 {
-@@ -278,6 +339,20 @@ exp1: gpio@21 {
- 	};
- };
- 
-+&main_i2c4 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_i2c4_pins_default>;
-+	clock-frequency = <400000>;
-+};
-+
-+&mcu_i2c0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcu_i2c0_pins_default>;
-+	clock-frequency = <400000>;
-+};
-+
- &main_sdhci0 {
- 	/* Unused */
- 	status = "disabled";
--- 
-2.36.1
+yanteng
+
+>
+> baruch
+>
+>> Signed-off-by: Baruch Siach <baruch@tkos.co.il>
+>> ---
+>>   Documentation/devicetree/usage-model.rst                    | 2 +-
+>>   Documentation/translations/zh_CN/devicetree/usage-model.rst | 2 +-
+>>   2 files changed, 2 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/usage-model.rst b/Documentation/devicetree/usage-model.rst
+>> index b6a287955ee5..0717426856b2 100644
+>> --- a/Documentation/devicetree/usage-model.rst
+>> +++ b/Documentation/devicetree/usage-model.rst
+>> @@ -415,6 +415,6 @@ When using the DT, this creates problems for of_platform_populate()
+>>   because it must decide whether to register each node as either a
+>>   platform_device or an amba_device.  This unfortunately complicates the
+>>   device creation model a little bit, but the solution turns out not to
+>> -be too invasive.  If a node is compatible with "arm,amba-primecell", then
+>> +be too invasive.  If a node is compatible with "arm,primecell", then
+>>   of_platform_populate() will register it as an amba_device instead of a
+>>   platform_device.
+>> diff --git a/Documentation/translations/zh_CN/devicetree/usage-model.rst
+>> b/Documentation/translations/zh_CN/devicetree/usage-model.rst
+>> index c6aee82c7e6e..19ba4ae0cd81 100644
+>> --- a/Documentation/translations/zh_CN/devicetree/usage-model.rst
+>> +++ b/Documentation/translations/zh_CN/devicetree/usage-model.rst
+>> @@ -325,6 +325,6 @@ Primecell设备。然而，棘手的一点是，AMBA总线上的所有设备并
+>>   
+>>   当使用DT时，这给of_platform_populate()带来了问题，因为它必须决定是否将
+>>   每个节点注册为platform_device或amba_device。不幸的是，这使设备创建模型
+>> -变得有点复杂，但解决方案原来并不是太具有侵略性。如果一个节点与“arm,amba-primecell”
+>> +变得有点复杂，但解决方案原来并不是太具有侵略性。如果一个节点与“arm,primecell”
+>>   兼容，那么of_platform_populate()将把它注册为amba_device而不是
+>>   platform_device。
+>
 
