@@ -2,88 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 537FA6ED0F6
-	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 17:09:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E7B16ED116
+	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 17:15:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231979AbjDXPJX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Apr 2023 11:09:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52992 "EHLO
+        id S232025AbjDXPPI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Apr 2023 11:15:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231960AbjDXPJW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 11:09:22 -0400
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 673B0B5;
-        Mon, 24 Apr 2023 08:09:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1682348961; x=1713884961;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=DFwbhVwB3qAZzM1M6A2mywZtxGqtlDkuA98FUDSiHUI=;
-  b=H18WC9QSVbZDeNdSpDJaGW3snciIOwZeKCZNgYMLwzjnknsoHTzSyRwv
-   mIjFi8sVYlozr1yvMc755G85p9DuxYqKOU5ZUeAhYjuBzMThwONNJXYiK
-   BMNW1a9rpVsHYTYaq91kqiqUVJQ0jOMKrmdGvRkPxugtzMGh3fgYUoG3M
-   GZqPwqgHJpXtZwpB0rGqy77VrlCM67GK4AUYfckNJysSlYUXPfY4coL+Y
-   XtLJC6JqgLg9QHBwRAG9oGCyQsg2vDTcZmjSfbSc8bzpeM5BcgwP9fUni
-   nFjsgK2NNpendDQdtA375PU/k2xbatdn5rogznpWkHPSYYA8hti8wEAJp
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10690"; a="326087209"
-X-IronPort-AV: E=Sophos;i="5.99,223,1677571200"; 
-   d="scan'208";a="326087209"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Apr 2023 08:08:37 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10690"; a="695807913"
-X-IronPort-AV: E=Sophos;i="5.99,223,1677571200"; 
-   d="scan'208";a="695807913"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga007.fm.intel.com with ESMTP; 24 Apr 2023 08:08:33 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1pqxnr-004Z7o-2i;
-        Mon, 24 Apr 2023 18:08:31 +0300
-Date:   Mon, 24 Apr 2023 18:08:31 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Matti Vaittinen <mazziesaccount@gmail.com>
-Cc:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231993AbjDXPOx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 11:14:53 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1162F19F;
+        Mon, 24 Apr 2023 08:14:53 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33OFEeu9006345;
+        Mon, 24 Apr 2023 10:14:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1682349280;
+        bh=25Mc7hcaPXG/P1qb+ZMbwWTj3CmYxbl7UyEfe0Iu+1M=;
+        h=From:To:CC:Subject:Date;
+        b=xSzl1I05+opM2votEz8RDLGMlybwsZ/6Uf8rtzOK4OzOhJPzqucZVh2Z7Ova5vAOm
+         AwOOcJ5fLQpct3VQEjyOIjU5IJpq/iIXG8eo0hWZUvmvMYDc4kncJJU2pD8ne1ygbG
+         oF62zqvbQ0dZmTKjsIialdrx+hPUDQx8icQRSgZc=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33OFEeoK105518
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 24 Apr 2023 10:14:40 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 24
+ Apr 2023 10:14:38 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Mon, 24 Apr 2023 10:14:38 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33OFEc86101702;
+        Mon, 24 Apr 2023 10:14:38 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Manivannan Sadhasivam <mani@kernel.org>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Zhigang Shi <Zhigang.Shi@liteon.com>,
-        Shreeya Patel <shreeya.patel@collabora.com>,
-        Paul Gazzillo <paul@pgazz.com>,
-        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/5] iio:trigger: Add simple trigger_validation helper
-Message-ID: <ZEabb3lJzGNb/BMO@smile.fi.intel.com>
-References: <cover.1682340947.git.mazziesaccount@gmail.com>
- <91fffd0001e8efef90f43fa03026dc0e5e30b4e4.1682340947.git.mazziesaccount@gmail.com>
+        Rob Herring <robh+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+        Pavel Machek <pavel@ucw.cz>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-leds@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Nishanth Menon <nm@ti.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH] dt-bindings: leds: Drop redundant cpus enum match
+Date:   Mon, 24 Apr 2023 10:14:37 -0500
+Message-ID: <20230424151437.256073-1-nm@ti.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <91fffd0001e8efef90f43fa03026dc0e5e30b4e4.1682340947.git.mazziesaccount@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 24, 2023 at 04:08:19PM +0300, Matti Vaittinen wrote:
-> Some triggers can only be attached to the IIO device that corresponds to
-> the same physical device. Implement generic helper which can be used as
-> a validate_trigger callback for such devices.
+Commit e91a4d5deb96 ("dt-bindings: leds: Document commonly used
+LED triggers") introduced a enum match for cpu, while a pattern
+'^cpu[0-9]*$' already exists.
 
-Missing space in the Subject?
+This causes linux,default-trigger = "cpu" to have more than one match
+and generates the following dtbs_check warning:
 
+arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dtb: leds: led-2:linux,default-trigger: More than one condition true in oneOf schema:
+	{'$ref': '/schemas/types.yaml#/definitions/string',
+	 'oneOf': [{'items': [{'enum': ['backlight',
+	                                'default-on',
+	                                'heartbeat',
+	                                'disk-activity',
+	                                'disk-read',
+	                                'disk-write',
+	                                'timer',
+	                                'pattern',
+	                                'audio-micmute',
+	                                'audio-mute',
+	                                'bluetooth-power',
+	                                'cpu',
+	                                'flash',
+	                                'kbd-capslock',
+	                                'mtd',
+	                                'nand-disk',
+	                                'none',
+	                                'torch',
+	                                'usb-gadget',
+	                                'usb-host',
+	                                'usbport']}],
+	            'maxItems': 1,
+	            'minItems': 1,
+	            'type': 'array'},
+	           {'items': [{'pattern': '^cpu[0-9]*$'}],
+	            'maxItems': 1,
+	            'minItems': 1,
+	            'type': 'array'},
+	           {'items': [{'pattern': '^hci[0-9]+-power$'}],
+	            'maxItems': 1,
+	            'minItems': 1,
+	            'type': 'array'},
+	           {'items': [{'pattern': '^mmc[0-9]+$'}],
+	            'maxItems': 1,
+	            'minItems': 1,
+	            'type': 'array'},
+	           {'items': [{'pattern': '^phy[0-9]+tx$'}],
+	            'maxItems': 1,
+	            'minItems': 1,
+	            'type': 'array'}]}
+
+Drop the explicit match against cpu since the pattern match already
+covers the same.
+
+Fixes: e91a4d5deb96 ("dt-bindings: leds: Document commonly used LED triggers")
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Signed-off-by: Nishanth Menon <nm@ti.com>
+---
+ Documentation/devicetree/bindings/leds/common.yaml | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
+index 11aedf1650a1..58b492d00246 100644
+--- a/Documentation/devicetree/bindings/leds/common.yaml
++++ b/Documentation/devicetree/bindings/leds/common.yaml
+@@ -105,8 +105,6 @@ properties:
+           - audio-mute
+             # LED indicates bluetooth power state
+           - bluetooth-power
+-            # LED indicates activity of all CPUs
+-          - cpu
+             # LED indicates camera flash state
+           - flash
+             # LED indicated keyboard capslock
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.40.0
 
