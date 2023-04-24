@@ -2,74 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 351F56ECA0B
-	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 12:18:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE0F96ECA4D
+	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 12:29:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231523AbjDXKSb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Apr 2023 06:18:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43762 "EHLO
+        id S231766AbjDXK3T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Apr 2023 06:29:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51928 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231600AbjDXKS0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 06:18:26 -0400
-Received: from mail-qk1-x744.google.com (mail-qk1-x744.google.com [IPv6:2607:f8b0:4864:20::744])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9BDA3586
-        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 03:18:20 -0700 (PDT)
-Received: by mail-qk1-x744.google.com with SMTP id af79cd13be357-74e0180b7d3so204254885a.2
-        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 03:18:20 -0700 (PDT)
+        with ESMTP id S231794AbjDXK2q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 06:28:46 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53E1B4226;
+        Mon, 24 Apr 2023 03:26:55 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-4edbd6cc46bso4524144e87.2;
+        Mon, 24 Apr 2023 03:26:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682331500; x=1684923500;
-        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
+        d=gmail.com; s=20221208; t=1682332013; x=1684924013;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=dQlu0Oc2Q0nPMBCNq5iTPUZpwrRZlsMdPt2zjra8+VI=;
-        b=qCyjvAXqXs1NWhsOZbfXXSzllFFXJnYzGlyMmYzQqg07nOoxaIkS3I8TQ0ChO+Gc5z
-         8bFEJMdfsNOjMnooo1J5VLFyYEYH0bM7DMH9fAReArGBJpcEkJSEr0tEcRu3sWCGXz9h
-         3r8laHJp+0Z4WCearpqZm+GNSymM5KQrw+aeqRGLcB4C7ldzmLkDFn2t1vR1F5mceGQH
-         vnZsiDtXPpKP9eRxc3uMMhkpwe4e8jdCbf9Lje+dHRb92g1zKcKSJr8pjH4kuqmtwRhr
-         7wBZxi7xnzI/tuqrZexqZw3Xk/afa+HqS5Lrq5XrPBslP0efrE3Wx6JDL+IR9Grf/QnY
-         UVnA==
+        bh=SemMbIf9FAx8zOAJPJSoYfcqskJMokFHulRfLk4rUCM=;
+        b=NQSNi12/apyGbynQPTr8J/nHJi9Ksgg4+NLv2TUsBJFYriuuoRHxKmJibVwv2UJG2X
+         OHLm5OEXaIjmCggQGkYxBOqXwCQt5WWWiBSyxAVowxiwUFAezgOcMwQPvagcYMhQU6fM
+         EHzQzlFfnaUjLZDjGa13TE560+uA72BysJcahWiTGTDsXNPpUDiGHtYBhq9eI60FVlvw
+         1dROvhA4ofvvFudRCBn3eYoGd6ONbGewxto322/ARqTCPt4R1BzoVfIi3+GZBwK2WQXl
+         5jufZgKfjoByPlp5PtDEcrm4JsYo+u1Q+3a3Xq0N9tTe18kqVNWev+sMrt1RUiPptMrM
+         5t1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682331500; x=1684923500;
-        h=to:subject:message-id:date:from:reply-to:mime-version
+        d=1e100.net; s=20221208; t=1682332013; x=1684924013;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dQlu0Oc2Q0nPMBCNq5iTPUZpwrRZlsMdPt2zjra8+VI=;
-        b=gidtuCA1RmgIQCtGJ8PY09Km45ZU5wxed8PlOuIGHpm346yrmTa59nk5RXY1nxp2gv
-         Yapj2vegqUeDrUgM6V68ngIYRY9ZE2sK39ocqzZ/VXf6PgX9wLwyFzXD0dj4V9UFRkOT
-         uHfb+Ba6x/jWfPsK8ok3VPdA8EIsBHWuC/3TZxAFA5WE/CwGeKqn310DvhJYtkYqEHnN
-         ULwClbmOrJx0sbD9EHFbUBl6VuZiMKYBPc7c78DV5UoUAVRPxQGXCHRc6NqbZPXN1DHk
-         YY2VLLZbGqT01Ou5TE2BHUz0bhvHqNIzZEEXoholjlYuMOu2lWMkH7gGotzyIbmpCRNw
-         tKew==
-X-Gm-Message-State: AAQBX9ebcfKKhmFQFoJ8Hjxac+BhMnLc7lcaFCrpMiomy6rgoZAiYg3m
-        Wv+QG9JExiSmADWWenRjd4v6/UBL3AFj7u4wWkM=
-X-Google-Smtp-Source: AKy350aohk47lZ3nxgaKCTvU1JGiLpeLLtjKiFRVCAxAx4W2CV7FZZuRQxfzqfuTroDXZ4ZdpdvGHeKqkV273hAsfwI=
-X-Received: by 2002:a05:6214:5005:b0:5ef:40ff:7d75 with SMTP id
- jo5-20020a056214500500b005ef40ff7d75mr21625106qvb.11.1682331500022; Mon, 24
- Apr 2023 03:18:20 -0700 (PDT)
+        bh=SemMbIf9FAx8zOAJPJSoYfcqskJMokFHulRfLk4rUCM=;
+        b=RwQWBhVIZQ0Fu6/XpMGTu7QDRWvz7Km2ttTnNq0pLorp1yZgiSRs4Ze2iNABDVsMao
+         6HQnByDp1vns8TqhRf6UI2Iw6j7/W17gs5UsGWcEaAcXhriZOhi8NLJVEeV4bGQjvhK2
+         bfosjEB9uO+DBrZ9zCOf3u576gYlg0RCQEK+dQUoVsikvjUGq6Qmy+qnPzaoTOWqCt5J
+         Vrtwpx7xHrwPGWdpZXyjGfDXMiZ6G3tTuLc0MHADWXoGaQ8Gd1aYShcLOpY/nRBhP+pE
+         WdcN7jmrc9zNtSgjZL5LgXD+eQhl3QvQoQ+19Nw528382f+KogndrcxMM3gAtUZQPtP3
+         zI9w==
+X-Gm-Message-State: AAQBX9fceuGgG3tZ7vq+vbhHB/IOwA0XYYcoZTwgp3krq3dJ7fhlQoor
+        VYPgOuNH085zU2NcwojKggk=
+X-Google-Smtp-Source: AKy350YX6plUcUHiQ7QMC85zfFEuKR+sc82CJmUAcBpcwPzqvEBUOyqNRrTOIkRQYOOTZ7bwnVTW4A==
+X-Received: by 2002:a05:6512:7a:b0:4ec:9c2e:7ee3 with SMTP id i26-20020a056512007a00b004ec9c2e7ee3mr3059443lfo.42.1682332013449;
+        Mon, 24 Apr 2023 03:26:53 -0700 (PDT)
+Received: from [192.168.1.111] (62-78-225-252.bb.dnainternet.fi. [62.78.225.252])
+        by smtp.gmail.com with ESMTPSA id r16-20020ac252b0000000b004edc9e9eec5sm1616992lfm.138.2023.04.24.03.26.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Apr 2023 03:26:53 -0700 (PDT)
+Message-ID: <eb089eaa-8c13-67f7-8b67-e2a3b74bd809@gmail.com>
+Date:   Mon, 24 Apr 2023 13:26:52 +0300
 MIME-Version: 1.0
-Received: by 2002:a0c:f210:0:b0:5c4:957b:83cc with HTTP; Mon, 24 Apr 2023
- 03:18:19 -0700 (PDT)
-Reply-To: regionalmanager.mariam@hotmail.com
-From:   Mariam Kouame <mariamkouame1993@gmail.com>
-Date:   Mon, 24 Apr 2023 03:18:19 -0700
-Message-ID: <CAJF_a36iBTG7JkHEz5UfVOHJd7JK-7dKFiOcFnGhYNEswBWw4Q@mail.gmail.com>
-Subject: from mariam kouame
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=3.4 required=5.0 tests=BAYES_05,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,FREEMAIL_REPLYTO,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNDISC_FREEM autolearn=no
-        autolearn_force=no version=3.4.6
-X-Spam-Level: ***
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Content-Language: en-US, en-GB
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <cover.1682067567.git.mazziesaccount@gmail.com>
+ <30daff0d94cd4d05de0194808ab9a6984caf78dc.1682067567.git.mazziesaccount@gmail.com>
+ <06d60a20-a620-b9f6-adc3-337973dfb8a8@linaro.org>
+From:   Matti Vaittinen <mazziesaccount@gmail.com>
+Subject: Re: [PATCH v1 1/3] dt-bindings: iio: light: ROHM BU27008
+In-Reply-To: <06d60a20-a620-b9f6-adc3-337973dfb8a8@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear,
+On 4/24/23 13:12, Krzysztof Kozlowski wrote:
+> On 21/04/2023 11:38, Matti Vaittinen wrote:
+>> The ROHM BU27008 is a sensor with 5 photodiodes (red, green, blue, clear
+>> and IR) with four configurable channels. Red and green being always
+>> available and two out of the rest three (blue, clear, IR) can be
+>> selected to be simultaneously measured. Typical application is adjusting
+>> LCD backlight of TVs, mobile phones and tablet PCs.
+>>
+>> Add BU27008 dt-bindings.
+>>
+>> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+>> ---
+>>   .../bindings/iio/light/rohm-bu27008.yaml      | 49 +++++++++++++++++++
+>>   1 file changed, 49 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/iio/light/rohm-bu27008.yaml
+> 
+> Filename like compatible, so rohm,bu27008.yaml
 
-Please grant me permission to share a very crucial discussion with
-you. I am looking forward to hearing from you at your earliest
-convenience.
+Thanks Krzysztof. I should've remembered this as you told me the same 
+thing during the bu27034 review. Feel free to kick me atthe ELC-E if I 
+do the same mistake with bu27010 as well ^^;
+> 
+>>
+>> diff --git a/Documentation/devicetree/bindings/iio/light/rohm-bu27008.yaml b/Documentation/devicetree/bindings/iio/light/rohm-bu27008.yaml
+>> new file mode 100644
+>> index 000000000000..d942c2817680
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/iio/light/rohm-bu27008.yaml
+>> @@ -0,0 +1,49 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/iio/light/bu27008.yaml#
+> 
+> Does not look like you tested the bindings. Please run `make
+> dt_binding_check` (see
+> Documentation/devicetree/bindings/writing-schema.rst for instructions).
+> 
 
-Mrs. Mariam Kouame
+I actually did. But I did first run the dt_binding_check without 
+filename - causing it to check all the in-tree bindings - which took a 
+while. So, I went to have a lunch. When I came back I re-ran the check 
+with the filename (DT_SCHEMA_FILES=...) - which gave me no errors.
+
+I _assume_ this is because running the check for all bindings had 
+already done <add step here> generating the warning, while re-running 
+the check with the filename omitted the <add step here> and no longer 
+displayed the warning.
+
+In any case, I missed warning from full-check, and checker missed the 
+warning when re-ran.
+
+> 
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: ROHM BU27008 color sensor
+>> +
+>> +maintainers:
+>> +  - Matti Vaittinen <mazziesaccount@gmail.com>
+>> +
+>> +description: |
+> 
+> Do not need '|' unless you need to preserve formatting.
+
+Ok, thanks.
+
+I'll fix these for v2 :)
+
+Yours,
+	-- Matti
+
+-- 
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
+
