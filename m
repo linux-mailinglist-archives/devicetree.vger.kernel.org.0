@@ -2,120 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B06CC6ED3AA
-	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 19:37:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F65C6ED421
+	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 20:12:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232144AbjDXRhZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Apr 2023 13:37:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59094 "EHLO
+        id S232289AbjDXSMb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Apr 2023 14:12:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232276AbjDXRhO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 13:37:14 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AA449009;
-        Mon, 24 Apr 2023 10:36:54 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33OHaQBD038233;
-        Mon, 24 Apr 2023 12:36:26 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1682357786;
-        bh=Bt8I2phOsHTqHoFHWTAEWE9tG89MYk99aiVqmL95K18=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=Jt40UfQ5lsOFjVJE4wFIIiA1NyX/9UQviM/Afezd0jfDPdT2nQCVMZALjKbmoDfJR
-         7RLEEl/PwosJHNcSZDGaKStT81pPRm5h1FtI3e1e/px3PK658xWgb+qdmNdJAMrMJa
-         yLoguHliduBc/4wdGolvnk9WC3yOd6FX8CA05Geg=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33OHaQ3X027232
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 24 Apr 2023 12:36:26 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 24
- Apr 2023 12:36:26 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Mon, 24 Apr 2023 12:36:26 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33OHaQT6027942;
-        Mon, 24 Apr 2023 12:36:26 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Tero Kristo <kristo@kernel.org>, Nishanth Menon <nm@ti.com>,
-        <vaishnav.a@ti.com>, <afd@ti.com>, <u-kumar1@ti.com>
-Subject: [PATCH 3/3] arm64: dts: ti: k3-j7200-mcu-wakeup: Split fss node up
-Date:   Mon, 24 Apr 2023 12:36:23 -0500
-Message-ID: <20230424173623.477577-4-nm@ti.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230424173623.477577-1-nm@ti.com>
-References: <20230424173623.477577-1-nm@ti.com>
+        with ESMTP id S232106AbjDXSMa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 14:12:30 -0400
+Received: from mail-vk1-xa31.google.com (mail-vk1-xa31.google.com [IPv6:2607:f8b0:4864:20::a31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00ABA4C03
+        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 11:12:29 -0700 (PDT)
+Received: by mail-vk1-xa31.google.com with SMTP id 71dfb90a1353d-44307db5d24so1544634e0c.0
+        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 11:12:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1682359949; x=1684951949;
+        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=AEdYnWu92iTKsdOky7RuvLMp4SJoRZDPrcAqoMC5U6I=;
+        b=c66pOj9eX8hnEqqOa08HRW814ObWktM2UD+bigXi0K8HUwzLctRkUTBlRoi2ruhS3+
+         dN4kL7LmFrndrETDQ8xQUfukSwUOKQF+NxeneIBsXrCGw//O7q90vRExTBwA+Skgbah/
+         /tugN0ejJV4BhnUo13wK27Hr1L7Qlo9FAXoTqLXGaiTR74GvZXRibRArMtZw4ibQq3mt
+         WJ939Qx0+JN4GGAUJ0j0mEjFZuqpEsVXKowgCENYadXeLhjf7Rw4WjpdjWm0ImXn7Rkh
+         g8eTDJLJcSSkIBG0DjPfL7n/cxZ1UyDYWmN1a/Uh10WB0/yYzpgg7F8Pq4Z5sewPMxyM
+         5yrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682359949; x=1684951949;
+        h=to:subject:message-id:date:from:reply-to:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AEdYnWu92iTKsdOky7RuvLMp4SJoRZDPrcAqoMC5U6I=;
+        b=BoNICaugLh03sti9YVKJuJIj+zFhj1846AX7GquALJM2kimC0xpu7GclQE8IMeHkQl
+         Q6kXthr/w3JVWaGjo/jGCWGCs5hDP+j9rZch+2mKIhOQiW/h/DFwCCKhczOcOuIxxk4E
+         HGVm2YpR1WGRcPPCdLgJYN/bEo+o8Pn4R7kgXUnJWbRAXZk7M+V5OPMEiowCH98Zi4w7
+         61iBfBoUYZT9jg03tJY54dKJfLu8Wr8XXXGtBYFGJl8+nwLHyVLhSz6KwUDU5ijh8v0K
+         cpzfyRYKmFpyK5a+uuSTBgYxGH7Ds1HHqUwf/qEdrDrnueuR8iNnEXj+JlVIg2dQCshH
+         PAVQ==
+X-Gm-Message-State: AAQBX9efzguytJpaJV3dvA8sQouv201Rn5wgGbuw18/P+FNVeV0k7JBy
+        zbM8su8tuOJSkqUzEUe6m/3H5r/XQjsvOMx4ZQI=
+X-Google-Smtp-Source: AKy350YpmTQ4HfWNyt44nYSgWeC6A6RltdQ6pD8dglMrV8Bt49cRAzHFptGsUL3k4/hFaa6rJ80aNGb3FTH8adpnlXQ=
+X-Received: by 2002:a1f:da47:0:b0:439:bd5c:630 with SMTP id
+ r68-20020a1fda47000000b00439bd5c0630mr3438609vkg.6.1682359948816; Mon, 24 Apr
+ 2023 11:12:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Received: by 2002:abe:4a03:0:b0:365:446c:53fd with HTTP; Mon, 24 Apr 2023
+ 11:12:28 -0700 (PDT)
+Reply-To: choipark90@yahoo.com
+From:   Choi Park <ubacustormerscar@gmail.com>
+Date:   Mon, 24 Apr 2023 19:12:28 +0100
+Message-ID: <CAGMLrsX4CN3KdNf-aC=WRYbGAy59j23X2ig5JR6CXzaovg0oGQ@mail.gmail.com>
+Subject: investment partners
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLYTO,
+        FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNDISC_FREEM autolearn=no autolearn_force=no
+        version=3.4.6
+X-Spam-Level: **
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-fss node claims to be entirely a syscon node, but it is really two
-parts of it - one a syscon that controls the hbmc mux and a simple bus
-where ospi, hbmc peripherals are located. So model it accordingly by
-splitting the node up and using ti,j721e-system-controller to describe
-the syscon
-
-Signed-off-by: Nishanth Menon <nm@ti.com>
----
- .../boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      | 21 +++++++++++++------
- 1 file changed, 15 insertions(+), 6 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-index b58a31371bf3..7653cb191be1 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-@@ -338,18 +338,27 @@ mcu_spi2: spi@40320000 {
- 		status = "disabled";
- 	};
- 
--	fss: syscon@47000000 {
--		compatible = "syscon", "simple-mfd";
-+	hbmc_syscon: syscon@47000000 {
-+		compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
- 		reg = <0x00 0x47000000 0x00 0x100>;
--		#address-cells = <2>;
--		#size-cells = <2>;
--		ranges;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges = <0x00 0x00 0x47000000 0x100>;
- 
--		hbmc_mux: hbmc-mux {
-+		hbmc_mux: mux-controller@4 {
- 			compatible = "mmio-mux";
-+			reg = <0x4 0x2>;
- 			#mux-control-cells = <1>;
- 			mux-reg-masks = <0x4 0x2>; /* HBMC select */
- 		};
-+	};
-+
-+	fss: bus@47030000 {
-+		compatible = "simple-bus";
-+		reg = <0x0 0x47030000 0x0 0x100>;
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
- 
- 		hbmc: hyperbus@47034000 {
- 			compatible = "ti,am654-hbmc";
--- 
-2.40.0
-
+Hello my friend how are you doing with your daily activates I hope all
+is well, well I got your contact as I am searching for a reliable
+reputable person that can be trusted as my that client  Mrs Ma-Ri  Kim
+from  Hong Kong   Directed  me to get her someone that she will trust
+to invest part of her money outside Hong Kong   for her under aged
+child  if you are interested let me know I hoping to hear from you
+Mr Choi Park
