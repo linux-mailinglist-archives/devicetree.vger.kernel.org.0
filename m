@@ -2,217 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9999D6EC5F1
-	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 08:03:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96A566EC644
+	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 08:26:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231351AbjDXGDG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Apr 2023 02:03:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59694 "EHLO
+        id S229487AbjDXG0Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Apr 2023 02:26:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231345AbjDXGC3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 02:02:29 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EC5846B1;
-        Sun, 23 Apr 2023 23:01:42 -0700 (PDT)
-X-UUID: 794975a4e26511eda9a90f0bb45854f4-20230424
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=WoL64s5ABGC3JLRHKg1Y7d5gunkiamjG91kHfOR9t2s=;
-        b=uYFe9Yl3jTbnK9K9Mpz572rqLwRtyxHxG3BVnXDbqvMx7Qg1v5f7C8rStAwchF8+YsQUZNG+9F2twjKh4VNGaLuICZZEDtmeGeB13YGxXQPvpbBKb+nIcJ1RgwCK7xbP8cWASce/GGP8BQ/1//Z0xbY2wa3rLnEpSeBeYoDBFTc=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.22,REQID:7d2f8565-424f-410d-8660-dde958f46a2e,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-        :release,TS:95
-X-CID-INFO: VERSION:1.1.22,REQID:7d2f8565-424f-410d-8660-dde958f46a2e,IP:0,URL
-        :0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTION
-        :quarantine,TS:95
-X-CID-META: VersionHash:120426c,CLOUDID:bb9d49a2-8fcb-430b-954a-ba3f00fa94a5,B
-        ulkID:230424140139O6K56AXB,BulkQuantity:0,Recheck:0,SF:38|29|28|17|19|48,T
-        C:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-        ,OSI:0,OSA:0,AV:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-UUID: 794975a4e26511eda9a90f0bb45854f4-20230424
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <yunfei.dong@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1640590661; Mon, 24 Apr 2023 14:01:37 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Mon, 24 Apr 2023 14:01:36 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Mon, 24 Apr 2023 14:01:35 +0800
-From:   Yunfei Dong <yunfei.dong@mediatek.com>
-To:     Chen-Yu Tsai <wenst@chromium.org>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
-        <nfraprado@collabora.com>
-CC:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Steve Cho <stevecho@chromium.org>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v3,4/4] media: mediatek: vcodec: using empty lat buffer as the last one
-Date:   Mon, 24 Apr 2023 14:01:30 +0800
-Message-ID: <20230424060130.18395-5-yunfei.dong@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230424060130.18395-1-yunfei.dong@mediatek.com>
-References: <20230424060130.18395-1-yunfei.dong@mediatek.com>
+        with ESMTP id S229458AbjDXG0P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 02:26:15 -0400
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2127.outbound.protection.outlook.com [40.107.114.127])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0515810C0;
+        Sun, 23 Apr 2023 23:26:13 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=jIKyHnlxe2JMpQKwukkWTZ8PqjO+EYA5Kbv1ZD2+Q1NZv+gDq11rh7Mtt1aOyzTjegYvHh+XRb3e07awjNGldhFyni/XSUtCwwIGGvgtO9yJ2bysP2e2FHla6cNWq8edHEBjT0SpLfAxND3GwzCKp0VWHHSa1rrg+/mEfF//iKpbAS9JFlB6g5SWeXKWT3N1RxIDrchjR5N+x1adjsoJjRhfBrs2cbp5L84j08i1Ew6IRiVWkRGSkN8FhZgvqmsFaBZ7uF81H1v6UiGrUlLx286fmyZy0+OfA1see1/bzHzKdaPC9gwdmX/e1NwptYvFykBGxsDKSW7sXRJ2GSdLZg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=th7Gm4vPY1R5g2scrlaSojr35ngUgAmj/uZdatpLJ28=;
+ b=HxLsszbbbUPcifF2rVYF2gGfUaxCgM+UpyMRDF/+83lef6QIlV6C4aUQRIC+4uDt9IVBauAOXzE4B+1s9A2Pjg5WHo1BzYU5nlLv0FsRhMiaRL+uj6NG5ciZujDMsT5g24jZX6oqP8uN8EWkLv6L1LaxQFebgpmO6uVz7mBVy6z0Ds1UXypHBJRitbZTB1/8y4bLkYg6Ys5ySaZ7LWBs3T6K1NVuXvWxD4N7mPfRXIiivK14luORA5LyrdRm23KZle7tbwhIQKprmazS9CgUAogxsdynp7uvhY6knhBZgn23vL1kkvFacU+2MUMg/gk4PJHMgCwqjIRwj4we1EPePw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=th7Gm4vPY1R5g2scrlaSojr35ngUgAmj/uZdatpLJ28=;
+ b=YngO2IIV+7m9TI+aHd/T/OqFhoibr9Z9t4UTNM+9eetFwwtZVE5KZkUY+Nav0KwuiVtcvxQMSP1B9xf1iBUGePrD++a9zMnn4OlHwsJeeOPU93C7MO4JTD0fOglVKm4LxS35ugOMXRQcJoZ7vpAPm45/oraHpiX1d24mbqP6asM=
+Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
+ (2603:1096:404:8028::13) by TYWPR01MB10193.jpnprd01.prod.outlook.com
+ (2603:1096:400:1e5::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6319.33; Mon, 24 Apr
+ 2023 06:26:08 +0000
+Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
+ ([fe80::5198:fdcf:d9b1:6003]) by TYBPR01MB5341.jpnprd01.prod.outlook.com
+ ([fe80::5198:fdcf:d9b1:6003%5]) with mapi id 15.20.6319.033; Mon, 24 Apr 2023
+ 06:26:08 +0000
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     Manivannan Sadhasivam <mani@kernel.org>
+CC:     "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
+        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
+        "fancer.lancer@gmail.com" <fancer.lancer@gmail.com>,
+        "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "kw@linux.com" <kw@linux.com>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "kishon@kernel.org" <kishon@kernel.org>,
+        "marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Subject: RE: [PATCH v13 14/22] PCI: dwc: Expose dw_pcie_ep_exit() to module
+Thread-Topic: [PATCH v13 14/22] PCI: dwc: Expose dw_pcie_ep_exit() to module
+Thread-Index: AQHZcfCxqfa4Qw7wHkam/O1GA2MENa83YTeAgAKgoUA=
+Date:   Mon, 24 Apr 2023 06:26:08 +0000
+Message-ID: <TYBPR01MB5341C7BF87DB9DB1FD73D54FD8679@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+References: <20230418122403.3178462-1-yoshihiro.shimoda.uh@renesas.com>
+ <20230418122403.3178462-15-yoshihiro.shimoda.uh@renesas.com>
+ <20230422135843.GK4769@thinkpad>
+In-Reply-To: <20230422135843.GK4769@thinkpad>
+Accept-Language: ja-JP, en-US
+Content-Language: ja-JP
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYBPR01MB5341:EE_|TYWPR01MB10193:EE_
+x-ms-office365-filtering-correlation-id: ed00d6b0-abf8-4141-8966-08db448cca91
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: zXbPJSO5P9xyDlRkP+GXRK1hMxXjRLtKOriCf9Ayxc8pkckJ/ouy/FWRk8zg6bJtVq++vE70GXAAIM7z+CtGyqaV+FXbpniqJWmX/R2uNzBvy+aXBClUxTZaG1k9h/g0iORCeMojkSHhSFvtSs237aMJxKFe9XSJX4AwMYaUeLkI3hUDf4eixCS4DxLdxoiR0ZUx1jj/VUh1IrBpetBJwFZDj68nun3MfA1rG8GlpMjJJfNcccWDwH6ZJWk7j1ypDBwBrEtjtvbk5luPm1ur5XkrjICNLHNLA8mefmec3/daJdGVocAiFKQkM0QyUxAshD8B6pjzEDZDoPseO8loxnIh1dHWD+C3Yy6185kamBshtoTSYGBZX+RvXZRnq40B6sCPbn6NkCnnpRQYuj6FDhXeTdRTOYS91UABS7xmP521oxDX09oR/YFm+qUCqZyxKkV49tK4fNxTT2G8wdYDJoQjH9HZO9oicjpqLz3YWuNC6l4btzZMPnz8fA5IAHQJdGgV2n4vRYsbdZzR4MV405hNrMauuxexp8Bnon6TDCQc/czW751Zk2CTG3Zq6I3rPMZMErGT3njBd4Gl9apYR3YnQ3w5PFxSqQA6yizBm3zpFNsDRyvD7zE53yjcCAWq
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYBPR01MB5341.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(366004)(376002)(346002)(39860400002)(136003)(396003)(451199021)(478600001)(54906003)(86362001)(186003)(7696005)(9686003)(6506007)(55016003)(33656002)(71200400001)(4326008)(6916009)(64756008)(66446008)(66476007)(66556008)(316002)(83380400001)(66946007)(76116006)(2906002)(38100700002)(122000001)(41300700001)(8676002)(8936002)(38070700005)(5660300002)(7416002)(52536014);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?bG5JNG1reFZWaUpuQ05RWmI5OGtSU2ZON2hnS0JWbEgzQVpZRmxqSHBGR3Ny?=
+ =?utf-8?B?SGpwV3hIbHBacWc1c2kyZ3NLcU9hRm5vL3ZmZzVuVUpudzB5NmZwZm0yZjdL?=
+ =?utf-8?B?SWhvZk5ZcExKdHl4TzNIUVlZQkR5YTlhMjB3ZUlTMzNZZVFsOGVQTy9uUWNq?=
+ =?utf-8?B?M2Q1OVJFS0Q5ZUNJUEx1K2pwbEtBc1Y2ZHAwSDc2Tk5UVW56NlhJRWRmYTZ3?=
+ =?utf-8?B?MHc5VkxHczJOZy9OWGtWNmJTZ3JVQmc2NzJIbitCaXNMTDNudTg1dkUyNTli?=
+ =?utf-8?B?YUpVeUlPeEtJVi9wMVJxRFdGUElJaU5MSVI5WnJXMEovdXA2ekNKMlVyZUtv?=
+ =?utf-8?B?d1RzSW1EL3lTRjNkTStTZGVaeVJ0dWZ6NldKTk5CY1FLTUlHMHJDQVhCOFM4?=
+ =?utf-8?B?cW9Pb29PM00vTVVDU05xZm9oc3U0aC9RVUhiZll3aklzVWR6NVd4QjNFWHV4?=
+ =?utf-8?B?TWhldmFPUXFvek56TkRkQXJLQTA2L0ZlRHFJbThtY3RhUExLTmg5Z2JkRjJp?=
+ =?utf-8?B?WW1Vbll5bEhlbXN0UU1OcHkzOXlJc1dTV1B2dVJubkFZSGlZRHQ3OC83WmFD?=
+ =?utf-8?B?VXNNaWp0UzRNaHRKbCttU2hVK2hiRjQ2ajNOR0x2Mm40L1ZmVGdkVnA1NDRk?=
+ =?utf-8?B?NUVZQldyRlFETGowa0ZERHRvQmU3ellkTjRuUldzbVhBTzRrdDlTVVAxdXg0?=
+ =?utf-8?B?Nm8rTDRnZ215cjdDSExqS01DRHUzaGt6TnpyaE0xZmNtaFFMK1IydkxsSW9T?=
+ =?utf-8?B?M1JGQjFjQkxXbjNxcDB1ZUZMVmI0bTZpVW5kYXpmWkFLUkw4aHRydGlqUys3?=
+ =?utf-8?B?R3psMTZVNUxBWDRjVm95cTFqTmdUVXY1WEp3ckUybWlLdGZXRFpZa1NsWXFr?=
+ =?utf-8?B?OGRoL3ZNVDlNRUhZMFk0OVZ4R0tMREJ3NUZHcHZBUmFOWWpoeEpOUjNKSTNG?=
+ =?utf-8?B?RzhWd011QXczbVFmWE1TQWk3cW5xN0NqZlFZSVE5KzFBVnVjN2RFSGExOGhx?=
+ =?utf-8?B?UUsxVjdQUkVJYVBCdldHWDI5SFJ5S1JzbU12bmxZN0ExY0dqNUpoVEgxUkc4?=
+ =?utf-8?B?WTRQYTE0N0lkVkJvTTZJcDhySHoyM3BUNUJlcGRjMXpuVFBJSFFXZEg3cjg3?=
+ =?utf-8?B?ck80aEtiQVVzakJRMHlrSnpybXQ5ZUZRWVdSZDJ0NEFKWTRRbURrNEFSbU90?=
+ =?utf-8?B?UHE1Lzc4T25GaVJoQVlvQ1RWNThlNjNJMzNuZk1iZGZYR1NJdmI3M2F5L1k3?=
+ =?utf-8?B?MWlhNGlIR2ZGYUFxQ2gyK2wzdjczS1lVdDlGOFc3Q0xxN2ZITWJYdHlGa2Rx?=
+ =?utf-8?B?N2VyWk9ZT0FtdW9vNVBmNHdpaHlWWkxGZVMrUUNwRElPSGVyc2ZqL2dlbFEz?=
+ =?utf-8?B?K3RpQlJWWUVKTTdrNkpTUzFDNm9CbDRGUDN2bk9kcmZOVU11eDJyR0VwYVVZ?=
+ =?utf-8?B?QzdkcFpRMnJoQ1ZHcjdzTmxZU2h5eG1HZXFLWFlzOTdvL3N4YlRFZ0xjN2cw?=
+ =?utf-8?B?bWVwUW45RXVyTUNleWlZWWdUZkJ2VyswSmRLSEtLdHB3a2V2cGwxZUVSZ215?=
+ =?utf-8?B?dlZmdGkwbHZud1Rad3BOYnhmT3YwMXcyU215Uis4MGtJWDdxUFpyZ2VxK240?=
+ =?utf-8?B?MTlra2YxZDlnaFJTTGxybmVpUm1HcmluWDloUHJHV2M3YjBVQThxT3l6RWZJ?=
+ =?utf-8?B?TzZva3UxQXh2bjJiRk5vMlNmZEZ0R2RFN1NucDQ3Q3lTdXRvSE93OVdkMjhN?=
+ =?utf-8?B?dEU1c2ovSDNSb1Y4bFRtcFdwa0RMZXRqa2lpZG1FYjZ1R0tKd2ExV0EreHF5?=
+ =?utf-8?B?QXBBUUdjNyt3R010bkhLWjNlbmFJYUNHOVNYL3F0VnJ2eDRpeVBZamNTcXRM?=
+ =?utf-8?B?N1FzYTRxSDRpUFlJTjk3Uk0vbHcxc3o3dzE2OUI0VGZvK2pFb3N3ZWlTOVhR?=
+ =?utf-8?B?VTJkMmZXVlBmVG1Pcm9HNytZM1g3V2xHY0x2WmVGVXJ0cmhTY0lRZTVQeE1F?=
+ =?utf-8?B?ekE0bU9idm1vWVl1N3VHbjZWU0pmZmRoUU5DY1hjcUo1eUhyME15MVhWYUdz?=
+ =?utf-8?B?Z3g4RFIwS0IrM0JHaklPSHN4eE5CejMxaVN6OWN5dHZqT1FwcEc1ZG9KTy93?=
+ =?utf-8?B?eHdRdjk1TlNXSFdONmpCMGZmakdqYzVuNkVtT0F0YzZuYTUzMUViT2NyN3Rv?=
+ =?utf-8?B?aGI2M3hzVmtnUnRtRUJpekhNOVpJVi92S3RES3phQytMUjU0QmtsYmVDNzhV?=
+ =?utf-8?B?REFWOTA4cllsdklvR0tuRVRpdm13PT0=?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK:  N
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYBPR01MB5341.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ed00d6b0-abf8-4141-8966-08db448cca91
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Apr 2023 06:26:08.7505
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ochaK7uVlEMTzekRluN3pxDBXX73vtKcamUNKJzPYTGgP9wpafQsUP9n4Cq5wxVgyZgQOSD/uAnZVzKAI7yfjJo4OknbSR/v4/UOvuFVYBNX1M0woqushK0CVwXqy6L3
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYWPR01MB10193
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adding one empty lat buffer with parameter 'is_empty_flag = true'
-used to flush core work queue decode.
-
-Queue the empty lat buffer to core list when driver need to flush decode.
-It's mean core already decode all existed lat buffer when get empty lat
-buffer, then wake up core decode done event, the driver will exit when getting
-core dec done event.
-
-Fixes: d227af847ac2 ("media: mediatek: vcodec: add core decode done event")
-Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
----
- .../platform/mediatek/vcodec/vdec_msg_queue.c | 35 +++++++++++--------
- .../platform/mediatek/vcodec/vdec_msg_queue.h |  8 +++++
- 2 files changed, 28 insertions(+), 15 deletions(-)
-
-diff --git a/drivers/media/platform/mediatek/vcodec/vdec_msg_queue.c b/drivers/media/platform/mediatek/vcodec/vdec_msg_queue.c
-index 08c720c9760e..66b4175601e3 100644
---- a/drivers/media/platform/mediatek/vcodec/vdec_msg_queue.c
-+++ b/drivers/media/platform/mediatek/vcodec/vdec_msg_queue.c
-@@ -177,9 +177,6 @@ void vdec_msg_queue_update_ube_wptr(struct vdec_msg_queue *msg_queue, uint64_t u
- 
- bool vdec_msg_queue_wait_lat_buf_full(struct vdec_msg_queue *msg_queue)
- {
--	int ret;
--	long timeout_jiff;
--
- 	if (atomic_read(&msg_queue->lat_list_cnt) == NUM_BUFFER_COUNT) {
- 		mtk_v4l2_debug(3, "wait buf full: list(%d %d) ready_num:%d status:%d",
- 			       atomic_read(&msg_queue->lat_list_cnt),
-@@ -189,19 +186,14 @@ bool vdec_msg_queue_wait_lat_buf_full(struct vdec_msg_queue *msg_queue)
- 		return true;
- 	}
- 
--	timeout_jiff = msecs_to_jiffies(1000 * (NUM_BUFFER_COUNT + 2));
--	ret = wait_event_timeout(msg_queue->ctx->msg_queue.core_dec_done,
--				 msg_queue->lat_ctx.ready_num == NUM_BUFFER_COUNT,
--				 timeout_jiff);
--	if (ret) {
--		mtk_v4l2_debug(3, "success to get lat buf: %d",
--			       msg_queue->lat_ctx.ready_num);
--		return true;
--	}
-+	msg_queue->flush_done = false;
-+	vdec_msg_queue_qbuf(&msg_queue->core_ctx, &msg_queue->empty_lat_buf);
-+	wait_event(msg_queue->core_dec_done, msg_queue->flush_done);
- 
--	mtk_v4l2_err("failed with lat buf isn't full: list(%d %d)",
--		     atomic_read(&msg_queue->lat_list_cnt),
--		     atomic_read(&msg_queue->core_list_cnt));
-+	mtk_v4l2_debug(3, "flush done => ready_num:%d status:%d list(%d %d)",
-+		       msg_queue->lat_ctx.ready_num, msg_queue->status,
-+		       atomic_read(&msg_queue->lat_list_cnt),
-+		       atomic_read(&msg_queue->core_list_cnt));
- 
- 	return false;
- }
-@@ -250,6 +242,14 @@ static void vdec_msg_queue_core_work(struct work_struct *work)
- 	if (!lat_buf)
- 		return;
- 
-+	if (lat_buf->is_last_frame) {
-+		ctx->msg_queue.status = CONTEXT_LIST_DEC_DONE;
-+		msg_queue->flush_done = true;
-+		wake_up(&ctx->msg_queue.core_dec_done);
-+
-+		return;
-+	}
-+
- 	ctx = lat_buf->ctx;
- 	mtk_vcodec_dec_enable_hardware(ctx, MTK_VDEC_CORE);
- 	mtk_vcodec_set_curr_ctx(dev, ctx, MTK_VDEC_CORE);
-@@ -300,6 +300,10 @@ int vdec_msg_queue_init(struct vdec_msg_queue *msg_queue,
- 	msg_queue->wdma_rptr_addr = msg_queue->wdma_addr.dma_addr;
- 	msg_queue->wdma_wptr_addr = msg_queue->wdma_addr.dma_addr;
- 
-+	msg_queue->empty_lat_buf.ctx = ctx;
-+	msg_queue->empty_lat_buf.core_decode = NULL;
-+	msg_queue->empty_lat_buf.is_last_frame = true;
-+
- 	for (i = 0; i < NUM_BUFFER_COUNT; i++) {
- 		lat_buf = &msg_queue->lat_buf[i];
- 
-@@ -325,6 +329,7 @@ int vdec_msg_queue_init(struct vdec_msg_queue *msg_queue,
- 
- 		lat_buf->ctx = ctx;
- 		lat_buf->core_decode = core_decode;
-+		lat_buf->is_last_frame = false;
- 		err = vdec_msg_queue_qbuf(&msg_queue->lat_ctx, lat_buf);
- 		if (err) {
- 			mtk_v4l2_err("failed to qbuf buf[%d]", i);
-diff --git a/drivers/media/platform/mediatek/vcodec/vdec_msg_queue.h b/drivers/media/platform/mediatek/vcodec/vdec_msg_queue.h
-index efc94165e016..8f771874f8e6 100644
---- a/drivers/media/platform/mediatek/vcodec/vdec_msg_queue.h
-+++ b/drivers/media/platform/mediatek/vcodec/vdec_msg_queue.h
-@@ -62,6 +62,8 @@ struct vdec_msg_queue_ctx {
-  * @core_decode: different codec use different decode callback function
-  * @lat_list: add lat buffer to lat head list
-  * @core_list: add lat buffer to core head list
-+ *
-+ * @is_last_frame: meaning this buffer is the last frame
-  */
- struct vdec_lat_buf {
- 	struct mtk_vcodec_mem wdma_err_addr;
-@@ -74,6 +76,8 @@ struct vdec_lat_buf {
- 	core_decode_cb_t core_decode;
- 	struct list_head lat_list;
- 	struct list_head core_list;
-+
-+	bool is_last_frame;
- };
- 
- /**
-@@ -88,6 +92,8 @@ struct vdec_lat_buf {
-  *
-  * @lat_list_cnt: used to record each instance lat list count
-  * @core_list_cnt: used to record each instance core list count
-+ * @flush_done: core flush done status
-+ * @empty_lat_buf: the last lat buf used to flush decode
-  * @core_dec_done: core work queue decode done event
-  * @status: current context decode status for core hardware
-  */
-@@ -104,6 +110,8 @@ struct vdec_msg_queue {
- 
- 	atomic_t lat_list_cnt;
- 	atomic_t core_list_cnt;
-+	bool flush_done;
-+	struct vdec_lat_buf empty_lat_buf;
- 	wait_queue_head_t core_dec_done;
- 	int status;
- };
--- 
-2.18.0
-
+SGkgTWFuaXZhbm5hbiwNCg0KPiBGcm9tOiBNYW5pdmFubmFuIFNhZGhhc2l2YW0sIFNlbnQ6IFNh
+dHVyZGF5LCBBcHJpbCAyMiwgMjAyMyAxMDo1OSBQTQ0KPiANCj4gT24gVHVlLCBBcHIgMTgsIDIw
+MjMgYXQgMDk6MjM6NTVQTSArMDkwMCwgWW9zaGloaXJvIFNoaW1vZGEgd3JvdGU6DQo+ID4gRXhw
+b3NlIGR3X3BjaWVfZXBfZXhpdCgpIHRvIG1vZHVsZS4NCj4gPg0KPiANCj4gVGhpcyBpcyBub3Qg
+YSBnb29kIGNvbW1pdCBtZXNzYWdlLiBZb3UgbmVlZCB0byBtZW50aW9uIHdoeSBpdCBpcyBuZWVk
+ZWQgYW5kIGxpc3QNCj4gYW55IGJyZWFrYWdlIG9ic2VydmVkIHdpdGhvdXQgdGhpcy4NCg0KSSds
+bCBtb2RpZnkgZGVzY3JpcHRpb24gbGlrZSBiZWxvdzoNCg0KU2luY2Ugbm8gUENJZSBjb250cm9s
+bGVyIGRyaXZlcnMgY2FsbCB0aGlzLCB0aGlzIGNoYW5nZSBpcyBub3QgcmVxdWlyZWQNCmZvciBu
+b3cuIEJ1dCwgUmVuZXNhcyBSLUNhciBTNC04IFBDSWUgY29udHJvbGxlciBkcml2ZXIgd2lsbCBj
+YWxsIHRoaXMNCmFuZCBpZiB0aGUgY29udHJvbGxlciBkcml2ZXIgaXMgYnVpbHQgYXMgYSBrZXJu
+ZWwgbW9kdWxlLCB0aGUgZm9sbG93aW5nDQpidWlsZCBlcnJvciBoYXBwZW5zLiBTbywgZXhwb3Nl
+IGR3X3BjaWVfZXBfZXhpdCgpIGZvciBpdC4NCg0KRVJST1I6IG1vZHBvc3Q6ICJkd19wY2llX2Vw
+X2V4aXQiIFtkcml2ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9wY2llLXJjYXItZ2VuNC1lcC1kcnYu
+a29dIHVuZGVmaW5lZCENCg0KQmVzdCByZWdhcmRzLA0KWW9zaGloaXJvIFNoaW1vZGENCg0KPiAt
+IE1hbmkNCj4gDQo+ID4gU2lnbmVkLW9mZi1ieTogWW9zaGloaXJvIFNoaW1vZGEgPHlvc2hpaGly
+by5zaGltb2RhLnVoQHJlbmVzYXMuY29tPg0KPiA+IC0tLQ0KPiA+ICBkcml2ZXJzL3BjaS9jb250
+cm9sbGVyL2R3Yy9wY2llLWRlc2lnbndhcmUtZXAuYyB8IDEgKw0KPiA+ICAxIGZpbGUgY2hhbmdl
+ZCwgMSBpbnNlcnRpb24oKykNCj4gPg0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL3BjaS9jb250
+cm9sbGVyL2R3Yy9wY2llLWRlc2lnbndhcmUtZXAuYyBiL2RyaXZlcnMvcGNpL2NvbnRyb2xsZXIv
+ZHdjL3BjaWUtZGVzaWdud2FyZS1lcC5jDQo+ID4gaW5kZXggMzA0ZWQwOTNmNTUxLi4yNDU4Y2Ey
+YmMwZTQgMTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9wY2kvY29udHJvbGxlci9kd2MvcGNpZS1k
+ZXNpZ253YXJlLWVwLmMNCj4gPiArKysgYi9kcml2ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9wY2ll
+LWRlc2lnbndhcmUtZXAuYw0KPiA+IEBAIC02ODEsNiArNjgxLDcgQEAgdm9pZCBkd19wY2llX2Vw
+X2V4aXQoc3RydWN0IGR3X3BjaWVfZXAgKmVwKQ0KPiA+DQo+ID4gIAlwY2lfZXBjX21lbV9leGl0
+KGVwYyk7DQo+ID4gIH0NCj4gPiArRVhQT1JUX1NZTUJPTF9HUEwoZHdfcGNpZV9lcF9leGl0KTsN
+Cj4gPg0KPiA+ICBzdGF0aWMgdW5zaWduZWQgaW50IGR3X3BjaWVfZXBfZmluZF9leHRfY2FwYWJp
+bGl0eShzdHJ1Y3QgZHdfcGNpZSAqcGNpLCBpbnQgY2FwKQ0KPiA+ICB7DQo+ID4gLS0NCj4gPiAy
+LjI1LjENCj4gPg0KPiANCj4gLS0NCj4g4K6u4K6j4K6/4K614K6j4K+N4K6j4K6p4K+NIOCumuCu
+pOCuvuCumuCuv+CuteCuruCvjQ0K
