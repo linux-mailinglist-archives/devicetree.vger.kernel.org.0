@@ -2,170 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4554B6EC97D
-	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 11:53:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92BE46EC9A1
+	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 11:59:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231280AbjDXJxz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Apr 2023 05:53:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52600 "EHLO
+        id S229659AbjDXJ7p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Apr 2023 05:59:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230476AbjDXJxy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 05:53:54 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7E48E2
-        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 02:53:52 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-2febac9cacdso2487356f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 02:53:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1682330031; x=1684922031;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=FVPhALJrCoU5a5TzkxQ02eTDQVTGy1JXUE3kOBuPy9U=;
-        b=cH+5aVxjyXdp4N6qOqYqvD9EY9L9cMhwwWk8/OtzkVy8nVnYwMlexMYd8AC7O1APdT
-         1uRLL9r0Q9rw982Z6efl/wRbj6Ud/7C0ZtnJ6J514kF1UhvLi/weRuOnIESg6h7d1PYl
-         gLrtzH4MBI369mHIeMmj5mindbHMtIhLRBxX0A4S6kBSOtW/e0XTqXyFoR/bPhCVf8/C
-         4lx7+p2Oto+8Rv34qNixq8r7YT/WvVgXzklh7ousCtRBgtKCrfQqEDxkSX+B/XvUgrBE
-         uY3q5b2l/NV4mvnCZVoPLHxu+hS+OU2CJ6+YhKB0cZkxGaqdf6/5vrTu2v1JMexmXrJp
-         qciw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682330031; x=1684922031;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FVPhALJrCoU5a5TzkxQ02eTDQVTGy1JXUE3kOBuPy9U=;
-        b=lTOCx8GPDejiFBE2yyskGbNk8AP7F1XMxF/8ygzdBZZL0Q1fZWTQDBYu/k01uMKxfQ
-         dppNh56nS4APiN1xRTgUFXUj3U4CHuZ65gCPrd1sZk8Dsee9Gu/4dNKGUODY4CDTUBWA
-         C9Gb0kwA/NOeEJpkOiVPBi2jmGJF6HG0URrqB47L8eWFrg16/kP8j3obH+hljPRxpZ1x
-         jqRWZ94CHjN+ZJeylvuWRMc3WMf2lwU7nOOcCcz2jMbj8JDpNjIfoQjgvj7XzODNESTk
-         Sda3SQdtM8UKsBK24aIs/z5T8tUB3PLCe3RAcp9Z1mqR5C6quj1YiamkC+zIlGectwh5
-         FpVg==
-X-Gm-Message-State: AAQBX9e1RcCOg7i6PuEyUBzoDpkpsGV3s55ChwUkCQiijVegH8ZaTvdW
-        pkXFf5jN0c+we87HpjzozoZNgA==
-X-Google-Smtp-Source: AKy350YXhwIcFwNEjcyJcmueu1N5mpTuj3jp0eT5mMAWUHrjq5IbvZ7jDxvQscBYvU7wyIqQQ51o+g==
-X-Received: by 2002:a05:6000:118e:b0:2ff:4b8a:6453 with SMTP id g14-20020a056000118e00b002ff4b8a6453mr9013700wrx.5.1682330031277;
-        Mon, 24 Apr 2023 02:53:51 -0700 (PDT)
-Received: from [192.168.29.232] ([49.37.170.173])
-        by smtp.gmail.com with ESMTPSA id o10-20020a05600c510a00b003ee443bf0c7sm15141850wms.16.2023.04.24.02.53.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Apr 2023 02:53:51 -0700 (PDT)
-Message-ID: <88f9a008-2861-284c-76c4-7d416c107fbb@9elements.com>
-Date:   Mon, 24 Apr 2023 15:23:41 +0530
+        with ESMTP id S231539AbjDXJ7o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 05:59:44 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69A381FCC;
+        Mon, 24 Apr 2023 02:59:39 -0700 (PDT)
+Received: from [IPV6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2] (unknown [IPv6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 2E10F660324B;
+        Mon, 24 Apr 2023 10:59:37 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1682330377;
+        bh=d4/ywTBBYaIdjKCxRKNX5qZ5Mog0dm0wH5iUfUYbv2M=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=gUlACtRVAMqeFR53ajNoYxRLdl3NeUNwell40eVgBz/jW8mDh4DyWz7/BiNlyPYXc
+         8E62BuLw3e+7K/zeVd5iAUXJNVbOHiVAXs7KfPpwCwfRRiXeExInvFrcnoEYcRvNmO
+         UWs8m27DaQ3mVENoOWt73ozjNnWPeVAASIUekBbdIAQGHBlC2reRR1ejCuET+1xX+Y
+         Qotg8gu7tryiUqifKtqcW9PGzTyAGKN5wWE3dH23KNEaK56YBFo4xzuajlTYPFL5cb
+         5r7o2EHmVfq+NGd5H0jO+Y2+CJC0YWA2PbBcdKCtTTrIqy0GY7svNrDiJW+Oien2Sm
+         XeyXw7Z5J7RoQ==
+Message-ID: <db95dbbd-d740-2c78-e0dc-55c17d5b9a04@collabora.com>
+Date:   Mon, 24 Apr 2023 11:59:34 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: Add max6639
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Marcello Sylvester Bauer <sylv@sylv.io>,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230420111759.2687001-1-Naresh.Solanki@9elements.com>
- <76e57634-75dd-01e8-9c56-36ed7de17812@linaro.org>
- <c8d1b5db-318e-3401-0834-b89769831eca@9elements.com>
- <be129c4f-3ad7-c54b-936e-08b142608ebc@linaro.org>
+Subject: Re: [PATCH 5/5] arm64: dts: mediatek: cherry-tomato-r1: Enable NVMe
+ PCI-Express port
 Content-Language: en-US
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-In-Reply-To: <be129c4f-3ad7-c54b-936e-08b142608ebc@linaro.org>
+To:     Chen-Yu Tsai <wenst@chromium.org>
+Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, kernel@collabora.com
+References: <20230420094433.42794-1-angelogioacchino.delregno@collabora.com>
+ <20230420094433.42794-6-angelogioacchino.delregno@collabora.com>
+ <CAGXv+5GJroyKkj8oZw+BQxiUkiGCb-RBOxnKRkURQz5T6=EvNQ@mail.gmail.com>
+ <eb78450a-1eed-f914-58be-ee18d85a2d62@collabora.com>
+ <CAGXv+5E5Ei9YffWQednLcmWBr2eXfsfjXBFRzxKJd+=O290xdQ@mail.gmail.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <CAGXv+5E5Ei9YffWQednLcmWBr2eXfsfjXBFRzxKJd+=O290xdQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
-
-On 24-04-2023 03:12 pm, Krzysztof Kozlowski wrote:
-> On 24/04/2023 11:18, Naresh Solanki wrote:
-> 
->>>> Changes in V2:
->>>> - Update subject
->>>> - Drop blank lines
->>>> ---
->>>>    .../bindings/hwmon/maxim,max6639.yaml         | 52 +++++++++++++++++++
->>>>    1 file changed, 52 insertions(+)
->>>>    create mode 100644 Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
->>>> new file mode 100644
->>>> index 000000000000..1aaedfd7cee0
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
->>>> @@ -0,0 +1,52 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/hwmon/maxim,max6639.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: Maxim max6639
->>>
->>> What is this device? fan controller?
->> Yes Fan controller.
->> Do you want me to update the title here as:
->> "Maxim MAC6639 2 channel fan controller & temperature monitor" ?
-> 
-> Enough would be:
-> Maxim MAX6639 Fan Controller
-Ack
-> 
-> 
+Il 24/04/23 11:40, Chen-Yu Tsai ha scritto:
+> On Mon, Apr 24, 2023 at 4:13 PM AngeloGioacchino Del Regno
+> <angelogioacchino.delregno@collabora.com> wrote:
 >>
+>> Il 21/04/23 09:59, Chen-Yu Tsai ha scritto:
+>>> On Thu, Apr 20, 2023 at 5:45 PM AngeloGioacchino Del Regno
+>>> <angelogioacchino.delregno@collabora.com> wrote:
+>>>>
+>>>> On Tomato rev1 the PCIe0 controller is used for NVMe storage.
 >>>
->>>> +
->>>> +maintainers:
->>>> +  - Naresh Solanki <Naresh.Solanki@9elements.com>
->>>> +
->>>> +description: |
->>>> +  The MAX6639 is a 2-channel temperature monitor with dual, automatic, PWM
->>>> +  fan-speed controller.  It monitors its own temperature and one external
->>>> +  diode-connected transistor or the temperatures of two external diode-connected
->>>> +  transistors, typically available in CPUs, FPGAs, or GPUs.
->>>> +
->>>> +  Datasheets:
->>>> +    https://datasheets.maximintegrated.com/en/ds/MAX6639-MAX6639F.pdf
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    enum:
->>>> +      - maxim,max6639
->>>> +
->>>> +  reg:
->>>> +    maxItems: 1
->>>> +
->>>> +  '#address-cells':
->>>> +    const: 1
->>>> +
->>>> +  '#size-cells':
->>>> +    const: 0
+>>> This was slightly confusing for me. AFAIK rev1 is not an actual Tomato
+>>> device. It should be the prototype board, which is the original Cherry
+>>> reference design by Google [1].
 >>>
->>> Why do you need these two properties?
->> Ack. Will remove them.
+>>> There is an actual Cherry derived device that has NVMe, though it's under
+>>> another brand and another name.
 >>>
->>> Anyway, the binding looks incomplete. Where are the supplies? Interrupts?
->> This patch just adds basic support to the existing platform driver.
->> Intention is to be able to call the driver from DT with basic
->> initialization from driver the existing driver.
+>>
+>> If revision 1 is not an actual Tomato device, and you can confirm that it is
+>> the prototype board... I can send a commit to entirely drop R1 as having it
+>> upstream would be of no use at all.
 > 
-> Bindings should be rather complete. Here the datasheet is accessible and
-> few properties quite obvious, so I don't see a reason to skip them.
-I agree with you. But currently the driver which is already merged 
-doesn't has it implemented.
-And will be working on separate patch to include this later.
+>  From what I gathered from my colleagues, revision 1 was a Tomato prototype,
+> and also the second Cherry prototype board. There shouldn't be any of these
+> out in the wild.
 > 
-> 
-> Best regards,
-> Krzysztof
+> FTR, the production version of Tomato is revision 4. Rev 2 and rev 3
+> engineering samples are available to partners, but otherwise limited.
 > 
 
-Regards,
-Naresh.
+Good! Thanks for the information.
+
+> ChenYu
+> 
+>> Cheers,
+>> Angelo
+>>
+>>> ChenYu
+>>>
+>>> [1] Much like Kukui & Jacuzzi (MT8183), and Asurada (MT8192) are the
+>>>       reference designs.  I don't think we ever upstream the reference
+>>>       boards because they don't really end up in the hands of people
+>>>       outside of the project, and the ones we do have tend to be quite
+>>>       beaten up or no longer working due to extensive testing.
+>>>
+>>>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>>>> ---
+>>>>    arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts | 7 +++++++
+>>>>    1 file changed, 7 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts b/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts
+>>>> index 2d5e8f371b6d..11fc83ddf236 100644
+>>>> --- a/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts
+>>>> +++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts
+>>>> @@ -20,6 +20,13 @@ &sound {
+>>>>           model = "mt8195_r1019_5682";
+>>>>    };
+>>>>
+>>>> +&pcie0 {
+>>>> +       status = "okay";
+>>>> +
+>>>> +       pinctrl-names = "default";
+>>>> +       pinctrl-0 = <&pcie0_pins_default>;
+>>>> +};
+>>>> +
+>>>>    &ts_10 {
+>>>>           status = "okay";
+>>>>    };
+>>>> --
+>>>> 2.40.0
+>>>>
+>>>>
+>>
+
+-- 
+AngeloGioacchino Del Regno
+Software Engineer
+
+Collabora Ltd.
+Platinum Building, St John's Innovation Park, Cambridge CB4 0DS, UK
+Registered in England & Wales, no. 5513718
+
