@@ -2,141 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 06C5B6EC6D8
-	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 09:17:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57A586EC6DC
+	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 09:19:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230415AbjDXHRo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Apr 2023 03:17:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40978 "EHLO
+        id S229658AbjDXHTb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Apr 2023 03:19:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230373AbjDXHRn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 03:17:43 -0400
-Received: from mail-vk1-xa2a.google.com (mail-vk1-xa2a.google.com [IPv6:2607:f8b0:4864:20::a2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA690A0
-        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 00:17:41 -0700 (PDT)
-Received: by mail-vk1-xa2a.google.com with SMTP id 71dfb90a1353d-4404c4221e2so1278559e0c.2
-        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 00:17:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1682320661; x=1684912661;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ge7dQFFEMhRd1pxTKgcmbYY3WTN/xziTD121Ud2oaVQ=;
-        b=cSkBgzqvPTydLZcyBhk4Id8IebsD++8p0XWv0CRPMhhvjM8e6GJDGrZUU/CQ2PhGdt
-         iyzvVz3O38Us70736sYxoO/kRdFx8DTtWeNFe+7Fv19Dt/fISvOaSlGTZ5z7sHc+CJRa
-         5ucxvGoEsTZ4/BYa/Go421GPw0g/z/tP1aLs4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682320661; x=1684912661;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Ge7dQFFEMhRd1pxTKgcmbYY3WTN/xziTD121Ud2oaVQ=;
-        b=IDQ1ns7LN1xHQEm+xOirpYAd2joenWytLFvBWkIZsdFJnlhAxYQP7Ao6lqgE1EjWBa
-         xIh/CsdWfJSbBMRMXOqb+V8iFUEUtvt14ieQxil8fEQ5+SPFKTW8feXSe6F/z2q270ba
-         vjwmV5FCaHuiCmX7fZ7r40NIx2VdcH3TzaGGuj/pY/u0ZGhCS3jGt+1MUgwuIf+kogZY
-         U+zfsr2Igr9RGvjTlwcliNtZrQ8H/IUlsmiXg7CzYfo/+HUTDH/Caco5hRUtbvHH0ZUX
-         vGEq/DZrugwY3BptvPljKrreH6LHT+vJ9If0986y6hPvr6Q22OuVFzZTaq7hq3QdQiX6
-         zu6w==
-X-Gm-Message-State: AAQBX9eum/bmhDseTqp6UAHQv09+g8DH2JctvHaTkcaUTiOqAjPYlnkH
-        t0LJqRv9JWzxSlV0s6YJoKk6dajwIr1U8+cv7YdUzA==
-X-Google-Smtp-Source: AKy350ak24vjEnQyf0VlLd50kDFe/R+sOZneUhtLyU8sTqVPCOaSD1kQ2pVXtC6jt8v1o67tkU1EoehcilxF9yiwqdM=
-X-Received: by 2002:a1f:c546:0:b0:43f:b28e:d481 with SMTP id
- v67-20020a1fc546000000b0043fb28ed481mr2607614vkf.11.1682320661059; Mon, 24
- Apr 2023 00:17:41 -0700 (PDT)
+        with ESMTP id S229547AbjDXHTa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 03:19:30 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BC56A0;
+        Mon, 24 Apr 2023 00:19:29 -0700 (PDT)
+Received: from [IPV6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2] (unknown [IPv6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id C9B2A6603230;
+        Mon, 24 Apr 2023 08:19:27 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1682320768;
+        bh=y2Zd2mcukyD5xgMKFFTPfcFPwvNeasLimenGu+uA/Bo=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=FbvwbiGw60azOUiU1kTbXJHXAXuV05mA6I3vJ7dRUYev2CdCIpTgKaYSjvOiyGvrq
+         5DYVyhRCZUu2UvkC4imr198sHrFU81/DUXdXYW1P/x8r9UWEvdSNIlB5QK4KtTmZDv
+         gDH6ib5uJZS+HVKRWfLCzMJvOHDSzkkgnc+Sh1pdxs0vLl7ikPYKjP2CRJRLlRHvif
+         sYqOQ2+775SJOVbCTmeqWIiYgwv1lynzqZNfmeNg8VgoGrFqLS34EFh5dKkSei945H
+         uQhDAUGJ+L5MW7gbxpddNxyhVSBWQgjLTuCUIIynjAuZJm2GR8aN6jE8d7N+UVLDeO
+         wYAoK7oNTqX2A==
+Message-ID: <8a3c0e35-b581-3405-ea2d-f8f8d9e432d9@collabora.com>
+Date:   Mon, 24 Apr 2023 09:19:25 +0200
 MIME-Version: 1.0
-References: <20230420094433.42794-1-angelogioacchino.delregno@collabora.com>
- <20230420094433.42794-3-angelogioacchino.delregno@collabora.com>
- <CAGXv+5EtCdpXtq6q2Cv+QAZPUE6yJiSZhngSc0sftz-_uDrZXw@mail.gmail.com> <0a0917f9-756f-6926-8ede-2b087cb0b716@collabora.com>
-In-Reply-To: <0a0917f9-756f-6926-8ede-2b087cb0b716@collabora.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Mon, 24 Apr 2023 15:17:29 +0800
-Message-ID: <CAGXv+5FMEphksTSLAy8=hDPGjC364dxD4_9qmw6aV4en-2d3ig@mail.gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
 Subject: Re: [PATCH 2/5] arm64: dts: mediatek: cherry: Assign dp-intf aliases
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+To:     Chen-Yu Tsai <wenst@chromium.org>
 Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org, kernel@collabora.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+References: <20230420094433.42794-1-angelogioacchino.delregno@collabora.com>
+ <20230420094433.42794-3-angelogioacchino.delregno@collabora.com>
+ <CAGXv+5EtCdpXtq6q2Cv+QAZPUE6yJiSZhngSc0sftz-_uDrZXw@mail.gmail.com>
+ <0a0917f9-756f-6926-8ede-2b087cb0b716@collabora.com>
+ <CAGXv+5FMEphksTSLAy8=hDPGjC364dxD4_9qmw6aV4en-2d3ig@mail.gmail.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <CAGXv+5FMEphksTSLAy8=hDPGjC364dxD4_9qmw6aV4en-2d3ig@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 24, 2023 at 3:03=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Il 21/04/23 08:46, Chen-Yu Tsai ha scritto:
-> > On Thu, Apr 20, 2023 at 5:45=E2=80=AFPM AngeloGioacchino Del Regno
-> > <angelogioacchino.delregno@collabora.com> wrote:
-> >>
-> >> On Cherry boards, the IP at 0x1c015000 (dp_intf0) is used as primary
-> >> dp-intf, while the other at 0x1c113000 (dp_intf1) is used as secondary=
-:
-> >> assign them to dp-intf{0,1} aliases respectively.
-> >>
-> >> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@c=
-ollabora.com>
-> >> ---
-> >>   arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi | 2 ++
-> >
-> > This should be applied at the SoC level. The display pipeline is fixed =
-in
-> > MMSYS, so it applies to all MT8195 devices.
-> >
->
-> It's fixed in the MMSYS configuration/driver but - as far as I remember (=
-I can
-> recheck on the datasheets) - the dp_intfX function can be inverted meanin=
-g that
-> the MMSYS paths can be configured such that DP_INTF0 becomes secondary an=
-d the
-> other becomes primary: this is why I am putting that into mt8195-cherry a=
-nd not
-> mt8195.dtsi.
+Il 24/04/23 09:17, Chen-Yu Tsai ha scritto:
+> On Mon, Apr 24, 2023 at 3:03 PM AngeloGioacchino Del Regno
+> <angelogioacchino.delregno@collabora.com> wrote:
+>>
+>> Il 21/04/23 08:46, Chen-Yu Tsai ha scritto:
+>>> On Thu, Apr 20, 2023 at 5:45 PM AngeloGioacchino Del Regno
+>>> <angelogioacchino.delregno@collabora.com> wrote:
+>>>>
+>>>> On Cherry boards, the IP at 0x1c015000 (dp_intf0) is used as primary
+>>>> dp-intf, while the other at 0x1c113000 (dp_intf1) is used as secondary:
+>>>> assign them to dp-intf{0,1} aliases respectively.
+>>>>
+>>>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>>>> ---
+>>>>    arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi | 2 ++
+>>>
+>>> This should be applied at the SoC level. The display pipeline is fixed in
+>>> MMSYS, so it applies to all MT8195 devices.
+>>>
+>>
+>> It's fixed in the MMSYS configuration/driver but - as far as I remember (I can
+>> recheck on the datasheets) - the dp_intfX function can be inverted meaning that
+>> the MMSYS paths can be configured such that DP_INTF0 becomes secondary and the
+>> other becomes primary: this is why I am putting that into mt8195-cherry and not
+>> mt8195.dtsi.
+> 
+> Maybe that's possible, but the diagram in the datasheet suggests a fixed path.
+> 
+> Either way, it's not actually the problem. My original reply is probably
+> inaccurate. AFAIK the aliases are used to identify the individual hardware
+> blocks, which otherwise have the same compatible string. So the numbering
+> should be the same regardless of the design and/or routing.
 
-Maybe that's possible, but the diagram in the datasheet suggests a fixed pa=
-th.
+Ack. Will move to mt8195.dtsi!
 
-Either way, it's not actually the problem. My original reply is probably
-inaccurate. AFAIK the aliases are used to identify the individual hardware
-blocks, which otherwise have the same compatible string. So the numbering
-should be the same regardless of the design and/or routing.
+> 
+> Ideally this should be described with a proper graph though.
+> 
+> ChenYu
+> 
+>>
+>> Regards,
+>> Angelo
+>>
+>>>>    1 file changed, 2 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+>>>> index 0820e9ba3829..918380697a9a 100644
+>>>> --- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+>>>> +++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+>>>> @@ -10,6 +10,8 @@
+>>>>
+>>>>    / {
+>>>>           aliases {
+>>>> +               dp-intf0 = &dp_intf0;
+>>>> +               dp-intf1 = &dp_intf1;
+>>>>                   i2c0 = &i2c0;
+>>>>                   i2c1 = &i2c1;
+>>>>                   i2c2 = &i2c2;
+>>>> --
+>>>> 2.40.0
+>>>>
+>>>>
+>>>
+>>
 
-Ideally this should be described with a proper graph though.
 
-ChenYu
-
->
-> Regards,
-> Angelo
->
-> >>   1 file changed, 2 insertions(+)
-> >>
-> >> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/ar=
-m64/boot/dts/mediatek/mt8195-cherry.dtsi
-> >> index 0820e9ba3829..918380697a9a 100644
-> >> --- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-> >> +++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-> >> @@ -10,6 +10,8 @@
-> >>
-> >>   / {
-> >>          aliases {
-> >> +               dp-intf0 =3D &dp_intf0;
-> >> +               dp-intf1 =3D &dp_intf1;
-> >>                  i2c0 =3D &i2c0;
-> >>                  i2c1 =3D &i2c1;
-> >>                  i2c2 =3D &i2c2;
-> >> --
-> >> 2.40.0
-> >>
-> >>
-> >
->
