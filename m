@@ -2,183 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C39C06EC6B7
-	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 09:03:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3C886EC6BD
+	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 09:03:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231235AbjDXHDe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Apr 2023 03:03:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35442 "EHLO
+        id S231297AbjDXHD4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Apr 2023 03:03:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231236AbjDXHDZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 03:03:25 -0400
-Received: from relay10.mail.gandi.net (relay10.mail.gandi.net [217.70.178.230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00768A0;
-        Mon, 24 Apr 2023 00:03:21 -0700 (PDT)
-Received: (Authenticated sender: herve.codina@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 401B2240002;
-        Mon, 24 Apr 2023 07:03:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1682319800;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=zSUHQtIwA/w5cK0iupKdjI9R53MDNctcBBJYngsGSKs=;
-        b=hn1d5cMJ+oOsbAF5xmGkLtDl8+/c8FUYwxZnObLp0Q8vNGICq4/Bjkt64kF4RVp3q2uTro
-        Rm4uoo18YKq18KUtzPYSRWyT2aolLhnurG+Bj1cO3nOmqIYcznYSJ7vvxqFitj8Ubg7bKA
-        /sR0jEInB7qagF+X5W1gN1q5yxk2D5X2+1iXULxwe6N46geLgoLl8NAKyy6rRuKk9p6m2a
-        KhJKgtDhEPBADefV9qH8ngOOmkwVEAYB8XjJ1vqYtSP8c8bQWwtywlo7FbVr5YvphIMx+3
-        VdxDBqYUi7NeBzwfJHnDVRYE5MJDM8FGTQP1GGTR4qzwBpdIlrEp9HYolwl0pg==
-Date:   Mon, 24 Apr 2023 09:03:18 +0200
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 1/3] dt-bindings: iio: potentiometer: Add the Renesas
- X9250 potentiometers
-Message-ID: <20230424090318.4750a5e7@bootlin.com>
-In-Reply-To: <20230422171807.510d7fa3@jic23-huawei>
-References: <20230421085245.302169-1-herve.codina@bootlin.com>
-        <20230421085245.302169-2-herve.codina@bootlin.com>
-        <20230422171807.510d7fa3@jic23-huawei>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-redhat-linux-gnu)
+        with ESMTP id S231252AbjDXHDw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 03:03:52 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 644B83A97;
+        Mon, 24 Apr 2023 00:03:40 -0700 (PDT)
+Received: from [IPV6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2] (unknown [IPv6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 77DC8660328C;
+        Mon, 24 Apr 2023 08:03:38 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1682319819;
+        bh=BcRGcHyOxApaTa63eksxruQB/FnnfseF/8/KFtyoPuk=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=Lc8JE8CfgEckcQWb3q+06AfgNeh+wD7PqhlF225cKHtBjj3q6+JEjIvq18eeuTgZ4
+         Ox/fOnivwwITFtzRXmxCv5EQxSsAZelTGEREfiOrfzmM8b3edaSwjRXRgFKnlf2OvR
+         MoWT+Ro+8j3kfGHw+8anbz+TZY4O2F0bbdG0QI38cOR5YMocC7X45crXNqByTjnVdl
+         IJZVtUcHfS436enWDK8cx+ktt3VP3OS2nOHNL4czNn3I3fowWBrRNy6Dj1Sn0cr9Nw
+         iHy4mQbPJsr4FEIvvQvkMj2HKv82QUTur4zRBK/T7za1CgUsJ8LIVV1sxSyKAC9A0z
+         FfD8PlVjSJB0Q==
+Message-ID: <0a0917f9-756f-6926-8ede-2b087cb0b716@collabora.com>
+Date:   Mon, 24 Apr 2023 09:03:35 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH 2/5] arm64: dts: mediatek: cherry: Assign dp-intf aliases
+Content-Language: en-US
+To:     Chen-Yu Tsai <wenst@chromium.org>
+Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, kernel@collabora.com
+References: <20230420094433.42794-1-angelogioacchino.delregno@collabora.com>
+ <20230420094433.42794-3-angelogioacchino.delregno@collabora.com>
+ <CAGXv+5EtCdpXtq6q2Cv+QAZPUE6yJiSZhngSc0sftz-_uDrZXw@mail.gmail.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <CAGXv+5EtCdpXtq6q2Cv+QAZPUE6yJiSZhngSc0sftz-_uDrZXw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jonathan, Krzysztof,
+Il 21/04/23 08:46, Chen-Yu Tsai ha scritto:
+> On Thu, Apr 20, 2023 at 5:45 PM AngeloGioacchino Del Regno
+> <angelogioacchino.delregno@collabora.com> wrote:
+>>
+>> On Cherry boards, the IP at 0x1c015000 (dp_intf0) is used as primary
+>> dp-intf, while the other at 0x1c113000 (dp_intf1) is used as secondary:
+>> assign them to dp-intf{0,1} aliases respectively.
+>>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> ---
+>>   arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi | 2 ++
+> 
+> This should be applied at the SoC level. The display pipeline is fixed in
+> MMSYS, so it applies to all MT8195 devices.
+> 
 
-On Sat, 22 Apr 2023 17:18:07 +0100
-Jonathan Cameron <jic23@kernel.org> wrote:
+It's fixed in the MMSYS configuration/driver but - as far as I remember (I can
+recheck on the datasheets) - the dp_intfX function can be inverted meaning that
+the MMSYS paths can be configured such that DP_INTF0 becomes secondary and the
+other becomes primary: this is why I am putting that into mt8195-cherry and not
+mt8195.dtsi.
 
-> On Fri, 21 Apr 2023 10:52:43 +0200
-> Herve Codina <herve.codina@bootlin.com> wrote:
-> 
-> > The Renesas X9250 is a quad digitally controlled potentiometers.
-> > 
-> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>  
-> 
-> Hi Herve,
-> 
-> Historically we've been a bit lax in IIO bindings in always making
-> sure the per supplies are included.  As a result we frequently get
-> them added later and it just makes things messier than they should
-> be.
-> 
-> So please add vcc-supply from the start.  V+ and V- are a little trickier.
-> I was expecting datasheet to say they should be symmetric about 0 but it
-> doesn't. So they could be two independent supplies.
-> 
-> Also make it required as my current understanding is that we should
-> do that for supplies that are definitely present even if we could
-> rely on the fallback to regulator stubs if they aren't supplied.
-> So add the 3 supplies to required as well.
+Regards,
+Angelo
 
-Yes, I will add the following supplies in the next iteration:
- - 'vcc-supply' for VCC
- - 'avp-supply' for the analog V+
- - 'avn-supply' for the analog V-
-
-and add them in the required list of properties.
-
-Are the names correct for these power supplies (avp and avn) ?
-
+>>   1 file changed, 2 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+>> index 0820e9ba3829..918380697a9a 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+>> +++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+>> @@ -10,6 +10,8 @@
+>>
+>>   / {
+>>          aliases {
+>> +               dp-intf0 = &dp_intf0;
+>> +               dp-intf1 = &dp_intf1;
+>>                  i2c0 = &i2c0;
+>>                  i2c1 = &i2c1;
+>>                  i2c2 = &i2c2;
+>> --
+>> 2.40.0
+>>
+>>
 > 
-> Less of a requirement, but you might want to also provide an optional 
-> gpio for the not WP pin on basis someone might wire it up to the host processor.
 
-I will add the 'wp-gpios' property.
-
-> 
-> Beyond the comment Krzystof made on iio.yaml this otherwise looks good to me.
-
-And for the Krzystof comment on iio.yaml, as he suggested, I will drop iio.yaml.
-
-Thanks for the review,
-Hervé
-
-> 
-> 
-> 
-> 
-> > ---
-> >  .../iio/potentiometer/renesas,x9250.yaml      | 54 +++++++++++++++++++
-> >  1 file changed, 54 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/iio/potentiometer/renesas,x9250.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/iio/potentiometer/renesas,x9250.yaml b/Documentation/devicetree/bindings/iio/potentiometer/renesas,x9250.yaml
-> > new file mode 100644
-> > index 000000000000..dfa36b23eb0d
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/iio/potentiometer/renesas,x9250.yaml
-> > @@ -0,0 +1,54 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/iio/potentiometer/renesas,x9250.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Renesas X9250 quad potentiometers
-> > +
-> > +maintainers:
-> > +  - Herve Codina <herve.codina@bootlin.com>
-> > +
-> > +description:
-> > +  The Renesas X9250 integrates four digitally controlled potentiometers.
-> > +  On each potentiometer, the X9250T has a 100 kOhms total resistance and the
-> > +  X9250U has a 50 kOhms total resistance.
-> > +
-> > +allOf:
-> > +  - $ref: /schemas/spi/spi-peripheral-props.yaml
-> > +  - $ref: /schemas/iio/iio.yaml
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - renesas,x9250t
-> > +      - renesas,x9250u
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  '#io-channel-cells':
-> > +    const: 1
-> > +
-> > +  spi-max-frequency:
-> > +    maximum: 2000000
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - '#io-channel-cells'
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    spi {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +        potentiometer@0 {
-> > +            compatible = "renesas,x9250t";
-> > +            reg = <0>;
-> > +            spi-max-frequency = <2000000>;
-> > +            #io-channel-cells = <1>;
-> > +        };
-> > +    };  
-> 
