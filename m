@@ -2,136 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A88E96ED0B6
-	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 16:52:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D56136ED0B9
+	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 16:53:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231830AbjDXOwR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Apr 2023 10:52:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42044 "EHLO
+        id S231405AbjDXOxf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Apr 2023 10:53:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44148 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231995AbjDXOwF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 10:52:05 -0400
-Received: from mail-il1-x133.google.com (mail-il1-x133.google.com [IPv6:2607:f8b0:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8DF07EF1
-        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 07:51:38 -0700 (PDT)
-Received: by mail-il1-x133.google.com with SMTP id e9e14a558f8ab-32943f2063cso11099725ab.0
-        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 07:51:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1682347891; x=1684939891;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0LGZkqwX4EU9DdgtbcEz0RVWmR0Z/MRzMUh+6ISg2Gg=;
-        b=ju0Z/nU47kuo9LbsbKWAIdpPtbsi86JUxRXuEcBMEheuXMbmkyxHEWVusQecwm9Wlf
-         OP8mhegcV3fWzzeIUajBH64IBj37Wfrrr6M5wCCKG6kif7d7AEB9yBggff4HLVUIXiqo
-         gjqj27Y5GWnHhF99fYzSRMruEGvVKXIGwRWYY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682347891; x=1684939891;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0LGZkqwX4EU9DdgtbcEz0RVWmR0Z/MRzMUh+6ISg2Gg=;
-        b=Z+hAtyBjcKGRpKWUXHOFRLM+5jsYZJPZey4LcKZ30f86oczE2UZ6nd5SZd8IcrD2ti
-         L+/psWx/WfSHKVzSCDAEIiAyD4biESdMQg3evlfxuDvpjuCi5AO8Kqz1LBzOAvKyOPK1
-         N9tB4RF+ZWtCRp25qvVVbUzgQ/K+QOjL0bcCCPOmma3R7N5uWV4Gx+c4P3K/2xKiJ6pA
-         BQocckWUkU9z0ytYc4TXtsdUgJnFxZ+XIbHWMlJOPPG+rlzHi4WMgALirgLPI3DMCd7+
-         t04CslwSAqzWNnldJOL1QtA2D9JUTOLARtq3cFgMUpxZsx6SrBHc3rOjI+Bcr6dD21uF
-         T9KA==
-X-Gm-Message-State: AAQBX9cyG+gk9/Zw8vAhg60l1hTWxZbkqAzwTbxLs5R7eOfmAfpJONY/
-        UrITW56RbYTbSvWdKe3c3DYez/vHUyCURYWAI6M=
-X-Google-Smtp-Source: AKy350aZSoOrOLDov+/dFfsyoIApvOVJf82D0wxYLJIIFTmG4pPYqfz/MQdGflXuhyKeRjI6k64I2Q==
-X-Received: by 2002:a92:ce08:0:b0:31f:9b6e:2f4d with SMTP id b8-20020a92ce08000000b0031f9b6e2f4dmr6018076ilo.0.1682347890801;
-        Mon, 24 Apr 2023 07:51:30 -0700 (PDT)
-Received: from mail-il1-f170.google.com (mail-il1-f170.google.com. [209.85.166.170])
-        by smtp.gmail.com with ESMTPSA id o11-20020a92dacb000000b00326ceaf3d96sm3028230ilq.71.2023.04.24.07.51.26
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Apr 2023 07:51:27 -0700 (PDT)
-Received: by mail-il1-f170.google.com with SMTP id e9e14a558f8ab-329577952c5so1050965ab.1
-        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 07:51:26 -0700 (PDT)
-X-Received: by 2002:a92:c24c:0:b0:32b:5cff:3e3b with SMTP id
- k12-20020a92c24c000000b0032b5cff3e3bmr455771ilo.9.1682347886370; Mon, 24 Apr
- 2023 07:51:26 -0700 (PDT)
+        with ESMTP id S231228AbjDXOxe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 10:53:34 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A7B26580;
+        Mon, 24 Apr 2023 07:53:28 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id EF98C613E9;
+        Mon, 24 Apr 2023 14:53:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B466DC433EF;
+        Mon, 24 Apr 2023 14:53:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1682348007;
+        bh=9CwJJUrhNP6wOsORyqwvzaE9qMKm02sq+6yuG+Ev91U=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=TBFPs1eWvgDreKyP2z4H6q2ZZgTj7aEde/gln69W0CfM1jNYwm2ZOwXv2yaa6XSZL
+         ztShbHl41Mc4mpHTmfQu2bddwtSgvi5v4WdqtnWbnTo0ps12xIf1Xcdpe4Yq6mxI2U
+         Yn+El8B1UF43LNtRukJgvLHEi9vqyaGHCHbS9mR2UbwCoT9TBC50+0et1CttRAW/3V
+         xeYYEAoBZd3upWJ/U4xW5tiDzxA18r2RFlLxw1yew0gVPMBJ/LwAGhU2ZQcRQWCG1k
+         hb2WvoqBSq/pfAfIRHr5Fb9NdhMvH/52K3owwrVA78IjFCjAnpzm3H02CBPH5duf2c
+         L+osQEwIwu17Q==
+Message-ID: <3f2baded-c5d6-7d94-00f3-6d8fb24262c4@kernel.org>
+Date:   Mon, 24 Apr 2023 17:53:19 +0300
 MIME-Version: 1.0
-References: <1682328761-17517-1-git-send-email-quic_vnivarth@quicinc.com> <1682328761-17517-6-git-send-email-quic_vnivarth@quicinc.com>
-In-Reply-To: <1682328761-17517-6-git-send-email-quic_vnivarth@quicinc.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 24 Apr 2023 07:51:13 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=XEsLeAzFDqcXjeGAxovSwzVENeF4km5wLkhjgpSOKR5g@mail.gmail.com>
-Message-ID: <CAD=FV=XEsLeAzFDqcXjeGAxovSwzVENeF4km5wLkhjgpSOKR5g@mail.gmail.com>
-Subject: Re: [PATCH v5 5/5] spi: spi-qcom-qspi: Add DMA mode support
-To:     Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_msavaliy@quicinc.com,
-        mka@chromium.org, swboyd@chromium.org, quic_vtanuku@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v5 7/7] riscv: dts: starfive: Add USB dts configuration
+ for JH7110
+Content-Language: en-US
+To:     Minda Chen <minda.chen@starfivetech.com>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Conor Dooley <conor@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Pawel Laszczak <pawell@cadence.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Peter Chen <peter.chen@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, linux-usb@vger.kernel.org,
+        linux-riscv@lists.infradead.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Mason Huo <mason.huo@starfivetech.com>
+References: <20230420110052.3182-1-minda.chen@starfivetech.com>
+ <20230420110052.3182-8-minda.chen@starfivetech.com>
+From:   Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20230420110052.3182-8-minda.chen@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-On Mon, Apr 24, 2023 at 2:32=E2=80=AFAM Vijaya Krishna Nivarthi
-<quic_vnivarth@quicinc.com> wrote:
->
-> Current driver supports only PIO mode.
->
-> HW supports DMA, so add DMA mode support to the driver
-> for better performance for larger xfers.
->
-> Signed-off-by: Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>
-> ---
-> v4 -> v5:
-> - dropped xfer_mode
-> - clear all interrupts in handle_err()
-> - dont log ptr value
-> - dropped some dev_err()
-> - converted some dev_err() to dev_warn_once()
-> - drop few redundant comments
-> - can_dma() disabled if iommus not present in dev_node
-> - other nits
->
-> v3 -> v4:
-> - corrected tabs spacing
-> - dropped dma data descriptors
-> - dropped INVALID from xfer_mode enum
-> - qspi_buswidth_to_iomode() to return iomode without shifting
-> - dropped non-functional change in qcom_qspi_set_speed()
-> - drop redundant call to wmb()
-> - fallback to pio if dma fails to setup
-> - use dmam_pool_create() the devm version
-> - thus drop dma_pool_destroy()
-> - set dma_alignment field in probe()
-> - other minor changes
->
-> v2 -> v3:
-> - dropped Reported-by tag
->
-> v1 -> v2:
-> - modified commit message
-> - addressed kernel test robot error
-> - correct placement of header file includes
-> - added more comments
-> - coding style related changes
-> - renamed variables
-> - used u32/u8 instead of uint32_t/8_t
-> - removed unnecessary casting
-> - retain same MSTR_CONFIG as PIO for DMA
-> - unset fragment bit only for last cmd_desc of last xfer
-> ---
->  drivers/spi/spi-qcom-qspi.c | 218 ++++++++++++++++++++++++++++++++++++++=
-++++--
->  1 file changed, 212 insertions(+), 6 deletions(-)
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+On 20/04/2023 14:00, Minda Chen wrote:
+> Add USB wrapper layer and Cadence USB3 controller dts
+> configuration for StarFive JH7110 SoC and VisionFive2
+> Board.
+> USB controller connect to PHY, The PHY dts configuration
+> are also added.
+> 
+> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+> ---
+>  .../jh7110-starfive-visionfive-2.dtsi         |  7 +++
+>  arch/riscv/boot/dts/starfive/jh7110.dtsi      | 44 +++++++++++++++++++
+>  2 files changed, 51 insertions(+)
+> 
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> index 1155b97b593d..fa97ebfd93ad 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> @@ -221,3 +221,10 @@
+>  	pinctrl-0 = <&uart0_pins>;
+>  	status = "okay";
+>  };
+> +
+> +&usb0 {
+> +	phys = <&usbphy0>;
+> +	phy-names = "usb2";
+> +	dr_mode = "peripheral";
+> +	status = "okay";
+> +};
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> index 29cd798b6732..eee395e19cdb 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> @@ -366,6 +366,50 @@
+>  			status = "disabled";
+>  		};
+>  
+> +		usb0: usb@10100000 {
+> +			compatible = "starfive,jh7110-usb";
+> +			reg = <0x0 0x10100000 0x0 0x10000>,
+> +			      <0x0 0x10110000 0x0 0x10000>,
+> +			      <0x0 0x10120000 0x0 0x10000>;
+> +			reg-names = "otg", "xhci", "dev";
+> +			interrupts = <100>, <108>, <110>;
+> +			interrupt-names = "host", "peripheral", "otg";
+> +			clocks = <&stgcrg JH7110_STGCLK_USB0_LPM>,
+> +				 <&stgcrg JH7110_STGCLK_USB0_STB>,
+> +				 <&stgcrg JH7110_STGCLK_USB0_APB>,
+> +				 <&stgcrg JH7110_STGCLK_USB0_AXI>,
+> +				 <&stgcrg JH7110_STGCLK_USB0_UTMI_APB>;
+> +			clock-names = "lpm", "stb", "apb", "axi", "utmi_apb";
+> +			resets = <&stgcrg JH7110_STGRST_USB0_PWRUP>,
+> +				 <&stgcrg JH7110_STGRST_USB0_APB>,
+> +				 <&stgcrg JH7110_STGRST_USB0_AXI>,
+> +				 <&stgcrg JH7110_STGRST_USB0_UTMI_APB>;
+> +			reset-names = "pwrup", "apb", "axi", "utmi_apb";
+
+All this can really be "cdns,usb3" node. The cdns,usb3 driver should
+do reset and clocks init as it is generic.
+
+> +			starfive,stg-syscon = <&stg_syscon 0x4>;
+> +			status = "disabled";
+
+Only the syscon handling looks starfive specific so only that handling
+should be done in starfive USB driver.
+
+This node should look like this
+
+ 
+	starfive-usb@4 {
+		compatible = "starfive,jh7110-usb";
+		starfive,stg-syscon = <&stg_syscon 0x4>;
+
+		usb0: usb@10100000 {
+			compatible = "cdns,usb3";
+			reg = <0x0 0x10100000 0x0 0x10000>,
+			      <0x0 0x10110000 0x0 0x10000>,
+			      <0x0 0x10120000 0x0 0x10000>;
+			reg-names = "otg", "xhci", "dev";
+			interrupts = <100>, <108>, <110>;
+			interrupt-names = "host", "peripheral", "otg";
+			clocks = <&stgcrg JH7110_STGCLK_USB0_LPM>,
+				 <&stgcrg JH7110_STGCLK_USB0_STB>,
+				 <&stgcrg JH7110_STGCLK_USB0_APB>,
+				 <&stgcrg JH7110_STGCLK_USB0_AXI>,
+				 <&stgcrg JH7110_STGCLK_USB0_UTMI_APB>;
+			clock-names = "lpm", "stb", "apb", "axi", "utmi_apb";
+			resets = <&stgcrg JH7110_STGRST_USB0_PWRUP>,
+				 <&stgcrg JH7110_STGRST_USB0_APB>,
+				 <&stgcrg JH7110_STGRST_USB0_AXI>,
+				 <&stgcrg JH7110_STGRST_USB0_UTMI_APB>;
+			reset-names = "pwrup", "apb", "axi", "utmi_apb";
+			starfive,stg-syscon = <&stg_syscon 0x4>;
+			status = "disabled";
+		};
+	}
+
+In starfife-usb driver you can use of_platform_default_populate()
+to create the cdns,usb3 child for you.
+
+> +		};
+> +
+> +		usbphy0: phy@10200000 {
+> +			compatible = "starfive,jh7110-usb-phy";
+> +			reg = <0x0 0x10200000 0x0 0x10000>;
+> +			clocks = <&syscrg JH7110_SYSCLK_USB_125M>,
+> +				 <&stgcrg JH7110_STGCLK_USB0_APP_125>;
+> +			clock-names = "125m", "app_125m";
+> +			#phy-cells = <0>;
+> +		};
+> +
+> +		pciephy0: phy@10210000 {
+> +			compatible = "starfive,jh7110-pcie-phy";
+> +			reg = <0x0 0x10210000 0x0 0x10000>;
+> +			#phy-cells = <0>;
+> +		};
+> +
+> +		pciephy1: phy@10220000 {
+> +			compatible = "starfive,jh7110-pcie-phy";
+> +			reg = <0x0 0x10220000 0x0 0x10000>;
+> +			#phy-cells = <0>;
+> +		};
+> +
+>  		stgcrg: clock-controller@10230000 {
+>  			compatible = "starfive,jh7110-stgcrg";
+>  			reg = <0x0 0x10230000 0x0 0x10000>;
+
+cheers,
+-roger
