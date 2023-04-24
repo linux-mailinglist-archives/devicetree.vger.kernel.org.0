@@ -2,145 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E4386EC7C5
-	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 10:21:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4327E6EC807
+	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 10:45:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231442AbjDXIVU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Apr 2023 04:21:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53808 "EHLO
+        id S231344AbjDXIpf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Apr 2023 04:45:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35544 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229573AbjDXIVT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 04:21:19 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 855F310C;
-        Mon, 24 Apr 2023 01:21:18 -0700 (PDT)
+        with ESMTP id S230455AbjDXIpd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 04:45:33 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5715C10D
+        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 01:45:32 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-504eb1155d3so30857889a12.1
+        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 01:45:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1682324478; x=1713860478;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=JAX1fjmfBWI5Iew7C17ekaAOJQ1f2iQJMkxaSn3l/sg=;
-  b=VVUDe1WedeLrORTtciCS9BL3XMrL8AgeX3E7yFarzcCSaDGXPjmZW1PC
-   MEF19sGj6/BzLzHCOmQ4X0HJGTs28yxKmlws2DxpPvf81cDaDVQec2mid
-   pAt/ramMmmiZwrmVD9xorONJkvv0IdR5xom9+6KO0Qa3zFi+bg+75xsWu
-   WGcxhYDlJbUg4/t0WgV8pjq9T0WTrfr6ofdQlho3PuGNx+Xx+RuysabkH
-   FiuKbUW8RcohocHc5jpqov0jwnWnKrfVOr+ma7tc95h7cZyb4AONVHHMR
-   iCRVmWXCOhoFw/tt4MWbULuv1A+2oLaYFe5gwAIaL82YwnydMzZQBf7SS
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.99,222,1677538800"; 
-   d="scan'208";a="30508609"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 24 Apr 2023 10:21:14 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Mon, 24 Apr 2023 10:21:15 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Mon, 24 Apr 2023 10:21:15 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1682324475; x=1713860475;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=JAX1fjmfBWI5Iew7C17ekaAOJQ1f2iQJMkxaSn3l/sg=;
-  b=YrhEMgMJAW1I+JkWNqsmUBg5HvW2rtLG/QPsgUI6MsX7udGQeCIX7hOc
-   JMhnIa4PAvNfUkYoDIeU7jHJC6hzGSt4ZuuOKtnJHWoddBhMGgRpItD2S
-   j+dEHJ/JSXrsXtHan/IP9lJINgCofGeT4+gENbMClez4YBrpIGjz8jZYd
-   qS/XlariHQeHINSJbKxgZaQtQX23taB4gUyP4B3dmAsbklSMCpUuPTmkr
-   LrLksp57HyOo2yfcj92Uxke3E+lWKx8o+oPxNlHwthh5vvxG4uHrdNZ4Z
-   aMB7z+Iijw0vebgsyK3yJj4K86xNPgSgsvPZ8hYeZURD5usqqTZ7GTboK
-   g==;
-X-IronPort-AV: E=Sophos;i="5.99,222,1677538800"; 
-   d="scan'208";a="30508607"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 24 Apr 2023 10:21:14 +0200
-Received: from steina-w.tq-net.de (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 78F35280072;
-        Mon, 24 Apr 2023 10:21:14 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 2/2] arm64: dts: imx8qxp: add adma_pwm in adma
-Date:   Mon, 24 Apr 2023 10:21:08 +0200
-Message-Id: <20230424082108.26512-2-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230424082108.26512-1-alexander.stein@ew.tq-group.com>
-References: <20230424082108.26512-1-alexander.stein@ew.tq-group.com>
+        d=linaro.org; s=google; t=1682325931; x=1684917931;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=H2QhGbPfS5cFQyV2e+dfSoRNu58zlK/LOs70+0DhVQg=;
+        b=JYxpf8QGYxce1yUMh0Qi+Fp1oILpqRp2214cBO7q7NJqGA86odQLx05RtEiAz3qEDZ
+         pYTCQas33oKTGfv4nE3NcOjO6lj37xrTOx/dWm2Ipr2JpAkfnNTxzDG317OzYHMkp9aB
+         M4DSY/0nkneF+otW91G9dj/K12ipUQhLG/kjc1aN/rqNcAbgWRmOHkFeKiOJcjO8xt4Y
+         NkuV4UvLvgm4nDuKc7kJmyndDoMzuK7uDmlNGgcsBWNQu/60v75WPFzcDd4+oI8YU6qc
+         T1I4UuK0qckBjz88XVMhU247waC0pn+3GR+yx5zc9097CTrBxaaQf8GUISMrSDauUehk
+         8eGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682325931; x=1684917931;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=H2QhGbPfS5cFQyV2e+dfSoRNu58zlK/LOs70+0DhVQg=;
+        b=MdOSk+RrWsXsGfnxtH48TQIqX5yN8vsC2X8nKZ6xWtNQCAYZOo+a6Eng48eHmSDKqz
+         YiJK/v/C9w4z/L+GhOTiGhmE8IdNDeTtgwOHk6tuEXl1RALVI/72xgXSjjm4rX7Tyw/8
+         ESKMDw2vtXSFy2ny1JNskNDDEJWbI6+D4ijl9N055gFqlE12xbMhMJlqIF56VvMmVxvM
+         9Rzd9uBTfj3ha40f/0lAesXkEf6bcqMONRbFYFAoOSFVAVz3/uxIN79C0cnHLvc4o2Se
+         IJgrtf6DF1RHY2/S+TUhtx7g7JseUgtVsoS6BxPJszU5VJr+gZZ01kHNp5o39ZKVZaBO
+         meEg==
+X-Gm-Message-State: AAQBX9dOVwMeh9D1/PziP9iIvnHzwOXjJSWPu0szvVc4cI5+ASzyTPDG
+        lKUQ6hrIwYQ3JIc/jiju6D3YVw==
+X-Google-Smtp-Source: AKy350bxdVgo3uacEszB4mUWydB3zlwuBKaof0asY6EntyEMNGr8s1gxCIhCzq9xEWTc75SvmZNj8g==
+X-Received: by 2002:a17:906:cc99:b0:94a:511b:a21d with SMTP id oq25-20020a170906cc9900b0094a511ba21dmr9547736ejb.28.1682325930798;
+        Mon, 24 Apr 2023 01:45:30 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:fcdb:bf53:d053:3a52? ([2a02:810d:15c0:828:fcdb:bf53:d053:3a52])
+        by smtp.gmail.com with ESMTPSA id jt20-20020a170906ca1400b008e54ac90de1sm5250255ejb.74.2023.04.24.01.45.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Apr 2023 01:45:30 -0700 (PDT)
+Message-ID: <169d832c-72c0-6c67-37c3-dbea9e1bc639@linaro.org>
+Date:   Mon, 24 Apr 2023 10:45:28 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH V3 1/2] dt-bindings: interrupt-controller: Add Loongson
+ EIOINTC
+Content-Language: en-US
+To:     Binbin Zhou <zhoubb.aaron@gmail.com>
+Cc:     Binbin Zhou <zhoubinbin@loongson.cn>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        WANG Xuerui <kernel@xen0n.name>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jianmin Lv <lvjianmin@loongson.cn>,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
+        loongarch@lists.linux.dev, devicetree@vger.kernel.org,
+        loongson-kernel@lists.loongnix.cn
+References: <cover.1681887790.git.zhoubinbin@loongson.cn>
+ <3b9c4f05eaf14bc3b16aebec3ff84c8a2d52c4a5.1681887790.git.zhoubinbin@loongson.cn>
+ <f9b62f48-5c8b-2674-313d-4552c61c4302@linaro.org>
+ <CAMpQs4JjHvVOzQz-1Y-q9ut6tWUpakrHeozuwPg0dzoDcUFEGA@mail.gmail.com>
+ <75231886-cdf6-cfde-d6b9-183b1fbf98da@linaro.org>
+ <CAMpQs4Jp8WPKJEuJD-_83oRPBbPELxS5ufqp-nHow0D9D+R+ig@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAMpQs4Jp8WPKJEuJD-_83oRPBbPELxS5ufqp-nHow0D9D+R+ig@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add PWM device and the corresponding clock gating device in adma subsystem.
+On 23/04/2023 10:30, Binbin Zhou wrote:
+> On Thu, Apr 20, 2023 at 11:52 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 20/04/2023 15:00, Binbin Zhou wrote:
+>>>>> +examples:
+>>>>> +  - |
+>>>>> +    eiointc: interrupt-controller@1fe11600 {
+>>>>> +      compatible = "loongson,ls2k0500-eiointc";
+>>>>> +      reg = <0x1fe11600 0x10>,
+>>>>> +            <0x1fe11700 0x10>,
+>>>>> +            <0x1fe11800 0x10>,
+>>>>> +            <0x1fe114c0 0x4>;
+>>>>
+>>>> Binding is OK, but are you sure you want to split the address space like
+>>>> this? It looks like two address spaces (enable+clear+status should be
+>>>> one). Are you sure this is correct?
+>>>>
+>>> Hi Krzysztof:
+>>>
+>>> These registers are all in the range of chip configuration registers,
+>>> in the case of LS2K0500, which has a base address of 0x1fe10000.
+>>> However, the individual register addresses are not contiguous with
+>>> each other, and most are distributed across modules, so I feel that
+>>> they should be listed in detail as they are used.
+>>
+>> Do you want to say that:
+>> Between 0x1fe11600 and 0x1fe11700 there are EIOINTC registers and other
+>> (independent) module registers?
+> 
+> No, this section is all EIO-related configuration, but there will be
+> undefined space here.
+> 
+> Throughout the chip configuration space, there are some relatively
+> common areas, such as the definition of 0x1fe1_14c0.
+> Because our chip supports two interrupt modes, node legacy I/O
+> interrupt and extended I/O interrupt, both modes require interrupt
+> routing registers.
+> Their registers are then defined together: the legacy interrupt I/O
+> start address is 0x1fe1_1400, while the extended I/O interrupt start
+> address is 0x1fe1_14c0.
+> 
+> Then I have carefully compared the chip configuration space in
+> LS2K0500 and LS2K2000 and can see that:
+> 
+> 1. The chip configuration space base addresses are different, but they
+> both have a size of 64KB;
+> 2. The offset addresses of the EIO related registers are the same, for
+> example the offset of the enable register is 0x1600.
+> 
+> Wouldn't it be better to declare the entire configuration space (64KB)
+> directly in the dts and use the offsets to access the corresponding
+> registers?
+> 
+> Example:
+> reg = <0x1fe10000 0x10000>.
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
-* New in v2
+Yes, that's what usually we do.
 
- .../arm64/boot/dts/freescale/imx8-ss-dma.dtsi | 25 +++++++++++++++++++
- 1 file changed, 25 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi b/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi
-index 2dce8f2ee3ea..7d5f96c99020 100644
---- a/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi
-@@ -124,6 +124,19 @@ lpuart3: serial@5a090000 {
- 		status = "disabled";
- 	};
- 
-+	adma_pwm: pwm@5a190000 {
-+		compatible = "fsl,imx8qxp-pwm", "fsl,imx27-pwm";
-+		reg = <0x5a190000 0x1000>;
-+		interrupts = <GIC_SPI 127 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&adma_pwm_lpcg 1>,
-+			 <&adma_pwm_lpcg 0>;
-+		clock-names = "ipg", "per";
-+		assigned-clocks = <&clk IMX_SC_R_LCD_0_PWM_0 IMX_SC_PM_CLK_PER>;
-+		assigned-clock-rates = <24000000>;
-+		#pwm-cells = <2>;
-+		power-domains = <&pd IMX_SC_R_LCD_0_PWM_0>;
-+	};
-+
- 	spi0_lpcg: clock-controller@5a400000 {
- 		compatible = "fsl,imx8qxp-lpcg";
- 		reg = <0x5a400000 0x10000>;
-@@ -220,6 +233,18 @@ uart3_lpcg: clock-controller@5a490000 {
- 		power-domains = <&pd IMX_SC_R_UART_3>;
- 	};
- 
-+	adma_pwm_lpcg: clock-controller@5a590000 {
-+		compatible = "fsl,imx8qxp-lpcg";
-+		reg = <0x5a590000 0x10000>;
-+		#clock-cells = <1>;
-+		clocks = <&clk IMX_SC_R_LCD_0_PWM_0 IMX_SC_PM_CLK_PER>,
-+			 <&dma_ipg_clk>;
-+		clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
-+		clock-output-names = "adma_pwm_lpcg_clk",
-+				     "adma_pwm_lpcg_ipg_clk";
-+		power-domains = <&pd IMX_SC_R_LCD_0_PWM_0>;
-+	};
-+
- 	i2c0: i2c@5a800000 {
- 		reg = <0x5a800000 0x4000>;
- 		interrupts = <GIC_SPI 220 IRQ_TYPE_LEVEL_HIGH>;
--- 
-2.34.1
+Best regards,
+Krzysztof
 
