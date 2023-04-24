@@ -2,78 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C7CF6EC92E
-	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 11:43:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDBC66EC952
+	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 11:46:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230152AbjDXJnC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Apr 2023 05:43:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39354 "EHLO
+        id S231332AbjDXJqc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Apr 2023 05:46:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229547AbjDXJnB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 05:43:01 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72BE21FE0
-        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 02:43:00 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-504efe702d5so6045550a12.3
-        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 02:43:00 -0700 (PDT)
+        with ESMTP id S231314AbjDXJqa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 05:46:30 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2254640D0
+        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 02:45:53 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-94f0dd117dcso584107766b.3
+        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 02:45:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682329379; x=1684921379;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1682329549; x=1684921549;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=sTC30/cz84+6KAee/oGkWJA1JugNorQ2NhQ6WARnGE0=;
-        b=rtXWuf3JNfkAHAfAmA2cEYMt2sdc9jR4Np+5Kb6vSaHsvgYP0eCOgfvbZ7EpzUe5qh
-         0aAifedgOIbLeCg/woGiS4eDLparxUgHXtonnp2Pc0LvYnp/hSZb01nG/Lvngez8L6BH
-         3U3RhEV315jDBzxVmjH7taP6NMQlWO4nCqKgxgJSxGrYNJMMdE3exov5zgFOv9yO41LC
-         9Uq1pT96vyqPopct5Y7iY558ZhrF6vjqh90YMSHNELRgMAyZKpJolY0pRu3/RvtEHzrF
-         gQDrXhyFLSaxni8K7W4aS+VpmSUS42MENZbyOtjGOIw0hJG4qKzfdv8JaOdu2NXKJp3u
-         eLgw==
+        bh=6MFXkgVpCP/1bbpvk371W/p2qFNZ62l76LxqdbpjYPw=;
+        b=pexz5snrTLVLUJy9+1Rkx5LnVnA8IFqCUFnbiAaGiUem0VZX6DCBXEKWlPuZgbn2Jh
+         AgeZpyprm5FqCGnZmORSIyuzmjohn50cupUPdxbAp5RqpcjFm4a5Pl8SYa6zaG1Ehp5x
+         G0ynkphF5Hi1KrltzR+1/uQOEO+AqlKWuvnBvNaFhKX76GdVMyRtJxVnNXETemUOU6rY
+         XBvT5qgmEMrr2QMT0JWpHQznbtvrF87rkakUNOfv624N9Wc7r6ss+hGNkV+qAd2Vgtyx
+         58xJaXQJTtdWTlbx88QdRpew+LISMVQqhZiKjYGJOZDtFrRqTfuTEPc+a+PS61K7Vs38
+         4cog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682329379; x=1684921379;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1682329549; x=1684921549;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sTC30/cz84+6KAee/oGkWJA1JugNorQ2NhQ6WARnGE0=;
-        b=Hl/WVn4ZpKMH28VuriBw+QgDCnSTV9ZyxfQ+SE8J5xo5LBYQaIyaeTIFd9BWWGpeob
-         OoIkuZgAAKSmkGfXSrdigK2CJjsEiFi8QFf3qDytaoZ7RkUM9dQF25duDH6IxZx5/k2O
-         oeUC2REmoUW9FlkStYe6WfKzU1ogppQmESjBcKZZ7cCUeL+SV9vyYUwFDYCyRYphw8xF
-         Mtoz4IJH0lk1Hm/amd64+mSNsFNtrH9z33oGKXrW4dl/hkWxEpUZnJprdU5Ht3QVJFLk
-         FU/m52USRuhv2hI1wZbD7pimvd7dSk4zKGUVuybm3CUaHs8E5Jr89faHEIkIjx/ohrdk
-         E5rQ==
-X-Gm-Message-State: AAQBX9fm0t4Np7YWOlUXyyBUhBrkqdhATnZNZ0xLi3Y5EqWpgj1MnQ38
-        q+UBqWxgrJq2a/9FoiJvu4bf3A==
-X-Google-Smtp-Source: AKy350YAXqslb6hk6tvtZLyLLmjKobEKe0JFksRkukozW2c/onCbo7bLelBLsbcyrHZmm2SkaAaDXQ==
-X-Received: by 2002:aa7:cd7c:0:b0:4fc:3777:f630 with SMTP id ca28-20020aa7cd7c000000b004fc3777f630mr10401509edb.0.1682329378898;
-        Mon, 24 Apr 2023 02:42:58 -0700 (PDT)
+        bh=6MFXkgVpCP/1bbpvk371W/p2qFNZ62l76LxqdbpjYPw=;
+        b=ShbCbL4+OmxmbGf0MQcWN4EyVsTMH9uk8zgisHV87ncHujn8GBdj1xY1PxG75UgOM3
+         7YLhWXUPAY3mqVhG+zuFqrXlnPnWizNQODlECINa3hmITIylT1K/UvAUskAzn4oy3r9z
+         dOphvy3JFf1q6g/miaGQRC8Vf4YYFFlL3bxawY7fD9+oSW3a5XVbQmZbq3fOmTuLJEOE
+         698J6NEkmllwwAWx0t501AuGgZ6tiDuZlvBH23P6grLjWMV7QTg3d9QdMAwuzQVnTGQ2
+         F7o6CvuSgP9Lquw2Bo/8ATFSAsIVKcIKAPGuw0kaZxargyBqm/KODyowKcq2wuvSDaZQ
+         wC4A==
+X-Gm-Message-State: AAQBX9fLOP4QY45yLpF1e+9pJFJcOPZdtkdwoUg39BNCJ/L0weEhZElX
+        POiaut6atNw6vbYWNH5G1IBk1A==
+X-Google-Smtp-Source: AKy350b7bES42d04i6D4v9CMoAzS13SI/cWDLB3UEV3BDuDus8hRcUfX0GD2TekhgGNZhKhzpwNQGw==
+X-Received: by 2002:a17:906:a103:b0:8aa:a9fe:a3fc with SMTP id t3-20020a170906a10300b008aaa9fea3fcmr10033847ejy.8.1682329549394;
+        Mon, 24 Apr 2023 02:45:49 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:fcdb:bf53:d053:3a52? ([2a02:810d:15c0:828:fcdb:bf53:d053:3a52])
-        by smtp.gmail.com with ESMTPSA id e17-20020aa7d7d1000000b00508480633bdsm4561189eds.74.2023.04.24.02.42.57
+        by smtp.gmail.com with ESMTPSA id w17-20020a17090649d100b009537ef8eb17sm5289845ejv.217.2023.04.24.02.45.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Apr 2023 02:42:58 -0700 (PDT)
-Message-ID: <be129c4f-3ad7-c54b-936e-08b142608ebc@linaro.org>
-Date:   Mon, 24 Apr 2023 11:42:57 +0200
+        Mon, 24 Apr 2023 02:45:48 -0700 (PDT)
+Message-ID: <f863aca5-0acd-2eae-7127-819136cd78dc@linaro.org>
+Date:   Mon, 24 Apr 2023 11:45:47 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: Add max6639
-To:     Naresh Solanki <naresh.solanki@9elements.com>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Marcello Sylvester Bauer <sylv@sylv.io>,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230420111759.2687001-1-Naresh.Solanki@9elements.com>
- <76e57634-75dd-01e8-9c56-36ed7de17812@linaro.org>
- <c8d1b5db-318e-3401-0834-b89769831eca@9elements.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: pinctrl: qcom: Add SDX75 pinctrl
+ devicetree compatible
 Content-Language: en-US
+To:     Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org,
+        linus.walleij@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, richardcochran@gmail.com,
+        manivannan.sadhasivam@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org
+References: <1682327030-25535-1-git-send-email-quic_rohiagar@quicinc.com>
+ <1682327030-25535-2-git-send-email-quic_rohiagar@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <c8d1b5db-318e-3401-0834-b89769831eca@9elements.com>
+In-Reply-To: <1682327030-25535-2-git-send-email-quic_rohiagar@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,79 +81,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/04/2023 11:18, Naresh Solanki wrote:
-
->>> Changes in V2:
->>> - Update subject
->>> - Drop blank lines
->>> ---
->>>   .../bindings/hwmon/maxim,max6639.yaml         | 52 +++++++++++++++++++
->>>   1 file changed, 52 insertions(+)
->>>   create mode 100644 Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
->>> new file mode 100644
->>> index 000000000000..1aaedfd7cee0
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
->>> @@ -0,0 +1,52 @@
->>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/hwmon/maxim,max6639.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Maxim max6639
->>
->> What is this device? fan controller?
-> Yes Fan controller.
-> Do you want me to update the title here as:
-> "Maxim MAC6639 2 channel fan controller & temperature monitor" ?
-
-Enough would be:
-Maxim MAX6639 Fan Controller
-
-
+On 24/04/2023 11:03, Rohit Agarwal wrote:
+> Add device tree binding Documentation details for Qualcomm SDX75
+> pinctrl driver.
 > 
->>
->>> +
->>> +maintainers:
->>> +  - Naresh Solanki <Naresh.Solanki@9elements.com>
->>> +
->>> +description: |
->>> +  The MAX6639 is a 2-channel temperature monitor with dual, automatic, PWM
->>> +  fan-speed controller.  It monitors its own temperature and one external
->>> +  diode-connected transistor or the temperatures of two external diode-connected
->>> +  transistors, typically available in CPUs, FPGAs, or GPUs.
->>> +
->>> +  Datasheets:
->>> +    https://datasheets.maximintegrated.com/en/ds/MAX6639-MAX6639F.pdf
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - maxim,max6639
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  '#address-cells':
->>> +    const: 1
->>> +
->>> +  '#size-cells':
->>> +    const: 0
->>
->> Why do you need these two properties?
-> Ack. Will remove them.
->>
->> Anyway, the binding looks incomplete. Where are the supplies? Interrupts?
-> This patch just adds basic support to the existing platform driver.
-> Intention is to be able to call the driver from DT with basic 
-> initialization from driver the existing driver.
+> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
+> ---
 
-Bindings should be rather complete. Here the datasheet is accessible and
-few properties quite obvious, so I don't see a reason to skip them.
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
