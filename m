@@ -2,274 +2,383 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDC396ECB0D
-	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 13:10:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E3436ECB16
+	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 13:14:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231611AbjDXLKZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Apr 2023 07:10:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50426 "EHLO
+        id S230299AbjDXLOz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Apr 2023 07:14:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231609AbjDXLKY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 07:10:24 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82CB53A93;
-        Mon, 24 Apr 2023 04:10:11 -0700 (PDT)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33OAHWEa025533;
-        Mon, 24 Apr 2023 11:10:04 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=PVanemxTGHNwW7sECOC/oZd3nV8/hXz7nJyVF8PWJVk=;
- b=aKSt9Rvj6uoLUiE29kzQQlQk53m2FrWQzePmU/CoELmm8JBDheHSvFK2YMzk0Anien3T
- y3g90SHRLFJqjfmZyavPRwMnNPCNR82+Mswr8MkAmzvkP0zT5ER/ND0b4neYYuNEO4QP
- oK4KYjKE3wcRKd/kLxu/u5/LaAGxIl++FkNRXiNVzMENT+/U/6iiQXG3tTyAV1b6cWVg
- 1LzFftt2DiaHi1HOVK11UFIjWIY0i9lGGgWdDMoOTnazURHiXvyz5cJ3cFQLnTErjKTB
- urGD+nH9EciXR6Q98W0sOPw4v4ikF+1vbz1nkXZMO29eUkdX+8C1Np5CXOeelTl0QJzc jg== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q5qv1r3w1-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 24 Apr 2023 11:10:04 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33OBA3Ih011595
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 24 Apr 2023 11:10:03 GMT
-Received: from hu-mkshah-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Mon, 24 Apr 2023 04:09:58 -0700
-From:   Maulik Shah <quic_mkshah@quicinc.com>
-To:     <andersson@kernel.org>, <ulf.hansson@linaro.org>,
-        <dianders@chromium.org>, <swboyd@chromium.org>,
-        <wingers@google.com>
-CC:     <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <sudeep.holla@arm.com>,
-        <jwerner@chromium.org>, <quic_lsrao@quicinc.com>,
-        <quic_rjendra@quicinc.com>, Maulik Shah <quic_mkshah@quicinc.com>,
-        <devicetree@vger.kernel.org>
-Subject: [PATCH v4 3/3] arm64: dts: qcom: sc7280: Add power-domains for cpuidle states
-Date:   Mon, 24 Apr 2023 16:39:33 +0530
-Message-ID: <20230424110933.3908-4-quic_mkshah@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230424110933.3908-1-quic_mkshah@quicinc.com>
-References: <20230424110933.3908-1-quic_mkshah@quicinc.com>
+        with ESMTP id S229659AbjDXLOy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 07:14:54 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8B9530DA;
+        Mon, 24 Apr 2023 04:14:51 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id B97F424DC7D;
+        Mon, 24 Apr 2023 19:14:50 +0800 (CST)
+Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 24 Apr
+ 2023 19:14:50 +0800
+Received: from [192.168.125.108] (113.72.145.137) by EXMBX171.cuchost.com
+ (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 24 Apr
+ 2023 19:14:49 +0800
+Message-ID: <c014f16d-8383-af3e-49a3-4e16e6008959@starfivetech.com>
+Date:   Mon, 24 Apr 2023 19:14:48 +0800
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: RybY1rszcCwfGnq6Pw9kD0_dXzfMR8TK
-X-Proofpoint-ORIG-GUID: RybY1rszcCwfGnq6Pw9kD0_dXzfMR8TK
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-24_07,2023-04-21_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 impostorscore=0
- phishscore=0 bulkscore=0 priorityscore=1501 malwarescore=0
- lowpriorityscore=0 spamscore=0 mlxlogscore=959 suspectscore=0
- clxscore=1015 adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2304240101
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v5 4/7] phy: starfive: Add JH7110 PCIE 2.0 PHY driver
+Content-Language: en-US
+To:     Roger Quadros <rogerq@kernel.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Conor Dooley <conor@kernel.org>,
+        "Vinod Koul" <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Pawel Laszczak <pawell@cadence.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Peter Chen <peter.chen@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <linux-usb@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        "Mason Huo" <mason.huo@starfivetech.com>
+References: <20230420110052.3182-1-minda.chen@starfivetech.com>
+ <20230420110052.3182-5-minda.chen@starfivetech.com>
+ <44e5ba0a-7a76-caa8-349d-ced41aaa8836@kernel.org>
+From:   Minda Chen <minda.chen@starfivetech.com>
+In-Reply-To: <44e5ba0a-7a76-caa8-349d-ced41aaa8836@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [113.72.145.137]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX171.cuchost.com
+ (172.16.6.91)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add power-domains for cpuidle states to use psci os-initiated idle states.
 
-Cc: devicetree@vger.kernel.org
-Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
-Signed-off-by: Maulik Shah <quic_mkshah@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 98 +++++++++++++++++++++-------
- 1 file changed, 73 insertions(+), 25 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 31728f461422..88e234b4dee3 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -170,9 +170,8 @@
- 			reg = <0x0 0x0>;
- 			clocks = <&cpufreq_hw 0>;
- 			enable-method = "psci";
--			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
--					   &LITTLE_CPU_SLEEP_1
--					   &CLUSTER_SLEEP_0>;
-+			power-domains = <&CPU_PD0>;
-+			power-domain-names = "psci";
- 			next-level-cache = <&L2_0>;
- 			operating-points-v2 = <&cpu0_opp_table>;
- 			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-@@ -196,9 +195,8 @@
- 			reg = <0x0 0x100>;
- 			clocks = <&cpufreq_hw 0>;
- 			enable-method = "psci";
--			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
--					   &LITTLE_CPU_SLEEP_1
--					   &CLUSTER_SLEEP_0>;
-+			power-domains = <&CPU_PD1>;
-+			power-domain-names = "psci";
- 			next-level-cache = <&L2_100>;
- 			operating-points-v2 = <&cpu0_opp_table>;
- 			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-@@ -218,9 +216,8 @@
- 			reg = <0x0 0x200>;
- 			clocks = <&cpufreq_hw 0>;
- 			enable-method = "psci";
--			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
--					   &LITTLE_CPU_SLEEP_1
--					   &CLUSTER_SLEEP_0>;
-+			power-domains = <&CPU_PD2>;
-+			power-domain-names = "psci";
- 			next-level-cache = <&L2_200>;
- 			operating-points-v2 = <&cpu0_opp_table>;
- 			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-@@ -240,9 +237,8 @@
- 			reg = <0x0 0x300>;
- 			clocks = <&cpufreq_hw 0>;
- 			enable-method = "psci";
--			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
--					   &LITTLE_CPU_SLEEP_1
--					   &CLUSTER_SLEEP_0>;
-+			power-domains = <&CPU_PD3>;
-+			power-domain-names = "psci";
- 			next-level-cache = <&L2_300>;
- 			operating-points-v2 = <&cpu0_opp_table>;
- 			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-@@ -262,9 +258,8 @@
- 			reg = <0x0 0x400>;
- 			clocks = <&cpufreq_hw 1>;
- 			enable-method = "psci";
--			cpu-idle-states = <&BIG_CPU_SLEEP_0
--					   &BIG_CPU_SLEEP_1
--					   &CLUSTER_SLEEP_0>;
-+			power-domains = <&CPU_PD4>;
-+			power-domain-names = "psci";
- 			next-level-cache = <&L2_400>;
- 			operating-points-v2 = <&cpu4_opp_table>;
- 			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-@@ -284,9 +279,8 @@
- 			reg = <0x0 0x500>;
- 			clocks = <&cpufreq_hw 1>;
- 			enable-method = "psci";
--			cpu-idle-states = <&BIG_CPU_SLEEP_0
--					   &BIG_CPU_SLEEP_1
--					   &CLUSTER_SLEEP_0>;
-+			power-domains = <&CPU_PD5>;
-+			power-domain-names = "psci";
- 			next-level-cache = <&L2_500>;
- 			operating-points-v2 = <&cpu4_opp_table>;
- 			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-@@ -306,9 +300,8 @@
- 			reg = <0x0 0x600>;
- 			clocks = <&cpufreq_hw 1>;
- 			enable-method = "psci";
--			cpu-idle-states = <&BIG_CPU_SLEEP_0
--					   &BIG_CPU_SLEEP_1
--					   &CLUSTER_SLEEP_0>;
-+			power-domains = <&CPU_PD6>;
-+			power-domain-names = "psci";
- 			next-level-cache = <&L2_600>;
- 			operating-points-v2 = <&cpu4_opp_table>;
- 			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-@@ -328,9 +321,8 @@
- 			reg = <0x0 0x700>;
- 			clocks = <&cpufreq_hw 2>;
- 			enable-method = "psci";
--			cpu-idle-states = <&BIG_CPU_SLEEP_0
--					   &BIG_CPU_SLEEP_1
--					   &CLUSTER_SLEEP_0>;
-+			power-domains = <&CPU_PD7>;
-+			power-domain-names = "psci";
- 			next-level-cache = <&L2_700>;
- 			operating-points-v2 = <&cpu7_opp_table>;
- 			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-@@ -422,9 +414,11 @@
- 				min-residency-us = <5555>;
- 				local-timer-stop;
- 			};
-+		};
- 
-+		domain-idle-states {
- 			CLUSTER_SLEEP_0: cluster-sleep-0 {
--				compatible = "arm,idle-state";
-+				compatible = "domain-idle-state";
- 				idle-state-name = "cluster-power-down";
- 				arm,psci-suspend-param = <0x40003444>;
- 				entry-latency-us = <3263>;
-@@ -790,6 +784,59 @@
- 	psci {
- 		compatible = "arm,psci-1.0";
- 		method = "smc";
-+
-+		CPU_PD0: cpu0 {
-+			#power-domain-cells = <0>;
-+			power-domains = <&CLUSTER_PD>;
-+			domain-idle-states = <&LITTLE_CPU_SLEEP_0 &LITTLE_CPU_SLEEP_1>;
-+		};
-+
-+		CPU_PD1: cpu1 {
-+			#power-domain-cells = <0>;
-+			power-domains = <&CLUSTER_PD>;
-+			domain-idle-states = <&LITTLE_CPU_SLEEP_0 &LITTLE_CPU_SLEEP_1>;
-+		};
-+
-+		CPU_PD2: cpu2 {
-+			#power-domain-cells = <0>;
-+			power-domains = <&CLUSTER_PD>;
-+			domain-idle-states = <&LITTLE_CPU_SLEEP_0 &LITTLE_CPU_SLEEP_1>;
-+		};
-+
-+		CPU_PD3: cpu3 {
-+			#power-domain-cells = <0>;
-+			power-domains = <&CLUSTER_PD>;
-+			domain-idle-states = <&LITTLE_CPU_SLEEP_0 &LITTLE_CPU_SLEEP_1>;
-+		};
-+
-+		CPU_PD4: cpu4 {
-+			#power-domain-cells = <0>;
-+			power-domains = <&CLUSTER_PD>;
-+			domain-idle-states = <&BIG_CPU_SLEEP_0 &BIG_CPU_SLEEP_1>;
-+		};
-+
-+		CPU_PD5: cpu5 {
-+			#power-domain-cells = <0>;
-+			power-domains = <&CLUSTER_PD>;
-+			domain-idle-states = <&BIG_CPU_SLEEP_0 &BIG_CPU_SLEEP_1>;
-+		};
-+
-+		CPU_PD6: cpu6 {
-+			#power-domain-cells = <0>;
-+			power-domains = <&CLUSTER_PD>;
-+			domain-idle-states = <&BIG_CPU_SLEEP_0 &BIG_CPU_SLEEP_1>;
-+		};
-+
-+		CPU_PD7: cpu7 {
-+			#power-domain-cells = <0>;
-+			power-domains = <&CLUSTER_PD>;
-+			domain-idle-states = <&BIG_CPU_SLEEP_0 &BIG_CPU_SLEEP_1>;
-+		};
-+
-+		CLUSTER_PD: cpu-cluster0 {
-+			#power-domain-cells = <0>;
-+			domain-idle-states = <&CLUSTER_SLEEP_0>;
-+		};
- 	};
- 
- 	qspi_opp_table: opp-table-qspi {
-@@ -5283,6 +5330,7 @@
- 					  <SLEEP_TCS   3>,
- 					  <WAKE_TCS    3>,
- 					  <CONTROL_TCS 1>;
-+			power-domains = <&CLUSTER_PD>;
- 
- 			apps_bcm_voter: bcm-voter {
- 				compatible = "qcom,bcm-voter";
--- 
-2.17.1
-
+On 2023/4/24 17:23, Roger Quadros wrote:
+> 
+> 
+> On 20/04/2023 14:00, Minda Chen wrote:
+>> Add Starfive JH7110 SoC PCIe 2.0 PHY driver support.
+>> PCIe 2.0 PHY default connect to PCIe controller.
+>> But pcie0 PHY can connect to USB 3.0 controlller.
+> 
+> s/controlller/controller
+> 
+ok
+>> 
+>> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+>> ---
+>>  MAINTAINERS                            |   4 +-
+>>  drivers/phy/starfive/Kconfig           |  11 ++
+>>  drivers/phy/starfive/Makefile          |   1 +
+>>  drivers/phy/starfive/phy-jh7110-pcie.c | 202 +++++++++++++++++++++++++
+>>  4 files changed, 217 insertions(+), 1 deletion(-)
+>>  create mode 100644 drivers/phy/starfive/phy-jh7110-pcie.c
+>> 
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index c09ea66dcd5a..8e0f755ba91b 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -19968,10 +19968,12 @@ M:	William Qiu <william.qiu@starfivetech.com>
+>>  S:	Supported
+>>  F:	Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
+>>  
+>> -STARFIVE JH71X0 USB PHY DRIVER
+>> +STARFIVE JH71X0 PCIE AND USB PHY DRIVER
+>>  M:	Minda Chen <minda.chen@starfivetech.com>
+>>  S:	Supported
+>> +F:	Documentation/devicetree/bindings/phy/starfive,jh7110-pcie-phy.yaml
+>>  F:	Documentation/devicetree/bindings/phy/starfive,jh7110-usb-phy.yaml
+>> +F:	drivers/phy/starfive/phy-jh7110-pcie.c
+>>  F:	drivers/phy/starfive/phy-jh7110-usb.c
+>>  
+>>  STATIC BRANCH/CALL
+>> diff --git a/drivers/phy/starfive/Kconfig b/drivers/phy/starfive/Kconfig
+>> index 2c013c390dee..c21c21d284a6 100644
+>> --- a/drivers/phy/starfive/Kconfig
+>> +++ b/drivers/phy/starfive/Kconfig
+>> @@ -12,6 +12,17 @@ config PHY_STARFIVE_DPHY_RX
+>>  	  system. If M is selected, the module will be called
+>>  	  phy-starfive-dphy-rx.
+>>  
+>> +config PHY_STARFIVE_JH7110_PCIE
+>> +	tristate "Starfive JH7110 PCIE 2.0/USB 3.0 PHY support"
+>> +	depends on USB_SUPPORT
+> 
+> What if system has PCIE and no USB. Then they can't use this PHY
+> as it cannot be built?
+> 
+ok, I will delete it
+>> +	select GENERIC_PHY
+>> +	select USB_PHY
+>> +	help
+>> +	  Enable this to support the StarFive PCIe 2.0 PHY,
+>> +	  or used as USB 3.0 PHY.
+>> +	  If M is selected, the module will be called
+>> +	  phy-jh7110-pcie.ko.
+>> +
+>>  config PHY_STARFIVE_JH7110_USB
+>>  	tristate "Starfive JH7110 USB 2.0 PHY support"
+>>  	depends on USB_SUPPORT
+>> diff --git a/drivers/phy/starfive/Makefile b/drivers/phy/starfive/Makefile
+>> index 176443852f4d..03a55aad53a2 100644
+>> --- a/drivers/phy/starfive/Makefile
+>> +++ b/drivers/phy/starfive/Makefile
+>> @@ -1,3 +1,4 @@
+>>  # SPDX-License-Identifier: GPL-2.0
+>>  obj-$(CONFIG_PHY_STARFIVE_DPHY_RX)      += phy-starfive-dphy-rx.o
+>> +obj-$(CONFIG_PHY_STARFIVE_JH7110_PCIE)	+= phy-jh7110-pcie.o
+>>  obj-$(CONFIG_PHY_STARFIVE_JH7110_USB)	+= phy-jh7110-usb.o
+>> diff --git a/drivers/phy/starfive/phy-jh7110-pcie.c b/drivers/phy/starfive/phy-jh7110-pcie.c
+>> new file mode 100644
+>> index 000000000000..fe029daef62e
+>> --- /dev/null
+>> +++ b/drivers/phy/starfive/phy-jh7110-pcie.c
+>> @@ -0,0 +1,202 @@
+>> +// SPDX-License-Identifier: GPL-2.0+
+>> +/*
+>> + * StarFive JH7110 PCIe 2.0 PHY driver
+>> + *
+>> + * Copyright (C) 2023 StarFive Technology Co., Ltd.
+>> + * Author: Minda Chen <minda.chen@starfivetech.com>
+>> + */
+>> +
+>> +#include <linux/bits.h>
+>> +#include <linux/clk.h>
+>> +#include <linux/err.h>
+>> +#include <linux/io.h>
+>> +#include <linux/module.h>
+>> +#include <linux/mfd/syscon.h>
+>> +#include <linux/phy/phy.h>
+>> +#include <linux/platform_device.h>
+>> +#include <linux/regmap.h>
+>> +
+>> +#define PCIE_KVCO_LEVEL_OFF		(0x28)
+>> +#define PCIE_USB3_PHY_PLL_CTL_OFF	(0x7c)
+>> +#define PCIE_KVCO_TUNE_SIGNAL_OFF	(0x80)
+> 
+> Brackets not required.
+> 
+ok
+>> +#define PCIE_USB3_PHY_ENABLE		BIT(4)
+>> +#define PHY_KVCO_FINE_TUNE_LEVEL	0x91
+>> +#define PHY_KVCO_FINE_TUNE_SIGNALS	0xc
+>> +
+>> +#define USB_PDRSTN_SPLIT		BIT(17)
+>> +
+>> +#define PCIE_PHY_MODE			BIT(20)
+>> +#define PCIE_PHY_MODE_MASK		GENMASK(21, 20)
+>> +#define PCIE_USB3_BUS_WIDTH_MASK	GENMASK(3, 2)
+>> +#define PCIE_USB3_RATE_MASK		GENMASK(6, 5)
+>> +#define PCIE_USB3_RX_STANDBY_MASK	BIT(7)
+>> +#define PCIE_USB3_PHY_ENABLE		BIT(4)
+>> +
+>> +struct jh7110_pcie_phy {
+>> +	struct phy *phy;
+>> +	struct regmap *stg_syscon;
+>> +	struct regmap *sys_syscon;
+>> +	void __iomem *regs;
+>> +	u32 sys_phy_connect;
+>> +	u32 stg_pcie_mode;
+>> +	u32 stg_pcie_usb;
+>> +	enum phy_mode mode;
+>> +};
+>> +
+>> +static int jh7110_usb3_mode_set(struct jh7110_pcie_phy *data)
+>> +{
+>> +	if (!data->stg_syscon || !data->sys_syscon) {
+>> +		dev_info(&data->phy->dev, "don't support usb3 mode\n");
+> 
+> s/don't/doesn't
+> 
+> dev_err()
+> 
+>> +		return -EINVAL;
+>> +	}
+>> +
+>> +	regmap_update_bits(data->stg_syscon, data->stg_pcie_mode,
+>> +			   PCIE_PHY_MODE_MASK, PCIE_PHY_MODE);
+>> +	regmap_update_bits(data->stg_syscon, data->stg_pcie_usb,
+>> +			   PCIE_USB3_BUS_WIDTH_MASK, 0);
+>> +	regmap_update_bits(data->stg_syscon, data->stg_pcie_usb,
+>> +			   PCIE_USB3_RATE_MASK, 0);
+>> +	regmap_update_bits(data->stg_syscon, data->stg_pcie_usb,
+>> +			   PCIE_USB3_RX_STANDBY_MASK, 0);
+>> +	regmap_update_bits(data->stg_syscon, data->stg_pcie_usb,
+>> +			   PCIE_USB3_PHY_ENABLE, PCIE_USB3_PHY_ENABLE);
+>> +
+>> +	/* Connect usb 3.0 phy mode */
+>> +	regmap_update_bits(data->sys_syscon, data->sys_phy_connect,
+>> +			   USB_PDRSTN_SPLIT, 0);
+>> +
+>> +	/* Configuare spread-spectrum mode: down-spread-spectrum */
+>> +	writel(PCIE_USB3_PHY_ENABLE, data->regs + PCIE_USB3_PHY_PLL_CTL_OFF);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static void jh7110_pcie_mode_set(struct jh7110_pcie_phy *phy)
+>> +{
+>> +	/* PCIe Multi-PHY PLL KVCO Gain fine tune settings: */
+>> +	writel(PHY_KVCO_FINE_TUNE_LEVEL, phy->regs + PCIE_KVCO_LEVEL_OFF);
+>> +	writel(PHY_KVCO_FINE_TUNE_SIGNALS, phy->regs + PCIE_KVCO_TUNE_SIGNAL_OFF);
+> 
+> In cases where PHY can be connected to both USB and PCIe don't you have to
+> make sure PHY is connected to PCIe controller by setting data->sys_syscon
+> and data->stg_syscon appropriately?
+> 
+PHY default connect to pcie. In our products so far, The PHY connected to either USB or PCIe. So I don't set the syscon register.
+But the case of PHY can be connected to both USB and PCIe maybe existed. I will add this case.
+>> +}
+>> +
+>> +static int jh7110_pcie_phy_set_mode(struct phy *_phy,
+>> +				    enum phy_mode mode, int submode)
+>> +{
+>> +	struct jh7110_pcie_phy *phy = phy_get_drvdata(_phy);
+>> +	int ret;
+>> +
+>> +	if (mode == phy->mode)
+>> +		return 0;
+>> +
+>> +	switch (mode) {
+>> +	case PHY_MODE_USB_HOST:
+>> +	case PHY_MODE_USB_DEVICE:
+>> +	case PHY_MODE_USB_OTG:
+>> +		ret = jh7110_usb3_mode_set(phy);
+>> +		if (ret)
+>> +			return ret;
+>> +		break;
+>> +	case PHY_MODE_PCIE:
+>> +		jh7110_pcie_mode_set(phy);
+>> +		break;
+>> +	default:
+>> +		return -EINVAL;
+>> +	}
+>> +
+>> +	dev_info(&_phy->dev, "Changing phy mode to %d\n", mode);
+> 
+> dev_dbg()?
+> 
+ok
+>> +	phy->mode = mode;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int jh7110_pcie_phy_init(struct phy *_phy)
+>> +{
+>> +	return 0;
+>> +}
+>> +
+>> +static int jh7110_pcie_phy_exit(struct phy *_phy)
+>> +{
+>> +	return 0;
+>> +}
+>> +
+>> +static const struct phy_ops jh7110_pcie_phy_ops = {
+>> +	.init		= jh7110_pcie_phy_init,
+>> +	.exit		= jh7110_pcie_phy_exit,
+> 
+> As you are not doing anything in init/exit, you don't have to set them.
+> 
+ok
+>> +	.set_mode	= jh7110_pcie_phy_set_mode,
+>> +	.owner		= THIS_MODULE,
+>> +};
+>> +
+>> +static int jh7110_pcie_phy_probe(struct platform_device *pdev)
+>> +{
+>> +	struct jh7110_pcie_phy *phy;
+>> +	struct device *dev = &pdev->dev;
+>> +	struct phy_provider *phy_provider;
+>> +	u32 args[2];
+>> +
+>> +	phy = devm_kzalloc(dev, sizeof(*phy), GFP_KERNEL);
+>> +	if (!phy)
+>> +		return -ENOMEM;
+>> +
+>> +	phy->regs = devm_platform_ioremap_resource(pdev, 0);
+>> +	if (IS_ERR(phy->regs))
+>> +		return PTR_ERR(phy->regs);
+>> +
+>> +	phy->phy = devm_phy_create(dev, NULL, &jh7110_pcie_phy_ops);
+>> +	if (IS_ERR(phy->phy))
+>> +		return dev_err_probe(dev, PTR_ERR(phy->regs),
+>> +			"Failed to map phy base\n");
+>> +
+>> +	phy->sys_syscon =
+>> +		syscon_regmap_lookup_by_phandle_args(pdev->dev.of_node,
+>> +						     "starfive,sys-syscon",
+>> +						     1, args);
+>> +
+>> +	if (!IS_ERR_OR_NULL(phy->sys_syscon))
+>> +		phy->sys_phy_connect = args[0];
+>> +	else
+>> +		phy->sys_syscon = NULL;
+>> +
+>> +	phy->stg_syscon =
+>> +		syscon_regmap_lookup_by_phandle_args(pdev->dev.of_node,
+>> +						     "starfive,stg-syscon",
+>> +						     2, args);
+>> +
+>> +	if (!IS_ERR_OR_NULL(phy->stg_syscon)) {
+>> +		phy->stg_pcie_mode = args[0];
+>> +		phy->stg_pcie_usb = args[1];
+>> +	} else {
+>> +		phy->stg_syscon = NULL;
+>> +	}
+>> +
+>> +	platform_set_drvdata(pdev, phy);
+>> +	phy_set_drvdata(phy->phy, phy);
+>> +	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
+>> +
+>> +	return PTR_ERR_OR_ZERO(phy_provider);
+>> +}
+>> +
+>> +static int jh7110_pcie_phy_remove(struct platform_device *pdev)
+>> +{
+>> +	platform_set_drvdata(pdev, NULL);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static const struct of_device_id jh7110_pcie_phy_of_match[] = {
+>> +	{ .compatible = "starfive,jh7110-pcie-phy" },
+>> +	{ /* sentinel */ },
+>> +};
+>> +MODULE_DEVICE_TABLE(of, jh7110_pcie_phy_of_match);
+>> +
+>> +static struct platform_driver jh7110_pcie_phy_driver = {
+>> +	.probe	= jh7110_pcie_phy_probe,
+>> +	.remove	= jh7110_pcie_phy_remove,
+>> +	.driver = {
+>> +		.of_match_table	= jh7110_pcie_phy_of_match,
+>> +		.name  = "jh7110-pcie-phy",
+>> +	}
+>> +};
+>> +module_platform_driver(jh7110_pcie_phy_driver);
+>> +
+>> +MODULE_DESCRIPTION("StarFive JH7110 PCIe 2.0 PHY driver");
+>> +MODULE_AUTHOR("Minda Chen <minda.chen@starfivetech.com>");
+>> +MODULE_LICENSE("GPL");
+> 
+> cheers,
+> -roger
