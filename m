@@ -2,158 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04C036ED4E4
-	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 20:56:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A40756ED50F
+	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 21:06:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231481AbjDXS4F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Apr 2023 14:56:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52746 "EHLO
+        id S232396AbjDXTGs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Apr 2023 15:06:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232491AbjDXSz7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 14:55:59 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1701965B7;
-        Mon, 24 Apr 2023 11:55:55 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33OItmDX014970;
-        Mon, 24 Apr 2023 13:55:48 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1682362548;
-        bh=QCsbpNC2VDKR//72LdQesXrTAYp7X6UvJ49w9SVyVzI=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=j1HeXphgTxf00rl7y2hW8/ouAk7Qxd/rO3qddsPCQ2AUQENQCruDooXYLsWP5OrQU
-         WJwA/aOd8iv4qDE1T047hedeN2YsAMzW2sZ4cy8FduQlAPwpJ0sZRx9EkFldU/8Xb8
-         U6/z+Tbu6sNi1s+JN+uLSFfACotM0tfPO56yqdwI=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33OItmBR121511
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 24 Apr 2023 13:55:48 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 24
- Apr 2023 13:55:48 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Mon, 24 Apr 2023 13:55:48 -0500
-Received: from [10.250.35.77] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33OItlV7115983;
-        Mon, 24 Apr 2023 13:55:47 -0500
-Message-ID: <f5861b8b-637a-e127-2945-8994a472015a@ti.com>
-Date:   Mon, 24 Apr 2023 13:55:47 -0500
+        with ESMTP id S231481AbjDXTGs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 15:06:48 -0400
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9749B4C23;
+        Mon, 24 Apr 2023 12:06:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:Content-Type:
+        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=aAn9rXMqpNAZs59f3LwTjTTgFucy7y+Rat1wzItlz5Q=; b=cRh4ul1IZkTyKWihk4scTzVRFa
+        pY9ZyeJM5k1ytq7l8qnbplLDP/F5pQHXnZvbL2w7oL3kK9uHfvxYf8Jj4P07bufduJxPsDXS2wuXc
+        W963PyoMAr7UoGQRBvHNK72GSyWIc/DFbI/+j4KsKaVeMyXFBuC0AusAa/thiiV0jrnNvLh71Lxso
+        hmdIlqtBfBCH5WqkmoBX2hHLDfs5qB4ME6nc/fYoN/hUuEY2PaX8nF8T/SDV02221KcuoD9CFRtQD
+        LopEWvlgnX7l9RP/xgyg0Nn8ZVRNLhuARM3YpWeu4qz7XxE/UmkgFsc/SUL5BKQBCd979BxMJRIf8
+        UD2S9UZw==;
+Received: from p200300ccff08b5001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff08:b500:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1pr1WG-0003Sc-7E; Mon, 24 Apr 2023 21:06:36 +0200
+Date:   Mon, 24 Apr 2023 21:06:34 +0200
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     Lee Jones <lee@kernel.org>
+Cc:     pavel@ucw.cz, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Matti Vaittinen <mazziesaccount@gmail.com>
+Subject: Re: [PATCH v6 2/2] leds: bd2606mvv: Driver for the Rohm 6 Channel
+ i2c LED driver
+Message-ID: <20230424210634.70c26688@aktux>
+In-Reply-To: <20230424131740.GE50521@google.com>
+References: <20230419111806.1100437-1-andreas@kemnade.info>
+        <20230419111806.1100437-3-andreas@kemnade.info>
+        <20230424131740.GE50521@google.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.24; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 3/3] arm64: dts: ti: k3-j7200-mcu-wakeup: Split fss node
- up
-Content-Language: en-US
-To:     Nishanth Menon <nm@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Tero Kristo <kristo@kernel.org>, <vaishnav.a@ti.com>,
-        <u-kumar1@ti.com>
-References: <20230424173623.477577-1-nm@ti.com>
- <20230424173623.477577-4-nm@ti.com>
-From:   Andrew Davis <afd@ti.com>
-In-Reply-To: <20230424173623.477577-4-nm@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Score: -1.0 (-)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/24/23 12:36 PM, Nishanth Menon wrote:
-> fss node claims to be entirely a syscon node, but it is really two
-> parts of it - one a syscon that controls the hbmc mux and a simple bus
-> where ospi, hbmc peripherals are located. So model it accordingly by
-> splitting the node up and using ti,j721e-system-controller to describe
-> the syscon
+On Mon, 24 Apr 2023 14:17:40 +0100
+Lee Jones <lee@kernel.org> wrote:
+
+> On Wed, 19 Apr 2023, Andreas Kemnade wrote:
 > 
-> Signed-off-by: Nishanth Menon <nm@ti.com>
-> ---
->   .../boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      | 21 +++++++++++++------
->   1 file changed, 15 insertions(+), 6 deletions(-)
+> > The device provides 6 channels which can be individually
+> > turned off and on but groups of two channels share a common brightness
+> > register.
+> > 
+> > Limitation: The GPIO to enable the device is not used yet.
+> > 
+> > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> > Reviewed-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> > Acked-by: Pavel Machek <pavel@ucw.cz>
+> > ---
+> >  drivers/leds/Kconfig          |  14 +++
+> >  drivers/leds/Makefile         |   1 +
+> >  drivers/leds/leds-bd2606mvv.c | 160 ++++++++++++++++++++++++++++++++++
+> >  3 files changed, 175 insertions(+)
+> >  create mode 100644 drivers/leds/leds-bd2606mvv.c  
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-> index b58a31371bf3..7653cb191be1 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-> @@ -338,18 +338,27 @@ mcu_spi2: spi@40320000 {
->   		status = "disabled";
->   	};
->   
-> -	fss: syscon@47000000 {
-> -		compatible = "syscon", "simple-mfd";
-> +	hbmc_syscon: syscon@47000000 {
-> +		compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
->   		reg = <0x00 0x47000000 0x00 0x100>;
-> -		#address-cells = <2>;
-> -		#size-cells = <2>;
-> -		ranges;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges = <0x00 0x00 0x47000000 0x100>;
->   
-> -		hbmc_mux: hbmc-mux {
-> +		hbmc_mux: mux-controller@4 {
->   			compatible = "mmio-mux";
-> +			reg = <0x4 0x2>;
->   			#mux-control-cells = <1>;
->   			mux-reg-masks = <0x4 0x2>; /* HBMC select */
->   		};
-> +	};
-> +
-> +	fss: bus@47030000 {
-> +		compatible = "simple-bus";
-> +		reg = <0x0 0x47030000 0x0 0x100>;
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
->   
->   		hbmc: hyperbus@47034000 {
->   			compatible = "ti,am654-hbmc";
+> Applied, thanks
+> 
+contrary to the binding doc, it does not appear on
+https://git.kernel.org/pub/scm/linux/kernel/git/lee/leds.git/log/?h=for-leds-next
 
+Any problems with applying it?
 
-I hope all the things you had to do here show you what I mean in my
-comments on [0] :)
-
-I've posted a first step patch that allows "reg-mux" node to work with
-regular reg properties[1]. Which means this patch could have been just this:
-
---- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-@@ -305,15 +305,16 @@ wkup_i2c0: i2c@42120000 {
-                 status = "disabled";
-         };
-  
--       fss: syscon@47000000 {
--               compatible = "syscon", "simple-mfd";
-+       fss: bus@47000000 {
-+               compatible = "simple-bus";
-                 reg = <0x00 0x47000000 0x00 0x100>;
-                 #address-cells = <2>;
-                 #size-cells = <2>;
-                 ranges;
-  
-                 hbmc_mux: hbmc-mux {
--                       compatible = "mmio-mux";
-+                       compatible = "reg-mux";
-+                       reg = <0x00 0x47000004 0x00 0x2>;
-                         #mux-control-cells = <1>;
-                         mux-reg-masks = <0x4 0x2>; /* HBMC select */
-                 };
-
-Andrew
-
-[0] https://lore.kernel.org/all/76da0b98-3274-b047-db11-ecabc117ae11@ti.com/
-[1] https://lore.kernel.org/all/20230424184810.29453-1-afd@ti.com/
+Regards,
+Andreas
