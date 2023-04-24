@@ -2,157 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF8396EC9D8
-	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 12:10:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B09D56EC9DC
+	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 12:10:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231168AbjDXKKM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Apr 2023 06:10:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36538 "EHLO
+        id S230430AbjDXKKO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Apr 2023 06:10:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230430AbjDXKKL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 06:10:11 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3550CE4C;
-        Mon, 24 Apr 2023 03:10:09 -0700 (PDT)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33O7UKVn009780;
-        Mon, 24 Apr 2023 10:10:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=BPim0Tod12N/FKdGRwHfV9Vpi1oMjhR8E79fnyjeGZs=;
- b=Iy03PV3WreQrVUdQyf3KjtkMMQ3j3if+19h+4TfTm3UGblbNo2y0yzXf0YQwCiSXASg8
- ad7vgAF0uL7UGnRcYW9lzvuVyaerlU2HUqc2T45CNsEPTxAlsyKKrypGNZwUPf6l3kl5
- xupxya6yrdBToEful6h5c9i0o61kTH479EFTPVbtJdt74UBIz22zu4hyPIbmBP98Pp3z
- O/PzIZDVMqktfzE7giu0P/HdiSr9EPMn6xOuIZ5Sq+EA8CTnCAp44qZKpz+Z0weJjxa9
- XAXH/S0fI0Fkl/I74/X3JG1PcVAbpD+9rRC/SqaLVvG9yAea2nM7vEmgKsSXPD4UCQBk 5Q== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q48h3b0xp-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 24 Apr 2023 10:10:04 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33OAA3PJ028738
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 24 Apr 2023 10:10:03 GMT
-Received: from [10.216.49.0] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Mon, 24 Apr
- 2023 03:09:57 -0700
-Message-ID: <8b99108c-b3bf-e901-b2ff-95befa6308ce@quicinc.com>
-Date:   Mon, 24 Apr 2023 15:39:47 +0530
+        with ESMTP id S231325AbjDXKKN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 06:10:13 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49A881B1
+        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 03:10:12 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-94eff00bcdaso751779966b.1
+        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 03:10:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1682331011; x=1684923011;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hap29hkMONIqb3a65KU2SJPeBl9j6CavN0wd4ZM0vK4=;
+        b=PFMQKFCgKWFKkU/a73gHiv4ThGQPZ0MqyDAg9KjjjnMXyRlOmr6PhjM9Feu3T+k/cM
+         wCHxhysc5i4E3GgqwxIfiHWJCmaTv+HVr0oFxnDhlr51iqbEbM7EQx/hI+mAq853WJwm
+         gm+LmYJE80Lv6fDR5RDnCBWRUd6+o7JQg1pWaZiaPhYr+3fREJFA0APApxtV0BukJifh
+         T4P7ydWmdM8oPP/I2eI+VeujlgAtIEMWJurKLIZ+7EPS3CC7zHsXhgwLIz3x3ZlDqmon
+         74hg7VVaOw/wuj0SdkpJI9H4cRyDoSCrPjvy9rJDJWM43uMeiAAZUoRGTJ3rtgB1Bdjx
+         UTEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682331011; x=1684923011;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hap29hkMONIqb3a65KU2SJPeBl9j6CavN0wd4ZM0vK4=;
+        b=eL0xOsU2uE8mx448Pp8PwWgHXTUk5g/I2VW7AIiQ7XNEJoMubqycrNfjWfbJ4QSCf6
+         JdpqIg82L6Atf0kaHchqvSNcL7ZtvKz5ja5f6rjPjziqRnKR6hEK9vZ6GiG0ULAo/CmX
+         zWUjGQ8BbFSfrBpWJucrWMHBIq7HyAWb5aVlYPhAFTMNBJOlYCsKl5bQjgE3nWewHQIV
+         DQ6RxBdmSOpisP1ivfmO9UEorJwVJHO5ClIAMGkaF7kKV+CP3ICGnSpEG5U1ohazH/VA
+         flhlsl9C8Kj3gB2JS8KQORMRFLUxI1JZ1M/SOEKEM0C8Wp/x6BH4eVEVWzoqdsB1dJOq
+         ivfw==
+X-Gm-Message-State: AAQBX9dmY4Wi4O2/+3Hsds3BDtWAKv7ILtAnEpULcYmX+NN1sbKKm3sX
+        jGUuJVDmCc0n7gcOXDvu91k4lg==
+X-Google-Smtp-Source: AKy350bsLAuDChz19AU7KnYjVEvlNj8p4PtnXZy6kxfLAXdtasx8pPWo+9mjZxN0wDVGE4kAmxCrWw==
+X-Received: by 2002:a17:907:90c4:b0:94e:ff23:992a with SMTP id gk4-20020a17090790c400b0094eff23992amr8355110ejb.59.1682331010798;
+        Mon, 24 Apr 2023 03:10:10 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:fcdb:bf53:d053:3a52? ([2a02:810d:15c0:828:fcdb:bf53:d053:3a52])
+        by smtp.gmail.com with ESMTPSA id q26-20020a170906941a00b0094f01aa9567sm5297581ejx.20.2023.04.24.03.10.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Apr 2023 03:10:10 -0700 (PDT)
+Message-ID: <4e0685cc-c9fc-feba-c523-5161b68dfaf7@linaro.org>
+Date:   Mon, 24 Apr 2023 12:10:08 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH V2 3/4] arm64: dts: qcom: ipq9574: Drop
- bias_pll_ubi_nc_clk & update intc node
+Subject: Re: [PATCH v2 1/2] dt-bindings: pwm: imx: add i.MX8QXP compatible
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>
-CC:     <quic_srichara@quicinc.com>, <quic_sjaganat@quicinc.com>,
-        <quic_kathirav@quicinc.com>, <quic_arajkuma@quicinc.com>,
-        <quic_anusha@quicinc.com>, <quic_poovendh@quicinc.com>
-References: <20230417053355.25691-1-quic_devipriy@quicinc.com>
- <20230417053355.25691-4-quic_devipriy@quicinc.com>
- <fa84facd-9b13-388f-5f22-a287f7aa403f@linaro.org>
-From:   Devi Priya <quic_devipriy@quicinc.com>
-In-Reply-To: <fa84facd-9b13-388f-5f22-a287f7aa403f@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230424082108.26512-1-alexander.stein@ew.tq-group.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230424082108.26512-1-alexander.stein@ew.tq-group.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: hFEYcnXYqZDlHShSQPtLwVrYmmOmb1g6
-X-Proofpoint-GUID: hFEYcnXYqZDlHShSQPtLwVrYmmOmb1g6
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-24_06,2023-04-21_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=921 mlxscore=0
- adultscore=0 priorityscore=1501 impostorscore=0 bulkscore=0 clxscore=1015
- lowpriorityscore=0 malwarescore=0 phishscore=0 suspectscore=0 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2303200000
- definitions=main-2304240090
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 24/04/2023 10:21, Alexander Stein wrote:
+> i.MX8QXP compatible is missing in the list, add it.
+> 
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> ---
+> Changes in v2:
+> * Add power-domains property
 
 
-On 4/19/2023 4:24 PM, Konrad Dybcio wrote:
-> 
-> 
-> On 17.04.2023 07:33, Devi Priya wrote:
->> Drop the unused backup source bias_pll_ubi_nc_clk.
->> Also, update the size of GICC and GICV region to 8kB and add target CPU
->> encoding.
-> These things have too big and too distant consequences to go in
-> a single patch and the GIC fix should have a fixes tag.
-> 
->>
->> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/ipq9574.dtsi | 13 +++----------
->>   1 file changed, 3 insertions(+), 10 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->> index 3bb7435f5e7f..f1f959b43180 100644
->> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->> @@ -16,12 +16,6 @@
->>   	#size-cells = <2>;
->>   
->>   	clocks {
->> -		bias_pll_ubi_nc_clk: bias-pll-ubi-nc-clk {
->> -			compatible = "fixed-clock";
->> -			clock-frequency = <353000000>;
->> -			#clock-cells = <0>;
->> -		};
->> -
->>   		sleep_clk: sleep-clk {
->>   			compatible = "fixed-clock";
->>   			#clock-cells = <0>;
->> @@ -131,7 +125,6 @@
->>   			reg = <0x01800000 0x80000>;
->>   			clocks = <&xo_board_clk>,
->>   				 <&sleep_clk>,
->> -				 <&bias_pll_ubi_nc_clk>,
-> NAK, this is an ABI break. If you want to drop it, you'd need
-> to leave a <0> here.
-Okay, Got it.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Thanks,
-Devi Priya
-> 
-> Konrad
->>   				 <0>,
->>   				 <0>,
->>   				 <0>,
->> @@ -172,14 +165,14 @@
->>   		intc: interrupt-controller@b000000 {
->>   			compatible = "qcom,msm-qgic2";
->>   			reg = <0x0b000000 0x1000>,  /* GICD */
->> -			      <0x0b002000 0x1000>,  /* GICC */
->> +			      <0x0b002000 0x2000>,  /* GICC */
->>   			      <0x0b001000 0x1000>,  /* GICH */
->> -			      <0x0b004000 0x1000>;  /* GICV */
->> +			      <0x0b004000 0x2000>;  /* GICV */
->>   			#address-cells = <1>;
->>   			#size-cells = <1>;
->>   			interrupt-controller;
->>   			#interrupt-cells = <3>;
->> -			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
->> +			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
->>   			ranges = <0 0x0b00c000 0x3000>;
->>   
->>   			v2m0: v2m@0 {
+Best regards,
+Krzysztof
+
