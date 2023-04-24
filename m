@@ -2,157 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 18AF86ED079
-	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 16:44:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE7676ED0A8
+	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 16:50:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229696AbjDXOow (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Apr 2023 10:44:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33332 "EHLO
+        id S231936AbjDXOuj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Apr 2023 10:50:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231713AbjDXOoq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 10:44:46 -0400
-Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC15C59D3;
-        Mon, 24 Apr 2023 07:44:45 -0700 (PDT)
-Received: by mail-pf1-x42f.google.com with SMTP id d2e1a72fcca58-63b57c49c4cso3866780b3a.3;
-        Mon, 24 Apr 2023 07:44:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682347485; x=1684939485;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XNQqPFF9CeXoL2gMYUZkcPtpkCwmrwMvnxVAF4C3Yyc=;
-        b=XQarSlGUxIEH7S8gothB7PrPKQbgy7iiAQzwqcKaWS/sZbORcJpn8+ytZ1oHmAGQO6
-         ZyIGoEUtwFWrapSuYYZJyhftoHYM9TohyOiuIvra0cO5ZRX2xJIJqcxTXW8YrmbLQ2xh
-         m5iQ5r6aijqi7kJ+D0b6YL2UDO1E/kHJBxltxhYiU2Le1xFl2u2YjaPj0vYgzg38Nq3g
-         brINV4FkIYqpTxiAtOKzAyeE+3IiVnGljn/CAzSOzyNto69AWlAnCVkXt3qbEstEASDu
-         /I3hQ8hR9VGCju798h2x0tm//DqFG9+48LwP3fScweeK+OOBlfElIrJ1Qph6BvcmaVYB
-         QwIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682347485; x=1684939485;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XNQqPFF9CeXoL2gMYUZkcPtpkCwmrwMvnxVAF4C3Yyc=;
-        b=BftnKHe0dl44PaiuuD+ULPPgET6qeqEHJNN29vK/lwhAznOqJ198SVkv9fmxcXtCBR
-         ZLsCrRI8vUU+OXN9fxwGStGxi69Xn9FGUM5906dfzu7NHn8BB170m0gsqQPX61AfF/We
-         gX0B30BTLS1rJYqruKveHzG95P5j7g1RYYYon6OBHU01wEiaj32BigJeAamq8nXkAX9X
-         /OeRSXYAjeCDstPMXftlcZe86r9/AYgj+S2kvMwf8AydrnY53JFiEd3fzBBosJ+d4pzt
-         UWHLEWK31WFmi1/QilLMC7rl+cdZeDYBY0vcDDqa8q39jvu+h9YPcoW0H36MLta1cs1M
-         Xvyw==
-X-Gm-Message-State: AAQBX9cq1APPCezJXAR6UVKHnLHESPNuPSM9cdlH0b5NmrPiDWLgLdvi
-        B/au8dwKQ2a1w8N5e78MB+M=
-X-Google-Smtp-Source: AKy350aoWSD2/HMa3CslUKM2LDOFFdivjwSWmyiTwfYYjcWJtX0Jw8aolbepRrEZj5LSWUBkhC4Rbg==
-X-Received: by 2002:a05:6a20:4410:b0:f3:9f6:6ee8 with SMTP id ce16-20020a056a20441000b000f309f66ee8mr10007709pzb.43.1682347485194;
-        Mon, 24 Apr 2023 07:44:45 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id u14-20020a63470e000000b0051f15beba7fsm6409537pga.67.2023.04.24.07.44.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Apr 2023 07:44:44 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Mon, 24 Apr 2023 07:44:43 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Neha Malcom Francis <n-francis@ti.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, jdelvare@suse.com,
-        linux-hwmon@vger.kernel.org, nm@ti.com, vigneshr@ti.com,
-        u-kumar1@ti.com, kristo@kernel.org
-Subject: Re: [PATCH RESEND v3 1/3] dt-bindings: hwmon: esm: Add ESM support
- for TI K3 devices
-Message-ID: <0ddd5777-cfd0-4b35-a724-681ef9e86d2b@roeck-us.net>
-References: <20230424105011.70674-1-n-francis@ti.com>
- <20230424105011.70674-2-n-francis@ti.com>
+        with ESMTP id S231893AbjDXOuf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 10:50:35 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5E619003;
+        Mon, 24 Apr 2023 07:50:21 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33OEnqhQ130483;
+        Mon, 24 Apr 2023 09:49:52 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1682347792;
+        bh=37co4mMWzWHR0FGQIBgLoWPWkErT33NhdlV4SL6RYY0=;
+        h=From:To:CC:Subject:Date;
+        b=y32ZjrPcZZbbYQ79Vrm94Mmv2j4SO3EVeJSN/kUA7GyPIYW2MYTCex6Une4PGuCxH
+         WaEP7IEfrdqx4QHyn1GCE8io+6AIWfphE4j8tCfO1STDBKb4+AHuItCMgQrdjMZSEf
+         vwJktlG7Lw0hERp3vIi5JxuxUwCZy2vXis1Y5TTU=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33OEnqle064867
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 24 Apr 2023 09:49:52 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 24
+ Apr 2023 09:49:51 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Mon, 24 Apr 2023 09:49:51 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33OEnpPY077023;
+        Mon, 24 Apr 2023 09:49:51 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Tero Kristo <kristo@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Jan Kiszka <jan.kiszka@siemens.com>
+Subject: [PATCH 0/7] arm64: dts: ti: k3-am65: dtbs_check warnings fixups
+Date:   Mon, 24 Apr 2023 09:49:42 -0500
+Message-ID: <20230424144949.244135-1-nm@ti.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230424105011.70674-2-n-francis@ti.com>
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 24, 2023 at 04:20:09PM +0530, Neha Malcom Francis wrote:
-> Document the binding for TI K3 ESM (Error Signaling Module) block.
-> 
-> Signed-off-by: Neha Malcom Francis <n-francis@ti.com>
+Hi,
 
-I think I am missing what this has to do with hardware
-monitoring. I see a driver submission into drivers/misc,
-but that doesn't explain the suggested location of the
-devicetree bindings, and I kind of resist the idea that hwmon
-should be the dumping ground for bindings which don't have
-a home.
+One round of long pending dtbs_checks warnings fixups for am65.
 
-Guenter
+Bootlog: https://gist.github.com/nmenon/605142cb4a4ffb2b9d05bea944f8fd32#file-am654-evm-patchset2-txt
 
-> ---
->  .../bindings/hwmon/ti,j721e-esm.yaml          | 53 +++++++++++++++++++
->  1 file changed, 53 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/ti,j721e-esm.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/ti,j721e-esm.yaml b/Documentation/devicetree/bindings/hwmon/ti,j721e-esm.yaml
-> new file mode 100644
-> index 000000000000..c5eb7f46cc46
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/ti,j721e-esm.yaml
-> @@ -0,0 +1,53 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2022 Texas Instruments Incorporated
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/ti,j721e-esm.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Texas Instruments K3 ESM
-> +
-> +maintainers:
-> +  - Neha Malcom Francis <n-francis@ti.com>
-> +
-> +description:
-> +  The ESM (Error Signaling Module) is an IP block on TI K3 devices
-> +  that allows handling of safety events somewhat similar to what interrupt
-> +  controller would do. The safety signals have their separate paths within
-> +  the SoC, and they are handled by the ESM, which routes them to the proper
-> +  destination, which can be system reset, interrupt controller, etc. In the
-> +  simplest configuration the signals are just routed to reset the SoC.
-> +
-> +properties:
-> +  compatible:
-> +    const: ti,j721e-esm
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  ti,esm-pins:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    description:
-> +      integer array of ESM interrupt pins to route to external event pin
-> +      which can be used to reset the SoC.
-> +    minItems: 1
-> +    maxItems: 255
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - ti,esm-pins
-> +
-> +examples:
-> +  - |
-> +    bus {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +        esm@700000 {
-> +            compatible = "ti,j721e-esm";
-> +            reg = <0x0 0x700000 0x0 0x1000>;
-> +            ti,esm-pins = <344>, <345>;
-> +        };
-> +    };
+Pending warnings: https://gist.github.com/nmenon/605142cb4a4ffb2b9d05bea944f8fd32#file-pending-dtbs_check_warnings
+
+Nishanth Menon (7):
+  arm64: dts: ti: k3-am65-main: Remove "syscon" nodes added for
+    pcieX_ctrl
+  arm64: dts: ti: k3-am65-main: Fix mux controller node name
+  arm64: dts: ti: k3-am65: Switch to "ti,j721e-system-controller"
+    compatible
+  arm64: dts: ti: k3-am65-main: Fix mcan node name
+  arm64: dts: ti: k3-am65-main: Drop deprecated ti,otap-del-sel property
+  arm64: dts: ti: k3-am65-mcu: Fix fss node
+  arm64: dts: ti: k3-am65-iot2050-common: Rename rtc8564 nodename
+
+ .../boot/dts/ti/k3-am65-iot2050-common.dtsi   |  2 +-
+ arch/arm64/boot/dts/ti/k3-am65-main.dtsi      | 32 +++++--------------
+ arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi       |  9 +++---
+ 3 files changed, 14 insertions(+), 29 deletions(-)
+
+-- 
+2.40.0
+
