@@ -2,142 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BAFE6ED1D9
-	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 17:59:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B1846ED1EF
+	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 18:03:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230430AbjDXP7Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Apr 2023 11:59:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58324 "EHLO
+        id S231911AbjDXQDH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Apr 2023 12:03:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33080 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229906AbjDXP7X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 11:59:23 -0400
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 735D16A59;
-        Mon, 24 Apr 2023 08:59:22 -0700 (PDT)
-Received: by mail-ot1-f50.google.com with SMTP id 46e09a7af769-6a438f0d9c9so3688321a34.1;
-        Mon, 24 Apr 2023 08:59:22 -0700 (PDT)
+        with ESMTP id S231898AbjDXQDC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 12:03:02 -0400
+Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0119072BD;
+        Mon, 24 Apr 2023 09:02:54 -0700 (PDT)
+Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-18e26c08349so2408893fac.0;
+        Mon, 24 Apr 2023 09:02:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682351962; x=1684943962;
+        d=1e100.net; s=20221208; t=1682352174; x=1684944174;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=jJ1Hz9RAdCq/GB1HaxyxLVXHyGyd0uhfNpdOefl8fI4=;
-        b=g+JBAjtwMkDCkPZ2862LYr9VIdNUuTPrBG0TsOXjsm8INll8oDrdd96oCMXKTYTtoP
-         VHBMjUWkr6gYJGf1ZsM0H9v5UCTZQfORw8/EM2/MLj7BB1uaSYCs1IevaCtqDLBXi+zq
-         26OVdIXBRgXpX5DkZuylerD2/Yd4FMQR6IT8YIAU7MNsS/wnRYK4Uja51jeYiWepRDMy
-         PJd4mCMwOgFhPowjCRLMDy94x9R5/ehM78fD+NXbhvYIg3xt4+o5FeuSgVIzVGjJBl+v
-         IrR9eBk6cUJg1YOj4AyB/uiivNgGZv1tVTOtBDIMZU1hd/9I4DoraLiSXA8CA7a92SJS
-         VgWw==
-X-Gm-Message-State: AAQBX9dwFMBjrVPuVAs1VkvzNJTzKQgN/YleREztBa0Ge2UcH34Qahbi
-        gdW7Yss6hCS87HVukSS6Ng==
-X-Google-Smtp-Source: AKy350Zx8vum6et4oh1aktNWgI1tpYztaZV30hc95RVVftyvE3Uep6TTmjcx/8Yz78StJ5XoOXaRtQ==
-X-Received: by 2002:a05:6870:1ca:b0:187:7579:76c0 with SMTP id n10-20020a05687001ca00b00187757976c0mr11863905oad.37.1682351961545;
-        Mon, 24 Apr 2023 08:59:21 -0700 (PDT)
+        bh=LnzfYEatrJSwokCAbLh8ogw9ZFGMSla77/kxbiv4hOM=;
+        b=aweU4cCR0IPirBYORTCFBygRX9Wcsqoq8lDtjgJpBpWQiUoLuX49EDL9sxrXcDE2M4
+         kj+8MGKNU/2MToUBFfWRqxDx8hWPLscQcrMeijmroi5AYxGAu3gLr1ZUXr+KVKoWCqWe
+         GAzlY8JBX0gqRhUHvsylPo7YtBNePqFr9IXHlWO1VArzEN7QDOMHVGkWw6b5nwaTbY9e
+         5e+tPOBEEyyui9ynBb4zNij8Yf1wpM6EL0QbPmO+GGABzWjUyZ2PfFRL/0dfRMQwlk46
+         mBNXHJ2rfZ6flubYDqBdjJqLD5qKFAf9lfHC9NL9ZBY5DoSKjH8h4uxxqQESoeuwcuHf
+         gAwA==
+X-Gm-Message-State: AAQBX9fOd0Z6YeWrOC1DwmCAXBn4rBGaEzTyIZe2HCwow5BhDRykaT5e
+        9m8InN+MDtspBVWR8p8Y7hRGjIEm7A==
+X-Google-Smtp-Source: AKy350YFprky0QexCA+YNuK9/WujoCDaw7Udk1v+D5cUN5ctLb84vKBwYCYQ9n67gbZyOlPwf0q5vQ==
+X-Received: by 2002:a05:6870:b491:b0:187:e5c4:4a50 with SMTP id y17-20020a056870b49100b00187e5c44a50mr10330412oap.17.1682352174290;
+        Mon, 24 Apr 2023 09:02:54 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id e6-20020a056870a60600b0017aafd12843sm4622442oam.32.2023.04.24.08.59.20
+        by smtp.gmail.com with ESMTPSA id c2-20020ae9ed02000000b007339c5114a9sm3660638qkg.103.2023.04.24.09.02.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Apr 2023 08:59:21 -0700 (PDT)
-Received: (nullmailer pid 2707611 invoked by uid 1000);
-        Mon, 24 Apr 2023 15:59:20 -0000
-Date:   Mon, 24 Apr 2023 10:59:20 -0500
+        Mon, 24 Apr 2023 09:02:53 -0700 (PDT)
+Received: (nullmailer pid 2717300 invoked by uid 1000);
+        Mon, 24 Apr 2023 16:02:52 -0000
+Date:   Mon, 24 Apr 2023 11:02:52 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Guenter Roeck <linux@roeck-us.net>,
-        Nikita Shubin <nikita.shubin@maquefel.me>
+To:     Nikita Shubin <nikita.shubin@maquefel.me>
 Cc:     Arnd Bergmann <arnd@kernel.org>, Linus Walleij <linusw@kernel.org>,
         Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 09/43] dt-bindings: watchdog: add DT bindings for Cirrus
- EP93x
-Message-ID: <20230424155920.GB2701399-robh@kernel.org>
+Subject: Re: [PATCH 14/43] dt-bindings: pwm: Add DT bindings ep93xx PWM
+Message-ID: <20230424160252.GC2701399-robh@kernel.org>
 References: <20230424123522.18302-1-nikita.shubin@maquefel.me>
- <20230424123522.18302-10-nikita.shubin@maquefel.me>
- <b39724a8-5e29-411e-9deb-29dd37609372@roeck-us.net>
- <7353ae3d-baf1-4f7f-9d87-ae322aa37338@roeck-us.net>
+ <20230424123522.18302-15-nikita.shubin@maquefel.me>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <7353ae3d-baf1-4f7f-9d87-ae322aa37338@roeck-us.net>
+In-Reply-To: <20230424123522.18302-15-nikita.shubin@maquefel.me>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 24, 2023 at 07:18:06AM -0700, Guenter Roeck wrote:
-> On Mon, Apr 24, 2023 at 07:16:16AM -0700, Guenter Roeck wrote:
-> > On Mon, Apr 24, 2023 at 03:34:25PM +0300, Nikita Shubin wrote:
-> > > This adds device tree bindings for the Cirrus Logic EP93xx
-> > > watchdog block used in these SoCs.
-> > > 
-> > > Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
-> > > ---
-> > >  .../bindings/watchdog/cirrus,ep93xx-wdt.yaml  | 38 +++++++++++++++++++
-> > >  1 file changed, 38 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/watchdog/cirrus,ep93xx-wdt.yaml
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/watchdog/cirrus,ep93xx-wdt.yaml b/Documentation/devicetree/bindings/watchdog/cirrus,ep93xx-wdt.yaml
-> > > new file mode 100644
-> > > index 000000000000..f39d6b14062d
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/watchdog/cirrus,ep93xx-wdt.yaml
-> > > @@ -0,0 +1,38 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/watchdog/cirrus,ep93xx-wdt.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Cirrus Logic EP93xx Watchdog Timer
-> > > +
-> > > +maintainers:
-> > > +  - Wim Van Sebroeck <wim@linux-watchdog.org>
-> > > +
-> > > +description:
-> > > +  Watchdog driver for Cirrus Logic EP93xx family of devices.
-> > > +
-> > > +allOf:
-> > > +  - $ref: "watchdog.yaml#"
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - cirrus,ep9301-wdt
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +
-> > > +additionalProperties: false
-> > 
-> > The driver does support reading the timeout from devicetree.
-> > It might make sense to mention that here.
-> > 
-> Never mind - I guess that is includeds in watchdog.yaml.
-> Sorry for the noise.
-
-Except that it needs to be 'unevaluatedProperties: false' instead if 
-timeout property is supported.
-
+On Mon, Apr 24, 2023 at 03:34:30PM +0300, Nikita Shubin wrote:
+> Add YAML bindings for ep93xx SoC.
 > 
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    wdt0: watchdog@80940000 {
-> > > +        compatible = "cirrus,ep9301-wdt";
-> > > +        reg = <0x80940000 0x08>;
-> > > +    };
-> > > +
-> > > -- 
-> > > 2.39.2
-> > > 
+> Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
+> ---
+>  .../bindings/pwm/cirrus,ep93xx-pwm.yaml       | 45 +++++++++++++++++++
+>  1 file changed, 45 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/cirrus,ep93xx-pwm.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/pwm/cirrus,ep93xx-pwm.yaml b/Documentation/devicetree/bindings/pwm/cirrus,ep93xx-pwm.yaml
+> new file mode 100644
+> index 000000000000..8f67eb152f8b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pwm/cirrus,ep93xx-pwm.yaml
+> @@ -0,0 +1,45 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pwm/cirrus,ep93xx-pwm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Cirrus Logick ep93xx PWM controller
+> +
+> +maintainers:
+> +  - Thierry Reding <thierry.reding@gmail.com>
+
+This is someone that cares about this platform/binding, not who applies 
+patches. Same thing elsewhere.
+
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - cirrus,ep9301-pwm
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: SoC PWM clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: pwm_clk
+
+*-names is kind of pointless with only 1 entry. And 'pwm' is redundant 
+because names are local to the device. 'clk' is redundant because it's 
+all clocks.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/cirrus,ep93xx-clock.h>
+> +    pwm0: pwm@80910000 {
+> +        compatible = "cirrus,ep9301-pwm";
+> +        reg = <0x80910000 0x10>;
+> +        clocks = <&syscon EP93XX_CLK_PWM>;
+> +        clock-names = "pwm_clk";
+> +    };
+> +
+> +...
+> -- 
+> 2.39.2
+> 
