@@ -2,150 +2,238 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6267D6ED373
-	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 19:24:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D3926ED38F
+	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 19:35:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231411AbjDXRYY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Apr 2023 13:24:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50980 "EHLO
+        id S231625AbjDXRfA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Apr 2023 13:35:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56150 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231796AbjDXRYX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 13:24:23 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CAF549D0;
-        Mon, 24 Apr 2023 10:24:21 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33OHO9qJ035948;
-        Mon, 24 Apr 2023 12:24:09 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1682357049;
-        bh=vrYfILk+8/33VxPwT4F9AJ+MJUhKGzAtHjT8mjTXeVI=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=EFQszo9FX4kRocpff6xDv1JNaWG5a0sqwpm3E5QbbeSsnLFrseya4YLGreXZ80Klg
-         Gd4W0yqr9SnDIEn4kbog9j3AdvJwL7/SHGbLEh4gK2hFr+OgIlK6MBsWeckvCqcgx7
-         akaMTpvV0CIqjE3teN/3ieJpwsLcv41uuzdZ8LJs=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33OHO9kU016920
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 24 Apr 2023 12:24:09 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 24
- Apr 2023 12:24:09 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Mon, 24 Apr 2023 12:24:09 -0500
-Received: from [10.250.35.77] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33OHO8sk027965;
-        Mon, 24 Apr 2023 12:24:08 -0500
-Message-ID: <76da0b98-3274-b047-db11-ecabc117ae11@ti.com>
-Date:   Mon, 24 Apr 2023 12:24:08 -0500
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 3/7] arm64: dts: ti: k3-am65: Switch to
- "ti,j721e-system-controller" compatible
-Content-Language: en-US
-To:     Nishanth Menon <nm@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S231499AbjDXRe7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 13:34:59 -0400
+Received: from the.earth.li (the.earth.li [IPv6:2a00:1098:86:4d:c0ff:ee:15:900d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06E4C6599;
+        Mon, 24 Apr 2023 10:34:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=earth.li;
+        s=the; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=MALtH7KdH2u58m3ORCeTHdlEibD9lD3fggU3i60p380=; b=H9HsbaBLjOCvrt/dB9ebYNHoE7
+        GMLZhTfS+cQXxKiL+lP+lbeQRSbegOnpUf8PXbCI7ZTT4ywxOeXw/PvDgVX3MZakxZplZisWFj+g6
+        RN5ulsX/fgpz5g2/rs9vhmwjw/6loibDBlGxJKOX0kM72NbzPPxXqGzjB0NAaAb6V8rKA3OiqBGvW
+        J9kTrMs5jD5su6BSHRrDU2Gbjpti5EHa354wcFj0aDpEIaykCUg38ML2ZyA9pNJuXOfrRHYNGmhO0
+        7RBH23A7ZzR17zXOFIHsQ1N4Kw3iuHkTeIWBxE2a8E+fdb3z2dXu+ivTroN5h4bxYWEdDSz7+eTU7
+        IbG7CImQ==;
+Received: from noodles by the.earth.li with local (Exim 4.94.2)
+        (envelope-from <noodles@earth.li>)
+        id 1pr05F-0060iO-CP; Mon, 24 Apr 2023 18:34:37 +0100
+Date:   Mon, 24 Apr 2023 18:34:37 +0100
+From:   Jonathan McDowell <noodles@earth.li>
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Andre Przywara <andre.przywara@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Tero Kristo <kristo@kernel.org>,
-        Jan Kiszka <jan.kiszka@siemens.com>
-References: <20230424144949.244135-1-nm@ti.com>
- <20230424144949.244135-4-nm@ti.com>
-From:   Andrew Davis <afd@ti.com>
-In-Reply-To: <20230424144949.244135-4-nm@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] ARM: dts: sun5i: chip: Enable bluetooth
+Message-ID: <ZEa9rcDlIOn+df5h@earth.li>
+References: <cover.1681580558.git.noodles@earth.li>
+ <f26d11e613df7bd55822ff3fb7689e36bf9e4f7a.1681580558.git.noodles@earth.li>
+ <20230416012421.255bfd19@slackpad.lan>
+ <ZEGOk1isRhaekk3h@earth.li>
+ <CAGETcx-UnEK3CPC38Ef3gmHcq46nXSJbA9QAwEsF+Xt2bDKEWA@mail.gmail.com>
+ <ZEJJGGeIu8QW44mh@earth.li>
+ <CAGETcx8JDYUT2bdDhJ0PN8_CPmHJ37jCfnuoav6CGFJoovfSqA@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAGETcx8JDYUT2bdDhJ0PN8_CPmHJ37jCfnuoav6CGFJoovfSqA@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/24/23 9:49 AM, Nishanth Menon wrote:
-> Switch scm-conf to "ti,j721e-system-controller" compatible to be more
-> specific.
+On Fri, Apr 21, 2023 at 03:45:52PM -0700, Saravana Kannan wrote:
+> On Fri, Apr 21, 2023 at 1:28 AM Jonathan McDowell <noodles@earth.li> wrote:
+> >
+> > On Thu, Apr 20, 2023 at 06:43:06PM -0700, Saravana Kannan wrote:
+> > > On Thu, Apr 20, 2023 at 12:12 PM Jonathan McDowell <noodles@earth.li> wrote:
+> > > > On Sun, Apr 16, 2023 at 01:24:21AM +0100, Andre Przywara wrote:
+> > > > > On Sat, 15 Apr 2023 18:46:03 +0100
+> > > > > Jonathan McDowell <noodles@earth.li> wrote:
+> > > > >
+> > > > > > The C.H.I.P has an rtl8723bs device with the bluetooth interface hooked
+> > > > > > up on UART3. Support for this didn't exist in mainline when the DTS was
+> > > > > > initially added, but it does now, so enable it.
+> > > > > >
+> > > > > > Signed-off-by: Jonathan McDowell <noodles@earth.li>
+> > > > > > ---
+> > > > > >  arch/arm/boot/dts/sun5i-r8-chip.dts | 4 ++++
+> > > > > >  1 file changed, 4 insertions(+)
+> > > > > >
+> > > > > > diff --git a/arch/arm/boot/dts/sun5i-r8-chip.dts b/arch/arm/boot/dts/sun5i-r8-chip.dts
+> > > > > > index fd37bd1f3920..4d72a181d8aa 100644
+> > > > > > --- a/arch/arm/boot/dts/sun5i-r8-chip.dts
+> > > > > > +++ b/arch/arm/boot/dts/sun5i-r8-chip.dts
+> > > > > > @@ -255,6 +255,10 @@ &uart3 {
+> > > > > >     pinctrl-0 = <&uart3_pg_pins>,
+> > > > > >                 <&uart3_cts_rts_pg_pins>;
+> > > > > >     status = "okay";
+> > > > > > +
+> > > > > > +   bluetooth {
+> > > > > > +           compatible = "realtek,rtl8723bs-bt";
+> > > > > > +   }
+> > > > >
+> > > > > As the kernel test robot already pointed out, there is a semicolon
+> > > > > missing here.
+> > > > > Otherwise looks good (dt-validate passes), but don't know if there are
+> > > > > any wakeup GPIOs connected (can't seem to find a schematic?).
+> > > >
+> > > > So there are wakeups, but if I add:
+> > > >
+> > > >         device-wake-gpios = <&axp_gpio 3 GPIO_ACTIVE_LOW>;
+> > > >         host-wake-gpios = <&pio 1 3 GPIO_ACTIVE_HIGH>; /* PB3 */
+> > > >
+> > > > then some odd sort of dependency issue happens where the serial port
+> > > > load is deferred waiting for the GPIO to appear, and then the device
+> > > > doesn't work.
+> > >
+> > > When you say your device doesn't work, are you saying it never probes?
 > 
-> Signed-off-by: Nishanth Menon <nm@ti.com>
-> ---
->   arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 2 +-
->   arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi  | 2 +-
->   2 files changed, 2 insertions(+), 2 deletions(-)
+> Read your whole email and it's a strange issue. Also, going forward to
+> avoid confusion, only reply to questions with respect to 6.3-rc7.
+
+Just to be clear, in my initial mail I referred to 6.1.21 as that's
+where I started, but in my reply to you all output was quoted from
+6.3-rc7. 6.3 has been released since, so all details below are based on
+that.
+
+> > The bluetooth device (realtek,rtl8723bs-bt) never appears, apparently
+> > because the UART it's attached to never loads - it doesn't even try to
+> > load the firmware.
+> >
+> > > <debugfs>/devices_deferred should tell you what devices have deferred and why.
+> >
+> > root@chip:~# cat /sys/kernel/debug/devices_deferred
+> > serial0-0
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> index 227573773b26..40fa631f2f3d 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> @@ -475,7 +475,7 @@ sdhci1: mmc@4fa0000 {
->   	};
->   
->   	scm_conf: scm-conf@100000 {
-> -		compatible = "syscon", "simple-mfd";
-> +		compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
->   		reg = <0 0x00100000 0 0x1c000>;
->   		#address-cells = <1>;
->   		#size-cells = <1>;
-> diff --git a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
-> index 5dfa31840e9c..566dc584d3f3 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
-> @@ -7,7 +7,7 @@
->   
->   &cbass_mcu {
->   	mcu_conf: scm-conf@40f00000 {
-> -		compatible = "syscon", "simple-mfd";
-> +		compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
+> Do you see this in 6.3-rc7 too?
 
-This node is not a "j721e-system-controller". Only the one in main could be
-said to be one, but even it is different enough that this is not correct IMHO.
-It almost seems like you are using "ti,j721e-system-controller" as a workaround
-for the restriction on raw "syscon", "simple-mfd" nodes. And just replacing all
-instance of those with something that avoids the warning.
+That was under 6.3-rc7. I see it on 6.3 too:
 
-What we should do here is turn both of these nodes into "simple-bus". The sub-nodes
-themselves would describe what they are. This is the normal DT way vs having
-all our device nodes pointing into one big "syscon" node with various offsets (which
-makes it hard to see all users of a node and near impossible to work out the real
-memory map in these "system-controller" nodes).
+root@chip:~# cat /sys/kernel/debug/devices_deferred
+serial0-0
 
-Worse, if the parent is a "syscon" then the whole memory region gets one big regmap
-over it, and any child nodes that also build a regmap for their smaller sub-range
-leads to having two regmaps pointing to the same memory area. This breaks some
-assumptions around atomic access and reg caching.
+Without the device-wake-gpios line in the device tree it's empty.
 
-Taking a quick look I see some of our sub-node drivers expecting the parent to
-always be a syscon, others turn themselves into a syscon, and others still do the
-normal "reg" mapping. What a mess..
+> > > > Error in dmesg is:
+> > > >
+> > > > serial serial0-0: deferred probe pending
+> > > >
+> > > > on 6.3-rc and on 6.1 I get:
+> > > >
+> > > > dw-apb-uart 1c28c00.serial: Failed to create device link (0x180) with axp20x-gpio
+> > >
+> > > This error message doesn't block anything. So I don't think this is
+> > > the cause of your blocking issue. But I still want to understand why
+> > > this error message is showing up.
+> > >
+> > > > I'm not clear why it's trying to link the serial port to the GPIO; it
+> > > > seems that it should be the bluetooth device that depends on both the
+> > > > UART and the GPIO,
+> > >
+> > > A fix for the device link error message went in on v6.3-rc3. Is that
+> > > the 6.3 version you tested this on?
+> >
+> > I originally tried on 6.1.21, which is where I got the "Failed to create
+> > device link" message. I then moved to 6.3-rc7 as I saw there had been
+> > further changes recently. There I just get the:
+> >
+> > serial serial0-0: deferred probe pending
+> 
+> If the deferral is related to fw_devlink, you should see the reason
+> for deferring in the devices_deferred file. So I don't think the issue
+> is related to fw_devlink.
 
-To unwind this I'd suggest we do this:
+Ok.
 
-  * Add support for these sub-node drivers to use the normal "reg" property by
-    default if available, falling back to expecting the parent to be a syscon only
-    for backwards compatibility.
+> > message.
+> >
+> > > Also, I tried looking into the UART driver
+> > > (drivers/tty/serial/8250/8250_dw.c) but it wasn't clear how it ends up
+> > > populating the bluetooth serial device. If you can point that out,
+> > > that'd be helpful (assuming 6.3-rc3 still shows that error message).
+> >
+> > I have the following in my device tree:
+> >
+> > &uart3 {
+> >         pinctrl-names = "default";
+> >         pinctrl-0 = <&uart3_pg_pins>,
+> >                     <&uart3_cts_rts_pg_pins>;
+> >         status = "okay";
+> >
+> >         bluetooth {
+> >                 compatible = "realtek,rtl8723bs-bt";
+> >                 device-wake-gpios = <&axp_gpio 3 GPIO_ACTIVE_LOW>;
+> >                 host-wake-gpios = <&pio 1 3 GPIO_ACTIVE_HIGH>; /* PB3 */
+> >         };
+> > };
+> >
+> > uart3 is a snps,dw-apb-uart, defined in arch/arm/boot/dts/sun5i.dtsi
+> >
+> > The UART and AXP209 device drivers are compiled into the kernel:
+> >
+> > CONFIG_PINCTRL_AXP209=y
+> > CONFIG_SERIAL_8250=y
+> > CONFIG_SERIAL_8250_DW=y
+> >
+> > The bluetooth bits are modules (btrtl, hci_uart).
+> >
+> > If I remove the device-wake-gpios line then the Bluetooth device works
+> > fine, and /sys/kernel/debug/devices_deferred is empty.
+> >
+> > Somehow it seems like the GPIO is being parsed as a dependency for the
+> > serial port, even though the serial port + GPIO are both dependencies
+> > for the bluetooth device.
+> 
+> I'm fairly sure that fw_devlink isn't causing that. Because even
+> without bluetooth, fw_devlink doesn't consider any suppliers listed in
+> child DT nodes as mandatory suppliers. That has been the case since
+> the beginning.
 
-  * Add "reg" properties to the sub-nodes.
+Ok, I just got confused with the 6.1 message about the device link and
+thought that might be the rough area.
 
-  * Remove "syscon" from our system-controller nodes and instead use "simple-bus".
-    Which more accurately describes what these regions are, and prevents issues like
-    having a regmap over gaps (as these system-controller have gaps in between the
-    sub device memory regions)
+> > Even with that, given both are built-in I
+> > don't understand why the serial port never completes setup.
+> 
+> My guess is that the driver itself has some bug that's sensitive to
+> device probe order even though it shouldn't.
+> 
+> Can you add #define DEBUG 1 to the top of drivers/base/core.c and
+> share the boot log? I can try and help debug it.
 
-We would still have to add simple compatibles for the efuse and pcie mode/id regions,
-but that is much more correct than hiding them in the device's node like done in patch
-1/7 of this series.
+Thanks for any input you're able to provide. dmesg from 6.3 with a
+failure to complete the probe:
 
-Andrew
+https://the.earth.li/~noodles/chip-bluetooth/6.3-not-working
 
->   		reg = <0x0 0x40f00000 0x0 0x20000>;
->   		#address-cells = <1>;
->   		#size-cells = <1>;
+and just for completeness, without the device-wake-gpios line:
+
+https://the.earth.li/~noodles/chip-bluetooth/6.3-working
+
+J.
+
+-- 
+Most people are descended from apes. Redheads are descended from cats.
