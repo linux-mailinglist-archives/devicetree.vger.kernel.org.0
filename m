@@ -2,214 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AFE766ED59D
-	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 21:54:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 819326ED5BE
+	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 22:00:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232801AbjDXTyf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Apr 2023 15:54:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54206 "EHLO
+        id S230343AbjDXT76 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Apr 2023 15:59:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232270AbjDXTyb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 15:54:31 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C20465FD8;
-        Mon, 24 Apr 2023 12:54:29 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33OJs312101536;
-        Mon, 24 Apr 2023 14:54:03 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1682366043;
-        bh=xN8GscHHJ6cRjz/NyB+DfX33/HNoCFa7RseYHLEePrY=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=yoFBbz/XtgUBWBBLKz4uiWPGFH7RBu9dxfbpm51O8B6+dF+0B9N86LPvlCqUwrBlv
-         Ii/RZzEXy7ik2TR7vbe4nfBCVHGox2NpSWYSp9o4s6P8zYoZrZVi6XzcRnwbGq+MLR
-         6Dcp56yv09FLBxUiphXkJlAWA16I7WieAr4ST2TI=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33OJs3Sl095056
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 24 Apr 2023 14:54:03 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 24
- Apr 2023 14:54:02 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Mon, 24 Apr 2023 14:54:02 -0500
-Received: from a0498204.dal.design.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33OJs23J009344;
-        Mon, 24 Apr 2023 14:54:02 -0500
-From:   Judith Mendez <jm@ti.com>
-To:     Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, <linux-can@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Schuyler Patton <spatton@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>,
-        Oliver Hartkopp <socketcan@hartkopp.net>
-Subject: [PATCH v2 4/4] DO_NOT_MERGE arm64: dts: ti: Enable MCU MCANs for AM62x
-Date:   Mon, 24 Apr 2023 14:54:02 -0500
-Message-ID: <20230424195402.516-5-jm@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230424195402.516-1-jm@ti.com>
-References: <20230424195402.516-1-jm@ti.com>
+        with ESMTP id S232815AbjDXT7u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 15:59:50 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 826D71AE;
+        Mon, 24 Apr 2023 12:59:49 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-94ef8b88a5bso714412266b.2;
+        Mon, 24 Apr 2023 12:59:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1682366388; x=1684958388;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SfzbbQMKtZ6pNWHjqROvt8NUNsppjtk4tv5OODMyIJQ=;
+        b=rTft6vgnkDSyz11Uvhnevn/YDIAU0GNs5euOC8JLM/KYzoNiDApKthdHmaUvz9BYOj
+         xjrLTeZrD7hVLY01DEPuSgavi14k0HVbyB/SYnNSQAfaPb0NqWaSxglQqIcrPjcNb8VY
+         XAWsuPM+M//iF6Ibj0Ab7BYMKVxyrdPJQiVDByeF2RD8upD4YP3lVkRQbr61PuwYda+o
+         NzW3zbFHOGeYAu14u3i15YkUYhLXRI0f98VIooPqiaqs1eMI73EFkPq08rx5s2HEUFfv
+         vryrrB02q9kxRO941q165OfJAvD7oJTFavksSzLSrmwDuZZBZBtIKwMfAgNxa+VYBJtd
+         D2Yw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682366388; x=1684958388;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=SfzbbQMKtZ6pNWHjqROvt8NUNsppjtk4tv5OODMyIJQ=;
+        b=GBfY2uL7pQmTnKIrLCLXbl4877y2rr34a8cTexNfvU6ko94kYJU3EVxE059/XPhH3W
+         3b1vyQ9jki98pDd2PF0misliY7ZRznRnM3P5N2Pi4CU3gIT4+vaaZJWC5RPCeLUV7+NV
+         0iOREwQzf5MDy5krMQjsjkev1ITZ4Ief76Cngffbed2tXZmHVS2LkiReVo1ShIRbu5Fn
+         9WKx5R9L9fW2kDtUxqRpXbzbFOl5m9naEy3rWVWRiyrZIkHq/tnzLSrt3qi1aNKreyp6
+         fwzTVRHqSIl2kL4oGyl2gkzrK1QFpTopqO+MUoJqcnRrEbit1s7I4Yg3yXsivOUopOHW
+         xiqA==
+X-Gm-Message-State: AAQBX9f/yeqZ2sM2a8hHFYIqmAdd+ZInL9CdRaCzvbvGrjRif4xt+Wbu
+        fB6b2Le8leS3hiYzaHN1MGg=
+X-Google-Smtp-Source: AKy350bQP7cOQA5rf30OAirCb9kcsxaBObwGZVtLing0vHj1EMwP+frcY/0IBsTkTmS0nPvA55ppNQ==
+X-Received: by 2002:a17:906:3391:b0:939:e870:2b37 with SMTP id v17-20020a170906339100b00939e8702b37mr10544328eja.70.1682366387914;
+        Mon, 24 Apr 2023 12:59:47 -0700 (PDT)
+Received: from jernej-laptop.localnet (82-149-1-233.dynamic.telemach.net. [82.149.1.233])
+        by smtp.gmail.com with ESMTPSA id hy12-20020a1709068a6c00b0094f09cd4658sm5956355ejc.71.2023.04.24.12.59.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Apr 2023 12:59:47 -0700 (PDT)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Samuel Holland <samuel@sholland.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] arm64: dts: allwinner: a64: add missing cache properties
+Date:   Mon, 24 Apr 2023 21:59:46 +0200
+Message-ID: <2676764.mvXUDI8C0e@jernej-laptop>
+In-Reply-To: <20230421223137.115015-1-krzysztof.kozlowski@linaro.org>
+References: <20230421223137.115015-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On AM62x there are no hardware interrupts routed to A53 GIC
-interrupt controller for MCU MCAN IPs, so MCU MCANs were not
-added to the MCU dtsi. In this patch series an hrtimer is introduced
-to MCAN driver to generate software interrupts. Now add MCU MCAN
-nodes to the MCU dtsi but disable the MCAN devices by default.
+Dne sobota, 22. april 2023 ob 00:31:37 CEST je Krzysztof Kozlowski napisal(a):
+> As all level 2 and level 3 caches are unified, add required
+> cache-unified property to fix warnings like:
+> 
+>   sun50i-a64-pine64-lts.dtb: l2-cache: 'cache-unified' is a required
+> property
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
 
-AM62x does not carry on-board CAN transceivers, so instead of
-changing DTB permanently use an overlay to enable MCU MCANs and to
-add CAN transceiver nodes.
+Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-If there is no hardware interrupt and timer method is used, remove
-interrupt properties and add poll-interval to enable the hrtimer
-per MCAN node.
+Best regards,
+Jernej
 
-Signed-off-by: Judith Mendez <jm@ti.com>
----
-Changelog:
-v2:
-	1. Add poll-interval in MCU MCAN nodes to enable timer polling mode
+> 
+> Please take the patch via sub-arch SoC tree.
+> ---
+>  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+> b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi index
+> 62f45f71ec65..a9c7f82c2c66 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+> @@ -93,6 +93,7 @@ cpu3: cpu@3 {
+>  		L2: l2-cache {
+>  			compatible = "cache";
+>  			cache-level = <2>;
+> +			cache-unified;
+>  		};
+>  	};
 
- arch/arm64/boot/dts/ti/Makefile               |  2 +-
- arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi       | 24 ++++++++
- .../boot/dts/ti/k3-am625-sk-mcan-mcu.dtso     | 57 +++++++++++++++++++
- 3 files changed, 82 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am625-sk-mcan-mcu.dtso
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index abe15e76b614..c76be3888e4d 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -9,7 +9,7 @@
- # alphabetically.
- 
- # Boards with AM62x SoC
--k3-am625-sk-mcan-dtbs := k3-am625-sk.dtb k3-am625-sk-mcan-main.dtbo
-+k3-am625-sk-mcan-dtbs := k3-am625-sk.dtb k3-am625-sk-mcan-main.dtbo k3-am625-sk-mcan-mcu.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am625-beagleplay.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am625-sk.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am625-sk-mcan.dtb
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
-index 076601a41e84..20462f457643 100644
---- a/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
-@@ -141,4 +141,28 @@
- 		/* Tightly coupled to M4F */
- 		status = "reserved";
- 	};
-+
-+	mcu_mcan1: can@4e00000 {
-+		compatible = "bosch,m_can";
-+		reg = <0x00 0x4e00000 0x00 0x8000>,
-+			  <0x00 0x4e08000 0x00 0x200>;
-+		reg-names = "message_ram", "m_can";
-+		power-domains = <&k3_pds 188 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 188 6>, <&k3_clks 188 1>;
-+		clock-names = "hclk", "cclk";
-+		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
-+		status = "disabled";
-+	};
-+
-+	mcu_mcan2: can@4e10000 {
-+		compatible = "bosch,m_can";
-+		reg = <0x00 0x4e10000 0x00 0x8000>,
-+			  <0x00 0x4e18000 0x00 0x200>;
-+		reg-names = "message_ram", "m_can";
-+		power-domains = <&k3_pds 189 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 189 6>, <&k3_clks 189 1>;
-+		clock-names = "hclk", "cclk";
-+		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
-+		status = "disabled";
-+	};
- };
-diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk-mcan-mcu.dtso b/arch/arm64/boot/dts/ti/k3-am625-sk-mcan-mcu.dtso
-new file mode 100644
-index 000000000000..5145b3de4f9b
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am625-sk-mcan-mcu.dtso
-@@ -0,0 +1,57 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/**
-+ * DT overlay for MCAN in MCU domain on AM625 SK
-+ *
-+ * Copyright (C) 2022 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include "k3-pinctrl.h"
-+
-+&{/} {
-+	transceiver2: can-phy1 {
-+		compatible = "ti,tcan1042";
-+		#phy-cells = <0>;
-+		max-bitrate = <5000000>;
-+	};
-+
-+	transceiver3: can-phy2 {
-+		compatible = "ti,tcan1042";
-+		#phy-cells = <0>;
-+		max-bitrate = <5000000>;
-+	};
-+};
-+
-+&mcu_pmx0 {
-+	mcu_mcan1_pins_default: mcu-mcan1-pins-default {
-+		pinctrl-single,pins = <
-+			AM62X_IOPAD(0x038, PIN_INPUT, 0) /* (B3) MCU_MCAN0_RX */
-+			AM62X_IOPAD(0x034, PIN_OUTPUT, 0) /* (D6) MCU_MCAN0_TX */
-+		>;
-+	};
-+
-+	mcu_mcan2_pins_default: mcu-mcan2-pins-default {
-+		pinctrl-single,pins = <
-+			AM62X_IOPAD(0x040, PIN_INPUT, 0) /* (D4) MCU_MCAN1_RX */
-+			AM62X_IOPAD(0x03C, PIN_OUTPUT, 0) /* (E5) MCU_MCAN1_TX */
-+		>;
-+	};
-+};
-+
-+&mcu_mcan1 {
-+	poll-interval;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcu_mcan1_pins_default>;
-+	phys = <&transceiver2>;
-+	status = "okay";
-+};
-+
-+&mcu_mcan2 {
-+	poll-interval;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcu_mcan2_pins_default>;
-+	phys = <&transceiver3>;
-+	status = "okay";
-+};
--- 
-2.17.1
+
 
