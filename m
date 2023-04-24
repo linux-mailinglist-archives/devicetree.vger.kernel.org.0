@@ -2,147 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECBA46ED028
-	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 16:18:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2ABCF6ED064
+	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 16:37:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231472AbjDXOSL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Apr 2023 10:18:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51176 "EHLO
+        id S231438AbjDXOhi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Apr 2023 10:37:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229929AbjDXOSK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 10:18:10 -0400
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2CE81AD;
-        Mon, 24 Apr 2023 07:18:08 -0700 (PDT)
-Received: by mail-pl1-x635.google.com with SMTP id d9443c01a7336-1a677dffb37so39330155ad.2;
-        Mon, 24 Apr 2023 07:18:08 -0700 (PDT)
+        with ESMTP id S229907AbjDXOhh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 10:37:37 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CA2B6582
+        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 07:37:35 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-94f6c285d92so824857866b.3
+        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 07:37:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682345888; x=1684937888;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wgz6pGktHqeuQ4Y4H5L+AJiXl1aqMQ4y3UGquhQlAig=;
-        b=Ty53eIAt1IHobjrfSfk6qmCuv/xmbaA+p/YqcxwpbTAc7dCv2X4Jt3DcrocevC/79O
-         p/Uy1z2cnOjwlNOmVpJyXpj+lEOTuNSpICa3SObATJN5VybRkUCoZr+udJa1VDeqGsMB
-         l7TPKHTFsoxKA8MzCei8cL0X+4N86NrxGZ0pB52HVghOZfhYS0t0VWHzQsl9A1LPXVVw
-         AEhPYQ5Zf2f4QVYzfa/xd9dRMyc3FbRKvfUAQfo0w+6jwjKEmNsKFzeAc5Ug+N+WO1uz
-         B8JygVYjN7UOZdHajiZIJu03dcuGqrGm89nkgwwEwbUVaxQxufQzAEZvsQ5xMYxuXgFW
-         z6Zw==
+        d=linaro.org; s=google; t=1682347054; x=1684939054;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=cKF0Q2cCHsYATyTnjEGCFebP5yuIhL32CPd8lwpuJSs=;
+        b=vhi4CLtiTD+Xbkr2y/t/18rdTuCOkl/jSE+P9W7hMLsnmWULhH3CFBmxskufvA1qPN
+         9uI80bLXCszZ3i7j6f8v8knHXwvSI+EOQx5t9Kqiz5bXQCELgt/kT7qXalwJNTki0SMy
+         n8pbiXoATiPSXNpYt/0J58tjJBEGF09o2m84Ga0+mqdtbo8a++zMQZCphUE/+uL3gv/Q
+         UoyYki5+pqsrLmd2ZPBpyt+TCQOBt8cMZCxrSuLaLkK+jhCnd4luS6MDZE1QqH7a/6Wn
+         ZLvaz0DmgwcvABYm0iMgYLr93ZDEafKT3ugWap2QfPU8C+BRKjXljihPGpDAsCELUYgh
+         CKDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682345888; x=1684937888;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wgz6pGktHqeuQ4Y4H5L+AJiXl1aqMQ4y3UGquhQlAig=;
-        b=Nb2HmW0MSYfWt1Us7ucHPyP1nrV/UNg7EIg+TEg6FK/k69Je0tbz1TZzEx9WPmy9Cm
-         2lvN5vM/YRR6E1Vy4AIPbqXd4u03s56qNRg2zl2EBN805hpjKwwDIdsFgaF4Lxu3Qoa/
-         CdRZCrjxx4qNB2jnKBkXvvyzUm4HZ0yaGC0Ez8nZqIj41TZQ7NMf9jkBlJ0bwlCDq5wE
-         c+YWHv+rjSAymL++l/DtI5oykrtgJYRrlOd00g6TawKegpD2f13BfwzGdynQH5WuSTeU
-         QUaw18OHQ69bS863/weYT6ebxUjItgebt4pzMJmI2k2qDW3VGNVOTtaUnlmUxmsQecnf
-         cytw==
-X-Gm-Message-State: AAQBX9cLnYhFmc2wLqXD2QxkaZHMg3COTO6McO+li0yszk//tTO1lhob
-        7/Vhaah25+eCy33sHCjuRWM=
-X-Google-Smtp-Source: AKy350YRFnPX7pHvHtaSTxI87RqGj1EAdgRzXvQnqI87j56IDGmzabDHr8vRW+W4Fub/VfgBsg5+8g==
-X-Received: by 2002:a17:903:4093:b0:1a4:f295:32fa with SMTP id z19-20020a170903409300b001a4f29532famr11784339plc.15.1682345888127;
-        Mon, 24 Apr 2023 07:18:08 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id k11-20020a170902694b00b0019309be03e7sm6663563plt.66.2023.04.24.07.18.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Apr 2023 07:18:07 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Mon, 24 Apr 2023 07:18:06 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Nikita Shubin <nikita.shubin@maquefel.me>
-Cc:     Arnd Bergmann <arnd@kernel.org>, Linus Walleij <linusw@kernel.org>,
-        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 09/43] dt-bindings: watchdog: add DT bindings for Cirrus
- EP93x
-Message-ID: <7353ae3d-baf1-4f7f-9d87-ae322aa37338@roeck-us.net>
-References: <20230424123522.18302-1-nikita.shubin@maquefel.me>
- <20230424123522.18302-10-nikita.shubin@maquefel.me>
- <b39724a8-5e29-411e-9deb-29dd37609372@roeck-us.net>
+        d=1e100.net; s=20221208; t=1682347054; x=1684939054;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cKF0Q2cCHsYATyTnjEGCFebP5yuIhL32CPd8lwpuJSs=;
+        b=kYTGpbMznVdZfSQWOX3qkJlNmmn/vbPAW4Oh3TzUDa/YDo2E/9WIOrRvJa6LS/62f3
+         GCw7cAqn6YYe+zVPSSSKpZ2Sga2Qk9HqiBzT9+42Wkkt9ttwFeoocA1paDqIGQryF8oK
+         PhsKn+6AgL+6piP+PiPDl2NWAhfuroEcjuqyaAJJCCF9UdKwLibWemOnEYyjhnPQneMd
+         vewe3RLEMsAtx90b/RfrVn9DnS0fXK5yP11IbGlIj8Oj8YED4AwG2LrHG2pXGABZGJdX
+         dbf+bgJaF+nhcjepoG6fVXSuIWBU56DpPg/7U7M18Fyzn3aMtghFHK92HSFZqoqUHm/2
+         uNYg==
+X-Gm-Message-State: AAQBX9eii1gTJd2yPd92YGBiTF0ldVNL2cPF7S4qjeayyrTlbkSBfhpe
+        ULeEM4szeyDP4fbwLKp3rxGUng==
+X-Google-Smtp-Source: AKy350b5Vvu3r4BolsJSQlKVvbia6hcsiR/aOZX/ur298uTB2CJnH168NiqJrn9YFBzu5hZCe1RViA==
+X-Received: by 2002:a17:906:1345:b0:94e:61d3:d13b with SMTP id x5-20020a170906134500b0094e61d3d13bmr10027267ejb.75.1682347054153;
+        Mon, 24 Apr 2023 07:37:34 -0700 (PDT)
+Received: from [10.105.146.163] ([88.128.92.195])
+        by smtp.gmail.com with ESMTPSA id bh20-20020a170906a0d400b0094fbb76f49esm5685415ejb.17.2023.04.24.07.37.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Apr 2023 07:37:33 -0700 (PDT)
+Message-ID: <bc6c0012-d7f0-c8f5-bafb-71b05db7a501@linaro.org>
+Date:   Mon, 24 Apr 2023 16:37:32 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b39724a8-5e29-411e-9deb-29dd37609372@roeck-us.net>
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH RESEND v3 0/3] Add support for ESM
+Content-Language: en-US
+To:     Neha Malcom Francis <n-francis@ti.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        jdelvare@suse.com, linux@roeck-us.net, linux-hwmon@vger.kernel.org
+Cc:     nm@ti.com, vigneshr@ti.com, u-kumar1@ti.com, kristo@kernel.org
+References: <20230424105011.70674-1-n-francis@ti.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230424105011.70674-1-n-francis@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 24, 2023 at 07:16:16AM -0700, Guenter Roeck wrote:
-> On Mon, Apr 24, 2023 at 03:34:25PM +0300, Nikita Shubin wrote:
-> > This adds device tree bindings for the Cirrus Logic EP93xx
-> > watchdog block used in these SoCs.
-> > 
-> > Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
-> > ---
-> >  .../bindings/watchdog/cirrus,ep93xx-wdt.yaml  | 38 +++++++++++++++++++
-> >  1 file changed, 38 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/watchdog/cirrus,ep93xx-wdt.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/watchdog/cirrus,ep93xx-wdt.yaml b/Documentation/devicetree/bindings/watchdog/cirrus,ep93xx-wdt.yaml
-> > new file mode 100644
-> > index 000000000000..f39d6b14062d
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/watchdog/cirrus,ep93xx-wdt.yaml
-> > @@ -0,0 +1,38 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/watchdog/cirrus,ep93xx-wdt.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Cirrus Logic EP93xx Watchdog Timer
-> > +
-> > +maintainers:
-> > +  - Wim Van Sebroeck <wim@linux-watchdog.org>
-> > +
-> > +description:
-> > +  Watchdog driver for Cirrus Logic EP93xx family of devices.
-> > +
-> > +allOf:
-> > +  - $ref: "watchdog.yaml#"
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - cirrus,ep9301-wdt
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
-> > +additionalProperties: false
-> 
-> The driver does support reading the timeout from devicetree.
-> It might make sense to mention that here.
-> 
-Never mind - I guess that is includeds in watchdog.yaml.
-Sorry for the noise.
+On 24/04/2023 12:50, Neha Malcom Francis wrote:
+> Resending as no major changes, commit subject change only.
 
-> > +
-> > +examples:
-> > +  - |
-> > +    wdt0: watchdog@80940000 {
-> > +        compatible = "cirrus,ep9301-wdt";
-> > +        reg = <0x80940000 0x08>;
-> > +    };
-> > +
-> > -- 
-> > 2.39.2
-> > 
+That's a new version. Keep changelog - for some reason it disappeared.
+> 
+
+Best regards,
+Krzysztof
+
