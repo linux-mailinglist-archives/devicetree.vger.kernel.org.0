@@ -2,69 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D56136ED0B9
-	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 16:53:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D46766ED0C3
+	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 16:57:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231405AbjDXOxf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Apr 2023 10:53:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44148 "EHLO
+        id S231766AbjDXO5D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Apr 2023 10:57:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231228AbjDXOxe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 10:53:34 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A7B26580;
-        Mon, 24 Apr 2023 07:53:28 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id EF98C613E9;
-        Mon, 24 Apr 2023 14:53:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B466DC433EF;
-        Mon, 24 Apr 2023 14:53:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1682348007;
-        bh=9CwJJUrhNP6wOsORyqwvzaE9qMKm02sq+6yuG+Ev91U=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=TBFPs1eWvgDreKyP2z4H6q2ZZgTj7aEde/gln69W0CfM1jNYwm2ZOwXv2yaa6XSZL
-         ztShbHl41Mc4mpHTmfQu2bddwtSgvi5v4WdqtnWbnTo0ps12xIf1Xcdpe4Yq6mxI2U
-         Yn+El8B1UF43LNtRukJgvLHEi9vqyaGHCHbS9mR2UbwCoT9TBC50+0et1CttRAW/3V
-         xeYYEAoBZd3upWJ/U4xW5tiDzxA18r2RFlLxw1yew0gVPMBJ/LwAGhU2ZQcRQWCG1k
-         hb2WvoqBSq/pfAfIRHr5Fb9NdhMvH/52K3owwrVA78IjFCjAnpzm3H02CBPH5duf2c
-         L+osQEwIwu17Q==
-Message-ID: <3f2baded-c5d6-7d94-00f3-6d8fb24262c4@kernel.org>
-Date:   Mon, 24 Apr 2023 17:53:19 +0300
+        with ESMTP id S231293AbjDXO5A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 10:57:00 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A55ED30E5;
+        Mon, 24 Apr 2023 07:56:59 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-504eac2f0b2so7833984a12.3;
+        Mon, 24 Apr 2023 07:56:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1682348218; x=1684940218;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=TyC3Am9x5MDVCnozv7oRC741HUNVYU534Al0Yoe0eTc=;
+        b=IIPTUf5IBUBU+Edya4d4mMv5fiLcs2rvu6zqLp9FGrq7ekNjKOLsialN5g5YCi7iaW
+         GnBXBGOXMXv9ltzpNUfXrp1uII7kbw/K79oIQHHvv8swu5gQRo7ZtbIt658QY1doi6iH
+         AzWU2/3ltjC/lZgMN+KplAU2Kg+IMos8XGzfNx2oNyacC+orYuJ24VXEa+U+T3KAiVp0
+         inkAZyS1niNOmGKFY1ccfqDu8ALNIrGx9Ba6lK0QrlBF6WUm5pQP1vu791nGg7WONFgI
+         bK0lpYgaE9Va73Pn7JfQcjGjjuCtAn9LgCBXpQAy0pk+/GnK6/JDSKtDAll17IX1lgQG
+         eO6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682348218; x=1684940218;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TyC3Am9x5MDVCnozv7oRC741HUNVYU534Al0Yoe0eTc=;
+        b=ioLbKia7b4sL1QI5qbu0pTQvb0vgBjpn7vgRhGXjJp5feCYK0DXLNaGd45y/GURMzj
+         ZcDCvPED6qSplmr21wAIRN+/MlyHJjeCtuS7A9LBTpQd9giW7BB7j5/a1MsomFrFXpQk
+         Ws6vHq2nPoYIFLxfbeOXR/0xT40wnPYPu12YLCNuG+Zm+BvX7eNae6JzS6LcQchp1EdL
+         OcNhw2e8FWHvEjvTzv84eBzytw5iqbHhxKmNRIMW/V5dzQG55RUyUuO9WR88XNEQnqK0
+         na/J8knkXYjmcd/z7O3mABcUgMdphH49aVk3L9sVjZKtVdke+tSiTVd+IKrjFs/xVx+f
+         aRxQ==
+X-Gm-Message-State: AAQBX9eqU0tZ/jr8Kzs1kjLwChCGgujXlvodBVnNZcz2CYLSwAK1aCp7
+        55YtBO2l8q6fLn5N5ZOahh4=
+X-Google-Smtp-Source: AKy350a/LImqzZ6R1/1wrYIpJ7JiPYKyuWkBcDJnveIXXJw7GmdTiya9frX0wCcxKxk1BCOyxIdfmw==
+X-Received: by 2002:aa7:c902:0:b0:506:c20c:6de8 with SMTP id b2-20020aa7c902000000b00506c20c6de8mr11983389edt.17.1682348218038;
+        Mon, 24 Apr 2023 07:56:58 -0700 (PDT)
+Received: from carbian ([2a02:8109:aa3f:ead8::5908])
+        by smtp.gmail.com with ESMTPSA id p19-20020a05640210d300b005067d089aafsm4698705edu.11.2023.04.24.07.56.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Apr 2023 07:56:57 -0700 (PDT)
+Date:   Mon, 24 Apr 2023 16:56:55 +0200
+From:   Mehdi Djait <mehdi.djait.k@gmail.com>
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     kernel test robot <lkp@intel.com>, jic23@kernel.org,
+        mazziesaccount@gmail.com, oe-kbuild-all@lists.linux.dev,
+        krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 5/5] iio: accel: Add support for Kionix/ROHM
+ KX132-1211 accelerometer
+Message-ID: <ZEaYt3XTzuXrmFxd@carbian>
+References: <cef09595632a40eff8a0864fea2e0eb6653930a5.1682019544.git.mehdi.djait.k@gmail.com>
+ <202304220729.FCofPRvH-lkp@intel.com>
+ <ZEQGqFLIyxm5XENQ@smile.fi.intel.com>
+ <ZEWbmSuJqWJWf0aD@carbian>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v5 7/7] riscv: dts: starfive: Add USB dts configuration
- for JH7110
-Content-Language: en-US
-To:     Minda Chen <minda.chen@starfivetech.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Conor Dooley <conor@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Pawel Laszczak <pawell@cadence.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Peter Chen <peter.chen@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, linux-usb@vger.kernel.org,
-        linux-riscv@lists.infradead.org,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Mason Huo <mason.huo@starfivetech.com>
-References: <20230420110052.3182-1-minda.chen@starfivetech.com>
- <20230420110052.3182-8-minda.chen@starfivetech.com>
-From:   Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20230420110052.3182-8-minda.chen@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZEWbmSuJqWJWf0aD@carbian>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,133 +76,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello again,
 
-
-On 20/04/2023 14:00, Minda Chen wrote:
-> Add USB wrapper layer and Cadence USB3 controller dts
-> configuration for StarFive JH7110 SoC and VisionFive2
-> Board.
-> USB controller connect to PHY, The PHY dts configuration
-> are also added.
+On Sun, Apr 23, 2023 at 10:57:00PM +0200, Mehdi Djait wrote:
+> Hello Andy,
 > 
-> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
-> ---
->  .../jh7110-starfive-visionfive-2.dtsi         |  7 +++
->  arch/riscv/boot/dts/starfive/jh7110.dtsi      | 44 +++++++++++++++++++
->  2 files changed, 51 insertions(+)
+> thank you for the review.
 > 
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> index 1155b97b593d..fa97ebfd93ad 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> @@ -221,3 +221,10 @@
->  	pinctrl-0 = <&uart0_pins>;
->  	status = "okay";
->  };
-> +
-> +&usb0 {
-> +	phys = <&usbphy0>;
-> +	phy-names = "usb2";
-> +	dr_mode = "peripheral";
-> +	status = "okay";
-> +};
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> index 29cd798b6732..eee395e19cdb 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> @@ -366,6 +366,50 @@
->  			status = "disabled";
->  		};
->  
-> +		usb0: usb@10100000 {
-> +			compatible = "starfive,jh7110-usb";
-> +			reg = <0x0 0x10100000 0x0 0x10000>,
-> +			      <0x0 0x10110000 0x0 0x10000>,
-> +			      <0x0 0x10120000 0x0 0x10000>;
-> +			reg-names = "otg", "xhci", "dev";
-> +			interrupts = <100>, <108>, <110>;
-> +			interrupt-names = "host", "peripheral", "otg";
-> +			clocks = <&stgcrg JH7110_STGCLK_USB0_LPM>,
-> +				 <&stgcrg JH7110_STGCLK_USB0_STB>,
-> +				 <&stgcrg JH7110_STGCLK_USB0_APB>,
-> +				 <&stgcrg JH7110_STGCLK_USB0_AXI>,
-> +				 <&stgcrg JH7110_STGCLK_USB0_UTMI_APB>;
-> +			clock-names = "lpm", "stb", "apb", "axi", "utmi_apb";
-> +			resets = <&stgcrg JH7110_STGRST_USB0_PWRUP>,
-> +				 <&stgcrg JH7110_STGRST_USB0_APB>,
-> +				 <&stgcrg JH7110_STGRST_USB0_AXI>,
-> +				 <&stgcrg JH7110_STGRST_USB0_UTMI_APB>;
-> +			reset-names = "pwrup", "apb", "axi", "utmi_apb";
+> On Sat, Apr 22, 2023 at 07:09:12PM +0300, Andy Shevchenko wrote:
+> > On Sat, Apr 22, 2023 at 07:19:44AM +0800, kernel test robot wrote:
+> > > Hi Mehdi,
+> > > 
+> > > kernel test robot noticed the following build warnings:
+> > 
+> > I believe it's not just a warning, it's a full functional error in the code.
+> > 
+> > >    686	{
+> > >    687		struct device *dev = regmap_get_device(data->regmap);
+> > >    688		__le16 buf_status;
+> > >    689		int ret, fifo_bytes;
+> > >    690	
+> > >    691		ret = regmap_bulk_read(data->regmap, data->chip_info->buf_status1,
+> > >    692				       &buf_status, sizeof(buf_status));
+> > >    693		if (ret) {
+> > >    694			dev_err(dev, "Error reading buffer status\n");
+> > >    695			return ret;
+> > >    696		}
+> > >    697	
+> > >  > 698		buf_status &= data->chip_info->buf_smp_lvl_mask;
+> > >    699		fifo_bytes = le16_to_cpu(buf_status);
+> > 
+> > You need to mask in the same endianess space, i.o.w. either on CPU or device side.
+> > 
+> > I believe you wanted to have fifo_bytes to be masked, but I'm not sure.
+> 
+> I wanted to read the registers buf_status_1 and buf_status_2 --> 16 bits
+> and mask the result of the read to get the bits 0..9 which is the
+> buf_status: the number of bytes in the buffer
+> 
+> This is due to my lack of experience, but I have a question:
+> If I don't get any warnings when testing, how should I go about this ? I
+> will obviously fix this, but this is for the future.
 
-All this can really be "cdns,usb3" node. The cdns,usb3 driver should
-do reset and clocks init as it is generic.
-
-> +			starfive,stg-syscon = <&stg_syscon 0x4>;
-> +			status = "disabled";
-
-Only the syscon handling looks starfive specific so only that handling
-should be done in starfive USB driver.
-
-This node should look like this
-
+just ignore this question. I installed sparse and I am using it now when
+building. 
  
-	starfive-usb@4 {
-		compatible = "starfive,jh7110-usb";
-		starfive,stg-syscon = <&stg_syscon 0x4>;
-
-		usb0: usb@10100000 {
-			compatible = "cdns,usb3";
-			reg = <0x0 0x10100000 0x0 0x10000>,
-			      <0x0 0x10110000 0x0 0x10000>,
-			      <0x0 0x10120000 0x0 0x10000>;
-			reg-names = "otg", "xhci", "dev";
-			interrupts = <100>, <108>, <110>;
-			interrupt-names = "host", "peripheral", "otg";
-			clocks = <&stgcrg JH7110_STGCLK_USB0_LPM>,
-				 <&stgcrg JH7110_STGCLK_USB0_STB>,
-				 <&stgcrg JH7110_STGCLK_USB0_APB>,
-				 <&stgcrg JH7110_STGCLK_USB0_AXI>,
-				 <&stgcrg JH7110_STGCLK_USB0_UTMI_APB>;
-			clock-names = "lpm", "stb", "apb", "axi", "utmi_apb";
-			resets = <&stgcrg JH7110_STGRST_USB0_PWRUP>,
-				 <&stgcrg JH7110_STGRST_USB0_APB>,
-				 <&stgcrg JH7110_STGRST_USB0_AXI>,
-				 <&stgcrg JH7110_STGRST_USB0_UTMI_APB>;
-			reset-names = "pwrup", "apb", "axi", "utmi_apb";
-			starfive,stg-syscon = <&stg_syscon 0x4>;
-			status = "disabled";
-		};
-	}
-
-In starfife-usb driver you can use of_platform_default_populate()
-to create the cdns,usb3 child for you.
-
-> +		};
-> +
-> +		usbphy0: phy@10200000 {
-> +			compatible = "starfive,jh7110-usb-phy";
-> +			reg = <0x0 0x10200000 0x0 0x10000>;
-> +			clocks = <&syscrg JH7110_SYSCLK_USB_125M>,
-> +				 <&stgcrg JH7110_STGCLK_USB0_APP_125>;
-> +			clock-names = "125m", "app_125m";
-> +			#phy-cells = <0>;
-> +		};
-> +
-> +		pciephy0: phy@10210000 {
-> +			compatible = "starfive,jh7110-pcie-phy";
-> +			reg = <0x0 0x10210000 0x0 0x10000>;
-> +			#phy-cells = <0>;
-> +		};
-> +
-> +		pciephy1: phy@10220000 {
-> +			compatible = "starfive,jh7110-pcie-phy";
-> +			reg = <0x0 0x10220000 0x0 0x10000>;
-> +			#phy-cells = <0>;
-> +		};
-> +
->  		stgcrg: clock-controller@10230000 {
->  			compatible = "starfive,jh7110-stgcrg";
->  			reg = <0x0 0x10230000 0x0 0x10000>;
-
-cheers,
--roger
+--
+Kind Regards
+Mehdi Djait
