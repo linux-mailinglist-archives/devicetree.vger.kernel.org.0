@@ -2,185 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 071786ED608
-	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 22:17:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA8A96ED6AC
+	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 23:19:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229872AbjDXURa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Apr 2023 16:17:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39816 "EHLO
+        id S232503AbjDXVTH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Apr 2023 17:19:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229798AbjDXURa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 16:17:30 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 115DC4EDE
-        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 13:17:29 -0700 (PDT)
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1pr2cX-0001Uq-2a; Mon, 24 Apr 2023 22:17:09 +0200
-Received: from pengutronix.de (unknown [172.20.34.65])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 263201B6632;
-        Mon, 24 Apr 2023 20:17:07 +0000 (UTC)
-Date:   Mon, 24 Apr 2023 22:17:06 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Judith Mendez <jm@ti.com>
-Cc:     Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, linux-can@vger.kernel.org,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Schuyler Patton <spatton@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Oliver Hartkopp <socketcan@hartkopp.net>
-Subject: Re: [PATCH v2 2/4] dt-bindings: net: can: Add poll-interval for MCAN
-Message-ID: <20230424-pessimist-stability-0b86683e469e-mkl@pengutronix.de>
-References: <20230424195402.516-1-jm@ti.com>
- <20230424195402.516-3-jm@ti.com>
+        with ESMTP id S231276AbjDXVTG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 17:19:06 -0400
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 911A855A8;
+        Mon, 24 Apr 2023 14:19:05 -0700 (PDT)
+Received: by mail-yb1-xb2f.google.com with SMTP id 3f1490d57ef6-b995f13cb89so3853081276.2;
+        Mon, 24 Apr 2023 14:19:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1682371145; x=1684963145;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8ELNYGHZIHKIFqJnEo8rrxCvQcGZL8aQd25lTdSNpTU=;
+        b=WI1XsKYMpgoFidFg4IhkX3e7yhAD7vjHTBtPnW2dFXLaRH0nNpnghSEw5/otikrx8T
+         hmY0Ty0T6EnnQ8G/InQB0UUTwbsnO0RnnwZwir5BMQtxj0wcIndwKMJGhJX5US5qQ89r
+         DvI66B6LVvdHu7pKMbiuZfcbCfIUufQ1TjzxqQfB8ybEfByWvL1gzFqTQgF1uURlOAN6
+         zFb5PkwiTJi4KLuiAOF6J6gfquGxErPE0y30MTrNcxS6hztoSqia14YX0zcn6HxroEvG
+         KkdeoxqJP3m9y/KsOmLunn+brG+SGkhYrLClxoLb54KITdHIp/Bj/5A71br/IQcSXrmK
+         5W7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682371145; x=1684963145;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8ELNYGHZIHKIFqJnEo8rrxCvQcGZL8aQd25lTdSNpTU=;
+        b=klOo+XQpsdJKpCTW/mPx+QpHVufk05RaSynupWZ/kuDzJWrZKQ9xeMCgfFJInzkCPR
+         0wa3JertD3K3TpKJCIgo/sCwb62ZxiHCfNcUKvNsrRzs5wB8QrKV4K7aV5ue7CsalNgb
+         YVBKrlyzt/enuUNwSYchB83dh/G3v4TSCoq7AkOC56JcY6b/b9i178xT7vhleVuXrqaM
+         rO2y9k00EqVdr1zZV2i08xRMwxlUSwXO1T7OlCDWNuyPCD6F3SHMoUuAtIsDRB5MIlLA
+         iYLxZoqzK4Ulw0q55pBynk137QCLlSCL88h5Rzcsh2VUvriiZauYWuducEw43bapE0CU
+         CYFw==
+X-Gm-Message-State: AAQBX9fmdh0S4ITYFaGZCH7hOiuhakogxR4aBWx+gTQXbiNs/Ewvn4xA
+        RNsc4vX0OW/kN+N3/1Hk99j9QoeQNqUFIqqvsVg=
+X-Google-Smtp-Source: AKy350bIutNAx2s3uim7XhIGk4I/A1SpruAMfqxCi3BtHANN2gnfUfyRu2mDo2WKaDgILlZ4O/PjnkSdWyuqzRO1kL8=
+X-Received: by 2002:a25:ccd6:0:b0:b95:72cf:8c80 with SMTP id
+ l205-20020a25ccd6000000b00b9572cf8c80mr12196588ybf.51.1682371144597; Mon, 24
+ Apr 2023 14:19:04 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="4nll47yvmo6txgb2"
-Content-Disposition: inline
-In-Reply-To: <20230424195402.516-3-jm@ti.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <1681863018-28006-1-git-send-email-justinpopo6@gmail.com>
+ <1681863018-28006-4-git-send-email-justinpopo6@gmail.com> <03dadae3-3a89-cdb0-7cd1-591d62735836@gmail.com>
+ <932bb2c6-71ce-525f-fbb2-a0a742ee8e12@gmail.com>
+In-Reply-To: <932bb2c6-71ce-525f-fbb2-a0a742ee8e12@gmail.com>
+From:   Justin Chen <justinpopo6@gmail.com>
+Date:   Mon, 24 Apr 2023 14:18:53 -0700
+Message-ID: <CAJx26kXf0QOvOPRG+nPpJ2rfNcuX68oqejbzOG4awe6feTvMyg@mail.gmail.com>
+Subject: Re: [PATCH net-next 3/6] net: bcmasp: Add support for ASP2.0 Ethernet controller
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linaro-mm-sig@lists.linaro.org,
+        bcm-kernel-feedback-list@broadcom.com, justin.chen@broadcom.com,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, opendmb@gmail.com,
+        andrew@lunn.ch, linux@armlinux.org.uk, richardcochran@gmail.com,
+        sumit.semwal@linaro.org, christian.koenig@amd.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Apr 19, 2023 at 9:33=E2=80=AFAM Florian Fainelli <f.fainelli@gmail.=
+com> wrote:
+>
+> On 4/18/23 23:35, Heiner Kallweit wrote:
+> > On 19.04.2023 02:10, Justin Chen wrote:
+> >> Add support for the Broadcom ASP 2.0 Ethernet controller which is firs=
+t
+> >> introduced with 72165. This controller features two distinct Ethernet
+> >> ports that can be independently operated.
+> >>
+> >> This patch supports:
+> [snip]
+> >> +    intf->tx_spb_index =3D spb_index;
+> >> +    intf->tx_spb_dma_valid =3D valid;
+> >> +    bcmasp_intf_tx_write(intf, intf->tx_spb_dma_valid);
+> >> +
+> >> +    if (tx_spb_ring_full(intf, MAX_SKB_FRAGS + 1))
+> >> +            netif_stop_queue(dev);
+> >> +
+> >
+> > Here it may be better to use the new macros from include/net/netdev_que=
+ues.h.
+> > It seems your code (together with the related part in tx_poll) doesn't =
+consider
+> > the queue restart case.
+> > In addition you should check whether using READ_ONCE()/WRITE_ONCE() is =
+needed,
+> > e.g. in ring_full().
+>
+> Thanks Heiner. Can you trim the parts you are not quoting otherwise one
+> has to scroll all the way down to where you responded. Thanks!
+> --
+> Florian
+>
 
---4nll47yvmo6txgb2
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hello Heiner,
 
-On 24.04.2023 14:54:00, Judith Mendez wrote:
-> On AM62x SoC, MCANs on MCU domain do not have hardware interrupt
-> routed to A53 Linux, instead they will use software interrupt by
-> hrtimer. To enable timer method, interrupts should be optional so
-> remove interrupts property from required section and introduce
-> poll-interval property.
->=20
-> Signed-off-by: Judith Mendez <jm@ti.com>
+The implementation is a locked single queue xmit. Not sure how
+netdev_queues.h fits into the picture here. I believe I am handling
+the queue restart here.
++static int bcmasp_tx_poll(struct napi_struct *napi, int budget)
++{
+[snip]
++ if (released)
++ netif_wake_queue(intf->ndev);
++
++ return 0;
++}
+Let me know if I am misunderstanding the feedback here.
 
-The bindings update should go in before the patch.
-
-> ---
-> Changelog:
-> v2:
->   1. Add poll-interval property to enable timer polling method
->   2. Add example using poll-interval property
->  =20
->  .../bindings/net/can/bosch,m_can.yaml         | 26 ++++++++++++++++---
->  1 file changed, 23 insertions(+), 3 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml b=
-/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
-> index 67879aab623b..1c64c7a0c3df 100644
-> --- a/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
-> +++ b/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
-> @@ -40,6 +40,10 @@ properties:
->        - const: int1
->      minItems: 1
-> =20
-> +  poll-interval:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description: Poll interval time in milliseconds.
-                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-That's not what the code does.
-
-> +
->    clocks:
->      items:
->        - description: peripheral clock
-> @@ -122,15 +126,13 @@ required:
->    - compatible
->    - reg
->    - reg-names
-> -  - interrupts
-> -  - interrupt-names
->    - clocks
->    - clock-names
->    - bosch,mram-cfg
-
-Is it possible to specify that you either need "interrupts" and
-"interrupt-names" or "poll-interval"?
-
-> =20
->  additionalProperties: false
-> =20
-> -examples:
-> +example with interrupts:
->    - |
->      #include <dt-bindings/clock/imx6sx-clock.h>
->      can@20e8000 {
-> @@ -149,4 +151,22 @@ examples:
->        };
->      };
-> =20
-> +example with timer polling:
-> +  - |
-> +    #include <dt-bindings/clock/imx6sx-clock.h>
-> +    can@20e8000 {
-> +      compatible =3D "bosch,m_can";
-> +      reg =3D <0x020e8000 0x4000>, <0x02298000 0x4000>;
-> +      reg-names =3D "m_can", "message_ram";
-> +      poll-interval;
-> +      clocks =3D <&clks IMX6SX_CLK_CANFD>,
-> +               <&clks IMX6SX_CLK_CANFD>;
-> +      clock-names =3D "hclk", "cclk";
-> +      bosch,mram-cfg =3D <0x0 0 0 32 0 0 0 1>;
-> +
-> +      can-transceiver {
-> +        max-bitrate =3D <5000000>;
-> +      };
-> +    };
-> +
->  ...
-> --=20
-> 2.17.1
->=20
->=20
-
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---4nll47yvmo6txgb2
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmRG478ACgkQvlAcSiqK
-BOh3iQgAhiH/Oo1tJ2SG+P1STaBF17i+tU9zbvB8eHpMdMUAM9LG9a04Mxe67Mi/
-Wn93/J3l4VZvFt/Xv9Jn7zGbh8mraj2xhrtrsIjjjDsmuvEHMy2nDSEduZ162hfg
-aMYku2xpo0znEwL4sZT9egnDgwI55t770t4kLIjGhrojc3//QH7pxDsXNl+oczIl
-82RV/kJd5eWGHDW/zxIS9lq7jevPt6x05lAXe1jINL5uLgzmcyJf3q8h/1znOlH9
-KJo6rhQ7pyM8z3rqkNz+Ro3HB5O92QHAI4uGpHqR5Y4CJ5pozk+3SRg1Vbiq6tdc
-VVGxrT4kHRnjlx+yCDnW1vwAYMgL4g==
-=lyyE
------END PGP SIGNATURE-----
-
---4nll47yvmo6txgb2--
+Thanks,
+Justin
