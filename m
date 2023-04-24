@@ -2,51 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 921026ED5C8
-	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 22:03:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 461926ED600
+	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 22:15:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232262AbjDXUDI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Apr 2023 16:03:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33734 "EHLO
+        id S232108AbjDXUP1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Apr 2023 16:15:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232253AbjDXUDH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 16:03:07 -0400
+        with ESMTP id S229798AbjDXUP0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 16:15:26 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7496E1
-        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 13:03:06 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C26BCAB
+        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 13:15:24 -0700 (PDT)
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
-        (envelope-from <pza@pengutronix.de>)
-        id 1pr2Ol-0008E0-El; Mon, 24 Apr 2023 22:02:55 +0200
-Received: from pza by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <pza@pengutronix.de>)
-        id 1pr2Oj-0004R7-Ph; Mon, 24 Apr 2023 22:02:53 +0200
-Date:   Mon, 24 Apr 2023 22:02:53 +0200
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Jacky Huang <ychuang570808@gmail.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        lee@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        gregkh@linuxfoundation.org, jirislaby@kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        arnd@arndb.de, schung@nuvoton.com, mjchen@nuvoton.com,
-        Jacky Huang <ychuang3@nuvoton.com>
-Subject: Re: [PATCH v6 10/12] reset: Add Nuvoton ma35d1 reset driver support
-Message-ID: <20230424200253.GC30248@pengutronix.de>
-References: <20230328021912.177301-1-ychuang570808@gmail.com>
- <20230328021912.177301-11-ychuang570808@gmail.com>
+        (envelope-from <mkl@pengutronix.de>)
+        id 1pr2aS-00019X-Ix; Mon, 24 Apr 2023 22:15:00 +0200
+Received: from pengutronix.de (unknown [172.20.34.65])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id AF43F1B662C;
+        Mon, 24 Apr 2023 20:14:54 +0000 (UTC)
+Date:   Mon, 24 Apr 2023 22:14:53 +0200
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     Judith Mendez <jm@ti.com>
+Cc:     Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, linux-can@vger.kernel.org,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Schuyler Patton <spatton@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Oliver Hartkopp <socketcan@hartkopp.net>
+Subject: Re: [PATCH v2 1/4] can: m_can: Add hrtimer to generate software
+ interrupt
+Message-ID: <20230424-canon-primal-ece722b184d4-mkl@pengutronix.de>
+References: <20230424195402.516-1-jm@ti.com>
+ <20230424195402.516-2-jm@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="gzyhhear7eocopqn"
 Content-Disposition: inline
-In-Reply-To: <20230328021912.177301-11-ychuang570808@gmail.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: pza@pengutronix.de
+In-Reply-To: <20230424195402.516-2-jm@ti.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
+X-SA-Exim-Mail-From: mkl@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
@@ -58,86 +66,252 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jacky,
 
-On Tue, Mar 28, 2023 at 02:19:10AM +0000, Jacky Huang wrote:
-> From: Jacky Huang <ychuang3@nuvoton.com>
-> 
-> This driver supports individual IP reset for ma35d1. The reset
-> control registers is a subset of system control registers.
-> 
-> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
+--gzyhhear7eocopqn
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On 24.04.2023 14:53:59, Judith Mendez wrote:
+> Add an hrtimer to MCAN class device. Each MCAN will have its own
+> hrtimer instantiated if there is no hardware interrupt found and
+> poll-interval property is defined in device tree M_CAN node.
+>=20
+> The hrtimer will generate a software interrupt every 1 ms. In
+> hrtimer callback, we check if there is a transaction pending by
+> reading a register, then process by calling the isr if there is.
+>=20
+> Signed-off-by: Judith Mendez <jm@ti.com>
 > ---
->  drivers/reset/Kconfig        |   6 ++
->  drivers/reset/Makefile       |   1 +
->  drivers/reset/reset-ma35d1.c | 152 +++++++++++++++++++++++++++++++++++
->  3 files changed, 159 insertions(+)
->  create mode 100644 drivers/reset/reset-ma35d1.c
-> 
-[...]
-> diff --git a/drivers/reset/reset-ma35d1.c b/drivers/reset/reset-ma35d1.c
-> new file mode 100644
-> index 000000000000..221299e7b873
-> --- /dev/null
-> +++ b/drivers/reset/reset-ma35d1.c
-> @@ -0,0 +1,152 @@
-[...]
-> +static int ma35d1_reset_update(struct reset_controller_dev *rcdev,
-> +			       unsigned long id, bool assert)
-> +{
-> +	unsigned int reg;
-> +	int ret;
-> +	int offset = (id / RST_PRE_REG) * 4;
-> +	struct ma35d1_reset_data *data =
-> +			container_of(rcdev, struct ma35d1_reset_data, rcdev);
-> +
-> +	ret = regmap_read(data->regmap, REG_SYS_IPRST0 + offset, &reg);
-> +	if (ret < 0)
-> +		return ret;
-> +	if (assert)
-> +		reg |= 1 << (id % RST_PRE_REG);
-> +	else
-> +		reg &= ~(1 << (id % RST_PRE_REG));
-> +
-> +	return regmap_write(data->regmap, REG_SYS_IPRST0 + offset, reg);
+> Changelog:
+> v2:
+> 	1. Add poll-interval to MCAN class device to check if poll-interval prop=
+ery is
+> 	present in MCAN node, this enables timer polling method.
+> 	2. Add 'polling' flag to MCAN class device to check if a device is using=
+ timer
+> 	polling method
+> 	3. Check if both timer polling and hardware interrupt are enabled for a =
+MCAN
+> 	device, default to hardware interrupt mode if both are enabled.
+> 	4. Changed ms_to_ktime() to ns_to_ktime()
+> 	5. Removed newlines, tabs, and restructure if/else section.
+>=20
+>  drivers/net/can/m_can/m_can.c          | 30 ++++++++++++++++++++-----
+>  drivers/net/can/m_can/m_can.h          |  5 +++++
+>  drivers/net/can/m_can/m_can_platform.c | 31 ++++++++++++++++++++++++--
+>  3 files changed, 59 insertions(+), 7 deletions(-)
+>=20
+> diff --git a/drivers/net/can/m_can/m_can.c b/drivers/net/can/m_can/m_can.c
+> index a5003435802b..33e094f88da1 100644
+> --- a/drivers/net/can/m_can/m_can.c
+> +++ b/drivers/net/can/m_can/m_can.c
+> @@ -23,6 +23,7 @@
+>  #include <linux/pinctrl/consumer.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/pm_runtime.h>
+> +#include <linux/hrtimer.h>
 
-This should use regmap_update_bits().
+keep the list of includes sorted
 
-[...]
-> +static int ma35d1_reset_status(struct reset_controller_dev *rcdev,
-> +			      unsigned long id)
-> +{
-> +	int reg, ret;
-> +	int offset = id / RST_PRE_REG;
-
-Should this be
-
-	int offset = (id / RST_PRE_REG) * 4;
-
-?
-
-> +static int ma35d1_reset_probe(struct platform_device *pdev)
-> +{
-> +	int err;
-> +	struct device *dev = &pdev->dev;
-> +	struct device_node *parent;
-> +	struct ma35d1_reset_data *reset_data;
-> +	struct ma35d1_reboot_data *reboot_data;
-> +
-> +	if (!pdev->dev.of_node) {
-> +		dev_err(&pdev->dev, "Device tree node not found\n");
-> +		return -EINVAL;
+> =20
+>  #include "m_can.h"
+> =20
+> @@ -1587,6 +1588,11 @@ static int m_can_close(struct net_device *dev)
+>  	if (!cdev->is_peripheral)
+>  		napi_disable(&cdev->napi);
+> =20
+> +	if (cdev->polling) {
+> +		dev_dbg(cdev->dev, "Disabling the hrtimer\n");
+> +		hrtimer_cancel(&cdev->hrtimer);
 > +	}
 > +
-> +	reset_data = devm_kzalloc(dev, sizeof(*reset_data), GFP_KERNEL);
-> +	if (!reset_data)
-> +		return -ENOMEM;
+>  	m_can_stop(dev);
+>  	m_can_clk_stop(cdev);
+>  	free_irq(dev->irq, dev);
+> @@ -1793,6 +1799,18 @@ static netdev_tx_t m_can_start_xmit(struct sk_buff=
+ *skb,
+>  	return NETDEV_TX_OK;
+>  }
+> =20
+> +enum hrtimer_restart hrtimer_callback(struct hrtimer *timer)
+> +{
+> +	struct m_can_classdev *cdev =3D
+> +		container_of(timer, struct m_can_classdev, hrtimer);
 > +
-> +	reboot_data = devm_kzalloc(dev, sizeof(*reboot_data), GFP_KERNEL);
-> +	if (!reboot_data)
-> +		return -ENOMEM;
+> +	m_can_isr(0, cdev->net);
+> +
+> +	hrtimer_forward_now(timer, ms_to_ktime(1));
 
-These structures could be combined into one.
+Please create a define for this
 
-regards
-Philipp
+> +
+> +	return HRTIMER_RESTART;
+> +}
+> +
+>  static int m_can_open(struct net_device *dev)
+>  {
+>  	struct m_can_classdev *cdev =3D netdev_priv(dev);
+> @@ -1827,13 +1845,15 @@ static int m_can_open(struct net_device *dev)
+>  		}
+> =20
+>  		INIT_WORK(&cdev->tx_work, m_can_tx_work_queue);
+> -
+>  		err =3D request_threaded_irq(dev->irq, NULL, m_can_isr,
+> -					   IRQF_ONESHOT,
+> -					   dev->name, dev);
+> -	} else {
+> -		err =3D request_irq(dev->irq, m_can_isr, IRQF_SHARED, dev->name,
+> +					   IRQF_ONESHOT, dev->name, dev);
+> +	} else if (!cdev->polling) {
+> +			err =3D request_irq(dev->irq, m_can_isr, IRQF_SHARED, dev->name,
+>  				  dev);
+
+No need to change the indention
+
+> +	} else {
+> +		dev_dbg(cdev->dev, "Start hrtimer\n");
+> +		cdev->hrtimer.function =3D &hrtimer_callback;
+> +		hrtimer_start(&cdev->hrtimer, ms_to_ktime(cdev->poll_interval), HRTIME=
+R_MODE_REL_PINNED);
+>  	}
+> =20
+>  	if (err < 0) {
+> diff --git a/drivers/net/can/m_can/m_can.h b/drivers/net/can/m_can/m_can.h
+> index a839dc71dc9b..1ba87eb23f8e 100644
+> --- a/drivers/net/can/m_can/m_can.h
+> +++ b/drivers/net/can/m_can/m_can.h
+> @@ -28,6 +28,7 @@
+>  #include <linux/pm_runtime.h>
+>  #include <linux/slab.h>
+>  #include <linux/uaccess.h>
+> +#include <linux/hrtimer.h>
+
+keep the list of includes sorted
+
+> =20
+>  /* m_can lec values */
+>  enum m_can_lec_type {
+> @@ -93,6 +94,10 @@ struct m_can_classdev {
+>  	int is_peripheral;
+> =20
+>  	struct mram_cfg mcfg[MRAM_CFG_NUM];
+> +
+> +	struct hrtimer hrtimer;
+> +	u32 poll_interval;
+> +	u8 polling;
+
+bool
+
+>  };
+> =20
+>  struct m_can_classdev *m_can_class_allocate_dev(struct device *dev, int =
+sizeof_priv);
+> diff --git a/drivers/net/can/m_can/m_can_platform.c b/drivers/net/can/m_c=
+an/m_can_platform.c
+> index 9c1dcf838006..e899c04edc01 100644
+> --- a/drivers/net/can/m_can/m_can_platform.c
+> +++ b/drivers/net/can/m_can/m_can_platform.c
+> @@ -7,6 +7,7 @@
+> =20
+>  #include <linux/phy/phy.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/hrtimer.h>
+> =20
+>  #include "m_can.h"
+> =20
+> @@ -97,11 +98,37 @@ static int m_can_plat_probe(struct platform_device *p=
+dev)
+> =20
+>  	addr =3D devm_platform_ioremap_resource_byname(pdev, "m_can");
+>  	irq =3D platform_get_irq_byname(pdev, "int0");
+
+use platform_get_irq_byname_optional(), it doesn't print an error
+message.
+
+> -	if (IS_ERR(addr) || irq < 0) {
+> -		ret =3D -EINVAL;
+> +	if (irq =3D=3D -EPROBE_DEFER) {
+> +		ret =3D -EPROBE_DEFER;
+>  		goto probe_fail;
+>  	}
+> =20
+> +	if (IS_ERR(addr)) {
+> +		ret =3D PTR_ERR(addr);
+> +		goto probe_fail;
+> +	}
+
+please move the error check for "addr" directly after the "addr =3D "
+assignment.
+
+> +
+> +	mcan_class->polling =3D 0;
+
+No need to init as "0"
+
+> +	if (device_property_present(mcan_class->dev, "poll-interval")) {
+> +		mcan_class->polling =3D 1;
+> +	}
+
+No need for the { } here.
+
+> +
+> +	if (!mcan_class->polling && irq < 0) {
+> +		ret =3D -ENODATA;
+-ENXIO
+> +		dev_dbg(mcan_class->dev, "Polling not enabled\n");
+
+print a proper error message using dev_err_probe("IRQ %s not found and
+polling not activated\n")
+
+> +		goto probe_fail;
+> +	}
+> +
+> +	if (mcan_class->polling && irq > 0) {
+> +		mcan_class->polling =3D 0;
+> +		dev_dbg(mcan_class->dev, "Polling not enabled, hardware interrupt exis=
+ts\n");
+> +	}
+> +
+> +	if (mcan_class->polling && irq < 0) {
+> +		dev_dbg(mcan_class->dev, "Polling enabled, initialize hrtimer");
+> +		hrtimer_init(&mcan_class->hrtimer, CLOCK_MONOTONIC, HRTIMER_MODE_REL_P=
+INNED);
+> +	}
+
+combine both if (mcan_class->polling) into one.
+
+> +
+>  	/* message ram could be shared */
+>  	res =3D platform_get_resource_byname(pdev, IORESOURCE_MEM, "message_ram=
+");
+>  	if (!res) {
+> --=20
+> 2.17.1
+>=20
+>=20
+
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--gzyhhear7eocopqn
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmRG4zoACgkQvlAcSiqK
+BOilJQf/VuO4TbAJn3uvF6rlMhtngv3OcHQd3ea4G/HmeGBpR74du9qfRRvQDofD
+Q9cmIgxMCC8Iw4UsRbWWgF4044zOOKhO2J9EsCnAEA2qce1n4FwyrBFxVKG6AFCE
+9mbdbLDgxaevO6oMZlfj2ztGLPcg7MjAJFxkV6GBxZ250S+fy7felidJ7VbYVD/3
+QOTb2lS2oTL++qNgTrN5jasRjwAR3b1W6Pm58CyRcviAZv0sfZ6qqOdm0sFhkuzr
+Oya9y76BTSORjyzRVDzsyKk4cD0Mrw58TppNVEH43vY+x/qKUyf6bQRjm1Dsxvkz
+ygLUMeJNMrXajkr9F/LLchFYWA2Ryw==
+=wS/Z
+-----END PGP SIGNATURE-----
+
+--gzyhhear7eocopqn--
