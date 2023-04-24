@@ -2,131 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 57A586EC6DC
-	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 09:19:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FB856EC6F4
+	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 09:22:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229658AbjDXHTb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Apr 2023 03:19:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41852 "EHLO
+        id S229458AbjDXHWY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Apr 2023 03:22:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229547AbjDXHTa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 03:19:30 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BC56A0;
-        Mon, 24 Apr 2023 00:19:29 -0700 (PDT)
-Received: from [IPV6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2] (unknown [IPv6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id C9B2A6603230;
-        Mon, 24 Apr 2023 08:19:27 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1682320768;
-        bh=y2Zd2mcukyD5xgMKFFTPfcFPwvNeasLimenGu+uA/Bo=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=FbvwbiGw60azOUiU1kTbXJHXAXuV05mA6I3vJ7dRUYev2CdCIpTgKaYSjvOiyGvrq
-         5DYVyhRCZUu2UvkC4imr198sHrFU81/DUXdXYW1P/x8r9UWEvdSNIlB5QK4KtTmZDv
-         gDH6ib5uJZS+HVKRWfLCzMJvOHDSzkkgnc+Sh1pdxs0vLl7ikPYKjP2CRJRLlRHvif
-         sYqOQ2+775SJOVbCTmeqWIiYgwv1lynzqZNfmeNg8VgoGrFqLS34EFh5dKkSei945H
-         uQhDAUGJ+L5MW7gbxpddNxyhVSBWQgjLTuCUIIynjAuZJm2GR8aN6jE8d7N+UVLDeO
-         wYAoK7oNTqX2A==
-Message-ID: <8a3c0e35-b581-3405-ea2d-f8f8d9e432d9@collabora.com>
-Date:   Mon, 24 Apr 2023 09:19:25 +0200
+        with ESMTP id S230516AbjDXHWW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 03:22:22 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D70C2D5D
+        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 00:21:50 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-506b8c6bbdbso5988770a12.1
+        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 00:21:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1682320907; x=1684912907;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Ww2Rb2ZYTNoPsDX72jxf82dsZ3zHW1B7HQ9wKwSxxmQ=;
+        b=HjDUL90x3Q25a2KB+D2nRqlChkDveT7RSsZN/F2dg0/rdnkoUWq7tKRoayXsnI2eX/
+         l6ck3ka/VNV+nEVOgn69gy06ITf83qM7y0MQ0xSbzkZrCsb94chgNHKYhRKVnjUuj91w
+         DR5vjB2FBsibOlPMkeoSsOCJ/5sTsppXWdRwnZHokufihQZdnyKoWVco8B75k3/V2pog
+         ng54svibGcWyJPtF3DbESCuibaDhNBUf1szeSbhfvxG+rs7K0rudWpYoxJkeJK5Za36u
+         wl47h8v7jGs/qxVWeeg+QHIRU6zHguhAa7yDa3F3cuaoHrkeqA7vQ+ovFR73zsR8xM0N
+         sl5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682320907; x=1684912907;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ww2Rb2ZYTNoPsDX72jxf82dsZ3zHW1B7HQ9wKwSxxmQ=;
+        b=CTnlMcAmqYLKkWSQudkvWxbWXdiGR2VU32+3Nn679wdd4YDWB49kHDgBmTYO/woHpB
+         edNnzW3/3piflW60WOQI8QU9pNzhKOkLNtrM+Hn14EzuFvKCcCw+mt6TrwgalsoZHoaZ
+         8KA0HDqfJk5kKa+9JgOkeyylbOhmB+9tewtBNpaaCck9o+87GCJrYdWlmxHfVYOmEso6
+         a96lvuwyTOtifMNBtZdzjf2fbDnQnYxkNZnbrDOKggQo3lhBN+h9x5sUiBkHQwBjTVk3
+         dGb9HZk4nktTPM/7+sdMWfsPuM+1X5MzblQGlT9d2asgn1Lc14xPPrDKhWtoazlfVY2V
+         stWw==
+X-Gm-Message-State: AAQBX9epKJ/Si4RhySPGfyAx/4JRdW5hOYFDla43FLxInmmDyurrdceA
+        HKQPg4fi6FUoe6XS0l+TGn5OwQ==
+X-Google-Smtp-Source: AKy350aUJyBwBhZmp9D9e3H/8ISMoktPB0uAxONtS4tlF5F4Zu71qTXhfJNl3i+dxjGKZh3z2HDZ4g==
+X-Received: by 2002:a05:6402:12c5:b0:504:80d8:a034 with SMTP id k5-20020a05640212c500b0050480d8a034mr9436284edx.40.1682320907691;
+        Mon, 24 Apr 2023 00:21:47 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:fcdb:bf53:d053:3a52? ([2a02:810d:15c0:828:fcdb:bf53:d053:3a52])
+        by smtp.gmail.com with ESMTPSA id c13-20020aa7c74d000000b00501d39f1d2dsm4398166eds.41.2023.04.24.00.21.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Apr 2023 00:21:47 -0700 (PDT)
+Message-ID: <abd106b1-6650-6a7c-1c8b-3609e47b0161@linaro.org>
+Date:   Mon, 24 Apr 2023 09:21:45 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH 2/5] arm64: dts: mediatek: cherry: Assign dp-intf aliases
+Subject: Re: [PATCH v3 2/4] arm64: dts: qcom: sa8155p-adp: Make -cells decimal
 Content-Language: en-US
-To:     Chen-Yu Tsai <wenst@chromium.org>
-Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, kernel@collabora.com
-References: <20230420094433.42794-1-angelogioacchino.delregno@collabora.com>
- <20230420094433.42794-3-angelogioacchino.delregno@collabora.com>
- <CAGXv+5EtCdpXtq6q2Cv+QAZPUE6yJiSZhngSc0sftz-_uDrZXw@mail.gmail.com>
- <0a0917f9-756f-6926-8ede-2b087cb0b716@collabora.com>
- <CAGXv+5FMEphksTSLAy8=hDPGjC364dxD4_9qmw6aV4en-2d3ig@mail.gmail.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <CAGXv+5FMEphksTSLAy8=hDPGjC364dxD4_9qmw6aV4en-2d3ig@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+To:     Andrew Halaney <ahalaney@redhat.com>, linux-kernel@vger.kernel.org
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230421205512.339850-1-ahalaney@redhat.com>
+ <20230421205512.339850-2-ahalaney@redhat.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230421205512.339850-2-ahalaney@redhat.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 24/04/23 09:17, Chen-Yu Tsai ha scritto:
-> On Mon, Apr 24, 2023 at 3:03 PM AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com> wrote:
->>
->> Il 21/04/23 08:46, Chen-Yu Tsai ha scritto:
->>> On Thu, Apr 20, 2023 at 5:45 PM AngeloGioacchino Del Regno
->>> <angelogioacchino.delregno@collabora.com> wrote:
->>>>
->>>> On Cherry boards, the IP at 0x1c015000 (dp_intf0) is used as primary
->>>> dp-intf, while the other at 0x1c113000 (dp_intf1) is used as secondary:
->>>> assign them to dp-intf{0,1} aliases respectively.
->>>>
->>>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->>>> ---
->>>>    arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi | 2 ++
->>>
->>> This should be applied at the SoC level. The display pipeline is fixed in
->>> MMSYS, so it applies to all MT8195 devices.
->>>
->>
->> It's fixed in the MMSYS configuration/driver but - as far as I remember (I can
->> recheck on the datasheets) - the dp_intfX function can be inverted meaning that
->> the MMSYS paths can be configured such that DP_INTF0 becomes secondary and the
->> other becomes primary: this is why I am putting that into mt8195-cherry and not
->> mt8195.dtsi.
+On 21/04/2023 22:55, Andrew Halaney wrote:
+> The property logically makes sense in decimal, and is the standard used
+> elsewhere.
 > 
-> Maybe that's possible, but the diagram in the datasheet suggests a fixed path.
+> Suggested-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
+> ---
 > 
-> Either way, it's not actually the problem. My original reply is probably
-> inaccurate. AFAIK the aliases are used to identify the individual hardware
-> blocks, which otherwise have the same compatible string. So the numbering
-> should be the same regardless of the design and/or routing.
+> Changes since v2:
+>     * Collect tags
+> Changes since v1:
+>     * New patch (Konrad)
 
-Ack. Will move to mt8195.dtsi!
+Doing such changes per one board will be a lot of churn...
 
-> 
-> Ideally this should be described with a proper graph though.
-> 
-> ChenYu
-> 
->>
->> Regards,
->> Angelo
->>
->>>>    1 file changed, 2 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
->>>> index 0820e9ba3829..918380697a9a 100644
->>>> --- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
->>>> +++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
->>>> @@ -10,6 +10,8 @@
->>>>
->>>>    / {
->>>>           aliases {
->>>> +               dp-intf0 = &dp_intf0;
->>>> +               dp-intf1 = &dp_intf1;
->>>>                   i2c0 = &i2c0;
->>>>                   i2c1 = &i2c1;
->>>>                   i2c2 = &i2c2;
->>>> --
->>>> 2.40.0
->>>>
->>>>
->>>
->>
-
+Best regards,
+Krzysztof
 
