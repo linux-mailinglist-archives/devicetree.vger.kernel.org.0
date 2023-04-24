@@ -2,81 +2,312 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F6196ECAC8
-	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 12:58:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C4D96ECACB
+	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 12:59:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230476AbjDXK6j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Apr 2023 06:58:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42596 "EHLO
+        id S229522AbjDXK7a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Apr 2023 06:59:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229522AbjDXK6j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 06:58:39 -0400
-X-Greylist: delayed 331 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 24 Apr 2023 03:58:37 PDT
-Received: from mail.tkos.co.il (hours.tkos.co.il [84.110.109.230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FAA51FDE;
-        Mon, 24 Apr 2023 03:58:36 -0700 (PDT)
-Received: from tarshish.tkos.co.il (unknown [10.0.8.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.tkos.co.il (Postfix) with ESMTPS id 3D5F74407EC;
-        Mon, 24 Apr 2023 13:47:34 +0300 (IDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tkos.co.il;
-        s=default; t=1682333254;
-        bh=UOqpi3mb7I3QEpZ3fDvh/I/rUBrUC+KfYR4O0OfZLcM=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=WH12fBnYK3h78gBrX8/a8GA0FN0qFwHxKFmw1Tek9/OxaDf6AtRZzI7xHVnVGXt37
-         +KhK7A5Q2eksm4T44cQZfhBds6oCArvZyaB/0q+FarjfM8QiilTO97zdIzb/xOaNjB
-         3EiTjih+lHbT8KG6cZ7wg8YTAhTQDCDydOLvKvQ4sqD7ggCQfAh6N5RQ8J2xfZXKlk
-         zrXTXNVn5Zz1MJovSYax5Fs6hI6n30NuJd6AjJOjDP8rlxXTKglDgePWUMiHrvMPfR
-         G58x0G2WiGNEAjhDpqxExAeCiUudInkrnNeoHIN3pfidtVDOLVc8VC4QxnU0Kmd/yu
-         sCG0/EA11kJrw==
-From:   Baruch Siach <baruch@tkos.co.il>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Alex Shi <alexs@kernel.org>, Yanteng Si <siyanteng@loongson.cn>,
-        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-        Baruch Siach <baruch@tkos.co.il>
-Subject: [PATCH v2 2/2] docs: zh_CN/devicetree: sync usage-model fix
-Date:   Mon, 24 Apr 2023 13:52:54 +0300
-Message-Id: <b39560250cb58f8cdcfe95791ce5af7455c6e8e3.1682333574.git.baruch@tkos.co.il>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <9e137548c4e76e0d8deef6d49460cb37897934ca.1682333574.git.baruch@tkos.co.il>
-References: <9e137548c4e76e0d8deef6d49460cb37897934ca.1682333574.git.baruch@tkos.co.il>
+        with ESMTP id S229493AbjDXK73 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 06:59:29 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D956E211F;
+        Mon, 24 Apr 2023 03:59:26 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id F2BBD24DFED;
+        Mon, 24 Apr 2023 18:59:23 +0800 (CST)
+Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 24 Apr
+ 2023 18:59:23 +0800
+Received: from [192.168.125.108] (113.72.145.137) by EXMBX171.cuchost.com
+ (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 24 Apr
+ 2023 18:59:22 +0800
+Message-ID: <1f1497f9-b331-3fc6-d820-3089eb637f18@starfivetech.com>
+Date:   Mon, 24 Apr 2023 18:59:22 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v5 3/7] phy: starfive: Add JH7110 USB 2.0 PHY driver
+Content-Language: en-US
+To:     Roger Quadros <rogerq@kernel.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Conor Dooley <conor@kernel.org>,
+        "Vinod Koul" <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Pawel Laszczak <pawell@cadence.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Peter Chen <peter.chen@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <linux-usb@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        "Mason Huo" <mason.huo@starfivetech.com>
+References: <20230420110052.3182-1-minda.chen@starfivetech.com>
+ <20230420110052.3182-4-minda.chen@starfivetech.com>
+ <f9666a06-8087-f804-202a-dbb744011d3a@kernel.org>
+From:   Minda Chen <minda.chen@starfivetech.com>
+In-Reply-To: <f9666a06-8087-f804-202a-dbb744011d3a@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [113.72.145.137]
+X-ClientProxiedBy: EXCAS063.cuchost.com (172.16.6.23) To EXMBX171.cuchost.com
+ (172.16.6.91)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sync compatibly string fix from the English document.
 
-Signed-off-by: Baruch Siach <baruch@tkos.co.il>
----
-v2:
 
-  New separate patch for translation
----
- Documentation/translations/zh_CN/devicetree/usage-model.rst | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/Documentation/translations/zh_CN/devicetree/usage-model.rst b/Documentation/translations/zh_CN/devicetree/usage-model.rst
-index c6aee82c7e6e..19ba4ae0cd81 100644
---- a/Documentation/translations/zh_CN/devicetree/usage-model.rst
-+++ b/Documentation/translations/zh_CN/devicetree/usage-model.rst
-@@ -325,6 +325,6 @@ Primecell设备。然而，棘手的一点是，AMBA总线上的所有设备并
- 
- 当使用DT时，这给of_platform_populate()带来了问题，因为它必须决定是否将
- 每个节点注册为platform_device或amba_device。不幸的是，这使设备创建模型
--变得有点复杂，但解决方案原来并不是太具有侵略性。如果一个节点与“arm,amba-primecell”
-+变得有点复杂，但解决方案原来并不是太具有侵略性。如果一个节点与“arm,primecell”
- 兼容，那么of_platform_populate()将把它注册为amba_device而不是
- platform_device。
--- 
-2.39.2
-
+On 2023/4/24 16:46, Roger Quadros wrote:
+> Hi Minda,
+> 
+> On 20/04/2023 14:00, Minda Chen wrote:
+>> Add Starfive JH7110 SoC USB 2.0 PHY driver support.
+>> USB 2.0 PHY default connect to Cadence USB controller.
+>> 
+>> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+>> ---
+>>  MAINTAINERS                           |   6 +
+>>  drivers/phy/starfive/Kconfig          |  11 ++
+>>  drivers/phy/starfive/Makefile         |   1 +
+>>  drivers/phy/starfive/phy-jh7110-usb.c | 162 ++++++++++++++++++++++++++
+>>  4 files changed, 180 insertions(+)
+>>  create mode 100644 drivers/phy/starfive/phy-jh7110-usb.c
+>> 
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index 1aef5ba46d71..c09ea66dcd5a 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -19968,6 +19968,12 @@ M:	William Qiu <william.qiu@starfivetech.com>
+>>  S:	Supported
+>>  F:	Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
+>>  
+>> +STARFIVE JH71X0 USB PHY DRIVER
+>> +M:	Minda Chen <minda.chen@starfivetech.com>
+>> +S:	Supported
+>> +F:	Documentation/devicetree/bindings/phy/starfive,jh7110-usb-phy.yaml
+>> +F:	drivers/phy/starfive/phy-jh7110-usb.c
+>> +
+>>  STATIC BRANCH/CALL
+>>  M:	Peter Zijlstra <peterz@infradead.org>
+>>  M:	Josh Poimboeuf <jpoimboe@kernel.org>
+>> diff --git a/drivers/phy/starfive/Kconfig b/drivers/phy/starfive/Kconfig
+>> index f989b8ff8bcb..2c013c390dee 100644
+>> --- a/drivers/phy/starfive/Kconfig
+>> +++ b/drivers/phy/starfive/Kconfig
+>> @@ -11,3 +11,14 @@ config PHY_STARFIVE_DPHY_RX
+>>  	  Choose this option if you have a StarFive D-PHY in your
+>>  	  system. If M is selected, the module will be called
+>>  	  phy-starfive-dphy-rx.
+>> +
+>> +config PHY_STARFIVE_JH7110_USB
+>> +	tristate "Starfive JH7110 USB 2.0 PHY support"
+>> +	depends on USB_SUPPORT
+>> +	select GENERIC_PHY
+>> +	select USB_PHY
+>> +	help
+>> +	  Enable this to support the StarFive USB 2.0 PHY,
+>> +	  used with the Cadence USB controller.
+>> +	  If M is selected, the module will be called
+>> +	  phy-jh7110-usb.ko.
+>> diff --git a/drivers/phy/starfive/Makefile b/drivers/phy/starfive/Makefile
+>> index 7ec576cb30ae..176443852f4d 100644
+>> --- a/drivers/phy/starfive/Makefile
+>> +++ b/drivers/phy/starfive/Makefile
+>> @@ -1,2 +1,3 @@
+>>  # SPDX-License-Identifier: GPL-2.0
+>>  obj-$(CONFIG_PHY_STARFIVE_DPHY_RX)      += phy-starfive-dphy-rx.o
+>> +obj-$(CONFIG_PHY_STARFIVE_JH7110_USB)	+= phy-jh7110-usb.o
+>> diff --git a/drivers/phy/starfive/phy-jh7110-usb.c b/drivers/phy/starfive/phy-jh7110-usb.c
+>> new file mode 100644
+>> index 000000000000..4a12df0692cd
+>> --- /dev/null
+>> +++ b/drivers/phy/starfive/phy-jh7110-usb.c
+>> @@ -0,0 +1,162 @@
+>> +// SPDX-License-Identifier: GPL-2.0+
+>> +/*
+>> + * StarFive JH7110 USB 2.0 PHY driver
+>> + *
+>> + * Copyright (C) 2023 StarFive Technology Co., Ltd.
+>> + * Author: Minda Chen <minda.chen@starfivetech.com>
+>> + */
+>> +
+>> +#include <linux/bits.h>
+>> +#include <linux/clk.h>
+>> +#include <linux/err.h>
+>> +#include <linux/io.h>
+>> +#include <linux/module.h>
+>> +#include <linux/phy/phy.h>
+>> +#include <linux/platform_device.h>
+>> +#include <linux/usb/of.h>
+>> +
+>> +#define USB_125M_CLK_RATE		125000000
+>> +#define USB_LS_KEEPALIVE_OFF		0x4
+>> +#define USB_LS_KEEPALIVE_ENABLE		BIT(4)
+>> +
+>> +struct jh7110_usb2_phy {
+>> +	struct phy *phy;
+>> +	void __iomem *regs;
+>> +	struct clk *usb_125m_clk;
+>> +	struct clk *app_125m;
+>> +	enum phy_mode mode;
+>> +};
+>> +
+>> +static void jh7110_usb2_mode_set(struct jh7110_usb2_phy *phy)
+>> +{
+>> +	unsigned int val;
+>> +
+>> +	if (phy->mode != PHY_MODE_USB_HOST) {
+>> +		/* Enable the LS speed keep-alive signal */
+>> +		val = readl(phy->regs + USB_LS_KEEPALIVE_OFF);
+>> +		val |= USB_LS_KEEPALIVE_ENABLE;
+>> +		writel(val, phy->regs + USB_LS_KEEPALIVE_OFF);
+>> +	}
+>> +}
+>> +
+>> +static int jh7110_usb2_phy_set_mode(struct phy *_phy,
+>> +				    enum phy_mode mode, int submode)
+>> +{
+>> +	struct jh7110_usb2_phy *phy = phy_get_drvdata(_phy);
+>> +
+>> +	switch (mode) {
+>> +	case PHY_MODE_USB_HOST:
+>> +	case PHY_MODE_USB_DEVICE:
+>> +	case PHY_MODE_USB_OTG:
+>> +		break;
+>> +	default:
+>> +		return -EINVAL;
+>> +	}
+>> +
+>> +	if (mode != phy->mode) {
+>> +		dev_info(&_phy->dev, "Changing phy to %d\n", mode);
+> 
+> dev_dbg() please?
+> 
+ok, thanks
+>> +		phy->mode = mode;
+>> +		jh7110_usb2_mode_set(phy);
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int jh7110_usb2_phy_init(struct phy *_phy)
+>> +{
+>> +	struct jh7110_usb2_phy *phy = phy_get_drvdata(_phy);
+>> +	int ret;
+>> +
+>> +	ret = clk_set_rate(phy->usb_125m_clk, USB_125M_CLK_RATE);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ret = clk_prepare_enable(phy->app_125m);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int jh7110_usb2_phy_exit(struct phy *_phy)
+>> +{
+>> +	struct jh7110_usb2_phy *phy = phy_get_drvdata(_phy);
+>> +
+>> +	clk_disable_unprepare(phy->app_125m);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static const struct phy_ops jh7110_usb2_phy_ops = {
+>> +	.init		= jh7110_usb2_phy_init,
+>> +	.exit		= jh7110_usb2_phy_exit,
+>> +	.set_mode	= jh7110_usb2_phy_set_mode,
+>> +	.owner		= THIS_MODULE,
+>> +};
+>> +
+>> +static int jh7110_usb_phy_probe(struct platform_device *pdev)
+>> +{
+>> +	struct jh7110_usb2_phy *phy;
+>> +	struct device *dev = &pdev->dev;
+>> +	struct phy_provider *phy_provider;
+>> +
+>> +	phy = devm_kzalloc(dev, sizeof(*phy), GFP_KERNEL);
+>> +	if (!phy)
+>> +		return -ENOMEM;
+>> +
+>> +	phy->usb_125m_clk = devm_clk_get(dev, "125m");
+>> +	if (IS_ERR(phy->usb_125m_clk))
+>> +		return dev_err_probe(dev, PTR_ERR(phy->usb_125m_clk),
+>> +			"Failed to get 125m clock\n");
+>> +
+>> +	phy->app_125m = devm_clk_get(dev, "app_125m");
+>> +	if (IS_ERR(phy->app_125m))
+>> +		return dev_err_probe(dev, PTR_ERR(phy->app_125m),
+>> +			"Failed to get app 125m clock\n");
+>> +
+>> +	phy->regs = devm_platform_ioremap_resource(pdev, 0);
+>> +	if (IS_ERR(phy->regs))
+>> +		return dev_err_probe(dev, PTR_ERR(phy->regs),
+>> +			"Failed to map phy base\n");
+>> +
+>> +	phy->phy = devm_phy_create(dev, NULL, &jh7110_usb2_phy_ops);
+>> +	if (IS_ERR(phy->phy))
+>> +		return dev_err_probe(dev, PTR_ERR(phy->phy),
+>> +			"Failed to create phy\n");
+>> +
+>> +	platform_set_drvdata(pdev, phy);
+>> +	phy_set_drvdata(phy->phy, phy);
+>> +	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
+>> +
+>> +	return PTR_ERR_OR_ZERO(phy_provider);
+>> +}
+>> +
+>> +static int jh7110_usb_phy_remove(struct platform_device *pdev)
+>> +{
+>> +	struct jh7110_usb2_phy *phy = platform_get_drvdata(pdev);
+>> +
+>> +	clk_disable_unprepare(phy->app_125m);
+> 
+> Why do you need to do clk_disable here? You didn't enable it in probe.
+> 
+OK, Just disable clocks in phy exit
+>> +	platform_set_drvdata(pdev, NULL);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static const struct of_device_id jh7110_usb_phy_of_match[] = {
+>> +	{ .compatible = "starfive,jh7110-usb-phy" },
+>> +	{ /* sentinel */ },
+>> +};
+>> +MODULE_DEVICE_TABLE(of, jh7110_usb_phy_of_match);
+>> +
+>> +static struct platform_driver jh7110_usb_phy_driver = {
+>> +	.probe	= jh7110_usb_phy_probe,
+>> +	.remove	= jh7110_usb_phy_remove,
+>> +	.driver = {
+>> +		.of_match_table	= jh7110_usb_phy_of_match,
+>> +		.name  = "jh7110-usb-phy",
+>> +	}
+>> +};
+>> +module_platform_driver(jh7110_usb_phy_driver);
+>> +
+>> +MODULE_DESCRIPTION("StarFive JH7110 USB 2.0 PHY driver");
+>> +MODULE_AUTHOR("Minda Chen <minda.chen@starfivetech.com>");
+>> +MODULE_LICENSE("GPL");
+> 
+> cheers,
+> -roger
