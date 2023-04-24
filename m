@@ -2,203 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB0776ED2E3
-	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 18:53:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E27C86ED315
+	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 19:06:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231784AbjDXQxv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Apr 2023 12:53:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35360 "EHLO
+        id S231827AbjDXRGU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Apr 2023 13:06:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230500AbjDXQxu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 12:53:50 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41A061712;
-        Mon, 24 Apr 2023 09:53:49 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4ec816d64afso20195782e87.1;
-        Mon, 24 Apr 2023 09:53:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682355227; x=1684947227;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=4a2P0TUQ0mn+DpoMQpgGHoufc6HMZENvo2lrGhlperY=;
-        b=AMO41QCJ9wgDvxfnHevXOMLXc5fmHjxUDQW7Sq5BkbnA/YBKTmx9W1ba2Bq9aqCsOB
-         nh5grgU3i7+ybXGo9IbyMKeBOzfT+1D4GcQS/5aHukaSAdxyNxch2vVJuDuzt+30LIlw
-         fvPCgwBLJvshkBAxGXDG3cuniq/GDuqaPD3K5rntvzMAZbvcxcQpjvseaoI2hd1quFmQ
-         cyqRyZpD1TDGA++plkbhwGAVG63Ln+sCUnW7GqVp38ZRsb14cEUBy6J0wJN6hMxXM6fV
-         DgrJvAQb6x6R0QOEk4yKHr/ZqjZywySSUUxgVRXup3axAjk3AnqBu3cEmdx0rVf+gEL6
-         ay2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682355227; x=1684947227;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4a2P0TUQ0mn+DpoMQpgGHoufc6HMZENvo2lrGhlperY=;
-        b=VCZONbHh5s/N4lsDjpXTbot3eDIvS5vL0nNU++3f08fE1UxAPZ1CYzd5BL78hUWFwQ
-         DRCeO9++54cldZSZwX5ObqeHP+6O9KPpDXcIDj5cvs4rMcqQdH/9BAoukHeHEH7x2Jt+
-         mD9r3cugUIkgZKFt9HIJp30VGbGTDkvlDWChShx7bsl2YpOaek92SsvKsyoD6FpbIWNn
-         WgJTT6BXhmIPqEU89p9z5elyYUiEA4CYriMEAg6KO7IMWqkMWTKijMqS9FiMmgEQX1sy
-         HYZaobO5B1BVVMQ8lE7D3WOClNWJrCn0Wp7wM2e+/+c7skLQZDsQHOFfaNVM9ZGXEV7f
-         3ISQ==
-X-Gm-Message-State: AAQBX9drJFg4v0ksqP38qn5bIBXYCAyxNEZRNuK2iXIwODUew4cQeKJf
-        ij0jfp2jVPwGHejWRw9FfHmaeryk+EheLyA+MeA=
-X-Google-Smtp-Source: AKy350b/IT3RaAB1CmITHJJLsYFLerjZZ/NE70bzoYD2fmKSh3wDqqv0xtIuxcZi+DcSWA4fU+VlG4ZXc3K+GrR1+FM=
-X-Received: by 2002:a05:6512:1589:b0:4e2:7ab6:15cd with SMTP id
- bp9-20020a056512158900b004e27ab615cdmr5502211lfb.30.1682355227201; Mon, 24
- Apr 2023 09:53:47 -0700 (PDT)
+        with ESMTP id S229625AbjDXRGU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 13:06:20 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66AE54C17
+        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 10:06:19 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id EDEE06267E
+        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 17:06:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0638C433D2;
+        Mon, 24 Apr 2023 17:06:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1682355978;
+        bh=K3s5b8PcCEuf/EPN1XvvXhk/V3+22vKCJfwaVGjbx64=;
+        h=From:To:Cc:Subject:Date:From;
+        b=V889VIF09tNiMvUgztLiGZzJT6ls2KeG4pnNN6+bvYgZj9FBhXcGtQW0EZspDEON1
+         w7MaLro1giG+2Jc/1h5PbcSwPbG3PsPg5/tVOXgVJLXj1JZYTyKE1+a1vwpLLZFkIQ
+         +BhAIPp/ceSQ+UTrXfvmEnaogzG9kEJfxddHL7F/mtXsMVlP9aP2NC7Gs04tRv5R3Z
+         oISQo4vyQPf7CH0g1CgSoP+Fg/Pt9N1LcvfHlNFGTac3/bVAQRYoRvnzMF7kNNUJhH
+         D9Zv1+TFxqSKyTASKg4c/WkyFXegft8+yDsZM2lAIEhRhscNl8FQWL3tJd9CxZdqjw
+         w/Rmlk8hxqM+Q==
+From:   Conor Dooley <conor@kernel.org>
+To:     palmer@dabbelt.com
+Cc:     conor@kernel.org, Conor Dooley <conor.dooley@microchip.com>,
+        linux-riscv@lists.infradead.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
+Subject: [PATCH RESEND] dt-bindings: riscv: add sv57 mmu-type
+Date:   Mon, 24 Apr 2023 18:05:43 +0100
+Message-Id: <20230424-rival-habitual-478567c516f0@spud>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-References: <20230418170341.28805-1-n2h9z4@gmail.com> <20230421183420.GA1568047-robh@kernel.org>
-In-Reply-To: <20230421183420.GA1568047-robh@kernel.org>
-From:   Nikita B <n2h9z4@gmail.com>
-Date:   Mon, 24 Apr 2023 18:53:35 +0200
-Message-ID: <CAJVoGU0QDSjQ+pjCWQ7PW8aA6-GyU9j8nAAoDD_hriAHp7Eirg@mail.gmail.com>
-Subject: Re: [PATCH v3] dt-bindings: watchdog: brcm,kona-wdt: convert txt file
- to yaml
-To:     Rob Herring <robh@kernel.org>
-Cc:     wim@linux-watchdog.org, linux@roeck-us.net,
-        krzysztof.kozlowski+dt@linaro.org, f.fainelli@gmail.com,
-        rjui@broadcom.com, sbranden@broadcom.com,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Developer-Signature: v=1; a=openpgp-sha256; l=972; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=8JZJ6HmnuSAkNfOWr+4ZL5dzb89sjxCC25kT1YWF1Gw=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDClu257mzXFIUOI9JPvDYF+AXj/v69wPMswaIUUbksyvv +KvjNfrKGVhEONgkBVTZEm83dcitf6Pyw7nnrcwc1iZQIYwcHEKwES6HzAyHFjLGSS8tTFm3qvd TW4t16tqQ+rcNI9uC//cV/P2qLvYQobf7PqpstlxgobiM3rMyx9sb2r7wyzM/0fht1DNQV+jecy cAA==
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 21 Apr 2023 at 20:34, Rob Herring <robh@kernel.org> wrote:
->
-> On Tue, Apr 18, 2023 at 07:03:41PM +0200, Nikita Bondarenko wrote:
-> > Converted txt file to yaml. No additional changes.
-> >
-> > Signed-off-by: Nikita Bondarenko <n2h9z4@gmail.com>
-> > ---
-> >
-> > Changes in v3:
-> > - updated commit message
-> > - updated the compatible definition to probably fix "compatible is too long" warning
-> > - updated example to how it was in the txt file
-> >
-> >
-> > I do not have this warning when I am running
-> > make  DT_SCHEMA_FILES=Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.yaml ARCH=arm dt_binding_check
-> > maybe I run it without some additional variable?
-> >
-> > But I checked arch/arm/boot/dts/bcm28155-ap.dts, it includes bcm11351.dtsiv which contains
-> > compatible = "brcm,bcm11351-wdt", "brcm,kona-wdt";
-> > which probably causes a warning
-> > This is exact how it was in txt file example.
-> >
-> > If I put it in an example in a yaml file, dt_binding_check does not pass.
-> > Looks like the issue is in the enum type of compatible. It does not allow multiple strings.
-> > Updated to not to use enum. The example with two strings in compatible passes the checks.
-> >
-> > make  DT_SCHEMA_FILES=Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.yaml ARCH=arm dt_binding_check
-> >   LINT    Documentation/devicetree/bindings
-> >   CHKDT   Documentation/devicetree/bindings/processed-schema.json
-> >   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-> >   DTEX    Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.example.dts
-> >   DTC_CHK Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.example.dtb
-> >
-> > make  DT_SCHEMA_FILES=Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.yaml ARCH=arm dtbs_check
-> >   LINT    Documentation/devicetree/bindings
-> >   CHKDT   Documentation/devicetree/bindings/processed-schema.json
-> >   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
->
-> And that's it? You need to remove all the .dtb files if you don't see
-> any DTB lines. But this runs it for you:
->
-> https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230418170341.28805-1-n2h9z4@gmail.com/
->
-> It all looks fine, so not sure what your question/issue is?
->
-> >
-> >
-> > v2 patch is here: https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230402135555.62507-1-n2h9z4@gmail.com/
-> >
-> >  .../bindings/watchdog/brcm,kona-wdt.txt       | 15 -------
-> >  .../bindings/watchdog/brcm,kona-wdt.yaml      | 41 +++++++++++++++++++
-> >  2 files changed, 41 insertions(+), 15 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.txt
-> >  create mode 100644 Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.txt b/Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.txt
-> > deleted file mode 100644
-> > index 2b86a00e351d..000000000000
-> > --- a/Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.txt
-> > +++ /dev/null
-> > @@ -1,15 +0,0 @@
-> > -Broadcom Kona Family Watchdog Timer
-> > ------------------------------------
-> > -
-> > -This watchdog timer is used in the following Broadcom SoCs:
-> > -  BCM11130, BCM11140, BCM11351, BCM28145, BCM28155
-> > -
-> > -Required properties:
-> > -  - compatible = "brcm,bcm11351-wdt", "brcm,kona-wdt";
-> > -  - reg: memory address & range
-> > -
-> > -Example:
-> > -     watchdog@35002f40 {
-> > -             compatible = "brcm,bcm11351-wdt", "brcm,kona-wdt";
-> > -             reg = <0x35002f40 0x6c>;
-> > -     };
-> > diff --git a/Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.yaml b/Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.yaml
-> > new file mode 100644
-> > index 000000000000..3d4403b41cbe
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.yaml
-> > @@ -0,0 +1,41 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/watchdog/brcm,kona-wdt.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Broadcom Kona Family Watchdog Timer
-> > +
-> > +description: |
-> > +  This watchdog timer is used in the following Broadcom SoCs:
-> > +  BCM11130, BCM11140, BCM11351, BCM28145, BCM28155
-> > +
-> > +maintainers:
-> > +  - Florian Fainelli <f.fainelli@gmail.com>
-> > +  - Ray Jui <rjui@broadcom.com>
-> > +  - Scott Branden <sbranden@broadcom.com>
-> > +
-> > +allOf:
-> > +  - $ref: watchdog.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - const: brcm,bcm11351-wdt
-> > +      - const: brcm,kona-wdt
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    watchdog@35002f40 {
-> > +        compatible = "brcm,bcm11351-wdt", "brcm,kona-wdt";
-> > +        reg = <0x35002f40 0x6c>;
-> > +    };
-> > --
-> > 2.34.1
-> >
+From: Conor Dooley <conor.dooley@microchip.com>
 
-Hello!
+Dumping the dtb from new versions of QEMU warns that sv57 is an
+undocumented mmu-type. The kernel has supported sv57 for about a year,
+so bring it into the fold.
 
-Got it, thank you!
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+---
+Resending with the missing CCs.
+Palmer, you can take this for 6.4 if you want, otherwise I'll grab it
+after the merge window. I doubt there's a rush when it's been missing
+for a year or so.
+---
+ Documentation/devicetree/bindings/riscv/cpus.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
+index 4c7ce4a37052..25d6e8dbffb8 100644
+--- a/Documentation/devicetree/bindings/riscv/cpus.yaml
++++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+@@ -66,6 +66,7 @@ properties:
+       - riscv,sv32
+       - riscv,sv39
+       - riscv,sv48
++      - riscv,sv57
+       - riscv,none
+ 
+   riscv,cbom-block-size:
+-- 
+2.39.2
+
