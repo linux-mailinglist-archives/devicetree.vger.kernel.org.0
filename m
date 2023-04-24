@@ -2,155 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 555916EC91C
-	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 11:36:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9322D6EC922
+	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 11:38:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230311AbjDXJf7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Apr 2023 05:35:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35476 "EHLO
+        id S230430AbjDXJit (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Apr 2023 05:38:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229610AbjDXJf6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 05:35:58 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DEA5A9;
-        Mon, 24 Apr 2023 02:35:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.de; s=s31663417;
-        t=1682328942; i=deller@gmx.de;
-        bh=yTHDRa5GrOM5P/U7F/tlSANNP9N/Y9bFvN20rrCdkPQ=;
-        h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:In-Reply-To;
-        b=F3rPQi1+I4gmF+pOG2S0LNoxKXTRzShZijkV9aqCVuXR6vpFa8DHkPNxKNVmwwWYJ
-         QTDRlVPZO7JxFI9UnQSkbVlmAXwnpJxqSUJsxTjaCSwyViL9f7BuwsBpKdc8gRyRnR
-         F4TZX/Y+9vKbeJTK84gmHE50nFPgRMcbz+y27c/5K/LMq41MS4Ew+upmZ1QRVnplBo
-         UM5oHwUGD+LhVtlUuwCxhNSxbya7JK8XeRxNlaQ0geYUiCinJZCRkHkU7IlS+eRIKu
-         ZOXARPnQ8hZFOsUYbwUNgukki9HTC9yNvdbocwMoa+t8WPXDTftrgA7y1F/eHdy77A
-         oHB6gf+F58uDA==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.20.60] ([94.134.153.242]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MmlXK-1qXOga2qn8-00jovs; Mon, 24
- Apr 2023 11:35:42 +0200
-Message-ID: <10077a22-3055-75dd-2168-310468618f99@gmx.de>
-Date:   Mon, 24 Apr 2023 11:35:41 +0200
+        with ESMTP id S230072AbjDXJis (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 05:38:48 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E6661729;
+        Mon, 24 Apr 2023 02:38:41 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33O9cTsN058073;
+        Mon, 24 Apr 2023 04:38:29 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1682329109;
+        bh=ITVPUVnnfgkGMB3knFuO7Z6qcBUOl6T8Xv3HE/MDZC8=;
+        h=From:To:CC:Subject:Date;
+        b=rm1SUf/Uc57XAQaYZkLO4dg9yyUMKGOj4OIMftizY0eQ3/Dfd/7d2G1m6/V5fOZEq
+         43jLkgA/wu9/9JLW6IwJHYhAYI9vw2wR7iJY82MnnwMSiToX8Nwb6Uu4pgWPyyoNar
+         w6jH/zCCatCFYkg/RlzpkEuHAXGgcSQRhrK09Was=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33O9cTYO023889
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 24 Apr 2023 04:38:29 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 24
+ Apr 2023 04:38:28 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Mon, 24 Apr 2023 04:38:28 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33O9cROk023312;
+        Mon, 24 Apr 2023 04:38:28 -0500
+From:   Bhavya Kapoor <b-kapoor@ti.com>
+To:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     <b-kapoor@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
+        <kristo@kernel.org>, <vigneshr@ti.com>, <nm@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-j721e-main: Update delay select values for MMC subsystems
+Date:   Mon, 24 Apr 2023 15:08:27 +0530
+Message-ID: <20230424093827.1378602-1-b-kapoor@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 2/2] drm/ofdrm: Update expected device name
-Content-Language: en-US
-To:     Thomas Zimmermann <tzimmermann@suse.de>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Cyril Brulebois <cyril@debamax.com>
-Cc:     linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Rob Herring <robh@kernel.org>,
-        Michal Suchanek <msuchanek@suse.de>,
-        linux-kernel@vger.kernel.org, stable@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-References: <20230412095509.2196162-1-cyril@debamax.com>
- <20230412095509.2196162-3-cyril@debamax.com>
- <CAMuHMdW4rZn4p=gQZRWQQSEbQPmzZUd5eN+kP_Yr7bLgTHyvig@mail.gmail.com>
- <5694a9ab-d474-c101-9398-eea55aab29df@suse.de>
-From:   Helge Deller <deller@gmx.de>
-In-Reply-To: <5694a9ab-d474-c101-9398-eea55aab29df@suse.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:3kP7ktou073M4fKwqgFVglqpXsTOVkudI9TiAb2jmS61p79Utkj
- bfKy597ABOj5a6ia0vbIHLBRiCPzRO3TO4d8iV7ihpFva7jJulDIVLkHIhpab/XObR5Izkb
- mgQfkyaFnCx9VGQABpm9RG9LFkRBEhZhZUJux+Bmo1XmparDwkl0Z45YcHxCliiT2VpfBoE
- cpM1B5JUmxQk9WZ5qX9Tg==
-UI-OutboundReport: notjunk:1;M01:P0:efosCe5Ci2I=;fSTK6kN/XxzU8cnmLNXQ8yrbYW9
- bIuYXFo/RQFlNaXx2v+Cs3VzcUlxdioipOp8IoCiyur5pCgM0ejBNU++WZ9jm18gx4S+DiZtF
- A9z2pxIyP2UYptCogM3hOTzD4sbMCLLWn6tNPAuxrupIaRVQQUGjdP3LW1BPVp2H5QEFXEk7j
- qp3doz4Zu+E+VD7l+7m9wAWFsridFWVvk0Fbu87zKM7lEfsyO/zzdnbQJlCNZEDjHDI7Khcfw
- wI7pCLtjk8K5Uc4SzTvIfPL1bus6D1GzkVBP/IqVMy79sScMiAYAat9UyoFgtPEEYW7O7IBS6
- 9XhF2luW4u+zULDATwMQ+3FNBPSgyFmeFIBUro9KrvNWTvKlbgvrd4pZXYjQ5iXUx+aARFOXD
- wcohb4sUCZg8jZST2ISbtbnxiBlAtmDyDj1PNi57CtdeaWW0rZE8whJ91ucwlB037WB1HyiZv
- ChEIT49J+n7JSvG5FZf5t/dmdHk7rK6iTjxZfzLwiD41NMS8rN6aeLu/rXsLJZ0PbKwGxwODw
- 0avi1Go6Pt0Vh4S7U+au6mIwL7LxBgcFyP7+fFw5VXo9zU2/E0EtNDN3QQmgiN1y6EwyphFiT
- gRaP/vM2hdUjNQRseJsOP6NxCpgKQ5AHGK5JFi3w+EKddp3Ch2VMIjxWKACBJvB6FJpDsaDvN
- CeAW5cG8Avhj1x8dGT+pgMXLvhav7GvLlWFKhwQcjp2pV91wittAgxzzixr7y+jusEwlFM0ZI
- /B5WylxOR94G2LONBhSOas8v6/8v78IgVrlb/15/V23Q3wq5mjVoABQXz9DFR7HiH9t2lRgOD
- menH8eLaeHnQHaAqQR+6XYiC1RhAsV6GOquabipihSAvGi3aFh35PHrwpVUqOzUfLawkQ4NCp
- sl8NziNDVkv/YMB1W8axAtcuIUKJmldg4qEuSC5AKnnfMqO2xTgJWqECVBMzF/Fr4iNTEDMVo
- bBcX7VmIYqL5gwxFuGg7mNIHSWE=
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/24/23 11:07, Thomas Zimmermann wrote:
-> Hi
->
-> Am 24.04.23 um 09:33 schrieb Geert Uytterhoeven:
->> Hi Cyril,
->>
->> CC DT
->>
->> On Wed, Apr 12, 2023 at 12:05=E2=80=AFPM Cyril Brulebois <cyril@debamax=
-.com> wrote:
->>> Since commit 241d2fb56a18 ("of: Make OF framebuffer device names uniqu=
-e"),
->>> as spotted by Fr=C3=A9d=C3=A9ric Bonnard, the historical "of-display" =
-device is
->>> gone: the updated logic creates "of-display.0" instead, then as many
->>> "of-display.N" as required.
->>>
->>> This means that offb no longer finds the expected device, which preven=
-ts
->>> the Debian Installer from setting up its interface, at least on ppc64e=
-l.
->>>
->>> Given the code similarity it is likely to affect ofdrm in the same way=
-.
->>>
->>> It might be better to iterate on all possible nodes, but updating the
->>> hardcoded device from "of-display" to "of-display.0" is likely to help
->>> as a first step.
->>>
->>> Link: https://bugzilla.kernel.org/show_bug.cgi?id=3D217328
->>> Link: https://bugs.debian.org/1033058
->>> Fixes: 241d2fb56a18 ("of: Make OF framebuffer device names unique")
->>> Cc: stable@vger.kernel.org # v6.2+
->>> Signed-off-by: Cyril Brulebois <cyril@debamax.com>
->>
->> Thanks for your patch, which is now commit 3a9d8ea2539ebebd
->> ("drm/ofdrm: Update expected device name") in fbdev/for-next.
->>
->>> --- a/drivers/gpu/drm/tiny/ofdrm.c
->>> +++ b/drivers/gpu/drm/tiny/ofdrm.c
->>> @@ -1390,7 +1390,7 @@ MODULE_DEVICE_TABLE(of, ofdrm_of_match_display);
->>>
->>> =C2=A0 static struct platform_driver ofdrm_platform_driver =3D {
->>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .driver =3D {
->>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 .name =3D "of-display",
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 .name =3D "of-display.0",
->>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 .of_match_table =3D ofdrm_of_match_display,
->>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 },
->>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .probe =3D ofdrm_prob=
-e,
->>
->> Same comment as for "[PATCH 1/2] fbdev/offb: Update expected device
->> name".
->>
->> https://lore.kernel.org/r/CAMuHMdVGEeAsmb4tAuuqqGJ-4+BBETwEwYJA+M9NyJv0=
-BJ_hNg@mail.gmail.com
->
-> Sorry that I missed this patch. I agree that it's probably not
-> correct. At least in ofdrm, we want to be able to use multiple
-> framebuffers at the same time; a feature that has been broken by this
-> change.
+Update the delay values for various speed modes supported, based on
+the revised august 2021 J721E Datasheet.
 
-Geert & Thomas, thanks for the review!
+[1] - Table 7-77. MMC0 DLL Delay Mapping for All Timing Modes and
+Table 7-86. MMC1/2 DLL Delay Mapping for All Timing Modes, in
+https://www.ti.com/lit/ds/symlink/tda4vm.pdf,
+(SPRSP36J – FEBRUARY 2019 – REVISED AUGUST 2021)
 
-I've dropped both patches from fbdev tree for now.
-Would be great to find another good solution though, as it breaks the debi=
-an
-installer.
+Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
 
-Helge
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+index 10c8a5fb4ee2..c249cc3d1fba 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+@@ -1287,8 +1287,8 @@ main_sdhci0: mmc@4f80000 {
+ 		bus-width = <8>;
+ 		mmc-hs200-1_8v;
+ 		mmc-ddr-1_8v;
+-		ti,otap-del-sel-legacy = <0xf>;
+-		ti,otap-del-sel-mmc-hs = <0xf>;
++		ti,otap-del-sel-legacy = <0x0>;
++		ti,otap-del-sel-mmc-hs = <0x0>;
+ 		ti,otap-del-sel-ddr52 = <0x5>;
+ 		ti,otap-del-sel-hs200 = <0x6>;
+ 		ti,otap-del-sel-hs400 = <0x0>;
+@@ -1309,11 +1309,12 @@ main_sdhci1: mmc@4fb0000 {
+ 		assigned-clocks = <&k3_clks 92 0>;
+ 		assigned-clock-parents = <&k3_clks 92 1>;
+ 		ti,otap-del-sel-legacy = <0x0>;
+-		ti,otap-del-sel-sd-hs = <0xf>;
++		ti,otap-del-sel-sd-hs = <0x0>;
+ 		ti,otap-del-sel-sdr12 = <0xf>;
+ 		ti,otap-del-sel-sdr25 = <0xf>;
+ 		ti,otap-del-sel-sdr50 = <0xc>;
+ 		ti,otap-del-sel-ddr50 = <0xc>;
++		ti,otap-del-sel-sdr104 = <0x5>;
+ 		ti,itap-del-sel-legacy = <0x0>;
+ 		ti,itap-del-sel-sd-hs = <0x0>;
+ 		ti,itap-del-sel-sdr12 = <0x0>;
+@@ -1335,11 +1336,12 @@ main_sdhci2: mmc@4f98000 {
+ 		assigned-clocks = <&k3_clks 93 0>;
+ 		assigned-clock-parents = <&k3_clks 93 1>;
+ 		ti,otap-del-sel-legacy = <0x0>;
+-		ti,otap-del-sel-sd-hs = <0xf>;
++		ti,otap-del-sel-sd-hs = <0x0>;
+ 		ti,otap-del-sel-sdr12 = <0xf>;
+ 		ti,otap-del-sel-sdr25 = <0xf>;
+ 		ti,otap-del-sel-sdr50 = <0xc>;
+ 		ti,otap-del-sel-ddr50 = <0xc>;
++		ti,otap-del-sel-sdr104 = <0x5>;
+ 		ti,itap-del-sel-legacy = <0x0>;
+ 		ti,itap-del-sel-sd-hs = <0x0>;
+ 		ti,itap-del-sel-sdr12 = <0x0>;
+-- 
+2.34.1
+
