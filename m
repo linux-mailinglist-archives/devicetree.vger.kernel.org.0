@@ -2,128 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6912F6ED2AD
-	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 18:40:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 500946ED2B6
+	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 18:41:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232001AbjDXQkK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Apr 2023 12:40:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54536 "EHLO
+        id S231792AbjDXQl4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Apr 2023 12:41:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231861AbjDXQkH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 12:40:07 -0400
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::225])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4890D10DC;
-        Mon, 24 Apr 2023 09:40:04 -0700 (PDT)
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 990551C0006;
-        Mon, 24 Apr 2023 16:40:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1682354402;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=/r3V8RmeImnn9TTfMoyTcjasYYbylRv5Cz5piTNtYoU=;
-        b=IpEu5BJcHvI8rhjTXabnQVVlOZvbdMlpeG+t1l5rAcz1fAp5/PkJqiCUEPkyCtoAwFFsoL
-        bIM+GYg35xPtltbH+2RXermV2FbDZ9OsYwQQxnJbrVbBFzh5b5CYMxOtE1faSvVXu7iN+a
-        gJw848Dh5K0Rn4I0Eu2OK/6WmDXtC0hU64uJAcpcnFD6ZxPi1OOhecF/0/5qgsteuUgIc+
-        3itSuX+FQxOLRuddmC0TUleCvC4kY1QzLBRtyXwUtxzSUg40f/veEM5uFfe2+EFIQxW15r
-        b3eLu/HNxqcDArv0gx3QEZIfsmMKilmIbhghBsilP7IgOBIfpBPy/CSJLFbjug==
-Date:   Mon, 24 Apr 2023 18:40:00 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Nikita Shubin <nikita.shubin@maquefel.me>,
-        Arnd Bergmann <arnd@kernel.org>,
-        Linus Walleij <linusw@kernel.org>,
-        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
+        with ESMTP id S229929AbjDXQlz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 12:41:55 -0400
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F20810DC
+        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 09:41:54 -0700 (PDT)
+Received: by mail-pf1-x430.google.com with SMTP id d2e1a72fcca58-63b64a32fd2so6338304b3a.2
+        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 09:41:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1682354513; x=1684946513;
+        h=in-reply-to:mime-version:user-agent:date:message-id:from:references
+         :to:subject:from:to:cc:subject:date:message-id:reply-to;
+        bh=qKaQoUt0/4sEbMWWBPTVGov7pm7MdI7P78P/gslsfmI=;
+        b=Gq/Ovsz05Rr7wCfN3dtJ6MSm7IX1YJY6WTZv8LYsLpsoVIc6ADVDerOBgtQt/yiepX
+         Me2z44zXbFOEX9Ld3MNnbXHfAcpdKWELJBl89a89drsVoc4FnTj+0+YKdN/nnPufwbCa
+         DoUf7WCQW48PVnMpnA6MTFDQJ8s9RREoEKY8o=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682354513; x=1684946513;
+        h=in-reply-to:mime-version:user-agent:date:message-id:from:references
+         :to:subject:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qKaQoUt0/4sEbMWWBPTVGov7pm7MdI7P78P/gslsfmI=;
+        b=gknKYwSTnDAdGRBGlrlfYC37JHhyMUofLSt1XsPLUK5Gf/S/+pqzbnCWI0Lhq0+x0B
+         ZZrsempGwyM7QbELtJ/L+mk8ReE+8Y4xn2mbfX+KDfF8brOzVlBl089Vw42QhRZ2H3F1
+         bQ3S5ys8ywYuOXPvJN3b+kxKa9gmpBV9MuBaTh2Ugzx8KhRo8NTs5MMQzDhACRFuwMvF
+         e5rTuqfHamLfXSa1Pz76VHdAjppAUQR8JeYxscbVI7xvlDGyY+M7h13YEIf+vRrpbpVj
+         JBZ4VacHT6W5NhO3wIzZGNZYkhPJVJVz5QH9G9VG3sMLKm7/SsJ6w3SuKxg1c1lbj97e
+         gO5Q==
+X-Gm-Message-State: AAQBX9cQqy5lyz0UjL++U5MzPWbzCpTklES5J05tV1ndkkzrJFVqbqfQ
+        PnO/pXGiefP0LfJ2SUN3vIGQgw==
+X-Google-Smtp-Source: AKy350YVw9zhS2pkMGn8RkF+4L9Df26HuO1Sgz7MAs7fdEDpIjJUBzR92VgpoPD/8xN6BMe292Q9bQ==
+X-Received: by 2002:a05:6a00:1acd:b0:635:c8e4:ed0f with SMTP id f13-20020a056a001acd00b00635c8e4ed0fmr18222734pfv.11.1682354513500;
+        Mon, 24 Apr 2023 09:41:53 -0700 (PDT)
+Received: from bcacpedev-irv-3.lvn.broadcom.net ([192.19.161.250])
+        by smtp.gmail.com with ESMTPSA id g10-20020a62f94a000000b00640df8c536csm980874pfm.12.2023.04.24.09.41.50
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 24 Apr 2023 09:41:51 -0700 (PDT)
+Subject: Re: [PATCH] arm64: dts: broadcom: add missing cache properties
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        Anand Gore <anand.gore@broadcom.com>,
+        Kursad Oney <kursad.oney@broadcom.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 28/43] dt-bindings: rtc: Add DT binding m48t86 rtc
-Message-ID: <2023042416400019687ab8@mail.local>
-References: <20230424123522.18302-1-nikita.shubin@maquefel.me>
- <20230424123522.18302-29-nikita.shubin@maquefel.me>
- <20230424162548.GI2701399-robh@kernel.org>
+References: <20230421223208.115555-1-krzysztof.kozlowski@linaro.org>
+From:   William Zhang <william.zhang@broadcom.com>
+Message-ID: <e3bb6a9e-6aa0-6c93-996e-e262f49c2a23@broadcom.com>
+Date:   Mon, 24 Apr 2023 09:41:49 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+ Thunderbird/52.4.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230424162548.GI2701399-robh@kernel.org>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20230421223208.115555-1-krzysztof.kozlowski@linaro.org>
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+        boundary="0000000000002f7fbb05fa17af66"
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/04/2023 11:25:48-0500, Rob Herring wrote:
-> On Mon, Apr 24, 2023 at 03:34:44PM +0300, Nikita Shubin wrote:
-> > Add YAML bindings for ST M48T86 / Dallas DS12887 RTC.
-> > 
-> > Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
-> > ---
-> >  .../bindings/rtc/dallas,rtc-m48t86.yaml       | 33 +++++++++++++++++++
-> >  1 file changed, 33 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/rtc/dallas,rtc-m48t86.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/rtc/dallas,rtc-m48t86.yaml b/Documentation/devicetree/bindings/rtc/dallas,rtc-m48t86.yaml
-> > new file mode 100644
-> > index 000000000000..51f98bdbc385
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/rtc/dallas,rtc-m48t86.yaml
-> > @@ -0,0 +1,33 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/rtc/dallas,rtc-m48t86.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: ST M48T86 / Dallas DS12887 RTC bindings
-> > +
-> > +maintainers:
-> > +  - Alessandro Zummo <a.zummo@towertech.it>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: dallas,rtc-m48t86
+--0000000000002f7fbb05fa17af66
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+
+
+
+On 04/21/2023 03:32 PM, Krzysztof Kozlowski wrote:
+> As all level 2 and level 3 caches are unified, add required
+> cache-unified properties to fix warnings like:
 > 
-> 'rtc-' is redundant. And haven't you mixed up the vendor and part 
-> number? It should be dallas,ds12887 and/or st,m48t86?
+>    bcm94908.dtb: l2-cache0: 'cache-unified' is a required property
 > 
-> This can probably go in the trivial rtc binding.
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
+> 
+> Please take the patch via sub-arch SoC tree.
+> ---
+>   arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi    | 1 +
+>   arch/arm64/boot/dts/broadcom/bcmbca/bcm4912.dtsi    | 1 +
+>   arch/arm64/boot/dts/broadcom/bcmbca/bcm63146.dtsi   | 1 +
+>   arch/arm64/boot/dts/broadcom/bcmbca/bcm63158.dtsi   | 1 +
+>   arch/arm64/boot/dts/broadcom/bcmbca/bcm6813.dtsi    | 1 +
+>   arch/arm64/boot/dts/broadcom/bcmbca/bcm6856.dtsi    | 1 +
+>   arch/arm64/boot/dts/broadcom/bcmbca/bcm6858.dtsi    | 1 +
+>   arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi    | 1 +
+>   arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi | 4 ++++
+>   9 files changed, 12 insertions(+)
 > 
 
-I was wonderign, is this trivial, even with two regs?
+Reviewed-by: William Zhang <william.zhang@broadcom.com>
 
-> > +
-> > +  reg:
-> > +    maxItems: 2
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    rtc1: rtc@10800000 {
-> 
-> Drop unused labels.
-> 
-> > +        compatible = "dallas,rtc-m48t86";
-> > +        reg = <0x10800000 0x1>, <0x11700000 0x1>;
-> > +    };
-> > +
-> > +...
-> > +
-> > -- 
-> > 2.39.2
-> > 
+--0000000000002f7fbb05fa17af66
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+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
+YDZuuBJwnyCzevMoPtVYPharioL5H3BRnQi8YoTXH7/uRo33dewYFm474yFjwwnt82TFtveVZkVq
+6h4WIQ4wTcwFfET8zMkELnGzS5SHCl8sPD+lNxxJ1JDZYwIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
+BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
+YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
+BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
+MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
+YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
+Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
+HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
+BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUq65GzwZxydFHjjYEU/9h
+xHhPWlwwDQYJKoZIhvcNAQELBQADggEBAA2hGG3JPAdGPH0ZdohGUCIVjKz+U+EFuIDbS6A/5jqX
+VhYAxZlzj7tSjUIM7G7IhyfqPC46GKJ/4x+Amz1Z6YxNGy71L68kYD6hIbBcA5AM42QBUufly6Oa
+/ppSz3WoflVyFFQ5YXniZ+eU+2/cdnYZg4aVUnFjimOF5o3NfMLzOkhQNxbaDjFUfUYD8hKmU6v4
+0vUBj8KZ9Gi1LIagLKUREn8jku0lcLsRbnJ5Ey5ScajC/FESPyYWasOW8j8/1EoJksmhbYGKNS6C
+urb/KlmDGfVrIRYDbL0ckhGQIP5c6L+kSQZ2sHnQK0e0WgIaZYxaPYeY5u0GLCOze+3vyRMxggJt
+MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
+VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwxuh2XG3FXRL1W
+JOEwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIDJ6khQ8iOjn3CZDkg44OjQ5DTNj
+Us3NV6ctkDbDvpE/MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIz
+MDQyNDE2NDE1M1owaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
+CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
+AwQCATANBgkqhkiG9w0BAQEFAASCAQArK2eELrSHmoWH7ewlT2E2iwV04hz4naqqHBSmXRu3F2wv
+VFLO9NJaCE9/tVHKeCKNZDjp6seDZtqzk9ZvkSaZUAipt2nDCxJ9a/WUrEiSprIGZZJw5JsX1V8g
+BwXKz6G977H2SzRRlR6KDVgxAEsofSExp17ysYoyDJgROPcuzxUmgv+dP0+JcllaDWhUO8pRcnt1
+S/gR0dJFTR8jriraqh5CzBI3w4UHXMcYRnnnFEh64qsLPhs2rOpdm8obtwh+LJz3bS96+u7GDcIz
+2UptCXpwGHrPdbOYR8sPOlec5vaEe+n3l/jNTc5bmDZ6A/vbwKhtlhT7CLuuRVPiSCs0
+--0000000000002f7fbb05fa17af66--
