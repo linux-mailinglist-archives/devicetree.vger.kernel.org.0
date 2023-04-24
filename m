@@ -2,190 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C171D6EC9B7
-	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 12:04:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D1B06EC9CE
+	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 12:08:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230197AbjDXKEj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Apr 2023 06:04:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60992 "EHLO
+        id S229841AbjDXKIn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Apr 2023 06:08:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229929AbjDXKEi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 06:04:38 -0400
-Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25763171A
-        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 03:04:37 -0700 (PDT)
-Received: by mail-pf1-x42a.google.com with SMTP id d2e1a72fcca58-63b51fd2972so3429181b3a.3
-        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 03:04:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1682330676; x=1684922676;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=V2WsBy9D+hRfwOWkrxwmd3lLjMwOzTRUf9EB9Q/QdtQ=;
-        b=QAT8s9jI9J/mNPQLSP2R9Gv0/pCLs36KQ58Jrhu8C6+SrP/N1F/G4CaLqL7IRuYz9m
-         o92u1G+OMIkgsdt4DEhrbqxoL4BiGD/GHiQou79/lSFaMsx8t0AIU0c5ARh/U93oJRRO
-         hVJ/4lbG3A+A/vWLmsD/lBxcGAuDpvi+5OrPo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682330676; x=1684922676;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=V2WsBy9D+hRfwOWkrxwmd3lLjMwOzTRUf9EB9Q/QdtQ=;
-        b=I3WAZ9KnRtyc+lthrG6kut7vcWpeQ8hCGNLhdzFdH4IO3VVkHoiwW2yV9v8F6jJ3WO
-         ZVSBQCybWRpJ6sLvS3biTun/ODvBU3YG/adWa3nLou54v+mqeaIMYOkejUfXIdaDxBvg
-         2kmnRnCpzxwE+12qQt9HrKaxPXT0ngiRnA1yLaKtMKj0/XQ4iOWe1sYE38kIk8l3j7Lc
-         W7KAKEY6NnlGhCNcmyT/sdcJjw7l+4PBEBKePNTzmfOqrlHaEWTiMn2VbJk6Nsyw1qLp
-         jJK5LkBg/QfSJ8TxfHpMtdL/4XYYPgC7jLrwt3DWEsR/ReECizBd19JsoGbnuegGEgfs
-         eUiA==
-X-Gm-Message-State: AAQBX9e+CLACOqYojmSejCVceAsHgb0iCFH0DY7zLrs55RQIC5sNHRlN
-        EK81ksAIzkOlSaZvFsExEjk9eQ==
-X-Google-Smtp-Source: AKy350bj/iADyzfE4iDotwQ7l2Rxbf6TbBeW1F3yNWU/4SiigkNJRyIeCg1s+Cm+cSH3JmiMZNXFWQ==
-X-Received: by 2002:a05:6a00:cd2:b0:627:6328:79f1 with SMTP id b18-20020a056a000cd200b00627632879f1mr18330546pfv.34.1682330676591;
-        Mon, 24 Apr 2023 03:04:36 -0700 (PDT)
-Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:1d00:1ac0:e499:fc5b])
-        by smtp.gmail.com with ESMTPSA id j18-20020a056a00235200b0063d46ec5777sm7084425pfj.158.2023.04.24.03.04.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Apr 2023 03:04:36 -0700 (PDT)
-From:   Chen-Yu Tsai <wenst@chromium.org>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     Chen-Yu Tsai <wenst@chromium.org>,
-        =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
-        <nfraprado@collabora.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
+        with ESMTP id S229603AbjDXKIl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 06:08:41 -0400
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::225])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 120D29B;
+        Mon, 24 Apr 2023 03:08:38 -0700 (PDT)
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 2F41C1C0008;
+        Mon, 24 Apr 2023 10:08:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1682330917;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=BSjwAVriP8NSs8GDNrCwBt3GMm7ESSx/o2pcAH83Wi0=;
+        b=jNylB+SqKQYfJS2hb3gYwyPEocjggyM16Bfv/d4AZBhLmzCFEcDtoc9Iz5zL2NdSx7YQep
+        gOnNcZJ2QrHBUtGkLwbVBPBCHCaHPDKAzYspMqdFfl5hQoXCWaOzrb/n2GXotWRHfEqpF3
+        IlE0+ZTmviM1GkojNcCvxzGOKDD5YoALxvPnf6QDaUalvsyg8Pe5aQOqgt90obBlCO98M+
+        dF6/nX0hHMn3Jg5q8QfYl1auoNNRUD0rfMnlNry/tbGD6jPS+8DTlUgp/QBjOdbGY8v1Zg
+        EEbdRNktcpRM7/cso5gMwKCEqnXlNU8YxbnWDzWnaUDVBh1fpPggIoK64yIjJg==
+Date:   Mon, 24 Apr 2023 12:08:34 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Nikita Shubin <nikita.shubin@maquefel.me>
+Cc:     Arnd Bergmann <arnd@kernel.org>, Linus Walleij <linusw@kernel.org>,
+        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: [PATCH v2] arm64: dts: mediatek: mt8192-asurada-hayato: Enable Bluetooth
-Date:   Mon, 24 Apr 2023 18:04:09 +0800
-Message-ID: <20230424100409.2992418-1-wenst@chromium.org>
-X-Mailer: git-send-email 2.40.0.634.g4ca3ef3211-goog
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Hartley Sweeten <hsweeten@visionengravers.com>,
+        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 07/43] dt-bindings: rtc: add DT bindings for Cirrus EP93xx
+Message-ID: <2023042410083435b9b09b@mail.local>
+References: <20230424123522.18302-1-nikita.shubin@maquefel.me>
+ <20230424123522.18302-8-nikita.shubin@maquefel.me>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230424123522.18302-8-nikita.shubin@maquefel.me>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hayato's Realtek WiFi/BT module has it's Bluetooth function wired to
-UART1.
+On 24/04/2023 15:34:23+0300, Nikita Shubin wrote:
+> This adds device tree bindings for the Cirrus Logic EP93xx
+> RTC block used in these SoCs.
+> 
+> Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
+> ---
+>  .../bindings/rtc/cirrus,ep93xx-rtc.yaml       | 32 +++++++++++++++++++
+>  1 file changed, 32 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/rtc/cirrus,ep93xx-rtc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/rtc/cirrus,ep93xx-rtc.yaml b/Documentation/devicetree/bindings/rtc/cirrus,ep93xx-rtc.yaml
+> new file mode 100644
+> index 000000000000..d4774e984e7b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/rtc/cirrus,ep93xx-rtc.yaml
 
-Add and enable the relevant device nodes for it.
+I guess this one should go in .Documentation/devicetree/bindings/rtc/trivial-rtc.yaml?
 
-Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
----
-Changes since v1:
-- Dropped unreferenced labels
-- Dropped GPIO line name comments
-- Fixed pinctrl node names
-- Dropped "output-enable" property
-- Added spacing between device nodes for consistency
+> @@ -0,0 +1,32 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/rtc/cirrus,ep93xx-rtc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Cirrus EP93xx Real Time Clock controller
+> +
+> +maintainers:
+> +  - Hartley Sweeten <hsweeten@visionengravers.com>
+> +  - Alexander Sverdlin <alexander.sverdlin@gmail.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: cirrus,ep9301-rtc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    rtc0: rtc@80920000 {
+> +        compatible = "cirrus,ep9301-rtc";
+> +        reg = <0x80920000 0x100>;
+> +    };
+> +
+> -- 
+> 2.39.2
+> 
 
- .../dts/mediatek/mt8192-asurada-hayato-r1.dts | 81 +++++++++++++++++++
- 1 file changed, 81 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r1.dts b/arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r1.dts
-index 43a823990a92..6e23428a3ed2 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r1.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r1.dts
-@@ -40,9 +40,90 @@ CROS_STD_MAIN_KEYMAP
- 	>;
- };
- 
-+&pio {
-+	bt_pins: bt-pins {
-+		pins-bt-kill {
-+			pinmux = <PINMUX_GPIO144__FUNC_GPIO144>;
-+			output-low;
-+		};
-+
-+		pins-bt-wake {
-+			pinmux = <PINMUX_GPIO22__FUNC_GPIO22>;
-+			bias-pull-up;
-+		};
-+
-+		pins-ap-wake-bt {
-+			pinmux = <PINMUX_GPIO168__FUNC_GPIO168>;
-+			output-low;
-+		};
-+	};
-+
-+	uart1_pins: uart1-pins {
-+		pins-rx {
-+			pinmux = <PINMUX_GPIO94__FUNC_URXD1>;
-+			input-enable;
-+			bias-pull-up;
-+		};
-+
-+		pins-tx {
-+			pinmux = <PINMUX_GPIO95__FUNC_UTXD1>;
-+		};
-+
-+		pins-cts {
-+			pinmux = <PINMUX_GPIO166__FUNC_UCTS1>;
-+			input-enable;
-+		};
-+
-+		pins-rts {
-+			pinmux = <PINMUX_GPIO167__FUNC_URTS1>;
-+		};
-+	};
-+
-+	uart1_pins_sleep: uart1-sleep-pins {
-+		pins-rx {
-+			pinmux = <PINMUX_GPIO94__FUNC_GPIO94>;
-+			input-enable;
-+			bias-pull-up;
-+		};
-+
-+		pins-tx {
-+			pinmux = <PINMUX_GPIO95__FUNC_UTXD1>;
-+		};
-+
-+		pins-cts {
-+			pinmux = <PINMUX_GPIO166__FUNC_UCTS1>;
-+			input-enable;
-+		};
-+
-+		pins-rts {
-+			pinmux = <PINMUX_GPIO167__FUNC_URTS1>;
-+		};
-+	};
-+};
-+
- &touchscreen {
- 	compatible = "hid-over-i2c";
- 	post-power-on-delay-ms = <10>;
- 	hid-descr-addr = <0x0001>;
- 	vdd-supply = <&pp3300_u>;
- };
-+
-+&uart1 {
-+	status = "okay";
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&uart1_pins>;
-+	pinctrl-1 = <&uart1_pins_sleep>;
-+	/delete-property/ interrupts;
-+	interrupts-extended = <&gic GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH 0>,
-+			      <&pio 94 IRQ_TYPE_EDGE_FALLING>;
-+
-+	bluetooth {
-+		compatible = "realtek,rtl8822cs-bt";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&bt_pins>;
-+
-+		enable-gpios = <&pio 144 GPIO_ACTIVE_HIGH>;
-+		device-wake-gpios = <&pio 168 GPIO_ACTIVE_HIGH>;
-+		host-wake-gpios = <&pio 22 GPIO_ACTIVE_LOW>;
-+	};
-+};
 -- 
-2.40.0.634.g4ca3ef3211-goog
-
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
