@@ -2,44 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E15156EC971
-	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 11:51:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81C216ECA1F
+	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 12:20:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231503AbjDXJvl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Apr 2023 05:51:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49718 "EHLO
+        id S231701AbjDXKU5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Apr 2023 06:20:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231361AbjDXJvj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 05:51:39 -0400
-X-Greylist: delayed 320 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 24 Apr 2023 02:51:33 PDT
-Received: from forward501b.mail.yandex.net (forward501b.mail.yandex.net [IPv6:2a02:6b8:c02:900:1:45:d181:d501])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A536A30ED;
-        Mon, 24 Apr 2023 02:51:32 -0700 (PDT)
+        with ESMTP id S231630AbjDXKUo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 06:20:44 -0400
+Received: from forward501c.mail.yandex.net (forward501c.mail.yandex.net [IPv6:2a02:6b8:c03:500:1:45:d181:d501])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B68CD2D74;
+        Mon, 24 Apr 2023 03:20:42 -0700 (PDT)
 Received: from mail-nwsmtp-smtp-production-main-39.myt.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-39.myt.yp-c.yandex.net [IPv6:2a02:6b8:c12:261e:0:640:2e3d:0])
-        by forward501b.mail.yandex.net (Yandex) with ESMTP id EA3AB5EB34;
-        Mon, 24 Apr 2023 12:36:03 +0300 (MSK)
-Received: by mail-nwsmtp-smtp-production-main-39.myt.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id JZBb1pbWwKo0-Qq9jPfHD;
-        Mon, 24 Apr 2023 12:36:03 +0300
+        by forward501c.mail.yandex.net (Yandex) with ESMTP id 6767D5E7EF;
+        Mon, 24 Apr 2023 12:36:05 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-39.myt.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id JZBb1pbWwKo0-QqphgPat;
+        Mon, 24 Apr 2023 12:36:05 +0300
 X-Yandex-Fwd: 1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maquefel.me; s=mail; t=1682328963;
-        bh=MwMLTayp0HWys1iBszBqm87up2I6e5D4xWwTL2iUXGA=;
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maquefel.me; s=mail; t=1682328965;
+        bh=C6LBzQtuPvxvqnaOXftP/JvtH1Yc+ydDMGhI/tFJ394=;
         h=Message-Id:Date:In-Reply-To:Cc:Subject:References:To:From;
-        b=qnsIM3s4872q0KHboA9Et3gXfLnlrYx9lWPyd36l2BnEgvEtG53vznqXcUxIC+dG0
-         K0vuBQJoyfzzDrS3zZOS8Fksy4b1R3CPdTy/vBvoHJc5TRT8izE4sQFVlHoMOJUURD
-         +VbFQbBdMLS9+C+AHT9q0NDh4hLDjwEjB0xVoAI0=
+        b=s+QToJQjYNoRrTvzrx/bGkiIodhjzt9ryaOtaq3pomjJ9zpDRY5b530Uq9S6ScElD
+         uDbR/uVybBjmW5gErNzwWB+k9PnOnRnxBGqtILpqkhhOYrN83x8CQhAK7zGFQ/Q2tn
+         An2G6QRjuzRb1BAR2f/mODb2JlLV87wTE123xNDg=
 Authentication-Results: mail-nwsmtp-smtp-production-main-39.myt.yp-c.yandex.net; dkim=pass header.i=@maquefel.me
 From:   Nikita Shubin <nikita.shubin@maquefel.me>
 Cc:     Arnd Bergmann <arnd@kernel.org>, Linus Walleij <linusw@kernel.org>,
         Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 30/43] dt-bindings: wdt: Add DT binding ts72xx wdt
-Date:   Mon, 24 Apr 2023 15:34:46 +0300
-Message-Id: <20230424123522.18302-31-nikita.shubin@maquefel.me>
+Subject: [PATCH 32/43] dt-bindings: gpio: Add DT bindings ep93xx gpio
+Date:   Mon, 24 Apr 2023 15:34:48 +0300
+Message-Id: <20230424123522.18302-33-nikita.shubin@maquefel.me>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230424123522.18302-1-nikita.shubin@maquefel.me>
 References: <20230424123522.18302-1-nikita.shubin@maquefel.me>
@@ -56,59 +55,181 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DT binding for Technologic Systems TS-72xx watchdog.
+Add YAML bindings for ep93xx SoC.
 
 Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
 ---
- .../watchdog/technologic,ts72xx-wdt.yaml      | 39 +++++++++++++++++++
- 1 file changed, 39 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/watchdog/technologic,ts72xx-wdt.yaml
+ .../devicetree/bindings/gpio/gpio-ep93xx.yaml | 161 ++++++++++++++++++
+ 1 file changed, 161 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/gpio/gpio-ep93xx.yaml
 
-diff --git a/Documentation/devicetree/bindings/watchdog/technologic,ts72xx-wdt.yaml b/Documentation/devicetree/bindings/watchdog/technologic,ts72xx-wdt.yaml
+diff --git a/Documentation/devicetree/bindings/gpio/gpio-ep93xx.yaml b/Documentation/devicetree/bindings/gpio/gpio-ep93xx.yaml
 new file mode 100644
-index 000000000000..0e06dbaec85f
+index 000000000000..4cf03c325d39
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/watchdog/technologic,ts72xx-wdt.yaml
-@@ -0,0 +1,39 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++++ b/Documentation/devicetree/bindings/gpio/gpio-ep93xx.yaml
+@@ -0,0 +1,161 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/watchdog/technologic,ts72xx-wdt.yaml#
++$id: http://devicetree.org/schemas/gpio/gpio-ep93xx.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Technologic Systems TS-72xx based SBCs watchdog bindings
++title: EP93xx GPIO controller
 +
 +maintainers:
-+  - Wim Van Sebroeck <wim@linux-watchdog.org>
-+  - Guenter Roeck <linux@roeck-us.net>
-+
-+allOf:
-+  - $ref: "watchdog.yaml#"
++  - Linus Walleij <linus.walleij@linaro.org>
++  - Bartosz Golaszewski <brgl@bgdev.pl>
++  - Nikita Shubin <nikita.shubin@maquefel.me>
 +
 +properties:
 +  compatible:
-+    enum:
-+      - technologic,ts7200-wdt
++    const: cirrus,ep9301-gpio
++
++  chip-label:
++    maxItems: 1
++    description: human readable name.
 +
 +  reg:
-+    maxItems: 2
++    minItems: 2
++    items:
++      - description: data register
++      - description: direction register
++      - description: interrupt registers base
++
++  reg-names:
++    minItems: 2
++    items:
++      - const: data
++      - const: dir
++      - const: intr
++
++  gpio-controller: true
++
++  gpio-ranges: true
++
++  "#gpio-cells":
++    const: 2
++
++  interrupt-controller: true
++
++  "#interrupt-cells":
++    const: 2
++
++  interrupts:
++    items:
++      - const: 27
++
++  interrupts-extended:
++    minItems: 8
++    maxItems: 8
++    description: port F has dedicated irq line for each gpio line.
 +
 +required:
 +  - compatible
 +  - reg
++  - gpio-controller
++  - "#gpio-cells"
 +
-+unevaluatedProperties: false
++additionalProperties: false
 +
 +examples:
 +  - |
-+    watchdog0: watchdog@5a002000 {
-+      compatible = "technologic,ts7200-wdt";
-+      reg = <0x23800000 0x01>, <0x23c00000 0x01>;
-+      timeout-sec = <30>;
-+    };
++        gpio0: gpio@80840000 {
++                compatible = "cirrus,ep9301-gpio";
++                chip-label = "A";
++                reg = <0x80840000 0x04>,
++                      <0x80840010 0x04>,
++                      <0x80840090 0x1c>;
++                reg-names = "data", "dir", "intr";
++                gpio-controller;
++                #gpio-cells = <2>;
++                interrupt-controller;
++                interrupt-parent = <&vic1>;
++                interrupts = <27>;
++        };
++
++        gpio1: gpio@80840004 {
++                compatible = "cirrus,ep9301-gpio";
++                chip-label = "B";
++                reg = <0x80840004 0x04>,
++                      <0x80840014 0x04>,
++                      <0x808400ac 0x1c>;
++                reg-names = "data", "dir", "intr";
++                gpio-controller;
++                #gpio-cells = <2>;
++                interrupt-controller;
++                interrupt-parent = <&vic1>;
++                interrupts = <27>;
++        };
++
++        gpio2: gpio@80840008 {
++                compatible = "cirrus,ep9301-gpio";
++                chip-label = "C";
++                reg = <0x80840008 0x04>,
++                      <0x80840018 0x04>;
++                reg-names = "data", "dir";
++                gpio-controller;
++                #gpio-cells = <2>;
++        };
++
++        gpio3: gpio@8084000c {
++                compatible = "cirrus,ep9301-gpio";
++                chip-label = "D";
++                reg = <0x8084000c 0x04>,
++                      <0x8084001c 0x04>;
++                reg-names = "data", "dir";
++                gpio-controller;
++                #gpio-cells = <2>;
++        };
++
++        gpio4: gpio@80840020 {
++                compatible = "cirrus,ep9301-gpio";
++                chip-label = "E";
++                reg = <0x80840020 0x04>,
++                      <0x80840024 0x04>;
++                reg-names = "data", "dir";
++                gpio-controller;
++                #gpio-cells = <2>;
++        };
++
++        gpio5: gpio@80840030 {
++                compatible = "cirrus,ep9301-gpio";
++                chip-label = "F";
++                reg = <0x80840030 0x04>,
++                      <0x80840034 0x04>,
++                      <0x8084004c 0x1c>;
++                reg-names = "data", "dir", "intr";
++                gpio-controller;
++                #gpio-cells = <2>;
++                interrupt-controller;
++                interrupts-extended = <&vic0 19>, <&vic0 20>,
++                                      <&vic0 21>, <&vic0 22>,
++                                      <&vic1 15>, <&vic1 16>,
++                                      <&vic1 17>, <&vic1 18>;
++        };
++
++        gpio6: gpio@80840038 {
++                compatible = "cirrus,ep9301-gpio";
++                chip-label = "G";
++                reg = <0x80840038 0x04>,
++                      <0x8084003c 0x04>;
++                reg-names = "data", "dir";
++                gpio-controller;
++                #gpio-cells = <2>;
++        };
++
++        gpio7: gpio@80840040 {
++                compatible = "cirrus,ep9301-gpio";
++                chip-label = "H";
++                reg = <0x80840040 0x04>,
++                      <0x80840044 0x04>;
++                reg-names = "data", "dir";
++                gpio-controller;
++                #gpio-cells = <2>;
++        };
 +
 +...
-+
 -- 
 2.39.2
 
