@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 500946ED2B6
-	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 18:41:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C1926ED2C0
+	for <lists+devicetree@lfdr.de>; Mon, 24 Apr 2023 18:44:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231792AbjDXQl4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Apr 2023 12:41:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56096 "EHLO
+        id S230319AbjDXQo2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Apr 2023 12:44:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229929AbjDXQlz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 12:41:55 -0400
-Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F20810DC
-        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 09:41:54 -0700 (PDT)
-Received: by mail-pf1-x430.google.com with SMTP id d2e1a72fcca58-63b64a32fd2so6338304b3a.2
-        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 09:41:54 -0700 (PDT)
+        with ESMTP id S232120AbjDXQo1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 12:44:27 -0400
+Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA2D85FDB
+        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 09:44:25 -0700 (PDT)
+Received: by mail-pf1-x42d.google.com with SMTP id d2e1a72fcca58-63d2ba63dddso3832138b3a.2
+        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 09:44:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1682354513; x=1684946513;
+        d=broadcom.com; s=google; t=1682354665; x=1684946665;
         h=in-reply-to:mime-version:user-agent:date:message-id:from:references
          :to:subject:from:to:cc:subject:date:message-id:reply-to;
-        bh=qKaQoUt0/4sEbMWWBPTVGov7pm7MdI7P78P/gslsfmI=;
-        b=Gq/Ovsz05Rr7wCfN3dtJ6MSm7IX1YJY6WTZv8LYsLpsoVIc6ADVDerOBgtQt/yiepX
-         Me2z44zXbFOEX9Ld3MNnbXHfAcpdKWELJBl89a89drsVoc4FnTj+0+YKdN/nnPufwbCa
-         DoUf7WCQW48PVnMpnA6MTFDQJ8s9RREoEKY8o=
+        bh=FFV8CagacJXxt90GbA01g2LkOryUaKi4YV3HpHX1L5g=;
+        b=gwqFhLVjDIsbMOg8h0YWep5Xi+20MGXrXd+7jSJSEPOSG96PAdXKiv9JJX7CAYDje4
+         8u1b/vWGQbZHrhNW7oy4ptuNwNZ2sAVAc4sBpoFUg5lzy1DxsGbvBbv2Vr0kRcCWrqrm
+         32OxUu/I8X041kkXsfLZ30jpboQiifsSKmRds=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682354513; x=1684946513;
+        d=1e100.net; s=20221208; t=1682354665; x=1684946665;
         h=in-reply-to:mime-version:user-agent:date:message-id:from:references
          :to:subject:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=qKaQoUt0/4sEbMWWBPTVGov7pm7MdI7P78P/gslsfmI=;
-        b=gknKYwSTnDAdGRBGlrlfYC37JHhyMUofLSt1XsPLUK5Gf/S/+pqzbnCWI0Lhq0+x0B
-         ZZrsempGwyM7QbELtJ/L+mk8ReE+8Y4xn2mbfX+KDfF8brOzVlBl089Vw42QhRZ2H3F1
-         bQ3S5ys8ywYuOXPvJN3b+kxKa9gmpBV9MuBaTh2Ugzx8KhRo8NTs5MMQzDhACRFuwMvF
-         e5rTuqfHamLfXSa1Pz76VHdAjppAUQR8JeYxscbVI7xvlDGyY+M7h13YEIf+vRrpbpVj
-         JBZ4VacHT6W5NhO3wIzZGNZYkhPJVJVz5QH9G9VG3sMLKm7/SsJ6w3SuKxg1c1lbj97e
-         gO5Q==
-X-Gm-Message-State: AAQBX9cQqy5lyz0UjL++U5MzPWbzCpTklES5J05tV1ndkkzrJFVqbqfQ
-        PnO/pXGiefP0LfJ2SUN3vIGQgw==
-X-Google-Smtp-Source: AKy350YVw9zhS2pkMGn8RkF+4L9Df26HuO1Sgz7MAs7fdEDpIjJUBzR92VgpoPD/8xN6BMe292Q9bQ==
-X-Received: by 2002:a05:6a00:1acd:b0:635:c8e4:ed0f with SMTP id f13-20020a056a001acd00b00635c8e4ed0fmr18222734pfv.11.1682354513500;
-        Mon, 24 Apr 2023 09:41:53 -0700 (PDT)
+        bh=FFV8CagacJXxt90GbA01g2LkOryUaKi4YV3HpHX1L5g=;
+        b=eyzFqTjqCGz4hvWSo/TS8cyyi0L5HB80udWkbaYhif/GyB43sUykGMtAV4eU8sj+0v
+         bJXSShnT4DjYitX7iTCTLZZ1ur3C0gDCJeg/Uv1aeQSqBGiCBZprI9uxLFDirQKX6up/
+         qznMAZ8Wd812hLzezwVJmGEd8TThVXztF+qAp+BVhuaEmG2/b2xoEsX/+ruGe9xwdawg
+         G4EN2icfi6h+c+/PN/NOdJYi6I4f+G6NOdgLbeAdgl/Q3rEXv4zos0slB+m7wofwOoe6
+         NcK0FlJnTC1LNBKkizZee04YuYIQYnBvHwZtONrZ8T2aPOqQ+cM+Wy+3BoaqLBVX7lR6
+         av1g==
+X-Gm-Message-State: AAQBX9cpPIfYl9UAAE2x9Cmwk6Jo0rGlUnyjm1KsWkQ15iN6P6ib+R4u
+        ikG5Z9sTHZvRVXx/xgRLVROZKg==
+X-Google-Smtp-Source: AKy350YJqeeHmdypcKQiEuzqAebuyapqcmrTSMOq+CBrAP2bXH+SmCGpeKIhGjzvybhARmNLAgHzgw==
+X-Received: by 2002:a05:6a00:1a0b:b0:62d:8376:3712 with SMTP id g11-20020a056a001a0b00b0062d83763712mr15560312pfv.28.1682354665286;
+        Mon, 24 Apr 2023 09:44:25 -0700 (PDT)
 Received: from bcacpedev-irv-3.lvn.broadcom.net ([192.19.161.250])
-        by smtp.gmail.com with ESMTPSA id g10-20020a62f94a000000b00640df8c536csm980874pfm.12.2023.04.24.09.41.50
+        by smtp.gmail.com with ESMTPSA id g7-20020aa78747000000b0063f15cc9c38sm6357370pfo.99.2023.04.24.09.44.23
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 24 Apr 2023 09:41:51 -0700 (PDT)
-Subject: Re: [PATCH] arm64: dts: broadcom: add missing cache properties
+        Mon, 24 Apr 2023 09:44:24 -0700 (PDT)
+Subject: Re: [PATCH] ARM: dts: broadcom: add missing cache properties
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -55,20 +55,18 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
         Broadcom internal kernel review list 
         <bcm-kernel-feedback-list@broadcom.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
-References: <20230421223208.115555-1-krzysztof.kozlowski@linaro.org>
+References: <20230423150943.118576-1-krzysztof.kozlowski@linaro.org>
 From:   William Zhang <william.zhang@broadcom.com>
-Message-ID: <e3bb6a9e-6aa0-6c93-996e-e262f49c2a23@broadcom.com>
-Date:   Mon, 24 Apr 2023 09:41:49 -0700
+Message-ID: <c3991ca3-a703-4cfc-887f-249f799ef8dc@broadcom.com>
+Date:   Mon, 24 Apr 2023 09:44:23 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
  Thunderbird/52.4.0
 MIME-Version: 1.0
-In-Reply-To: <20230421223208.115555-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230423150943.118576-1-krzysztof.kozlowski@linaro.org>
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="0000000000002f7fbb05fa17af66"
+        boundary="0000000000003b763105fa17b83a"
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
@@ -79,40 +77,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---0000000000002f7fbb05fa17af66
+--0000000000003b763105fa17b83a
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 
 
 
-On 04/21/2023 03:32 PM, Krzysztof Kozlowski wrote:
+On 04/23/2023 08:09 AM, Krzysztof Kozlowski wrote:
 > As all level 2 and level 3 caches are unified, add required
 > cache-unified properties to fix warnings like:
 > 
->    bcm94908.dtb: l2-cache0: 'cache-unified' is a required property
+>    bcm963148.dtb: l2-cache0: 'cache-unified' is a required property
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
 > ---
-> 
-> Please take the patch via sub-arch SoC tree.
-> ---
->   arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi    | 1 +
->   arch/arm64/boot/dts/broadcom/bcmbca/bcm4912.dtsi    | 1 +
->   arch/arm64/boot/dts/broadcom/bcmbca/bcm63146.dtsi   | 1 +
->   arch/arm64/boot/dts/broadcom/bcmbca/bcm63158.dtsi   | 1 +
->   arch/arm64/boot/dts/broadcom/bcmbca/bcm6813.dtsi    | 1 +
->   arch/arm64/boot/dts/broadcom/bcmbca/bcm6856.dtsi    | 1 +
->   arch/arm64/boot/dts/broadcom/bcmbca/bcm6858.dtsi    | 1 +
->   arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi    | 1 +
->   arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi | 4 ++++
->   9 files changed, 12 insertions(+)
+>   arch/arm/boot/dts/bcm47622.dtsi | 1 +
+>   arch/arm/boot/dts/bcm63148.dtsi | 1 +
+>   arch/arm/boot/dts/bcm63178.dtsi | 1 +
+>   arch/arm/boot/dts/bcm6756.dtsi  | 1 +
+>   arch/arm/boot/dts/bcm6846.dtsi  | 1 +
+>   arch/arm/boot/dts/bcm6855.dtsi  | 1 +
+>   arch/arm/boot/dts/bcm6878.dtsi  | 1 +
+>   7 files changed, 7 insertions(+)
 > 
 
 Reviewed-by: William Zhang <william.zhang@broadcom.com>
 
---0000000000002f7fbb05fa17af66
+
+--0000000000003b763105fa17b83a
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -183,13 +176,13 @@ VhYAxZlzj7tSjUIM7G7IhyfqPC46GKJ/4x+Amz1Z6YxNGy71L68kYD6hIbBcA5AM42QBUufly6Oa
 urb/KlmDGfVrIRYDbL0ckhGQIP5c6L+kSQZ2sHnQK0e0WgIaZYxaPYeY5u0GLCOze+3vyRMxggJt
 MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
 VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwxuh2XG3FXRL1W
-JOEwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIDJ6khQ8iOjn3CZDkg44OjQ5DTNj
-Us3NV6ctkDbDvpE/MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIz
-MDQyNDE2NDE1M1owaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
+JOEwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIFg3im0igypD6Aa51hpnXjcRYstn
+lRE6Qtnn/ICZMXy0MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIz
+MDQyNDE2NDQyNVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
 CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
-AwQCATANBgkqhkiG9w0BAQEFAASCAQArK2eELrSHmoWH7ewlT2E2iwV04hz4naqqHBSmXRu3F2wv
-VFLO9NJaCE9/tVHKeCKNZDjp6seDZtqzk9ZvkSaZUAipt2nDCxJ9a/WUrEiSprIGZZJw5JsX1V8g
-BwXKz6G977H2SzRRlR6KDVgxAEsofSExp17ysYoyDJgROPcuzxUmgv+dP0+JcllaDWhUO8pRcnt1
-S/gR0dJFTR8jriraqh5CzBI3w4UHXMcYRnnnFEh64qsLPhs2rOpdm8obtwh+LJz3bS96+u7GDcIz
-2UptCXpwGHrPdbOYR8sPOlec5vaEe+n3l/jNTc5bmDZ6A/vbwKhtlhT7CLuuRVPiSCs0
---0000000000002f7fbb05fa17af66--
+AwQCATANBgkqhkiG9w0BAQEFAASCAQCngZutTTpjKON9WCS351jJU6wULzZtpSnjyUgMpMPOSQEN
+6I2Z9kJJmC60e1WxDrBFizP8y8E1LxPoyaZaru2q4EMkQNPi1mm9+dmbRM5A4LE1HqTq2jYrpIYo
+PhZJs+6HH8sr3+CsHPokqfrTQ2mqvxMqUL2r0aVoRlUEhYOiM6bEn1uR2FwM18zd86svNF9uheWu
+Re3BvilZHWQodtldqMrxf8a0Q+7bkaGCXDwrDKlAwLIijp5AVDVYVxPr2po4N3bFQKA0CXaoasu2
+e+/B9bfrSfR3WdFsOb1SCmQx5b2G1lOg23CTz97lPE8so6VxybnIGR9EFO3DjZqpnMb7
+--0000000000003b763105fa17b83a--
