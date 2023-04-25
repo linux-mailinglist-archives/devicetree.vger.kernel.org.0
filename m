@@ -2,199 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 239606EDF5D
-	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 11:36:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2B976EDF76
+	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 11:42:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233355AbjDYJgJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Apr 2023 05:36:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38462 "EHLO
+        id S233678AbjDYJmt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Apr 2023 05:42:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233013AbjDYJgH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 05:36:07 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2798468A;
-        Tue, 25 Apr 2023 02:36:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1682415366; x=1713951366;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=cdJ5RCl0jRK2WkiOSErGKVWigi6cRYrQGKqxUv/5kOQ=;
-  b=ogoOwf0qVwraeq1FOZMNYVL8cic16j67ewF3XqoUhWZIMWVSd7vdTo7u
-   +f48id/5kN48+vJlTqPTuxwvAEj+YvvknZhfYNyLSxbHSSSKbX1dQxmY3
-   EukmJAkLuEQEYBaU0a71pOLs+ufuvmUpdn+1BNi2NfmSfoDgoNnbyefbH
-   PawXz3f0qoTAmrAO+Ei/QyCyzt1oE/CaBwwT/Y7M5jcM25NFVPZ8tjCng
-   /ZMvoGuD4taiOZHiOTq4z/R7L+Tk7V4vrakoQDhxB+TDqSfjArCz+ejLe
-   x+L8/S/UbKpfHkUJ8oynpVT8rrfJ2B9ZNzEQ898u8wCm1hFZUnC8+zWcE
-   w==;
-X-IronPort-AV: E=Sophos;i="5.99,225,1677567600"; 
-   d="asc'?scan'208";a="210571348"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 Apr 2023 02:36:05 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+        with ESMTP id S233666AbjDYJms (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 05:42:48 -0400
+Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 920BC5BB2;
+        Tue, 25 Apr 2023 02:42:46 -0700 (PDT)
+Received: from kwepemm600004.china.huawei.com (unknown [172.30.72.55])
+        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4Q5H4r126tzpTvm;
+        Tue, 25 Apr 2023 17:38:52 +0800 (CST)
+Received: from [10.67.103.231] (10.67.103.231) by
+ kwepemm600004.china.huawei.com (7.193.23.242) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Tue, 25 Apr 2023 02:36:05 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Tue, 25 Apr 2023 02:36:02 -0700
-Date:   Tue, 25 Apr 2023 10:35:45 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Changhuang Liang <changhuang.liang@starfivetech.com>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Conor Dooley <conor@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Walker Chen <walker.chen@starfivetech.com>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>, <vkoul@kernel.org>,
-        <linux-phy@lists.infradead.org>
-Subject: Re: [RESEND v2 1/6] dt-bindings: power: Add JH7110 AON PMU support
-Message-ID: <20230425-resale-footrest-de667778c4fe@wendy>
-References: <20230419035646.43702-1-changhuang.liang@starfivetech.com>
- <20230419035646.43702-2-changhuang.liang@starfivetech.com>
- <20230419-labored-camper-644d51a7ca96@spud>
- <1a5b15fa-4f20-51c2-2ba1-a04a2911a694@starfivetech.com>
- <20230424-baffle-punch-ec73098f2b6a@spud>
- <d685a1d4-c07d-7dfa-f1fb-b35ceb2aa0eb@starfivetech.com>
- <20230425-unquote-eligible-09f743d81981@wendy>
- <a7cdfabf-2312-eaf3-f462-5bda7f0a120d@starfivetech.com>
- <68cb565d-bf39-10b0-9e3e-35ba7f54b90b@linaro.org>
- <0988495f-b87a-7f69-f222-37c67d6eae23@starfivetech.com>
+ 15.1.2507.23; Tue, 25 Apr 2023 17:42:43 +0800
+Message-ID: <336cbe52-b449-7f7e-dae9-fbbc18f8d97b@huawei.com>
+Date:   Tue, 25 Apr 2023 17:42:42 +0800
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="NyVSyvpBVoaqkS2m"
-Content-Disposition: inline
-In-Reply-To: <0988495f-b87a-7f69-f222-37c67d6eae23@starfivetech.com>
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.0
+Subject: Re: [PATCH] soc: hisilicon: Support HCCS driver on Kunpeng SoC
+To:     Arnd Bergmann <arnd@arndb.de>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Shawn Guo <shawnguo@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <soc@kernel.org>,
+        <wanghuiqiang@huawei.com>, <tanxiaofei@huawei.com>,
+        <liuyonglong@huawei.com>, <huangdaode@huawei.com>,
+        <linux-acpi@vger.kernel.org>, Len Brown <lenb@kernel.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+References: <20230424073020.4039-1-lihuisong@huawei.com>
+ <e0c4f4b5-8b34-4542-b676-f98ddb8ef586@app.fastmail.com>
+ <90d4aba4-d0a5-9868-583b-b3a4dd7ca6d6@huawei.com>
+ <16ba11f1-5aa2-48c9-81cf-e3d98f547657@app.fastmail.com>
+From:   "lihuisong (C)" <lihuisong@huawei.com>
+In-Reply-To: <16ba11f1-5aa2-48c9-81cf-e3d98f547657@app.fastmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.67.103.231]
+X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
+ kwepemm600004.china.huawei.com (7.193.23.242)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---NyVSyvpBVoaqkS2m
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, Apr 25, 2023 at 05:18:10PM +0800, Changhuang Liang wrote:
->=20
->=20
-> On 2023/4/25 16:19, Krzysztof Kozlowski wrote:
-> > On 25/04/2023 09:57, Changhuang Liang wrote:
-> >>>>>>>> =20
-> >>>>>>>>  description: |
-> >>>>>>>>    StarFive JH7110 SoC includes support for multiple power domai=
-ns which can be
-> >>>>>>>> @@ -17,6 +18,7 @@ properties:
-> >>>>>>>>    compatible:
-> >>>>>>>>      enum:
-> >>>>>>>>        - starfive,jh7110-pmu
-> >>>>>>>> +      - starfive,jh7110-aon-pmu
-> >>>>>
-> >>>>> I was speaking to Rob about this over the weekend, he asked:
-> >>>>> 'Why isn't "starfive,jh7110-aon-syscon" just the power-domain provi=
-der
-> >>>>> itself?'
-> >>>>
-> >>>> Maybe not, this syscon only offset "0x00" configure power switch.
-> >>>> other offset configure other functions, maybe not power, so this
-> >>>> "starfive,jh7110-aon-syscon" not the power-domain itself.
-> >>>>
-> >>>>> Do we actually need to add a new binding for this at all?
-> >>>>>
-> >>>>> Cheers,
-> >>>>> Conor.
-> >>>>>
-> >>>>
-> >>>> Maybe this patch do that.
-> >>>> https://lore.kernel.org/all/20230414024157.53203-6-xingyu.wu@starfiv=
-etech.com/
-> >>>
-> >>> This makes it a child-node right? I think Rob already said no to that=
- in
-> >>> and earlier revision of this series. What he meant the other day was
-> >>> making the syscon itself a power domain controller, since the child n=
-ode
-> >>> has no meaningful properties (reg, interrupts etc).
-> >>>
-> >>> Cheers,
-> >>> Conor.
-> >>
-> >> Yes, "starfive,jh7110-aon-pmu" is a child-node of "starfive,jh7110-aon=
--syscon".
-> >> In my opinion, "0x17010000" is "aon-syscon" on JH7110 SoC, and this "a=
-on-pmu" is just=20
-> >> a part of "aon-syscon" function, so I think it is inappropriate to mak=
-e "aon-syscon"
-> >> to a power domain controller. I think using the child-node description=
- is closer to
-> >> JH7110 SoC.=20
-> >=20
-> > Unfortunately, I do not see the correlation between these, any
-> > connection. Why being a child of syscon block would mean that this
-> > should no be power domain controller? Really, why? These are two
-> > unrelated things.
-> >=20
-> > Best regards,
-> > Krzysztof
-> >=20
->=20
-> Let me summarize what has been discussed above.=20
->=20
-> There has two ways to describe this "starfive,jh7110-aon-syscon"(0x170100=
-00).
-> 1. (0x17010000) is power-controller node:
->=20
-> 	aon_pwrc: power-controller@17010000 {
-> 		compatible =3D "starfive,jh7110-aon-pmu", "syscon";
-> 		reg =3D <0x0 0x17010000 0x0 0x1000>;
-> 		#power-domain-cells =3D <1>;
-> 	};
->=20
->=20
-> 2. (0x17010000) is syscon node, power-controller is child-node of syscon:
->=20
-> 	aon_syscon: syscon@17010000 {
-> 		compatible =3D "starfive,jh7110-aon-syscon", "syscon", "simple-mfd";
-> 		reg =3D <0x0 0x17010000 0x0 0x1000>;
->=20
-> 		aon_pwrc: power-controller {
-> 			compatible =3D "starfive,jh7110-aon-pmu";
-> 			#power-domain-cells =3D <1>;
-> 		};
-> 	};
-
-I thought that Rob was suggesting something like this:
-	aon_syscon: syscon@17010000 {
-		compatible =3D "starfive,jh7110-aon-syscon", ...
-		reg =3D <0x0 0x17010000 0x0 0x1000>;
-		#power-domain-cells =3D <1>;
-	};
-
-Cheers,
-Conor.
-
-
---NyVSyvpBVoaqkS2m
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZEee8QAKCRB4tDGHoIJi
-0iAjAQCAYkbFL/ydjRkg7qdZ1xejJeKnKpac8GkxwCp7ovCnGwD/S+XqbVNUcOyu
-xaeZnAsWfEaTMKgIuWoqCeIrvwvPlAQ=
-=31W+
------END PGP SIGNATURE-----
-
---NyVSyvpBVoaqkS2m--
+在 2023/4/25 14:08, Arnd Bergmann 写道:
+> On Tue, Apr 25, 2023, at 05:04, lihuisong (C) wrote:
+>> 在 2023/4/24 16:09, Arnd Bergmann 写道:
+>>> On Mon, Apr 24, 2023, at 09:30, Huisong Li wrote:
+>>>          depends on ACPI
+>>>          depends on (ARM64 && ARCH_HISI) || COMPILE_TEST
+>> What do you think of adjusting it as below?
+>> menu "Hisilicon SoC drivers"
+>>       depends on ARCH_HISI || COMPILE_TEST
+>>
+>> config KUNPENG_HCCS
+>>       depends on ACPI
+>>       depends on ARM64 || COMPILE_TEST
+> Yes, that's perfect.
+>
+>>>> +
+>>>> +#include "kunpeng_hccs.h"
+>>>> +
+>>>> +/* PCC defines */
+>>>> +#define HCCS_PCC_SIGNATURE_MASK		0x50434300
+>>>> +#define HCCS_PCC_STATUS_CMD_COMPLETE	BIT(0)
+>>> Should these perhaps be in include/acpi/pcc.h? The 0x50434300
+>>> number is just "PCC\0", so it appears to not be HCCS specific.
+>> This is a PCC signature. As stated in the APCI,
+>> "The signature of a subspace is computed by a bitwiseor of the value
+>> 0x50434300
+>> with the subspace ID. For example, subspace 3 has the signature 0x50434303."
+>>
+>> I am not sure if all driver need to use this fixed signature mask.
+>> As far as I know, cppc_acpi.c didn't use this signature and
+>> xgene-hwmon.c used another mask defined in its driver.
+>> So I place it here.
+> I would still put it into the generic header, but it doesn't
+> really matter much, so do it whichever way you prefer. No need
+> for a separate patch if you decide to use the global header,
+> it can just be part of your normal patch.
+ok, keep it the way it is now.
+>
+>>>> +
+>>>> +static int hccs_get_device_property(struct hccs_dev *hdev)
+>>>> +{
+>>>> +	struct device *dev = hdev->dev;
+>>>> +
+>>>> +	if (device_property_read_u32(dev, "device-flags", &hdev->flags)) {
+>>>> +		dev_err(hdev->dev, "no device-flags property.\n");
+>>>> +		return -ENODEV;
+>>>> +	}
+>>>> +
+>>>> +	if (device_property_read_u8(dev, "pcc-type", &hdev->type)) {
+>>>> +		dev_err(hdev->dev, "no pcc-type property.\n");
+>>>> +		return -ENODEV;
+>>>> +	}
+>>>> +
+>>>> +	if (device_property_read_u32(dev, "pcc-chan-id", &hdev->chan_id)) {
+>>>> +		dev_err(hdev->dev, "no pcc-channel property.\n");
+>>>> +		return -ENODEV;
+>>>> +	}
+>>>> +
+>>>> +	hdev->intr_mode = hccs_get_bit(hdev->flags, HCCS_DEV_FLAGS_INTR_B);
+>>>> +	if (!hccs_dev_property_supported(hdev))
+>>>> +		return -EOPNOTSUPP;
+>>>> +
+>>> Where are the device properties documented? I'm never quite sure how
+>>> to handle these for ACPI-only drivers, since we don't normally have the
+>>> bindings in Documentation/devicetree/bindings/, but it feels like there
+>>> should be some properly reviewed document somewhere else.
+>> These are ACPI-only, instead of DT.
+>> I will add a comment here as Krzysztof suggested.
+> I understand that they are ACPI-only, what I'm more interested here is
+> the general question of how we should document them, to ensure these
+> are handled consistently across drivers.
+These device properties are reported by ACPI table in firmware.
+They are fixed in platform firmware. The user cannot modify them.
+Do we need to document them?
+>
+>>>> --- /dev/null
+>>>> +++ b/drivers/soc/hisilicon/kunpeng_hccs.h
+>>>> @@ -0,0 +1,204 @@
+>>>> +/* SPDX-License-Identifier: GPL-2.0+ */
+>>>> +/* Copyright (c) 2023 Hisilicon Limited. */
+>>>> +
+>>>> +#ifndef __KUNPENG_HCCS_H__
+>>>> +#define __KUNPENG_HCCS_H__
+>>> Are you planning to add more drivers that share this file? If not,
+>>> just fold the contents into the driver itself.
+>> Yes, we will add more drivers in this file.
+> Ok.
+>
+>
+>         Arnd
+> .
