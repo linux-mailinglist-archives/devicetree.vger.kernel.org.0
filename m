@@ -2,216 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E81A6EE45E
-	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 17:02:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 979CA6EE47F
+	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 17:09:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234297AbjDYPCz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Apr 2023 11:02:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36438 "EHLO
+        id S233657AbjDYPJu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Apr 2023 11:09:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234301AbjDYPCw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 11:02:52 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72578CC17;
-        Tue, 25 Apr 2023 08:02:48 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5207E62638;
-        Tue, 25 Apr 2023 15:02:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC2B2C433D2;
-        Tue, 25 Apr 2023 15:02:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1682434967;
-        bh=ehMxtfgPPt4ARwMuISJWQt1frJpETdzqR5PFSNkI3Ww=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=mid3BpQNkz6A4sjuloyiRKEi/ZNvzgU2H0NOiRRhgSZ71U0S6bXkX6ganwSq0PamO
-         dBeY8lg7AsBhniOmSiARWDU+IeLIixSdqKlUbmKVU9UgTV0QJpmwBJ72qREEkRCaty
-         JNdEMHZ/2w0Jec6hFQbICB4DXClWLB1op62Siq+umyaJkYrrWlaOrvScBxM1E8aGdr
-         +GMQGdmm4RHgNsPcSv29QxXguXbUHWXJNc3W/TpL//VdujmJQBQAeDxvODqaL/QUDm
-         LcELcr6SCF/iIrewVCo/ItAniVBW+X98IGLRjYTpAZtci8HC8fVJ7wN4E0thfakauJ
-         X7To8A8ioovBw==
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-54fe2e39156so69672287b3.2;
-        Tue, 25 Apr 2023 08:02:47 -0700 (PDT)
-X-Gm-Message-State: AAQBX9de6bwLaWNip+O47QpvlRScM1bWDszxCjdSNM9mi59VG5oXoG+u
-        e917maeT1SOmqDXm4naRNMUGQGfi2OWPsy8LfA==
-X-Google-Smtp-Source: AKy350ajbnJBSl+HX3xPAJuZvpzT6q61Hk4UPSoaLf53K+qGoELszHvCtA9ylEA2fRvYJV8F5bUvL1c7LsJ5XbQC+d8=
-X-Received: by 2002:a81:658a:0:b0:54f:badd:d148 with SMTP id
- z132-20020a81658a000000b0054fbaddd148mr10819011ywb.14.1682434966624; Tue, 25
- Apr 2023 08:02:46 -0700 (PDT)
+        with ESMTP id S234318AbjDYPJu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 11:09:50 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCF13B0;
+        Tue, 25 Apr 2023 08:09:48 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33PF9Kve069845;
+        Tue, 25 Apr 2023 10:09:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1682435360;
+        bh=1LkCUvUeAv3XL9tJ5+b1NKymuOQ2HqXUmXGnmBQmTNA=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=QY6/6UPpMfS2yR4t7nGA5TkbJ6DUUlvDvckeilPYZd6JklVVFPnd04JP0ON6Y09jK
+         r+pGvM9r83FRMfaepPczK34PdbiGexK2gFnFoB+wi0B9cxyUQWOta4fAoc36I8da8r
+         N7dXE4RG+DrP+nfihQoEhzsPgH7Rh7jzPqepvsIo=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33PF9K8U028033
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 25 Apr 2023 10:09:20 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 25
+ Apr 2023 10:09:20 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Tue, 25 Apr 2023 10:09:20 -0500
+Received: from [10.250.35.77] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33PF9JR1030190;
+        Tue, 25 Apr 2023 10:09:19 -0500
+Message-ID: <90272486-864d-910c-a10b-4ba71a71f4b0@ti.com>
+Date:   Tue, 25 Apr 2023 10:09:19 -0500
 MIME-Version: 1.0
-References: <1681877994-16487-1-git-send-email-lizhi.hou@amd.com>
- <1681877994-16487-3-git-send-email-lizhi.hou@amd.com> <20230419231155.GA899497-robh@kernel.org>
- <20d251bc-c4ec-64cc-8e6b-10c24cae6c9b@amd.com>
-In-Reply-To: <20d251bc-c4ec-64cc-8e6b-10c24cae6c9b@amd.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 25 Apr 2023 10:02:35 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+P-_w8q7ahKpRzw=A1kkWBWocrWnni8P4LmpxffS0pfA@mail.gmail.com>
-Message-ID: <CAL_Jsq+P-_w8q7ahKpRzw=A1kkWBWocrWnni8P4LmpxffS0pfA@mail.gmail.com>
-Subject: Re: [PATCH V8 2/3] PCI: Create device tree node for selected devices
-To:     Lizhi Hou <lizhi.hou@amd.com>
-Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, frowand.list@gmail.com,
-        helgaas@kernel.org, clement.leger@bootlin.com, max.zhen@amd.com,
-        sonal.santan@amd.com, larry.liu@amd.com, brian.xu@amd.com,
-        stefano.stabellini@xilinx.com, trix@redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 1/2] arm64: dts: ti: Add overlay for OLDI-LCD1EVM Display
+ and touch screen
+To:     Aradhya Bhatia <a-bhatia1@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+CC:     Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel List <linux-kernel@vger.kernel.org>,
+        Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
+        Jyri Sarha <jyri.sarha@iki.fi>,
+        Tomi Valkeinen <tomba@kernel.org>,
+        Praneeth Bajjuri <praneeth@ti.com>,
+        Rahul T R <r-ravikumar@ti.com>,
+        Devarsh Thakkar <devarsht@ti.com>,
+        Jai Luthra <j-luthra@ti.com>,
+        Jayesh Choudhary <j-choudhary@ti.com>
+References: <20230425051235.15533-1-a-bhatia1@ti.com>
+ <20230425051235.15533-2-a-bhatia1@ti.com>
+Content-Language: en-US
+From:   Andrew Davis <afd@ti.com>
+In-Reply-To: <20230425051235.15533-2-a-bhatia1@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 20, 2023 at 11:05=E2=80=AFAM Lizhi Hou <lizhi.hou@amd.com> wrot=
-e:
-> On 4/19/23 16:11, Rob Herring wrote:
-> > On Tue, Apr 18, 2023 at 09:19:53PM -0700, Lizhi Hou wrote:
-> >> The PCI endpoint device such as Xilinx Alveo PCI card maps the registe=
-r
-> >> spaces from multiple hardware peripherals to its PCI BAR. Normally,
-> >> the PCI core discovers devices and BARs using the PCI enumeration proc=
-ess.
-> >> There is no infrastructure to discover the hardware peripherals that a=
-re
-> >> present in a PCI device, and which can be accessed through the PCI BAR=
-s.
+On 4/25/23 12:12 AM, Aradhya Bhatia wrote:
+> From: Jyri Sarha <jsarha@ti.com>
+> 
+> The OLDI-LCD1EVM add on board has Rocktech RK101II01D-CT panel with
+> integrated touch screen. The integrated touch screen is Goodix GT928.
+> Add DT nodes for these and connect the endpoint nodes with DSS.
+> 
+> This patch was picked from TI's public tree based on 5.10 LTS kernel.
+> 
+> Signed-off-by: Jyri Sarha <jsarha@ti.com>
+> Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
+> [abhatia1@ti.com: Make syntax changes to support 6.1 DTSO format]
+> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+> ---
+>   arch/arm64/boot/dts/ti/Makefile               |  2 +
+>   .../dts/ti/k3-am654-evm-oldi-lcd1evm.dtso     | 70 +++++++++++++++++++
+>   2 files changed, 72 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/ti/k3-am654-evm-oldi-lcd1evm.dtso
+> 
+> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+> index 6acd12409d59..8956b19e587a 100644
+> --- a/arch/arm64/boot/dts/ti/Makefile
+> +++ b/arch/arm64/boot/dts/ti/Makefile
+> @@ -26,6 +26,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced.dtb
+>   dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced-m2.dtb
+>   dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced-pg2.dtb
+>   dtb-$(CONFIG_ARCH_K3) += k3-am654-base-board.dtb
+> +dtb-$(CONFIG_ARCH_K3) += k3-am654-evm-oldi-lcd1evm.dtbo
 
-[...]
+This name is a bit odd, why "evm" twice? Looks like the first instance
+is the redundant one as most of the documents on this LCD board call it
+the "LCD1EVM". How about:
 
-> >> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
-> >> index 196834ed44fe..42a5cfac2d34 100644
-> >> --- a/drivers/pci/of.c
-> >> +++ b/drivers/pci/of.c
-> >> @@ -469,6 +469,8 @@ static int of_irq_parse_pci(const struct pci_dev *=
-pdev, struct of_phandle_args *
-> >>              } else {
-> >>                      /* We found a P2P bridge, check if it has a node =
-*/
-> >>                      ppnode =3D pci_device_to_OF_node(ppdev);
-> >> +                    if (ppnode && of_node_check_flag(ppnode, OF_DYNAM=
-IC))
-> >> +                            ppnode =3D NULL;
-> > Again, different behavior if dynamic. I'm not seeing why you need this
-> > change.
-> This change is required. For dynamic generated node, we do not generate
-> interrupt routing related properties. Thus we need to fallback to use
-> pci_swizzle_interrupt_pin(). Generating interrupt routing related
-> properties might be difficult. I think we can differ it to the future
-> patches. Or just use pci_swizzle_interrupt_pin() which is much simpler.
+k3-am654-lcd1evm.dtbo
 
-I don't think we need to generate anything else in the DT. I think we
-need to break from the loop if (ppnode && of_property_present(ppnode,
-"interrupt-map")) instead.
+I would like the overlay names to give some hint to what base DTB they
+apply to, or better yet, apply them here in the build which will check
+that they apply cleanly. Plus you can drop the silly "+= -@" below.
 
+Let's see how this should be called, from the AM65x GP EVM doc[0] we
+get a nice picture on page 5 and the following:
 
-> >> +static int of_pci_prop_reg(struct pci_dev *pdev, struct of_changeset =
-*ocs,
-> >> +                       struct device_node *np)
-> >> +{
-> >> +    struct of_pci_addr_pair *reg;
-> >> +    int i =3D 1, resno, ret =3D 0;
-> >> +    u32 flags, base_addr;
-> >> +    resource_size_t sz;
-> >> +
-> >> +    reg =3D kcalloc(PCI_STD_NUM_BARS + 1, sizeof(*reg), GFP_KERNEL);
-> >> +    if (!reg)
-> >> +            return -ENOMEM;
-> >> +
-> >> +    /* configuration space */
-> >> +    of_pci_set_address(pdev, reg[0].phys_addr, 0, 0, 0, true);
-> >> +
-> >> +    base_addr =3D PCI_BASE_ADDRESS_0;
-> >> +    for (resno =3D PCI_STD_RESOURCES; resno <=3D PCI_STD_RESOURCE_END=
-;
-> >> +         resno++, base_addr +=3D 4) {
-> >> +            sz =3D pci_resource_len(pdev, resno);
-> >> +            if (!sz)
-> >> +                    continue;
-> >> +
-> >> +            ret =3D of_pci_get_addr_flags(&pdev->resource[resno], &fl=
-ags);
-> >> +            if (ret)
-> >> +                    continue;
-> >> +
-> >> +            of_pci_set_address(pdev, reg[i].phys_addr, 0, base_addr, =
-flags,
-> >> +                               true);
-> >> +            reg[i].size[0] =3D FIELD_GET(OF_PCI_SIZE_HI, (u64)sz);
-> >> +            reg[i].size[1] =3D FIELD_GET(OF_PCI_SIZE_LO, (u64)sz);
-> >> +            i++;
-> >> +    }
-> >> +
-> >> +    ret =3D of_changeset_add_prop_u32_array(ocs, np, "reg", (u32 *)re=
-g,
-> > I believe this should be 'assigned-addresses' rather than 'reg'. But th=
-e
-> > config space entry above does go in 'reg'.
->
-> Do you mean I need to add 'assigned-addresses' in this patch?
+"The AM65x GP EVM consists of a common processor board, an LCD adapter,
+and a one-lane PCIe/USB3 personality card."
 
-Yes, but on further thought, I think they can just be omitted. They
-are only needed
-if we need of_pci_address_to_resource() to work.
+So, this would translate to:
 
->
-> For 'reg', it needs to have pairs for memory space or I/O space. Here is
-> what I saw in IEEE1275:
->
-> "In the first such pair, the phys-addr component shall be the
-> Configuration Space address of the
-> beginning of the function's set of configuration registers (i.e. the
-> rrrrrrrr field is zero) and the size component shall
-> be zero. Each additional (phys-addr, size) pair shall specify the
-> address of an addressable region of Memory Space or I/
-> O Space associated with the function. In these pairs, if the "n" bit of
-> phys.hi is 0, reflecting a relocatable address, then
-> phys.mid and phys.lo specify an address relative to the value of the
-> associated base register. In general this value will be
-> zero, specifying an address range corresponding directly to the
-> hardware's. If the "n" bit of phys.hi is 1, reflecting a nonrelocatable
-> address, then phys.mid and phys.hi specify an absolute PCI address."
+k3-am654-gp-evm-dtbs := k3-am654-base-board.dtb k3-am654-lcd1evm.dtbo k3-am654-pcie-usb3.dtbo
+dtb-$(CONFIG_ARCH_K3) += k3-am654-gp-evm.dtb
 
-I think this is a case where true OpenFirmware and FDT differ
-slightly. In OF, the DT reflects everything the firmware discovered
-and configured. FDT is more just what's static and not discoverable.
-(Though generating nodes here is more OF like.) For example, we don't
-put the bus numbers in the DT as those are dynamic and assigned by the
-OS. The purpose of the BAR registers in reg is to define the BAR size
-(and address only if fixed). We don't need that unless what's
-discoverable is wrong and we want to override it.
+Next, from the AM65x IDK doc[1] also with a nice image on page 5:
 
+"The AM65x IDK consists of a common processor board, IDK application board,
+and a two-lane PCIe personality card.:
 
-> >> diff --git a/drivers/pci/pci-driver.c b/drivers/pci/pci-driver.c
-> >> index 57ddcc59af30..9120ca63a82a 100644
-> >> --- a/drivers/pci/pci-driver.c
-> >> +++ b/drivers/pci/pci-driver.c
-> >> @@ -1634,7 +1634,8 @@ static int pci_dma_configure(struct device *dev)
-> >>      bridge =3D pci_get_host_bridge_device(to_pci_dev(dev));
-> >>
-> >>      if (IS_ENABLED(CONFIG_OF) && bridge->parent &&
-> >> -        bridge->parent->of_node) {
-> >> +        bridge->parent->of_node &&
-> >> +        !of_node_check_flag(bridge->parent->of_node, OF_DYNAMIC)) {
-> > Again, I don't think changing behavior for dynamic case is right. I
-> > haven't dug into what an ACPI+DT case would look like here. (Hint:
-> > someone that wants this merged can dig into that)
->
-> I think this is required. Without dynamic node, on pure DT system,
-> has_acpi_companion() will return false. Then "ret" is 0 and the
-> following iommu_device_use_default_domain() might be called.
->
-> With dynamic node, of_dma_configure() might return error because dma
-> related properties are not generated. Thus, "ret" is none zero and the
-> following iommu_device_use_default_domain() will be skipped.
+So:
 
-Again, dynamic is the wrong thing to key off of. If we need
-properties, then they should be added. However, I think the host
-bridge should have what's needed. If the code needs to handle this
-case, then we need to figure out the right thing to do.
+k3-am654-idk-dtbs := k3-am654-base-board.dtb k3-am654-idk.dtbo k3-am654-pcie-usb2.dtbo
+dtb-$(CONFIG_ARCH_K3) += k3-am654-idk.dtb
 
-Rob
+Note that we do have all those missing dtso files in our evil vendor tree[2]
+and will be upstreaming them next, so this naming should all work out nicely.
+
+Andrew
+
+[0] https://www.ti.com/lit/ug/spruim7/spruim7.pdf
+[1] https://www.ti.com/lit/ug/spruim6a/spruim6a.pdf
+[2] https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/tree/arch/arm64/boot/dts/ti?h=ti-linux-5.10.y
+
+>   
+>   # Boards with J7200 SoC
+>   dtb-$(CONFIG_ARCH_K3) += k3-j7200-common-proc-board.dtb
+> @@ -45,3 +46,4 @@ dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm.dtb
+>   
+>   # Enable support for device-tree overlays
+>   DTC_FLAGS_k3-am6548-iot2050-advanced-m2 += -@
+> +DTC_FLAGS_k3-am654-base-board += -@
+> diff --git a/arch/arm64/boot/dts/ti/k3-am654-evm-oldi-lcd1evm.dtso b/arch/arm64/boot/dts/ti/k3-am654-evm-oldi-lcd1evm.dtso
+> new file mode 100644
+> index 000000000000..b2c790b314cf
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/ti/k3-am654-evm-oldi-lcd1evm.dtso
+> @@ -0,0 +1,70 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/**
+> + * OLDI-LCD1EVM Rocktech integrated panel and touch DT overlay for AM654-EVM.
+> + *
+> + * Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+> + */
+> +
+> +/dts-v1/;
+> +/plugin/;
+> +
+> +#include <dt-bindings/pwm/pwm.h>
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +&{/} {
+> +	display0 {
+> +		compatible = "rocktech,rk101ii01d-ct";
+> +		backlight = <&lcd_bl>;
+> +		enable-gpios = <&pca9555 8 GPIO_ACTIVE_HIGH>;
+> +		port {
+> +			lcd_in0: endpoint {
+> +				remote-endpoint = <&oldi_out0>;
+> +			};
+> +		};
+> +	};
+> +
+> +	lcd_bl: backlight {
+> +		compatible = "pwm-backlight";
+> +		pwms = <&ecap0 0 50000 PWM_POLARITY_INVERTED>;
+> +		brightness-levels =
+> +			<0 32 64 96 128 160 192 224 255>;
+> +		default-brightness-level = <8>;
+> +	};
+> +};
+> +
+> +&dss {
+> +	status = "okay";
+> +};
+> +
+> +&dss_ports {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +
+> +	port@0 {
+> +		reg = <0>;
+> +
+> +		oldi_out0: endpoint {
+> +			remote-endpoint = <&lcd_in0>;
+> +		};
+> +	};
+> +};
+> +
+> +&main_i2c1 {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +
+> +	gt928: touchscreen@14 {
+> +		status = "okay";
+> +		compatible = "goodix,gt928";
+> +		reg = <0x14>;
+> +
+> +		interrupt-parent = <&pca9554>;
+> +		interrupts = <3 IRQ_TYPE_EDGE_FALLING>;
+> +		touchscreen-size-x = <1280>;
+> +		touchscreen-size-y = <800>;
+> +
+> +		reset-gpios = <&pca9555 9 GPIO_ACTIVE_HIGH>;
+> +		irq-gpios = <&pca9554 3 GPIO_ACTIVE_HIGH>;
+> +	};
+> +};
