@@ -2,78 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E7356EDE49
-	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 10:40:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 329BB6EDE5F
+	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 10:44:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233481AbjDYIkc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Apr 2023 04:40:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57518 "EHLO
+        id S233752AbjDYIom (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Apr 2023 04:44:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234030AbjDYIkE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 04:40:04 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53A68146FB
-        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 01:38:13 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-504eb1155d3so40910516a12.1
-        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 01:38:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1682411837; x=1685003837;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pJCGkPHoGSFZY63Jqk/nlt1gBwH2vblI+IkzLVWvpyw=;
-        b=qwfqHUkBa7MLPI/9HCXNiZc76W0GkP5Ath0jV1H3+r0utDr49cmvw5UBWdJ69LgKbI
-         kQAEOU9N2BqTGmrCaEK/vo0+T2JHyTap65Pq9oze1UpbpGCFnftJil9yx/8njN5kiEbS
-         2raHHC5Ci+xvifegJ4Syjenb6nDAyBcRf6fmloy9SGRJxifER74ESVUGSoWIpG65im6w
-         jV4TwQDS+0Kjl6VkVvcV5v48L3ufniarmCglJzgwvS2qUkPUC3pk6xZkn7eyc6w5vfhh
-         9ttyNT8VXpKD+/vNpQmAWEcvpBd3hq2oWqHDW8GxTuOLilBbBEvdAIYMmqXhQLvGRmOP
-         IfdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682411837; x=1685003837;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pJCGkPHoGSFZY63Jqk/nlt1gBwH2vblI+IkzLVWvpyw=;
-        b=E1ShE3iPCgLk1XsYJPKRmsdSfKJsQbDu1ZY2wpWWWSkWmpUrqicqaM8SIDvSwwhLJZ
-         njpqTpYCs3gh/SJ4lQU5rBvEzXQ8v031abanSTIaQnL44AII4qjB7Uyhg3P7u+qypdht
-         cZbwzikUEkxFHi0WdkS4RuF0LnGg8l+bnmFOVg93BI/MXCMiiYC+T+QOx+07z/I85J3T
-         ZB8kzUU/89d0uT1+DLgxUlHMVt3hH4RTgjyASCUDorpt0+tpGl+163uAKn0dlha9yCXj
-         XTCsI11vxiKEnSvE7d5DwTHYWnFtOOikAh133hbUJeeo/FcF+ln9H4i04OVqsDa0IHgW
-         BZ2g==
-X-Gm-Message-State: AAQBX9d6BFOSYxy8078RO7acubeVGNkIvVbN7IMrbd5HQZHKTXtGlgQY
-        KiAkrmrvB62uC/eFSHEW2nt0x1t7vdDefu0bSpjzxg==
-X-Google-Smtp-Source: AKy350ZzCimN5VBMy4odr40aNaphS9WPL5s1QsFomwpin6cX6Jv2A3zwror5ZbdEtmZc6/prsBRh7o0cC4Z0CxnVDwY=
-X-Received: by 2002:aa7:c84d:0:b0:504:b11e:8cfb with SMTP id
- g13-20020aa7c84d000000b00504b11e8cfbmr15104412edt.13.1682411837571; Tue, 25
- Apr 2023 01:37:17 -0700 (PDT)
+        with ESMTP id S233855AbjDYIoW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 04:44:22 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DD641547F;
+        Tue, 25 Apr 2023 01:42:08 -0700 (PDT)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33P8dnwS017610;
+        Tue, 25 Apr 2023 08:40:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=CJFda1HHrboza25Ghy1e5r7VY3fKqD57pup/Hc23itc=;
+ b=ZwI8yMQw57gIIcSK5P/dqFe7ulG3bKVZlgw7gHgaYxpUUT9OFlphj/47rcktOBNq9aEA
+ LpvBwNEv6Rw4hG82td8UR+tGbr7csFM1vBxRkL18T1+7YKjt9j35xgmmkjUdbGoMEmK4
+ qg5ry93OBHtUZkL2IL57RS6aWik/OeePBrGqdlctA3oeSp/w8IkFTMUKOEg3JlOhPzoB
+ BeIx4Zz01cwHsfHBMZ4Lf6ILbPD5mVMHwHaWHzRcNdPZ39POhpbM6TY+YFs7RKLdfF7K
+ rQzUqyG8IId6rqsaURB/tTTw3JZPYSu9hP7JsnTFr4iKyW96gobYw9/Vxo8V+fYx3OCJ SQ== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q6bgp807u-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 25 Apr 2023 08:40:49 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33P8eVk1001924
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 25 Apr 2023 08:40:31 GMT
+Received: from devipriy-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Tue, 25 Apr 2023 01:40:25 -0700
+From:   Devi Priya <quic_devipriy@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
+CC:     <quic_srichara@quicinc.com>, <quic_sjaganat@quicinc.com>,
+        <quic_kathirav@quicinc.com>, <quic_arajkuma@quicinc.com>,
+        <quic_anusha@quicinc.com>, <quic_poovendh@quicinc.com>
+Subject: [PATCH V3 0/6] Incremental patches on minimal boot support
+Date:   Tue, 25 Apr 2023 14:10:04 +0530
+Message-ID: <20230425084010.15581-1-quic_devipriy@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <20230307163413.143334-1-bchihi@baylibre.com> <CAGXv+5E0wUJYUVD3wx3-=uES612ARQmUE0rxgAruFHxpZCBjzA@mail.gmail.com>
- <CAGuA+ooi7Kx05gagLzXAN3upDiSqDUNOM_djYdGftw6ogVx5gw@mail.gmail.com>
- <CAGuA+oqDPPYFJef_8=YrOpHQNVJ3xgm_zXS6fq_HG2Jy_6t-Zg@mail.gmail.com>
- <CAGXv+5EZPWohGN5CaEiqVrM4MyAar3cPEUhHtGY_9wTJSJNVFQ@mail.gmail.com>
- <CAGuA+oqF4jFMyEo09VDmCf-_7g0ua3XDKDAJ+t3Gat14pDM9NA@mail.gmail.com> <fab67eef-4dc9-420d-b127-aedc6f54cad0@notapiano>
-In-Reply-To: <fab67eef-4dc9-420d-b127-aedc6f54cad0@notapiano>
-From:   Balsam CHIHI <bchihi@baylibre.com>
-Date:   Tue, 25 Apr 2023 10:36:41 +0200
-Message-ID: <CAGuA+ooRGAjXONtXi9G_jTwxrHG0=OerAfK2b3mo0Z+RhPW4Wg@mail.gmail.com>
-Subject: Re: [PATCH 0/4] Add LVTS support for mt8192
-To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>
-Cc:     Chen-Yu Tsai <wenst@chromium.org>, daniel.lezcano@linaro.org,
-        angelogioacchino.delregno@collabora.com, rafael@kernel.org,
-        amitk@kernel.org, rui.zhang@intel.com, matthias.bgg@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        rdunlap@infradead.org, ye.xingchen@zte.com.cn,
-        p.zabel@pengutronix.de, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        khilman@baylibre.com, james.lo@mediatek.com,
-        rex-bc.chen@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: LN7GkLXPxYtizxXBwUBFIBVG3NHnHDh9
+X-Proofpoint-ORIG-GUID: LN7GkLXPxYtizxXBwUBFIBVG3NHnHDh9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-25_03,2023-04-21_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 bulkscore=0
+ mlxscore=0 mlxlogscore=999 suspectscore=0 adultscore=0 priorityscore=1501
+ phishscore=0 lowpriorityscore=0 spamscore=0 malwarescore=0 impostorscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2303200000
+ definitions=main-2304250076
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,199 +78,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 25, 2023 at 12:21=E2=80=AFAM N=C3=ADcolas F. R. A. Prado
-<nfraprado@collabora.com> wrote:
->
-> On Tue, Mar 28, 2023 at 02:20:24AM +0200, Balsam CHIHI wrote:
-> > On Sat, Mar 25, 2023 at 5:33=E2=80=AFAM Chen-Yu Tsai <wenst@chromium.or=
-g> wrote:
-> > >
-> > > On Wed, Mar 22, 2023 at 8:48=E2=80=AFPM Balsam CHIHI <bchihi@baylibre=
-.com> wrote:
-> > > >
-> > > > Hi Chen-Yu,
-> > > >
-> > > > I suspect the bug comes from incorrect calibration data offsets for=
- AP
-> > > > Domain because you confirm that MCU Domain probe runs without issue=
-s.
-> > > > Is it possible to test something for us to confirm this theory (i
-> > > > don't have an mt8192 board on hand now), when you have the time of
-> > > > course?
-> > > > We would like to test AP Domain's calibration data offsets with a
-> > > > working one, for example :
-> > > >
-> > > >  static const struct lvts_ctrl_data mt8192_lvts_ap_data_ctrl[] =3D =
-{
-> > > >                 {
-> > > > -               .cal_offset =3D { 0x25, 0x28 },
-> > > > +               .cal_offset =3D { 0x04, 0x04 },
-> > > >                 .lvts_sensor =3D {
-> > > >                         { .dt_id =3D MT8192_AP_VPU0 },
-> > > >                         { .dt_id =3D MT8192_AP_VPU1 }
-> > > > @@ -1336,7 +1336,7 @@ static const struct lvts_ctrl_data
-> [..]
-> > > >
-> > > > This example is tested and works for mt8195,
-> > > > (all sensors use the same calibration data offset for testing purpo=
-ses).
-> > > >
-> > > > Thank you in advance for your help.
-> > >
-> > > The MCU ones are still tripping though. If I change all of them to 0x=
-04,
-> > > then nothing trips. There's also a bug in the interrupt handling code
-> > > that needs to be dealt with.
-> > >
-> > > AFAICT the calibration data is stored differently. If you look at Chr=
-omeOS's
-> > > downstream v5.10 driver, you'll see mt6873_efuse_to_cal_data() for MT=
-8192,
-> > > and mt8195_efuse_to_cal_data() for MT8195. The difference sums up to:
-> > > MT8195 has all data sequentially stored, while MT8192 has most data s=
-tored
-> > > in lower 24 bits of each 32-bit word, and the highest 8 bits are then=
- used
-> > > to pack data for the remaining sensors.
-> > >
-> > > Regards
-> > > ChenYu
-> >
-> > Hi Chen-Yu Tsai,
-> >
-> > Thank you very much for helping me testing this suggestion.
-> >
-> > Indeed, calibration data is stored differently in the mt8192 compared t=
-o mt8195.
-> > So, the mt8192's support will be delayed for now, to allow further debu=
-gging.
-> >
-> > In the mean time, we will only continue to upstream the remaining
-> > mt8195's source code, so it will get full LVTS support.
-> > A new series will be submitted soon.
->
-> Hi Balsam,
->
-> like Chen-Yu mentioned, the calibration data is stored with 4 byte alignm=
-ent for
-> MT8192, but the data that is split between non-contiguous bytes is for th=
-e
-> thermal controllers (called Resistor-Capacitor Calibration downstream) no=
-t the
-> sensors. The controller calibration isn't currently handled in this drive=
-r (and
-> downstream it also isn't used, since a current value is read from the con=
-troller
-> instead), so we can just ignore those.
->
-> The patch below adjusts the addresseses for the sensors and gives me reas=
-onable
-> reads, so the machine no longer reboots. Can you integrate it into your s=
-eries?
->
-> Thanks,
-> N=C3=ADcolas
->
+Patchset V9 of the series: Add minimal boot support for IPQ9574 has been
+merged and is available in linux-next/master.
+V12 being the latest revision posted in the series, the delta between
+revisions V9 and V12 is posted as a separate series as suggested by 
+Bjorn to avoid possible confusions.
 
-Hello N=C3=ADcolas,
+This series adds the delta changes between revisions V9 and V12.
 
-Thank you very much for your help!
-I really appreciate it.
-Yes, of course I will integrate your fix to the series immediately.
+V9 can be found at:
+https://lore.kernel.org/linux-arm-msm/20230316072940.29137-1-quic_devipriy@quicinc.com/
 
-Best regards,
-Balsam
+V12 can be found at:
+https://lore.kernel.org/linux-arm-msm/20230410135948.11970-1-quic_devipriy@quicinc.com/
 
-> From 4506f03b806f3eeb89887bac2c1c86d61da97281 Mon Sep 17 00:00:00 2001
-> From: =3D?UTF-8?q?N=3DC3=3DADcolas=3D20F=3D2E=3D20R=3D2E=3D20A=3D2E=3D20P=
-rado?=3D
->  <nfraprado@collabora.com>
-> Date: Mon, 24 Apr 2023 17:42:42 -0400
-> Subject: [PATCH] thermal/drivers/mediatek/lvts_thermal: Fix calibration
->  offsets for MT8192
-> MIME-Version: 1.0
-> Content-Type: text/plain; charset=3DUTF-8
-> Content-Transfer-Encoding: 8bit
->
-> Signed-off-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
-> ---
->  drivers/thermal/mediatek/lvts_thermal.c | 14 +++++++-------
->  1 file changed, 7 insertions(+), 7 deletions(-)
->
-> diff --git a/drivers/thermal/mediatek/lvts_thermal.c b/drivers/thermal/me=
-diatek/lvts_thermal.c
-> index b6956c89d557..f8afbc2ac190 100644
-> --- a/drivers/thermal/mediatek/lvts_thermal.c
-> +++ b/drivers/thermal/mediatek/lvts_thermal.c
-> @@ -1261,7 +1261,7 @@ static const struct lvts_ctrl_data mt8195_lvts_ap_d=
-ata_ctrl[] =3D {
->
->  static const struct lvts_ctrl_data mt8192_lvts_mcu_data_ctrl[] =3D {
->         {
-> -               .cal_offset =3D { 0x04, 0x07 },
-> +               .cal_offset =3D { 0x04, 0x08 },
->                 .lvts_sensor =3D {
->                         { .dt_id =3D MT8192_MCU_BIG_CPU0 },
->                         { .dt_id =3D MT8192_MCU_BIG_CPU1 }
-> @@ -1271,7 +1271,7 @@ static const struct lvts_ctrl_data mt8192_lvts_mcu_=
-data_ctrl[] =3D {
->                 .hw_tshut_temp =3D LVTS_HW_SHUTDOWN_MT8192,
->         },
->         {
-> -               .cal_offset =3D { 0x0d, 0x10 },
-> +               .cal_offset =3D { 0x0c, 0x10 },
->                 .lvts_sensor =3D {
->                         { .dt_id =3D MT8192_MCU_BIG_CPU2 },
->                         { .dt_id =3D MT8192_MCU_BIG_CPU3 }
-> @@ -1281,7 +1281,7 @@ static const struct lvts_ctrl_data mt8192_lvts_mcu_=
-data_ctrl[] =3D {
->                 .hw_tshut_temp =3D LVTS_HW_SHUTDOWN_MT8192,
->         },
->         {
-> -               .cal_offset =3D { 0x16, 0x19, 0x1c, 0x1f },
-> +               .cal_offset =3D { 0x14, 0x18, 0x1c, 0x20 },
->                 .lvts_sensor =3D {
->                         { .dt_id =3D MT8192_MCU_LITTLE_CPU0 },
->                         { .dt_id =3D MT8192_MCU_LITTLE_CPU1 },
-> @@ -1296,7 +1296,7 @@ static const struct lvts_ctrl_data mt8192_lvts_mcu_=
-data_ctrl[] =3D {
->
->  static const struct lvts_ctrl_data mt8192_lvts_ap_data_ctrl[] =3D {
->                 {
-> -               .cal_offset =3D { 0x25, 0x28 },
-> +               .cal_offset =3D { 0x24, 0x28 },
->                 .lvts_sensor =3D {
->                         { .dt_id =3D MT8192_AP_VPU0 },
->                         { .dt_id =3D MT8192_AP_VPU1 }
-> @@ -1306,7 +1306,7 @@ static const struct lvts_ctrl_data mt8192_lvts_ap_d=
-ata_ctrl[] =3D {
->                 .hw_tshut_temp =3D LVTS_HW_SHUTDOWN_MT8192,
->         },
->         {
-> -               .cal_offset =3D { 0x2e, 0x31 },
-> +               .cal_offset =3D { 0x2c, 0x30 },
->                 .lvts_sensor =3D {
->                         { .dt_id =3D MT8192_AP_GPU0 },
->                         { .dt_id =3D MT8192_AP_GPU1 }
-> @@ -1316,7 +1316,7 @@ static const struct lvts_ctrl_data mt8192_lvts_ap_d=
-ata_ctrl[] =3D {
->                 .hw_tshut_temp =3D LVTS_HW_SHUTDOWN_MT8192,
->         },
->         {
-> -               .cal_offset =3D { 0x37, 0x3a },
-> +               .cal_offset =3D { 0x34, 0x38 },
->                 .lvts_sensor =3D {
->                         { .dt_id =3D MT8192_AP_INFRA },
->                         { .dt_id =3D MT8192_AP_CAM },
-> @@ -1326,7 +1326,7 @@ static const struct lvts_ctrl_data mt8192_lvts_ap_d=
-ata_ctrl[] =3D {
->                 .hw_tshut_temp =3D LVTS_HW_SHUTDOWN_MT8192,
->         },
->         {
-> -               .cal_offset =3D { 0x40, 0x43, 0x46 },
-> +               .cal_offset =3D { 0x3c, 0x40, 0x44 },
->                 .lvts_sensor =3D {
->                         { .dt_id =3D MT8192_AP_MD0 },
->                         { .dt_id =3D MT8192_AP_MD1 },
-> --
-> 2.40.0
+Changes in V3:
+	- Detailed change logs are added to the respective patches.
+
+Changes in V2:
+https://lore.kernel.org/linux-arm-msm/20230417053355.25691-1-quic_devipriy@quicinc.com/
+	- Updated the subject & commit message of [PATCH V2 1/4]
+	- No changes were made to any other patches
+
+Changes in V1:
+	- The Delta between V9 & V12 is added to the change log of
+	  the respective patches for quick reference
+
+Devi Priya (6):
+  arm64: dts: qcom: ipq9574: Update the size of GICC & GICV regions
+  dt-bindings: clock: qcom,ipq9574-gcc: Add maintainer
+  clk: qcom: gcc-ipq9574: Clean up included headers
+  clk: qcom: gcc-ipq9574: constify struct clk_init_data
+  arm64: dts: qcom: ipq9574: Drop bias_pll_ubi_nc_clk input
+  arm64: dts: qcom: ipq9574: rename al02-c7 dts to rdp433
+
+ .../bindings/clock/qcom,ipq9574-gcc.yaml      |   1 +
+ arch/arm64/boot/dts/qcom/Makefile             |   2 +-
+ ...ipq9574-al02-c7.dts => ipq9574-rdp433.dts} |   2 +-
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi         |  14 +-
+ drivers/clk/qcom/gcc-ipq9574.c                | 434 +++++++++---------
+ 5 files changed, 224 insertions(+), 229 deletions(-)
+ rename arch/arm64/boot/dts/qcom/{ipq9574-al02-c7.dts => ipq9574-rdp433.dts} (97%)
+
+-- 
+2.17.1
+
