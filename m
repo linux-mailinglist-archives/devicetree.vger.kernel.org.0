@@ -2,63 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D8426EDACB
-	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 05:42:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A12476EDAF7
+	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 06:49:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232302AbjDYDmv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Apr 2023 23:42:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54406 "EHLO
+        id S231646AbjDYEtX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Apr 2023 00:49:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232801AbjDYDmu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Apr 2023 23:42:50 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A08CAF39;
-        Mon, 24 Apr 2023 20:42:09 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 00C7C7FFD;
-        Tue, 25 Apr 2023 11:41:40 +0800 (CST)
-Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 25 Apr
- 2023 11:41:40 +0800
-Received: from [192.168.125.106] (113.72.145.137) by EXMBX162.cuchost.com
- (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 25 Apr
- 2023 11:41:39 +0800
-Message-ID: <d685a1d4-c07d-7dfa-f1fb-b35ceb2aa0eb@starfivetech.com>
-Date:   Tue, 25 Apr 2023 11:41:38 +0800
+        with ESMTP id S229637AbjDYEtW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 00:49:22 -0400
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B28E7D97;
+        Mon, 24 Apr 2023 21:49:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1682398161; x=1713934161;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=7rZnvjZU75nXYCbRspPe2A4WrOUI0wNa/u5RdGhCn8U=;
+  b=WC2r/tuyNZ6Nh7isRIk9Hhry8VI0o8MseUVNAFdOUsCZRmfBhv1qitPB
+   ocHQ0BHHEgtM4jJEFSjY1QuTXJiz4K5bR2Q3N28GZsXuJperHzkJAdwxV
+   mEn5HWggXixwAEhVNmBCeRW1MJJfNOf4MphHVhdGaD8NZpgBVu9SYmAwg
+   aDc1AB51D0AYGhk2YYbYsczCfE1h9eZkHzvXBFn1VfcqRVlK7D8i3lx0z
+   5WdFQ9cOS8fjs/S/5PPBm37pwqG0Yq4igiooyisLrrNS/Vm0zrvxvopWj
+   whFpnh3LLna5Y0UNK5eDiwSYDbd+XKzu95ETmCdj45FXyWLs8gSjN6C8T
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10690"; a="432911947"
+X-IronPort-AV: E=Sophos;i="5.99,224,1677571200"; 
+   d="scan'208";a="432911947"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Apr 2023 21:49:20 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10690"; a="867747810"
+X-IronPort-AV: E=Sophos;i="5.99,224,1677571200"; 
+   d="scan'208";a="867747810"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by orsmga005.jf.intel.com with ESMTP; 24 Apr 2023 21:49:17 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1prAc8-000izS-0r;
+        Tue, 25 Apr 2023 04:49:16 +0000
+Date:   Tue, 25 Apr 2023 12:48:32 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>
+Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-i2c@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 2/2] hwmon: pmbus: Add ltc4286 driver
+Message-ID: <202304251257.oiVqQ5cl-lkp@intel.com>
+References: <20230424101352.28117-3-Delphine_CC_Chiu@Wiwynn.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [RESEND v2 1/6] dt-bindings: power: Add JH7110 AON PMU support
-To:     Conor Dooley <conor@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Walker Chen <walker.chen@starfivetech.com>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>, <vkoul@kernel.org>,
-        <linux-phy@lists.infradead.org>
-References: <20230419035646.43702-1-changhuang.liang@starfivetech.com>
- <20230419035646.43702-2-changhuang.liang@starfivetech.com>
- <20230419-labored-camper-644d51a7ca96@spud>
- <1a5b15fa-4f20-51c2-2ba1-a04a2911a694@starfivetech.com>
- <20230424-baffle-punch-ec73098f2b6a@spud>
-Content-Language: en-US
-From:   Changhuang Liang <changhuang.liang@starfivetech.com>
-In-Reply-To: <20230424-baffle-punch-ec73098f2b6a@spud>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [113.72.145.137]
-X-ClientProxiedBy: EXCAS061.cuchost.com (172.16.6.21) To EXMBX162.cuchost.com
- (172.16.6.72)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230424101352.28117-3-Delphine_CC_Chiu@Wiwynn.com>
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,139 +69,167 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Delphine,
+
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on groeck-staging/hwmon-next]
+[also build test ERROR on linus/master v6.3 next-20230424]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Delphine-CC-Chiu/dt-bindings-hwmon-Add-lltc-ltc4286-driver-bindings/20230424-181521
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
+patch link:    https://lore.kernel.org/r/20230424101352.28117-3-Delphine_CC_Chiu%40Wiwynn.com
+patch subject: [PATCH v1 2/2] hwmon: pmbus: Add ltc4286 driver
+config: riscv-randconfig-r021-20230425 (https://download.01.org/0day-ci/archive/20230425/202304251257.oiVqQ5cl-lkp@intel.com/config)
+compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project 437b7602e4a998220871de78afcb020b9c14a661)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # install riscv cross compiling tool for clang build
+        # apt-get install binutils-riscv64-linux-gnu
+        # https://github.com/intel-lab-lkp/linux/commit/318b8a252bb2d7430f1cf7b93bb5df8d0e4fee29
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Delphine-CC-Chiu/dt-bindings-hwmon-Add-lltc-ltc4286-driver-bindings/20230424-181521
+        git checkout 318b8a252bb2d7430f1cf7b93bb5df8d0e4fee29
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=riscv olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=riscv SHELL=/bin/bash drivers/hwmon/pmbus/
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202304251257.oiVqQ5cl-lkp@intel.com/
+
+All error/warnings (new ones prefixed by >>):
+
+>> drivers/hwmon/pmbus/ltc4286.c:46:24: warning: implicit conversion from 'double' to 'int' changes value from 273.15 to 273 [-Wliteral-conversion]
+           .b[PSC_TEMPERATURE] = 273.15,
+                                 ^~~~~~
+>> drivers/hwmon/pmbus/ltc4286.c:134:11: error: incompatible function pointer types initializing 'int (*)(struct i2c_client *)' with an expression of type 'int (struct i2c_client *, const struct i2c_device_id *)' [-Wincompatible-function-pointer-types]
+           .probe = ltc4286_probe,
+                    ^~~~~~~~~~~~~
+   1 warning and 1 error generated.
 
 
-On 2023/4/25 0:52, Conor Dooley wrote:
-> Hey Changhuang,
-> 
-> On Thu, Apr 20, 2023 at 03:00:10PM +0800, Changhuang Liang wrote:
->> On 2023/4/20 2:29, Conor Dooley wrote:
->>> On Tue, Apr 18, 2023 at 08:56:41PM -0700, Changhuang Liang wrote:
->>>> Add AON PMU for StarFive JH7110 SoC, it can be used to turn on/off DPHY
->>>> rx/tx power switch, and it don't need the properties of reg and
->>>> interrupts.
->>>
->>> Putting this here since the DT guys are more likely to see it this way..
->>> Given how the implementation of the code driving this new
->>> power-controller and the code driving the existing one are rather
->>> different (you've basically re-written the entire driver in this series),
->>> should the dphy driver implement its own power-controller?
->>>
->>> I know originally Changuang had tried something along those lines:
->>> https://lore.kernel.org/linux-riscv/5dc4ddc2-9d15-ebb2-38bc-8a544ca67e0d@starfivetech.com/
->>>
->>> I see that that was shut down pretty much, partly due to the
->>> non-standard property, hence this series adding the dphy power domain to
->>> the existing driver.
->>>
->>> If it was done by looking up the pmu with a
->>> of_find_compatible_node(NULL, "power-controller", "starfive,jh7110-aon-pmu")
->>> type thing, would that make sense? Although, maybe that is not a
->>> question for you, and this series may actually have been better entirely
->>> bundled with the dphy series so the whole thing can be reviewed as a
->>> unit. I've added 
->>>
->>> IOW, don't change this patch, or the dts patch, but move all of the
->>> code back into the phy driver..
->>>
->>
->> Maybe this way can not do that? power domain is binding before driver probe,
->> if I use "of_find_compatible_node" it phy(DPHY rx) probe. Maybe I can only operate 
->> this power switch in my phy(DPHY rx) driver, so the all patch of this series isn't 
->> make sense.
-> 
-> I'm a wee bit lost here, as I unfortunately know little about how Linux
-> handles this power-domain stuff. If the DPHY tries to probe and some
-> pre-requisite does not yet exist, you can return -EPROBE_DEFER right?
-> 
-> But I don't think that's what you are asking, as using
-> of_find_compatible_node() doesn't depend on there being a driver AFAIU.
-> 
->> In my opinion, We will also submit DPHY TX module later which use this series.
->> Maybe this series should independent?
-> 
-> Is the DPHY tx module a different driver to the rx one?> If yes, does it have a different bit you must set in the syscon?
-> 
+vim +134 drivers/hwmon/pmbus/ltc4286.c
 
-Yes, DPHY tx module is a different driver to the DPHY rx. And I have do a
-different bit in PATCH 1:
+    25	
+    26	static struct pmbus_driver_info ltc4286_info = {
+    27		.pages = 1,
+    28		.format[PSC_VOLTAGE_IN] = direct,
+    29		.format[PSC_VOLTAGE_OUT] = direct,
+    30		.format[PSC_CURRENT_OUT] = direct,
+    31		.format[PSC_POWER] = direct,
+    32		.format[PSC_TEMPERATURE] = direct,
+    33		.m[PSC_VOLTAGE_IN] = 32,
+    34		.b[PSC_VOLTAGE_IN] = 0,
+    35		.R[PSC_VOLTAGE_IN] = 1,
+    36		.m[PSC_VOLTAGE_OUT] = 32,
+    37		.b[PSC_VOLTAGE_OUT] = 0,
+    38		.R[PSC_VOLTAGE_OUT] = 1,
+    39		.m[PSC_CURRENT_OUT] = 1024,
+    40		.b[PSC_CURRENT_OUT] = 0,
+    41		.R[PSC_CURRENT_OUT] = 3 - 6,
+    42		.m[PSC_POWER] = 1,
+    43		.b[PSC_POWER] = 0,
+    44		.R[PSC_POWER] = 4 - 6,
+    45		.m[PSC_TEMPERATURE] = 1,
+  > 46		.b[PSC_TEMPERATURE] = 273.15,
+    47		.R[PSC_TEMPERATURE] = 0,
+    48		.func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_IOUT |
+    49			   PMBUS_HAVE_PIN | PMBUS_HAVE_TEMP,
+    50	};
+    51	
+    52	static int ltc4286_probe(struct i2c_client *client,
+    53				 const struct i2c_device_id *id)
+    54	{
+    55		int ret;
+    56		u8 block_buffer[I2C_SMBUS_BLOCK_MAX + 1];
+    57		struct device *dev = &client->dev;
+    58		struct pmbus_driver_info *info;
+    59		u32 rsense;
+    60	
+    61		ret = i2c_smbus_read_block_data(client, PMBUS_MFR_ID, block_buffer);
+    62		if (ret < 0) {
+    63			dev_err(&client->dev, "failed to read manufacturer id\n");
+    64			return ret;
+    65		}
+    66	
+    67		/* Refer to ltc4286 datasheet page 20
+    68		 * the default manufacturer id is LTC
+    69		 */
+    70		if (ret != LTC4286_MFR_ID_SIZE ||
+    71		    strncmp(block_buffer, "LTC", LTC4286_MFR_ID_SIZE)) {
+    72			dev_err(&client->dev, "unsupported manufacturer id\n");
+    73			return -ENODEV;
+    74		}
+    75	
+    76		ret = i2c_smbus_read_block_data(client, PMBUS_MFR_MODEL, block_buffer);
+    77		if (ret < 0) {
+    78			dev_err(&client->dev, "failed to read manufacturer model\n");
+    79			return ret;
+    80		}
+    81	
+    82		ret = of_property_read_u32(client->dev.of_node, "rsense-micro-ohms",
+    83					   &rsense);
+    84		if (ret < 0)
+    85			return ret;
+    86	
+    87		if (rsense == 0)
+    88			return -EINVAL;
+    89	
+    90		info = &ltc4286_info;
+    91	
+    92		/* Default of VRANGE_SELECT = 1 */
+    93		if (device_property_read_bool(dev, "vrange_select_25p6")) {
+    94			/* Setup MFR1 CONFIG register bit 1 VRANGE_SELECT */
+    95			ret = i2c_smbus_read_word_data(client, LTC4286_MFR_CONFIG1);
+    96			if (ret < 0) {
+    97				dev_err(&client->dev,
+    98					"failed to read manufacturer configuration one\n");
+    99				return ret;
+   100			}
+   101	
+   102			ret &= ~VRANGE_SELECT; /* VRANGE_SELECT = 0, 25.6V */
+   103			i2c_smbus_write_word_data(client, LTC4286_MFR_CONFIG1, ret);
+   104	
+   105			info->m[PSC_VOLTAGE_IN] = 128;
+   106			info->m[PSC_VOLTAGE_OUT] = 128;
+   107			info->m[PSC_POWER] = 4 * rsense;
+   108		} else {
+   109			info->m[PSC_POWER] = rsense;
+   110		}
+   111	
+   112		info->m[PSC_CURRENT_OUT] = 1024 * rsense;
+   113	
+   114		return pmbus_do_probe(client, info);
+   115	}
+   116	
+   117	static const struct i2c_device_id ltc4286_id[] = { { "ltc4286", ltc4286 },
+   118							   { "ltc4287", ltc4287 },
+   119							   {} };
+   120	MODULE_DEVICE_TABLE(i2c, ltc4286_id);
+   121	
+   122	static const struct of_device_id ltc4286_of_match[] = {
+   123		{ .compatible = "lltc,ltc4286" },
+   124		{ .compatible = "lltc,ltc4287" },
+   125		{}
+   126	};
+   127	
+   128	/* This is the driver that will be inserted */
+   129	static struct i2c_driver ltc4286_driver = {
+   130		.driver = {
+   131			.name = "ltc4286",
+   132			.of_match_table = ltc4286_of_match,
+   133		},
+ > 134		.probe = ltc4286_probe,
+   135		.id_table = ltc4286_id,
+   136	};
+   137	
 
-#define JH7110_PD_DPHY_TX	0
-#define JH7110_PD_DPHY_RX	1
-
-also in PATCH 5:
-
-static const struct jh71xx_domain_info jh7110_aon_power_domains[] = {
-	[JH7110_PD_DPHY_TX] = {
-		.name = "DPHY-TX",
-		.bit = 30,
-	},
-	[JH7110_PD_DPHY_RX] = {
-		.name = "DPHY-RX",
-		.bit = 31,
-	},
-};
-
-> +CC Walker, do you have a register map for the jh7110? My TRM only says
-> what the registers are, but not the bits in them. Would make life easier
-> if I had that info.
-> 
-> I'm fine with taking this code, I just want to make sure that the soc
-> driver doing this is the right thing to do.
-> I was kinda hoping that combining with the DPHY-rx series might allow
-> the PHY folk to spot if you are doing something here with the power
-> domains that doesn't make sense.
-> 
-
-I asked about our soc colleagues. This syscon register,
-offset 0x00:
-bit[31] ---> dphy rx power switch
-bit[30] ---> dphy tx power switch 
-other bits ---> Reserved
-
->>> Sorry for not asking this sooner Changhuang,
->>> Conor.
->>>
->>> (hopefully this didn't get sent twice, mutt complained of a bad email
->>> addr during sending the first time)
->>>
->>
->> I'm sorry for that, I will notice later.
-> 
-> No, this was my mail client doing things that I was unsure of. You
-> didn't do anything wrong.
-> 
-[...]
->>>>    - Walker Chen <walker.chen@starfivetech.com>
->>>> +  - Changhuang Liang <changhuang.liang@starfivetech.com>
->>>>  
->>>>  description: |
->>>>    StarFive JH7110 SoC includes support for multiple power domains which can be
->>>> @@ -17,6 +18,7 @@ properties:
->>>>    compatible:
->>>>      enum:
->>>>        - starfive,jh7110-pmu
->>>> +      - starfive,jh7110-aon-pmu
-> 
-> I was speaking to Rob about this over the weekend, he asked:
-> 'Why isn't "starfive,jh7110-aon-syscon" just the power-domain provider
-> itself?'
-
-Maybe not, this syscon only offset "0x00" configure power switch.
-other offset configure other functions, maybe not power, so this
-"starfive,jh7110-aon-syscon" not the power-domain itself.
-
-> Do we actually need to add a new binding for this at all?
-> 
-> Cheers,
-> Conor.
-> 
-
-Maybe this patch do that.
-https://lore.kernel.org/all/20230414024157.53203-6-xingyu.wu@starfivetech.com/
-
->>>>  
->>>>    reg:
->>>>      maxItems: 1
->>>> @@ -29,10 +31,19 @@ properties:
->>>>  
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
