@@ -2,74 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC8F56EE35D
-	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 15:45:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B123A6EE36B
+	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 15:45:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234080AbjDYNp1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Apr 2023 09:45:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41890 "EHLO
+        id S234311AbjDYNp4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Apr 2023 09:45:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229915AbjDYNp0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 09:45:26 -0400
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D7FD19BC;
-        Tue, 25 Apr 2023 06:45:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1682430325; x=1713966325;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=k/ABWJ2xxNYCYrGZUiTvjqFyFuCe4XdVVI+pcOUNIv8=;
-  b=A4CO2wCD+vygGngqhNi+C+Juzoch3wTbsnSvCRehfyXVtkDiuxwfE3WX
-   /aB2Ei0evzE/1jAnqfhG7gY77tlwg3Wn71bz5v7aat7PAqiEp2Ybl/M2v
-   l3I94t4MXKYonXy3vjfF63iISI6TE8TPiIGiij4p1qY0jCRmxQZk31PaX
-   GPwKH12kCprch3WT0xQ5I0R/+mMKBtAILxNi7DdFeZMyRt76FwsAUhUF7
-   YpVdPmQfxr1ejB7fGKkZo8Twq/os0cO4Fmp8GB6PYxDYwGdJcDYA87tJJ
-   uNb036Bl2REMitKaBq9dnBmCFGaDukrQFTqYtnNFg8fqPSMiuGWqjMtfh
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="345521094"
-X-IronPort-AV: E=Sophos;i="5.99,225,1677571200"; 
-   d="scan'208";a="345521094"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Apr 2023 06:45:24 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="724036501"
-X-IronPort-AV: E=Sophos;i="5.99,225,1677571200"; 
-   d="scan'208";a="724036501"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga008.jf.intel.com with ESMTP; 25 Apr 2023 06:45:21 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1prIyt-00505G-0n;
-        Tue, 25 Apr 2023 16:45:19 +0300
-Date:   Tue, 25 Apr 2023 16:45:18 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Matti Vaittinen <mazziesaccount@gmail.com>
-Cc:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        with ESMTP id S234309AbjDYNpv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 09:45:51 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14B041445C;
+        Tue, 25 Apr 2023 06:45:42 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A4B7262A1B;
+        Tue, 25 Apr 2023 13:45:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 962E6C4339B;
+        Tue, 25 Apr 2023 13:45:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1682430341;
+        bh=9L0RFEhgc5pVrEurXwJyQS6iOhvUqopnPSSKaj6qHrk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=l9rN0yXvw4qGwOHeti8o5qBtfLR1pBuf64qdQ83RRLdFbTYYcutmEc94K4lo9BCQG
+         SyOqoxZBLPNi5/ZS7CZhbGdEXN5wu32UITol5ums0ldYHMT9iFhwUXabdmtZ0tB36w
+         3lPsP2eKjxgOJuAIn1Rw44gVKrSaP8avWcNZ8eGaJ9FzILmvuQFQ0JI+mXxT9SnHQr
+         I0Gxde5M8dlNSIkiH57of5qh8J1S83x4CTijHAx799ZeCABTMLQCZ/Hagk5t5PmXG3
+         V5eR97+IhdE2f9tj9bU6u4TFF+/uneh1nBC14aYWjyftXr8yWYG/fTaxEOwycyL31s
+         tkIajbtM3LHwA==
+Date:   Tue, 25 Apr 2023 15:45:37 +0200
+From:   Andi Shyti <andi.shyti@kernel.org>
+To:     Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
+Cc:     patrick@stwcx.xyz, Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Zhigang Shi <Zhigang.Shi@liteon.com>,
-        Shreeya Patel <shreeya.patel@collabora.com>,
-        Paul Gazzillo <paul@pgazz.com>,
-        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 4/5] iio: light: ROHM BU27008 color sensor
-Message-ID: <ZEfZbmczXmJjiNPP@smile.fi.intel.com>
-References: <cover.1682340947.git.mazziesaccount@gmail.com>
- <d51d5e2b3eff65fd86aeb47840db9cd413d96668.1682340947.git.mazziesaccount@gmail.com>
- <ZEaeoxdWTknLz7lQ@smile.fi.intel.com>
- <47998ed8-5160-69dd-1767-e1746971a9b9@gmail.com>
+        linux-i2c@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 2/2] hwmon: pmbus: Add ltc4286 driver
+Message-ID: <20230425134537.pzsplcpkrog2552r@intel.intel>
+References: <20230424101352.28117-1-Delphine_CC_Chiu@Wiwynn.com>
+ <20230424101352.28117-3-Delphine_CC_Chiu@Wiwynn.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <47998ed8-5160-69dd-1767-e1746971a9b9@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+In-Reply-To: <20230424101352.28117-3-Delphine_CC_Chiu@Wiwynn.com>
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,36 +58,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 25, 2023 at 08:24:01AM +0300, Matti Vaittinen wrote:
-> On 4/24/23 18:22, Andy Shevchenko wrote:
-> > On Mon, Apr 24, 2023 at 04:10:09PM +0300, Matti Vaittinen wrote:
+Hi Delphine,
 
-...
+On top of Guenter's comments,
 
-> > This...
-> > 
-> > > +#include <linux/bits.h>
-> > 
-> > ...is guaranteed to be included by this.
-> > 
-> > > +#include <linux/bitops.h>
-> 
-> Out of the curiosity - do we have a rule and rationale for explicitly
-> including headers with 'stuff' we use Vs. trusting some header being
-> included by another one? I've not thought much of this so I don't know if
-> there are any pros/cons?
+[...]
 
-That's what we are starving for actually. Currently this is a tribe knowledge
-which one gets while being involved into Linux kernel development for a long
-time and being capable of keeping an eye on tree wide, library or similar
-changes.
+> +config SENSORS_LTC4286
+> +	bool "Linear Technologies LTC4286"
+> +	help
+> +	  If you say yes here you get hardware monitoring support for Linear
+> +	  Technology LTC4286.
 
-I would love to see some (preferably generated) list of the header
-dependencies. Yet, the header dependency hell should be solved meanwhile
-(see Ingo's 2k+ patch series).
+could you add a couple of words more here?
 
--- 
-With Best Regards,
-Andy Shevchenko
+[...]
 
+> +static int ltc4286_probe(struct i2c_client *client,
+> +			 const struct i2c_device_id *id)
+> +{
+> +	int ret;
+> +	u8 block_buffer[I2C_SMBUS_BLOCK_MAX + 1];
+> +	struct device *dev = &client->dev;
+> +	struct pmbus_driver_info *info;
+> +	u32 rsense;
+> +
+> +	ret = i2c_smbus_read_block_data(client, PMBUS_MFR_ID, block_buffer);
+> +	if (ret < 0) {
+> +		dev_err(&client->dev, "failed to read manufacturer id\n");
 
+you can use dev_err_probe() here:
+
+	return dev_err_probe(&client->dev, err, "failed to read manufacturer id\n");
+
+> +		return ret;
+> +	}
+> +
+> +	/* Refer to ltc4286 datasheet page 20
+> +	 * the default manufacturer id is LTC
+> +	 */
+> +	if (ret != LTC4286_MFR_ID_SIZE ||
+> +	    strncmp(block_buffer, "LTC", LTC4286_MFR_ID_SIZE)) {
+> +		dev_err(&client->dev, "unsupported manufacturer id\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	ret = i2c_smbus_read_block_data(client, PMBUS_MFR_MODEL, block_buffer);
+> +	if (ret < 0) {
+> +		dev_err(&client->dev, "failed to read manufacturer model\n");
+> +		return ret;
+> +	}
+
+Is this read really needed?
+
+Andi
+
+[...]
