@@ -2,73 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D7DB36EE622
-	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 18:53:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80EEF6EE62C
+	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 18:57:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234279AbjDYQxT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Apr 2023 12:53:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44192 "EHLO
+        id S234823AbjDYQ5H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Apr 2023 12:57:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234426AbjDYQxS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 12:53:18 -0400
-Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 879B1D307;
-        Tue, 25 Apr 2023 09:53:12 -0700 (PDT)
-Received: by mail-oi1-f171.google.com with SMTP id 5614622812f47-38e2740958aso2235765b6e.1;
-        Tue, 25 Apr 2023 09:53:12 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682441592; x=1685033592;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xsSaFPoEnp1cGsorTT7ZaH8aG8h2ymJ3AbL8g9oAX2c=;
-        b=cjW8wW9V34uotDp0F3DfgWyO4QJ8Kzxa8C9LmcfFRlvEq4+vJgN3v4APp9Uktv8ZNd
-         Ok704JoruZrTDrp1J4zdp4PffbO60iMG096h7Wg0OWCsmuW4JZrX3eMQjWSrL7myzrie
-         40hEoNjOzKiNASjaHRqUZPYBqjX0NmD+gGZ8yfYEiqKxsa0AB7qjXutSe4N6R4pKCg+Z
-         ki12G05LXS767LmtLmw1uc0TX+G7D/4pC6BbpfWcd54QpGAqV3KXEHgI91o3Ci3PVirb
-         XKbPG3AN0PJtjC+vx9XSJt+MDpl0nfSnS8oCBi92mBzNsjnAuw8BABeiGUVuyhDsn/Cx
-         ZbMg==
-X-Gm-Message-State: AAQBX9ejuv3mE8vTgIqd0Zy0kgfJjfVOXj5ZSKSlvQlkPD9HrN7PGX8C
-        n06J+Dwrjmfd/nDfBNNaOw==
-X-Google-Smtp-Source: AKy350bfrDTwQxvMUyap3y3hJHSKG/gULg481X3pOZQCJmRNZ5VYkfUL4Idx8sx5O25r4MyufQ1RvQ==
-X-Received: by 2002:a05:6808:1392:b0:387:14b7:f8e7 with SMTP id c18-20020a056808139200b0038714b7f8e7mr10106662oiw.38.1682441591645;
-        Tue, 25 Apr 2023 09:53:11 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id z9-20020a056808048900b0038dd5bf922bsm5772958oid.22.2023.04.25.09.53.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Apr 2023 09:53:11 -0700 (PDT)
-Received: (nullmailer pid 1931342 invoked by uid 1000);
-        Tue, 25 Apr 2023 16:53:10 -0000
-Date:   Tue, 25 Apr 2023 11:53:10 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux.dev
-Subject: Re: [PATCH v2 03/13] dt-bindings: display/msm: Add SM6350 DPU
-Message-ID: <20230425165310.GA1928942-robh@kernel.org>
-References: <20230411-topic-straitlagoon_mdss-v2-0-5def73f50980@linaro.org>
- <20230411-topic-straitlagoon_mdss-v2-3-5def73f50980@linaro.org>
+        with ESMTP id S234813AbjDYQ5G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 12:57:06 -0400
+Received: from new-shark9.inbox.lv (new-shark9.inbox.lv [194.152.32.89])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBB8313FA1;
+        Tue, 25 Apr 2023 09:57:04 -0700 (PDT)
+Received: from shark4.inbox.lv (shark4 [10.0.1.84])
+        by new-shark9.inbox.lv (Postfix) with ESMTP id 733CA48052F;
+        Tue, 25 Apr 2023 19:57:01 +0300 (EEST)
+Received: from shark4.inbox.lv (localhost [127.0.0.1])
+        by shark4-out.inbox.lv (Postfix) with ESMTP id 5C0C8C018B;
+        Tue, 25 Apr 2023 19:57:01 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=inbox.lv;
+        s=p20220324; t=1682441821; x=1682443621;
+        bh=Qq9ls3B214o+xFbtaX+maHmcXec0gagOLT9ZANiZIxc=;
+        h=From:To:Cc:Subject:Date:Message-Id:X-ESPOL:From:Date:To:Cc:
+         Message-ID:Subject:Reply-To;
+        b=bERv3ZNQ5JBDYpoXs1JXI1oQ3+XsqTlceOeeOiSKTTDY3Tw3vLNVh1nQS8jyIzlsh
+         8PTiiVwLcCyoT3l1y2hqRmDVd6qfdozIfbZYr1DQe5xUnd1d1tVZsQyPqJ0/pzo/HY
+         G3FsQtnLxGRhks6zbIMFSfDQfzGJ79AmB7zOM5Mw=
+Received: from localhost (localhost [127.0.0.1])
+        by shark4-in.inbox.lv (Postfix) with ESMTP id 4EBD1C018A;
+        Tue, 25 Apr 2023 19:57:01 +0300 (EEST)
+Received: from shark4.inbox.lv ([127.0.0.1])
+        by localhost (shark4.inbox.lv [127.0.0.1]) (spamfilter, port 35)
+        with ESMTP id LtyJlcPy_xEg; Tue, 25 Apr 2023 19:57:01 +0300 (EEST)
+Received: from mail.inbox.lv (pop1 [127.0.0.1])
+        by shark4-in.inbox.lv (Postfix) with ESMTP id 05A32C016B;
+        Tue, 25 Apr 2023 19:57:01 +0300 (EEST)
+From:   Karl Chan <exkcmailist@inbox.lv>
+To:     linux-amlogic@lists.infradead.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        neil.armstrong@linaro.org, khilman@baylibre.com,
+        jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Karl Chan <exkcmailist@inbox.lv>
+Subject: [PATCH v5 0/2] arm64: dts: meson-gxl: add support for Xiaomi Mibox 3
+Date:   Wed, 26 Apr 2023 00:56:22 +0800
+Message-Id: <20230425165624.11999-1-exkcmailist@inbox.lv>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230411-topic-straitlagoon_mdss-v2-3-5def73f50980@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: OK
+X-ESPOL: EZeEAiZdmGU/2M26KZpu+eHlxMi6UUZBzir7z6FSnX9YsLvButt3c2iUB/ecFHrCbg==
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,45 +62,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 21, 2023 at 12:31:12AM +0200, Konrad Dybcio wrote:
-> Document the SM6350 DPU.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->  .../bindings/display/msm/qcom,sm6350-dpu.yaml      | 94 ++++++++++++++++++++++
->  1 file changed, 94 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm6350-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm6350-dpu.yaml
-> new file mode 100644
-> index 000000000000..979fcf81afc9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sm6350-dpu.yaml
-> @@ -0,0 +1,94 @@
-> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/msm/qcom,sm6350-dpu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Display DPU dt properties for SM6350 target
-> +
-> +maintainers:
-> +  - Konrad Dybcio <konrad.dybcio@linaro.org>
-> +
-> +$ref: /schemas/display/msm/dpu-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: qcom,sm6350-dpu
-> +
-> +  reg:
-> +    items:
-> +      - description: Address offset and size for mdp register set
-> +      - description: Address offset and size for vbif register set
+The Xiaomi Mibox 3 is a TV box based on the Amlogic S905X chipset.
+There are two variants:
+- 2 GiB/8GIB
+- 1 GiB/4GIB
 
-Drop 'Address offset and size for '
+Both variants come with:
+- 802.11a/b/g/n/ac wifi (BCM4345)
+- HDMI , AV (CVBS) and S/PDIF optical output
+- 1x USB
 
-With that,
+Karl Chan (2):
+  dt-bindings: arm: amlogic: add Xiaomi Mi box 3 binding
+  arm64: dts: meson-gxl: add support for Xiaomi Mi box 3
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+ .../devicetree/bindings/arm/amlogic.yaml      |   1 +
+ arch/arm64/boot/dts/amlogic/Makefile          |   1 +
+ .../amlogic/meson-gxl-s905x-xiaomi-mibox3.dts | 138 ++++++++++++++++++
+ list                                          |   1 +
+ 4 files changed, 141 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s905x-xiaomi-mibox3.dts
+ create mode 100644 list
+
+-- 
+2.40.0
+
