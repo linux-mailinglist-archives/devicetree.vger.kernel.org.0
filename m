@@ -2,74 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38CC96EDB0F
-	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 07:13:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8E816EDB1D
+	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 07:17:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230314AbjDYFNB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Apr 2023 01:13:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42568 "EHLO
+        id S232741AbjDYFRb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Apr 2023 01:17:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230195AbjDYFNA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 01:13:00 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FA7383CB;
-        Mon, 24 Apr 2023 22:12:57 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33P5CfM7058004;
-        Tue, 25 Apr 2023 00:12:41 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1682399561;
-        bh=NobemyBvtwjcU/aS5ZCzDkB7/FGzb5hRLrC1qI4I3KY=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=Sr0zAQJb71xT6CMtuQNEsJBNavS2l9lRKVemBXud2lOCSFIKY0EWqzXqLTsSjqfps
-         UDAVqoKTGYOnBGhnEZBXGnb7XqpKC/8z+pVeX0EWvhpPVK1clEOmY53C+tTg13xRsS
-         0/wxO8Owj97aBkaD++yPTPsQdg7ddru6QB9rTqqU=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33P5CfjO130682
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 25 Apr 2023 00:12:41 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 25
- Apr 2023 00:12:40 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Tue, 25 Apr 2023 00:12:40 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33P5Cehj092621;
-        Tue, 25 Apr 2023 00:12:40 -0500
-From:   Aradhya Bhatia <a-bhatia1@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+        with ESMTP id S230195AbjDYFRa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 01:17:30 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FFB35247;
+        Mon, 24 Apr 2023 22:17:28 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4eff055d4d3so2367333e87.3;
+        Mon, 24 Apr 2023 22:17:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1682399847; x=1684991847;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JnxMYL7t9r8k0/dlYqYKpi162XSbo0kvlvfpcduFJf8=;
+        b=ZRcPtqc6A7+Y+R9nvZWVWNH5ENJ8XmMUXJU8z1XmgMbKtVtI3YA95jl8dINwG+UXPc
+         8zYfv6wX+ZG5/YfeUiTDmauroG6QXvvY+k/L5aepun0qOTg6k2hSvTdmHrF8Pd9YPs0P
+         /jZql0swRJYkq0AFTAY3GDwOXouJjjlsuO8LTYpHCVulD51pqWC2oygnsmFl5somCONs
+         aam2jC66iA4CdB+sVQkmNfB251+4XJRKmeF3l0x2vMb7J+NX6izHoqnzskk5FUrjFFRT
+         FrWJDanxIvDG0ASt4lXRRKQXyw5czkuupjl6+hK1Qt4cQcXF7uzORKI2pVU13mntxY2v
+         ggJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682399847; x=1684991847;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JnxMYL7t9r8k0/dlYqYKpi162XSbo0kvlvfpcduFJf8=;
+        b=PjirbNw5mxvkscoiHv17kPCZfaHkiF6l05XJ4OCxyomoQB4dX+pcUn1F06qtg0mVrP
+         8UA/72vbyHYCZ7DpDJ6wJAF5v6xJL8luVcug0mGNd/a0W0LDtDu9z5rt33ZE5dvQ9n1q
+         QpqpiucDymZx6Po+obPYQKbZA2Siyz5ckFZnT8YyCvdAgtVZQP9CZSs/1OZIj5nyesiT
+         Naic3YKFgaTeuzJKf3tpsGLqhaFG8cPGloUavQZbQ9EtpTukPsWiPUb/qtRosHrQwmsQ
+         YwTpV3g0TJDF8+Xy8I0wv3OmY1craIk4B/nxMv7CgeI9FxIrZwEsbAWkokrLDBdf0RCC
+         KaZg==
+X-Gm-Message-State: AC+VfDwkkJMrps3OZoHOabrDz+AuaXVYKqyRs5y63jq329u7TqMxff+E
+        q8vJqRiW6dgiXZIagOVfRAsaGO0HJu4=
+X-Google-Smtp-Source: ACHHUZ51wPdu4BKlXfKiIk398KdCzpCgkBeCfXi/Ho7jUkSE1zK3B1sJMeMLc4KUpyl4YbL0P6eUcQ==
+X-Received: by 2002:ac2:43db:0:b0:4ef:fed9:8ef1 with SMTP id u27-20020ac243db000000b004effed98ef1mr114658lfl.48.1682399846653;
+        Mon, 24 Apr 2023 22:17:26 -0700 (PDT)
+Received: from [192.168.1.111] (62-78-225-252.bb.dnainternet.fi. [62.78.225.252])
+        by smtp.gmail.com with ESMTPSA id b7-20020a056512218700b004eb12329053sm1909605lft.256.2023.04.24.22.17.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Apr 2023 22:17:26 -0700 (PDT)
+Message-ID: <614c626e-208d-2be8-6a83-f99f2720e091@gmail.com>
+Date:   Tue, 25 Apr 2023 08:17:25 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v2 2/5] iio:trigger: Add simple trigger_validation helper
+Content-Language: en-US, en-GB
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-CC:     Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel List <linux-kernel@vger.kernel.org>,
-        Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
-        Jyri Sarha <jyri.sarha@iki.fi>,
-        Tomi Valkeinen <tomba@kernel.org>,
-        Praneeth Bajjuri <praneeth@ti.com>,
-        Rahul T R <r-ravikumar@ti.com>,
-        Devarsh Thakkar <devarsht@ti.com>,
-        Jai Luthra <j-luthra@ti.com>,
-        Jayesh Choudhary <j-choudhary@ti.com>,
-        Aradhya Bhatia <a-bhatia1@ti.com>
-Subject: [PATCH 2/2] arm64: defconfig: Enable PWM drivers for TI ECAP and EHRPWM
-Date:   Tue, 25 Apr 2023 10:42:35 +0530
-Message-ID: <20230425051235.15533-3-a-bhatia1@ti.com>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230425051235.15533-1-a-bhatia1@ti.com>
-References: <20230425051235.15533-1-a-bhatia1@ti.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        Zhigang Shi <Zhigang.Shi@liteon.com>,
+        Shreeya Patel <shreeya.patel@collabora.com>,
+        Paul Gazzillo <paul@pgazz.com>,
+        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <cover.1682340947.git.mazziesaccount@gmail.com>
+ <91fffd0001e8efef90f43fa03026dc0e5e30b4e4.1682340947.git.mazziesaccount@gmail.com>
+ <ZEabb3lJzGNb/BMO@smile.fi.intel.com>
+From:   Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <ZEabb3lJzGNb/BMO@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,32 +85,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-TI's K3 SoCs uses the Enhanced high resolution PWM (EHRPWM) and the ECAP
-modules for generating PWM signals, used in various application.
+On 4/24/23 18:08, Andy Shevchenko wrote:
+> On Mon, Apr 24, 2023 at 04:08:19PM +0300, Matti Vaittinen wrote:
+>> Some triggers can only be attached to the IIO device that corresponds to
+>> the same physical device. Implement generic helper which can be used as
+>> a validate_trigger callback for such devices.
+> 
+> Missing space in the Subject?
+> 
 
-One such example is controlling the backlight power of the display
-panels connected to the EVMs.
+After iio:? Yep, thanks!
 
-Enable these modules.
+Yours,
+	-- Matti
 
-Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
----
- arch/arm64/configs/defconfig | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 7790ee42c68a..dd8094eef17f 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1283,6 +1283,8 @@ CONFIG_PWM_SAMSUNG=y
- CONFIG_PWM_SL28CPLD=m
- CONFIG_PWM_SUN4I=m
- CONFIG_PWM_TEGRA=m
-+CONFIG_PWM_TIECAP=m
-+CONFIG_PWM_TIEHRPWM=m
- CONFIG_PWM_VISCONTI=m
- CONFIG_SL28CPLD_INTC=y
- CONFIG_QCOM_PDC=y
 -- 
-2.39.1
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
 
