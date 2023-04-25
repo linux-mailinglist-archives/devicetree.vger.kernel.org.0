@@ -2,109 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E5036EE194
-	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 14:05:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EEA6F6EE1B8
+	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 14:16:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233764AbjDYMFN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Apr 2023 08:05:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35588 "EHLO
+        id S233704AbjDYMQf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Apr 2023 08:16:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233907AbjDYMFM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 08:05:12 -0400
-Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8667C49F8;
-        Tue, 25 Apr 2023 05:05:09 -0700 (PDT)
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-        by mx.sberdevices.ru (Postfix) with ESMTP id 889195FD05;
-        Tue, 25 Apr 2023 15:05:06 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1682424306;
-        bh=/7k2hmgzdS0RWThtX1QVPv33A+h1jqDTdyLWRVz4PtQ=;
-        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-        b=rUHWN1H28wH6iCXoGWFuo0Owuh5UxXgiiUvT9oyGwOMOEYDF9gByjamwqDuIWOuXt
-         PFRpBZGx1+BZ2xn4eMdt0SqXge2rJxNeT0x9tXzGu0XVPV0Hdp2hBsvPqDbNOc4xhL
-         HAQWve0wxkYfvK9MJl6HSqSWQHGuNFMNXHXZqHP3gaumSc62gXiduIh8LvEJsbPIux
-         m4y9fIin/257IMbKn4Hvu5dMU2kd4c71/ejzWTYrHGyBZ4JAtFsfuIR60QKya+AOW9
-         aqnwRYUBFFa92VWgdYHCYhAhxIlI8GFovBlj1F0QArwb+0dIYT9P+H9t15CZr06HK3
-         J1XB8AUGCaTGQ==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-        by mx.sberdevices.ru (Postfix) with ESMTP;
-        Tue, 25 Apr 2023 15:05:05 +0300 (MSK)
-Date:   Tue, 25 Apr 2023 15:05:05 +0300
-From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-CC:     <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <khilman@baylibre.com>, <jian.hu@amlogic.com>,
-        <kernel@sberdevices.ru>, <rockosov@gmail.com>,
-        <linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v13 6/6] clk: meson: a1: add Amlogic A1 Peripherals clock
- controller driver
-Message-ID: <20230425120505.xrgrjrxcxennrzct@CAB-WSD-L081021>
-References: <20230405195927.13487-1-ddrokosov@sberdevices.ru>
- <20230405195927.13487-7-ddrokosov@sberdevices.ru>
- <CAFBinCBGWOB2XLb6su=R3W684rKdK3pOgPFsCGx+Oyo_pgdeBg@mail.gmail.com>
+        with ESMTP id S233407AbjDYMQf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 08:16:35 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B99A4EF1;
+        Tue, 25 Apr 2023 05:16:33 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33PCGMcH028997;
+        Tue, 25 Apr 2023 07:16:22 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1682424982;
+        bh=DcmUqEr18jXBjOZ9gLE7XXP9zUzdrnjYOXhf8sLJgxk=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=BCfQk0i/ZFNimMdMbXtwag1CL6DqwM4+BUPoa0qg6CSjkFbA3IR1lFFNPGaP+BZaD
+         WxVEnjzoBhBiTsCsIxt6qUs7LR9eN9lNYYJnOFFGnnHXuYvv5s3Ukn30vsFMEnONv0
+         pd9/zFqyZPYNR4v84V9d0a6/VwF9ln3IlfEitdB8=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33PCGMXk115096
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 25 Apr 2023 07:16:22 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 25
+ Apr 2023 07:16:22 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Tue, 25 Apr 2023 07:16:22 -0500
+Received: from [10.24.69.79] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33PCGIZm006054;
+        Tue, 25 Apr 2023 07:16:19 -0500
+Message-ID: <b66ea55a-fc9a-8a3f-5b06-247769c50087@ti.com>
+Date:   Tue, 25 Apr 2023 17:46:18 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAFBinCBGWOB2XLb6su=R3W684rKdK3pOgPFsCGx+Oyo_pgdeBg@mail.gmail.com>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/04/25 07:55:00 #21159618
-X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [EXTERNAL] Re: [PATCH v14 4/8] arm64: dts: ti:
+ k3-j721s2-common-proc-board: Enable SERDES0
+Content-Language: en-US
+To:     Roger Quadros <rogerq@kernel.org>, <nm@ti.com>, <afd@ti.com>,
+        <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <s-vadapalli@ti.com>,
+        <vaishnav.a@ti.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230331090028.8373-1-r-gunasekaran@ti.com>
+ <20230331090028.8373-5-r-gunasekaran@ti.com>
+ <86ab17b2-d35a-16e2-7791-9e7a13c8e632@kernel.org>
+From:   Ravi Gunasekaran <r-gunasekaran@ti.com>
+In-Reply-To: <86ab17b2-d35a-16e2-7791-9e7a13c8e632@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Apr 23, 2023 at 11:30:38PM +0200, Martin Blumenstingl wrote:
-> On Wed, Apr 5, 2023 at 9:59 PM Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
-> [...]
-> > +static const struct of_device_id a1_periphs_clkc_match_table[] = {
-> > +       { .compatible = "amlogic,a1-clkc", },
-> > +       {},
-> nit-pick: please remove the comma after the sentinel
+Roger,
+
+On 25/04/23 5:15 pm, Roger Quadros wrote:
+> Hi,
+> 
+> On 31/03/2023 12:00, Ravi Gunasekaran wrote:
+>> From: Aswath Govindraju <a-govindraju@ti.com>
+>>
+>> Configure first lane to PCIe, the second lane to USB and the last two lanes
+>> to eDP. Also, add sub-nodes to SERDES0 DT node to represent SERDES0 is
+>> connected to PCIe.
+> 
+> Is USB0 expected to work in super-speed on this board?
+> If yes then you need to add USB0 lane information as well.
+> Otherwise please ignore my comment.
 > 
 
-Thank you for bringing up that point! There's no problem with removing
-it in the next version of the product. I'll prepare it.
+The SerDes on J721S2 can simultaneously support only two protocols.
+By default PCIe and DP will be supported. Due to this, USB is configured
+in high-speed and this does not require any SerDes lane configuration.
 
-> > +MODULE_DEVICE_TABLE(of, a1_periphs_clkc_match_table);
-> > +
-> > +static struct platform_driver a1_periphs_clkc_driver = {
-> > +       .probe = meson_a1_periphs_probe,
-> > +       .driver = {
-> > +               .name = "a1-clkc",
-> > +               .of_match_table = of_match_ptr(a1_periphs_clkc_match_table),
-> I wonder if we should drop of_match_ptr() here as no other meson clock
-> driver uses it.
-> Also there's commits like 00cb754ac622 ("clk: imx8mq: drop
-> of_match_ptr from of_device_id table") which explicitly remove it from
-> other drivers.
+>>
+>> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+>> Signed-off-by: Matt Ranostay <mranostay@ti.com>
+>> Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
 
-Exactly, all Meson clock drivers depend on the ARM64 config, which in
-turn selects CONFIG_OF by default. So of_match_ptr can be dropped.
+[...]
 
 > 
-> Apart form these two this patch looks great to me.
-> 
+> cheers,
+> -roger
 
 -- 
-Thank you,
-Dmitry
+Regards,
+Ravi
