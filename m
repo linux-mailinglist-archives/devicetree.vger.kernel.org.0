@@ -2,219 +2,248 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DF016EE8FB
-	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 22:23:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49A816EE916
+	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 22:34:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236226AbjDYUW7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Apr 2023 16:22:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39884 "EHLO
+        id S232214AbjDYUeV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Apr 2023 16:34:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236205AbjDYUW6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 16:22:58 -0400
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05hn2249.outbound.protection.outlook.com [52.100.175.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A068A17DC6;
-        Tue, 25 Apr 2023 13:22:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=A35MjgsPAR019rLosEKIlnYK8D1ulr8c9+RAkS+2t3Y=;
- b=kmJj7wkkDPNlUFZV7AZQDjUBTU1uKIiOjF0mDAYhtSitZnbtLn4kjiAo5vT9blucnlIKRprKUYCs7UU8o4/Y0DMWbtx0HE2HwReMXpLoiN5tZ81RUtw+wEzzH0KispkIy9r1sNg0xx0uY0DzWT92Jh7QUx4qNdW72phpa8mEYLGKDbJZfZAbYIKgArPm4iCfZCv+sp6spUgLi2HvfuiIk30YyBjID4lbMW7Q5I7GJdEKsEt0fg8p1MelknQ9bQbNSozqE5tcv854DqfPvg3ENrHQUTAoFCLQq+I/axoWHo+gXLnoQuvcGR0+EL7AVELi73nMJ6aANv7icBnauEPekg==
-Received: from FR0P281CA0063.DEUP281.PROD.OUTLOOK.COM (2603:10a6:d10:49::11)
- by GV2PR03MB8777.eurprd03.prod.outlook.com (2603:10a6:150:c2::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6298.49; Tue, 25 Apr
- 2023 20:22:47 +0000
-Received: from VI1EUR05FT026.eop-eur05.prod.protection.outlook.com
- (2603:10a6:d10:49:cafe::74) by FR0P281CA0063.outlook.office365.com
- (2603:10a6:d10:49::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6340.20 via Frontend
- Transport; Tue, 25 Apr 2023 20:22:47 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 20.160.56.84)
- smtp.mailfrom=seco.com; dkim=pass (signature was verified)
- header.d=seco.com;dmarc=pass action=none header.from=seco.com;
-Received-SPF: Pass (protection.outlook.com: domain of seco.com designates
- 20.160.56.84 as permitted sender) receiver=protection.outlook.com;
- client-ip=20.160.56.84; helo=inpost-eu.tmcas.trendmicro.com; pr=C
-Received: from inpost-eu.tmcas.trendmicro.com (20.160.56.84) by
- VI1EUR05FT026.mail.protection.outlook.com (10.233.242.175) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6340.21 via Frontend Transport; Tue, 25 Apr 2023 20:22:46 +0000
-Received: from outmta (unknown [192.168.82.135])
-        by inpost-eu.tmcas.trendmicro.com (Trend Micro CAS) with ESMTP id 5D52420080086;
-        Tue, 25 Apr 2023 20:22:46 +0000 (UTC)
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (unknown [104.47.13.52])
-        by repre.tmcas.trendmicro.com (Trend Micro CAS) with ESMTPS id CA5572008006C;
-        Tue, 25 Apr 2023 20:22:45 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Ukp6s2IO4MbJ8xz7ome9ua4kNpjHvYFqj7tXImcpqQZ+0syw2vLBA8J4A1UYBDoLdC4MadpVYXYZ8SigFCAWH/+2AkKzHjp+oqIYLvoVcQFHoB0bzpAGnOBkP2NnjGOqz35Vrrw6TaYADDYExPc8Vz2u9yjNE6+l1Pn1uMt6nwNvDN+VNAYblY8fxQVH2V1wlfRSVkYV7762eNAAtbnlcgqZ0xIE0OxWgHcDZ/vrmYAtom6QgQu3p3WkAsXY160B4WOXMpcFur8sX/vRb+dhQQpiLIwVXm2L7qoZ3coHARXjvR5rd5lmXohr9OJ3M5UT+GTv/sMXd6VxSjfrsWsZ9w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=A35MjgsPAR019rLosEKIlnYK8D1ulr8c9+RAkS+2t3Y=;
- b=BQ98W3Uyx0iPfEmTqetk2BIkczn1ipFQeFggMTxQTOAMLz14KU4cglQxkdzERNFrulQVFqr0ltXfDclmYejhfan5io2r408d+d+lnIxa10DtNQEj7JhNx0FWEIEM0+ysSSqn/zYyxi7qKmzWiruR3tmssi7vGaY9NE1yB2hzApMb4AakbyK9rZhJPBDNegM1C/IfmnR4soDdmeEUpESclye9yoDD78d8wGCtZOMnjkgExRas01NB0MQiq5CVmv66gLL7S1hTREeKziJOZcHpcWQ2J9Khm0G7j42LvXTRzsqwFVbFrXM+wdBtM2aIAoYRoCHS13N18lTRSucBsefFZA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
- dkim=pass header.d=seco.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=A35MjgsPAR019rLosEKIlnYK8D1ulr8c9+RAkS+2t3Y=;
- b=kmJj7wkkDPNlUFZV7AZQDjUBTU1uKIiOjF0mDAYhtSitZnbtLn4kjiAo5vT9blucnlIKRprKUYCs7UU8o4/Y0DMWbtx0HE2HwReMXpLoiN5tZ81RUtw+wEzzH0KispkIy9r1sNg0xx0uY0DzWT92Jh7QUx4qNdW72phpa8mEYLGKDbJZfZAbYIKgArPm4iCfZCv+sp6spUgLi2HvfuiIk30YyBjID4lbMW7Q5I7GJdEKsEt0fg8p1MelknQ9bQbNSozqE5tcv854DqfPvg3ENrHQUTAoFCLQq+I/axoWHo+gXLnoQuvcGR0+EL7AVELi73nMJ6aANv7icBnauEPekg==
-Authentication-Results-Original: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=seco.com;
-Received: from DB9PR03MB8847.eurprd03.prod.outlook.com (2603:10a6:10:3dd::13)
- by PA4PR03MB6750.eurprd03.prod.outlook.com (2603:10a6:102:ec::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6340.21; Tue, 25 Apr
- 2023 20:22:39 +0000
-Received: from DB9PR03MB8847.eurprd03.prod.outlook.com
- ([fe80::2226:eb03:a8c:a7e5]) by DB9PR03MB8847.eurprd03.prod.outlook.com
- ([fe80::2226:eb03:a8c:a7e5%2]) with mapi id 15.20.6298.054; Tue, 25 Apr 2023
- 20:22:39 +0000
-Message-ID: <b7779674-c3ac-e0ab-3ca8-db1ec5953a97@seco.com>
-Date:   Tue, 25 Apr 2023 16:22:32 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH v14 00/15] phy: Add support for Lynx 10G SerDes
-Content-Language: en-US
-To:     Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-phy@lists.infradead.org,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Camelia Alexandra Groza <camelia.groza@nxp.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linuxppc-dev@lists.ozlabs.org,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
+        with ESMTP id S230194AbjDYUeU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 16:34:20 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE1841444F
+        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 13:33:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1682454815;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=h5tdSr0yUH0NfUrSmIfXDBJS+fKv28jR9I4BQNRViKk=;
+        b=fqSH9qzU0Y7AzSmyVGY+y/5TBqv4iUefrudNtqV1eBpWNgRaEy+Nqb7DRRWnEGOhXemkCf
+        o7u0v2La7LeMmjY6rJn3pjbgaz+OQt9vRsIziCDObHLE8TZlpLiy30wCVd4r9Twn/UKbru
+        Tbntqw1oPLUoLIQOvk4R2K7lKnI1XDs=
+Received: from mail-oo1-f72.google.com (mail-oo1-f72.google.com
+ [209.85.161.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-460-jjgwBLGGMaCRzt7XfahOWw-1; Tue, 25 Apr 2023 16:33:34 -0400
+X-MC-Unique: jjgwBLGGMaCRzt7XfahOWw-1
+Received: by mail-oo1-f72.google.com with SMTP id 006d021491bc7-5465ddf8921so4463797eaf.3
+        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 13:33:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682454813; x=1685046813;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=h5tdSr0yUH0NfUrSmIfXDBJS+fKv28jR9I4BQNRViKk=;
+        b=OIPRFcsWEFUWA7Ec9GcXcJ9Pxy5BF2jO+1LeP55ZKPhSWHYWG/g1cC6UA4vtgb5Y30
+         JHlTV8Aos6fV+5/gnFuym3yhrWZaj6aKqY3KgIiiC9CxQqLPGTNdIadhrSKTkg1k6IUo
+         h2wmBE+Fyj4yOOfK9W1WGuoSwS97r42pNkV10Eqwo3J/rxDLFsYDhDysvj0DVQFyq9sW
+         kS/xEHc6a7hp0//0NMaU7tZtrKf9fBKvQbBoIDlGgTH9m/oekoTOZHngKZ0pEJdbjCUw
+         DS0Rc03PCNBOFlojeHjungCiTdyrDsOXSDMghwxnzBdNo4tWBcKm/nP7doCf/yPYep0X
+         Pm+A==
+X-Gm-Message-State: AAQBX9eHNp/v3+kRiVnt0bfS2IBfePHclAfMQ0GrQ3gmc5dtzrdc2P4F
+        E6fbbmV8NVl+hvFYhpahkNpNMSi2ndiNDG++UmaH3LNXsAofSFrc63FaR6OogYqRCrnnrjMsjZt
+        kF1GBIdDh/nUyYcsK/KHQBw==
+X-Received: by 2002:a05:6808:1885:b0:38e:4a25:2125 with SMTP id bi5-20020a056808188500b0038e4a252125mr10743310oib.18.1682454813581;
+        Tue, 25 Apr 2023 13:33:33 -0700 (PDT)
+X-Google-Smtp-Source: AKy350bV2wSHJIhY5qS6dBbjNydN6E9nxfDFfxEa+5HJvmGjHUeuCswJpaJeLjx3DBjNrKQVTWLfUA==
+X-Received: by 2002:a05:6808:1885:b0:38e:4a25:2125 with SMTP id bi5-20020a056808188500b0038e4a252125mr10743275oib.18.1682454811825;
+        Tue, 25 Apr 2023 13:33:31 -0700 (PDT)
+Received: from halaney-x13s ([2600:1700:1ff0:d0e0::22])
+        by smtp.gmail.com with ESMTPSA id g3-20020a056870c38300b0018456166c7asm5908752oao.39.2023.04.25.13.33.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Apr 2023 13:33:31 -0700 (PDT)
+Date:   Tue, 25 Apr 2023 15:33:28 -0500
+From:   Andrew Halaney <ahalaney@redhat.com>
+To:     Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+Cc:     Johan Hovold <johan+linaro@kernel.org>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        =?UTF-8?Q?Fern=c3=a1ndez_Rojas?= <noltari@gmail.com>,
-        Jonas Gorski <jonas.gorski@gmail.com>,
-        Jonathan Corbet <corbet@lwn.net>, Li Yang <leoyang.li@nxp.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-gpio@vger.kernel.org
-References: <20230425195002.fls5cmwolyrslpad@skbuf>
-From:   Sean Anderson <sean.anderson@seco.com>
-In-Reply-To: <20230425195002.fls5cmwolyrslpad@skbuf>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BL0PR1501CA0028.namprd15.prod.outlook.com
- (2603:10b6:207:17::41) To DB9PR03MB8847.eurprd03.prod.outlook.com
- (2603:10a6:10:3dd::13)
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        quic_pkondeti@quicinc.com, quic_ppratap@quicinc.com,
+        quic_wcheng@quicinc.com, quic_jackp@quicinc.com,
+        quic_harshq@quicinc.com, quic_shazhuss@quicinc.com
+Subject: Re: [PATCH v6 6/8] arm64: dts: qcom: sc8280xp: Add multiport
+ controller node for SC8280
+Message-ID: <20230425203328.hrz5dw7f2vsbbbgk@halaney-x13s>
+References: <20230405125759.4201-1-quic_kriskura@quicinc.com>
+ <20230405125759.4201-7-quic_kriskura@quicinc.com>
+ <20230414154527.vsjtgtfsd5kc7vww@halaney-x13s>
+ <333ce700-8ca2-e230-3b5a-a95e4c021e45@quicinc.com>
+ <28a58bf9-5ad8-4084-11d6-cd1b0d3a2998@quicinc.com>
 MIME-Version: 1.0
-X-MS-TrafficTypeDiagnostic: DB9PR03MB8847:EE_|PA4PR03MB6750:EE_|VI1EUR05FT026:EE_|GV2PR03MB8777:EE_
-X-MS-Office365-Filtering-Correlation-Id: 995e07b0-2d74-485f-4953-08db45cad56a
-X-TrendMicro-CAS-OUT-LOOP-IDENTIFIER: 656f966764b7fb185830381c646b41a1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted: BCL:0;
-X-Microsoft-Antispam-Message-Info-Original: +svtPfkN2XXYlJReU7gCXmA83F/KAX2qtgwa7z6GnkLJQ8SsQU0m3WWh33RyiYUSNOXK5INztB4fjy11Een3/BIKYU21SmRwVTx/7J8IpESga5hq4J2+a/eyYPPw1a1Y1Fgj48ICvK94MHw767n0YJ61aX/w3Oj9dZK+LAnyoUN/2cyGWNoXa/qzmKh6iCDI4sgL83xKJ/OY/x1td9EeDXl93Ys3wtJ3ha0NSE+9cVGb5NSpKufExXr1O6ZCrEbORhhSFraW7xHSG1VqOpR17V8DcCj2Z/zkm733fsOIsiemsDLywZIVClm8ddvnYCdysK4WTTTMtvCi5ASJMjxz4Q10qU0fhSvlOr9b/UZXNuddXhegG6prOKKVBt9aCpBX5UF5XhcOPMcmk1gcSUMvfLOw72CxZsox/fnmQyOcz9fHraM6dF6bRhYilNrvxpcyTsRmUq7Gjz2qb82h4H0alLDmyWB/Zaw6fu2prMk1eZWqLSkhN5NDUE+dKDdUu19znVPhCNvVrgDzxnTqkgnN0DcXSI7iYp/7sRG2lxVhSnxZzPqTdmaYbgEiC0gzDWIiQmgbVvH04+OZUdx3/0YxwWqenC3o2j4r0uhkhvqo9v9kvfLKt/sVw8nZrFFhk0QvRDickIctW96tcZR1cmHHXNktRvFJeIYZ49sGenuYX8DQFdOc28n0Oym+S87o2mvr
-X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR03MB8847.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(136003)(366004)(396003)(346002)(376002)(39850400004)(451199021)(83380400001)(52116002)(6666004)(2906002)(478600001)(54906003)(44832011)(5660300002)(41300700001)(316002)(8936002)(8676002)(66556008)(66946007)(6916009)(4326008)(66476007)(7416002)(31696002)(86362001)(38100700002)(38350700002)(6486002)(36756003)(186003)(6506007)(6512007)(26005)(53546011)(31686004)(2616005)(66899021)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR03MB6750
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped: VI1EUR05FT026.eop-eur05.prod.protection.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id-Prvs: f4cdf33a-9348-4d92-db32-08db45cad09d
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 7yRa+hc2luBLA3LZdw2Gk2LEuOsulK2q3eJsaGjN6AmnsYgLabVwbS27YZI2Sfq6b3Z88YyXCIJUIFXyYoAA5Vd4aoAWWNWNxymJJ4CWKPujURQ1/TgL2t3TZfVL2XR6C8mEbPDQOxlJE3pHGZDdtD6DyHSv+4muPNVCuckMOstME8I+vib++6ui0MTCxK5AZIxwP+jr24BnZglxSZO8JiQf/TqLzglAfSXGM9fcSAGNSJBhedYAIQhDxK2HadnmLN+ZLXFIRd7n89ciDldbFMz3Kz8m5WWxrSMPvDJHZtkzucA2bO7gGcyymDjL2DQ/a1fJZL4GWHQRFhRhkC5TKBmgCEyETpw4Kp7eOH8kGFBmoXlg4Zpfj0BkStbxNn7kdrg5tsveEauk0DNPtHD1+fhqitd8WHbRadszjIj1hux2NGYDqQaSHpstfOhDJZWc1tkAzLghJWGW42INOs8q+DSxQ/dxo1Tcvamo5kPegowpAWhiZ4w7Ba3f92ph/fW0raTvhkgyMvAx3KFAnwPGhZEJt2fCfbJnpvtaRTsZhbKmA04jcd774KFm9B7hswEnt3zF+lsK1BD3HZEg//PZVodu7TxwtrSdOUXw3RIxEF4wlzVkUwdQS8JjiMem56fRZtGeGXM0VaE4dmbZTgowTQKByd0uOqoZnB0VgdLTOv3a4GyrZ9gh3RLT2B1aVZZ0eHldmpjOIxaDUew4dJsMgaESIQd1VXPcH/24RWT+0sUzaku+RKhhav7ha7J+oPqYq1/py8fFrlVT05RJeDr+Q+cMJ5M+/9UhKFOisAQK6PA=
-X-Forefront-Antispam-Report: CIP:20.160.56.84;CTRY:NL;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:inpost-eu.tmcas.trendmicro.com;PTR:inpost-eu.tmcas.trendmicro.com;CAT:NONE;SFS:(13230028)(39850400004)(376002)(396003)(136003)(346002)(451199021)(5400799015)(40470700004)(46966006)(36840700001)(31686004)(83380400001)(47076005)(2616005)(36860700001)(6506007)(53546011)(82310400005)(6512007)(336012)(26005)(36756003)(478600001)(6666004)(34070700002)(86362001)(54906003)(31696002)(6486002)(41300700001)(316002)(7636003)(70206006)(356005)(70586007)(4326008)(7596003)(40460700003)(66899021)(8936002)(82740400003)(6916009)(40480700001)(8676002)(186003)(44832011)(7416002)(2906002)(5660300002)(43740500002)(12100799030);DIR:OUT;SFP:1501;
-X-OriginatorOrg: seco.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Apr 2023 20:22:46.8342
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 995e07b0-2d74-485f-4953-08db45cad56a
-X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=bebe97c3-6438-442e-ade3-ff17aa50e733;Ip=[20.160.56.84];Helo=[inpost-eu.tmcas.trendmicro.com]
-X-MS-Exchange-CrossTenant-AuthSource: VI1EUR05FT026.eop-eur05.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR03MB8777
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <28a58bf9-5ad8-4084-11d6-cd1b0d3a2998@quicinc.com>
+X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/25/23 15:50, Vladimir Oltean wrote:
-> Hello,
+On Sat, Apr 22, 2023 at 09:38:44PM +0530, Krishna Kurapati PSSNV wrote:
 > 
-> On Thu, 13 Apr 2023 12:05:52 -0400, Sean Anderson wrote:
->> This series is ready for review by the phy maintainers. I have addressed
->> all known feedback and there are no outstanding issues.
->> 
->> Major reconfiguration of baud rate (e.g. 1G->10G) does not work.
->> 
->> There are several stand-alone commits in this series. Please feel free
->> to pick them as appropriate. In particular, commits 1, 3, 4, 12, 13, and
->> 14 are all good candidates for picking.
->> 
->> - Although this is untested, it should support 2.5G SGMII as well as
->>   1000BASE-KX. The latter needs MAC and PCS support, but the former
->>   should work out of the box.
->> - It allows for clock configurations not supported by the RCW. This is
->>   very useful if you want to use e.g. SRDS_PRTCL_S1=0x3333 and =0x1133
->>   on the same board. This is because the former setting will use PLL1
->>   as the 1G reference, but the latter will use PLL1 as the 10G
->>   reference. Because we can reconfigure the PLLs, it is possible to
->>   always use PLL1 as the 1G reference.
 > 
-> I am an engineer working for NXP and I have access to the majority of
-> hardware that includes the Lynx 10G SERDES, as well as to block guides
-> that are not visible to customers, and to people from the hardware
-> design and validation teams.
+> On 4/16/2023 12:34 AM, Krishna Kurapati PSSNV wrote:
+> > 
+> > 
+> > On 4/14/2023 9:15 PM, Andrew Halaney wrote:
+> > > On Wed, Apr 05, 2023 at 06:27:57PM +0530, Krishna Kurapati wrote:
+> > > > Add USB and DWC3 node for tertiary port of SC8280 along with multiport
+> > > > IRQ's and phy's. This will be used as a base for SA8295P and SA8295-Ride
+> > > > platforms.
+> > > > 
+> > > > Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> > > > ---
+> > > > Link to v5: https://lore.kernel.org/all/20230310163420.7582-7-quic_kriskura@quicinc.com/
+> > > > 
+> > > >   arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 58 ++++++++++++++++++++++++++
+> > > >   1 file changed, 58 insertions(+)
+> > > > 
+> > > > diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> > > > b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> > > > index 42bfa9fa5b96..7b81f2b0449d 100644
+> > > > --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> > > > +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> > > > @@ -3108,6 +3108,64 @@ usb_1_role_switch: endpoint {
+> > > >               };
+> > > >           };
+> > > > +        usb_2: usb@a4f8800 {
+> > > > +            compatible = "qcom,sc8280xp-dwc3", "qcom,dwc3";
+> > > > +            reg = <0 0x0a4f8800 0 0x400>;
+> > > > +            #address-cells = <2>;
+> > > > +            #size-cells = <2>;
+> > > > +            ranges;
+> > > > +
+> > > > +            clocks = <&gcc GCC_CFG_NOC_USB3_MP_AXI_CLK>,
+> > > > +                 <&gcc GCC_USB30_MP_MASTER_CLK>,
+> > > > +                 <&gcc GCC_AGGRE_USB3_MP_AXI_CLK>,
+> > > > +                 <&gcc GCC_USB30_MP_SLEEP_CLK>,
+> > > > +                 <&gcc GCC_USB30_MP_MOCK_UTMI_CLK>,
+> > > > +                 <&gcc GCC_AGGRE_USB_NOC_AXI_CLK>,
+> > > > +                 <&gcc GCC_AGGRE_USB_NOC_NORTH_AXI_CLK>,
+> > > > +                 <&gcc GCC_AGGRE_USB_NOC_SOUTH_AXI_CLK>,
+> > > > +                 <&gcc GCC_SYS_NOC_USB_AXI_CLK>;
+> > > > +            clock-names = "cfg_noc", "core", "iface", "sleep",
+> > > > "mock_utmi",
+> > > > +                      "noc_aggr", "noc_aggr_north",
+> > > > "noc_aggr_south", "noc_sys";
+> > > > +
+> > > > +            assigned-clocks = <&gcc GCC_USB30_MP_MOCK_UTMI_CLK>,
+> > > > +                      <&gcc GCC_USB30_MP_MASTER_CLK>;
+> > > > +            assigned-clock-rates = <19200000>, <200000000>;
+> > > > +
+> > > > +            interrupts-extended = <&pdc 127 IRQ_TYPE_EDGE_RISING>,
+> > > > +                        <&pdc 126 IRQ_TYPE_EDGE_RISING>,
+> > > > +                        <&pdc 16 IRQ_TYPE_LEVEL_HIGH>;
+> > > > +
+> > > > +            interrupt-names = "dp_hs_phy_irq", "dm_hs_phy_irq",
+> > > > +                        "ss_phy_irq";
+> > > > +
+> > > 
+> > > This is breaking the current schema (with the full series applied),
+> > > I am not sure if a pwr_event IRQ exists or but it maybe necessary to
+> > > modify qcom,dwc3.yaml in order to explain hardware if it doesn't exist:
+> > > 
+> > > (dtschema) ahalaney@halaney-x13s ~/git/linux-next
+> > > (git)-[718f2024524f] % make CHECK_DTBS=y
+> > > DT_SCHEMA_FILES=/usb/qcom,dwc3.yaml qcom/sa8540p-ride.dtb                                                                                  
+> > > :(
+> > >    LINT    Documentation/devicetree/bindings
+> > >    CHKDT   Documentation/devicetree/bindings/processed-schema.json
+> > >    SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+> > >    DTC_CHK arch/arm64/boot/dts/qcom/sa8540p-ride.dtb
+> > > /home/ahalaney/git/linux-next/arch/arm64/boot/dts/qcom/sa8540p-ride.dtb: usb@a4f8800: interrupt-names:0: 'pwr_event' was expected
+> > >     From schema: /home/ahalaney/git/linux-next/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> > > /home/ahalaney/git/linux-next/arch/arm64/boot/dts/qcom/sa8540p-ride.dtb: usb@a4f8800: interrupt-names:1: 'dp_hs_phy_irq' was expected
+> > >     From schema: /home/ahalaney/git/linux-next/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> > > /home/ahalaney/git/linux-next/arch/arm64/boot/dts/qcom/sa8540p-ride.dtb: usb@a4f8800: interrupt-names:2: 'dm_hs_phy_irq' was expected
+> > >     From schema: /home/ahalaney/git/linux-next/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> > > /home/ahalaney/git/linux-next/arch/arm64/boot/dts/qcom/sa8540p-ride.dtb: usb@a4f8800: interrupt-names: ['dp_hs_phy_irq', 'dm_hs_phy_irq', 'ss_phy_irq'] is too short
+> > >     From schema: /home/ahalaney/git/linux-next/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> > > /home/ahalaney/git/linux-next/arch/arm64/boot/dts/qcom/sa8540p-ride.dtb: usb@a4f8800: interrupts-extended: [[99, 127, 1], [99, 126, 1], [99, 16, 4]] is too short
+> > >     From schema: /home/ahalaney/git/linux-next/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> > > make CHECK_DTBS=y DT_SCHEMA_FILES=/usb/qcom,dwc3.yaml
+> > > qcom/sa8540p-ride.dtb  22.61s user 0.54s system 99% cpu 23.172 total
+> > > (dtschema) ahalaney@halaney-x13s ~/git/linux-next (git)-[718f2024524f] %
+> > > 
+> > > Thanks,
+> > > Andrew
+> > > 
+> > 
+> > Hi Andrew,
+> > 
+> >   Thanks for pointing it out. Let me check and get back on the
+> > pwr_event_irq.
+> > 
+> > Probably I might have missed it 😅. If so, will make sure to add it in
+> > next version.
+> > 
+> > Regards,
+> > Krishna,
 > 
-> I have an interest in adding a driver for this SERDES to support dynamic
-> Ethernet protocol reconfiguration, and perhaps the internal PHY for
-> copper backplane modes (1000Base-KX, 10GBase-KR) and its link training
-> procedure - although the latter will need more work.
 > 
-> I would like to thank you for starting the effort, but please, stop
-> submitting code for modes that are untested, and do not submit features
-> that do not work. 
+> Hi Andrew, Johan,
+> 
+>   I was looking at the pwr_event_irq interrupts for Multiport controller and
+> see that there are two of them as per HW specs. All targets till date have
+> only 1 pwr_event_irq required.
+> 
+> The reason I thought I missed pwr_event_irq in my patches is because in
+> downstream this is a required IRQ for all targets, so I was under assumption
+> that we need it for upstream targets as well. But upstream qcom driver
+> doesn't have support for this IRQ yet. And this has been made a required one
+> only for SC8280 [1]/[2].
+> 
+> Probably we can proceed in one of the following ways:
+> 1. Remove pwr_event_irq in both bindings and DT as driver support is not
+> present currently.
+> 2. Update the bindings for SC8280 to include an optional secondary
+> pwr_event_irq for multiport controller.
+> 
+> I would prefer option-1 as removing them would be better because they are
+> not being used. Please let me know your thoughts on this.
+> 
+> [1]:
+> https://lore.kernel.org/all/20220713131340.29401-2-johan+linaro@kernel.org/
+> [2]:
+> https://lore.kernel.org/all/20220713131340.29401-6-johan+linaro@kernel.org/
+> 
 
-The features which do not work (major protocol changes) are disabled :)
+Personally, I prefer option 2 since the IRQ does exist technically
+(although it isn't currently used), I like it being described... it
+makes the dt-binding a more complete description of the hardware.
 
-If it would cause this series to be immediately merged, I would remove
-KX/KR and 2.5G which are the only untested link modes.
+I am unsure of the rules wrt dt-bindings and usage in drivers, but I
+always like to view it as "this is a description of the hardware", and
+the driver bit is just nice to have to ensure that whoever is adding the
+binding is actually describing things sufficiently.
 
-That said, PCS support is necessary for these modes, so it is not even
-possible to select them.
+You could probably add a new compatible string for the multiport
+sc8280xp IP as well, and make the second IRQ non-optional in dt-binding
+evaluation? That seems more inline with reality, the regular IP has 1
+pwr_event_irq, multiport on this platform has 2, they behave slightly
+differently and thus they deserve their own string to match on despite
+being on the same platform.
 
-> If you do not have the time to fix up the loose ends
-> for this patch submission now
+Please note, I'm just a contributor -- I would not be surprised to find
+out that my view is not aligned with what maintainers here think, but
+that's my interpretation of things!
 
-I have time to fix up any loose ends preventing this series from being
-applied. However, I am not very sympathetic to larger requests, since
-there has been extensive time to supply feedback already.
+Hope that helps,
+Andrew
 
-> , you won't have the time to debug
-> regressions on boards you might not even have access to, which worked
-> fine previously due to the static RCW/PBL configuration.
-
-I have gotten no substantive feedback on this driver. I have been
-working on this series since June last year, and no one has commented on
-the core algotithms thus far. My capacity for making large changes has
-decreased because the project funding the development has ended. I
-appreciate that you are taking interest now, but frankly I think it is
-rather past time...
-
-> I have downloaded your patches, and although I have objections to some
-> of them already, I will be in the process of evaluating, testing,
-> changing them, for the coming weeks, perhaps even more. Please consider
-> this a NACK for the current patch set due to the SERDES related material,
-> although the unrelated patches (like "dt-bindings: Convert gpio-mmio to
-> yaml") can and should have been submitted separately, so they can be
-> analyzed by their respective maintainers based on their own merit and
-> not as part of an overall problematic set.
-
-This patchset has been ready to merge for several revisions now. I do
-not consider it problematic. However, I do consider the (nonexistant)
-review process for this subsystem extremely problematic.
-
---Sean
