@@ -2,63 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 692B66EE1D5
-	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 14:27:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7388C6EE1E4
+	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 14:32:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234079AbjDYM1y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Apr 2023 08:27:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46854 "EHLO
+        id S234090AbjDYMcj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Apr 2023 08:32:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233789AbjDYM1y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 08:27:54 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABABFCC2E;
-        Tue, 25 Apr 2023 05:27:51 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33PCRisC031241;
-        Tue, 25 Apr 2023 07:27:44 -0500
+        with ESMTP id S229653AbjDYMci (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 08:32:38 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 517294EC0;
+        Tue, 25 Apr 2023 05:32:37 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33PCWAhk066095;
+        Tue, 25 Apr 2023 07:32:10 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1682425664;
-        bh=ipiUSnmA2+1WIk0HkySkOwI9+HpDpHtuOrmd8pbEBQc=;
+        s=ti-com-17Q1; t=1682425930;
+        bh=CFPzwDmySEzg1N62RTR8ZiaR751KuV8ALtFldAAMJJ4=;
         h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=LLp1TG/LTVkyTJODVxQ+iFjnO3CPPNMSoeDoAVMxXeIctcGbRg8ekE6Mpl+ULZwE5
-         rS9btWwaEwvbNy8KOWRhjcTbWoVgTrC+MXSQiOteBWfE96Fv0MG9obqyDKQ09EYron
-         4P9po4zePwbPWNDHaAoy++qK5me5+dmXQoWKJx3o=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33PCRifO023020
+        b=NWqJp9FsU8dhh+M/g5toTnXg1tkP8GLMCqgpCmGsz45eoV8Eq9q4uGB6l1IvYYW5F
+         I/iBa4mX73qoV55kDZODjK5hNl2AiQORw6xikm6ZTnKiwMTkIYsgFWp3+6+y3EhMpu
+         sChzTE1lqOYOyPzlS/c4Atkdq5Yd7V07dGgJq0Z4=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33PCW9ce065338
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 25 Apr 2023 07:27:44 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+        Tue, 25 Apr 2023 07:32:10 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 25
- Apr 2023 07:27:44 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ Apr 2023 07:32:09 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Tue, 25 Apr 2023 07:27:44 -0500
+ Frontend Transport; Tue, 25 Apr 2023 07:32:09 -0500
 Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33PCRiG5111194;
-        Tue, 25 Apr 2023 07:27:44 -0500
-Date:   Tue, 25 Apr 2023 07:27:44 -0500
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33PCW9SC021943;
+        Tue, 25 Apr 2023 07:32:09 -0500
+Date:   Tue, 25 Apr 2023 07:32:09 -0500
 From:   Nishanth Menon <nm@ti.com>
-To:     Andrew Davis <afd@ti.com>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Judith Mendez <jm@ti.com>
+CC:     Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, <linux-can@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Schuyler Patton <spatton@ti.com>,
         Vignesh Raghavendra <vigneshr@ti.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        Tero Kristo <kristo@kernel.org>, <vaishnav.a@ti.com>,
-        <u-kumar1@ti.com>
-Subject: Re: [PATCH 3/3] arm64: dts: ti: k3-j7200-mcu-wakeup: Split fss node
- up
-Message-ID: <20230425122744.hkahpv6yvprd6qzy@creature>
-References: <20230424173623.477577-1-nm@ti.com>
- <20230424173623.477577-4-nm@ti.com>
- <f5861b8b-637a-e127-2945-8994a472015a@ti.com>
+        <devicetree@vger.kernel.org>,
+        Oliver Hartkopp <socketcan@hartkopp.net>
+Subject: Re: [PATCH v2 2/4] dt-bindings: net: can: Add poll-interval for MCAN
+Message-ID: <20230425123209.g3jocqvnnpkv4jk5@stingy>
+References: <20230424195402.516-1-jm@ti.com>
+ <20230424195402.516-3-jm@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <f5861b8b-637a-e127-2945-8994a472015a@ti.com>
+In-Reply-To: <20230424195402.516-3-jm@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
@@ -70,94 +77,95 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13:55-20230424, Andrew Davis wrote:
-> On 4/24/23 12:36 PM, Nishanth Menon wrote:
-> > fss node claims to be entirely a syscon node, but it is really two
-> > parts of it - one a syscon that controls the hbmc mux and a simple bus
-> > where ospi, hbmc peripherals are located. So model it accordingly by
-> > splitting the node up and using ti,j721e-system-controller to describe
-> > the syscon
-> > 
-> > Signed-off-by: Nishanth Menon <nm@ti.com>
-> > ---
-> >   .../boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      | 21 +++++++++++++------
-> >   1 file changed, 15 insertions(+), 6 deletions(-)
-> > 
-> > diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-> > index b58a31371bf3..7653cb191be1 100644
-> > --- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-> > +++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-> > @@ -338,18 +338,27 @@ mcu_spi2: spi@40320000 {
-> >   		status = "disabled";
-> >   	};
-> > -	fss: syscon@47000000 {
-> > -		compatible = "syscon", "simple-mfd";
-> > +	hbmc_syscon: syscon@47000000 {
-> > +		compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
-> >   		reg = <0x00 0x47000000 0x00 0x100>;
-> > -		#address-cells = <2>;
-> > -		#size-cells = <2>;
-> > -		ranges;
-> > +		#address-cells = <1>;
-> > +		#size-cells = <1>;
-> > +		ranges = <0x00 0x00 0x47000000 0x100>;
-> > -		hbmc_mux: hbmc-mux {
-> > +		hbmc_mux: mux-controller@4 {
-> >   			compatible = "mmio-mux";
-> > +			reg = <0x4 0x2>;
-> >   			#mux-control-cells = <1>;
-> >   			mux-reg-masks = <0x4 0x2>; /* HBMC select */
-> >   		};
-> > +	};
-> > +
-> > +	fss: bus@47030000 {
-> > +		compatible = "simple-bus";
-> > +		reg = <0x0 0x47030000 0x0 0x100>;
-> > +		#address-cells = <2>;
-> > +		#size-cells = <2>;
-> > +		ranges;
-> >   		hbmc: hyperbus@47034000 {
-> >   			compatible = "ti,am654-hbmc";
+On 14:54-20230424, Judith Mendez wrote:
+> On AM62x SoC, MCANs on MCU domain do not have hardware interrupt
+> routed to A53 Linux, instead they will use software interrupt by
+> hrtimer. To enable timer method, interrupts should be optional so
+> remove interrupts property from required section and introduce
+> poll-interval property.
 > 
+> Signed-off-by: Judith Mendez <jm@ti.com>
+> ---
+> Changelog:
+> v2:
+>   1. Add poll-interval property to enable timer polling method
+>   2. Add example using poll-interval property
+>   
+>  .../bindings/net/can/bosch,m_can.yaml         | 26 ++++++++++++++++---
+>  1 file changed, 23 insertions(+), 3 deletions(-)
 > 
-> I hope all the things you had to do here show you what I mean in my
-> comments on [0] :)
+> diff --git a/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml b/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
+> index 67879aab623b..1c64c7a0c3df 100644
+> --- a/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
+> +++ b/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
+> @@ -40,6 +40,10 @@ properties:
+>        - const: int1
+>      minItems: 1
+>  
+> +  poll-interval:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description: Poll interval time in milliseconds.
+> +
+>    clocks:
+>      items:
+>        - description: peripheral clock
+> @@ -122,15 +126,13 @@ required:
+>    - compatible
+>    - reg
+>    - reg-names
+> -  - interrupts
+> -  - interrupt-names
+>    - clocks
+>    - clock-names
+>    - bosch,mram-cfg
+>  
+>  additionalProperties: false
+>  
+> -examples:
+> +example with interrupts:
+>    - |
+>      #include <dt-bindings/clock/imx6sx-clock.h>
+>      can@20e8000 {
+> @@ -149,4 +151,22 @@ examples:
+>        };
+>      };
+>  
+> +example with timer polling:
 
-yup.
+did you run dt_binding_check?
+make -j`nproc` ARCH=arm64 LLVM=1 dt_binding_check DT_CHECKER_FLAGS=-m DT_SCHEMA_FILES=Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
 
-> 
-> I've posted a first step patch that allows "reg-mux" node to work with
-> regular reg properties[1]. Which means this patch could have been just this:
-> 
-> --- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-> @@ -305,15 +305,16 @@ wkup_i2c0: i2c@42120000 {
->                 status = "disabled";
->         };
-> -       fss: syscon@47000000 {
-> -               compatible = "syscon", "simple-mfd";
-> +       fss: bus@47000000 {
-> +               compatible = "simple-bus";
->                 reg = <0x00 0x47000000 0x00 0x100>;
->                 #address-cells = <2>;
->                 #size-cells = <2>;
->                 ranges;
->                 hbmc_mux: hbmc-mux {
-> -                       compatible = "mmio-mux";
-> +                       compatible = "reg-mux";
-> +                       reg = <0x00 0x47000004 0x00 0x2>;
->                         #mux-control-cells = <1>;
->                         mux-reg-masks = <0x4 0x2>; /* HBMC select */
->                 };
-> 
-> Andrew
-> 
-> [0] https://lore.kernel.org/all/76da0b98-3274-b047-db11-ecabc117ae11@ti.com/
-> [1] https://lore.kernel.org/all/20230424184810.29453-1-afd@ti.com/
+tells me:
 
-yes, this is a better approach. Lets see the conclusion of the
-discussion.
+  LINT    Documentation/devicetree/bindings
+  DTEX    Documentation/devicetree/bindings/net/can/bosch,m_can.example.dts
+  CHKDT   Documentation/devicetree/bindings/processed-schema.json
+/workdir/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml: 'example with interrupts' is not one of ['$id', '$schema', 'title', 'description', 'examples', 'required', 'allOf', 'anyOf', 'oneOf', 'definitions', '$defs', 'additionalProperties', 'dependencies', 'dependentRequired', 'dependentSchemas', 'patternProperties', 'properties', 'not', 'if', 'then', 'else', 'unevaluatedProperties', 'deprecated', 'maintainers', 'select', '$ref']
+	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+/workdir/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml: 'example with timer polling' is not one of ['$id', '$schema', 'title', 'description', 'examples', 'required', 'allOf', 'anyOf', 'oneOf', 'definitions', '$defs', 'additionalProperties', 'dependencies', 'dependentRequired', 'dependentSchemas', 'patternProperties', 'properties', 'not', 'if', 'then', 'else', 'unevaluatedProperties', 'deprecated', 'maintainers', 'select', '$ref']
+	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
 
+> +  - |
+> +    #include <dt-bindings/clock/imx6sx-clock.h>
+> +    can@20e8000 {
+> +      compatible = "bosch,m_can";
+> +      reg = <0x020e8000 0x4000>, <0x02298000 0x4000>;
+> +      reg-names = "m_can", "message_ram";
+> +      poll-interval;
+> +      clocks = <&clks IMX6SX_CLK_CANFD>,
+> +               <&clks IMX6SX_CLK_CANFD>;
+> +      clock-names = "hclk", "cclk";
+> +      bosch,mram-cfg = <0x0 0 0 32 0 0 0 1>;
+> +
+> +      can-transceiver {
+> +        max-bitrate = <5000000>;
+> +      };
+> +    };
+> +
+>  ...
+> -- 
+> 2.17.1
+> 
 
 -- 
 Regards,
