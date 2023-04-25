@@ -2,86 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D5DBD6EE7E7
-	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 20:57:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9F416EE7E8
+	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 20:58:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235070AbjDYS5E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Apr 2023 14:57:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54146 "EHLO
+        id S235041AbjDYS6w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Apr 2023 14:58:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235153AbjDYS4p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 14:56:45 -0400
-Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C858916F3D
-        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 11:56:22 -0700 (PDT)
-Received: by mail-ot1-f48.google.com with SMTP id 46e09a7af769-6a604259983so4731344a34.2
-        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 11:56:22 -0700 (PDT)
+        with ESMTP id S234774AbjDYS6v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 14:58:51 -0400
+Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA69916F3D;
+        Tue, 25 Apr 2023 11:58:38 -0700 (PDT)
+Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-187b70ab997so32816765fac.0;
+        Tue, 25 Apr 2023 11:58:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682448968; x=1685040968;
+        d=1e100.net; s=20221208; t=1682449118; x=1685041118;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=E2Pm94d+ETtvQvtSiYGYJJyGRbZetTQzfPQibc7M6Yc=;
-        b=PvgqE0w1a8yD+GXSN18G8yqcORPxXAP8lC91j6DGW24p6FXPrsSXPZAE1nhVuzZpsj
-         CKRtnSe0LBu+AQ5ChHZ+in8ofVD3XMz1Vn+OierKHwQRMYDQN5zLYRVVqC11dk/vFht6
-         gBw/oLQsewmWKsF60VNNZf3Wa1JePFrAGxtu8WYU/wrkN7ux74poG0mc/0tm2DV6UwI4
-         6q7XAyXBCETRN7/rV4VURe7DXm3i1PgdLYNVUUyloU+lkxkoTcvRH0pIuzd3cvhH/xrk
-         PZD2Qvf8KPyWYJ0lFT1XVhi9GDrHngCEksDt6oz0l1PdYkKfCqIrjK4dUpIXQtH30oai
-         FDEQ==
-X-Gm-Message-State: AAQBX9dQ1am/A/znVi3oIjirGRXAYBDFr5aGAHCO2exRN3O37DhKYDqs
-        UbxXZTQKI0C4AaQbPKdaAA==
-X-Google-Smtp-Source: AKy350aq3VPWA15tx1n6E49zmy3RkR1NktVBHF5gEUF8eyy7/Xi1FV1SIuOuPtHLw9y69YkT7Ji2hQ==
-X-Received: by 2002:a9d:7a96:0:b0:6a6:4538:dde7 with SMTP id l22-20020a9d7a96000000b006a64538dde7mr6955629otn.28.1682448967987;
-        Tue, 25 Apr 2023 11:56:07 -0700 (PDT)
+        bh=UCPUjU42PRIffLcz9TbBJOAbKvwZwWa3dQczE6gwtwg=;
+        b=eJdqcNUp33TIJmAvNSods4wLBgPZBN7e/mJPOEMnT4ao8fyQcSvcU5LXUAOLh7/1Rr
+         GvwD1Y0l/GyNt5MNInNeCaHOw58gI0oQcwMDk05rLBhehZiqhLG8R5kFWJLO/cZrFwb3
+         MW1Av+GynVfOcxomXow5LTeyral1S9/DJxBNXTtzyclvflVKCVUVBwuclWHEsZjQ9ktX
+         ZFS7GHwriCxMEHiosT4xcFDdhcWCmtPtHSjWS/zOECNtk5E+VgqHGwVRuRcq7Dv8grqf
+         yQSSi9LklGfLaRTfo8Se04Qpl6ypouaFApcG4zoyqjlp4H/lodvg0ByRQGFmSxJi2gG4
+         rCXw==
+X-Gm-Message-State: AAQBX9cEFX/La0ITbadoTM8e3fnaq4TAbqWJ+FMtKJ1T0VC4oxyOCgp1
+        V9ORljWMbsXdItevTkCv1YpujKiWnw==
+X-Google-Smtp-Source: AKy350bVDkDMdeLblHdVNzD9BQfck4ZUsL4yNpzgQj1n/n4pupILFLzx+5zjoco+7TdvhHSqedp9LA==
+X-Received: by 2002:a05:6870:e416:b0:187:fc1c:c1a9 with SMTP id n22-20020a056870e41600b00187fc1cc1a9mr9584459oag.6.1682449117979;
+        Tue, 25 Apr 2023 11:58:37 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id bt8-20020a05683039c800b0069f951899e1sm6071450otb.24.2023.04.25.11.56.07
+        by smtp.gmail.com with ESMTPSA id i4-20020a056870864400b0018e996a507esm2629684oal.31.2023.04.25.11.58.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Apr 2023 11:56:07 -0700 (PDT)
-Received: (nullmailer pid 2081284 invoked by uid 1000);
-        Tue, 25 Apr 2023 18:56:06 -0000
-Date:   Tue, 25 Apr 2023 13:56:06 -0500
+        Tue, 25 Apr 2023 11:58:37 -0700 (PDT)
+Received: (nullmailer pid 2083974 invoked by uid 1000);
+        Tue, 25 Apr 2023 18:58:36 -0000
+Date:   Tue, 25 Apr 2023 13:58:36 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Conor Dooley <conor@kernel.org>
-Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com,
-        linux-riscv@lists.infradead.org,
-        Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH RESEND] dt-bindings: riscv: add sv57 mmu-type
-Message-ID: <168244896648.2081233.16478595076932550051.robh@kernel.org>
-References: <20230424-rival-habitual-478567c516f0@spud>
+To:     Bjorn Andersson <quic_bjorande@quicinc.com>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Johan Hovold <johan@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/7] dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp: Add
+ ports and orientation-switch
+Message-ID: <20230425185836.GA2081377-robh@kernel.org>
+References: <20230425034010.3789376-1-quic_bjorande@quicinc.com>
+ <20230425034010.3789376-2-quic_bjorande@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230424-rival-habitual-478567c516f0@spud>
+In-Reply-To: <20230425034010.3789376-2-quic_bjorande@quicinc.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Mon, 24 Apr 2023 18:05:43 +0100, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
+On Mon, Apr 24, 2023 at 08:40:04PM -0700, Bjorn Andersson wrote:
+> The QMP combo phy can be connected to a TCPM, a USB controller and a
+> DisplayPort controller for handling USB Type-C orientation switching
+> and propagating HPD signals.
 > 
-> Dumping the dtb from new versions of QEMU warns that sv57 is an
-> undocumented mmu-type. The kernel has supported sv57 for about a year,
-> so bring it into the fold.
+> Extend the binding to allow these connections to be described.
 > 
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
 > ---
-> Resending with the missing CCs.
-> Palmer, you can take this for 6.4 if you want, otherwise I'll grab it
-> after the merge window. I doubt there's a rush when it's been missing
-> for a year or so.
-> ---
->  Documentation/devicetree/bindings/riscv/cpus.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  .../phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml    | 51 +++++++++++++++++++
+>  1 file changed, 51 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
+> index 3cd5fc3e8fab..c037ac90ce7f 100644
+> --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
+> @@ -60,6 +60,26 @@ properties:
+>      description:
+>        See include/dt-bindings/dt-bindings/phy/phy-qcom-qmp.h
+>  
+> +  orientation-switch:
+> +    description:
+> +      Flag the PHY as possible handler of USB Type-C orientation switching
+> +    type: boolean
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Output endpoint of the PHY
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
 
-Acked-by: Rob Herring <robh@kernel.org>
+'port-base' means you have extra properties to add. Where are they? It 
+also needs 'unevaluatedProperties: false'.
 
+> +        description: Incoming endpoint from the USB controller
+> +
+> +      port@2:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        description: Incoming endpoint from the DisplayPort controller
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -98,6 +118,37 @@ examples:
+>        vdda-phy-supply = <&vreg_l9d>;
+>        vdda-pll-supply = <&vreg_l4d>;
+>  
+> +      orientation-switch;
+> +
+>        #clock-cells = <1>;
+>        #phy-cells = <1>;
+> +
+> +      ports {
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +
+> +          port@0 {
+> +              reg = <0>;
+> +
+> +              endpoint {
+> +                  remote-endpoint = <&typec_connector_ss>;
+> +              };
+> +          };
+> +
+> +          port@1 {
+> +              reg = <1>;
+> +
+> +              endpoint {
+> +                  remote-endpoint = <&dwc3_ss_out>;
+> +              };
+> +          };
+> +
+> +          port@2 {
+> +              reg = <2>;
+> +
+> +              endpoint {
+> +                  remote-endpoint = <&mdss_dp_out>;
+> +              };
+> +          };
+> +      };
+>      };
+> -- 
+> 2.39.2
+> 
