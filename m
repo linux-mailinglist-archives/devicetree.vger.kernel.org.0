@@ -2,90 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DDF06EE82A
-	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 21:24:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B109C6EE850
+	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 21:36:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234983AbjDYTYk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Apr 2023 15:24:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42770 "EHLO
+        id S234625AbjDYTf7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Apr 2023 15:35:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235711AbjDYTYZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 15:24:25 -0400
+        with ESMTP id S235944AbjDYTf6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 15:35:58 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27F7818EB6;
-        Tue, 25 Apr 2023 12:24:16 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7489A49C2;
+        Tue, 25 Apr 2023 12:35:57 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C65E76313E;
-        Tue, 25 Apr 2023 19:24:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAE25C4339B;
-        Tue, 25 Apr 2023 19:24:14 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0D0EF629C7;
+        Tue, 25 Apr 2023 19:35:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F7A8C433D2;
+        Tue, 25 Apr 2023 19:35:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1682450655;
-        bh=WqHhwYZkfR8EDEKqGRF5aPIvBjQ7WTC1wmxO9XyL0/g=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=NiWg8PviVhTTSVXubSeYdzZPc99PeYtbJmMhd6bDcJWaRIgsrSnlYdKM72vPY5WBy
-         Ayla3GJ+jFu0sFz1SMPV0zsjZG1yJ0cqkBqGPRdz3BmkB6KCFQLmXnd4te/xd56zQ0
-         bsJCttYYbBjK463RqxMdFd4DDieOftDM8LfS8OiOwrHmSFthKE383mvnosXCRhFoS7
-         4N8cxpF2ypBdau5K5NjFG6Wj43zQyuCVsj9MdUwlFCnPwly9j9HlZrZNEC/gc/WFpl
-         r0+tsXZiwSAKa5GlkWofX/vwDhajhhUOrwcXhZUaCl7VLSe4cuGzhcZJylprc8B5/X
-         0LM3tm5//3RQQ==
-Date:   Tue, 25 Apr 2023 21:24:11 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Andy Shevchenko <andriy.shevchenko@intel.com>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Mike Pagano <mpagano@gentoo.org>,
-        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
-        Marek Vasut <marex@denx.de>,
-        Satish Nagireddy <satish.nagireddy@getcruise.com>,
-        Luca Ceresoli <luca@lucaceresoli.net>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Subject: Re: [PATCH v11 1/7] i2c: add I2C Address Translator (ATR) support
-Message-ID: <ZEgo2+0cA+tD2k7u@sai>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Andy Shevchenko <andriy.shevchenko@intel.com>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>, Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Hans Verkuil <hverkuil@xs4all.nl>, Mike Pagano <mpagano@gentoo.org>,
-        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
-        Marek Vasut <marex@denx.de>,
-        Satish Nagireddy <satish.nagireddy@getcruise.com>,
-        Luca Ceresoli <luca@lucaceresoli.net>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-References: <20230421101833.345984-1-tomi.valkeinen@ideasonboard.com>
- <20230421101833.345984-2-tomi.valkeinen@ideasonboard.com>
- <20230425171347.GB1957523-robh@kernel.org>
+        s=k20201202; t=1682451356;
+        bh=qRRKPs22ctbt+a/NCXHcEXDMpCztK9X/MkqkjsUVY2c=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=MddFTWQHKTk55uGc9OxGOCPbvhMymy6CHrTmqBi2QQUBUEc7bectdJgRiVgaL0Yaa
+         5s3H9hdIceibq77hdjqysmQrscdHu9kK/QGhWDD5q86tJlGU0FTXvnghygdacDHIWF
+         mvCiRRQacg3Hha/EnWBFLc4bx07z0esFbvl/yx6lS36TpH8yEAfKpId3zw/DCAvrjx
+         emuLeSolbOxZbrB026ICle4wTPbmKBEDFmoyVWP42ZvvA44EdHDdq4jB4N4KdvTZYn
+         Zx4TCVuTFx0DUK1j5R01NlTJEbVTxvqp5TPmtOi2aJVWI4vNVznUJ8i/d76NSYcxzk
+         80IsonmOmx6+w==
+Message-ID: <c7802799ab91eb0a0862a934d3d35879.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="BXyp5TPXXYIx2AXH"
-Content-Disposition: inline
-In-Reply-To: <20230425171347.GB1957523-robh@kernel.org>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <e3bd41d8-f0c5-6756-13bf-bf29c786ab5c@linaro.org>
+References: <20230303-topic-rpmcc_sleep-v2-0-ae80a325fe94@linaro.org> <e3bd41d8-f0c5-6756-13bf-bf29c786ab5c@linaro.org>
+Subject: Re: [PATCH RFT v2 00/14] SMD RPMCC sleep preparations
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org, Shawn Guo <shawn.guo@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 25 Apr 2023 12:35:54 -0700
+User-Agent: alot/0.10
 X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -96,45 +62,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Quoting Konrad Dybcio (2023-04-20 08:57:53)
+>=20
+>=20
+> > Konrad Dybcio (11):
+> >       dt-bindings: clock: qcom,rpmcc: Add a way to enable unused clock =
+cleanup
+>=20
+> >       clk: qcom: smd-rpm_ Make __DEFINE_CLK_SMD_RPM_BRANCH_PREFIX accep=
+t flags
+> >       clk: qcom: smd-rpm: Make DEFINE_CLK_SMD_RPM_BRANCH_A accept flags
+> >       clk: qcom: smd-rpm: Make BI_TCXO_AO critical
+> Stephen, parallel to all of the discussions, would you be willing to
+> take patches 4-6 as they are? XO_A being critical is something that
+> won't hurt without the rest.
 
---BXyp5TPXXYIx2AXH
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-
-> We do support some flags in the upper 16-bits of I2C addresses. Any of=20
-> those possibly needed here?
-
-I2C_OWN_SLAVE_ADDRESS definately not. ATR is only for addresses on the
-remote bus while our own address is on the local bus.
-
-I2C_TEN_BIT_ADDRESS, only in theory. I have never seen a 10-bit address
-in the wild, so extremely unlikely that ATR hardware does support it.
-
-But then again, there is a slight chance that we add more flags in the
-future which might be relevant for ATR? So, u32 is probably a good
-thing to use nonetheless.
-
-
---BXyp5TPXXYIx2AXH
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmRIKNcACgkQFA3kzBSg
-Kba9kBAAoXLpnt2btqw4dEDjJLtIAQyuM4KlutOsE46L+ZiOwPM9DOBHhbLVyilG
-qFQqvT+96nHTFpUnQ/MC/mpFFZ9TPG86QGirha1pplDS0hocYsvbFN7OxxLAnoDy
-xDxRFoHA0fFLV4tzL97s/Jl6Ka6L1ubDHcg3drun38HzFkNJEd8hqG3tJNeSfo0u
-3F3LLPowCScp+oYlBw/SRXh9L8wmUkqegiDYVXf6TUfwevbBMCdhxVNEF06FA/MY
-f4wcZaGAgTuSJjSbUaCKuKT/mLIoI93z5YczpFHrcj4Pr8LZKggb0V5hqMAEhk4W
-WQUd9UxED5WMTcTK+/Jf7xSBM2qzTrpgwsOhv7bRlbSARimHjECU9uQUmYlFSFas
-QEs4MITjUxOmcS10hB/OJN5HBWfAC+fmCkXUMDDLMZT/DN+nosTUGwWYqMv7aouB
-HmfOagM83z5RkWnE7meR4qTx1UygnCNHJemm6MdaurVlsOeuk9LpFOP3EtEmUqWH
-KTTDJvaRFiMZxKZz3Y7/Dz/cGM5deKnMiY5goTyyK8eTqNhfqBGxlygmX6YV80yL
-LA/7tt4eZAW/qtO6SAssIuT13nuWNR5aRS9q3G0ZzaC42eHy1KoPr+EsStpR17Fm
-KELYexy53yT45oza3vXSj4M6oRbF+FRxl2Jwtj+rZhtEgKxjlj4=
-=Ao+h
------END PGP SIGNATURE-----
-
---BXyp5TPXXYIx2AXH--
+Sure, can you resend just those in a series?
