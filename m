@@ -2,173 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8188A6EE134
-	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 13:45:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B09766EE138
+	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 13:46:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233757AbjDYLpn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Apr 2023 07:45:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46690 "EHLO
+        id S233361AbjDYLqu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Apr 2023 07:46:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233508AbjDYLpm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 07:45:42 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB87B72A9;
-        Tue, 25 Apr 2023 04:45:28 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 561F562BA2;
-        Tue, 25 Apr 2023 11:45:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D99BC433D2;
-        Tue, 25 Apr 2023 11:45:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1682423127;
-        bh=lhPUiRP8Ufw0OGb0XCGRithOUfaDqWV6hZnqnru0Z/8=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=kHOoY2zhDR/X9kyFZnm4TQwF96PgPyqzZIRccbxRf2F/TxAl7nX1e7JN6z/Og8f4J
-         NrUCLKEdOCpLKvDwjhJtTuFY5A3uBlsMQt8ivu5T3ERC6wAEXpjKZmJXh0nJCBq+lW
-         C245lvfwCfzgG7paUXNuDXqvPBueOaN/dDcuA/stWsZBp1NekvoZfCE6oyH3kZOQP9
-         sA/sx2oYl/blgfgkZeBp1mIgRPBWChpBAybJtcUDEvNESytK2Uh5bzHysKij5bV9Mh
-         vPxiJaYfutwYGEs2l0mEJSsowHyIwh5XjrZeKkAbrXdxEog4KKAVH+QBkm4DqxNRyB
-         0XoPjT0kh/UGg==
-Message-ID: <86ab17b2-d35a-16e2-7791-9e7a13c8e632@kernel.org>
-Date:   Tue, 25 Apr 2023 14:45:22 +0300
+        with ESMTP id S233628AbjDYLqs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 07:46:48 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F06EC468A
+        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 04:46:46 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-2f87c5b4635so5109374f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 04:46:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1682423205; x=1685015205;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ajycdBwcTMB6vow5DllaOedha5ITJ9rWmnFhPSBn8YA=;
+        b=ffc99Fr+JmbaAnLLlUfqcH+Pcw7qUKZOfk9whe6jfHfBloeyACsummrjzUxJ/yxq2i
+         5nluTs8Ol9tek4MqxlbBE3aQ3nzbZF43g6xfGhRnLcfJFBRDnLEQZNgbUq+9e9ZAB6QQ
+         yeV9bFDoCqFpWKaW7HyhN1wWRKEnuA2EmWfgzAl1RDFVjUX95fDWRS4adwe6+FfspY8q
+         oKZvtdjxNwGHM+xDSiNs8f2MUDd2740D4vBv6bd+H3Fi7H4b1N7PGDS6WZpAdc2aBP3J
+         S6BUA7ZFg2Xr86mf7ShQ/lefCeF5Da5GlZt6EDyAP+8lo10uPljvCLVTNjgtvzLKg71S
+         7irQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682423205; x=1685015205;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ajycdBwcTMB6vow5DllaOedha5ITJ9rWmnFhPSBn8YA=;
+        b=Qnd+uGHGzo9DIugyZ3xApXDc7uToiFxJZtAsuhfz+/r2BrqPDvlHZpVRr8ftaFAy6b
+         wFmWqgCFvzQVQ7Zu7tFOwGWBhULR56kKHBXL/cdYeVJw+xihq363XR2e+zFOD/wtnHy0
+         gfogbN6jdfvqrMuH9oPa3mgwqY1WrTBeujOAmiuY8tC8XyICDN690/z1081cDP1Q1TcW
+         vbPj9sf5BzuoErIYon+dZn50fI3FQEOhzRt1wuOVKnxBWqgDHYHal7qx3ab68oalwf0a
+         mOrPIs6VN+aQ1brdKSuYumJ4BbxNSW0WPHbJ/GFzqEDNewinCd10dgwWuroiDafx2pvz
+         MF6g==
+X-Gm-Message-State: AAQBX9d4t6xXSxe+vXyFaY2xzX2HiNUiuHTdLbdEW0AnlSgG8C6L77BE
+        V4TQLsLHnaaEOIoETBBOnAN4rw==
+X-Google-Smtp-Source: AKy350bcxHiDpXS6mIVjASu0ZHUZdOWp2LzguxnrL6JCHRjYVszGybHNP4A2pJ7wQ6o3+FK+eIZS/A==
+X-Received: by 2002:a5d:428a:0:b0:2ef:f9d:6adf with SMTP id k10-20020a5d428a000000b002ef0f9d6adfmr11224998wrq.35.1682423205302;
+        Tue, 25 Apr 2023 04:46:45 -0700 (PDT)
+Received: from [10.101.1.6] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id f6-20020a5d6646000000b002f6dafef040sm12919621wrw.12.2023.04.25.04.46.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 Apr 2023 04:46:44 -0700 (PDT)
+Message-ID: <31d1d1e4-2f75-bbbd-3e4b-6c796f2d39d1@baylibre.com>
+Date:   Tue, 25 Apr 2023 13:46:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH v14 4/8] arm64: dts: ti: k3-j721s2-common-proc-board:
- Enable SERDES0
-To:     Ravi Gunasekaran <r-gunasekaran@ti.com>, nm@ti.com, afd@ti.com,
-        vigneshr@ti.com, kristo@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, s-vadapalli@ti.com,
-        vaishnav.a@ti.com
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230331090028.8373-1-r-gunasekaran@ti.com>
- <20230331090028.8373-5-r-gunasekaran@ti.com>
+Subject: Re: [PATCH v2 1/4] arm64: dts: mediatek: cherry: Add platform thermal
+ configuration
 Content-Language: en-US
-From:   Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20230331090028.8373-5-r-gunasekaran@ti.com>
-Content-Type: text/plain; charset=UTF-8
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, matthias.bgg@gmail.com
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, kernel@collabora.com,
+        Chen-Yu Tsai <wenst@chromium.org>
+References: <20230424112523.1436926-1-angelogioacchino.delregno@collabora.com>
+ <20230424112523.1436926-2-angelogioacchino.delregno@collabora.com>
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+In-Reply-To: <20230424112523.1436926-2-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-8.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On 31/03/2023 12:00, Ravi Gunasekaran wrote:
-> From: Aswath Govindraju <a-govindraju@ti.com>
+On 24/04/2023 13:25, AngeloGioacchino Del Regno wrote:
+> This platform has three auxiliary NTC thermistors, connected to the
+> SoC's ADC pins. Enable the auxadc in order to be able to read the
+> ADC values, add a generic-adc-thermal LUT for each and finally assign
+> them to the SoC's thermal zones.
 > 
-> Configure first lane to PCIe, the second lane to USB and the last two lanes
-> to eDP. Also, add sub-nodes to SERDES0 DT node to represent SERDES0 is
-> connected to PCIe.
-
-Is USB0 expected to work in super-speed on this board?
-If yes then you need to add USB0 lane information as well.
-Otherwise please ignore my comment.
-
-> 
-> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-> Signed-off-by: Matt Ranostay <mranostay@ti.com>
-> Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Tested-by: Chen-Yu Tsai <wenst@chromium.org>
+> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
 > ---
-> I had reviewed this patch in the v5 series [0].
-> Since I'm taking over upstreaming this series, I removed the self
-> Reviewed-by tag.
+>   .../boot/dts/mediatek/mt8195-cherry.dtsi      | 105 ++++++++++++++++++
+>   1 file changed, 105 insertions(+)
 > 
-> [0] - https://lore.kernel.org/all/71ce4ecd-2a50-c69d-28be-f1a8d769970e@ti.com/
-> 
-> changes from v13:
-> * No changes. Only rebased on top of linux-next
-> 
-> Changes from v12:
-> * Removed enabling of "serdes_wiz" node that is already enabled in [2/8]
->   in this version
-> 
-> Changes from v11:
-> * No change
-> 
-> Changes from v10:
-> * Removed Link tag from commit message
-> 
-> Changes from v9:
-> * Enabled serdes related nodes
-> 
-> Changes from v8:
-> * No change
-> 
-> Changes from v7:
-> * No change
-> 
-> Changes from v6:
-> * No change
-> 
-> Changes from v5:
-> * Removed Cc tags from commit message
-> 
-> Changes from v4:
-> * No change
-> 
-> Changes from v3:
-> * No change
-> 
-> Changes from v2:
-> * No change
-> 
-> Changes from v1:
-> * No change
-> 
->  .../dts/ti/k3-j721s2-common-proc-board.dts    | 23 +++++++++++++++++++
->  1 file changed, 23 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-> index b4b9edfe2d12..1afefaf3f974 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-> @@ -9,6 +9,9 @@
->  
->  #include "k3-j721s2-som-p0.dtsi"
->  #include <dt-bindings/net/ti-dp83867.h>
-> +#include <dt-bindings/phy/phy-cadence.h>
-> +#include <dt-bindings/phy/phy.h>
-> +#include <dt-bindings/mux/ti-serdes.h>
->  
->  / {
->  	compatible = "ti,j721s2-evm", "ti,j721s2";
-> @@ -322,6 +325,26 @@
->  	phy-handle = <&phy0>;
->  };
->  
-> +&serdes_ln_ctrl {
-> +	idle-states = <J721S2_SERDES0_LANE0_PCIE1_LANE0>, <J721S2_SERDES0_LANE1_USB>,
-> +		      <J721S2_SERDES0_LANE2_EDP_LANE2>, <J721S2_SERDES0_LANE3_EDP_LANE3>;
-> +};
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+> index 8ac80a136c37..4229f4f7dc2f 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+> @@ -114,6 +114,77 @@ ppvar_sys: regulator-ppvar-sys {
+>   		regulator-boot-on;
+>   	};
+>   
+> +	/* Murata NCP03WF104F05RL */
+> +	tboard_thermistor1: thermal-sensor-t1 {
+> +		compatible = "generic-adc-thermal";
+> +		#thermal-sensor-cells = <0>;
+> +		io-channels = <&auxadc 0>;
+> +		io-channel-names = "sensor-channel";
+> +		temperature-lookup-table = <	(-10000) 1553
+> +						(-5000) 1485
+> +						0 1406
+> +						5000 1317
+> +						10000 1219
+> +						15000 1115
+> +						20000 1007
+> +						25000 900
+> +						30000 796
+> +						35000 697
+> +						40000 605
+> +						45000 523
+> +						50000 449
+> +						55000 384
+> +						60000 327
+> +						65000 279
+> +						70000 237
+> +						75000 202
+> +						80000 172
+> +						85000 147
+> +						90000 125
+> +						95000 107
+> +						100000 92
+> +						105000 79
+> +						110000 68
+> +						115000 59
+> +						120000 51
+> +						125000 44>;
+> +	};
 > +
-> +&serdes_refclk {
-> +	clock-frequency = <100000000>;
-> +};
+> +	tboard_thermistor2: thermal-sensor-t2 {
+> +		compatible = "generic-adc-thermal";
+> +		#thermal-sensor-cells = <0>;
+> +		io-channels = <&auxadc 1>;
+> +		io-channel-names = "sensor-channel";
+> +		temperature-lookup-table = <	(-10000) 1553
+> +						(-5000) 1485
+> +						0 1406
+> +						5000 1317
+> +						10000 1219
+> +						15000 1115
+> +						20000 1007
+> +						25000 900
+> +						30000 796
+> +						35000 697
+> +						40000 605
+> +						45000 523
+> +						50000 449
+> +						55000 384
+> +						60000 327
+> +						65000 279
+> +						70000 237
+> +						75000 202
+> +						80000 172
+> +						85000 147
+> +						90000 125
+> +						95000 107
+> +						100000 92
+> +						105000 79
+> +						110000 68
+> +						115000 59
+> +						120000 51
+> +						125000 44>;
+> +	};
 > +
-> +&serdes0 {
+>   	usb_vbus: regulator-5v0-usb-vbus {
+>   		compatible = "regulator-fixed";
+>   		regulator-name = "usb-vbus";
+> @@ -260,6 +331,10 @@ &gpu {
+>   	mali-supply = <&mt6315_7_vbuck1>;
+>   };
+>   
+> +&auxadc {
+
+Can you put it in alphabetical order please. ?
+
 > +	status = "okay";
-> +	serdes0_pcie_link: phy@0 {
-> +		reg = <0>;
-> +		cdns,num-lanes = <1>;
-> +		#phy-cells = <0>;
-> +		cdns,phy-type = <PHY_TYPE_PCIE>;
-> +		resets = <&serdes_wiz0 1>;
+> +};
+> +
+>   &i2c0 {
+>   	status = "okay";
+>   
+> @@ -1098,6 +1173,36 @@ mt6315_7_vbuck1: vbuck1 {
+>   	};
+>   };
+>   
+> +&thermal_zones {
+> +	soc-area-thermal {
+> +		polling-delay = <1000>;
+> +		polling-delay-passive = <250>;
+> +		thermal-sensors = <&tboard_thermistor1>;
+> +
+> +		trips {
+> +			trip-crit {
+> +				temperature = <84000>;
+> +				hysteresis = <1000>;
+> +				type = "critical";
+> +			};
+> +		};
+> +	};
+> +
+> +	pmic-area-thermal {
+> +		polling-delay = <1000>;
+> +		polling-delay-passive = <0>;
+> +		thermal-sensors = <&tboard_thermistor2>;
+> +
+> +		trips {
+> +			trip-crit {
+> +				temperature = <84000>;
+> +				hysteresis = <1000>;
+> +				type = "critical";
+> +			};
+> +		};
 > +	};
 > +};
 > +
->  &mcu_mcan0 {
->  	status = "okay";
->  	pinctrl-names = "default";
+>   &u3phy0 {
+>   	status = "okay";
+>   };
 
-cheers,
--roger
+After that:
+Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
+
+Regards,
+Alexandre
+
