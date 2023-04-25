@@ -2,75 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 953AA6EE220
-	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 14:47:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BBE06EE234
+	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 14:50:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234106AbjDYMrv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Apr 2023 08:47:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57104 "EHLO
+        id S234170AbjDYMuV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Apr 2023 08:50:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233862AbjDYMru (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 08:47:50 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 743F3BB8D;
-        Tue, 25 Apr 2023 05:47:49 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33PClMng069057;
-        Tue, 25 Apr 2023 07:47:22 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1682426842;
-        bh=OwWheics6M72Ry4e2WdjO4f48sALqJDkHHsdbEnwqD0=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=jYq4VmqRZ9uiIsPFJcHfbk4se0j+PpR19reqO0nuPYXVYI5ZUiZ6pMG2/fIcvQ8hR
-         25MLE4KM84v5D7CIWdpTthK9nCvcmYRAsCquHGPOBaqQ+EqcKnouquy+YS0ncIX9q9
-         MNeYeXcdv0I5EnxgEoULMpCB/IY2Nh3JYMUss1pQ=
-Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33PClMqN035520
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 25 Apr 2023 07:47:22 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 25
- Apr 2023 07:47:22 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Tue, 25 Apr 2023 07:47:22 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33PClMYT001603;
-        Tue, 25 Apr 2023 07:47:22 -0500
-Date:   Tue, 25 Apr 2023 07:47:22 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Judith Mendez <jm@ti.com>
-CC:     Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, <linux-can@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Schuyler Patton <spatton@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>,
-        Oliver Hartkopp <socketcan@hartkopp.net>
-Subject: Re: [PATCH v2 3/4] DO_NOT_MERGE arm64: dts: ti: Add AM62x MCAN MAIN
- domain transceiver overlay
-Message-ID: <20230425124722.pnp7rkuanoml2zvj@nanny>
-References: <20230424195402.516-1-jm@ti.com>
- <20230424195402.516-4-jm@ti.com>
+        with ESMTP id S233516AbjDYMuU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 08:50:20 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D59F4CC31;
+        Tue, 25 Apr 2023 05:50:19 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4eff055d4d3so2861107e87.3;
+        Tue, 25 Apr 2023 05:50:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1682427018; x=1685019018;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=/L1524bvLGbme17s4CY8OJX5JQNg9iQE5TqvD4jJRHM=;
+        b=fd3LWAtf/i5fUf9FB6O1Xo9wu5axOoLTl5lkJsToEzof8l9w2+/+D8xTl4TAcRgyf+
+         ZrDKgPHY+lR0zvpYIlsfefc5ngC9eILaKtG+ahzRH7CRQsV4/Hl5Q+/kPAd640qD8yW8
+         ZX+EuheGgwtV+hpDWmOoHkQnq8YNCbR5+S6Nf/7jhJtcj3qwxzB3t8d3FmBjofdQjdrs
+         Tsnm/M/oR982P7USyj7famfohMQaTx8lg4apzS1UfqJzrv2+0nHozuiWGygAH+hlzzLb
+         7c1wds57RXuZUyvHm82RXtetFf9B49IRzdQsM3OFdCu/7R3HtPizlWsQSUsCNMGGN3sA
+         jWpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682427018; x=1685019018;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/L1524bvLGbme17s4CY8OJX5JQNg9iQE5TqvD4jJRHM=;
+        b=adXtR6s1XS1LfjegAs0W/v8pMjrJKFwsfuFdWURkuT04eqwbw7yxPLDGUQ8zYJELpR
+         wkKIG4suydSlihtz34p8rPvobdJmHyg8M++5fSYZiWnuVMKJ7p4MwUmeYXZT8NhVsVZN
+         hYC9Cuvetqc3KwdabvhrIgpvJ/pVX8qT+y5A2xoofELR2X3/WH6DRZDs6ToIbyzCLEeX
+         dAe7g7LOVMPEV+ndNAkza7hd7GZNkL/6N2Lo+Va4SSIkVH9ZbVc8tl9ye+HFY9iWVjoI
+         lalesymhJZbBWyt6vOgCqLFi2nzdWZ107Gp22ok2wpowXbFHGKGLaIBBud16Y3znTRfo
+         ZfuA==
+X-Gm-Message-State: AAQBX9dd13/p8XOJ5J7QKmt58WX6N6jKb7rPxtv2cRaoJfxvBoBDwi92
+        PHEhWd1syN/MDd8vxskP73k=
+X-Google-Smtp-Source: AKy350YY9wQuNI4v3sf12Y0macCltjxIdOePjcfXIXLXDdnLo3Rezjlp0bRohimMwvmndI7qSo3mQw==
+X-Received: by 2002:ac2:50ca:0:b0:4db:268a:4ec5 with SMTP id h10-20020ac250ca000000b004db268a4ec5mr4357111lfm.52.1682427017910;
+        Tue, 25 Apr 2023 05:50:17 -0700 (PDT)
+Received: from mobilestation ([95.79.140.35])
+        by smtp.gmail.com with ESMTPSA id m15-20020a056512014f00b004e7fa99f2b5sm2071064lfo.186.2023.04.25.05.50.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Apr 2023 05:50:17 -0700 (PDT)
+Date:   Tue, 25 Apr 2023 15:50:15 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
+        "mani@kernel.org" <mani@kernel.org>,
+        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
+        "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "kw@linux.com" <kw@linux.com>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "kishon@kernel.org" <kishon@kernel.org>,
+        "marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH v12 00/19] PCI: rcar-gen4: Add R-Car Gen4 PCIe support
+Message-ID: <20230425125015.qhhlw5aqnsofq4vb@mobilestation>
+References: <20230414061622.2930995-1-yoshihiro.shimoda.uh@renesas.com>
+ <20230420204129.azbopwklu2yetfrf@mobilestation>
+ <20230420204558.4csplhtkz2co4att@mobilestation>
+ <TYBPR01MB5341BD8037B4E82C4E5CEBB9D8649@TYBPR01MB5341.jpnprd01.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230424195402.516-4-jm@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+In-Reply-To: <TYBPR01MB5341BD8037B4E82C4E5CEBB9D8649@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,87 +84,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14:54-20230424, Judith Mendez wrote:
-> Add an overlay for main domain MCAN on AM62x SK. The AM62x
-> SK board does not have on-board CAN transceiver so instead
-> of changing the DTB permanently, add an overlay to enable
-> MAIN domain MCAN and support for 1 CAN transceiver.
+On Tue, Apr 25, 2023 at 11:33:58AM +0000, Yoshihiro Shimoda wrote:
+> Hi Serge,
 > 
-> Signed-off-by: Judith Mendez <jm@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/Makefile               |  2 ++
->  .../boot/dts/ti/k3-am625-sk-mcan-main.dtso    | 35 +++++++++++++++++++
->  2 files changed, 37 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/ti/k3-am625-sk-mcan-main.dtso
-> 
-
-Just a headsup - for a formal patch, for the overlay, please ensure we
-provide link to the specific board. I dont want to end up with 1000s
-of overlay files, each enabling one specific peripheral instance of a
-small subgroup of peripheral instance. Overlays should be describing a
-real platform with product link.
-
-> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-> index c83c9d772b81..abe15e76b614 100644
-> --- a/arch/arm64/boot/dts/ti/Makefile
-> +++ b/arch/arm64/boot/dts/ti/Makefile
-> @@ -9,8 +9,10 @@
->  # alphabetically.
->  
->  # Boards with AM62x SoC
-> +k3-am625-sk-mcan-dtbs := k3-am625-sk.dtb k3-am625-sk-mcan-main.dtbo
->  dtb-$(CONFIG_ARCH_K3) += k3-am625-beagleplay.dtb
->  dtb-$(CONFIG_ARCH_K3) += k3-am625-sk.dtb
-> +dtb-$(CONFIG_ARCH_K3) += k3-am625-sk-mcan.dtb
->  dtb-$(CONFIG_ARCH_K3) += k3-am62-lp-sk.dtb
->  
->  # Boards with AM62Ax SoC
-> diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk-mcan-main.dtso b/arch/arm64/boot/dts/ti/k3-am625-sk-mcan-main.dtso
-> new file mode 100644
-> index 000000000000..0a7b2f394f87
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am625-sk-mcan-main.dtso
-> @@ -0,0 +1,35 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/**
-> + * DT overlay for MCAN transceiver in main domain on AM625 SK
-> + *
-> + * Copyright (C) 2022 Texas Instruments Incorporated - https://www.ti.com/
-> + */
-> +
-> +/dts-v1/;
-> +/plugin/;
-> +
-> +#include "k3-pinctrl.h"
-> +
-> +&{/} {
-> +	transceiver1: can-phy0 {
-> +		compatible = "ti,tcan1042";
-> +		#phy-cells = <0>;
-> +		max-bitrate = <5000000>;
-> +	};
-> +};
-> +
-> +&main_pmx0 {
-> +	main_mcan0_pins_default: main-mcan0-pins-default {
-> +		pinctrl-single,pins = <
-> +			AM62X_IOPAD(0x1dc, PIN_INPUT, 0) /* (E15) MCAN0_RX */
-> +			AM62X_IOPAD(0x1d8, PIN_OUTPUT, 0) /* (C15) MCAN0_TX */
-> +		>;
-> +	};
-> +};
-> +
-> +&main_mcan0 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&main_mcan0_pins_default>;
-> +	phys = <&transceiver1>;
-> +};
-> -- 
-> 2.17.1
+> > From: Serge Semin, Sent: Friday, April 21, 2023 5:46 AM
+> > 
+> > On Thu, Apr 20, 2023 at 11:41:32PM +0300, Serge Semin wrote:
+> > > Hi Yoshihiro
+> > >
+> > > On Fri, Apr 14, 2023 at 03:16:03PM +0900, Yoshihiro Shimoda wrote:
+> > > > Add R-Car S4-8 (R-Car Gen4) PCIe Host and Endpoint support.
+> > > > To support them, modify PCIe DesignWare common codes.
+> > >
+> > > Thanks for the updates. I'll have a look at the series on the next
+> > > week.
+> > 
+> > Oh, I see there is v13 already submitted. I'll send my comments there
+> > then.
 > 
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+> Thank you very much for your support!
+> I got a lot of great feedback from Manivannan, and I modified the patches.
+> But, should I wait for your review on v13? Or, should I submit v14?
+
+You may re-submit. I'll send my comments to v14 then.
+* Please make sure my gmail email is in the to/cc list.
+
+-Serge(y)
+
+> 
+> Best regards,
+> Yoshihiro Shimoda
+> 
