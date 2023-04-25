@@ -2,72 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0184A6EE15B
-	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 13:52:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 475FC6EE165
+	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 13:55:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233259AbjDYLwr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Apr 2023 07:52:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52890 "EHLO
+        id S233013AbjDYLy7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Apr 2023 07:54:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233355AbjDYLwq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 07:52:46 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABCB7CC18
-        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 04:52:18 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-2f8405b3dc1so3419988f8f.3
-        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 04:52:18 -0700 (PDT)
+        with ESMTP id S233942AbjDYLyv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 07:54:51 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D990EBBA5
+        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 04:54:29 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-2f625d52275so5430672f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 04:54:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1682423535; x=1685015535;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1682423668; x=1685015668;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=8ynfAkeFX9c4haFlIH8rjLILNLDWXZve/Fuy+x2osLE=;
-        b=udOp2foTMQVRgEFYvPui0UXPktfpmgf9DnmHlYw28zFZpUt4aRefOBlXkfsJSNS1Rv
-         m7vNfkWjflKoLxkvDrs2qvRd4hxhXnUu5tOuNjtDFxG/C5hdyExewyNfldOgEe8eGZGz
-         WjTjQKqOTXd9HU3tBla6kSCcCkBkXayQNNOvajSISxhHsQ+PDm+mxipncRwkTL25ZWXW
-         FD6FmNW2LhM8HXyrG3SC7kakHbzutytO1dACL8Q7tOi77/OzHhMLu6X8Fk1Vp+R3w2bA
-         E23sOM0BpsOTRt7EVnrHjFhLU9J690tU9u9GZc72oBCzWUWGUe1UNPLuu2B7EJG4pvmW
-         QhSw==
+        bh=yI1TPR9O8Wn13PLfmt3B7Vg1j2zRFGIPi65gxOuaq/Y=;
+        b=3nlr/BU9pJfmnVhoKeKK1Gca00UCWqM4C1wadITfww0QPAIukFk5VSU9ouJ9F1CVcb
+         cqXl4mjge8YEnco5+X7metyV9AOpF/xXwLNFLWlttnMOl+nk5GZybJObRoXvBDQnfkPc
+         2pLOv3wma4WagQCIEjUBhibYZyV57MbSX8ZU/CcfCOTXaaXv3Hd6SwD+s/EAN1pD9fi2
+         b8pAlkxoBoxWjyPA9PoRxtPJfYVSx5x1VshuKq2LNMZtJY3S9wAYJiZ2k6Ok2NhV7j6i
+         sgM/M+AOKle0zyLGDLo2uDjL1io4JogdtEP7vpoZ+j8Dsa3VxrOStICnoS5cxHZnN+Tg
+         VNDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682423535; x=1685015535;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=1e100.net; s=20221208; t=1682423668; x=1685015668;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8ynfAkeFX9c4haFlIH8rjLILNLDWXZve/Fuy+x2osLE=;
-        b=FEanwYqzRF+Fp8PI2zG0qvt4e4VJEoi4DbZ1WV39V28CnvnSbSM2v+r6C0/a5Q00JO
-         nA0oMNzZLSY/lHcyVAOIvjKQqRTlfWVk/g3Z53fQ9T2ITxt19BrduKEB5TyW0GWNyfUb
-         QnmYdDECFxdAt3SvFNMwU4oqwNWXjPa0cu82QQFQ+v5aJqzRKaTr+wlWa9Mi+YnOgJ4a
-         8ish5kWbV/j9kY45KikWkuP01M0hGc2tv6yIpZKxWRGLxdrk3P+ZymUBx7oNY5iVZhQa
-         65Uqhm4VYyTi2rmG28pZlIJRjXWlcbuE7+joePasPt9FZyVnjLIuWWqCVhG2KOuqHXmN
-         P3Ew==
-X-Gm-Message-State: AAQBX9dB6N8Rs+5YCYS7+1ZUhTbQioNNvUxarmBw9tZjIcO11V24CgUj
-        vjs8TWRmvlTPmzicnG1lxll3zQ==
-X-Google-Smtp-Source: AKy350YKmxiieIO+e/m8YrSHDxSa31rJy03V8/Gu3qee+b4TvG7KAopUN9dSLHD5NOyEXf8np1sQbA==
-X-Received: by 2002:a5d:6d4d:0:b0:2ef:c0cf:c72b with SMTP id k13-20020a5d6d4d000000b002efc0cfc72bmr12109033wri.29.1682423534889;
-        Tue, 25 Apr 2023 04:52:14 -0700 (PDT)
+        bh=yI1TPR9O8Wn13PLfmt3B7Vg1j2zRFGIPi65gxOuaq/Y=;
+        b=j3zVqfxQPK6K8ehuz/BAYlX/fWZp4U2pTJP/H53i0g2IMzFW3v8nAcUZi5zXL1M6vm
+         Kk3orlf9duIUrLlznGQm9/vZDJmydvmtKzhojbotcJnz85LzI5MbVgpymC6AkuEPSkp9
+         Gg0nGbySQ7CO6ww2c5ZcR1ypml6R4rDfTWc3577v2dxCSAetC+ftbiFUhVB4mS840vWy
+         +D0u2ofXCt09gmjW7WF8jO7UQMy7sjhtUaYDXn+zIBnC3q2DXQHFKiBS+t3H5tZ1ucyG
+         4FBOwluvhVqsB53cnOoaE5y2NwVoJxwe/P1k4sDCsR8jRItKoGE1y/UcykG6H3rsMwad
+         /tkw==
+X-Gm-Message-State: AAQBX9c9MiQMsWYj+pIaGSr7INAthZ493SrvAlPaEOYB1ZCwUrbka3/5
+        5DPwEkHSMi5XYAOBBNIHcBVktA==
+X-Google-Smtp-Source: AKy350YCwqDUNA8w+A+W4tuYIK6NweEAGlyiUZKepVtxB1ipt8FUsK3pDf48E+Y+4hASBI4VwAmAJw==
+X-Received: by 2002:adf:e4d2:0:b0:2f2:7a0e:5cc9 with SMTP id v18-20020adfe4d2000000b002f27a0e5cc9mr12124465wrm.19.1682423668174;
+        Tue, 25 Apr 2023 04:54:28 -0700 (PDT)
 Received: from [10.101.1.6] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id a18-20020a056000101200b002e61e002943sm12948461wrx.116.2023.04.25.04.52.13
+        by smtp.gmail.com with ESMTPSA id t12-20020a5d460c000000b002f6962ee703sm12948252wrq.61.2023.04.25.04.54.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Apr 2023 04:52:14 -0700 (PDT)
-Message-ID: <5657cc31-b547-a48f-d090-68ca240a4076@baylibre.com>
-Date:   Tue, 25 Apr 2023 13:52:12 +0200
+        Tue, 25 Apr 2023 04:54:27 -0700 (PDT)
+Message-ID: <202f71ef-5e95-9fef-bac6-18ab8d0c4fe3@baylibre.com>
+Date:   Tue, 25 Apr 2023 13:54:26 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH v2 4/4] arm64: dts: mediatek: cherry: Enable PCI-Express
- ports for WiFi
+Subject: Re: [PATCH] ARM: dts: en7523: add missing cache properties
 Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, matthias.bgg@gmail.com
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, kernel@collabora.com,
-        Chen-Yu Tsai <wenst@chromium.org>
-References: <20230424112523.1436926-1-angelogioacchino.delregno@collabora.com>
- <20230424112523.1436926-5-angelogioacchino.delregno@collabora.com>
+        linux-mediatek@lists.infradead.org
+References: <20230423150824.118430-1-krzysztof.kozlowski@linaro.org>
 From:   Alexandre Mergnat <amergnat@baylibre.com>
-In-Reply-To: <20230424112523.1436926-5-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230423150824.118430-1-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,13 +79,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/04/2023 13:25, AngeloGioacchino Del Regno wrote:
-> On the Cherry platform, a MT7621 WiFi+Bluetooth combo is connected
-> over PCI-Express (for WiFi) and USB (for BT): enable the PCIe ports
-> to enable enumerating this chip.
+On 23/04/2023 17:08, Krzysztof Kozlowski wrote:
+> As all level 2 and level 3 caches are unified, add required
+> cache-unified and cache-level properties to fix warnings like:
 > 
-> Signed-off-by: AngeloGioacchino Del Regno<angelogioacchino.delregno@collabora.com>
-> Tested-by: Chen-Yu Tsai<wenst@chromium.org>
+>    en7523-evb.dtb: l2-cache0: 'cache-level' is a required property
+>    en7523-evb.dtb: l2-cache0: 'cache-unified' is a required property
+> 
+> Signed-off-by: Krzysztof Kozlowski<krzysztof.kozlowski@linaro.org>
 
 Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
 
