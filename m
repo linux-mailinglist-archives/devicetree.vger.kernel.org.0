@@ -2,163 +2,292 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 357756EE62B
-	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 18:57:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BABD6EE63F
+	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 19:01:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234815AbjDYQ5G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Apr 2023 12:57:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46002 "EHLO
+        id S234862AbjDYRBG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Apr 2023 13:01:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234811AbjDYQ5F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 12:57:05 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C003D32E;
-        Tue, 25 Apr 2023 09:57:04 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E2CCC62C34;
-        Tue, 25 Apr 2023 16:57:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13196C4339C;
-        Tue, 25 Apr 2023 16:56:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1682441823;
-        bh=cUDv7w0pj/dy7GYFDIBt/oc/4E1U2yx8meJnVqD9X/g=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PYHdqVra8pVt5vIloxWIOlZzNWPHB97kBVaD8zgRIdazyyvvdDc//MVDzgjTsi6qb
-         SR3RNWqiX+8O73EBTrj85JSM+TlenznTLp5se1SYsQFBvMOqtozZDCENNcyOq6xbqf
-         NqfdhgqX8zq+1VsXIeZCM2c6oDtbKx/YTtczx6Ombg8cxkm8YsdVKKKIW2DGnGW+0y
-         0pdnTnx+hrVn7NqzopgkiuqR4uHuDqgUhyqCmId8Lsk+qpwdUcW8UTX75Ve72iaCXn
-         lRDud2C/nI9OQJ9Mz9V008Mxvf7T6PMor/2QdiXoKn9zoZv42fWWQPTWAeUdpd3i+r
-         Eu7TwFD4U3iYA==
-Date:   Tue, 25 Apr 2023 17:56:57 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Changhuang Liang <changhuang.liang@starfivetech.com>
-Cc:     Conor Dooley <conor.dooley@microchip.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        with ESMTP id S234851AbjDYRBF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 13:01:05 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22BF9CC;
+        Tue, 25 Apr 2023 10:00:59 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33PH0XQd048238;
+        Tue, 25 Apr 2023 12:00:33 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1682442033;
+        bh=J4i9P8M4vj02VdbJ1MGzBrhfgcvu76IGU11zRvR08TU=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=H5ZY2lxUTemRWuqE920A19T/9OL/DGTj4+GF75/nHatZwET8rOSaFabEU6/24y+r7
+         cuUtD7KsM7ch2AhGNbzund8uvyGcvZG78kYVDDnPOigqzeIO7JpOU963P3xPJ5qz+h
+         7yW2pY3GJ5bN3GpyNdtP2LvLrcqtpiwGe9y3/8+U=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33PH0XKp010786
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 25 Apr 2023 12:00:33 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 25
+ Apr 2023 12:00:32 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Tue, 25 Apr 2023 12:00:32 -0500
+Received: from [10.249.133.231] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33PH0P84007258;
+        Tue, 25 Apr 2023 12:00:26 -0500
+Message-ID: <66a4c8e0-e1d1-4d7d-b0eb-ce092fea8695@ti.com>
+Date:   Tue, 25 Apr 2023 22:30:25 +0530
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH 1/2] arm64: dts: ti: Add overlay for OLDI-LCD1EVM Display
+ and touch screen
+To:     Andrew Davis <afd@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Walker Chen <walker.chen@starfivetech.com>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, vkoul@kernel.org,
-        linux-phy@lists.infradead.org
-Subject: Re: [RESEND v2 1/6] dt-bindings: power: Add JH7110 AON PMU support
-Message-ID: <20230425-commotion-prewashed-876247bed4ab@spud>
-References: <20230419-labored-camper-644d51a7ca96@spud>
- <1a5b15fa-4f20-51c2-2ba1-a04a2911a694@starfivetech.com>
- <20230424-baffle-punch-ec73098f2b6a@spud>
- <d685a1d4-c07d-7dfa-f1fb-b35ceb2aa0eb@starfivetech.com>
- <20230425-unquote-eligible-09f743d81981@wendy>
- <a7cdfabf-2312-eaf3-f462-5bda7f0a120d@starfivetech.com>
- <68cb565d-bf39-10b0-9e3e-35ba7f54b90b@linaro.org>
- <0988495f-b87a-7f69-f222-37c67d6eae23@starfivetech.com>
- <20230425-resale-footrest-de667778c4fe@wendy>
- <663e9933-b9b3-a48f-98b6-2207215a8ed7@starfivetech.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="2jPozkJrlsTQK/jH"
-Content-Disposition: inline
-In-Reply-To: <663e9933-b9b3-a48f-98b6-2207215a8ed7@starfivetech.com>
-X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+CC:     Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel List <linux-kernel@vger.kernel.org>,
+        Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
+        Jyri Sarha <jyri.sarha@iki.fi>,
+        Tomi Valkeinen <tomba@kernel.org>,
+        Praneeth Bajjuri <praneeth@ti.com>,
+        Rahul T R <r-ravikumar@ti.com>,
+        Devarsh Thakkar <devarsht@ti.com>,
+        Jai Luthra <j-luthra@ti.com>,
+        Jayesh Choudhary <j-choudhary@ti.com>
+References: <20230425051235.15533-1-a-bhatia1@ti.com>
+ <20230425051235.15533-2-a-bhatia1@ti.com>
+ <90272486-864d-910c-a10b-4ba71a71f4b0@ti.com>
+Content-Language: en-US
+From:   Aradhya Bhatia <a-bhatia1@ti.com>
+In-Reply-To: <90272486-864d-910c-a10b-4ba71a71f4b0@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Andrew,
 
---2jPozkJrlsTQK/jH
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 25-Apr-23 20:39, Andrew Davis wrote:
+> On 4/25/23 12:12 AM, Aradhya Bhatia wrote:
+>> From: Jyri Sarha <jsarha@ti.com>
+>>
+>> The OLDI-LCD1EVM add on board has Rocktech RK101II01D-CT panel with
+>> integrated touch screen. The integrated touch screen is Goodix GT928.
+>> Add DT nodes for these and connect the endpoint nodes with DSS.
+>>
+>> This patch was picked from TI's public tree based on 5.10 LTS kernel.
+>>
+>> Signed-off-by: Jyri Sarha <jsarha@ti.com>
+>> Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
+>> [abhatia1@ti.com: Make syntax changes to support 6.1 DTSO format]
+>> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+>> ---
+>>   arch/arm64/boot/dts/ti/Makefile               |  2 +
+>>   .../dts/ti/k3-am654-evm-oldi-lcd1evm.dtso     | 70 +++++++++++++++++++
+>>   2 files changed, 72 insertions(+)
+>>   create mode 100644
+>> arch/arm64/boot/dts/ti/k3-am654-evm-oldi-lcd1evm.dtso
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/Makefile
+>> b/arch/arm64/boot/dts/ti/Makefile
+>> index 6acd12409d59..8956b19e587a 100644
+>> --- a/arch/arm64/boot/dts/ti/Makefile
+>> +++ b/arch/arm64/boot/dts/ti/Makefile
+>> @@ -26,6 +26,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced.dtb
+>>   dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced-m2.dtb
+>>   dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced-pg2.dtb
+>>   dtb-$(CONFIG_ARCH_K3) += k3-am654-base-board.dtb
+>> +dtb-$(CONFIG_ARCH_K3) += k3-am654-evm-oldi-lcd1evm.dtbo
+> 
+> This name is a bit odd, why "evm" twice? Looks like the first instance
+> is the redundant one as most of the documents on this LCD board call it
+> the "LCD1EVM". How about:
+> 
+> k3-am654-lcd1evm.dtbo
 
-On Tue, Apr 25, 2023 at 08:26:35PM +0800, Changhuang Liang wrote:
-> On 2023/4/25 17:35, Conor Dooley wrote:
-> > On Tue, Apr 25, 2023 at 05:18:10PM +0800, Changhuang Liang wrote:
-> >> On 2023/4/25 16:19, Krzysztof Kozlowski wrote:
-> >>> On 25/04/2023 09:57, Changhuang Liang wrote:
-> >>>> Yes, "starfive,jh7110-aon-pmu" is a child-node of "starfive,jh7110-a=
-on-syscon".
-> >>>> In my opinion, "0x17010000" is "aon-syscon" on JH7110 SoC, and this =
-"aon-pmu" is just=20
-> >>>> a part of "aon-syscon" function, so I think it is inappropriate to m=
-ake "aon-syscon"
-> >>>> to a power domain controller. I think using the child-node descripti=
-on is closer to
-> >>>> JH7110 SoC.=20
-> >>>
-> >>> Unfortunately, I do not see the correlation between these, any
-> >>> connection. Why being a child of syscon block would mean that this
-> >>> should no be power domain controller? Really, why? These are two
-> >>> unrelated things.
-> >>
-> >> Let me summarize what has been discussed above.=20
-> >>
-> >> There has two ways to describe this "starfive,jh7110-aon-syscon"(0x170=
-10000).
-> >> 1. (0x17010000) is power-controller node:
-> >>
-> >> 	aon_pwrc: power-controller@17010000 {
-> >> 		compatible =3D "starfive,jh7110-aon-pmu", "syscon";
-> >> 		reg =3D <0x0 0x17010000 0x0 0x1000>;
-> >> 		#power-domain-cells =3D <1>;
-> >> 	};
-> >>
-> >>
-> >> 2. (0x17010000) is syscon node, power-controller is child-node of sysc=
-on:
-> >>
-> >> 	aon_syscon: syscon@17010000 {
-> >> 		compatible =3D "starfive,jh7110-aon-syscon", "syscon", "simple-mfd";
-> >> 		reg =3D <0x0 0x17010000 0x0 0x1000>;
-> >>
-> >> 		aon_pwrc: power-controller {
-> >> 			compatible =3D "starfive,jh7110-aon-pmu";
-> >> 			#power-domain-cells =3D <1>;
-> >> 		};
-> >> 	};
-> >=20
-> > I thought that Rob was suggesting something like this:
-> > 	aon_syscon: syscon@17010000 {
-> > 		compatible =3D "starfive,jh7110-aon-syscon", ...
-> > 		reg =3D <0x0 0x17010000 0x0 0x1000>;
-> > 		#power-domain-cells =3D <1>;
-> > 	};
+I didn't think I could change the name of the overlay picking the patch
+from our tree, but if we are going to do it, can we take up another
+approach, where it would be easier to add panels for AM62x family and
+ensure uniformity throughout.
 
-> I see the kernel:
-> https://elixir.bootlin.com/linux/latest/source/arch/arm64/boot/dts/mediat=
-ek/mt8167.dtsi
-> this file line 42:
-> it's power-controller also has no meaningful properties.
-> What do you think?
+We have 2 different panels from Vendor A, and another one from Vendor B.
+Vendor B panel connects to AM625-SK via an adapter board.
 
-I'm not sure that I follow. It has a bunch of child-nodes does it not,
-each of which is a domain?
+Vendor-A/Panel-1 only says the name, 'SK-LCD1' on its circuit board.
+Vendor-A/Panel-2 doesn't have any name yet. We only have development
+units.
+Vendor-B/Panel-2 mentions '$(LCD_model) to AM62x SoC adapter board'.
 
-I didn't see such domains in your dts patch, they're defined directly in
-the driver instead AFAIU. Assuming I have understood that correctly,
-your situation is different to that mediatek one?
+Since, there are too many manufacturers, it is difficult to maintain
+uniformity with the names of panel-boards. So, I have this approach in
+mind (which I have used for our tree for AM62x), but would like your
+comments.
 
-Cheers,
-Conor.
+k3-$soc-$board-$(panel_vendor)-$(brief_compatible).dtso
 
---2jPozkJrlsTQK/jH
-Content-Type: application/pgp-signature; name="signature.asc"
+So, for AM625-SKs,
+k3-am625-sk-$(vendor_name)-$(brief_compatible).dtso
 
------BEGIN PGP SIGNATURE-----
+and for the current panel Rocktech RK101II01D-CT, which applies on AM654
+base-board,
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZEgGWQAKCRB4tDGHoIJi
-0n5hAQCXOV1SrfD6iA2QcZe3hIYyiXSLArZEvyZM7JlrkXLP+QD/dv8/MQyPmHPt
-hLWQvz3H3XVzqkslQ4ihE4QPcfIn8wI=
-=AfU5
------END PGP SIGNATURE-----
+k3-am654-base-board-rocktech-rk101.dtso.
 
---2jPozkJrlsTQK/jH--
+This does become rather long, but also is distinguishable.
+
+Let me know what you think.
+
+> 
+> I would like the overlay names to give some hint to what base DTB they
+> apply to,
+
+Agreed. That is indeed how it should be.
+
+> or better yet, apply them here in the build which will check
+> that they apply cleanly. Plus you can drop the silly "+= -@" below.
+> 
+
+The above approach will give a hint of the base EVM where a combined
+build is not possible simply because there is no 'official' name for a
+particular combination of panel and EVM.
+
+
+Regards
+Aradhya
+
+> Let's see how this should be called, from the AM65x GP EVM doc[0] we
+> get a nice picture on page 5 and the following:
+> 
+> "The AM65x GP EVM consists of a common processor board, an LCD adapter,
+> and a one-lane PCIe/USB3 personality card."
+> 
+> So, this would translate to:
+> 
+> k3-am654-gp-evm-dtbs := k3-am654-base-board.dtb k3-am654-lcd1evm.dtbo
+> k3-am654-pcie-usb3.dtbo
+> dtb-$(CONFIG_ARCH_K3) += k3-am654-gp-evm.dtb>
+> Next, from the AM65x IDK doc[1] also with a nice image on page 5:
+> 
+> "The AM65x IDK consists of a common processor board, IDK application board,
+> and a two-lane PCIe personality card.:
+> 
+> So:
+> 
+> k3-am654-idk-dtbs := k3-am654-base-board.dtb k3-am654-idk.dtbo
+> k3-am654-pcie-usb2.dtbo
+> dtb-$(CONFIG_ARCH_K3) += k3-am654-idk.dtb
+> 
+> Note that we do have all those missing dtso files in our evil vendor
+> tree[2]
+> and will be upstreaming them next, so this naming should all work out
+> nicely.
+> 
+> Andrew
+> 
+> [0] https://www.ti.com/lit/ug/spruim7/spruim7.pdf
+> [1] https://www.ti.com/lit/ug/spruim6a/spruim6a.pdf
+> [2]
+> https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/tree/arch/arm64/boot/dts/ti?h=ti-linux-5.10.y
+> 
+>>     # Boards with J7200 SoC
+>>   dtb-$(CONFIG_ARCH_K3) += k3-j7200-common-proc-board.dtb
+>> @@ -45,3 +46,4 @@ dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm.dtb
+>>     # Enable support for device-tree overlays
+>>   DTC_FLAGS_k3-am6548-iot2050-advanced-m2 += -@
+>> +DTC_FLAGS_k3-am654-base-board += -@
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am654-evm-oldi-lcd1evm.dtso
+>> b/arch/arm64/boot/dts/ti/k3-am654-evm-oldi-lcd1evm.dtso
+>> new file mode 100644
+>> index 000000000000..b2c790b314cf
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/ti/k3-am654-evm-oldi-lcd1evm.dtso
+>> @@ -0,0 +1,70 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/**
+>> + * OLDI-LCD1EVM Rocktech integrated panel and touch DT overlay for
+>> AM654-EVM.
+>> + *
+>> + * Copyright (C) 2023 Texas Instruments Incorporated -
+>> http://www.ti.com/
+>> + */
+>> +
+>> +/dts-v1/;
+>> +/plugin/;
+>> +
+>> +#include <dt-bindings/pwm/pwm.h>
+>> +#include <dt-bindings/gpio/gpio.h>
+>> +#include <dt-bindings/interrupt-controller/irq.h>
+>> +
+>> +&{/} {
+>> +    display0 {
+>> +        compatible = "rocktech,rk101ii01d-ct";
+>> +        backlight = <&lcd_bl>;
+>> +        enable-gpios = <&pca9555 8 GPIO_ACTIVE_HIGH>;
+>> +        port {
+>> +            lcd_in0: endpoint {
+>> +                remote-endpoint = <&oldi_out0>;
+>> +            };
+>> +        };
+>> +    };
+>> +
+>> +    lcd_bl: backlight {
+>> +        compatible = "pwm-backlight";
+>> +        pwms = <&ecap0 0 50000 PWM_POLARITY_INVERTED>;
+>> +        brightness-levels =
+>> +            <0 32 64 96 128 160 192 224 255>;
+>> +        default-brightness-level = <8>;
+>> +    };
+>> +};
+>> +
+>> +&dss {
+>> +    status = "okay";
+>> +};
+>> +
+>> +&dss_ports {
+>> +    #address-cells = <1>;
+>> +    #size-cells = <0>;
+>> +
+>> +    port@0 {
+>> +        reg = <0>;
+>> +
+>> +        oldi_out0: endpoint {
+>> +            remote-endpoint = <&lcd_in0>;
+>> +        };
+>> +    };
+>> +};
+>> +
+>> +&main_i2c1 {
+>> +    #address-cells = <1>;
+>> +    #size-cells = <0>;
+>> +
+>> +    gt928: touchscreen@14 {
+>> +        status = "okay";
+>> +        compatible = "goodix,gt928";
+>> +        reg = <0x14>;
+>> +
+>> +        interrupt-parent = <&pca9554>;
+>> +        interrupts = <3 IRQ_TYPE_EDGE_FALLING>;
+>> +        touchscreen-size-x = <1280>;
+>> +        touchscreen-size-y = <800>;
+>> +
+>> +        reset-gpios = <&pca9555 9 GPIO_ACTIVE_HIGH>;
+>> +        irq-gpios = <&pca9554 3 GPIO_ACTIVE_HIGH>;
+>> +    };
+>> +};
