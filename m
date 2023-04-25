@@ -2,61 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D889B6EDCB8
-	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 09:36:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F6A56EDCE7
+	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 09:41:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233548AbjDYHf7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Apr 2023 03:35:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44966 "EHLO
+        id S233349AbjDYHlO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Apr 2023 03:41:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233567AbjDYHfY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 03:35:24 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78367D30E;
-        Tue, 25 Apr 2023 00:35:19 -0700 (PDT)
-Received: from [192.168.88.20] (91-154-35-171.elisa-laajakaista.fi [91.154.35.171])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 58CFBAB;
-        Tue, 25 Apr 2023 09:35:06 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1682408107;
-        bh=ipYHM2TMHh8mOltD733No+AnX1CuUoxSHuYan1Ob8hc=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=HlterMRhxAKE1xBSZDjuQxrK7DSLCnNNXBRpLad3hWl+xQybQFVoh5GXGUOGJvzTg
-         wChVkaQc7H1Dpzw2q9w3B4WOLcTwhBlbQo9KMoOa4rLT5wKm2FwCLE0gOiO+7WkE8B
-         f6t6DYD6QkkYZ6OgamaiSHQVC1ySqI+nuyE/1TsU=
-Message-ID: <1478ab6c-5a2b-6177-d909-925f63383c41@ideasonboard.com>
-Date:   Tue, 25 Apr 2023 10:35:13 +0300
+        with ESMTP id S233322AbjDYHlK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 03:41:10 -0400
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3ECF8B8;
+        Tue, 25 Apr 2023 00:40:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1682408458; x=1713944458;
+  h=date:from:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=XiDBaOoJ3jGweq2Q6xUecOIExo6JNQOkp8Ggtb4AxSY=;
+  b=kV9VRZZclJgvz6WctfT4J49CZ/DrEqmKTgsA7QNXuiY8C4ns6vWK9jYe
+   Vggy66X+/RfCewRQOzjcwT8gSOxP+oRBwig8f4Rr5CF/p2oLCxOTbN8CE
+   VVuNId2hQ+1dWC8sfhIeXNjC/vq1e8QKZlyHhUx6pZyvGrAP3HSx+c2/U
+   kd+qIJmbwRSoNb/+zrIazDNh8X41Y+TSFIs3cYrhjGIw2K22tAUPv4fRS
+   Y5Dd1GibEbJUB89s2XNYKnT6ykF67T9wyIKKQidUfdKZkduPjFUJ6RFDz
+   ltylj1JtqUUhPgS9KlhCRRzGZohuvcpOjmM+NnrFjrDXLh+hHG8Wh1Ps7
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10690"; a="344168856"
+X-IronPort-AV: E=Sophos;i="5.99,224,1677571200"; 
+   d="scan'208";a="344168856"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Apr 2023 00:40:54 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10690"; a="782741513"
+X-IronPort-AV: E=Sophos;i="5.99,224,1677571200"; 
+   d="scan'208";a="782741513"
+Received: from rolfneux-mobl.ger.corp.intel.com ([10.252.34.113])
+  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Apr 2023 00:40:50 -0700
+Date:   Tue, 25 Apr 2023 10:40:43 +0300 (EEST)
+From:   =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
+To:     Jacky Huang <ychuang570808@gmail.com>
+cc:     Philipp Zabel <p.zabel@pengutronix.de>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
+        linux-serial <linux-serial@vger.kernel.org>, arnd@arndb.de,
+        schung@nuvoton.com, mjchen@nuvoton.com,
+        Jacky Huang <ychuang3@nuvoton.com>
+Subject: Re: [PATCH v7 10/12] reset: Add Nuvoton ma35d1 reset driver
+ support
+In-Reply-To: <4e1cd1c7-e681-fb25-1dcf-16d68e5e525b@gmail.com>
+Message-ID: <7f5fb515-a0a4-48fb-fdd5-247aff414d7d@linux.intel.com>
+References: <20230412053824.106-1-ychuang570808@gmail.com> <20230412053824.106-11-ychuang570808@gmail.com> <20230424192137.GB30248@pengutronix.de> <4e1cd1c7-e681-fb25-1dcf-16d68e5e525b@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH 1/2] arm64: dts: ti: Add overlay for OLDI-LCD1EVM Display
- and touch screen
-To:     Aradhya Bhatia <a-bhatia1@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-Cc:     Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel List <linux-kernel@vger.kernel.org>,
-        Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
-        Jyri Sarha <jyri.sarha@iki.fi>,
-        Praneeth Bajjuri <praneeth@ti.com>,
-        Rahul T R <r-ravikumar@ti.com>,
-        Devarsh Thakkar <devarsht@ti.com>,
-        Jai Luthra <j-luthra@ti.com>,
-        Jayesh Choudhary <j-choudhary@ti.com>
-References: <20230425051235.15533-1-a-bhatia1@ti.com>
- <20230425051235.15533-2-a-bhatia1@ti.com>
-Content-Language: en-US
-From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-In-Reply-To: <20230425051235.15533-2-a-bhatia1@ti.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+Content-Type: multipart/mixed; boundary="8323329-1391869021-1682408453=:1992"
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,123 +67,146 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/04/2023 08:12, Aradhya Bhatia wrote:
-> From: Jyri Sarha <jsarha@ti.com>
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
+
+--8323329-1391869021-1682408453=:1992
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
+
+On Tue, 25 Apr 2023, Jacky Huang wrote:
+
 > 
-> The OLDI-LCD1EVM add on board has Rocktech RK101II01D-CT panel with
-> integrated touch screen. The integrated touch screen is Goodix GT928.
-> Add DT nodes for these and connect the endpoint nodes with DSS.
 > 
-> This patch was picked from TI's public tree based on 5.10 LTS kernel.
+> On 2023/4/25 上午 03:21, Philipp Zabel wrote:
+> > Hi Jacky,
+> > 
+> > On Wed, Apr 12, 2023 at 05:38:22AM +0000, Jacky Huang wrote:
+> > > From: Jacky Huang <ychuang3@nuvoton.com>
+> > > 
+> > > This driver supports individual IP reset for ma35d1. The reset
+> > > control registers is a subset of system control registers.
+> > > 
+> > > Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
+> > > ---
+> > > 
+> > > +static const struct {
+> > > +	unsigned long id;
+> > Why store the id? ids should be contiguous and should start at 0,
+> > so the id could just be an index into the array.
 > 
-> Signed-off-by: Jyri Sarha <jsarha@ti.com>
-> Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
-> [abhatia1@ti.com: Make syntax changes to support 6.1 DTSO format]
-> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
-> ---
->   arch/arm64/boot/dts/ti/Makefile               |  2 +
->   .../dts/ti/k3-am654-evm-oldi-lcd1evm.dtso     | 70 +++++++++++++++++++
->   2 files changed, 72 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/ti/k3-am654-evm-oldi-lcd1evm.dtso
-> 
-> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-> index 6acd12409d59..8956b19e587a 100644
-> --- a/arch/arm64/boot/dts/ti/Makefile
-> +++ b/arch/arm64/boot/dts/ti/Makefile
-> @@ -26,6 +26,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced.dtb
->   dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced-m2.dtb
->   dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced-pg2.dtb
->   dtb-$(CONFIG_ARCH_K3) += k3-am654-base-board.dtb
-> +dtb-$(CONFIG_ARCH_K3) += k3-am654-evm-oldi-lcd1evm.dtbo
->   
->   # Boards with J7200 SoC
->   dtb-$(CONFIG_ARCH_K3) += k3-j7200-common-proc-board.dtb
-> @@ -45,3 +46,4 @@ dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm.dtb
->   
->   # Enable support for device-tree overlays
->   DTC_FLAGS_k3-am6548-iot2050-advanced-m2 += -@
-> +DTC_FLAGS_k3-am654-base-board += -@
-> diff --git a/arch/arm64/boot/dts/ti/k3-am654-evm-oldi-lcd1evm.dtso b/arch/arm64/boot/dts/ti/k3-am654-evm-oldi-lcd1evm.dtso
-> new file mode 100644
-> index 000000000000..b2c790b314cf
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am654-evm-oldi-lcd1evm.dtso
-> @@ -0,0 +1,70 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/**
-> + * OLDI-LCD1EVM Rocktech integrated panel and touch DT overlay for AM654-EVM.
-> + *
-> + * Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
-> + */
-> +
-> +/dts-v1/;
-> +/plugin/;
-> +
-> +#include <dt-bindings/pwm/pwm.h>
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +&{/} {
-> +	display0 {
-> +		compatible = "rocktech,rk101ii01d-ct";
-> +		backlight = <&lcd_bl>;
-> +		enable-gpios = <&pca9555 8 GPIO_ACTIVE_HIGH>;
-> +		port {
-> +			lcd_in0: endpoint {
-> +				remote-endpoint = <&oldi_out0>;
-> +			};
-> +		};
-> +	};
-> +
-> +	lcd_bl: backlight {
-> +		compatible = "pwm-backlight";
-> +		pwms = <&ecap0 0 50000 PWM_POLARITY_INVERTED>;
-> +		brightness-levels =
-> +			<0 32 64 96 128 160 192 224 255>;
-> +		default-brightness-level = <8>;
-> +	};
-> +};
-> +
-> +&dss {
-> +	status = "okay";
-> +};
-> +
-> +&dss_ports {
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +
-> +	port@0 {
-> +		reg = <0>;
-> +
-> +		oldi_out0: endpoint {
-> +			remote-endpoint = <&lcd_in0>;
-> +		};
-> +	};
-> +};
-> +
-> +&main_i2c1 {
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +
-> +	gt928: touchscreen@14 {
+> Thank you, I didn't notice that the IDs were already consecutive.
+> The id field is indeed unnecessary, and I will remove it.
 
-I don't see the 'gt928' label used for anything.
+I recommend you still keep the IDs in the array initializer though, like 
+this:
 
-Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+...
+} ma35d1_reset_map[] = {
+	[MA35D1_RESET_CHIP] = {0x20, 0},
+	[MA35D1_RESET_CA35CR0] = {0x20, 1},
+	...
 
-  Tomi
+> > > +	u32 reg_ofs;
+> > > +	u32 bit;
+> > > +} ma35d1_reset_map[] = {
+> > > +	{ MA35D1_RESET_CHIP,    0x20, 0  },
+> > > +	{ MA35D1_RESET_CA35CR0,	0x20, 1  },
+> > > +	{ MA35D1_RESET_CA35CR1, 0x20, 2  },
+> > > +	{ MA35D1_RESET_CM4,     0x20, 3  },
+> > > +	{ MA35D1_RESET_PDMA0,   0x20, 4  },
+> > > +	{ MA35D1_RESET_PDMA1,   0x20, 5  },
+> > > +	{ MA35D1_RESET_PDMA2,   0x20, 6  },
+> > > +	{ MA35D1_RESET_PDMA3,   0x20, 7  },
+> > > +	{ MA35D1_RESET_DISP,    0x20, 9  },
+> > > +	{ MA35D1_RESET_VCAP0,   0x20, 10 },
+> > > +	{ MA35D1_RESET_VCAP1,   0x20, 11 },
+> > > +	{ MA35D1_RESET_GFX,     0x20, 12 },
+> > > +	{ MA35D1_RESET_VDEC,    0x20, 13 },
+> > > +	{ MA35D1_RESET_WHC0,    0x20, 14 },
+> > > +	{ MA35D1_RESET_WHC1,    0x20, 15 },
+> > > +	{ MA35D1_RESET_GMAC0,   0x20, 16 },
+> > > +	{ MA35D1_RESET_GMAC1,   0x20, 17 },
+> > > +	{ MA35D1_RESET_HWSEM,   0x20, 18 },
+> > > +	{ MA35D1_RESET_EBI,     0x20, 19 },
+> > > +	{ MA35D1_RESET_HSUSBH0, 0x20, 20 },
+> > > +	{ MA35D1_RESET_HSUSBH1, 0x20, 21 },
+> > > +	{ MA35D1_RESET_HSUSBD,  0x20, 22 },
+> > > +	{ MA35D1_RESET_USBHL,   0x20, 23 },
+> > > +	{ MA35D1_RESET_SDH0,    0x20, 24 },
+> > > +	{ MA35D1_RESET_SDH1,    0x20, 25 },
+> > > +	{ MA35D1_RESET_NAND,    0x20, 26 },
+> > > +	{ MA35D1_RESET_GPIO,    0x20, 27 },
+> > > +	{ MA35D1_RESET_MCTLP,   0x20, 28 },
+> > > +	{ MA35D1_RESET_MCTLC,   0x20, 29 },
+> > > +	{ MA35D1_RESET_DDRPUB,  0x20, 30 },
+> > > +	{ MA35D1_RESET_TMR0,    0x24, 2  },
+> > > +	{ MA35D1_RESET_TMR1,    0x24, 3  },
+> > > +	{ MA35D1_RESET_TMR2,    0x24, 4  },
+> > > +	{ MA35D1_RESET_TMR3,    0x24, 5  },
+> > > +	{ MA35D1_RESET_I2C0,    0x24, 8  },
+> > > +	{ MA35D1_RESET_I2C1,    0x24, 9  },
+> > > +	{ MA35D1_RESET_I2C2,    0x24, 10 },
+> > > +	{ MA35D1_RESET_I2C3,    0x24, 11 },
+> > > +	{ MA35D1_RESET_QSPI0,   0x24, 12 },
+> > > +	{ MA35D1_RESET_SPI0,    0x24, 13 },
+> > > +	{ MA35D1_RESET_SPI1,    0x24, 14 },
+> > > +	{ MA35D1_RESET_SPI2,    0x24, 15 },
+> > > +	{ MA35D1_RESET_UART0,   0x24, 16 },
+> > > +	{ MA35D1_RESET_UART1,   0x24, 17 },
+> > > +	{ MA35D1_RESET_UART2,   0x24, 18 },
+> > > +	{ MA35D1_RESET_UAER3,   0x24, 19 },
+> > > +	{ MA35D1_RESET_UART4,   0x24, 20 },
+> > > +	{ MA35D1_RESET_UART5,   0x24, 21 },
+> > > +	{ MA35D1_RESET_UART6,   0x24, 22 },
+> > > +	{ MA35D1_RESET_UART7,   0x24, 23 },
+> > > +	{ MA35D1_RESET_CANFD0,  0x24, 24 },
+> > > +	{ MA35D1_RESET_CANFD1,  0x24, 25 },
+> > > +	{ MA35D1_RESET_EADC0,   0x24, 28 },
+> > > +	{ MA35D1_RESET_I2S0,    0x24, 29 },
+> > > +	{ MA35D1_RESET_SC0,     0x28, 0  },
+> > > +	{ MA35D1_RESET_SC1,     0x28, 1  },
+> > > +	{ MA35D1_RESET_QSPI1,   0x28, 4  },
+> > > +	{ MA35D1_RESET_SPI3,    0x28, 6  },
+> > > +	{ MA35D1_RESET_EPWM0,   0x28, 16 },
+> > > +	{ MA35D1_RESET_EPWM1,   0x28, 17 },
+> > > +	{ MA35D1_RESET_QEI0,    0x28, 22 },
+> > > +	{ MA35D1_RESET_QEI1,    0x28, 23 },
+> > > +	{ MA35D1_RESET_ECAP0,   0x28, 26 },
+> > > +	{ MA35D1_RESET_ECAP1,   0x28, 27 },
+> > > +	{ MA35D1_RESET_CANFD2,  0x28, 28 },
+> > > +	{ MA35D1_RESET_ADC0,    0x28, 31 },
+> > > +	{ MA35D1_RESET_TMR4,    0x2C, 0  },
+> > > +	{ MA35D1_RESET_TMR5,    0x2C, 1  },
+> > > +	{ MA35D1_RESET_TMR6,    0x2C, 2  },
+> > > +	{ MA35D1_RESET_TMR7,    0x2C, 3  },
+> > > +	{ MA35D1_RESET_TMR8,    0x2C, 4  },
+> > > +	{ MA35D1_RESET_TMR9,    0x2C, 5  },
+> > > +	{ MA35D1_RESET_TMR10,   0x2C, 6  },
+> > > +	{ MA35D1_RESET_TMR11,   0x2C, 7  },
+> > > +	{ MA35D1_RESET_UART8,   0x2C, 8  },
+> > > +	{ MA35D1_RESET_UART9,   0x2C, 9  },
+> > > +	{ MA35D1_RESET_UART10,  0x2C, 10 },
+> > > +	{ MA35D1_RESET_UART11,  0x2C, 11 },
+> > > +	{ MA35D1_RESET_UART12,  0x2C, 12 },
+> > > +	{ MA35D1_RESET_UART13,  0x2C, 13 },
+> > > +	{ MA35D1_RESET_UART14,  0x2C, 14 },
+> > > +	{ MA35D1_RESET_UART15,  0x2C, 15 },
+> > > +	{ MA35D1_RESET_UART16,  0x2C, 16 },
+> > > +	{ MA35D1_RESET_I2S1,    0x2C, 17 },
+> > > +	{ MA35D1_RESET_I2C4,    0x2C, 18 },
+> > > +	{ MA35D1_RESET_I2C5,    0x2C, 19 },
+> > > +	{ MA35D1_RESET_EPWM2,   0x2C, 20 },
+> > > +	{ MA35D1_RESET_ECAP2,   0x2C, 21 },
+> > > +	{ MA35D1_RESET_QEI2,    0x2C, 22 },
+> > > +	{ MA35D1_RESET_CANFD3,  0x2C, 23 },
+> > > +	{ MA35D1_RESET_KPI,     0x2C, 24 },
+> > > +	{ MA35D1_RESET_GIC,     0x2C, 28 },
+> > > +	{ MA35D1_RESET_SSMCC,   0x2C, 30 },
+> > > +	{ MA35D1_RESET_SSPCC,   0x2C, 31 }
+> > > +};
 
-> +		status = "okay";
-> +		compatible = "goodix,gt928";
-> +		reg = <0x14>;
-> +
-> +		interrupt-parent = <&pca9554>;
-> +		interrupts = <3 IRQ_TYPE_EDGE_FALLING>;
-> +		touchscreen-size-x = <1280>;
-> +		touchscreen-size-y = <800>;
-> +
-> +		reset-gpios = <&pca9555 9 GPIO_ACTIVE_HIGH>;
-> +		irq-gpios = <&pca9554 3 GPIO_ACTIVE_HIGH>;
-> +	};
-> +};
 
+-- 
+ i.
+--8323329-1391869021-1682408453=:1992--
