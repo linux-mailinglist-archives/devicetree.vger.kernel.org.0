@@ -2,245 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58AD46EE634
-	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 18:58:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 357756EE62B
+	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 18:57:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234838AbjDYQ6G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Apr 2023 12:58:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48668 "EHLO
+        id S234815AbjDYQ5G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Apr 2023 12:57:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234611AbjDYQ6F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 12:58:05 -0400
-Received: from new-shark9.inbox.lv (new-shark9.inbox.lv [194.152.32.89])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DF9C19AE;
-        Tue, 25 Apr 2023 09:57:41 -0700 (PDT)
-Received: from shark4.inbox.lv (shark4 [10.0.1.84])
-        by new-shark9.inbox.lv (Postfix) with ESMTP id 3D33448052F;
-        Tue, 25 Apr 2023 19:57:36 +0300 (EEST)
-Received: from shark4.inbox.lv (localhost [127.0.0.1])
-        by shark4-out.inbox.lv (Postfix) with ESMTP id 2A91AC019F;
-        Tue, 25 Apr 2023 19:57:36 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=inbox.lv;
-        s=p20220324; t=1682441856; x=1682443656;
-        bh=N4QLC3QqIvchn657Wxt7eP3a7y150FC3JaximBoSfDU=;
-        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:X-ESPOL:
-         From:Date:To:Cc:Message-ID:Subject:Reply-To;
-        b=EeygvSMQ9SRP1XDZrZrXfOjx8/0PT3DWWEn0JS8+szCPpWraKWuGIiCBXVCZBeTzT
-         kiUN3YmSg83XsHGMgMPYeWbJeP1r9lKP+6cXCkhPVs5zk0hgArdXKLTZyipEJEtLke
-         WHGVykwdMQLvU+jgiSgvOz2oNN4qiaHME974/z58=
-Received: from localhost (localhost [127.0.0.1])
-        by shark4-in.inbox.lv (Postfix) with ESMTP id 22246C019B;
-        Tue, 25 Apr 2023 19:57:36 +0300 (EEST)
-Received: from shark4.inbox.lv ([127.0.0.1])
-        by localhost (shark4.inbox.lv [127.0.0.1]) (spamfilter, port 35)
-        with ESMTP id o76Iws7qvmcN; Tue, 25 Apr 2023 19:57:35 +0300 (EEST)
-Received: from mail.inbox.lv (pop1 [127.0.0.1])
-        by shark4-in.inbox.lv (Postfix) with ESMTP id 9FCDDC018A;
-        Tue, 25 Apr 2023 19:57:35 +0300 (EEST)
-From:   Karl Chan <exkcmailist@inbox.lv>
-To:     linux-amlogic@lists.infradead.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        neil.armstrong@linaro.org, khilman@baylibre.com,
-        jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, "Karl Chan" <exkcmailist@inbox.lv>
-Subject: [PATCH v5 2/2] arm64: dts: meson-gxl: add support for Xiaomi Mi box 3
-Date:   Wed, 26 Apr 2023 00:56:24 +0800
-Message-Id: <20230425165624.11999-3-exkcmailist@inbox.lv>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230425165624.11999-1-exkcmailist@inbox.lv>
-References: <20230425165624.11999-1-exkcmailist@inbox.lv>
+        with ESMTP id S234811AbjDYQ5F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 12:57:05 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C003D32E;
+        Tue, 25 Apr 2023 09:57:04 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E2CCC62C34;
+        Tue, 25 Apr 2023 16:57:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13196C4339C;
+        Tue, 25 Apr 2023 16:56:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1682441823;
+        bh=cUDv7w0pj/dy7GYFDIBt/oc/4E1U2yx8meJnVqD9X/g=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=PYHdqVra8pVt5vIloxWIOlZzNWPHB97kBVaD8zgRIdazyyvvdDc//MVDzgjTsi6qb
+         SR3RNWqiX+8O73EBTrj85JSM+TlenznTLp5se1SYsQFBvMOqtozZDCENNcyOq6xbqf
+         NqfdhgqX8zq+1VsXIeZCM2c6oDtbKx/YTtczx6Ombg8cxkm8YsdVKKKIW2DGnGW+0y
+         0pdnTnx+hrVn7NqzopgkiuqR4uHuDqgUhyqCmId8Lsk+qpwdUcW8UTX75Ve72iaCXn
+         lRDud2C/nI9OQJ9Mz9V008Mxvf7T6PMor/2QdiXoKn9zoZv42fWWQPTWAeUdpd3i+r
+         Eu7TwFD4U3iYA==
+Date:   Tue, 25 Apr 2023 17:56:57 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Changhuang Liang <changhuang.liang@starfivetech.com>
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Walker Chen <walker.chen@starfivetech.com>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, vkoul@kernel.org,
+        linux-phy@lists.infradead.org
+Subject: Re: [RESEND v2 1/6] dt-bindings: power: Add JH7110 AON PMU support
+Message-ID: <20230425-commotion-prewashed-876247bed4ab@spud>
+References: <20230419-labored-camper-644d51a7ca96@spud>
+ <1a5b15fa-4f20-51c2-2ba1-a04a2911a694@starfivetech.com>
+ <20230424-baffle-punch-ec73098f2b6a@spud>
+ <d685a1d4-c07d-7dfa-f1fb-b35ceb2aa0eb@starfivetech.com>
+ <20230425-unquote-eligible-09f743d81981@wendy>
+ <a7cdfabf-2312-eaf3-f462-5bda7f0a120d@starfivetech.com>
+ <68cb565d-bf39-10b0-9e3e-35ba7f54b90b@linaro.org>
+ <0988495f-b87a-7f69-f222-37c67d6eae23@starfivetech.com>
+ <20230425-resale-footrest-de667778c4fe@wendy>
+ <663e9933-b9b3-a48f-98b6-2207215a8ed7@starfivetech.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: OK
-X-ESPOL: EZeEAiZdmGU1y83GUJgOlO7lx8rRIlciuy/6x7gy6nVYqsqhvtp3bm2LGYXtBwu+bg==
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="2jPozkJrlsTQK/jH"
+Content-Disposition: inline
+In-Reply-To: <663e9933-b9b3-a48f-98b6-2207215a8ed7@starfivetech.com>
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: "Karl Chan"  <exkcmailist@inbox.lv>
 
-The Xiaomi Mi box 3 is a TV box based on the Amlogic S905X chipset.
-There are two variants:
-- 2 GiB/8GIB
-- 1 GiB/4GIB
+--2jPozkJrlsTQK/jH
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Both variants come with:
-- 802.11a/b/g/n/ac wifi (BCM4345)
-- HDMI , AV (CVBS) and S/PDIF optical output
-- 1x USB
+On Tue, Apr 25, 2023 at 08:26:35PM +0800, Changhuang Liang wrote:
+> On 2023/4/25 17:35, Conor Dooley wrote:
+> > On Tue, Apr 25, 2023 at 05:18:10PM +0800, Changhuang Liang wrote:
+> >> On 2023/4/25 16:19, Krzysztof Kozlowski wrote:
+> >>> On 25/04/2023 09:57, Changhuang Liang wrote:
+> >>>> Yes, "starfive,jh7110-aon-pmu" is a child-node of "starfive,jh7110-a=
+on-syscon".
+> >>>> In my opinion, "0x17010000" is "aon-syscon" on JH7110 SoC, and this =
+"aon-pmu" is just=20
+> >>>> a part of "aon-syscon" function, so I think it is inappropriate to m=
+ake "aon-syscon"
+> >>>> to a power domain controller. I think using the child-node descripti=
+on is closer to
+> >>>> JH7110 SoC.=20
+> >>>
+> >>> Unfortunately, I do not see the correlation between these, any
+> >>> connection. Why being a child of syscon block would mean that this
+> >>> should no be power domain controller? Really, why? These are two
+> >>> unrelated things.
+> >>
+> >> Let me summarize what has been discussed above.=20
+> >>
+> >> There has two ways to describe this "starfive,jh7110-aon-syscon"(0x170=
+10000).
+> >> 1. (0x17010000) is power-controller node:
+> >>
+> >> 	aon_pwrc: power-controller@17010000 {
+> >> 		compatible =3D "starfive,jh7110-aon-pmu", "syscon";
+> >> 		reg =3D <0x0 0x17010000 0x0 0x1000>;
+> >> 		#power-domain-cells =3D <1>;
+> >> 	};
+> >>
+> >>
+> >> 2. (0x17010000) is syscon node, power-controller is child-node of sysc=
+on:
+> >>
+> >> 	aon_syscon: syscon@17010000 {
+> >> 		compatible =3D "starfive,jh7110-aon-syscon", "syscon", "simple-mfd";
+> >> 		reg =3D <0x0 0x17010000 0x0 0x1000>;
+> >>
+> >> 		aon_pwrc: power-controller {
+> >> 			compatible =3D "starfive,jh7110-aon-pmu";
+> >> 			#power-domain-cells =3D <1>;
+> >> 		};
+> >> 	};
+> >=20
+> > I thought that Rob was suggesting something like this:
+> > 	aon_syscon: syscon@17010000 {
+> > 		compatible =3D "starfive,jh7110-aon-syscon", ...
+> > 		reg =3D <0x0 0x17010000 0x0 0x1000>;
+> > 		#power-domain-cells =3D <1>;
+> > 	};
 
-Signed-off-by: Karl Chan <exkcmailist@inbox.lv>
----
- arch/arm64/boot/dts/amlogic/Makefile          |   1 +
- .../amlogic/meson-gxl-s905x-xiaomi-mibox3.dts | 138 ++++++++++++++++++
- list                                          |   1 +
- 3 files changed, 140 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s905x-xiaomi-mibox3.dts
- create mode 100644 list
+> I see the kernel:
+> https://elixir.bootlin.com/linux/latest/source/arch/arm64/boot/dts/mediat=
+ek/mt8167.dtsi
+> this file line 42:
+> it's power-controller also has no meaningful properties.
+> What do you think?
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index ccf1ba57fa87..774e7c3638bb 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -48,6 +48,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-libretech-cc-v2.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-libretech-cc.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-nexbox-a95x.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-p212.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-xiaomi-mibox3.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-gt1-ultimate.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-khadas-vim2.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-mecool-kiii-pro.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-xiaomi-mibox3.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-xiaomi-mibox3.dts
-new file mode 100644
-index 000000000000..acc4b12ffe0f
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-xiaomi-mibox3.dts
-@@ -0,0 +1,138 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2016 Endless Computers, Inc.
-+ * Author: Carlo Caione <carlo@endlessm.com>
-+ * Copyright (c) 2023 Karl Chan <exkcmailist@inbox.lv>
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-gxl-s905x-p212.dtsi"
-+#include <dt-bindings/sound/meson-aiu.h>
-+
-+/ {
-+	compatible = "xiaomi,mibox3", "amlogic,s905x", "amlogic,meson-gxl";
-+	model = "Xiaomi Mi Box 3";
-+
-+	dio2133: analog-amplifier {
-+		compatible = "simple-audio-amplifier";
-+		sound-name-prefix = "AU2";
-+		VCC-supply = <&hdmi_5v>;
-+		enable-gpios = <&gpio GPIOH_5 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	cvbs-connector {
-+		compatible = "composite-video-connector";
-+
-+		port {
-+			cvbs_connector_in: endpoint {
-+				remote-endpoint = <&cvbs_vdac_out>;
-+			};
-+		};
-+	};
-+
-+	hdmi-connector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&hdmi_tx_tmds_out>;
-+			};
-+		};
-+	};
-+
-+	sound {
-+		compatible = "amlogic,gx-sound-card";
-+		model = "XIAOMI-MIBOX3";
-+		audio-aux-devs = <&dio2133>;
-+		audio-widgets = "Line", "Lineout";
-+		audio-routing = "Lineout", "AU2 OUTL",
-+				"Lineout", "AU2 OUTR";
-+		assigned-clocks = <&clkc CLKID_MPLL0>,
-+				  <&clkc CLKID_MPLL1>,
-+				  <&clkc CLKID_MPLL2>;
-+		assigned-clock-parents = <0>, <0>, <0>;
-+		assigned-clock-rates = <294912000>,
-+				       <270950400>,
-+				       <393216000>;
-+		dai-link-0 {
-+			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
-+		};
-+
-+		dai-link-1 {
-+			sound-dai = <&aiu AIU_CPU CPU_I2S_ENCODER>;
-+			dai-format = "i2s";
-+			mclk-fs = <256>;
-+
-+			codec-0 {
-+				sound-dai = <&aiu AIU_HDMI CTRL_I2S>;
-+			};
-+
-+			codec-1 {
-+				sound-dai = <&aiu AIU_ACODEC CTRL_I2S>;
-+			};
-+		};
-+
-+		dai-link-2 {
-+			sound-dai = <&aiu AIU_HDMI CTRL_OUT>;
-+
-+			codec-0 {
-+				sound-dai = <&hdmi_tx>;
-+			};
-+		};
-+
-+		dai-link-3 {
-+			sound-dai = <&aiu AIU_ACODEC CTRL_OUT>;
-+
-+			codec-0 {
-+				sound-dai = <&acodec>;
-+			};
-+		};
-+	};
-+};
-+
-+&acodec {
-+	AVDD-supply = <&vddio_ao18>;
-+	status = "okay";
-+};
-+
-+&aiu {
-+	status = "okay";
-+};
-+
-+&cec_AO {
-+	status = "okay";
-+	pinctrl-0 = <&ao_cec_pins>;
-+	pinctrl-names = "default";
-+	hdmi-phandle = <&hdmi_tx>;
-+};
-+
-+&cvbs_vdac_port {
-+	cvbs_vdac_out: endpoint {
-+		remote-endpoint = <&cvbs_connector_in>;
-+	};
-+};
-+
-+&ethmac {
-+	status = "disabled";
-+};
-+
-+&hdmi_tx {
-+	status = "okay";
-+	pinctrl-0 = <&hdmi_hpd_pins>, <&hdmi_i2c_pins>;
-+	pinctrl-names = "default";
-+	hdmi-supply = <&hdmi_5v>;
-+};
-+
-+&hdmi_tx_tmds_port {
-+	hdmi_tx_tmds_out: endpoint {
-+		remote-endpoint = <&hdmi_connector_in>;
-+	};
-+};
-+
-+/* This UART is brought out to the uart pad on upper left of the pcb */
-+&uart_AO {
-+	status = "okay";
-+};
-+
--- 
-2.40.0
+I'm not sure that I follow. It has a bunch of child-nodes does it not,
+each of which is a domain?
 
+I didn't see such domains in your dts patch, they're defined directly in
+the driver instead AFAIU. Assuming I have understood that correctly,
+your situation is different to that mediatek one?
+
+Cheers,
+Conor.
+
+--2jPozkJrlsTQK/jH
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZEgGWQAKCRB4tDGHoIJi
+0n5hAQCXOV1SrfD6iA2QcZe3hIYyiXSLArZEvyZM7JlrkXLP+QD/dv8/MQyPmHPt
+hLWQvz3H3XVzqkslQ4ihE4QPcfIn8wI=
+=AfU5
+-----END PGP SIGNATURE-----
+
+--2jPozkJrlsTQK/jH--
