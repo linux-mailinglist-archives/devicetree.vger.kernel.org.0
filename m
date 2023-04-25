@@ -2,54 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1598A6EDDDF
-	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 10:23:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D367B6EDDE1
+	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 10:24:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233271AbjDYIW6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Apr 2023 04:22:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45434 "EHLO
+        id S233255AbjDYIYd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Apr 2023 04:24:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233573AbjDYIW5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 04:22:57 -0400
-Received: from mail-vk1-xa36.google.com (mail-vk1-xa36.google.com [IPv6:2607:f8b0:4864:20::a36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B45194EFA
-        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 01:22:53 -0700 (PDT)
-Received: by mail-vk1-xa36.google.com with SMTP id 71dfb90a1353d-44aed7d3f81so92173e0c.3
-        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 01:22:53 -0700 (PDT)
+        with ESMTP id S232661AbjDYIYc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 04:24:32 -0400
+Received: from mail-vk1-xa33.google.com (mail-vk1-xa33.google.com [IPv6:2607:f8b0:4864:20::a33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16DDD4C1E
+        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 01:24:31 -0700 (PDT)
+Received: by mail-vk1-xa33.google.com with SMTP id 71dfb90a1353d-4409786dab8so1784240e0c.1
+        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 01:24:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1682410973; x=1685002973;
+        d=chromium.org; s=google; t=1682411070; x=1685003070;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=yB1vq96921s8Z+v7/sB5m0qpEYlp9sw0LsfZcq/pqeU=;
-        b=e0zftWCIDn7BTVxEmaVWy9Gyo3hq6Kgtm/4Abhf6x6VIHKKbOYbd9GfftVqodTX9Nk
-         LOzm1akF5Z1CD3GiFNZqpjtwdwWTFZCGf7dkGtAfMCOOetpZIZtvKN/HOZdLnwgH03IA
-         1KA9kNXv9xoVu3oNd7i2BRPKBknyO49QDYWaw=
+        bh=g87QtYvbyFcpRIEyNYcMCc4cgeNxfkvSk5Vpj0Hyzc8=;
+        b=C5PFkPyWgHmed4xAl9jksbPjuO1O2fl9/NtlZo3jOPuJZ+9YSApk2q8BkcrCmi7hKH
+         dYeKRMBDcgwB8cTSypzr4BghpfSgFTYwL549V6Qa3RCmU8Jcenh/U+SF0HCd9k/cVdy5
+         GSmivlXBqNkYPv9yH3AToHRFh3b4Ol7y1obYk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682410973; x=1685002973;
+        d=1e100.net; s=20221208; t=1682411070; x=1685003070;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=yB1vq96921s8Z+v7/sB5m0qpEYlp9sw0LsfZcq/pqeU=;
-        b=aL8kK6EDBUJGDUfoa3lbEO+Hh+/qtSlvbRRgv/7BU2Tm3lxQSwq+QtsgGlOPif2wZX
-         9uQ1vIG6Zg/VonPTYgcSC8Z8NhnrzFUOTlAauhgPnMezF3+QMp0SZhffCUU6Mb3zJg3A
-         dsgINZ6TeT32hCA9yqFUs9QoBm8eSfNpU1WBEGKEhe653Zxn2e0uy9b9FKhgIu2ok0Gj
-         SweBSjey86eISTDEJpGUE02M+ztO/E9HyrqL8HX3aFhB07D0Kw7gMDG8tloIM3/tfYcP
-         umSnLiVzduz3gh4gsSQG6q97tiVHA2K3BYunRZeoYGNiY//2RXLl9jTnp1dcZJNZM8co
-         JS/A==
-X-Gm-Message-State: AAQBX9eiuhiAsI+fVRNhCdMqB0i7stWOSJP+K77vU/3bX+KrrSqiP0F0
-        3y0gmDTcxSoTVOhyN/xZy7Pf4biAkJ00vCEj54lg3M/S/8u7X5Zkbm4=
-X-Google-Smtp-Source: AKy350YjDblx2hofGVRmKM8ugsEwJq7JQoSpSEm4sX81GgzE8gg2Ged5AMI6wkWcpR4sjHKb4lCgfG+BkoeTdboZ6es=
-X-Received: by 2002:a1f:5e81:0:b0:440:5f56:dcc7 with SMTP id
- s123-20020a1f5e81000000b004405f56dcc7mr4735250vkb.1.1682410972801; Tue, 25
- Apr 2023 01:22:52 -0700 (PDT)
+        bh=g87QtYvbyFcpRIEyNYcMCc4cgeNxfkvSk5Vpj0Hyzc8=;
+        b=f4cCt0DlfjejhUa8l7d/9Z334kJVlCJmJOByICLbpG3hU1mtoHZa9zNPmklDa8HuMK
+         qx5ol7quXPTZIRcuy89KUxZTjgUpgVPMp5bVlS2kTobtgW0INONWxv6dgmiH2I8bNTyb
+         UPWbZcqwl8J0bEJmtJ7x1WnZo5MhYeRholFlwO9VcklERmt12B4jnS6Z7ycbXWi0QuGa
+         4GwPVstkrTfQpMyR7iVPgq2zzxZMTiTqAs4k1IZVjTx4sAKx9MvYoBRmFpaA8hLRqVyx
+         zRGh7PI4v/9KMk9IAtYqlXSpWoqCL5HQsB99gK1AkrCkKZgMzeUtGgTMoP5cPrZiZJMA
+         VJgA==
+X-Gm-Message-State: AAQBX9fh+v4zHZ82d8HPcjfGpb/I4jq8DxbNoTJG9XDJy1crFs6jiDyk
+        Yabn7ExyY3qicach8d0ni1cX9ZvxOy2QYlH6ADHBYg==
+X-Google-Smtp-Source: AKy350Z7WMHqqGuvOh2NxaHyv6xpmzZoT+sqVI0LpFCd9RViLaPMK29XRpHTZFU4r87tkLGoH1ciasV226IsVo/SiYU=
+X-Received: by 2002:a1f:41c1:0:b0:40f:f3e1:53c with SMTP id
+ o184-20020a1f41c1000000b0040ff3e1053cmr4535386vka.1.1682411070145; Tue, 25
+ Apr 2023 01:24:30 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230424112523.1436926-1-angelogioacchino.delregno@collabora.com> <20230424112523.1436926-3-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230424112523.1436926-3-angelogioacchino.delregno@collabora.com>
+References: <20230424112523.1436926-1-angelogioacchino.delregno@collabora.com> <20230424112523.1436926-4-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230424112523.1436926-4-angelogioacchino.delregno@collabora.com>
 From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Tue, 25 Apr 2023 16:22:41 +0800
-Message-ID: <CAGXv+5Gr6_UnBhM8xq9vXcSJatZAq644P7SqN5byR44t3VqkwA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/4] arm64: dts: mediatek: mt8195: Assign dp-intf aliases
+Date:   Tue, 25 Apr 2023 16:24:19 +0800
+Message-ID: <CAGXv+5EHAGMYE7Z-n6Wtss-sXXa0Rvv=jkse2sqyTOtGYpqR-A@mail.gmail.com>
+Subject: Re: [PATCH v2 3/4] arm64: dts: mediatek: cherry: Configure eDP and
+ internal display
 To:     AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
 Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
@@ -61,7 +62,7 @@ Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -71,33 +72,79 @@ X-Mailing-List: devicetree@vger.kernel.org
 On Mon, Apr 24, 2023 at 7:25=E2=80=AFPM AngeloGioacchino Del Regno
 <angelogioacchino.delregno@collabora.com> wrote:
 >
-> Assign aliases for the primary and secondary dp-intf IP to properly
-> and reliably enable DisplayPort functionality.
+> Add the required nodes to enable the DisplayPort interface, connected
+> to the Embedded DisplayPort port, where we have an internal display.
 >
 > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
 abora.com>
-
-Tested-by: Chen-Yu Tsai <wenst@chromium.org>
-Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
-
 > ---
->  arch/arm64/boot/dts/mediatek/mt8195.dtsi | 2 ++
->  1 file changed, 2 insertions(+)
+>  .../boot/dts/mediatek/mt8195-cherry.dtsi      | 32 +++++++++++++++++++
+>  1 file changed, 32 insertions(+)
 >
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/d=
-ts/mediatek/mt8195.dtsi
-> index a44aae4ab953..b03a42fe27a6 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> @@ -24,6 +24,8 @@ / {
->         #size-cells =3D <2>;
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/arm64=
+/boot/dts/mediatek/mt8195-cherry.dtsi
+> index 4229f4f7dc2f..adbda4dccdd5 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+> @@ -47,6 +47,18 @@ memory@40000000 {
+>                 reg =3D <0 0x40000000 0 0x80000000>;
+>         };
 >
->         aliases {
-> +               dp-intf0 =3D &dp_intf0;
-> +               dp-intf1 =3D &dp_intf1;
->                 gce0 =3D &gce0;
->                 gce1 =3D &gce1;
->                 ethdr0 =3D &ethdr0;
+> +       pp3300_disp_x: regulator-pp3300-disp-x {
+> +               compatible =3D "regulator-fixed";
+> +               regulator-name =3D "pp3300_disp_x";
+> +               regulator-min-microvolt =3D <3300000>;
+> +               regulator-max-microvolt =3D <3300000>;
+> +               enable-active-high;
+> +               gpio =3D <&pio 55 GPIO_ACTIVE_HIGH>;
+> +               pinctrl-names =3D "default";
+> +               pinctrl-0 =3D <&panel_fixed_pins>;
+> +               regulator-always-on;
+
+I think you missed my comment on v1 about this regulator's supplier and
+enable delay.
+
+ChenYu
+
+> +       };
+> +
+>         /* system wide LDO 3.3V power rail */
+>         pp3300_z5: regulator-pp3300-ldo-z5 {
+>                 compatible =3D "regulator-fixed";
+> @@ -288,6 +300,20 @@ port@1 {
+>                         reg =3D <1>;
+>                         edp_out: endpoint {
+>                                 data-lanes =3D <0 1 2 3>;
+> +                               remote-endpoint =3D <&panel_in>;
+> +                       };
+> +               };
+> +       };
+> +
+> +       aux-bus {
+> +               panel {
+> +                       compatible =3D "edp-panel";
+> +                       power-supply =3D <&pp3300_disp_x>;
+> +                       backlight =3D <&backlight_lcd0>;
+> +                       port {
+> +                               panel_in: endpoint {
+> +                                       remote-endpoint =3D <&edp_out>;
+> +                               };
+>                         };
+>                 };
+>         };
+> @@ -927,6 +953,12 @@ pins-cs {
+>                 };
+>         };
+>
+> +       panel_fixed_pins: panel-pwr-default-pins {
+> +               pins-vreg-en {
+> +                       pinmux =3D <PINMUX_GPIO55__FUNC_GPIO55>;
+> +               };
+> +       };
+> +
+>         pio_default: pio-default-pins {
+>                 pins-wifi-enable {
+>                         pinmux =3D <PINMUX_GPIO58__FUNC_GPIO58>;
 > --
 > 2.40.0
 >
