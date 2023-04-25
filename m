@@ -2,65 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 681266EDD63
-	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 09:57:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27E896EDD85
+	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 10:00:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232222AbjDYH5w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Apr 2023 03:57:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60852 "EHLO
+        id S233482AbjDYIAv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Apr 2023 04:00:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229705AbjDYH5v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 03:57:51 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0DFD5247;
-        Tue, 25 Apr 2023 00:57:38 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 9B8A17F8E;
-        Tue, 25 Apr 2023 15:57:26 +0800 (CST)
-Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 25 Apr
- 2023 15:57:26 +0800
-Received: from [192.168.125.106] (113.72.145.137) by EXMBX162.cuchost.com
- (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 25 Apr
- 2023 15:57:25 +0800
-Message-ID: <a7cdfabf-2312-eaf3-f462-5bda7f0a120d@starfivetech.com>
-Date:   Tue, 25 Apr 2023 15:57:25 +0800
+        with ESMTP id S233440AbjDYIAm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 04:00:42 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 149325586;
+        Tue, 25 Apr 2023 01:00:36 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A432262C51;
+        Tue, 25 Apr 2023 08:00:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B19AC4339B;
+        Tue, 25 Apr 2023 08:00:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1682409635;
+        bh=cDv3M/1s+tjOQjJbPUGblM4x/VHbLIoWAfEO3RoBZLM=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=t8tVDcisi1Ua1xsK0eh4wXd6TRl8zqRR065VHttovC11XtMZF6D/4bba5k+B9QVcD
+         wosEZN7on9/BZBObgZeW4zV919V5Z45lRsX9k7Fm3mqp0kUE89nHF/t0zlqhvF9+dB
+         2h6Dz3k0IgtGd470zSwjfCJivMhODaPf9YsDcjkg014i+ABYaNR22jfQS6VgIFy5WX
+         vVhV9/8kPwppHz662OIcc0AhHtcKwYVCwvnfRzqmvB8PESp/To9CcsNdaTVKSHAQ9+
+         fTB2q5Cbai6xwkIifbnmNyaVCEpLHdO8kzBQU4MtjB0kPYGm2MS/weEHAZC22lIJik
+         7OelZpaQThsmg==
+Message-ID: <7fe274df-6bcd-5993-d6cc-8fbcef435866@kernel.org>
+Date:   Tue, 25 Apr 2023 10:00:26 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [RESEND v2 1/6] dt-bindings: power: Add JH7110 AON PMU support
+Subject: Re: [RFC PATCH 0/1] Categorize ARM dts directory
 Content-Language: en-US
-To:     Conor Dooley <conor.dooley@microchip.com>
-CC:     Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Walker Chen <walker.chen@starfivetech.com>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>, <vkoul@kernel.org>,
-        <linux-phy@lists.infradead.org>
-References: <20230419035646.43702-1-changhuang.liang@starfivetech.com>
- <20230419035646.43702-2-changhuang.liang@starfivetech.com>
- <20230419-labored-camper-644d51a7ca96@spud>
- <1a5b15fa-4f20-51c2-2ba1-a04a2911a694@starfivetech.com>
- <20230424-baffle-punch-ec73098f2b6a@spud>
- <d685a1d4-c07d-7dfa-f1fb-b35ceb2aa0eb@starfivetech.com>
- <20230425-unquote-eligible-09f743d81981@wendy>
-From:   Changhuang Liang <changhuang.liang@starfivetech.com>
-In-Reply-To: <20230425-unquote-eligible-09f743d81981@wendy>
-Content-Type: text/plain; charset="UTF-8"
+To:     Rob Herring <robh+dt@kernel.org>,
+        Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-actions@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-omap@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, linux-arm-kernel@axis.com,
+        linux-aspeed@lists.ozlabs.org,
+        linux-rpi-kernel@lists.infradead.org,
+        chrome-platform@lists.linux.dev, linux-renesas-soc@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        kernel@dh-electronics.com, linux-mediatek@lists.infradead.org,
+        openbmc@lists.ozlabs.org, linux-tegra@vger.kernel.org,
+        linux-oxnas@groups.io, linux-arm-msm@vger.kernel.org,
+        linux-unisoc@lists.infradead.org,
+        linux-rockchip@lists.infradead.org,
+        linux-realtek-soc@lists.infradead.org,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>
+References: <20220328000915.15041-1-ansuelsmth@gmail.com>
+ <85eb14ec-f465-7447-ad77-a3dabc666f47@kernel.org>
+ <YkKRYnN84D9VZhGj@Ansuel-xps.localdomain>
+ <CAL_Jsq+RQQ-ADMxLPUFwk6S6kGmb6oNDy4k52fnU0EtbUvqmSA@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <CAL_Jsq+RQQ-ADMxLPUFwk6S6kGmb6oNDy4k52fnU0EtbUvqmSA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [113.72.145.137]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX162.cuchost.com
- (172.16.6.72)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+X-Spam-Status: No, score=-8.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,42 +75,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
->>>>>>  
->>>>>>  description: |
->>>>>>    StarFive JH7110 SoC includes support for multiple power domains which can be
->>>>>> @@ -17,6 +18,7 @@ properties:
->>>>>>    compatible:
->>>>>>      enum:
->>>>>>        - starfive,jh7110-pmu
->>>>>> +      - starfive,jh7110-aon-pmu
->>>
->>> I was speaking to Rob about this over the weekend, he asked:
->>> 'Why isn't "starfive,jh7110-aon-syscon" just the power-domain provider
->>> itself?'
+On 25/04/2023 00:10, Rob Herring wrote:
+>> I had some problem with gmail and sending mail too much users. I put Rob
+>> and You and all the various list to try to workaround the "gmail spam
+>> protection"
 >>
->> Maybe not, this syscon only offset "0x00" configure power switch.
->> other offset configure other functions, maybe not power, so this
->> "starfive,jh7110-aon-syscon" not the power-domain itself.
->>
->>> Do we actually need to add a new binding for this at all?
->>>
->>> Cheers,
->>> Conor.
+>>> I am pretty sure we were discussing such split idea in the past and it
+>>> did not get traction, but I cannot recall the exact discussion.
 >>>
 >>
->> Maybe this patch do that.
->> https://lore.kernel.org/all/20230414024157.53203-6-xingyu.wu@starfivetech.com/
+>> I think the main issue here is how to handle bot and how problematic is
+>> to merge this. As written in the cover letter the final version of this
+>> should be a big series of 50+ patch with every commit specific to each
+>> oem. In theory we should be able to merge the different oem separately
+>> and try to at least start the categorization.
+>> Another idea I got to at least have a "migration path" is to convert
+>> every dts in the dts/ directory to a symbolic link that target the dts
+>> in the correct oem. But I assume that would fix only part of the problem
+>> and git am will still be problematic.
 > 
-> This makes it a child-node right? I think Rob already said no to that in
-> and earlier revision of this series. What he meant the other day was
-> making the syscon itself a power domain controller, since the child node
-> has no meaningful properties (reg, interrupts etc).
+> I have a script[1] that does the conversion written the last time this
+> came up. Just have to agree on directory names. I think the easiest
+> would be for Arnd/Olof to run it at the end of a merge window before
+> rc1.
 > 
-> Cheers,
-> Conor.
+> I'm very much in favor of this happening especially before *any*
+> overlays are added to add to the mess (it's probably already
+> happened).
+> 
+> Rob
+> 
+> [1] https://lore.kernel.org/all/20181204183649.GA5716@bogus/
 
-Yes, "starfive,jh7110-aon-pmu" is a child-node of "starfive,jh7110-aon-syscon".
-In my opinion, "0x17010000" is "aon-syscon" on JH7110 SoC, and this "aon-pmu" is just 
-a part of "aon-syscon" function, so I think it is inappropriate to make "aon-syscon"
-to a power domain controller. I think using the child-node description is closer to
-JH7110 SoC. 
+This is the thread I was thinking about. Looks good for me (the original
+script with exynos->samsung).
+
+Best regards,
+Krzysztof
+
