@@ -2,82 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D08976EE94A
-	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 22:57:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B7FB6EE9CA
+	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 23:43:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236151AbjDYU5q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Apr 2023 16:57:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51280 "EHLO
+        id S234664AbjDYVn2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Apr 2023 17:43:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232165AbjDYU5q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 16:57:46 -0400
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C638E59
-        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 13:57:44 -0700 (PDT)
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 4CC134427A
-        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 20:57:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1682456261;
-        bh=vgRVIXe+P2Wjfmla/rXAZJKk1sI+D1ImKYegwRHDTks=;
-        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-         To:Cc:Content-Type;
-        b=Ig8rGX6PV8bg6ln9oVlnGLEjc14RtxwSxXHhHg8U+eZxHrb9VIjkUuj+RVPN6H7MM
-         ho313fl6EwSl+i7PdzJLFmhqHiZZGmjcONnSSXN4RJ3oqSoiU8Dh3uhV2Yar4KxW5U
-         Ol97OVb5nLl/3xxYqrWLfQeUSwqstegUObWnYoCtGHW9CNWVcXAsCvQVwjNPikPwCy
-         UECH8u5deFwgeM5+psatjnH53b4FZRbYXuYnkr7I8UPgAPc723YJAoQ8oa33oHfbeM
-         ixkbzzAkTGkz/P7vdZU760tX4MSXAuIu2vWz+OxKdkQquiAe5KCHq5MDNvq231Aevn
-         gaKU60kRNdoKg==
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-3ef3ca5b5afso81719731cf.0
-        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 13:57:41 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682456260; x=1685048260;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vgRVIXe+P2Wjfmla/rXAZJKk1sI+D1ImKYegwRHDTks=;
-        b=UNr5gOPz97Ond+mN5FvazHUwyC3ASZZzkcsJyY4rLo/YX92nEqxlymlm5AEmDEU9Lw
-         ciJcbqKiyn3ATMGxK5p44DWr1VgZwanI/QIoUXKMGaru7kTZizIe+I6OEWOiaVgdR6Ye
-         Qz2+9WtFbze6v55IL/+uo36cGdrq68cZUOdT6oaV++WK1Pf9v4gcyKTRLQAPAeBIl0U6
-         5ixeETXdtTG2Lg/usDiYwbCE3MWzDftgvxUmMJbvZFy+0MCAjrnZqwhlD7sgNDTWBgJu
-         P/M2kww5J/6QxMf8dbMTq7V0zvf4kha8blmOm5U68zaxFyozi7kd6/G3ronm8yRiaaty
-         B/Rw==
-X-Gm-Message-State: AAQBX9eJmefIA1jgbaMvwvBdqRINh9wnhxkFbhvqRMzGcMxyJXyen5bl
-        otO6EzxiUZASkE9TFHQIlEQGMTGt4KXtLxJNQz6JdfhmGRC8lQz/Z2h+VbT2DJFUoKH7yVRkEUr
-        tna3jsLRdgS5z9ov74Cm6EgvUjqVIOhjOnS/NZlY57WLMtwJeSxA1K/E=
-X-Received: by 2002:ac8:5d8d:0:b0:3ef:46b0:80e8 with SMTP id d13-20020ac85d8d000000b003ef46b080e8mr30845700qtx.19.1682456260309;
-        Tue, 25 Apr 2023 13:57:40 -0700 (PDT)
-X-Google-Smtp-Source: AKy350YgJcj8NBwRby79492evbEUfuqxK9Zf4fKQdwy3HHL1ByJh+2fexc3h8J5/zzoJIvi71pUHyKLn9qmewz+xjS8=
-X-Received: by 2002:ac8:5d8d:0:b0:3ef:46b0:80e8 with SMTP id
- d13-20020ac85d8d000000b003ef46b080e8mr30845680qtx.19.1682456260117; Tue, 25
- Apr 2023 13:57:40 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230420024118.22677-1-walker.chen@starfivetech.com>
- <20230420024118.22677-5-walker.chen@starfivetech.com> <20230421-dropper-upstage-200ae7e47092@spud>
- <607f3604-056c-6f3a-b154-0f298b870811@starfivetech.com> <20230424-roundness-everybody-659599d44963@spud>
-In-Reply-To: <20230424-roundness-everybody-659599d44963@spud>
-From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Date:   Tue, 25 Apr 2023 22:57:23 +0200
-Message-ID: <CAJM55Z9a9N8Zm2cuh8gzZNcYBENO5WE6GmRXOsaYbOcv0srz-Q@mail.gmail.com>
-Subject: Re: [PATCH v2 4/4] riscv: dts: starfive: add tdm node and sound card
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Walker Chen <walker.chen@starfivetech.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231629AbjDYVn1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 17:43:27 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DB14B23B;
+        Tue, 25 Apr 2023 14:43:25 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33PLhF4T016097;
+        Tue, 25 Apr 2023 16:43:15 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1682458996;
+        bh=hcVxdL4FLx0hwez58KXLcmrDbTt3daM5J0GsmRhVUBA=;
+        h=From:To:CC:Subject:Date;
+        b=M/hSWS/cqNnJ/o1OdF7AcgFKtk7hf4VrkISg9ngtj97mNxN8OVXiN39Qz4dgurDQl
+         II3Sq+VR8JdBgU43rzI6zUMrx6Az47YpHvmYbjTbXSsc++7tSYEgDXKuX425irUTug
+         ZGhJm8fQt8e5PscJ0Rwu363Mo07Nxcfnyu9tkccs=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33PLhFNJ051766
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 25 Apr 2023 16:43:15 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 25
+ Apr 2023 16:43:14 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Tue, 25 Apr 2023 16:43:14 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33PLhEYn035712;
+        Tue, 25 Apr 2023 16:43:14 -0500
+From:   Bryan Brattlof <bb@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+        ARM Linux Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Bryan Brattlof <bb@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-am62a7-sk: Describe main_uart1 and wkup_uart
+Date:   Tue, 25 Apr 2023 16:43:11 -0500
+Message-ID: <20230425214311.546191-1-bb@ti.com>
+X-Mailer: git-send-email 2.40.0
+MIME-Version: 1.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2715; i=bb@ti.com; h=from:subject; bh=cGB/F/c+1FRJZb3sIYvgjqiJFwIX3JQVRIqE0qqvbfY=; b=owNCWmg5MUFZJlNZ/BeK8wAAYP///r9f72/5353mfd81vTej32pjUvV/Sv/d2vjv3/p8/06wA Rsa2QBoMjQDEZAAGmEyYTTIaDQyAA0YBGCA0aMEyMgAaaAyGmI0GQBkeUMiaANBoaNNAABo0DQD QaAA00aaGjQ0MgDEyaaPU2iD1NMgDRo0ZMENqDTEehEPUMgZD0QDJo00Mah6QaNAyDIGgNNAADI MhiGQAAMIDRpiZAwgZGQ9T1NBgxHE2lLDJQhsaPBeGiw3yhwR0EVsm4CdX1RXPokw3YGWW+ZFin NHNxb3+gL1FCE0l6LqVnygPQTL1wu0BmKOeGV+Op7L/T0oYkTYoCwjFobQmgh4g8/wLjA4+HAVo 0yXrBA8mFiXTAL+E03UtdYXMVTKsy3bCuq9uVSkPR7KrMP3c7psgixJT9xe9YDuM21ndjaRr9ry uubUbJR27jH5HROl1zyT8wjFuYOy7iLnHCdaLeMJ906UAyN9Re8F/W4RUJCzxERGg7NA51TU3F7 /nTow+8DCmZ0AB33vGJx5BgB0ztUeZLSOqUzgbWKDHAmYEGSaKMZyWOP3zoMfHwGAn4mcoxgSR6 nQjRBj60OLHrreQdIYphBAKgEcmcsX0umsH4dDB5vgIzlZv9ayVSJAVYe0KIEKT9wq5iAOQxP6j BABVf4u5IpwoSH4LxXm
+X-Developer-Key: i=bb@ti.com; a=openpgp; fpr=D3D177E40A38DF4D1853FEEF41B90D5D71D56CE0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,51 +68,96 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 24 Apr 2023 at 18:27, Conor Dooley <conor@kernel.org> wrote:
-> On Mon, Apr 24, 2023 at 11:21:11AM +0800, Walker Chen wrote:
-> >
-> >
-> > On 2023/4/22 0:50, Conor Dooley wrote:
-> > > Hey Walker,
-> > >
-> > > On Thu, Apr 20, 2023 at 10:41:18AM +0800, Walker Chen wrote:
-> > >> Add the tdm controller node and sound card for the StarFive JH7110 SoC.
-> > >
-> > > Is this one of these waveshare things + a visionfive 2?
-> > > https://www.waveshare.com/wm8960-audio-hat.htm
-> >
-> > Hey Conor,
-> > I'm glad to receive your comments.
-> >
-> > Now we are using this board + VisionFive2 :
-> > https://wiki.seeedstudio.com/ReSpeaker_2_Mics_Pi_HAT/
-> >
-> > >
-> > > I'm a bit lost as to why this needs a whole new board, should it not
-> > > just be an overlay that you can apply to the existing dts?
-> > >
-> > > Taking this to an extreme, should I expect to see a new devicetree for
-> > > everything RPi hat that you decide to use with a VisionFive 2?
-> >
-> > For your response, I did some thinking. Because wm8960 codec is not integrated
-> >  on the VisionFive2 board, perhaps using overlay is a better way.
->
-> Aye. I think so too. From my PoV, if this particular seeed audio board
-> is something you're bundling with VisionFive 2 boards on your storefront
-> etc, then I'm fine with taking it as an in-tree overlay.
-> If it is just a "random" RPi hat (that happens to be exactly what you
-> need for testing the audio drivers), then I don't know where to draw a
-> line for what is & what is not acceptable for inclusion.
->
-> In both cases, it's Emil's call.
+From: Nishanth Menon <nm@ti.com>
 
-I'm not aware of any shop bundling the VF2 with an audio board. I
-agree: please don't add device trees for combinations of VF2s and
-hats. That should be an overlay.
+wkup_uart and main_uart1 on this platform is used by tifs and DM
+firmwares. Describe them for completeness including the pinmux.
 
-/Emil
+Signed-off-by: Nishanth Menon <nm@ti.com>
+[bb@ti.com: updated pinmux and commit subject]
+Signed-off-by: Bryan Brattlof <bb@ti.com>
+---
 
-> > > Also, it'd be nice to provide a Link: to where someone can find more
-> > > info on this combination of items. Google for "wm8960 visionfive 2"
-> > > gives me nothing, nor does "starfive audio card" etc.
->
+Changes from v1: [0]
+- Updated $subject to align with previous commits
+
+[0] https://lore.kernel.org/linux-devicetree/20230424183355.68360-1-bb@ti.com/
+
+
+ arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 40 +++++++++++++++++++++++--
+ 1 file changed, 38 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+index f6a67f072dca6..65caa5611d6d5 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
++++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+@@ -17,7 +17,9 @@ / {
+ 	model = "Texas Instruments AM62A7 SK";
+ 
+ 	aliases {
++		serial0 = &wkup_uart0;
+ 		serial2 = &main_uart0;
++		serial3 = &main_uart1;
+ 		mmc1 = &sdhci1;
+ 	};
+ 
+@@ -114,11 +116,38 @@ led-0 {
+ 	};
+ };
+ 
++&mcu_pmx0 {
++	wkup_uart0_pins_default: wkup-uart0-pins-default {
++		pinctrl-single,pins = <
++			AM62AX_MCU_IOPAD(0x0024, PIN_INPUT, 0) /* (C9) WKUP_UART0_RXD */
++			AM62AX_MCU_IOPAD(0x0028, PIN_OUTPUT, 0) /* (E9) WKUP_UART0_TXD */
++			AM62AX_MCU_IOPAD(0x002c, PIN_INPUT, 0) /* (C10) WKUP_UART0_CTSn */
++			AM62AX_MCU_IOPAD(0x0030, PIN_OUTPUT, 0) /* (C8) WKUP_UART0_RTSn */
++		>;
++	};
++};
++
++/* WKUP UART0 is used for DM firmware logs */
++&wkup_uart0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&wkup_uart0_pins_default>;
++	status = "reserved";
++};
++
+ &main_pmx0 {
+ 	main_uart0_pins_default: main-uart0-pins-default {
+ 		pinctrl-single,pins = <
+-			AM62AX_IOPAD(0x1c8, PIN_INPUT, 0) /* (D14) UART0_RXD */
+-			AM62AX_IOPAD(0x1cc, PIN_OUTPUT, 0) /* (E14) UART0_TXD */
++			AM62AX_IOPAD(0x1c8, PIN_INPUT, 0) /* (E14) UART0_RXD */
++			AM62AX_IOPAD(0x1cc, PIN_OUTPUT, 0) /* (D15) UART0_TXD */
++		>;
++	};
++
++	main_uart1_pins_default: main-uart1-pins-default {
++		pinctrl-single,pins = <
++			AM62AX_IOPAD(0x01e8, PIN_INPUT, 1) /* (C17) I2C1_SCL.UART1_RXD */
++			AM62AX_IOPAD(0x01ec, PIN_OUTPUT, 1) /* (E17) I2C1_SDA.UART1_TXD */
++			AM62AX_IOPAD(0x0194, PIN_INPUT, 2) /* (C19) MCASP0_AXR3.UART1_CTSn */
++			AM62AX_IOPAD(0x0198, PIN_OUTPUT, 2) /* (B19) MCASP0_AXR2.UART1_RTSn */
+ 		>;
+ 	};
+ 
+@@ -254,6 +283,13 @@ &main_uart0 {
+ 	pinctrl-0 = <&main_uart0_pins_default>;
+ };
+ 
++/* Main UART1 is used for TIFS firmware logs */
++&main_uart1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&main_uart1_pins_default>;
++	status = "reserved";
++};
++
+ &usbss1 {
+ 	status = "okay";
+ };
+
+base-commit: 891db0c48efb48c3af334006f9d7ea6a0aa49cb9
+-- 
+2.40.0
+
