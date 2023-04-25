@@ -2,98 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 416EE6EE654
-	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 19:06:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E38F46EE661
+	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 19:11:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234899AbjDYRGv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Apr 2023 13:06:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55062 "EHLO
+        id S231528AbjDYRLR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Apr 2023 13:11:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234499AbjDYRGt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 13:06:49 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C7C25FD6;
-        Tue, 25 Apr 2023 10:06:48 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id CB2EB63012;
-        Tue, 25 Apr 2023 17:06:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B532C433EF;
-        Tue, 25 Apr 2023 17:06:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1682442407;
-        bh=SVkDAenCLc4YxC42MyvcWJ7pLg3jV4kpEunhStZAwQQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Exe7xCpNhU6W4Id64yndI8vqNJBAoxVFY7HJL8XxFgU28COkPmxkauWwff9WqFcAb
-         wZZE9Wpk53xRpYOqCUzJOKFSgq4eby1oeJkqd2RHWSTF6cno4iFdAnTfucZMmyq7gU
-         OV6J5HvqkocwdSi6W6XcUVLdMOQr2ed+ZhzxEalYLdrCl34vT1ny/8Qdunx1Qx1Ia2
-         solynDX8vByRMyigLCT4Oep8fADn/0dxGtKLbupBYc7hc9RJCBZg6VdAXLXddZpqs+
-         vkG8w5FggezAMyKhTeLTLoOukMKv/lAZQ9WStn834b33F+stULspTe8cmH+ASOEsM0
-         1Xxo38KiT5oNQ==
-Date:   Tue, 25 Apr 2023 18:06:38 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     =?utf-8?B?UGF3ZcWC?= Anikiel <pan@semihalf.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, lgirdwood@gmail.com, perex@perex.cz,
-        tiwai@suse.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, dinguyen@kernel.org,
-        lars@metafoo.de, nuno.sa@analog.com, upstream@semihalf.com
-Subject: Re: [PATCH 0/9] Add Chameleon v3 ASoC audio
-Message-ID: <b4990c65-7414-4119-be8a-32db4887bd6e@sirena.org.uk>
-References: <20230414140203.707729-1-pan@semihalf.com>
- <6d90ad41-bb2d-41a0-8a4a-922b78967a2e@sirena.org.uk>
- <CAF9_jYRqr498j=5rgeqELEaZEkMRKqBTiNvRJC2ZduZO+399BQ@mail.gmail.com>
+        with ESMTP id S231337AbjDYRLQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 13:11:16 -0400
+Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 803FC10EF;
+        Tue, 25 Apr 2023 10:11:15 -0700 (PDT)
+Received: by mail-oo1-f47.google.com with SMTP id 006d021491bc7-541b60e0a7fso3275841eaf.1;
+        Tue, 25 Apr 2023 10:11:15 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682442675; x=1685034675;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JznrFddSiXYl35RQkX1Ob+FXcZh2odFUGHhxyWsmz3U=;
+        b=RbMplnaojXWnzlmjJYqOYUdqzNFq7JKF1tyDGGKvg8O7O6+LkyapAo2NdKZuEx96yR
+         pcu1FHLmDXSUvPwXsqrskS4TX3y5aeTmr62FPscV8bNH6npJ35uuBIYk6N0HLUO6UMS2
+         Zn/9yiBA2fMrLZbIK0XMWSdn5d9ExrK8AZjkoxV9ToVOc0+GCqoz2771XzKL2SqJJpbt
+         BDqqipXyBBNExZHywnTZbta90Od4KWnbVH+OvIWk+pYrbZQom9ArchcwwWOCiAEff8OT
+         ie69Yy5bH7Ze4u7zKqR8csgM7fsxI9gt3h3xGqzOHMA+hSFW530Yr0MLt07zab/lvxyN
+         MsCg==
+X-Gm-Message-State: AAQBX9dX6wAfrI4BGedfZoVCk63bxAhBPKou0uP5bfxH1QzgE+yyih1O
+        /r2pOmc0it1CSrRAZJld4g==
+X-Google-Smtp-Source: AKy350bgOPl+oy4SaF+mpNjV5TrXeqbf2NPWQoPRYCoX+lQDmvJLqcdERM7wdTosZkSr2nyPqt/LgA==
+X-Received: by 2002:a05:6820:553:b0:545:2420:2a77 with SMTP id n19-20020a056820055300b0054524202a77mr6961340ooj.6.1682442674596;
+        Tue, 25 Apr 2023 10:11:14 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id dk10-20020a0568303b0a00b006a60606de62sm5888288otb.52.2023.04.25.10.11.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Apr 2023 10:11:14 -0700 (PDT)
+Received: (nullmailer pid 1963762 invoked by uid 1000);
+        Tue, 25 Apr 2023 17:11:13 -0000
+Date:   Tue, 25 Apr 2023 12:11:13 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Wolfram Sang <wsa@kernel.org>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Andy Shevchenko <andriy.shevchenko@intel.com>,
+        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Peter Rosin <peda@axentia.se>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Mike Pagano <mpagano@gentoo.org>,
+        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
+        Marek Vasut <marex@denx.de>,
+        Satish Nagireddy <satish.nagireddy@getcruise.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Subject: Re: [PATCH v11 4/7] dt-bindings: media: add TI DS90UB960 FPD-Link
+ III Deserializer
+Message-ID: <20230425171113.GA1957523-robh@kernel.org>
+References: <20230421101833.345984-1-tomi.valkeinen@ideasonboard.com>
+ <20230421101833.345984-5-tomi.valkeinen@ideasonboard.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="fYZIDEQRkolnGTx6"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAF9_jYRqr498j=5rgeqELEaZEkMRKqBTiNvRJC2ZduZO+399BQ@mail.gmail.com>
-X-Cookie: The meek don't want it.
-X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230421101833.345984-5-tomi.valkeinen@ideasonboard.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Apr 21, 2023 at 01:18:30PM +0300, Tomi Valkeinen wrote:
+> Add DT bindings for TI DS90UB960 FPD-Link III Deserializer.
+> 
+> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> ---
+>  .../bindings/media/i2c/ti,ds90ub960.yaml      | 423 ++++++++++++++++++
+>  1 file changed, 423 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
+> new file mode 100644
+> index 000000000000..1d5362bea09a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
+> @@ -0,0 +1,423 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/ti,ds90ub960.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Texas Instruments DS90UB9XX Family FPD-Link Deserializer Hubs
+> +
+> +maintainers:
+> +  - Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+> +
+> +description:
+> +  The TI DS90UB9XX devices are FPD-Link video deserializers with I2C and GPIO
+> +  forwarding.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ti,ds90ub960-q1
+> +      - ti,ds90ub9702-q1
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +    description:
+> +      Reference clock connected to the REFCLK pin.
+> +
+> +  clock-names:
+> +    items:
+> +      - const: refclk
+> +
+> +  powerdown-gpios:
+> +    maxItems: 1
+> +    description:
+> +      Specifier for the GPIO connected to the PDB pin.
+> +
+> +  i2c-alias-pool:
+> +    $ref: /schemas/i2c/i2c-atr.yaml#/properties/i2c-alias-pool
 
---fYZIDEQRkolnGTx6
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This is not how we handle common properties (usually). Just reference 
+'/schemas/i2c/i2c-atr.yaml#' at the top level and use 
+unevaluatedProperties.
 
-On Tue, Apr 25, 2023 at 05:58:59PM +0200, Pawe=C5=82 Anikiel wrote:
+Is there a limit to the number of entries for this device? If so, add 
+that here.
 
-> > Please at least make a directory for Google as a vendor, we don't want
-> > people adding directories for each individual product. That said
-> > generally we add machine drivers in the directory for the relevant SoC
-> > family, is there any reason that pattern isn't followed here?
-
-> The board is based around an Intel Arria 10 SoC FPGA. The ring buffer
-> device and all the routing is implemented inside the FPGA. Is it ok to
-> put the machine driver in the product directory in this case?. As for
-> the directory path, would sound/soc/google/chameleonv3/* be ok?
-
-Does the individual product really need a directory - nobody's going to
-reuse the IP on the FPGA for anything?
-
---fYZIDEQRkolnGTx6
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmRICJ4ACgkQJNaLcl1U
-h9A8hQf9HwsB2182A00Mh2ym3mFillUx1BrvfPG2lJuDB/WB4hqK34YYx/p5XvpQ
-O8FpNd77/3voqyPYMKTpScOjMnOHbkR4Y99FlmnLZmHuxYxlPRe9jB9W0VnPuIl/
-Q5FdVI/jOfy5eyjNmFNmbgaDVXKky5zhe41h+sE0Us90DI5zl3p6BBnsEtac91sD
-dBV59kI3YJa8+Djk2XF0ZYacP9eCICenKhKvaVrTP8y5aqHGnXwgHHQD9ahBEfh0
-gu96fnw1xgm6tE3NDceY6hqKChIMOrknSLSZJfQ1It8VJGyc16kCwbCfmQY0uJvV
-u/egzxVNju9UlrquK7Qn4JIir/hVgQ==
-=IxnK
------END PGP SIGNATURE-----
-
---fYZIDEQRkolnGTx6--
+Rob
