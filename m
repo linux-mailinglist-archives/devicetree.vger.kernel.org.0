@@ -2,74 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92CB46EDF29
-	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 11:26:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 817306EDF31
+	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 11:28:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233435AbjDYJ0j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Apr 2023 05:26:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34238 "EHLO
+        id S233605AbjDYJ2j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Apr 2023 05:28:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233169AbjDYJ0i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 05:26:38 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2D313AAA
-        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 02:26:35 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-94f4b911570so826403566b.0
-        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 02:26:35 -0700 (PDT)
+        with ESMTP id S233327AbjDYJ2h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 05:28:37 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5684D3C0D
+        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 02:28:36 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-506b8c6bbdbso8231547a12.1
+        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 02:28:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682414794; x=1685006794;
+        d=linaro.org; s=google; t=1682414915; x=1685006915;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=3pH6FPHWIW0XS7+bwLbI0s6luSIIgHdAHfI9/lmBodQ=;
-        b=b+W7nr7Ees1AVpg7PU/ykcUnpfaAUa90/zCyHPwmsWTxr8zcnt7h88JevfHwn0nz+e
-         68/L73ed1+eup81dsY56NzUq9Wk1SaKPqFO+tn0rgGvWtiN6FrgBjfHyJeh9ALbI8C36
-         D9DhEHer+jJoLFXOgmrKew2fhXU8gY4JveVP4wRQC0Ku5fZE7mgrSdI493HAVWm13mMh
-         qECsyA5cfF6tBOjcv4f2Bjff0bzpdt2GvWOXlK5gSxndhU6Lrb0cb9fTo+2VdIS+HQad
-         L7GOnDYpxxS7A/HofdHXHhal+GG2Lp0Q2K/gHx/G0wXOo6DI2XpQoFGys3iwhidsgHYi
-         T6HA==
+        bh=jATRlbjXv5J+rEp492wNPd1HzXNCpPqK/mHv12ah7jo=;
+        b=U6wrCMhlhs3lK2GT2Q6zJRS74H8+DpdTbKJ7VhiKEkxpAbStuZUYTlajchnT2wyaK5
+         S+8v3hlHMsjea0L6q/7bfM5OlzsT+uIb56SwiSqvJUyEKJVx449i9d/reE4qM8HG0kv/
+         yNUV8Fk1D9eHz+wEDc6NatiLFSwOI75HZa3P/EkjgQz0qUWoxWLpjtai4AY5SpKHEk2k
+         vUdKDkPz/5Z9ZfYm3EfOGw1R2NxNGs0zFABFduFJRiq728amWxtTKBKxVFi/tNbv9XQF
+         PyIVwu7zedxxeJV9rVZJFC046JX0x+OM3CRdMd8B9R6oLe6ikNBYV0v3by5tVWO+pETS
+         uxfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682414794; x=1685006794;
+        d=1e100.net; s=20221208; t=1682414915; x=1685006915;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3pH6FPHWIW0XS7+bwLbI0s6luSIIgHdAHfI9/lmBodQ=;
-        b=dm3GrNzj07MFkj/ms6SrzzTJZuAKwCEx1aZ4zgXwN6TKs9LBum2N6b7WgxkOETVg8C
-         xvvbvR3OzrEFjTmUuFWfhYzAdKML70QnUsI+lMLITKaaKtWQtJnXVjHLBmHnOBaMqyrS
-         m/eT7+OmN2VuVLN4JlnlkNsneN9F+wAMAxtS9V1/BmoI/O2HR89rSMUiw/dhzxXZPnp+
-         Vc3/+zwDdd7FHEkLcfeY9i1COgU4mLWr1HOy4gUHu8QfPb8KAQHrbTLdZo58SWELyHXy
-         NdXJkwNUTlWosV2WvzyVUkoB+z/lYZUDIRdvpcs4BcXoEcfCNh5yjMNlK76+m+dPm0cL
-         +RnA==
-X-Gm-Message-State: AAQBX9ce/n1th3k6oGoPruXR5KKY1J7Xx947Io+8xTRkxHy25fdamkuB
-        W8lz/OcujcPAju1xIg5YNI2m/Q==
-X-Google-Smtp-Source: AKy350aTn9VOm04WoLNuxRYSs5Ax06mp+atUV527FkgipMfk40qFAa74De7KAYWvl3ZPG93vgYoDjw==
-X-Received: by 2002:a17:906:3550:b0:957:12b6:8918 with SMTP id s16-20020a170906355000b0095712b68918mr12541308eja.75.1682414794270;
-        Tue, 25 Apr 2023 02:26:34 -0700 (PDT)
+        bh=jATRlbjXv5J+rEp492wNPd1HzXNCpPqK/mHv12ah7jo=;
+        b=GPFwXEQxqaWyX5aAG9hDNegrOoeWNzaf1JFHIHQCKNDXr2XnYDwW8RTm2GU7vSIt1G
+         Rg15xOejC09UcuXFcCcS4NdxrQQvYxZ0R8S1rOGmjEsKqggipseSyra+LGm3X5ee6LgY
+         PzwB9MCDWEJExfzNe1lw0fueBwSULrF6VYKuLpeWi1oXK8/0zofq4dW0anYkDckg8CeC
+         IF+tZb3o3yYSRDh05Qph3raMLt0rzD+lLnlBr29YgL7gyfDR90ZfVu4c4pps/Sh5fL3N
+         /F15Q7OKwqs7A0e6Xn1CuVXOMfTIU+AbiqCWV2xREvuWxHcgYARWkrAl3sXKw3AVXq/H
+         6BiA==
+X-Gm-Message-State: AAQBX9e4Y/EnIfOlY+PvVCxdtbow+t6HAHWGrF8E3bhzAuGh06iqp9PS
+        BTZtK+uXUIi/RxJr+v5u6RHknA==
+X-Google-Smtp-Source: AKy350bpVOT/qCWlTtSfAS77lfzKvlDUH4Ja386ohyjISP/id/ad2bl27gQyQJ1quqMcOLW79J/yPA==
+X-Received: by 2002:aa7:d494:0:b0:506:6c4d:3292 with SMTP id b20-20020aa7d494000000b005066c4d3292mr13157772edr.25.1682414914811;
+        Tue, 25 Apr 2023 02:28:34 -0700 (PDT)
 Received: from [192.168.9.102] ([195.167.132.10])
-        by smtp.gmail.com with ESMTPSA id bh20-20020a170906a0d400b0094fbb76f49esm6631925ejb.17.2023.04.25.02.26.33
+        by smtp.gmail.com with ESMTPSA id t1-20020aa7d4c1000000b005066cadcc54sm5486122edr.43.2023.04.25.02.28.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Apr 2023 02:26:33 -0700 (PDT)
-Message-ID: <0a6a8fe3-fa21-a017-de2c-41039a72af11@linaro.org>
-Date:   Tue, 25 Apr 2023 11:26:32 +0200
+        Tue, 25 Apr 2023 02:28:34 -0700 (PDT)
+Message-ID: <9e7583be-ad4a-0ccc-08f6-cdf3fa4ed6bd@linaro.org>
+Date:   Tue, 25 Apr 2023 11:28:33 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH 05/43] dt-bindings: timers: add DT bindings for Cirrus
- EP93xx
+Subject: Re: [PATCH 07/43] dt-bindings: rtc: add DT bindings for Cirrus EP93xx
 Content-Language: en-US
 To:     Nikita Shubin <nikita.shubin@maquefel.me>
 Cc:     Arnd Bergmann <arnd@kernel.org>, Linus Walleij <linusw@kernel.org>,
         Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Hartley Sweeten <hsweeten@visionengravers.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 References: <20230424123522.18302-1-nikita.shubin@maquefel.me>
- <20230424123522.18302-6-nikita.shubin@maquefel.me>
+ <20230424123522.18302-8-nikita.shubin@maquefel.me>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230424123522.18302-6-nikita.shubin@maquefel.me>
+In-Reply-To: <20230424123522.18302-8-nikita.shubin@maquefel.me>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,39 +84,30 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On 24/04/2023 14:34, Nikita Shubin wrote:
 > This adds device tree bindings for the Cirrus Logic EP93xx
-> timer block used in these SoCs.
+> RTC block used in these SoCs.
+
+Thank you for your patch. There is something to discuss/improve.
+
 > 
 > Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
-
-Subject: drop second/last, redundant "DT bindings for". The
-"dt-bindings" prefix is already stating that these are bindings. In all
-patches.
-
 > ---
+>  .../bindings/rtc/cirrus,ep93xx-rtc.yaml       | 32 +++++++++++++++++++
+>  1 file changed, 32 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/rtc/cirrus,ep93xx-rtc.yaml
 > 
-> Notes:
->     Arnd Bergmann:
->     - replaced ep93xx wildcard with ep9301
-> 
->  .../bindings/timer/cirrus,ep93xx-timer.yaml   | 41 +++++++++++++++++++
->  1 file changed, 41 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/timer/cirrus,ep93xx-timer.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/timer/cirrus,ep93xx-timer.yaml b/Documentation/devicetree/bindings/timer/cirrus,ep93xx-timer.yaml
+> diff --git a/Documentation/devicetree/bindings/rtc/cirrus,ep93xx-rtc.yaml b/Documentation/devicetree/bindings/rtc/cirrus,ep93xx-rtc.yaml
 > new file mode 100644
-> index 000000000000..ce8b8a5cb90a
+> index 000000000000..d4774e984e7b
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/timer/cirrus,ep93xx-timer.yaml
-> @@ -0,0 +1,41 @@
+> +++ b/Documentation/devicetree/bindings/rtc/cirrus,ep93xx-rtc.yaml
+> @@ -0,0 +1,32 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/timer/cirrus,ep93xx-timer.yaml#
+> +$id: http://devicetree.org/schemas/rtc/cirrus,ep93xx-rtc.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Cirrus Logic EP93xx timers bindings
-
-Drop "bindings". In all patches.
+> +title: Cirrus EP93xx Real Time Clock controller
 > +
 > +maintainers:
 > +  - Hartley Sweeten <hsweeten@visionengravers.com>
@@ -124,28 +115,13 @@ Drop "bindings". In all patches.
 > +
 > +properties:
 > +  compatible:
-> +    const: cirrus,ep9301-timer
-> +
+> +    const: cirrus,ep9301-rtc
 
-With two fixes above:
+Why only one compatible? What about ep9307 and ep9312? The same question
+for your previous patch - timer.
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
----
-
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you do not know the process, here is a short
-explanation:
-
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tools like b4 can help
-here. However, there's no need to repost patches *only* to add the tags.
-The upstream maintainer will do that for acks received on the version
-they apply.
-
-https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
+Anyway, if you want to keep it like that, then filename should match
+compatible. Or merge it into trivial-rtc like Alexandre suggested.
 
 Best regards,
 Krzysztof
