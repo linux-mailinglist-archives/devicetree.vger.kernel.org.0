@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E84406EE29E
-	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 15:16:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E1DA6EE29F
+	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 15:16:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234093AbjDYNQ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Apr 2023 09:16:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44280 "EHLO
+        id S234091AbjDYNQa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Apr 2023 09:16:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233746AbjDYNQ0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 09:16:26 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F765D315;
-        Tue, 25 Apr 2023 06:16:19 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33PDGDJu126715;
-        Tue, 25 Apr 2023 08:16:13 -0500
+        with ESMTP id S234038AbjDYNQ2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 09:16:28 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3EBB2D79;
+        Tue, 25 Apr 2023 06:16:20 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33PDGEm9041617;
+        Tue, 25 Apr 2023 08:16:14 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1682428573;
-        bh=e5tzIGluFg8IDlGbf4Kh6e/mGvBftqmCxrarwHodBHI=;
+        s=ti-com-17Q1; t=1682428574;
+        bh=+7Yu9uEuFKGRL5p/uhpZOdNdKieUYVOFyiLTIXw0+1A=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=jPdqkwTBE5xz9NbMxW1ixAtPbabQYzCxLS1FbquDph3Rht+Uj0uB25rOByaQ5ySm7
-         /uCrTSmWnBk6KDx2qc0b+RbOTIgZRQnn5yCB7Cpa/QI0FVEYR7xGPnyQj6N8YtK94x
-         qaW5DYfQbplpDIrMaS+6qSuzzMTys0tx+dCnvmj0=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33PDGDar102792
+        b=tFlV4vVnpX3iRvAou6mXksQDmJ1CMahv/vGAjVBROh0mu0E+j76YrsKitq4wzSsuC
+         j1EM8FbrTJe1CjGjZF9Q+ZJokmMiWxhLY0Q1JRf8Jq9/IBUyLR4R2ky1liP5dLP6AQ
+         JPlsKVi1CCQM3lyujC2gaWKdd4Ko6lOKVJQBxwa8=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33PDGEA4062005
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 25 Apr 2023 08:16:13 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+        Tue, 25 Apr 2023 08:16:14 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 25
- Apr 2023 08:16:12 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ Apr 2023 08:16:14 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Tue, 25 Apr 2023 08:16:12 -0500
+ Frontend Transport; Tue, 25 Apr 2023 08:16:14 -0500
 Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33PDGCfb012419;
-        Tue, 25 Apr 2023 08:16:12 -0500
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33PDGDHs025479;
+        Tue, 25 Apr 2023 08:16:14 -0500
 From:   Jayesh Choudhary <j-choudhary@ti.com>
 To:     <nm@ti.com>, <vigneshr@ti.com>, <krzysztof.kozlowski+dt@linaro.org>
 CC:     <afd@ti.com>, <s-vadapalli@ti.com>, <kristo@kernel.org>,
         <robh+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
         <j-choudhary@ti.com>
-Subject: [PATCH v4 3/5] arm64: dts: ti: k3-j784s4: Add WIZ and SERDES PHY nodes
-Date:   Tue, 25 Apr 2023 18:46:05 +0530
-Message-ID: <20230425131607.290707-4-j-choudhary@ti.com>
+Subject: [PATCH v4 4/5] arm64: dts: ti: k3-j784s4-main: Add DSS and DP-bridge node
+Date:   Tue, 25 Apr 2023 18:46:06 +0530
+Message-ID: <20230425131607.290707-5-j-choudhary@ti.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230425131607.290707-1-j-choudhary@ti.com>
 References: <20230425131607.290707-1-j-choudhary@ti.com>
@@ -65,207 +65,101 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
+From: Rahul T R <r-ravikumar@ti.com>
 
-J784S4 SoC has 4 Serdes instances along with their respective WIZ
-instances. Add device-tree nodes for them and disable them by default.
+Add DSS and DP-bridge node for J784S4 SoC. DSS IP in J784S4 is
+same as DSS IP in J721E, so same compatible is being used.
+The DP is Cadence MHDP8546.
 
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-[j-choudhary@ti.com: fix serdes_wiz clock order]
+Signed-off-by: Rahul T R <r-ravikumar@ti.com>
+[j-choudhary@ti.com: move dss & mhdp node together in main, fix dss node]
 Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
 ---
- arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 171 +++++++++++++++++++++
- 1 file changed, 171 insertions(+)
+ arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 73 ++++++++++++++++++++++
+ 1 file changed, 73 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-index b5f291eff1a3..9578c92a716a 100644
+index 9578c92a716a..fc3ffb252fa4 100644
 --- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
 +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-@@ -7,6 +7,15 @@
- 
- #include <dt-bindings/mux/mux.h>
- #include <dt-bindings/mux/ti-serdes.h>
-+#include <dt-bindings/phy/phy.h>
-+#include <dt-bindings/phy/phy-ti.h>
-+
-+/ {
-+	serdes_refclk: serdes-refclk {
-+		#clock-cells = <0>;
-+		compatible = "fixed-clock";
-+	};
-+};
- 
- &cbass_main {
- 	msmc_ram: sram@70000000 {
-@@ -441,6 +450,168 @@ main_sdhci1: mmc@4fb0000 {
+@@ -1374,4 +1374,77 @@ main_spi7: spi@2170000 {
+ 		clocks = <&k3_clks 383 1>;
  		status = "disabled";
  	};
- 
-+	serdes_wiz0: wiz@5060000 {
-+		compatible = "ti,j784s4-wiz-10g";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		power-domains = <&k3_pds 404 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 404 2>, <&k3_clks 404 6>, <&serdes_refclk>, <&k3_clks 404 5>;
-+		clock-names = "fck", "core_ref_clk", "ext_ref_clk", "core_ref1_clk";
-+		assigned-clocks = <&k3_clks 404 6>;
-+		assigned-clock-parents = <&k3_clks 404 10>;
-+		num-lanes = <4>;
-+		#reset-cells = <1>;
-+		#clock-cells = <1>;
-+		ranges = <0x5060000 0x00 0x5060000 0x10000>;
++
++	mhdp: dp-bridge@a000000 {
++		compatible = "ti,j721e-mhdp8546";
++
++		reg = <0x0 0xa000000 0x0 0x30a00>,
++		      <0x0 0x4f40000 0x0 0x20>;
++		reg-names = "mhdptx", "j721e-intg";
++
++		clocks = <&k3_clks 217 11>;
++
++		interrupt-parent = <&gic500>;
++		interrupts = <GIC_SPI 614 IRQ_TYPE_LEVEL_HIGH>;
++
++		power-domains = <&k3_pds 217 TI_SCI_PD_EXCLUSIVE>;
 +
 +		status = "disabled";
 +
-+		serdes0: serdes@5060000 {
-+			compatible = "ti,j721e-serdes-10g";
-+			reg = <0x05060000 0x010000>;
-+			reg-names = "torrent_phy";
-+			resets = <&serdes_wiz0 0>;
-+			reset-names = "torrent_reset";
-+			clocks = <&serdes_wiz0 TI_WIZ_PLL0_REFCLK>,
-+				 <&serdes_wiz0 TI_WIZ_PHY_EN_REFCLK>;
-+			clock-names = "refclk", "phy_en_refclk";
-+			assigned-clocks = <&serdes_wiz0 TI_WIZ_PLL0_REFCLK>,
-+					  <&serdes_wiz0 TI_WIZ_PLL1_REFCLK>,
-+					  <&serdes_wiz0 TI_WIZ_REFCLK_DIG>;
-+			assigned-clock-parents = <&k3_clks 404 6>,
-+						 <&k3_clks 404 6>,
-+						 <&k3_clks 404 6>;
++		dp0_ports: ports {
 +			#address-cells = <1>;
 +			#size-cells = <0>;
-+			#clock-cells = <1>;
-+
-+			status = "disabled";
 +		};
 +	};
 +
-+	serdes_wiz1: wiz@5070000 {
-+		compatible = "ti,j784s4-wiz-10g";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		power-domains = <&k3_pds 405 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 405 2>, <&k3_clks 405 6>, <&serdes_refclk>, <&k3_clks 405 5>;
-+		clock-names = "fck", "core_ref_clk", "ext_ref_clk", "core_ref1_clk";
-+		assigned-clocks = <&k3_clks 405 6>;
-+		assigned-clock-parents = <&k3_clks 405 10>;
-+		num-lanes = <4>;
-+		#reset-cells = <1>;
-+		#clock-cells = <1>;
-+		ranges = <0x05070000 0x00 0x05070000 0x10000>;
++	dss: dss@4a00000 {
++		compatible = "ti,j721e-dss";
++		reg = <0x00 0x04a00000 0x00 0x10000>, /* common_m */
++		      <0x00 0x04a10000 0x00 0x10000>, /* common_s0*/
++		      <0x00 0x04b00000 0x00 0x10000>, /* common_s1*/
++		      <0x00 0x04b10000 0x00 0x10000>, /* common_s2*/
++		      <0x00 0x04a20000 0x00 0x10000>, /* vidl1 */
++		      <0x00 0x04a30000 0x00 0x10000>, /* vidl2 */
++		      <0x00 0x04a50000 0x00 0x10000>, /* vid1 */
++		      <0x00 0x04a60000 0x00 0x10000>, /* vid2 */
++		      <0x00 0x04a70000 0x00 0x10000>, /* ovr1 */
++		      <0x00 0x04a90000 0x00 0x10000>, /* ovr2 */
++		      <0x00 0x04ab0000 0x00 0x10000>, /* ovr3 */
++		      <0x00 0x04ad0000 0x00 0x10000>, /* ovr4 */
++		      <0x00 0x04a80000 0x00 0x10000>, /* vp1 */
++		      <0x00 0x04aa0000 0x00 0x10000>, /* vp1 */
++		      <0x00 0x04ac0000 0x00 0x10000>, /* vp1 */
++		      <0x00 0x04ae0000 0x00 0x10000>, /* vp4 */
++		      <0x00 0x04af0000 0x00 0x10000>; /* wb */
++
++		reg-names = "common_m", "common_s0",
++			    "common_s1", "common_s2",
++			    "vidl1", "vidl2","vid1","vid2",
++			    "ovr1", "ovr2", "ovr3", "ovr4",
++			    "vp1", "vp2", "vp3", "vp4",
++			    "wb";
++
++		clocks = <&k3_clks 218 0>,
++			 <&k3_clks 218 2>,
++			 <&k3_clks 218 5>,
++			 <&k3_clks 218 14>,
++			 <&k3_clks 218 18>;
++		clock-names = "fck", "vp1", "vp2", "vp3", "vp4";
++
++		power-domains = <&k3_pds 218 TI_SCI_PD_EXCLUSIVE>;
++
++		interrupts = <GIC_SPI 602 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 603 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 604 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 605 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-names = "common_m",
++				  "common_s0",
++				  "common_s1",
++				  "common_s2";
 +
 +		status = "disabled";
 +
-+		serdes1: serdes@5070000 {
-+			compatible = "ti,j721e-serdes-10g";
-+			reg = <0x05070000 0x010000>;
-+			reg-names = "torrent_phy";
-+			resets = <&serdes_wiz1 0>;
-+			reset-names = "torrent_reset";
-+			clocks = <&serdes_wiz1 TI_WIZ_PLL0_REFCLK>,
-+				 <&serdes_wiz1 TI_WIZ_PHY_EN_REFCLK>;
-+			clock-names = "refclk", "phy_en_refclk";
-+			assigned-clocks = <&serdes_wiz1 TI_WIZ_PLL0_REFCLK>,
-+					  <&serdes_wiz1 TI_WIZ_PLL1_REFCLK>,
-+					  <&serdes_wiz1 TI_WIZ_REFCLK_DIG>;
-+			assigned-clock-parents = <&k3_clks 405 6>,
-+						 <&k3_clks 405 6>,
-+						 <&k3_clks 405 6>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			#clock-cells = <1>;
-+
-+			status = "disabled";
++		dss_ports: ports {
 +		};
 +	};
-+
-+	serdes_wiz2: wiz@5020000 {
-+		compatible = "ti,j784s4-wiz-10g";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		power-domains = <&k3_pds 406 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 406 2>, <&k3_clks 406 6>, <&serdes_refclk>, <&k3_clks 406 5>;
-+		clock-names = "fck", "core_ref_clk", "ext_ref_clk", "core_ref1_clk";
-+		assigned-clocks = <&k3_clks 406 6>;
-+		assigned-clock-parents = <&k3_clks 406 10>;
-+		num-lanes = <4>;
-+		#reset-cells = <1>;
-+		#clock-cells = <1>;
-+		ranges = <0x05020000 0x00 0x05020000 0x10000>;
-+
-+		status = "disabled";
-+
-+		serdes2: serdes@5020000 {
-+			compatible = "ti,j721e-serdes-10g";
-+			reg = <0x05020000 0x010000>;
-+			reg-names = "torrent_phy";
-+			resets = <&serdes_wiz2 0>;
-+			reset-names = "torrent_reset";
-+			clocks = <&serdes_wiz2 TI_WIZ_PLL0_REFCLK>,
-+				 <&serdes_wiz2 TI_WIZ_PHY_EN_REFCLK>;
-+			clock-names = "refclk", "phy_en_refclk";
-+			assigned-clocks = <&serdes_wiz2 TI_WIZ_PLL0_REFCLK>,
-+					  <&serdes_wiz2 TI_WIZ_PLL1_REFCLK>,
-+					  <&serdes_wiz2 TI_WIZ_REFCLK_DIG>;
-+			assigned-clock-parents = <&k3_clks 406 6>,
-+						 <&k3_clks 406 6>,
-+						 <&k3_clks 406 6>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			#clock-cells = <1>;
-+
-+			status = "disabled";
-+		};
-+	};
-+
-+	serdes_wiz4: wiz@5050000 {
-+		compatible = "ti,j784s4-wiz-10g";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		power-domains = <&k3_pds 407 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 407 2>, <&k3_clks 407 6>, <&serdes_refclk>, <&k3_clks 407 5>;
-+		clock-names = "fck", "core_ref_clk", "ext_ref_clk", "core_ref1_clk";
-+		assigned-clocks = <&k3_clks 407 6>;
-+		assigned-clock-parents = <&k3_clks 407 10>;
-+		num-lanes = <4>;
-+		#reset-cells = <1>;
-+		#clock-cells = <1>;
-+		ranges = <0x05050000 0x00 0x05050000 0x10000>,
-+			 <0xa030a00 0x00 0xa030a00 0x40>; /* DPTX PHY */
-+
-+		status = "disabled";
-+
-+		serdes4: serdes@5050000 {
-+			/*
-+			 * Note: we also map DPTX PHY registers as the Torrent
-+			 * needs to manage those.
-+			 */
-+			compatible = "ti,j721e-serdes-10g";
-+			reg = <0x05050000 0x010000>,
-+			      <0x0a030a00 0x40>; /* DPTX PHY */
-+			reg-names = "torrent_phy";
-+			resets = <&serdes_wiz4 0>;
-+			reset-names = "torrent_reset";
-+			clocks = <&serdes_wiz4 TI_WIZ_PLL0_REFCLK>,
-+				 <&serdes_wiz4 TI_WIZ_PHY_EN_REFCLK>;
-+			clock-names = "refclk", "phy_en_refclk";
-+			assigned-clocks = <&serdes_wiz4 TI_WIZ_PLL0_REFCLK>,
-+					  <&serdes_wiz4 TI_WIZ_PLL1_REFCLK>,
-+					  <&serdes_wiz4 TI_WIZ_REFCLK_DIG>;
-+			assigned-clock-parents = <&k3_clks 407 6>,
-+						 <&k3_clks 407 6>,
-+						 <&k3_clks 407 6>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			#clock-cells = <1>;
-+
-+			status = "disabled";
-+		};
-+	};
-+
- 	main_navss: bus@30000000 {
- 		compatible = "simple-bus";
- 		#address-cells = <2>;
+ };
 -- 
 2.25.1
 
