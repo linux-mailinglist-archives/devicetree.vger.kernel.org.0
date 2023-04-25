@@ -2,76 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AAF4A6EE312
-	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 15:31:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 802DA6EE321
+	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 15:33:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234216AbjDYNbT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Apr 2023 09:31:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56586 "EHLO
+        id S234090AbjDYNdW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Apr 2023 09:33:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234043AbjDYNbH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 09:31:07 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0C44C173
-        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 06:31:02 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-3f1950f569eso29498885e9.2
-        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 06:31:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1682429461; x=1685021461;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PFvArtlR5+rlBUjon8HfYa6K8wJfRUe/bNSEGRANSLs=;
-        b=XXZ7Ysee351VlTUNkhXn7v7oZuxuOr36GtvGq+CeRtDXSgcWvI8IPgVtHmrUusOh3d
-         ezFI814ADuoJO/AHyp7IAt6TOvPl9fdUzx7+0XuIWKfR/UPUKs4YeEmr5eCZ69XvH2qR
-         pBAgiuARI5JxfSytACt1UJHd0QV0oopjp6JTLIq3mrNMljKjZLXYGcaLZEeN1Ih2EsST
-         xDVYwJN5u8T1iqKBEUwQTy2NwDPmuMyu4qlKhFbgNLGvRyJYWP0jv94ik4zH+jZtLLE0
-         qnRhx5Ms64indTFTAm7A/UoyJKWiZL7H6fHMQnpHKQWZGpfJ/4RIe3rwoW8gxiBzbCDN
-         XSyw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682429461; x=1685021461;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PFvArtlR5+rlBUjon8HfYa6K8wJfRUe/bNSEGRANSLs=;
-        b=M4/K0182fDBA3teV8ZWpZ3xLIh8e5sNKms4Y0aKlacy9lPqo3a4E2YonbKGeCB+npt
-         3KsKePilMjIRid3CXaZUm+IozU2gSd5rD4FTswNBlpmo7oxz4sSjLVYu5v0H7DXDtehA
-         OuajJlPqMFHMFYbofcukL64O1lnL/7tTxSs9QYQVmFylSgUDADJKVyzbdLpJU0a2joz8
-         Ep2KVl7AZWMdW0Bvqr1/EROUaVFAc5GUcwq+3Rw85Bje2CQML26Jb22S+fCa5Ka9fk4z
-         RtHv3hsSe4XC/vu7OavOlT95JXAIhMRzGJhQODvv8dPUdxJxYG6s8rMHeSCxZrPXIy8h
-         QJzg==
-X-Gm-Message-State: AC+VfDxHYnCGlF2r5JCv4/3l3LnmSKfVVcArEeQqTUNlmSn5kg+wYBIL
-        PjOiB9hqJx8B1sy1lXes3r1uEw==
-X-Google-Smtp-Source: ACHHUZ7z2aTUvi9HjEh9faDXgMiwLfPm+xyJFiCW754v6AxmPj55eGl0fWVY5yCGrbv/XK+0EQ+AbA==
-X-Received: by 2002:a7b:c046:0:b0:3f2:5be3:cd67 with SMTP id u6-20020a7bc046000000b003f25be3cd67mr175363wmc.18.1682429461317;
-        Tue, 25 Apr 2023 06:31:01 -0700 (PDT)
-Received: from localhost.localdomain (laubervilliers-657-1-248-155.w90-24.abo.wanadoo.fr. [90.24.137.155])
-        by smtp.gmail.com with ESMTPSA id t10-20020a05600c198a00b003f16932fe7dsm18575434wmq.38.2023.04.25.06.31.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Apr 2023 06:31:01 -0700 (PDT)
-From:   bchihi@baylibre.com
-To:     daniel.lezcano@linaro.org, angelogioacchino.delregno@collabora.com,
-        rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
-        matthias.bgg@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, rdunlap@infradead.org,
-        ye.xingchen@zte.com.cn, p.zabel@pengutronix.de
-Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        wenst@chromium.org, james.lo@mediatek.com,
-        rex-bc.chen@mediatek.com, nfraprado@collabora.com,
-        abailon@baylibre.com, amergnat@baylibre.com, khilman@baylibre.com
-Subject: [PATCH v2 5/5] thermal/drivers/mediatek/lvts_thermal: Update calibration data documentation
-Date:   Tue, 25 Apr 2023 15:30:52 +0200
-Message-Id: <20230425133052.199767-6-bchihi@baylibre.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230425133052.199767-1-bchihi@baylibre.com>
-References: <20230425133052.199767-1-bchihi@baylibre.com>
+        with ESMTP id S233999AbjDYNdV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 09:33:21 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78BDA13FAB;
+        Tue, 25 Apr 2023 06:32:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1682429570; x=1713965570;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=n+UYdOVx4WUXne2QA73wy1xrjCHvnCZyxya9YmSho+E=;
+  b=n0zGd2vjgKaZrgiFnogkk/eTKOntVL+biJeIv0dLR6GY4DBVAH27/nAc
+   tYsr/yiTg4QRmrXSaxEe1GQTb3wvWAh7RGgJCULfBhWsShjzpsJmRtHYU
+   pD5As2wsN7S+SdmXfE9CdoLXZtFIftwhnp+jWC/pmXSKdWhvZaAWRDGMu
+   ZDv1UoXs1yeuNHpKdmYi/f3h4JfysuCcko38F9FtnSlzLFMyVNDceWgQv
+   pKnlTtFJJ78XF9p5b3qprn+LNk4dTyrlYfx3UlZL43Ok/Aape+cWxe5fw
+   Zl6TY+UoVK7OlicRgxVdBL9X5iMDuku6kbT+w8QMyxpPGkn8gzUPG/5WT
+   A==;
+X-IronPort-AV: E=Sophos;i="5.99,225,1677567600"; 
+   d="asc'?scan'208";a="208183674"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 Apr 2023 06:32:40 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Tue, 25 Apr 2023 06:32:39 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Tue, 25 Apr 2023 06:32:37 -0700
+Date:   Tue, 25 Apr 2023 14:32:20 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Yangyu Chen <cyy@cyyself.name>
+CC:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        Wende Tan <twd2.me@gmail.com>, Soha Jin <soha@lohu.info>,
+        Hongren Zheng <i@zenithal.me>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 2/2] docs: dt: allow case-insensitive RISC-V ISA string
+Message-ID: <20230425-echo-elusive-bc38bc625053@wendy>
+References: <20230425120016.187010-1-cyy@cyyself.name>
+ <tencent_221A82C2DAF38E66B85B313221958DDD7C08@qq.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="/hVUEV3z0EeUnQAU"
+Content-Disposition: inline
+In-Reply-To: <tencent_221A82C2DAF38E66B85B313221958DDD7C08@qq.com>
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,93 +68,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Balsam CHIHI <bchihi@baylibre.com>
+--/hVUEV3z0EeUnQAU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Update LVTS calibration data documentation for mt8192 and mt8195.
+Hey Yangyu Chen,
 
-Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
----
- drivers/thermal/mediatek/lvts_thermal.c | 59 ++++++++++++++++++-------
- 1 file changed, 43 insertions(+), 16 deletions(-)
+On Tue, Apr 25, 2023 at 08:00:16PM +0800, Yangyu Chen wrote:
+> After allowing case-insensitive ISA string parsing in the kernel code,
+> the docs should be updated.
 
-diff --git a/drivers/thermal/mediatek/lvts_thermal.c b/drivers/thermal/mediatek/lvts_thermal.c
-index 8df7b4c72a658..3df4989f9902b 100644
---- a/drivers/thermal/mediatek/lvts_thermal.c
-+++ b/drivers/thermal/mediatek/lvts_thermal.c
-@@ -531,30 +531,57 @@ static int lvts_sensor_init(struct device *dev, struct lvts_ctrl *lvts_ctrl,
-  * The efuse blob values follows the sensor enumeration per thermal
-  * controller. The decoding of the stream is as follow:
-  *
-- * stream index map for MCU Domain :
-+ * MT8195 :
-+ * Stream index map for MCU Domain mt8195 :
-  *
-- * <-----mcu-tc#0-----> <-----sensor#0-----> <-----sensor#1----->
-- *  0x01 | 0x02 | 0x03 | 0x04 | 0x05 | 0x06 | 0x07 | 0x08 | 0x09
-+ * <-----sensor#0-----> <-----sensor#1----->
-+ *  0x04 | 0x05 | 0x06 | 0x07 | 0x08 | 0x09
-  *
-- * <-----mcu-tc#1-----> <-----sensor#2-----> <-----sensor#3----->
-- *  0x0A | 0x0B | 0x0C | 0x0D | 0x0E | 0x0F | 0x10 | 0x11 | 0x12
-+ * <-----sensor#2-----> <-----sensor#3----->
-+ *  0x0D | 0x0E | 0x0F | 0x10 | 0x11 | 0x12
-  *
-- * <-----mcu-tc#2-----> <-----sensor#4-----> <-----sensor#5-----> <-----sensor#6-----> <-----sensor#7----->
-- *  0x13 | 0x14 | 0x15 | 0x16 | 0x17 | 0x18 | 0x19 | 0x1A | 0x1B | 0x1C | 0x1D | 0x1E | 0x1F | 0x20 | 0x21
-+ * <-----sensor#4-----> <-----sensor#5-----> <-----sensor#6-----> <-----sensor#7----->
-+ *  0x16 | 0x17 | 0x18 | 0x19 | 0x1A | 0x1B | 0x1C | 0x1D | 0x1E | 0x1F | 0x20 | 0x21
-  *
-- * stream index map for AP Domain :
-+ * Stream index map for AP Domain mt8195 :
-  *
-- * <-----ap--tc#0-----> <-----sensor#0-----> <-----sensor#1----->
-- *  0x22 | 0x23 | 0x24 | 0x25 | 0x26 | 0x27 | 0x28 | 0x29 | 0x2A
-+ * <-----sensor#0-----> <-----sensor#1----->
-+ *  0x25 | 0x26 | 0x27 | 0x28 | 0x29 | 0x2A
-  *
-- * <-----ap--tc#1-----> <-----sensor#2-----> <-----sensor#3----->
-- *  0x2B | 0x2C | 0x2D | 0x2E | 0x2F | 0x30 | 0x31 | 0x32 | 0x33
-+ * <-----sensor#2-----> <-----sensor#3----->
-+ *  0x2E | 0x2F | 0x30 | 0x31 | 0x32 | 0x33
-  *
-- * <-----ap--tc#2-----> <-----sensor#4-----> <-----sensor#5-----> <-----sensor#6----->
-- *  0x34 | 0x35 | 0x36 | 0x37 | 0x38 | 0x39 | 0x3A | 0x3B | 0x3C | 0x3D | 0x3E | 0x3F
-+ * <-----sensor#4-----> <-----sensor#5-----> <-----sensor#6----->
-+ *  0x37 | 0x38 | 0x39 | 0x3A | 0x3B | 0x3C | 0x3D | 0x3E | 0x3F
-  *
-- * <-----ap--tc#3-----> <-----sensor#7-----> <-----sensor#8----->
-- *  0x40 | 0x41 | 0x42 | 0x43 | 0x44 | 0x45 | 0x46 | 0x47 | 0x48
-+ * <-----sensor#7-----> <-----sensor#8----->
-+ *  0x43 | 0x44 | 0x45 | 0x46 | 0x47 | 0x48
-+ *
-+ * MT8192 :
-+ * Stream index map for MCU Domain mt8192 :
-+ *
-+ * <--------sensor#0---------> <--------sensor#1--------->
-+ *  0x04 | 0x05 | 0x06 | 0x07 | 0x08 | 0x09 | 0x0A | 0x0B
-+ *
-+ * <--------sensor#2---------> <--------sensor#3--------->
-+ *  0x0C | 0x0D | 0x0E | 0x0F | 0x10 | 0x11 | 0x12 | 0x13
-+ *
-+ * <--------sensor#4---------> <--------sensor#5---------> <--------sensor#6---------> <--------sensor#7--------->
-+ *  0x14 | 0x15 | 0x16 | 0x17 | 0x18 | 0x19 | 0x1A | 0x1B | 0x1C | 0x1D | 0x1E | 0x1F | 0x20 | 0x21 | 0x22 | 0x23
-+ *
-+ * Stream index map for AP Domain mt8192 :
-+ *
-+ * <--------sensor#0---------> <--------sensor#1--------->
-+ *  0x24 | 0x25 | 0x26 | 0x27 | 0x28 | 0x29 | 0x2A | 0x2B
-+ *
-+ * <--------sensor#2---------> <--------sensor#3--------->
-+ *  0x2C | 0x2D | 0x2E | 0x2F | 0x30 | 0x31 | 0x32 | 0x33
-+ *
-+ * <--------sensor#4---------> <--------sensor#5--------->
-+ *  0x34 | 0x35 | 0x36 | 0x37 | 0x38 | 0x39 | 0x3A | 0x3B
-+ *
-+ * <--------sensor#6---------> <--------sensor#7---------> <--------sensor#8--------->
-+ *  0x3C | 0x3D | 0x3E | 0x3F | 0x40 | 0x41 | 0x42 | 0x43 | 0x44 | 0x45 | 0x46 | 0x47
-  *
-  * The data description gives the offset of the calibration data in
-  * this bytes stream for each sensor.
--- 
-2.34.1
+As I pointed out in my reply to your cover letter [1], I don't think this
+patch is backwards compatible, and should instead be fixed in
+rocket-chip's codebase, where it appears the capital letters were added
+without actually testing the output against the binding.
+If we allow caps here, booting old kernels with new devicetrees may
+experience the crash you mention in your cover letter.
 
+NAK, on the basis that this should be fixed in rocket-chip (or any other
+core-generator that outputs invalid devicetrees).
+
+Otherwise, the $subject doesn't match what is used for dt-bindings (use
+`git log --oneline -- /path/to/file` for examples) nor did you CC the
+output of get_maintainer.pl, with the devicetree maintainers notably
+being absent.
+
+Cheers,
+Conor.
+
+1 - https://lore.kernel.org/linux-riscv/20230425-flyable-prompter-5b1e4cebf=
+9db@wendy/
+
+> Signed-off-by: Yangyu Chen <cyy@cyyself.name>
+> ---
+>  Documentation/devicetree/bindings/riscv/cpus.yaml | 7 +++----
+>  1 file changed, 3 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Document=
+ation/devicetree/bindings/riscv/cpus.yaml
+> index 001931d526ec..70afd1e8638b 100644
+> --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> @@ -79,11 +79,10 @@ properties:
+>        User-Level ISA document, available from
+>        https://riscv.org/specifications/
+> =20
+> -      While the isa strings in ISA specification are case
+> -      insensitive, letters in the riscv,isa string must be all
+> -      lowercase to simplify parsing.
+> +      According to RISC-V ISA specification, the isa strings are
+> +      case insensitive.
+>      $ref: "/schemas/types.yaml#/definitions/string"
+> -    pattern: ^rv(?:64|32)imaf?d?q?c?b?k?j?p?v?h?(?:[hsxz](?:[a-z])+)?(?:=
+_[hsxz](?:[a-z])+)*$
+> +    pattern: (?i)^rv(?:64|32)imaf?d?q?c?b?k?j?p?v?h?(?:[hsxz](?:[a-z])+)=
+?(?:_[hsxz](?:[a-z])+)*$
+> =20
+>    # RISC-V requires 'timebase-frequency' in /cpus, so disallow it here
+>    timebase-frequency: false
+> --=20
+> 2.40.0
+>=20
+
+--/hVUEV3z0EeUnQAU
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZEfWZAAKCRB4tDGHoIJi
+0kXEAQCz6v6VsoqWREz45zSf4bLpIftWmQRW94Qb4+4AhCYrFgD7B+LRePncGOQL
+yoi9Mw9yN2LKGNsxMgXC+I80FU9lMQE=
+=yiKa
+-----END PGP SIGNATURE-----
+
+--/hVUEV3z0EeUnQAU--
