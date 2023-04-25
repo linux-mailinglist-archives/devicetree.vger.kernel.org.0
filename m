@@ -2,75 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 439976EDBE9
-	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 08:50:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29E866EDBF1
+	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 08:57:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232815AbjDYGuR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Apr 2023 02:50:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54432 "EHLO
+        id S233407AbjDYG5x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Apr 2023 02:57:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230327AbjDYGuQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 02:50:16 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A98C129;
-        Mon, 24 Apr 2023 23:50:15 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4efea4569f5so3154112e87.3;
-        Mon, 24 Apr 2023 23:50:14 -0700 (PDT)
+        with ESMTP id S233255AbjDYG5w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 02:57:52 -0400
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2118.outbound.protection.outlook.com [40.107.237.118])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBF5C5FF0;
+        Mon, 24 Apr 2023 23:57:51 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=SSUASM5b6xMYiyQa3a1GyIs+JCgiE1VGtOor1Nexcfio8wKogvY4IvAdppwNdZSKLbO+Iyb4RbUeH6GPasaMwkJRwuYW2jRV1W5iNcyy+Sxi2961F9M4w1KrC373WFPf23azCjp9vengH/R+EBsGy1s0oxOFU/dLf2m1s3FyM5kW9T7WhQGhRtrrthegsBioIVs67cl6lJWEDQb48TVkWDnIovuTG7/YhdwHJjHKEb00JWCecq8TzC4hbRaMMypOhhPy9FsMNPsO/PQAxcczHHeEF7xWPzZ2sROqREo+LAW9Es9s/tfgmMjVScDdanzYJTR47TvY2Uj070fTeIrPVA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=keUbAcwF29f4HAM3DmTCmtzHaeTx2dlgEj668aY+vP0=;
+ b=LcFNTF27R0RCXl67SgUt2ViEj+vHw7i9wzO7QDaBvStLybcs8zOjM3dm24Ia7qrmf2xJuIpsg3nyfOl8hAMW2EE1ksrjcgQZjXlyKaqjg/mEICP8qXgkkzMYY8yLVKwrG0AttylZeTS8bq0QkLfGGL8VVZD48tm28bQs7qPTeNsUv/o7ezG314mLc4qCTWQXlRcmYrIaFsI33KOtq1Z+sjUcUjpyQsIJWfNA81VtkmnxglvIVR6NM/JdU6IqbRpsdK3wiMXR5cnn7a1B/5zTkxewd+FVLb95PsyB3WRDv/vNKCAsz8G1TC3RBLzdSfH75oouMG6jL8daD61kbve3vg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
+ header.from=os.amperecomputing.com; dkim=pass
+ header.d=os.amperecomputing.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682405413; x=1684997413;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/GdvwBvD5NYG3uKiO6JeRa7qZgHPqd4gPf/F3Gkhm0M=;
-        b=eXNskbNixEM+YJYGqZFjf4IWJjjYscpb4aAr8haVh31c5+9rfTXUN6oXdAExrTkXj/
-         GAkQpLP548Q85mioMTGIwnQf6zGk2OALj4UDI1FuBxVNDsSt4RR5M3xuC10Q0ADoFWWr
-         UPoS65SqnIQwm5ugmrgOOoT2g25BVw5c09RCCRtckmoi5xdNR8Fw1MdWbQyETrI5lKMO
-         I35qMUss7AlcbsZ8NJKGDzDloE3LduwcmpY5bUWNhb/mTp2ggEP/Z7rB+7qHoS9yWvVm
-         OYiDry2Tp6kOtfV4jVh4+24d5XThUDVLKzMveOeidDirRjpl3Y+VbHDbRf8ktpCWLoev
-         dRkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682405413; x=1684997413;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/GdvwBvD5NYG3uKiO6JeRa7qZgHPqd4gPf/F3Gkhm0M=;
-        b=ePUOw0iFFUlqmncsb1RYJKMygFyUlJ9cUWqVvvTsG7k88pG7FPbiB7bkBVxbwcgQyf
-         jpu32EUOjOsv9nCC8/1uby0//VRwQBM8ialzjD4ntPqVPiB2xaUQOnWWGso/carJEVuq
-         itTf2V66uQldE9zcHUOLlDlNajuao73RhGwllefh5PZaZ3iQm+UJxQ2SODYkcBs4MyVL
-         ZgUpWbGhLK5xLEqfDbIQ9h5MttfQPStPrbLUJT9h27xe/wd+nZHc9EOUPihDkaTaMCnN
-         xywRinsa+Nd0OYfqNz2ZkbrttV/cQx5CFZep4VyltppmN+86O3uX2t1ycBH1dhg651qd
-         6jJA==
-X-Gm-Message-State: AAQBX9fGSb+mqNTVJHScjmJcAWMN/RZYZ81KsCczoS1KG2NpLbdeZacV
-        F7B4QYo3E3XV1V0FbDmVHTU=
-X-Google-Smtp-Source: AKy350YoMoOBn/Q98SRGXrA41l+pe8nkV+4ibOzvxk0lGfX2uCkG5OEZkeP0WAQ4fW1Mz7Pn/Vjw9A==
-X-Received: by 2002:a19:f716:0:b0:4eb:c12:df1c with SMTP id z22-20020a19f716000000b004eb0c12df1cmr4533191lfe.65.1682405413021;
-        Mon, 24 Apr 2023 23:50:13 -0700 (PDT)
-Received: from [192.168.1.111] (62-78-225-252.bb.dnainternet.fi. [62.78.225.252])
-        by smtp.gmail.com with ESMTPSA id n21-20020a2e86d5000000b002a77792f2c5sm1923234ljj.62.2023.04.24.23.50.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Apr 2023 23:50:12 -0700 (PDT)
-Message-ID: <867ac7b4-b666-854f-69f7-2d7d7d92c94e@gmail.com>
-Date:   Tue, 25 Apr 2023 09:50:11 +0300
+ d=os.amperecomputing.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=keUbAcwF29f4HAM3DmTCmtzHaeTx2dlgEj668aY+vP0=;
+ b=hzMiCP0MuDRHAfqBRNBQmE8VJpRawBDewjAgrvtHBdeFxhk1A0XVoFK3YEqzFESDrxn820bo8PdQlBJI+8qyqT5FAX8HSaB+JSe3VUkd3YWFEIDYrE1gJcq46HBNbcwUJCQz6IWC93hqZvmkHg168M6Q9DUUH//nzbk460fc6M8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=os.amperecomputing.com;
+Received: from BYAPR01MB4966.prod.exchangelabs.com (2603:10b6:a03:7e::28) by
+ PH0PR01MB6504.prod.exchangelabs.com (2603:10b6:510:b::14) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6340.19; Tue, 25 Apr 2023 06:57:46 +0000
+Received: from BYAPR01MB4966.prod.exchangelabs.com
+ ([fe80::46c3:3b44:d2f8:4c3]) by BYAPR01MB4966.prod.exchangelabs.com
+ ([fe80::46c3:3b44:d2f8:4c3%4]) with mapi id 15.20.6340.019; Tue, 25 Apr 2023
+ 06:57:46 +0000
+From:   Chanh Nguyen <chanh@os.amperecomputing.com>
+To:     OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Cc:     Chanh Nguyen <chanh@os.amperecomputing.com>
+Subject: [PATCH 0/4] Update the device tree for Ampere's Mt.Mitchell BMC
+Date:   Tue, 25 Apr 2023 13:57:11 +0700
+Message-Id: <20230425065715.21871-1-chanh@os.amperecomputing.com>
+X-Mailer: git-send-email 2.17.1
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR02CA0051.apcprd02.prod.outlook.com
+ (2603:1096:4:54::15) To BYAPR01MB4966.prod.exchangelabs.com
+ (2603:10b6:a03:7e::28)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Content-Language: en-US, en-GB
-To:     Mehdi Djait <mehdi.djait.k@gmail.com>, jic23@kernel.org
-Cc:     krzysztof.kozlowski+dt@linaro.org,
-        andriy.shevchenko@linux.intel.com, robh+dt@kernel.org,
-        lars@metafoo.de, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <cover.1682373451.git.mehdi.djait.k@gmail.com>
- <bf0269aff66483f2323914170707203749b33f0f.1682373451.git.mehdi.djait.k@gmail.com>
-From:   Matti Vaittinen <mazziesaccount@gmail.com>
-Subject: Re: [PATCH v3 5/7] iio: accel: kionix-kx022a: Refactor driver and add
- chip_info structure
-In-Reply-To: <bf0269aff66483f2323914170707203749b33f0f.1682373451.git.mehdi.djait.k@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BYAPR01MB4966:EE_|PH0PR01MB6504:EE_
+X-MS-Office365-Filtering-Correlation-Id: 11081635-8318-4473-5bd4-08db455a5f76
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: xeIe8V+EEgXfrLR4/TcyvUm5HjQWgdfTkwQm2sfn8BVYKkjDLX2TA2tUEvyYHPm420I08nH63s6sFNabOBSa+gAzsGIN3WbI+UNmeQV8h/rTJrvhebkAeqaV1hP4foNcI/H9iK3nC9hujC+gYaRcfR4kiIe3iibm3dY0tO9J1heYMk+oUtVRNtUgVvqcdG1h2gma37wO4j/EMAHwUONGJXVxAXjTH0MZWnLPUP96EvJqho0bJzn/i/DL/GbvFH58MyygBei4eZfEYoXCKd1To946n0XUn9q4M3bbEEGR3r204Btpth8yOCi+WWpfV4S2r0Fn6YjdS7kzc/qsmByo82u2knA+e7sQfjR1YH0nbdpLCEoLKHsgK9iAUSnYD1DTuw1/imDBulX9IgGT7ZxC1MMFZuyCvoBIbvM2N+oRCvWs4glmKkAtjNyk1qezRtGyaoTBUJO93BJjvnDo+YwvYewx5Lsn8mD+gT3U1cOVDl+O+GItOTRrY3k/JbomxU+e+TZyUydvOHAhi3YfbZQupGdaHKmk6OK+NPqam0IGKX5cB8fc1DOiZl/yEUrmzxePO6Rt+1kbvIDMoGL2YUeTATUE7DCssmozO/sNe0I2zLaqPM077OdA2LRrUdG0z2fS
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR01MB4966.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(366004)(396003)(346002)(39850400004)(376002)(136003)(451199021)(107886003)(6506007)(1076003)(26005)(6512007)(2616005)(83380400001)(186003)(38350700002)(38100700002)(66946007)(478600001)(86362001)(15650500001)(66556008)(66476007)(8676002)(8936002)(110136005)(5660300002)(52116002)(6486002)(41300700001)(2906002)(4744005)(4326008)(6666004)(316002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?BT4ZOk9KAGSI5nhtaopByzhDjPqS2dedREmoF9o556mLYtp9DGhxOXkRNjjZ?=
+ =?us-ascii?Q?CunRb/WfPDL4IBMQI0rqzoI4lxhVFfEiFoPhbUhmV8Dv180+Qo8HZCmZLOZ1?=
+ =?us-ascii?Q?T6+QH7P7WAzClUxFjeKMW3yLEFMDM29o6ybqYSA329QHc67XEXPktcb41p1j?=
+ =?us-ascii?Q?pAqjUUN9lDsRvTqpfI6ROcPk2TwmtUZX7kwKDmMZTZn1/wPNGS3zxzcExl8P?=
+ =?us-ascii?Q?uIrDoJ8CdweqRYKD3rmYqtolfeuMnygIJNK6MACUx5EoIz8Y9kdJaV0vE3tt?=
+ =?us-ascii?Q?gjBoxITDR0t3g/NKz8ITkQdjfpqSlRzgx9SOOB8LZ/7dbsfDkTFYy/Z6eo6j?=
+ =?us-ascii?Q?VrXoivgYViTieqKhGilPulBscRnj8DuRdhNqKCljA2EjnNxF3puy77EQ05iq?=
+ =?us-ascii?Q?G9ULMXbs8xj/6D8wj7Q3Nas4CAvjfWYrLvgzcN7NTykObqvocaJj0LxoTwEM?=
+ =?us-ascii?Q?LCcpaJPB1UCnBVnz0TQwDomf1rkto3dKUu0LW6oWsGR4oiKbDztQ+ClB2Fa8?=
+ =?us-ascii?Q?Na5ouZPRfJfNIG3cxDciHHJUwkfbakRIKqpGZ4gSXA0paJf2Jd7H8LrYI2Fn?=
+ =?us-ascii?Q?TFiFrUex9/FwMY8+MoVUipNC0udrWW4GYt+czP/LeGedeITPloShq8wm5J89?=
+ =?us-ascii?Q?V2LU1770UjtCt2GZjzyDyb96H4y2gpWTrKY86wTpvuWQPx/ZzbTPVSV08mSn?=
+ =?us-ascii?Q?FvK7N85ZqVg94Bp3cr68gWlwqnIqTnuebHerfw4d/TOHYxYjJRXhI9EDdELQ?=
+ =?us-ascii?Q?+GdqMYpeBrTyt2hmZ0YAzCkZjYS8ZDkb8rTqANCGEmXx4cMkdP/+qKVZcyxw?=
+ =?us-ascii?Q?Fi4pydfeTVgd6LBTEApLhbr6Rl/Lm8Nf2dJQMeG1rC3Mlh2Z/mikq+16r3PY?=
+ =?us-ascii?Q?ZuoSyjmHoHCjZ21+d88kQ7Qv3d789K8csDYcU0WynIB34w81tibXPFZfXhB9?=
+ =?us-ascii?Q?pSiuainxdNAq57JYYTI44/sASxwxX8Cf5jhXY76b3e5gv4CFhXWaTh1V9eQG?=
+ =?us-ascii?Q?0sH7CKomEpJ77WIrCv0MDupK8bYVm9upy3nliQJFLhZKP1IqVZPqL3bPB8Sq?=
+ =?us-ascii?Q?acwrXRpBwlGoP4+OCHgt97LuZ+XbK7BdeVOcdjdN33SpxbFOy9VdPR5NEnkN?=
+ =?us-ascii?Q?OYE0smiF0cGIxLYpomVzehFiVGVKsDaYAVA7Ep+eicwuH+6EYIikk0DBMPXv?=
+ =?us-ascii?Q?0F3br8OnftN62wUhzgpHEu5cO8tgTocBMx83pGWtjFAfiHwaYwBPTgr/XQF1?=
+ =?us-ascii?Q?hN7UrnoIoiMkKh43hC34hfyL9DI92Zu6HHYBP1R6gz3MY8rsJn7pnkELzpVc?=
+ =?us-ascii?Q?sANRcOMAXTG1QExEnWxkx6yojqjoi6yzN28T5LSxoHQ2Q+aA5FPRiv/Kq15j?=
+ =?us-ascii?Q?LwPnkIJ1JVazxm3roNiPz5xB54bikH0eij2W9oFr7ienItISLLsL2+vvpgST?=
+ =?us-ascii?Q?wOv/NLQUOjpJyTD3JQDPjdwGzj8yf+kGnX9zUqTiNIOEVQ1Bb3K5B0ZF/GNU?=
+ =?us-ascii?Q?PA9yf7Oc1QAmfstSy4F6PIQGKmjfoniFPOM7eL6gd9wvHUNVqJlNNrjKVOKI?=
+ =?us-ascii?Q?CR4acpFtu22DCS+4ZPElsEjUz1ShGxAyQ4X/B1Fr/qhHv7ArgFxpjZ00Dx46?=
+ =?us-ascii?Q?6D6cyZHaA1WddEY6FDAHaJk=3D?=
+X-OriginatorOrg: os.amperecomputing.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 11081635-8318-4473-5bd4-08db455a5f76
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR01MB4966.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Apr 2023 06:57:45.8380
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: c6Fy91Sy6PHKKCRkiOFznjDOQl7yyvOdzgQX0tCY8PuDmtjB97gfzOof3n4O18GpTTC+oL9XmDEDIU53HpmMUKWRiNMbv9kDEJ02lI6EgAxQNyvQ6GJpdkHAxv/Ie1pc
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR01MB6504
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,172 +116,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/25/23 01:22, Mehdi Djait wrote:
-> Add the chip_info structure to the driver's private data to hold all
-> the device specific infos.
-> Refactor the kx022a driver implementation to make it more generic and
-> extensible.
-> 
-> Signed-off-by: Mehdi Djait <mehdi.djait.k@gmail.com>
-> ---
-> v3:
-> - added the change of the buffer's allocation in the __kx022a_fifo_flush
->    to this patch
-> - added the chip_info to the struct kx022a_data
-> 
-> v2:
-> - mentioned the introduction of the i2c_device_id table in the commit
-> - get i2c_/spi_get_device_id only when device get match fails
-> - removed the generic KX_define
-> - removed the kx022a_device_type enum
-> - added comments for the chip_info struct elements
-> - fixed errors pointed out by the kernel test robot
-> 
->   drivers/iio/accel/kionix-kx022a-i2c.c |  15 +++-
->   drivers/iio/accel/kionix-kx022a-spi.c |  15 +++-
->   drivers/iio/accel/kionix-kx022a.c     | 114 +++++++++++++++++---------
->   drivers/iio/accel/kionix-kx022a.h     |  54 +++++++++++-
->   4 files changed, 147 insertions(+), 51 deletions(-)
-> 
-> diff --git a/drivers/iio/accel/kionix-kx022a-i2c.c b/drivers/iio/accel/kionix-kx022a-i2c.c
-> index 8f23631a1fd3..ce299d0446f7 100644
-> --- a/drivers/iio/accel/kionix-kx022a-i2c.c
-> +++ b/drivers/iio/accel/kionix-kx022a-i2c.c
-> @@ -15,6 +15,7 @@
+Updates the device tree to support some features on Ampere's
+Mt.Mitchell BMC.
 
-...
+Chanh Nguyen (4):
+  ARM: dts: aspeed: mtmitchell: Enable the BMC UART8 and UART9
+  ARM: dts: aspeed: mtmitchell: Add I2C Fan
+  ARM: dts: aspeed: mtmitchell: Update ADC sensors for Mt.Mitchell DVT
+    systems
+  ARM: dts: aspeed: mtmitchell: Add MCTP
 
-
->   static int __kx022a_fifo_flush(struct iio_dev *idev, unsigned int samples,
-> @@ -600,13 +600,17 @@ static int __kx022a_fifo_flush(struct iio_dev *idev, unsigned int samples,
->   {
->   	struct kx022a_data *data = iio_priv(idev);
->   	struct device *dev = regmap_get_device(data->regmap);
-> -	__le16 buffer[KX022A_FIFO_LENGTH * 3];
-> +	__le16 *buffer;
->   	uint64_t sample_period;
->   	int count, fifo_bytes;
->   	bool renable = false;
->   	int64_t tstamp;
->   	int ret, i;
->   
-> +	buffer = kmalloc(data->chip_info->fifo_length * KX022A_FIFO_SAMPLES_SIZE_BYTES, GFP_KERNEL);
-> +	if (!buffer)
-> +		return -ENOMEM;
-
-Do you think we could get rid of allocating and freeing the buffer for 
-each flush? I feel it is a bit wasteful, and with high sampling 
-frequencies this function can be called quite often. Do you think there 
-would be a way to either use stack (always reserve big enough buffer no 
-matter which chip we have - or is the buffer too big to be safely taken 
-from the stack?), or a buffer stored in private data and allocated at 
-probe or buffer enable?
-
-Also, please avoid such long lines. I know many people don't care about 
-the line length - but for example I tend to have 3 terminal windows open 
-side-by-side on my laptop screen. Hence long lines tend to be harder to 
-read for me.
-
-> +
->   	ret = regmap_read(data->regmap, KX022A_REG_BUF_STATUS_1, &fifo_bytes);
->   	if (ret) {
->   		dev_err(dev, "Error reading buffer status\n");
-> @@ -621,8 +625,10 @@ static int __kx022a_fifo_flush(struct iio_dev *idev, unsigned int samples,
->   		dev_warn(data->dev, "Bad FIFO alignment. Data may be corrupt\n");
->   
->   	count = fifo_bytes / KX022A_FIFO_SAMPLES_SIZE_BYTES;
-> -	if (!count)
-> +	if (!count) {
-> +		kfree(buffer);
->   		return 0;
-> +	}
->   
->   	/*
->   	 * If we are being called from IRQ handler we know the stored timestamp
-> @@ -679,7 +685,7 @@ static int __kx022a_fifo_flush(struct iio_dev *idev, unsigned int samples,
->   	}
->   
->   	fifo_bytes = count * KX022A_FIFO_SAMPLES_SIZE_BYTES;
-> -	ret = regmap_noinc_read(data->regmap, KX022A_REG_BUF_READ,
-> +	ret = regmap_noinc_read(data->regmap, data->chip_info->buf_read,
->   				&buffer[0], fifo_bytes);
->   	if (ret)
->   		goto renable_out;
-> @@ -704,6 +710,7 @@ static int __kx022a_fifo_flush(struct iio_dev *idev, unsigned int samples,
->   	if (renable)
->   		enable_irq(data->irq);
->   
-> +	kfree(buffer);
->   	return ret;
->   }
-> 
-...
-
->   
-> -int kx022a_probe_internal(struct device *dev)
-> +const struct kx022a_chip_info kx022a_chip_info = {
-> +	.name		  = "kx022-accel",
-> +	.regmap_config	  = &kx022a_regmap_config,
-> +	.channels	  = kx022a_channels,
-> +	.num_channels	  = ARRAY_SIZE(kx022a_channels),
-> +	.fifo_length	  = KX022A_FIFO_LENGTH,
-> +	.who		  = KX022A_REG_WHO,
-> +	.id		  = KX022A_ID,
-> +	.cntl		  = KX022A_REG_CNTL,
-> +	.cntl2		  = KX022A_REG_CNTL2,
-> +	.odcntl		  = KX022A_REG_ODCNTL,
-> +	.buf_cntl1	  = KX022A_REG_BUF_CNTL1,
-> +	.buf_cntl2	  = KX022A_REG_BUF_CNTL2,
-> +	.buf_clear	  = KX022A_REG_BUF_CLEAR,
-> +	.buf_status1	  = KX022A_REG_BUF_STATUS_1,
-> +	.buf_read	  = KX022A_REG_BUF_READ,
-> +	.inc1		  = KX022A_REG_INC1,
-> +	.inc4		  = KX022A_REG_INC4,
-> +	.inc5		  = KX022A_REG_INC5,
-> +	.inc6		  = KX022A_REG_INC6,
-> +	.xout_l		  = KX022A_REG_XOUT_L,
-> +};
-> +EXPORT_SYMBOL_NS_GPL(kx022a_chip_info, IIO_KX022A);
-
-Do you think the fields (or at least some of them) in this struct could 
-be named based on the (main) functionality being used, not based on the 
-register name? Something like "watermark_reg", "buf_en_reg", 
-"reset_reg", "output_rate_reg", "int1_pinconf_reg", "int1_src_reg", 
-"int2_pinconf_reg", "int1_src_reg" ...
-
-I would not be at all surprized to see for example some IRQ control to 
-be shifted from INC<X> to INC<Y> or cntl<X> / buf_cntl<X> stuff to be 
-moved to cntl<Y> or to buf_cntl<Y> for next sensor we want to support. 
-Especially when new cool feature is added to next sensor, resulting also 
-adding a new cntl<Z> or buf_cntl<Z> or INC<Z>.
-
-I, however, believe the _functionality_ will be there (in some register) 
-- at least for the ICs for which we can re-use this driver. Hence, it 
-might be nice - and if you can think of better names for these fields - 
-to rename them based on the _functionality_ we use.
-
-Another benefit would be added clarity to the code. Writing a value to 
-"buf_en_reg", "watermark_reg" or to "int1_src_reg" is much clearer (to 
-me) than writing a value to "buf_cntl1", "buf_cntl2" or "INC4". 
-Especially if you don't have a datasheet at your hands.
-
-I am not "demanding" this (at least not for now :]) because it seems 
-these two Kionix sensors have been pretty consistent what comes to 
-maintaining the same functionality in the registers with same naming - 
-but I believe this is something that may in any case be lurking around 
-the corner.
-
-
-
-All in all, looks nice and clean to me! Good job.
-
-Yours,
-	-- Matti
+ .../boot/dts/aspeed-bmc-ampere-mtmitchell.dts | 138 ++++++++++++------
+ 1 file changed, 97 insertions(+), 41 deletions(-)
 
 -- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
+2.17.1
 
