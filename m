@@ -2,157 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9401B6EE533
-	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 18:02:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69F926EE541
+	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 18:08:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234299AbjDYQCf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Apr 2023 12:02:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42098 "EHLO
+        id S234677AbjDYQIM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Apr 2023 12:08:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229710AbjDYQCe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 12:02:34 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3F1C12CB0
-        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 09:02:32 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-94eee951c70so944249566b.3
-        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 09:02:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=semihalf.com; s=google; t=1682438551; x=1685030551;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5U1FebJ48rmYLrZgvW/d5KNeRthnVpxmVYJl0x+IboA=;
-        b=SZpt8wqa8NJlghs5ohxeUYKrUK3e5qaBbISMNAUU7pnC3iaMHqd7nqyEcNT+BDOyBt
-         1geT8uih1tSgnaWI28XbTpctzi18GqGLhVVqfrw751+OPckIolkRoZAgSZS96kR7DD9h
-         JPqfzqBviknKwU3i8KOHJ0aGr66a5uH4g29EcqI/t9sklKcLTsJrwZkpcjd0D3OfIy+N
-         4wwhDd6diQsPzabc1fAOf4hJnMh9qPSva95M5IhHyXlOEyfUNXZv6ZXr09smgdmzEzVk
-         9sDyiECHmJyBnTMRmU9JiyvPcuThz6RVaDNvTJEFK3H5woJQDUKIjv5f9veNBLGMPkQT
-         zuJw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682438551; x=1685030551;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5U1FebJ48rmYLrZgvW/d5KNeRthnVpxmVYJl0x+IboA=;
-        b=VhHTxnC6f/+rafrPYHznTdo9i1vUOdzlsV8YtV7d4vcphZFLXOHnyy5zRMBkhWWDFb
-         z1Vl/hGsvAktDbJvSN8w0c08/vHjJOlysPidHc0BdThnRd/cBJQ+2nMmFIIh9B9O1WCJ
-         P1RC+wwBuAlaVKTRVigjvGTl6pC8m+nHJ/NHigxLdakOrRgJEnfjRDAwlkfrUDXk3unK
-         GiuR6iQZbjrBHEB+O1h/5JMTmaw7e2C3aLyprQuPiC1Dpq0kCkSPbf/R07dK6e9rU6wV
-         N1WJkklqv2LL/XYoe4TELddMWfMyV1lXBM8zi1h4HaXCT9fVA+S8HXFV6inoJGm7IhdB
-         b13g==
-X-Gm-Message-State: AAQBX9cmJiSYURaP1yLMnKd8qNuLXXz1rDkNc9T5V2YxzmlTDJAxtV3G
-        cPqV2N/kIUNP+/HHPXOD86/tuZDmbhUz5IvIiBUkRQ==
-X-Google-Smtp-Source: AKy350ZyQQXlExOYMD/D3YT7w+OnXYHx8fNk7AhdjTIc0H2Av/6728FCr95KZnQpnj//tjszaXVJ90/Hm4NZ1m7PoVw=
-X-Received: by 2002:a17:906:6009:b0:94d:69e0:6098 with SMTP id
- o9-20020a170906600900b0094d69e06098mr15526256ejj.45.1682438551364; Tue, 25
- Apr 2023 09:02:31 -0700 (PDT)
+        with ESMTP id S234473AbjDYQIL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 12:08:11 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.13])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7757F15468
+        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 09:08:06 -0700 (PDT)
+Received: from [192.168.1.141] ([37.4.248.58]) by mrelayeu.kundenserver.de
+ (mreue106 [212.227.15.183]) with ESMTPSA (Nemesis) id
+ 1Mg6qO-1qVKVE3Ogg-00heSW; Tue, 25 Apr 2023 18:02:30 +0200
+Message-ID: <0a23575f-8079-2d72-2151-dd0785984d1d@i2se.com>
+Date:   Tue, 25 Apr 2023 18:02:29 +0200
 MIME-Version: 1.0
-References: <20230414140203.707729-1-pan@semihalf.com> <20230414140203.707729-6-pan@semihalf.com>
- <cb35f3f2-4dc9-4d56-96bd-bcffb33b7aaf@sirena.org.uk>
-In-Reply-To: <cb35f3f2-4dc9-4d56-96bd-bcffb33b7aaf@sirena.org.uk>
-From:   =?UTF-8?Q?Pawe=C5=82_Anikiel?= <pan@semihalf.com>
-Date:   Tue, 25 Apr 2023 18:02:20 +0200
-Message-ID: <CAF9_jYSMieE=GP3T-gsXe+SDjuWKGVy9LjhMHKB9_hW7czuZmg@mail.gmail.com>
-Subject: Re: [PATCH 5/9] ASoC: ssm2602: Add workaround for playback with
- external MCLK
-To:     Mark Brown <broonie@kernel.org>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, lgirdwood@gmail.com, perex@perex.cz,
-        tiwai@suse.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, dinguyen@kernel.org,
-        lars@metafoo.de, nuno.sa@analog.com, upstream@semihalf.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v3 2/3] ARM: dts: Add nvmem node for BCM2711 bootloader
+ public key
+To:     Tim Gover <tim.gover@raspberrypi.com>
+Cc:     Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        "Ivan T. Ivanov" <iivanov@suse.de>
+References: <20230420122924.37997-1-iivanov@suse.de>
+ <20230420122924.37997-3-iivanov@suse.de>
+Content-Language: en-US
+From:   Stefan Wahren <stefan.wahren@i2se.com>
+In-Reply-To: <20230420122924.37997-3-iivanov@suse.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Provags-ID: V03:K1:fet8WGT6ramD2+KnvYPih7hbYjcHVK6IN148tYPmbvyX/K6C9Mx
+ q2iBwJq8d9VwtFmayZ7XAWf5Kke2fPMWSFQLgzCa4KLijFUoyoLft0S72fIt5qRQT2rIp2L
+ LMcq2b9BiVzKjiODrJ/jYSLERDShs/ZVA5mRp6clImDw8Mj6BN+K4HW+T4EpxfyazV+PB+f
+ ce+GV8kKN01LeoWwsSxBA==
+UI-OutboundReport: notjunk:1;M01:P0:wfN9kbCpg3o=;Rhsjhw0ZcaStAozgXop6aVPNIIL
+ 04uV55a3ryiM9wPmaQHmGigfxyIzLEvwdbhz27X0NZ8hhgUydhvfg3h74L2JFeE7BO9VHmY2l
+ 88brPBvlrrR5VQnEvUnOSehlv3FpyQ81Rw1GCHsg/d1ciSrCir8a0iZhnGzE+uJXLRGaw2sUj
+ bRetPIjqoKwOYarfARvJDK25L9Tkg2MDvhNo8seUzxulFtpNoKvvEf1+LDoQ6TTMRU/JJ5SSR
+ k/v8ZahUdOeAeR9L+Vw7PJvfDGELc4K6+Z7kB7W78HNWwlQXVw9Rv7qMQoH24rOIxEAl4GRAz
+ 51HTVBiGTZpymtlrnph0jlNOsKeY4rd2oo4fO9IH/ufQGUAIx8yZW5uqnm85ziBomMWZx82gm
+ o5NANOzhJ2sJsSAx9ABD9z/ltUZmvoh6uazCwKZn8tW5+5v3k/ETSziUmkrllhasORlx4DPVX
+ xElLSenSGkjmsQEQxtJCLpOcuF40VHXudPGDin6TFccrjUtM5QEdT+SwW24HkfC2dwEsi1db3
+ HrGSyNo0AZIRFApAdy6t21d1Wyt0YqtnFDI3EcedZejvwBZwveuGqdq9xZTY8jQZp0p0gD9Rg
+ 9SClKhK5PGX9Crem+hBUa3Le7+sk+HV4hO7Ea+rTs0eT5DkeAyk7blPkPBOuvRkESFJqn1Mve
+ uVD2QpG4PiFH1gMzdtmz9+tC1U6RBA0004rivsClEg==
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 14, 2023 at 7:35=E2=80=AFPM Mark Brown <broonie@kernel.org> wro=
-te:
->
-> On Fri, Apr 14, 2023 at 04:01:59PM +0200, Pawe=C5=82 Anikiel wrote:
->
-> > Apply a workaround for what seems to be a hardware quirk: when using
-> > an external MCLK signal, powering on Output and DAC for the first time
-> > produces output distortions unless they're powered together with whole
-> > chip power.
->
-> This doesn't seem coherent, these are multiple register writes so
-> clearly can't be done at the same moment as initial power on.  Clearly
-> there's some other constraint here.
+Hi Tim,
 
-The "at the same time" part is done by writing multiple bits at once
-to SSM2602_PWR. But before that, SSM2602_ACTIVE has to be set, and
-then the chip is reset (SSM2602_RESET) to power everything down again.
+Am 20.04.23 um 14:29 schrieb Ivan T. Ivanov:
+> From: Tim Gover <tim.gover@raspberrypi.com>
+> 
+> Make a copy of the bootloader secure-boot public key available to the OS
+> via an nvmem node. The placement information is populated by the
+> Raspberry Pi firmware[1] if a public key is present in the BCM2711
+> bootloader EEPROM.
+> 
+> [1] https://www.raspberrypi.com/documentation/computers/configuration.html#nvmem-nodes
+> 
+> Signed-off-by: Tim Gover <tim.gover@raspberrypi.com>
+> [iivanov] Added link to documentation.
+> Signed-off-by: Ivan T. Ivanov <iivanov@suse.de>
+> ---
+>   arch/arm/boot/dts/bcm2711-rpi.dtsi | 14 ++++++++++++++
+>   1 file changed, 14 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/bcm2711-rpi.dtsi b/arch/arm/boot/dts/bcm2711-rpi.dtsi
+> index 98817a6675b9..e30fbe84f9c3 100644
+> --- a/arch/arm/boot/dts/bcm2711-rpi.dtsi
+> +++ b/arch/arm/boot/dts/bcm2711-rpi.dtsi
+> @@ -15,6 +15,7 @@ aliases {
+>   		ethernet0 = &genet;
+>   		pcie0 = &pcie0;
+>   		blconfig = &blconfig;
+> +		blpubkey = &blpubkey;
+>   	};
+>   };
+>   
+> @@ -67,6 +68,19 @@ blconfig: nvram@0 {
+>   		no-map;
+>   		status = "disabled";
+>   	};
+> +
+> +	/*
+> +	 * RPi4 will copy the binary public key blob (if present) from the bootloader
+> +	 * into memory for use by the OS.
 
->
-> > The workaround powers them on in probe for the first time, as doing it
-> > later may be impossible (e.g. when starting playback while recording,
-> > whole chip power will already be on).
->
-> It doesn't do that, it powers them on at component probe.
+is the public key also possibly available for CM4 and RPi 400?
 
-Yes, I meant component probe.
-
->
-> > Here are some sequences run at the very start before a sw reset (and
-> > later using one of the NOT OK sequences from above):
-> >
-> >   ssmset 0x09 0x01 # core
-> >   ssmset 0x06 0x07 # chip, out, dac
-> >   OK
->
-> I can't tell what any of this is trying to say, especially given all the
-> magic numbers, and obviously no actual use of the driver should be
-> writing directly to the register map.
-
-These are shell commands run from userspace (with no ssm2602 driver
-present in the kernel). ssmset is a wrapper for the i2cset command:
-ssmset() {
-        i2cset -y 0 0x1a $(($1*2)) $2
-}
-I definitely should have made that more clear.
-
-Do you think these logs are worth adding? If so, I'll improve the
-explanation what these mean.
-
->
-> > +     /* Workaround for what seems to be a hardware quirk: when using a=
-n
-> > +      * external MCLK signal, powering on Output and DAC for the first
-> > +      * time produces output distortions unless they're powered togeth=
-er
-> > +      * with whole chip power. We power them here for the first time,
-> > +      * as doing it later may be impossible (e.g. when starting playba=
-ck
-> > +      * while recording, whole chip power will already be on)
-> > +      */
-> > +     regmap_write(ssm2602->regmap, SSM2602_ACTIVE, 0x01);
-> > +     regmap_write(ssm2602->regmap, SSM2602_PWR,    0x07);
-> > +     regmap_write(ssm2602->regmap, SSM2602_RESET,  0x00);
-> > +
->
-> The rest of the driver uses symbolic names for register values, this
-> code should too.
-
-Ok, I'll correct that.
-
->
-> This also seems buggy in that it writes non-default values to the
-> hardware then does a reset, meaning that the cache and hardware values
-> will be out of sync, and since it only happens on probe there will be an
-> issue after suspend if power is removed.  It looks like this would be
-> most comfortably implemented as a register patch applied as soon as the
-> regmap is instantiated.  See regmap_register_patch().
-
-I haven't considered that. I will look at regmap_register_patch() and
-try to use it.
-
-Regards,
-Pawe=C5=82
+> +	 */
+> +	blpubkey: nvram@1 {
+> +		compatible = "raspberrypi,bootloader-public-key", "nvmem-rmem";
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		reg = <0x0 0x0 0x0>;
+> +		no-map;
+> +		status = "disabled";
+> +	};
+>   };
+>   
+>   &v3d {
