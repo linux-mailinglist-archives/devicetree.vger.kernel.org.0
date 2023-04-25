@@ -2,271 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 727BA6EDFDF
-	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 12:00:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C691F6EE022
+	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 12:24:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233082AbjDYKAL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Apr 2023 06:00:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52422 "EHLO
+        id S233442AbjDYKY2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Apr 2023 06:24:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233392AbjDYKAJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 06:00:09 -0400
-Received: from mail-vs1-xe2c.google.com (mail-vs1-xe2c.google.com [IPv6:2607:f8b0:4864:20::e2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41A6BCC34
-        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 03:00:06 -0700 (PDT)
-Received: by mail-vs1-xe2c.google.com with SMTP id ada2fe7eead31-42ca0c08aa9so1192822137.2
-        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 03:00:06 -0700 (PDT)
+        with ESMTP id S233082AbjDYKY1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 06:24:27 -0400
+Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D004FF;
+        Tue, 25 Apr 2023 03:24:25 -0700 (PDT)
+Received: by mail-pf1-x436.google.com with SMTP id d2e1a72fcca58-63b70f0b320so7373095b3a.1;
+        Tue, 25 Apr 2023 03:24:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1682416805; x=1685008805;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=U9xmfBHDsyYLJBu4ZPKPVrdek0zQAAxRnmR1aPAecu8=;
-        b=QM45xtlfA30Qv+jhT+5wfAhCZ0DlI6NMjjFtywDiocqqbhmjSnALrxYO1+HD09LTxh
-         ghmFdMfXOE5XAf1RD76xiY+3li/Zw7UPFpNIbMymFlpJd7Yo3qr8rwQ9Tf16N0pHbtlN
-         /EtMhdr4cIITH1IR/kg7yJyukNsfVztBx751Q=
+        d=gmail.com; s=20221208; t=1682418265; x=1685010265;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=vUpPEEUcQ8oEhNmbDyWnCAvrC+gdbAAhpl1Eoh+Mtd0=;
+        b=JVl6g1VCoBSsIjANddkMDQ9EsJdZPQUkY0qva4F/s09udH7I/q6dPgaXSGSdl3e06k
+         455JyA+p3iRBbk5JuOvq+pshzdg2+Ugaufg9r27bESso52qN1vq2gmk9jF7+RS7nuCUG
+         CJ8XgdnFabXEMGGXX9rIJIvi9x/PUW/UFe8lRob2I9q4BZfuDHJOgGH3gc868x35pKDi
+         WiLFkmWKCOYnFpJmNbYA78fIONghRXw63zpLyXNlVXumNUMurTT6dqzN00sJ31KnGPea
+         RuaZF3Qwms4EveP4zU+Y8JJ1o4ds3TNSaYfWl0lK0KE2Fs2ZHgFLJfzMBubstckqOgvx
+         j9vg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682416805; x=1685008805;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=U9xmfBHDsyYLJBu4ZPKPVrdek0zQAAxRnmR1aPAecu8=;
-        b=FYSJTWnKpCVSW3e8UBsC+kKo0pyLi5PI3SqmcP003VdTuVLhytBv8Tt+YM4SVgSN16
-         Sz5BjTebwOEAzLwIUIT60ZmcpVSfq7+PKJG2PEbklHR/r+0Na3SIMjwWeeujn1w1xPA1
-         wOCv4xtOinGzoQLqjOLigCSdag/AW8paTpCQH4VXvhwL7jTW9uV8RZ0q/fg74EjPMMgj
-         7M9qusGdFfaPkP1BZerfErFeR/X/7Lr5jpdY8FE+NO8YbiCsjoNIz38sC5rgEg2szbCf
-         OflBzepYBmyG5n/6W+hqbwlUCjmAwLLS0jm/aUQe9jcuEwr5x4w7slNzjwibjO7kjzDa
-         iYww==
-X-Gm-Message-State: AAQBX9fBls0LJzV3Zf9c7ngDHl8WSEGcARCof0WAMSS46yFEUJ6ontCZ
-        Msn3hqpne0v8lQPkPatkOx3Hbx640ed5Fduxf2A2CA==
-X-Google-Smtp-Source: AKy350ZIrxbuOVfg1D290EFt3hdIL/m5W7tSw54IyZTFKXYrYG44B1Dl4VD9Ls0ZfUe1vaHU5vafRdgoqBYlvDfzC7w=
-X-Received: by 2002:a67:fe41:0:b0:42e:676c:bab8 with SMTP id
- m1-20020a67fe41000000b0042e676cbab8mr7413428vsr.16.1682416805303; Tue, 25 Apr
- 2023 03:00:05 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230307163413.143334-1-bchihi@baylibre.com> <CAGXv+5E0wUJYUVD3wx3-=uES612ARQmUE0rxgAruFHxpZCBjzA@mail.gmail.com>
- <CAGuA+ooi7Kx05gagLzXAN3upDiSqDUNOM_djYdGftw6ogVx5gw@mail.gmail.com>
- <CAGuA+oqDPPYFJef_8=YrOpHQNVJ3xgm_zXS6fq_HG2Jy_6t-Zg@mail.gmail.com>
- <CAGXv+5EZPWohGN5CaEiqVrM4MyAar3cPEUhHtGY_9wTJSJNVFQ@mail.gmail.com>
- <CAGuA+oqF4jFMyEo09VDmCf-_7g0ua3XDKDAJ+t3Gat14pDM9NA@mail.gmail.com> <fab67eef-4dc9-420d-b127-aedc6f54cad0@notapiano>
-In-Reply-To: <fab67eef-4dc9-420d-b127-aedc6f54cad0@notapiano>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Tue, 25 Apr 2023 17:59:54 +0800
-Message-ID: <CAGXv+5E0rzByZBn91d60MQ7P0=GbAQUH=PK9EYDu3Upr33td6A@mail.gmail.com>
-Subject: Re: [PATCH 0/4] Add LVTS support for mt8192
-To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>
-Cc:     Balsam CHIHI <bchihi@baylibre.com>, daniel.lezcano@linaro.org,
-        angelogioacchino.delregno@collabora.com, rafael@kernel.org,
-        amitk@kernel.org, rui.zhang@intel.com, matthias.bgg@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        rdunlap@infradead.org, ye.xingchen@zte.com.cn,
-        p.zabel@pengutronix.de, linux-pm@vger.kernel.org,
+        d=1e100.net; s=20221208; t=1682418265; x=1685010265;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vUpPEEUcQ8oEhNmbDyWnCAvrC+gdbAAhpl1Eoh+Mtd0=;
+        b=CUOrtOdcF0MlAcZYDpV/HyJWDI7APFtVO5wELvTGIdnZdYQ8Y0fOh5ADtDQ++n8R5i
+         EDvKImivRKVcSs1Ra8LolR40d0E+Wu9si9B5Q0bS347p3+qN8kG+B220eVuvlyD5c7e0
+         oi3U++nZHDPWGNHkaqpxIes1ncEdLU78Hhr1zXlV60oWp+U+k+JKNkXFVHxZcGL0TlBJ
+         48RY/eltdIg82JEs4ZWkk0Hod+E8l/8G40uFBdQu+iEhDCzeEkZkMou4ZSxCQZ/eYlsW
+         57he4inT45fgyHgXOtP39enQQ6Li/ntIU2Q3y2ZhXpcr+07IafHQ3huXWJaHkAXDk2e3
+         Veuw==
+X-Gm-Message-State: AAQBX9cFYxjfrgwV9WrbHzjfzFP3sOAKtjNC4JlDBVdR6Q/JJ3evwcKA
+        fErckFjUh44SGXpY1d0I2mc=
+X-Google-Smtp-Source: AKy350YaDVjuOhau/gdbOnXJ8ASuCUl/z9IPgkaR++BGuDzGoAp3bhaW6hVaUTePlatqXxvRGWHZ+g==
+X-Received: by 2002:a05:6a21:9011:b0:ec:7696:ee96 with SMTP id tq17-20020a056a21901100b000ec7696ee96mr20391868pzb.38.1682418264644;
+        Tue, 25 Apr 2023 03:24:24 -0700 (PDT)
+Received: from a28aa0606c51.. (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id 30-20020a63125e000000b0051b70c8d446sm7644715pgs.73.2023.04.25.03.24.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Apr 2023 03:24:24 -0700 (PDT)
+From:   Jacky Huang <ychuang570808@gmail.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lee@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        p.zabel@pengutronix.de, gregkh@linuxfoundation.org,
+        jirislaby@kernel.org, tmaimon77@gmail.com, catalin.marinas@arm.com,
+        will@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        khilman@baylibre.com, james.lo@mediatek.com,
-        rex-bc.chen@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        linux-serial@vger.kernel.org, arnd@arndb.de, schung@nuvoton.com,
+        mjchen@nuvoton.com, Jacky Huang <ychuang3@nuvoton.com>
+Subject: [PATCH v8 00/11] Introduce Nuvoton ma35d1 SoC
+Date:   Tue, 25 Apr 2023 10:24:07 +0000
+Message-Id: <20230425102418.185783-1-ychuang570808@gmail.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 25, 2023 at 6:21=E2=80=AFAM N=C3=ADcolas F. R. A. Prado
-<nfraprado@collabora.com> wrote:
->
-> On Tue, Mar 28, 2023 at 02:20:24AM +0200, Balsam CHIHI wrote:
-> > On Sat, Mar 25, 2023 at 5:33=E2=80=AFAM Chen-Yu Tsai <wenst@chromium.or=
-g> wrote:
-> > >
-> > > On Wed, Mar 22, 2023 at 8:48=E2=80=AFPM Balsam CHIHI <bchihi@baylibre=
-.com> wrote:
-> > > >
-> > > > Hi Chen-Yu,
-> > > >
-> > > > I suspect the bug comes from incorrect calibration data offsets for=
- AP
-> > > > Domain because you confirm that MCU Domain probe runs without issue=
-s.
-> > > > Is it possible to test something for us to confirm this theory (i
-> > > > don't have an mt8192 board on hand now), when you have the time of
-> > > > course?
-> > > > We would like to test AP Domain's calibration data offsets with a
-> > > > working one, for example :
-> > > >
-> > > >  static const struct lvts_ctrl_data mt8192_lvts_ap_data_ctrl[] =3D =
-{
-> > > >                 {
-> > > > -               .cal_offset =3D { 0x25, 0x28 },
-> > > > +               .cal_offset =3D { 0x04, 0x04 },
-> > > >                 .lvts_sensor =3D {
-> > > >                         { .dt_id =3D MT8192_AP_VPU0 },
-> > > >                         { .dt_id =3D MT8192_AP_VPU1 }
-> > > > @@ -1336,7 +1336,7 @@ static const struct lvts_ctrl_data
-> [..]
-> > > >
-> > > > This example is tested and works for mt8195,
-> > > > (all sensors use the same calibration data offset for testing purpo=
-ses).
-> > > >
-> > > > Thank you in advance for your help.
-> > >
-> > > The MCU ones are still tripping though. If I change all of them to 0x=
-04,
-> > > then nothing trips. There's also a bug in the interrupt handling code
-> > > that needs to be dealt with.
-> > >
-> > > AFAICT the calibration data is stored differently. If you look at Chr=
-omeOS's
-> > > downstream v5.10 driver, you'll see mt6873_efuse_to_cal_data() for MT=
-8192,
-> > > and mt8195_efuse_to_cal_data() for MT8195. The difference sums up to:
-> > > MT8195 has all data sequentially stored, while MT8192 has most data s=
-tored
-> > > in lower 24 bits of each 32-bit word, and the highest 8 bits are then=
- used
-> > > to pack data for the remaining sensors.
-> > >
-> > > Regards
-> > > ChenYu
-> >
-> > Hi Chen-Yu Tsai,
-> >
-> > Thank you very much for helping me testing this suggestion.
-> >
-> > Indeed, calibration data is stored differently in the mt8192 compared t=
-o mt8195.
-> > So, the mt8192's support will be delayed for now, to allow further debu=
-gging.
-> >
-> > In the mean time, we will only continue to upstream the remaining
-> > mt8195's source code, so it will get full LVTS support.
-> > A new series will be submitted soon.
->
-> Hi Balsam,
->
-> like Chen-Yu mentioned, the calibration data is stored with 4 byte alignm=
-ent for
-> MT8192, but the data that is split between non-contiguous bytes is for th=
-e
-> thermal controllers (called Resistor-Capacitor Calibration downstream) no=
-t the
-> sensors. The controller calibration isn't currently handled in this drive=
-r (and
-> downstream it also isn't used, since a current value is read from the con=
-troller
-> instead), so we can just ignore those.
->
-> The patch below adjusts the addresseses for the sensors and gives me reas=
-onable
-> reads, so the machine no longer reboots. Can you integrate it into your s=
-eries?
+From: Jacky Huang <ychuang3@nuvoton.com>
 
-Not sure what I got wrong, but on my machine the VPU0 and VPU1 zone interru=
-pts
-are still tripping excessively. The readings seem normal though. Specifical=
-ly,
-it's bits 16 and 17 that are tripping.
+This patchset adds initial support for the Nuvoton ma35d1 SoC, including
+initial device tree, clock driver, reset driver, and serial driver.
 
-> Thanks,
-> N=C3=ADcolas
->
-> From 4506f03b806f3eeb89887bac2c1c86d61da97281 Mon Sep 17 00:00:00 2001
-> From: =3D?UTF-8?q?N=3DC3=3DADcolas=3D20F=3D2E=3D20R=3D2E=3D20A=3D2E=3D20P=
-rado?=3D
->  <nfraprado@collabora.com>
-> Date: Mon, 24 Apr 2023 17:42:42 -0400
-> Subject: [PATCH] thermal/drivers/mediatek/lvts_thermal: Fix calibration
->  offsets for MT8192
-> MIME-Version: 1.0
-> Content-Type: text/plain; charset=3DUTF-8
-> Content-Transfer-Encoding: 8bit
->
-> Signed-off-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
-> ---
->  drivers/thermal/mediatek/lvts_thermal.c | 14 +++++++-------
->  1 file changed, 7 insertions(+), 7 deletions(-)
->
-> diff --git a/drivers/thermal/mediatek/lvts_thermal.c b/drivers/thermal/me=
-diatek/lvts_thermal.c
-> index b6956c89d557..f8afbc2ac190 100644
-> --- a/drivers/thermal/mediatek/lvts_thermal.c
-> +++ b/drivers/thermal/mediatek/lvts_thermal.c
-> @@ -1261,7 +1261,7 @@ static const struct lvts_ctrl_data mt8195_lvts_ap_d=
-ata_ctrl[] =3D {
->
->  static const struct lvts_ctrl_data mt8192_lvts_mcu_data_ctrl[] =3D {
->         {
-> -               .cal_offset =3D { 0x04, 0x07 },
-> +               .cal_offset =3D { 0x04, 0x08 },
->                 .lvts_sensor =3D {
->                         { .dt_id =3D MT8192_MCU_BIG_CPU0 },
->                         { .dt_id =3D MT8192_MCU_BIG_CPU1 }
-> @@ -1271,7 +1271,7 @@ static const struct lvts_ctrl_data mt8192_lvts_mcu_=
-data_ctrl[] =3D {
->                 .hw_tshut_temp =3D LVTS_HW_SHUTDOWN_MT8192,
->         },
->         {
-> -               .cal_offset =3D { 0x0d, 0x10 },
-> +               .cal_offset =3D { 0x0c, 0x10 },
->                 .lvts_sensor =3D {
->                         { .dt_id =3D MT8192_MCU_BIG_CPU2 },
->                         { .dt_id =3D MT8192_MCU_BIG_CPU3 }
-> @@ -1281,7 +1281,7 @@ static const struct lvts_ctrl_data mt8192_lvts_mcu_=
-data_ctrl[] =3D {
->                 .hw_tshut_temp =3D LVTS_HW_SHUTDOWN_MT8192,
->         },
->         {
-> -               .cal_offset =3D { 0x16, 0x19, 0x1c, 0x1f },
-> +               .cal_offset =3D { 0x14, 0x18, 0x1c, 0x20 },
->                 .lvts_sensor =3D {
->                         { .dt_id =3D MT8192_MCU_LITTLE_CPU0 },
->                         { .dt_id =3D MT8192_MCU_LITTLE_CPU1 },
-> @@ -1296,7 +1296,7 @@ static const struct lvts_ctrl_data mt8192_lvts_mcu_=
-data_ctrl[] =3D {
->
->  static const struct lvts_ctrl_data mt8192_lvts_ap_data_ctrl[] =3D {
->                 {
-> -               .cal_offset =3D { 0x25, 0x28 },
-> +               .cal_offset =3D { 0x24, 0x28 },
->                 .lvts_sensor =3D {
->                         { .dt_id =3D MT8192_AP_VPU0 },
->                         { .dt_id =3D MT8192_AP_VPU1 }
-> @@ -1306,7 +1306,7 @@ static const struct lvts_ctrl_data mt8192_lvts_ap_d=
-ata_ctrl[] =3D {
->                 .hw_tshut_temp =3D LVTS_HW_SHUTDOWN_MT8192,
->         },
->         {
-> -               .cal_offset =3D { 0x2e, 0x31 },
-> +               .cal_offset =3D { 0x2c, 0x30 },
->                 .lvts_sensor =3D {
->                         { .dt_id =3D MT8192_AP_GPU0 },
->                         { .dt_id =3D MT8192_AP_GPU1 }
-> @@ -1316,7 +1316,7 @@ static const struct lvts_ctrl_data mt8192_lvts_ap_d=
-ata_ctrl[] =3D {
->                 .hw_tshut_temp =3D LVTS_HW_SHUTDOWN_MT8192,
->         },
->         {
-> -               .cal_offset =3D { 0x37, 0x3a },
-> +               .cal_offset =3D { 0x34, 0x38 },
->                 .lvts_sensor =3D {
->                         { .dt_id =3D MT8192_AP_INFRA },
->                         { .dt_id =3D MT8192_AP_CAM },
-> @@ -1326,7 +1326,7 @@ static const struct lvts_ctrl_data mt8192_lvts_ap_d=
-ata_ctrl[] =3D {
->                 .hw_tshut_temp =3D LVTS_HW_SHUTDOWN_MT8192,
->         },
->         {
-> -               .cal_offset =3D { 0x40, 0x43, 0x46 },
-> +               .cal_offset =3D { 0x3c, 0x40, 0x44 },
->                 .lvts_sensor =3D {
->                         { .dt_id =3D MT8192_AP_MD0 },
->                         { .dt_id =3D MT8192_AP_MD1 },
-> --
-> 2.40.0
+This patchset cover letter is based from the initial support for Nuvoton
+ma35d1 to keep tracking the version history.
+
+This patchset had been applied to Linux kernel 6.4.-rc1 and tested on the
+Nuvoton ma35d1 SOM evaluation board.
+
+(ma35d1 information: https://www.nuvoton.com/products/microprocessors/arm-cortex-a35-mpus/)
+MA35D1 porting on linux-5.10.y can be found at: https://github.com/OpenNuvoton/MPU-Family
+
+v8:
+  - Remove '0005-dt-bindings-mfd-syscon-Add-nuvoton-ma35d1-sys-compat.patch' as it was applied.
+  - Modify MAINTAINERS NUVOTON MA35 and NPCM path settings
+  - Remove 'syscon' from dtsi 'sys' node and modify the corresponding yaml
+  - Modify clock driver
+    - Remove the header file and move definitions into .c files.
+    - Use parent_data instead of parent name.
+  - Modify serial driver
+  - Modify reset driver
+    - Modify reset register/offset lookup table to be indexed by reset id
+    - Combined reset and reboot structure
+
+v7:
+  - Fixed dts system-management node and compatible driver
+  - move 'nuvoton,npcm-gcr.yaml' from 'binding/arm/nuvoton' to 'binding/soc/nuvoton'
+  - In ma35d1.dtsi, create the soc node for ma35d1 SoC
+  - Modify the issues found in serial driver
+  - Modify the issues found in clock driver
+  - Modify the IDs of reset driver to be contiguous numbers and use lookup table
+    to find register offset and bit position.
+  - Modify MAINTAINERS NUVOTON NPCM path as npcm directory name to nuvoton
+
+v6:
+  - Combine nuvoton,ma35d1-clk.yaml and nuvoton,ma35d1-clk.h into one patch
+  - Combine nuvoton,ma35d1-reset.yaml and nuvoton,ma35d1-reset.h into one patch
+  - rename Documentation/devicetree/bindings/arm/npcm directory as nuvoton
+  - Remove patch for adding include/linux/mfd/ma35d1-sys.h as it's not required
+  - Update dtsi & dts files and move board-specific nodes to dts
+  - Modify reset driver
+  - Modify serial driver, fix coding style issues
+  - Modify clock driver, rewrite the PLL calculation functions
+
+v5:
+  - Add ARCH_NUVOTON to arm64 Kconfig
+  - Add ARCH_NUVOTON to defconfig
+  - Add the clock driver
+  - Add the reset driver
+  - Add the serial driver
+  - Add us to the maintainer
+
+v4:
+  - patch 4/5 is a resend
+  - Fixed dt_binding_check errors of nuvoton,ma35d1-clk.yaml
+  - Modify ma35d1.dtsi
+    1. Add a node hxt_24m
+    2. Fixed the base address of gic node
+    3. Add clocks and clock-names to clock node
+  - Fixed borad binding mistakes of nuvoton.yaml
+
+v3:
+  - added patch 4/5 and 5/5
+  - introduce CONFIG_ARCH_NUVOTON option
+  - add initial bindings for Nuvoton Platform boards
+  - fixed coding style problem of nuvoton,ma35d1-clk.h
+  - added CAPLL to clock-controller node
+  - modify the chosen node of ma35d1-evb.dts
+  - modify clock yaml "clk-pll-mode" to "nuvoton,clk-pll-mode"
+
+v2:
+  - fixed dt_binding_check failed of nuvoton,ma35d1-clk.yaml
+
+Jacky Huang (11):
+  arm64: Kconfig.platforms: Add config for Nuvoton MA35 platform
+  arm64: defconfig: Add support for Nuvoton MA35 family SoCs
+  dt-bindings: clock: nuvoton: add binding for ma35d1 clock controller
+  dt-bindings: reset: nuvoton: Document ma35d1 reset control
+  dt-bindings: arm: Add initial bindings for Nuvoton platform
+  dt-bindings: serial: Document ma35d1 uart controller
+  arm64: dts: nuvoton: Add initial ma35d1 device tree
+  clk: nuvoton: Add clock driver for ma35d1 clock controller
+  reset: Add Nuvoton ma35d1 reset driver support
+  tty: serial: Add Nuvoton ma35d1 serial driver support
+  MAINTAINERS: Add entry for NUVOTON MA35
+
+ .../bindings/arm/nuvoton/nuvoton,ma35d1.yaml  |  30 +
+ .../npcm.yaml => nuvoton/nuvoton,npcm.yaml}   |   2 +-
+ .../bindings/clock/nuvoton,ma35d1-clk.yaml    |  63 ++
+ .../bindings/reset/nuvoton,ma35d1-reset.yaml  |  45 +
+ .../serial/nuvoton,ma35d1-serial.yaml         |  48 +
+ .../nuvoton/nuvoton,npcm-gcr.yaml}            |   2 +-
+ MAINTAINERS                                   |  13 +-
+ arch/arm64/Kconfig.platforms                  |   9 +
+ arch/arm64/boot/dts/nuvoton/Makefile          |   2 +
+ .../boot/dts/nuvoton/ma35d1-iot-512m.dts      |  56 ++
+ .../boot/dts/nuvoton/ma35d1-som-256m.dts      |  56 ++
+ arch/arm64/boot/dts/nuvoton/ma35d1.dtsi       | 232 +++++
+ arch/arm64/configs/defconfig                  |   1 +
+ drivers/clk/Makefile                          |   1 +
+ drivers/clk/nuvoton/Kconfig                   |  19 +
+ drivers/clk/nuvoton/Makefile                  |   4 +
+ drivers/clk/nuvoton/clk-ma35d1-divider.c      | 140 +++
+ drivers/clk/nuvoton/clk-ma35d1-pll.c          | 364 +++++++
+ drivers/clk/nuvoton/clk-ma35d1.c              | 947 ++++++++++++++++++
+ drivers/reset/Kconfig                         |   6 +
+ drivers/reset/Makefile                        |   1 +
+ drivers/reset/reset-ma35d1.c                  | 229 +++++
+ drivers/tty/serial/Kconfig                    |  18 +
+ drivers/tty/serial/Makefile                   |   1 +
+ drivers/tty/serial/ma35d1_serial.c            | 781 +++++++++++++++
+ .../dt-bindings/clock/nuvoton,ma35d1-clk.h    | 253 +++++
+ .../dt-bindings/reset/nuvoton,ma35d1-reset.h  | 108 ++
+ 27 files changed, 3428 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/arm/nuvoton/nuvoton,ma35d1.yaml
+ rename Documentation/devicetree/bindings/arm/{npcm/npcm.yaml => nuvoton/nuvoton,npcm.yaml} (93%)
+ create mode 100644 Documentation/devicetree/bindings/clock/nuvoton,ma35d1-clk.yaml
+ create mode 100644 Documentation/devicetree/bindings/reset/nuvoton,ma35d1-reset.yaml
+ create mode 100644 Documentation/devicetree/bindings/serial/nuvoton,ma35d1-serial.yaml
+ rename Documentation/devicetree/bindings/{arm/npcm/nuvoton,gcr.yaml => soc/nuvoton/nuvoton,npcm-gcr.yaml} (93%)
+ create mode 100644 arch/arm64/boot/dts/nuvoton/ma35d1-iot-512m.dts
+ create mode 100644 arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts
+ create mode 100644 arch/arm64/boot/dts/nuvoton/ma35d1.dtsi
+ create mode 100644 drivers/clk/nuvoton/Kconfig
+ create mode 100644 drivers/clk/nuvoton/Makefile
+ create mode 100644 drivers/clk/nuvoton/clk-ma35d1-divider.c
+ create mode 100644 drivers/clk/nuvoton/clk-ma35d1-pll.c
+ create mode 100644 drivers/clk/nuvoton/clk-ma35d1.c
+ create mode 100644 drivers/reset/reset-ma35d1.c
+ create mode 100644 drivers/tty/serial/ma35d1_serial.c
+ create mode 100644 include/dt-bindings/clock/nuvoton,ma35d1-clk.h
+ create mode 100644 include/dt-bindings/reset/nuvoton,ma35d1-reset.h
+
+-- 
+2.34.1
+
