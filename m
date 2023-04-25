@@ -2,151 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD4EC6EDEFE
-	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 11:18:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A19216EDF06
+	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 11:20:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233542AbjDYJSf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Apr 2023 05:18:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58754 "EHLO
+        id S233169AbjDYJU4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Apr 2023 05:20:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231428AbjDYJS2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 05:18:28 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B06D40E0;
-        Tue, 25 Apr 2023 02:18:23 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 9FC5524E314;
-        Tue, 25 Apr 2023 17:18:11 +0800 (CST)
-Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 25 Apr
- 2023 17:18:12 +0800
-Received: from [192.168.125.106] (113.72.145.137) by EXMBX162.cuchost.com
- (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 25 Apr
- 2023 17:18:10 +0800
-Message-ID: <0988495f-b87a-7f69-f222-37c67d6eae23@starfivetech.com>
-Date:   Tue, 25 Apr 2023 17:18:10 +0800
+        with ESMTP id S231175AbjDYJUz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 05:20:55 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2923A46B0
+        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 02:20:51 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-959a3e2dc72so425260466b.2
+        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 02:20:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1682414449; x=1685006449;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WsdCNQzIoPz+lH63xj1YaKKNKo3iDm5pfw23qiYoBOQ=;
+        b=wOvkX2oC5ZHyFMdylx8IkrryNZeg23DU/Ch9AChLKbcB/sx0DFV8Yb/H7vUSsHm/ay
+         6vKeAhZHqi4KvKzBL9RsojhjUK4oU8lb+V+mupjRsr3d4Ozv9ezhvySx+DHEhqR+hjMA
+         gaiJOqLYT51c8eBo6o+cG8x82KOH/6WDLxVffZqZup0JrvMaRV4XDFiPQxHmTy81GMpM
+         QIfjcv/pPcyMi1TiLUVU+h31xU2FfOzqmTSR6PnZ45uP7vvaFC3j0EA3bBbvXBOdzaR3
+         fHRbyuMSy1Dp046zUXSSm/0Gjosdxp/aEC/NPYM4X7lNjpFDITb7o57bkR9W209v9XtR
+         w4rg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682414449; x=1685006449;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WsdCNQzIoPz+lH63xj1YaKKNKo3iDm5pfw23qiYoBOQ=;
+        b=PTWog6RRum+jYwlEPTk2f1JSGuhPTYaR1gKc/4l5rsw09LG3QX4ny8mr+schKHHY1Y
+         fw7nGhsTY3Ofg+eCUiFqUhq/NuY2sh7wt7yzBbU2Do9IlaVfg/rkxbmLCyyfQMAek/Ey
+         sZIDSKFmMqrmVBYYXAwmtkIrbEgAO4NrmnwCVOsh/OPdrqzW7/XeFJity5NYcX73j9Lz
+         WkO6zxsYnFBYQTTuiCkg4jR6GQGFq6QSr2viotLTrdv0aE6S43Q3POWUZADzHxsyTcok
+         bWBvSwS+nCY9bvTuDO04lvaVh9on52MZuGMElSkMxXEQ83hNE1LVcMS6J6O6nWAJ27dD
+         XgVA==
+X-Gm-Message-State: AAQBX9dpantEdMgNbPUcA4FjhO82Sp6Cn4ftTwSRE8dbCgERHDBQQrhL
+        wF/ntTLAUncijROaw/AuugdT9A==
+X-Google-Smtp-Source: AKy350YuXymrw7So4UOjZjef+iEPyi/CshywTQ5AjTJZJr/4WaSMcccmVMSSXrgcRBO0CsBCTlwDVg==
+X-Received: by 2002:a17:907:b9d9:b0:94f:1a23:2f1c with SMTP id xa25-20020a170907b9d900b0094f1a232f1cmr14815686ejc.50.1682414449568;
+        Tue, 25 Apr 2023 02:20:49 -0700 (PDT)
+Received: from [192.168.9.102] ([195.167.132.10])
+        by smtp.gmail.com with ESMTPSA id h11-20020a170906828b00b0094f23480619sm6620286ejx.172.2023.04.25.02.20.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 Apr 2023 02:20:48 -0700 (PDT)
+Message-ID: <0210316b-9e21-347c-ed15-ce8200aeeb94@linaro.org>
+Date:   Tue, 25 Apr 2023 11:20:46 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [RESEND v2 1/6] dt-bindings: power: Add JH7110 AON PMU support
+Subject: Re: [PATCH 00/43] ep93xx device tree conversion
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>
-CC:     Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Jakub Kicinski <kuba@kernel.org>, Arnd Bergmann <arnd@arndb.de>
+Cc:     Nikita Shubin <nikita.shubin@maquefel.me>,
+        Arnd Bergmann <arnd@kernel.org>,
+        Linus Walleij <linusw@kernel.org>,
+        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.neuschaefer@gmx.net>,
+        Russell King <rmk+kernel@armlinux.org.uk>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexander Gordeev <agordeev@linux.ibm.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Brian Norris <briannorris@chromium.org>,
+        Chuanhong Guo <gch981213@gmail.com>,
+        "Conor.Dooley" <conor.dooley@microchip.com>,
+        Damien Le Moal <dlemoal@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Emil Renner Berthing <kernel@esmil.dk>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
+        Eric Dumazet <edumazet@google.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Hartley Sweeten <hsweeten@visionengravers.com>,
+        =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+        Hitomi Hasegawa <hasegawa-hitomi@fujitsu.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Jean Delvare <jdelvare@suse.de>, Joel Stanley <joel@jms.id.au>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Liang Yang <liang.yang@amlogic.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Lukasz Majewski <lukma@denx.de>, Lv Ruyi <lv.ruyi@zte.com.cn>,
+        Mark Brown <broonie@kernel.org>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Olof Johansson <olof@lixom.net>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Qin Jian <qinjian@cqplus1.com>,
+        Richard Weinberger <richard@nod.at>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robert Jarzmik <robert.jarzmik@free.fr>,
+        Russell King <linux@armlinux.org.uk>,
+        Sebastian Reichel <sre@kernel.org>,
+        Sergey Shtylyov <s.shtylyov@omp.ru>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Sumanth Korikkar <sumanthk@linux.ibm.com>,
+        Sven Peter <sven@svenpeter.dev>, Takashi Iwai <tiwai@suse.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Vasily Gorbik <gor@linux.ibm.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
         Walker Chen <walker.chen@starfivetech.com>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>, <vkoul@kernel.org>,
-        <linux-phy@lists.infradead.org>
-References: <20230419035646.43702-1-changhuang.liang@starfivetech.com>
- <20230419035646.43702-2-changhuang.liang@starfivetech.com>
- <20230419-labored-camper-644d51a7ca96@spud>
- <1a5b15fa-4f20-51c2-2ba1-a04a2911a694@starfivetech.com>
- <20230424-baffle-punch-ec73098f2b6a@spud>
- <d685a1d4-c07d-7dfa-f1fb-b35ceb2aa0eb@starfivetech.com>
- <20230425-unquote-eligible-09f743d81981@wendy>
- <a7cdfabf-2312-eaf3-f462-5bda7f0a120d@starfivetech.com>
- <68cb565d-bf39-10b0-9e3e-35ba7f54b90b@linaro.org>
-From:   Changhuang Liang <changhuang.liang@starfivetech.com>
-In-Reply-To: <68cb565d-bf39-10b0-9e3e-35ba7f54b90b@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Yinbo Zhu <zhuyinbo@loongson.cn>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-ide@vger.kernel.org, linux-input@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-pm@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, Netdev <netdev@vger.kernel.org>,
+        soc@kernel.org
+References: <20230424123522.18302-1-nikita.shubin@maquefel.me>
+ <8101c53e-e682-4dc3-95cc-a332b1822b8b@app.fastmail.com>
+ <20230424152933.48b2ede1@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230424152933.48b2ede1@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [113.72.145.137]
-X-ClientProxiedBy: EXCAS061.cuchost.com (172.16.6.21) To EXMBX162.cuchost.com
- (172.16.6.72)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 2023/4/25 16:19, Krzysztof Kozlowski wrote:
-> On 25/04/2023 09:57, Changhuang Liang wrote:
->>>>>>>>  
->>>>>>>>  description: |
->>>>>>>>    StarFive JH7110 SoC includes support for multiple power domains which can be
->>>>>>>> @@ -17,6 +18,7 @@ properties:
->>>>>>>>    compatible:
->>>>>>>>      enum:
->>>>>>>>        - starfive,jh7110-pmu
->>>>>>>> +      - starfive,jh7110-aon-pmu
->>>>>
->>>>> I was speaking to Rob about this over the weekend, he asked:
->>>>> 'Why isn't "starfive,jh7110-aon-syscon" just the power-domain provider
->>>>> itself?'
->>>>
->>>> Maybe not, this syscon only offset "0x00" configure power switch.
->>>> other offset configure other functions, maybe not power, so this
->>>> "starfive,jh7110-aon-syscon" not the power-domain itself.
->>>>
->>>>> Do we actually need to add a new binding for this at all?
->>>>>
->>>>> Cheers,
->>>>> Conor.
->>>>>
->>>>
->>>> Maybe this patch do that.
->>>> https://lore.kernel.org/all/20230414024157.53203-6-xingyu.wu@starfivetech.com/
->>>
->>> This makes it a child-node right? I think Rob already said no to that in
->>> and earlier revision of this series. What he meant the other day was
->>> making the syscon itself a power domain controller, since the child node
->>> has no meaningful properties (reg, interrupts etc).
->>>
->>> Cheers,
->>> Conor.
->>
->> Yes, "starfive,jh7110-aon-pmu" is a child-node of "starfive,jh7110-aon-syscon".
->> In my opinion, "0x17010000" is "aon-syscon" on JH7110 SoC, and this "aon-pmu" is just 
->> a part of "aon-syscon" function, so I think it is inappropriate to make "aon-syscon"
->> to a power domain controller. I think using the child-node description is closer to
->> JH7110 SoC. 
+On 25/04/2023 00:29, Jakub Kicinski wrote:
+> On Mon, 24 Apr 2023 13:31:25 +0200 Arnd Bergmann wrote:
+>> Thanks a lot for your continued work. I can't merge any of this at
+>> the moment since the upstream merge window just opened, but I'm
+>> happy to take this all through the soc tree for 6.5, provided we
+>> get the sufficient Acks from the subsystem maintainers. Merging
+>> it through each individual tree would take a lot longer, so I
+>> hope we can avoid that.
 > 
-> Unfortunately, I do not see the correlation between these, any
-> connection. Why being a child of syscon block would mean that this
-> should no be power domain controller? Really, why? These are two
-> unrelated things.
-> 
-> Best regards,
-> Krzysztof
-> 
+> Is there a dependency between the patches?
 
-Let me summarize what has been discussed above. 
+I didn't get entire patchset and cover letter does not mention
+dependencies, but usually there shouldn't be such. Maybe for the next
+versions this should be split per subsystem?
 
-There has two ways to describe this "starfive,jh7110-aon-syscon"(0x17010000).
-1. (0x17010000) is power-controller node:
+Best regards,
+Krzysztof
 
-	aon_pwrc: power-controller@17010000 {
-		compatible = "starfive,jh7110-aon-pmu", "syscon";
-		reg = <0x0 0x17010000 0x0 0x1000>;
-		#power-domain-cells = <1>;
-	};
-
-
-2. (0x17010000) is syscon node, power-controller is child-node of syscon:
-
-	aon_syscon: syscon@17010000 {
-		compatible = "starfive,jh7110-aon-syscon", "syscon", "simple-mfd";
-		reg = <0x0 0x17010000 0x0 0x1000>;
-
-		aon_pwrc: power-controller {
-			compatible = "starfive,jh7110-aon-pmu";
-			#power-domain-cells = <1>;
-		};
-	};
-
-I prefer the way of 2.
-This is more in line with the hardware description of JH7110.
