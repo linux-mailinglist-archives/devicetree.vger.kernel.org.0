@@ -2,122 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC5CE6EE59B
-	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 18:21:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 776606EE5A6
+	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 18:24:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234525AbjDYQVi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Apr 2023 12:21:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54814 "EHLO
+        id S234427AbjDYQYY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Apr 2023 12:24:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233893AbjDYQVh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 12:21:37 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C26C92684;
-        Tue, 25 Apr 2023 09:21:35 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6E2F24B3;
-        Tue, 25 Apr 2023 09:22:19 -0700 (PDT)
-Received: from [10.1.196.40] (e121345-lin.cambridge.arm.com [10.1.196.40])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CD31A3F587;
-        Tue, 25 Apr 2023 09:21:31 -0700 (PDT)
-Message-ID: <45bc13a8-1442-2dd3-b9ea-1ed2f5962bac@arm.com>
-Date:   Tue, 25 Apr 2023 17:21:30 +0100
+        with ESMTP id S234211AbjDYQYX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 12:24:23 -0400
+Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3470983D0
+        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 09:24:22 -0700 (PDT)
+Received: by mail-pf1-x42a.google.com with SMTP id d2e1a72fcca58-63b4dfead1bso5000301b3a.3
+        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 09:24:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=raspberrypi.com; s=google; t=1682439861; x=1685031861;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=A+2RKgRTgqBi4nnqklCnSEcbyfURv8sZUbEANoOcuP4=;
+        b=EH/nDeUngCJIqYbbw+DwG6MDCM7wQTn4lsv64sERD0ifKI2xMcEoTh1t9NoiFT/H8E
+         RQayiVDoIZ+t7nG6DMfgqjTwfwBZv/utIXWa+fn6/soWq3fMJ/hKoH1pouW/N0T8TGXW
+         OSjxGKUG1/fPoHxIbkcjl0RIa/ZWj59SwD59j2aJbf/R2+15AEG5UY0Da5y/sNSWJo0/
+         LpbZK6eAOe1MNdLIP6HtmskT+MnuEfNt/J+Y1p9oxEFHsVRl9iC2gpAeHapNMbwEjNXR
+         pTYM2gbLVbsRpXDeN3CPFBzTIVPfVDOQcCXRbSqUQI/TL82jlswSlu5nq7RN1w+q+xen
+         XW5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682439861; x=1685031861;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=A+2RKgRTgqBi4nnqklCnSEcbyfURv8sZUbEANoOcuP4=;
+        b=DkvaU9QRm12oNEnTH5tW0zRUbSqT0aUzLF1UwJCvzAaNUz4GPQeWxY2z5a/07rgjYU
+         lVjYi/3J/jfuX7+jnyELdMHom6JOwhBD7A3rtA0ATZW9en1OBPGgtV3Zqtrh5i59sEj9
+         V4jQsA1JQdzdHI6Csj0FgRnNYSGSQMJHQ5ND0nR18conVseOdv6XB/1fR4NMVvEu08M6
+         Hqs3/40vboFYKtSdJJIUuEEx5Hh4mPQwwFFG13Uh5Mf/qUu8oQD0kT9u2Fds49gnkHot
+         UgWAdyyyHM1/dGkk4x84bTdtdiIF8sOFzWRTWL4uUfzzvcI1zrudTITYrFT9Ag/kmNr5
+         ufIw==
+X-Gm-Message-State: AAQBX9dgYZh531T9MSi2vBu8MfjzO1vCF1ZSVMCBwc1PdbujtRLCBUhW
+        /viHlIY8IlhxZSJA6cmtTcrVkRs+HDh6ARgq3Vtp+g==
+X-Google-Smtp-Source: AKy350Zk6IhxL7pHaxOqW5m1RWhVKXWFjnZfpRkOZdGzYd8jhbtiyGphLJZhXzRMBmt7heXl0jS7eAKQOD+Ua3A8nos=
+X-Received: by 2002:a17:90a:1c10:b0:24b:60d4:3bb1 with SMTP id
+ s16-20020a17090a1c1000b0024b60d43bb1mr16450324pjs.43.1682439861459; Tue, 25
+ Apr 2023 09:24:21 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [RFC PATCH 0/1] Categorize ARM dts directory
-Content-Language: en-GB
-To:     Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Daniel Palmer <daniel@0x0f.com>,
-        Ansuel Smith <ansuelsmth@gmail.com>,
-        Claudiu Beznea <Claudiu.Beznea@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Santiago Esteban <Santiago.Esteban@microchip.com>,
-        Cristian Birsan <Cristian.Birsan@microchip.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-actions@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-omap@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@axis.com, linux-aspeed@lists.ozlabs.org,
+References: <20230420122924.37997-1-iivanov@suse.de> <20230420122924.37997-3-iivanov@suse.de>
+ <0a23575f-8079-2d72-2151-dd0785984d1d@i2se.com>
+In-Reply-To: <0a23575f-8079-2d72-2151-dd0785984d1d@i2se.com>
+From:   Tim Gover <tim.gover@raspberrypi.com>
+Date:   Tue, 25 Apr 2023 17:24:10 +0100
+Message-ID: <CAAvKZ67WE4EvChxXbCw_Q-_VJWRb0p=qopYsWsXmhW6uFfp53w@mail.gmail.com>
+Subject: Re: [PATCH v3 2/3] ARM: dts: Add nvmem node for BCM2711 bootloader
+ public key
+To:     Stefan Wahren <stefan.wahren@i2se.com>
+Cc:     Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         linux-rpi-kernel@lists.infradead.org,
-        chrome-platform@lists.linux.dev, linux-renesas-soc@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        kernel@dh-electronics.com, linux-mediatek@lists.infradead.org,
-        openbmc@lists.ozlabs.org, linux-tegra@vger.kernel.org,
-        linux-oxnas@groups.io, linux-arm-msm@vger.kernel.org,
-        linux-unisoc@lists.infradead.org,
-        linux-rockchip@lists.infradead.org,
-        linux-realtek-soc@lists.infradead.org
-References: <20220328000915.15041-1-ansuelsmth@gmail.com>
- <CAFr9PXkgrRe-=E=GhNnZ4w1x_FMb97-_RmX6ND1vEd74_TbZSw@mail.gmail.com>
- <4ff4f171-c5f8-87af-aad1-5e7686292288@microchip.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <4ff4f171-c5f8-87af-aad1-5e7686292288@microchip.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
-        WEIRD_QUOTING autolearn=ham autolearn_force=no version=3.4.6
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        "Ivan T. Ivanov" <iivanov@suse.de>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/03/2022 9:50 am, Nicolas Ferre wrote:
-> Ansuel, All,
-> 
-> On 28/03/2022 at 10:55, Daniel Palmer wrote:
->> Hi Ansuel
->>
->> On Mon, 28 Mar 2022 at 09:09, Ansuel Smith <ansuelsmth@gmail.com> wrote:
->>>
->>> Hi,
->>> as the title say, the intention of this ""series"" is to finally 
->>> categorize
->>> the ARM dts directory in subdirectory for each oem.
->>
->> While I agree with this change and think it's for the good (browsing
->> the ARM dts directory at the moment is frustrating..) I think
->> buildroot and others need to be told about this as it'll potentially
->> break their kernel build scripting for ARM and probably messes up the
->> configs they have for existing boards.
-> 
-> This aspect mustn't be underestimated and I anticipate lots of issues 
-> during a long time on this particular topic of "build systems".
-> 
-> Another aspect is CI and public or private testing farms we all have 
-> running.
+On Tue, 25 Apr 2023 at 17:02, Stefan Wahren <stefan.wahren@i2se.com> wrote:
+>
+> Hi Tim,
+>
+> Am 20.04.23 um 14:29 schrieb Ivan T. Ivanov:
+> > From: Tim Gover <tim.gover@raspberrypi.com>
+> >
+> > Make a copy of the bootloader secure-boot public key available to the OS
+> > via an nvmem node. The placement information is populated by the
+> > Raspberry Pi firmware[1] if a public key is present in the BCM2711
+> > bootloader EEPROM.
+> >
+> > [1] https://www.raspberrypi.com/documentation/computers/configuration.html#nvmem-nodes
+> >
+> > Signed-off-by: Tim Gover <tim.gover@raspberrypi.com>
+> > [iivanov] Added link to documentation.
+> > Signed-off-by: Ivan T. Ivanov <iivanov@suse.de>
+> > ---
+> >   arch/arm/boot/dts/bcm2711-rpi.dtsi | 14 ++++++++++++++
+> >   1 file changed, 14 insertions(+)
+> >
+> > diff --git a/arch/arm/boot/dts/bcm2711-rpi.dtsi b/arch/arm/boot/dts/bcm2711-rpi.dtsi
+> > index 98817a6675b9..e30fbe84f9c3 100644
+> > --- a/arch/arm/boot/dts/bcm2711-rpi.dtsi
+> > +++ b/arch/arm/boot/dts/bcm2711-rpi.dtsi
+> > @@ -15,6 +15,7 @@ aliases {
+> >               ethernet0 = &genet;
+> >               pcie0 = &pcie0;
+> >               blconfig = &blconfig;
+> > +             blpubkey = &blpubkey;
+> >       };
+> >   };
+> >
+> > @@ -67,6 +68,19 @@ blconfig: nvram@0 {
+> >               no-map;
+> >               status = "disabled";
+> >       };
+> > +
+> > +     /*
+> > +      * RPi4 will copy the binary public key blob (if present) from the bootloader
+> > +      * into memory for use by the OS.
+>
+> is the public key also possibly available for CM4 and RPi 400?
 
-Yet another is if this affects what `make dtbs_install` does (I don't 
-know for sure, but I'd be inclined to suspect it might). Some distros 
-use that to deliver the DTBs as part of their kernel package, so if 
-paths suddenly change it could break end users' bootloader setups too.
+Yes, the public key is potentially available on CM4 and RPi 400.  If
+there is no public-key then the firmware will leave the status field
+as "disabled".
 
-Thanks,
-Robin.
-
-> These aspects always refrained me to change anything in the naming 
-> scheme of our DT files, but if we go in this direction, we must really 
-> be prepared and I'm still not convince it's worth it...
-> 
-> 
-> If this has to happen, I would also like to queue some file name changes 
-> to do all modifications in one go in order to lower the annoyance level 
-> of those who would need to adapt to those changes.
-> 
-> BTW, is there a common scheme for dts/dtsi file naming? Is it more 
-> enforced in one way or another for arm64 in a sense that I can take some 
-> norm as an example?
-> 
-> [..]
-> 
-> Best regards,
->    Nicolas
-> 
-> 
-> 
+>
+> > +      */
+> > +     blpubkey: nvram@1 {
+> > +             compatible = "raspberrypi,bootloader-public-key", "nvmem-rmem";
+> > +             #address-cells = <1>;
+> > +             #size-cells = <1>;
+> > +             reg = <0x0 0x0 0x0>;
+> > +             no-map;
+> > +             status = "disabled";
+> > +     };
+> >   };
+> >
+> >   &v3d {
