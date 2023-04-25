@@ -2,325 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FFDE6EDBA6
-	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 08:34:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C2BD6EDBE3
+	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 08:48:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233469AbjDYGez (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Apr 2023 02:34:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46512 "EHLO
+        id S233540AbjDYGsg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Apr 2023 02:48:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233466AbjDYGey (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 02:34:54 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B5374EE2;
-        Mon, 24 Apr 2023 23:34:51 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 55FB524E059;
-        Tue, 25 Apr 2023 14:34:49 +0800 (CST)
-Received: from EXMBX073.cuchost.com (172.16.6.83) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 25 Apr
- 2023 14:34:49 +0800
-Received: from [192.168.60.155] (180.164.60.184) by EXMBX073.cuchost.com
- (172.16.6.83) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 25 Apr
- 2023 14:34:48 +0800
-Message-ID: <f444f695-cd2b-a8e6-b22f-cfbe0cbeb55b@starfivetech.com>
-Date:   Tue, 25 Apr 2023 14:34:48 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v4 6/8] media: dt-bindings: Add bindings for JH7110 Camera
- Subsystem
-Content-Language: en-US
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        "Todor Tomov" <todor.too@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Ezequiel Garcia" <ezequiel@vanguardiasur.com.ar>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Eugen Hristev <eugen.hristev@collabora.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <changhuang.liang@starfivetech.com>
-References: <20230413035541.62129-1-jack.zhu@starfivetech.com>
- <20230413035541.62129-7-jack.zhu@starfivetech.com>
- <20230419061540.GB11679@pendragon.ideasonboard.com>
- <bf265594-3bd1-eba5-7a4a-910e331dcca8@starfivetech.com>
- <20230424120217.GA5444@pendragon.ideasonboard.com>
-From:   Jack Zhu <jack.zhu@starfivetech.com>
-In-Reply-To: <20230424120217.GA5444@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [180.164.60.184]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX073.cuchost.com
- (172.16.6.83)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S233527AbjDYGse (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 02:48:34 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8E2EBBBE
+        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 23:48:12 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-94a34a14a54so992871966b.1
+        for <devicetree@vger.kernel.org>; Mon, 24 Apr 2023 23:48:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1682405291; x=1684997291;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=M1ZE7zkQJkA5e8pU4DAT31Q8ZdOD3Fw5YHswnvzUZmg=;
+        b=olsY2tC3Gx43o+1zlMobkyWpvjqynYcSpBNJpha9GJ236pWS48I5T6fRMsjnEXvXW6
+         nPi0bqOs+1TlaWLvYdtK05Phwd64bnf8h8lpwCoavOQKecIrT39b+c9OXon5xQQ/G8v5
+         C9ljuQugTDRKMyiQ5qglbXWyDGR5BHf2xgBOnY4Ic4pvsZ2wdQd/paK4gDRXz5hVaFo1
+         4sGV2PZjTYKCVn15Pw/Akl3g3hkRNCNsRHG7vFd0Yq0YJiWgig0JZOf8yfF87vpttcMF
+         HG7HPRei4vraUYDcnXZreqsqGm02uputbga0Nei8umyDLFxVgq8OAfyloV/3rrSUMB2q
+         yv+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682405291; x=1684997291;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=M1ZE7zkQJkA5e8pU4DAT31Q8ZdOD3Fw5YHswnvzUZmg=;
+        b=FIjebuGKtTL+RM+fqC2lx8v8WqoFIHMeVcYQGfvUydJw3xOjbMcZWwEsU2YYH/TgER
+         4I7UYy8raODziiw0kmmUV/y8Z7c/W6LIDzhVBgTASCFNAEsbrRFZCVT5Y0xPVYtVnGJP
+         c2udaoPJAB66rGq9vGcax8MSxpSROXjt+8QY9QDBMaPxXdHdSXT9Qf7xc7gjlY/IhjfG
+         7wQFM0Ry5zRVkDMTSRZRYM5VrEJ/dJpn6YO8lq9sgBm3/W+aIOX1Ps8E2C0Bb/E61k93
+         zd0qxhD2pacmLp3nWSNiRKCMPvjjPSBqq0W6fAzpWIK0hapi2HMcYn5AXRp7I5Zxkw1y
+         ATcw==
+X-Gm-Message-State: AAQBX9f37+CPw8ulwAEdDn6SfW9/34szbWek6uYHV1A7tdEg1J6t0DCW
+        hoT9ilVjuDVsJSdqo/qbSeMvzA==
+X-Google-Smtp-Source: AKy350Z1GFt6IUApk1g0YPdKIdF8wPBWzQ1iG4DdhA44udPMwwV1bqNKEmVs8J1NANW0v9bSPKkIgg==
+X-Received: by 2002:a17:907:38c:b0:94e:fdec:67e2 with SMTP id ss12-20020a170907038c00b0094efdec67e2mr12906256ejb.77.1682405291266;
+        Mon, 24 Apr 2023 23:48:11 -0700 (PDT)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id sd14-20020a170906ce2e00b0094f5d1bbb21sm6340135ejb.102.2023.04.24.23.48.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Apr 2023 23:48:10 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Tue, 25 Apr 2023 08:48:10 +0200
+Message-Id: <CS5MWGNURMH4.2VD8BIIJ3V3Q4@otso>
+Subject: Re: [PATCH RFC 0/4] Add WCN3988 Bluetooth support for Fairphone 4
+From:   "Luca Weiss" <luca.weiss@fairphone.com>
+To:     "Konrad Dybcio" <konrad.dybcio@linaro.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        "Eric Dumazet" <edumazet@google.com>,
+        "Jakub Kicinski" <kuba@kernel.org>,
+        "Paolo Abeni" <pabeni@redhat.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "Balakrishna Godavarthi" <bgodavar@codeaurora.org>,
+        "Rocky Liao" <rjliao@codeaurora.org>,
+        "Marcel Holtmann" <marcel@holtmann.org>,
+        "Johan Hedberg" <johan.hedberg@gmail.com>,
+        "Luiz Augusto von Dentz" <luiz.dentz@gmail.com>,
+        "Andy Gross" <agross@kernel.org>,
+        "Bjorn Andersson" <andersson@kernel.org>
+Cc:     <~postmarketos/upstreaming@lists.sr.ht>,
+        <phone-devel@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-bluetooth@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
+X-Mailer: aerc 0.14.0
+References: <20230421-fp4-bluetooth-v1-0-0430e3a7e0a2@fairphone.com>
+ <0f2af683-07f9-7fc7-a043-ee55e41d65c3@linaro.org>
+In-Reply-To: <0f2af683-07f9-7fc7-a043-ee55e41d65c3@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Laurent,
+On Sat Apr 22, 2023 at 2:03 PM CEST, Konrad Dybcio wrote:
+>
+>
+> On 21.04.2023 16:11, Luca Weiss wrote:
+> > Just to start with the important part why this is an RFC:
+> >=20
+> > While Bluetooth chip init works totally fine and bluez seems to be
+> > fairly happy with it, there's a (major) problem with scanning, as shown
+> > with this bluetoothctl snippet and dmesg snippet:
+> >=20
+> >   [bluetooth]# scan on
+> >   Failed to start discovery: org.bluez.Error.InProgress
+> >=20
+> >   [  202.371374] Bluetooth: hci0: Opcode 0x200b failed: -16
+> >=20
+> > This opcode should be the following:
+> >=20
+> >   include/net/bluetooth/hci.h:#define HCI_OP_LE_SET_SCAN_PARAM    0x200=
+b
+> Not a bluetooth expert or anything, but does that thing support
+> bluetooth LE?
 
-On 2023/4/24 20:02, Laurent Pinchart wrote:
-> Hi Jack,
-> 
-> On Thu, Apr 20, 2023 at 04:51:39PM +0800, Jack Zhu wrote:
->> On 2023/4/19 14:15, Laurent Pinchart wrote:
->> > On Thu, Apr 13, 2023 at 11:55:39AM +0800, Jack Zhu wrote:
->> >> Add the bindings documentation for Starfive JH7110 Camera Subsystem
->> >> which is used for handing image sensor data.
->> >> 
->> >> Signed-off-by: Jack Zhu <jack.zhu@starfivetech.com>
->> >> ---
->> >>  .../bindings/media/starfive,jh7110-camss.yaml | 164 ++++++++++++++++++
->> >>  MAINTAINERS                                   |   7 +
->> >>  2 files changed, 171 insertions(+)
->> >>  create mode 100644 Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
->> >> 
->> >> diff --git a/Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml b/Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
->> >> new file mode 100644
->> >> index 000000000000..4cd144f1b845
->> >> --- /dev/null
->> >> +++ b/Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
->> >> @@ -0,0 +1,164 @@
->> >> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> >> +
->> >> +%YAML 1.2
->> >> +---
->> >> +$id: http://devicetree.org/schemas/media/starfive,jh7110-camss.yaml#
->> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> >> +
->> >> +title: Starfive SoC CAMSS ISP
->> >> +
->> >> +maintainers:
->> >> +  - Jack Zhu <jack.zhu@starfivetech.com>
->> >> +  - Changhuang Liang <changhuang.liang@starfivetech.com>
->> >> +
->> >> +description:
->> >> +  The Starfive CAMSS ISP is a Camera interface for Starfive JH7110 SoC. It
->> >> +  consists of a VIN controller (Video In Controller, a top-level control until)
->> >> +  and an ISP.
->> >> +
->> >> +properties:
->> >> +  compatible:
->> >> +    const: starfive,jh7110-camss
->> >> +
->> >> +  reg:
->> >> +    maxItems: 2
->> >> +
->> >> +  reg-names:
->> >> +    items:
->> >> +      - const: syscon
->> >> +      - const: isp
->> >> +
->> >> +  clocks:
->> >> +    maxItems: 7
->> >> +
->> >> +  clock-names:
->> >> +    items:
->> >> +      - const: apb_func
->> >> +      - const: wrapper_clk_c
->> >> +      - const: dvp_inv
->> >> +      - const: axiwr
->> >> +      - const: mipi_rx0_pxl
->> >> +      - const: ispcore_2x
->> >> +      - const: isp_axi
->> >> +
->> >> +  resets:
->> >> +    maxItems: 6
->> >> +
->> >> +  reset-names:
->> >> +    items:
->> >> +      - const: wrapper_p
->> >> +      - const: wrapper_c
->> >> +      - const: axird
->> >> +      - const: axiwr
->> >> +      - const: isp_top_n
->> >> +      - const: isp_top_axi
->> >> +
->> >> +  power-domains:
->> >> +    items:
->> >> +      - description: JH7110 ISP Power Domain Switch Controller.
->> >> +
->> >> +  interrupts:
->> >> +    maxItems: 4
->> >> +
->> >> +  ports:
->> >> +    $ref: /schemas/graph.yaml#/properties/ports
->> >> +
->> >> +    properties:
->> >> +      port@0:
->> >> +        $ref: /schemas/graph.yaml#/$defs/port-base
->> >> +        unevaluatedProperties: false
->> >> +        description: Input port for receiving DVP data.
->> >> +
->> >> +        properties:
->> >> +          endpoint:
->> >> +            $ref: video-interfaces.yaml#
->> >> +            unevaluatedProperties: false
->> >> +
->> >> +            properties:
->> >> +              bus-width:
->> >> +                const: 8
->> >> +
->> >> +              data-shift:
->> >> +                const: 2
->> > 
->> > As far as I can tell, those two properties are not handled by the
->> > driver. I assume this is because the driver doesn't support the DVP
->> > input yet. That's fine, but it makes it a bit hard to review the device
->> > tree. Could you provide some information about the DVP hardware
->> > interface ? Does it support both BT.656 and sync signals, or just sync
->> > signals ? Are the polarities of the clock and h/v sync controllable ?
->> > Is the parallel input bus 8-bit wide or are other options supported ?
->> > And finally, what are you modelling with data-shift: 2 ?
->> 
->> Hello Laurent,
->> 
->> The DVP hardware supports BT.656 and sync signals, can control the
->> polarities of h/v sync, supports 8/10/12 bit wide, and data-shift: 2 is
->> line 9-2.
-> 
-> Thank you for the information. Endpoints for port@0 should then require
-> bus-type. The hsync-active and vsync-active should be listed with
-> default values and be optional. bus-width should have 8, 10 and 12 as
-> supported values, and be required, or have a default (I think making it
-> required is best). data-shift should list supported values too,
-> including 0, and be optional with a default of 0.
-> 
+I don't know too much about Bluetooth details either, but hasn't
+Bluetooth LE been a consistently supported thing since like 10 years?
 
-Thank you for your suggestion. I will make the following modifications:
+All the info I can easily find just states SM7225 SoC supports
+"Bluetooth 5.1".
 
-            properties:
-              bus-type:
-                enum: [5, 6]
+Regards
+Luca
 
-              bus-width:
-                enum: [8, 10, 12]
+>
+> Konrad
+> >=20
+> > Unfortunately trying various existing code branches in the Bluetooth
+> > driver doesn't show any sign of making this work and I don't really kno=
+w
+> > where to look to debug this further.
+> >=20
+> > On the other hand "discoverable on" makes the device show up on other
+> > devices during scanning , so the RF parts of the Bluetooth chip are
+> > generally functional for sure.
+> >=20
+> > Any ideas are welcome.
+> >=20
+> > @Bjorn: Patch "arm64: dts: qcom: sm6350: add uart1 node" should be fine
+> > to take regardless the RFC status, I don't think the problem is caused
+> > there.
+> >=20
+> > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> > ---
+> > Luca Weiss (4):
+> >       dt-bindings: net: qualcomm: Add WCN3988
+> >       Bluetooth: btqca: Add WCN3988 support
+> >       arm64: dts: qcom: sm6350: add uart1 node
+> >       arm64: dts: qcom: sm7225-fairphone-fp4: Add Bluetooth
+> >=20
+> >  .../bindings/net/bluetooth/qualcomm-bluetooth.yaml |  2 +
+> >  arch/arm64/boot/dts/qcom/sm6350.dtsi               | 63 ++++++++++++++=
+++++++++
+> >  arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts  | 17 ++++++
+> >  drivers/bluetooth/btqca.c                          | 13 ++++-
+> >  drivers/bluetooth/btqca.h                          | 12 ++++-
+> >  drivers/bluetooth/hci_qca.c                        | 12 +++++
+> >  6 files changed, 115 insertions(+), 4 deletions(-)
+> > ---
+> > base-commit: cf4c0112a0350cfe8a63b5eb3377e2366f57545b
+> > change-id: 20230421-fp4-bluetooth-b36a0e87b9c8
+> >=20
+> > Best regards,
 
-              data-shift:
-                enum: [0, 2]
-                default: 0
-
-              hsync-active:
-                enum: [0, 1]
-                default: 1
-
-              vsync-active:
-                enum: [0, 1]
-                default: 1
-            
-            required:
-              - bus-type
-              - bus-width
-
->> >> +
->> >> +      port@1:
->> >> +        $ref: /schemas/graph.yaml#/properties/port
->> >> +        description: Input port for receiving CSI data.
->> >> +
->> >> +    required:
->> >> +      - port@0
->> >> +      - port@1
->> >> +
->> >> +required:
->> >> +  - compatible
->> >> +  - reg
->> >> +  - reg-names
->> >> +  - clocks
->> >> +  - clock-names
->> >> +  - resets
->> >> +  - reset-names
->> >> +  - power-domains
->> >> +  - interrupts
->> >> +  - ports
->> >> +
->> >> +additionalProperties: false
->> >> +
->> >> +examples:
->> >> +  - |
->> >> +    isp@19840000 {
->> >> +        compatible = "starfive,jh7110-camss";
->> >> +        reg = <0x19840000 0x10000>,
->> >> +              <0x19870000 0x30000>;
->> >> +        reg-names = "syscon", "isp";
->> >> +        clocks = <&ispcrg 0>,
->> >> +                 <&ispcrg 13>,
->> >> +                 <&ispcrg 2>,
->> >> +                 <&ispcrg 12>,
->> >> +                 <&ispcrg 1>,
->> >> +                 <&syscrg 51>,
->> >> +                 <&syscrg 52>;
->> >> +        clock-names = "apb_func",
->> >> +                      "wrapper_clk_c",
->> >> +                      "dvp_inv",
->> >> +                      "axiwr",
->> >> +                      "mipi_rx0_pxl",
->> >> +                      "ispcore_2x",
->> >> +                      "isp_axi";
->> >> +        resets = <&ispcrg 0>,
->> >> +                 <&ispcrg 1>,
->> >> +                 <&ispcrg 10>,
->> >> +                 <&ispcrg 11>,
->> >> +                 <&syscrg 41>,
->> >> +                 <&syscrg 42>;
->> >> +        reset-names = "wrapper_p",
->> >> +                      "wrapper_c",
->> >> +                      "axird",
->> >> +                      "axiwr",
->> >> +                      "isp_top_n",
->> >> +                      "isp_top_axi";
->> >> +        power-domains = <&pwrc 5>;
->> >> +        interrupts = <92>, <87>, <88>, <90>;
->> >> +
->> >> +        ports {
->> >> +            #address-cells = <1>;
->> >> +            #size-cells = <0>;
->> >> +            port@0 {
->> >> +                reg = <0>;
->> >> +                vin_from_sc2235: endpoint {
->> >> +                    remote-endpoint = <&sc2235_to_vin>;
->> >> +                    bus-width = <8>;
->> >> +                    data-shift = <2>;
->> >> +                    hsync-active = <1>;
->> >> +                    vsync-active = <0>;
->> >> +                    pclk-sample = <1>;
->> >> +                };
->> >> +            };
->> >> +
->> >> +            port@1 {
->> >> +                reg = <1>;
->> >> +                vin_from_csi2rx: endpoint {
->> >> +                    remote-endpoint = <&csi2rx_to_vin>;
->> >> +                };
->> >> +            };
->> >> +        };
->> >> +    };
->> >> diff --git a/MAINTAINERS b/MAINTAINERS
->> >> index bbb8b5c0187b..b8c76b0d7eb3 100644
->> >> --- a/MAINTAINERS
->> >> +++ b/MAINTAINERS
->> >> @@ -19909,6 +19909,13 @@ M:	Ion Badulescu <ionut@badula.org>
->> >>  S:	Odd Fixes
->> >>  F:	drivers/net/ethernet/adaptec/starfire*
->> >>  
->> >> +STARFIVE CAMERA SUBSYSTEM DRIVER
->> >> +M:	Jack Zhu <jack.zhu@starfivetech.com>
->> >> +M:	Changhuang Liang <changhuang.liang@starfivetech.com>
->> >> +L:	linux-media@vger.kernel.org
->> >> +S:	Maintained
->> >> +F:	Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
->> >> +
->> >>  STARFIVE DEVICETREES
->> >>  M:	Emil Renner Berthing <kernel@esmil.dk>
->> >>  S:	Maintained
-> 
