@@ -2,57 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 770C56EE525
-	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 17:59:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 311426EE528
+	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 18:00:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234644AbjDYP7V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Apr 2023 11:59:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38822 "EHLO
+        id S234311AbjDYQAH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Apr 2023 12:00:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234631AbjDYP7N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 11:59:13 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF8A4D31A
-        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 08:59:11 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-95316faa3a8so1111433766b.2
-        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 08:59:11 -0700 (PDT)
+        with ESMTP id S234360AbjDYQAG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 12:00:06 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10109CC19
+        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 09:00:05 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-959a3e2dd27so495238266b.3
+        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 09:00:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=semihalf.com; s=google; t=1682438350; x=1685030350;
+        d=semihalf.com; s=google; t=1682438403; x=1685030403;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=WlVv7Swj2O3m3L5cE82fdv0axa/JD3/qF8vAE3hvBOE=;
-        b=ll3RRXB/RVF8ksY5feM+iRM7O6hUuJS5r7TOWhZzn0+nzyq/FqkwBI8cPAlpTaR8ia
-         GimbgCjjiy6GHHDfIIy92w7aeFKEW9Z/LtX5DUtoNnv6TchZQISjqelJOnriqe4ZRoTI
-         wHEyr/Ju7ICpKgS3EhsURxGqSivt94F3p0lIbtrSWA7SZ2QTPtLqKCKtorkdpX1uL4FW
-         SRSv4zstbLnKwasiWRiPB67GXc/WlNS2+/Kv016dLdDmMw9Q3jTCgMmyYtvSlWA6dicX
-         JHUoOC3q0WNIS1iFKxREMP5DgaznrRjIaG+qQxQQytDeCPrugYODBVIgHX0cnq8hL9zC
-         4pow==
+        bh=WW5w9nK23U/V6j0PQ9boJ4GotqhlTheLhPRyr44ceZ0=;
+        b=ACrFG0mlKY8ai67MpmptwG7BxbOUWdzpuxNABQsdI2BDCrnJvFKrVEeDFCXntmZweH
+         rSPZK2kbXftvUvAH7T/eKbLT7ZHfE98ahClF07TMys1W7L7RglUZ5LeywE5TxCEd50uP
+         EkVuxhq7DIs586WPuVM/Y19BeAN/u2o+7jQN7ky83ja8tPhQEopfLNBNF7VSDy5l/kVJ
+         7J7lzpViF5ropULfhpUgj4j9qavyto9KxOwFp7eBzAuKMLjc6MbaJ6kkzoj7gMJnelJT
+         0mWU/+C9QoE/KOdMzuGEbeuHLU0EQ1tygGwOI/0H6bWKAdOl4OlkeLxin6QMf6Bcx29G
+         R7sA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682438350; x=1685030350;
+        d=1e100.net; s=20221208; t=1682438403; x=1685030403;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=WlVv7Swj2O3m3L5cE82fdv0axa/JD3/qF8vAE3hvBOE=;
-        b=RDArl1Tf3nGh9kpxhbyuADSN1xpGlAM6YZo9C2smgErR6nvMaTcjIM4dMWs1h0ZZg/
-         lE0NBsFC/rDXgY1/UvVsMryC/8T0QKHS3ILwgO1lu5eVR5KAiumh6CF8rX373P4JwaM3
-         k3IKKgIAy0wj4DaWbpDbbOar5s3NqEXzJubzmUeO+9RhOESW2c3sCw40US9JhyE5oREa
-         kzd6apojOvfiFMgLtufF7J+xJKTZOOGXK9CTTICpJhn1ufwf9dbSYOLJjF/P4Y9DEhNt
-         +O3dxjmjFUw4ixCrcMVTESYa7e3LYFavJKbQT3XHgpjp2w986EFFq5VlhX6Cub5Vt4fq
-         9+lQ==
-X-Gm-Message-State: AAQBX9emclRg9H9dUqd45YK4FF6gRNgIVbfr3Qnt0URnDrHiSvDoDv2D
-        GG/WXUh4Oslg+BoQfsq2aM/M+IqRLChAT6CTTOhp9w==
-X-Google-Smtp-Source: AKy350Z6xV1W9xmqBRf3W6EJR3Kb2ztwycysTEDFucgDTYqAdWhplAoM2OTMDqL6AmozTFa+wZ/ng98FtyJI1mEGtSQ=
-X-Received: by 2002:a17:906:2646:b0:94f:31da:8c37 with SMTP id
- i6-20020a170906264600b0094f31da8c37mr14188025ejc.52.1682438350230; Tue, 25
- Apr 2023 08:59:10 -0700 (PDT)
+        bh=WW5w9nK23U/V6j0PQ9boJ4GotqhlTheLhPRyr44ceZ0=;
+        b=g18m6of/lgm61wnUC7f1f789e0LjVtVSJX4ZNoAnBFUOrMpZwJrDSvGrdykZcEbXy4
+         Kkh+awpLbaSmrrUKsc/3VHtF1RQ11Wa+2LSk5GXVYS//Hh0yDO1f52Mfoc3FXKUgOH4i
+         uobV+ecSCvFSsdWPXXFPcRVDynY7ZtVdpXRZNXEadI4uvlxMltx5nUr5WMQHBu5VRijF
+         t5UZBhheHtD4HRf4xQiiWTdI3kqSDpqsz9kajaJjBpQN8Ax+nki/JhQ+gOM3fRODm/9Q
+         fV+rn+SmJXpRkqw1cAreH/a/DqBh4P+PvPNhlbZB1CXVqQQjVuU3H0fE2cgZpIZTx/+O
+         V3yQ==
+X-Gm-Message-State: AAQBX9fTbOXmdRwUjcqc6tSj9FrRqkBOogeDovI3JOORQ9wzeAUkaSrQ
+        dSTeMSl1Tj5Y81EhgNg6qwdFetsYKLBJr8olqDPbmg==
+X-Google-Smtp-Source: AKy350bRMqreBk2BEw7LdRmTw8kY2PHkOlhrblZA47zUSJSl7M7YQwo036CjMlDB2cAO15HNV0bXA4XQxkPtwEebJow=
+X-Received: by 2002:a17:907:90c4:b0:94e:ff23:992a with SMTP id
+ gk4-20020a17090790c400b0094eff23992amr12659918ejb.59.1682438403555; Tue, 25
+ Apr 2023 09:00:03 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230414140203.707729-1-pan@semihalf.com> <6d90ad41-bb2d-41a0-8a4a-922b78967a2e@sirena.org.uk>
-In-Reply-To: <6d90ad41-bb2d-41a0-8a4a-922b78967a2e@sirena.org.uk>
+References: <20230414140203.707729-1-pan@semihalf.com> <20230414140203.707729-2-pan@semihalf.com>
+ <e64b438e-1205-4e54-b8c0-1b9a5d074752@sirena.org.uk>
+In-Reply-To: <e64b438e-1205-4e54-b8c0-1b9a5d074752@sirena.org.uk>
 From:   =?UTF-8?Q?Pawe=C5=82_Anikiel?= <pan@semihalf.com>
-Date:   Tue, 25 Apr 2023 17:58:59 +0200
-Message-ID: <CAF9_jYRqr498j=5rgeqELEaZEkMRKqBTiNvRJC2ZduZO+399BQ@mail.gmail.com>
-Subject: Re: [PATCH 0/9] Add Chameleon v3 ASoC audio
+Date:   Tue, 25 Apr 2023 17:59:52 +0200
+Message-ID: <CAF9_jYTyhJZaCk1zN93Rr5AXAmpk4nu6z0Z9+RQb4HxGQ=zZLQ@mail.gmail.com>
+Subject: Re: [PATCH 1/9] ASoC: Add Chameleon v3 audio
 To:     Mark Brown <broonie@kernel.org>
 Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, lgirdwood@gmail.com, perex@perex.cz,
@@ -71,27 +72,172 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 14, 2023 at 6:47=E2=80=AFPM Mark Brown <broonie@kernel.org> wro=
+Thank you for all the comments, I'm sorry for taking long to respond.
+
+On Fri, Apr 14, 2023 at 7:19=E2=80=AFPM Mark Brown <broonie@kernel.org> wro=
 te:
 >
-> On Fri, Apr 14, 2023 at 04:01:54PM +0200, Pawe=C5=82 Anikiel wrote:
+> On Fri, Apr 14, 2023 at 04:01:55PM +0200, Pawe=C5=82 Anikiel wrote:
 >
-> >  sound/soc/Makefile                            |   1 +
-> >  sound/soc/chameleonv3/Kconfig                 |   7 +
-> >  sound/soc/chameleonv3/Makefile                |   2 +
+> > ---
+> >  .../boot/dts/socfpga_arria10_chameleonv3.dts  |  28 ++
+>
+> Updates to the DT should be in a separate patch.
+
+Ok, I'll fix in next patchset
+
+>
 > >  sound/soc/chameleonv3/chv3-audio.c            | 111 ++++++
 > >  sound/soc/chameleonv3/chv3-i2s.c              | 347 ++++++++++++++++++
 > >  sound/soc/chameleonv3/chv3-it68051.c          |  41 +++
 >
-> Please at least make a directory for Google as a vendor, we don't want
-> people adding directories for each individual product. That said
-> generally we add machine drivers in the directory for the relevant SoC
-> family, is there any reason that pattern isn't followed here?
+> The machine driver and board drivers (if needed) should also be separate
+> patches - one patch per driver.
 
-The board is based around an Intel Arria 10 SoC FPGA. The ring buffer
-device and all the routing is implemented inside the FPGA. Is it ok to
-put the machine driver in the product directory in this case?. As for
-the directory path, would sound/soc/google/chameleonv3/* be ok?
+Ok, I'll fix in next patchset
+
+>
+> > +config SND_SOC_CHV3
+> > +       tristate "SoC Audio support for Chameleon v3"
+> > +       select SND_SOC_SSM2602
+> > +       select SND_SOC_SSM2602_I2C
+> > +       help
+> > +         Say Y if you want to add audio support for the Chameleon v3.
+>
+> It woudl be better to have a separate selectable symbol for each drier.
+
+I'm not sure about this. If I disable just one driver, the entire card
+fails to probe (even if some audio device doesn't need that driver).
+Does it then make sense to be able to deselect some drivers? Please
+correct me if I'm misunderstanding.
+
+>
+> > +static int chv3_ssm2603_hw_params(struct snd_pcm_substream *substream,
+> > +                       struct snd_pcm_hw_params *params)
+> > +{
+> > +     struct snd_soc_pcm_runtime *rtd =3D asoc_substream_to_rtd(substre=
+am);
+> > +     struct snd_soc_dai *dai =3D asoc_rtd_to_codec(rtd, 0);
+> > +
+> > +     return snd_soc_dai_set_sysclk(dai, 0, 22579200, SND_SOC_CLOCK_IN)=
+;
+> > +}
+>
+> This could be done once at init, though in general I can't tell why this
+> isn't audio-graph-card.
+
+I will read up on audio-graph-card and see if it's possible to use here
+
+>
+> > + * Because of the two pointer design, the ring buffer can never be ful=
+l. With
+> > + * capture this isn't a problem, because the hardware being the produc=
+er
+> > + * will wait for the consumer index to move out of the way.  With play=
+back,
+> > + * however, this is problematic, because ALSA wants to fill up the buf=
+fer
+> > + * completely when waiting for hardware. In the .ack callback, the dri=
+ver
+> > + * would have to wait for the consumer index to move out of the way by
+> > + * busy-waiting, which would keep stalling the kernel for quite a long=
+ time.
+> > + *
+> > + * The workaround to this problem is to "lie" to ALSA that the hw_poin=
+ter
+> > + * is one period behind what it actually is (see chv3_dma_pointer). Th=
+is
+> > + * way, ALSA will not try to fill up the entire buffer, and all callba=
+cks
+> > + * are wait-free.
+>
+> Would it not be better to just lag by one (or some small number of)
+> sample instead?
+
+The benefit of lagging by an entire period is that we get an IRQ when
+the first period is processed, which means we can drop the first call
+to snd_pcm_period_elapsed() and have everything be coherent.
+
+Having said that, I did try to remove that logic and simply delay
+hw_pointer by one frame, and it appears to work (the playback seems
+fine and without glitches). However, I'm worried about calling
+snd_pcm_period_elapsed() and then reporting that the hw_pointer hasn't
+actually reached the end of the period. Is that ok to do?
+
+>
+> > +static irqreturn_t chv3_i2s_isr(int irq, void *data)
+> > +{
+> > +     struct chv3_i2s_dev *i2s =3D data;
+> > +     u32 reg;
+> > +
+> > +     reg =3D readl(i2s->iobase_irq + I2S_IRQ_CLR);
+> > +     if (!reg)
+> > +             return IRQ_NONE;
+> > +
+> > +     if (reg & I2S_IRQ_RX_BIT)
+> > +             snd_pcm_period_elapsed(i2s->rx_substream);
+> > +
+> > +     if (reg & I2S_IRQ_TX_BIT) {
+> > +             if (i2s->tx_ready)
+> > +                     snd_pcm_period_elapsed(i2s->tx_substream);
+> > +             i2s->tx_ready =3D 1;
+> > +     }
+> > +
+> > +     writel(reg, i2s->iobase_irq + I2S_IRQ_CLR);
+> > +
+> > +     return IRQ_HANDLED;
+> > +}
+>
+> Really we should only ack things that were handled here and report
+> appropriately, that's defensive against bugs causing interrupts to
+> scream and shared interrupts.
+
+What do you mean by handled? Should I check the hardware pointer and
+check if a period really has elapsed?
+
+>
+> > +     dev_info(&pdev->dev, "probed\n");
+>
+> This is just noise, remove it.
+
+Ok
+
+>
+> > +++ b/sound/soc/chameleonv3/chv3-it68051.c
+> > @@ -0,0 +1,41 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +#include <linux/module.h>
+> > +#include <sound/soc.h>
+> > +
+> > +static struct snd_soc_dai_driver it68051_dai =3D {
+> > +     .name =3D "it68051-hifi",
+> > +     .capture =3D {
+> > +             .stream_name =3D "Capture",
+> > +             .channels_min =3D 8,
+> > +             .channels_max =3D 8,
+> > +             .rates =3D SNDRV_PCM_RATE_CONTINUOUS,
+> > +             .formats =3D SNDRV_PCM_FMTBIT_S32_LE,
+> > +     },
+> > +};
+> > +
+> > +static const struct snd_soc_component_driver soc_component_dev_it68051=
+ =3D {
+> > +};
+>
+> This looks awfully like it's a generic CODEC driver for a device with no
+> control available,
+
+Yes, it's a dummy capture-only codec with fixed 8 channels, arbitrary
+rate, and S32_LE format.
+
+> why is it not being added as a CODEC?
+
+Do you mean I should put it in sound/soc/codecs/?
+
+Also, I used the name of the HDMI receiver chip (IT68051), but really
+this goes through some extra processing in an FPGA, so the result has
+little in common with the chip itself. Do you have any advice on how
+it should be named?
 
 Regards,
 Pawe=C5=82
