@@ -2,184 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 67E006EE394
-	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 16:02:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32BB06EE3A8
+	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 16:09:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233807AbjDYOCx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Apr 2023 10:02:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51640 "EHLO
+        id S234215AbjDYOJ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Apr 2023 10:09:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234304AbjDYOCw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 10:02:52 -0400
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B25B61A4;
-        Tue, 25 Apr 2023 07:02:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1682431368; x=1713967368;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=l6q1dc5C1/q1Geq8yt82kUpPLs/7UC9mtgVUN2I56UE=;
-  b=h5LpmLC4zIWnHrVCNUQ/ECOWOAd+4R/QT75d9q2qc5VctZZaxAc3Gj6y
-   Xjp+cxDNpW3Si7YkTZ1H5p0OJMi8VRLamHllThRqBLou1Eu0ngqQGhZn5
-   G63f4GyiGr/ZtnV91Fhl36qYN9F972kpIbqBp0XzB+ISpJRWxT9BFPTUk
-   4YMpZdXj0U9Aq0CDkvfOG6QNs3rzgBbdF9agu/Iy4w1xrGtMkk3ISVX7Z
-   834mf+lwqAG3NIl+IOs0HsECaBIseIEaFZ+FD33lmXRoboRFN/WsYoYUz
-   RiFC/bD+PCU4+SSosNOZ4/3WXaV5soFRZsw7FA6xV2I6ezOhxGc1Fac51
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="412062305"
-X-IronPort-AV: E=Sophos;i="5.99,225,1677571200"; 
-   d="scan'208";a="412062305"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Apr 2023 07:02:47 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="837448058"
-X-IronPort-AV: E=Sophos;i="5.99,225,1677571200"; 
-   d="scan'208";a="837448058"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
-  by fmsmga001.fm.intel.com with ESMTP; 25 Apr 2023 07:02:43 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1prJFh-000jRg-39;
-        Tue, 25 Apr 2023 14:02:41 +0000
-Date:   Tue, 25 Apr 2023 22:01:57 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Jacky Huang <ychuang570808@gmail.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
-        gregkh@linuxfoundation.org, jirislaby@kernel.org,
-        tmaimon77@gmail.com, catalin.marinas@arm.com, will@kernel.org
-Cc:     oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-serial@vger.kernel.org,
-        arnd@arndb.de, schung@nuvoton.com, mjchen@nuvoton.com,
-        Jacky Huang <ychuang3@nuvoton.com>
-Subject: Re: [PATCH v8 10/11] tty: serial: Add Nuvoton ma35d1 serial driver
- support
-Message-ID: <202304252118.P0ZCvlQO-lkp@intel.com>
-References: <20230425102418.185783-11-ychuang570808@gmail.com>
+        with ESMTP id S234220AbjDYOJZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 10:09:25 -0400
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F14A10EB;
+        Tue, 25 Apr 2023 07:09:24 -0700 (PDT)
+Received: by mail-pf1-x434.google.com with SMTP id d2e1a72fcca58-63b73203e0aso35703074b3a.1;
+        Tue, 25 Apr 2023 07:09:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1682431763; x=1685023763;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=3xw+BHdORTGVKTA8blkRS/DTjnBNoDy+SuKaT8k7XdY=;
+        b=msswW182Tyq0PSGUu7Weqp4+k0V9RWFRWUxa7nA81uhcXyAbGUDXqj+gRDf+diBp2c
+         2uHeODOIamsabfhANrwTdGh2FYWnKB09fAeJn3Ek8Iqz5IQvtvTeidsHEwD3K8AizUOg
+         iiWGx+NqTJRzCijWAqLwupWs1YGI13fC4ijCidxzLdBcZJ6aI6YQv0uEvLkfTHM6MoRT
+         y44920VH1JLyjQpJdCIkYDn+FA61vhdswxqknrnHWpImlWWhCTKSr7lqXXIquTq48ns+
+         5ek4j9a07czgUo8vkDIfW+Ednu0ouFzXjGCV1tolg5cwYh416zMVr3ejO4upV/opnbKp
+         yQDg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682431763; x=1685023763;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3xw+BHdORTGVKTA8blkRS/DTjnBNoDy+SuKaT8k7XdY=;
+        b=gSdrpzd9xm72ahr+RcisRZ1UuxjMaELCo01dxkhnQpgIC1VlNnCJrGz8830KsWeE/8
+         sIXGbcBEEVC4Qxz7sXXfaihCM5ZU0pW7pd8t37Rxp9dH6gDr0ugtbBhpBWvKKHEpyKoX
+         nLs2lxUSX1NRB0C49fCGXAcZn3bJMAy0VqYkyUuQQreP7yqLxrG5AVrUqZ6APLhn3ROn
+         U3efoV54MPzG6pONoB1icKSz7GyBDfDMjn257nLz4zmSYUdbvYbp17/ZWMXLHyhWEOc4
+         ktzv/8MrHE40Xxl+BKjvcxMXC04KhqfOUmNXj+ZFUHnwnb0oXyy2Yex5WckvlFf5yg8l
+         zXBQ==
+X-Gm-Message-State: AAQBX9dC4O6AKjlPojsYJIFW3mBYAH2Qpls2vVU61NUzkuqExpm1RkuA
+        u6ru+txO29gHnTdo4tdM+u8=
+X-Google-Smtp-Source: AKy350a2npN+62JYHbVOqk1QSV0NuQTdqIKvT8rZHPSvkfX7ovD6A/q/cH1c5IC+6K5ecKeU8ha49w==
+X-Received: by 2002:a17:903:1c1:b0:1a1:cb18:7f99 with SMTP id e1-20020a17090301c100b001a1cb187f99mr19550907plh.30.1682431763570;
+        Tue, 25 Apr 2023 07:09:23 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id t10-20020a170902b20a00b001a6b02659c0sm6266958plr.159.2023.04.25.07.09.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 Apr 2023 07:09:23 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <ccbced2f-0258-cfd7-2f91-e246dadae8fb@roeck-us.net>
+Date:   Tue, 25 Apr 2023 07:09:20 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230425102418.185783-11-ychuang570808@gmail.com>
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v1 2/2] hwmon: pmbus: Add ltc4286 driver
+Content-Language: en-US
+To:     Andi Shyti <andi.shyti@kernel.org>,
+        Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
+Cc:     patrick@stwcx.xyz, Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-i2c@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230424101352.28117-1-Delphine_CC_Chiu@Wiwynn.com>
+ <20230424101352.28117-3-Delphine_CC_Chiu@Wiwynn.com>
+ <20230425134537.pzsplcpkrog2552r@intel.intel>
+From:   Guenter Roeck <linux@roeck-us.net>
+In-Reply-To: <20230425134537.pzsplcpkrog2552r@intel.intel>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jacky,
+On 4/25/23 06:45, Andi Shyti wrote:
+> Hi Delphine,
+> 
+> On top of Guenter's comments,
+> 
+> [...]
+> 
+>> +config SENSORS_LTC4286
+>> +	bool "Linear Technologies LTC4286"
+>> +	help
+>> +	  If you say yes here you get hardware monitoring support for Linear
+>> +	  Technology LTC4286.
+> 
+> could you add a couple of words more here?
+> 
+> [...]
+> 
+>> +static int ltc4286_probe(struct i2c_client *client,
+>> +			 const struct i2c_device_id *id)
+>> +{
+>> +	int ret;
+>> +	u8 block_buffer[I2C_SMBUS_BLOCK_MAX + 1];
+>> +	struct device *dev = &client->dev;
+>> +	struct pmbus_driver_info *info;
+>> +	u32 rsense;
+>> +
+>> +	ret = i2c_smbus_read_block_data(client, PMBUS_MFR_ID, block_buffer);
+>> +	if (ret < 0) {
+>> +		dev_err(&client->dev, "failed to read manufacturer id\n");
+> 
+> you can use dev_err_probe() here:
+> 
+> 	return dev_err_probe(&client->dev, err, "failed to read manufacturer id\n");
+> 
+>> +		return ret;
+>> +	}
+>> +
+>> +	/* Refer to ltc4286 datasheet page 20
+>> +	 * the default manufacturer id is LTC
+>> +	 */
+>> +	if (ret != LTC4286_MFR_ID_SIZE ||
+>> +	    strncmp(block_buffer, "LTC", LTC4286_MFR_ID_SIZE)) {
+>> +		dev_err(&client->dev, "unsupported manufacturer id\n");
+>> +		return -ENODEV;
+>> +	}
+>> +
+>> +	ret = i2c_smbus_read_block_data(client, PMBUS_MFR_MODEL, block_buffer);
+>> +	if (ret < 0) {
+>> +		dev_err(&client->dev, "failed to read manufacturer model\n");
+>> +		return ret;
+>> +	}
+> 
+> Is this read really needed?
+> 
 
-kernel test robot noticed the following build warnings:
+It only makes sense if the returned string is actually validated.
+Otherwise no.
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on clk/clk-next linus/master v6.3 next-20230424]
-[cannot apply to pza/reset/next pza/imx-drm/next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Guenter
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jacky-Huang/arm64-Kconfig-platforms-Add-config-for-Nuvoton-MA35-platform/20230425-182746
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20230425102418.185783-11-ychuang570808%40gmail.com
-patch subject: [PATCH v8 10/11] tty: serial: Add Nuvoton ma35d1 serial driver support
-config: sparc-allyesconfig (https://download.01.org/0day-ci/archive/20230425/202304252118.P0ZCvlQO-lkp@intel.com/config)
-compiler: sparc64-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/9f299bce6e0e871aa112e06e2451e88198a75d97
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Jacky-Huang/arm64-Kconfig-platforms-Add-config-for-Nuvoton-MA35-platform/20230425-182746
-        git checkout 9f299bce6e0e871aa112e06e2451e88198a75d97
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sparc olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sparc SHELL=/bin/bash drivers/tty/serial/
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202304252118.P0ZCvlQO-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   drivers/tty/serial/ma35d1_serial.c: In function 'ma35d1serial_probe':
-   drivers/tty/serial/ma35d1_serial.c:675:28: error: implicit declaration of function 'devm_ioremap'; did you mean 'of_ioremap'? [-Werror=implicit-function-declaration]
-     675 |         up->port.membase = devm_ioremap(&pdev->dev, up->port.iobase, UART_REG_SIZE);
-         |                            ^~~~~~~~~~~~
-         |                            of_ioremap
->> drivers/tty/serial/ma35d1_serial.c:675:26: warning: assignment to 'unsigned char *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
-     675 |         up->port.membase = devm_ioremap(&pdev->dev, up->port.iobase, UART_REG_SIZE);
-         |                          ^
-   cc1: some warnings being treated as errors
-
-
-vim +675 drivers/tty/serial/ma35d1_serial.c
-
-   647	
-   648	/*
-   649	 * Register a set of serial devices attached to a platform device.
-   650	 * The list is terminated with a zero flags entry, which means we expect
-   651	 * all entries to have at least UPF_BOOT_AUTOCONF set.
-   652	 */
-   653	static int ma35d1serial_probe(struct platform_device *pdev)
-   654	{
-   655		struct resource *res_mem;
-   656		struct uart_ma35d1_port *up;
-   657		int ret = 0;
-   658		struct clk *clk;
-   659		int err;
-   660	
-   661		if (pdev->dev.of_node) {
-   662			ret = of_alias_get_id(pdev->dev.of_node, "serial");
-   663			if (ret < 0) {
-   664				dev_err(&pdev->dev, "failed to get alias/pdev id, errno %d\n", ret);
-   665				return ret;
-   666			}
-   667		}
-   668		up = &ma35d1serial_ports[ret];
-   669		up->port.line = ret;
-   670		res_mem = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-   671		if (!res_mem)
-   672			return -ENODEV;
-   673	
-   674		up->port.iobase = res_mem->start;
- > 675		up->port.membase = devm_ioremap(&pdev->dev, up->port.iobase, UART_REG_SIZE);
-   676		up->port.ops = &ma35d1serial_ops;
-   677	
-   678		spin_lock_init(&up->port.lock);
-   679	
-   680		clk = of_clk_get(pdev->dev.of_node, 0);
-   681		if (IS_ERR(clk)) {
-   682			err = PTR_ERR(clk);
-   683			dev_err(&pdev->dev, "failed to get core clk: %d\n", err);
-   684			return -ENOENT;
-   685		}
-   686	
-   687		err = clk_prepare_enable(clk);
-   688		if (err)
-   689			return -ENOENT;
-   690	
-   691		if (up->port.line != 0)
-   692			up->port.uartclk = clk_get_rate(clk);
-   693	
-   694		ret = platform_get_irq(pdev, 0);
-   695		if (ret < 0)
-   696			return ret;
-   697		up->port.irq = ret;
-   698		up->port.dev = &pdev->dev;
-   699		up->port.flags = UPF_BOOT_AUTOCONF;
-   700	
-   701		platform_set_drvdata(pdev, up);
-   702	
-   703		return uart_add_one_port(&ma35d1serial_reg, &up->port);
-   704	}
-   705	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
