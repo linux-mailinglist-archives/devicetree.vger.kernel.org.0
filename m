@@ -2,109 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E23656EDEB6
-	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 11:07:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD4EC6EDEFE
+	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 11:18:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232274AbjDYJHO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Apr 2023 05:07:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51442 "EHLO
+        id S233542AbjDYJSf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Apr 2023 05:18:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233225AbjDYJHN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 05:07:13 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF6ED5BBA
-        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 02:07:09 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-94f4b911570so823090366b.0
-        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 02:07:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682413628; x=1685005628;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LCVMEbF9OBiT9IqLI0a7Ll8JBgTJIKseELbvcgMa+QA=;
-        b=Co2cU+wPJZR1SeYAhk4O3NhECwXRRGKYeIMirElj9M6t4dU8JRDhOtG2JGHDpmlGYd
-         XJ+F5ox9wF2Nj80odVqTN9LBO9ek4cjOR3mAG4nSNu+YRbiLzZQDqT3RFVk0/5A041F7
-         yYBvlillH7XimkXH5CWeeYWS6RCSf3N4MLW9tr9VZeWPtEMQki0/v2uTuQxLfOPqD9jR
-         WIhl3SmFlF8p+RLYyP15yOtGKYcqhUw0DzGbofqvBci78ej2kn1NsxtGkIeU1JWOy/u+
-         7WwrPk/MzMsRs3DbihkT69EkUEgph7VVvQuxvqclPjcXHZ4P0V3V88Ok/MuCq3ra9i/Z
-         0+kw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682413628; x=1685005628;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LCVMEbF9OBiT9IqLI0a7Ll8JBgTJIKseELbvcgMa+QA=;
-        b=eIKERrb8XMgbOez+gaZ9h8koo/GxRbSVpHJ5Abx/8WOLmo5YvEeUIBYQxa2WcX04j8
-         F3JKVZB/vZFHT98JEiVsCXqOeRT+nKbz54k11hAZQGspqbmb489V0OD39wNCtXj0NcXu
-         ThJZMKqCK5pdeMID1y4mfl7LJwFZorSMreVXFejIf7v9flOliR7apI+gCKKsIASK2hcP
-         u/ze61NigITqTVvKMbd/edWfDvY4Nro0I5HSFEmuLMR8Onzg0uea9+0QWHrK8kwM9TjN
-         pQ6o/t1y2cUpy7btvfgipZbbRBe5txGhkf74c0sKMEsRvLFoLxdQQtT02NAZlu4CljT/
-         2WDQ==
-X-Gm-Message-State: AAQBX9fVWZSLYEkb+OtSN3SLVGCi20txjQ4etCcc87EfQ+X4nlPAkSpg
-        zpE4rrsZtkmn3yM0HZz/DZBXqA==
-X-Google-Smtp-Source: AKy350bjyupMOPUHuvbuOJ256AYJlB5ByBhqUmj8+IC3dYbt+xT2nHPx4Vqwiv4xCvayJ2aGpwMZog==
-X-Received: by 2002:a17:907:9304:b0:958:4c75:705e with SMTP id bu4-20020a170907930400b009584c75705emr9621312ejc.17.1682413628283;
-        Tue, 25 Apr 2023 02:07:08 -0700 (PDT)
-Received: from [192.168.9.102] ([195.167.132.10])
-        by smtp.gmail.com with ESMTPSA id jt20-20020a170906ca1400b008e54ac90de1sm6476900ejb.74.2023.04.25.02.07.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Apr 2023 02:07:07 -0700 (PDT)
-Message-ID: <8ae78a2c-bbf7-24ce-b47f-3d0b7a258ba0@linaro.org>
-Date:   Tue, 25 Apr 2023 11:07:06 +0200
+        with ESMTP id S231428AbjDYJS2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 05:18:28 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B06D40E0;
+        Tue, 25 Apr 2023 02:18:23 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 9FC5524E314;
+        Tue, 25 Apr 2023 17:18:11 +0800 (CST)
+Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 25 Apr
+ 2023 17:18:12 +0800
+Received: from [192.168.125.106] (113.72.145.137) by EXMBX162.cuchost.com
+ (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 25 Apr
+ 2023 17:18:10 +0800
+Message-ID: <0988495f-b87a-7f69-f222-37c67d6eae23@starfivetech.com>
+Date:   Tue, 25 Apr 2023 17:18:10 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH RESEND v3 1/3] dt-bindings: hwmon: esm: Add ESM support
- for TI K3 devices
-To:     Guenter Roeck <linux@roeck-us.net>,
-        Neha Malcom Francis <n-francis@ti.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, jdelvare@suse.com,
-        linux-hwmon@vger.kernel.org, nm@ti.com, vigneshr@ti.com,
-        u-kumar1@ti.com, kristo@kernel.org
-References: <20230424105011.70674-1-n-francis@ti.com>
- <20230424105011.70674-2-n-francis@ti.com>
- <0ddd5777-cfd0-4b35-a724-681ef9e86d2b@roeck-us.net>
+Subject: Re: [RESEND v2 1/6] dt-bindings: power: Add JH7110 AON PMU support
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <0ddd5777-cfd0-4b35-a724-681ef9e86d2b@roeck-us.net>
-Content-Type: text/plain; charset=UTF-8
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Conor Dooley <conor.dooley@microchip.com>
+CC:     Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Walker Chen <walker.chen@starfivetech.com>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, <vkoul@kernel.org>,
+        <linux-phy@lists.infradead.org>
+References: <20230419035646.43702-1-changhuang.liang@starfivetech.com>
+ <20230419035646.43702-2-changhuang.liang@starfivetech.com>
+ <20230419-labored-camper-644d51a7ca96@spud>
+ <1a5b15fa-4f20-51c2-2ba1-a04a2911a694@starfivetech.com>
+ <20230424-baffle-punch-ec73098f2b6a@spud>
+ <d685a1d4-c07d-7dfa-f1fb-b35ceb2aa0eb@starfivetech.com>
+ <20230425-unquote-eligible-09f743d81981@wendy>
+ <a7cdfabf-2312-eaf3-f462-5bda7f0a120d@starfivetech.com>
+ <68cb565d-bf39-10b0-9e3e-35ba7f54b90b@linaro.org>
+From:   Changhuang Liang <changhuang.liang@starfivetech.com>
+In-Reply-To: <68cb565d-bf39-10b0-9e3e-35ba7f54b90b@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Originating-IP: [113.72.145.137]
+X-ClientProxiedBy: EXCAS061.cuchost.com (172.16.6.21) To EXMBX162.cuchost.com
+ (172.16.6.72)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/04/2023 16:44, Guenter Roeck wrote:
-> On Mon, Apr 24, 2023 at 04:20:09PM +0530, Neha Malcom Francis wrote:
->> Document the binding for TI K3 ESM (Error Signaling Module) block.
+
+
+On 2023/4/25 16:19, Krzysztof Kozlowski wrote:
+> On 25/04/2023 09:57, Changhuang Liang wrote:
+>>>>>>>>  
+>>>>>>>>  description: |
+>>>>>>>>    StarFive JH7110 SoC includes support for multiple power domains which can be
+>>>>>>>> @@ -17,6 +18,7 @@ properties:
+>>>>>>>>    compatible:
+>>>>>>>>      enum:
+>>>>>>>>        - starfive,jh7110-pmu
+>>>>>>>> +      - starfive,jh7110-aon-pmu
+>>>>>
+>>>>> I was speaking to Rob about this over the weekend, he asked:
+>>>>> 'Why isn't "starfive,jh7110-aon-syscon" just the power-domain provider
+>>>>> itself?'
+>>>>
+>>>> Maybe not, this syscon only offset "0x00" configure power switch.
+>>>> other offset configure other functions, maybe not power, so this
+>>>> "starfive,jh7110-aon-syscon" not the power-domain itself.
+>>>>
+>>>>> Do we actually need to add a new binding for this at all?
+>>>>>
+>>>>> Cheers,
+>>>>> Conor.
+>>>>>
+>>>>
+>>>> Maybe this patch do that.
+>>>> https://lore.kernel.org/all/20230414024157.53203-6-xingyu.wu@starfivetech.com/
+>>>
+>>> This makes it a child-node right? I think Rob already said no to that in
+>>> and earlier revision of this series. What he meant the other day was
+>>> making the syscon itself a power domain controller, since the child node
+>>> has no meaningful properties (reg, interrupts etc).
+>>>
+>>> Cheers,
+>>> Conor.
 >>
->> Signed-off-by: Neha Malcom Francis <n-francis@ti.com>
+>> Yes, "starfive,jh7110-aon-pmu" is a child-node of "starfive,jh7110-aon-syscon".
+>> In my opinion, "0x17010000" is "aon-syscon" on JH7110 SoC, and this "aon-pmu" is just 
+>> a part of "aon-syscon" function, so I think it is inappropriate to make "aon-syscon"
+>> to a power domain controller. I think using the child-node description is closer to
+>> JH7110 SoC. 
 > 
-> I think I am missing what this has to do with hardware
-> monitoring. I see a driver submission into drivers/misc,
-> but that doesn't explain the suggested location of the
-> devicetree bindings, and I kind of resist the idea that hwmon
-> should be the dumping ground for bindings which don't have
-> a home.
+> Unfortunately, I do not see the correlation between these, any
+> connection. Why being a child of syscon block would mean that this
+> should no be power domain controller? Really, why? These are two
+> unrelated things.
+> 
+> Best regards,
+> Krzysztof
+> 
 
-Hi Guenter,
+Let me summarize what has been discussed above. 
 
-This was my suggestion in the previous version, that this device could
-look like something related to fault handling or hardware monitoring.
-Whether it fits hwmon, I am no sure, just proposed it. Definitely I do
-not think of hwmon as dumping ground, but I am rather trying to find
-proper place for esm, instead of dumping it in misc (which is a dumping
-ground :) ).
+There has two ways to describe this "starfive,jh7110-aon-syscon"(0x17010000).
+1. (0x17010000) is power-controller node:
 
-https://lore.kernel.org/all/eb6bfe2e-1e44-bfb5-01b9-bbf53eba6501@linaro.org/
+	aon_pwrc: power-controller@17010000 {
+		compatible = "starfive,jh7110-aon-pmu", "syscon";
+		reg = <0x0 0x17010000 0x0 0x1000>;
+		#power-domain-cells = <1>;
+	};
 
-Best regards,
-Krzysztof
 
+2. (0x17010000) is syscon node, power-controller is child-node of syscon:
+
+	aon_syscon: syscon@17010000 {
+		compatible = "starfive,jh7110-aon-syscon", "syscon", "simple-mfd";
+		reg = <0x0 0x17010000 0x0 0x1000>;
+
+		aon_pwrc: power-controller {
+			compatible = "starfive,jh7110-aon-pmu";
+			#power-domain-cells = <1>;
+		};
+	};
+
+I prefer the way of 2.
+This is more in line with the hardware description of JH7110.
