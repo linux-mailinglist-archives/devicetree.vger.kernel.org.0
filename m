@@ -2,58 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 529206EE256
-	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 15:01:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BEBD6EE293
+	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 15:15:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234096AbjDYNBF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Apr 2023 09:01:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34126 "EHLO
+        id S233958AbjDYNPV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Apr 2023 09:15:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234170AbjDYNBD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 09:01:03 -0400
-Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44C35D307;
-        Tue, 25 Apr 2023 06:00:52 -0700 (PDT)
-Received: from kwepemm600004.china.huawei.com (unknown [172.30.72.53])
-        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4Q5MSd1zVtzSv0l;
-        Tue, 25 Apr 2023 20:56:17 +0800 (CST)
-Received: from [10.67.103.231] (10.67.103.231) by
- kwepemm600004.china.huawei.com (7.193.23.242) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Tue, 25 Apr 2023 21:00:32 +0800
-Message-ID: <c7d9c3c5-e400-c60a-52e0-0f267ec8c517@huawei.com>
-Date:   Tue, 25 Apr 2023 21:00:31 +0800
+        with ESMTP id S234017AbjDYNPS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 09:15:18 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2E5713C2F
+        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 06:15:11 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-94a39f6e8caso1079942166b.0
+        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 06:15:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1682428510; x=1685020510;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=S3BikuggXhWs1OPUQPTsPuMkYRDNlCEeDeec0U2qCGU=;
+        b=npeWsqFvrxdDEjHJ40Ljy4HgJG2I6Qag8a8pP//WROOGC4bMMXJXG3NUbeC2rI+Agm
+         zM9WBSRzLcIEKfcvxacDUawYlNSrP0XYjoBLYQGI6uUElAthC5524feJDJUWQ+PehVdc
+         22poIpMVGBO5EQJrClH4W5BuJtjELXcdAgYPtFQAD9z5BOd9XCCXF+MvEBJ3A6ef5SXB
+         4pHezttks4lY4jLY79TrMulHjKlLvwIpKISxTo7x1l5cUonXCI4y1LUOAyfSiS0LeiIT
+         jQ83HGi1AWY3Utj5K0L0cnNQlqX/oqhs2cOYsjyRCbRG/N4b7Tw9S7bca+7qjcYjynjM
+         fDlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682428510; x=1685020510;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=S3BikuggXhWs1OPUQPTsPuMkYRDNlCEeDeec0U2qCGU=;
+        b=Y1ciTdQutrkEJkm2pOyxuIFVkdUCLVjg9rpcrfenrRaQ4vMFrmgCHCTrtjGor1s4Sq
+         5qJoxz8NKoOPEI/3Neh9Um5YHNlw3FcUXq+FBc/uvtLe+w9TFToptWpNDZ8X2WVmtU3L
+         n2y6oSkeb8D6P7qDzWKtuwKwIxlo1BaFJy5rGiMoQlkDvTJH4FMgQUTOJMGN8iRVmQrL
+         yEOBnggHyF1Yk6DDlKmfMgt7WBNd96itqMvIOjtZ9TWQoZTXDUPJgtfmDTKXFkmfo01Y
+         5oSsHYVVS1/8wVWbiZfvvQ3iORLnc3rA3u0bz7ZXD3joS1iCy0H8Xyf8PfRyCE9JpL8Z
+         kEJA==
+X-Gm-Message-State: AAQBX9eB5lM01f6NZ3+lJk9bMKvFDUUGt2MFppCwK+AYoXCM0ImKD1e8
+        rWDRhApO23tdx5ZQ93SmEJa8ew==
+X-Google-Smtp-Source: AKy350Ykr4gtdZ1ZSW54CjRQJltXgFAHvYw5B1VZUVrxe/v1FVbbmrQbyexNMdoBYd1tjbR3rUIt/w==
+X-Received: by 2002:a17:906:40f:b0:94f:a8fd:b69f with SMTP id d15-20020a170906040f00b0094fa8fdb69fmr14098617eja.18.1682428510422;
+        Tue, 25 Apr 2023 06:15:10 -0700 (PDT)
+Received: from [192.168.9.102] ([195.167.132.10])
+        by smtp.gmail.com with ESMTPSA id ox6-20020a170907100600b008f89953b761sm6753105ejb.3.2023.04.25.06.15.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 Apr 2023 06:15:09 -0700 (PDT)
+Message-ID: <7ee3eec8-b5b4-2591-adcd-1831bf7de02b@linaro.org>
+Date:   Tue, 25 Apr 2023 15:15:08 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.0
-Subject: Re: [PATCH] soc: hisilicon: Support HCCS driver on Kunpeng SoC
-To:     Sudeep Holla <sudeep.holla@arm.com>, Arnd Bergmann <arnd@arndb.de>
-CC:     Bjorn Andersson <andersson@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <soc@kernel.org>,
-        <wanghuiqiang@huawei.com>, <tanxiaofei@huawei.com>,
-        <liuyonglong@huawei.com>, <huangdaode@huawei.com>,
-        <linux-acpi@vger.kernel.org>, Len Brown <lenb@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-References: <20230424073020.4039-1-lihuisong@huawei.com>
- <e0c4f4b5-8b34-4542-b676-f98ddb8ef586@app.fastmail.com>
- <20230425103040.znv66k364ant6klq@bogus>
-From:   "lihuisong (C)" <lihuisong@huawei.com>
-In-Reply-To: <20230425103040.znv66k364ant6klq@bogus>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.67.103.231]
-X-ClientProxiedBy: dggems701-chm.china.huawei.com (10.3.19.178) To
- kwepemm600004.china.huawei.com (7.193.23.242)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH 2/4] ARM: dts: aspeed: mtmitchell: Add I2C Fan
+To:     Chanh Nguyen <chanh@os.amperecomputing.com>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+References: <20230425065715.21871-1-chanh@os.amperecomputing.com>
+ <20230425065715.21871-3-chanh@os.amperecomputing.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230425065715.21871-3-chanh@os.amperecomputing.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,59 +80,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 25/04/2023 08:57, Chanh Nguyen wrote:
+> Add the MAX31790 node as a Fan I2C controller. It controls the
+> TACH and PWM for Fan Mt.Mitchell system.
+> 
+> Signed-off-by: Chanh Nguyen <chanh@os.amperecomputing.com>
+> ---
+>  arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts b/arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts
+> index e79f56208b89..6455cf80da0e 100644
+> --- a/arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts
+> +++ b/arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts
+> @@ -477,6 +477,18 @@
+>  			line-name = "bmc-ocp0-en-n";
+>  		};
+>  	};
+> +
+> +	max31790@20 {
 
-在 2023/4/25 18:30, Sudeep Holla 写道:
-> Thanks Arnd for cc-ing the ALKML.
->
-> On Mon, Apr 24, 2023 at 10:09:47AM +0200, Arnd Bergmann wrote:
->> On Mon, Apr 24, 2023, at 09:30, Huisong Li wrote:
-> [...]
->
->>> +
->>> +static int hccs_get_device_property(struct hccs_dev *hdev)
->>> +{
->>> +	struct device *dev = hdev->dev;
->>> +
->>> +	if (device_property_read_u32(dev, "device-flags", &hdev->flags)) {
->>> +		dev_err(hdev->dev, "no device-flags property.\n");
->>> +		return -ENODEV;
->>> +	}
->>> +
->>> +	if (device_property_read_u8(dev, "pcc-type", &hdev->type)) {
->>> +		dev_err(hdev->dev, "no pcc-type property.\n");
->>> +		return -ENODEV;
->>> +	}
->>> +
->>> +	if (device_property_read_u32(dev, "pcc-chan-id", &hdev->chan_id)) {
->>> +		dev_err(hdev->dev, "no pcc-channel property.\n");
->>> +		return -ENODEV;
->>> +	}
->>> +
->>> +	hdev->intr_mode = hccs_get_bit(hdev->flags, HCCS_DEV_FLAGS_INTR_B);
->>> +	if (!hccs_dev_property_supported(hdev))
->>> +		return -EOPNOTSUPP;
->>> +
->> Where are the device properties documented? I'm never quite sure how
->> to handle these for ACPI-only drivers, since we don't normally have the
->> bindings in Documentation/devicetree/bindings/, but it feels like there
->> should be some properly reviewed document somewhere else.
->>
->> Adding ACPI and devicetree maintainers to Cc for clarification.
-> Why are these DSD style properties added here ? Why can't we just make
-> use of _CRS with Generic Address Structure(GAS) register entry for each
-> of the PCC channel which eliminates the need of "pcc-chan-id". The type
-> must be deduced from the order in the list of _CRS if needed. I don't
-For firmware, DSD way is simpler and easier to manage these virtual 
-platform devices,
-and it's an usual way in kernel.
-Driver only needs to get a fixed value, like pcc-id and type, here.
+Node names should be generic.
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
 
-Any vantage if using _CRS with GAS compared with DSD?
-> quite understand what magic the flags contain here to provide any info
-> there.
-This flag is used to report other properties, and every bit means a 
-property.
-For instance, driver doesn't need to request PCC channel during the 
-probing phase if driver use PCC operation Region.
->
-> .
+> +		compatible = "maxim,max31790";
+
+Unfortunately the compatible is undocumented.
+
+Please run scripts/checkpatch.pl and fix reported warnings.
+
+Best regards,
+Krzysztof
+
