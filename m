@@ -2,155 +2,271 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E2B976EDF76
-	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 11:42:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 727BA6EDFDF
+	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 12:00:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233678AbjDYJmt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Apr 2023 05:42:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39860 "EHLO
+        id S233082AbjDYKAL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Apr 2023 06:00:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233666AbjDYJms (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 05:42:48 -0400
-Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 920BC5BB2;
-        Tue, 25 Apr 2023 02:42:46 -0700 (PDT)
-Received: from kwepemm600004.china.huawei.com (unknown [172.30.72.55])
-        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4Q5H4r126tzpTvm;
-        Tue, 25 Apr 2023 17:38:52 +0800 (CST)
-Received: from [10.67.103.231] (10.67.103.231) by
- kwepemm600004.china.huawei.com (7.193.23.242) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Tue, 25 Apr 2023 17:42:43 +0800
-Message-ID: <336cbe52-b449-7f7e-dae9-fbbc18f8d97b@huawei.com>
-Date:   Tue, 25 Apr 2023 17:42:42 +0800
+        with ESMTP id S233392AbjDYKAJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 06:00:09 -0400
+Received: from mail-vs1-xe2c.google.com (mail-vs1-xe2c.google.com [IPv6:2607:f8b0:4864:20::e2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41A6BCC34
+        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 03:00:06 -0700 (PDT)
+Received: by mail-vs1-xe2c.google.com with SMTP id ada2fe7eead31-42ca0c08aa9so1192822137.2
+        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 03:00:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1682416805; x=1685008805;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=U9xmfBHDsyYLJBu4ZPKPVrdek0zQAAxRnmR1aPAecu8=;
+        b=QM45xtlfA30Qv+jhT+5wfAhCZ0DlI6NMjjFtywDiocqqbhmjSnALrxYO1+HD09LTxh
+         ghmFdMfXOE5XAf1RD76xiY+3li/Zw7UPFpNIbMymFlpJd7Yo3qr8rwQ9Tf16N0pHbtlN
+         /EtMhdr4cIITH1IR/kg7yJyukNsfVztBx751Q=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682416805; x=1685008805;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=U9xmfBHDsyYLJBu4ZPKPVrdek0zQAAxRnmR1aPAecu8=;
+        b=FYSJTWnKpCVSW3e8UBsC+kKo0pyLi5PI3SqmcP003VdTuVLhytBv8Tt+YM4SVgSN16
+         Sz5BjTebwOEAzLwIUIT60ZmcpVSfq7+PKJG2PEbklHR/r+0Na3SIMjwWeeujn1w1xPA1
+         wOCv4xtOinGzoQLqjOLigCSdag/AW8paTpCQH4VXvhwL7jTW9uV8RZ0q/fg74EjPMMgj
+         7M9qusGdFfaPkP1BZerfErFeR/X/7Lr5jpdY8FE+NO8YbiCsjoNIz38sC5rgEg2szbCf
+         OflBzepYBmyG5n/6W+hqbwlUCjmAwLLS0jm/aUQe9jcuEwr5x4w7slNzjwibjO7kjzDa
+         iYww==
+X-Gm-Message-State: AAQBX9fBls0LJzV3Zf9c7ngDHl8WSEGcARCof0WAMSS46yFEUJ6ontCZ
+        Msn3hqpne0v8lQPkPatkOx3Hbx640ed5Fduxf2A2CA==
+X-Google-Smtp-Source: AKy350ZIrxbuOVfg1D290EFt3hdIL/m5W7tSw54IyZTFKXYrYG44B1Dl4VD9Ls0ZfUe1vaHU5vafRdgoqBYlvDfzC7w=
+X-Received: by 2002:a67:fe41:0:b0:42e:676c:bab8 with SMTP id
+ m1-20020a67fe41000000b0042e676cbab8mr7413428vsr.16.1682416805303; Tue, 25 Apr
+ 2023 03:00:05 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.0
-Subject: Re: [PATCH] soc: hisilicon: Support HCCS driver on Kunpeng SoC
-To:     Arnd Bergmann <arnd@arndb.de>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Shawn Guo <shawnguo@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <soc@kernel.org>,
-        <wanghuiqiang@huawei.com>, <tanxiaofei@huawei.com>,
-        <liuyonglong@huawei.com>, <huangdaode@huawei.com>,
-        <linux-acpi@vger.kernel.org>, Len Brown <lenb@kernel.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-References: <20230424073020.4039-1-lihuisong@huawei.com>
- <e0c4f4b5-8b34-4542-b676-f98ddb8ef586@app.fastmail.com>
- <90d4aba4-d0a5-9868-583b-b3a4dd7ca6d6@huawei.com>
- <16ba11f1-5aa2-48c9-81cf-e3d98f547657@app.fastmail.com>
-From:   "lihuisong (C)" <lihuisong@huawei.com>
-In-Reply-To: <16ba11f1-5aa2-48c9-81cf-e3d98f547657@app.fastmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.67.103.231]
-X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
- kwepemm600004.china.huawei.com (7.193.23.242)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20230307163413.143334-1-bchihi@baylibre.com> <CAGXv+5E0wUJYUVD3wx3-=uES612ARQmUE0rxgAruFHxpZCBjzA@mail.gmail.com>
+ <CAGuA+ooi7Kx05gagLzXAN3upDiSqDUNOM_djYdGftw6ogVx5gw@mail.gmail.com>
+ <CAGuA+oqDPPYFJef_8=YrOpHQNVJ3xgm_zXS6fq_HG2Jy_6t-Zg@mail.gmail.com>
+ <CAGXv+5EZPWohGN5CaEiqVrM4MyAar3cPEUhHtGY_9wTJSJNVFQ@mail.gmail.com>
+ <CAGuA+oqF4jFMyEo09VDmCf-_7g0ua3XDKDAJ+t3Gat14pDM9NA@mail.gmail.com> <fab67eef-4dc9-420d-b127-aedc6f54cad0@notapiano>
+In-Reply-To: <fab67eef-4dc9-420d-b127-aedc6f54cad0@notapiano>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Tue, 25 Apr 2023 17:59:54 +0800
+Message-ID: <CAGXv+5E0rzByZBn91d60MQ7P0=GbAQUH=PK9EYDu3Upr33td6A@mail.gmail.com>
+Subject: Re: [PATCH 0/4] Add LVTS support for mt8192
+To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>
+Cc:     Balsam CHIHI <bchihi@baylibre.com>, daniel.lezcano@linaro.org,
+        angelogioacchino.delregno@collabora.com, rafael@kernel.org,
+        amitk@kernel.org, rui.zhang@intel.com, matthias.bgg@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        rdunlap@infradead.org, ye.xingchen@zte.com.cn,
+        p.zabel@pengutronix.de, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        khilman@baylibre.com, james.lo@mediatek.com,
+        rex-bc.chen@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Apr 25, 2023 at 6:21=E2=80=AFAM N=C3=ADcolas F. R. A. Prado
+<nfraprado@collabora.com> wrote:
+>
+> On Tue, Mar 28, 2023 at 02:20:24AM +0200, Balsam CHIHI wrote:
+> > On Sat, Mar 25, 2023 at 5:33=E2=80=AFAM Chen-Yu Tsai <wenst@chromium.or=
+g> wrote:
+> > >
+> > > On Wed, Mar 22, 2023 at 8:48=E2=80=AFPM Balsam CHIHI <bchihi@baylibre=
+.com> wrote:
+> > > >
+> > > > Hi Chen-Yu,
+> > > >
+> > > > I suspect the bug comes from incorrect calibration data offsets for=
+ AP
+> > > > Domain because you confirm that MCU Domain probe runs without issue=
+s.
+> > > > Is it possible to test something for us to confirm this theory (i
+> > > > don't have an mt8192 board on hand now), when you have the time of
+> > > > course?
+> > > > We would like to test AP Domain's calibration data offsets with a
+> > > > working one, for example :
+> > > >
+> > > >  static const struct lvts_ctrl_data mt8192_lvts_ap_data_ctrl[] =3D =
+{
+> > > >                 {
+> > > > -               .cal_offset =3D { 0x25, 0x28 },
+> > > > +               .cal_offset =3D { 0x04, 0x04 },
+> > > >                 .lvts_sensor =3D {
+> > > >                         { .dt_id =3D MT8192_AP_VPU0 },
+> > > >                         { .dt_id =3D MT8192_AP_VPU1 }
+> > > > @@ -1336,7 +1336,7 @@ static const struct lvts_ctrl_data
+> [..]
+> > > >
+> > > > This example is tested and works for mt8195,
+> > > > (all sensors use the same calibration data offset for testing purpo=
+ses).
+> > > >
+> > > > Thank you in advance for your help.
+> > >
+> > > The MCU ones are still tripping though. If I change all of them to 0x=
+04,
+> > > then nothing trips. There's also a bug in the interrupt handling code
+> > > that needs to be dealt with.
+> > >
+> > > AFAICT the calibration data is stored differently. If you look at Chr=
+omeOS's
+> > > downstream v5.10 driver, you'll see mt6873_efuse_to_cal_data() for MT=
+8192,
+> > > and mt8195_efuse_to_cal_data() for MT8195. The difference sums up to:
+> > > MT8195 has all data sequentially stored, while MT8192 has most data s=
+tored
+> > > in lower 24 bits of each 32-bit word, and the highest 8 bits are then=
+ used
+> > > to pack data for the remaining sensors.
+> > >
+> > > Regards
+> > > ChenYu
+> >
+> > Hi Chen-Yu Tsai,
+> >
+> > Thank you very much for helping me testing this suggestion.
+> >
+> > Indeed, calibration data is stored differently in the mt8192 compared t=
+o mt8195.
+> > So, the mt8192's support will be delayed for now, to allow further debu=
+gging.
+> >
+> > In the mean time, we will only continue to upstream the remaining
+> > mt8195's source code, so it will get full LVTS support.
+> > A new series will be submitted soon.
+>
+> Hi Balsam,
+>
+> like Chen-Yu mentioned, the calibration data is stored with 4 byte alignm=
+ent for
+> MT8192, but the data that is split between non-contiguous bytes is for th=
+e
+> thermal controllers (called Resistor-Capacitor Calibration downstream) no=
+t the
+> sensors. The controller calibration isn't currently handled in this drive=
+r (and
+> downstream it also isn't used, since a current value is read from the con=
+troller
+> instead), so we can just ignore those.
+>
+> The patch below adjusts the addresseses for the sensors and gives me reas=
+onable
+> reads, so the machine no longer reboots. Can you integrate it into your s=
+eries?
 
-在 2023/4/25 14:08, Arnd Bergmann 写道:
-> On Tue, Apr 25, 2023, at 05:04, lihuisong (C) wrote:
->> 在 2023/4/24 16:09, Arnd Bergmann 写道:
->>> On Mon, Apr 24, 2023, at 09:30, Huisong Li wrote:
->>>          depends on ACPI
->>>          depends on (ARM64 && ARCH_HISI) || COMPILE_TEST
->> What do you think of adjusting it as below?
->> menu "Hisilicon SoC drivers"
->>       depends on ARCH_HISI || COMPILE_TEST
->>
->> config KUNPENG_HCCS
->>       depends on ACPI
->>       depends on ARM64 || COMPILE_TEST
-> Yes, that's perfect.
+Not sure what I got wrong, but on my machine the VPU0 and VPU1 zone interru=
+pts
+are still tripping excessively. The readings seem normal though. Specifical=
+ly,
+it's bits 16 and 17 that are tripping.
+
+> Thanks,
+> N=C3=ADcolas
 >
->>>> +
->>>> +#include "kunpeng_hccs.h"
->>>> +
->>>> +/* PCC defines */
->>>> +#define HCCS_PCC_SIGNATURE_MASK		0x50434300
->>>> +#define HCCS_PCC_STATUS_CMD_COMPLETE	BIT(0)
->>> Should these perhaps be in include/acpi/pcc.h? The 0x50434300
->>> number is just "PCC\0", so it appears to not be HCCS specific.
->> This is a PCC signature. As stated in the APCI,
->> "The signature of a subspace is computed by a bitwiseor of the value
->> 0x50434300
->> with the subspace ID. For example, subspace 3 has the signature 0x50434303."
->>
->> I am not sure if all driver need to use this fixed signature mask.
->> As far as I know, cppc_acpi.c didn't use this signature and
->> xgene-hwmon.c used another mask defined in its driver.
->> So I place it here.
-> I would still put it into the generic header, but it doesn't
-> really matter much, so do it whichever way you prefer. No need
-> for a separate patch if you decide to use the global header,
-> it can just be part of your normal patch.
-ok, keep it the way it is now.
+> From 4506f03b806f3eeb89887bac2c1c86d61da97281 Mon Sep 17 00:00:00 2001
+> From: =3D?UTF-8?q?N=3DC3=3DADcolas=3D20F=3D2E=3D20R=3D2E=3D20A=3D2E=3D20P=
+rado?=3D
+>  <nfraprado@collabora.com>
+> Date: Mon, 24 Apr 2023 17:42:42 -0400
+> Subject: [PATCH] thermal/drivers/mediatek/lvts_thermal: Fix calibration
+>  offsets for MT8192
+> MIME-Version: 1.0
+> Content-Type: text/plain; charset=3DUTF-8
+> Content-Transfer-Encoding: 8bit
 >
->>>> +
->>>> +static int hccs_get_device_property(struct hccs_dev *hdev)
->>>> +{
->>>> +	struct device *dev = hdev->dev;
->>>> +
->>>> +	if (device_property_read_u32(dev, "device-flags", &hdev->flags)) {
->>>> +		dev_err(hdev->dev, "no device-flags property.\n");
->>>> +		return -ENODEV;
->>>> +	}
->>>> +
->>>> +	if (device_property_read_u8(dev, "pcc-type", &hdev->type)) {
->>>> +		dev_err(hdev->dev, "no pcc-type property.\n");
->>>> +		return -ENODEV;
->>>> +	}
->>>> +
->>>> +	if (device_property_read_u32(dev, "pcc-chan-id", &hdev->chan_id)) {
->>>> +		dev_err(hdev->dev, "no pcc-channel property.\n");
->>>> +		return -ENODEV;
->>>> +	}
->>>> +
->>>> +	hdev->intr_mode = hccs_get_bit(hdev->flags, HCCS_DEV_FLAGS_INTR_B);
->>>> +	if (!hccs_dev_property_supported(hdev))
->>>> +		return -EOPNOTSUPP;
->>>> +
->>> Where are the device properties documented? I'm never quite sure how
->>> to handle these for ACPI-only drivers, since we don't normally have the
->>> bindings in Documentation/devicetree/bindings/, but it feels like there
->>> should be some properly reviewed document somewhere else.
->> These are ACPI-only, instead of DT.
->> I will add a comment here as Krzysztof suggested.
-> I understand that they are ACPI-only, what I'm more interested here is
-> the general question of how we should document them, to ensure these
-> are handled consistently across drivers.
-These device properties are reported by ACPI table in firmware.
-They are fixed in platform firmware. The user cannot modify them.
-Do we need to document them?
+> Signed-off-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
+> ---
+>  drivers/thermal/mediatek/lvts_thermal.c | 14 +++++++-------
+>  1 file changed, 7 insertions(+), 7 deletions(-)
 >
->>>> --- /dev/null
->>>> +++ b/drivers/soc/hisilicon/kunpeng_hccs.h
->>>> @@ -0,0 +1,204 @@
->>>> +/* SPDX-License-Identifier: GPL-2.0+ */
->>>> +/* Copyright (c) 2023 Hisilicon Limited. */
->>>> +
->>>> +#ifndef __KUNPENG_HCCS_H__
->>>> +#define __KUNPENG_HCCS_H__
->>> Are you planning to add more drivers that share this file? If not,
->>> just fold the contents into the driver itself.
->> Yes, we will add more drivers in this file.
-> Ok.
+> diff --git a/drivers/thermal/mediatek/lvts_thermal.c b/drivers/thermal/me=
+diatek/lvts_thermal.c
+> index b6956c89d557..f8afbc2ac190 100644
+> --- a/drivers/thermal/mediatek/lvts_thermal.c
+> +++ b/drivers/thermal/mediatek/lvts_thermal.c
+> @@ -1261,7 +1261,7 @@ static const struct lvts_ctrl_data mt8195_lvts_ap_d=
+ata_ctrl[] =3D {
 >
+>  static const struct lvts_ctrl_data mt8192_lvts_mcu_data_ctrl[] =3D {
+>         {
+> -               .cal_offset =3D { 0x04, 0x07 },
+> +               .cal_offset =3D { 0x04, 0x08 },
+>                 .lvts_sensor =3D {
+>                         { .dt_id =3D MT8192_MCU_BIG_CPU0 },
+>                         { .dt_id =3D MT8192_MCU_BIG_CPU1 }
+> @@ -1271,7 +1271,7 @@ static const struct lvts_ctrl_data mt8192_lvts_mcu_=
+data_ctrl[] =3D {
+>                 .hw_tshut_temp =3D LVTS_HW_SHUTDOWN_MT8192,
+>         },
+>         {
+> -               .cal_offset =3D { 0x0d, 0x10 },
+> +               .cal_offset =3D { 0x0c, 0x10 },
+>                 .lvts_sensor =3D {
+>                         { .dt_id =3D MT8192_MCU_BIG_CPU2 },
+>                         { .dt_id =3D MT8192_MCU_BIG_CPU3 }
+> @@ -1281,7 +1281,7 @@ static const struct lvts_ctrl_data mt8192_lvts_mcu_=
+data_ctrl[] =3D {
+>                 .hw_tshut_temp =3D LVTS_HW_SHUTDOWN_MT8192,
+>         },
+>         {
+> -               .cal_offset =3D { 0x16, 0x19, 0x1c, 0x1f },
+> +               .cal_offset =3D { 0x14, 0x18, 0x1c, 0x20 },
+>                 .lvts_sensor =3D {
+>                         { .dt_id =3D MT8192_MCU_LITTLE_CPU0 },
+>                         { .dt_id =3D MT8192_MCU_LITTLE_CPU1 },
+> @@ -1296,7 +1296,7 @@ static const struct lvts_ctrl_data mt8192_lvts_mcu_=
+data_ctrl[] =3D {
 >
->         Arnd
-> .
+>  static const struct lvts_ctrl_data mt8192_lvts_ap_data_ctrl[] =3D {
+>                 {
+> -               .cal_offset =3D { 0x25, 0x28 },
+> +               .cal_offset =3D { 0x24, 0x28 },
+>                 .lvts_sensor =3D {
+>                         { .dt_id =3D MT8192_AP_VPU0 },
+>                         { .dt_id =3D MT8192_AP_VPU1 }
+> @@ -1306,7 +1306,7 @@ static const struct lvts_ctrl_data mt8192_lvts_ap_d=
+ata_ctrl[] =3D {
+>                 .hw_tshut_temp =3D LVTS_HW_SHUTDOWN_MT8192,
+>         },
+>         {
+> -               .cal_offset =3D { 0x2e, 0x31 },
+> +               .cal_offset =3D { 0x2c, 0x30 },
+>                 .lvts_sensor =3D {
+>                         { .dt_id =3D MT8192_AP_GPU0 },
+>                         { .dt_id =3D MT8192_AP_GPU1 }
+> @@ -1316,7 +1316,7 @@ static const struct lvts_ctrl_data mt8192_lvts_ap_d=
+ata_ctrl[] =3D {
+>                 .hw_tshut_temp =3D LVTS_HW_SHUTDOWN_MT8192,
+>         },
+>         {
+> -               .cal_offset =3D { 0x37, 0x3a },
+> +               .cal_offset =3D { 0x34, 0x38 },
+>                 .lvts_sensor =3D {
+>                         { .dt_id =3D MT8192_AP_INFRA },
+>                         { .dt_id =3D MT8192_AP_CAM },
+> @@ -1326,7 +1326,7 @@ static const struct lvts_ctrl_data mt8192_lvts_ap_d=
+ata_ctrl[] =3D {
+>                 .hw_tshut_temp =3D LVTS_HW_SHUTDOWN_MT8192,
+>         },
+>         {
+> -               .cal_offset =3D { 0x40, 0x43, 0x46 },
+> +               .cal_offset =3D { 0x3c, 0x40, 0x44 },
+>                 .lvts_sensor =3D {
+>                         { .dt_id =3D MT8192_AP_MD0 },
+>                         { .dt_id =3D MT8192_AP_MD1 },
+> --
+> 2.40.0
