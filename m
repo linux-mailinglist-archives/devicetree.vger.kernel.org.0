@@ -2,128 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DCCF46EDF42
-	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 11:31:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 239606EDF5D
+	for <lists+devicetree@lfdr.de>; Tue, 25 Apr 2023 11:36:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233658AbjDYJbP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Apr 2023 05:31:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36530 "EHLO
+        id S233355AbjDYJgJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Apr 2023 05:36:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233466AbjDYJbN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 05:31:13 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0690E4490
-        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 02:31:12 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-505934ccc35so9516032a12.2
-        for <devicetree@vger.kernel.org>; Tue, 25 Apr 2023 02:31:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682415070; x=1685007070;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XwWxlVAE64QyKAHWdVa5oyI5Ulq8wY4rHvPDJEXAm7Y=;
-        b=LRzd+mfBaB5cb3nrvkDgSPydK+33bf870a/de9VnTLbRJYShha7mfO6UBxDC0w0ZtR
-         vsEQ9HW0wOp9RbE3x0cR0GWfm653sIkiJ7WNsYukZVN46UogY52MpIBBLkHj94oride8
-         5nAt/cQrvPjEDFxHGx3g5gWvk0WTaafb7mhwTX8WatxCEdyQ07BzV3QzstMofYaTWEs8
-         xAuvH7mQ2A0Bz2Gfbw5RDmuHrozhiCxt9n4EcVpwLcgdCpNzQoX0ORMqqFOxpB0dFXwe
-         2S3ZfM2O59jTqR+negPmxjnOB95uGX+qrwCntOHQehcKtiTm499So0J3LMSlmQnyztto
-         j+Gw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682415070; x=1685007070;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XwWxlVAE64QyKAHWdVa5oyI5Ulq8wY4rHvPDJEXAm7Y=;
-        b=jw1TTTMleQZZRTODL7phLsYRxrLKYWCYDA9umQR/PMJaglmCaQgbUjDyzUF+gqKpGU
-         RPMMM1injY8SnfXOpvEfOyPxj1tNdCTP7K47vl5N3fSYnf7shTs0/co3O2vHkraKfVYj
-         +hXZ4vL6TNxjyKUMYmZm/UNGKbjiVskJRU9l3pIWMnqq0lQ/DRUn5KZodPhLsFT4tUAV
-         qoNf57D9lTMDz2gqPqRvwoK38hF1qGJAaPray4ETMyCQPQty23Md9uXsMgEwuLK/iXhe
-         emCGDx0tTEXAVEnEEGHsh3NS5xBft8dJenM/gi6O3s3e0LxxfggH4877wF9a2EccKzSb
-         7msA==
-X-Gm-Message-State: AAQBX9c97CDW8PXXq4Dx3iYUxG0v9+XDJGMQO7ygHjGizakvOpbh/fN5
-        mqWl0v/EpxxdZG7odMx92NS+QQ==
-X-Google-Smtp-Source: AKy350aI5ZiisfoEWF2G9ZhvNJ5Va8E/s2wNj46/QHj3C8uWArAO0RbEGQNYWe3qSlkMYu65cgyIDw==
-X-Received: by 2002:a17:906:52cc:b0:94e:6504:d134 with SMTP id w12-20020a17090652cc00b0094e6504d134mr13139141ejn.42.1682415070499;
-        Tue, 25 Apr 2023 02:31:10 -0700 (PDT)
-Received: from [192.168.9.102] ([195.167.132.10])
-        by smtp.gmail.com with ESMTPSA id q14-20020a17090676ce00b00932ba722482sm6683443ejn.149.2023.04.25.02.31.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Apr 2023 02:31:09 -0700 (PDT)
-Message-ID: <00882340-477b-dc0b-d489-94efdf045f1c@linaro.org>
-Date:   Tue, 25 Apr 2023 11:31:08 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH 09/43] dt-bindings: watchdog: add DT bindings for Cirrus
- EP93x
-Content-Language: en-US
-To:     Nikita Shubin <nikita.shubin@maquefel.me>
-Cc:     Arnd Bergmann <arnd@kernel.org>, Linus Walleij <linusw@kernel.org>,
-        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
+        with ESMTP id S233013AbjDYJgH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Apr 2023 05:36:07 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2798468A;
+        Tue, 25 Apr 2023 02:36:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1682415366; x=1713951366;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=cdJ5RCl0jRK2WkiOSErGKVWigi6cRYrQGKqxUv/5kOQ=;
+  b=ogoOwf0qVwraeq1FOZMNYVL8cic16j67ewF3XqoUhWZIMWVSd7vdTo7u
+   +f48id/5kN48+vJlTqPTuxwvAEj+YvvknZhfYNyLSxbHSSSKbX1dQxmY3
+   EukmJAkLuEQEYBaU0a71pOLs+ufuvmUpdn+1BNi2NfmSfoDgoNnbyefbH
+   PawXz3f0qoTAmrAO+Ei/QyCyzt1oE/CaBwwT/Y7M5jcM25NFVPZ8tjCng
+   /ZMvoGuD4taiOZHiOTq4z/R7L+Tk7V4vrakoQDhxB+TDqSfjArCz+ejLe
+   x+L8/S/UbKpfHkUJ8oynpVT8rrfJ2B9ZNzEQ898u8wCm1hFZUnC8+zWcE
+   w==;
+X-IronPort-AV: E=Sophos;i="5.99,225,1677567600"; 
+   d="asc'?scan'208";a="210571348"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 Apr 2023 02:36:05 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Tue, 25 Apr 2023 02:36:05 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Tue, 25 Apr 2023 02:36:02 -0700
+Date:   Tue, 25 Apr 2023 10:35:45 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Changhuang Liang <changhuang.liang@starfivetech.com>
+CC:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Conor Dooley <conor@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230424123522.18302-1-nikita.shubin@maquefel.me>
- <20230424123522.18302-10-nikita.shubin@maquefel.me>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230424123522.18302-10-nikita.shubin@maquefel.me>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Walker Chen <walker.chen@starfivetech.com>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, <vkoul@kernel.org>,
+        <linux-phy@lists.infradead.org>
+Subject: Re: [RESEND v2 1/6] dt-bindings: power: Add JH7110 AON PMU support
+Message-ID: <20230425-resale-footrest-de667778c4fe@wendy>
+References: <20230419035646.43702-1-changhuang.liang@starfivetech.com>
+ <20230419035646.43702-2-changhuang.liang@starfivetech.com>
+ <20230419-labored-camper-644d51a7ca96@spud>
+ <1a5b15fa-4f20-51c2-2ba1-a04a2911a694@starfivetech.com>
+ <20230424-baffle-punch-ec73098f2b6a@spud>
+ <d685a1d4-c07d-7dfa-f1fb-b35ceb2aa0eb@starfivetech.com>
+ <20230425-unquote-eligible-09f743d81981@wendy>
+ <a7cdfabf-2312-eaf3-f462-5bda7f0a120d@starfivetech.com>
+ <68cb565d-bf39-10b0-9e3e-35ba7f54b90b@linaro.org>
+ <0988495f-b87a-7f69-f222-37c67d6eae23@starfivetech.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="NyVSyvpBVoaqkS2m"
+Content-Disposition: inline
+In-Reply-To: <0988495f-b87a-7f69-f222-37c67d6eae23@starfivetech.com>
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/04/2023 14:34, Nikita Shubin wrote:
-> This adds device tree bindings for the Cirrus Logic EP93xx
-> watchdog block used in these SoCs.
-> 
-> Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
-> ---
->  .../bindings/watchdog/cirrus,ep93xx-wdt.yaml  | 38 +++++++++++++++++++
->  1 file changed, 38 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/watchdog/cirrus,ep93xx-wdt.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/cirrus,ep93xx-wdt.yaml b/Documentation/devicetree/bindings/watchdog/cirrus,ep93xx-wdt.yaml
-> new file mode 100644
-> index 000000000000..f39d6b14062d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/watchdog/cirrus,ep93xx-wdt.yaml
-> @@ -0,0 +1,38 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/watchdog/cirrus,ep93xx-wdt.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Cirrus Logic EP93xx Watchdog Timer
+--NyVSyvpBVoaqkS2m
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-EP93xx is no EP9301. This does not match your compatible list. You
-should probably list all of your devices. With or without compatibility
-between them (so with a generic fallback for example).
+On Tue, Apr 25, 2023 at 05:18:10PM +0800, Changhuang Liang wrote:
+>=20
+>=20
+> On 2023/4/25 16:19, Krzysztof Kozlowski wrote:
+> > On 25/04/2023 09:57, Changhuang Liang wrote:
+> >>>>>>>> =20
+> >>>>>>>>  description: |
+> >>>>>>>>    StarFive JH7110 SoC includes support for multiple power domai=
+ns which can be
+> >>>>>>>> @@ -17,6 +18,7 @@ properties:
+> >>>>>>>>    compatible:
+> >>>>>>>>      enum:
+> >>>>>>>>        - starfive,jh7110-pmu
+> >>>>>>>> +      - starfive,jh7110-aon-pmu
+> >>>>>
+> >>>>> I was speaking to Rob about this over the weekend, he asked:
+> >>>>> 'Why isn't "starfive,jh7110-aon-syscon" just the power-domain provi=
+der
+> >>>>> itself?'
+> >>>>
+> >>>> Maybe not, this syscon only offset "0x00" configure power switch.
+> >>>> other offset configure other functions, maybe not power, so this
+> >>>> "starfive,jh7110-aon-syscon" not the power-domain itself.
+> >>>>
+> >>>>> Do we actually need to add a new binding for this at all?
+> >>>>>
+> >>>>> Cheers,
+> >>>>> Conor.
+> >>>>>
+> >>>>
+> >>>> Maybe this patch do that.
+> >>>> https://lore.kernel.org/all/20230414024157.53203-6-xingyu.wu@starfiv=
+etech.com/
+> >>>
+> >>> This makes it a child-node right? I think Rob already said no to that=
+ in
+> >>> and earlier revision of this series. What he meant the other day was
+> >>> making the syscon itself a power domain controller, since the child n=
+ode
+> >>> has no meaningful properties (reg, interrupts etc).
+> >>>
+> >>> Cheers,
+> >>> Conor.
+> >>
+> >> Yes, "starfive,jh7110-aon-pmu" is a child-node of "starfive,jh7110-aon=
+-syscon".
+> >> In my opinion, "0x17010000" is "aon-syscon" on JH7110 SoC, and this "a=
+on-pmu" is just=20
+> >> a part of "aon-syscon" function, so I think it is inappropriate to mak=
+e "aon-syscon"
+> >> to a power domain controller. I think using the child-node description=
+ is closer to
+> >> JH7110 SoC.=20
+> >=20
+> > Unfortunately, I do not see the correlation between these, any
+> > connection. Why being a child of syscon block would mean that this
+> > should no be power domain controller? Really, why? These are two
+> > unrelated things.
+> >=20
+> > Best regards,
+> > Krzysztof
+> >=20
+>=20
+> Let me summarize what has been discussed above.=20
+>=20
+> There has two ways to describe this "starfive,jh7110-aon-syscon"(0x170100=
+00).
+> 1. (0x17010000) is power-controller node:
+>=20
+> 	aon_pwrc: power-controller@17010000 {
+> 		compatible =3D "starfive,jh7110-aon-pmu", "syscon";
+> 		reg =3D <0x0 0x17010000 0x0 0x1000>;
+> 		#power-domain-cells =3D <1>;
+> 	};
+>=20
+>=20
+> 2. (0x17010000) is syscon node, power-controller is child-node of syscon:
+>=20
+> 	aon_syscon: syscon@17010000 {
+> 		compatible =3D "starfive,jh7110-aon-syscon", "syscon", "simple-mfd";
+> 		reg =3D <0x0 0x17010000 0x0 0x1000>;
+>=20
+> 		aon_pwrc: power-controller {
+> 			compatible =3D "starfive,jh7110-aon-pmu";
+> 			#power-domain-cells =3D <1>;
+> 		};
+> 	};
 
-> +
-> +maintainers:
-> +  - Wim Van Sebroeck <wim@linux-watchdog.org>
-> +
-> +description:
-> +  Watchdog driver for Cirrus Logic EP93xx family of devices.
+I thought that Rob was suggesting something like this:
+	aon_syscon: syscon@17010000 {
+		compatible =3D "starfive,jh7110-aon-syscon", ...
+		reg =3D <0x0 0x17010000 0x0 0x1000>;
+		#power-domain-cells =3D <1>;
+	};
 
-Drop "driver for" and instead describe the hardware.
+Cheers,
+Conor.
 
-> +
-> +allOf:
-> +  - $ref: "watchdog.yaml#"
 
-Drop quotes.
-Best regards,
-Krzysztof
+--NyVSyvpBVoaqkS2m
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZEee8QAKCRB4tDGHoIJi
+0iAjAQCAYkbFL/ydjRkg7qdZ1xejJeKnKpac8GkxwCp7ovCnGwD/S+XqbVNUcOyu
+xaeZnAsWfEaTMKgIuWoqCeIrvwvPlAQ=
+=31W+
+-----END PGP SIGNATURE-----
+
+--NyVSyvpBVoaqkS2m--
