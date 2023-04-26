@@ -2,104 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 288F86EF663
-	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 16:27:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9BAB6EF66B
+	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 16:29:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241381AbjDZO1u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Apr 2023 10:27:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36972 "EHLO
+        id S240780AbjDZO3b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Apr 2023 10:29:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241368AbjDZO1s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 10:27:48 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88ED57286;
-        Wed, 26 Apr 2023 07:27:46 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 052CB62DDF;
-        Wed, 26 Apr 2023 14:27:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 765A3C433D2;
-        Wed, 26 Apr 2023 14:27:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1682519265;
-        bh=Tl4ahZpkXgA0RLxXwHHiJ4Q1ElnebSYGSLsHuGHWOpI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=OgyUIf8Jg5Vrio4F/n6rOGUZO05RRGYSSrKLrqhzzClCIkRqrA7jEdk7/7KkbYEv7
-         SOGggQb9aryRD/28pH6NzyJQqRYvDx76Yb8U2yNR/0ocgBBjdK9x56DCZHq3kOd9Dy
-         sB9iaE1g21iRJergm/PuKhr+/p8iZeUK4u/XqjVamzIN6PJDGHunznvaTneskG9Ykf
-         JNexncDHELPyj/RQ5Dxg2YnqZrkFnNwjkjuSBjNCc3moiRY4P44yt3PaFMX/o58Xdw
-         3lEWKx/dzaO/WxBxoGdpqum2Ru4mjPrxD/7T643j2XZpcEe65v/aYs0KLKhJIk1LJP
-         olYxUanBe5LNg==
-Date:   Wed, 26 Apr 2023 15:27:40 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Shengyu Qu <wiagn233@outlook.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        wens@csie.org, lgirdwood@gmail.com, broonie@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        andre.przywara@arm.com, conor.dooley@microchip.com
-Subject: Re: [PATCH v3 2/3] mfd: axp20x: Add support for AXP15060 PMIC
-Message-ID: <20230426142740.GN50521@google.com>
-References: <20230421150816.10513-1-wiagn233@outlook.com>
- <TY3P286MB261162D57695AC8164ED50E298609@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
+        with ESMTP id S241092AbjDZO3a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 10:29:30 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 984774EE8;
+        Wed, 26 Apr 2023 07:29:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=eJ6kU9377LEtzb94GNpF+uPP087SBNoxlzn9ZJOuDwY=; b=OwvBcSq65JERkQeqoL6gcvtSJF
+        C+DbcZyLHGx50klrTZiKhqU6EqBBNih9g6DU3v/6vlVoIlF2X4PWNDGbVYYip+Cm78KJsj3BwITxJ
+        Z28nUHAXj2hODT1zLA4subiFl6ILSqQPGdMGdkZ1OZoOGUpi+u6ReQmvgNrK/Sbpn6DA=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1prg95-00BHWN-ED; Wed, 26 Apr 2023 16:29:23 +0200
+Date:   Wed, 26 Apr 2023 16:29:23 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Samin Guo <samin.guo@starfivetech.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, Peter Geis <pgwipeout@gmail.com>,
+        Frank <Frank.Sae@motor-comm.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Yanhong Wang <yanhong.wang@starfivetech.com>
+Subject: Re: [PATCH v1 1/2] dt-bindings: net: motorcomm: Add pad driver
+ strength cfg
+Message-ID: <fef3aed8-b664-4d36-94f5-266cea4c57a7@lunn.ch>
+References: <20230426063541.15378-1-samin.guo@starfivetech.com>
+ <20230426063541.15378-2-samin.guo@starfivetech.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <TY3P286MB261162D57695AC8164ED50E298609@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
-X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230426063541.15378-2-samin.guo@starfivetech.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 21 Apr 2023, Shengyu Qu wrote:
-
-> The AXP15060 is a PMIC chip produced by X-Powers, and could be connected
-> via an I2C bus.
+On Wed, Apr 26, 2023 at 02:35:40PM +0800, Samin Guo wrote:
+> The motorcomm phy (YT8531) supports the ability to adjust the drive
+> strength of the rx_clk/rx_data, the value range of pad driver
+> strength is 0 to 7.
 > 
-> Describe the regmap and the MFD bits, along with the registers exposed
-> via I2C. Eventually advertise the device using a new compatible string
-> and add support for power off the system.
-> 
-> The driver would disable PEK function if IRQ is not configured in device
-> tree, since some boards (For example, Starfive Visionfive 2) didn't
-> connect IRQ line of PMIC to SOC.
-> 
-> GPIO function isn't enabled in this commit, since its configuration
-> operation is different from any existing AXP PMICs and needs
-> logic modification on existing driver. GPIO support might come in later
-> patches.
-> 
+> Signed-off-by: Samin Guo <samin.guo@starfivetech.com>
 > ---
-
-You must not use these above the tags or Git will drop them.
-
-> Changes since v2:
->  - Rebase to AXP313a series v10 [1] + newest (20230420) -next branch
->  - Add axp_regulator_only_cells rather than directly using axp806_cells
->    for cases that IRQ line isn't connected.
+>  .../devicetree/bindings/net/motorcomm,yt8xxx.yaml      | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
 > 
-> Changes since v1:
->  - Nothing
-> 
-> [1] https://lore.kernel.org/linux-sunxi/20230401001850.4988-1-andre.przywara@arm.com/
-> 
-> Signed-off-by: Shengyu Qu <wiagn233@outlook.com>
-> ---
+> diff --git a/Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml b/Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml
+> index 157e3bbcaf6f..e648e486b6d8 100644
+> --- a/Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml
+> +++ b/Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml
+> @@ -18,6 +18,16 @@ properties:
+>        - ethernet-phy-id4f51.e91a
+>        - ethernet-phy-id4f51.e91b
+>  
+> +  rx-clk-driver-strength:
+> +    description: drive strength of rx_clk pad.
+> +    enum: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+> +    default: 3
 
-Put change-logs here instead.
+What do the numbers mean? What are the units? mA?
 
->  drivers/mfd/axp20x-i2c.c   |   2 +
->  drivers/mfd/axp20x.c       | 107 +++++++++++++++++++++++++++++++++++++
->  include/linux/mfd/axp20x.h |  85 +++++++++++++++++++++++++++++
->  3 files changed, 194 insertions(+)
-
-I manually added the missing tags for this and the DT patch and applied.
-
--- 
-Lee Jones [李琼斯]
+     Andrew
