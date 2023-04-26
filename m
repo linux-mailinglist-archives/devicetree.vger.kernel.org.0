@@ -2,92 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DB656EFC36
-	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 23:10:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 242AA6EFC3D
+	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 23:12:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239756AbjDZVK2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Apr 2023 17:10:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44166 "EHLO
+        id S239916AbjDZVMm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Apr 2023 17:12:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45376 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239746AbjDZVK1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 17:10:27 -0400
-Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9E413ABD;
-        Wed, 26 Apr 2023 14:10:08 -0700 (PDT)
-Received: by mail-oo1-f47.google.com with SMTP id 006d021491bc7-5475e0147c9so2209959eaf.1;
-        Wed, 26 Apr 2023 14:10:08 -0700 (PDT)
+        with ESMTP id S239436AbjDZVMm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 17:12:42 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CE4810E7
+        for <devicetree@vger.kernel.org>; Wed, 26 Apr 2023 14:12:41 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-506b2a08877so13272157a12.2
+        for <devicetree@vger.kernel.org>; Wed, 26 Apr 2023 14:12:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1682543559; x=1685135559;
+        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JL3yT3Q33W5/BCQtgOVvz2cK4S2v0dqNTi6RS5aes9g=;
+        b=UsES5JPzF4QSxtGh9uAHeXJEIwute7J/gaibl89GNu/htXU23RFo2DglOmsQHdsAOn
+         SdAKm+yZjAS9QNPOUoaC8zkns+U2dd16eoiMte0z8/2+WU/FtBMjWmbMyy2YNIHhbcat
+         qP9CbOgRbir5FVYg0234DBkeMD2DHY8c9rsqx2tG3Zyavh6m1i4LGGMTT2ZNO878kHkD
+         xr01gPyfHvvXZ7jsBce9mUmy2/Jf5m5j4ByXbv/TcmLIhxT53A4cbfh6wvu6tBbEAEz0
+         w0pOZlC5Ml0sa7nIdLki6cL5/NxbLAQbkCekrvN5g9ct0AZYnPLXv2Yk6Y0ZRbWJ54N5
+         FPEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682543408; x=1685135408;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mu0CENun8oFZTueHArmv4VmXak5XmpNKe7QDDJtnNAM=;
-        b=EYUEHhuwHQ/DevkXkerGPX0wXksDma91oKP96pfCY2B2PMqWkhkGiF97muhbmTFvs6
-         HpXkOr1mKTiyIDSVdM3I7j4Wb24UmaFe/DZdlG0OyODiU3D2FkqXmiRd2BAsTHSVERJk
-         1Y7c9pYMkqDpbsxpikyGoe9QlmTJVa3yNbuN8ltSxaz0SXxka50WHB4JflMH41ePTNn4
-         wiR6jq9sbI3j1wrnLvt0Z/Kj19Rq4d453azGDJfZdJWeXbLeivtEgsgu8ATDUn4p9r6n
-         STtM/dBCDPPHWuVYNRHrmq0nWHsKA8p5WIp3J1ORExnavczryQYhIU/ZFW8C1MOY0k3C
-         m1Qg==
-X-Gm-Message-State: AAQBX9e+H0CXA8z8jur89r5M/M/shkFtpsWBpGTkY3EjPz7asX2TF3S5
-        ljlFinn7kH+z/KS7IGL9gg==
-X-Google-Smtp-Source: AKy350ZiQQZVuONWZ4qZ3rjKWFp/+fC6WoEIdnMn+PbZciaDx8naIN2vbcz6/nEY74IMf5U9XKf8aQ==
-X-Received: by 2002:a05:6808:21a2:b0:38e:6cb1:298b with SMTP id be34-20020a05680821a200b0038e6cb1298bmr11228463oib.53.1682543407669;
-        Wed, 26 Apr 2023 14:10:07 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id b82-20020aca3455000000b0038ec2b341c2sm4366485oia.12.2023.04.26.14.10.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Apr 2023 14:10:07 -0700 (PDT)
-Received: (nullmailer pid 1240028 invoked by uid 1000);
-        Wed, 26 Apr 2023 21:10:06 -0000
-Date:   Wed, 26 Apr 2023 16:10:06 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Alexandre Mergnat <amergnat@baylibre.com>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>
-Subject: Re: [PATCH v6 03/12] dt-bindings: watchdog: mediatek,mtk-wdt: add
- mt8365
-Message-ID: <20230426211006.GA1227761-robh@kernel.org>
-References: <20230203-evk-board-support-v6-0-8d6b1cfe7f29@baylibre.com>
- <20230203-evk-board-support-v6-3-8d6b1cfe7f29@baylibre.com>
+        d=1e100.net; s=20221208; t=1682543559; x=1685135559;
+        h=to:subject:message-id:date:from:reply-to:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JL3yT3Q33W5/BCQtgOVvz2cK4S2v0dqNTi6RS5aes9g=;
+        b=cfdfZL+m8I6Pc9vN2+GD5cZA5nAdTHKGySsMcpjZ7ox1f1fG0ROMO3qsFTD+ZJiFF7
+         2ZPI9GM6EgaDJIEmmT9h1SkpPeAdeuAiM/uIN30jxSRR7BxgPXNQbqusFlozr3v3kMcp
+         two5sjNRwAPkvtHFhg2v5+BBI5jBlFKSP3DQpakNdCa9HcSsQQ8wSyENxoWsv1CrS14H
+         skFb75tjCaxcs6oeaDyiGg9q8Wzjcbit9Monh6/9KvbxR05sqGtzyv2fqTR2YebiuFzz
+         psmuNMnpGM1UUnPhulmAPK51eO1Zz/N9QsaPiUZ1+F7tsIj61YNsJI2GUFU8BfPANJGc
+         Z+OQ==
+X-Gm-Message-State: AAQBX9d4RajG1skloNop0WyqFBUgWOGtvaCoduM3MXMaKrRz/Sp7rzor
+        FFCdat1X/lvZQWs7gLmiRr1rAiSR0QY5D/YqpYs=
+X-Google-Smtp-Source: AKy350ZMkJWaPXgFWKwG2kHLfJyUQbNDDqzihFS7PKIB2wvrmDVkktg1oLkCldiPTbcICArOT94ZmudLvp2y5pZIAlM=
+X-Received: by 2002:aa7:d9d0:0:b0:504:8014:1554 with SMTP id
+ v16-20020aa7d9d0000000b0050480141554mr17359887eds.28.1682543559420; Wed, 26
+ Apr 2023 14:12:39 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230203-evk-board-support-v6-3-8d6b1cfe7f29@baylibre.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Received: by 2002:a05:7412:4783:b0:c6:d649:3a3a with HTTP; Wed, 26 Apr 2023
+ 14:12:38 -0700 (PDT)
+Reply-To: klassoumark@gmail.com
+From:   Mark Klassou <jamesjanneth27@gmail.com>
+Date:   Wed, 26 Apr 2023 21:12:38 +0000
+Message-ID: <CADCRY1fK_1XJe_zEtVqGfxpx4s-ckGggnLEY0-fGwmA-vaRf3A@mail.gmail.com>
+Subject: Re
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=4.7 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,FREEMAIL_REPLYTO,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNDISC_FREEM autolearn=no
+        autolearn_force=no version=3.4.6
+X-Spam-Level: ****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 26, 2023 at 12:49:03PM +0200, Alexandre Mergnat wrote:
-> Add binding description for mediatek,mt8365-wdt
-> 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> Tested-by: Kevin Hilman <khilman@baylibre.com>
-> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
-> ---
->  Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml | 1 +
->  1 file changed, 1 insertion(+)
+Good Morning,
 
-This has already been applied by Guenter.
+I was only wondering if you got my previous email? I have been trying
+to reach you by email. Kindly get back to me swiftly, it is very
+important.
 
-Rob
+Yours faithfully
+Mark Klassou.
