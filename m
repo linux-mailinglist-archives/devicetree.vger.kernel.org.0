@@ -2,638 +2,392 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09F2D6EEF00
-	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 09:15:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF0746EEF47
+	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 09:24:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230129AbjDZHPW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Apr 2023 03:15:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54480 "EHLO
+        id S239618AbjDZHYj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Apr 2023 03:24:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240104AbjDZHPS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 03:15:18 -0400
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 252D83A8E;
-        Wed, 26 Apr 2023 00:14:28 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.35])
-        by gateway (Coremail) with SMTP id _____8DxDeuFzkhkSOwAAA--.1591S3;
-        Wed, 26 Apr 2023 15:11:01 +0800 (CST)
-Received: from user-pc.202.106.0.20 (unknown [10.20.42.35])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8BxWbJ3zkhkd2M8AA--.16320S4;
-        Wed, 26 Apr 2023 15:11:00 +0800 (CST)
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn, Yinbo Zhu <zhuyinbo@loongson.cn>
-Subject: [PATCH v9 2/2] spi: loongson: add bus driver for the loongson spi controller
-Date:   Wed, 26 Apr 2023 15:10:45 +0800
-Message-Id: <20230426071045.20753-3-zhuyinbo@loongson.cn>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20230426071045.20753-1-zhuyinbo@loongson.cn>
-References: <20230426071045.20753-1-zhuyinbo@loongson.cn>
+        with ESMTP id S239597AbjDZHYj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 03:24:39 -0400
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C9F3C2;
+        Wed, 26 Apr 2023 00:24:37 -0700 (PDT)
+Received: by mail-pf1-x433.google.com with SMTP id d2e1a72fcca58-63b73203e0aso41013680b3a.1;
+        Wed, 26 Apr 2023 00:24:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1682493876; x=1685085876;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jytQvq7PwiJ5804Vo6WZEBrB2tNyybWr76L9KgVVYI8=;
+        b=dXkt/Vghtssd+Yhu5uO3DuoAJBc/EQjfntlttjP5fNKJ1sKh8+/4RxarX/wwOhe6n9
+         y8/fEtXiOLAi83aOWUjktYFyKq5HLkmUYW6glx37wF+gnJf6hm0N6IkvRsyzb+iNodQx
+         pJNomD7kWbGM5MxqynjrLRmSksiY+e7C+OPp3erDxdDbDRtID6uQMycOwe73T9c8cVcP
+         ghGZZg4YqjYGJTyvAABxvtuG5F9GXq6UDhrM/le71N/XqT8n4bs78w9RC+nQLLmQSeos
+         RUhUBUVqPGdrfQd6GWJxsQt5gtaZoMBslF6jiJBHyF/Cts1btnVG51jTZMDmDroyJY/o
+         9kOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682493876; x=1685085876;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=jytQvq7PwiJ5804Vo6WZEBrB2tNyybWr76L9KgVVYI8=;
+        b=jzgGrx+5wvUZIvMSaxzYYftTZg9OlP0Q0Mu7V8EfEYO98syzBA/n8MM9XWdLk58rhW
+         aKHM6Nj4cC00snuEticATAXzZ1hTpQUDJ0rz3RwZcjOrNUIcp1IU19wOeSXiauauQjK7
+         jDh00z5I1GbGjZU7fr+fFR+KaCHC8gpaj6U4eNuKl7KeFSbwP86LKCBiv5V9b3K2x2KO
+         stGXn6bHRClVOxMxDpLaDXjc/MxuVEGnA1ZIaD0343fDiD4O3gNltn2XSmPgZVyoeFvN
+         e7DTY2S8+vtWvhwtL6Pwq3rJgVT4CDJBOobwwJLD482rEiAWOcZ350ziNW5D8zP8O95n
+         q/2g==
+X-Gm-Message-State: AC+VfDxS4VyGsBdY0UPko5K7IdVhlYCaScKD6w/0LZcacByPdvhO+XXx
+        1EHq2DPKPOiYEUl/iPT3M3eJnbgeLNQEbRucn9E=
+X-Google-Smtp-Source: ACHHUZ4aSknLigFC1I8mL48sQqjw/Q8Xr2z5x5zoRf84sqXupYXCLRaiqjENzZgEfM+8Uq9m5qvm0Pz2/YyXqdKwX08=
+X-Received: by 2002:a17:90b:60f:b0:249:67dd:5783 with SMTP id
+ gb15-20020a17090b060f00b0024967dd5783mr1909237pjb.18.1682493876517; Wed, 26
+ Apr 2023 00:24:36 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8BxWbJ3zkhkd2M8AA--.16320S4
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvAXoW3Zry3tF4DJrW8tw17GF1fXrb_yoW8Cr4xJo
-        WxZ3Z3Xr48ur18GF1jqr1rtFW7Xas8WrZ0yrn3Aw1kJ3y5tryDJr9xJrW7CF18Z3W3JFy3
-        AFySgFW8KF4IgFWkn29KB7ZKAUJUUUUr529EdanIXcx71UUUUU7KY7ZEXasCq-sGcSsGvf
-        J3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU0xBIdaVrnRJU
-        UU9j1xkIjI8I6I8E6xAIw20EY4v20xvaj40_Wr0E3s1l1IIY67AEw4v_Jrv_JF1l8cAvFV
-        AK0II2c7xJM28CjxkF64kEwVA0rcxSw2x7M28EF7xvwVC0I7IYx2IY67AKxVW8JVW5JwA2
-        z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwA2z4x0Y4vEx4A2jsIE14v26r4UJVWxJr
-        1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4UJVWxJr1ln4kS14v26r1Y6r17M2AIxVAIcxkE
-        cVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F4
-        0Ex7xfMcIj6xIIjxv20xvE14v26r1q6rW5McIj6I8E87Iv67AKxVW8JVWxJwAm72CE4IkC
-        6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41l42xK82IYc2Ij64vIr41l42xK82IY6x8Erc
-        xFaVAv8VWrMxC20s026xCaFVCjc4AY6r1j6r4UMxCIbckI1I0E14v26r1Y6r17MI8I3I0E
-        5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtV
-        W8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r4j6ryUMIIF0xvE2Ix0cI8IcVCY
-        1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI
-        0_Gr0_Cr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7I
-        U8QzVUUUUUU==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <CAAQoYRm3766SG7+VuwVzu_xH8aWihoKWMEp8xQGNgJ6oOtC9+g@mail.gmail.com>
+In-Reply-To: <CAAQoYRm3766SG7+VuwVzu_xH8aWihoKWMEp8xQGNgJ6oOtC9+g@mail.gmail.com>
+From:   liao jaime <jaimeliao.tw@gmail.com>
+Date:   Wed, 26 Apr 2023 15:24:25 +0800
+Message-ID: <CAAQoYRmXdMp7b2r+yCRUtGrbfQH-Cb8gMAVo7YscuQEM5kgajw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: mtd: nand: Macronix: document new binding
+To:     Miquel Raynal <miquel.raynal@bootlin.com>, noltari@gmail.com
+Cc:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-mtd@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLY,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This bus driver supports the Loongson spi hardware controller in the
-Loongson platforms and supports to use DTS and PCI framework to
-register spi device resources.
+Hi =C3=81lvaro
 
-Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
----
- MAINTAINERS                     |   4 +
- drivers/spi/Kconfig             |  31 ++++
- drivers/spi/Makefile            |   3 +
- drivers/spi/spi-loongson-core.c | 296 ++++++++++++++++++++++++++++++++
- drivers/spi/spi-loongson-pci.c  |  72 ++++++++
- drivers/spi/spi-loongson-plat.c |  47 +++++
- drivers/spi/spi-loongson.h      |  41 +++++
- 7 files changed, 494 insertions(+)
- create mode 100644 drivers/spi/spi-loongson-core.c
- create mode 100644 drivers/spi/spi-loongson-pci.c
- create mode 100644 drivers/spi/spi-loongson-plat.c
- create mode 100644 drivers/spi/spi-loongson.h
+In nand_scan_tail(), each manufacturer init function call will be execute.
+In macronix_nand_init(), block protect will be execute after flash detect.
+I have validate MX30LF1G18AC in Linux kernel v5.15.
+I didn't got situation "device hangs"  on my side.
+BP is to prevent incorrect operations.
+Please check the controller settings for tracing this issue.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 0dcf4cfbe178..4a629b9b5a4e 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12162,6 +12162,10 @@ M:	Yinbo Zhu <zhuyinbo@loongson.cn>
- L:	linux-spi@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/spi/loongson,ls2k-spi.yaml
-+F:	drivers/spi/spi-loongson-core.c
-+F:	drivers/spi/spi-loongson-pci.c
-+F:	drivers/spi/spi-loongson-plat.c
-+F:	drivers/spi/spi-loongson.h
- 
- LSILOGIC MPT FUSION DRIVERS (FC/SAS/SPI)
- M:	Sathya Prakash <sathya.prakash@broadcom.com>
-diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
-index cbf60b6a931c..87f87ee35d27 100644
---- a/drivers/spi/Kconfig
-+++ b/drivers/spi/Kconfig
-@@ -509,6 +509,37 @@ config SPI_LM70_LLP
- 	  which interfaces to an LM70 temperature sensor using
- 	  a parallel port.
- 
-+config SPI_LOONGSON_CORE
-+	tristate "Loongson SPI Controller Core Driver Support"
-+	depends on LOONGARCH || COMPILE_TEST
-+	help
-+	  This core driver supports the Loongson spi hardware controller in
-+	  the Loongson platforms.
-+	  Say Y or M here if you want to use the SPI controller on
-+	  Loongson platform.
-+
-+config SPI_LOONGSON_PCI
-+	tristate "Loongson SPI Controller PCI Driver Support"
-+	select SPI_LOONGSON_CORE
-+	depends on PCI && (LOONGARCH || COMPILE_TEST)
-+	help
-+	  This bus driver supports the Loongson spi hardware controller in
-+	  the Loongson platforms and supports to use PCI framework to
-+	  register spi device resources.
-+	  Say Y or M here if you want to use the SPI controller on
-+	  Loongson platform.
-+
-+config SPI_LOONGSON_PLATFORM
-+	tristate "Loongson SPI Controller Platform Driver Support"
-+	select SPI_LOONGSON_CORE
-+	depends on OF && (LOONGARCH || COMPILE_TEST)
-+	help
-+	  This bus driver supports the Loongson spi hardware controller in
-+	  the Loongson platforms and supports to use DTS framework to
-+	  register spi device resources.
-+	  Say Y or M here if you want to use the SPI controller on
-+	  Loongson platform.
-+
- config SPI_LP8841_RTC
- 	tristate "ICP DAS LP-8841 SPI Controller for RTC"
- 	depends on MACH_PXA27X_DT || COMPILE_TEST
-diff --git a/drivers/spi/Makefile b/drivers/spi/Makefile
-index d87cf75bee6a..a4931aa64476 100644
---- a/drivers/spi/Makefile
-+++ b/drivers/spi/Makefile
-@@ -70,6 +70,9 @@ obj-$(CONFIG_SPI_INTEL_PLATFORM)	+= spi-intel-platform.o
- obj-$(CONFIG_SPI_LANTIQ_SSC)		+= spi-lantiq-ssc.o
- obj-$(CONFIG_SPI_JCORE)			+= spi-jcore.o
- obj-$(CONFIG_SPI_LM70_LLP)		+= spi-lm70llp.o
-+obj-$(CONFIG_SPI_LOONGSON_CORE)		+= spi-loongson-core.o
-+obj-$(CONFIG_SPI_LOONGSON_PCI)		+= spi-loongson-pci.o
-+obj-$(CONFIG_SPI_LOONGSON_PLATFORM)	+= spi-loongson-plat.o
- obj-$(CONFIG_SPI_LP8841_RTC)		+= spi-lp8841-rtc.o
- obj-$(CONFIG_SPI_MESON_SPICC)		+= spi-meson-spicc.o
- obj-$(CONFIG_SPI_MESON_SPIFC)		+= spi-meson-spifc.o
-diff --git a/drivers/spi/spi-loongson-core.c b/drivers/spi/spi-loongson-core.c
-new file mode 100644
-index 000000000000..4c0b5c5fcab4
---- /dev/null
-+++ b/drivers/spi/spi-loongson-core.c
-@@ -0,0 +1,296 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+// Loongson SPI Support
-+// Copyright (C) 2023 Loongson Technology Corporation Limited
-+
-+#include <linux/init.h>
-+#include <linux/module.h>
-+#include <linux/kernel.h>
-+#include <linux/interrupt.h>
-+#include <linux/delay.h>
-+#include <linux/err.h>
-+#include <linux/spi/spi.h>
-+#include <linux/clk.h>
-+#include <linux/io.h>
-+
-+#include "spi-loongson.h"
-+
-+static inline void loongson_spi_write_reg(struct loongson_spi *spi, unsigned char reg,
-+					  unsigned char data)
-+{
-+	writeb(data, spi->base + reg);
-+}
-+
-+static inline char loongson_spi_read_reg(struct loongson_spi *spi, unsigned char reg)
-+{
-+	return readb(spi->base + reg);
-+}
-+
-+static void loongson_spi_set_cs(struct spi_device *spi, bool val)
-+{
-+	int cs;
-+	struct loongson_spi *loongson_spi = spi_master_get_devdata(spi->master);
-+
-+	if (loongson_spi->mode & SPI_NO_CS)
-+		loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_SFCS_REG, 0);
-+	else {
-+		cs = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_SFCS_REG)
-+					   & ~(0x11 << spi->chip_select);
-+		loongson_spi_write_reg(loongson_spi,
-+				       LOONGSON_SPI_SFCS_REG,
-+				       (val ? (0x11 << spi->chip_select) :
-+				       (0x1 << spi->chip_select)) | cs);
-+	}
-+}
-+
-+static int loongson_spi_update_state(struct loongson_spi *loongson_spi,
-+				     struct spi_device *spi, struct spi_transfer *t)
-+{
-+	unsigned int hz;
-+	unsigned int div, div_tmp;
-+	unsigned int bit;
-+	unsigned char val;
-+	const char rdiv[12] = {0, 1, 4, 2, 3, 5, 6, 7, 8, 9, 10, 11};
-+
-+	if (t)
-+		hz = t->speed_hz;
-+
-+	if ((hz && loongson_spi->hz != hz) ||
-+	    ((spi->mode ^ loongson_spi->mode) & (SPI_CPOL | SPI_CPHA))) {
-+		div = DIV_ROUND_UP_ULL(loongson_spi->clk_rate, hz);
-+		if (div < 2)
-+			div = 2;
-+		if (div > 4096)
-+			div = 4096;
-+
-+		bit = fls(div) - 1;
-+		if ((1<<bit) == div)
-+			bit--;
-+		div_tmp = rdiv[bit];
-+		dev_dbg(&spi->dev, "clk_rate = %llu hz = %d div_tmp = %d bit = %d\n",
-+			loongson_spi->clk_rate, hz, div_tmp, bit);
-+
-+		loongson_spi->hz = hz;
-+		loongson_spi->spcr = div_tmp & 3;
-+		loongson_spi->sper = (div_tmp >> 2) & 3;
-+		val = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_SPCR_REG);
-+		val &= ~0xc;
-+		if (spi->mode & SPI_CPOL)
-+			val |= 8;
-+		if (spi->mode & SPI_CPHA)
-+			val |= 4;
-+
-+		loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_SPCR_REG, (val & ~3) |
-+				       loongson_spi->spcr);
-+		val = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_SPER_REG);
-+		loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_SPER_REG, (val & ~3) |
-+				       loongson_spi->sper);
-+		loongson_spi->mode &= SPI_NO_CS;
-+		loongson_spi->mode |= spi->mode;
-+	}
-+
-+	return 0;
-+}
-+
-+static int loongson_spi_setup(struct spi_device *spi)
-+{
-+	struct loongson_spi *loongson_spi;
-+
-+	loongson_spi = spi_master_get_devdata(spi->master);
-+	if (spi->bits_per_word % 8)
-+		return -EINVAL;
-+
-+	if (spi->chip_select >= spi->master->num_chipselect)
-+		return -EINVAL;
-+
-+	loongson_spi->hz = 0;
-+	loongson_spi->mode &= SPI_NO_CS;
-+	loongson_spi_set_cs(spi, 1);
-+
-+	return 0;
-+}
-+
-+static int loongson_spi_write_read_8bit(struct spi_device *spi, const u8 **tx_buf,
-+					u8 **rx_buf, unsigned int num)
-+{
-+	struct loongson_spi *loongson_spi = spi_master_get_devdata(spi->master);
-+	unsigned long timeout = jiffies + SPI_COMPLETION_TIMEOUT;
-+
-+	if (tx_buf && *tx_buf) {
-+		loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_FIFO_REG, *((*tx_buf)++));
-+		while ((loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_SPSR_REG) & 0x1) == 1 &&
-+			time_after(timeout, jiffies))
-+			cpu_relax();
-+	} else {
-+		loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_FIFO_REG, 0);
-+		while ((loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_SPSR_REG) & 0x1) == 1 &&
-+			time_after(timeout, jiffies))
-+			cpu_relax();
-+	}
-+
-+	if (rx_buf && *rx_buf)
-+		*(*rx_buf)++ = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_FIFO_REG);
-+	else
-+		loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_FIFO_REG);
-+
-+	return 0;
-+}
-+
-+static unsigned int loongson_spi_write_read(struct spi_device *spi, struct spi_transfer *xfer)
-+{
-+	unsigned int count;
-+	const u8 *tx = xfer->tx_buf;
-+	u8 *rx = xfer->rx_buf;
-+
-+	count = xfer->len;
-+
-+	do {
-+		if (loongson_spi_write_read_8bit(spi, &tx, &rx, count) < 0)
-+			goto out;
-+		count--;
-+	} while (count);
-+
-+out:
-+	return xfer->len - count;
-+}
-+
-+static int loongson_spi_prepare_message(struct spi_controller *ctlr, struct spi_message *m)
-+{
-+	struct loongson_spi *loongson_spi = spi_controller_get_devdata(ctlr);
-+
-+	loongson_spi->para = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_PARA_REG);
-+	loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_PARA_REG, loongson_spi->para & ~1);
-+
-+	return 0;
-+}
-+
-+static int loongson_spi_transfer_one(struct spi_controller *ctrl, struct spi_device *spi,
-+				     struct spi_transfer *xfer)
-+{
-+	struct loongson_spi *loongson_spi = spi_master_get_devdata(spi->master);
-+
-+	loongson_spi_update_state(loongson_spi, spi, xfer);
-+	if (xfer->len)
-+		xfer->len = loongson_spi_write_read(spi, xfer);
-+
-+	return 0;
-+}
-+
-+static int loongson_spi_unprepare_message(struct spi_controller *ctrl, struct spi_message *m)
-+{
-+	struct loongson_spi *loongson_spi = spi_controller_get_devdata(ctrl);
-+
-+	loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_PARA_REG, loongson_spi->para);
-+
-+	return 0;
-+}
-+
-+static void loongson_spi_reginit(struct loongson_spi *loongson_spi_dev)
-+{
-+	unsigned char val;
-+
-+	val = loongson_spi_read_reg(loongson_spi_dev, LOONGSON_SPI_SPCR_REG);
-+	val &= ~LOONGSON_SPI_SPCR_SPE;
-+	loongson_spi_write_reg(loongson_spi_dev, LOONGSON_SPI_SPCR_REG, val);
-+
-+	loongson_spi_write_reg(loongson_spi_dev, LOONGSON_SPI_SPSR_REG,
-+			       (LOONGSON_SPI_SPSR_SPIF | LOONGSON_SPI_SPSR_WCOL));
-+
-+	val = loongson_spi_read_reg(loongson_spi_dev, LOONGSON_SPI_SPCR_REG);
-+	val |= LOONGSON_SPI_SPCR_SPE;
-+	loongson_spi_write_reg(loongson_spi_dev, LOONGSON_SPI_SPCR_REG, val);
-+}
-+
-+int loongson_spi_init_master(struct device *dev, struct resource *res)
-+{
-+	struct spi_master *master;
-+	struct loongson_spi *spi;
-+	struct clk *clk;
-+
-+	master = devm_spi_alloc_master(dev, sizeof(struct loongson_spi));
-+	if (master == NULL) {
-+		dev_info(dev, "master allocation failed\n");
-+		return -ENOMEM;
-+	}
-+
-+	master->mode_bits = SPI_CPOL | SPI_CPHA | SPI_CS_HIGH;
-+	master->setup = loongson_spi_setup;
-+	master->prepare_message = loongson_spi_prepare_message;
-+	master->transfer_one = loongson_spi_transfer_one;
-+	master->unprepare_message = loongson_spi_unprepare_message;
-+	master->set_cs = loongson_spi_set_cs;
-+	master->num_chipselect = 4;
-+	master->dev.of_node = of_node_get(dev->of_node);
-+	dev_set_drvdata(dev, master);
-+
-+	spi = spi_master_get_devdata(master);
-+
-+	spi->master = master;
-+
-+	spi->base = devm_ioremap(dev, res->start, resource_size(res));
-+	if (spi->base == NULL) {
-+		dev_err(dev, "cannot map io\n");
-+		return -ENXIO;
-+	}
-+
-+	clk = devm_clk_get(dev, NULL);
-+	if (!IS_ERR(clk))
-+		spi->clk_rate = clk_get_rate(clk);
-+
-+	loongson_spi_reginit(spi);
-+
-+	spi->mode = 0;
-+	if (of_get_property(dev->of_node, "spi-nocs", NULL))
-+		spi->mode |= SPI_NO_CS;
-+
-+	return devm_spi_register_master(dev, master);
-+}
-+EXPORT_SYMBOL_GPL(loongson_spi_init_master);
-+
-+static int __maybe_unused loongson_spi_suspend(struct device *dev)
-+{
-+	struct loongson_spi *loongson_spi;
-+	struct spi_master *master;
-+
-+	master = dev_get_drvdata(dev);
-+	spi_master_suspend(master);
-+
-+	loongson_spi = spi_master_get_devdata(master);
-+
-+	loongson_spi->spcr = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_SPCR_REG);
-+	loongson_spi->sper = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_SPER_REG);
-+	loongson_spi->spsr = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_SPSR_REG);
-+	loongson_spi->para = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_PARA_REG);
-+	loongson_spi->sfcs = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_SFCS_REG);
-+	loongson_spi->timi = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_TIMI_REG);
-+
-+	return 0;
-+}
-+
-+static int __maybe_unused loongson_spi_resume(struct device *dev)
-+{
-+	struct loongson_spi *loongson_spi;
-+	struct spi_master *master;
-+
-+	master = dev_get_drvdata(dev);
-+	loongson_spi = spi_master_get_devdata(master);
-+
-+	loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_SPCR_REG, loongson_spi->spcr);
-+	loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_SPER_REG, loongson_spi->sper);
-+	loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_SPSR_REG, loongson_spi->spsr);
-+	loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_PARA_REG, loongson_spi->para);
-+	loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_SFCS_REG, loongson_spi->sfcs);
-+	loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_TIMI_REG, loongson_spi->timi);
-+
-+	spi_master_resume(master);
-+
-+	return 0;
-+}
-+
-+const struct dev_pm_ops loongson_spi_dev_pm_ops = {
-+	.suspend = loongson_spi_suspend,
-+	.resume = loongson_spi_resume,
-+};
-+EXPORT_SYMBOL_GPL(loongson_spi_dev_pm_ops);
-+
-+MODULE_DESCRIPTION("Loongson spi core driver");
-+MODULE_LICENSE("GPL");
-diff --git a/drivers/spi/spi-loongson-pci.c b/drivers/spi/spi-loongson-pci.c
-new file mode 100644
-index 000000000000..f8aaad6577bd
---- /dev/null
-+++ b/drivers/spi/spi-loongson-pci.c
-@@ -0,0 +1,72 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+// PCI interface driver for Loongson SPI Support
-+// Copyright (C) 2023 Loongson Technology Corporation Limited
-+
-+#include <linux/pci.h>
-+
-+#include "spi-loongson.h"
-+
-+static int loongson_spi_pci_register(struct pci_dev *pdev,
-+			const struct pci_device_id *ent)
-+{
-+	int ret;
-+	unsigned char v8;
-+	struct resource res[2];
-+	struct device *dev = &pdev->dev;
-+
-+	ret = pci_enable_device(pdev);
-+	if (ret < 0) {
-+		dev_err(dev, "cannot enable pci device\n");
-+		goto err_out;
-+	}
-+
-+	ret = pci_request_region(pdev, 0, "loongson-spi io");
-+	if (ret < 0) {
-+		dev_err(dev, "cannot request region 0.\n");
-+		goto err_out;
-+	}
-+
-+	res[0].start = pci_resource_start(pdev, 0);
-+	res[0].end = pci_resource_end(pdev, 0);
-+	ret = pci_read_config_byte(pdev, PCI_INTERRUPT_LINE, &v8);
-+
-+	if (ret == PCIBIOS_SUCCESSFUL) {
-+		res[1].start = v8;
-+		res[1].end = v8;
-+	}
-+
-+	ret = loongson_spi_init_master(dev, res);
-+	if (ret)
-+		dev_err(dev, "failed to initialize master\n");
-+
-+err_out:
-+	return ret;
-+}
-+
-+static void loongson_spi_pci_unregister(struct pci_dev *pdev)
-+{
-+	pci_release_region(pdev, 0);
-+	pci_disable_device(pdev);
-+}
-+
-+static struct pci_device_id loongson_spi_devices[] = {
-+	{PCI_DEVICE(0x14, 0x7a0b)},
-+	{PCI_DEVICE(0x14, 0x7a1b)},
-+	{0, 0, 0, 0, 0, 0, 0}
-+};
-+MODULE_DEVICE_TABLE(pci, loongson_spi_devices);
-+
-+static struct pci_driver loongson_spi_pci_driver = {
-+	.name       = "loongson-spi-pci",
-+	.id_table   = loongson_spi_devices,
-+	.probe      = loongson_spi_pci_register,
-+	.remove     = loongson_spi_pci_unregister,
-+	.driver	= {
-+		.bus = &pci_bus_type,
-+		.pm = &loongson_spi_dev_pm_ops,
-+	},
-+};
-+module_pci_driver(loongson_spi_pci_driver);
-+
-+MODULE_DESCRIPTION("Loongson spi pci driver");
-+MODULE_LICENSE("GPL");
-diff --git a/drivers/spi/spi-loongson-plat.c b/drivers/spi/spi-loongson-plat.c
-new file mode 100644
-index 000000000000..acf0fa38ce4b
---- /dev/null
-+++ b/drivers/spi/spi-loongson-plat.c
-@@ -0,0 +1,47 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+// Platform driver for Loongson SPI Support
-+// Copyright (C) 2023 Loongson Technology Corporation Limited
-+
-+#include <linux/platform_device.h>
-+#include <linux/of.h>
-+
-+#include "spi-loongson.h"
-+
-+static int loongson_spi_platform_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct resource *res;
-+	int ret;
-+
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	if (res == NULL) {
-+		dev_err(dev, "cannot get io resource memory\n");
-+		return -ENOENT;
-+	}
-+
-+	ret = loongson_spi_init_master(dev, res);
-+	if (ret)
-+		dev_err(dev, "failed to initialize master\n");
-+
-+	return ret;
-+}
-+
-+static const struct of_device_id loongson_spi_id_table[] = {
-+	{ .compatible = "loongson,ls2k-spi", },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, loongson_spi_id_table);
-+
-+static struct platform_driver loongson_spi_plat_driver = {
-+	.probe = loongson_spi_platform_probe,
-+	.driver	= {
-+		.name	= "loongson-spi",
-+		.bus = &platform_bus_type,
-+		.pm = &loongson_spi_dev_pm_ops,
-+		.of_match_table = loongson_spi_id_table,
-+	},
-+};
-+module_platform_driver(loongson_spi_plat_driver);
-+
-+MODULE_DESCRIPTION("Loongson spi platform driver");
-+MODULE_LICENSE("GPL");
-diff --git a/drivers/spi/spi-loongson.h b/drivers/spi/spi-loongson.h
-new file mode 100644
-index 000000000000..44818340188d
---- /dev/null
-+++ b/drivers/spi/spi-loongson.h
-@@ -0,0 +1,41 @@
-+/* SPDX-License-Identifier: GPL-2.0+ */
-+/* Header File for Loongson SPI Driver. */
-+/* Copyright (C) 2023 Loongson Technology Corporation Limited */
-+
-+#ifndef __LINUX_SPI_LOONGSON_H
-+#define __LINUX_SPI_LOONGSON_H
-+
-+#define	LOONGSON_SPI_SPCR_REG	0x00
-+#define	LOONGSON_SPI_SPSR_REG	0x01
-+#define	LOONGSON_SPI_FIFO_REG	0x02
-+#define	LOONGSON_SPI_SPER_REG	0x03
-+#define	LOONGSON_SPI_PARA_REG	0x04
-+#define	LOONGSON_SPI_SFCS_REG	0x05
-+#define	LOONGSON_SPI_TIMI_REG	0x06
-+
-+/* Bits definition for Loongson SPI register */
-+#define	LOONGSON_SPI_PARA_MEM_EN	BIT(0)
-+#define	LOONGSON_SPI_SPSR_SPIF	BIT(7)
-+#define	LOONGSON_SPI_SPSR_WCOL	BIT(6)
-+#define	LOONGSON_SPI_SPCR_SPE	BIT(6)
-+
-+#define SPI_COMPLETION_TIMEOUT	msecs_to_jiffies(2000)
-+
-+struct loongson_spi {
-+	struct	spi_master	*master;
-+	void __iomem		*base;
-+	int			cs_active;
-+	unsigned int		hz;
-+	unsigned char		spcr;
-+	unsigned char		sper;
-+	unsigned char		spsr;
-+	unsigned char		para;
-+	unsigned char		sfcs;
-+	unsigned char		timi;
-+	unsigned int		mode;
-+	u64			clk_rate;
-+};
-+
-+extern int loongson_spi_init_master(struct device *dev, struct resource *res);
-+extern const struct dev_pm_ops loongson_spi_dev_pm_ops;
-+#endif /* __LINUX_SPI_LOONGSON_H */
--- 
-2.20.1
+Thanks
+Jaime
 
+>
+> Hello YouChing and Jaime,
+>
+> I still didn't get any feedback from you (or Macronix) on this issue.
+> Did you have time to look into it?
+>
+> Thanks,
+> =C3=81lvaro.
+>
+> El vie, 24 mar 2023 a las 18:04, =C3=81lvaro Fern=C3=A1ndez Rojas
+> (<noltari@gmail.com>) escribi=C3=B3:
+> >
+> > Hi Miqu=C3=A8l,
+> >
+> > 2023-03-24 15:36 GMT+01:00, Miquel Raynal <miquel.raynal@bootlin.com>:
+> > > Hi =C3=81lvaro,
+> > >
+> > > + YouChing and Jaime from Macronix
+> > > TLDR for them: there is a misbehavior since Mason added block
+> > > protection support. Just checking if the blocks are protected seems t=
+o
+> > > misconfigure the chip entirely, see below. Any hints?
+> >
+> > Could it be that the NAND is stuck expecting a read 0x00 command which
+> > isn=E2=80=99t sent after getting the features?
+> >
+> > >
+> > > noltari@gmail.com wrote on Fri, 24 Mar 2023 15:15:47 +0100:
+> > >
+> > >> Hi Miqu=C3=A8l,
+> > >>
+> > >> 2023-03-24 14:45 GMT+01:00, Miquel Raynal <miquel.raynal@bootlin.com=
+>:
+> > >> > Hi =C3=81lvaro,
+> > >> >
+> > >> > noltari@gmail.com wrote on Fri, 24 Mar 2023 12:21:11 +0100:
+> > >> >
+> > >> >> El vie, 24 mar 2023 a las 11:49, Miquel Raynal
+> > >> >> (<miquel.raynal@bootlin.com>) escribi=C3=B3:
+> > >> >> >
+> > >> >> > Hi =C3=81lvaro,
+> > >> >> >
+> > >> >> > noltari@gmail.com wrote on Fri, 24 Mar 2023 11:31:17 +0100:
+> > >> >> >
+> > >> >> > > Hi Miqu=C3=A8l,
+> > >> >> > >
+> > >> >> > > El vie, 24 mar 2023 a las 10:40, Miquel Raynal
+> > >> >> > > (<miquel.raynal@bootlin.com>) escribi=C3=B3:
+> > >> >> > > >
+> > >> >> > > > Hi =C3=81lvaro,
+> > >> >> > > >
+> > >> >> > > > noltari@gmail.com wrote on Thu, 23 Mar 2023 13:45:09 +0100:
+> > >> >> > > >
+> > >> >> > > > > Add new "mxic,disable-block-protection" binding documenta=
+tion.
+> > >> >> > > > > This binding allows disabling block protection support fo=
+r
+> > >> >> > > > > those
+> > >> >> > > > > devices not
+> > >> >> > > > > supporting it.
+> > >> >> > > > >
+> > >> >> > > > > Signed-off-by: =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@=
+gmail.com>
+> > >> >> > > > > ---
+> > >> >> > > > >  Documentation/devicetree/bindings/mtd/nand-macronix.txt =
+| 3
+> > >> >> > > > > +++
+> > >> >> > > > >  1 file changed, 3 insertions(+)
+> > >> >> > > > >
+> > >> >> > > > > diff --git
+> > >> >> > > > > a/Documentation/devicetree/bindings/mtd/nand-macronix.txt
+> > >> >> > > > > b/Documentation/devicetree/bindings/mtd/nand-macronix.txt
+> > >> >> > > > > index ffab28a2c4d1..03f65ca32cd3 100644
+> > >> >> > > > > --- a/Documentation/devicetree/bindings/mtd/nand-macronix=
+.txt
+> > >> >> > > > > +++ b/Documentation/devicetree/bindings/mtd/nand-macronix=
+.txt
+> > >> >> > > > > @@ -16,6 +16,9 @@ in children nodes.
+> > >> >> > > > >  Required NAND chip properties in children mode:
+> > >> >> > > > >  - randomizer enable: should be "mxic,enable-randomizer-o=
+tp"
+> > >> >> > > > >
+> > >> >> > > > > +Optional NAND chip properties in children mode:
+> > >> >> > > > > +- block protection disable: should be
+> > >> >> > > > > "mxic,disable-block-protection"
+> > >> >> > > > > +
+> > >> >> > > >
+> > >> >> > > > Besides the fact that nowadays we prefer to see binding
+> > >> >> > > > conversions
+> > >> >> > > > to
+> > >> >> > > > yaml before adding anything, I don't think this will fly.
+> > >> >> > > >
+> > >> >> > > > I'm not sure exactly what "disable block protection" means,=
+ we
+> > >> >> > > > already have similar properties like "lock" and
+> > >> >> > > > "secure-regions",
+> > >> >> > > > not
+> > >> >> > > > sure they will fit but I think it's worth checking.
+> > >> >> > >
+> > >> >> > > As explained in 2/2, commit 03a539c7a118 introduced a regress=
+ion
+> > >> >> > > on
+> > >> >> > > Sercomm H500-s (BCM63268) OpenWrt devices with Macronix
+> > >> >> > > MX30LF1G18AC
+> > >> >> > > which hangs the device.
+> > >> >> > >
+> > >> >> > > This is the log with block protection disabled:
+> > >> >> > > [    0.495831] bcm6368_nand 10000200.nand: there is not valid=
+ maps
+> > >> >> > > for
+> > >> >> > > state default
+> > >> >> > > [    0.504995] nand: device found, Manufacturer ID: 0xc2, Chi=
+p ID:
+> > >> >> > > 0xf1
+> > >> >> > > [    0.511526] nand: Macronix MX30LF1G18AC
+> > >> >> > > [    0.515586] nand: 128 MiB, SLC, erase size: 128 KiB, page =
+size:
+> > >> >> > > 2048, OOB size: 64
+> > >> >> > > [    0.523516] bcm6368_nand 10000200.nand: detected 128MiB to=
+tal,
+> > >> >> > > 128KiB blocks, 2KiB pages, 16B OOB, 8-bit, BCH-4
+> > >> >> > > [    0.535912] Bad block table found at page 65472, version 0=
+x01
+> > >> >> > > [    0.544268] Bad block table found at page 65408, version 0=
+x01
+> > >> >> > > [    0.954329] 9 fixed-partitions partitions found on MTD dev=
+ice
+> > >> >> > > brcmnand.0
+> > >> >> > > ...
+> > >> >> > >
+> > >> >> > > This is the log with block protection enabled:
+> > >> >> > > [    0.495095] bcm6368_nand 10000200.nand: there is not valid=
+ maps
+> > >> >> > > for
+> > >> >> > > state default
+> > >> >> > > [    0.504249] nand: device found, Manufacturer ID: 0xc2, Chi=
+p ID:
+> > >> >> > > 0xf1
+> > >> >> > > [    0.510772] nand: Macronix MX30LF1G18AC
+> > >> >> > > [    0.514874] nand: 128 MiB, SLC, erase size: 128 KiB, page =
+size:
+> > >> >> > > 2048, OOB size: 64
+> > >> >> > > [    0.522780] bcm6368_nand 10000200.nand: detected 128MiB to=
+tal,
+> > >> >> > > 128KiB blocks, 2KiB pages, 16B OOB, 8-bit, BCH-4
+> > >> >> > > [    0.539687] Bad block table not found for chip 0
+> > >> >> > > [    0.550153] Bad block table not found for chip 0
+> > >> >> > > [    0.555069] Scanning device for bad blocks
+> > >> >> > > [    0.601213] CPU 1 Unable to handle kernel paging request a=
+t
+> > >> >> > > virtual
+> > >> >> > > address 10277f00, epc =3D=3D 8039ce70, ra =3D=3D 8016ad50
+> > >> >> > > *** Device hangs ***
+> > >> >> > >
+> > >> >> > > Enabling macronix_nand_block_protection_support() makes the d=
+evice
+> > >> >> > > unable to detect the bad block table and hangs it when trying=
+ to
+> > >> >> > > scan
+> > >> >> > > for bad blocks.
+> > >> >> >
+> > >> >> > Please trace nand_macronix.c and look:
+> > >> >> > - are the get_features and set_features really supported by the
+> > >> >> >   controller driver?
+> > >> >>
+> > >> >> This is what I could find by debugging:
+> > >> >> [    0.494993] bcm6368_nand 10000200.nand: there is not valid map=
+s for
+> > >> >> state default
+> > >> >> [    0.505375] nand: device found, Manufacturer ID: 0xc2, Chip ID=
+:
+> > >> >> 0xf1
+> > >> >> [    0.512077] nand: Macronix MX30LF1G18AC
+> > >> >> [    0.515994] nand: 128 MiB, SLC, erase size: 128 KiB, page size=
+:
+> > >> >> 2048, OOB size: 64
+> > >> >> [    0.523928] bcm6368_nand 10000200.nand: detected 128MiB total,
+> > >> >> 128KiB blocks, 2KiB pages, 16B OOB, 8-bit, BCH-4
+> > >> >> [    0.534415] bcm6368_nand 10000200.nand: ll_op cmd 0xa00ee
+> > >> >> [    0.539988] bcm6368_nand 10000200.nand: ll_op cmd 0x600a0
+> > >> >> [    0.545659] bcm6368_nand 10000200.nand: ll_op cmd 0x10000
+> > >> >> [    0.551214] bcm6368_nand 10000200.nand: NAND_CMD_GET_FEATURES =
+=3D
+> > >> >> 0x00
+> > >> >> [    0.557843] bcm6368_nand 10000200.nand: ll_op cmd 0x10000
+> > >> >> [    0.563475] bcm6368_nand 10000200.nand: NAND_CMD_GET_FEATURES =
+=3D
+> > >> >> 0x00
+> > >> >> [    0.569998] bcm6368_nand 10000200.nand: ll_op cmd 0x10000
+> > >> >> [    0.575653] bcm6368_nand 10000200.nand: NAND_CMD_GET_FEATURES =
+=3D
+> > >> >> 0x00
+> > >> >> [    0.582246] bcm6368_nand 10000200.nand: ll_op cmd 0x80010000
+> > >> >> [    0.588067] bcm6368_nand 10000200.nand: NAND_CMD_GET_FEATURES =
+=3D
+> > >> >> 0x00
+> > >> >> [    0.594657] nand: nand_get_features: addr=3Da0 subfeature_para=
+m=3D[00
+> > >> >> 00 00 00] -> 0
+> > >> >> [    0.602341] macronix_nand_block_protection_support:
+> > >> >> ONFI_FEATURE_ADDR_MXIC_PROTECTION=3D0
+> > >> >> [    0.610548] macronix_nand_block_protection_support: !=3D
+> > >> >> MXIC_BLOCK_PROTECTION_ALL_LOCK
+> > >> >> [    0.624760] Bad block table not found for chip 0
+> > >> >> [    0.635542] Bad block table not found for chip 0
+> > >> >> [    0.640270] Scanning device for bad blocks
+> > >> >>
+> > >> >> I don't know how to tell if get_features / set_features is really
+> > >> >> supported...
+> > >> >
+> > >> > Looks like your driver does not support exec_op but the core provi=
+des a
+> > >> > get/set_feature implementation.
+> > >>
+> > >> According to Florian, low level should be supported on brcmnand
+> > >> controllers >=3D 4.0
+> > >> Also:
+> > >> https://github.com/nomis/bcm963xx_4.12L.06B_consumer/blob/e2f23ddbb2=
+0bf75689372b6e6a5a0dc613f6e313/shared/opensource/include/bcm963xx/63268_map=
+_part.h#L1597
+> > >
+> > > Just to be sure, you're using a mainline controller driver, not this
+> > > one?
+> >
+> > Yes, this was just to prove that the HW I=E2=80=99m using has get/set f=
+eatures support.
+> > I=E2=80=99m using OpenWrt, so it=E2=80=99s linux v5.15 driver.
+> >
+> > >
+> > >> >
+> > >> >>
+> > >> >> > - what is the state of the locking configuration in the chip wh=
+en
+> > >> >> > you
+> > >> >> >   boot?
+> > >> >>
+> > >> >> Unlocked, I guess...
+> > >> >> How can I check that?
+> > >> >
+> > >> > It's in your dump, the chip returns 0, meaning it's all unlocked,
+> > >> > apparently.
+> > >>
+> > >> Well, I can read/write the device if block protection isn=E2=80=99t =
+disabled,
+> > >> so I guess we can confirm it=E2=80=99s unlocked=E2=80=A6
+> > >>
+> > >> >
+> > >> >> > - is there anything that locks the device by calling mxic_nand_=
+lock()
+> > >> >> > ?
+> > >> >
+> > >> > So nobody locks the device I guess? Did you add traces there?
+> > >>
+> > >> It doesn=E2=80=99t get to the point that it enabled the lock/unlock =
+functions
+> > >> since it fails when checking if feature is 0x38, so there=E2=80=99s =
+no point
+> > >> in adding those traces=E2=80=A6
+> > >
+> > > Right, it returns before setting these I guess.
+> > >
+> > >>
+> > >> >
+> > >> >> > - finding no bbt is one thing, hanging is another, where is it
+> > >> >> > hanging
+> > >> >> >   exactly? (offset in nand/ and line in the code)
+> > >> >>
+> > >> >> I've got no idea...
+> > >> >
+> > >> > You can use ftrace or just add printks a bit everywhere and try to=
+ get
+> > >> > closer and closer.
+> > >>
+> > >> I think that after trying to get the feature it just start reading
+> > >> nonsense from the NAND and at some point it hangs due to that garbag=
+e=E2=80=A6
+> > >
+> > > It should refuse to mount the device somehow, but in no case the kern=
+el
+> > > should hang.
+> >
+> > Yes, I think that this is a side effect (maybe a different bug somewher=
+e else).
+> >
+> > >
+> > >> Is it posible that the NAND starts behaving like this after getting
+> > >> the feature due to some specific config of my device?
+> > >>
+> > >> >
+> > >> > I looked at the patch, I don't see anything strange. Besides, I ha=
+ve a
+> > >> > close enough datasheet and I don't see what could confuse the devi=
+ce.
+> > >> >
+> > >> > Are you really sure this patch is the problem? Is the WP pin wired=
+ on
+> > >> > your design?
+> > >>
+> > >> There=E2=80=99s no WP pin in brcmnand controllers < 7.0
+> > >
+> > > What about the chip?
+> >
+> > Maybe it has a GPIO controlling that, but I don=E2=80=99t have that inf=
+o=E2=80=A6
+> >
+> > >
+> > > Thanks,
+> > > Miqu=C3=A8l
+> > >
