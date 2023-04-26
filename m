@@ -2,191 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 385F56EF690
-	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 16:38:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8885B6EF695
+	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 16:39:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240968AbjDZOiG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Apr 2023 10:38:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44268 "EHLO
+        id S241427AbjDZOjE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Apr 2023 10:39:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240794AbjDZOiF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 10:38:05 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 198DD59FB
-        for <devicetree@vger.kernel.org>; Wed, 26 Apr 2023 07:38:04 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A8A5562C4C
-        for <devicetree@vger.kernel.org>; Wed, 26 Apr 2023 14:38:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA709C433D2;
-        Wed, 26 Apr 2023 14:38:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1682519883;
-        bh=dr0cteJtfRf944fSh9DIHS+31fvUAvv7+UGLnnA5V7Q=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=dgQokHmmQ0CtrnRZKCnswWsOXGxUJtp46PY1mb6jUc1ZaYuv7vZYdbNFYUabDaW+b
-         2hE1KDBHNxzQNiHb+pXQVN6ylNr75F27HH7T3sqpK8GcwOw1KeoEAxtBTfQnfPPazl
-         849rV3yU7cNU6Mv3eQqhVBopcOQnTwdcz2UY1Fpk73Lidn/Haqc6GeAEyoBU8ZlaZD
-         lrwIPOqMtz+gu0SgdaC5JAPFaHZdRx9xmUzVRFmBKUAfeKusQWzJLJghlW9FDdhxfw
-         0DelwlQ/SQlOIr1LrVzXMdpFy/Y5S3M5s1iwft8+C/6mc9pPOZ+1wPAQ+nZq2WAiSF
-         gu0kE7ELvFZRA==
-Date:   Wed, 26 Apr 2023 15:37:58 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Andrew Jones <ajones@ventanamicro.com>
-Cc:     Conor Dooley <conor.dooley@microchip.com>, palmer@dabbelt.com,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Wende Tan <twd2.me@gmail.com>, Soha Jin <soha@lohu.info>,
-        Hongren Zheng <i@zenithal.me>, Yangyu Chen <cyy@cyyself.name>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v1 1/2] RISC-V: skip parsing multi-letter extensions
- starting with caps
-Message-ID: <20230426-getting-tactile-e6cee2cdf870@spud>
-References: <20230426-satin-avenging-086d4e79a8dd@wendy>
- <20230426-devalue-enlarging-afb4fa1bb247@wendy>
- <zzxnphgq34d7pbbvjaoxal4i3mtn57x7avujr2brb3ddxorzno@3fsb57layf7m>
- <20230426-slinky-preface-0f40f3fefb0f@wendy>
- <d7t6nxmblmyqriogs4bxakpse3qc7pc6cczjnhmkpk4kjwvgcb@3aihh3erdn6p>
- <2pqjxrn7cj6lvlw5ulzgewvnswwocibufkzrh43jftsrboeuxp@efiwrvukn33v>
+        with ESMTP id S240794AbjDZOjA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 10:39:00 -0400
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD03559FB;
+        Wed, 26 Apr 2023 07:38:59 -0700 (PDT)
+Received: by mail-pf1-x434.google.com with SMTP id d2e1a72fcca58-63b4bf2d74aso5675698b3a.2;
+        Wed, 26 Apr 2023 07:38:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1682519939; x=1685111939;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=3BCGjGAwt9nzDcLjFkEGmcEFFk7XHVfGUcpqHbAcKNw=;
+        b=cmMOdBE3C5NBm/2htsHx9odWgajCNLikfdgI4VUEL7OVeVDSzY05jJdiFnOykoJF5s
+         5RI44vTJZOBViD1wSXM4KAn8DXihiJc27ywWv89fHIQ8oiyIkTMUbOPBdIQd7DsMaEw+
+         389DWmJ9LAu8D+ct6ELhdPsX1g+LTWPE2pYxrsySX/v191l96+HrvaD8Rp9lTGjy1flR
+         hv4V2ag2VV32HSQKjd9bmimuOtfa92m6efCtwnR9SEwQXR8EMs9NnaZAeOzaZAtQiUKN
+         icQJdv9QztX/oXXl8fNmUko8lecLvZijAAIbfldAez+EaEO70YL98A7G4bdiNNq5lrgh
+         kIlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682519939; x=1685111939;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3BCGjGAwt9nzDcLjFkEGmcEFFk7XHVfGUcpqHbAcKNw=;
+        b=Af0JLU3KCXilmYTMeGpKoo9xNAtZmFzrguEmz2a0Ut0mNbiMbbuRp4/ooenEaOsSEH
+         iyfbzZnCUTr5okobt+d32BSJkzQhkRFxulI20tRSzWMKcoK/HB5XpQeWg4QhS8RhaXV1
+         qlvylEHZGtqwW2QCrHY687UFe+ghD2UAziL+I1tNI9stjC4vxheHDMyttn6Qy9HCDLVc
+         IfMZLHJUHPLIlOr7mpxgiAMuPDgGmpHxplm0fPJqh4hpLs6qh03K+HoqSJkO5iMKmmof
+         OXx0q0fKIdCgaKCjT++eBh+rfmFeiNILLOAY1WQcrGnV1DKu8zPmaOVTAtK4FjDZWYvt
+         eQPA==
+X-Gm-Message-State: AAQBX9dqQjP5yVjHEiYnETMw5lb5l06mPrXFH2U0DPHZ6pEhgptODPlS
+        mA0UHAoIXbJimIKsiwltUCE=
+X-Google-Smtp-Source: AKy350Ze6vJVynaE/sosyjaaJ5tbcOIT47nnb+gn9nXczWmDoem3JCnORWv9plbtWgGj1XJAKRY2Fg==
+X-Received: by 2002:a05:6a20:4394:b0:f0:2501:349b with SMTP id i20-20020a056a20439400b000f02501349bmr24646831pzl.25.1682519939069;
+        Wed, 26 Apr 2023 07:38:59 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id j9-20020a056a00234900b0062dfe944c61sm11448152pfj.218.2023.04.26.07.38.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Apr 2023 07:38:58 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <abe1301a-8bdf-3e5f-9e52-71f0f77d519b@roeck-us.net>
+Date:   Wed, 26 Apr 2023 07:38:56 -0700
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="Ord/D1S6y8Zth5Bw"
-Content-Disposition: inline
-In-Reply-To: <2pqjxrn7cj6lvlw5ulzgewvnswwocibufkzrh43jftsrboeuxp@efiwrvukn33v>
-X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v3 0/2] Hwmon driver for MAX31827 temperature switch
+Content-Language: en-US
+To:     Daniel Matyas <daniel.matyas@analog.com>
+Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org
+References: <20230426124049.258359-1-daniel.matyas@analog.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+In-Reply-To: <20230426124049.258359-1-daniel.matyas@analog.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 4/26/23 05:40, Daniel Matyas wrote:
+> Removed of_match_table and kept only id_table. Removed other device id's
+> from id_table (I have them only in the devicetree-binding).
+> 
 
---Ord/D1S6y8Zth5Bw
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Please explain. Without of_match_table, it is not possible to bind the driver
+using devicetree data. What is the point of that ?
 
-On Wed, Apr 26, 2023 at 03:54:55PM +0200, Andrew Jones wrote:
-> On Wed, Apr 26, 2023 at 03:08:25PM +0200, Andrew Jones wrote:
-> > On Wed, Apr 26, 2023 at 01:47:39PM +0100, Conor Dooley wrote:
-> > > On Wed, Apr 26, 2023 at 02:18:52PM +0200, Andrew Jones wrote:
-> > > > On Wed, Apr 26, 2023 at 11:43:24AM +0100, Conor Dooley wrote:
-> > > > > Yangyu Chen reported that if an multi-letter extension begins wit=
-h a
-> > > > > capital letter the parser will treat the remainder of that multi-=
-letter
-> > > > > extension as single-letter extensions.
-> > > >=20
-> > > > I think the problem is that the parser doesn't completely abort when
-> > > > it sees something it doesn't understand. Continuing is risky since
-> > > > it may be possible to compose an invalid string that gets the parser
-> > > > to run off the rails.
-> > >=20
-> > > Usually I am of the opinion that we should not seek the validate the =
-dt
-> > > in the kernel, since there are tools for doing so *cough* dt-validate
-> > > *cough*. This one seemed like low hanging fruit though, since the par=
-ser
-> > > handles having capital letters in any of the other places after the
-> > > rv##, but falls over pretty badly for this particular issue.
-> > >=20
-> > > In general, I don't think we need to be concerned about anything that
-> > > fails dt-validate though, you kinda need to trust that that is correc=
-t.
-> > > I'd argue that we might even do too much validation in the parser at
-> > > present.
-> > > Is there some attack vector, or ACPI related consideration, that I am
-> > > unaware of that makes this risky?
->=20
-> A bit unrelated to this, but your mention of ACPI made me go look at the
-> approved ECR[1] again for the ISA string. It says "Null-terminated ASCII
-> Instruction Set Architecture (ISA) string for this hart. The format of the
-> ISA string is defined in the RISC-V unprivileged specification." I suppose
-> we can still add additional requirements to an ACPI ISA string which the
-> Linux kernel will parse, but it'll be odd to point people at the DT
-> binding to do that. Maybe we should consider making the parser more
-> complete, possibly by importing it from some reference implementation or
-> something.
+Guenter
 
-Heh, I wonder are we heading for some divergence here then. riscv,isa in
-a DT is explicitly *not* a match for that due to the
-backwards-incompatible changes made by RVI to extension definitions
-since riscv,isa was added to the dt-binding. Clarifying that one is the
-next patch in my todo list..
+> Added mutex protection where it was needed.
+> 
+> Daniel Matyas (2):
+>    dt-bindings: hwmon: add MAX31827
+>    hwmon: max31827: add MAX31827 driver
+> 
+>   .../bindings/hwmon/adi,max31827.yaml          |  54 +++
+>   Documentation/hwmon/index.rst                 |   1 +
+>   Documentation/hwmon/max31827.rst              |  83 ++++
+>   MAINTAINERS                                   |   9 +
+>   drivers/hwmon/Kconfig                         |  11 +
+>   drivers/hwmon/Makefile                        |   2 +-
+>   drivers/hwmon/max31827.c                      | 406 ++++++++++++++++++
+>   7 files changed, 565 insertions(+), 1 deletion(-)
+>   create mode 100644 Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
+>   create mode 100644 Documentation/hwmon/max31827.rst
+>   create mode 100644 drivers/hwmon/max31827.c
+> 
 
-ACPI naively saying "it matches the spec" is asking for trouble, since
-there does not actually appear to be any sort of clarification about
-which *version* of the spec that may be. At least in the dt-binding, we
-have a format there, what happens to the ACPI spec if RVI decides that -
-is a suitable alternative to _ in some future edition? I don't think
-such a thing is all that likely, but surely you'd like to insulate the
-ABI from that sort of eventuality?
-
-Perhaps the thing to do is to actually take Yangyu's first patch and my
-second one, since the problem with backwards compatibility doesn't stop
-the kernel from being more permissive?
-
-Cheers,
-Conor.
-
->=20
-> [1] https://drive.google.com/file/d/1nP3nFiH4jkPMp6COOxP6123DCZKR-tia/view
->=20
-> Thanks,
-> drew
->=20
-> >=20
-> > C language + string processing =3D=3D potential attack vector
-> >=20
-> > >=20
-> > > > How about completely aborting, noisily, when the string doesn't mat=
-ch
-> > > > expectations, falling back to a default string such as rv64ima inst=
-ead.
-> > > > That also ought to get faster corrections of device trees.
-> > >=20
-> > > I did this first actually, but I was afraid that it would cause
-> > > regressions?
-> > >=20
-> > > If you have riscv,isa =3D "rv64imafdc_Zifencei_zicbom", yes that is
-> > > invalid and dt-validate would have told you so, but at present that
-> > > would be parsed as "rv64imafdc_zicbom" which is a perfect description=
- of
-> > > the hardware in question (since the meaning of i was set before RVI m=
-ade
-> > > a hames of things).
-> > >=20
-> > > So that's why I opted to not do some sort of pr_err/BUG()/WARN() and
-> > > try to keep processing the string. I'm happy to abort entirely on
-> > > reaching a capital if people feel there's unlikely to be a fallout fr=
-om
-> > > that.
-> >=20
-> > There might be fallout, but the kernel needs to defend itself. IMO, if
-> > the kernel doesn't know how to parse something, then it should stop
-> > trying to immediately, either with a BUG(), refusing to accept any
-> > part of it, by fallbacking back to a default, or by only accepting what
-> > it believes it parsed correctly.
-> >=20
-> > The third option is probably a reasonable choice in this case.
-> >=20
-> > Thanks,
-> > drew
-
---Ord/D1S6y8Zth5Bw
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZEk3RgAKCRB4tDGHoIJi
-0uM8AQCibCv7WrTPZ1J0u+thunBCTol3UzmrJkAjCwdOi2qSxQD/ed3gnl6zmwFO
-BZbYYXJmaxipAZgFkr+5I177BHgoowE=
-=eqgS
------END PGP SIGNATURE-----
-
---Ord/D1S6y8Zth5Bw--
