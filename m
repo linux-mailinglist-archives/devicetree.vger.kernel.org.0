@@ -2,110 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8885B6EF695
-	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 16:39:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23E956EF6AB
+	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 16:44:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241427AbjDZOjE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Apr 2023 10:39:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44418 "EHLO
+        id S241493AbjDZOoj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Apr 2023 10:44:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240794AbjDZOjA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 10:39:00 -0400
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD03559FB;
-        Wed, 26 Apr 2023 07:38:59 -0700 (PDT)
-Received: by mail-pf1-x434.google.com with SMTP id d2e1a72fcca58-63b4bf2d74aso5675698b3a.2;
-        Wed, 26 Apr 2023 07:38:59 -0700 (PDT)
+        with ESMTP id S241481AbjDZOof (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 10:44:35 -0400
+Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C842F7696
+        for <devicetree@vger.kernel.org>; Wed, 26 Apr 2023 07:44:31 -0700 (PDT)
+Received: by mail-pf1-x431.google.com with SMTP id d2e1a72fcca58-63d4595d60fso43795244b3a.0
+        for <devicetree@vger.kernel.org>; Wed, 26 Apr 2023 07:44:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682519939; x=1685111939;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=3BCGjGAwt9nzDcLjFkEGmcEFFk7XHVfGUcpqHbAcKNw=;
-        b=cmMOdBE3C5NBm/2htsHx9odWgajCNLikfdgI4VUEL7OVeVDSzY05jJdiFnOykoJF5s
-         5RI44vTJZOBViD1wSXM4KAn8DXihiJc27ywWv89fHIQ8oiyIkTMUbOPBdIQd7DsMaEw+
-         389DWmJ9LAu8D+ct6ELhdPsX1g+LTWPE2pYxrsySX/v191l96+HrvaD8Rp9lTGjy1flR
-         hv4V2ag2VV32HSQKjd9bmimuOtfa92m6efCtwnR9SEwQXR8EMs9NnaZAeOzaZAtQiUKN
-         icQJdv9QztX/oXXl8fNmUko8lecLvZijAAIbfldAez+EaEO70YL98A7G4bdiNNq5lrgh
-         kIlA==
+        d=chromium.org; s=google; t=1682520271; x=1685112271;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=RMNClM9ik+szOvJOLzfRpbcMxADOReFPHjEqSl9MgW0=;
+        b=T1qwsRZgAaz7PgyfGME8hLTr+BlhLPS7hZWDSk7H9HG+U/in5nh4UEAeuL4awFu7Kh
+         vvYQ74hjznhzvQQZ6ipUybRF6I83VVUuO8PQrWmuojfajIXZcwe72Vn8Bp6qakLrEUeT
+         MSl0I6qTjgjLGXWar+a/gXZSDsWsiIMMymcxk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682519939; x=1685111939;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20221208; t=1682520271; x=1685112271;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=3BCGjGAwt9nzDcLjFkEGmcEFFk7XHVfGUcpqHbAcKNw=;
-        b=Af0JLU3KCXilmYTMeGpKoo9xNAtZmFzrguEmz2a0Ut0mNbiMbbuRp4/ooenEaOsSEH
-         iyfbzZnCUTr5okobt+d32BSJkzQhkRFxulI20tRSzWMKcoK/HB5XpQeWg4QhS8RhaXV1
-         qlvylEHZGtqwW2QCrHY687UFe+ghD2UAziL+I1tNI9stjC4vxheHDMyttn6Qy9HCDLVc
-         IfMZLHJUHPLIlOr7mpxgiAMuPDgGmpHxplm0fPJqh4hpLs6qh03K+HoqSJkO5iMKmmof
-         OXx0q0fKIdCgaKCjT++eBh+rfmFeiNILLOAY1WQcrGnV1DKu8zPmaOVTAtK4FjDZWYvt
-         eQPA==
-X-Gm-Message-State: AAQBX9dqQjP5yVjHEiYnETMw5lb5l06mPrXFH2U0DPHZ6pEhgptODPlS
-        mA0UHAoIXbJimIKsiwltUCE=
-X-Google-Smtp-Source: AKy350Ze6vJVynaE/sosyjaaJ5tbcOIT47nnb+gn9nXczWmDoem3JCnORWv9plbtWgGj1XJAKRY2Fg==
-X-Received: by 2002:a05:6a20:4394:b0:f0:2501:349b with SMTP id i20-20020a056a20439400b000f02501349bmr24646831pzl.25.1682519939069;
-        Wed, 26 Apr 2023 07:38:59 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id j9-20020a056a00234900b0062dfe944c61sm11448152pfj.218.2023.04.26.07.38.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Apr 2023 07:38:58 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <abe1301a-8bdf-3e5f-9e52-71f0f77d519b@roeck-us.net>
-Date:   Wed, 26 Apr 2023 07:38:56 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v3 0/2] Hwmon driver for MAX31827 temperature switch
-Content-Language: en-US
-To:     Daniel Matyas <daniel.matyas@analog.com>
-Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+        bh=RMNClM9ik+szOvJOLzfRpbcMxADOReFPHjEqSl9MgW0=;
+        b=bJHw5qB99SvUTodAkdt5BefNNCm1L7m4GhLIIipKTe2cOCd6S/SZi2EryeZ+6fjTyS
+         +4NotcQHDMIZWgSJun64whCC9+nD5ZU8qZC8eTabtvQzVtFfClq8mOklIsvnzE9JjI4R
+         tATomqI8/LKjLt7TfM4sYgtf6VXE8Bzl0Y0RZ9j37zB5HuzICEkEDYg7N6m7D9Bq9UJ7
+         /u9ymA3od0+lfktOkbUKhCywpiTVtoNr/SE+913CpHCnjF9+gnhAIUqMKQc/YNeC2JyR
+         TcMUjQVgKJP3hFW9NBhsuOKVyvZJH40hit4awxDHRW6Lmw++FlQlk7L/QH0vUtTuxkON
+         lW6A==
+X-Gm-Message-State: AC+VfDx4Z0HnDb/hcwDHu5wdjnPMKxkMXQw2yDR5xJLuQ/QSMDy5K8yw
+        1Xv0iF61hOC8QIcV/uSS74+0mw==
+X-Google-Smtp-Source: ACHHUZ4VGDqLe4ucoBanVPHSiLZqrXQslXJ89MS3u5x7RjaMFE2ziXuibgHtnrtIF88PtTG4jGJEVA==
+X-Received: by 2002:a05:6a21:9993:b0:ee:bcf3:be0c with SMTP id ve19-20020a056a21999300b000eebcf3be0cmr3657144pzb.0.1682520271275;
+        Wed, 26 Apr 2023 07:44:31 -0700 (PDT)
+Received: from fshao-glinux.tpe.corp.google.com ([2401:fa00:1:10:dcf6:797f:140d:6d])
+        by smtp.gmail.com with ESMTPSA id f17-20020a631011000000b00502f20aa4desm8750495pgl.70.2023.04.26.07.44.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Apr 2023 07:44:30 -0700 (PDT)
+From:   Fei Shao <fshao@chromium.org>
+To:     Jeff LaBundy <jeff@labundy.com>,
+        Douglas Anderson <dianders@chromium.org>,
+        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-mediatek <linux-mediatek@lists.infradead.org>,
+        Fei Shao <fshao@chromium.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Jiri Kosina <jikos@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org
-References: <20230426124049.258359-1-daniel.matyas@analog.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-In-Reply-To: <20230426124049.258359-1-daniel.matyas@analog.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Matthias Kaehlcke <mka@chromium.org>,
+        Stephen Kitt <steve@sk2.org>, devicetree@vger.kernel.org,
+        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/2] Fix Goodix touchscreen power leakage for MT8186 boards
+Date:   Wed, 26 Apr 2023 22:44:20 +0800
+Message-ID: <20230426144423.2820826-1-fshao@chromium.org>
+X-Mailer: git-send-email 2.40.1.495.gc816e09b53d-goog
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/26/23 05:40, Daniel Matyas wrote:
-> Removed of_match_table and kept only id_table. Removed other device id's
-> from id_table (I have them only in the devicetree-binding).
-> 
+These changes are based on the series in [1], which modified the
+i2c-hid-of-goodix driver and removed the workaround for a power leakage
+issue, so the issue revisits on Mediatek MT8186 boards (Steelix).
 
-Please explain. Without of_match_table, it is not possible to bind the driver
-using devicetree data. What is the point of that ?
+The root cause is that the touchscreen can be powered in different ways
+depending on the hardware designs, and it's not as easy to come up with
+a solution that is both simple and elegant for all the known designs.
 
-Guenter
+To address the issue, I ended up adding a new boolean property for the
+driver so that we can control the power up/down sequence depending on
+that.
 
-> Added mutex protection where it was needed.
-> 
-> Daniel Matyas (2):
->    dt-bindings: hwmon: add MAX31827
->    hwmon: max31827: add MAX31827 driver
-> 
->   .../bindings/hwmon/adi,max31827.yaml          |  54 +++
->   Documentation/hwmon/index.rst                 |   1 +
->   Documentation/hwmon/max31827.rst              |  83 ++++
->   MAINTAINERS                                   |   9 +
->   drivers/hwmon/Kconfig                         |  11 +
->   drivers/hwmon/Makefile                        |   2 +-
->   drivers/hwmon/max31827.c                      | 406 ++++++++++++++++++
->   7 files changed, 565 insertions(+), 1 deletion(-)
->   create mode 100644 Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
->   create mode 100644 Documentation/hwmon/max31827.rst
->   create mode 100644 drivers/hwmon/max31827.c
-> 
+Adding a new property might not be the cleanest approach for this, but
+at least the intention would be easy enough to understand, and it
+introduces relatively small change to the code and fully preserves the
+original control flow.
+I hope this is something acceptable, and I'm open to any better
+approaches.
+
+[1] https://lore.kernel.org/all/20230207024816.525938-1-dianders@chromium.org/
+
+Changes in v3:
+- In power-down, only skip the GPIO but not the regulator calls if the
+  flag is set
+
+Changes in v2:
+- Use a more accurate property name and with "goodix," prefix.
+- Do not change the regulator_enable logic during power-up.
+
+Fei Shao (2):
+  dt-bindings: input: goodix: Add "goodix,no-reset-during-suspend"
+    property
+  HID: i2c-hid: goodix: Add support for "goodix,no-reset-during-suspend"
+    property
+
+ .../bindings/input/goodix,gt7375p.yaml           |  9 +++++++++
+ drivers/hid/i2c-hid/i2c-hid-of-goodix.c          | 16 +++++++++++++++-
+ 2 files changed, 24 insertions(+), 1 deletion(-)
+
+-- 
+2.40.1.495.gc816e09b53d-goog
 
