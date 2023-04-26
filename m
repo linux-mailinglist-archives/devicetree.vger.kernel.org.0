@@ -2,65 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 22DCC6EF289
-	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 12:46:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 146E56EF299
+	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 12:49:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232133AbjDZKqd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Apr 2023 06:46:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40076 "EHLO
+        id S239869AbjDZKtl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Apr 2023 06:49:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240601AbjDZKp6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 06:45:58 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 415E35BA1
-        for <devicetree@vger.kernel.org>; Wed, 26 Apr 2023 03:45:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1682505906; x=1714041906;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=ricgD7/YwtaexpP9atX1g+908o4ZNkj1Y0ZHbO2s7NE=;
-  b=xwerSYUz0OKMPgVJFFe3MhGT/elKodVFnr4WBrQ+rNHRR16vPiNOQatr
-   lkgAUYhxMK6pc4MvCoW90MgfnAzIxXd6oI5P9uL5QvaOs6g6CaXwLTSB5
-   XmSYvKX7ntyt1ESOSgaLWj4q0slXDoHooNNrlnoK3XjxyzIYUIGNL9oTV
-   KR/gD0HwJsEtxznqnUtARTEOQjisaTOXPQIebnsa8f/goEnPNHFU3XQL6
-   Ulq+e7Xde3SwjVlT+IcjGUhCApkn/VxI7YSEWTV+M+1/5IP80Ys++djbp
-   B/dlzzudd1YAKTvngV58DMRVmLDKHwnNzjYgiKUcQPjdYM1PMixoVrfB4
-   g==;
-X-IronPort-AV: E=Sophos;i="5.99,227,1677567600"; 
-   d="scan'208";a="210769068"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 26 Apr 2023 03:44:25 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Wed, 26 Apr 2023 03:44:12 -0700
-Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.21 via Frontend
- Transport; Wed, 26 Apr 2023 03:44:10 -0700
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     <palmer@dabbelt.com>
-CC:     <conor@kernel.org>, <conor.dooley@microchip.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
-        Wende Tan <twd2.me@gmail.com>, Soha Jin <soha@lohu.info>,
-        Hongren Zheng <i@zenithal.me>, Yangyu Chen <cyy@cyyself.name>,
-        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>
-Subject: [PATCH v1 2/2] dt-bindings: riscv: drop invalid comment about riscv,isa lower-case reasoning
-Date:   Wed, 26 Apr 2023 11:43:25 +0100
-Message-ID: <20230426-payphone-nautical-7098d15035c8@wendy>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230426-satin-avenging-086d4e79a8dd@wendy>
-References: <20230426-satin-avenging-086d4e79a8dd@wendy>
+        with ESMTP id S230401AbjDZKtk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 06:49:40 -0400
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B062E78
+        for <devicetree@vger.kernel.org>; Wed, 26 Apr 2023 03:49:38 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-3f1957e80a2so146848415e9.1
+        for <devicetree@vger.kernel.org>; Wed, 26 Apr 2023 03:49:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1682506176; x=1685098176;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=uXqpOIhkzwPRXmqDg52P5Pe8HaS6m4zR8JovEcwwVoo=;
+        b=ZDpQ1hhLsbi7CS535pqYF3gnHiml9s00kPPxdCtw+mPgIgeqReJQSGyKQ6lNzHebJ1
+         WuWIymVAaKiRUlhMzYIxLZcOh0FqvOEvPUs2zCSUJMTEkyYtjfq3mN5DWvjS0JpLV/FI
+         IPzruLvzHylyUBUnIhB5l+7gxBT2QDnJgHCoJfUPfcI86Yw+fuFnJ51aS/VCl9fwk1NH
+         OyGVjrEoZ80VLJByUaU3+1HDdgnXT3tBQhoiMiYj00sK5TObslC+cj7zbPapE4lOCJgN
+         LDFIiyvYeWG3bD5N01l+mn7VRc3Vk3BrJYh/lP+VVbCdftZCCSzRI973roq7c8/SaQ+Q
+         LdYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682506176; x=1685098176;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uXqpOIhkzwPRXmqDg52P5Pe8HaS6m4zR8JovEcwwVoo=;
+        b=PoW/4Z3kZrwKa2vBSlg2ez3q2kQ1kv2Aq5426frOOmOeyDkvIClf/1cNppQTPBSF5J
+         H0eDJaz1PJ0xXLrds22A+54xQ1xYPMiCASTPGcZk3fN1fWK0hU7CmhkQgcpR4Rt8/exB
+         YrV2GcqQ3Q+MIkTFqLMKCyH290T1zXhd/XFJoj+O0gYZuzHYsdlnEsCO1eYPdY1Q33Sq
+         AsmU3EbYvEhVPpNiCpuPnrvVKTH5efnNeXEp9g28IjMrDPVch63QK6PXP0wWs9QJXgVx
+         S5/fDuO8H6ZaWeWqcyoIafqlUBrPE2HcYiryB8gQh6LHYLY7LF5Y8VoyBCXwy3oehdAq
+         tuYw==
+X-Gm-Message-State: AC+VfDzpE3N/9VMwoWWs1KnleJcZOPLR0EWJXmuEvUTr0TTmUj9C8E6Q
+        vrizeuAZ+uu5ahRbNr2IvMGLuQ==
+X-Google-Smtp-Source: ACHHUZ4enVDWy52+KhmMnqjQXLUOxop4/WasL/L+Qo7S3eViLzsO6QqIXDK2o9bhjpKEDPNf/LAbsw==
+X-Received: by 2002:a05:600c:474e:b0:3f1:7510:62e8 with SMTP id w14-20020a05600c474e00b003f1751062e8mr1486385wmo.3.1682506176383;
+        Wed, 26 Apr 2023 03:49:36 -0700 (PDT)
+Received: from [127.0.1.1] (158.22.5.93.rev.sfr.net. [93.5.22.158])
+        by smtp.googlemail.com with ESMTPSA id 25-20020a05600c025900b003ed2c0a0f37sm17601988wmj.35.2023.04.26.03.49.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Apr 2023 03:49:35 -0700 (PDT)
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+Subject: [PATCH v6 00/12] Improve the MT8365 SoC and EVK board support
+Date:   Wed, 26 Apr 2023 12:49:00 +0200
+Message-Id: <20230203-evk-board-support-v6-0-8d6b1cfe7f29@baylibre.com>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1297; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=ricgD7/YwtaexpP9atX1g+908o4ZNkj1Y0ZHbO2s7NE=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDCmeDF4i0xfUB5xcpnq1YOr0vTkrkoV5J3Tu9HpXIPt0duv/ Oe/cO0pZGMQ4GGTFFFkSb/e1SK3/47LDuectzBxWJpAhDFycAjCR0gBGhp3s0vMK0icwpV0o28tlqf 5rXWTdZc5EqZnaL1V1bmzeFMLI8Pjrz71vbNtiNxUK/Q/X+Wwefa04+sVbqZuZoXmBy14a8wIA
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJwBSWQC/4XOwW7DIAwG4FepOI/JQCB0p73HtAMYZ0HLQgUtU
+ lXl3eftOEXLyfot/Z/9EI1qpiZeTg9RqeeWy8rBPZ0EzmH9IJkTZ6FBG9BgJPVPGUuoSbbb5VL
+ qVSYbx+DNmdIYBfdiaCRjDSvO3Fxvy8LLObdrqfffO13xePuP7EqCBAdGj2AHlexrDPclx0rPW
+ L7EO4NdHyKaEUc4YooKEKcdxBwi5ucTAEMeCOC898lwiAyMWJwmci4Yj7CD2EPEMqK8N6jiADa
+ kP8i2bd91ymqSzgEAAA==
+To:     Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        Alexandre Mergnat <amergnat@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Fabien Parent <fparent@baylibre.com>,
+        Amjad Ouled-Ameur <aouledameur@baylibre.com>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4220; i=amergnat@baylibre.com;
+ h=from:subject:message-id; bh=3cpMqoAIbEB/10TKO6xL48InNMRQARuO5SZVvhSL3Js=;
+ b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBkSQG+qCzT9ucovl/oxsyKVndun3w9oEpHSRG/jODy
+ 9ZtYqhSJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZEkBvgAKCRArRkmdfjHURT+/EA
+ DASggB/c5arZeYIIB3jJA4rPhLRODAMysf2Ftpmx9t9b1WYkM2prj3jAEzhuAUTuFEEqN5VdGO2L4c
+ w5hwiH6skyFQEy5yBmX1GU3jwhCkCDuQ90r1p45Sn6hysKJqJcRWNNOyYiWCo6TiPK+LQeMmEKCRdo
+ Y4QLoQgiMZASwjkmRH4pJphax5nyNAP7Re1Rq2sIWaTsCGNxkwBQtBUwMhENDaa4KnT77DiwVUtiVb
+ x5zXBB848IUgavMF+vh20pA7pi6xtJW8XDK3BsYZNSGKB5FDi9vFD/ndoZNBPRZ4iCSbkuofRtAtie
+ VBrVKNncGrpvgTPtHYekr/R5/QJAfVElZZ6Z4A3zCGTlCjGkCwGTUB4B4jjXSYhAOHmfR225ITo+aL
+ BDi8ewAB2f3YPkr4e2QqUdoC5YZXNt3jtwenqaGmFSAMlOPTA82ZjZI+hX1cNm6LmFsCfP4TYFojBy
+ mPj/Uf4E10FS9yp9lgN8OSTo15oZ5xB6Oq6E1dRJh9LKRuSSxTFNvokNFZl01H6KSWt3QuJcWB1QjT
+ qaZNtCDEv2v97SWZTy37nJa5Q881qVRRkqIuah/ZWO2qPfcMoRvlWknn4Kl60XaUYUC4jlTbIWAMtt
+ xvD1qiOdrSyajdqzbA/4e8iPOuOr8kJSTRgfBJJA56KrdPzgDfcaK9st8NBg==
+X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
+ fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -69,34 +103,104 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-"Ease of parsing" may have been the initial argument for keeping this
-string in lower-case, but parsers may have been written that expect
-lower-case only.
-For example, the one in released kernels currently does not behave
-correctly for multi-letter extensions that begin with a capital letter.
-Allowing upper-case here brings about no benefit but would break
-compatibility between new devicetrees and older kernels.
+This commits are based on the Fabien Parent <fparent@baylibre.com> work.
 
-Drop the comment to avoid confusing people.
+The purpose of this series is to add the following HWs / IPs support for
+the mt8365-evk board:
+- Watchdog
+- Power Management Integrated Circuit "PMIC" wrapper
+- MT6357 PMIC
+- MultiMediaCard "MMC" & Secure Digital "SD" controller
+- USB controller
+- Ethernet MAC controller
 
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+Add CPU Freq & IDLE support for this board.
+
+This series depends to anothers which add support for MT8365 EVK board
+[1], add the MT8365 I2C support [2] (both are currently applied) and
+finally the pinctrl binding cleanup [3].
+
+=== Build:
+
+To test this serie, cherry-pick patches from the dependent series ([1],[2],[3])
+and the applied patches from this serie (documented in the "Changes" below).
+Be carefull, the pinctrl serie [3] is rebased to linusw/linux-pinctrl,
+cherry-pick will not be straightforward.
+Finally, cherry-pick this serie.
+
+You can also take my branch [4] which have all the needed patches
+retrieved from the instructions above.
+
+Use the arm64 defconfig to make the build.
+
+Regards,
+Alex
+
+[1]: https://lore.kernel.org/all/20230309213501.794764-1-bero@baylibre.com/
+[2]: https://lore.kernel.org/all/20221122-mt8365-i2c-support-v6-0-e1009c8afd53@baylibre.com/
+[3]: https://lore.kernel.org/all/20230327-cleanup-pinctrl-binding-v3-0-6f56d5c7a8de@baylibre.com/
+[4]: https://gitlab.baylibre.com/baylibre/mediatek/bsp/linux/-/commits/amergnat/i350-evk-board-support
+
+Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
 ---
- Documentation/devicetree/bindings/riscv/cpus.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Changes in v6:
+- Add commit message for the arm64 defconfig changes
+- Fix the mail list
+- Link to v5: https://lore.kernel.org/r/20230203-evk-board-support-v5-0-1883c1b405ad@baylibre.com
 
-diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
-index f24cf9601c6e..9e273a3264e3 100644
---- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-+++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-@@ -86,7 +86,7 @@ properties:
- 
-       While the isa strings in ISA specification are case
-       insensitive, letters in the riscv,isa string must be all
--      lowercase to simplify parsing.
-+      lowercase.
-     $ref: "/schemas/types.yaml#/definitions/string"
-     pattern: ^rv(?:64|32)imaf?d?q?c?b?k?j?p?v?h?(?:[hsxz](?:[a-z])+)?(?:_[hsxz](?:[a-z])+)*$
- 
+Changes in v5:
+- Add patches to build the MT6357 regulator driver and MTK PMIC keys by default
+- Remove "dt-bindings: pinctrl: mediatek,mt8365-pinctrl: add drive strength property"
+  patch from this serie and add it to the pinctrl serie [3]
+- Link to v4: https://lore.kernel.org/r/20230203-evk-board-support-v4-0-5cffe66a38c0@baylibre.com
+
+Changes in v4:
+- Remove v3 applied patch from the serie:
+  - arm64: dts: mediatek: add ethernet support for mt8365 SoC
+  - arm64: dts: mediatek: add mmc support for mt8365 SoC
+  - arm64: dts: mediatek: add mt6357 device-tree
+  - arm64: dts: mediatek: add pwrap support to mt8365 SoC
+  - arm64: dts: mediatek: Increase the size BL31 reserved memory
+- Drop "arm64: dts: mediatek: fix systimer properties" which is done [1]
+- Fix style, typo and re-order properties.
+- Use interrupts-extended for the PMIC node.
+- Link to v3: https://lore.kernel.org/r/20230203-evk-board-support-v3-0-0003e80e0095@baylibre.com
+
+Changes in v3:
+- Remove v2 applied patch from the serie:
+  - dt-bindings: mmc: mediatek,mtk-sd: add mt8365
+- Add trailers and simply resend.
+- Link to v2: https://lore.kernel.org/r/20230203-evk-board-support-v2-0-6ec7cdb10ccf@baylibre.com
+
+---
+Alexandre Mergnat (10):
+      arm64: defconfig: enable MT6357 regulator
+      arm64: defconfig: enable Mediatek PMIC key
+      dt-bindings: watchdog: mediatek,mtk-wdt: add mt8365
+      arm64: dts: mediatek: add watchdog support for mt8365 SoC
+      arm64: dts: mediatek: add mt6357 PMIC support for mt8365-evk
+      arm64: dts: mediatek: add mmc support for mt8365-evk
+      arm64: dts: mediatek: add usb controller support for mt8365-evk
+      arm64: dts: mediatek: add ethernet support for mt8365-evk
+      arm64: dts: mediatek: add OPP support for mt8365 SoC
+      arm64: dts: mediatek: add cpufreq support for mt8365-evk
+
+Amjad Ouled-Ameur (1):
+      arm64: dts: mediatek: Add CPU Idle support
+
+Fabien Parent (1):
+      arm64: dts: mediatek: set vmc regulator as always on
+
+ .../bindings/watchdog/mediatek,mtk-wdt.yaml        |   1 +
+ arch/arm64/boot/dts/mediatek/mt8365-evk.dts        | 249 +++++++++++++++++++++
+ arch/arm64/boot/dts/mediatek/mt8365.dtsi           | 142 ++++++++++++
+ arch/arm64/configs/defconfig                       |   2 +
+ 4 files changed, 394 insertions(+)
+---
+base-commit: 4f2a499a344b36ebb325e610265452ea88541116
+change-id: 20230203-evk-board-support-d5b7a839ed7b
+
+Best regards,
 -- 
-2.39.2
+Alexandre Mergnat <amergnat@baylibre.com>
 
