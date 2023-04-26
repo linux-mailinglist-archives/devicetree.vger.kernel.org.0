@@ -2,107 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3660B6EFA7D
-	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 20:55:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E804A6EFA83
+	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 20:57:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238489AbjDZSzm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Apr 2023 14:55:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33488 "EHLO
+        id S233146AbjDZS5b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Apr 2023 14:57:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239070AbjDZSzS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 14:55:18 -0400
-Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D00F37EE7;
-        Wed, 26 Apr 2023 11:55:01 -0700 (PDT)
-Received: by mail-pf1-x42f.google.com with SMTP id d2e1a72fcca58-63b51fd2972so5904603b3a.3;
-        Wed, 26 Apr 2023 11:55:01 -0700 (PDT)
+        with ESMTP id S233612AbjDZS53 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 14:57:29 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 898F58A7B;
+        Wed, 26 Apr 2023 11:56:54 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-504eb1155d3so782816a12.1;
+        Wed, 26 Apr 2023 11:56:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682535301; x=1685127301;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=997wcZsLPXSjxvxtNnVAzBL/b0WavYLyXHx/RJFuEtg=;
-        b=aUuvqyNKlA5I0oZy805T2an9GEfL+KC6++nGq27+EUSXq9LK9+jWRy+fdW8XPL2BHV
-         2SLcXJEqYVAqbwqb6zBbRN2HtBf9xbb/NFq/KoRNZ/a/jPdc7SySEifL99a7Nkkq8bNz
-         fzsU4YXNX9ZJRaPwQm6X7I2sku4I8pis5Dw+gAaUYWb7zlnZ6tm6uRcoeD0zn++ssuZE
-         Hon/AWOHYo24U9K5xLPuozBb2Zt/PDDcNSJ3nSuKecJxTLNI8Tc+I3sPf38XSg0o7oz0
-         kb1vp0kQ7mgRLACpPno0hxGzV2baCHigl/G4J15x3YWnP+NdD9LfMRYDDFOsj01gQfqR
-         YQSA==
+        d=gmail.com; s=20221208; t=1682535411; x=1685127411;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MIRwizkBlsL+ifd8FsbkRK/NdvO25L/3LYIQ1whi6m8=;
+        b=iQViXoJSnBRS387pYZ2Uoxdt6y376s9PMxxA7oQEPsb5RTOV2toAcjzikM5NhxG0Jo
+         yxg1mbXWan8zXLsHw3BUaePoMKBBqOnCmzYljgceDUeNhq4eQQxoQvb7x7VJC3Bc9e8e
+         wZw0z48eyzE7uER+ncDOGELSmqYRhrS/3eOOz8ZX6+CxsrU1DJF40GrYF9ZMkN1SpTmP
+         trvR9zno3ZeFccOHyzjQ1OtI5Unw8Hv+x1QNDE4sOcLxPwmrXV1dZwYoD/z28FlNxBsU
+         Y0TOXNZrSFX1zt6wEbP6bscdUKqO9C1hqQ9u1eDckhhI1etFwKwMJJzCRaTklqW+Y6eN
+         J0dQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682535301; x=1685127301;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=997wcZsLPXSjxvxtNnVAzBL/b0WavYLyXHx/RJFuEtg=;
-        b=hBNh4rhAArSHguHxxfzXWIzfNf2CA1hzeexL2KJlTt7g3rJ0+4iKlvyNyjlVqpO4n4
-         UZlHatkLrVvpslyCfho60dbjbtk/8xaWlxUNHP7Ghi60D2+LN+mkS2CbS/rSTAegSVl8
-         dpmv53bbu5dTrp2rOQwfs23f6S42qujzH0lhvhpQRA0KHAW1U3vUZxlCssseAJ8lGDUz
-         f3wCpA8fJvnHCWxxArJBfXvkhIQXsOiIBVgIAFM+3Dns2W2oZoE+f5j0eEcb+f159+AT
-         mYJSCwjomU0sz/y4i5cfA0S4CRRT3zcP0QKepFwt3OJXQFxcdSHwjSCFOjsufBhGYSt2
-         uX9Q==
-X-Gm-Message-State: AAQBX9cJIXZKZNxSTpIoriTLJILjGPf/UhU+rFQImGEJApaFOn6LEFBb
-        8KOjiwfgI18NuF6wSfE+B8DOpy6ynGhoVQ==
-X-Google-Smtp-Source: AKy350Z0cJXW20DTfOvXiRpjr1pWWqpblVlGo4EGb5Y7ZS1Ssx3KNESQrFJo2MKIsbY+cizfJdt0Mw==
-X-Received: by 2002:a05:6a00:17a9:b0:63d:2f13:1f3 with SMTP id s41-20020a056a0017a900b0063d2f1301f3mr34588884pfg.33.1682535300748;
-        Wed, 26 Apr 2023 11:55:00 -0700 (PDT)
-Received: from stbirv-lnx-2.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id y72-20020a62644b000000b006372791d708sm11639254pfb.104.2023.04.26.11.54.58
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 26 Apr 2023 11:55:00 -0700 (PDT)
-From:   Justin Chen <justinpopo6@gmail.com>
-To:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        bcm-kernel-feedback-list@broadcom.com
-Cc:     justinpopo6@gmail.com, justin.chen@broadcom.com,
-        f.fainelli@gmail.com, davem@davemloft.net, edumazet@google.com,
-        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, opendmb@gmail.com,
-        andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
-        richardcochran@gmail.com, sumit.semwal@linaro.org,
-        christian.koenig@amd.com
-Subject: [PATCH v2 net-next 6/6] MAINTAINERS: ASP 2.0 Ethernet driver maintainers
-Date:   Wed, 26 Apr 2023 11:54:32 -0700
-Message-Id: <1682535272-32249-7-git-send-email-justinpopo6@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1682535272-32249-1-git-send-email-justinpopo6@gmail.com>
-References: <1682535272-32249-1-git-send-email-justinpopo6@gmail.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        d=1e100.net; s=20221208; t=1682535411; x=1685127411;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MIRwizkBlsL+ifd8FsbkRK/NdvO25L/3LYIQ1whi6m8=;
+        b=JgQ46j9943MBfWFLeQZejzFJoXbzKuCmRipdhio+4l+dC4VgqIxR0ugpAsUKbpPa68
+         neeaYMgG1HzIdHQID9IquRxhjIw7/sQ7CMvFgR7TFTHiu8367th/hfYK3fNjpNS1d5gO
+         mQmTU2838Sgo7DkKi0e2cof+vY7Bf67U8tVWAr0oscTCdconLS5Ohn3ahp/fQcO8ZMOy
+         JiA6J+RnQcRrf4fujrgUo3oObJiYHiO3jVyDCzHwpIOEXl1p6ZoMkx5c2tYIFygZWKg4
+         ZTUV+unBsPzYkeqggzletkuSmDUbwS79jlgnGS56rDp2uyL6J6Bhafd7ehKnOF0a5dPP
+         meBw==
+X-Gm-Message-State: AC+VfDzFbmons6aS8YFhQFY4E4L8YD9vV9AgsJmzmY6LZzubCWcet9yX
+        wZ2ygqTVSEUy8uzZttpUm8k=
+X-Google-Smtp-Source: ACHHUZ5zDTZfGl4gnFj8hI971RkQcX3E0Eq/1CIGPwLFd3QdP/E7NCuX8auzUcLCJtXt+rudRRdmYQ==
+X-Received: by 2002:a17:906:eda6:b0:94e:6edc:71bc with SMTP id sa6-20020a170906eda600b0094e6edc71bcmr3201176ejb.25.1682535410890;
+        Wed, 26 Apr 2023 11:56:50 -0700 (PDT)
+Received: from fedora.. (cpezg-94-253-129-198-cbl.xnet.hr. [94.253.129.198])
+        by smtp.googlemail.com with ESMTPSA id qt2-20020a170906ece200b0094e1344ddfdsm8501348ejb.34.2023.04.26.11.56.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Apr 2023 11:56:50 -0700 (PDT)
+From:   Robert Marko <robimarko@gmail.com>
+To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Robert Marko <robimarko@gmail.com>
+Subject: [PATCH] arm64: dts: qcom: ipq8074: Add QUP5 SPI node
+Date:   Wed, 26 Apr 2023 20:56:47 +0200
+Message-Id: <20230426185647.180166-1-robimarko@gmail.com>
+X-Mailer: git-send-email 2.40.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add maintainers entry for ASP 2.0 Ethernet driver.
+Add node to support the QUP5 SPI controller inside of IPQ8074.
+Some devices use this bus in order to manage external switches.
 
-Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
-Signed-off-by: Justin Chen <justinpopo6@gmail.com>
+Signed-off-by: Robert Marko <robimarko@gmail.com>
 ---
- MAINTAINERS | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ arch/arm64/boot/dts/qcom/ipq8074.dtsi | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 4fc57dfd5fd0..24cbe1c0fc06 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -4189,6 +4189,15 @@ F:	drivers/net/mdio/mdio-bcm-unimac.c
- F:	include/linux/platform_data/bcmgenet.h
- F:	include/linux/platform_data/mdio-bcm-unimac.h
+diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+index 64c2a30d9c25..4a682e3442f8 100644
+--- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
++++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+@@ -774,6 +774,20 @@ blsp1_i2c5: i2c@78b9000 {
+ 			status = "disabled";
+ 		};
  
-+BROADCOM ASP 2.0 ETHERNET DRIVER
-+M:	Justin Chen <justinpopo6@gmail.com>
-+M:	Florian Fainelli <f.fainelli@gmail.com>
-+L:	bcm-kernel-feedback-list@broadcom.com
-+L:	netdev@vger.kernel.org
-+S:	Supported
-+F:	Documentation/devicetree/bindings/net/brcm,asp-v2.0.yaml
-+F:	drivers/net/ethernet/broadcom/asp2/
++		blsp1_spi5: spi@78b9000 {
++			compatible = "qcom,spi-qup-v2.2.1";
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <0x78b9000 0x600>;
++			interrupts = <GIC_SPI 299 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&gcc GCC_BLSP1_QUP5_SPI_APPS_CLK>,
++				 <&gcc GCC_BLSP1_AHB_CLK>;
++			clock-names = "core", "iface";
++			dmas = <&blsp_dma 20>, <&blsp_dma 21>;
++			dma-names = "tx", "rx";
++			status = "disabled";
++		};
 +
- BROADCOM IPROC ARM ARCHITECTURE
- M:	Ray Jui <rjui@broadcom.com>
- M:	Scott Branden <sbranden@broadcom.com>
+ 		blsp1_i2c6: i2c@78ba000 {
+ 			compatible = "qcom,i2c-qup-v2.2.1";
+ 			#address-cells = <1>;
 -- 
-2.7.4
+2.40.0
 
