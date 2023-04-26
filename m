@@ -2,66 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F4896EF999
-	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 19:48:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D36056EF997
+	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 19:48:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239137AbjDZRsJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Apr 2023 13:48:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35772 "EHLO
+        id S236278AbjDZRsF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Apr 2023 13:48:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234916AbjDZRsI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 13:48:08 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82C0FE6D
-        for <devicetree@vger.kernel.org>; Wed, 26 Apr 2023 10:48:06 -0700 (PDT)
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1prjEt-0002VF-LH; Wed, 26 Apr 2023 19:47:35 +0200
-Received: from pengutronix.de (unknown [172.20.34.65])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 86BFD1B7C6B;
-        Wed, 26 Apr 2023 17:47:30 +0000 (UTC)
-Date:   Wed, 26 Apr 2023 19:47:28 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     "Mendez, Judith" <jm@ti.com>
-Cc:     Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, linux-can@vger.kernel.org,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Schuyler Patton <spatton@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Oliver Hartkopp <socketcan@hartkopp.net>
-Subject: Re: [PATCH v2 1/4] can: m_can: Add hrtimer to generate software
- interrupt
-Message-ID: <20230426-engine-pueblo-9967197ace5a-mkl@pengutronix.de>
-References: <20230424195402.516-1-jm@ti.com>
- <20230424195402.516-2-jm@ti.com>
- <20230424-canon-primal-ece722b184d4-mkl@pengutronix.de>
- <0261131b-35b5-4570-0283-651432a9d537@ti.com>
+        with ESMTP id S234916AbjDZRsE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 13:48:04 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F32B2E6D
+        for <devicetree@vger.kernel.org>; Wed, 26 Apr 2023 10:48:03 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8F8AA637FF
+        for <devicetree@vger.kernel.org>; Wed, 26 Apr 2023 17:48:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CF50C433EF;
+        Wed, 26 Apr 2023 17:48:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1682531282;
+        bh=fk7z84ZDRTuxrtV5T6AKTWprEt9DRG4mR488JPr6Ydk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=s8AmMuAYDyATeiqXa2lVp6as8/aNi+HfVnfO1sVd3UF4wIKSU8vS6ahW+SzfOigm6
+         jfVpVyI2HKrQ4CMi4gnEahhEhZMV4+ZctNypnUPEVY9U2Qr1TRr5hgPUyR6mwvtoIw
+         k5Jf2uAddbyXaKIOYTGoa2zq+mnQjsrmYViD9Jggi38/VZGsdNx7LRJ2sxys+VIE9T
+         JDUP0dE7NlbVvcEKHy5YgozJj3krbGhJi0J07ASM+LLvoxy5iMS+dFNdw+TjWeWRVS
+         Qzf6XAFvsmopqUt7ZakYgz8FylKMG/LdOXlbzJXbsHfrOaPPAmKhDdOyl5fr8z4Xi/
+         Wzk2qWzbmDhVw==
+Date:   Wed, 26 Apr 2023 18:47:58 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Yangyu Chen <cyy@cyyself.name>
+Cc:     ajones@ventanamicro.com, conor.dooley@microchip.com,
+        devicetree@vger.kernel.org, i@zenithal.me, krzk+dt@kernel.org,
+        linux-riscv@lists.infradead.org, palmer@dabbelt.com,
+        paul.walmsley@sifive.com, robh+dt@kernel.org, soha@lohu.info,
+        twd2.me@gmail.com
+Subject: Re: [PATCH v1 1/2] RISC-V: skip parsing multi-letter extensions
+ starting with caps
+Message-ID: <20230426-candy-deceiver-b3ff230bf7f6@spud>
+References: <20230426-getting-tactile-e6cee2cdf870@spud>
+ <tencent_0F23181FB02085B690E30BEE4BCC49087506@qq.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="sy6skchj6wehju3r"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="m4pwzNwa0/gzzfck"
 Content-Disposition: inline
-In-Reply-To: <0261131b-35b5-4570-0283-651432a9d537@ti.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <tencent_0F23181FB02085B690E30BEE4BCC49087506@qq.com>
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -69,44 +60,77 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---sy6skchj6wehju3r
+--m4pwzNwa0/gzzfck
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On 26.04.2023 11:11:12, Mendez, Judith wrote:
-[...]
-> > print a proper error message using dev_err_probe("IRQ %s not found and
-> > polling not activated\n")
-> >=20
-> Why %s when MCAN requests 1 IRQ which is "int0"? If we want to print "int=
-0",
-> should it be hardcoded into the print error message?
+On Thu, Apr 27, 2023 at 01:11:00AM +0800, Yangyu Chen wrote:
+> Hi,
+>=20
+> On Wed, 26 Apr 2023 15:37:58 +0100, Conor Dooley wrote:
+> > Perhaps the thing to do is to actually take Yangyu's first patch and my
+> > second one, since the problem with backwards compatibility doesn't stop
+> > the kernel from being more permissive?
+>=20
+> How about taking my first patch[1] since the ECR[2] mentioned that
+> the format of the ISA string is defined in the RISC-V unprivileged
+> specification?
 
-I think I copied the error message from platform_get_irq_byname() and
-extended it. Of course it makes sense to hardcode the IRQ name.
+That is what I suggested, no? Your 1/2 with a revised subject noting
+that ACPI may need it, rather than talking about DT. See also my
+comments to Drew about the "perils" of letting undefined spec versions
+have control over your ABI.
 
-Marc
+> However, I think we still need to stop the parser if
+> some characters that the parser is not able to handle as Andrew Jones
+> mentioned in the previous mail[3]. In this case, we still need to add
+> some code to stop parsing if any error happens.
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+Currently it skips extensions that are not valid, but keeps parsing.
+Apart from the case where SZX are capital letters it "should" either
+parse into something resembling correct or skip. If we start parsing
+in a case-invariant manner, I don't see any immediately problem with
+what we currently have.
 
---sy6skchj6wehju3r
+I just don't really get what we need to "protect" the kernel from.
+If someone controls the dtb, I think what they do to the isa string is
+probably the least of our worries.
+
+> In my humble opinion, backward compatibility can be solved by backports
+> to LTS kernels.
+
+The binding might lie in Linux, but that does not mean we can fix the
+problem by backporting parser changes to stable. There are other users
+and Linux kernels that would pre-date the change that we would be
+inflicting this relaxation on for no benefit at all. U-Boot for example
+does a case-sensitive comparison.
+
+> I think the better option is to allow using uppercase
+> letters in the device-tree document to make the parser coherent with
+> RISC-V ISA specification but recommend using all lowercase letters for
+> better backward compatibility.
+
+Any addition of uppercase to that binding will get my NAK.
+There is no realistic benefit to doing so, only potential for disruption.
+DT generators should emit DT that complies with bindings =C2=AF\_(=E3=83=84=
+)_/=C2=AF.
+
+I'll go take a proper look at your 1/2 from the other day. I had a
+comment about it that I didn't leave, but will do so now.
+
+Thanks,
+Conor.
+
+--m4pwzNwa0/gzzfck
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmRJY64ACgkQvlAcSiqK
-BOg2Bgf/XL6ENIVYIeH/OuUT86EybAyKIzENCqwDozaSalVYGwgnuG3umI+/cLfW
-Vw1/8IBXKkoC5YN8KPt+Kkjbc1FF8H1SC495I8qW2f2IJ605BArcF5/LZOqSB/s2
-ekqNjshR9Y5EJBVa/Lmlskq/H2UuQI7+/Z47aEPyS3OpVNbvLktJkgdVjxQLJHa9
-tFW28wcyBEvaM2lUaVnqYZ8lDmWp+poAEOBGxwGpX9OZjDGtzDwwEJysL4MsEkRs
-PSt4a0m1MdjJvmsi3dIc7rIrMm5FEBYSNmBA4/btjkfx2HdyGhWTC3mDQHHLCCIx
-zDaCyzB/YLEZmndoh0zOPK3uX6XwGQ==
-=Z3Pe
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZEljzQAKCRB4tDGHoIJi
+0j/CAP4vB9GEt6wXZV3/y2wpDsh9PNz9EeiYIB6lwkaSkRslHQD/QQmAtpRfHYqm
+sF6OK6sgzCdm//x1EQj6N52QcKJ67Qo=
+=S3XN
 -----END PGP SIGNATURE-----
 
---sy6skchj6wehju3r--
+--m4pwzNwa0/gzzfck--
