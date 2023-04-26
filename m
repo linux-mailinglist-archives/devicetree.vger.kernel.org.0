@@ -2,135 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D36056EF997
-	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 19:48:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DA7C6EFA0D
+	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 20:29:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236278AbjDZRsF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Apr 2023 13:48:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35724 "EHLO
+        id S231858AbjDZS3A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Apr 2023 14:29:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234916AbjDZRsE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 13:48:04 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F32B2E6D
-        for <devicetree@vger.kernel.org>; Wed, 26 Apr 2023 10:48:03 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8F8AA637FF
-        for <devicetree@vger.kernel.org>; Wed, 26 Apr 2023 17:48:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CF50C433EF;
-        Wed, 26 Apr 2023 17:48:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1682531282;
-        bh=fk7z84ZDRTuxrtV5T6AKTWprEt9DRG4mR488JPr6Ydk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=s8AmMuAYDyATeiqXa2lVp6as8/aNi+HfVnfO1sVd3UF4wIKSU8vS6ahW+SzfOigm6
-         jfVpVyI2HKrQ4CMi4gnEahhEhZMV4+ZctNypnUPEVY9U2Qr1TRr5hgPUyR6mwvtoIw
-         k5Jf2uAddbyXaKIOYTGoa2zq+mnQjsrmYViD9Jggi38/VZGsdNx7LRJ2sxys+VIE9T
-         JDUP0dE7NlbVvcEKHy5YgozJj3krbGhJi0J07ASM+LLvoxy5iMS+dFNdw+TjWeWRVS
-         Qzf6XAFvsmopqUt7ZakYgz8FylKMG/LdOXlbzJXbsHfrOaPPAmKhDdOyl5fr8z4Xi/
-         Wzk2qWzbmDhVw==
-Date:   Wed, 26 Apr 2023 18:47:58 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Yangyu Chen <cyy@cyyself.name>
-Cc:     ajones@ventanamicro.com, conor.dooley@microchip.com,
-        devicetree@vger.kernel.org, i@zenithal.me, krzk+dt@kernel.org,
-        linux-riscv@lists.infradead.org, palmer@dabbelt.com,
-        paul.walmsley@sifive.com, robh+dt@kernel.org, soha@lohu.info,
-        twd2.me@gmail.com
-Subject: Re: [PATCH v1 1/2] RISC-V: skip parsing multi-letter extensions
- starting with caps
-Message-ID: <20230426-candy-deceiver-b3ff230bf7f6@spud>
-References: <20230426-getting-tactile-e6cee2cdf870@spud>
- <tencent_0F23181FB02085B690E30BEE4BCC49087506@qq.com>
+        with ESMTP id S230491AbjDZS27 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 14:28:59 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B5D8132;
+        Wed, 26 Apr 2023 11:28:58 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-3f1cfed93e2so47708835e9.3;
+        Wed, 26 Apr 2023 11:28:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1682533737; x=1685125737;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zyzX5FFZMMCDfRy8AcL0TL3fxW2nxpzs6bzkB27YBtw=;
+        b=edKi3SAC9R7jXENJBEwCvadKFYC6oOmLfId6cd7JSHVFMP/+yDgq0S/ja1R6YIp7xL
+         iwdfr5vo0jtDEETxW2/r5ric8hPwG2mtON+sAkzTJ78R2zDp0NLC1dMkWts2sbPG1hAB
+         JPtUB0fL8nUFzSyfqiIe4L2HgaTCa1GJmcVwsNtzoy8sjZXpcAHQr9Mynuka+EU6xxtW
+         VP3GSLEd4TXM7Dab/1KXF+fJuAAaASYoKfB9pJ8ehjshzewScZOqIx5caCQb0cmm8QM2
+         VofCzQkg9FHZRv4x6RsJDk/X3QsV9plUym2ua//NEdwBVrzveXJ8Qbs+uaDoT0XvV0AX
+         O4Pw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682533737; x=1685125737;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zyzX5FFZMMCDfRy8AcL0TL3fxW2nxpzs6bzkB27YBtw=;
+        b=C0Fk4QvdT6c1YQLF0IDmZkKltXVd7mCUfTlrvZa75gEZMecydvx20oa9n8Z+CUc2Gh
+         qxVuH4wIyzDXFbGXcfkOvSLyfS64td5juU6LeM0xWJjfH07ez8zbtP1Y6O7RJnv9220w
+         APs1GROcSshrv2H1J9SA2yEwzKM9Hm+3VtcuM0g85MuwqTYfd8SyDD1seeCxMvqrQXXz
+         mxT66vx3qQ/avGKtYjZLT0fGzGbz8tvoFyM0gTZHEeq+B6XcS26ucMM8CObRH/+b7OUC
+         mL1aOpw3x8lYChN+SXze3X+74jb2h+x8TMMTcNSO69Vm+DyVOYeU8czIL38Ot1rd7L2T
+         ASxA==
+X-Gm-Message-State: AAQBX9c4DEAmTBtGHjQdFapELn3KGebQ/M9MDUIakc+QH0B2S1/0+yit
+        Sj0HcIV3rfqgRvy5z32Z6Ks=
+X-Google-Smtp-Source: AKy350bHFpkpJXfv6QjNFAs7WuhoZ0x7eY9eYf4I4jNeuDUgS/VTrc4bRDLnAESyAqwCVnUi6ZkxJQ==
+X-Received: by 2002:a5d:5960:0:b0:2f9:9f6f:e4d with SMTP id e32-20020a5d5960000000b002f99f6f0e4dmr13373236wri.39.1682533736685;
+        Wed, 26 Apr 2023 11:28:56 -0700 (PDT)
+Received: from standask-GA-A55M-S2HP ([188.123.113.247])
+        by smtp.gmail.com with ESMTPSA id x8-20020a05600c21c800b003f2390bdd0csm10173427wmj.32.2023.04.26.11.28.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Apr 2023 11:28:56 -0700 (PDT)
+Date:   Wed, 26 Apr 2023 20:28:54 +0200
+From:   Stanislav Jakubek <stano.jakubek@gmail.com>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>
+Cc:     bcm-kernel-feedback-list@broadcom.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: timer: brcm,kona-timer: convert to YAML
+Message-ID: <20230426182854.GA9571@standask-GA-A55M-S2HP>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="m4pwzNwa0/gzzfck"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <tencent_0F23181FB02085B690E30BEE4BCC49087506@qq.com>
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Convert Broadcom Kona family timer bindings to DT schema.
 
---m4pwzNwa0/gzzfck
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+---
+ .../bindings/timer/brcm,kona-timer.txt        | 25 ---------
+ .../bindings/timer/brcm,kona-timer.yaml       | 55 +++++++++++++++++++
+ 2 files changed, 55 insertions(+), 25 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/timer/brcm,kona-timer.txt
+ create mode 100644 Documentation/devicetree/bindings/timer/brcm,kona-timer.yaml
 
-On Thu, Apr 27, 2023 at 01:11:00AM +0800, Yangyu Chen wrote:
-> Hi,
->=20
-> On Wed, 26 Apr 2023 15:37:58 +0100, Conor Dooley wrote:
-> > Perhaps the thing to do is to actually take Yangyu's first patch and my
-> > second one, since the problem with backwards compatibility doesn't stop
-> > the kernel from being more permissive?
->=20
-> How about taking my first patch[1] since the ECR[2] mentioned that
-> the format of the ISA string is defined in the RISC-V unprivileged
-> specification?
+diff --git a/Documentation/devicetree/bindings/timer/brcm,kona-timer.txt b/Documentation/devicetree/bindings/timer/brcm,kona-timer.txt
+deleted file mode 100644
+index 39adf54b4388..000000000000
+--- a/Documentation/devicetree/bindings/timer/brcm,kona-timer.txt
++++ /dev/null
+@@ -1,25 +0,0 @@
+-Broadcom Kona Family timer
+------------------------------------------------------
+-This timer is used in the following Broadcom SoCs:
+- BCM11130, BCM11140, BCM11351, BCM28145, BCM28155
+-
+-Required properties:
+-- compatible : "brcm,kona-timer"
+-- DEPRECATED: compatible : "bcm,kona-timer"
+-- reg : Register range for the timer
+-- interrupts : interrupt for the timer
+-- clocks: phandle + clock specifier pair of the external clock
+-- clock-frequency: frequency that the clock operates
+-
+-Only one of clocks or clock-frequency should be specified.
+-
+-Refer to clocks/clock-bindings.txt for generic clock consumer properties.
+-
+-Example:
+-	timer@35006000 {
+-		compatible = "brcm,kona-timer";
+-		reg = <0x35006000 0x1000>;
+-		interrupts = <0x0 7 0x4>;
+-		clocks = <&hub_timer_clk>;
+-	};
+-
+diff --git a/Documentation/devicetree/bindings/timer/brcm,kona-timer.yaml b/Documentation/devicetree/bindings/timer/brcm,kona-timer.yaml
+new file mode 100644
+index 000000000000..579a8e190c10
+--- /dev/null
++++ b/Documentation/devicetree/bindings/timer/brcm,kona-timer.yaml
+@@ -0,0 +1,55 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/timer/brcm,kona-timer.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Broadcom Kona family timer
++
++maintainers:
++  - Florian Fainelli <f.fainelli@gmail.com>
++
++properties:
++  compatible:
++    oneOf:
++      - const: brcm,kona-timer
++      - const: bcm,kona-timer
++        deprecated: true
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-frequency: true
++
++oneOf:
++  - required:
++      - clocks
++  - required:
++      - clock-frequency
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include "dt-bindings/clock/bcm281xx.h"
++
++    timer@35006000 {
++        compatible = "brcm,kona-timer";
++        reg = <0x35006000 0x1000>;
++        interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
++        clocks = <&aon_ccu BCM281XX_AON_CCU_HUB_TIMER>;
++    };
++...
+-- 
+2.25.1
 
-That is what I suggested, no? Your 1/2 with a revised subject noting
-that ACPI may need it, rather than talking about DT. See also my
-comments to Drew about the "perils" of letting undefined spec versions
-have control over your ABI.
-
-> However, I think we still need to stop the parser if
-> some characters that the parser is not able to handle as Andrew Jones
-> mentioned in the previous mail[3]. In this case, we still need to add
-> some code to stop parsing if any error happens.
-
-Currently it skips extensions that are not valid, but keeps parsing.
-Apart from the case where SZX are capital letters it "should" either
-parse into something resembling correct or skip. If we start parsing
-in a case-invariant manner, I don't see any immediately problem with
-what we currently have.
-
-I just don't really get what we need to "protect" the kernel from.
-If someone controls the dtb, I think what they do to the isa string is
-probably the least of our worries.
-
-> In my humble opinion, backward compatibility can be solved by backports
-> to LTS kernels.
-
-The binding might lie in Linux, but that does not mean we can fix the
-problem by backporting parser changes to stable. There are other users
-and Linux kernels that would pre-date the change that we would be
-inflicting this relaxation on for no benefit at all. U-Boot for example
-does a case-sensitive comparison.
-
-> I think the better option is to allow using uppercase
-> letters in the device-tree document to make the parser coherent with
-> RISC-V ISA specification but recommend using all lowercase letters for
-> better backward compatibility.
-
-Any addition of uppercase to that binding will get my NAK.
-There is no realistic benefit to doing so, only potential for disruption.
-DT generators should emit DT that complies with bindings =C2=AF\_(=E3=83=84=
-)_/=C2=AF.
-
-I'll go take a proper look at your 1/2 from the other day. I had a
-comment about it that I didn't leave, but will do so now.
-
-Thanks,
-Conor.
-
---m4pwzNwa0/gzzfck
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZEljzQAKCRB4tDGHoIJi
-0j/CAP4vB9GEt6wXZV3/y2wpDsh9PNz9EeiYIB6lwkaSkRslHQD/QQmAtpRfHYqm
-sF6OK6sgzCdm//x1EQj6N52QcKJ67Qo=
-=S3XN
------END PGP SIGNATURE-----
-
---m4pwzNwa0/gzzfck--
