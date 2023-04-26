@@ -2,206 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A9696EF3F6
-	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 14:06:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F12D96EF3F9
+	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 14:06:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240462AbjDZMGO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Apr 2023 08:06:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57672 "EHLO
+        id S240780AbjDZMG0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Apr 2023 08:06:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240267AbjDZMGN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 08:06:13 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93F241B6;
-        Wed, 26 Apr 2023 05:06:11 -0700 (PDT)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33QAq4XQ028089;
-        Wed, 26 Apr 2023 12:05:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=Z2jHxQbkgWifyzS7It9g20bYYdz3itj1DvYyz0UFD2w=;
- b=cwKoDA6wwWge/jJD6apwLlcxzvcVXqmBSaqDdbtuk+R7YPLS2U5mMlSJrxodhsfYcjYr
- r3f9vrbsbQe22vES5eI0wiP89EyqnsS6/NqzvLgYMfLEI40MKEX/saeMT0xCtBPEEFNn
- iLC1cWRWSRWCCvaJorgigbijWd5mV+2T/f1WeuX3nMc93dfpUWdCz+KPeGray7SvJ/oU
- aa8Cat/Qi9g6yzcvrNFx60T4zdHXAJsDMWdHdKIwcvzU3WNgn1Ks/LvZlbaVMRMsX7iq
- c23RcOn+G+jiTFfR75Do7oUqs7eDQKaBMNxrCnSQLp3LiL+4VT+nwmHN80rs2GtJZvwH SA== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q6rk0sfsa-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 26 Apr 2023 12:05:56 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33QC5t6n001527
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 26 Apr 2023 12:05:55 GMT
-Received: from [10.218.19.109] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Wed, 26 Apr
- 2023 05:05:50 -0700
-Message-ID: <f051bfe8-e612-f54e-7729-7816591fa21c@quicinc.com>
-Date:   Wed, 26 Apr 2023 17:35:40 +0530
+        with ESMTP id S240267AbjDZMGY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 08:06:24 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64B695B85;
+        Wed, 26 Apr 2023 05:06:23 -0700 (PDT)
+Received: from [IPV6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2] (unknown [IPv6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 6420A660036F;
+        Wed, 26 Apr 2023 13:06:21 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1682510782;
+        bh=OfMlzuTrSWbL6RmSjUOMVmGVdnb1BVtFW+nmxN56VS4=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=DPPysip393PCjfe9Jv+L2SXJuYsGGsHvvK1XWXBikxECYbVFvi/PhDIaAeepxrAL7
+         +wJpLFS1g8wTc4+JN6TZYN4waXDzKuSCrFSe3UPdGsalhSBUGqqMWAbSASbRC0hSW3
+         AODPeJIo40uTfCCReDOlt15TyZCnMp0yEA6AEhkqlYUuxbXrzQoxHX/qPeUX8MOEdr
+         eKD9lPe+MzEvZrNTxRJziSdAgghr//60ohBw/K9jvUEPgjHfVUQ26TERUBZ2QlWsoI
+         kTEze4VfJf0ahBK+l+o6Ht28PDMQZmwAp4oU3WEkBZ3hX+ugF17r7KN+TpWLYFpC0r
+         jQVZrI6+fNDRQ==
+Message-ID: <0c8d08e2-770a-1ec2-e990-1d48bfc0eac6@collabora.com>
+Date:   Wed, 26 Apr 2023 14:06:19 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH v1 0/6] arm64: qcom: sa8775p: add support for USB
-To:     Adrien Thierry <athierry@redhat.com>
-CC:     <agross@kernel.org>, <andersson@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        "Kishon Vijay Abraham I" <kishon@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>
-References: <20230421133922.8520-1-quic_shazhuss@quicinc.com>
- <ZEcEGJiikEC2wIVE@fedora>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH RESEND v3 6/9] drm/mediatek: Add gamma support different
+ bank_size for other SoC
 Content-Language: en-US
-From:   Shazad Hussain <quic_shazhuss@quicinc.com>
-In-Reply-To: <ZEcEGJiikEC2wIVE@fedora>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     "Jason-JH.Lin" <jason-jh.lin@mediatek.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     CK Hu <ck.hu@mediatek.com>, Rex-BC Chen <rex-bc.chen@mediatek.com>,
+        Singo Chang <singo.chang@mediatek.com>,
+        dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220912013006.27541-1-jason-jh.lin@mediatek.com>
+ <20220912013006.27541-7-jason-jh.lin@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220912013006.27541-7-jason-jh.lin@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: cp0MOlgnQ56BPstlgv_si6hnHIMqXW7n
-X-Proofpoint-ORIG-GUID: cp0MOlgnQ56BPstlgv_si6hnHIMqXW7n
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-26_04,2023-04-26_03,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
- clxscore=1011 spamscore=0 mlxlogscore=604 lowpriorityscore=0 mlxscore=0
- suspectscore=0 bulkscore=0 impostorscore=0 priorityscore=1501 phishscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2303200000
- definitions=main-2304260108
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Adrien,
+Il 12/09/22 03:30, Jason-JH.Lin ha scritto:
+> Add multiple bank support for mt8195.
+> If bank size is 0 which means no bank support.
+> 
+> Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
+> ---
+>   drivers/gpu/drm/mediatek/mtk_disp_gamma.c | 45 +++++++++++++----------
+>   1 file changed, 26 insertions(+), 19 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/mediatek/mtk_disp_gamma.c b/drivers/gpu/drm/mediatek/mtk_disp_gamma.c
+> index be82d15a5204..45da2b6206c8 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_disp_gamma.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_disp_gamma.c
+> @@ -21,6 +21,7 @@
+>   #define GAMMA_LUT_EN					BIT(1)
+>   #define GAMMA_DITHERING					BIT(2)
+>   #define DISP_GAMMA_SIZE				0x0030
+> +#define DISP_GAMMA_BANK				0x0100
+>   #define DISP_GAMMA_LUT				0x0700
+>   
+>   #define LUT_10BIT_MASK				0x03ff
+> @@ -33,6 +34,7 @@ struct mtk_disp_gamma_data {
+>   	bool lut_diff;
+>   	u16 lut_size;
+>   	u8 lut_bits;
+> +	u16 bank_size;
+>   };
+>   
+>   /*
+> @@ -75,9 +77,10 @@ void mtk_gamma_set_common(struct device *dev, void __iomem *regs, struct drm_crt
+>   	struct mtk_disp_gamma *gamma = dev_get_drvdata(dev);
+>   	bool lut_diff = false;
+>   	u16 lut_size = LUT_SIZE_DEFAULT;
+> +	u16 bank_size = lut_size;
 
-On 4/25/2023 4:05 AM, Adrien Thierry wrote:
-> Hi Shazad,
-> 
-> On Fri, Apr 21, 2023 at 07:09:15PM +0530, Shazad Hussain wrote:
->> Update relavent DT bindings for USB, add new config to the phy driver,
->> add USB and PHY nodes to the .dtsi and enable them in the board .dts
->> for the sa8775p-ride platform.
->>
->> Shazad Hussain (6):
->>    dt-bindings: usb: qcom,dwc3: Add bindings for SA8775P
->>    dt-bindings: phy: qcom,usb-snps-femto-v2: Add bindings for SA8775P
->>    dt-bindings: phy: qcom,sc8280xp-qmp-usb3-uni: Add SA8775P USB PHY
->>      binding
->>    phy: qcom-qmp: Add SA8775P USB3 UNI phy
->>    arm64: dts: qcom: sa8775p: add USB nodes
->>    arm64: dts: qcom: sa8775p-ride: enable USB nodes
->>
->>   .../phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml   |   1 +
->>   .../bindings/phy/qcom,usb-snps-femto-v2.yaml  |   1 +
->>   .../devicetree/bindings/usb/qcom,dwc3.yaml    |   5 +
->>   arch/arm64/boot/dts/qcom/sa8775p-ride.dts     |  92 +++++++
->>   arch/arm64/boot/dts/qcom/sa8775p.dtsi         | 239 +++++++++++++++++-
->>   drivers/phy/qualcomm/phy-qcom-qmp-usb.c       |  45 ++++
->>   6 files changed, 381 insertions(+), 2 deletions(-)
->>
->> -- 
->> 2.17.1
->>
-> 
-> Thanks for posting this. I tested the series on the sa8775p, and it seems
-> initialization for the controller at a400000 sometimes fails with a
-> timeout (-110) error:
-> 
->      dwc3 a400000.usb: Adding to iommu group 2
->      xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
->      xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 1
->      xhci-hcd xhci-hcd.0.auto: can't setup: -110
->      xhci-hcd xhci-hcd.0.auto: USB bus 1 deregistered
->      xhci-hcd: probe of xhci-hcd.0.auto failed with error -110
->      dwc3 a600000.usb: Adding to iommu group 3
->      dwc3 a800000.usb: Adding to iommu group 4
->      xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
->      xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned bus number 1
->      xhci-hcd xhci-hcd.1.auto: hcc params 0x0110ffc5 hci version 0x110 quirks 0x0000000000010010
->      xhci-hcd xhci-hcd.1.auto: irq 162, io mem 0x0a800000
->      xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
->      xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned bus number 2
->      xhci-hcd xhci-hcd.1.auto: Host supports USB 3.1 Enhanced SuperSpeed
->      hub 1-0:1.0: USB hub found
->      hub 1-0:1.0: 1 port detected
->      usb usb2: We don't know the algorithms for LPM for this host, disabling LPM.
->      hub 2-0:1.0: USB hub found
->      hub 2-0:1.0: 1 port detected
-> 
-> In this case, only usb devices for a800000 are showing:
-> 
->      dracut:/# ls -alh /sys/bus/usb/devices
->      total 0
->      drwxr-xr-x 2 root root 0 Feb 27 00:00 .
->      drwxr-xr-x 4 root root 0 Feb 27 00:00 ..
->      lrwxrwxrwx 1 root root 0 Feb 27 00:00 1-0:1.0 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.1.auto/usb1/1-0:1.0
->      lrwxrwxrwx 1 root root 0 Feb 27 00:00 2-0:1.0 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.1.auto/usb2/2-0:1.0
->      lrwxrwxrwx 1 root root 0 Feb 27 00:00 usb1 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.1.auto/usb1
->      lrwxrwxrwx 1 root root 0 Feb 27 00:00 usb2 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.1.auto/usb2
-> 
-> This happens approximately 1 out of 2 reboots. Here's the kernel output
-> when initialization succeeds:
-> 
->      dwc3 a600000.usb: Adding to iommu group 2
->      dwc3 a800000.usb: Adding to iommu group 3
->      xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
->      xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 1
->      xhci-hcd xhci-hcd.0.auto: hcc params 0x0110ffc5 hci version 0x110 quirks 0x0000000000010010
->      xhci-hcd xhci-hcd.0.auto: irq 161, io mem 0x0a800000
->      xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
->      xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 2
->      xhci-hcd xhci-hcd.0.auto: Host supports USB 3.1 Enhanced SuperSpeed
->      hub 1-0:1.0: USB hub found
->      hub 1-0:1.0: 1 port detected
->      usb usb2: We don't know the algorithms for LPM for this host, disabling LPM.
->      hub 2-0:1.0: USB hub found
->      hub 2-0:1.0: 1 port detected
->      dwc3 a400000.usb: Adding to iommu group 4
->      xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
->      xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned bus number 3
->      xhci-hcd xhci-hcd.1.auto: USB3 root hub has no ports
->      xhci-hcd xhci-hcd.1.auto: hcc params 0x0220fe65 hci version 0x110 quirks 0x0000000000010010
->      xhci-hcd xhci-hcd.1.auto: irq 162, io mem 0x0a400000
->      hub 3-0:1.0: USB hub found
->      hub 3-0:1.0: 1 port detected
-> 
-> And the list of usb devices:
-> 
->      dracut:/# ls -alh /sys/bus/usb/devices
->      total 0
->      drwxr-xr-x 2 root root 0 Feb 27 00:00 .
->      drwxr-xr-x 4 root root 0 Feb 27 00:00 ..
->      lrwxrwxrwx 1 root root 0 Feb 27 00:00 1-0:1.0 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.0.auto/usb1/1-0:1.0
->      lrwxrwxrwx 1 root root 0 Feb 27 00:00 2-0:1.0 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.0.auto/usb2/2-0:1.0
->      lrwxrwxrwx 1 root root 0 Feb 27 00:00 3-0:1.0 -> ../../../devices/platform/soc@0/a4f8800.usb/a400000.usb/xhci-hcd.1.auto/usb3/3-0:1.0
->      lrwxrwxrwx 1 root root 0 Feb 27 00:00 usb1 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.0.auto/usb1
->      lrwxrwxrwx 1 root root 0 Feb 27 00:00 usb2 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.0.auto/usb2
->      lrwxrwxrwx 1 root root 0 Feb 27 00:00 usb3 -> ../../../devices/platform/soc@0/a4f8800.usb/a400000.usb/xhci-hcd.1.auto/usb3
-> 
-> Have you also encountered this?
-> 
+Just use gamma->data->bank_size directly, as platform data is always present.
 
-I did try 10 reboots and did not encounter this issue on my setup tough.
+>   	u8 lut_bits = LUT_BITS_DEFAULT;
+>   	u8 shift_bits;
+> -	unsigned int i, reg;
+> +	unsigned int i, j, reg, bank_num;
+>   	struct drm_color_lut *lut;
+>   	void __iomem *lut_base;
+>   	u32 word, mask;
+> @@ -87,8 +90,10 @@ void mtk_gamma_set_common(struct device *dev, void __iomem *regs, struct drm_crt
+>   		lut_diff = gamma->data->lut_diff;
+>   		lut_size = gamma->data->lut_size;
+>   		lut_bits = gamma->data->lut_bits;
+> +		bank_size = gamma->data->bank_size;
 
-> Best,
-> 
-> Adrien
-> 
+You shall set bank_size = 512 to MT8173 and MT8183, otherwise they break, as this
+will set bank_size to 0.
 
----
--Shazad
+>   	}
+>   
+> +	bank_num = lut_size / bank_size;
+>   	shift_bits = LUT_INPUT_BITS - lut_bits;
+>   	mask = GENMASK(lut_bits - 1, 0);
+>   
+
+Regards,
+Angelo
+
