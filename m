@@ -2,157 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26D546EF3ED
-	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 14:02:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A9696EF3F6
+	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 14:06:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240570AbjDZMCZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Apr 2023 08:02:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55202 "EHLO
+        id S240462AbjDZMGO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Apr 2023 08:06:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240764AbjDZMCX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 08:02:23 -0400
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::225])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 179F359E8;
-        Wed, 26 Apr 2023 05:02:15 -0700 (PDT)
-Received: (Authenticated sender: didi.debian@cknow.org)
-        by mail.gandi.net (Postfix) with ESMTPSA id 717F81C0004;
-        Wed, 26 Apr 2023 12:02:12 +0000 (UTC)
-From:   Diederik de Haas <didi.debian@cknow.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        linux-rockchip@lists.infradead.org
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Lorenz Brun <lorenz@brun.one>
-Subject: Re: [PATCH v2] arm64: dts: rockchip: fix USB regulator on ROCK64
-Date:   Wed, 26 Apr 2023 14:02:02 +0200
-Message-ID: <6383328.LvFx2qVVIh@bagend>
-Organization: Connecting Knowledge
-In-Reply-To: <20230421213841.3079632-1-lorenz@brun.one>
-References: <20230421213841.3079632-1-lorenz@brun.one>
+        with ESMTP id S240267AbjDZMGN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 08:06:13 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93F241B6;
+        Wed, 26 Apr 2023 05:06:11 -0700 (PDT)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33QAq4XQ028089;
+        Wed, 26 Apr 2023 12:05:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=Z2jHxQbkgWifyzS7It9g20bYYdz3itj1DvYyz0UFD2w=;
+ b=cwKoDA6wwWge/jJD6apwLlcxzvcVXqmBSaqDdbtuk+R7YPLS2U5mMlSJrxodhsfYcjYr
+ r3f9vrbsbQe22vES5eI0wiP89EyqnsS6/NqzvLgYMfLEI40MKEX/saeMT0xCtBPEEFNn
+ iLC1cWRWSRWCCvaJorgigbijWd5mV+2T/f1WeuX3nMc93dfpUWdCz+KPeGray7SvJ/oU
+ aa8Cat/Qi9g6yzcvrNFx60T4zdHXAJsDMWdHdKIwcvzU3WNgn1Ks/LvZlbaVMRMsX7iq
+ c23RcOn+G+jiTFfR75Do7oUqs7eDQKaBMNxrCnSQLp3LiL+4VT+nwmHN80rs2GtJZvwH SA== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q6rk0sfsa-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 26 Apr 2023 12:05:56 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33QC5t6n001527
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 26 Apr 2023 12:05:55 GMT
+Received: from [10.218.19.109] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Wed, 26 Apr
+ 2023 05:05:50 -0700
+Message-ID: <f051bfe8-e612-f54e-7729-7816591fa21c@quicinc.com>
+Date:   Wed, 26 Apr 2023 17:35:40 +0530
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart4185305.ElGaqSPkdT";
- micalg="pgp-sha256"; protocol="application/pgp-signature"
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH v1 0/6] arm64: qcom: sa8775p: add support for USB
+To:     Adrien Thierry <athierry@redhat.com>
+CC:     <agross@kernel.org>, <andersson@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        "Kishon Vijay Abraham I" <kishon@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>
+References: <20230421133922.8520-1-quic_shazhuss@quicinc.com>
+ <ZEcEGJiikEC2wIVE@fedora>
+Content-Language: en-US
+From:   Shazad Hussain <quic_shazhuss@quicinc.com>
+In-Reply-To: <ZEcEGJiikEC2wIVE@fedora>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: cp0MOlgnQ56BPstlgv_si6hnHIMqXW7n
+X-Proofpoint-ORIG-GUID: cp0MOlgnQ56BPstlgv_si6hnHIMqXW7n
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-26_04,2023-04-26_03,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
+ clxscore=1011 spamscore=0 mlxlogscore=604 lowpriorityscore=0 mlxscore=0
+ suspectscore=0 bulkscore=0 impostorscore=0 priorityscore=1501 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2303200000
+ definitions=main-2304260108
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---nextPart4185305.ElGaqSPkdT
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Diederik de Haas <didi.debian@cknow.org>
-Date: Wed, 26 Apr 2023 14:02:02 +0200
-Message-ID: <6383328.LvFx2qVVIh@bagend>
-Organization: Connecting Knowledge
-In-Reply-To: <20230421213841.3079632-1-lorenz@brun.one>
-References: <20230421213841.3079632-1-lorenz@brun.one>
-MIME-Version: 1.0
+Hi Adrien,
 
-On Friday, 21 April 2023 23:38:41 CEST Lorenz Brun wrote:
-> rockchip-pinctrl pinctrl: pin gpio0-2 already requested by vcc-host-5v-regulator; cannot claim for vcc-host1-5v-regulator
-> rockchip-pinctrl pinctrl: pin-2 (vcc-host1-5v-regulator) status -22
-> rockchip-pinctrl pinctrl: could not request pin 2 (gpio0-2) from group usb20-host-drv  on device rockchip-pinctrl 
-> reg-fixed-voltage vcc-host1-5v-regulator: Error applying setting, reverse things back
+On 4/25/2023 4:05 AM, Adrien Thierry wrote:
+> Hi Shazad,
+> 
+> On Fri, Apr 21, 2023 at 07:09:15PM +0530, Shazad Hussain wrote:
+>> Update relavent DT bindings for USB, add new config to the phy driver,
+>> add USB and PHY nodes to the .dtsi and enable them in the board .dts
+>> for the sa8775p-ride platform.
+>>
+>> Shazad Hussain (6):
+>>    dt-bindings: usb: qcom,dwc3: Add bindings for SA8775P
+>>    dt-bindings: phy: qcom,usb-snps-femto-v2: Add bindings for SA8775P
+>>    dt-bindings: phy: qcom,sc8280xp-qmp-usb3-uni: Add SA8775P USB PHY
+>>      binding
+>>    phy: qcom-qmp: Add SA8775P USB3 UNI phy
+>>    arm64: dts: qcom: sa8775p: add USB nodes
+>>    arm64: dts: qcom: sa8775p-ride: enable USB nodes
+>>
+>>   .../phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml   |   1 +
+>>   .../bindings/phy/qcom,usb-snps-femto-v2.yaml  |   1 +
+>>   .../devicetree/bindings/usb/qcom,dwc3.yaml    |   5 +
+>>   arch/arm64/boot/dts/qcom/sa8775p-ride.dts     |  92 +++++++
+>>   arch/arm64/boot/dts/qcom/sa8775p.dtsi         | 239 +++++++++++++++++-
+>>   drivers/phy/qualcomm/phy-qcom-qmp-usb.c       |  45 ++++
+>>   6 files changed, 381 insertions(+), 2 deletions(-)
+>>
+>> -- 
+>> 2.17.1
+>>
+> 
+> Thanks for posting this. I tested the series on the sa8775p, and it seems
+> initialization for the controller at a400000 sometimes fails with a
+> timeout (-110) error:
+> 
+>      dwc3 a400000.usb: Adding to iommu group 2
+>      xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
+>      xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 1
+>      xhci-hcd xhci-hcd.0.auto: can't setup: -110
+>      xhci-hcd xhci-hcd.0.auto: USB bus 1 deregistered
+>      xhci-hcd: probe of xhci-hcd.0.auto failed with error -110
+>      dwc3 a600000.usb: Adding to iommu group 3
+>      dwc3 a800000.usb: Adding to iommu group 4
+>      xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
+>      xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned bus number 1
+>      xhci-hcd xhci-hcd.1.auto: hcc params 0x0110ffc5 hci version 0x110 quirks 0x0000000000010010
+>      xhci-hcd xhci-hcd.1.auto: irq 162, io mem 0x0a800000
+>      xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
+>      xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned bus number 2
+>      xhci-hcd xhci-hcd.1.auto: Host supports USB 3.1 Enhanced SuperSpeed
+>      hub 1-0:1.0: USB hub found
+>      hub 1-0:1.0: 1 port detected
+>      usb usb2: We don't know the algorithms for LPM for this host, disabling LPM.
+>      hub 2-0:1.0: USB hub found
+>      hub 2-0:1.0: 1 port detected
+> 
+> In this case, only usb devices for a800000 are showing:
+> 
+>      dracut:/# ls -alh /sys/bus/usb/devices
+>      total 0
+>      drwxr-xr-x 2 root root 0 Feb 27 00:00 .
+>      drwxr-xr-x 4 root root 0 Feb 27 00:00 ..
+>      lrwxrwxrwx 1 root root 0 Feb 27 00:00 1-0:1.0 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.1.auto/usb1/1-0:1.0
+>      lrwxrwxrwx 1 root root 0 Feb 27 00:00 2-0:1.0 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.1.auto/usb2/2-0:1.0
+>      lrwxrwxrwx 1 root root 0 Feb 27 00:00 usb1 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.1.auto/usb1
+>      lrwxrwxrwx 1 root root 0 Feb 27 00:00 usb2 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.1.auto/usb2
+> 
+> This happens approximately 1 out of 2 reboots. Here's the kernel output
+> when initialization succeeds:
+> 
+>      dwc3 a600000.usb: Adding to iommu group 2
+>      dwc3 a800000.usb: Adding to iommu group 3
+>      xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
+>      xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 1
+>      xhci-hcd xhci-hcd.0.auto: hcc params 0x0110ffc5 hci version 0x110 quirks 0x0000000000010010
+>      xhci-hcd xhci-hcd.0.auto: irq 161, io mem 0x0a800000
+>      xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
+>      xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 2
+>      xhci-hcd xhci-hcd.0.auto: Host supports USB 3.1 Enhanced SuperSpeed
+>      hub 1-0:1.0: USB hub found
+>      hub 1-0:1.0: 1 port detected
+>      usb usb2: We don't know the algorithms for LPM for this host, disabling LPM.
+>      hub 2-0:1.0: USB hub found
+>      hub 2-0:1.0: 1 port detected
+>      dwc3 a400000.usb: Adding to iommu group 4
+>      xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
+>      xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned bus number 3
+>      xhci-hcd xhci-hcd.1.auto: USB3 root hub has no ports
+>      xhci-hcd xhci-hcd.1.auto: hcc params 0x0220fe65 hci version 0x110 quirks 0x0000000000010010
+>      xhci-hcd xhci-hcd.1.auto: irq 162, io mem 0x0a400000
+>      hub 3-0:1.0: USB hub found
+>      hub 3-0:1.0: 1 port detected
+> 
+> And the list of usb devices:
+> 
+>      dracut:/# ls -alh /sys/bus/usb/devices
+>      total 0
+>      drwxr-xr-x 2 root root 0 Feb 27 00:00 .
+>      drwxr-xr-x 4 root root 0 Feb 27 00:00 ..
+>      lrwxrwxrwx 1 root root 0 Feb 27 00:00 1-0:1.0 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.0.auto/usb1/1-0:1.0
+>      lrwxrwxrwx 1 root root 0 Feb 27 00:00 2-0:1.0 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.0.auto/usb2/2-0:1.0
+>      lrwxrwxrwx 1 root root 0 Feb 27 00:00 3-0:1.0 -> ../../../devices/platform/soc@0/a4f8800.usb/a400000.usb/xhci-hcd.1.auto/usb3/3-0:1.0
+>      lrwxrwxrwx 1 root root 0 Feb 27 00:00 usb1 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.0.auto/usb1
+>      lrwxrwxrwx 1 root root 0 Feb 27 00:00 usb2 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.0.auto/usb2
+>      lrwxrwxrwx 1 root root 0 Feb 27 00:00 usb3 -> ../../../devices/platform/soc@0/a4f8800.usb/a400000.usb/xhci-hcd.1.auto/usb3
+> 
+> Have you also encountered this?
+> 
 
-I booted the Debian 6.1.0-8-arm64 kernel (6.1.25-1) on my Rock64 and then
-booted that kernel with this patch applied (6.1.25-2) and this is the result:
+I did try 10 reboots and did not encounter this issue on my setup tough.
 
-diederik@rock64-dev:~$ uname -a
-Linux rock64-dev 6.1.0-8-arm64 #1 SMP Debian 6.1.25-1 (2023-04-22) aarch64 GNU/Linux
-diederik@rock64-dev:~$ su -l
-Password: 
-root@rock64-dev:~# dmesg --level emerg,alert,crit,err
-[    7.296781] rockchip-pinctrl pinctrl: pin gpio0-2 already requested by vcc-host-5v-regulator; cannot claim for vcc-host1-5v-regulator
-[    7.298007] rockchip-pinctrl pinctrl: pin-2 (vcc-host1-5v-regulator) status -22
-[    7.298694] rockchip-pinctrl pinctrl: could not request pin 2 (gpio0-2) from group usb20-host-drv  on device rockchip-pinctrl
-[    7.299736] reg-fixed-voltage vcc-host1-5v-regulator: Error applying setting, reverse things back
-[    7.525107] rk_gmac-dwmac ff540000.ethernet: cannot get clock clk_mac_speed
+> Best,
+> 
+> Adrien
+> 
 
-root@rock64-dev:~# dmesg --level emerg,alert,crit,err,warn
-[    5.295285] dw-apb-uart ff130000.serial: forbid DMA for kernel console
-[    7.296781] rockchip-pinctrl pinctrl: pin gpio0-2 already requested by vcc-host-5v-regulator; cannot claim for vcc-host1-5v-regulator
-[    7.298007] rockchip-pinctrl pinctrl: pin-2 (vcc-host1-5v-regulator) status -22
-[    7.298694] rockchip-pinctrl pinctrl: could not request pin 2 (gpio0-2) from group usb20-host-drv  on device rockchip-pinctrl
-[    7.299736] reg-fixed-voltage vcc-host1-5v-regulator: Error applying setting, reverse things back
-[    7.312492] dwc2 ff580000.usb: supply vusb_d not found, using dummy regulator
-[    7.313483] dwc2 ff580000.usb: supply vusb_a not found, using dummy regulator
-[    7.525107] rk_gmac-dwmac ff540000.ethernet: cannot get clock clk_mac_speed
-[   12.299438] device-mapper: core: CONFIG_IMA_DISABLE_HTABLE is disabled. Duplicate IMA measurements will not be recorded in the IMA log.
-[   13.244268] systemd-journald[228]: File /var/log/journal/511b5fcdb7574d1f8604d582cf5c5b00/system.journal corrupted or uncleanly shut down, renaming and replacing.
-[   16.537752] dw_wdt ff1a0000.watchdog: No valid TOPs array specified
-[   16.615515] dwhdmi-rockchip ff3c0000.hdmi: supply avdd-0v9 not found, using dummy regulator
-[   16.616532] dwhdmi-rockchip ff3c0000.hdmi: supply avdd-1v8 not found, using dummy regulator
-[   17.177743] rockchip_vdec: module is from the staging directory, the quality is unknown, you have been warned.
-
-root@rock64-dev:~# apt install /home/diederik/linux-image-6.1.0-8-rock64-regulator-arm64-unsigned_6.1.25-2_arm64.deb 
-...
-The following NEW packages will be installed:
-  linux-image-6.1.0-8-rock64-regulator-arm64-unsigned
-0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
-Need to get 0 B/63.4 MB of archives.
-After this operation, 455 MB of additional disk space will be used.
-Get:1 /home/diederik/linux-image-6.1.0-8-rock64-regulator-arm64-unsigned_6.1.25-2_arm64.deb linux-image-6.1.0-8-rock64-regulator-arm64-unsigned arm64 6.1.25-2 [63.4 MB]
-Selecting previously unselected package linux-image-6.1.0-8-rock64-regulator-arm64-unsigned.
-...
-/etc/kernel/postinst.d/zz-update-grub:
-Generating grub configuration file ...
-Found linux image: /boot/vmlinuz-6.1.0-8-rock64-regulator-arm64
-Found initrd image: /boot/initrd.img-6.1.0-8-rock64-regulator-arm64
-Found linux image: /boot/vmlinuz-6.1.0-8-arm64
-Found initrd image: /boot/initrd.img-6.1.0-8-arm64
-Warning: os-prober will not be executed to detect other bootable partitions.
-Systems on them will not be added to the GRUB boot configuration.
-Check GRUB_DISABLE_OS_PROBER documentation entry.
-Adding boot menu entry for UEFI Firmware Settings ...
-done
-N: Download is performed unsandboxed as root as file '/home/diederik/linux-image-6.1.0-8-rock64-regulator-arm64-unsigned_6.1.25-2_arm64.deb' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)
-root@rock64-dev:~# reboot
-root@rock64-dev:~# Connection to rock64-dev closed by remote host.
-Connection to rock64-dev closed.
-
-diederik@bagend:~$ ssh rock64-dev
-diederik@rock64-dev:~$ uname -a
-Linux rock64-dev 6.1.0-8-rock64-regulator-arm64 #1 SMP Debian 6.1.25-2 (2023-04-25) aarch64 GNU/Linux
-diederik@rock64-dev:~$ su -l
-Password: 
-root@rock64-dev:~# dmesg --level emerg,alert,crit,err
-[    7.134332] rk_gmac-dwmac ff540000.ethernet: cannot get clock clk_mac_speed
-
-root@rock64-dev:~# dmesg --level emerg,alert,crit,err,warn
-[    5.128440] dw-apb-uart ff130000.serial: forbid DMA for kernel console
-[    6.925949] dwc2 ff580000.usb: supply vusb_d not found, using dummy regulator
-[    6.926983] dwc2 ff580000.usb: supply vusb_a not found, using dummy regulator
-[    7.134332] rk_gmac-dwmac ff540000.ethernet: cannot get clock clk_mac_speed
-[   11.465583] device-mapper: core: CONFIG_IMA_DISABLE_HTABLE is disabled. Duplicate IMA measurements will not be recorded in the IMA log.
-[   12.358406] systemd-journald[231]: File /var/log/journal/511b5fcdb7574d1f8604d582cf5c5b00/system.journal corrupted or uncleanly shut down, renaming and replacing.
-[   14.865704] dwhdmi-rockchip ff3c0000.hdmi: supply avdd-0v9 not found, using dummy regulator
-[   14.866899] dwhdmi-rockchip ff3c0000.hdmi: supply avdd-1v8 not found, using dummy regulator
-[   14.882228] dw_wdt ff1a0000.watchdog: No valid TOPs array specified
-[   15.355843] rockchip_vdec: module is from the staging directory, the quality is unknown, you have been warned.
-
-Everything seems to be working fine, but now with less errors in dmesg, so:
-
-Tested-by: Diederik de Haas <didi.debian@cknow.org>
---nextPart4185305.ElGaqSPkdT
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZEkSugAKCRDXblvOeH7b
-bqIrAP4g0sF8YmpOc5gFU3UGtEN2TiUB1qPy2i9uOVU0tj5TqQEAv/Q1kbks7CFL
-5CEN/daLxMPuPCOLTXxIweglZn9PzwA=
-=HvZt
------END PGP SIGNATURE-----
-
---nextPart4185305.ElGaqSPkdT--
-
-
-
+---
+-Shazad
