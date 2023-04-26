@@ -2,93 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 499C76EF90B
-	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 19:11:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 562F66EF91A
+	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 19:16:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234335AbjDZRLu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Apr 2023 13:11:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37608 "EHLO
+        id S233259AbjDZRQ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Apr 2023 13:16:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234327AbjDZRLt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 13:11:49 -0400
-Received: from out162-62-57-137.mail.qq.com (out162-62-57-137.mail.qq.com [162.62.57.137])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA257121
-        for <devicetree@vger.kernel.org>; Wed, 26 Apr 2023 10:11:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-        t=1682529096; bh=1KlUDx3CkkWJEgkDKs1pH/WOg3N32N5GHA91r2xNTlo=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=BvsTAYIbwApxxbliPQYwK42IW0BBSqzJZfyDFKHb45JRj0hqJsEBC4nFrRWiqiM7O
-         IlZk91xUdlWjT3+Rpn+eVoemaki252YlBUBWYe0SiVf5ccXKM0L07/RRjn0e945h45
-         xznu3ZQI0mYLZ8PzsFJqUXe2LoESwSj5Cnyh6Gf4=
-Received: from cyy-pc.lan ([2001:da8:c800:d084:c65a:644a:13d7:e72c])
-        by newxmesmtplogicsvrszc2-0.qq.com (NewEsmtp) with SMTP
-        id 2DD9263F; Thu, 27 Apr 2023 01:11:29 +0800
-X-QQ-mid: xmsmtpt1682529089tn6lyi6gr
-Message-ID: <tencent_0F23181FB02085B690E30BEE4BCC49087506@qq.com>
-X-QQ-XMAILINFO: MR/iVh5QLeiexUNVyYWNTlxVkZnL2rZWYLVgEeER4QcbGLKJO1ANXu0+jQhHXq
-         EPW19vc60ahUluul5IT3VcRcw8XuJtTcP/hzlrzcilRt5T7xGysELRPt8pn+VxAI5DmVWXs1Injb
-         PhzQsL9Q1GhjzvS0CbAAHo/XTn6BZLI2VGvmLRebKEFcqlk33DZ1YXFP5IOUImLLXWt1gVUhb5Et
-         yiKnGa4IJI/71vB0wUQgOLr2RlHrQD0X219TG3898OIz0vJeV3odukAb2rjd90EMtQiF6qQKtzId
-         R2guIASKZa7VjeRamtMbAcWfQnzFuOjhisbxcqyKuh16zNxV4wtqUmjmvBogZfGFBrrmyMXPd1Co
-         tteoTv/PwRICBV7sTP001RMFJ8t/1e1ubplXK0FFV81Cqug5taZmws1KRtbFe65bW2fTO2dkgLQq
-         QKmyAtSpp/0eHqJcrxBXO5I2HHnc/m0cVgahwpZbQq3yHIw5xJPr+2lxdLFg4fJTLvmTUNaPC2pY
-         hHsMpCFGYWXhgTLVNIj0SaRUhIEMMkE7v7AvvBlPCMW0/Uzxenao//MgdvPMtEM/9KwvBUAptORd
-         uOMw07p5ovatpMHI6r9AEDFAbg9qsN630gaDywGekJ3S36K2Q//3BIZOcSCeS/MUEky3N50dD27g
-         XZvkiQ+KZzP3NT79IOKX3YuvvkyrYNyQ/geCLT/FdlhbIcXQ/HFpaQbxS0+6rE8XxfNBly2ITGwA
-         h6Q+mqtFNk0AWW4uD8dkyFp928Hp6P9cgSFjVQXpG8GdOZXsladwrAl5KqrIgTbEMHBAzgw6x7sy
-         Jm7A0+PXfl+uqByrU8BDVfzQlxwGV0o8h7b9WDhSgvCPu4HmAgddX24gzhqlaHQehmWTEf1Lg+0j
-         EBRnG+MRB1JCaLZITDmFYHwFoVOIiSLaQKQLrvitb5GchAi5kGkw4mKTvkkprk9Kw0BO+Wh+ZCAZ
-         6KOYPQyDdKepCy3C/eyte13v8NkX3Ll1hAS3422X50J/uFq841jyPQu0o7VtsZ
-From:   Yangyu Chen <cyy@cyyself.name>
-To:     conor@kernel.org
-Cc:     ajones@ventanamicro.com, conor.dooley@microchip.com,
-        cyy@cyyself.name, devicetree@vger.kernel.org, i@zenithal.me,
-        krzk+dt@kernel.org, linux-riscv@lists.infradead.org,
-        palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org,
-        soha@lohu.info, twd2.me@gmail.com
-Subject: Re: [PATCH v1 1/2] RISC-V: skip parsing multi-letter extensions starting with caps
-Date:   Thu, 27 Apr 2023 01:11:00 +0800
-X-OQ-MSGID: <20230426171100.19591-1-cyy@cyyself.name>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230426-getting-tactile-e6cee2cdf870@spud>
-References: <20230426-getting-tactile-e6cee2cdf870@spud>
+        with ESMTP id S232184AbjDZRQ1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 13:16:27 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA0843A8C;
+        Wed, 26 Apr 2023 10:16:25 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-2fde2879eabso6797467f8f.1;
+        Wed, 26 Apr 2023 10:16:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1682529384; x=1685121384;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=oTMq1prpQ6rxKtc7jDCNoN5SDbD20gA0dCNcMQytMWA=;
+        b=TLw6+by1HF4/WGDHrihz0BL5cfmwjEghaz8f+b7XnCDFdJFd6Ihm52bKAY5hDRIToe
+         XEjA0AWx4iYlFSHEg9antcQM0E6mFVXMEkLYFtaIpgjdCjqRvE7EPHgodC8GYqawW0Oo
+         Bx2KgKlkR9mM0X3ccacvPiz47vHFjUQK7qJ5VIJkOK1gbrXeYxm5FwhiEHOfx+4osaWL
+         IcqBzI8DwbFVIIDs5jIL8hXVCEsnVrjB481aJCTU3MI+Ks7X73Iodq5U0WeYfeNyLtOH
+         6v0KQ3Tx1XScWtKMNAn1LQ3QB3P1M9ejxw8Cyal3P2OFehq6P0WDBt61uw4v7SFtpAsz
+         sCSA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682529384; x=1685121384;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=oTMq1prpQ6rxKtc7jDCNoN5SDbD20gA0dCNcMQytMWA=;
+        b=ICndiRjkpt6994PjsYnae7iplVd7J1GnRn5IHFjhvrWuf0fNjJz2MYw4GiffNbb/br
+         JkB8+dGBk/oEg061UFeL8ga6Pm8sTa2Adf75k80kqoG0KmjUybmIqQ3pDZW8nHBfXvvj
+         jtcYT00DqlUCjaFfJtcg0dwi2Jr1mebYMtF6cesfePazWFAZxsnCt/5mqFRbybFd2zeF
+         7wDNxJbcjD37y2eYeM7K6vRPzmnsKeKXb9ur6uJ3ihQBmWWv12YIXyGrV3BuFCmZBeRY
+         HJ686G8na+9db10mkW5hacM+rJL5cSOAqh63leitNZQcMM7KymePnwPkoZ55LzuiCQJU
+         rIYA==
+X-Gm-Message-State: AC+VfDzGc0+/fJwqZGS1tJlZ3SLSrwI6+hLll6WxvmygbUp2fD53jG3C
+        ieVR2FSDwuz8pyjyjb+1hh4=
+X-Google-Smtp-Source: ACHHUZ6m6GiTtcEpHjIQXjEpFcxqS1TOZLkiZFtCIoYMfa+pNSy/zOOSimtt/w45w8hANYSqx5M5RA==
+X-Received: by 2002:a5d:528d:0:b0:304:aad4:b1e4 with SMTP id c13-20020a5d528d000000b00304aad4b1e4mr143167wrv.32.1682529384079;
+        Wed, 26 Apr 2023 10:16:24 -0700 (PDT)
+Received: from standask-GA-A55M-S2HP ([188.123.113.247])
+        by smtp.gmail.com with ESMTPSA id c13-20020adfe70d000000b002fbaef32231sm16363698wrm.22.2023.04.26.10.16.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Apr 2023 10:16:23 -0700 (PDT)
+Date:   Wed, 26 Apr 2023 19:16:21 +0200
+From:   Stanislav Jakubek <stano.jakubek@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com, linux-i2c@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] dt-bindings: i2c: brcm,kona-i2c: convert to YAML
+Message-ID: <20230426171621.GA2506@standask-GA-A55M-S2HP>
+References: <9875ec0211187e4f5e2a4379c63eacdb69b31d7a.1682252615.git.stano.jakubek@gmail.com>
+ <72ba28004afb733224f7294a146fc2a6a5a834a7.1682252615.git.stano.jakubek@gmail.com>
+ <8d6042cd-f690-d274-c658-e83ff3a5776e@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,HELO_DYNAMIC_IPADDR,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        RDNS_DYNAMIC,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: *
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8d6042cd-f690-d274-c658-e83ff3a5776e@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Mon, Apr 24, 2023 at 03:53:07PM +0200, Krzysztof Kozlowski wrote:
+> On 23/04/2023 14:40, Stanislav Jakubek wrote:
+> > Convert Broadcom Kona family I2C bindings to DT schema.
+> > 
+> > Changes during conversion:
+> >   - add used, but previously undocumented SoC-specific compatibles
+> >   - drop references to SoCs that are not upstream
+> >   - add supported clock frequencies according to the Linux driver [1]
+> > 
+> > [1] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/i2c/busses/i2c-bcm-kona.c#n731
+> 
+> This line points to moving reference in next, so might no be accurate
+> later. If you need external reference, then it should be some stable
+> tag. But anyway if this is in mainline (is this?) then, why referencing
+> via external link?
 
-On Wed, 26 Apr 2023 15:37:58 +0100, Conor Dooley wrote:
-> Perhaps the thing to do is to actually take Yangyu's first patch and my
-> second one, since the problem with backwards compatibility doesn't stop
-> the kernel from being more permissive?
+Yes, it's in mainline since 2013. I just pointed to linux-next since
+that was what I had open at the time.
 
-How about taking my first patch[1] since the ECR[2] mentioned that
-the format of the ISA string is defined in the RISC-V unprivileged
-specification? However, I think we still need to stop the parser if
-some characters that the parser is not able to handle as Andrew Jones
-mentioned in the previous mail[3]. In this case, we still need to add
-some code to stop parsing if any error happens.
+Just to make sure if I understood correctly, if it's in mainline then
+there's no need to reference it via link? Or should I point to some tag
+instead, e.g.:
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/i2c/busses/i2c-bcm-kona.c?h=v6.3#n731
 
-In my humble opinion, backward compatibility can be solved by backports
-to LTS kernels. I think the better option is to allow using uppercase
-letters in the device-tree document to make the parser coherent with
-RISC-V ISA specification but recommend using all lowercase letters for
-better backward compatibility.
+Thank you for the review,
+Stanislav
 
-[1] https://lore.kernel.org/all/tencent_63090269FF399AE30AC774848C344EF2F10A@qq.com/
-[2] https://drive.google.com/file/d/1nP3nFiH4jkPMp6COOxP6123DCZKR-tia/view
-[3] https://lore.kernel.org/all/d7t6nxmblmyqriogs4bxakpse3qc7pc6cczjnhmkpk4kjwvgcb@3aihh3erdn6p/
-
-Thanks,
-Yangyu Chen
-
+> 
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> Best regards,
+> Krzysztof
+> 
