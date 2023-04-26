@@ -2,81 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 307946EED53
-	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 06:56:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2CC76EED89
+	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 07:28:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239444AbjDZE4g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Apr 2023 00:56:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40948 "EHLO
+        id S239361AbjDZF2t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Apr 2023 01:28:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239034AbjDZE4f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 00:56:35 -0400
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3FC6230CA;
-        Tue, 25 Apr 2023 21:56:21 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.99,227,1677510000"; 
-   d="scan'208";a="160778539"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 26 Apr 2023 13:56:08 +0900
-Received: from localhost.localdomain (unknown [10.166.15.32])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id DA59041763FB;
-        Wed, 26 Apr 2023 13:56:07 +0900 (JST)
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     jingoohan1@gmail.com, mani@kernel.org,
-        gustavo.pimentel@synopsys.com, fancer.lancer@gmail.com,
-        lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
-        bhelgaas@google.com, kishon@kernel.org
-Cc:     marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: [PATCH v14 21/21] misc: pci_endpoint_test: Add Device ID for R-Car S4-8 PCIe controller
-Date:   Wed, 26 Apr 2023 13:55:57 +0900
-Message-Id: <20230426045557.3613826-22-yoshihiro.shimoda.uh@renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230426045557.3613826-1-yoshihiro.shimoda.uh@renesas.com>
-References: <20230426045557.3613826-1-yoshihiro.shimoda.uh@renesas.com>
+        with ESMTP id S239223AbjDZF2s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 01:28:48 -0400
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 789E62D4E;
+        Tue, 25 Apr 2023 22:28:43 -0700 (PDT)
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-94f0dd117dcso970847566b.3;
+        Tue, 25 Apr 2023 22:28:43 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682486922; x=1685078922;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6sKTnga5osoBChiq0wC1tiBZnMTBNSiyIak8o4AC7LI=;
+        b=djsY6zxING+g2l5KOLqSIPqSIeSPFcbcuGKUzAGuj2UFRivzX/RuQYRCmN2jqtmIm8
+         VGx6fwTYoauSqJwQAnMC6EQsIjvlTJ72kF1JQDVyMeefckikBpS2j3cviqyOae7wtcXb
+         XPCbiJQTJi2L8tw2BeS+OEV8ip8n15Xor8COAlGdysVjag2FEpahr2TWT3zPhGsqiehe
+         qjgXcR2iUgzLDMkLS6ti4UreHt1YikUMIK29GCK7oAyWCr7nC1vQAzgCSTzQ3xelEmge
+         kqqauDaClv4AFSD+Jx3liqD4BsQftz7yKBcI5qxfPcfIXOGgHHpYpR+IPHeBahI3w/XA
+         3GyQ==
+X-Gm-Message-State: AAQBX9fmADb3K16E0VK27t67yr/XIogdD/+Rv76vIt+5qG3AKJM0mfOz
+        eEXMPiVRaiC90aYvdHOBt3jxZZ4r8Bk=
+X-Google-Smtp-Source: AKy350afIwgIUzk7/1vNhIB1UUFEJtteADzFrDD5QGP+/lq4u5bIcqIkZK/MyC4E+wHZ/4sZ2kJT5g==
+X-Received: by 2002:a17:907:7e94:b0:94e:d75b:5998 with SMTP id qb20-20020a1709077e9400b0094ed75b5998mr18238906ejc.5.1682486921617;
+        Tue, 25 Apr 2023 22:28:41 -0700 (PDT)
+Received: from cizrna.home (cst-prg-36-136.cust.vodafone.cz. [46.135.36.136])
+        by smtp.gmail.com with ESMTPSA id i21-20020a05640200d500b00501d73cfc86sm6598206edu.9.2023.04.25.22.28.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Apr 2023 22:28:40 -0700 (PDT)
+From:   Tomeu Vizoso <tomeu@tomeuvizoso.net>
+To:     linux-kernel@vger.kernel.org
+Cc:     Tomeu Vizoso <tomeu@tomeuvizoso.net>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Amlogic Meson
+        SoC support),
+        linux-amlogic@lists.infradead.org (open list:ARM/Amlogic Meson SoC
+        support)
+Subject: [PATCH] arm64: dts: VIM3: Set the rates of the clocks for the NPU
+Date:   Wed, 26 Apr 2023 07:28:31 +0200
+Message-Id: <20230426052831.59391-1-tomeu@tomeuvizoso.net>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Renesas R8A779F0 in pci_device_id table so that pci-epf-test
-can be used for testing PCIe EP on R-Car S4-8.
+Otherwise they are left at 24MHz and the NPU runs very slowly.
 
-Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Acked-by: Manivannan Sadhasivam <mani@kernel.org>
+Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+Suggested-by: Lucas Stach <l.stach@pengutronix.de>
 ---
- drivers/misc/pci_endpoint_test.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/misc/pci_endpoint_test.c b/drivers/misc/pci_endpoint_test.c
-index a7244de081ec..1d8f72b42c0a 100644
---- a/drivers/misc/pci_endpoint_test.c
-+++ b/drivers/misc/pci_endpoint_test.c
-@@ -81,6 +81,7 @@
- #define PCI_DEVICE_ID_RENESAS_R8A774B1		0x002b
- #define PCI_DEVICE_ID_RENESAS_R8A774C0		0x002d
- #define PCI_DEVICE_ID_RENESAS_R8A774E1		0x0025
-+#define PCI_DEVICE_ID_RENESAS_R8A779F0		0x0031
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
+index 4e8266056bca..3a14b21998c4 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
+@@ -52,6 +52,9 @@ galcore {
  
- static DEFINE_IDA(pci_endpoint_test_ida);
+ &npu {
+ 	status = "okay";
++	assigned-clocks = <&clkc CLKID_NNA_CORE_CLK>,
++			  <&clkc CLKID_NNA_AXI_CLK>;
++	assigned-clock-rates = <800000000>, <800000000>;
+ };
  
-@@ -993,6 +994,9 @@ static const struct pci_device_id pci_endpoint_test_tbl[] = {
- 	{ PCI_DEVICE(PCI_VENDOR_ID_RENESAS, PCI_DEVICE_ID_RENESAS_R8A774B1),},
- 	{ PCI_DEVICE(PCI_VENDOR_ID_RENESAS, PCI_DEVICE_ID_RENESAS_R8A774C0),},
- 	{ PCI_DEVICE(PCI_VENDOR_ID_RENESAS, PCI_DEVICE_ID_RENESAS_R8A774E1),},
-+	{ PCI_DEVICE(PCI_VENDOR_ID_RENESAS, PCI_DEVICE_ID_RENESAS_R8A779F0),
-+	  .driver_data = (kernel_ulong_t)&default_data,
-+	},
- 	{ PCI_DEVICE(PCI_VENDOR_ID_TI, PCI_DEVICE_ID_TI_J721E),
- 	  .driver_data = (kernel_ulong_t)&j721e_data,
- 	},
+ /*
 -- 
-2.25.1
+2.38.1
 
