@@ -2,56 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B84146EEE68
-	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 08:36:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 35DDA6EEEA3
+	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 08:59:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239614AbjDZGfz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Apr 2023 02:35:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52426 "EHLO
+        id S239309AbjDZG66 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 26 Apr 2023 02:58:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36870 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239611AbjDZGfx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 02:35:53 -0400
+        with ESMTP id S230129AbjDZG65 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 02:58:57 -0400
 Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AB0B211D;
-        Tue, 25 Apr 2023 23:35:52 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 868A81FE9;
+        Tue, 25 Apr 2023 23:58:55 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
         (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id AA2B37FD6;
-        Wed, 26 Apr 2023 14:35:44 +0800 (CST)
-Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 26 Apr
- 2023 14:35:44 +0800
-Received: from starfive-sdk.starfivetech.com (171.223.208.138) by
- EXMBX162.cuchost.com (172.16.6.72) with Microsoft SMTP Server (TLS) id
- 15.0.1497.42; Wed, 26 Apr 2023 14:35:43 +0800
-From:   Samin Guo <samin.guo@starfivetech.com>
-To:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <netdev@vger.kernel.org>, Peter Geis <pgwipeout@gmail.com>,
-        Frank <Frank.Sae@motor-comm.com>
-CC:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 5D68E7FD6;
+        Wed, 26 Apr 2023 14:58:54 +0800 (CST)
+Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 26 Apr
+ 2023 14:58:54 +0800
+Received: from ubuntu.localdomain (202.188.176.82) by EXMBX168.cuchost.com
+ (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 26 Apr
+ 2023 14:58:51 +0800
+From:   Jia Jie Ho <jiajie.ho@starfivetech.com>
+To:     Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        "Heiner Kallweit" <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "Samin Guo" <samin.guo@starfivetech.com>,
-        Yanhong Wang <yanhong.wang@starfivetech.com>
-Subject: [PATCH v1 2/2] net: phy: motorcomm: Add pad drive strength cfg support
-Date:   Wed, 26 Apr 2023 14:35:41 +0800
-Message-ID: <20230426063541.15378-3-samin.guo@starfivetech.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230426063541.15378-1-samin.guo@starfivetech.com>
-References: <20230426063541.15378-1-samin.guo@starfivetech.com>
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Emil Renner Berthing <kernel@esmil.dk>
+CC:     <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+Subject: [PATCH v6 0/4] crypto: starfive - Add drivers for crypto engine
+Date:   Wed, 26 Apr 2023 14:58:44 +0800
+Message-ID: <20230426065848.842221-1-jiajie.ho@starfivetech.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Type: text/plain
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX162.cuchost.com
- (172.16.6.72)
+X-Originating-IP: [202.188.176.82]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX168.cuchost.com
+ (172.16.6.78)
 X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
         SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
@@ -61,73 +54,77 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The motorcomm phy (YT8531) supports the ability to adjust the drive
-strength of the rx_clk/rx_data, and the default strength may not be
-suitable for all boards. So add configurable options to better match
-the boards.(e.g. StarFive VisionFive 2)
+This patch series adds kernel driver support for StarFive JH7110 crypto
+engine. The first patch adds Documentations for the device and Patch 2
+adds device probe and DMA init for the module. Patch 3 adds crypto and
+DMA dts node for VisionFive 2 board. Patch 4 adds hash/hmac support to
+the module.
 
-Signed-off-by: Samin Guo <samin.guo@starfivetech.com>
----
- drivers/net/phy/motorcomm.c | 32 ++++++++++++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
+Patch 3 needs to be applied on top of:
+https://lore.kernel.org/lkml/20230424135409.6648-3-xingyu.wu@starfivetech.com/
 
-diff --git a/drivers/net/phy/motorcomm.c b/drivers/net/phy/motorcomm.c
-index 2fa5a90e073b..08f28ed83e60 100644
---- a/drivers/net/phy/motorcomm.c
-+++ b/drivers/net/phy/motorcomm.c
-@@ -236,6 +236,11 @@
-  */
- #define YTPHY_WCR_TYPE_PULSE			BIT(0)
- 
-+#define YTPHY_PAD_DRIVE_STRENGTH_REG		0xA010
-+#define YTPHY_RGMII_RXC_DS			GENMASK(15, 13)
-+#define YTPHY_RGMII_RXD_DS			GENMASK(5, 4)	/* Bit 1 and 0 of rgmii_rxd_ds */
-+#define YTPHY_RGMII_RXD_DS2			BIT(12) 	/* Bit 2 of rgmii_rxd_ds */
-+
- #define YTPHY_SYNCE_CFG_REG			0xA012
- #define YT8521_SCR_SYNCE_ENABLE			BIT(5)
- /* 1b0 output 25m clock
-@@ -1495,6 +1500,7 @@ static int yt8531_config_init(struct phy_device *phydev)
- {
- 	struct device_node *node = phydev->mdio.dev.of_node;
- 	int ret;
-+	u32 val;
- 
- 	ret = ytphy_rgmii_clk_delay_config_with_lock(phydev);
- 	if (ret < 0)
-@@ -1518,6 +1524,32 @@ static int yt8531_config_init(struct phy_device *phydev)
- 			return ret;
- 	}
- 
-+	if (!of_property_read_u32(node, "rx-clk-driver-strength", &val)) {
-+		ret = ytphy_modify_ext_with_lock(phydev,
-+						 YTPHY_PAD_DRIVE_STRENGTH_REG,
-+						 YTPHY_RGMII_RXC_DS,
-+						 FIELD_PREP(YTPHY_RGMII_RXC_DS, val));
-+		if (ret < 0)
-+			return ret;
-+	}
-+
-+	if (!of_property_read_u32(node, "rx-data-driver-strength", &val)) {
-+		if (val > FIELD_MAX(YTPHY_RGMII_RXD_DS)) {
-+			val &= FIELD_MAX(YTPHY_RGMII_RXD_DS);
-+			val = FIELD_PREP(YTPHY_RGMII_RXD_DS, val);
-+			val |= YTPHY_RGMII_RXD_DS2;
-+		} else {
-+			val = FIELD_PREP(YTPHY_RGMII_RXD_DS, val);
-+		}
-+
-+		ret = ytphy_modify_ext_with_lock(phydev,
-+						 YTPHY_PAD_DRIVE_STRENGTH_REG,
-+						 YTPHY_RGMII_RXD_DS | YTPHY_RGMII_RXD_DS2,
-+						 val);
-+		if (ret < 0)
-+			return ret;
-+	}
-+
- 	return 0;
- }
- 
+Patch 4 needs to be applied on top of:
+https://lore.kernel.org/linux-crypto/ZEEOXIHwqKblKfBJ@gondor.apana.org.au/T/#u
+
+Changes v5->v6
+- Remove set_crypt in export as request will have been created by
+  init/updated calls (Herbert)
+- Use new helper to set statesize of crypto_ahash (Herbert)
+- Use crypto_ahash_blocksize instead of crypto_ahash_tfm (Herbert)
+- Switch to init_tfm/exit_tfm instead of cra_init/cra_exit (Herbert)
+
+Changes v4->v5
+- Schedule tasklet from IRQ handler instead of using completion to sync
+  events (Herbert)
+
+Changes v3->v4:
+- Use fallback for non-aligned cases as hardware doesn't support
+  hashing piece-meal (Herbert)
+- Use ahash_request_set_* helpers to update members of ahash_request
+  (Herbert)
+- Set callbacks for async fallback (Herbert)
+- Remove completion variable and use dma_callback to do the rest of
+  processing instead. (Herbert)
+
+Changes v2->v3:
+- Only implement digest and use fallback for other ops (Herbert)
+- Use interrupt instead of polling for hash complete (Herbert)
+- Remove manual data copy from out-of-bound memory location as it will
+  be handled by DMA API. (Christoph & Herbert)
+
+Changes v1->v2:
+- Fixed yaml filename and format (Krzysztof)
+- Removed unnecessary property names in yaml (Krzysztof)
+- Moved of_device_id table close to usage (Krzysztof)
+- Use dev_err_probe for error returns (Krzysztof)
+- Dropped redundant readl and writel wrappers (Krzysztof)
+- Updated commit signed offs (Conor)
+- Dropped redundant node in dts, module set to on in dtsi (Conor)
+
+Jia Jie Ho (4):
+  dt-bindings: crypto: Add StarFive crypto module
+  crypto: starfive - Add crypto engine support
+  riscv: dts: starfive: Add crypto and DMA node for VisionFive 2
+  crypto: starfive - Add hash and HMAC support
+
+ .../crypto/starfive,jh7110-crypto.yaml        |  70 ++
+ MAINTAINERS                                   |   7 +
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      |  28 +
+ drivers/crypto/Kconfig                        |   1 +
+ drivers/crypto/Makefile                       |   1 +
+ drivers/crypto/starfive/Kconfig               |  21 +
+ drivers/crypto/starfive/Makefile              |   4 +
+ drivers/crypto/starfive/jh7110-cryp.c         | 237 +++++
+ drivers/crypto/starfive/jh7110-cryp.h         | 127 +++
+ drivers/crypto/starfive/jh7110-hash.c         | 896 ++++++++++++++++++
+ 10 files changed, 1392 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/crypto/starfive,jh7110-crypto.yaml
+ create mode 100644 drivers/crypto/starfive/Kconfig
+ create mode 100644 drivers/crypto/starfive/Makefile
+ create mode 100644 drivers/crypto/starfive/jh7110-cryp.c
+ create mode 100644 drivers/crypto/starfive/jh7110-cryp.h
+ create mode 100644 drivers/crypto/starfive/jh7110-hash.c
+
 -- 
-2.17.1
+2.25.1
 
