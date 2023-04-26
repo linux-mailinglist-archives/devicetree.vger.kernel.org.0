@@ -2,185 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CFCC6EF544
-	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 15:15:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 495426EF55C
+	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 15:18:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241006AbjDZNPl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Apr 2023 09:15:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48920 "EHLO
+        id S240992AbjDZNSN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Apr 2023 09:18:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240993AbjDZNPk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 09:15:40 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9884C5581
-        for <devicetree@vger.kernel.org>; Wed, 26 Apr 2023 06:15:33 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-506bdf29712so53323277a12.0
-        for <devicetree@vger.kernel.org>; Wed, 26 Apr 2023 06:15:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682514932; x=1685106932;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5X6XbY4GDs1zBv4u666H8NBc+gIaLqZ5jMZDYOgtIiE=;
-        b=csEP7fZdTmBKFMSHuwcvXsv4i9NMYXACDayZgOM4X9kux+rwqi6nmitioNzmZg/a28
-         OUKwei1asmNDrQK9gRNOeSeB4Ey5TY8SihiXJHDiq4+9WeeGm46XbVILUiAuPmTuhtav
-         uqIh3573N7omTVGYjYiKMIbAOkFTe03G7vtsd2i88+IuS+zsVbLhfzZJnipA/D6tstNF
-         zwjFSL50ti7B7jzvO3m4DaXFc8M4apafaGJ0w0zwz9Ur0Y1x/WVzy3ImHD7RgQvY2LF2
-         Gogo+Ckj8cg69f9DfBtLUN8USsA7xsHHLo16l+ca9aikh8Jefe0K3ik5ajQYQfc5XVDr
-         4fTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682514932; x=1685106932;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5X6XbY4GDs1zBv4u666H8NBc+gIaLqZ5jMZDYOgtIiE=;
-        b=DJ7lbiltiMShFTSLibS6txI2P+aQIRYvdhWOA5EfcvYdC3ztHyMMcIjyJkpp/thmiV
-         K72nkoenebS43oS8tnJdKrfOJOSMP7JVdv7mgh+gwcMpsIiKn/0qr5P/6LRZyLqEWcaN
-         /ye2v005liNxqnit8jvOA4FfFfDHd5g0HiXTPwARtgBsO3py51e0+OF1C03BZKQ9XYO2
-         LxE2OGjOMrY/NBQFz9soYhKjcKJrg7o9BK5/m+j4GniZnTWKkoNzmnLaCeMA0JYXlNj9
-         oG/1AYtowfLQUy+2q+DdijE7hfDlNXg3ABe3zp3BzvNSMm6CVzzpNfPbuepT3uBJDFXw
-         PRTQ==
-X-Gm-Message-State: AC+VfDz/1yJjOFvClVQ/M0X7OfB7WXr0ohqKByrlDv9867tL0JA8qLa2
-        V2qjxbVt5WSqPqI7/HcRdv4Xtw==
-X-Google-Smtp-Source: ACHHUZ7nSlGKXPcRIffgSkm2iBxwOkyGHDmgNxJTloG4BcBShfBKk6j6RPxDVvXpOivjiadIjs89+g==
-X-Received: by 2002:a17:906:4898:b0:94f:2020:b5dd with SMTP id v24-20020a170906489800b0094f2020b5ddmr2399230ejq.24.1682514931969;
-        Wed, 26 Apr 2023 06:15:31 -0700 (PDT)
-Received: from [172.23.2.142] ([31.221.30.162])
-        by smtp.gmail.com with ESMTPSA id l20-20020a170906645400b0095342bfb701sm8407935ejn.16.2023.04.26.06.15.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Apr 2023 06:15:31 -0700 (PDT)
-Message-ID: <d30cb539-d5de-94c3-237a-fb27c97e7c5e@linaro.org>
-Date:   Wed, 26 Apr 2023 15:15:30 +0200
+        with ESMTP id S241131AbjDZNSN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 09:18:13 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCEF25B8D;
+        Wed, 26 Apr 2023 06:18:02 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33QDHlor087488;
+        Wed, 26 Apr 2023 08:17:47 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1682515067;
+        bh=bm39y/3rn8ZVI7gY05r2k/pqw9j6s7tCMmBsLUBkuzs=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=Y2Ky3t8b/7oeuRPtEXXyGYYJH+e0mY1/1MDgEEhSzCOQPASD/f/pvHDON8t5f3dXq
+         VZ5cAdQnog1Dm8DX6FdOqLZrTPh8NESwBkODJyUqZp1J+AA8tTGCg7iZLc7lmnkfgv
+         1sGoPe1wNnR28yD8kw6yDi3Ns0g3GSvnjJ5nvSJc=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33QDHliv108289
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 26 Apr 2023 08:17:47 -0500
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 26
+ Apr 2023 08:17:47 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Wed, 26 Apr 2023 08:17:47 -0500
+Received: from [10.250.35.77] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33QDHkF1070239;
+        Wed, 26 Apr 2023 08:17:46 -0500
+Message-ID: <f9c70ad4-55c7-7ff7-b1dc-936830d50714@ti.com>
+Date:   Wed, 26 Apr 2023 08:17:46 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH 2/9] dt-bindings: ASoC: Add chv3-i2s
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2 1/2] arm64: dts/ti: am65x: Add Rocktech OLDI panel DT
+ overlay
 Content-Language: en-US
-To:     =?UTF-8?Q?Pawe=c5=82_Anikiel?= <pan@semihalf.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, lgirdwood@gmail.com,
-        broonie@kernel.org, perex@perex.cz, tiwai@suse.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        dinguyen@kernel.org, lars@metafoo.de, nuno.sa@analog.com,
-        upstream@semihalf.com
-References: <20230414140203.707729-1-pan@semihalf.com>
- <20230414140203.707729-3-pan@semihalf.com>
- <5544de12-396c-29d4-859c-a6e17b2e2de4@linaro.org>
- <CAF9_jYRXsdQX22bOVG5Dp20GnC7JniqGC6popTS5dSxmiqjizQ@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAF9_jYRXsdQX22bOVG5Dp20GnC7JniqGC6popTS5dSxmiqjizQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+To:     Aradhya Bhatia <a-bhatia1@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+CC:     Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel List <linux-kernel@vger.kernel.org>,
+        Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
+        Jyri Sarha <jyri.sarha@iki.fi>,
+        Tomi Valkeinen <tomba@kernel.org>,
+        Praneeth Bajjuri <praneeth@ti.com>,
+        Rahul T R <r-ravikumar@ti.com>,
+        Devarsh Thakkar <devarsht@ti.com>,
+        Jai Luthra <j-luthra@ti.com>,
+        Jayesh Choudhary <j-choudhary@ti.com>
+References: <20230426060612.19271-1-a-bhatia1@ti.com>
+ <20230426060612.19271-2-a-bhatia1@ti.com>
+From:   Andrew Davis <afd@ti.com>
+In-Reply-To: <20230426060612.19271-2-a-bhatia1@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/04/2023 18:01, Paweł Anikiel wrote:
-> On Fri, Apr 14, 2023 at 7:00 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 14/04/2023 16:01, Paweł Anikiel wrote:
->>> Add binding for chv3-i2s device.
->>
->> Your subject needs improvements:
->> 1. ASoC goes before bindings
->> 2. You miss some meaningful title of device. "chv3-i2s" can be anything,
->> so add Google or Google Chameleon. Or use entire compatible.
+On 4/26/23 1:06 AM, Aradhya Bhatia wrote:
+> From: Jyri Sarha <jsarha@ti.com>
 > 
-> Would "ASoC: dt-bindings: Add Google Chameleon v3 I2S device" be better?
-
-Yes, thanks.
-
+> The OLDI-LCD1EVM add on board has Rocktech RK101II01D-CT panel[1] with
+> integrated touch screen. The integrated touch screen is Goodix GT928.
+> Add DT nodes for these and connect the endpoint nodes with DSS.
 > 
->>
->>
->>>
->>> Signed-off-by: Paweł Anikiel <pan@semihalf.com>
->>> ---
->>>  .../bindings/sound/google,chv3-i2s.yaml       | 42 +++++++++++++++++++
->>>  1 file changed, 42 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/sound/google,chv3-i2s.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/sound/google,chv3-i2s.yaml b/Documentation/devicetree/bindings/sound/google,chv3-i2s.yaml
->>> new file mode 100644
->>> index 000000000000..6f49cf059ac5
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/sound/google,chv3-i2s.yaml
->>> @@ -0,0 +1,42 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/sound/google,chv3-i2s.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Google Chameleon v3 I2S device
->>> +
->>> +maintainers:
->>> +  - Paweł Anikiel <pan@semihalf.com>
->>> +
->>> +description: |
->>> +  I2S device for the Google Chameleon v3. The device handles both RX
->>> +  and TX using a producer/consumer ring buffer design.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: google,chv3-i2s
->>
->> Missing blank line.
->>
->> Is chv3 the name of your SoC? Where are the SoC bindings? What's exactly
->> the versioning scheme for it (compatibles must be specific, not generic).
+> [1]: Product datasheet
+> https://www.digimax.it/media_import/DISPLAY/ROCKTECH/TFT%20LCD/RK101II01D-CT/RK101II01D-CT_DS_001.pdf
 > 
-> The Chameleon v3 is based around an Intel Arria 10 SoC FPGA. The i2s
-> device is implemented inside the FPGA. Does this case require SoC
-> bindings?
+> Signed-off-by: Jyri Sarha <jsarha@ti.com>
+> Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
+> [abhatia1@ti.com: Make cosmetic and 6.1 DTSO syntax changes]
+> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+> Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+> ---
 
-No, I was mistaken. I somehow get impression that's for Pixel... Sorry
-for the noise.
+LGTM,
 
+Reviewed-by: Andrew Davis <afd@ti.com>
+
+>   arch/arm64/boot/dts/ti/Makefile               |  2 +
+>   ...am654-base-board-rocktech-rk101-panel.dtso | 69 +++++++++++++++++++
+>   2 files changed, 71 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/ti/k3-am654-base-board-rocktech-rk101-panel.dtso
 > 
->>
->>> +  reg:
->>> +    items:
->>> +      - description: core registers
->>> +      - description: irq registers
->>
->> As well...
->>
->>> +  interrupts:
->>> +    maxItems: 1
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +  - interrupts
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    #include <dt-bindings/interrupt-controller/irq.h>
->>> +
->>> +    i2s0: i2s@c0060300 {
->>> +        compatible = "google,chv3-i2s";
->>> +        reg = <0xc0060300 0x100>,
->>> +              <0xc0060f00 0x10>;
->>> +        interrupts = <0 20 IRQ_TYPE_LEVEL_HIGH>;
->>
->> Isn't 0 also a known define?
-> 
-> Do you mean this?
-> interrupts = <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>;
-
-
-Yes, please.
-
-Best regards,
-Krzysztof
-
+> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+> index 6acd12409d59..3e6c4aa24f85 100644
+> --- a/arch/arm64/boot/dts/ti/Makefile
+> +++ b/arch/arm64/boot/dts/ti/Makefile
+> @@ -20,12 +20,14 @@ dtb-$(CONFIG_ARCH_K3) += k3-am642-phyboard-electra-rdk.dtb
+>   dtb-$(CONFIG_ARCH_K3) += k3-am642-sk.dtb
+>   
+>   # Boards with AM65x SoC
+> +k3-am654-gp-evm-dtbs := k3-am654-base-board.dtb k3-am654-base-board-rocktech-rk101-panel.dtbo
+>   dtb-$(CONFIG_ARCH_K3) += k3-am6528-iot2050-basic.dtb
+>   dtb-$(CONFIG_ARCH_K3) += k3-am6528-iot2050-basic-pg2.dtb
+>   dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced.dtb
+>   dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced-m2.dtb
+>   dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced-pg2.dtb
+>   dtb-$(CONFIG_ARCH_K3) += k3-am654-base-board.dtb
+> +dtb-$(CONFIG_ARCH_K3) += k3-am654-gp-evm.dtb
+>   
+>   # Boards with J7200 SoC
+>   dtb-$(CONFIG_ARCH_K3) += k3-j7200-common-proc-board.dtb
+> diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board-rocktech-rk101-panel.dtso b/arch/arm64/boot/dts/ti/k3-am654-base-board-rocktech-rk101-panel.dtso
+> new file mode 100644
+> index 000000000000..aed6dcf3bd7d
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/ti/k3-am654-base-board-rocktech-rk101-panel.dtso
+> @@ -0,0 +1,69 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/**
+> + * OLDI-LCD1EVM Rocktech integrated panel and touch DT overlay for AM654-EVM.
+> + *
+> + * Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+> + */
+> +
+> +/dts-v1/;
+> +/plugin/;
+> +
+> +#include <dt-bindings/pwm/pwm.h>
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +&{/} {
+> +	display0 {
+> +		compatible = "rocktech,rk101ii01d-ct";
+> +		backlight = <&lcd_bl>;
+> +		enable-gpios = <&pca9555 8 GPIO_ACTIVE_HIGH>;
+> +		port {
+> +			lcd_in0: endpoint {
+> +				remote-endpoint = <&oldi_out0>;
+> +			};
+> +		};
+> +	};
+> +
+> +	lcd_bl: backlight {
+> +		compatible = "pwm-backlight";
+> +		pwms = <&ecap0 0 50000 PWM_POLARITY_INVERTED>;
+> +		brightness-levels =
+> +			<0 32 64 96 128 160 192 224 255>;
+> +		default-brightness-level = <8>;
+> +	};
+> +};
+> +
+> +&dss {
+> +	status = "okay";
+> +};
+> +
+> +&dss_ports {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +
+> +	port@0 {
+> +		reg = <0>;
+> +
+> +		oldi_out0: endpoint {
+> +			remote-endpoint = <&lcd_in0>;
+> +		};
+> +	};
+> +};
+> +
+> +&main_i2c1 {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +
+> +	touchscreen@14 {
+> +		compatible = "goodix,gt928";
+> +		reg = <0x14>;
+> +
+> +		interrupt-parent = <&pca9554>;
+> +		interrupts = <3 IRQ_TYPE_EDGE_FALLING>;
+> +		touchscreen-size-x = <1280>;
+> +		touchscreen-size-y = <800>;
+> +
+> +		reset-gpios = <&pca9555 9 GPIO_ACTIVE_HIGH>;
+> +		irq-gpios = <&pca9554 3 GPIO_ACTIVE_HIGH>;
+> +	};
+> +};
