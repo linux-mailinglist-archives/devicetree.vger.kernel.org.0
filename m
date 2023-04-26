@@ -2,135 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D3356EF4A7
-	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 14:48:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD6456EF4A8
+	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 14:49:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240303AbjDZMsp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Apr 2023 08:48:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58432 "EHLO
+        id S240059AbjDZMtV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Apr 2023 08:49:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240555AbjDZMsn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 08:48:43 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E121665B3
-        for <devicetree@vger.kernel.org>; Wed, 26 Apr 2023 05:48:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1682513293; x=1714049293;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=7abIa9Fa73+PqQnL1yYwEJJ5u6R981a/poEDnA+YJeA=;
-  b=UF1EjLP937ByFVnzeRc8Nzqv+N8pY7cdGhTKVQg690t5IzDcRk3ZEp4z
-   yXAUkAidN8E5mFBfUJplTeuK9sMMM11FJi5+gLyXaR1aiwTjLT6XDSaEZ
-   l9YBpTX3nTj1QeISvgZaBadalCNfdXwEX4R2b6X6RaSO0H2BoRlpRa3sb
-   3sC1tgloAr510HAdr9s5GsROZUU9h9fFvoERR88M6N0ecNeEPrsYJbvpl
-   /jn5XZfLzz3pcD1oflSTvO/asgzX+eBwEo6vPkHFBjfR0OgSmFKJeIVev
-   b5kvI143Egwo6MisU4FHSLnJP1w9+5rVw/0kpjEHe9qYoNWZo3wL0vJ1b
-   w==;
-X-IronPort-AV: E=Sophos;i="5.99,228,1677567600"; 
-   d="asc'?scan'208";a="211277383"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 26 Apr 2023 05:47:59 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Wed, 26 Apr 2023 05:47:58 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Wed, 26 Apr 2023 05:47:56 -0700
-Date:   Wed, 26 Apr 2023 13:47:39 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Andrew Jones <ajones@ventanamicro.com>
-CC:     <palmer@dabbelt.com>, <conor@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Wende Tan <twd2.me@gmail.com>, Soha Jin <soha@lohu.info>,
-        Hongren Zheng <i@zenithal.me>, Yangyu Chen <cyy@cyyself.name>,
-        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>
-Subject: Re: [PATCH v1 1/2] RISC-V: skip parsing multi-letter extensions
- starting with caps
-Message-ID: <20230426-slinky-preface-0f40f3fefb0f@wendy>
-References: <20230426-satin-avenging-086d4e79a8dd@wendy>
- <20230426-devalue-enlarging-afb4fa1bb247@wendy>
- <zzxnphgq34d7pbbvjaoxal4i3mtn57x7avujr2brb3ddxorzno@3fsb57layf7m>
+        with ESMTP id S240415AbjDZMtT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 08:49:19 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C148EC9;
+        Wed, 26 Apr 2023 05:48:59 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33QCmnPh037978;
+        Wed, 26 Apr 2023 07:48:49 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1682513329;
+        bh=3ws5zKPEfE4Ifd7md6CIVe5EF0uPGAT8qRb1QnaTW+I=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=QUmzRSSuVi3nL8guNvwc+BDHUpAWMcLjRsakB7HIRTxEK+dUP4jhgvdRY0PGr3Srh
+         jSQjc/x/g9t50TNzRDkXh8NGgAW/5kfV5zu6bl6WJ1UC0tH/sHvdhK0W89+XaIZdPO
+         /zd/HvuIpDUSW6AFUCNSKYTpz/DrCXzVObPiKZ2g=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33QCmnnh117303
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 26 Apr 2023 07:48:49 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 26
+ Apr 2023 07:48:48 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Wed, 26 Apr 2023 07:48:48 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33QCmmpU019878;
+        Wed, 26 Apr 2023 07:48:48 -0500
+Date:   Wed, 26 Apr 2023 07:48:48 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Udit Kumar <u-kumar1@ti.com>
+CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <m-chawdhry@ti.com>, <n-francis@ti.com>
+Subject: Re: [PATCH 5/5] arm64: dts: ti: k3-j7200: Add bootph-pre-ram for
+ u-boot
+Message-ID: <20230426124848.2af7ombywlsqkbva@autistic>
+References: <20230426103219.1565266-1-u-kumar1@ti.com>
+ <20230426103219.1565266-6-u-kumar1@ti.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="2+PhMxZ3REZzaIR2"
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <zzxnphgq34d7pbbvjaoxal4i3mtn57x7avujr2brb3ddxorzno@3fsb57layf7m>
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20230426103219.1565266-6-u-kumar1@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---2+PhMxZ3REZzaIR2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 16:02-20230426, Udit Kumar wrote:
+> Adding bootph-pre-ram property for pin mux needed by
+> uboot.
+> 
+> Signed-off-by: Udit Kumar <u-kumar1@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts | 5 +++++
+>  arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi           | 3 +++
+>  2 files changed, 8 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+> index 2cdfd957dd12..1bcb94aec588 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+> @@ -81,7 +81,9 @@ vdd_sd_dv: gpio-regulator-TLV71033 {
+>  };
+>  
+>  &wkup_pmx0 {
+> +	bootph-pre-ram;
+>  	mcu_uart0_pins_default: mcu_uart0_pins_default {
+> +		bootph-pre-ram;
+>  		pinctrl-single,pins = <
+>  			J721E_WKUP_IOPAD(0xf4, PIN_INPUT, 0) /* (D20) MCU_UART0_RXD */
+>  			J721E_WKUP_IOPAD(0xf0, PIN_OUTPUT, 0) /* (D19) MCU_UART0_TXD */
+> @@ -91,6 +93,7 @@ J721E_WKUP_IOPAD(0xfc, PIN_OUTPUT, 0) /* (E21) MCU_UART0_RTSn */
+>  	};
+>  
+>  	wkup_uart0_pins_default: wkup_uart0_pins_default {
+> +		bootph-pre-ram;
+>  		pinctrl-single,pins = <
+>  			J721E_WKUP_IOPAD(0xb0, PIN_INPUT, 0) /* (B14) WKUP_UART0_RXD */
+>  			J721E_WKUP_IOPAD(0xb4, PIN_OUTPUT, 0) /* (A14) WKUP_UART0_TXD */
+> @@ -125,7 +128,9 @@ J721E_WKUP_IOPAD(0x0030, PIN_INPUT, 0) /* (L4) MCU_MDIO0_MDIO */
+>  };
+>  
+>  &main_pmx0 {
+> +	bootph-pre-ram;
+>  	main_uart0_pins_default: main_uart0_pins_default {
+> +		bootph-pre-ram;
+>  		pinctrl-single,pins = <
+>  			J721E_IOPAD(0xb0, PIN_INPUT, 0) /* (T16) UART0_RXD */
+>  			J721E_IOPAD(0xb4, PIN_OUTPUT, 0) /* (T17) UART0_TXD */
+> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
+> index 269424154771..d2500837a0e8 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
+> @@ -119,7 +119,9 @@ J721E_WKUP_IOPAD(0x0008, PIN_INPUT, 0)  /* MCU_OSPI0_DQS */
+>  };
+>  
+>  &wkup_pmx2 {
+> +	bootph-pre-ram;
+>  	wkup_i2c0_pins_default: wkup-i2c0-pins-default {
+> +			bootph-pre-ram;
+>  			pinctrl-single,pins = <
+>  			J721E_WKUP_IOPAD(0x98, PIN_INPUT_PULLUP, 0) /* (F20) WKUP_I2C0_SCL */
+>  			J721E_WKUP_IOPAD(0x9c, PIN_INPUT_PULLUP, 0) /* (H21) WKUP_I2C0_SDA */
+> @@ -129,6 +131,7 @@ J721E_WKUP_IOPAD(0x9c, PIN_INPUT_PULLUP, 0) /* (H21) WKUP_I2C0_SDA */
+>  
+>  &main_pmx0 {
+>  	main_i2c0_pins_default: main-i2c0-pins-default {
+> +		bootph-pre-ram;
+>  		pinctrl-single,pins = <
+>  			J721E_IOPAD(0xd4, PIN_INPUT_PULLUP, 0) /* (V3) I2C0_SCL */
+>  			J721E_IOPAD(0xd8, PIN_INPUT_PULLUP, 0) /* (W2) I2C0_SDA */
+> -- 
+> 2.34.1
+> 
 
-On Wed, Apr 26, 2023 at 02:18:52PM +0200, Andrew Jones wrote:
-> On Wed, Apr 26, 2023 at 11:43:24AM +0100, Conor Dooley wrote:
-> > Yangyu Chen reported that if an multi-letter extension begins with a
-> > capital letter the parser will treat the remainder of that multi-letter
-> > extension as single-letter extensions.
->=20
-> I think the problem is that the parser doesn't completely abort when
-> it sees something it doesn't understand. Continuing is risky since
-> it may be possible to compose an invalid string that gets the parser
-> to run off the rails.
+There are a bunch of other nodes that neeed bootph-pre-ram -> lets first
+ensure all the nodes needed for u-boot is present (esm is still in
+discussion) then add bootph-pre-ram and related ones in a follow on series.
 
-Usually I am of the opinion that we should not seek the validate the dt
-in the kernel, since there are tools for doing so *cough* dt-validate
-*cough*. This one seemed like low hanging fruit though, since the parser
-handles having capital letters in any of the other places after the
-rv##, but falls over pretty badly for this particular issue.
-
-In general, I don't think we need to be concerned about anything that
-fails dt-validate though, you kinda need to trust that that is correct.
-I'd argue that we might even do too much validation in the parser at
-present.
-Is there some attack vector, or ACPI related consideration, that I am
-unaware of that makes this risky?
-
-> How about completely aborting, noisily, when the string doesn't match
-> expectations, falling back to a default string such as rv64ima instead.
-> That also ought to get faster corrections of device trees.
-
-I did this first actually, but I was afraid that it would cause
-regressions?
-
-If you have riscv,isa =3D "rv64imafdc_Zifencei_zicbom", yes that is
-invalid and dt-validate would have told you so, but at present that
-would be parsed as "rv64imafdc_zicbom" which is a perfect description of
-the hardware in question (since the meaning of i was set before RVI made
-a hames of things).
-
-So that's why I opted to not do some sort of pr_err/BUG()/WARN() and
-try to keep processing the string. I'm happy to abort entirely on
-reaching a capital if people feel there's unlikely to be a fallout from
-that.
-
-Cheers,
-Conor.
-
---2+PhMxZ3REZzaIR2
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZEkdawAKCRB4tDGHoIJi
-0rCYAQDAFdV3IwWNOtyPBFQVrzZ7oJg8v+xKBvTanwY2FvPdNgD/UKcpqYjj7Pf+
-31qZI/sGuZGsO6Zm4B2R0g7n1fKbQw4=
-=GslL
------END PGP SIGNATURE-----
-
---2+PhMxZ3REZzaIR2--
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
