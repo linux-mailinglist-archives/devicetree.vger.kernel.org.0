@@ -2,193 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EBCCF6EF2EC
-	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 12:57:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D27B86EF308
+	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 13:05:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240642AbjDZK5o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Apr 2023 06:57:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49922 "EHLO
+        id S240282AbjDZLFN convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 26 Apr 2023 07:05:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240608AbjDZK5k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 06:57:40 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 445025265;
-        Wed, 26 Apr 2023 03:57:38 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33QAvVPB098624;
-        Wed, 26 Apr 2023 05:57:31 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1682506651;
-        bh=Hm3EJu/qSrw2t3pXQaTOtm7l7auBwyIGsWpsVYasJ9M=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=qo8842UHPs4xMMeaUPoNK8+Lbn4WFr/I5P7iAjPpqVKy13FsZ/bcMl8g4XePTTGo4
-         1nVO7iBKoVd0WJ9ylqwkJ/Gl1uhAobQumwXBOIMiTWnLqbzdH0G++Tgp85//uaZkL9
-         HeP3A8yXS6kAZTNA4se+G2UWgNHqH2kN4G59X7sI=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33QAvVIm096485
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 26 Apr 2023 05:57:31 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 26
- Apr 2023 05:57:31 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Wed, 26 Apr 2023 05:57:31 -0500
-Received: from uda0492258.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33QAvJqV001570;
-        Wed, 26 Apr 2023 05:57:27 -0500
-From:   Siddharth Vadapalli <s-vadapalli@ti.com>
-To:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <afd@ti.com>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
-        <s-vadapalli@ti.com>
-Subject: [RFC PATCH 2/2] arm64: dts: ti: k3-j721s2: Add overlay to enable main CPSW2G with GESI
-Date:   Wed, 26 Apr 2023 16:27:18 +0530
-Message-ID: <20230426105718.118806-3-s-vadapalli@ti.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230426105718.118806-1-s-vadapalli@ti.com>
-References: <20230426105718.118806-1-s-vadapalli@ti.com>
+        with ESMTP id S231915AbjDZLFM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 07:05:12 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD70CDE;
+        Wed, 26 Apr 2023 04:05:10 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 4A83424E1D2;
+        Wed, 26 Apr 2023 19:05:09 +0800 (CST)
+Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 26 Apr
+ 2023 19:05:09 +0800
+Received: from [192.168.125.108] (113.72.145.137) by EXMBX171.cuchost.com
+ (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 26 Apr
+ 2023 19:05:08 +0800
+Message-ID: <4b0220ac-23bf-4206-eba2-2842a216bb24@starfivetech.com>
+Date:   Wed, 26 Apr 2023 19:05:07 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v5 7/7] riscv: dts: starfive: Add USB dts configuration
+ for JH7110
+Content-Language: en-US
+To:     Roger Quadros <rogerq@kernel.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Conor Dooley <conor@kernel.org>,
+        "Vinod Koul" <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Pawel Laszczak <pawell@cadence.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Peter Chen <peter.chen@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <linux-usb@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        "Mason Huo" <mason.huo@starfivetech.com>
+References: <20230420110052.3182-1-minda.chen@starfivetech.com>
+ <20230420110052.3182-8-minda.chen@starfivetech.com>
+ <3f2baded-c5d6-7d94-00f3-6d8fb24262c4@kernel.org>
+From:   Minda Chen <minda.chen@starfivetech.com>
+In-Reply-To: <3f2baded-c5d6-7d94-00f3-6d8fb24262c4@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Originating-IP: [113.72.145.137]
+X-ClientProxiedBy: EXCAS065.cuchost.com (172.16.6.25) To EXMBX171.cuchost.com
+ (172.16.6.91)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Kishon Vijay Abraham I <kishon@ti.com>
 
-The MAIN CPSW2G instance of CPSW on J721S2 SoC can be enabled with the GESI
-Expansion Board connected to the J7 Common-Proc-Board. Use the overlay
-to enable this.
 
-Add alias for the MAIN CPSW2G port to enable kernel to fetch MAC address
-directly from U-Boot.
-
-Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
----
- arch/arm64/boot/dts/ti/Makefile               |  2 +
- .../dts/ti/k3-j721s2-evm-gesi-exp-board.dtso  | 83 +++++++++++++++++++
- 2 files changed, 85 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-j721s2-evm-gesi-exp-board.dtso
-
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index c83c9d772b81..13db9b8dbe1d 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -42,6 +42,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-j721e-sk.dtb
- # Boards with J721s2 SoC
- dtb-$(CONFIG_ARCH_K3) += k3-am68-sk-base-board.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-j721s2-common-proc-board.dtb
-+dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm-gesi-exp-board.dtbo
+On 2023/4/24 22:53, Roger Quadros wrote:
+> 
+> 
+> On 20/04/2023 14:00, Minda Chen wrote:
+>> Add USB wrapper layer and Cadence USB3 controller dts
+>> configuration for StarFive JH7110 SoC and VisionFive2
+>> Board.
+>> USB controller connect to PHY, The PHY dts configuration
+>> are also added.
+>> 
+>> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+>> ---
+>>  .../jh7110-starfive-visionfive-2.dtsi         |  7 +++
+>>  arch/riscv/boot/dts/starfive/jh7110.dtsi      | 44 +++++++++++++++++++
+>>  2 files changed, 51 insertions(+)
+>> 
+>> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+>> index 1155b97b593d..fa97ebfd93ad 100644
+>> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+>> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+>> @@ -221,3 +221,10 @@
+>>  	pinctrl-0 = <&uart0_pins>;
+>>  	status = "okay";
+>>  };
+>> +
+>> +&usb0 {
+>> +	phys = <&usbphy0>;
+>> +	phy-names = "usb2";
+>> +	dr_mode = "peripheral";
+>> +	status = "okay";
+>> +};
+>> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+>> index 29cd798b6732..eee395e19cdb 100644
+>> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
+>> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+>> @@ -366,6 +366,50 @@
+>>  			status = "disabled";
+>>  		};
+>>  
+>> +		usb0: usb@10100000 {
+>> +			compatible = "starfive,jh7110-usb";
+>> +			reg = <0x0 0x10100000 0x0 0x10000>,
+>> +			      <0x0 0x10110000 0x0 0x10000>,
+>> +			      <0x0 0x10120000 0x0 0x10000>;
+>> +			reg-names = "otg", "xhci", "dev";
+>> +			interrupts = <100>, <108>, <110>;
+>> +			interrupt-names = "host", "peripheral", "otg";
+>> +			clocks = <&stgcrg JH7110_STGCLK_USB0_LPM>,
+>> +				 <&stgcrg JH7110_STGCLK_USB0_STB>,
+>> +				 <&stgcrg JH7110_STGCLK_USB0_APB>,
+>> +				 <&stgcrg JH7110_STGCLK_USB0_AXI>,
+>> +				 <&stgcrg JH7110_STGCLK_USB0_UTMI_APB>;
+>> +			clock-names = "lpm", "stb", "apb", "axi", "utmi_apb";
+>> +			resets = <&stgcrg JH7110_STGRST_USB0_PWRUP>,
+>> +				 <&stgcrg JH7110_STGRST_USB0_APB>,
+>> +				 <&stgcrg JH7110_STGRST_USB0_AXI>,
+>> +				 <&stgcrg JH7110_STGRST_USB0_UTMI_APB>;
+>> +			reset-names = "pwrup", "apb", "axi", "utmi_apb";
+> 
+> All this can really be "cdns,usb3" node. The cdns,usb3 driver should
+> do reset and clocks init as it is generic.
+> 
+But I can't find clock and reset init in Cadence codes while dwc usb3 can find. 
+It looks only if clocks and reset generic init codes required to be added in  Cadence codes to support generic clock and reset init.
+>> +			starfive,stg-syscon = <&stg_syscon 0x4>;
+>> +			status = "disabled";
+> 
+> Only the syscon handling looks starfive specific so only that handling
+> should be done in starfive USB driver.
+> 
+> This node should look like this
+> 
+>  
+> 	starfive-usb@4 {
+> 		compatible = "starfive,jh7110-usb";
+> 		starfive,stg-syscon = <&stg_syscon 0x4>;
+> 
+> 		usb0: usb@10100000 {
+> 			compatible = "cdns,usb3";
+> 			reg = <0x0 0x10100000 0x0 0x10000>,
+> 			      <0x0 0x10110000 0x0 0x10000>,
+> 			      <0x0 0x10120000 0x0 0x10000>;
+> 			reg-names = "otg", "xhci", "dev";
+> 			interrupts = <100>, <108>, <110>;
+> 			interrupt-names = "host", "peripheral", "otg";
+> 			clocks = <&stgcrg JH7110_STGCLK_USB0_LPM>,
+> 				 <&stgcrg JH7110_STGCLK_USB0_STB>,
+> 				 <&stgcrg JH7110_STGCLK_USB0_APB>,
+> 				 <&stgcrg JH7110_STGCLK_USB0_AXI>,
+> 				 <&stgcrg JH7110_STGCLK_USB0_UTMI_APB>;
+> 			clock-names = "lpm", "stb", "apb", "axi", "utmi_apb";
+> 			resets = <&stgcrg JH7110_STGRST_USB0_PWRUP>,
+> 				 <&stgcrg JH7110_STGRST_USB0_APB>,
+> 				 <&stgcrg JH7110_STGRST_USB0_AXI>,
+> 				 <&stgcrg JH7110_STGRST_USB0_UTMI_APB>;
+> 			reset-names = "pwrup", "apb", "axi", "utmi_apb";
+> 			starfive,stg-syscon = <&stg_syscon 0x4>;
+> 			status = "disabled";
+> 		};
+> 	}
+>> In starfife-usb driver you can use of_platform_default_populate()
+> to create the cdns,usb3 child for you.
+> 
+But actually the the syscon is not belong to USB. Below is Rob's previous comments. I am follow Rob's comments to change this.
  
- # Boards with J784s4 SoC
- dtb-$(CONFIG_ARCH_K3) += k3-am69-sk.dtb
-@@ -49,3 +50,4 @@ dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm.dtb
- 
- # Enable support for device-tree overlays
- DTC_FLAGS_k3-am6548-iot2050-advanced-m2 += -@
-+DTC_FLAGS_k3-j721s2-common-proc-board += -@
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-evm-gesi-exp-board.dtso b/arch/arm64/boot/dts/ti/k3-j721s2-evm-gesi-exp-board.dtso
-new file mode 100644
-index 000000000000..2ec08754bf04
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-evm-gesi-exp-board.dtso
-@@ -0,0 +1,83 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/**
-+ * DT Overlay for MAIN CPSW2G using GESI Expansion Board with J7 common processor board.
-+ *
-+ * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/net/ti-dp83867.h>
-+
-+#include "k3-pinctrl.h"
-+
-+&{/} {
-+	aliases {
-+		ethernet1 = "/bus@100000/ethernet@c200000/ethernet-ports/port@1";
-+	};
-+};
-+
-+&main_pmx0 {
-+	main_cpsw_mdio_pins_default: main-cpsw-mdio-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_IOPAD(0x0c0, PIN_OUTPUT, 6) /* (T28) MCASP1_AXR0.MDIO0_MDC */
-+			J721S2_IOPAD(0x0bc, PIN_INPUT, 6) /* (V28) MCASP1_AFSX.MDIO0_MDIO */
-+		>;
-+	};
-+
-+	rgmii1_pins_default: rgmii1-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_IOPAD(0x0b8, PIN_INPUT, 6) /* (AA24) MCASP1_ACLKX.RGMII1_RD0 */
-+			J721S2_IOPAD(0x0a0, PIN_INPUT, 6) /* (AB25) MCASP0_AXR12.RGMII1_RD1 */
-+			J721S2_IOPAD(0x0a4, PIN_INPUT, 6) /* (T23) MCASP0_AXR13.RGMII1_RD2 */
-+			J721S2_IOPAD(0x0a8, PIN_INPUT, 6) /* (U24) MCASP0_AXR14.RGMII1_RD3 */
-+			J721S2_IOPAD(0x0b0, PIN_INPUT, 6) /* (AD26) MCASP1_AXR3.RGMII1_RXC */
-+			J721S2_IOPAD(0x0ac, PIN_INPUT, 6) /* (AC25) MCASP0_AXR15.RGMII1_RX_CTL */
-+			J721S2_IOPAD(0x08c, PIN_OUTPUT, 6) /* (T25) MCASP0_AXR7.RGMII1_TD0 */
-+			J721S2_IOPAD(0x090, PIN_OUTPUT, 6) /* (W24) MCASP0_AXR8.RGMII1_TD1 */
-+			J721S2_IOPAD(0x094, PIN_OUTPUT, 6) /* (AA25) MCASP0_AXR9.RGMII1_TD2 */
-+			J721S2_IOPAD(0x098, PIN_OUTPUT, 6) /* (V25) MCASP0_AXR10.RGMII1_TD3 */
-+			J721S2_IOPAD(0x0b4, PIN_OUTPUT, 6) /* (U25) MCASP1_AXR4.RGMII1_TXC */
-+			J721S2_IOPAD(0x09c, PIN_OUTPUT, 6) /* (T24) MCASP0_AXR11.RGMII1_TX_CTL */
-+		>;
-+	};
-+};
-+
-+&exp1 {
-+	p15 {
-+		/* P15 - EXP_MUX2 */
-+		gpio-hog;
-+		gpios = <13 GPIO_ACTIVE_HIGH>;
-+		output-high;
-+		line-name = "EXP_MUX2";
-+	};
-+};
-+
-+&main_cpsw {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&rgmii1_pins_default>;
-+};
-+
-+&main_cpsw_mdio {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_cpsw_mdio_pins_default>;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	main_cpsw_phy0: ethernet-phy@0 {
-+		reg = <0>;
-+		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-+		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-+		ti,min-output-impedance;
-+	};
-+};
-+
-+&main_cpsw_port1 {
-+	status = "okay";
-+	phy-mode = "rgmii-rxid";
-+	phy-handle = <&main_cpsw_phy0>;
-+};
--- 
-2.25.1
+  This pattern of USB wrapper and then a "generic" IP node is discouraged if it is just clocks, resets, power-domains, etc. IOW, unless there's an actual wrapper h/w block with its own registers, then don't do this split. 
+  Merge it all into a single node.
 
+Rob and Rogers
+  Could you design whether merge the usb nodes？ 
+dt-binding，USB codes are different in two case.
+ 
+>> +		};
+>> +
+>> +		usbphy0: phy@10200000 {
+>> +			compatible = "starfive,jh7110-usb-phy";
+>> +			reg = <0x0 0x10200000 0x0 0x10000>;
+>> +			clocks = <&syscrg JH7110_SYSCLK_USB_125M>,
+>> +				 <&stgcrg JH7110_STGCLK_USB0_APP_125>;
+>> +			clock-names = "125m", "app_125m";
+>> +			#phy-cells = <0>;
+>> +		};
+>> +
+>> +		pciephy0: phy@10210000 {
+>> +			compatible = "starfive,jh7110-pcie-phy";
+>> +			reg = <0x0 0x10210000 0x0 0x10000>;
+>> +			#phy-cells = <0>;
+>> +		};
+>> +
+>> +		pciephy1: phy@10220000 {
+>> +			compatible = "starfive,jh7110-pcie-phy";
+>> +			reg = <0x0 0x10220000 0x0 0x10000>;
+>> +			#phy-cells = <0>;
+>> +		};
+>> +
+>>  		stgcrg: clock-controller@10230000 {
+>>  			compatible = "starfive,jh7110-stgcrg";
+>>  			reg = <0x0 0x10230000 0x0 0x10000>;
+> 
+> cheers,
+> -roger
