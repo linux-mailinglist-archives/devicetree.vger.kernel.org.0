@@ -2,227 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CDAB6EF67B
-	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 16:32:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F1C06EF67D
+	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 16:32:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241414AbjDZOcf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Apr 2023 10:32:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41252 "EHLO
+        id S241411AbjDZOck (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Apr 2023 10:32:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240735AbjDZOcd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 10:32:33 -0400
-Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com [IPv6:2607:f8b0:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 886F35BBA
-        for <devicetree@vger.kernel.org>; Wed, 26 Apr 2023 07:32:27 -0700 (PDT)
-Received: by mail-ot1-x32e.google.com with SMTP id 46e09a7af769-6a5ebf9f432so5460549a34.3
-        for <devicetree@vger.kernel.org>; Wed, 26 Apr 2023 07:32:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682519547; x=1685111547;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=X7dKTPslkvbl866yacFnONC6ojn4tHVdQfSmUuNN064=;
-        b=F28ElpvA3YlFibOSpSjJ9TBv7Jk0qAzep5kNk0L+2/h8pnW4HlkwvjR0p4VQEm/dki
-         Qd0wnycEgJAMl3rz7o57L/lkyvPJ4TwqkEhgt6HQMkUEjn0r+k65AMKgv6lrV1rlLCAy
-         SD03GPu6lLs1Da56HHterPmooA1f1K88jBMopNVNJEOxef0JbsfwkDlDkrcDQOLFnshm
-         mNZSRKlY6IN0pOnayD8SYZzrGUiShDf5Z/NI5AIVVrDaGEZT6pl4/MWGyPTGE54hbNrZ
-         R/9Wb/Q9N1zBihpZ2CjJ3z4Hki+7x0CW1wOTSOPsso/5cvNp2y7x++L1imyxsUAs8XV+
-         shuA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682519547; x=1685111547;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=X7dKTPslkvbl866yacFnONC6ojn4tHVdQfSmUuNN064=;
-        b=H47ZwnB58saM+d64SxSgVAFyEhlYNIYU4grWZir0hul3M73fNVjRTl3Xx9sFPjPwoF
-         Sgnmzr098HBTVr/z5FhqWar8sO34x7nIxsn5tTiKy94jp2fbCLgM3U2TsudIGsJ9wkX7
-         F86Ym8kycMIzp7R+WGdjSYugF/wiRCKlXBVE994jAUXnAWwuNlVRZOitL2eJ5xMmdUNp
-         LFz2dZt/f3mNzAUyKycRTdlI9UbZSwwUCf2C6EILNRwky0KEP9+L6c8GOzc5UF9BFn32
-         L6GomA/nmoP14xyMfMwSjxOb+FwM02EXI2YCGMqpZMRYUCIERV1PDnNYOndoAIlZW/AT
-         1Raw==
-X-Gm-Message-State: AAQBX9f03MfpO9HpyGG9GgUwHtIvKv+BuXHx5VQxmDXtgv99CRF/t97U
-        dvi0jopDPBnZ3RivQ8PljiM=
-X-Google-Smtp-Source: AKy350aaiQaxCUglw1O/q7pw5yp/5p/sPIhFie8GpiXhAaKPO6H2xp7/yOEBT8TAY7AfQfa8Y6FVHg==
-X-Received: by 2002:a05:6830:1d49:b0:6a6:3e09:4ddd with SMTP id p9-20020a0568301d4900b006a63e094dddmr8867523oth.2.1682519546826;
-        Wed, 26 Apr 2023 07:32:26 -0700 (PDT)
-Received: from localhost.localdomain ([76.244.6.13])
-        by smtp.gmail.com with ESMTPSA id z18-20020a05683010d200b006a32ba92994sm2613502oto.23.2023.04.26.07.32.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Apr 2023 07:32:26 -0700 (PDT)
-From:   Chris Morgan <macroalpha82@gmail.com>
-To:     dri-devel@lists.freedesktop.org
-Cc:     devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, daniel@ffwll.ch, airlied@gmail.com,
-        sam@ravnborg.org, neil.armstrong@linaro.org, megous@megous.com,
-        kernel@puri.sm, agx@sigxcpu.org,
-        Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH V3 3/3] drm/panel: st7703: Add Anbernic RG353V-V2 Panel Support
-Date:   Wed, 26 Apr 2023 09:32:13 -0500
-Message-Id: <20230426143213.4178586-4-macroalpha82@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230426143213.4178586-1-macroalpha82@gmail.com>
-References: <20230426143213.4178586-1-macroalpha82@gmail.com>
+        with ESMTP id S241417AbjDZOcj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 10:32:39 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A43DA449D;
+        Wed, 26 Apr 2023 07:32:37 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 269D160FFF;
+        Wed, 26 Apr 2023 14:32:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9186C433D2;
+        Wed, 26 Apr 2023 14:32:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1682519556;
+        bh=ktz/8GLqpT56U4gXrVOtMd/vE5Ej8x9fgSw4ZRKKRzQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=DWZUNmrp1J9T6wNU1LEPJCjB+nApZmfTZ04NMqqug6Y6YiRzcUhqf2OkhtWrJKAKL
+         2DQX9k7HxknJDrAjHxV0O8AdGQOdx1oRZJpJIRgRiYsEWpqMonm6ffFVwAY2Jj2jt8
+         rf0MSMcNZ1nBa1f0JvNdy5fZHPrr10LBvsHupZ1bBtiq21JexplffLnKNEWOS+OB7p
+         Y1HZIV5w23IM5ZYWqoMJNAdB09YCxL5P3s4R/HFARtYUvm451mdcVoIV5chtAurXEZ
+         9PdDBQuaTepgyyAVYEM2YMlB7XRDcK8E+7C9gni+l0Cj2OHPnKObUTg82dOYAr+lS+
+         QoZ/k3B9/24xg==
+Date:   Wed, 26 Apr 2023 15:32:31 +0100
+From:   Lee Jones <lee@kernel.org>
+To:     "Arslanbenzer, Zeynep" <Zeynep.Arslanbenzer@analog.com>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "sre@kernel.org" <sre@kernel.org>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>
+Subject: Re: [PATCH v2 8/8] mfd: max77658: Add ADI MAX77643/54/58/59 MFD
+ Support
+Message-ID: <20230426143231.GP50521@google.com>
+References: <20230322055628.4441-1-Zeynep.Arslanbenzer@analog.com>
+ <20230322055628.4441-9-Zeynep.Arslanbenzer@analog.com>
+ <20230330123136.GF434339@google.com>
+ <DM6PR03MB519577728975E086D8EB20F38B669@DM6PR03MB5195.namprd03.prod.outlook.com>
+ <20230424085942.GA8035@google.com>
+ <MN2PR03MB51973EDD4FEDA00200B61C6A8B649@MN2PR03MB5197.namprd03.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <MN2PR03MB51973EDD4FEDA00200B61C6A8B649@MN2PR03MB5197.namprd03.prod.outlook.com>
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Chris Morgan <macromorgan@hotmail.com>
+On Tue, 25 Apr 2023, Arslanbenzer, Zeynep wrote:
 
-The Anbernic RG353V-V2 is a 5 inch panel used in a new revision of the
-Anbernic RG353V handheld gaming device. Add support for it.
+> On Mon, 24 Apr 2023, Lee Jones wrote:
+> >
+> >On Sun, 23 Apr 2023, Arslanbenzer, Zeynep wrote:
+> >
+> >> On Thu, 30 Mar 2023, Lee Jones wrote:
+> >> 
+> >> >On Wed, 22 Mar 2023, Zeynep Arslanbenzer wrote:
+> >> >
+> >> >> MFD driver for MAX77643/MAX77654/MAX77658/MAX77659 to enable its 
+> >> >> sub
+> >> >
+> >> >Please drop all references to 'MFD'.
+> >> >
+> >> >What are these devices, really?  I suspect they are PMICs?
+> >> >
+> >> >> devices.
+> >> >>
+> >> >> The MAX77643 is a multi-function devices. It includes regulator.
+> >> >>
+> >> >> The MAX77654 is a multi-function devices. It includes regulator and 
+> >> >> charger.
+> >> >>
+> >> >> The MAX77658 is a multi-function devices. It includes regulator, 
+> >> >> charger and battery.
+> >> >>
+> >> >> The MAX77659 is a multi-function devices. It includes regulator and 
+> >> >> charger.
+> >> >>
+> >> >> Signed-off-by: Nurettin Bolucu <Nurettin.Bolucu@analog.com>
+> >> >> Signed-off-by: Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>
+> >> >> ---
+> >> >>  drivers/mfd/Kconfig          |  15 ++
+> >> >>  drivers/mfd/Makefile         |   1 +
+> >> >>  drivers/mfd/max77658.c       | 448 +++++++++++++++++++++++++++++++++++
+> >> >>  include/linux/mfd/max77658.h |  88 +++++++
+> >> >>  4 files changed, 552 insertions(+)  create mode 100644 
+> >> >> drivers/mfd/max77658.c  create mode 100644 
+> >> >> include/linux/mfd/max77658.h
+> >> >>
+> >> >> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig index
+> >> >> 8b93856de432..7b4be7fb8662 100644
+> >> >> --- a/drivers/mfd/Kconfig
+> >> >> +++ b/drivers/mfd/Kconfig
+> >> >> @@ -821,6 +821,21 @@ config MFD_MAX77650
+> >> >>  	  the following functionalities of the device: GPIO, regulator,
+> >> >>  	  charger, LED, onkey.
+> >> >>
+> >> >> +config MFD_MAX77658
+> >> >> +	tristate "Analog Devices MAX77643/MAX77654/MAX77658/MAX77659 PMIC Support"
+> >> >> +	depends on I2C
+> >> >> +	depends on OF
+> >> >> +	select MFD_CORE
+> >> >> +	select REGMAP_I2C
+> >> >> +	select REGMAP_IRQ
+> >> >> +	help
+> >> >> +	  Say Y here to add support for Analog Devices
+> >> >> +	  MAX77643/MAX77654/MAX77658/MAX77659 Power Management IC.
+> >> >
+> >> >"MAX776xx series"?
+> >> 
+> >> As I realized later, max77620, max77650, max77686, and max77693 drivers were merged to Linux before our patch. They are also PMIC devices and our patch does not cover them. Therefore, I think it would not be appropriate to use MAX776xx.
+> >
+> >Perhaps you can come up with something a little more scalable then.
+> >
+> >What if you added support for another 10 devices?
+> >
+> For now, we have no plans to add any new device support to this driver. We named the driver max77658 because it has the most inclusive feature among the supported devices. We can shorten it to MAX77643/54/58/59 or just type max77658 in Kconfig and specify other supported devices in the device tree. Would one of these be a more suitable solution?
 
-Unfortunately it appears this controller is not able to support 120hz
-or 100hz mode like the first revision panel.
+The former looks like a nice middle-ground.
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-Reviewed-by: Guido Günther <agx@sigxcpu.org>
----
- drivers/gpu/drm/panel/panel-sitronix-st7703.c | 97 +++++++++++++++++++
- 1 file changed, 97 insertions(+)
-
-diff --git a/drivers/gpu/drm/panel/panel-sitronix-st7703.c b/drivers/gpu/drm/panel/panel-sitronix-st7703.c
-index fc55b5fbb67f..3aa31f3d6157 100644
---- a/drivers/gpu/drm/panel/panel-sitronix-st7703.c
-+++ b/drivers/gpu/drm/panel/panel-sitronix-st7703.c
-@@ -28,6 +28,7 @@
- /* Manufacturer specific Commands send via DSI */
- #define ST7703_CMD_ALL_PIXEL_OFF 0x22
- #define ST7703_CMD_ALL_PIXEL_ON	 0x23
-+#define ST7703_CMD_SETAPID	 0xB1
- #define ST7703_CMD_SETDISP	 0xB2
- #define ST7703_CMD_SETRGBIF	 0xB3
- #define ST7703_CMD_SETCYC	 0xB4
-@@ -42,11 +43,14 @@
- #define ST7703_CMD_SETSCR	 0xC0
- #define ST7703_CMD_SETPOWER	 0xC1
- #define ST7703_CMD_SETECO	 0xC6
-+#define ST7703_CMD_SETIO	 0xC7
-+#define ST7703_CMD_SETCABC	 0xC8
- #define ST7703_CMD_SETPANEL	 0xCC
- #define ST7703_CMD_SETGAMMA	 0xE0
- #define ST7703_CMD_SETEQ	 0xE3
- #define ST7703_CMD_SETGIP1	 0xE9
- #define ST7703_CMD_SETGIP2	 0xEA
-+#define ST7703_CMD_UNKNOWN_EF	 0xEF
- 
- struct st7703 {
- 	struct device *dev;
-@@ -337,6 +341,98 @@ static const struct st7703_panel_desc xbd599_desc = {
- 	.init_sequence = xbd599_init_sequence,
- };
- 
-+static int rg353v2_init_sequence(struct st7703 *ctx)
-+{
-+	struct mipi_dsi_device *dsi = to_mipi_dsi_device(ctx->dev);
-+
-+	/*
-+	 * Init sequence was supplied by the panel vendor.
-+	 */
-+
-+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETEXTC, 0xf1, 0x12, 0x83);
-+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETAPID, 0x00, 0x00, 0x00,
-+			       0xda, 0x80);
-+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETDISP, 0x00, 0x13, 0x70);
-+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETRGBIF, 0x10, 0x10, 0x28,
-+			       0x28, 0x03, 0xff, 0x00, 0x00, 0x00, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETCYC, 0x80);
-+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETBGP, 0x0a, 0x0a);
-+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETVCOM, 0x92, 0x92);
-+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETPOWER_EXT, 0x25, 0x22,
-+			       0xf0, 0x63);
-+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETMIPI, 0x33, 0x81, 0x05,
-+			       0xf9, 0x0e, 0x0e, 0x20, 0x00, 0x00, 0x00, 0x00,
-+			       0x00, 0x00, 0x00, 0x44, 0x25, 0x00, 0x90, 0x0a,
-+			       0x00, 0x00, 0x01, 0x4f, 0x01, 0x00, 0x00, 0x37);
-+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETVDC, 0x47);
-+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_UNKNOWN_BF, 0x02, 0x11, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETSCR, 0x73, 0x73, 0x50, 0x50,
-+			       0x00, 0x00, 0x12, 0x50, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETPOWER, 0x53, 0xc0, 0x32,
-+			       0x32, 0x77, 0xe1, 0xdd, 0xdd, 0x77, 0x77, 0x33,
-+			       0x33);
-+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETECO, 0x82, 0x00, 0xbf, 0xff,
-+			       0x00, 0xff);
-+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETIO, 0xb8, 0x00, 0x0a, 0x00,
-+			       0x00, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETCABC, 0x10, 0x40, 0x1e,
-+			       0x02);
-+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETPANEL, 0x0b);
-+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETGAMMA, 0x00, 0x07, 0x0d,
-+			       0x37, 0x35, 0x3f, 0x41, 0x44, 0x06, 0x0c, 0x0d,
-+			       0x0f, 0x11, 0x10, 0x12, 0x14, 0x1a, 0x00, 0x07,
-+			       0x0d, 0x37, 0x35, 0x3f, 0x41, 0x44, 0x06, 0x0c,
-+			       0x0d, 0x0f, 0x11, 0x10, 0x12, 0x14, 0x1a);
-+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETEQ, 0x07, 0x07, 0x0b, 0x0b,
-+			       0x0b, 0x0b, 0x00, 0x00, 0x00, 0x00, 0xff, 0x00,
-+			       0xc0, 0x10);
-+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETGIP1, 0xc8, 0x10, 0x02, 0x00,
-+			       0x00, 0xb0, 0xb1, 0x11, 0x31, 0x23, 0x28, 0x80,
-+			       0xb0, 0xb1, 0x27, 0x08, 0x00, 0x04, 0x02, 0x00,
-+			       0x00, 0x00, 0x00, 0x04, 0x02, 0x00, 0x00, 0x00,
-+			       0x88, 0x88, 0xba, 0x60, 0x24, 0x08, 0x88, 0x88,
-+			       0x88, 0x88, 0x88, 0x88, 0x88, 0xba, 0x71, 0x35,
-+			       0x18, 0x88, 0x88, 0x88, 0x88, 0x88, 0x00, 0x00,
-+			       0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-+			       0x00, 0x00, 0x00);
-+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETGIP2, 0x97, 0x0a, 0x82, 0x02,
-+			       0x03, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-+			       0x81, 0x88, 0xba, 0x17, 0x53, 0x88, 0x88, 0x88,
-+			       0x88, 0x88, 0x88, 0x80, 0x88, 0xba, 0x06, 0x42,
-+			       0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x23, 0x00,
-+			       0x00, 0x02, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00,
-+			       0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-+			       0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-+			       0x00);
-+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_UNKNOWN_EF, 0xff, 0xff, 0x01);
-+
-+	return 0;
-+}
-+
-+static const struct drm_display_mode rg353v2_mode = {
-+	.hdisplay	= 640,
-+	.hsync_start	= 640 + 40,
-+	.hsync_end	= 640 + 40 + 2,
-+	.htotal		= 640 + 40 + 2 + 80,
-+	.vdisplay	= 480,
-+	.vsync_start	= 480 + 18,
-+	.vsync_end	= 480 + 18 + 2,
-+	.vtotal		= 480 + 18 + 2 + 28,
-+	.clock		= 24150,
-+	.flags		= DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
-+	.width_mm	= 70,
-+	.height_mm	= 57,
-+};
-+
-+static const struct st7703_panel_desc rg353v2_desc = {
-+	.mode = &rg353v2_mode,
-+	.lanes = 4,
-+	.mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
-+		      MIPI_DSI_MODE_NO_EOT_PACKET | MIPI_DSI_MODE_LPM,
-+	.format = MIPI_DSI_FMT_RGB888,
-+	.init_sequence = rg353v2_init_sequence,
-+};
-+
- static int st7703_enable(struct drm_panel *panel)
- {
- 	struct st7703 *ctx = panel_to_st7703(panel);
-@@ -597,6 +693,7 @@ static void st7703_remove(struct mipi_dsi_device *dsi)
- }
- 
- static const struct of_device_id st7703_of_match[] = {
-+	{ .compatible = "anbernic,rg353v-panel-v2", .data = &rg353v2_desc },
- 	{ .compatible = "rocktech,jh057n00900", .data = &jh057n00900_panel_desc },
- 	{ .compatible = "xingbangda,xbd599", .data = &xbd599_desc },
- 	{ /* sentinel */ }
 -- 
-2.34.1
-
+Lee Jones [李琼斯]
