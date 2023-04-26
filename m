@@ -2,73 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 229266EF5C1
-	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 15:48:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13FC26EF5DB
+	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 15:54:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241206AbjDZNsj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Apr 2023 09:48:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41278 "EHLO
+        id S240471AbjDZNyR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Apr 2023 09:54:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241210AbjDZNsi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 09:48:38 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04E776A70;
-        Wed, 26 Apr 2023 06:48:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=8wWWPvur8h/Ij6ruLlvui/wCIPbLdjmdshto9tS44Xk=; b=OIhLt+Mx0FLhYVseg7n40tccW9
-        T08XOqPLYztlGByIliFPzd9f4zNosrZKwCvXsZtBG7pAysrtvSXHBz1c0aAuTsn4k9wFjh+5rU5Bp
-        0hIRfrwjd9I8lwmXsicA69Y1J1pSHxD6NI1vvt1gwh51WnWQY5fF75YO+29EmJCHuN5w=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1prfVQ-00BHEm-8J; Wed, 26 Apr 2023 15:48:24 +0200
-Date:   Wed, 26 Apr 2023 15:48:24 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Harini Katakam <harini.katakam@amd.com>
-Cc:     robh+dt@kernel.org, hkallweit1@gmail.com, linux@armlinux.org.uk,
-        davem@davemloft.net, kuba@kernel.org, edumazet@google.com,
-        pabeni@redhat.com, vladimir.oltean@nxp.com,
-        wsa+renesas@sang-engineering.com,
-        krzysztof.kozlowski+dt@linaro.org, simon.horman@corigine.com,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, harinikatakamlinux@gmail.com,
-        michal.simek@amd.com, radhey.shyam.pandey@amd.com
-Subject: Re: [PATCH net-next v2 3/3] phy: mscc: Add support for VSC8531_02
- with RGMII tuning
-Message-ID: <2bbbe874-2879-4b1a-bf79-2d5c1a7a35f4@lunn.ch>
-References: <20230426104313.28950-1-harini.katakam@amd.com>
- <20230426104313.28950-4-harini.katakam@amd.com>
+        with ESMTP id S240952AbjDZNyP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 09:54:15 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7013F6E92;
+        Wed, 26 Apr 2023 06:54:10 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33QDrt5r104345;
+        Wed, 26 Apr 2023 08:53:55 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1682517235;
+        bh=W+58kcFlpy4zgiGRyo/D7WwXuTR569I4K9Q6sc5aV3E=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=XUugwJa7nkquxPKr0eoptX+pmb+SukwwgupUIGVSSZh8/i0h1cq++G4BpMcQLk8eu
+         4WDQYzu3Wocqtra1zxDKkBZCdlmTamETVc0zV+ms/wMlbVhFzCiB6+/anzVPn75uN3
+         v/YV5xjFk0qdQRBXoP+9Zuw+rNPYzyJEH3/nBiFU=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33QDrt5t042588
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 26 Apr 2023 08:53:55 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 26
+ Apr 2023 08:53:55 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 26 Apr 2023 08:53:55 -0500
+Received: from [10.249.133.231] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33QDrlDf037318;
+        Wed, 26 Apr 2023 08:53:48 -0500
+Message-ID: <223be03f-78dc-9be8-8a90-66cdd5a368ba@ti.com>
+Date:   Wed, 26 Apr 2023 19:23:46 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230426104313.28950-4-harini.katakam@amd.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v2 1/2] arm64: dts/ti: am65x: Add Rocktech OLDI panel DT
+ overlay
+Content-Language: en-US
+To:     Nishanth Menon <nm@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>, Andrew Davis <afd@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel List <linux-kernel@vger.kernel.org>,
+        Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
+        Jyri Sarha <jyri.sarha@iki.fi>,
+        Tomi Valkeinen <tomba@kernel.org>,
+        Praneeth Bajjuri <praneeth@ti.com>,
+        Rahul T R <r-ravikumar@ti.com>,
+        Devarsh Thakkar <devarsht@ti.com>,
+        Jai Luthra <j-luthra@ti.com>,
+        Jayesh Choudhary <j-choudhary@ti.com>
+References: <20230426060612.19271-1-a-bhatia1@ti.com>
+ <20230426060612.19271-2-a-bhatia1@ti.com>
+ <20230426125334.flj6ndo6s7esmcho@scotch>
+From:   Aradhya Bhatia <a-bhatia1@ti.com>
+In-Reply-To: <20230426125334.flj6ndo6s7esmcho@scotch>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 26, 2023 at 04:13:13PM +0530, Harini Katakam wrote:
-> From: Harini Katakam <harini.katakam@xilinx.com>
+
+
+On 26-Apr-23 18:23, Nishanth Menon wrote:
+> On 11:36-20230426, Aradhya Bhatia wrote:
+> [...]
+>>  # Boards with J7200 SoC
+>>  dtb-$(CONFIG_ARCH_K3) += k3-j7200-common-proc-board.dtb
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board-rocktech-rk101-panel.dtso b/arch/arm64/boot/dts/ti/k3-am654-base-board-rocktech-rk101-panel.dtso
+>> new file mode 100644
+>> index 000000000000..aed6dcf3bd7d
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/ti/k3-am654-base-board-rocktech-rk101-panel.dtso
+>> @@ -0,0 +1,69 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/**
+>> + * OLDI-LCD1EVM Rocktech integrated panel and touch DT overlay for AM654-EVM.
 > 
-> Add support for VSC8531_02 (Rev 2) device.
-> Add support for optional RGMII RX and TX delay tuning via devicetree.
-> The hierarchy is:
-> - Retain the defaul 0.2ns delay when RGMII tuning is not set.
-> - Retain the default 2ns delay when RGMII tuning is set and DT delay
-> property is NOT specified.
+> product link please.
+> 
 
-tuning is probably the wrong word here. I normally consider tuning as
-small changes from 0ns/2ns. The course setting of 0ns or 2ns is not
-tuning. I normally use RGMII internal delays to refer to that.
+Added the link in the commit message because believing that is the
+status quo. Remember referencing this patch[1] a while back.
 
-However, i'm not sure there is consistency among drivers.
+But a deeper look now tells me that, that might not be the case. Or
+perhaps, its different for dt-binding patches and devictree patches.
 
-	 Andrew
+Will correct this in v3 and send again.
+
+Regards
+Aradhya
+
+
+[1]: https://patchwork.freedesktop.org/patch/357122/
