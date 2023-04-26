@@ -2,343 +2,370 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C0AF6EEE19
-	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 08:13:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60A3F6EEE2E
+	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 08:20:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239425AbjDZGNa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Apr 2023 02:13:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40936 "EHLO
+        id S239390AbjDZGUg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Apr 2023 02:20:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239409AbjDZGN3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 02:13:29 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31AD7E70;
-        Tue, 25 Apr 2023 23:13:28 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33Q6DDnp001168;
-        Wed, 26 Apr 2023 01:13:13 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1682489593;
-        bh=cFjTRFmgueCsnTo4GzLGCA8/IUthnHgQpQZGyhDzdnA=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=aB8gLPz3gVWXk63ljTnYTEFgkW0AZHtysQ9cYgkNBYDImFYcKXUPQ8Tk1Fsw1JE0l
-         2yVsK+ieVaOvbcud+gk/lxFpVBmpEdMWJP5i5bz3LJ03SYZCEZVSxvlfCYcp/l8LO5
-         A2Lnxl/GldfiWvRBZ54Asi7jCo/0S06QN65Pdwbs=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33Q6DDqk011203
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 26 Apr 2023 01:13:13 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 26
- Apr 2023 01:13:13 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Wed, 26 Apr 2023 01:13:13 -0500
-Received: from [172.24.222.176] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33Q6D7TB033931;
-        Wed, 26 Apr 2023 01:13:08 -0500
-Message-ID: <b7efc616-cf01-77a7-5eb4-9076ae40e2f8@ti.com>
-Date:   Wed, 26 Apr 2023 11:43:07 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH 1/2] arm64: dts: ti: Add overlay for OLDI-LCD1EVM Display
- and touch screen
-Content-Language: en-US
-To:     Andrew Davis <afd@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+        with ESMTP id S239340AbjDZGUe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 02:20:34 -0400
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 385952134;
+        Tue, 25 Apr 2023 23:20:31 -0700 (PDT)
+Received: from loongson.cn (unknown [10.20.42.35])
+        by gateway (Coremail) with SMTP id _____8BxrOqtwkhkIOcAAA--.1526S3;
+        Wed, 26 Apr 2023 14:20:29 +0800 (CST)
+Received: from user-pc.202.106.0.20 (unknown [10.20.42.35])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8DxfbOkwkhk7FE8AA--.16273S2;
+        Wed, 26 Apr 2023 14:20:26 +0800 (CST)
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+To:     "Rafael J . Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-CC:     Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel List <linux-kernel@vger.kernel.org>,
-        Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
-        Jyri Sarha <jyri.sarha@iki.fi>,
-        Tomi Valkeinen <tomba@kernel.org>,
-        Praneeth Bajjuri <praneeth@ti.com>,
-        Rahul T R <r-ravikumar@ti.com>,
-        Devarsh Thakkar <devarsht@ti.com>,
-        Jai Luthra <j-luthra@ti.com>,
-        Jayesh Choudhary <j-choudhary@ti.com>
-References: <20230425051235.15533-1-a-bhatia1@ti.com>
- <20230425051235.15533-2-a-bhatia1@ti.com>
- <90272486-864d-910c-a10b-4ba71a71f4b0@ti.com>
- <66a4c8e0-e1d1-4d7d-b0eb-ce092fea8695@ti.com>
- <19f1d3dc-a416-9d5e-f545-8ccf1a65c73c@ti.com>
-From:   Aradhya Bhatia <a-bhatia1@ti.com>
-In-Reply-To: <19f1d3dc-a416-9d5e-f545-8ccf1a65c73c@ti.com>
-Content-Type: text/plain; charset="UTF-8"
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
+        Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn,
+        zhanghongchen <zhanghongchen@loongson.cn>,
+        Yinbo Zhu <zhuyinbo@loongson.cn>
+Subject: [PATCH v14 1/2] thermal: loongson-2: add thermal management support
+Date:   Wed, 26 Apr 2023 14:20:17 +0800
+Message-Id: <20230426062018.19755-1-zhuyinbo@loongson.cn>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-CM-TRANSID: AQAAf8DxfbOkwkhk7FE8AA--.16273S2
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvJXoW3Zr1xur1DXr4xKr45ZFyrJFb_yoWDAryDpF
+        W3Ca98GrsrJFsru3Z8ArW8AFs0y3WayFy7XF4xGw1Y9rZ8J343WryktFy8AryxCFyUGFW7
+        ZF98KrWUCFWDZ3DanT9S1TB71UUUUjUqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        bfxFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
+        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r1I6r4UM28E
+        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
+        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJwAaw2AFwI0_Jrv_JF1le2I262IYc4CY
+        6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrV
+        C2j2WlYx0E2Ix0cI8IcVAFwI0_JF0_Jw1lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE
+        7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwCY1x0262kKe7AKxVWUAVWUtwCF04k20xvY0x
+        0EwIxGrwCF04k20xvE74AGY7Cv6cx26rWl4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1l4IxYO2xF
+        xVAFwI0_Jrv_JF1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWw
+        C2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_
+        JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r1j6r4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJV
+        WUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r1j6r4UYxBI
+        daVFxhVjvjDU0xZFpf9x07jn73kUUUUU=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andrew,
+This patch adds the support for Loongson-2 thermal sensor controller,
+which can support maximum 4 sensors, each sensor contains a sampling
+register and a control register. The sampling register is used to obtain
+the temperature in real time, the control register GATE field is used to
+set the threshold of high or low temperature, when the input temperature
+is higher than the high temperature threshold or lower than the low
+temperature threshold, an interrupt will occur.
 
-On 25-Apr-23 23:14, Andrew Davis wrote:
-> On 4/25/23 12:00 PM, Aradhya Bhatia wrote:
->> Hi Andrew,
->>
->> On 25-Apr-23 20:39, Andrew Davis wrote:
->>> On 4/25/23 12:12 AM, Aradhya Bhatia wrote:
->>>> From: Jyri Sarha <jsarha@ti.com>
->>>>
->>>> The OLDI-LCD1EVM add on board has Rocktech RK101II01D-CT panel with
->>>> integrated touch screen. The integrated touch screen is Goodix GT928.
->>>> Add DT nodes for these and connect the endpoint nodes with DSS.
->>>>
->>>> This patch was picked from TI's public tree based on 5.10 LTS kernel.
->>>>
->>>> Signed-off-by: Jyri Sarha <jsarha@ti.com>
->>>> Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
->>>> [abhatia1@ti.com: Make syntax changes to support 6.1 DTSO format]
->>>> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
->>>> ---
->>>>    arch/arm64/boot/dts/ti/Makefile               |  2 +
->>>>    .../dts/ti/k3-am654-evm-oldi-lcd1evm.dtso     | 70
->>>> +++++++++++++++++++
->>>>    2 files changed, 72 insertions(+)
->>>>    create mode 100644
->>>> arch/arm64/boot/dts/ti/k3-am654-evm-oldi-lcd1evm.dtso
->>>>
->>>> diff --git a/arch/arm64/boot/dts/ti/Makefile
->>>> b/arch/arm64/boot/dts/ti/Makefile
->>>> index 6acd12409d59..8956b19e587a 100644
->>>> --- a/arch/arm64/boot/dts/ti/Makefile
->>>> +++ b/arch/arm64/boot/dts/ti/Makefile
->>>> @@ -26,6 +26,7 @@ dtb-$(CONFIG_ARCH_K3) +=
->>>> k3-am6548-iot2050-advanced.dtb
->>>>    dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced-m2.dtb
->>>>    dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced-pg2.dtb
->>>>    dtb-$(CONFIG_ARCH_K3) += k3-am654-base-board.dtb
->>>> +dtb-$(CONFIG_ARCH_K3) += k3-am654-evm-oldi-lcd1evm.dtbo
->>>
->>> This name is a bit odd, why "evm" twice? Looks like the first instance
->>> is the redundant one as most of the documents on this LCD board call it
->>> the "LCD1EVM". How about:
->>>
->>> k3-am654-lcd1evm.dtbo
->>
->> I didn't think I could change the name of the overlay picking the patch
->> from our tree, but if we are going to do it, can we take up another
->> approach, where it would be easier to add panels for AM62x family and
->> ensure uniformity throughout.
->>
-> 
-> Yes, we can change what we want when upstreaming. How we did it in our
-> evil vendor tree should in no way prevent us from doing things better
-> in upstream.
-> 
-Okay.
+Signed-off-by: zhanghongchen <zhanghongchen@loongson.cn>
+Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+---
+Change in v14:
+		1. Add back depends on COMPILE_TEST.
+		2. The implementation of devm_thermal_add_hwmon_sysfs has changed in
+		   recent community code that cause compile fail issue and this verison
+		   add a dev args in devm_thermal_add_hwmon_sysfs to fix compile issue.
+Change in v13:
+		1. Add a description about that how works the sensor.
+		2. Drop the COMPILE_TEST.
+		3. Rework the help prograph in LOONGSON2_THERMAL Kconfig.
+		4. Drop the 'tzd' 'irq' and 'pdev' element in loongson2_thermal_data.
+		5. Drop the reset of variable in loongson2_thermal_set.
+		6. Drop the function loongson2_thermal_get_sensor_id.
+		7. Drop the function loongson2_thermal_alarm_irq.
+		8. Rework the devm_thermal_of_zone_register.
+		9. Pass 'tzd' instead of 'data' in devm_request_threaded_irq.
+		10. Drop the "data->tzd->tzp->no_hwmon = false".
+		11. Drop the loongson2_thermal_remove.
+		12. Add the sensor id in the of_device_id data field.
+		13. Drop the save and restore function.
+Change in v12:
+		1. Fixup it about min and max.
+		2. Use dev_err_probe replace dev_err in devm_request_threaded_irq context.
+Change in v11:
+		1. Add min() and max() to replace related code in function
+		   loongson2_thermal_set.
+		2. Add dev_err_probe to to replace related code for function
+		   return value use devm_thermal_of_zone_register.
+		3. Replace thermal_add_hwmon_sysfs with devm_thermal_add_hwmon_sysfs
+		   and use dev_warn replace dev_err in this context.
+Change in v10:
+		1. Add all history change log information.
+Change in v9:
+		1. Switch new API that use devm_thermal_of_zone_register
+		   to replace previous interfaces.
+		2. Add depend on LOONGARCH || COMPILE_TEST.
+Change in v8:
+                1. Replace string loongson2/Loongson2/LOONGSON2 with loongson-2/
+                   Loongson-2/LOONGSON-2 in Kconfig and commit log and MAINTAINERS
+		   files.
+Change in v7:
+		1. Split the modification of patch 3 and merge it into this patch.
+		2. Remove the unless code annotation to fix the compile warning
+		   when compile C code with W=1.
+Change in v6:
+		1. NO change, but other patch in this series of patches set has
+		   changes.
+Change in v5:
+		1. NO change, but other patch in this series of patches set has
+		   changes.
+Change in v4:
+		1. Fixup the compatible.
+Change in v3:
+		1. Add a function to gain sensor id an remove dts id.
+Change in v2:
+		1. Remove error msg printing when addr ioremap has error.
+		2. Make loongson2 thermal driver was built-in by default.
+		3. Replace ls2k with loongson2.
+		4. Remove CONFIG_PM_SLEEP and set pm function type was
+		   __maybe_unused.
 
->> We have 2 different panels from Vendor A, and another one from Vendor B.
->> Vendor B panel connects to AM625-SK via an adapter board.
->>
->> Vendor-A/Panel-1 only says the name, 'SK-LCD1' on its circuit board.
->> Vendor-A/Panel-2 doesn't have any name yet. We only have development
->> units.
->> Vendor-B/Panel-2 mentions '$(LCD_model) to AM62x SoC adapter board'.
->>
->> Since, there are too many manufacturers, it is difficult to maintain
->> uniformity with the names of panel-boards. So, I have this approach in
->> mind (which I have used for our tree for AM62x), but would like your
->> comments.
->>
->> k3-$soc-$board-$(panel_vendor)-$(brief_compatible).dtso
->>
->> So, for AM625-SKs,
->> k3-am625-sk-$(vendor_name)-$(brief_compatible).dtso
->>
-> 
-> Looks reasonable to me.
-Great! I tweaked this to add the keyword "panel" to also make it reader
-friendly in v2.
+ MAINTAINERS                         |   7 ++
+ drivers/thermal/Kconfig             |  12 ++
+ drivers/thermal/Makefile            |   1 +
+ drivers/thermal/loongson2_thermal.c | 166 ++++++++++++++++++++++++++++
+ 4 files changed, 186 insertions(+)
+ create mode 100644 drivers/thermal/loongson2_thermal.c
 
-k3-$soc-$board-$(panel_vendor)-$(brief_compatible)-panel.dtso
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 25a0981c74b6..b3a76acd2caf 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -12143,6 +12143,13 @@ S:	Maintained
+ F:	Documentation/devicetree/bindings/pinctrl/loongson,ls2k-pinctrl.yaml
+ F:	drivers/pinctrl/pinctrl-loongson2.c
+ 
++LOONGSON-2 SOC SERIES THERMAL DRIVER
++M:	zhanghongchen <zhanghongchen@loongson.cn>
++M:	Yinbo Zhu <zhuyinbo@loongson.cn>
++L:	linux-pm@vger.kernel.org
++S:	Maintained
++F:	drivers/thermal/loongson2_thermal.c
++
+ LOONGSON GPIO DRIVER
+ M:	Yinbo Zhu <zhuyinbo@loongson.cn>
+ L:	linux-gpio@vger.kernel.org
+diff --git a/drivers/thermal/Kconfig b/drivers/thermal/Kconfig
+index 4cd7ab707315..c4de94e972f4 100644
+--- a/drivers/thermal/Kconfig
++++ b/drivers/thermal/Kconfig
+@@ -502,4 +502,16 @@ config KHADAS_MCU_FAN_THERMAL
+ 	  If you say yes here you get support for the FAN controlled
+ 	  by the Microcontroller found on the Khadas VIM boards.
+ 
++config LOONGSON2_THERMAL
++	tristate "Loongson-2 SoC series thermal driver"
++	depends on LOONGARCH || COMPILE_TEST
++	depends on OF
++	help
++	  Support for Thermal driver found on Loongson-2 SoC series platforms.
++	  The thermal driver realizes get_temp and set_trips function, which
++	  are used to obtain the temperature of the current node and set the
++	  temperature range to trigger the interrupt. When the input temperature
++	  is higher than the high temperature threshold or lower than the low
++	  temperature threshold, the interrupt will occur.
++
+ endif
+diff --git a/drivers/thermal/Makefile b/drivers/thermal/Makefile
+index eed300e83d48..4edde4df647b 100644
+--- a/drivers/thermal/Makefile
++++ b/drivers/thermal/Makefile
+@@ -62,3 +62,4 @@ obj-$(CONFIG_UNIPHIER_THERMAL)	+= uniphier_thermal.o
+ obj-$(CONFIG_AMLOGIC_THERMAL)     += amlogic_thermal.o
+ obj-$(CONFIG_SPRD_THERMAL)	+= sprd_thermal.o
+ obj-$(CONFIG_KHADAS_MCU_FAN_THERMAL)	+= khadas_mcu_fan.o
++obj-$(CONFIG_LOONGSON2_THERMAL)	+= loongson2_thermal.o
+diff --git a/drivers/thermal/loongson2_thermal.c b/drivers/thermal/loongson2_thermal.c
+new file mode 100644
+index 000000000000..6a338e6e490e
+--- /dev/null
++++ b/drivers/thermal/loongson2_thermal.c
+@@ -0,0 +1,166 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * Author: zhanghongchen <zhanghongchen@loongson.cn>
++ *         Yinbo Zhu <zhuyinbo@loongson.cn>
++ * Copyright (C) 2022-2023 Loongson Technology Corporation Limited
++ */
++
++#include <linux/cpufreq.h>
++#include <linux/delay.h>
++#include <linux/interrupt.h>
++#include <linux/module.h>
++#include <linux/platform_device.h>
++#include <linux/io.h>
++#include <linux/of_device.h>
++#include <linux/thermal.h>
++#include "thermal_hwmon.h"
++
++#define LOONGSON2_SOC_MAX_SENSOR_NUM			4
++
++#define LOONGSON2_TSENSOR_CTRL_HI			0x0
++#define LOONGSON2_TSENSOR_CTRL_LO			0x8
++#define LOONGSON2_TSENSOR_STATUS			0x10
++#define LOONGSON2_TSENSOR_OUT				0x14
++
++struct loongson2_thermal_data {
++	int id;
++	void __iomem *regs;
++};
++
++static int loongson2_thermal_set(struct loongson2_thermal_data *data,
++					int low, int high, bool enable)
++{
++	u64 reg_ctrl = 0;
++	int reg_off = data->id * 2;
++
++	if (low > high)
++		return -EINVAL;
++
++	low = max(low, -40);
++	high = min(high, 125);
++
++	low += 100;
++	high += 100;
++
++	reg_ctrl = low;
++	reg_ctrl |= enable ? 0x100 : 0;
++	writew(reg_ctrl, data->regs + LOONGSON2_TSENSOR_CTRL_LO + reg_off);
++
++	reg_ctrl = high;
++	reg_ctrl |= enable ? 0x100 : 0;
++	writew(reg_ctrl, data->regs + LOONGSON2_TSENSOR_CTRL_HI + reg_off);
++
++	return 0;
++}
++
++static int loongson2_thermal_get_temp(struct thermal_zone_device *tz, int *temp)
++{
++	u32 reg_val;
++	struct loongson2_thermal_data *data = tz->devdata;
++
++	reg_val = readl(data->regs + LOONGSON2_TSENSOR_OUT);
++	*temp = ((reg_val & 0xff) - 100) * 1000;
++
++	return 0;
++}
++
++static irqreturn_t loongson2_thermal_irq_thread(int irq, void *dev)
++{
++	struct thermal_zone_device *tzd = dev;
++	struct loongson2_thermal_data *data = tzd->devdata;
++
++	/* clear interrupt */
++	writeb(0x3, data->regs + LOONGSON2_TSENSOR_STATUS);
++
++	thermal_zone_device_update(tzd, THERMAL_EVENT_UNSPECIFIED);
++
++	return IRQ_HANDLED;
++}
++
++static int loongson2_thermal_set_trips(struct thermal_zone_device *tz, int low, int high)
++{
++	struct loongson2_thermal_data *data = tz->devdata;
++
++	return loongson2_thermal_set(data, low/1000, high/1000, true);
++}
++
++static const struct thermal_zone_device_ops loongson2_of_thermal_ops = {
++	.get_temp = loongson2_thermal_get_temp,
++	.set_trips = loongson2_thermal_set_trips,
++};
++
++static int loongson2_thermal_probe(struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	struct resource *res;
++	struct loongson2_thermal_data *data;
++	struct thermal_zone_device *tzd;
++	int ret, irq, i;
++
++	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
++	if (!data)
++		return -ENOMEM;
++
++	data->id = (uintptr_t)device_get_match_data(dev);
++
++	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
++	data->regs = devm_ioremap(dev, res->start, resource_size(res));
++	if (IS_ERR(data->regs))
++		return PTR_ERR(data->regs);
++
++	/* get irq */
++	irq = platform_get_irq(pdev, 0);
++	if (irq < 0)
++		return irq;
++
++	if (data->id > LOONGSON2_SOC_MAX_SENSOR_NUM - 1 || data->id < 0) {
++		dev_err(dev, "sensor id error,must be in <0 ~ %d>\n",
++				LOONGSON2_SOC_MAX_SENSOR_NUM - 1);
++		return -EINVAL;
++	}
++
++	writeb(0xff, data->regs + LOONGSON2_TSENSOR_STATUS);
++
++	loongson2_thermal_set(data, 0, 0, false);
++
++	for (i = 0; i < LOONGSON2_SOC_MAX_SENSOR_NUM; i++) {
++		tzd = devm_thermal_of_zone_register(dev, i, data,
++			&loongson2_of_thermal_ops);
++
++		if (!IS_ERR(tzd))
++			break;
++
++		if (PTR_ERR(tzd) != ENODEV)
++			continue;
++
++		return dev_err_probe(dev, PTR_ERR(tzd), "failed to register");
++	}
++
++	ret = devm_request_threaded_irq(dev, irq, NULL, loongson2_thermal_irq_thread,
++			IRQF_ONESHOT, "loongson2_thermal", tzd);
++	if (ret < 0)
++		return dev_err_probe(dev, ret, "failed to request alarm irq\n");
++
++	if (devm_thermal_add_hwmon_sysfs(dev, tzd))
++		dev_warn(dev, "Failed to add hwmon sysfs attributes\n");
++
++	return 0;
++}
++
++static const struct of_device_id of_loongson2_thermal_match[] = {
++	{ .compatible = "loongson,ls2k-thermal", .data = (const void *)0},
++	{ /* end */ }
++};
++MODULE_DEVICE_TABLE(of, of_loongson2_thermal_match);
++
++static struct platform_driver loongson2_thermal_driver = {
++	.driver = {
++		.name		= "loongson2_thermal",
++		.of_match_table = of_loongson2_thermal_match,
++	},
++	.probe	= loongson2_thermal_probe,
++};
++module_platform_driver(loongson2_thermal_driver);
++
++MODULE_DESCRIPTION("Loongson2 thermal driver");
++MODULE_LICENSE("GPL");
+-- 
+2.20.1
 
-> 
->> and for the current panel Rocktech RK101II01D-CT, which applies on AM654
->> base-board,
->>
->> k3-am654-base-board-rocktech-rk101.dtso.
->>
->> This does become rather long, but also is distinguishable.
->>
-> 
-> No limit to file names here, being clear and distinguishable is more
-> important than short names.
-> 
->> Let me know what you think.
->>
->>>
->>> I would like the overlay names to give some hint to what base DTB they
->>> apply to,
->>
->> Agreed. That is indeed how it should be.
->>
->>> or better yet, apply them here in the build which will check
->>> that they apply cleanly. Plus you can drop the silly "+= -@" below.
->>>
->>
->> The above approach will give a hint of the base EVM where a combined
->> build is not possible simply because there is no 'official' name for a
->> particular combination of panel and EVM.
->>
-> 
-> We do not need to name each possible combination (and we shouldn't, there
-> would be a combinatorial explosion, avoiding that is the whole point
-> of using overlays vs .dtsi includes).
-> 
-> I do think we should name at least the combinations that we ship together.
-> So as below for AM654 that would be the GPEVM and the IDK. Those are the
-> two out-of-box combinations available for purchase as a kit. Folks can
-> still
-> buy additional add-on cards, and/or mix and match from those two sets.
-> 
-> As long as we have at least one named combination, then the base-board dtb
-> file gets symbols automatically and we can drop the "+= -@" line.
-> 
-
-Understood! I have incorporated these suggestions, as well as the ones
-from Tomi and Nishanth, in v2 and posted them.
-
-Regards
-Aradhya
-
-> Andrew
-> 
->>
->> Regards
->> Aradhya
->>
->>> Let's see how this should be called, from the AM65x GP EVM doc[0] we
->>> get a nice picture on page 5 and the following:
->>>
->>> "The AM65x GP EVM consists of a common processor board, an LCD adapter,
->>> and a one-lane PCIe/USB3 personality card."
->>>
->>> So, this would translate to:
->>>
->>> k3-am654-gp-evm-dtbs := k3-am654-base-board.dtb k3-am654-lcd1evm.dtbo
->>> k3-am654-pcie-usb3.dtbo
->>> dtb-$(CONFIG_ARCH_K3) += k3-am654-gp-evm.dtb>
->>> Next, from the AM65x IDK doc[1] also with a nice image on page 5:
->>>
->>> "The AM65x IDK consists of a common processor board, IDK application
->>> board,
->>> and a two-lane PCIe personality card.:
->>>
->>> So:
->>>
->>> k3-am654-idk-dtbs := k3-am654-base-board.dtb k3-am654-idk.dtbo
->>> k3-am654-pcie-usb2.dtbo
->>> dtb-$(CONFIG_ARCH_K3) += k3-am654-idk.dtb
->>>
->>> Note that we do have all those missing dtso files in our evil vendor
->>> tree[2]
->>> and will be upstreaming them next, so this naming should all work out
->>> nicely.
->>>
->>> Andrew
->>>
->>> [0] https://www.ti.com/lit/ug/spruim7/spruim7.pdf
->>> [1] https://www.ti.com/lit/ug/spruim6a/spruim6a.pdf
->>> [2]
->>> https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/tree/arch/arm64/boot/dts/ti?h=ti-linux-5.10.y
->>>
->>>>      # Boards with J7200 SoC
->>>>    dtb-$(CONFIG_ARCH_K3) += k3-j7200-common-proc-board.dtb
->>>> @@ -45,3 +46,4 @@ dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm.dtb
->>>>      # Enable support for device-tree overlays
->>>>    DTC_FLAGS_k3-am6548-iot2050-advanced-m2 += -@
->>>> +DTC_FLAGS_k3-am654-base-board += -@
->>>> diff --git a/arch/arm64/boot/dts/ti/k3-am654-evm-oldi-lcd1evm.dtso
->>>> b/arch/arm64/boot/dts/ti/k3-am654-evm-oldi-lcd1evm.dtso
->>>> new file mode 100644
->>>> index 000000000000..b2c790b314cf
->>>> --- /dev/null
->>>> +++ b/arch/arm64/boot/dts/ti/k3-am654-evm-oldi-lcd1evm.dtso
->>>> @@ -0,0 +1,70 @@
->>>> +// SPDX-License-Identifier: GPL-2.0
->>>> +/**
->>>> + * OLDI-LCD1EVM Rocktech integrated panel and touch DT overlay for
->>>> AM654-EVM.
->>>> + *
->>>> + * Copyright (C) 2023 Texas Instruments Incorporated -
->>>> http://www.ti.com/
->>>> + */
->>>> +
->>>> +/dts-v1/;
->>>> +/plugin/;
->>>> +
->>>> +#include <dt-bindings/pwm/pwm.h>
->>>> +#include <dt-bindings/gpio/gpio.h>
->>>> +#include <dt-bindings/interrupt-controller/irq.h>
->>>> +
->>>> +&{/} {
->>>> +    display0 {
->>>> +        compatible = "rocktech,rk101ii01d-ct";
->>>> +        backlight = <&lcd_bl>;
->>>> +        enable-gpios = <&pca9555 8 GPIO_ACTIVE_HIGH>;
->>>> +        port {
->>>> +            lcd_in0: endpoint {
->>>> +                remote-endpoint = <&oldi_out0>;
->>>> +            };
->>>> +        };
->>>> +    };
->>>> +
->>>> +    lcd_bl: backlight {
->>>> +        compatible = "pwm-backlight";
->>>> +        pwms = <&ecap0 0 50000 PWM_POLARITY_INVERTED>;
->>>> +        brightness-levels =
->>>> +            <0 32 64 96 128 160 192 224 255>;
->>>> +        default-brightness-level = <8>;
->>>> +    };
->>>> +};
->>>> +
->>>> +&dss {
->>>> +    status = "okay";
->>>> +};
->>>> +
->>>> +&dss_ports {
->>>> +    #address-cells = <1>;
->>>> +    #size-cells = <0>;
->>>> +
->>>> +    port@0 {
->>>> +        reg = <0>;
->>>> +
->>>> +        oldi_out0: endpoint {
->>>> +            remote-endpoint = <&lcd_in0>;
->>>> +        };
->>>> +    };
->>>> +};
->>>> +
->>>> +&main_i2c1 {
->>>> +    #address-cells = <1>;
->>>> +    #size-cells = <0>;
->>>> +
->>>> +    gt928: touchscreen@14 {
->>>> +        status = "okay";
->>>> +        compatible = "goodix,gt928";
->>>> +        reg = <0x14>;
->>>> +
->>>> +        interrupt-parent = <&pca9554>;
->>>> +        interrupts = <3 IRQ_TYPE_EDGE_FALLING>;
->>>> +        touchscreen-size-x = <1280>;
->>>> +        touchscreen-size-y = <800>;
->>>> +
->>>> +        reset-gpios = <&pca9555 9 GPIO_ACTIVE_HIGH>;
->>>> +        irq-gpios = <&pca9554 3 GPIO_ACTIVE_HIGH>;
->>>> +    };
->>>> +};
