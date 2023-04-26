@@ -2,52 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23B7D6EF19A
-	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 12:01:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C39436EF1A7
+	for <lists+devicetree@lfdr.de>; Wed, 26 Apr 2023 12:07:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240394AbjDZKB1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Apr 2023 06:01:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43864 "EHLO
+        id S240073AbjDZKH5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Apr 2023 06:07:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240396AbjDZKBO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 06:01:14 -0400
-Received: from out28-100.mail.aliyun.com (out28-100.mail.aliyun.com [115.124.28.100])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 384674EC0;
-        Wed, 26 Apr 2023 03:01:08 -0700 (PDT)
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.3684256|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.0756489-0.0141251-0.910226;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047187;MF=frank.sae@motor-comm.com;NM=1;PH=DS;RN=15;RT=15;SR=0;TI=SMTPD_---.SRApSpG_1682503259;
-Received: from 10.0.2.15(mailfrom:Frank.Sae@motor-comm.com fp:SMTPD_---.SRApSpG_1682503259)
-          by smtp.aliyun-inc.com;
-          Wed, 26 Apr 2023 18:01:00 +0800
-Message-ID: <04f4e968-946e-cbf0-3d78-cfe6cb17afb3@motor-comm.com>
-Date:   Wed, 26 Apr 2023 17:59:54 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v1 1/2] dt-bindings: net: motorcomm: Add pad driver
- strength cfg
-To:     Samin Guo <samin.guo@starfivetech.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, Peter Geis <pgwipeout@gmail.com>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S240033AbjDZKHz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 06:07:55 -0400
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id EC35746BB;
+        Wed, 26 Apr 2023 03:07:48 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.99,227,1677510000"; 
+   d="scan'208";a="160827163"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 26 Apr 2023 19:07:47 +0900
+Received: from renesas-ubuntu18.ree.adwin.renesas.com (unknown [10.226.93.103])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 44F3F4001DC5;
+        Wed, 26 Apr 2023 19:07:44 +0900 (JST)
+From:   Chris Paterson <chris.paterson2@renesas.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Yanhong Wang <yanhong.wang@starfivetech.com>
-References: <20230426063541.15378-1-samin.guo@starfivetech.com>
- <20230426063541.15378-2-samin.guo@starfivetech.com>
-Content-Language: en-US
-From:   Frank Sae <Frank.Sae@motor-comm.com>
-In-Reply-To: <20230426063541.15378-2-samin.guo@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Wolfram Sang <wsa@kernel.org>,
+        linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Chris Paterson <chris.paterson2@renesas.com>
+Subject: [PATCH] dt-bindings: i2c: renesas,rzv2m: Change maintainer to Fabrizio Castro
+Date:   Wed, 26 Apr 2023 11:07:36 +0100
+Message-Id: <20230426100736.11808-1-chris.paterson2@renesas.com>
+X-Mailer: git-send-email 2.40.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -55,41 +46,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Phil no longer works for Renesas.
 
+Signed-off-by: Chris Paterson <chris.paterson2@renesas.com>
+---
+ Documentation/devicetree/bindings/i2c/renesas,rzv2m.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-On 2023/4/26 14:35, Samin Guo wrote:
-> The motorcomm phy (YT8531) supports the ability to adjust the drive
-> strength of the rx_clk/rx_data, the value range of pad driver
-> strength is 0 to 7.
-> 
-> Signed-off-by: Samin Guo <samin.guo@starfivetech.com>
-> ---
->  .../devicetree/bindings/net/motorcomm,yt8xxx.yaml      | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml b/Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml
-> index 157e3bbcaf6f..e648e486b6d8 100644
-> --- a/Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml
-> +++ b/Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml
-> @@ -18,6 +18,16 @@ properties:
->        - ethernet-phy-id4f51.e91a
->        - ethernet-phy-id4f51.e91b
->  
-> +  rx-clk-driver-strength:
-> +    description: drive strength of rx_clk pad.
-> +    enum: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
-> +    default: 3
-> +
-> +  rx-data-driver-strength:
-> +    description: drive strength of rxd/rx_ctl rgmii pad.
-> +    enum: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
-> +    default: 3
-> +
+diff --git a/Documentation/devicetree/bindings/i2c/renesas,rzv2m.yaml b/Documentation/devicetree/bindings/i2c/renesas,rzv2m.yaml
+index 92e899905ef8..5d1e7885b64a 100644
+--- a/Documentation/devicetree/bindings/i2c/renesas,rzv2m.yaml
++++ b/Documentation/devicetree/bindings/i2c/renesas,rzv2m.yaml
+@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Renesas RZ/V2M I2C Bus Interface
+ 
+ maintainers:
+-  - Phil Edworthy <phil.edworthy@renesas.com>
++  - Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+ 
+ allOf:
+   - $ref: /schemas/i2c/i2c-controller.yaml#
+-- 
+2.40.0
 
-rx-clk-driver-strength and rx-data-driver-strength are not standard, so please add "motorcomm,".
-rx-clk-driver-strength => motorcomm,rx-clk-driver-strength
-
-
->    rx-internal-delay-ps:
->      description: |
->        RGMII RX Clock Delay used only when PHY operates in RGMII mode with
