@@ -2,125 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A4A826F0730
-	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 16:22:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2E486F0741
+	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 16:23:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243973AbjD0OW1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Apr 2023 10:22:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39630 "EHLO
+        id S244041AbjD0OW6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Apr 2023 10:22:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243972AbjD0OWC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 10:22:02 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52DA45FD3;
-        Thu, 27 Apr 2023 07:21:31 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33RELA9O025346;
-        Thu, 27 Apr 2023 09:21:10 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1682605270;
-        bh=A/rgv1/AnobUXEkRKW2dduU5AblbNvPTfxFDxods0bQ=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=X2MlGTw1v8u8knH+jqXxrEJyddKg11MHE83ohUeEmorDLe2f+ZdOhoqvSgNpSvkWE
-         CgFeUmHvHG6KlkPOyOgHFjUJGE7yp3nqmtKH3iMi73TMlyb9Q5od6HQH0uTvyVK5g/
-         TUNbxuOoGAIOOrFqSX6VbuPaBN4z1oJ0bcMTC9rQ=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33RELApf020517
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 27 Apr 2023 09:21:10 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 27
- Apr 2023 09:21:10 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 27 Apr 2023 09:21:10 -0500
-Received: from [10.250.151.20] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33REL5XZ031910;
-        Thu, 27 Apr 2023 09:21:06 -0500
-Message-ID: <3c412c83-75a0-b7ac-4c43-2305732c1a0c@ti.com>
-Date:   Thu, 27 Apr 2023 19:51:05 +0530
+        with ESMTP id S244014AbjD0OWo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 10:22:44 -0400
+Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61DA54C24;
+        Thu, 27 Apr 2023 07:22:14 -0700 (PDT)
+Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-187af4a5453so3227351fac.1;
+        Thu, 27 Apr 2023 07:22:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682605326; x=1685197326;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0uNuPX9j/yoNVZcLdhFFButCZsuO2r4zsFdcSvMmbBk=;
+        b=Qo3MLuGHQ3HQUaIgUY+e3UKif++mRPZJNT/2tt2GXs46GddO+TOBTKPQq8sI/08cXn
+         do3N00/a9jt/ztMCyeauH1AGwXRF7OlftVB2mgcFDonCjfbLImMvVwNGkyhNQqbiNsK0
+         ypsaVjcNZEI1E8qxaKYa5ccAGtjVKNsbJXa2qqMNTNx9ojKUfwtkq1GvmzDlgvrzdbCp
+         Mp5nfQqf1OIUHcV5HcpPUEqz+S5xWIfxQhuDmRnG+IDoEVcoEFERVkDGqhvqLhSDMjnF
+         P5BBpwrADKkc16t1cs9To86fUHU6rkRfcHonotts2/IgCr0ifghouFc4nN6jbNmdVbnd
+         4MDA==
+X-Gm-Message-State: AC+VfDxKoCvNnZReZivEat5LW+l+lx1PaTJg23CSUfPW68ZVVFR+W1hD
+        Z5VIX5IcXFE7S/MWJJqxEw==
+X-Google-Smtp-Source: ACHHUZ4CFW+3aUpv2Gg8lfnGV/FuJC7CWrOe8fE8e37VwwGCL5yIS19C5JgRYyZkhI4eSfurt5Zw7A==
+X-Received: by 2002:a05:6870:42d4:b0:188:77b:7c59 with SMTP id z20-20020a05687042d400b00188077b7c59mr1091719oah.19.1682605326276;
+        Thu, 27 Apr 2023 07:22:06 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id m41-20020a4a952c000000b005251e3f92ecsm8440186ooi.47.2023.04.27.07.22.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Apr 2023 07:22:05 -0700 (PDT)
+Received: (nullmailer pid 2989656 invoked by uid 1000);
+        Thu, 27 Apr 2023 14:22:05 -0000
+Date:   Thu, 27 Apr 2023 09:22:05 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Shazad Hussain <quic_shazhuss@quicinc.com>
+Cc:     agross@kernel.org, andersson@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org
+Subject: Re: [PATCH v1 1/6] dt-bindings: usb: qcom,dwc3: Add bindings for
+ SA8775P
+Message-ID: <20230427142205.GA2979206-robh@kernel.org>
+References: <20230421133922.8520-1-quic_shazhuss@quicinc.com>
+ <20230421133922.8520-2-quic_shazhuss@quicinc.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [EXTERNAL] Re: [PATCH v14 3/8] arm64: dts: ti:
- k3-j721s2-mcu-wakeup: Add support of OSPI
-Content-Language: en-US
-To:     Roger Quadros <rogerq@kernel.org>, <nm@ti.com>, <afd@ti.com>,
-        <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <s-vadapalli@ti.com>,
-        <vaishnav.a@ti.com>, <r-gunasekaran@ti.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20230331090028.8373-1-r-gunasekaran@ti.com>
- <20230331090028.8373-4-r-gunasekaran@ti.com>
- <2b74bc3f-85c7-1d2f-d597-968a914c4e6e@kernel.org>
-From:   Ravi Gunasekaran <r-gunasekaran@ti.com>
-In-Reply-To: <2b74bc3f-85c7-1d2f-d597-968a914c4e6e@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230421133922.8520-2-quic_shazhuss@quicinc.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Roger,
+On Fri, Apr 21, 2023 at 07:09:16PM +0530, Shazad Hussain wrote:
+> Add the compatible string for SA8775P SoC from Qualcomm.
+> 
+> Set minItems to 3 for interrupts as usb2 i.e third usb port supports
+> only high speed mode and does not require ss_phy_irq.
+> 
+> Signed-off-by: Shazad Hussain <quic_shazhuss@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> index d84281926f10..3ae02cffae49 100644
+> --- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> +++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> @@ -23,6 +23,7 @@ properties:
+>            - qcom,msm8998-dwc3
+>            - qcom,qcm2290-dwc3
+>            - qcom,qcs404-dwc3
+> +          - qcom,sa8775p-dwc3
+>            - qcom,sc7180-dwc3
+>            - qcom,sc7280-dwc3
+>            - qcom,sc8280xp-dwc3
+> @@ -180,6 +181,7 @@ allOf:
+>                - qcom,msm8953-dwc3
+>                - qcom,msm8996-dwc3
+>                - qcom,msm8998-dwc3
+> +              - qcom,sa8775p-dwc3
+>                - qcom,sc7180-dwc3
+>                - qcom,sc7280-dwc3
+>                - qcom,sdm670-dwc3
+> @@ -443,12 +445,15 @@ allOf:
+>          compatible:
+>            contains:
+>              enum:
+> +              - qcom,sa8775p-dwc3
+>                - qcom,sc8280xp-dwc3
+>      then:
+>        properties:
+>          interrupts:
+> +          minItems: 3
 
-On 4/25/2023 5:02 PM, Roger Quadros wrote:
-> Hi,
->
-> On 31/03/2023 12:00, Ravi Gunasekaran wrote:
->> From: Aswath Govindraju <a-govindraju@ti.com>
->>
->> Add support for two instance of OSPI in J721S2 SoC.
->>
->> Reviewed-by: Vaishnav Achath <vaishnav.a@ti.com>
->> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
->> Signed-off-by: Matt Ranostay <mranostay@ti.com>
->> Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
->> ---
+Now 3 interrupts is valid for qcom,sc8280xp-dwc3?
 
-[...]
-
->> +			clocks = <&k3_clks 109 5>;
->> +			assigned-clocks = <&k3_clks 109 5>;
->> +			assigned-clock-parents = <&k3_clks 109 7>;
->> +			assigned-clock-rates = <166666666>;
->> +			power-domains = <&k3_pds 109 TI_SCI_PD_EXCLUSIVE>;
->> +			#address-cells = <1>;
->> +			#size-cells = <0>;
->> +
->> +			status = "disabled"; /* Needs pinmux */
->> +		};
->> +
->> +		ospi1: spi@47050000 {
->> +			compatible = "ti,am654-ospi", "cdns,qspi-nor";
->> +			reg = <0x00 0x47050000 0x00 0x100>,
->> +			      <0x07 0x00000000 0x01 0x00000000>;
->> +			interrupts = <GIC_SPI 841 IRQ_TYPE_LEVEL_HIGH>;
->> +			cdns,fifo-depth = <256>;
->> +			cdns,fifo-width = <4>;
->> +			cdns,trigger-address = <0x0>;
->> +			clocks = <&k3_clks 110 5>;
-> What about clock parent and clock rate assignment like it was done for osip0?
-
-ospi1 uses default values.
-
->> +			power-domains = <&k3_pds 110 TI_SCI_PD_EXCLUSIVE>;
->> +			#address-cells = <1>;
->> +			#size-cells = <0>;
->> +
->> +			status = "disabled"; /* Needs pinmux */
->> +		};
->> +	};
->>  };
-> cheers,
-> -roger
-
+>            maxItems: 4
+>          interrupt-names:
+> +          minItems: 3
+>            items:
+>              - const: pwr_event
+>              - const: dp_hs_phy_irq
+> -- 
+> 2.17.1
+> 
