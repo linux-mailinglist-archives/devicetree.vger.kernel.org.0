@@ -2,43 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C9E916F036C
-	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 11:33:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB94D6F0366
+	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 11:29:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243270AbjD0JdH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Apr 2023 05:33:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52536 "EHLO
+        id S243338AbjD0J22 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Apr 2023 05:28:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243083AbjD0JdG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 05:33:06 -0400
-X-Greylist: delayed 302 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 27 Apr 2023 02:33:04 PDT
-Received: from m204-238.eu.mailgun.net (m204-238.eu.mailgun.net [161.38.204.238])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF3602735
-        for <devicetree@vger.kernel.org>; Thu, 27 Apr 2023 02:33:04 -0700 (PDT)
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=hewittfamily.org.uk;
- q=dns/txt; s=s1; t=1682587982; x=1682595182; h=To: To: References:
- Message-Id: Content-Transfer-Encoding: Cc: Date: In-Reply-To: From: From:
- Subject: Subject: Mime-Version: Content-Type: Sender: Sender;
- bh=WKlhktvkNCXudJUIlMvUHYKEozR+HdTU1JB7gKtNB7E=;
- b=PvEsJ+Anx+SM2aJP2Bh5/2xq4wmeHtdarl/dA/AyiS6uJQN6skV2/DMNMLdvN/8AfBumMb06ltg9LLaGbhiBKA44cQJed3m4qHDdPK4bt8EclOk8f2xvI0hd28sHGaCbgrX6HANWQtXLyHQcpGdzAb6T0NTdzgiFmcgxuffycz+gdAf74m1qY9KDamiqyMUB0kpNB470QAUFAv5H5thz5RgdBYaxHmdAtDWWSdkVbGaypYRoSf2dt/qBK2GcsXy6Ru9LR7ozSbU6F/SHS9aCb7AWRaVLJVfWSloZ1+LNBsEF4mVPPfyiuHsM8XoCJ+ZPLRn8yLatri9iUA/78xK2RQ==
-X-Mailgun-Sending-Ip: 161.38.204.238
-X-Mailgun-Sid: WyIzZDI1OSIsImRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnIiwiZTM3MjAiXQ==
-Received: from mail.hewittfamily.org.uk (<unknown> [87.200.95.144]) by fe978277b15e with
- SMTP id 644a401f90677e019261cb9d (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 27 Apr 2023 09:27:59 GMT
-Sender: christian@hewittfamily.org.uk
-Received: from smtpclient.apple (unknown [94.57.164.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.hewittfamily.org.uk (Postfix) with ESMTPSA id 990768CBB78;
-        Thu, 27 Apr 2023 13:27:54 +0400 (+04)
+        with ESMTP id S243276AbjD0J2S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 05:28:18 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25A92212D;
+        Thu, 27 Apr 2023 02:28:17 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-3f178da21afso55333465e9.1;
+        Thu, 27 Apr 2023 02:28:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1682587695; x=1685179695;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3gRyv9/c3hiQ7r5QJojLuvI4Uzi5JVoUb74Y2iMoY+Y=;
+        b=oewTNZabFK2Yqd114dg9u/afFL6NUGghYQtxENi4k3ZewcX+4in5J9Pqwy0xUt2I/+
+         I93f4pDsiTVklaCqOoZunN2RUOPSbAeiShQq9NHzBGMKR1ejDjdE47CvyjxC5vhwIDeG
+         jex9eV7R1aoVmJBZxuYkacJy6OEUSFgvqfyVakIrrgSBlGbtfzHTfdk9xsvy175jTLHq
+         IpupsZopztl9zZNy3Xh331rtYJV4kujP+nZKJU7/Nt4TOPE+xP01FwlpDVL8Rca1xd2K
+         QL++E/00cnmQ7x9+DpvnDxPwaLcEPfneghoqlYS3oCtpZuCkkxlRz/kZ6Nm9IT/mOZxL
+         qFLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682587695; x=1685179695;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3gRyv9/c3hiQ7r5QJojLuvI4Uzi5JVoUb74Y2iMoY+Y=;
+        b=fNMidikSL6foVvKrr3xPMYvmyjwMN//WOrGXumTCiGUwMllWw3tJWNCL8CqDs0B4UL
+         N/6m9Y/Bx4p6imHkzJNos89l3zlQ1BQvL/hdl1AR5WSTTnAS6S/39xBF9/rbZBSVhxlH
+         j92gNBzqs1McUXx7NMv5tpXsKx8cuT4XVWiW1ZP62s5JmQpTyHREU2sONXY4K3qnUKj+
+         nQWATmc2vCKhJ6i4lFrawZcyADEgW3qAaxY8F/45gB9thFha17goE6HKOTdbZNlW0Dkd
+         0eLMcDCERhdoLHCi5szmRr/m8y+ItKJMFmGvHnNh40GLGSFV4mXCFveeT0VKehB5ZYQs
+         /g/w==
+X-Gm-Message-State: AC+VfDzeWPvUp9o7hBRJkzyTZIoTrFJDpkGLE0czQ4/DmsxJ0TqyDvmI
+        pBqz2lb0raNxDYi+gjalk7kzCLID+p0=
+X-Google-Smtp-Source: ACHHUZ65pFzJpzljmfjsh3vnqlyNuO+P+qMyYfCpjWhtjLe/uJ8pKsdXDuff/McAilSu3ppiZPeL3g==
+X-Received: by 2002:a05:600c:b49:b0:3f1:82d8:8fde with SMTP id k9-20020a05600c0b4900b003f182d88fdemr1052490wmr.24.1682587695334;
+        Thu, 27 Apr 2023 02:28:15 -0700 (PDT)
+Received: from smtpclient.apple ([94.57.164.107])
+        by smtp.gmail.com with ESMTPSA id p10-20020a1c544a000000b003f03d483966sm23976695wmi.44.2023.04.27.02.28.10
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 27 Apr 2023 02:28:14 -0700 (PDT)
 Content-Type: text/plain;
         charset=utf-8
 Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.120.41.1.2\))
 Subject: Re: [PATCH V2] arm64: dts: add support for C3 based Amlogic AW409
-From:   Christian Hewitt <christian@hewittfamily.org.uk>
+From:   Christian Hewitt <christianshewitt@gmail.com>
 In-Reply-To: <20230427085859.793802-1-xianwei.zhao@amlogic.com>
-Date:   Thu, 27 Apr 2023 10:26:47 +0100
+Date:   Thu, 27 Apr 2023 10:28:06 +0100
 Cc:     linux-arm-kernel@lists.infradead.org,
         LKML <linux-kernel@vger.kernel.org>,
         AML <linux-amlogic@lists.infradead.org>,
@@ -50,23 +67,19 @@ Cc:     linux-arm-kernel@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Content-Transfer-Encoding: quoted-printable
-Message-Id: <7C020F0D-315C-4281-BA0E-1E5CFAC97C39@hewittfamily.org.uk>
+Message-Id: <1C87B1C1-122F-491C-9D3A-1FE1EF6F2B87@gmail.com>
 References: <20230427085859.793802-1-xianwei.zhao@amlogic.com>
 To:     Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-Mailer: Apple Mail (2.3696.120.41.1.2)
-X-Synology-Spam-Status: score=0.399, required 5, MID_RHS_MATCH_FROM 0, FROM_HAS_DN 0, TO_DN_SOME 0, MV_CASE 0.5, TO_MATCH_ENVRCPT_ALL 0, MIME_GOOD -0.1, __THREADED 0, RCPT_COUNT_SEVEN 0, RCVD_COUNT_ZERO 0, FROM_EQ_ENVFROM 0, MIME_TRACE 0, __NOT_SPOOFED 0, __BODY_URI_ONLY 0, __HDRS_LCASE_KNOWN 0, NO_RECEIVED -0.001
-X-Synology-Spam-Flag: no
-X-Synology-Virus-Status: no
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
-
 
 
 > On 27 Apr 2023, at 9:58 am, Xianwei Zhao <xianwei.zhao@amlogic.com> =
@@ -85,7 +98,7 @@ describes
 >=20
 > ---
 > V1 -> V2: Remove new arch, and use ARCH_MESON;
->          Modify node name, and delete superfluous blank lines.
+>         Modify node name, and delete superfluous blank lines.
 > ---
 > arch/arm64/boot/dts/amlogic/Makefile          |  1 +
 > .../amlogic/amlogic-c3-c302x-aw409-256m.dts   | 29 +++++++
