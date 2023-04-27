@@ -2,119 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E2116F071D
-	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 16:18:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4A826F0730
+	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 16:22:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243700AbjD0OS3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Apr 2023 10:18:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37402 "EHLO
+        id S243973AbjD0OW1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Apr 2023 10:22:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39630 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229677AbjD0OS2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 10:18:28 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6472F199B;
-        Thu, 27 Apr 2023 07:18:27 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id EFEC863DA0;
-        Thu, 27 Apr 2023 14:18:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58795C433A1;
-        Thu, 27 Apr 2023 14:18:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1682605106;
-        bh=ikojoOEpntI4XF5hPzrBSqDGpExPjhMyp3xsyynei8Y=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=enO8fSZ5q0CFS2ixGiftSx/yfnsJ00xd688Nx4bL+0K7x1tKxrjOuoSk65HbRUuNR
-         05TPyZdzLSzXAbcp+psybufI8ILZCHeZZyDD+Oq6AtnXaTBZwnJr7cMardkg1HfZNB
-         6x/2zZY9KHX2qnDKhhVD0Yxw7qrOvaCbx4hfyCQHz9DtblxgTAfMU5JnzywmuSxHJD
-         FUz/bEHiGsYqzpj2x5MGgH5+Ll2Z4j+qZupTuUbiIS6uKISyBy8i7xO8JaNfny4YhW
-         2ZShEgtAanQCC39RbebcePzQFc4GmF0N2H/932gn0PC+6PoSp5ce/n0TnFnxqJ8hcS
-         cTLo57VdPRAtA==
-Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-54fe08015c1so104171567b3.3;
-        Thu, 27 Apr 2023 07:18:26 -0700 (PDT)
-X-Gm-Message-State: AC+VfDxnPGZ8FBIcyQbTf4mXYtguE4wFoh+GtF752ZBG00gyyYsyL6XW
-        V2JSr2CQ56DIcSTSbhzI8LgISZZHgm+rFXaAnQ==
-X-Google-Smtp-Source: ACHHUZ7eCffK6AlPYzWD9kLSzJbn9o1jfSRj+nBabLEOgJsgrwxxzdqzxv1W+5iHuPvk9JuP3kQGVQUd9STJ33Cz4/M=
-X-Received: by 2002:a0d:c582:0:b0:552:a63e:18d1 with SMTP id
- h124-20020a0dc582000000b00552a63e18d1mr1094504ywd.52.1682605105314; Thu, 27
- Apr 2023 07:18:25 -0700 (PDT)
+        with ESMTP id S243972AbjD0OWC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 10:22:02 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52DA45FD3;
+        Thu, 27 Apr 2023 07:21:31 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33RELA9O025346;
+        Thu, 27 Apr 2023 09:21:10 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1682605270;
+        bh=A/rgv1/AnobUXEkRKW2dduU5AblbNvPTfxFDxods0bQ=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=X2MlGTw1v8u8knH+jqXxrEJyddKg11MHE83ohUeEmorDLe2f+ZdOhoqvSgNpSvkWE
+         CgFeUmHvHG6KlkPOyOgHFjUJGE7yp3nqmtKH3iMi73TMlyb9Q5od6HQH0uTvyVK5g/
+         TUNbxuOoGAIOOrFqSX6VbuPaBN4z1oJ0bcMTC9rQ=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33RELApf020517
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 27 Apr 2023 09:21:10 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 27
+ Apr 2023 09:21:10 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 27 Apr 2023 09:21:10 -0500
+Received: from [10.250.151.20] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33REL5XZ031910;
+        Thu, 27 Apr 2023 09:21:06 -0500
+Message-ID: <3c412c83-75a0-b7ac-4c43-2305732c1a0c@ti.com>
+Date:   Thu, 27 Apr 2023 19:51:05 +0530
 MIME-Version: 1.0
-References: <20230412060843.149283-1-piyush.mehta@amd.com> <20230418184026.GA2099329-robh@kernel.org>
- <MN2PR12MB4333134E60DC454D29BFE2F588609@MN2PR12MB4333.namprd12.prod.outlook.com>
-In-Reply-To: <MN2PR12MB4333134E60DC454D29BFE2F588609@MN2PR12MB4333.namprd12.prod.outlook.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 27 Apr 2023 09:18:14 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqK6_7XD7+w+EQvPPmbmSOpfo3JDb0xDN4StuHUm1kgchw@mail.gmail.com>
-Message-ID: <CAL_JsqK6_7XD7+w+EQvPPmbmSOpfo3JDb0xDN4StuHUm1kgchw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: usb: dwc3: xilinx: Add interrupt-names to
- include hibernation interrupt
-To:     "Mehta, Piyush" <piyush.mehta@amd.com>
-Cc:     "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "michal.simek@xilinx.com" <michal.simek@xilinx.com>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Simek, Michal" <michal.simek@amd.com>,
-        "Paladugu, Siva Durga Prasad" <siva.durga.prasad.paladugu@amd.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "git (AMD-Xilinx)" <git@amd.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [EXTERNAL] Re: [PATCH v14 3/8] arm64: dts: ti:
+ k3-j721s2-mcu-wakeup: Add support of OSPI
+Content-Language: en-US
+To:     Roger Quadros <rogerq@kernel.org>, <nm@ti.com>, <afd@ti.com>,
+        <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <s-vadapalli@ti.com>,
+        <vaishnav.a@ti.com>, <r-gunasekaran@ti.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230331090028.8373-1-r-gunasekaran@ti.com>
+ <20230331090028.8373-4-r-gunasekaran@ti.com>
+ <2b74bc3f-85c7-1d2f-d597-968a914c4e6e@kernel.org>
+From:   Ravi Gunasekaran <r-gunasekaran@ti.com>
+In-Reply-To: <2b74bc3f-85c7-1d2f-d597-968a914c4e6e@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 21, 2023 at 8:28=E2=80=AFAM Mehta, Piyush <piyush.mehta@amd.com=
-> wrote:
+Roger,
+
+On 4/25/2023 5:02 PM, Roger Quadros wrote:
+> Hi,
 >
-> Hi
->
-> > -----Original Message-----
-> > From: Rob Herring <robh@kernel.org>
-> > Sent: Wednesday, April 19, 2023 12:10 AM
-> > To: Mehta, Piyush <piyush.mehta@amd.com>
-> > Cc: gregkh@linuxfoundation.org; krzysztof.kozlowski+dt@linaro.org;
-> > michal.simek@xilinx.com; linux-usb@vger.kernel.org;
-> > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; Simek, Michal
-> > <michal.simek@amd.com>; Paladugu, Siva Durga Prasad
-> > <siva.durga.prasad.paladugu@amd.com>; linux-arm-
-> > kernel@lists.infradead.org; git (AMD-Xilinx) <git@amd.com>
-> > Subject: Re: [PATCH] dt-bindings: usb: dwc3: xilinx: Add interrupt-name=
-s to
-> > include hibernation interrupt
-> >
-> > On Wed, Apr 12, 2023 at 11:38:43AM +0530, Piyush Mehta wrote:
-> > > The hibernation feature enabled for Xilinx Versal NET SoC in DWC3 IP.
-> > > Added host mode interrupts and "usb-wakeup" interrupt-names optional
-> > > property in the binding schema to capture remote-wakeup and connect/
-> > > disconnect event in the hibernation state.
-> > >
-> > > Xilinx dwc3-core uses "host" and "otg" interrupts interrupt-names DT
-> > > properties from dwc3-core.
-> >
-> > Is wakeup really not implemented in the DWC3 core, but outside it?
->
-> Wakeup is implemented inside the dwc3-core.
+> On 31/03/2023 12:00, Ravi Gunasekaran wrote:
+>> From: Aswath Govindraju <a-govindraju@ti.com>
+>>
+>> Add support for two instance of OSPI in J721S2 SoC.
+>>
+>> Reviewed-by: Vaishnav Achath <vaishnav.a@ti.com>
+>> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+>> Signed-off-by: Matt Ranostay <mranostay@ti.com>
+>> Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
+>> ---
 
-Then it goes in the dwc3 node.
+[...]
 
-> Initially we planned to implement wakeup interrupt name/interrupt optiona=
-l property in the dwc3-core.
-> However, looking at other vendor wakeup interrupt implementation (Commit:=
- dd566faebe9f dt-bindings: usb: qcom,dwc3: refine interrupt requirements)
-> we moved wakeup property to xilinx USB binding.
+>> +			clocks = <&k3_clks 109 5>;
+>> +			assigned-clocks = <&k3_clks 109 5>;
+>> +			assigned-clock-parents = <&k3_clks 109 7>;
+>> +			assigned-clock-rates = <166666666>;
+>> +			power-domains = <&k3_pds 109 TI_SCI_PD_EXCLUSIVE>;
+>> +			#address-cells = <1>;
+>> +			#size-cells = <0>;
+>> +
+>> +			status = "disabled"; /* Needs pinmux */
+>> +		};
+>> +
+>> +		ospi1: spi@47050000 {
+>> +			compatible = "ti,am654-ospi", "cdns,qspi-nor";
+>> +			reg = <0x00 0x47050000 0x00 0x100>,
+>> +			      <0x07 0x00000000 0x01 0x00000000>;
+>> +			interrupts = <GIC_SPI 841 IRQ_TYPE_LEVEL_HIGH>;
+>> +			cdns,fifo-depth = <256>;
+>> +			cdns,fifo-width = <4>;
+>> +			cdns,trigger-address = <0x0>;
+>> +			clocks = <&k3_clks 110 5>;
+> What about clock parent and clock rate assignment like it was done for osip0?
 
-That one looks like the phy implements wake-up? I don't know really,
-but doesn't seem like one to copy.
+ospi1 uses default values.
 
-Rob
+>> +			power-domains = <&k3_pds 110 TI_SCI_PD_EXCLUSIVE>;
+>> +			#address-cells = <1>;
+>> +			#size-cells = <0>;
+>> +
+>> +			status = "disabled"; /* Needs pinmux */
+>> +		};
+>> +	};
+>>  };
+> cheers,
+> -roger
+
