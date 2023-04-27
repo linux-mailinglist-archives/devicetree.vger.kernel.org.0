@@ -2,88 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D7966F052D
-	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 13:51:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98B016F0554
+	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 14:10:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243530AbjD0LvN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Apr 2023 07:51:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47612 "EHLO
+        id S243143AbjD0MKD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Apr 2023 08:10:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243489AbjD0LvB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 07:51:01 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB32DB4
-        for <devicetree@vger.kernel.org>; Thu, 27 Apr 2023 04:51:00 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-94f1d0d2e03so1248485266b.0
-        for <devicetree@vger.kernel.org>; Thu, 27 Apr 2023 04:51:00 -0700 (PDT)
+        with ESMTP id S243215AbjD0MKC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 08:10:02 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 898354699
+        for <devicetree@vger.kernel.org>; Thu, 27 Apr 2023 05:10:00 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4efe8991bafso6888291e87.0
+        for <devicetree@vger.kernel.org>; Thu, 27 Apr 2023 05:10:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682596259; x=1685188259;
-        h=content-transfer-encoding:in-reply-to:organization:references:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=/U8022l7mHUGcldCwvJeFjZR427WweXwOcu0tAZDrlc=;
-        b=rxMH0o5jEoUqXw/uhwHEfcG1YgppYBA2BTBBKT4VoF648yJH/MNCrs5gvvrJeWAgqw
-         JF1y/iPR9Pu4TUyeHq7wno2RrUvBrF8aIPAkvKToZ2+y5aTMPCa2LIpF3DscHQg2opwn
-         1r3TnT70zud8Aeg6Ps+Gfj1tZufIPN4LjTauNhUcI941priHyYc1GZzTDsHuZ0XleLEJ
-         CKdw1+fonH2GygA9GsFt77tmGE6S/2Vtp9x1+uaU1KTjDDEsLh7IQIHFiOHGBBW1A19P
-         gfnzUbCUvkLoz+6LKBkHzMI+luoYDQZAHHKGKWuKK0kWAe/cOVN0YlkgycAhjCvP1KBp
-         Yxxg==
+        d=linaro.org; s=google; t=1682597399; x=1685189399;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gB9tP7rs+oqMW9ALl8bFEzP45alTjiFtwAOU4p0A3+Q=;
+        b=NJztf3p42UXFPuoXibn0+jqHTbnG84XbMZGKeP94kzfUPTQBB/OuFcWZcNk+OkrZLX
+         e8PdVruCzOBS3FlWQu5sgElAvbdZmkXJxuOTuTUw+BY6YS8tFHx393HXFfOtxSz6eCLB
+         852JfhSqWOBG3Ks9bDMPSFGeGsoqoqbzvnoTyGUu6HlSV04dXjvQLEAT1rnuhdgKD3mm
+         PMcuQviX9SEqipD/6F+87Io0TOb5pVwAMTeGNNAgwtaC8cgp86NtWXyALXEiU6q/sMwf
+         ZT2d/BzrLaZ8n5yGtKUXDmdVibJXNO/FnDoK9UbNte4QwoI3Y86So0WuB0fWTJde3BVa
+         +J5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682596259; x=1685188259;
-        h=content-transfer-encoding:in-reply-to:organization:references:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20221208; t=1682597399; x=1685189399;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=/U8022l7mHUGcldCwvJeFjZR427WweXwOcu0tAZDrlc=;
-        b=ES2EiuvqmMP/OshI26HCwUQSsNZMWm2LS4XP27wkAOih+3QO89poBF5iek0KrNHgM0
-         ch3fkUtp/nRYMpJ7l2BvHSxjeZAHxYCrAvLvkUlK+ATU7QkrVgiMndldRG8Y7u8w1vQn
-         bDnZDJxjkXnFjt+ua46WYxzU/6+GoZyADIHTmi1BL3U3OdHB5pWTaOaR/JIxh0LEdHej
-         tIcPK01DORzaUo43AnGlkGRg+RSA3t0A3+PJ+GFCVrtSNV2U4jjUdCZ+GrFrks3Jnn28
-         Bm3THgKubi/6dfbwZXezuhxvfqN+rz7fPhC3sO8gu++dr+m5tmsIBg8PaDbXkiR8IkU8
-         hXdg==
-X-Gm-Message-State: AC+VfDzzww34pTcWs67oyzfpDbXU89/Lmt5d2cMRXqkl/ikcu8KgQ9Il
-        n9haBciC8EL+PCFSzXMrNUolVA==
-X-Google-Smtp-Source: ACHHUZ7CMJEly2JPLzNjo5s0lu4TU4z9vQu1hHyYv5J9+qbzaDr8LaNU3GMb8fTnHm7lq5c1JJBSVw==
-X-Received: by 2002:a17:907:970d:b0:953:45ef:1437 with SMTP id jg13-20020a170907970d00b0095345ef1437mr1574174ejc.31.1682596259126;
-        Thu, 27 Apr 2023 04:50:59 -0700 (PDT)
-Received: from [172.23.2.82] ([195.167.132.10])
-        by smtp.gmail.com with ESMTPSA id x4-20020a1709064a8400b0094ecf61289esm9594545eju.152.2023.04.27.04.50.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Apr 2023 04:50:58 -0700 (PDT)
-Message-ID: <4a5ba8cf-5c24-2e76-4eb2-e05c7d8dfc72@linaro.org>
-Date:   Thu, 27 Apr 2023 13:50:57 +0200
+        bh=gB9tP7rs+oqMW9ALl8bFEzP45alTjiFtwAOU4p0A3+Q=;
+        b=OLT8QrVtqHB//j08Vm16vREHE0Alk3G+oua4BMbfYaNWGvSBlCWvLRgvW+vmHxk9MY
+         mQLFbgfzOQfTAj6WbqbprpI1r3wXv2dhw3zRrJYubxYTaXusJfYFYflKuk8NpcvbubfS
+         HwTNekTz1stK1/KIskSFHbs/7Frb1SA2D3kB6cB6sEeV7NtbUT2Lbr7mUtan8uToZGNZ
+         lp0uJFPrbOxrSvmfV692dTbewLmScw/lrKSYVren+leVCu+MIP1BgsjzPyyll+k7fSTU
+         vWah6+Ffpp3J++jIhrPqbSRpOAhJ/OLXzgEZWY6lF349PDjQhwjFhjpqo8olfQpcdwp8
+         plGA==
+X-Gm-Message-State: AC+VfDzGUE0auacj6c+hSDTBmFRA71xgfNWN7mmoCsG6+gKlNy8Z3xih
+        0KPsgcTg4lGznR3xm5CF1CDp6g==
+X-Google-Smtp-Source: ACHHUZ49Ifw3IGPXCugcW1uWCK8DG1B1lpCN+elQI5TdLqaoq2CrgC4KbKYoN9gZK933+CpLqKxpyg==
+X-Received: by 2002:ac2:52b7:0:b0:4f0:80:d0c0 with SMTP id r23-20020ac252b7000000b004f00080d0c0mr570943lfm.63.1682597398713;
+        Thu, 27 Apr 2023 05:09:58 -0700 (PDT)
+Received: from [192.168.1.2] (c-05d8225c.014-348-6c756e10.bbcust.telenor.se. [92.34.216.5])
+        by smtp.gmail.com with ESMTPSA id e7-20020ac25467000000b004d4d7fb0e07sm2892044lfn.216.2023.04.27.05.09.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Apr 2023 05:09:58 -0700 (PDT)
+From:   Linus Walleij <linus.walleij@linaro.org>
+Subject: [PATCH v2 0/8] DMA40 SRAM refactoring and cleanup
+Date:   Thu, 27 Apr 2023 14:09:55 +0200
+Message-Id: <20230417-ux500-dma40-cleanup-v2-0-cdaa68a4b863@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH] dt-bindings: display: simplify compatibles syntax
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Robert Foss <rfoss@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        Xin Ji <xji@analogixsemi.com>,
-        Thierry Reding <treding@nvidia.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230414104230.23165-1-krzysztof.kozlowski@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <20230414104230.23165-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-B4-Tracking: v=1; b=H4sIABNmSmQC/32NQQ6DIBBFr9Kw7jSAqLWr3qNxATgqiYIZ1NgY7
+ 170AF2+//PydhaRHEb2uu2McHXRBZ9A3m/M9tp3CK5JzCSXGVeihGXLOYdm1IqDHVD7ZYIWVft
+ sKiMqm7NkGh0RDGlv+9MddZyRzmMibN125T514t7FOdD3qq/iXP+HVgEcjCwyqaq8QFW+B+c1h
+ UegjtXHcfwA9c/TAtAAAAA=
+To:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Linus Walleij <linus.walleij@linaro.org>
+X-Mailer: b4 0.12.2
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -91,25 +75,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/04/2023 12:42, Krzysztof Kozlowski wrote:
-> Lists (items) with one item should be just const or enum because it is
-> shorter and simpler.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> ---
-> 
-> Rebased on next-20230406. I hope it applies cleanly...
-> ---
->   .../display/bridge/analogix,anx7625.yaml      |  3 +--
->   .../display/panel/sharp,lq101r1sx01.yaml      |  4 ++--
->   .../bindings/display/solomon,ssd1307fb.yaml   | 24 +++++++++----------
->   3 files changed, 14 insertions(+), 17 deletions(-)
-> 
+I started out by augmenting the STE DMA40 driver to get
+its LCPA SRAM memory from a proper SRAM handle in the
+device tree instead of as a reg cell, and then I saw
+that the driver was in a bit of sad state so I did a bit
+of cleanups on top.
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+Changes in v2:
+- Amendments to the bindings after review.
+- Link to v1: https://lore.kernel.org/r/20230417-ux500-dma40-cleanup-v1-0-b26324956e47@linaro.org
 
-Should I apply those patches ? Until now Rob finished by applying them.
+---
+Linus Walleij (8):
+      dt-bindings: dma: dma40: Prefer to pass sram through phandle
+      dmaengine: ste_dma40: Get LCPA SRAM from SRAM node
+      dmaengine: ste_dma40: Add dev helper variable
+      dmaengine: ste_dma40: Remove platform data
+      dmaengine: ste_dma40: Pass dev to OF function
+      dmaengine: ste_dma40: Use managed resources
+      dmaengine: ste_dma40: Return error codes properly
+      ARM: dts: ux500: Add eSRAM nodes
 
-Neil
+ .../devicetree/bindings/dma/stericsson,dma40.yaml  |  36 ++-
+ arch/arm/boot/dts/ste-dbx5x0.dtsi                  |  73 ++++-
+ drivers/dma/Kconfig                                |   1 +
+ drivers/dma/ste_dma40.c                            | 336 +++++++++------------
+ .../dma-ste-dma40.h => drivers/dma/ste_dma40.h     | 101 +------
+ drivers/dma/ste_dma40_ll.c                         |   3 +-
+ 6 files changed, 254 insertions(+), 296 deletions(-)
+---
+base-commit: fe15c26ee26efa11741a7b632e9f23b01aca4cc6
+change-id: 20230417-ux500-dma40-cleanup-fe4f8d9b19c5
+
+Best regards,
+-- 
+Linus Walleij <linus.walleij@linaro.org>
 
