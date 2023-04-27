@@ -2,91 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 978936F0D09
-	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 22:23:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CC906F0D38
+	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 22:35:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344210AbjD0UXN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Apr 2023 16:23:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55992 "EHLO
+        id S1344274AbjD0Ue7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Apr 2023 16:34:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343615AbjD0UXM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 16:23:12 -0400
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDCFD4680;
-        Thu, 27 Apr 2023 13:22:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
-        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=PaoRyiL5NMbZKG8v0vnHM+R4OR4L900+VgKYlOeQda4=; b=ufDP2CsnpnHY+S91HzGO+qnWb2
-        LFy3df6oS0qEB8im879rtqn+7qZcSxffq4AYGOw3WyMI94aQuDNv4JrK2oSV3pQagWItR5OheDQ1t
-        6GO1ohYta6Q8PEL0Ul6IQBshCO2HLAEQwJ4V3SE3+bm5g3Ce1LPLOgkivMfbESYsKgKs=;
-Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:49034 helo=debian-acer)
-        by mail.hugovil.com with esmtpa (Exim 4.92)
-        (envelope-from <hugo@hugovil.com>)
-        id 1ps88i-000386-Jw; Thu, 27 Apr 2023 16:22:53 -0400
-Date:   Thu, 27 Apr 2023 16:22:51 -0400
-From:   Hugo Villeneuve <hugo@hugovil.com>
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S1344251AbjD0Uez (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 16:34:55 -0400
+Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 726873C15;
+        Thu, 27 Apr 2023 13:34:54 -0700 (PDT)
+Received: from [192.168.178.23] (unknown [62.108.10.64])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id D6709C769B;
+        Thu, 27 Apr 2023 20:34:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1682627692; bh=T3OvB1tzubQbC9YOdAcpkzeqQ7Zla1a71M5m+zynx9g=;
+        h=From:Subject:Date:To:Cc;
+        b=SmCEhIddbU8qo9r30nyrvNuNCY9jpW+4x0ANHuM2HAsUOWW/5DaAqC7L7E7KWpjQ8
+         0K+h/6kd/MWNl3icbIN+enHvkA4z1Ecb0Waw8WzmiudgEpfqE4xPV2Ma5b4NwGoxwq
+         BdjLNxrbEPyF4GDfdcJ+ComH5h2nB2GVZUxT+oFI=
+From:   Luca Weiss <luca@z3ntu.xyz>
+Subject: [PATCH 0/4] Add haptics support to Nexus 5 using pwm-vibra driver
+Date:   Thu, 27 Apr 2023 22:34:25 +0200
+Message-Id: <20230427-hammerhead-vibra-v1-0-e87eeb94da51@z3ntu.xyz>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFHcSmQC/x2Nyw6CMBBFf4XM2iF9EKr+CnExLYOdRYu2CdEQ/
+ t3i8uTck7tD5SJc4d7tUHiTKmtuoC8dhEj5yShzYzDKWDUYh5FS4hKZZtzEF0I1+ln7xTlNFlr
+ mqTI2kUM8w3dYE6aarjc34Njb/nuOXoUX+fx/p8dx/ADWae+YhwAAAA==
+To:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Message-Id: <20230427162251.518a956ce7a9dcd88352725a@hugovil.com>
-In-Reply-To: <CAOMZO5BNbRV1fLpwDZWgj9+gihHJBBGeZCvkF1tgm5GhwSn8LQ@mail.gmail.com>
-References: <20230427195538.2718661-1-hugo@hugovil.com>
-        <CAOMZO5CQeeme6uhb8NCzR2QADjkBM-mRC9-GUnmhLWSGo5MMoQ@mail.gmail.com>
-        <20230427160608.f051241d750404939296f60d@hugovil.com>
-        <CAOMZO5BNbRV1fLpwDZWgj9+gihHJBBGeZCvkF1tgm5GhwSn8LQ@mail.gmail.com>
-X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 184.161.19.61
-X-SA-Exim-Mail-From: hugo@hugovil.com
+        Sebastian Reichel <sre@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Brian Masney <masneyb@onstation.org>
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Luca Weiss <luca@z3ntu.xyz>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1161; i=luca@z3ntu.xyz;
+ h=from:subject:message-id; bh=T3OvB1tzubQbC9YOdAcpkzeqQ7Zla1a71M5m+zynx9g=;
+ b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBkStxaNlx3juoDp2zKO6rUIrCvUpVVXgTtRJKKC
+ MT2tO8vuXKJAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCZErcWgAKCRBy2EO4nU3X
+ VtLeEACleWKN3OlEkHXu9CpxXdHpZ9Nl3D5rf0yZw2OLXqyCmxF3LxlSRkDr4W1BXJmlUGD8RH8
+ JrTRzBdJe6cIBoU46dCLzleteX5cxy5d1g8mHugPL1jjTWQw3hnJeTNS3rtBvrx3hKx2sHxP9JH
+ r2R7z+asg6AfnjaP0yL5PFYCHwWxupdgARNkU5LTVYDw7NkRd/lZP1SyYeBB2PWI8zR5eOXWiX2
+ bp3uitpcQHjdR5yiGMf2P909ro+yIFSdiTDKw/7uaPVlXWjYwRFxHW917ad31gx9+yBIqyoOX2d
+ FngPSgA4MKSgf7BKwdrvAhZn4wN39+Np9d4MJdj4U1g3YDWecnRDWmHQ/s4/WU2Uhmehe0tg+L0
+ 5v/nlfTbCCAFMbSk5KGFZbQ0wz8hd8rAZP5IuXRy/hY+O0Iu+PpXSrZdwxUSKmXokkG1J1c7Alw
+ 3Lvm2AcT3Uv39J+CGVOSbzdKHSeQHvDoKOPHnZva9KomyiO+Js9ucBmJ2vMnWVTKTMsD3zgV/7w
+ xL3Tns2AHHgBVhKV0Ykkxt2YRhk+0U61mjJa0O+TFWVLRpicTleTX7hhFzBaTmRxnjsRCSVNI2v
+ ZfySYdlHVfvLeJFGVkXEGFQB1WtUYvKvTlqFI4paosddiHqqYF+m5iRnRyJOuPk9UGgpJDepT/J
+ 6wIlaqqTD+4NT5A==
+X-Developer-Key: i=luca@z3ntu.xyz; a=openpgp;
+ fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
-Subject: Re: [PATCH] imx8mn-var-som: dts: fix PHY detection bug by adding
- deassert delay
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 27 Apr 2023 17:07:59 -0300
-Fabio Estevam <festevam@gmail.com> wrote:
+A while ago Brian Masney sent some patches for a clk-vibrator which was
+then succeeded by the idea of a clk-pwm driver that "converts" a clock
+into a PWM and to use the existing pwm-vibra driver.
 
-> On Thu, Apr 27, 2023 at 5:06 PM Hugo Villeneuve <hugo@hugovil.com> wrote:
-> 
-> > Hi Fabio,
-> > it uses a ADIN1300 PHY.
-> >
-> > The datasheet indicate that the "Management interface active (t4)" state is reached at most 5ms after the reset signal is deasserted.
-> 
-> Please add this information to the commit log and please add a Fixes: tag.
-> 
-> Thanks
+Since clk-pwm has landed last year we can finally add haptics support
+upstream.
 
-Hi,
-I am trying to properly add a "Fixes: " tag, but the description for this tag indicates that it is to report that "the patch fixes an issue in a previous commit".
+We just need to add support for an enable GPIO to the pwm-vibra driver
+since that also needs to be high for the haptics to work on this device.
 
-In this case, I cannot identify a commit that introduced that bug, apart from the initial commit of the DTS file which didn't have the reset property present?
+Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+---
+Luca Weiss (4):
+      dt-bindings: input: pwm-vibrator: Add enable-gpio
+      Input: pwm-vibra - add newline to dev_err prints
+      Input: pwm-vibra - add support for enable GPIO
+      ARM: dts: qcom: msm8974-hammerhead: Add vibrator
 
-Thank you,
-Hugo.
+ .../devicetree/bindings/input/pwm-vibrator.yaml    |  2 ++
+ .../dts/qcom-msm8974-lge-nexus5-hammerhead.dts     | 35 +++++++++++++++++++++
+ drivers/input/misc/pwm-vibra.c                     | 36 ++++++++++++++++------
+ 3 files changed, 63 insertions(+), 10 deletions(-)
+---
+base-commit: dec7f67a13c3270f9a38eba227a4fc15993f01b3
+change-id: 20230427-hammerhead-vibra-06bd1bf771a3
 
+Best regards,
 -- 
-Hugo Villeneuve <hugo@hugovil.com>
+Luca Weiss <luca@z3ntu.xyz>
+
