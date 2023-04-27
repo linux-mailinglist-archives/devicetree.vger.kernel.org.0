@@ -2,109 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CA336F0A49
-	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 18:53:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8A006F0A52
+	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 18:57:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244278AbjD0Qxb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Apr 2023 12:53:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43602 "EHLO
+        id S244300AbjD0Q5B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Apr 2023 12:57:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229632AbjD0Qx1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 12:53:27 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E31B5273B;
-        Thu, 27 Apr 2023 09:53:25 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 648B92F4;
-        Thu, 27 Apr 2023 09:54:09 -0700 (PDT)
-Received: from [10.57.82.122] (unknown [10.57.82.122])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id ED5183F587;
-        Thu, 27 Apr 2023 09:53:21 -0700 (PDT)
-Message-ID: <7e2eaf1f-369a-d664-1011-3da6efb382a3@arm.com>
-Date:   Thu, 27 Apr 2023 17:53:20 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.10.0
-Subject: Re: [PATCH v4 00/11] Add support to configure TPDM DSB subunit
-To:     Tao Zhang <quic_taozha@quicinc.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
+        with ESMTP id S243606AbjD0Q5A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 12:57:00 -0400
+Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71C6C1FF2;
+        Thu, 27 Apr 2023 09:56:59 -0700 (PDT)
+Received: by mail-ot1-f54.google.com with SMTP id 46e09a7af769-6a5eea94963so8285447a34.3;
+        Thu, 27 Apr 2023 09:56:59 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682614619; x=1685206619;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=adzTnoqQu8CXoqBn4BhcDQSGdUaLpEBvIJrGFhq9F+M=;
+        b=Jb3/eGspd4EbNCYE9WH0ieut75ezZvtglWlAq1HQc2Na3B+cdni7BX8yljq5pXYj4l
+         Bls18AW0wEw/uindh4DR8FUkAuAkAZhhx80Z3QfEJNPXzxPRUgAR//enY39SOXq/3L58
+         c3J7z+RgyeQK5l5BMHA/gJsN9IAF6IF7HytACXUV/7DW3lqeEWvfUCP2P+8VpyenizqR
+         rMLPWzgZCzzM5+j1PPA7SrQIWGncIJGfisnR8OVbXnvM5ew5deogL0fjePLhgMhjf5Mm
+         s9UQlcjjUUWSc6ZUBCE7rh04eVx8gl2qz4Sph8nb8np/FQCx3R7IBHpnCPvg/n8kQwQi
+         lkHA==
+X-Gm-Message-State: AC+VfDyyGovrkECTUsHHv8aubPL57KJDuInWQAymvTFqWVUsLarfdRdU
+        HDlDi6JrlNYQrifXq7GgKw==
+X-Google-Smtp-Source: ACHHUZ4WbAgm6mHF+EBLdzXdbD8uGdC6c66fveOsrGxmFr2p5/phM8bCSG22UGmREHTQLNM8j79E7g==
+X-Received: by 2002:a05:6830:147:b0:6a6:2f82:5018 with SMTP id j7-20020a056830014700b006a62f825018mr1136700otp.25.1682614618576;
+        Thu, 27 Apr 2023 09:56:58 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id r24-20020a056830121800b006a647f65d03sm6148250otp.41.2023.04.27.09.56.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Apr 2023 09:56:58 -0700 (PDT)
+Received: (nullmailer pid 3161712 invoked by uid 1000);
+        Thu, 27 Apr 2023 16:56:57 -0000
+Date:   Thu, 27 Apr 2023 11:56:57 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Daniel Matyas <daniel.matyas@analog.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jean Delvare <jdelvare@suse.com>,
+        Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Leo Yan <leo.yan@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Hao Zhang <quic_hazha@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org
-References: <1682586037-25973-1-git-send-email-quic_taozha@quicinc.com>
-From:   Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <1682586037-25973-1-git-send-email-quic_taozha@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Guenter Roeck <linux@roeck-us.net>, linux-doc@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: hwmon: add MAX31827
+Message-ID: <168261461678.3161673.9376006927072972936.robh@kernel.org>
+References: <20230426124049.258359-1-daniel.matyas@analog.com>
+ <20230426124049.258359-2-daniel.matyas@analog.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230426124049.258359-2-daniel.matyas@analog.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/04/2023 10:00, Tao Zhang wrote:
-> Introduction of TPDM DSB subunit
-> DSB subunit is responsible for creating a dataset element, and is also
-> optionally responsible for packing it to fit multiple elements on a
-> single ATB transfer if possible in the configuration. The TPDM Core
-> Datapath requests timestamps be stored by the TPDA and then delivering
-> ATB sized data (depending on ATB width and element size, this could
-> be smaller or larger than a dataset element) to the ATB Mast FSM.
-> 
-> The DSB subunit must be configured prior to enablement. This series
-> adds support for TPDM to configure the configure DSB subunit.
-> 
-> Once this series patches are applied properly, the new tpdm nodes for
-> should be observed at the tpdm path /sys/bus/coresight/devices/tpdm*
-> which supports DSB subunit.
-> e.g.
-> /sys/devices/platform/soc@0/69d0000.tpdm/tpdm0#ls -l | grep dsb
-> -rw-r--r--    1 root     root      4096 Jan  1 00:01 dsb_edge_ctrl
-> -rw-r--r--    1 root     root      4096 Jan  1 00:01 dsb_edge_ctrl_mask
-> -rw-r--r--    1 root     root      4096 Jan  1 00:01 dsb_mode
-> -rw-r--r--    1 root     root      4096 Jan  1 00:01 dsb_patt_mask
-> -rw-r--r--    1 root     root      4096 Jan  1 00:01 dsb_patt_ts
-> -rw-r--r--    1 root     root      4096 Jan  1 00:01 dsb_patt_type
-> -rw-r--r--    1 root     root      4096 Jan  1 00:01 dsb_patt_val
-> -rw-r--r--    1 root     root      4096 Jan  1 00:01 dsb_trig_patt_mask
-> -rw-r--r--    1 root     root      4096 Jan  1 00:01 dsb_trig_patt_val
-> -rw-r--r--    1 root     root      4096 Jan  1 00:01 dsb_trig_ts
-> -rw-r--r--    1 root     root      4096 Jan  1 00:01 dsb_trig_type
-> 
-> We can use the commands are similar to the below to configure the
-> TPDMs which support DSB subunit. Enable coresight sink first.
-> echo 1 > /sys/bus/coresight/devices/tmc_etf0/enable_sink
-> echo 1 > /sys/bus/coresight/devices/tpdm0/reset
-> echo 0x3 0x3 0x1 > /sys/bus/coresight/devices/tpdm0/dsb_edge_ctrl_mask
-> echo 0x6d 0x6d 0 > /sys/bus/coresight/devices/tpdm0/dsb_edge_ctrl
-> echo 1 > /sys/bus/coresight/devices/tpdm0/dsb_patt_ts
-> echo 1 > /sys/bus/coresight/devices/tpdm0/dsb_patt_type
-> echo 0 > /sys/bus/coresight/devices/tpdm0/dsb_trig_ts
-> echo 0 0xFFFFFFFF > /sys/bus/coresight/devices/tpdm0/dsb_patt_mask
-> echo 0 0xFFFFFFFF > /sys/bus/coresight/devices/tpdm0/dsb_trig_patt_val
-> 
-> This patch series depends on patch series "[PATCH v2 0/9] coresight:
-> Fix CTI module refcount leak by making it a helper device"
-> https://patchwork.kernel.org/project/linux-arm-kernel/patch/20230425143542.2305069-14-james.clark@arm.com/
 
-There is v6 available for the above and there may be changes in the data
-structures. But the series is stable now, and may be you could cordinate
-with James and repost the series at rc1 ?
+On Wed, 26 Apr 2023 15:40:45 +0300, Daniel Matyas wrote:
+> MAX31827 is a low-power temperature switch with I2C interface.
+> 
+> The device is a ±1°C accuracy from -40°C to +125°C
+> (12 bits) local temperature switch and sensor with I2C/SM-
+> Bus interface. The combination of small 6-bump wafer-lev-
+> el package (WLP) and high accuracy makes this temper-
+> ature sensor/switch ideal for a wide range of applications.
+> 
+> Signed-off-by: Daniel Matyas <daniel.matyas@analog.com>
+> ---
+>  .../bindings/hwmon/adi,max31827.yaml          | 54 +++++++++++++++++++
+>  MAINTAINERS                                   |  7 +++
+>  2 files changed, 61 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
+> 
 
-Suzuki
+Reviewed-by: Rob Herring <robh@kernel.org>
 
