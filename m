@@ -2,59 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A7C606F04AA
-	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 13:04:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73AF86F04B6
+	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 13:07:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243332AbjD0LEV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Apr 2023 07:04:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53504 "EHLO
+        id S243416AbjD0LHd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Apr 2023 07:07:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243269AbjD0LEU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 07:04:20 -0400
-Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE44410E;
-        Thu, 27 Apr 2023 04:04:16 -0700 (PDT)
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id E89D11C0E6E; Thu, 27 Apr 2023 13:04:13 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
-        t=1682593453;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=gCx6799fPD1mvbmBrIDrAMnxIBHFIp4o9m2BUKCs55s=;
-        b=iGQ3rxURs2j7UDZIKpZa2LfnryQV7Vyw7frtEnKUiCP1USATzOSHsjw9FGggesZRDsmYVA
-        gKLEgNRd5Vaua6p6LgrvDf4V3QIkJW5MCItd/Fev+qDF9H6dOd4jCtNl2ug4VqwqcggW/+
-        32mJaq+rPII/OVLH694uK55/LASSSQY=
-Date:   Thu, 27 Apr 2023 13:04:13 +0200
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Javier Carrasco <javier.carrasco@wolfvision.net>,
-        phone-devel@vger.kernel.org
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Henrik Rydberg <rydberg@bitmath.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Uwe Kleine-g <u.kleine-koenig@pengutronix.de>,
-        Bastian Hecht <hechtb@gmail.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>
-Subject: Re: [RFC v1 0/4] Input: support virtual objects on touchscreens
-Message-ID: <ZEpWrWpzkI9kNTkr@duo.ucw.cz>
-References: <20230425115049.870003-1-javier.carrasco@wolfvision.net>
+        with ESMTP id S243264AbjD0LHb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 07:07:31 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B53449CF;
+        Thu, 27 Apr 2023 04:07:30 -0700 (PDT)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33R9efxd032126;
+        Thu, 27 Apr 2023 11:07:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=vtzHUvX2ZJ0nAzBI6v6t5HuaHprgpY1tbVRgTEtl9ak=;
+ b=iT/t6tPtRJ8q1x+9i3C1LY4AwY/rm+BKF9muSnkqdVpxEOEgBR9XbCGf3PfbWw6Jeaqs
+ aina92xSVAmcW9yoV7oOzVuwwnDl8M0yP1oXTGhz60gzpgaeU2Yb95agdf30uXlryRpz
+ sZfI1d4jmjATrleUE8ZM7XY4NR0upzLxZ0U34wvw764wBCwrNSyygt+4D6OlfLv+gf9d
+ h/numVUAf0ObKQGzv70CdPN/TDwOohSDUp3y2FUIesA8A/6JRtH1Yd/1l+S7bZaiDnkp
+ Em+Xihi7+fMU8jaT9fp5DzU4FmLabpEdkrnqTtCdGdc1U7Gbfoi6xAM7gQGx8rQ5yY4F vQ== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q7kux8k57-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 27 Apr 2023 11:07:20 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33RB7Ifa016377
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 27 Apr 2023 11:07:18 GMT
+Received: from [10.214.66.58] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Thu, 27 Apr
+ 2023 04:07:14 -0700
+Message-ID: <ca738971-036b-f180-88f7-cefe0ed5a412@quicinc.com>
+Date:   Thu, 27 Apr 2023 16:37:11 +0530
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="C8RZd6IZ7KbnjRDA"
-Content-Disposition: inline
-In-Reply-To: <20230425115049.870003-1-javier.carrasco@wolfvision.net>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.0
+Subject: Re: [PATCH v4 2/2] pinctrl: qcom: Add SDX75 pincontrol driver
+Content-Language: en-US
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+CC:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <linus.walleij@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <richardcochran@gmail.com>, <manivannan.sadhasivam@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <netdev@vger.kernel.org>
+References: <1682327030-25535-1-git-send-email-quic_rohiagar@quicinc.com>
+ <1682327030-25535-3-git-send-email-quic_rohiagar@quicinc.com>
+ <ZEk9lySMZcrRZYwX@surfacebook>
+ <66158251-6934-a07f-4b82-4deaa76fa482@quicinc.com>
+ <CAHp75VcCAOD3utLjjXeQ97nGcUTm7pic5F52+e7cJDxpDXwttA@mail.gmail.com>
+ <1ed28be7-7bb5-acc5-c955-f4cf238ffc49@quicinc.com>
+ <CAHp75VcDBFyG9+RaOUma4y+Q0em2-Nvuk_71vDkenGk+2HJqEQ@mail.gmail.com>
+From:   Rohit Agarwal <quic_rohiagar@quicinc.com>
+In-Reply-To: <CAHp75VcDBFyG9+RaOUma4y+Q0em2-Nvuk_71vDkenGk+2HJqEQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 4tgDf_h0YZG3yRazudrZ1kAx0iJi_ZJs
+X-Proofpoint-GUID: 4tgDf_h0YZG3yRazudrZ1kAx0iJi_ZJs
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-27_07,2023-04-27_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ malwarescore=0 clxscore=1015 suspectscore=0 priorityscore=1501 spamscore=0
+ impostorscore=0 mlxlogscore=509 phishscore=0 mlxscore=0 adultscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303200000 definitions=main-2304270097
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -62,37 +90,27 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---C8RZd6IZ7KbnjRDA
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi!
-
-> Some touchscreens are shipped with a physical layer on top of them where
-> a number of buttons and a resized touchscreen surface might be
-> available.
-
-Yes, it is quite comon, for example Motorola Droid 4 has 4 virtual
-buttons below touchscreen.
-
-One question is if this should be handled inside the kernel. It will
-make it compatible with existing software, but it will also reduce
-flexibility.
-
-Best regards,
-								Pavel
---=20
-People of Russia, stop Putin before his war on Ukraine escalates.
-
---C8RZd6IZ7KbnjRDA
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCZEpWrQAKCRAw5/Bqldv6
-8sedAKCiULYxV9Tl2uWqI7oesubhsrSGugCbBS0adKSsnML10omfQxfe3amV/KU=
-=Jsf+
------END PGP SIGNATURE-----
-
---C8RZd6IZ7KbnjRDA--
+On 4/27/2023 4:24 PM, Andy Shevchenko wrote:
+> On Thu, Apr 27, 2023 at 11:53 AM Rohit Agarwal
+> <quic_rohiagar@quicinc.com> wrote:
+>> On 4/26/2023 10:12 PM, Andy Shevchenko wrote:
+>>> On Wed, Apr 26, 2023 at 6:18 PM Rohit Agarwal <quic_rohiagar@quicinc.com> wrote:
+>>>> On 4/26/2023 8:34 PM, andy.shevchenko@gmail.com wrote:
+> ...
+>
+>>>> Ok, Will update this. Shall I also update "PINGROUP" to "PINCTRL_PINGROUP"?
+>>> Yes, please.
+>> PINCTRL_PINGROUP cannot be used as it is, since msm_pigroup has multiple
+>> other fields that needs to be set
+>> for each pingroup defined.
+>> Would rename this to SDX75_PINGROUP, as seen on some other platforms.
+>> Would that be ok?
+> For this patch, yes. But can you create a separate followup that
+> replaces three members of struct msm_pingroup by embedding struct
+> pingroup into it? There are examples of such changes in the kernel
+> already. https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net.git/commit/drivers/pinctrl?id=39b707fa7aba7cbfd7d53be50b6098e620f7a6d4
+>
+Sure, create a separate followup patch referring it. Will use 
+SDX75_PINGROUP for now.
+Thanks,
+Rohit.
