@@ -2,103 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 483066F0A5E
-	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 18:59:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E67C6F0A78
+	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 19:03:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243388AbjD0Q7a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Apr 2023 12:59:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48126 "EHLO
+        id S243965AbjD0RD5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Apr 2023 13:03:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244168AbjD0Q7X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 12:59:23 -0400
-Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2951019A7;
-        Thu, 27 Apr 2023 09:59:20 -0700 (PDT)
-Received: by mail-pf1-x42a.google.com with SMTP id d2e1a72fcca58-63b87d23729so6894496b3a.0;
-        Thu, 27 Apr 2023 09:59:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682614759; x=1685206759;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=o8LOlQxTIdbQ+IzAHnUqOC/2u9FmJraQW0FTsQjxN60=;
-        b=B/6GqE4OSMSWiH6xQlvCPJ4id3oEL5l5Eq+3umJ0wMdOHVJ/o2zAP5RbiEs3zeVl47
-         dmbt7xWFKbshgRw+zYcPdXJnYPLwu4sXUe2QRaCrltwyWf0EIE36a62QzWmOadHOzzHg
-         Gc0HQe5W0CUFKrzVsWEoFNz0lZbsJX3A2OXUEUXfwaZa59Yoe5x+bYpRmJhPIIOMwoVD
-         ud3nz2SnTr9KPBmubLvEm+0S9kowc75AtVfAwlAkqIgBzaVlgwOb7jD2PwKyc2q75Ch4
-         IjZUpZloAF+IYYb3t/xtNJVAZtM9hRuA+kWgMJH61UO+Wb2+gZ0fI3rKMquOVGMWd8WM
-         nQGg==
+        with ESMTP id S243917AbjD0RD5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 13:03:57 -0400
+Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76A7C1FF2;
+        Thu, 27 Apr 2023 10:03:56 -0700 (PDT)
+Received: by mail-ot1-f52.google.com with SMTP id 46e09a7af769-6a5f9c1200eso3427429a34.1;
+        Thu, 27 Apr 2023 10:03:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682614759; x=1685206759;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=o8LOlQxTIdbQ+IzAHnUqOC/2u9FmJraQW0FTsQjxN60=;
-        b=SH/IsNVAsJozaUHh6FB/LDfwzm7FX7UpHVfK5yLQ/AriayMKQ1w1G+XU0gweOIbupX
-         f+ZgTcA/QCqcyy/Q7rVb3DZPjeyQxPdgmHkldjwdAyxPI5PpnMZZBWfF968zI1t3otVI
-         ltLNXN64nDRRdRFIcFZNpzNWZjYHfvh3PqJ9/GTqZ5RoeC6PgJUj9zFWG05yJoWyX+o+
-         xkVQfOVoIyFrnq0ilM8CobMwkCUZaRz246nNb1nfU2prFk+ibtbHZICK/5aXYtHWIGL0
-         HNYNMQEtyd7ssUvQkiy6e2gzSrFxSWU1UbUOPpEP0nZiHwoyRd+B1m5ZUhN5tQ5NwFSI
-         3PFg==
-X-Gm-Message-State: AC+VfDxBbNdx0RHxdsxC7Z0Jtmujof5K4sdXlcgtb2Sja1MLBj/1acyc
-        4QFwBBkQ3DJUpRNXh2YgiDs=
-X-Google-Smtp-Source: ACHHUZ6cYSRKQQfS64osEWW+S4XU1WRg6LHtftlL5q6CGU8rN8kejqLNUzjT0cgzaal3hR6SSlUHHQ==
-X-Received: by 2002:a05:6a20:72a2:b0:ee:d266:32bb with SMTP id o34-20020a056a2072a200b000eed26632bbmr3023702pzk.7.1682614759311;
-        Thu, 27 Apr 2023 09:59:19 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id h11-20020a056a00218b00b0063b8ada8777sm13496813pfi.112.2023.04.27.09.59.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Apr 2023 09:59:18 -0700 (PDT)
-Message-ID: <d2edbd36-df75-92be-e247-507c82124505@gmail.com>
-Date:   Thu, 27 Apr 2023 09:59:11 -0700
+        d=1e100.net; s=20221208; t=1682615036; x=1685207036;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wC46zsAOw/V5ESWPegZro4CMY5VowLiZF8XH9gcabPY=;
+        b=C6NSaQcFRiGDqUw649yFc8ryoiYzWAtDLHuGrMHLCiKgNLEhYpmpxhi2789xeGyu6V
+         F15ykKcWLpQe2GGNE7MK8QDNyPu9c0a2aZ1nBk19aT3k+lXrzxWmgaJmaMOiiO+pOMLo
+         22YFgM3YkF2W2bqKkJaankQqs4PACWisOY1eI/h8Gitl54WdBBkJMsU6rF/L6PbYoxRv
+         2/uwvvP76bwpVtDcI5T+4jY7aD3izUsQHppS9TRpGwXC4YZ7GhlYuGYQNgil0MG6p7S6
+         eoAADRqYCJ9mFlmngCRavz6ioAh/t9n3IYV0DFAXc0E0iJUR5JC8IDOwMzUzmKVGRLLv
+         TEnw==
+X-Gm-Message-State: AC+VfDzH0BS0P+OKML1XkUMrNw12rLJF7LhlEqdrSsvUZQsSZMnog/Ra
+        OqzC6O9cGxv+5HueuP2O1A==
+X-Google-Smtp-Source: ACHHUZ5RUnCi8AoKLltmFAY7/AL0bgmWCcoCXJSj7xdDUJSp8Fc/76bbUfA6n5sACT4lLkIB91rAcg==
+X-Received: by 2002:a05:6830:1d62:b0:6a5:dd6c:1daa with SMTP id l2-20020a0568301d6200b006a5dd6c1daamr1015264oti.22.1682615035560;
+        Thu, 27 Apr 2023 10:03:55 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id d17-20020a056830045100b006a63283a9e5sm7205176otc.75.2023.04.27.10.03.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Apr 2023 10:03:54 -0700 (PDT)
+Received: (nullmailer pid 3172049 invoked by uid 1000);
+        Thu, 27 Apr 2023 17:03:54 -0000
+Date:   Thu, 27 Apr 2023 12:03:54 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Justin Chen <justinpopo6@gmail.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        bcm-kernel-feedback-list@broadcom.com, justin.chen@broadcom.com,
+        f.fainelli@gmail.com, davem@davemloft.net, edumazet@google.com,
+        kuba@kernel.org, pabeni@redhat.com,
+        krzysztof.kozlowski+dt@linaro.org, opendmb@gmail.com,
+        andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
+        richardcochran@gmail.com, sumit.semwal@linaro.org,
+        christian.koenig@amd.com
+Subject: Re: [PATCH v2 net-next 1/6] dt-bindings: net: brcm,unimac-mdio: Add
+ asp-v2.0
+Message-ID: <20230427170354.GA3163369-robh@kernel.org>
+References: <1682535272-32249-1-git-send-email-justinpopo6@gmail.com>
+ <1682535272-32249-2-git-send-email-justinpopo6@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH] dt-bindings: timer: brcm,kona-timer: convert to YAML
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>,
-        Stanislav Jakubek <stano.jakubek@gmail.com>
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Ray Jui <rjui@broadcom.com>, devicetree@vger.kernel.org,
-        Thomas Gleixner <tglx@linutronix.de>,
-        linux-kernel@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Scott Branden <sbranden@broadcom.com>
-References: <20230426182854.GA9571@standask-GA-A55M-S2HP>
- <168261469911.3163242.999660035852888472.robh@kernel.org>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <168261469911.3163242.999660035852888472.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1682535272-32249-2-git-send-email-justinpopo6@gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/27/23 09:58, Rob Herring wrote:
+On Wed, Apr 26, 2023 at 11:54:27AM -0700, Justin Chen wrote:
+> The ASP 2.0 Ethernet controller uses a brcm unimac.
 > 
-> On Wed, 26 Apr 2023 20:28:54 +0200, Stanislav Jakubek wrote:
->> Convert Broadcom Kona family timer bindings to DT schema.
->>
->> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
->> ---
->>   .../bindings/timer/brcm,kona-timer.txt        | 25 ---------
->>   .../bindings/timer/brcm,kona-timer.yaml       | 55 +++++++++++++++++++
->>   2 files changed, 55 insertions(+), 25 deletions(-)
->>   delete mode 100644 Documentation/devicetree/bindings/timer/brcm,kona-timer.txt
->>   create mode 100644 Documentation/devicetree/bindings/timer/brcm,kona-timer.yaml
->>
+> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+> Signed-off-by: Justin Chen <justinpopo6@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/net/brcm,unimac-mdio.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> 
-Rob, do you want me to take this patch, or will you take it via the DT tree?
--- 
-Florian
+> diff --git a/Documentation/devicetree/bindings/net/brcm,unimac-mdio.yaml b/Documentation/devicetree/bindings/net/brcm,unimac-mdio.yaml
+> index 0be426ee1e44..6684810fcbf0 100644
+> --- a/Documentation/devicetree/bindings/net/brcm,unimac-mdio.yaml
+> +++ b/Documentation/devicetree/bindings/net/brcm,unimac-mdio.yaml
+> @@ -22,6 +22,8 @@ properties:
+>        - brcm,genet-mdio-v3
+>        - brcm,genet-mdio-v4
+>        - brcm,genet-mdio-v5
+> +      - brcm,asp-v2.0-mdio
+> +      - brcm,asp-v2.1-mdio
 
+How many SoCs does each of these correspond to? SoC specific compatibles 
+are preferred to version numbers (because few vendors are disciplined 
+at versioning and also not changing versions with every Soc). 
+
+>        - brcm,unimac-mdio
+>  
+>    reg:
+> -- 
+> 2.7.4
+> 
