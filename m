@@ -2,174 +2,432 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 639056F0502
-	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 13:28:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0AA26F050F
+	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 13:36:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243728AbjD0L16 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Apr 2023 07:27:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39930 "EHLO
+        id S243754AbjD0LgY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Apr 2023 07:36:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42928 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243416AbjD0L14 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 07:27:56 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FA462120;
-        Thu, 27 Apr 2023 04:27:54 -0700 (PDT)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33R9fLq9006633;
-        Thu, 27 Apr 2023 11:27:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
- cc : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=qcppdkim1; bh=BE92gzCqC+C4Ky9wpJ6eiYG+0iVQbu2mCeiXeWkkpfo=;
- b=aP7fACfuc7+kI+0tJValOSrHvL15W9P1diOSgk5CBHKwoeDhU/ymGm1an/zwrRU1A0/G
- tvjkHClGmpgiJ2LowpYG8M8CxkkK+GvVy+g1Xw6Q/LkBQq8Z7DHya1dorosqXIHn1aAG
- Vv20QJuwjlf2fxplmIUZigG7lcH0m0x2/R1V9daqVpvq+XvC1ONE5p1V1O/7ae5JBC+A
- 7foEQdS4qpGSB0PdXR/Fw8UMlbNAgeQ3M9eIXU5tOkmFMSKvJByjJofx5wuWJ7VivsQS
- jyNLTYGMY7iPQq7VW2PaavXMAAmepivGGRDunZ+w5jy4mlNolJ7vd0ErcN7RCcPpkTQG /Q== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q7m4y8kqr-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 27 Apr 2023 11:27:19 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33RBRHmr031560
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 27 Apr 2023 11:27:17 GMT
-Received: from hu-pkondeti-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Thu, 27 Apr 2023 04:27:01 -0700
-Date:   Thu, 27 Apr 2023 16:56:57 +0530
-From:   Pavan Kondeti <quic_pkondeti@quicinc.com>
-To:     "Gupta, Pankaj" <pankaj.gupta@amd.com>
-CC:     Pavan Kondeti <quic_pkondeti@quicinc.com>,
-        David Dai <davidai@google.com>,
-        Saravana Kannan <saravanak@google.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paolo Bonzini <pbonzini@redhat.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Marc Zyngier <maz@kernel.org>,
-        Oliver Upton <oliver.upton@linux.dev>,
-        James Morse <james.morse@arm.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Zenghui Yu <yuzenghui@huawei.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        "Sudeep Holla" <sudeep.holla@arm.com>,
-        Ingo Molnar <mingo@redhat.com>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Juri Lelli <juri.lelli@redhat.com>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Dietmar Eggemann <dietmar.eggemann@arm.com>,
-        Steven Rostedt <rostedt@goodmis.org>,
-        Ben Segall <bsegall@google.com>,
-        "Mel Gorman" <mgorman@suse.de>,
-        Daniel Bristot de Oliveira <bristot@redhat.com>,
-        Valentin Schneider <vschneid@redhat.com>,
-        <kernel-team@android.com>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <kvm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <kvmarm@lists.linux.dev>
-Subject: Re: [RFC PATCH 0/6] Improve VM DVFS and task placement behavior
-Message-ID: <20230427112657.GA398143@hu-pkondeti-hyd.qualcomm.com>
-References: <20230330224348.1006691-1-davidai@google.com>
- <20230427074602.GA325349@hu-pkondeti-hyd.qualcomm.com>
- <4eed40a7-d927-1b0c-b19b-9bb5b3083b73@amd.com>
+        with ESMTP id S243152AbjD0LgX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 07:36:23 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24AB35582
+        for <devicetree@vger.kernel.org>; Thu, 27 Apr 2023 04:36:19 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-508418b6d59so15312759a12.3
+        for <devicetree@vger.kernel.org>; Thu, 27 Apr 2023 04:36:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1682595377; x=1685187377;
+        h=content-transfer-encoding:in-reply-to:organization:content-language
+         :references:cc:to:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=5aXE+IsV3n1SGEzkkFMoVBN+KiUYReiWu7h8fU7w0wg=;
+        b=lNDg0HuHr7nCEstvUnhiwOhlbFwcBloliBAA5div5SmhhlSCLVEE9rXgMl3YznSQal
+         3ej3mi978aoiz1akwD6WoT8tMszA9gyT5exMnxB3fquBUV1YlUVgKvRftW5pL3KmV4CB
+         RSLhNRHuUwuEddeHvwty+fyyGFF1LTCyf4yeyRmEjdYURM2YfbBl0SXKo/nri/dhdBl0
+         dRa5bSw4biMANPzwtb0jkhUt7GH0z7r1Gz++yWMC1HKrQiSXyMNTUugNlAAFImOaeEyl
+         TWMP7QEwKzPV5vvi/buuK4vk7fENbEu9HdSYdeORJ6MCjlWMTwZDAKbsDPdouI6uRZzq
+         OP0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682595377; x=1685187377;
+        h=content-transfer-encoding:in-reply-to:organization:content-language
+         :references:cc:to:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5aXE+IsV3n1SGEzkkFMoVBN+KiUYReiWu7h8fU7w0wg=;
+        b=hsN0jFfE8JrX8shhe8QS0jprO/9sj0GOfGFk9amhLT/o5sQWunMQTdpw8MV8DhOcnQ
+         aIhMALCF0KjEuHObww+OgXlQRWu/nXHcrviOUv+qceMd+K2/jyCguA9uVJ05nxiklXAa
+         5T1qQdQWvf2DavOP7XoxkhKk/kB18fsW1zVzXtUMo1skA5Q17V3zyZh7TLkUsx1TPuLx
+         dOzEBHSlXBtKMhd8HnyAP2qA1djyBrKL7LXsMyfgNF5qycEACB5j7zvfivJJr2UlfxP1
+         qlQRNWQZTBUS4JDU9fG/3fohM9gY7Ppax6sNOvDXQG56djfqDcrpR+i2ZxGtm5cnmvWs
+         SwfA==
+X-Gm-Message-State: AC+VfDwMb+dJGPNOILo1XHVZlrm8pxvbhA5Q/oVCovyn2IpeA+UlZ0IK
+        TUTH6dpJKQbQmIte/jrVgsG3tw==
+X-Google-Smtp-Source: ACHHUZ5Mqwyk4OEXex1vQHLNR3vFW39c9R30akVMaKZ3X/madF777DpkofW9hQUMGsuMDUrEt1XNdw==
+X-Received: by 2002:a05:6402:190:b0:506:8e91:3b35 with SMTP id r16-20020a056402019000b005068e913b35mr1543253edv.13.1682595377498;
+        Thu, 27 Apr 2023 04:36:17 -0700 (PDT)
+Received: from [172.23.2.82] ([31.221.30.162])
+        by smtp.gmail.com with ESMTPSA id o25-20020aa7d3d9000000b00509bd19b869sm6700713edr.48.2023.04.27.04.36.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Apr 2023 04:36:16 -0700 (PDT)
+Message-ID: <4f73fde6-bc67-ac31-08d2-3e84b0646e73@linaro.org>
+Date:   Thu, 27 Apr 2023 13:36:13 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <4eed40a7-d927-1b0c-b19b-9bb5b3083b73@amd.com>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: ryfOhFsOQxrMKwtftZ-ynjdmARDJT1sV
-X-Proofpoint-ORIG-GUID: ryfOhFsOQxrMKwtftZ-ynjdmARDJT1sV
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-27_07,2023-04-27_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- phishscore=0 adultscore=0 malwarescore=0 clxscore=1011 mlxlogscore=999
- spamscore=0 suspectscore=0 lowpriorityscore=0 impostorscore=0 bulkscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2304270100
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH V7 2/4] dt-bindings: clock: document Amlogic S4 SoC
+ peripherals clock controller
+To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>,
+        Yu Tu <yu.tu@amlogic.com>
+Cc:     linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        kelvin.zhang@amlogic.com, qi.duan@amlogic.com
+References: <20230417065005.24967-1-yu.tu@amlogic.com>
+ <20230417065005.24967-3-yu.tu@amlogic.com>
+ <20230426104946.xiwsdjxris2faf7x@CAB-WSD-L081021>
+ <98fdedba-2715-23e7-1d2b-2d9334f0c674@amlogic.com>
+ <20230427085228.vktptr76wbcdcksq@CAB-WSD-L081021>
+Content-Language: en-US
+Organization: Linaro Developer Services
+In-Reply-To: <20230427085228.vktptr76wbcdcksq@CAB-WSD-L081021>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 27, 2023 at 11:52:29AM +0200, Gupta, Pankaj wrote:
-> 
-> > > This patch series is a continuation of the talk Saravana gave at LPC 2022
-> > > titled "CPUfreq/sched and VM guest workload problems" [1][2][3]. The gist
-> > > of the talk is that workloads running in a guest VM get terrible task
-> > > placement and DVFS behavior when compared to running the same workload in
-> > > the host. Effectively, no EAS for threads inside VMs. This would make power
-> > > and performance terrible just by running the workload in a VM even if we
-> > > assume there is zero virtualization overhead.
-> > > 
-> > > We have been iterating over different options for communicating between
-> > > guest and host, ways of applying the information coming from the
-> > > guest/host, etc to figure out the best performance and power improvements
-> > > we could get.
-> > > 
-> > > The patch series in its current state is NOT meant for landing in the
-> > > upstream kernel. We are sending this patch series to share the current
-> > > progress and data we have so far. The patch series is meant to be easy to
-> > > cherry-pick and test on various devices to see what performance and power
-> > > benefits this might give for others.
-> > > 
-> > > With this series, a workload running in a VM gets the same task placement
-> > > and DVFS treatment as it would when running in the host.
-> > > 
-> > > As expected, we see significant performance improvement and better
-> > > performance/power ratio. If anyone else wants to try this out for your VM
-> > > workloads and report findings, that'd be very much appreciated.
-> > > 
-> > > The idea is to improve VM CPUfreq/sched behavior by:
-> > > - Having guest kernel to do accurate load tracking by taking host CPU
-> > >    arch/type and frequency into account.
-> > > - Sharing vCPU run queue utilization information with the host so that the
-> > >    host can do proper frequency scaling and task placement on the host side.
-> > > 
-> > 
-> > [...]
-> > 
-> > > 
-> > > Next steps:
-> > > ===========
-> > > We are continuing to look into communication mechanisms other than
-> > > hypercalls that are just as/more efficient and avoid switching into the VMM
-> > > userspace. Any inputs in this regard are greatly appreciated.
-> > > 
-> > 
-> > I am trying to understand why virtio based cpufrq does not work here?
-> > The VMM on host can process requests from guest VM like freq table,
-> > current frequency and setting the min_freq. I believe Virtio backend
-> > has mechanisms for acceleration (vhost) so that user space is not
-> > involved for every frequency request from the guest.
-> > 
-> > It has advantages of (1) Hypervisor agnostic (virtio basically)
-> > (2) scheduler does not need additional input, the aggregated min_freq
-> > requests from all guest should be sufficient.
-> 
-> Also want to add, 3) virtio based solution would definitely be better from
-> performance POV as would avoid expense vmexits which we have with
-> hypercalls.
-> 
-> 
-I just went through the whole discussion, it seems David mentioned he would
-re-write this series with virtio frontend and VMM in user space taking
-care of the requests. will wait for that series to land.
+Hi,
 
-Thanks,
-Pavan
+On 27/04/2023 10:52, Dmitry Rokosov wrote:
+> On Thu, Apr 27, 2023 at 04:03:41PM +0800, Yu Tu wrote:
+>>
+>>
+>> On 2023/4/26 18:49, Dmitry Rokosov wrote:
+>>> [ EXTERNAL EMAIL ]
+>>>
+>>> Hello Yu,
+>>>
+>>> Thank you for the patch series! Please find my comments below.
+>>>
+>>
+>> Hi Dmitry，
+>> 	Thank you for your review.
+>>
+>>> On Mon, Apr 17, 2023 at 02:50:03PM +0800, Yu Tu wrote:
+>>>> Add the S4 peripherals clock controller dt-bindings in the s4 SoC
+>>>> family.
+>>>>
+>>>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
+>>>> ---
+>>>>    .../clock/amlogic,s4-peripherals-clkc.yaml    |  97 +++++++++++++
+>>>>    .../clock/amlogic,s4-peripherals-clkc.h       | 131 ++++++++++++++++++
+>>>>    2 files changed, 228 insertions(+)
+>>>>    create mode 100644 Documentation/devicetree/bindings/clock/amlogic,s4-peripherals-clkc.yaml
+>>>>    create mode 100644 include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/clock/amlogic,s4-peripherals-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,s4-peripherals-clkc.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..46b969a16a7c
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/clock/amlogic,s4-peripherals-clkc.yaml
+>>>> @@ -0,0 +1,97 @@
+>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/clock/amlogic,s4-peripherals-clkc.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: Amlogic Meson S serials Peripherals Clock Controller
+>>>
+>>> As per my understanding, Meson is no longer applicable.
+>>> As Neil and Martin suggested in other reviews, the term 'Amlogic' should
+>>> be used instead or 'Meson' should be removed altogether.
+>>>
+>>
+>> No. This was all agreed upon a long time ago. Corporate drivers and dtsi are
+>> named after this.
+>>
+> 
+> Okay, it seems like there may be a misunderstanding here.
+> Now might be a good time to ask Neil about the correct behavior.
+> 
+> Neil, could you please provide the specific naming rules for the new
+> Amlogic drivers? Where should we use the 'meson' keyword, and where
+> should we not use it?
+
+The current goal is to first get rid of meson in the compatiob, which is ok here,
+then remove meson in the driver name & function names, and then wherever it's a
+nice to have to remove meson in bindings & comments.
+
+So if you where sending a v8, it would be good to remove the Meson in the
+bindings description.
+
+Neil
+
+> 
+>>>> +
+>>>> +maintainers:
+>>>> +  - Neil Armstrong <neil.armstrong@linaro.org>
+>>>> +  - Jerome Brunet <jbrunet@baylibre.com>
+>>>> +  - Yu Tu <yu.tu@amlogic.com>
+>>>> +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    const: amlogic,s4-peripherals-clkc
+>>>> +
+>>>> +  reg:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  clocks:
+>>>> +    items:
+>>>> +      - description: input fixed pll div2
+>>>> +      - description: input fixed pll div2p5
+>>>> +      - description: input fixed pll div3
+>>>> +      - description: input fixed pll div4
+>>>> +      - description: input fixed pll div5
+>>>> +      - description: input fixed pll div7
+>>>> +      - description: input hifi pll
+>>>> +      - description: input gp0 pll
+>>>> +      - description: input mpll0
+>>>> +      - description: input mpll1
+>>>> +      - description: input mpll2
+>>>> +      - description: input mpll3
+>>>> +      - description: input hdmi pll
+>>>> +      - description: input oscillator (usually at 24MHz)
+>>>> +      - description: input external 32kHz reference (optional)
+>>>> +
+>>>> +  clock-names:
+>>>> +    items:
+>>>> +      - const: fclk_div2
+>>>> +      - const: fclk_div2p5
+>>>> +      - const: fclk_div3
+>>>> +      - const: fclk_div4
+>>>> +      - const: fclk_div5
+>>>> +      - const: fclk_div7
+>>>> +      - const: hifi_pll
+>>>> +      - const: gp0_pll
+>>>> +      - const: mpll0
+>>>> +      - const: mpll1
+>>>> +      - const: mpll2
+>>>> +      - const: mpll3
+>>>> +      - const: hdmi_pll
+>>>> +      - const: xtal
+>>>> +      - const: ext_32k
+>>>> +
+>>>> +  "#clock-cells":
+>>>> +    const: 1
+>>>> +
+>>>> +required:
+>>>> +  - compatible
+>>>> +  - reg
+>>>> +  - clocks
+>>>> +  - clock-names
+>>>> +  - "#clock-cells"
+>>>> +
+>>>> +additionalProperties: false
+>>>> +
+>>>> +examples:
+>>>> +  - |
+>>>> +    #include <dt-bindings/clock/amlogic,s4-peripherals-clkc.h>
+>>>> +
+>>>> +    clkc_periphs: clock-controller@fe000000 {
+>>>> +      compatible = "amlogic,s4-peripherals-clkc";
+>>>> +      reg = <0xfe000000 0x49c>;
+>>>
+>>> I was under the impression that reg as MMIO address should have four
+>>> cells on ARM64 architecture. Are you sure it only needs two cells?
+>>
+>> Yes. Maybe you can check out the clock file for other yaml.The two cells and
+>> four cells all are ok.
+>>
+>> It's not a problem even in real DTS. How many cells are needed to look at
+>> the parent address-cells and size-cells definitions.
+>>
+> 
+> AFAIR, it depends on which OF API you will call for retreive address
+> and size values (u32 or u64).
+> 
+>>>
+>>>> +      clocks = <&clkc_pll 3>,
+>>>> +              <&clkc_pll 13>,
+>>>> +              <&clkc_pll 5>,
+>>>> +              <&clkc_pll 7>,
+>>>> +              <&clkc_pll 9>,
+>>>> +              <&clkc_pll 11>,
+>>>> +              <&clkc_pll 17>,
+>>>> +              <&clkc_pll 15>,
+>>>> +              <&clkc_pll 25>,
+>>>> +              <&clkc_pll 27>,
+>>>> +              <&clkc_pll 29>,
+>>>> +              <&clkc_pll 31>,
+>>>> +              <&clkc_pll 20>,
+>>>> +              <&xtal>,
+>>>> +              <&ext_32k>;
+>>>> +      clock-names = "fclk_div2", "fclk_div2p5", "fclk_div3", "fclk_div4",
+>>>> +                    "fclk_div5", "fclk_div7", "hifi_pll", "gp0_pll",
+>>>> +                    "mpll0", "mpll1", "mpll2", "mpll3", "hdmi_pll", "xtal",
+>>>> +                    "ext_32k";
+>>>> +      #clock-cells = <1>;
+>>>> +    };
+>>>> +...
+>>>> diff --git a/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h b/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
+>>>> new file mode 100644
+>>>> index 000000000000..073396a76957
+>>>> --- /dev/null
+>>>> +++ b/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
+>>>> @@ -0,0 +1,131 @@
+>>>> +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
+>>>> +/*
+>>>> + * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
+>>>> + * Author: Yu Tu <yu.tu@amlogic.com>
+>>>> + */
+>>>> +
+>>>> +#ifndef _DT_BINDINGS_CLOCK_AMLOGIC_S4_PERIPHERALS_CLKC_H
+>>>> +#define _DT_BINDINGS_CLOCK_AMLOGIC_S4_PERIPHERALS_CLKC_H
+>>>> +
+>>>> +/*
+>>>> + * CLKID index values
+>>>> + */
+>>>> +
+>>>> +#define CLKID_RTC_CLK                        4
+>>>
+>>> I believe that the CLK suffix is unnecessary since it is already clear
+>>> that the object in question is a clock. Additionally, it is redundant
+>>> to use the GATE suffix.
+>>
+>> No. These prefixes and suffixes are very friendly to the people who write
+>> and read the code.
+>>
+> 
+> Jerome has already pointed this out in another review for the
+> A1 clock driver, there are redundant suffixes:
+> 
+> https://lore.kernel.org/linux-amlogic/1j359y82fn.fsf@starbuckisacylon.baylibre.com/
+> 
+>>>
+>>>> +#define CLKID_SYS_CLK_B_GATE         7
+>>>> +#define CLKID_SYS_CLK_A_GATE         10
+>>>> +#define CLKID_SYS_CLK                        11
+>>>> +#define CLKID_CECA_32K_CLKOUT                16
+>>>> +#define CLKID_CECB_32K_CLKOUT                21
+>>>> +#define CLKID_SC_CLK_GATE            24
+>>>> +#define CLKID_12_24M_CLK_SEL         27
+>>>> +#define CLKID_VID_PLL                        30
+>>>> +#define CLKID_VCLK                   37
+>>>> +#define CLKID_VCLK2                  38
+>>>> +#define CLKID_VCLK_DIV1                      39
+>>>> +#define CLKID_VCLK2_DIV1             44
+>>>> +#define CLKID_VCLK_DIV2                      49
+>>>> +#define CLKID_VCLK_DIV4                      50
+>>>> +#define CLKID_VCLK_DIV6                      51
+>>>> +#define CLKID_VCLK_DIV12             52
+>>>> +#define CLKID_VCLK2_DIV2             53
+>>>> +#define CLKID_VCLK2_DIV4             54
+>>>> +#define CLKID_VCLK2_DIV6             55
+>>>> +#define CLKID_VCLK2_DIV12            56
+>>>> +#define CLKID_CTS_ENCI                       61
+>>>> +#define CLKID_CTS_ENCP                       62
+>>>> +#define CLKID_CTS_VDAC                       63
+>>>> +#define CLKID_HDMI                   67
+>>>> +#define CLKID_TS_CLK_GATE            69
+>>>> +#define CLKID_MALI_0                 72
+>>>> +#define CLKID_MALI_1                 75
+>>>> +#define CLKID_MALI                   76
+>>>> +#define CLKID_VDEC_P0                        79
+>>>> +#define CLKID_VDEC_P1                        82
+>>>> +#define CLKID_VDEC_SEL                       83
+>>>> +#define CLKID_HEVCF_P0                       86
+>>>> +#define CLKID_HEVCF_P1                       89
+>>>> +#define CLKID_HEVCF_SEL                      90
+>>>> +#define CLKID_VPU_0                  93
+>>>> +#define CLKID_VPU_1                  96
+>>>> +#define CLKID_VPU                    97
+>>>> +#define CLKID_VPU_CLKB_TMP           100
+>>>> +#define CLKID_VPU_CLKB                       102
+>>>> +#define CLKID_VPU_CLKC_P0            105
+>>>> +#define CLKID_VPU_CLKC_P1            108
+>>>> +#define CLKID_VPU_CLKC_SEL           109
+>>>> +#define CLKID_VAPB_0                 112
+>>>> +#define CLKID_VAPB_1                 115
+>>>> +#define CLKID_VAPB                   116
+>>>> +#define CLKID_GE2D                   117
+>>>> +#define CLKID_VDIN_MEAS_GATE         120
+>>>> +#define CLKID_SD_EMMC_C_CLK          123
+>>>> +#define CLKID_SD_EMMC_A_CLK          126
+>>>> +#define CLKID_SD_EMMC_B_CLK          129
+>>>> +#define CLKID_SPICC0_GATE            132
+>>>> +#define CLKID_PWM_A_GATE             135
+>>>> +#define CLKID_PWM_B_GATE             138
+>>>> +#define CLKID_PWM_C_GATE             141
+>>>> +#define CLKID_PWM_D_GATE             144
+>>>> +#define CLKID_PWM_E_GATE             147
+>>>> +#define CLKID_PWM_F_GATE             150
+>>>> +#define CLKID_PWM_G_GATE             153
+>>>> +#define CLKID_PWM_H_GATE             156
+>>>> +#define CLKID_PWM_I_GATE             159
+>>>> +#define CLKID_PWM_J_GATE             162
+>>>> +#define CLKID_SARADC_GATE            165
+>>>> +#define CLKID_GEN_GATE                       168
+>>>> +#define CLKID_DDR                    169
+>>>> +#define CLKID_DOS                    170
+>>>> +#define CLKID_ETHPHY                 171
+>>>> +#define CLKID_MALI_GATE                      172
+>>>> +#define CLKID_AOCPU                  173
+>>>> +#define CLKID_AUCPU                  174
+>>>> +#define CLKID_CEC                    175
+>>>> +#define CLKID_SD_EMMC_A                      176
+>>>> +#define CLKID_SD_EMMC_B                      177
+>>>> +#define CLKID_NAND                   178
+>>>> +#define CLKID_SMARTCARD                      179
+>>>> +#define CLKID_ACODEC                 180
+>>>> +#define CLKID_SPIFC                  181
+>>>> +#define CLKID_MSR_CLK                        182
+>>>> +#define CLKID_IR_CTRL                        183
+>>>> +#define CLKID_AUDIO                  184
+>>>> +#define CLKID_ETH                    185
+>>>> +#define CLKID_UART_A                 186
+>>>> +#define CLKID_UART_B                 187
+>>>> +#define CLKID_UART_C                 188
+>>>> +#define CLKID_UART_D                 189
+>>>> +#define CLKID_UART_E                 190
+>>>> +#define CLKID_AIFIFO                 191
+>>>> +#define CLKID_TS_DDR                 192
+>>>> +#define CLKID_TS_PLL                 193
+>>>> +#define CLKID_G2D                    194
+>>>> +#define CLKID_SPICC0                 195
+>>>> +#define CLKID_SPICC1                 196
+>>>> +#define CLKID_USB                    197
+>>>> +#define CLKID_I2C_M_A                        198
+>>>> +#define CLKID_I2C_M_B                        199
+>>>> +#define CLKID_I2C_M_C                        200
+>>>> +#define CLKID_I2C_M_D                        201
+>>>> +#define CLKID_I2C_M_E                        202
+>>>> +#define CLKID_HDMITX_APB             203
+>>>> +#define CLKID_I2C_S_A                        204
+>>>> +#define CLKID_USB1_TO_DDR            205
+>>>> +#define CLKID_HDCP22                 206
+>>>> +#define CLKID_MMC_APB                        207
+>>>> +#define CLKID_RSA                    208
+>>>> +#define CLKID_CPU_DEBUG                      209
+>>>> +#define CLKID_VPU_INTR                       210
+>>>> +#define CLKID_DEMOD                  211
+>>>> +#define CLKID_SAR_ADC                        212
+>>>> +#define CLKID_GIC                    213
+>>>> +#define CLKID_PWM_AB                 214
+>>>> +#define CLKID_PWM_CD                 215
+>>>> +#define CLKID_PWM_EF                 216
+>>>> +#define CLKID_PWM_GH                 217
+>>>> +#define CLKID_PWM_IJ                 218
+>>>> +#define CLKID_HDCP22_ESMCLK_GATE     221
+>>>> +#define CLKID_HDCP22_SKPCLK_GATE     224
+>>>> +
+>>>> +#endif /* _DT_BINDINGS_CLOCK_AMLOGIC_S4_PERIPHERALS_CLKC_H */
+>>>> --
+>>>> 2.33.1
+>>>>
+>>>>
+>>>> _______________________________________________
+>>>> linux-amlogic mailing list
+>>>> linux-amlogic@lists.infradead.org
+>>>> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+>>>
+>>> --
+>>> Thank you,
+>>> Dmitry
+> 
+
