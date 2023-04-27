@@ -2,83 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 78FDA6F02CE
-	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 10:54:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 098B16F02DE
+	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 10:59:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243187AbjD0Ixd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Apr 2023 04:53:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55124 "EHLO
+        id S243145AbjD0I7y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Apr 2023 04:59:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242755AbjD0Ixc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 04:53:32 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6756A4EC1;
-        Thu, 27 Apr 2023 01:53:29 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33R7Fnrm021851;
-        Thu, 27 Apr 2023 08:53:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=Ie5ALX/3VJVLEugjsOClj9TQHZGvD+KFdEuky2kHy2M=;
- b=NtFu0m5IudiQqvR+zxR5wXku2m0kAe6elEPNKVyEleveLlCgveGS0l4VJ1qPLZDIMgMc
- fGZhn2b/w49oM/OdGKSotR9Q+wf0kRmS4uHe2rbVW+fXTexNSRO5tv7sQMPCWz6GYpMS
- vGEjb+XMUoeULSrcEeN5NWUN5qgaeroDS+tAyjBoZskbDnsNB/SbAeE3X+gLDhnZMz6m
- 18oOF89y4zEUmBXezS0pGfJfEndHYajgtXfEO8voZbH6tVUi9Dc9ceKKjPkAWc/Mpp6f
- cRbQZUqPMN/v2pEwmLxhLDO3DhycnxJCN28k8CF5siZ4lNpnJ2ShFOnuZLgDncJ46p7e Gw== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q7j4erg2d-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 27 Apr 2023 08:53:25 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33R8rNQt028483
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 27 Apr 2023 08:53:23 GMT
-Received: from [10.214.66.58] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Thu, 27 Apr
- 2023 01:53:19 -0700
-Message-ID: <1ed28be7-7bb5-acc5-c955-f4cf238ffc49@quicinc.com>
-Date:   Thu, 27 Apr 2023 14:23:16 +0530
+        with ESMTP id S243042AbjD0I7x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 04:59:53 -0400
+Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F9B9422A;
+        Thu, 27 Apr 2023 01:59:05 -0700 (PDT)
+Received: from droid01-cd.amlogic.com (10.98.11.200) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Thu, 27 Apr 2023
+ 16:58:59 +0800
+From:   Xianwei Zhao <xianwei.zhao@amlogic.com>
+To:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-amlogic@lists.infradead.org>, <devicetree@vger.kernel.org>
+CC:     Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Xianwei Zhao <xianwei.zhao@amlogic.com>
+Subject: [PATCH V2] arm64: dts: add support for C3 based Amlogic AW409
+Date:   Thu, 27 Apr 2023 16:58:59 +0800
+Message-ID: <20230427085859.793802-1-xianwei.zhao@amlogic.com>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.0
-Subject: Re: [PATCH v4 2/2] pinctrl: qcom: Add SDX75 pincontrol driver
-Content-Language: en-US
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-CC:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <linus.walleij@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <richardcochran@gmail.com>, <manivannan.sadhasivam@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <netdev@vger.kernel.org>
-References: <1682327030-25535-1-git-send-email-quic_rohiagar@quicinc.com>
- <1682327030-25535-3-git-send-email-quic_rohiagar@quicinc.com>
- <ZEk9lySMZcrRZYwX@surfacebook>
- <66158251-6934-a07f-4b82-4deaa76fa482@quicinc.com>
- <CAHp75VcCAOD3utLjjXeQ97nGcUTm7pic5F52+e7cJDxpDXwttA@mail.gmail.com>
-From:   Rohit Agarwal <quic_rohiagar@quicinc.com>
-In-Reply-To: <CAHp75VcCAOD3utLjjXeQ97nGcUTm7pic5F52+e7cJDxpDXwttA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: WuaDZGdObsBJ0i8pV1cu3eJbPywxErRL
-X-Proofpoint-GUID: WuaDZGdObsBJ0i8pV1cu3eJbPywxErRL
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-27_06,2023-04-26_03,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 suspectscore=0
- bulkscore=0 impostorscore=0 priorityscore=1501 spamscore=0 mlxscore=0
- mlxlogscore=442 lowpriorityscore=0 phishscore=0 adultscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2304270076
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.98.11.200]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -87,28 +45,164 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Amlogic C3 is an advanced edge AI processor designed for smart IP camera
+applications.
 
-On 4/26/2023 10:12 PM, Andy Shevchenko wrote:
-> On Wed, Apr 26, 2023 at 6:18 PM Rohit Agarwal <quic_rohiagar@quicinc.com> wrote:
->> On 4/26/2023 8:34 PM, andy.shevchenko@gmail.com wrote:
->>> Mon, Apr 24, 2023 at 02:33:50PM +0530, Rohit Agarwal kirjoitti:
-> ...
->
->>>> +#define FUNCTION(fname)                                                     \
->>>> +    [msm_mux_##fname] = {                                           \
->>>> +            .name = #fname,                                         \
->>>> +            .groups = fname##_groups,                               \
->>>> +    .ngroups = ARRAY_SIZE(fname##_groups),                          \
->>>> +    }
->>> PINCTRL_PINFUNCTION() ?
->> Ok, Will update this. Shall I also update "PINGROUP" to "PINCTRL_PINGROUP"?
-> Yes, please.
-PINCTRL_PINGROUP cannot be used as it is, since msm_pigroup has multiple 
-other fields that needs to be set
-for each pingroup defined.
-Would rename this to SDX75_PINGROUP, as seen on some other platforms.
-Would that be ok?
+Add basic support for the C3 based Amlogic AW409 board, which describes
+the following components: CPU, GIC, IRQ, Timer, UART. It's capable of
+booting up into the serial console.
 
-Thanks,
-Rohit.
->
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+
+---
+V1 -> V2: Remove new arch, and use ARCH_MESON;
+          Modify node name, and delete superfluous blank lines.
+---
+ arch/arm64/boot/dts/amlogic/Makefile          |  1 +
+ .../amlogic/amlogic-c3-c302x-aw409-256m.dts   | 29 +++++++
+ arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi   | 86 +++++++++++++++++++
+ 3 files changed, 116 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409-256m.dts
+ create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
+
+diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+index cd1c5b04890a..bcec872c2444 100644
+--- a/arch/arm64/boot/dts/amlogic/Makefile
++++ b/arch/arm64/boot/dts/amlogic/Makefile
+@@ -74,3 +74,4 @@ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-hc4.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air-gbit.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air.dtb
++dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c302x-aw409-256m.dtb
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409-256m.dts b/arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409-256m.dts
+new file mode 100644
+index 000000000000..edce8850b338
+--- /dev/null
++++ b/arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409-256m.dts
+@@ -0,0 +1,29 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
++ */
++
++/dts-v1/;
++
++#include "amlogic-c3.dtsi"
++
++/ {
++	model = "Amlogic C302 aw409 Development Board";
++	compatible = "amlogic,aw409", "amlogic,c3";
++	interrupt-parent = <&gic>;
++	#address-cells = <2>;
++	#size-cells = <2>;
++
++	aliases {
++		serial0 = &uart_b;
++	};
++
++	memory@0 {
++		device_type = "memory";
++		reg = <0x0 0x0 0x0 0x10000000>;
++	};
++};
++
++&uart_b {
++	status = "okay";
++};
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
+new file mode 100644
+index 000000000000..93b335aef605
+--- /dev/null
++++ b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
+@@ -0,0 +1,86 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
++ */
++
++#include <dt-bindings/interrupt-controller/irq.h>
++#include <dt-bindings/interrupt-controller/arm-gic.h>
++#include <dt-bindings/gpio/gpio.h>
++
++/ {
++	cpus {
++		#address-cells = <2>;
++		#size-cells = <0>;
++
++		cpu0: cpu@0 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a35";
++			reg = <0x0 0x0>;
++			enable-method = "psci";
++		};
++
++		cpu1: cpu@1 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a35";
++			reg = <0x0 0x1>;
++			enable-method = "psci";
++		};
++	};
++
++	timer {
++		compatible = "arm,armv8-timer";
++		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
++	};
++
++	psci {
++		compatible = "arm,psci-1.0";
++		method = "smc";
++	};
++
++	xtal: xtal-clk {
++		compatible = "fixed-clock";
++		clock-frequency = <24000000>;
++		clock-output-names = "xtal";
++		#clock-cells = <0>;
++	};
++
++	soc {
++		compatible = "simple-bus";
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
++
++		gic: interrupt-controller@fff01000 {
++			compatible = "arm,gic-400";
++			#interrupt-cells = <3>;
++			#address-cells = <0>;
++			interrupt-controller;
++			reg = <0x0 0xfff01000 0 0x1000>,
++			      <0x0 0xfff02000 0 0x2000>,
++			      <0x0 0xfff04000 0 0x2000>,
++			      <0x0 0xfff06000 0 0x2000>;
++			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
++		};
++
++		apb4: bus@fe000000 {
++			compatible = "simple-bus";
++			reg = <0x0 0xfe000000 0x0 0x480000>;
++			#address-cells = <2>;
++			#size-cells = <2>;
++			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
++
++			uart_b: serial@7a000 {
++				compatible = "amlogic,meson-g12a-uart";
++				reg = <0x0 0x7a000 0x0 0x18>;
++				interrupts = <GIC_SPI 169 IRQ_TYPE_EDGE_RISING>;
++				status = "disabled";
++				clocks = <&xtal>, <&xtal>, <&xtal>;
++				clock-names = "xtal", "pclk", "baud";
++			};
++
++		};
++	};
++};
+
+base-commit: ae68fb187b59bc8645974320808ab2d7c41b1833
+-- 
+2.37.1
+
