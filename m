@@ -2,80 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE75B6EFE14
-	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 01:42:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E2C96EFEA5
+	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 02:51:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242772AbjDZXmY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Apr 2023 19:42:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57426 "EHLO
+        id S242731AbjD0AvH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Apr 2023 20:51:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242768AbjDZXmT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 19:42:19 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D87113AB6
-        for <devicetree@vger.kernel.org>; Wed, 26 Apr 2023 16:42:17 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-50685f1b6e0so14285677a12.0
-        for <devicetree@vger.kernel.org>; Wed, 26 Apr 2023 16:42:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682552536; x=1685144536;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZLVs3263t2teDRTXdz5t8bFzGRiK7kYETPsxms6eL6I=;
-        b=Ttz+SLmrQfsQ2A3EcrAQow5haAlQmo4fTMb+Imrs7ICAuXH7Myhkhco84qhNfFRP5J
-         CjP945mmPsI2U5NP5LsH2u5FzOQhlnUoKaugxPPdUhEDYW6lvJw97+pANAC8zqW44aqG
-         Y2FiIPmIOQTkbw+9VKIsOdhv42OKPJ34QlK1Wzvfq7FFbju2NnrUBGe36lIeCuSDzk58
-         4120Z7AsAjcfoVhzWC//ydHWqXi3cFOafqpH400suCq72WQdQ7j25681Tu/xtP2cXehl
-         OOB+OlyvOFkGleZjvj/rQP4le06vY4JkFYfuA6b8u2f32dvffoiIf/TWNnf0gHXOxtdx
-         fKQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682552536; x=1685144536;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZLVs3263t2teDRTXdz5t8bFzGRiK7kYETPsxms6eL6I=;
-        b=d4CHNd/7fP3p47ZcT0uUaOjyY9H5DPVlo2B2xcyTyg2agX+XLs7kap6GlnH/Bvv08w
-         3TTr8p5BUILTmlr7lcJjY7fW5pIR1mvUhQPoWJOfjLMXaGCSqWaU1UvmcfqCd9OWjeAf
-         MP025sD9UrN7reQZJkc7cfED3GAWTASMk8DNSTHN7ov7y5ijHYCtZXTpwB7014oU4pD7
-         Yk47hnRU13d4oNA28xgidmg+SpQsOLZgtzlLDEXbUtLHZxGQ/hMYTk0Bs3RbLqoxGi0F
-         fcIspbAEHsesP7Ojpey57pP4WhmsMZiQ5rYI2foCePXVD88er+48xel9+Du5Kv7MTbix
-         biGw==
-X-Gm-Message-State: AAQBX9el9p8Zz0/ZobxkQbu3+5zHxKuwWLXWixAOingKxQnEZXjh8V8B
-        gZIMyyVzFal0OAl4axfUBWGVMg==
-X-Google-Smtp-Source: AKy350YsWJrmVXvulbVEZKykpoK9kWHFkFN2sJlJoFlZgl/ec3q490HFPPTRY7ORu7kZUvq3uA76Qg==
-X-Received: by 2002:a17:906:1498:b0:94f:322d:909c with SMTP id x24-20020a170906149800b0094f322d909cmr19109414ejc.34.1682552536106;
-        Wed, 26 Apr 2023 16:42:16 -0700 (PDT)
-Received: from [172.23.2.152] ([31.221.30.162])
-        by smtp.gmail.com with ESMTPSA id e6-20020a1709062c0600b0094ef2003581sm8804723ejh.153.2023.04.26.16.42.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Apr 2023 16:42:15 -0700 (PDT)
-Message-ID: <ac49075d-439e-da46-9ef6-0b0828f8e072@linaro.org>
-Date:   Thu, 27 Apr 2023 00:42:15 +0100
+        with ESMTP id S241692AbjD0AvG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Apr 2023 20:51:06 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3873E136;
+        Wed, 26 Apr 2023 17:51:00 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 1C93980ED;
+        Thu, 27 Apr 2023 08:50:52 +0800 (CST)
+Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 27 Apr
+ 2023 08:50:52 +0800
+Received: from [192.168.120.42] (171.223.208.138) by EXMBX162.cuchost.com
+ (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 27 Apr
+ 2023 08:50:51 +0800
+Message-ID: <05071579-4cf9-c5ac-49cd-213a76966943@starfivetech.com>
+Date:   Thu, 27 Apr 2023 08:50:49 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH v1 0/6] arm64: qcom: sa8775p: add support for USB
+Subject: Re: [PATCH v1 1/2] dt-bindings: net: motorcomm: Add pad driver
+ strength cfg
 Content-Language: en-US
-To:     Adrien Thierry <athierry@redhat.com>,
-        Shazad Hussain <quic_shazhuss@quicinc.com>
-Cc:     agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org
-References: <20230421133922.8520-1-quic_shazhuss@quicinc.com>
- <ZEcEGJiikEC2wIVE@fedora>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <ZEcEGJiikEC2wIVE@fedora>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Frank Sae <Frank.Sae@motor-comm.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <netdev@vger.kernel.org>, Peter Geis <pgwipeout@gmail.com>
+CC:     "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        "Heiner Kallweit" <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Yanhong Wang <yanhong.wang@starfivetech.com>
+References: <20230426063541.15378-1-samin.guo@starfivetech.com>
+ <20230426063541.15378-2-samin.guo@starfivetech.com>
+ <04f4e968-946e-cbf0-3d78-cfe6cb17afb3@motor-comm.com>
+From:   Guo Samin <samin.guo@starfivetech.com>
+In-Reply-To: <04f4e968-946e-cbf0-3d78-cfe6cb17afb3@motor-comm.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Originating-IP: [171.223.208.138]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX162.cuchost.com
+ (172.16.6.72)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -83,118 +67,55 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 4/24/23 23:35, Adrien Thierry wrote:
-> Hi Shazad,
->
-> On Fri, Apr 21, 2023 at 07:09:15PM +0530, Shazad Hussain wrote:
->> Update relavent DT bindings for USB, add new config to the phy driver,
->> add USB and PHY nodes to the .dtsi and enable them in the board .dts
->> for the sa8775p-ride platform.
->>
->> Shazad Hussain (6):
->>    dt-bindings: usb: qcom,dwc3: Add bindings for SA8775P
->>    dt-bindings: phy: qcom,usb-snps-femto-v2: Add bindings for SA8775P
->>    dt-bindings: phy: qcom,sc8280xp-qmp-usb3-uni: Add SA8775P USB PHY
->>      binding
->>    phy: qcom-qmp: Add SA8775P USB3 UNI phy
->>    arm64: dts: qcom: sa8775p: add USB nodes
->>    arm64: dts: qcom: sa8775p-ride: enable USB nodes
->>
->>   .../phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml   |   1 +
->>   .../bindings/phy/qcom,usb-snps-femto-v2.yaml  |   1 +
->>   .../devicetree/bindings/usb/qcom,dwc3.yaml    |   5 +
->>   arch/arm64/boot/dts/qcom/sa8775p-ride.dts     |  92 +++++++
->>   arch/arm64/boot/dts/qcom/sa8775p.dtsi         | 239 +++++++++++++++++-
->>   drivers/phy/qualcomm/phy-qcom-qmp-usb.c       |  45 ++++
->>   6 files changed, 381 insertions(+), 2 deletions(-)
->>
->> -- 
->> 2.17.1
->>
-> Thanks for posting this. I tested the series on the sa8775p, and it seems
-> initialization for the controller at a400000 sometimes fails with a
-> timeout (-110) error:
->
->      dwc3 a400000.usb: Adding to iommu group 2
->      xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
->      xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 1
->      xhci-hcd xhci-hcd.0.auto: can't setup: -110
->      xhci-hcd xhci-hcd.0.auto: USB bus 1 deregistered
->      xhci-hcd: probe of xhci-hcd.0.auto failed with error -110
->      dwc3 a600000.usb: Adding to iommu group 3
->      dwc3 a800000.usb: Adding to iommu group 4
->      xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
->      xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned bus number 1
->      xhci-hcd xhci-hcd.1.auto: hcc params 0x0110ffc5 hci version 0x110 quirks 0x0000000000010010
->      xhci-hcd xhci-hcd.1.auto: irq 162, io mem 0x0a800000
->      xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
->      xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned bus number 2
->      xhci-hcd xhci-hcd.1.auto: Host supports USB 3.1 Enhanced SuperSpeed
->      hub 1-0:1.0: USB hub found
->      hub 1-0:1.0: 1 port detected
->      usb usb2: We don't know the algorithms for LPM for this host, disabling LPM.
->      hub 2-0:1.0: USB hub found
->      hub 2-0:1.0: 1 port detected
->
-> In this case, only usb devices for a800000 are showing:
->
->      dracut:/# ls -alh /sys/bus/usb/devices
->      total 0
->      drwxr-xr-x 2 root root 0 Feb 27 00:00 .
->      drwxr-xr-x 4 root root 0 Feb 27 00:00 ..
->      lrwxrwxrwx 1 root root 0 Feb 27 00:00 1-0:1.0 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.1.auto/usb1/1-0:1.0
->      lrwxrwxrwx 1 root root 0 Feb 27 00:00 2-0:1.0 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.1.auto/usb2/2-0:1.0
->      lrwxrwxrwx 1 root root 0 Feb 27 00:00 usb1 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.1.auto/usb1
->      lrwxrwxrwx 1 root root 0 Feb 27 00:00 usb2 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.1.auto/usb2
->
-> This happens approximately 1 out of 2 reboots. Here's the kernel output
-> when initialization succeeds:
->
->      dwc3 a600000.usb: Adding to iommu group 2
->      dwc3 a800000.usb: Adding to iommu group 3
->      xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
->      xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 1
->      xhci-hcd xhci-hcd.0.auto: hcc params 0x0110ffc5 hci version 0x110 quirks 0x0000000000010010
->      xhci-hcd xhci-hcd.0.auto: irq 161, io mem 0x0a800000
->      xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
->      xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 2
->      xhci-hcd xhci-hcd.0.auto: Host supports USB 3.1 Enhanced SuperSpeed
->      hub 1-0:1.0: USB hub found
->      hub 1-0:1.0: 1 port detected
->      usb usb2: We don't know the algorithms for LPM for this host, disabling LPM.
->      hub 2-0:1.0: USB hub found
->      hub 2-0:1.0: 1 port detected
->      dwc3 a400000.usb: Adding to iommu group 4
->      xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
->      xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned bus number 3
->      xhci-hcd xhci-hcd.1.auto: USB3 root hub has no ports
->      xhci-hcd xhci-hcd.1.auto: hcc params 0x0220fe65 hci version 0x110 quirks 0x0000000000010010
->      xhci-hcd xhci-hcd.1.auto: irq 162, io mem 0x0a400000
->      hub 3-0:1.0: USB hub found
->      hub 3-0:1.0: 1 port detected
->
-> And the list of usb devices:
->
->      dracut:/# ls -alh /sys/bus/usb/devices
->      total 0
->      drwxr-xr-x 2 root root 0 Feb 27 00:00 .
->      drwxr-xr-x 4 root root 0 Feb 27 00:00 ..
->      lrwxrwxrwx 1 root root 0 Feb 27 00:00 1-0:1.0 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.0.auto/usb1/1-0:1.0
->      lrwxrwxrwx 1 root root 0 Feb 27 00:00 2-0:1.0 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.0.auto/usb2/2-0:1.0
->      lrwxrwxrwx 1 root root 0 Feb 27 00:00 3-0:1.0 -> ../../../devices/platform/soc@0/a4f8800.usb/a400000.usb/xhci-hcd.1.auto/usb3/3-0:1.0
->      lrwxrwxrwx 1 root root 0 Feb 27 00:00 usb1 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.0.auto/usb1
->      lrwxrwxrwx 1 root root 0 Feb 27 00:00 usb2 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.0.auto/usb2
->      lrwxrwxrwx 1 root root 0 Feb 27 00:00 usb3 -> ../../../devices/platform/soc@0/a4f8800.usb/a400000.usb/xhci-hcd.1.auto/usb3
->
-> Have you also encountered this?
+Re: [PATCH v1 1/2] dt-bindings: net: motorcomm: Add pad driver strength cfg
+From: Frank Sae <Frank.Sae@motor-comm.com>
+to: Samin Guo <samin.guo@starfivetech.com>, <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>, Peter Geis <pgwipeout@gmail.com>
+data: 2023/4/26
 
-I've had some issues with QMPPHY not (sometimes?) probing in time on SM6115 only when built as a module.. perhaps it'd be worth checking out of it works fine with =y?
+> 
+> 
+> On 2023/4/26 14:35, Samin Guo wrote:
+>> The motorcomm phy (YT8531) supports the ability to adjust the drive
+>> strength of the rx_clk/rx_data, the value range of pad driver
+>> strength is 0 to 7.
+>>
+>> Signed-off-by: Samin Guo <samin.guo@starfivetech.com>
+>> ---
+>>  .../devicetree/bindings/net/motorcomm,yt8xxx.yaml      | 10 ++++++++++
+>>  1 file changed, 10 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml b/Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml
+>> index 157e3bbcaf6f..e648e486b6d8 100644
+>> --- a/Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml
+>> +++ b/Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml
+>> @@ -18,6 +18,16 @@ properties:
+>>        - ethernet-phy-id4f51.e91a
+>>        - ethernet-phy-id4f51.e91b
+>>  
+>> +  rx-clk-driver-strength:
+>> +    description: drive strength of rx_clk pad.
+>> +    enum: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+>> +    default: 3
+>> +
+>> +  rx-data-driver-strength:
+>> +    description: drive strength of rxd/rx_ctl rgmii pad.
+>> +    enum: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+>> +    default: 3
+>> +
+> 
+> rx-clk-driver-strength and rx-data-driver-strength are not standard, so please add "motorcomm,".
+> rx-clk-driver-strength => motorcomm,rx-clk-driver-strength
+>
+
+Thanks, I will fix it next version.
 
 
-Konrad
+Best regards,
+Samin
+ 
+> 
+>>    rx-internal-delay-ps:
+>>      description: |
+>>        RGMII RX Clock Delay used only when PHY operates in RGMII mode with
 
->
-> Best,
->
-> Adrien
->
+
