@@ -2,108 +2,245 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 953AA6F0B69
-	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 19:51:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E04B6F0BAD
+	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 20:00:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244319AbjD0RvX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Apr 2023 13:51:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60154 "EHLO
+        id S244353AbjD0SAk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Apr 2023 14:00:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39402 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243982AbjD0RvW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 13:51:22 -0400
-Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CFC210D;
-        Thu, 27 Apr 2023 10:51:21 -0700 (PDT)
-Received: from g550jk.localnet (unknown [62.108.10.64])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id DD897CCBE1;
-        Thu, 27 Apr 2023 17:50:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1682617849; bh=NIY1N6khezq9+ZTcdf4CI2PZJx2zYchLwM1fp6lZo0A=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=aXEMnvun3ENv8iPHd1MiLBtsE5FXHEqngQMklwv+OslGFTyAdx9vqOnq8xShhCEg8
-         +0cqiUeamn2INSEdAz7NDlFZU70J9NNbqnAuwo/H2kbdGg2ph3hEco01xg0Qs4Wtnr
-         2WXv4VZNp1i33nchNq6wUl9EyUd3WxUh4R8YyEEk=
-From:   Luca Weiss <luca@z3ntu.xyz>
-To:     Lee Jones <lee@kernel.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
+        with ESMTP id S244283AbjD0SAi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 14:00:38 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36D593A92
+        for <devicetree@vger.kernel.org>; Thu, 27 Apr 2023 11:00:37 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2a8ba23a2abso86181491fa.2
+        for <devicetree@vger.kernel.org>; Thu, 27 Apr 2023 11:00:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1682618435; x=1685210435;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=T2GIu/+OnkLafZqySOKrzD8ciYv3HmQaDFMtQHfu3W8=;
+        b=GNl7C2x83eoYeZnyG+bDI9/h8i2odgcHYWafi46kOk7JzJjF5axhRmi0NAnbCRGi9c
+         kPNaOydGl8zElv98sZkCKsYhuEo6q3b4bxdyYZthrpRKavVJ/zocapR0Q9VCKUJ1qZ+R
+         GDFw8svv0wExYnBphIq+5AZWTMab0jYAR6uy/TDwFyp/zjREqiEQhEbFNYDewIUwc+IR
+         7v4At6FjAiTehnl41XcBRdoxVNivrzejLzKAKEAUaxzcdognTnQNsidMVg5FZqko57HK
+         Vbz2B0VzM74DEmaQAkHl7h/ujsemRRkbnsVpD3f5S2QXJesPf5iQ2madGTTzXbN2stcb
+         6ukg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682618435; x=1685210435;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=T2GIu/+OnkLafZqySOKrzD8ciYv3HmQaDFMtQHfu3W8=;
+        b=TQy2KK55HPxeZKLh3fBa1FPNokIoHNc+Rdjz6X9xvemYC4cee+v6wtFwneQSicSIb/
+         tNQM7UZsbisbDILYhDWc13/kLHUVsRere3Mm+mY09M9kpqZY3RIl4IB77VOAYNhoBH/O
+         2zHjvk7vCrnd9qVrXPeXmWQCI/KdlWoxpQHECXrj83sOnkI8YK70221oBd7XFAxkLLIi
+         +YJ8sg0hIZy2mCpv2R5vOAYvB6CM3zRAEtzZBbAGCX1d5nJD9IgS+iRxnaQr7Z3U5RLc
+         L8fsIdOQxTvUmpysR7qQUHI7tvvw2xyrrSCLgxkDDpHeVY5BUA2+fb8mE9sLh4e6sYS/
+         /RvQ==
+X-Gm-Message-State: AC+VfDyK1sQZqb0rhi4z10iq5yN1rz7TO5g24vtitvg7Gp4CzEW5qbXX
+        r+QFrbBFvdKCed7Eio0pJ/ZHvA==
+X-Google-Smtp-Source: ACHHUZ5CcVXxlMWC43mQzxQDgoafzAlqyemf34S/dtcAHVQXQpFbKrBmB2oqIPlr6oiuy0adBms73g==
+X-Received: by 2002:a2e:90c2:0:b0:2a8:ea22:28a6 with SMTP id o2-20020a2e90c2000000b002a8ea2228a6mr946880ljg.9.1682618435356;
+        Thu, 27 Apr 2023 11:00:35 -0700 (PDT)
+Received: from [172.23.2.5] ([195.167.132.10])
+        by smtp.gmail.com with ESMTPSA id f14-20020a2ea0ce000000b002ab1536377fsm1443232ljm.105.2023.04.27.11.00.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Apr 2023 11:00:34 -0700 (PDT)
+Message-ID: <faada5fc-3dda-2d69-508a-15dbf5ddbbcc@linaro.org>
+Date:   Thu, 27 Apr 2023 21:00:33 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 5/7] phy: qcom-qmp-combo: Introduce drm_bridge
+Content-Language: en-GB
+To:     neil.armstrong@linaro.org,
+        Bryan O'Donoghue <pure.logic@nexus-software.ie>,
+        Bjorn Andersson <quic_bjorande@quicinc.com>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Johan Hovold <johan@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-leds@vger.kernel.org, linux-iio@vger.kernel.org,
-        linux-doc@vger.kernel.org
-Subject: Re: [PATCH v2 8/8] Documentation: leds: Add "rgb:status" path
-Date:   Thu, 27 Apr 2023 19:50:47 +0200
-Message-ID: <5823752.MhkbZ0Pkbq@z3ntu.xyz>
-In-Reply-To: <20230427160559.GC50521@google.com>
-References: <20230414-pmi632-v2-0-98bafa909c36@z3ntu.xyz>
- <20230414-pmi632-v2-8-98bafa909c36@z3ntu.xyz>
- <20230427160559.GC50521@google.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230425034010.3789376-1-quic_bjorande@quicinc.com>
+ <20230425034010.3789376-6-quic_bjorande@quicinc.com>
+ <CAJB8c04ah3YfK2VGxDhHMHK4KVJ7kZQv0b5JfPBu7jOk3mFQRA@mail.gmail.com>
+ <d1850d73-9d92-c0aa-7cf8-bae4c0e4144b@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <d1850d73-9d92-c0aa-7cf8-bae4c0e4144b@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Donnerstag, 27. April 2023 18:05:59 CEST Lee Jones wrote:
-> On Tue, 18 Apr 2023, Luca Weiss wrote:
-> > The path /sys/class/leds/rgb:status is already widely used with the
-> > qcom-lpg driver and others. Document it.
+On 27/04/2023 16:11, Neil Armstrong wrote:
+> On 26/04/2023 12:33, Bryan O'Donoghue wrote:
+>> On Tue, Apr 25, 2023 at 4:40 AM Bjorn Andersson
+>> <quic_bjorande@quicinc.com> wrote:
+>>>
+>>> The QMP combo PHY sits in an of_graph connected between the DisplayPort
+>>> controller and a USB Type-C connector (or possibly a redriver).
+>>>
+>>> The TCPM needs to be able to convey the HPD signal to the DisplayPort
+>>> controller, but no directly link is provided by DeviceTree so the signal
+>>> needs to "pass through" the QMP combo phy.
+>>>
+>>> Handle this by introducing a drm_bridge which upon initialization finds
+>>> the next bridge (i.e. the usb-c-connector) and chain this together. This
+>>> way HPD changes in the connector will propagate to the DisplayPort
+>>> driver.
+>>>
+>>> The connector bridge is resolved lazily, as the TCPM is expected to be
+>>> able to resolve the typec mux and switch at probe time, so the QMP combo
+>>> phy will probe before the TCPM.
+>>>
+>>> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+>>> ---
+>>>   drivers/phy/qualcomm/phy-qcom-qmp-combo.c | 36 +++++++++++++++++++++++
+>>>   1 file changed, 36 insertions(+)
+>>>
+>>> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c 
+>>> b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
+>>> index 5d6d6ef3944b..84bc08002537 100644
+>>> --- a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
+>>> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
+>>> @@ -22,6 +22,8 @@
+>>>   #include <linux/usb/typec.h>
+>>>   #include <linux/usb/typec_mux.h>
+>>>
+>>> +#include <drm/drm_bridge.h>
+>>> +
+>>>   #include <dt-bindings/phy/phy-qcom-qmp.h>
+>>>
+>>>   #include "phy-qcom-qmp.h"
+>>> @@ -1332,6 +1334,8 @@ struct qmp_combo {
+>>>          struct clk_hw dp_link_hw;
+>>>          struct clk_hw dp_pixel_hw;
+>>>
+>>> +       struct drm_bridge bridge;
+>>> +
+>>>          struct typec_switch_dev *sw;
+>>>          enum typec_orientation orientation;
+>>>   };
+>>> @@ -3196,6 +3200,34 @@ static int qmp_combo_register_clocks(struct 
+>>> qmp_combo *qmp, struct device_node *
+>>>          return devm_add_action_or_reset(qmp->dev, 
+>>> phy_clk_release_provider, dp_np);
+>>>   }
+>>>
+>>> +static int qmp_combo_bridge_attach(struct drm_bridge *bridge,
+>>> +                                  enum drm_bridge_attach_flags flags)
+>>> +{
+>>> +       struct qmp_combo *qmp = container_of(bridge, struct 
+>>> qmp_combo, bridge);
+>>> +       struct drm_bridge *next_bridge;
+>>> +
+>>> +       if (!(flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR))
+>>> +               return -EINVAL;
+>>> +
+>>> +       next_bridge = devm_drm_of_get_bridge(qmp->dev, 
+>>> qmp->dev->of_node, 0, 0);
+>>> +       if (IS_ERR(next_bridge))
+>>> +               return dev_err_probe(qmp->dev, PTR_ERR(next_bridge), 
+>>> "failed to acquire drm_bridge\n");
+>>> +
+>>> +       return drm_bridge_attach(bridge->encoder, next_bridge, 
+>>> bridge, DRM_BRIDGE_ATTACH_NO_CONNECTOR);
+>>> +}
+>>> +
+>>> +static const struct drm_bridge_funcs qmp_combo_bridge_funcs = {
+>>> +       .attach = qmp_combo_bridge_attach,
+>>> +};
+>>> +
+>>> +static int qmp_combo_dp_register_bridge(struct qmp_combo *qmp)
+>>> +{
+>>> +       qmp->bridge.funcs = &qmp_combo_bridge_funcs;
+>>> +       qmp->bridge.of_node = qmp->dev->of_node;
+>>> +
+>>> +       return devm_drm_bridge_add(qmp->dev, &qmp->bridge);
+>>> +}
+>>> +
+>>>   static int qmp_combo_parse_dt_lecacy_dp(struct qmp_combo *qmp, 
+>>> struct device_node *np)
+>>>   {
+>>>          struct device *dev = qmp->dev;
+>>> @@ -3459,6 +3491,10 @@ static int qmp_combo_probe(struct 
+>>> platform_device *pdev)
+>>>          if (ret)
+>>>                  return ret;
+>>>
+>>> +       ret = qmp_combo_dp_register_bridge(qmp);
+>>> +       if (ret)
+>>> +               return ret;
 > 
-> Where is this used?
+> I think the DRM part should be only built if CONFIG_DRM is enabled, I don't
+> have a strong opinion on this, I think Vinod could help here.
 > 
-> $ grep status drivers/leds/rgb/leds-qcom-lpg.c
-> <no results>
-
-This is set in devicetree, e.g. from qcom-msm8974pro-fairphone-fp2.dts[0]:
-
-    color = <LED_COLOR_ID_RGB>;
-    function = LED_FUNCTION_STATUS;
-
-And then something in the LED core sets the name based on that, I'd have
-to dig to find where exactly.
-
-Regards
-Luca
-
-[0] https://github.com/torvalds/linux/blob/master/arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dts#L105-L106
-
+>>> +
+>>>          /* Check for legacy binding with child nodes. */
+>>>          usb_np = of_get_child_by_name(dev->of_node, "usb3-phy");
+>>>          if (usb_np) {
+>>> -- 
+>>> 2.39.2
+>>>
+>>
+>> You need to add some or all of these
+>>         select DRM_DISPLAY_DP_HELPER
+>>         select DRM_DISPLAY_HELPER
+>>         select DRM_DP_AUX_BUS
+>>         select DRM_KMS_HELPER
+>>         select DRM_MIPI_DSI
+>>         select DRM_PANEL
+>>
+>>
+>> /opt/linaro/gcc-linaro-7.5.0-2019.12-x86_64_aarch64-linux-gnu/bin/aarch64-linux-gnu-ld:
+>> Unexpected GOT/PLT entries detected!
+>> /opt/linaro/gcc-linaro-7.5.0-2019.12-x86_64_aarch64-linux-gnu/bin/aarch64-linux-gnu-ld:
+>> Unexpected run-time procedure linkages detected!
+>> drivers/phy/qualcomm/phy-qcom-qmp-combo.o: In function
+>> `qmp_combo_bridge_attach':
+>> phy-qcom-qmp-combo.c:(.text+0xb50): undefined reference to
+>> `devm_drm_of_get_bridge'
+>> phy-qcom-qmp-combo.c:(.text+0xb6c): undefined reference to 
+>> `drm_bridge_attach'
+>> drivers/phy/qualcomm/phy-qcom-qmp-combo.o: In function `qmp_combo_probe':
+>> phy-qcom-qmp-combo.c:(.text+0x13fc): undefined reference to
+>> `devm_drm_bridge_add'
 > 
-> > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> > ---
-> > 
-> >  Documentation/leds/well-known-leds.txt | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/Documentation/leds/well-known-leds.txt
-> > b/Documentation/leds/well-known-leds.txt index 2160382c86be..439d4dac4472
-> > 100644
-> > --- a/Documentation/leds/well-known-leds.txt
-> > +++ b/Documentation/leds/well-known-leds.txt
-> > @@ -58,6 +58,7 @@ LEDs on notebook body, indicating that sound input /
-> > output is muted.> 
-> >  * System notification
-> > 
-> > +Good: "rgb:status"
-> > 
-> >  Legacy: "status-led:{red,green,blue}" (Motorola Droid 4)
-> >  Legacy: "lp5523:{r,g,b}" (Nokia N900)
+> I think CONFIG_DRM_PANEL_BRIDGE in addition to CONFIG_DRM. should be 
+> enough.
+> 
 
+I'd say DRM_PANEL_BRIDGE || !DRM_PANEL_BRIDGE in addition to DRM. And we 
+probably should fix the  devm_drm_of_get_bridge() stub to use 
+drm_of_find_panel_or_bridge() with panel = NULL.
 
+> With this config added and my drm-bridge hat:
+> 
+> Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
+> 
+> Neil
+> 
+> 
+>>
+>> ---
+>> bod
+> 
 
+-- 
+With best wishes
+Dmitry
 
