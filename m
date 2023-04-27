@@ -2,70 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B71876F03D4
-	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 11:58:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 952D36F03F1
+	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 12:09:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243212AbjD0J6Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Apr 2023 05:58:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42470 "EHLO
+        id S243204AbjD0KJ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Apr 2023 06:09:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243410AbjD0J6W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 05:58:22 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7637D4C0E;
-        Thu, 27 Apr 2023 02:58:19 -0700 (PDT)
-Received: from ip4d1634d3.dynamic.kabel-deutschland.de ([77.22.52.211] helo=phil.lan)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1pryOG-0003kL-9j; Thu, 27 Apr 2023 11:58:16 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Peter Geis <pgwipeout@gmail.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2] arm64: dts: rockchip: fix nEXTRST on SOQuartz
-Date:   Thu, 27 Apr 2023 11:58:08 +0200
-Message-Id: <168258947019.413434.3793815124340047357.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230421152610.21688-1-frattaroli.nicolas@gmail.com>
-References: <20230421152610.21688-1-frattaroli.nicolas@gmail.com>
+        with ESMTP id S233483AbjD0KJ2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 06:09:28 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3261892;
+        Thu, 27 Apr 2023 03:09:26 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33RA95Eo111786;
+        Thu, 27 Apr 2023 05:09:05 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1682590145;
+        bh=5R2fhojW6V0uw1XdQV9VrPNhcf4y1GUJ9EavXHUjwLA=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=Elp678UfEnqHGSTZJvdo/AaSRaJMlsVEFkNjaphsiIC0emALhU4qiw876VZgKOMs/
+         oRN0AooxHfUXXD6yy0wVO9qVWUgRW1rflLh3cGj5QRSTIImjS289OZvdQgc8MJi9zK
+         2sutW7YPi/+1E+vj/FYhTJBoC9bCkxAPkN8rx/1U=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33RA954n102611
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 27 Apr 2023 05:09:05 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 27
+ Apr 2023 05:09:05 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 27 Apr 2023 05:09:05 -0500
+Received: from [10.249.130.34] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33RA91tS043983;
+        Thu, 27 Apr 2023 05:09:01 -0500
+Message-ID: <24ea8982-e2ab-d58d-dedd-f51703d0bb92@ti.com>
+Date:   Thu, 27 Apr 2023 15:39:00 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [EXTERNAL] Re: [PATCH 1/5] arm64: dts: ti: k3-j7200: Add general
+ purpose timers
+To:     Tony Lindgren <tony@atomide.com>
+CC:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <m-chawdhry@ti.com>, <n-francis@ti.com>, <u-kumar1@ti.com>
+References: <20230426103219.1565266-1-u-kumar1@ti.com>
+ <20230426103219.1565266-2-u-kumar1@ti.com>
+ <20230427080049.GH14287@atomide.com>
+Content-Language: en-US
+From:   "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <20230427080049.GH14287@atomide.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
-        autolearn_force=no version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 21 Apr 2023 17:26:10 +0200, Nicolas Frattaroli wrote:
-> In pre-production prototypes (of which I only know one person
-> having one, Peter Geis), GPIO0 pin A5 was tied to the SDMMC
-> power enable pin on the CM4 connector. On all production models,
-> this is not the case; instead, this pin is used for the nEXTRST
-> signal, and the SDMMC power enable pin is always pulled high.
-> 
-> Since everyone currently using the SOQuartz device trees will
-> want this change, it is made to the tree without splitting the
-> trees into two separate ones of which users will then inevitably
-> choose the wrong one.
-> 
-> [...]
+Hi Tony
 
-Applied, thanks!
+On 4/27/2023 1:30 PM, Tony Lindgren wrote:
+> Hi,
+>
+> * Udit Kumar <u-kumar1@ti.com> [230426 10:38]:
+>> There are 20 general purpose timers on j7200 that can be used for things
+>> like PWM using pwm-omap-dmtimer driver. There are also additional ten
+>> timers in the MCU domain.
+> ...
+>
+> ....
+> Oh so also the MCU timers now have interrupts, nice. Can you please check
+> if what we have in the comments the other SoCs in the dtsi files for MCU
+> timers not having routable interrupts is correct?
 
-[1/1] arm64: dts: rockchip: fix nEXTRST on SOQuartz
-      commit: e5d8752e957872a844ed46736b15f30b08af6591
+checked for AM65 and AM64, looks these SOC follow different IT map wrt J7200
 
-As fix for 6.4
+On J7200 reading TRM
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+https://www.ti.com/lit/pdf/spruiu1
+
+Section 9.4.3.1.2 GIC500 SPI Interrupt Map, table Table 9-109.
+
+MCU_TIMER0_INTR_PEND_0 (848) to MCU_TIMER9_INTR_PEND_0 (857)
+
+looks to be available for A core.
+
+> Also, should the MCU timers be still tagged with status = "reserved"?
+Will mark status as  reserved
+> See the comments in k3-am62-mcu.dtsi for example for both questions.
+>
+> Regards,
+>
+> Tony
