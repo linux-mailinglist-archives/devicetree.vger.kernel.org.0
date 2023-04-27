@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2064B6F0F00
-	for <lists+devicetree@lfdr.de>; Fri, 28 Apr 2023 01:31:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46AA46F0F0D
+	for <lists+devicetree@lfdr.de>; Fri, 28 Apr 2023 01:35:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229724AbjD0Xb2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Apr 2023 19:31:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37010 "EHLO
+        id S1344235AbjD0Xf2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Apr 2023 19:35:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344289AbjD0XbJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 19:31:09 -0400
+        with ESMTP id S1344236AbjD0XfX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 19:35:23 -0400
 Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D19B2D5D
-        for <devicetree@vger.kernel.org>; Thu, 27 Apr 2023 16:30:18 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A621930C2
+        for <devicetree@vger.kernel.org>; Thu, 27 Apr 2023 16:34:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1682638217;
+        s=mimecast20190719; t=1682638477;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          in-reply-to:in-reply-to:references:references;
-        bh=EVstEm9h+f8vy/mEV9sr+uXiJuKtGJYBIssk81uyPSQ=;
-        b=OIHTp/UyyZBqmXSjR3cLk3i+hamcv44jyxX5XUFSrVVF5uyGw38Kdbz5grrgtiu1PqbKP5
-        ZVgte9bBzxGu6YFIPsjehXaoFwfdb0/yPnWT1DfG+eeDsB5fzlmDsgGTulg34JyynA8sXY
-        iHcy1drSB1m/y3x481ohpWgW7rmPkDY=
-Received: from mail-yw1-f197.google.com (mail-yw1-f197.google.com
- [209.85.128.197]) by relay.mimecast.com with ESMTP with STARTTLS
+        bh=WAbmGag01n5DmSI3CzgProTjcse9Z3IcWuvX59Ri6Jg=;
+        b=MOrWLxFdXApybiuFt3Vg9kLxQUjpXHw8cw0js24W0dO5kftNfGpvhnrX9zVGCxbD4H1CW+
+        c3e2+a/eEGAXdNnO8rLVPywXWve2ozjyONJkjHBwMMnlpcu9LTRijqGkMqhzmzOA2bZFSL
+        OScKLdzZs/w438dL5EG9FqniadtRZlE=
+Received: from mail-yw1-f198.google.com (mail-yw1-f198.google.com
+ [209.85.128.198]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-294-174ri-3cN2uq6aG-KPFITg-1; Thu, 27 Apr 2023 19:30:16 -0400
-X-MC-Unique: 174ri-3cN2uq6aG-KPFITg-1
-Received: by mail-yw1-f197.google.com with SMTP id 00721157ae682-54f8a3f6b03so142921657b3.2
-        for <devicetree@vger.kernel.org>; Thu, 27 Apr 2023 16:30:16 -0700 (PDT)
+ us-mta-648-6NY3gPDSOUWDTAhcdaOrng-1; Thu, 27 Apr 2023 19:34:36 -0400
+X-MC-Unique: 6NY3gPDSOUWDTAhcdaOrng-1
+Received: by mail-yw1-f198.google.com with SMTP id 00721157ae682-556011695d1so124348577b3.1
+        for <devicetree@vger.kernel.org>; Thu, 27 Apr 2023 16:34:36 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682638215; x=1685230215;
+        d=1e100.net; s=20221208; t=1682638475; x=1685230475;
         h=user-agent:in-reply-to:content-disposition:mime-version:references
          :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=EVstEm9h+f8vy/mEV9sr+uXiJuKtGJYBIssk81uyPSQ=;
-        b=BJFsB0mHKLyUca3SwGTlHZG260UGQ/64IBIeD4iuJMHiTLZTkeFDcmxtZfT0iTR8Ah
-         YLCr39uVVMECht6MLrDQhSArMdi9IG96GZyqkSiRL6eeRk71ZwrJk6Dy9veK5IXLxibQ
-         F9w4oknEYlApnkm/vWM/qU6xiRTFdc30Ll5F51V9KXuiANfoyvYHeApA9tupabUL6eZ1
-         puU78vjgVh3El2o2Usf3ZnXPAKtEHr/iZOY6S1dlJZXu+Z6Pq8csWMf+QCpemAnEs+JW
-         BZASst5+UtahS55VCH/FVjJFbE60J9EqezW3HB3Jzx6TvtqYXspghldl58PvZ+nxTCpr
-         G61w==
-X-Gm-Message-State: AC+VfDwoKx3FNyJip1zh8uk6zkerBDPEADcB09mB068F17RZ+4FeOfsM
-        Le0GNbLdQcXT+Q/dxP8IKtHP9mnDF0hNAzXsXlBXUKBPifZTitWBLCjELPtEMkrO4n+BO6UNHpv
-        ADh6Xj+YcS9suCW1fh6TnFw==
-X-Received: by 2002:a0d:d8cf:0:b0:544:5b63:b956 with SMTP id a198-20020a0dd8cf000000b005445b63b956mr2652658ywe.8.1682638215739;
-        Thu, 27 Apr 2023 16:30:15 -0700 (PDT)
-X-Google-Smtp-Source: ACHHUZ4AlF6UPNRzq0q97LZdRYbg5r+sonNynDI2yOTx2L/mRwUr5sNyCxdgQv79FQ8u/uf/zku5iQ==
-X-Received: by 2002:a0d:d8cf:0:b0:544:5b63:b956 with SMTP id a198-20020a0dd8cf000000b005445b63b956mr2652642ywe.8.1682638215497;
-        Thu, 27 Apr 2023 16:30:15 -0700 (PDT)
+        bh=WAbmGag01n5DmSI3CzgProTjcse9Z3IcWuvX59Ri6Jg=;
+        b=Ha68ljm1Ee0nBYNOlpdTSxME5ErTbN1IQ9D5pZjUsthJS+xREyGF/0Q8RgDLM7PsAW
+         9SR8ItfgVKUxpbK7V9p9/Czhw6NfE4KEK5PlivLl5PHKxe4ypXkwN8F+IpFcV/+k1xAa
+         iGrgut65Zln6HUzwcuE+QRwI/nRjOY4b9GJIa6oJdXSVLW1/syG3YXqsibx1JGjwxyqv
+         sMVwRGO50kkJ5iKJ+mcyWW0tRcf9loDathGRsluA6r9TWn0VSmI0Q3ZSePQmQtMKmkBo
+         oOgV4TyLfLohLa9cfoXBXwcXAhg5JTOMiUHZtYjeTlyjZhSH/39O/waPeHewwTWJgs08
+         +pyQ==
+X-Gm-Message-State: AC+VfDypARrr5a6FhiewkFKmMPXVyly9Nui2G9gxtkiMFZemkXI7kVJB
+        ackJqtLuIW06iytMIeZG2PFI3H8Sydbl5c60gOXYU8Yj0YQ23r5aemSsDoqm4xBSaXcxxiN8/Ru
+        8fVwZ+d0gEizPPtbh9nhTMw==
+X-Received: by 2002:a0d:c946:0:b0:556:c672:3455 with SMTP id l67-20020a0dc946000000b00556c6723455mr2381988ywd.40.1682638475578;
+        Thu, 27 Apr 2023 16:34:35 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ73hjwG6+Ltq+wLdLn36T+dLP3PI+N06414PCgAVqJLApv/bdsLxACX1f3tsLzSETOMQ8YF9A==
+X-Received: by 2002:a0d:c946:0:b0:556:c672:3455 with SMTP id l67-20020a0dc946000000b00556c6723455mr2381963ywd.40.1682638474836;
+        Thu, 27 Apr 2023 16:34:34 -0700 (PDT)
 Received: from x1 (c-73-214-169-22.hsd1.pa.comcast.net. [73.214.169.22])
-        by smtp.gmail.com with ESMTPSA id k187-20020a816fc4000000b00545a08184b9sm5113278ywc.73.2023.04.27.16.30.13
+        by smtp.gmail.com with ESMTPSA id h190-20020a0dc5c7000000b00545a08184f8sm5137345ywd.136.2023.04.27.16.34.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Apr 2023 16:30:14 -0700 (PDT)
-Date:   Thu, 27 Apr 2023 19:30:12 -0400
+        Thu, 27 Apr 2023 16:34:34 -0700 (PDT)
+Date:   Thu, 27 Apr 2023 19:34:32 -0400
 From:   Brian Masney <bmasney@redhat.com>
 To:     Luca Weiss <luca@z3ntu.xyz>
 Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
@@ -68,14 +68,14 @@ Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
         Brian Masney <masneyb@onstation.org>,
         linux-input@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 2/4] Input: pwm-vibra - add newline to dev_err prints
-Message-ID: <ZEsFhOKHs6yGLizc@x1>
+Subject: Re: [PATCH 4/4] ARM: dts: qcom: msm8974-hammerhead: Add vibrator
+Message-ID: <ZEsGiERTqoMJVh/h@x1>
 References: <20230427-hammerhead-vibra-v1-0-e87eeb94da51@z3ntu.xyz>
- <20230427-hammerhead-vibra-v1-2-e87eeb94da51@z3ntu.xyz>
+ <20230427-hammerhead-vibra-v1-4-e87eeb94da51@z3ntu.xyz>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230427-hammerhead-vibra-v1-2-e87eeb94da51@z3ntu.xyz>
+In-Reply-To: <20230427-hammerhead-vibra-v1-4-e87eeb94da51@z3ntu.xyz>
 User-Agent: Mutt/2.2.7 (2022-08-07)
 X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
@@ -87,8 +87,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 27, 2023 at 10:34:27PM +0200, Luca Weiss wrote:
-> Make sure all printed messages end with a newline.
+On Thu, Apr 27, 2023 at 10:34:29PM +0200, Luca Weiss wrote:
+> The Nexus 5 has a vibrator connected to the clock output of GP1_CLK
+> which we can use with the clk-pwm driver, then we can use that pwm with
+> pwm-vibrator to get haptics functionality.
+> 
+> This patch is based on Brian Masney's previous patch with clk-vibrator.
 > 
 > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
 
