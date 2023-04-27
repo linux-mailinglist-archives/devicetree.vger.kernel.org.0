@@ -2,180 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DF656F0565
-	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 14:11:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AEEEF6F05A8
+	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 14:22:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243215AbjD0MKN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Apr 2023 08:10:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54928 "EHLO
+        id S243517AbjD0MWb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Apr 2023 08:22:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243782AbjD0MKJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 08:10:09 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3E8B59F9
-        for <devicetree@vger.kernel.org>; Thu, 27 Apr 2023 05:10:07 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4edc63c82d1so8593879e87.0
-        for <devicetree@vger.kernel.org>; Thu, 27 Apr 2023 05:10:07 -0700 (PDT)
+        with ESMTP id S243614AbjD0MWa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 08:22:30 -0400
+Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 814472130;
+        Thu, 27 Apr 2023 05:22:29 -0700 (PDT)
+Received: by mail-pg1-x531.google.com with SMTP id 41be03b00d2f7-51452556acdso6211855a12.2;
+        Thu, 27 Apr 2023 05:22:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682597407; x=1685189407;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fQ8qe1BB0G+HYjEpOfPBNu0NP3ENE9SOB00+nySsnF0=;
-        b=EFjdq6kmO3IwygYJjSnuPpG6tNJw3gUimlSwdstfajLcMooVt+zwCL1bDjZdgYGHTf
-         Q682KOpEDxp4ye/cWuCO2P8ylg+7WdkE3xiiO7tNruzmgkdt0HUjjWa/o48ro3GLAmPh
-         m0woCLrad3IJ5sEFZi9ZYKSr0idyDCJ20a+fXOOv4U4SWlgP063t4hd14lCHSWRuDeoh
-         BI5ey7exdfdMtAtYeQ/NKgjmMXdQlfIDliPzF91hD9ErrkPlzfFfjYsbdIPqvc9FvV2J
-         sPThNVpr3BtSxwpHhELKHSG0BkZSzruUtu6QearonKlGqi1mxHGEnTVSykvSAxZA0Agk
-         Rp8Q==
+        d=gmail.com; s=20221208; t=1682598149; x=1685190149;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Je9dOfRheV0xbkP5D8rz4YMFOXvOjexxPPlhbTAEfPg=;
+        b=GQkHqLCx9QOiCVqkmdxf0PEzuwjMhhQn140pliLqoJPgOQ5nb4HFSUeFmKRAUUFL65
+         ygD+kZbwE/NQVPdP2oeBIAXKvHhkanPAeWnkIkz9JlAxYph7Rh+fF2hJqEUFSCO4jOO+
+         mie45R/RwxKV4XqV301GJksXsUh+PpMsyvjT0T/yMpZnEIFbHNI+2ADNuPmvtxQRjbL7
+         qfeqLmsNO6dxA/XznhGoOIvDCAtl/J/xBFWbEIidS5y/piZ8gfH5Z9VHGjUJbqhhVvBi
+         v4zdblaFMnGtRS50BUFUUv4E95KhJbOxxNclkMMex9+fV9mdbVYdz8xAFlZyNEYqgqnt
+         DRrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682597407; x=1685189407;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=fQ8qe1BB0G+HYjEpOfPBNu0NP3ENE9SOB00+nySsnF0=;
-        b=iMg8mREcfIgUTGxN6yD/MpZLzK3ELRL31bKXcz8zyI43rZLKZyOua4I17Nycwe+J+G
-         Tbsv6aCWN+5wJ2ceTwTibtU5w4yTCwweC3ZxcKfrdaIOsJtgTTrcE0aXNKkVXT+/Zcg5
-         WiZLb9m9A+gD07d9kIO0dPgkbzU9cGGZnsLJ/cQ+bxTixsqd7lVOJIGVyy5j88oVv/NI
-         spW27X6Sc7+05yn7N4rfS0BNeN82DU6zpeUL4UHtpA4WigQ1rJtzEKYDbbH98YI+R2Nz
-         oYm/26oAMUirP7lpNyCQZ4SBNHXRbYZQFZzPrQbkh2kjDeb18DeKjcHmBn+e0cMXCsso
-         Ig/A==
-X-Gm-Message-State: AC+VfDyq+A2twyt62aC4gyAvas4Qtx+HMb5UpTbiIA33CDo6FT5dpVwS
-        08fxSYR7ZcoWTjtZ5Ew7kZBSKQ==
-X-Google-Smtp-Source: ACHHUZ4uN2zzJ7cgkfoU0GrY/fzKjhLGeZLuKhL0GulOyKqNusZ4umA087qyuSEAS1QpgYGYIzCOsg==
-X-Received: by 2002:ac2:5549:0:b0:4ea:e0e7:d12d with SMTP id l9-20020ac25549000000b004eae0e7d12dmr472076lfk.1.1682597407485;
-        Thu, 27 Apr 2023 05:10:07 -0700 (PDT)
-Received: from [192.168.1.2] (c-05d8225c.014-348-6c756e10.bbcust.telenor.se. [92.34.216.5])
-        by smtp.gmail.com with ESMTPSA id e7-20020ac25467000000b004d4d7fb0e07sm2892044lfn.216.2023.04.27.05.10.06
+        d=1e100.net; s=20221208; t=1682598149; x=1685190149;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Je9dOfRheV0xbkP5D8rz4YMFOXvOjexxPPlhbTAEfPg=;
+        b=fv36iiC6hfnLFNE9gSKrbl6UWdp0sdR2ENLYlg6o3j9ta+hYkki+UOPVnwfdwpSysP
+         gI2jHErHwrenHlzBDjAFQImB+KSAe6baw1LTHMFGmvwfWpMqmhrSQgHhXezTVds0N+K0
+         RaxP0noipJ9b3xhdOZaO4FYo4UwG6y7GuXUmYc3zvGGgS0qjNGVU26coFpzs1Qx/ltyG
+         n2jyRYirBBi8J7bc+q2LDZVnjx0RvOIbeh3jDrxfMQy9uef0PozkmWT+U1WObk3fSElL
+         aik9JL9hw/oadLW7emjjc4MzuD7KcN0SJkJMC3waE58fUOTPRZbmx6EcutzEEpG0oBTr
+         TOQA==
+X-Gm-Message-State: AC+VfDyZMVTQmsq0FUYeE1i747F3NpPePyO9QOF1s9KFnDzho7Afsg+c
+        WVN5TvPK6j1b/+i7OKV3OFg=
+X-Google-Smtp-Source: ACHHUZ60LSwIT0w8lkNEvMzM0Y0TrOpiNVgl24TggeN+M+JPyg2fFsrpOK3fdBeW4lKJvNEje1Dz8w==
+X-Received: by 2002:a17:90a:f312:b0:24c:1cc:e15 with SMTP id ca18-20020a17090af31200b0024c01cc0e15mr1813547pjb.12.1682598148867;
+        Thu, 27 Apr 2023 05:22:28 -0700 (PDT)
+Received: from localhost.localdomain (n220246252240.netvigator.com. [220.246.252.240])
+        by smtp.gmail.com with ESMTPSA id ot2-20020a17090b3b4200b0023cfdbb6496sm13443011pjb.1.2023.04.27.05.22.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Apr 2023 05:10:06 -0700 (PDT)
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 27 Apr 2023 14:10:03 +0200
-Subject: [PATCH v2 8/8] ARM: dts: ux500: Add eSRAM nodes
+        Thu, 27 Apr 2023 05:22:28 -0700 (PDT)
+From:   Jianhua Lu <lujianhua000@gmail.com>
+To:     Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Jianhua Lu <lujianhua000@gmail.com>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v2] dt-bindings: display/msm: dsi-controller-main: Document qcom,master-dsi and qcom,sync-dual-dsi
+Date:   Thu, 27 Apr 2023 20:21:32 +0800
+Message-Id: <20230427122132.24840-1-lujianhua000@gmail.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230417-ux500-dma40-cleanup-v2-8-cdaa68a4b863@linaro.org>
-References: <20230417-ux500-dma40-cleanup-v2-0-cdaa68a4b863@linaro.org>
-In-Reply-To: <20230417-ux500-dma40-cleanup-v2-0-cdaa68a4b863@linaro.org>
-To:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Linus Walleij <linus.walleij@linaro.org>
-X-Mailer: b4 0.12.2
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The U8500 has 640 KB of eSRAM, split into 5 banks of 128 KB
-each. Add this to the device tree, with ESRAM 0, 1+2 and 3+4
-as separate devices, since these have different power domains.
+This fixes warning:
+  sm8250-xiaomi-elish-csot.dtb: dsi@ae94000: Unevaluated properties are not allowed ('qcom,master-dsi', 'qcom,sync-dual-dsi' were unexpected)
 
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Acked-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
 ---
- arch/arm/boot/dts/ste-dbx5x0.dtsi | 73 +++++++++++++++++++++++++++++++++++++--
- 1 file changed, 71 insertions(+), 2 deletions(-)
+Changes in v2:
+  - pick up tags
+  - fix typo (need -> needs)
 
-diff --git a/arch/arm/boot/dts/ste-dbx5x0.dtsi b/arch/arm/boot/dts/ste-dbx5x0.dtsi
-index fead7afd5517..c34ccde04600 100644
---- a/arch/arm/boot/dts/ste-dbx5x0.dtsi
-+++ b/arch/arm/boot/dts/ste-dbx5x0.dtsi
-@@ -110,6 +110,74 @@ soc {
- 		interrupt-parent = <&intc>;
- 		ranges;
- 
-+		/*
-+		 * 640KB ESRAM (embedded static random access memory), divided
-+		 * into 5 banks of 128 KB each. This is a fast memory usually
-+		 * used by different accelerators. We group these according to
-+		 * their power domains: ESRAM0 (always on) ESRAM 1+2 and
-+		 * ESRAM 3+4.
-+		 */
-+		sram@40000000 {
-+			/* The first (always on) ESRAM 0, 128 KB */
-+			compatible = "mmio-sram";
-+			reg = <0x40000000 0x20000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0 0x40000000 0x20000>;
-+
-+			sram@0 {
-+				compatible = "stericsson,u8500-esram";
-+				reg = <0x0 0x10000>;
-+				pool;
-+			};
-+			lcpa: sram@10000 {
-+				/*
-+				 * This eSRAM is used by the DMA40 DMA controller
-+				 * for Logical Channel Paramers (LCP), the address
-+				 * where these parameters are stored is called "LCPA".
-+				 * This is addressed directly by the driver so no
-+				 * pool is used.
-+				 */
-+				compatible = "stericsson,u8500-esram";
-+				label = "DMA40-LCPA";
-+				reg = <0x10000 0x800>;
-+			};
-+			sram@10800 {
-+				compatible = "stericsson,u8500-esram";
-+				reg = <0x10800 0xf800>;
-+				pool;
-+			};
-+		};
-+		sram@40020000 {
-+			/* ESRAM 1+2, 256 KB */
-+			compatible = "mmio-sram";
-+			reg = <0x40020000 0x40000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0 0x40020000 0x40000>;
-+		};
-+		sram@40060000 {
-+			/* ESRAM 3+4, 256 KB */
-+			compatible = "mmio-sram";
-+			reg = <0x40060000 0x40000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0 0x40060000 0x40000>;
-+
-+			lcla: sram@20000 {
-+				/*
-+				 * This eSRAM is used by the DMA40 DMA controller
-+				 * for Logical Channel Logical Addresses (LCLA), the address
-+				 * where these parameters are stored is called "LCLA".
-+				 * This is addressed directly by the driver so no
-+				 * pool is used.
-+				 */
-+				compatible = "stericsson,u8500-esram";
-+				label = "DMA40-LCLA";
-+				reg = <0x20000 0x2000>;
-+			};
-+		};
-+
- 		ptm@801ae000 {
- 			compatible = "arm,coresight-etm3x", "arm,primecell";
- 			reg = <0x801ae000 0x1000>;
-@@ -536,9 +604,10 @@ usb_per5@a03e0000 {
- 
- 		dma: dma-controller@801C0000 {
- 			compatible = "stericsson,db8500-dma40", "stericsson,dma40";
--			reg = <0x801C0000 0x1000 0x40010000 0x800>;
--			reg-names = "base", "lcpa";
-+			reg = <0x801C0000 0x1000>;
-+			reg-names = "base";
- 			interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
-+			sram = <&lcpa>, <&lcla>;
- 
- 			#dma-cells = <3>;
- 			memcpy-channels = <56 57 58 59 60>;
+ .../bindings/display/msm/dsi-controller-main.yaml    | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
+diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+index e6c1ebfe8a32..130e16d025bc 100644
+--- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
++++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+@@ -82,6 +82,18 @@ properties:
+       Indicates if the DSI controller is driving a panel which needs
+       2 DSI links.
+ 
++  qcom,master-dsi:
++    type: boolean
++    description: |
++      Indicates if the DSI controller is the master DSI controller when
++      qcom,dual-dsi-mode enabled.
++
++  qcom,sync-dual-dsi:
++    type: boolean
++    description: |
++      Indicates if the DSI controller needs to sync the other DSI controller
++      with MIPI DCS commands when qcom,dual-dsi-mode enabled.
++
+   assigned-clocks:
+     minItems: 2
+     maxItems: 4
 -- 
-2.40.0
+2.39.2
 
