@@ -2,68 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 952D36F03F1
-	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 12:09:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 165B66F046F
+	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 12:48:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243204AbjD0KJ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Apr 2023 06:09:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48520 "EHLO
+        id S243296AbjD0KsI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Apr 2023 06:48:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233483AbjD0KJ2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 06:09:28 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3261892;
-        Thu, 27 Apr 2023 03:09:26 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33RA95Eo111786;
-        Thu, 27 Apr 2023 05:09:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1682590145;
-        bh=5R2fhojW6V0uw1XdQV9VrPNhcf4y1GUJ9EavXHUjwLA=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=Elp678UfEnqHGSTZJvdo/AaSRaJMlsVEFkNjaphsiIC0emALhU4qiw876VZgKOMs/
-         oRN0AooxHfUXXD6yy0wVO9qVWUgRW1rflLh3cGj5QRSTIImjS289OZvdQgc8MJi9zK
-         2sutW7YPi/+1E+vj/FYhTJBoC9bCkxAPkN8rx/1U=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33RA954n102611
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 27 Apr 2023 05:09:05 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 27
- Apr 2023 05:09:05 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 27 Apr 2023 05:09:05 -0500
-Received: from [10.249.130.34] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33RA91tS043983;
-        Thu, 27 Apr 2023 05:09:01 -0500
-Message-ID: <24ea8982-e2ab-d58d-dedd-f51703d0bb92@ti.com>
-Date:   Thu, 27 Apr 2023 15:39:00 +0530
+        with ESMTP id S243448AbjD0KsF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 06:48:05 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85F995256;
+        Thu, 27 Apr 2023 03:48:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1682592483; x=1714128483;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=DJAw9VNz1ZsUBRAPmSWDnMHm4RxRMWbc9EwxSgNFsyA=;
+  b=2bt6Ah9diZX4DTTTzlc7YnQnFXGyt/6Kf4Na4tefrB6wRUrwmeS+lD22
+   pUguPvIZfIUiOFwM2NQAIIJk+MvqcBCC8Qu6eNBmN8EZvYZKSzZ7p31e8
+   4FYK12JKU4Nfb47LnsDmB3McGUWTVg3ttFZJ1bGpzZlPWAfO8nomqg6cv
+   TXGj3UC83cdFkBVrwk2Dj2rg/viKMJVZCQqHwpHkYOn952D3fD9Ew7Rki
+   jnt9mCAkNsHMB1BJsZ5l9wovueDNJ02mjIecseyEixLvGnRr46dHvZjaI
+   AC41mIFb9Ra9lGPVHpEGfocHiIG/ld92wJw7ybsN+kwVyRoqPShfAwBo+
+   A==;
+X-IronPort-AV: E=Sophos;i="5.99,230,1677567600"; 
+   d="scan'208";a="211435929"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 27 Apr 2023 03:48:02 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Thu, 27 Apr 2023 03:48:01 -0700
+Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.21 via Frontend
+ Transport; Thu, 27 Apr 2023 03:47:59 -0700
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     <palmer@dabbelt.com>
+CC:     <conor@kernel.org>, <conor.dooley@microchip.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v1] dt-bindings: riscv: explicitly mention assumption of Zicsr & Zifencei support
+Date:   Thu, 27 Apr 2023 11:43:42 +0100
+Message-ID: <20230427-fence-blurred-c92fb69d4137@wendy>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [EXTERNAL] Re: [PATCH 1/5] arm64: dts: ti: k3-j7200: Add general
- purpose timers
-To:     Tony Lindgren <tony@atomide.com>
-CC:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <m-chawdhry@ti.com>, <n-francis@ti.com>, <u-kumar1@ti.com>
-References: <20230426103219.1565266-1-u-kumar1@ti.com>
- <20230426103219.1565266-2-u-kumar1@ti.com>
- <20230427080049.GH14287@atomide.com>
-Content-Language: en-US
-From:   "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <20230427080049.GH14287@atomide.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1731; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=DJAw9VNz1ZsUBRAPmSWDnMHm4RxRMWbc9EwxSgNFsyA=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDClegdfq/j3oPnKMb1NS3+TYBa7qN1tclAtfvXphfWnXyXx2 9/bsjlIWBjEOBlkxRZbE230tUuv/uOxw7nkLM4eVCWQIAxenAEykai4jw93ZultuPgqb/fbiv19RZ+ WthEL+JXDOi5AWWcEZrctuc5iR4c6uQ/7qxdpei0/3/YlSq1K7lPTYfsWKuy+bbCS5X3d/YgYA
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
 Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,38 +66,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tony
+The dt-binding was defined before the extraction of csr access and
+fence.i into their own extensions, and thus the presence of the I
+base extension implies Zicsr and Zifencei.
+There's no harm in adding them obviously, but for backwards
+compatibility with DTs that existed prior to that extraction, software
+is unable to differentiate between "i" and "i_zicsr_zifencei" without
+any further information.
 
-On 4/27/2023 1:30 PM, Tony Lindgren wrote:
-> Hi,
->
-> * Udit Kumar <u-kumar1@ti.com> [230426 10:38]:
->> There are 20 general purpose timers on j7200 that can be used for things
->> like PWM using pwm-omap-dmtimer driver. There are also additional ten
->> timers in the MCU domain.
-> ...
->
-> ....
-> Oh so also the MCU timers now have interrupts, nice. Can you please check
-> if what we have in the comments the other SoCs in the dtsi files for MCU
-> timers not having routable interrupts is correct?
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+---
+CC: Conor Dooley <conor@kernel.org>
+CC: Rob Herring <robh+dt@kernel.org>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC: Paul Walmsley <paul.walmsley@sifive.com>
+CC: Palmer Dabbelt <palmer@dabbelt.com>
+CC: linux-riscv@lists.infradead.org
+CC: devicetree@vger.kernel.org
+CC: linux-kernel@vger.kernel.org
+---
+ Documentation/devicetree/bindings/riscv/cpus.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-checked for AM65 and AM64, looks these SOC follow different IT map wrt J7200
+diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
+index 4c7ce4a37052..a93bc7eae928 100644
+--- a/Documentation/devicetree/bindings/riscv/cpus.yaml
++++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+@@ -85,6 +85,12 @@ properties:
+       User-Level ISA document, available from
+       https://riscv.org/specifications/
+ 
++      Due to revisions of the ISA specification, some deviations
++      have arisen over time.
++      Notably, riscv,isa was defined prior to the creation of the
++      Zicsr and Zifencei extensions and thus "i" implies
++      "zicsr_zifencei".
++
+       While the isa strings in ISA specification are case
+       insensitive, letters in the riscv,isa string must be all
+       lowercase to simplify parsing.
+-- 
+2.39.2
 
-On J7200 reading TRM
-
-https://www.ti.com/lit/pdf/spruiu1
-
-Section 9.4.3.1.2 GIC500 SPI Interrupt Map, table Table 9-109.
-
-MCU_TIMER0_INTR_PEND_0 (848) to MCU_TIMER9_INTR_PEND_0 (857)
-
-looks to be available for A core.
-
-> Also, should the MCU timers be still tagged with status = "reserved"?
-Will mark status as  reserved
-> See the comments in k3-am62-mcu.dtsi for example for both questions.
->
-> Regards,
->
-> Tony
