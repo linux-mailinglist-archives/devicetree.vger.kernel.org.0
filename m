@@ -2,111 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E63726F0DAC
-	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 23:12:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 386E46F0DC2
+	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 23:30:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229926AbjD0VMZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Apr 2023 17:12:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54464 "EHLO
+        id S1344195AbjD0Vab (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Apr 2023 17:30:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229721AbjD0VMZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 17:12:25 -0400
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CE6E2D7C;
-        Thu, 27 Apr 2023 14:12:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
-        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=dIhyELVPRJUDchr+DxP2dXcydX+E9q80ICcyptj3XLM=; b=yZsUty/Ktr7ZHCzm+DOipnFrA6
-        nlgN0G/4RSJI5Kc/IFq5W1pVHn5rKAdCTQuINTYGt+Fn1COWWO8BphUDwGTe7BwooUJEIHPM1yotY
-        cc9vhEXYsBZEXkcX1o16md71YBiO4+Yw8oQFF5KLQ8yCLfQ8KeAL+I1FgkD6F/khZ8L4=;
-Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:40576 helo=debian-acer)
-        by mail.hugovil.com with esmtpa (Exim 4.92)
-        (envelope-from <hugo@hugovil.com>)
-        id 1ps8uT-0003qd-W4; Thu, 27 Apr 2023 17:12:15 -0400
-Date:   Thu, 27 Apr 2023 17:12:13 -0400
-From:   Hugo Villeneuve <hugo@hugovil.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Fabio Estevam <festevam@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Message-Id: <20230427171213.480d1d3ba1576edc8198e5f0@hugovil.com>
-In-Reply-To: <31610e60-5c1e-4d19-9beb-83b49ef26155@lunn.ch>
-References: <20230427195538.2718661-1-hugo@hugovil.com>
-        <CAOMZO5CQeeme6uhb8NCzR2QADjkBM-mRC9-GUnmhLWSGo5MMoQ@mail.gmail.com>
-        <20230427160608.f051241d750404939296f60d@hugovil.com>
-        <CAOMZO5BNbRV1fLpwDZWgj9+gihHJBBGeZCvkF1tgm5GhwSn8LQ@mail.gmail.com>
-        <20230427162251.518a956ce7a9dcd88352725a@hugovil.com>
-        <31610e60-5c1e-4d19-9beb-83b49ef26155@lunn.ch>
-X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 184.161.19.61
-X-SA-Exim-Mail-From: hugo@hugovil.com
+        with ESMTP id S229508AbjD0Vab (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 17:30:31 -0400
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FF0D212C;
+        Thu, 27 Apr 2023 14:30:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1682631030; x=1714167030;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=E7BGj3Gl5g9SCm5OO2PVG1LtEWlAgM0zB1osTNxvMHw=;
+  b=FxmgsdC5JPWD0qmnyK9p6D97xAaWHZYGrdqs9ZAHfF6A1G8G79GjVMQQ
+   z+f9ZJ5DeZ3NUZS76Cg47dVqict1cz3qkxxyhvftfq0DxABtWD+TTFbW9
+   u6Ksrgn3XzjTSfavN0H3ibG4Wf3Atm4vHcSmWOjWTY7qXfSqg0THF2lzh
+   6EcfAWA0JVMMkMdj8bA/KIdo+c0teSTgKc88NXCd+Xlr+lx5s5Gw9JQqt
+   9fkqwVXNiIhudojWo5S1N/rlpioH9XHHeHK+au4E5nQ/VQPsrYZ/0+7/e
+   KBNM9/1PLKhzOMP1dehvxbrgy5B43OO5b9dAjKsCuzvswS9BbI0PfwOrL
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10693"; a="345028871"
+X-IronPort-AV: E=Sophos;i="5.99,232,1677571200"; 
+   d="scan'208";a="345028871"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Apr 2023 14:30:29 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10693"; a="838570345"
+X-IronPort-AV: E=Sophos;i="5.99,232,1677571200"; 
+   d="scan'208";a="838570345"
+Received: from lkp-server01.sh.intel.com (HELO b95e16499b55) ([10.239.97.150])
+  by fmsmga001.fm.intel.com with ESMTP; 27 Apr 2023 14:30:27 -0700
+Received: from kbuild by b95e16499b55 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1ps9C6-00008N-2M;
+        Thu, 27 Apr 2023 21:30:26 +0000
+Date:   Fri, 28 Apr 2023 05:29:57 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Bharat Bhushan <bbhushan2@marvell.com>, wim@linux-watchdog.org,
+        linux@roeck-us.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        sgoutham@marvell.com
+Cc:     oe-kbuild-all@lists.linux.dev,
+        Bharat Bhushan <bbhushan2@marvell.com>
+Subject: Re: [PATCH 2/2 v4] Watchdog: Add marvell GTI watchdog driver
+Message-ID: <202304280541.b8a8NzCY-lkp@intel.com>
+References: <20230427071408.8493-2-bbhushan2@marvell.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230427071408.8493-2-bbhushan2@marvell.com>
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
-Subject: Re: [PATCH] imx8mn-var-som: dts: fix PHY detection bug by adding
- deassert delay
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 27 Apr 2023 22:56:40 +0200
-Andrew Lunn <andrew@lunn.ch> wrote:
+Hi Bharat,
 
-> On Thu, Apr 27, 2023 at 04:22:51PM -0400, Hugo Villeneuve wrote:
-> > On Thu, 27 Apr 2023 17:07:59 -0300
-> > Fabio Estevam <festevam@gmail.com> wrote:
-> > 
-> > > On Thu, Apr 27, 2023 at 5:06 PM Hugo Villeneuve <hugo@hugovil.com> wrote:
-> > > 
-> > > > Hi Fabio,
-> > > > it uses a ADIN1300 PHY.
-> > > >
-> > > > The datasheet indicate that the "Management interface active (t4)" state is reached at most 5ms after the reset signal is deasserted.
-> > > 
-> > > Please add this information to the commit log and please add a Fixes: tag.
-> > > 
-> > > Thanks
-> > 
-> > Hi,
-> > I am trying to properly add a "Fixes: " tag, but the description for this tag indicates that it is to report that "the patch fixes an issue in a previous commit".
-> > 
-> > In this case, I cannot identify a commit that introduced that bug, apart from the initial commit of the DTS file which didn't have the reset property present?
-> 
-> Is the PHY on the SOM or the carrier?
+kernel test robot noticed the following build errors:
 
-It is on the SOM.
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on groeck-staging/hwmon-next linus/master v6.3 next-20230427]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-> 
-> If the PHY is on the carrier, then the delay is a carrier property,
-> and should be in the carrier .dts file. So use the commit for when the
-> carrier DTS file was added.
-> 
-> If the PHY is on the SOM, then use the commit for when the SOM DTSI
-> was added.
+url:    https://github.com/intel-lab-lkp/linux/commits/Bharat-Bhushan/Watchdog-Add-marvell-GTI-watchdog-driver/20230427-154706
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20230427071408.8493-2-bbhushan2%40marvell.com
+patch subject: [PATCH 2/2 v4] Watchdog: Add marvell GTI watchdog driver
+config: powerpc-allmodconfig (https://download.01.org/0day-ci/archive/20230428/202304280541.b8a8NzCY-lkp@intel.com/config)
+compiler: powerpc-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/86559345de78e2e9f634ba9835a63764b6f88fd5
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Bharat-Bhushan/Watchdog-Add-marvell-GTI-watchdog-driver/20230427-154706
+        git checkout 86559345de78e2e9f634ba9835a63764b6f88fd5
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=powerpc olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=powerpc SHELL=/bin/bash drivers/watchdog/
 
-Ok, will use that.
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202304280541.b8a8NzCY-lkp@intel.com/
 
-Hugo.
+All errors (new ones prefixed by >>):
+
+>> drivers/watchdog/marvell_gti_wdt.c:13:10: fatal error: asm/arch_timer.h: No such file or directory
+      13 | #include <asm/arch_timer.h>
+         |          ^~~~~~~~~~~~~~~~~~
+   compilation terminated.
+
+
+vim +13 drivers/watchdog/marvell_gti_wdt.c
+
+    12	
+  > 13	#include <asm/arch_timer.h>
+    14	
 
 -- 
-Hugo Villeneuve <hugo@hugovil.com>
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
