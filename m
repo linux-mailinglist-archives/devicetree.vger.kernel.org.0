@@ -2,104 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4E4F6F0494
-	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 12:55:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7C606F04AA
+	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 13:04:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243343AbjD0KzJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Apr 2023 06:55:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48056 "EHLO
+        id S243332AbjD0LEV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Apr 2023 07:04:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243283AbjD0KzH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 06:55:07 -0400
-Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A5D71733;
-        Thu, 27 Apr 2023 03:55:06 -0700 (PDT)
-Received: by mail-qt1-x82b.google.com with SMTP id d75a77b69052e-3ef33a83ff1so38120351cf.1;
-        Thu, 27 Apr 2023 03:55:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682592905; x=1685184905;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Q4yxf1kUwqhXPiNIN9b61myjf5LzeWeVStu3Emj9sUI=;
-        b=o3+whjcITy9OD87HXnrfl5jdkVdRuMlIEPiCw2Fz7sT3DkKO+0WuStrjAMGaTqZnKS
-         0vKQ2NmqLPImPvOYxYepAY2qLdsqrgPFMrx3cMZXsxTLWybCRYynnl9oLGCCl0pXnrkz
-         exM8eXA9J6WcsUUGOFMn9qjNDXzPkV1HNP/ppwEELH626gMtuzC8K5/wj0EjRzwA+F4m
-         wAVKV+pp80Bpx+eYTxhbB0HLuLRc4ltLxtYFw+971lefKCJ5mNQA1KGO4EMu/Xqux1LM
-         noyRZzlfntKFCwpKkWjlThOyDZqP1zCVJIdPI+k5CCxms6m20BwHg3sYPkwHjYjrr3XP
-         0EOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682592905; x=1685184905;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Q4yxf1kUwqhXPiNIN9b61myjf5LzeWeVStu3Emj9sUI=;
-        b=ay2HemcLGZiYRrH4lkfEZUh8DaEFCG3nKN2D+Km9uwPHtRnyVca7hL05//Dc6yUIGo
-         AlMKv4u12grKZpNDP4SZufrP6JfUqOy2rQQnW9PabNMWDo+AFqZhoN8HhzUZiebzB/WO
-         YciRJY+4LQgJbk/MTI/YYiV+2LJ5IXtq/JuTp2lJKvQ3qhUpnI9Ixlt88pjOgiWCq0rh
-         EeP8w1XQuQVsMXIbw1BPZcg+pCLyA/jMFdenjLVEWSgLQ4tTfnFIPhEnSB5ByHyW/SVc
-         MekTwyUUA5FVYeFln9n9jWygLeGlFy7/ASEbn7WM27liASjU0rGhTn4lg7Nlj+Xw1uP5
-         ckPw==
-X-Gm-Message-State: AC+VfDyVoTv27XxpcNWA4M6LDcVqAIMQoneDvDg8CQuaZOE+VdzlTa1M
-        BlQMj8KG6XUVDroGjnBwzbBP+YrKS4zzPeyS4bo=
-X-Google-Smtp-Source: ACHHUZ61OHQpcgVMkmE6fFvU0vNwyM94psPjya2fSxnz75hpgVx/bTds3f02yRr3P1D/N1fOuLh6oXHHZg4N+N9utSo=
-X-Received: by 2002:ac8:7f8e:0:b0:3d8:2352:a661 with SMTP id
- z14-20020ac87f8e000000b003d82352a661mr1543069qtj.3.1682592905720; Thu, 27 Apr
- 2023 03:55:05 -0700 (PDT)
+        with ESMTP id S243269AbjD0LEU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 07:04:20 -0400
+Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE44410E;
+        Thu, 27 Apr 2023 04:04:16 -0700 (PDT)
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id E89D11C0E6E; Thu, 27 Apr 2023 13:04:13 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
+        t=1682593453;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=gCx6799fPD1mvbmBrIDrAMnxIBHFIp4o9m2BUKCs55s=;
+        b=iGQ3rxURs2j7UDZIKpZa2LfnryQV7Vyw7frtEnKUiCP1USATzOSHsjw9FGggesZRDsmYVA
+        gKLEgNRd5Vaua6p6LgrvDf4V3QIkJW5MCItd/Fev+qDF9H6dOd4jCtNl2ug4VqwqcggW/+
+        32mJaq+rPII/OVLH694uK55/LASSSQY=
+Date:   Thu, 27 Apr 2023 13:04:13 +0200
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Javier Carrasco <javier.carrasco@wolfvision.net>,
+        phone-devel@vger.kernel.org
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Uwe Kleine-g <u.kleine-koenig@pengutronix.de>,
+        Bastian Hecht <hechtb@gmail.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>
+Subject: Re: [RFC v1 0/4] Input: support virtual objects on touchscreens
+Message-ID: <ZEpWrWpzkI9kNTkr@duo.ucw.cz>
+References: <20230425115049.870003-1-javier.carrasco@wolfvision.net>
 MIME-Version: 1.0
-References: <1682327030-25535-1-git-send-email-quic_rohiagar@quicinc.com>
- <1682327030-25535-3-git-send-email-quic_rohiagar@quicinc.com>
- <ZEk9lySMZcrRZYwX@surfacebook> <66158251-6934-a07f-4b82-4deaa76fa482@quicinc.com>
- <CAHp75VcCAOD3utLjjXeQ97nGcUTm7pic5F52+e7cJDxpDXwttA@mail.gmail.com> <1ed28be7-7bb5-acc5-c955-f4cf238ffc49@quicinc.com>
-In-Reply-To: <1ed28be7-7bb5-acc5-c955-f4cf238ffc49@quicinc.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Thu, 27 Apr 2023 13:54:29 +0300
-Message-ID: <CAHp75VcDBFyG9+RaOUma4y+Q0em2-Nvuk_71vDkenGk+2HJqEQ@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] pinctrl: qcom: Add SDX75 pincontrol driver
-To:     Rohit Agarwal <quic_rohiagar@quicinc.com>
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        linus.walleij@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, richardcochran@gmail.com,
-        manivannan.sadhasivam@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="C8RZd6IZ7KbnjRDA"
+Content-Disposition: inline
+In-Reply-To: <20230425115049.870003-1-javier.carrasco@wolfvision.net>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 27, 2023 at 11:53=E2=80=AFAM Rohit Agarwal
-<quic_rohiagar@quicinc.com> wrote:
-> On 4/26/2023 10:12 PM, Andy Shevchenko wrote:
-> > On Wed, Apr 26, 2023 at 6:18=E2=80=AFPM Rohit Agarwal <quic_rohiagar@qu=
-icinc.com> wrote:
-> >> On 4/26/2023 8:34 PM, andy.shevchenko@gmail.com wrote:
 
-...
+--C8RZd6IZ7KbnjRDA
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> >> Ok, Will update this. Shall I also update "PINGROUP" to "PINCTRL_PINGR=
-OUP"?
-> > Yes, please.
-> PINCTRL_PINGROUP cannot be used as it is, since msm_pigroup has multiple
-> other fields that needs to be set
-> for each pingroup defined.
-> Would rename this to SDX75_PINGROUP, as seen on some other platforms.
-> Would that be ok?
+Hi!
 
-For this patch, yes. But can you create a separate followup that
-replaces three members of struct msm_pingroup by embedding struct
-pingroup into it? There are examples of such changes in the kernel
-already. https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net.git/com=
-mit/drivers/pinctrl?id=3D39b707fa7aba7cbfd7d53be50b6098e620f7a6d4
+> Some touchscreens are shipped with a physical layer on top of them where
+> a number of buttons and a resized touchscreen surface might be
+> available.
 
+Yes, it is quite comon, for example Motorola Droid 4 has 4 virtual
+buttons below touchscreen.
 
+One question is if this should be handled inside the kernel. It will
+make it compatible with existing software, but it will also reduce
+flexibility.
+
+Best regards,
+								Pavel
 --=20
-With Best Regards,
-Andy Shevchenko
+People of Russia, stop Putin before his war on Ukraine escalates.
+
+--C8RZd6IZ7KbnjRDA
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCZEpWrQAKCRAw5/Bqldv6
+8sedAKCiULYxV9Tl2uWqI7oesubhsrSGugCbBS0adKSsnML10omfQxfe3amV/KU=
+=Jsf+
+-----END PGP SIGNATURE-----
+
+--C8RZd6IZ7KbnjRDA--
