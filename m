@@ -2,241 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 787C46F0AC0
-	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 19:23:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C4606F0ACA
+	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 19:25:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244342AbjD0RXa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Apr 2023 13:23:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34414 "EHLO
+        id S243521AbjD0RZS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Apr 2023 13:25:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243737AbjD0RX2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 13:23:28 -0400
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam02on2051.outbound.protection.outlook.com [40.107.95.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0344F40D9;
-        Thu, 27 Apr 2023 10:23:25 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bxsSf7svA4LtiOT/90WOmhQdW0HeaGmDYih9MBJcgYLwpEJNS9WyVyvIM0KndbCpiP9OygszyN6bh0J/o3cTtVvOdEnx0mY0ZXjw97WITzhr8H1uXOirtLl5yLZA7MlAuUDFDNyYb3Q9h1xwH3YtU7OEjuITTtfzZ0SUd+nlxKuT/nJy+Y9/VTpgZg13vzZbbFT0tqcBgTEfWF7Yf86GxkAhoKxmRnpbd0o9XMSLpJVnb/xy2XUQ5jsUdwmkxqmLiYJWorOOwEZt9oQuORwTvD4XXE/l4aTlDRljABoXphNsSz1NJTaIrFju7JJhRAdXm6uutNpoVq06cs1D5u+oCA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7QbURr4C4YX0xyl80OzoiC+zaVeQKeX1vOBTzNVROmo=;
- b=YXb+kfkNSDY+r1lTEFXnNcRJwqgkOtjzGchsXSO/HBabTBJNdlpODTa6DpbmDUU17Zhq5aJkdCxuzxbQLchctTvvnyTthqV9gvIF/dm8dw/RfxW5M9vaC7p8HMgOpRco41dr2A3KaEIMbfaQwsoAzVPkcpOQwVzgRN2jcyxGpYdrD7E5dJ6fPcfq5QAFRJXaTropgU3DNje5lcUaCR1rpZhvdEHbYPZw4rLozVOPvZph4Qgw5dfCLpCnXp5umaR6cMw0Gas1oVCyGx1TuAgsznIvHti5GhGBePb+ptr+lltkk6X56c1DGzfFKbmT1ZIwfaQgTlTpNEkL2JZcwSgJzg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=labundy.com; dmarc=pass action=none header.from=labundy.com;
- dkim=pass header.d=labundy.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=NETORG5796793.onmicrosoft.com; s=selector1-NETORG5796793-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7QbURr4C4YX0xyl80OzoiC+zaVeQKeX1vOBTzNVROmo=;
- b=GWNRxYtr4WN7g72bOzuI0VDZF+RGqMy/LnGwf4BDBU76J7lqBPWN0FPkJTtKpqlkvA6yA0xqQFfECisgozEJHsPkRs8Poy52oLOJFYq+9GdettGb4jnMas7GcGRakHFie4C/o9G9o94ZZpF9NxMNcaj6jeQwbnAa4ofTyIQg7bE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=labundy.com;
-Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
- (2603:10b6:803:43::21) by DM6PR08MB6282.namprd08.prod.outlook.com
- (2603:10b6:5:1f0::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6340.22; Thu, 27 Apr
- 2023 17:23:21 +0000
-Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
- ([fe80::d2d1:7af4:ef32:542]) by SN4PR0801MB3774.namprd08.prod.outlook.com
- ([fe80::d2d1:7af4:ef32:542%3]) with mapi id 15.20.6340.022; Thu, 27 Apr 2023
- 17:23:21 +0000
-Date:   Thu, 27 Apr 2023 12:23:14 -0500
-From:   Jeff LaBundy <jeff@labundy.com>
-To:     Javier Carrasco <javier.carrasco@wolfvision.net>
-Cc:     Thomas =?iso-8859-1?Q?Wei=DFschuh?= <thomas@t-8ch.de>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Henrik Rydberg <rydberg@bitmath.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Uwe Kleine-g <u.kleine-koenig@pengutronix.de>,
-        Bastian Hecht <hechtb@gmail.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>
-Subject: Re: [RFC v1 0/4] Input: support virtual objects on touchscreens
-Message-ID: <ZEqvgnhzm7r4O7hz@nixie71>
-References: <20230425115049.870003-1-javier.carrasco@wolfvision.net>
- <419c9d72-9791-46ff-8317-b4dfe2e2d0a3@t-8ch.de>
- <ZEf5rfzs22HtQivB@nixie71>
- <aa6125d9-1233-7aab-1811-29acd4ad49a5@wolfvision.net>
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aa6125d9-1233-7aab-1811-29acd4ad49a5@wolfvision.net>
-X-ClientProxiedBy: DM6PR01CA0022.prod.exchangelabs.com (2603:10b6:5:296::27)
- To SN4PR0801MB3774.namprd08.prod.outlook.com (2603:10b6:803:43::21)
+        with ESMTP id S243639AbjD0RZQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 13:25:16 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C25FA2D53
+        for <devicetree@vger.kernel.org>; Thu, 27 Apr 2023 10:24:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1682616273;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=28q8f1R5ATkZZRKbMVPNKfNQWWUbVatXGNvWfYjHmSs=;
+        b=JSGyYTx7bJoX/rKRBe2bjwuBAc+rMC9jsU5wwgqPyNY3EZ1FMX2RKR9fkewh+rSiHVOQCh
+        tHGgLLvG6Sfmv+vqARtG/FJTf5Sf7nc+Jxqr1zlY1wYcgGzDWIqXqLe3/r717RfEcJtAEt
+        WFCSsh/6++M+kw9xigFJVKQ1ROweWrw=
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
+ [209.85.222.197]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-541-IBe0wm_xNqOF9FDyG98pbQ-1; Thu, 27 Apr 2023 13:24:31 -0400
+X-MC-Unique: IBe0wm_xNqOF9FDyG98pbQ-1
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-74df84a3d50so618723185a.2
+        for <devicetree@vger.kernel.org>; Thu, 27 Apr 2023 10:24:31 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682616271; x=1685208271;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=28q8f1R5ATkZZRKbMVPNKfNQWWUbVatXGNvWfYjHmSs=;
+        b=KowjNn7j4B+Ep7F3rxdPAHbundlWcnNP4N8ye2KwBvxPklR1qtgUzTrQ4IPSOrDINA
+         pLM8B9/mUMlSelcnET/9BNJ2+nOUY0Kiq8/fntGHGFisSTbdP6l6vw2XZyz4UrOICx+K
+         2gXXbJWAtvvQmp5+Hm240iFwDOMGLrS56fgCmrZNRPn4ABHSeDwPdvUwozOWR3oThsGn
+         6m1UkBCKeY8wFafgAF5RZXga60zS9GbpXDiO8D8FfwD8sLLwbgGjF4KYs+rdSJAigsSo
+         lXt9DA2O9SnpyKoE+gNdmiM5CLeUZbf0lv+tUGDa2PdsPG0Auqz5l906s4BKecHLxeLN
+         4erQ==
+X-Gm-Message-State: AC+VfDwnUyEyLJVBvCuCbSgO4V/+NM8QyuCENUm+LJDmMjS1Z06Qojpe
+        4dVvIYvYb3Vg+Bun3o7PqYLCGpp/MDUs85pn/asKtz4xNlnp+RHR+YcVmNm71wipEAdRmsbboW4
+        CHnF3YRBGV26/Mo3cvKw3Hg==
+X-Received: by 2002:a05:622a:11cf:b0:3ef:62be:e09b with SMTP id n15-20020a05622a11cf00b003ef62bee09bmr3430010qtk.40.1682616270989;
+        Thu, 27 Apr 2023 10:24:30 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ5svrizMCWCHRmMrWSPvzIzZhBUFHpvLgjbJkFvifxcpqqAJAjdkw0lFQmIdO2/HiJtRgKJ1A==
+X-Received: by 2002:a05:622a:11cf:b0:3ef:62be:e09b with SMTP id n15-20020a05622a11cf00b003ef62bee09bmr3429975qtk.40.1682616270651;
+        Thu, 27 Apr 2023 10:24:30 -0700 (PDT)
+Received: from fedora (modemcable181.5-202-24.mc.videotron.ca. [24.202.5.181])
+        by smtp.gmail.com with ESMTPSA id k1-20020ac86041000000b003ecf475286csm6297422qtm.39.2023.04.27.10.24.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Apr 2023 10:24:29 -0700 (PDT)
+Date:   Thu, 27 Apr 2023 13:24:27 -0400
+From:   Adrien Thierry <athierry@redhat.com>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Shazad Hussain <quic_shazhuss@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org
+Subject: Re: [PATCH v1 0/6] arm64: qcom: sa8775p: add support for USB
+Message-ID: <ZEqvy+khHeTkC2hf@fedora>
+References: <20230421133922.8520-1-quic_shazhuss@quicinc.com>
+ <ZEcEGJiikEC2wIVE@fedora>
+ <ac49075d-439e-da46-9ef6-0b0828f8e072@linaro.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN4PR0801MB3774:EE_|DM6PR08MB6282:EE_
-X-MS-Office365-Filtering-Correlation-Id: 09a723f7-a033-4a20-9bea-08db47441941
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: VC/dGSTP6aBIcEL54WV8pIu9T3/+pnn8l3z8YAZr2/iTAX7NhZ+c61yyFFD57tqmQc46HviNhEYqk4xOTV3J9JdNSLDwKRZND5nsLkml1/hy7GsZVfip9KjgoXujEmYRElCXJVzn/ndjFdT5AS0rykCKlMDaMkf1IJ50x+L57hRDx7DCyL9b9dYBJY8tfwss84cKqHjOOL9c6ToChJJDdWP5vmwfA4iQEu2KzZEmnw0F48e+9puAyzr1fpH9qQjlQfjJ72qGSZofYWhf2Eu8XfAhjKzGydeHgq/7bp34boeBNxpAJnSUBrHGFZJVgu1ETdr8uxD2+VGikZIks4+ei7HiCEfRHj80WXQ4xs3GpL3jvP0sAs+3mqWr9rSXSdM7Uko7z77v8ZZDzHlzRS7sggvNej5uuQqSJ10I2oeyEcaISB7YF+R0jAeQTTRxGBESlcJDCk3nlObxd+2vMbfsP/sY/AcESEHMizKLufMXVwLbPiWSiAgXUcKrvPOb04jv0kLXPj32G9xtfyXT47S//5hjwovCdmFf1q8fjExoYJ4=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN4PR0801MB3774.namprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(7916004)(376002)(136003)(39830400003)(396003)(346002)(366004)(451199021)(8936002)(7416002)(8676002)(5660300002)(66476007)(6916009)(41300700001)(316002)(2906002)(4326008)(66556008)(66946007)(54906003)(6666004)(478600001)(6486002)(53546011)(186003)(26005)(966005)(66899021)(6512007)(9686003)(6506007)(83380400001)(66574015)(33716001)(38100700002)(86362001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?UX/yM/ozjJD2PY2v/Pta0wncDA5kkzJcWa9gXGpkTunTZ0GUWtImuL+RKY?=
- =?iso-8859-1?Q?BsS5/VXqhKlz36O1q73ZU1rd440A2C/EG1kCK5XQry1JbKS5jNZeDHacvI?=
- =?iso-8859-1?Q?pVNOPaT//xWUhlInhjENovLfddFEKyDzeHI8xIIyVy08NjPrOdEV3XSCIy?=
- =?iso-8859-1?Q?J/XugFGCEUu6g49EuVVliGSpcDq4K3WQjQ0kR/xt+hoOz4LvDlBhA68UY/?=
- =?iso-8859-1?Q?/vXUx9erG/ysc1rscMtOUhyUzrXbh4jarbEY+HTTqAxkE9P01yWM9CUVXv?=
- =?iso-8859-1?Q?WopDG6FLWTwfx4oHX2gOmLTTDxQhf7mxVBRsXMaT8w3IM2itx7gDtFBAzl?=
- =?iso-8859-1?Q?avPL+cxOx/+MyZqMLAEiWNo+dq0DkPMLVlrmnqdcHDRJdsGRaj2IqHl/IL?=
- =?iso-8859-1?Q?+k6KD+vPNo76zPWwBY2eYsGyAKPQluua7rXcctEwZMCT28Uo30AeP4TXVa?=
- =?iso-8859-1?Q?khhUXwbkR1Npu4GjoCl2GnKN+vQZuRoUA8TRCirwvYd/IdJPT6dm/U3OeQ?=
- =?iso-8859-1?Q?2OEap6LIuc+4t2dkd3VwkrHx6cpH2l+IFmxolMfe4B53n0OnloUszMi4GE?=
- =?iso-8859-1?Q?+UXwB4MYOQb4Xrw6+PYR+xrCd5sGA1miKp/yGNAtcdpVk6ps+/+vsYdBtv?=
- =?iso-8859-1?Q?VoLPLs24FKgLQCz+b4f1775HJb8t8ImZJ095pnbl7vxxk6HUfu/c/CqJQ6?=
- =?iso-8859-1?Q?Y6z/8RThmwxFuIzzdBp7W4SdLDYhYkgmDCML7G/VaoJaHDReQV1nuDIlye?=
- =?iso-8859-1?Q?ZgucFtSiDS6tua4oEVBBCIeLUPA3WsOQtLw331532Lsi69lt/nBc+KAmlM?=
- =?iso-8859-1?Q?GFZtYIuhfij3Ky7JjKehYFhuPs7MvxskfQnx51GcyOlpc0MnxGYPLc0ijM?=
- =?iso-8859-1?Q?5Qhgxg5n0OFbGnROvDuyD2pZBrmup7P/NylxySOI8pHVYcQ6R0lu5H90xU?=
- =?iso-8859-1?Q?+DjP1YVBZqx5u5y8JMW20fcUeD+BbyHj1uW2nSc9HyMNi6BimwDBv7YvUX?=
- =?iso-8859-1?Q?Sq9cDwwS06KhC4X/U4vrIYN0JshFX3lhWWqjspMcdo2kfp0HiGDdojYsQh?=
- =?iso-8859-1?Q?mMup6morX54iRcGo1HOJf+obDk/4qKQ+2X7YIYuwjtuLBmlyblcu9pQ8uo?=
- =?iso-8859-1?Q?LRKk0YINlkZfde9ckaVqiE+3pWLDVhZIlo7VcDsWjXGStAFplk+yq5TAbF?=
- =?iso-8859-1?Q?gkkUKqcJvR/DZjD5nEIGAx7YVcKkb0Ptwz9QbxodYjzoYC5U+yrJft8Rdk?=
- =?iso-8859-1?Q?lu6feS2UnI4YDxGqKZ8C6iVmrgBU/aVmxO6Uy/tZ44SiDTZW3M4oYiNS46?=
- =?iso-8859-1?Q?cVkq37Qb8qCA187Q7E9K4YS5w9rXvHUb2CfOOVLQ46N6e6ULGdP1mtyKj0?=
- =?iso-8859-1?Q?UhuXsZzYqzktmyHaN/6iqAueMziDLQXqiMz29ZlTRomPTLzW13Gir5KfpH?=
- =?iso-8859-1?Q?4paQQT1NiHti/RvXgXJWW86pkMrJGAuxMn63/ajRrrFrsg9FLSgTk4774w?=
- =?iso-8859-1?Q?6q0upa7neH/BgJI8vyK2zFYDQy13RLPi8nzqBtDkjTmXLVYMaeRgQ1mEp3?=
- =?iso-8859-1?Q?TJRXMaRzbyYNDYN07iG87T1G7vJMALv4ru5JCj9zIEP52Q4GmkOeG/1+UF?=
- =?iso-8859-1?Q?Al1/0/Bieo+ByTCtVxAjjMistFLxN7SpBD?=
-X-OriginatorOrg: labundy.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 09a723f7-a033-4a20-9bea-08db47441941
-X-MS-Exchange-CrossTenant-AuthSource: SN4PR0801MB3774.namprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Apr 2023 17:23:21.3568
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 00b69d09-acab-4585-aca7-8fb7c6323e6f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3YHoYjzP5f1N6OvYVEL99goDAE4BlDeySkCYNzyZw94ct4xLGkO45FZNYprsQfApTatkBjWmAHFwpJXQhWRgmA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR08MB6282
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ac49075d-439e-da46-9ef6-0b0828f8e072@linaro.org>
+X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Javier,
+Hi Konrad,
 
-On Thu, Apr 27, 2023 at 05:59:42PM +0200, Javier Carrasco wrote:
-> Hi,
+On Thu, Apr 27, 2023 at 12:42:15AM +0100, Konrad Dybcio wrote:
 > 
-> On 25.04.23 18:02, Jeff LaBundy wrote:
-> > Hi Thomas,
+> On 4/24/23 23:35, Adrien Thierry wrote:
+> > Hi Shazad,
 > > 
-> > On Tue, Apr 25, 2023 at 05:29:39PM +0200, Thomas Weißschuh wrote:
-> >> Hi Javier,
-> >>
-> >> On 2023-04-25 13:50:45+0200, Javier Carrasco wrote:
-> >>> Some touchscreens are shipped with a physical layer on top of them where
-> >>> a number of buttons and a resized touchscreen surface might be available.
-> >>>
-> >>> In order to generate proper key events by overlay buttons and adjust the
-> >>> touch events to a clipped surface, these patches offer a documented,
-> >>> device-tree-based solution by means of helper functions.
-> >>> An implementation for a specific touchscreen driver is also included.
-> >>>
-> >>> The functions in ts-virtobj provide a simple workflow to acquire
-> >>> physical objects from the device tree, map them into the device driver
-> >>> structures as virtual objects and generate events according to
-> >>> the object descriptions.
-> >>>
-> >>> This solution has been tested with a JT240MHQS-E3 display, which uses
-> >>> the st1624 as a touchscreen and provides two overly buttons and a frame
-> >>> that clips its effective surface.
-> >>
-> >> There are quite a few of notebooks from Asus that feature a printed
-> >> numpad on their touchpad [0]. The mapping from the touch events to the
-> >> numpad events needs to happen in software.
+> > On Fri, Apr 21, 2023 at 07:09:15PM +0530, Shazad Hussain wrote:
+> > > Update relavent DT bindings for USB, add new config to the phy driver,
+> > > add USB and PHY nodes to the .dtsi and enable them in the board .dts
+> > > for the sa8775p-ride platform.
+> > > 
+> > > Shazad Hussain (6):
+> > >    dt-bindings: usb: qcom,dwc3: Add bindings for SA8775P
+> > >    dt-bindings: phy: qcom,usb-snps-femto-v2: Add bindings for SA8775P
+> > >    dt-bindings: phy: qcom,sc8280xp-qmp-usb3-uni: Add SA8775P USB PHY
+> > >      binding
+> > >    phy: qcom-qmp: Add SA8775P USB3 UNI phy
+> > >    arm64: dts: qcom: sa8775p: add USB nodes
+> > >    arm64: dts: qcom: sa8775p-ride: enable USB nodes
+> > > 
+> > >   .../phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml   |   1 +
+> > >   .../bindings/phy/qcom,usb-snps-femto-v2.yaml  |   1 +
+> > >   .../devicetree/bindings/usb/qcom,dwc3.yaml    |   5 +
+> > >   arch/arm64/boot/dts/qcom/sa8775p-ride.dts     |  92 +++++++
+> > >   arch/arm64/boot/dts/qcom/sa8775p.dtsi         | 239 +++++++++++++++++-
+> > >   drivers/phy/qualcomm/phy-qcom-qmp-usb.c       |  45 ++++
+> > >   6 files changed, 381 insertions(+), 2 deletions(-)
+> > > 
+> > > -- 
+> > > 2.17.1
+> > > 
+> > Thanks for posting this. I tested the series on the sa8775p, and it seems
+> > initialization for the controller at a400000 sometimes fails with a
+> > timeout (-110) error:
 > > 
-> > That example seems a kind of fringe use-case in my opinion; I think the
-> > gap filled by this RFC is the case where a touchscreen has a printed
-> > overlay with a key that represents a fixed function.
+> >      dwc3 a400000.usb: Adding to iommu group 2
+> >      xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
+> >      xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 1
+> >      xhci-hcd xhci-hcd.0.auto: can't setup: -110
+> >      xhci-hcd xhci-hcd.0.auto: USB bus 1 deregistered
+> >      xhci-hcd: probe of xhci-hcd.0.auto failed with error -110
+> >      dwc3 a600000.usb: Adding to iommu group 3
+> >      dwc3 a800000.usb: Adding to iommu group 4
+> >      xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
+> >      xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned bus number 1
+> >      xhci-hcd xhci-hcd.1.auto: hcc params 0x0110ffc5 hci version 0x110 quirks 0x0000000000010010
+> >      xhci-hcd xhci-hcd.1.auto: irq 162, io mem 0x0a800000
+> >      xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
+> >      xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned bus number 2
+> >      xhci-hcd xhci-hcd.1.auto: Host supports USB 3.1 Enhanced SuperSpeed
+> >      hub 1-0:1.0: USB hub found
+> >      hub 1-0:1.0: 1 port detected
+> >      usb usb2: We don't know the algorithms for LPM for this host, disabling LPM.
+> >      hub 2-0:1.0: USB hub found
+> >      hub 2-0:1.0: 1 port detected
+> > 
+> > In this case, only usb devices for a800000 are showing:
+> > 
+> >      dracut:/# ls -alh /sys/bus/usb/devices
+> >      total 0
+> >      drwxr-xr-x 2 root root 0 Feb 27 00:00 .
+> >      drwxr-xr-x 4 root root 0 Feb 27 00:00 ..
+> >      lrwxrwxrwx 1 root root 0 Feb 27 00:00 1-0:1.0 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.1.auto/usb1/1-0:1.0
+> >      lrwxrwxrwx 1 root root 0 Feb 27 00:00 2-0:1.0 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.1.auto/usb2/2-0:1.0
+> >      lrwxrwxrwx 1 root root 0 Feb 27 00:00 usb1 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.1.auto/usb1
+> >      lrwxrwxrwx 1 root root 0 Feb 27 00:00 usb2 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.1.auto/usb2
+> > 
+> > This happens approximately 1 out of 2 reboots. Here's the kernel output
+> > when initialization succeeds:
+> > 
+> >      dwc3 a600000.usb: Adding to iommu group 2
+> >      dwc3 a800000.usb: Adding to iommu group 3
+> >      xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
+> >      xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 1
+> >      xhci-hcd xhci-hcd.0.auto: hcc params 0x0110ffc5 hci version 0x110 quirks 0x0000000000010010
+> >      xhci-hcd xhci-hcd.0.auto: irq 161, io mem 0x0a800000
+> >      xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
+> >      xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 2
+> >      xhci-hcd xhci-hcd.0.auto: Host supports USB 3.1 Enhanced SuperSpeed
+> >      hub 1-0:1.0: USB hub found
+> >      hub 1-0:1.0: 1 port detected
+> >      usb usb2: We don't know the algorithms for LPM for this host, disabling LPM.
+> >      hub 2-0:1.0: USB hub found
+> >      hub 2-0:1.0: 1 port detected
+> >      dwc3 a400000.usb: Adding to iommu group 4
+> >      xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
+> >      xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned bus number 3
+> >      xhci-hcd xhci-hcd.1.auto: USB3 root hub has no ports
+> >      xhci-hcd xhci-hcd.1.auto: hcc params 0x0220fe65 hci version 0x110 quirks 0x0000000000010010
+> >      xhci-hcd xhci-hcd.1.auto: irq 162, io mem 0x0a400000
+> >      hub 3-0:1.0: USB hub found
+> >      hub 3-0:1.0: 1 port detected
+> > 
+> > And the list of usb devices:
+> > 
+> >      dracut:/# ls -alh /sys/bus/usb/devices
+> >      total 0
+> >      drwxr-xr-x 2 root root 0 Feb 27 00:00 .
+> >      drwxr-xr-x 4 root root 0 Feb 27 00:00 ..
+> >      lrwxrwxrwx 1 root root 0 Feb 27 00:00 1-0:1.0 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.0.auto/usb1/1-0:1.0
+> >      lrwxrwxrwx 1 root root 0 Feb 27 00:00 2-0:1.0 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.0.auto/usb2/2-0:1.0
+> >      lrwxrwxrwx 1 root root 0 Feb 27 00:00 3-0:1.0 -> ../../../devices/platform/soc@0/a4f8800.usb/a400000.usb/xhci-hcd.1.auto/usb3/3-0:1.0
+> >      lrwxrwxrwx 1 root root 0 Feb 27 00:00 usb1 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.0.auto/usb1
+> >      lrwxrwxrwx 1 root root 0 Feb 27 00:00 usb2 -> ../../../devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.0.auto/usb2
+> >      lrwxrwxrwx 1 root root 0 Feb 27 00:00 usb3 -> ../../../devices/platform/soc@0/a4f8800.usb/a400000.usb/xhci-hcd.1.auto/usb3
+> > 
+> > Have you also encountered this?
 > 
->  Exactly, this RFC addresses exactly such printed overlays.
-> > 
-> > One problem I do see here is something like libinput or multitouch taking
-> > hold of the input device, and swallowing the key presses because it sees
-> > the device as a touchscreen and is not interested in these keys.
-> 
-> Unfortunately I do not know libinput or multitouch and I might be
-> getting you wrong, but I guess the same would apply to any event
-> consumer that takes touchscreens as touch event producers and nothing else.
-> 
-> Should they not check the supported events from the device instead of
-> making such assumptions? This RFC adds key events defined in the device
-> tree and they are therefore available and published as device
-> capabilities. That is for example what evtest does to report the
-> supported events and they are then notified accordingly. Is that not the
-> right way to do it?
+> I've had some issues with QMPPHY not (sometimes?) probing in time on SM6115 only when built as a module.. perhaps it'd be worth checking out of it works fine with =y?
 
-evtest is just that, a test tool. It's handy for ensuring the device emits
-the appropriate input events in response to hardware inputs, but it is not
-necessarily representative of how the input device may be used in practice.
+Looks like that might be the cause indeed. The arm64 defconfig has the
+PHYs built as modules, but with either CONFIG_PHY_QCOM_QMP_USB=y or
+CONFIG_PHY_QCOM_USB_SNPS_FEMTO_V2=y, the controllers initialize properly
+all the time.
 
-I would encourage you to test this solution with a simple use-case such as
-Raspbian, and the virtual keys mapped to easily recognizable functions like
-volume up/down.
+So, the series is:
 
-Here, you will find that libinput will grab the device and declare it to be
-a touchscreen based on the input events it advertises. However, you will not
-see volume up/down keys are handled.
-
-If you break out the virtual keypad as a separate input device, however, you
-will see libinput additionally recognize it as a keyboard and volume up/down
-keys will be handled. It is for this reason that a handful of drivers with
-this kind of mixed functionality (e.g. ad714x) already branch out multiple
-input devices for each function.
-
-As a matter of principle, I find it to be most flexible for logically separate
-functions to be represented as logically separate input devices, even if those
-input devices all stem from the same piece of hardware. Not only does it allow
-you to attach different handlers to each device (i.e. file descriptor), but it
-also allows user space to inhibit one device but not the other, etc.
-
-Maybe the right approach, which your RFC already seems to support, is to simply
-let the driver decide whether to pass the touchscreen input_dev or a different
-input_dev. The driver would be responsible for allocating and registering the
-keypad; your functions simply set the capabilities for, and report events from,
-whichever input_dev is passed to them. This is something to consider for your
-st1232 example.
+Tested-by: Adrien Thierry <athierry@redhat.com>
 
 > 
-> Thanks a lot for your feedback!
+> 
+> Konrad
+> 
 > > 
-> > Therefore, my first impression is that the virtual keypad may be better
-> > served by registering its own input device.
+> > Best,
 > > 
-> > Great work by the way, Javier!
+> > Adrien
 > > 
-> >>
-> >> Do you think your solution is general enough to also support this
-> >> usecase?
-> >>
-> >> The differences I see are
-> >> * not device-tree based
-> >> * touchpads instead of touchscreens
-> >>
-> >>> [..]
-> >>
-> >> [0] https://unix.stackexchange.com/q/494400
-> > 
-> > Kind regards,
-> > Jeff LaBundy
 
-Kind regards,
-Jeff LaBundy
