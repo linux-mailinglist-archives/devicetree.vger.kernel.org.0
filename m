@@ -2,69 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 546A76F0015
-	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 06:14:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 601F76F004C
+	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 07:07:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239605AbjD0EOu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Apr 2023 00:14:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35928 "EHLO
+        id S242777AbjD0FHN convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 27 Apr 2023 01:07:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232094AbjD0EOt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 00:14:49 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36946107;
-        Wed, 26 Apr 2023 21:14:48 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33R4Efan031374;
-        Wed, 26 Apr 2023 23:14:41 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1682568881;
-        bh=xAjERUvYRTHSLxch3No3kEFC4BEqtB21qVD0snlUb5w=;
-        h=Date:CC:Subject:To:References:From:In-Reply-To;
-        b=BP4iKz8TttOyH5zGxt/O0MkUkHO8YjSp1fOHktXhs2f8qzgj9teDZx3zWOxuPb34e
-         /hpXUpBQpfmramwwtG7ypYDBnEnnciAwjczxEmwNitL5um7tRu8PBu/ll1z7qtCrJf
-         16zt6/dXEXCwAF6j9KQUwmec7FiVBES3pcGfSAjs=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33R4Ef8a033316
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 26 Apr 2023 23:14:41 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 26
- Apr 2023 23:14:40 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 26 Apr 2023 23:14:40 -0500
-Received: from [172.24.145.61] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33R4Eajg073378;
-        Wed, 26 Apr 2023 23:14:37 -0500
-Message-ID: <eb1052a9-dd1b-57f1-3223-720b7ea87088@ti.com>
-Date:   Thu, 27 Apr 2023 09:44:36 +0530
+        with ESMTP id S242675AbjD0FHM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 01:07:12 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2247B4489;
+        Wed, 26 Apr 2023 22:07:08 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id E186C24E12B;
+        Thu, 27 Apr 2023 13:06:54 +0800 (CST)
+Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 27 Apr
+ 2023 13:06:54 +0800
+Received: from [192.168.155.161] (202.188.176.82) by EXMBX168.cuchost.com
+ (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 27 Apr
+ 2023 13:06:51 +0800
+Message-ID: <65fde5d5-6d86-c94e-9985-231e81641386@starfivetech.com>
+Date:   Thu, 27 Apr 2023 13:06:49 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <afd@ti.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
-        <s-vadapalli@ti.com>
-Subject: Re: [RFC PATCH 2/2] arm64: dts: ti: k3-j721s2: Add overlay to enable
- main CPSW2G with GESI
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH v6 2/4] crypto: starfive - Add crypto engine support
+To:     Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+CC:     <davem@davemloft.net>, <devicetree@vger.kernel.org>,
+        <herbert@gondor.apana.org.au>, <kernel@esmil.dk>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-crypto@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, <palmer@dabbelt.com>,
+        <robh+dt@kernel.org>
+References: <20230426065848.842221-1-jiajie.ho@starfivetech.com>
+ <20230426065848.842221-3-jiajie.ho@starfivetech.com>
+ <c3faff36-3698-a137-f007-ff8bca6a2e88@wanadoo.fr>
 Content-Language: en-US
-To:     Nishanth Menon <nm@ti.com>
-References: <20230426105718.118806-1-s-vadapalli@ti.com>
- <20230426105718.118806-3-s-vadapalli@ti.com>
- <20230426130003.q2fotsm3b5r7hh27@ominous>
-From:   Siddharth Vadapalli <s-vadapalli@ti.com>
-In-Reply-To: <20230426130003.q2fotsm3b5r7hh27@ominous>
+From:   Jia Jie Ho <jiajie.ho@starfivetech.com>
+In-Reply-To: <c3faff36-3698-a137-f007-ff8bca6a2e88@wanadoo.fr>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+X-Originating-IP: [202.188.176.82]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX168.cuchost.com
+ (172.16.6.78)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,86 +59,118 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 26/04/23 18:30, Nishanth Menon wrote:
-> On 16:27-20230426, Siddharth Vadapalli wrote:
->> From: Kishon Vijay Abraham I <kishon@ti.com>
+On 26/4/2023 3:56 pm, Christophe JAILLET wrote:
+> Le 26/04/2023 à 08:58, Jia Jie Ho a écrit :
+>> Adding device probe and DMA init for StarFive cryptographic module.
 >>
->> The MAIN CPSW2G instance of CPSW on J721S2 SoC can be enabled with the GESI
->> Expansion Board connected to the J7 Common-Proc-Board. Use the overlay
->> to enable this.
->>
->> Add alias for the MAIN CPSW2G port to enable kernel to fetch MAC address
->> directly from U-Boot.
->>
->> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
->> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+>> Co-developed-by: Huan Feng <huan.feng-bONrM45KWFOXmMXjJBpWqg@public.gmane.org>
+>> Signed-off-by: Huan Feng <huan.feng-bONrM45KWFOXmMXjJBpWqg@public.gmane.org>
+>> Signed-off-by: Jia Jie Ho <jiajie.ho-bONrM45KWFOXmMXjJBpWqg@public.gmane.org>
 >> ---
->>  arch/arm64/boot/dts/ti/Makefile               |  2 +
->>  .../dts/ti/k3-j721s2-evm-gesi-exp-board.dtso  | 83 +++++++++++++++++++
->>  2 files changed, 85 insertions(+)
->>  create mode 100644 arch/arm64/boot/dts/ti/k3-j721s2-evm-gesi-exp-board.dtso
+>>   MAINTAINERS                           |   7 +
+>>   drivers/crypto/Kconfig                |   1 +
+>>   drivers/crypto/Makefile               |   1 +
+>>   drivers/crypto/starfive/Kconfig       |  17 +++
+>>   drivers/crypto/starfive/Makefile      |   4 +
+>>   drivers/crypto/starfive/jh7110-cryp.c | 199 ++++++++++++++++++++++++++
+>>   drivers/crypto/starfive/jh7110-cryp.h |  63 ++++++++
+>>   7 files changed, 292 insertions(+)
+>>   create mode 100644 drivers/crypto/starfive/Kconfig
+>>   create mode 100644 drivers/crypto/starfive/Makefile
+>>   create mode 100644 drivers/crypto/starfive/jh7110-cryp.c
+>>   create mode 100644 drivers/crypto/starfive/jh7110-cryp.h
 >>
->> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
->> index c83c9d772b81..13db9b8dbe1d 100644
->> --- a/arch/arm64/boot/dts/ti/Makefile
->> +++ b/arch/arm64/boot/dts/ti/Makefile
->> @@ -42,6 +42,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-j721e-sk.dtb
->>  # Boards with J721s2 SoC
->>  dtb-$(CONFIG_ARCH_K3) += k3-am68-sk-base-board.dtb
->>  dtb-$(CONFIG_ARCH_K3) += k3-j721s2-common-proc-board.dtb
->> +dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm-gesi-exp-board.dtbo
->>  
->>  # Boards with J784s4 SoC
->>  dtb-$(CONFIG_ARCH_K3) += k3-am69-sk.dtb
->> @@ -49,3 +50,4 @@ dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm.dtb
->>  
->>  # Enable support for device-tree overlays
->>  DTC_FLAGS_k3-am6548-iot2050-advanced-m2 += -@
->> +DTC_FLAGS_k3-j721s2-common-proc-board += -@
->> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-evm-gesi-exp-board.dtso b/arch/arm64/boot/dts/ti/k3-j721s2-evm-gesi-exp-board.dtso
->> new file mode 100644
->> index 000000000000..2ec08754bf04
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-evm-gesi-exp-board.dtso
->> @@ -0,0 +1,83 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/**
->> + * DT Overlay for MAIN CPSW2G using GESI Expansion Board with J7 common processor board.
->> + *
-> 
-> product link please.
-
-Thank you for pointing it out. I will update this patch with the product link in
-the v2 RFC series.
-
-> 
->> + * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
->> + */
->> +
->> +/dts-v1/;
->> +/plugin/;
->> +
->> +#include <dt-bindings/gpio/gpio.h>
->> +#include <dt-bindings/net/ti-dp83867.h>
->> +
->> +#include "k3-pinctrl.h"
->> +
 
 [...]
 
 >> +
->> +&main_cpsw_port1 {
->> +	status = "okay";
->> +	phy-mode = "rgmii-rxid";
->> +	phy-handle = <&main_cpsw_phy0>;
->> +};
->> -- 
->> 2.25.1
->>
+>> +static int starfive_dma_init(struct starfive_cryp_dev *cryp)
+>> +{
+>> +    dma_cap_mask_t mask;
+>> +
+>> +    cryp->tx = NULL;
+>> +    cryp->rx = NULL;
+> 
+> Harmless, but 'crypt' is kzalloc()'ed, so these fields are already NULL.
+>
+
+Hi Christophe,
+I'll remove these in the next version.
+ 
+>> +
+>> +    dma_cap_zero(mask);
+>> +    dma_cap_set(DMA_SLAVE, mask);
+>> +
+>> +    cryp->tx = dma_request_chan(cryp->dev, "tx");
+>> +    if (IS_ERR(cryp->tx))
+>> +        return dev_err_probe(cryp->dev, PTR_ERR(cryp->tx),
+>> +                     "Error requesting tx dma channel.\n");
+>> +
+>> +    cryp->rx = dma_request_chan(cryp->dev, "rx");
+>> +    if (IS_ERR(cryp->rx)) {
+>> +        dma_release_channel(cryp->tx);
+>> +        return dev_err_probe(cryp->dev, PTR_ERR(cryp->rx),
+>> +                     "Error requesting rx dma channel.\n");
+>> +    }
+>> +
+>> +    return 0;
+>> +}
+>> +
+>> +static void starfive_dma_cleanup(struct starfive_cryp_dev *cryp)
+>> +{
+>> +    dma_release_channel(cryp->tx);
+>> +    dma_release_channel(cryp->rx);
+>> +}
+>> +
+>> +static int starfive_cryp_probe(struct platform_device *pdev)
+>> +{
+
+[...]
+
+>> +
+>> +    ret = crypto_engine_start(cryp->engine);
+>> +    if (ret)
+>> +        goto err_engine_start;
+>> +
+>> +    return 0;
+>> +
+>> +err_engine_start:
+>> +    crypto_engine_exit(cryp->engine);
+>> +err_engine:
+>> +    starfive_dma_cleanup(cryp);
+>> +err_dma_init:
+>> +    spin_lock(&dev_list.lock);
+>> +    list_del(&cryp->list);
+>> +    spin_unlock(&dev_list.lock);
+> 
+> I think that there should be:
+>     clk_disable_unprepare(cryp->hclk);
+>     clk_disable_unprepare(cryp->ahb);
+>     reset_control_assert(cryp->rst);
+> 
+> as in the remove function.
 > 
 
--- 
-Regards,
-Siddharth.
+Will add these in next version.
+
+>> +
+>> +    return ret;
+>> +}
+>> +
+>> +static int starfive_cryp_remove(struct platform_device *pdev)
+>> +{
+>> +    struct starfive_cryp_dev *cryp = platform_get_drvdata(pdev);
+>> +
+>> +    if (!cryp)
+>> +        return -ENODEV;
+> 
+> I don't think that this can happen.
+> 
+
+I'll update this too along with your other comments.
+Thanks for taking time reviewing this patch series.
+
+Best regards,
+Jia Jie
+
+
