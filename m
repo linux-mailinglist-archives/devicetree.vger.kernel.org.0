@@ -2,296 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 235726F0C06
-	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 20:37:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0953F6F0C3C
+	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 21:02:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244564AbjD0ShK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Apr 2023 14:37:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53006 "EHLO
+        id S244454AbjD0TCL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Apr 2023 15:02:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243558AbjD0ShJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 14:37:09 -0400
-Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCA32E2;
-        Thu, 27 Apr 2023 11:37:07 -0700 (PDT)
-Received: by mail-yb1-xb34.google.com with SMTP id 3f1490d57ef6-b9a6869dd3cso2201891276.2;
-        Thu, 27 Apr 2023 11:37:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682620627; x=1685212627;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lFyU6RzzaWKzYQaB6d+4t8LyXp1LdQYNUdPNzYi7/h8=;
-        b=HtY/DrgzGk3h4mFu2d6z33PwyHYydkJ+NBB4QlHY2snwb9ss1G8DMKOSNLZYSfMBrf
-         L9HrRa7Qi91+ewz4uCqmCXi6PffsNxEgyy27JYm4IaOHWpQO1iFnJ39HPj7ADkgWhgXu
-         oO783CuL8Er/66b5OhJW0YrvGmtuekT+MqSgaRTW7JXAz7wWq8YUVAH1Q43yvLQszZnf
-         D1dVCT7sFkmekVAl/Jq4Ynk1RUeiK6oMDAqkk81qX2oJO5f0YuuUkuj5x4LhVtaW0r26
-         oa+BqOF/W4Hub1s/EKssPZgNx3t1rhfbFZe1tRO3R1ig17jjLn1SrheUS06MwRtb8fWp
-         JHwA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682620627; x=1685212627;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lFyU6RzzaWKzYQaB6d+4t8LyXp1LdQYNUdPNzYi7/h8=;
-        b=hUUVXK2N9Nu9xmXRNcxsrVmbIMk6xP4ZVYvbVGR53xci3dBKNEesHQ5H5uSF3OroMR
-         bfJMaxlkq/jDgU0vS2jjqeKORNa2UJo4j1b7diqFCoU7XQvU/+442SjF+ADBMk1e2lA6
-         +UNmKKwIRsN+ydvCXgfH3xwLTY+j/RMbVG5FWV0+GAuPqVfy7kzr+xH/8Mqu0R/aGQB6
-         lf9fGKiQtK0MLAVu00FEfrVneODnxqvGoVc8FCbriTOZb6MDfyx1j6R5tV09U602Y9LB
-         Y9TQZ2ccLL/0/K9HYWEEoEhlL/X+mCBzN8sPbvkSlDVZvLgb3Nq3MmNZ54kZh3maFWvl
-         yvhg==
-X-Gm-Message-State: AC+VfDytp8Nj+tXH5yhgXyTEe+ie7AmVbVK3HGT9rJx39cb1hUdRbFtC
-        O/aeNxmuzV99AAiuXLU8IxMvE4Noq5I91dVvxKs=
-X-Google-Smtp-Source: ACHHUZ5kfpWpgI8QLz6dJm1lPtmJAogFkq7qb2Shv4MtdtAmRW5KuuaGfUGAHEbHc0k1Nb7jmHOxyKxgQj4ClUZRznA=
-X-Received: by 2002:a25:4907:0:b0:b92:2a56:bcc5 with SMTP id
- w7-20020a254907000000b00b922a56bcc5mr1589957yba.56.1682620626836; Thu, 27 Apr
- 2023 11:37:06 -0700 (PDT)
-MIME-Version: 1.0
-References: <1682535272-32249-1-git-send-email-justinpopo6@gmail.com>
- <1682535272-32249-3-git-send-email-justinpopo6@gmail.com> <20230427171625.GA3172205-robh@kernel.org>
-In-Reply-To: <20230427171625.GA3172205-robh@kernel.org>
-From:   Justin Chen <justinpopo6@gmail.com>
-Date:   Thu, 27 Apr 2023 11:36:55 -0700
-Message-ID: <CAJx26kUGs7B=v10YEPAP3jPu6FXSBTn0oBhQkfoiGY0E-PvUjA@mail.gmail.com>
-Subject: Re: [PATCH v2 net-next 2/6] dt-bindings: net: Brcm ASP 2.0 Ethernet controller
-To:     Rob Herring <robh@kernel.org>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        bcm-kernel-feedback-list@broadcom.com, justin.chen@broadcom.com,
-        f.fainelli@gmail.com, davem@davemloft.net, edumazet@google.com,
-        kuba@kernel.org, pabeni@redhat.com,
-        krzysztof.kozlowski+dt@linaro.org, opendmb@gmail.com,
-        andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
-        richardcochran@gmail.com, sumit.semwal@linaro.org,
-        christian.koenig@amd.com
-Content-Type: text/plain; charset="UTF-8"
+        with ESMTP id S244173AbjD0TCK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 15:02:10 -0400
+Received: from mx0b-002e3701.pphosted.com (mx0b-002e3701.pphosted.com [148.163.143.35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABCBB421B;
+        Thu, 27 Apr 2023 12:02:08 -0700 (PDT)
+Received: from pps.filterd (m0150244.ppops.net [127.0.0.1])
+        by mx0b-002e3701.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33RGR6Eu001242;
+        Thu, 27 Apr 2023 19:01:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : cc : subject
+ : date : message-id : references : in-reply-to : content-type :
+ content-transfer-encoding : mime-version; s=pps0720;
+ bh=81FU7ajNN8OjA/3NI2d9uAMeIn8dFdLMjKJRaAjqK+Y=;
+ b=Yg6DObzM7ll+aUoBt5iT4BsKjwSx1Ie/e5xG83wjizSWQQe6KAlaLsoWTpPo4bMjix59
+ IkVH7ocoKRgFkTWcLMxT1ODYMZDnUF0elkFsPxHur019CmZmpcsjNDVz7A8qkC8xER3A
+ lgtGBtofERcME/uGQ3aa9gkD4F/b7uzejp+Wplm4brr5sfnnaBC4tpUMwjGStBIthO77
+ wxYSzK7nnDPuLJLs2cecJlT1KEirz20g4NAhRi+qcB7mO3cXKmWj81+J9+LsYG8OaccS
+ i1wW476oMML02C4kVN3DzYPOuAOJQ7Qcbvda9UOaUFqVBFdDn3FQbOJIOoEnD61Fk0Hr Yw== 
+Received: from p1lg14881.it.hpe.com (p1lg14881.it.hpe.com [16.230.97.202])
+        by mx0b-002e3701.pphosted.com (PPS) with ESMTPS id 3q7v89hj7f-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 27 Apr 2023 19:01:38 +0000
+Received: from p1wg14924.americas.hpqcorp.net (unknown [10.119.18.113])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by p1lg14881.it.hpe.com (Postfix) with ESMTPS id DD6FA803726;
+        Thu, 27 Apr 2023 19:01:36 +0000 (UTC)
+Received: from p1wg14928.americas.hpqcorp.net (10.119.18.116) by
+ p1wg14924.americas.hpqcorp.net (10.119.18.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Thu, 27 Apr 2023 07:01:35 -1200
+Received: from p1wg14927.americas.hpqcorp.net (10.119.18.117) by
+ p1wg14928.americas.hpqcorp.net (10.119.18.116) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Thu, 27 Apr 2023 07:01:34 -1200
+Received: from p1wg14921.americas.hpqcorp.net (16.230.19.124) by
+ p1wg14927.americas.hpqcorp.net (10.119.18.117) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42
+ via Frontend Transport; Thu, 27 Apr 2023 07:01:34 -1200
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (192.58.206.38)
+ by edge.it.hpe.com (16.230.19.124) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Thu, 27 Apr 2023 07:01:19 -1200
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=K9YRsu4SbStBv5GkW6GrycOWTiPiU65JO0X54GZ2PJ6g8q8BGc5euu06pXSgsJvRWJRc8WShLZnAstNeys/DRRIxMftH1cdHMUaRTvFsgDLIGtv9/yvmLFmXEw4R92Q8ASM6yo8n+7fTBia/5KCE3uMeh/vlZHYA7KGKmRl5RIGJS/2i3+OaQyYYf2DPCpKNOH4GARNAWa0sBXKTTXIOO2vNR6zY4Lghv6Y537ZIeiIGIBH+q2zcc2ptluyzcbOoibQy8wVozRaDhpXPxZ66F2NgNb2fCC7OtySkTWrm5G0Rx2O9HeZnE3T5RqfFEvbkxaEFFOaNfpSom/Q/LBkKWA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=81FU7ajNN8OjA/3NI2d9uAMeIn8dFdLMjKJRaAjqK+Y=;
+ b=cY2lS+CeKa/bM1SABzRMaAvaH8J7gDeJr6gxcGIAkA3khNaPgD+HCqDgbnth631ULQVDS7DwhT7K4pRb88ldT3HMpV3sAtUX2ybYnTPYHlhlLseZJzS51bx+0Bp3woGGBijx14kw3Ku8XCEArBPSAcPywnYjtdeXpxYAeGIwrHowN6qyNt+dHts7foxfyu36Rz+RJSJQQUnuMf7N55vIDu0G49vKPPNSs3tphEwHXSGQiF4DITa0r5jLXSOyCI0Q0boTQzPGigtHNr6+hTVthlspfmfNqN64mpljiLgdqTUK4Yj5uGzrOqM3C11N6fCDeZQwJWwDLpFRZ7R2nfNpUA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=hpe.com; dmarc=pass action=none header.from=hpe.com; dkim=pass
+ header.d=hpe.com; arc=none
+Received: from DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM (2603:10b6:8:4e::10) by
+ DM4PR84MB1807.NAMPRD84.PROD.OUTLOOK.COM (2603:10b6:8:4e::8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6340.22; Thu, 27 Apr 2023 19:01:17 +0000
+Received: from DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM
+ ([fe80::2a07:1ac6:6523:8682]) by DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM
+ ([fe80::2a07:1ac6:6523:8682%7]) with mapi id 15.20.6340.022; Thu, 27 Apr 2023
+ 19:01:17 +0000
+From:   "Hawkins, Nick" <nick.hawkins@hpe.com>
+To:     "andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>
+CC:     "Verdun, Jean-Marie" <verdun@hpe.com>,
+        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+        "brgl@bgdev.pl" <brgl@bgdev.pl>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "jdelvare@suse.com" <jdelvare@suse.com>,
+        "linux@roeck-us.net" <linux@roeck-us.net>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [PATCH v1 1/9] gpio: gxp: Add HPE GXP GPIO
+Thread-Topic: [PATCH v1 1/9] gpio: gxp: Add HPE GXP GPIO
+Thread-Index: AQHZcgrpODxMvy9ha06K9TX/iHoHda8/ZmMAgAAkIQA=
+Date:   Thu, 27 Apr 2023 19:01:17 +0000
+Message-ID: <DM4PR84MB19272617D9E728DC09715A45886A9@DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM>
+References: <20230418152824.110823-1-nick.hawkins@hpe.com>
+ <20230418152824.110823-2-nick.hawkins@hpe.com> <ZEqikkknyRrFTh2t@surfacebook>
+In-Reply-To: <ZEqikkknyRrFTh2t@surfacebook>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR84MB1927:EE_|DM4PR84MB1807:EE_
+x-ms-office365-filtering-correlation-id: d5da3ee9-9c28-4a6b-f02e-08db4751c7f0
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 7iH3OiiDsnj2IQeYux2cAte+AHLo5BaxAjUk0lgcEu6+QQPheKJ/2vKCcqg3ipijr1BdwoJpwtg4fspkxnGNlQqhaWfa3xFMnW9Zk2NmzDlFOuI5/UNxA1QimP8nDYfEYH4W6IVm/4UgyygnvVYNl4YDp0rlvPnpB4KImrnAffZwunv8LPuuP91WYaxIA+a7BNcjqrBhwsvucTuwE1R4s1GFG85qGbIgcxfcm60Dk1sDzgCbnZZN3p1E18Pu91bYRuAXGEENKVATuELIhZVuqFQl+jICaZRqPd4qPQPFrjjyaqK4VNpq0XIPp9N6xM/zRuKhEp3LVhpl7X+QkiiIrZsT4IFmVBQF/RRlZ6Pd0BrUTPFNRIjemCLg1Bwa48BN2fsrEsQ1hp4ENjUqlfT85kAXiehDWKOCcr+Ih3ZUrEz7UwVsYHg1FWl+eb7X11ldmqbvbGEhFk6v5ub7klV0j2ja5nTTP/NdxqixweFHJrUw+aai5vyudg58wXvFmTsztdkDDHxYpMRuliLq126hfh46bjZJ6H4+DiTjtzzNZ88cHtDttaPDhd9ghIgn94PVv2k/uc7iY7F57pnbEuVd8AIKhwdUTGoETsUpz/BxfKzVudS7mrSmqB8AV+n2fK/9
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230028)(136003)(346002)(39860400002)(396003)(366004)(376002)(451199021)(66556008)(76116006)(4744005)(2906002)(66946007)(86362001)(66476007)(5660300002)(52536014)(7416002)(83380400001)(8936002)(8676002)(316002)(64756008)(66446008)(41300700001)(4326008)(6916009)(54906003)(478600001)(33656002)(55016003)(71200400001)(7696005)(26005)(186003)(122000001)(9686003)(82960400001)(6506007)(55236004)(38070700005)(38100700002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?zk2/Ra6bkjTGGBoR0N4WZzeROX/ZVy1p2XS7yUnFSrashD90RwfqfCSnjR3i?=
+ =?us-ascii?Q?83LJTSHrkf6/wnely+cOWhvS2f1dJ4457Jy7EqiVsEX3RtL4wzTAbHaTU1T4?=
+ =?us-ascii?Q?SbbAV0Y1w2eVq4ueR+Q5exHUJZ86T+c7aH+SiV1W7eKVAraCvMlGcW6twAwA?=
+ =?us-ascii?Q?e51EQNsecgv+SIbs6NhHzSLtUy9zKbDjjc2FCoJ99PCFs/OMXTB8v2t7NdcQ?=
+ =?us-ascii?Q?K/g1ug6PfjzxbseVJyHuKclqiZyND5n9fD/s96HQufRBiKihTVm+tbVcdfiu?=
+ =?us-ascii?Q?r15OaD1Wxb0+HFntsnsdqTbbPbYXmkE7IqVvko8xW8Yu2XaLRVvWjYgBc45W?=
+ =?us-ascii?Q?QvKrRYA4XBBeH3G4KIVjmKa+gLAm2y6V/nhkbIQqm3f////plASUJIQ13Lcf?=
+ =?us-ascii?Q?+smFGa566OcLlX53ZjG4wcOVx0XALzerObON4Bn9PsuZUCkuZLTXdLx8W9jO?=
+ =?us-ascii?Q?KWdVidNxXAVVGAr3TsMD9nuJ67IMfccUMrrUeZOV3XUJ8qFniDC4DljaAZMo?=
+ =?us-ascii?Q?Pw8xuvSL8oRXcKuYg9yWxzdYtSgm5cjEefgHlZyTcpG0Wr1lzFJyq7eQVEis?=
+ =?us-ascii?Q?sKzC3Ol7KZV9l/+4DbBS6HglY/n3rom0FZqSW2+XtRry1oya12LEH7DreFuY?=
+ =?us-ascii?Q?R9cH06wFNQd/K9A1nw4NUQ5c5nFhrCwG7eBTMPRHTewtWtS0/vz6rw4DPsG3?=
+ =?us-ascii?Q?B2AjdxQQRG1fRoUOy+2JFfSdGmpxXpct1eAq7PgRle7kyVZYr8AT2yrECVlF?=
+ =?us-ascii?Q?W3AXd0t/P8CGCqAjfakDkam112xt9dcNGaiGu+sMaAo01ImGg5VNuBNOKZPY?=
+ =?us-ascii?Q?/9jn0NLFTTyYauEABwdw+bDPtzTfF437ONPU2PalcHCu9WU9sOQJpvKzj1Eh?=
+ =?us-ascii?Q?KQm+VJepPR19C3eXLYengGvOFCcyb5IKfNBMbAWHrRBsDnJq7CuPSd6szxMD?=
+ =?us-ascii?Q?N52cBXloyyrIG6x4zte6d/FGEElBLHIaA6Rm6jK8qqQwJJnnbGE3KFuM4Dzu?=
+ =?us-ascii?Q?m8PM2f0Cwl7jtvyQoLQOMjbKm7Q/MKPiIF/tew2xjMVTVRLCjmVr+IfDlIvh?=
+ =?us-ascii?Q?if+8FEnBQhGm4I7hBGdxaPXzPc+KbyPJ6mWmNybaIyB4ouaD3kj5EbU8c5nh?=
+ =?us-ascii?Q?Ya9dysiH9I8Srdcg/DJrYejnNNZYLMC5941hqji4WB33netRq9SGLLlxlY5y?=
+ =?us-ascii?Q?Vv0TBmKfnhq9sbSB4+M9p7tKGhZFS1jXJT8SunFrzJbYoD8BLC6A6GgWP/1F?=
+ =?us-ascii?Q?UrmgmTlKyCgZNPXfvn/35jCwysimjt1CaEClcql05Y3d7m+fy6VHtNbhErpR?=
+ =?us-ascii?Q?Pto2RyaSQ8EHZHEAzFwMP1V4y0UHFRv9mDGyiMCekJJFMZbKAyCzBGCDBLhT?=
+ =?us-ascii?Q?WyiEKpbwwnat9fO5TPIfE9avFA3yPLCs7KvCt2v+hFzHdH0HRFX9o0EtHXw5?=
+ =?us-ascii?Q?xUFYBu77/UuJomHq2DWL9mgAJRFHgtT96ndylO1oCdDiJEMJdkQHtUyQrrl0?=
+ =?us-ascii?Q?HSpgREb9sHUAuvUO8k31o7Mg2juYOWeZ7JoHULKdxUSq62ocR//JIpLzXp8i?=
+ =?us-ascii?Q?jhLSyxKECe53tLLoXSA/ryOgYFH74MTBacE7SNLD?=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: d5da3ee9-9c28-4a6b-f02e-08db4751c7f0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Apr 2023 19:01:17.5110
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 105b2061-b669-4b31-92ac-24d304d195dc
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: NqS8pySHJoIjfHwx2Bb/hPEuB6QOecfXOAP+JT/2/E6xw2OwNAryrdHCFgSIQxD2PqJ8/tv2W7Rq5fYHXchK5w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR84MB1807
+X-OriginatorOrg: hpe.com
+X-Proofpoint-GUID: rQNgkIGfT_GbYMBatIlfm0FLTh5EK9z4
+X-Proofpoint-ORIG-GUID: rQNgkIGfT_GbYMBatIlfm0FLTh5EK9z4
+X-HPE-SCL: -1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-27_09,2023-04-27_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 phishscore=0
+ mlxlogscore=654 suspectscore=0 impostorscore=0 adultscore=0 mlxscore=0
+ spamscore=0 priorityscore=1501 clxscore=1011 lowpriorityscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303200000 definitions=main-2304270166
+X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 27, 2023 at 10:16=E2=80=AFAM Rob Herring <robh@kernel.org> wrot=
-e:
->
-> On Wed, Apr 26, 2023 at 11:54:28AM -0700, Justin Chen wrote:
-> > From: Florian Fainelli <f.fainelli@gmail.com>
-> >
-> > Add a binding document for the Broadcom ASP 2.0 Ethernet
-> > controller.
-> >
-> > Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
-> > Signed-off-by: Justin Chen <justinpopo6@gmail.com>
-> > ---
-> >  .../devicetree/bindings/net/brcm,asp-v2.0.yaml     | 145 +++++++++++++=
-++++++++
-> >  1 file changed, 145 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/net/brcm,asp-v2.0=
-.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/net/brcm,asp-v2.0.yaml b=
-/Documentation/devicetree/bindings/net/brcm,asp-v2.0.yaml
-> > new file mode 100644
-> > index 000000000000..818d91692e6e
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/net/brcm,asp-v2.0.yaml
-> > @@ -0,0 +1,145 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/net/brcm,asp-v2.0.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Broadcom ASP 2.0 Ethernet controller
-> > +
-> > +maintainers:
-> > +  - Justin Chen <justinpopo6@gmail.com>
-> > +  - Florian Fainelli <f.fainelli@gmail.com>
-> > +
-> > +description: Broadcom Ethernet controller first introduced with 72165
-> > +
-> > +properties:
-> > +  '#address-cells':
-> > +    const: 1
-> > +  '#size-cells':
-> > +    const: 1
-> > +
-> > +  compatible:
-> > +    enum:
-> > +      - brcm,asp-v2.0
-> > +      - brcm,bcm72165-asp-v2.0
-> > +      - brcm,asp-v2.1
-> > +      - brcm,bcm74165-asp-v2.1
->
-> You have 1 SoC per version, so what's the point of versions? If you have
-> more coming, then fine, but I'd expect it to be something like this:
->
-> compatible =3D "brcm,bcm74165-asp-v2.1", "brcm,asp-v2.1";
->
-> Also, the version in the SoC specific compatible is redundant. Just
-> "brcm,bcm74165-asp" is enough.
->
-> v2.1 is not compatible with v2.0? What that means is would a client/OS
-> that only understands what v2.0 is work with v2.1 h/w? If so, you should
-> have fallback compatible.
->
-v2.1 is not compatible with v2.0 unfortunately. So no, a client/OS
-that only understands v2.0 will not work with v2.1 h/w.
 
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  ranges: true
-> > +
-> > +  interrupts:
-> > +    minItems: 1
-> > +    items:
-> > +      - description: RX/TX interrupt
-> > +      - description: Port 0 Wake-on-LAN
-> > +      - description: Port 1 Wake-on-LAN
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +  ethernet-ports:
->
-> The ethernet-switch.yaml schema doesn't work for you?
->
-Technically it is not a switch. But it might work... If we use port to
-reference the unimac and reg to reference the ethernet channel. I
-rather not though, just cause it is not a switch, so calling it an
-ethernet-switch is confusing.
+> Thank you for your contribution. To begin with, I don't believe a simple =
+GPIO
+> driver needs 1000+ LoCs. But see more comments below.
 
-> > +    type: object
-> > +    properties:
-> > +      '#address-cells':
-> > +        const: 1
-> > +      '#size-cells':
-> > +        const: 0
-> > +
-> > +    patternProperties:
-> > +      "^port@[0-9]+$":
-> > +        type: object
-> > +
-> > +        $ref: ethernet-controller.yaml#
-> > +
-> > +        properties:
-> > +          reg:
-> > +            maxItems: 1
-> > +            description: Port number
-> > +
-> > +          channel:
-> > +            maxItems: 1
-> > +            description: ASP channel number
->
-> Not a standard property, so it needs a type and vendor prefix. However,
-> what's the difference between channel and port? Can the port numbers
-> correspond to the channels?
->
-Port refers to the unimac. In our case we currently have a maximum of
-2. Channel refers to the ethernet hardware channel proper, in which we
-have many. So yes, you can have a port correlate to any channel.
+Andy,
 
-> > +
-> > +        required:
-> > +          - reg
-> > +          - channel
-> > +
-> > +    additionalProperties: false
-> > +
-> > +patternProperties:
-> > +  "^mdio@[0-9a-f]+$":
-> > +    type: object
-> > +    $ref: "brcm,unimac-mdio.yaml"
->
-> Drop quotes.
->
-> > +
-> > +    description:
-> > +      ASP internal UniMAC MDIO bus
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - clocks
-> > +  - ranges
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +
-> > +    ethernet@9c00000 {
-> > +        compatible =3D "brcm,asp-v2.0";
-> > +        reg =3D <0x9c00000 0x1fff14>;
-> > +        interrupts =3D <GIC_SPI 51 IRQ_TYPE_LEVEL_HIGH>;
-> > +        ranges;
-> > +        clocks =3D <&scmi 14>;
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <1>;
-> > +
-> > +        mdio@c614 {
-> > +            compatible =3D "brcm,asp-v2.0-mdio";
-> > +            reg =3D <0xc614 0x8>;
->
-> You have 1:1 ranges, is that really what you want? That means 0xc614 is
-> an absolute address.
-Ack, will fix.
+Thank you for your feedback. I will apply all the input you have provided.
 
-Thanks for the review,
-Justin
+I will need to rewrite this code and I am considering the need to
+perhaps create two files instead of one to keep code length down. As
+implied by the description I was trying to have one file handle two
+different compatible strings.
 
->
-> > +            reg-names =3D "mdio";
-> > +            #address-cells =3D <1>;
-> > +            #size-cells =3D <0>;
-> > +
-> > +            phy0: ethernet-phy@1 {
-> > +                reg =3D <1>;
-> > +            };
-> > +       };
-> > +
-> > +        mdio@ce14 {
-> > +            compatible =3D "brcm,asp-v2.0-mdio";
-> > +            reg =3D <0xce14 0x8>;
-> > +            reg-names =3D "mdio";
-> > +            #address-cells =3D <1>;
-> > +            #size-cells =3D <0>;
-> > +
-> > +            phy1: ethernet-phy@1 {
-> > +                reg =3D <1>;
-> > +            };
-> > +        };
-> > +
-> > +        ethernet-ports {
-> > +            #address-cells =3D <1>;
-> > +            #size-cells =3D <0>;
-> > +
-> > +            port@0 {
-> > +                reg =3D <0>;
-> > +                channel =3D <8>;
-> > +                phy-mode =3D "rgmii";
-> > +                phy-handle =3D <&phy0>;
-> > +            };
-> > +
-> > +            port@1 {
-> > +                reg =3D <1>;
-> > +                channel =3D <9>;
-> > +                phy-mode =3D "rgmii";
-> > +                phy-handle =3D <&phy1>;
-> > +            };
-> > +        };
-> > +    };
-> > --
-> > 2.7.4
-> >
+I believe that one file will need to be the regular IO from the host and
+memory mapped IO pins of our SoC. The other will need to be the memory
+mapped IO pins coming from our CPLD. Both of these sources are interruptibl=
+e
+which does cause some complexity.
+
+Please let me know if what I have described above is not a good approach to
+take with GPIO drivers. Any guidance would be greatly appreciated.
+
+Best Regards,
+-Nick Hawkins
