@@ -2,119 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 87CF16F0DA0
-	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 23:09:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E63726F0DAC
+	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 23:12:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344240AbjD0VJ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Apr 2023 17:09:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52384 "EHLO
+        id S229926AbjD0VMZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Apr 2023 17:12:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344212AbjD0VJZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 17:09:25 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68D544C01
-        for <devicetree@vger.kernel.org>; Thu, 27 Apr 2023 14:09:23 -0700 (PDT)
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1ps8rO-0005ET-LI; Thu, 27 Apr 2023 23:09:02 +0200
-Received: from pengutronix.de (unknown [172.20.34.65])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 0E20B1B936F;
-        Thu, 27 Apr 2023 21:08:57 +0000 (UTC)
-Date:   Thu, 27 Apr 2023 23:08:57 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Cc:     linux-kernel@vger.kernel.org, michael@amarulasolutions.com,
-        Amarula patchwork <linux-amarula@amarulasolutions.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S229721AbjD0VMZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 17:12:25 -0400
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CE6E2D7C;
+        Thu, 27 Apr 2023 14:12:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
+        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=dIhyELVPRJUDchr+DxP2dXcydX+E9q80ICcyptj3XLM=; b=yZsUty/Ktr7ZHCzm+DOipnFrA6
+        nlgN0G/4RSJI5Kc/IFq5W1pVHn5rKAdCTQuINTYGt+Fn1COWWO8BphUDwGTe7BwooUJEIHPM1yotY
+        cc9vhEXYsBZEXkcX1o16md71YBiO4+Yw8oQFF5KLQ8yCLfQ8KeAL+I1FgkD6F/khZ8L4=;
+Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:40576 helo=debian-acer)
+        by mail.hugovil.com with esmtpa (Exim 4.92)
+        (envelope-from <hugo@hugovil.com>)
+        id 1ps8uT-0003qd-W4; Thu, 27 Apr 2023 17:12:15 -0400
+Date:   Thu, 27 Apr 2023 17:12:13 -0400
+From:   Hugo Villeneuve <hugo@hugovil.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Fabio Estevam <festevam@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Wolfgang Grandegger <wg@grandegger.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-can@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com, netdev@vger.kernel.org
-Subject: Re: [PATCH v2 0/5] can: bxcan: add support for single peripheral
- configuration
-Message-ID: <20230427-retaining-deeply-fcff70098e7e-mkl@pengutronix.de>
-References: <20230427204540.3126234-1-dario.binacchi@amarulasolutions.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="nzyuuy6jlpbsjjmh"
-Content-Disposition: inline
-In-Reply-To: <20230427204540.3126234-1-dario.binacchi@amarulasolutions.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        linux-kernel@vger.kernel.org
+Message-Id: <20230427171213.480d1d3ba1576edc8198e5f0@hugovil.com>
+In-Reply-To: <31610e60-5c1e-4d19-9beb-83b49ef26155@lunn.ch>
+References: <20230427195538.2718661-1-hugo@hugovil.com>
+        <CAOMZO5CQeeme6uhb8NCzR2QADjkBM-mRC9-GUnmhLWSGo5MMoQ@mail.gmail.com>
+        <20230427160608.f051241d750404939296f60d@hugovil.com>
+        <CAOMZO5BNbRV1fLpwDZWgj9+gihHJBBGeZCvkF1tgm5GhwSn8LQ@mail.gmail.com>
+        <20230427162251.518a956ce7a9dcd88352725a@hugovil.com>
+        <31610e60-5c1e-4d19-9beb-83b49ef26155@lunn.ch>
+X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 184.161.19.61
+X-SA-Exim-Mail-From: hugo@hugovil.com
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
+Subject: Re: [PATCH] imx8mn-var-som: dts: fix PHY detection bug by adding
+ deassert delay
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 27 Apr 2023 22:56:40 +0200
+Andrew Lunn <andrew@lunn.ch> wrote:
 
---nzyuuy6jlpbsjjmh
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> On Thu, Apr 27, 2023 at 04:22:51PM -0400, Hugo Villeneuve wrote:
+> > On Thu, 27 Apr 2023 17:07:59 -0300
+> > Fabio Estevam <festevam@gmail.com> wrote:
+> > 
+> > > On Thu, Apr 27, 2023 at 5:06 PM Hugo Villeneuve <hugo@hugovil.com> wrote:
+> > > 
+> > > > Hi Fabio,
+> > > > it uses a ADIN1300 PHY.
+> > > >
+> > > > The datasheet indicate that the "Management interface active (t4)" state is reached at most 5ms after the reset signal is deasserted.
+> > > 
+> > > Please add this information to the commit log and please add a Fixes: tag.
+> > > 
+> > > Thanks
+> > 
+> > Hi,
+> > I am trying to properly add a "Fixes: " tag, but the description for this tag indicates that it is to report that "the patch fixes an issue in a previous commit".
+> > 
+> > In this case, I cannot identify a commit that introduced that bug, apart from the initial commit of the DTS file which didn't have the reset property present?
+> 
+> Is the PHY on the SOM or the carrier?
 
-On 27.04.2023 22:45:35, Dario Binacchi wrote:
->=20
-> The series adds support for managing bxCAN controllers in single peripher=
-al
-> configuration.
-> Unlike stm32f4 SOCs, where bxCAN controllers are only in dual peripheral
-> configuration, stm32f7 SOCs contain three CAN peripherals, CAN1 and CAN2
-> in dual peripheral configuration and CAN3 in single peripheral
-> configuration:
-> - Dual CAN peripheral configuration:
->  * CAN1: Primary bxCAN for managing the communication between a secondary
->    bxCAN and the 512-byte SRAM memory.
->  * CAN2: Secondary bxCAN with no direct access to the SRAM memory.
->    This means that the two bxCAN cells share the 512-byte SRAM memory and
->    CAN2 can't be used without enabling CAN1.
-> - Single CAN peripheral configuration:
->  * CAN3: Primary bxCAN with dedicated Memory Access Controller unit and
->    512-byte SRAM memory.
+It is on the SOM.
 
-This really looks good! Great work! Who takes the DT changes? I can take
-the whole series.
+> 
+> If the PHY is on the carrier, then the delay is a carrier property,
+> and should be in the carrier .dts file. So use the commit for when the
+> carrier DTS file was added.
+> 
+> If the PHY is on the SOM, then use the commit for when the SOM DTSI
+> was added.
 
-regards,
-Marc
+Ok, will use that.
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+Hugo.
 
---nzyuuy6jlpbsjjmh
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmRK5GYACgkQvlAcSiqK
-BOjH2gf/btmb76HmGphNPuGDwudwcjt004XQ1d8nxWuWd74zEwD/+Oz6W9hbZzox
-eshaIvJODyWw6Qgj+FKc+86AZvperVx+8T+Ia5PvPY8mXt0Mbh+aFM2XVTo9qXtk
-brvJPXZU/gkwFYafQeOINt2rohkeXwN+JV3s2cfj0a2b6FKUgR8a1S7DxjQdimIK
-0psXmV4IKyxQq6b2O7j5r99KYDbeokkzwOrowghxt+2JK6uwI9Fea1iOziE9JPUT
-A/mhaieHgpv4KhI4uJBxFoCOn+LPIMT54J8dT3CmChIdYYavdruibezAUvZjtDix
-IVqNdP1EjNlpTWRvNh9cIcwt6NWXrA==
-=/Q1q
------END PGP SIGNATURE-----
-
---nzyuuy6jlpbsjjmh--
+-- 
+Hugo Villeneuve <hugo@hugovil.com>
