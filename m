@@ -2,123 +2,319 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 121256F067B
-	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 15:15:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01B2A6F0684
+	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 15:18:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243771AbjD0NPk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Apr 2023 09:15:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37670 "EHLO
+        id S243708AbjD0NSu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Apr 2023 09:18:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243466AbjD0NPf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 09:15:35 -0400
-Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CEF84495;
-        Thu, 27 Apr 2023 06:15:22 -0700 (PDT)
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id 7172C1C0D22; Thu, 27 Apr 2023 15:15:20 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
-        t=1682601320;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=Q2nKoZvt8N7LqYBmdBABrzailml1kvoxUqiS++FYAV8=;
-        b=c37fUE6a0M9uFWN2LlcazPiUTJM3Hp8dmgmsfw2+FasKoOGIYrgBW+E2R6rUHWfhfcUa7j
-        2SXrN0bd5BV6eLYhp36Ye/u2gdrP42DF9n2uQr114LiY+GyHyeq7y0wfwyBH6cJ+YojcG8
-        Y0mba4PstW7od0yu81hagZQbHLTSpCE=
-Date:   Thu, 27 Apr 2023 15:15:19 +0200
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Michael Riesch <michael.riesch@wolfvision.net>
-Cc:     Javier Carrasco <javier.carrasco@wolfvision.net>,
-        phone-devel@vger.kernel.org, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        with ESMTP id S229847AbjD0NSt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 09:18:49 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B530646BB
+        for <devicetree@vger.kernel.org>; Thu, 27 Apr 2023 06:18:47 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-94a34a14a54so1615577866b.1
+        for <devicetree@vger.kernel.org>; Thu, 27 Apr 2023 06:18:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1682601526; x=1685193526;
+        h=content-transfer-encoding:in-reply-to:organization:from:references
+         :cc:to:content-language:subject:reply-to:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=DBQvR31EzSGB+GNpVatatuXX6PWeKiJTAais4vH/bFk=;
+        b=jt77vZhWMYW/P8VcFBxzg7ViTXMeJXQ+aRH2y09RmGV9dDdScY0TekL2bnIL/28SHr
+         DBhdVd91UTWlkg2UhRE4F+ckE1AeXBlM61+qMvGHv30Inu+2ttF7ItKOaQWwOicuNUAV
+         aZcFVoaQP/r1x0a3kiHsRwNjXjX9w4llrmBX4WqT/ZwfdXpzw/AFKW6eplYyBW46xtJV
+         DMZrYoX1Yevy7yFs+p6JOH4zk0wctp0NLQmydu5whb+yW0SAmN5bgnG78p3Hz+kxRVjn
+         2k/n+UxUpGdEyubpnO74l2gO2N930Xff54jDatHvS2N4uNEbn8h3E88ILxThNmalE1xZ
+         wMOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682601526; x=1685193526;
+        h=content-transfer-encoding:in-reply-to:organization:from:references
+         :cc:to:content-language:subject:reply-to:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DBQvR31EzSGB+GNpVatatuXX6PWeKiJTAais4vH/bFk=;
+        b=ECeybD+U8pQct8eDtFfJlLhcMRlRvRnVFu/6pJdR34UPCvdX0iPPIwwJs58WzSqYlh
+         vUpC+mqQvRNfgdsj1Pht9KhsikGWYTQHNVZsnLoAP6eItUm+ge6VDKgQ7jYSs8O6D06D
+         T+WeSJhHP+ZMsSOfV+WZcgfWR4hZMe6ALjzg3EiTW3e59Nv8NbF01W5j+TslMtDmpoZe
+         qI9fId80cx2ZwRPQMEWdxvopXg6e7O/m2mUZ4HpO1tCvBBrFAqBK5cQcti/OwfU1QCIY
+         a3ohRRzAs58Q9XxCWf8gDbQnBhyd+R2JjpweQQu8uITi8GzhEIEChGB290xM0iFv8b8q
+         iQxw==
+X-Gm-Message-State: AC+VfDyjAcy46FMo4nrhVIsIiTsHnGfWEy82791IWPsJ3Djbs9z0CbbT
+        85UISQM/cKaFDKj3vPB73lttMA==
+X-Google-Smtp-Source: ACHHUZ5NPbQ4UO0fccy52C1sJlVWuBlM0HmI4LnstFrC6DQmxt/MgNO2gN7soJq77PsASAbgfJUqjA==
+X-Received: by 2002:a17:907:7fa7:b0:956:fbd7:bc5e with SMTP id qk39-20020a1709077fa700b00956fbd7bc5emr2297912ejc.64.1682601526024;
+        Thu, 27 Apr 2023 06:18:46 -0700 (PDT)
+Received: from [172.23.2.82] ([31.221.30.162])
+        by smtp.gmail.com with ESMTPSA id q22-20020aa7d456000000b005083b217cb7sm7891870edr.46.2023.04.27.06.18.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Apr 2023 06:18:45 -0700 (PDT)
+Message-ID: <ece3e721-6e67-b2a9-4544-14e41a9b8589@linaro.org>
+Date:   Thu, 27 Apr 2023 15:18:44 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 4/7] phy: qcom-qmp-combo: Introduce orientation switching
+Content-Language: en-US
+To:     Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Johan Hovold <johan@kernel.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Henrik Rydberg <rydberg@bitmath.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Uwe Kleine-g <u.kleine-koenig@pengutronix.de>,
-        Bastian Hecht <hechtb@gmail.com>
-Subject: Re: [RFC v1 0/4] Input: support virtual objects on touchscreens
-Message-ID: <ZEp1Z08/CQ+waw8+@duo.ucw.cz>
-References: <20230425115049.870003-1-javier.carrasco@wolfvision.net>
- <ZEpWrWpzkI9kNTkr@duo.ucw.cz>
- <de87d6ae-3449-5581-3e17-4aae72e8197a@wolfvision.net>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="CwltbjgpA33UBO1n"
-Content-Disposition: inline
-In-Reply-To: <de87d6ae-3449-5581-3e17-4aae72e8197a@wolfvision.net>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230425034010.3789376-1-quic_bjorande@quicinc.com>
+ <20230425034010.3789376-5-quic_bjorande@quicinc.com>
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <20230425034010.3789376-5-quic_bjorande@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---CwltbjgpA33UBO1n
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 25/04/2023 05:40, Bjorn Andersson wrote:
+> The data lanes of the QMP PHY is swapped in order to handle changing
+> orientation of the USB Type-C cable. Register a typec_switch device to
+> allow a TCPM to configure the orientation.
+> 
+> The newly introduced orientation variable is adjusted based on the
+> request, and the initialized components are brought down and up again.
+> To keep track of what parts needs to be cycled new variables to keep
+> track of the individual init_count is introduced.
+> 
+> Both the USB and the DisplayPort altmode signals are properly switched.
+> For DisplayPort the controller will after the TCPM having established
+> orientation power on the PHY, so this is not done implicitly, but for
+> USB the PHY typically is kept initialized across the switch, and must
+> therefor then be reinitialized.
 
-Hi!
+   therefore
+> 
+> This is based on initial work by Wesley Cheng.
+> 
+> Link: https://lore.kernel.org/r/20201009082843.28503-3-wcheng@codeaurora.org/
+> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> ---
+>   drivers/phy/qualcomm/phy-qcom-qmp-combo.c | 92 ++++++++++++++++++++---
+>   1 file changed, 83 insertions(+), 9 deletions(-)
+> 
+> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
+> index 6748f31da7a3..5d6d6ef3944b 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
+> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
+> @@ -20,6 +20,7 @@
+>   #include <linux/reset.h>
+>   #include <linux/slab.h>
+>   #include <linux/usb/typec.h>
+> +#include <linux/usb/typec_mux.h>
+>   
+>   #include <dt-bindings/phy/phy-qcom-qmp.h>
+>   
+> @@ -1320,15 +1321,18 @@ struct qmp_combo {
+>   
+>   	struct phy *usb_phy;
+>   	enum phy_mode mode;
+> +	unsigned int usb_init_count;
+>   
+>   	struct phy *dp_phy;
+>   	unsigned int dp_aux_cfg;
+>   	struct phy_configure_opts_dp dp_opts;
+> +	unsigned int dp_init_count;
+>   
+>   	struct clk_fixed_rate pipe_clk_fixed;
+>   	struct clk_hw dp_link_hw;
+>   	struct clk_hw dp_pixel_hw;
+>   
+> +	struct typec_switch_dev *sw;
+>   	enum typec_orientation orientation;
+>   };
+>   
+> @@ -2458,14 +2462,14 @@ static int qmp_combo_dp_calibrate(struct phy *phy)
+>   	return 0;
+>   }
+>   
+> -static int qmp_combo_com_init(struct qmp_combo *qmp)
+> +static int qmp_combo_com_init(struct qmp_combo *qmp, bool force)
+>   {
+>   	const struct qmp_phy_cfg *cfg = qmp->cfg;
+>   	void __iomem *com = qmp->com;
+>   	int ret;
+>   	u32 val;
+>   
+> -	if (qmp->init_count++)
+> +	if (!force && qmp->init_count++)
+>   		return 0;
+>   
+>   	ret = regulator_bulk_enable(cfg->num_vregs, qmp->vregs);
+> @@ -2526,11 +2530,11 @@ static int qmp_combo_com_init(struct qmp_combo *qmp)
+>   	return ret;
+>   }
+>   
+> -static int qmp_combo_com_exit(struct qmp_combo *qmp)
+> +static int qmp_combo_com_exit(struct qmp_combo *qmp, bool force)
+>   {
+>   	const struct qmp_phy_cfg *cfg = qmp->cfg;
+>   
+> -	if (--qmp->init_count)
+> +	if (!force && --qmp->init_count)
+>   		return 0;
+>   
+>   	reset_control_bulk_assert(cfg->num_resets, qmp->resets);
+> @@ -2550,12 +2554,14 @@ static int qmp_combo_dp_init(struct phy *phy)
+>   
+>   	mutex_lock(&qmp->phy_mutex);
+>   
+> -	ret = qmp_combo_com_init(qmp);
+> +	ret = qmp_combo_com_init(qmp, false);
+>   	if (ret)
+>   		goto out_unlock;
+>   
+>   	cfg->dp_aux_init(qmp);
+>   
+> +	qmp->dp_init_count++;
+> +
+>   out_unlock:
+>   	mutex_unlock(&qmp->phy_mutex);
+>   	return ret;
+> @@ -2567,8 +2573,9 @@ static int qmp_combo_dp_exit(struct phy *phy)
+>   
+>   	mutex_lock(&qmp->phy_mutex);
+>   
+> -	qmp_combo_com_exit(qmp);
+> +	qmp_combo_com_exit(qmp, false);
+>   
+> +	qmp->dp_init_count--;
+>   	mutex_unlock(&qmp->phy_mutex);
+>   
+>   	return 0;
+> @@ -2688,16 +2695,18 @@ static int qmp_combo_usb_init(struct phy *phy)
+>   	int ret;
+>   
+>   	mutex_lock(&qmp->phy_mutex);
+> -	ret = qmp_combo_com_init(qmp);
+> +	ret = qmp_combo_com_init(qmp, false);
+>   	if (ret)
+>   		goto out_unlock;
+>   
+>   	ret = qmp_combo_usb_power_on(phy);
+>   	if (ret) {
+> -		qmp_combo_com_exit(qmp);
+> +		qmp_combo_com_exit(qmp, false);
+>   		goto out_unlock;
+>   	}
+>   
+> +	qmp->usb_init_count++;
+> +
+>   out_unlock:
+>   	mutex_unlock(&qmp->phy_mutex);
+>   	return ret;
+> @@ -2713,10 +2722,12 @@ static int qmp_combo_usb_exit(struct phy *phy)
+>   	if (ret)
+>   		goto out_unlock;
+>   
+> -	ret = qmp_combo_com_exit(qmp);
+> +	ret = qmp_combo_com_exit(qmp, false);
+>   	if (ret)
+>   		goto out_unlock;
+>   
+> +	qmp->usb_init_count--;
+> +
+>   out_unlock:
+>   	mutex_unlock(&qmp->phy_mutex);
+>   	return ret;
+> @@ -3351,6 +3362,65 @@ static struct phy *qmp_combo_phy_xlate(struct device *dev, struct of_phandle_arg
+>   	return ERR_PTR(-EINVAL);
+>   }
+>   
+> +#if IS_ENABLED(CONFIG_TYPEC)
+> +static int qmp_combo_typec_switch_set(struct typec_switch_dev *sw,
+> +				      enum typec_orientation orientation)
+> +{
+> +	struct qmp_combo *qmp = typec_switch_get_drvdata(sw);
+> +	const struct qmp_phy_cfg *cfg = qmp->cfg;
+> +
+> +	if (orientation == qmp->orientation || orientation == TYPEC_ORIENTATION_NONE)
+> +		return 0;
+> +
+> +	mutex_lock(&qmp->phy_mutex);
+> +	qmp->orientation = orientation;
+> +
+> +	if (qmp->init_count) {
+> +		if (qmp->usb_init_count)
+> +			qmp_combo_usb_power_off(qmp->usb_phy);
+> +		qmp_combo_com_exit(qmp, true);
+> +
+> +		qmp_combo_com_init(qmp, true);
+> +		if (qmp->usb_init_count)
+> +			qmp_combo_usb_power_on(qmp->usb_phy);
+> +		if (qmp->dp_init_count)
+> +			cfg->dp_aux_init(qmp);
+> +	}
+> +	mutex_unlock(&qmp->phy_mutex);
+> +
+> +	return 0;
+> +}
+> +
+> +static void qmp_combo_typec_unregister(void *data)
+> +{
+> +	struct qmp_combo *qmp = data;
+> +
+> +	typec_switch_unregister(qmp->sw);
+> +}
+> +
+> +static int qmp_combo_typec_switch_register(struct qmp_combo *qmp)
+> +{
+> +	struct typec_switch_desc sw_desc = {};
+> +	struct device *dev = qmp->dev;
+> +
+> +	sw_desc.drvdata = qmp;
+> +	sw_desc.fwnode = dev->fwnode;
+> +	sw_desc.set = qmp_combo_typec_switch_set;
+> +	qmp->sw = typec_switch_register(dev, &sw_desc);
+> +	if (IS_ERR(qmp->sw)) {
+> +		dev_err(dev, "Unable to register typec switch: %pe\n", qmp->sw);
+> +		return PTR_ERR(qmp->sw);
+> +	}
+> +
+> +	return devm_add_action_or_reset(dev, qmp_combo_typec_unregister, qmp);
+> +}
+> +#else
+> +static int qmp_combo_typec_switch_register(struct qmp_combo *qmp)
+> +{
+> +	return 0;
+> +}
+> +#endif
+> +
+>   static int qmp_combo_probe(struct platform_device *pdev)
+>   {
+>   	struct qmp_combo *qmp;
+> @@ -3385,6 +3455,10 @@ static int qmp_combo_probe(struct platform_device *pdev)
+>   	if (ret)
+>   		return ret;
+>   
+> +	ret = qmp_combo_typec_switch_register(qmp);
+> +	if (ret)
+> +		return ret;
+> +
+>   	/* Check for legacy binding with child nodes. */
+>   	usb_np = of_get_child_by_name(dev->of_node, "usb3-phy");
+>   	if (usb_np) {
 
-> >=20
-> >> Some touchscreens are shipped with a physical layer on top of them whe=
-re
-> >> a number of buttons and a resized touchscreen surface might be
-> >> available.
-> >=20
-> > Yes, it is quite comon, for example Motorola Droid 4 has 4 virtual
-> > buttons below touchscreen.
->=20
-> Are those buttons configurable in some way? Or do they have a fixed purpo=
-se?
+Thanks for taking care of this, with the commit typo fix:
 
-Fixed.
-
-> How does Android handle those buttons, BTW?
-
-No idea.
-
-> > One question is if this should be handled inside the kernel. It will
-> > make it compatible with existing software, but it will also reduce
-> > flexibility.
->=20
-> I would say that it should be described in device tree if the purpose is
-> fixed. For example, if there is no display behind the touch screen at a
-> certain point but a printed sheet (e.g., with a home or return symbol)
-> then it is clear that this button is not going to change. In such a case
-> I doubt that flexibility is required.
-
-I agree it should be in the device tree.
-
-AFAICT hardware can do drags between the buttons, and drag between the
-buttons and touchscreen. Turning it into buttons prevents that.
-
-Plus, real buttons can do simultaneous presses on all of them,
-touchscreens will have problems with that.
-
-Best regards,
-								Pavel
---=20
-People of Russia, stop Putin before his war on Ukraine escalates.
-
---CwltbjgpA33UBO1n
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCZEp1ZwAKCRAw5/Bqldv6
-8oX2AKCHvc05pxAHX0VL5xbfmkbx9sLhkACfesnbnxpyU4K1Q08cSevtLEkKtlg=
-=80om
------END PGP SIGNATURE-----
-
---CwltbjgpA33UBO1n--
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
