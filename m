@@ -2,90 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF6C66F0916
-	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 18:06:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7060F6F093A
+	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 18:10:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244000AbjD0QG1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Apr 2023 12:06:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47790 "EHLO
+        id S243532AbjD0QKy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Apr 2023 12:10:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244021AbjD0QG0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 12:06:26 -0400
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F7C440CF
-        for <devicetree@vger.kernel.org>; Thu, 27 Apr 2023 09:06:24 -0700 (PDT)
-Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-6a438f0d9c9so6537430a34.1
-        for <devicetree@vger.kernel.org>; Thu, 27 Apr 2023 09:06:24 -0700 (PDT)
+        with ESMTP id S243023AbjD0QKw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 12:10:52 -0400
+Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E09F35BB;
+        Thu, 27 Apr 2023 09:10:51 -0700 (PDT)
+Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-18f16a2c329so5328206fac.0;
+        Thu, 27 Apr 2023 09:10:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682611583; x=1685203583;
+        d=1e100.net; s=20221208; t=1682611850; x=1685203850;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=UL+TgMFr2dGX/yxyLBzT5i3pWvxRT4g3cHsVhb/RPR0=;
-        b=eFIm9OYEp7pzT9yaRwIoyNzBnf3Lkyz18fm53LTZjY52/3fTxEzzgeIFnb/fhg7vVO
-         pzh21SpNYnoPrWF7T5xy2Byi/wmYCT1KL02xdLjGAorYztblZGja/r9I6KmV0rL6RNJc
-         ofBzN/LHzlW09dWuXY5m4iCnATnqoAEaJtcAytn6QVQouNtV0pnrU+pgwm/SlNnisdu/
-         RoNM2mtgiF7jKXz3At0nseAAWDBuFGF+Ic3WHffREy0MpC0MgVIADw+vewRHq5vrWgXV
-         Pdjbnf6dLT6229zUvto6hKqk8dwPVZYFrV5drCtFasQieKsIzk+EWx9yUEoDvQUDfSdP
-         eofQ==
-X-Gm-Message-State: AC+VfDzqSBb1bebmfxB60TQm/s8Kkamgy9M3X+JTK3zUUt3PIS8v2UMQ
-        fUjN/kQ52moLcu0hUtF6jszY4l3Gdw==
-X-Google-Smtp-Source: ACHHUZ4ed5DlUjKWgsvo/1LufvyDhn1AGC/56srInr73TfXBi9O3ZzpDEiDjI0gMtFXFXVV/m1uxkw==
-X-Received: by 2002:a05:6830:1e93:b0:6a5:ea63:b9f4 with SMTP id n19-20020a0568301e9300b006a5ea63b9f4mr1048223otr.15.1682611583617;
-        Thu, 27 Apr 2023 09:06:23 -0700 (PDT)
+        bh=2zb4UIqURY+BWTS3e9vX+YTZaBHbEmn0Eg9W3zLRlAs=;
+        b=TVTe8fmkiSObNpKmCb48LRQ9XR6DmHlGNVO4hqQMq3XJZ7mWKBt2P0fKIrwa9oSFzw
+         cySYBtWNR5Ijg90pOuguNvuALh4mHVfCApFzPcz+9wETK5L6fxoBzUVSFVquGNtEQIYU
+         mFEz39VyB/Ur08g++kXD6J0C6bSyKgaNf4aHXmaAeP48zr2aHehtLUKHXxJgXBqXaW/N
+         KqkSOiE76Im9RFVY5CUZZoy29C7OJp4Lpp0cl8ti3DscbQcUH/RV7ImaZvnvVWK1RtvE
+         iUgVJ68WGA5F0/SgsR6ZJSXFyfIdxPhMW16SjxdDV/WTEZxmKfRcUU6A6Q4soo272Xk0
+         ifyA==
+X-Gm-Message-State: AC+VfDwiGBoWL6aWm+Vq06D3ByvVkCGjEJk/qZ9Zr6FKeN36N7mzoDvZ
+        kvRFJlNV83voEH57XHTfHA==
+X-Google-Smtp-Source: ACHHUZ69Sq4w3EraVz3yG/3YjM+ceN2r9AONaP5KgtunTytLs//j63DXjClPMLRDUmHDfuI/a8cy3w==
+X-Received: by 2002:a05:6830:201a:b0:6a7:bced:411e with SMTP id e26-20020a056830201a00b006a7bced411emr1138804otp.3.1682611850271;
+        Thu, 27 Apr 2023 09:10:50 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id m7-20020a0568301e6700b006a5e0165d3esm8202046otr.19.2023.04.27.09.06.22
+        by smtp.gmail.com with ESMTPSA id i15-20020a9d624f000000b0069fb8bfb4f3sm8056756otk.77.2023.04.27.09.10.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Apr 2023 09:06:23 -0700 (PDT)
-Received: (nullmailer pid 3107383 invoked by uid 1000);
-        Thu, 27 Apr 2023 16:06:22 -0000
-Date:   Thu, 27 Apr 2023 11:06:22 -0500
+        Thu, 27 Apr 2023 09:10:49 -0700 (PDT)
+Received: (nullmailer pid 3112114 invoked by uid 1000);
+        Thu, 27 Apr 2023 16:10:49 -0000
+Date:   Thu, 27 Apr 2023 11:10:49 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Soha Jin <soha@lohu.info>, palmer@dabbelt.com,
-        Wende Tan <twd2.me@gmail.com>, conor@kernel.org,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Hongren Zheng <i@zenithal.me>, Yangyu Chen <cyy@cyyself.name>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v1 2/2] dt-bindings: riscv: drop invalid comment about
- riscv,isa lower-case reasoning
-Message-ID: <168261158214.3107331.4410018416833510357.robh@kernel.org>
-References: <20230426-satin-avenging-086d4e79a8dd@wendy>
- <20230426-payphone-nautical-7098d15035c8@wendy>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Lee Jones <lee@kernel.org>,
+        Philippe Schenker <philippe.schenker@toradex.com>,
+        Stefan Agner <stefan@agner.ch>, Marek Vasut <marex@denx.de>,
+        Steffen Trumtrar <s.trumtrar@pengutronix.de>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-input@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: Add STMPE YAML DT schema
+Message-ID: <20230427161049.GA3107476-robh@kernel.org>
+References: <20230426-stmpe-dt-bindings-v2-0-2f85a1fffcda@linaro.org>
+ <20230426-stmpe-dt-bindings-v2-1-2f85a1fffcda@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230426-payphone-nautical-7098d15035c8@wendy>
+In-Reply-To: <20230426-stmpe-dt-bindings-v2-1-2f85a1fffcda@linaro.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Wed, 26 Apr 2023 11:43:25 +0100, Conor Dooley wrote:
-> "Ease of parsing" may have been the initial argument for keeping this
-> string in lower-case, but parsers may have been written that expect
-> lower-case only.
-> For example, the one in released kernels currently does not behave
-> correctly for multi-letter extensions that begin with a capital letter.
-> Allowing upper-case here brings about no benefit but would break
-> compatibility between new devicetrees and older kernels.
+On Wed, Apr 26, 2023 at 01:21:38PM +0200, Linus Walleij wrote:
+> This adds a schema for the STMPE GPIO that while it is used a
+> lot in the kernel tree is anyway missing its bindings.
 > 
-> Drop the comment to avoid confusing people.
-> 
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 > ---
->  Documentation/devicetree/bindings/riscv/cpus.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> ChangeLog v1->v2:
+> - New patch split off from the MFD patch.
+> ---
+>  .../devicetree/bindings/gpio/st,stmpe-gpio.yaml    | 60 ++++++++++++++++++++++
+>  1 file changed, 60 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/gpio/st,stmpe-gpio.yaml b/Documentation/devicetree/bindings/gpio/st,stmpe-gpio.yaml
+> new file mode 100644
+> index 000000000000..6e991ebbdf77
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpio/st,stmpe-gpio.yaml
+> @@ -0,0 +1,60 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/gpio/st,stmpe-gpio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: STMicroelectonics Port Expander (STMPE) GPIO Block
+> +
+> +description: STMicroelectronics Port Expander (STMPE) is a series of slow
+> +  bus controllers for various expanded peripherals such as GPIO, keypad,
+> +  touchscreen, ADC, PWM or rotator. It can contain one or several different
+> +  peripherals connected to SPI or I2C. These bindings pertain to the
+> +  GPIO portions of these expanders.
+> +
+> +maintainers:
+> +  - Linus Walleij <linus.walleij@linaro.org>
+> +
+> +properties:
+> +  compatible:
+> +    const: st,stmpe-gpio
+> +
+> +  "#gpio-cells":
+> +    const: 2
+> +
+> +  "#interrupt-cells":
+> +    const: 2
+> +
+> +  gpio-controller: true
+> +
+> +  interrupt-controller: true
+> +
+> +  st,norequest-mask:
+> +    description: A bitmask of GPIO lines that cannot be requested because for
+> +      for example not being connected to anything on the system
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +patternProperties:
+> +  "^.+-hog(-[0-9]+)?$":
+> +    type: object
+> +
+> +    properties:
+> +      gpio-hog: true
+> +      gpios: true
+> +      input: true
+> +      output-high: true
+> +      output-low: true
+> +      line-name: true
+> +
+> +    required:
+> +      - gpio-hog
+> +      - gpios
 
-Acked-by: Rob Herring <robh@kernel.org>
+All you need for hog nodes is:
 
+"^.+-hog(-[0-9]+)?$":
+  type: object
+  required:
+    - gpio-hog
+
+The presence of 'gpio-hog' causes the hog schema to be applied.
+
+Rob
