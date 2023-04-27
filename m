@@ -2,82 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9485D6F0195
-	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 09:23:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98DA46F01D0
+	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 09:35:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242853AbjD0HXl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Apr 2023 03:23:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39348 "EHLO
+        id S243027AbjD0HfK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Apr 2023 03:35:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239395AbjD0HXj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 03:23:39 -0400
-Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29A304EF5;
-        Thu, 27 Apr 2023 00:22:59 -0700 (PDT)
-Received: by mail-pl1-x62a.google.com with SMTP id d9443c01a7336-1a69f686345so63306315ad.2;
-        Thu, 27 Apr 2023 00:22:59 -0700 (PDT)
+        with ESMTP id S242667AbjD0HfJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 03:35:09 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A66BE1735;
+        Thu, 27 Apr 2023 00:35:04 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-2f7c281a015so5017143f8f.1;
+        Thu, 27 Apr 2023 00:35:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682580135; x=1685172135;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=gmail.com; s=20221208; t=1682580903; x=1685172903;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=kXJHDR+uvigrdqjtItsF0amUfeR/xcg4WFinveNN2RY=;
-        b=jWDo3kzPfX9uZTI+RJ06zG503kFpbG0icTs3PBkudav0w7nbVWnlOxeJU2R+UhPp6o
-         1MGmtg9T4ZoK+1Tlm1TteFyd3QcicOpretq9RxJhFW0ssm4ZxbfFWLkTj7hNzAzETYuM
-         ML2L0nSOWD/Aolznnh+z2NndUoCz7kGW6BnXzkf3p6E3O36fnst6lYDyXQMNL5/+QMKF
-         +rS9PR2tUgLTVL7cRVIUh1M4QifkRcC+6AKuaCUID5vcQEAl8f31ObgZXZ6hKnKB9Q7D
-         TVoT7XeLnyjhE2q0u6Cxalk/o+FLNOObIU5ngguKmQ7jRSRk/TBqh0NKtZv9Lqb4lfms
-         EJ9w==
+        bh=eehz0WgMbOurSIoTnBIR5YZf1U7dK+275MjB8D7bXEc=;
+        b=SwqylI/doMt0gYknw43Bx8zjaJNyMHrvEpQkGw+g4Ib3newQ9JpdkJdmZ6ipTs96no
+         Dp3r9iKTeeSQhoUjZ13+SEzNOuXyfwaeeI3lFai0HnN7CHm4LPqyG3S0CSqPNSDY9uk1
+         50e6Ja8Qkwh2mSWflVAqgnvGn4/Ol9tEQzZ/2KRvb/kmEGIm7injuF78ugqsmZTkt5ra
+         cgQVDE3ESBQZEbqh/ZnC/8EzgPtaX312ttnjQfSh6+FvJtzF0Rbug8+RvOsuz3znKPBp
+         TFF1UATHxOHVncKtTmITIMvSyjNA7tCQM9YzgOaEM4MhQbcOyu7OrnZz5u8J4Q7NUi4x
+         MDVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682580135; x=1685172135;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1682580903; x=1685172903;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kXJHDR+uvigrdqjtItsF0amUfeR/xcg4WFinveNN2RY=;
-        b=V5TFRGDCfbwVktVYpgHVEPhwngPbKHYhhNPyLGOVsM0U5FYt7vtQnZmJrOp7w4vz7f
-         S8A2dqcLEFxgvaW+mqEDox3VK6G4FXpS1653cxKAxAF5p/xVFq+C84BzVzzcBR4fL2JD
-         /+vmpbvlpoGGUU8oCeH2gxK7t1Tsgi6p6F3D2eQX+2sZTFXXX1DQ+HM0A0dhg4B4S2ay
-         LZzuI4cXQWRTadcHjSdI8dc7202uEUSt53epMymC70sHX03LWwA7IEql1cOtaC6R4a4K
-         xPs/XyiwV5zDAnOlyRWBILZTjHXxFKB5ZjCi4v83L4pUguKR8LNnTagT9+oG1OX8j52r
-         svwg==
-X-Gm-Message-State: AC+VfDxdx1/J1u7zUpJHpZXN590xQRXa7H1OGoIbt+vgKGeuSgoWaOn4
-        lfJA2RNVi/L/chNLHjoprH4=
-X-Google-Smtp-Source: ACHHUZ7QFbzk6DipZKj1VayaE1oZ/33TmkMvLk6ABtMS3XNELvyeMZtBaXjFmGh0CryDFiwMa2QPLg==
-X-Received: by 2002:a17:903:2095:b0:1a5:309e:d205 with SMTP id d21-20020a170903209500b001a5309ed205mr594702plc.21.1682580135198;
-        Thu, 27 Apr 2023 00:22:15 -0700 (PDT)
-Received: from [172.19.1.47] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
-        by smtp.gmail.com with ESMTPSA id b10-20020a170902bd4a00b001a95aef9728sm8009094plx.19.2023.04.27.00.22.11
+        bh=eehz0WgMbOurSIoTnBIR5YZf1U7dK+275MjB8D7bXEc=;
+        b=kMGoT0NSnQDe0iDAjHDVq+KLrrjS+/9YFrswCY6uG5efC75ug8q6eYPwnjNCl7MH7l
+         MF/gJuGEDTHBT1rFQHzbeAOXOoHiAnewx7FEYOiOYnXCXtVD31a9vs5vhQVPDsADZNqa
+         FL96uTVTjCFkhzpwWxCCNzYlhYtGKc2Undno6kWEkdBumZqQLz/rovjkfwZSTPVddaV3
+         RB0vJ2XRcoFyj1jCcej0iC5LZDQivOt55o1NF6e+QNMsf855XBpzqPc4zsT7c1LjgeBJ
+         OH3M1NlI8AiUIlqAV/TmcJiHy6BJGnSXhOlpXd6Q71AqrNKUmMO/wYjSzDiyDlijTufB
+         J0JQ==
+X-Gm-Message-State: AC+VfDywJ/aLmhNpaKznpHocxyO/xaQh4osi9jya0h4Ec+W7MwFCgYhB
+        j48mHRF1DMTumsdOFiYdQpzdbFI5MtBWFg==
+X-Google-Smtp-Source: ACHHUZ59rjOQWXhXKCgkzaGgJ+NbkVRQ83Bem9iGHGoCtXBjm4Ktg2fzITEfCQryin68ol70bxlnKA==
+X-Received: by 2002:a05:6000:510:b0:2f1:d17f:cf95 with SMTP id a16-20020a056000051000b002f1d17fcf95mr500077wrf.12.1682580902709;
+        Thu, 27 Apr 2023 00:35:02 -0700 (PDT)
+Received: from [192.168.1.135] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id b9-20020adfee89000000b002f777345d21sm17659980wro.95.2023.04.27.00.35.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Apr 2023 00:22:14 -0700 (PDT)
-Message-ID: <d2d42bf5-fc7e-7a88-7e62-f35e16401012@gmail.com>
-Date:   Thu, 27 Apr 2023 15:22:09 +0800
+        Thu, 27 Apr 2023 00:35:01 -0700 (PDT)
+Message-ID: <273a9ff1-ceb2-bcf6-b3a5-be34746ed45f@gmail.com>
+Date:   Thu, 27 Apr 2023 09:34:58 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH v8 10/11] tty: serial: Add Nuvoton ma35d1 serial driver
- support
-To:     Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        lee@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        p.zabel@pengutronix.de, gregkh@linuxfoundation.org,
-        jirislaby@kernel.org, tmaimon77@gmail.com, catalin.marinas@arm.com,
-        will@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-serial@vger.kernel.org, arnd@arndb.de, schung@nuvoton.com,
-        mjchen@nuvoton.com, Jacky Huang <ychuang3@nuvoton.com>
-References: <20230425102418.185783-1-ychuang570808@gmail.com>
- <20230425102418.185783-11-ychuang570808@gmail.com>
- <46933536-2999-c3b0-f3d3-60e8830f50a6@wanadoo.fr>
-Content-Language: en-US
-From:   Jacky Huang <ychuang570808@gmail.com>
-In-Reply-To: <46933536-2999-c3b0-f3d3-60e8830f50a6@wanadoo.fr>
+Subject: Re: [RFC PATCH 0/1] Categorize ARM dts directory
+Content-Language: en-US, ca-ES, es-ES
+To:     Ansuel Smith <ansuelsmth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-actions@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-omap@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, linux-arm-kernel@axis.com,
+        linux-aspeed@lists.ozlabs.org,
+        linux-rpi-kernel@lists.infradead.org,
+        chrome-platform@lists.linux.dev, linux-renesas-soc@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        kernel@dh-electronics.com, linux-mediatek@lists.infradead.org,
+        openbmc@lists.ozlabs.org, linux-tegra@vger.kernel.org,
+        linux-oxnas@groups.io, linux-arm-msm@vger.kernel.org,
+        linux-unisoc@lists.infradead.org,
+        linux-rockchip@lists.infradead.org,
+        linux-realtek-soc@lists.infradead.org,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>
+References: <20220328000915.15041-1-ansuelsmth@gmail.com>
+ <85eb14ec-f465-7447-ad77-a3dabc666f47@kernel.org>
+ <YkKRYnN84D9VZhGj@Ansuel-xps.localdomain>
+ <CAL_Jsq+RQQ-ADMxLPUFwk6S6kGmb6oNDy4k52fnU0EtbUvqmSA@mail.gmail.com>
+ <CA+_ehUw3eAEHRsi1ATSKeK4jtX+EoVSwUodNL3bcpTJaX-r9cA@mail.gmail.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <CA+_ehUw3eAEHRsi1ATSKeK4jtX+EoVSwUodNL3bcpTJaX-r9cA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        WEIRD_QUOTING autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -86,93 +97,129 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 2023/4/25 下午 06:38, Christophe JAILLET wrote:
-> Le 25/04/2023 à 12:24, Jacky Huang a écrit :
->> From: Jacky Huang <ychuang3@nuvoton.com>
+On 25/04/2023 00:23, Ansuel Smith wrote:
+> Il giorno mar 25 apr 2023 alle ore 00:10 Rob Herring
+> <robh+dt@kernel.org> ha scritto:
 >>
->> This adds UART and console driver for Nuvoton ma35d1 Soc.
->> It supports full-duplex communication, FIFO control, and
->> hardware flow control.
+>> On Tue, Mar 29, 2022 at 8:27 AM Ansuel Smith <ansuelsmth@gmail.com> wrote:
+>>>
+>>> On Tue, Mar 29, 2022 at 03:20:18PM +0200, Krzysztof Kozlowski wrote:
+>>>> On 28/03/2022 02:09, Ansuel Smith wrote:
+>>>>> Hi,
+>>>>> as the title say, the intention of this ""series"" is to finally categorize
+>>>>> the ARM dts directory in subdirectory for each oem.
+>>>>>
+>>>>> The main reason for this is that it became unpractical to handle 2600
+>>>>> dts files and try to even understand/edit/check the situation for a
+>>>>> specific target.
+>>>>>
+>>>>> In arm64 we already have this kind of separation and I honestly think
+>>>>> that this was never proposed for ARM due to the fact that there are
+>>>>> 2600+ files to sort and the fact that it will be a mess to merge this
+>>>>> entirely but IMHO with a little bit of effort we can finally solve this
+>>>>> problem and have a well organized directory just like arm64.
+>>>>>
+>>>>> Some prerequisite on how this work was done:
+>>>>> - This comes entirely from a python script created by me for the task.
+>>>>>    linked here [1]
+>>>>> - I had to manually categorize all the different arch in the makefile
+>>>>>    based on the oem. I searched every arch on the internet trying to
+>>>>>    understand the correct oem. I hope they are correct but I would love
+>>>>>    some comments about them.
+>>>>> - This current ""series"" is all squashed in one big commit to better
+>>>>>    receive comments for this. The final version ideally would have all
+>>>>>    changes in separate commits. The script can already do this, it's just
+>>>>>    commented.
+>>>>>
+>>>>> Here is a list of some discoveries while doing all the sorting.
+>>>>> These are totally additional reason why we need this.
+>>>>>
+>>>>> While creating the script I discovered some funny things:
+>>>>> - We have orphan dts! There are dts that are never compiled and are
+>>>>>    there just for reference. We would never have noticed this without this
+>>>>>    change and probably nobody noticed it. They are currently all listed
+>>>>>    in the python script.
+>>>>> - We have dtsi shared across different oem. My current solution for them
+>>>>>    is: NOT SORT THEM and leave them in the generic directory and create a
+>>>>>    link in each oem dts that points to these dtsi. This is to try in
+>>>>>    every way possible to skip any additional changes to the dts.
+>>>>>    Current dtsi that suffers from this are only 3. (listed in the script)
+>>>>> - arm64 dts and dtsi reference ARM dts. Obviously this change would cause
+>>>>>    broken include for these special dtsi. The script creates a dependency
+>>>>>    table of the entire arm64 directory and fix every broken dependency
+>>>>>    (hoping they all use a sane include logic... regex is used to parse
+>>>>>    all the different dependency)
+>>>>>
+>>>>> So in short the script does the following steps:
+>>>>> 1. Enumerate all the action to do... (dts to move, scan dependency for
+>>>>>     the dts...)
+>>>>> 2. Generate the arm64 dependency
+>>>>> 3. Creates the Makefile
+>>>>> 4. Generate the Makefiles for the current oem
+>>>>> 5. Move all the related dts and dtsi for the current oem
+>>>>> 6. Check broken dependency and fix them by editing the dts and writing
+>>>>>     the correct include (or fix any symbolic link)
+>>>>>
+>>>>> This is an output that describes all the things done by the script [2]
+>>>>>
+>>>>> I really hope I didn't commit any logic mistake in the script but most
+>>>>> of the work should be done.
+>>>>>
+>>>>
+>>>> +Cc Arnd and Olof,
+>>>>
+>>>> Ansuel,
+>>>> Thanks for you patch. Please cc the SoC maintainers in such submissions.
+>>>> It seems that you got some quite nice discussion, but still the core
+>>>> folks are not Cced, so no one would be able to take your patch...
+>>>>
+>>>
+>>> I had some problem with gmail and sending mail too much users. I put Rob
+>>> and You and all the various list to try to workaround the "gmail spam
+>>> protection"
+>>>
+>>>> I am pretty sure we were discussing such split idea in the past and it
+>>>> did not get traction, but I cannot recall the exact discussion.
+>>>>
+>>>
+>>> I think the main issue here is how to handle bot and how problematic is
+>>> to merge this. As written in the cover letter the final version of this
+>>> should be a big series of 50+ patch with every commit specific to each
+>>> oem. In theory we should be able to merge the different oem separately
+>>> and try to at least start the categorization.
+>>> Another idea I got to at least have a "migration path" is to convert
+>>> every dts in the dts/ directory to a symbolic link that target the dts
+>>> in the correct oem. But I assume that would fix only part of the problem
+>>> and git am will still be problematic.
 >>
->> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
->> ---
->>   drivers/tty/serial/Kconfig         |  18 +
->>   drivers/tty/serial/Makefile        |   1 +
->>   drivers/tty/serial/ma35d1_serial.c | 781 +++++++++++++++++++++++++++++
->>   3 files changed, 800 insertions(+)
->>   create mode 100644 drivers/tty/serial/ma35d1_serial.c
+>> I have a script[1] that does the conversion written the last time this
+>> came up. Just have to agree on directory names. I think the easiest
+>> would be for Arnd/Olof to run it at the end of a merge window before
+>> rc1.
 >>
->
-> [...]
->
->> +static int ma35d1serial_probe(struct platform_device *pdev)
->> +{
->> +    struct resource *res_mem;
->> +    struct uart_ma35d1_port *up;
->> +    int ret = 0;
->> +    struct clk *clk;
->> +    int err;
->> +
->> +    if (pdev->dev.of_node) {
->> +        ret = of_alias_get_id(pdev->dev.of_node, "serial");
->> +        if (ret < 0) {
->> +            dev_err(&pdev->dev, "failed to get alias/pdev id, errno 
->> %d\n", ret);
->> +            return ret;
->> +        }
->> +    }
->> +    up = &ma35d1serial_ports[ret];
->> +    up->port.line = ret;
->> +    res_mem = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->> +    if (!res_mem)
->> +        return -ENODEV;
->> +
->> +    up->port.iobase = res_mem->start;
->> +    up->port.membase = devm_ioremap(&pdev->dev, up->port.iobase, 
->> UART_REG_SIZE);
->> +    up->port.ops = &ma35d1serial_ops;
->> +
->> +    spin_lock_init(&up->port.lock);
->> +
->> +    clk = of_clk_get(pdev->dev.of_node, 0);
->
-> Does this...
->
->> +    if (IS_ERR(clk)) {
->> +        err = PTR_ERR(clk);
->> +        dev_err(&pdev->dev, "failed to get core clk: %d\n", err);
->> +        return -ENOENT;
->> +    }
->> +
->> +    err = clk_prepare_enable(clk);
->
-> ... and this be undone in the remove function?
->
-> CJ
->
+>> I'm very much in favor of this happening especially before *any*
+>> overlays are added to add to the mess (it's probably already
+>> happened).
+>>
+>> Rob
+>>
+>> [1] https://lore.kernel.org/all/20181204183649.GA5716@bogus/
+> 
+> Hi Rob,
+> thanks for recovering this. I remember also providing a script.
+> 
+> Anyway considering the amount of stuff to move, I feel like some
+> OEM might be problematic to move due to rebase and merging problems.
+> 
+> We should consider accepting moving only some and keep other
+> in the unsorted path. And move them at the first time possible with
+> the help of the maintainers.
+> 
+> One main blocker of this is some qcom dts that are linked to arm64
+> directory, so for some dts special care is needed.
+> 
 
-I will add clk_disable_unprepare() in the remove function.
+Same happens for broadcom RaspberryPi DTS. The arm64 ones include the arm ones.
 
->> +    if (err)
->> +        return -ENOENT;
->> +
->> +    if (up->port.line != 0)
->> +        up->port.uartclk = clk_get_rate(clk);
->> +
->> +    ret = platform_get_irq(pdev, 0);
->> +    if (ret < 0)
->> +        return ret;
->> +    up->port.irq = ret;
->> +    up->port.dev = &pdev->dev;
->> +    up->port.flags = UPF_BOOT_AUTOCONF;
->> +
->> +    platform_set_drvdata(pdev, up);
->> +
->> +    return uart_add_one_port(&ma35d1serial_reg, &up->port);
->> +}
->
-> [...]
->
-
-Best Regards,
-Jacky Huang
+Regards,
+Matthias
