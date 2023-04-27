@@ -2,158 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C0706F01DC
-	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 09:37:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D24AD6F0216
+	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 09:47:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242945AbjD0HhK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Apr 2023 03:37:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49600 "EHLO
+        id S243151AbjD0HrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Apr 2023 03:47:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239395AbjD0HhI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 03:37:08 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BED2E7;
-        Thu, 27 Apr 2023 00:37:06 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-3f1e2555b5aso34991345e9.0;
-        Thu, 27 Apr 2023 00:37:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682581024; x=1685173024;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=oxehQfcmJryVNtOnqjPU8dcl4daH8QR4oPGx8PetHgc=;
-        b=A9A1kf0aU5n5maWaTYSpwFq+dFDGkdZCkeAcCwkLD9kYlmE85jcd+hdkN4nKiQWQe+
-         RVnhbx9f5wFVudnxQnUsSqLoUc+G3JM+O42GX9gNZfKeD8PN2HWTR2M+4STfmZxQqx7A
-         ULQDVvEq1TUhKtYHjEQgZl7Jn4EVzSTkmRE2Oecxpq3Lqgdq1vonGcIN3aUKzLbJD2io
-         FpSv3YS013V0nX3CVl5ec1a5D04GehDx526Kyx7RUB+XA1EFrTaBRu+mhMmPRXhFDy36
-         7PFiOvnoAlRW92DFpieLR1YprFoJEGerJot6aeQ7uIG8PKhFuzZejCpTBKtwwOV0mzu8
-         YerA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682581024; x=1685173024;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oxehQfcmJryVNtOnqjPU8dcl4daH8QR4oPGx8PetHgc=;
-        b=f9lBoujANCu7pW2uwxeluX9nIdJjPiu6BlrLGsAqwNDa8ERC+0r5kA7wGGf4fy2S5i
-         1NUfHbZeNBT3pHdisvVj6r8qUgi1zW+OxE4RKbA9Bdr81LB1wyrRMIIXc8wwyMWmPgA9
-         HVn0T95cwXvJA4RFiYgIqdh3sAt6/oCJcW2Zf/Nxa9m078C2fPD3eQJFEJLwsyZ36du5
-         b4F/OIBrlPcS6wINRVKyhKVUU4/3QKq0WBFzw4QxDBLQ9sT8Xv07lK2S+1/pWriW6dfr
-         U/QjQCacocAvk+DME2Q912im4zFVRSMOEQi27YswnCFIdCJDiXiKiDer5MhJPLxLBXGn
-         amKA==
-X-Gm-Message-State: AC+VfDzhn9YNv2HPlujQCQ95vOs58Yt1C/iVNJGVwaowmKob8+Rn2vJ7
-        7UqDPgOdyC1iUGavFGnnbv0=
-X-Google-Smtp-Source: ACHHUZ6j08kRlenxNEOxuCRn5D3dpBgWAxIWK0iOstSqplZ+yyO01YFGKwmwZRllZUj/HWkWlwS2Ow==
-X-Received: by 2002:a5d:5312:0:b0:2f0:df59:1ea7 with SMTP id e18-20020a5d5312000000b002f0df591ea7mr504125wrv.31.1682581024316;
-        Thu, 27 Apr 2023 00:37:04 -0700 (PDT)
-Received: from [192.168.1.135] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id i6-20020a5d6306000000b002fed865c55esm17706733wru.56.2023.04.27.00.37.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Apr 2023 00:37:03 -0700 (PDT)
-Message-ID: <1cfc224b-f8b0-3143-42d2-188b56368c61@gmail.com>
-Date:   Thu, 27 Apr 2023 09:37:01 +0200
+        with ESMTP id S242985AbjD0HrB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 03:47:01 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE2962698;
+        Thu, 27 Apr 2023 00:46:59 -0700 (PDT)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33R6H0w8027812;
+        Thu, 27 Apr 2023 07:46:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
+ cc : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=qcppdkim1; bh=c6tPZL64LtsIrYoFQTFyNm93j7JzIUswZJcU2RAwcdw=;
+ b=dBBj6bmpHubQlTesT9WoZyS0Aq5xgYypa3uQjq1N5DbkhuP1nc0kTfV/Ym1jAdzxd0tq
+ 88fKEFj3UNam8MAHS1xq8vPgOJUTwjwrU6nOpNq5OeC8xeoOCCeZH5FM+BtmORy/hd/h
+ UDScvuo5tUY5xoltgaL+/BbCq4dHHD87dFNNAc3hDu+BIkE+U+baDssjnMPi7GhUKAzz
+ 5HSq/d5O2x78g+a/haNFHQscBsgqXReAat689ajWGFtxBR+g+7j1FLJZ3dhYOIZPzA4c
+ pbaQMumMMTbHr/Cj4ayNUPLPxo60+eshrPg2xoy48RX+KFfYeb4LKUCQZ07B/+OnaDgX Ew== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q79am19xa-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 27 Apr 2023 07:46:25 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33R7kNgl011691
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 27 Apr 2023 07:46:23 GMT
+Received: from hu-pkondeti-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Thu, 27 Apr 2023 00:46:06 -0700
+Date:   Thu, 27 Apr 2023 13:16:02 +0530
+From:   Pavan Kondeti <quic_pkondeti@quicinc.com>
+To:     David Dai <davidai@google.com>,
+        Saravana Kannan <saravanak@google.com>
+CC:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paolo Bonzini <pbonzini@redhat.com>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Marc Zyngier <maz@kernel.org>,
+        Oliver Upton <oliver.upton@linux.dev>,
+        James Morse <james.morse@arm.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Zenghui Yu <yuzenghui@huawei.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Ingo Molnar <mingo@redhat.com>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Juri Lelli <juri.lelli@redhat.com>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Dietmar Eggemann <dietmar.eggemann@arm.com>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Ben Segall <bsegall@google.com>, Mel Gorman <mgorman@suse.de>,
+        Daniel Bristot de Oliveira <bristot@redhat.com>,
+        Valentin Schneider <vschneid@redhat.com>,
+        <kernel-team@android.com>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <kvm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <kvmarm@lists.linux.dev>
+Subject: Re: [RFC PATCH 0/6] Improve VM DVFS and task placement behavior
+Message-ID: <20230427074602.GA325349@hu-pkondeti-hyd.qualcomm.com>
+References: <20230330224348.1006691-1-davidai@google.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [RFC PATCH 0/1] Categorize ARM dts directory
-Content-Language: en-US, ca-ES, es-ES
-To:     Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>
-Cc:     Ansuel Smith <ansuelsmth@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-actions@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-omap@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, linux-arm-kernel@axis.com,
-        linux-aspeed@lists.ozlabs.org,
-        linux-rpi-kernel@lists.infradead.org,
-        chrome-platform@lists.linux.dev, linux-renesas-soc@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        kernel@dh-electronics.com, linux-mediatek@lists.infradead.org,
-        openbmc@lists.ozlabs.org, linux-tegra@vger.kernel.org,
-        linux-oxnas@groups.io, linux-arm-msm@vger.kernel.org,
-        linux-unisoc@lists.infradead.org,
-        linux-rockchip@lists.infradead.org,
-        linux-realtek-soc@lists.infradead.org
-References: <20220328000915.15041-1-ansuelsmth@gmail.com>
- <85eb14ec-f465-7447-ad77-a3dabc666f47@kernel.org>
- <YkKRYnN84D9VZhGj@Ansuel-xps.localdomain>
- <CAL_Jsq+RQQ-ADMxLPUFwk6S6kGmb6oNDy4k52fnU0EtbUvqmSA@mail.gmail.com>
- <CAMuHMdWNTE48MFy6fqxAsfMWz9b6E7dVNXtXtESP95sxk2PGwA@mail.gmail.com>
- <CAL_JsqJthKTm8bhRF2B=ae1tvtPeYYXx_Tm76qQtSwLtH5C6VA@mail.gmail.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <CAL_JsqJthKTm8bhRF2B=ae1tvtPeYYXx_Tm76qQtSwLtH5C6VA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230330224348.1006691-1-davidai@google.com>
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: k3Ws6u2M1vI32yF-_7r5Yc0Vq1RVGLo4
+X-Proofpoint-ORIG-GUID: k3Ws6u2M1vI32yF-_7r5Yc0Vq1RVGLo4
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-27_05,2023-04-26_03,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
+ priorityscore=1501 malwarescore=0 lowpriorityscore=0 bulkscore=0
+ mlxscore=0 suspectscore=0 impostorscore=0 spamscore=0 adultscore=0
+ clxscore=1011 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303200000 definitions=main-2304270066
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Mar 30, 2023 at 03:43:35PM -0700, David Dai wrote:
+> Hi,
+> 
+> This patch series is a continuation of the talk Saravana gave at LPC 2022
+> titled "CPUfreq/sched and VM guest workload problems" [1][2][3]. The gist
+> of the talk is that workloads running in a guest VM get terrible task
+> placement and DVFS behavior when compared to running the same workload in
+> the host. Effectively, no EAS for threads inside VMs. This would make power
+> and performance terrible just by running the workload in a VM even if we
+> assume there is zero virtualization overhead.
+> 
+> We have been iterating over different options for communicating between
+> guest and host, ways of applying the information coming from the
+> guest/host, etc to figure out the best performance and power improvements
+> we could get.
+> 
+> The patch series in its current state is NOT meant for landing in the
+> upstream kernel. We are sending this patch series to share the current
+> progress and data we have so far. The patch series is meant to be easy to
+> cherry-pick and test on various devices to see what performance and power
+> benefits this might give for others.
+> 
+> With this series, a workload running in a VM gets the same task placement
+> and DVFS treatment as it would when running in the host.
+> 
+> As expected, we see significant performance improvement and better
+> performance/power ratio. If anyone else wants to try this out for your VM
+> workloads and report findings, that'd be very much appreciated.
+> 
+> The idea is to improve VM CPUfreq/sched behavior by:
+> - Having guest kernel to do accurate load tracking by taking host CPU
+>   arch/type and frequency into account.
+> - Sharing vCPU run queue utilization information with the host so that the
+>   host can do proper frequency scaling and task placement on the host side.
+> 
 
+[...]
 
-On 25/04/2023 17:57, Rob Herring wrote:
-> On Tue, Apr 25, 2023 at 2:28 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->>
->> Hi Rob,
->>
->> On Tue, Apr 25, 2023 at 12:16 AM Rob Herring <robh+dt@kernel.org> wrote:
->>> I have a script[1] that does the conversion written the last time this
->>> came up. Just have to agree on directory names. I think the easiest
->>> would be for Arnd/Olof to run it at the end of a merge window before
->>> rc1.
->>
->> "emev2" and "sh7" are missing for renesas.
 > 
-> No doubt it's been bitrotting (or I may have missed some).
-> 
->> Does your script also cater for .dts files not matching any pattern,
->> but including a .dtsi file that does match a pattern?
-> 
-> I assume I built everything after moving, but maybe not...
-> 
-> That's all just "details". First, we need agreement on a) moving
-> things to subdirs and b) doing it 1-by-1 or all at once. So far we've
-> been stuck on a) for being 'too much churn'.
+> Next steps:
+> ===========
+> We are continuing to look into communication mechanisms other than
+> hypercalls that are just as/more efficient and avoid switching into the VMM
+> userspace. Any inputs in this regard are greatly appreciated.
 > 
 
-I think it makes sense to move them and probably the best way to do so is, as 
-you proposed: that Arnd or Olof run the script to move them just before -rc1
+I am trying to understand why virtio based cpufrq does not work here?
+The VMM on host can process requests from guest VM like freq table,
+current frequency and setting the min_freq. I believe Virtio backend
+has mechanisms for acceleration (vhost) so that user space is not
+involved for every frequency request from the guest.
 
-Regards,
-Matthias
+It has advantages of (1) Hypervisor agnostic (virtio basically) 
+(2) scheduler does not need additional input, the aggregated min_freq
+requests from all guest should be sufficient.
 
-> One nice thing with subdirs is 'make CHECK_DTBS=y
-> arch/arm/boot/dts/foo/' can build everything for a platform family
-> without having to mess with the kconfig. Maybe most folks don't care,
-> but I do. My CI job running schema checks looks like this to deal with
-> grouping the arm dts files (this list is probably out of date too, but
-> less so):
 > 
->          if [ "$ARCH" = "arm" ]; then
->              VENDOR_LIST="alphascale alpine artpec aspeed axm bcm cx9
-> (ecx|highbank) \
->                efm ep7 imx1 imx23 imx28 imx27 imx5 imx6 imx7 ls vf qcom \
->                (am3|am4|am5|dra|keystone|omap|compulab|logicpd|elpida|motorola-cpcap|da|dm)
-> \
->                nspire armada dove kirkwood orion mvebu mmp2 berlin pxa
-> (arm-|integ|mps|ve) \
->                (at91|sama|usb_|tny_|mpa1600|animeo_ip|aks-cdu|ethernut5|evk-pro3|pm9g45|ge86)
-> \
->                exynos s3c s5p gemini (hisi|hi3|hip) mt meson moxa nuvo
-> lpc owl ox8 \
->                (r7|r8|r9|emev2|sh73a|gr-|iwg) (rk|rv11) socfpga stm
-> (sti|st-pin) ste \
->                spear (sun|axp) tegra uniph (vt8500|wm8) xen zynq"
->          else
->              VENDOR_LIST=$(ls arch/$ARCH/boot/dts/ | xargs)
->          fi
+> [1] - https://lpc.events/event/16/contributions/1195/
+> [2] - https://lpc.events/event/16/contributions/1195/attachments/970/1893/LPC%202022%20-%20VM%20DVFS.pdf
+> [3] - https://www.youtube.com/watch?v=hIg_5bg6opU
+> [4] - https://chromium-review.googlesource.com/c/crosvm/crosvm/+/4208668
+> [5] - https://chromium-review.googlesource.com/c/crosvm/crosvm/+/4288027
 > 
-> Rob
+> David Dai (6):
+>   sched/fair: Add util_guest for tasks
+>   kvm: arm64: Add support for get_cur_cpufreq service
+>   kvm: arm64: Add support for util_hint service
+>   kvm: arm64: Add support for get_freqtbl service
+>   dt-bindings: cpufreq: add bindings for virtual kvm cpufreq
+>   cpufreq: add kvm-cpufreq driver
+> 
+>  .../bindings/cpufreq/cpufreq-virtual-kvm.yaml |  39 +++
+>  Documentation/virt/kvm/api.rst                |  28 ++
+>  .../virt/kvm/arm/get_cur_cpufreq.rst          |  21 ++
+>  Documentation/virt/kvm/arm/get_freqtbl.rst    |  23 ++
+>  Documentation/virt/kvm/arm/index.rst          |   3 +
+>  Documentation/virt/kvm/arm/util_hint.rst      |  22 ++
+>  arch/arm64/include/uapi/asm/kvm.h             |   3 +
+>  arch/arm64/kvm/arm.c                          |   3 +
+>  arch/arm64/kvm/hypercalls.c                   |  60 +++++
+>  drivers/cpufreq/Kconfig                       |  13 +
+>  drivers/cpufreq/Makefile                      |   1 +
+>  drivers/cpufreq/kvm-cpufreq.c                 | 245 ++++++++++++++++++
+>  include/linux/arm-smccc.h                     |  21 ++
+>  include/linux/sched.h                         |  12 +
+>  include/uapi/linux/kvm.h                      |   3 +
+>  kernel/sched/core.c                           |  24 +-
+>  kernel/sched/fair.c                           |  15 +-
+>  tools/arch/arm64/include/uapi/asm/kvm.h       |   3 +
+>  18 files changed, 536 insertions(+), 3 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/cpufreq/cpufreq-virtual-kvm.yaml
+>  create mode 100644 Documentation/virt/kvm/arm/get_cur_cpufreq.rst
+>  create mode 100644 Documentation/virt/kvm/arm/get_freqtbl.rst
+>  create mode 100644 Documentation/virt/kvm/arm/util_hint.rst
+>  create mode 100644 drivers/cpufreq/kvm-cpufreq.c
+
+Thanks,
+Pavan
