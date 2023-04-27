@@ -2,60 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E09DB6F0220
-	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 09:50:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 990E56F0235
+	for <lists+devicetree@lfdr.de>; Thu, 27 Apr 2023 10:00:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242803AbjD0HtE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Apr 2023 03:49:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56794 "EHLO
+        id S242899AbjD0IAx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Apr 2023 04:00:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243068AbjD0HtD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 03:49:03 -0400
+        with ESMTP id S242868AbjD0IAw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 04:00:52 -0400
 Received: from muru.com (muru.com [72.249.23.125])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4BFD1DD;
-        Thu, 27 Apr 2023 00:48:47 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B834D1B6;
+        Thu, 27 Apr 2023 01:00:51 -0700 (PDT)
 Received: from localhost (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id AA15480A4;
-        Thu, 27 Apr 2023 07:48:46 +0000 (UTC)
-Date:   Thu, 27 Apr 2023 10:48:45 +0300
+        by muru.com (Postfix) with ESMTPS id 319BD80A4;
+        Thu, 27 Apr 2023 08:00:51 +0000 (UTC)
+Date:   Thu, 27 Apr 2023 11:00:49 +0300
 From:   Tony Lindgren <tony@atomide.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Ansuel Smith <ansuelsmth@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+To:     Udit Kumar <u-kumar1@ti.com>
+Cc:     nm@ti.com, vigneshr@ti.com, kristo@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-actions@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-omap@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, linux-arm-kernel@axis.com,
-        linux-aspeed@lists.ozlabs.org,
-        linux-rpi-kernel@lists.infradead.org,
-        chrome-platform@lists.linux.dev, linux-renesas-soc@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        kernel@dh-electronics.com, linux-mediatek@lists.infradead.org,
-        openbmc@lists.ozlabs.org, linux-tegra@vger.kernel.org,
-        linux-oxnas@groups.io, linux-arm-msm@vger.kernel.org,
-        linux-unisoc@lists.infradead.org,
-        linux-rockchip@lists.infradead.org,
-        linux-realtek-soc@lists.infradead.org
-Subject: Re: [RFC PATCH 0/1] Categorize ARM dts directory
-Message-ID: <20230427074845.GG14287@atomide.com>
-References: <20220328000915.15041-1-ansuelsmth@gmail.com>
- <85eb14ec-f465-7447-ad77-a3dabc666f47@kernel.org>
- <YkKRYnN84D9VZhGj@Ansuel-xps.localdomain>
- <CAL_Jsq+RQQ-ADMxLPUFwk6S6kGmb6oNDy4k52fnU0EtbUvqmSA@mail.gmail.com>
- <CAMuHMdWNTE48MFy6fqxAsfMWz9b6E7dVNXtXtESP95sxk2PGwA@mail.gmail.com>
- <CAL_JsqJthKTm8bhRF2B=ae1tvtPeYYXx_Tm76qQtSwLtH5C6VA@mail.gmail.com>
- <1cfc224b-f8b0-3143-42d2-188b56368c61@gmail.com>
- <CAMuHMdU91NtZeFKe6mB3B48TNb64wfPu77xRbOEVX4tV65e38w@mail.gmail.com>
+        linux-kernel@vger.kernel.org, m-chawdhry@ti.com, n-francis@ti.com
+Subject: Re: [PATCH 1/5] arm64: dts: ti: k3-j7200: Add general purpose timers
+Message-ID: <20230427080049.GH14287@atomide.com>
+References: <20230426103219.1565266-1-u-kumar1@ti.com>
+ <20230426103219.1565266-2-u-kumar1@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMuHMdU91NtZeFKe6mB3B48TNb64wfPu77xRbOEVX4tV65e38w@mail.gmail.com>
+In-Reply-To: <20230426103219.1565266-2-u-kumar1@ti.com>
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
         SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
@@ -65,36 +41,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Geert Uytterhoeven <geert@linux-m68k.org> [230427 07:47]:
-> On Thu, Apr 27, 2023 at 9:37 AM Matthias Brugger <matthias.bgg@gmail.com> wrote:
-> > On 25/04/2023 17:57, Rob Herring wrote:
-> > > On Tue, Apr 25, 2023 at 2:28 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > >> On Tue, Apr 25, 2023 at 12:16 AM Rob Herring <robh+dt@kernel.org> wrote:
-> > >>> I have a script[1] that does the conversion written the last time this
-> > >>> came up. Just have to agree on directory names. I think the easiest
-> > >>> would be for Arnd/Olof to run it at the end of a merge window before
-> > >>> rc1.
-> > >>
-> > >> "emev2" and "sh7" are missing for renesas.
-> > >
-> > > No doubt it's been bitrotting (or I may have missed some).
-> > >
-> > >> Does your script also cater for .dts files not matching any pattern,
-> > >> but including a .dtsi file that does match a pattern?
-> > >
-> > > I assume I built everything after moving, but maybe not...
-> > >
-> > > That's all just "details". First, we need agreement on a) moving
-> > > things to subdirs and b) doing it 1-by-1 or all at once. So far we've
-> > > been stuck on a) for being 'too much churn'.
-> > >
-> >
-> > I think it makes sense to move them and probably the best way to do so is, as
-> > you proposed: that Arnd or Olof run the script to move them just before -rc1
-> 
-> FTR, no objections from my side.
+Hi,
 
-Sounds good to me.
+* Udit Kumar <u-kumar1@ti.com> [230426 10:38]:
+> There are 20 general purpose timers on j7200 that can be used for things
+> like PWM using pwm-omap-dmtimer driver. There are also additional ten
+> timers in the MCU domain.
+...
+
+> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+> index 331b4e482e41..1c09e442b379 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+> @@ -34,6 +34,126 @@ k3_reset: reset-controller {
+>  		};
+>  	};
+>  
+> +	mcu_timer0: timer@40400000 {
+> +		compatible = "ti,am654-timer";
+> +		reg = <0x00 0x40400000 0x00 0x400>;
+> +		interrupts = <GIC_SPI 816 IRQ_TYPE_LEVEL_HIGH>;
+> +		clocks = <&k3_clks 35 1>;
+> +		clock-names = "fck";
+> +		assigned-clocks = <&k3_clks 35 1>;
+> +		assigned-clock-parents = <&k3_clks 35 2>;
+> +		power-domains = <&k3_pds 35 TI_SCI_PD_EXCLUSIVE>;
+> +		ti,timer-pwm;
+> +	};
+
+Oh so also the MCU timers now have interrupts, nice. Can you please check
+if what we have in the comments the other SoCs in the dtsi files for MCU
+timers not having routable interrupts is correct?
+
+Also, should the MCU timers be still tagged with status = "reserved"?
+
+See the comments in k3-am62-mcu.dtsi for example for both questions.
 
 Regards,
 
