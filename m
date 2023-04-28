@@ -2,69 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E72516F10CE
-	for <lists+devicetree@lfdr.de>; Fri, 28 Apr 2023 05:21:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61C466F1117
+	for <lists+devicetree@lfdr.de>; Fri, 28 Apr 2023 06:45:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345162AbjD1DVW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Apr 2023 23:21:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55436 "EHLO
+        id S1345330AbjD1Epx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Apr 2023 00:45:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345143AbjD1DVV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Apr 2023 23:21:21 -0400
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D05942116;
-        Thu, 27 Apr 2023 20:21:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1682652080; x=1714188080;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=4R43bx9gM2wJSRgR+/lm2js0NqBwBMtOMTj3g9bM1to=;
-  b=AQllBeKsuMzjfYyzmcLXEJ0UZpDeZPN63r8qu9VbnKUuprdpm2CwdLtb
-   46YXxe4ntDYpkp9SO0AaUlKGDCXATi7pcXvJV2YmTC1vN+2XFsuW8F+ge
-   JJPsiRzLmDRW7+lbjOnltfIsZHPNnqZE4kzkQdum2z0UzIhuncalFr21X
-   ENT2xvz9LLpmKDXEDMkggoOZ7kUGQKE6G7PmryZJEPNjLar3wRiGi1DrX
-   pdiKgnQGBkGYdHuh3FXOCbPxBuWsK3/y/kMw5KbFq4gnWhkqrfvPv4C0v
-   QOPK3pUyBQp/CoBd9OP05Eu6SYMFFa17C4Y6bSbf6lBAU1etvyvwJpIFz
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10693"; a="346394248"
-X-IronPort-AV: E=Sophos;i="5.99,233,1677571200"; 
-   d="scan'208";a="346394248"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Apr 2023 20:21:19 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10693"; a="806215105"
-X-IronPort-AV: E=Sophos;i="5.99,233,1677571200"; 
-   d="scan'208";a="806215105"
-Received: from lkp-server01.sh.intel.com (HELO 5bad9d2b7fcb) ([10.239.97.150])
-  by fmsmga002.fm.intel.com with ESMTP; 27 Apr 2023 20:21:15 -0700
-Received: from kbuild by 5bad9d2b7fcb with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1psEfc-00004D-0l;
-        Fri, 28 Apr 2023 03:21:16 +0000
-Date:   Fri, 28 Apr 2023 11:20:35 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-        linux-kernel@vger.kernel.org
-Cc:     oe-kbuild-all@lists.linux.dev, michael@amarulasolutions.com,
-        Amarula patchwork <linux-amarula@amarulasolutions.com>,
-        Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH v2 5/5] ARM: dts: stm32: add CAN support on stm32f746
-Message-ID: <202304281111.wSsZVm5t-lkp@intel.com>
-References: <20230427204540.3126234-6-dario.binacchi@amarulasolutions.com>
+        with ESMTP id S229502AbjD1Epw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Apr 2023 00:45:52 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC6D926A1;
+        Thu, 27 Apr 2023 21:45:51 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 885D0640A4;
+        Fri, 28 Apr 2023 04:45:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6886FC433D2;
+        Fri, 28 Apr 2023 04:45:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1682657151;
+        bh=7rszxrAAfy8VU8gN+K5tak5zsE1EJudMdjmMp2s2PMo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=q8i2zLn+IxVuWGsQokgx/J2kK75hsTheE1aH5EQO56h++q5CWSM8KodAO7Wt8yFa0
+         XtGI08wsN35V8b3uOv8alEVOarm4TCR8y5t/eYr2NnO3IIGX2T9oAuL/u7rubssfUK
+         Oh/Io340l7vyubUTHfttTK27hOxuV1sQ+UuaORlo=
+Date:   Fri, 28 Apr 2023 06:45:47 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Ivan Bornyakov <i.bornyakov@metrotek.ru>,
+        linux-kernel@vger.kernel.org, Moritz Fischer <mdf@kernel.org>,
+        Wu Hao <hao.wu@intel.com>, Xu Yilun <yilun.xu@intel.com>,
+        Tom Rix <trix@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor.dooley@microchip.com>, system@metrotek.ru,
+        linux-fpga@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] MAINTAINERS: update Microchip MPF FPGA reviewers
+Message-ID: <ZEtPe-3MUZV0AQgF@kroah.com>
+References: <20230426073519.9167-1-i.bornyakov@metrotek.ru>
+ <20230426073519.9167-2-i.bornyakov@metrotek.ru>
+ <20230427-episode-overdrawn-ed2d1d30cb34@spud>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230427204540.3126234-6-dario.binacchi@amarulasolutions.com>
+In-Reply-To: <20230427-episode-overdrawn-ed2d1d30cb34@spud>
 X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,44 +57,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dario,
+On Thu, Apr 27, 2023 at 04:28:23PM +0100, Conor Dooley wrote:
+> Hey Ivan,
+> 
+> On Wed, Apr 26, 2023 at 10:35:18AM +0300, Ivan Bornyakov wrote:
+> > As I'm leaving Metrotek, I'll have no access to the hardware and my
+> > Metrotek email will be off soon.
+> 
+> Good luck so!
+> 
+> > Replace my email with Metrotek System
+> > Team collective inbox.
+> 
+> Hmm, I am not too sure about this. I've previously seen the likes of
+> Greg KH frowning on these sort of shared mailboxes.
 
-kernel test robot noticed the following build errors:
+Yes, shared mailboxes mean no accountability and responsibility.  Please
+don't do that.
 
-[auto build test ERROR on mkl-can-next/testing]
-[also build test ERROR on net-next/main net/main linus/master next-20230427]
-[cannot apply to atorgue-stm32/stm32-next v6.3]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+thanks,
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Dario-Binacchi/dt-bindings-net-can-add-st-can-secondary-property/20230428-044723
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/mkl/linux-can-next.git testing
-patch link:    https://lore.kernel.org/r/20230427204540.3126234-6-dario.binacchi%40amarulasolutions.com
-patch subject: [PATCH v2 5/5] ARM: dts: stm32: add CAN support on stm32f746
-config: arm-randconfig-r011-20230427 (https://download.01.org/0day-ci/archive/20230428/202304281111.wSsZVm5t-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/efdb48d32dc845ff8f52bfe8c7345b61c9671940
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Dario-Binacchi/dt-bindings-net-can-add-st-can-secondary-property/20230428-044723
-        git checkout efdb48d32dc845ff8f52bfe8c7345b61c9671940
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202304281111.wSsZVm5t-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> Error: arch/arm/boot/dts/stm32f746.dtsi:265.20-21 syntax error
-   FATAL ERROR: Unable to parse input tree
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+greg k-h
