@@ -2,75 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE7D36F1780
-	for <lists+devicetree@lfdr.de>; Fri, 28 Apr 2023 14:18:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2267C6F1798
+	for <lists+devicetree@lfdr.de>; Fri, 28 Apr 2023 14:21:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345844AbjD1MSu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Apr 2023 08:18:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58066 "EHLO
+        id S1346054AbjD1MVP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Apr 2023 08:21:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229707AbjD1MSr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Apr 2023 08:18:47 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A6A85BB9
-        for <devicetree@vger.kernel.org>; Fri, 28 Apr 2023 05:18:17 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-2f4c431f69cso6053774f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 28 Apr 2023 05:18:17 -0700 (PDT)
+        with ESMTP id S1346023AbjD1MVO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Apr 2023 08:21:14 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 550C161A3
+        for <devicetree@vger.kernel.org>; Fri, 28 Apr 2023 05:21:01 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-3f19a80a330so48950385e9.2
+        for <devicetree@vger.kernel.org>; Fri, 28 Apr 2023 05:21:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682684293; x=1685276293;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1682684459; x=1685276459;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=IE/Ndmq51M33FIDMLYVN6yk3abUln8AdSBVWjCvVWYc=;
-        b=PEHKdTSPqNfAr4xCDiphLXEXwsnxb1sPJgBO9hZxakRcsqyTy6QhVKmcN8XGUADjRZ
-         pc1UTNSBHPox2CMiLCprj+YdTB3KjLQsDY7SZfNhmmdsghGg7srdBFoNsMFiEwY8dq4/
-         1ITzRqNhjsqIyPanNuFseBQ7+zazyByYIczIUZZshp90HaaYUVXjONqdijR9tlEBKLfP
-         lmeTJh/g819RFbEzjelRMeuUwExS44r3xReZDrgrCiDKIbf72eZI7HYE2hScuI9RO3e1
-         L09bLM/X3aE8thfuaCoDtbe2kuWmvzj1BH2XCgDrxM8FJG7Gxkap4o0YGlTxYocSkznP
-         JzfQ==
+        bh=QpeQU6IkVIN1ly6E38pITYrefuVTR9SPX5jEk0qIoZ0=;
+        b=iSawk03mpSiV7zoQBTgeXzmXjgORfLHbHFibARf9aeo38ta85qN/jTLCKS6i16XuHE
+         wDGNEExr3DS6IuUR67EMK/Ymt33gDLK0koSvgxc/qCy9Lx1vZW5s4LTJ8c00ogIwlD2a
+         jX1buqNtxCRFRb13C1BaUG7XibeILanBuf1Jm3RyX4xcD60iDy/syw5LRPXBaqGx6t2Q
+         JgKEh0q1gAkM5MSk9uQtEB9Afuvtpb8wE1xvA8ewRXcfygOXhe5BkkB2geM/pp1q2jIf
+         +kPu7brB+r0CQ+1fs7Td4uE1WzbEpGvp90Oe2eJiK4soHlNxLPm5cznJWACAsKJO2CsD
+         9AWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682684293; x=1685276293;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1682684459; x=1685276459;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IE/Ndmq51M33FIDMLYVN6yk3abUln8AdSBVWjCvVWYc=;
-        b=Cqyj5CL8pZgYxOJcymHcTegBruV26/OBehv0C1KG/MUkSOCPcJ1jsEL6O6yQpQqrDJ
-         U9UNuakgCDugu1Oh4sNXUMFCsNpozQYTaiuVnlnRSHDNhdtd1eEWOCrW1Dis7BiO4TJN
-         NSA36G+2p1l01mIppiOFeZlgjdBbFFzobPszZoZMQS+gHBF3jQC8iew/qzo7KLRgX7wX
-         b9TkRbaWPwjmmoC+P5mbEqF+BfToc9trAxhTsLe9dLq3haUGgK2tV/Fgm0O3gXnpLHZo
-         w8b4zWC5I/1pPx64MmD0z2S6uiQ+7S5jkimVvG8SDupMGXB68YSq9PkJR/YBX/cHg/F1
-         W8rQ==
-X-Gm-Message-State: AC+VfDx1u1lo0cY5PoC+pulQgmMktsR5tB9ejxO+W++hrKnl7IEQXaBh
-        Ke94PfXcyZ53T7g/0Tb5fMNM5g==
-X-Google-Smtp-Source: ACHHUZ4Iv1fxa7IEMp2AmlHMKIflW5I5N6hWyrqJxbuKwz6zMbXkm3wjimu8SSlBBGGp5YjyQF0qTw==
-X-Received: by 2002:a5d:544e:0:b0:2ff:f37:9d18 with SMTP id w14-20020a5d544e000000b002ff0f379d18mr4191050wrv.58.1682684293136;
-        Fri, 28 Apr 2023 05:18:13 -0700 (PDT)
+        bh=QpeQU6IkVIN1ly6E38pITYrefuVTR9SPX5jEk0qIoZ0=;
+        b=IlpkZGWCaGo1/INy96kjQ3Qs4KLjiMAMTE5fKTnKxQsuQzt2Ksp50TFhgIzumaHufI
+         u3FGFrrPNdj5e/+lGYiM0028bBq89YNV39CPi2ESqEHL5Pwd35OLbsB0G7lUsv7zW+Xd
+         LKJXmmc7VcP8ENp6N6KL7JtGHWZnTPjuEbqGZ6oVTYcAbdggonlWT6Cnmr3Xx/WGPsnN
+         g4BqVFTaN1TROxab8VG2v5KGFmQaEwqYcxWhHuOMbAbUhs3ncoQGHyE88LvYLs2THiUW
+         qynOeiDZ5zHHxTGRTp1y84LUdsMA4vV79CJ0R57Mvzp522hB3YyjO2hzQLm3KmBzVrzj
+         Qnjw==
+X-Gm-Message-State: AC+VfDyGv6jpKCN+fGQYTI6lm9c2zZK2hMXnQwSN6Xo8S34BFgxhvaWV
+        uu06llnmHa5sOXnHe6Okcm27+Q==
+X-Google-Smtp-Source: ACHHUZ6rsPO6wDlFQzENrINCgsq67v79X8zDwqpmHyUTSf6dwPi4DygquY3+5uJxS0R/2QopMOXwVw==
+X-Received: by 2002:adf:f94f:0:b0:2f9:1224:2475 with SMTP id q15-20020adff94f000000b002f912242475mr3388938wrr.68.1682684459639;
+        Fri, 28 Apr 2023 05:20:59 -0700 (PDT)
 Received: from [172.23.2.142] ([195.167.132.10])
-        by smtp.gmail.com with ESMTPSA id r17-20020adff711000000b002f2b8cb5d9csm20940051wrp.28.2023.04.28.05.18.11
+        by smtp.gmail.com with ESMTPSA id m10-20020a5d56ca000000b002c54c9bd71fsm20979563wrw.93.2023.04.28.05.20.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Apr 2023 05:18:12 -0700 (PDT)
-Message-ID: <58d9d894-5d5e-cb86-b8f8-e17cd37c069b@linaro.org>
-Date:   Fri, 28 Apr 2023 14:18:10 +0200
+        Fri, 28 Apr 2023 05:20:59 -0700 (PDT)
+Message-ID: <e73cec19-9ac8-bee2-8c28-c7a40b929e53@linaro.org>
+Date:   Fri, 28 Apr 2023 14:20:58 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH 05/43] dt-bindings: timers: add DT bindings for Cirrus
- EP93xx
+Subject: Re: [PATCH 09/43] dt-bindings: watchdog: add DT bindings for Cirrus
+ EP93x
+Content-Language: en-US
 To:     Nikita Shubin <nikita.shubin@maquefel.me>
 Cc:     Arnd Bergmann <arnd@kernel.org>, Linus Walleij <linusw@kernel.org>,
         Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Hartley Sweeten <hsweeten@visionengravers.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 References: <20230424123522.18302-1-nikita.shubin@maquefel.me>
- <20230424123522.18302-6-nikita.shubin@maquefel.me>
- <9805a697-423a-7488-8cd6-f5c35686d431@linaro.org>
- <119e319aadd2c76fc290f71c8444e7438219ca6c.camel@maquefel.me>
-Content-Language: en-US
+ <20230424123522.18302-10-nikita.shubin@maquefel.me>
+ <00882340-477b-dc0b-d489-94efdf045f1c@linaro.org>
+ <cb0b1779a8bd18212439f9baf70fdb183c9f0fc7.camel@maquefel.me>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <119e319aadd2c76fc290f71c8444e7438219ca6c.camel@maquefel.me>
+In-Reply-To: <cb0b1779a8bd18212439f9baf70fdb183c9f0fc7.camel@maquefel.me>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,56 +83,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/04/2023 16:34, Nikita Shubin wrote:
-> On Tue, 2023-04-25 at 11:29 +0200, Krzysztof Kozlowski wrote:
+On 28/04/2023 16:33, Nikita Shubin wrote:
+> Hello Krzysztof!
+> 
+> On Tue, 2023-04-25 at 11:31 +0200, Krzysztof Kozlowski wrote:
 >> On 24/04/2023 14:34, Nikita Shubin wrote:
 >>> This adds device tree bindings for the Cirrus Logic EP93xx
->>> timer block used in these SoCs.
+>>> watchdog block used in these SoCs.
 >>>
 >>> Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
 >>> ---
->>>
->>> Notes:
->>>     Arnd Bergmann:
->>>     - replaced ep93xx wildcard with ep9301
->>>
->>>  .../bindings/timer/cirrus,ep93xx-timer.yaml   | 41
+>>>  .../bindings/watchdog/cirrus,ep93xx-wdt.yaml  | 38
 >>> +++++++++++++++++++
->>>  1 file changed, 41 insertions(+)
+>>>  1 file changed, 38 insertions(+)
 >>>  create mode 100644
->>> Documentation/devicetree/bindings/timer/cirrus,ep93xx-timer.yaml
+>>> Documentation/devicetree/bindings/watchdog/cirrus,ep93xx-wdt.yaml
 >>>
->>> diff --git a/Documentation/devicetree/bindings/timer/cirrus,ep93xx-
->>> timer.yaml b/Documentation/devicetree/bindings/timer/cirrus,ep93xx-
->>> timer.yaml
+>>> diff --git
+>>> a/Documentation/devicetree/bindings/watchdog/cirrus,ep93xx-wdt.yaml
+>>> b/Documentation/devicetree/bindings/watchdog/cirrus,ep93xx-wdt.yaml
 >>> new file mode 100644
->>> index 000000000000..ce8b8a5cb90a
+>>> index 000000000000..f39d6b14062d
 >>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/timer/cirrus,ep93xx-
->>> timer.yaml
->>> @@ -0,0 +1,41 @@
+>>> +++ b/Documentation/devicetree/bindings/watchdog/cirrus,ep93xx-
+>>> wdt.yaml
+>>> @@ -0,0 +1,38 @@
 >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 >>> +%YAML 1.2
 >>> +---
->>> +$id: http://devicetree.org/schemas/timer/cirrus,ep93xx-timer.yaml#
+>>> +$id:
+>>> http://devicetree.org/schemas/watchdog/cirrus,ep93xx-wdt.yaml#
 >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 >>> +
->>> +title: Cirrus Logic EP93xx timers bindings
->>> +
->>> +maintainers:
->>> +  - Hartley Sweeten <hsweeten@visionengravers.com>
->>> +  - Alexander Sverdlin <alexander.sverdlin@gmail.com>
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: cirrus,ep9301-timer
+>>> +title: Cirrus Logic EP93xx Watchdog Timer
 >>
->> 1. Why only one compatible?
->> 2. If this is kept, then filename matching compatible.
+>> EP93xx is no EP9301. This does not match your compatible list. You
+>> should probably list all of your devices. With or without
+>> compatibility
+>> between them (so with a generic fallback for example).
 > 
-> I should rename the file to cirrus,ep9301-timer.yaml
+> I will rename file to cirrus,ep9301-wdt.yaml, all ep93xx SoC family has
+> the same watchdog, so there is now reason for other compatible i think.
 
-No, at least no yet. See point 1.
+You should always have dedicated compatibles, even if using one fallback.
+https://elixir.bootlin.com/linux/v6.1-rc1/source/Documentation/devicetree/bindings/writing-bindings.rst#L42
 
 Best regards,
 Krzysztof
