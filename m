@@ -2,125 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C81F6F13D4
-	for <lists+devicetree@lfdr.de>; Fri, 28 Apr 2023 11:07:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F9096F1502
+	for <lists+devicetree@lfdr.de>; Fri, 28 Apr 2023 12:10:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230025AbjD1JHh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Apr 2023 05:07:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43174 "EHLO
+        id S1345883AbjD1KKI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Apr 2023 06:10:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229840AbjD1JHg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Apr 2023 05:07:36 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39DFD2D5B;
-        Fri, 28 Apr 2023 02:07:34 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33S96pq1060684;
-        Fri, 28 Apr 2023 04:06:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1682672811;
-        bh=o1rSdOmMRwFvIuaD+mfrZqbuIO8xyaxUVPv2FuoJHCs=;
-        h=Date:Subject:From:To:CC:References:In-Reply-To;
-        b=KIsIiiv9JP3wRNCZzTczcPRGEINj/pPz2AFDsHVpxyCA2/o4cRoOW2lL2lZ3/l0YU
-         PdqEjdZTfBffRphiZC6YVweUmXGVoGYX1NK8HZou+lP1yS4NxUeMbZJAuF6gjyenl9
-         Ix1W0RPb0l6+71ZyouOCEUmsMJ+wUchuJd40yLEc=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33S96p0k057141
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 28 Apr 2023 04:06:51 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 28
- Apr 2023 04:06:50 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 28 Apr 2023 04:06:50 -0500
-Received: from [10.24.69.114] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33S96hWV077030;
-        Fri, 28 Apr 2023 04:06:44 -0500
-Message-ID: <ff6fe35f-ca4b-a48d-777f-196b771a14d3@ti.com>
-Date:   Fri, 28 Apr 2023 14:36:42 +0530
+        with ESMTP id S1345994AbjD1KKH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Apr 2023 06:10:07 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D7284C2D
+        for <devicetree@vger.kernel.org>; Fri, 28 Apr 2023 03:10:05 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-3023a56048bso8488188f8f.3
+        for <devicetree@vger.kernel.org>; Fri, 28 Apr 2023 03:10:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1682676603; x=1685268603;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1NdndAiTXiWNg2u0YXHfQ8keyIiYpuxm3CvU9zlYpN0=;
+        b=AtNydsNZz7DITiVM0EZYBpno41WmsQE+AmiWQcnaOQhCE0hBAXPcFuAD/xUnR8Bv2Y
+         JUGou4a5WAJP+YnIfDk7nUPhjip4z58IedvOeVJM3iW4vW0MeTl3bNTUcN6i/2gCiX3M
+         I6Tw0jyZEA88VAJNp9XA7qw15zUlJ5Ih1eQ94xsPNX58vGtqfTQQzuJXemq2+uECAZ2k
+         /yv+NOwoMUzA8uGf77XAV/HveBwsaJ+peSc/gyXPz5lgsxkVuEHoJ/htRMVY03iPDAra
+         KGDy78En7flIUd1dZYcpyhaF2CizBoYJZKdgJW4crpr3aTtQi0TFfZrukcZiUhYuGHsn
+         0+Lg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682676603; x=1685268603;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1NdndAiTXiWNg2u0YXHfQ8keyIiYpuxm3CvU9zlYpN0=;
+        b=T0zH7X0d+dfyJL59AxyfwNZqKeLbus2tol8b/kVgUU6s9bu/lBlopQQBCNWyY2YKoM
+         qA3tss8Av3NNv86MW4/G0DAo42LUGaJRs/IjWuM1i70LtOll9Y6NatnJ98+osOqsj2BH
+         A8WxTizV9w+tUdCywAxNU9ppZhPr5wxtd6c17jVzNae3yDB6xkUo5jIgwMy6VXlR4UWJ
+         iIL1fUm05ErqaN3iA4+AVTPWXeRY3wq4PGrsEJEMUBb2Ljg0IsAhVHHINcDWRCswwkAx
+         UhQD1HfIiyxJcVHR9mSngq/EzburimSSnU3bveP+HVU/05anJCbU/0R5mPETx8ILEisZ
+         p6eQ==
+X-Gm-Message-State: AC+VfDxV8wAi+k27CjMFm/EbIAQI9H+85lt24rBXRHMBbynNOh2/vbDJ
+        ZgpSNL1sYW7wfyAf+HGeZx2EfA==
+X-Google-Smtp-Source: ACHHUZ5GI8YBzZGl5b2BCGJn7Z5rpx8+kgTSSrDTPJ/Bhju7qpO0y+i7u38R0tXwpEKW2llLnrtYNg==
+X-Received: by 2002:adf:ef4b:0:b0:2f8:67ee:5ca9 with SMTP id c11-20020adfef4b000000b002f867ee5ca9mr3227987wrp.65.1682676603455;
+        Fri, 28 Apr 2023 03:10:03 -0700 (PDT)
+Received: from [172.23.3.169] ([195.167.132.10])
+        by smtp.gmail.com with ESMTPSA id i1-20020a05600011c100b002cff06039d7sm20616598wrx.39.2023.04.28.03.10.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 28 Apr 2023 03:10:02 -0700 (PDT)
+Message-ID: <3a0bf8d2-957d-63cc-e60d-7225a2c52a7c@linaro.org>
+Date:   Fri, 28 Apr 2023 11:10:01 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [EXTERNAL] Re: [RFC PATCH v6 2/2] net: ti: icssg-prueth: Add
- ICSSG ethernet driver
+ Thunderbird/102.9.1
+Subject: Re: [PATCH 1/4] dt-bindings: input: pwm-vibrator: Add enable-gpio
 Content-Language: en-US
-From:   Md Danish Anwar <a0501179@ti.com>
-To:     Simon Horman <simon.horman@corigine.com>,
-        MD Danish Anwar <danishanwar@ti.com>
-CC:     "Andrew F. Davis" <afd@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Suman Anna <s-anna@ti.com>, Roger Quadros <rogerq@kernel.org>,
-        YueHaibing <yuehaibing@huawei.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
+        phone-devel@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>, <andrew@lunn.ch>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Richard Cochran <richardcochran@gmail.com>, <nm@ti.com>,
-        <ssantosh@kernel.org>, <srk@ti.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <linux-omap@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20230424053233.2338782-1-danishanwar@ti.com>
- <20230424053233.2338782-3-danishanwar@ti.com> <ZEl2zh879QAX+QsK@corigine.com>
- <9c97e367-56d6-689e-856a-c1a6ff575b63@ti.com>
-Organization: Texas Instruments
-In-Reply-To: <9c97e367-56d6-689e-856a-c1a6ff575b63@ti.com>
-Content-Type: text/plain; charset="UTF-8"
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Brian Masney <masneyb@onstation.org>
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+References: <20230427-hammerhead-vibra-v1-0-e87eeb94da51@z3ntu.xyz>
+ <20230427-hammerhead-vibra-v1-1-e87eeb94da51@z3ntu.xyz>
+From:   Caleb Connolly <caleb.connolly@linaro.org>
+In-Reply-To: <20230427-hammerhead-vibra-v1-1-e87eeb94da51@z3ntu.xyz>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Simon.
 
-On 27/04/23 12:42, Md Danish Anwar wrote:
-> Hi Simon,
-> Thanks for the comments.
+
+On 27/04/2023 21:34, Luca Weiss wrote:
+> Some pwm vibrators have a dedicated enable GPIO that needs to be set
+> high so that the vibrator works. Document that.
 > 
-> On 27/04/23 00:39, Simon Horman wrote:
->> On Mon, Apr 24, 2023 at 11:02:33AM +0530, MD Danish Anwar wrote:
->>> From: Roger Quadros <rogerq@ti.com>
->>>
->>> This is the Ethernet driver for TI AM654 Silicon rev. 2
->>> with the ICSSG PRU Sub-system running dual-EMAC firmware.
->>>
+> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
 
-[ ... ]
-
->>
->> ...
->>
->>> +MODULE_AUTHOR("Roger Quadros <rogerq@ti.com>");
->>> +MODULE_AUTHOR("Puranjay Mohan <p-mohan@ti.com>");
->>> +MODULE_AUTHOR("Md Danish Anwar <danishanwar@ti.com>");
->>> +MODULE_DESCRIPTION("PRUSS ICSSG Ethernet Driver");
->>> +MODULE_LICENSE("GPL");
->>
->> SPDK says GPL-2.0, so perhaps this should be "GPL v2" ?
->>
-
-I am getting checkpatch warning while changing GPL version.
-
-WARNING: Prefer "GPL" over "GPL v2" - see commit bf7fbeeae6db ("module: Cure
-the MODULE_LICENSE "GPL" vs. "GPL v2" bogosity")
-#3602: FILE: drivers/net/ethernet/ti/icssg_prueth.c:1866:
-+MODULE_LICENSE("GPL v2");
-
-Should I ignore this warning and change it to "GPL v2"
-
--- 
-Thanks and Regards,
-Danish.
+Reviewed-by: Caleb Connolly <caleb.connolly@linaro.org>
+> ---
+>   Documentation/devicetree/bindings/input/pwm-vibrator.yaml | 2 ++
+>   1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/input/pwm-vibrator.yaml b/Documentation/devicetree/bindings/input/pwm-vibrator.yaml
+> index d32716c604fe..6398534b43c3 100644
+> --- a/Documentation/devicetree/bindings/input/pwm-vibrator.yaml
+> +++ b/Documentation/devicetree/bindings/input/pwm-vibrator.yaml
+> @@ -32,6 +32,8 @@ properties:
+>       minItems: 1
+>       maxItems: 2
+>   
+> +  enable-gpios: true
+> +
+>     vcc-supply: true
+>   
+>     direction-duty-cycle-ns:
+> 
