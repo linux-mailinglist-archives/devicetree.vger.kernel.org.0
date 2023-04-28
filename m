@@ -2,96 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E19A6F200F
-	for <lists+devicetree@lfdr.de>; Fri, 28 Apr 2023 23:24:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38CCD6F202E
+	for <lists+devicetree@lfdr.de>; Fri, 28 Apr 2023 23:41:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230158AbjD1VYQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Apr 2023 17:24:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49866 "EHLO
+        id S1346497AbjD1Vlp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Apr 2023 17:41:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229751AbjD1VYP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Apr 2023 17:24:15 -0400
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AAD91BFA;
-        Fri, 28 Apr 2023 14:24:14 -0700 (PDT)
-Received: by mail-oi1-f177.google.com with SMTP id 5614622812f47-390723f815fso194190b6e.3;
-        Fri, 28 Apr 2023 14:24:14 -0700 (PDT)
+        with ESMTP id S229647AbjD1Vlo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Apr 2023 17:41:44 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4B7926B9
+        for <devicetree@vger.kernel.org>; Fri, 28 Apr 2023 14:41:42 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-2fbb99cb297so208517f8f.1
+        for <devicetree@vger.kernel.org>; Fri, 28 Apr 2023 14:41:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1682718101; x=1685310101;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=E1Eb5RgOQ6G6T/ToVAmMxv+nVh8+Egk1H9oMyEZ/kPI=;
+        b=B/Iiy08dVrTDqQP14DEVLVYhm+dghBPD41nm5Po2ZOuME8qd4mRykxC/KUS1dma/B8
+         OYe4mDjjXpKf/mjMk/TINQ2iqlM7f9KPy3QRKOW4LctPN9VjIQFkKZ9bMxW3L71cjS4n
+         5Vg0L1BGlUKVQxuvhloewhVnEI5cwoh1WLquTnvm8+uN8LOIW8L5mxApE/yg0hq+CPvf
+         AxJx5nX4jrGwm5xKVJ4ZcxJLOV8AzTqeA5Rlp/1R318ochH9XwDOwv5ykAM+4socbTnM
+         3GDRpzhwcs1Yc2y0k6suRwULbbgiY2ZDeB51EF4xiUDHCQlaAuVq2nInSiOXRthJQS+q
+         hOgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682717053; x=1685309053;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IAPY815zoxAtMPmlMXHufDygNyWf4XGrhN0PoJVnSps=;
-        b=bLskf3YC/l8X3R50nlODXYqY5qLQQwyVkhV8DqaFv8aTh60n4nSxeh4wQ/s3UUwOKb
-         3Mh4Mga16lSJjSHBjlRy70yKSqI3LosBFnU72luFpJpm49nGbJwncY3/jnazZE6Ow/Gl
-         cJp7j1k74KKeeHies1L+gRhkygdK6qM6HNJg7syxMjQrazyPG+5i1qSJp5D64wZYtik0
-         kFi108PeaNtHnENVF4l9e/OUP4ne2JPq1CMHhaNeS/Agi45bsN94ATdSTmCkRgwE5Tu1
-         3hgLsa1DZ2PjmlVBr8ht+GkhQOmjDZNvxr59etaOY41dJBptbCHHQ9dA5JCA6Scg+BIG
-         +I5A==
-X-Gm-Message-State: AC+VfDzeiQBuuEURnU4cWmfoqJhD7iHiHf+TyLHDibS1U3sH3/csdx2N
-        469WvXz+Z6L1cbBp639nhg==
-X-Google-Smtp-Source: ACHHUZ4ejwMUkARoZivIyIZvQ1OVmA6kIV/k9dm1oOfq0PdWN5jKAu6yLm5KZXEfQ/nrJ6VzEGxTwQ==
-X-Received: by 2002:a05:6808:2787:b0:38e:dc5b:7bc0 with SMTP id es7-20020a056808278700b0038edc5b7bc0mr3045160oib.59.1682717053559;
-        Fri, 28 Apr 2023 14:24:13 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id j6-20020acab906000000b00383eaea5e88sm9096118oif.38.2023.04.28.14.24.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Apr 2023 14:24:12 -0700 (PDT)
-Received: (nullmailer pid 299800 invoked by uid 1000);
-        Fri, 28 Apr 2023 21:24:11 -0000
-Date:   Fri, 28 Apr 2023 16:24:11 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Yi-De Wu <yi-de.wu@mediatek.com>
-Cc:     Yingshiuan Pan <yingshiuan.pan@mediatek.com>,
-        Ze-Yu Wang <ze-yu.wang@mediatek.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-arch@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        David Bradil <dbrazdil@google.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Jade Shih <jades.shih@mediatek.com>,
-        Miles Chen <miles.chen@mediatek.com>,
-        Ivan Tseng <ivan.tseng@mediatek.com>,
-        My Chuang <my.chuang@mediatek.com>,
-        Shawn Hsiao <shawn.hsiao@mediatek.com>,
-        PeiLun Suei <peilun.suei@mediatek.com>,
-        Liju Chen <liju-clr.chen@mediatek.com>
-Subject: Re: [PATCH v2 2/7] dt-bindings: hypervisor: Add MediaTek GenieZone
- hypervisor
-Message-ID: <20230428212411.GA292303-robh@kernel.org>
-References: <20230428103622.18291-1-yi-de.wu@mediatek.com>
- <20230428103622.18291-3-yi-de.wu@mediatek.com>
+        d=1e100.net; s=20221208; t=1682718101; x=1685310101;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=E1Eb5RgOQ6G6T/ToVAmMxv+nVh8+Egk1H9oMyEZ/kPI=;
+        b=cPQgekoww1WFheffxUYbSU/DgdfEykueyknuoz0gz5MWV4KkHYhMThG1KgQftUmJbU
+         T3ij0h+1nQHl+cHWREbs75AfTQuZwiEawz9oEEbVTgJ76ZK/kyAky7ed4JOc+0x4pPfS
+         DIbmC3ZLvnQpZYwHTV5m+QONgnCCD9DdmR8JVStIVG2v3wo0UaqAjO+AXmnDDqgqTMUR
+         OFBdnMuowXHgek4JL/MYxUJYFxYQ4cKH1BoQpRy9aSMt6gYAwYyFR1FUkIkWT1qcxZpT
+         0cApwFL1zjyX6JSvD3Dxh+sQiNs//ATigcre7jZVci4gdeh+dzLxndCkZ6HnFitDTKEx
+         KbPA==
+X-Gm-Message-State: AC+VfDws33hUvrFS0h5exPdRF2R7R/DUjVeD9QfARCvWP46qnL9bnX4f
+        iKZvWJwfavds4Xy0gxOG0FBTmg==
+X-Google-Smtp-Source: ACHHUZ5RGdr21sjT6mATshpr/YItNaJEnWe3GQDudidU/5n3YX0H1yKJh85dhh6eziC69IuYXUMV6Q==
+X-Received: by 2002:adf:e481:0:b0:2ee:f1f0:14bb with SMTP id i1-20020adfe481000000b002eef1f014bbmr5138651wrm.49.1682718101303;
+        Fri, 28 Apr 2023 14:41:41 -0700 (PDT)
+Received: from [10.6.26.43] ([212.140.138.202])
+        by smtp.gmail.com with ESMTPSA id d15-20020adfe84f000000b002fb60c7995esm22205929wrn.8.2023.04.28.14.41.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 28 Apr 2023 14:41:40 -0700 (PDT)
+Message-ID: <3dc6e993-bcca-4e0d-5aca-686fcc8b5b73@linaro.org>
+Date:   Sat, 29 Apr 2023 00:41:39 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230428103622.18291-3-yi-de.wu@mediatek.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v1 0/6] arm64: qcom: sa8775p: add support for USB
+Content-Language: en-GB
+To:     Adrien Thierry <athierry@redhat.com>
+Cc:     Shazad Hussain <quic_shazhuss@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org
+References: <20230421133922.8520-1-quic_shazhuss@quicinc.com>
+ <ZEcEGJiikEC2wIVE@fedora>
+ <CAA8EJpr27=2jAXbamN6J7yF+7G=L5Af8+XReB5UnFuihcEwMQA@mail.gmail.com>
+ <ZEgV+H3yZLp48Dlc@fedora>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <ZEgV+H3yZLp48Dlc@fedora>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 28, 2023 at 06:36:17PM +0800, Yi-De Wu wrote:
-> From: "Yingshiuan Pan" <yingshiuan.pan@mediatek.com>
+On 25/04/2023 21:03, Adrien Thierry wrote:
+> Hi Dmitry,
 > 
-> Add documentation for GenieZone(gzvm) node. This node informs gzvm
-> driver to start probing if geniezone hypervisor is available and
-> able to do virtual machine operations.
+>> Semi-random suggestion, but could you please try using
+>> clk_regmap_phy_mux/clk_regmap_phy_mux_ops for USB pipe clk src?
+> 
+> Which specific clock are you refering to? I'm not very familiar with
+> those, in the device tree I'm seeing "pipe" clocks for usb_0 and usb_1
+> phys, but not for usb_2, which is the one that's causing issues.
+> 
 
-Why can't the driver just try and do virtual machine operations to see 
-if the hypervisor is there? IOW, make your software interfaces 
-discoverable. DT is for non-discoverable hardware.
+Ah, I see. Could you please try adding the 
+'qcom,select-utmi-as-pipe-clk' property to the usb_2 host node and 
+running the test again?
 
-Rob
+
+-- 
+With best wishes
+Dmitry
+
