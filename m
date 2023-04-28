@@ -2,120 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CCEF6F1F23
-	for <lists+devicetree@lfdr.de>; Fri, 28 Apr 2023 22:10:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF53B6F1F39
+	for <lists+devicetree@lfdr.de>; Fri, 28 Apr 2023 22:21:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230110AbjD1UKv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Apr 2023 16:10:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40760 "EHLO
+        id S1345956AbjD1UV5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Apr 2023 16:21:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230063AbjD1UKu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Apr 2023 16:10:50 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E056926B1;
-        Fri, 28 Apr 2023 13:10:49 -0700 (PDT)
-Received: from notapiano (unknown [194.36.25.39])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: nfraprado)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 1E58866032CF;
-        Fri, 28 Apr 2023 21:10:43 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1682712648;
-        bh=b5em7hgy8DNSPO5+mn/VtcgYEzm4w56x9wJfr+VO8D4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=mOYtKibkW1pr8UXj77mTOfkBfTEHE2oP6mK91rL1sLuM5uyyvweODtM13BjoCDbqq
-         FFlgX6LUhK6MPAje3n1giNCCJZ6nK4Jzn282wQtxAY3Vs3fUeYfiB0HcI4kr75L+QD
-         dtA550hoHvFG0YaRobuOVtopR1PCjQlRpnP/TYL21qS0vVL4cseX7YVT1gXlGIHQJY
-         Cm5igPAjkdFstwIoKSWNP0DM2AqJnoDgW3xoW0u7vuXjWkqqJnBXPphbruh4q3VzOf
-         EYiQtcnpkVuoWrFv54pwSmzpmg18h9OujEAIIqdPwFmu+14kVVWc/OuZiWOp4YltMr
-         20V+GcMJtpdWw==
-Date:   Fri, 28 Apr 2023 16:10:38 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     bchihi@baylibre.com
-Cc:     daniel.lezcano@linaro.org, angelogioacchino.delregno@collabora.com,
-        rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
-        matthias.bgg@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, rdunlap@infradead.org,
-        ye.xingchen@zte.com.cn, p.zabel@pengutronix.de,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        wenst@chromium.org, james.lo@mediatek.com,
-        rex-bc.chen@mediatek.com, abailon@baylibre.com,
-        amergnat@baylibre.com, khilman@baylibre.com
-Subject: Re: [PATCH v2 3/5] thermal/drivers/mediatek/lvts_thermal: Add mt8192
- support
-Message-ID: <37680c5e-e61c-410b-b48d-829914200e4a@notapiano>
-References: <20230425133052.199767-1-bchihi@baylibre.com>
- <20230425133052.199767-4-bchihi@baylibre.com>
+        with ESMTP id S1345946AbjD1UV4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Apr 2023 16:21:56 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 764BF2720;
+        Fri, 28 Apr 2023 13:21:44 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33SJ17PI010240;
+        Fri, 28 Apr 2023 20:21:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : in-reply-to : references : mime-version :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=jLyPbtzvBUyAfoKSLhDpM3wpUyv5i2Vpizt0weLRsa4=;
+ b=bXRDvUkIeRKig/SwyTPjKTnYLcprzEzecs1Aw3F9pv7c4tTDYFzxjJmbsPDk74Q//jk7
+ yw8P/5aFSdOlgSqE7jXx/r1sc1n8Z/BJwfSvaznTS8S3Jbdc99zI6dL9dacnyLFQmqlN
+ lsf6soBFrUwTW4VilhGhHT0F1KvYAYWDYmiv7Kowd1dIilM1ONqayoZW9UpeN1MoFF+C
+ 9nm5NTIlsDOk8QxrLHfB1zkbhwTsVbRVrSg7qXOkei8CoGLtsMFzJDbwym4tDYgb9qQv
+ lObcCIHFfng4NHasq4qzIu8I0OVcRj1j2eIF3h38K9k2HZEdT6VO4ddmuV8xCJyAzh37 iQ== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q850ctr4n-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 28 Apr 2023 20:21:38 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33SKLb6C016478
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 28 Apr 2023 20:21:37 GMT
+Received: from abhinavk-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Fri, 28 Apr 2023 13:21:36 -0700
+From:   Abhinav Kumar <quic_abhinavk@quicinc.com>
+To:     Rob Clark <robdclark@gmail.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Jianhua Lu <lujianhua000@gmail.com>
+CC:     Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <~postmarketos/upstreaming@lists.sr.ht>,
+        <phone-devel@vger.kernel.org>, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v2] dt-bindings: display/msm: dsi-controller-main: Document qcom,master-dsi and qcom,sync-dual-dsi
+Date:   Fri, 28 Apr 2023 13:21:21 -0700
+Message-ID: <168271324255.1535.12569960424133230551.b4-ty@quicinc.com>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230427122132.24840-1-lujianhua000@gmail.com>
+References: <20230427122132.24840-1-lujianhua000@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230425133052.199767-4-bchihi@baylibre.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: D2rw4HD4qY9sb1xwqJLU7kIY_Mgf15A3
+X-Proofpoint-GUID: D2rw4HD4qY9sb1xwqJLU7kIY_Mgf15A3
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-28_06,2023-04-27_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 clxscore=1015
+ suspectscore=0 mlxlogscore=893 mlxscore=0 phishscore=0 bulkscore=0
+ adultscore=0 impostorscore=0 spamscore=0 lowpriorityscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303200000 definitions=main-2304280167
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 25, 2023 at 03:30:50PM +0200, bchihi@baylibre.com wrote:
-> From: Balsam CHIHI <bchihi@baylibre.com>
+
+On Thu, 27 Apr 2023 20:21:32 +0800, Jianhua Lu wrote:
+> This fixes warning:
+>   sm8250-xiaomi-elish-csot.dtb: dsi@ae94000: Unevaluated properties are not allowed ('qcom,master-dsi', 'qcom,sync-dual-dsi' were unexpected)
 > 
-> Add LVTS Driver support for MT8192.
 > 
-> Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
-> Co-developed-by : Nícolas F. R. A. Prado <nfraprado@collabora.com>
-> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-> ---
->  drivers/thermal/mediatek/lvts_thermal.c | 92 +++++++++++++++++++++++++
->  1 file changed, 92 insertions(+)
-> 
-> diff --git a/drivers/thermal/mediatek/lvts_thermal.c b/drivers/thermal/mediatek/lvts_thermal.c
-> index 5ea8a9d569ea6..8df7b4c72a658 100644
-> --- a/drivers/thermal/mediatek/lvts_thermal.c
-> +++ b/drivers/thermal/mediatek/lvts_thermal.c
-[..]
-> +static const struct lvts_ctrl_data mt8192_lvts_mcu_data_ctrl[] = {
-> +	{
-> +		.cal_offset = { 0x04, 0x08 },
-> +		.lvts_sensor = {
-> +			{ .dt_id = MT8192_MCU_BIG_CPU0 },
-> +			{ .dt_id = MT8192_MCU_BIG_CPU1 }
-> +		},
-> +		.num_lvts_sensor = 2,
-> +		.offset = 0x0,
-> +		.hw_tshut_temp = LVTS_HW_SHUTDOWN_MT8192,
 
-Hi Balsam,
+Applied, thanks!
 
-during the investigation I did to fix the interrupt issues I mentioned in v1, I
-noticed that the threshold interrupts (hot, hot to normal, cold), only trigger
-when the controller is configured to filtered mode. In immediate mode the
-threshold interrupts are not triggered.
+[1/1] dt-bindings: display/msm: dsi-controller-main: Document qcom,master-dsi and qcom,sync-dual-dsi
+      https://gitlab.freedesktop.org/abhinavk/msm/-/commit/ca29699a57ec
 
-So I say we add
-
-               .mode = LVTS_MSR_FILTERED_MODE,
-
-for all the controllers here. Same for MT8195, although I guess that'd be better
-done in a separate series. And I haven't had time to test more on MT8195 to see
-if I can get any interrupts there.
-
-One issue with filtered mode is that the data read is often not ready (valid bit
-unset), so most of the time it returns -EAGAIN. But I think that should be easy
-to address by reading with a timeout (equal to the measurement interval we
-already know), instead of a single time, if on filtered mode.
-
-I'll also try to review the other commits in this series, though that'll have to
-wait for next week.
-
-Thanks,
-Nícolas
+Best regards,
+-- 
+Abhinav Kumar <quic_abhinavk@quicinc.com>
