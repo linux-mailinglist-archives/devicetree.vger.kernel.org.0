@@ -2,87 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 87D556F1CBC
-	for <lists+devicetree@lfdr.de>; Fri, 28 Apr 2023 18:39:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CE656F1D04
+	for <lists+devicetree@lfdr.de>; Fri, 28 Apr 2023 18:56:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346075AbjD1QjE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Apr 2023 12:39:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56370 "EHLO
+        id S230056AbjD1Q4A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Apr 2023 12:56:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229470AbjD1QjE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Apr 2023 12:39:04 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19CFA46A0;
-        Fri, 28 Apr 2023 09:39:03 -0700 (PDT)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33S6daWg002201;
-        Fri, 28 Apr 2023 16:38:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=TqQJkjTwoWF4dMGDBX0d8aMt6DnlZbBLw5na6S7xh40=;
- b=A9lwD8qAT5QnEHd3CRQQdRbi7WlSVzMZ9vYfDscd7pmLX/GyQs3kEpBndulaXNOQWs2C
- ayw5bjmPJ+/85ny8VdW/gXuIg4WLTv4CcGdIScHVEsEpIEsM6GAzH+G24zzLCxBMu8ck
- M1KYKNaSwMlZ3NF6VLKa4aZ3YiSi2rKRRHSaMkfOJya4fLMrwhQtdH1tIo/0ahgpy558
- wzPvJWATLYyJ4eWfwn96uR5J5KhXWZzolm6c0Ea4TFM9/QbHbGunnW+HMjN1bM5sM2D6
- epgTHCrBqni/wjgjo+iLcpMdTWij5VJXBvwbiI6OXMTxp9ZKBJdzvpXEJIzziAkIAl4Q +g== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q7xdyaxky-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 28 Apr 2023 16:38:49 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33SGcnL5020862
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 28 Apr 2023 16:38:49 GMT
-Received: from [10.110.124.105] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Fri, 28 Apr
- 2023 09:38:47 -0700
-Message-ID: <ca0d68b9-b81c-ad3f-2835-9661cc946de2@quicinc.com>
-Date:   Fri, 28 Apr 2023 09:38:46 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.2
-Subject: Re: [PATCH v2] dt-bindings: display/msm: dsi-controller-main:
- Document qcom,master-dsi and qcom,sync-dual-dsi
-Content-Language: en-US
-To:     Jianhua Lu <lujianhua000@gmail.com>,
-        Rob Clark <robdclark@gmail.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        "Rob Herring" <robh+dt@kernel.org>,
+        with ESMTP id S229892AbjD1Qz7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Apr 2023 12:55:59 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9334E1FC3;
+        Fri, 28 Apr 2023 09:55:58 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2F54D6449D;
+        Fri, 28 Apr 2023 16:55:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 049E1C433EF;
+        Fri, 28 Apr 2023 16:55:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1682700957;
+        bh=xj0NIzvVgCJvBTwvWFN6SAMCNUTQVUTdpSyWpNpNl8k=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=KNmfeAbx1Zo/ImwjopCtaCiKZRBGd3BpMzJgZls2FdFOx/oGeUTokC+NKVddIEQh7
+         zzOsBHlwORGIkqKJeT4u3SVWEwld+h7BSKudUNaNYf53DSoOUDNTX6bbmsA2ZYl/cJ
+         szY566mQnld9m17ClWfBk7nTUWDBcVW3q7Rb7seswhIVUq7s6zswA3U5BiZbQer9vy
+         ZazEfZjd1y4XvWVH8wwoCcPOphzEjXWvjojPCE5bLaBVyBmh1BTQakgz9lMY0YpeN5
+         qPLn+ZYOwBunbPsjWn6pFAcXfzxrXVUnRE9KKJwAUaO4Ebq9HjUyGk58IQTglC8gEu
+         ioBxMt7bJDmOg==
+Date:   Fri, 28 Apr 2023 17:55:52 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Ivan Bornyakov <i.bornyakov@metrotek.ru>
+Cc:     linux-kernel@vger.kernel.org, Moritz Fischer <mdf@kernel.org>,
+        Wu Hao <hao.wu@intel.com>, Xu Yilun <yilun.xu@intel.com>,
+        Tom Rix <trix@redhat.com>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>
-CC:     <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <~postmarketos/upstreaming@lists.sr.ht>,
-        <phone-devel@vger.kernel.org>, Rob Herring <robh@kernel.org>
-References: <20230427122132.24840-1-lujianhua000@gmail.com>
-From:   Abhinav Kumar <quic_abhinavk@quicinc.com>
-In-Reply-To: <20230427122132.24840-1-lujianhua000@gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: cCp5ILIbGKeWAEiSCRIOvhfR0isVcKMf
-X-Proofpoint-ORIG-GUID: cCp5ILIbGKeWAEiSCRIOvhfR0isVcKMf
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-28_04,2023-04-27_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- lowpriorityscore=0 suspectscore=0 bulkscore=0 priorityscore=1501
- phishscore=0 adultscore=0 mlxlogscore=999 clxscore=1011 mlxscore=0
- spamscore=0 malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2304280133
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor.dooley@microchip.com>,
+        Vladimir Georgiev <v.georgiev@metrotek.ru>, system@metrotek.ru,
+        linux-fpga@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 0/2] replace Ivan Bornyakov maintainership
+Message-ID: <20230428-marine-halogen-57d4b3c2ca0f@spud>
+References: <20230428140150.2592-1-i.bornyakov@metrotek.ru>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="m8l/4nIjr6I81ows"
+Content-Disposition: inline
+In-Reply-To: <20230428140150.2592-1-i.bornyakov@metrotek.ru>
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -90,24 +60,36 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--m8l/4nIjr6I81ows
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On 4/27/2023 5:21 AM, Jianhua Lu wrote:
-> This fixes warning:
->    sm8250-xiaomi-elish-csot.dtb: dsi@ae94000: Unevaluated properties are not allowed ('qcom,master-dsi', 'qcom,sync-dual-dsi' were unexpected)
-> 
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Acked-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
-> ---
-> Changes in v2:
->    - pick up tags
->    - fix typo (need -> needs)
-> 
->   .../bindings/display/msm/dsi-controller-main.yaml    | 12 ++++++++++++
->   1 file changed, 12 insertions(+)
-> 
+On Fri, Apr 28, 2023 at 05:01:48PM +0300, Ivan Bornyakov wrote:
+> As I'm leaving Metrotek, hand over my maintainership duties to Vladimir.
 
-Fixes: 4dbe55c97741 ("dt-bindings: msm: dsi: add yaml schemas for DSI 
-bindings")
+As I said yesterday, good luck!
 
-Reviewed-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
+> ChangeLog:
+> v1:
+> https://lore.kernel.org/lkml/20230426073519.9167-1-i.bornyakov@metrotek.ru/
+> v2:
+>   * instead of replacing my Metrotek email to a shared Metrotek System
+>     Team mailbox, assign Vladimir to my former maintainership.
+
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+Thanks,
+Conor.
+
+--m8l/4nIjr6I81ows
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZEv6mAAKCRB4tDGHoIJi
+0useAP9+jA39d34FnLCJS+/xi4qzWK2rUMT+9RE7bzvH1kDXaQD/WXJD6YsaHWTT
+TJKjZ9QchCKQ8oGlv8oPWAjE8I7vEAc=
+=N8ks
+-----END PGP SIGNATURE-----
+
+--m8l/4nIjr6I81ows--
