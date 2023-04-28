@@ -2,538 +2,228 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E4ED6F15B2
-	for <lists+devicetree@lfdr.de>; Fri, 28 Apr 2023 12:36:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2007A6F160D
+	for <lists+devicetree@lfdr.de>; Fri, 28 Apr 2023 12:53:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345577AbjD1Kgl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Apr 2023 06:36:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34944 "EHLO
+        id S1345340AbjD1KxT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Apr 2023 06:53:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230302AbjD1Kgi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Apr 2023 06:36:38 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F9EF1FCB;
-        Fri, 28 Apr 2023 03:36:32 -0700 (PDT)
-X-UUID: 87d5a888e5b011edb20a276fd37b9834-20230428
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=u3teTzXWfdZD/MAt4wIpkVkYZZzL4aWs/Dkd2xxky/Y=;
-        b=fxyvhujlP3h9I2KBlu1gLBYqEiByV7aTRpDaInIzIjepikq6yQE/neAux4OAIOLCpmiAz2jMTOEn/LyGPMWjM1SkPaHzzfo7LWv58lIOVDuM5eFUKp4kxhe8eZlJ5l56/ML24vOUGCXmczjIMFXf7NNHilqSksbMj1emGhDhDFE=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.22,REQID:e900bb1b-1d7c-4b2b-a797-c435c1400547,IP:0,U
-        RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-        N:release,TS:-25
-X-CID-META: VersionHash:120426c,CLOUDID:72893230-6935-4eab-a959-f84f8da15543,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-UUID: 87d5a888e5b011edb20a276fd37b9834-20230428
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw02.mediatek.com
-        (envelope-from <yi-de.wu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1776837364; Fri, 28 Apr 2023 18:36:27 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Fri, 28 Apr 2023 18:36:26 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.25 via Frontend Transport; Fri, 28 Apr 2023 18:36:26 +0800
-From:   Yi-De Wu <yi-de.wu@mediatek.com>
-To:     Yingshiuan Pan <yingshiuan.pan@mediatek.com>,
-        Ze-Yu Wang <ze-yu.wang@mediatek.com>,
-        Yi-De Wu <yi-de.wu@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>,
+        with ESMTP id S229577AbjD1KxR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Apr 2023 06:53:17 -0400
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2086.outbound.protection.outlook.com [40.107.244.86])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C49E6211C;
+        Fri, 28 Apr 2023 03:53:15 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Z1NWgtZ0GXvUAILGOVvLWnEh9H2fJf/idq1no09kW0yUXCOzH52LcYPrRqGqQZhX2vIlVxsBZNbjkOL2jeFa1Qnq/SjUvBae+w9fU+ruVEDUIM97K4dPl4xIEuRX3nUfyD0BsppASa4ozfh7PQQzmy9QpkxdXjZPRTahNhppU4Fx4lQ8vBq1F5qtyodzl2o3A1GlQh7n+q1UQwXz648XbrWUzmCQyBAsRyx/6MSuvH9jOKPWBi6OejuGVfeqrTDcSIOMy7ZqH5rH15x7wiozydChtPiUMYlNtjJN4QRmc9ts+lenn4jjEUTp5bizCKPudvg4MHiDQspW/S4ggVrb2A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=nVvwChBsIZk9SMUBaNjJTIdfKnZk+DvN3bmBk0aHa0w=;
+ b=REEz2akZbDfxNNNK7qQps0aHeJWJUFiHh7vwAEBF6IY6LR5DpuIQmWqwfoFzvqncxN73yM45mQMPosAlps/wQ7cGBhxVhfAycCUwZpW8D+7gSK8p5a4y+zLItT3ZVd90gQ9dEw8eiKBxsYbrqTW3ApmKSoCkghc6hHH5lF7x6fxEc6sr8RcHHnH2WK5G5PcY72J0RhagKzQ/5uyjehc/24X5jNSlCbwSpEsk/6eEPoq2mdAbWyMwH5WUmh2td35GUXxrHX5CQoNXeJAMcjpZldCtEL61MdJLhewebFGtPcXYaCkF49V3cXQFjJI150Dm19riCJXIeM+/xO1cvjRMfQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nVvwChBsIZk9SMUBaNjJTIdfKnZk+DvN3bmBk0aHa0w=;
+ b=uXs4GTsHNvwLs4L5255EB7z0LjSHyFxM3PMCcTaehoS2rdzvtct7RnrwIAUuidUGFUiTVS8Plsc21WUbthrN9moGssPew/zYbdXXwEfiyYXjaLYfseQOES+s0wUlYyjgPCKNWKmNaiStjOGkKLzMdTdFhMyToqZ3D6mI8e0YhIc=
+Received: from CH3PR12MB8308.namprd12.prod.outlook.com (2603:10b6:610:131::8)
+ by DS7PR12MB5886.namprd12.prod.outlook.com (2603:10b6:8:79::8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6340.22; Fri, 28 Apr 2023 10:53:12 +0000
+Received: from CH3PR12MB8308.namprd12.prod.outlook.com
+ ([fe80::4e4f:3a93:b7bd:489c]) by CH3PR12MB8308.namprd12.prod.outlook.com
+ ([fe80::4e4f:3a93:b7bd:489c%5]) with mapi id 15.20.6340.023; Fri, 28 Apr 2023
+ 10:53:12 +0000
+From:   "Gupta, Nipun" <Nipun.Gupta@amd.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "rafael@kernel.org" <rafael@kernel.org>,
+        "eric.auger@redhat.com" <eric.auger@redhat.com>,
+        "alex.williamson@redhat.com" <alex.williamson@redhat.com>,
+        "cohuck@redhat.com" <cohuck@redhat.com>,
+        "song.bao.hua@hisilicon.com" <song.bao.hua@hisilicon.com>,
+        "mchehab+huawei@kernel.org" <mchehab+huawei@kernel.org>,
+        "maz@kernel.org" <maz@kernel.org>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "jeffrey.l.hugo@gmail.com" <jeffrey.l.hugo@gmail.com>,
+        "saravanak@google.com" <saravanak@google.com>,
+        "Michael.Srba@seznam.cz" <Michael.Srba@seznam.cz>,
+        "mani@kernel.org" <mani@kernel.org>,
+        "yishaih@nvidia.com" <yishaih@nvidia.com>,
+        "jgg@ziepe.ca" <jgg@ziepe.ca>, "jgg@nvidia.com" <jgg@nvidia.com>,
+        "robin.murphy@arm.com" <robin.murphy@arm.com>,
+        "will@kernel.org" <will@kernel.org>,
+        "joro@8bytes.org" <joro@8bytes.org>,
+        "masahiroy@kernel.org" <masahiroy@kernel.org>,
+        "ndesaulniers@google.com" <ndesaulniers@google.com>,
+        "rdunlap@infradead.org" <rdunlap@infradead.org>,
+        "baolu.lu@linux.intel.com" <baolu.lu@linux.intel.com>,
+        "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-arch@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
-        David Bradil <dbrazdil@google.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Jade Shih <jades.shih@mediatek.com>,
-        Miles Chen <miles.chen@mediatek.com>,
-        Ivan Tseng <ivan.tseng@mediatek.com>,
-        My Chuang <my.chuang@mediatek.com>,
-        Shawn Hsiao <shawn.hsiao@mediatek.com>,
-        PeiLun Suei <peilun.suei@mediatek.com>,
-        Liju Chen <liju-clr.chen@mediatek.com>
-Subject: [PATCH v2 7/7] virt: geniezone: Add ioeventfd support
-Date:   Fri, 28 Apr 2023 18:36:22 +0800
-Message-ID: <20230428103622.18291-8-yi-de.wu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20230428103622.18291-1-yi-de.wu@mediatek.com>
-References: <20230428103622.18291-1-yi-de.wu@mediatek.com>
+        "linux-kbuild@vger.kernel.org" <linux-kbuild@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "okaya@kernel.org" <okaya@kernel.org>,
+        "Anand, Harpreet" <harpreet.anand@amd.com>,
+        "Agarwal, Nikhil" <nikhil.agarwal@amd.com>,
+        "Simek, Michal" <michal.simek@amd.com>,
+        "Jansen Van Vuuren, Pieter" <pieter.jansen-van-vuuren@amd.com>,
+        "Cascon, Pablo" <pablo.cascon@amd.com>,
+        "git (AMD-Xilinx)" <git@amd.com>
+Subject: RE: [PATCH v10 4/7] cdx: add MCDI protocol interface for firmware
+ interaction
+Thread-Topic: [PATCH v10 4/7] cdx: add MCDI protocol interface for firmware
+ interaction
+Thread-Index: AQHZVa+TJcCTWN6hGUeBrMCK1vQX8K9Ap2OAgAAsMJA=
+Date:   Fri, 28 Apr 2023 10:53:11 +0000
+Message-ID: <CH3PR12MB83085CE44374A0A37E860B66E86B9@CH3PR12MB8308.namprd12.prod.outlook.com>
+References: <20230313132636.31850-1-nipun.gupta@amd.com>
+ <20230313132636.31850-5-nipun.gupta@amd.com>
+ <CAMuHMdWTCdQagFFANygMgA8D0sWaoGxWv2AjibC3vwSd0UxuRw@mail.gmail.com>
+In-Reply-To: <CAMuHMdWTCdQagFFANygMgA8D0sWaoGxWv2AjibC3vwSd0UxuRw@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_64e4cbe8-b4f6-45dc-bcba-6123dfd2d8bf_ActionId=f3681018-be54-4566-aba3-9346e8ae08f6;MSIP_Label_64e4cbe8-b4f6-45dc-bcba-6123dfd2d8bf_ContentBits=0;MSIP_Label_64e4cbe8-b4f6-45dc-bcba-6123dfd2d8bf_Enabled=true;MSIP_Label_64e4cbe8-b4f6-45dc-bcba-6123dfd2d8bf_Method=Privileged;MSIP_Label_64e4cbe8-b4f6-45dc-bcba-6123dfd2d8bf_Name=Non-Business-AIP
+ 2.0;MSIP_Label_64e4cbe8-b4f6-45dc-bcba-6123dfd2d8bf_SetDate=2023-04-28T10:52:13Z;MSIP_Label_64e4cbe8-b4f6-45dc-bcba-6123dfd2d8bf_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CH3PR12MB8308:EE_|DS7PR12MB5886:EE_
+x-ms-office365-filtering-correlation-id: 5fff80d5-d0fb-4e22-dcb9-08db47d6c2b9
+x-ld-processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: SBiyf884QQzXO6kO6Mbo6fAK22G0ZwfVTBJYPutqomgEan/JusAQQ+mHFmeayhyIOxCAlSqsCZUZdYn4rdWMJP5lX5Vpr9Kl4DKw7WHki+AR1uVcJDK3xQHemy3XQ9kZzFdjKzMYgJABa/s2mZhFFOOhMAqgq/pUHnVeID8qSc3bnmKdlmM6N24Ft3XD8AY5VKuT8qJQmGpS4Xtyztd3Q8RYo+f32QrSA+1LM3Ea0X86l0+G+Fxt4ZpQx00gV8sQsTaVS4MPr0OZXI8Zpp1Akhg81Ba/0VxRgCIRJkr/zLOgR1BLZJ/9jL/g8g5W1mQuRU6m669ul/V/h72U9/yGtaFo2tS8tdBEU1dXCewwB6ad4fgEojcY7yyV3R3p1bApojUiDwdn1tcRpQ94Jw29OWHG2cOiM0JNIkrBa5jpvRggX7aK/VbOrZJYDBIP/t5ZYOyiUybq3dAhGB6nPwA7cUIMC9KmI0moQuhyyR7GQkZ64IdEZxCG6uUHrypRhI2FHjA0aLa3FzMWcPQ1pwYsGbLLSkJG4t7SqXYzya9CSHsDlFG2jvy8PD/jr0+AYXr0VI21tXVTBGW5H05n7POYDFiiVigbngfXlPB3RVgm4TU=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH3PR12MB8308.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(346002)(396003)(366004)(39860400002)(136003)(376002)(451199021)(41300700001)(316002)(478600001)(122000001)(8676002)(2906002)(38100700002)(54906003)(38070700005)(71200400001)(7696005)(86362001)(64756008)(66446008)(66476007)(66556008)(8936002)(83380400001)(66946007)(7406005)(33656002)(7416002)(5660300002)(52536014)(76116006)(966005)(4326008)(6916009)(26005)(53546011)(9686003)(6506007)(55016003)(186003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?SStxeGFUcGFpV25lNy83V2JxcnExTnZ5a2N5RDJBVVVoVEx3b0hORFF0ejJE?=
+ =?utf-8?B?cUJFVEw5cS9xU2J6amtvUVJrMTdWTXpLRktzcGJSdlViOE44VFFiYUpzcXJv?=
+ =?utf-8?B?RWtrNUpqSXl0Qnd0OEF6c1RsU0RrY2J3NWUrSkwyTDczU3BOZFdSWEt5M29q?=
+ =?utf-8?B?N1Y4cURXZGkzSjVFTTZ0bzVKSWtrQjJkVmtVRGZ5NkpiYUNDMEl5MUlndjNv?=
+ =?utf-8?B?NFhNK25LQmdqUkc4VEJVaVZYWTB3WTh5ajdtQ0o2WXdSTm5sL2RXZ0E5VVJu?=
+ =?utf-8?B?ZkdTQ3YrYnhNQTltWWxIbDdIQ3A3cC95cURRTWFQQnVxMXZIOTdJajFFTHg0?=
+ =?utf-8?B?S3R3d1VLQmd0b0g0NUFRenpYMDIyNFNWQnA0N0I5ZE9FazZpdGFPRnllK20y?=
+ =?utf-8?B?RjVWeUpQRENxUUhmMVJEMHhMWDVMdnJiK2R3c1BjZjNhMTd5aS8yYnFOZ1BE?=
+ =?utf-8?B?bjB0VnV5MDdyYWxtT25DMnBlWmljT3BvN0QwK0tOQU8rTnRLQjdTa0xwOWht?=
+ =?utf-8?B?V0dsYWsxSDdCd0JvdUk0QURWTkpVMUxTdCt2Wk01V2FKRXI5RVN2MnlsNzRX?=
+ =?utf-8?B?dXhkclNTbGJEeUV6UmJ3S2RPV09vdGNoNk03WVRzbXp0UFBEclBERzRGR2xn?=
+ =?utf-8?B?N3ZHWE4rYjV6d09hY0FnbjFEK0c0WGYvQTE0SmExVlE5MzhKeWZWaVlhaC9i?=
+ =?utf-8?B?eVE3ZnZuWVpWUGRLZmczNHgrblJKK0pTZDQwTzJ6RzlCbzdNMjExQmhXQmpH?=
+ =?utf-8?B?aVEvTGJjSGFWS3pmUXhMZEV5NS9MelExTG54eG4zSUFjbDhWUXlrOFIrdmVz?=
+ =?utf-8?B?QWxVQkozdEtIZ2dmT2xKTVUzdFVuY255c3Mvd3hIZUxFY25icEdoVVI2ekJK?=
+ =?utf-8?B?RXoxRHNBbS9rZ3JvaW1ram0xdjIvMlFUZGpUYUV3dG91dWZHUkNoWm81WW9P?=
+ =?utf-8?B?Z21yRGtZRVltM011R3IyKzMrSEttUWFtS0UxblRHNEZJKzVadkdqUWoyVnRC?=
+ =?utf-8?B?R2psdEcrVU9MMGp4L0dsREdyVkdyMHI4dzcrblVwZDMydDhsNjBHTGNRbXov?=
+ =?utf-8?B?MzhGT0RMWnhTQWk5bVBqeWk5T2orTWVua2Nwc3FDK1pmTHZWRXlpUjUwTSs1?=
+ =?utf-8?B?QUk0MVdFU1BXQzdZSmN1K3lodGZaRlJ1MC9vRWE4NVFkSm1nU3JzUC9qSjR1?=
+ =?utf-8?B?bmwvRjMzSXdmTlhic2xiM3JreEY3aDNqa2NLZTlobGI2TjVSdFZPeFdUcllz?=
+ =?utf-8?B?dnIwTXd5ZC9aQWJJVkZld0VWVk9Odk03MU81YzJjbXV2QnNOeWdGQ0FwWDI2?=
+ =?utf-8?B?cThFQTFXKzV0U1NBWXB1bGN4bXlNTnFDa1dQbnJmKzRMeUF1RFdVRDJITjlN?=
+ =?utf-8?B?ZUd3U3ZiVHFSa0hYOUwzV1gyTEpuNWtTR1Y3YzdZRm4xR2cyMzFNcld0QS9Z?=
+ =?utf-8?B?dHJuTGc3aDFlNDRHNVArS2twYW5sM1U5UiszSUQwTDFSWHZaMHE0YjA5c1FV?=
+ =?utf-8?B?QitZK0RVVzY0NjNLSG54bDQ3TTNZck1kK09IVHJaQzBnZnF3bVgzeXFtaVNt?=
+ =?utf-8?B?TU5YLzlZMDhqV2lsdG1GeVVPUUQ1c1BPakVETG1qcjBVdXQ4REd2blJSQ1F0?=
+ =?utf-8?B?QVpaLy9MOVFva2d1aGd3cklTV2I4YmNNaCtwOHJBS1JTM2U5V0pDWUZxT1NZ?=
+ =?utf-8?B?dSsraXVnRm1tZndZdU4xU2NFRnVDM3BxUDREdEVzUklsR2dHMVRVVmhzZzll?=
+ =?utf-8?B?djZtNWU1RWlvc0RtWlJpTzBpQ0RxVHJmdjREMkdqcE04YVpWMXo1YXpmMk1J?=
+ =?utf-8?B?MmVFVnVwMnJGSFgvdmR0endpVmE1MEdCNmkvSUJUUXhOdmk4ZDVyS0JuNjZB?=
+ =?utf-8?B?Z2hkRGxzdVpsOFlvcHM4K2hHVC9lbXNScEZ2RlZWK1licW5iQkxyZ2ZNSXRJ?=
+ =?utf-8?B?eWVTdWcwUFhrLzA0a2JEOUk5TVl4bnBOT2NrR3FYaHZPbUJNSmY5RXMwUTBq?=
+ =?utf-8?B?NzZITXR3NEVCRnBzZWk1OGFQWEpsVFpGZDkxbFdjbTZCMUtpbG1pUEtqQ1Ru?=
+ =?utf-8?B?RS8xNklvL1g3QVUzMWFob014R01JWlQyeUhqYngwekVYY1M3ajlTb0lSWTRE?=
+ =?utf-8?Q?x77U=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CH3PR12MB8308.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5fff80d5-d0fb-4e22-dcb9-08db47d6c2b9
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Apr 2023 10:53:11.8481
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: frFiROxUDIEQ3+R0jiz4tAkpiLX60HcT1EkGyvvaijm5WEtGVUDmmaiZAlzEG0rD
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB5886
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: "Yingshiuan Pan" <yingshiuan.pan@mediatek.com>
-
-Ioeventfd leverages eventfd to provide asynchronous notification
-mechanism for VMM. VMM can register a mmio address and bind with an
-eventfd. Once a mmio trap occurs on this registered region, its
-corresponding eventfd will be notified.
-
-Signed-off-by: Yingshiuan Pan <yingshiuan.pan@mediatek.com>
-Signed-off-by: Yi-De Wu <yi-de.wu@mediatek.com>
----
- drivers/virt/geniezone/Makefile         |   3 +-
- drivers/virt/geniezone/gzvm_ioeventfd.c | 263 ++++++++++++++++++++++++
- drivers/virt/geniezone/gzvm_vcpu.c      |  29 ++-
- drivers/virt/geniezone/gzvm_vm.c        |  17 ++
- include/linux/gzvm_drv.h                |  11 +
- include/uapi/linux/gzvm.h               |  23 +++
- 6 files changed, 343 insertions(+), 3 deletions(-)
- create mode 100644 drivers/virt/geniezone/gzvm_ioeventfd.c
-
-diff --git a/drivers/virt/geniezone/Makefile b/drivers/virt/geniezone/Makefile
-index 8517549e7dfb..b1ecdd235a4e 100644
---- a/drivers/virt/geniezone/Makefile
-+++ b/drivers/virt/geniezone/Makefile
-@@ -7,5 +7,6 @@
- GZVM_DIR ?= ../../../drivers/virt/geniezone
- 
- gzvm-y := $(GZVM_DIR)/gzvm_main.o $(GZVM_DIR)/gzvm_vm.o \
--	  $(GZVM_DIR)/gzvm_vcpu.o $(GZVM_DIR)/gzvm_irqfd.o
-+	  $(GZVM_DIR)/gzvm_vcpu.o $(GZVM_DIR)/gzvm_irqfd.o \
-+	  $(GZVM_DIR)/gzvm_ioeventfd.o
- 
-diff --git a/drivers/virt/geniezone/gzvm_ioeventfd.c b/drivers/virt/geniezone/gzvm_ioeventfd.c
-new file mode 100644
-index 000000000000..f5664cab98c3
---- /dev/null
-+++ b/drivers/virt/geniezone/gzvm_ioeventfd.c
-@@ -0,0 +1,263 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2023 MediaTek Inc.
-+ */
-+
-+#include <linux/eventfd.h>
-+#include <linux/file.h>
-+#include <linux/syscalls.h>
-+#include <linux/gzvm.h>
-+#include <linux/gzvm_drv.h>
-+#include <linux/wait.h>
-+#include <linux/poll.h>
-+#include <linux/module.h>
-+#include <linux/slab.h>
-+
-+struct gzvm_ioevent {
-+	struct list_head list;
-+	__u64 addr;
-+	__u32 len;
-+	struct eventfd_ctx  *evt_ctx;
-+	__u64 datamatch;
-+	bool wildcard;
-+};
-+
-+/**
-+ * ioeventfd_check_collision() - Check collison assumes gzvm->slots_lock held.
-+ * @gzvm: Pointer to gzvm.
-+ * @p: Pointer to gzvm_ioevent.
-+ */
-+static bool ioeventfd_check_collision(struct gzvm *gzvm, struct gzvm_ioevent *p)
-+{
-+	struct gzvm_ioevent *_p;
-+
-+	list_for_each_entry(_p, &gzvm->ioevents, list)
-+		if (_p->addr == p->addr &&
-+		    (!_p->len || !p->len ||
-+		     (_p->len == p->len &&
-+		      (_p->wildcard || p->wildcard ||
-+		       _p->datamatch == p->datamatch))))
-+			return true;
-+
-+	return false;
-+}
-+
-+static void gzvm_ioevent_release(struct gzvm_ioevent *p)
-+{
-+	eventfd_ctx_put(p->evt_ctx);
-+	list_del(&p->list);
-+	kfree(p);
-+}
-+
-+static bool gzvm_ioevent_in_range(struct gzvm_ioevent *p, __u64 addr, int len,
-+				  const void *val)
-+{
-+	u64 _val;
-+
-+	if (addr != p->addr)
-+		/* address must be precise for a hit */
-+		return false;
-+
-+	if (!p->len)
-+		/* length = 0 means only look at the address, so always a hit */
-+		return true;
-+
-+	if (len != p->len)
-+		/* address-range must be precise for a hit */
-+		return false;
-+
-+	if (p->wildcard)
-+		/* all else equal, wildcard is always a hit */
-+		return true;
-+
-+	/* otherwise, we have to actually compare the data */
-+
-+	WARN_ON_ONCE(!IS_ALIGNED((unsigned long)val, len));
-+
-+	switch (len) {
-+	case 1:
-+		_val = *(u8 *)val;
-+		break;
-+	case 2:
-+		_val = *(u16 *)val;
-+		break;
-+	case 4:
-+		_val = *(u32 *)val;
-+		break;
-+	case 8:
-+		_val = *(u64 *)val;
-+		break;
-+	default:
-+		return false;
-+	}
-+
-+	return _val == p->datamatch;
-+}
-+
-+static int gzvm_deassign_ioeventfd(struct gzvm *gzvm,
-+				   struct gzvm_ioeventfd *args)
-+{
-+	struct gzvm_ioevent *p, *tmp;
-+	struct eventfd_ctx *evt_ctx;
-+	int ret = -ENOENT;
-+	bool wildcard;
-+
-+	evt_ctx = eventfd_ctx_fdget(args->fd);
-+	if (IS_ERR(evt_ctx))
-+		return PTR_ERR(evt_ctx);
-+
-+	wildcard = !(args->flags & GZVM_IOEVENTFD_FLAG_DATAMATCH);
-+
-+	mutex_lock(&gzvm->lock);
-+
-+	list_for_each_entry_safe(p, tmp, &gzvm->ioevents, list) {
-+		if (p->evt_ctx != evt_ctx  ||
-+		    p->addr != args->addr  ||
-+		    p->len != args->len ||
-+		    p->wildcard != wildcard)
-+			continue;
-+
-+		if (!p->wildcard && p->datamatch != args->datamatch)
-+			continue;
-+
-+		gzvm_ioevent_release(p);
-+		ret = 0;
-+		break;
-+	}
-+
-+	mutex_unlock(&gzvm->lock);
-+
-+	/* got in the front of this function */
-+	eventfd_ctx_put(evt_ctx);
-+
-+	return ret;
-+}
-+
-+static int gzvm_assign_ioeventfd(struct gzvm *gzvm, struct gzvm_ioeventfd *args)
-+{
-+	struct eventfd_ctx *evt_ctx;
-+	struct gzvm_ioevent *evt;
-+	int ret;
-+
-+	evt_ctx = eventfd_ctx_fdget(args->fd);
-+	if (IS_ERR(evt_ctx))
-+		return PTR_ERR(evt_ctx);
-+
-+	evt = kmalloc(sizeof(*evt), GFP_KERNEL);
-+	if (!evt)
-+		return -ENOMEM;
-+	*evt = (struct gzvm_ioevent) {
-+		.addr = args->addr,
-+		.len = args->len,
-+		.evt_ctx = evt_ctx,
-+	};
-+	if (args->flags & GZVM_IOEVENTFD_FLAG_DATAMATCH) {
-+		evt->datamatch = args->datamatch;
-+		evt->wildcard = false;
-+	} else {
-+		evt->wildcard = true;
-+	}
-+
-+	if (ioeventfd_check_collision(gzvm, evt)) {
-+		ret = -EEXIST;
-+		goto err_free;
-+	}
-+
-+	mutex_lock(&gzvm->lock);
-+	list_add_tail(&evt->list, &gzvm->ioevents);
-+	mutex_unlock(&gzvm->lock);
-+
-+	return 0;
-+
-+err_free:
-+	kfree(evt);
-+	eventfd_ctx_put(evt_ctx);
-+	return ret;
-+}
-+
-+/**
-+ * gzvm_ioeventfd_check_valid() - Check user arguments is valid.
-+ * @args: Pointer to gzvm_ioeventfd.
-+ *
-+ * Return true if user arguments are valid.
-+ * Return false if user arguments are invalid.
-+ */
-+static bool gzvm_ioeventfd_check_valid(struct gzvm_ioeventfd *args)
-+{
-+	/* must be natural-word sized, or 0 to ignore length */
-+	switch (args->len) {
-+	case 0:
-+	case 1:
-+	case 2:
-+	case 4:
-+	case 8:
-+		break;
-+	default:
-+		return false;
-+	}
-+
-+	/* check for range overflow */
-+	if (args->addr + args->len < args->addr)
-+		return false;
-+
-+	/* check for extra flags that we don't understand */
-+	if (args->flags & ~GZVM_IOEVENTFD_VALID_FLAG_MASK)
-+		return false;
-+
-+	/* ioeventfd with no length can't be combined with DATAMATCH */
-+	if (!args->len && (args->flags & GZVM_IOEVENTFD_FLAG_DATAMATCH))
-+		return false;
-+
-+	/* gzvm does not support pio bus ioeventfd */
-+	if (args->flags & GZVM_IOEVENTFD_FLAG_PIO)
-+		return false;
-+
-+	return true;
-+}
-+
-+/**
-+ * gzvm_ioeventfd() - Register ioevent to ioevent list.
-+ * @gzvm: Pointer to gzvm.
-+ * @args: Pointer to gzvm_ioeventfd.
-+ */
-+int gzvm_ioeventfd(struct gzvm *gzvm, struct gzvm_ioeventfd *args)
-+{
-+	if (gzvm_ioeventfd_check_valid(args) == false)
-+		return -EINVAL;
-+
-+	if (args->flags & GZVM_IOEVENTFD_FLAG_DEASSIGN)
-+		return gzvm_deassign_ioeventfd(gzvm, args);
-+	return gzvm_assign_ioeventfd(gzvm, args);
-+}
-+
-+/**
-+ * gzvm_ioevent_write() - Travers this vm's registered ioeventfd to see if
-+ *			  need notifying it.
-+ * @vcpu: Pointer to vcpu.
-+ * @addr: mmio address.
-+ * @len: mmio size.
-+ * @val: Pointer to void.
-+ *
-+ * Return true if this io is already sent to ioeventfd's listener.
-+ * Return false if we cannot find any ioeventfd registering this mmio write.
-+ */
-+bool gzvm_ioevent_write(struct gzvm_vcpu *vcpu, __u64 addr, int len,
-+			const void *val)
-+{
-+	struct gzvm_ioevent *e;
-+
-+	list_for_each_entry(e, &vcpu->gzvm->ioevents, list) {
-+		if (gzvm_ioevent_in_range(e, addr, len, val)) {
-+			eventfd_signal(e->evt_ctx, 1);
-+			return true;
-+		}
-+	}
-+	return false;
-+}
-+
-+int gzvm_init_ioeventfd(struct gzvm *gzvm)
-+{
-+	INIT_LIST_HEAD(&gzvm->ioevents);
-+
-+	return 0;
-+}
-diff --git a/drivers/virt/geniezone/gzvm_vcpu.c b/drivers/virt/geniezone/gzvm_vcpu.c
-index faee2ee64639..cd5f5735ec3b 100644
---- a/drivers/virt/geniezone/gzvm_vcpu.c
-+++ b/drivers/virt/geniezone/gzvm_vcpu.c
-@@ -49,10 +49,34 @@ static long gzvm_vcpu_update_one_reg(struct gzvm_vcpu *vcpu, void * __user argp,
- 	return 0;
- }
- 
-+/**
-+ * gzvm_vcpu_handle_mmio() - Handle mmio in kernel space.
-+ * @vcpu: Pointer to vcpu.
-+ *
-+ * Return:
-+ * * true - This mmio exit has been processed.
-+ * * false - This mmio exit has not been processed, require userspace.
-+ */
-+static bool gzvm_vcpu_handle_mmio(struct gzvm_vcpu *vcpu)
-+{
-+	__u64 addr;
-+	__u32 len;
-+	const void *val_ptr;
-+
-+	/* So far, we don't have in-kernel mmio read handler */
-+	if (!vcpu->run->mmio.is_write)
-+		return false;
-+	addr = vcpu->run->mmio.phys_addr;
-+	len = vcpu->run->mmio.size;
-+	val_ptr = &vcpu->run->mmio.data;
-+
-+	return gzvm_ioevent_write(vcpu, addr, len, val_ptr);
-+}
-+
- /**
-  * gzvm_vcpu_run() - Handle vcpu run ioctl, entry point to guest and exit
-  *		     point from guest
-- * @argp: pointer to struct gzvm_vcpu_run in userspace
-+ * @argp: Pointer to struct gzvm_vcpu_run in userspace
-  */
- static long gzvm_vcpu_run(struct gzvm_vcpu *vcpu, void * __user argp)
- {
-@@ -70,7 +94,8 @@ static long gzvm_vcpu_run(struct gzvm_vcpu *vcpu, void * __user argp)
- 
- 		switch (exit_reason) {
- 		case GZVM_EXIT_MMIO:
--			need_userspace = true;
-+			if (!gzvm_vcpu_handle_mmio(vcpu))
-+				need_userspace = true;
- 			break;
- 		/**
- 		 * it's geniezone's responsibility to fill corresponding data
-diff --git a/drivers/virt/geniezone/gzvm_vm.c b/drivers/virt/geniezone/gzvm_vm.c
-index eb34d7ba94a2..6d31c25cec6b 100644
---- a/drivers/virt/geniezone/gzvm_vm.c
-+++ b/drivers/virt/geniezone/gzvm_vm.c
-@@ -304,6 +304,15 @@ static long gzvm_vm_ioctl(struct file *filp, unsigned int ioctl,
- 		ret = gzvm_irqfd(gzvm, &data);
- 		break;
- 	}
-+	case GZVM_IOEVENTFD: {
-+		struct gzvm_ioeventfd data;
-+
-+		ret = -EFAULT;
-+		if (copy_from_user(&data, argp, sizeof(data)))
-+			goto out;
-+		ret = gzvm_ioeventfd(gzvm, &data);
-+		break;
-+	}
- 	case GZVM_ENABLE_CAP: {
- 		struct gzvm_enable_cap cap;
- 
-@@ -384,6 +393,14 @@ static struct gzvm *gzvm_create_vm(unsigned long vm_type)
- 		return ERR_PTR(ret);
- 	}
- 
-+	ret = gzvm_init_ioeventfd(gzvm);
-+	if (ret) {
-+		dev_err(&gzvm_debug_dev->dev,
-+			"Failed to initialize ioeventfd\n");
-+		kfree(gzvm);
-+		return ERR_PTR(ret);
-+	}
-+
- 	mutex_lock(&gzvm_list_lock);
- 	list_add(&gzvm->vm_list, &gzvm_list);
- 	mutex_unlock(&gzvm_list_lock);
-diff --git a/include/linux/gzvm_drv.h b/include/linux/gzvm_drv.h
-index a54a7915c514..3c9f617d6bf1 100644
---- a/include/linux/gzvm_drv.h
-+++ b/include/linux/gzvm_drv.h
-@@ -6,6 +6,7 @@
- #ifndef __GZVM_DRV_H__
- #define __GZVM_DRV_H__
- 
-+#include <linux/eventfd.h>
- #include <linux/list.h>
- #include <linux/mutex.h>
- #include <linux/platform_device.h>
-@@ -91,6 +92,8 @@ struct gzvm {
- 		struct mutex      resampler_lock;
- 	} irqfds;
- 
-+	struct list_head ioevents;
-+
- 	struct list_head vm_list;
- 	gzvm_id_t vm_id;
- 
-@@ -140,4 +143,12 @@ void gzvm_sync_hwstate(struct gzvm_vcpu *vcpu);
- 
- extern struct platform_device *gzvm_debug_dev;
- 
-+int gzvm_init_ioeventfd(struct gzvm *gzvm);
-+int gzvm_ioeventfd(struct gzvm *gzvm, struct gzvm_ioeventfd *args);
-+bool gzvm_ioevent_write(struct gzvm_vcpu *vcpu, __u64 addr, int len,
-+			const void *val);
-+void eventfd_ctx_do_read(struct eventfd_ctx *ctx, __u64 *cnt);
-+struct vm_area_struct *vma_lookup(struct mm_struct *mm, unsigned long addr);
-+void add_wait_queue_priority(struct wait_queue_head *wq_head, struct wait_queue_entry *wq_entry);
-+
- #endif /* __GZVM_DRV_H__ */
-diff --git a/include/uapi/linux/gzvm.h b/include/uapi/linux/gzvm.h
-index b878b25ff963..02adb0305f70 100644
---- a/include/uapi/linux/gzvm.h
-+++ b/include/uapi/linux/gzvm.h
-@@ -248,4 +248,27 @@ struct gzvm_irqfd {
- 
- #define GZVM_IRQFD	_IOW(GZVM_IOC_MAGIC, 0x76, struct gzvm_irqfd)
- 
-+enum {
-+	gzvm_ioeventfd_flag_nr_datamatch,
-+	gzvm_ioeventfd_flag_nr_pio,
-+	gzvm_ioeventfd_flag_nr_deassign,
-+	gzvm_ioeventfd_flag_nr_max,
-+};
-+
-+#define GZVM_IOEVENTFD_FLAG_DATAMATCH	(1 << gzvm_ioeventfd_flag_nr_datamatch)
-+#define GZVM_IOEVENTFD_FLAG_PIO		(1 << gzvm_ioeventfd_flag_nr_pio)
-+#define GZVM_IOEVENTFD_FLAG_DEASSIGN	(1 << gzvm_ioeventfd_flag_nr_deassign)
-+#define GZVM_IOEVENTFD_VALID_FLAG_MASK	((1 << gzvm_ioeventfd_flag_nr_max) - 1)
-+
-+struct gzvm_ioeventfd {
-+	__u64 datamatch;
-+	__u64 addr;        /* legal pio/mmio address */
-+	__u32 len;         /* 1, 2, 4, or 8 bytes; or 0 to ignore length */
-+	__s32 fd;
-+	__u32 flags;
-+	__u8  pad[36];
-+};
-+
-+#define GZVM_IOEVENTFD	_IOW(GZVM_IOC_MAGIC, 0x79, struct gzvm_ioeventfd)
-+
- #endif /* __GZVM__H__ */
--- 
-2.18.0
-
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogbGludXgtYXJtLWtlcm5l
+bCA8bGludXgtYXJtLWtlcm5lbC1ib3VuY2VzQGxpc3RzLmluZnJhZGVhZC5vcmc+IE9uDQo+IEJl
+aGFsZiBPZiBHZWVydCBVeXR0ZXJob2V2ZW4NCj4gU2VudDogRnJpZGF5LCBBcHJpbCAyOCwgMjAy
+MyAxOjQ0IFBNDQo+IFRvOiBHdXB0YSwgTmlwdW4gPE5pcHVuLkd1cHRhQGFtZC5jb20+DQo+IENj
+OiByb2JoK2R0QGtlcm5lbC5vcmc7IGtyenlzenRvZi5rb3psb3dza2krZHRAbGluYXJvLm9yZzsN
+Cj4gZ3JlZ2toQGxpbnV4Zm91bmRhdGlvbi5vcmc7IHJhZmFlbEBrZXJuZWwub3JnOyBlcmljLmF1
+Z2VyQHJlZGhhdC5jb207DQo+IGFsZXgud2lsbGlhbXNvbkByZWRoYXQuY29tOyBjb2h1Y2tAcmVk
+aGF0LmNvbTsNCj4gc29uZy5iYW8uaHVhQGhpc2lsaWNvbi5jb207IG1jaGVoYWIraHVhd2VpQGtl
+cm5lbC5vcmc7IG1hekBrZXJuZWwub3JnOw0KPiBmLmZhaW5lbGxpQGdtYWlsLmNvbTsgamVmZnJl
+eS5sLmh1Z29AZ21haWwuY29tOyBzYXJhdmFuYWtAZ29vZ2xlLmNvbTsNCj4gTWljaGFlbC5TcmJh
+QHNlem5hbS5jejsgbWFuaUBrZXJuZWwub3JnOyB5aXNoYWloQG52aWRpYS5jb207DQo+IGpnZ0B6
+aWVwZS5jYTsgamdnQG52aWRpYS5jb207IHJvYmluLm11cnBoeUBhcm0uY29tOyB3aWxsQGtlcm5l
+bC5vcmc7DQo+IGpvcm9AOGJ5dGVzLm9yZzsgbWFzYWhpcm95QGtlcm5lbC5vcmc7IG5kZXNhdWxu
+aWVyc0Bnb29nbGUuY29tOw0KPiByZHVubGFwQGluZnJhZGVhZC5vcmc7IGJhb2x1Lmx1QGxpbnV4
+LmludGVsLmNvbTsgbGludXgtYXJtLQ0KPiBrZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZzsgbGlu
+dXgta2J1aWxkQHZnZXIua2VybmVsLm9yZzsgbGludXgtDQo+IGtlcm5lbEB2Z2VyLmtlcm5lbC5v
+cmc7IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnOyBva2F5YUBrZXJuZWwub3JnOw0KPiBBbmFu
+ZCwgSGFycHJlZXQgPGhhcnByZWV0LmFuYW5kQGFtZC5jb20+OyBBZ2Fyd2FsLCBOaWtoaWwNCj4g
+PG5pa2hpbC5hZ2Fyd2FsQGFtZC5jb20+OyBTaW1laywgTWljaGFsIDxtaWNoYWwuc2ltZWtAYW1k
+LmNvbT47IEphbnNlbg0KPiBWYW4gVnV1cmVuLCBQaWV0ZXIgPHBpZXRlci5qYW5zZW4tdmFuLXZ1
+dXJlbkBhbWQuY29tPjsgQ2FzY29uLCBQYWJsbw0KPiA8cGFibG8uY2FzY29uQGFtZC5jb20+OyBn
+aXQgKEFNRC1YaWxpbngpIDxnaXRAYW1kLmNvbT4NCj4gU3ViamVjdDogUmU6IFtQQVRDSCB2MTAg
+NC83XSBjZHg6IGFkZCBNQ0RJIHByb3RvY29sIGludGVyZmFjZSBmb3IgZmlybXdhcmUNCj4gaW50
+ZXJhY3Rpb24NCj4gDQo+IA0KPiBIaSBOaXB1biwNCj4gDQo+IE9uIE1vbiwgTWFyIDEzLCAyMDIz
+IGF0IDI6MjjigK9QTSBOaXB1biBHdXB0YSA8bmlwdW4uZ3VwdGFAYW1kLmNvbT4NCj4gd3JvdGU6
+DQo+ID4gVGhlIE1DREkgKE1hbmFnZW1lbnQgQ1BVIERyaXZlciBJbnRlcmZhY2UpIGlzIHVzZWQg
+YXMgYQ0KPiA+IHByb3RvY29sIHRvIGNvbW11bmljYXRlIHdpdGggdGhlIFJQVSBmaXJtd2FyZS4g
+SXQgaGFzDQo+ID4gcHJlLWRlZmluZWQgc2V0IG9mIG1lc3NhZ2VzIGZvciBkaWZmZXJlbnQgbWVz
+c2FnZSBleGNoYW5nZXMNCj4gPiBiZXR3ZWVuIEFQVSBhbmQgUlBVLg0KPiA+DQo+ID4gU2lnbmVk
+LW9mZi1ieTogUHVuZWV0IEd1cHRhIDxwdW5lZXQuZ3VwdGFAYW1kLmNvbT4NCj4gPiBTaWduZWQt
+b2ZmLWJ5OiBOaXB1biBHdXB0YSA8bmlwdW4uZ3VwdGFAYW1kLmNvbT4NCj4gPiBTaWduZWQtb2Zm
+LWJ5OiBUYXJhayBSZWRkeSA8dGFyYWsucmVkZHlAYW1kLmNvbT4NCj4gPiBSZXZpZXdlZC1ieTog
+UGlldGVyIEphbnNlbiB2YW4gVnV1cmVuIDxwaWV0ZXIuamFuc2VuLXZhbi12dXVyZW5AYW1kLmNv
+bT4NCj4gPiBUZXN0ZWQtYnk6IE5pa2hpbCBBZ2Fyd2FsIDxuaWtoaWwuYWdhcndhbEBhbWQuY29t
+Pg0KPiANCj4gVGhhbmtzIGZvciB5b3VyIHBhdGNoLCB3aGljaCBpcyBub3cgY29tbWl0IGViOTZi
+NzQwMTkyYjJhMDkgKCJjZHg6DQo+IGFkZCBNQ0RJIHByb3RvY29sIGludGVyZmFjZSBmb3IgZmly
+bXdhcmUgaW50ZXJhY3Rpb24iKSB1cHN0cmVhbS4NCj4gDQo+ID4gLS0tIC9kZXYvbnVsbA0KPiA+
+ICsrKyBiL2RyaXZlcnMvY2R4L2NvbnRyb2xsZXIvS2NvbmZpZw0KPiA+IEBAIC0wLDAgKzEsMjAg
+QEANCj4gPiArIyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogR1BMLTIuMC1vbmx5DQo+ID4gKyMN
+Cj4gPiArIyBDRFggY29udHJvbGxlciBjb25maWd1cmF0aW9uDQo+ID4gKyMNCj4gPiArIyBDb3B5
+cmlnaHQgKEMpIDIwMjItMjAyMywgQWR2YW5jZWQgTWljcm8gRGV2aWNlcywgSW5jLg0KPiA+ICsj
+DQo+ID4gKw0KPiA+ICtpZiBDRFhfQlVTDQo+ID4gKw0KPiA+ICtjb25maWcgTUNESV9MT0dHSU5H
+DQo+ID4gKyAgICAgICBib29sICJNQ0RJIExvZ2dpbmcgZm9yIHRoZSBDRFggY29udHJvbGxlciIN
+Cj4gPiArICAgICAgIGRlcGVuZHMgb24gQ0RYX0NPTlRST0xMRVINCj4gPiArICAgICAgIGhlbHAN
+Cj4gPiArICAgICAgICAgRW5hYmxlIE1DREkgTG9nZ2luZyBmb3INCj4gPiArICAgICAgICAgdGhl
+IENEWCBDb250cm9sbGVyIGZvciBkZWJ1Zw0KPiA+ICsgICAgICAgICBwdXJwb3NlLg0KPiA+ICsN
+Cj4gPiArICAgICAgICAgSWYgdW5zdXJlLCBzYXkgTi4NCj4gPiArDQo+ID4gK2VuZGlmDQo+IA0K
+PiBBcyB0aGVyZSBhbHNvIGV4aXN0IGNvbmZpZyBzeW1ib2xzIFNGQ19NQ0RJX0xPR0dJTkcgYW5k
+DQo+IFNGQ19TSUVOQV9NQ0RJX0xPR0dJTkcsIHBlcmhhcHMgTUNESV9MT0dHSU5HIGlzIHRvbyBn
+ZW5lcmljLCBhbmQNCj4gc2hvdWxkDQo+IGJlIHJlbmFtZWQgdG8gQ0RYX01DRElfTE9HR0lORz8N
+Cg0KU3VyZSwgd2Ugd2lsbCBhZGQgYSBwYXRjaCB0byByZW5hbWUgdGhpcy4NCg0KVGhhbmtzLA0K
+TmlwdW4NCg0KPiANCj4gR3J7b2V0amUsZWV0aW5nfXMsDQo+IA0KPiAgICAgICAgICAgICAgICAg
+ICAgICAgICBHZWVydA0KPiANCj4gLS0NCj4gR2VlcnQgVXl0dGVyaG9ldmVuIC0tIFRoZXJlJ3Mg
+bG90cyBvZiBMaW51eCBiZXlvbmQgaWEzMiAtLSBnZWVydEBsaW51eC0NCj4gbTY4ay5vcmcNCj4g
+DQo+IEluIHBlcnNvbmFsIGNvbnZlcnNhdGlvbnMgd2l0aCB0ZWNobmljYWwgcGVvcGxlLCBJIGNh
+bGwgbXlzZWxmIGEgaGFja2VyLiBCdXQNCj4gd2hlbiBJJ20gdGFsa2luZyB0byBqb3VybmFsaXN0
+cyBJIGp1c3Qgc2F5ICJwcm9ncmFtbWVyIiBvciBzb21ldGhpbmcgbGlrZSB0aGF0Lg0KPiAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIC0tIExpbnVzIFRvcnZhbGRzDQo+IA0KPiBfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiBsaW51eC1hcm0t
+a2VybmVsIG1haWxpbmcgbGlzdA0KPiBsaW51eC1hcm0ta2VybmVsQGxpc3RzLmluZnJhZGVhZC5v
+cmcNCj4gaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1h
+cm0ta2VybmVsDQo=
