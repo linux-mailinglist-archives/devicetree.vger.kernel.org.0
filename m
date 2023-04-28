@@ -2,29 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D76276F1C42
-	for <lists+devicetree@lfdr.de>; Fri, 28 Apr 2023 18:07:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF6BD6F1C57
+	for <lists+devicetree@lfdr.de>; Fri, 28 Apr 2023 18:12:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345577AbjD1QHB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Apr 2023 12:07:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38688 "EHLO
+        id S230162AbjD1QMV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Apr 2023 12:12:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229978AbjD1QHA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Apr 2023 12:07:00 -0400
-Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 127375BBB;
-        Fri, 28 Apr 2023 09:06:52 -0700 (PDT)
-Received: from g550jk.localnet (unknown [62.108.10.64])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 185D6C5EDB;
-        Fri, 28 Apr 2023 16:06:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1682697981; bh=H2ZopAaOaipo4s98rSRyLSqJBKSYIs1cRJ7qufNhEFQ=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=YdKQkX4gT87XWqXdCdKZkie+EnWmT6j18T9qh4Xix6woowAR6puqI4OtJE8/ASwr6
-         LSlgtfQvaTxHMZAQyI81kwec9hCdcS/8PCq+wcVwe9gCjc9HD4GFpnAcHk1SOr/G97
-         LCWC15LqIZAYZlzy2mmFhynXPQvo46tDjNpa5dMM=
-From:   Luca Weiss <luca@z3ntu.xyz>
-To:     Brian Masney <bmasney@redhat.com>
+        with ESMTP id S229825AbjD1QMS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Apr 2023 12:12:18 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E48DF5
+        for <devicetree@vger.kernel.org>; Fri, 28 Apr 2023 09:11:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1682698292;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=xvahxQLiQFCmxj/da0CErLJVS9PB2G5zFVCmECHMB00=;
+        b=DGvkDp8UAKUWvdmFGUOjFjB5Md5vXBR6ipW9JD423ZqAilPZRxgLFdVEbxr41R3rreeLPP
+        QSufe7KGCXVtas9ztJtvCcaTw8kPZ/b6YBKmwOZjygqFd94J27AttyrSQyUDBirf57r4WX
+        kuFkspy0ckkCP9qOjF4EnkLJuWGoAYE=
+Received: from mail-yw1-f200.google.com (mail-yw1-f200.google.com
+ [209.85.128.200]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-651-2i34y4gVNpGO0mEO2hIiFw-1; Fri, 28 Apr 2023 12:11:30 -0400
+X-MC-Unique: 2i34y4gVNpGO0mEO2hIiFw-1
+Received: by mail-yw1-f200.google.com with SMTP id 00721157ae682-552e1cb08e0so366027b3.2
+        for <devicetree@vger.kernel.org>; Fri, 28 Apr 2023 09:11:30 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682698290; x=1685290290;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xvahxQLiQFCmxj/da0CErLJVS9PB2G5zFVCmECHMB00=;
+        b=EWfdcWmuLBQCdH5nYsfRUgrRz0+tpYjL8uz/lfnl5jGMEjd1HU16D22X1BPD+YhOhU
+         a0LkMRmjgGW/1bjVC/eua6DkNdZlTNW/ZZ/fVU09tSo9pkQH4931+Ytlt8q5N9oDZ/we
+         YVL0XUFy1SiTHrooXWpqw33pn1X5i5Cy+lM7zvUQqJB3DXPzFvIW55iG8KYbcnUv1K+W
+         1946Frp1XCbXELTDvSOo75yaaKQHJY76n7VVXNlq/sz2T19eTeiiElrKDQ4OncqQil3b
+         lX2H2wEx/qUzE6W4e8OVWsYPbtLS8CWDTw4vVHGuxfTYMyFLdQKYOuoW7XZw/T2lAapu
+         ZpXw==
+X-Gm-Message-State: AC+VfDwPa35GFx1vJYUiGb2RqZa5cF8SI8UIiVfoff+sljVNX2uJlMaW
+        vXNf+rvy3EKrr1SX+yxZ+ekmDd32prkpmPRb5k0A1cX3g614XAHqoepKtiZsbjJj9oOZGn0zrBW
+        JAkNmNIL6c2JIEyR9Y5a3VQ==
+X-Received: by 2002:a0d:e781:0:b0:54f:7971:4f87 with SMTP id q123-20020a0de781000000b0054f79714f87mr4293694ywe.36.1682698290453;
+        Fri, 28 Apr 2023 09:11:30 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ6eQOValmuJ/zOGLy7XBJvtcPQGnD4pUgv35/t3W92dQB8jJAbCq53fx3gGDoRQ4+mPyAlOcw==
+X-Received: by 2002:a0d:e781:0:b0:54f:7971:4f87 with SMTP id q123-20020a0de781000000b0054f79714f87mr4293686ywe.36.1682698290218;
+        Fri, 28 Apr 2023 09:11:30 -0700 (PDT)
+Received: from x1 (c-73-214-169-22.hsd1.pa.comcast.net. [73.214.169.22])
+        by smtp.gmail.com with ESMTPSA id d190-20020a0df4c7000000b0054fcbf35b94sm5497442ywf.87.2023.04.28.09.11.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Apr 2023 09:11:29 -0700 (PDT)
+Date:   Fri, 28 Apr 2023 12:11:27 -0400
+From:   Brian Masney <bmasney@redhat.com>
+To:     Luca Weiss <luca@z3ntu.xyz>
 Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
         Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -37,60 +69,35 @@ Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
         linux-input@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
 Subject: Re: [PATCH 3/4] Input: pwm-vibra - add support for enable GPIO
-Date:   Fri, 28 Apr 2023 18:06:20 +0200
-Message-ID: <8250064.NyiUUSuA9g@z3ntu.xyz>
-In-Reply-To: <ZEsFV6F4CEh2/av8@x1>
+Message-ID: <ZEvwL69i2Wzdoagt@x1>
 References: <20230427-hammerhead-vibra-v1-0-e87eeb94da51@z3ntu.xyz>
- <20230427-hammerhead-vibra-v1-3-e87eeb94da51@z3ntu.xyz> <ZEsFV6F4CEh2/av8@x1>
+ <20230427-hammerhead-vibra-v1-3-e87eeb94da51@z3ntu.xyz>
+ <ZEsFV6F4CEh2/av8@x1>
+ <8250064.NyiUUSuA9g@z3ntu.xyz>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8250064.NyiUUSuA9g@z3ntu.xyz>
+User-Agent: Mutt/2.2.7 (2022-08-07)
+X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Freitag, 28. April 2023 01:29:27 CEST Brian Masney wrote:
-> On Thu, Apr 27, 2023 at 10:34:28PM +0200, Luca Weiss wrote:
-> > Some pwm vibrators have a dedicated enable GPIO that needs to be set
-> > high so that the vibrator works. Add support for that optionally.
-> > 
-> > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+On Fri, Apr 28, 2023 at 06:06:20PM +0200, Luca Weiss wrote:
+> On Freitag, 28. April 2023 01:29:27 CEST Brian Masney wrote:
+> > Take a look at dev_err_probe() to remove the -EPROBE_DEFER check.
 > 
-> Hi Luca,
-> 
-> Thank you for picking up this work!
-> 
-> > +	vibrator->enable_gpio = devm_gpiod_get_optional(&pdev->dev, 
-"enable",
-> > +							
-GPIOD_OUT_LOW);
-> > +	err = PTR_ERR_OR_ZERO(vibrator->enable_gpio);
-> > +	if (err) {
-> > +		if (err != -EPROBE_DEFER)
-> > +			dev_err(&pdev->dev, "Failed to request enable 
-gpio: %d\n",
-> > +				err);
-> > +		return err;
-> > +	}
-> > +
-> 
-> Take a look at dev_err_probe() to remove the -EPROBE_DEFER check.
+> The input subsystem doesn't like dev_err_probe for some reason, you should 
+> quickly find examples of that being rejected on the mailing list (or see   
+> "git grep dev_err_probe drivers/input/")
 
-The input subsystem doesn't like dev_err_probe for some reason, you should 
-quickly find examples of that being rejected on the mailing list (or see   
-"git grep dev_err_probe drivers/input/")
+OK, that's fine then. Feel free to include my Reviewed-by.
 
-> 
-> With that fixed:
-> 
-> Reviewed-by: Brian Masney <bmasney@redhat.com>
-
-Thanks for the reviews!
-
+Brian
 
