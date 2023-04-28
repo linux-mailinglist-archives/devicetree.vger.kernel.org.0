@@ -2,77 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E68E6F179B
-	for <lists+devicetree@lfdr.de>; Fri, 28 Apr 2023 14:21:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8B4C6F17AD
+	for <lists+devicetree@lfdr.de>; Fri, 28 Apr 2023 14:25:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345919AbjD1MVx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Apr 2023 08:21:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32848 "EHLO
+        id S230106AbjD1MZB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Apr 2023 08:25:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345781AbjD1MVw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Apr 2023 08:21:52 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E8E259F5
-        for <devicetree@vger.kernel.org>; Fri, 28 Apr 2023 05:21:46 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-2f86ee42669so9449987f8f.2
-        for <devicetree@vger.kernel.org>; Fri, 28 Apr 2023 05:21:46 -0700 (PDT)
+        with ESMTP id S1345771AbjD1MYw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Apr 2023 08:24:52 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC8BF449D
+        for <devicetree@vger.kernel.org>; Fri, 28 Apr 2023 05:24:50 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-95678d891d6so1805174766b.1
+        for <devicetree@vger.kernel.org>; Fri, 28 Apr 2023 05:24:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682684505; x=1685276505;
+        d=linaro.org; s=google; t=1682684689; x=1685276689;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=zJRfumNsycQad/le1DWiZZ20NIuNmrLWpYlzEA2kVtU=;
-        b=OMzA3/Am3mFmo80RiHxiTLWHsl1TP/rhS2K1Ss6708SrYrXoTjFMFnEwfKe8klIPPv
-         fnMiuaGfcHUUdyCYqQPa+Qh9MD4/JLJ5rwkomzX2QexIS8lsL9eIr7/maOBUHdwVzm8j
-         tjyrZh9Gjdq9DtNDgm4+xZl/nQ2grMD48OK/rUgrXRFhiR21OuaWHV1UNL3tu8Jt81kw
-         2a5TyxWGadxerL2ydtCjOdCnYvZUTPrbWrpXwdHIwDcd7QkIRDLtPFDIWaPDMrpK1WWS
-         x8wEGTSrpND/U3csOnCjNYOoaRGc6L5RelBs1QEzKwVMwTn9Bb955AUwLOx8ynnpaEs2
-         s8eQ==
+        bh=Q3bSao3dIZoa2P7axrw3LC5ax3R0t4aXyUSCE/k2fx0=;
+        b=hNoVP1s2EzPBTmSV7px5DfkOZBqeNBXHMNN2cqR9fS17u3XRJg3pbzdUCwEHVxyLOA
+         +Gy2BR4VLzzuLUrNyeDsuDYCIohyASa/0eD94XO5vnVOwT/DK3d5q0wPYWPu/HfHtLd8
+         bZmRyhe7h9AnA4GgnLhwEsU0jPS2N4KtwCuPjI3MsF9bWvM6agYp+wzpLbk/9rsTeo9/
+         stVLxwIAhj+xCNHp2/mWNi/2JcHiTCQvMXTD5FcCkOesCyH+bpDI7Q2vmnCsMrGA9Bk1
+         3TNe3N8nPgX9ORJJc2O+OmY6fqtdkFKNoEPhUDBWOo68c2xtFJRnQXkuwrtI/JQ3JcgZ
+         m8tQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682684505; x=1685276505;
+        d=1e100.net; s=20221208; t=1682684689; x=1685276689;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zJRfumNsycQad/le1DWiZZ20NIuNmrLWpYlzEA2kVtU=;
-        b=NVG+v4vfEj2NDLne1Yln0KqSRF14wor/0Dw2BguEOH12RxQ58GHKs3/P/DvEcE3PKZ
-         KBcQSASOCfn4KRkp6CwMF5aJ9QwLseiUhk6lJT6Hk+0LVNF8nMlWOjtXtDiJ4t3Sjhmg
-         cW1rlD4NDbqHA8iB2VPJ3fs10LGSrxEnyXqKUpkwQf7ok3+btnsNBGFY3eiGqvP0yI1m
-         ++a1eMCYEX145ex8k2MWlGUxgBYodS81EErm08HRzY/a35a7NEm02b4BRUAsPHJtmOA+
-         eZMDxWJkVQ7whipQHhvGG2Nq9sLDHKcVcWwEgMSGqsVk2t17vZndZJ2m1F5dbVl6Qt/5
-         Jfvw==
-X-Gm-Message-State: AC+VfDy0RyBhneuRX0UFL6PZc8KuD1WYuOgF0us/dbNvPJCMuhHwDeE0
-        zJexg94wDH0nBc8gG7F041XjSA==
-X-Google-Smtp-Source: ACHHUZ5KOVTQTuUmVpmyccDePstLauzAQKH/YGLX3/ZD+6wFjN7hEDUhXqujsvo4UnNn7rqqiunbsA==
-X-Received: by 2002:a5d:400e:0:b0:2f6:a7a:1ded with SMTP id n14-20020a5d400e000000b002f60a7a1dedmr3725409wrp.30.1682684505000;
-        Fri, 28 Apr 2023 05:21:45 -0700 (PDT)
-Received: from [172.23.2.142] ([195.167.132.10])
-        by smtp.gmail.com with ESMTPSA id o3-20020a05600c378300b003ef5f77901dsm24150251wmr.45.2023.04.28.05.21.43
+        bh=Q3bSao3dIZoa2P7axrw3LC5ax3R0t4aXyUSCE/k2fx0=;
+        b=NAraRKymAcXYo9PQvf51foRH+LDABrNWQv5pj9D/k+sv9jQQ5OQlGflre1/AV0a0Lv
+         p1u2lWpyTmg3F310/u1DqeEXDtkLjTN/+Aklsr4JO79kmaCBkOSfbvpo47Nh4r2xth1Q
+         k38H2jx/qGGqKzhR8fy8w60/r6wWUh7GusVQMunENpUzxBSiclAygWEQPFWI4oUKj4Db
+         NOv5cjwzmydTJNXMb2xHRwzA4u4Ezow4vEeWRo82dGZgY7ZBa12GMMPEiY/QoZ292gY2
+         Jh/GAInZsxoBmgEl8+4Muivql5AkquwcAIHDmaOxBbKTfDAJTcCfTEL38uuYUtkWF2Lp
+         raqw==
+X-Gm-Message-State: AC+VfDxS9fv2TysPXiY9zD5lzPC/lq8kGxv5bfLwIuNH4tJ+V3UMPrGI
+        C7H63CddKG/XDsoPGDbgDvWRpw==
+X-Google-Smtp-Source: ACHHUZ77IOZK63RmVT8TpDfpoFZAJAjx69P/jqEggrfGcqWpRilr9vvnEpGwCjb2+M/FqeNTEFkqmw==
+X-Received: by 2002:a17:906:5d09:b0:94e:ea07:4b87 with SMTP id g9-20020a1709065d0900b0094eea074b87mr4788932ejt.27.1682684689278;
+        Fri, 28 Apr 2023 05:24:49 -0700 (PDT)
+Received: from [172.23.4.26] ([31.221.30.162])
+        by smtp.gmail.com with ESMTPSA id my17-20020a1709065a5100b0095728081944sm9873225ejc.146.2023.04.28.05.24.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Apr 2023 05:21:44 -0700 (PDT)
-Message-ID: <3e1a8567-efef-ee4a-b16f-b3f81570f88b@linaro.org>
-Date:   Fri, 28 Apr 2023 14:21:43 +0200
+        Fri, 28 Apr 2023 05:24:48 -0700 (PDT)
+Message-ID: <7b67a1cb-0c3e-22be-a104-c10407dad5a7@linaro.org>
+Date:   Fri, 28 Apr 2023 13:24:47 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH 07/43] dt-bindings: rtc: add DT bindings for Cirrus EP93xx
+Subject: Re: [PATCH v2 07/13] drm/msm/dpu: Add SM6350 support
 Content-Language: en-US
-To:     Nikita Shubin <nikita.shubin@maquefel.me>
-Cc:     Arnd Bergmann <arnd@kernel.org>, Linus Walleij <linusw@kernel.org>,
-        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+To:     Marijn Suijten <marijn.suijten@somainline.org>
+Cc:     Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Hartley Sweeten <hsweeten@visionengravers.com>,
-        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230424123522.18302-1-nikita.shubin@maquefel.me>
- <20230424123522.18302-8-nikita.shubin@maquefel.me>
- <9e7583be-ad4a-0ccc-08f6-cdf3fa4ed6bd@linaro.org>
- <d1b7f24604332cf6010f533898f96eb9be4bb686.camel@maquefel.me>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <d1b7f24604332cf6010f533898f96eb9be4bb686.camel@maquefel.me>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+References: <20230411-topic-straitlagoon_mdss-v2-0-5def73f50980@linaro.org>
+ <20230411-topic-straitlagoon_mdss-v2-7-5def73f50980@linaro.org>
+ <k25jg7cez2kimpxr4ztbdzjr2adq6a2vjknyvfe5frxujtogfg@vhfdyt45unv6>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <k25jg7cez2kimpxr4ztbdzjr2adq6a2vjknyvfe5frxujtogfg@vhfdyt45unv6>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
@@ -83,60 +89,209 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/04/2023 16:35, Nikita Shubin wrote:
-> On Tue, 2023-04-25 at 11:28 +0200, Krzysztof Kozlowski wrote:
->> On 24/04/2023 14:34, Nikita Shubin wrote:
->>> This adds device tree bindings for the Cirrus Logic EP93xx
->>> RTC block used in these SoCs.
->>
->> Thank you for your patch. There is something to discuss/improve.
->>
->>>
->>> Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
->>> ---
->>>  .../bindings/rtc/cirrus,ep93xx-rtc.yaml       | 32
->>> +++++++++++++++++++
->>>  1 file changed, 32 insertions(+)
->>>  create mode 100644
->>> Documentation/devicetree/bindings/rtc/cirrus,ep93xx-rtc.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/rtc/cirrus,ep93xx-
->>> rtc.yaml b/Documentation/devicetree/bindings/rtc/cirrus,ep93xx-
->>> rtc.yaml
->>> new file mode 100644
->>> index 000000000000..d4774e984e7b
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/rtc/cirrus,ep93xx-rtc.yaml
->>> @@ -0,0 +1,32 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/rtc/cirrus,ep93xx-rtc.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Cirrus EP93xx Real Time Clock controller
->>> +
->>> +maintainers:
->>> +  - Hartley Sweeten <hsweeten@visionengravers.com>
->>> +  - Alexander Sverdlin <alexander.sverdlin@gmail.com>
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: cirrus,ep9301-rtc
->>
->> Why only one compatible? What about ep9307 and ep9312? The same
->> question
->> for your previous patch - timer.
->>
->> Anyway, if you want to keep it like that, then filename should match
->> compatible. Or merge it into trivial-rtc like Alexandre suggested.
-> 
-> I think i should move it to trivial-rtc - there is no need for a
-> separate file.
+[...]
 
-If you add missing compatibles, you won't be able to move it easily to
-trivial-rtc.
 
-Best regards,
-Krzysztof
+>> +
+>> +static const struct dpu_caps sm6350_dpu_caps = {
+>> +	.max_mixer_width = DEFAULT_DPU_OUTPUT_LINE_WIDTH,
+>> +	.max_mixer_blendstages = 0x7,
+>> +	.qseed_type = DPU_SSPP_SCALER_QSEED4,
+> I thought it was QSEED3LITE, but doesn't really matter as both are
+> handled similarly.  It'll anyway change when I resubmit:
+>
+> https://lore.kernel.org/linux-arm-msm/20230215-sspp-scaler-version-v1-0-416b1500b85b@somainline.org/T/#u
+>
+> which should hardcode the register value directly, making this field
+> superfluous.
 
+Okay, so I'll just resubmit as-is, I suppose?
+
+[...]
+
+
+>> +static const struct dpu_lm_cfg sm6350_lm[] = {
+>> +	LM_BLK("lm_0", LM_0, 0x44000, MIXER_SDM845_MASK,
+>> +		&sc7180_lm_sblk, PINGPONG_0, LM_1, DSPP_0),
+>> +	LM_BLK("lm_1", LM_1, 0x45000, MIXER_SDM845_MASK,
+>> +		&sc7180_lm_sblk, PINGPONG_1, LM_0, 0),
+> These two entries are indented with two tabs and have one character too
+> many to align with the opening parenthesis on the previous line.  Can we
+> please settle on a single style, as this commit mostly uses tabs+spaces
+> to align with the opening parenthesis?
+>
+> Dmitry vouched for `cino=(0` (when in unclosed parenthesis, align next
+> line with zero extra characters to the opening parenthesis), but I find
+> double tabs more convenient as it doesn't require reindenting when
+> changing the name of the macro (which happened too often in my INTF TE
+> series).
+
+sure, let's go with that Dmitry suggested!
+
+Konrad
+
+>
+>> +};
+>> +
+>> +static const struct dpu_dspp_cfg sm6350_dspp[] = {
+>> +	DSPP_BLK("dspp_0", DSPP_0, 0x54000, DSPP_SC7180_MASK,
+>> +		 &sm8150_dspp_sblk),
+>> +};
+>> +
+>> +static struct dpu_pingpong_cfg sm6350_pp[] = {
+>> +	PP_BLK("pingpong_0", PINGPONG_0, 0x70000, PINGPONG_SM8150_MASK, 0, sdm845_pp_sblk,
+>> +	       DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 8),
+>> +	       -1),
+>> +	PP_BLK("pingpong_1", PINGPONG_1, 0x70800, PINGPONG_SM8150_MASK, 0, sdm845_pp_sblk,
+>> +	       DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 9),
+>> +	       -1),
+> Glad to see no TE2 here, we just removed it from all of DPU >= 5.0.0
+> instead of >= 7.0.0 in [1] as downstream DTS turned out to be wrong.
+>
+> [1]: https://lore.kernel.org/linux-arm-msm/20230411-dpu-intf-te-v4-2-27ce1a5ab5c6@somainline.org/
+>
+> - Marijn
+>
+>> +};
+>> +
+>> +static const struct dpu_intf_cfg sm6350_intf[] = {
+>> +	INTF_BLK("intf_0", INTF_0, 0x6a000, 0x2c0, INTF_DP, 0, 35, INTF_SC7180_MASK,
+>> +		 DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 24),
+>> +		 DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 25)),
+>> +	INTF_BLK_DSI_TE("intf_1", INTF_1, 0x6a800, 0x2c0, INTF_DSI, 0, 35, INTF_SC7180_MASK,
+>> +			DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 26),
+>> +			DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 27),
+>> +			DPU_IRQ_IDX(MDP_INTF1_TEAR_INTR, 2)),
+>> +};
+>> +
+>> +static const struct dpu_vbif_cfg sm6350_vbif[] = {
+>> +	{
+>> +	.name = "vbif_0", .id = VBIF_RT,
+>> +	.base = 0, .len = 0x1044,
+>> +	.features = BIT(DPU_VBIF_QOS_REMAP),
+>> +	.xin_halt_timeout = 0x4000,
+>> +	.qos_rt_tbl = {
+>> +		.npriority_lvl = ARRAY_SIZE(sdm845_rt_pri_lvl),
+>> +		.priority_lvl = sdm845_rt_pri_lvl,
+>> +	},
+>> +	.qos_nrt_tbl = {
+>> +		.npriority_lvl = ARRAY_SIZE(sdm845_nrt_pri_lvl),
+>> +		.priority_lvl = sdm845_nrt_pri_lvl,
+>> +	},
+>> +	.memtype_count = 14,
+>> +	.memtype = {3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3},
+>> +	},
+>> +};
+>> +
+>> +static const struct dpu_qos_lut_entry sm6350_qos_linear_macrotile[] = {
+>> +	{.fl = 0, .lut = 0x0011223344556677 },
+>> +	{.fl = 0, .lut = 0x0011223445566777 },
+>> +};
+>> +
+>> +static const struct dpu_perf_cfg sm6350_perf_data = {
+>> +	.max_bw_low = 4200000,
+>> +	.max_bw_high = 5100000,
+>> +	.min_core_ib = 2500000,
+>> +	.min_llcc_ib = 0,
+>> +	.min_dram_ib = 1600000,
+>> +	.min_prefill_lines = 35,
+>> +	/* TODO: confirm danger_lut_tbl */
+>> +	.danger_lut_tbl = {0xffff, 0xffff, 0x0, 0x0, 0xffff},
+>> +	.qos_lut_tbl = {
+>> +		{.nentry = ARRAY_SIZE(sm6350_qos_linear_macrotile),
+>> +		.entries = sm6350_qos_linear_macrotile
+>> +		},
+>> +		{.nentry = ARRAY_SIZE(sm6350_qos_linear_macrotile),
+>> +		.entries = sm6350_qos_linear_macrotile
+>> +		},
+>> +		{.nentry = ARRAY_SIZE(sc7180_qos_nrt),
+>> +		.entries = sc7180_qos_nrt
+>> +		},
+>> +	},
+>> +	.cdp_cfg = {
+>> +		{.rd_enable = 1, .wr_enable = 1},
+>> +		{.rd_enable = 1, .wr_enable = 0}
+>> +	},
+>> +	.clk_inefficiency_factor = 105,
+>> +	.bw_inefficiency_factor = 120,
+>> +};
+>> +
+>> +const struct dpu_mdss_cfg dpu_sm6350_cfg = {
+>> +	.caps = &sm6350_dpu_caps,
+>> +	.ubwc = &sm6350_ubwc_cfg,
+>> +	.mdp_count = ARRAY_SIZE(sm6350_mdp),
+>> +	.mdp = sm6350_mdp,
+>> +	.ctl_count = ARRAY_SIZE(sm6350_ctl),
+>> +	.ctl = sm6350_ctl,
+>> +	.sspp_count = ARRAY_SIZE(sm6350_sspp),
+>> +	.sspp = sm6350_sspp,
+>> +	.mixer_count = ARRAY_SIZE(sm6350_lm),
+>> +	.mixer = sm6350_lm,
+>> +	.dspp_count = ARRAY_SIZE(sm6350_dspp),
+>> +	.dspp = sm6350_dspp,
+>> +	.pingpong_count = ARRAY_SIZE(sm6350_pp),
+>> +	.pingpong = sm6350_pp,
+>> +	.intf_count = ARRAY_SIZE(sm6350_intf),
+>> +	.intf = sm6350_intf,
+>> +	.vbif_count = ARRAY_SIZE(sm6350_vbif),
+>> +	.vbif = sm6350_vbif,
+>> +	.reg_dma_count = 1,
+>> +	.dma_cfg = &sm8250_regdma,
+>> +	.perf = &sm6350_perf_data,
+>> +	.mdss_irqs = BIT(MDP_SSPP_TOP0_INTR) | \
+>> +		     BIT(MDP_SSPP_TOP0_INTR2) | \
+>> +		     BIT(MDP_SSPP_TOP0_HIST_INTR) | \
+>> +		     BIT(MDP_INTF0_INTR) | \
+>> +		     BIT(MDP_INTF1_INTR)
+>> +};
+>> +
+>> +#endif
+>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
+>> index db558a9ae36e..52750b592b36 100644
+>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
+>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
+>> @@ -806,6 +806,7 @@ static const struct dpu_qos_lut_entry sc7180_qos_nrt[] = {
+>>  #include "catalog/dpu_6_0_sm8250.h"
+>>  #include "catalog/dpu_6_2_sc7180.h"
+>>  #include "catalog/dpu_6_3_sm6115.h"
+>> +#include "catalog/dpu_6_4_sm6350.h"
+>>  #include "catalog/dpu_6_5_qcm2290.h"
+>>  
+>>  #include "catalog/dpu_7_0_sm8350.h"
+>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+>> index 756bff1d2185..f9611bd75e02 100644
+>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+>> @@ -320,6 +320,8 @@ enum dpu_qos_lut_usage {
+>>  	DPU_QOS_LUT_USAGE_LINEAR,
+>>  	DPU_QOS_LUT_USAGE_MACROTILE,
+>>  	DPU_QOS_LUT_USAGE_NRT,
+>> +	DPU_QOS_LUT_USAGE_CWB,
+>> +	DPU_QOS_LUT_USAGE_MACROTILE_QSEED,
+>>  	DPU_QOS_LUT_USAGE_MAX,
+>>  };
+>>  
+>> @@ -880,6 +882,7 @@ extern const struct dpu_mdss_cfg dpu_sc8180x_cfg;
+>>  extern const struct dpu_mdss_cfg dpu_sm8250_cfg;
+>>  extern const struct dpu_mdss_cfg dpu_sc7180_cfg;
+>>  extern const struct dpu_mdss_cfg dpu_sm6115_cfg;
+>> +extern const struct dpu_mdss_cfg dpu_sm6350_cfg;
+>>  extern const struct dpu_mdss_cfg dpu_qcm2290_cfg;
+>>  extern const struct dpu_mdss_cfg dpu_sm8350_cfg;
+>>  extern const struct dpu_mdss_cfg dpu_sc7280_cfg;
+>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+>> index 0e7a68714e9e..46be7ad8d615 100644
+>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+>> @@ -1286,6 +1286,7 @@ static const struct of_device_id dpu_dt_match[] = {
+>>  	{ .compatible = "qcom,sc8180x-dpu", .data = &dpu_sc8180x_cfg, },
+>>  	{ .compatible = "qcom,sc8280xp-dpu", .data = &dpu_sc8280xp_cfg, },
+>>  	{ .compatible = "qcom,sm6115-dpu", .data = &dpu_sm6115_cfg, },
+>> +	{ .compatible = "qcom,sm6350-dpu", .data = &dpu_sm6350_cfg, },
+>>  	{ .compatible = "qcom,sm8150-dpu", .data = &dpu_sm8150_cfg, },
+>>  	{ .compatible = "qcom,sm8250-dpu", .data = &dpu_sm8250_cfg, },
+>>  	{ .compatible = "qcom,sm8350-dpu", .data = &dpu_sm8350_cfg, },
+>>
+>> -- 
+>> 2.40.0
+>>
