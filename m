@@ -2,126 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F338D6F18CC
-	for <lists+devicetree@lfdr.de>; Fri, 28 Apr 2023 15:06:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D3536F18DA
+	for <lists+devicetree@lfdr.de>; Fri, 28 Apr 2023 15:09:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345752AbjD1NG2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Apr 2023 09:06:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53002 "EHLO
+        id S1345913AbjD1NJC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Apr 2023 09:09:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345616AbjD1NG1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Apr 2023 09:06:27 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF2901FC3
-        for <devicetree@vger.kernel.org>; Fri, 28 Apr 2023 06:06:25 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-3f1950f5628so85341585e9.3
-        for <devicetree@vger.kernel.org>; Fri, 28 Apr 2023 06:06:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682687184; x=1685279184;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3cwHpswGJR12HDg9y2vo9O8mOmWfLPFabeOj9DNgGAg=;
-        b=MPH4jaAlfdO4o9ovvo6tXiTAsHWdtJ5AK7audvq/ab4uTJNvQ2elejAjeOrBS7zVLi
-         voi8akZXJYC7DWfECQio7+PDFFUgTvOlouGjVKc+qzaJ6TRhenvdd30b6BJvQawjqEao
-         Hmzg1vwjXGXi389jpNc6uUuV2dHntko4TMrxxohYCHGomR5jOV1frxLIY/bfhg6Cznh2
-         VtMplhccASZ8cLwIBhcbT4XYUaFSxmFBBfcQ1UHBNnm+TR7wk6gIjymDMsXkPh9klHuk
-         S7IPYrR8DuC/BVe5L7k1tCVXnZMRVLIgAnd0NNbm7UlSXmE/pHhe26qXvwaO/LMmdSOo
-         90Mg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682687184; x=1685279184;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3cwHpswGJR12HDg9y2vo9O8mOmWfLPFabeOj9DNgGAg=;
-        b=MzrOVX8kSVk/Bjrf7G5Rn/gQiuEzfz1QNkNZKmYmejjwUABgFW4ve5ob2sBblF0Z1Z
-         st2AuwqqLgrzslFlXbcd8RtpesGJfqX1MvgjAcZiR6YcEsPDtFPd8+pOn+0ji22hujsG
-         zsvyIpTIDERiEz22EQYzW502QifebRra94i6UvzYo+E+rF908FSfbYsIUd7+AKC0C8X9
-         6t5PLxxdjUxnG7ft//VeETRCqFQIpuN8NyxHL57DD4iftRuSgpGtsWPGu6ShyTkvr051
-         jI+arEIFgW0XCvJB9+DDxUERTFE4YifxfhDgDKk6n3GYT54nKTpmpWPPZp3iyxDvxruS
-         4XYQ==
-X-Gm-Message-State: AC+VfDziqHJ3sd2cIqTrdOn/B3o0SaSbuACLEkVf1/3Qxt37X2N1iTxJ
-        nzRaA3bjvH5WsJfqfwPGYrIzJOoEWBOQQ/1Rfiw=
-X-Google-Smtp-Source: ACHHUZ51Nbau2eLwoflvEMTw3GWYfix8SJSummBcI1rFXhuEzr2Sn7NxGpYz71j8XpzNcFrrh7sxTQ==
-X-Received: by 2002:a7b:c447:0:b0:3ee:3e07:5d26 with SMTP id l7-20020a7bc447000000b003ee3e075d26mr4275011wmi.24.1682687184416;
-        Fri, 28 Apr 2023 06:06:24 -0700 (PDT)
-Received: from [172.23.2.142] ([31.221.30.162])
-        by smtp.gmail.com with ESMTPSA id ip29-20020a05600ca69d00b003f1712b1402sm27686051wmb.30.2023.04.28.06.06.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Apr 2023 06:06:23 -0700 (PDT)
-Message-ID: <88a7cf9e-89a5-7860-2219-337aee04e75e@linaro.org>
-Date:   Fri, 28 Apr 2023 15:06:22 +0200
+        with ESMTP id S229551AbjD1NJB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Apr 2023 09:09:01 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BE51E46;
+        Fri, 28 Apr 2023 06:09:00 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33SC7v67005683;
+        Fri, 28 Apr 2023 13:08:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=ZL5/JD/Drh/dxAmEDRIWOzwDjmp5D5m1E43a19rtE+0=;
+ b=OM42HIdm76iBp3LLT+1xY5SzWUYBqad2oEFugtswbrkmSCFcNT4+tUglmoTU/uEc3Q0B
+ V68FOTpaGHGwSdJl4C55PJ/i6zWGZJ2Za09BP72WFjwUlod+qxnxYaakx+jY+ecQ1/hS
+ LlBLdOnuZv9/Gva9VaXgSQ81+62ap0bzheXr+aiZ1YBHr3CsE1GO5kQMk/NoJuZ3OTkn
+ YnS14hsmBpaSxiQu3yH6KNxT5TVKJ13furcHbSVrAFe78PeA+X7mtQMoPT6dxj9P6qQm
+ JHHk1HK75dmUUHtjX+bp37KmVfrUX/D44W4LvAAaRPs0CSt7SYXIdndHiWn4k7T9cyI5 Ow== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q850csp4g-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 28 Apr 2023 13:08:49 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33SD8m6E003190
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 28 Apr 2023 13:08:48 GMT
+Received: from hu-shazhuss-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Fri, 28 Apr 2023 06:08:43 -0700
+From:   Shazad Hussain <quic_shazhuss@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <dmitry.baryshkov@linaro.org>, <athierry@redhat.com>,
+        <robh@kernel.org>, <konrad.dybcio@linaro.org>,
+        Shazad Hussain <quic_shazhuss@quicinc.com>,
+        "Vinod Koul" <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>
+Subject: [PATCH v2 0/6] arm64: qcom: sa8775p: add support for USB
+Date:   Fri, 28 Apr 2023 18:38:18 +0530
+Message-ID: <20230428130824.23803-1-quic_shazhuss@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH] imx8mn-var-som: dts: add SOM EEPROM
-To:     Hugo Villeneuve <hugo@hugovil.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>
-Cc:     Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20230427195639.2718734-1-hugo@hugovil.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230427195639.2718734-1-hugo@hugovil.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: a6LqkUgj-DKO6lfB0rvfvIjdwvlTdG9K
+X-Proofpoint-GUID: a6LqkUgj-DKO6lfB0rvfvIjdwvlTdG9K
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-28_04,2023-04-27_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 clxscore=1011
+ suspectscore=0 mlxlogscore=583 mlxscore=0 phishscore=0 bulkscore=0
+ adultscore=0 impostorscore=0 spamscore=0 lowpriorityscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303200000 definitions=main-2304280108
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/04/2023 21:56, Hugo Villeneuve wrote:
-> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Update relavent DT bindings for USB, add new config to the phy driver,
+add USB and PHY nodes to the .dtsi and enable them in the board .dts
+for the sa8775p-ride platform.
 
-Thank you for your patch. There is something to discuss/improve.
+v1 -> v2:
+- correct dwc3 device tree bindings for irq's.
+- collect R-b, A-b and T-b tags.
 
-> 
-> The 4Kbit EEPROM located on the SOM contains hardware configuration
-> options, manufacturing infos and ethernet MAC address.
+Shazad Hussain (6):
+  dt-bindings: usb: qcom,dwc3: Add bindings for SA8775P
+  dt-bindings: phy: qcom,usb-snps-femto-v2: Add bindings for SA8775P
+  dt-bindings: phy: qcom,sc8280xp-qmp-usb3-uni: Add SA8775P USB PHY
+    binding
+  phy: qcom-qmp: Add SA8775P USB3 UNI phy
+  arm64: dts: qcom: sa8775p: add USB nodes
+  arm64: dts: qcom: sa8775p-ride: enable USB nodes
 
-Use subject prefixes matching the subsystem (which you can get for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching).
+ .../phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml   |   1 +
+ .../bindings/phy/qcom,usb-snps-femto-v2.yaml  |   1 +
+ .../devicetree/bindings/usb/qcom,dwc3.yaml    |  21 ++
+ arch/arm64/boot/dts/qcom/sa8775p-ride.dts     |  92 +++++++
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi         | 239 +++++++++++++++++-
+ drivers/phy/qualcomm/phy-qcom-qmp-usb.c       |  45 ++++
+ 6 files changed, 397 insertions(+), 2 deletions(-)
 
-> 
-> Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi
-> index 9052b0d4b5b4..3ed396f41e46 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi
-> @@ -30,6 +30,10 @@ reg_eth_phy: regulator-eth-phy {
->  		gpio = <&gpio2 9 GPIO_ACTIVE_HIGH>;
->  		enable-active-high;
->  	};
-> +
-> +	aliases {
-
-Keep nodes ordered.
-
-> +		eeprom_som = &eeprom_som;
-
-That's no valid alias. Which upstream kernel driver makes use of this?
-
-> +	};
->  };
->  
-
-Best regards,
-Krzysztof
+-- 
+2.17.1
 
