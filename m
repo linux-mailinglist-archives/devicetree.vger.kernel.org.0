@@ -2,112 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 29FA16F203E
-	for <lists+devicetree@lfdr.de>; Fri, 28 Apr 2023 23:46:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 244156F2068
+	for <lists+devicetree@lfdr.de>; Sat, 29 Apr 2023 00:00:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346563AbjD1VqL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Apr 2023 17:46:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57018 "EHLO
+        id S229751AbjD1WAG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Apr 2023 18:00:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346497AbjD1VqK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Apr 2023 17:46:10 -0400
-Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABCA926BA;
-        Fri, 28 Apr 2023 14:46:09 -0700 (PDT)
-Received: by mail-ot1-f42.google.com with SMTP id 46e09a7af769-6a8955b3462so192553a34.2;
-        Fri, 28 Apr 2023 14:46:09 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682718369; x=1685310369;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RTM2mluHD/ZVuQ06t+XTsEI3ZhySwZO1SLbkiRH9asw=;
-        b=j6aCp45ja1EdGzmZrGj5AN+i3DkJraEkfa+VKkqWwEFGsVdoKE93bJJci3hS1HfnBI
-         Pl7gGGjObYvmqJ+yHC4q95PL9m/ayw8z0eV0JeJKT5jrN/XMJhtV6p+m4Y5G9uHnsdxh
-         lm5mFPWRpu7Ht3XSsLYiUh7ozTK3XDYUbOkphDgHB/6OCPl4ToASzlAobIYAWzZ+HnhW
-         ure0RR9xJl2frPnUA/f+UAPyii6s9NVekchqy4sTReKIG5vtsTPkUg0uiNQREL1u1kzf
-         BH9ME1AG4O2qBRQPg/7iAXZChu676BLg4/b8NfKF8zijdPHgbmvYRz3bTHp771uIwrJG
-         XRlQ==
-X-Gm-Message-State: AC+VfDwGy636Az4wDOGlmAL/ggupNGdMLNmGcGW2IP3ZU4yhgmKmwjg/
-        6qO24gc5MO3yfpNV1Xu8GQ==
-X-Google-Smtp-Source: ACHHUZ7ILd+pYQIPWPAv2XKRDwq6NaoGnAux7/JTHMWijMavD87BT+jKgyaPYW41sX29xC4se2bTCg==
-X-Received: by 2002:a05:6808:915:b0:38e:ada4:4512 with SMTP id w21-20020a056808091500b0038eada44512mr3056225oih.20.1682718368863;
-        Fri, 28 Apr 2023 14:46:08 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 27-20020a4ae1bb000000b00541fbbbcd31sm7600624ooy.5.2023.04.28.14.46.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Apr 2023 14:46:08 -0700 (PDT)
-Received: (nullmailer pid 332170 invoked by uid 1000);
-        Fri, 28 Apr 2023 21:46:07 -0000
-Date:   Fri, 28 Apr 2023 16:46:07 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Valentin Caron <valentin.caron@foss.st.com>
-Cc:     Mark Brown <broonie@kernel.org>,
+        with ESMTP id S229727AbjD1WAF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Apr 2023 18:00:05 -0400
+X-Greylist: delayed 190 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 28 Apr 2023 15:00:02 PDT
+Received: from smtp-out3.electric.net (smtp-out3.electric.net [208.70.128.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D31BECF;
+        Fri, 28 Apr 2023 15:00:02 -0700 (PDT)
+Received: from 1psW52-0008XV-Uz by out3b.electric.net with emc1-ok (Exim 4.96)
+        (envelope-from <kris@embeddedTS.com>)
+        id 1psW58-0008lM-UJ;
+        Fri, 28 Apr 2023 14:56:46 -0700
+Received: by emcmailer; Fri, 28 Apr 2023 14:56:46 -0700
+Received: from [66.210.251.27] (helo=mail.embeddedts.com)
+        by out3b.electric.net with esmtps  (TLS1.2) tls TLS_DHE_RSA_WITH_SEED_CBC_SHA
+        (Exim 4.96)
+        (envelope-from <kris@embeddedTS.com>)
+        id 1psW52-0008XV-Uz;
+        Fri, 28 Apr 2023 14:56:40 -0700
+Received: from tsdebian (unknown [75.164.37.163])
+        by mail.embeddedts.com (Postfix) with ESMTPSA id 87B62E98;
+        Fri, 28 Apr 2023 14:56:39 -0700 (MST)
+Message-ID: <1682718975.5028.2.camel@embeddedTS.com>
+Subject: Re: [PATCH 34/43] ARM: dts: add device tree for ep93xx Soc
+From:   Kris Bahnsen <kris@embeddedTS.com>
+Reply-To: kris@embeddedTS.com
+To:     Arnd Bergmann <arnd@arndb.de>,
+        Nikita Shubin <nikita.shubin@maquefel.me>
+Cc:     Arnd Bergmann <arnd@kernel.org>, Linus Walleij <linusw@kernel.org>,
+        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+        Olof Johansson <olof@lixom.net>, soc@kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Alain Volmat <alain.volmat@foss.st.com>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/7] dt-bindings: spi: stm32: add bindings regarding
- stm32h7 spi slave
-Message-ID: <20230428214607.GA326858-robh@kernel.org>
-References: <20230428121524.2125832-1-valentin.caron@foss.st.com>
- <20230428121524.2125832-5-valentin.caron@foss.st.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230428121524.2125832-5-valentin.caron@foss.st.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Lukasz Majewski <lukma@denx.de>,
+        Michael Peters <mpeters@embeddedts.com>
+Date:   Fri, 28 Apr 2023 14:56:15 -0700
+In-Reply-To: <e429c0e0-7044-492c-a4e2-ed0c1185bb39@app.fastmail.com>
+References: <20230424123522.18302-1-nikita.shubin@maquefel.me>
+         <20230424123522.18302-35-nikita.shubin@maquefel.me>
+         <e429c0e0-7044-492c-a4e2-ed0c1185bb39@app.fastmail.com>
+Organization: embeddedTS
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.22.6-1+deb9u2 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-Outbound-IP: 66.210.251.27
+X-Env-From: kris@embeddedTS.com
+X-Proto: esmtps
+X-Revdns: wsip-66-210-251-27.ph.ph.cox.net
+X-HELO: mail.embeddedts.com
+X-TLS:  TLS1.2:DHE-RSA-SEED-SHA:128
+X-Authenticated_ID: 
+X-VIPRE-Scanners: virus_clamav;virus_bd;
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 29564942
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=embeddedTS.com; s=mailanyone20220121;h=Mime-Version:References:In-Reply-To:Date:To:From:Message-ID; bh=T0qxuKHoFC3u0mSLJrS7Q0aIpKmNCJV1D92yNNJU0SQ=;b=WOjiTTaY+yQPgJRdeciQy77OzmGE8iM/WSdmHyKCvqiMhyOMU60rsBaBvMBRbaYsuSCPHL/MjzBn/2dDLA4c5XCBBzIhkr14Xj4xX80MGzmyvMJdsiEiHfzazNOauIXr0W31HgSeD+1jKRR7K0DIpc4kZI5sW9ShuLgXzBHerk7dGaw4Lp8cQEUsq7QgpnB9B0N87e60maQ9Jmrfc77jpb3gXRvyEdVOOSheepxllY6jhZtHxmoJGq1jVZfZbJOnM1S3jGqCPPyahk4x6Nzx4FduyNAUCL9/8szx2S4Pnos2xEWVomblEa5Nlx9mToE72uCYxYEbP6T8BcPoYNN/hA==;
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 29564942
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 29564942
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 29564942
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 29564942
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 29564942
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 29564942
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 29564942
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 29564942
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 29564942
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 29564942
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 29564942
+X-FM-Delivery-Delay: 15749372,23518412
+X-PolicySMART: 13164782, 15749372, 29564942
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 28, 2023 at 02:15:21PM +0200, Valentin Caron wrote:
-> From: Alain Volmat <alain.volmat@foss.st.com>
+On Mon, 2023-04-24 at 13:28 +0200, Arnd Bergmann wrote:
+> On Mon, Apr 24, 2023, at 14:34, Nikita Shubin wrote:
+> > This adds a divice for Cirrus ep93xx SoC amd ts7250 board that has been
+> > my testing target for ep93xx device support.
+> > 
+> > Also inluded device tree for Liebherr BK3.1 board through it's not a
+> > complete support.
+> > 
+> > Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
 > 
-> Update the spi-stm32 binding yaml regarding to the SPI slave support.
-
-Why? What problem are you trying to solve.
-
+> Can you describe which parts are missing for BK3.1 in the
+> changelog? I'm fairly sure that Liebherr is still supporting
+> this board, but I don't have a contact to add to Cc here.
 > 
-> Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
-> Signed-off-by: Valentin Caron <valentin.caron@foss.st.com>
-> ---
->  Documentation/devicetree/bindings/spi/st,stm32-spi.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
+> I've added Lukasz Majewski to Cc here, as he originally worked
+> on BK3.1 and likely either has the hardware or knows someone
+> who does.  Technologic Systems also lists the ts7250 as supported
+> on their website, but the only contact I found for them is the
+> generic support@embeddedTS.com. In case someone from Technologic
+> is available for giving the series a spin, see [1] for the
+> full set of patches.
 > 
-> diff --git a/Documentation/devicetree/bindings/spi/st,stm32-spi.yaml b/Documentation/devicetree/bindings/spi/st,stm32-spi.yaml
-> index c599eb359d56..1d26fa2658c5 100644
-> --- a/Documentation/devicetree/bindings/spi/st,stm32-spi.yaml
-> +++ b/Documentation/devicetree/bindings/spi/st,stm32-spi.yaml
-> @@ -27,6 +27,7 @@ allOf:
->      then:
->        properties:
->          st,spi-midi-ns: false
-> +        spi-slave: false
->  
->  properties:
->    "#address-cells": true
-> @@ -62,6 +63,13 @@ properties:
->        - const: rx
->        - const: tx
->  
-> +  cs-gpios:
-> +    description:
-> +      In case of spi-slave not defined, cs-gpios behave as defined in
-> +      spi-controller.yaml.
-> +      In case of spi-slave defined, if <0>, indicate that SS should be
-> +      detected via the dedicated HW pin
+>      Arnd
+> 
+> [1] https://lore.kernel.org/all/20230424123522.18302-1-nikita.shubin@maquefel.me/
 
-I don't understand. I though cs-gpios was for master mode. You want to 
-define 'cs-gpios = <0>;'? How would that be different than just omitting 
-cs-gpios?
+Thanks Nikita for putting this together and getting us some
+details/notes off-list to get us testing this quickly.
 
-Rob
+We ran a TS-7250 with this series applied through some of
+our basic testing and everything is working as expected.
+
+Tested-by: Michael Peters <mpeters@embeddedTS.com>
+Reviewed-by: Kris Bahnsen <kris@embeddedTS.com>
+
+-Kris
