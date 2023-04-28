@@ -2,138 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EC966F1C73
-	for <lists+devicetree@lfdr.de>; Fri, 28 Apr 2023 18:17:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BBD96F1C7F
+	for <lists+devicetree@lfdr.de>; Fri, 28 Apr 2023 18:20:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345961AbjD1QRz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Apr 2023 12:17:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46392 "EHLO
+        id S1346149AbjD1QTw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Apr 2023 12:19:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230481AbjD1QRy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Apr 2023 12:17:54 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B49BC135;
-        Fri, 28 Apr 2023 09:17:52 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33SGHL5Q058563;
-        Fri, 28 Apr 2023 11:17:21 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1682698641;
-        bh=NDNmB15csVq52QGrJG43+4WY3PAWdHduZDfYDdEr4QE=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=ur94zBU+mZwP7FosfA9NyBcqgznXlFhjNiNZZ9cY9R5s887mWbf5fEhMzqp+e20Ep
-         AQ8vu9k0XL8UdhThYdRPGCHaHaJIMxef9Rm6o51/QokXkfpEshDMgo8aDU8Kodpf7P
-         eUztAKHQpyTwMU//Ty/K5fwPROsYpU5Vem1ucjak=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33SGHK7Z024029
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 28 Apr 2023 11:17:20 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 28
- Apr 2023 11:17:20 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 28 Apr 2023 11:17:20 -0500
-Received: from [128.247.81.102] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33SGHKRI074613;
-        Fri, 28 Apr 2023 11:17:20 -0500
-Message-ID: <4ca0c282-35ea-c8c3-06f4-59d0de3b18f5@ti.com>
-Date:   Fri, 28 Apr 2023 11:17:20 -0500
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v2 2/4] dt-bindings: net: can: Add poll-interval for MCAN
-To:     Rob Herring <robh@kernel.org>
-CC:     Jakub Kicinski <kuba@kernel.org>, Nishanth Menon <nm@ti.com>,
+        with ESMTP id S1346148AbjD1QTu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Apr 2023 12:19:50 -0400
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C86E524B;
+        Fri, 28 Apr 2023 09:19:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1682698785; x=1714234785;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=mJSFhPkeknNj2O1iNEZ3l9oQeY99f0eWfnaVt0hI+2w=;
+  b=byi9cyMyPuqVZoKPTMXBXHIdGLGCrNOJZlG+xtH3VxuqHXiQqToydZxz
+   Xt0hd3ZHdYtXJ6zIPyX2TJ4BcI7IML3l/Psb8Nfzj52TSnXiDUxDOC28r
+   IpWOiiGWHco5jTgSc+Z7XDiKRaZ7iGFUok/ICeu0mqSQz0Ge8Vr4LT/x4
+   abS+/UApNO9jIIo8p1kjrrj29utYP/HsKq9uPe5o2dRRPBHrvzjxMvg3l
+   E2kzAAs5hdPz566nusAH8kaUxgStbzAWvlqyTsS3Tujta+6zqa+GSNPIO
+   QI18/NoUiEETTl95R7Rh3FywLtyHBUB00jaZhRQUyPmt7cAP11xLSkYLG
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10694"; a="349816349"
+X-IronPort-AV: E=Sophos;i="5.99,235,1677571200"; 
+   d="scan'208";a="349816349"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Apr 2023 09:19:44 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10694"; a="819061758"
+X-IronPort-AV: E=Sophos;i="5.99,235,1677571200"; 
+   d="scan'208";a="819061758"
+Received: from lkp-server01.sh.intel.com (HELO 5bad9d2b7fcb) ([10.239.97.150])
+  by orsmga004.jf.intel.com with ESMTP; 28 Apr 2023 09:19:38 -0700
+Received: from kbuild by 5bad9d2b7fcb with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1psQor-0000Y9-1I;
+        Fri, 28 Apr 2023 16:19:37 +0000
+Date:   Sat, 29 Apr 2023 00:19:34 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Yi-De Wu <yi-de.wu@mediatek.com>,
+        Yingshiuan Pan <yingshiuan.pan@mediatek.com>,
+        Ze-Yu Wang <ze-yu.wang@mediatek.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        <devicetree@vger.kernel.org>,
-        Oliver Hartkopp <socketcan@hartkopp.net>,
-        <linux-can@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Eric Dumazet <edumazet@google.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Schuyler Patton <spatton@ti.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20230424195402.516-1-jm@ti.com> <20230424195402.516-3-jm@ti.com>
- <168238155801.4123790.14706903991436332296.robh@kernel.org>
-Content-Language: en-US
-From:   "Mendez, Judith" <jm@ti.com>
-In-Reply-To: <168238155801.4123790.14706903991436332296.robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-arch@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        David Bradil <dbrazdil@google.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Jade Shih <jades.shih@mediatek.com>,
+        Miles Chen <miles.chen@mediatek.com>,
+        Ivan Tseng <ivan.tseng@mediatek.com>,
+        My Chuang <my.chuang@mediatek.com>,
+        Shawn Hsiao <shawn.hsiao@mediatek.com>,
+        PeiLun Suei <peilun.suei@mediatek.com>,
+        Liju Chen <liju-clr.chen@mediatek.com>
+Subject: Re: [PATCH v2 3/7] virt: geniezone: Introduce GenieZone hypervisor
+ support
+Message-ID: <202304290052.49kcXbnl-lkp@intel.com>
+References: <20230428103622.18291-4-yi-de.wu@mediatek.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230428103622.18291-4-yi-de.wu@mediatek.com>
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Rob,
+Hi Yi-De,
 
-On 4/24/2023 7:13 PM, Rob Herring wrote:
-> 
-> On Mon, 24 Apr 2023 14:54:00 -0500, Judith Mendez wrote:
->> On AM62x SoC, MCANs on MCU domain do not have hardware interrupt
->> routed to A53 Linux, instead they will use software interrupt by
->> hrtimer. To enable timer method, interrupts should be optional so
->> remove interrupts property from required section and introduce
->> poll-interval property.
->>
->> Signed-off-by: Judith Mendez <jm@ti.com>
->> ---
->> Changelog:
->> v2:
->>    1. Add poll-interval property to enable timer polling method
->>    2. Add example using poll-interval property
->>
->>   .../bindings/net/can/bosch,m_can.yaml         | 26 ++++++++++++++++---
->>   1 file changed, 23 insertions(+), 3 deletions(-)
->>
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml: 'example with interrupts' is not one of ['$id', '$schema', 'title', 'description', 'examples', 'required', 'allOf', 'anyOf', 'oneOf', 'definitions', '$defs', 'additionalProperties', 'dependencies', 'dependentRequired', 'dependentSchemas', 'patternProperties', 'properties', 'not', 'if', 'then', 'else', 'unevaluatedProperties', 'deprecated', 'maintainers', 'select', '$ref']
-> 	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml: 'example with timer polling' is not one of ['$id', '$schema', 'title', 'description', 'examples', 'required', 'allOf', 'anyOf', 'oneOf', 'definitions', '$defs', 'additionalProperties', 'dependencies', 'dependentRequired', 'dependentSchemas', 'patternProperties', 'properties', 'not', 'if', 'then', 'else', 'unevaluatedProperties', 'deprecated', 'maintainers', 'select', '$ref']
-> 	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
-> 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230424195402.516-3-jm@ti.com
-> 
-> The base for the series is generally the latest rc1. A different dependency
-> should be noted in *this* patch.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your schema.
+kernel test robot noticed the following build errors:
 
-Thanks Rob, I was not getting the errors, but I have fixed now. Thanks.
+[auto build test ERROR on arm64/for-next/core]
+[also build test ERROR on robh/for-next arnd-asm-generic/master linus/master v6.3 next-20230427]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-regards,
-Judith
+url:    https://github.com/intel-lab-lkp/linux/commits/Yi-De-Wu/docs-geniezone-Introduce-GenieZone-hypervisor/20230428-183738
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/arm64/linux.git for-next/core
+patch link:    https://lore.kernel.org/r/20230428103622.18291-4-yi-de.wu%40mediatek.com
+patch subject: [PATCH v2 3/7] virt: geniezone: Introduce GenieZone hypervisor support
+config: x86_64-randconfig-a004 (https://download.01.org/0day-ci/archive/20230429/202304290052.49kcXbnl-lkp@intel.com/config)
+compiler: gcc-11 (Debian 11.3.0-12) 11.3.0
+reproduce (this is a W=1 build):
+        # https://github.com/intel-lab-lkp/linux/commit/0e3f05a6e4547eb309032d047115a47d8f59641d
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Yi-De-Wu/docs-geniezone-Introduce-GenieZone-hypervisor/20230428-183738
+        git checkout 0e3f05a6e4547eb309032d047115a47d8f59641d
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        make W=1 O=build_dir ARCH=x86_64 olddefconfig
+        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash
 
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202304290052.49kcXbnl-lkp@intel.com/
 
+All errors (new ones prefixed by >>):
+
+>> usr/include/linux/gzvm.h:15: included file 'asm-x86/gzvm_arch.h' is not exported
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
