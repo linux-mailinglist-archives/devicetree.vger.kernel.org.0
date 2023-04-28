@@ -2,158 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02E566F18BF
-	for <lists+devicetree@lfdr.de>; Fri, 28 Apr 2023 15:04:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F338D6F18CC
+	for <lists+devicetree@lfdr.de>; Fri, 28 Apr 2023 15:06:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346102AbjD1NEA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Apr 2023 09:04:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51580 "EHLO
+        id S1345752AbjD1NG2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Apr 2023 09:06:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346108AbjD1ND7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Apr 2023 09:03:59 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60417E9
-        for <devicetree@vger.kernel.org>; Fri, 28 Apr 2023 06:03:58 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-3f19afc4fbfso77516625e9.2
-        for <devicetree@vger.kernel.org>; Fri, 28 Apr 2023 06:03:58 -0700 (PDT)
+        with ESMTP id S1345616AbjD1NG1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Apr 2023 09:06:27 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF2901FC3
+        for <devicetree@vger.kernel.org>; Fri, 28 Apr 2023 06:06:25 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-3f1950f5628so85341585e9.3
+        for <devicetree@vger.kernel.org>; Fri, 28 Apr 2023 06:06:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682687037; x=1685279037;
+        d=linaro.org; s=google; t=1682687184; x=1685279184;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=4MbMbUlATowXc/GzzFK/6qJA+BvJceVnEgx9z4d/BqQ=;
-        b=GY5zyGAD9+vAigEpYlfpLx10jXXrbYuVHPFZXrLoD7ya+eyJ8/0umiNwqInHcG3uOC
-         hqCsuHgnzIzNBgTbosLITMsV+ArqylbKqIESdX1JbClZzBUF04xmICJxt+2/uJVcvXvS
-         dovJ0mCnhDNSrEfaF3Q3m6lmIzjyZRersKk5QyaXEK7dJRFUOiO0YX37uRIvKCNf+7V1
-         XXdrICAVCbxPr/IPl/9HTAvAWNZUZsg1yg8kRVXivztAfB5C3Xevb6sDSjog6+PfK5zl
-         z40rh5a0KDOYEDLgwbVNtdE3jewELkY0wyQ/TKGK5x9PTEyY7sSnUBjsPgaJ+OJVwH6z
-         kXIQ==
+        bh=3cwHpswGJR12HDg9y2vo9O8mOmWfLPFabeOj9DNgGAg=;
+        b=MPH4jaAlfdO4o9ovvo6tXiTAsHWdtJ5AK7audvq/ab4uTJNvQ2elejAjeOrBS7zVLi
+         voi8akZXJYC7DWfECQio7+PDFFUgTvOlouGjVKc+qzaJ6TRhenvdd30b6BJvQawjqEao
+         Hmzg1vwjXGXi389jpNc6uUuV2dHntko4TMrxxohYCHGomR5jOV1frxLIY/bfhg6Cznh2
+         VtMplhccASZ8cLwIBhcbT4XYUaFSxmFBBfcQ1UHBNnm+TR7wk6gIjymDMsXkPh9klHuk
+         S7IPYrR8DuC/BVe5L7k1tCVXnZMRVLIgAnd0NNbm7UlSXmE/pHhe26qXvwaO/LMmdSOo
+         90Mg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682687037; x=1685279037;
+        d=1e100.net; s=20221208; t=1682687184; x=1685279184;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4MbMbUlATowXc/GzzFK/6qJA+BvJceVnEgx9z4d/BqQ=;
-        b=bLETw+dciPUwsy8GknlyuPzFhsuu+09v5M+kb6ytT6FDcyYhBv9Soylr14SHM7Cqld
-         rWaIXZXLHBe7WpBd2sxp56K0KRJRIk8sAu93HDB0UAZRNmujlcrwOSMZ6dl6uy1J7PvT
-         hDz3XojE3lOe78p03A+FGgci9rzFOYOUfVMyJVKx/kBK7CKAWxJjVLbliC9g5RDot1Ju
-         EoVBab4CqwF395a6Vrnm9Rx8mwOale8B5tbNtKcDf4XjT4dSPeS5xQP9YAlY07uB6nuV
-         lFrFLl/FpzOksyHqEvzDDjWmswqQatHAqGyIAQgM50SdPYgsBGKcN6J4LkJIDjPe1BD6
-         R8pg==
-X-Gm-Message-State: AC+VfDxyIYmpNtCr44c4DEL7wF72GQo1PhhJLkYAJ6vML4dw1sL5kP1v
-        nkBob6Ix8pUwnYfsjOnS1Hj0ZQ==
-X-Google-Smtp-Source: ACHHUZ5endThDS00P6ln9T3nn6TybpccCQT4dI8fMsO8gyLFTiuj00nOgyEw/vNPvZ1PDE+TEK7inQ==
-X-Received: by 2002:a05:600c:d7:b0:3f2:51e7:f110 with SMTP id u23-20020a05600c00d700b003f251e7f110mr3715783wmm.32.1682687036381;
-        Fri, 28 Apr 2023 06:03:56 -0700 (PDT)
-Received: from [172.23.2.5] ([31.221.30.162])
-        by smtp.gmail.com with ESMTPSA id k25-20020a05600c081900b003f17122587bsm27702230wmp.36.2023.04.28.06.03.54
+        bh=3cwHpswGJR12HDg9y2vo9O8mOmWfLPFabeOj9DNgGAg=;
+        b=MzrOVX8kSVk/Bjrf7G5Rn/gQiuEzfz1QNkNZKmYmejjwUABgFW4ve5ob2sBblF0Z1Z
+         st2AuwqqLgrzslFlXbcd8RtpesGJfqX1MvgjAcZiR6YcEsPDtFPd8+pOn+0ji22hujsG
+         zsvyIpTIDERiEz22EQYzW502QifebRra94i6UvzYo+E+rF908FSfbYsIUd7+AKC0C8X9
+         6t5PLxxdjUxnG7ft//VeETRCqFQIpuN8NyxHL57DD4iftRuSgpGtsWPGu6ShyTkvr051
+         jI+arEIFgW0XCvJB9+DDxUERTFE4YifxfhDgDKk6n3GYT54nKTpmpWPPZp3iyxDvxruS
+         4XYQ==
+X-Gm-Message-State: AC+VfDziqHJ3sd2cIqTrdOn/B3o0SaSbuACLEkVf1/3Qxt37X2N1iTxJ
+        nzRaA3bjvH5WsJfqfwPGYrIzJOoEWBOQQ/1Rfiw=
+X-Google-Smtp-Source: ACHHUZ51Nbau2eLwoflvEMTw3GWYfix8SJSummBcI1rFXhuEzr2Sn7NxGpYz71j8XpzNcFrrh7sxTQ==
+X-Received: by 2002:a7b:c447:0:b0:3ee:3e07:5d26 with SMTP id l7-20020a7bc447000000b003ee3e075d26mr4275011wmi.24.1682687184416;
+        Fri, 28 Apr 2023 06:06:24 -0700 (PDT)
+Received: from [172.23.2.142] ([31.221.30.162])
+        by smtp.gmail.com with ESMTPSA id ip29-20020a05600ca69d00b003f1712b1402sm27686051wmb.30.2023.04.28.06.06.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Apr 2023 06:03:55 -0700 (PDT)
-Message-ID: <bfed3b0a-9672-fa59-5591-27ad17f5e96c@linaro.org>
-Date:   Fri, 28 Apr 2023 16:03:54 +0300
+        Fri, 28 Apr 2023 06:06:23 -0700 (PDT)
+Message-ID: <88a7cf9e-89a5-7860-2219-337aee04e75e@linaro.org>
+Date:   Fri, 28 Apr 2023 15:06:22 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH v2 07/13] drm/msm/dpu: Add SM6350 support
-To:     Marijn Suijten <marijn.suijten@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+Subject: Re: [PATCH] imx8mn-var-som: dts: add SOM EEPROM
+To:     Hugo Villeneuve <hugo@hugovil.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-References: <20230411-topic-straitlagoon_mdss-v2-0-5def73f50980@linaro.org>
- <20230411-topic-straitlagoon_mdss-v2-7-5def73f50980@linaro.org>
- <k25jg7cez2kimpxr4ztbdzjr2adq6a2vjknyvfe5frxujtogfg@vhfdyt45unv6>
-Content-Language: en-GB
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <k25jg7cez2kimpxr4ztbdzjr2adq6a2vjknyvfe5frxujtogfg@vhfdyt45unv6>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>
+Cc:     Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20230427195639.2718734-1-hugo@hugovil.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230427195639.2718734-1-hugo@hugovil.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/04/2023 18:37, Marijn Suijten wrote:
-> On 2023-04-21 00:31:16, Konrad Dybcio wrote:
->> Add SM6350 support to the DPU1 driver to enable display output.
->>
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> 
-> After addressing the comments from Dmitry (CURSOR0->DMA1 and
-> CURSOR1->DMA2), this is:
-> 
-> Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
-> 
-> See below for some nits.
-> 
->> ---
->>   .../gpu/drm/msm/disp/dpu1/catalog/dpu_6_4_sm6350.h | 191 +++++++++++++++++++++
->>   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c     |   1 +
->>   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h     |   3 +
->>   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c            |   1 +
->>   4 files changed, 196 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_6_4_sm6350.h b/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_6_4_sm6350.h
->> new file mode 100644
->> index 000000000000..687a508cbaa6
->> --- /dev/null
->> +++ b/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_6_4_sm6350.h
->> @@ -0,0 +1,191 @@
->> +/* SPDX-License-Identifier: GPL-2.0-only */
->> +/*
->> + * Copyright (c) 2022. Qualcomm Innovation Center, Inc. All rights reserved.
->> + * Copyright (c) 2015-2018, 2020 The Linux Foundation. All rights reserved.
->> + * Copyright (c) 2023, Linaro Limited
->> + */
->> +
->> +#ifndef _DPU_6_4_SM6350_H
->> +#define _DPU_6_4_SM6350_H
->> +
->> +static const struct dpu_caps sm6350_dpu_caps = {
->> +	.max_mixer_width = DEFAULT_DPU_OUTPUT_LINE_WIDTH,
->> +	.max_mixer_blendstages = 0x7,
->> +	.qseed_type = DPU_SSPP_SCALER_QSEED4,
-> 
-> I thought it was QSEED3LITE, but doesn't really matter as both are
-> handled similarly.  It'll anyway change when I resubmit:
+On 27/04/2023 21:56, Hugo Villeneuve wrote:
+> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 
-If I understood correctly, we mixed two things: hw stuff and the 
-userspace library. QSEEDv2 was a hardware scaler. "qseedv3/v3lite/v4" 
-are software library names that are used with the scalers newer than 
-QSEED2. From the driver point we can ignore that and use scaler's hw 
-version (which mostly but not always corresponds to the 3/3lite/4).
+Thank you for your patch. There is something to discuss/improve.
 
 > 
-> https://lore.kernel.org/linux-arm-msm/20230215-sspp-scaler-version-v1-0-416b1500b85b@somainline.org/T/#u
-> 
-> which should hardcode the register value directly, making this field
-> superfluous.
-> 
->> +	.has_src_split = true,
->> +	.has_dim_layer = true,
->> +	.has_idle_pc = true,
->> +	.max_linewidth = DEFAULT_DPU_OUTPUT_LINE_WIDTH,
->> +	.pixel_ram_size = DEFAULT_PIXEL_RAM_SIZE,
->> +};
+> The 4Kbit EEPROM located on the SOM contains hardware configuration
+> options, manufacturing infos and ethernet MAC address.
 
--- 
-With best wishes
-Dmitry
+Use subject prefixes matching the subsystem (which you can get for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching).
+
+> 
+> Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi
+> index 9052b0d4b5b4..3ed396f41e46 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi
+> @@ -30,6 +30,10 @@ reg_eth_phy: regulator-eth-phy {
+>  		gpio = <&gpio2 9 GPIO_ACTIVE_HIGH>;
+>  		enable-active-high;
+>  	};
+> +
+> +	aliases {
+
+Keep nodes ordered.
+
+> +		eeprom_som = &eeprom_som;
+
+That's no valid alias. Which upstream kernel driver makes use of this?
+
+> +	};
+>  };
+>  
+
+Best regards,
+Krzysztof
 
