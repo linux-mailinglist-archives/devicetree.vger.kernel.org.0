@@ -2,266 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8455D6F120B
-	for <lists+devicetree@lfdr.de>; Fri, 28 Apr 2023 08:58:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 093266F1220
+	for <lists+devicetree@lfdr.de>; Fri, 28 Apr 2023 09:11:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345347AbjD1G6C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Apr 2023 02:58:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55578 "EHLO
+        id S230350AbjD1HLI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Apr 2023 03:11:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59080 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230025AbjD1G6B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Apr 2023 02:58:01 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E07509E;
-        Thu, 27 Apr 2023 23:57:57 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 4840524E2C5;
-        Fri, 28 Apr 2023 14:57:54 +0800 (CST)
-Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 28 Apr
- 2023 14:57:54 +0800
-Received: from [192.168.125.124] (183.27.98.45) by EXMBX168.cuchost.com
- (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 28 Apr
- 2023 14:57:53 +0800
-Message-ID: <fda68c53-0beb-59ac-18c1-4e3075b5ee9c@starfivetech.com>
-Date:   Fri, 28 Apr 2023 14:57:53 +0800
+        with ESMTP id S229680AbjD1HLG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Apr 2023 03:11:06 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F4671FC6;
+        Fri, 28 Apr 2023 00:11:02 -0700 (PDT)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33S6eC60017888;
+        Fri, 28 Apr 2023 07:09:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=r4S9H1vwWoK1+kiA09br/m7C1/tdA0ux38+UdY8IJC8=;
+ b=TRgDOuAiuEa7voWD8LojLP65cAU+eYPwSaHvdK8MyLjAWhoKHKVjVex0r8j+e6P6NBP8
+ A3ckaa63DGxZrxEQVe3dsuVAhpsUloRGI5SvHgnx8yFZmzJgN9JispzTuwEIZFSG1Vi2
+ 5eIYT+CBb95fCbyHFrCyZcxT6Nhko+nw/AS1oj3l0mspDNjiOFGxAkWmGEPsIdR8Bprw
+ N54eM/U5n29mxQAbexncaXDiPBO0Kd+FuelWQqrnCKhZwTs5hsoSyuWdcLAPSGerrxp/
+ g/RiwBtmVgjjuH43HPbJSqUpUYM6Hcv4KQRXVilx6YLej+qiYdW9tMR/2JgRTD1LRNt/ Ow== 
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q7wq89b8t-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 28 Apr 2023 07:09:52 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+        by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33S79pGx032698
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 28 Apr 2023 07:09:51 GMT
+Received: from [10.253.9.121] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Fri, 28 Apr
+ 2023 00:09:45 -0700
+Message-ID: <336ce7b0-45f6-85e1-14a3-9e8c94a2f6fd@quicinc.com>
+Date:   Fri, 28 Apr 2023 15:09:43 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH v2 3/4] ASoC: starfive: Add JH7110 TDM driver
-To:     Mark Brown <broonie@kernel.org>
-CC:     Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
-References: <20230420024118.22677-1-walker.chen@starfivetech.com>
- <20230420024118.22677-4-walker.chen@starfivetech.com>
- <27e57746-d05b-4983-a631-29306851a478@sirena.org.uk>
+Subject: Re: [PATCH v3 2/3] dt-bindings: arm: Add Coresight Dummy Trace
 Content-Language: en-US
-From:   Walker Chen <walker.chen@starfivetech.com>
-In-Reply-To: <27e57746-d05b-4983-a631-29306851a478@sirena.org.uk>
-Content-Type: text/plain; charset="UTF-8"
+To:     Rob Herring <robh@kernel.org>
+CC:     Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        Leo Yan <leo.yan@linaro.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        <coresight@lists.linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Jinlong Mao <quic_jinlmao@quicinc.com>,
+        "Yuanfang Zhang" <quic_yuanfang@quicinc.com>,
+        Tao Zhang <quic_taozha@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>,
+        "Bjorn Andersson" <andersson@kernel.org>,
+        <linux-doc@vger.kernel.org>
+References: <20230422073714.38844-1-quic_hazha@quicinc.com>
+ <20230422073714.38844-3-quic_hazha@quicinc.com>
+ <20230425184654.GA2063541-robh@kernel.org>
+From:   Hao Zhang <quic_hazha@quicinc.com>
+In-Reply-To: <20230425184654.GA2063541-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [183.27.98.45]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX168.cuchost.com
- (172.16.6.78)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: iS1NqngkcR_LxwoJA8zQZjsldTzjbUq6
+X-Proofpoint-ORIG-GUID: iS1NqngkcR_LxwoJA8zQZjsldTzjbUq6
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-28_02,2023-04-27_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 mlxlogscore=935
+ bulkscore=0 suspectscore=0 phishscore=0 adultscore=0 impostorscore=0
+ lowpriorityscore=0 malwarescore=0 mlxscore=0 priorityscore=1501
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303200000 definitions=main-2304280057
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Rob,
 
-
-On 2023/4/20 22:30, Mark Brown wrote:
-> On Thu, Apr 20, 2023 at 10:41:17AM +0800, Walker Chen wrote:
->> Add tdm driver support for the StarFive JH7110 SoC.
-> 
-> This is mostly fine, though the code all feels a bit messy somehow.
-> A lot of this is just coding style, I've highlighted a bunch of things
-> below.  There's also a couple of more substantial issues.
-
-Hey Mark,
-Firstly thanks for your patient review and detailed comments.
-
-> 
->> @@ -0,0 +1,579 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * TDM driver for the StarFive JH7110 SoC
->> + *
->> + * Copyright (C) 2023 StarFive Technology Co., Ltd.
-> 
-> Please make the entire comment a C++ one so things look more
-> intentional.
-
-OK, can reference to other platform's format.
-
-> 
->> +static int jh7110_tdm_syncdiv(struct jh7110_tdm_dev *tdm)
->> +{
->> +	u32 sl, sscale, syncdiv;
+On 4/26/2023 2:46 AM, Rob Herring wrote:
+> On Sat, Apr 22, 2023 at 03:37:13PM +0800, Hao Zhang wrote:
+>> Add new coresight-dummy.yaml file describing the bindings required
+>> to define coresight dummy trace in the device trees.
+>>
+>> Signed-off-by: Hao Zhang <quic_hazha@quicinc.com>
+>> ---
+>>   .../bindings/arm/arm,coresight-dummy.yaml     | 101 ++++++++++++++++++
+>>   1 file changed, 101 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/arm/arm,coresight-dummy.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-dummy.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-dummy.yaml
+>> new file mode 100644
+>> index 000000000000..48d864aefaaa
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/arm/arm,coresight-dummy.yaml
+>> @@ -0,0 +1,101 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/arm/arm,coresight-dummy.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 >> +
->> +	sl = (tdm->rx.sl >= tdm->tx.sl) ? tdm->rx.sl : tdm->tx.sl;
->> +	sscale = (tdm->rx.sscale >= tdm->tx.sscale) ? tdm->rx.sscale : tdm->tx.sscale;
-> 
-> Please write normal conditional statements to improve legibility.
-
-Will be modified.
-
-> 
->> +static int jh7110_tdm_clk_enable(struct jh7110_tdm_dev *tdm)
->> +{
-> 
->> +       ret = clk_set_parent(tdm->clk_tdm, tdm->clk_tdm_ext);
->> +       if (ret) {
->> +               dev_err(tdm->dev, "Can't set clock source for clk_tdm: %d\n",
->> +ret);
->> +               goto dis_tdm_clk;
->> +       }
-> 
-> It's a bit weird to enable clocks and then reparent afterwards, that
-> seems more likely to run into issues with glitches doing something bad
-> than reparenting with the clock disabled.
-
-This TDM module ultimately uses an external clock. It firstly must uses internal clock 
-before being enabled, and then is switched to external clock, otherwise failed to reset.
-This limitation is determined by the chip.
-
-> 
-> This parenting looks like a system specific configuration (what if
-> the SoC is driving the audio bus?), and might be better done by using
-> the clock bindings.  It's also strange that the driver is reparenting
-> every single time it enables the clocks rather than doing that once on
-> init.
-
-To save power consumption, need to disable clock in suspend() and enable clock in
-resume(). As mentioned above, the internal clock must be selected before enabling 
-clock every time, and then switch to external clock.
-
-> 
->> +static int jh7110_tdm_suspend(struct snd_soc_component *component)
->> +{
->> +	return pm_runtime_force_suspend(component->dev);
->> +}
+>> +title: ARM Coresight Dummy component
 >> +
->> +static int jh7110_tdm_resume(struct snd_soc_component *component)
->> +{
->> +	struct jh7110_tdm_dev *tdm = snd_soc_component_get_drvdata(component);
+>> +description: |
+>> +  Coresight Dummy Trace Module is for the specific devices that kernel
+>> +  don't have permission to access or configure, e.g., CoreSight TPDMs
+>> +  on Qualcomm platforms. So there need driver to register dummy devices
+>> +  as Coresight devices. It may also be used to define components that
+>> +  may not have any programming interfaces (e.g, static links), so that
+>> +  paths can be established in the driver. Provide Coresight API for
+>> +  dummy device operations, such as enabling and disabling dummy devices.
+>> +  Build the Coresight path for dummy sink or dummy source for debugging.
 >> +
->> +	/* restore context */
->> +	jh7110_tdm_writel(tdm, TDM_PCMGBCR, tdm->saved_pcmgbcr);
->> +	jh7110_tdm_writel(tdm, TDM_PCMDIV, tdm->saved_pcmdiv);
+>> +  The primary use case of the coresight dummy is to build path in kernel
+>> +  side for dummy sink and dummy source.
+> 
+> I could imagine the OS wanting to know more information than just
+> 'dummy'. Is data from an unknown source useful? Likewise, don't you want
+> to know where you are sending data too?
+> 
+The necessary information for Coresight is connection between different 
+components, so there is in-port for dummy sink and out-port for dummy 
+source. We can get the whole path from the source to sink in device tree.
+
 >> +
->> +	return pm_runtime_force_resume(component->dev);
->> +}
-> 
-> It is weird that we restore context that we don't save on suspend, the
-> code *works* but it looks off.
-
-Should be pairing operation in suspend() and resume().
-
-> 
->> +static int jh7110_tdm_hw_params(struct snd_pcm_substream *substream,
->> +				struct snd_pcm_hw_params *params,
->> +				struct snd_soc_dai *dai)
->> +{
->> +	struct jh7110_tdm_dev *tdm = snd_soc_dai_get_drvdata(dai);
->> +	int chan_wl, chan_sl, chan_nr;
->> +	unsigned int data_width;
->> +	unsigned int dma_bus_width;
->> +	struct snd_dmaengine_dai_dma_data *dma_data = NULL;
->> +	struct snd_soc_pcm_runtime *rtd = asoc_substream_to_rtd(substream);
->> +	struct snd_soc_dai_link *dai_link = rtd->dai_link;
+>> +maintainers:
+>> +  - Mao Jinlong <quic_jinlmao@quicinc.com>
+>> +  - Tao Zhang <quic_taozha@quicinc.com>
+>> +  - Hao Zhang <quic_hazha@quicinc.com>
 >> +
->> +	dai_link->stop_dma_first = 1;
+>> +properties:
+>> +  compatible:
+>> +    oneOf:
+>> +      - enum:
 > 
-> A driver shouldn't be forcing dai_link settings, and hw_params is
-> claerly the wrong place to be configuring something like this which
-> never varies at runtime - it should be done on init().  If the DAI
-> really needs this you should extend the core so there's a flag in the
-> dai_driver which gets checked.
-
-Yes, should be done at startup of dai_driver, doing that once on initialize stage.
-
+> Don't need oneOf as there is only one entry.
 > 
->> +	switch (chan_nr) {
->> +	case ONE_CHANNEL_SUPPORT:
->> +	case TWO_CHANNEL_SUPPORT:
->> +	case FOUR_CHANNEL_SUPPORT:
->> +	case SIX_CHANNEL_SUPPORT:
->> +	case EIGHT_CHANNEL_SUPPORT:
-> 
-> I am having a *really* hard time finding these definitions (which aren't
-> namespaced...) helpful.  Just write the numbers directly.
-
-OK, will be changed.
-
-> 
->> +static int jh7110_tdm_trigger(struct snd_pcm_substream *substream,
->> +			      int cmd, struct snd_soc_dai *dai)
->> +{
->> +	struct jh7110_tdm_dev *tdm = snd_soc_dai_get_drvdata(dai);
->> +	int ret = 0;
+OK, I will remove it in the next version of patch.
+>> +          - arm,coresight-dummy-sink
+>> +          - arm,coresight-dummy-source
 >> +
->> +	switch (cmd) {
->> +	case SNDRV_PCM_TRIGGER_START:
->> +	case SNDRV_PCM_TRIGGER_RESUME:
->> +	case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
->> +		/* restore context */
->> +		if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK)
->> +			jh7110_tdm_writel(tdm, TDM_PCMTXCR, tdm->saved_pcmtxcr);
->> +		else
->> +			jh7110_tdm_writel(tdm, TDM_PCMRXCR, tdm->saved_pcmrxcr);
+>> +  out-ports:
+>> +    $ref: /schemas/graph.yaml#/properties/ports
 >> +
->> +		jh7110_tdm_start(tdm, substream);
+>> +    properties:
+>> +      port:
+>> +        description: Output connection from the source to Coresight
+>> +          Trace bus.
+>> +        $ref: /schemas/graph.yaml#/properties/port
+>> +
+>> +  in-ports:
+>> +    $ref: /schemas/graph.yaml#/properties/ports
+>> +
+>> +    properties:
+>> +      port:
+>> +        description: Input connection from the Coresight Trace bus to
+>> +          dummy sink, such as Embedded USB debugger(EUD).
+>> +        $ref: /schemas/graph.yaml#/properties/port
+>> +
+>> +required:
+>> +  - compatible
+>> +
+>> +if:
+>> +  # If the compatible contains the below value
+>> +  properties:
+>> +    compatible:
+>> +      contains:
+>> +        const: arm,coresight-dummy-sink
+>> +
+>> +then:
+>> +  required:
+>> +    - in-ports
+>> +
+>> +else:
+>> +  required:
+>> +    - out-ports
 > 
-> Why is the write to CR not part of start()?
+> This still allows the nodes when they don't make sense. I think this
+> needs to be 2 schema files. The only common part is 'compatible' and
+> that's not even shared.
+>  > Rob
+Dummy driver is very simple, the only goal of it is to build a path in 
+kernel for subsystem, so we want to handle dummy source and sink in a 
+generic framework.
 
-OK, will be changed.
-
-> 
->> +static void jh7110_tdm_init_params(struct jh7110_tdm_dev *tdm)
->> +{
->> +	tdm->clkpolity = TDM_TX_RASING_RX_FALLING;
->> +	if (tdm->frame_mode == SHORT_LATER) {
->> +		tdm->elm = TDM_ELM_LATE;
->> +		tdm->syncm = TDM_SYNCM_SHORT;
->> +	} else if (tdm->frame_mode == SHORT_EARLY) {
->> +		tdm->elm = TDM_ELM_EARLY;
->> +		tdm->syncm = TDM_SYNCM_SHORT;
->> +	} else {
->> +		tdm->elm = TDM_ELM_EARLY;
->> +		tdm->syncm = TDM_SYNCM_LONG;
->> +	}
-> 
-> This looks like it should be a switch statement, and the defintiions
-> namespaced.  I can't see anyhwere where this ever gets configured to
-> anything other than SHORT_LATER ever being used so might be better to
-> just delete.
-
-Will be modified according to your suggestion.
-
-> 
->> +	tdm->ms_mode = TDM_AS_SLAVE;
-> 
-> Please use the modern provider/consumer terminology for clocking.
-> 
->> +	tdm->clk_tdm_ahb = clks[0].clk;
->> +	tdm->clk_tdm_apb = clks[1].clk;
->> +	tdm->clk_tdm_internal = clks[2].clk;
->> +	tdm->clk_tdm = clks[3].clk;
->> +	tdm->clk_mclk_inner = clks[4].clk;
->> +	tdm->clk_tdm_ext = clks[5].clk;
-> 
-> Given that the driver only ever interacts with the clocks en masse is
-> there any point in having all the specific named variables, that'd mean
-> that the enable/disable could just use loops.
-
-Will be changed.
-
-> 
->> +/*  DMA registers */
->> +#define TDM_FIFO			0x170c0000
->> +#define TDM_FIFO_DEPTH			32
-> 
-> None of the defines in the header are namespaced and some of them (like
-> the above) seem generic enough to be likely to result in conflicts.
-
-Will add unified JH7110_TDM_ prefix.
-
-Thank you very much for your suggestion.
-
-Best regards,
-Walker
-
+Thanks,
+Hao
