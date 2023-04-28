@@ -2,156 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A2F46F2107
-	for <lists+devicetree@lfdr.de>; Sat, 29 Apr 2023 00:49:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D29DD6F211F
+	for <lists+devicetree@lfdr.de>; Sat, 29 Apr 2023 01:15:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346863AbjD1Ws5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Apr 2023 18:48:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54328 "EHLO
+        id S1346879AbjD1XP0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Apr 2023 19:15:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230436AbjD1Ws4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Apr 2023 18:48:56 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D06526A5;
-        Fri, 28 Apr 2023 15:48:55 -0700 (PDT)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33SMmaWK014260;
-        Fri, 28 Apr 2023 22:48:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=QF94rjS2z1vD5ApVZ2dn+CkuXnR8dw5vfvE0RTDVXh8=;
- b=H1pJRhNbZIdjGS5iLism4xT9RJTsUV9F16y+GJxd9hFY2592DvqNcmF5iHkAUo8MgJty
- fnr5jkCZCzxQKyPWW8b7l9o2YuXd7JZhshth884JRUArkh2jwPjrUxHNn31hdXp209g6
- yUQIamDK4D+nYGWLZBxb51Jrhuk72MWoJdTvXlMk9qTSuInr+AqyJhbVPXo9Mu2BQqOo
- j/rlX+JqFneDzqBP8w6m5CHhjJ5H7vNq9vk1EbDyLcCht0wTjqaDf4ld+2Cx/VG4xTMW
- jz9Q+B0UjjxopCz94csuXDu5Y2eWyGv+K0wNvYDL9nvt8hKQifilFSn/Hlk9HYSt4mvJ cg== 
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q8jun8jnn-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 28 Apr 2023 22:48:36 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33SMmZx0009857
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 28 Apr 2023 22:48:35 GMT
-Received: from [10.110.78.181] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Fri, 28 Apr
- 2023 15:48:34 -0700
-Message-ID: <70acccee-22d7-0d35-b943-346a435b9eab@quicinc.com>
-Date:   Fri, 28 Apr 2023 15:48:33 -0700
+        with ESMTP id S1346782AbjD1XPU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Apr 2023 19:15:20 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 557D749DE;
+        Fri, 28 Apr 2023 16:15:19 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DD5C860F91;
+        Fri, 28 Apr 2023 23:15:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A674C4339B;
+        Fri, 28 Apr 2023 23:15:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1682723718;
+        bh=V47hoZiyKH7rDpUH6NwYPJ7TotHzjSslW4RlKcVJpT4=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=VifBKT2RDFwmgKTgjLwymdT5T9+lRiUD0Jgc6ya20KneNUzUlolcuv6d8KdY+DQjk
+         C/1TEAZieV4eTU+238Hi8KkI55t6+GS1tSOtqvMI4eHIKFk+5DWARtxmMA0v+QENcr
+         QXhixuXifZc8HxRIFDLInH2c6EnOchvdaPpDYWZnh6vsOnKasVYP2ONeHInbQ7iHL7
+         REy5XL1VIYhsV3nReQElrrXqe5EoTlJu09glYLB2lSPEb+wR/SSR3BA3/KEM+HXSc7
+         myeXsIbv+LFBxSvN/HThCu4TNp5DwlFQgI9gtfPmKAn9DvLL8TyX34CN1CuOEchsyX
+         JaLuRNqLS6+HQ==
+Message-ID: <3574700189bb35bba3ad6d79f3a799c9.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v2 3/7] virt: geniezone: Introduce GenieZone hypervisor
- support
-Content-Language: en-US
-To:     Marc Zyngier <maz@kernel.org>, Yi-De Wu <yi-de.wu@mediatek.com>
-CC:     Yingshiuan Pan <yingshiuan.pan@mediatek.com>,
-        Ze-Yu Wang <ze-yu.wang@mediatek.com>,
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20230424123522.18302-12-nikita.shubin@maquefel.me>
+References: <20230424123522.18302-1-nikita.shubin@maquefel.me> <20230424123522.18302-12-nikita.shubin@maquefel.me>
+Subject: Re: [PATCH 11/43] dt-bindings: clock: add DT bindings for Cirrus EP93xx
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Arnd Bergmann <arnd@kernel.org>, Linus Walleij <linusw@kernel.org>,
+        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-arch@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
-        David Bradil <dbrazdil@google.com>,
-        Jade Shih <jades.shih@mediatek.com>,
-        Miles Chen <miles.chen@mediatek.com>,
-        Ivan Tseng <ivan.tseng@mediatek.com>,
-        My Chuang <my.chuang@mediatek.com>,
-        Shawn Hsiao <shawn.hsiao@mediatek.com>,
-        PeiLun Suei <peilun.suei@mediatek.com>,
-        Liju Chen <liju-clr.chen@mediatek.com>
-References: <20230428103622.18291-1-yi-de.wu@mediatek.com>
- <20230428103622.18291-4-yi-de.wu@mediatek.com>
- <904abf67ec4ba7d37fc1e500e8a2dbd1@kernel.org>
-From:   Trilok Soni <quic_tsoni@quicinc.com>
-In-Reply-To: <904abf67ec4ba7d37fc1e500e8a2dbd1@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 6UvFND-TZbp9AA4jPqH0KdgtcDq1-F5h
-X-Proofpoint-ORIG-GUID: 6UvFND-TZbp9AA4jPqH0KdgtcDq1-F5h
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-28_07,2023-04-27_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 impostorscore=0
- clxscore=1011 bulkscore=0 mlxlogscore=696 priorityscore=1501
- malwarescore=0 phishscore=0 mlxscore=0 spamscore=0 suspectscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2304280190
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        Michael Turquette <mturquette@baylibre.com>,
+        Hartley Sweeten <hsweeten@visionengravers.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org
+To:     Nikita Shubin <nikita.shubin@maquefel.me>
+Date:   Fri, 28 Apr 2023 16:15:16 -0700
+User-Agent: alot/0.10
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marc,
+Quoting Nikita Shubin (2023-04-24 05:34:27)
+> This adds device tree bindings for the Cirrus Logic EP93xx
+> clock block used in these SoCs.
+>=20
+> Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
+> ---
+>  .../devicetree/bindings/arm/ep93xx.yaml       | 102 ++++++++++++++++++
+>  .../dt-bindings/clock/cirrus,ep93xx-clock.h   |  53 +++++++++
+>  2 files changed, 155 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/ep93xx.yaml
+>  create mode 100644 include/dt-bindings/clock/cirrus,ep93xx-clock.h
+>=20
+> diff --git a/Documentation/devicetree/bindings/arm/ep93xx.yaml b/Document=
+ation/devicetree/bindings/arm/ep93xx.yaml
+> new file mode 100644
+> index 000000000000..de7020f4f356
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/ep93xx.yaml
 
-> 
-> [...]
-> 
->> +/**
->> + * gzvm_gfn_to_pfn_memslot() - Translate gfn (guest ipa) to pfn (host 
->> pa),
->> + *                   result is in @pfn
->> + *
->> + * Leverage KVM's gfn_to_pfn_memslot(). Because gfn_to_pfn_memslot() 
->> needs
->> + * kvm_memory_slot as parameter, this function populates necessary 
->> fileds
->> + * for calling gfn_to_pfn_memslot().
->> + *
->> + * Return:
->> + * * 0            - Succeed
->> + * * -EFAULT        - Failed to convert
->> + */
->> +static int gzvm_gfn_to_pfn_memslot(struct gzvm_memslot *memslot, u64
->> gfn, u64 *pfn)
->> +{
->> +    hfn_t __pfn;
->> +    struct kvm_memory_slot kvm_slot = {0};
->> +
->> +    kvm_slot.base_gfn = memslot->base_gfn;
->> +    kvm_slot.npages = memslot->npages;
->> +    kvm_slot.dirty_bitmap = NULL;
->> +    kvm_slot.userspace_addr = memslot->userspace_addr;
->> +    kvm_slot.flags = memslot->flags;
->> +    kvm_slot.id = memslot->slot_id;
->> +    kvm_slot.as_id = 0;
->> +
->> +    __pfn = gfn_to_pfn_memslot(&kvm_slot, gfn);
-> 
-> Again, I absolutely oppose this horror. This is internal to KVM,
-> and we want to be able to change this without having to mess
-> with your own code that we cannot test anyway.
-> 
-> What if we start using the extra fields that you don't populate
-> as they mean nothing to you? Or add a backpointer to the kvm
-> structure to do fancy accounting?
-> 
-> You have your own hypervisor, that's well and good. Since your
-> main argument is that it is supposed to be standalone, make it
-> *really* standalone and don't use KVM as a prop.
+Why is this in arm/ directory? Isn't it a clock controller?
 
+> @@ -0,0 +1,102 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/ep93xx.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Cirrus Logick EP93xx device tree bindings
+> +
+> +description: |+
+> +  The EP93xx SoC is a ARMv4T-based with 200 MHz ARM9 CPU.
+> +
+> +maintainers:
+> +  - Hartley Sweeten <hsweeten@visionengravers.com>
+> +  - Alexander Sverdlin <alexander.sverdlin@gmail.com>
+> +  - Nikita Shubin <nikita.shubin@maquefel.me>
+> +
+> +properties:
+> +  $nodename:
+> +    const: '/'
+> +  compatible:
+> +    oneOf:
+> +      - description: The TS-7250 is a compact, full-featured Single Boar=
+d Computer (SBC)
+> +          based upon the Cirrus EP9302 ARM9 CPU.
+> +        items:
+> +          - const: technologic,ts7250
+> +          - const: liebherr,bk3
+> +          - const: cirrus,ep9301
+> +          - const: cirrus,edb9302
+> +
+> +  soc:
+> +    type: object
+> +    patternProperties:
+> +      "^.*syscon@80930000$":
+> +        type: object
+> +        properties:
+> +          compatible:
+> +            items:
+> +              - const: cirrus,ep9301-syscon
+> +              - const: syscon
+> +              - const: simple-mfd
 
-Agreed, same comments were made earlier too. I would prefer that 
-GenieZone have its own identify rather than sharing the 
-APIs/data-structures here.
+Is there a reason it needs to be a syscon? Or a simple-mfd?
 
----Trilok Soni
+> +          ep9301-reboot:
+> +            type: object
+> +            properties:
+> +              compatible:
+> +                const: cirrus,ep9301-reboot
+> +        required:
+> +          - compatible
+> +          - reg
+> +          - '#clock-cells'
+> +          - ep9301-reboot
+> +
+> +      "^.*timer@80810000$":
+> +        type: object
+> +        properties:
+> +          compatible:
+> +            const: cirrus,ep9301-timer
+> +
+> +    required:
+> +      - syscon@80930000
+> +      - timer@80810000
+> +
+> +required:
+> +  - compatible
+> +  - soc
+> +
+> +additionalProperties: true
+> +
+> +examples:
+> +  - |
+> +    / {
+> +      compatible =3D "technologic,ts7250", "cirrus,ep9301";
+> +      model =3D "TS-7250 SBC";
+> +      #address-cells =3D <1>;
+> +      #size-cells =3D <1>;
+> +      soc {
+> +          #address-cells =3D <1>;
+> +          #size-cells =3D <1>;
+> +          ranges;
+> +          compatible =3D "simple-bus";
+> +
+> +          syscon: syscon@80930000 {
+> +                  compatible =3D "cirrus,ep9301-syscon",
+> +                                  "syscon", "simple-mfd";
+> +                  reg =3D <0x80930000 0x1000>;
+> +                  #clock-cells =3D <1>;
+> +                  #reset-cells =3D <1>;
+> +
+> +                  ep9301-reboot {
+> +                          compatible =3D "cirrus,ep9301-reboot";
+> +                  };
+> +          };
+
+The example should only be the clock controller node. No soc node, or
+root node.
+
+> +
+> +          timer: timer@80810000 {
+> +                  compatible =3D "cirrus,ep9301-timer";
+> +                  reg =3D <0x80810000 0x100>;
+> +                  interrupt-parent =3D <&vic1>;
+> +                  interrupts =3D <19>;
+> +          };
+> +      };
+> +    };
+> +
+> +...
