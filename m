@@ -2,297 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25E7C6F1199
-	for <lists+devicetree@lfdr.de>; Fri, 28 Apr 2023 08:08:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B8A86F11E7
+	for <lists+devicetree@lfdr.de>; Fri, 28 Apr 2023 08:45:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230156AbjD1GIy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Apr 2023 02:08:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33212 "EHLO
+        id S230042AbjD1Gpx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Apr 2023 02:45:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229512AbjD1GIx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Apr 2023 02:08:53 -0400
-Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2063.outbound.protection.outlook.com [40.107.247.63])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DB7D2735;
-        Thu, 27 Apr 2023 23:08:51 -0700 (PDT)
+        with ESMTP id S229993AbjD1Gpw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Apr 2023 02:45:52 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC02530E8;
+        Thu, 27 Apr 2023 23:45:45 -0700 (PDT)
+X-UUID: 48650caee59011edb20a276fd37b9834-20230428
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=COABZQu//O/J6ejbrXyuXC1i+DRFsHIepUBdIvU61S4=;
+        b=RinGEcrtJl1apC8sepJ0tH2vy/p9M9Jv8gumJzyFvXzXkhDsfeJEs8sCQ+Xirvp53Wt3CpxC5gXRMVGFpyQbdSUrNwQiF240yzjtpwCBoLpO2jVIIXrS/vVT45QFx1sp0X7AYBMeSm0txm7gYG2GmWHef1HrbYE58MY3Uxb9UJM=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.22,REQID:f66448c1-4d30-42e8-9aef-506e60373797,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+        release,TS:0
+X-CID-META: VersionHash:120426c,CLOUDID:8afb2a30-6935-4eab-a959-f84f8da15543,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-UUID: 48650caee59011edb20a276fd37b9834-20230428
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
+        (envelope-from <jason-jh.lin@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1142856348; Fri, 28 Apr 2023 14:45:37 +0800
+Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
+ mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Fri, 28 Apr 2023 14:45:35 +0800
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (172.21.101.237)
+ by mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server id
+ 15.2.1118.25 via Frontend Transport; Fri, 28 Apr 2023 14:45:35 +0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hYi9KjBJyPCjs4Ni/MZbqw6I9OkZfDF7kwdPR3c8KNbup64aGEprxKS34jabo4eK/dcMYrYoQMMRHAPLawvFaRnQ54bi+eyQooPZC50hjz4dQUi8QqEJ53nuKSMEnvtcs+PnsggS4rXTfiTbqM4jtwRVuLMpYpkUXlaOi31VAUVuVwF8EY4amLz8Ax42ceXQafx09KGO287XmGb05vd32PaKr2n7WXhTNBNV5byYNn5ux/GIM0eedP3IdnMHZidex3JqG5qLx2QZ07YUZaJJApoaZYxV6nA+dhZXuDdxSdNDy1YyEQQSJjx9i9xCi39rfXI1WMf8eA7R4WdusYm67A==
+ b=gZGG7dI8pnCLo0DX+gD2oNd88wAdnaruYXd4Q+bRXph8hicCtijkeBtXhn3G8b1jZilU/siC+841x8bXvlrKtu+Ne1JrKGPS4sA+TgInSaAjhn5arZMJPldmuzhcs/ufMMjByA3qjIfFNl0FHanJUH/3aiXd6kpVtZl4Yu4e1NAdirRDfprbs6BaARgaogumFy/TdJAloxM0J38XbNoLVHjQpGMnsXcOSS5I44sBgrkb6V039GYJiQwlQXp6IFRNw0XNl6ShxXfnSJtN+lBIHB+v8yWSWd7Rp2ZKpl1ilOLCJx/O1FSRqbjQaRr6d0Yyv9n+XJWpE6GWiuLQBtPIow==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=d7/2/ICOmRRXx+vmxnHFG+dyhUDGcaH5AtwZDmi7F0E=;
- b=YDiKF5E26ZLI4Np3IJAvNI+onMm7PD2sGsNMtDCvOoz5oOCM6k3L107votFtOd5mu67mdU6MAnx7koLCu5z4D+SmNTolGr3jA9vAQc0KhffypbrLxtkuypR95E2t6XXGCgz1iB2YzPZL51IYlgWkvPFlXqMEZppcrjuB2SA3DZU1PM8GjYpl/2hPX66HCKAAsYmlFOgDRUqRBDX59ViGIg1Bk+++DjHb6ABjxFc84FGnIsHh15v1+HsUC6ukimyeysYZde/kfaqhHelTrNu1fdB6y7jpefyxc4GFTTeQqSnxRdzZcRK0ktSF9i0lwyaqSr+d9Hk/W89/iUQyk1yhdQ==
+ bh=COABZQu//O/J6ejbrXyuXC1i+DRFsHIepUBdIvU61S4=;
+ b=cuWto3HjJKGVhQoOkSzKX8kfedTWuVoQbYpKg2KfluHvT8PUlmSqpEOpsx+DejhfUsN1wjBQHwyjNuILtz4osqvCBbPZ6wC+CWUC7u1LcdsaKlxhkiPLfcraF7+0UQap11stS7DWGQMRxOSM0oRiUm8Qzi8KvqLqjqJ/VZtP6IOP0g8KNoUjfQB+Mc87bm/lDyz1ZPtPJdI6hJGKacZsoVaGhaD9W9Q94LR+/FPS6xIMjWCct1f5dyhh7249xnJRvMmHZy4S2iFQAJX09uDzkrICGa55V1YRDxbwy9BSkVPc7wszF6VlsJzhilJOHR/nNt5EvOwhKSvVCV07Y/kR+w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wolfvision.net; dmarc=pass action=none
- header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
- s=selector2;
+ smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
+ dkim=pass header.d=mediatek.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=d7/2/ICOmRRXx+vmxnHFG+dyhUDGcaH5AtwZDmi7F0E=;
- b=AqYemXLqlGjwQacj2cARurSR8Tl56OUDjcYGe4V8+Zb8y5hK++5ZYGXMIXc0c29S2Wfx17YmbkT/kBRQ64AoONLznmmDxd0f4o5WOwlHQez6UKoiqdGYRhWNOgW1TE68upXioKfapMNtEVmJ8sDSXdIphZXjvCTHyEUKjCcKfVY=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=wolfvision.net;
-Received: from VE1PR08MB4974.eurprd08.prod.outlook.com (2603:10a6:803:111::15)
- by DU2PR08MB9992.eurprd08.prod.outlook.com (2603:10a6:10:490::11) with
+ bh=COABZQu//O/J6ejbrXyuXC1i+DRFsHIepUBdIvU61S4=;
+ b=DRu345e8lnjX+n7oCAA5tk7u4v0MlNCsJfGHJ6KFdTAp/34Xo4FPXbxstuHq46eNwj0FdK+NzVhVa2UCW3IQ5hnmT4cb3U/MCJ5GscdV1xDGTuCbamz1vMeOQqduuhYrcF1C81RJTvotBsmkVSSrcXlwH08IOKiF8okGxahNDt0=
+Received: from PU1PR03MB3062.apcprd03.prod.outlook.com (2603:1096:803:3b::21)
+ by SEZPR03MB7050.apcprd03.prod.outlook.com (2603:1096:101:e4::9) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6340.21; Fri, 28 Apr
- 2023 06:08:48 +0000
-Received: from VE1PR08MB4974.eurprd08.prod.outlook.com
- ([fe80::6c5a:c28e:206:453]) by VE1PR08MB4974.eurprd08.prod.outlook.com
- ([fe80::6c5a:c28e:206:453%6]) with mapi id 15.20.6340.022; Fri, 28 Apr 2023
- 06:08:47 +0000
-Message-ID: <1896d060-1079-06be-3a2f-373dc99ebe2f@wolfvision.net>
-Date:   Fri, 28 Apr 2023 08:08:44 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-From:   Javier Carrasco <javier.carrasco@wolfvision.net>
-Subject: Re: [RFC v1 0/4] Input: support virtual objects on touchscreens
-To:     Jeff LaBundy <jeff@labundy.com>
-Cc:     =?UTF-8?Q?Thomas_Wei=c3=9fschuh?= <thomas@t-8ch.de>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Henrik Rydberg <rydberg@bitmath.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Uwe Kleine-g <u.kleine-koenig@pengutronix.de>,
-        Bastian Hecht <hechtb@gmail.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>
-References: <20230425115049.870003-1-javier.carrasco@wolfvision.net>
- <419c9d72-9791-46ff-8317-b4dfe2e2d0a3@t-8ch.de> <ZEf5rfzs22HtQivB@nixie71>
- <aa6125d9-1233-7aab-1811-29acd4ad49a5@wolfvision.net>
- <ZEqvgnhzm7r4O7hz@nixie71>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6340.22; Fri, 28 Apr
+ 2023 06:45:32 +0000
+Received: from PU1PR03MB3062.apcprd03.prod.outlook.com
+ ([fe80::66d9:2bd0:26ba:d9bb]) by PU1PR03MB3062.apcprd03.prod.outlook.com
+ ([fe80::66d9:2bd0:26ba:d9bb%6]) with mapi id 15.20.6340.023; Fri, 28 Apr 2023
+ 06:45:32 +0000
+From:   =?utf-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= 
+        <Jason-JH.Lin@mediatek.com>
+To:     "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "angelogioacchino.delregno@collabora.com" 
+        <angelogioacchino.delregno@collabora.com>,
+        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        =?utf-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= 
+        <Singo.Chang@mediatek.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        =?utf-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        =?utf-8?B?UmV4LUJDIENoZW4gKOmZs+afj+i+sCk=?= 
+        <Rex-BC.Chen@mediatek.com>
+Subject: Re: [PATCH RESEND v3 0/9] Add gamma lut support for mt8195
+Thread-Topic: [PATCH RESEND v3 0/9] Add gamma lut support for mt8195
+Thread-Index: AQHYxkdKrueZqbInPkqaVhhgSOlpM68+3A8AgAHNiQCAAQPmgA==
+Date:   Fri, 28 Apr 2023 06:45:32 +0000
+Message-ID: <e73d191f334804324dcaef882dfcb30b4e3e3964.camel@mediatek.com>
+References: <20220912013006.27541-1-jason-jh.lin@mediatek.com>
+         <c6a12ebc-99f1-855d-e366-e5a4833dc562@collabora.com>
+         <17525028-80bb-cd03-fbc9-b8ff65378517@collabora.com>
+In-Reply-To: <17525028-80bb-cd03-fbc9-b8ff65378517@collabora.com>
+Accept-Language: en-US
 Content-Language: en-US
-In-Reply-To: <ZEqvgnhzm7r4O7hz@nixie71>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: VI1PR07CA0279.eurprd07.prod.outlook.com
- (2603:10a6:803:b4::46) To VE1PR08MB4974.eurprd08.prod.outlook.com
- (2603:10a6:803:111::15)
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mediatek.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PU1PR03MB3062:EE_|SEZPR03MB7050:EE_
+x-ms-office365-filtering-correlation-id: 5f8a26c5-8ed1-4269-addd-08db47b429d0
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: n4c8p/JZT7txJ0RIweOGHaCO9hRaCiufbFHy4FkMPqH06wZzIzLqhT0TaQ6MAkomd3OXsfdUwLu+Vy8DW5dzHJH8bJTLSxced4Gzi+7XuPx6AJyU7ylWXVt8oEVuQScijRpBpQvvUqvNIxM8u7YjsERB/nWjpBMhAk4cS6MIDvmBsjNFlk6kLFVDsWM1qRMsVAh0xkTQGF125w1nx9JxNijIxPUstchhHE4PLyT52M3VKWyNbhzw8nyFxlXLBlyB3OiMotqywskPLuxOlPWtFLJsxizSx5GfGi3D7IbStF7ajVhO6yKD/05ocUOEIcA1oWZ7GMl774wIkkWPtV/v9JDjKcKxNLtlYPtrj2RIuo/ip8W16VPgJFLBexZWqCmqgmjdZ/46bqLwr2XXU4glpizqQJ5QR9kfw/oBbZ7OjH244Cb9xDQBz2OZQTPcOg9EJBPMbWrfeyTyD31XsoS2XeJkBgHxMA8Bsu+mRl9yK33fNR47PzxIUFGaCGuSpHjUOmIe2vfwDTd/sOexJVWoVi0olmBlsLVO78xHhIWwt1n9B6e5qcFPMlcldeqIIAYJowk5D0JpK+jR28zv4IzDKVSQoZyVT68byNoCi/SNeoYeHXxq21uG8qtk3VP2+HXzyrLoDdCfQBWYQ6ayGuiGXQ==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PU1PR03MB3062.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(376002)(366004)(346002)(396003)(136003)(39860400002)(451199021)(6512007)(26005)(6506007)(186003)(86362001)(110136005)(54906003)(478600001)(966005)(5660300002)(85182001)(71200400001)(8936002)(6486002)(36756003)(8676002)(7416002)(38070700005)(66946007)(38100700002)(316002)(4326008)(66476007)(91956017)(64756008)(66556008)(2906002)(66446008)(76116006)(122000001)(107886003)(41300700001)(83380400001)(2616005);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?UEhxWUJqUzU4WUFjc2pnbFF4SGRNNzIwczRHMi95dlVYeEFUT1pkU2NMeFc2?=
+ =?utf-8?B?MVQ0QkxWcVNYOVAydnpBVjMvaGxuMTdhVzhucXVJZy93bG5iY1FDZ3YraVU2?=
+ =?utf-8?B?dGg0b3QwREEzM1ZMMUgxZUZzb3crN1ZVUjh2emZ1dVF5WEZLV1pQejRkeUJ2?=
+ =?utf-8?B?L3hvbWJsR1BhcG1jRVQxUnpiRmN6TGlaRi95dENMdlZoNDBmYlVZZGlCL3RW?=
+ =?utf-8?B?MkNlMWZnOTlKMGt1QXRiZkwrZTg2UEc4NWZJSFRyQzhtUTVXRjBidjVic1RB?=
+ =?utf-8?B?RmpGRFpZQ2RRU1VKaCtZK25JUjlRY08wQ1JLeWRIUFB4Qm43cVJUWFJlV1RB?=
+ =?utf-8?B?R2diSGU5cHJYdnVPeng3bzEwWmwvQkVKZEgxdWtRTzFGSjBBK3ltYk0zQjl5?=
+ =?utf-8?B?TkVOdTkvRVp2MFpjRDRRYUl4dERQazZQUFdLQ2NuaXhnV01xOC9BcS9XT2Rq?=
+ =?utf-8?B?cEl2N0R1TUI3Qmx1ZUJmTUl1ZVAyaHc2ZFI0SE1yTnNPT2h3bFE1SHoweE5K?=
+ =?utf-8?B?UVdXRFB6S2lkN1YyT3ZDeWUrcUZaOGhRZFcySXJlY3V6R3pVcjIyTnpISUE0?=
+ =?utf-8?B?OEdXS0hEYUlrem9NYVRBaUd4WWRYMVEvWWFNcjFuam5wdTlzaWo4QkRzdG5M?=
+ =?utf-8?B?eXVJbkZVcXUvY2NmNTN1QmcyVW1ia2hzU3BlWVEweGYrd2d0bktUZ0laMXVJ?=
+ =?utf-8?B?TGhlQXZ1dnNOZ0JpK2NTU3JOSVYyTWJNMmlTRFRNQmhJL05FY1VnaXhQbVNH?=
+ =?utf-8?B?VkpaRE5YVCt0bkhENWx5ZGVzeDQrRlIwSk5zaC9ndW1ZL2VBdXhENHRlVFZH?=
+ =?utf-8?B?bEczRTlnTkZtTjdNVmFlWUxzclBUdDViMDVvaUVmelRVMjBndStNZ1FQTVVS?=
+ =?utf-8?B?WmpJa1E1UXNEb2Fab3RKMWVQM2RuQTBKNU1ZUGt3aFIrcW5DZVRLN0taeEFw?=
+ =?utf-8?B?Y3pTY1prU0JqU3FXZ1BZS3JqWW8xT0V1UEk4Yk9CRU5XU3V1SEoxMU50MjJs?=
+ =?utf-8?B?eFg1ZTdNUE04YTE2ZDYxMXYxL0lCUVRXQ0VxblViZ0NMR09lenVXdHZuZFdo?=
+ =?utf-8?B?ZEVKNDV1SUY1TFhzL3lwcWZhTU1LNVRFQjZXWVFQUXpmTVU3Sk9pbEN3bCtT?=
+ =?utf-8?B?WXFuSnExOUJITGJxK3RxMGNJU1F1SVh4ejhPcFI3c25yYjdiMjZyZjVGZmVz?=
+ =?utf-8?B?WnB1Ukd2dUlXeENmVkl4dVJWeFhZbE4yclB2ZUk0V1RxcVJYdzhCVTk1Rk1n?=
+ =?utf-8?B?ZGRWYVZDMVRVQWFFeG84VzZlcHZjbGtSNkRscFNuMis3MTFLeVRwZStsUjFO?=
+ =?utf-8?B?S3ZKZ2pLR0VDLy9YeTJ1dnVPVW0zd21lUDBIVU9PNVc4a1lOZk5pYWFGdGFS?=
+ =?utf-8?B?RnZJcU1VOWtFVmRVZldNMmgvNFFqTjMzOU1SK1g0VVd5OHNwMjVhdTgwbkR2?=
+ =?utf-8?B?dVdHMWFHR09CM1hveHQrQVBDWTF3LzI2NlVXald4NHhjK2g5eGJiYTY3STJ0?=
+ =?utf-8?B?b2J0d2RzYnRMWE9KM2IrMDhDaFV1UGRQTlVud0dPbXB4N0NCeDJyaDkyZllR?=
+ =?utf-8?B?bU9BOEZuRk5aYVNNRVBJdmtRRXJOV0FpTk9mTXliR0ZLMmtpazVFd0lRc1h4?=
+ =?utf-8?B?Zk9rZEpnZ0JUUEpoSkJOK2JnSVBqNkxxbmpkUHpPUjVzV0RWNXEwejJjKzB3?=
+ =?utf-8?B?aHJUNHBOTnNIN1o5ajBjT08zdU9tWWRZWHJZVzl4VTFQYU02TktWMWVzWC96?=
+ =?utf-8?B?WC83bEdGUXBaY251NXozNE5NanJVYjNiTjBKWk1HRmFRRjVXZTA0a3JzOUkw?=
+ =?utf-8?B?Q1J3eFNGVjdLWmlqSlZaMjk1bzNtNmdJcGw3S0JieHh3c2FGSlo3MFZNOU51?=
+ =?utf-8?B?dU9YMkpBekNZaEpRYVZTN0tNRFcrdGVnL2ZuQzVJMm84VEppM1kyMXhJbmN6?=
+ =?utf-8?B?cHZ2K2ZjK09yNnNmVnBoRWI2eUpPV09FTmVEM3F6YTYvVEtkSjJrdCtvdHV1?=
+ =?utf-8?B?TEdnUFpTdlhqVm5WM21pMzlYR0pmNWtac3BJZERSRFRUVG51aVkvd1BYbTNX?=
+ =?utf-8?B?MDR1MzhmQXJFS3lzL3dlVE1qUWFZMWZQRVkzb05NcTd0aG5RODAvd1BxVnI2?=
+ =?utf-8?B?SjFZSytqcWpkSjF2K3FxWWhtcHd5ZjNkOUhaNkFSMi9qckNibTZUYWNhM3o4?=
+ =?utf-8?B?NlE9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <E9C4BE3DB8F8B546A71C5F35EC4964B1@apcprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VE1PR08MB4974:EE_|DU2PR08MB9992:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4c57187c-8e2e-4423-e922-08db47af077b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 36ARaBrhAZ+rtNLN5iygu4AUnKczdXbiRjAAhACRo+ZXGkLPELaZ1HwpSp1FWYp018On95S2wwyvpgPoDKr1MsOa/iykSLWkAmaw9XYC/mx7ytuTLKm7H0i3aMlegW2TolBuuqayEsEOfNcFuB8jsgSVu2DJz2THyrJOXGZxbYiFbKotEnzG8yqCxhzeb2ozesfDy6vcDnrANV9bkX4XM6svXmUz6xx6b3CnX+ULzlUILkFUxw+VVI34a4/Q0qOdCcdzaUH4T5xHRpJ0bfDCWEhEfINCmWPeE1NYsTv1A5iKYs4whAc6eBiMIxDJxUr1OjTlqWnpW6EgV1Kz92Qrv1HbNzBa7i4E3klZMzYQz+9mRB6ORdnkvbVbHirsqtZOffAyqZjt3x0TmXjbeLWqnzQpLT9pCtKHhLlZIJ5kHPOPLlch90XQsZ8DnsofrgAhmkd6M1+jp0IpSm0yh0+jRvJwArrN7qhd8nJSmE5T5Ht4aq7NaYlGksemadlo3MEkLF6NAOYtYKyM0MaQ4rkGuLPiaMoHyCRbg3kbDT+OT8xeqmiClrRdBm3VH4ZRT+nn3bbKfIDx5bJIeQhgocAUiRRSLJhyBzuL+DJQvNHMGOssULejOvfpVxhzUX3gomNwzd3DbQG+N6UB1qTBTQVNTw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR08MB4974.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(39840400004)(136003)(376002)(346002)(396003)(366004)(451199021)(53546011)(6512007)(107886003)(6506007)(186003)(2616005)(66899021)(31686004)(966005)(66476007)(66556008)(83380400001)(6486002)(66574015)(6666004)(36756003)(45080400002)(44832011)(5660300002)(54906003)(316002)(41300700001)(478600001)(2906002)(8936002)(31696002)(86362001)(7416002)(38100700002)(66946007)(6916009)(4326008)(8676002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aHJpdzlhdEZxa0pjQUgvdE9PQWlxTmhvbmZvY3E5UFh3aHFXbHB1d2NCbDRP?=
- =?utf-8?B?cFYzQkxiN2VwZ0VwdkF6bzI1WmJuNEZtUFdEUDRyV3BLSDl5K3U3U3lkM2lL?=
- =?utf-8?B?ekNva3RPT2VRcU4wYjU1dUhvZHRGdVYxMUV5d24yYklMZ051UVd4OWtBOXFS?=
- =?utf-8?B?UlVxZnNlWVhBRlV2OCtLcWlibk5uMU9aYW9tZ0Nkcmh5YmFkaHZYTUZHZGFX?=
- =?utf-8?B?aWcwWDBmYVI3LzFxS09RUXRveUlkbjRhN0VoOFZxUzRGWnlNb2pjSlk0OUlQ?=
- =?utf-8?B?SFYzbkptTUxpS0xvalVQbEFLUUhwK2pNMXhxdklCckY4ZjBwZW5CL2tDcitk?=
- =?utf-8?B?QU52ZHBqb1QzZE9wYWNNeEhPVWhzS1dDelovNlJRWXc5WTh6UTRRNkFFb3lU?=
- =?utf-8?B?M0wzdVgzMW5qdHJ5eGVuRkFMMHdDKzZCVHZ0UWl5NzRvSjM3QVRPN0Eyb3la?=
- =?utf-8?B?eUNkVk45RDAxVjMyeHgxMXRuY01RQzV1UHNGU3I5azYvV05WWGlLUi9lVFlR?=
- =?utf-8?B?QXpCWlZBUjJ6ZVM1QnVsNjZPelQ5eHRoWjUxMUl5Ky80QlRrOXRuY1VLUDhX?=
- =?utf-8?B?dndQdWhCUWRLamh1K1ViV0s2S3BGRUtMQnJLcnhVWlI4dHhTeFdSR0l5NEQy?=
- =?utf-8?B?VkhhUUxkbWdCYnd6OXdNYU8vK1V4YWNuT2diQWxFN0xyMmRPdktzN0hmS3Zy?=
- =?utf-8?B?dEpJT2tyOFBucXdNVlhBVTRrZW9HZUNmb0ZKVVZwbmxYZnYzVGVzS0NhZDBJ?=
- =?utf-8?B?RFpKR29uUWJ6elN1UHlHaWVDeVlZMnBJN2luYmVodzVqRW5CcWJBUVl1Rm9h?=
- =?utf-8?B?MVBlNWtkRE9EclhkdnA4aVRaVXo4VHhUblNhZ0t6amVqSFVOL0dLZDErWEQw?=
- =?utf-8?B?WnBhdTdtMVhISFdTQk94K2xsV3RKckhPNVFHNWhIN3FkRVdseWJOWEdaaWdC?=
- =?utf-8?B?ankrZGhLMkdHYXJKVXFabGw3djRReWloTnhzeHFrUmU2R1h3aExWT3lVTWQ0?=
- =?utf-8?B?NW9lMldlWnB6QWlvS00zbnZyOUM5Z1kyeTZzSEtKTm95dmpXNGRRRU14UTRE?=
- =?utf-8?B?L3QzTVFxSjFiVmk2YUk0S3ovUHQ4aXRkMWNPSnV6aTN3QnRTbjdoYkplMkNv?=
- =?utf-8?B?L09IaGJxMnlRVjZPVjlZSkV4SmNQeU9ZNXlwODJuR2dQK0dxdDdSNlVwc3h6?=
- =?utf-8?B?V3g4bEZUZDV2L0J2aWw5SExUbWgrYU4vcjhpUlhXeUNoTkVYRERQaUlrTk5q?=
- =?utf-8?B?TDFXOStncHdIays3aWlZVzFGeFUxTGU3S3BHTC9lY0FESWI1WFNBaTA2WElW?=
- =?utf-8?B?OVVuNis2dWRqQXBwM3RmQWFKUi9pUnpZM2xXNjYrU0h0UmlJNENVRkk3SFEx?=
- =?utf-8?B?V1FVcVZCcWVvV1BnL0d1M29xd3hxbEtTODNJNmNPOGRoN0p5YWFNNHpsMk91?=
- =?utf-8?B?OEdtaE96WGxaajFhYU1QOXhzd0xENjY0b0pyYjBFS2paS0NPNDM2a25MTUk5?=
- =?utf-8?B?ZERDMThXbXNncEFWakgwYkVtWDFLdDlRWjduaFZZNXZodnV6elh6N093TGo4?=
- =?utf-8?B?OUVkZWdCbG5RRkxvcFBPbFEzTFBBR2srNnBrQU94d1o4eHJEZ1JOWnlUU1dR?=
- =?utf-8?B?YzZqMGpuZWNGakdSQ2ZUNFlYUkxGR2I3N0g4Mzc1Wkk5b1BLd1VPWHpDTFVs?=
- =?utf-8?B?cnl6Q0tYTGZvQ3hTT0hhQi9FNGdMdnZKaEtubXhRc3RMOW82NzJ1V2dWOU5m?=
- =?utf-8?B?RFVqRTRFQXJWY1o0c1FyeXR0VjkxQTFlOVJtMjQxb3hzd3Nqcmt0VXJCVFY0?=
- =?utf-8?B?ZGhubHB4cUtyVFB1S3RITGJaUEdSbHZZbHdvbEdOZmxOY1ZKdzRXa0VtbVMv?=
- =?utf-8?B?eXZpUXRNRERjUWo3Rnk3VXRaUWU0QnU3N2xRaVZ6L1U4ZFcrZjVydmRhRnp0?=
- =?utf-8?B?TnduYitxZFNJOXQ5Sm44S1Q1b3N6SHVSMU5UVUNMNHUrbVBkY0lMMmNsbHBK?=
- =?utf-8?B?MWNzenorM3FpQXExM0NNWXB6eFpTOW91NEZqeFdmdkFwWXpuSDRBLzE1dGtv?=
- =?utf-8?B?NHFwZE5UR05Vd3dRVFZlcStLMENraktLOFBkaE4vQWRGdjNHTkRGL2hNL2F1?=
- =?utf-8?B?c0kwOUh4eFBrZS8vT1pVc1duVDYvWFFSNGJzRnhnQzl0Zy93L3htT0ZDeVdJ?=
- =?utf-8?B?SjR4K3dSdmo0RC84azd4REF6M0w1ZVE2VU1IbDQxSTBQQm1sb0FLY2FhbUt6?=
- =?utf-8?Q?bkVocvHBXQLJQ7BYQ6GyRVmIBmlun3Qb1sSnU4azYM=3D?=
-X-OriginatorOrg: wolfvision.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4c57187c-8e2e-4423-e922-08db47af077b
-X-MS-Exchange-CrossTenant-AuthSource: VE1PR08MB4974.eurprd08.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Apr 2023 06:08:47.7448
+X-MS-Exchange-CrossTenant-AuthSource: PU1PR03MB3062.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5f8a26c5-8ed1-4269-addd-08db47b429d0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Apr 2023 06:45:32.3808
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: OZqr1VKXdxdA3RXYHhPW66OJLRzMarettVssCy54JLzIc6lGtLom80SHzBVaiFgxUnVQCkJ8V6byQLUinc1Vr20ml/nZ6fZkM9JCOrrSugE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR08MB9992
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ly2C9si1dwSgSjvSoF3b0SkdyqrGR5nzDshUy5VLRQRFfFpG9OMv3ZwlUBn2gd5Sbq6Vas9VciT1ctDSHTzlMhVV6DnlbsTTiniWLvPS84s=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR03MB7050
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,RDNS_NONE,
+        SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jeff,
-
-On 27.04.23 19:23, Jeff LaBundy wrote:
-> Hi Javier,
-> 
-> On Thu, Apr 27, 2023 at 05:59:42PM +0200, Javier Carrasco wrote:
->> Hi,
->>
->> On 25.04.23 18:02, Jeff LaBundy wrote:
->>> Hi Thomas,
->>>
->>> On Tue, Apr 25, 2023 at 05:29:39PM +0200, Thomas Weißschuh wrote:
->>>> Hi Javier,
->>>>
->>>> On 2023-04-25 13:50:45+0200, Javier Carrasco wrote:
->>>>> Some touchscreens are shipped with a physical layer on top of them where
->>>>> a number of buttons and a resized touchscreen surface might be available.
->>>>>
->>>>> In order to generate proper key events by overlay buttons and adjust the
->>>>> touch events to a clipped surface, these patches offer a documented,
->>>>> device-tree-based solution by means of helper functions.
->>>>> An implementation for a specific touchscreen driver is also included.
->>>>>
->>>>> The functions in ts-virtobj provide a simple workflow to acquire
->>>>> physical objects from the device tree, map them into the device driver
->>>>> structures as virtual objects and generate events according to
->>>>> the object descriptions.
->>>>>
->>>>> This solution has been tested with a JT240MHQS-E3 display, which uses
->>>>> the st1624 as a touchscreen and provides two overly buttons and a frame
->>>>> that clips its effective surface.
->>>>
->>>> There are quite a few of notebooks from Asus that feature a printed
->>>> numpad on their touchpad [0]. The mapping from the touch events to the
->>>> numpad events needs to happen in software.
->>>
->>> That example seems a kind of fringe use-case in my opinion; I think the
->>> gap filled by this RFC is the case where a touchscreen has a printed
->>> overlay with a key that represents a fixed function.
->>
->>  Exactly, this RFC addresses exactly such printed overlays.
->>>
->>> One problem I do see here is something like libinput or multitouch taking
->>> hold of the input device, and swallowing the key presses because it sees
->>> the device as a touchscreen and is not interested in these keys.
->>
->> Unfortunately I do not know libinput or multitouch and I might be
->> getting you wrong, but I guess the same would apply to any event
->> consumer that takes touchscreens as touch event producers and nothing else.
->>
->> Should they not check the supported events from the device instead of
->> making such assumptions? This RFC adds key events defined in the device
->> tree and they are therefore available and published as device
->> capabilities. That is for example what evtest does to report the
->> supported events and they are then notified accordingly. Is that not the
->> right way to do it?
-> 
-> evtest is just that, a test tool. It's handy for ensuring the device emits
-> the appropriate input events in response to hardware inputs, but it is not
-> necessarily representative of how the input device may be used in practice.
-
-You are right. I might have been biased by my use case though, where a
-touchscreen with key capabilities is is exactly that and there is no
-reason to ignore any event if the capabilities are available.
-
-Well, props to evtest for being representative of at least that
-practical use.
-> 
-> I would encourage you to test this solution with a simple use-case such as
-> Raspbian, and the virtual keys mapped to easily recognizable functions like
-> volume up/down.
-> 
-> Here, you will find that libinput will grab the device and declare it to be
-> a touchscreen based on the input events it advertises. However, you will not
-> see volume up/down keys are handled.
-> 
-> If you break out the virtual keypad as a separate input device, however, you
-> will see libinput additionally recognize it as a keyboard and volume up/down
-> keys will be handled. It is for this reason that a handful of drivers with
-> this kind of mixed functionality (e.g. ad714x) already branch out multiple
-> input devices for each function.
-> 
-> As a matter of principle, I find it to be most flexible for logically separate
-> functions to be represented as logically separate input devices, even if those
-> input devices all stem from the same piece of hardware. Not only does it allow
-> you to attach different handlers to each device (i.e. file descriptor), but it
-> also allows user space to inhibit one device but not the other, etc.
-
-I had complex devices in mind where many capabilities are provided (like
-a mouse with several buttons, wheels, and who knows what else or a bunch
-of other complex pieces of hardware) but are still registered as a
-single input device. That makes the whole functionality accessible
-within a single object that translates 1:1 to the actual hardware, but
-on the other hand it lacks of the flexibility you mention.
-
-Nevertheless, in the end this RFC applies to touchscreens and if the
-existing tools do not expect them to have key events, they must be
-advertised in a different way. And ss I want any tool to identify the
-touchscreen and the keys properly, I will go for the multi-device solution.
-
-> Maybe the right approach, which your RFC already seems to support, is to simply
-> let the driver decide whether to pass the touchscreen input_dev or a different
-> input_dev. The driver would be responsible for allocating and registering the
-> keypad; your functions simply set the capabilities for, and report events from,Y
-> whichever input_dev is passed to them. This is something to consider for your
-> st1232 example.
-
-I would let the drivers register the devices that fit better in each
-case according to the objects defined in the device tree and the
-hardware configuration. Of course I could include the device
-registration too, but that would probably reduce flexibility with no
-real gain.
-
-This RFC will not work out of the box with several input devices from a
-single driver because it sets the key capabilities right away as it
-always supposes there is only one input device. But splitting that part
-is rather trivial and the rest does not need to change much as it works
-with generic input devices.
-
-The st1232 example will need some bigger changes though, so that part
-will change a bit in the next version.
-> 
->>
->> Thanks a lot for your feedback!
->>>
->>> Therefore, my first impression is that the virtual keypad may be better
->>> served by registering its own input device.
->>>
->>> Great work by the way, Javier!
->>>
->>>>
->>>> Do you think your solution is general enough to also support this
->>>> usecase?
->>>>
->>>> The differences I see are
->>>> * not device-tree based
->>>> * touchpads instead of touchscreens
->>>>
->>>>> [..]
->>>>
->>>> [0] https://unix.stackexchange.com/q/494400
->>>
->>> Kind regards,
->>> Jeff LaBundy
-> 
-> Kind regards,
-> Jeff LaBundy
-
-Thanks again for your feedback, I will keep your comments in mind for
-the next version.
-
-Best regards,
-Javier Carrasco
+SGkgQW5nZWxvLA0KDQoNCk9uIFRodSwgMjAyMy0wNC0yNyBhdCAxNzoxNSArMDIwMCwgQW5nZWxv
+R2lvYWNjaGlubyBEZWwgUmVnbm8gd3JvdGU6DQo+IEV4dGVybmFsIGVtYWlsIDogUGxlYXNlIGRv
+IG5vdCBjbGljayBsaW5rcyBvciBvcGVuIGF0dGFjaG1lbnRzIHVudGlsDQo+IHlvdSBoYXZlIHZl
+cmlmaWVkIHRoZSBzZW5kZXIgb3IgdGhlIGNvbnRlbnQuDQo+IA0KPiANCj4gSWwgMjYvMDQvMjMg
+MTM6NDMsIEFuZ2Vsb0dpb2FjY2hpbm8gRGVsIFJlZ25vIGhhIHNjcml0dG86DQo+ID4gSWwgMTIv
+MDkvMjIgMDM6MjksIEphc29uLUpILkxpbiBoYSBzY3JpdHRvOg0KPiA+ID4gU2luY2UgdGhlIGdh
+bW1hX3NldF9jb21tb24oKSBmdW5jdGlvbiBmb3IgcHJldmlvdXMgU29DLA0KPiA+ID4gc3VjaCBh
+cyAgbXQ4MTczIGFuZCBtdDgxODMsIGlzIGRlc2lnbmVkIGZvciA5Yml0LXRvLTEwYml0DQo+ID4g
+PiBjb252ZXJzaW9uLg0KPiA+ID4gbXQ4MTk1IGlzIHVzaW5nIDEwYml0LXRvLTEyYml0IGNvbnZl
+cnNpb24sIHdoaWNoIGlzDQo+ID4gPiBub3QgY29tcGF0aWJsZSB3aXRoIHRoZSBwcmV2aW91cyBm
+dW5jdGlvbi4NCj4gPiA+IA0KPiA+ID4gVGh1cywgbmVlZCB0byB1cGRhdGUgdGhlIGZ1bmN0aW9u
+IHRvIGZpdCB0aGUgbmVlZCBvZiBtdDgxOTUuDQo+ID4gDQo+ID4gSGVsbG8sDQo+ID4gY2FuIHlv
+dSBwbGVhc2UgcmVzcGluIGFuZCBmaXggdGhpcyBzZXJpZXMgb24gdGhlIGxhdGVzdCBsaW51eC1u
+ZXh0Pw0KPiA+IA0KPiA+IEJlc2lkZXMsIHBsZWFzZSB0ZXN0IGl0IGNhcmVmdWxseTogYXMgZmFy
+IGFzIEkgY2FuIHNlZSwgR05PTUUgTmlnaHQNCj4gPiBMaWdodA0KPiA+IChvciBvdGhlcnMpIGFy
+ZSBub3Qgd29ya2luZyBvbiBNVDgxOTUgKGNvbG9yIHRlbXBlcmF0dXJlL2Njb3JyKS4NCj4gPiBB
+cyBmb3IgZ2FtbWEgaXRzZWxmLCB0aGF0J3Mgbm90IHdvcmtpbmcgZWl0aGVyOyB5b3UgY2FuIHRl
+c3QgaXQNCj4gPiB3aXRoIGEgdG9vbA0KPiA+IHRoYXQgd2lsbCBjcmVhdGUgYSBjb2xvciBwcm9m
+aWxlIGJ5IGFwcGx5aW5nIGEgbmV3IFZDR1QgdGFibGUsDQo+ID4gcGxlYXNlIGxvb2sNCj4gPiBh
+dCBbMV0gaWYgeW91IG5lZWQgdG9vbHMuDQo+ID4gDQo+ID4gV2UgY2FuIGNvbmZpcm0gdGhhdCBj
+b2xvciBjb3JyZWN0aW9uIHdvcmtzIG9uIGF0IGxlYXN0IE1UODE5Mg0KPiA+IChjb2xvcmQpLCBz
+bw0KPiA+IGl0J3MgTVQ4MTk1IGF0IGZhdWx0Lg0KPiA+IA0KPiA+IFsxXTogDQo+ID4gaHR0cHM6
+Ly91cmxkZWZlbnNlLmNvbS92My9fX2h0dHBzOi8vZ2l0aHViLmNvbS96YjMvZ25vbWUtZ2FtbWEt
+dG9vbF9fOyEhQ1RSTktBOXdNZzBBUmJ3IWliNXZzX21xS1dseUM4VmJMTlpiYzRGYzAtZTZkTDVa
+LU9NNXBMc1ZSblFPV0Fja1I2RVRWMW1SWVJrei01cktCN2ZkWXZZNExyWW9IS0RsdjZqUFNLem9D
+LTI0NUpUWWFRJA0KPiA+IA0KPiANCj4gTmV2ZXJtaW5kLiBJJ3ZlIGFjdHVhbGx5IGZpeGVkIHRo
+aXMgY29kZSBhbmQgcmVmYWN0b3JlZCBpdCBhIGJpdCBhcw0KPiB3ZWxsLg0KPiANCj4gSSdsbCBw
+dXNoIG15IG93biB2ZXJzaW9uIHNvb24uIE5vIGFjdGlvbiByZXF1aXJlZC4NCj4gDQo+IFJlZ2Fy
+ZHMsDQo+IEFuZ2Vsbw0KPiANCg0KT0t+DQpUaGFua3MgZm9yIHlvdXIgZ3JlYXQgaGVscCEgOikN
+Cg0KUmVnYXJkcywNCkphc29uLUpILkxpbg0K
