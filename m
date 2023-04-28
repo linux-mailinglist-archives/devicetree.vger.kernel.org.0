@@ -2,155 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39F9D6F1F60
-	for <lists+devicetree@lfdr.de>; Fri, 28 Apr 2023 22:31:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B22496F1FB0
+	for <lists+devicetree@lfdr.de>; Fri, 28 Apr 2023 22:53:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346544AbjD1UbT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Apr 2023 16:31:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50090 "EHLO
+        id S1346555AbjD1Uxq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Apr 2023 16:53:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346531AbjD1UbP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Apr 2023 16:31:15 -0400
-Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com [IPv6:2607:f8b0:4864:20::d2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4D462D5B
-        for <devicetree@vger.kernel.org>; Fri, 28 Apr 2023 13:30:52 -0700 (PDT)
-Received: by mail-io1-xd2f.google.com with SMTP id ca18e2360f4ac-768d75b2369so11567539f.0
-        for <devicetree@vger.kernel.org>; Fri, 28 Apr 2023 13:30:52 -0700 (PDT)
+        with ESMTP id S1345610AbjD1Uxp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Apr 2023 16:53:45 -0400
+Received: from mail-ua1-x930.google.com (mail-ua1-x930.google.com [IPv6:2607:f8b0:4864:20::930])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E14AF1719;
+        Fri, 28 Apr 2023 13:53:43 -0700 (PDT)
+Received: by mail-ua1-x930.google.com with SMTP id a1e0cc1a2514c-76dae081228so157133241.2;
+        Fri, 28 Apr 2023 13:53:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682713847; x=1685305847;
-        h=content-transfer-encoding:to:subject:message-id:date:from:reply-to
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=RTYsdnb3XWNHNFKshQ5YLmNW4QB6EHQGAfUnwG76TeE=;
-        b=VON6T6z7dUOQDEHNzDpo1E8f6lzA0wNh0Z0/FWOf+4+wY+gcOxIAYVNUPEyUaYQm+Q
-         R3XStX+Zs4wzo9v8cNUHBwR9DCZCYElZnFt/EaOjYOMIgusG0hGNZGcr+7JiWcuNFTGO
-         RTQxWKLhtLdeJ7Y+c2CAZh9DdPFYb1ZVsBF3a6/O6FTRPQMMGm74ZPmS7sKANAr5mqPA
-         WSCGcJKaDoiNqxeNItnRYvWGaL3ypOmDrLw8wJ9BJDz+/rmtpjcWgSWR7XjYLqrIXyL0
-         BgivGyZFiZbe8yPL63T7rDSk6Tp9ClQklgUQ3DfQL3fIR+zdxIe2dZyUGyV9EvIwxyXp
-         cDjg==
+        d=gmail.com; s=20221208; t=1682715223; x=1685307223;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JRYO52blVuIjsOSLyVlbkequxT+e3yW4z+4sA1lzj5A=;
+        b=H7ejqF0RJ8HO9k7UgwEUKBPHQSgxcDlr/xgGbySmFBJfc7ChK3pRNPbBX9fC2E+Rkf
+         e6fcW1/saGQbRiFSZz8b5VHp4i07vnC9gqt/qE9DFsTwD8v0cBzKYHTp3/mLTr6CHbNO
+         rL8KnMqahFyapQXK48UzpDTILsnyJ/KmE6kHKMTBMdTu1ELDLIdFbqawdATU1hfNXBTQ
+         eGX1YN1RLbvnQnF8gaekFxMo1LQNvieeIEkWepQN0dH3OhvLN/GlUCfiRtC4ntPPV6WU
+         gdSIqqCTYXekgtXCV6RNxE+N6gdQR1fXyNGDB1Dj6qEw+c6v1k/Bf1NxEuikJW5wTYRL
+         dHoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682713847; x=1685305847;
-        h=content-transfer-encoding:to:subject:message-id:date:from:reply-to
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RTYsdnb3XWNHNFKshQ5YLmNW4QB6EHQGAfUnwG76TeE=;
-        b=byceViqKBD12qiM+GSyEn4ikiHK3Qb7KVlBKDvbVzeGK8szc56FqmsBXees2PEnGdG
-         ZiecnkSDiSsoSajN5i66ZyTmx6Yef10MhkzGUG4sIMWwZ320oMoHZM8fVms5FlhC5r9B
-         IgagtSBCHDC/5Kxpz4h//3rd7+VGc5UVUcLS7Xo3jUFsiY14xzIDU7hrYXCFwL7lY0zT
-         iGPRgqV+WeC4WeD1ndR0HVeUDQ6dD21NwIcDRuP/pLZuGLJGOxJPzL+mt/O0GZhTS+mE
-         nyz9h6bre8SJ2dMhL7QJTi7RCY4pcRS0noJExu5FbuUmkfvKREBLOChwZnTVasM6ug8H
-         7OBQ==
-X-Gm-Message-State: AC+VfDyqQdWF2VPXaNbb0d4ZLa/ZLuai5g/OGj8/IZNkuLUuconHQIIZ
-        L4jSJclDOqX+86FFZmTOR3y+PGaHOUciP5rj9mM=
-X-Google-Smtp-Source: ACHHUZ69wt4our/xDuwYL1vg22trjJvTVOJSCaVMI0YYawS3PTxrWtszobpdOr5mznemA47phIkSKL+ottLd6hBga2o=
-X-Received: by 2002:a05:6808:914:b0:38c:1acd:e6ee with SMTP id
- w20-20020a056808091400b0038c1acde6eemr3139883oih.9.1682713477277; Fri, 28 Apr
- 2023 13:24:37 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1682715223; x=1685307223;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JRYO52blVuIjsOSLyVlbkequxT+e3yW4z+4sA1lzj5A=;
+        b=Vo+9hTSLaJKLLVGOLPIok8AuGVuMvlpE0frFhpvj3kOCXL60w5SPAIsTzzxFXB6LXW
+         OtbTVYOJJMkMTJYGErtwcVfRjIT9w6YcsKIFL5Pnh7+8J5rmqunnO7hJ9qTzfNDd+q8w
+         RLZOMkxA7tKS3wwrhFtp/qi9VLKEViBcNAhigIpVReRkNFfIVKVp6Ag59YFllGm3Bwd3
+         5Qbrvfndj5ppUvN3SBPhHfdD9M4EmVnS32aoTfp68LUtgstzX2tHr2yyMK9ORhX++je9
+         T45lgSjK9/EjjxgQ1Mf7eNE3TgBbyxyRrpgyRsFuNnehl43de4lUNjJYY4tLOHJn5d5k
+         GFIg==
+X-Gm-Message-State: AC+VfDyaLpuwTGJzRHc+m8W+Z+D8V8kVYfzu4iywMP0JT/sZrrb5TQUf
+        77vr3hOFsNHM4a89zy9nySgHcfjv1AczDdTHqeA=
+X-Google-Smtp-Source: ACHHUZ5dtyhB7wkfx17vKwIAdsNhr1LLTqVEcPSLcN60jFiC6cARjWzhVpel3Qnfv1+NnkX+H+VZ1lJMZ57FK7zzUio=
+X-Received: by 2002:a1f:41c9:0:b0:43f:ec5d:51e1 with SMTP id
+ o192-20020a1f41c9000000b0043fec5d51e1mr3235818vka.9.1682715222835; Fri, 28
+ Apr 2023 13:53:42 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 2002:a05:6358:9c96:b0:112:94eb:bb40 with HTTP; Fri, 28 Apr 2023
- 13:24:36 -0700 (PDT)
-Reply-To: Info.americaatmbank@gmail.com
-From:   UNITED BANK OF AMERICA <unitedbankunitedbank006@gmail.com>
-Date:   Fri, 28 Apr 2023 13:24:36 -0700
-Message-ID: <CAD+oP2NNU7pyujJMZb4ni6e-Uq8UvF0P6P_51m6Uuob7nOq8gw@mail.gmail.com>
-Subject: =?UTF-8?Q?T=C3=84HELEPANU?=
-To:     undisclosed-recipients:;
+References: <20230428105453.110254-1-jpanis@baylibre.com> <CAOCHtYgKfJ4cXULvs8YrJ6+-UnrbBWQgXL+d6OMHOOexuj4uiQ@mail.gmail.com>
+In-Reply-To: <CAOCHtYgKfJ4cXULvs8YrJ6+-UnrbBWQgXL+d6OMHOOexuj4uiQ@mail.gmail.com>
+From:   Robert Nelson <robertcnelson@gmail.com>
+Date:   Fri, 28 Apr 2023 15:53:16 -0500
+Message-ID: <CAOCHtYgreXmtcuRDRu3UWRhPJ0-k2E+3YYhxp_AaPf-sObuR1Q@mail.gmail.com>
+Subject: Re: [PATCH] arm: dts: Add am335x-boneblack-pps.dts
+To:     Julien Panis <jpanis@baylibre.com>
+Cc:     arnd@arndb.de, olof@lixom.net, soc@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, tony@atomide.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=4.7 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,FREEMAIL_REPLYTO,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNDISC_FREEM autolearn=no
-        autolearn_force=no version=3.4.6
-X-Spam-Level: ****
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Terrorismivastase v=C3=B5itluse ja kuritegevuse kontrolli osakond
-J. EDGAR HOOVER HOONE 935 PENNSYLVANIA AVENUE,
-Washingtoni loodeosa, D.C.
-Viitenumber: 20535-0001
+On Fri, Apr 28, 2023 at 9:44=E2=80=AFAM Robert Nelson <robertcnelson@gmail.=
+com> wrote:
+>
+> On Fri, Apr 28, 2023 at 6:00=E2=80=AFAM Julien Panis <jpanis@baylibre.com=
+> wrote:
+> >
+> > From: Lokesh Vutla <lokeshvutla@ti.com>
+> >
+> > Add a new am335x-boneblack-pps.dts that can be used to configure TIMER7
+> > in PWM mode. This PWM signal can be used as a PPS signal when
+> > synchronized to PTP clock. Typically this synchronization is done by a
+> > userspace program. This PPS signal can be observed on pin P8.8.
+> >
+> > Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
+> > Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+> > Signed-off-by: Adrien Ricciardi <aricciardi@baylibre.com>
+> > Signed-off-by: Julien Panis <jpanis@baylibre.com>
+> > ---
+> >  arch/arm/boot/dts/Makefile                 |  1 +
+> >  arch/arm/boot/dts/am335x-boneblack-pps.dts | 25 ++++++++++++++++++++++
+> >  2 files changed, 26 insertions(+)
+> >  create mode 100644 arch/arm/boot/dts/am335x-boneblack-pps.dts
+> >
+> > diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> > index efe4152e5846..d74158aae72d 100644
+> > --- a/arch/arm/boot/dts/Makefile
+> > +++ b/arch/arm/boot/dts/Makefile
+> > @@ -939,6 +939,7 @@ dtb-$(CONFIG_SOC_AM33XX) +=3D \
+> >         am335x-base0033.dtb \
+> >         am335x-bone.dtb \
+> >         am335x-boneblack.dtb \
+> > +       am335x-boneblack-pps.dtb \
+> >         am335x-boneblack-wireless.dtb \
+> >         am335x-boneblue.dtb \
+> >         am335x-bonegreen.dtb \
+> > diff --git a/arch/arm/boot/dts/am335x-boneblack-pps.dts b/arch/arm/boot=
+/dts/am335x-boneblack-pps.dts
+> > new file mode 100644
+> > index 000000000000..88d2bc3fd759
+> > --- /dev/null
+> > +++ b/arch/arm/boot/dts/am335x-boneblack-pps.dts
+> > @@ -0,0 +1,25 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.c=
+om/
+> > + */
+> > +
+> > +#include "am335x-boneblack.dts"
+> > +
+> > +&am33xx_pinmux {
+> > +       pwm7_pins: pinmux_pwm7_pins {
+> > +               pinctrl-single,pins =3D <
+> > +                       AM33XX_PADCONF(AM335X_PIN_GPMC_OEN_REN, PIN_OUT=
+PUT_PULLDOWN, MUX_MODE2)
+> > +               >;
+> > +       };
+> > +};
+> > +
+> > +/{
+> > +       pwm7: dmtimer-pwm7 {
+> > +               compatible =3D "ti,omap-dmtimer-pwm";
+> > +               pinctrl-names =3D "default";
+> > +               pinctrl-0 =3D <&pwm7_pins>;
+> > +               #pwm-cells =3D <3>;
+> > +               ti,timers =3D <&timer7>;
+> > +               ti,clock-source =3D <0x00>; /* timer_sys_ck */
+> > +       };
+> > +};
+>
+> I know this commit is pretty small, but mainline now has overlay support:
+>
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit=
+/?id=3D0fff0e49d72a53c51d8903fbadb2e6a84e531c4a
+>
+> At what point do we finally merge in the many dozen *BeagleBone*
+> overlays, or do we still wait for :
+> https://lore.kernel.org/lkml/20220328000915.15041-1-ansuelsmth@gmail.com/
 
-HEAD UUDISED
+OH SIde note, #2... thanks @Nishanth Menon !
 
-V=C3=B5tan teiega =C3=BChendust e-posti teel, kuna minu arvates on k=C3=B5i=
-ge =C3=B5igem
-ja sobivaim selgitada, miks ma teiega =C3=BChendust v=C3=B5tan.
+We do have this example:
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?=
+id=3D8e01fb15b8157a825d309ea2598b494dd81a7b42
 
-Olen eriagent proua Joyce Hook, =C3=A4sja ametisse nimetatud Ameerika
-=C3=9Chendriikide FBI pettuste uurija, kes t=C3=B6=C3=B6tab koos Ameerika
-=C3=9Chendriikide kriminaaljuurdlusosakonna (CID) pettuste =C3=BCksusega.
+So instead of `am335x-boneblack-pps.dtb` it could be: ....
+am335x-bone-dmtimer-pwm7.dtbo or even am335x-dmtimer-pwm7.dtbo ?
 
-Olen spetsialiseerunud fondide, sealhulgas [h=C3=BCvitis-/p=C3=A4rimisfondi=
-d v=C3=B5i
-L=C3=84HEDASED], saadetiste fundamentaalsetele uurimistele
-Box, Lotto=C2=AE JACKPOT, LAENUD] ja olen m=C3=A4rganud, et olete saanud
-Paljud meilid p=C3=A4rinevad inimestelt, kes v=C3=A4idavad, et nad saavad t=
-eile
-raha, kuid ma soovitan seda, kui olete m=C3=B5nega neist endiselt =C3=BChen=
-duses
-Siiski soovitame teil esialgu igasugune suhtlemine l=C3=B5petada, sest
-nende inimeste kohta on tehtud uurimist ja need on petturid.
+Thoughts?
 
-Tahaksin kuulutada meie l=C3=A4biviidud uurimise eduks
-Paar p=C3=A4eva tagasi; Arvasin, et oleks kasulik teada, miks see uurimine
-pooleli on. Teabe saamiseks on t=C3=B5esti kinnitatud, et teil oli 100%
-=C3=B5igustatud tasumata tehing ja teie
-Teil on t=C3=A4ielik =C3=B5igus seda raha n=C3=B5uda, kuna on kinnitatud, e=
-t olete
-nimetatud 2,6 miljoni dollari v=C3=B5i h=C3=BCvitise/p=C3=A4rimisfondide =
-=C3=B5igustatud
-saaja v=C3=B5i l=C3=A4hisugulane, kuid selle raha k=C3=A4ttesaamise viibimi=
-se t=C3=B5ttu
-on teie raha n=C3=BC=C3=BCd kinnitatud 2,6 miljonit dollarit on heaks kiide=
-tud
-USA dollari eest, mille maksab siin Ameerika =C3=9Chendriikide (USA)
-presidendi kantselei.
-
-Teatan sellest t=C3=A4na, kuna m=C3=A4rkasin, et te ei suhtle seadusliku
-isikuga, kes vastutab selle raha teile k=C3=A4ttesaamise eest. See reklaam
-peaks olema teile avatud, kuid teid v=C3=B5ivad petta need hoolimatud
-kurjategijad, kellele olete =C3=BChe v=C3=B5i teise kasti hankimisel raha
-saatnud, mis pole reaalne, mist=C3=B5ttu otsustasin aidata teil raha saada
-otse FBI-st. Ma tean, et kui olete huvitatud oma 2,6 miljoni USA
-dollari suuruse tasumata seadusliku raha vastuv=C3=B5tmisest, soovitan teil
-kohe minuga =C3=BChendust v=C3=B5tta. K=C3=B5ik, mida ma vajan, on teie koo=
-st=C3=B6=C3=B6 ja
-m=C3=B5istmine.
-
-V=C3=B5tsime =C3=BChendust United Bank Of America'iga Ameerika =C3=9Chendri=
-ikides
-(USA), et t=C3=B6=C3=B6delda teie raha panga=C3=BClekandega. Raha kantakse =
-otse teie
-kontole.
-
-V=C3=B5tke =C3=BChendust United Bank Of America direktoriga alloleval e-pos=
-ti
-aadressil, kelle nimi on
-
-Proua Cox Pamela
-E-posti aadress: (info.americaatmbank@gmail.com)
-Ameerika Pank
-
-Saatke talle allpool oma pangakonto andmed, et ta saaks teie kogu raha
-=C3=BCle kanda.
-
-1. Teie t=C3=A4isnimi =3D=3D=3D=3D=3D
-2. Konto number =3D=3D=3D=3D
-3. Panga nimi =3D=3D=3D=3D
-4. Panga aadress =3D=3D=3D=3D
-5. Riik =3D=3D=3D=3D
-6. Telefoninumber =3D=3D=3D=3D
-7. IBAN =3D=3D=3D=3D
-8. ID-kaart =3D=3D=3D=3D
-9. Sinu amet =3D=3D=3D=3D
-10. Vanus =3D=3D=3D=3D
-11. Sugu =3D=3D=3D=3D
-12. Sinu L=C3=A4him Sugulane =3D=3D=3D=3D
-
-Lugupidamisega
-Proua Joyce Hook
-=C3=84sja ametisse nimetatud USA
-(USA) FBI pettuste uurija
+--=20
+Robert Nelson
+https://rcn-ee.com/
