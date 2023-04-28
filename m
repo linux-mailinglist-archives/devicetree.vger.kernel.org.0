@@ -2,146 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89BCA6F124B
-	for <lists+devicetree@lfdr.de>; Fri, 28 Apr 2023 09:20:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F36B6F1292
+	for <lists+devicetree@lfdr.de>; Fri, 28 Apr 2023 09:41:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345522AbjD1HUf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Apr 2023 03:20:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37822 "EHLO
+        id S1345734AbjD1Hli (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Apr 2023 03:41:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345508AbjD1HUd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Apr 2023 03:20:33 -0400
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (mail-bn8nam04on2095.outbound.protection.outlook.com [40.107.100.95])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65151210B;
-        Fri, 28 Apr 2023 00:20:27 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GGtQ47f5ZUrW8Y7Ximjb1uyrtQ/hZilqSOnmmMwow0t8ScYZP8/QgaqQHNUACZJGkyFosJnedtemAEIrdXdOoEN5zXXx4dcnLnMYO0GbujvtaQKHQVjhhclobRx3ckuJIevlv7mRybNiWcnIVAWHrYgSNrnMsK08+Wxc6aWfuI+boFW1cQcUDoSSwdM4rRS3O9PNhQwoaWc9Q+gPqwCUT46L3rlzhmdhLjeDFZUlhRSBspKPm2bbZjPvJkOl9cfuLdYUY5+ra2IphOxZ/hnqOrYfHQmWKDs14skBQRceyE5vRnyb4sMfFpmkmV4pKs8UNZR9ZDJk7BFS0Sixt6LHhQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZgAn83e5KmmIxJ9GIytQFKErApEzgBUxwoItPPfi4w8=;
- b=J8UhM4EdI9Tqt3txPvP+028hgipgF9aBVofPvghR80r8wgdTa/f4DuwwOQ7NpDNIibeXotBV4wjkj1jA2FNmtE/6KZ6WVKWYr6Z0/tcaT8kEKabtYtTEBzuZiRhLbM3bxZwklov6C2vLXExhV5chbT6EK5U2E1nPyhQrMwCaPsWnvKRLv3PV10FZk/YeFk/Kz+S4VyDmdcF849oZb5p6cDZwP/DS8FzBp4cbtyYc+455quUpNtx9MvSmecrJxXSYHwPGBsKLbbMqybXSDi16qIsMx0FWdOYCVdMUnEp4UuTr02HHA+csFJ5/Tf80sx0KwD+5HIC+AIcShxBICkgQoA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=corigine.com; dmarc=pass action=none header.from=corigine.com;
- dkim=pass header.d=corigine.com; arc=none
+        with ESMTP id S1345684AbjD1HlG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Apr 2023 03:41:06 -0400
+Received: from mail-ua1-x929.google.com (mail-ua1-x929.google.com [IPv6:2607:f8b0:4864:20::929])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D12F646AC;
+        Fri, 28 Apr 2023 00:40:45 -0700 (PDT)
+Received: by mail-ua1-x929.google.com with SMTP id a1e0cc1a2514c-772661d22c2so3293385241.0;
+        Fri, 28 Apr 2023 00:40:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=corigine.onmicrosoft.com; s=selector2-corigine-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZgAn83e5KmmIxJ9GIytQFKErApEzgBUxwoItPPfi4w8=;
- b=HA8VmvaFRE9W8gKoVMYDVg2VUJZO8GlxYyscQkZYK02DdB2Nne1lh57e5r3/+riReIBxtB6m8hjWuEgOfWWDKiBf2hiYuwSzIhuifKOxiFnD2jg9zAQt488p8kZN3SH6aEeEFkQ3ODioLsxGjd7lUon60AZgjt7yg8qU4lxvoeo=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=corigine.com;
-Received: from PH0PR13MB4842.namprd13.prod.outlook.com (2603:10b6:510:78::6)
- by MN2PR13MB4086.namprd13.prod.outlook.com (2603:10b6:208:26f::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6340.22; Fri, 28 Apr
- 2023 07:20:25 +0000
-Received: from PH0PR13MB4842.namprd13.prod.outlook.com
- ([fe80::f416:544d:18b7:bb34]) by PH0PR13MB4842.namprd13.prod.outlook.com
- ([fe80::f416:544d:18b7:bb34%5]) with mapi id 15.20.6340.022; Fri, 28 Apr 2023
- 07:20:25 +0000
-Date:   Fri, 28 Apr 2023 09:20:16 +0200
-From:   Simon Horman <simon.horman@corigine.com>
-To:     Md Danish Anwar <a0501179@ti.com>
-Cc:     MD Danish Anwar <danishanwar@ti.com>,
-        "Andrew F. Davis" <afd@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Suman Anna <s-anna@ti.com>, Roger Quadros <rogerq@kernel.org>,
-        YueHaibing <yuehaibing@huawei.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>, andrew@lunn.ch,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Richard Cochran <richardcochran@gmail.com>, nm@ti.com,
-        ssantosh@kernel.org, srk@ti.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [EXTERNAL] Re: [RFC PATCH v6 2/2] net: ti: icssg-prueth: Add
- ICSSG ethernet driver
-Message-ID: <ZEtzsCr/x5i5e2hA@corigine.com>
-References: <20230424053233.2338782-1-danishanwar@ti.com>
- <20230424053233.2338782-3-danishanwar@ti.com>
- <ZEl2zh879QAX+QsK@corigine.com>
- <9c97e367-56d6-689e-856a-c1a6ff575b63@ti.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9c97e367-56d6-689e-856a-c1a6ff575b63@ti.com>
-X-ClientProxiedBy: AM0PR02CA0122.eurprd02.prod.outlook.com
- (2603:10a6:20b:28c::19) To PH0PR13MB4842.namprd13.prod.outlook.com
- (2603:10b6:510:78::6)
+        d=gmail.com; s=20221208; t=1682667643; x=1685259643;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=MnQ5of6M5/y7NIEMwyCrgsAXsP/6p2NWEIphTReCHEM=;
+        b=o9mc1/g7mBWHjnVTA6rJ/gtnlcn3yIosoBwhs0YVtkhqkH6vQncrIO/B+LDPDJ/9tp
+         IZtNSYL9F12hLX0U9o2p+Ie3FyfFskFqHfKAOZIKj5DJadgOBY5/WKqZI8VgF6Xflf/R
+         lFCwaABW1YUvgH8Luh01/5Y2z2EEgiD7sGkPuMyhFvXFQzdYlFIsPfQkkEIN+gjDySQc
+         idmVofYdKf/o1oZl83ANxLD47SjSFldOLV/3Go1xLtKNEPaQyisDWtIqP1RvC8K8nvD1
+         a1p0K1OtJg3temYIZW+kaWpgmt/V+9LLb7UgVMuJ1hcre0Si01amy6z9Cfdq+Y6DtbhY
+         bLvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682667643; x=1685259643;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MnQ5of6M5/y7NIEMwyCrgsAXsP/6p2NWEIphTReCHEM=;
+        b=eRypm7KuCe5IbZk+e9h+xlRRwfYLbbRyEYWPdQBfgsBJfFawQ6ItUqo4DfwDVx2d1R
+         sdGJUCI2WuhduLlr5XOTNKMF8jDlGMOoE+caffftKArEGt1xV3X0ShHeMs4memjH3ptT
+         4zL8RCZk95kX2cK6kIrP9vwEsB/+rTg5yg3UeinSs1XSL/5ojkR5eVqVfiZ63Shlq94Y
+         K3+UDG4MeK7eesBYmpWWqbYczeSTZQ0LbOvITKcgXp0LzD/jBx9x5UVn5q+mUpdqHMcQ
+         YIIKDBc+Iuaun0ADedrg+PM3WkTkuv8Yovqqoe6UnIF3a5U1o3GT1a7Z3sXUhHGtANhA
+         mi/A==
+X-Gm-Message-State: AC+VfDxRT7MV1gIvT2/SgHBoZ5CoNb4yTIEbEtdtYj6VAWMsLafyc9kY
+        m3SoJBiQV72dTGJJVu1MyiQdNazYYUE2P29Ayi8=
+X-Google-Smtp-Source: ACHHUZ73o2NFQLqN/VJRmpmG5rttPIfs6eFu1Z7n2MTiFytaKZNNxdtR5y2DVukspV/gGCNoBDGiBrAO9+GsIrdOxb4=
+X-Received: by 2002:a05:6102:2455:b0:430:3aec:efb5 with SMTP id
+ g21-20020a056102245500b004303aecefb5mr2036514vss.3.1682667643018; Fri, 28 Apr
+ 2023 00:40:43 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH0PR13MB4842:EE_|MN2PR13MB4086:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0a057599-562d-4697-3692-08db47b90909
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: GzyFasvVGYOcPJ0M2oGoZg+RHRYLIyT3KGS2EMr7SC3Ce9WU0X4OUxR4cJdjSGIzQ6rmgyixq07ddjyVfZw9zhOV6NwVIpzZtEmRKW+HEZNyi3eNAAOJs0IO3c+mSqFltXIutDYMpo2TnaBzbS7Zz2Orr4b7UcdX6v9RnwM4a6Q8x1vXDq4CEYhxxCZrkEI4iMMumk0wWfi0HmQjSRFBZvy+5m5eQd5J+xqWRSO1axq3tP39V/6M9t+8z7klyUfUFahTvAi1w1vksNN+i7Bmvz+SBp7jbEInhKDePA3ODslYluWiY82JdDG4DlQQNA154tGA2nJyt3xmzor5Jkfr3U25tiEjUds1m3USDd9uBupdLb34UD4WnQ8X0co/jY7m7PWCU+ZyBafSHH8PAQoqfaJkNR+ucuMzzWOXrDmeLaOOzZ+YpqIZ516I+jrLXiu3qXENIfjCcv5NVDX3TonYCE5gldo5CsJXavdoxPv37yvvE7yp/zzDE4UMIW4e9rYm2HprjWhHD59NoFOHx3fGf2w9V+Vhav2bcQpAthbRt+qdqj6r56wyWIjuth4qFld9LL1Hqd5vmD9Pnu/UY7eouBmBrQvSAU6hdiC2FazsHVM=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR13MB4842.namprd13.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(346002)(376002)(136003)(396003)(366004)(39840400004)(451199021)(316002)(8936002)(4326008)(38100700002)(2906002)(6916009)(7416002)(66476007)(8676002)(186003)(5660300002)(83380400001)(41300700001)(2616005)(54906003)(66946007)(44832011)(66556008)(86362001)(478600001)(6486002)(36756003)(558084003)(6666004)(6512007)(6506007);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?XqqWlbzpU+S4G9jxMezHqbbA5r+cl2wutNX4cB5S7Xxj4qgQOpP/lkEIQ2MH?=
- =?us-ascii?Q?goC7M7O0J5s2xu3kLCXgq3ns627j+fb59Fzg8GvSLmbZiRVm16pBrgDInEZN?=
- =?us-ascii?Q?yJI6jdnVFjtJEdfPSaBCN21fazIfPkXOkaOzhnSn/YjsM4cFi30Pro83kafh?=
- =?us-ascii?Q?2e6A1qFYOpj8HRX+ZcS4D375WWmXDLugM441K8itP48gIT195IpP3v1qKMxq?=
- =?us-ascii?Q?vxOFaHtGP+elRlBGkt9gpkCpCAkPr2LOX8x1Rwkd8tL4mC0PNGZXBKhp+pVl?=
- =?us-ascii?Q?qa4kfAjeGy5jj63Pi6PVC6qzhDHF1QqFbtH4+9l0v7IdPXX9agnYLM3XGRZH?=
- =?us-ascii?Q?TP3G+zDiLOHGVPp+YXImGo++6uMSA/kTkmb/ohyxnTpaljuGmPGOQZY46fKd?=
- =?us-ascii?Q?wxC+hKO8vaV/v/K+KPJKXquAlKr9f0nIfa4flC7Wf01Y+KgbFwkmY/XYqfIj?=
- =?us-ascii?Q?KnFbFApcGnlNGadNWkJpIoRg5x6nlv+UlZXg1/nf0bxAk7u/0Go0p1ItaVk+?=
- =?us-ascii?Q?FsWlPpYkWeYhfk0uALCWffV5m7m+NFZy+qgT1UcnTIt5Z/kvLqHxCgD5d+RY?=
- =?us-ascii?Q?ZhBXFXNw5nTzxI8PuCsCth6qKRePwW9vwBVV974bMEfmrBF69e4WsonGQ5Xs?=
- =?us-ascii?Q?8TYJ4gOlZn/oC+Dj1WdEyqLxTjPTSyEppVwPMetCoMKCGILUBsx6EOc19tBs?=
- =?us-ascii?Q?Tu3w7MrT0K9NPo1QlK22ANzOKbnHR7mmvVBpAiDh1ZgLjVYCYKiTQ6oTS7t9?=
- =?us-ascii?Q?52sFrUTTHso9TxAE7N5YgTemUv+jazQUy79fwolzOsEUXrCCbnvDg0GaoJMv?=
- =?us-ascii?Q?4M0JyBlPMrYwpsjizKUpkcw9GbMmXQBm1JIN8MzWPn3bq1SwKtvnRD7Osc9A?=
- =?us-ascii?Q?YFqYefzoBkxr1OPFU0cauawflUJwk+v1k8s+9pq/D1rz7yP2spzLGdKrxg4a?=
- =?us-ascii?Q?4mGfk+h+ypa6nOVkjvmFLJCcZd1hCFqnLaOp7D09htgsHD8eYg3KQpsbA0QO?=
- =?us-ascii?Q?1Ok6x9/6lKgXlRWo7UVAXXUtGT1iQuPmE8B0VDaI+jbXw58Sev5zx978Eh+n?=
- =?us-ascii?Q?FKzFzMGqZI7y+aZB5ElrEn+T2vgAv3Hk9x/v/rosi2LHaGjUZETcXllYqQOp?=
- =?us-ascii?Q?5DdhaBKr8LV58wDSjwxOBhbQLiqG0GTyGLa4SjobGI8wRgYHlP2ov/SdYcSE?=
- =?us-ascii?Q?pNw3mQs4fvLog2DIukD4ejPg1p4LjVF3fROSyM/YN8az2+bXST/SVEj27xqG?=
- =?us-ascii?Q?ORk4vrF1Bm844SI8Fzq1bAXiX745F941yDe4CSNO07IFii44rBUASB8xEs6v?=
- =?us-ascii?Q?Wk7Het4dBL7zP7Ix862EkyhjdzXOCAgmDXDRHNKVviNi4cZMFpefyCk/josx?=
- =?us-ascii?Q?rprhiMmKFBuYXdK9dp2dTX+OdWbdJcAX7gMdw3MvxLXZ79gebj1tQNSH9Ew4?=
- =?us-ascii?Q?VW9VINgo7qxLcFOmkHJg9tvF6F9m2ZQ7pILf5mFvrIT0WALcEHBTclsT8dF/?=
- =?us-ascii?Q?XS8P6qSl21gBKu5ZG0CVFzXA1bNGhfp+NPY3ruq+0CAXjBYS5of827eUzugD?=
- =?us-ascii?Q?VUqIJI4EeXfCjDKL3JYf4NGdIYb+NscF4hJXFakMisCam7ZDARIKrFDjzYyF?=
- =?us-ascii?Q?12oiYSf+2PowkZ5vjXVdJwlkUbomCDZokg9VHWsBz+LiaRYrHGZBwFRk8JYX?=
- =?us-ascii?Q?5zIiVQ=3D=3D?=
-X-OriginatorOrg: corigine.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0a057599-562d-4697-3692-08db47b90909
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR13MB4842.namprd13.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Apr 2023 07:20:25.1527
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: fe128f2c-073b-4c20-818e-7246a585940c
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: V/YnXzo7QL2K9flaFptKDhQZwALWTRVMfU+UkUq1mE48gYFISTZek1tSrq1sMIphZL0t12IiPLQuXc2DNcHLsQOsWS6iShQ2l9S3gD9HGqI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR13MB4086
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <20230207091902.2512905-1-milkfafa@gmail.com> <20230207091902.2512905-8-milkfafa@gmail.com>
+ <d91457ea-44c3-b96b-ce60-3e5ce9a80f7b@xs4all.nl>
+In-Reply-To: <d91457ea-44c3-b96b-ce60-3e5ce9a80f7b@xs4all.nl>
+From:   Kun-Fa Lin <milkfafa@gmail.com>
+Date:   Fri, 28 Apr 2023 15:40:31 +0800
+Message-ID: <CADnNmFoJc_9irFx8CbmnXZ+qW_XNRJ5-SbBLLiAXYS8PHb0LPA@mail.gmail.com>
+Subject: Re: [PATCH v11 7/7] media: nuvoton: Add driver for NPCM video capture
+ and encode engine
+To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Cc:     mchehab@kernel.org, avifishman70@gmail.com, tmaimon77@gmail.com,
+        tali.perry1@gmail.com, venture@google.com, yuenn@google.com,
+        benjaminfair@google.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, andrzej.p@collabora.com,
+        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
+        kwliu@nuvoton.com, kflin@nuvoton.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 27, 2023 at 12:42:56PM +0530, Md Danish Anwar wrote:
-> Hi Simon,
-> Thanks for the comments.
+Hi Hans,
 
-...
+Sorry for the late response.
 
-> Please let me know if any other change is required. I will adress these changes
-> in next revision.
+> > +static void npcm_video_get_resolution(struct npcm_video *video)
+>
+> I think 'ncpm_video_detect_resolution' might be a better name.
 
-Hi,
+OK, will change to 'ncpm_video_detect_resolution'.
 
 
-Thanks for responding to my review.
-I have no further requests at this time.
+> > +{
+> > +     struct v4l2_bt_timings *act = &video->active_timings;
+> > +     struct v4l2_bt_timings *det = &video->detected_timings;
+> > +     struct regmap *gfxi;
+> > +     unsigned int dispst;
+> > +
+> > +     video->v4l2_input_status = 0;
+> > +     det->width = npcm_video_hres(video);
+> > +     det->height = npcm_video_vres(video);
+> > +
+> > +     if (act->width != det->width || act->height != det->height) {
+> > +             dev_dbg(video->dev, "Resolution changed\n");
+> > +             npcm_video_bufs_done(video, VB2_BUF_STATE_ERROR);
+>
+> Why return all buffers? You shouldn't have to do this.
+>
+> Right now this function is only called at start streaming and when
+> query_dv_timings is called. Is it possible for the resolution to change
+> while streaming? If so, do you get an interrupt or is there some other
+> mechanism to detect this? Normally a resolution change will raise a
+> V4L2_EVENT_SOURCE_CHANGE event, and userspace then decides what to do
+> (typically stopping streaming and reconfiguring the video pipeline).
+>
+> What happens if you continue streaming when the resolution changes?
+> Particularly when the new resolution is larger than the current
+> buffer size.
+
+Yes, it is possible for the resolution to change while streaming.
+In our case, userspace application keeps monitoring resolution by
+calling query_dv_timings,
+and it will stop streaming and reconfiguration if resolution changes.
+I've checked that VCD can support resolution change interruptions.
+I'll add interrupt support as you suggested.
+
+
+> > +     if (det->width == 0 || det->height == 0) {
+> > +             det->width = MIN_WIDTH;
+> > +             det->height = MIN_HEIGHT;
+> > +             npcm_video_clear_gmmap(video);
+>
+> This looks like a potentially dangerous side-effect. I would not expect this
+> function to have any side effects: it just detects the new resolution.
+
+Will remove this and modify the flow of ncpm_video_detect_resolution.
+
+
+> > +static int npcm_video_enum_input(struct file *file, void *fh,
+> > +                              struct v4l2_input *inp)
+> > +{
+> > +     struct npcm_video *video = video_drvdata(file);
+> > +
+> > +     if (inp->index)
+> > +             return -EINVAL;
+> > +
+>
+> You need to call npcm_video_get_resolution(video); here as well,
+> to ensure inp->status is valid. Although ideally you know if there is a
+> new resolution due to an interrupt or something like that.
+
+Understand. Will add support for resolution change interrupt to ensure
+inp->status is valid.
+
+
+> > +     if (vb2_is_busy(&video->queue)) {
+> > +             dev_err(video->dev, "%s device busy\n", __func__);
+> > +             return -EBUSY;
+> > +     }
+> > +
+> > +     video->active_timings = timings->bt;
+>
+> This updates the active_timings even if npcm_video_set_resolution
+> fails. Is that what you would expect?
+
+active_timings should be updated only if npcm_video_set_resolution
+succeeds, will modify it.
+
+
+> > +static int npcm_video_sub_event(struct v4l2_fh *fh,
+> > +                             const struct v4l2_event_subscription *sub)
+> > +{
+> > +     switch (sub->type) {
+> > +     case V4L2_EVENT_SOURCE_CHANGE:
+> > +             return v4l2_src_change_event_subscribe(fh, sub);
+> > +     }
+>
+> This makes no sense unless you can actually detect resolution changes
+> and raise this event.
+>
+> If there is no easy asynchronous way of telling the driver that the resolution
+> changed, would it be possible to have a thread that periodically checks the
+> current detected resolution?
+
+Will add support for resolution change interrupt and raise the event.
+
+
+> > +     switch (ctrl->id) {
+> > +     case V4L2_CID_NPCM_RECT_COUNT:
+> > +             ctrl->val = video->rect[video->vb_index];
+>
+> Does this change per frame? This is not really a reliable way of passing this
+> information to userspace.
+>
+> I also wonder if the number of rects isn't something that can be deduced from
+> the payload size of the buffer.
+
+VCD supports two capture modes:
+  - COMPLETE mode: Capture the next complete frame into memory.
+  - DIFF mode: Compare the incoming frame with the frame stored in
+memory, and update the differentiated rects in memory.
+
+If using COMPLETE mode, rect_count is always 1 (complete frame).
+If using DIFF mode, rect_count will be the number of differentiated rects.
+In DIFF mode case, rect_count is not deducible so userspace needs to
+use V4L2_CID_NPCM_RECT_COUNT control to get the information.
+
+
+> > +     kfree(video->rect);
+> > +     video->rect = NULL;
+>
+> This line is not needed.
+>
+> > +
+> > +     video->rect = kcalloc(*num_buffers, sizeof(*video->rect), GFP_KERNEL);
+>
+> Possibly overkill to allocate this. It can be an array of size VIDEO_MAX_FRAME
+> as well. Up to you, though.
+
+OK, I will modify it as you suggested.
+
+
+> > +     vbq->io_modes = VB2_MMAP | VB2_READ | VB2_DMABUF;
+>
+> Does VB2_READ make sense? It can't really be used with a HEXTILE format
+> since that has variable length payloads, and with read() you don't know
+> the size of each compressed frame.
+
+VB2_READ should be removed. Thank you so much for the detailed review.
+
+Regards,
+Marvin
