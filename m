@@ -2,117 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E37026F196A
-	for <lists+devicetree@lfdr.de>; Fri, 28 Apr 2023 15:27:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E43D6F199A
+	for <lists+devicetree@lfdr.de>; Fri, 28 Apr 2023 15:32:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346271AbjD1N1L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Apr 2023 09:27:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38708 "EHLO
+        id S1346297AbjD1Ncr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Apr 2023 09:32:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346274AbjD1N1K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Apr 2023 09:27:10 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5F544EC3
-        for <devicetree@vger.kernel.org>; Fri, 28 Apr 2023 06:27:07 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-2fddb442d47so9017889f8f.2
-        for <devicetree@vger.kernel.org>; Fri, 28 Apr 2023 06:27:07 -0700 (PDT)
+        with ESMTP id S1346298AbjD1Ncp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Apr 2023 09:32:45 -0400
+Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8B6346BB;
+        Fri, 28 Apr 2023 06:32:43 -0700 (PDT)
+Received: by mail-pl1-x62d.google.com with SMTP id d9443c01a7336-1a6f0d8cdfeso75793425ad.2;
+        Fri, 28 Apr 2023 06:32:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682688426; x=1685280426;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=gmail.com; s=20221208; t=1682688763; x=1685280763;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:to
+         :content-language:user-agent:mime-version:date:message-id:sender
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=gkJoG1LPHO8i6Q8wWiW6Rl5rdW7E3T2NGYe6a0Rghqs=;
-        b=ZdfR/e7VVW6XiNkmL3LmeM9+R4kj8X362H1qodHBMdg+uyiTshG0jpKr6rOibBTLeu
-         DA6AQrMAhDORd2ChFpbJX2cLTnbyPu/BHIGoBE75Na1jUzq6e5AC0V+UIGD++SG/sNXJ
-         mGDaZ8yLslXk5mssqHuBP36BhSqhv+mPHsLS0BPVVZ4BED7q8ohax35mMWz6I9VPGZ3t
-         OPOLiuu8l7Yaw62vcREt7DtwhNkiHcKre57Q5mvg4Esp9IK6s6lMW30S6s6PLj05uT4H
-         e+sgnqYRSRKx4U2/nHvg3skEwxeqVxsEjqS6KT74CuzPHkxQDm2TxYR1vuAwCaLefcer
-         MIsw==
+        bh=Ecf3y//8as8pmNBqc+FV/KL+yi6EQ2HAAYSLWqdkKMY=;
+        b=S8lRCV5XNase7pRtd37xsGAZzTDD6LYZluEpOiqWveUN07ffsE754Ypw1bTZS8+Ri3
+         iNhAND76FztYXHLw8cHxo3ZFPtOanPUx2/7cmTo1PIjXf3kFnF3wetAybVUNKAXg6mss
+         nGJ8yinhECeQ0K0ehiocBmq9TSphAmxKsis/LJw7K1wKm4Kph/pweqWndZ15sk9oE6G6
+         IFbL5zqrXNU6KQtDAOuPZ7X+qFAVE/uhXDcV9lNvwlv+RLTNtw+Toz7AbI9Q6aoQorDt
+         nx9g+PL/PTf1t4Yy8SZwi1BCl+aAgxQnJgjlkNiVsyOwYt9WYWHtnY7xO+RDEE/HtGo2
+         mQeg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682688426; x=1685280426;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1682688763; x=1685280763;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:to
+         :content-language:user-agent:mime-version:date:message-id:sender
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gkJoG1LPHO8i6Q8wWiW6Rl5rdW7E3T2NGYe6a0Rghqs=;
-        b=ExPtTlATMVY7CF9FMV8dNMhLKT9lF7FF8yErJ/fXeMim2YPOiIOp2zUlGSUiz0BdgR
-         86CJqyxOHKaP8fpvg401aSaxPgF5NXmhC3Y3lCpXAilkax4u9WrPVvsRhRxG6nOyUMdO
-         Q8fJnaXaFbRTDmDwH4zLt4UbCxL4plexa/g5vxbtbzuk0tEZH3Wj2eZZBWzGZdi8wWcO
-         IopS8m1D1jm2rQhB2zjckNGrT05lYxNJ/TjRZANj/n/IiDCUYT/wVl7M8cMkvXcsF6Ki
-         exLT9mSJONccQw4TH7tkhpNIVd5wIQwovtxk61OztBDWcCyu8x6F77lRfR2nxKOiXt9C
-         cw0A==
-X-Gm-Message-State: AC+VfDxp0t7xcqTcU/IxIhSqwrxInQAIth1rB+79GRJZu0JgSqoVI26w
-        aMQNXxkMnMGCfKny3mm8Lpbn6g==
-X-Google-Smtp-Source: ACHHUZ4s83IplXBwoNtSQYlpNZ2jgP0cGcl1S9RUA3BThTitRPqEC3TEtyd9ZfVctIWKGMQH4+ujZQ==
-X-Received: by 2002:adf:e54c:0:b0:2fa:a4b5:6b8 with SMTP id z12-20020adfe54c000000b002faa4b506b8mr3865844wrm.27.1682688426294;
-        Fri, 28 Apr 2023 06:27:06 -0700 (PDT)
-Received: from [172.23.2.142] ([195.167.132.10])
-        by smtp.gmail.com with ESMTPSA id f6-20020a5d6646000000b002f6dafef040sm21107235wrw.12.2023.04.28.06.27.04
+        bh=Ecf3y//8as8pmNBqc+FV/KL+yi6EQ2HAAYSLWqdkKMY=;
+        b=grLy7fcAEBOhv79yQC1iwDj0+XZMGx4PeoWfYZBHDL0pJw1fzYZjHhV2USi7yvEc6O
+         IO21u7rQ4s89i79lWaru48mm8iOLGFMlOmdhnJg8CzJWXudVc8aK02FaTMNgt0ZbvHGA
+         PKwjNLxGawf2wOmyfAWdJH0MOhA/OYc4DVQ/NHmtln5vS7OzzNanBe84HAgKMjFGde/o
+         D8j6ZuFZNdMZ2JreLO/pEvUJtJc3Qzg+Gy/ccKyFtYHtPta7c1NcYfgj26H5sp4n2M/U
+         emaNQuv4oe2JipqApsyuq4UN8VNjlRv/n+l/3z6A9iu+7ytxQ5V+vE2lNqYzixIjDd2i
+         Sgjw==
+X-Gm-Message-State: AC+VfDygc2jNwMu8TIFdZSBIaIbFixSJeOvBnLCNGi0DirbIfWiYsXlZ
+        T+6rV35YwPVYHlfBYVFlgHw=
+X-Google-Smtp-Source: ACHHUZ6MuvKOGxaqrdszoikil1JyMqWsmcNZ0YJGxut2ugRIYmruVervYbpv5rJ01rxEqUYJPDjMrA==
+X-Received: by 2002:a17:902:ec83:b0:1a6:f93a:a135 with SMTP id x3-20020a170902ec8300b001a6f93aa135mr5944888plg.61.1682688763155;
+        Fri, 28 Apr 2023 06:32:43 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id f5-20020a170902ab8500b001991f3d85acsm13241904plr.299.2023.04.28.06.32.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Apr 2023 06:27:05 -0700 (PDT)
-Message-ID: <4b690859-be5a-c331-8243-b875136d4807@linaro.org>
-Date:   Fri, 28 Apr 2023 15:27:04 +0200
+        Fri, 28 Apr 2023 06:32:42 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <b0bbd842-2262-8979-d8f8-ec611310c44f@roeck-us.net>
+Date:   Fri, 28 Apr 2023 06:32:39 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH v2 1/6] dt-bindings: usb: qcom,dwc3: Add bindings for
- SA8775P
-To:     Shazad Hussain <quic_shazhuss@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     dmitry.baryshkov@linaro.org, athierry@redhat.com, robh@kernel.org,
-        konrad.dybcio@linaro.org, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org
-References: <20230428130824.23803-1-quic_shazhuss@quicinc.com>
- <20230428130824.23803-2-quic_shazhuss@quicinc.com>
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230428130824.23803-2-quic_shazhuss@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+To:     "Hawkins, Nick" <nick.hawkins@hpe.com>,
+        "Verdun, Jean-Marie" <verdun@hpe.com>,
+        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+        "brgl@bgdev.pl" <brgl@bgdev.pl>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "jdelvare@suse.com" <jdelvare@suse.com>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20230418152824.110823-1-nick.hawkins@hpe.com>
+ <20230418152824.110823-2-nick.hawkins@hpe.com>
+ <c27e07d2-8eb1-16a8-4619-280967fc0de9@roeck-us.net>
+ <DM4PR84MB1927C9D3C5CC5B001713CE57886A9@DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM>
+From:   Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH v1 1/9] gpio: gxp: Add HPE GXP GPIO
+In-Reply-To: <DM4PR84MB1927C9D3C5CC5B001713CE57886A9@DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/04/2023 15:08, Shazad Hussain wrote:
-> Add the compatible string for SA8775P SoC from Qualcomm.
+On 4/27/23 07:53, Hawkins, Nick wrote:
 > 
-> Signed-off-by: Shazad Hussain <quic_shazhuss@quicinc.com>
-> ---
+> 
+> 
+>> This is not information which should be reported through a gpio driver.
+>> Besides, the functions don't exist at this point in the series,
+>> and there should be no extern declarations in source files.
+> 
+>> If you want to model fan or psu information through gpio, drop
+>> the hwmon drivers and implement reading the status here, then use
+>> the existing gpio-fan hwmon driver to report it in the hwmon subsystem.
+> 
+> Thank you for the feedback Guenter,
+> 
+> I see how it is possible to use gpio-fan for the fan. As for the gxp-psu
+> Hwmon driver can I model the gpio-fan driver to get the necessary
+> gpio information for power supplies?
+> 
 
-(...)
+Sorry, I don't understand. Looking into the code again, the major problem
+I see is that you want to model fan install status and fan fault
+status as gpio pins. The same is true for psu information (installed,
+ac, dc flags).
 
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,sa8775p-dwc3
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          minItems: 3
-> +          maxItems: 4
-> +        interrupt-names:
-> +          minItems: 3
-> +          items:
-> +            - const: pwr_event
-> +            - const: dp_hs_phy_irq
-> +            - const: dm_hs_phy_irq
-> +            - const: ss_phy_irq
+If you want to do this, fine, but then get the status from the gpio
+driver and don't export anything to the gpio driver. The kernel supports
+means to do that (look at gpiod_get and similar functions). It makes the
+code more complex, but I assume you know what you are doing.
 
-Why the last interrupt line is optional? Is it really optional?
-
-Best regards,
-Krzysztof
+Guenter
 
