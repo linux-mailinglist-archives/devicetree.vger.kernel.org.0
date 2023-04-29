@@ -2,134 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8854A6F25EC
-	for <lists+devicetree@lfdr.de>; Sat, 29 Apr 2023 20:58:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C76086F25FB
+	for <lists+devicetree@lfdr.de>; Sat, 29 Apr 2023 21:33:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230351AbjD2S6I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Apr 2023 14:58:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56262 "EHLO
+        id S230395AbjD2Tdo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Apr 2023 15:33:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230349AbjD2S6H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Apr 2023 14:58:07 -0400
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F12B186
-        for <devicetree@vger.kernel.org>; Sat, 29 Apr 2023 11:58:06 -0700 (PDT)
-Received: by mail-pl1-x634.google.com with SMTP id d9443c01a7336-1aaca0bb8c2so11605025ad.1
-        for <devicetree@vger.kernel.org>; Sat, 29 Apr 2023 11:58:06 -0700 (PDT)
+        with ESMTP id S230390AbjD2Tdn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Apr 2023 15:33:43 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D7201731;
+        Sat, 29 Apr 2023 12:33:40 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-50bc0ced1d9so301419a12.0;
+        Sat, 29 Apr 2023 12:33:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20221208.gappssmtp.com; s=20221208; t=1682794685; x=1685386685;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tneK3rBistnd9Ha67Ea2Jz2s60WaNrk0c+1Wr5wtZd4=;
-        b=bNJ0a9PlEcdBF+D7KklysARre66PsS60KW+fqG+FgUkVbvZBScXzV/P/qemIinvqdA
-         RGjVj3zDl7+7EkuCjfrdbpQ0s4DPd3daiJj3DDYvtgjnilpb4n+rlVqYpNMi32EdVk9z
-         4ScOzIRJFMYTstYR5uFnSTj6AoU3o3Fa8ypRxptygBv2aX/e/Cnp8o8zOoMo+Kxir2hq
-         RCzHThJv5X7vqng0eMKkZNIKLFHcNPnebigPe3eMwzmTmqtKBftjHNNBbhckPj+b1Osf
-         FyHXLMIO6pisf5F61w+pkhU5ZQWdLtoDNoQVDMCa06KuRcFHigfnw38q9VLh0f894bO5
-         v+9Q==
+        d=gmail.com; s=20221208; t=1682796819; x=1685388819;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ls6sJL2aXmHZRlo+OUGjxcr6tdIOlt1Pi83WHloB3a0=;
+        b=faXO8NUymK5E53jWFOewVxALmZ6qGoRHJWr1xH4xeSQK4XaamPKc8l6kcmgw+KGo5X
+         dcv8+tTHlJZXmgvIgUweUvg0uvNlG6WFDV4djL4pc5mYdyF1jqXKPWJbJYukSasps/2t
+         s1/0MWpOZEJcDNgugEEhdH10F2bmTp+u0ZNzYMlMZFbhL+eUgqOiHTE03iy+H2XgXwyl
+         wBek6hzvrWiP7m1D/nJjcmWgXFHfho12EoapDTJG6ILuanhVSGRSeMujgYG0TBXeLW/A
+         70KH3oThaTY4l85lGjInGOZX0px8rTkzrngel56W5TabPiotf21M5nMoqUPR4CoC9iSv
+         mfew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682794685; x=1685386685;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tneK3rBistnd9Ha67Ea2Jz2s60WaNrk0c+1Wr5wtZd4=;
-        b=KjrYsBpZDKcF18QJUOV7MEPTsJkrLgWqYe6RkiQNTkQuTfm+uVuLsiVfct3Y2UdEAC
-         vMabNY+O/mP1xvFFHeM1PlBXbYst5U1J2ywy9IdJ4E5i6bdCc5+S9NExrVCAOOI3F+jO
-         JVwGM4XTnVPDQMOg638mXyXcx335C5hxTl4I/0DiFihaNYaXHdtWbGCsm4dSQRq0vcXj
-         sVT3zu5KMb4U+tfkFvDJe02eKF9k0AyX0RpsqWzcy/XqMBok0il722CMUGmO504eHFw8
-         qKn8lSOKJ7/BdSoIvK27OVk5EW5qZEqAF9Vb3foYjWUwXdAoGt0gmiiuZb5qy21z4fSQ
-         ofwg==
-X-Gm-Message-State: AC+VfDygdcjwGkYC4EjajNBH9i/hqvjNORpIF8iuNp5yrxx3P/aeCXra
-        BjO5qeYCId2W9IlXiDX0Kp8syM6tY6C+jZEWfhNxjg==
-X-Google-Smtp-Source: ACHHUZ5s+GEIwUVRzUqUdkcm4/YL6Qb5gwwrAB6zsCenMUYBzTYBLu4Hq1rlV4SjZnoSUrs2/azH/Q==
-X-Received: by 2002:a17:902:bd8d:b0:1a9:90bc:c3c5 with SMTP id q13-20020a170902bd8d00b001a990bcc3c5mr8643899pls.62.1682794685224;
-        Sat, 29 Apr 2023 11:58:05 -0700 (PDT)
-Received: from localhost ([50.221.140.188])
-        by smtp.gmail.com with ESMTPSA id l9-20020a170902f68900b001a1a82fc6d3sm774266plg.268.2023.04.29.11.58.04
+        d=1e100.net; s=20221208; t=1682796819; x=1685388819;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ls6sJL2aXmHZRlo+OUGjxcr6tdIOlt1Pi83WHloB3a0=;
+        b=eQbt6R7u1JWivktwS071u1jMPVpjPQX00fnYryifzmsx+DaoZ69yCOkgnP5ZLnwQHx
+         fMv3zwlACjyGrNjeJJishQtJS+9yf0ks+3OIdXMrT4PvFldNsQC109SCf7uy4rVapZRw
+         Lx2YIkkf7ZbrGL4SZbHK+YaPk5dRMBQalyk0y5pICKY0c76I86ubpW4TNdUSIbp2/ImB
+         2GeXrk+LFfA8pYIvwjsICBeEfNqdJl6z6Z+a5DgPlKBUewhk7DFGmjLYbxIb/VOmdwV4
+         L5MglPk5/CtHyza5a8NZO6MU0luT1UZDHflKfMV2aEkYpmjfWdR8HmRdHvRi2eyl+X4B
+         HWUA==
+X-Gm-Message-State: AC+VfDy2kVs+3w6+OKKckVdWExuUqUZCXlMeH1Vt0H/U1/LZKQDP9qAI
+        SY9vz104xdg/k3go6MLdlmN1TqtAHyXkjQ==
+X-Google-Smtp-Source: ACHHUZ7esGM0uWrCMqTjKfWnChxjuRKwrHMofdgZ1MWGHjdpiSto6JwDLGZBsB0qERDJ7IFwIgQO+w==
+X-Received: by 2002:a05:6402:b09:b0:506:b209:edb with SMTP id bm9-20020a0564020b0900b00506b2090edbmr1898590edb.38.1682796818673;
+        Sat, 29 Apr 2023 12:33:38 -0700 (PDT)
+Received: from fedora.. ([188.252.220.213])
+        by smtp.googlemail.com with ESMTPSA id q19-20020a1709060f9300b0094f1fe1696bsm12832126ejj.216.2023.04.29.12.33.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 29 Apr 2023 11:58:04 -0700 (PDT)
-Date:   Sat, 29 Apr 2023 11:58:04 -0700 (PDT)
-X-Google-Original-Date: Sat, 29 Apr 2023 11:57:50 PDT (-0700)
-Subject:     Re: [PATCH v7 0/2] StarFive's SYSCON support
-In-Reply-To: <20230406103308.1280860-1-william.qiu@starfivetech.com>
-CC:     devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, Conor Dooley <conor@kernel.org>,
-        kernel@esmil.dk, william.qiu@starfivetech.com
-From:   Palmer Dabbelt <palmer@dabbelt.com>
-To:     william.qiu@starfivetech.com
-Message-ID: <mhng-698f09f5-3840-4456-87c2-5c04742b42f4@palmer-ri-x1c9a>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
+        Sat, 29 Apr 2023 12:33:38 -0700 (PDT)
+From:   Robert Marko <robimarko@gmail.com>
+To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     Robert Marko <robimarko@gmail.com>
+Subject: [PATCH 1/2] dt-bindings: arm: qcom,ids: Add IDs for IPQ5018 family
+Date:   Sat, 29 Apr 2023 21:33:35 +0200
+Message-Id: <20230429193336.600629-1-robimarko@gmail.com>
+X-Mailer: git-send-email 2.40.1
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 06 Apr 2023 03:33:06 PDT (-0700), william.qiu@starfivetech.com wrote:
-> Hi,
->
-> This patchset adds initial rudimentary support for the StarFive
-> designware mobile storage host controller driver. And this driver will
-> be used in StarFive's VisionFive 2 board. The main purpose of adding
-> this driver is to accommodate the ultra-high speed mode of eMMC.
->
-> The last patch should be applied after the patchset [1]:
-> [1] https://lore.kernel.org/all/20230401111934.130844-1-hal.feng@starfivetech.com/
->
-> Changes v5->v6:
-> - Rebased to 6.3-rc3.
-> - Modified compatible's property.
-> - Added clock-controller and power-controller node.
->
-> Changes v5->v6:
-> - Rebased to 6.3-rc1.
-> - Changed file name to starfive,jh7110.yaml.
-> - Modified commit description.
-> - Added syscon node dts patch to other dependent modules.
->
-> Changes v4->v5:
-> - Added a incremental updates to fix a bug that prev_err is uninitialized.
-> - Dropped the merged patches.
-> - Dropped the dts patch.
-> - Sorted compatible alphabetically in yaml.
->
-> Changes v3->v4:
-> - Added documentation to describe StarFive System Controller Registers.
-> - Added aon_syscon and stg_syscon node.
-> - Fixed some checkpatch errors/warnings.
->
-> Changes v2->v3:
-> - Wraped commit message according to Linux coding style.
-> - Rephrased the description of the patches.
-> - Changed the description of syscon regsiter.
-> - Dropped redundant properties.
->
-> Changes v1->v2:
-> - Renamed the dt-binding 'starfive,jh7110-sdio.yaml' to 'starfive,jh7110-mmc.yaml'.
-> - Changed the type of 'starfive,syscon' and modify its description.
-> - Deleted unused head files like '#include <linux/gpio.h>'.
-> - Added comment for the 'rise_point' and 'fall_point'.
-> - Changed the API 'num_caps' to 'common_caps'.
-> - Changed the node name 'sys_syscon' to 'syscon'.
-> - Changed the node name 'sdio' to 'mmc'.
->
-> The patch series is based on v6.3.
->
-> William Qiu (2):
->   dt-bindings: soc: starfive: Add StarFive syscon doc
->   riscv: dts: starfive: jh7110: Add syscon nodes
->
->  .../soc/starfive/starfive,jh7110-syscon.yaml  | 56 +++++++++++++++++++
->  MAINTAINERS                                   |  5 ++
->  arch/riscv/boot/dts/starfive/jh7110.dtsi      | 15 +++++
->  3 files changed, 76 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
+Add SOC IDs for the IPQ5018 family.
 
-Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
+Signed-off-by: Robert Marko <robimarko@gmail.com>
+---
+ include/dt-bindings/arm/qcom,ids.h | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/include/dt-bindings/arm/qcom,ids.h b/include/dt-bindings/arm/qcom,ids.h
+index 802495b20276..c1283bad81e1 100644
+--- a/include/dt-bindings/arm/qcom,ids.h
++++ b/include/dt-bindings/arm/qcom,ids.h
+@@ -216,6 +216,9 @@
+ #define QCOM_ID_SM8350			439
+ #define QCOM_ID_QCM2290			441
+ #define QCOM_ID_SM6115			444
++#define QCOM_ID_IPQ5010			446
++#define QCOM_ID_IPQ5018			447
++#define QCOM_ID_IPQ5028			448
+ #define QCOM_ID_SC8280XP		449
+ #define QCOM_ID_IPQ6005			453
+ #define QCOM_ID_QRB5165			455
+@@ -229,6 +232,9 @@
+ #define QCOM_ID_SM8450_3		482
+ #define QCOM_ID_SC7280			487
+ #define QCOM_ID_SC7180P			495
++#define QCOM_ID_IPQ5000			503
++#define QCOM_ID_IPQ0509			504
++#define QCOM_ID_IPQ0518			505
+ #define QCOM_ID_SM6375			507
+ #define QCOM_ID_IPQ9514			510
+ #define QCOM_ID_IPQ9550			511
+@@ -236,6 +242,7 @@
+ #define QCOM_ID_IPQ9570			513
+ #define QCOM_ID_IPQ9574			514
+ #define QCOM_ID_SM8550			519
++#define QCOM_ID_IPQ5016			520
+ #define QCOM_ID_IPQ9510			521
+ #define QCOM_ID_QRB4210			523
+ #define QCOM_ID_QRB2210			524
+@@ -243,6 +250,7 @@
+ #define QCOM_ID_QRU1000			539
+ #define QCOM_ID_QDU1000			545
+ #define QCOM_ID_QDU1010			587
++#define QCOM_ID_IPQ5019			569
+ #define QCOM_ID_QRU1032			588
+ #define QCOM_ID_QRU1052			589
+ #define QCOM_ID_QRU1062			590
+-- 
+2.40.1
+
