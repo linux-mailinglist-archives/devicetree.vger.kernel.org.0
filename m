@@ -2,119 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C64CD6F25D6
-	for <lists+devicetree@lfdr.de>; Sat, 29 Apr 2023 20:25:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8854A6F25EC
+	for <lists+devicetree@lfdr.de>; Sat, 29 Apr 2023 20:58:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229909AbjD2SY7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Apr 2023 14:24:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50968 "EHLO
+        id S230351AbjD2S6I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Apr 2023 14:58:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230317AbjD2SYz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Apr 2023 14:24:55 -0400
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC0E92115
-        for <devicetree@vger.kernel.org>; Sat, 29 Apr 2023 11:24:52 -0700 (PDT)
-Received: by mail-pl1-x632.google.com with SMTP id d9443c01a7336-1aad55244b7so4554555ad.2
-        for <devicetree@vger.kernel.org>; Sat, 29 Apr 2023 11:24:52 -0700 (PDT)
+        with ESMTP id S230349AbjD2S6H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Apr 2023 14:58:07 -0400
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F12B186
+        for <devicetree@vger.kernel.org>; Sat, 29 Apr 2023 11:58:06 -0700 (PDT)
+Received: by mail-pl1-x634.google.com with SMTP id d9443c01a7336-1aaca0bb8c2so11605025ad.1
+        for <devicetree@vger.kernel.org>; Sat, 29 Apr 2023 11:58:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20221208.gappssmtp.com; s=20221208; t=1682792692; x=1685384692;
+        d=dabbelt-com.20221208.gappssmtp.com; s=20221208; t=1682794685; x=1685386685;
         h=content-transfer-encoding:mime-version:message-id:to:from:cc
          :in-reply-to:subject:date:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=KGl5HMSK57VmBSwKSnwgm3VXr902jH6XBJlNczgIzTY=;
-        b=l+H0JwRFKwAD4TzkKtg69sq/SE0iMjDe/NX6Txlv16Ba4kBdBRnOLJE9cuEp/EtowJ
-         pvTfeswVQQvBqhKyncNpPdAR29BMkNe6LB9ZMzoVyBV5Q9aGwXPM1Fc+6Qr50SDIiKsJ
-         q9xyHClsPNOcAaBRr9fQ8UfCjonz6jsBwXrYvJjTpLiOgKgKgvN8uwk1fTPbl8XK+035
-         m3QY80DvBeDJf799u5hnhHuLgfMpPNb4a9jtTjDBw2OzLziw75OHG2J322CH+dAw1HCw
-         HsmmVI7grjIDtuj7uBS5rk+EMADzgTEglzedbNWVOsorwBluoILEBWp5M0RLFiHKNfCf
-         2+Mg==
+        bh=tneK3rBistnd9Ha67Ea2Jz2s60WaNrk0c+1Wr5wtZd4=;
+        b=bNJ0a9PlEcdBF+D7KklysARre66PsS60KW+fqG+FgUkVbvZBScXzV/P/qemIinvqdA
+         RGjVj3zDl7+7EkuCjfrdbpQ0s4DPd3daiJj3DDYvtgjnilpb4n+rlVqYpNMi32EdVk9z
+         4ScOzIRJFMYTstYR5uFnSTj6AoU3o3Fa8ypRxptygBv2aX/e/Cnp8o8zOoMo+Kxir2hq
+         RCzHThJv5X7vqng0eMKkZNIKLFHcNPnebigPe3eMwzmTmqtKBftjHNNBbhckPj+b1Osf
+         FyHXLMIO6pisf5F61w+pkhU5ZQWdLtoDNoQVDMCa06KuRcFHigfnw38q9VLh0f894bO5
+         v+9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682792692; x=1685384692;
+        d=1e100.net; s=20221208; t=1682794685; x=1685386685;
         h=content-transfer-encoding:mime-version:message-id:to:from:cc
          :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=KGl5HMSK57VmBSwKSnwgm3VXr902jH6XBJlNczgIzTY=;
-        b=d5QVwVpkgMBCaTl6twqfw8lgfIJMYr7BuiExI6ZyvRhNYB966CcwOvpsokF40QQHWj
-         +6EtZi2/90JcmK7LiSjPy9+OyqLKjF3ZAcaOP9NKGg36i2X2heSzsnxR/k/z54B8FtiL
-         Yc29p1hPoNfwGIN174ZlRLQm2CGlS96v3CqEeBzxCI1mIPAC9Uv/wMvtatwE7LYcjxB5
-         WpkLK4p7z0nL7BP+u4XU/C9o9i5uXY2IttqGprE4+I1UTL2LtqGWW4Z0UpGDSSijRfRS
-         van6EuvtLv/L20/2top97LX7k/7CTob8AauXMN2ePlQwbqMUN8n5/yYjtYPO/iegDu+/
-         n7sw==
-X-Gm-Message-State: AC+VfDzRiNc5dUaXACFQW0LKkS8cYrDexMj9BCFM7hs9CqmiWvDKzNB8
-        7J34e/A5vxmQuFlTPOEqsfOONg==
-X-Google-Smtp-Source: ACHHUZ6ZiLzN9eR+ckFMqg7tN3D4bPpq4geojnHO1Jqz7HXa46oxZHVvxREPvQQtQygRvSqX/lxFkg==
-X-Received: by 2002:a17:903:124b:b0:1a2:8c7e:f315 with SMTP id u11-20020a170903124b00b001a28c7ef315mr10630845plh.21.1682792692014;
-        Sat, 29 Apr 2023 11:24:52 -0700 (PDT)
+        bh=tneK3rBistnd9Ha67Ea2Jz2s60WaNrk0c+1Wr5wtZd4=;
+        b=KjrYsBpZDKcF18QJUOV7MEPTsJkrLgWqYe6RkiQNTkQuTfm+uVuLsiVfct3Y2UdEAC
+         vMabNY+O/mP1xvFFHeM1PlBXbYst5U1J2ywy9IdJ4E5i6bdCc5+S9NExrVCAOOI3F+jO
+         JVwGM4XTnVPDQMOg638mXyXcx335C5hxTl4I/0DiFihaNYaXHdtWbGCsm4dSQRq0vcXj
+         sVT3zu5KMb4U+tfkFvDJe02eKF9k0AyX0RpsqWzcy/XqMBok0il722CMUGmO504eHFw8
+         qKn8lSOKJ7/BdSoIvK27OVk5EW5qZEqAF9Vb3foYjWUwXdAoGt0gmiiuZb5qy21z4fSQ
+         ofwg==
+X-Gm-Message-State: AC+VfDygdcjwGkYC4EjajNBH9i/hqvjNORpIF8iuNp5yrxx3P/aeCXra
+        BjO5qeYCId2W9IlXiDX0Kp8syM6tY6C+jZEWfhNxjg==
+X-Google-Smtp-Source: ACHHUZ5s+GEIwUVRzUqUdkcm4/YL6Qb5gwwrAB6zsCenMUYBzTYBLu4Hq1rlV4SjZnoSUrs2/azH/Q==
+X-Received: by 2002:a17:902:bd8d:b0:1a9:90bc:c3c5 with SMTP id q13-20020a170902bd8d00b001a990bcc3c5mr8643899pls.62.1682794685224;
+        Sat, 29 Apr 2023 11:58:05 -0700 (PDT)
 Received: from localhost ([50.221.140.188])
-        by smtp.gmail.com with ESMTPSA id z2-20020a170902708200b001a19196af48sm15137375plk.64.2023.04.29.11.24.51
+        by smtp.gmail.com with ESMTPSA id l9-20020a170902f68900b001a1a82fc6d3sm774266plg.268.2023.04.29.11.58.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 29 Apr 2023 11:24:51 -0700 (PDT)
-Date:   Sat, 29 Apr 2023 11:24:51 -0700 (PDT)
-X-Google-Original-Date: Sat, 29 Apr 2023 11:24:33 PDT (-0700)
-Subject:     Re: [PATCH 09/19] riscv: cacheinfo: Adjust includes to remove of_device.h
-In-Reply-To: <20230329-dt-cpu-header-cleanups-v1-9-581e2605fe47@kernel.org>
-CC:     davem@davemloft.net, robh+dt@kernel.org, frowand.list@gmail.com,
-        linux@armlinux.org.uk, wens@csie.org, jernej.skrabec@gmail.com,
-        samuel@sholland.org, Paul Walmsley <paul.walmsley@sifive.com>,
-        aou@eecs.berkeley.edu, Greg KH <gregkh@linuxfoundation.org>,
-        rafael@kernel.org, daniel.lezcano@linaro.org, tglx@linutronix.de,
-        amit.kachhap@gmail.com, viresh.kumar@linaro.org,
-        lukasz.luba@arm.com, amitk@kernel.org, rui.zhang@intel.com,
-        matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
-        mpe@ellerman.id.au, npiggin@gmail.com, christophe.leroy@csgroup.eu,
-        thierry.reding@gmail.com, jonathanh@nvidia.com,
-        tiny.windzz@gmail.com, lpieralisi@kernel.org, sudeep.holla@arm.com,
-        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        anup@brainfault.org, chenhuacai@kernel.org,
-        jiaxun.yang@flygoat.com, Marc Zyngier <maz@kernel.org>,
-        vireshk@kernel.org, nm@ti.com, sboyd@kernel.org,
-        sparclinux@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-riscv@lists.infradead.org,
-        linux-pm@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linuxppc-dev@lists.ozlabs.org, linux-tegra@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-mips@vger.kernel.org
+        Sat, 29 Apr 2023 11:58:04 -0700 (PDT)
+Date:   Sat, 29 Apr 2023 11:58:04 -0700 (PDT)
+X-Google-Original-Date: Sat, 29 Apr 2023 11:57:50 PDT (-0700)
+Subject:     Re: [PATCH v7 0/2] StarFive's SYSCON support
+In-Reply-To: <20230406103308.1280860-1-william.qiu@starfivetech.com>
+CC:     devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, Conor Dooley <conor@kernel.org>,
+        kernel@esmil.dk, william.qiu@starfivetech.com
 From:   Palmer Dabbelt <palmer@dabbelt.com>
-To:     robh@kernel.org
-Message-ID: <mhng-8827afbb-9f5f-4a6d-b528-4b79b1a32f8a@palmer-ri-x1c9a>
+To:     william.qiu@starfivetech.com
+Message-ID: <mhng-698f09f5-3840-4456-87c2-5c04742b42f4@palmer-ri-x1c9a>
 Mime-Version: 1.0 (MHng)
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 29 Mar 2023 08:52:06 PDT (-0700), robh@kernel.org wrote:
-> Now that of_cpu_device_node_get() is defined in of.h, of_device.h is just
-> implicitly including other includes, and is no longer needed. Adjust the
-> include files with what was implicitly included by of_device.h (cpu.h and
-> of.h) and drop including of_device.h.
+On Thu, 06 Apr 2023 03:33:06 PDT (-0700), william.qiu@starfivetech.com wrote:
+> Hi,
 >
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
-> Please ack and I will take the series via the DT tree.
-> ---
->  arch/riscv/kernel/cacheinfo.c | 1 -
->  1 file changed, 1 deletion(-)
+> This patchset adds initial rudimentary support for the StarFive
+> designware mobile storage host controller driver. And this driver will
+> be used in StarFive's VisionFive 2 board. The main purpose of adding
+> this driver is to accommodate the ultra-high speed mode of eMMC.
 >
-> diff --git a/arch/riscv/kernel/cacheinfo.c b/arch/riscv/kernel/cacheinfo.c
-> index 3a13113f1b29..e3829d2de5d9 100644
-> --- a/arch/riscv/kernel/cacheinfo.c
-> +++ b/arch/riscv/kernel/cacheinfo.c
-> @@ -5,7 +5,6 @@
+> The last patch should be applied after the patchset [1]:
+> [1] https://lore.kernel.org/all/20230401111934.130844-1-hal.feng@starfivetech.com/
 >
->  #include <linux/cpu.h>
->  #include <linux/of.h>
-> -#include <linux/of_device.h>
->  #include <asm/cacheinfo.h>
+> Changes v5->v6:
+> - Rebased to 6.3-rc3.
+> - Modified compatible's property.
+> - Added clock-controller and power-controller node.
 >
->  static struct riscv_cacheinfo_ops *rv_cache_ops;
+> Changes v5->v6:
+> - Rebased to 6.3-rc1.
+> - Changed file name to starfive,jh7110.yaml.
+> - Modified commit description.
+> - Added syscon node dts patch to other dependent modules.
+>
+> Changes v4->v5:
+> - Added a incremental updates to fix a bug that prev_err is uninitialized.
+> - Dropped the merged patches.
+> - Dropped the dts patch.
+> - Sorted compatible alphabetically in yaml.
+>
+> Changes v3->v4:
+> - Added documentation to describe StarFive System Controller Registers.
+> - Added aon_syscon and stg_syscon node.
+> - Fixed some checkpatch errors/warnings.
+>
+> Changes v2->v3:
+> - Wraped commit message according to Linux coding style.
+> - Rephrased the description of the patches.
+> - Changed the description of syscon regsiter.
+> - Dropped redundant properties.
+>
+> Changes v1->v2:
+> - Renamed the dt-binding 'starfive,jh7110-sdio.yaml' to 'starfive,jh7110-mmc.yaml'.
+> - Changed the type of 'starfive,syscon' and modify its description.
+> - Deleted unused head files like '#include <linux/gpio.h>'.
+> - Added comment for the 'rise_point' and 'fall_point'.
+> - Changed the API 'num_caps' to 'common_caps'.
+> - Changed the node name 'sys_syscon' to 'syscon'.
+> - Changed the node name 'sdio' to 'mmc'.
+>
+> The patch series is based on v6.3.
+>
+> William Qiu (2):
+>   dt-bindings: soc: starfive: Add StarFive syscon doc
+>   riscv: dts: starfive: jh7110: Add syscon nodes
+>
+>  .../soc/starfive/starfive,jh7110-syscon.yaml  | 56 +++++++++++++++++++
+>  MAINTAINERS                                   |  5 ++
+>  arch/riscv/boot/dts/starfive/jh7110.dtsi      | 15 +++++
+>  3 files changed, 76 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
 
-Reviewed-by: Palmer Dabbelt <palmer@rivosinc.com>
 Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
