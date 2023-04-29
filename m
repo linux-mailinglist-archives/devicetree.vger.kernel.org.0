@@ -2,57 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D29DD6F211F
-	for <lists+devicetree@lfdr.de>; Sat, 29 Apr 2023 01:15:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B94416F2212
+	for <lists+devicetree@lfdr.de>; Sat, 29 Apr 2023 03:30:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346879AbjD1XP0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Apr 2023 19:15:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57762 "EHLO
+        id S1347258AbjD2BaE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Apr 2023 21:30:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346782AbjD1XPU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Apr 2023 19:15:20 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 557D749DE;
-        Fri, 28 Apr 2023 16:15:19 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DD5C860F91;
-        Fri, 28 Apr 2023 23:15:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A674C4339B;
-        Fri, 28 Apr 2023 23:15:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1682723718;
-        bh=V47hoZiyKH7rDpUH6NwYPJ7TotHzjSslW4RlKcVJpT4=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=VifBKT2RDFwmgKTgjLwymdT5T9+lRiUD0Jgc6ya20KneNUzUlolcuv6d8KdY+DQjk
-         C/1TEAZieV4eTU+238Hi8KkI55t6+GS1tSOtqvMI4eHIKFk+5DWARtxmMA0v+QENcr
-         QXhixuXifZc8HxRIFDLInH2c6EnOchvdaPpDYWZnh6vsOnKasVYP2ONeHInbQ7iHL7
-         REy5XL1VIYhsV3nReQElrrXqe5EoTlJu09glYLB2lSPEb+wR/SSR3BA3/KEM+HXSc7
-         myeXsIbv+LFBxSvN/HThCu4TNp5DwlFQgI9gtfPmKAn9DvLL8TyX34CN1CuOEchsyX
-         JaLuRNqLS6+HQ==
-Message-ID: <3574700189bb35bba3ad6d79f3a799c9.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S1347074AbjD2BaD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Apr 2023 21:30:03 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EED6B10F9;
+        Fri, 28 Apr 2023 18:30:01 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-957dbae98b4so67933766b.1;
+        Fri, 28 Apr 2023 18:30:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1682731800; x=1685323800;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=w/mrCSfSQUswJQokY5CKe1DjsNNVB/tC9yPgcDgjPVo=;
+        b=Cp4k0SnPzmRX1iwhjYK30jpCdKDz57EBRJZZYFlktyGQWgBSy6nlL8hURnvSx4dEyB
+         Q+N7Qi0fX/m2buLh2I0molv6vsrWhZC8/VHB50IcESuVgAEmKInA9EP0T7Ehfpu4FKjb
+         0gKDGqUe6aXE6+ZxqRJ/ljudqP5f9xSCZ8yRsizxXrpiLp1R8czlkEFQcAQuB1V1hiKu
+         wzvJg0gck0puRog6789hw7gK1KVM0AAYWPixExdBeLYBDuKqJgWRvjVbfAVt+XxZiChR
+         67N1Q5nSB3FQKAg2iyEGpoZL9HGyeq7IrX1eIWOjzlj0qHqHtcJ6KdeXA772jcBCQ0zA
+         d0Tw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682731800; x=1685323800;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=w/mrCSfSQUswJQokY5CKe1DjsNNVB/tC9yPgcDgjPVo=;
+        b=N3NHgyd+pBusCfmJeVCLgCWxx58jnyW/3yaetGYD+i2aAkYaSOv8onwBrrLpErImK+
+         3Qfq8PCmTvafe3LC8R1/nX38FI/W+JIjknoIoMCIZNdYJt3SoVeyL2m0VSso1OaZd7vo
+         b4/EcTxRRfFRiTYtE8CkgTyjcMBV63UvCrlL8K1HQpYBBmj5Wr02cssi9+CmA/votpHJ
+         e3GDFA6NTQQx50YjI58nu2ID6Ijp+PSk4jxdERkO6b0T+AZx0sSGMS2+muTBsdBQfSjl
+         GraFoYqVNXIjMbiFTisGmLNEbCrfFkVZiQ4/BcIJnPh4nrFcaBVr0GFPJgDidmFc3tER
+         UXIA==
+X-Gm-Message-State: AC+VfDweFKFL+4wXGyH+xiFq7NZhhvqfWqR7Cg9VP23B8YnujUE8pDXK
+        8Wqy27xFUXDi6v0xMkwd1UAt3khnyYccOJXS7Ew=
+X-Google-Smtp-Source: ACHHUZ4tn3uoqQTzU663ftvRQvBpWuwX1A024mthR/ReUBQJwotPmbEgI8aqQv/HHmfQY9f/171eYQMnKj9G4RB+bT4=
+X-Received: by 2002:a17:907:a40d:b0:94e:f969:fb3e with SMTP id
+ sg13-20020a170907a40d00b0094ef969fb3emr6848366ejc.43.1682731799969; Fri, 28
+ Apr 2023 18:29:59 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20230424123522.18302-12-nikita.shubin@maquefel.me>
-References: <20230424123522.18302-1-nikita.shubin@maquefel.me> <20230424123522.18302-12-nikita.shubin@maquefel.me>
-Subject: Re: [PATCH 11/43] dt-bindings: clock: add DT bindings for Cirrus EP93xx
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Arnd Bergmann <arnd@kernel.org>, Linus Walleij <linusw@kernel.org>,
-        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20230428013738.30735-1-cnsztl@gmail.com> <20230428013738.30735-2-cnsztl@gmail.com>
+ <32911b1c-7f32-7078-27e8-7b168d295993@linaro.org>
+In-Reply-To: <32911b1c-7f32-7078-27e8-7b168d295993@linaro.org>
+From:   Tianling Shen <cnsztl@gmail.com>
+Date:   Sat, 29 Apr 2023 09:29:47 +0800
+Message-ID: <CAOP2_TjXKk8KrD7Ur2pAGa-8pCMJcZjbw1opKYzFEfO4weJzhw@mail.gmail.com>
+Subject: Re: [PATCH 2/3] arm64: dts: rockchip: Add Lunzn Fastrhino R66S
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Hartley Sweeten <hsweeten@visionengravers.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org
-To:     Nikita Shubin <nikita.shubin@maquefel.me>
-Date:   Fri, 28 Apr 2023 16:15:16 -0700
-User-Agent: alot/0.10
-X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        Heiko Stuebner <heiko@sntech.de>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Peter Geis <pgwipeout@gmail.com>, Andy Yan <andyshrk@163.com>,
+        Chris Morgan <macromorgan@hotmail.com>,
+        Brian Norris <briannorris@chromium.org>,
+        Andrew Lunn <andrew@lunn.ch>, Shawn Guo <shawnguo@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Maya Matuszczyk <maccraft123mc@gmail.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Vasily Khoruzhick <anarsoul@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,135 +83,115 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Nikita Shubin (2023-04-24 05:34:27)
-> This adds device tree bindings for the Cirrus Logic EP93xx
-> clock block used in these SoCs.
->=20
-> Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
-> ---
->  .../devicetree/bindings/arm/ep93xx.yaml       | 102 ++++++++++++++++++
->  .../dt-bindings/clock/cirrus,ep93xx-clock.h   |  53 +++++++++
->  2 files changed, 155 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/ep93xx.yaml
->  create mode 100644 include/dt-bindings/clock/cirrus,ep93xx-clock.h
->=20
-> diff --git a/Documentation/devicetree/bindings/arm/ep93xx.yaml b/Document=
-ation/devicetree/bindings/arm/ep93xx.yaml
-> new file mode 100644
-> index 000000000000..de7020f4f356
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/ep93xx.yaml
+Hi Krzysztof,
 
-Why is this in arm/ directory? Isn't it a clock controller?
+On Fri, Apr 28, 2023 at 9:34=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 28/04/2023 03:37, Tianling Shen wrote:
+> > Lunzn Fastrhino R66S is a high-performance mini router.
+> >
+> > Specification:
+> > - Rockchip RK3568
+> > - 1/2GB LPDDR4 RAM
+> > - SD card slot
+> > - M.2 Connector
+> > - 2x USB 3.0 Port
+> > - 2x 2500 Base-T (PCIe, r8125b)
+> > - 12v DC Jack
+> >
+> > Signed-off-by: Tianling Shen <cnsztl@gmail.com>
+> > ---
+> >  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+> >  .../dts/rockchip/rk3568-fastrhino-r66s.dts    |  27 +
+> >  .../dts/rockchip/rk3568-fastrhino-r66s.dtsi   | 507 ++++++++++++++++++
+> >  3 files changed, 535 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3568-fastrhino-r66s.=
+dts
+> >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3568-fastrhino-r66s.=
+dtsi
+> >
+> > diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dt=
+s/rockchip/Makefile
+> > index 2d585bbb8f3a..15089a78555a 100644
+> > --- a/arch/arm64/boot/dts/rockchip/Makefile
+> > +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> > @@ -85,6 +85,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3566-box-demo.dtb
+> >  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3566-lubancat-1.dtb
+> >  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-bpi-r2-pro.dtb
+> >  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-evb1-v10.dtb
+> > +dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-fastrhino-r66s.dtb
+> >  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-lubancat-2.dtb
+> >  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-nanopi-r5c.dtb
+> >  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-nanopi-r5s.dtb
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3568-fastrhino-r66s.dts b/a=
+rch/arm64/boot/dts/rockchip/rk3568-fastrhino-r66s.dts
+> > new file mode 100644
+> > index 000000000000..fc9e1bdab128
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3568-fastrhino-r66s.dts
+> > @@ -0,0 +1,27 @@
+> > +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+> > +
+> > +#include "rk3568-fastrhino-r66s.dtsi"
+> > +
+> > +/ {
+> > +     model =3D "Lunzn FastRhino R66S";
+> > +     compatible =3D "lunzn,fastrhino-r66s", "rockchip,rk3568";
+> > +
+> > +     aliases {
+> > +             mmc0 =3D &sdmmc0;
+> > +     };
+> > +};
+> > +
+> > +&sdmmc0 {
+> > +     max-frequency =3D <150000000>;
+> > +     no-sdio;
+> > +     no-mmc;
+> > +     bus-width =3D <4>;
+> > +     cap-mmc-highspeed;
+> > +     cap-sd-highspeed;
+> > +     disable-wp;
+> > +     vmmc-supply =3D <&vcc3v3_sd>;
+> > +     vqmmc-supply =3D <&vccio_sd>;
+> > +     pinctrl-names =3D "default";
+> > +     pinctrl-0 =3D <&sdmmc0_bus4 &sdmmc0_clk &sdmmc0_cmd &sdmmc0_det>;
+> > +     status =3D "okay";
+> > +};
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3568-fastrhino-r66s.dtsi b/=
+arch/arm64/boot/dts/rockchip/rk3568-fastrhino-r66s.dtsi
+> > new file mode 100644
+> > index 000000000000..a58592b2f13b
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3568-fastrhino-r66s.dtsi
+> > @@ -0,0 +1,507 @@
+> > +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+> > +
+> > +/dts-v1/;
+> > +#include <dt-bindings/gpio/gpio.h>
+> > +#include <dt-bindings/input/input.h>
+> > +#include <dt-bindings/leds/common.h>
+> > +#include <dt-bindings/pinctrl/rockchip.h>
+> > +#include <dt-bindings/soc/rockchip,vop2.h>
+> > +#include "rk3568.dtsi"
+> > +
+> > +/ {
+> > +     aliases {
+> > +             led-boot =3D &status_led;
+> > +             led-failsafe =3D &status_led;
+> > +             led-running =3D &status_led;
+> > +             led-upgrade =3D &status_led;
+>
+> Why do you need these? Which upstream kernel driver parses these?
 
-> @@ -0,0 +1,102 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/ep93xx.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Cirrus Logick EP93xx device tree bindings
-> +
-> +description: |+
-> +  The EP93xx SoC is a ARMv4T-based with 200 MHz ARM9 CPU.
-> +
-> +maintainers:
-> +  - Hartley Sweeten <hsweeten@visionengravers.com>
-> +  - Alexander Sverdlin <alexander.sverdlin@gmail.com>
-> +  - Nikita Shubin <nikita.shubin@maquefel.me>
-> +
-> +properties:
-> +  $nodename:
-> +    const: '/'
-> +  compatible:
-> +    oneOf:
-> +      - description: The TS-7250 is a compact, full-featured Single Boar=
-d Computer (SBC)
-> +          based upon the Cirrus EP9302 ARM9 CPU.
-> +        items:
-> +          - const: technologic,ts7250
-> +          - const: liebherr,bk3
-> +          - const: cirrus,ep9301
-> +          - const: cirrus,edb9302
-> +
-> +  soc:
-> +    type: object
-> +    patternProperties:
-> +      "^.*syscon@80930000$":
-> +        type: object
-> +        properties:
-> +          compatible:
-> +            items:
-> +              - const: cirrus,ep9301-syscon
-> +              - const: syscon
-> +              - const: simple-mfd
+Oh sorry these aliases are used for OpenWrt and I forgot to remove them
+when submitting patches. Will send v2 for it.
 
-Is there a reason it needs to be a syscon? Or a simple-mfd?
+Thanks,
+Tianling.
 
-> +          ep9301-reboot:
-> +            type: object
-> +            properties:
-> +              compatible:
-> +                const: cirrus,ep9301-reboot
-> +        required:
-> +          - compatible
-> +          - reg
-> +          - '#clock-cells'
-> +          - ep9301-reboot
-> +
-> +      "^.*timer@80810000$":
-> +        type: object
-> +        properties:
-> +          compatible:
-> +            const: cirrus,ep9301-timer
-> +
-> +    required:
-> +      - syscon@80930000
-> +      - timer@80810000
-> +
-> +required:
-> +  - compatible
-> +  - soc
-> +
-> +additionalProperties: true
-> +
-> +examples:
-> +  - |
-> +    / {
-> +      compatible =3D "technologic,ts7250", "cirrus,ep9301";
-> +      model =3D "TS-7250 SBC";
-> +      #address-cells =3D <1>;
-> +      #size-cells =3D <1>;
-> +      soc {
-> +          #address-cells =3D <1>;
-> +          #size-cells =3D <1>;
-> +          ranges;
-> +          compatible =3D "simple-bus";
-> +
-> +          syscon: syscon@80930000 {
-> +                  compatible =3D "cirrus,ep9301-syscon",
-> +                                  "syscon", "simple-mfd";
-> +                  reg =3D <0x80930000 0x1000>;
-> +                  #clock-cells =3D <1>;
-> +                  #reset-cells =3D <1>;
-> +
-> +                  ep9301-reboot {
-> +                          compatible =3D "cirrus,ep9301-reboot";
-> +                  };
-> +          };
-
-The example should only be the clock controller node. No soc node, or
-root node.
-
-> +
-> +          timer: timer@80810000 {
-> +                  compatible =3D "cirrus,ep9301-timer";
-> +                  reg =3D <0x80810000 0x100>;
-> +                  interrupt-parent =3D <&vic1>;
-> +                  interrupts =3D <19>;
-> +          };
-> +      };
-> +    };
-> +
-> +...
+>
+>
+> Best regards,
+> Krzysztof
+>
