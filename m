@@ -2,103 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 833156F2456
-	for <lists+devicetree@lfdr.de>; Sat, 29 Apr 2023 12:53:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4E576F2468
+	for <lists+devicetree@lfdr.de>; Sat, 29 Apr 2023 13:14:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230179AbjD2KxJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Apr 2023 06:53:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55038 "EHLO
+        id S230432AbjD2LOS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Apr 2023 07:14:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229941AbjD2KxI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Apr 2023 06:53:08 -0400
-Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF2B51737;
-        Sat, 29 Apr 2023 03:53:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-        d=metrotek.ru; s=mail;
-        h=from:subject:date:message-id:to:cc:mime-version:content-transfer-encoding:
-         in-reply-to:references;
-        bh=0PyCfhAWDVAWva6rWT5Nk8RbNax9fE6QpdYvbE2fN1o=;
-        b=lYG3QWLMbyXfgYsx9C3TRv7utJnO1vczZEUNN47jlN7LWMTVi35MVg1l2fu7mdoxe0p3Uz5p7vYi8
-         joGsA4oyXrffah6J+cdnZd0ktShOUQHXG9kApQXRh5ZmRDXDNWytmlv4jgPo5s11mAJTPvJYF+9HVe
-         DwkEbI/FEvHQWEYYejyB1N2uZoy2ebXHzXM21t2O0uMaKAJCMEAcL38Djy2dcbY2D0xza1SEfvQbPU
-         gLEuOP0jChZSqC9lz0xNq2wLGLjnBLRqdGAADxZVUeFbc9RERicTkFoOCnLKYaSPJ/MTwrP7S0uXwx
-         abVD85tBa6hf5zUZ4cN2MCXepXbCAkQ==
-X-Kerio-Anti-Spam:  Build: [Engines: 2.17.2.1477, Stamp: 3], Multi: [Enabled, t: (0.000011,0.009827)], BW: [Enabled, t: (0.000024,0.000001)], RTDA: [Enabled, t: (0.085764), Hit: No, Details: v2.49.0; Id: 15.pfspt.1gv6a9oi4.1dkuf; mclb], total: 0(700)
+        with ESMTP id S229458AbjD2LOR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Apr 2023 07:14:17 -0400
+Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C22731998;
+        Sat, 29 Apr 2023 04:14:15 -0700 (PDT)
+Received: from g550jk.localnet (unknown [62.108.10.64])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 9293DC76D6;
+        Sat, 29 Apr 2023 11:14:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1682766853; bh=A8QySs6SKhnXKBxkO0+a10Q3xy1UQlrC6oSknuRX0p0=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=U7zokl7PwDhkg2mUuKqWuwfT1MxrzqVZ/5hi6RDzgNWum9wURWdBcStFGLcfBVMY8
+         UaDtySh/ktQAX2Bj61orQkqqmlcte/2DFaVZsjjcp4LVEPFIEio70LtCzx+VEJ1/eZ
+         gUtBK5DhbsU6wGkMv9uelFv8KytbxGpGtKzr0API=
+From:   Luca Weiss <luca@z3ntu.xyz>
+To:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        ~postmarketos/upstreaming@lists.sr.ht
+Cc:     Daniel Thompson <daniel.thompson@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Helge Deller <deller@gmx.de>,
+        Uwe =?ISO-8859-1?Q?Kleine=2DK=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Artur Weber <aweber.kernel@gmail.com>,
+        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-fbdev@vger.kernel.org, linux-pwm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Artur Weber <aweber.kernel@gmail.com>
+Subject: Re: [PATCH 3/4] ARM: dts: adapt to LP855X bindings changes
+Date:   Sat, 29 Apr 2023 13:14:12 +0200
+Message-ID: <3414865.QJadu78ljV@z3ntu.xyz>
+In-Reply-To: <20230429104534.28943-4-aweber.kernel@gmail.com>
+References: <20230429104534.28943-1-aweber.kernel@gmail.com>
+ <20230429104534.28943-4-aweber.kernel@gmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
-X-Spam-Level: 
-X-Footer: bWV0cm90ZWsucnU=
-Received: from h-e2.ddg ([85.143.252.66])
-        (authenticated user i.bornyakov@metrotek.ru)
-        by mail.pr-group.ru with ESMTPSA
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
-        Sat, 29 Apr 2023 13:52:47 +0300
-From:   Ivan Bornyakov <i.bornyakov@metrotek.ru>
-To:     linux-kernel@vger.kernel.org
-Cc:     Ivan Bornyakov <i.bornyakov@metrotek.ru>,
-        Moritz Fischer <mdf@kernel.org>, Wu Hao <hao.wu@intel.com>,
-        Xu Yilun <yilun.xu@intel.com>, Tom Rix <trix@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Vladimir Georgiev <v.georgiev@metrotek.ru>, system@metrotek.ru,
-        linux-fpga@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v3 2/2] dt-bindings: fpga: replace Ivan Bornyakov maintainership
-Date:   Sat, 29 Apr 2023 13:48:38 +0300
-Message-Id: <20230429104838.5064-3-i.bornyakov@metrotek.ru>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230429104838.5064-1-i.bornyakov@metrotek.ru>
-References: <20230429104838.5064-1-i.bornyakov@metrotek.ru>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As I'm leaving Metrotek, hand over Lattice Slave SPI sysCONFIG FPGA
-manager and Microchip Polarfire FPGA manager maintainership duties to
-Vladimir.
+On Samstag, 29. April 2023 12:45:33 CEST Artur Weber wrote:
+> Change underscores in ROM node names to dashes, and remove deprecated
+> pwm-period property.
+> 
+> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Acked-by: Vladimir Georgiev <v.georgiev@metrotek.ru>
-Signed-off-by: Ivan Bornyakov <i.bornyakov@metrotek.ru>
----
- Documentation/devicetree/bindings/fpga/lattice,sysconfig.yaml   | 2 +-
- .../devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml    | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+Reviewed-by: Luca Weiss <luca@z3ntu.xyz>
 
-diff --git a/Documentation/devicetree/bindings/fpga/lattice,sysconfig.yaml b/Documentation/devicetree/bindings/fpga/lattice,sysconfig.yaml
-index 4fb05eb84e2a..164331eb6275 100644
---- a/Documentation/devicetree/bindings/fpga/lattice,sysconfig.yaml
-+++ b/Documentation/devicetree/bindings/fpga/lattice,sysconfig.yaml
-@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Lattice Slave SPI sysCONFIG FPGA manager
- 
- maintainers:
--  - Ivan Bornyakov <i.bornyakov@metrotek.ru>
-+  - Vladimir Georgiev <v.georgiev@metrotek.ru>
- 
- description: |
-   Lattice sysCONFIG port, which is used for FPGA configuration, among others,
-diff --git a/Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml b/Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
-index 527532f039ce..a157eecfb5fc 100644
---- a/Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
-+++ b/Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
-@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Microchip Polarfire FPGA manager.
- 
- maintainers:
--  - Ivan Bornyakov <i.bornyakov@metrotek.ru>
-+  - Vladimir Georgiev <v.georgiev@metrotek.ru>
- 
- description:
-   Device Tree Bindings for Microchip Polarfire FPGA Manager using slave SPI to
--- 
-2.40.0
+> ---
+>  .../dts/qcom-apq8026-samsung-matisse-wifi.dts |  1 -
+>  ...-msm8974pro-sony-xperia-shinano-castor.dts | 23 ++++++++++---------
+>  2 files changed, 12 insertions(+), 12 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/qcom-apq8026-samsung-matisse-wifi.dts
+> b/arch/arm/boot/dts/qcom-apq8026-samsung-matisse-wifi.dts index
+> 91b860e24681..884d99297d4c 100644
+> --- a/arch/arm/boot/dts/qcom-apq8026-samsung-matisse-wifi.dts
+> +++ b/arch/arm/boot/dts/qcom-apq8026-samsung-matisse-wifi.dts
+> @@ -99,7 +99,6 @@ backlight@2c {
+> 
+>  			dev-ctrl = /bits/ 8 <0x80>;
+>  			init-brt = /bits/ 8 <0x3f>;
+> -			pwm-period = <100000>;
+> 
+>  			pwms = <&backlight_pwm 0 100000>;
+>  			pwm-names = "lp8556";
+> diff --git
+> a/arch/arm/boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dts
+> b/arch/arm/boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dts index
+> 04bc58d87abf..2396253f953a 100644
+> --- a/arch/arm/boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dts
+> +++ b/arch/arm/boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dts
+> @@ -150,47 +150,48 @@ lp8566_wled: backlight@2c {
+>  		bl-name = "backlight";
+>  		dev-ctrl = /bits/ 8 <0x05>;
+>  		init-brt = /bits/ 8 <0x3f>;
+> -		rom_a0h {
+> +
+> +		rom-a0h {
+>  			rom-addr = /bits/ 8 <0xa0>;
+>  			rom-val = /bits/ 8 <0xff>;
+>  		};
+> -		rom_a1h {
+> +		rom-a1h {
+>  			rom-addr = /bits/ 8 <0xa1>;
+>  			rom-val = /bits/ 8 <0x3f>;
+>  		};
+> -		rom_a2h {
+> +		rom-a2h {
+>  			rom-addr = /bits/ 8 <0xa2>;
+>  			rom-val = /bits/ 8 <0x20>;
+>  		};
+> -		rom_a3h {
+> +		rom-a3h {
+>  			rom-addr = /bits/ 8 <0xa3>;
+>  			rom-val = /bits/ 8 <0x5e>;
+>  		};
+> -		rom_a4h {
+> +		rom-a4h {
+>  			rom-addr = /bits/ 8 <0xa4>;
+>  			rom-val = /bits/ 8 <0x02>;
+>  		};
+> -		rom_a5h {
+> +		rom-a5h {
+>  			rom-addr = /bits/ 8 <0xa5>;
+>  			rom-val = /bits/ 8 <0x04>;
+>  		};
+> -		rom_a6h {
+> +		rom-a6h {
+>  			rom-addr = /bits/ 8 <0xa6>;
+>  			rom-val = /bits/ 8 <0x80>;
+>  		};
+> -		rom_a7h {
+> +		rom-a7h {
+>  			rom-addr = /bits/ 8 <0xa7>;
+>  			rom-val = /bits/ 8 <0xf7>;
+>  		};
+> -		rom_a9h {
+> +		rom-a9h {
+>  			rom-addr = /bits/ 8 <0xa9>;
+>  			rom-val = /bits/ 8 <0x80>;
+>  		};
+> -		rom_aah {
+> +		rom-aah {
+>  			rom-addr = /bits/ 8 <0xaa>;
+>  			rom-val = /bits/ 8 <0x0f>;
+>  		};
+> -		rom_aeh {
+> +		rom-aeh {
+>  			rom-addr = /bits/ 8 <0xae>;
+>  			rom-val = /bits/ 8 <0x0f>;
+>  		};
+
+
 
 
