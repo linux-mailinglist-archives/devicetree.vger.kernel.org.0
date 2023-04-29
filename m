@@ -2,145 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F78C6F2364
-	for <lists+devicetree@lfdr.de>; Sat, 29 Apr 2023 08:35:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38E146F23B4
+	for <lists+devicetree@lfdr.de>; Sat, 29 Apr 2023 10:29:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231346AbjD2GfH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Apr 2023 02:35:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37826 "EHLO
+        id S229535AbjD2I3r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Apr 2023 04:29:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231342AbjD2GfD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Apr 2023 02:35:03 -0400
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F8D92680;
-        Fri, 28 Apr 2023 23:35:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1682750102; x=1714286102;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=9QMrfHmB3IlGnj2ZKNRmcbudyqMRVvUMmyJ4H/dCOm0=;
-  b=f39fxwnzm6PxjhwmkJZfk0Fy3FPqazCQ6maOZKiFkvpY8Dm+4r58Bkns
-   uYx7NOlJ5n0IwhH3a0MgysHZRRT2oLbf6aFo/durtAYCn2wG7WN7V/i5E
-   GyZrvDtUp8gQQsUfAUoe/e6X85T1l7EZlhtu4POqGtMJcVJbX798jhHBg
-   eAlCf2QYpnBnXZoAuXbpnFWUaVXQCGcVXnvjMH/HZdAHdk2au1ZlVrgFc
-   lxDldVxiRuCSe7OAM/50hmDU1mStBoj3kR0Su/ryN+v2Qr0ovLHGg/EEZ
-   bjM+8aK7uFOkNPJxegOsN4Auge6kraZ22M1G6BRBIs/U8h3IkQTtHCIjh
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10694"; a="328254570"
-X-IronPort-AV: E=Sophos;i="5.99,236,1677571200"; 
-   d="scan'208";a="328254570"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Apr 2023 23:35:02 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10694"; a="1024923249"
-X-IronPort-AV: E=Sophos;i="5.99,236,1677571200"; 
-   d="scan'208";a="1024923249"
-Received: from lkp-server01.sh.intel.com (HELO 5bad9d2b7fcb) ([10.239.97.150])
-  by fmsmga005.fm.intel.com with ESMTP; 28 Apr 2023 23:34:56 -0700
-Received: from kbuild by 5bad9d2b7fcb with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pseAZ-0000xX-1N;
-        Sat, 29 Apr 2023 06:34:55 +0000
-Date:   Sat, 29 Apr 2023 14:34:39 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Yi-De Wu <yi-de.wu@mediatek.com>,
-        Yingshiuan Pan <yingshiuan.pan@mediatek.com>,
-        Ze-Yu Wang <ze-yu.wang@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-arch@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        David Bradil <dbrazdil@google.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Jade Shih <jades.shih@mediatek.com>,
-        Miles Chen <miles.chen@mediatek.com>,
-        Ivan Tseng <ivan.tseng@mediatek.com>,
-        My Chuang <my.chuang@mediatek.com>,
-        Shawn Hsiao <shawn.hsiao@mediatek.com>,
-        PeiLun Suei <peilun.suei@mediatek.com>,
-        Liju Chen <liju-clr.chen@mediatek.com>
-Subject: Re: [PATCH v2 4/7] virt: geniezone: Add vcpu support
-Message-ID: <202304291412.EiKEO9uy-lkp@intel.com>
-References: <20230428103622.18291-5-yi-de.wu@mediatek.com>
+        with ESMTP id S230392AbjD2I3q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Apr 2023 04:29:46 -0400
+Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51D3BC4;
+        Sat, 29 Apr 2023 01:29:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+        d=metrotek.ru; s=mail;
+        h=from:subject:date:message-id:to:cc:mime-version:content-type:in-reply-to:
+         references;
+        bh=wV5/bUVnxzyoz+DHrrNFYHs9nH2tXsBCXhVViKPUfIE=;
+        b=FfqNmYkmBhnmProI20j6LSAjpS7armO7Lgt0t7LnFt4PHv8xvH20ZaxvgBitPEDcFD98TZQH2HVdv
+         d2/TEavl7rGzecD6ccAXmAI1dT0C2inZlRksp79As4xqGMh8eNwV7Av1nNBqYvuDEFAv7Bi+WLlIXM
+         6mHAoqFhm1yWGdTaM3lduI1ewP+uDSbJCABHa1q3p2URYdinr3AxliP0xw6EnTUI4Rl8lbenIXvDmi
+         T0qXCeDCvzk3vP4MVu9DQCRLhrBFrCKQZmFdX+pZfjtBLTTyjGJzjAGg6DZ1GXVHKdhlQY7GWV+Ntl
+         RwjgxcbKR9CUZzbM6r57UpHbRI6Gj+g==
+X-Kerio-Anti-Spam:  Build: [Engines: 2.17.2.1477, Stamp: 3], Multi: [Enabled, t: (0.000009,0.011910)], BW: [Enabled, t: (0.000021,0.000001)], RTDA: [Enabled, t: (0.087680), Hit: No, Details: v2.49.0; Id: 15.2t292.1gv6234a5.11v62; mclb], total: 0(700)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
+X-Spam-Level: 
+X-Footer: bWV0cm90ZWsucnU=
+Received: from x260 ([78.37.166.219])
+        (authenticated user i.bornyakov@metrotek.ru)
+        by mail.pr-group.ru with ESMTPSA
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
+        Sat, 29 Apr 2023 11:29:22 +0300
+Date:   Sat, 29 Apr 2023 11:29:19 +0300
+From:   Ivan Bornyakov <i.bornyakov@metrotek.ru>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, Moritz Fischer <mdf@kernel.org>,
+        Wu Hao <hao.wu@intel.com>, Xu Yilun <yilun.xu@intel.com>,
+        Tom Rix <trix@redhat.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Vladimir Georgiev <v.georgiev@metrotek.ru>, system@metrotek.ru,
+        linux-fpga@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] dt-bindings: fpga: replace Ivan Bornyakov
+ maintainership
+Message-ID: <20230429082919.i4pmerf4qeckl3w6@x260>
+References: <20230428140150.2592-1-i.bornyakov@metrotek.ru>
+ <20230428140150.2592-3-i.bornyakov@metrotek.ru>
+ <20230428220415.GA351049-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230428103622.18291-5-yi-de.wu@mediatek.com>
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230428220415.GA351049-robh@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yi-De,
+On Fri, Apr 28, 2023 at 05:04:15PM -0500, Rob Herring wrote:
+> On Fri, Apr 28, 2023 at 05:01:50PM +0300, Ivan Bornyakov wrote:
+> > As I'm leaving Metrotek, hand over Lattice Slave SPI sysCONFIG FPGA
+> > manager and Microchip Polarfire FPGA manager maintainership duties to
+> > Vladimir.
+> > 
+> > Signed-off-by: Ivan Bornyakov <i.bornyakov@metrotek.ru>
+> > Signed-off-by: Vladimir Georgiev <v.georgiev@metrotek.ru>
+> 
+> The patch sender's Sob goes last. And only Vladimir should add his Sob 
+> (when an author or sender).
+> 
 
-kernel test robot noticed the following build warnings:
+For the moment, when I'm still sender, would it be alright if we replace
+Vladimir's "Signed-off-by" to "Acked-by"?
 
-[auto build test WARNING on arm64/for-next/core]
-[also build test WARNING on robh/for-next arnd-asm-generic/master linus/master v6.3 next-20230428]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> > ---
+> >  Documentation/devicetree/bindings/fpga/lattice,sysconfig.yaml   | 2 +-
+> >  .../devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml    | 2 +-
+> >  2 files changed, 2 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/fpga/lattice,sysconfig.yaml b/Documentation/devicetree/bindings/fpga/lattice,sysconfig.yaml
+> > index 4fb05eb84e2a..164331eb6275 100644
+> > --- a/Documentation/devicetree/bindings/fpga/lattice,sysconfig.yaml
+> > +++ b/Documentation/devicetree/bindings/fpga/lattice,sysconfig.yaml
+> > @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+> >  title: Lattice Slave SPI sysCONFIG FPGA manager
+> >  
+> >  maintainers:
+> > -  - Ivan Bornyakov <i.bornyakov@metrotek.ru>
+> > +  - Vladimir Georgiev <v.georgiev@metrotek.ru>
+> >  
+> >  description: |
+> >    Lattice sysCONFIG port, which is used for FPGA configuration, among others,
+> > diff --git a/Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml b/Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
+> > index 527532f039ce..a157eecfb5fc 100644
+> > --- a/Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
+> > +++ b/Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
+> > @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+> >  title: Microchip Polarfire FPGA manager.
+> >  
+> >  maintainers:
+> > -  - Ivan Bornyakov <i.bornyakov@metrotek.ru>
+> > +  - Vladimir Georgiev <v.georgiev@metrotek.ru>
+> >  
+> >  description:
+> >    Device Tree Bindings for Microchip Polarfire FPGA Manager using slave SPI to
+> > -- 
+> > 2.40.0
+> > 
+> > 
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Yi-De-Wu/docs-geniezone-Introduce-GenieZone-hypervisor/20230428-183738
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/arm64/linux.git for-next/core
-patch link:    https://lore.kernel.org/r/20230428103622.18291-5-yi-de.wu%40mediatek.com
-patch subject: [PATCH v2 4/7] virt: geniezone: Add vcpu support
-config: arm64-allyesconfig (https://download.01.org/0day-ci/archive/20230429/202304291412.EiKEO9uy-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/d4ced06ba2f149b099e9bf745a0e451c43e9d823
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Yi-De-Wu/docs-geniezone-Introduce-GenieZone-hypervisor/20230428-183738
-        git checkout d4ced06ba2f149b099e9bf745a0e451c43e9d823
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm64 olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202304291412.EiKEO9uy-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> arch/arm64/geniezone/../../../drivers/virt/geniezone/gzvm_vcpu.c:145:6: warning: no previous prototype for 'gzvm_destroy_vcpu' [-Wmissing-prototypes]
-     145 | void gzvm_destroy_vcpu(struct gzvm_vcpu *vcpu)
-         |      ^~~~~~~~~~~~~~~~~
-
-
-vim +/gzvm_destroy_vcpu +145 arch/arm64/geniezone/../../../drivers/virt/geniezone/gzvm_vcpu.c
-
-   143	
-   144	/* caller must hold the vm lock */
- > 145	void gzvm_destroy_vcpu(struct gzvm_vcpu *vcpu)
-   146	{
-   147		if (!vcpu)
-   148			return;
-   149	
-   150		gzvm_arch_destroy_vcpu(vcpu->gzvm->vm_id, vcpu->vcpuid);
-   151		/* clean guest's data */
-   152		memset(vcpu->run, 0, GZVM_VCPU_RUN_MAP_SIZE);
-   153		free_pages_exact(vcpu->run, GZVM_VCPU_RUN_MAP_SIZE);
-   154		kfree(vcpu);
-   155	}
-   156	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
