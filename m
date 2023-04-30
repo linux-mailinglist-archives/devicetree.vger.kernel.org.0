@@ -2,93 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 74CAD6F29F6
-	for <lists+devicetree@lfdr.de>; Sun, 30 Apr 2023 19:20:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F20B6F29D6
+	for <lists+devicetree@lfdr.de>; Sun, 30 Apr 2023 19:13:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231755AbjD3RTg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Apr 2023 13:19:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46174 "EHLO
+        id S230167AbjD3RNN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Apr 2023 13:13:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43486 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231793AbjD3RTV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Apr 2023 13:19:21 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AE5E3AAE;
-        Sun, 30 Apr 2023 10:18:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-        In-Reply-To:References; bh=W2m9o5cAZcUL4YwF6LNqupdePboCY6WLH6EEUshsr3k=; b=h/
-        v1BqlSOSj4XcZqtRa6+SdSZW7KyYBo8pN4hWyOTz+aKTF/WiuNz2KryyZ+I7WmRK9FCVsahgmC/qx
-        Gcgk+6q+8JKcX8VvNm23QRkNth3TIQea829DuinR4SMHPcZ/7/WlqUJTXcaPw8QepSNQOSHRJ0iJv
-        qKBPQzX4m04tydo=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1ptAgT-00BYs6-15; Sun, 30 Apr 2023 19:18:01 +0200
-Date:   Sun, 30 Apr 2023 19:18:01 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Cc:     David Bauer <mail@david-bauer.net>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S229477AbjD3RNM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Apr 2023 13:13:12 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA27F125;
+        Sun, 30 Apr 2023 10:13:11 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 64B7060B8A;
+        Sun, 30 Apr 2023 17:13:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 441B8C433D2;
+        Sun, 30 Apr 2023 17:13:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1682874790;
+        bh=OIvDQm0vhvXudrMvZb9IGJnC32d5e2xrPDotj5b2xMg=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=TGM/fXh4bnTksGkLmlUXIUyIkpIy0nH/ZEMvJ+ICH8IL2dCX8zJUMK8yyW7E7u8V9
+         Td7VI0qBYFfylcao6j1S74gIx1FBidAxKEB2BfIXdxrNHXTIM90tvV/HOSRFYHvnon
+         VC0iqz6F/ae5NOcuxjefXFmedWxRhWrTjEnTc93BTC87NOMiyKcKbxu+6Z5S+x5buC
+         rPYg/DAPsZTdcyzgJnEtbO41u7tGkcKfgGE4Jb3xH/jVabOV7XnPBw5ARRMp8ueUGB
+         IvUUs2WRxnziQRhvK69oAK8dcobVPT/Plkz5WnRu+wYgvSlMqXIrc9V1YqcpNDT8WQ
+         mPDdnLyHn05Lw==
+Date:   Sun, 30 Apr 2023 18:28:55 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Daniel Golle <daniel@makrotopia.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 2/2] dt-bindings: net: dsa: mediatek,mt7530: document
- MDIO-bus
-Message-ID: <04cc2904-6d61-416e-bfbe-c24d96fe261b@lunn.ch>
-References: <20230430112834.11520-1-mail@david-bauer.net>
- <20230430112834.11520-2-mail@david-bauer.net>
- <e4feeac2-636b-8b75-53a5-7603325fb411@arinc9.com>
- <396fad42-89d0-114d-c02e-ac483c1dd1ed@arinc9.com>
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@axis.com>
+Subject: Re: [PATCH v3 0/2] Support for Texas Instruments OPT4001 Ambient
+ Light Sensor
+Message-ID: <20230430182855.1ce2ad65@jic23-huawei>
+In-Reply-To: <20230323-add-opt4001-driver-v3-0-62e121dab294@axis.com>
+References: <20230323-add-opt4001-driver-v3-0-62e121dab294@axis.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <396fad42-89d0-114d-c02e-ac483c1dd1ed@arinc9.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Apr 30, 2023 at 07:17:10PM +0300, Arınç ÜNAL wrote:
-> On 30.04.2023 15:34, Arınç ÜNAL wrote:
-> > On 30.04.2023 14:28, David Bauer wrote:
-> > > Document the ability to add nodes for the MDIO bus connecting the
-> > > switch-internal PHYs.
-> > 
-> > This is quite interesting. Currently the PHY muxing feature for the
-> > MT7530 switch looks for some fake ethernet-phy definitions on the
-> > mdio-bus where the switch is also defined.
-> > 
-> > Looking at the binding here, there will be an mdio node under the switch
-> > node. This could be useful to define the ethernet-phys for PHY muxing
-> > here instead, so we don't waste the register addresses on the parent
-> > mdio-bus for fake things. It looks like this should work right out of
-> > the box. I will do some tests.
+On Wed, 26 Apr 2023 13:57:28 +0200
+Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com> wrote:
+
+> This series adds support for Texas Instruments OPT4001 Ambient light sensor.
 > 
-> Once I start using the mdio node it forces me to define all the PHYs which
-> were defined as ports.
+> The light sensor has a i2c interface and supports continuous, oneshot and
+> interruptdriven measurements and has configurable conversion time and range.
+> 
+> This driver uses the sensors continuous mode so it always has a updated light
+> value available. The conversion time which is
+>  (integration time + time to set registers) which is used to configure
+> integration time through sysfs. The chip also has a configurable light
+> range which this driver sets to Auto where the chip chooses range itself
+> depending on previously read values.
+> 
+> Since the OPT4001 has different constants used to calculate lux values
+> depeding on packaging of the chip but uses the same device id, two compatible
+> string are used depending on the packaging, these are "ti,opt4001-picostar"
+> and "ti,opt4001-sot-5x3".
+> 
+> Signed-off-by: Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>
+Hi Stefan,
 
-Try setting ds->slave_mii_bus to the MDIO bus you register via
-of_mdiobus_register().
+No need to sign off on cover letters.  They don't go in the git logs so
+if doesn't matter either way.
 
-	Andrew
+Otherwise, looks good to me.
+
+Applied to the togreg branch of iio.git and pushed out as testing for 0-day to
+take a look at it.
+
+Note I'll be rebasing that branch on rc1 once available.
+
+Thanks,
+
+Jonathan
+
+> ---
+> Changes in v3:
+> - Removed unneccesary description from devicetree
+> - Use correct subject prefix for devicetree bindings
+> - No error on device id miss match
+> - Removed opt4001_settings as there was only one needed property int_time
+> - Link to v2: https://lore.kernel.org/r/20230323-add-opt4001-driver-v2-0-0bae0398669d@axis.com
+> 
+> Changes in v2:
+> - Added text about differences of sot-5x3 and picostar
+> - Added irq and regulator to devicetree bindings
+> - Added regulator support to driver
+> - Switched from using .remove to devm_action_or_reset
+> - Removed own mutex and reenabled regmaps
+> - Updated name in sysfs
+> - Added i2c_device_id
+> - Rename package_const to chip_info
+> - Link to v1: https://lore.kernel.org/r/20230323-add-opt4001-driver-v1-0-1451dcc1bc8a@axis.com
+> 
+> ---
+> Stefan Windfeldt-Prytz (2):
+>       dt-bindings: iio: light: Document TI OPT4001 light sensor
+>       iio: light: Add support for TI OPT4001 light sensor
+> 
+>  .../devicetree/bindings/iio/light/ti,opt4001.yaml  |  68 +++
+>  drivers/iio/light/Kconfig                          |  11 +
+>  drivers/iio/light/Makefile                         |   1 +
+>  drivers/iio/light/opt4001.c                        | 467 +++++++++++++++++++++
+>  4 files changed, 547 insertions(+)
+> ---
+> base-commit: 60c5238813fdfbe167eb579d58172106916b8db0
+> change-id: 20230323-add-opt4001-driver-99b9aad69319
+> 
+> Best regards,
+
