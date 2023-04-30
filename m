@@ -2,188 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 075E16F2A6A
-	for <lists+devicetree@lfdr.de>; Sun, 30 Apr 2023 21:10:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3733C6F2A84
+	for <lists+devicetree@lfdr.de>; Sun, 30 Apr 2023 21:55:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229556AbjD3TK4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Apr 2023 15:10:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45564 "EHLO
+        id S229721AbjD3Tzp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Apr 2023 15:55:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229513AbjD3TKz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Apr 2023 15:10:55 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F95110E7;
-        Sun, 30 Apr 2023 12:10:54 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9A2DC60C89;
-        Sun, 30 Apr 2023 19:10:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3BBAC433D2;
-        Sun, 30 Apr 2023 19:10:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1682881853;
-        bh=CT/MNRGnhMb2nU4AJ1Xh90FST6Y4/rdNX1wK3f9sx+U=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=ub5cfuHmtvKTM09w14SCYtvcGo/fpb1GnDtso0JSAqTkrFL8bJL+hZ2OElNITQlnN
-         /iReeSMqkdciwER6LJoH7Eo7fHbkdieKLOnBRLvwZc6/2UEwauskSbZWo0hC7WV/uk
-         G3cG1PyukoGV5qAJjMZl836kXLpFr3tQzJT2xHElIJ9ruze7BGR/M9AQdvJQQWIoiP
-         Qa1RO/x5bPS0M/PAnX3ISfGmXzOPzk2gksevwGX2efK1j124UIYtP0qqtr6oPT0AxI
-         /ZHJ0JWw/1D5lRK/Yy5qAmPOidB6cMpKHuCuL3ZaLhFPJmEaXARCwCSsC9y8293jGB
-         +AJmJRw5ZTorA==
-Date:   Sun, 30 Apr 2023 14:10:51 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Jim Quinlan <jim2101024@gmail.com>
-Cc:     linux-pci@vger.kernel.org,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Cyril Brulebois <kibi@debian.org>,
-        Phil Elwell <phil@raspberrypi.com>,
-        bcm-kernel-feedback-list@broadcom.com, james.quinlan@broadcom.com,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 1/5] dt-bindings: PCI: brcmstb:
- brcm,{enable-l1ss,completion-timeout-us} props
-Message-ID: <20230430191051.GA515900@bhelgaas>
+        with ESMTP id S229481AbjD3Tzo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Apr 2023 15:55:44 -0400
+Received: from sender3-op-o18.zoho.com (sender3-op-o18.zoho.com [136.143.184.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 716701B0;
+        Sun, 30 Apr 2023 12:55:42 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1682884511; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=ELVmPsPj+tvgATiVD8QnGSS2qfJ6ouQ8XHITVeKAtQsH49ts3s4uBoikWldY/xSEVpVMNx+jjQ0J84OCJ1akpmejjFUrXV+50O3ihQkkVrkf9RWVgpUXyl0FqJi52eH2Bvj0ClqDpQJVyOtOYQOj25QLDEWLLeS0B+XT/gZas9M=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1682884511; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=yS1MvJOhkRGZd3+E1QPM0e+Ot0X4hMIHOBiXmhpx4pU=; 
+        b=XzpvrETB60QvAfL9t7MkN5FriGWzdhi0q0WzFOwpvw94VRPJqzDNHbtRjt7qlU7CCp54RX9ghBlXdGBnfwbo2dYH55GB2CvwAB8NEeZvi8HzATRy19PnzbC8UhahmXIVL34OCtHxsrOnctLfMeScIiD7Y+TH7jfX3TgQW+Bbok8=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1682884511;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+        bh=yS1MvJOhkRGZd3+E1QPM0e+Ot0X4hMIHOBiXmhpx4pU=;
+        b=LgNKLw9HOE39T4dd7Nd0VX84d7FIPRYLNsGFRGlzfnYqwhzT6YyhKob33qje01RY
+        YPaRst+xIoLxQKY9qi6GIELT3RPFlDAnmwY4+2eYd5t0RBADvPCLnJMoBa1a0hb+bP5
+        vKjV0tqZm6hPsqAwGQxgy0wWSm2nXf2lmGtQUl+E=
+Received: from [10.10.10.3] (149.91.1.15 [149.91.1.15]) by mx.zohomail.com
+        with SMTPS id 1682884510627985.736159985858; Sun, 30 Apr 2023 12:55:10 -0700 (PDT)
+Message-ID: <e5476692-aa3a-29b8-2e1d-ce93fd13a23b@arinc9.com>
+Date:   Sun, 30 Apr 2023 22:54:50 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230428223500.23337-2-jim2101024@gmail.com>
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH 2/2] dt-bindings: net: dsa: mediatek,mt7530: document
+ MDIO-bus
+Content-Language: en-US
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     David Bauer <mail@david-bauer.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Daniel Golle <daniel@makrotopia.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20230430112834.11520-1-mail@david-bauer.net>
+ <20230430112834.11520-2-mail@david-bauer.net>
+ <e4feeac2-636b-8b75-53a5-7603325fb411@arinc9.com>
+ <396fad42-89d0-114d-c02e-ac483c1dd1ed@arinc9.com>
+ <04cc2904-6d61-416e-bfbe-c24d96fe261b@lunn.ch>
+ <a6c6fe83-fbb5-f289-2210-6f1db6585636@arinc9.com>
+ <207753d6-cffd-4a23-be16-658d7c9ceb4a@lunn.ch>
+From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <207753d6-cffd-4a23-be16-658d7c9ceb4a@lunn.ch>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 28, 2023 at 06:34:55PM -0400, Jim Quinlan wrote:
-> This commit introduces two new properties:
-
-Doing two things makes this a candidate for splitting into two
-patches, as you've already done for the driver support.  They seem
-incidentally related but not indivisible.
-
-> brcm,enable-l1ss (bool):
+On 30.04.2023 21:48, Andrew Lunn wrote:
+>>> Try setting ds->slave_mii_bus to the MDIO bus you register via
+>>> of_mdiobus_register().
+>>
+>> That seems to be the case already, under mt7530_setup_mdio():
+>>
+>> 	bus = devm_mdiobus_alloc(dev);
+>> 	if (!bus)
+>> 		return -ENOMEM;
+>>
+>> 	ds->slave_mii_bus = bus;
+>>
+>> The bus is registered with devm_of_mdiobus_register(), if that matters. (My
+>> current knowledge about OF or OF helpers for MDIO is next to nothing.)
+>>
+>> The same behaviour is there.
 > 
->   The Broadcom STB/CM PCIe HW -- a core that is also used by RPi SOCs --
->   requires the driver probe() to deliberately place the HW one of three
->   CLKREQ# modes:
+> Maybe take a look at what is going on in dsa_slave_phy_setup() and
+> dsa_slave_phy_connect().
 > 
->   (a) CLKREQ# driven by the RC unconditionally
->   (b) CLKREQ# driven by the EP for ASPM L0s, L1
->   (c) Bidirectional CLKREQ#, as used for L1 Substates (L1SS).
+> The way i understand it, is it first looks in DT to see if there is a
+> phy-handle, and if there is, it uses it. If not, it assumes there is a
+> 1:1 mapping between port number and PHY address, and looks to see if a
+> PHY has been found on ds->slave_mii_bus at that address, and uses it.
 > 
->   The HW+driver can tell the difference between downstream devices that
->   need (a) and (b), but does not know when to configure (c).  All devices
->   should work fine when the driver chooses (a) or (b), but (c) may be
->   desired to realize the extra power savings that L1SS offers.  So we
->   introduce the boolean "brcm,enable-l1ss" property to inform the driver
->   that (c) is desired.  Setting this property only makes sense when the
->   downstream device is L1SS-capable and the OS is configured to activate
->   this mode (e.g. policy==superpowersave).
+> So i don't think you need to list the PHY, the fallback should be
+> used.
 
-Is this related to the existing generic "supports-clkreq" property?  I
-guess not, because supports-clkreq looks like a description of CLKREQ
-signal routing, while brcm,enable-l1ss looks like a description of
-what kind of downstream device is present?
+Thanks for pointing me in the right direction Andrew.
 
-What bad things would happen if the driver always configured (c)?
+I applied this diff:
 
-Other platforms don't require this, and having to edit the DT based on
-what PCIe device is plugged in seems wrong.  If brcmstb does need it,
-that suggests a hardware defect.  If we need this to work around a
-defect, that's OK, but we should acknowledge the defect so we can stop
-using this for future hardware that doesn't need it.
+diff --git a/drivers/net/phy/mdio_bus.c b/drivers/net/phy/mdio_bus.c
+index 389f33a12534..19d0c209e7e9 100644
+--- a/drivers/net/phy/mdio_bus.c
++++ b/drivers/net/phy/mdio_bus.c
+@@ -117,8 +117,12 @@ struct phy_device *mdiobus_get_phy(struct mii_bus *bus, int addr)
+  
+  	mdiodev = bus->mdio_map[addr];
+  
+-	if (!mdiodev)
++	if (!mdiodev) {
++		dev_info(&bus->dev, "mdio device doesn't exist\n");
+  		return NULL;
++	}
++
++	dev_info(&bus->dev, "mdio device exists\n");
+  
+  	if (!(mdiodev->flags & MDIO_DEVICE_FLAG_PHY))
+  		return NULL;
+diff --git a/net/dsa/slave.c b/net/dsa/slave.c
+index 165bb2cb8431..0be408e32a76 100644
+--- a/net/dsa/slave.c
++++ b/net/dsa/slave.c
+@@ -2487,6 +2487,7 @@ static int dsa_slave_phy_setup(struct net_device *slave_dev)
+  		/* We could not connect to a designated PHY or SFP, so try to
+  		 * use the switch internal MDIO bus instead
+  		 */
++		netdev_err(slave_dev, "using switch's internal MDIO bus\n");
+  		ret = dsa_slave_phy_connect(slave_dev, dp->index, phy_flags);
+  	}
+  	if (ret) {
 
-Maybe the name should be more specific to CLKREQ#, since this doesn't
-actually *enable* L1SS; apparently it's just one of the pieces needed
-to enable L1SS?
+With or without this patch, the switch's internal MDIO bus is used to set
+up the PHYs.
 
->   This property is already present in the Raspian version of Linux, but the
->   upstream driver implementaion that follows adds more details and discerns
->   between (a) and (b).
+DT that defines ethphy0 only, without this patch applied:
 
-s/implementaion/implementation/
+[    4.660784] mt7530-mdio mdio-bus:1f wan (uninitialized): using switch's internal MDIO bus
+[    4.669026] mdio_bus mt7530-0: mdio device exists
+[    4.677693] mt7530-mdio mdio-bus:1f wan (uninitialized): PHY [mt7530-0:00] driver [MediaTek MT7530 PHY] (irq=POLL)
+[    4.693238] mt7530-mdio mdio-bus:1f lan0 (uninitialized): using switch's internal MDIO bus
+[    4.701589] mdio_bus mt7530-0: mdio device exists
+[    4.707101] mt7530-mdio mdio-bus:1f lan0 (uninitialized): PHY [mt7530-0:01] driver [MediaTek MT7530 PHY] (irq=POLL)
+[    4.718550] mt7530-mdio mdio-bus:1f lan1 (uninitialized): using switch's internal MDIO bus
+[    4.726856] mdio_bus mt7530-0: mdio device exists
+[    4.732384] mt7530-mdio mdio-bus:1f lan1 (uninitialized): PHY [mt7530-0:02] driver [MediaTek MT7530 PHY] (irq=POLL)
+[    4.743822] mt7530-mdio mdio-bus:1f lan2 (uninitialized): using switch's internal MDIO bus
+[    4.752154] mdio_bus mt7530-0: mdio device exists
+[    4.757662] mt7530-mdio mdio-bus:1f lan2 (uninitialized): PHY [mt7530-0:03] driver [MediaTek MT7530 PHY] (irq=POLL)
+[    4.769099] mt7530-mdio mdio-bus:1f lan3 (uninitialized): using switch's internal MDIO bus
+[    4.781872] mdio_bus mt7530-0: mdio device exists
+[    4.787413] mt7530-mdio mdio-bus:1f lan3 (uninitialized): PHY [mt7530-0:04] driver [MediaTek MT7530 PHY] (irq=POLL)
 
-> brcm,completion-timeout-us (u32):
-> 
->   Our HW will cause a CPU abort on any PCI transaction completion abort
->   error.  It makes sense then to increase the timeout value for this type
->   of error in hopes that the response is merely delayed.  Further,
->   L1SS-capable devices may have a long L1SS exit time and may require a
->   custom timeout value: we've been asked by our customers to make this
->   configurable for just this reason.
+Same DT but with this patch applied:
 
-I asked before whether this should be made generic and not
-brcm-specific, since completion timeouts are generic PCIe things.  I
-didn't see any discussion, but Rob reviewed this so I guess it's OK
-as-is.
+[    4.621547] mt7530-mdio mdio-bus:1f: configuring for fixed/trgmii link mode
+[    4.631524] mt7530-mdio mdio-bus:1f wan (uninitialized): using switch's internal MDIO bus
+[    4.639764] mdio_bus mt7530-0: mdio device exists
+[    4.647770] mt7530-mdio mdio-bus:1f wan (uninitialized): PHY [mt7530-0:00] driver [MediaTek MT7530 PHY] (irq=POLL)
+[    4.663898] mt7530-mdio mdio-bus:1f lan0 (uninitialized): using switch's internal MDIO bus
+[    4.672253] mdio_bus mt7530-0: mdio device doesn't exist
+[    4.677597] mt7530-mdio mdio-bus:1f lan0 (uninitialized): no phy at 1
+[    4.684053] mt7530-mdio mdio-bus:1f lan0 (uninitialized): failed to connect to PHY: -ENODEV
+[    4.692435] mt7530-mdio mdio-bus:1f lan0 (uninitialized): error -19 setting up PHY for tree 0, switch 0, port 1
+[    4.703087] mt7530-mdio mdio-bus:1f lan1 (uninitialized): using switch's internal MDIO bus
+[    4.711408] mdio_bus mt7530-0: mdio device doesn't exist
+[    4.716731] mt7530-mdio mdio-bus:1f lan1 (uninitialized): no phy at 2
+[    4.723214] mt7530-mdio mdio-bus:1f lan1 (uninitialized): failed to connect to PHY: -ENODEV
+[    4.731597] mt7530-mdio mdio-bus:1f lan1 (uninitialized): error -19 setting up PHY for tree 0, switch 0, port 2
+[    4.742199] mt7530-mdio mdio-bus:1f lan2 (uninitialized): using switch's internal MDIO bus
+[    4.755431] mdio_bus mt7530-0: mdio device doesn't exist
+[    4.760793] mt7530-mdio mdio-bus:1f lan2 (uninitialized): no phy at 3
+[    4.767263] mt7530-mdio mdio-bus:1f lan2 (uninitialized): failed to connect to PHY: -ENODEV
+[    4.775632] mt7530-mdio mdio-bus:1f lan2 (uninitialized): error -19 setting up PHY for tree 0, switch 0, port 3
+[    4.786270] mt7530-mdio mdio-bus:1f lan3 (uninitialized): using switch's internal MDIO bus
+[    4.794591] mdio_bus mt7530-0: mdio device doesn't exist
+[    4.799944] mt7530-mdio mdio-bus:1f lan3 (uninitialized): no phy at 4
+[    4.806397] mt7530-mdio mdio-bus:1f lan3 (uninitialized): failed to connect to PHY: -ENODEV
+[    4.814782] mt7530-mdio mdio-bus:1f lan3 (uninitialized): error -19 setting up PHY for tree 0, switch 0, port 4
 
-Is there something unique about brcm that requires this?  I think it's
-common for PCIe Completion Timeouts to cause CPU aborts.
+DT without the mdio node defined, with this patch applied:
 
-Surely other drivers need to configure the completion timeout, but
-pcie-rcar-host.c and pcie-rcar-ep.c are the only ones I could find.
-Maybe the brcmstb power-up values are just too small?  Does the
-correct value need to be in DT, or could it just be built into the
-driver?
+[    4.650766] mt7530-mdio mdio-bus:1f: configuring for fixed/trgmii link mode
+[    4.660687] mt7530-mdio mdio-bus:1f wan (uninitialized): using switch's internal MDIO bus
+[    4.668937] mdio_bus mt7530-0: mdio device exists
+[    4.677787] mt7530-mdio mdio-bus:1f wan (uninitialized): PHY [mt7530-0:00] driver [MediaTek MT7530 PHY] (irq=POLL)
+[    4.693165] mt7530-mdio mdio-bus:1f lan0 (uninitialized): using switch's internal MDIO bus
+[    4.701517] mdio_bus mt7530-0: mdio device exists
+[    4.707029] mt7530-mdio mdio-bus:1f lan0 (uninitialized): PHY [mt7530-0:01] driver [MediaTek MT7530 PHY] (irq=POLL)
+[    4.718469] mt7530-mdio mdio-bus:1f lan1 (uninitialized): using switch's internal MDIO bus
+[    4.726773] mdio_bus mt7530-0: mdio device exists
+[    4.732322] mt7530-mdio mdio-bus:1f lan1 (uninitialized): PHY [mt7530-0:02] driver [MediaTek MT7530 PHY] (irq=POLL)
+[    4.743793] mt7530-mdio mdio-bus:1f lan2 (uninitialized): using switch's internal MDIO bus
+[    4.752143] mdio_bus mt7530-0: mdio device exists
+[    4.757662] mt7530-mdio mdio-bus:1f lan2 (uninitialized): PHY [mt7530-0:03] driver [MediaTek MT7530 PHY] (irq=POLL)
+[    4.769105] mt7530-mdio mdio-bus:1f lan3 (uninitialized): using switch's internal MDIO bus
+[    4.781905] mdio_bus mt7530-0: mdio device exists
+[    4.787459] mt7530-mdio mdio-bus:1f lan3 (uninitialized): PHY [mt7530-0:04] driver [MediaTek MT7530 PHY] (irq=POLL)
 
-This sounds like something dependent on the downstream device
-connected, which again sounds hard for users to deal with.  How would
-they know what to use here?
+This is how I define it, mind you no phandles.
 
-> Signed-off-by: Jim Quinlan <jim2101024@gmail.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
->  .../devicetree/bindings/pci/brcm,stb-pcie.yaml   | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> index 7e15aae7d69e..239cc95545bd 100644
-> --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> @@ -64,6 +64,22 @@ properties:
->  
->    aspm-no-l0s: true
->  
-> +  brcm,enable-l1ss:
-> +    description: Indicates that PCIe L1SS power savings
-> +      are desired, the downstream device is L1SS-capable, and the
-> +      OS has been configured to enable this mode.  For boards
-> +      using a mini-card connector, this mode may not meet the
-> +      TCRLon maximum time of 400ns, as specified in 3.2.5.2.5
-> +      of the PCI Express Mini CEM 2.0 specification.
-> +    type: boolean
-> +
-> +  brcm,completion-timeout-us:
-> +    description: Number of microseconds before PCI transaction
-> +      completion timeout abort is signalled.
-> +    minimum: 16
-> +    default: 1000000
-> +    maximum: 19884107
-> +
->    brcm,scb-sizes:
->      description: u64 giving the 64bit PCIe memory
->        viewport size of a memory controller.  There may be up to
-> -- 
-> 2.17.1
-> 
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+switch@1f {
+	...
+	mdio {
+		#address-cells = <0x01>;
+		#size-cells = <0x00>;
+
+		ethernet-phy@0 {
+			reg = <0x00>;
+		};
+	};
+};
+
+Like you said, if the mdio node is not defined, the driver will assume 1:1
+mapping. If not, it will need all the PHYs to be defined on the mdio node
+along with on the ports node. Hence back to my original statement, we can
+either force defining the PHYs on the mdio node which would break the ABI,
+or forget about doing PHY muxing this way.
+
+There are no MDIO operations needed on the PHYs for the PHY muxing anyway,
+so I'd rather do this some other way.
+
+Thanks for the help.
+
+Arınç
