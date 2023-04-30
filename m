@@ -2,46 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 505856F29CF
-	for <lists+devicetree@lfdr.de>; Sun, 30 Apr 2023 19:09:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 630536F29AC
+	for <lists+devicetree@lfdr.de>; Sun, 30 Apr 2023 19:00:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229484AbjD3RJq convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sun, 30 Apr 2023 13:09:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41914 "EHLO
+        id S231157AbjD3RAl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Apr 2023 13:00:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229477AbjD3RJq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Apr 2023 13:09:46 -0400
-Received: from synguard (unknown [212.29.212.82])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDD8E1726;
-        Sun, 30 Apr 2023 10:09:44 -0700 (PDT)
-Received: from [192.168.42.187] (T14.siklu.local [192.168.42.187])
-        by synguard (Postfix) with ESMTP id ECF5C4E4DF;
-        Sun, 30 Apr 2023 20:09:42 +0300 (IDT)
-Message-ID: <311d3b9816d40311acdbc4bb1c793ff75972923a.camel@siklu.com>
-Subject: Re: [PATCH v3 1/3] net: mvpp2: tai: add refcount for ptp worker
-From:   Shmuel Hazan <shmuel.h@siklu.com>
-To:     Jakub Kicinski <kuba@kernel.org>
-Cc:     Russell King <linux@armlinux.org.uk>,
-        Marcin Wojtas <mw@semihalf.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        horatiu.vultur@microchip.com, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231153AbjD3RAh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Apr 2023 13:00:37 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6653F3AA0;
+        Sun, 30 Apr 2023 10:00:15 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0B6D360DF5;
+        Sun, 30 Apr 2023 17:00:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4940C433EF;
+        Sun, 30 Apr 2023 17:00:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1682874014;
+        bh=vMagLB0T24aEnGIYaVLE/dTFO6A15JIDpqUIewEjwd8=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=BXbo5RN40/Wzdi59ooW090ZAmDKYM1vN4r0hPV4FpE4Bs/eOT+VJPa63xtHZQm2PF
+         LT5ItpNJV/9kRyyWFHPq39Xr3Ss0H85s/twuPjRb2yf28jTtnif0C5VN0Wik2uGXp7
+         nJa/dNsDsz0PXm0aHv4lN4+eIXyKWWpvvuWlBy3Wiq3OaGderss5xj3kv5/8WTAqcJ
+         tOK6jUl4LHJFHnnZ/t6G5L4jOz4VbRvdpndwnCKXzZfJ4RiHCs94krXVDgU5tFcwvY
+         wf9Ob628bSd4dnrYVD7naMKMK+CSzz4uQWHawJQPJQCoYRgwN3/07kG9qDi1PjbnT8
+         sVNcaqtw8H+Ww==
+Date:   Sun, 30 Apr 2023 18:15:58 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Cai Huoqing <cai.huoqing@linux.dev>,
+        Haibo Chen <haibo.chen@nxp.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-Date:   Sun, 30 Apr 2023 20:09:42 +0300
-In-Reply-To: <20230420202003.1e9af9e0@kernel.org>
-References: <20230419151457.22411-1-shmuel.h@siklu.com>
-         <20230419151457.22411-2-shmuel.h@siklu.com>
-         <20230420202003.1e9af9e0@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.46.4 
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Marco Felsch <m.felsch@pengutronix.de>
+Subject: Re: [PATCH v2 1/1] dt-bindings: iio: imx8qxp-adc: add missing
+ vref-supply
+Message-ID: <20230430181558.7614cbfc@jic23-huawei>
+In-Reply-To: <20230424092312.61746-1-alexander.stein@ew.tq-group.com>
+References: <20230424092312.61746-1-alexander.stein@ew.tq-group.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,FSL_HELO_NON_FQDN_1,
-        HELO_NO_DOMAIN,RDNS_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -49,42 +66,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2023-04-20 at 20:20 -0700, Jakub Kicinski wrote:
-> > Caution: This is an external email. Please take care when clicking
-> > links or opening attachments.
-> > 
-> > 
-> > On Wed, 19 Apr 2023 18:14:55 +0300 Shmuel Hazan wrote:
-> > > > +static void mvpp22_tai_stop_unlocked(struct mvpp2_tai *tai)
-> > > > +{
-> > > > +     tai->poll_worker_refcount--;
-> > > > +     if (tai->poll_worker_refcount)
-> > > > +             return;
-> > > > +     ptp_cancel_worker_sync(tai->ptp_clock);
-> > 
-> > How can you cancel it _sync() when the work takes the same
-> > lock you're already holding?
-> > 
-> > https://elixir.bootlin.com/linux/v6.3-rc7/source/drivers/net/ethernet/marvell/mvpp2/mvpp2_tai.c#L246
+On Mon, 24 Apr 2023 11:23:12 +0200
+Alexander Stein <alexander.stein@ew.tq-group.com> wrote:
+
+> Although this property is used right now for IIO_CHAN_INFO_SCALE,
+> this ADC has two internal reference voltages, which the driver currently
+> doesn't make use of.
+> 
+> Fixes: db73419d8c06 ("dt-bindings: iio: adc: Add binding documentation for NXP IMX8QXP ADC")
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+
+Interesting that we are talking her only about vrefh, what about vrefp?
+I guess the assumption is that will be wired to 0V?
+
+The first reference I found didn't seem to imply that was necessarily the
+case. https://www.mouser.com/pdfDocs/IMX8QXPAEC.pdf
 
 
-Hi Jakub,
+Jonathan
 
-Thanks for finding that. Strange that I have not encountered any
-deadlocks while testing; I will apply a fix and resend after testing
-it.  
-
-> > 
-> > > >  void mvpp22_tai_stop(struct mvpp2_tai *tai)
-> > > >  {
-> > > > -     ptp_cancel_worker_sync(tai->ptp_clock);
-> > > > +     unsigned long flags;
-> > > > +
-> > > > +     spin_lock_irqsave(&tai->lock, flags);
-> > > > +     mvpp22_tai_stop_unlocked(tai);
-> > 
-> > --
-> > pw-bot: cr
-
-
+> ---
+> Thanks for your inputs. This improved descritpion should make it clear
+> that this property is only about the external reference voltage, not
+> about the optional, internal voltages.
+> 
+> Changes in v2:
+> * Improved commit message subject as suggested
+> * Add hint about feature flag regarding multiple, internal, reference
+>   voltages
+> 
+>  .../devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml       | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml b/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
+> index 63369ba388e4..878e67054d7c 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
+> @@ -39,6 +39,12 @@ properties:
+>    power-domains:
+>      maxItems: 1
+>  
+> +  vref-supply:
+> +    description: |
+> +      External ADC reference voltage supply on VREFH pad. If VERID[MVI] is
+> +      set, there are additional, internal reference voltages selectable.
+> +      VREFH1 is always from VREFH pad.
+> +
+>    "#io-channel-cells":
+>      const: 1
+>  
+> @@ -72,6 +78,7 @@ examples:
+>              assigned-clocks = <&clk IMX_SC_R_ADC_0>;
+>              assigned-clock-rates = <24000000>;
+>              power-domains = <&pd IMX_SC_R_ADC_0>;
+> +            vref-supply = <&reg_1v8>;
+>              #io-channel-cells = <1>;
+>          };
+>      };
 
