@@ -2,79 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 299EC6F2894
-	for <lists+devicetree@lfdr.de>; Sun, 30 Apr 2023 13:30:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C794C6F28AB
+	for <lists+devicetree@lfdr.de>; Sun, 30 Apr 2023 14:08:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229632AbjD3Laf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Apr 2023 07:30:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39494 "EHLO
+        id S230235AbjD3MIE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Apr 2023 08:08:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229596AbjD3Lae (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Apr 2023 07:30:34 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6D4B26BF
-        for <devicetree@vger.kernel.org>; Sun, 30 Apr 2023 04:30:32 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-94eff00bcdaso309292866b.1
-        for <devicetree@vger.kernel.org>; Sun, 30 Apr 2023 04:30:32 -0700 (PDT)
+        with ESMTP id S229478AbjD3MID (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Apr 2023 08:08:03 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0054C26BF
+        for <devicetree@vger.kernel.org>; Sun, 30 Apr 2023 05:08:01 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-94ef8b88a5bso230198166b.2
+        for <devicetree@vger.kernel.org>; Sun, 30 Apr 2023 05:08:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682854231; x=1685446231;
+        d=linaro.org; s=google; t=1682856480; x=1685448480;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=BVxAbtgWt8piDuFL2bIM7+Ard0QYLwJUtfo5posTlu8=;
-        b=V48CE5XksJN9W2lqT5IsiEiLKywu0Dx/veB5aLENwl02WSwESfSqDTLgSba8BnAsCB
-         L+1yNbYz47h8/tFGxCNr0nuVCvrosHx1BnSLh2E2nuQtww1wdTlEpKGPlAznliqtpxQ/
-         +6IV3/3CmNbLy+q1UUEzvLGQb+tOMlI0A36F2qmkeY0d5vLF+9ahsDLRnxJo6uwMuPsj
-         BIMaO1TvzZ72buJEbjvkgR4qsvMp+Odn/XlG5Y7iIXBEfiXNbrRsFRz0RIbjqwf/9eEl
-         TjheTQbpTCpZUB9nh2lh2T3Ts18nWlp5y5+wOvCef9anB6yvQliSBApCQubDPzR1zX9B
-         0KwA==
+        bh=jpL0YLo8koF3DPTQzivw22s6fAM5/gO4Gtua3ieTCv0=;
+        b=NYshAibxZyRK9DBQmZoKLmycBpjf6IUfYnCx2+vA+8egWMcrBmpBSeZn2tK571T7oh
+         xUmBYvmmf6LUTZApy3PN6LVD5HCRgYeEThKlgvHeVbIvOFWRI5SHYOAh8YWal6gek43o
+         IQ4Y9DzDf63kJDuWjEfW6OyVnawttQmpT6K/silIK3pA2iGqEe6kXkAzndadhPXqJ+hk
+         i9QnnvKyLbcGAqkDFFn5Fn+KHXgb9x2cXJ0gJILge6+m0MersgTkAlq6Uu7n+ZcujGw7
+         if8p4LGccb1IMMDa4OFi4cZlgWqk5UHPXK4r5Fn0MgHNcdPcojBq1xugfzfsIc/zeM7n
+         JFDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682854231; x=1685446231;
+        d=1e100.net; s=20221208; t=1682856480; x=1685448480;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BVxAbtgWt8piDuFL2bIM7+Ard0QYLwJUtfo5posTlu8=;
-        b=fxnJ+tX6/qlFfCCUtb14bfekuJbZ7Ow9vgyJoulyO59uInuZWYG6JRmzYhNR9PQtcD
-         PXEjOOGB+aGoLr4hPV2F1+rtELubw2+N/nnns34CmnjgXf7QKamUcdCR3PFWhNSt5XZO
-         7f5HiatipVDFoaVPFuJn9OQ4lXIk+EB0fTHssouh7Qcc3VV1C2Gh58Z15RqWMaEEdpnl
-         CK4sprZxDcd1NYe9+3w1pvr5gsp5ED+90v9s5XINUwm2bY4v3gVEHr2M5rr7F/acRPXs
-         NoyuObWqPofXzL79E1x9bbVi1zPo0NvOqWAambXINxB7JFMB2DDIsJPue7kk6+1wHCcH
-         8ooQ==
-X-Gm-Message-State: AC+VfDzrjvpdzCwAQ5nudAPlEhK2+Qx6ZbN79I1PKvut8Msd8B0v7Y3K
-        HpLN6QEynVY2DPa4fRQIoYcknw==
-X-Google-Smtp-Source: ACHHUZ7mIWoKHzDSU5Di+4SWLZ6PKI098SuYW2eCN4UKMZ0F2zinCJrzHMsaioh3L9kOGWNKFNJDeQ==
-X-Received: by 2002:a17:907:368d:b0:953:1f45:3ced with SMTP id bi13-20020a170907368d00b009531f453cedmr9744583ejc.8.1682854231272;
-        Sun, 30 Apr 2023 04:30:31 -0700 (PDT)
+        bh=jpL0YLo8koF3DPTQzivw22s6fAM5/gO4Gtua3ieTCv0=;
+        b=dbC5diNu+Xhdtii2b339eFm6Nkjgh98jOCdOCRzcNRw/RDGpVaa7GlRutpo2KV/vMn
+         HJjpt7cByQjFLrL/8nssyssCFKY4VxL06KxDyJKv9Xtp4OygGcbgf6THgTqV2NeBVgay
+         zd7laflkkgLalFPD/XqmDmRBEA/wkzUgQqqgjLncSlNB+wWqshumYA9vZgR4DkNV7Axa
+         qtuCSOzrZBjWMVpHa65JAFltEu6/T9lD61OcyWAsOAVrb+ezoOdL83rZBf7FB5FSraV2
+         qfj7hPIGrfhlnJ40QHP5n69uN2PyLOsnH8dpPsh3J5Ud++C6QFCO6BVJDykTJTBnyz2p
+         A3OA==
+X-Gm-Message-State: AC+VfDxddHwyB22hPi+p88wHm8XD3C5Cl5w524EY7WiPZeouRjV1a+zm
+        Lx8H83EDpi0FDUoGSJu5WM6DGg==
+X-Google-Smtp-Source: ACHHUZ552hr/Yulhor6scRLzB4vhqIGCQCViP962grhpVyirdQ1enlt4pY+/aWSdtOXI4BCVznl2ig==
+X-Received: by 2002:a17:907:8a01:b0:8e1:12b6:a8fc with SMTP id sc1-20020a1709078a0100b008e112b6a8fcmr10586656ejc.4.1682856480499;
+        Sun, 30 Apr 2023 05:08:00 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:4f23:e9a6:a1cf:ebd3? ([2a02:810d:15c0:828:4f23:e9a6:a1cf:ebd3])
-        by smtp.gmail.com with ESMTPSA id o9-20020a1709064f8900b0094f3b18044bsm13473230eju.218.2023.04.30.04.30.30
+        by smtp.gmail.com with ESMTPSA id s21-20020a170906779500b0094eef800850sm13602622ejm.204.2023.04.30.05.07.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 30 Apr 2023 04:30:30 -0700 (PDT)
-Message-ID: <c981e048-8925-deba-6916-9199844976b9@linaro.org>
-Date:   Sun, 30 Apr 2023 13:30:29 +0200
+        Sun, 30 Apr 2023 05:08:00 -0700 (PDT)
+Message-ID: <c7a24bac-a81d-6786-f1d3-d0f2c43cee8d@linaro.org>
+Date:   Sun, 30 Apr 2023 14:07:58 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
-Subject: Re: [PATCH 09/43] dt-bindings: watchdog: add DT bindings for Cirrus
- EP93x
+Subject: Re: [PATCH] yaml: Add an entry in imx8mm boards for Emtop SOM-IMX8MM
 Content-Language: en-US
-To:     Nikita Shubin <nikita.shubin@maquefel.me>
-Cc:     Arnd Bergmann <arnd@kernel.org>, Linus Walleij <linusw@kernel.org>,
-        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230424123522.18302-1-nikita.shubin@maquefel.me>
- <20230424123522.18302-10-nikita.shubin@maquefel.me>
- <00882340-477b-dc0b-d489-94efdf045f1c@linaro.org>
- <cb0b1779a8bd18212439f9baf70fdb183c9f0fc7.camel@maquefel.me>
- <e73cec19-9ac8-bee2-8c28-c7a40b929e53@linaro.org>
- <c74d958aa1ea38f61cd1db965dce3cadbff530b5.camel@maquefel.me>
+To:     Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Cc:     "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "marex@denx.de" <marex@denx.de>,
+        "festevam@denx.de" <festevam@denx.de>,
+        "frieder.schrempf@kontron.de" <frieder.schrempf@kontron.de>,
+        "marcel.ziswiler@toradex.com" <marcel.ziswiler@toradex.com>,
+        "max.krummenacher@toradex.com" <max.krummenacher@toradex.com>,
+        "stefan.wahren@i2se.com" <stefan.wahren@i2se.com>,
+        "matthias.schiffer@tq-group.com" <matthias.schiffer@tq-group.com>,
+        "denys.drozdov@toradex.com" <denys.drozdov@toradex.com>,
+        "leoyang.li@nxp.com" <leoyang.li@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <BM1PR01MB4899FB61CCDE89E83F0F4D979A689@BM1PR01MB4899.INDPRD01.PROD.OUTLOOK.COM>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <c74d958aa1ea38f61cd1db965dce3cadbff530b5.camel@maquefel.me>
+In-Reply-To: <BM1PR01MB4899FB61CCDE89E83F0F4D979A689@BM1PR01MB4899.INDPRD01.PROD.OUTLOOK.COM>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -85,106 +87,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/04/2023 19:42, Nikita Shubin wrote:
-> On Fri, 2023-04-28 at 14:20 +0200, Krzysztof Kozlowski wrote:
->> On 28/04/2023 16:33, Nikita Shubin wrote:
->>> Hello Krzysztof!
->>>
->>> On Tue, 2023-04-25 at 11:31 +0200, Krzysztof Kozlowski wrote:
->>>> On 24/04/2023 14:34, Nikita Shubin wrote:
->>>>> This adds device tree bindings for the Cirrus Logic EP93xx
->>>>> watchdog block used in these SoCs.
->>>>>
->>>>> Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
->>>>> ---
->>>>>  .../bindings/watchdog/cirrus,ep93xx-wdt.yaml  | 38
->>>>> +++++++++++++++++++
->>>>>  1 file changed, 38 insertions(+)
->>>>>  create mode 100644
->>>>> Documentation/devicetree/bindings/watchdog/cirrus,ep93xx-
->>>>> wdt.yaml
->>>>>
->>>>> diff --git
->>>>> a/Documentation/devicetree/bindings/watchdog/cirrus,ep93xx-
->>>>> wdt.yaml
->>>>> b/Documentation/devicetree/bindings/watchdog/cirrus,ep93xx-
->>>>> wdt.yaml
->>>>> new file mode 100644
->>>>> index 000000000000..f39d6b14062d
->>>>> --- /dev/null
->>>>> +++ b/Documentation/devicetree/bindings/watchdog/cirrus,ep93xx-
->>>>> wdt.yaml
->>>>> @@ -0,0 +1,38 @@
->>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>>> +%YAML 1.2
->>>>> +---
->>>>> +$id:
->>>>> http://devicetree.org/schemas/watchdog/cirrus,ep93xx-wdt.yaml#
->>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>> +
->>>>> +title: Cirrus Logic EP93xx Watchdog Timer
->>>>
->>>> EP93xx is no EP9301. This does not match your compatible list.
->>>> You
->>>> should probably list all of your devices. With or without
->>>> compatibility
->>>> between them (so with a generic fallback for example).
->>>
->>> I will rename file to cirrus,ep9301-wdt.yaml, all ep93xx SoC family
->>> has
->>> the same watchdog, so there is now reason for other compatible i
->>> think.
->>
->> You should always have dedicated compatibles, even if using one
->> fallback.
->> https://elixir.bootlin.com/linux/v6.1-rc1/source/Documentation/devicetree/bindings/writing-bindings.rst#L42
-> 
-> Krzysztof, sorry to bother you - but i don't quite get, what we should
-> have in compatibles ? 
-> 
-> Should i make an additional fallback compatible like "cirrus,ep-wdt"
-> and then "compatible" will look like:
-> 
-> properties:
->   compatible:
->     - items:
->       - enum:
->         - cirrus,ep9301-wdt
->       - const: cirrus,ep-wdt
-> 
-> Or should i describe every ep93xx SoC variant like:
-> 
-> properties:
->   compatible:
->     - items:
->       - enum:
->         - cirrus,ep9302-wdt
->         - cirrus,ep9307-wdt
->         - cirrus,ep9312-wdt
->         - cirrus,ep9315-wdt
->       - const: cirrus,ep9301-wdt
+On 29/04/2023 16:07, Himanshu Bhavani wrote:
+> From 8756e66b7fba0a5063c6011983eb876456504ede Mon Sep 17 00:00:00 2001
+> From: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
+> Date: Sat, 29 Apr 2023 19:32:27 +0530
+> Subject: [PATCH] Add an entry in imx8mm boards for Emtop SOM-IMX8MM
 
-This one is preferred. Just don't forget for an entry allowing 9301
-alone (and everything within oneOf)
+Please fix your patch format.
 
-Syntax looks like:
-
-https://elixir.bootlin.com/linux/v6.3-rc6/source/Documentation/devicetree/bindings/sound/nvidia,tegra210-ope.yaml#L31
+Use subject prefixes matching the subsystem (which you can get for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching).
 
 > 
-> There are ep9301, ep9302, ep9307, ep9312 and ep9315 SoC variants - all
-> have the same watchdog and rtc implementation without any difference at
-> all.
-
-We still prefer to have dedicated compatible, in case some
-bugs/differences are found.
-
+> Added an entry to the list of imx8mm boards denoting the Emtop SOM-IMX8MM
 > 
-> If on of this is true does the same applies to ep9301-rtc and any other
-> variants where we do have a single compatible ?
+> Signed-off-by: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+> index 442ce8f4d675..61f3beabb1d0 100644
+> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> @@ -902,6 +902,7 @@ properties:
+>                - toradex,verdin-imx8mm-wifi  # Verdin iMX8M Mini Wi-Fi / BT Modules
+>                - variscite,var-som-mx8mm   # i.MX8MM Variscite VAR-SOM-MX8MM module
+>                - prt,prt8mm                # i.MX8MM Protonic PRT8MM Board
+> +              - fsl,imx8mm-emtop          # i.MX8MM Emtop SOM
 
-Yes, please.
-
+Messed order, incorrect vendor prefix. Also board name looks actually
+missing.
 
 Best regards,
 Krzysztof
