@@ -2,98 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 956C86F2A5A
-	for <lists+devicetree@lfdr.de>; Sun, 30 Apr 2023 20:49:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 075E16F2A6A
+	for <lists+devicetree@lfdr.de>; Sun, 30 Apr 2023 21:10:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229478AbjD3StF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Apr 2023 14:49:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41126 "EHLO
+        id S229556AbjD3TK4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Apr 2023 15:10:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229452AbjD3StF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Apr 2023 14:49:05 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 794881BD5;
-        Sun, 30 Apr 2023 11:49:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=1+r4sj5Wdu1YqQif08HC/Zm726AJ0OzaSQ6z+naTJaY=; b=expERG4bmIxY87IpV8nRXZhvdR
-        vufaEvswXY9oMHSRXHPhPyXLQo+w9iAi01USwoZ9h9lZpnpHbnyReCRIvibzmh3tKDwjHxfsknAyc
-        wb9UALy4ac1X4Xr36VP7JDI7TyFF6bNkNBRCL/mKFxTfLqQyzbuNZ83rEEfEimvV1/vY=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1ptC69-00BZ9O-7M; Sun, 30 Apr 2023 20:48:37 +0200
-Date:   Sun, 30 Apr 2023 20:48:37 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Cc:     David Bauer <mail@david-bauer.net>,
+        with ESMTP id S229513AbjD3TKz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Apr 2023 15:10:55 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F95110E7;
+        Sun, 30 Apr 2023 12:10:54 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9A2DC60C89;
+        Sun, 30 Apr 2023 19:10:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3BBAC433D2;
+        Sun, 30 Apr 2023 19:10:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1682881853;
+        bh=CT/MNRGnhMb2nU4AJ1Xh90FST6Y4/rdNX1wK3f9sx+U=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=ub5cfuHmtvKTM09w14SCYtvcGo/fpb1GnDtso0JSAqTkrFL8bJL+hZ2OElNITQlnN
+         /iReeSMqkdciwER6LJoH7Eo7fHbkdieKLOnBRLvwZc6/2UEwauskSbZWo0hC7WV/uk
+         G3cG1PyukoGV5qAJjMZl836kXLpFr3tQzJT2xHElIJ9ruze7BGR/M9AQdvJQQWIoiP
+         Qa1RO/x5bPS0M/PAnX3ISfGmXzOPzk2gksevwGX2efK1j124UIYtP0qqtr6oPT0AxI
+         /ZHJ0JWw/1D5lRK/Yy5qAmPOidB6cMpKHuCuL3ZaLhFPJmEaXARCwCSsC9y8293jGB
+         +AJmJRw5ZTorA==
+Date:   Sun, 30 Apr 2023 14:10:51 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Jim Quinlan <jim2101024@gmail.com>
+Cc:     linux-pci@vger.kernel.org,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Cyril Brulebois <kibi@debian.org>,
+        Phil Elwell <phil@raspberrypi.com>,
+        bcm-kernel-feedback-list@broadcom.com, james.quinlan@broadcom.com,
         Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Daniel Golle <daniel@makrotopia.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 2/2] dt-bindings: net: dsa: mediatek,mt7530: document
- MDIO-bus
-Message-ID: <207753d6-cffd-4a23-be16-658d7c9ceb4a@lunn.ch>
-References: <20230430112834.11520-1-mail@david-bauer.net>
- <20230430112834.11520-2-mail@david-bauer.net>
- <e4feeac2-636b-8b75-53a5-7603325fb411@arinc9.com>
- <396fad42-89d0-114d-c02e-ac483c1dd1ed@arinc9.com>
- <04cc2904-6d61-416e-bfbe-c24d96fe261b@lunn.ch>
- <a6c6fe83-fbb5-f289-2210-6f1db6585636@arinc9.com>
+        "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 1/5] dt-bindings: PCI: brcmstb:
+ brcm,{enable-l1ss,completion-timeout-us} props
+Message-ID: <20230430191051.GA515900@bhelgaas>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <a6c6fe83-fbb5-f289-2210-6f1db6585636@arinc9.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230428223500.23337-2-jim2101024@gmail.com>
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > Try setting ds->slave_mii_bus to the MDIO bus you register via
-> > of_mdiobus_register().
-> 
-> That seems to be the case already, under mt7530_setup_mdio():
-> 
-> 	bus = devm_mdiobus_alloc(dev);
-> 	if (!bus)
-> 		return -ENOMEM;
-> 
-> 	ds->slave_mii_bus = bus;
-> 
-> The bus is registered with devm_of_mdiobus_register(), if that matters. (My
-> current knowledge about OF or OF helpers for MDIO is next to nothing.)
-> 
-> The same behaviour is there.
+On Fri, Apr 28, 2023 at 06:34:55PM -0400, Jim Quinlan wrote:
+> This commit introduces two new properties:
 
-Maybe take a look at what is going on in dsa_slave_phy_setup() and
-dsa_slave_phy_connect().
+Doing two things makes this a candidate for splitting into two
+patches, as you've already done for the driver support.  They seem
+incidentally related but not indivisible.
 
-The way i understand it, is it first looks in DT to see if there is a
-phy-handle, and if there is, it uses it. If not, it assumes there is a
-1:1 mapping between port number and PHY address, and looks to see if a
-PHY has been found on ds->slave_mii_bus at that address, and uses it.
+> brcm,enable-l1ss (bool):
+> 
+>   The Broadcom STB/CM PCIe HW -- a core that is also used by RPi SOCs --
+>   requires the driver probe() to deliberately place the HW one of three
+>   CLKREQ# modes:
+> 
+>   (a) CLKREQ# driven by the RC unconditionally
+>   (b) CLKREQ# driven by the EP for ASPM L0s, L1
+>   (c) Bidirectional CLKREQ#, as used for L1 Substates (L1SS).
+> 
+>   The HW+driver can tell the difference between downstream devices that
+>   need (a) and (b), but does not know when to configure (c).  All devices
+>   should work fine when the driver chooses (a) or (b), but (c) may be
+>   desired to realize the extra power savings that L1SS offers.  So we
+>   introduce the boolean "brcm,enable-l1ss" property to inform the driver
+>   that (c) is desired.  Setting this property only makes sense when the
+>   downstream device is L1SS-capable and the OS is configured to activate
+>   this mode (e.g. policy==superpowersave).
 
-So i don't think you need to list the PHY, the fallback should be
-used.
+Is this related to the existing generic "supports-clkreq" property?  I
+guess not, because supports-clkreq looks like a description of CLKREQ
+signal routing, while brcm,enable-l1ss looks like a description of
+what kind of downstream device is present?
 
-	Andrew
+What bad things would happen if the driver always configured (c)?
+
+Other platforms don't require this, and having to edit the DT based on
+what PCIe device is plugged in seems wrong.  If brcmstb does need it,
+that suggests a hardware defect.  If we need this to work around a
+defect, that's OK, but we should acknowledge the defect so we can stop
+using this for future hardware that doesn't need it.
+
+Maybe the name should be more specific to CLKREQ#, since this doesn't
+actually *enable* L1SS; apparently it's just one of the pieces needed
+to enable L1SS?
+
+>   This property is already present in the Raspian version of Linux, but the
+>   upstream driver implementaion that follows adds more details and discerns
+>   between (a) and (b).
+
+s/implementaion/implementation/
+
+> brcm,completion-timeout-us (u32):
+> 
+>   Our HW will cause a CPU abort on any PCI transaction completion abort
+>   error.  It makes sense then to increase the timeout value for this type
+>   of error in hopes that the response is merely delayed.  Further,
+>   L1SS-capable devices may have a long L1SS exit time and may require a
+>   custom timeout value: we've been asked by our customers to make this
+>   configurable for just this reason.
+
+I asked before whether this should be made generic and not
+brcm-specific, since completion timeouts are generic PCIe things.  I
+didn't see any discussion, but Rob reviewed this so I guess it's OK
+as-is.
+
+Is there something unique about brcm that requires this?  I think it's
+common for PCIe Completion Timeouts to cause CPU aborts.
+
+Surely other drivers need to configure the completion timeout, but
+pcie-rcar-host.c and pcie-rcar-ep.c are the only ones I could find.
+Maybe the brcmstb power-up values are just too small?  Does the
+correct value need to be in DT, or could it just be built into the
+driver?
+
+This sounds like something dependent on the downstream device
+connected, which again sounds hard for users to deal with.  How would
+they know what to use here?
+
+> Signed-off-by: Jim Quinlan <jim2101024@gmail.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../devicetree/bindings/pci/brcm,stb-pcie.yaml   | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> index 7e15aae7d69e..239cc95545bd 100644
+> --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> @@ -64,6 +64,22 @@ properties:
+>  
+>    aspm-no-l0s: true
+>  
+> +  brcm,enable-l1ss:
+> +    description: Indicates that PCIe L1SS power savings
+> +      are desired, the downstream device is L1SS-capable, and the
+> +      OS has been configured to enable this mode.  For boards
+> +      using a mini-card connector, this mode may not meet the
+> +      TCRLon maximum time of 400ns, as specified in 3.2.5.2.5
+> +      of the PCI Express Mini CEM 2.0 specification.
+> +    type: boolean
+> +
+> +  brcm,completion-timeout-us:
+> +    description: Number of microseconds before PCI transaction
+> +      completion timeout abort is signalled.
+> +    minimum: 16
+> +    default: 1000000
+> +    maximum: 19884107
+> +
+>    brcm,scb-sizes:
+>      description: u64 giving the 64bit PCIe memory
+>        viewport size of a memory controller.  There may be up to
+> -- 
+> 2.17.1
+> 
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
