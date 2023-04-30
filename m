@@ -2,173 +2,267 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D551A6F2615
-	for <lists+devicetree@lfdr.de>; Sat, 29 Apr 2023 21:47:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9387B6F278C
+	for <lists+devicetree@lfdr.de>; Sun, 30 Apr 2023 06:17:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230126AbjD2Trf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Apr 2023 15:47:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37966 "EHLO
+        id S229461AbjD3ERh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Apr 2023 00:17:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229517AbjD2Tre (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Apr 2023 15:47:34 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB1B019A5;
-        Sat, 29 Apr 2023 12:47:33 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5651F60A49;
-        Sat, 29 Apr 2023 19:47:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 760CCC433EF;
-        Sat, 29 Apr 2023 19:47:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1682797652;
-        bh=e8JjaXVFrQ8bjiPlV9g5r1/UXbifNg5RQDzsZ5uNbuQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=CLVySDqr+R1Fu/cU/fQEkQZfL2AAor/c6SvU3u0MIuqRAZjZVUvJYoIfHNscHMGbv
-         YvFcLoZUEgMh4fpZQ//sedCcPj9wGxSWLl4kwsE3HqmMlkUcF/S7VfXo5RX97E93w8
-         0lcCbrz7ewl1JZHmz/tVzCBCP02h/zMoFVfOEn3lZYaJJOKoFWiDI25qydcQSzz+lu
-         tWSkbiQR7vdkts+HIozP8vvT5Nq/XM4OkhJPwG7iNYOiFPzkRGrdDPv132ryNdRgCy
-         PwXXGa/OcA0L6KIbO+ZEdqPtADkgiS06YlgjNk0PZ9/j4pHKunCI2QgK+XO7PHtXEr
-         jz+yqTXeg4YmQ==
-Received: by mercury (Postfix, from userid 1000)
-        id 7905D1066F52; Sat, 29 Apr 2023 21:47:29 +0200 (CEST)
-Date:   Sat, 29 Apr 2023 21:47:29 +0200
-From:   Sebastian Reichel <sre@kernel.org>
-To:     Luca Weiss <luca@z3ntu.xyz>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        with ESMTP id S229452AbjD3ERh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Apr 2023 00:17:37 -0400
+Received: from twspam01.aspeedtech.com (twspam01.aspeedtech.com [211.20.114.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D2BA1BC2
+        for <devicetree@vger.kernel.org>; Sat, 29 Apr 2023 21:17:26 -0700 (PDT)
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 33U40HT4060619;
+        Sun, 30 Apr 2023 12:00:17 +0800 (GMT-8)
+        (envelope-from ryan_chen@aspeedtech.com)
+Received: from aspeedtech.com (192.168.10.13) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Sun, 30 Apr
+ 2023 12:17:15 +0800
+From:   Ryan Chen <ryan_chen@aspeedtech.com>
+To:     <jk@codeconstruct.com.au>,
+        Brendan Higgins <brendan.higgins@linux.dev>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Joel Stanley <joel@jms.id.au>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Brian Masney <masneyb@onstation.org>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 3/4] Input: pwm-vibra - add support for enable GPIO
-Message-ID: <20230429194729.xuw7ircyuyabv32w@mercury.elektranox.org>
-References: <20230427-hammerhead-vibra-v1-0-e87eeb94da51@z3ntu.xyz>
- <20230427-hammerhead-vibra-v1-3-e87eeb94da51@z3ntu.xyz>
+        Andrew Jeffery <andrew@aj.id.au>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Wolfram Sang <wsa@kernel.org>,
+        "Andy Shevchenko" <andriy.shevchenko@linux.intel.com>,
+        <linux-i2c@vger.kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Jean Delvare <jdelvare@suse.de>,
+        William Zhang <william.zhang@broadcom.com>,
+        Tyrone Ting <kfting@nuvoton.com>,
+        Tharun Kumar P <tharunkumar.pasumarthi@microchip.com>,
+        Ryan Chen <ryan_chen@aspeedtech.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        "Phil Edworthy" <phil.edworthy@renesas.com>,
+        <openbmc@lists.ozlabs.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-aspeed@lists.ozlabs.org>, <=linux-kernel@vger.kernel.org>,
+        Andi Shyti <andi.shyti@kernel.org>
+Subject: [PATCH v11 0/2] Add ASPEED AST2600 I2Cv2 controller driver
+Date:   Sun, 30 Apr 2023 12:17:10 +0800
+Message-ID: <20230430041712.3247998-1-ryan_chen@aspeedtech.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="6dvciwmnygpyquuh"
-Content-Disposition: inline
-In-Reply-To: <20230427-hammerhead-vibra-v1-3-e87eeb94da51@z3ntu.xyz>
-X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [192.168.10.13]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 33U40HT4060619
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series add AST2600 i2cv2 new register set driver. The i2cv2 driver
+is new register set that have new clock divider option for more
+flexiable generation. And also have separate i2c master and slave register
+set for control.
 
---6dvciwmnygpyquuh
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The legacy register layout is mix master/slave register control together.
+The following is add more detail description about new register layout.
+And new feature set add for register.
 
-Hi,
+-Add new clock divider option for more flexible and accurate clock rate
+generation -Add tCKHighMin timing to guarantee SCL high pulse width.
+-Add support dual pool buffer mode, split 32 bytes pool buffer of each
+device into 2 x 16 bytes for Tx and Rx individually.
+-Increase DMA buffer size to 4096 bytes and support byte alignment.
+-Re-define the base address of BUS1 ~ BUS16 and Pool buffer.
+-Re-define registers for separating master and slave mode control.
+-Support 4 individual DMA buffers for master Tx and Rx, slave Tx and Rx.
 
-On Thu, Apr 27, 2023 at 10:34:28PM +0200, Luca Weiss wrote:
-> Some pwm vibrators have a dedicated enable GPIO that needs to be set
-> high so that the vibrator works. Add support for that optionally.
->=20
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> ---
+And following is new register set for package transfer sequence.
+-New Master operation mode:
+ S -> Aw -> P
+ S -> Aw -> TxD -> P
+ S -> Ar -> RxD -> P
+ S -> Aw -> RxD -> Sr -> Ar -> TxD -> P
+-Bus SDA lock auto-release capability for new master DMA command mode.
+-Bus auto timeout for new master/slave DMA mode.
 
-Reviewed-by: Sebastian Reichel <sre@kernel.org>
+The following is two versus register layout.
+Old:
+{I2CD00}: Function Control Register     
+{I2CD04}: Clock and AC Timing Control Register
+{I2CD08}: Clock and AC Timing Control Register
+{I2CD0C}: Interrupt Control Register
+{I2CD10}: Interrupt Status Register 
+{I2CD14}: Command/Status Register   
+{I2CD18}: Slave Device Address Register
+{I2CD1C}: Pool Buffer Control Register
+{I2CD20}: Transmit/Receive Byte Buffer Register
+{I2CD24}: DMA Mode Buffer Address Register
+{I2CD28}: DMA Transfer Length Register
+{I2CD2C}: Original DMA Mode Buffer Address Setting
+{I2CD30}: Original DMA Transfer Length Setting and Final Status
 
--- Sebastian
+New Register mode
+{I2CC00}: Master/Slave Function Control Register
+{I2CC04}: Master/Slave Clock and AC Timing Control Register
+{I2CC08}: Master/Slave Transmit/Receive Byte Buffer Register
+{I2CC0C}: Master/Slave Pool Buffer Control Register
+{I2CM10}: Master Interrupt Control Register
+{I2CM14}: Master Interrupt Status Register
+{I2CM18}: Master Command/Status Register
+{I2CM1C}: Master DMA Buffer Length Register
+{I2CS20}: Slave~ Interrupt Control Register
+{I2CS24}: Slave~ Interrupt Status Register
+{I2CS28}: Slave~ Command/Status Register
+{I2CS2C}: Slave~ DMA Buffer Length Register
+{I2CM30}: Master DMA Mode Tx Buffer Base Address
+{I2CM34}: Master DMA Mode Rx Buffer Base Address
+{I2CS38}: Slave~ DMA Mode Tx Buffer Base Address
+{I2CS3C}: Slave~ DMA Mode Rx Buffer Base Address
+{I2CS40}: Slave Device Address Register
+{I2CM48}: Master DMA Length Status Register
+{I2CS4C}: Slave  DMA Length Status Register
+{I2CC50}: Current DMA Operating Address Status
+{I2CC54}: Current DMA Operating Length  Status
 
->  drivers/input/misc/pwm-vibra.c | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
->=20
-> diff --git a/drivers/input/misc/pwm-vibra.c b/drivers/input/misc/pwm-vibr=
-a.c
-> index c08971c97ad6..2ba035299db8 100644
-> --- a/drivers/input/misc/pwm-vibra.c
-> +++ b/drivers/input/misc/pwm-vibra.c
-> @@ -11,6 +11,7 @@
->   *  Copyright (C) 2010, Lars-Peter Clausen <lars@metafoo.de>
->   */
-> =20
-> +#include <linux/gpio/consumer.h>
->  #include <linux/input.h>
->  #include <linux/kernel.h>
->  #include <linux/module.h>
-> @@ -23,6 +24,7 @@
-> =20
->  struct pwm_vibrator {
->  	struct input_dev *input;
-> +	struct gpio_desc *enable_gpio;
->  	struct pwm_device *pwm;
->  	struct pwm_device *pwm_dir;
->  	struct regulator *vcc;
-> @@ -48,6 +50,8 @@ static int pwm_vibrator_start(struct pwm_vibrator *vibr=
-ator)
->  		vibrator->vcc_on =3D true;
->  	}
-> =20
-> +	gpiod_set_value_cansleep(vibrator->enable_gpio, 1);
-> +
->  	pwm_get_state(vibrator->pwm, &state);
->  	pwm_set_relative_duty_cycle(&state, vibrator->level, 0xffff);
->  	state.enabled =3D true;
-> @@ -80,6 +84,8 @@ static void pwm_vibrator_stop(struct pwm_vibrator *vibr=
-ator)
->  		pwm_disable(vibrator->pwm_dir);
->  	pwm_disable(vibrator->pwm);
-> =20
-> +	gpiod_set_value_cansleep(vibrator->enable_gpio, 0);
-> +
->  	if (vibrator->vcc_on) {
->  		regulator_disable(vibrator->vcc);
->  		vibrator->vcc_on =3D false;
-> @@ -142,6 +148,16 @@ static int pwm_vibrator_probe(struct platform_device=
- *pdev)
->  		return err;
->  	}
-> =20
-> +	vibrator->enable_gpio =3D devm_gpiod_get_optional(&pdev->dev, "enable",
-> +							GPIOD_OUT_LOW);
-> +	err =3D PTR_ERR_OR_ZERO(vibrator->enable_gpio);
-> +	if (err) {
-> +		if (err !=3D -EPROBE_DEFER)
-> +			dev_err(&pdev->dev, "Failed to request enable gpio: %d\n",
-> +				err);
-> +		return err;
-> +	}
-> +
->  	vibrator->pwm =3D devm_pwm_get(&pdev->dev, "enable");
->  	err =3D PTR_ERR_OR_ZERO(vibrator->pwm);
->  	if (err) {
->=20
-> --=20
-> 2.40.0
->=20
+aspeed,global-regs:
+This global register is needed, global register is setting for
+new clock divide control, and new register set control.
 
---6dvciwmnygpyquuh
-Content-Type: application/pgp-signature; name="signature.asc"
+ASPEED SOC chip is server product, i2c bus may have fingerprint
+connect to another board. And also support hotplug.
+The following is board-specific design example.
+Board A                                         Board B
+-------------------------                       ------------------------
+|i2c bus#1(master/slave)  <===fingerprint ===> i2c bus#x (master/slave)|
+|i2c bus#2(master)-> tmp i2c device |          |                       |
+|i2c bus#3(master)-> adc i2c device |          |                       |
+-------------------------                       ------------------------
 
------BEGIN PGP SIGNATURE-----
+i2c-scl-clk-low-timeout-us:
+For example I2C controller as slave mode, and suddenly disconnected.
+Slave state machine will keep waiting for master clock in for rx/tx
+transmit. So it need timeout setting to enable timeout unlock controller
+state. And in another side. In Master side also need avoid suddenly
+slave miss(un-plug), Master will timeout and release the SDA/SCL.
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmRNdFEACgkQ2O7X88g7
-+potRRAAg2GUd1xAFi2qWo6q8U06jcAOjWs69jFy3NS8lJ4c0cTmtkhjrC2uW+Fw
-Hl5Y6bFm4eV8XEVvAXqVn5NzvNqx3fLDkdVP2AVmKL4G8AzOG6Xrlf978PxUnvV9
-9aMkrLBlZHarbv0VnoQC7UIMPXeBOzj/Ayb8moUQaiEotC78SUK0vzxm3xXFnU2z
-leE4gLa8BHZIS6YqItpRcDXaHXLlL9qDznnPyKIR5Hc849lJrAKxpctpNZBtk98O
-E6JWdkvAW155Wq2sARC5UkZQj8N1Nuy3z3rGZuYXX+HhDJq2LxDx7s/H0lDwckrD
-EyByTorXCMGkfP+I9aTe8DHmy8OmFrlLJ0BfzMZdmTpbviVhz0bn0wf8H8wt2UQ8
-gSVImZQUi8LoMLKvqyMh92CoVP3jmGhxrFu0aZ2Po8kg8mY/ECGj/tJZeaZE7Tyf
-F6wSBjo0yHAGF5Mwg/We+Rvw4+EC7zCDU73rC3TkEzt7U5zbZbVGGGJTs1SAK8x2
-cHdO6AxPlXait8lWVLfjOxDIOeIPu4OBBKcNfF9Zggp2Zj2v0TiCLS/EbRlpDWLZ
-VKirYUfxf7dgtSgHoBWSGnemWuKtW6iZoFb3umNr6axhM6a0wnAclM/vNu++u0re
-DW1hLtVvmiDeiL/+YHbLUOuWmcwKgGFh6gH6AUlajaTxU0OH4x0=
-=hJCO
------END PGP SIGNATURE-----
+aspeed,enable-dma:
+For example The bus#1 have trunk data needed for transfer,
+it can enable bus dma mode transfer, it can reduce cpu utilized.
+Others bus bus#2/3 use defautl buffer mode.
 
---6dvciwmnygpyquuh--
+v11:
+-aspeed,i2c.yaml
+ -no change, the same with v10.
+-i2c-ast2600.c
+ -modify alert_enable from int -> boolean.
+ -modify dbg string recovery -> recover.
+ -remove no need to init 0.
+ -remove new line after break.
+ -remove unneeded empty line.
+ -modify dma_alloc_coherent to dmam_alloc_coherent
+ -modify probe nomem return dev_err_probe
+ -modify i2c_add_adapter to devm_i2c_adapter
+ -modify checkpatch: Alignment should match open parenthesis
+ -modify checkpatch: braces {} should be used on all arms of this statement
+ -modify checkpatch: Unbalanced braces around else statement
+
+v10:
+-aspeed,i2c.yaml
+ -move unevaluatedProperties after allOf.
+ -remove extra one blank line.
+-i2c-ast2600.c
+ -no change, the same with v8.
+
+v9:
+-aspeed,i2c.yaml
+ -backoff to v7.
+  -no fix typo in maintainer's name and email. this would be another patch.
+  -no remove address-cells, size-cells, this would be another patch.
+ -use aspeed,enable-dma property instead of aspeed,xfer-mode selection.
+ -fix allOf and else false properties for aspeed,ast2600-i2cv2.
+-i2c-ast2600.c
+ -no change, the same with v8
+
+v8:
+-aspeed,i2c.yaml
+ -modify commit message.
+  -Fix typo in maintainer's name and email.
+ -remove address-cells, size-cells.
+-i2c-ast2600.c
+ -move "i2c timeout counter" comment description before property_read.
+ -remove redundant code "return ret" in probe end.
+
+v7:
+-aspeed,i2c.yaml
+ -Update ASPEED I2C maintainers email.
+ -use aspeed,enable-dma property instead of aspeed,xfer-mode selection.
+ -fix allOf and else false properties for aspeed,ast2600-i2cv2.
+-i2c-ast2600.c
+ -remove aspeed,xfer-mode instead of aspeed,enable-dma mode. buffer mode
+is default.
+ -remove aspeed,timeout instead of i2c-scl-clk-low-timeout-us for
+timeout setting.
+
+v6:
+-remove aspeed,i2cv2.yaml, merge to aspeed,i2c.yaml -add support for
+ i2cv2 properites.
+-i2c-ast2600.c
+ -fix ast2600_i2c_remove ordering.
+ -remove ast2600_i2c_probe goto labels, and add dev_err_probe -remove
+  redundant deb_dbg debug message.
+ -rename gr_regmap -> global_regs
+
+v5:
+-remove ast2600-i2c-global.yaml, i2c-ast2600-global.c.
+-i2c-ast2600.c
+ -remove legacy clock divide, all go for new clock divide.
+ -remove duplicated read isr.
+ -remove no used driver match
+ -fix probe return for each labels return.
+ -global use mfd driver, driver use phandle to regmap read/write.
+-rename aspeed,i2c-ast2600.yaml to aspeed,i2cv2.yaml -remove bus-frequency.
+-add required aspeed,gr
+-add timeout, byte-mode, buff-mode properites.
+
+v4:
+-fix i2c-ast2600.c driver buffer mode use single buffer conflit in
+ master slave mode both enable.
+-fix kmemleak issue when use dma mode.
+-fix typo aspeed,i2c-ast2600.yaml compatible is "aspeed,ast2600-i2c"
+-fix typo aspeed,i2c-ast2600.ymal to aspeed,i2c-ast2600.yaml
+
+v3:
+-fix i2c global clock divide default value.
+-remove i2c slave no used dev_dbg info.
+
+v2:
+-add i2c global ymal file commit.
+-rename file name from new to ast2600.
+ aspeed-i2c-new-global.c -> i2c-ast2600-global.c
+ aspeed-i2c-new-global.h -> i2c-ast2600-global.h
+ i2c-new-aspeed.c -> i2c-ast2600.c
+-rename all driver function name to ast2600.
+
+Ryan Chen (2):
+  dt-bindings: i2c: aspeed: support for AST2600-i2cv2
+  i2c: aspeed: support ast2600 i2c new register mode driver
+
+ .../devicetree/bindings/i2c/aspeed,i2c.yaml   |   51 +-
+ MAINTAINERS                                   |    9 +
+ drivers/i2c/busses/Kconfig                    |   11 +
+ drivers/i2c/busses/Makefile                   |    1 +
+ drivers/i2c/busses/i2c-ast2600.c              | 1596 +++++++++++++++++
+ 5 files changed, 1665 insertions(+), 3 deletions(-)
+ create mode 100644 drivers/i2c/busses/i2c-ast2600.c
+
+-- 
+2.34.1
+
