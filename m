@@ -2,46 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3484C6F28EE
-	for <lists+devicetree@lfdr.de>; Sun, 30 Apr 2023 14:53:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 561496F2978
+	for <lists+devicetree@lfdr.de>; Sun, 30 Apr 2023 18:18:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229556AbjD3Mxv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Apr 2023 08:53:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56844 "EHLO
+        id S229531AbjD3QSM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Apr 2023 12:18:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229904AbjD3Mxu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Apr 2023 08:53:50 -0400
-Received: from sender3-op-o18.zoho.com (sender3-op-o18.zoho.com [136.143.184.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D84A2D48;
-        Sun, 30 Apr 2023 05:53:43 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1682859201; cv=none; 
+        with ESMTP id S229452AbjD3QSM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Apr 2023 12:18:12 -0400
+Received: from sender4-op-o10.zoho.com (sender4-op-o10.zoho.com [136.143.188.10])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACB3C2693;
+        Sun, 30 Apr 2023 09:18:09 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1682871453; cv=none; 
         d=zohomail.com; s=zohoarc; 
-        b=bBcQznq2fDpSERjj4ibrDKZPTQ07v29w5NADsTnqHyhEIZM6OsNShf0uzL+foGc9Ex4N3srsx9uRMsR/BN5UXvYRFtevJH/jUYHfuJZ9d1PwdNOg2kO3SglJ1ZwnTi4+VucFooDtGz7uN4dprLMx7tSVwXZvtzj6TU3k56Vu1sQ=
+        b=RcKG0fq2Np8JTd1gJDHJ3xZGFExtlqzo5T7irO6pWfeZ/2/M2ZDm/jLBhjXs8kSkqYWKltiQnIDcEIfTBO7FtArT7A896bpZWX/bHXkDg1+sETSGhTQpfGWVAB0eCN0DF1yZRCAZon+5uG7q4OXL3GaSDy2zq2ERlpX200I2kq4=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1682859201; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=PyF1LRlQ1oKiECojoeRp0HPAq+oTkJBBxCJK5o53pd4=; 
-        b=bru/DKsg6Qag0VMMmka691X37uAtZll7z5lujzQ3PXnuYmrsMamL1IsP5RSdZintKbdhsPbm8hly/hXyF1eWiv4DjXr+3LoXR8GtAFjHK7uRI6WpT0EQMr0jpRgfT8dSp9hLtfhmw6nkyHMfV2KTFQlqM+hV1yRA8EqPqjHMnYA=
+        t=1682871453; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=V23TsjyY1dD7n4GR0wkMYD0yPbsZ48d23pahmY6bjZY=; 
+        b=egBI5N2x2xYD8oG6Kr7GWcgP9HX9ZmakF1ZNRuSnbe2Adsizk6Cd/KsfzZTavi2qqAUbis9aHymScsoIY7Cl8QpEXxKuW9JW/MEn3HvzSTzSD8PHtAzRRg6QyEtX/5W3pYCIJqQQT5LWlxzpfhUDqT2h168wLDyrOlfqDwO/V9E=
 ARC-Authentication-Results: i=1; mx.zohomail.com;
         dkim=pass  header.i=arinc9.com;
         spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
         dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1682859201;
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1682871453;
         s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=PyF1LRlQ1oKiECojoeRp0HPAq+oTkJBBxCJK5o53pd4=;
-        b=kFzx6YZhHIE9pXmCb+9hCVIzeQmjibm+BW+4d3vErFN9r4e+NniM29dBWAorKU94
-        +w/QSsBTKiVkAJkzT/0myFOXBbcFWTusTeWdckYssTliHTMbU3k4MyzYOByutEhRo8w
-        EKw2TK4TbJ/e67ox/GboR4SzDC7MVSJLQSGXJUm4=
+        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:From:From:To:To:Cc:Cc:References:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+        bh=V23TsjyY1dD7n4GR0wkMYD0yPbsZ48d23pahmY6bjZY=;
+        b=FFkIp0TaDngLCZzkJ4tp5UabOW70Lfj1EnSKtRxj2nB+3YW1YNS1QrZ8kNC+JliO
+        OUTaUiy6xEo6mlWlpI1mzcCGLner8djPP+Lpq8LkAJFYiKG637OUtDZVVOs6EkIEVef
+        sklI13M03UKQ6L4dcgDVp7QB2mfB6EADw01b7t/8=
 Received: from [10.10.10.3] (149.91.1.15 [149.91.1.15]) by mx.zohomail.com
-        with SMTPS id 1682859200456253.51681302133647; Sun, 30 Apr 2023 05:53:20 -0700 (PDT)
-Message-ID: <fd6651a8-64e4-4f22-349f-b7f796ecffcc@arinc9.com>
-Date:   Sun, 30 Apr 2023 15:53:00 +0300
+        with SMTPS id 1682871451193369.77097793382404; Sun, 30 Apr 2023 09:17:31 -0700 (PDT)
+Message-ID: <396fad42-89d0-114d-c02e-ac483c1dd1ed@arinc9.com>
+Date:   Sun, 30 Apr 2023 19:17:10 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
 Subject: Re: [PATCH 2/2] dt-bindings: net: dsa: mediatek,mt7530: document
  MDIO-bus
-Content-Language: en-US
+From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
 To:     David Bauer <mail@david-bauer.net>, Andrew Lunn <andrew@lunn.ch>,
         Florian Fainelli <f.fainelli@gmail.com>,
         Vladimir Oltean <olteanv@gmail.com>,
@@ -63,8 +63,9 @@ Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
         linux-mediatek@lists.infradead.org
 References: <20230430112834.11520-1-mail@david-bauer.net>
  <20230430112834.11520-2-mail@david-bauer.net>
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <20230430112834.11520-2-mail@david-bauer.net>
+ <e4feeac2-636b-8b75-53a5-7603325fb411@arinc9.com>
+Content-Language: en-US
+In-Reply-To: <e4feeac2-636b-8b75-53a5-7603325fb411@arinc9.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-ZohoMailClient: External
@@ -78,30 +79,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30.04.2023 14:28, David Bauer wrote:
-> Document the ability to add nodes for the MDIO bus connecting the
-> switch-internal PHYs.
+On 30.04.2023 15:34, Arınç ÜNAL wrote:
+> On 30.04.2023 14:28, David Bauer wrote:
+>> Document the ability to add nodes for the MDIO bus connecting the
+>> switch-internal PHYs.
 > 
-> Signed-off-by: David Bauer <mail@david-bauer.net>
-> ---
->   .../devicetree/bindings/net/dsa/mediatek,mt7530.yaml        | 6 ++++++
->   1 file changed, 6 insertions(+)
+> This is quite interesting. Currently the PHY muxing feature for the 
+> MT7530 switch looks for some fake ethernet-phy definitions on the 
+> mdio-bus where the switch is also defined.
 > 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-> index e532c6b795f4..50f8f83cc440 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-> @@ -128,6 +128,12 @@ properties:
->         See Documentation/devicetree/bindings/regulator/mt6323-regulator.txt for
->         details for the regulator setup on these boards.
->   
-> +  mdio:
-> +    $ref: /schemas/net/mdio.yaml#
-> +    unevaluatedProperties: false
-> +    description:
-> +      Node for the internal MDIO bus connected to the embedded ethernet-PHYs.
+> Looking at the binding here, there will be an mdio node under the switch 
+> node. This could be useful to define the ethernet-phys for PHY muxing 
+> here instead, so we don't waste the register addresses on the parent 
+> mdio-bus for fake things. It looks like this should work right out of 
+> the box. I will do some tests.
 
-Maybe saying "connected to the internal switch PHYs" would better 
-explain this.
+Once I start using the mdio node it forces me to define all the PHYs 
+which were defined as ports.
+
+[    4.159534] mt7530-mdio mdio-bus:1f lan0 (uninitialized): no phy at 1
+[    4.166002] mt7530-mdio mdio-bus:1f lan0 (uninitialized): failed to 
+connect to PHY: -ENODEV
+[    4.174421] mt7530-mdio mdio-bus:1f lan0 (uninitialized): error -19 
+setting up PHY for tree 0, switch 0, port 1
+[    4.185236] mt7530-mdio mdio-bus:1f lan1 (uninitialized): no phy at 2
+[    4.191753] mt7530-mdio mdio-bus:1f lan1 (uninitialized): failed to 
+connect to PHY: -ENODEV
+[    4.200150] mt7530-mdio mdio-bus:1f lan1 (uninitialized): error -19 
+setting up PHY for tree 0, switch 0, port 2
+[    4.210844] mt7530-mdio mdio-bus:1f lan2 (uninitialized): no phy at 3
+[    4.217361] mt7530-mdio mdio-bus:1f lan2 (uninitialized): failed to 
+connect to PHY: -ENODEV
+[    4.225734] mt7530-mdio mdio-bus:1f lan2 (uninitialized): error -19 
+setting up PHY for tree 0, switch 0, port 3
+[    4.236394] mt7530-mdio mdio-bus:1f lan3 (uninitialized): no phy at 4
+[    4.242901] mt7530-mdio mdio-bus:1f lan3 (uninitialized): failed to 
+connect to PHY: -ENODEV
+[    4.251297] mt7530-mdio mdio-bus:1f lan3 (uninitialized): error -19 
+setting up PHY for tree 0, switch 0, port 4
+
+We can either force defining the PHYs on the mdio node which would break 
+the ABI, or forget about doing PHY muxing this way.
 
 Arınç
