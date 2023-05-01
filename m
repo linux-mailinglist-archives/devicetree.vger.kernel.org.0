@@ -2,76 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D5726F309B
-	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 14:09:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A34546F309E
+	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 14:11:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232463AbjEAMJJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 May 2023 08:09:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47216 "EHLO
+        id S232473AbjEAMLS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 May 2023 08:11:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232430AbjEAMJI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 08:09:08 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2ACEE19A
-        for <devicetree@vger.kernel.org>; Mon,  1 May 2023 05:09:06 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-94f109b1808so490561866b.1
-        for <devicetree@vger.kernel.org>; Mon, 01 May 2023 05:09:06 -0700 (PDT)
+        with ESMTP id S232268AbjEAMLR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 08:11:17 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 475F0138
+        for <devicetree@vger.kernel.org>; Mon,  1 May 2023 05:11:15 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-3f173af665fso13520005e9.3
+        for <devicetree@vger.kernel.org>; Mon, 01 May 2023 05:11:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682942944; x=1685534944;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gG7AJoEMw0rRspVk4H1YTti4Qp6HxLF9oYggD49na4g=;
-        b=yAYB56ZGD8i0s28msYYig6NEyd8G3EXeKQDSXAbOuli+5zy6woOEOT2bELIEHlG0k3
-         DcYo64KI9OwU1BpALLTQYNszeDR4mLbfagvuP6ki7fUfDSDpuXTfGe5Qhicd0BIA4S+8
-         5AjMnj/k2SMQ+YUyh0TTuYf6fYUHRqoivLkzUCGKBcVuNBFetGi6X4Vdk8TKTQFgMcjR
-         XVIEatfIDnkEdatudJRChSKCzqouLqPo5Wr15R6PBb+VY3OMlx6RNLqBf7dt6aJA73EK
-         Sfr75d6S+Bpj2+WScnIwTCe2M97f5QOXMump0vlyonLlXSwt/nMjuqBXBNw2XAquZqDu
-         C0tQ==
+        d=linaro.org; s=google; t=1682943074; x=1685535074;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=aGd8Sd3W0ZmV/RZ6Kk4T+VGBaQCAOEIRQhIzzIbsDcA=;
+        b=CQaphNYrxu/g4Wm9ibfpY/QhqxqyMUKiQs+k2+dPHgZK9NCjmQLlcEJw89YopHRCeR
+         rqFU1A5qFq/QBVKC+8Hsa492oC3i8zSTom69+CBgMuK/UIQ7YNVcfb1f4nlsrXUyuMQE
+         Br1Sm531j9SIsjhkP/tv2csA0b/DABn94LTagG1fddC7uk1Uzt7zgEF6ULDntGwcf5C2
+         /tyF2GyoSUM3u/VCU89WLSEYGr39jHr8lJlOW8u+bf9HEZKIXg6lFsOXSgiJ6xlgUvJy
+         68yIqvrGXD0Dxdl+unaCDscS52aWlVnVaj/TgYIRxqoyX7box68qrh4pF9jotYp02FjM
+         NEUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682942944; x=1685534944;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gG7AJoEMw0rRspVk4H1YTti4Qp6HxLF9oYggD49na4g=;
-        b=HD4kXRYTCWd6YBy/SCxYnuZXdPkm+YJAHwH6pXuwXs5pv2/V37qfIsD3igupVj4AER
-         Ryf1UgJxqtKpa0DsbzlThQfOYvZ1BQcpRVXL+i3dUaIu8y2LBoXT0lK4bZXlWohFjTnR
-         XYkK2yF4xYWLJ6AaOOIMgpaRtMMpVxPIJbeWspfxi0P5UWcx1EiN7ZqPB3Q3qykw3djI
-         zvHbypYfcupMsupMDWRJxb4YgNE7PQYIKaAQcFUrp2BXgsBkqd9JZqFkMrz0DoAs4AG6
-         KUbK30F1rNSxeiOHjjIK5viwMXP5qdkvfEee5wvI7xsnKLamzGRi2lqVSZVbJgDc4NzD
-         G/gg==
-X-Gm-Message-State: AC+VfDx5m7v1Wlfs9yghevuiAalSOUD1SWuFhtcXx9nQZAgq89I951JO
-        2XCZnU8GtXLMgfgx+UHsMGi9Hg==
-X-Google-Smtp-Source: ACHHUZ4X5StXV0KODOMIVGaetq7o+934RXdaULRDFcBOof+98iIbj1SLCeEnCqQB8aaaklMV3yG/6A==
-X-Received: by 2002:a17:907:a410:b0:94e:dd68:aba1 with SMTP id sg16-20020a170907a41000b0094edd68aba1mr12205032ejc.67.1682942944567;
-        Mon, 01 May 2023 05:09:04 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:637a:fd0c:58fd:9f00? ([2a02:810d:15c0:828:637a:fd0c:58fd:9f00])
-        by smtp.gmail.com with ESMTPSA id lh11-20020a170906f8cb00b0094a789256dcsm14815590ejb.111.2023.05.01.05.09.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 May 2023 05:09:04 -0700 (PDT)
-Message-ID: <03806421-73ac-0d82-f1cb-e54c2e8f27e9@linaro.org>
-Date:   Mon, 1 May 2023 14:09:02 +0200
+        d=1e100.net; s=20221208; t=1682943074; x=1685535074;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=aGd8Sd3W0ZmV/RZ6Kk4T+VGBaQCAOEIRQhIzzIbsDcA=;
+        b=BPatJ9i6iIRS0tBU38O1YZcUukyPgte3NqKzea+8ttTYI1j39wAopWtBjSuewiw6cJ
+         7OC3jGQ/GzG+cus2EK6ftcABlEihqHNMoWeRAm9vqgL16vjVzC4Ouy7D8kvryEMM70Hp
+         PBEzb/sGk9134KggvVP3bnsYS8LJgDw1Svj2fsJmuWznQ2FjBMwRakZcZkMgpsal+9dk
+         PFcYFMcFtrGLM3SATSFvXqokDlr0biS+G7RMy9/O9rtrKAQopvA4Kl/R5au46ufqIoLW
+         12qi8+HpKnoYKdIhcTf+VB9KiSQv9VjF/bS+vtZXQLZvPrU9a0hnHSwL7D/Hr4ayglPA
+         vRnw==
+X-Gm-Message-State: AC+VfDy83eykvg/Y339BrJs/zkBl/LPEh/YS1VQMgljI1r31+TF6ptA6
+        Fma8vPyVTlssLi83CHbKaTW2Uw==
+X-Google-Smtp-Source: ACHHUZ52NEPFXJX7QdoEZjaxGmKQ9qy/boJbHp7IIcWn/vTeJbG9lU1JyTU1E8UTXavdE2bQJbxDOw==
+X-Received: by 2002:a1c:f707:0:b0:3f1:93c8:4a79 with SMTP id v7-20020a1cf707000000b003f193c84a79mr9151363wmh.29.1682943073711;
+        Mon, 01 May 2023 05:11:13 -0700 (PDT)
+Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id o10-20020a05600c510a00b003ee443bf0c7sm35856634wms.16.2023.05.01.05.11.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 May 2023 05:11:13 -0700 (PDT)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
+        gregkh@linuxfoundation.org, andersson@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        luca.weiss@fairphone.com, linux-usb@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     caleb.connolly@linaro.org, bryan.odonoghue@linaro.org,
+        konrad.dybcio@linaro.org, subbaram@quicinc.com, jackp@quicinc.com,
+        robertom@qti.qualcomm.com
+Subject: [PATCH v6 00/13] Add Qualcomm PMIC TPCM support 
+Date:   Mon,  1 May 2023 13:10:58 +0100
+Message-Id: <20230501121111.1058190-1-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH v2 1/2] docs: dt: fix documented Primecell compatible
- string
-Content-Language: en-US
-To:     Baruch Siach <baruch@tkos.co.il>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alex Shi <alexs@kernel.org>,
-        Yanteng Si <siyanteng@loongson.cn>, devicetree@vger.kernel.org,
-        linux-doc@vger.kernel.org
-References: <9e137548c4e76e0d8deef6d49460cb37897934ca.1682333574.git.baruch@tkos.co.il>
- <878regbbr7.fsf@tarshish> <9569ef0d-0d94-3ff9-468b-152fe949e7b5@linaro.org>
- <878re8741n.fsf@tarshish>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <878re8741n.fsf@tarshish>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,34 +73,198 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/05/2023 12:01, Baruch Siach wrote:
-> Hi Krzysztof,
-> 
-> On Mon, May 01 2023, Krzysztof Kozlowski wrote:
->> On 25/04/2023 10:31, Baruch Siach wrote:
->>> On Mon, Apr 24 2023, Baruch Siach wrote:
->>>> Only arm,primecell is documented as compatible string for Primecell
->>>> peripherals. Current code agrees with that.
->>>
->>> Once again my patches do not show up in patchwork. But they do show in
->>> lore:
->>>
->>>   https://lore.kernel.org/linux-devicetree/9e137548c4e76e0d8deef6d49460cb37897934ca.1682333574.git.baruch@tkos.co.il/
->>
->> You used subject prefix which targets Doc subsystem, but did not Cc Doc
->> maintainers (get_maintainers do not print them). If you target Rob's
->> Patchwork, probably you need to fix subject prefix. There is no "dt" prefix.
-> 
-> Thanks for the tip.
-> 
-> All previous commits touching Documentation/devicetree/usage-model.rst
-> use 'docs' for subject prefix, including one from Rob. I followed this
-> example.
+I'm dropping the previous V1-V5 log because the text is getting too long
+here's a link to the previous cover letter instead
+Link: https://lore.kernel.org/linux-usb/20230413113438.1577658-1-bryan.odonoghue@linaro.org/
 
-Hm, I see Rob and others indeed used "dt:". I guess Rob's filters might
-need some updates?
+Bootable tree
+Link: https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/linux-next-23-04-28-pm8150b-tcpm-qcom-wrapper-typec-mux-bjorn 
 
+Please note patch#5 and patch#6 should be merged in tandem not separately.
 
-Best regards,
-Krzysztof
+V6:
+
+- I found an off-by-one bug when connecting a Type-C DP cable from Amazon
+  which sends the max PD PDU - bod patch#7
+
+- Drops the partial PHY orientation patch in favour of Bjorn's sc8280xp series
+ 
+- Updates the commit log for the driver per Heikki's comment patch#7
+- Adds Heikki's Acked-by to the driver patch#7
+
+- Ammends commit log text - Marijn patch#4
+- Typos highlithed - Marijn patch#4
+
+- Adds Reviewed-by - Krzysztof patch#1
+- Makes port@0 input required - Krzysztof patch#4
+- Incorporate's Krzysztof's comments for quotation marks, minItems patch#5
+- Adds Reviewed-by - Krzysztof patch#6
+
+- Defines port/endpoint in sm8250.dtsi - patch#13 Konrad
+
+- Luca. Would appreciate your testing.
+  I don't see anything wrong with your reference dts
+  Link: https://github.com/z3ntu/linux/blob/5db89528bd6f0f2e6027f2ad64a9178699be9bc0/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
+
+  If we still can't get it working for you with Bjorn's patches maybe I can find
+  a few cycles to debug with a FP4 after landing the 8250 bit.
+
+  Caleb has something working for the rb3 based on these patches so, the gap can't be too big.
+
+Here's how I'm testing using an RB5/SM8250
+
+A) Confirm device mode works in both orientations
+
+- Boot to a Linux shell
+- Run usb-ecm-up.sh [1]
+- This provides usb0 on the device side @ 192.168.8.2
+- Attach Type-C cable to host PC
+- On host PC "sudo ifconfig usb0 192.168.8.1"
+- Ping 192.168.8.2 confirming ping works
+- Switch cable orientation
+- On the PC side re-assign the ip address "sudo ifconfig usb0 192.168.8.1"
+- Ping again confirming connectivity
+
+B) Test automatic host-mode transition, orientation and SuperSpeed
+- Remove cable from PC
+- Attach a Type-C USB key
+- Validate the orientation detection
+  cat /sys/class/typec/port0/orientation 
+  normal 
+- Confirm the RB5 sees the USB key as a SuperSpeed device
+- Remove USB key and physically invert it along the horizontal axis
+- Re-insert the key
+- Confirm the RB5 sees the USB key as a SuperSpeed device
+- Validate the orientation detection
+  cat /sys/class/typec/port0/orientation 
+  reverse
+
+C) Test Type-C accessory automatic host-mode transition, orientation and SuperSpeed
+- Remove USB key from RB5
+- Attach a Type-C USB accessory
+- Validate the orientation detection
+  cat /sys/class/typec/port0/orientation 
+  normal
+- Attach a SuperSpeed capable USB key to the Type-C accessory
+- Confirm the RB5 sees the USB key as a SuperSpeed device
+- Remove the USB key from the Type-C accessory
+- Remove the Type-C accessory from the RB5
+- Physically invert the Type-C accessory along the horizontal axis
+- Re-insert the Type-C accessory
+- Validate the orientation detection
+  cat /sys/class/typec/port0/orientation 
+  reverse
+- Re-insert the key
+- Confirm the RB5 sees the USB key as a SuperSpeed device
+
+D) Goto Test-A
+- Confirming that automatic switch to device mode happens
+- Repeat the above loop in ~ any order
+
+[1] usb-ecm-up.sh 
+#!/usr/bin/env bash
+
+# load libcomposite module
+modprobe libcomposite
+
+# ensure function is loaded
+modprobe usb_f_ecm
+modprobe usb_f_ncm
+
+mount -t configfs none /sys/kernel/config/
+
+# create a gadget
+mkdir /sys/kernel/config/usb_gadget/g0
+
+# cd to its configfs node
+cd /sys/kernel/config/usb_gadget/g0
+
+# configure it (vid/pid can be anything if USB Class is used for driver compat)
+echo 0x0525 > idVendor
+echo 0xa4a4 > idProduct
+
+# configure its serial/mfg/product
+mkdir strings/0x409
+
+echo 0xCAFEBABE > strings/0x409/serialnumber
+echo Linaro > strings/0x409/manufacturer
+echo qrb5165-rb5 > strings/0x409/product
+
+# create configs
+mkdir configs/c.1
+mkdir configs/c.1/strings/0x409
+
+# create the function (name must match a usb_f_<name> module such as 'acm')
+mkdir functions/ncm.0
+
+echo "CDC ECM" > configs/c.1/strings/0x409/configuration
+
+# associate function with config
+ln -s functions/ncm.0 configs/c.1
+
+# Set USB version 3.1
+echo 0x0310 > bcdUSB
+
+echo "super-speed-plus" > max_speed
+
+# enable gadget by binding it to a UDC from /sys/class/udc
+echo a600000.usb > UDC
+# to unbind it: echo "" > UDC; sleep 1; rm -rf /sys/kernel/config/usb_gadget/g0
+
+sleep 1
+
+ifconfig usb0 192.168.8.2
+
+Bryan O'Donoghue (13):
+  dt-bindings: regulator: qcom,usb-vbus-regulator: Mark reg as required
+  dt-bindings: regulator: qcom,usb-vbus-regulator: Mark
+    regulator-*-microamp required
+  dt-bindings: phy: qcom,sc7180-qmp-usb3-dp-phy: Add orientation-switch
+    as optional
+  dt-bindings: phy: qcom,sc7180-qmp-usb3-dp-phy: Add input and output
+    ports
+  dt-bindings: usb: Add Qualcomm PMIC Type-C
+  dt-bindings: mfd: qcom,spmi-pmic: Add typec to SPMI device types
+  usb: typec: qcom: Add Qualcomm PMIC Type-C driver
+  arm64: dts: qcom: sm8250: Define ports for qmpphy
+    orientation-switching
+  arm64: dts: qcom: pm8150b: Add a TCPM description
+  arm64: dts: qcom: qrb5165-rb5: Switch on Type-C VBUS boost
+  arm64: dts: qcom: qrb5165-rb5: Switch on basic TCPM
+  arm64: dts: qcom: qrb5165-rb5: Switch on TCPM usb-role-switching for
+    usb_1
+  arm64: dts: qcom: qrb5165-rb5: Switch on TCPM orientation-switch for
+    usb_1_qmpphy
+
+ .../bindings/mfd/qcom,spmi-pmic.yaml          |   4 +
+ .../phy/qcom,sc7180-qmp-usb3-dp-phy.yaml      |  44 ++
+ .../regulator/qcom,usb-vbus-regulator.yaml    |  10 +-
+ .../bindings/usb/qcom,pmic-typec.yaml         | 190 ++++++
+ MAINTAINERS                                   |  10 +
+ arch/arm64/boot/dts/qcom/pm8150b.dtsi         |  40 ++
+ arch/arm64/boot/dts/qcom/qrb5165-rb5.dts      |  56 +-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          |  17 +
+ drivers/usb/typec/Kconfig                     |  13 -
+ drivers/usb/typec/Makefile                    |   1 -
+ drivers/usb/typec/qcom-pmic-typec.c           | 261 --------
+ drivers/usb/typec/tcpm/Kconfig                |  11 +
+ drivers/usb/typec/tcpm/Makefile               |   1 +
+ drivers/usb/typec/tcpm/qcom/Makefile          |   6 +
+ drivers/usb/typec/tcpm/qcom/qcom_pmic_typec.c | 362 +++++++++++
+ .../typec/tcpm/qcom/qcom_pmic_typec_pdphy.c   | 528 +++++++++++++++++
+ .../typec/tcpm/qcom/qcom_pmic_typec_pdphy.h   | 115 ++++
+ .../typec/tcpm/qcom/qcom_pmic_typec_port.c    | 560 ++++++++++++++++++
+ .../typec/tcpm/qcom/qcom_pmic_typec_port.h    | 194 ++++++
+ 19 files changed, 2146 insertions(+), 277 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/qcom,pmic-typec.yaml
+ delete mode 100644 drivers/usb/typec/qcom-pmic-typec.c
+ create mode 100644 drivers/usb/typec/tcpm/qcom/Makefile
+ create mode 100644 drivers/usb/typec/tcpm/qcom/qcom_pmic_typec.c
+ create mode 100644 drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_pdphy.c
+ create mode 100644 drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_pdphy.h
+ create mode 100644 drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_port.c
+ create mode 100644 drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_port.h
+
+-- 
+2.39.2
 
