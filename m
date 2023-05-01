@@ -2,73 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 254746F2EF2
-	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 08:51:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0799C6F2EF9
+	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 09:06:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232159AbjEAGvJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 May 2023 02:51:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54464 "EHLO
+        id S229785AbjEAHG2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 May 2023 03:06:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229928AbjEAGvG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 02:51:06 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 148961BD8
-        for <devicetree@vger.kernel.org>; Sun, 30 Apr 2023 23:51:03 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-95678d891d6so458326166b.1
-        for <devicetree@vger.kernel.org>; Sun, 30 Apr 2023 23:51:03 -0700 (PDT)
+        with ESMTP id S229519AbjEAHG2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 03:06:28 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB92E1A4
+        for <devicetree@vger.kernel.org>; Mon,  1 May 2023 00:06:26 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-50bc22805d3so1880643a12.1
+        for <devicetree@vger.kernel.org>; Mon, 01 May 2023 00:06:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682923861; x=1685515861;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1682924785; x=1685516785;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=hvlA7LnCwNQ1tqJrfgkUkBcliNefeRUSKJpMSbDu3B8=;
-        b=aQIiZyVkHYs2d/ltdPea295iWkq3RJ4wpoLAucFek40h6b6GuNN4wOwGvyZhtpTa6U
-         pqSoutf+++VIZV0EOwzOx6r9VuMZHgTZDM3pk0oipNLiVkClW04CqiAQ1CP3RtapD6zJ
-         8qQTAu9am8vtvyya7JPl0039f4bOqiuGD+Jatf3ilMITOXuOLkGWx+l4iCTzCRc+DM6H
-         nqkLA7XH9rAsrPVjmue/BgticjnaaScCey3ZJDEsCaYlIGFm1KH5LrQxTk8pn6BLnw55
-         257fPakBWEz9TsRhcetUJOIgatiRtU/hUmmMjLzUMs8nofamZWXF4i2+1bZH1diDyhWX
-         XbfA==
+        bh=Lbzi8KQ4ewDOl8/6+OjZmerGl8/Fh/n/WKcpF1UJuug=;
+        b=aaOHqH0LGk6VIByEO9RGx59+hUQbAMeHNYJykED/CAFy0g91Sca0AuiuZC4Wy+r3SX
+         Zv49g1IMWFbjO0oD9H0P9iy9nEoRMDCxymmAZbdKVehS3qAViZCmyYw8t/2EeqqdhoMd
+         ciGOJmdvNIv45G0PHsOHy9VNz7X+4C718orj3+Y2mI9hwBiL1DRVQz+3JgRyKokNCddg
+         +zmqfgKzWvWCY/3C4yVMYfUC6AtDYq0iaeIMJE7MiWGe1GSxqbiRVwI1p74LUYff0lKb
+         6FiM33hTBV91YZn16qBOqfSN+4Ka/f6UiicMqbp+y0fNmk/qbhgMpu3UqiB9W9PEvdOU
+         1JtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682923861; x=1685515861;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1682924785; x=1685516785;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hvlA7LnCwNQ1tqJrfgkUkBcliNefeRUSKJpMSbDu3B8=;
-        b=c2fqHmMy5f3Jh7DRyUTdizL7cG+zuaMAVm/sNVdSS2eqmKFNF/7s19eA4A8xoBdupR
-         AiBdTZdKET+uEr4XSM7fYt9Y4DsLLQzVjsqSrz8V0XZMQbYrBJTk1sV4+eSI+MnCoCyg
-         q421lb1p5ZybCyJ2gCG0MjxuTYkdpfyRSoKDIJLHIbAv5x7ALHMNlr0j7om2XUMP7L6a
-         FzyG4NKE4NPF505nc5BhaWHuzz0BfulBEs6aMYpqqeanT1BOjw3UXIefesKoSh5ElRj/
-         8dnmzMgqAGPInJJKMiT0HYZy8I0OtpyjCBuWtzYGABMKPPpEr5EJgtpaCza46sDPA8L+
-         FKXw==
-X-Gm-Message-State: AC+VfDxA1eM7T/m9uM1XwZiKof7g5JAaUSEXErjtFaLGk3Rzu4TDs/Ce
-        Xx4YnaFcAkYQWE0xE1W9UW3gDA==
-X-Google-Smtp-Source: ACHHUZ5EJ4CGy/aQDZbmK35ZjIBQP9RYPQlxfnI/mQYHPn63vEbKZkH3dBGDyzNpDA6359N50o5o5g==
-X-Received: by 2002:a17:907:a04:b0:94a:474a:4dd5 with SMTP id bb4-20020a1709070a0400b0094a474a4dd5mr12620508ejc.9.1682923861520;
-        Sun, 30 Apr 2023 23:51:01 -0700 (PDT)
+        bh=Lbzi8KQ4ewDOl8/6+OjZmerGl8/Fh/n/WKcpF1UJuug=;
+        b=R2K/w32paYWVN6HlTn0ufWbd5WymVjWSfqxMYmXjVDI5+Iaainj817rXsCD39v2MQT
+         uSBbycqXZoQB+sDiBTKiDCkTAmlnjccT0tPGWE0WS3YXjZDlIp1J6SrKpGD26DQXg2JB
+         u9lrinY4KM/ruI+pu+lcXuQLSmYRTh4c9XI0+4N1f2rUzyQUguIVAXi1k94iAtI/76Pg
+         itaSi4CvM48SeSSjIP05lefUe4l4rceHb+KFJrcJkjvJ67NosyBQEZsW1ezar1HYsV1I
+         uzyFpHPGN4+W3KrQdXNm2ItbhOSnVBzA2yygpgUkFUOZS6MHhNg7eQGDpSVk/ZpQKROu
+         UL7g==
+X-Gm-Message-State: AC+VfDxQLNEOHYLMxrH9PICSqKRDLBc++Kr5tiFWZmDphX1UDga0SaIf
+        z8RR7w69DNx1JgvbbHKpF9wYQg==
+X-Google-Smtp-Source: ACHHUZ7iSPkCwcv4sQgaF1lfLUTeLnVGU9VnUBKEqIukwsm/fahS20txrOcdq3QSyl2wnGIIzFNLnw==
+X-Received: by 2002:aa7:c683:0:b0:50b:c48d:5d5b with SMTP id n3-20020aa7c683000000b0050bc48d5d5bmr2250487edq.24.1682924785343;
+        Mon, 01 May 2023 00:06:25 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:637a:fd0c:58fd:9f00? ([2a02:810d:15c0:828:637a:fd0c:58fd:9f00])
-        by smtp.gmail.com with ESMTPSA id rp22-20020a170906d97600b0094f3e169ca5sm14357557ejb.158.2023.04.30.23.51.00
+        by smtp.gmail.com with ESMTPSA id b8-20020aa7c6c8000000b005068d7ccfb0sm11652041eds.83.2023.05.01.00.06.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 30 Apr 2023 23:51:01 -0700 (PDT)
-Message-ID: <bee68068-fe21-c330-d085-b04b67b5a82b@linaro.org>
-Date:   Mon, 1 May 2023 08:51:00 +0200
+        Mon, 01 May 2023 00:06:24 -0700 (PDT)
+Message-ID: <67f91b8c-b8d2-3484-b637-a631232cd18b@linaro.org>
+Date:   Mon, 1 May 2023 09:06:23 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
-Subject: Re: [PATCH 2/2] soc: qcom: socinfo: Add IDs for IPQ5018 family
+Subject: Re: [PATCH] dt-bindings: phy: brcm,kona-usb2-phy: convert to YAML
+To:     Stanislav Jakubek <stano.jakubek@gmail.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>
+Cc:     bcm-kernel-feedback-list@broadcom.com,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230427190725.GA7730@standask-GA-A55M-S2HP>
 Content-Language: en-US
-To:     Robert Marko <robimarko@gmail.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230429193336.600629-1-robimarko@gmail.com>
- <20230429193336.600629-2-robimarko@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230429193336.600629-2-robimarko@gmail.com>
+In-Reply-To: <20230427190725.GA7730@standask-GA-A55M-S2HP>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,12 +82,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/04/2023 21:33, Robert Marko wrote:
-> Add SOC IDs for the IPQ5018 family.
+On 27/04/2023 21:07, Stanislav Jakubek wrote:
+> Convert Broadcom Kona family USB 2.0 PHY bindings to DT schema.
 > 
-> Signed-off-by: Robert Marko <robimarko@gmail.com>
+> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
 > ---
->  drivers/soc/qcom/socinfo.c | 8 ++++++++
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
