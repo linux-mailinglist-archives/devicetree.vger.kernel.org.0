@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD9596F30BC
-	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 14:11:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F18A46F30C0
+	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 14:11:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232500AbjEAMLc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 May 2023 08:11:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48068 "EHLO
+        id S232514AbjEAMLf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 May 2023 08:11:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232514AbjEAMLa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 08:11:30 -0400
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B734A198A
-        for <devicetree@vger.kernel.org>; Mon,  1 May 2023 05:11:27 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-3f1950f5628so23322715e9.3
-        for <devicetree@vger.kernel.org>; Mon, 01 May 2023 05:11:27 -0700 (PDT)
+        with ESMTP id S232537AbjEAMLe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 08:11:34 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 465B31728
+        for <devicetree@vger.kernel.org>; Mon,  1 May 2023 05:11:29 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-3f1763ee8f8so14085535e9.1
+        for <devicetree@vger.kernel.org>; Mon, 01 May 2023 05:11:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682943086; x=1685535086;
+        d=linaro.org; s=google; t=1682943087; x=1685535087;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=HCwho3uKk5QmWh01Wmw4tEPLfVlhN7/orLWF0pBPcCs=;
-        b=f5j0DnAe6PQ0NI+7+xzDRkEk9Qc2qk7GUg1xB7/+2n9AfEH9HSLr6bE0Yw3R3wMG1g
-         RaOEiv/KnJZHErmJUq65NmRwcpKJ+ZTkCUpN1m7bActF7P33KQi2Ch7CMaOzisv1NQEJ
-         icDy0i5tE4TVR24oCsuzYU8YU8uMLmq7kFbUVcasOkmYI33NJdXOVKwSUUYXVpDCodAC
-         fW55a7RSYKfH1Akf1NZe/kVcgH9q3kdICOBSKAtpin+eTiwEwRkNol5B9rSTOFoMWAYv
-         0HGJCYfN7VZ+RA8hdtNUtFsBhcuZa7P5B9nEJHtsghTmivUrzFYM/6RH62D98S3U9wB0
-         GEgg==
+        bh=ld1lJXBQF2mP2uTbXFQHQN+Mj3BbZpVpPgcFeLCv16E=;
+        b=pdbqbjH7ipXYXKmVtsphxt9WuuUa4wG2VGFzgt0rgW8eW89RZYW9fjGbta7P12W8rt
+         B27ZbBnTRuuCrgGULzqc+NwPMkKP4z9mPY0oq46jJy4HhhlRtMEP/4e9heuoDNUxsR3h
+         Cu3Qx8ps19y5jQWc+7BkLUvAwqbwAFylJhaKXEMlNjLh972CpPj8ilx9S3GZg5kh0Cv2
+         NByeq9jy5jcL7poyg4veenYCkgD+IkxJ8UpwiwvxqhuKpawoM6J8jSW0k1aOqxYbWYVe
+         i5ctqUV7NFjb0iPDouwfNyJpIsUjsH/7Tr2d1MTGepnlGVE+gK1cqCWFhmWGOaZu1pZz
+         EtvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682943086; x=1685535086;
+        d=1e100.net; s=20221208; t=1682943087; x=1685535087;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=HCwho3uKk5QmWh01Wmw4tEPLfVlhN7/orLWF0pBPcCs=;
-        b=dch6PAnXDnC07rMsDyXXZXTyfP5C3x7WIO5Y22jSaiPEM0SQ6vHKqhrm/hubmZoN1k
-         HifNLNeP4PXlekOD5/+K+SqPeSDtCRno8ED1EWgZKYiTtWAZRgDClKBRQ3+QTezl7DKp
-         kyQKaPGjg6EzRcSvx9YCdCx5tFSXcgpMeeNDEtlrY/wfnXFKqeOt8fbdX8mN3PfOFj/l
-         mTXL2Zf2wwKLbbtklJXD42DusUqEeitsdJemPwDKKZinYlYUBnJ/JSdr0XPCEQEQp2UU
-         sZNPy4X3QBLiZd82CPP3PHoTKLUbzRUZZpp3HHZcN6+PSMhxATLxO+1DB/wM64r9NPrc
-         1pzw==
-X-Gm-Message-State: AC+VfDylZKhGsx61EVEK46JckQAuGXYoVY3atV8lHwb5QbAT8rjkD4ox
-        cjk7Gz6WJmD56dKo0qsyvXlDBA==
-X-Google-Smtp-Source: ACHHUZ5dDtqBmqjU7m8UeU/M3yuDuRSf7Qeqd6XPafB69qFbzDhkijrQ1Ug/2zNkvDkcImagYhDedQ==
-X-Received: by 2002:a7b:c84b:0:b0:3f1:75a9:5c0d with SMTP id c11-20020a7bc84b000000b003f175a95c0dmr10488501wml.26.1682943086071;
-        Mon, 01 May 2023 05:11:26 -0700 (PDT)
+        bh=ld1lJXBQF2mP2uTbXFQHQN+Mj3BbZpVpPgcFeLCv16E=;
+        b=e743F2M5DPRk/i0W21QgJfKJZ+DWE5GHG7+zQCdJeeAAPJlALQDnQdrf7aIHVnCFwG
+         PH44gwbE9JoMa1OesLgvZald4h+kUieB0QqVDAsdF6rPs8Zzs5F3gdeshkunhWkUAgOm
+         qz7ddppTzA8lo/Iik3ACCUr1vzGWsDO51a9TEFdhFTX69d3LmQWqotuCO59Swqq6YJVe
+         8+IJvKJ1IeXjsv586g0De3Jig+0tIUAuqm4MkJdlNO1DEOKne1VnU11na3fJq7sjYniW
+         ILJ1yydMcu4+YQItOl01FI7H+PpRAobMJvrgJgJBWwhwebwhqCCsMrSK4t8ujG12kX4D
+         eL6Q==
+X-Gm-Message-State: AC+VfDxFuKQMvGERK3HroxyxZeD/n4+YMWCL6v0aDsO04HnmD0loGPyN
+        K0W0xlbKLCQq3DInGAu4pMHaLg==
+X-Google-Smtp-Source: ACHHUZ4TXtmc8ACU/flHPI2yHzYlfetC4dY3+slyL6ZiFnTzsktAU221bdWqI8RTPoOAOtqieRTfAA==
+X-Received: by 2002:a05:600c:d7:b0:3f1:93c2:4df6 with SMTP id u23-20020a05600c00d700b003f193c24df6mr9254248wmm.12.1682943087414;
+        Mon, 01 May 2023 05:11:27 -0700 (PDT)
 Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id o10-20020a05600c510a00b003ee443bf0c7sm35856634wms.16.2023.05.01.05.11.24
+        by smtp.gmail.com with ESMTPSA id o10-20020a05600c510a00b003ee443bf0c7sm35856634wms.16.2023.05.01.05.11.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 May 2023 05:11:25 -0700 (PDT)
+        Mon, 01 May 2023 05:11:27 -0700 (PDT)
 From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 To:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
         gregkh@linuxfoundation.org, andersson@kernel.org,
@@ -58,9 +58,9 @@ To:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
 Cc:     caleb.connolly@linaro.org, bryan.odonoghue@linaro.org,
         konrad.dybcio@linaro.org, subbaram@quicinc.com, jackp@quicinc.com,
         robertom@qti.qualcomm.com
-Subject: [PATCH v6 10/13] arm64: dts: qcom: qrb5165-rb5: Switch on Type-C VBUS boost
-Date:   Mon,  1 May 2023 13:11:08 +0100
-Message-Id: <20230501121111.1058190-11-bryan.odonoghue@linaro.org>
+Subject: [PATCH v6 11/13] arm64: dts: qcom: qrb5165-rb5: Switch on basic TCPM
+Date:   Mon,  1 May 2023 13:11:09 +0100
+Message-Id: <20230501121111.1058190-12-bryan.odonoghue@linaro.org>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230501121111.1058190-1-bryan.odonoghue@linaro.org>
 References: <20230501121111.1058190-1-bryan.odonoghue@linaro.org>
@@ -76,27 +76,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Switch on VBUS for the Type-C port. We need to support a higher amperage
-than the bootloader set 2 Amps.
+Switch on TCPM for the RB5. Here we declare as a source only not a sink
+since qrb5165 doesn't support powering exclusively from the type-c port.
 
 Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 6 ++++++
- 1 file changed, 6 insertions(+)
+ arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-index dd924331b0eea..b326bdeeb7742 100644
+index b326bdeeb7742..1e0b6fd59abc9 100644
 --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
 +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-@@ -1338,3 +1338,9 @@ &qup_spi0_data_clk {
- 	drive-strength = <6>;
- 	bias-disable;
+@@ -9,6 +9,7 @@
+ #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+ #include <dt-bindings/sound/qcom,q6afe.h>
+ #include <dt-bindings/sound/qcom,q6asm.h>
++#include <dt-bindings/usb/pd.h>
+ #include "sm8250.dtsi"
+ #include "pm8150.dtsi"
+ #include "pm8150b.dtsi"
+@@ -1344,3 +1345,19 @@ &pm8150b_vbus {
+ 	regulator-max-microamp = <3000000>;
+ 	status = "okay";
  };
 +
-+&pm8150b_vbus {
-+	regulator-min-microamp = <500000>;
-+	regulator-max-microamp = <3000000>;
++&pm8150b_typec {
 +	status = "okay";
++	connector {
++		compatible = "usb-c-connector";
++
++		power-role = "source";
++		data-role = "dual";
++		self-powered;
++
++		source-pdos = <PDO_FIXED(5000, 3000,
++					 PDO_FIXED_DUAL_ROLE |
++					 PDO_FIXED_USB_COMM |
++					 PDO_FIXED_DATA_SWAP)>;
++	};
 +};
 -- 
 2.39.2
