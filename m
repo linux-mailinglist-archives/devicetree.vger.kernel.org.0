@@ -2,46 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 809B86F2D5D
-	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 05:11:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96EC56F2D81
+	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 05:13:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231755AbjEADLf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Apr 2023 23:11:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37170 "EHLO
+        id S233002AbjEADN3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Apr 2023 23:13:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232991AbjEADKH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Apr 2023 23:10:07 -0400
+        with ESMTP id S232875AbjEADLd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Apr 2023 23:11:33 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BA6C2103;
-        Sun, 30 Apr 2023 20:04:12 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44A5C2721;
+        Sun, 30 Apr 2023 20:04:31 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id ABCAE617B4;
-        Mon,  1 May 2023 03:03:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28B12C433D2;
-        Mon,  1 May 2023 03:03:17 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id BCA4E617C3;
+        Mon,  1 May 2023 03:03:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1EE35C4339B;
+        Mon,  1 May 2023 03:03:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1682910198;
-        bh=SQXTV5XZGquC+Z8pmbTqaeIjqNcDZfTBI15ivXYNAyI=;
+        s=k20201202; t=1682910235;
+        bh=WhrqzDrC0Re3yrImou/hP5gp3R7LsBwCQ0NdH38YdNo=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=hIdtagklPEIz1wOkrwgJMaxTpyrOgMlFFbBjFAHxDnzll6iMwlGWODm0+bCjyvlbA
-         NwS1VxQut7Q4ofsGoNPXQveDJudAh600JVPC21e+P3AUzrfL3Rg8dK97EeR3CLH5ko
-         1Mb2EvBkNl0oB53DafpgORT9xYIiExDZkP9il45p5Wav85Jbu1fDJO7NAypPUv7nLr
-         MITSyrog/KdP7r6VSLo4GW280Wl5I5+JbwEsqE2AUCGuu7t0eDRLRG8QZJhbUqNrEM
-         8qB/ZDYxlUJ1ar8zKS9cFW00120nVcAFwzX2+gLLKdqxbm1feuznafHeboNJJJiUOZ
-         2/Tcim+DvJ3fw==
+        b=Y93UytklGFU+HaOG43wiQdMrsGKKSsSAi1zlc+DX+hrBqHgXF+w/oQCDKvv7sTnFt
+         e6WAMh0yMZYI06Ba79g4cNziiwr64caF57P+LawQWCkTuP/GwAiAsQG1SQhY7A3+x1
+         YGvK1sSTY38z9bEUy9kXpDXO/1ByQdYSUL1TRwo6aaQ+aCMKjPXMTUO+m31yctnj5A
+         htG6/cnV7paMgfJP94Kuo5gUtUUemJDG94jpcHE8Rcp5725w/ImlRyimPtJRve4J/n
+         JB6bwiJL9Bujubhbp5Ah5JP+ChLd+B+EZzJTN3HXDCVftq3UAcyqz6nN/E8Dc3hixZ
+         5DRrBnV5gmaYQ==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
-        Martin Kepplinger <martin.kepplinger@puri.sm>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 6.1 16/33] arm64: dts: imx8mq-librem5: Remove dis_u3_susphy_quirk from usb_dwc3_0
-Date:   Sun, 30 Apr 2023 23:02:10 -0400
-Message-Id: <20230501030227.3254266-16-sashal@kernel.org>
+Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Sasha Levin <sashal@kernel.org>, agross@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 6.1 25/33] arm64: dts: qcom: sdm845-polaris: Drop inexistent properties
+Date:   Sun, 30 Apr 2023 23:02:19 -0400
+Message-Id: <20230501030227.3254266-25-sashal@kernel.org>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230501030227.3254266-1-sashal@kernel.org>
 References: <20230501030227.3254266-1-sashal@kernel.org>
@@ -59,31 +59,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-[ Upstream commit cfe9de291bd2bbce18c5cd79e1dd582cbbacdb4f ]
+[ Upstream commit fbc3a1df2866608ca43e7e6d602f66208a5afd88 ]
 
-This reduces power consumption in system suspend by about 10%.
+Drop the qcom,snoc-host-cap-skip-quirk that was never introduced to
+solve schema warnings.
 
-Signed-off-by: Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
-Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
-Signed-off-by: Shawn Guo <shawnguo@kernel.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Signed-off-by: Bjorn Andersson <andersson@kernel.org>
+Link: https://lore.kernel.org/r/20230406-topic-ath10k_bindings-v3-2-00895afc7764@linaro.org
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+ arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-index ae08556b2ef2f..1499d5d8bbc04 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-@@ -1299,7 +1299,6 @@ &usb_dwc3_0 {
- 	#address-cells = <1>;
- 	#size-cells = <0>;
- 	dr_mode = "otg";
--	snps,dis_u3_susphy_quirk;
- 	usb-role-switch;
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
+index f982594896796..74c6832e05985 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
+@@ -731,8 +731,6 @@ &wifi {
+ 	vdd-1.3-rfa-supply = <&vreg_l17a_1p3>;
+ 	vdd-3.3-ch0-supply = <&vreg_l25a_3p3>;
+ 	vdd-3.3-ch1-supply = <&vreg_l23a_3p3>;
+-
+-	qcom,snoc-host-cap-skip-quirk;
  	status = "okay";
+ };
  
 -- 
 2.39.2
