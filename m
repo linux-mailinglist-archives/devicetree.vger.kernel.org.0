@@ -2,69 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D64AA6F3872
-	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 21:48:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF1E66F3888
+	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 21:55:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231995AbjEATsN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 May 2023 15:48:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39976 "EHLO
+        id S232772AbjEATzi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 May 2023 15:55:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41252 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229871AbjEATsM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 15:48:12 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE27D1FC0;
-        Mon,  1 May 2023 12:48:10 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2a8a6602171so28769131fa.0;
-        Mon, 01 May 2023 12:48:10 -0700 (PDT)
+        with ESMTP id S232467AbjEATzh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 15:55:37 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AB892107;
+        Mon,  1 May 2023 12:55:32 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-50a14564d17so42675000a12.0;
+        Mon, 01 May 2023 12:55:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682970489; x=1685562489;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=EMAgGHNMgwb/IjpFMc3UyWoPThz6bRchwVC+4upmDvY=;
-        b=Q8dx3wApvz9PnGvEVk/+sgq/+kQhnurhZ9M3u5UpVQusmksLSLd1LJBqU8pTzrf5GS
-         geC6xEj9CQ6WNXEntNS7e+C8slrdHvn/gEiLeDz+gCJWGvjH9KbYSvqMqrlSZzB3SJvB
-         IANPwTQtgzZN6KpOibCwsTkd/dRAQjEjqjBDSW19rn59LK7GFTBa1EDOTgqyxQ20Poqt
-         BcKR4fxSvueoIwBP/yIkbKOG9ggKcv8VhMDkFb3o7m2/nsy/Ebw2aWrs3NGivpC/WGbl
-         YeOG4R3epoG0xta0BqoYJWFlFdOltSkIlGH7GQM1PBsHQEm4LU4uVWk3sG1F0q9CK/oF
-         EP1g==
+        d=gmail.com; s=20221208; t=1682970930; x=1685562930;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=R11iQvyL03GOSrYQIrHHw/DmH/A/XUw7XINQmYhJ5NI=;
+        b=peWCZZYGT1AxSPcYux7QrLuiRkQhYXkjUJi2FuQArobYQoTn9v/kN8dB6TUmneJdcv
+         /J+B22IzwHKPMifbMPXags92ZjQ/27VqZZxuChSpgYst6yJIFxKWVMlLTy9qjyU3RuRK
+         QPgU0Y4ClZhElCWA39agtUqu85kBdch4q3q5V6LnioZG+lUY5vdcvqtx6dCLfiYJC0rj
+         OwSm2gxKMNsZvzsh3OW5dQuMJCiUsE7/uqN9e2rNUigdFX61s/2viP/+Bl0LF19hRR7o
+         OywWxt9pKI63y636RxrmssOcsqxlaNP4czqX4Fi/IicxU7Xt0mS0IA1A31rAmOinGYc0
+         qc8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682970489; x=1685562489;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EMAgGHNMgwb/IjpFMc3UyWoPThz6bRchwVC+4upmDvY=;
-        b=O4DH4cuAKsJt3CIqeup4hwkaoWomNOZQY5QXdwxa5rnEG42eNTF2I2x840THaHFOgz
-         sDzGhlcbSV5vA/R5NtdBvSU2jH++kHQ0RI8dYr3PYdjDnwy7Fj2cICpFCP2GXfxzNSum
-         trWD+uCRnTERPbTYZtH7PhTdWCGh7mpuXUNNoyZQ4MWUyOn7tE4y3cyaaTZuvvlENlMP
-         NyffCyTOKgjblR4ubduSe3fs7iz9fjm06nK1tJPfKOwXGQjfq7m4PDn5NOf+HOwFfY6Q
-         Plc23f34C21VZUyVAPr8gyX6rGt7yFisrbX/zJivVvum6uEohfZVuX+aQitIoI7PYeEx
-         IE2g==
-X-Gm-Message-State: AC+VfDw9U+Jt5VWMgs/2dSYGw5G+2dJP90gvDCezNoOEfRey2CNFbqQu
-        1B1i/dXAW8pQ5M/6rVtNXE06nw0lK3xQaA==
-X-Google-Smtp-Source: ACHHUZ7htbJ5YsOW1gRpRIP00N04ENBxPKIq1dsYdQ1OAmhhK25H/R8uGi1CYcAqIMpQG/VIkQrbKQ==
-X-Received: by 2002:a2e:8482:0:b0:2a9:e6e7:b027 with SMTP id b2-20020a2e8482000000b002a9e6e7b027mr3586243ljh.41.1682970488794;
-        Mon, 01 May 2023 12:48:08 -0700 (PDT)
-Received: from mobilestation ([95.79.140.35])
-        by smtp.gmail.com with ESMTPSA id o8-20020a2e9b48000000b002a9b01bb0a3sm4837129ljj.57.2023.05.01.12.48.07
+        d=1e100.net; s=20221208; t=1682970930; x=1685562930;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=R11iQvyL03GOSrYQIrHHw/DmH/A/XUw7XINQmYhJ5NI=;
+        b=Qwzmvqy048MOOD7f5radSzJhSlTXhhFdLeX8n3UCHKJcGo/9FHeV6QZQIIZpO7F00T
+         NvBelyxE1zwxSFLoeMLfK/xh9Nek6rKgdtga/On9IzH+i7mXN5suew9rKHZ4kgFNdvUI
+         Y37GSe7mcmcXQz7rNSPtm5mSar4GGbdLK7q1dZkdkp0Aqh5K0Yde0np6cZtnP+YTAr2H
+         aO/aelL53cdP2LZ/uZPw90fCHoJIv9z6P/ec0OJziRpcUivmXwBIsu1iYxbg+NKf11GD
+         2kk62H7yONN8Yf+kdUS7pWR2eTQzpWYrJmk9uOzmiHNLtK4RDq8jANS0tH0aNkc46+Dl
+         IoTA==
+X-Gm-Message-State: AC+VfDyPhiJCKetZvNAWl29Ggn1DbmwIaMWGtdh7vLs/PBDCAZq5+3cE
+        VCHl4u8y1PLgA14mWh9PHKg=
+X-Google-Smtp-Source: ACHHUZ4IveGs8ii8zhWZnuM7WomrlcQtno4lmtlx1/IanE/Cp9xLGFa/d5MzJoharVEa0KYhmSCi9A==
+X-Received: by 2002:a17:907:9285:b0:95f:969e:dc5a with SMTP id bw5-20020a170907928500b0095f969edc5amr15852297ejc.30.1682970930448;
+        Mon, 01 May 2023 12:55:30 -0700 (PDT)
+Received: from localhost.my.domain (83.8.115.30.ipv4.supernova.orange.pl. [83.8.115.30])
+        by smtp.gmail.com with ESMTPSA id og36-20020a1709071de400b009600ce4fb53sm6333650ejc.37.2023.05.01.12.55.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 May 2023 12:48:08 -0700 (PDT)
-Date:   Mon, 1 May 2023 22:48:05 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     jingoohan1@gmail.com, mani@kernel.org,
-        gustavo.pimentel@synopsys.com, lpieralisi@kernel.org,
-        robh+dt@kernel.org, kw@linux.com, bhelgaas@google.com,
-        kishon@kernel.org, marek.vasut+renesas@gmail.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v14 10/21] PCI: dwc: Add dw_pcie_link_set_max_width()
-Message-ID: <20230501194805.542ohktc5sexcxnb@mobilestation>
-References: <20230426045557.3613826-1-yoshihiro.shimoda.uh@renesas.com>
- <20230426045557.3613826-11-yoshihiro.shimoda.uh@renesas.com>
+        Mon, 01 May 2023 12:55:29 -0700 (PDT)
+From:   Artur Weber <aweber.kernel@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>, soc@kernel.org,
+        Russell King <linux@armlinux.org.uk>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Kukjin Kim <kgene@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-phy@lists.infradead.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Artur Weber <aweber.kernel@gmail.com>
+Subject: [PATCH v3 00/13] Re-introduce Exynos4212 support and add Samsung Galaxy Tab 3 8.0 boards
+Date:   Mon,  1 May 2023 21:55:12 +0200
+Message-Id: <20230501195525.6268-1-aweber.kernel@gmail.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230426045557.3613826-11-yoshihiro.shimoda.uh@renesas.com>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -75,124 +87,110 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 26, 2023 at 01:55:46PM +0900, Yoshihiro Shimoda wrote:
-> To improve code readability, add dw_pcie_link_set_max_width().
-> The original code writes the PCIE_PORT_LINK_CONTROL register twice
-> if the pci->num_lanes is not zero. But, it should avoid to write
-> the register twice. So, refactor it.
-> 
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> ---
->  drivers/pci/controller/dwc/pcie-designware.c | 66 +++++++++++---------
->  1 file changed, 35 insertions(+), 31 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
-> index 69358dc202f0..f8926d5ec422 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware.c
-> @@ -737,6 +737,40 @@ static void dw_pcie_link_set_max_speed(struct dw_pcie *pci, u32 link_gen)
->  	dw_pcie_writel_dbi(pci, offset + PCI_EXP_LNKCAP, cap | link_speed);
->  }
->  
+This patches re-introduces the Exynos4212 platform and adds support
+for the Samsung Galaxy Tab 3 8.0 series of tablets that uses it:
 
-> +static void dw_pcie_link_set_max_width(struct dw_pcie *pci, u32 num_lanes)
+ - Samsung Galaxy Tab 3 8.0 WiFi (SM-T310/lt01wifi)
+ - Samsung Galaxy Tab 3 8.0 3G (SM-T311/lt013g)
+ - Samsung Galaxy Tab 3 8.0 LTE (SM-T315/lt01lte)
 
-Why defining a separate method? Just move it's content to the already
-defined dw_pcie_link_set_max_link_width(). This could have been done in
-the framework of the previous patch.
+What works:
 
-> +{
-> +	u32 val;
-> +
-> +	/* Set the number of lanes */
-> +	val = dw_pcie_readl_dbi(pci, PCIE_PORT_LINK_CONTROL);
-> +	val &= ~PORT_LINK_FAST_LINK_MODE;
-> +	val |= PORT_LINK_DLL_LINK_EN;
-> +
-> +	/* Mask LINK_MODE if num_lanes is not zero */
+ - Display and backlight
+ - Touchscreen (without touchkeys)
+ - GPIO buttons, hall sensor
+ - WiFi and Bluetooth
+ - USB, fuel gauge, charging
+ - Accelerometer and magnetometer
+ - WiFi model only: light sensor
 
-> +	if (num_lanes)
-> +		val &= ~PORT_LINK_MODE_MASK;
+Display panel bindings used by the Tab3 DTSI are added in a separate
+patchset - "[PATCH 0/3] Add Samsung S6D7AA0 panel controller driver":
+https://lore.kernel.org/all/20230501185103.25939-1-aweber.kernel@gmail.com/
 
-this and...
+LP855X binding updates used by the Tab3 DTSI are added in a separate
+patchset - "[PATCH 0/4] video: backlight: lp855x: modernize bindings":
+https://lore.kernel.org/all/20230429104534.28943-1-aweber.kernel@gmail.com/
 
-> +
-> +	switch (num_lanes) {
-> +	case 1:
-> +		val |= PORT_LINK_MODE_1_LANES;
-> +		break;
-> +	case 2:
-> +		val |= PORT_LINK_MODE_2_LANES;
-> +		break;
-> +	case 4:
-> +		val |= PORT_LINK_MODE_4_LANES;
-> +		break;
-> +	case 8:
-> +		val |= PORT_LINK_MODE_8_LANES;
-> +		break;
+Changed in v2:
+ - Added note about display panel bindings to cover letter and
+   Tab3 DTSI commit
 
-> +	default:
-> +		dev_dbg(pci->dev, "Using h/w default number of lanes\n");
+Changed in v3:
+ - Addressed review comments
+ - Tab3 DTS tweaks (remove broken RTC, add CPU thermal node)
+ - Fixed typos in Exynos DTSIs
 
-...this change the link-width setup semantic in case if the
-invalid number of lanes is specified. Your method now causes the
-PORT_LINK_MODE_MASK field clearance in case if a not permitted link
-width is passed.
+Artur Weber (13):
+  dt-bindings: soc: samsung: add Exynos4212 PMU compatible
+  dt-bindings: clock: add Exynos4212 clock compatible
+  ARM: exynos: Re-introduce Exynos4212 support
+  soc: samsung: Re-introduce Exynos4212 support
+  clk: samsung: Add Exynos4212 compatible to CLKOUT driver
+  clk: samsung: Re-add support for Exynos4212 CPU clock
+  Revert "media: exynos4-is: Remove dependency on obsolete SoC support"
+  Revert "phy: Remove SOC_EXYNOS4212 dep. from PHY_EXYNOS4X12_USB"
+  ARM: dts: Move common Exynos4x12 definitions to exynos4x12.dtsi
+  ARM: dts: Re-introduce Exynos4212 DTSI
+  ARM: dts: exynos: Fix some typos in comments
+  dt-bindings: arm: samsung: Add Samsung Galaxy Tab3 family boards
+  ARM: dts: exynos: Add Samsung Galaxy Tab 3 8.0 boards
 
-> +		break;
-> +	}
-> +
-> +	dw_pcie_writel_dbi(pci, PCIE_PORT_LINK_CONTROL, val);
-> +}
-> +
->  static void dw_pcie_link_set_max_link_width(struct dw_pcie *pci, u32 num_lanes)
->  {
->  	u32 val;
-> @@ -1040,36 +1074,6 @@ void dw_pcie_setup(struct dw_pcie *pci)
->  		dw_pcie_writel_dbi(pci, PCIE_PL_CHK_REG_CONTROL_STATUS, val);
->  	}
->  
+ .../bindings/arm/samsung/samsung-boards.yaml  |   10 +
+ .../bindings/clock/samsung,exynos-clock.yaml  |    1 +
+ .../bindings/soc/samsung/exynos-pmu.yaml      |    5 +
+ arch/arm/boot/dts/Makefile                    |    3 +
+ arch/arm/boot/dts/exynos3250-pinctrl.dtsi     |    4 +-
+ arch/arm/boot/dts/exynos3250.dtsi             |    2 +-
+ arch/arm/boot/dts/exynos4.dtsi                |    2 +-
+ arch/arm/boot/dts/exynos4210-pinctrl.dtsi     |    4 +-
+ arch/arm/boot/dts/exynos4212-tab3-3g8.dts     |   29 +
+ arch/arm/boot/dts/exynos4212-tab3-lte8.dts    |   44 +
+ arch/arm/boot/dts/exynos4212-tab3-wifi8.dts   |   26 +
+ arch/arm/boot/dts/exynos4212-tab3.dtsi        | 1171 +++++++++++++++++
+ arch/arm/boot/dts/exynos4212.dtsi             |  157 +++
+ arch/arm/boot/dts/exynos4412.dtsi             |  646 +--------
+ ...2-pinctrl.dtsi => exynos4x12-pinctrl.dtsi} |    6 +-
+ .../dts/{exynos4412.dtsi => exynos4x12.dtsi}  |  165 +--
+ arch/arm/boot/dts/exynos5.dtsi                |    2 +-
+ arch/arm/boot/dts/exynos5250-pinctrl.dtsi     |    4 +-
+ arch/arm/boot/dts/exynos5250.dtsi             |    2 +-
+ arch/arm/boot/dts/exynos5260-pinctrl.dtsi     |    2 +-
+ arch/arm/boot/dts/exynos5410.dtsi             |    2 +-
+ arch/arm/boot/dts/exynos5420-pinctrl.dtsi     |    2 +-
+ arch/arm/boot/dts/exynos5420.dtsi             |    2 +-
+ arch/arm/boot/dts/exynos5800.dtsi             |    2 +-
+ arch/arm/boot/dts/s3c6400.dtsi                |    2 +-
+ arch/arm/boot/dts/s3c6410.dtsi                |    2 +-
+ arch/arm/boot/dts/s3c64xx.dtsi                |    2 +-
+ arch/arm/boot/dts/s5pv210-pinctrl.dtsi        |    2 +-
+ arch/arm/boot/dts/s5pv210.dtsi                |    2 +-
+ arch/arm/mach-exynos/Kconfig                  |    5 +
+ arch/arm/mach-exynos/common.h                 |    8 +
+ arch/arm/mach-exynos/exynos.c                 |    2 +
+ arch/arm/mach-exynos/firmware.c               |    8 +-
+ arch/arm/mach-exynos/pm.c                     |    2 +-
+ arch/arm/mach-exynos/suspend.c                |    4 +
+ drivers/clk/samsung/clk-exynos-clkout.c       |    3 +
+ drivers/clk/samsung/clk-exynos4.c             |   44 +-
+ .../media/platform/samsung/exynos4-is/Kconfig |    2 +-
+ .../platform/samsung/exynos4-is/fimc-core.c   |    2 +-
+ .../platform/samsung/exynos4-is/fimc-lite.c   |    2 +-
+ drivers/phy/samsung/Kconfig                   |    2 +-
+ drivers/soc/samsung/exynos-pmu.c              |    9 +
+ drivers/soc/samsung/exynos-pmu.h              |    2 +
+ drivers/soc/samsung/exynos4-pmu.c             |   13 +-
+ 44 files changed, 1534 insertions(+), 837 deletions(-)
+ create mode 100644 arch/arm/boot/dts/exynos4212-tab3-3g8.dts
+ create mode 100644 arch/arm/boot/dts/exynos4212-tab3-lte8.dts
+ create mode 100644 arch/arm/boot/dts/exynos4212-tab3-wifi8.dts
+ create mode 100644 arch/arm/boot/dts/exynos4212-tab3.dtsi
+ create mode 100644 arch/arm/boot/dts/exynos4212.dtsi
+ rename arch/arm/boot/dts/{exynos4412-pinctrl.dtsi => exynos4x12-pinctrl.dtsi} (99%)
+ copy arch/arm/boot/dts/{exynos4412.dtsi => exynos4x12.dtsi} (81%)
 
-> -	val = dw_pcie_readl_dbi(pci, PCIE_PORT_LINK_CONTROL);
-> -	val &= ~PORT_LINK_FAST_LINK_MODE;
-> -	val |= PORT_LINK_DLL_LINK_EN;
-> -	dw_pcie_writel_dbi(pci, PCIE_PORT_LINK_CONTROL, val);
 
-Please leave the setups above here. Link-training mode has nothing to
-do with the max link width.
+base-commit: e154a338e16cc3b3bbd54c891253319d22383746
+-- 
+2.40.1
 
--Serge(y)
-
-> -
-> -	if (!pci->num_lanes) {
-> -		dev_dbg(pci->dev, "Using h/w default number of lanes\n");
-> -		return;
-> -	}
-> -
-> -	/* Set the number of lanes */
-> -	val &= ~PORT_LINK_MODE_MASK;
-> -	switch (pci->num_lanes) {
-> -	case 1:
-> -		val |= PORT_LINK_MODE_1_LANES;
-> -		break;
-> -	case 2:
-> -		val |= PORT_LINK_MODE_2_LANES;
-> -		break;
-> -	case 4:
-> -		val |= PORT_LINK_MODE_4_LANES;
-> -		break;
-> -	case 8:
-> -		val |= PORT_LINK_MODE_8_LANES;
-> -		break;
-> -	default:
-> -		dev_err(pci->dev, "num-lanes %u: invalid value\n", pci->num_lanes);
-> -		return;
-> -	}
-> -	dw_pcie_writel_dbi(pci, PCIE_PORT_LINK_CONTROL, val);
-> -
-> +	dw_pcie_link_set_max_width(pci, pci->num_lanes);
->  	dw_pcie_link_set_max_link_width(pci, pci->num_lanes);
->  }
-> -- 
-> 2.25.1
-> 
