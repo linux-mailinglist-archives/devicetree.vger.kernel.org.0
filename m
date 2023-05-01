@@ -2,160 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 072246F3687
-	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 21:14:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD75C6F36A6
+	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 21:24:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232349AbjEATOh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 May 2023 15:14:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46994 "EHLO
+        id S232981AbjEATYr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 May 2023 15:24:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232101AbjEATOg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 15:14:36 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDDBD10E9;
-        Mon,  1 May 2023 12:14:34 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4eff4ea8e39so3463302e87.1;
-        Mon, 01 May 2023 12:14:34 -0700 (PDT)
+        with ESMTP id S232975AbjEATYp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 15:24:45 -0400
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE5BD1708
+        for <devicetree@vger.kernel.org>; Mon,  1 May 2023 12:24:43 -0700 (PDT)
+Received: by mail-pf1-x430.google.com with SMTP id d2e1a72fcca58-63b70ca0a84so3383819b3a.2
+        for <devicetree@vger.kernel.org>; Mon, 01 May 2023 12:24:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682968473; x=1685560473;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=sF7Ad8V7RYhDTeqP/f4uSTUoSqT+uX5qErkhAZbEf80=;
-        b=h899vYfEL8srQj+dWnmiLoKQKaaLb98FV9NwU5xYSEL3UOHnHPDVhi/rxW3S3YXrCn
-         AlXZRNF7iJ1zOaSVL4O2fHn/5hz/Imxj9AsI4B7gCFa8pF6ay54CbS4ymiuny9ToNWrd
-         gzUCEoB6st0UMTL/bIoOOfyMw5VIJB9HeeaTMbTb4Eiow144EuMUvieziRutSRSdZ6qU
-         xosfFyjXejLQiKH1PLtbnT8bioD3ATa3JbZ4yjPpr3pqF2AeJj2sv8vR4zljFqhxisfN
-         XQH24r4MCOu1Q1u7jXd1OSlXzHKPLmeknjPwXjCRFjlYo/oCisU+jshKUkcxgDv6QMry
-         BMTQ==
+        d=linaro.org; s=google; t=1682969083; x=1685561083;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zKHzO/Hrbfl8nlBv+K49ojgRoBGcaLETpzBjfih2Yvg=;
+        b=awtZMcboczzRmO3k/WSOtdFLkLw9ZCqipy/kj2LXYAAMC1JZaRS6Ip3gC8v06l/qhg
+         UwqM0M1FuhLUgHyVxQCdRcKFnfI+WayRvCFymL5DAHZooTfZAzaLd2jjnMasqUlEuUC2
+         LGJw/JSN+xq6UwI5BiiQTsdFBWqhByWOBLTP1La42194h3tacWJA3pxlOqQtEdNlSJgs
+         jnVBHDHMTzVaIap55BSazUpKs7QSI9J68JFU0uEdgMUeS75Xm7aClxG1lPbb9+MdEN2z
+         DiExM/H32yKb4yE1zceXoDw9Q5yovSdZXgZ2aUEB3Le4ZQaIZxcUHzEihEytRjnzaZGX
+         CHCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682968473; x=1685560473;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sF7Ad8V7RYhDTeqP/f4uSTUoSqT+uX5qErkhAZbEf80=;
-        b=Ll+mxengGta05eK5fOiVaaTUJPgo20x/q5UNBPI+4jxZkZ7VbpLEYzt9GOKawscSOO
-         UuvBpDOZZuX2TPFRGxjK5P31u+ByNlH0Eu7ar8eQ8rLBi0tJMkkL7UZR0wzWU1n3FK0V
-         ZwsbG3z8Z97ysh0bYntuHRSaX+Rc14IQ4JiWXcohD9boIZIOI9l8JMyVFilKBGbFfTKo
-         cnFIpsfiSBpeGJeSXWwtp5rXYEETky6Z2xTkQEr4asGWDwrjANmDlQr6Nk/TzYCD1rrs
-         UziMwWuEzJdPYnV4kdNY7XF5W5N0A/anAvqfU0XF0+kyjhwIuA4YholL9T1Q/rmEwVKH
-         Oksw==
-X-Gm-Message-State: AC+VfDzoSfUIuVgL6vjhqzkltYbGh28MZ5O1GPLBlD+LO0WaKNtiyQRp
-        H+JpApMkvf25U6vYFFFB2W0=
-X-Google-Smtp-Source: ACHHUZ6yLwSgIV1R/rHv9+cufQO26dDGQhy7kW+wUgYk/oYnaPw8XAn6K/UMvj7goiFSmOV+5K93Cg==
-X-Received: by 2002:ac2:47e1:0:b0:4eb:79:fa5 with SMTP id b1-20020ac247e1000000b004eb00790fa5mr3878649lfp.25.1682968472822;
-        Mon, 01 May 2023 12:14:32 -0700 (PDT)
-Received: from mobilestation ([95.79.140.35])
-        by smtp.gmail.com with ESMTPSA id q5-20020ac25105000000b004f01ae1e63esm1548371lfb.272.2023.05.01.12.14.31
+        d=1e100.net; s=20221208; t=1682969083; x=1685561083;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zKHzO/Hrbfl8nlBv+K49ojgRoBGcaLETpzBjfih2Yvg=;
+        b=g0vluW+vK/jpe7+yRnXnXSmti3F9Wqe2EVbUmg6iYOLxGgaYGFnAd8Q6peqt366WCC
+         pBWW0V5Tx0fTHwUGoW/7ffTN+3UaxmTi4mBoYAuoN4kaSuNrKmYbF/pbxgJcZ7+wGn4X
+         ozyzfBHA/BYZQbQquCcFx3ojryjHYEeiCekreJnK89bOl/t7cUf3Aqohtg3yYlrW5Loo
+         t8jt81IhLpwKnBiEsoDfKRC8BnJwdH6ExtkPACX0/xbHmnheDmL9BtUhbMIjP8LoNw1I
+         wlvR2nyUSfDGTlTYiK1FG6G6LGNyGkfRqu4Pams60Qi9cl9L7571NIsorCbZkUJsXpob
+         pSUw==
+X-Gm-Message-State: AC+VfDz8yRzXRgpXfxXsEgs13JP0niuGt7xqmOBmq5lLJce4n5iSGT0L
+        F1hDH5+2+bCC440GTNn3tR9eyg==
+X-Google-Smtp-Source: ACHHUZ7N3WIvP6+tHaTNd0enhURzMFBWQ3KuY9zg8E5vcGdwuA4Shp9ovocQHS+38FvwLQypJIrGBg==
+X-Received: by 2002:a05:6a20:1616:b0:ee:f5a4:c064 with SMTP id l22-20020a056a20161600b000eef5a4c064mr18108068pzj.62.1682969083200;
+        Mon, 01 May 2023 12:24:43 -0700 (PDT)
+Received: from localhost.localdomain ([2401:4900:1f3b:58fa:39f6:37e1:bb9a:a094])
+        by smtp.gmail.com with ESMTPSA id 189-20020a6304c6000000b00513cc8c9597sm17459144pge.10.2023.05.01.12.24.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 May 2023 12:14:32 -0700 (PDT)
-Date:   Mon, 1 May 2023 22:14:30 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     jingoohan1@gmail.com, mani@kernel.org,
-        gustavo.pimentel@synopsys.com, lpieralisi@kernel.org,
-        robh+dt@kernel.org, kw@linux.com, bhelgaas@google.com,
-        kishon@kernel.org, marek.vasut+renesas@gmail.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v14 07/21] PCI: dwc: Add members into struct
- dw_pcie_outbound_atu
-Message-ID: <20230501191430.l3ao4ldwlyaidol4@mobilestation>
-References: <20230426045557.3613826-1-yoshihiro.shimoda.uh@renesas.com>
- <20230426045557.3613826-8-yoshihiro.shimoda.uh@renesas.com>
+        Mon, 01 May 2023 12:24:42 -0700 (PDT)
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-phy@lists.infradead.org
+Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
+        andersson@kernel.org, bhupesh.sharma@linaro.org,
+        bhupesh.linux@gmail.com, krzysztof.kozlowski@linaro.org,
+        robh+dt@kernel.org, konrad.dybcio@linaro.org, kishon@kernel.org,
+        vkoul@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Subject: [PATCH v9 0/4] Enable USB SS qmp phy for Qualcomm SM6115 SoC
+Date:   Tue,  2 May 2023 00:54:28 +0530
+Message-Id: <20230501192432.1220727-1-bhupesh.sharma@linaro.org>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230426045557.3613826-8-yoshihiro.shimoda.uh@renesas.com>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 26, 2023 at 01:55:43PM +0900, Yoshihiro Shimoda wrote:
-> Add "code" and "routing" into struct dw_pcie_outbound_atu for
-> sending MSG by iATU in the PCIe endpoint mode in near the future.
+Changes since v8:
+-----------------
+- v8 can be seen here: https://lore.kernel.org/linux-arm-msm/20230410171010.2561393-1-bhupesh.sharma@linaro.org/
+- Added driver change for new bindings used for sm6115 / qcm2290
+  devices.
 
-[PATCH v14 07/21] PCI: dwc: Add members into struct dw_pcie_outbound_atu
+Changes since v7:
+-----------------
+- v7 can be seen here: https://lore.kernel.org/linux-arm-msm/20230409200934.2329297-1-bhupesh.sharma@linaro.org/
+- Addressed review comments from Dmitry and added "pipe clk".
 
-what about the next subject:
-"PCI: dwc: Add "code" and "routing" outbound iATU settings"
-or a more generic version:
-"PCI: dwc: Add outbound MSG TLPs support"
-?
+Changes since v6:
+-----------------
+- v6 can be seen here: https://lore.kernel.org/linux-arm-msm/20230407061122.2036838-1-bhupesh.sharma@linaro.org/
+- Addressed review comments from Bjorn and Dmitry and dropped old bindings in this
+  version.
 
-It would have been also nice to explain in the patch log (or/and in
-the code) why the "PCIE_ATU_INHIBIT_PAYLOAD" and
-"PCIE_ATU_HEADER_SUB_ENABLE" flags are required to be set.
+Changes since v5:
+-----------------
+- v5 can be seen here: https://lore.kernel.org/linux-arm-msm/20230405191633.1864671-1-bhupesh.sharma@linaro.org/
+- Addressed review comments from Dmitry and made [PATCH 1/2] compatible with his 
+  'split away legacy USB+DP code' series:
+  <https://patchwork.kernel.org/project/linux-phy/cover/20230324215550.1966809-1-dmitry.baryshkov@linaro.org>
 
-Other than that the change looks good.
+Changes since v4:
+-----------------
+- v4 can be seen here: https://lore.kernel.org/linux-arm-msm/20230401154725.1059563-1-bhupesh.sharma@linaro.org/ 
+- Collected Krzysztof's Ack for [PATCH 1/2].
+- Added more descriptive commit logs as per Dmitry's comments on v4.
 
--Serge(y)
+Changes since v3:
+-----------------
+- v3 can be seen here: https://lore.kernel.org/linux-arm-msm/20221215094532.589291-4-bhupesh.sharma@linaro.org/
+- Fixed v4 as per the downstream driver code: https://android.googlesource.com/kernel/msm-extra/devicetree/+/refs/heads/android-msm-bramble-4.19-android11-qpr1/qcom/bengal-usb.dtsi#296
 
-> 
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> ---
->  drivers/pci/controller/dwc/pcie-designware.c | 7 +++++--
->  drivers/pci/controller/dwc/pcie-designware.h | 5 +++++
->  2 files changed, 10 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
-> index 782c4b34d0a3..e8d4d5bde2d3 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware.c
-> @@ -497,7 +497,7 @@ static int __dw_pcie_prog_outbound_atu(struct dw_pcie *pci,
->  	dw_pcie_writel_atu_ob(pci, atu->index, PCIE_ATU_UPPER_TARGET,
->  			      upper_32_bits(atu->pci_addr));
->  
-> -	val = atu->type | PCIE_ATU_FUNC_NUM(atu->func_no);
-> +	val = atu->type | atu->routing | PCIE_ATU_FUNC_NUM(atu->func_no);
->  	if (upper_32_bits(limit_addr) > upper_32_bits(atu->cpu_addr) &&
->  	    dw_pcie_ver_is_ge(pci, 460A))
->  		val |= PCIE_ATU_INCREASE_REGION_SIZE;
-> @@ -505,7 +505,10 @@ static int __dw_pcie_prog_outbound_atu(struct dw_pcie *pci,
->  		val = dw_pcie_enable_ecrc(val);
->  	dw_pcie_writel_atu_ob(pci, atu->index, PCIE_ATU_REGION_CTRL1, val);
->  
-> -	dw_pcie_writel_atu_ob(pci, atu->index, PCIE_ATU_REGION_CTRL2, PCIE_ATU_ENABLE);
-> +	val = PCIE_ATU_ENABLE;
-> +	if (atu->type == PCIE_ATU_TYPE_MSG)
-> +		val |= PCIE_ATU_INHIBIT_PAYLOAD | PCIE_ATU_HEADER_SUB_ENABLE | atu->code;
-> +	dw_pcie_writel_atu_ob(pci, atu->index, PCIE_ATU_REGION_CTRL2, val);
->  
->  	/*
->  	 * Make sure ATU enable takes effect before any subsequent config
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-> index 81c7558a4718..954d504890a1 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.h
-> +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> @@ -150,11 +150,14 @@
->  #define PCIE_ATU_TYPE_IO		0x2
->  #define PCIE_ATU_TYPE_CFG0		0x4
->  #define PCIE_ATU_TYPE_CFG1		0x5
-> +#define PCIE_ATU_TYPE_MSG		0x10
->  #define PCIE_ATU_TD			BIT(8)
->  #define PCIE_ATU_FUNC_NUM(pf)           ((pf) << 20)
->  #define PCIE_ATU_REGION_CTRL2		0x004
->  #define PCIE_ATU_ENABLE			BIT(31)
->  #define PCIE_ATU_BAR_MODE_ENABLE	BIT(30)
-> +#define PCIE_ATU_INHIBIT_PAYLOAD	BIT(22)
-> +#define PCIE_ATU_HEADER_SUB_ENABLE	BIT(21)
->  #define PCIE_ATU_FUNC_NUM_MATCH_EN      BIT(19)
->  #define PCIE_ATU_LOWER_BASE		0x008
->  #define PCIE_ATU_UPPER_BASE		0x00C
-> @@ -298,6 +301,8 @@ struct dw_pcie_outbound_atu {
->  	int index;
->  	int type;
->  	u8 func_no;
-> +	u8 code;
-> +	u8 routing;
->  };
->  
->  struct dw_pcie_host_ops {
-> -- 
-> 2.25.1
-> 
+This patchset adds the support for USB SS qmp phy for Qualcomm SM6115
+SoC. For the previous versions of this patch there were conversations
+on irc as to whether this was a 'qcom,usb-ssphy-qmp-usb3-or-dp' or a
+'qcom,usb-ssphy-qmp-dp-combo' as per downstream code and hardware
+documentation.
+
+But after a careful look at downstream dtsi (see [1]) it appears that
+this indeed is a 'qcom,usb-ssphy-qmp-usb3-or-dp' phy and not a
+'dp-combo' phy.
+
+[1]. https://android.googlesource.com/kernel/msm-extra/devicetree/+/refs/heads/android-msm-bramble-4.19-android11-qpr1/qcom/bengal-usb.dtsi#296
+
+Bhupesh Sharma (4):
+  dt-bindings: phy: qcom,qmp-usb: Drop legacy bindings and move to newer
+    one (SM6115 & QCM2290)
+  phy: qcom-qmp-usb: add support for updated qcm2290 / sm6115 binding
+  arm64: dts: qcom: sm6115: Add USB SS qmp phy node
+  arm64: dts: qcom: qrb4210-rb2: Enable USB node
+
+ .../phy/qcom,msm8996-qmp-usb3-phy.yaml        | 27 ------------
+ .../phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml   | 44 ++++++++++++++++---
+ arch/arm64/boot/dts/qcom/qrb4210-rb2.dts      | 24 ++++++++++
+ .../boot/dts/qcom/sm4250-oneplus-billie2.dts  |  3 ++
+ arch/arm64/boot/dts/qcom/sm6115.dtsi          | 29 +++++++++++-
+ .../boot/dts/qcom/sm6115p-lenovo-j606f.dts    |  3 ++
+ drivers/phy/qualcomm/phy-qcom-qmp-usb.c       | 22 ++++++++++
+ 7 files changed, 118 insertions(+), 34 deletions(-)
+
+-- 
+2.38.1
+
