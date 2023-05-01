@@ -2,113 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 248106F334C
-	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 18:01:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B5D86F3359
+	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 18:03:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232498AbjEAQBG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 May 2023 12:01:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41688 "EHLO
+        id S232805AbjEAQDx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 May 2023 12:03:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232698AbjEAQBE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 12:01:04 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1759612E
-        for <devicetree@vger.kernel.org>; Mon,  1 May 2023 09:01:03 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-3062c1e7df8so821658f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 01 May 2023 09:01:03 -0700 (PDT)
+        with ESMTP id S232225AbjEAQDw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 12:03:52 -0400
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2094.outbound.protection.outlook.com [40.107.92.94])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28849E61;
+        Mon,  1 May 2023 09:03:43 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bIdQphTOKXHuaMhN9WLAI3BeFg9VIuVMoKKhG88Y4iQnMgA/cUdGpXSfEf/r3aYcR8dRjHxcLBXDybyTnGQ/mu/096snaAzvVFX7efK4gTofVvLHtRn33BhmuDcKsZBN66IzGzKxcEZ51p6bmgVLzVXBL9nwnx3FwJH/kOSXia7gqWPH7RxOVMbGYLnLPBzKyk0wfzh98noT4ocyr8Ty69mQXngGSbCDgjWlNzin7b96NqITzHixUJEjRauIFHIjkzXKH1Ie6tU2gqsDxTbwd5RhUNgz86a0DkbenYqV1CmfAkQCT/Ba7hdFEutLb0chnfivrGkecmINCCYhlHa83g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+fBVb+tt4579p3JBCN9ZAleojjhMFaOEbtUgNuFI2UM=;
+ b=T1kqJg8XIp+LQLQw7M7sA6QNX9CffFcsKyfOEcTUWiCBtHMwtC1FoO0BlfZUgRKXs4Ww7QsAqBBc1UJojw63tnmfItx8OKm1leXTL2ZYDChcaie182yjJdm5enBQaKgUh+uz3g6vxTANFFAc3w7sg4Lnuz0GxqLwh76NkTbqHd3TfY/9A5hHVE7xHEQhjpOdRLAOWBu0mAIELvlkdIB8nBGsVCf9uW9HIdkzWdIjVHKaApTPIHWuTJZO9PUgetlsCctk0iy7fVb6vXj6l10iBeLFu/HHnuWe2eFs/4TaSjpsTtzSPppBu4htIdbI5LatljLuA+4BMVrZMnur493e9A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=corigine.com; dmarc=pass action=none header.from=corigine.com;
+ dkim=pass header.d=corigine.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682956861; x=1685548861;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=x8XFH13zanbc2i0C+jTsrlpaQVDgaN9DzDRKTIvVf2Y=;
-        b=K9UUnLiQXZ9TOhPoJ2eLUXLFjcKWkb2/Ft/e5ZRiTmh6rwZ9OF0Gxsm+p7W8jcVewI
-         HTMNeVSS554DA5Wlb2V4AKLnGNOnQlto0KA9C109/yeGRNkoP30jHz0h1RrwkZSMEIWz
-         dju14qDOsvvppcg3Aeyp9oWMAsVNo20e4XxNpCM+h9CJtAsUkn58ZUf0ipj+6eJNMGsA
-         6+oSpgPGBaBu2rAC81GcBAqZWfzDDL88d1/F77VKq0H5k0EbF0hWoAt+0t8gtIUdF3OF
-         3nLB/OfxdyGlyNT+kv3AvxGffaSgQWd9Ow8e1JSbmQcxMbGzkFKlZq3dDEdvcvHtV1Qu
-         BSDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682956861; x=1685548861;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=x8XFH13zanbc2i0C+jTsrlpaQVDgaN9DzDRKTIvVf2Y=;
-        b=CcMhlUAF5gfStXdp1Wnb/Yeyol0rMFWp8UqZf/+tlgpWMYYLTYc6axZpwOsqVhE8Ce
-         C/bkKUUj5kO6OMakWNQ/vbqH4fonjC9l79ccusbcDtQMjRId/QN3Bet/kKWPS7mIT6Tp
-         7iQgjdOohySzSgQBVi43eStycl0/2hG1jw8u9Mohf55V8K/8DGttSv60A4I0HCzKoVan
-         BtrsgbTTbJlt9jqlkmWnlE668o/Em5dZulHXDARYSE4PX7jA8tenjaUNzJ0w3OQqn3t6
-         TDGmkfZZxLGC/aO+uKkDuRrRMixoVhnxSzrJk2amLApu+YwZe6O/1sqtGOqPaHX4ipuQ
-         darg==
-X-Gm-Message-State: AC+VfDwm9A+tF2g7+/w4Xr8+WcXEqkxgKmgyHdmxtfywotr03Liy1fRi
-        UqJMfz++mSwgs9Fd2PY9RSibag==
-X-Google-Smtp-Source: ACHHUZ64n5TqDLh64E0B7bmlfS56FhfwmZTNP1/WJaNvdHvKL9I43O+hXpP+SWtQr+7qy1TCfMafdg==
-X-Received: by 2002:adf:ef06:0:b0:304:8149:239b with SMTP id e6-20020adfef06000000b003048149239bmr9031893wro.50.1682956861574;
-        Mon, 01 May 2023 09:01:01 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id c11-20020a5d63cb000000b003062cdc6ac5sm3318628wrw.89.2023.05.01.09.01.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 May 2023 09:01:01 -0700 (PDT)
-Message-ID: <c390365c-7293-5528-3432-48a23aeddfe1@linaro.org>
-Date:   Mon, 1 May 2023 17:00:59 +0100
+ d=corigine.onmicrosoft.com; s=selector2-corigine-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+fBVb+tt4579p3JBCN9ZAleojjhMFaOEbtUgNuFI2UM=;
+ b=Wx8YS3cNCIRDnD0mIp7nxElAWtFYUC2wwfFUxRm9jzsoD3E9TTM0oGYuZYFFgDD6e763JahkbtY3OmPFhaQ3ZsEaBQaxY0kK73dEYn5U5SBEcbaI6eu6kis880371R5ToC2b3ZY0GpKerCaQHrXmobvXAqXIIuhmEQb1pLgU5c0=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=corigine.com;
+Received: from PH0PR13MB4842.namprd13.prod.outlook.com (2603:10b6:510:78::6)
+ by SA1PR13MB6145.namprd13.prod.outlook.com (2603:10b6:806:339::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6340.28; Mon, 1 May
+ 2023 16:03:40 +0000
+Received: from PH0PR13MB4842.namprd13.prod.outlook.com
+ ([fe80::f416:544d:18b7:bb34]) by PH0PR13MB4842.namprd13.prod.outlook.com
+ ([fe80::f416:544d:18b7:bb34%5]) with mapi id 15.20.6340.030; Mon, 1 May 2023
+ 16:03:40 +0000
+Date:   Mon, 1 May 2023 18:03:32 +0200
+From:   Simon Horman <simon.horman@corigine.com>
+To:     Judith Mendez <jm@ti.com>
+Cc:     Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, linux-can@vger.kernel.org,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Schuyler Patton <spatton@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Oliver Hartkopp <socketcan@hartkopp.net>
+Subject: Re: [PATCH v2 1/4] can: m_can: Add hrtimer to generate software
+ interrupt
+Message-ID: <ZE/i1G1HTerZV4jk@corigine.com>
+References: <20230424195402.516-1-jm@ti.com>
+ <20230424195402.516-2-jm@ti.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230424195402.516-2-jm@ti.com>
+X-ClientProxiedBy: AM8P251CA0026.EURP251.PROD.OUTLOOK.COM
+ (2603:10a6:20b:21b::31) To PH0PR13MB4842.namprd13.prod.outlook.com
+ (2603:10b6:510:78::6)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v6 13/13] arm64: dts: qcom: qrb5165-rb5: Switch on TCPM
- orientation-switch for usb_1_qmpphy
-Content-Language: en-US
-To:     Jianhua Lu <lujianhua000@gmail.com>
-Cc:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
-        gregkh@linuxfoundation.org, andersson@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        luca.weiss@fairphone.com, linux-usb@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        caleb.connolly@linaro.org, konrad.dybcio@linaro.org,
-        subbaram@quicinc.com, jackp@quicinc.com, robertom@qti.qualcomm.com
-References: <20230501121111.1058190-1-bryan.odonoghue@linaro.org>
- <20230501121111.1058190-14-bryan.odonoghue@linaro.org>
- <ZE_b_sVAEd8Roz87@Gentoo>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <ZE_b_sVAEd8Roz87@Gentoo>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH0PR13MB4842:EE_|SA1PR13MB6145:EE_
+X-MS-Office365-Filtering-Correlation-Id: cdfb0083-14d9-4b22-0168-08db4a5da108
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: wXJlzhiK6QudGxx2fmkKopiQPlrl/o9AOMx9zm5GpKhmYAsRnvPiUzX0Xgm/4H5NchFFCdJkt3WBuAHdwDg2tfYaaxK8/FumT2LPASjEgSWuY7+u5UhlNNY5TZcWs1VCXHAJq2B485P6c+VhXd1gBmwZ7PKjkXJyxOrEMXzvjiCb26JJSdE9rRfzftGDuBGxo1yKU9fpLS6fGPRrO1E5XMW+8LjYcxSbiegRtDV29KOfSn76C+JqUhK1dSmVWeNEqPsToBCgTKGXNHa7LAqvDSImAkcFTCHbsL+CPth1mDokXV/iW54oWyS4jUVlOtD21/nbsBVIFeufD6SR0Lh5pUg1a4GC01FREjEsxc/RqgM4uxLdHQbuPGqBSxX9CNFVo/pzA2TPyPDkKxBWsSV1RXpzou7JRg6jrh7Yvfq0gDK64L+yvGtPwhOxtOXnm9RyxzGKwkt37JyXNUaeHEQQ85C7i0xP+4nRDDZEneVvb4+QqCkGKGGJP90VMa0VWe3nDShHWukLO6klU07ERP3fyNmCtd+NP4dfCC2C5JlsJRoDhCO79BNflltBLInEex58
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR13MB4842.namprd13.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(376002)(39830400003)(346002)(136003)(396003)(366004)(451199021)(2616005)(83380400001)(478600001)(186003)(4326008)(6916009)(54906003)(66946007)(66476007)(66556008)(6486002)(6666004)(6506007)(6512007)(316002)(44832011)(7416002)(8936002)(8676002)(5660300002)(41300700001)(2906002)(38100700002)(86362001)(36756003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?mk9IFAFF4bG83Vo7MQc004WjpmNCD3ChoxKLg0thQdjwfyaaGw0s/Eb1daWN?=
+ =?us-ascii?Q?0sYCjLHTzngKRM9wfCzYsrO9xV8LG73zj/j1yOf7wNH98UD5nwm68eROlbi2?=
+ =?us-ascii?Q?NSXEQAPY2CZL88nVfnEmxMYmaQKFp3XnrZz9WWPdh3S3FLAmqMZbmRd6rJDm?=
+ =?us-ascii?Q?HYZSUrYW9KXTvNTag9/0P/iE3fQcTcGTaTZvJyAEXZEVil+bA6TiUscDMTaN?=
+ =?us-ascii?Q?PCgROl0mlnqRgebwFUEdqH1GDLJXkxHvLItwa842KtT2ctSKZ7JpdKeIaguv?=
+ =?us-ascii?Q?xMH2jTQKaiPpke4WMSg8EBpv2lADyamhD42fl89Kv8ZbakbbZvbDS+SuYzjX?=
+ =?us-ascii?Q?9SAluYv3VZDMU49zHENUhPAotGdCVXfo1TSVo3Aqx5rWpJDY/1MkTQHvSH4Z?=
+ =?us-ascii?Q?wa3tQVzOezikLHibVZtyoRx/+OExiFbToCQtp9NKm/qfLHUN0hUkQo2cMCt4?=
+ =?us-ascii?Q?y4xl1U/1ZULUVre2Uc4JD0dmkrY999DARvhs8JxW1muD2KXZO6sBA9QC1aOz?=
+ =?us-ascii?Q?/YMAO4ZGKKeqfIrA4u4BsQBeelbzR8QFfUcD+aY7R/VdyggF/wkE9BwoMnX9?=
+ =?us-ascii?Q?dqHf3230WnznA2datn9VtVUsiVvUqgxIHHllcta0DBSo+QS7BoHmCAt9wM63?=
+ =?us-ascii?Q?hLZv7Pvz1gktYqVb5lnPZlREUD3yMZD9zm6vFkDpOnWwIaNH4fAClMEZX1aJ?=
+ =?us-ascii?Q?JYe6pSaHv+lZwxMH2QNAaLRIS0mkZSuKEi6MOQlXla0qgI3Pk0WVqmi0bF+J?=
+ =?us-ascii?Q?5KrPk/gBKrWPj40TQp0nXMUp45qZR+5N2ye7v5NpPywGWUMk6tXKP+eR5snd?=
+ =?us-ascii?Q?t6a09qVtkJDmdieXYpjpiBgK93F7I57xq9QfHNXCbQpyL4qa5y+SibeogBeN?=
+ =?us-ascii?Q?AOJ4l3IBtY4TDBH7f6zgcz40Ke8J2pP0zk4zAcYP6+PvoFoLOgrpw4qtZvKC?=
+ =?us-ascii?Q?7WQDYalP9s9LY0KaPNzaS8zXcnJgh4c1bo8cllvAy/Sh9uRdTZ1ko8hUN1Cl?=
+ =?us-ascii?Q?ap0tStbBjzEFVfPyj/cn2l41S0ykFYUBYN1b+2r4rYMuXr02/dh/U1IxVuVg?=
+ =?us-ascii?Q?nKEZp5YND+vICD+kDGALBeI8MdNyRFoDmHqkHjQTBvXadcZRXEkwPLR10ORa?=
+ =?us-ascii?Q?kWlFKeqmFM6U62mBdsRcUATdedmCdp0OyJ05kgqUCklJCEDtmm+YzzZTnZ30?=
+ =?us-ascii?Q?sHniEYuyfV/IRkxJXFQd2Xx8Xi8Qgl5HFzZWpTt6pi1lLpyPkn/vTuciOmXZ?=
+ =?us-ascii?Q?ql8bqPj2FCSCgSPP4ApUUVBqsb1hRKTPSzxOxL0+zetMQ1SQTqowS7AGVsJV?=
+ =?us-ascii?Q?QhaL8ZVjBw2A+H+Wf0pdURfsakZ8HJt1tiZ9r6moCp/Huccp02zP1cP2w1Py?=
+ =?us-ascii?Q?WyLQ+kZkejhkkq++e+pQcuOoIPirsI4A6yAonzJAk37gvu2iL9gS0HWMyz9o?=
+ =?us-ascii?Q?BRbZd4ctXqBkPGelje6Xl5QdH86Z9gWq1KFd30w16zJQMPZR2pN5KI8eypCX?=
+ =?us-ascii?Q?EDTNgSjFyPdI6hCD0fQ528W6MDY9HWJLQYB+n8AAm2XxuvrewcQCjoOxGjve?=
+ =?us-ascii?Q?LwZ9etxqTi2wLj+X7Mp2qQoW/6qIgrqB4df2YYZXyn8N/t0P+WflOBfsMcrJ?=
+ =?us-ascii?Q?lZANmsbHFxadl7FZ3i328HyP3c7n4XiT+5g1UMKvfpzvXvDVkt4a69L/JBIp?=
+ =?us-ascii?Q?ckEwJQ=3D=3D?=
+X-OriginatorOrg: corigine.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cdfb0083-14d9-4b22-0168-08db4a5da108
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR13MB4842.namprd13.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 May 2023 16:03:39.9208
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: fe128f2c-073b-4c20-818e-7246a585940c
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 0guggQ5LAh5IJl1Giwpy0NQT5i2ep16rFXjTrzuJmd4091RnMe8HVMOBSYEL+6MS6MVI1jXaCJvpKJMqfb4Rc37VN2ZyRkm5ll/f5zx+dHA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR13MB6145
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/05/2023 16:34, Jianhua Lu wrote:
->>   &usb_2 {
->> @@ -1375,6 +1383,12 @@ pm8150b_role_switch_out: endpoint {
->>   					remote-endpoint = <&dwc3_role_switch_in>;
->>   				};
->>   			};
-> Should add port@0 for usb_1_hsphy because it is required
+On Mon, Apr 24, 2023 at 02:53:59PM -0500, Judith Mendez wrote:
+> Add an hrtimer to MCAN class device. Each MCAN will have its own
+> hrtimer instantiated if there is no hardware interrupt found and
+> poll-interval property is defined in device tree M_CAN node.
+> 
+> The hrtimer will generate a software interrupt every 1 ms. In
+> hrtimer callback, we check if there is a transaction pending by
+> reading a register, then process by calling the isr if there is.
+> 
+> Signed-off-by: Judith Mendez <jm@ti.com>
+> ---
+> Changelog:
+> v2:
+> 	1. Add poll-interval to MCAN class device to check if poll-interval propery is
+> 	present in MCAN node, this enables timer polling method.
+> 	2. Add 'polling' flag to MCAN class device to check if a device is using timer
+> 	polling method
+> 	3. Check if both timer polling and hardware interrupt are enabled for a MCAN
+> 	device, default to hardware interrupt mode if both are enabled.
+> 	4. Changed ms_to_ktime() to ns_to_ktime()
+> 	5. Removed newlines, tabs, and restructure if/else section.
+> 
+>  drivers/net/can/m_can/m_can.c          | 30 ++++++++++++++++++++-----
+>  drivers/net/can/m_can/m_can.h          |  5 +++++
+>  drivers/net/can/m_can/m_can_platform.c | 31 ++++++++++++++++++++++++--
+>  3 files changed, 59 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/net/can/m_can/m_can.c b/drivers/net/can/m_can/m_can.c
+> index a5003435802b..33e094f88da1 100644
+> --- a/drivers/net/can/m_can/m_can.c
+> +++ b/drivers/net/can/m_can/m_can.c
+> @@ -23,6 +23,7 @@
+>  #include <linux/pinctrl/consumer.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/pm_runtime.h>
+> +#include <linux/hrtimer.h>
+>  
+>  #include "m_can.h"
+>  
+> @@ -1587,6 +1588,11 @@ static int m_can_close(struct net_device *dev)
+>  	if (!cdev->is_peripheral)
+>  		napi_disable(&cdev->napi);
+>  
+> +	if (cdev->polling) {
+> +		dev_dbg(cdev->dev, "Disabling the hrtimer\n");
+> +		hrtimer_cancel(&cdev->hrtimer);
+> +	}
+> +
+>  	m_can_stop(dev);
+>  	m_can_clk_stop(cdev);
+>  	free_irq(dev->irq, dev);
+> @@ -1793,6 +1799,18 @@ static netdev_tx_t m_can_start_xmit(struct sk_buff *skb,
+>  	return NETDEV_TX_OK;
+>  }
+>  
+> +enum hrtimer_restart hrtimer_callback(struct hrtimer *timer)
 
-Not by the hardware its not. The combophy is exclusively responsible for 
-processing the orientation switch.
+Hi Judith,
 
-The only required port in usb-c-connector is port@0 i.e. you have to 
-have one thing the usb-c-connector can connect to for data-role switching.
+This function seems to only be used in this file,
+so it should be static.
 
-Now.. I'd take the input that <&qmpphy_typec_mux_in> is not documented 
-but relies on
+> +{
+> +	struct m_can_classdev *cdev =
+> +		container_of(timer, struct m_can_classdev, hrtimer);
+> +
+> +	m_can_isr(0, cdev->net);
+> +
+> +	hrtimer_forward_now(timer, ms_to_ktime(1));
+> +
+> +	return HRTIMER_RESTART;
+> +}
+> +
 
-commit d56de8c9a17d8f5202d0f37dd06ce186cc512586
-Author: Li Jun <jun.li@nxp.com>
-Date:   Tue Mar 28 16:23:04 2023 +0800
-
-     usb: typec: tcpm: try to get role switch from tcpc fwnode
-
-because that is the case.
-
-I will add something to documentation to capture the case where we use a 
-usb-c-connector to trigger an type-c mux orientation switch.
-
----
-bod
+...
