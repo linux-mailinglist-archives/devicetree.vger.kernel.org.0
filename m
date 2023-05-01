@@ -2,111 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1ED5D6F34D3
-	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 19:04:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACC616F34FC
+	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 19:25:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233254AbjEARE1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 May 2023 13:04:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39378 "EHLO
+        id S229960AbjEARSG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 May 2023 13:18:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232940AbjEAREM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 13:04:12 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 756B41723;
-        Mon,  1 May 2023 09:57:46 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 77EB080F77;
-        Mon,  1 May 2023 18:57:16 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1682960237;
-        bh=b3qkibK7joujGHhVtrdK8VQC4GW/YOZzJdxGgN5lC1s=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=WHubrOxIRYZGhwaWLgw65oxEk9rEPGVynFE51nHGQBYQw0tWOd/xeNvr6WZHbFWzH
-         JaIf8/9I0osfDKWP5QVG9AQx/NP6zyBDhZyTDy4EyQdbb76eP5b8eOSWpcS8q/gswO
-         7stGo/pyVjpnpkt6i5dYnPW2JosGow7ijnvc/7ISjJR3kdmBHqdWbcCGV0ca88vKVV
-         JxXEwzj88TYvtZ1UtxcoQtuN7H/+P4Inw7VLkqNvNCoajsoIxjAxTmUTAyJz7qCx9J
-         O+xnk9PeFGdKJsNwqO0RkGhZIpqZN5VSABPubgzgmc41zQ/fNT2DfbUd67XUYijaLb
-         4CrsUR5/FPNbw==
-Message-ID: <ebd5de56-38c3-bbe4-0d98-45934aea61a7@denx.de>
-Date:   Mon, 1 May 2023 18:57:15 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH V2 ] bindings: arm64: Add an entry in imx8mm boards for
- Emtop SOM-IMX8MM
-Content-Language: en-US
-To:     Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-Cc:     "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "festevam@denx.de" <festevam@denx.de>,
-        "frieder.schrempf@kontron.de" <frieder.schrempf@kontron.de>,
-        "marcel.ziswiler@toradex.com" <marcel.ziswiler@toradex.com>,
-        "max.krummenacher@toradex.com" <max.krummenacher@toradex.com>,
-        "stefan.wahren@i2se.com" <stefan.wahren@i2se.com>,
-        "matthias.schiffer@tq-group.com" <matthias.schiffer@tq-group.com>,
-        "denys.drozdov@toradex.com" <denys.drozdov@toradex.com>,
-        "leoyang.li@nxp.com" <leoyang.li@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <BM1PR01MB4899F56FF3D6A2C0F3C3C3449A6E9@BM1PR01MB4899.INDPRD01.PROD.OUTLOOK.COM>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <BM1PR01MB4899F56FF3D6A2C0F3C3C3449A6E9@BM1PR01MB4899.INDPRD01.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        with ESMTP id S231311AbjEARSF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 13:18:05 -0400
+Received: from mx.kolabnow.com (mx.kolabnow.com [212.103.80.154])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77819F5;
+        Mon,  1 May 2023 10:17:27 -0700 (PDT)
+Received: from localhost (unknown [127.0.0.1])
+        by mx.kolabnow.com (Postfix) with ESMTP id CA495E8D;
+        Mon,  1 May 2023 19:01:38 +0200 (CEST)
+Authentication-Results: ext-mx-out002.mykolab.com (amavisd-new);
+        dkim=pass (4096-bit key) reason="pass (just generated, assumed good)"
+        header.d=kolabnow.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kolabnow.com; h=
+        content-transfer-encoding:organization:mime-version:message-id
+        :date:date:subject:subject:from:from:received:received:received;
+         s=dkim20160331; t=1682960496; x=1684774897; bh=7mYtdk4SkFBKzGfT
+        yMekgb3iz0PSpK7RZi9D7/acNmQ=; b=lXZCEWxQDiF4/MY6PZm20Y/lfioT+J5l
+        PywLATLls+1E/OYFbH0yTUpsSTkYtZuck6o3rQH8GDbYeq8Y5AVkFovxgV2Ist4l
+        VJqOghGuHQx90qnjr3heced94WJPm+n6rcs3mGnhVwymgTQPfvxCdZipu/sb53xf
+        z4MuJ8U9h7XqgvRPJa8710lk2KaWxKB/o9dxoLW04MvMJ/o2H7pMe9EOtJxYLq94
+        pbrXnLWqXvdQZcJ3gGQDtRBs+7F6b5aeHuHkm7F8g9AzN1ADHKmp2QlvKahhQ9ZH
+        MPb8x+hVgKltQ5EZjO2k4MObYfpHM+tJGBVjmMuDARvCjtKEfW/CIigx8FgGsggF
+        +w7D8aqbmAgJHZKey8ojA/1/X/HXujSmzkkIlUWZ1DuUZZHoQdwZWcgpOrfctdS7
+        QdT2RulthQP7A7hKiYMYBBnS0Z5XP/fsHWPf01lUZv8e8sXx1N+3mJa/qZywAoNy
+        aEBAV3XCdLqv9wcHS4peTdUIwLjHvPUKoKDqt+ntw02uwNZODAcL/Yc8azju8Uqd
+        t1r5P50JEeg5AMthFLFb/Ss/axunuc6iCSs3KcluGTLk+GCFf0Opz+TvMZ48zdte
+        ExsLhb3g+h4HbftTwMcctCwj+qgiM0etCHXtb9sTdN9Q1BIh6hsp/aORe2leLXBl
+        oQMt+jJB3qE=
+X-Virus-Scanned: amavisd-new at mykolab.com
+X-Spam-Score: -1.899
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
+Received: from mx.kolabnow.com ([127.0.0.1])
+        by localhost (ext-mx-out002.mykolab.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id vC2Yf_IgpRW0; Mon,  1 May 2023 19:01:36 +0200 (CEST)
+Received: from int-mx003.mykolab.com (unknown [10.9.13.3])
+        by mx.kolabnow.com (Postfix) with ESMTPS id 42339E4A;
+        Mon,  1 May 2023 19:01:32 +0200 (CEST)
+Received: from ext-subm001.mykolab.com (unknown [10.9.6.1])
+        by int-mx003.mykolab.com (Postfix) with ESMTPS id C3B3277A2;
+        Mon,  1 May 2023 19:01:31 +0200 (CEST)
+From:   alison@she-devel.com
+To:     johan@kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        alison@she-devel.com, achaiken@aurora.tech,
+        kernel test robot <lkp@intel.com>
+Subject: [PATCH v3 0/2] support config of U-Blox Zed-F9P GNSS
+Date:   Mon,  1 May 2023 10:01:22 -0700
+Message-Id: <20230501170124.1218603-1-alison@she-devel.com>
+MIME-Version: 1.0
+Organization: Aurora Innovation
+Content-Transfer-Encoding: 8bit
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/1/23 18:37, Himanshu Bhavani wrote:
->>From 8b789f3a997c1fbe253e9b5c5f5c370b262f7efd Mon Sep 17 00:00:00 2001
-> From: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
-> Date: Mon, 1 May 2023 21:59:47 +0530
-> Subject: [PATCH] Add an entry in imx8mm boards for Emtop SOM-IMX8MM
+From: Alison Chaiken <alison@she-devel.com>
 
-Can you try and use 'git send-email' to send your patch ?
+Add generalized support for setting arbitrary configuration of the
+U-Blox Zed-F9P GNSS.  Employ the new functionality to set the baud rate
+of the Zed-F9P if the devicetree specifies a non-default value.
 
-git send-email --annotate --to=devicetree@vger.kernel.org -1 HEAD
+Tested with 6.1.22, only on a U-Blox Zed-F9P GNSS.
 
-> Change in v2:
-> 	- Update vendor name
-> 	- Add board name
+V2 -> V3 Add email recipients whom I foolishly missed the first two times.
+V1 -> V2 Fixes error identified by kernel test robot:
+Reported-by: kernel test robot <lkp@intel.com>
+Closes: https://lore.kernel.org/oe-kbuild-all/202304300819.u0hfUj33-lkp@intel.com/
 
-This should be ...
+Alison Chaiken (2):
+  gnss: ubx: customize serial device open to set U-Blox Zed-F9P baud
+  dt-bindings: gnss: Add U-Blox Zed-F9
 
-> Signed-off-by: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
+ .../bindings/gnss/u-blox,neo-6m.yaml          |   1 +
+ drivers/gnss/ubx.c                            | 195 ++++++++++++++++++
+ 2 files changed, 196 insertions(+)
 
 
-... here, but also add '---' line above it, like so:
+base-commit: 58390c8ce1bddb6c623f62e7ed36383e7fa5c02f
+-- 
+2.39.2
 
----
-V2: - Do stuff
-     - Other stuff
-V3: - More stuff ...
-
-> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> index 442ce8f4d675..06eb2c790f90 100644
-> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> @@ -884,6 +884,7 @@ properties:
->                 - beacon,imx8mm-beacon-kit  # i.MX8MM Beacon Development Kit
->                 - boundary,imx8mm-nitrogen8mm  # i.MX8MM Nitrogen Board
->                 - dmo,imx8mm-data-modul-edm-sbc # i.MX8MM eDM SBC
-> +              - emtop,imx8mm-emtop          # i.MX8MM Emtop SoM
-
-Please also update 
-Documentation/devicetree/bindings/vendor-prefixes.yaml with emtop vendor 
-prefix, do so in separate patch.
