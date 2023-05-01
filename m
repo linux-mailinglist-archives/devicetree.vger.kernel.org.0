@@ -2,74 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 40FF16F2FF9
-	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 11:50:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA1A56F3001
+	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 11:54:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231370AbjEAJu5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 May 2023 05:50:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45278 "EHLO
+        id S229861AbjEAJyD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 May 2023 05:54:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46614 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232243AbjEAJu4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 05:50:56 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E3B51B9
-        for <devicetree@vger.kernel.org>; Mon,  1 May 2023 02:50:53 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-50bcb229adaso149899a12.2
-        for <devicetree@vger.kernel.org>; Mon, 01 May 2023 02:50:53 -0700 (PDT)
+        with ESMTP id S232070AbjEAJyC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 05:54:02 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 496F2E47
+        for <devicetree@vger.kernel.org>; Mon,  1 May 2023 02:53:55 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-94ef0a8546fso378341166b.1
+        for <devicetree@vger.kernel.org>; Mon, 01 May 2023 02:53:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682934651; x=1685526651;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1682934834; x=1685526834;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=R3qMWocL6/wpbuDG6gR5Wtg+ZCiwCsubf8C3G4b5aRI=;
-        b=pezXIELbzEAcCjV+boWauNmc5FQspzcpLCEDI67YIbKjgfsjTRBKe0Wf1wNUHmk3nN
-         aJoPy4O0HwPQBG4M/iEiPUcZl8mqheFvGGEJs5FgO/ikYVqByWbj9QFqdO4bG7jG8UtR
-         RRNyIunTTrHFKdrMpfP7Nsiz+Skn7pFEk6SV3A+sbnvkWriC7e8QOxRNl3HwA99ta9ff
-         /zV8wOJnyflarJDy9mG1Jo3lM7CSov/LGAnQNieTzTzr0o24xCgQubpfFWADbpQl7T68
-         KlPoPIeZjUtFfecyoHnbbms6ha2I7OBuMR/O2SrjLbbYt7/8DboATrH913BBTLXgtI/Y
-         lCSQ==
+        bh=2LAaaX3T1102gejNKuIMfwgpgomPZOYq3AaB4DZgS2M=;
+        b=COZ6qAXyDJLCOXzJXDsLdMqZM434wQCv0uDnV2J73w8sWz8MioHIy0gY+0P2KGIiRb
+         58BiHfD9UtcepfvZZhB3wb3AYDtuuqGUWQubTUVpXDTCchOegxaAme4NKfwTd7NiQJKY
+         jobW+FwpbUv6woqc2KMjVlP8ELxp5FXNG+qnkxyXhSW4DvxRJBLxm6uX8Ky94tODisgQ
+         mJDdIq1GWgQaqApbcHHdnV8DTrPP+AZCU269IdD2p+H2Lfs1bpub/5Sjig/6wIzFm7de
+         RIAEeMjkzeBHV/K++nlDkoSwPpaXEkSbTEDGXgg6xdCNzTQwAW9F+TEjLm61fKYvxckJ
+         Y86w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682934651; x=1685526651;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1682934834; x=1685526834;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=R3qMWocL6/wpbuDG6gR5Wtg+ZCiwCsubf8C3G4b5aRI=;
-        b=eZOHoamt+JkX7c47TeFW7TpNaV40GwV1xUlbRSNS41tRIAd7KTDe0deLudKrqIlj6j
-         L+WyMHGUK2M/3T/euJ9KWnRhfJe7xSLBBTZRAVh6Xa56nHVQeYmoxQjWnxzfmEezetNB
-         Iz2NlRGbqYp4Q3RHw6FxP2XEj2KjxqHUaY+AwcD390b+EVy3V0POcsrPGzElzASvtyDk
-         UfYHz4FzbKej0WOvOXhSuEb3PD45c/S0GEk7VIdKkapD1SX1oswskWDF5khY/tS9sL7F
-         k4dZiWe4XIMgRTrnBhe+ReNYAGQDKxMqPi9fZfQyXANgs/BAqWmrRFs7w2QkaIPEXhW3
-         Nkwg==
-X-Gm-Message-State: AC+VfDyIPRagoL/WV4STHfuGaCWAVffZZ/aB7KWjUNQKm6Ekb0viQ1bp
-        Dh6QTJijpMxE3wmvdABvvcC4xQ==
-X-Google-Smtp-Source: ACHHUZ5aoCRJwdM01aHJAYJ6FZM0GaX+jTFGr55aLgScxrfNq6frPl2fubj4mP8pK+VDgPengBFaAA==
-X-Received: by 2002:aa7:cd10:0:b0:506:b228:7aff with SMTP id b16-20020aa7cd10000000b00506b2287affmr5635208edw.23.1682934651694;
-        Mon, 01 May 2023 02:50:51 -0700 (PDT)
+        bh=2LAaaX3T1102gejNKuIMfwgpgomPZOYq3AaB4DZgS2M=;
+        b=hXowU0FSqMyMrg3M1E9znDEuGKN8WmfEf+hQXCt84GAnxlShxYWd5i0Lki/KSvEVNS
+         7OQb8w5HiHfoK0+U7+5vK9jZp4+uZw3farYLwBYNxpk4tFwSr3FIcog87tIBt6lq4CYe
+         qwPKMZYEqDr2n5ZpJfE6WOdmev1u32+jcqHKQOvzGN9kW8FwdOh3hbDMTHmf56S118yL
+         b/EQe+McIQNz/j+WwCNB7zlCdUUeWOR3x88we3D3zXnjxnrcrLK80AotnEt6FzOUIxhY
+         dxW9iMPxTlFBCyZh2kR/B7EWzRnopI6qgoVNhQbQ+1manXusu28aA2nXuO7n+07TsZw4
+         kTdg==
+X-Gm-Message-State: AC+VfDyzBIk8EvTO4jLeup7xgLDfr6LrPHnHPuwO76hqgzkfTFj//+vt
+        s/8bHODhtNnvPdUtZqcyGp2bh2TO+JDd50et7X4mtA==
+X-Google-Smtp-Source: ACHHUZ4TN6CiMt7jfmu82h2+5M0Puw5ke/1EkQwBWppoXUIN5oBKNEUpvIVsWTKjWC0uIPvSqsjcBg==
+X-Received: by 2002:a17:907:97ca:b0:95e:ce4b:b333 with SMTP id js10-20020a17090797ca00b0095ece4bb333mr14048400ejc.53.1682934834504;
+        Mon, 01 May 2023 02:53:54 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:637a:fd0c:58fd:9f00? ([2a02:810d:15c0:828:637a:fd0c:58fd:9f00])
-        by smtp.gmail.com with ESMTPSA id n20-20020aa7d054000000b004fc01b0aa55sm12145335edo.4.2023.05.01.02.50.49
+        by smtp.gmail.com with ESMTPSA id z16-20020a1709063ad000b0094f71500bfesm14540877ejd.4.2023.05.01.02.53.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 May 2023 02:50:51 -0700 (PDT)
-Message-ID: <2b79021d-3793-5f2d-8659-5d0d8fc78017@linaro.org>
-Date:   Mon, 1 May 2023 11:50:49 +0200
+        Mon, 01 May 2023 02:53:53 -0700 (PDT)
+Message-ID: <9569ef0d-0d94-3ff9-468b-152fe949e7b5@linaro.org>
+Date:   Mon, 1 May 2023 11:53:53 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
-Subject: Re: [PATCH v8 05/11] dt-bindings: arm: Add initial bindings for
- Nuvoton platform
-To:     Jacky Huang <ychuang570808@gmail.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
-        gregkh@linuxfoundation.org, jirislaby@kernel.org,
-        tmaimon77@gmail.com, catalin.marinas@arm.com, will@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-serial@vger.kernel.org, arnd@arndb.de, schung@nuvoton.com,
-        mjchen@nuvoton.com, Jacky Huang <ychuang3@nuvoton.com>
-References: <20230425102418.185783-1-ychuang570808@gmail.com>
- <20230425102418.185783-6-ychuang570808@gmail.com>
+Subject: Re: [PATCH v2 1/2] docs: dt: fix documented Primecell compatible
+ string
 Content-Language: en-US
+To:     Baruch Siach <baruch@tkos.co.il>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Alex Shi <alexs@kernel.org>, Yanteng Si <siyanteng@loongson.cn>,
+        devicetree@vger.kernel.org, linux-doc@vger.kernel.org
+References: <9e137548c4e76e0d8deef6d49460cb37897934ca.1682333574.git.baruch@tkos.co.il>
+ <878regbbr7.fsf@tarshish>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230425102418.185783-6-ychuang570808@gmail.com>
+In-Reply-To: <878regbbr7.fsf@tarshish>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,23 +77,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/04/2023 12:24, Jacky Huang wrote:
-> From: Jacky Huang <ychuang3@nuvoton.com>
+On 25/04/2023 10:31, Baruch Siach wrote:
+> Hi Rob, Krzysztof,
 > 
-> Move 'nuvoton,npcm-gcr.yaml' from 'arm/npcm' to 'soc/nuvoton'.
-> Rename the '/arm/npcm' directory to 'arm/nuvoton'. Additionally, add
-> bindings for ARMv8-based Nuvoton SoCs and platform boards, and include
-> the initial bindings for ma35d1 series development boards.
+> On Mon, Apr 24 2023, Baruch Siach wrote:
+>> Only arm,primecell is documented as compatible string for Primecell
+>> peripherals. Current code agrees with that.
 > 
-> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
-> ---
->  .../bindings/arm/nuvoton/nuvoton,ma35d1.yaml  | 30 +++++++++++++++++++
->  .../npcm.yaml => nuvoton/nuvoton,npcm.yaml}   |  2 +-
->  .../nuvoton/nuvoton,npcm-gcr.yaml}            |  2 +-
->  3 files changed, 32 insertions(+), 2 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/arm/nuvoton/nuvoton,ma35d1.yaml
+> Once again my patches do not show up in patchwork. But they do show in
+> lore:
+> 
+>   https://lore.kernel.org/linux-devicetree/9e137548c4e76e0d8deef6d49460cb37897934ca.1682333574.git.baruch@tkos.co.il/
+> 
 
-I don't see any improvements here. Path in maintainers is still broken.
+You used subject prefix which targets Doc subsystem, but did not Cc Doc
+maintainers (get_maintainers do not print them). If you target Rob's
+Patchwork, probably you need to fix subject prefix. There is no "dt" prefix.
 
 Best regards,
 Krzysztof
