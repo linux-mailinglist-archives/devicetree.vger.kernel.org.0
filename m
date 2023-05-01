@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3CB66F30B8
-	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 14:11:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD9596F30BC
+	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 14:11:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232517AbjEAMLb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 May 2023 08:11:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47996 "EHLO
+        id S232500AbjEAMLc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 May 2023 08:11:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232523AbjEAML3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 08:11:29 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E776E1721
-        for <devicetree@vger.kernel.org>; Mon,  1 May 2023 05:11:25 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-3f19323259dso23608025e9.3
-        for <devicetree@vger.kernel.org>; Mon, 01 May 2023 05:11:25 -0700 (PDT)
+        with ESMTP id S232514AbjEAMLa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 08:11:30 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B734A198A
+        for <devicetree@vger.kernel.org>; Mon,  1 May 2023 05:11:27 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-3f1950f5628so23322715e9.3
+        for <devicetree@vger.kernel.org>; Mon, 01 May 2023 05:11:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682943084; x=1685535084;
+        d=linaro.org; s=google; t=1682943086; x=1685535086;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=zy2VqxQ0CXo4WaSyrIIsf6gNNOxqYn5NZo41bw1Nchg=;
-        b=ouvSwWhnYGC18n0NRFidiAiGJ+6ghzXgtfNQ4k2MhmWSG2PLUoXabfqdCsp6ihvdCI
-         FR7AUcdfks8qQldbMAT9+F6slQGwq8UrDXBOJ3p500n+7kMI8fMUPHVT8Uu1ylCTMblZ
-         1NrpUf79QfghBCgBnjRTDLDtalMdxEEwUx8eKhyXGNCJCueIaOrqTgFxxe5czBkl4GWl
-         0VaYJUGFkRyB/S74/44cMnU4jWXlsbaW/jrdTPdd+x1DZdt0Gymo365gkoXI0dNZOHLa
-         DmriEckmBb7FSRCU5FW+yFjKaTrf3CXkxvdB3i2Ci4JsBmG3GNz9uPoozbjJQLUu6nYh
-         eDHA==
+        bh=HCwho3uKk5QmWh01Wmw4tEPLfVlhN7/orLWF0pBPcCs=;
+        b=f5j0DnAe6PQ0NI+7+xzDRkEk9Qc2qk7GUg1xB7/+2n9AfEH9HSLr6bE0Yw3R3wMG1g
+         RaOEiv/KnJZHErmJUq65NmRwcpKJ+ZTkCUpN1m7bActF7P33KQi2Ch7CMaOzisv1NQEJ
+         icDy0i5tE4TVR24oCsuzYU8YU8uMLmq7kFbUVcasOkmYI33NJdXOVKwSUUYXVpDCodAC
+         fW55a7RSYKfH1Akf1NZe/kVcgH9q3kdICOBSKAtpin+eTiwEwRkNol5B9rSTOFoMWAYv
+         0HGJCYfN7VZ+RA8hdtNUtFsBhcuZa7P5B9nEJHtsghTmivUrzFYM/6RH62D98S3U9wB0
+         GEgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682943084; x=1685535084;
+        d=1e100.net; s=20221208; t=1682943086; x=1685535086;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=zy2VqxQ0CXo4WaSyrIIsf6gNNOxqYn5NZo41bw1Nchg=;
-        b=ezGJpD1B5YhBo4/5cXVYsUqpukPYH2mYtLtCXQ5eI4OM4UN1TO4OWaJPFsDujyFUZe
-         pv2iZPV7cGDg63ccMP+DDiVY9rJQJMQti1fQDDUhoAo/olQqgURO2lsX6aLpJRGDuX0L
-         gDA4AJf+6fROS4LTKqC3zHia9thLLeGIAUXShhAo2mcAhoqgK2sPrZMw9N65413jPJq3
-         bPjXs8Rzechw3b5TF7NXAtKZod6GebIgXbkkVDahadkeLj7wEv8Qnr0GSiHJZlZpxZw7
-         8NfEKNDwY2rdrotKyZ3FNJ781UmtwaawbEqw8VpkcMzZufak8K3+yIEgWYLvT0e5c+NJ
-         XEdQ==
-X-Gm-Message-State: AC+VfDz6FC/NrsCHjbEspU1Q+j7NCCmhfIhtpHSJLP/5qRR4kHCb+9zO
-        igsYVuVd6aiGV/7UNacXv3elIQ==
-X-Google-Smtp-Source: ACHHUZ4h5x0Q6CL+NXPB7tNpi34fW96boFO4YW66pOc8CmnebQl8b+VL1Z6/xJAlgWaVn/HuE6upOw==
-X-Received: by 2002:a05:600c:2212:b0:3f1:73c1:d1ad with SMTP id z18-20020a05600c221200b003f173c1d1admr9492510wml.35.1682943084368;
-        Mon, 01 May 2023 05:11:24 -0700 (PDT)
+        bh=HCwho3uKk5QmWh01Wmw4tEPLfVlhN7/orLWF0pBPcCs=;
+        b=dch6PAnXDnC07rMsDyXXZXTyfP5C3x7WIO5Y22jSaiPEM0SQ6vHKqhrm/hubmZoN1k
+         HifNLNeP4PXlekOD5/+K+SqPeSDtCRno8ED1EWgZKYiTtWAZRgDClKBRQ3+QTezl7DKp
+         kyQKaPGjg6EzRcSvx9YCdCx5tFSXcgpMeeNDEtlrY/wfnXFKqeOt8fbdX8mN3PfOFj/l
+         mTXL2Zf2wwKLbbtklJXD42DusUqEeitsdJemPwDKKZinYlYUBnJ/JSdr0XPCEQEQp2UU
+         sZNPy4X3QBLiZd82CPP3PHoTKLUbzRUZZpp3HHZcN6+PSMhxATLxO+1DB/wM64r9NPrc
+         1pzw==
+X-Gm-Message-State: AC+VfDylZKhGsx61EVEK46JckQAuGXYoVY3atV8lHwb5QbAT8rjkD4ox
+        cjk7Gz6WJmD56dKo0qsyvXlDBA==
+X-Google-Smtp-Source: ACHHUZ5dDtqBmqjU7m8UeU/M3yuDuRSf7Qeqd6XPafB69qFbzDhkijrQ1Ug/2zNkvDkcImagYhDedQ==
+X-Received: by 2002:a7b:c84b:0:b0:3f1:75a9:5c0d with SMTP id c11-20020a7bc84b000000b003f175a95c0dmr10488501wml.26.1682943086071;
+        Mon, 01 May 2023 05:11:26 -0700 (PDT)
 Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id o10-20020a05600c510a00b003ee443bf0c7sm35856634wms.16.2023.05.01.05.11.23
+        by smtp.gmail.com with ESMTPSA id o10-20020a05600c510a00b003ee443bf0c7sm35856634wms.16.2023.05.01.05.11.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 May 2023 05:11:23 -0700 (PDT)
+        Mon, 01 May 2023 05:11:25 -0700 (PDT)
 From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 To:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
         gregkh@linuxfoundation.org, andersson@kernel.org,
@@ -58,9 +58,9 @@ To:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
 Cc:     caleb.connolly@linaro.org, bryan.odonoghue@linaro.org,
         konrad.dybcio@linaro.org, subbaram@quicinc.com, jackp@quicinc.com,
         robertom@qti.qualcomm.com
-Subject: [PATCH v6 09/13] arm64: dts: qcom: pm8150b: Add a TCPM description
-Date:   Mon,  1 May 2023 13:11:07 +0100
-Message-Id: <20230501121111.1058190-10-bryan.odonoghue@linaro.org>
+Subject: [PATCH v6 10/13] arm64: dts: qcom: qrb5165-rb5: Switch on Type-C VBUS boost
+Date:   Mon,  1 May 2023 13:11:08 +0100
+Message-Id: <20230501121111.1058190-11-bryan.odonoghue@linaro.org>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230501121111.1058190-1-bryan.odonoghue@linaro.org>
 References: <20230501121111.1058190-1-bryan.odonoghue@linaro.org>
@@ -76,68 +76,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Type-C port management functionality lives inside of the PMIC block on
-pm8150b.
-
-The Type-C port management logic controls orientation detection, vbus/vconn
-sense and to send/receive Type-C Power Domain messages.
+Switch on VBUS for the Type-C port. We need to support a higher amperage
+than the bootloader set 2 Amps.
 
 Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/pm8150b.dtsi | 40 +++++++++++++++++++++++++++
- 1 file changed, 40 insertions(+)
+ arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/pm8150b.dtsi b/arch/arm64/boot/dts/qcom/pm8150b.dtsi
-index 66752cc063d60..ffec8cfbd82a2 100644
---- a/arch/arm64/boot/dts/qcom/pm8150b.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm8150b.dtsi
-@@ -59,6 +59,46 @@ pm8150b_vbus: usb-vbus-regulator@1100 {
- 			reg = <0x1100>;
- 		};
- 
-+		pm8150b_typec: typec@1500 {
-+			compatible = "qcom,pm8150b-typec";
-+			reg = <0x1500>,
-+			      <0x1700>;
-+			interrupts = <0x2 0x15 0x00 IRQ_TYPE_EDGE_RISING>,
-+				     <0x2 0x15 0x01 IRQ_TYPE_EDGE_BOTH>,
-+				     <0x2 0x15 0x02 IRQ_TYPE_EDGE_RISING>,
-+				     <0x2 0x15 0x03 IRQ_TYPE_EDGE_BOTH>,
-+				     <0x2 0x15 0x04 IRQ_TYPE_EDGE_RISING>,
-+				     <0x2 0x15 0x05 IRQ_TYPE_EDGE_RISING>,
-+				     <0x2 0x15 0x06 IRQ_TYPE_EDGE_BOTH>,
-+				     <0x2 0x15 0x07 IRQ_TYPE_EDGE_RISING>,
-+				     <0x2 0x17 0x00 IRQ_TYPE_EDGE_RISING>,
-+				     <0x2 0x17 0x01 IRQ_TYPE_EDGE_RISING>,
-+				     <0x2 0x17 0x02 IRQ_TYPE_EDGE_RISING>,
-+				     <0x2 0x17 0x03 IRQ_TYPE_EDGE_RISING>,
-+				     <0x2 0x17 0x04 IRQ_TYPE_EDGE_RISING>,
-+				     <0x2 0x17 0x05 IRQ_TYPE_EDGE_RISING>,
-+				     <0x2 0x17 0x06 IRQ_TYPE_EDGE_RISING>,
-+				     <0x2 0x17 0x07 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "or-rid-detect-change",
-+					  "vpd-detect",
-+					  "cc-state-change",
-+					  "vconn-oc",
-+					  "vbus-change",
-+					  "attach-detach",
-+					  "legacy-cable-detect",
-+					  "try-snk-src-detect",
-+					  "sig-tx",
-+					  "sig-rx",
-+					  "msg-tx",
-+					  "msg-rx",
-+					  "msg-tx-failed",
-+					  "msg-tx-discarded",
-+					  "msg-rx-discarded",
-+					  "fr-swap";
-+			vdd-pdphy-supply = <&vreg_l2a_3p1>;
-+			vdd-vbus-supply = <&pm8150b_vbus>;
-+		};
+diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+index dd924331b0eea..b326bdeeb7742 100644
+--- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
++++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+@@ -1338,3 +1338,9 @@ &qup_spi0_data_clk {
+ 	drive-strength = <6>;
+ 	bias-disable;
+ };
 +
- 		pm8150b_temp: temp-alarm@2400 {
- 			compatible = "qcom,spmi-temp-alarm";
- 			reg = <0x2400>;
++&pm8150b_vbus {
++	regulator-min-microamp = <500000>;
++	regulator-max-microamp = <3000000>;
++	status = "okay";
++};
 -- 
 2.39.2
 
