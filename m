@@ -2,128 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BA126F3302
-	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 17:37:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C37DC6F32C8
+	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 17:23:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232754AbjEAPhg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 May 2023 11:37:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58568 "EHLO
+        id S232762AbjEAPXi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 May 2023 11:23:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232743AbjEAPhf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 11:37:35 -0400
-Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55A6510CB;
-        Mon,  1 May 2023 08:37:32 -0700 (PDT)
-Received: by mail-pl1-x62a.google.com with SMTP id d9443c01a7336-1aaea43def7so11467495ad.2;
-        Mon, 01 May 2023 08:37:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682955451; x=1685547451;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=y9FCZMBq11lAmej2VPmlV0pLjiGpnVUF7q2DXSb1+bA=;
-        b=UKOmtk3HoA7k1VX4gOLi0r2AKJI4UDtuFBjBFkgKUs5O6/MLHJbYdpieyrlFVPPCSY
-         DBgG3W4SrMLv7AKOoPQWOCXTmd0E8kDb0SpqcxsuXJLhw+Gq5vXCmfSYKkM5gdiyyzFe
-         DYBJniO9kihWt1hC9umMvGkEJtGfLXToRXcByP0yIAwxSRO28RLhgiX4K5PZ+9lCA5KL
-         DnaO6VlSNA01Rg7zajcrWQU9QMP0N2uaLEUqFxyVe7l1A3F2hYPJ6Nmi6yLvbklL6MQV
-         KnP+EPcmJnodBOaXMkm5ulQJC7srDp8okcKInBH+QFr1ORee/Dg8PfP6wV6meqZ3JbU7
-         voiA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682955451; x=1685547451;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=y9FCZMBq11lAmej2VPmlV0pLjiGpnVUF7q2DXSb1+bA=;
-        b=WHzPalvv4iXXgV967bFDOwmC+12Tcpuq50s8k2cRkldKxoqoKfin+B27btC4VUrSdj
-         AozG54nRsH+MqjTFO6sQfOd/tobOUQ95jaXjKvpG/CrDkJTTiPvOLkLveEe64e1yfUzt
-         DmpIz44avGumFZ0IN+xlz+m2ZEIhpUVVtPWpv2dSpLV0vGe0jH5wErNSbfuYqWSFuQ2W
-         j2uw16GrlgIXpdZnwXJ9Dmdx4DghQh7WmE2mHDI7GiPcqACDdouKsh8GHy2ge1F9kfF8
-         hmy3HBfEbXnq9Xhryp7TxnTqtSyohIRgahJ2F/6R0Vn7/E46gzV69Mxrg2jb44mEE7EA
-         7Anw==
-X-Gm-Message-State: AC+VfDxSr2CTlyKZ2Vn6G71U9BUIRsFVkTI8my19kdKKNchcW7fUhl7+
-        4625cWpy6ZpUelnheGXry9A=
-X-Google-Smtp-Source: ACHHUZ47tgq+hJhcF3+9cjGgSUuSG6zEbUXH8sgsaxmGPNFJMccTKMjygk07ZuYRNAyzIc5x6AVhjA==
-X-Received: by 2002:a17:902:c609:b0:1aa:fe4f:9b8f with SMTP id r9-20020a170902c60900b001aafe4f9b8fmr1840259plr.39.1682955451287;
-        Mon, 01 May 2023 08:37:31 -0700 (PDT)
-Received: from Gentoo (n220246252240.netvigator.com. [220.246.252.240])
-        by smtp.gmail.com with ESMTPSA id jj2-20020a170903048200b001ab016e7916sm1018217plb.234.2023.05.01.08.37.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 May 2023 08:37:28 -0700 (PDT)
-Date:   Mon, 1 May 2023 23:37:19 +0800
-From:   Jianhua Lu <lujianhua000@gmail.com>
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
-        gregkh@linuxfoundation.org, andersson@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        luca.weiss@fairphone.com, linux-usb@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        caleb.connolly@linaro.org, konrad.dybcio@linaro.org,
-        subbaram@quicinc.com, jackp@quicinc.com, robertom@qti.qualcomm.com
-Subject: Re: [PATCH v6 13/13] arm64: dts: qcom: qrb5165-rb5: Switch on TCPM
- orientation-switch for usb_1_qmpphy
-Message-ID: <ZE_cr5X3UNKObsXd@Gentoo>
-References: <20230501121111.1058190-1-bryan.odonoghue@linaro.org>
- <20230501121111.1058190-14-bryan.odonoghue@linaro.org>
+        with ESMTP id S232665AbjEAPXh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 11:23:37 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 699AAE61;
+        Mon,  1 May 2023 08:23:36 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0580160FE2;
+        Mon,  1 May 2023 15:23:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86B91C433EF;
+        Mon,  1 May 2023 15:23:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1682954615;
+        bh=K9XsLWqKQn/jP/mzZLutSFMX6fSlEieZ9hD0h7aMKuQ=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=rBN3xIw3wm0gT2YzECj/+dlrmUTTGFlmIcNCrp2kQLoPURG2ISD8lWl3zbX2qhqEr
+         LTYtKzkMteBMUD3uM3kcOKWG2hLrk51uqTaQ5MoatCGLR1cNyrc3zwOydcJuZSdEnJ
+         pjGJ3CFAMKpW5BEuDg7WF+yA61bao13Wa2/GHS2XHrMBi1CQRn+FEbYRBwn09lPYVE
+         q5Kk8tB49iUVW0TDNd1Tn/W3nGGXfRbm4GfK07tjDFDd23hspyVujAGOfbE40Seqs5
+         bHQBMI4hRzLO9+6jjPULW3JH5aw3WYAEu+zBfdjFfn9Uuo70i0wQedLSY+VRbcjIXB
+         0P8jqU+bfGuUw==
+Date:   Mon, 1 May 2023 16:39:20 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: iio: potentiometer: Add the Renesas
+ X9250 potentiometers
+Message-ID: <20230501163920.65cc9454@jic23-huawei>
+In-Reply-To: <20230424090318.4750a5e7@bootlin.com>
+References: <20230421085245.302169-1-herve.codina@bootlin.com>
+        <20230421085245.302169-2-herve.codina@bootlin.com>
+        <20230422171807.510d7fa3@jic23-huawei>
+        <20230424090318.4750a5e7@bootlin.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230501121111.1058190-14-bryan.odonoghue@linaro.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 01, 2023 at 01:11:11PM +0100, Bryan O'Donoghue wrote:
-> Switch on USB orientation-switching for usb_1_qmp via TCPM. Detecting the
-> orientation switch is required to get the PHY to reset and bring-up the PHY
-> with the CC lines set to the appropriate lane.
-> 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> index b5cc45358a474..8935a8e327904 100644
-> --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> @@ -1295,6 +1295,14 @@ &usb_1_qmpphy {
->  
->  	vdda-phy-supply = <&vreg_l9a_1p2>;
->  	vdda-pll-supply = <&vreg_l18a_0p92>;
-> +	orientation-switch;
-> +	ports {
-Add new line before subnode
-> +		port@1 {
-> +			qmpphy_typec_mux_in: endpoint {
-> +				remote-endpoint = <&pm8150b_typec_mux_out>;
-> +			};
-> +		};
-> +	};
->  };
->  
->  &usb_2 {
-> @@ -1375,6 +1383,12 @@ pm8150b_role_switch_out: endpoint {
->  					remote-endpoint = <&dwc3_role_switch_in>;
->  				};
->  			};
-you should add port@0 for usb_1_hsphy because it is required.
+On Mon, 24 Apr 2023 09:03:18 +0200
+Herve Codina <herve.codina@bootlin.com> wrote:
 
-> +			port@1 {
-Same
-> +				reg = <1>;
-> +				pm8150b_typec_mux_out: endpoint {
-> +					remote-endpoint = <&qmpphy_typec_mux_in>;
-> +				};
-> +			};
->  		};
->  	};
->  };
-> -- 
-> 2.39.2
+> Hi Jonathan, Krzysztof,
 > 
+> On Sat, 22 Apr 2023 17:18:07 +0100
+> Jonathan Cameron <jic23@kernel.org> wrote:
 > 
+> > On Fri, 21 Apr 2023 10:52:43 +0200
+> > Herve Codina <herve.codina@bootlin.com> wrote:
+> >   
+> > > The Renesas X9250 is a quad digitally controlled potentiometers.
+> > > 
+> > > Signed-off-by: Herve Codina <herve.codina@bootlin.com>    
+> > 
+> > Hi Herve,
+> > 
+> > Historically we've been a bit lax in IIO bindings in always making
+> > sure the per supplies are included.  As a result we frequently get
+> > them added later and it just makes things messier than they should
+> > be.
+> > 
+> > So please add vcc-supply from the start.  V+ and V- are a little trickier.
+> > I was expecting datasheet to say they should be symmetric about 0 but it
+> > doesn't. So they could be two independent supplies.
+> > 
+> > Also make it required as my current understanding is that we should
+> > do that for supplies that are definitely present even if we could
+> > rely on the fallback to regulator stubs if they aren't supplied.
+> > So add the 3 supplies to required as well.  
+> 
+> Yes, I will add the following supplies in the next iteration:
+>  - 'vcc-supply' for VCC
+>  - 'avp-supply' for the analog V+
+>  - 'avn-supply' for the analog V-
+> 
+> and add them in the required list of properties.
+> 
+> Are the names correct for these power supplies (avp and avn) ?
+
+I think so.  I'm not totally sure on how DT maintainers think we should deal
+with a two voltage level reference though.  Perhaps add some description to
+make it very clear what is going on and we'll see what review comments we get!
+
+Jonathan
