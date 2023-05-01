@@ -2,72 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1C756F2F04
-	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 09:14:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ABF256F2F0A
+	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 09:16:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232101AbjEAHOj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 May 2023 03:14:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60360 "EHLO
+        id S231166AbjEAHQL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 May 2023 03:16:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231755AbjEAHOi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 03:14:38 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC5321BB
-        for <devicetree@vger.kernel.org>; Mon,  1 May 2023 00:14:35 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-94eff00bcdaso447172866b.1
-        for <devicetree@vger.kernel.org>; Mon, 01 May 2023 00:14:35 -0700 (PDT)
+        with ESMTP id S232148AbjEAHQK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 03:16:10 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 914EE1BB
+        for <devicetree@vger.kernel.org>; Mon,  1 May 2023 00:16:07 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-50bc3a2d333so1675590a12.0
+        for <devicetree@vger.kernel.org>; Mon, 01 May 2023 00:16:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682925274; x=1685517274;
+        d=linaro.org; s=google; t=1682925366; x=1685517366;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=DOIEOJwuj8TEMRgeiaU4r+H9yeZtqNC0bcB1IKwq4kE=;
-        b=KaCBOZy7LEgRlOe0HwTpG9hakIxTnOph05EL1M6UI9kqs3oG2e/l9MopbSwHn0THEc
-         8GXcajKjcPlqxhnao5QI8w+rVhznZuBurT3lZbFlT4Nm4H+LziBbKf9ZuJ1FvqJ1YZNh
-         BWYIaX/gLZ4kJGG11Hk7uuBNU+wY9TjFMXyY1vwNIz/JyQi5AGCO3YftonakEzIpuTzb
-         Jhc+7TID/mFr7nECm1WNyPEey6zWFXCgLfsZknLn0/btMmfBPlhylKkrY4oe//ECn5gE
-         lEs6Y5uqduOdDTpPwDHd9jlX2YF8SN0erfwC/m2NOSPYDkePFh6+IGpy0oGTOnQ+ZdFQ
-         jaQg==
+        bh=vGjckqNc9oAKUpdapLyExDXzKNBU6vQzE5IdanHWvf8=;
+        b=GwphBorOFjC3rUTNp6gNHqjnsnneV2ooi20V1lKYA8VKatsTL/LaeRZViMVSEcphMj
+         jEBk6tkzwn+tChW6uSUIXoIdCxlvNKR4/zlyFJ3DHmagiiNs+BDyTEV3uO94AM7qtLpb
+         +7TQf0BPzTU89NcKxwwRgiqpoqBTESG1fWhCW+etPC1PlQny+IPRsX6zaxRVczXWZ1TC
+         dtzEJgIz06XXmMWtYYTRPQPOJUvdXd+YW88TsMGdjjK43Zj9x2mKRCalUxFuiSpSisdb
+         X5fF43GmvlEF20xLMl817FIX50b61X7Py0ahikKz9PMBUF9CFW4ypT51C1igHvDrbiJe
+         8I+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682925274; x=1685517274;
+        d=1e100.net; s=20221208; t=1682925366; x=1685517366;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DOIEOJwuj8TEMRgeiaU4r+H9yeZtqNC0bcB1IKwq4kE=;
-        b=jc9gNqlEPcndxytpV23g8N8Eevsmrr12hpKK+9Ia6teWIrO26VTiqBCVPtmWZQKfUQ
-         H6VgFOwLlaXAP+RymTEnYeQiLFxTX3JKc2a9+CFSiz5kvKkHg2IK71/KFDt7Iu5aZhFR
-         3GWiuxZ1vmqvpJHrBPHIjLiGeFhtgl3EUgyd5LE0Ia324M4CWDDKvz4jXSitAXApcfRO
-         OGlPeF92H/eomY7GlItGMl0dNGvQscY9Ev6Z/UymMwbg2GbphDpm6hdb2u9eEqn9l7M0
-         W9y9i1UNQrq7b2HA7giO4A3JcyjbKxDb/nFKFxwyNj9dirn8Swfj3KHFbNQ8qkTaAZS3
-         n6xw==
-X-Gm-Message-State: AC+VfDw+SSWzAzp7DbhRooI8REsaEAf3dGlR5rBIpCsw7VgR6LuvzWmd
-        /dEotnjuLb3hRWyDi103e8fbmA==
-X-Google-Smtp-Source: ACHHUZ5WoGI/FJ2sX8tq8Y8KioKjeUqed/v9qHagAiQbmJP7XHEag4uekCPI/9iKh5WlZkmmzqn9Dw==
-X-Received: by 2002:a17:906:dc92:b0:94e:ec0f:455 with SMTP id cs18-20020a170906dc9200b0094eec0f0455mr15220138ejc.54.1682925274356;
-        Mon, 01 May 2023 00:14:34 -0700 (PDT)
+        bh=vGjckqNc9oAKUpdapLyExDXzKNBU6vQzE5IdanHWvf8=;
+        b=dBubY5lJQJeAFcwt4llHB289H/9xH3jrNfDsff4Aip3sJ2lXBhu3B4CKA87fQt55qF
+         VjA0bRl1NWJ+bUGumMlrnkVNPxWz3kW/49jbyJzeZpEZSoAGXGHwZpPtPFkhDEIhVWDT
+         NPEs1+Ti2cz+pD3w6Ab9bXRiTEGvJdJRPa59uGiSdwnBmvv5OVlJrwya33/fgDc6qRt/
+         POt/oRVldqYNhmCLgzkRdgbxb5L376s9bEVuTX/dPqzlOYp3sCnD/lJkIc6NkUocjXif
+         MGndDFV3ixcYp5GrDd4TMitN09g2m8UUqqa7yy34dnoOw/2QckJxnuSxp7IuDVNLJACm
+         ccPA==
+X-Gm-Message-State: AC+VfDwpIbFniCjuNa91/LeoELMLb7XQPfsWwd7bG6vwlzsB2wbtV1+C
+        7fjtyWHagGp/0Nwr3xlyidt7hA==
+X-Google-Smtp-Source: ACHHUZ5A4mlItIKcf+06jLmM8x2PTSTW1S18bGkEXUc2vi2ndXcicN+pXi+z+l3LvY1iN87AvbPykA==
+X-Received: by 2002:a05:6402:1214:b0:507:5e52:cdb0 with SMTP id c20-20020a056402121400b005075e52cdb0mr4615980edw.9.1682925366073;
+        Mon, 01 May 2023 00:16:06 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:637a:fd0c:58fd:9f00? ([2a02:810d:15c0:828:637a:fd0c:58fd:9f00])
-        by smtp.gmail.com with ESMTPSA id ia10-20020a170907a06a00b00961277a426dsm3287444ejc.205.2023.05.01.00.14.33
+        by smtp.gmail.com with ESMTPSA id la5-20020a170906ad8500b0094e877ec197sm14722310ejb.148.2023.05.01.00.16.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 May 2023 00:14:33 -0700 (PDT)
-Message-ID: <f449aa76-b3df-5a30-2b82-eaf3faeb1072@linaro.org>
-Date:   Mon, 1 May 2023 09:14:32 +0200
+        Mon, 01 May 2023 00:16:05 -0700 (PDT)
+Message-ID: <62a0c7f6-be34-903a-14ba-21324292c5ec@linaro.org>
+Date:   Mon, 1 May 2023 09:16:04 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
-Subject: Re: [PATCH 4/4] arm64: dts: qcom: ipq9574: add thermal zone nodes
+Subject: Re: [PATCH v2 2/4] dt-bindings: net: can: Add poll-interval for MCAN
 Content-Language: en-US
-To:     Varadarajan Narayanan <quic_varada@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, amitk@kernel.org,
-        thara.gopinath@gmail.com, rafael@kernel.org,
-        daniel.lezcano@linaro.org, rui.zhang@intel.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+To:     "Mendez, Judith" <jm@ti.com>, Rob Herring <robh@kernel.org>
+Cc:     Jakub Kicinski <kuba@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+        devicetree@vger.kernel.org,
+        Oliver Hartkopp <socketcan@hartkopp.net>,
+        linux-can@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Eric Dumazet <edumazet@google.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Schuyler Patton <spatton@ti.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Vignesh Raghavendra <vigneshr@ti.com>, netdev@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Cc:     Praveenkumar I <quic_ipkumar@quicinc.com>
-References: <cover.1682682753.git.quic_varada@quicinc.com>
- <1bda63e18f7257f60cc1082b423aca129abfa3b0.1682682753.git.quic_varada@quicinc.com>
+References: <20230424195402.516-1-jm@ti.com> <20230424195402.516-3-jm@ti.com>
+ <168238155801.4123790.14706903991436332296.robh@kernel.org>
+ <4ca0c282-35ea-c8c3-06f4-59d0de3b18f5@ti.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1bda63e18f7257f60cc1082b423aca129abfa3b0.1682682753.git.quic_varada@quicinc.com>
+In-Reply-To: <4ca0c282-35ea-c8c3-06f4-59d0de3b18f5@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,31 +90,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/04/2023 16:52, Varadarajan Narayanan wrote:
-> This patch adds thermal zone nodes for the various
-> sensors present in IPQ9574
+On 28/04/2023 18:17, Mendez, Judith wrote:
+> Hello Rob,
 > 
-> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/ipq9574.dtsi | 208 ++++++++++++++++++++++++++++++++++
->  1 file changed, 208 insertions(+)
+> On 4/24/2023 7:13 PM, Rob Herring wrote:
+>>
+>> On Mon, 24 Apr 2023 14:54:00 -0500, Judith Mendez wrote:
+>>> On AM62x SoC, MCANs on MCU domain do not have hardware interrupt
+>>> routed to A53 Linux, instead they will use software interrupt by
+>>> hrtimer. To enable timer method, interrupts should be optional so
+>>> remove interrupts property from required section and introduce
+>>> poll-interval property.
+>>>
+>>> Signed-off-by: Judith Mendez <jm@ti.com>
+>>> ---
+>>> Changelog:
+>>> v2:
+>>>    1. Add poll-interval property to enable timer polling method
+>>>    2. Add example using poll-interval property
+>>>
+>>>   .../bindings/net/can/bosch,m_can.yaml         | 26 ++++++++++++++++---
+>>>   1 file changed, 23 insertions(+), 3 deletions(-)
+>>>
+>>
+>> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+>> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>>
+>> yamllint warnings/errors:
+>>
+>> dtschema/dtc warnings/errors:
+>> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml: 'example with interrupts' is not one of ['$id', '$schema', 'title', 'description', 'examples', 'required', 'allOf', 'anyOf', 'oneOf', 'definitions', '$defs', 'additionalProperties', 'dependencies', 'dependentRequired', 'dependentSchemas', 'patternProperties', 'properties', 'not', 'if', 'then', 'else', 'unevaluatedProperties', 'deprecated', 'maintainers', 'select', '$ref']
+>> 	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+>> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml: 'example with timer polling' is not one of ['$id', '$schema', 'title', 'description', 'examples', 'required', 'allOf', 'anyOf', 'oneOf', 'definitions', '$defs', 'additionalProperties', 'dependencies', 'dependentRequired', 'dependentSchemas', 'patternProperties', 'properties', 'not', 'if', 'then', 'else', 'unevaluatedProperties', 'deprecated', 'maintainers', 'select', '$ref']
+>> 	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+>>
+>> doc reference errors (make refcheckdocs):
+>>
+>> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230424195402.516-3-jm@ti.com
+>>
+>> The base for the series is generally the latest rc1. A different dependency
+>> should be noted in *this* patch.
+>>
+>> If you already ran 'make dt_binding_check' and didn't see the above
+>> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+>> date:
+>>
+>> pip3 install dtschema --upgrade
+>>
+>> Please check and re-submit after running the above command yourself. Note
+>> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+>> your schema. However, it must be unset to test all examples with your schema.
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> index 7cd5bdb..a7cb2b4c 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> @@ -947,6 +947,214 @@
->  		};
->  	};
->  
-> +	thermal_zones: thermal-zones {
-> +		tsens_tz_sensor3 {
+> Thanks Rob, I was not getting the errors, but I have fixed now. Thanks.
 
-No underscores in node names.
-
-Don't invent your own names, use the ones we already have everywhere.
-
+There is no way your code have worked, so either you did not test it or
+your setup misses something. In both cases you would see errors, so
+please check what went wrong.
 
 Best regards,
 Krzysztof
