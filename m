@@ -2,116 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 976256F353C
-	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 19:53:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8E096F3514
+	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 19:35:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232602AbjEARvP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 May 2023 13:51:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41180 "EHLO
+        id S232144AbjEARev (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 May 2023 13:34:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232589AbjEARvN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 13:51:13 -0400
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D60682123;
-        Mon,  1 May 2023 10:51:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-        ; s=x; h=Subject:Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Cc:To
-        :From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date
-        :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
-        References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
-        List-Owner:List-Archive; bh=PzJmc0+GvzSfc2yOHqDineOYCekWt+cdUMYavoLGzI4=; b=k
-        1Eb1jh2wo+EWvi7LtyEun/pAGmmrMrZDOcNpDpDpeBZzYu0bCZwlCJEsEngzGn7QAggw0iWp5e7MU
-        GB1oKq7HRqpBDCZVC6jInh+xQdowIznwmrMHI3t0f/MaIHL3vHnXlA3etZ6PB2jzJix0jjYhDx67m
-        9E4mr5cW1zCGzt0A=;
-Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:45966 helo=pettiford.lan)
-        by mail.hugovil.com with esmtpa (Exim 4.92)
-        (envelope-from <hugo@hugovil.com>)
-        id 1ptWyS-0006Ac-Bk; Mon, 01 May 2023 13:06:05 -0400
-From:   Hugo Villeneuve <hugo@hugovil.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>
-Cc:     hugo@hugovil.com, Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Date:   Mon,  1 May 2023 13:05:32 -0400
-Message-Id: <20230501170531.2961459-1-hugo@hugovil.com>
-X-Mailer: git-send-email 2.30.2
+        with ESMTP id S232235AbjEARet (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 13:34:49 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0436E131;
+        Mon,  1 May 2023 10:34:47 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2a8bca69e8bso27031881fa.3;
+        Mon, 01 May 2023 10:34:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1682962485; x=1685554485;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=7qDertiE/stwvspc2q5M0aytmBGASM3Bx9bVGlotrTI=;
+        b=H1PD/IwYaXhSBtmhDB7BvSoHGdrbiodRXgHgi0jJFXhvPlL9vmJkCI4ZDW4zfghPxu
+         HrNaLIN6nXeHm2js3jM0/0jd66WLfJRI1rc7LL4o+adtxftsIrAgyFTWS+27jxXLbhR9
+         i3AIBfG/7JgUn99YcytxevRIz33yzMJb4cR9dDGSVSTh+nHO74GUlSxSkogIWKkTRVn/
+         Lm2d+RVxbC6fft7oq1Bjd8gRybxyOhThoGAsQFav8ZMDTLP567No2HfPkDRdEuEaxYj2
+         h2lzvX5cICzdqphEhAPGRf+l7Bi+dqMWXsHfCoiahUo+gpJjtOC6Gg6y8nCySTE6dO0r
+         fuPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682962485; x=1685554485;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7qDertiE/stwvspc2q5M0aytmBGASM3Bx9bVGlotrTI=;
+        b=aVfk2igx67rQx9iCDUNisprkiAfz2oJi3IzY05ofyLd6sQ4+P0dpOHKmueeTmKLHEh
+         UC21IWHeYmY4FtwfrULTPgAOzAXWoHCeFxZYcUKXETyPcTRx6MKj5K5D1SAziW1y1Okd
+         xVd84vS12LIBztLlcpYUkAd0e9SomCCkvSh2VphWBfq77Y9crNBu03dpgU18HxdqDncd
+         X//HjAiXNcDYlhIbiLxVDMO0iTOep2hWie3dDx+bno9Tvu0f6/UhLcNU1b48bfGXwhr0
+         vbf32PEIMf+LVY4dkkJMFSFjZ1/FlCx8seJ2mf+GJHTlUkXBSm2oCi4HGza7WeBNgBm5
+         suNA==
+X-Gm-Message-State: AC+VfDyanA/F+Nm72AMweYjaE/BhLRldicJEqDiB5MKsUBnIPdHqvV5B
+        ip/5nHTXxKvqal2rNeVMyrY=
+X-Google-Smtp-Source: ACHHUZ5aybLjN1UxarBAuIcxFC0JqilXu2MAFrZTB14DEx4FQybAgyoLcOdNa/gkhlzp/kl6M5FKiA==
+X-Received: by 2002:a2e:9bd1:0:b0:2a9:f640:2032 with SMTP id w17-20020a2e9bd1000000b002a9f6402032mr3755800ljj.5.1682962485045;
+        Mon, 01 May 2023 10:34:45 -0700 (PDT)
+Received: from mobilestation ([95.79.140.35])
+        by smtp.gmail.com with ESMTPSA id z8-20020a2e7e08000000b002a777ce224dsm4750711ljc.138.2023.05.01.10.34.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 May 2023 10:34:44 -0700 (PDT)
+Date:   Mon, 1 May 2023 20:34:42 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     jingoohan1@gmail.com, mani@kernel.org,
+        gustavo.pimentel@synopsys.com, lpieralisi@kernel.org,
+        robh+dt@kernel.org, kw@linux.com, bhelgaas@google.com,
+        kishon@kernel.org, marek.vasut+renesas@gmail.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v14 03/21] PCI: Add INTx Mechanism Messages macros
+Message-ID: <20230501173442.reje55nattksdpuk@mobilestation>
+References: <20230426045557.3613826-1-yoshihiro.shimoda.uh@renesas.com>
+ <20230426045557.3613826-4-yoshihiro.shimoda.uh@renesas.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 70.80.174.168
-X-SA-Exim-Mail-From: hugo@hugovil.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230426045557.3613826-4-yoshihiro.shimoda.uh@renesas.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
-Subject: [PATCH v2] arm64: dts: imx8mn-var-som: fix PHY detection bug by adding deassert delay
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+On Wed, Apr 26, 2023 at 01:55:39PM +0900, Yoshihiro Shimoda wrote:
+> Add "Message Routing" and "INTx Mechanism Messages" macros to send
+> a message by a PCIe driver.
+> 
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> ---
+>  .../pci/controller/dwc/pcie-designware-ep.c   |  1 +
+>  drivers/pci/pci.h                             | 19 +++++++++++++++++++
+>  2 files changed, 20 insertions(+)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-designware-ep.c b/drivers/pci/controller/dwc/pcie-designware-ep.c
+> index f9182f8d552f..205bbcc6af27 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware-ep.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware-ep.c
+> @@ -9,6 +9,7 @@
+>  #include <linux/of.h>
+>  #include <linux/platform_device.h>
+>  
 
-While testing the ethernet interface on a Variscite symphony carrier
-board using an imx8mn SOM with an onboard ADIN1300 PHY (EC hardware
-configuration), the ethernet PHY is not detected.
+> +#include "../../pci.h"
 
-The ADIN1300 datasheet indicate that the "Management interface
-active (t4)" state is reached at most 5ms after the reset signal is
-deasserted.
+Unrelated change since the new macros are left unused in the framework
+of this patch. Please move it to the patch which implies using the new
+defines and where the included header file content is required.
 
-The device tree in Variscite custom git repository uses the following
-property:
+>  #include "pcie-designware.h"
+>  #include <linux/pci-epc.h>
+>  #include <linux/pci-epf.h>
+> diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
+> index 2475098f6518..4be376c121a4 100644
+> --- a/drivers/pci/pci.h
+> +++ b/drivers/pci/pci.h
+> @@ -11,6 +11,25 @@
+>  
+>  #define PCI_VSEC_ID_INTEL_TBT	0x1234	/* Thunderbolt */
+>  
+> +/* Message Routing */
+> +#define PCI_MSG_ROUTING_RC	0
+> +#define PCI_MSG_ROUTING_ADDR	1
+> +#define PCI_MSG_ROUTING_ID	2
+> +#define PCI_MSG_ROUTING_BC	3
+> +#define PCI_MSG_ROUTING_LOCAL	4
+> +#define PCI_MSG_ROUTING_GATHER	5
+> +
+> +/* INTx Mechanism Messages */
+> +#define PCI_CODE_ASSERT_INTA	0x20
+> +#define PCI_CODE_ASSERT_INTB	0x21
+> +#define PCI_CODE_ASSERT_INTC	0x22
+> +#define PCI_CODE_ASSERT_INTD	0x23
+> +#define PCI_CODE_DEASSERT_INTA	0x24
+> +#define PCI_CODE_DEASSERT_INTB	0x25
+> +#define PCI_CODE_DEASSERT_INTC	0x26
+> +#define PCI_CODE_DEASSERT_INTD	0x27
+> +
 
-    phy-reset-post-delay = <20>;
+> +
 
-Add a new MDIO property 'reset-deassert-us' of 20ms to have the same
-delay inside the ethphy node. Adding this property fixes the problem
-with the PHY detection.
+Excessive new line. Please drop it.
 
-Note that this SOM can also have an Atheros AR8033 PHY. In this case,
-a 1ms deassert delay is sufficient. Add a comment to that effect.
+-Serge(y)
 
-Fixes: ade0176dd8a0 ("arm64: dts: imx8mn-var-som: Add Variscite
-VAR-SOM-MX8MN System on Module")
-
-Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
----
- arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi
-index 67072e6c77d5..cbd9d124c80d 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi
-@@ -98,11 +98,17 @@ mdio {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 
--		ethphy: ethernet-phy@4 {
-+		ethphy: ethernet-phy@4 { /* AR8033 or ADIN1300 */
- 			compatible = "ethernet-phy-ieee802.3-c22";
- 			reg = <4>;
- 			reset-gpios = <&gpio1 9 GPIO_ACTIVE_LOW>;
- 			reset-assert-us = <10000>;
-+			/*
-+			 * Deassert delay:
-+			 * ADIN1300 requires 5ms.
-+			 * AR8033   requires 1ms.
-+			 */
-+			reset-deassert-us = <20000>;
- 		};
- 	};
- };
--- 
-2.30.2
-
+>  extern const unsigned char pcie_link_speed[];
+>  extern bool pci_early_dump;
+>  
+> -- 
+> 2.25.1
+> 
