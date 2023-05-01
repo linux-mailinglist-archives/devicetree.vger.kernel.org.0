@@ -2,126 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8BE16F3380
-	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 18:25:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31A606F3388
+	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 18:28:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232064AbjEAQZH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 May 2023 12:25:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50652 "EHLO
+        id S232394AbjEAQ2A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 May 2023 12:28:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229679AbjEAQZG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 12:25:06 -0400
-Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F27F10C2;
-        Mon,  1 May 2023 09:25:05 -0700 (PDT)
-Received: by mail-pf1-x431.google.com with SMTP id d2e1a72fcca58-63b50a02bffso1956578b3a.2;
-        Mon, 01 May 2023 09:25:05 -0700 (PDT)
+        with ESMTP id S230401AbjEAQ17 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 12:27:59 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65E6DE54
+        for <devicetree@vger.kernel.org>; Mon,  1 May 2023 09:27:57 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-50bc070c557so3437718a12.0
+        for <devicetree@vger.kernel.org>; Mon, 01 May 2023 09:27:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682958305; x=1685550305;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Hi2i6+2A7Vme+8Bw6/DbpVhur6f5/wfyKbNa3KD3XxY=;
-        b=gKLjxs75WmlwBqGSSx/wYqqAvwTtUA4KSx3Q+z9o2JPteLVSk0sM2ydoaJwub4ui22
-         SOQj3Hr/OBBQGZiKcaY/tkwCH1cFVUf95hckaIUMnP/YmYsiIVwVX2r1KXALMrpR9f6b
-         xWcIlT67GL5GhbGiLla+ta52oY22/KZUh4AaEGbasgUQ+MnGDfJFOs7orIE2FBMKq8in
-         Y+acU0h3zwre5KQlbqL5v78b0omZIqoZyteSaQciVGjjztuc6SzQK+VW0Yjtzky7hSUj
-         DbiFe4R94r9EigM9dVoEVAyvn9qDEsNZHzfQvTwKtsiIvVFNF7UpdSRVaEzMkJASM3Y3
-         q7pA==
+        d=linaro.org; s=google; t=1682958476; x=1685550476;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=e9lVh64jM33d4LMooLPUuuzQksiW+TZToGUMu7K+YSM=;
+        b=z60/MVK8/HkZ6esdpAiuI19sPObutnIBlyvBt+m5+iuPmWk9mlIC++CgwqIZdaigC5
+         6BKc+LyK/i7ghAuutlJRhCGJFv4Q4mU4fRjUkRFzgXxRV3GbR+gjGvLP1JT3pR4V73ys
+         62vsVXsgvpkpjK/m142eRyIF0+dTY8D1GaqhHa2ua6M9Gxz1A2S4eRtlUbthhQGvcdqG
+         90Wi9/8223Hhd0oZGA8du2yZ45jbggQggiYuVXgywDaGuQJlqzZPHbunE9pWXClmRu2O
+         ERaXQhlJSXyML4lPv3JFs9rOU1Nvm55/Gf74VdBGS0sNq23uaIIicYCDmzehjt7Sz+jg
+         N/ig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682958305; x=1685550305;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Hi2i6+2A7Vme+8Bw6/DbpVhur6f5/wfyKbNa3KD3XxY=;
-        b=jb8vmoF2oFF8Q4CCGC/etTW8OJbpB5XXeuwLUfm0vhuy3/y/00JEID+XULENuNsJFs
-         Usu/g0qg55ms+O8fWJvllja1LxW9JSrreVZqJwKlnU2IkR0c03a7CDLd8Qglz/WO3UDP
-         q7O8Lk2g07efIZxfsleGzRylcOk1Hh0BAVHL/avfVGA5f3xs/oZzMM9l/uo/NO38h6vs
-         xIENycmeh6ShfQvutsW/4OAPbgR5xEkSFruH+lAjUKjTkd7LAOKkGyPwxnAnbXapnMVX
-         gn2gV27Mmgl2PRYaJ8sdrZhwfkbDaJixEigWmZgvmEsO5Ch2HS4fdNrHQPpcVXQRKykr
-         /0Rg==
-X-Gm-Message-State: AC+VfDxActLdoNGEO8VKvEFVLnulMYQsl1NQd3i/iIrB1efDWdoBvFhi
-        ysa49BhhhKyt0/Gq9LXL1wI=
-X-Google-Smtp-Source: ACHHUZ4n14UICtaTafCBlV7ibiarxus3+l8PeLea8hsV8ktohlB6MROy3QkUnTl+1BhcVh+jXYIMxw==
-X-Received: by 2002:a05:6a00:848:b0:63d:23dc:7760 with SMTP id q8-20020a056a00084800b0063d23dc7760mr21489004pfk.2.1682958304491;
-        Mon, 01 May 2023 09:25:04 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:b6ce:736b:e4f7:adb])
-        by smtp.gmail.com with ESMTPSA id q5-20020a056a00084500b0062dae524006sm20078819pfk.157.2023.05.01.09.25.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 May 2023 09:25:03 -0700 (PDT)
-Date:   Mon, 1 May 2023 09:25:00 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Lee Jones <lee@kernel.org>,
-        Philippe Schenker <philippe.schenker@toradex.com>,
-        Stefan Agner <stefan@agner.ch>, Marek Vasut <marex@denx.de>,
-        Steffen Trumtrar <s.trumtrar@pengutronix.de>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-input@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] dt-bindings: MFD: Convert STMPE to YAML schema
-Message-ID: <ZE/n3O6eZRCeBTJy@google.com>
-References: <20230426-stmpe-dt-bindings-v2-0-2f85a1fffcda@linaro.org>
- <20230426-stmpe-dt-bindings-v2-2-2f85a1fffcda@linaro.org>
- <20230427161633.GA3112472-robh@kernel.org>
+        d=1e100.net; s=20221208; t=1682958476; x=1685550476;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=e9lVh64jM33d4LMooLPUuuzQksiW+TZToGUMu7K+YSM=;
+        b=MUPPlLr3YCe2S/TgeFTWXnKhxf5aHXOlDglK0Pb89InYuO7pMdaiSwrk2RMhIj4ihV
+         t4lZJO98qeYra2qHsPl44L1X/nuk9eRMSvTuLc5EzXC/yGnNl8VX4fa5/uLuHv4TwJ7z
+         itiAiTGnc2kB9Cs2dGIiE8BSh3pAPxBoncYkvnXf/5CgBRmEZDlVcawwBXA5ZCBOt4ey
+         KIIgQ70Fhs1FrbwuDtVueqb5PCodTumnw1pPA2GgAkAe93PkVBkh2pyI0FY+qPJGfXm2
+         GMB0YT/7ROcmlXO1sWQYyc0wd65bXUdYqa1f8yNaoNfVyf6I5JawftanontviXZ9np/+
+         JqoA==
+X-Gm-Message-State: AC+VfDznvYsv/GbC8lBkSCEptZZeD8raAiEslwECJoNgg/ZZauZib9y+
+        RWERWMeAEHWJUMzdYH9HLs4afQ==
+X-Google-Smtp-Source: ACHHUZ4ma15X5csw2YRjprlWpBcI6VCQfb3mwFdFMhAU6NHbk6o87oQi1mJMQKSX3tzrxrxRsud46Q==
+X-Received: by 2002:aa7:d9da:0:b0:50a:1d85:319e with SMTP id v26-20020aa7d9da000000b0050a1d85319emr5577899eds.27.1682958475815;
+        Mon, 01 May 2023 09:27:55 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:637a:fd0c:58fd:9f00? ([2a02:810d:15c0:828:637a:fd0c:58fd:9f00])
+        by smtp.gmail.com with ESMTPSA id q9-20020aa7da89000000b005069175dcb7sm12523060eds.58.2023.05.01.09.27.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 01 May 2023 09:27:54 -0700 (PDT)
+Message-ID: <deaca10c-46ac-df19-5540-f1ae4c6fe9f7@linaro.org>
+Date:   Mon, 1 May 2023 18:27:52 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230427161633.GA3112472-robh@kernel.org>
-X-Spam-Status: No, score=1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FSL_HELO_FAKE,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: *
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH] imx8mn-var-som: dts: add SOM EEPROM
+Content-Language: en-US
+To:     Hugo Villeneuve <hugo@hugovil.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20230427195639.2718734-1-hugo@hugovil.com>
+ <88a7cf9e-89a5-7860-2219-337aee04e75e@linaro.org>
+ <20230501094514.38acbacc7f596226f04dc504@hugovil.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230501094514.38acbacc7f596226f04dc504@hugovil.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 27, 2023 at 11:16:33AM -0500, Rob Herring wrote:
-> On Wed, Apr 26, 2023 at 01:21:39PM +0200, Linus Walleij wrote:
-> > This converts the STMPE MFD device tree bindings to the YAML
-> > schema.
-> > 
-> > Reference the existing schema for the ADC, just define the
-> > other subnode schemas directly in the MFD schema.
-> > 
-> > Add two examples so we have examples covering both the simple
-> > GPIO expander and the more complex with ADC and touchscreen.
-> > 
-> > Some in-tree users do not follow the naming conventions for nodes
-> > so these DTS files need to be augmented to use proper node names
-> > like "adc", "pwm", "gpio", "keyboard-controller" etc before the
-> > bindings take effect on them.
-> > 
-> > Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> > ---
-> > ChangeLog v1->v2:
-> > - Split off the GPIO bindings to their own schema, as the old
-> >   bindings didn't even have any GPIO bindings. Put the GPIO
-> >   schema before this schema so we can use GPIO in the examples.
-> > - Drop nodename and pattern as STMPE is not a generic name.
-> > - Add maxItems to the resets.
-> > - Make wakeup-source just :true, as it is a generic property.
-> > - Move unevaluatedProperties for subnodes right before properties
-> >   as requested.
-> > - Name devices "port-expander" in the examples.
-> > - Use lowercase hex in line init.
-> > ---
-> >  .../devicetree/bindings/input/stmpe-keypad.txt     |  41 ---
-> >  .../bindings/input/touchscreen/stmpe.txt           | 108 --------
+On 01/05/2023 15:45, Hugo Villeneuve wrote:
+> On Fri, 28 Apr 2023 15:06:22 +0200
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> 
+>> On 27/04/2023 21:56, Hugo Villeneuve wrote:
+>>> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+>>
+>> Thank you for your patch. There is something to discuss/improve.
+>>
+>>>
+>>> The 4Kbit EEPROM located on the SOM contains hardware configuration
+>>> options, manufacturing infos and ethernet MAC address.
+>>
+>> Use subject prefixes matching the subsystem (which you can get for
+>> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+>> your patch is touching).
+>>
+>>>
+>>> Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+>>> ---
+>>>  arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi | 10 ++++++++++
+>>>  1 file changed, 10 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi
+>>> index 9052b0d4b5b4..3ed396f41e46 100644
+>>> --- a/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi
+>>> +++ b/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi
+>>> @@ -30,6 +30,10 @@ reg_eth_phy: regulator-eth-phy {
+>>>  		gpio = <&gpio2 9 GPIO_ACTIVE_HIGH>;
+>>>  		enable-active-high;
+>>>  	};
+>>> +
+>>> +	aliases {
+>>
+>> Keep nodes ordered.
+>>
+>>> +		eeprom_som = &eeprom_som;
+>>
+>> That's no valid alias. Which upstream kernel driver makes use of this?
+> 
+> Is "eeprom-som" ok?
+> 
+> No driver uses it for now..
 
-Since Rob is happy with the bindings, for the input bits:
+None of them are valid if nothing uses them. There is also no clear
+meaning of this alias to me. Why "som" should denote any alias in
+upstream kernel?
 
-Acked-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Anyway, drop it as there are no users.
 
-Thanks.
+Best regards,
+Krzysztof
 
--- 
-Dmitry
