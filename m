@@ -2,63 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0351C6F3041
-	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 12:38:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91F166F3049
+	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 12:58:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232256AbjEAKiA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 May 2023 06:38:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58166 "EHLO
+        id S232255AbjEAK6n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 May 2023 06:58:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229537AbjEAKh7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 06:37:59 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FFAAD7
-        for <devicetree@vger.kernel.org>; Mon,  1 May 2023 03:37:58 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-3f1738d0d4cso12850795e9.1
-        for <devicetree@vger.kernel.org>; Mon, 01 May 2023 03:37:58 -0700 (PDT)
+        with ESMTP id S231438AbjEAK6m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 06:58:42 -0400
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23CD919D
+        for <devicetree@vger.kernel.org>; Mon,  1 May 2023 03:58:41 -0700 (PDT)
+Received: by mail-pl1-x62b.google.com with SMTP id d9443c01a7336-1aaf706768cso6745755ad.0
+        for <devicetree@vger.kernel.org>; Mon, 01 May 2023 03:58:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682937476; x=1685529476;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=XUFrN73mOh0JgUZRe7aXQZS5NNy9xGVMTM/WhLZlcp4=;
-        b=byoHvCMmhUlW5EU6O9UVDBWuiZ6f6/vcO7hXQEvXxj+870kLIHd+U6kr5e59Z7bh89
-         FtV7Tt5AmfXcrjhtnn0mlc7mDLfCnJM3zJQCLN/KDNpTIsH5djQcv7wjdhyB0TJ2PkNK
-         k0LgSEBPVizKU9LOfBTBoXnMRQOvbq1fWkdh9SyVSHzuGsmJYqqEfLp+O8lSANRsIJ+2
-         /Kbtq9OzzX53T5WxnsMMjLqAV1x7CzF8EH5zA+gdjINvkGNIl/Se0G/M/5Zp8AieIlnf
-         QNR6fcV31aHtNrCIxH9vZgkaK3BlN8aPCqrXeSRzX5+cgVwMJCnF7E07WmRGLzkRcvsW
-         zOLw==
+        d=linaro.org; s=google; t=1682938720; x=1685530720;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=agB2JVlLm7qatGarskVqXIUTBDa1pDkkSP4B/2AFuxQ=;
+        b=WXUwsiJRouuAC3y9DIr8jQWoR0zDOAlNmlecjvFJQREaW+r0SrC+jwp1Q7MuJS1fj4
+         gUuIfCr8h8bEn6udxWzBB2KMY8aFCEtDE196mnqGs8+E3yR5fOfJobLJvf9Sr9lqZUXF
+         mGjtahs9dkBP9iMFuU4yIVT010QyhQFfNiFBzWZD3BHvs2QR3pszxP5NF2T77kY44RIZ
+         RnmSQi04t7q8RRbjibyMuFkAtZqdS2tMlDTNXxdBj/hHfeYizQNW6KYvprXySgyMvuhV
+         x/7GT9+xBvG6s77F4e20iXENsUy9jt55nHd8Lt7DY8KIJByc9VjZKw5+APeqGk8o78Sl
+         DmkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682937476; x=1685529476;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20221208; t=1682938720; x=1685530720;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=XUFrN73mOh0JgUZRe7aXQZS5NNy9xGVMTM/WhLZlcp4=;
-        b=XDOyYFmMVwcqUwSUBje+XsaYBiDzmhsY2jXYluxsJoHBqy7/iAg+raoPKn16taDnoV
-         GvcmYQt4JMcD+wbWrQms0eGf9ePdFTGvZSK1QBG9SN7ZiCxNVUqHpBqjtdxMqYVI8mK8
-         FMxBGYEARknphwFatmkCUhPfrkrEbsUpWxCs5kohcRgavJXn8bG0FfI8TGBLR+k4pCSY
-         KUVuJD7124/36+jgRIWg35uSvJt15jWxFqVgv3OdejsOjhgkfngjsLyzDGCr5CbVgoAP
-         hVL/SE9rBZwrgwymIhJn1yiN3gyh5VJJAs9f8jeH/ue1eto6Gkk2npUHvWCV5CPzBGkP
-         zZpg==
-X-Gm-Message-State: AC+VfDxUBylqQufeP3NYxzsB/7Pfl1U9fvieEA5feEdcAItdb+pF9nnA
-        FuAx8sMDBlmdBTDQy4enHnULrNzyVI1aWDG8zwlDuw==
-X-Google-Smtp-Source: ACHHUZ5IdM5Qveq9OfQ8rEUvlCr0SKGNHHh0wMsIpYCugnf3wnjOK6EF+kdiJZBvF1zZRAdR4PIJ3D7CiLgO5Pymows=
-X-Received: by 2002:a7b:ca47:0:b0:3f3:1cb7:b2a3 with SMTP id
- m7-20020a7bca47000000b003f31cb7b2a3mr8615957wml.9.1682937476525; Mon, 01 May
- 2023 03:37:56 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230501102035.1180701-1-bhupesh.sharma@linaro.org> <6a37f442-3448-93d0-99dd-705f2727f80a@linaro.org>
-In-Reply-To: <6a37f442-3448-93d0-99dd-705f2727f80a@linaro.org>
+        bh=agB2JVlLm7qatGarskVqXIUTBDa1pDkkSP4B/2AFuxQ=;
+        b=FX0b4XxuTGBobNCStoekcjbxb7riy3p3caF2y0DJqtFlw24txWXd8xVlXwJrjtqEx8
+         Ajjrv00JQFkRhoJdERxoRlZmWM+6q0awRDY+Z5mwJSIhD59ttsOkNWKOG68oYFn3v/0C
+         FwbEzSkDdOCtVTKtP1JSCBox7ok0fyNqt6/WvIUTG+yIIuer9jJ5ZIwM0Le9tGCSj6Kh
+         YytUic+/SE6eG4fZfpGZmsclCej7I7yQs5/9cmaRj0NxbMjJo6x+VcrKnEvzsEwbYNQf
+         OWleHPwrU6becdFwJimD7BqJ8Ekw4dnXLk+V5r+0XyIWPDzdtru/2EFzaYKD+OHiydA9
+         r7tw==
+X-Gm-Message-State: AC+VfDzMn55IrtQIuHXRdgokZR90iIxgAdvhDtG/Uzg1Oqkq18l+ANaD
+        O7rLc6h4GZWV0WVbsI4vzemipA==
+X-Google-Smtp-Source: ACHHUZ49wOIVT6FmNHeEg4ymKVi5J7feR6/bqFdRXKqDD7+vHGcrDsUuUlZgkQm3gS0Xtk9y++XcNQ==
+X-Received: by 2002:a17:902:868a:b0:1a9:6183:f965 with SMTP id g10-20020a170902868a00b001a96183f965mr13732927plo.60.1682938720604;
+        Mon, 01 May 2023 03:58:40 -0700 (PDT)
+Received: from localhost.localdomain ([2401:4900:1f3b:58fa:39f6:37e1:bb9a:a094])
+        by smtp.gmail.com with ESMTPSA id c24-20020a170902849800b001a50ae08284sm17569516plo.301.2023.05.01.03.58.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 May 2023 03:58:40 -0700 (PDT)
 From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Mon, 1 May 2023 16:07:45 +0530
-Message-ID: <CAH=2Ntw0ihy0j=Yx1PTjr1O9asgeFCp8CGVwvnJ97aJ7Ky8Epw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: qrb4210-rb2: Add SD pinctrl states
- & fix CD gpio
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org,
+To:     linux-arm-msm@vger.kernel.org
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
         linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
-        robh+dt@kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        bhupesh.sharma@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski@linaro.org, devicetree@vger.kernel.org
+Subject: [PATCH v2 0/3] arm64: dts: qcom: QRB4210-RB2 board: Enable more peripherals
+Date:   Mon,  1 May 2023 16:28:29 +0530
+Message-Id: <20230501105832.1185477-1-bhupesh.sharma@linaro.org>
+X-Mailer: git-send-email 2.38.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -69,18 +70,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 1 May 2023 at 16:06, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 01/05/2023 12:20, Bhupesh Sharma wrote:
-> > Add the default and sleep pinctrl states for SDHC1 & 2 controllers
-> > on QRB4210 RB2 board.
-> >
-> > While at it also fix the Card-Detect (CD) gpio for SDHC2 which
-> > allows the uSD card to be detected on the board.
->
-> Separate commit is needed for the fix with Fixes tag.
+Changes since v1:
+-----------------
+- v1 can be seen here: https://lore.kernel.org/linux-arm-msm/20230501102035.1180701-2-bhupesh.sharma@linaro.org/
+- Converted the SDHC2 CD gpio fix into a separate patch as
+  suggested by Krzysztof.
 
-Ok, will send a separate patch in v2.
+Add the default and sleep pinctrl states for SDHC1 & 2 controllers
+on QRB4210 RB2 board.
 
-Thanks.
+While at it also fix the Card-Detect (CD) gpio for SDHC2 which
+allows the uSD card to be detected on the board.
+
+Also enable the adsp and cdsp remoteproc nodes on QRB4210-RB2 board.
+
+Bhupesh Sharma (3):
+  arm64: dts: qcom: qrb4210-rb2: Add SD pinctrl states
+  arm64: dts: qcom: qrb4210-rb2: Fix CD gpio for SDHC2
+  arm64: dts: qcom: qrb4210-rb2: Enable aDSP and cDSP remoteproc nodes
+
+ arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 27 +++++++++++++++++++++++-
+ 1 file changed, 26 insertions(+), 1 deletion(-)
+
+-- 
+2.38.1
+
