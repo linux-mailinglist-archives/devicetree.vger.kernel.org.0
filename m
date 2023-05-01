@@ -2,103 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 034AB6F3334
-	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 17:53:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A5756F333A
+	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 17:55:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229676AbjEAPxe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 May 2023 11:53:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38362 "EHLO
+        id S232611AbjEAPzA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 May 2023 11:55:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232725AbjEAPxa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 11:53:30 -0400
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89F9A133
-        for <devicetree@vger.kernel.org>; Mon,  1 May 2023 08:53:25 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-3f20215fa70so15696035e9.0
-        for <devicetree@vger.kernel.org>; Mon, 01 May 2023 08:53:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682956404; x=1685548404;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0Bga0vZzC4L79FRxacqWbNseyFQGyNhclCbouCWknrM=;
-        b=fpJnPgcYxYiQ/yfJhzB6Sq6JHqsnCSHwcIGGmhoZfV2sjnc6h79lMbN4gTGk/aOel/
-         QXHH6FyUYIC4kkA1UKubZeAtJtGVIJW0nDgeACM/MBpocwRzXP5EtW5VKKatICS3qrXn
-         crDtbwW6TN0M94tGgQmMvjtTwgaGIw4/1VNPHKoZ3ULSKAC61WuhOZBptkWcrtIwvP0W
-         kzplxPnCI+oNunia3FGUFtbgQoeJRbFJgjfs1KI48gUqjsXhDsSk8nsw0nEYH/gMkIWQ
-         SkY8naSYyYcjafh79r8KPdiQG+kNT5aYlzWfmvDt6zwZNR8aOeAkixy2j+UOzLYaAv5u
-         4viw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682956404; x=1685548404;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0Bga0vZzC4L79FRxacqWbNseyFQGyNhclCbouCWknrM=;
-        b=RB9diLjercUWgYDBgkLUOljhqMjx1qgctYB29vydby/ZJK7zX5x+ev2b/I4GW1Q+5q
-         X2+NeFTwFFuE6qfpErOQGZxPfzX02Rca7C5QeKF0d09Y09Sc+akDeXDjduZauVGwIgwP
-         UpsmrrfdoBzuZXstWcOiEx4+6CbeGQ5bLh66oMZ2/C0aR4ZMFUI33x3LZ0L8U9O1kLnM
-         yTmUpFfd226AjRyiDAZ6Md/WIy8JiwZt7mRSJx/PQ9Tw2YIR1rVmUwFgb3PAGecePSfN
-         8jhBJYMcjFh4fyifMCRyZVp+OKh4O2Tv4HVFqInEqNPxqvKl7pc3a62M7iCWkFd2pPCJ
-         zl3w==
-X-Gm-Message-State: AC+VfDzsXm5pBQIHba2RznPoorafNY/onKuE7UwUb+oogdEjNJjdtwkX
-        36XsAbexC1McAEp900riH1mgRg==
-X-Google-Smtp-Source: ACHHUZ4gZnNpSd7p8hok7HgSNi5vQ5xGkT/iONnUHoH0gTPsUFM3kLFCdLTUT0kiBscWZR6PHvdS7A==
-X-Received: by 2002:a7b:ce8b:0:b0:3f1:6faa:d94c with SMTP id q11-20020a7bce8b000000b003f16faad94cmr10465153wmj.16.1682956404065;
-        Mon, 01 May 2023 08:53:24 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id x24-20020a1c7c18000000b003f183127434sm32899129wmc.30.2023.05.01.08.53.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 May 2023 08:53:23 -0700 (PDT)
-Message-ID: <bf5b4a43-192d-f1f7-253d-c60b884fe344@linaro.org>
-Date:   Mon, 1 May 2023 16:53:22 +0100
+        with ESMTP id S232878AbjEAPy4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 11:54:56 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9ED3B1727;
+        Mon,  1 May 2023 08:54:50 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 341FsTPV098494;
+        Mon, 1 May 2023 10:54:29 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1682956469;
+        bh=4coXDpE0/Y5EQZ9gowVWKeuRdJ9toGycs3TMmHan6v4=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=nFmrLDZ/IrJtzFdnLS5d0N5RSmbZFPLp9RakxxOvs9j1H6in8m6uMn9cPnAyLbJ+H
+         1SVn4+igCSeAKLhv/8l5mCxrxkFKym6/EPdy44GKDTCFxf8E3iXJNCjWdolSBfQujv
+         hSyd8p8Wv92rFUh3ym2zMDw1kGSpmkp+L/Gav9dI=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 341FsTYA028981
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 1 May 2023 10:54:29 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 1
+ May 2023 10:54:29 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 1 May 2023 10:54:29 -0500
+Received: from [128.247.81.102] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 341FsTRA116139;
+        Mon, 1 May 2023 10:54:29 -0500
+Message-ID: <4e406c96-3f47-1695-324f-a9e45be8c142@ti.com>
+Date:   Mon, 1 May 2023 10:54:29 -0500
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v6 12/13] arm64: dts: qcom: qrb5165-rb5: Switch on TCPM
- usb-role-switching for usb_1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH v2 3/4] DO_NOT_MERGE arm64: dts: ti: Add AM62x MCAN MAIN
+ domain transceiver overlay
 Content-Language: en-US
-To:     Jianhua Lu <lujianhua000@gmail.com>
-Cc:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
-        gregkh@linuxfoundation.org, andersson@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        luca.weiss@fairphone.com, linux-usb@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        caleb.connolly@linaro.org, konrad.dybcio@linaro.org,
-        subbaram@quicinc.com, jackp@quicinc.com, robertom@qti.qualcomm.com
-References: <20230501121111.1058190-1-bryan.odonoghue@linaro.org>
- <20230501121111.1058190-13-bryan.odonoghue@linaro.org>
- <ZE_Y5BvxiimB9mu8@Gentoo>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <ZE_Y5BvxiimB9mu8@Gentoo>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Nishanth Menon <nm@ti.com>
+CC:     Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, <linux-can@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Schuyler Patton <spatton@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>,
+        Oliver Hartkopp <socketcan@hartkopp.net>
+References: <20230424195402.516-1-jm@ti.com> <20230424195402.516-4-jm@ti.com>
+ <20230425124722.pnp7rkuanoml2zvj@nanny>
+From:   "Mendez, Judith" <jm@ti.com>
+In-Reply-To: <20230425124722.pnp7rkuanoml2zvj@nanny>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/05/2023 16:21, Jianhua Lu wrote:
-> This port node should be moved out to the block of pm8150b_typec rather than
-> usb-c-connector. Otherwise,
+Hello Nishanth,
+
+On 4/25/2023 7:47 AM, Nishanth Menon wrote:
+> On 14:54-20230424, Judith Mendez wrote:
+>> Add an overlay for main domain MCAN on AM62x SK. The AM62x
+>> SK board does not have on-board CAN transceiver so instead
+>> of changing the DTB permanently, add an overlay to enable
+>> MAIN domain MCAN and support for 1 CAN transceiver.
+>>
+>> Signed-off-by: Judith Mendez <jm@ti.com>
+>> ---
+>>   arch/arm64/boot/dts/ti/Makefile               |  2 ++
+>>   .../boot/dts/ti/k3-am625-sk-mcan-main.dtso    | 35 +++++++++++++++++++
+>>   2 files changed, 37 insertions(+)
+>>   create mode 100644 arch/arm64/boot/dts/ti/k3-am625-sk-mcan-main.dtso
+>>
 > 
-> [   10.998897] OF: graph: no port node found in /soc@0/spmi@c440000/pmic@2/typec@1500
+> Just a headsup - for a formal patch, for the overlay, please ensure we
+> provide link to the specific board. I dont want to end up with 1000s
+> of overlay files, each enabling one specific peripheral instance of a
+> small subgroup of peripheral instance. Overlays should be describing a
+> real platform with product link.
 
+Will add in the next submission, thanks.
 
-Ports/endpoints should go in the connector.
-
-Documentation/devicetree/bindings/connector/usb-connector.yaml
-
-grep usb-c-connector arch/arm* -r
-
-This dtsi should be updated
-
-arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi != 
-Documentation/devicetree/bindings/usb/nxp,ptn5110.yaml
-
----
-bod
+regards,
+Judith
