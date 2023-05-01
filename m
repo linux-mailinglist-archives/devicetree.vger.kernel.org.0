@@ -2,207 +2,333 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D98B6F3515
-	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 19:35:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02DD86F3527
+	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 19:44:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232236AbjEARf1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 May 2023 13:35:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34198 "EHLO
+        id S232512AbjEARnd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 May 2023 13:43:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229688AbjEARf0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 13:35:26 -0400
-Received: from sonic312-26.consmr.mail.ir2.yahoo.com (sonic312-26.consmr.mail.ir2.yahoo.com [77.238.178.97])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAE02131
-        for <devicetree@vger.kernel.org>; Mon,  1 May 2023 10:35:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rocketmail.com; s=s2048; t=1682962521; bh=04OPKsj/QXXjTdmsQM9AQpCh3NGap/ezTNnwVf4o7A0=; h=Date:Subject:To:Cc:References:From:In-Reply-To:From:Subject:Reply-To; b=BOTy4ygXDLp0GINCVl1Tv3QImHmX/M3+9YqcoVEoZwL0z9/s20ETHAdEfw9flJXQJdJ2ebTV87qxvy8cacOVdDoTYQhc5SEUyHteuJ0QaSf+oI5V4MW0ktg9k2Vl7L8Wx4JL4yGiqfvN8Hf+cz7DUsCJZB3ib+njTysLc4WEGuI9S2guryuBieVz4VpX8XXUx+ppXITKTeIDXbWwEn/fSE9NDGNa1LSC/u98sQ5/MI/tnTaxHk6cv2fRT0pR3TYIxtmOPOpaEMaypwFWWVhLjlQfEc6r5Nt+9TextlJ3QGDSAh3946HUpW24dIHNowQ9yBeacuLjehrWlU+/BmJ6Mg==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1682962521; bh=yqxcxKhFdH+GYt/iBDDt7ZHDKTJivpCj4DGIO7xiYez=; h=X-Sonic-MF:Date:Subject:To:From:From:Subject; b=abqH5tWIhKr3fHy6EaLh371VNF3xOpTW/i10a6A3IR7Ap1T5B5VI2N662cNyazwjSAJbMeB+jkQVRwyUlbxiE/S66eGIk2hPc5mJlK+aNJwbNmY1J1rb1Gh0jHxR36CmWaKgeaX55ApVcZlk5GmWkqLb2rffGSLetxTC73yn0nML6lNTzk5LdSApy1fu6M7ii9lF1UjqKdVfVOsKyAqwJEDZMwR0G+AxILGx2MdNu3y71C01R5WAUAiqnGzAv4CKKxN2e2MpjQLVCt0a8Xgk572e5QryCkbMGT+7zbl27v7IbBz0usmQ5ysn7GrBOYNpSB0aLtcp4qeUP7MKnzq27g==
-X-YMail-OSG: PBmjzDIVM1mkBY8P665SrsROmABT91m8vWhuKRVhFQiwzNNw85_qX5Fxp2IZ2us
- pRwvAazripnyowzY9UpTfgWK1eFqrGb7yUW.YDU6.3i5OFo2KC04Oqj0to2MELkf2QcBmL4bhl57
- qJ7Ik7wdb0mcmvs5zY_X3pYpr7mT7Tvkk4aT2XyGHycJgHQ2qPxaqL8dhrCTkfJzazZDvx3_lFS2
- bV74h2F75a6HmQI5PRJdxKb.C46jePfyswNvfDiv0TJ6a8OOJqPk8oZTE_bUhimyUaGkWRNPYSJ2
- 5o2kCQfh1tlWy4kuw99Lbrp7dd08xN8Twf8wsmTOpPK9k0cuFCO2D61ukprCybLFBnNiTyxnRisF
- TrQOZ8Eou2aEWSxnkVGrTT0Rw9N.f13KQQKMidMnMqKhg.DRlCp7Wzl_LRwnPkXuM.s6gGedR5Nd
- Z8O7ncxFpBLxWfy7rUYHSabzqIr2UXxGttkW6hQM6XIWF2ZkV_sp2cSY_3BVph.hGXReFSyS_cXD
- wd6XVj5MYv0En2NaAHonX5hP2nazAPA5WXqnirkZdrgl7i2g_fLdYWLD6MbN6iKwJycLVzAwKwj9
- WSO6GU9B7A33WiqHKB1sntHYAWAprKlv1WyLrZ2Ap9HtFAMqLX9uE0FOX0zDO8mJxchPvOXJ.gyE
- h8SJOPMkOweFqmiJ9jBRnyrAKNH_axbaP8CCk4GXGg9enn.hpMkiY0EodnHScepyitj8WIZLwLQx
- REbTevq_yVfp6fRaSqma6s702Ap1BrsbJuJCPJ94Pq3vi57XrYetQUr0lPxSyAUTsOkWocrVlHI_
- LpoXvkNfT_WZdmPhw3xsLxefITvcQiecX23KxN9E985gPEy4.AYkv37QHe805W.fTAy3.1DBA6Jj
- 5KJ04mypFIesnpuJELkMJikVp5IKkfwvGmE.uOetgjvGnhMGojAW2tjAkPOgWw.2hancxXAqd4cQ
- t6.MaCFuDg9_fzrM7xlSpb4.YMY38x.dFFLznK92kmns4xyO7Sq5qLem3lUyzW1naIL0_oE_2Lyd
- YZpzDWN2Hr3bxOeGZmAuwsnpuOSCgs9K15WjlTugFWnKmOBw0IPhSLpetuqurFQ8uNfG0RikPRTF
- rhBQjpc.bZdb5bKd7QkLw3D7oeX0nPU6psvNmOAOh4DHM.YpjoQdqAHdp19mapG.8Fy3kigaDhR2
- j.Hb_l0NFad22Oj36GCbH78yak84bLYCs.ZXoZIo0dYxchkXkY8Z0vcGmdbj5ivgcYLnKOr3Ft_s
- yY4YuA1WRQo10LeJ0ds5x8Xx5WLdeySnKijEnaGow7KIld7LCVwE5OKQrxPRT5Jd9zUFp7mbRrCx
- 8XysNajw7A2An9qJLososL8VXA9N1eh0LccH6q_XknKfv.C0D0kT8sl0MUwXfpEdiSH8tKMyCQ1x
- D5l9zRGmpA4VvWHCzDNLnADt.fe.GYkG9_VjFx20ifYXu5DKDrAmJuRZwhSXwqY3A46fiCxtsbLr
- we8dK30lcsXpAw4qq6oEkAiX5HW1s.n7JtK5AmZx0Dy6oOuW8EEVUBBoQ3bZC1Z1ZMeBP3tg4SmB
- OZDCbGXRL4sMLdEUYeNJeXtspF.QwdqsKgHlWncbGan2yHYj95ngy6pudnEq7kCE49PumLXGvnwx
- 98nKzSMp5l17wIIxuJ1K3mm5jCFFAt1NtV5QBzMeuH42AR23zUgor2s15wZzk62YEWDSIkffNEa3
- RuNYFO97cawtscRR7NWGtU0ErWEWfxOg.yw23Zyo91X_qc7rO5u8nhgt7mxXMu786sgRi1gsFRAQ
- UgqQTya1fY3SubUXJGITSSzuYN_7apYeTYye.2osppSnEZuFU9sVINx4Ws0Q4V.410XrzyNwAv4x
- Ig1tscc4N191l01TRSnhUf5jxllYWxC2fXWSBzkVrkHESbmxjBwFu.4sPGVgKcNdZxmXJW7zJWmo
- 8fCBMwYJwHonvsT9dC49t1zabFVIU89uypGV0uDHU1CjuD_DdE8wQHh0UjZvX93GYy8OH5x67aoj
- zc3A7Tt.oIUCY_ys8YTlQYIthDV8701Bia_gJjgfSO5Zu1IRrCTX5UvHdQsoZ1g5EImYSqfqDbec
- Etj9GjA5e3FhZJDNbAHZxEauFrIIidJyTxu1sSqGV_lnlSDWbcAKBnypbNdkTREzujYrHLAm52ox
- S9A9xifCpbwhOJGOxeeL5IK_X.E8DxkmKRGGSmkHEnZVJ9ABwJEY2yNjLC8a7fgkAxkJwzU7X461
- Mou00q7JGcvGHgeVK_KXWZkYKlfMuu5Wu3ey9tDfqPIXT_wI5BqpVlX0LoEvmW6KmUo7x2cBina4
- 5_DnYowHqf1R2Gptax_Us0giKqyLxQmhZMjcc
-X-Sonic-MF: <jahau@rocketmail.com>
-X-Sonic-ID: d71d16b2-9418-40a1-bd45-1abcb6944291
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic312.consmr.mail.ir2.yahoo.com with HTTP; Mon, 1 May 2023 17:35:21 +0000
-Received: by hermes--production-ir2-74cd8fc864-9w846 (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 8f3be1312e7b717e7c5ba74fc348ffb4;
-          Mon, 01 May 2023 17:35:16 +0000 (UTC)
-Message-ID: <e9d75e57-bdea-593d-7b05-136c9ad2e2fe@rocketmail.com>
-Date:   Mon, 1 May 2023 19:35:14 +0200
+        with ESMTP id S232494AbjEARnc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 13:43:32 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EC551B4
+        for <devicetree@vger.kernel.org>; Mon,  1 May 2023 10:43:27 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-2f55ffdbaedso1560968f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 01 May 2023 10:43:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1682963006; x=1685555006;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=KWAQxRppuZL76jxl312jAhqOoymrs7nJ8TG4C726RtE=;
+        b=CoydJabmyK6nsiu4/DyVcD32sGakdDP3vSNK7d7+Kj2YBWx8NuwQrs/vT4xv9RkZSy
+         fPt7ZVFP2loG2ZtXuw4JY2V4IVHt7r8xx0rPMAfQjoGnp3vBkzB/Bb/HUmeBCCJS6e7q
+         uL7bef3K1d2OKjFBLAAIr5JbAQLmfpzCBWzXUnxslBlEn0iLJqqtH6+FxGsbzxhD5ExI
+         Mc507jIwmHAHedxkatF7ptCgSJP3QX0szConssBMKmGJFYWtT8SZwkAHkXooO4jnPIai
+         ZmO7TPnLoppaXkt34OMamXzl67aPDR5MIG5qIZ42Dfox0SYfvCUWSPQOOZ4hbFyTcuKf
+         VXww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682963006; x=1685555006;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KWAQxRppuZL76jxl312jAhqOoymrs7nJ8TG4C726RtE=;
+        b=fgUcEz7pmX4xo7naefZUa4hxaZE/bXU49+f0fiRAvuVqxf9sHhXY/sS+xGd4gtysGv
+         lNsqNAjMsOOUwUybBqtKniaANqI8/oGW72TcQ3csGXjyATotWn4Tvgu5YB7FagRSLJfo
+         yhNu8KjY0tArBZbmHLgXuCJpxMeHVlauoZDtt2IwVD89zV9aW+rX1eL2E4CC+ymsnCQC
+         pJgTZPrjbnhQoMITMbZuOXqiDvzbNjIcDSiIkWLWqRZz9Syrvh3nI1VKmEJtDxHeNnrs
+         /UiZ4iwKKXSVgpG/u1bz8C8b8W/VIUtic+VYsFiQdOptTvzD9N8mgwChoD0q3b3bFiJN
+         Depg==
+X-Gm-Message-State: AC+VfDyuDNZvG9DMK46EQw731zXG4M3w8Qa8BRxad9vMtYtPXAOboBVN
+        FoLYwtA1urIYawgtKKgqhBSWQg==
+X-Google-Smtp-Source: ACHHUZ41tSRIwqt4t/r56GXoMbyRL5di4OgNoAeDZuDa65UkAb7PtSfmleaf6RGcDoS3+Ui3FnRZdg==
+X-Received: by 2002:adf:cc89:0:b0:304:a40c:43c3 with SMTP id p9-20020adfcc89000000b00304a40c43c3mr9973070wrj.45.1682963005887;
+        Mon, 01 May 2023 10:43:25 -0700 (PDT)
+Received: from localhost ([2a04:cec0:11b2:f613:c075:6ab:a69e:307d])
+        by smtp.gmail.com with ESMTPSA id j14-20020adfea4e000000b002fc3d8c134bsm28854132wrn.74.2023.05.01.10.43.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 May 2023 10:43:25 -0700 (PDT)
+References: <20230417065005.24967-1-yu.tu@amlogic.com>
+ <20230417065005.24967-5-yu.tu@amlogic.com>
+ <20230426110538.y2d4qhv2qffc62vj@CAB-WSD-L081021>
+ <6cc4c3f2-4df5-6456-fe65-71aa4a13c866@amlogic.com>
+User-agent: mu4e 1.8.13; emacs 28.2
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Yu Tu <yu.tu@amlogic.com>,
+        Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Cc:     linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        kelvin.zhang@amlogic.com, qi.duan@amlogic.com
+Subject: Re: [PATCH V7 4/4] clk: meson: s4: add support for Amlogic S4 SoC
+ peripheral clock controller
+Date:   Mon, 01 May 2023 19:37:58 +0200
+In-reply-to: <6cc4c3f2-4df5-6456-fe65-71aa4a13c866@amlogic.com>
+Message-ID: <1jpm7kuev7.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v3 8/8] dt-bindings: Add rt5033 mfd, regulator and charger
-To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Sebastian Reichel <sre@kernel.org>, Lee Jones <lee@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Beomho Seo <beomho.seo@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Raymond Hackley <raymondhackley@protonmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Axel Lin <axel.lin@ingics.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <cover.1682636929.git.jahau@rocketmail.com>
- <5bd8b90713a61129acf292a941eb7fb5ccaa3db4.1682636929.git.jahau@rocketmail.com>
- <1d187f41-ad9a-4e82-8557-20694a8294d0@linaro.org>
-Content-Language: en-US
-From:   Jakob Hauser <jahau@rocketmail.com>
-In-Reply-To: <1d187f41-ad9a-4e82-8557-20694a8294d0@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Mailer: WebService/1.1.21417 mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
 
-On 01.05.23 09:21, Krzysztof Kozlowski wrote:
-> On 28/04/2023 01:30, Jakob Hauser wrote:
->> Add device tree binding documentation for rt5033 multifunction device, voltage
->> regulator and battery charger.
->>
->> Cc: Beomho Seo <beomho.seo@samsung.com>
->> Cc: Chanwoo Choi <cw00.choi@samsung.com>
->> Signed-off-by: Jakob Hauser <jahau@rocketmail.com>
-> 
-> 
-> (...)
-> 
->> +
->> +required:
->> +  - monitored-battery
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    charger {
->> +        compatible = "richtek,rt5033-charger";
->> +        monitored-battery = <&battery>;
->> +        extcon = <&muic>;
-> 
-> 
-> Everything up to here looked ok, but extcon is not a hardware property.
-> Please do not mix adding missing bindings for existing device with
-> adding new properties. You should use connector for the USB port.
-> 
+On Thu 27 Apr 2023 at 16:15, Yu Tu <yu.tu@amlogic.com> wrote:
 
-Rob already raised this in v1. In patch 8 v3 comments below '---' I 
-mentioned that the extcon phandle is still there because I don't 
-understand what to do.
+> On 2023/4/26 19:05, Dmitry Rokosov wrote:
+>> [Some people who received this message don't often get email from
+>> ddrokosov@sberdevices.ru. Learn why this is important at
+>> https://aka.ms/LearnAboutSenderIdentification ]
+>> [ EXTERNAL EMAIL ]
+>> On Mon, Apr 17, 2023 at 02:50:05PM +0800, Yu Tu wrote:
+>>> Add the peripherals clock controller driver in the s4 SoC family.
+>>>
+>>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
+>>> ---
+>>>   drivers/clk/meson/Kconfig          |   12 +
+>>>   drivers/clk/meson/Makefile         |    1 +
+>>>   drivers/clk/meson/s4-peripherals.c | 3814 ++++++++++++++++++++++++++++
+>>>   drivers/clk/meson/s4-peripherals.h |  217 ++
+>>>   4 files changed, 4044 insertions(+)
+>>>   create mode 100644 drivers/clk/meson/s4-peripherals.c
+>>>   create mode 100644 drivers/clk/meson/s4-peripherals.h
+>>>
+>>> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+>>> index a663c90a3f3b..a6eb9fa15c74 100644
+>>> --- a/drivers/clk/meson/Kconfig
+>>> +++ b/drivers/clk/meson/Kconfig
+>>> @@ -128,4 +128,16 @@ config COMMON_CLK_S4_PLL
+>>>          aka s4. Amlogic S805X2 and S905Y4 devices include AQ222 and AQ229.
+>>>          Say Y if you want the board to work, because plls are the parent of most
+>>>          peripherals.
+>>> +
+>>> +config COMMON_CLK_S4
+>>> +     tristate "S4 SoC Peripherals clock controllers support"
+>>> +     depends on ARM64
+>>> +     default y
+>>> +     select COMMON_CLK_MESON_REGMAP
+>>> +     select COMMON_CLK_MESON_DUALDIV
+>>> +     select COMMON_CLK_MESON_VID_PLL_DIV
+>>> +     help
+>>> +       Support for the Peripherals clock controller on Amlogic S805X2 and S905Y4
+>>> +       devices, aka s4. Amlogic S805X2 and S905Y4 devices include AQ222 and AQ229.
+>>> +       Say Y if you want peripherals to work.
+>>>   endmenu
+>>> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
+>>> index 376f49cc13f1..c9130afccb48 100644
+>>> --- a/drivers/clk/meson/Makefile
+>>> +++ b/drivers/clk/meson/Makefile
+>>> @@ -20,3 +20,4 @@ obj-$(CONFIG_COMMON_CLK_GXBB) += gxbb.o gxbb-aoclk.o
+>>>   obj-$(CONFIG_COMMON_CLK_G12A) += g12a.o g12a-aoclk.o
+>>>   obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o meson8-ddr.o
+>>>   obj-$(CONFIG_COMMON_CLK_S4_PLL) += s4-pll.o
+>>> +obj-$(CONFIG_COMMON_CLK_S4) += s4-peripherals.o
+>> [...]
+>
+> ?
+>
+>> 
+>>> +static struct clk_regmap s4_ceca_32k_clkin = {
+>>> +     .data = &(struct clk_regmap_gate_data){
+>>> +             .offset = CLKCTRL_CECA_CTRL0,
+>>> +             .bit_idx = 31,
+>>> +     },
+>>> +     .hw.init = &(struct clk_init_data) {
+>>> +             .name = "ceca_32k_clkin",
+>>> +             .ops = &clk_regmap_gate_ops,
+>>> +             .parent_data = (const struct clk_parent_data []) {
+>>> +                     { .fw_name = "xtal", }
+>>> +             },
+>>> +             .num_parents = 1,
+>>> +     },
+>>> +};
+>>> +
+>>> +static struct clk_regmap s4_ceca_32k_div = {
+>>> +     .data = &(struct meson_clk_dualdiv_data){
+>>> +             .n1 = {
+>>> +                     .reg_off = CLKCTRL_CECA_CTRL0,
+>>> +                     .shift   = 0,
+>>> +                     .width   = 12,
+>>> +             },
+>>> +             .n2 = {
+>>> +                     .reg_off = CLKCTRL_CECA_CTRL0,
+>>> +                     .shift   = 12,
+>>> +                     .width   = 12,
+>>> +             },
+>>> +             .m1 = {
+>>> +                     .reg_off = CLKCTRL_CECA_CTRL1,
+>>> +                     .shift   = 0,
+>>> +                     .width   = 12,
+>>> +             },
+>>> +             .m2 = {
+>>> +                     .reg_off = CLKCTRL_CECA_CTRL1,
+>>> +                     .shift   = 12,
+>>> +                     .width   = 12,
+>>> +             },
+>>> +             .dual = {
+>>> +                     .reg_off = CLKCTRL_CECA_CTRL0,
+>>> +                     .shift   = 28,
+>>> +                     .width   = 1,
+>>> +             },
+>>> +             .table = s4_32k_div_table,
+>>> +     },
+>>> +     .hw.init = &(struct clk_init_data){
+>>> +             .name = "ceca_32k_div",
+>>> +             .ops = &meson_clk_dualdiv_ops,
+>>> +             .parent_hws = (const struct clk_hw *[]) {
+>>> +                     &s4_ceca_32k_clkin.hw
+>>> +             },
+>>> +             .num_parents = 1,
+>>> +     },
+>>> +};
+>>> +
+>>> +static struct clk_regmap s4_ceca_32k_sel_pre = {
+>>> +     .data = &(struct clk_regmap_mux_data) {
+>>> +             .offset = CLKCTRL_CECA_CTRL1,
+>>> +             .mask = 0x1,
+>>> +             .shift = 24,
+>>> +             .flags = CLK_MUX_ROUND_CLOSEST,
+>>> +     },
+>>> +     .hw.init = &(struct clk_init_data){
+>>> +             .name = "ceca_32k_sel_pre",
+>>> +             .ops = &clk_regmap_mux_ops,
+>>> +             .parent_hws = (const struct clk_hw *[]) {
+>>> +                     &s4_ceca_32k_div.hw,
+>>> +                     &s4_ceca_32k_clkin.hw
+>>> +             },
+>>> +             .num_parents = 2,
+>>> +             .flags = CLK_SET_RATE_PARENT,
+>>> +     },
+>>> +};
+>>> +
+>>> +static struct clk_regmap s4_ceca_32k_sel = {
+>>> +     .data = &(struct clk_regmap_mux_data) {
+>>> +             .offset = CLKCTRL_CECA_CTRL1,
+>>> +             .mask = 0x1,
+>>> +             .shift = 31,
+>>> +             .flags = CLK_MUX_ROUND_CLOSEST,
+>>> +     },
+>>> +     .hw.init = &(struct clk_init_data){
+>>> +             .name = "ceca_32k_sel",
+>>> +             .ops = &clk_regmap_mux_ops,
+>>> +             .parent_hws = (const struct clk_hw *[]) {
+>>> +                     &s4_ceca_32k_sel_pre.hw,
+>>> +                     &s4_rtc_clk.hw
+>>> +             },
+>>> +             .num_parents = 2,
+>>> +             .flags = CLK_SET_RATE_PARENT,
+>> In my opinion, all clocks that can inherit from a more accurate RTC clock
+>> should be marked with the CLK_SET_RATE_NO_REPARENT flag.
+>> This is necessary because in certain situations, it may be required to
+>> freeze their parent. The setup of these clocks' parent should be located
+>> on the device tree's side.
+>
+> We don't need to freeze parent,in a real project.
 
-The devices using rt5033 I'm aware of:
+"a real project" to whom ?
 
-- arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
-     used by:
-     - msm8916-samsung-a3u-eur.dts
-     - msm8916-samsung-a5u-eur.dts
-- arch/arm64/boot/dts/qcom/msm8916-samsung-e2015-common.dtsi
-     used by:
-     - msm8916-samsung-e5.dts
-     - msm8916-samsung-e7.dts
-     - msm8916-samsung-grandmax.dts
-- arch/arm64/boot/dts/qcom/msm8916-samsung-serranove.dts
+Dmitry remark makes sense to me.
 
-not yet mainlined:
-- arch/arm64/boot/dts/qcom/msm8916-samsung-gprime-common.dtsi
-     used by:
-     - msm8916-samsung-fortuna3g.dts
-     - msm8916-samsung-fortunaltezt.dts
-     - msm8916-samsung-gprimeltecan.dts
+>
+>> [...]
+>> 
+>>> +
+>>> +/*
+>>> + * gen clk is designed for debug/monitor some internal clock quality. Some of the
+>>> + * corresponding clock sources are not described in the clock tree and internal clock
+>>> + * for debug, so they are skipped.
+>>> + */
+>>> +static u32 s4_gen_clk_mux_table[] = { 0, 4, 5, 7, 19, 21, 22,
+>>> +                                   23, 24, 25, 26, 27, 28 };
+>>> +static const struct clk_parent_data s4_gen_clk_parent_data[] = {
+>>> +     { .fw_name = "xtal", },
+>>> +     { .hw = &s4_vid_pll.hw },
+>>> +     { .fw_name = "gp0_pll", },
+>>> +     { .fw_name = "hifi_pll", },
+>>> +     { .fw_name = "fclk_div2", },
+>>> +     { .fw_name = "fclk_div3", },
+>>> +     { .fw_name = "fclk_div4", },
+>>> +     { .fw_name = "fclk_div5", },
+>>> +     { .fw_name = "fclk_div7", },
+>>> +     { .fw_name = "mpll0", },
+>>> +     { .fw_name = "mpll1", },
+>>> +     { .fw_name = "mpll2", },
+>>> +     { .fw_name = "mpll3", },
+>>> +};
+>>> +
+>>> +static struct clk_regmap s4_gen_clk_sel = {
+>>> +     .data = &(struct clk_regmap_mux_data){
+>>> +             .offset = CLKCTRL_GEN_CLK_CTRL,
+>>> +             .mask = 0x1f,
+>>> +             .shift = 12,
+>>> +             .table = s4_gen_clk_mux_table,
+>>> +     },
+>>> +     .hw.init = &(struct clk_init_data){
+>>> +             .name = "gen_clk_sel",
+>>> +             .ops = &clk_regmap_mux_ops,
+>>> +             .parent_data = s4_gen_clk_parent_data,
+>>> +             .num_parents = ARRAY_SIZE(s4_gen_clk_parent_data),
+>> I think, the gen_clk selector should be marked with the
+>> CLK_SET_RATE_NO_REPARENT flag. This is because the GEN clock can be
+>> connected to an external pad and may be set up directly from the
+>> device tree.
+>
+> This is used by the debug table clock and is not connected externally.
+>
 
-They all have either an SM5502 or SM5504 MUIC (Micro-USB Interface 
-Controller) chip installed. It reports the information what type of 
-connector got plugged into the USB plug. An example for the devicetree 
-entry can be found at the bottom of 
-Documentation/devicetree/bindings/extcon/siliconmitus,sm5502-muic.yaml [1].
+Again, Dmitry remark is very interresting.
+This debug clock is typacally one you don't really want to automatically reparent
 
-Documentation on the connector binding you are referring to would be the 
-following, I guess: 
-Documentation/devicetree/bindings/connector/usb-connector.yaml [2].
+>> 
+>>> +     },
+>>> +};
+>>> +
+>>> +static struct clk_regmap s4_gen_clk_div = {
+>>> +     .data = &(struct clk_regmap_div_data){
+>>> +             .offset = CLKCTRL_GEN_CLK_CTRL,
+>>> +             .shift = 0,
+>>> +             .width = 11,
+>>> +     },
+>>> +     .hw.init = &(struct clk_init_data){
+>>> +             .name = "gen_clk_div",
+>>> +             .ops = &clk_regmap_divider_ops,
+>>> +             .parent_hws = (const struct clk_hw *[]) {
+>>> +                     &s4_gen_clk_sel.hw
+>>> +             },
+>>> +             .num_parents = 1,
+>>> +             .flags = CLK_SET_RATE_PARENT,
+>>> +     },
+>>> +};
+>>> +
+>>> +static struct clk_regmap s4_gen_clk = {
+>>> +     .data = &(struct clk_regmap_gate_data){
+>>> +             .offset = CLKCTRL_GEN_CLK_CTRL,
+>>> +             .bit_idx = 11,
+>>> +     },
+>>> +     .hw.init = &(struct clk_init_data) {
+>>> +             .name = "gen_clk",
+>>> +             .ops = &clk_regmap_gate_ops,
+>>> +             .parent_hws = (const struct clk_hw *[]) {
+>>> +                     &s4_gen_clk_div.hw
+>>> +             },
+>>> +             .num_parents = 1,
+>>> +             .flags = CLK_SET_RATE_PARENT | CLK_GET_RATE_NOCACHE,
+>>> +     },
+>>> +};
+>>> +
+>> [...]
+>> --
+>> Thank you,
+>> Dmitry
 
-It's not clear to me what to do. To my understanding, in the devicetree 
-of the device a "connector" node should be placed within the extcon/muic 
-node. Like this? (Connector node at the very bottom.)
-
-i2c-muic {
-	compatible = "i2c-gpio";
-	sda-gpios = <&msmgpio 105 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
-	scl-gpios = <&msmgpio 106 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
-
-	pinctrl-names = "default";
-	pinctrl-0 = <&muic_i2c_default>;
-
-	#address-cells = <1>;
-	#size-cells = <0>;
-
-	muic: extcon@14 {
-		compatible = "siliconmitus,sm5504-muic";
-		reg = <0x14>;
-
-		interrupt-parent = <&msmgpio>;
-		interrupts = <12 IRQ_TYPE_EDGE_FALLING>;
-
-		pinctrl-names = "default";
-		pinctrl-0 = <&muic_irq_default>;
-
-		usb_con: connector {
-			compatible = "usb-b-connector";
-			label = "micro-USB";
-			type = "micro";
-		};
-	};
-};
-
-And how to set up the rt5033-charger to retrieve the information of the 
-extcon/muic driver in that case?
-
-I was looking for examples but didn't find anything that helped me to 
-answer that question.
-
-[1] 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/extcon/siliconmitus,sm5502-muic.yaml?h=v6.3
-[2] 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/connector/usb-connector.yaml?h=v6.3
-
-Kind regards,
-Jakob
