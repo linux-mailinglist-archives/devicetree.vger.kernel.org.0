@@ -2,142 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B73B26F3233
-	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 16:41:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CADB6F3269
+	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 17:03:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232536AbjEAOlJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 May 2023 10:41:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52610 "EHLO
+        id S232208AbjEAPD4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 May 2023 11:03:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232655AbjEAOlH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 10:41:07 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AFE797;
-        Mon,  1 May 2023 07:41:02 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id CB20760A4B;
-        Mon,  1 May 2023 14:41:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CD1AC4339C;
-        Mon,  1 May 2023 14:40:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1682952061;
-        bh=II96033K2OvsJfg6xZbEKR4CP+yge9pQUJpGu7RIYTM=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=MVSOKMkSr0HyJ2pQUdTklZ5WKpNFSK7m10EdN1yXA89uHepIap2tV5CLxxsWCiEon
-         DdeDzbfUnRtA8OFQ44UjCIQuKUwT9QOhqJvgqScCfL2hBHTiDX8Ha3ObvVtS95eQpU
-         ib2solvE5dCGZH5D5/9VtzeYSFbFGIrfj9V9gQxxMHzU7JIYkEYXyrnJ1oCxE6cep4
-         2W1jHjFcF+p5e/Vwd0TsiR5EeH5y9LsYkEnnL73CvkHIcLDW+n0uQMKBuHmZDm8kWy
-         5tnuZb32Lfe6eFJFIIc7+MNDzgkdv8XIcbCowPYGN2RUDnf6/gmE+isTPw0no9TTbD
-         ViKymV+RBXWow==
-Date:   Mon, 1 May 2023 15:56:45 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Mehdi Djait <mehdi.djait.k@gmail.com>
-Cc:     mazziesaccount@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-        andriy.shevchenko@linux.intel.com, robh+dt@kernel.org,
-        lars@metafoo.de, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 7/7] iio: accel: Add support for Kionix/ROHM
- KX132-1211 accelerometer
-Message-ID: <20230501155645.435242f0@jic23-huawei>
-In-Reply-To: <593798a44c8ba45f969b86aa29e172d59065958c.1682373451.git.mehdi.djait.k@gmail.com>
-References: <cover.1682373451.git.mehdi.djait.k@gmail.com>
-        <593798a44c8ba45f969b86aa29e172d59065958c.1682373451.git.mehdi.djait.k@gmail.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
+        with ESMTP id S229688AbjEAPDz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 11:03:55 -0400
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com (mail-db5eur01hn2214.outbound.protection.outlook.com [52.100.6.214])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1885ED;
+        Mon,  1 May 2023 08:03:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ujz8Vaq/WC5zF0heXU3NhJ1NR+Vd0wOizthEMi9rrZ4=;
+ b=KwljsIek9oPb+XOZLdnjWbwPwHMrkzii2vqftw5/MekXR1eknie1yHZvI056IOPmauBoOfm3G/hiJejkdUnCGZur8kfG5h/UYIZSY8dkt6unSB8eb5sAc1DRE3pX4e+UTkUOgndU4jCFS/yOgWlNc+O2llIq5J36wJWWu/wFYkHyY/TLqizDbiMpanFD5TBYtbJuPdUo9TC4Y+Ioi0+IAn9MbfnvxOjpcxhJe0+j1SednxERJPnfBhT9xrqP9aWj1xRIMD4QCO3pR+4IfuUYd8u4QlnrcrCKtgTm+T9zCZcSZ73Gl5QbYCO/fJ7v19WLTvH9juUAVrHNUPo4UqJI9w==
+Received: from AM5PR0602CA0018.eurprd06.prod.outlook.com
+ (2603:10a6:203:a3::28) by AM9PR03MB6708.eurprd03.prod.outlook.com
+ (2603:10a6:20b:2da::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6340.30; Mon, 1 May
+ 2023 15:03:49 +0000
+Received: from VI1EUR05FT048.eop-eur05.prod.protection.outlook.com
+ (2603:10a6:203:a3:cafe::9b) by AM5PR0602CA0018.outlook.office365.com
+ (2603:10a6:203:a3::28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6340.30 via Frontend
+ Transport; Mon, 1 May 2023 15:03:49 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 20.160.56.82)
+ smtp.mailfrom=seco.com; dkim=pass (signature was verified)
+ header.d=seco.com;dmarc=pass action=none header.from=seco.com;
+Received-SPF: Pass (protection.outlook.com: domain of seco.com designates
+ 20.160.56.82 as permitted sender) receiver=protection.outlook.com;
+ client-ip=20.160.56.82; helo=inpost-eu.tmcas.trendmicro.com; pr=C
+Received: from inpost-eu.tmcas.trendmicro.com (20.160.56.82) by
+ VI1EUR05FT048.mail.protection.outlook.com (10.233.243.188) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6363.19 via Frontend Transport; Mon, 1 May 2023 15:03:48 +0000
+Received: from outmta (unknown [192.168.82.135])
+        by inpost-eu.tmcas.trendmicro.com (Trend Micro CAS) with ESMTP id 3A71620080097;
+        Mon,  1 May 2023 15:03:48 +0000 (UTC)
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (unknown [104.47.14.51])
+        by repre.tmcas.trendmicro.com (Trend Micro CAS) with ESMTPS id 3CD9B20080073;
+        Mon,  1 May 2023 15:03:54 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=iYa2o5sxqmQOyEI8l817AkKtpB4e79g3LzCVCzgkt4Er4K61KWmymdCINhPwJSS5jxCyBetHtPy8BaITFK/y8RR40UGfMmHk64o4IL9boZTswjOK0ZWiVckAlKtXDlL7I0SAiWQcMhqgJwzIEpFOxE7lnAPNdeKqkiWsuVpB/nVUBszj9jcR6ZOxisHsyGo3GFMLUxiB1gJN7OpYv8QXKuwIm7QJ0rBKr3XFAxL2eRt+vdTmQPPMChcwyit6aSB4TgcO0jI4ZMGpOTEeG2TBZdvTj2sKmNNXgKxIsFqerWHrU0L6HkZCPPVoKttBddpQnR6iZNYYdp9+kTk/aqsjgQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ujz8Vaq/WC5zF0heXU3NhJ1NR+Vd0wOizthEMi9rrZ4=;
+ b=ZIU4OCsVaQ4oaGOlBgidL/v59szT2sFBRixz1aA4tCi87MfTZqswb1iHtaIk9kNJytkVs5RvRNW8V+4+hi4Q8nB9je2BQF3NI1Zx2g2iBy+RHn69BIteE9Sn193haky0QEwSV4uB8s5P7QsyfnwHZPjcMcbb+RUl3E8fGNiOwq64lXXsoshMlCxwHwBbbVeOFE7uDH/djgW535LAXyo/W4pf2HORq+uDrs6lnRN9PQ0Dsmd8AeCCrb7AiDR7EH0p9IB5XhgDmGv3zeKBjE9Wh/X+6mQT3VmBEHq5nmaOsKpDOjfqhET1z8qke0CXNNv0llGlXq/oisjGx+Gk0/YrDw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
+ dkim=pass header.d=seco.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ujz8Vaq/WC5zF0heXU3NhJ1NR+Vd0wOizthEMi9rrZ4=;
+ b=KwljsIek9oPb+XOZLdnjWbwPwHMrkzii2vqftw5/MekXR1eknie1yHZvI056IOPmauBoOfm3G/hiJejkdUnCGZur8kfG5h/UYIZSY8dkt6unSB8eb5sAc1DRE3pX4e+UTkUOgndU4jCFS/yOgWlNc+O2llIq5J36wJWWu/wFYkHyY/TLqizDbiMpanFD5TBYtbJuPdUo9TC4Y+Ioi0+IAn9MbfnvxOjpcxhJe0+j1SednxERJPnfBhT9xrqP9aWj1xRIMD4QCO3pR+4IfuUYd8u4QlnrcrCKtgTm+T9zCZcSZ73Gl5QbYCO/fJ7v19WLTvH9juUAVrHNUPo4UqJI9w==
+Authentication-Results-Original: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=seco.com;
+Received: from DB9PR03MB8847.eurprd03.prod.outlook.com (2603:10a6:10:3dd::13)
+ by AS2PR03MB9720.eurprd03.prod.outlook.com (2603:10a6:20b:60c::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6340.30; Mon, 1 May
+ 2023 15:03:40 +0000
+Received: from DB9PR03MB8847.eurprd03.prod.outlook.com
+ ([fe80::d632:8122:75f7:7b0e]) by DB9PR03MB8847.eurprd03.prod.outlook.com
+ ([fe80::d632:8122:75f7:7b0e%3]) with mapi id 15.20.6340.026; Mon, 1 May 2023
+ 15:03:40 +0000
+Message-ID: <c81d23b6-ed22-0b37-d71b-ddce9d5d58eb@seco.com>
+Date:   Mon, 1 May 2023 11:03:25 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH v14 00/15] phy: Add support for Lynx 10G SerDes
+Content-Language: en-US
+To:     Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-phy@lists.infradead.org,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Camelia Alexandra Groza <camelia.groza@nxp.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linuxppc-dev@lists.ozlabs.org,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        =?UTF-8?B?RmVybuKUnMOtbmRleiBSb2phcw==?= <noltari@gmail.com>,
+        Jonas Gorski <jonas.gorski@gmail.com>,
+        Jonathan Corbet <corbet@lwn.net>, Li Yang <leoyang.li@nxp.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-gpio@vger.kernel.org
+References: <20230425195002.fls5cmwolyrslpad@skbuf>
+ <b7779674-c3ac-e0ab-3ca8-db1ec5953a97@seco.com>
+ <20230426105140.t4yqv6irtjcwptm5@skbuf>
+ <20230425195002.fls5cmwolyrslpad@skbuf>
+ <b7779674-c3ac-e0ab-3ca8-db1ec5953a97@seco.com>
+ <20230426105140.t4yqv6irtjcwptm5@skbuf>
+ <7c7ab84b-3c4a-4e44-b5b5-4acf733a0246@seco.com>
+ <7c7ab84b-3c4a-4e44-b5b5-4acf733a0246@seco.com>
+ <20230429172422.vc35tnwkekfieoru@skbuf>
+From:   Sean Anderson <sean.anderson@seco.com>
+In-Reply-To: <20230429172422.vc35tnwkekfieoru@skbuf>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: BYAPR01CA0070.prod.exchangelabs.com (2603:10b6:a03:94::47)
+ To DB9PR03MB8847.eurprd03.prod.outlook.com (2603:10a6:10:3dd::13)
+MIME-Version: 1.0
+X-MS-TrafficTypeDiagnostic: DB9PR03MB8847:EE_|AS2PR03MB9720:EE_|VI1EUR05FT048:EE_|AM9PR03MB6708:EE_
+X-MS-Office365-Filtering-Correlation-Id: 740ebef5-3fbb-40eb-a9f3-08db4a554496
+X-TrendMicro-CAS-OUT-LOOP-IDENTIFIER: 656f966764b7fb185830381c646b41a1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam-Untrusted: BCL:0;
+X-Microsoft-Antispam-Message-Info-Original: oYDMIWYmn0bDW16ssgclvuP5oNqewTKMuAlxeR7PZdHaAnN6TCN8xnVpVT79QF0/zfgQuv1famjvyfAEZIldAD1G0BOESf+lWLz/yOjsWTvspZPVZnbLCEcHsUCBPfF9zS/8US4hOszUOVLJMoXRiA/nAvLR8haCvCMjv/pTevs/4xd9IiwKCTvh/uxy/1UafCnNSRsYk2nn3nKRpM/iA5Dm08xv+bmiePb0JkSJHvmGIdfm82+C5YfppC+d2rr7EJ3GkEWfLvKVs/Cn3PoRrBP/Q3hHD/dX39GYapIMPUvawX0eaQBg9YMv6iER4ogGDhA00ITPMM+GaPJqVIMIb4FtimTHQK2RHue5+gXTcxO78WBCRFk7OD4OESraYb3H8BzpvfeT+fXuZoJLLvO95a+wIpp3MDoWUdnploqA7zI1l5EVkV93PHWZ0iDEj2iyU9st8YXYsPVTVnUNiz5W2CsNoAHs4q3WZmVwY6+trRDU7g8AvRaX6Mv10MBJQJD7lcfxqV2hlRd8CDLCbt9PCQcRHrIykfpnyYGiH/hmqtv96PdF5JtmnSzlab8ca2B5pXVIezdGs06igBCXq/fBPZtX4dX8J73XI5O3apjrgpSKEdIAkzDbz37nUO4SfrJiOF9rZqHeoKCYuRgR4aCjcLROOmZZbSrUG8HMCW3N+hDLh7zMlI0BcazOFD5Juhbo
+X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR03MB8847.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(136003)(366004)(396003)(39840400004)(346002)(376002)(451199021)(66946007)(5660300002)(7416002)(8676002)(8936002)(44832011)(41300700001)(66899021)(316002)(36756003)(31696002)(86362001)(38350700002)(2906002)(38100700002)(31686004)(186003)(478600001)(2616005)(83380400001)(6486002)(52116002)(6666004)(53546011)(6506007)(6512007)(26005)(4326008)(54906003)(6916009)(66556008)(66476007)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS2PR03MB9720
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped: VI1EUR05FT048.eop-eur05.prod.protection.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id-Prvs: a825f5f8-6692-4cc6-bef2-08db4a553f5f
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: rlWVjl/na7Cwrv2CArafhQVbiLB4Od4G4yi1TaQarJgzSwbVkuPxWo6CMAtGWoHwxslzG3CrYUH5VU65wLAxvdWs45AWDkra/5/tbokRtfMEQlf+qzll0MSKa2FjrstYYYqcshSA2005n0a0caEUfTHMIMYgmx4Ylnz5g2Zj63n9DNDHjPGJta2EwUMf/cjKCbG6suGG5+1GiYHWd9pvft6E2Ofo3oppG4KNanGMcYRmQpJ4KmJ8fFOHpmj6tIAP/OkucccZi7zL38OoWqTJ7bySGLDbg8PFV7crln6HgoekvA2P1XEuaG8LCTjD6ElyYtUIZQTFaKWKDrCdrt08qAN1KvY9ppOsts7jO7ZoKEO1Gm9dctjzOFZYB2jT7sfFTk/lZDe4sLPTFj0WkJ4isdBL2Yzt81aIxi/rYuE4/kHgcpTafsj/2VOjLf1Y6zvWsZeOPyEBlpZcLorri4HKJ3mR2cDU7Vp1pZKNR5riexUZbOluKKs1Z3tNIoe2Y9kR+7kdLEs1a511f05W2AWkcDgY/6mwae15C5KvjAxlKbBmcr8oao874GJIaORJw1gmJAEcIsET23wkPFuscsE1O9X9taORKVODg4ba16kzoj5LVfAYL1aiCT69ZcLCaQ/eX7DMh9r30DPzUaqWef8SIQWiSBDI1J0p+NGyez0WihnmW0Y4VOSW5Og0nrzUHGyEFkFdcmDUr4N5pmzIqq/UiBG5GugcbwTaI2MvDNNW4+23gPmNtXkPCRgQrHK9I7mW6vRqB7Xikx229fjGAEKlvg==
+X-Forefront-Antispam-Report: CIP:20.160.56.82;CTRY:NL;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:inpost-eu.tmcas.trendmicro.com;PTR:inpost-eu.tmcas.trendmicro.com;CAT:NONE;SFS:(13230028)(136003)(346002)(396003)(39840400004)(376002)(5400799015)(451199021)(46966006)(36840700001)(6916009)(66899021)(31686004)(2616005)(316002)(6512007)(6506007)(4326008)(53546011)(40480700001)(82310400005)(8936002)(34020700004)(44832011)(8676002)(7416002)(31696002)(86362001)(5660300002)(186003)(70586007)(54906003)(26005)(70206006)(478600001)(41300700001)(36860700001)(83380400001)(47076005)(336012)(36756003)(7636003)(7596003)(356005)(2906002)(6486002)(6666004)(43740500002)(12100799030);DIR:OUT;SFP:1501;
+X-OriginatorOrg: seco.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 May 2023 15:03:48.5519
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 740ebef5-3fbb-40eb-a9f3-08db4a554496
+X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=bebe97c3-6438-442e-ade3-ff17aa50e733;Ip=[20.160.56.82];Helo=[inpost-eu.tmcas.trendmicro.com]
+X-MS-Exchange-CrossTenant-AuthSource: VI1EUR05FT048.eop-eur05.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR03MB6708
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 25 Apr 2023 00:22:27 +0200
-Mehdi Djait <mehdi.djait.k@gmail.com> wrote:
+On 4/29/23 13:24, Vladimir Oltean wrote:
+> On Wed, Apr 26, 2023 at 10:50:17AM -0400, Sean Anderson wrote:
+>> > I need to catch up with 14 rounds of patches from you and with the
+>> > discussions that took place on each version, and understand how you
+>> > responded to feedback like "don't remove PHY interrupts without finding
+>> > out why they don't work"
+>> 
+>> All I can say is that
+>> 
+>> - It doesn't work on my board
+>> - The traces are on the bottom of the PCB
+>> - The signal goes through an FPGA which (unlike the LS1046ARDB) is closed-source
+> 
+> I don't understand the distinction you are making here. Are the sources
+> for QIXIS bit streams public for any Layerscape board?
 
-> Kionix KX132-1211 is a tri-axis 16-bit accelerometer that can support
-> ranges from =C2=B12G to =C2=B116G, digital output through I=C2=B2C/SPI.
-> Add support for basic accelerometer features such as reading acceleration
-> via IIO using raw reads, triggered buffer (data-ready), or the WMI IRQ.
->=20
-> Datasheet: https://kionixfs.azureedge.net/en/document/KX132-1211-Technica=
-l-Reference-Manual-Rev-5.0.pdf
-> Signed-off-by: Mehdi Djait <mehdi.djait.k@gmail.com>
+Correct. The sources for the LS1046ARDB QIXIS are available for download.
 
-Two tiny things inline. =20
+>> - The alternative is polling once a second (not terribly intensive)
+> 
+> It makes a difference to performance (forwarded packets per second), believe it or not.
 
-> +static int kx132_get_fifo_bytes(struct kx022a_data *data)
-> +{
-> +	struct device *dev =3D regmap_get_device(data->regmap);
-> +	__le16 buf_status;
-> +	int ret, fifo_bytes;
-> +
-> +	ret =3D regmap_bulk_read(data->regmap, data->chip_info->buf_status1,
-> +			       &buf_status, sizeof(buf_status));
-> +	if (ret) {
-> +		dev_err(dev, "Error reading buffer status\n");
-> +		return ret;
-> +	}
-> +
-> +	fifo_bytes =3D le16_to_cpu(buf_status);
-> +	fifo_bytes &=3D data->chip_info->buf_smp_lvl_mask;
+I don't. Please elaborate how link status latency from the phy affects performance.
 
-Slight preference for FIELD_GET() as it saves me checking the mask includes
-lowest bits.
+>> 
+>> I think it's very reasonable to make this change. Anyway, it's in a separate
+>> patch so that it can be applied independently.
+> 
+> Perhaps better phrased: "discussed separately"...
+> 
+>> > Even if the SERDES and PLL drivers "work for you" in the current form,
+>> > I doubt the usefulness of a PLL driver if you have to disconnect the
+>> > SoC's reset request signal on the board to not be stuck in a reboot loop.
+>> 
+>> I would like to emphasize that this has *nothing to do with this driver*.
+>> This behavior is part of the boot ROM (or something like it) and occurs before
+>> any user code has ever executed. The problem of course is that certain RCWs
+>> expect the reference clocks to be in certain (incompatible) configurations,
+>> and will fail the boot without a lock. I think this is rather silly (since
+>> you only need PLL lock when you actually want to use the serdes), but that's
+>> how it is. And of course, this is only necessary because I was unable to get
+>> major reconfiguration to work. In an ideal world, you could always boot with
+>> the same RCW (with PLL config matching the board) and choose the major protocol
+>> at runtime.
+> 
+> Could you please tell me what are the reference clock frequencies that
+> your board provides at boot time to the 2 PLLs, and which SERDES
+> protocol out of those 2 (1133 and 3333) boots correctly (no RESET_REQ
+> hacks necessary) with those refclks? I will try to get a LS1046A-QDS
+> where I boot from the same refclk + SERDES protocol configuration as
+> you, and use PBI commands in the RCW to reconfigure the lanes (PLL
+> selection and protocol registers) for the other mode, while keeping the
+> FRATE_SEL of the PLLs unmodified.
 
+ From table 31-1 in the RM, the PLL mapping for 1133 is 2211, and the
+ PLL mapping for 3333 is 2222. As a consequence, for 1133, PLL 2 must be
+ 156.25 MHz and PLL 1 must be either 100 or 125 MHz. And for 3333, PLL 2
+ must be either 100 or 125 MHz, and PLL 1 should be shut down (as it is
+ unused). This conflict for PLL 2 means that the same reference clock
+ configuration cannot work for both 1133 and 3333. In one of the
+ configurations, SRDS_RST_RR will be set in RSTRQSR1. On our board,
+ reference clock 1 is 156.25 MHz, and reference clock 2 is 125 MHz.
+ Therefore, 3333 will fail to boot. Unfortunately, this reset request
+ occurs before any user-configurable code has run (except the RCW), so
+ it is not possible to fix this issue with e.g. PBI.
 
-> +
-> +	return fifo_bytes;
-> +}
-> +
->  static int __kx022a_fifo_flush(struct iio_dev *idev, unsigned int sample=
-s,
->  			       bool irq)
->  {
-> @@ -1036,6 +1157,32 @@ const struct kx022a_chip_info kx022a_chip_info =3D=
- {
->  };
->  EXPORT_SYMBOL_NS_GPL(kx022a_chip_info, IIO_KX022A);
-> =20
-> +const struct kx022a_chip_info kx132_chip_info =3D {
-> +	.name		  =3D "kx132-1211",
-> +	.regmap_config	  =3D &kx132_regmap_config,
-> +	.channels	  =3D kx132_channels,
-> +	.num_channels	  =3D ARRAY_SIZE(kx132_channels),
-> +	.fifo_length	  =3D KX132_FIFO_LENGTH,
-> +	.who		  =3D KX132_REG_WHO,
-> +	.id		  =3D KX132_ID,
-> +	.cntl		  =3D KX132_REG_CNTL,
-> +	.cntl2		  =3D KX132_REG_CNTL2,
-> +	.odcntl		  =3D KX132_REG_ODCNTL,
-> +	.buf_cntl1	  =3D KX132_REG_BUF_CNTL1,
-> +	.buf_cntl2	  =3D KX132_REG_BUF_CNTL2,
-> +	.buf_clear	  =3D KX132_REG_BUF_CLEAR,
-> +	.buf_status1	  =3D KX132_REG_BUF_STATUS_1,
-> +	.buf_smp_lvl_mask =3D KX132_MASK_BUF_SMP_LVL,
-
-There are some things in here (typically where the define isn't used
-anywhere else) where I think it would be easier to follow if the
-value was listed here.  Masks and IDs for example.=20
-
-> +	.buf_read	  =3D KX132_REG_BUF_READ,
-> +	.inc1		  =3D KX132_REG_INC1,
-> +	.inc4		  =3D KX132_REG_INC4,
-> +	.inc5		  =3D KX132_REG_INC5,
-> +	.inc6		  =3D KX132_REG_INC6,
-> +	.xout_l		  =3D KX132_REG_XOUT_L,
-> +	.get_fifo_bytes	  =3D kx132_get_fifo_bytes,
-> +};
-> +EXPORT_SYMBOL_NS_GPL(kx132_chip_info, IIO_KX022A);
-> +
->  int kx022a_probe_internal(struct device *dev, const struct kx022a_chip_i=
-nfo *chip_info)
->  {
->  	static const char * const regulator_names[] =3D {"io-vdd", "vdd"};
-
+ --Sean
+ not 
