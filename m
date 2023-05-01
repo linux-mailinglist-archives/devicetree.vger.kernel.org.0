@@ -2,76 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70D906F300D
-	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 12:05:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 820CC6F3024
+	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 12:21:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231738AbjEAKFz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 May 2023 06:05:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48940 "EHLO
+        id S232355AbjEAKVI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 May 2023 06:21:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229928AbjEAKFy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 06:05:54 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DECEEE46
-        for <devicetree@vger.kernel.org>; Mon,  1 May 2023 03:05:52 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-958bb7731a9so483729566b.0
-        for <devicetree@vger.kernel.org>; Mon, 01 May 2023 03:05:52 -0700 (PDT)
+        with ESMTP id S229482AbjEAKVH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 06:21:07 -0400
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B928D10D8
+        for <devicetree@vger.kernel.org>; Mon,  1 May 2023 03:20:51 -0700 (PDT)
+Received: by mail-pf1-x42b.google.com with SMTP id d2e1a72fcca58-63b4dfead1bso1781872b3a.3
+        for <devicetree@vger.kernel.org>; Mon, 01 May 2023 03:20:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682935551; x=1685527551;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Nc4PhAMrOLTlbgqbAftOku7N9NpDflo5yDtm5yYgPu8=;
-        b=zD+V+ei/Do9FxEWNmNm7WCDVOl9mdYftzjEpPNd7ek4D4hcaCNzCLetn2p7HrXE+cG
-         Ev7r6Rv/6e3TwcnpHueVX9FN7+gv4WnS3HTFJ0QHLliFdsKsksJrPbI5eVrLUr1DMHx5
-         AavRbXydzgyW2cfCcMvDYk8Z0sa2wABOz1VFx+BzI2x6uA4e35p2ID0s7b5GAuVg+fjA
-         cNeXcNY3memsjLQTM+pKxYkq88UOrqIS3CYqhc/VrSfjSOZ8NHbdOpW5p9IOdsTTw3BW
-         DKOVcL9PZ8OarRxIHB1Yx+1hCow5D3E4+wtu6rhMJitwtum5PxZsCGg+UQ3XStKZS26F
-         SIUw==
+        d=linaro.org; s=google; t=1682936451; x=1685528451;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=380yTQfyf1kIhmDwtCqc51zaHbJPWsGW9xsWD9WICFk=;
+        b=h/y3juOSd6/vq5PkD8g1lfgt7gRr2G4qvTvcRjGxmyhskKd3nLwXcPUfMXwf5SJIKS
+         rJYU5eU7EykSblwIzRMnPP85C+O3rP6cnjNNvPl4qAZzVTdkLczyT0AjH4ncHhx2tUGW
+         rN/wPqEtJL1QlVC7RFgWrq7HiSf1EqwcnEdRqHbVKSd7epM5uiWdELxdQrfrUiGqzwP4
+         6vJ1dV15d0lk34hgUGIRk4WihZ45MJFfYOeUg3l/wARbcmosHv8vv+fSZ1bVIRko+DGQ
+         dUsHoamsdBNuCMzPE/zrFb8Uk34hVsftMB4yAu/zQuGCO9GHMiHJwx4BWwsj19RDlaV2
+         oqSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682935551; x=1685527551;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Nc4PhAMrOLTlbgqbAftOku7N9NpDflo5yDtm5yYgPu8=;
-        b=jJukHeEJwX8oVPeL/9DA0xl9wlxcI94fV9AR7ucTeGZh0b24CRycz3MHmneqEl2rvd
-         Mv1Ifu6mM621m2c+RugpZn3RKa+lsahgFNUV+s5jvzcE+flNdZYeKtlEjJehDelDeZ9l
-         0VvGkOLnEK+pklC+MsiYZcUsrvo6hQhQzSqanTbYSdMu43avKmdjkJUzc+L1NM5Oibqb
-         p79etLt4WTIVM5ToHktH6wfDKT3HXUoitQOfM0+k7q18Q84fz6q9UfaiFSoceTmVNSNn
-         kwK/ss10iFn8ISjalhU0JqQrbC2FH/DUP0/DNczJEOOeBLD2uvtOgym1k4u3xWiz9Pce
-         U0Zw==
-X-Gm-Message-State: AC+VfDyDb1nHutAAEfezgty1updd694fDcE6KUEyaH/DxXuDXmJZVFRQ
-        bcmdVQq7XW1VHRZxNXras5Mxpw==
-X-Google-Smtp-Source: ACHHUZ61UINPj5jaB3EFD4qHRZNHQQ8lpUzoHUfZ2aELodqL0E1nMYYOtJqjTPUsWoYWZ4H0JjWb7A==
-X-Received: by 2002:a17:907:9285:b0:95e:d74b:d171 with SMTP id bw5-20020a170907928500b0095ed74bd171mr12138929ejc.28.1682935551059;
-        Mon, 01 May 2023 03:05:51 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:637a:fd0c:58fd:9f00? ([2a02:810d:15c0:828:637a:fd0c:58fd:9f00])
-        by smtp.gmail.com with ESMTPSA id b21-20020a05640202d500b005083bc605f9sm12011239edx.72.2023.05.01.03.05.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 May 2023 03:05:50 -0700 (PDT)
-Message-ID: <1a30fc8b-b57e-de40-d396-892b55649a77@linaro.org>
-Date:   Mon, 1 May 2023 12:05:49 +0200
+        d=1e100.net; s=20221208; t=1682936451; x=1685528451;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=380yTQfyf1kIhmDwtCqc51zaHbJPWsGW9xsWD9WICFk=;
+        b=KCSaGFqAZwi5Q9J6qUEQPHs4iaPacqdG8rcuWXYM8pigMksr9gl4V8J04eeMjQ+FKd
+         dXBSqTHVXTZ5cl7c8oqsPO6rQrZtb+ao0M+Z035PS5oUMzRbeZXQkIZ0+edLsiMKkENh
+         VMqbiuO9lgK9M+yS3Ln7rNuJZp4MJeAC1AzRPVa3SiAwfJTfh7ssLGs8Iq4C2yDR/byK
+         krxRD/sLypKidIV0AgcI+myP7uOocZFaqALbknT432oQguzs2kQoK0GUw0bkShppjEIb
+         MfiFEHhreVz2NP6rIFVj5JSdmA0gdk3Xf2nK3lMRfAc2kpPaU4jXPP76XTWCCFo9kCRz
+         JBrg==
+X-Gm-Message-State: AC+VfDxsALRuO7pCHnAIvXjzWTgR8k+d6D9kT1Ibnv6mbUsJM5BJQ8wq
+        0ycmdQGTm9chk76cIzigv/hLYQ==
+X-Google-Smtp-Source: ACHHUZ61JDcXJwAIn7Bod4229oxzORL+Juog/Yh6RaRIs8Q6hfa5hq8OkSKYLQCkipRCvB/akk7fww==
+X-Received: by 2002:a05:6a00:1916:b0:641:3ca2:1aec with SMTP id y22-20020a056a00191600b006413ca21aecmr11446875pfi.27.1682936450993;
+        Mon, 01 May 2023 03:20:50 -0700 (PDT)
+Received: from localhost.localdomain ([2401:4900:1f3b:58fa:39f6:37e1:bb9a:a094])
+        by smtp.gmail.com with ESMTPSA id k16-20020aa788d0000000b00625616f59a1sm19198903pff.73.2023.05.01.03.20.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 May 2023 03:20:50 -0700 (PDT)
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
+        bhupesh.sharma@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski@linaro.org, devicetree@vger.kernel.org
+Subject: [PATCH 1/2] arm64: dts: qcom: qrb4210-rb2: Add SD pinctrl states & fix CD gpio
+Date:   Mon,  1 May 2023 15:50:34 +0530
+Message-Id: <20230501102035.1180701-1-bhupesh.sharma@linaro.org>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH RESEND v3 0/3] Add support for ESM
-Content-Language: en-US
-To:     Guenter Roeck <linux@roeck-us.net>,
-        Neha Malcom Francis <n-francis@ti.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        jdelvare@suse.com, linux-hwmon@vger.kernel.org
-Cc:     nm@ti.com, vigneshr@ti.com, u-kumar1@ti.com, kristo@kernel.org
-References: <20230424105011.70674-1-n-francis@ti.com>
- <aabe7488-29b8-895b-38b8-67e5a7d1dd35@roeck-us.net>
- <705557cd-0a60-3cda-d78b-d78e2faef856@ti.com>
- <a1e940aa-7ede-572a-80ca-d950273e5ba6@roeck-us.net>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <a1e940aa-7ede-572a-80ca-d950273e5ba6@roeck-us.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,33 +70,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/04/2023 16:34, Guenter Roeck wrote:
-> On 4/25/23 01:49, Neha Malcom Francis wrote:
->> Hi Guenter
->>
->> On 24/04/23 20:27, Guenter Roeck wrote:
->>> On 4/24/23 03:50, Neha Malcom Francis wrote:
->>>> Resending as no major changes, commit subject change only.
->>>>
->>>
->>> Maybe you consider changing the subject of the bindings from "misc"
->>> to "hwmon" as not being a major change, but it made me aware that you
->>> are trying to sneak bindings which in my opinion don't belong there
->>> into the hwmon bindings directory. This is not a hardware monitoring
->>> device, it doesn't have anything to do with hardware monitoring, and the
->>> bindings do not belong into bindings/hwmon/.
->>>
->>
->> I understand, it's a thin line across which I pushed ESM into hwmon; my reasoning was ESM also actively looks for signals that it aggregates, and is overall monitoring the device health. But if there was an option, in order of fitting: fault/ > misc/ > hwmon/
->>
-> 
-> That is really a stretch. It doesn't monitor anything. It is a signal
-> routing mechanism.
-> 
-> With that logic every transistor would be a hardware monitoring device.
+Add the default and sleep pinctrl states for SDHC1 & 2 controllers
+on QRB4210 RB2 board.
 
-Then let's move it to misc/ as I don't have other ideas for the placement.
+While at it also fix the Card-Detect (CD) gpio for SDHC2 which
+allows the uSD card to be detected on the board.
 
-Best regards,
-Krzysztof
+Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 17 ++++++++++++++++-
+ 1 file changed, 16 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
+index dc80f0bca767..bff6ba1d689f 100644
+--- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
++++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
+@@ -190,6 +190,10 @@ vreg_l24a_2p96: l24 {
+ };
+ 
+ &sdhc_1 {
++	pinctrl-names = "default", "sleep";
++	pinctrl-0 = <&sdc1_state_on>;
++	pinctrl-1 = <&sdc1_state_off>;
++
+ 	vmmc-supply = <&vreg_l24a_2p96>;
+ 	vqmmc-supply = <&vreg_l11a_1p8>;
+ 	no-sdio;
+@@ -199,7 +203,11 @@ &sdhc_1 {
+ };
+ 
+ &sdhc_2 {
+-	cd-gpios = <&tlmm 88 GPIO_ACTIVE_HIGH>; /* card detect gpio */
++	cd-gpios = <&tlmm 88 GPIO_ACTIVE_LOW>; /* card detect gpio */
++	pinctrl-names = "default", "sleep";
++	pinctrl-0 = <&sdc2_state_on &sdc2_card_det_n>;
++	pinctrl-1 = <&sdc2_state_off &sdc2_card_det_n>;
++
+ 	vmmc-supply = <&vreg_l22a_2p96>;
+ 	vqmmc-supply = <&vreg_l5a_2p96>;
+ 	no-sdio;
+@@ -216,6 +224,13 @@ &tlmm {
+ 			       <49 1>, <52 1>, <54 1>,
+ 			       <56 3>, <61 2>, <64 1>,
+ 			       <68 1>, <72 8>, <96 1>;
++
++	sdc2_card_det_n: sd-card-det-n-state {
++		pins = "gpio88";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-pull-up;
++	};
+ };
+ 
+ &uart4 {
+-- 
+2.38.1
 
