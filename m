@@ -2,155 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 088B36F3006
-	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 12:00:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C3B46F301A
+	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 12:13:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231229AbjEAKAj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 May 2023 06:00:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47602 "EHLO
+        id S232334AbjEAKNd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 May 2023 06:13:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229947AbjEAKAi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 06:00:38 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BFB3D3
-        for <devicetree@vger.kernel.org>; Mon,  1 May 2023 03:00:37 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-50b8d2eed3dso2501098a12.0
-        for <devicetree@vger.kernel.org>; Mon, 01 May 2023 03:00:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682935236; x=1685527236;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wkOomt6tBl7+mC6uaUyDQKMgbw/xe1HKh6gjrCXxFHs=;
-        b=tQsWhEw5bVJYgz0T81aKGWIMqfTt2Hl3bYAAPetvydYCQrz4Y5x3zn2yLB1oof9HIj
-         0mQs57cjeI6fK8FpAcA8Ijp5ACB0Vw/Z8VYAa9TTaDNKD1oUB4h5t+tOR378qjrf3Lo8
-         q9RT/kk/tEr3BBB3+uZtvVoiYqn3l+ix8xxz9JpnwXE/k7EV2s3Ok3QR1jinjgUxrKwQ
-         MQ4KNt2ZNUTjOGTPGV0/ROE3mYkxY2Co/QP+tXsF0B2WmW3cWs2mfH4KmnMD84n3Adih
-         VvP2Iuj3oq65T89i3DLEs/jq0y/qWJP+k3M+A2ZYwdOQ9Td+nnTKv2/oQ0zGBSkGuceG
-         pIlA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682935236; x=1685527236;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wkOomt6tBl7+mC6uaUyDQKMgbw/xe1HKh6gjrCXxFHs=;
-        b=acePVXcwOvJWGLsCv8QWtDg6srMgPW10hI6f5JCamufMosbVgF0yIfypdHu7y1C9vk
-         dM1umMZiB7/BSAEZlIjwAbVBCXAeUFuNc2qUGmllW/hviWVkYiPwrRY2IHN8CivQZjge
-         Uuj/l+U0DenjqNv57AVebh/JZzzFNco65SPSbJj0hJkDg4+Xpy3Fba1THcid3VUZ9G8Q
-         +ibovqwK1/AyEyh1y4OIWf3s5Dimbzr0Tj4sCYD/+3B2und8WN5W4k85klflfWiWLk5P
-         NCvvmM3AfbTuysNkdlHSllBPfOoX11zppaoqOZH0VNK7KitJwQq1nCOCvMe8uhbNlxTD
-         gi3w==
-X-Gm-Message-State: AC+VfDz26lEoLFN7+Z4c/YSPJ9T6/SzSjarURztSvt8BvWIXicpotab9
-        uXPRo49MShmCWLuagsRY4ZIIDw==
-X-Google-Smtp-Source: ACHHUZ54UKkHxmw4nSTauFR9wUUVYcouhrju6Lh7lgnQ44osDZooe2HEmZy5gTOuUInPhe/L/FF8mQ==
-X-Received: by 2002:aa7:d318:0:b0:501:d6c2:7439 with SMTP id p24-20020aa7d318000000b00501d6c27439mr5088432edq.37.1682935235399;
-        Mon, 01 May 2023 03:00:35 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:637a:fd0c:58fd:9f00? ([2a02:810d:15c0:828:637a:fd0c:58fd:9f00])
-        by smtp.gmail.com with ESMTPSA id g18-20020a056402181200b004c2158e87e6sm11847552edy.97.2023.05.01.03.00.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 May 2023 03:00:34 -0700 (PDT)
-Message-ID: <87a3bb36-bb75-5c01-dbdc-ee91d6496321@linaro.org>
-Date:   Mon, 1 May 2023 12:00:33 +0200
+        with ESMTP id S232346AbjEAKNa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 06:13:30 -0400
+Received: from mail.tkos.co.il (hours.tkos.co.il [84.110.109.230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B04FAE48;
+        Mon,  1 May 2023 03:13:27 -0700 (PDT)
+Received: from tarshish (unknown [10.0.8.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.tkos.co.il (Postfix) with ESMTPS id DF5E544107A;
+        Mon,  1 May 2023 13:07:46 +0300 (IDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tkos.co.il;
+        s=default; t=1682935667;
+        bh=lBDuhWFz9Iz/MjO48vbRYlkXP29mWmSE7y0cCQfGvKo=;
+        h=References:From:To:Cc:Subject:Date:In-reply-to:From;
+        b=f+KV128Ph6+s2kbD3By+tCmPQqjsZC76nKJ+AaBMsXsEGwOSylzA2mlLFV2DM2Xyr
+         gFheZ6aBzG8bkJdFY5LRROEv4unrKBu+rXm3KJie53D3nCqEGYUB9Drfeox+xZWXQW
+         c7p/lAoKfbpdNqU8L7EbvflWq42bsg86lDzdwCvvsQE7GjsCYe+jSaANUMzXIXmy9R
+         F45+dmS9I7I56V6OMdxl+h2XAywNemLqEtB1YyeeG8hssQV5nZS/J5yJca2IjQbboG
+         mOkO36tP+f+VwLpFCZyKiSo4ys7MQk12j56rJPO0egyMR6iiYozpi4hO6LB1CgXUA5
+         k5KBRtLjnzT3w==
+References: <9e137548c4e76e0d8deef6d49460cb37897934ca.1682333574.git.baruch@tkos.co.il>
+ <878regbbr7.fsf@tarshish>
+ <9569ef0d-0d94-3ff9-468b-152fe949e7b5@linaro.org>
+User-agent: mu4e 1.9.21; emacs 28.2
+From:   Baruch Siach <baruch@tkos.co.il>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alex Shi <alexs@kernel.org>,
+        Yanteng Si <siyanteng@loongson.cn>, devicetree@vger.kernel.org,
+        linux-doc@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] docs: dt: fix documented Primecell compatible
+ string
+Date:   Mon, 01 May 2023 13:01:04 +0300
+In-reply-to: <9569ef0d-0d94-3ff9-468b-152fe949e7b5@linaro.org>
+Message-ID: <878re8741n.fsf@tarshish>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [RFC PATCH 2/2] arm64: dts: add support for C3 based Amlogic
- AW409
-Content-Language: en-US
-To:     "xianwei.zhao" <xianwei.zhao@amlogic.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-References: <20230419073834.972273-1-xianwei.zhao@amlogic.com>
- <20230419073834.972273-3-xianwei.zhao@amlogic.com>
- <4e6469e5-0f6c-4150-4709-7459597f06cc@linaro.org>
- <5a11ccfd-eafa-391a-e2b9-d032510c9e7b@amlogic.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <5a11ccfd-eafa-391a-e2b9-d032510c9e7b@amlogic.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/04/2023 10:54, xianwei.zhao wrote:
-> Hi Krzysztof,
-> 
->          Thank you for your reply.
-> 
-> On 2023/4/19 15:48, Krzysztof Kozlowski wrote:
->> [你通常不会收到来自krzysztof.kozlowski@linaro.org  的电子邮件。请访问https://aka.ms/LearnAboutSenderIdentification，以了解这一点为什么很重要]
->>
->> [ EXTERNAL EMAIL ]
->>
->> On 19/04/2023 09:38, =Xianwei Zhao wrote:
->>> From: Xianwei Zhao<xianwei.zhao@amlogic.com>
->>>
->>> Amlogic C3 is an advanced edge AI processor designed for smart IP camera
->>> applications.
->>>
->>> Add basic support for the C3 based Amlogic AW409 board, which describes
->>> the following components: CPU, GIC, IRQ, Timer, UART. It's capable of
->>> booting up into the serial console.
->>>
->>> Signed-off-by: Xianwei Zhao<xianwei.zhao@amlogic.com>
->>> ---
->>>   arch/arm64/boot/dts/amlogic/Makefile          |  1 +
->>>   .../amlogic/amlogic-c3-c302x-aw409-256m.dts   | 30 +++++++
->>>   arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi   | 87 +++++++++++++++++++
->>>   3 files changed, 118 insertions(+)
->>>   create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409-256m.dts
->>>   create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
->>>
->>> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
->>> index cd1c5b04890a..d2b5d0d750bc 100644
->>> --- a/arch/arm64/boot/dts/amlogic/Makefile
->>> +++ b/arch/arm64/boot/dts/amlogic/Makefile
->>> @@ -74,3 +74,4 @@ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-hc4.dtb
->>>   dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
->>>   dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air-gbit.dtb
->>>   dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air.dtb
->>> +dtb-$(CONFIG_ARCH_AMLIPC) += amlogic-c3-c302x-aw409-256m.dtb
->>> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409-256m.dts b/arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409-256m.dts
->>> new file mode 100644
->>> index 000000000000..38ca98a32181
->>> --- /dev/null
->>> +++ b/arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409-256m.dts
->>> @@ -0,0 +1,30 @@
->>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->>> +/*
->>> + * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
->>> + */
->>> +
->>> +/dts-v1/;
->>> +
->>> +#include "amlogic-c3.dtsi"
->>> +
->>> +/ {
->>> +     model = "Amlogic C302 aw409 Development Board";
->>> +     compatible = "amlogic,aw409", "amlogic,c3";
->> Undocumented compatibles. Run checkpatch and fix all warnings. Anyway, I
->> am not sure this warrants separate architecture. Isn't C3 standard Meson
->> SoC?
-> The patch related to bindings is committed, see: 
-> https://lore.kernel.org/all/20230407102704.1055152-1-kelvin.zhang@amlogic.com/
+Hi Krzysztof,
 
-And how can we know this? There are no bindings in next, so you are
-supposed to sent these together. At minimum link to the bindings patch.
+On Mon, May 01 2023, Krzysztof Kozlowski wrote:
+> On 25/04/2023 10:31, Baruch Siach wrote:
+>> On Mon, Apr 24 2023, Baruch Siach wrote:
+>>> Only arm,primecell is documented as compatible string for Primecell
+>>> peripherals. Current code agrees with that.
+>> 
+>> Once again my patches do not show up in patchwork. But they do show in
+>> lore:
+>> 
+>>   https://lore.kernel.org/linux-devicetree/9e137548c4e76e0d8deef6d49460cb37897934ca.1682333574.git.baruch@tkos.co.il/
+>
+> You used subject prefix which targets Doc subsystem, but did not Cc Doc
+> maintainers (get_maintainers do not print them). If you target Rob's
+> Patchwork, probably you need to fix subject prefix. There is no "dt" prefix.
 
-Otherwise you will keep getting review comments.
+Thanks for the tip.
 
-Best regards,
-Krzysztof
+All previous commits touching Documentation/devicetree/usage-model.rst
+use 'docs' for subject prefix, including one from Rob. I followed this
+example.
 
+As for patchwork, I believe you refer to this one
+
+  http://patchwork.ozlabs.org/project/devicetree-bindings/list/
+
+Not all patches on the list use dt-bindings for subject prefix. For
+example
+
+  http://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230317053415.2254616-2-frowand.list@gmail.com/
+
+The DT submitting-patches document
+(Documentation/devicetree/bindings/submitting-patches.rst) mentions the
+dt-bindings subject prefix rule. But this patch does not touch binding
+documentation.
+
+Is there anything I should do differently to get this patch applied?
+
+Thanks,
+baruch
+
+-- 
+                                                     ~. .~   Tk Open Systems
+=}------------------------------------------------ooO--U--Ooo------------{=
+   - baruch@tkos.co.il - tel: +972.52.368.4656, http://www.tkos.co.il -
