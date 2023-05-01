@@ -2,239 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E87E56F2AB5
-	for <lists+devicetree@lfdr.de>; Sun, 30 Apr 2023 22:41:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D76AC6F2BCF
+	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 02:20:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229791AbjD3Ulp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Apr 2023 16:41:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60442 "EHLO
+        id S229663AbjEAAUk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Apr 2023 20:20:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229513AbjD3Uln (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Apr 2023 16:41:43 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DE5FE69;
-        Sun, 30 Apr 2023 13:41:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-        In-Reply-To:References; bh=audfrg0TbzPVe9GE64f0nIf2NcoJlBK1halRukyl4Tg=; b=mE
-        xqFE8U5/4Z+0j6gmedg/0LmECUZa51EudrlfchyPHY8WHQoBPVOVOl+JgOp3+WBx4StO++I5OtFhi
-        ozXffb6Uw9bvEeVYXfbX8rXF0H2CHpC/V9zn8ivEzVj5onsBpIcwTgiaWAtOhlVLS+PZGNJGEgX0e
-        6oM+qhcacmN128w=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1ptDr4-00BZTI-IZ; Sun, 30 Apr 2023 22:41:10 +0200
-Date:   Sun, 30 Apr 2023 22:41:10 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Cc:     David Bauer <mail@david-bauer.net>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S229519AbjEAAUj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Apr 2023 20:20:39 -0400
+Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2116.outbound.protection.outlook.com [40.107.255.116])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34FCB113;
+        Sun, 30 Apr 2023 17:20:33 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Ekybz3NYvmU1wD6Wa7b5nTBfaVQ0qH+QlnNhLik0+cXNGVbc9amKIohHt0yr/x7NNwnVwwK7az6DhSPPlRn2UfS4vUdGGndMe3faa9hGz1HNSIFOU1GJnHuU0iN6XS/mAmCgSC3yuibhnpBB21winpQRbLIp8gNxY+PVLCj2XqT7GRXAMhDxDxoCF/ntS3PpSb+liKDPM40sEKs7ffgk0Y3yen/qh2xhAs+hLIODub4TzgUbfnZV0pC5NqvzvmOnaaLX1rSmKiv6OFO1ZGXSnUf0IJXoyScGcbJ3Q8hcrfwLoSNqjqU3nldlMTRn+3qnm17pHD6OWqNY7ItOuz4fKw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9F1MsifnkWjXdF0s7c1zwyGa1HagHDZpa1HPBaI51RU=;
+ b=kOl4+10TSMBzd57Zv0CnJYd2eKwLdcrS5WTQkzAfJ6iIBwvNDu2eDPRqoqbpmkrwsQce7ANzehTJ7Qz9w87ljW83okdh3OSGIWIlSrIM3D0FubNFvmSV0ez6FQMOQ0seiN2WtjOAC1krPo9RZGG9vRw4ejF3FVk+kFY/CK00m5djPv7i/ChN4dgGjYxeVHQRBYHd5y4BRAY/uvFXfMtU9pzGtQSODhG/QpT7pjP4UlzjgUuZlfc7Y8QoWyldqBalVy/xGHVgXO1pi5vYC0+F2yWkOUeS7P4W55diaNJ7ghUKymv7qsFb1aAss/uX0E4IOMLwmt1J9DT9VN1rzDjoGQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
+ header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9F1MsifnkWjXdF0s7c1zwyGa1HagHDZpa1HPBaI51RU=;
+ b=webT9k2IU6HtWLFkNJI1f7n0t3vgOElGSveznKUWH2dhhoNVMQGy3Mh8Rl3WYWxkTEea+LjR46EFtYzV8WodRSBSRodZ2gy7NN1vhwaQISc7Wa7yiyDwJX1andvbKtBZI0aGX8qhtyUJ2kuVgMY6DAiqAluJYeizcBLaH8UkPlsrAzZX5pzEc92uUEjIO4jXvG9kws4wWV/MMQkoyiNqObRiVR7OLPB3nk+oJ+569r8xKHduAZmOIZHOEnzojSiAYGPIJzZWknJgphbjJ+GEBKQbw/aaqGT1exYoc+N0HWhzPkd9EQE72V/Na/XUXvCPTtXg+a6swAr8z0VLeRIdJQ==
+Received: from SEZPR06MB5269.apcprd06.prod.outlook.com (2603:1096:101:78::6)
+ by TY0PR06MB5458.apcprd06.prod.outlook.com (2603:1096:400:329::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6340.29; Mon, 1 May
+ 2023 00:20:27 +0000
+Received: from SEZPR06MB5269.apcprd06.prod.outlook.com
+ ([fe80::76d6:4828:7e80:2965]) by SEZPR06MB5269.apcprd06.prod.outlook.com
+ ([fe80::76d6:4828:7e80:2965%7]) with mapi id 15.20.6340.030; Mon, 1 May 2023
+ 00:20:26 +0000
+From:   Ryan Chen <ryan_chen@aspeedtech.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "jk@codeconstruct.com.au" <jk@codeconstruct.com.au>,
+        Brendan Higgins <brendan.higgins@linux.dev>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Joel Stanley <joel@jms.id.au>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Daniel Golle <daniel@makrotopia.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 2/2] dt-bindings: net: dsa: mediatek,mt7530: document
- MDIO-bus
-Message-ID: <de1a5264-f4ce-4e94-bae6-73407efef6e4@lunn.ch>
-References: <20230430112834.11520-1-mail@david-bauer.net>
- <20230430112834.11520-2-mail@david-bauer.net>
- <e4feeac2-636b-8b75-53a5-7603325fb411@arinc9.com>
- <396fad42-89d0-114d-c02e-ac483c1dd1ed@arinc9.com>
- <04cc2904-6d61-416e-bfbe-c24d96fe261b@lunn.ch>
- <a6c6fe83-fbb5-f289-2210-6f1db6585636@arinc9.com>
- <207753d6-cffd-4a23-be16-658d7c9ceb4a@lunn.ch>
- <e5476692-aa3a-29b8-2e1d-ce93fd13a23b@arinc9.com>
+        Andrew Jeffery <andrew@aj.id.au>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Wolfram Sang <wsa@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Jean Delvare <jdelvare@suse.de>,
+        William Zhang <william.zhang@broadcom.com>,
+        Tyrone Ting <kfting@nuvoton.com>,
+        Tharun Kumar P <tharunkumar.pasumarthi@microchip.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "=linux-kernel@vger.kernel.org" <=linux-kernel@vger.kernel.org>,
+        Andi Shyti <andi.shyti@kernel.org>
+Subject: RE: [PATCH v11 1/2] dt-bindings: i2c: aspeed: support for
+ AST2600-i2cv2
+Thread-Topic: [PATCH v11 1/2] dt-bindings: i2c: aspeed: support for
+ AST2600-i2cv2
+Thread-Index: AQHZexqp8gJ7xo7JFEqmTFNCmoKpXq9DxIeAgADKKEA=
+Date:   Mon, 1 May 2023 00:20:26 +0000
+Message-ID: <SEZPR06MB5269BD01787FDD95C86031E1F26E9@SEZPR06MB5269.apcprd06.prod.outlook.com>
+References: <20230430041712.3247998-1-ryan_chen@aspeedtech.com>
+ <20230430041712.3247998-2-ryan_chen@aspeedtech.com>
+ <93773f00-1301-cf77-9bde-5de0595fec8d@linaro.org>
+In-Reply-To: <93773f00-1301-cf77-9bde-5de0595fec8d@linaro.org>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=aspeedtech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SEZPR06MB5269:EE_|TY0PR06MB5458:EE_
+x-ms-office365-filtering-correlation-id: c362a362-190a-4d0e-0b6b-08db49d9dcdd
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: W/5cSTmNEQ6c/GUf5YCRV8yW1SFWlvtQKvLrKCU13qsuMhxWFiKyn68U4dYETSYJk4HQNAYKuuz6Lqc3/etovyaOU/u1UYbd3KZkwsGO4ynjTuUX3zoFCl4th6GowBQVLj0j+/wVDvmx12l5HaXaXDtKZ2KViMBtBR/rPcXGcK0X7yhS0/d0+KcMjnKBkXguq/P7bHjH4J+nJNFuohkNeQ+ixZLiLX3WQUD0pMD4IlmOj9VD1Grpj+LG/cPRAcXyDkevZYsuTwv4ElpKchflA+kBxUPruKmflrkj5ebuSsat3egabH2RT9fOiTCo/eJWIpi3P7bN0FA/d650czN/x+DO7/HRYCfS6Vfpo/dMWjRJzDRZcCsQALTCJSz208eqs9cEmyin2UiRNq4NDDaDgMePgw6LKmxeJgtEh1cIcq53L1rgjhDpH3N8DqSPHxWTk8lBezXwdpTMSJxKLiHtRz7At8+Bi6B9B6T4fFDEPJfGr6G90Yiyf2vpOm8o02Jupp8Q0Ga+vqzUHPCO59hVT5Ud3GJ1qQICTXHcq0IUCaaYQmamku/zvO1fDtwj5ELrvrtawVwXkzrPXHGP9TU5Eg9YpP3CRfXeNOCMcoJYwtQI+OwM7yrGeXybh1ulAjWi
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SEZPR06MB5269.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(39830400003)(396003)(366004)(136003)(376002)(346002)(451199021)(110136005)(316002)(66446008)(64756008)(66556008)(76116006)(66946007)(66476007)(966005)(478600001)(7696005)(71200400001)(55016003)(52536014)(41300700001)(8676002)(8936002)(2906002)(7416002)(5660300002)(38070700005)(33656002)(86362001)(122000001)(38100700002)(921005)(53546011)(6506007)(186003)(9686003)(26005)(83380400001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?WGRnbGxTbUFSci9WUkEyZHBxdVB5RU00MHhqazlra0c4MmJEdGpvc0EwR2dT?=
+ =?utf-8?B?UENNb29RYnpDRU1INDZOWld5ZFhQWXVjOHluOFpuWnFNS3pvdU1ZQWcvNi9O?=
+ =?utf-8?B?SlpNQkVKNStZRDdjRUdjRjdONHdxblJoM3RhYnpXNFVxME15ODROOExtU1c0?=
+ =?utf-8?B?RWVRVTRIOVAvbnVKbUxJQlpOQzM0QXZTT2puZmtmU3VHMFA0Y2Z6RFdtT20z?=
+ =?utf-8?B?NkNpZ0psNjdwSFcvZFhIam5UajRZRWNrTVhQdHNaQTFPTkdYajRGZGo4Q2tk?=
+ =?utf-8?B?U200TzB0elNoRGZsT2lFcmpNY3Q5WGVpcWtYblNFWFd4Mkwvc0UzeG9pV3Fq?=
+ =?utf-8?B?TFZBN2ovNmtxV0pQb2JqUW1OU2hGcEZQR0hCd3NnMnl3MWpCM2s5aEE4RVJt?=
+ =?utf-8?B?WFZaQlBFUGVtV01QQ0VsNXNIU2Rnbkx4YU0vY0xLU0FQa1pBRDc4TWlDMFpD?=
+ =?utf-8?B?S2ZNaDc4MHY5UWdlcVZHT1J5YitxSk5yMG5Kak1rcExmV09RaG10WjZOYjNx?=
+ =?utf-8?B?TmdOcVRKS1BwT1FCbFJySWNqYUVkUkV3Vnp2SktWZUYxY1cvQUxDdFFWRnBQ?=
+ =?utf-8?B?M21HUzVSVCtEdUVMdUdjaDhpY05USjBWR1l1MzV6OHBDbldEeUM3OFhzcGF1?=
+ =?utf-8?B?bU9XY0hpZlBFS0llNldhWkoreHFwd0hBYmF0eitxM0kwTVdpQlNwdElRWTkw?=
+ =?utf-8?B?YVAzY2x3TWcyYjNDNDVHd3p2dm5LaFQvRUhQOEN6TnJvK2RxRGZtenlxUkU5?=
+ =?utf-8?B?NzdseW9yR3gybnU5Z2ZTTE90bWhiRnNYUks4S0NIamZFaFhkZjlOVjREOC9M?=
+ =?utf-8?B?VjVhNWxWcU5lUjUzdytPbWhrSTVLMEhIaGt0Z2UvNlpNYkd1dHVKeFVjTTFh?=
+ =?utf-8?B?aHJ6d1RqS1Ixdis0cTMyUXJ6QjlSRzBIUDZWWEViUzd4cWZSOCtZWG00bUl5?=
+ =?utf-8?B?U0VQNldFY1d6VFdlR011MjNOZmRwUUwyOFJva2liYVVXRWZzZUNvalV5NlRm?=
+ =?utf-8?B?QURLZTJsZDJ3QXplRHNCK3RJditpcHVRSkxxYXR4MnduR1lkQjVPdW83Nm5Z?=
+ =?utf-8?B?Tjk0SE94Vkt5U25mSTlZY3kyeEpmWjFLUWZkeUtEa1k2RXplcmMwNUR0Lzhv?=
+ =?utf-8?B?NFhObHZzWi9wM2gzSHc3ejRqdGZJZ3BEaFoxY2Rsa3U3ZTJqRW83MC9tTDF2?=
+ =?utf-8?B?TEdZVE16bVcxQnBRMDQ4dUFlTEV0bUpEQlNPbTBkUUFNNDAxbFoyWlNuK1FW?=
+ =?utf-8?B?cmx1TVJJbnl0NWp5RjBQQlVQT1pqb2Z2M2dBaGlvL0tBVUdLK3pYR1JsMDcx?=
+ =?utf-8?B?emVpZ0h2Y1QrY0E0MlQ5S1VrTVM0NExVUEMzZnppNC9TR2JPeldSNC83TEdN?=
+ =?utf-8?B?RDkzM3luRFNOS3Y0eEppWnVVQVNvY3E3ZmkxYTB4RHNsSmJua0xDTTNBbjRS?=
+ =?utf-8?B?djhpc2FES0I1ZjlzcnJQaE1KQUFvT3JyZFd4REJxM2xYN252RjdLVE1EM1RK?=
+ =?utf-8?B?TXhuVmEvVmlzUDRhU2wxN3VIN3BJck9jOW8weVkvZExCUmZuN293c05LVGtB?=
+ =?utf-8?B?WXltRU9DNHdVdDhSSXIxWjYxM25ZRmg0R0lpREN1dTluWERzdnFIaS95UjRG?=
+ =?utf-8?B?QklCVVdMWFpnSERzb0g5VUpQNTNBMi9uUEFxVDZoVHd0SnI0a0tCRGo3Uzhy?=
+ =?utf-8?B?VlRGSlcyWlFGSlZjN3ZnaFp0MHB3NE5xUHg5MHdBWjJ1ZUJJRVB6NHA5bW8w?=
+ =?utf-8?B?UEhKVXBPVDNVSkZLZUY1eUkwbDJhdTcvUVV4WDRjVU1TT0xwRWJGcStrQkFW?=
+ =?utf-8?B?c3FjTXFESCtVVnB3TDVqM0VBZnFVcGszaFBFNkJlaWR5ajZhYXZ4RExYU2J1?=
+ =?utf-8?B?TnFGNWtkTmJEcWM5QnRIYWl5OFkrb2VlWjZmY1Byajdwdy85Q25FOWlUR2FU?=
+ =?utf-8?B?Z2NXWmRKT1IzZktwak9Ta0FpZUo2Mkw3U05oby9IdTEyWkc2UXdybU1RTkhT?=
+ =?utf-8?B?T1QzM01SbUY4dlRzaWhvWEt5WlpxN0xoNG02cXpYeHlubHZZOFVzb3lVbkp3?=
+ =?utf-8?B?ZCs2VFVIa3FLZWo2VWRzOFpQaXJDZ1JXNG1BYk1RdG83SVBWaHdRN2tiVXVS?=
+ =?utf-8?Q?DjD2wnfp25mnPGenZfloftLxk?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <e5476692-aa3a-29b8-2e1d-ce93fd13a23b@arinc9.com>
+X-OriginatorOrg: aspeedtech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SEZPR06MB5269.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c362a362-190a-4d0e-0b6b-08db49d9dcdd
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 May 2023 00:20:26.4973
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 9D3zdt/prTtkFG7Pn/tW3iCHmAtOYF+jYFR4mdlWct1ldx8hpR+jdGJXseox58Xfe6YgTAAf7i0K6iIIOB7pBF38W69dgWDq6ISRXXlyK4g=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY0PR06MB5458
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Apr 30, 2023 at 10:54:50PM +0300, Arınç ÜNAL wrote:
-> On 30.04.2023 21:48, Andrew Lunn wrote:
-> > > > Try setting ds->slave_mii_bus to the MDIO bus you register via
-> > > > of_mdiobus_register().
-> > > 
-> > > That seems to be the case already, under mt7530_setup_mdio():
-> > > 
-> > > 	bus = devm_mdiobus_alloc(dev);
-> > > 	if (!bus)
-> > > 		return -ENOMEM;
-> > > 
-> > > 	ds->slave_mii_bus = bus;
-> > > 
-> > > The bus is registered with devm_of_mdiobus_register(), if that matters. (My
-> > > current knowledge about OF or OF helpers for MDIO is next to nothing.)
-> > > 
-> > > The same behaviour is there.
-> > 
-> > Maybe take a look at what is going on in dsa_slave_phy_setup() and
-> > dsa_slave_phy_connect().
-> > 
-> > The way i understand it, is it first looks in DT to see if there is a
-> > phy-handle, and if there is, it uses it. If not, it assumes there is a
-> > 1:1 mapping between port number and PHY address, and looks to see if a
-> > PHY has been found on ds->slave_mii_bus at that address, and uses it.
-> > 
-> > So i don't think you need to list the PHY, the fallback should be
-> > used.
-> 
-> Thanks for pointing me in the right direction Andrew.
-> 
-> I applied this diff:
-> 
-> diff --git a/drivers/net/phy/mdio_bus.c b/drivers/net/phy/mdio_bus.c
-> index 389f33a12534..19d0c209e7e9 100644
-> --- a/drivers/net/phy/mdio_bus.c
-> +++ b/drivers/net/phy/mdio_bus.c
-> @@ -117,8 +117,12 @@ struct phy_device *mdiobus_get_phy(struct mii_bus *bus, int addr)
->  	mdiodev = bus->mdio_map[addr];
-> -	if (!mdiodev)
-> +	if (!mdiodev) {
-> +		dev_info(&bus->dev, "mdio device doesn't exist\n");
->  		return NULL;
-> +	}
-> +
-> +	dev_info(&bus->dev, "mdio device exists\n");
->  	if (!(mdiodev->flags & MDIO_DEVICE_FLAG_PHY))
->  		return NULL;
-> diff --git a/net/dsa/slave.c b/net/dsa/slave.c
-> index 165bb2cb8431..0be408e32a76 100644
-> --- a/net/dsa/slave.c
-> +++ b/net/dsa/slave.c
-> @@ -2487,6 +2487,7 @@ static int dsa_slave_phy_setup(struct net_device *slave_dev)
->  		/* We could not connect to a designated PHY or SFP, so try to
->  		 * use the switch internal MDIO bus instead
->  		 */
-> +		netdev_err(slave_dev, "using switch's internal MDIO bus\n");
->  		ret = dsa_slave_phy_connect(slave_dev, dp->index, phy_flags);
->  	}
->  	if (ret) {
-> 
-> With or without this patch, the switch's internal MDIO bus is used to set
-> up the PHYs.
-> 
-> DT that defines ethphy0 only, without this patch applied:
-> 
-> [    4.660784] mt7530-mdio mdio-bus:1f wan (uninitialized): using switch's internal MDIO bus
-> [    4.669026] mdio_bus mt7530-0: mdio device exists
-> [    4.677693] mt7530-mdio mdio-bus:1f wan (uninitialized): PHY [mt7530-0:00] driver [MediaTek MT7530 PHY] (irq=POLL)
-> [    4.693238] mt7530-mdio mdio-bus:1f lan0 (uninitialized): using switch's internal MDIO bus
-> [    4.701589] mdio_bus mt7530-0: mdio device exists
-> [    4.707101] mt7530-mdio mdio-bus:1f lan0 (uninitialized): PHY [mt7530-0:01] driver [MediaTek MT7530 PHY] (irq=POLL)
-> [    4.718550] mt7530-mdio mdio-bus:1f lan1 (uninitialized): using switch's internal MDIO bus
-> [    4.726856] mdio_bus mt7530-0: mdio device exists
-> [    4.732384] mt7530-mdio mdio-bus:1f lan1 (uninitialized): PHY [mt7530-0:02] driver [MediaTek MT7530 PHY] (irq=POLL)
-> [    4.743822] mt7530-mdio mdio-bus:1f lan2 (uninitialized): using switch's internal MDIO bus
-> [    4.752154] mdio_bus mt7530-0: mdio device exists
-> [    4.757662] mt7530-mdio mdio-bus:1f lan2 (uninitialized): PHY [mt7530-0:03] driver [MediaTek MT7530 PHY] (irq=POLL)
-> [    4.769099] mt7530-mdio mdio-bus:1f lan3 (uninitialized): using switch's internal MDIO bus
-> [    4.781872] mdio_bus mt7530-0: mdio device exists
-> [    4.787413] mt7530-mdio mdio-bus:1f lan3 (uninitialized): PHY [mt7530-0:04] driver [MediaTek MT7530 PHY] (irq=POLL)
-> 
-> Same DT but with this patch applied:
-> 
-> [    4.621547] mt7530-mdio mdio-bus:1f: configuring for fixed/trgmii link mode
-> [    4.631524] mt7530-mdio mdio-bus:1f wan (uninitialized): using switch's internal MDIO bus
-> [    4.639764] mdio_bus mt7530-0: mdio device exists
-> [    4.647770] mt7530-mdio mdio-bus:1f wan (uninitialized): PHY [mt7530-0:00] driver [MediaTek MT7530 PHY] (irq=POLL)
-> [    4.663898] mt7530-mdio mdio-bus:1f lan0 (uninitialized): using switch's internal MDIO bus
-> [    4.672253] mdio_bus mt7530-0: mdio device doesn't exist
-> [    4.677597] mt7530-mdio mdio-bus:1f lan0 (uninitialized): no phy at 1
-> [    4.684053] mt7530-mdio mdio-bus:1f lan0 (uninitialized): failed to connect to PHY: -ENODEV
-> [    4.692435] mt7530-mdio mdio-bus:1f lan0 (uninitialized): error -19 setting up PHY for tree 0, switch 0, port 1
-> [    4.703087] mt7530-mdio mdio-bus:1f lan1 (uninitialized): using switch's internal MDIO bus
-> [    4.711408] mdio_bus mt7530-0: mdio device doesn't exist
-> [    4.716731] mt7530-mdio mdio-bus:1f lan1 (uninitialized): no phy at 2
-> [    4.723214] mt7530-mdio mdio-bus:1f lan1 (uninitialized): failed to connect to PHY: -ENODEV
-> [    4.731597] mt7530-mdio mdio-bus:1f lan1 (uninitialized): error -19 setting up PHY for tree 0, switch 0, port 2
-> [    4.742199] mt7530-mdio mdio-bus:1f lan2 (uninitialized): using switch's internal MDIO bus
-> [    4.755431] mdio_bus mt7530-0: mdio device doesn't exist
-> [    4.760793] mt7530-mdio mdio-bus:1f lan2 (uninitialized): no phy at 3
-> [    4.767263] mt7530-mdio mdio-bus:1f lan2 (uninitialized): failed to connect to PHY: -ENODEV
-> [    4.775632] mt7530-mdio mdio-bus:1f lan2 (uninitialized): error -19 setting up PHY for tree 0, switch 0, port 3
-> [    4.786270] mt7530-mdio mdio-bus:1f lan3 (uninitialized): using switch's internal MDIO bus
-> [    4.794591] mdio_bus mt7530-0: mdio device doesn't exist
-> [    4.799944] mt7530-mdio mdio-bus:1f lan3 (uninitialized): no phy at 4
-> [    4.806397] mt7530-mdio mdio-bus:1f lan3 (uninitialized): failed to connect to PHY: -ENODEV
-> [    4.814782] mt7530-mdio mdio-bus:1f lan3 (uninitialized): error -19 setting up PHY for tree 0, switch 0, port 4
-> 
-> DT without the mdio node defined, with this patch applied:
-> 
-> [    4.650766] mt7530-mdio mdio-bus:1f: configuring for fixed/trgmii link mode
-> [    4.660687] mt7530-mdio mdio-bus:1f wan (uninitialized): using switch's internal MDIO bus
-> [    4.668937] mdio_bus mt7530-0: mdio device exists
-> [    4.677787] mt7530-mdio mdio-bus:1f wan (uninitialized): PHY [mt7530-0:00] driver [MediaTek MT7530 PHY] (irq=POLL)
-> [    4.693165] mt7530-mdio mdio-bus:1f lan0 (uninitialized): using switch's internal MDIO bus
-> [    4.701517] mdio_bus mt7530-0: mdio device exists
-> [    4.707029] mt7530-mdio mdio-bus:1f lan0 (uninitialized): PHY [mt7530-0:01] driver [MediaTek MT7530 PHY] (irq=POLL)
-> [    4.718469] mt7530-mdio mdio-bus:1f lan1 (uninitialized): using switch's internal MDIO bus
-> [    4.726773] mdio_bus mt7530-0: mdio device exists
-> [    4.732322] mt7530-mdio mdio-bus:1f lan1 (uninitialized): PHY [mt7530-0:02] driver [MediaTek MT7530 PHY] (irq=POLL)
-> [    4.743793] mt7530-mdio mdio-bus:1f lan2 (uninitialized): using switch's internal MDIO bus
-> [    4.752143] mdio_bus mt7530-0: mdio device exists
-> [    4.757662] mt7530-mdio mdio-bus:1f lan2 (uninitialized): PHY [mt7530-0:03] driver [MediaTek MT7530 PHY] (irq=POLL)
-> [    4.769105] mt7530-mdio mdio-bus:1f lan3 (uninitialized): using switch's internal MDIO bus
-> [    4.781905] mdio_bus mt7530-0: mdio device exists
-> [    4.787459] mt7530-mdio mdio-bus:1f lan3 (uninitialized): PHY [mt7530-0:04] driver [MediaTek MT7530 PHY] (irq=POLL)
-> 
-> This is how I define it, mind you no phandles.
-> 
-> switch@1f {
-> 	...
-> 	mdio {
-> 		#address-cells = <0x01>;
-> 		#size-cells = <0x00>;
-> 
-> 		ethernet-phy@0 {
-> 			reg = <0x00>;
-> 		};
-> 	};
-> };
-> 
-> Like you said, if the mdio node is not defined, the driver will assume 1:1
-> mapping. If not, it will need all the PHYs to be defined on the mdio node
-> along with on the ports node. Hence back to my original statement, we can
-> either force defining the PHYs on the mdio node which would break the ABI,
-> or forget about doing PHY muxing this way.
-> 
-> There are no MDIO operations needed on the PHYs for the PHY muxing anyway,
-> so I'd rather do this some other way.
-
-The problem is __of_mdiobus_register() :-(
-
-If there is a node in DT, the scanning of all addresses is
-disabled. It looks at just the addresses listed in DT. Plain
-mdiobus_register() by default looks at all addresses to discover if a
-PHY is there.
-
-Hence when slave.c tries to connect to the PHY, only the PHY you
-listed in DT has been found.
-
-I don't see a way around this, at least not without adding a new
-variant of of_mdiobus_register which combined DT with a bus scan.
-
-	Andrew
+SGVsbG8gS3J6eXN6dG9mLA0KDQo+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggdjExIDEvMl0gZHQtYmlu
+ZGluZ3M6IGkyYzogYXNwZWVkOiBzdXBwb3J0IGZvcg0KPiBBU1QyNjAwLWkyY3YyDQo+IA0KPiBP
+biAzMC8wNC8yMDIzIDA2OjE3LCBSeWFuIENoZW4gd3JvdGU6DQo+ID4gQWRkIGFzdDI2MDAtaTJj
+djIgY29tcGF0aWJsZSBhbmQgYXNwZWVkLGdsb2JhbC1yZWdzLCBhc3BlZWQsZW5hYmxlLWRtYQ0K
+PiA+IGFuZCBkZXNjcmlwdGlvbiBmb3IgYXN0MjYwMC1pMmN2Mi4NCj4gPg0KPiA+IFNpZ25lZC1v
+ZmYtYnk6IFJ5YW4gQ2hlbiA8cnlhbl9jaGVuQGFzcGVlZHRlY2guY29tPg0KPiANCj4gVGhpcyBp
+cyBhIGZyaWVuZGx5IHJlbWluZGVyIGR1cmluZyB0aGUgcmV2aWV3IHByb2Nlc3MuDQo+IA0KPiBJ
+dCBsb29rcyBsaWtlIHlvdSByZWNlaXZlZCBhIHRhZyBhbmQgZm9yZ290IHRvIGFkZCBpdC4NCj4g
+DQo+IElmIHlvdSBkbyBub3Qga25vdyB0aGUgcHJvY2VzcywgaGVyZSBpcyBhIHNob3J0IGV4cGxh
+bmF0aW9uOg0KPiBQbGVhc2UgYWRkIEFja2VkLWJ5L1Jldmlld2VkLWJ5L1Rlc3RlZC1ieSB0YWdz
+IHdoZW4gcG9zdGluZyBuZXcgdmVyc2lvbnMuDQo+IEhvd2V2ZXIsIHRoZXJlJ3Mgbm8gbmVlZCB0
+byByZXBvc3QgcGF0Y2hlcyAqb25seSogdG8gYWRkIHRoZSB0YWdzLiBUaGUNCj4gdXBzdHJlYW0g
+bWFpbnRhaW5lciB3aWxsIGRvIHRoYXQgZm9yIGFja3MgcmVjZWl2ZWQgb24gdGhlIHZlcnNpb24g
+dGhleSBhcHBseS4NCj4gDQo+IGh0dHBzOi8vZWxpeGlyLmJvb3RsaW4uY29tL2xpbnV4L3Y1LjE3
+L3NvdXJjZS9Eb2N1bWVudGF0aW9uL3Byb2Nlc3Mvc3VibWl0dGluDQo+IGctcGF0Y2hlcy5yc3Qj
+TDU0MA0KPiANCj4gSWYgYSB0YWcgd2FzIG5vdCBhZGRlZCBvbiBwdXJwb3NlLCBwbGVhc2Ugc3Rh
+dGUgd2h5IGFuZCB3aGF0IGNoYW5nZWQuDQo+IA0KU29ycnksIE15IG1pc3Rha2UuIE1heSBJIGFz
+ayBhIHF1ZXN0aW9uPw0KSW4gdGhpcyBzaXR1YXRpb24sIHNob3VsZCBJIHN1Ym1pdCB3aXRoIG5l
+dyB2ZXJzaW9uPw0KT3IgSSBqdXN0IGFkZCBSZXZpZXctYnkgYW5kIHNlbmQgaXQgYWdhaW4/DQoN
+CkJlc3QgcmVnYXJkcywNClJ5YW4gQ2hlbg0K
