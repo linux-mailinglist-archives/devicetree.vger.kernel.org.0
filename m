@@ -2,74 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05D366F2F67
-	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 10:46:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F04846F2FC5
+	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 11:13:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232086AbjEAIqD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 May 2023 04:46:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48124 "EHLO
+        id S229947AbjEAJNU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 May 2023 05:13:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232181AbjEAIpp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 04:45:45 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25A701BF9;
-        Mon,  1 May 2023 01:45:22 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7A0B361B51;
-        Mon,  1 May 2023 08:45:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B354EC4339C;
-        Mon,  1 May 2023 08:44:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1682930699;
-        bh=rulYTavJHhA8ZwocaiHU3PzLTExyBoYBA0lghA9SugY=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=HNxaObCA9lyDwDGVwTwMCQoLnBsk8ts0CWOgtKT4HHE6qzZF9tjBSSrKt1xyIG7Qf
-         L+2pOcLf+cFiyCkkLIh3nw1c7nqU4/L5s7TK2dfZsJsPbPt0A01HA7TxN4qQN25yCc
-         +jzWtLSV9KgyBzvcTWZAviBQPMQAXsbCjRN/AFV8ufVnwuqoDLxsDlTsVnnDDBhYuK
-         NjstBFeqaGReiaf6TiietDkZ9HISUXO+0cqctzJU6OLo8DFUKh2GSZILzEOhk62f0C
-         xQHRiBEIcsKI3w5zngnpv+Z2CvQvvu2V6lHT4SpGtzq8HumvhI7r+G09bId5wT4/Xv
-         pptMcaJAf9jqQ==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.95)
-        (envelope-from <maz@kernel.org>)
-        id 1ptP9V-00CFJx-9A;
-        Mon, 01 May 2023 09:44:57 +0100
-Date:   Mon, 01 May 2023 09:44:52 +0100
-Message-ID: <86ttwwh24b.wl-maz@kernel.org>
-From:   Marc Zyngier <maz@kernel.org>
-To:     Anup Patel <anup@brainfault.org>
-Cc:     Anup Patel <apatel@ventanamicro.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
+        with ESMTP id S229482AbjEAJNS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 05:13:18 -0400
+Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F6B5B9
+        for <devicetree@vger.kernel.org>; Mon,  1 May 2023 02:13:17 -0700 (PDT)
+Received: by mail-yb1-xb35.google.com with SMTP id 3f1490d57ef6-b97ec4bbc5aso1669760276.3
+        for <devicetree@vger.kernel.org>; Mon, 01 May 2023 02:13:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1682932396; x=1685524396;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ci5juCAKmoOiPK7llJZnE3ny5XB6ZMfE2wTbd4k0afg=;
+        b=OUZpv6e7vtjQNEek+wmdyq4MMBuxT8zQRythV4VMNqIo0ajFBg10gwJ5BxlAdbMVws
+         j305mkW/u3QI9xtqIpFveGd2nvC3zBzh1TPO/0NsmTQvaAJwbxjAn6G/ed/1rpFI9f/T
+         bXSWzxwkCTNqmOLcu4HoGD0Dpa6QQlo5QzFfMXT3QaxbVwKD0TEBwPYTpWbMuSgk3j3F
+         8O18Vbo1u0x8wjUI4bz90ocFwQamxynQOEvOW3TAoXTwi5SSDdTAjMwgOdkNDJ2s3xx7
+         5OO3jjQySMfG1ajonDBklG8RFDAXStHkZX1RLGriCgRqI9ciY1zQRN8HwMG+4aJbFY6n
+         CYfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682932396; x=1685524396;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ci5juCAKmoOiPK7llJZnE3ny5XB6ZMfE2wTbd4k0afg=;
+        b=F3zphwQXZImLY5adweprb+Wi6IejIGYTfuPeOCcHaWwYiSWVdAZTdUBLOD2hiddNHE
+         2druEzile9AzcBQ9G3Xmcc0mx2L+sa1v2j9rLE/UEtqTp9CmEpjNRy0qPjJ7j6LNd/yD
+         LxBHHvGVmx6upY4ku74/4oaG6lKrrkWdzstxxjwBbH2QMtsXRl52Uszii4PrI5oiq3UY
+         c/OkMtbTHgMAJX7Yr8v4OltOOEFPmYE7jwpHB+v+4z2Ye//30+wEn+9vfyV5LEMTylNL
+         OI6azjc7mtp1reWsipVDAy1wgm/8nSCI6JGCf59Ooy2Fi/fd2fy31zNSW7yZLEepzO52
+         dCJA==
+X-Gm-Message-State: AC+VfDxA2Jz5Qe6Y4fev9SfPUSfUEMc3dLxRmjYDmlDRpAJGAy0fKjv+
+        uLEhV2BWp3r7cnXFtTUjCApuq3ITIk/u/6dnavPr8g==
+X-Google-Smtp-Source: ACHHUZ42y69L2m4J/LD2yJJcDnPZsng01nLQztYNTwG9noy/WJEWmPggwgc7jbKyHcNRiBRR9Ke4G++WrqRE1QyS9vE=
+X-Received: by 2002:a25:414a:0:b0:b92:6588:b07e with SMTP id
+ o71-20020a25414a000000b00b926588b07emr12299667yba.19.1682932396399; Mon, 01
+ May 2023 02:13:16 -0700 (PDT)
+MIME-Version: 1.0
+References: <cover.1682636929.git.jahau@rocketmail.com> <5bd8b90713a61129acf292a941eb7fb5ccaa3db4.1682636929.git.jahau@rocketmail.com>
+In-Reply-To: <5bd8b90713a61129acf292a941eb7fb5ccaa3db4.1682636929.git.jahau@rocketmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 1 May 2023 11:13:04 +0200
+Message-ID: <CACRpkdYDe_cC8Nj8oXbeyqZ=7GpwnHKvgafBVdYbJwDs+gzwEg@mail.gmail.com>
+Subject: Re: [PATCH v3 8/8] dt-bindings: Add rt5033 mfd, regulator and charger
+To:     Jakob Hauser <jahau@rocketmail.com>
+Cc:     Sebastian Reichel <sre@kernel.org>, Lee Jones <lee@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Atish Patra <atishp@atishpatra.org>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 5/9] irqchip: Add RISC-V incoming MSI controller driver
-In-Reply-To: <CAAhSdy39OJo1c0Yt9588m_aXc7BJ9OEVm1hCJEbv3Km31hmbkA@mail.gmail.com>
-References: <20230103141409.772298-1-apatel@ventanamicro.com>
-        <20230103141409.772298-6-apatel@ventanamicro.com>
-        <867cxqoic8.wl-maz@kernel.org>
-        <CAAhSdy39OJo1c0Yt9588m_aXc7BJ9OEVm1hCJEbv3Km31hmbkA@mail.gmail.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/28.2
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=UTF-8
+        Beomho Seo <beomho.seo@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Raymond Hackley <raymondhackley@protonmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Axel Lin <axel.lin@ingics.com>,
+        ChiYuan Huang <cy_huang@richtek.com>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: anup@brainfault.org, apatel@ventanamicro.com, palmer@dabbelt.com, paul.walmsley@sifive.com, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, atishp@atishpatra.org, Alistair.Francis@wdc.com, linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,326 +79,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 01 May 2023 09:28:16 +0100,
-Anup Patel <anup@brainfault.org> wrote:
->=20
-> On Fri, Jan 13, 2023 at 3:40=E2=80=AFPM Marc Zyngier <maz@kernel.org> wro=
-te:
-> >
-> > On Tue, 03 Jan 2023 14:14:05 +0000,
-> > Anup Patel <apatel@ventanamicro.com> wrote:
-> > >
-> > > The RISC-V advanced interrupt architecture (AIA) specification defines
-> > > a new MSI controller for managing MSIs on a RISC-V platform. This new
-> > > MSI controller is referred to as incoming message signaled interrupt
-> > > controller (IMSIC) which manages MSI on per-HART (or per-CPU) basis.
-> > > (For more details refer https://github.com/riscv/riscv-aia)
-> >
-> > And how about IPIs, which this driver seems to be concerned about?
->=20
-> Okay, I will mention about IPIs in the commit description.
->=20
-> >
-> > >
-> > > This patch adds an irqchip driver for RISC-V IMSIC found on RISC-V
-> > > platforms.
-> > >
-> > > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> > > ---
-> > >  drivers/irqchip/Kconfig             |   14 +-
-> > >  drivers/irqchip/Makefile            |    1 +
-> > >  drivers/irqchip/irq-riscv-imsic.c   | 1174 +++++++++++++++++++++++++=
-++
-> > >  include/linux/irqchip/riscv-imsic.h |   92 +++
-> > >  4 files changed, 1280 insertions(+), 1 deletion(-)
-> > >  create mode 100644 drivers/irqchip/irq-riscv-imsic.c
-> > >  create mode 100644 include/linux/irqchip/riscv-imsic.h
-> > >
-> > > diff --git a/drivers/irqchip/Kconfig b/drivers/irqchip/Kconfig
-> > > index 9e65345ca3f6..a1315189a595 100644
-> > > --- a/drivers/irqchip/Kconfig
-> > > +++ b/drivers/irqchip/Kconfig
-> > > @@ -29,7 +29,6 @@ config ARM_GIC_V2M
-> > >
-> > >  config GIC_NON_BANKED
-> > >       bool
-> > > -
-> > >  config ARM_GIC_V3
-> > >       bool
-> > >       select IRQ_DOMAIN_HIERARCHY
-> > > @@ -548,6 +547,19 @@ config SIFIVE_PLIC
-> > >       select IRQ_DOMAIN_HIERARCHY
-> > >       select GENERIC_IRQ_EFFECTIVE_AFF_MASK if SMP
-> > >
-> > > +config RISCV_IMSIC
-> > > +     bool
-> > > +     depends on RISCV
-> > > +     select IRQ_DOMAIN_HIERARCHY
-> > > +     select GENERIC_MSI_IRQ_DOMAIN
-> > > +
-> > > +config RISCV_IMSIC_PCI
-> > > +     bool
-> > > +     depends on RISCV_IMSIC
-> > > +     depends on PCI
-> > > +     depends on PCI_MSI
-> > > +     default RISCV_IMSIC
-> >
-> > This should definitely tell you that this driver needs splitting.
->=20
-> The code under "#ifdef CONFIG_RISCV_IMSIC_PCI" is hardly 40 lines
-> so I felt it was too small to deserve its own source file.
+On Fri, Apr 28, 2023 at 1:36=E2=80=AFAM Jakob Hauser <jahau@rocketmail.com>=
+ wrote:
 
-It at least needs its own patch.
+> Add device tree binding documentation for rt5033 multifunction device, vo=
+ltage
+> regulator and battery charger.
+>
+> Cc: Beomho Seo <beomho.seo@samsung.com>
+> Cc: Chanwoo Choi <cw00.choi@samsung.com>
+> Signed-off-by: Jakob Hauser <jahau@rocketmail.com>
+(...)
+> Changes in v3:
 
->=20
-> >
-> > > +
-> > >  config EXYNOS_IRQ_COMBINER
-> > >       bool "Samsung Exynos IRQ combiner support" if COMPILE_TEST
-> > >       depends on (ARCH_EXYNOS && ARM) || COMPILE_TEST
-> > > diff --git a/drivers/irqchip/Makefile b/drivers/irqchip/Makefile
-> > > index 87b49a10962c..22c723cc6ec8 100644
-> > > --- a/drivers/irqchip/Makefile
-> > > +++ b/drivers/irqchip/Makefile
-> > > @@ -96,6 +96,7 @@ obj-$(CONFIG_QCOM_MPM)                      +=3D ir=
-q-qcom-mpm.o
-> > >  obj-$(CONFIG_CSKY_MPINTC)            +=3D irq-csky-mpintc.o
-> > >  obj-$(CONFIG_CSKY_APB_INTC)          +=3D irq-csky-apb-intc.o
-> > >  obj-$(CONFIG_RISCV_INTC)             +=3D irq-riscv-intc.o
-> > > +obj-$(CONFIG_RISCV_IMSIC)            +=3D irq-riscv-imsic.o
-> > >  obj-$(CONFIG_SIFIVE_PLIC)            +=3D irq-sifive-plic.o
-> > >  obj-$(CONFIG_IMX_IRQSTEER)           +=3D irq-imx-irqsteer.o
-> > >  obj-$(CONFIG_IMX_INTMUX)             +=3D irq-imx-intmux.o
-> > > diff --git a/drivers/irqchip/irq-riscv-imsic.c b/drivers/irqchip/irq-=
-riscv-imsic.c
-> > > new file mode 100644
-> > > index 000000000000..4c16b66738d6
-> > > --- /dev/null
-> > > +++ b/drivers/irqchip/irq-riscv-imsic.c
-> > > @@ -0,0 +1,1174 @@
-> > > +// SPDX-License-Identifier: GPL-2.0
-> > > +/*
-> > > + * Copyright (C) 2021 Western Digital Corporation or its affiliates.
-> > > + * Copyright (C) 2022 Ventana Micro Systems Inc.
-> > > + */
-> > > +
-> > > +#define pr_fmt(fmt) "riscv-imsic: " fmt
-> > > +#include <linux/bitmap.h>
-> > > +#include <linux/cpu.h>
-> > > +#include <linux/interrupt.h>
-> > > +#include <linux/io.h>
-> > > +#include <linux/iommu.h>
-> > > +#include <linux/irq.h>
-> > > +#include <linux/irqchip.h>
-> > > +#include <linux/irqchip/chained_irq.h>
-> > > +#include <linux/irqchip/riscv-imsic.h>
-> > > +#include <linux/irqdomain.h>
-> > > +#include <linux/module.h>
-> > > +#include <linux/msi.h>
-> > > +#include <linux/of.h>
-> > > +#include <linux/of_address.h>
-> > > +#include <linux/of_irq.h>
-> > > +#include <linux/pci.h>
-> > > +#include <linux/platform_device.h>
-> > > +#include <linux/spinlock.h>
-> > > +#include <linux/smp.h>
-> > > +#include <asm/hwcap.h>
-> > > +
-> > > +#define IMSIC_DISABLE_EIDELIVERY     0
-> > > +#define IMSIC_ENABLE_EIDELIVERY              1
-> > > +#define IMSIC_DISABLE_EITHRESHOLD    1
-> > > +#define IMSIC_ENABLE_EITHRESHOLD     0
-> > > +
-> > > +#define imsic_csr_write(__c, __v)    \
-> > > +do {                                 \
-> > > +     csr_write(CSR_ISELECT, __c);    \
-> > > +     csr_write(CSR_IREG, __v);       \
-> > > +} while (0)
-> > > +
-> > > +#define imsic_csr_read(__c)          \
-> > > +({                                   \
-> > > +     unsigned long __v;              \
-> > > +     csr_write(CSR_ISELECT, __c);    \
-> > > +     __v =3D csr_read(CSR_IREG);       \
-> > > +     __v;                            \
-> > > +})
-> > > +
-> > > +#define imsic_csr_set(__c, __v)              \
-> > > +do {                                 \
-> > > +     csr_write(CSR_ISELECT, __c);    \
-> > > +     csr_set(CSR_IREG, __v);         \
-> > > +} while (0)
-> > > +
-> > > +#define imsic_csr_clear(__c, __v)    \
-> > > +do {                                 \
-> > > +     csr_write(CSR_ISELECT, __c);    \
-> > > +     csr_clear(CSR_IREG, __v);       \
-> > > +} while (0)
-> > > +
-> > > +struct imsic_mmio {
-> > > +     phys_addr_t pa;
-> > > +     void __iomem *va;
-> > > +     unsigned long size;
-> > > +};
-> > > +
-> > > +struct imsic_priv {
-> > > +     /* Global configuration common for all HARTs */
-> > > +     struct imsic_global_config global;
-> > > +
-> > > +     /* MMIO regions */
-> > > +     u32 num_mmios;
-> > > +     struct imsic_mmio *mmios;
-> > > +
-> > > +     /* Global state of interrupt identities */
-> > > +     raw_spinlock_t ids_lock;
-> > > +     unsigned long *ids_used_bimap;
-> > > +     unsigned long *ids_enabled_bimap;
-> > > +     unsigned int *ids_target_cpu;
-> > > +
-> > > +     /* Mask for connected CPUs */
-> > > +     struct cpumask lmask;
-> > > +
-> > > +     /* IPI interrupt identity */
-> > > +     u32 ipi_id;
-> > > +     u32 ipi_lsync_id;
-> > > +
-> > > +     /* IRQ domains */
-> > > +     struct irq_domain *base_domain;
-> > > +     struct irq_domain *pci_domain;
-> > > +     struct irq_domain *plat_domain;
-> > > +};
-> > > +
-> > > +struct imsic_handler {
-> > > +     /* Local configuration for given HART */
-> > > +     struct imsic_local_config local;
-> > > +
-> > > +     /* Pointer to private context */
-> > > +     struct imsic_priv *priv;
-> > > +};
-> > > +
-> > > +static bool imsic_init_done;
-> > > +
-> > > +static int imsic_parent_irq;
-> > > +static DEFINE_PER_CPU(struct imsic_handler, imsic_handlers);
-> > > +
-> > > +const struct imsic_global_config *imsic_get_global_config(void)
-> > > +{
-> > > +     struct imsic_handler *handler =3D this_cpu_ptr(&imsic_handlers);
-> > > +
-> > > +     if (!handler || !handler->priv)
-> > > +             return NULL;
-> > > +
-> > > +     return &handler->priv->global;
-> > > +}
-> > > +EXPORT_SYMBOL_GPL(imsic_get_global_config);
-> > > +
-> > > +const struct imsic_local_config *imsic_get_local_config(unsigned int=
- cpu)
-> > > +{
-> > > +     struct imsic_handler *handler =3D per_cpu_ptr(&imsic_handlers, =
-cpu);
-> > > +
-> > > +     if (!handler || !handler->priv)
-> > > +             return NULL;
-> >
-> > How can this happen?
->=20
-> These are redundant checks. I will drop.
->=20
-> >
-> > > +
-> > > +     return &handler->local;
-> > > +}
-> > > +EXPORT_SYMBOL_GPL(imsic_get_local_config);
-> >
-> > Why are these symbols exported? They have no user, so they shouldn't
-> > even exist here. I also seriously doubt there is a valid use case for
-> > exposing this information to the rest of the kernel.
->=20
-> The imsic_get_global_config() is used by APLIC driver and KVM RISC-V
-> module whereas imsic_get_local_config() is only used by KVM RISC-V.
->=20
-> The KVM RISC-V AIA irqchip patches are available in riscv_kvm_aia_v1
-> branch at: https://github.com/avpatel/linux.git. I have not posted KVM RI=
-SC-V
-> patches due various interdependencies.
+I'm happy with the changes requested by me in v3 so:
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-Then the symbols can wait, can't they? It'd make more sense if the
-KVM-dependent bits were brought together with the KVM patches.
+I see other reviewers have more comments.
 
-Even better, you'd use some level of abstraction between KVM and the
-irqchip code. GIC makes some heavy use of irq_set_vcpu_affinity() as a
-private API with KVM, and I'd suggest you look into something similar.
-
-[...]
-
-> > > +#ifdef CONFIG_SMP
-> > > +static void __imsic_id_smp_sync(struct imsic_priv *priv)
-> > > +{
-> > > +     struct imsic_handler *handler;
-> > > +     struct cpumask amask;
-> > > +     int cpu;
-> > > +
-> > > +     cpumask_and(&amask, &priv->lmask, cpu_online_mask);
-> >
-> > Can't this race against a CPU going down?
->=20
-> Yes, it can race if a CPU goes down while we are in this function
-> but this won't be a problem because the imsic_starting_cpu()
-> will unconditionally do imsic_ids_local_sync() when the CPU is
-> brought-up again. I will add a multiline comment block explaining
-> this.
-
-I'd rather you avoid the race instead of papering over it.
-
->=20
-> >
-> > > +     for_each_cpu(cpu, &amask) {
-> > > +             if (cpu =3D=3D smp_processor_id())
-> > > +                     continue;
-> > > +
-> > > +             handler =3D per_cpu_ptr(&imsic_handlers, cpu);
-> > > +             if (!handler || !handler->priv || !handler->local.msi_v=
-a) {
-> > > +                     pr_warn("CPU%d: handler not initialized\n", cpu=
-);
-> >
-> > How many times are you going to do that? On each failing synchronisatio=
-n?
->=20
-> My bad for adding these paranoid checks. I remove these checks
-> wherever possible.
->=20
-> >
-> > > +                     continue;
-> > > +             }
-> > > +
-> > > +             writel(handler->priv->ipi_lsync_id, handler->local.msi_=
-va);
-> >
-> > As I understand it, this is a "behind the scenes" IPI. Why isn't that
-> > a *real* IPI?
->=20
-> Yes, that's correct. The ID enable bits are per-CPU accessible only
-> via CSRs hence we have a special "behind the scenes" IPI to
-> synchronize state of ID enable bits.
-
-My question still stands: why isn't this a *real*, Linux visible IPI?
-This sideband signalling makes everything hard to follow, hard to
-debug, and screws up accounting.
-
-> > Please split the whole guest stuff out. It is totally unused!
->=20
-> The number of guest IDs is used by KVM RISC-V AIA support which
-> is in the pipeline. The KVM RISC-V only need imsic_get_global_config()
-> and imsic_get_local_config(). The "nr_guest_ids" is part of the
-> IMSIC global config.
-
-And yet it isn't needed for a minimal driver, which what I'd like to
-see at first. Shoving the kitchen sink into an initial patch isn't a
-great way to get it merged.
-
-      M.
-
---=20
-Without deviation from the norm, progress is not possible.
+Yours,
+Linus Walleij
