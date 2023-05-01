@@ -2,252 +2,390 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 20FC26F3541
-	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 19:53:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3154E6F354D
+	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 20:00:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232518AbjEARup (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 May 2023 13:50:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40594 "EHLO
+        id S232494AbjEASAA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 May 2023 14:00:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44140 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232602AbjEARun (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 13:50:43 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 029F91FE0
-        for <devicetree@vger.kernel.org>; Mon,  1 May 2023 10:50:41 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-2fa47de5b04so2624262f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 01 May 2023 10:50:40 -0700 (PDT)
+        with ESMTP id S229871AbjEAR77 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 13:59:59 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EC9A1701;
+        Mon,  1 May 2023 10:59:56 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2a8bbea12d7so27193251fa.3;
+        Mon, 01 May 2023 10:59:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682963439; x=1685555439;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=u9JlJK0r/+f8gRPVK2JU+mV/Ix9Hk17cHst6salneY4=;
-        b=Kh5vzq3KlZYsu9dtVtAYUE2JtdkfoP0xD77U51TuT9L7Uhe3nkGXOuedPPuF8+3D4q
-         u3D8qmpN2MVR0vZ0eKPa0YIgVMuveAPJJyL15Z7/og8gstE9J0FgG1o5Sf5AwTilqpP/
-         A7hPhl8V2Q1XUQGKU/ZFx3iO3Y9J3nfMb51tTbder/hw6YDM7/8dgRfRtTpnpQBuA82Z
-         FbN0rCkvy+V18r0Ql5DJCSHSO36VlXJSmY8ryAhJERZrvhPVhxwXj2/GaO23IxZjw0UA
-         bJLrghbv/OkiUFUyca6ML3CqzSf0BgWova+eaVCk/1EPbyWG1ZWfP6DFKoS5n0HhaoIr
-         Dcxg==
+        d=gmail.com; s=20221208; t=1682963995; x=1685555995;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=4LUj8HUmmFTfcWzzLfwf6Hzp+rt3esHZIRfUjX3jark=;
+        b=fn7UrSNWRMML1H1Y8GQO8geL2uBd3+ILSh0TWCNppNCxfB7NRoCUszfoCkvwQ94mQQ
+         tuExbjLC39LPaYK7idGuXXHuvWcnBzeWNp7WQqRe0YnXerCv5bv85hY5LyN9QVnD7z2Y
+         6zLJgYQZgCEU+thHgEhinfe1fWhdM4Uo6MPkJlG3A75eIm/l3vnSzXIqsX71ill3gKKb
+         huByxU4LZS/uKfWC607XdGspp8xNxFKH2TEaWlcvZHr7lZowopMu08boJ8uLB7ZXCN6k
+         41oQXnGyrE+BHqwH//pWFal14H9FrYi6GO0m2FrHU+g76T+576evEr0AX96qDSOvmOcF
+         dWrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682963439; x=1685555439;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=u9JlJK0r/+f8gRPVK2JU+mV/Ix9Hk17cHst6salneY4=;
-        b=hyu0E2ibTA3uYNETn5QHBd9QiKcYq20tGW0rEvxeNybuVwXoA3QZ45OpgrJoxjwhG1
-         R/UcT7H2YRx6z5N4uvUzB8KxbBCu5/e5WVdP1tgydl87B9O7glsGMhTkLovMzp3mO2PK
-         jCXCJ5/bs6gi8aQPBM3fLbRZmEWdyskNkQdQxw/L7vgBV/iaZE76yON+r8eDZSHm1Z5n
-         i5jD2PbS8nIcLLtOVn0Cmc4F9FN2VkxTjPQZg8uf7R3PVERm9KiFWQKermBVMzkRNbFn
-         SqjZD+H7tbFp162w7xQ/VK6ze9zY7C1KgStvgFCGOEAC69WzmXLZjhpSm8G0BP/8CnPE
-         htjQ==
-X-Gm-Message-State: AC+VfDwQ94ZakSXEBnL1YpFAooW7TQZuNYPvTKe1IJgg6LAtq5kelBbw
-        Owcryn4nFTZAOxxZds+pz10gmw==
-X-Google-Smtp-Source: ACHHUZ67QOd9rL96ZK0NWi6yHoPnZs+y1EkybRmrXk0AIBrp8dbc7YsmeFiJQshtOl+5PKzoLXS+Zg==
-X-Received: by 2002:adf:f2cf:0:b0:2f2:e638:1767 with SMTP id d15-20020adff2cf000000b002f2e6381767mr11366972wrp.39.1682963439396;
-        Mon, 01 May 2023 10:50:39 -0700 (PDT)
-Received: from [192.168.0.15] (cpc76484-cwma10-2-0-cust274.7-3.cable.virginm.net. [82.31.201.19])
-        by smtp.gmail.com with ESMTPSA id k6-20020a5d5186000000b003062b57ffd1sm4239398wrv.50.2023.05.01.10.50.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 May 2023 10:50:38 -0700 (PDT)
-Message-ID: <91cf184b-2466-183d-5800-da0a12a0701c@linaro.org>
-Date:   Mon, 1 May 2023 18:50:37 +0100
+        d=1e100.net; s=20221208; t=1682963995; x=1685555995;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4LUj8HUmmFTfcWzzLfwf6Hzp+rt3esHZIRfUjX3jark=;
+        b=fAxof9+zpY45LayIbN2Ok0uYdigAUMFrLFmiB7cXcLcHXYw2ijnJD2s0o7BV0uNzZp
+         FcYcAd+L11Q2mrTxyTer8/jn8+3H/HZPWYvaMVY/xp/lK/yqz3Rxz0IGDsdWXiWHjN/f
+         YF9T14X257lBPv8BMYOnWJckCzgDj2fyClSWgNK5CZ32BhkYmxfq4NqbWg2/X+yc6yLW
+         NY7Y8LEasJRX+ETDMP4n5LNTzGC/daiygKpb3SvrM1FJuJxnM2dVWJZrvpGkFb7MKFc/
+         lgpuF4ZdnodjH/LeTbEdUloWPDUCBNT5fD2sP5nh9egYvg7+F9Nvvs/aw9SR/+aKmYA7
+         eBlQ==
+X-Gm-Message-State: AC+VfDyxBX+htM/TKk3sKdXgDP8EODxZx8K7YlgQLVYiHVUA4veLvWRs
+        EF+Gg67Ts9KCjqlcLs+46JE=
+X-Google-Smtp-Source: ACHHUZ68yXPJlEwpnySMoQPMS5gBKduen5K3a50pJCfdvIgMiZFpOwMOe0CZsmzkzxHGI79h6GuzsA==
+X-Received: by 2002:a2e:9188:0:b0:2a9:f94f:d2ff with SMTP id f8-20020a2e9188000000b002a9f94fd2ffmr3868743ljg.25.1682963994558;
+        Mon, 01 May 2023 10:59:54 -0700 (PDT)
+Received: from mobilestation ([95.79.140.35])
+        by smtp.gmail.com with ESMTPSA id b23-20020a2e9897000000b002a93e0605ebsm4797840ljj.8.2023.05.01.10.59.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 May 2023 10:59:53 -0700 (PDT)
+Date:   Mon, 1 May 2023 20:59:51 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     jingoohan1@gmail.com, mani@kernel.org,
+        gustavo.pimentel@synopsys.com, lpieralisi@kernel.org,
+        robh+dt@kernel.org, kw@linux.com, bhelgaas@google.com,
+        kishon@kernel.org, marek.vasut+renesas@gmail.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Bjorn Helgaas <helgaas@kernel.org>,
+        Tom Joseph <tjoseph@cadence.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Richard Zhu <hongxing.zhu@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Minghuan Lian <minghuan.Lian@nxp.com>,
+        Mingkai Hu <mingkai.hu@nxp.com>, Roy Zang <roy.zang@nxp.com>,
+        Srikanth Thokala <srikanth.thokala@intel.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Jesper Nilsson <jesper.nilsson@axis.com>
+Subject: Re: [PATCH v14 04/21] PCI: Rename PCI_EPC_IRQ_LEGACY to
+ PCI_EPC_IRQ_INTX
+Message-ID: <20230501175951.qqqzxfrtfmii3ezy@mobilestation>
+References: <20230426045557.3613826-1-yoshihiro.shimoda.uh@renesas.com>
+ <20230426045557.3613826-5-yoshihiro.shimoda.uh@renesas.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v6 07/13] usb: typec: qcom: Add Qualcomm PMIC Type-C
- driver
-Content-Language: en-US
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, linux@roeck-us.net,
-        heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org,
-        andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, luca.weiss@fairphone.com,
-        linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     konrad.dybcio@linaro.org, subbaram@quicinc.com, jackp@quicinc.com,
-        robertom@qti.qualcomm.com
-References: <20230501121111.1058190-1-bryan.odonoghue@linaro.org>
- <20230501121111.1058190-8-bryan.odonoghue@linaro.org>
-From:   Caleb Connolly <caleb.connolly@linaro.org>
-In-Reply-To: <20230501121111.1058190-8-bryan.odonoghue@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230426045557.3613826-5-yoshihiro.shimoda.uh@renesas.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 01/05/2023 13:11, Bryan O'Donoghue wrote:
-> This commit adds a QCOM PMIC TCPM driver with an initial pm8150b
-> block.
+On Wed, Apr 26, 2023 at 01:55:40PM +0900, Yoshihiro Shimoda wrote:
+> Using "INTx" instead of "legacy" is more specific. So, rename
+> PCI_EPC_IRQ_LEGACY to PCI_EPC_IRQ_INTX.
 > 
-> The driver is layered as follows:
+> Suggested-by: Bjorn Helgaas <helgaas@kernel.org>
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> Cc: Tom Joseph <tjoseph@cadence.com>
+> Cc: Vignesh Raghavendra <vigneshr@ti.com>
+> Cc: Richard Zhu <hongxing.zhu@nxp.com>
+> Cc: Lucas Stach <l.stach@pengutronix.de>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: NXP Linux Team <linux-imx@nxp.com>
+> Cc: Minghuan Lian <minghuan.Lian@nxp.com>
+> Cc: Mingkai Hu <mingkai.hu@nxp.com>
+> Cc: Roy Zang <roy.zang@nxp.com>
+> Cc: Jingoo Han <jingoohan1@gmail.com>
+> Cc: Serge Semin <fancer.lancer@gmail.com>
+> Cc: Srikanth Thokala <srikanth.thokala@intel.com>
+> Cc: Thierry Reding <thierry.reding@gmail.com>
+> Cc: Jonathan Hunter <jonathanh@nvidia.com>
+> Cc: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+> Cc: Masami Hiramatsu <mhiramat@kernel.org>
+> Cc: Marek Vasut <marek.vasut+renesas@gmail.com>
+> Cc: Shawn Lin <shawn.lin@rock-chips.com>
+> Cc: Heiko Stuebner <heiko@sntech.de>
+> Cc: Kishon Vijay Abraham I <kishon@kernel.org>
+> Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
+> Acked-by: Jesper Nilsson <jesper.nilsson@axis.com> # ARTPEC
+> ---
+>  drivers/pci/controller/cadence/pcie-cadence-ep.c  |  2 +-
+
+>  drivers/pci/controller/dwc/pci-dra7xx.c           |  2 +-
+>  drivers/pci/controller/dwc/pci-imx6.c             |  2 +-
+>  drivers/pci/controller/dwc/pci-keystone.c         |  2 +-
+>  drivers/pci/controller/dwc/pci-layerscape-ep.c    |  2 +-
+>  drivers/pci/controller/dwc/pcie-artpec6.c         |  2 +-
+>  drivers/pci/controller/dwc/pcie-designware-plat.c |  2 +-
+>  drivers/pci/controller/dwc/pcie-keembay.c         |  2 +-
+>  drivers/pci/controller/dwc/pcie-qcom-ep.c         |  2 +-
+>  drivers/pci/controller/dwc/pcie-tegra194.c        |  2 +-
+>  drivers/pci/controller/dwc/pcie-uniphier-ep.c     |  2 +-
+
+LGTM. Thanks.
+Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
+
+-Serge(y)
+
+>  drivers/pci/controller/pcie-rcar-ep.c             |  2 +-
+>  drivers/pci/controller/pcie-rockchip-ep.c         |  2 +-
+>  drivers/pci/endpoint/functions/pci-epf-test.c     | 12 ++++++------
+>  include/linux/pci-epc.h                           |  4 ++--
+>  15 files changed, 21 insertions(+), 21 deletions(-)
 > 
-> qcom_pmic_typec.c : Responsible for registering with TCPM and arbitrates
->                     access to the Type-C and PDPHY hardware blocks in one
->                     place.  This presents a single TCPM device to device to
->                     the Linux TCPM layer.
+> diff --git a/drivers/pci/controller/cadence/pcie-cadence-ep.c b/drivers/pci/controller/cadence/pcie-cadence-ep.c
+> index b8b655d4047e..2af8eb4e6d91 100644
+> --- a/drivers/pci/controller/cadence/pcie-cadence-ep.c
+> +++ b/drivers/pci/controller/cadence/pcie-cadence-ep.c
+> @@ -539,7 +539,7 @@ static int cdns_pcie_ep_raise_irq(struct pci_epc *epc, u8 fn, u8 vfn,
+>  	struct device *dev = pcie->dev;
+>  
+>  	switch (type) {
+> -	case PCI_EPC_IRQ_LEGACY:
+> +	case PCI_EPC_IRQ_INTX:
+>  		if (vfn > 0) {
+>  			dev_err(dev, "Cannot raise legacy interrupts for VF\n");
+>  			return -EINVAL;
+> diff --git a/drivers/pci/controller/dwc/pci-dra7xx.c b/drivers/pci/controller/dwc/pci-dra7xx.c
+> index 4ae807e7cf79..b42fb1cc8bc8 100644
+> --- a/drivers/pci/controller/dwc/pci-dra7xx.c
+> +++ b/drivers/pci/controller/dwc/pci-dra7xx.c
+> @@ -410,7 +410,7 @@ static int dra7xx_pcie_raise_irq(struct dw_pcie_ep *ep, u8 func_no,
+>  	struct dra7xx_pcie *dra7xx = to_dra7xx_pcie(pci);
+>  
+>  	switch (type) {
+> -	case PCI_EPC_IRQ_LEGACY:
+> +	case PCI_EPC_IRQ_INTX:
+>  		dra7xx_pcie_raise_legacy_irq(dra7xx);
+>  		break;
+>  	case PCI_EPC_IRQ_MSI:
+> diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
+> index 52906f999f2b..1f39e733ce19 100644
+> --- a/drivers/pci/controller/dwc/pci-imx6.c
+> +++ b/drivers/pci/controller/dwc/pci-imx6.c
+> @@ -1062,7 +1062,7 @@ static int imx6_pcie_ep_raise_irq(struct dw_pcie_ep *ep, u8 func_no,
+>  	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
+>  
+>  	switch (type) {
+> -	case PCI_EPC_IRQ_LEGACY:
+> +	case PCI_EPC_IRQ_INTX:
+>  		return dw_pcie_ep_raise_legacy_irq(ep, func_no);
+>  	case PCI_EPC_IRQ_MSI:
+>  		return dw_pcie_ep_raise_msi_irq(ep, func_no, interrupt_num);
+> diff --git a/drivers/pci/controller/dwc/pci-keystone.c b/drivers/pci/controller/dwc/pci-keystone.c
+> index 78818853af9e..3806f5530937 100644
+> --- a/drivers/pci/controller/dwc/pci-keystone.c
+> +++ b/drivers/pci/controller/dwc/pci-keystone.c
+> @@ -908,7 +908,7 @@ static int ks_pcie_am654_raise_irq(struct dw_pcie_ep *ep, u8 func_no,
+>  	struct keystone_pcie *ks_pcie = to_keystone_pcie(pci);
+>  
+>  	switch (type) {
+> -	case PCI_EPC_IRQ_LEGACY:
+> +	case PCI_EPC_IRQ_INTX:
+>  		ks_pcie_am654_raise_legacy_irq(ks_pcie);
+>  		break;
+>  	case PCI_EPC_IRQ_MSI:
+> diff --git a/drivers/pci/controller/dwc/pci-layerscape-ep.c b/drivers/pci/controller/dwc/pci-layerscape-ep.c
+> index c640db60edc6..ab3306e206d8 100644
+> --- a/drivers/pci/controller/dwc/pci-layerscape-ep.c
+> +++ b/drivers/pci/controller/dwc/pci-layerscape-ep.c
+> @@ -65,7 +65,7 @@ static int ls_pcie_ep_raise_irq(struct dw_pcie_ep *ep, u8 func_no,
+>  	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
+>  
+>  	switch (type) {
+> -	case PCI_EPC_IRQ_LEGACY:
+> +	case PCI_EPC_IRQ_INTX:
+>  		return dw_pcie_ep_raise_legacy_irq(ep, func_no);
+>  	case PCI_EPC_IRQ_MSI:
+>  		return dw_pcie_ep_raise_msi_irq(ep, func_no, interrupt_num);
+> diff --git a/drivers/pci/controller/dwc/pcie-artpec6.c b/drivers/pci/controller/dwc/pcie-artpec6.c
+> index 98102079e26d..128cb1118e3a 100644
+> --- a/drivers/pci/controller/dwc/pcie-artpec6.c
+> +++ b/drivers/pci/controller/dwc/pcie-artpec6.c
+> @@ -357,7 +357,7 @@ static int artpec6_pcie_raise_irq(struct dw_pcie_ep *ep, u8 func_no,
+>  	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
+>  
+>  	switch (type) {
+> -	case PCI_EPC_IRQ_LEGACY:
+> +	case PCI_EPC_IRQ_INTX:
+>  		dev_err(pci->dev, "EP cannot trigger legacy IRQs\n");
+>  		return -EINVAL;
+>  	case PCI_EPC_IRQ_MSI:
+> diff --git a/drivers/pci/controller/dwc/pcie-designware-plat.c b/drivers/pci/controller/dwc/pcie-designware-plat.c
+> index 1fcfb840f238..fc3b02949218 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware-plat.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware-plat.c
+> @@ -48,7 +48,7 @@ static int dw_plat_pcie_ep_raise_irq(struct dw_pcie_ep *ep, u8 func_no,
+>  	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
+>  
+>  	switch (type) {
+> -	case PCI_EPC_IRQ_LEGACY:
+> +	case PCI_EPC_IRQ_INTX:
+>  		return dw_pcie_ep_raise_legacy_irq(ep, func_no);
+>  	case PCI_EPC_IRQ_MSI:
+>  		return dw_pcie_ep_raise_msi_irq(ep, func_no, interrupt_num);
+> diff --git a/drivers/pci/controller/dwc/pcie-keembay.c b/drivers/pci/controller/dwc/pcie-keembay.c
+> index f90f36bac018..ceb940b327cb 100644
+> --- a/drivers/pci/controller/dwc/pcie-keembay.c
+> +++ b/drivers/pci/controller/dwc/pcie-keembay.c
+> @@ -290,7 +290,7 @@ static int keembay_pcie_ep_raise_irq(struct dw_pcie_ep *ep, u8 func_no,
+>  	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
+>  
+>  	switch (type) {
+> -	case PCI_EPC_IRQ_LEGACY:
+> +	case PCI_EPC_IRQ_INTX:
+>  		/* Legacy interrupts are not supported in Keem Bay */
+>  		dev_err(pci->dev, "Legacy IRQ is not supported\n");
+>  		return -EINVAL;
+> diff --git a/drivers/pci/controller/dwc/pcie-qcom-ep.c b/drivers/pci/controller/dwc/pcie-qcom-ep.c
+> index 19b32839ea26..077afce48d0b 100644
+> --- a/drivers/pci/controller/dwc/pcie-qcom-ep.c
+> +++ b/drivers/pci/controller/dwc/pcie-qcom-ep.c
+> @@ -658,7 +658,7 @@ static int qcom_pcie_ep_raise_irq(struct dw_pcie_ep *ep, u8 func_no,
+>  	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
+>  
+>  	switch (type) {
+> -	case PCI_EPC_IRQ_LEGACY:
+> +	case PCI_EPC_IRQ_INTX:
+>  		return dw_pcie_ep_raise_legacy_irq(ep, func_no);
+>  	case PCI_EPC_IRQ_MSI:
+>  		return dw_pcie_ep_raise_msi_irq(ep, func_no, interrupt_num);
+> diff --git a/drivers/pci/controller/dwc/pcie-tegra194.c b/drivers/pci/controller/dwc/pcie-tegra194.c
+> index 09825b4a075e..4adba379b83d 100644
+> --- a/drivers/pci/controller/dwc/pcie-tegra194.c
+> +++ b/drivers/pci/controller/dwc/pcie-tegra194.c
+> @@ -1980,7 +1980,7 @@ static int tegra_pcie_ep_raise_irq(struct dw_pcie_ep *ep, u8 func_no,
+>  	struct tegra_pcie_dw *pcie = to_tegra_pcie(pci);
+>  
+>  	switch (type) {
+> -	case PCI_EPC_IRQ_LEGACY:
+> +	case PCI_EPC_IRQ_INTX:
+>  		return tegra_pcie_ep_raise_legacy_irq(pcie, interrupt_num);
+>  
+>  	case PCI_EPC_IRQ_MSI:
+> diff --git a/drivers/pci/controller/dwc/pcie-uniphier-ep.c b/drivers/pci/controller/dwc/pcie-uniphier-ep.c
+> index 4d0a587c0ba5..7787eedf87f4 100644
+> --- a/drivers/pci/controller/dwc/pcie-uniphier-ep.c
+> +++ b/drivers/pci/controller/dwc/pcie-uniphier-ep.c
+> @@ -262,7 +262,7 @@ static int uniphier_pcie_ep_raise_irq(struct dw_pcie_ep *ep, u8 func_no,
+>  	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
+>  
+>  	switch (type) {
+> -	case PCI_EPC_IRQ_LEGACY:
+> +	case PCI_EPC_IRQ_INTX:
+>  		return uniphier_pcie_ep_raise_legacy_irq(ep);
+>  	case PCI_EPC_IRQ_MSI:
+>  		return uniphier_pcie_ep_raise_msi_irq(ep, func_no,
+> diff --git a/drivers/pci/controller/pcie-rcar-ep.c b/drivers/pci/controller/pcie-rcar-ep.c
+> index f9682df1da61..fbdf3d85301c 100644
+> --- a/drivers/pci/controller/pcie-rcar-ep.c
+> +++ b/drivers/pci/controller/pcie-rcar-ep.c
+> @@ -408,7 +408,7 @@ static int rcar_pcie_ep_raise_irq(struct pci_epc *epc, u8 fn, u8 vfn,
+>  	struct rcar_pcie_endpoint *ep = epc_get_drvdata(epc);
+>  
+>  	switch (type) {
+> -	case PCI_EPC_IRQ_LEGACY:
+> +	case PCI_EPC_IRQ_INTX:
+>  		return rcar_pcie_ep_assert_intx(ep, fn, 0);
+>  
+>  	case PCI_EPC_IRQ_MSI:
+> diff --git a/drivers/pci/controller/pcie-rockchip-ep.c b/drivers/pci/controller/pcie-rockchip-ep.c
+> index d1a200b93b2b..ef9d1f6c382a 100644
+> --- a/drivers/pci/controller/pcie-rockchip-ep.c
+> +++ b/drivers/pci/controller/pcie-rockchip-ep.c
+> @@ -477,7 +477,7 @@ static int rockchip_pcie_ep_raise_irq(struct pci_epc *epc, u8 fn, u8 vfn,
+>  	struct rockchip_pcie_ep *ep = epc_get_drvdata(epc);
+>  
+>  	switch (type) {
+> -	case PCI_EPC_IRQ_LEGACY:
+> +	case PCI_EPC_IRQ_INTX:
+>  		return rockchip_pcie_ep_send_legacy_irq(ep, fn, 0);
+>  	case PCI_EPC_IRQ_MSI:
+>  		return rockchip_pcie_ep_send_msi_irq(ep, fn, interrupt_num);
+> diff --git a/drivers/pci/endpoint/functions/pci-epf-test.c b/drivers/pci/endpoint/functions/pci-epf-test.c
+> index 172e5ac0bd96..36a2a8120653 100644
+> --- a/drivers/pci/endpoint/functions/pci-epf-test.c
+> +++ b/drivers/pci/endpoint/functions/pci-epf-test.c
+> @@ -19,11 +19,11 @@
+>  #include <linux/pci-epf.h>
+>  #include <linux/pci_regs.h>
+>  
+> -#define IRQ_TYPE_LEGACY			0
+> +#define IRQ_TYPE_INTX			0
+>  #define IRQ_TYPE_MSI			1
+>  #define IRQ_TYPE_MSIX			2
+>  
+> -#define COMMAND_RAISE_LEGACY_IRQ	BIT(0)
+> +#define COMMAND_RAISE_INTX_IRQ		BIT(0)
+>  #define COMMAND_RAISE_MSI_IRQ		BIT(1)
+>  #define COMMAND_RAISE_MSIX_IRQ		BIT(2)
+>  #define COMMAND_READ			BIT(3)
+> @@ -606,9 +606,9 @@ static void pci_epf_test_raise_irq(struct pci_epf_test *epf_test, u8 irq_type,
+>  	reg->status |= STATUS_IRQ_RAISED;
+>  
+>  	switch (irq_type) {
+> -	case IRQ_TYPE_LEGACY:
+> +	case IRQ_TYPE_INTX:
+>  		pci_epc_raise_irq(epc, epf->func_no, epf->vfunc_no,
+> -				  PCI_EPC_IRQ_LEGACY, 0);
+> +				  PCI_EPC_IRQ_INTX, 0);
+>  		break;
+>  	case IRQ_TYPE_MSI:
+>  		pci_epc_raise_irq(epc, epf->func_no, epf->vfunc_no,
+> @@ -649,10 +649,10 @@ static void pci_epf_test_cmd_handler(struct work_struct *work)
+>  		goto reset_handler;
+>  	}
+>  
+> -	if (command & COMMAND_RAISE_LEGACY_IRQ) {
+> +	if (command & COMMAND_RAISE_INTX_IRQ) {
+>  		reg->status = STATUS_IRQ_RAISED;
+>  		pci_epc_raise_irq(epc, epf->func_no, epf->vfunc_no,
+> -				  PCI_EPC_IRQ_LEGACY, 0);
+> +				  PCI_EPC_IRQ_INTX, 0);
+>  		goto reset_handler;
+>  	}
+>  
+> diff --git a/include/linux/pci-epc.h b/include/linux/pci-epc.h
+> index 301bb0e53707..c2572a93d73d 100644
+> --- a/include/linux/pci-epc.h
+> +++ b/include/linux/pci-epc.h
+> @@ -21,7 +21,7 @@ enum pci_epc_interface_type {
+>  
+>  enum pci_epc_irq_type {
+>  	PCI_EPC_IRQ_UNKNOWN,
+> -	PCI_EPC_IRQ_LEGACY,
+> +	PCI_EPC_IRQ_INTX,
+>  	PCI_EPC_IRQ_MSI,
+>  	PCI_EPC_IRQ_MSIX,
+>  };
+> @@ -54,7 +54,7 @@ pci_epc_interface_string(enum pci_epc_interface_type type)
+>   *	     MSI-X capability register
+>   * @get_msix: ops to get the number of MSI-X interrupts allocated by the RC
+>   *	     from the MSI-X capability register
+> - * @raise_irq: ops to raise a legacy, MSI or MSI-X interrupt
+> + * @raise_irq: ops to raise an INTx, MSI or MSI-X interrupt
+>   * @map_msi_irq: ops to map physical address to MSI address and return MSI data
+>   * @start: ops to start the PCI link
+>   * @stop: ops to stop the PCI link
+> -- 
+> 2.25.1
 > 
-> qcom_pmic_typec_pdphy.c: Responsible for interfacing with the PDPHY hardware and
->                          processing power-delivery related calls from TCPM.
->                          This hardware binding can be extended to
->                          facilitate similar hardware in different PMICs.
-> 
-> qcom_pmic_typec_port.c: Responsible for notifying and processing Type-C
->                         related calls from TCPM. Similar to the pdphy this
->                         layer can be extended to handle the specifics of
->                         different Qualcomm PMIC Type-C port managers.
-> 
-> This code provides all of the same functionality as the existing
-> qcom typec driver plus power-delivery as well.
-> 
-> As a result commit 6c8cf3695176 ("usb: typec: Add QCOM PMIC typec detection
-> driver") can be deleted entirely.
-> 
-> References code from Jonathan Marek, Jack Pham, Wesley Cheng, Hemant Kumar,
-> Guru Das Srinagesh and Ashay Jaiswal.
-> 
-> Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-
-Reviewed-by: Caleb Connolly <caleb.connolly@linaro.org>
-
-Just a few additional nits:
-
-[...]
-
-> +
-> +static struct platform_driver qcom_pmic_typec_platform_driver = {
-
-This could be renamed to qcom_pmic_typec_driver, following the trend of
-the other tcpm drivers.
-> +	.driver = {
-> +		.name = "qcom,pmic-typec",
-> +		.of_match_table = qcom_pmic_typec_table,
-> +	},
-> +	.probe = qcom_pmic_typec_probe,
-> +	.remove = qcom_pmic_typec_remove,
-> +};
-> +
-> +static int __init qcom_pmic_typec_module_init(void)
-> +{
-> +	int ret;
-> +
-> +	ret = platform_driver_register(&qcom_pmic_typec_platform_driver);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return 0;
-> +}
-> +module_init(qcom_pmic_typec_module_init);
-> +
-> +static void __exit qcom_pmic_typec_module_exit(void)
-> +{
-> +	platform_driver_unregister(&qcom_pmic_typec_platform_driver);
-> +}
-> +module_exit(qcom_pmic_typec_module_exit);
-
-Can't this be simplified to just:
-
-module_platform_driver(qcom_pmic_typec_platform_driver);
-
-[...]
-> diff --git a/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_pdphy.h b/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_pdphy.h
-> new file mode 100644
-> index 0000000000000..ebd33c9ae0606
-> --- /dev/null
-> +++ b/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_pdphy.h
-> @@ -0,0 +1,115 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2023, Linaro Ltd. All rights reserved.
-> + */
-> +#ifndef __QCOM_PMIC_PDPHY_H__
-> +#define __QCOM_PMIC_PDPHY_H__
-
-Missing a few headers:
-
-#include <linux/platform_device.h>
-#include <linux/regmap.h>
-#include <linux/usb/tcpm.h>
-
-[...]
-
-> +static irqreturn_t pmic_typec_port_isr(int irq, void *dev_id)
-> +{
-> +	struct pmic_typec_port_irq_data *irq_data = dev_id;
-> +	struct pmic_typec_port *pmic_typec_port = irq_data->pmic_typec_port;
-> +	u32 misc_stat;
-> +	bool vbus_change = false;
-> +	bool cc_change = false;
-> +	unsigned long flags;
-> +	int ret;
-> +
-> +	spin_lock_irqsave(&pmic_typec_port->lock, flags);
-> +
-> +	ret = regmap_read(pmic_typec_port->regmap,
-> +			  pmic_typec_port->base + TYPEC_MISC_STATUS_REG,
-> +			  &misc_stat);
-> +	if (ret)
-> +		goto done;
-> +
-> +	switch (irq_data->virq) {
-> +	case PMIC_TYPEC_VBUS_IRQ:
-> +		/* Incoming vbus assert/de-assert detect */
-
-This comment can probably be dropped
-> +		vbus_change = true;
-> +		break;
-> +	case PMIC_TYPEC_CC_STATE_IRQ:
-> +		if (!pmic_typec_port->debouncing_cc)
-> +			cc_change = true;
-> +		break;
-> +	case PMIC_TYPEC_ATTACH_DETACH_IRQ:
-> +		if (!pmic_typec_port->debouncing_cc)
-> +			cc_change = true;
-> +		break;
-> +	}
-
-The middle case can just fall through:
-
-	case PMIC_TYPEC_CC_STATE_IRQ:
-	case PMIC_TYPEC_ATTACH_DETACH_IRQ:
-		if (!pmic_typec_port->debouncing_cc)
-			cc_change = true;
-		break;
-	}
-
-[...]
-
-> diff --git a/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_port.h b/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_port.h
-> new file mode 100644
-> index 0000000000000..5a9c47373c614
-> --- /dev/null
-> +++ b/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_port.h
-> @@ -0,0 +1,194 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2023, Linaro Ltd. All rights reserved.
-> + */
-> +#ifndef __QCOM_PMIC_TYPEC_H__
-> +#define __QCOM_PMIC_TYPEC_H__
-> +
-
-Also missing some headers:
-
-#include <linux/platform_device.h>
-#include <linux/regmap.h>
-> +#include <linux/usb/tcpm.h>
-> +
-
--- 
-Kind Regards,
-Caleb (they/them)
