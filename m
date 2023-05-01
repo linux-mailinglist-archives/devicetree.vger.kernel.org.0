@@ -2,74 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA1A56F3001
-	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 11:54:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D493C6F3002
+	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 11:59:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229861AbjEAJyD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 May 2023 05:54:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46614 "EHLO
+        id S232070AbjEAJ7F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 May 2023 05:59:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232070AbjEAJyC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 05:54:02 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 496F2E47
-        for <devicetree@vger.kernel.org>; Mon,  1 May 2023 02:53:55 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-94ef0a8546fso378341166b.1
-        for <devicetree@vger.kernel.org>; Mon, 01 May 2023 02:53:55 -0700 (PDT)
+        with ESMTP id S230139AbjEAJ7E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 05:59:04 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7335CD3
+        for <devicetree@vger.kernel.org>; Mon,  1 May 2023 02:59:02 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-959a3e2dc72so478623066b.2
+        for <devicetree@vger.kernel.org>; Mon, 01 May 2023 02:59:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682934834; x=1685526834;
+        d=linaro.org; s=google; t=1682935141; x=1685527141;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=2LAaaX3T1102gejNKuIMfwgpgomPZOYq3AaB4DZgS2M=;
-        b=COZ6qAXyDJLCOXzJXDsLdMqZM434wQCv0uDnV2J73w8sWz8MioHIy0gY+0P2KGIiRb
-         58BiHfD9UtcepfvZZhB3wb3AYDtuuqGUWQubTUVpXDTCchOegxaAme4NKfwTd7NiQJKY
-         jobW+FwpbUv6woqc2KMjVlP8ELxp5FXNG+qnkxyXhSW4DvxRJBLxm6uX8Ky94tODisgQ
-         mJDdIq1GWgQaqApbcHHdnV8DTrPP+AZCU269IdD2p+H2Lfs1bpub/5Sjig/6wIzFm7de
-         RIAEeMjkzeBHV/K++nlDkoSwPpaXEkSbTEDGXgg6xdCNzTQwAW9F+TEjLm61fKYvxckJ
-         Y86w==
+        bh=1iC542I8sMMVaQ/GKCt5KrdijPnyOsGoeQvZFa5279s=;
+        b=FTD6ea9xiiKA9CmBhw8FW4LKyQUFRuC89lG4rnIisz/8N1dldoe8cPSsN6MLa1SYwr
+         gfhVVv/XY3zv2PTMgGAwn4219JxsRMUUboFHWzvlPp/1GDb6GWLfB1/MqA8nt07Q5ZsH
+         MLj27lA648g3YAnkS95kNomb2Px4hkVKw5X25rSLrVFuRfVner1KSLcm7q4OM+oeM8p8
+         J73jFRvf45UThva8feihLugrk5xVJLSBN/C6FBMh5I1CEMemSkN7uLtjYiWKcxkwA1An
+         1CjWGNGp9ivABvGTzo+bp/8Uepj1BIfduNN8ZwDwET0gAVDW7/RRJEU4SyD8ZOmFCl0A
+         cMWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682934834; x=1685526834;
+        d=1e100.net; s=20221208; t=1682935141; x=1685527141;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2LAaaX3T1102gejNKuIMfwgpgomPZOYq3AaB4DZgS2M=;
-        b=hXowU0FSqMyMrg3M1E9znDEuGKN8WmfEf+hQXCt84GAnxlShxYWd5i0Lki/KSvEVNS
-         7OQb8w5HiHfoK0+U7+5vK9jZp4+uZw3farYLwBYNxpk4tFwSr3FIcog87tIBt6lq4CYe
-         qwPKMZYEqDr2n5ZpJfE6WOdmev1u32+jcqHKQOvzGN9kW8FwdOh3hbDMTHmf56S118yL
-         b/EQe+McIQNz/j+WwCNB7zlCdUUeWOR3x88we3D3zXnjxnrcrLK80AotnEt6FzOUIxhY
-         dxW9iMPxTlFBCyZh2kR/B7EWzRnopI6qgoVNhQbQ+1manXusu28aA2nXuO7n+07TsZw4
-         kTdg==
-X-Gm-Message-State: AC+VfDyzBIk8EvTO4jLeup7xgLDfr6LrPHnHPuwO76hqgzkfTFj//+vt
-        s/8bHODhtNnvPdUtZqcyGp2bh2TO+JDd50et7X4mtA==
-X-Google-Smtp-Source: ACHHUZ4TN6CiMt7jfmu82h2+5M0Puw5ke/1EkQwBWppoXUIN5oBKNEUpvIVsWTKjWC0uIPvSqsjcBg==
-X-Received: by 2002:a17:907:97ca:b0:95e:ce4b:b333 with SMTP id js10-20020a17090797ca00b0095ece4bb333mr14048400ejc.53.1682934834504;
-        Mon, 01 May 2023 02:53:54 -0700 (PDT)
+        bh=1iC542I8sMMVaQ/GKCt5KrdijPnyOsGoeQvZFa5279s=;
+        b=UTFBH9mLK0GxPdwU9rMzYNFC0b2wBGwOgTZ0T2rm1Aar0P3+SRHL6XZF+zwQAeR2dh
+         nOhviXgItvqdKMe8c39zUK4qGd47MHJiHvSiY0eAbimpo96dVJ7XNhrKooubKQBbOfQA
+         TtF1vCpEuATDZMyP/Wbv2SWPk1MAMDGDqRo8wlombUF7wcAmUX1lEtZJVEWRagcrCvHP
+         iagRRUOVhDuf1CsqFN/Q4Gc3pSH2GCgqTNcCcsWxlJqp8H5hcKQnvUv/skK6GiopZKai
+         5v93o98uEtIEMf7QLOmvpa7hUJdLnrKsENTelG7q8qnErGm+38aa+ui0WKKK+G42aTYS
+         qFZg==
+X-Gm-Message-State: AC+VfDzLJODpNa1UvRynrFpeOK/4pEEgaoLsWZnQqbiCNQNGObv54IZi
+        H3ff8+NbXXOXehwweWLi0aanIA==
+X-Google-Smtp-Source: ACHHUZ5tqLgVByqmgtfFg0+IfGabRKnA3PjKgolnSWjhoxA7MZt9uWHkPm73ChEJKMLqaehLn0+ANA==
+X-Received: by 2002:a17:907:7245:b0:94e:b3a1:3ed9 with SMTP id ds5-20020a170907724500b0094eb3a13ed9mr12018150ejc.49.1682935140884;
+        Mon, 01 May 2023 02:59:00 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:637a:fd0c:58fd:9f00? ([2a02:810d:15c0:828:637a:fd0c:58fd:9f00])
-        by smtp.gmail.com with ESMTPSA id z16-20020a1709063ad000b0094f71500bfesm14540877ejd.4.2023.05.01.02.53.53
+        by smtp.gmail.com with ESMTPSA id oz5-20020a170906cd0500b0094f58a85bc5sm14534591ejb.180.2023.05.01.02.58.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 May 2023 02:53:53 -0700 (PDT)
-Message-ID: <9569ef0d-0d94-3ff9-468b-152fe949e7b5@linaro.org>
-Date:   Mon, 1 May 2023 11:53:53 +0200
+        Mon, 01 May 2023 02:59:00 -0700 (PDT)
+Message-ID: <36e7a445-7d19-911a-1a94-ffc30172e1a3@linaro.org>
+Date:   Mon, 1 May 2023 11:58:59 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
-Subject: Re: [PATCH v2 1/2] docs: dt: fix documented Primecell compatible
- string
+Subject: Re: [PATCH V2] arm64: dts: add support for C3 based Amlogic AW409
 Content-Language: en-US
-To:     Baruch Siach <baruch@tkos.co.il>, Rob Herring <robh+dt@kernel.org>,
+To:     Xianwei Zhao <xianwei.zhao@amlogic.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Alex Shi <alexs@kernel.org>, Yanteng Si <siyanteng@loongson.cn>,
-        devicetree@vger.kernel.org, linux-doc@vger.kernel.org
-References: <9e137548c4e76e0d8deef6d49460cb37897934ca.1682333574.git.baruch@tkos.co.il>
- <878regbbr7.fsf@tarshish>
+References: <20230427085859.793802-1-xianwei.zhao@amlogic.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <878regbbr7.fsf@tarshish>
+In-Reply-To: <20230427085859.793802-1-xianwei.zhao@amlogic.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,22 +80,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/04/2023 10:31, Baruch Siach wrote:
-> Hi Rob, Krzysztof,
+On 27/04/2023 10:58, Xianwei Zhao wrote:
+> Amlogic C3 is an advanced edge AI processor designed for smart IP camera
+> applications.
 > 
-> On Mon, Apr 24 2023, Baruch Siach wrote:
->> Only arm,primecell is documented as compatible string for Primecell
->> peripherals. Current code agrees with that.
+> Add basic support for the C3 based Amlogic AW409 board, which describes
+> the following components: CPU, GIC, IRQ, Timer, UART. It's capable of
+> booting up into the serial console.
 > 
-> Once again my patches do not show up in patchwork. But they do show in
-> lore:
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > 
->   https://lore.kernel.org/linux-devicetree/9e137548c4e76e0d8deef6d49460cb37897934ca.1682333574.git.baruch@tkos.co.il/
+> ---
+> V1 -> V2: Remove new arch, and use ARCH_MESON;
+>           Modify node name, and delete superfluous blank lines.
+> ---
+>  arch/arm64/boot/dts/amlogic/Makefile          |  1 +
+>  .../amlogic/amlogic-c3-c302x-aw409-256m.dts   | 29 +++++++
+>  arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi   | 86 +++++++++++++++++++
+>  3 files changed, 116 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409-256m.dts
+>  create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
 > 
+> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+> index cd1c5b04890a..bcec872c2444 100644
+> --- a/arch/arm64/boot/dts/amlogic/Makefile
+> +++ b/arch/arm64/boot/dts/amlogic/Makefile
+> @@ -74,3 +74,4 @@ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-hc4.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air-gbit.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air.dtb
+> +dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c302x-aw409-256m.dtb
 
-You used subject prefix which targets Doc subsystem, but did not Cc Doc
-maintainers (get_maintainers do not print them). If you target Rob's
-Patchwork, probably you need to fix subject prefix. There is no "dt" prefix.
+Looks wrongly ordered. 'a' is before 'm'.
+
+> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409-256m.dts b/arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409-256m.dts
+> new file mode 100644
+> index 000000000000..edce8850b338
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409-256m.dts
+> @@ -0,0 +1,29 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "amlogic-c3.dtsi"
+> +
+> +/ {
+> +	model = "Amlogic C302 aw409 Development Board";
+> +	compatible = "amlogic,aw409", "amlogic,c3";
+
+Missing bindings.
+
+Please run scripts/checkpatch.pl and fix reported warnings.
 
 Best regards,
 Krzysztof
