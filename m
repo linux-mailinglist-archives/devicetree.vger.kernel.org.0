@@ -2,139 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE7D56F3288
-	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 17:09:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF2556F32DF
+	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 17:28:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232328AbjEAPJ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 May 2023 11:09:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39468 "EHLO
+        id S232193AbjEAP2x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 May 2023 11:28:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232704AbjEAPJZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 11:09:25 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4D6F19A4;
-        Mon,  1 May 2023 08:09:13 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0CBC361DA3;
-        Mon,  1 May 2023 15:09:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2769C433D2;
-        Mon,  1 May 2023 15:09:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1682953752;
-        bh=cUsOqfxkIZKyqqJ02ZRf0fbQ0VVSONKVBQcffytJjtk=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=LXsZT+m4RC1Wkzi4gGg7dhvNreN88Pqydx70S7nVYE3En1YazI1UXgrbDB/acgko4
-         WdN0xFED3fL+1lqYjoNtpiWvpUkQHn0dNcr5Tiw7hziaTknpfeok8+ybqMSuDk83Sd
-         D28ffSMdMstVcNMKRxmI5eeyRFOrp3EZhxj7ZMV+8YcjLMz6ursQFkWzgde7DSGk0+
-         hURXmbJ6WJQSwV6dNCtmIFgI+DG/+9sVVEDGOxvPoDA4KmzUD/aQhENlLfkIB+k9z9
-         aKemwGil86e9cGRezdqtMUWqZVbY0VyyvpxZHHfK1vCGk883WzoXbnogrMeBOyXKV/
-         jwuPst3iBBYhg==
-Date:   Mon, 1 May 2023 16:24:56 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Herve Codina <herve.codina@bootlin.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 4/4] ASoC: codecs: Add support for the generic IIO
- auxiliary devices
-Message-ID: <20230501162456.3448c494@jic23-huawei>
-In-Reply-To: <20230424125216.0f279f82@bootlin.com>
-References: <20230421124122.324820-1-herve.codina@bootlin.com>
-        <20230421124122.324820-5-herve.codina@bootlin.com>
-        <20230422180814.61d24aa3@jic23-huawei>
-        <20230424125216.0f279f82@bootlin.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
+        with ESMTP id S231249AbjEAP2w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 11:28:52 -0400
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D4F6D2;
+        Mon,  1 May 2023 08:28:46 -0700 (PDT)
+Received: by mail-pj1-x102e.google.com with SMTP id 98e67ed59e1d1-24b725d6898so1638440a91.2;
+        Mon, 01 May 2023 08:28:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1682954926; x=1685546926;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=VkcSOt/Gzi9QBKAIM2mIsqPI2pYq+Ao2+UfznD2y144=;
+        b=ZckyGJmJAtfcDf/ni4a3IlPazkUco2N3YGFFG5/wCGH5oKnvS+16OTh6nxfs67pyde
+         MrqEXb9SYx9QD5xqhrVdhYloaEXWoWRP90C0cIhb35QV4q4f/O9KxpTUw/Cdm5l8rRdU
+         TBLYxL/ZBLhGXf+xHr4HhMS31MFTv/JGQIgvZgVlBDWyQ+3OmKMgo2RF48Jz25whj2dj
+         JlLLG8GUFhAj+4ahE9WruUjzNRUxUj8FVA/LwFra/3DjwpYqa2cSQwy9JpNPlnDUSOUX
+         rPnTs3/n3d0j0EkGYlCaUTS24ScbRdwOJe2dgA1S3IOyBodsiI93eh8DqjMnfqAOtvQv
+         LBTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682954926; x=1685546926;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VkcSOt/Gzi9QBKAIM2mIsqPI2pYq+Ao2+UfznD2y144=;
+        b=RuZ4NigsKx85rqUdkBbKjazClZs/2uGTYSZkVCb7YpTQywlG1/QVp9486RrYtaoN28
+         wZTTaXSMcFV0VDJW5qbSvlwUW8RalzgMqOcZT4CtIGbxn/aLCMT0qi9ruq0G0Z0/dxfH
+         vbP0krKpdwR3eoTmGmlWr5c4BTm6Pgw+iwxffs3ZZ2UsP5VKMnIRqllOobc1+Vb0BUwM
+         K+UkvYX8sux1Ez3bbDh0h0uUqJMv4yD9D2yRtoqQurt1845qrbfxGPfIgYbeqFdrjwbI
+         1SOkS3YBdI42rOS+mIa96R+6+r9zIgnOCqG9jwibORwMLW/6n0vrV85IW7A4KYMUqaJQ
+         EG3g==
+X-Gm-Message-State: AC+VfDzl1gS/XTWWUQIOPaXM5vkg3GvwKTEivfUqKcgxiDHKJIaSTIoC
+        I76ojRetUW5Hr2y0N/gP+Dw=
+X-Google-Smtp-Source: ACHHUZ54hAhGIai+2zBKZhNtWwOBX4FU+K/7uBuJkpV82jgeAHOlQwMi7UYriu0/0q+RS2sXjEOXRQ==
+X-Received: by 2002:a17:90b:1b4c:b0:233:ee67:8eb3 with SMTP id nv12-20020a17090b1b4c00b00233ee678eb3mr14814752pjb.24.1682954925901;
+        Mon, 01 May 2023 08:28:45 -0700 (PDT)
+Received: from Gentoo (n220246252240.netvigator.com. [220.246.252.240])
+        by smtp.gmail.com with ESMTPSA id x13-20020a170902ec8d00b0019e60c645b1sm9426823plg.305.2023.05.01.08.28.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 May 2023 08:28:45 -0700 (PDT)
+Date:   Mon, 1 May 2023 23:28:38 +0800
+From:   Jianhua Lu <lujianhua000@gmail.com>
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
+        gregkh@linuxfoundation.org, andersson@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        luca.weiss@fairphone.com, linux-usb@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        caleb.connolly@linaro.org, konrad.dybcio@linaro.org,
+        subbaram@quicinc.com, jackp@quicinc.com, robertom@qti.qualcomm.com
+Subject: Re: [PATCH v6 11/13] arm64: dts: qcom: qrb5165-rb5: Switch on basic
+ TCPM
+Message-ID: <ZE_aprcJ-GELBIcb@Gentoo>
+References: <20230501121111.1058190-1-bryan.odonoghue@linaro.org>
+ <20230501121111.1058190-12-bryan.odonoghue@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230501121111.1058190-12-bryan.odonoghue@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-> >   
-> > > +static int simple_iio_aux_probe(struct platform_device *pdev)
-> > > +{
-> > > +	struct device_node *np = pdev->dev.of_node;
-> > > +	struct simple_iio_aux_chan *iio_aux_chan;
-> > > +	struct simple_iio_aux *iio_aux;
-> > > +	int count;
-> > > +	u32 tmp;
-> > > +	int ret;
-> > > +	int i;
-> > > +
-> > > +	iio_aux = devm_kzalloc(&pdev->dev, sizeof(*iio_aux), GFP_KERNEL);
-> > > +	if (!iio_aux)
-> > > +		return -ENOMEM;
-> > > +
-> > > +	iio_aux->dev = &pdev->dev;
-> > > +
-> > > +	count = of_property_count_strings(np, "io-channel-names");
-> > > +	if (count < 0) {
-> > > +		dev_err(iio_aux->dev, "%pOF: failed to read io-channel-names\n", np);
-> > > +		return count;
-> > > +	}
-> > > +
-> > > +	iio_aux->chans = devm_kmalloc_array(&pdev->dev, count,
-> > > +					    sizeof(*iio_aux->chans), GFP_KERNEL);
-> > > +	if (!iio_aux->chans)
-> > > +		return -ENOMEM;
-> > > +	iio_aux->num_chans = count;
-> > > +
-> > > +	for (i = 0; i < iio_aux->num_chans; i++) {
-> > > +		iio_aux_chan = iio_aux->chans + i;
-> > > +
-> > > +		ret = of_property_read_string_index(np, "io-channel-names", i,
-> > > +						    &iio_aux_chan->name);    
-> > 
-> > Whilst today this will be tightly couple with of, if you can use generic firmware
-> > handling where possible (from linux/property.h) it will reduce what needs
-> > to be tidied up if anyone fills in the gaps for IIO consumer bindings in ACPI
-> > and then someone uses PRP0001 based ACPI bindings.  
+On Mon, May 01, 2023 at 01:11:09PM +0100, Bryan O'Donoghue wrote:
+> Switch on TCPM for the RB5. Here we declare as a source only not a sink
+> since qrb5165 doesn't support powering exclusively from the type-c port.
 > 
-> No device_property_read_*() function family are available to get a value
-> from an array using an index.
-
-That feels like it might be a feature gap in the generic property handling that
-should be solved.  Emtirely reasonable not to do it in this series however!
-
-
-
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
 > 
-> I would prefer to keep the of_property_read_*() function family I use for this
-> first IIO auxiliary device support.
+> diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> index b326bdeeb7742..1e0b6fd59abc9 100644
+> --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> @@ -9,6 +9,7 @@
+>  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+>  #include <dt-bindings/sound/qcom,q6afe.h>
+>  #include <dt-bindings/sound/qcom,q6asm.h>
+> +#include <dt-bindings/usb/pd.h>
+>  #include "sm8250.dtsi"
+>  #include "pm8150.dtsi"
+>  #include "pm8150b.dtsi"
+> @@ -1344,3 +1345,19 @@ &pm8150b_vbus {
+>  	regulator-max-microamp = <3000000>;
+>  	status = "okay";
+>  };
+> +
+> +&pm8150b_typec {
+> +	status = "okay";
+> +	connector {
+Add new line before subnode
+> +		compatible = "usb-c-connector";
+> +
+> +		power-role = "source";
+> +		data-role = "dual";
+> +		self-powered;
+> +
+> +		source-pdos = <PDO_FIXED(5000, 3000,
+> +					 PDO_FIXED_DUAL_ROLE |
+> +					 PDO_FIXED_USB_COMM |
+> +					 PDO_FIXED_DATA_SWAP)>;
+> +	};
+> +};
+> -- 
+> 2.39.2
 > 
-> >   
-> > > +		if (ret < 0) {
-> > > +			dev_err(iio_aux->dev, "%pOF: failed to read io-channel-names[%d]\n", np, i);    
-> > 
-> > dev_err_probe() would simplify these cases a little.  Not sure on ASOC view on using
-> > that for cases that won't defer.  I tend to take the view it's nicer everywhere
-> > for calls in probe() functions.  
 > 
-> I have the feeling that ASoC uses dev_err_probe() for cases that can defer.
-> Mark, can you confirm ?
-> 
-
-Left as needs an answer from Mark.
-
-Jonathan
-
-
-
