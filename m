@@ -2,117 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B4C606F2EE9
-	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 08:48:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D2E36F2EE8
+	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 08:48:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232085AbjEAGsp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 May 2023 02:48:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53592 "EHLO
+        id S231614AbjEAGsn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 May 2023 02:48:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232179AbjEAGsn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 02:48:43 -0400
-Received: from wout2-smtp.messagingengine.com (wout2-smtp.messagingengine.com [64.147.123.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 763AE10EF
-        for <devicetree@vger.kernel.org>; Sun, 30 Apr 2023 23:48:41 -0700 (PDT)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
-        by mailout.west.internal (Postfix) with ESMTP id 77712320091F;
-        Mon,  1 May 2023 02:48:40 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute2.internal (MEProxy); Mon, 01 May 2023 02:48:41 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=traverse.com.au;
-         h=cc:cc:content-transfer-encoding:content-type:date:date:from
-        :from:in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm2; t=1682923720; x=
-        1683010120; bh=nLsZKqKlMOGNfwENjFvYWVDiB+CP7oajAOFcenrIemk=; b=P
-        DIGNbrYmedMdN0viQqlJufvGN/JDzCeERnqKffuT/yPDOE2D0CQfMVsHWFExT6yP
-        3vJlHJmnDs1IY75dBAoRxsTtQSD9Lsiu3pEAkjCItFPTV5PfcBM3SzNIysMa9HBO
-        1I/tgDh77O92eM5a4KloHJ7wq2sfe+EUwGEswm45Ou1qU8kFq3uVw71EK/a3jOyb
-        ndNpMPYp9ojzZ2SU9YXNchUO584w1qy5SWdO6R6OEdysCuQOiapQbjGF8UFqnGqm
-        rKG6dnFhFkBjPgzECDP9+OqFpVJX0QB3owBNLwOn0oJ1pD5dob7M1MNAoNF9J2wR
-        VJOemZIfMhKebzcpDzl4w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:feedback-id:feedback-id:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1682923720; x=
-        1683010120; bh=nLsZKqKlMOGNfwENjFvYWVDiB+CP7oajAOFcenrIemk=; b=U
-        bU2iwwwSSlJfF0jIy6XVCuxzuYjfh6JrPEZ+OmcuJPY+DG+Dl4KFX/a6LwcSVrA/
-        BAtGxNR5FdHaZYcvyyGBQUHjJebIM+6cs3bOxtuTASC0QgqeIsZca7qQ0lIMelOT
-        KobsXlGRosP6HFFoAh1OymNVVsJL1Gy0c5AhDj3k8qvi5edkxQTHOEyd1YtSaLtz
-        lxjgy7BMzD8xAd9Qn0OyWMtwzGx01ScAIIl/07wS8RSuz368yecgsqBveMRo7kd6
-        cXjlzEYPfPE1Gpfl3yXLvruXQeX4NA6163nfZVCvrJOrAx6jXCLaAjsG50WQDGMV
-        e3dTKHAWqLHt4tih/sHng==
-X-ME-Sender: <xms:x2BPZMtVNA2d8VZmAOMxmLaoRalb_p4wCmAvLsuT6GMW5dUimrqtrQ>
-    <xme:x2BPZJcFdw0tz3zoNGSSxgvyFt1cKufpawhNF5kI8YEwBkzi4z9v_ggawk4TNcmWo
-    qWAGG2LcenRgdpgcMk>
-X-ME-Received: <xmr:x2BPZHxjR7ssB8_Ut-G2ZtrDxRN5mmOljljzo2mD4-jyYIgGBabuqSOkl8eskHAUKYJuZ-ON8oaYB-dLTBLYSvJs_sWFQPCoY35LZBdNeHXoxKNyvrXjKZ3la29q38M>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrfedvfedgudduhecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefhvfevufffkffojghfggfgsedtkeertdertddtnecuhfhrohhmpeforght
-    hhgvficuofgtuehrihguvgcuoehmrghtthesthhrrghvvghrshgvrdgtohhmrdgruheqne
-    cuggftrfgrthhtvghrnhepieeifeehieeiueeludefgfdtveefjeffteegvdevudffffel
-    heejtdejgeelleegnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilh
-    hfrhhomhepmhgrthhtsehtrhgrvhgvrhhsvgdrtghomhdrrghu
-X-ME-Proxy: <xmx:x2BPZPMv-mOXGnqjELVRLhF4tuh2qb_YqGnpc41LaTfFVmx1oLVSvw>
-    <xmx:x2BPZM-A4oL-NfYZUGbSVyYB9CsbDT6aiQ-qPeau6Spn-2hYsm_p3g>
-    <xmx:x2BPZHVu5fv2dP5pM9_gdfYuzr2tiQoYennEe84z0_wNMhGXud90Vw>
-    <xmx:yGBPZLkOmAhCmGjwoC4gDGcrxaftBPqxq_fcxffsy0LsjKG1CpTZLQ>
-Feedback-ID: i426947f3:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 1 May 2023 02:48:37 -0400 (EDT)
-From:   Mathew McBride <matt@traverse.com.au>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     Mathew McBride <matt@traverse.com.au>
-Subject: [PATCH 4/4] arm64: dts: freescale: ten64: fix header typo and update copyright
-Date:   Mon,  1 May 2023 06:47:27 +0000
-Message-Id: <20230501064727.8921-5-matt@traverse.com.au>
-X-Mailer: git-send-email 2.30.1
-In-Reply-To: <20230501064727.8921-1-matt@traverse.com.au>
-References: <20230501064727.8921-1-matt@traverse.com.au>
+        with ESMTP id S232041AbjEAGsm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 02:48:42 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E492910F7
+        for <devicetree@vger.kernel.org>; Sun, 30 Apr 2023 23:48:39 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-94eee951c70so352638266b.3
+        for <devicetree@vger.kernel.org>; Sun, 30 Apr 2023 23:48:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1682923718; x=1685515718;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KEzqDqyF1fkxeu46gQQXf499e+tBTdeKbHMx5PIiC9U=;
+        b=he27vMCmazRDCdP2UIZDMqSmRu8TLSNe7lqyN3gL/yfk1FWjGq8PRIhKfKpmJjcdxv
+         LYhgCGplEeAStVi9ShBeV3NWuE85Dz2oTQlr8d93JUyDeuHyU4urA4HUdPvir7vbY2jC
+         cx2MYsjJ/kw1xStTxVsHiEOHu/OCH2VNUtE+hK/tiyLyFqNok8Cse3vAdj/LpQ+M8NRR
+         ZOo04tqTGO2ASeVO3OLzBbFfDiWYtSEIw2cBTOK6k7N0fL7bu2zTsa547kKYFpmgFfoq
+         YX9JkYrkFXREHuTaTuqTP2MDm9LtvsMEtmkW8ZDIJ05PMb9vg8Ov83FqFfSDaQKIVdUe
+         e4qQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682923718; x=1685515718;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KEzqDqyF1fkxeu46gQQXf499e+tBTdeKbHMx5PIiC9U=;
+        b=J4kH/upccNTXVoMBWawfppfBwJdNwt4rZFU446ZXhWXM9pr+9tMSl5moHI3adELDCl
+         pLw2ddek5G91dw2drnhL+Xub2CQaOwUhYDO6DcwUiQ1FrtbZkPQloeo0Zepg4atDkMB4
+         XakEnCLsuiQrg8sj8DBce6svPH9qHcprA0oUfDxHUiKr9OWS1+wTMQy8SbemRh0kcbGO
+         aaHlVImZbjDjBnDgc4h/4e8SmIo97czjniSkzgctTp/33YcXb44vIEK5EbCn+aoESMWq
+         GjZ3h44tgew7laX23SmJd+aNIUL0DMKX+bLHPm5FLisD7/3adFKoUjk4gDyeUcduoTm4
+         N7Pg==
+X-Gm-Message-State: AC+VfDy9oujd9Rn9bVIfso+GjQqcUk/iWuhahMqP4dgRi+FbFdX+9pOJ
+        k2Ks/GCz1GHhNjMxbMPSC0Rrmg==
+X-Google-Smtp-Source: ACHHUZ4Q6p/XHwNyndmaEJ23rDH49qKuDWOaJMg5SeJLPfTlqJWWYjlFBfjnVbuzkWtuvL9+SogO6Q==
+X-Received: by 2002:a17:907:60cc:b0:94d:69e0:6098 with SMTP id hv12-20020a17090760cc00b0094d69e06098mr12514106ejc.45.1682923718401;
+        Sun, 30 Apr 2023 23:48:38 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:637a:fd0c:58fd:9f00? ([2a02:810d:15c0:828:637a:fd0c:58fd:9f00])
+        by smtp.gmail.com with ESMTPSA id ww9-20020a170907084900b0095847a49ce7sm11671109ejb.55.2023.04.30.23.48.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 30 Apr 2023 23:48:37 -0700 (PDT)
+Message-ID: <deb69f7f-f0bf-f354-6388-b23dbeeff90e@linaro.org>
+Date:   Mon, 1 May 2023 08:48:36 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH 1/4] dt-bindings: input: pwm-vibrator: Add enable-gpio
+Content-Language: en-US
+To:     Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
+        phone-devel@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Brian Masney <masneyb@onstation.org>
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+References: <20230427-hammerhead-vibra-v1-0-e87eeb94da51@z3ntu.xyz>
+ <20230427-hammerhead-vibra-v1-1-e87eeb94da51@z3ntu.xyz>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230427-hammerhead-vibra-v1-1-e87eeb94da51@z3ntu.xyz>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Somehow, I managed to typo our company name in the U-Boot
-and Linux kernel submissions.
+On 27/04/2023 22:34, Luca Weiss wrote:
+> Some pwm vibrators have a dedicated enable GPIO that needs to be set
+> high so that the vibrator works. Document that.
+> 
+> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> ---
 
-Fix this and update the copyright year at the same time.
 
-Signed-off-by: Mathew McBride <matt@traverse.com.au>
----
- arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dts | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dts b/arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dts
-index 31404143010d..11d30a6c9ae7 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dts
-@@ -1,9 +1,10 @@
- // SPDX-License-Identifier: (GPL-2.0+ OR MIT)
- /*
-- * Device Tree file for Travese Ten64 (LS1088) board
-+ * Device Tree file for Traverse Technologies Ten64
-+ * (LS1088A) board
-  * Based on fsl-ls1088a-rdb.dts
-  * Copyright 2017-2020 NXP
-- * Copyright 2019-2021 Traverse Technologies
-+ * Copyright 2019-2023 Traverse Technologies
-  *
-  * Author: Mathew McBride <matt@traverse.com.au>
-  */
--- 
-2.30.1
+Best regards,
+Krzysztof
 
