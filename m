@@ -2,121 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B56A6F2F19
-	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 09:21:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F96E6F2F28
+	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 09:33:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230114AbjEAHV1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 May 2023 03:21:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34866 "EHLO
+        id S229688AbjEAHdJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 May 2023 03:33:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229737AbjEAHV1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 03:21:27 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0419E55
-        for <devicetree@vger.kernel.org>; Mon,  1 May 2023 00:21:25 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-956ff2399c9so453610166b.3
-        for <devicetree@vger.kernel.org>; Mon, 01 May 2023 00:21:25 -0700 (PDT)
+        with ESMTP id S229679AbjEAHdI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 03:33:08 -0400
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C0FB10C1;
+        Mon,  1 May 2023 00:33:07 -0700 (PDT)
+Received: by mail-pf1-x42c.google.com with SMTP id d2e1a72fcca58-63b87d23729so1539242b3a.0;
+        Mon, 01 May 2023 00:33:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682925684; x=1685517684;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=gmail.com; s=20221208; t=1682926386; x=1685518386;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=dVepgCs67QhYF+S64LwI1sds6PcYZ4iqkhDG4bO/TQk=;
-        b=Lt4G/nF6/vWSm70/OJY9L8lReXHWAXuoU2nTlVM5M0iX7otJ/oUOLEbFE3NHeQEu9k
-         5McUSTNOiR4Q/p7p9Yjagk7HpBL1xpEINFyHozBz8ZwVlMuRPH9v1s1oWpQGVdb2vEV6
-         +IdDb2u1+WQco+ELwRCF/8eO9+4NJ3Kwc5uhxtsobLYJPTPcl71eeMsaD6BoTkyu1AEf
-         GLtNdHfQgWX3xS7rB8KQMkyqoYdNtQp96Ea49guBF8fmtvXxGC6ps5qdknpybWRRVHD6
-         oLuO0UQ1tFI9uTKHXU6lftF0gLaXY4rapOx/VrNY5LjvPTJffHRR1meq+lKzFW9a/dP5
-         4oSQ==
+        bh=5yhF2kJmDkq2QyRMJA1sSrfW3XhDRwS7D+Qmpc0RRM4=;
+        b=VZZxD7r2iGrZsIMqiq5AnEdCCjdy7onR430ShOA2rU35wBTpDESQ4j+2rKI1SvHeKr
+         +mFd0JhacVXyVXoxkXoJ09KhVt4WZW9GB6yU4djfPuGw2jbKENQp5yjfHjA58eqH2d+A
+         DGHynAQy8wklYUC18OMEQy6/oxMg9BqRz1V7pp2mO1nRn8vgi+QffiwELMpqzi9Tu2m2
+         I9c0Czm5uN64cNSJO7ei0Fpr1dAh75nKCg5tRUaCgUu3V8PDSrQc9Uku7IyIKkG3yBmu
+         oQrV0PGbjWeGaZonLUlBchnv+oATpTs/T73WI8VyTiwBZjsj1OTzhAjl4GNgssNeGsrk
+         gXAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682925684; x=1685517684;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1682926386; x=1685518386;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dVepgCs67QhYF+S64LwI1sds6PcYZ4iqkhDG4bO/TQk=;
-        b=ZtR1w67EHXNClufbTvtclTh2eHeupEX+wdBozwh26FlTNoEz9bssfVYFeuxu6Rws3B
-         n9+4bKWWgF9JcvIlysmMitAcENEV7dlrGSQjEwdkEukAXL36jcZA8N3ZiNr65v5ZQnGi
-         w1bWDHyyaH6fpdYUxhtN9f9+VK5miQPKQBrO63pzmcO+G7d3urmV1s6OSbOvBPFw+grB
-         zzFF9bsaX998L4q8pApRtBEj6ocQTihqe0POyLcZRVUnEgO3xj7jbK0ArIAKt6kVreEs
-         Oax8Ej15WZO4zx/gus2YvaCAtQDKv/nib2StGWmGzjxjaegRKwbTb1+x9Go4jtHdnPWr
-         9+Gg==
-X-Gm-Message-State: AC+VfDx1QnY+VlW23Ipl8q1Nx8RpOXDOLXugLTQXzmeB/2Y3UP1FnnkB
-        vHDMV4aJA/bF0kmN6owYipbmAw==
-X-Google-Smtp-Source: ACHHUZ4+mJdUdaGf/klmpEAOu8cRfGyWI064D3ANXCd+js1/C+fb9SATKA4qJcXoaajnxZfbb2zbug==
-X-Received: by 2002:a17:907:970d:b0:90b:53f6:fd8b with SMTP id jg13-20020a170907970d00b0090b53f6fd8bmr13404942ejc.31.1682925684312;
-        Mon, 01 May 2023 00:21:24 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:637a:fd0c:58fd:9f00? ([2a02:810d:15c0:828:637a:fd0c:58fd:9f00])
-        by smtp.gmail.com with ESMTPSA id gn2-20020a1709070d0200b009545230e682sm14276029ejc.91.2023.05.01.00.21.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 May 2023 00:21:23 -0700 (PDT)
-Message-ID: <1d187f41-ad9a-4e82-8557-20694a8294d0@linaro.org>
-Date:   Mon, 1 May 2023 09:21:22 +0200
+        bh=5yhF2kJmDkq2QyRMJA1sSrfW3XhDRwS7D+Qmpc0RRM4=;
+        b=jeBg4KMDDk3P8rog+WHp4xKwENRHUU5UzNExT4gWdVbDkSoi0FkxJ7RoWKI+2iobd4
+         bf/Hwl66W2ZiaE7QD0enAIhLQq3TXAl3n1cflzgjsy7MMDp7oPcgGC0yEPGk6p7dT3qn
+         4sMJTDiUaaXPcIUyOrpVZErmHyMoj8tJEULwNNxif8h1q5twxZvntAHptuK7wqb1D1yb
+         159oEdcGBRVe/fwzv0iwgAqvVt25HGKaFPW0d6RPl6zsVS0lN7XziitypsuHMp8jAQ5v
+         Lx6Qg5xczQVnYD21Htqi5BE4l51wYmAFxGaRYvtjQ2Ku95Fz1LPYh16+d0zBz3L1BeEb
+         XvPA==
+X-Gm-Message-State: AC+VfDxUxy2RWBI/fatKBkuA17+wf26ZSQIZXvef62yYnUsfQW6qL35P
+        NuMcrQw57VloYmIY+ylKCOc=
+X-Google-Smtp-Source: ACHHUZ6co/rMjhKOyb8zdQZ5OT1jZtqQKGVeuw7UI+b+nt1E3eecgXiTDcBvvb/qw7EgrleM6/S5kQ==
+X-Received: by 2002:a05:6a00:2281:b0:640:dbe4:1901 with SMTP id f1-20020a056a00228100b00640dbe41901mr16901796pfe.14.1682926386295;
+        Mon, 01 May 2023 00:33:06 -0700 (PDT)
+Received: from yoga ([2400:1f00:13:800:1d90:2dc1:65b:f2f3])
+        by smtp.gmail.com with ESMTPSA id f195-20020a6238cc000000b0063b8428b0d8sm19241571pfa.152.2023.05.01.00.33.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 May 2023 00:33:05 -0700 (PDT)
+Date:   Mon, 1 May 2023 13:02:59 +0530
+From:   Anup Sharma <anupnewsmail@gmail.com>
+To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        KCHSU0@nuvoton.com, linux-kernel@vger.kernel.org,
+        anupnewsmail@gmail.com
+Subject: [PATCH] ASoC: dt-bindings: nau8540: Convert to dtschema
+Message-ID: <ZE9rK6mktPByvRRz@yoga>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH v3 8/8] dt-bindings: Add rt5033 mfd, regulator and charger
-Content-Language: en-US
-To:     Jakob Hauser <jahau@rocketmail.com>,
-        Sebastian Reichel <sre@kernel.org>, Lee Jones <lee@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Beomho Seo <beomho.seo@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Raymond Hackley <raymondhackley@protonmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Axel Lin <axel.lin@ingics.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <cover.1682636929.git.jahau@rocketmail.com>
- <5bd8b90713a61129acf292a941eb7fb5ccaa3db4.1682636929.git.jahau@rocketmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <5bd8b90713a61129acf292a941eb7fb5ccaa3db4.1682636929.git.jahau@rocketmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/04/2023 01:30, Jakob Hauser wrote:
-> Add device tree binding documentation for rt5033 multifunction device, voltage
-> regulator and battery charger.
-> 
-> Cc: Beomho Seo <beomho.seo@samsung.com>
-> Cc: Chanwoo Choi <cw00.choi@samsung.com>
-> Signed-off-by: Jakob Hauser <jahau@rocketmail.com>
+Convert the NAU8540 audio CODEC bindings to DT schema
 
+Signed-off-by: Anup Sharma <anupnewsmail@gmail.com>
+---
+ .../devicetree/bindings/sound/nau8540.txt     | 16 --------
+ .../bindings/sound/nuvoton,nau8540.yaml       | 40 +++++++++++++++++++
+ 2 files changed, 40 insertions(+), 16 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/nau8540.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/nuvoton,nau8540.yaml
 
-(...)
-
-> +
-> +required:
-> +  - monitored-battery
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    charger {
-> +        compatible = "richtek,rt5033-charger";
-> +        monitored-battery = <&battery>;
-> +        extcon = <&muic>;
-
-
-Everything up to here looked ok, but extcon is not a hardware property.
-Please do not mix adding missing bindings for existing device with
-adding new properties. You should use connector for the USB port.
-
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/sound/nau8540.txt b/Documentation/devicetree/bindings/sound/nau8540.txt
+deleted file mode 100644
+index 307a76528320..000000000000
+--- a/Documentation/devicetree/bindings/sound/nau8540.txt
++++ /dev/null
+@@ -1,16 +0,0 @@
+-NAU85L40 audio CODEC
+-
+-This device supports I2C only.
+-
+-Required properties:
+-
+-  - compatible : "nuvoton,nau8540"
+-
+-  - reg : the I2C address of the device.
+-
+-Example:
+-
+-codec: nau8540@1c {
+-       compatible = "nuvoton,nau8540";
+-       reg = <0x1c>;
+-};
+diff --git a/Documentation/devicetree/bindings/sound/nuvoton,nau8540.yaml b/Documentation/devicetree/bindings/sound/nuvoton,nau8540.yaml
+new file mode 100644
+index 000000000000..ac344e435a5c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/nuvoton,nau8540.yaml
+@@ -0,0 +1,40 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/nuvoton,nau8540.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Nuvoton Technology Corporation NAU85L40 Audio CODEC
++
++maintainers:
++  - KCHSU0@nuvoton.com, broonie@kernel.org
++
++allOf:
++  - $ref: dai-common.yaml#
++
++properties:
++  compatible:
++    const: nuvoton,nau8540
++
++  reg:
++    maxItems: 1
++
++  "#sound-dai-cells":
++    const: 0
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        codec@1c {
++            compatible = "nuvoton,nau8540";
++            reg = <0x1c>;
++        };
++    };
+-- 
+2.34.1
 
