@@ -2,70 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C95906F3663
-	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 20:58:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 485CF6F367C
+	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 21:06:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232456AbjEAS6m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 May 2023 14:58:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41396 "EHLO
+        id S232442AbjEATGm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 May 2023 15:06:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232158AbjEAS6k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 14:58:40 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37BEDE65;
-        Mon,  1 May 2023 11:58:38 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2a8a600bd05so28050501fa.2;
-        Mon, 01 May 2023 11:58:38 -0700 (PDT)
+        with ESMTP id S229915AbjEATGl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 15:06:41 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D28A21708;
+        Mon,  1 May 2023 12:06:37 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-95f4c5cb755so573688666b.0;
+        Mon, 01 May 2023 12:06:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682967516; x=1685559516;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=hxYC1A8BcG0xD7QAbsS4zQxHF3JEXsuO/06+/RMMQso=;
-        b=kpiWAA32Ri3zyUuYcaV20mAgLLI0NddFlPjrl1e3tzpTotMqA57UVL7raIML9+JDXy
-         FlEOf3EnDrDHqQg3gV03KK5uzVIlNvasQhrGuF3ozH+GbSYzcIeIHnq6atO8LDYpgSL6
-         xfTxUQn63O0mhxv/aEsXkP38IeN1z17xJ46hc253AArbyRiIwEVq83/1RyFbccZSz3cD
-         OkFOq7LaqZIgUVK6n8gILpLJOKDsCoKPe0VSIXjq3eDc7lhj+HhozFORKk4OJOeGgZLI
-         xkm4OTpsMoJTzUr1M4a7K3zBzzYfWV3NFr8kFJiSwKZ0IdtXqIsxN37/+l/Xpw5v4n99
-         Tnjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682967516; x=1685559516;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=googlemail.com; s=20221208; t=1682967996; x=1685559996;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=hxYC1A8BcG0xD7QAbsS4zQxHF3JEXsuO/06+/RMMQso=;
-        b=PqKbnaYiHDnJmVJyDzAXCeyI3ajFgQTf6E5R2MhIf+6/W7ukaDo2AU4o2kf5/2R8Ic
-         zpWGOT7+6SmoONTA+pV6wPgEgu870ymLFI4I97IOF4l3bt7Yl/6nmOTov3rxwVk98ocz
-         G4oi8SkcabiaTVfa7YXmvQMNS17axKi//t6KuBOAFTgc7IFYsMgXTzu/1bX001Y8FzoD
-         aQ9k3xPTC1Czv4NTfdRUHp1RhOvdIELvYgISvJHCcdbKepzFDkCJJBUY1BmAAjqZaMH7
-         WutSmn6NqHIMEpBfLxinrGHUsrDBjjJTJ17M2xZccH1aBSLMS1DybUhtzp7pyZNtFFb5
-         kgQA==
-X-Gm-Message-State: AC+VfDypgnK/K3ks/Emgufs/7T2mu3O3pGNrgxqzwvXlVeYhHlAdQ8g/
-        X6LwDAh/SxMiqFo+Yh8FbKA=
-X-Google-Smtp-Source: ACHHUZ6DCuS3CLo9IyL5T75/xMoxoUbbS+EZ8qZtzdydeprz4C9SwUASDOwi9znBwrBj2MnnRL4S5Q==
-X-Received: by 2002:a2e:8482:0:b0:2a9:e6e7:b027 with SMTP id b2-20020a2e8482000000b002a9e6e7b027mr3563765ljh.41.1682967516354;
-        Mon, 01 May 2023 11:58:36 -0700 (PDT)
-Received: from mobilestation ([95.79.140.35])
-        by smtp.gmail.com with ESMTPSA id a21-20020a2e8315000000b002a7899eaf9csm4683777ljh.63.2023.05.01.11.58.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 May 2023 11:58:35 -0700 (PDT)
-Date:   Mon, 1 May 2023 21:58:33 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     jingoohan1@gmail.com, mani@kernel.org,
-        gustavo.pimentel@synopsys.com, lpieralisi@kernel.org,
-        robh+dt@kernel.org, kw@linux.com, bhelgaas@google.com,
-        kishon@kernel.org, marek.vasut+renesas@gmail.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v14 06/21] PCI: dwc: Change arguments of
- dw_pcie_prog_ep_outbound_atu()
-Message-ID: <20230501185833.mcunpdtvc3qjl72w@mobilestation>
-References: <20230426045557.3613826-1-yoshihiro.shimoda.uh@renesas.com>
- <20230426045557.3613826-7-yoshihiro.shimoda.uh@renesas.com>
+        bh=GbK7EtQRtZZE7KYEeoJBLaWKVzPK4dKamhRK6nyLgos=;
+        b=IOKOgtayzfFZNsyi1stDP8bgZ2e8StGU6AXpOokekL9MEPm8GXe3VVJMt94V5DwdEM
+         ATKwwwmalpAfY1y3ljA9x93gRbYm86ihqRakr7DtMI9ZAvHu4/Xs6P92b7aiNugQszBm
+         mqqxxLmirHC+gAs0Yx2c5Kru6Ep97A/IaHWdSPh3TuZ1xx8AJlB21C0UZNlroQL3+CbI
+         KvqjNd8TDpgSNIJLqROqTJv8HrTCVenOUH8bCNKlW5s9PK8cbQKVXSX9ahZv9ZMy5vAG
+         B699V9dmeE2OyfAQ+qFqLCps61OUjvCXCzwMouYAxCdkpDi57VxOLyxpHBGR96pBt4rT
+         C3fQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682967996; x=1685559996;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=GbK7EtQRtZZE7KYEeoJBLaWKVzPK4dKamhRK6nyLgos=;
+        b=JzXHGY1TZ2duCsLT7yKGD8PjVuoZ6JLeIbdni1jhcCh7goDc5IfqndKzMX6Z0L0AoB
+         nO4oSSaU8pYJucMNzKqgKKFKETDtHqDzdo5/mwLZ7lfr3iu5y8Pev/g7iOKmj88r659U
+         AiR3MIHALfSG3I3h3nYRt66CFZfl36sgUYLGbPWuYdz6q9NyIS4Sura6LP0hZ+QGmbzo
+         sRh9/92PzizgGjpNm74ym4lq2s2iW5NeZr0izdXRCj2c+0waJYZLjgTihS+UGD9Bhp7C
+         ngRLlkLX2O2Wvt/FZRygUq8GkfHu+p4+kxy+h5jlwrykMIcfFaKlJZZ8Ppdt5w9ZImV6
+         2KEw==
+X-Gm-Message-State: AC+VfDzlQ5mrcQPwilumqu+vdEqCK/Ra3M++EGV293aFHjT3gaMCDx1m
+        EtTFpxkeBZS158yY9ReaFC276WdJfx4bqEeB4Nk=
+X-Google-Smtp-Source: ACHHUZ5qgzS3PhkmnYZSPw1/CWfO5K2yQvVRa39/ZwKaLWKwP2rgTDXwfMm6qXhJyEvt0k+aENNNLDiUmPBDvWB5QjA=
+X-Received: by 2002:a17:906:9b86:b0:957:2a7e:ce0a with SMTP id
+ dd6-20020a1709069b8600b009572a7ece0amr14352840ejc.44.1682967996043; Mon, 01
+ May 2023 12:06:36 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230426045557.3613826-7-yoshihiro.shimoda.uh@renesas.com>
+References: <20230426095805.15338-1-ddrokosov@sberdevices.ru> <20230426095805.15338-7-ddrokosov@sberdevices.ru>
+In-Reply-To: <20230426095805.15338-7-ddrokosov@sberdevices.ru>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Mon, 1 May 2023 21:06:24 +0200
+Message-ID: <CAFBinCA2OhtVaCJDi8ZfAFLSE4oUgxYBDScaP_WW63curEK8Mg@mail.gmail.com>
+Subject: Re: [PATCH v14 6/6] clk: meson: a1: add Amlogic A1 Peripherals clock
+ controller driver
+To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Cc:     neil.armstrong@linaro.org, jbrunet@baylibre.com,
+        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
+        jian.hu@amlogic.com, kernel@sberdevices.ru, rockosov@gmail.com,
+        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Heiner Kallweit <hkallweit1@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -76,258 +75,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 26, 2023 at 01:55:42PM +0900, Yoshihiro Shimoda wrote:
-> To add more arguments to the dw_pcie_prog_ep_outbound_atu() in
-> the future, introduce struct dw_pcie_outbound_atu and change
-> the argument. No behavior changes.
+Hi Dmitry,
 
-The change now looks much more coherent than before. Though it still looks
-as an incomplete measure. The core driver still have two global outbound
-ATU windows config methods which basically cause the same update
-(performed by the same backend function), but which prototypes are
-completely different. What about dropping the separate
-dw_pcie_prog_outbound_atu() and dw_pcie_prog_outbound_atu() methods,
-convert __dw_pcie_prog_outbound_atu() to dw_pcie_prog_outbound_atu(pci, atu)
-and use it in both RP and EP drivers instead?
+overall this looks pretty good.
 
-As a result we would have got a single outbound ATUs config method with
-the next prototype:
-int dw_pcie_prog_outbound_atu(struct dw_pcie *pci, struct dw_pcie_ob_atu_cfg *atu);
-Thus we would have reduced a number of the globally defined methods,
-would have got a more unified outbound ATU setup interface which
-by its nature would imply that the OB ATU entries setup is almost the
-same for both RP and EP platforms.
++Cc Heiner
 
-Please see a few more comments below.
+On Wed, Apr 26, 2023 at 11:58=E2=80=AFAM Dmitry Rokosov
+<ddrokosov@sberdevices.ru> wrote:
+[...]
+> +static struct clk_regmap pwm_a_sel =3D {
+> +       .data =3D &(struct clk_regmap_mux_data){
+> +               .offset =3D PWM_CLK_AB_CTRL,
+> +               .mask =3D 0x1,
+> +               .shift =3D 9,
+> +       },
+> +       .hw.init =3D &(struct clk_init_data){
+> +               .name =3D "pwm_a_sel",
+> +               .ops =3D &clk_regmap_mux_ops,
+> +               .parent_data =3D pwm_abcd_parents,
+> +               .num_parents =3D ARRAY_SIZE(pwm_abcd_parents),
+> +               /* For more information, please refer to rtc clock */
+> +               .flags =3D CLK_SET_RATE_NO_REPARENT,
+Heiner is working on a series that adds common clock support to the
+PWM driver [0].
+I think his plans for a next step are adding support for SoCs where
+the PWM clocks are part of the peripheral clock controller (instead of
+being part of the PWM controller registers).
 
-> 
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> ---
->  .../pci/controller/dwc/pcie-designware-ep.c   | 21 ++++---
->  drivers/pci/controller/dwc/pcie-designware.c  | 63 ++++++++++---------
->  drivers/pci/controller/dwc/pcie-designware.h  | 13 +++-
->  3 files changed, 57 insertions(+), 40 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-ep.c b/drivers/pci/controller/dwc/pcie-designware-ep.c
-> index a80b9fd03638..96375b0aba82 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-ep.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-ep.c
-> @@ -183,9 +183,8 @@ static int dw_pcie_ep_inbound_atu(struct dw_pcie_ep *ep, u8 func_no, int type,
->  	return 0;
->  }
->  
-> -static int dw_pcie_ep_outbound_atu(struct dw_pcie_ep *ep, u8 func_no,
-> -				   phys_addr_t phys_addr,
-> -				   u64 pci_addr, size_t size)
-> +static int dw_pcie_ep_outbound_atu(struct dw_pcie_ep *ep,
-> +				   struct dw_pcie_outbound_atu *atu)
->  {
->  	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
->  	u32 free_win;
-> @@ -197,13 +196,13 @@ static int dw_pcie_ep_outbound_atu(struct dw_pcie_ep *ep, u8 func_no,
->  		return -EINVAL;
->  	}
->  
-> -	ret = dw_pcie_prog_ep_outbound_atu(pci, func_no, free_win, PCIE_ATU_TYPE_MEM,
-> -					   phys_addr, pci_addr, size);
-> +	atu->index = free_win;
-> +	ret = dw_pcie_prog_ep_outbound_atu(pci, atu);
->  	if (ret)
->  		return ret;
->  
->  	set_bit(free_win, ep->ob_window_map);
-> -	ep->outbound_addr[free_win] = phys_addr;
-> +	ep->outbound_addr[free_win] = atu->cpu_addr;
->  
->  	return 0;
->  }
-> @@ -306,8 +305,14 @@ static int dw_pcie_ep_map_addr(struct pci_epc *epc, u8 func_no, u8 vfunc_no,
->  	int ret;
->  	struct dw_pcie_ep *ep = epc_get_drvdata(epc);
->  	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
-> -
-> -	ret = dw_pcie_ep_outbound_atu(ep, func_no, addr, pci_addr, size);
-> +	struct dw_pcie_outbound_atu atu = { 0 };
-> +
-> +	atu.func_no = func_no;
-> +	atu.type = PCIE_ATU_TYPE_MEM;
-> +	atu.cpu_addr = addr;
-> +	atu.pci_addr = pci_addr;
-> +	atu.size = size;
-> +	ret = dw_pcie_ep_outbound_atu(ep, &atu);
->  	if (ret) {
->  		dev_err(pci->dev, "Failed to enable address\n");
->  		return ret;
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
-> index ede166645289..782c4b34d0a3 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware.c
-> @@ -464,56 +464,55 @@ static inline u32 dw_pcie_enable_ecrc(u32 val)
->  	return val | PCIE_ATU_TD;
->  }
->  
+Have you considered removing CLK_SET_RATE_PARENT from the &rtc clock
+so downstream clocks won't change the rtc clock rate by accident?
+Then we could drop the CLK_SET_RATE_NO_REPARENT flag from the PWM
+clocks to allow them to pick the best available parent (whether that's
+the rtc clock, xtal or sys_pll).
+That said, it would require managing the CLKID_RTC_32K_SEL clock (or
+it's parents) using assigned-clocks instead of doing so with the PWM
+(and other) clocks. Whether this would cause problems: I'm not sure,
+so I'm hoping that you can share some insights.
 
-> -static int __dw_pcie_prog_outbound_atu(struct dw_pcie *pci, u8 func_no,
-> -				       int index, int type, u64 cpu_addr,
-> -				       u64 pci_addr, u64 size)
-> +static int __dw_pcie_prog_outbound_atu(struct dw_pcie *pci,
-> +				       struct dw_pcie_outbound_atu *atu)
->  {
->  	u32 retries, val;
->  	u64 limit_addr;
->  
->  	if (pci->ops && pci->ops->cpu_addr_fixup)
-> -		cpu_addr = pci->ops->cpu_addr_fixup(pci, cpu_addr);
-> +		atu->cpu_addr = pci->ops->cpu_addr_fixup(pci, atu->cpu_addr);
 
-This changes the method semantic a bit. The passed structure will be
-updated meanwhile the former semantic implies the locally defined
-variable modification. Please define a local var "cpu_addr" initialized
-with the atu->cpu_addr field by default.
+Best regards,
+Martin
 
->  
-> -	limit_addr = cpu_addr + size - 1;
-> +	limit_addr = atu->cpu_addr + atu->size - 1;
->  
-> -	if ((limit_addr & ~pci->region_limit) != (cpu_addr & ~pci->region_limit) ||
-> -	    !IS_ALIGNED(cpu_addr, pci->region_align) ||
-> -	    !IS_ALIGNED(pci_addr, pci->region_align) || !size) {
-> +	if ((limit_addr & ~pci->region_limit) != (atu->cpu_addr & ~pci->region_limit) ||
-> +	    !IS_ALIGNED(atu->cpu_addr, pci->region_align) ||
-> +	    !IS_ALIGNED(atu->pci_addr, pci->region_align) || !atu->size) {
->  		return -EINVAL;
->  	}
->  
-> -	dw_pcie_writel_atu_ob(pci, index, PCIE_ATU_LOWER_BASE,
-> -			      lower_32_bits(cpu_addr));
-> -	dw_pcie_writel_atu_ob(pci, index, PCIE_ATU_UPPER_BASE,
-> -			      upper_32_bits(cpu_addr));
-> +	dw_pcie_writel_atu_ob(pci, atu->index, PCIE_ATU_LOWER_BASE,
-> +			      lower_32_bits(atu->cpu_addr));
-> +	dw_pcie_writel_atu_ob(pci, atu->index, PCIE_ATU_UPPER_BASE,
-> +			      upper_32_bits(atu->cpu_addr));
->  
-> -	dw_pcie_writel_atu_ob(pci, index, PCIE_ATU_LIMIT,
-> +	dw_pcie_writel_atu_ob(pci, atu->index, PCIE_ATU_LIMIT,
->  			      lower_32_bits(limit_addr));
->  	if (dw_pcie_ver_is_ge(pci, 460A))
-> -		dw_pcie_writel_atu_ob(pci, index, PCIE_ATU_UPPER_LIMIT,
-> +		dw_pcie_writel_atu_ob(pci, atu->index, PCIE_ATU_UPPER_LIMIT,
->  				      upper_32_bits(limit_addr));
->  
-> -	dw_pcie_writel_atu_ob(pci, index, PCIE_ATU_LOWER_TARGET,
-> -			      lower_32_bits(pci_addr));
-> -	dw_pcie_writel_atu_ob(pci, index, PCIE_ATU_UPPER_TARGET,
-> -			      upper_32_bits(pci_addr));
-> +	dw_pcie_writel_atu_ob(pci, atu->index, PCIE_ATU_LOWER_TARGET,
-> +			      lower_32_bits(atu->pci_addr));
-> +	dw_pcie_writel_atu_ob(pci, atu->index, PCIE_ATU_UPPER_TARGET,
-> +			      upper_32_bits(atu->pci_addr));
->  
-> -	val = type | PCIE_ATU_FUNC_NUM(func_no);
-> -	if (upper_32_bits(limit_addr) > upper_32_bits(cpu_addr) &&
-> +	val = atu->type | PCIE_ATU_FUNC_NUM(atu->func_no);
-> +	if (upper_32_bits(limit_addr) > upper_32_bits(atu->cpu_addr) &&
->  	    dw_pcie_ver_is_ge(pci, 460A))
->  		val |= PCIE_ATU_INCREASE_REGION_SIZE;
->  	if (dw_pcie_ver_is(pci, 490A))
->  		val = dw_pcie_enable_ecrc(val);
-> -	dw_pcie_writel_atu_ob(pci, index, PCIE_ATU_REGION_CTRL1, val);
-> +	dw_pcie_writel_atu_ob(pci, atu->index, PCIE_ATU_REGION_CTRL1, val);
->  
-> -	dw_pcie_writel_atu_ob(pci, index, PCIE_ATU_REGION_CTRL2, PCIE_ATU_ENABLE);
-> +	dw_pcie_writel_atu_ob(pci, atu->index, PCIE_ATU_REGION_CTRL2, PCIE_ATU_ENABLE);
->  
->  	/*
->  	 * Make sure ATU enable takes effect before any subsequent config
->  	 * and I/O accesses.
->  	 */
->  	for (retries = 0; retries < LINK_WAIT_MAX_IATU_RETRIES; retries++) {
-> -		val = dw_pcie_readl_atu_ob(pci, index, PCIE_ATU_REGION_CTRL2);
-> +		val = dw_pcie_readl_atu_ob(pci, atu->index, PCIE_ATU_REGION_CTRL2);
->  		if (val & PCIE_ATU_ENABLE)
->  			return 0;
->  
-> @@ -528,16 +527,20 @@ static int __dw_pcie_prog_outbound_atu(struct dw_pcie *pci, u8 func_no,
 
->  int dw_pcie_prog_outbound_atu(struct dw_pcie *pci, int index, int type,
->  			      u64 cpu_addr, u64 pci_addr, u64 size)
->  {
-> -	return __dw_pcie_prog_outbound_atu(pci, 0, index, type,
-> -					   cpu_addr, pci_addr, size);
-> +	struct dw_pcie_outbound_atu atu = { 0 };
-> +
-> +	atu.index = index;
-> +	atu.type = type;
-> +	atu.cpu_addr = cpu_addr;
-> +	atu.pci_addr = pci_addr;
-> +	atu.size = size;
-> +	return __dw_pcie_prog_outbound_atu(pci, &atu);
->  }
->  
-> -int dw_pcie_prog_ep_outbound_atu(struct dw_pcie *pci, u8 func_no, int index,
-> -				 int type, u64 cpu_addr, u64 pci_addr,
-> -				 u64 size)
-> +int dw_pcie_prog_ep_outbound_atu(struct dw_pcie *pci,
-> +				 struct dw_pcie_outbound_atu *atu)
->  {
-> -	return __dw_pcie_prog_outbound_atu(pci, func_no, index, type,
-> -					   cpu_addr, pci_addr, size);
-> +	return __dw_pcie_prog_outbound_atu(pci, atu);
->  }
-
-This could have been dropped if you got to implement what I suggested in
-the head of the message.
-
->  
->  static inline u32 dw_pcie_readl_atu_ib(struct dw_pcie *pci, u32 index, u32 reg)
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-> index 9acf6c40d252..81c7558a4718 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.h
-> +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> @@ -291,6 +291,15 @@ enum dw_pcie_core_rst {
->  	DW_PCIE_NUM_CORE_RSTS
->  };
-> 
- 
-> +struct dw_pcie_outbound_atu {
-
-what about using the name "dw_pcie_ob_atu_cfg" instead?
-
-> +	u64 cpu_addr;
-> +	u64 pci_addr;
-> +	u64 size;
-> +	int index;
-> +	int type;
-> +	u8 func_no;
-
-The structure will be padded by 7 bytes anyway. Let's move the "index",
-"type" and "func_no" group to the head of the structure declaration.
-
-> +};
-> +
->  struct dw_pcie_host_ops {
->  	int (*host_init)(struct dw_pcie_rp *pp);
->  	void (*host_deinit)(struct dw_pcie_rp *pp);
-> @@ -421,8 +430,8 @@ void dw_pcie_upconfig_setup(struct dw_pcie *pci);
->  int dw_pcie_wait_for_link(struct dw_pcie *pci);
-
->  int dw_pcie_prog_outbound_atu(struct dw_pcie *pci, int index, int type,
->  			      u64 cpu_addr, u64 pci_addr, u64 size);
-> -int dw_pcie_prog_ep_outbound_atu(struct dw_pcie *pci, u8 func_no, int index,
-> -				 int type, u64 cpu_addr, u64 pci_addr, u64 size);
-> +int dw_pcie_prog_ep_outbound_atu(struct dw_pcie *pci,
-> +				 struct dw_pcie_outbound_atu *atu);
-
-What about converting it to just a single:
-dw_pcie_prog_outbound_atu(struct dw_pcie *pci, const struct dw_pcie_ob_atu_cfg *atu);
-?
-
--Serge(y)
-
->  int dw_pcie_prog_inbound_atu(struct dw_pcie *pci, int index, int type,
->  			     u64 cpu_addr, u64 pci_addr, u64 size);
->  int dw_pcie_prog_ep_inbound_atu(struct dw_pcie *pci, u8 func_no, int index,
-> -- 
-> 2.25.1
-> 
+[0] https://lore.kernel.org/linux-amlogic/9faca2e6-b7a1-4748-7eb0-48f8064e3=
+23e@gmail.com/
