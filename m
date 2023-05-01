@@ -2,103 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C3B46F301A
-	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 12:13:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47C7A6F300C
+	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 12:03:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232334AbjEAKNd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 May 2023 06:13:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50656 "EHLO
+        id S232300AbjEAKDF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 May 2023 06:03:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232346AbjEAKNa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 06:13:30 -0400
-Received: from mail.tkos.co.il (hours.tkos.co.il [84.110.109.230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B04FAE48;
-        Mon,  1 May 2023 03:13:27 -0700 (PDT)
-Received: from tarshish (unknown [10.0.8.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.tkos.co.il (Postfix) with ESMTPS id DF5E544107A;
-        Mon,  1 May 2023 13:07:46 +0300 (IDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tkos.co.il;
-        s=default; t=1682935667;
-        bh=lBDuhWFz9Iz/MjO48vbRYlkXP29mWmSE7y0cCQfGvKo=;
-        h=References:From:To:Cc:Subject:Date:In-reply-to:From;
-        b=f+KV128Ph6+s2kbD3By+tCmPQqjsZC76nKJ+AaBMsXsEGwOSylzA2mlLFV2DM2Xyr
-         gFheZ6aBzG8bkJdFY5LRROEv4unrKBu+rXm3KJie53D3nCqEGYUB9Drfeox+xZWXQW
-         c7p/lAoKfbpdNqU8L7EbvflWq42bsg86lDzdwCvvsQE7GjsCYe+jSaANUMzXIXmy9R
-         F45+dmS9I7I56V6OMdxl+h2XAywNemLqEtB1YyeeG8hssQV5nZS/J5yJca2IjQbboG
-         mOkO36tP+f+VwLpFCZyKiSo4ys7MQk12j56rJPO0egyMR6iiYozpi4hO6LB1CgXUA5
-         k5KBRtLjnzT3w==
-References: <9e137548c4e76e0d8deef6d49460cb37897934ca.1682333574.git.baruch@tkos.co.il>
- <878regbbr7.fsf@tarshish>
- <9569ef0d-0d94-3ff9-468b-152fe949e7b5@linaro.org>
-User-agent: mu4e 1.9.21; emacs 28.2
-From:   Baruch Siach <baruch@tkos.co.il>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alex Shi <alexs@kernel.org>,
-        Yanteng Si <siyanteng@loongson.cn>, devicetree@vger.kernel.org,
-        linux-doc@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] docs: dt: fix documented Primecell compatible
- string
-Date:   Mon, 01 May 2023 13:01:04 +0300
-In-reply-to: <9569ef0d-0d94-3ff9-468b-152fe949e7b5@linaro.org>
-Message-ID: <878re8741n.fsf@tarshish>
+        with ESMTP id S232281AbjEAKDD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 06:03:03 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A64A8E47
+        for <devicetree@vger.kernel.org>; Mon,  1 May 2023 03:03:00 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-956ff2399c9so478291466b.3
+        for <devicetree@vger.kernel.org>; Mon, 01 May 2023 03:03:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1682935379; x=1685527379;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0csi5MRgE6Ap/iZuV4MKkzZgN0pcDdGkqiip6JvmNSI=;
+        b=Cb0453LCEO77Sxrx4mSlVaRGRNMbdC6BHRGIUBgDHa7EZjXeSuxCMxaJynY1cTcHeO
+         N3JzIwdYsMt2rXvqs8+RBCQqE7zc/AYImDO6OCLSQPDO1lJffQNcNsPrTfeYqkFhXivw
+         /Bzta/lpzqD3H2R7qux/athNCXTvtS/SaoYHsT4iAO+XcGwzunnSuj4qzUoiwKvOY9kt
+         oLD4YUcz0M6tc+I8LBVWomPCjOaZknr5brm4SJHuXTCDmLpX+wHzPEzNxxEchZMlch+Y
+         C5dH5M4wfMu6mpq3tjyIvZIsiogXWAzU4mB81cUa7BqWjHOq5E5n7TSJ0VGP7W/OMMym
+         Hocw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682935379; x=1685527379;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0csi5MRgE6Ap/iZuV4MKkzZgN0pcDdGkqiip6JvmNSI=;
+        b=QV5aL8jHwfXy2CISQGyXT1Y24/IgD1vXgAbKMmSEDw6b3jBbcowl1ziUy4j/qycfXG
+         uwR39wmzZTyWViUHEU6b2x6sP9QAiM7J539gA4JAkZN3/TzCVIWWjbAjzSbLf/FDxUzt
+         AwPttPM/S7F+wtN1xSID5VUt1BG1I5NW9Yab0AtA/UcQz5CnuA1PTR6aW7GY+SuB90Bg
+         IJ8qkcSNgAI1XCeGbYhX3lzhksHp+KXhBa+xIY7C1m97TY+P7Mr9NPKGOcojOj8fHCpq
+         AkNYIGDkAl2lPBvjk3uC+ujPUfPWv7Ou7mObLS5MHRFzpyRqK53dL3zPS+zWX9Fk0bb7
+         xguA==
+X-Gm-Message-State: AC+VfDx8SW+yiDWUZjHzx6sVNDI3wjUISb768kRHfiTwEmzTU63nvkQg
+        IlY9jLrtFbfrJgA4V3uPQO5Ggw==
+X-Google-Smtp-Source: ACHHUZ6P/NTRzCid9IkjGKJMGhcTWkdeugkzLl8LgDDvzV3/dulQk2WwnlbNkY57Ng6n7VTVmGF5Dw==
+X-Received: by 2002:a17:907:1c8c:b0:94b:958c:8827 with SMTP id nb12-20020a1709071c8c00b0094b958c8827mr16017268ejc.56.1682935379094;
+        Mon, 01 May 2023 03:02:59 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:637a:fd0c:58fd:9f00? ([2a02:810d:15c0:828:637a:fd0c:58fd:9f00])
+        by smtp.gmail.com with ESMTPSA id o9-20020a1709064f8900b0094f3b18044bsm14553440eju.218.2023.05.01.03.02.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 01 May 2023 03:02:58 -0700 (PDT)
+Message-ID: <b5df5692-5319-b5ff-0e9a-c66fb1f8358d@linaro.org>
+Date:   Mon, 1 May 2023 12:02:52 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH] arm64: dts: qcom: ipq8074: Add QUP5 SPI node
+Content-Language: en-US
+To:     Robert Marko <robimarko@gmail.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230426185647.180166-1-robimarko@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230426185647.180166-1-robimarko@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On 26/04/2023 20:56, Robert Marko wrote:
+> Add node to support the QUP5 SPI controller inside of IPQ8074.
+> Some devices use this bus in order to manage external switches.
+> 
+> Signed-off-by: Robert Marko <robimarko@gmail.com>
+> ---
+>  arch/arm64/boot/dts/qcom/ipq8074.dtsi | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+> index 64c2a30d9c25..4a682e3442f8 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+> @@ -774,6 +774,20 @@ blsp1_i2c5: i2c@78b9000 {
+>  			status = "disabled";
+>  		};
+>  
+> +		blsp1_spi5: spi@78b9000 {
+> +			compatible = "qcom,spi-qup-v2.2.1";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <0x78b9000 0x600>;
 
-On Mon, May 01 2023, Krzysztof Kozlowski wrote:
-> On 25/04/2023 10:31, Baruch Siach wrote:
->> On Mon, Apr 24 2023, Baruch Siach wrote:
->>> Only arm,primecell is documented as compatible string for Primecell
->>> peripherals. Current code agrees with that.
->> 
->> Once again my patches do not show up in patchwork. But they do show in
->> lore:
->> 
->>   https://lore.kernel.org/linux-devicetree/9e137548c4e76e0d8deef6d49460cb37897934ca.1682333574.git.baruch@tkos.co.il/
->
-> You used subject prefix which targets Doc subsystem, but did not Cc Doc
-> maintainers (get_maintainers do not print them). If you target Rob's
-> Patchwork, probably you need to fix subject prefix. There is no "dt" prefix.
+reg is always after compatible.
 
-Thanks for the tip.
+Best regards,
+Krzysztof
 
-All previous commits touching Documentation/devicetree/usage-model.rst
-use 'docs' for subject prefix, including one from Rob. I followed this
-example.
-
-As for patchwork, I believe you refer to this one
-
-  http://patchwork.ozlabs.org/project/devicetree-bindings/list/
-
-Not all patches on the list use dt-bindings for subject prefix. For
-example
-
-  http://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230317053415.2254616-2-frowand.list@gmail.com/
-
-The DT submitting-patches document
-(Documentation/devicetree/bindings/submitting-patches.rst) mentions the
-dt-bindings subject prefix rule. But this patch does not touch binding
-documentation.
-
-Is there anything I should do differently to get this patch applied?
-
-Thanks,
-baruch
-
--- 
-                                                     ~. .~   Tk Open Systems
-=}------------------------------------------------ooO--U--Ooo------------{=
-   - baruch@tkos.co.il - tel: +972.52.368.4656, http://www.tkos.co.il -
