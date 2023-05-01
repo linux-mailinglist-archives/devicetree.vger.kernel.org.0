@@ -2,78 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 790C66F3969
-	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 22:52:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 967E36F3992
+	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 23:12:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232604AbjEAUwU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 May 2023 16:52:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35246 "EHLO
+        id S231173AbjEAVMp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 May 2023 17:12:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232535AbjEAUwU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 16:52:20 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D88DB2721
-        for <devicetree@vger.kernel.org>; Mon,  1 May 2023 13:51:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1682974300;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=FQVLgDOkXyGANqyYjw+hvuQPpe3HsxoxumeTjkX76j8=;
-        b=BFozajfPDoWiDEyzuPkbXgcW3/yn8h4nJ9iSu4BbvK5N/BB9hPeA0AZwsISXxcJNFIZthn
-        dNE/qwttIHy/5e6DY66FtDGNj4ks9bL8EMYB6Vz8PUHFEEHaXESnq6emx3NHdYzMsiWNQb
-        DlZjL0oY2J5KSCITdsnXiChF4NaxAxM=
-Received: from mail-ot1-f71.google.com (mail-ot1-f71.google.com
- [209.85.210.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-195-FWR2dHs_N2CRZaREQdwSVw-1; Mon, 01 May 2023 16:51:38 -0400
-X-MC-Unique: FWR2dHs_N2CRZaREQdwSVw-1
-Received: by mail-ot1-f71.google.com with SMTP id 46e09a7af769-6a5dd5b5831so737002a34.2
-        for <devicetree@vger.kernel.org>; Mon, 01 May 2023 13:51:38 -0700 (PDT)
+        with ESMTP id S229379AbjEAVMp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 17:12:45 -0400
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEA42198C
+        for <devicetree@vger.kernel.org>; Mon,  1 May 2023 14:12:42 -0700 (PDT)
+Received: by mail-pl1-x632.google.com with SMTP id d9443c01a7336-1aae90f5ebcso4395ad.1
+        for <devicetree@vger.kernel.org>; Mon, 01 May 2023 14:12:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20221208; t=1682975562; x=1685567562;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=J9+mgGd9+Jp4BeaqO8OgptqLi9JIHDz1Ll48RjzQaSc=;
+        b=csDpshoSF+g09wU//tMGH/EjBTJVcA/8IKTO17Fp0FlnYWymNWXUOyqCTdvRh8k3Er
+         LLEeylGIX7p03GIQIc7qGjfzXmgslFk9q876fiARTwJQ3BD2INneXhEKammmaXQ22xWq
+         2JCv/dkAuf31QwAARY9nPPdlatq0PyAj8ZlyCWiIFafHvYrCvAActNpvcfpnBSdJbLof
+         DimfdVhEPZoSXwgDoCSO9Pcip6hEHllWhPB36mwG16R4gYf2U9lRv2anEABeIYBWguR3
+         eoKjLL5ZN5rgASlEhTW0OXSd4jKCgLy/cRIyvztVCEveK0FKHNY2Qxm4+dJtWFZEoICe
+         GbvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682974298; x=1685566298;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20221208; t=1682975562; x=1685567562;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=FQVLgDOkXyGANqyYjw+hvuQPpe3HsxoxumeTjkX76j8=;
-        b=epRlnSbo9CrbeR9qB6ttFqq7T8/2R9hW2lNpcb+P3ggoj8Vy+KUG5093AodYk5Lkei
-         iytYB3nata8B2fqa6z+DLk8qWccwch5xkQ8S8z+OJk9OLsfnXJVOZhz+hyx4HfuJjd3a
-         4aa9HPik47CL79PVQrw78+ECLpLYmn0ZZYZD46A6Q2lsz5jDxVfGyTEZZ+emIUAOKH8x
-         HsHrOSnALeRcW+1azLpBBIX8UliehPilTetJW6Cj2UNgTIqEgxQDydn5ohFjukMrcn7/
-         SFxqe74xhSQ3jMKiTnpV9TVZPc7tpT9v8cTaHy4W5PCLfm9LHbWvMDfVSuIYmZwSrtOg
-         GWUg==
-X-Gm-Message-State: AC+VfDxrgFHqseDI5v3h/pvYMw4TlceCwixtc0rEWmBvbu4U8OrVbpLX
-        eZOwEn7lBZD7l8HFIMAERXzPBItKt1IBA7ctv3TyP8IcizinaVC1gsVPwbsgM0b4ZA+x4F137qM
-        lJbfs0nvvXxobpPmYR51VrA==
-X-Received: by 2002:a9d:65d2:0:b0:6a6:3d94:a0d7 with SMTP id z18-20020a9d65d2000000b006a63d94a0d7mr7435687oth.36.1682974298113;
-        Mon, 01 May 2023 13:51:38 -0700 (PDT)
-X-Google-Smtp-Source: ACHHUZ7RcVBWP4LTBuhRuBL89u3bJ1EZkfUcEQ2zGlAY4bSEKteLZ/6rx+voGuQNzKw0hOIo+JJIWw==
-X-Received: by 2002:a9d:65d2:0:b0:6a6:3d94:a0d7 with SMTP id z18-20020a9d65d2000000b006a63d94a0d7mr7435679oth.36.1682974297845;
-        Mon, 01 May 2023 13:51:37 -0700 (PDT)
-Received: from halaney-x13s.attlocal.net ([2600:1700:1ff0:d0e0::22])
-        by smtp.gmail.com with ESMTPSA id c10-20020a9d67ca000000b0069f153bb37asm12110130otn.62.2023.05.01.13.51.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 May 2023 13:51:37 -0700 (PDT)
-From:   Andrew Halaney <ahalaney@redhat.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Andrew Halaney <ahalaney@redhat.com>,
-        Brian Masney <bmasney@redhat.com>
-Subject: [PATCH v6 2/2] arm64: dts: qcom: sa8540p-ride: Add ethernet nodes
-Date:   Mon,  1 May 2023 15:51:05 -0500
-Message-Id: <20230501205105.2518373-3-ahalaney@redhat.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230501205105.2518373-1-ahalaney@redhat.com>
-References: <20230501205105.2518373-1-ahalaney@redhat.com>
+        bh=J9+mgGd9+Jp4BeaqO8OgptqLi9JIHDz1Ll48RjzQaSc=;
+        b=aBQ8FTu9BYrhIFV50rH11zwABhVrhuV3zhKyOU0fu9LWgSJPlE8rIO6XgiBxBbd47w
+         ZEzhNRE3271uaD/nH/wqnGKW335W7xi9oekNMLPOd8DVn68hmPyq2jScANxfXBnldomm
+         bhSjy8mDMAMHBBRiN8uSuq1CBqqhgXtoGogKRZR4atgX6mOOqJaXFHbJ4cyOcbou4pFX
+         P/kSWpRpMvAWWKTsngGL+fJAhU0F3dTLMBFlKB8wxXZCt+sR03VB9VQ3lZZ0m31BzdUy
+         0MQueKiKAyjOwb4/Z0HJxEuafNWu4sMaEA3U7vAGfTP5/iV4k/5ugKF1cot3aG/0U3pA
+         Dw/A==
+X-Gm-Message-State: AC+VfDzwT4t676RafjFvbCXqQzFmMOmNt0w69HyG0NWaEXJg2rKPKiyX
+        JZxSczj6UXjljmMjdsJC/YK7nybNmSk16sP9gb8b2A==
+X-Google-Smtp-Source: ACHHUZ6JB2tgg926bAnCef6ZxCIZYlbBK1YTJijyfrcPOT2ZN2y2uwuhOaxdPVBRzFuYmNm52D/YGx3ji1DJyBU1feg=
+X-Received: by 2002:a17:902:d507:b0:1a9:5f69:10d0 with SMTP id
+ b7-20020a170902d50700b001a95f6910d0mr68484plg.14.1682975562184; Mon, 01 May
+ 2023 14:12:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-type: text/plain
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+References: <cover.1681580558.git.noodles@earth.li> <f26d11e613df7bd55822ff3fb7689e36bf9e4f7a.1681580558.git.noodles@earth.li>
+ <20230416012421.255bfd19@slackpad.lan> <ZEGOk1isRhaekk3h@earth.li>
+ <CAGETcx-UnEK3CPC38Ef3gmHcq46nXSJbA9QAwEsF+Xt2bDKEWA@mail.gmail.com>
+ <ZEJJGGeIu8QW44mh@earth.li> <CAGETcx8JDYUT2bdDhJ0PN8_CPmHJ37jCfnuoav6CGFJoovfSqA@mail.gmail.com>
+ <ZEa9rcDlIOn+df5h@earth.li>
+In-Reply-To: <ZEa9rcDlIOn+df5h@earth.li>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Mon, 1 May 2023 14:12:05 -0700
+Message-ID: <CAGETcx8OK-DNM2hJb2sz0jDyKBRqtmPRxnk_acKgB0pfrD0_JA@mail.gmail.com>
+Subject: Re: [PATCH 1/3] ARM: dts: sun5i: chip: Enable bluetooth
+To:     Jonathan McDowell <noodles@earth.li>
+Cc:     Andre Przywara <andre.przywara@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,301 +80,261 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable both the MACs found on the board.
+On Mon, Apr 24, 2023 at 10:34=E2=80=AFAM Jonathan McDowell <noodles@earth.l=
+i> wrote:
+>
+> On Fri, Apr 21, 2023 at 03:45:52PM -0700, Saravana Kannan wrote:
+> > On Fri, Apr 21, 2023 at 1:28=E2=80=AFAM Jonathan McDowell <noodles@eart=
+h.li> wrote:
+> > >
+> > > On Thu, Apr 20, 2023 at 06:43:06PM -0700, Saravana Kannan wrote:
+> > > > On Thu, Apr 20, 2023 at 12:12=E2=80=AFPM Jonathan McDowell <noodles=
+@earth.li> wrote:
+> > > > > On Sun, Apr 16, 2023 at 01:24:21AM +0100, Andre Przywara wrote:
+> > > > > > On Sat, 15 Apr 2023 18:46:03 +0100
+> > > > > > Jonathan McDowell <noodles@earth.li> wrote:
+> > > > > >
+> > > > > > > The C.H.I.P has an rtl8723bs device with the bluetooth interf=
+ace hooked
+> > > > > > > up on UART3. Support for this didn't exist in mainline when t=
+he DTS was
+> > > > > > > initially added, but it does now, so enable it.
+> > > > > > >
+> > > > > > > Signed-off-by: Jonathan McDowell <noodles@earth.li>
+> > > > > > > ---
+> > > > > > >  arch/arm/boot/dts/sun5i-r8-chip.dts | 4 ++++
+> > > > > > >  1 file changed, 4 insertions(+)
+> > > > > > >
+> > > > > > > diff --git a/arch/arm/boot/dts/sun5i-r8-chip.dts b/arch/arm/b=
+oot/dts/sun5i-r8-chip.dts
+> > > > > > > index fd37bd1f3920..4d72a181d8aa 100644
+> > > > > > > --- a/arch/arm/boot/dts/sun5i-r8-chip.dts
+> > > > > > > +++ b/arch/arm/boot/dts/sun5i-r8-chip.dts
+> > > > > > > @@ -255,6 +255,10 @@ &uart3 {
+> > > > > > >     pinctrl-0 =3D <&uart3_pg_pins>,
+> > > > > > >                 <&uart3_cts_rts_pg_pins>;
+> > > > > > >     status =3D "okay";
+> > > > > > > +
+> > > > > > > +   bluetooth {
+> > > > > > > +           compatible =3D "realtek,rtl8723bs-bt";
+> > > > > > > +   }
+> > > > > >
+> > > > > > As the kernel test robot already pointed out, there is a semico=
+lon
+> > > > > > missing here.
+> > > > > > Otherwise looks good (dt-validate passes), but don't know if th=
+ere are
+> > > > > > any wakeup GPIOs connected (can't seem to find a schematic?).
+> > > > >
+> > > > > So there are wakeups, but if I add:
+> > > > >
+> > > > >         device-wake-gpios =3D <&axp_gpio 3 GPIO_ACTIVE_LOW>;
+> > > > >         host-wake-gpios =3D <&pio 1 3 GPIO_ACTIVE_HIGH>; /* PB3 *=
+/
+> > > > >
+> > > > > then some odd sort of dependency issue happens where the serial p=
+ort
+> > > > > load is deferred waiting for the GPIO to appear, and then the dev=
+ice
+> > > > > doesn't work.
+> > > >
+> > > > When you say your device doesn't work, are you saying it never prob=
+es?
+> >
+> > Read your whole email and it's a strange issue. Also, going forward to
+> > avoid confusion, only reply to questions with respect to 6.3-rc7.
 
-ethernet0 and ethernet1 both ultimately go to a series of on board
-switches which aren't managed by this processor.
+Sorry it took a while to respond. Life got busy.
 
-ethernet0 is connected to a Marvell 88EA1512 phy via RGMII. That goes to
-the series of switches via SGMII on the "media" side of the phy.
-RGMII_SGMII mode is enabled via devicetree register descriptions.
-The switch on the "media" side has auto-negotiation disabled, so
-configuration from userspace similar to:
+> Just to be clear, in my initial mail I referred to 6.1.21 as that's
+> where I started, but in my reply to you all output was quoted from
+> 6.3-rc7. 6.3 has been released since, so all details below are based on
+> that.
+>
+> > > The bluetooth device (realtek,rtl8723bs-bt) never appears, apparently
+> > > because the UART it's attached to never loads - it doesn't even try t=
+o
+> > > load the firmware.
+> > >
+> > > > <debugfs>/devices_deferred should tell you what devices have deferr=
+ed and why.
+> > >
+> > > root@chip:~# cat /sys/kernel/debug/devices_deferred
+> > > serial0-0
+> >
+> > Do you see this in 6.3-rc7 too?
+>
+> That was under 6.3-rc7. I see it on 6.3 too:
+>
+> root@chip:~# cat /sys/kernel/debug/devices_deferred
+> serial0-0
 
-        ethtool -s eth0 autoneg off speed 1000 duplex full
+I somehow didn't connect the dots earlier... but serial0-0 is NOT the
+uart/serial device. It's the child device of serial0 and in this case,
+it's the bluetooth device.
 
-is necessary to get traffic flowing on that interface.
+So adding those gpios in DT is not breaking serial. It's just
+preventing the BT device from probing.
 
-ethernet1 is in a mac2mac/fixed-link configuration going to the same
-series of switches directly via RGMII.
+Looking at the logs in the non-working case:
 
-Tested-by: Brian Masney <bmasney@redhat.com>
-Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
----
+[    0.715083] 1c28c00.serial: ttyS1 at MMIO 0x1c28c00 (irq =3D 53,
+base_baud =3D 1500000) is a U6_16550A
+[    0.724132] device: 'serial0': device_add
 
-Changes since v5:
-    * Move mtl nodes into ethernet nodes so they're evaluated when
-      running the dtbs_check (Stephen)
+I don't know why all of the ttySx are showing up as serial0, but this
+is the serial port. As you can see 1c28c00 is already probing.
 
-Changes since v4:
-    * Remove needless interrupt-parent (Konrad)
-    * Add Tested-by (Brian)
+[    0.724228] device: 'serial0-0': device_add
 
-Changes since v3:
-    * Compatible goes first in node (Krzysztof)
+This is the child devices getting populated. In this case this is the BT de=
+vice.
 
-Changes since v1 and v2:
-    * None
+[    0.724311] device: 'platform:1c20800.pinctrl--serial:serial0-0': device=
+_add
 
- arch/arm64/boot/dts/qcom/sa8540p-ride.dts | 238 ++++++++++++++++++++++
- 1 file changed, 238 insertions(+)
+I can tell it's the BT device because we see a device link being
+created between pinctrl and serial:serial0-0. So it's a device sitting
+on the serial bus.
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-index 24fa449d48a6..21e9eaf914dd 100644
---- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-@@ -151,6 +151,184 @@ vreg_l8g: ldo8 {
- 	};
- };
- 
-+&ethernet0 {
-+	snps,mtl-rx-config = <&ethernet0_mtl_rx_setup>;
-+	snps,mtl-tx-config = <&ethernet0_mtl_tx_setup>;
-+
-+	max-speed = <1000>;
-+	phy-handle = <&rgmii_phy>;
-+	phy-mode = "rgmii-txid";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&ethernet0_default>;
-+
-+	status = "okay";
-+
-+	mdio {
-+		compatible = "snps,dwmac-mdio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		/* Marvell 88EA1512 */
-+		rgmii_phy: phy@8 {
-+			reg = <0x8>;
-+
-+			interrupts-extended = <&tlmm 127 IRQ_TYPE_EDGE_FALLING>;
-+
-+			reset-gpios = <&pmm8540c_gpios 1 GPIO_ACTIVE_LOW>;
-+			reset-assert-us = <11000>;
-+			reset-deassert-us = <70000>;
-+
-+			device_type = "ethernet-phy";
-+
-+			/* Set to RGMII_SGMII mode and soft reset. Turn off auto-negotiation
-+			 * from userspace to talk to the switch on the SGMII side of things
-+			 */
-+			marvell,reg-init =
-+				/* Set MODE[2:0] to RGMII_SGMII */
-+				<0x12 0x14 0xfff8 0x4>,
-+				/* Soft reset required after changing MODE[2:0] */
-+				<0x12 0x14 0x7fff 0x8000>;
-+		};
-+	};
-+
-+	ethernet0_mtl_rx_setup: rx-queues-config {
-+		snps,rx-queues-to-use = <1>;
-+		snps,rx-sched-sp;
-+
-+		queue0 {
-+			snps,dcb-algorithm;
-+			snps,map-to-dma-channel = <0x0>;
-+			snps,route-up;
-+			snps,priority = <0x1>;
-+		};
-+
-+		queue1 {
-+			snps,dcb-algorithm;
-+			snps,map-to-dma-channel = <0x1>;
-+			snps,route-ptp;
-+		};
-+
-+		queue2 {
-+			snps,avb-algorithm;
-+			snps,map-to-dma-channel = <0x2>;
-+			snps,route-avcp;
-+		};
-+
-+		queue3 {
-+			snps,avb-algorithm;
-+			snps,map-to-dma-channel = <0x3>;
-+			snps,priority = <0xc>;
-+		};
-+	};
-+
-+	ethernet0_mtl_tx_setup: tx-queues-config {
-+		snps,tx-queues-to-use = <1>;
-+		snps,tx-sched-sp;
-+
-+		queue0 {
-+			snps,dcb-algorithm;
-+		};
-+
-+		queue1 {
-+			snps,dcb-algorithm;
-+		};
-+
-+		queue2 {
-+			snps,avb-algorithm;
-+			snps,send_slope = <0x1000>;
-+			snps,idle_slope = <0x1000>;
-+			snps,high_credit = <0x3e800>;
-+			snps,low_credit = <0xffc18000>;
-+		};
-+
-+		queue3 {
-+			snps,avb-algorithm;
-+			snps,send_slope = <0x1000>;
-+			snps,idle_slope = <0x1000>;
-+			snps,high_credit = <0x3e800>;
-+			snps,low_credit = <0xffc18000>;
-+		};
-+	};
-+};
-+
-+&ethernet1 {
-+	snps,mtl-rx-config = <&ethernet1_mtl_rx_setup>;
-+	snps,mtl-tx-config = <&ethernet1_mtl_tx_setup>;
-+
-+	max-speed = <1000>;
-+	phy-mode = "rgmii-txid";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&ethernet1_default>;
-+
-+	status = "okay";
-+
-+	fixed-link {
-+		speed = <1000>;
-+		full-duplex;
-+	};
-+
-+	ethernet1_mtl_rx_setup: rx-queues-config {
-+		snps,rx-queues-to-use = <1>;
-+		snps,rx-sched-sp;
-+
-+		queue0 {
-+			snps,dcb-algorithm;
-+			snps,map-to-dma-channel = <0x0>;
-+			snps,route-up;
-+			snps,priority = <0x1>;
-+		};
-+
-+		queue1 {
-+			snps,dcb-algorithm;
-+			snps,map-to-dma-channel = <0x1>;
-+			snps,route-ptp;
-+		};
-+
-+		queue2 {
-+			snps,avb-algorithm;
-+			snps,map-to-dma-channel = <0x2>;
-+			snps,route-avcp;
-+		};
-+
-+		queue3 {
-+			snps,avb-algorithm;
-+			snps,map-to-dma-channel = <0x3>;
-+			snps,priority = <0xc>;
-+		};
-+	};
-+
-+	ethernet1_mtl_tx_setup: tx-queues-config {
-+		snps,tx-queues-to-use = <1>;
-+		snps,tx-sched-sp;
-+
-+		queue0 {
-+			snps,dcb-algorithm;
-+		};
-+
-+		queue1 {
-+			snps,dcb-algorithm;
-+		};
-+
-+		queue2 {
-+			snps,avb-algorithm;
-+			snps,send_slope = <0x1000>;
-+			snps,idle_slope = <0x1000>;
-+			snps,high_credit = <0x3e800>;
-+			snps,low_credit = <0xffc18000>;
-+		};
-+
-+		queue3 {
-+			snps,avb-algorithm;
-+			snps,send_slope = <0x1000>;
-+			snps,idle_slope = <0x1000>;
-+			snps,high_credit = <0x3e800>;
-+			snps,low_credit = <0xffc18000>;
-+		};
-+	};
-+};
-+
- &i2c0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&i2c0_default>;
-@@ -316,6 +494,66 @@ &xo_board_clk {
- /* PINCTRL */
- 
- &tlmm {
-+	ethernet0_default: ethernet0-default-state {
-+		mdc-pins {
-+			pins = "gpio175";
-+			function = "rgmii_0";
-+			drive-strength = <16>;
-+			bias-pull-up;
-+		};
-+
-+		mdio-pins {
-+			pins = "gpio176";
-+			function = "rgmii_0";
-+			drive-strength = <16>;
-+			bias-pull-up;
-+		};
-+
-+		rgmii-tx-pins {
-+			pins = "gpio183", "gpio184", "gpio185", "gpio186", "gpio187", "gpio188";
-+			function = "rgmii_0";
-+			drive-strength = <16>;
-+			bias-pull-up;
-+		};
-+
-+		rgmii-rx-pins {
-+			pins = "gpio177", "gpio178", "gpio179", "gpio180", "gpio181", "gpio182";
-+			function = "rgmii_0";
-+			drive-strength = <16>;
-+			bias-disable;
-+		};
-+	};
-+
-+	ethernet1_default: ethernet1-default-state {
-+		mdc-pins {
-+			pins = "gpio97";
-+			function = "rgmii_1";
-+			drive-strength = <16>;
-+			bias-pull-up;
-+		};
-+
-+		mdio-pins {
-+			pins = "gpio98";
-+			function = "rgmii_1";
-+			drive-strength = <16>;
-+			bias-pull-up;
-+		};
-+
-+		rgmii-tx-pins {
-+			pins = "gpio105", "gpio106", "gpio107", "gpio108", "gpio109", "gpio110";
-+			function = "rgmii_1";
-+			drive-strength = <16>;
-+			bias-pull-up;
-+		};
-+
-+		rgmii-rx-pins {
-+			pins = "gpio99", "gpio100", "gpio101", "gpio102", "gpio103", "gpio104";
-+			function = "rgmii_1";
-+			drive-strength = <16>;
-+			bias-disable;
-+		};
-+	};
-+
- 	i2c0_default: i2c0-default-state {
- 		/* To USB7002T-I/KDXVA0 USB hub (SIP1 only) */
- 		pins = "gpio135", "gpio136";
--- 
-2.40.0
+[    0.724378] devices_kset: Moving serial0-0 to end of list
+[    0.724390] serial serial0-0: Linked as a consumer to 1c20800.pinctrl
+[    0.724401] /soc/serial@1c28c00/bluetooth Dropping the fwnode link
+to /soc/pinctrl@1c20800
 
+And the fwnode like that was converted to device link clearly shows
+that the serial0-0 corresponds to the bluetooth node.
+
+[    0.724441] serial serial0: tty port ttyS1 registered
+
+Serial port works.
+
+>
+> Without the device-wake-gpios line in the device tree it's empty.
+
+I think the issue is at the BT driver level or some other framework.
+
+Add a print at the start of the BT driver to see if the probe() is
+actually getting called. I'm guessing it is and it's returning an
+error from within.
+
+If you don't see that print, then debug the really_probe() function to
+see how far within it the BT device goes through before it errors out.
+It's possible pinctrl_bind_pins() in really_probe() fails for the BT
+device because of how the GPIO pins are configured in your DT.
+
+Thanks,
+Saravana
+
+>
+> > > > > Error in dmesg is:
+> > > > >
+> > > > > serial serial0-0: deferred probe pending
+> > > > >
+> > > > > on 6.3-rc and on 6.1 I get:
+> > > > >
+> > > > > dw-apb-uart 1c28c00.serial: Failed to create device link (0x180) =
+with axp20x-gpio
+> > > >
+> > > > This error message doesn't block anything. So I don't think this is
+> > > > the cause of your blocking issue. But I still want to understand wh=
+y
+> > > > this error message is showing up.
+> > > >
+> > > > > I'm not clear why it's trying to link the serial port to the GPIO=
+; it
+> > > > > seems that it should be the bluetooth device that depends on both=
+ the
+> > > > > UART and the GPIO,
+> > > >
+> > > > A fix for the device link error message went in on v6.3-rc3. Is tha=
+t
+> > > > the 6.3 version you tested this on?
+> > >
+> > > I originally tried on 6.1.21, which is where I got the "Failed to cre=
+ate
+> > > device link" message. I then moved to 6.3-rc7 as I saw there had been
+> > > further changes recently. There I just get the:
+> > >
+> > > serial serial0-0: deferred probe pending
+> >
+> > If the deferral is related to fw_devlink, you should see the reason
+> > for deferring in the devices_deferred file. So I don't think the issue
+> > is related to fw_devlink.
+>
+> Ok.
+>
+> > > message.
+> > >
+> > > > Also, I tried looking into the UART driver
+> > > > (drivers/tty/serial/8250/8250_dw.c) but it wasn't clear how it ends=
+ up
+> > > > populating the bluetooth serial device. If you can point that out,
+> > > > that'd be helpful (assuming 6.3-rc3 still shows that error message)=
+.
+> > >
+> > > I have the following in my device tree:
+> > >
+> > > &uart3 {
+> > >         pinctrl-names =3D "default";
+> > >         pinctrl-0 =3D <&uart3_pg_pins>,
+> > >                     <&uart3_cts_rts_pg_pins>;
+> > >         status =3D "okay";
+> > >
+> > >         bluetooth {
+> > >                 compatible =3D "realtek,rtl8723bs-bt";
+> > >                 device-wake-gpios =3D <&axp_gpio 3 GPIO_ACTIVE_LOW>;
+> > >                 host-wake-gpios =3D <&pio 1 3 GPIO_ACTIVE_HIGH>; /* P=
+B3 */
+> > >         };
+> > > };
+> > >
+> > > uart3 is a snps,dw-apb-uart, defined in arch/arm/boot/dts/sun5i.dtsi
+> > >
+> > > The UART and AXP209 device drivers are compiled into the kernel:
+> > >
+> > > CONFIG_PINCTRL_AXP209=3Dy
+> > > CONFIG_SERIAL_8250=3Dy
+> > > CONFIG_SERIAL_8250_DW=3Dy
+> > >
+> > > The bluetooth bits are modules (btrtl, hci_uart).
+> > >
+> > > If I remove the device-wake-gpios line then the Bluetooth device work=
+s
+> > > fine, and /sys/kernel/debug/devices_deferred is empty.
+> > >
+> > > Somehow it seems like the GPIO is being parsed as a dependency for th=
+e
+> > > serial port, even though the serial port + GPIO are both dependencies
+> > > for the bluetooth device.
+> >
+> > I'm fairly sure that fw_devlink isn't causing that. Because even
+> > without bluetooth, fw_devlink doesn't consider any suppliers listed in
+> > child DT nodes as mandatory suppliers. That has been the case since
+> > the beginning.
+>
+> Ok, I just got confused with the 6.1 message about the device link and
+> thought that might be the rough area.
+>
+> > > Even with that, given both are built-in I
+> > > don't understand why the serial port never completes setup.
+> >
+> > My guess is that the driver itself has some bug that's sensitive to
+> > device probe order even though it shouldn't.
+> >
+> > Can you add #define DEBUG 1 to the top of drivers/base/core.c and
+> > share the boot log? I can try and help debug it.
+>
+> Thanks for any input you're able to provide. dmesg from 6.3 with a
+> failure to complete the probe:
+>
+> https://the.earth.li/~noodles/chip-bluetooth/6.3-not-working
+>
+> and just for completeness, without the device-wake-gpios line:
+>
+> https://the.earth.li/~noodles/chip-bluetooth/6.3-working
+>
+> J.
+>
+> --
+> Most people are descended from apes. Redheads are descended from cats.
