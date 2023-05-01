@@ -2,72 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 739446F2EB7
-	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 08:38:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48A386F2EB9
+	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 08:38:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229537AbjEAGiB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 May 2023 02:38:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50204 "EHLO
+        id S229679AbjEAGih (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 May 2023 02:38:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232086AbjEAGhy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 02:37:54 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA17D10D9
-        for <devicetree@vger.kernel.org>; Sun, 30 Apr 2023 23:37:52 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-94f7a7a3351so438524966b.2
-        for <devicetree@vger.kernel.org>; Sun, 30 Apr 2023 23:37:52 -0700 (PDT)
+        with ESMTP id S229556AbjEAGig (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 02:38:36 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B71F518C
+        for <devicetree@vger.kernel.org>; Sun, 30 Apr 2023 23:38:34 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-50bc4d96e14so6366770a12.1
+        for <devicetree@vger.kernel.org>; Sun, 30 Apr 2023 23:38:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1682923071; x=1685515071;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=linaro.org; s=google; t=1682923113; x=1685515113;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=B0tnHyWx7960QJnZozvewSeefkrZoIVIzM8iblfnxVU=;
-        b=OqtaB/87o/5p83MMd4Ef5B7t7qZGygubqd+oyFgZnzhrzZZvXWDb3KWKGDqHhohuit
-         Ol6HSYVcP1qD3bLye4BbrFqbB9g6fmbIxzEx0RNEZlcZZ/9JtyDsQ6kRyEoy9Oc7l/4t
-         pnxZR4UN45VcVxFxRQz/0cJfNF6NplzxlX8VLp8rT8GGGKu/CDp3L92tY6zxKacz3dPd
-         FiRyj2QucYv/1wr++g/qgGcW6/tqnFdbheORmT8aqZPtmvR1LV6bb2Z196515W/SPztL
-         /EFe9HPySgp4cTuwOgWi5MivDnZPkCyR2z+loMIbMQx2VlalpTGw0bozEGb6cudwoVIh
-         sNKg==
+        bh=q+38S76C5QyqUQMkBZ45R/3U43wsLQgBrGgiDB5lSCs=;
+        b=dvctsZVxqA8lEJ6SW/AiJw7Xh4Z3orpVKD383bu7Dmjhh0dlclDK83QokvbZs/i7f/
+         D8kODqfbpftSl0C3OxaPMmjTvNDi0SiFqU0OMw4c7/Gxc6TxnTnfn57c5P6OtmtvSFG7
+         DJu5IOqn8HJbn/CL9BTZ7x4H7MdUImTwmbapEgodQ2wqZ0vbEOGkUuxOLE+AZGu/2zCR
+         L9UYRXooBMqzPIH+8VXq02281bLf/BWl/8P71x/SWfB8QMfQ5IC1pAQzNW3muHqbmzU3
+         NDBPt0SwLSYNkKROB0+IUdy8lZizpp/IsTj1C9dzpgahZkfhoF4bSLFLMNsybmH7v05R
+         OpYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682923071; x=1685515071;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=1e100.net; s=20221208; t=1682923113; x=1685515113;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=B0tnHyWx7960QJnZozvewSeefkrZoIVIzM8iblfnxVU=;
-        b=FJIN2co7FCfsKyhT8IGmEAX2PsNwSjfmgpMdX/hPMtFq/Zd8HZrxzLspfi7kZwRHzE
-         Yj71MIssu3NP4KPHsJACj6XScDnPy4ilbyzxdf4eQU7HOHf4Qfwv5JlzBPGgUFSFJM2n
-         7xgGP4QzeJz8TxJb8ERDoyrELzTZygs4Ng6OASEvLjq/oRUhJhm4LDaciUMZymsZ6erV
-         SxCJ2Fgc3E1FP7nZSplkr7ahiQv3oRfLRkTPVsUpsA5z1A/GrOCMpZFjV2kvR+dP4iYe
-         Rx8ysWjNOODELDKVSYNzdenT+RmjV+jTkzVWV1KCSCX9kGI7EAkoLnSvNOOK0rj+JCbs
-         WJ2g==
-X-Gm-Message-State: AC+VfDwWNSfR+wkPAgSFOSladZZt+zmp59Uc2psFq5/u6aH5D0H4HApW
-        CyfKowvKIPY8fdz4J/1slljBVA==
-X-Google-Smtp-Source: ACHHUZ4Mg//ku7gwQj4nd/xTDpAeTadFoCbSLS0RkSPjG23pGCr+Wtt/mTHkIW02DIxQTGAeLaRUnQ==
-X-Received: by 2002:a17:907:9623:b0:958:4c72:8fdb with SMTP id gb35-20020a170907962300b009584c728fdbmr12530007ejc.64.1682923071376;
-        Sun, 30 Apr 2023 23:37:51 -0700 (PDT)
+        bh=q+38S76C5QyqUQMkBZ45R/3U43wsLQgBrGgiDB5lSCs=;
+        b=BA0pmjQhpvo0JFe8pJ45ppIsvE5x7lwIplf+u7Y4iM0/kyIYc1nYYOxUJlfboKSrOF
+         0M49sorOZ4zFFps2gexGbhQa30Ju7dm8gJNeTwQzniY3OXs7Sl0+MK852MtGXwenTic9
+         CbkZBAaq6fNyuhb683ik1j1g6SFOcdZxiZJ0hrLHrSn/Ne4EHOIV02VnLI1gJlKZEb1W
+         ycOM/cxk87pdTvsByWfiFlBxuN0yuTqAwB6jf39Js499GQQSN4CK0uQBXgWZ4J1SsLcn
+         Py06rIl81apZQ8tbW/j3OXAzVWZXkihpoyQySiWCoRET63L773qs6NAznPQKIPUel8WV
+         u9ww==
+X-Gm-Message-State: AC+VfDzX7wQhKlpFGFrEaRWp5IL6cH03UWXp2u2m/TE50O4Nk4996uu7
+        bp0ZqUB7PBA/uBwTqCTUumovYg==
+X-Google-Smtp-Source: ACHHUZ5Qw+D2zZqMrsGtOLQt3j0Tni9y418xVIbOk+WufglwYOPOZj7R+x+g2+kqjslNEv0q9utc5A==
+X-Received: by 2002:a17:907:6e1f:b0:94e:f3d5:e4f8 with SMTP id sd31-20020a1709076e1f00b0094ef3d5e4f8mr17108685ejc.37.1682923113141;
+        Sun, 30 Apr 2023 23:38:33 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:637a:fd0c:58fd:9f00? ([2a02:810d:15c0:828:637a:fd0c:58fd:9f00])
-        by smtp.gmail.com with ESMTPSA id s1-20020a1709060c0100b0094f66176208sm14589520ejf.95.2023.04.30.23.37.50
+        by smtp.gmail.com with ESMTPSA id d5-20020a17090648c500b008c16025b318sm14481034ejt.155.2023.04.30.23.38.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 30 Apr 2023 23:37:50 -0700 (PDT)
-Message-ID: <403412d0-18b8-8d2f-e044-0e27b06a2d12@linaro.org>
-Date:   Mon, 1 May 2023 08:37:49 +0200
+        Sun, 30 Apr 2023 23:38:32 -0700 (PDT)
+Message-ID: <68f4ceff-5fa0-fe08-6a3f-c3fe0f8d53ea@linaro.org>
+Date:   Mon, 1 May 2023 08:38:31 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
-Subject: Re: Fwd: [PATCH 1/2] dt-bindings: input: microchip,cap11xx: add
- advanced sensitivity settings
+Subject: Re: [PATCH v11 1/2] dt-bindings: i2c: aspeed: support for
+ AST2600-i2cv2
 Content-Language: en-US
-To:     8a790966-d985-c0fc-498e-c17e69a6622e@linaro.org
-Cc:     devicetree@vger.kernel.org, dmitry.torokhov@gmail.com,
-        jiriv@axis.com, linux-input@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        u.kleine-koenig@pengutronix.de
-References: <d7f77779-5d28-b78a-da4e-cc237b2a04b9@axis.com>
- <1511d33b-dab3-cddb-cbf2-7db016678362@axis.com>
+To:     Ryan Chen <ryan_chen@aspeedtech.com>,
+        "jk@codeconstruct.com.au" <jk@codeconstruct.com.au>,
+        Brendan Higgins <brendan.higgins@linux.dev>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Wolfram Sang <wsa@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Jean Delvare <jdelvare@suse.de>,
+        William Zhang <william.zhang@broadcom.com>,
+        Tyrone Ting <kfting@nuvoton.com>,
+        Tharun Kumar P <tharunkumar.pasumarthi@microchip.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "=linux-kernel@vger.kernel.org" <=linux-kernel@vger.kernel.org>,
+        Andi Shyti <andi.shyti@kernel.org>
+References: <20230430041712.3247998-1-ryan_chen@aspeedtech.com>
+ <20230430041712.3247998-2-ryan_chen@aspeedtech.com>
+ <93773f00-1301-cf77-9bde-5de0595fec8d@linaro.org>
+ <SEZPR06MB5269BD01787FDD95C86031E1F26E9@SEZPR06MB5269.apcprd06.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1511d33b-dab3-cddb-cbf2-7db016678362@axis.com>
+In-Reply-To: <SEZPR06MB5269BD01787FDD95C86031E1F26E9@SEZPR06MB5269.apcprd06.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
@@ -78,138 +101,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/04/2023 19:09, Jiri Valek - 2N wrote:
-> Hi Krzysztof,
-> and thanks for the review
+On 01/05/2023 02:20, Ryan Chen wrote:
+> Hello Krzysztof,
 > 
-> On 4/15/23 11:10, Krzysztof Kozlowski wrote:
->> On 15/04/2023 01:38, Jiri Valek - 2N wrote:
->>> Add support for advanced sensitivity settings and signal guard feature.
+>> Subject: Re: [PATCH v11 1/2] dt-bindings: i2c: aspeed: support for
+>> AST2600-i2cv2
+>>
+>> On 30/04/2023 06:17, Ryan Chen wrote:
+>>> Add ast2600-i2cv2 compatible and aspeed,global-regs, aspeed,enable-dma
+>>> and description for ast2600-i2cv2.
 >>>
->>> Signed-off-by: Jiri Valek - 2N <jiriv@axis.com>
->>> ---
->>>   .../bindings/input/microchip,cap11xx.yaml     | 64 ++++++++++++++++++-
->>>   1 file changed, 61 insertions(+), 3 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml b/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
->>> index 5fa625b5c5fb..08e28226a164 100644
->>> --- a/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
->>> +++ b/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
->>> @@ -45,13 +45,13 @@ properties:
->>>         Enables the Linux input system's autorepeat feature on the input device.
->>>   
->>>     linux,keycodes:
->>> -    minItems: 6
->>> -    maxItems: 6
->>> +    minItems: 3
->>> +    maxItems: 8
->>>       description: |
->>>         Specifies an array of numeric keycode values to
->>>         be used for the channels. If this property is
->>>         omitted, KEY_A, KEY_B, etc are used as defaults.
->>> -      The array must have exactly six entries.
->>> +      The number of entries must correspond to the number of channels.
->>>   
->>>     microchip,sensor-gain:
->>>       $ref: /schemas/types.yaml#/definitions/uint32
->>> @@ -70,6 +70,58 @@ properties:
->>>         open drain. This property allows using the active
->>>         high push-pull output.
->>>   
->>> +  microchip,sensitivity-delta-sense:
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> +    default: 32
->>> +    enum: [1, 2, 4, 8, 16, 32, 64, 128]
->>> +    description: |
+>>> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
 >>
->> Do not need '|' unless you need to preserve formatting.
-> 
-> OK. Will remove them.
-> 
+>> This is a friendly reminder during the review process.
 >>
->>> +      Optional parameter. Controls the sensitivity multiplier of a touch detection.
->>> +      At the more sensitive settings, touches are detected for a smaller delta
->>> +      capacitance corresponding to a “lighter” touch.
->>> +
->>> +  microchip,sensitivity-base-shift:
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> +    default: 256
->>> +    enum: [1, 2, 4, 8, 16, 32, 64, 128, 256]
->>> +    description: |
->>> +      Optional parameter. Controls data scaling factor.
->>> +      The higher the value of these bits, the larger the range and the lower
->>> +      the resolution of the data presented. These settings will not affect
->>> +      touch detection or sensitivity.
->>> +
->>> +  microchip,signal-guard:
->>> +    minItems: 3
->>> +    maxItems: 8
->>> +    enum: [0, 1]
->>> +    default: 0
+>> It looks like you received a tag and forgot to add it.
 >>
->> This was not really tested. Missing ref, mixing scalar and array
->> properties. You want items with enum. And drop default.
-> 
-> Ack. I will fix it.
-> 
+>> If you do not know the process, here is a short explanation:
+>> Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions.
+>> However, there's no need to repost patches *only* to add the tags. The
+>> upstream maintainer will do that for acks received on the version they apply.
 >>
+>> https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submittin
+>> g-patches.rst#L540
 >>
->>> +    description: |
->>> +      Optional parameter supported only for CAP129x.
+>> If a tag was not added on purpose, please state why and what changed.
 >>
->> Then disallow it for others (allOf:if:then: ...
->> microchip,signal-guard:false)
-> 
-> Ack. I will fix it.
-> 
->>> +      The signal guard isolates the signal from virtual grounds.
->>> +      If enabled then the behavior of the channel is changed to signal guard.
->>> +      The number of entries must correspond to the number of channels.
->>> +
->>> +  microchip,input-treshold:
->>> +    minItems: 3
->>> +    maxItems: 8
->>> +    minimum: 0
->>> +    maximum: 127
->>> +    default: 64
->>> +    description: |
->>> +      Optional parameter. Specifies the delta threshold that is used to
->>> +      determine if a touch has been detected.
->>> +      The number of entries must correspond to the number of channels.
->>> +
->>> +  microchip,calib-sensitivity:
->>> +    minItems: 3
->>> +    maxItems: 8
->>> +    enum: [1, 2, 4]
->>> +    default: 1
->>> +    description: |
->>> +      Optional parameter supported only for CAP129x. Specifies an array of
->>> +      numeric values that controls the gain used by the calibration routine to
->>> +      enable sensor inputs to be more sensitive for proximity detection.
->>> +      The number of entries must correspond to the number of channels.
->>
->> Most of these properties do not look like hardware properties. Policies
->> and runtime configuration should not be put into DT. Explain please why
->> these are board-specific thus suitable for DT.
-> 
-> All these parameters are intended to set HW properties of touch buttons. 
+> Sorry, My mistake. May I ask a question?
+> In this situation, should I submit with new version?
+> Or I just add Review-by and send it again?
 
-I know, but some HW properties are software policies. Consider the
-simplest example - audio volume of a speaker. It's a hardware property,
-but it is not for DT. Software should choose audio volume based on
-user's decisions.
-
-> Each button can have different PCB layout and when you start without 
-> setting these parameters in DT, then touches won't be detected or you 
-> will get false positive readings.
-> E.g. 'signal-guard' change property of analog input from button to some 
-> type of shield.
-> I made all of them optional for backward compatibility.
-> Maybe 'sensitivity-base-shift' is really not necessary to have in DT.
-> I will remove it if you agree.
-
-Keep only ones which are not policies but depend on physical/electrical
-characteristic of boards.
+Please send a new version.
 
 Best regards,
 Krzysztof
