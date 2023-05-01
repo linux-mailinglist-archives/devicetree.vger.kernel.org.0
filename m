@@ -2,149 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A8D16F32BD
-	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 17:21:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE7D56F3288
+	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 17:09:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232559AbjEAPVU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 May 2023 11:21:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48394 "EHLO
+        id S232328AbjEAPJ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 May 2023 11:09:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39468 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232535AbjEAPVT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 11:21:19 -0400
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA5E510C1;
-        Mon,  1 May 2023 08:21:17 -0700 (PDT)
-Received: by mail-pj1-x1030.google.com with SMTP id 98e67ed59e1d1-24e0c29733fso736822a91.2;
-        Mon, 01 May 2023 08:21:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682954477; x=1685546477;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=YIW8hGeCn/ue9KjRFquGeBC2nEcAJQT+02yegm0SocM=;
-        b=m2UHHXvRGgaSM8dENcJZiaVawtH2use02hDfKHt1qkzkzchJvNWhEyG/bJEBdAFqWY
-         oQlQFJ0YH4fPtC0itJsVLNMiOPbkV330f6+au788eu1b72Hs9avGA+AzErA7IvftMzlD
-         s/L3Gh4Jhin/76f0aMghP4/aD3uralJbyZGpdPxr1sHXaYl049jzvs9WC9WBk9kPEvyz
-         ZSb2opy6hXUSi3RfxuIsfVAozh2Yk75uGSqDKt+JTxJ4rQkUkpROVa0wuw9qIdr6Ycuv
-         vYyHffHBMtSzlqP5dxN+L9/CbhtxiFxa8aUz+94Hvv3qzoVPQCbO6mA+OWe2hvSPVgU2
-         TWCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682954477; x=1685546477;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YIW8hGeCn/ue9KjRFquGeBC2nEcAJQT+02yegm0SocM=;
-        b=WKRE7BpGHsrrPt/SUtNASAtekZxYHjdwHJSRuOGkfVqeKOMCSCQ6Th/OS2CAoNd2jw
-         ON4cmtL8guHoNdG/diDndGfPDdtWPqKVKoDpI2NmjPe1F3cxWIpy5JWYHAV6Oplb7xv+
-         FzPWFsS6sw+PuThkOxhEeMoHgA7D0BnXAgyUpRRRuvR4hKIfxG6SV3o+Y7dqbYiW3lpv
-         JplEamhYTC0GrjZ3Un6moeT8o5HNHfxCxtvQdIhsrpqGeWyJhbNaFC/ozx5wU2CkpX2V
-         xhcQov57e5Ua9tmppLK4q+VLAr9AjpqIERKB+seWqqcExVP8p9Qt4cbTsESPP6RNKw/l
-         4giA==
-X-Gm-Message-State: AC+VfDwwDfMt6QjOd23JTGJ4hLERAYrbhpUt5pMFwRFPPzKJ01oYMPb0
-        hJGlR6iC0Q2Zd++2fo8d4eY=
-X-Google-Smtp-Source: ACHHUZ6QiwkjIxtXvOSW/qLrIvk3SCU2xO8RalT5TCxA8EqDnwm2+lhUK1ySph96OG1n9a8ar+28sQ==
-X-Received: by 2002:a17:90a:bb17:b0:24d:d7fd:86c3 with SMTP id u23-20020a17090abb1700b0024dd7fd86c3mr7546946pjr.16.1682954477327;
-        Mon, 01 May 2023 08:21:17 -0700 (PDT)
-Received: from Gentoo (n220246252240.netvigator.com. [220.246.252.240])
-        by smtp.gmail.com with ESMTPSA id n4-20020a17090a928400b0024c1ac09394sm6157536pjo.19.2023.05.01.08.21.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 May 2023 08:21:16 -0700 (PDT)
-Date:   Mon, 1 May 2023 23:21:08 +0800
-From:   Jianhua Lu <lujianhua000@gmail.com>
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
-        gregkh@linuxfoundation.org, andersson@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        luca.weiss@fairphone.com, linux-usb@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        caleb.connolly@linaro.org, konrad.dybcio@linaro.org,
-        subbaram@quicinc.com, jackp@quicinc.com, robertom@qti.qualcomm.com
-Subject: Re: [PATCH v6 12/13] arm64: dts: qcom: qrb5165-rb5: Switch on TCPM
- usb-role-switching for usb_1
-Message-ID: <ZE_Y5BvxiimB9mu8@Gentoo>
-References: <20230501121111.1058190-1-bryan.odonoghue@linaro.org>
- <20230501121111.1058190-13-bryan.odonoghue@linaro.org>
+        with ESMTP id S232704AbjEAPJZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 11:09:25 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4D6F19A4;
+        Mon,  1 May 2023 08:09:13 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0CBC361DA3;
+        Mon,  1 May 2023 15:09:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2769C433D2;
+        Mon,  1 May 2023 15:09:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1682953752;
+        bh=cUsOqfxkIZKyqqJ02ZRf0fbQ0VVSONKVBQcffytJjtk=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=LXsZT+m4RC1Wkzi4gGg7dhvNreN88Pqydx70S7nVYE3En1YazI1UXgrbDB/acgko4
+         WdN0xFED3fL+1lqYjoNtpiWvpUkQHn0dNcr5Tiw7hziaTknpfeok8+ybqMSuDk83Sd
+         D28ffSMdMstVcNMKRxmI5eeyRFOrp3EZhxj7ZMV+8YcjLMz6ursQFkWzgde7DSGk0+
+         hURXmbJ6WJQSwV6dNCtmIFgI+DG/+9sVVEDGOxvPoDA4KmzUD/aQhENlLfkIB+k9z9
+         aKemwGil86e9cGRezdqtMUWqZVbY0VyyvpxZHHfK1vCGk883WzoXbnogrMeBOyXKV/
+         jwuPst3iBBYhg==
+Date:   Mon, 1 May 2023 16:24:56 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-iio@vger.kernel.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 4/4] ASoC: codecs: Add support for the generic IIO
+ auxiliary devices
+Message-ID: <20230501162456.3448c494@jic23-huawei>
+In-Reply-To: <20230424125216.0f279f82@bootlin.com>
+References: <20230421124122.324820-1-herve.codina@bootlin.com>
+        <20230421124122.324820-5-herve.codina@bootlin.com>
+        <20230422180814.61d24aa3@jic23-huawei>
+        <20230424125216.0f279f82@bootlin.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230501121111.1058190-13-bryan.odonoghue@linaro.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 01, 2023 at 01:11:10PM +0100, Bryan O'Donoghue wrote:
-> Switch on usb-role-switching for usb_1 via TCPM. We need to declare
-> usb-role-switch in &usb_1 and associate with the remote-endpoint in TCPM
-> which provides the necessary signal.
-> 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 19 ++++++++++++++++++-
->  arch/arm64/boot/dts/qcom/sm8250.dtsi     |  4 ++++
->  2 files changed, 22 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> index 1e0b6fd59abc9..b5cc45358a474 100644
-> --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> @@ -1273,7 +1273,13 @@ &usb_1 {
->  };
->  
->  &usb_1_dwc3 {
-> -	dr_mode = "peripheral";
-> +	dr_mode = "otg";
-> +	usb-role-switch;
-> +	port {
-> +		dwc3_role_switch_in: endpoint {
-> +			remote-endpoint = <&pm8150b_role_switch_out>;
-> +		};
-> +	};
->  };
->  
->  &usb_1_hsphy {
-> @@ -1359,5 +1365,16 @@ connector {
->  					 PDO_FIXED_DUAL_ROLE |
->  					 PDO_FIXED_USB_COMM |
->  					 PDO_FIXED_DATA_SWAP)>;
-> +		ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			port@0 {
-> +				reg = <0>;
-> +				pm8150b_role_switch_out: endpoint {
-> +					remote-endpoint = <&dwc3_role_switch_in>;
-> +				};
-> +			};
-This port node should be moved out to the block of pm8150b_typec rather than
-usb-c-connector. Otherwise, 
 
-[   10.998897] OF: graph: no port node found in /soc@0/spmi@c440000/pmic@2/typec@1500
+> >   
+> > > +static int simple_iio_aux_probe(struct platform_device *pdev)
+> > > +{
+> > > +	struct device_node *np = pdev->dev.of_node;
+> > > +	struct simple_iio_aux_chan *iio_aux_chan;
+> > > +	struct simple_iio_aux *iio_aux;
+> > > +	int count;
+> > > +	u32 tmp;
+> > > +	int ret;
+> > > +	int i;
+> > > +
+> > > +	iio_aux = devm_kzalloc(&pdev->dev, sizeof(*iio_aux), GFP_KERNEL);
+> > > +	if (!iio_aux)
+> > > +		return -ENOMEM;
+> > > +
+> > > +	iio_aux->dev = &pdev->dev;
+> > > +
+> > > +	count = of_property_count_strings(np, "io-channel-names");
+> > > +	if (count < 0) {
+> > > +		dev_err(iio_aux->dev, "%pOF: failed to read io-channel-names\n", np);
+> > > +		return count;
+> > > +	}
+> > > +
+> > > +	iio_aux->chans = devm_kmalloc_array(&pdev->dev, count,
+> > > +					    sizeof(*iio_aux->chans), GFP_KERNEL);
+> > > +	if (!iio_aux->chans)
+> > > +		return -ENOMEM;
+> > > +	iio_aux->num_chans = count;
+> > > +
+> > > +	for (i = 0; i < iio_aux->num_chans; i++) {
+> > > +		iio_aux_chan = iio_aux->chans + i;
+> > > +
+> > > +		ret = of_property_read_string_index(np, "io-channel-names", i,
+> > > +						    &iio_aux_chan->name);    
+> > 
+> > Whilst today this will be tightly couple with of, if you can use generic firmware
+> > handling where possible (from linux/property.h) it will reduce what needs
+> > to be tidied up if anyone fills in the gaps for IIO consumer bindings in ACPI
+> > and then someone uses PRP0001 based ACPI bindings.  
+> 
+> No device_property_read_*() function family are available to get a value
+> from an array using an index.
 
-> +		};
->  	};
->  };
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> index af16d3ba76b8e..af988328db6b9 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> @@ -3740,6 +3740,10 @@ usb_1_dwc3: usb@a600000 {
->  				snps,dis_enblslpm_quirk;
->  				phys = <&usb_1_hsphy>, <&usb_1_ssphy>;
->  				phy-names = "usb2-phy", "usb3-phy";
-> +
-> +				port {
-> +					dwc3_role_switch_in: endpoint {};
-> +				};
->  			};
->  		};
->  
-> -- 
-> 2.39.2
+That feels like it might be a feature gap in the generic property handling that
+should be solved.  Emtirely reasonable not to do it in this series however!
+
+
+
 > 
+> I would prefer to keep the of_property_read_*() function family I use for this
+> first IIO auxiliary device support.
 > 
+> >   
+> > > +		if (ret < 0) {
+> > > +			dev_err(iio_aux->dev, "%pOF: failed to read io-channel-names[%d]\n", np, i);    
+> > 
+> > dev_err_probe() would simplify these cases a little.  Not sure on ASOC view on using
+> > that for cases that won't defer.  I tend to take the view it's nicer everywhere
+> > for calls in probe() functions.  
+> 
+> I have the feeling that ASoC uses dev_err_probe() for cases that can defer.
+> Mark, can you confirm ?
+> 
+
+Left as needs an answer from Mark.
+
+Jonathan
+
+
+
