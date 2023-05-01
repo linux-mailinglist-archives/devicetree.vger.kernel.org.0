@@ -2,45 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BC4F6F2CE3
-	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 05:06:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2D806F2CE6
+	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 05:06:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232187AbjEADGT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Apr 2023 23:06:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57000 "EHLO
+        id S232282AbjEADGU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Apr 2023 23:06:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232557AbjEADEL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Apr 2023 23:04:11 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F208F4221;
-        Sun, 30 Apr 2023 20:01:30 -0700 (PDT)
+        with ESMTP id S232564AbjEADEO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Apr 2023 23:04:14 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA75ADE;
+        Sun, 30 Apr 2023 20:01:32 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 95D3860C42;
-        Mon,  1 May 2023 03:00:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 108F9C433EF;
-        Mon,  1 May 2023 03:00:23 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0CDBE61774;
+        Mon,  1 May 2023 03:00:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E38CC433EF;
+        Mon,  1 May 2023 03:00:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1682910025;
-        bh=QpDHgQ++5liL2aochLRi9CGBnKABcvZPi81a3LBh5h4=;
+        s=k20201202; t=1682910056;
+        bh=J6LbNaFIM1YU3bRKpGJb8CNQO+uadHaxuFTIa6EkB94=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=ZioPl3VV6Ul6hGbfY+Zy0vox0FPFvC3Mq1rY9fzfXYwD8X2aJREIjSkTcwybjSjPT
-         FM6xkqZ4TiY2r/dEcsgoboEbIQs+81WtUT6cZU2Q1Wu9gHlHjs4so0y7zd2EQNo8IC
-         IYZXDYQRUaY9MUmpzit9m0ro/5jwzD36oSg9yTyR4lG4yTAlgz0782jYXckpcC4BTU
-         AglJR9zTemNv3i/FABXJvUlM0oHv2RpYQfuyPEy8+5vrUmdoTAG8pzjmv3YxVbgdTu
-         RY3KCrSvtJ7II4EcD5vqVMJoug5o0QXp5hOj52C1gfFzOcMaqxpN94ea5a8XTX7ydT
-         CKhi3bKfkT1LQ==
+        b=t0t2bRMKo/ax/fNiTD9+GxLhQcSBKEQhAktQE9sZeo/hpZd2sc7p6Bes8gv2pdAb+
+         t1GYXa4ZIoFA/n0v/bnNDJTIG2eaXDWvixFGELdCc1DEqnZkv3JBrvhE6NjNy3MEKj
+         yx12UIuCUvcTbclGAOgYrTZR1AwxsnpLlHeJdtDXhqYnJYcgtu5okEiR2jEhTMNUV+
+         uhSKTZdlUUONJBL0zNm46nmecFR6nrffKaSEm3p8i3Nd+x3abuNC3g2Gra66ihFghm
+         GP29jQ2KMqSNZbhn3aRPeP9zZXdk3M08e3v65JLUNS7CZBjoF7S4WLihQl9zMmQkFQ
+         Dx5Zj8zd1+f/g==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Sasha Levin <sashal@kernel.org>, agross@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.2 10/37] arm64: dts: qcom: msm8996: Add missing DWC3 quirks
-Date:   Sun, 30 Apr 2023 22:59:18 -0400
-Message-Id: <20230501025945.3253774-10-sashal@kernel.org>
+Cc:     Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
+        Martin Kepplinger <martin.kepplinger@puri.sm>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH AUTOSEL 6.2 19/37] arm64: dts: imx8mq-librem5: Remove dis_u3_susphy_quirk from usb_dwc3_0
+Date:   Sun, 30 Apr 2023 22:59:27 -0400
+Message-Id: <20230501025945.3253774-19-sashal@kernel.org>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230501025945.3253774-1-sashal@kernel.org>
 References: <20230501025945.3253774-1-sashal@kernel.org>
@@ -48,8 +49,8 @@ MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -58,36 +59,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
+From: Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
 
-[ Upstream commit d0af0537e28f6eace02deed63b585396de939213 ]
+[ Upstream commit cfe9de291bd2bbce18c5cd79e1dd582cbbacdb4f ]
 
-Add missing dwc3 quirks from msm-3.18. Unfortunately, none of them
-make `dwc3-qcom 6af8800.usb: HS-PHY not in L2` go away.
+This reduces power consumption in system suspend by about 10%.
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Signed-off-by: Bjorn Andersson <andersson@kernel.org>
-Link: https://lore.kernel.org/r/20230302011849.1873056-1-konrad.dybcio@linaro.org
+Signed-off-by: Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
+Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+Signed-off-by: Shawn Guo <shawnguo@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/qcom/msm8996.dtsi | 3 +++
- 1 file changed, 3 insertions(+)
+ arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-index 71678749d66f6..6848a90355688 100644
---- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-@@ -2987,8 +2987,11 @@ usb3_dwc3: usb@6a00000 {
- 				interrupts = <0 131 IRQ_TYPE_LEVEL_HIGH>;
- 				phys = <&hsusb_phy1>, <&ssusb_phy_0>;
- 				phy-names = "usb2-phy", "usb3-phy";
-+				snps,hird-threshold = /bits/ 8 <0>;
- 				snps,dis_u2_susphy_quirk;
- 				snps,dis_enblslpm_quirk;
-+				snps,is-utmi-l1-suspend;
-+				tx-fifo-resize;
- 			};
- 		};
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
+index ddf0e330dc7c4..6f7157fe1a0a8 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
+@@ -1299,7 +1299,6 @@ &usb_dwc3_0 {
+ 	#address-cells = <1>;
+ 	#size-cells = <0>;
+ 	dr_mode = "otg";
+-	snps,dis_u3_susphy_quirk;
+ 	usb-role-switch;
+ 	status = "okay";
  
 -- 
 2.39.2
