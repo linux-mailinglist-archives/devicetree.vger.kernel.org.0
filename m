@@ -2,71 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 600C36F35AC
-	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 20:09:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7BBD6F35E8
+	for <lists+devicetree@lfdr.de>; Mon,  1 May 2023 20:39:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229816AbjEASJL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 May 2023 14:09:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46276 "EHLO
+        id S232274AbjEASjk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 May 2023 14:39:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229653AbjEASJJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 14:09:09 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4A151BE3;
-        Mon,  1 May 2023 11:09:04 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4ec8eca56cfso3485883e87.0;
-        Mon, 01 May 2023 11:09:04 -0700 (PDT)
+        with ESMTP id S229871AbjEASji (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 14:39:38 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 920D319B0;
+        Mon,  1 May 2023 11:39:33 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-958bb7731a9so581784166b.0;
+        Mon, 01 May 2023 11:39:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682964543; x=1685556543;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=EVsyEeQIkuoRUX8OyS/aL/Sw9eE1vVvWLKexBiA7nyw=;
-        b=pN9Ws5HGhqmyGfjLYEbNTWeHzlQ+et4v1WldgWtSE0S5Yb8TdBYJ27VaCtgTqEYWxD
-         PjcyNXcLLdI5VEovO11T3eknmzEfJoH52+mvaUgZ1xH50bDb8ynjLplHeAMPusNkraCN
-         20kGvOAT/8LHnGeIICrKAPnTwNoXHXPzpO66/4g7a+eyG0amYk9sq7dZNIP0owHPecGa
-         0f3vjTFlMGnNmwgp3vlQuhV5DrX/YcSb/CHz3rgJv7Z40gN8Iq/qSTQ8w5r7dEdclNYJ
-         yZiE05k5qMVRqj2usJWJfeFH+NnOkjtp7CX317t1LVtCLIegz/KuXc2wYyNuZ29TRbkR
-         BvLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682964543; x=1685556543;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=googlemail.com; s=20221208; t=1682966372; x=1685558372;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=EVsyEeQIkuoRUX8OyS/aL/Sw9eE1vVvWLKexBiA7nyw=;
-        b=WM2qKMoMfhmSj1g7REXOe37tC6l2Fd+r3r+jmadeOes85aZNTHwFaVm1dgB6IrZsle
-         CHaa+TzTf3ph7ZwUOJSt2FNVXmI6sTMNvT4a4JYm7jwXp2MODNPmD62MXr/9ei1HLLVB
-         mUy8hYsamXrHNOjw8OvQQyMpCFsfgurx79IOXYWnwa0AtmJ+ajQ0dHK1XNZDx0nJvXir
-         DIytV0XP/e3R0cA9uqSKfSb2Ub5Bw3KWvpx033Nm5t5+OmRR9uQyKrG4X8LisL3QBvQn
-         G5IkXOHtUOo9cBwzpRxHC2hnKJLLd8l+pNPdNCekzHUL9UGgfPbIBJFBx00sdtq53NDB
-         zdlw==
-X-Gm-Message-State: AC+VfDy5YoU32z3ec/9OkC0ioylNoJPnDajz22xm/I5i3xXJTrcdVvPs
-        Gk5sMQLgxFPWp65EkBSpyDo=
-X-Google-Smtp-Source: ACHHUZ4LwwG8MbaIZngGquwUyHGUdV6gyrrj4eLdszWPLXRnOjVlpw5d4V97Jr4bWCXVnW6rDIFtdQ==
-X-Received: by 2002:a05:6512:38cc:b0:4ed:c76b:6aaf with SMTP id p12-20020a05651238cc00b004edc76b6aafmr3642335lft.56.1682964542887;
-        Mon, 01 May 2023 11:09:02 -0700 (PDT)
-Received: from mobilestation ([95.79.140.35])
-        by smtp.gmail.com with ESMTPSA id m15-20020a056512014f00b004e7fa99f2b5sm4888778lfo.186.2023.05.01.11.09.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 May 2023 11:09:02 -0700 (PDT)
-Date:   Mon, 1 May 2023 21:09:00 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     jingoohan1@gmail.com, mani@kernel.org,
-        gustavo.pimentel@synopsys.com, lpieralisi@kernel.org,
-        robh+dt@kernel.org, kw@linux.com, bhelgaas@google.com,
-        kishon@kernel.org, marek.vasut+renesas@gmail.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Bjorn Helgaas <helgaas@kernel.org>
-Subject: Re: [PATCH v14 05/21] PCI: dwc: Rename "legacy_irq" to "INTx_irq" in
- DWC core
-Message-ID: <20230501180900.6jmxgd2ob2ebf34d@mobilestation>
-References: <20230426045557.3613826-1-yoshihiro.shimoda.uh@renesas.com>
- <20230426045557.3613826-6-yoshihiro.shimoda.uh@renesas.com>
+        bh=Vy8LMgK7nlj8Hadd9P4DNIqtoF7V1DAnGwP0/fa2hB8=;
+        b=U5D7cxNQTURT8xwkIm3G1FjwzyMGG5dzHJMisO4ldoGpHCh2i4+CzU5YRAlZCAKUGD
+         Xn6lbly6fyylDsFJy7yJgxXVXxkji8ExeXlGf6txh4V/hW7XCBVIKBxy5q71Bivb2V2c
+         uIgmKUQHOAA0WMq1LxPtFAvSwnlWRx2YBULmIgt+592UWgpHwxO75jhDHOoB4H82COlr
+         yy1R9sUHSAI2/hJ6oWc4RqgrpbJv+uy9qVnZ5qo62qEQ5zgJMIrAASjE+RcYdFefYVw3
+         JNfCACRGxcC0WO5XEoqMtPKgw6j3KM5b4jUV2TgDyTT4trKxdU2Pwl0XeAcsxa+mW/xZ
+         q4Vw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682966372; x=1685558372;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Vy8LMgK7nlj8Hadd9P4DNIqtoF7V1DAnGwP0/fa2hB8=;
+        b=GTht1OR/nC15lh+sV/bB5WPtgJG6yqyQnFByLd0WILfwMG7+Jvl9GzHCI/MErrzThv
+         p++csaxonEZ0kdA4P08KckwtaSYKhKFhP4pOQKLhVyyxzEjunZUsj1VFUBEElaCpk/5y
+         5T8oN1BD+2LT+obINAvt6fvz359iCiKeEzJ3Ae5ay+AwnJ/bzD6NqFTxtSKrgzVBOmuL
+         t8KEir4O7LJp+CGE8Vm1xqpoWvj1sYbOXHi+lwpQdDMeXPVJ9MMECMP4CNkgxbAvNX1q
+         YrSfuJ8uJAAkIvBAnRFCIGo5WGzgTqZryUDNKggyBLAYbA6af9gxJpU6rF7OwBR1Y6vQ
+         WJfw==
+X-Gm-Message-State: AC+VfDwJnqq0SCEh+eOViKA/kePQSpvDpABm3ndbq7vofJzJke0KbS+W
+        tpcWLG1pW5bkTxxeNh6dMvyOMp8JKSrwUGDqFs0=
+X-Google-Smtp-Source: ACHHUZ7XYkmDWh6C7QrAP5IrIgIh54a4MMgW7FDGV1Ipa9leHn0ud1zf0ChP3eFCS4Yg4qGriQmF6zeP4UR5ar4Bb4U=
+X-Received: by 2002:a17:907:160a:b0:94f:21cf:86c6 with SMTP id
+ hb10-20020a170907160a00b0094f21cf86c6mr14226257ejc.51.1682966371921; Mon, 01
+ May 2023 11:39:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230426045557.3613826-6-yoshihiro.shimoda.uh@renesas.com>
+References: <20230405195927.13487-1-ddrokosov@sberdevices.ru>
+ <20230405195927.13487-5-ddrokosov@sberdevices.ru> <CAFBinCA3uZXzr3RgnWnKV5Qr-CPaZQX5joDg319i_cgzhLJy2g@mail.gmail.com>
+ <20230425123304.xjmrkraybp2siwdw@CAB-WSD-L081021>
+In-Reply-To: <20230425123304.xjmrkraybp2siwdw@CAB-WSD-L081021>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Mon, 1 May 2023 20:39:20 +0200
+Message-ID: <CAFBinCCqx1oHf+PcXBkeRYHnGQChbTTPRyD8SJU+ait+TG+AjQ@mail.gmail.com>
+Subject: Re: [PATCH v13 4/6] clk: meson: a1: add Amlogic A1 PLL clock
+ controller driver
+To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Cc:     neil.armstrong@linaro.org, jbrunet@baylibre.com,
+        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
+        jian.hu@amlogic.com, kernel@sberdevices.ru, rockosov@gmail.com,
+        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -77,133 +76,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 26, 2023 at 01:55:41PM +0900, Yoshihiro Shimoda wrote:
-> Using "INTx" instead of "legacy" is more specific. So, rename
-> dw_pcie_ep_raise_legacy_irq() to dw_pcie_ep_raise_intx_irq().
+Hello Dmitry,
 
-[PATCH v14 05/21] PCI: dwc: Rename "legacy_irq" to "INTx_irq" in DWC core
+(I'm aware you already posted a v14 - but I'm still replying here to
+continue the discussion on one question I had to keep the context)
 
-Drop "DWC core" from the subject. It's implied by the subsystem/vendor
-prefix of the title.
+On Tue, Apr 25, 2023 at 2:33=E2=80=AFPM Dmitry Rokosov <ddrokosov@sberdevic=
+es.ru> wrote:
+[...]
+> > > +/* PLL register offset */
+> > > +#define ANACTRL_FIXPLL_CTRL0   0x0
+> > > +#define ANACTRL_FIXPLL_CTRL1   0x4
+> > > +#define ANACTRL_FIXPLL_STS     0x14
+> > > +#define ANACTRL_HIFIPLL_CTRL0  0xc0
+> > > +#define ANACTRL_HIFIPLL_CTRL1  0xc4
+> > > +#define ANACTRL_HIFIPLL_CTRL2  0xc8
+> > > +#define ANACTRL_HIFIPLL_CTRL3  0xcc
+> > > +#define ANACTRL_HIFIPLL_CTRL4  0xd0
+> > > +#define ANACTRL_HIFIPLL_STS    0xd4
+> > Here I have a question that will potentially affect patch 3/6
+> > ("dt-bindings: clock: meson: add A1 PLL clock controller bindings").
+> > In the cover-letter you mentioned that quite a few clocks have been omi=
+tted.
+> > Any dt-bindings that we create need to be stable going forward. That
+> > means: the dt-bindings will always need to describe what the hardware
+> > is capable of, not what the driver implements.
+> > So my question is: do we have all needed inputs described in the
+> > dt-bindings (even though we're omitting quite a few registers here
+> > that will only be added/used in the future)?
+> > Older SoCs require (temporarily) using the XTAL clock for CPU clock
+> > tree changes. To make a long story short: I'm wondering if - at least
+> > - the XTAL clock input is missing.
+>
+> The Amlogic A1 clock engine comprises four clock controllers for
+> peripherals, PLL, CPU, and audio. While the first two have been
+> introduced in the current patch series, the last two will be sent in the
+> next iteration.
+I (think that I) understand this part.
 
-Other than that the patch looks good. Although it would have been nice
-to fix the local namings in the LLD drivers too...
+> Presently, the PLL controller driver includes all the required bindings,
+> and the peripherals controller driver has all bindings except for the
+> CPU-related clock.
+Let's stick to the PLL controller bindings for the next part.
+My understanding is that the PLL clock controller registers
+(ANACTRL_*) are managing the following clocks:
+- fixed_pll
+- sys_pll
+- hifi_pll
+- whatever "AUDDDS" is
+- and some miscellaneous registers like ANACTRL_POR_CNTL and
+ANACTRL_MISCTOP_CTRL0
 
-Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
+I *think* you got the dt-bindings correct:
+Even though the driver part does not support the hifi_pll yet, this IP
+block seems to have a "hifipll_in" clock input.
+Since the dt-bindings describes the hardware it may describe (for
+example) clock inputs that are not used by the driver yet.
 
--Serge(y)
+If you agree with my statement from above I'll be able to make my
+original question more specific:
+Since we know that we have all the required inputs for fixed_pll,
+sys_pll and hifi_pll - do you know what AUDDDS is and whether it
+requires any specific clock inputs (other than "fixpll_in" and
+"hifipll_in")?
 
-> 
-> Suggested-by: Bjorn Helgaas <helgaas@kernel.org>
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
-> ---
->  drivers/pci/controller/dwc/pci-imx6.c             | 2 +-
->  drivers/pci/controller/dwc/pci-layerscape-ep.c    | 2 +-
->  drivers/pci/controller/dwc/pcie-designware-ep.c   | 6 +++---
->  drivers/pci/controller/dwc/pcie-designware-plat.c | 2 +-
->  drivers/pci/controller/dwc/pcie-designware.h      | 4 ++--
->  drivers/pci/controller/dwc/pcie-qcom-ep.c         | 2 +-
->  6 files changed, 9 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
-> index 1f39e733ce19..0831f3947220 100644
-> --- a/drivers/pci/controller/dwc/pci-imx6.c
-> +++ b/drivers/pci/controller/dwc/pci-imx6.c
-> @@ -1063,7 +1063,7 @@ static int imx6_pcie_ep_raise_irq(struct dw_pcie_ep *ep, u8 func_no,
->  
->  	switch (type) {
->  	case PCI_EPC_IRQ_INTX:
-> -		return dw_pcie_ep_raise_legacy_irq(ep, func_no);
-> +		return dw_pcie_ep_raise_intx_irq(ep, func_no);
->  	case PCI_EPC_IRQ_MSI:
->  		return dw_pcie_ep_raise_msi_irq(ep, func_no, interrupt_num);
->  	case PCI_EPC_IRQ_MSIX:
-> diff --git a/drivers/pci/controller/dwc/pci-layerscape-ep.c b/drivers/pci/controller/dwc/pci-layerscape-ep.c
-> index ab3306e206d8..3d58fc1670b4 100644
-> --- a/drivers/pci/controller/dwc/pci-layerscape-ep.c
-> +++ b/drivers/pci/controller/dwc/pci-layerscape-ep.c
-> @@ -66,7 +66,7 @@ static int ls_pcie_ep_raise_irq(struct dw_pcie_ep *ep, u8 func_no,
->  
->  	switch (type) {
->  	case PCI_EPC_IRQ_INTX:
-> -		return dw_pcie_ep_raise_legacy_irq(ep, func_no);
-> +		return dw_pcie_ep_raise_intx_irq(ep, func_no);
->  	case PCI_EPC_IRQ_MSI:
->  		return dw_pcie_ep_raise_msi_irq(ep, func_no, interrupt_num);
->  	case PCI_EPC_IRQ_MSIX:
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-ep.c b/drivers/pci/controller/dwc/pcie-designware-ep.c
-> index 205bbcc6af27..a80b9fd03638 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-ep.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-ep.c
-> @@ -480,16 +480,16 @@ static const struct pci_epc_ops epc_ops = {
->  	.get_features		= dw_pcie_ep_get_features,
->  };
->  
-> -int dw_pcie_ep_raise_legacy_irq(struct dw_pcie_ep *ep, u8 func_no)
-> +int dw_pcie_ep_raise_intx_irq(struct dw_pcie_ep *ep, u8 func_no)
->  {
->  	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
->  	struct device *dev = pci->dev;
->  
-> -	dev_err(dev, "EP cannot trigger legacy IRQs\n");
-> +	dev_err(dev, "EP cannot trigger INTx IRQs\n");
->  
->  	return -EINVAL;
->  }
-> -EXPORT_SYMBOL_GPL(dw_pcie_ep_raise_legacy_irq);
-> +EXPORT_SYMBOL_GPL(dw_pcie_ep_raise_intx_irq);
->  
->  int dw_pcie_ep_raise_msi_irq(struct dw_pcie_ep *ep, u8 func_no,
->  			     u8 interrupt_num)
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-plat.c b/drivers/pci/controller/dwc/pcie-designware-plat.c
-> index fc3b02949218..2689ff7939e4 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-plat.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-plat.c
-> @@ -49,7 +49,7 @@ static int dw_plat_pcie_ep_raise_irq(struct dw_pcie_ep *ep, u8 func_no,
->  
->  	switch (type) {
->  	case PCI_EPC_IRQ_INTX:
-> -		return dw_pcie_ep_raise_legacy_irq(ep, func_no);
-> +		return dw_pcie_ep_raise_intx_irq(ep, func_no);
->  	case PCI_EPC_IRQ_MSI:
->  		return dw_pcie_ep_raise_msi_irq(ep, func_no, interrupt_num);
->  	case PCI_EPC_IRQ_MSIX:
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-> index adad0ea61799..9acf6c40d252 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.h
-> +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> @@ -550,7 +550,7 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep);
->  int dw_pcie_ep_init_complete(struct dw_pcie_ep *ep);
->  void dw_pcie_ep_init_notify(struct dw_pcie_ep *ep);
->  void dw_pcie_ep_exit(struct dw_pcie_ep *ep);
-> -int dw_pcie_ep_raise_legacy_irq(struct dw_pcie_ep *ep, u8 func_no);
-> +int dw_pcie_ep_raise_intx_irq(struct dw_pcie_ep *ep, u8 func_no);
->  int dw_pcie_ep_raise_msi_irq(struct dw_pcie_ep *ep, u8 func_no,
->  			     u8 interrupt_num);
->  int dw_pcie_ep_raise_msix_irq(struct dw_pcie_ep *ep, u8 func_no,
-> @@ -583,7 +583,7 @@ static inline void dw_pcie_ep_exit(struct dw_pcie_ep *ep)
->  {
->  }
->  
-> -static inline int dw_pcie_ep_raise_legacy_irq(struct dw_pcie_ep *ep, u8 func_no)
-> +static inline int dw_pcie_ep_raise_intx_irq(struct dw_pcie_ep *ep, u8 func_no)
->  {
->  	return 0;
->  }
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom-ep.c b/drivers/pci/controller/dwc/pcie-qcom-ep.c
-> index 077afce48d0b..3061e5e13476 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom-ep.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom-ep.c
-> @@ -659,7 +659,7 @@ static int qcom_pcie_ep_raise_irq(struct dw_pcie_ep *ep, u8 func_no,
->  
->  	switch (type) {
->  	case PCI_EPC_IRQ_INTX:
-> -		return dw_pcie_ep_raise_legacy_irq(ep, func_no);
-> +		return dw_pcie_ep_raise_intx_irq(ep, func_no);
->  	case PCI_EPC_IRQ_MSI:
->  		return dw_pcie_ep_raise_msi_irq(ep, func_no, interrupt_num);
->  	default:
-> -- 
-> 2.25.1
-> 
+> However, I do not believe this to be a significant issue. The clock DT
+> bindings are organized to simplify the process of introducing new binding=
+s,
+> whether public or private. For instance, we may add new bindings to
+> include/dt-bindings at the end of the list and increase the overall numbe=
+r,
+> without disrupting the DT bindings ABI (the old numbers will remain
+> unchanged).
+Yep, this part is clear to me. I should have been more specific that I
+was asking about the inputs that are described in the .yaml file, not
+the clock IDs.
+
+
+Best regards,
+Martin
