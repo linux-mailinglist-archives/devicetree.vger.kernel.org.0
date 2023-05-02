@@ -2,59 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EDA2B6F3FD6
-	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 11:08:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 003BE6F3FE6
+	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 11:13:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233471AbjEBJIY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 May 2023 05:08:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33884 "EHLO
+        id S233597AbjEBJNe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 May 2023 05:13:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229722AbjEBJIX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 05:08:23 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDA682D61;
-        Tue,  2 May 2023 02:08:21 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34298FF8094473;
-        Tue, 2 May 2023 04:08:15 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1683018495;
-        bh=gk7p0cdEuPOhQvW3Yx/G0eZxt+Lw/B4Iy9jBGnAwpEo=;
-        h=From:To:CC:Subject:Date;
-        b=OkykXw7nQZPGSnjXWKSGQ18EmaRieJvx4FNEgpofubfiBaleS0bXnGcge2wf3gx69
-         V6UM54yHSb6m1BegDS0FobM2PhFgcVZmRqhTs+JAEOKvaaN8pWJRcs/jVeZKAQrDvy
-         4k0xTPUzUEAKk1ZUpRMe+sd55UHdCV1WzlRwvEFc=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34298FxD001798
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 2 May 2023 04:08:15 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 2
- May 2023 04:08:15 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 2 May 2023 04:08:15 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34298EeM021391;
-        Tue, 2 May 2023 04:08:14 -0500
-From:   Bhavya Kapoor <b-kapoor@ti.com>
-To:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC:     <b-kapoor@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
-        <kristo@kernel.org>, <vigneshr@ti.com>, <nm@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-j784s4-main: Enable support for high speed modes
-Date:   Tue, 2 May 2023 14:38:14 +0530
-Message-ID: <20230502090814.144791-1-b-kapoor@ti.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S233001AbjEBJNd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 05:13:33 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 64FF84C07;
+        Tue,  2 May 2023 02:13:32 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 54A484B3;
+        Tue,  2 May 2023 02:14:16 -0700 (PDT)
+Received: from slackpad.lan (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 727743F5A1;
+        Tue,  2 May 2023 02:13:30 -0700 (PDT)
+Date:   Tue, 2 May 2023 10:13:17 +0100
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Ludwig Kormann <ludwig.kormann@in-circuit.de>
+Cc:     samuel@sholland.org, jernej.skrabec@gmail.com, wens@csie.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/2] arm: dts: sunxi: Add ICnova A20 ADB4006 board
+ support
+Message-ID: <20230502101317.39767a0d@slackpad.lan>
+In-Reply-To: <10a2e893-18b6-d9c2-1db7-3d500cc0891c@in-circuit.de>
+References: <20230420102409.1394618-1-ludwig.kormann@in-circuit.de>
+        <10a2e893-18b6-d9c2-1db7-3d500cc0891c@in-circuit.de>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,27 +47,86 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-eMMC tuning was incomplete earlier, so support for high speed modes was
-kept disabled. Remove no-1-8-v property to enable support for high
-speed modes for eMMC in J784S4 SoC.
+On Tue, 2 May 2023 10:06:20 +0200
+Ludwig Kormann <ludwig.kormann@in-circuit.de> wrote:
 
-Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+Hi,
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-index e9169eb358c1..e0c2feca9d1e 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-@@ -378,7 +378,6 @@ main_sdhci0: mmc@4f80000 {
- 		mmc-hs200-1_8v;
- 		mmc-hs400-1_8v;
- 		dma-coherent;
--		no-1-8-v;
- 		status = "disabled";
- 	};
- 
--- 
-2.34.1
+> Hello,
+> 
+> thanks for the reviews so far!
+> 
+> Is there anything I can do / need to do for my patch series for it to 
+> get merged before -rc1?
+
+The cutoff date for most board DT patches to get into a release is
+around -rc5/-rc6 of the *previous* release: patches should live in
+linux-next for a while. Also most pull requests need to "trickle up" the
+stream first (from the sunxi tree to the SoC tree, then into mainline).
+So -rc1 is out of reach now.
+
+> The patch series was based on the "for-next" branch in jernej's tree, 
+> but it seems that it was too late for the "dt-for-6.4" merge.
+
+Yes.
+
+> So I'm just trying to understand in general what the best way in this 
+> situation would be:
+> - wait if someone else takes the patch series before -rc1
+> - wait for -rc1 and rebase, rework, send a new version of the patch 
+> series (because of the planned restructuring of the ARM dts directory)
+
+Yes, this is the way to go. The maintainers will probably take care of
+any minor conflicts (like in the Makefile), so (the upcoming) -rc1
+should be the base tree. For new DT files the conflict potential should
+be minimal anyway.
+Just make sure to run "make dt_binding_check" and "make dtbs_check"
+again, because the rules might have been updated meanwhile.
+
+Cheers,
+Andre
+
+
+> - wait for -rc3 (?) and rebase & rework the patch series for jernej's 
+> tree for the "dt-for-6.5" branch
+> 
+> Thanks for your help.
+> 
+> kind regards
+> Ludwig Kormann
+> 
+> 
+> Am 20.04.23 um 12:24 schrieb Ludwig Kormann:
+> > Add board support for ICnova A20 SomPi compute module on
+> > ICnova ADB4006 development board.
+> >
+> > v3:
+> > - drop stray blank lines at end of files
+> > - separate patch for bindings
+> > - update licensing to "GPL-2.0 OR MIT"
+> > - fix typo: ICNova -> ICnova
+> >
+> > v2:
+> > - use short licensing header
+> > - remove deprecated elements from led nodes
+> > - disable csi power supply
+> > - add missing pins in usbphy node
+> > - split dts into SoM dtsi and carrier board dts
+> >
+> > v1 of this patch was sent to the uboot mailing list [1].
+> >
+> > [1] https://lists.denx.de/pipermail/u-boot/2023-April/514605.html
+> >
+> > Ludwig Kormann (2):
+> >    dt-bindings: arm: sunxi: add ICnova A20 ADB4006 binding
+> >    arm: dts: sunxi: Add ICnova A20 ADB4006 board
+> >
+> >   .../devicetree/bindings/arm/sunxi.yaml        |   6 +
+> >   arch/arm/boot/dts/Makefile                    |   1 +
+> >   .../boot/dts/sun7i-a20-icnova-a20-adb4006.dts | 137 ++++++++++++++++++
+> >   arch/arm/boot/dts/sun7i-a20-icnova-a20.dtsi   |  62 ++++++++
+> >   4 files changed, 206 insertions(+)
+> >   create mode 100644 arch/arm/boot/dts/sun7i-a20-icnova-a20-adb4006.dts
+> >   create mode 100644 arch/arm/boot/dts/sun7i-a20-icnova-a20.dtsi
+> >  
 
