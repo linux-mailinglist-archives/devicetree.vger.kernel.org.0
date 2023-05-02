@@ -2,42 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E14126F47CA
-	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 17:55:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F13396F4892
+	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 18:48:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234617AbjEBPzJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 May 2023 11:55:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33642 "EHLO
+        id S234066AbjEBQsM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 May 2023 12:48:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233724AbjEBPzI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 11:55:08 -0400
-Received: from fgw23-7.mail.saunalahti.fi (fgw23-7.mail.saunalahti.fi [62.142.5.84])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 930441B6
-        for <devicetree@vger.kernel.org>; Tue,  2 May 2023 08:55:07 -0700 (PDT)
-Received: from localhost (88-113-26-95.elisa-laajakaista.fi [88.113.26.95])
-        by fgw23.mail.saunalahti.fi (Halon) with ESMTP
-        id b418ae39-e901-11ed-b972-005056bdfda7;
-        Tue, 02 May 2023 18:55:04 +0300 (EEST)
-From:   andy.shevchenko@gmail.com
-Date:   Tue, 2 May 2023 18:55:04 +0300
-To:     Okan Sahin <okan.sahin@analog.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
+        with ESMTP id S233724AbjEBQsL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 12:48:11 -0400
+Received: from fudo.makrotopia.org (fudo.makrotopia.org [IPv6:2a07:2ec0:3002::71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F8CD1992;
+        Tue,  2 May 2023 09:48:09 -0700 (PDT)
+Received: from local
+        by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+         (Exim 4.96)
+        (envelope-from <daniel@makrotopia.org>)
+        id 1pttAS-0000UL-0r;
+        Tue, 02 May 2023 18:47:56 +0200
+Date:   Tue, 2 May 2023 17:47:48 +0100
+From:   Daniel Golle <daniel@makrotopia.org>
+To:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] gpio: ds4520: Add ADI DS4520 GPIO Expander Support
-Message-ID: <ZFEyWH9PmtJIyeCK@surfacebook>
-References: <20230501230517.4491-1-okan.sahin@analog.com>
- <20230501230517.4491-3-okan.sahin@analog.com>
+        Zhihao Cheng <chengzhihao1@huawei.com>,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Subject: [PATCH 0/4] mtd: ubi: behave like a good MTD citizen
+Message-ID: <cover.1683043928.git.daniel@makrotopia.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230501230517.4491-3-okan.sahin@analog.com>
-X-Spam-Status: No, score=0.7 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-        FORGED_GMAIL_RCVD,FREEMAIL_FROM,NML_ADSP_CUSTOM_MED,SPF_HELO_NONE,
-        SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -45,74 +45,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Tue, May 02, 2023 at 02:05:16AM +0300, Okan Sahin kirjoitti:
-> The DS4520 is a 9-bit nonvolatile (NV) I/O expander.
-> It offers users a digitally programmable alternative
-> to hardware jumpers and mechanical switches that are
-> being used to control digital logic node.
+As of now one can easily trigger the existence of "ghost" UBI devices
+or even worse by removing e.g. the SPI bus driver which previously
+provided access to an SPI-NAND chip.
 
-...
+Make UBI behave more like other MTD users and create/remove UBI devices
+based on MTD notifications. As removing could previously fail in case
+of an ubiblock device still being in use, make sure there are no
+excuses preventing release of an already gone MTD partition.
 
-> +#include <linux/device.h>
-> +#include <linux/gpio/driver.h>
-> +#include <linux/gpio/regmap.h>
-> +#include <linux/i2c.h>
+This makes it possible to attach UBI devices immediately after the MTD
+partition becomes available, which will allow using UBI volumes as
+nvmem-cells provider in the future [1]. Introduce new device tree
+compatible "linux,ubi" to be used on MTD partitions which should be
+attached.
 
-Missing property.h.
+In order to make sure ubiblock devices are still created according to
+the module or kernel parameters, let ubiblock creation from parameters
+be triggered by UBI_VOLUME_ADDED notifications instead of trying only
+once during boot.
 
-> +#include <linux/regmap.h>
+[1]: https://forum.openwrt.org/t/asus-tuf-ax4200-support/155738/44?u=daniel
 
-...
+Daniel Golle (4):
+  mtd: ubi: block: don't return on error when removing
+  mtd: ubi: block: use notifier to create ubiblock from parameter
+  dt-bindings: mtd: partitions: add linux,ubi
+  mtd: ubi: attach MTD partition from device-tree
 
-> +#define NUMBER_OF_GPIO	9
-> +
-> +#define PULLUP0		0xF0
-> +#define IO_CONTROL0	0xF2
-> +#define IO_STATUS0	0xF8
+ .../bindings/mtd/partitions/ubi.yaml          |  49 +++++
+ drivers/mtd/ubi/block.c                       | 158 ++++++++-------
+ drivers/mtd/ubi/build.c                       | 189 ++++++++++++------
+ drivers/mtd/ubi/cdev.c                        |   4 +-
+ drivers/mtd/ubi/ubi.h                         |   6 +-
+ 5 files changed, 271 insertions(+), 135 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mtd/partitions/ubi.yaml
 
-No namespace for the above?
 
-...
-
-> +	struct gpio_regmap_config config = {0};
-
-0 is not needed.
-
-> +	ngpio = NUMBER_OF_GPIO;
-
-Do you really need this? Can Device Tree be sufficient here? (We have a
-GPIO-wide property for that).
-
-...
-
-> +	ret = device_property_read_u32(dev, "reg", &base);
-> +	if (ret)
-> +		return -EINVAL;
-
-Why shadowing error?
-
-...
-
-> +	regmap = devm_regmap_init_i2c(client, &ds4520_regmap_config);
-> +	if (IS_ERR(regmap)) {
-
-> +		ret = PTR_ERR(regmap);
-> +		dev_err_probe(dev, ret,
-> +			      "Failed to allocate register map\n");
-> +		return ret;
-
-	return dev_err_probe();
-
-> +	}
-
-...
-
-> +	config.ngpio = ngpio;
-
-Why do you use temporary variable ngpio and not assign directly here?
-
+base-commit: b5fda08ef213352ac2df7447611eb4d383cce929
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.40.1
 
