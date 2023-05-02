@@ -2,114 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B421D6F4896
-	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 18:49:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5179F6F48A2
+	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 18:53:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234321AbjEBQtI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 May 2023 12:49:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37296 "EHLO
+        id S233614AbjEBQxl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 May 2023 12:53:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234144AbjEBQtC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 12:49:02 -0400
-Received: from fudo.makrotopia.org (fudo.makrotopia.org [IPv6:2a07:2ec0:3002::71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2D1E3C14;
-        Tue,  2 May 2023 09:48:48 -0700 (PDT)
-Received: from local
-        by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-         (Exim 4.96)
-        (envelope-from <daniel@makrotopia.org>)
-        id 1pttBH-0000VJ-06;
-        Tue, 02 May 2023 18:48:47 +0200
-Date:   Tue, 2 May 2023 17:48:39 +0100
-From:   Daniel Golle <daniel@makrotopia.org>
-To:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233471AbjEBQxk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 12:53:40 -0400
+Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 406151BF6
+        for <devicetree@vger.kernel.org>; Tue,  2 May 2023 09:53:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
+        from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=k1; bh=fcWM4DMLSO0qI8E2aJBOiHVVTJL
+        /tKZZcpl7DVTadmI=; b=meWMfu3rS0OKZGvKIBOWJpk9ZyMdhTG+dQX/jtgsdQY
+        1MxQyQ23U7g1xfsMLcmGqh1P5dY+Qz5vhKPG/ImYIsrhHq9TM81gjCUUSOKMyDk+
+        JKiRk9jCkF4fItsmoCqGM7v3+aCOsBoIV/W7+laecRdXy0aojAJK89alQlHQTytg
+        =
+Received: (qmail 3805134 invoked from network); 2 May 2023 18:53:33 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 2 May 2023 18:53:33 +0200
+X-UD-Smtp-Session: l3s3148p1@xsWSx7j6jrkujnsI
+From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
+To:     linux-pwm@vger.kernel.org
+Cc:     linux-renesas-soc@vger.kernel.org,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Zhihao Cheng <chengzhihao1@huawei.com>,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Subject: [PATCH 3/4] dt-bindings: mtd: partitions: add linux,ubi compatible
-Message-ID: <faa0ceb4470f7160b05e892932d20b4a540c5955.1683043928.git.daniel@makrotopia.org>
-References: <cover.1683043928.git.daniel@makrotopia.org>
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: pwm: Add R-Car V3U device tree bindings
+Date:   Tue,  2 May 2023 18:53:29 +0200
+Message-Id: <20230502165330.55769-1-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1683043928.git.daniel@makrotopia.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings for MTD partitions to be attached as UBI devices.
-
-Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+Tested-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 ---
- .../bindings/mtd/partitions/ubi.yaml          | 49 +++++++++++++++++++
- 1 file changed, 49 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mtd/partitions/ubi.yaml
+ Documentation/devicetree/bindings/pwm/renesas,pwm-rcar.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/mtd/partitions/ubi.yaml b/Documentation/devicetree/bindings/mtd/partitions/ubi.yaml
-new file mode 100644
-index 0000000000000..aa02fbbd50716
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mtd/partitions/ubi.yaml
-@@ -0,0 +1,49 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mtd/partitions/ubi.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Unsorted Block Images (UBI)
-+
-+description: |
-+ Unsorted Block Images (UBI) is a volume management system typically
-+ used on NAND flash providing bad block management as well as
-+ wear-leveling.
-+ Any partition containing the compatible "linux,ubi" will be attached
-+ as UBI device.
-+
-+maintainers:
-+  - Daniel Golle <daniel@makrotopia.org>
-+
-+allOf:
-+  - $ref: /schemas/mtd/partitions/partition.yaml#
-+
-+properties:
-+  compatible:
-+    const: linux,ubi
-+
-+required:
-+  - compatible
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    partitions {
-+        compatible = "fixed-partitions";
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+
-+        partition@0 {
-+            label = "bootloader";
-+            reg = <0x000000 0x100000>;
-+            read-only;
-+        };
-+
-+        ubi@100000 {
-+            compatible = "linux,ubi";
-+            label = "ubi";
-+            reg = <0x100000 0x7f00000>;
-+        };
-+    };
+diff --git a/Documentation/devicetree/bindings/pwm/renesas,pwm-rcar.yaml b/Documentation/devicetree/bindings/pwm/renesas,pwm-rcar.yaml
+index 4c8097010687..6b6a302a175c 100644
+--- a/Documentation/devicetree/bindings/pwm/renesas,pwm-rcar.yaml
++++ b/Documentation/devicetree/bindings/pwm/renesas,pwm-rcar.yaml
+@@ -35,6 +35,7 @@ properties:
+           - renesas,pwm-r8a77980  # R-Car V3H
+           - renesas,pwm-r8a77990  # R-Car E3
+           - renesas,pwm-r8a77995  # R-Car D3
++          - renesas,pwm-r8a779a0  # R-Car V3U
+           - renesas,pwm-r8a779g0  # R-Car V4H
+       - const: renesas,pwm-rcar
+ 
 -- 
-2.40.1
+2.30.2
 
