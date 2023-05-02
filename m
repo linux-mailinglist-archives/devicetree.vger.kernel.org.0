@@ -2,138 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 237936F4B79
-	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 22:40:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0618C6F4B9C
+	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 22:51:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229511AbjEBUkc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 May 2023 16:40:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32892 "EHLO
+        id S229649AbjEBUvy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 May 2023 16:51:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229506AbjEBUkb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 16:40:31 -0400
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A69910D9;
-        Tue,  2 May 2023 13:40:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1683060030; x=1714596030;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=orxph8gXqsDtdJQ2KysJOOsFvhyl4wTbC5xnv9jsMTA=;
-  b=c8kh/x6LpTyLbATfx/2c8Cj0UPpSqLs92j2+Dj3S+jPOUYOpmW/5irus
-   bFaE9cz3w4F+LFPBmM4AnVWUpAOvOuEzE/rO4RQ18iePbXacPERq+ztCI
-   NIZ3WDZ4aBG1huFE6R6htLuNPiZODRWUA02r9XG0tOv83Gi1L0luKwzCo
-   4yHaGXB7qT6FoLUmPRegAzb6wyL/6OlTUavazl089kxltkSWArvB4wMwu
-   3ksmnjyWIa5D9LuUjXfyrkhfk4vkmYKh4UuU4McOhqLQrXr/CnMQkrh9P
-   2VqQQQ6LSptbHBu7UQyTAgFtCyqRTCFxdVY2rgxO78FyVRRnOAWCnR/Gl
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="337635136"
-X-IronPort-AV: E=Sophos;i="5.99,245,1677571200"; 
-   d="scan'208";a="337635136"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 May 2023 13:40:26 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="726895262"
-X-IronPort-AV: E=Sophos;i="5.99,245,1677571200"; 
-   d="scan'208";a="726895262"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga008.jf.intel.com with ESMTP; 02 May 2023 13:40:23 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1ptwnN-008E0F-0F;
-        Tue, 02 May 2023 23:40:21 +0300
-Date:   Tue, 2 May 2023 23:40:20 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Matti Vaittinen <mazziesaccount@gmail.com>
-Cc:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        with ESMTP id S229464AbjEBUvx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 16:51:53 -0400
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A08419BE;
+        Tue,  2 May 2023 13:51:52 -0700 (PDT)
+Received: by mail-pl1-x629.google.com with SMTP id d9443c01a7336-1aae5c2423dso35500655ad.3;
+        Tue, 02 May 2023 13:51:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1683060712; x=1685652712;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=y3o1/gGfAuM1GgmlkdkXFFdhfCcUzmKygNLMFJFzDzk=;
+        b=RRgWhWnSHeshZj2YLkMZ0tddZTgKwe+pqjGtIDLYMZrYbNxwQG5Q6ovkEHFTA+3YJs
+         X93v3qf0mQpHSRE7t2X5E9WwSad/4jQNLaI9X834EAg1WRmiJORx35g+9Fi6G5tXl31F
+         PklwEVgm7vHTn+NFR8ndwl8XbNlzbINxOFAwqfOH/EMuP+1/BQtfwdqSLOa5uKSuf7xL
+         xa7gaHO6zBXATWF5DWH+3hkAqitFcVBFQWstTtw/oNFs0zqpTL6A7OBzMcSEo5b2GFVl
+         em5bsTMO93QN9QRgs1bkv4ZQeF0DCGcD5hZv+7FFEJp/1M6wLHpgzJ5o6247/Ba/bqKo
+         cEnA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683060712; x=1685652712;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=y3o1/gGfAuM1GgmlkdkXFFdhfCcUzmKygNLMFJFzDzk=;
+        b=FrvhpjPnpLhokNCi+Hs/dL/yZlefx1pD0CSgy3+o5326xwTdqFpOH1fEb6uuie0Fo0
+         eqwseAZcnKT1Xxr/3fsb0zprteeUuYR/bdEyScSdb70IZxNCA+RTxlNtp97E9TECsfN9
+         CBlZE4HeaYZcxq3mlXJUQhNDh0lCeXt0gcs8xjVDffT2maeS8oeFXE3EWY7rIOrsRmj2
+         q9WJaa3fKGU8XFwl1wnAaopZ7Wh9BKNkXNx8AyDV1zFtZ3M1q5G2HRqcQTslya0/EsLs
+         Rl4Bl0g6Or7rmnArHuATWSJdGMwZhCPBCvAi28QcNZvHxBpaMP5141mY5UmDNdcCPiRI
+         UJCQ==
+X-Gm-Message-State: AC+VfDwQmqW4MkakB8Gb6PxIpRqqEYetiibtHFNSJk8tM+OJYs153UlN
+        mDnQ3IuDWaoNhl2SmA/YuWM=
+X-Google-Smtp-Source: ACHHUZ6u7jjyF8dsPzHmxLaowBUYNXThg4DzZuIZQ4+Z1iyATJWzoHLB4mLLHKx+g3SHU5Vlsf1Xnw==
+X-Received: by 2002:a17:903:11cf:b0:1a9:95fa:1fa8 with SMTP id q15-20020a17090311cf00b001a995fa1fa8mr22748295plh.41.1683060711925;
+        Tue, 02 May 2023 13:51:51 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:6edf:1ae0:55be:72db])
+        by smtp.gmail.com with ESMTPSA id u12-20020a17090282cc00b001ab0278a788sm2914973plz.65.2023.05.02.13.51.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 May 2023 13:51:51 -0700 (PDT)
+Date:   Tue, 2 May 2023 13:51:48 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Maximilian Weigand <mweigand2017@gmail.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shreeya Patel <shreeya.patel@collabora.com>,
-        Zhigang Shi <Zhigang.Shi@liteon.com>,
-        Paul Gazzillo <paul@pgazz.com>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Andi Shyti <andi.shyti@kernel.org>
-Subject: Re: [PATCH v3 4/5] iio: light: ROHM BU27008 color sensor
-Message-ID: <ZFF1NMaR1RYThcSB@smile.fi.intel.com>
-References: <cover.1682495921.git.mazziesaccount@gmail.com>
- <fb35de40a3908988f5f83e25d17119e6944d289b.1682495921.git.mazziesaccount@gmail.com>
+        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Alistair Francis <alistair@alistair23.me>
+Subject: Re: [PATCH v2 3/6] dt-bindings: input: cypress,tt21000 - fix
+ interrupt type in dts example
+Message-ID: <ZFF35BpA7xf0OBF/@google.com>
+References: <20230501113010.891786-1-mweigand@mweigand.net>
+ <20230501113010.891786-4-mweigand@mweigand.net>
+ <ZFBYIZc5zKs6dpHF@google.com>
+ <5aaba4d1-f7e2-9d30-5f15-0713f9fc6a8c@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <fb35de40a3908988f5f83e25d17119e6944d289b.1682495921.git.mazziesaccount@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <5aaba4d1-f7e2-9d30-5f15-0713f9fc6a8c@gmail.com>
+X-Spam-Status: No, score=1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FSL_HELO_FAKE,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 26, 2023 at 11:08:17AM +0300, Matti Vaittinen wrote:
-> The ROHM BU27008 is a sensor with 5 photodiodes (red, green, blue, clear
-> and IR) with four configurable channels. Red and green being always
-> available and two out of the rest three (blue, clear, IR) can be
-> selected to be simultaneously measured. Typical application is adjusting
-> LCD backlight of TVs, mobile phones and tablet PCs.
+On Tue, May 02, 2023 at 04:23:54PM +0200, Maximilian Weigand wrote:
+> Hi,
 > 
-> Add initial support for the ROHM BU27008 color sensor.
->  - raw_read() of RGB and clear channels
->  - triggered buffer w/ DRDY interrtupt
+> On 02.05.23 02:24, Dmitry Torokhov wrote:
+> > On Mon, May 01, 2023 at 01:30:07PM +0200, Maximilian Weigand wrote:
+> >> Triggering the interrupt of the IRQ_TYPE_LEVEL_LOW type can lead to
+> >> probing issues with the device for the current driver (encountered on
+> >> the Pine64 PineNote). Basically the interrupt would be triggered before
+> >> certain commands were sent to the device, leading to a race between the
+> >> device responding fast enough and the irq handler fetching a data frame
+> >> from it. Actually all devices currently using the driver already use a
+> >> falling edge trigger.
+> > 
+> > I'd prefer we adjusted the driver to handle level interrupts properly.
+> 
+> Ok, I will have a look at that. Just to be clear: The driver should work
+> only with level interrupts, or should it optimally support both level
+> and falling edge triggers?
 
-...
+Optimally a driver would work well with both.
 
-> +enum {
-> +	BU27008_RED,	/* Always data0 */
-> +	BU27008_GREEN,	/* Always data1 */
-> +	BU27008_BLUE,	/* data2, configurable (blue / clear) */
-> +	BU27008_CLEAR,	/* data2 or data3 */
-> +	BU27008_IR,	/* data3 */
-> +	BU27008_NUM_CHANS
-
-Why not converting comments to a kernel-doc?
-
-> +};
-> +
-> +enum {
-> +	BU27008_DATA0, /* Always RED */
-> +	BU27008_DATA1, /* Always GREEN */
-> +	BU27008_DATA2, /* Blue or Clear */
-> +	BU27008_DATA3, /* IR or Clear */
-> +	BU27008_NUM_HW_CHANS
-> +};
-
-Ditto.
-
-...
-
-> +	if (int_time < 0)
-> +		int_time = 400000;
-
-Adding 3 0:s to drop them below with a heavy division operation? Well done!
-Or did I miss anything?
-
-> +	msleep(int_time / 1000);
-
-USEC_PER_MSEC ?
-
-...
-
-> +	ret = devm_iio_device_register(dev, idev);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret,
-> +				     "Unable to register iio device\n");
-> +
-> +	return ret;
-
-return 0 will suffice.
+Thanks.
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+Dmitry
