@@ -2,114 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DBFBA6F3D83
-	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 08:33:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14E206F3D89
+	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 08:34:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229653AbjEBGd1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 May 2023 02:33:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47224 "EHLO
+        id S233505AbjEBGeU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 May 2023 02:34:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230004AbjEBGd0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 02:33:26 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 562541BFF
-        for <devicetree@vger.kernel.org>; Mon,  1 May 2023 23:33:24 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-94f109b1808so668343566b.1
-        for <devicetree@vger.kernel.org>; Mon, 01 May 2023 23:33:24 -0700 (PDT)
+        with ESMTP id S233018AbjEBGeT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 02:34:19 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C6B71FDE;
+        Mon,  1 May 2023 23:34:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683009203; x=1685601203;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uaq8RBsdIqA9qX9LHQLxBDk7YAiPOkXhWlKDq4LcMaQ=;
-        b=EpygdFOp3Lz9pVvAeiqhRO4O0tSkCEG98YuTXFSr4DGYFduehhNrQkFQ5T+I9eaUiK
-         cIGtzHJFJ8+/339aQa/xr2TGVtQvBH+tSaZsm6atNza48b+aGrOAH4OV5mdZlQNMbLzQ
-         7P5L03w64lexL7WTFwFZwKaAP6hUEqOTF/kxpaTM1uNi+y6blULTspzwTlhjOCvUX6Uw
-         wGBhtpKDS+bBuRE0hHKCl4cosrVEmT9r7lPwhRO3/EoBV8jC+8j2yT1wgTTdu/L1D9yX
-         7cUFb+aQozs+IlrMxvz5tLpg3yUUDGP7dCjz091cUhPCpqIeadiLehf6GbZ1fFwsSG7O
-         s1tw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683009203; x=1685601203;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uaq8RBsdIqA9qX9LHQLxBDk7YAiPOkXhWlKDq4LcMaQ=;
-        b=WAsYoLtAnBrDpPFVXX9AqaFx8C25HifRlmLNC0q14vv2eYAGSYnhWmdzLMfboKSlQ+
-         Wh+d1zeFXs66uRXKMUB+A6xoo3EzJ6oFfU4GvVPeo2Yb5EZ3BoCHP4AcURI3ydE2f6FH
-         2Ld9bTJowjjwk5xRLmU5skkFHzrsvs+cHhYsMHv3Xh3KHM/qNUn8TuKqtnJ11ddMxp7h
-         m2z9vJmNenUjNIjQrQ8YK3xwiBZyxrLUjXE+bE5Uwqmq+cgGWEQpHphfToHTJHehdIZQ
-         b+xX7JZPxQzC9L0bUbvbKtAYY0fk964+LaNMEFNcpwkO7hwJNrk6hhN7XvX+kHzOGI6i
-         /xrA==
-X-Gm-Message-State: AC+VfDxHXS12WgaTbmgABpALbrS6g3KWEuA7E9w6wYKUtnf8zV8TRGHO
-        DYJSxgY+sllfFy9Mo6bJdsS4pA==
-X-Google-Smtp-Source: ACHHUZ6apAeClITPtCDbSvp+k0+epqog8ZneVuhMCyHGOrgUaR0bY1xE7MdImkH2oGmxG23D9UxS+w==
-X-Received: by 2002:a17:907:9345:b0:961:272d:bda5 with SMTP id bv5-20020a170907934500b00961272dbda5mr9382786ejc.49.1683009202824;
-        Mon, 01 May 2023 23:33:22 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:bafd:1283:b136:5f6a? ([2a02:810d:15c0:828:bafd:1283:b136:5f6a])
-        by smtp.gmail.com with ESMTPSA id qt2-20020a170906ece200b0094e1344ddfdsm15562427ejb.34.2023.05.01.23.33.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 May 2023 23:33:21 -0700 (PDT)
-Message-ID: <1f520e8a-7785-f4dc-2f9b-d6afd1e3f671@linaro.org>
-Date:   Tue, 2 May 2023 08:33:20 +0200
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1683009257; x=1714545257;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=/BR4pOk50AuJACYyIx65LcARG4wlTe4CEGYiKtvQu1c=;
+  b=NR1ufUqPjmX9PM8JBcHM5UKfM0PK5dBxrVJhy1VIdfEfSz37ZkF7wcpu
+   1vl6mp/uqDgeo1fcylhY1ZGJuhVv/eMC9GP94HkI9ug/eVHysZoRwdHDN
+   Zmo9UBK6jW+FW8+ivzuvQlD0HPV1AEqbHhNo4lOYWQ5lGKLqyJYVQY/xA
+   Ir+Kqc/ld5O6jH23vrAJJ8lTrDpi9h7gmo/10i7KbM/jmu37ywMU7ecT/
+   kJM+8SVRe3LPgQ5EmIoqpsjtv4Kioyr+48FRfksW9mCFUCfCwd65Rk+cV
+   eNHK0z+PwuYyLkxt4tzDM+rEVKMXDFn6THLjAa/L/HPxtGK7BHSB8iiGU
+   A==;
+X-IronPort-AV: E=Sophos;i="5.99,243,1677538800"; 
+   d="scan'208";a="30654676"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 02 May 2023 08:34:15 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Tue, 02 May 2023 08:34:15 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Tue, 02 May 2023 08:34:15 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1683009255; x=1714545255;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=/BR4pOk50AuJACYyIx65LcARG4wlTe4CEGYiKtvQu1c=;
+  b=SxY6tBHht9vZGLH1ksclaWP2SUOF9cZ2S/1RgaJnn1knhAadmhVGExoR
+   qYNEikJIPPW1Y56u9fIx6x7MJIH7Z9P2yKBr98XZmrT3CpwOO/OZAuk+8
+   uu1MkdJJgspCg0vkMH8HpjzY/9W689MwhwweoLlqsEZklreXwwlf2mwbb
+   76rB3UAxYh5ZQ02cSVsQsSkh0M7qk6wrYMK26o+cU6Nc7zE7Uq02R3WYD
+   Zr6Rqu5PCaAWSXrPNg92tMosLfblWR4VQKJQ2TTcFncWPgiNiZwMBRATr
+   5Haqg9ooA7qWMq94zlNX1w5n5eXzfGj2/xCv9ktOGic+5Tayu/rMKE6WA
+   w==;
+X-IronPort-AV: E=Sophos;i="5.99,243,1677538800"; 
+   d="scan'208";a="30654675"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 02 May 2023 08:34:14 +0200
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id ACCAA280056;
+        Tue,  2 May 2023 08:34:14 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Cai Huoqing <cai.huoqing@linux.dev>,
+        Haibo Chen <haibo.chen@nxp.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Marco Felsch <m.felsch@pengutronix.de>
+Subject: Re: [PATCH v2 1/1] dt-bindings: iio: imx8qxp-adc: add missing vref-supply
+Date:   Tue, 02 May 2023 08:34:12 +0200
+Message-ID: <5671528.DvuYhMxLoT@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20230430181558.7614cbfc@jic23-huawei>
+References: <20230424092312.61746-1-alexander.stein@ew.tq-group.com> <20230430181558.7614cbfc@jic23-huawei>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH v2 5/8] dt-bindings: power: supply: max77658: Add ADI
- MAX77658 Battery
-Content-Language: en-US
-To:     "Arslanbenzer, Zeynep" <Zeynep.Arslanbenzer@analog.com>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        "lee@kernel.org" <lee@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "sre@kernel.org" <sre@kernel.org>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "broonie@kernel.org" <broonie@kernel.org>
-References: <20230322055628.4441-1-Zeynep.Arslanbenzer@analog.com>
- <20230322055628.4441-6-Zeynep.Arslanbenzer@analog.com>
- <afeecd42-ecda-4d92-bbb5-6dcff84fca7d@linaro.org>
- <MN2PR03MB5197BC6AEE58EFE098AF08358B6E9@MN2PR03MB5197.namprd03.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <MN2PR03MB5197BC6AEE58EFE098AF08358B6E9@MN2PR03MB5197.namprd03.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/05/2023 22:20, Arslanbenzer, Zeynep wrote:
+Am Sonntag, 30. April 2023, 19:15:58 CEST schrieb Jonathan Cameron:
+> On Mon, 24 Apr 2023 11:23:12 +0200
+>=20
+> Alexander Stein <alexander.stein@ew.tq-group.com> wrote:
+> > Although this property is used right now for IIO_CHAN_INFO_SCALE,
+> > this ADC has two internal reference voltages, which the driver currently
+> > doesn't make use of.
+> >=20
+> > Fixes: db73419d8c06 ("dt-bindings: iio: adc: Add binding documentation =
+for
+> > NXP IMX8QXP ADC") Signed-off-by: Alexander Stein
+> > <alexander.stein@ew.tq-group.com>
+>=20
+> Interesting that we are talking her only about vrefh, what about vrefp?
+> I guess the assumption is that will be wired to 0V?
 
->> You already said it above.
->>
->>> +      in battery.yaml, with the following properties being required:
->>> +      - alert-celsius
->>> +
->>> +required:
->>> +  - compatible
->>
->> Why reg and monitored-batter are not required?
->>
-> If no monitored-battery information is supplied, we set default values for alert-celsius.
+What's vrefp? The only other signal related to ADC is vrefl.
 
-So the device can operate without battery? Interesting... are you sure,
-you can physically remove battery and device will work?
+> The first reference I found didn't seem to imply that was necessarily the
+> case. https://www.mouser.com/pdfDocs/IMX8QXPAEC.pdf
 
-> The reg property is the I2C address of the device and it is part of the parent schema. Therefore, both are not required in this file.
+Assuming you are talking about vrefh and vrefl, how is this a problem? Even=
+ if=20
+vrefl is not 0V, the voltage difference is what the ADC uses as reference=20
+voltage, so this should be supplied in the DT then.
 
-What does it mean "in parent schema"? You have reg here, so how parent
-schema is related to this?
+Best regards
+Alexander
 
-Since you did not reply, I assume all other comments will be implemented.
+> Jonathan
+>=20
+> > ---
+> > Thanks for your inputs. This improved descritpion should make it clear
+> > that this property is only about the external reference voltage, not
+> > about the optional, internal voltages.
+> >=20
+> > Changes in v2:
+> > * Improved commit message subject as suggested
+> > * Add hint about feature flag regarding multiple, internal, reference
+> >=20
+> >   voltages
+> > =20
+> >  .../devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml       | 7 +++++++
+> >  1 file changed, 7 insertions(+)
+> >=20
+> > diff --git
+> > a/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
+> > b/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml index
+> > 63369ba388e4..878e67054d7c 100644
+> > --- a/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
+> > +++ b/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
+> >=20
+> > @@ -39,6 +39,12 @@ properties:
+> >    power-domains:
+> >      maxItems: 1
+> >=20
+> > +  vref-supply:
+> > +    description: |
+> > +      External ADC reference voltage supply on VREFH pad. If VERID[MVI]
+> > is
+> > +      set, there are additional, internal reference voltages selectabl=
+e.
+> > +      VREFH1 is always from VREFH pad.
+> > +
+> >=20
+> >    "#io-channel-cells":
+> >      const: 1
+> >=20
+> > @@ -72,6 +78,7 @@ examples:
+> >              assigned-clocks =3D <&clk IMX_SC_R_ADC_0>;
+> >              assigned-clock-rates =3D <24000000>;
+> >              power-domains =3D <&pd IMX_SC_R_ADC_0>;
+> >=20
+> > +            vref-supply =3D <&reg_1v8>;
+> >=20
+> >              #io-channel-cells =3D <1>;
+> >         =20
+> >          };
+> >     =20
+> >      };
 
-Best regards,
-Krzysztof
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
 
