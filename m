@@ -2,76 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 439936F4331
-	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 13:58:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BD416F4335
+	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 14:00:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233918AbjEBL6t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 May 2023 07:58:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59148 "EHLO
+        id S233797AbjEBMAu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 May 2023 08:00:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233929AbjEBL6s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 07:58:48 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B473D49E9
-        for <devicetree@vger.kernel.org>; Tue,  2 May 2023 04:58:45 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4efe9a98736so4240729e87.1
-        for <devicetree@vger.kernel.org>; Tue, 02 May 2023 04:58:45 -0700 (PDT)
+        with ESMTP id S233638AbjEBMAt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 08:00:49 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A65C41727
+        for <devicetree@vger.kernel.org>; Tue,  2 May 2023 05:00:47 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-50bc5197d33so4197854a12.1
+        for <devicetree@vger.kernel.org>; Tue, 02 May 2023 05:00:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683028724; x=1685620724;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6ZLjR/b8+keXd4JwUhwNrpQMc/9k78bL8mpWHNXC7FY=;
-        b=d9CnNyNC4Dr5bGdHR5X2sSmBg1SLH/sERPVg49DEiZOcOYQ/pp/YQJvwNYzkFKv7ZD
-         oO3U1Lkvuyi9EQcc0TqtwsBZd1HZ23ng+3puBWyDJedXi36eeC6ycfFsYHPyY1DG2gRw
-         14R2fUD90CnRrhnoTwEdXjIh4SneCbYaZEKzCCqZr9E5ZBKvFxR/cQeB9uNmbDnuKPnY
-         PmUt9/xG/+X0VRP5u9VPKBw86EDm/9Q5TupgvqKRISjIkKPdR8W3fSgYByUu3cEMIW2/
-         J6+0o6OCDV1clo2AhIx9BqNaNVmGl5feqb1fqmr04DAu7sLKxn5xJ39UZeqQnfdbo8Ew
-         szuw==
+        d=linaro.org; s=google; t=1683028846; x=1685620846;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=f3Lfco4BnCXSWDeSvGyocalO93LWCUXAn4Hyq4qa2GU=;
+        b=k0Qq8qmjrUvfH6d/fC9U0sPZuAEoXcPQ4JTMgHYGwISYhsa+oGHET4gBj5mRXV5BY6
+         J9oPKo6p6LNHUzk6fNIf1/8kxsUPtVW9Q/ap8x6H4UR0256dSsZKyyxiMM6bu9JmZAgD
+         C3ul8k+qwtitqBiLFWI8XgCyZuh7Ma+NNHjVrxGHXaDpxWvzHFcwmACfQns75pQTOJmh
+         /amtYuMgcdsWfxX0xl9doBLJhh7lzyKykOA3ZcSwH2mEBLq2MgB1AgriHZ0275vZbhcJ
+         b++yGidZypMKNhCy9xAA4L4h4ef9MN65JVflD0AjbCpmbmYev0QUORf1kf3lOqVWZbPs
+         YZyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683028724; x=1685620724;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6ZLjR/b8+keXd4JwUhwNrpQMc/9k78bL8mpWHNXC7FY=;
-        b=bFF15MEfRODHtN7tm7hrWLFlSxOwW2eQPrEx/ubIwfMmHpllYGkkfrAZuy+SGTDdv1
-         SN47op/PgqxWcYwPO3rlFRrKo4fvVEM7z+Bkt9Tz8uyJ+LXr/wqy49C4RPneCCl2pQbl
-         M8LbCtsW1ZhDKk5H28SXpCu2X6pwskikltkfHss0fn1QIYOwQmUzzgtoSRf+EpaDqwZb
-         qhAG2+UCtzcjrfvt7sY12R+/Idvw993SsrxDXZRBfHX7hw9Y7wvl2DrzFRFLG8tBC/lm
-         9EcyHfYZuSDAXC14hq2EgEQ3hKvjVVKQFXhFB811GYkF34fyFl8Qcw1JWdkBAizSwlF/
-         MCSA==
-X-Gm-Message-State: AC+VfDwC501aLcuzecQrIi9q2oC7VPrKG1ntEarrg3wrI0HFIDZqQJ2L
-        /Xe8TJGUd0jUgRg+DvR1tDXdbdWeHFAtzQ97wZo=
-X-Google-Smtp-Source: ACHHUZ6DBCWxeubXScpmVueBxthXP0zHmxD3gmdHnO6MGzNPzscZeBHyG7NUjv6mx3wCmoM7LLeXrg==
-X-Received: by 2002:ac2:5228:0:b0:4ee:e0c7:434d with SMTP id i8-20020ac25228000000b004eee0c7434dmr5108578lfl.51.1683028724007;
-        Tue, 02 May 2023 04:58:44 -0700 (PDT)
-Received: from [192.168.1.101] (abyl248.neoplus.adsl.tpnet.pl. [83.9.31.248])
-        by smtp.gmail.com with ESMTPSA id g13-20020a19ac0d000000b004dc4b00a1eesm5286239lfc.261.2023.05.02.04.58.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 May 2023 04:58:43 -0700 (PDT)
-Message-ID: <1aaff58a-f07b-1e2a-e27b-df41eacd19e7@linaro.org>
-Date:   Tue, 2 May 2023 13:58:42 +0200
+        d=1e100.net; s=20221208; t=1683028846; x=1685620846;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=f3Lfco4BnCXSWDeSvGyocalO93LWCUXAn4Hyq4qa2GU=;
+        b=C5V0JcnoUM+TUvm0NmXpY0hTKLO9YNyw9BrD2GYPwva4euO2h0YSBpmyTcs8Wf3T58
+         fMQXyOIb+AVEpIGsoFT01rkBa93SFH2h/Isa+VnWtfSNUATOKUzkhwt4z9Km817CfaYM
+         5nJMEAVZz+25DiiPa8yZn0RTlwOV4t0gyvyGN32d9bupK/vrrfc5BGP8XlI7Grfy8VcJ
+         dnGdsuAQSNmFASq5/FScA0/W7HSKFu5AydMZCF+J19TA/a3DhkFFTRxvMDzCIrPwyW+2
+         zirdLoP0sEl1CpkbQa5P6T3q4qePIOsIUwvK+QesMsYaaox1CgB2/0tMxcps1cKfvYiU
+         8QSg==
+X-Gm-Message-State: AC+VfDyLe+oyL/kw2fsb7QajFYyLudJI4rmrSHoK4C/tSxIOvETOa1Yx
+        1uXS0LKPitgn6/y3ty8gE5JZMDhwtQa5hSXbF2o=
+X-Google-Smtp-Source: ACHHUZ4A7IqeyLXRL8smscOzdIf9v+IQzynF+xG31Ayj1umN6zEC38/CTVoxXfWwQg6EJ/5ynn1J+A==
+X-Received: by 2002:a17:907:6d19:b0:94f:720b:1b14 with SMTP id sa25-20020a1709076d1900b0094f720b1b14mr16467542ejc.29.1683028846077;
+        Tue, 02 May 2023 05:00:46 -0700 (PDT)
+Received: from krzk-bin.. ([2a02:810d:15c0:828:bafd:1283:b136:5f6a])
+        by smtp.gmail.com with ESMTPSA id v10-20020a1709063bca00b0094ee3e4c934sm16063403ejf.221.2023.05.02.05.00.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 May 2023 05:00:40 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jianhua Lu <lujianhua000@gmail.com>,
+        Del Regno <angelogioacchino.delregno@somainline.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 1/2] dt-bindings: display: novatek,nt35950: define ports
+Date:   Tue,  2 May 2023 14:00:35 +0200
+Message-Id: <20230502120036.47165-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: qrb4210-rb2: Enable aDSP and
- cDSP remoteproc nodes
-Content-Language: en-US
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-arm-msm@vger.kernel.org
-Cc:     agross@kernel.org, andersson@kernel.org,
-        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski@linaro.org,
-        devicetree@vger.kernel.org
-References: <20230501105832.1185477-1-bhupesh.sharma@linaro.org>
- <20230501105832.1185477-4-bhupesh.sharma@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230501105832.1185477-4-bhupesh.sharma@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,38 +76,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The panel-common schema does not define what "ports" property is, so
+bring the definition to enforce the type.  Panels can be single- or
+dual-link, thus require only one port@0.
 
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-On 1.05.2023 12:58, Bhupesh Sharma wrote:
-> Enable the aDSP and cDSP remoteproc nodes on Qualcomm QRB4210 RB2 board.
-> 
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-> index bff6ba1d689f..3ab46499d3fa 100644
-> --- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-> +++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-> @@ -34,6 +34,16 @@ &qupv3_id_0 {
->  	status = "okay";
->  };
->  
-> +&remoteproc_adsp {
-> +	status = "okay";
-> +	firmware-name = "qcom/sm6115/adsp.mdt";
-status last
-also, don't we want to use .mbn (squashed binary)?
+---
 
-Konrad
-> +};
-> +
-> +&remoteproc_cdsp {
-> +	status = "okay";
-> +	firmware-name = "qcom/sm6115/cdsp.mdt";
-> +};
-> +
->  &rpm_requests {
->  	regulators {
->  		compatible = "qcom,rpm-pm6125-regulators";
+Changes since v1:
+1. Rework to add ports to device schema, not to panel-common.
+https://lore.kernel.org/all/20230420160905.GA2952736-robh@kernel.org/
+---
+ .../bindings/display/panel/novatek,nt35950.yaml           | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/display/panel/novatek,nt35950.yaml b/Documentation/devicetree/bindings/display/panel/novatek,nt35950.yaml
+index 377a05d48a02..c93cc1018b41 100644
+--- a/Documentation/devicetree/bindings/display/panel/novatek,nt35950.yaml
++++ b/Documentation/devicetree/bindings/display/panel/novatek,nt35950.yaml
+@@ -47,8 +47,13 @@ properties:
+   vddio-supply:
+     description: regulator that supplies the I/O voltage
+ 
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++
++    required:
++      - port@0
++
+   backlight: true
+-  ports: true
+   reg: true
+ 
+ required:
+@@ -59,6 +64,7 @@ required:
+   - avee-supply
+   - dvdd-supply
+   - vddio-supply
++  - ports
+ 
+ additionalProperties: false
+ 
+-- 
+2.34.1
+
