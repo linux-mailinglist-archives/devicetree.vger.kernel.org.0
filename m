@@ -2,85 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE9606F40FB
-	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 12:19:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EA9F6F4170
+	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 12:23:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232094AbjEBKTg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 May 2023 06:19:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57602 "EHLO
+        id S233887AbjEBKXx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 May 2023 06:23:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60132 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233781AbjEBKTN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 06:19:13 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5AE4558F
-        for <devicetree@vger.kernel.org>; Tue,  2 May 2023 03:19:10 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-5083bd8e226so5513728a12.3
-        for <devicetree@vger.kernel.org>; Tue, 02 May 2023 03:19:10 -0700 (PDT)
+        with ESMTP id S233888AbjEBKW3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 06:22:29 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B7775BB8
+        for <devicetree@vger.kernel.org>; Tue,  2 May 2023 03:21:48 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4f127b10140so880312e87.3
+        for <devicetree@vger.kernel.org>; Tue, 02 May 2023 03:21:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683022749; x=1685614749;
+        d=linaro.org; s=google; t=1683022906; x=1685614906;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=PSOQWv5cIhWugBKgY0Tf8haO/+bAiIBjy0ljcFCS7pE=;
-        b=sU4YH9jOZeGVjyZ1m4F/RektzfkMf2vg9+4cIdsuJaEOX/tAdSZjMllV324DlTO4is
-         3BVDhUi3OnaY5mVCoDnuClb/yZ+UXhfMtl8Hw0Hw9LRhwxvcVWx/Jgu+DHUxr/rxFIo6
-         j38ucgy3ttImNwyrLZzyaSQv2VPW7ugbSoaw+zAleDh1lepsNQXyENSYJXEvDzQ9r2xi
-         Ra7ptpkuNvOZjqkh7EH5yboRJ/5veLuJr2nOB98dSWOpxlWjrPctyxwgoBj3l+ytl4jn
-         HvAOE5WdLxZECWEO4aoKxzZivNqaP+6P3way5gkg5/pL9AfdZz1nRqNLYwpKrZbDtbbh
-         BnQg==
+        bh=A6iWdYn1dcUhTIsj5RYFdeRghsw/Iy67Uv3eHtIWqsQ=;
+        b=GBXf7uJqRLVgCEQuhaqRbNLu2HX5JOFlcjoxgxBs8ihGDi6buL35TwEMuyyQlgboep
+         PFQ3LwtZk0hMF2twx754tB/mO6hmHp2FFn+Mcs5/oQ4MSfgIDSgLfy0Y/2pcTqMG7YC1
+         3pz0Dp3D5sI/twmNGV5dX2DYb/F79clUhPePJo+8KkfGSimTeuZKQzd27fESVmt/nHPV
+         F4y8wZdIUbHU3ZH1kk572Gl1Tz34RIqHUdhTZbqaUzuThIs/ZiowKDNzMWKzBru7Ryny
+         ezME+pwUjVJ6w+x4XttVwEoSsEs1VrNHS0J4zcDqxPQ3kQQCNvSJ95EryWKSbjvl+vMT
+         cgCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683022749; x=1685614749;
+        d=1e100.net; s=20221208; t=1683022906; x=1685614906;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PSOQWv5cIhWugBKgY0Tf8haO/+bAiIBjy0ljcFCS7pE=;
-        b=QeT2tmo9vlcjmRvW21EgqolzzqFU38ccbhBsN9FJdeeuRYblLb4hLpqAr9jVBaLswv
-         r5CfmGCuVjXir5TOMKlh5WNTEYTCu9i0vLHW7hlFaETr7GzhJbdJQt0ZfbJIYvmHyN9A
-         V5qaZQKlBmR58lvTEDpGQ7Eg6gazzASBpoirmw81D94Vc/e5v9ga0rPdB/0xxjIQwFzs
-         oVG86XKBs0Ks/nGjRbHmSFiMlkXf9sFsS9tRgOvGac1U0I6X/g10fjHl9TzxfE05PWMy
-         c34eGfoL5ZDTrdBZQJIwJ0LNg4RycjYMyA1Ugi5RSIDO369jJONqOpoMdwAfwBpkYOnI
-         4bQQ==
-X-Gm-Message-State: AC+VfDzVim6uMZD2Y2G6Gr8CoDPks+1eNDEQhgv5qHaqvDtWmPFf/Dzu
-        mCpzmQlprBy44k+/8IuzkrGTkZuM1jP4vpssvg8=
-X-Google-Smtp-Source: ACHHUZ7tLdRIYdOi6QjvP8Fn9gC7J1+rSZR+Ue+G/TFVdN8qdNoXM1jyPVQaYKSzGHlTX9Pdknpw7Q==
-X-Received: by 2002:a05:6402:8:b0:504:8c1a:70db with SMTP id d8-20020a056402000800b005048c1a70dbmr7705427edu.32.1683022749367;
-        Tue, 02 May 2023 03:19:09 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:bafd:1283:b136:5f6a? ([2a02:810d:15c0:828:bafd:1283:b136:5f6a])
-        by smtp.gmail.com with ESMTPSA id u10-20020a056402064a00b00506addaaab0sm13225333edx.32.2023.05.02.03.19.08
+        bh=A6iWdYn1dcUhTIsj5RYFdeRghsw/Iy67Uv3eHtIWqsQ=;
+        b=Ggi26KtuLi4/b0e0ikSpeSOYjQMM/KcgJUI4ogF+pXT5EPD93x+yJP5nHw6z2R438z
+         LFiji1ZF4ri3lxbmqnUqXK/RkWxuesyEBXRsRWsg+wxeQRnHwMaWpas2bkdhFs1snSFx
+         ncxc9JroPAKYJEkjuwclUo67aa8mbx2PxuwGVR7hO08SdEZ10PfZZ3qyje2DJQErxUfE
+         20on2/fJMqsgfmEKgNfdn74i/vElHuy4jReRiiIFd0CcPqSR2AZJYKy8vM8AqVDQXM6E
+         i5M8gQyr731i3NntneS0KufV8GZXf7VF8WNfzH1SgEVVqrFWAJa0EG82KPTF0fH/Y9kL
+         +E3A==
+X-Gm-Message-State: AC+VfDw+UlSnyrshA9ldLL7IQ/NAz43F5Vlnv1qsYw1o1ljN6ckT8/zZ
+        v8okFkD+CMD3y5GHapesUUh0Cw==
+X-Google-Smtp-Source: ACHHUZ7Dr3yuZVF+v4zq2mUOzL+pDisjYi+394uEAnNsl3ACAjNZM3ankYHN3yOfvhJyTSu2lSuWZQ==
+X-Received: by 2002:ac2:53b5:0:b0:4e8:485c:6a13 with SMTP id j21-20020ac253b5000000b004e8485c6a13mr4372301lfh.21.1683022906512;
+        Tue, 02 May 2023 03:21:46 -0700 (PDT)
+Received: from [192.168.1.101] (abyl248.neoplus.adsl.tpnet.pl. [83.9.31.248])
+        by smtp.gmail.com with ESMTPSA id u5-20020ac243c5000000b004f012977b65sm2374584lfl.249.2023.05.02.03.21.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 May 2023 03:19:08 -0700 (PDT)
-Message-ID: <59b9214a-19e6-fd4e-6982-6e8c28c7e4a8@linaro.org>
-Date:   Tue, 2 May 2023 12:19:07 +0200
+        Tue, 02 May 2023 03:21:46 -0700 (PDT)
+Message-ID: <efacbaab-3d47-8b6f-9804-6009373396e1@linaro.org>
+Date:   Tue, 2 May 2023 12:21:44 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
-Subject: Re: [PATCH 1/2] dt-bindings: Add optional gpio property to uartps
- node to support rs485
+Subject: Re: [PATCH 5/5] ARM: dts: qcom: apq8026-huawei-sturgeon: Add vibrator
 Content-Language: en-US
-To:     "Guntupalli, Manikanta" <manikanta.guntupalli@amd.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "michal.simek@xilinx.com" <michal.simek@xilinx.com>,
-        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "jirislaby@kernel.org" <jirislaby@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "Simek, Michal" <michal.simek@amd.com>,
-        "git (AMD-Xilinx)" <git@amd.com>,
-        "Pandey, Radhey Shyam" <radhey.shyam.pandey@amd.com>,
-        "Datta, Shubhrajyoti" <shubhrajyoti.datta@amd.com>,
-        "Goud, Srinivas" <srinivas.goud@amd.com>,
-        "manion05gk@gmail.com" <manion05gk@gmail.com>
-References: <1682512187-8828-1-git-send-email-manikanta.guntupalli@amd.com>
- <1682512187-8828-2-git-send-email-manikanta.guntupalli@amd.com>
- <20230427164351.GA3146210-robh@kernel.org>
- <DM4PR12MB6109C2BCDFD616AE37E10B9A8C6F9@DM4PR12MB6109.namprd12.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <DM4PR12MB6109C2BCDFD616AE37E10B9A8C6F9@DM4PR12MB6109.namprd12.prod.outlook.com>
+To:     Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
+        phone-devel@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Dan Murphy <dmurphy@ti.com>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Raffaele Tranquillini <raffaele.tranquillini@gmail.com>,
+        Yassine Oudjana <y.oudjana@protonmail.com>
+Cc:     linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230430-drv260x-improvements-v1-0-1fb28b4cc698@z3ntu.xyz>
+ <20230430-drv260x-improvements-v1-5-1fb28b4cc698@z3ntu.xyz>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230430-drv260x-improvements-v1-5-1fb28b4cc698@z3ntu.xyz>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -93,71 +83,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/05/2023 12:14, Guntupalli, Manikanta wrote:
-> Hi Rob Herring,
+
+
+On 30.04.2023 20:20, Luca Weiss wrote:
+> The watch has a DRV2605 for haptics. Add a node for it based on the
+> values found in the downstream board file.
 > 
->> -----Original Message-----
->> From: Rob Herring <robh@kernel.org>
->> Sent: Thursday, April 27, 2023 10:14 PM
->> To: Guntupalli, Manikanta <manikanta.guntupalli@amd.com>
->> Cc: gregkh@linuxfoundation.org; krzysztof.kozlowski+dt@linaro.org;
->> michal.simek@xilinx.com; linux-serial@vger.kernel.org;
->> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org;
->> jirislaby@kernel.org; linux-arm-kernel@lists.infradead.org; Simek, Michal
->> <michal.simek@amd.com>; git (AMD-Xilinx) <git@amd.com>; Pandey,
->> Radhey Shyam <radhey.shyam.pandey@amd.com>; Datta, Shubhrajyoti
->> <shubhrajyoti.datta@amd.com>; Goud, Srinivas <srinivas.goud@amd.com>;
->> manion05gk@gmail.com
->> Subject: Re: [PATCH 1/2] dt-bindings: Add optional gpio property to uartps
->> node to support rs485
->>
->> On Wed, Apr 26, 2023 at 05:59:46PM +0530, Manikanta Guntupalli wrote:
->>> Add optional gpio property to uartps node and add reference to rs485.yaml
->>
->> The diff tells me that already. Why?
-> Please check Figure 11-3 (Page number 37) in the below mentioned data sheet, It shows PMOD (ISOW14x2) devices used in half duplex configuration. Driver outputs Y and Z are shorted to A and B respectively. This reduces overall cabling requirements. Also DE/RE are shorted to each other, and at a time, any node acts as either a driver or a receiver.
-> Using above optional GPIO controlling driver or a receiver. This GPIO is optional because it is not required for uart console node.
+> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Konrad
+>  arch/arm/boot/dts/qcom-apq8026-huawei-sturgeon.dts | 28 ++++++++++++++++++++++
+>  1 file changed, 28 insertions(+)
 > 
-> Here,
-> DE - Driver enable. If pin is floating, driver is disabled (internal pull-down resistor)
-> RE - Receiver enable. If pin is floating, receiver buffer is disabled (internal pull-up resistor)
+> diff --git a/arch/arm/boot/dts/qcom-apq8026-huawei-sturgeon.dts b/arch/arm/boot/dts/qcom-apq8026-huawei-sturgeon.dts
+> index d64096028ab1..eb73b992a696 100644
+> --- a/arch/arm/boot/dts/qcom-apq8026-huawei-sturgeon.dts
+> +++ b/arch/arm/boot/dts/qcom-apq8026-huawei-sturgeon.dts
+> @@ -7,6 +7,7 @@
+>  
+>  #include "qcom-msm8226.dtsi"
+>  #include "qcom-pm8226.dtsi"
+> +#include <dt-bindings/input/ti-drv260x.h>
+>  
+>  /delete-node/ &adsp_region;
+>  
+> @@ -68,6 +69,26 @@ &adsp {
+>  	status = "okay";
+>  };
+>  
+> +&blsp1_i2c2 {
+> +	clock-frequency = <384000>;
+> +
+> +	status = "okay";
+> +
+> +	vibrator@5a {
+> +		compatible = "ti,drv2605";
+> +		reg = <0x5a>;
+> +		enable-gpios = <&tlmm 60 GPIO_ACTIVE_HIGH>;
+> +
+> +		mode = <DRV260X_ERM_MODE>;
+> +		library-sel = <DRV260X_ERM_LIB_D>;
+> +		vib-rated-mv = <2765>;
+> +		vib-overdrive-mv = <3525>;
+> +
+> +		pinctrl-0 = <&vibrator_default_state>;
+> +		pinctrl-names = "default";
+> +	};
+> +};
+> +
+>  &blsp1_i2c5 {
+>  	clock-frequency = <384000>;
+>  
+> @@ -347,6 +368,13 @@ reset-pins {
+>  		};
+>  	};
+>  
+> +	vibrator_default_state: vibrator-default-state {
+> +		pins = "gpio59", "gpio60";
+> +		function = "gpio";
+> +		drive-strength = <2>;
+> +		bias-pull-down;
+> +	};
+> +
+>  	wlan_hostwake_default_state: wlan-hostwake-default-state {
+>  		pins = "gpio66";
+>  		function = "gpio";
 > 
-> Datasheet:
-> https://www.ti.com/lit/ds/symlink/isow1432.pdf?ts=1682607122706&ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FISOW1432%252Fpart-details%252FISOW1432DFMR%253FkeyMatch%253DISOW1432DFMR%2526tisearch%253Dsearch-everything%2526usecase%253DOPN
-
-Your request for us to get into some datasheet somewhere, to get the
-answer to the basic question, is not reasonable. Commit must justify its
-existence, not some external source.
-
-> 
->>
->>>
->>> Signed-off-by: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
->>> ---
->>>  Documentation/devicetree/bindings/serial/cdns,uart.yaml | 5 +++++
->>>  1 file changed, 5 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/serial/cdns,uart.yaml
->> b/Documentation/devicetree/bindings/serial/cdns,uart.yaml
->>> index a8b323d7bf94..34ed0d80b923 100644
->>> --- a/Documentation/devicetree/bindings/serial/cdns,uart.yaml
->>> +++ b/Documentation/devicetree/bindings/serial/cdns,uart.yaml
->>> @@ -46,6 +46,10 @@ properties:
->>>    power-domains:
->>>      maxItems: 1
->>>
->>> +  txrx-gpios:
->>> +    description: Optional GPIO to switch transmit and receive modes via
->> pmod.
->>
->> What's pmod?
-> Pmod is galvanically-isolated RS-485/RS-422 transceivers with a built-in isolated
-> DC-DC converter, that eliminates the need for a separate isolated power supply in
-> space constrained isolated designs.
-
-It's not about explaining it here, but making your changes justified and
-obvious once implemented.
-
-Best regards,
-Krzysztof
-
