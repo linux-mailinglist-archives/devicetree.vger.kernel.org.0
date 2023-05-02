@@ -2,137 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49E3E6F3BDD
-	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 03:38:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 629976F3C5A
+	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 05:23:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231728AbjEBBi1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 May 2023 21:38:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35540 "EHLO
+        id S233398AbjEBDXr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 May 2023 23:23:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229863AbjEBBi0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 21:38:26 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9AED172E;
-        Mon,  1 May 2023 18:38:24 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-3f315712406so149086365e9.0;
-        Mon, 01 May 2023 18:38:24 -0700 (PDT)
+        with ESMTP id S230202AbjEBDXq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 23:23:46 -0400
+Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF51830FB;
+        Mon,  1 May 2023 20:23:45 -0700 (PDT)
+Received: by mail-pf1-x431.google.com with SMTP id d2e1a72fcca58-64115eef620so31492647b3a.1;
+        Mon, 01 May 2023 20:23:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682991503; x=1685583503;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VY6sg4QHtW/F7ejnI/trNLnsy73rmOwLgxPDQHz9Y10=;
-        b=ebu0v04znpWvN+0ABS4WDZUVCiSIccl1PeLVRtO66tvv4eFVKF/EQaIG9umHJju5gL
-         wqBnEWEMOrZh08xkVay5GdVSlpLGBR/eKlXV0Eiqaf/5qYse0xbTSaB/cNCVvFT2J/K+
-         nulERRq3afjDLx5dCSqWLiLKaPU16Y06Rkt9cSOzBIn84K7SBJhJSyPUjnMrKtDX5I9d
-         DJ9O9O62ZmbtJWIFop0Mbd9YH1CdGat1WDtOb4uMv+RyREexVaxKu9EdGlUqzvwNvbgi
-         3foTV5Jqe/rFHU9La1trENL1Nhxg9Wq455240i/Gk/HVxhXG+oY4aNJhoMsGE70NvYaf
-         qgrg==
+        d=gmail.com; s=20221208; t=1682997825; x=1685589825;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=1M9netRuCAis4Ssb9iZBb2Idx5gyfZLsjCy0pMBEHYo=;
+        b=YJzkTVzXK+8tD8Ly4Ttq161CvsWjUQO76pao3OUXo/+jrIBbvjeNlgp5k2HtjoiMOF
+         IPdBFoU1J+IvQvU5s5fZUAOi+CjmZzBgag165e0yV8m53R1zEsJeUZohs3VFHr2igXD7
+         htQCiI+seW1IBUmsKSq0PGHR0HD+OyL9kWIVYzqtKNIaSbj1zKXVIkqDYw8eiLkE4BLD
+         IwqTu4Zj4nxRg/vMa/2kT+EcquO4LUyCSd98fI0kqe+IDYTdKtEhClBDP/WbaTNrt4T6
+         idiSitzq0N1SaIUy4L0q6DfjRAx2CExwfbmzp8OQunMi9RbmQnOh88W5y4zWCrga7FOA
+         pMVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682991503; x=1685583503;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VY6sg4QHtW/F7ejnI/trNLnsy73rmOwLgxPDQHz9Y10=;
-        b=F/fivyd4wxxd0cJJ2OKiG0xV9yxSyZ1qHCQDVDfwtTskiKWVsfyCuwccLB3ulyiFX6
-         GcvtR/xOtD4cwrNVVBSuuAZGWkEz4HRwfYHVi3haFrPD91tuTZ8Q8vTav0WKVJt3yPH/
-         b3ir6DAKl1nTy7e7hq5RZ2TVBrQwg6XkyXx0ixjg3g80HvdXjn5UUmQSTdMU4ecWFRda
-         CTgAoqjpoRmrODP7bne4ClVdlXBi0PRBhmiRjeqWCnXut0LqjZEWGtbNRdjTHxiPVpom
-         u7uOm99OHYip4ENWoQjUscUYUXYoOqIF69LvhN0vvD6rF5qeqF7JJWbaLRVmKGAum2oy
-         qB3Q==
-X-Gm-Message-State: AC+VfDxn8629zwZj2o3mBeXOKG7K7lzcaD5FtqNvsOhAvACaHVvKZfWn
-        WO1v276ynLG1NuhtXhgzekQ=
-X-Google-Smtp-Source: ACHHUZ77cqYAYl1Uh3mvhhV6YECZ8gpnoepS0uwwuok5QbSuP32c5Jkmh3BRvdlqJQtHfMd9dEycIg==
-X-Received: by 2002:a5d:4046:0:b0:303:daff:f1a3 with SMTP id w6-20020a5d4046000000b00303dafff1a3mr15320567wrp.1.1682991503076;
-        Mon, 01 May 2023 18:38:23 -0700 (PDT)
-Received: from smtpclient.apple ([91.135.9.67])
-        by smtp.gmail.com with ESMTPSA id r3-20020a05600c35c300b003f1836c98b7sm35214527wmq.48.2023.05.01.18.38.21
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 01 May 2023 18:38:22 -0700 (PDT)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.120.41.1.3\))
-Subject: Re: [PATCH v14 5/6] dt-bindings: clock: meson: add A1 Peripherals
- clock controller bindings
-From:   Christian Hewitt <christianshewitt@gmail.com>
-In-Reply-To: <CAFBinCCdoaNuQymcjp5j9MHn2jpPWMqXe-+EgBo=5Ot8Bwaofw@mail.gmail.com>
-Date:   Tue, 2 May 2023 02:38:20 +0100
-Cc:     Dmitry Rokosov <ddrokosov@sberdevices.ru>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Jerome Brunet <jbrunet@baylibre.com>, mturquette@baylibre.com,
-        sboyd@kernel.org, Rob Herring <robh+dt@kernel.org>,
+        d=1e100.net; s=20221208; t=1682997825; x=1685589825;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1M9netRuCAis4Ssb9iZBb2Idx5gyfZLsjCy0pMBEHYo=;
+        b=foEsxQbAiyJPVuy0b26L0S2TDHdEDmKBDLco6dhcpebpFe4mrxOCNlWeNLQR0VL78H
+         n1oGO1sfoO04X8Eb47Ge7LIvOu60sEAJIfbQK0yiHaTrdUUn7JP46OfCw86+u/XcoVxn
+         ZMnT/ygcKH6cHfBIyLsI+kpwlVzs5OLHlJOYRJ4Bz4M0F9IdWqm9waF30WpWhtTK1jQD
+         6OnxNgvNhriLd/7Y+ruTTlOt1jFkHZrR8alnmQhbyltZhVDouJbnGZQPUz0gqT83yV0O
+         MVqBQZ+xzsyK5FKW64TBH3h9LSRUAgliwc4gSrV5zxHtBRqybaEw5wdgYtltWmVaRnOX
+         Jr4Q==
+X-Gm-Message-State: AC+VfDy7ltZBUdpXjnRjzMVtaM5ZF8/mwmndsRdVl/GivEe+7nXILqz3
+        yFIeX6Z/PKYraeWCTVCZKJg=
+X-Google-Smtp-Source: ACHHUZ5G7DJgWgs42CE4FqAe2cAv+UM+sRx1HskAhK5ezw+vVPBw6Gxm81+CfN5beodfdEKD/v4yoA==
+X-Received: by 2002:a05:6a00:2e91:b0:63b:54e4:871b with SMTP id fd17-20020a056a002e9100b0063b54e4871bmr20146376pfb.8.1682997824947;
+        Mon, 01 May 2023 20:23:44 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:b6ce:736b:e4f7:adb])
+        by smtp.gmail.com with ESMTPSA id i11-20020a63130b000000b00524dde7231dsm7880326pgl.9.2023.05.01.20.23.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 May 2023 20:23:44 -0700 (PDT)
+Date:   Mon, 1 May 2023 20:23:41 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     =?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>
+Cc:     Nick Dyer <nick@shmanahar.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>, jian.hu@amlogic.com,
-        kernel@sberdevices.ru, rockosov@gmail.com,
-        AML <linux-amlogic@lists.infradead.org>,
-        linux-clk@vger.kernel.org, devicetree <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <2F9DDB93-5EE7-4B5D-AFB5-052968081E0A@gmail.com>
-References: <20230426095805.15338-1-ddrokosov@sberdevices.ru>
- <20230426095805.15338-6-ddrokosov@sberdevices.ru>
- <CAFBinCCdoaNuQymcjp5j9MHn2jpPWMqXe-+EgBo=5Ot8Bwaofw@mail.gmail.com>
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-X-Mailer: Apple Mail (2.3696.120.41.1.3)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v2 0/2] Input: atmel_mxt_ts - support capacitive keys
+Message-ID: <ZFCCPcKb9xaBZQee@google.com>
+References: <20230407-atmel_keys-v2-0-92446a4343cb@apitzsch.eu>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230407-atmel_keys-v2-0-92446a4343cb@apitzsch.eu>
+X-Spam-Status: No, score=1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FSL_HELO_FAKE,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> On 1 May 2023, at 7:51 pm, Martin Blumenstingl =
-<martin.blumenstingl@googlemail.com> wrote:
->=20
-> Hi Dmitry,
->=20
-> On Wed, Apr 26, 2023 at 11:58=E2=80=AFAM Dmitry Rokosov
-> <ddrokosov@sberdevices.ru> wrote:
->>=20
->> Add the documentation for Amlogic A1 Peripherals clock driver,
->> and A1 Peripherals clock controller bindings.
-> Maybe a native English speaker can comment on whether it's
-> "peripheral" or "peripherals".
+On Fri, Apr 07, 2023 at 02:44:23PM +0200, André Apitzsch wrote:
+> Add support for touch keys found in some Atmel touch controller
+> configurations.
+> 
+> Signed-off-by: André Apitzsch <git@apitzsch.eu>
+> ---
+> Changes in v2:
+>   * Added A-b, R-b tags
 
-I=E2=80=99m not a grammar specialist, but I would write:
+Applied the lot, thank you.
 
-=E2=80=9CAdd documentation and bindings for the Amlogic A1 SoC =
-peripherals
-clock driver=E2=80=9D
-
-Peripherals is the correct plural but reads better when you add
-context on the type of peripherals.
-
-Christian
-
-> [...]
->> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
->> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
->> Reviewed-by: Rob Herring <robh@kernel.org>
->> ---
->> .../bindings/clock/amlogic,a1-clkc.yaml       |  73 +++++++++++
->> .../bindings/clock/amlogic,a1-pll-clkc.yaml   |   5 +-
->> include/dt-bindings/clock/amlogic,a1-clkc.h   | 114 =
-++++++++++++++++++
-> I have seen that Yu Tu named the S4 peripheral clock controller
-> binding and driver "s4-peripherals-clkc" [0].
-> Does it make sense to apply the same naming here as well?
->=20
->=20
+> 
+> ---
+> André Apitzsch (2):
+>       dt-bindings: input: atmel,maxtouch: add linux,keycodes
+>       Input: atmel_mxt_ts - support capacitive keys
+> 
+>  .../devicetree/bindings/input/atmel,maxtouch.yaml  |  7 ++
+>  drivers/input/touchscreen/atmel_mxt_ts.c           | 85 ++++++++++++++++++++++
+>  2 files changed, 92 insertions(+)
+> ---
+> base-commit: f2afccfefe7be1f7346564fe619277110d341f9b
+> change-id: 20230407-atmel_keys-7a49c6b677b2
+> 
 > Best regards,
-> Martin
->=20
->=20
-> [0] =
-https://lore.kernel.org/linux-amlogic/20230417065005.24967-3-yu.tu@amlogic=
-.com/
->=20
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+> -- 
+> André Apitzsch <git@apitzsch.eu>
+> 
 
+-- 
+Dmitry
