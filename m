@@ -2,86 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B5756F419E
-	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 12:29:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D31B6F41BD
+	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 12:36:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233827AbjEBK3a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 May 2023 06:29:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35366 "EHLO
+        id S234037AbjEBKg3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 May 2023 06:36:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233869AbjEBK2h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 06:28:37 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76EA759C5
-        for <devicetree@vger.kernel.org>; Tue,  2 May 2023 03:28:06 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-94f3cd32799so727746666b.0
-        for <devicetree@vger.kernel.org>; Tue, 02 May 2023 03:28:06 -0700 (PDT)
+        with ESMTP id S233870AbjEBKfr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 06:35:47 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 729931BC
+        for <devicetree@vger.kernel.org>; Tue,  2 May 2023 03:35:33 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-4efec123b28so4710614e87.1
+        for <devicetree@vger.kernel.org>; Tue, 02 May 2023 03:35:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683023285; x=1685615285;
+        d=linaro.org; s=google; t=1683023731; x=1685615731;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Wqd93aNECfZIIUkAvlmaD8fXXrRjBdmwtaQb0yapHxI=;
-        b=c75B+WHrK3Ojj0utRU31iQI+Ebymm9/nKHez/ap/eyqo2vjpzr48Z2AkIQrheNYGQB
-         cBYYar+YRkF9XPsH4naZ3bPgPkya2uL4KZcZdi9t4QDjHAm6re3Gia87Te7beR10Q7F1
-         4oILqmpbzfZSQtM9I4QYjxaP3PFg9Jle+1b0UhEziAA3aXEDSuOtAwiIW61nRV1a2EWB
-         SiFNBOX3D2rtz9d68B4SHm6lY/MB8YOvX+YxG0HHPQsyWYR2WUEBmqUn0QZfjGw/Zlzy
-         xzHRTulGp6iQl2tjFiTSrI1+JEoWyvqY+FjfRRYQ6lyOoV2yaxlD7H4x91Twq56tswyX
-         /BiQ==
+        bh=BuK9yt7coqgqQBziCDgLRC212bKpkXeD99LtZ/3AI/w=;
+        b=uNqccEYEEjKxz0ppsRGvYmKtlasNF9Qxu9Ja9yoqq/6yX43E5LOsDx8ZXNeIsgWG1p
+         Tq43QPdv6Fyjfou1qTd+x9tlLmAERrDSJLRrJoaRvEi8B87UqlGcx0UI48ORYnP9yQnZ
+         j7ymKPzdpmLtlPZWPxx+LXSqBNE8cvMsVK4sN2EuCJFBu9XUhEP/1scZj5UXexfL63Qr
+         4FUk/qa0ElNhhvyb9LzIsGjEMhSyAuamXmT/lhnbNOIs9KpPbgm4qntnvTVtOxJb/NvJ
+         YCHjasOS5D5UM6ppnT9QRpxhGyNvmLoMrIeM7q6LOvSWe3+LO62uU6y4QnDJftKzHzOz
+         Ycwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683023285; x=1685615285;
+        d=1e100.net; s=20221208; t=1683023731; x=1685615731;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Wqd93aNECfZIIUkAvlmaD8fXXrRjBdmwtaQb0yapHxI=;
-        b=YUV2sbBRrg8squaAKM/FI44s8wpbTN20TEsN+rstMTm0NyqwGqnJFwnz8Zkq4Tq17h
-         NAjxi0p9I53Ipi8bttUJNGtFYH5onrPIQjo+sOCdwoiHSZJQlXLe/+pStxrqn2ldyzPj
-         WuSBpKatD1b15GNwAEhtyxzsh5rCn9kvGimvOfOuEnRZ9+/JzW00OtYnyb7SA7GxzmTn
-         YLvdS6OsJ0XOdnzFSVL3uylrCf5yCY0MWB50ZC/y+tFZDFBqHqpXXT/Jdrtyah2QsSgH
-         c4op5cUV9uHP7moVshv2BzBi2rdkYZCRYlg6P9hegXfGt6YkZs/1lp5WRtqdpHI3pR9r
-         cozA==
-X-Gm-Message-State: AC+VfDzHSMp8LQhextL12pZBPdYsh5rsyny4okOjYQOjlYancFL008N1
-        +fBfQyCj11CQ4LJaTMKAEw1fzQ==
-X-Google-Smtp-Source: ACHHUZ6xKE5OQ1aUkpe0sTeaLjdNFiuH8CIzUPZxWC1Eb+v23BRFtrYMccIop4BXahiHbZJDbGX4qg==
-X-Received: by 2002:a17:907:2d8f:b0:946:2fa6:3b85 with SMTP id gt15-20020a1709072d8f00b009462fa63b85mr16985359ejc.36.1683023284914;
-        Tue, 02 May 2023 03:28:04 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:bafd:1283:b136:5f6a? ([2a02:810d:15c0:828:bafd:1283:b136:5f6a])
-        by smtp.gmail.com with ESMTPSA id kw15-20020a170907770f00b0094f8ff0d899sm15618402ejc.45.2023.05.02.03.28.03
+        bh=BuK9yt7coqgqQBziCDgLRC212bKpkXeD99LtZ/3AI/w=;
+        b=MTQbI4kzdTdAyhadlpqxuojgRK2guQeEPOORjzuW0zCRylz5YelJxaSfk7DqjWgWxd
+         lua6HKDW1dU88P3EefJqrF0I2p3DqB/iWhnA0OTzlDDV6HcllMBt7R8yvRnYZ40nEvT8
+         Tgl1uoQnL1MqDj83mggW1PRfhSTESBr9P3EUa0RaGv3fJnXzFn7SqYOWlTBYdh/2E+5L
+         MV+sq6rrUs823WOfWpi4va1Eas4xjbYjOEgpUGJjbzSbWMt9ZYDG27DQKEoO/d4HTcEP
+         s4NVA9/NVBK+rspTYEIbB86G2spmKjhwMT4kJ+ktgSq8Iclap/65i+ofKzXJn2FTib10
+         0dMA==
+X-Gm-Message-State: AC+VfDxY37jVBWsGOD/f0I335kUR37Z6/CJJeF59Ws+CDIIwBfYHfd0n
+        EpB5X3Gx4QnxVhNRJGTmvYFPog==
+X-Google-Smtp-Source: ACHHUZ5mjLOaTAoYcc9I2dpjYWsLiaOQ95dooQJ5/MnlljEikx9iYGXS8H1OMCNVDEmelLp2cwOdLA==
+X-Received: by 2002:a19:ae12:0:b0:4dd:a61c:8f74 with SMTP id f18-20020a19ae12000000b004dda61c8f74mr4792906lfc.51.1683023731622;
+        Tue, 02 May 2023 03:35:31 -0700 (PDT)
+Received: from [192.168.1.101] (abyl248.neoplus.adsl.tpnet.pl. [83.9.31.248])
+        by smtp.gmail.com with ESMTPSA id y24-20020ac255b8000000b004cb41b43c25sm5254716lfg.197.2023.05.02.03.35.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 May 2023 03:28:04 -0700 (PDT)
-Message-ID: <04112f5c-231d-559a-39f9-d183e8985a87@linaro.org>
-Date:   Tue, 2 May 2023 12:28:02 +0200
+        Tue, 02 May 2023 03:35:31 -0700 (PDT)
+Message-ID: <47b8c36f-cf53-beec-3b18-1544456beabf@linaro.org>
+Date:   Tue, 2 May 2023 12:35:29 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
-Subject: Re: [PATCH net-next V7] dt-bindings: net: xlnx,axi-ethernet: convert
- bindings document to yaml
+Subject: Re: [PATCH v10 3/4] arm64: dts: qcom: sm6115: Add USB SS qmp phy node
 Content-Language: en-US
-To:     "Gaddam, Sarath Babu Naidu" <sarath.babu.naidu.gaddam@amd.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "edumazet@google.com" <edumazet@google.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-Cc:     "michal.simek@xilinx.com" <michal.simek@xilinx.com>,
-        "radhey.shyam.pandey@xilinx.com" <radhey.shyam.pandey@xilinx.com>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Sarangi, Anirudha" <anirudha.sarangi@amd.com>,
-        "Katakam, Harini" <harini.katakam@amd.com>,
-        "git (AMD-Xilinx)" <git@amd.com>
-References: <20230308061223.1358637-1-sarath.babu.naidu.gaddam@amd.com>
- <5d074e6b-7fe1-ab7f-8690-cfb1bead6927@linaro.org>
- <MW5PR12MB559880B0E220BDBD64E06D2487889@MW5PR12MB5598.namprd12.prod.outlook.com>
- <MW5PR12MB5598678BB9AB6EC2FFC424F487889@MW5PR12MB5598.namprd12.prod.outlook.com>
- <MW5PR12MB559857065E298E7A8485305D876F9@MW5PR12MB5598.namprd12.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <MW5PR12MB559857065E298E7A8485305D876F9@MW5PR12MB5598.namprd12.prod.outlook.com>
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-phy@lists.infradead.org
+Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
+        andersson@kernel.org, bhupesh.linux@gmail.com,
+        krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
+        kishon@kernel.org, vkoul@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, dmitry.baryshkov@linaro.org
+References: <20230502053534.1240553-1-bhupesh.sharma@linaro.org>
+ <20230502053534.1240553-4-bhupesh.sharma@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230502053534.1240553-4-bhupesh.sharma@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -94,149 +80,97 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/05/2023 12:09, Gaddam, Sarath Babu Naidu wrote:
+
+
+On 2.05.2023 07:35, Bhupesh Sharma wrote:
+> Add USB superspeed qmp phy node to dtsi.
 > 
+> Make sure that the various board dts files (which include sm4250.dtsi file)
+> continue to work as intended.
 > 
->> -----Original Message-----
->> From: Gaddam, Sarath Babu Naidu
->> <sarath.babu.naidu.gaddam@amd.com>
->> Sent: Tuesday, March 28, 2023 9:31 PM
->> To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>;
->> davem@davemloft.net; edumazet@google.com; kuba@kernel.org;
->> pabeni@redhat.com; robh+dt@kernel.org;
->> krzysztof.kozlowski+dt@linaro.org
->> Cc: michal.simek@xilinx.com; radhey.shyam.pandey@xilinx.com;
->> netdev@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-
->> kernel@lists.infradead.org; linux-kernel@vger.kernel.org; Sarangi,
->> Anirudha <anirudha.sarangi@amd.com>; Katakam, Harini
->> <harini.katakam@amd.com>; git (AMD-Xilinx) <git@amd.com>
->> Subject: RE: [PATCH net-next V7] dt-bindings: net: xlnx,axi-ethernet:
->> convert bindings document to yaml
->>
->>
->>
->>> -----Original Message-----
->>> From: Gaddam, Sarath Babu Naidu
->>> <sarath.babu.naidu.gaddam@amd.com>
->>> Sent: Tuesday, March 28, 2023 6:22 PM
->>> To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>;
->>> davem@davemloft.net; edumazet@google.com; kuba@kernel.org;
->>> pabeni@redhat.com; robh+dt@kernel.org;
->>> krzysztof.kozlowski+dt@linaro.org
->>> Cc: michal.simek@xilinx.com; radhey.shyam.pandey@xilinx.com;
->>> netdev@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-
->>> kernel@lists.infradead.org; linux-kernel@vger.kernel.org; Sarangi,
->>> Anirudha <anirudha.sarangi@amd.com>; Katakam, Harini
->>> <harini.katakam@amd.com>; git (AMD-Xilinx) <git@amd.com>
->>> Subject: RE: [PATCH net-next V7] dt-bindings: net: xlnx,axi-ethernet:
->>> convert bindings document to yaml
->>>
->>>
->>>
->>>> -----Original Message-----
->>>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>> Sent: Tuesday, March 14, 2023 9:22 PM
->>>> To: Gaddam, Sarath Babu Naidu
->>>> <sarath.babu.naidu.gaddam@amd.com>; davem@davemloft.net;
->>>> edumazet@google.com; kuba@kernel.org; pabeni@redhat.com;
->>>> robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org
->>>> Cc: michal.simek@xilinx.com; radhey.shyam.pandey@xilinx.com;
->>>> netdev@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-
->>>> kernel@lists.infradead.org; linux-kernel@vger.kernel.org; Sarangi,
->>>> Anirudha <anirudha.sarangi@amd.com>; Katakam, Harini
->>>> <harini.katakam@amd.com>; git (AMD-Xilinx) <git@amd.com>
->>>> Subject: Re: [PATCH net-next V7] dt-bindings: net: xlnx,axi-ethernet:
->>>> convert bindings document to yaml
->>>>
->>>> On 08/03/2023 07:12, Sarath Babu Naidu Gaddam wrote:
->>>>> From: Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
->>>>>
->>>>> Convert the bindings document for Xilinx AXI Ethernet Subsystem
->>> from
->>>>> txt to yaml. No changes to existing binding description.
->>>>>
->>>>
->>>> (...)
->>>>
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    enum:
->>>>> +      - xlnx,axi-ethernet-1.00.a
->>>>> +      - xlnx,axi-ethernet-1.01.a
->>>>> +      - xlnx,axi-ethernet-2.01.a
->>>>> +
->>>>> +  reg:
->>>>> +    description:
->>>>> +      Address and length of the IO space, as well as the address
->>>>> +      and length of the AXI DMA controller IO space, unless
->>>>> +      axistream-connected is specified, in which case the reg
->>>>> +      attribute of the node referenced by it is used.
->>>>
->>>> Did you test it with axistream-connected? The schema and description
->>>> feel contradictory and tests would point the issue.
->>>
->>> Thanks for review comments. We tested with axistream-connected and
->> did
->>> not observe any errors. Do you anticipate any issues/errors ?
->>
->> Just to add more details, we have tested it using below dt node
->>
->> 	axienet@0 {
->> 	        axistream-connected = <&dma>;
->>                         reg = <0x00 0x80000000 0x00 0x40000>;
->>                         compatible = "xlnx,axi-ethernet-2.01.a";
->>                         clock-names = "s_axi_lite_clk\0axis_clk\0ref_clk";
->>                         clocks = <0x03 0x47 0x03 0x47 0x18>;
->>                         phy-mode = "sgmii";
->>                         xlnx,rxcsum = <0x02>;
->>                         xlnx,rxmem = <0x1000>;
->>                         xlnx,txcsum = <0x02>;
->>                         pcs-handle = <0x19>;
->>                         phy-handle = <0x78>;
->>                         dmas = <0x17 0x00 0x17 0x01>;
->>                         dma-names = "tx_chan0\0rx_chan0";
->>                         mac-address = [ff ff ff ff ff ff];
->>                         managed = "in-band-status";
->>                         phandle = <0x79>;
->> 		mdio {
->>                                 #address-cells = <0x01>;
->>                                 #size-cells = <0x00>;
->>
->>                                 phy@0 {
->>                                         compatible = "ethernet-phy-ieee802.3-c22";
->>                                         reg = <0x00>;
->>                                         phandle = <0x78>;
->>                                 };
->>
->>                                 ethernet-phy@2 {
->>                                         device_type = "ethernet-phy";
->>                                         reg = <0x02>;
->>                                         phandle = <0x19>;
->>                                 };
->>                         };
->> 	};
->> This DT node works with our board. "&dma" is the dma DT node  and to
->> test the second case where dma  address and length  included  in the
->> axienet reg's property as below "reg = <0x00 0x80000000 0x00 0x40000
->> 0x0 0x80040000 0x0 0x1000>;"
->>
->> I did not observe any issue with above two cases. Used below command
->> to validate the yaml using above DT node.
->> make dtbs_check
->> DT_SCHEMA_FILES=Documentation/devicetree/bindings/net/xlnx,axi-
->> ethernet.yaml
->>
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Konrad
+>  .../boot/dts/qcom/sm4250-oneplus-billie2.dts  |  3 ++
+>  arch/arm64/boot/dts/qcom/sm6115.dtsi          | 29 +++++++++++++++++--
+>  .../boot/dts/qcom/sm6115p-lenovo-j606f.dts    |  3 ++
+>  3 files changed, 33 insertions(+), 2 deletions(-)
 > 
-> Hi Krzysztof,  Can you please comment If above explanation is acceptable ?
-> I will address remaining review comments and send the next version.
-
-The DTS you pointed obviously cannot work with the binding - it has
-obvious mistakes. Starting with phy-mode. So whatever you did, was not
-correct testing. Since nothing from your code is upstream, I cannot
-verify it.
-
-Upstream your DTS first.
-
-Best regards,
-Krzysztof
-
+> diff --git a/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts b/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
+> index a1f0622db5a0..75951fd439df 100644
+> --- a/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
+> @@ -242,6 +242,9 @@ &usb {
+>  &usb_dwc3 {
+>  	maximum-speed = "high-speed";
+>  	dr_mode = "peripheral";
+> +
+> +	phys = <&usb_hsphy>;
+> +	phy-names = "usb2-phy";
+>  };
+>  
+>  &usb_hsphy {
+> diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> index 631ca327e064..f67863561f3f 100644
+> --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> @@ -661,6 +661,31 @@ usb_hsphy: phy@1613000 {
+>  			status = "disabled";
+>  		};
+>  
+> +		usb_qmpphy: phy@1615000 {
+> +			compatible = "qcom,sm6115-qmp-usb3-phy";
+> +			reg = <0x0 0x01615000 0x0 0x1000>;
+> +
+> +			clocks = <&gcc GCC_AHB2PHY_USB_CLK>,
+> +				 <&gcc GCC_USB3_PRIM_CLKREF_CLK>,
+> +				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
+> +				 <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
+> +			clock-names = "cfg_ahb",
+> +				      "ref",
+> +				      "com_aux",
+> +				      "pipe";
+> +
+> +			resets = <&gcc GCC_USB3_PHY_PRIM_SP0_BCR>,
+> +				 <&gcc GCC_USB3PHY_PHY_PRIM_SP0_BCR>;
+> +			reset-names = "phy", "phy_phy";
+> +
+> +			#clock-cells = <0>;
+> +			clock-output-names = "usb3_phy_pipe_clk_src";
+> +
+> +			#phy-cells = <0>;
+> +
+> +			status = "disabled";
+> +		};
+> +
+>  		qfprom@1b40000 {
+>  			compatible = "qcom,sm6115-qfprom", "qcom,qfprom";
+>  			reg = <0x0 0x01b40000 0x0 0x7000>;
+> @@ -1111,8 +1136,8 @@ usb_dwc3: usb@4e00000 {
+>  				compatible = "snps,dwc3";
+>  				reg = <0x0 0x04e00000 0x0 0xcd00>;
+>  				interrupts = <GIC_SPI 255 IRQ_TYPE_LEVEL_HIGH>;
+> -				phys = <&usb_hsphy>;
+> -				phy-names = "usb2-phy";
+> +				phys = <&usb_hsphy>, <&usb_qmpphy>;
+> +				phy-names = "usb2-phy", "usb3-phy";
+>  				iommus = <&apps_smmu 0x120 0x0>;
+>  				snps,dis_u2_susphy_quirk;
+>  				snps,dis_enblslpm_quirk;
+> diff --git a/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts b/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts
+> index ea3340d31110..81fdcaf48926 100644
+> --- a/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts
+> @@ -306,6 +306,9 @@ &usb {
+>  &usb_dwc3 {
+>  	maximum-speed = "high-speed";
+>  	dr_mode = "peripheral";
+> +
+> +	phys = <&usb_hsphy>;
+> +	phy-names = "usb2-phy";
+>  };
+>  
+>  &usb_hsphy {
