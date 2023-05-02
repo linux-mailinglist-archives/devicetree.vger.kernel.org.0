@@ -2,62 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 644606F3F32
-	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 10:36:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17D426F3F35
+	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 10:37:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233851AbjEBIgl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 May 2023 04:36:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43086 "EHLO
+        id S233167AbjEBIhA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 May 2023 04:37:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43440 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233578AbjEBIg3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 04:36:29 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 615914EDE
-        for <devicetree@vger.kernel.org>; Tue,  2 May 2023 01:36:24 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-2f7db354092so2060972f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 02 May 2023 01:36:24 -0700 (PDT)
+        with ESMTP id S233760AbjEBIgw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 04:36:52 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C813B10CC
+        for <devicetree@vger.kernel.org>; Tue,  2 May 2023 01:36:41 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-3f09b4a156eso21571115e9.3
+        for <devicetree@vger.kernel.org>; Tue, 02 May 2023 01:36:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683016582; x=1685608582;
+        d=linaro.org; s=google; t=1683016600; x=1685608600;
         h=content-transfer-encoding:in-reply-to:organization:from:references
          :cc:to:content-language:subject:reply-to:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=SitD8eS7SmwIqmQF/UDh1viisJCwTcmFhILidSZ/5UM=;
-        b=jC9GXy14GFLw2EtOc+bLiNCEQlBG2U8TLFM5J8u2Gvop1IqBdHVEuGN3rTi9izDKe7
-         AwjhVA97/IBg0HP85XVpLtTxAD0KsOpv+iayfCt+XMn133N3MM3wlFrww4e9X63BjLZ2
-         AfXRb1UiWMiygegKSXi1qvM/nQrMZVw50/8PKINn3mo5IAq7PJC/UnHsjrWaJqsYZfZ3
-         yHJNdjciKFADeKHCV5xWyMLlhl8VwJhbWytwbCg35gDAM0tbx3escGTTM8I6cgbRcdDU
-         gS23ijkDDwgVvQOsbVqUKmCeDJHMpwG2mGWXjPhMPzaW0ZVc+9iAETySkpRK8O1S6iDF
-         AHKg==
+        bh=5NiBoxF9WGY8V59+lPmvYrsanQwp8RYmlLhhD+xWcqs=;
+        b=CQKkioNnPT8ZQGQ7jj2KWYnOU6kgAkQPl7Azknhfh0hrADXjfPReufPBADx+fXFZtT
+         KL3sOax/IO+vmWSoSpyJ9SSCFTJoAvvnjAY5FDpvZOkTVjYlQ7pmaefSHzjtvaZVURuJ
+         leJrgh+fXkYmyKVQjCWsUWT5ORKIwyyJU+u/MYPSwtpc/0K8mf6gpdUnXigUC9HyE6OQ
+         mWjXtYVhXxe6l6jNsCLY96pHQxUQ0ZbTcDb8q9b9rpJ0COxFXHsccZ7gwGJ73HPRDCWn
+         7necTDuUf6Q/xMO76NyumDxncj6r0KrdbtgVyaTWfGT5ynxbTrnuJJPiN4DiiMFnRsoH
+         noeg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683016582; x=1685608582;
+        d=1e100.net; s=20221208; t=1683016600; x=1685608600;
         h=content-transfer-encoding:in-reply-to:organization:from:references
          :cc:to:content-language:subject:reply-to:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=SitD8eS7SmwIqmQF/UDh1viisJCwTcmFhILidSZ/5UM=;
-        b=Hvbalek5+6T3Cljtj5oubV9o+bQHdvqE/MAgpV1+RRhkxj2bymSYtrhgiaNxzHEYHz
-         ztfdJIW6U7lT/x9xAbYLIJR2gZZ2UHxn64XLyy10kt6dCPi4v2VQfR2axS09HGtq5DCM
-         oPUZZYZQZiZ3lzuIqOIRyAPN/BNjMmxr2ySCa7RH/PNa3cIndVOqVrfrdm9pyC//7mj4
-         Wm1ybI6cnJ+Dqn+x4YEqpOzsoCEDJpbkYWRaTZWTPyV74MdxZLz1ciIpo/inlODntNd9
-         xv1iYitERcBEeoJJu0pvouOwF6N6j3n/ofpSKndj09d1pXWfPi7OM6KFUld+3/un2Fy9
-         rMGg==
-X-Gm-Message-State: AC+VfDyj4cUunRNway32GTJFRMa9K9WXgp8nbfzMPOBkegl31Ut0ue6j
-        vEAik2FaSFwAzYg5sQhYf1iwQA==
-X-Google-Smtp-Source: ACHHUZ4+OfnVp1VWDA4+QwNGqWGHC+k/y9gMsuGjEaECxeOvtPJQuB666EEs5Kx0ayTvZnPoMoJR5A==
-X-Received: by 2002:a5d:4e08:0:b0:2fe:2775:6067 with SMTP id p8-20020a5d4e08000000b002fe27756067mr11509118wrt.28.1683016582562;
-        Tue, 02 May 2023 01:36:22 -0700 (PDT)
+        bh=5NiBoxF9WGY8V59+lPmvYrsanQwp8RYmlLhhD+xWcqs=;
+        b=XTCiJ5ISqokoKA/Z6CFkbPKuBZ7r2fxFXhPRsFbP5OY4duCcOGupjD74Gf8v18eCR6
+         V90gUTGPYDcAlfpOkBI851IuPlE6uj9x8OUCN9KVW1pq3Q6V3oYl7IAfy1xb5V9Ypifz
+         O+VF/5k6UeFijxHHRMnYT/x79Z4REU9FAge1lFFSyx+Uzynaci/40CcCmlBP0+8SWEtq
+         /wRppOmGhGTAfWfU876fasgQZpTVJwvva8yOYs4a5D0614ymKJSqg3wBS3bYWqwiARag
+         2CKKHh/NSHnUUxsqUU8uA6zR2D9JoXkE9+O4pVBEDULwP6nw6BGlt3N3GBaWc1+fm8Ok
+         yQ2g==
+X-Gm-Message-State: AC+VfDxvDsxBo/SImFp12G5g92l4mubW7Kyhll4inJi1O6I4u18N1c+n
+        SIbj5vFqtTxBxkGrr1TrkaRRCQ==
+X-Google-Smtp-Source: ACHHUZ4YNT2j2Ckfud8spePAbYGzrGcVYQCBwIjjbwRcXlFJoVdTctC+SZ4jaaEyORcpxfddiCrx8Q==
+X-Received: by 2002:a1c:f607:0:b0:3f1:72ec:4024 with SMTP id w7-20020a1cf607000000b003f172ec4024mr11436863wmc.21.1683016600206;
+        Tue, 02 May 2023 01:36:40 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:e265:b513:556a:4149? ([2a01:e0a:982:cbb0:e265:b513:556a:4149])
-        by smtp.gmail.com with ESMTPSA id r17-20020adfdc91000000b002ff2c39d072sm30282065wrj.104.2023.05.02.01.36.21
+        by smtp.gmail.com with ESMTPSA id k24-20020a7bc318000000b003f16fc33fbesm34702148wmj.17.2023.05.02.01.36.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 May 2023 01:36:22 -0700 (PDT)
-Message-ID: <7d724ebb-23cb-426b-e3a5-1f3e57c56d61@linaro.org>
-Date:   Tue, 2 May 2023 10:36:20 +0200
+        Tue, 02 May 2023 01:36:39 -0700 (PDT)
+Message-ID: <250067c0-5701-21b8-c728-b946531147fa@linaro.org>
+Date:   Tue, 2 May 2023 10:36:38 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
 Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 06/10] clk: qcom: gcc-mdm9615: use proper parent for
- pll0_vote clock
+Subject: Re: [PATCH 08/10] clk: qcom: gcc-mdm9615: drop the cxo clock
 Content-Language: en-US
 To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -71,10 +70,10 @@ To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
 Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org
 References: <20230501203401.41393-1-dmitry.baryshkov@linaro.org>
- <20230501203401.41393-7-dmitry.baryshkov@linaro.org>
+ <20230501203401.41393-9-dmitry.baryshkov@linaro.org>
 From:   Neil Armstrong <neil.armstrong@linaro.org>
 Organization: Linaro Developer Services
-In-Reply-To: <20230501203401.41393-7-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230501203401.41393-9-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -88,27 +87,55 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 01/05/2023 22:33, Dmitry Baryshkov wrote:
-> The pll0_vote clock definitely should have pll0 as a parent (instead of
-> pll8).
+> The gcc and lcc devices have been switched to the DT-defined cxo_board
+> clock. Now we can drop the manually defined cxo clock.
 > 
-> Fixes: 7792a8d6713c ("clk: mdm9615: Add support for MDM9615 Clock Controllers")
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->   drivers/clk/qcom/gcc-mdm9615.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+>   drivers/clk/qcom/gcc-mdm9615.c | 17 -----------------
+>   1 file changed, 17 deletions(-)
 > 
 > diff --git a/drivers/clk/qcom/gcc-mdm9615.c b/drivers/clk/qcom/gcc-mdm9615.c
-> index fb5c1244fb97..2f921891008d 100644
+> index c1742113b0eb..a28df201e87d 100644
 > --- a/drivers/clk/qcom/gcc-mdm9615.c
 > +++ b/drivers/clk/qcom/gcc-mdm9615.c
-> @@ -58,7 +58,7 @@ static struct clk_regmap pll0_vote = {
->   	.enable_mask = BIT(0),
->   	.hw.init = &(struct clk_init_data){
->   		.name = "pll0_vote",
-> -		.parent_names = (const char *[]){ "pll8" },
-> +		.parent_names = (const char *[]){ "pll0" },
->   		.num_parents = 1,
->   		.ops = &clk_pll_vote_ops,
+> @@ -26,17 +26,6 @@
+>   #include "clk-branch.h"
+>   #include "reset.h"
+>   
+> -static struct clk_fixed_factor cxo = {
+> -	.mult = 1,
+> -	.div = 1,
+> -	.hw.init = &(struct clk_init_data){
+> -		.name = "cxo",
+> -		.parent_names = (const char *[]){ "cxo_board" },
+> -		.num_parents = 1,
+> -		.ops = &clk_fixed_factor_ops,
+> -	},
+> -};
+> -
+>   enum {
+>   	P_CXO,
+>   	P_PLL8,
+> @@ -1618,10 +1607,6 @@ static struct clk_branch ebi2_aon_clk = {
 >   	},
+>   };
+>   
+> -static struct clk_hw *gcc_mdm9615_hws[] = {
+> -	&cxo.hw,
+> -};
+> -
+>   static struct clk_regmap *gcc_mdm9615_clks[] = {
+>   	[PLL0] = &pll0.clkr,
+>   	[PLL0_VOTE] = &pll0_vote,
+> @@ -1731,8 +1716,6 @@ static const struct qcom_cc_desc gcc_mdm9615_desc = {
+>   	.num_clks = ARRAY_SIZE(gcc_mdm9615_clks),
+>   	.resets = gcc_mdm9615_resets,
+>   	.num_resets = ARRAY_SIZE(gcc_mdm9615_resets),
+> -	.clk_hws = gcc_mdm9615_hws,
+> -	.num_clk_hws = ARRAY_SIZE(gcc_mdm9615_hws),
+>   };
+>   
+>   static const struct of_device_id gcc_mdm9615_match_table[] = {
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
