@@ -2,112 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 629976F3C5A
-	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 05:23:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E563B6F3CC5
+	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 06:43:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233398AbjEBDXr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 May 2023 23:23:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58932 "EHLO
+        id S233273AbjEBEnS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 May 2023 00:43:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230202AbjEBDXq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 May 2023 23:23:46 -0400
-Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF51830FB;
-        Mon,  1 May 2023 20:23:45 -0700 (PDT)
-Received: by mail-pf1-x431.google.com with SMTP id d2e1a72fcca58-64115eef620so31492647b3a.1;
-        Mon, 01 May 2023 20:23:45 -0700 (PDT)
+        with ESMTP id S230054AbjEBEnS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 00:43:18 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FFD4273F
+        for <devicetree@vger.kernel.org>; Mon,  1 May 2023 21:43:16 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-2f917585b26so3012437f8f.0
+        for <devicetree@vger.kernel.org>; Mon, 01 May 2023 21:43:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682997825; x=1685589825;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=1M9netRuCAis4Ssb9iZBb2Idx5gyfZLsjCy0pMBEHYo=;
-        b=YJzkTVzXK+8tD8Ly4Ttq161CvsWjUQO76pao3OUXo/+jrIBbvjeNlgp5k2HtjoiMOF
-         IPdBFoU1J+IvQvU5s5fZUAOi+CjmZzBgag165e0yV8m53R1zEsJeUZohs3VFHr2igXD7
-         htQCiI+seW1IBUmsKSq0PGHR0HD+OyL9kWIVYzqtKNIaSbj1zKXVIkqDYw8eiLkE4BLD
-         IwqTu4Zj4nxRg/vMa/2kT+EcquO4LUyCSd98fI0kqe+IDYTdKtEhClBDP/WbaTNrt4T6
-         idiSitzq0N1SaIUy4L0q6DfjRAx2CExwfbmzp8OQunMi9RbmQnOh88W5y4zWCrga7FOA
-         pMVg==
+        d=linaro.org; s=google; t=1683002595; x=1685594595;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=tA1FfDhaYIxyn0VxdWW674rRwqunc0w4xTIHodrHzwY=;
+        b=dvJMlvH0bFWESLjAbcfx4zNKXrf57LuLGi61CzMOE2B60X4jn+bcILY/MVjJ0DlDos
+         ItGCbtyYtAZCp//bwwBDivKjkH3AI3k/78g82f2b6srg8pDRf+c1R5vd1Otm/iiGs3EL
+         7C7Dh1fIiBE/QI/OU2//ANNGcf1TLx446pY+eMMZoWkbMOGJRtCZpIfk2uQQ8qvb0CM7
+         ctxYb0AWA4bOtiw8e6euiqxy0M7ymkdoefi5GijJGrheAl0IyRdJCGcYN8X5cDdSygch
+         vKSbpafFDdX6XaoaA1mvb3Whc4KVmKgA7sQ4eBmMmyFVdjuJhQS6uwX2jDOeZosz3Pwr
+         ejmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682997825; x=1685589825;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1M9netRuCAis4Ssb9iZBb2Idx5gyfZLsjCy0pMBEHYo=;
-        b=foEsxQbAiyJPVuy0b26L0S2TDHdEDmKBDLco6dhcpebpFe4mrxOCNlWeNLQR0VL78H
-         n1oGO1sfoO04X8Eb47Ge7LIvOu60sEAJIfbQK0yiHaTrdUUn7JP46OfCw86+u/XcoVxn
-         ZMnT/ygcKH6cHfBIyLsI+kpwlVzs5OLHlJOYRJ4Bz4M0F9IdWqm9waF30WpWhtTK1jQD
-         6OnxNgvNhriLd/7Y+ruTTlOt1jFkHZrR8alnmQhbyltZhVDouJbnGZQPUz0gqT83yV0O
-         MVqBQZ+xzsyK5FKW64TBH3h9LSRUAgliwc4gSrV5zxHtBRqybaEw5wdgYtltWmVaRnOX
-         Jr4Q==
-X-Gm-Message-State: AC+VfDy7ltZBUdpXjnRjzMVtaM5ZF8/mwmndsRdVl/GivEe+7nXILqz3
-        yFIeX6Z/PKYraeWCTVCZKJg=
-X-Google-Smtp-Source: ACHHUZ5G7DJgWgs42CE4FqAe2cAv+UM+sRx1HskAhK5ezw+vVPBw6Gxm81+CfN5beodfdEKD/v4yoA==
-X-Received: by 2002:a05:6a00:2e91:b0:63b:54e4:871b with SMTP id fd17-20020a056a002e9100b0063b54e4871bmr20146376pfb.8.1682997824947;
-        Mon, 01 May 2023 20:23:44 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:b6ce:736b:e4f7:adb])
-        by smtp.gmail.com with ESMTPSA id i11-20020a63130b000000b00524dde7231dsm7880326pgl.9.2023.05.01.20.23.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 May 2023 20:23:44 -0700 (PDT)
-Date:   Mon, 1 May 2023 20:23:41 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     =?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>
-Cc:     Nick Dyer <nick@shmanahar.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v2 0/2] Input: atmel_mxt_ts - support capacitive keys
-Message-ID: <ZFCCPcKb9xaBZQee@google.com>
-References: <20230407-atmel_keys-v2-0-92446a4343cb@apitzsch.eu>
+        d=1e100.net; s=20221208; t=1683002595; x=1685594595;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tA1FfDhaYIxyn0VxdWW674rRwqunc0w4xTIHodrHzwY=;
+        b=g7S1Bf9yxs+z0QGPctT0Kxm4cW32jKQxXEY2Q/LnlZdoHpgbomdL0DwObiFY+Rq6Dl
+         GXTvUMaH+nYS1QxtxDTsN/uCx89TBwZq8NK3FMHJEMcxEnC55+5xpie4MjMit5aHZ8r5
+         Wn+dDFygmGEAXADs5wn1iDOAfPrgUFw0QqbhMVYinJRXvI77LZRtfGHUXUNS8c16pn7Q
+         z+C4HlmsjWo66PwNzJ8ZMFES8D92KrO/yaAo1ESIWb9gWpqKukniyw/NI32EFCsvZVfa
+         Ogdjv9CT9+wXdhcV2frS1bNRioRLdh9l+8a43f4EjXfwPsuvQ3UyRyrPJq2s8WRPhkKU
+         DHFQ==
+X-Gm-Message-State: AC+VfDxMSCs0jkoBK46/DaDG1jFAPJAynMyANSRHmn19c7RKehmI4ifn
+        mBwFKFwcTQNToWJ+pYz6cdOJnc9DEeCBfikJMMiy4w==
+X-Google-Smtp-Source: ACHHUZ7S82hfGUV9NeXNSbEN4gy+ZPnKp7H1xFs9706sWyoci8/jfrvdCz4olCPDuCiPEnKktFLWwFqWMqYBk5OBqGo=
+X-Received: by 2002:adf:df8c:0:b0:306:3489:2615 with SMTP id
+ z12-20020adfdf8c000000b0030634892615mr1121956wrl.40.1683002594725; Mon, 01
+ May 2023 21:43:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230407-atmel_keys-v2-0-92446a4343cb@apitzsch.eu>
-X-Spam-Status: No, score=1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FSL_HELO_FAKE,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: *
+References: <20230501192432.1220727-1-bhupesh.sharma@linaro.org>
+ <20230501192432.1220727-4-bhupesh.sharma@linaro.org> <82e61752-dc76-9714-d2e1-13962c4217ee@linaro.org>
+In-Reply-To: <82e61752-dc76-9714-d2e1-13962c4217ee@linaro.org>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Tue, 2 May 2023 10:13:03 +0530
+Message-ID: <CAH=2Ntx4tpJPdh-UHH6urZi4X67sNW8=OYprxi2hi-KX+2w91A@mail.gmail.com>
+Subject: Re: [PATCH v9 3/4] arm64: dts: qcom: sm6115: Add USB SS qmp phy node
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-phy@lists.infradead.org, agross@kernel.org,
+        linux-kernel@vger.kernel.org, andersson@kernel.org,
+        bhupesh.linux@gmail.com, krzysztof.kozlowski@linaro.org,
+        robh+dt@kernel.org, konrad.dybcio@linaro.org, kishon@kernel.org,
+        vkoul@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 07, 2023 at 02:44:23PM +0200, André Apitzsch wrote:
-> Add support for touch keys found in some Atmel touch controller
-> configurations.
-> 
-> Signed-off-by: André Apitzsch <git@apitzsch.eu>
-> ---
-> Changes in v2:
->   * Added A-b, R-b tags
+On Tue, 2 May 2023 at 05:48, Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+>
+> On 01/05/2023 22:24, Bhupesh Sharma wrote:
+> > Add USB superspeed qmp phy node to dtsi.
+> >
+> > Make sure that the various board dts files (which include sm4250.dtsi file)
+> > continue to work as intended.
+> >
+> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> > ---
+> >   .../boot/dts/qcom/sm4250-oneplus-billie2.dts  |  3 ++
+> >   arch/arm64/boot/dts/qcom/sm6115.dtsi          | 29 +++++++++++++++++--
+> >   .../boot/dts/qcom/sm6115p-lenovo-j606f.dts    |  3 ++
+> >   3 files changed, 33 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts b/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
+> > index a1f0622db5a0..75951fd439df 100644
+> > --- a/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
+> > +++ b/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
+> > @@ -242,6 +242,9 @@ &usb {
+> >   &usb_dwc3 {
+> >       maximum-speed = "high-speed";
+> >       dr_mode = "peripheral";
+> > +
+> > +     phys = <&usb_hsphy>;
+> > +     phy-names = "usb2-phy";
+> >   };
+> >
+> >   &usb_hsphy {
+> > diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> > index 631ca327e064..21d00b0295a1 100644
+> > --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> > @@ -661,6 +661,31 @@ usb_hsphy: phy@1613000 {
+> >                       status = "disabled";
+> >               };
+> >
+> > +             usb_qmpphy: phy@1615000 {
+> > +                     compatible = "qcom,sm6115-qmp-usb3-phy";
+> > +                     reg = <0x0 0x01615000 0x0 0x200>;
+>
+> I replied with R-B, but then I noticed that the length of the region is
+> bad. What is the maximum offset that is used by the driver? I know that
+> it is bigger than 0x200.
 
-Applied the lot, thank you.
+Sure, let me recheck and fix this in the next version.
 
-> 
-> ---
-> André Apitzsch (2):
->       dt-bindings: input: atmel,maxtouch: add linux,keycodes
->       Input: atmel_mxt_ts - support capacitive keys
-> 
->  .../devicetree/bindings/input/atmel,maxtouch.yaml  |  7 ++
->  drivers/input/touchscreen/atmel_mxt_ts.c           | 85 ++++++++++++++++++++++
->  2 files changed, 92 insertions(+)
-> ---
-> base-commit: f2afccfefe7be1f7346564fe619277110d341f9b
-> change-id: 20230407-atmel_keys-7a49c6b677b2
-> 
-> Best regards,
-> -- 
-> André Apitzsch <git@apitzsch.eu>
-> 
-
--- 
-Dmitry
+Thanks,
+Bhupesh
