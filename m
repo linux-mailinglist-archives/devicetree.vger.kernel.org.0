@@ -2,83 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D2946F3F3B
-	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 10:37:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17DD96F3F3E
+	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 10:37:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233645AbjEBIhO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 May 2023 04:37:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44086 "EHLO
+        id S230004AbjEBIhk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 May 2023 04:37:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44344 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229722AbjEBIhN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 04:37:13 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B59741BEF
-        for <devicetree@vger.kernel.org>; Tue,  2 May 2023 01:37:11 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-304935cc79bso3509474f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 02 May 2023 01:37:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683016630; x=1685608630;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :cc:to:content-language:subject:reply-to:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=slDIlxCzpTDEG7C8ch3ARU2YpQ8UOYPe5KwfSUBQkG0=;
-        b=g+RSpRPgBqEI2VbBOoVxQGKpa3AMHuOEqbyIRgeDneAbNNoNKoLFCGmoibDbPugIHF
-         3ruexdSS5iaVdF5K+SyQ/CdQaK7EQHF73roOyjKXZ29Hevw70t8GNVz0kTtPLtT8MS2d
-         vmow0WxbwPOWeoW1J44SKkPWcI7o9cseXERy6hYOMQZDR25xSh3r+NRUfTvADOva4g6J
-         0cSG8f0z+zzJSck4Oq2XeyeszmLIW1DlqFvLK8Q1r9zbTuoCby3UHdqhcsvR1bjp/4BA
-         VlZ9CdC/yZybqL0zSRrQ7SjTf+QVSo1frMN/wdOk788euuiAUUXxjqNhzcTPChp4VcJp
-         JVsA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683016630; x=1685608630;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :cc:to:content-language:subject:reply-to:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=slDIlxCzpTDEG7C8ch3ARU2YpQ8UOYPe5KwfSUBQkG0=;
-        b=AZMWXD/n/qXfylMkdlln1Psq9F6edTVP9IkjKdVHsFys8JcfQZM5Pc7z4qbgKvnzvB
-         ET68PQl4iavNUY1cXAkPazT19l7F5fgugbvDZ0R/zUeusIPaNkzfYJsu8oXTqbDCiXeK
-         I603OCPbBiv8VUJT/5lYM+qQQz42XWaapG9EOlhfbiy+/5+J7rYMArJFPQOC4D/ZSIyh
-         0vvKc/YYULGAQhJv8PRaCJq3SXWof+6WAz9RQ+Te2DTQ+IbZSefpDxU2gE2SQJ50j6Q3
-         8vDU7OagdSbPzk2VkM6iehJ60VA8A05hRdPeqaT628HYBWMz1iBdkGcKuI732R2guZH4
-         pjDw==
-X-Gm-Message-State: AC+VfDxEXePjXytr2P0XqPSpqnMlQbA9ytMxa8O3X2GIrC3OodBC6bcT
-        7MfZp1MM3T1MKnhKL5Ks+x9f9jJN0Tgfs18fFmxH3g==
-X-Google-Smtp-Source: ACHHUZ4GLXjezsJUdfNAqEXfs4OLKLaSXBFQ+MZqXmikJdKCs4OEQl/PQUX9OqzEU4GO7wuqFkRgIw==
-X-Received: by 2002:a5d:4b0e:0:b0:304:a40c:43c6 with SMTP id v14-20020a5d4b0e000000b00304a40c43c6mr12864429wrq.11.1683016630069;
-        Tue, 02 May 2023 01:37:10 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:e265:b513:556a:4149? ([2a01:e0a:982:cbb0:e265:b513:556a:4149])
-        by smtp.gmail.com with ESMTPSA id o17-20020a5d4751000000b003063a92bbf5sm259473wrs.70.2023.05.02.01.37.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 May 2023 01:37:09 -0700 (PDT)
-Message-ID: <fec55fce-e156-9f15-bfb5-5f56dcdfdcef@linaro.org>
-Date:   Tue, 2 May 2023 10:37:08 +0200
+        with ESMTP id S229722AbjEBIhj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 04:37:39 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C77DEB;
+        Tue,  2 May 2023 01:37:38 -0700 (PDT)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3426Zasb028189;
+        Tue, 2 May 2023 08:37:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=90UgHp4VYN1Z25zyNC4eoJd76M71nk5scFed1XlQ52Q=;
+ b=PoQELODDHm8ai1Purwkmd7Iq3KhnJpTNlbOUmXYyW4cJ+XnfkdRp5jg8qD1BHGXFduSQ
+ GIwfqVU+EQKGWXpsCgxO6X9mJotLURdBVAC4IyRw7DwUcArnDgEOoyV5WDxdcXHGBP91
+ yuLe2lDKWMgmst/i3nTEbnu09UVuCl37WRin1+wNiUL862RLmnUHH7DD8gfJeMD9msJC
+ NfW5Y38BwJJsTIchNPAZ8BUKIZ6a+R7PMMHNU8LlvkIsfFzO36FJQ1ZiNbvQYKAPoJWN
+ v85MalMX3leKh1WEILoRHXCHe43KIBC3izdkJNBGSlY+Bg2DmNtYAOM57xWzIwDZWflV Sw== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qawct870h-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 02 May 2023 08:37:27 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3428bQlE019722
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 2 May 2023 08:37:27 GMT
+Received: from [10.216.63.8] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Tue, 2 May 2023
+ 01:37:20 -0700
+Message-ID: <ca4da3c1-29dd-6d7d-6fe6-dd6ecc7fff88@quicinc.com>
+Date:   Tue, 2 May 2023 14:07:17 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 10/10] ARM: dts: qcom-mdm9615: specify gcc clocks
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v7 7/9] arm64: dts: qcom: sc8280xp: Add multiport
+ controller node for SC8280
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
         Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        "Bjorn Andersson" <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230501203401.41393-1-dmitry.baryshkov@linaro.org>
- <20230501203401.41393-11-dmitry.baryshkov@linaro.org>
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <20230501203401.41393-11-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Felipe Balbi <balbi@kernel.org>,
+        "Wesley Cheng" <quic_wcheng@quicinc.com>
+CC:     <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <quic_pkondeti@quicinc.com>, <quic_ppratap@quicinc.com>,
+        <quic_jackp@quicinc.com>, <quic_harshq@quicinc.com>,
+        <ahalaney@redhat.com>, <quic_shazhuss@quicinc.com>
+References: <20230501143445.3851-1-quic_kriskura@quicinc.com>
+ <20230501143445.3851-8-quic_kriskura@quicinc.com>
+ <57d2405f-7bd2-0ca3-a119-55b7bf0f36f9@linaro.org>
+From:   Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+In-Reply-To: <57d2405f-7bd2-0ca3-a119-55b7bf0f36f9@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 5UlUhnTEOiXe1B0PVNyd0QibpQZMGJMT
+X-Proofpoint-GUID: 5UlUhnTEOiXe1B0PVNyd0QibpQZMGJMT
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-02_04,2023-04-27_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 spamscore=0
+ lowpriorityscore=0 priorityscore=1501 bulkscore=0 phishscore=0
+ adultscore=0 mlxlogscore=999 impostorscore=0 malwarescore=0 suspectscore=0
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303200000 definitions=main-2305020075
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,36 +94,109 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/05/2023 22:34, Dmitry Baryshkov wrote:
-> Fully specify the clocks used by the GCC on the mdm9615 platform.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->   arch/arm/boot/dts/qcom-mdm9615.dtsi | 5 +++++
->   1 file changed, 5 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/qcom-mdm9615.dtsi b/arch/arm/boot/dts/qcom-mdm9615.dtsi
-> index 556abe90cf5b..e81e5e3196d9 100644
-> --- a/arch/arm/boot/dts/qcom-mdm9615.dtsi
-> +++ b/arch/arm/boot/dts/qcom-mdm9615.dtsi
-> @@ -10,6 +10,7 @@
->   
->   #include <dt-bindings/interrupt-controller/arm-gic.h>
->   #include <dt-bindings/clock/qcom,gcc-mdm9615.h>
-> +#include <dt-bindings/clock/qcom,lcc-msm8960.h>
->   #include <dt-bindings/reset/qcom,gcc-mdm9615.h>
->   #include <dt-bindings/mfd/qcom-rpm.h>
->   #include <dt-bindings/soc/qcom,gsbi.h>
-> @@ -106,6 +107,10 @@ gcc: clock-controller@900000 {
->   			#power-domain-cells = <1>;
->   			#reset-cells = <1>;
->   			reg = <0x900000 0x4000>;
-> +			clocks = <&cxo_board>,
-> +				 <&lcc PLL4>;
-> +			clock-names = "cxo",
-> +				      "pll4";
->   		};
->   
->   		lcc: clock-controller@28000000 {
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+
+On 5/2/2023 1:17 PM, Krzysztof Kozlowski wrote:
+> On 01/05/2023 16:34, Krishna Kurapati wrote:
+>> Add USB and DWC3 node for tertiary port of SC8280 along with multiport
+>> IRQ's and phy's. This will be used as a base for SA8295P and SA8295-Ride
+>> platforms.
+>>
+>> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 64 ++++++++++++++++++++++++++
+>>   1 file changed, 64 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+>> index 8fa9fbfe5d00..0e4fb286956b 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+>> @@ -3133,6 +3133,70 @@ usb_1_role_switch: endpoint {
+>>   			};
+>>   		};
+>>   
+>> +		usb_2: usb@a4f8800 {
+> 
+> Nodes are ordered by unit address, more or less >
+>> +			compatible = "qcom,sc8280xp-dwc3-mp", "qcom,dwc3";
+>> +			reg = <0 0x0a4f8800 0 0x400>;
+>> +			#address-cells = <2>;
+>> +			#size-cells = <2>;
+>> +			ranges;
+>> +
+>> +			clocks = <&gcc GCC_CFG_NOC_USB3_MP_AXI_CLK>,
+>> +				 <&gcc GCC_USB30_MP_MASTER_CLK>,
+>> +				 <&gcc GCC_AGGRE_USB3_MP_AXI_CLK>,
+>> +				 <&gcc GCC_USB30_MP_SLEEP_CLK>,
+>> +				 <&gcc GCC_USB30_MP_MOCK_UTMI_CLK>,
+>> +				 <&gcc GCC_AGGRE_USB_NOC_AXI_CLK>,
+>> +				 <&gcc GCC_AGGRE_USB_NOC_NORTH_AXI_CLK>,
+>> +				 <&gcc GCC_AGGRE_USB_NOC_SOUTH_AXI_CLK>,
+>> +				 <&gcc GCC_SYS_NOC_USB_AXI_CLK>;
+>> +			clock-names = "cfg_noc", "core", "iface", "sleep", "mock_utmi",
+>> +				      "noc_aggr", "noc_aggr_north", "noc_aggr_south", "noc_sys";
+>> +
+>> +			assigned-clocks = <&gcc GCC_USB30_MP_MOCK_UTMI_CLK>,
+>> +					  <&gcc GCC_USB30_MP_MASTER_CLK>;
+>> +			assigned-clock-rates = <19200000>, <200000000>;
+>> +
+>> +			interrupts-extended = <&pdc 127 IRQ_TYPE_EDGE_RISING>,
+>> +						<&pdc 126 IRQ_TYPE_EDGE_RISING>,
+>> +						<&pdc 16 IRQ_TYPE_LEVEL_HIGH>,
+>> +						<GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH>,
+>> +						<GIC_SPI 135 IRQ_TYPE_LEVEL_HIGH>,
+>> +						<GIC_SPI 857 IRQ_TYPE_LEVEL_HIGH>,
+>> +						<GIC_SPI 856 IRQ_TYPE_LEVEL_HIGH>;
+> 
+> Does not look aligned. >
+>> +
+>> +			interrupt-names = "dp_hs_phy_irq", "dm_hs_phy_irq",
+>> +						"ss_phy_irq", "pwr_event_1",
+> 
+> Does not look aligned.
+> 
+Sure, will fix up the indentation issues.
+>> +						"pwr_event_2", "pwr_event_3",
+>> +						"pwr_event_4";
+>> +
+>> +			power-domains = <&gcc USB30_MP_GDSC>;
+>> +
+>> +			resets = <&gcc GCC_USB30_MP_BCR>;
+>> +
+>> +			interconnects = <&aggre1_noc MASTER_USB3_1 0 &mc_virt SLAVE_EBI1 0>,
+>> +					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_USB3_1 0>;
+>> +			interconnect-names = "usb-ddr", "apps-usb";
+>> +
+>> +			required-opps = <&rpmhpd_opp_nom>;
+>> +
+> 
+> Please open the DTSI and look how this is organized there. I don't think
+> doing this differently - with different order - helps to review.
+> required-opps is next to power-domains.
+Sure. Will fix it up.
+> 
+>> +			status = "disabled";
+>> +
+>> +			usb_2_dwc3: usb@a400000 {
+>> +				compatible = "snps,dwc3";
+>> +				reg = <0 0x0a400000 0 0xcd00>;
+>> +				interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
+>> +				iommus = <&apps_smmu 0x800 0x0>;
+>> +				phys = <&usb_2_hsphy0>, <&usb_2_qmpphy0>,
+>> +					<&usb_2_hsphy1>, <&usb_2_qmpphy1>,
+>> +					<&usb_2_hsphy2>,
+>> +					<&usb_2_hsphy3>;
+>> +				phy-names = "usb2-port0", "usb3-port0",
+>> +						"usb2-port1", "usb3-port1",
+>> +						"usb2-port2",
+>> +						"usb2-port3";
+>> +			};
+>> +		};
+>> +
+>>   		mdss0: display-subsystem@ae00000 {
+>>   			compatible = "qcom,sc8280xp-mdss";
+>>   			reg = <0 0x0ae00000 0 0x1000>;
+> 
+
+Thanks,
+Krishna,
