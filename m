@@ -2,125 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A61CD6F4A0B
-	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 21:01:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C72EA6F4A50
+	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 21:27:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229605AbjEBTBT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 May 2023 15:01:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41272 "EHLO
+        id S229502AbjEBT1U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 May 2023 15:27:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229511AbjEBTBS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 15:01:18 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13562DC;
-        Tue,  2 May 2023 12:01:17 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A2FA662803;
-        Tue,  2 May 2023 19:01:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13FE4C433A4;
-        Tue,  2 May 2023 19:01:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1683054076;
-        bh=prkycoKFrtYOB9sqzJph1/Wh7+dUYl73V0ySsrK86tE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=rf/Ymu/EiSQOPePfJMJv1847ZBWRjnjneowURtOqNMODuCRTfcl2GQ0h/jO2AdmCs
-         leEyX7R6GR2dka6/IsiyySID/QcvyxsSv7fNtmEEy0Cm9A6hC1sqxMJ+9jfUBya5xj
-         ODLup2MnZzYCOUMdIZzoCrk5OSl4AOnL/7/DJbtkd5lptoW7/0YbgOkcgOH14mk6Au
-         qACeCdnoaBW8B9rF8o7n7shq7gT7w0jQTaVjP3mXHg69IyA+TLldeHm4Y1C5mj86Z3
-         uRYRPp4016gJq/2Xf9LklNYOIaWs99spKYSrk9MtOv6rk+8yKfvzOFwqXzWomFJ/+X
-         cezzz3yUhjKtA==
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-4f00d3f98deso30189736e87.0;
-        Tue, 02 May 2023 12:01:15 -0700 (PDT)
-X-Gm-Message-State: AC+VfDy6HROMOBtt8vjysX7PaO7pZt0gXrzRwYR+dhVfCyhlP6x07oQQ
-        5zNawx7YmJwz7OCZi6b5qscMEp/eoQDqajAPwA==
-X-Google-Smtp-Source: ACHHUZ4aQAyOb+PGJ7PQfIp0PiLUMh7I0dBEHOyVsVppKRO7n40/yktfmotxwSexv0gCD3XVcEmYB9ah5iQIzUMa54Q=
-X-Received: by 2002:a05:6512:3b07:b0:4eb:412e:b06a with SMTP id
- f7-20020a0565123b0700b004eb412eb06amr237890lfv.22.1683054074001; Tue, 02 May
- 2023 12:01:14 -0700 (PDT)
+        with ESMTP id S229458AbjEBT1U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 15:27:20 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDB9F199B
+        for <devicetree@vger.kernel.org>; Tue,  2 May 2023 12:27:18 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-95f4c5cb755so828781066b.0
+        for <devicetree@vger.kernel.org>; Tue, 02 May 2023 12:27:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683055637; x=1685647637;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WlvJAhh++/0u4nv0c2v/4jbnMZEEfAgSioFHncVcNHM=;
+        b=FuzPEm5a6HfsdGz0cZuE8bc1PmkbfYtG+rxbUTbb8BBMdYd2jSC9/YA56sI3mATvhk
+         9vQFdOvKCs6DMIxixdQlZajWC3k3WpluPi1PAIGBbsC1shROzMCecCYdnmDKrhKmEDL5
+         5lLdDUV6n2Lnm65XggKvOZKa8TmJ99xl6xzTk9a1R2/7HpeW98AYAyPRwy7WR7Qcg4ns
+         ZO1QTaCGoXu23k18bF4Z5oLUekYI8e+2Eim19pQGftwQLd1QH7bjQymgMYMjlLNrPY6N
+         BhdccBth6VCpiZRdchGPhGUAHReo5J8vYhCCJ30h3idWpAHphSQve29M1d1MfQBl7/Tt
+         /Eww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683055637; x=1685647637;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WlvJAhh++/0u4nv0c2v/4jbnMZEEfAgSioFHncVcNHM=;
+        b=UT679FrifOhxp7ImQQLW4jjSvnyEQ3nt7OwjKDIFqNcEXjWVrHyCSxXjk6ZNmxCWJh
+         yTqkylwNRmsPrVo9rMcvd029pZY0G21iwR0w9Rn07J3ggRThs4ipUaNW5/56NJWSDNwK
+         3dNhNrcR032Bt8U0VvCvd5nodb+GDoamFRJAYaBua1kH25fGv7bAcLwMFWv5waUiP42X
+         hcuRJXbSlJrimW566M9wGlc3RdbWMPbzFZKhm7DrC4pLF+P2ot/wBVIv5oY6mH8chem+
+         P+C4KRdve6tAioQz8ia4b6i21MXHUn63JggO9honWYoeTA2cTn0QAV6tzX0m3DoY+x7J
+         +7GA==
+X-Gm-Message-State: AC+VfDzSED3RanL0PC8Rn4SGLmq1lyjMT4E4R48/rM5RU8TLJgC/IJQS
+        wS19/fDw4W+LvS6T0tdL63b8Jw==
+X-Google-Smtp-Source: ACHHUZ72IXzYWeoI10TEpLTlgpk2WAsUnkKi/OYB2kOkCAuBunsYCUpywh4DXYYrck3DimaL2dxCsQ==
+X-Received: by 2002:a17:907:608b:b0:88f:a236:69e6 with SMTP id ht11-20020a170907608b00b0088fa23669e6mr931504ejc.7.1683055637249;
+        Tue, 02 May 2023 12:27:17 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:37be:eda5:e303:19e0? ([2a02:810d:15c0:828:37be:eda5:e303:19e0])
+        by smtp.gmail.com with ESMTPSA id my24-20020a1709065a5800b0094a8115e148sm16431638ejc.87.2023.05.02.12.27.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 May 2023 12:27:16 -0700 (PDT)
+Message-ID: <676dae73-9b59-d0bb-37ca-eaa120e8dcb5@linaro.org>
+Date:   Tue, 2 May 2023 21:27:15 +0200
 MIME-Version: 1.0
-References: <20220328000915.15041-1-ansuelsmth@gmail.com> <CAFr9PXkgrRe-=E=GhNnZ4w1x_FMb97-_RmX6ND1vEd74_TbZSw@mail.gmail.com>
- <4ff4f171-c5f8-87af-aad1-5e7686292288@microchip.com> <45bc13a8-1442-2dd3-b9ea-1ed2f5962bac@arm.com>
-In-Reply-To: <45bc13a8-1442-2dd3-b9ea-1ed2f5962bac@arm.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 2 May 2023 14:01:01 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqL7t47x-5U6STynwW-+4wJUhs_R9wuaQ0YOgX59aJ=vew@mail.gmail.com>
-Message-ID: <CAL_JsqL7t47x-5U6STynwW-+4wJUhs_R9wuaQ0YOgX59aJ=vew@mail.gmail.com>
-Subject: Re: [RFC PATCH 0/1] Categorize ARM dts directory
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Daniel Palmer <daniel@0x0f.com>,
-        Ansuel Smith <ansuelsmth@gmail.com>,
-        Claudiu Beznea <Claudiu.Beznea@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Santiago Esteban <Santiago.Esteban@microchip.com>,
-        Cristian Birsan <Cristian.Birsan@microchip.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-actions@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-omap@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@axis.com, linux-aspeed@lists.ozlabs.org,
-        linux-rpi-kernel@lists.infradead.org,
-        chrome-platform@lists.linux.dev, linux-renesas-soc@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        kernel@dh-electronics.com, linux-mediatek@lists.infradead.org,
-        openbmc@lists.ozlabs.org, linux-tegra@vger.kernel.org,
-        linux-oxnas@groups.io, linux-arm-msm@vger.kernel.org,
-        linux-unisoc@lists.infradead.org,
-        linux-rockchip@lists.infradead.org,
-        linux-realtek-soc@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,WEIRD_QUOTING
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH v4 2/2] dt-bindings: usb: snps,dwc3: Add the compatible
+ name 'snps,dwc3-rtk-soc'
+Content-Language: en-US
+To:     =?UTF-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?= 
+        <stanley_chang@realtek.com>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20230502050452.27276-1-stanley_chang@realtek.com>
+ <20230502050452.27276-2-stanley_chang@realtek.com>
+ <2653e0d1-6570-7469-51da-b539b5c14299@linaro.org>
+ <bc5cd630d96f44bcaad7f95f2f45aac1@realtek.com>
+ <49d2b103-de1e-637a-1bf0-aaba1c6afaf4@linaro.org>
+ <a04e70f97bcb48048edb2f6db7bb6c25@realtek.com>
+ <f51b4dc9-e1da-7c9c-1e39-c8510569db9d@linaro.org>
+ <c44baa9fae5c445c90103cd2e129ab0b@realtek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <c44baa9fae5c445c90103cd2e129ab0b@realtek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 25, 2023 at 11:21=E2=80=AFAM Robin Murphy <robin.murphy@arm.com=
-> wrote:
->
-> On 29/03/2022 9:50 am, Nicolas Ferre wrote:
-> > Ansuel, All,
-> >
-> > On 28/03/2022 at 10:55, Daniel Palmer wrote:
-> >> Hi Ansuel
-> >>
-> >> On Mon, 28 Mar 2022 at 09:09, Ansuel Smith <ansuelsmth@gmail.com> wrot=
-e:
-> >>>
-> >>> Hi,
-> >>> as the title say, the intention of this ""series"" is to finally
-> >>> categorize
-> >>> the ARM dts directory in subdirectory for each oem.
-> >>
-> >> While I agree with this change and think it's for the good (browsing
-> >> the ARM dts directory at the moment is frustrating..) I think
-> >> buildroot and others need to be told about this as it'll potentially
-> >> break their kernel build scripting for ARM and probably messes up the
-> >> configs they have for existing boards.
-> >
-> > This aspect mustn't be underestimated and I anticipate lots of issues
-> > during a long time on this particular topic of "build systems".
-> >
-> > Another aspect is CI and public or private testing farms we all have
-> > running.
->
-> Yet another is if this affects what `make dtbs_install` does (I don't
-> know for sure, but I'd be inclined to suspect it might). Some distros
-> use that to deliver the DTBs as part of their kernel package, so if
-> paths suddenly change it could break end users' bootloader setups too.
+On 02/05/2023 12:37, Stanley Chang[昌育德] wrote:
+> Hi Krzysztof,
+> 
+>>>>>> On 02/05/2023 07:04, Stanley Chang wrote:
+>>>>>>> Add a new compatible name 'snps,dwc3-rtk-soc' of DT for realtek
+>>>>>>> dwc3 core to adjust the global register start address
+>>>>>>>
+>>>>>>> The RTK DHC SoCs were designed, the global register address offset
+>>>>>>> at
+>>>>>>
+>>>>>> What are: "RTK" and "DHC"? These are manufactured by Synopsys as
+>>>>>> you suggest in the patch?
+>>>>>
+>>>>> RTK is Realtek.
+>>>>> DHC is the department name in Realtek and the abbreviation of the
+>>>>> Digital
+>>>> Home Center.
+>>>>> The USB controller of RTK DHC SoCs used the DWC3 IP of Synopsys.
+>>>>
+>>>> Then entire compatible is not correct. Vendor is Realtek not Synopsys.
+>>>> DHC is not even device name. Use real device names.
+>>>
+>>> So, can we use the compatible name as 'realtek,dwc3' ?
+>>
+>> dwc3 is not a real device name for Realtek.
+> 
+> We still use dwc3 IP in Realtek's SoC. Why is the name "dwc3" inappropriate?
 
-Indeed, this came up last time. Turns out I had already implemented
-support to maintain the flat install. I just re-wrote it since
-Makefile.dtbinst changed completely since then.
+dwc3 is the name of design coming from Synopsys. Your device is probably
+called differently. Why it is inappropriate? Because your device is not
+called DWC3, even though you use IP from Synopsys.
 
-Rob
+Although vendor,dwc3 is already used as compatible in several cases, I
+don't think it is a good pattern.
+
+> 
+> Should compatibility names use the SoC name?
+> For example, our SoC name
+> RTD129x, RTD139x, RTD161x, RTD161xB, etc.
+> Should we use these names in compatible names?
+> "realtek, rtd129x", "realtek, rtd139x", "realtek, rtd161x"...etc.
+
+Regular rules apply, because your device is not special.
+https://elixir.bootlin.com/linux/v6.1-rc1/source/Documentation/devicetree/bindings/writing-bindings.rst#L42
+
+Therefore either SoC-based device specific name or followed by:
+1. SoC-based device specific fallback,
+2. Family-device generic fallback,
+
+
+Best regards,
+Krzysztof
+
