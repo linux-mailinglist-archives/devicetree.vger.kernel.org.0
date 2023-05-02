@@ -2,104 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BCA7C6F3CD7
-	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 07:05:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC07E6F3D0D
+	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 07:38:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233453AbjEBFFL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 May 2023 01:05:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49344 "EHLO
+        id S233286AbjEBFii (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 May 2023 01:38:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229379AbjEBFFK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 01:05:10 -0400
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F13F03ABB;
-        Mon,  1 May 2023 22:05:07 -0700 (PDT)
-Authenticated-By: 
-X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 34254n3G2007207, This message is accepted by code: ctloc85258
-Received: from mail.realtek.com (rtexh36506.realtek.com.tw[172.21.6.27])
-        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 34254n3G2007207
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
-        Tue, 2 May 2023 13:04:50 +0800
-Received: from RTEXMBS03.realtek.com.tw (172.21.6.96) by
- RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.17; Tue, 2 May 2023 13:04:53 +0800
-Received: from RTEXH36506.realtek.com.tw (172.21.6.27) by
- RTEXMBS03.realtek.com.tw (172.21.6.96) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.7; Tue, 2 May 2023 13:04:53 +0800
-Received: from localhost.localdomain (172.21.252.101) by
- RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server id
- 15.1.2507.17 via Frontend Transport; Tue, 2 May 2023 13:04:53 +0800
-From:   Stanley Chang <stanley_chang@realtek.com>
-To:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-CC:     Stanley Chang <stanley_chang@realtek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>, <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v4 2/2] dt-bindings: usb: snps,dwc3: Add the compatible name 'snps,dwc3-rtk-soc'
-Date:   Tue, 2 May 2023 13:04:47 +0800
-Message-ID: <20230502050452.27276-2-stanley_chang@realtek.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230502050452.27276-1-stanley_chang@realtek.com>
-References: <20230502050452.27276-1-stanley_chang@realtek.com>
+        with ESMTP id S233540AbjEBFih (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 01:38:37 -0400
+X-Greylist: delayed 206 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 01 May 2023 22:35:26 PDT
+Received: from n169-114.mail.139.com (n169-114.mail.139.com [120.232.169.114])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E6BB30FF
+        for <devicetree@vger.kernel.org>; Mon,  1 May 2023 22:35:25 -0700 (PDT)
+X-RM-TagInfo: emlType=0                                       
+X-RM-SPAM:                                                                                        
+X-RM-SPAM-FLAG: 00000000
+Received: from localhost.localdomain (unknown[183.194.159.16])
+        by rmsmtp-lg-appmail-38-12052 (RichMail) with SMTP id 2f146450a03fece-e31a3;
+        Tue, 02 May 2023 13:31:45 +0800 (CST)
+X-RM-TRANSID: 2f146450a03fece-e31a3
+From:   Shenghao Ding <13916275206@139.com>
+To:     devicetree@vger.kernel.org
+Cc:     krzysztof.kozlowski+dt@linaro.org, broonie@kernel.org,
+        lgirdwood@gmail.com, kevin-lu@ti.com, shenghao-ding@ti.com,
+        alsa-devel@alsa-project.org, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, x1077012@ti.com, peeyush@ti.com,
+        navada@ti.com, gentuser@gmail.com,
+        Shenghao Ding <13916275206@139.com>
+Subject: [PATCH v1 2/5] ASoC: dt-bindings: Add tas2781 amplifier
+Date:   Tue,  2 May 2023 13:31:35 +0800
+Message-Id: <20230502053135.27019-1-13916275206@139.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-KSE-ServerInfo: RTEXMBS03.realtek.com.tw, 9
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-Antivirus-Interceptor-Info: fallback
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,FROM_LOCAL_DIGITS,
+        FROM_LOCAL_HEX,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a new compatible name 'snps,dwc3-rtk-soc' of DT for realtek dwc3
-core to adjust the global register start address
+Create tas2781.yaml for tas2781 driver.
 
-The RTK DHC SoCs were designed, the global register address offset at
-0x8100. The default address offset is constant at DWC3_GLOBALS_REGS_START
-(0xc100). Therefore, add the compatible name of device-tree to specify
-the SoC custom's global register start address.
+Signed-off-by: Shenghao Ding <13916275206@139.com>
 
-Signed-off-by: Stanley Chang <stanley_chang@realtek.com>
 ---
- v3 to v4 change:
-Use the compatible name to specify the global register address offset.
-If the compatible name is "snps,dwc3-rtk-soc", then the offset use 0x8100.
-Otherwise, the offset is default value 0xc100.
-
- v2 to v3 change:
-1.  Fix the dtschema validation error.
-
- v1 to v2 change:
-1. Change the name of the property "snps,global-regs-starting-offset".
-2. Adjust the format of comment.
-3. Add initial value of the global_regs_starting_offset
-4. Remove the log of dev_info.
+Changes in v1:
+ - Submit together with tas2781 codec driver code
+ Changes to be committed:
+	new file:   Documentation/devicetree/bindings/sound/ti,tas2781.yaml
 ---
- Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ .../devicetree/bindings/sound/ti,tas2781.yaml | 84 +++++++++++++++++++
+ 1 file changed, 84 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/ti,tas2781.yaml
 
-diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-index 50edc4da780e..40d9a461ed93 100644
---- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-+++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-@@ -33,6 +33,7 @@ properties:
-     contains:
-       oneOf:
-         - const: snps,dwc3
-+        - const: snps,dwc3-rtk-soc
-         - const: synopsys,dwc3
-           deprecated: true
- 
+diff --git a/Documentation/devicetree/bindings/sound/ti,tas2781.yaml b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
+new file mode 100644
+index 000000000000..028151c388bf
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
+@@ -0,0 +1,84 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) 2022 - 2023 Texas Instruments Incorporated
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/ti,tas2781.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Texas Instruments TAS2781 SmartAMP
++
++maintainers:
++  - Shenghao Ding <shenghao-ding@ti.com>
++
++description:
++  The TAS2781 is a mono, digital input Class-D audio amplifier
++  optimized for efficiently driving high peak power into small
++  loudspeakers. Integrated an on-chip DSP supports Texas Instruments
++  Smart Amp speaker protection algorithm. The integrated speaker
++  voltage and current sense provides for real time
++  monitoring of loudspeaker behavior.
++
++properties:
++  compatible:
++    enum:
++      - ti,tas2781
++
++  reg:
++    description: I2C address of the primary device.
++    items:
++      minimum: 0x38
++      maximum: 0x40
++
++  reset-gpios:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  ti,audio-slots:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    minItems: 1
++    maxItems: 4
++    description:
++      I2C address of the device for different audio slots,
++      useless in mono case.
++
++  ti,broadcast-addr:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Generic I2C address for all the tas2781 devices in
++      purpose of I2C broadcast during the multi-device
++      writes, useless in mono case.
++
++  '#sound-dai-cells':
++    const: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++   #include <dt-bindings/gpio/gpio.h>
++   i2c {
++     /* example with quad support, such as tablet or pad device */
++     #address-cells = <1>;
++     #size-cells = <0>;
++     quad: codec@38 {
++       compatible = "ti,tas2781";
++       reg = <0x38>;
++       #sound-dai-cells = <1>;
++       reset-gpios = < &gpio1 10 GPIO_ACTIVE_HIGH >;
++       interrupt-parent = <&gpio1>;
++       interrupts = <15>;
++       ti,audio-slots = < 0x38 /* topleft-channel */
++                          0x39 /* topright-channel */
++                          0x3a /* bottomleft-channel */
++                          0x3b /* bottomright-channel */
++                        >;
++       ti,broadcast-addr = <0x40>;
++     };
++   };
++...
 -- 
 2.34.1
+
 
