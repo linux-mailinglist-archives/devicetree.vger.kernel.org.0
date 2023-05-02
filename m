@@ -2,93 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E420F6F4080
-	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 11:56:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5C406F4098
+	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 12:05:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233693AbjEBJ46 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 May 2023 05:56:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48914 "EHLO
+        id S233280AbjEBKFT convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 2 May 2023 06:05:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233499AbjEBJ44 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 05:56:56 -0400
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A125F4EE5;
-        Tue,  2 May 2023 02:56:54 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.99,243,1677510000"; 
-   d="scan'208";a="157938913"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 02 May 2023 18:56:54 +0900
-Received: from localhost.localdomain (unknown [10.226.92.229])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 285FF4006DC2;
-        Tue,  2 May 2023 18:56:49 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v9 3/5] dt-bindings: display: renesas,rzg2l-du: Document RZ/V2L DU bindings
-Date:   Tue,  2 May 2023 10:56:26 +0100
-Message-Id: <20230502095628.141313-4-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230502095628.141313-1-biju.das.jz@bp.renesas.com>
-References: <20230502095628.141313-1-biju.das.jz@bp.renesas.com>
+        with ESMTP id S230004AbjEBKFS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 06:05:18 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70B404EC0;
+        Tue,  2 May 2023 03:05:15 -0700 (PDT)
+Received: from ip4d1634d3.dynamic.kabel-deutschland.de ([77.22.52.211] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1ptmsX-0006v1-8j; Tue, 02 May 2023 12:05:01 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Tianling Shen <cnsztl@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Peter Geis <pgwipeout@gmail.com>, Andy Yan <andyshrk@163.com>,
+        Chris Morgan <macromorgan@hotmail.com>,
+        Brian Norris <briannorris@chromium.org>,
+        Andrew Lunn <andrew@lunn.ch>, Shawn Guo <shawnguo@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Maya Matuszczyk <maccraft123mc@gmail.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Vasily Khoruzhick <anarsoul@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] arm64: dts: rockchip: Add Lunzn Fastrhino R66S
+Date:   Tue, 02 May 2023 12:04:59 +0200
+Message-ID: <5045149.1BCLMh4Saa@diego>
+In-Reply-To: <CAOP2_TgrPwvkXayyWkb5H-+X-Nr85G65YoAfs4_+zUfK=_+VHA@mail.gmail.com>
+References: <20230428013738.30735-1-cnsztl@gmail.com> <4763863.6tgchFWduM@diego>
+ <CAOP2_TgrPwvkXayyWkb5H-+X-Nr85G65YoAfs4_+zUfK=_+VHA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document DU found in RZ/V2L SoC. The DU block is identical to RZ/G2L
-SoC and therefore use RZ/G2L fallback to avoid any driver changes.
+Am Dienstag, 2. Mai 2023, 11:53:58 CEST schrieb Tianling Shen:
+> Hi Heiko,
+> 
+> On Tue, May 2, 2023 at 5:30 PM Heiko Stübner <heiko@sntech.de> wrote:
+> >
+> > Am Dienstag, 2. Mai 2023, 11:28:22 CEST schrieb Heiko Stübner:
+> > > Hi,
+> > >
+> > > Am Freitag, 28. April 2023, 03:37:37 CEST schrieb Tianling Shen:
+> > > > Lunzn Fastrhino R66S is a high-performance mini router.
+> > > >
+> > > > Specification:
+> > > > - Rockchip RK3568
+> > > > - 1/2GB LPDDR4 RAM
+> > > > - SD card slot
+> > > > - M.2 Connector
+> > > > - 2x USB 3.0 Port
+> > > > - 2x 2500 Base-T (PCIe, r8125b)
+> > > > - 12v DC Jack
+> > > >
+> > > > Signed-off-by: Tianling Shen <cnsztl@gmail.com>
+> > > > ---
+> > > >  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+> > > >  .../dts/rockchip/rk3568-fastrhino-r66s.dts    |  27 +
+> > > >  .../dts/rockchip/rk3568-fastrhino-r66s.dtsi   | 507 ++++++++++++++++++
+> > > >  3 files changed, 535 insertions(+)
+> > > >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3568-fastrhino-r66s.dts
+> > > >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3568-fastrhino-r66s.dtsi
+> > > >
+> > > > diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+> > > > index 2d585bbb8f3a..15089a78555a 100644
+> > > > --- a/arch/arm64/boot/dts/rockchip/Makefile
+> > > > +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> > > > @@ -85,6 +85,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-box-demo.dtb
+> > > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-lubancat-1.dtb
+> > > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-bpi-r2-pro.dtb
+> > > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-evb1-v10.dtb
+> > > > +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-fastrhino-r66s.dtb
+> > > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-lubancat-2.dtb
+> > > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-nanopi-r5c.dtb
+> > > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-nanopi-r5s.dtb
+> > > > diff --git a/arch/arm64/boot/dts/rockchip/rk3568-fastrhino-r66s.dts b/arch/arm64/boot/dts/rockchip/rk3568-fastrhino-r66s.dts
+> > > > new file mode 100644
+> > > > index 000000000000..fc9e1bdab128
+> > > > --- /dev/null
+> > > > +++ b/arch/arm64/boot/dts/rockchip/rk3568-fastrhino-r66s.dts
+> > > > @@ -0,0 +1,27 @@
+> > > > +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+> > > > +
+> > > > +#include "rk3568-fastrhino-r66s.dtsi"
+> > > > +
+> > > > +/ {
+> > > > +   model = "Lunzn FastRhino R66S";
+> > > > +   compatible = "lunzn,fastrhino-r66s", "rockchip,rk3568";
+> > > > +
+> > > > +   aliases {
+> > > > +           mmc0 = &sdmmc0;
+> > > > +   };
+> > > > +};
+> > > > +
+> > > > +&sdmmc0 {
+> > >
+> > > that whole element seems to be duplicated from rk3568-fastrhino-r66s.dtsi?
+> > > I don't think we need to declare that twice. If something really changes,
+> > > please only declare the new properties when going from dtsi to dts.
+> >
+> > Looking at patch3 I see the explanation :-) .
+> >
+> > The base dtsi should not contain the &sdmmc0 node, and it should
+> > only be included in the rk3568-fastrhino-r66s.dts, right?
+> >
+> 
+> Yes, nice catch!
+> 
+> And I found another error in the R68S dts file (gmac pcfg pull type).
+> Unfortunately I don't have this board right now, and I'm still waiting
+> for the test result from my friend. Suppose sending v2 in the next few
+> days.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-V8->v9:
- * Added Rb tag from Laurent and Geert.
-v7->v8:
- * Fixed the typo vsp2->du
- * Added Rb tag from Rob as the change is trivial.
-v7:
- * New patch.
----
- .../devicetree/bindings/display/renesas,rzg2l-du.yaml    | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
+no worries, send when you're ready :-)
 
-diff --git a/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml b/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
-index ab99e7d57a7d..98686ea84d53 100644
---- a/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
-+++ b/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
-@@ -16,8 +16,13 @@ description: |
- 
- properties:
-   compatible:
--    enum:
--      - renesas,r9a07g044-du # RZ/G2{L,LC}
-+    oneOf:
-+      - enum:
-+          - renesas,r9a07g044-du # RZ/G2{L,LC}
-+      - items:
-+          - enum:
-+              - renesas,r9a07g054-du    # RZ/V2L
-+          - const: renesas,r9a07g044-du # RZ/G2L fallback
- 
-   reg:
-     maxItems: 1
--- 
-2.25.1
+Heiko
+
 
