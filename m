@@ -2,85 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C72EA6F4A50
-	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 21:27:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AAF7B6F4A78
+	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 21:40:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229502AbjEBT1U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 May 2023 15:27:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49868 "EHLO
+        id S229659AbjEBTki (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 May 2023 15:40:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55252 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229458AbjEBT1U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 15:27:20 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDB9F199B
-        for <devicetree@vger.kernel.org>; Tue,  2 May 2023 12:27:18 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-95f4c5cb755so828781066b.0
-        for <devicetree@vger.kernel.org>; Tue, 02 May 2023 12:27:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683055637; x=1685647637;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=WlvJAhh++/0u4nv0c2v/4jbnMZEEfAgSioFHncVcNHM=;
-        b=FuzPEm5a6HfsdGz0cZuE8bc1PmkbfYtG+rxbUTbb8BBMdYd2jSC9/YA56sI3mATvhk
-         9vQFdOvKCs6DMIxixdQlZajWC3k3WpluPi1PAIGBbsC1shROzMCecCYdnmDKrhKmEDL5
-         5lLdDUV6n2Lnm65XggKvOZKa8TmJ99xl6xzTk9a1R2/7HpeW98AYAyPRwy7WR7Qcg4ns
-         ZO1QTaCGoXu23k18bF4Z5oLUekYI8e+2Eim19pQGftwQLd1QH7bjQymgMYMjlLNrPY6N
-         BhdccBth6VCpiZRdchGPhGUAHReo5J8vYhCCJ30h3idWpAHphSQve29M1d1MfQBl7/Tt
-         /Eww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683055637; x=1685647637;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WlvJAhh++/0u4nv0c2v/4jbnMZEEfAgSioFHncVcNHM=;
-        b=UT679FrifOhxp7ImQQLW4jjSvnyEQ3nt7OwjKDIFqNcEXjWVrHyCSxXjk6ZNmxCWJh
-         yTqkylwNRmsPrVo9rMcvd029pZY0G21iwR0w9Rn07J3ggRThs4ipUaNW5/56NJWSDNwK
-         3dNhNrcR032Bt8U0VvCvd5nodb+GDoamFRJAYaBua1kH25fGv7bAcLwMFWv5waUiP42X
-         hcuRJXbSlJrimW566M9wGlc3RdbWMPbzFZKhm7DrC4pLF+P2ot/wBVIv5oY6mH8chem+
-         P+C4KRdve6tAioQz8ia4b6i21MXHUn63JggO9honWYoeTA2cTn0QAV6tzX0m3DoY+x7J
-         +7GA==
-X-Gm-Message-State: AC+VfDzSED3RanL0PC8Rn4SGLmq1lyjMT4E4R48/rM5RU8TLJgC/IJQS
-        wS19/fDw4W+LvS6T0tdL63b8Jw==
-X-Google-Smtp-Source: ACHHUZ72IXzYWeoI10TEpLTlgpk2WAsUnkKi/OYB2kOkCAuBunsYCUpywh4DXYYrck3DimaL2dxCsQ==
-X-Received: by 2002:a17:907:608b:b0:88f:a236:69e6 with SMTP id ht11-20020a170907608b00b0088fa23669e6mr931504ejc.7.1683055637249;
-        Tue, 02 May 2023 12:27:17 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:37be:eda5:e303:19e0? ([2a02:810d:15c0:828:37be:eda5:e303:19e0])
-        by smtp.gmail.com with ESMTPSA id my24-20020a1709065a5800b0094a8115e148sm16431638ejc.87.2023.05.02.12.27.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 May 2023 12:27:16 -0700 (PDT)
-Message-ID: <676dae73-9b59-d0bb-37ca-eaa120e8dcb5@linaro.org>
-Date:   Tue, 2 May 2023 21:27:15 +0200
+        with ESMTP id S229441AbjEBTkh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 15:40:37 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 290869E;
+        Tue,  2 May 2023 12:40:36 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B2E7D620AE;
+        Tue,  2 May 2023 19:40:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18AD3C4339E;
+        Tue,  2 May 2023 19:40:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1683056435;
+        bh=9Dokck6Jc4naZGVhGmqgJoJLIGEOHwC1dkDJ1O4Mipg=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=iGl2fDpG6u+V7nw9XiF//RgP2qeZBecdfPEueb6HbN4e9bmh+rMmyTGvoJLh7U0IN
+         LT34Sz26U9ehDgNU9xWS2cGEUZMofynDqCr3NMtbyMjGcM7Ig7XSHoWMlWBe61LHXK
+         foLe03MQ+bujtF/31rycC13DeFqREes6CUthTP2NucBb4VgBQHzmK8qPa10Q9tcJfT
+         kGl1UrAJYytqHUS+kOaWhu7l1nLj3tflKoPvaGU5xVR382p8EsxG5UXDV4YqhNrt0H
+         gKKH9JwAQNWbY4QwmuAxfFPQMrV5eeoP/Nm8Xjp3aXp2elQ+yUvR0d0n0PahunLwSd
+         cPLAVqB30txpQ==
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2ab25e8a4a7so42562611fa.3;
+        Tue, 02 May 2023 12:40:34 -0700 (PDT)
+X-Gm-Message-State: AC+VfDzz4UFGujsu7oNd6erhc3aE43prRHFuJi1VoB6g0h/RU/rMPrjt
+        w8YGHihaI1wzdcDXtg3QuRn5oWdubKmfNswUEQ==
+X-Google-Smtp-Source: ACHHUZ4oET00FnB+Fs3paO2KFWP6eBEztecawKM1A53Y541JaZi1w2Ra1iVebif6hgPcY0x6Ou0Xe91anOEl+A8jdBw=
+X-Received: by 2002:a2e:8801:0:b0:2a8:b995:ffe5 with SMTP id
+ x1-20020a2e8801000000b002a8b995ffe5mr4898960ljh.25.1683056432976; Tue, 02 May
+ 2023 12:40:32 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH v4 2/2] dt-bindings: usb: snps,dwc3: Add the compatible
- name 'snps,dwc3-rtk-soc'
-Content-Language: en-US
-To:     =?UTF-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?= 
-        <stanley_chang@realtek.com>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20230502050452.27276-1-stanley_chang@realtek.com>
- <20230502050452.27276-2-stanley_chang@realtek.com>
- <2653e0d1-6570-7469-51da-b539b5c14299@linaro.org>
- <bc5cd630d96f44bcaad7f95f2f45aac1@realtek.com>
- <49d2b103-de1e-637a-1bf0-aaba1c6afaf4@linaro.org>
- <a04e70f97bcb48048edb2f6db7bb6c25@realtek.com>
- <f51b4dc9-e1da-7c9c-1e39-c8510569db9d@linaro.org>
- <c44baa9fae5c445c90103cd2e129ab0b@realtek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <c44baa9fae5c445c90103cd2e129ab0b@realtek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+References: <20220328000915.15041-1-ansuelsmth@gmail.com> <85eb14ec-f465-7447-ad77-a3dabc666f47@kernel.org>
+ <YkKRYnN84D9VZhGj@Ansuel-xps.localdomain> <CAL_Jsq+RQQ-ADMxLPUFwk6S6kGmb6oNDy4k52fnU0EtbUvqmSA@mail.gmail.com>
+ <CAMuHMdWNTE48MFy6fqxAsfMWz9b6E7dVNXtXtESP95sxk2PGwA@mail.gmail.com>
+ <CAL_JsqJthKTm8bhRF2B=ae1tvtPeYYXx_Tm76qQtSwLtH5C6VA@mail.gmail.com> <720a2829-b6b5-411c-ac69-9a53e881f48d@app.fastmail.com>
+In-Reply-To: <720a2829-b6b5-411c-ac69-9a53e881f48d@app.fastmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 2 May 2023 14:40:19 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKCtmkwzKa01gyG65fH8ye6R3KhR41PJbJhOJ4X9j=znA@mail.gmail.com>
+Message-ID: <CAL_JsqKCtmkwzKa01gyG65fH8ye6R3KhR41PJbJhOJ4X9j=znA@mail.gmail.com>
+Subject: Re: [RFC PATCH 0/1] Categorize ARM dts directory
+To:     Arnd Bergmann <arnd@arndb.de>
+Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Olof Johansson <olof@lixom.net>,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-actions@lists.infradead.org,
+        linux-sunxi@lists.linux.dev,
+        Linux-OMAP <linux-omap@vger.kernel.org>,
+        linux-amlogic@lists.infradead.org, linux-arm-kernel@axis.com,
+        linux-aspeed@lists.ozlabs.org,
+        linux-rpi-kernel@lists.infradead.org,
+        chrome-platform@lists.linux.dev,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        linux-samsung-soc@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        kernel@dh-electronics.com, linux-mediatek@lists.infradead.org,
+        openbmc@lists.ozlabs.org, linux-tegra@vger.kernel.org,
+        "linux-oxnas@groups.io" <linux-oxnas@groups.io>,
+        linux-arm-msm@vger.kernel.org, linux-unisoc@lists.infradead.org,
+        linux-rockchip@lists.infradead.org,
+        linux-realtek-soc@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -89,56 +85,163 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/05/2023 12:37, Stanley Chang[昌育德] wrote:
-> Hi Krzysztof,
-> 
->>>>>> On 02/05/2023 07:04, Stanley Chang wrote:
->>>>>>> Add a new compatible name 'snps,dwc3-rtk-soc' of DT for realtek
->>>>>>> dwc3 core to adjust the global register start address
->>>>>>>
->>>>>>> The RTK DHC SoCs were designed, the global register address offset
->>>>>>> at
->>>>>>
->>>>>> What are: "RTK" and "DHC"? These are manufactured by Synopsys as
->>>>>> you suggest in the patch?
->>>>>
->>>>> RTK is Realtek.
->>>>> DHC is the department name in Realtek and the abbreviation of the
->>>>> Digital
->>>> Home Center.
->>>>> The USB controller of RTK DHC SoCs used the DWC3 IP of Synopsys.
->>>>
->>>> Then entire compatible is not correct. Vendor is Realtek not Synopsys.
->>>> DHC is not even device name. Use real device names.
->>>
->>> So, can we use the compatible name as 'realtek,dwc3' ?
->>
->> dwc3 is not a real device name for Realtek.
-> 
-> We still use dwc3 IP in Realtek's SoC. Why is the name "dwc3" inappropriate?
+On Tue, May 2, 2023 at 3:15=E2=80=AFAM Arnd Bergmann <arnd@arndb.de> wrote:
+>
+> On Tue, Apr 25, 2023, at 17:57, Rob Herring wrote:
+> > On Tue, Apr 25, 2023 at 2:28=E2=80=AFAM Geert Uytterhoeven <geert@linux=
+-m68k.org> wrote:
+> >
+> >> Does your script also cater for .dts files not matching any pattern,
+> >> but including a .dtsi file that does match a pattern?
+> >
+> > I assume I built everything after moving, but maybe not...
+> >
+> > That's all just "details". First, we need agreement on a) moving
+> > things to subdirs and b) doing it 1-by-1 or all at once. So far we've
+> > been stuck on a) for being 'too much churn'.
+>
+> Sorry for missing most of the discussion last week. The script sounds
+> fine to me, the only reason I didn't want to do this in the past is that
+> we had the plan to move platforms out of the kernel tree to an external
+> repository and I wanted to do this platform at a time and also only move
+> each one once. I don't think that is going to happen anytime soon now,
+> so let's just do your script.
+>
+> Can you send me the script and/or a pull request of the resulting
+> tree based on my soc/dt branch? Everything is merged upstream,
+> and I think git-merge would handle the remaining merges with any
+> other changes in mainline.
 
-dwc3 is the name of design coming from Synopsys. Your device is probably
-called differently. Why it is inappropriate? Because your device is not
-called DWC3, even though you use IP from Synopsys.
+I've dusted off my script and made a branch[1] with the result.
+There's just a couple of fixes needed after the script is run (see the
+top commit). The cross arch includes are all fixed up by the script.
+dtbs_install maintains a flat install. I compared the number of .dtbs
+before and after to check the script.
 
-Although vendor,dwc3 is already used as compatible in several cases, I
-don't think it is a good pattern.
+I think the only issue remaining is finalizing the mapping of
+platforms to subdirs. What I have currently is a mixture of SoC
+families and vendors. The most notable are all the Freescale/NXP
+platforms, pxa, socfpga, and stm32. It's not consistent with arm64
+either. Once that's finalized, I still need to go update MAINTAINERS.
 
-> 
-> Should compatibility names use the SoC name?
-> For example, our SoC name
-> RTD129x, RTD139x, RTD161x, RTD161xB, etc.
-> Should we use these names in compatible names?
-> "realtek, rtd129x", "realtek, rtd139x", "realtek, rtd161x"...etc.
+Here's the current mapping:
 
-Regular rules apply, because your device is not special.
-https://elixir.bootlin.com/linux/v6.1-rc1/source/Documentation/devicetree/bindings/writing-bindings.rst#L42
+vendor_map =3D {
+    'alphascale' : 'alphascale',
+    'alpine' : 'alpine',
+    'artpec' : 'axis',
+    'axm' : 'lsi',
+    'cx9' : 'cnxt',
+    'ecx' : 'calxeda',
+    'highbank' : 'calxeda',
+    'ep7' : 'cirrus',
+    'mxs': 'mxs',
+    'imx23': 'mxs',
+    'imx28': 'mxs',
+    'sun' : 'allwinner',
+    'imx': 'imx',
+    'e6' : 'imx',
+    'e7' : 'imx',
+    'mba6' : 'imx',
+    'ls': 'fsl',
+    'vf': 'fsl',
+    'qcom': 'qcom',
+    'am3' : 'ti',
+    'am4' : 'ti',
+    'am5' : 'ti',
+    'dra' : 'ti',
+    'keystone' : 'ti',
+    'omap' : 'ti',
+    'compulab' : 'ti',
+    'logicpd' : 'ti',
+    'elpida' : 'ti',
+    'motorola' : 'ti',
+    'twl' : 'ti',
+    'da' : 'ti',
+    'dm' : 'ti',
+    'nspire' : 'nspire',
+    'armada' : 'marvell',
+    'dove' : 'marvell',
+    'kirkwood' : 'marvell',
+    'orion' : 'marvell',
+    'mvebu' : 'marvell',
+    'mmp' : 'marvell',
+    'berlin' : 'berlin',
+    'pxa2' : 'pxa',
+    'pxa3' : 'pxa',
+    'pxa' : 'marvell',
+    'arm-' : 'arm',
+    'integ' : 'arm',
+    'mps' : 'arm',
+    've' : 'arm',
+    'aspeed' : 'aspeed',
+    'ast2' : 'aspeed',
+    'facebook' : 'aspeed',
+    'ibm' : 'aspeed',
+    'openbmc' : 'aspeed',
+    'en7' : 'airoha',
+    'at91' : 'microchip',
+    'sama' : 'microchip',
+    'sam9' : 'microchip',
+    'usb_' : 'microchip',
+    'tny_' : 'microchip',
+    'mpa1600' : 'microchip',
+    'animeo_ip' : 'microchip',
+    'aks-cdu' : 'microchip',
+    'ethernut5' : 'microchip',
+    'evk-pro3' : 'microchip',
+    'pm9g45' : 'microchip',
+    'ge86' : 'microchip',
+    'bcm' : 'brcm',
+    'exynos' : 'samsung',
+    's3c' : 'samsung',
+    's5p' : 'samsung',
+    'gemini' : 'gemini',
+    'hi3' : 'hisilicon',
+    'hip' : 'hisilicon',
+    'hisi' : 'hisilicon',
+    'sd5' : 'hisilicon',
+    'hpe' : 'hpe',
+    'intel': 'intel',
+    'mt' : 'mediatek',
+    'meson' : 'meson',
+    'moxa' : 'moxa',
+    'mstar' : 'mstar',
+    'nuvo' : 'nuvoton',
+    'lpc' : 'lpc',
+    'lan96' : 'microchip',
+    'owl' : 'actions',
+    'ox8' : 'oxsemi',
+    'rda' : 'rda',
+    'rtd' : 'realtek',
+    'r7' : 'renesas',
+    'r8' : 'renesas',
+    'r9' : 'renesas',
+    'emev2' : 'renesas',
+    'sh73a' : 'renesas',
+    'gr-' : 'renesas',
+    'iwg' : 'renesas',
+    'rk' : 'rockchip',
+    'rv11' : 'rockchip',
+    'rockchip' : 'rockchip',
+    'socfpga' : 'socfpga',
+    'stm' : 'stm32',
+    'sti' : 'sti',
+    'st-pin' : 'sti',
+    'ste' : 'st-ericsson',
+    'spear' : 'spear',
+    'axp' : 'allwinner',
+    'tegra' : 'nvidia',
+    'milbeaut' : 'socionext',
+    'uniph' : 'socionext',
+    'vt8500' : 'vt8500',
+    'wm8' : 'vt8500',
+    'xen' : 'xen',
+    'zx' : 'zte',
+    'zynq' : 'xilinx',
+}
 
-Therefore either SoC-based device specific name or followed by:
-1. SoC-based device specific fallback,
-2. Family-device generic fallback,
+Rob
 
-
-Best regards,
-Krzysztof
-
+[1] git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git arm-dts-mo=
+ve-v2
