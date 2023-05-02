@@ -2,82 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C3C66F3F72
-	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 10:45:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 980386F3F89
+	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 10:48:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233673AbjEBIpR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 May 2023 04:45:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49622 "EHLO
+        id S233934AbjEBIr6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 May 2023 04:47:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233638AbjEBIpH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 04:45:07 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB92E4EDD
-        for <devicetree@vger.kernel.org>; Tue,  2 May 2023 01:44:57 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-50b9ef67f35so4768401a12.2
-        for <devicetree@vger.kernel.org>; Tue, 02 May 2023 01:44:57 -0700 (PDT)
+        with ESMTP id S233941AbjEBIre (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 04:47:34 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B63B85FEC
+        for <devicetree@vger.kernel.org>; Tue,  2 May 2023 01:46:18 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-94f7a0818aeso573555166b.2
+        for <devicetree@vger.kernel.org>; Tue, 02 May 2023 01:46:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683017096; x=1685609096;
+        d=linaro.org; s=google; t=1683017174; x=1685609174;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=brUDPgOvzwj8MygKH5XVldqWhb9T2TXDISFxJEfAkvQ=;
-        b=jRph/bcjoY17ZpsA49xJ/ytd6O7vBZe2QNqNBSpFhbYWL4jinY8HGILkKxDo9ZOqeX
-         zNcxRilPb0F2spiToCrTHb4sSP+ZV0kQ5uJOxGlYieK0raWoP6KSDzgV+BZ7QoPouxdF
-         rYn/CETJF5xOl73Tju4KUEQtFpHd9bLn/UR26fTW7Nu0pcNdEeuauWZCW/uzt5iZgjRF
-         oxWsuvINeYvAg8jiq7c1uOuYEJFhVCgexrUCSb01PErMnPuPorhP5H7Zrm/E78x3ZiU7
-         ZEUjZnfSb4LQUalvBnhiig7L5pco4TjHlwdfvEB2GhXuiHskodW7pJmNeYjBf8Nj6YPf
-         pulw==
+        bh=Zw0ZB17Cle846OeF2XGobwdDDoFs+jkGlDpNy6ccfBw=;
+        b=iDuDax8k95dE5ZwEAuti1Tiz2XgW+YmLRi7TJV6jCaqw6lbFFO9fjLp6oxrXBWxMQK
+         nhx/hJgHeCCRbHlwcLNVWKdIn/o349sZaxUVo0Jb39jxZ/v2e/32dD1jz1tLUN4iB5bM
+         ACtECUEuqoQjKpee6Rr/QKYLdqJSLsPv8TU9WOuVZb2jrL20HGI2Opo29gohHQk9eB2q
+         uHAiXN4JL8xXHABVSam0uEsADNVwFJpHQgqrbQ4KE12Itn7qwJgPgvaJSz0nKHFHq4y+
+         X2PzwF36TUyNSJ8KeHMGSm63h1LpzqPYDc/Od/Zsjj2ipB7sOyzpv9FIShPC5yL6xt5p
+         lDog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683017096; x=1685609096;
+        d=1e100.net; s=20221208; t=1683017174; x=1685609174;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=brUDPgOvzwj8MygKH5XVldqWhb9T2TXDISFxJEfAkvQ=;
-        b=FL4Xj50y0MvEkI+OA5VoPOp/o1W8/QAdHeYRM5vp8XI4JtyTZ6z7VmHkBEIskx62lU
-         ryb2aAdQl/gV0bxUXZ16N+IHP0trcFGw4+/G1A2gDeKaOYGnXxPxPvzT2q8F4M1zwvfs
-         +3mm8+oO+K/iA35LI0vBdL4v0VCUW/lFcPSOReBG/IJU2D0sTajLW0so1kgOzMQB/y5j
-         6cHEbEFlJiuZZUXY4taAPGyiyUqPpFF+z3hES3VCTPjnznSUlLR9PvBuvH/xbT8KGx4D
-         hDwFaQxJC6JbJRBujDjzvk7bNynT/gHIIE7FJ7BBHLppw0uYbNPllQs7UNYTDTxApfSK
-         s3ww==
-X-Gm-Message-State: AC+VfDy79DfHDW/WK4yjtScdHBpXdK6/wQzgz+tBNLDSAT3+eRCL1UHS
-        IepVbSBCFV/MdPeVbqbYyzJLFg==
-X-Google-Smtp-Source: ACHHUZ542NfmR9+d3Go/cLXLumhkt/Q/oJ9K34oLs40NkS5jvHsJP3xBBxIHYYYHLNH34t0rWU6f2A==
-X-Received: by 2002:aa7:c1c3:0:b0:506:82b7:10c3 with SMTP id d3-20020aa7c1c3000000b0050682b710c3mr7217924edp.41.1683017096407;
-        Tue, 02 May 2023 01:44:56 -0700 (PDT)
+        bh=Zw0ZB17Cle846OeF2XGobwdDDoFs+jkGlDpNy6ccfBw=;
+        b=XjmmxtYwtRahlzG/OcIPw5Bc0VT1ezxYOBBvW+WBEDCJgMivD1aK4MaOrhbhZ7X+LZ
+         J3c25Ws98xGcVRKs67bBJHeL2iAaidLQ2LxX1hrfTLqu4NhOYhNYMBxLVeHw9kYmA0Ur
+         j96wSjNW4bVrQ3zk7dslSyIMUzsNLGgIVhosqYkObl7zOMEEF5sMUdQdfGlxdII1uGcx
+         JgTFqqC62+IZlE4CEWgwPdMj+rZ9SpXG4yILx8ZV3Fp0xa9YSiLUNEuwraT78/klSZRq
+         le5efw3oywO7rvqcPug/AtxphYHRUYaQR8uvv6UpO5TR47NxNsaXM/8waUNCB6BmzGo5
+         ufVg==
+X-Gm-Message-State: AC+VfDzmx4SODO2SAR8e/pM35nYL4oXkk7TlnQX2XsSioYKf1Ok3J/fK
+        goRiFwYEURlXEjJkhhtHXl11XA==
+X-Google-Smtp-Source: ACHHUZ4zLrbfZlvsZe1+vBIsZru/9xib2IJ9u2zGFrd/YXBeWhWgfNbG3TEWBxfrj1euW+12LrzS1g==
+X-Received: by 2002:a17:907:c21:b0:960:7643:c972 with SMTP id ga33-20020a1709070c2100b009607643c972mr16747769ejc.55.1683017173820;
+        Tue, 02 May 2023 01:46:13 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:bafd:1283:b136:5f6a? ([2a02:810d:15c0:828:bafd:1283:b136:5f6a])
-        by smtp.gmail.com with ESMTPSA id f12-20020a056402160c00b0050bd427a539sm353071edv.60.2023.05.02.01.44.54
+        by smtp.gmail.com with ESMTPSA id qw35-20020a1709066a2300b0095ef7268ba9sm8444490ejc.41.2023.05.02.01.46.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 May 2023 01:44:55 -0700 (PDT)
-Message-ID: <49d2b103-de1e-637a-1bf0-aaba1c6afaf4@linaro.org>
-Date:   Tue, 2 May 2023 10:44:54 +0200
+        Tue, 02 May 2023 01:46:13 -0700 (PDT)
+Message-ID: <cfb17cbc-b8cf-c3ce-cf77-7e13e12c42eb@linaro.org>
+Date:   Tue, 2 May 2023 10:46:11 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
-Subject: Re: [PATCH v4 2/2] dt-bindings: usb: snps,dwc3: Add the compatible
- name 'snps,dwc3-rtk-soc'
+Subject: Re: [PATCH v14 2/4] dt-bindings: i2c: Add Maxim MAX735x/MAX736x
+ variants
 Content-Language: en-US
-To:     =?UTF-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?= 
-        <stanley_chang@realtek.com>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+To:     Patrick Rudolph <patrick.rudolph@9elements.com>,
+        Peter Rosin <peda@axentia.se>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20230502050452.27276-1-stanley_chang@realtek.com>
- <20230502050452.27276-2-stanley_chang@realtek.com>
- <2653e0d1-6570-7469-51da-b539b5c14299@linaro.org>
- <bc5cd630d96f44bcaad7f95f2f45aac1@realtek.com>
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230501091552.847240-1-patrick.rudolph@9elements.com>
+ <20230501091552.847240-3-patrick.rudolph@9elements.com>
+ <fd20cad6-34f9-5f3c-abe7-cdf3a93d712c@axentia.se>
+ <CALNFmy1gxUD-C62SH5GxA=fq8eKYxiOHe8wqXGsVdzsyiJc6Xg@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <bc5cd630d96f44bcaad7f95f2f45aac1@realtek.com>
+In-Reply-To: <CALNFmy1gxUD-C62SH5GxA=fq8eKYxiOHe8wqXGsVdzsyiJc6Xg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,40 +82,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/05/2023 10:05, Stanley Chang[昌育德] wrote:
-> Hi Krzysztof,
+On 02/05/2023 08:52, Patrick Rudolph wrote:
+> Hi Peter,
+> it could indeed cause problems when VDD1 != VDD2 and at both needs to
+> be enabled.
+> The pca9846 datasheet seems to refer to VDD1 as VDD. Thus I could add
+> an optional "vdd2" regulator to the binding and driver.
 > 
->> On 02/05/2023 07:04, Stanley Chang wrote:
->>> Add a new compatible name 'snps,dwc3-rtk-soc' of DT for realtek dwc3
->>> core to adjust the global register start address
->>>
->>> The RTK DHC SoCs were designed, the global register address offset at
->>
->> What are: "RTK" and "DHC"? These are manufactured by Synopsys as you
->> suggest in the patch?
-> 
-> RTK is Realtek.
-> DHC is the department name in Realtek and the abbreviation of the Digital Home Center.
-> The USB controller of RTK DHC SoCs used the DWC3 IP of Synopsys.
+> Please let me know if that's what you had in mind.
 
-Then entire compatible is not correct. Vendor is Realtek not Synopsys.
-DHC is not even device name. Use real device names.
+Don't top post.
 
-> 
->>> 0x8100. The default address offset is constant at
->>> DWC3_GLOBALS_REGS_START (0xc100). Therefore, add the compatible
->> name
->>> of device-tree to specify the SoC custom's global register start address.
->>>
->>> Signed-off-by: Stanley Chang <stanley_chang@realtek.com>
->>
->> Based on your email, rtk could mean Realtek, so the compatible is clearly
->> wrong.
-> 
-> The compatible name "snps,dwc3-rtk-soc" wants to represent the dwc3 driver, which requires a different offset for Realtek SoCs
-
-No. The compatible represents hardware, not driver. Use compatible
-matching real hardware.
+In such case vdd-supply should not be used for VDD2.
 
 Best regards,
 Krzysztof
