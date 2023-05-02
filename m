@@ -2,217 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C11066F4D52
-	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 01:02:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23B046F4D77
+	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 01:15:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229507AbjEBXCt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 May 2023 19:02:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52392 "EHLO
+        id S229581AbjEBXPq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 May 2023 19:15:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229460AbjEBXCt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 19:02:49 -0400
-Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B17FC3;
-        Tue,  2 May 2023 16:02:47 -0700 (PDT)
-Received: by mail-qk1-x734.google.com with SMTP id af79cd13be357-75131c2997bso37715785a.1;
-        Tue, 02 May 2023 16:02:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683068567; x=1685660567;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=RVUCe/5y2Ex7bNIQOvHne7x9R8A0wELwbdEse2WDpF8=;
-        b=iHBlY9kIRMOF3Yq8hT/HYtLwTwjoof0FVfaEhNjRSWPoYgoA1qtRUzGwD+nkjOzJPI
-         u09FXpbJrjxtM3MFyzM74JfHNsb7UZ0GJze/A7Ip/HD+5roEWeYmZwjlYu0a2cdkfbwf
-         +kLbPvAmDmxad5KujOjWnyiCW+W4okHTLQRqn4fLYSw7t/qXPwhwMm5mWSJxb8hi+d0O
-         ev3gtx0+XlazA6w82yl+mnLoL1jpad70ZxSgOz1YQXa9W1BLk0lheCYSgecLnoqpXxAH
-         /k0Y7rMrxmhfNEQZTdJyCemWb5DMYD7STFJO05Jiqj2/50xWs6TXP7C2X1ywzoueu5sn
-         IGTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683068567; x=1685660567;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RVUCe/5y2Ex7bNIQOvHne7x9R8A0wELwbdEse2WDpF8=;
-        b=Di+NvKG4ckZ2tMZKwvFQi8cPaxZKc7DjQnG0MELv79YnJb7pZi66b9mLXOkmgbf5QG
-         zP09CJXKVQLuA4XEloTvt88PFdrHsYs1ors1Swu1M707MSxKnssS+Yj4H4RJNIBkVoo/
-         82sNVkd3hsoVRHwprme2wx7IF58Rdq8p5ZhOgRaG66vAQxyS8vNRBU+GAITewKmCutUj
-         BBTuklgiDfClWfLrEBylFnNTjHgSdeald7KYE/SUKEB5OSRACoMk9dXTqsDnBFvJxCta
-         ZdbhW8oH/EKRxA48jEIs1stPWoZ0noEdMGeEXRHc1LsLazfC+siVYDN9CXg6FeLWn0lS
-         t5EA==
-X-Gm-Message-State: AC+VfDzmGexNCjYNcuB9yVziO/f075hvp5vSTohtSu8G7O7KthjPkLjW
-        gtQaRgql0W8pvLLo091+L6E4JWrI/tQ=
-X-Google-Smtp-Source: ACHHUZ4eSB1jw2dhw1LAIzPe/MR5kdc4AoCnBVEG18379hjnfMdu0BtdA7D5r0jmXaGKb3nbIbuwpA==
-X-Received: by 2002:a05:6214:d64:b0:61a:96d3:bd20 with SMTP id 4-20020a0562140d6400b0061a96d3bd20mr380920qvs.10.1683068566677;
-        Tue, 02 May 2023 16:02:46 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id t18-20020a0cea32000000b0061b71220644sm326246qvp.19.2023.05.02.16.02.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 May 2023 16:02:45 -0700 (PDT)
-Message-ID: <d4b52074-d11c-4c7a-ad74-b2fce64c6d30@gmail.com>
-Date:   Tue, 2 May 2023 16:02:34 -0700
+        with ESMTP id S229449AbjEBXPp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 19:15:45 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A06C26A9;
+        Tue,  2 May 2023 16:15:44 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 342NFRNJ005676;
+        Tue, 2 May 2023 18:15:27 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1683069327;
+        bh=rO3x08YYa6XbuAIULHSQ31VQY29fYqGzY1482CJ8rv8=;
+        h=From:To:CC:Subject:Date;
+        b=o5exQk9RRn6KLYJ2ZO1ehv5iIQmyduMRToO20o91GG2t89Gh8aL1uadVGqDuYSF0h
+         SrSoUCMB+N0lrW+wXn1VWS9zO/Jd1AS0+Ojg6/ILFv1axDzpNRmbGHDHxk2fAmiwzh
+         g9zumZK0HD45AGvgxt16iARz2DhdGFyLOdYzxNdI=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 342NFRkp081509
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 2 May 2023 18:15:27 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 2
+ May 2023 18:15:27 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 2 May 2023 18:15:27 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 342NFRxQ073381;
+        Tue, 2 May 2023 18:15:27 -0500
+From:   Hari Nagalla <hnagalla@ti.com>
+To:     <nm@ti.com>, <vigneshr@ti.com>
+CC:     <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v3 0/3] Add R5F and C71 DSP nodes for J784S4 SoC
+Date:   Tue, 2 May 2023 18:15:24 -0500
+Message-ID: <20230502231527.25879-1-hnagalla@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [RFC PATCH 0/1] Categorize ARM dts directory
-Content-Language: en-US
-To:     Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Olof Johansson <olof@lixom.net>,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-actions@lists.infradead.org,
-        linux-sunxi@lists.linux.dev,
-        Linux-OMAP <linux-omap@vger.kernel.org>,
-        linux-amlogic@lists.infradead.org, linux-arm-kernel@axis.com,
-        linux-aspeed@lists.ozlabs.org,
-        linux-rpi-kernel@lists.infradead.org,
-        chrome-platform@lists.linux.dev,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        linux-samsung-soc@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        kernel@dh-electronics.com, linux-mediatek@lists.infradead.org,
-        openbmc@lists.ozlabs.org, linux-tegra@vger.kernel.org,
-        "linux-oxnas@groups.io" <linux-oxnas@groups.io>,
-        linux-arm-msm@vger.kernel.org, linux-unisoc@lists.infradead.org,
-        linux-rockchip@lists.infradead.org,
-        linux-realtek-soc@lists.infradead.org
-References: <20220328000915.15041-1-ansuelsmth@gmail.com>
- <85eb14ec-f465-7447-ad77-a3dabc666f47@kernel.org>
- <YkKRYnN84D9VZhGj@Ansuel-xps.localdomain>
- <CAL_Jsq+RQQ-ADMxLPUFwk6S6kGmb6oNDy4k52fnU0EtbUvqmSA@mail.gmail.com>
- <CAMuHMdWNTE48MFy6fqxAsfMWz9b6E7dVNXtXtESP95sxk2PGwA@mail.gmail.com>
- <CAL_JsqJthKTm8bhRF2B=ae1tvtPeYYXx_Tm76qQtSwLtH5C6VA@mail.gmail.com>
- <720a2829-b6b5-411c-ac69-9a53e881f48d@app.fastmail.com>
- <CAL_JsqKCtmkwzKa01gyG65fH8ye6R3KhR41PJbJhOJ4X9j=znA@mail.gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <CAL_JsqKCtmkwzKa01gyG65fH8ye6R3KhR41PJbJhOJ4X9j=znA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/2/23 12:40, Rob Herring wrote:
-> On Tue, May 2, 2023 at 3:15 AM Arnd Bergmann <arnd@arndb.de> wrote:
->>
->> On Tue, Apr 25, 2023, at 17:57, Rob Herring wrote:
->>> On Tue, Apr 25, 2023 at 2:28 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->>>
->>>> Does your script also cater for .dts files not matching any pattern,
->>>> but including a .dtsi file that does match a pattern?
->>>
->>> I assume I built everything after moving, but maybe not...
->>>
->>> That's all just "details". First, we need agreement on a) moving
->>> things to subdirs and b) doing it 1-by-1 or all at once. So far we've
->>> been stuck on a) for being 'too much churn'.
->>
->> Sorry for missing most of the discussion last week. The script sounds
->> fine to me, the only reason I didn't want to do this in the past is that
->> we had the plan to move platforms out of the kernel tree to an external
->> repository and I wanted to do this platform at a time and also only move
->> each one once. I don't think that is going to happen anytime soon now,
->> so let's just do your script.
->>
->> Can you send me the script and/or a pull request of the resulting
->> tree based on my soc/dt branch? Everything is merged upstream,
->> and I think git-merge would handle the remaining merges with any
->> other changes in mainline.
-> 
-> I've dusted off my script and made a branch[1] with the result.
-> There's just a couple of fixes needed after the script is run (see the
-> top commit). The cross arch includes are all fixed up by the script.
-> dtbs_install maintains a flat install. I compared the number of .dtbs
-> before and after to check the script.
-> 
-> I think the only issue remaining is finalizing the mapping of
-> platforms to subdirs. What I have currently is a mixture of SoC
-> families and vendors. The most notable are all the Freescale/NXP
-> platforms, pxa, socfpga, and stm32. It's not consistent with arm64
-> either. Once that's finalized, I still need to go update MAINTAINERS.
-> 
-> Here's the current mapping:
-> 
-> vendor_map = {
->      'alphascale' : 'alphascale',
->      'alpine' : 'alpine',
->      'artpec' : 'axis',
->      'axm' : 'lsi',
->      'cx9' : 'cnxt',
->      'ecx' : 'calxeda',
->      'highbank' : 'calxeda',
->      'ep7' : 'cirrus',
->      'mxs': 'mxs',
->      'imx23': 'mxs',
->      'imx28': 'mxs',
->      'sun' : 'allwinner',
->      'imx': 'imx',
->      'e6' : 'imx',
->      'e7' : 'imx',
->      'mba6' : 'imx',
->      'ls': 'fsl',
->      'vf': 'fsl',
->      'qcom': 'qcom',
->      'am3' : 'ti',
->      'am4' : 'ti',
->      'am5' : 'ti',
->      'dra' : 'ti',
->      'keystone' : 'ti',
->      'omap' : 'ti',
->      'compulab' : 'ti',
->      'logicpd' : 'ti',
->      'elpida' : 'ti',
->      'motorola' : 'ti',
->      'twl' : 'ti',
->      'da' : 'ti',
->      'dm' : 'ti',
->      'nspire' : 'nspire',
->      'armada' : 'marvell',
->      'dove' : 'marvell',
->      'kirkwood' : 'marvell',
->      'orion' : 'marvell',
->      'mvebu' : 'marvell',
->      'mmp' : 'marvell',
->      'berlin' : 'berlin',
->      'pxa2' : 'pxa',
->      'pxa3' : 'pxa',
->      'pxa' : 'marvell',
->      'arm-' : 'arm',
->      'integ' : 'arm',
->      'mps' : 'arm',
->      've' : 'arm',
->      'aspeed' : 'aspeed',
->      'ast2' : 'aspeed',
->      'facebook' : 'aspeed',
->      'ibm' : 'aspeed',
->      'openbmc' : 'aspeed',
->      'en7' : 'airoha',
->      'at91' : 'microchip',
->      'sama' : 'microchip',
->      'sam9' : 'microchip',
->      'usb_' : 'microchip',
->      'tny_' : 'microchip',
->      'mpa1600' : 'microchip',
->      'animeo_ip' : 'microchip',
->      'aks-cdu' : 'microchip',
->      'ethernut5' : 'microchip',
->      'evk-pro3' : 'microchip',
->      'pm9g45' : 'microchip',
->      'ge86' : 'microchip',
->      'bcm' : 'brcm',
+This series adds the R5F cluster and C71 DSP processor nodes for
+J784S4 SoC.
 
-How about we use 'broadcom' here, to follow what arm64 does? I could 
-rename arch/mips/boot/dts/brcm to arch/mips/boot/dts/broadcom for 
-consistency, too?
+The first patch adds R5F cluster nodes to the MAIN and MCU voltage
+domains of J784S4 SoC. The second patch adds the C71 DSP processor
+nodes to the MAIN voltage domain of J784S4 SoC and the third patch
+reserves the IPC shared memory for Virtio/Vring buffers.
+
+Changes in V3:
+- Add memory reservations for remote proc IPC in board file.
+V2: https://lore.kernel.org/all/20230330141536.22480-1-hnagalla@ti.com/ 
+
+Changes in V2:
+- Removed default disable of R5F nodes in the SoC device tree.
+- Consolidated R5F nodes into one patch.
+V1: https://lore.kernel.org/all/20230329093627.30719-1-hnagalla@ti.com/
+
+Hari Nagalla (3):
+  arm64: dts: ti: k3-j784s4-main: Add R5F cluster nodes
+  arm64: dts: ti: k3-j784s4-main: Add C71x DSP nodes
+  arm64: dts: ti: k3-j784s4-evm: Reserve memory for remote proc IPC
+
+ arch/arm64/boot/dts/ti/k3-j784s4-evm.dts      | 318 ++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi    | 168 +++++++++
+ .../boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi     |  40 +++
+ 3 files changed, 526 insertions(+)
+
 -- 
-Florian
+2.34.1
 
