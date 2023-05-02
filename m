@@ -2,80 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 091016F4249
-	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 13:07:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7310D6F424F
+	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 13:10:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233921AbjEBLHS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 May 2023 07:07:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56620 "EHLO
+        id S233673AbjEBLK5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 May 2023 07:10:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233871AbjEBLHQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 07:07:16 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7857E4C28
-        for <devicetree@vger.kernel.org>; Tue,  2 May 2023 04:07:13 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4f00d41df22so27525534e87.1
-        for <devicetree@vger.kernel.org>; Tue, 02 May 2023 04:07:12 -0700 (PDT)
+        with ESMTP id S233464AbjEBLK4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 07:10:56 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19F03C9
+        for <devicetree@vger.kernel.org>; Tue,  2 May 2023 04:10:55 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-9536df4b907so761365466b.0
+        for <devicetree@vger.kernel.org>; Tue, 02 May 2023 04:10:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683025631; x=1685617631;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1683025853; x=1685617853;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=PULIHjTL+BqotFHLEBxc5PXwcQ92x+ai+H8UIvev6Xs=;
-        b=AhwpCzFayDP+QLvkYnNRRT0diBdlgwhpXgJ9x/uf9Pt0fa1f88cH3CniFGiddMq76b
-         B4mxAfNpBpptjmVWBPqmn5FBxwfIDhSWWk2Xq581jqywXnXQDGyKbPjGekn3gVkmQcI+
-         oNWVyiqqSiLqVfuRi5bDE560iMUsMv2pZUFXLUN7ZIb1a6VNnEg44oUigHyKeTn6inUb
-         Lx0JZLzbOqSp0MsmFg9d11+g3LY0u6rk1B9ZRiJM9OqJXEkaM/8TpkWbc0osI7xR8htK
-         LH62GR9VS+W+OFZL6o9XgtsB9IuRZjwGt7+/Z6q9Oq6x39HfSW5wyKSSL7S0GUwe6dOK
-         l3jQ==
+        bh=nRRTwUe+8V8C3INWsF+uYeBnZ+q4L2TYyWhCbOPcdtw=;
+        b=RW7ycB1m8VOj8uM1EfpHUvHLFgrI6VgDk9AXMg2jnDuKpDHc+0mxj0zGCso5vSTplt
+         uGxiPhCniPgPeQLDilqbbwqR1DzB7U4l7/GIG9+Paq4Q2vx8n9m26fm1hCqJ56yemNI1
+         3LCd7tnpOC0fcifB4EoJivZLoWoOrIDuT6REKenvl17FFPvUTKwqTqzG4vxh0f5gXXES
+         ReXVmATu4ShQRoF/ar+p7meW5jUkHdXINkkIgCbi1HDc9V4zm22DgwwrbXVU/RITg4vB
+         wh/PxGIFC1AVfnDxT6nkumuHdDOv44NZcX9GbvapDbh7cWITS23J7QLIeAGMhVhEczDe
+         JmSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683025631; x=1685617631;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1683025853; x=1685617853;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PULIHjTL+BqotFHLEBxc5PXwcQ92x+ai+H8UIvev6Xs=;
-        b=XWRTfUbHv5m2UqBbErFZh7wScixVJ/JdsBsDAIFcO17AxrD3bWOua9eGClEQd1VtbY
-         YngQiqF+PzJ+vQCz+/P1/I+4Ui5Y9h8zEdwHdGHx+9IM4X9NwYVXnh5yM8gJ/jgAGy4c
-         Dr/n5fMuxMk+0icD3tFp+5fciTjwkCbvmMP3VNJFGYxovdI6qN2nDLIb6VIK/2thq0Pb
-         vY1Vn5VFnDdJ/rlW5gtYuhBj2+5cdfHkEln73ESr/Nj+EV0Tur7I3DtGaO5T1ql7afXr
-         eTatvjWzqdlLKMFIrz6YySDrPxr0WsxCbzesvyd/g73UXGACaPp7/m5WJk1ACn6Dmg/d
-         extA==
-X-Gm-Message-State: AC+VfDzUDG1CfHPcIpkyybM3IFLjRf1XpnsaZpCNlHmfux0gj0vuUNDD
-        e8UdDWcARAZozMKwAT1stAW6C0PK9EdCcNFsK6I=
-X-Google-Smtp-Source: ACHHUZ5GIrUX3luVCFDWkL2w6BsQXcfgDLim2NjjmJK5Bhhmz7C+bWShuyFVhZPhQEY7YNIiJf5l3g==
-X-Received: by 2002:a05:6512:eaa:b0:4ef:edb4:2c77 with SMTP id bi42-20020a0565120eaa00b004efedb42c77mr5980804lfb.11.1683025631089;
-        Tue, 02 May 2023 04:07:11 -0700 (PDT)
-Received: from [192.168.1.101] (abyl248.neoplus.adsl.tpnet.pl. [83.9.31.248])
-        by smtp.gmail.com with ESMTPSA id y10-20020a19750a000000b004eff0ce3ae5sm4028269lfe.145.2023.05.02.04.07.09
+        bh=nRRTwUe+8V8C3INWsF+uYeBnZ+q4L2TYyWhCbOPcdtw=;
+        b=c6yRr6kKHHxjXa9YTpcwTxMD+P0kHxp0Ie/sxBn9jDG51RrxTNcSTGzHRn9hA7oKyO
+         n7gUZvoCLNlBec8MkdaTIjRD8ij/acfbsGqjAB9XOn/8ZQ1qex6+XH+dm3dh6g3JNj5J
+         IAesnlrFgOa4gcMOsJyJ+NcOicZ6Q0zNEExGxjXn6wcGXxR272Cv5gfAJ9TpQ4U8nwbC
+         JgdvzIhWSrfRdj65NWPJoSzJMQyacQhjvJDy9aUYsUIcHDxeBHPudm/DSuACWeY+oK/5
+         SYe5WASbcyVjp5j200NZ0vPOU8JvlutYgT818D2spkjY6jVf6Wv6DjYzcBqkBX9//FLX
+         /P8w==
+X-Gm-Message-State: AC+VfDwyO94uWGFW8pD4kQ4mILwEejqqcvD98nUBmpa1eeSj+Fzq9+AY
+        g1s2PG3P8T4KBSu+29fPF7dUWQ==
+X-Google-Smtp-Source: ACHHUZ4R5e8YLeyQwZZx7DFS3VaT5IAFYCg7UKjsyeLxhKtq/0e+ASOuERaYoXOpT8hnW8m8EUAAtQ==
+X-Received: by 2002:a17:907:9716:b0:961:272d:bdbe with SMTP id jg22-20020a170907971600b00961272dbdbemr11408909ejc.35.1683025853547;
+        Tue, 02 May 2023 04:10:53 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:bafd:1283:b136:5f6a? ([2a02:810d:15c0:828:bafd:1283:b136:5f6a])
+        by smtp.gmail.com with ESMTPSA id hz19-20020a1709072cf300b009629ffabe0asm838524ejc.224.2023.05.02.04.10.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 May 2023 04:07:10 -0700 (PDT)
-Message-ID: <0e76a9f6-f062-2802-d9de-3c0b2b897a4e@linaro.org>
-Date:   Tue, 2 May 2023 13:07:09 +0200
+        Tue, 02 May 2023 04:10:53 -0700 (PDT)
+Message-ID: <f82ed326-3064-a2e5-32fc-e3fe6ff8a1e1@linaro.org>
+Date:   Tue, 2 May 2023 13:10:50 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
-Subject: Re: [PATCH v7 9/9] arm64: dts: qcom: sa8540-ride: Enable first port
- of tertiary usb controller
+Subject: Re: [PATCH 1/2] dt-bindings: Add optional gpio property to uartps
+ node to support rs485
+To:     Michal Simek <michal.simek@amd.com>,
+        "Guntupalli, Manikanta" <manikanta.guntupalli@amd.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "michal.simek@xilinx.com" <michal.simek@xilinx.com>,
+        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "jirislaby@kernel.org" <jirislaby@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "git (AMD-Xilinx)" <git@amd.com>,
+        "Pandey, Radhey Shyam" <radhey.shyam.pandey@amd.com>,
+        "Datta, Shubhrajyoti" <shubhrajyoti.datta@amd.com>,
+        "Goud, Srinivas" <srinivas.goud@amd.com>,
+        "manion05gk@gmail.com" <manion05gk@gmail.com>
+References: <1682512187-8828-1-git-send-email-manikanta.guntupalli@amd.com>
+ <1682512187-8828-2-git-send-email-manikanta.guntupalli@amd.com>
+ <20230427164351.GA3146210-robh@kernel.org>
+ <DM4PR12MB6109C2BCDFD616AE37E10B9A8C6F9@DM4PR12MB6109.namprd12.prod.outlook.com>
+ <59b9214a-19e6-fd4e-6982-6e8c28c7e4a8@linaro.org>
+ <39d3e076-94ad-a349-5df6-b6e78714e407@amd.com>
 Content-Language: en-US
-To:     Krishna Kurapati <quic_kriskura@quicinc.com>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>
-Cc:     linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        quic_pkondeti@quicinc.com, quic_ppratap@quicinc.com,
-        quic_jackp@quicinc.com, quic_harshq@quicinc.com,
-        ahalaney@redhat.com, quic_shazhuss@quicinc.com
-References: <20230501143445.3851-1-quic_kriskura@quicinc.com>
- <20230501143445.3851-10-quic_kriskura@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230501143445.3851-10-quic_kriskura@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <39d3e076-94ad-a349-5df6-b6e78714e407@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -88,62 +95,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 02/05/2023 12:57, Michal Simek wrote:
+> 
+> 
+> On 5/2/23 12:19, Krzysztof Kozlowski wrote:
+>> On 02/05/2023 12:14, Guntupalli, Manikanta wrote:
+>>> Hi Rob Herring,
+>>>
+>>>> -----Original Message-----
+>>>> From: Rob Herring <robh@kernel.org>
+>>>> Sent: Thursday, April 27, 2023 10:14 PM
+>>>> To: Guntupalli, Manikanta <manikanta.guntupalli@amd.com>
+>>>> Cc: gregkh@linuxfoundation.org; krzysztof.kozlowski+dt@linaro.org;
+>>>> michal.simek@xilinx.com; linux-serial@vger.kernel.org;
+>>>> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org;
+>>>> jirislaby@kernel.org; linux-arm-kernel@lists.infradead.org; Simek, Michal
+>>>> <michal.simek@amd.com>; git (AMD-Xilinx) <git@amd.com>; Pandey,
+>>>> Radhey Shyam <radhey.shyam.pandey@amd.com>; Datta, Shubhrajyoti
+>>>> <shubhrajyoti.datta@amd.com>; Goud, Srinivas <srinivas.goud@amd.com>;
+>>>> manion05gk@gmail.com
+>>>> Subject: Re: [PATCH 1/2] dt-bindings: Add optional gpio property to uartps
+>>>> node to support rs485
+>>>>
+>>>> On Wed, Apr 26, 2023 at 05:59:46PM +0530, Manikanta Guntupalli wrote:
+>>>>> Add optional gpio property to uartps node and add reference to rs485.yaml
+>>>>
+>>>> The diff tells me that already. Why?
+>>> Please check Figure 11-3 (Page number 37) in the below mentioned data sheet, It shows PMOD (ISOW14x2) devices used in half duplex configuration. Driver outputs Y and Z are shorted to A and B respectively. This reduces overall cabling requirements. Also DE/RE are shorted to each other, and at a time, any node acts as either a driver or a receiver.
+>>> Using above optional GPIO controlling driver or a receiver. This GPIO is optional because it is not required for uart console node.
+>>>
+>>> Here,
+>>> DE - Driver enable. If pin is floating, driver is disabled (internal pull-down resistor)
+>>> RE - Receiver enable. If pin is floating, receiver buffer is disabled (internal pull-up resistor)
+>>>
+>>> Datasheet:
+>>> https://www.ti.com/lit/ds/symlink/isow1432.pdf?ts=1682607122706&ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FISOW1432%252Fpart-details%252FISOW1432DFMR%253FkeyMatch%253DISOW1432DFMR%2526tisearch%253Dsearch-everything%2526usecase%253DOPN
+>>
+>> Your request for us to get into some datasheet somewhere, to get the
+>> answer to the basic question, is not reasonable. Commit must justify its
+>> existence, not some external source.
+> 
+> Not really. Manual itself just shows picture of that connection if you are 
+> interested.
+> On schematics it looks like that DE and /RE are just handle via one gpio. That's 
+> why you need 3 wires instead of 4. Definitely it should be described better.
+
+By looking at commit reviewer did not figure out why do we need it.
+Referencing datasheet in a reply in LKML thread does not solve it
+because the next person reading the commit might have the same question.
+
+The commit must answer to "why" if this is not obvious. I don't find
+responses "Please check..." to this helpful.
 
 
-On 1.05.2023 16:34, Krishna Kurapati wrote:
-> There is now support for the multiport USB controller this uses so
-> enable it.
-> 
-> The board only has a single port hooked up (despite it being wired up to
-> the multiport IP on the SoC). There's also a USB 2.0 mux hooked up,
-> which by default on boot is selected to mux properly. Grab the gpio
-> controlling that and ensure it stays in the right position so USB 2.0
-> continues to be routed from the external port to the SoC.
-> 
-> Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
-> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
-> ---
-same comments as patch 8
+Best regards,
+Krzysztof
 
-Konrad
->  arch/arm64/boot/dts/qcom/sa8540p-ride.dts | 22 ++++++++++++++++++++++
->  1 file changed, 22 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-> index 24fa449d48a6..53d47593306e 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-> +++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-> @@ -309,6 +309,19 @@ &usb_2_qmpphy0 {
->  	status = "okay";
->  };
->  
-> +&usb_2 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&usb2_en_state>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_2_dwc3 {
-> +	dr_mode = "host";
-> +	phy-names = "usb2-port0", "usb3-port0";
-> +	phys = <&usb_2_hsphy0>, <&usb_2_qmpphy0>;
-> +};
-> +
->  &xo_board_clk {
->  	clock-frequency = <38400000>;
->  };
-> @@ -401,4 +414,13 @@ wake-pins {
->  			bias-pull-up;
->  		};
->  	};
-> +
-> +	usb2_en_state: usb2-en-state {
-> +		/* TS3USB221A USB2.0 mux select */
-> +		pins = "gpio24";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-disable;
-> +		output-low;
-> +	};
->  };
