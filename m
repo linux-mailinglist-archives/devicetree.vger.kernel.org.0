@@ -2,104 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 657646F440A
-	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 14:45:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0A496F4410
+	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 14:47:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229945AbjEBMpB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 May 2023 08:45:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59298 "EHLO
+        id S233771AbjEBMrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 May 2023 08:47:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229457AbjEBMpA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 08:45:00 -0400
-Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEFDB103;
-        Tue,  2 May 2023 05:44:59 -0700 (PDT)
-Received: by mail-pf1-x431.google.com with SMTP id d2e1a72fcca58-63b7588005fso2978381b3a.0;
-        Tue, 02 May 2023 05:44:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683031499; x=1685623499;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=7ySYJlTGoivPIC1fZq21ZetJk8Jlo1cqjNqLD3csp6I=;
-        b=F/au09ewfQJ0ENuPr1s5Da4CfGnxUpQXrqQXVTlH0FSVwjo4FngZcv9A6xuNdPpk4w
-         gi2HrfEaxAG3mlXFS7/WftW+ikJT1MIwalN2/gp2wc/97fMc3iicK2IRPDF5Q+XJN7Nx
-         x/9OU1WSBe1AgnZG1DgyK92DAjXv0ywqLVR9wpw+sBSc5w6yz0bJ5ajkk1Siwv1ALgD1
-         FvG7qy7cdRxxy412fOPEOzfXUR+jMgcmDhiwddZfX9pCVzbgZezCrIcDrvMDHvnVBiDS
-         /mNcib9mGBqaqlj5vffRNOwexTQG4jcUOrX37QmoNuFzKmwbKiAoB6IIGrgrbBoG12y9
-         Feug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683031499; x=1685623499;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7ySYJlTGoivPIC1fZq21ZetJk8Jlo1cqjNqLD3csp6I=;
-        b=jfwJfE1qkfYSrIqMXQnlR9ukT1FW7OqDbTtRH77wa1zaqq0JG8EP1pvmQWrN0DNUzP
-         vON4K/Udr4AF2QF8n6ZoRITkt/2pSVtTzLMtuoaYfD++qszlpJuTn3VH4HvjSNBjwc1F
-         RhlVA7/NoSlQ2T/9LBe9nm7L/EADLGdr1u67EqvPFcxZya5PlbwMwoN4iPSHmxu/p2MP
-         RHD7wXorxAWY9iyR4WKAjvm3XTn0voUcZlHOq3+2xa4IB3PqqDRsy/lb4H4XJ3i3M6E/
-         JnGqTMMvXXKAY0AF6e5ydzk9ta2YJGoDDW8jKymJR8++CAv6pAxNZ3bTQ3pcUwk5IJ0F
-         r6fQ==
-X-Gm-Message-State: AC+VfDwAVtjGisgiVBCHW+2jhhOm+P0T7Ee62QtrMrJ1+FNA2qYx59sW
-        x+sPfX0SNkjcWOC2fHwlLIE=
-X-Google-Smtp-Source: ACHHUZ6SMTxteP+9Qd5Dins2aBjFT1JCB47wUqc5JYnqbgdgAF3WIqCIzVuGULGKIMfsn8vWAdSfcA==
-X-Received: by 2002:a05:6a00:2485:b0:641:4d30:7922 with SMTP id c5-20020a056a00248500b006414d307922mr14315368pfv.4.1683031499107;
-        Tue, 02 May 2023 05:44:59 -0700 (PDT)
-Received: from Gentoo (n220246252240.netvigator.com. [220.246.252.240])
-        by smtp.gmail.com with ESMTPSA id o23-20020a637e57000000b0050bf1d1cdc8sm18588053pgn.21.2023.05.02.05.44.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 May 2023 05:44:58 -0700 (PDT)
-Date:   Tue, 2 May 2023 20:44:51 +0800
-From:   Jianhua Lu <lujianhua000@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S233944AbjEBMrC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 08:47:02 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA0545FCE;
+        Tue,  2 May 2023 05:46:57 -0700 (PDT)
+Received: from [192.168.1.90] (unknown [188.27.34.213])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: cristicc)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 57A6F6602121;
+        Tue,  2 May 2023 13:46:55 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1683031616;
+        bh=NaKJyyPWlHN9Ghox5nlaOW5ko2zxa/A4ZsnzrN3xZyM=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=lDD+DhBxRnivcBILM1CnoJkcAAyxRI5um7/wJsE+DYEizYRyWXO1XGQWXqxCnQbhr
+         347qrJFWA+WvKPc3o4f9aDjf7iFKJlWYneIR24poZX8CVSAe6FirpsKTFLACtb7p8s
+         wii4MMzGOnFF0yzJCHk6kw9WPnkmE0X2xlIib50UbF7u41wm72+hkD1kOazU2ONwVs
+         4lwRZIZZIM1IJJ+t9aXAVmPqQ2h12kdoVU9026YSNNatth/+VEYb/AVeQQolpa6zbp
+         div6AN51e14EovwgIFpZFM/gvExNcvN5eM6Rir/mmVclwSt7OCOlWbJZDN1wsiRu5j
+         a0sI1iV0yQUMw==
+Message-ID: <9c8ca0e7-819a-ac6a-04be-c2dba1f61952@collabora.com>
+Date:   Tue, 2 May 2023 15:46:53 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH 2/8] dt-bindings: nvmem: rockchip-otp: Add compatible for
+ RK3588
+Content-Language: en-US
+To:     =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Del Regno <angelogioacchino.delregno@somainline.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] dt-bindings: display: novatek,nt36523: define
- ports
-Message-ID: <ZFEFwwU9_h36xFvd@Gentoo>
-References: <20230502120036.47165-1-krzysztof.kozlowski@linaro.org>
- <20230502120036.47165-2-krzysztof.kozlowski@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230502120036.47165-2-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Shreeya Patel <shreeya.patel@collabora.com>,
+        Kever Yang <kever.yang@rock-chips.com>,
+        Finley Xiao <finley.xiao@rock-chips.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com
+References: <20230501084401.765169-1-cristian.ciocaltea@collabora.com>
+ <20230501084401.765169-3-cristian.ciocaltea@collabora.com>
+ <5471965.k3LOHGUjKi@diego>
+From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <5471965.k3LOHGUjKi@diego>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 02, 2023 at 02:00:36PM +0200, Krzysztof Kozlowski wrote:
->      description: regulator that supplies the I/O voltage
-[..]
->  
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    required:
-> +      - port@0
-> +      - port@1
-Konrad has added a single DSI panel to this bindings, so we should
-drop port@1 to allow it.
+Hello Heiko,
 
-See https://lore.kernel.org/lkml/20230412-topic-lenovopanel-v3-1-bcf9ba4de46f@linaro.org/
-
-> +
->    reg: true
-> -  ports: true
->    backlight: true
->  
->  required:
-> -- 
-> 2.34.1
+On 5/2/23 11:42, Heiko Stübner wrote:
+> Hi,
 > 
+> Am Montag, 1. Mai 2023, 10:43:54 CEST schrieb Cristian Ciocaltea:
+>> Document the OTP memory found on Rockchip RK3588 SoC.
+> 
+> nit: I guess the changed clock and resets configuration for rk3588 variants
+> could be mentioned in the commit message.
+
+Sure, I will update the commit message if a new revision of the patch
+series is required.
+
+> Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+
+Thanks for reviewing!
+
+Regards,
+Cristian
