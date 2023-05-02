@@ -2,137 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7069D6F4278
-	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 13:16:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49F046F4269
+	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 13:15:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233852AbjEBLQu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 May 2023 07:16:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33082 "EHLO
+        id S232402AbjEBLPO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 May 2023 07:15:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233871AbjEBLQt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 07:16:49 -0400
-Received: from mx4.securetransport.de (mx4.securetransport.de [178.254.6.145])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4227159D8;
-        Tue,  2 May 2023 04:16:40 -0700 (PDT)
-Received: from mail.dh-electronics.com (unknown [77.24.89.57])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mx4.securetransport.de (Postfix) with ESMTPSA id BE6347200BB;
-        Tue,  2 May 2023 13:15:52 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dh-electronics.com;
-        s=dhelectronicscom; t=1683026154;
-        bh=Icos1CRSpLsU5WPpF2CpjE8xWcpBrCeK308FlAHPLcU=;
-        h=From:To:CC:Subject:Date:From;
-        b=V6+am2fGLm88Kp1Q9umhI5nohbx0qHTpEJ9eA21EciwTPH2sMfyQojmTgaLP/6mwn
-         81J/GW0SY6Fa+jpF1RSJ0qJhrfXlpSwUQgF6UHDEzoj7BBJyjT5qudP7kHhKovWAg5
-         pSaj1DUt5+9thtCGle5IMBYysS6ZpTcPAyqY6JbXurJQbOjrFpRy+3R8Y0n4eruPW3
-         EJJz54SjDMXN8B8TqsW6F8FslrlIlFwMVfQX9g+Vns9AWhgHQOdo3PN2fNnTwezTEC
-         6hIyjIw+bAmCUZNhSSMfqdPN1Z8qANWzHV/0fiN379lD/SbDewpCjrF1Xrn7VdOW5F
-         XF8oaXVMx4NZw==
-Received: from DHPWEX01.DH-ELECTRONICS.ORG (10.64.2.30) by
- DHPWEX01.DH-ELECTRONICS.ORG (10.64.2.30) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Tue, 2 May 2023 13:15:41 +0200
-Received: from localhost.localdomain (172.16.51.25) by
- DHPWEX01.DH-ELECTRONICS.ORG (10.64.2.30) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26 via Frontend Transport; Tue, 2 May 2023 13:15:40 +0200
-From:   Christoph Niedermaier <cniedermaier@dh-electronics.com>
-To:     <linux-arm-kernel@lists.infradead.org>
-CC:     Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+        with ESMTP id S233743AbjEBLPN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 07:15:13 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFA0CA4
+        for <devicetree@vger.kernel.org>; Tue,  2 May 2023 04:15:09 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2a8ad872ea5so36138131fa.2
+        for <devicetree@vger.kernel.org>; Tue, 02 May 2023 04:15:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683026108; x=1685618108;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Hn43BgmaPSG0ZxbYAOhGGavK0XGwzs7u2L9/RApRsk8=;
+        b=HjaXgEWG6hlvbZ8rvGQnTmq4s29DshxgQ/wWCy2KsQPdonLzCyu6GyleFjQJ75zZsd
+         EW3qLp59Vo7wUiSc6rnNw54OuC++UpSs3JWAo180Lh8WuMGhpqRcE4eniS/ce0OsAT12
+         o1GqyosSF6I+N6bZsPxkLKUvJyNwyyhQSUju4LAeOvXrq8V3Q1t2KLxdnBoOxb66Y/PA
+         BNW8fD2l22BjmOQSnR2dKenFhuoegCpG1wRarmhgmFS4b9I/5Un5O+kcUdBBclXKqFKh
+         sU5b9TCQlCatCvK5kVzHWvYSBiy7Fhmq07y0htcqhi7uQGqQ1c+laCWgrnk3N5nKrHdZ
+         Eslw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683026108; x=1685618108;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Hn43BgmaPSG0ZxbYAOhGGavK0XGwzs7u2L9/RApRsk8=;
+        b=cOBSjXYA9nvTaampzqkORJms3/aNCoX5TEZkOvLmYE8Umsw4wtqkQnrBFrGgF85fVZ
+         ElPCUkRJZrdn76HA5Qj4sbgHzvWgSNyj9U2W6K6ffjvsX0lULA7H/ELbcimUfHcjie74
+         OSXwhz3eh9RFkH+6dGYjXmDSROCp/jXiQ7swarftT6LJ+KbRVdyjqLu4tLLnpo1Oozsf
+         iOPHlWSMq1guXKMiAJUS1hrqq8milannWkdk0ZrNM2L4XCkP6Rj493DERnTqmG4bZlBv
+         EUeMkfdygiVGACWW06LQ2bDcDILqJQY6VlZcRsJVIUtCpvqCegwvKVWz2IevYtAAXiRR
+         fpvg==
+X-Gm-Message-State: AC+VfDz+fDvgV6vzrOCHV/OfUIVfhxsaN5b9mJ2DwRcM868A02mpHInA
+        qRkx3+34ceWbm7Ljc23+1f9q9g==
+X-Google-Smtp-Source: ACHHUZ4jjyl+cn2Vz2BYxJKAviozjShus97785KPyQ6CZBeBzlYdzDSb0Bwv0jiGX06zoQpaGNAaMw==
+X-Received: by 2002:a05:6512:11f0:b0:4ed:c494:32d0 with SMTP id p16-20020a05651211f000b004edc49432d0mr4009623lfs.59.1683026107973;
+        Tue, 02 May 2023 04:15:07 -0700 (PDT)
+Received: from [192.168.1.101] (abyl248.neoplus.adsl.tpnet.pl. [83.9.31.248])
+        by smtp.gmail.com with ESMTPSA id y26-20020ac255ba000000b004edce1d338csm5281728lfg.89.2023.05.02.04.15.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 May 2023 04:15:07 -0700 (PDT)
+Message-ID: <8684a7c7-5af3-c773-4330-200e4b897937@linaro.org>
+Date:   Tue, 2 May 2023 13:15:06 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH 06/10] clk: qcom: gcc-mdm9615: use proper parent for
+ pll0_vote clock
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Marek Vasut <marex@denx.de>, Fabio Estevam <festevam@denx.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        <kernel@dh-electronics.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH] ARM: dts: imx6ull-dhcor: Set and limit the mode for PMIC buck 1, 2 and 3
-Date:   Tue, 2 May 2023 13:14:24 +0200
-Message-ID: <20230502111424.3114-1-cniedermaier@dh-electronics.com>
-X-Mailer: git-send-email 2.11.0
-X-klartext: yes
-MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230501203401.41393-1-dmitry.baryshkov@linaro.org>
+ <20230501203401.41393-7-dmitry.baryshkov@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230501203401.41393-7-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to Renesas Electronics (formerly Dialog Semiconductor), the
-standard AUTO mode of the PMIC DA9061 can lead to stability problems
-depending on the hardware revision. It is recommended to set a defined
-mode such as PFM or PWM permanently. So set and limit the mode for
-buck 1, 2 and 3 to a fixed one.
 
-Fixes: 611b6c891e40 ("ARM: dts: imx6ull-dhcom: Add DH electronics DHCOM i.MX6ULL SoM and PDK2 board")
 
-Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
-Reviewed-by: Marek Vasut <marex@denx.de>
----
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: Li Yang <leoyang.li@nxp.com>
-Cc: Marek Vasut <marex@denx.de>
-Cc: Fabio Estevam <festevam@denx.de>
-Cc: NXP Linux Team <linux-imx@nxp.com>
-Cc: kernel@dh-electronics.com
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-To: linux-arm-kernel@lists.infradead.org
----
- arch/arm/boot/dts/imx6ull-dhcor-som.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
+On 1.05.2023 22:33, Dmitry Baryshkov wrote:
+> The pll0_vote clock definitely should have pll0 as a parent (instead of
+> pll8).
+> 
+> Fixes: 7792a8d6713c ("clk: mdm9615: Add support for MDM9615 Clock Controllers")
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+Cc: <stable@vger.kernel.org>
 
-diff --git a/arch/arm/boot/dts/imx6ull-dhcor-som.dtsi b/arch/arm/boot/dts/imx6ull-dhcor-som.dtsi
-index 5882c7565f64..32a6022625d9 100644
---- a/arch/arm/boot/dts/imx6ull-dhcor-som.dtsi
-+++ b/arch/arm/boot/dts/imx6ull-dhcor-som.dtsi
-@@ -8,6 +8,7 @@
- #include <dt-bindings/input/input.h>
- #include <dt-bindings/leds/common.h>
- #include <dt-bindings/pwm/pwm.h>
-+#include <dt-bindings/regulator/dlg,da9063-regulator.h>
- #include "imx6ull.dtsi"
- 
- / {
-@@ -84,16 +85,20 @@
- 
- 		regulators {
- 			vdd_soc_in_1v4: buck1 {
-+				regulator-allowed-modes = <DA9063_BUCK_MODE_SLEEP>; /* PFM */
- 				regulator-always-on;
- 				regulator-boot-on;
-+				regulator-initial-mode = <DA9063_BUCK_MODE_SLEEP>;
- 				regulator-max-microvolt = <1400000>;
- 				regulator-min-microvolt = <1400000>;
- 				regulator-name = "vdd_soc_in_1v4";
- 			};
- 
- 			vcc_3v3: buck2 {
-+				regulator-allowed-modes = <DA9063_BUCK_MODE_SYNC>; /* PWM */
- 				regulator-always-on;
- 				regulator-boot-on;
-+				regulator-initial-mode = <DA9063_BUCK_MODE_SYNC>;
- 				regulator-max-microvolt = <3300000>;
- 				regulator-min-microvolt = <3300000>;
- 				regulator-name = "vcc_3v3";
-@@ -106,8 +111,10 @@
- 			 * the voltage is set to 1.5V.
- 			 */
- 			vcc_ddr_1v35: buck3 {
-+				regulator-allowed-modes = <DA9063_BUCK_MODE_SYNC>; /* PWM */
- 				regulator-always-on;
- 				regulator-boot-on;
-+				regulator-initial-mode = <DA9063_BUCK_MODE_SYNC>;
- 				regulator-max-microvolt = <1500000>;
- 				regulator-min-microvolt = <1500000>;
- 				regulator-name = "vcc_ddr_1v35";
--- 
-2.11.0
+?
 
+Konrad
+>  drivers/clk/qcom/gcc-mdm9615.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/clk/qcom/gcc-mdm9615.c b/drivers/clk/qcom/gcc-mdm9615.c
+> index fb5c1244fb97..2f921891008d 100644
+> --- a/drivers/clk/qcom/gcc-mdm9615.c
+> +++ b/drivers/clk/qcom/gcc-mdm9615.c
+> @@ -58,7 +58,7 @@ static struct clk_regmap pll0_vote = {
+>  	.enable_mask = BIT(0),
+>  	.hw.init = &(struct clk_init_data){
+>  		.name = "pll0_vote",
+> -		.parent_names = (const char *[]){ "pll8" },
+> +		.parent_names = (const char *[]){ "pll0" },
+>  		.num_parents = 1,
+>  		.ops = &clk_pll_vote_ops,
+>  	},
