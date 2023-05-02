@@ -2,106 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 033BA6F4434
-	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 14:50:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C68336F44AF
+	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 15:08:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233856AbjEBMuA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 May 2023 08:50:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34558 "EHLO
+        id S233936AbjEBNIf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 May 2023 09:08:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234305AbjEBMt6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 08:49:58 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6C3D5252;
-        Tue,  2 May 2023 05:49:52 -0700 (PDT)
-Received: from [192.168.1.90] (unknown [188.27.34.213])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: cristicc)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 837F46602121;
-        Tue,  2 May 2023 13:49:50 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1683031791;
-        bh=1SBHvxpiiP3vO8FDcUxSdgWcAeK19kTJhEfXoSg3Bz8=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=lVX3TX5nOP8T7DAc8DnTniZmRwQkSATanSOambI0L6/HJZCEogsIFtChW2g8t24bU
-         8KHdn8iVUlYv9kBuDsz0gI1UzjMBwHtUsvO+mhG5O+5g+aZnJNXJssb6WiPYtN47Rm
-         f0jJjslUabz66qmeaGQgvzakgmbGyIq+tRd2BTaaaV2Pb/jynGbtfzOQm7bCV9mZMh
-         /sDwpb07Ht05krpJVuU8BW4Jyk4Pey1OoFD/dDTVyefXM+0xA3Ehq4FG484w3MlLxj
-         cGWVHbZh+SvUHODfwkwJbGf2nvOORl6R+nVjv54/gBNzHRTDpawHaL6KKRponweb6J
-         Sm9+7MvfEGnAg==
-Message-ID: <70d71afc-5191-2995-9975-7a2871c226aa@collabora.com>
-Date:   Tue, 2 May 2023 15:49:47 +0300
+        with ESMTP id S233919AbjEBNIe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 09:08:34 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E861F59D0
+        for <devicetree@vger.kernel.org>; Tue,  2 May 2023 06:08:23 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-94f3cd32799so763379766b.0
+        for <devicetree@vger.kernel.org>; Tue, 02 May 2023 06:08:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683032902; x=1685624902;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vTdVXb6d4xnv0YmTLdS0Qi0kVGTI9rnff/94Pf5/JNU=;
+        b=OTiDWyUjc5vLKmDjfmk7vFBEmIE4CpI9soc/Ksp7mPInOkA3TNy6L2M7frTwl2kzaE
+         tHgRxck2zMMwnkrzOBupt0niab9C6KVELTQkYM6fF4egq3bJC5ruaJCdxck/wB+J/Q4J
+         rUjVjH/5Ymwx64TrF0ZMxxtL7qfixmlnzy4h0s0zJ0NTqw4VRiojQ0TtdDTmLLbD0dmp
+         FQFqu/vlqgPP0kzO6K0gBFpAQ/Irbo6CMQypZzqTo3astF/GdzyFsHWoFwQ5f+hyfeBo
+         INll3QaytXjs0N3qnXo180nKkheCRvj3eji1cekBtql1r5j9k3gsP7HM1WAybQNC6hVC
+         WQ1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683032902; x=1685624902;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vTdVXb6d4xnv0YmTLdS0Qi0kVGTI9rnff/94Pf5/JNU=;
+        b=MC7q76zbAUSoVPEBO/0vwM7Im8odtJBcBgHwB3kfmONPSGlb3ZSm280E/iXW5Y+KNr
+         IitoPY2CxyTRDUB9egMd6eL8UqPGZhgYxzABLPVrpznMBY3r3/8d8qyqvZJKZcPygVEK
+         lsiFMwNWy+YLWBgu9rkpMqdscl4lKAu2hCAuC1KfuugAVja7iATPeVtRN7rtt38o+QM+
+         X/tt+mQA2EuB984LBto4pAWwp9uTJJIyBwdlr1jNp/8DfLzqeiXldmnB9R0v6owCMGSv
+         UW18ClkBqXquzsalgMvO8qZwvjytUvmNlcC1z5KFN+58FHfj5hnEkgMAWbS+wLFfuUQs
+         K6Tg==
+X-Gm-Message-State: AC+VfDxcPzF6+gEisl9AyeCaP54MNHJ1o2eyImgzaR9FqGlGPuurszqz
+        6oBV9CNnI7Cp7KQifXTXy3Lecw==
+X-Google-Smtp-Source: ACHHUZ75BXm0BWRSmTJcDouunvHBmhjCdZtr03hxCxdUgu1OaMxH5zZSLU7E9xbmohDbZRVAPPrOjw==
+X-Received: by 2002:a17:907:c0d:b0:94f:969e:c52b with SMTP id ga13-20020a1709070c0d00b0094f969ec52bmr14376500ejc.74.1683032902382;
+        Tue, 02 May 2023 06:08:22 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:bafd:1283:b136:5f6a? ([2a02:810d:15c0:828:bafd:1283:b136:5f6a])
+        by smtp.gmail.com with ESMTPSA id lh11-20020a170906f8cb00b0094a789256dcsm16133602ejb.111.2023.05.02.06.08.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 May 2023 06:08:20 -0700 (PDT)
+Message-ID: <665a0e0e-6320-981f-8675-95f064864837@linaro.org>
+Date:   Tue, 2 May 2023 15:08:19 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH 3/8] nvmem: rockchip-otp: Add clocks and reg_read to
- rockchip_data
+ Thunderbird/102.10.1
+Subject: Re: [PATCH v2 2/2] dt-bindings: display: novatek,nt36523: define
+ ports
 Content-Language: en-US
-To:     =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+To:     Jianhua Lu <lujianhua000@gmail.com>
+Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Shreeya Patel <shreeya.patel@collabora.com>,
-        Kever Yang <kever.yang@rock-chips.com>,
-        Finley Xiao <finley.xiao@rock-chips.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
-References: <20230501084401.765169-1-cristian.ciocaltea@collabora.com>
- <20230501084401.765169-4-cristian.ciocaltea@collabora.com>
- <6064284.AJdgDx1Vlc@diego>
-From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <6064284.AJdgDx1Vlc@diego>
+        Del Regno <angelogioacchino.delregno@somainline.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230502120036.47165-1-krzysztof.kozlowski@linaro.org>
+ <20230502120036.47165-2-krzysztof.kozlowski@linaro.org>
+ <ZFEFwwU9_h36xFvd@Gentoo>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <ZFEFwwU9_h36xFvd@Gentoo>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/2/23 11:47, Heiko Stübner wrote:
-> Am Montag, 1. Mai 2023, 10:43:55 CEST schrieb Cristian Ciocaltea:
->> In preparation to support new Rockchip OTP memory devices with different
->> clock configurations and register layout, extend rockchip_data struct
->> with the related members: clocks, num_clks, reg_read.
->>
->> Additionally, to avoid managing redundant driver data, drop num_clks
->> member from rockchip_otp struct and update all references to point to
->> the equivalent member in rockchip_data.
->>
->> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
->> ---
->>  drivers/nvmem/rockchip-otp.c | 79 ++++++++++++++++++++++--------------
->>  1 file changed, 49 insertions(+), 30 deletions(-)
->>
->> diff --git a/drivers/nvmem/rockchip-otp.c b/drivers/nvmem/rockchip-otp.c
->> index 9f53bcce2f87..a5b234e60735 100644
->> --- a/drivers/nvmem/rockchip-otp.c
->> +++ b/drivers/nvmem/rockchip-otp.c
->> @@ -54,21 +54,19 @@
+On 02/05/2023 14:44, Jianhua Lu wrote:
+> On Tue, May 02, 2023 at 02:00:36PM +0200, Krzysztof Kozlowski wrote:
+>>      description: regulator that supplies the I/O voltage
+> [..]
 >>  
->>  #define OTPC_TIMEOUT			10000
->>  
->> +struct rockchip_data {
->> +	int size;
->> +	const char * const *clocks;
->> +	int num_clks;
+>> +  ports:
+>> +    $ref: /schemas/graph.yaml#/properties/ports
+>> +
+>> +    required:
+>> +      - port@0
+>> +      - port@1
+> Konrad has added a single DSI panel to this bindings, so we should
+> drop port@1 to allow it.
 > 
-> nit: might be nice to use either "clocks" or "clks" as part for both names
+> See https://lore.kernel.org/lkml/20230412-topic-lenovopanel-v3-1-bcf9ba4de46f@linaro.org/
 
-Indeed, will handle this in v2.
+Thanks, I'll send a v2 ~tomorrow.
 
-> other than that
-> Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+Best regards,
+Krzysztof
 
-Thanks,
-Cristian
