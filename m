@@ -2,44 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 003BE6F3FE6
-	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 11:13:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6135D6F4024
+	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 11:28:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233597AbjEBJNe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 May 2023 05:13:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35304 "EHLO
+        id S231608AbjEBJ2r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 May 2023 05:28:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233001AbjEBJNd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 05:13:33 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 64FF84C07;
-        Tue,  2 May 2023 02:13:32 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 54A484B3;
-        Tue,  2 May 2023 02:14:16 -0700 (PDT)
-Received: from slackpad.lan (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 727743F5A1;
-        Tue,  2 May 2023 02:13:30 -0700 (PDT)
-Date:   Tue, 2 May 2023 10:13:17 +0100
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Ludwig Kormann <ludwig.kormann@in-circuit.de>
-Cc:     samuel@sholland.org, jernej.skrabec@gmail.com, wens@csie.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/2] arm: dts: sunxi: Add ICnova A20 ADB4006 board
- support
-Message-ID: <20230502101317.39767a0d@slackpad.lan>
-In-Reply-To: <10a2e893-18b6-d9c2-1db7-3d500cc0891c@in-circuit.de>
-References: <20230420102409.1394618-1-ludwig.kormann@in-circuit.de>
-        <10a2e893-18b6-d9c2-1db7-3d500cc0891c@in-circuit.de>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
+        with ESMTP id S229863AbjEBJ2p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 05:28:45 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FE9F49FD;
+        Tue,  2 May 2023 02:28:41 -0700 (PDT)
+Received: from ip4d1634d3.dynamic.kabel-deutschland.de ([77.22.52.211] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1ptmJ5-0006fd-IQ; Tue, 02 May 2023 11:28:23 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Tianling Shen <cnsztl@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>, Andy Yan <andyshrk@163.com>,
+        Chris Morgan <macromorgan@hotmail.com>,
+        Brian Norris <briannorris@chromium.org>,
+        Andrew Lunn <andrew@lunn.ch>, Shawn Guo <shawnguo@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Maya Matuszczyk <maccraft123mc@gmail.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Vasily Khoruzhick <anarsoul@gmail.com>,
+        Tianling Shen <cnsztl@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] arm64: dts: rockchip: Add Lunzn Fastrhino R66S
+Date:   Tue, 02 May 2023 11:28:22 +0200
+Message-ID: <5782501.VdNmn5OnKV@diego>
+In-Reply-To: <20230428013738.30735-2-cnsztl@gmail.com>
+References: <20230428013738.30735-1-cnsztl@gmail.com>
+ <20230428013738.30735-2-cnsztl@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -47,86 +55,81 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2 May 2023 10:06:20 +0200
-Ludwig Kormann <ludwig.kormann@in-circuit.de> wrote:
-
 Hi,
 
-> Hello,
+Am Freitag, 28. April 2023, 03:37:37 CEST schrieb Tianling Shen:
+> Lunzn Fastrhino R66S is a high-performance mini router.
 > 
-> thanks for the reviews so far!
+> Specification:
+> - Rockchip RK3568
+> - 1/2GB LPDDR4 RAM
+> - SD card slot
+> - M.2 Connector
+> - 2x USB 3.0 Port
+> - 2x 2500 Base-T (PCIe, r8125b)
+> - 12v DC Jack
 > 
-> Is there anything I can do / need to do for my patch series for it to 
-> get merged before -rc1?
-
-The cutoff date for most board DT patches to get into a release is
-around -rc5/-rc6 of the *previous* release: patches should live in
-linux-next for a while. Also most pull requests need to "trickle up" the
-stream first (from the sunxi tree to the SoC tree, then into mainline).
-So -rc1 is out of reach now.
-
-> The patch series was based on the "for-next" branch in jernej's tree, 
-> but it seems that it was too late for the "dt-for-6.4" merge.
-
-Yes.
-
-> So I'm just trying to understand in general what the best way in this 
-> situation would be:
-> - wait if someone else takes the patch series before -rc1
-> - wait for -rc1 and rebase, rework, send a new version of the patch 
-> series (because of the planned restructuring of the ARM dts directory)
-
-Yes, this is the way to go. The maintainers will probably take care of
-any minor conflicts (like in the Makefile), so (the upcoming) -rc1
-should be the base tree. For new DT files the conflict potential should
-be minimal anyway.
-Just make sure to run "make dt_binding_check" and "make dtbs_check"
-again, because the rules might have been updated meanwhile.
-
-Cheers,
-Andre
-
-
-> - wait for -rc3 (?) and rebase & rework the patch series for jernej's 
-> tree for the "dt-for-6.5" branch
+> Signed-off-by: Tianling Shen <cnsztl@gmail.com>
+> ---
+>  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+>  .../dts/rockchip/rk3568-fastrhino-r66s.dts    |  27 +
+>  .../dts/rockchip/rk3568-fastrhino-r66s.dtsi   | 507 ++++++++++++++++++
+>  3 files changed, 535 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3568-fastrhino-r66s.dts
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3568-fastrhino-r66s.dtsi
 > 
-> Thanks for your help.
-> 
-> kind regards
-> Ludwig Kormann
-> 
-> 
-> Am 20.04.23 um 12:24 schrieb Ludwig Kormann:
-> > Add board support for ICnova A20 SomPi compute module on
-> > ICnova ADB4006 development board.
-> >
-> > v3:
-> > - drop stray blank lines at end of files
-> > - separate patch for bindings
-> > - update licensing to "GPL-2.0 OR MIT"
-> > - fix typo: ICNova -> ICnova
-> >
-> > v2:
-> > - use short licensing header
-> > - remove deprecated elements from led nodes
-> > - disable csi power supply
-> > - add missing pins in usbphy node
-> > - split dts into SoM dtsi and carrier board dts
-> >
-> > v1 of this patch was sent to the uboot mailing list [1].
-> >
-> > [1] https://lists.denx.de/pipermail/u-boot/2023-April/514605.html
-> >
-> > Ludwig Kormann (2):
-> >    dt-bindings: arm: sunxi: add ICnova A20 ADB4006 binding
-> >    arm: dts: sunxi: Add ICnova A20 ADB4006 board
-> >
-> >   .../devicetree/bindings/arm/sunxi.yaml        |   6 +
-> >   arch/arm/boot/dts/Makefile                    |   1 +
-> >   .../boot/dts/sun7i-a20-icnova-a20-adb4006.dts | 137 ++++++++++++++++++
-> >   arch/arm/boot/dts/sun7i-a20-icnova-a20.dtsi   |  62 ++++++++
-> >   4 files changed, 206 insertions(+)
-> >   create mode 100644 arch/arm/boot/dts/sun7i-a20-icnova-a20-adb4006.dts
-> >   create mode 100644 arch/arm/boot/dts/sun7i-a20-icnova-a20.dtsi
-> >  
+> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+> index 2d585bbb8f3a..15089a78555a 100644
+> --- a/arch/arm64/boot/dts/rockchip/Makefile
+> +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> @@ -85,6 +85,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-box-demo.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-lubancat-1.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-bpi-r2-pro.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-evb1-v10.dtb
+> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-fastrhino-r66s.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-lubancat-2.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-nanopi-r5c.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-nanopi-r5s.dtb
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-fastrhino-r66s.dts b/arch/arm64/boot/dts/rockchip/rk3568-fastrhino-r66s.dts
+> new file mode 100644
+> index 000000000000..fc9e1bdab128
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3568-fastrhino-r66s.dts
+> @@ -0,0 +1,27 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+> +
+> +#include "rk3568-fastrhino-r66s.dtsi"
+> +
+> +/ {
+> +	model = "Lunzn FastRhino R66S";
+> +	compatible = "lunzn,fastrhino-r66s", "rockchip,rk3568";
+> +
+> +	aliases {
+> +		mmc0 = &sdmmc0;
+> +	};
+> +};
+> +
+> +&sdmmc0 {
+
+that whole element seems to be duplicated from rk3568-fastrhino-r66s.dtsi?
+I don't think we need to declare that twice. If something really changes,
+please only declare the new properties when going from dtsi to dts.
+
+> +	max-frequency = <150000000>;
+> +	no-sdio;
+> +	no-mmc;
+> +	bus-width = <4>;
+> +	cap-mmc-highspeed;
+> +	cap-sd-highspeed;
+> +	disable-wp;
+> +	vmmc-supply = <&vcc3v3_sd>;
+> +	vqmmc-supply = <&vccio_sd>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&sdmmc0_bus4 &sdmmc0_clk &sdmmc0_cmd &sdmmc0_det>;
+> +	status = "okay";
+> +};
+
+Thanks
+Heiko
+
 
