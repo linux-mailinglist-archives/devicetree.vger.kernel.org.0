@@ -2,108 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92F196F465C
-	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 16:52:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 565176F4666
+	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 16:53:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234019AbjEBOwA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 May 2023 10:52:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51236 "EHLO
+        id S234364AbjEBOxr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 May 2023 10:53:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234410AbjEBOvz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 10:51:55 -0400
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B58A010E6;
-        Tue,  2 May 2023 07:51:48 -0700 (PDT)
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4Q9jhd2jwKz9sdK;
-        Tue,  2 May 2023 16:51:45 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mariushoch.de;
-        s=MBO0001; t=1683039105;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=OCfcf6FSM/bUYl403EMZyHDqpdSAF9tPFEUHDQUYu2E=;
-        b=CObgluT8g4B7ZcUl430iOjj2Uv0J7Zl0Rwbp3njGw0qTdArA2BPGZB3MoNLwgVcVvMDAQ8
-        h91i07Dsw0OexvV0e6UeBc+bG/B1Ua9ZkC36RwipEyukOQz6ai0bGsSXP/oEwIk80hesAy
-        fEP6QB068g2kTYK5TdXhnwcgilMikK/YCX61Y6mb4Qh5ofUSk5XB4Uahg5Lc3RdNV/+o9F
-        RRlpDsw761pGKoupAFFAq+aKqodXJBKwfklLlyOjirVjEE2tkluC3/WBu013dEq5WAODpS
-        u03AOwk5Hj5Dd7L/jT29XJ+h3J0u02Dh2yFlayP8a+7354pbiFLsloITIh+bjQ==
-Message-ID: <e669d656-1474-ad95-4667-3a6ae79605e3@mariushoch.de>
-Date:   Tue, 2 May 2023 16:51:42 +0200
+        with ESMTP id S234304AbjEBOxq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 10:53:46 -0400
+Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8D91212E
+        for <devicetree@vger.kernel.org>; Tue,  2 May 2023 07:53:39 -0700 (PDT)
+Received: by mail-yb1-xb2a.google.com with SMTP id 3f1490d57ef6-b996127ec71so5860641276.0
+        for <devicetree@vger.kernel.org>; Tue, 02 May 2023 07:53:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683039219; x=1685631219;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=rSWq6ufcNwqR6jShOa+WlN0AdC1KgJTfOHM3kYDaQ94=;
+        b=HCGdZE2flZzr2fd2/1VfLcQgo/FYFKRYVlYlVeFe/TanV11z7mDpPPZcWH35L2LT3l
+         kFfthSkyKjxR4rJ5q69WR5yiPVJrVWNG5elEjoJQPdc+l5ByYEo4ZZBJMEEW0HWH2b97
+         2U5AHqBoCyWU5ogrF94ucI754ZFtZlBomCug7v2xfG15bp7MSTu6KbVsVyXaZDbLgpr7
+         3ZHWN5NfjkcsyfMJjnXyiBgX9si5i5XLqlDGKp/EzAjt0+Ath3ntM3kU06RgsrthYvJ6
+         5tuaxo6eWOjGDNzKxjzsmbe521/4ejWLEfNBbpwhpeUlm5KnMfRst5PAnp3KMsf1A2vm
+         G4+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683039219; x=1685631219;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rSWq6ufcNwqR6jShOa+WlN0AdC1KgJTfOHM3kYDaQ94=;
+        b=JwFkPYdnQhjUuIhuvyTNU3fgV3FZacTy/61ttNrmJj7ANyM2Lt+mOxBRZtywUP0+Fj
+         sNVdXEde6Cc3vzCy2QV4YgTzbzHRI3ZxMvsUNx51iad2VcvNtUklYsNNtjkfa1KJ8g6c
+         UkIFnh7n18n2YtboDQXc2klJ7eTPnozhQ7vO0M0DLsL7oX3JLZSmS/vn60B1lBlmJZq6
+         Ue+TcFaiWri324OXg0/lTPT4rbnVkpnNkMFTEXfapSoQ12hh5YVeU22/SaDPdOQ8xnPM
+         igPopAO8KIPWcYtpDYHbfAFnSEGmQC2kToQaWXKr9NDaXI1VtVe3Fxpp4rBqg7ob863M
+         WYzA==
+X-Gm-Message-State: AC+VfDwEQ/+ONI1BnIUZxHMP4UKDuL+eDqYYBTzGkf5scjM3CWIRYlB3
+        uWxHAJlW+dhTvPcOaEdXBy37mgbaTLEK0iLXpquzWA==
+X-Google-Smtp-Source: ACHHUZ5jjzC6wz/P4PZED0NI1OnrteBXG7BZ4g1KlIM0VGi6rlDkkbWYK4WpqCmWqpPQ1OXzcDt8w580B52FoeX2Bl4=
+X-Received: by 2002:a25:b31c:0:b0:b9d:a328:1128 with SMTP id
+ l28-20020a25b31c000000b00b9da3281128mr12202370ybj.13.1683039218841; Tue, 02
+ May 2023 07:53:38 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: [PATCH v3 4/6] iio: st_sensors: Add ACPI support for lsm303d to
- the LSM9DS0 IMU driver
-To:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Denis Ciocca <denis.ciocca@st.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Hans de Goede <hdegoede@redhat.com>,
-        Marius Hoch <marius@mariushoch.de>
-References: <20230415231130.115094-1-mail@mariushoch.de>
- <20230415231130.115094-5-mail@mariushoch.de>
-Content-Language: en-US
-From:   Marius Hoch <mail@mariushoch.de>
-In-Reply-To: <20230415231130.115094-5-mail@mariushoch.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 4Q9jhd2jwKz9sdK
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20230323093141.4070840-1-peng.fan@oss.nxp.com>
+ <20230323093141.4070840-2-peng.fan@oss.nxp.com> <ZDN00vwyCOzFrDYt@google.com>
+ <DU0PR04MB94172C2BBB554E472576B2BA889B9@DU0PR04MB9417.eurprd04.prod.outlook.com>
+ <DU0PR04MB9417185EB8243ED2D60A6E43889B9@DU0PR04MB9417.eurprd04.prod.outlook.com>
+ <CAPDyKFruZOP65k0SEEmCGtopp8ywJA92ChGZs2ZR=nVxqUC0OQ@mail.gmail.com> <fcfd3b04-ce51-af95-5d94-cc244d75727f@oss.nxp.com>
+In-Reply-To: <fcfd3b04-ce51-af95-5d94-cc244d75727f@oss.nxp.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Tue, 2 May 2023 16:53:03 +0200
+Message-ID: <CAPDyKFp0a4QtLL8yE9pPw2DbCKsjB5UyYeuy2rWB=FEfm5+MqQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] input: imx_sc_key: add wakeup support
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Peng Fan <peng.fan@oss.nxp.com>
+Cc:     Peng Fan <peng.fan@nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Thu, 20 Apr 2023 at 09:54, Peng Fan <peng.fan@oss.nxp.com> wrote:
+>
+> Dmitry,Ulf
+>
+> On 4/18/2023 4:32 PM, Ulf Hansson wrote:
+> > On Wed, 12 Apr 2023 at 17:58, Peng Fan <peng.fan@nxp.com> wrote:
+> >>
+> >> +Ulf
+> >>
+> >>> Subject: RE: [PATCH 2/2] input: imx_sc_key: add wakeup support
+> >>>
+> >>>> Subject: Re: [PATCH 2/2] input: imx_sc_key: add wakeup support
+> >>>>
+> >>>> On Thu, Mar 23, 2023 at 05:31:41PM +0800, Peng Fan (OSS) wrote:
+> >>>>> From: Peng Fan <peng.fan@nxp.com>
+> >>>>>
+> >>>>> Add support for waking up from system wide suspend.
+> >>>>>
+> >>>>> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> >>>>> ---
+> >>>>>   drivers/input/keyboard/imx_sc_key.c | 2 ++
+> >>>>>   1 file changed, 2 insertions(+)
+> >>>>>
+> >>>>> diff --git a/drivers/input/keyboard/imx_sc_key.c
+> >>>> b/drivers/input/keyboard/imx_sc_key.c
+> >>>>> index d18839f1f4f6..234f23cf9990 100644
+> >>>>> --- a/drivers/input/keyboard/imx_sc_key.c
+> >>>>> +++ b/drivers/input/keyboard/imx_sc_key.c
+> >>>>> @@ -151,6 +151,8 @@ static int imx_sc_key_probe(struct
+> >>>> platform_device *pdev)
+> >>>>>    priv->input = input;
+> >>>>>    platform_set_drvdata(pdev, priv);
+> >>>>>
+> >>>>> + device_init_wakeup(&pdev->dev,
+> >>>> device_property_read_bool(&pdev->dev, "wakeup-source"));
+> >>>>> +
+> >>>>
+> >>>> I wonder - could we move this to the device core?
+> >>>
+> >>> I see lots device drivers parse wakeup-source, so I also follow That. Not sure
+> >>> whether could move this feature to device core, but anyway I could give a
+> >>> try.
+> >>
+> >> Do you think it is feasible to move device_init_wakeup into device core
+> >> part?
+> >
+> > Not sure it would really improve things that much. Subsystems/drivers
+> > need to make additional configurations based upon whether this DT
+> > property is set anyway.
+> >
+> > Perhaps an option is to make this a part of the common input subsystem
+> > helper functions instead? Other subsystems do this, but I am not sure
+> > how feasible that would be in the input case.
+>
+> How do you think of below patch?
 
-On 16/04/2023 01:11, Marius Hoch wrote:
-<snip>
-> diff --git a/drivers/iio/imu/st_lsm9ds0/st_lsm9ds0_spi.c b/drivers/iio/imu/st_lsm9ds0/st_lsm9ds0_spi.c
-> index 997b5ff792be..55f3738193af 100644
-> --- a/drivers/iio/imu/st_lsm9ds0/st_lsm9ds0_spi.c
-> +++ b/drivers/iio/imu/st_lsm9ds0/st_lsm9ds0_spi.c
-> @@ -37,6 +37,12 @@ static const struct spi_device_id st_lsm9ds0_id_table[] = {
->   };
->   MODULE_DEVICE_TABLE(spi, st_lsm9ds0_id_table);
->   
-> +static const struct acpi_device_id st_lsm9ds0_acpi_match[] = {
-> +	{"ACCL0001", (kernel_ulong_t)LSM303D_IMU_DEV_NAME},
-> +	{ },
-> +};
-> +MODULE_DEVICE_TABLE(acpi, st_lsm9ds0_acpi_match);
+Seems reasonable to me, but I can't really tell if this makes sense
+for all input drivers.
+
+Dmitry?
+
+>
+> diff --git a/drivers/input/input.c b/drivers/input/input.c
+> index 37e876d45eb9..a98a9f37e1f5 100644
+> --- a/drivers/input/input.c
+> +++ b/drivers/input/input.c
+> @@ -2402,6 +2402,10 @@ int input_register_device(struct input_dev *dev)
+>                          __func__, dev_name(&dev->dev));
+>                  devres_add(dev->dev.parent, devres);
+>          }
 > +
->   static const struct regmap_config st_lsm9ds0_regmap_config = {
->   	.reg_bits	= 8,
->   	.val_bits	= 8,
-> @@ -72,6 +78,7 @@ static struct spi_driver st_lsm9ds0_driver = {
->   	.driver = {
->   		.name = "st-lsm9ds0-spi",
->   		.of_match_table = st_lsm9ds0_of_match,
-> +		.acpi_match_table = st_lsm9ds0_acpi_match,
->   	},
->   	.probe = st_lsm9ds0_spi_probe,
->   	.id_table = st_lsm9ds0_id_table,
-I just realized that these changes (the SPI ones, not the I2C ones) are 
-entirely superfluous, and I'm not sure why I added this in the first 
-place. In the Lenovo Yoga Tablet 2 series (which seem to be the only 
-devices exposing this as "ACCL0001"), the device is accessible via I2C. 
-Just to make sure, I re-tested the patch chain without this change.
+> +       if (device_property_read_bool(input->dev.parent, "wakeup-source"))
+> +               device_init_wakeup(&pdev->dev, true);
+> +
+>          return 0;
+>
+>   err_device_del:
+>
 
-@Jonathan: Shall I upload an entirely new patch set (v4), do this in a 
-separate new clean up commit, or do you want to just drop these changes 
-to drivers/iio/imu/st_lsm9ds0/st_lsm9ds0_spi.c? I'm fine with any of 
-these options.
-
-Cheers,
-Marius
+Kind regards
+Uffe
