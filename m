@@ -2,109 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 31B996F425C
-	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 13:13:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7069D6F4278
+	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 13:16:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233905AbjEBLNQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 May 2023 07:13:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59460 "EHLO
+        id S233852AbjEBLQu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 May 2023 07:16:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233828AbjEBLNP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 07:13:15 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 271C949C5
-        for <devicetree@vger.kernel.org>; Tue,  2 May 2023 04:13:13 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2a8b766322bso34777311fa.1
-        for <devicetree@vger.kernel.org>; Tue, 02 May 2023 04:13:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683025991; x=1685617991;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=UnVYWj5xPWY/m7D8adizrBPOFdgKen1k/+SyuHo7cjg=;
-        b=LKBhk3BmOlhQyCFb2X3jjwO0SaGDqF9aDLFBy3Joo0y4eaPOB2i4wUJ+VxIY48WOWh
-         SrT97QjDE0BL7mvp4IO1DiM3doN4fsI8LdicHcP4zzsRXe/qNMguEdzMSY2ShG0CCnI4
-         VGf77M06C9umz2EB+PKxL5o1To8k/3XmFy5AyW8hrAiVQUeJHi0H575pouCQAI+bCXaP
-         R06sSJ+EYUNROmtsHMluk3tyqrdrq6zHgS4k937qLfh6PAdgeaCn/8OaajbxSFqm93oY
-         GDtlc3sUw027gAOkoBVkygPQicL3wzo3cGXoT4N4ifz5CciJWHYYKXs3sKAV6ylGpWV9
-         05kg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683025991; x=1685617991;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UnVYWj5xPWY/m7D8adizrBPOFdgKen1k/+SyuHo7cjg=;
-        b=Yx1axY9BJKQFP/1BcXLY5gh8t7BHw+vabmL7XCc5F/OlDlnZ1S2vWgLnn6sKfuvo5I
-         2eHJsix/Duhv/toppc4jyNucqe/1MvrVbOe7o1M03HIlEiBwwoqVGN/RRXw/5LWnZ/E8
-         uufioWl3wcd7TkX/huyuV5IJjMfxXSLJ6mieBZF3dMEg0oCUnuyoEYZSY/JV3cQTg4Gm
-         0RtiQ/Spq2pLuA4IsQxvN1YiGCfc/Qw3a8vzXovVYYS4lkeqUPb1FfehqJ+Rm93pHW+S
-         HF3d3RloSQ0w45rDmEAS+pN2nVNW7sr2YdEctUOcr6ppjcA8MpEA0vk924gDMo3gfocI
-         4F0w==
-X-Gm-Message-State: AC+VfDxDob+0HxFJ9/P1rKu+7xYqF3fVlLLK2C5macYeZjOAiZmM3k4Q
-        EwLGwjopgtgDpujQyYQhCffp1w==
-X-Google-Smtp-Source: ACHHUZ4vYM0BPN8EjS0h4Heha5KHPG6RO9skTE1BEOMUqjpMEHbkGBzmP42J6P845qSlP7nfD+cUwA==
-X-Received: by 2002:a05:651c:154:b0:2a7:76ab:c4c with SMTP id c20-20020a05651c015400b002a776ab0c4cmr4818689ljd.8.1683025991214;
-        Tue, 02 May 2023 04:13:11 -0700 (PDT)
-Received: from [192.168.1.101] (abyl248.neoplus.adsl.tpnet.pl. [83.9.31.248])
-        by smtp.gmail.com with ESMTPSA id l16-20020ac25550000000b004edc16dbdfasm5280650lfk.119.2023.05.02.04.13.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 May 2023 04:13:10 -0700 (PDT)
-Message-ID: <41581143-2caa-bac1-479c-c8feaf2de1b9@linaro.org>
-Date:   Tue, 2 May 2023 13:13:09 +0200
+        with ESMTP id S233871AbjEBLQt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 07:16:49 -0400
+Received: from mx4.securetransport.de (mx4.securetransport.de [178.254.6.145])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4227159D8;
+        Tue,  2 May 2023 04:16:40 -0700 (PDT)
+Received: from mail.dh-electronics.com (unknown [77.24.89.57])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mx4.securetransport.de (Postfix) with ESMTPSA id BE6347200BB;
+        Tue,  2 May 2023 13:15:52 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dh-electronics.com;
+        s=dhelectronicscom; t=1683026154;
+        bh=Icos1CRSpLsU5WPpF2CpjE8xWcpBrCeK308FlAHPLcU=;
+        h=From:To:CC:Subject:Date:From;
+        b=V6+am2fGLm88Kp1Q9umhI5nohbx0qHTpEJ9eA21EciwTPH2sMfyQojmTgaLP/6mwn
+         81J/GW0SY6Fa+jpF1RSJ0qJhrfXlpSwUQgF6UHDEzoj7BBJyjT5qudP7kHhKovWAg5
+         pSaj1DUt5+9thtCGle5IMBYysS6ZpTcPAyqY6JbXurJQbOjrFpRy+3R8Y0n4eruPW3
+         EJJz54SjDMXN8B8TqsW6F8FslrlIlFwMVfQX9g+Vns9AWhgHQOdo3PN2fNnTwezTEC
+         6hIyjIw+bAmCUZNhSSMfqdPN1Z8qANWzHV/0fiN379lD/SbDewpCjrF1Xrn7VdOW5F
+         XF8oaXVMx4NZw==
+Received: from DHPWEX01.DH-ELECTRONICS.ORG (10.64.2.30) by
+ DHPWEX01.DH-ELECTRONICS.ORG (10.64.2.30) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Tue, 2 May 2023 13:15:41 +0200
+Received: from localhost.localdomain (172.16.51.25) by
+ DHPWEX01.DH-ELECTRONICS.ORG (10.64.2.30) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26 via Frontend Transport; Tue, 2 May 2023 13:15:40 +0200
+From:   Christoph Niedermaier <cniedermaier@dh-electronics.com>
+To:     <linux-arm-kernel@lists.infradead.org>
+CC:     Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Marek Vasut <marex@denx.de>, Fabio Estevam <festevam@denx.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        <kernel@dh-electronics.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH] ARM: dts: imx6ull-dhcor: Set and limit the mode for PMIC buck 1, 2 and 3
+Date:   Tue, 2 May 2023 13:14:24 +0200
+Message-ID: <20230502111424.3114-1-cniedermaier@dh-electronics.com>
+X-Mailer: git-send-email 2.11.0
+X-klartext: yes
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH v6 12/13] arm64: dts: qcom: qrb5165-rb5: Switch on TCPM
- usb-role-switching for usb_1
-Content-Language: en-US
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, linux@roeck-us.net,
-        heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org,
-        andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, luca.weiss@fairphone.com,
-        linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     caleb.connolly@linaro.org, subbaram@quicinc.com, jackp@quicinc.com,
-        robertom@qti.qualcomm.com
-References: <20230501121111.1058190-1-bryan.odonoghue@linaro.org>
- <20230501121111.1058190-13-bryan.odonoghue@linaro.org>
- <109dc9fe-5ca7-1a98-3222-8c2297f4e8ce@linaro.org>
- <b4bfe2f6-7ea3-fca5-9dc6-12270b3bbc42@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <b4bfe2f6-7ea3-fca5-9dc6-12270b3bbc42@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+According to Renesas Electronics (formerly Dialog Semiconductor), the
+standard AUTO mode of the PMIC DA9061 can lead to stability problems
+depending on the hardware revision. It is recommended to set a defined
+mode such as PFM or PWM permanently. So set and limit the mode for
+buck 1, 2 and 3 to a fixed one.
 
+Fixes: 611b6c891e40 ("ARM: dts: imx6ull-dhcom: Add DH electronics DHCOM i.MX6ULL SoM and PDK2 board")
 
-On 2.05.2023 13:03, Bryan O'Donoghue wrote:
-> On 02/05/2023 12:00, Konrad Dybcio wrote:
->>> +            #address-cells = <1>;
->>> +            #size-cells = <0>;
->>> +
->>> +            port@0 {
->>> +                reg = <0>;
->>> +                pm8150b_role_switch_out: endpoint {
->> Similarly to the QMPPHY, the port definition can be moved to
->> the common node in the SoC DTSI
-> 
-> But then the connector would have to be defined in the SoC dtsi and not all derivatives of SoC can be assumed to have a usb-c-connector.
-Not quite!
+Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
+Reviewed-by: Marek Vasut <marex@denx.de>
+---
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: Li Yang <leoyang.li@nxp.com>
+Cc: Marek Vasut <marex@denx.de>
+Cc: Fabio Estevam <festevam@denx.de>
+Cc: NXP Linux Team <linux-imx@nxp.com>
+Cc: kernel@dh-electronics.com
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+To: linux-arm-kernel@lists.infradead.org
+---
+ arch/arm/boot/dts/imx6ull-dhcor-som.dtsi | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-You can define an empty endpoint (like we do with DSI<->panel ones) and
-fill it in on the device side.
+diff --git a/arch/arm/boot/dts/imx6ull-dhcor-som.dtsi b/arch/arm/boot/dts/imx6ull-dhcor-som.dtsi
+index 5882c7565f64..32a6022625d9 100644
+--- a/arch/arm/boot/dts/imx6ull-dhcor-som.dtsi
++++ b/arch/arm/boot/dts/imx6ull-dhcor-som.dtsi
+@@ -8,6 +8,7 @@
+ #include <dt-bindings/input/input.h>
+ #include <dt-bindings/leds/common.h>
+ #include <dt-bindings/pwm/pwm.h>
++#include <dt-bindings/regulator/dlg,da9063-regulator.h>
+ #include "imx6ull.dtsi"
+ 
+ / {
+@@ -84,16 +85,20 @@
+ 
+ 		regulators {
+ 			vdd_soc_in_1v4: buck1 {
++				regulator-allowed-modes = <DA9063_BUCK_MODE_SLEEP>; /* PFM */
+ 				regulator-always-on;
+ 				regulator-boot-on;
++				regulator-initial-mode = <DA9063_BUCK_MODE_SLEEP>;
+ 				regulator-max-microvolt = <1400000>;
+ 				regulator-min-microvolt = <1400000>;
+ 				regulator-name = "vdd_soc_in_1v4";
+ 			};
+ 
+ 			vcc_3v3: buck2 {
++				regulator-allowed-modes = <DA9063_BUCK_MODE_SYNC>; /* PWM */
+ 				regulator-always-on;
+ 				regulator-boot-on;
++				regulator-initial-mode = <DA9063_BUCK_MODE_SYNC>;
+ 				regulator-max-microvolt = <3300000>;
+ 				regulator-min-microvolt = <3300000>;
+ 				regulator-name = "vcc_3v3";
+@@ -106,8 +111,10 @@
+ 			 * the voltage is set to 1.5V.
+ 			 */
+ 			vcc_ddr_1v35: buck3 {
++				regulator-allowed-modes = <DA9063_BUCK_MODE_SYNC>; /* PWM */
+ 				regulator-always-on;
+ 				regulator-boot-on;
++				regulator-initial-mode = <DA9063_BUCK_MODE_SYNC>;
+ 				regulator-max-microvolt = <1500000>;
+ 				regulator-min-microvolt = <1500000>;
+ 				regulator-name = "vcc_ddr_1v35";
+-- 
+2.11.0
 
-Konrad
-> 
-> grep "usb-c-connector" arch/arm64/boot/dts/qcom/*
-> 
-> ---
-> bod
