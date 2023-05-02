@@ -2,71 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F22536F3F59
-	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 10:39:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C31756F3F62
+	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 10:43:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233849AbjEBIjv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 May 2023 04:39:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45994 "EHLO
+        id S233271AbjEBIm7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 May 2023 04:42:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233846AbjEBIjl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 04:39:41 -0400
-Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CC9649F7
-        for <devicetree@vger.kernel.org>; Tue,  2 May 2023 01:39:39 -0700 (PDT)
-Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-54fae5e9ec7so48748727b3.1
-        for <devicetree@vger.kernel.org>; Tue, 02 May 2023 01:39:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683016778; x=1685608778;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xQYzzCPoXqswlpvIFD6WRnJfdsdZ7oE3ts+Rlv8RaJc=;
-        b=JCYSJJycOh3uM3e1Pr69ENYHONt+EDeJ1G0216dirbDHn9z2Sp+bxDrP7VXakiMrXc
-         GJbWhGinBB3SufaTvEuBbZghU3g7Ac55Z26LjCBRnr6nkxnxAi+fgQNMrj0n40YKt0IC
-         KuzZM2Ww44iMf76utY5TImcOMS5YM0yDt8I6ugtPm12pnf0XhuX6gXmj3+TKzIqchddG
-         peVrV07kn7PywtYF5GhN3zfRqdOj3snooHwRTqkHoIDKGaZQgzPvvjtv1D2kTS3By9he
-         rtgGrmezHux9aZIytkYPbe5nf8NvKTONiI+arBnjh+DPvf0B8eoFE+QqQETYWeeEnNux
-         zK0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683016778; x=1685608778;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xQYzzCPoXqswlpvIFD6WRnJfdsdZ7oE3ts+Rlv8RaJc=;
-        b=Uy62OA4xseVXWlTkEPn09t6OTZW9hdkjs0IpmEkDkspuHWJjdhKdyF8OCp8fDrukYE
-         wNrw6OF3wjfdUJMy0HOq1Rpih1aL+AHsU/dh8qwaGtFfH1o/Lhh/qbwCqWYKQLjIv2Im
-         un/QxqeXuBT/ipLWdFJCnsh+aqWPKsg7sUjr3Myak1/E7w4+lR7XmpVyNaS8QsDdFRB/
-         KZQ/91rNQYohGkzal+6RWBW79YJ3fjxv9GQ02aRD78GjrbbkevbI/OY79CvtJoKCMbLB
-         nvRFzeHH0AKLNqLwuVVlgEcwE3a4is+a4Zb2a0lNqAkl9CC1v497gKOU5lL3w2ICjqfm
-         THQQ==
-X-Gm-Message-State: AC+VfDxjRUBv37MXsMvt0NrpYlLXtKSFGkJTHsCBaTxR7BR1fHeo/v9C
-        MDeo7mCjbKy1Babue8GQD6GOVTDHqAAvq5xcjw8UpA==
-X-Google-Smtp-Source: ACHHUZ5iTF/W04H0/7bScMxDWwW9LvBeXxThecO2SmLhQIi3VwlMDIRkkFwvEHZDl2GYHRMgIZ4LdcbNkrrLD1QTe+w=
-X-Received: by 2002:a25:6813:0:b0:b9a:63a2:dc6c with SMTP id
- d19-20020a256813000000b00b9a63a2dc6cmr15309161ybc.53.1683016778500; Tue, 02
- May 2023 01:39:38 -0700 (PDT)
+        with ESMTP id S231964AbjEBIm6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 04:42:58 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00C9A469D;
+        Tue,  2 May 2023 01:42:55 -0700 (PDT)
+Received: from ip4d1634d3.dynamic.kabel-deutschland.de ([77.22.52.211] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1ptlay-0006Md-K6; Tue, 02 May 2023 10:42:48 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Shreeya Patel <shreeya.patel@collabora.com>,
+        Kever Yang <kever.yang@rock-chips.com>,
+        Finley Xiao <finley.xiao@rock-chips.com>,
+        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com
+Subject: Re: [PATCH 2/8] dt-bindings: nvmem: rockchip-otp: Add compatible for RK3588
+Date:   Tue, 02 May 2023 10:42:47 +0200
+Message-ID: <5471965.k3LOHGUjKi@diego>
+In-Reply-To: <20230501084401.765169-3-cristian.ciocaltea@collabora.com>
+References: <20230501084401.765169-1-cristian.ciocaltea@collabora.com>
+ <20230501084401.765169-3-cristian.ciocaltea@collabora.com>
 MIME-Version: 1.0
-References: <cover.1682682753.git.quic_varada@quicinc.com> <1bda63e18f7257f60cc1082b423aca129abfa3b0.1682682753.git.quic_varada@quicinc.com>
- <CAA8EJpq0RXGf8_oBa_XF0+nOg31ouMUVJ3LhNRh_HtmgJvCJHQ@mail.gmail.com> <20230502080440.GA26126@varda-linux.qualcomm.com>
-In-Reply-To: <20230502080440.GA26126@varda-linux.qualcomm.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Tue, 2 May 2023 11:39:27 +0300
-Message-ID: <CAA8EJpoHMdNFFu4rX2O_N64TV62uAEj4tZqRLpWP8WZrf-PQhQ@mail.gmail.com>
-Subject: Re: [PATCH 4/4] arm64: dts: qcom: ipq9574: add thermal zone nodes
-To:     Varadarajan Narayanan <quic_varada@quicinc.com>
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        amitk@kernel.org, thara.gopinath@gmail.com, rafael@kernel.org,
-        daniel.lezcano@linaro.org, rui.zhang@intel.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Praveenkumar I <quic_ipkumar@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,304 +50,129 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2 May 2023 at 11:04, Varadarajan Narayanan
-<quic_varada@quicinc.com> wrote:
->
-> On Fri, Apr 28, 2023 at 10:49:34PM +0300, Dmitry Baryshkov wrote:
-> > On Fri, 28 Apr 2023 at 17:53, Varadarajan Narayanan
-> > <quic_varada@quicinc.com> wrote:
-> > >
-> > > This patch adds thermal zone nodes for the various
-> > > sensors present in IPQ9574
-> > >
-> > > Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
-> > > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> > > ---
-> > >  arch/arm64/boot/dts/qcom/ipq9574.dtsi | 208 ++++++++++++++++++++++++=
-++++++++++
-> > >  1 file changed, 208 insertions(+)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/=
-dts/qcom/ipq9574.dtsi
-> > > index 7cd5bdb..a7cb2b4c 100644
-> > > --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> > > @@ -947,6 +947,214 @@
-> > >                 };
-> > >         };
-> > >
-> > > +       thermal_zones: thermal-zones {
-> > > +               tsens_tz_sensor3 {
-> >
-> > Please provide sensible names for all thermal zones. Please follow the
-> > examples in other DT files.
->
-> Ok.
->
-> > > +                       polling-delay-passive =3D <0>;
-> > > +                       polling-delay =3D <0>;
-> > > +                       thermal-sensors =3D <&tsens 3>;
-> > > +
-> > > +                       trips {
-> > > +                               cpu-critical {
-> > > +                                       temperature =3D <125000>;
-> >
-> > Can it really go up to 125 =C2=B0C?
->
-> The SoC product requirement is 120=C2=B0C. It is capable of 125=C2=B0C.
-> This was tested inside a thermal chamber and ensured that it
-> hits 125=C2=B0C and system reboots at that temperature.
+Hi,
 
-ack
+Am Montag, 1. Mai 2023, 10:43:54 CEST schrieb Cristian Ciocaltea:
+> Document the OTP memory found on Rockchip RK3588 SoC.
 
->
-> > > +                                       hysteresis =3D <1000>;
-> > > +                                       type =3D "critical";
-> > > +                               };
-> >
-> > Please provide also a passive trip point, so that the passive cooling
-> > can be engaged.
->
-> The linux kernel cannot take any steps to initiate cooling for
-> components other than the 4 CPU cores. The f/w that runs on these
-> IP blocks have to take steps to initiate cooling. Additionally,
-> the passive temperature for the non-cpu sensors are not
-> characterised yet and I don't have the values now.
->
-> We have these nodes to be able to read the temperature of the
-> other blocks via the sysfs entry /sys/devices/virtual/thermal/*/temp
-> Have given the critical trip point so that the setup is rebooted
-> if the critical temperature is reached.
->
-> Have given passive trip point for the CPU core related thermal
-> nodes (tsens_tz_sensor10, tsens_tz_sensor11, tsens_tz_sensor12
-> and tsens_tz_sensor13).
+nit: I guess the changed clock and resets configuration for rk3588 variants
+could be mentioned in the commit message.
 
-That's the point why we asked for the logical names for the sensors,
-like we have on the other platforms. Otherwise it is very hard to
-understand what is going on.
+Reviewed-by: Heiko Stuebner <heiko@sntech.de>
 
->
-> If this is not acceptable, please let me know. Will remove the
-> non-cpu nodes and post a patch with just the CPU entries.
-
-This is perfectly fine. Please take a look at other DTSI files.
-
->
-> Thanks
-> Varada
->
-> > > +                       };
-> > > +               };
-> > > +
-> > > +               tsens_tz_sensor4 {
-> > > +                       polling-delay-passive =3D <0>;
-> > > +                       polling-delay =3D <0>;
-> > > +                       thermal-sensors =3D <&tsens 4>;
-> > > +
-> > > +                       trips {
-> > > +                               cpu-critical {
-> > > +                                       temperature =3D <125000>;
-> > > +                                       hysteresis =3D <1000>;
-> > > +                                       type =3D "critical";
-> > > +                               };
-> > > +                       };
-> > > +               };
-> > > +
-> > > +               tsens_tz_sensor5 {
-> > > +                       polling-delay-passive =3D <0>;
-> > > +                       polling-delay =3D <0>;
-> > > +                       thermal-sensors =3D <&tsens 5>;
-> > > +
-> > > +                       trips {
-> > > +                               cpu-critical {
-> > > +                                       temperature =3D <125000>;
-> > > +                                       hysteresis =3D <1000>;
-> > > +                                       type =3D "critical";
-> > > +                               };
-> > > +                       };
-> > > +               };
-> > > +
-> > > +               tsens_tz_sensor6 {
-> > > +                       polling-delay-passive =3D <0>;
-> > > +                       polling-delay =3D <0>;
-> > > +                       thermal-sensors =3D <&tsens 6>;
-> > > +
-> > > +                       trips {
-> > > +                               cpu-critical {
-> > > +                                       temperature =3D <125000>;
-> > > +                                       hysteresis =3D <1000>;
-> > > +                                       type =3D "critical";
-> > > +                               };
-> > > +                       };
-> > > +               };
-> > > +
-> > > +               tsens_tz_sensor7 {
-> > > +                       polling-delay-passive =3D <0>;
-> > > +                       polling-delay =3D <0>;
-> > > +                       thermal-sensors =3D <&tsens 7>;
-> > > +
-> > > +                       trips {
-> > > +                               cpu-critical {
-> > > +                                       temperature =3D <125000>;
-> > > +                                       hysteresis =3D <1000>;
-> > > +                                       type =3D "critical";
-> > > +                               };
-> > > +                       };
-> > > +               };
-> > > +
-> > > +               tsens_tz_sensor8 {
-> > > +                       polling-delay-passive =3D <0>;
-> > > +                       polling-delay =3D <0>;
-> > > +                       thermal-sensors =3D <&tsens 8>;
-> > > +
-> > > +                       trips {
-> > > +                               cpu-critical {
-> > > +                                       temperature =3D <125000>;
-> > > +                                       hysteresis =3D <1000>;
-> > > +                                       type =3D "critical";
-> > > +                               };
-> > > +                       };
-> > > +               };
-> > > +
-> > > +               tsens_tz_sensor9 {
-> > > +                       polling-delay-passive =3D <0>;
-> > > +                       polling-delay =3D <0>;
-> > > +                       thermal-sensors =3D <&tsens 9>;
-> > > +
-> > > +                       trips {
-> > > +                               cpu-critical {
-> > > +                                       temperature =3D <125000>;
-> > > +                                       hysteresis =3D <1000>;
-> > > +                                       type =3D "critical";
-> > > +                               };
-> > > +                       };
-> > > +               };
-> > > +
-> > > +               tsens_tz_sensor10 {
-> > > +                       polling-delay-passive =3D <0>;
-> > > +                       polling-delay =3D <0>;
-> > > +                       thermal-sensors =3D <&tsens 10>;
-> > > +
-> > > +                       trips {
-> > > +                               cpu-critical {
-> > > +                                       temperature =3D <120000>;
-> > > +                                       hysteresis =3D <10000>;
-> > > +                                       type =3D "critical";
-> > > +                               };
-> > > +
-> > > +                               cpu-passive {
-> > > +                                       temperature =3D <110000>;
-> > > +                                       hysteresis =3D <1000>;
-> > > +                                       type =3D "passive";
-> > > +                               };
-> > > +                       };
-> > > +               };
-> > > +
-> > > +               tsens_tz_sensor11 {
-> > > +                       polling-delay-passive =3D <0>;
-> > > +                       polling-delay =3D <0>;
-> > > +                       thermal-sensors =3D <&tsens 11>;
-> > > +
-> > > +                       trips {
-> > > +                               cpu-critical {
-> > > +                                       temperature =3D <120000>;
-> > > +                                       hysteresis =3D <10000>;
-> > > +                                       type =3D "critical";
-> > > +                               };
-> > > +
-> > > +                               cpu-passive {
-> > > +                                       temperature =3D <110000>;
-> > > +                                       hysteresis =3D <1000>;
-> > > +                                       type =3D "passive";
-> > > +                               };
-> > > +                       };
-> > > +               };
-> > > +
-> > > +               tsens_tz_sensor12 {
-> > > +                       polling-delay-passive =3D <0>;
-> > > +                       polling-delay =3D <0>;
-> > > +                       thermal-sensors =3D <&tsens 12>;
-> > > +
-> > > +                       trips {
-> > > +                               cpu-critical {
-> > > +                                       temperature =3D <120000>;
-> > > +                                       hysteresis =3D <10000>;
-> > > +                                       type =3D "critical";
-> > > +                               };
-> > > +
-> > > +                               cpu-passive {
-> > > +                                       temperature =3D <110000>;
-> > > +                                       hysteresis =3D <1000>;
-> > > +                                       type =3D "passive";
-> > > +                               };
-> > > +                       };
-> > > +               };
-> > > +
-> > > +               tsens_tz_sensor13 {
-> > > +                       polling-delay-passive =3D <0>;
-> > > +                       polling-delay =3D <0>;
-> > > +                       thermal-sensors =3D <&tsens 13>;
-> > > +
-> > > +                       trips {
-> > > +                               cpu-critical {
-> > > +                                       temperature =3D <120000>;
-> > > +                                       hysteresis =3D <10000>;
-> > > +                                       type =3D "critical";
-> > > +                               };
-> > > +
-> > > +                               cpu-passive {
-> > > +                                       temperature =3D <110000>;
-> > > +                                       hysteresis =3D <1000>;
-> > > +                                       type =3D "passive";
-> > > +                               };
-> > > +                       };
-> > > +               };
-> > > +
-> > > +               tsens_tz_sensor14 {
-> > > +                       polling-delay-passive =3D <0>;
-> > > +                       polling-delay =3D <0>;
-> > > +                       thermal-sensors =3D <&tsens 14>;
-> > > +
-> > > +                       trips {
-> > > +                               cpu-critical {
-> > > +                                       temperature =3D <125000>;
-> > > +                                       hysteresis =3D <1000>;
-> > > +                                       type =3D "critical";
-> > > +                               };
-> > > +                       };
-> > > +               };
-> > > +
-> > > +               tsens_tz_sensor15 {
-> > > +                       polling-delay-passive =3D <0>;
-> > > +                       polling-delay =3D <0>;
-> > > +                       thermal-sensors =3D <&tsens 15>;
-> > > +
-> > > +                       trips {
-> > > +                               cpu-critical {
-> > > +                                       temperature =3D <125000>;
-> > > +                                       hysteresis =3D <1000>;
-> > > +                                       type =3D "critical";
-> > > +                               };
-> > > +                       };
-> > > +               };
-> > > +       };
-> > > +
-> > >         timer {
-> > >                 compatible =3D "arm,armv8-timer";
-> > >                 interrupts =3D <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(4) | I=
-RQ_TYPE_LEVEL_LOW)>,
-> > > --
-> > > 2.7.4
-> > >
-> >
-> >
-> > --
-> > With best wishes
-> > Dmitry
+> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+> ---
+>  .../bindings/nvmem/rockchip-otp.yaml          | 71 ++++++++++++++++---
+>  1 file changed, 60 insertions(+), 11 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/nvmem/rockchip-otp.yaml b/Documentation/devicetree/bindings/nvmem/rockchip-otp.yaml
+> index 658ceed14ee2..84a11382c6e7 100644
+> --- a/Documentation/devicetree/bindings/nvmem/rockchip-otp.yaml
+> +++ b/Documentation/devicetree/bindings/nvmem/rockchip-otp.yaml
+> @@ -9,34 +9,31 @@ title: Rockchip internal OTP (One Time Programmable) memory
+>  maintainers:
+>    - Heiko Stuebner <heiko@sntech.de>
+>  
+> -allOf:
+> -  - $ref: nvmem.yaml#
+> -
+>  properties:
+>    compatible:
+>      enum:
+>        - rockchip,px30-otp
+>        - rockchip,rk3308-otp
+> +      - rockchip,rk3588-otp
+>  
+>    reg:
+>      maxItems: 1
+>  
+>    clocks:
+>      minItems: 3
+> -    maxItems: 3
+> +    maxItems: 4
+>  
+>    clock-names:
+> -    items:
+> -      - const: otp
+> -      - const: apb_pclk
+> -      - const: phy
+> +    minItems: 3
+> +    maxItems: 4
+>  
+>    resets:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 3
+>  
+>    reset-names:
+> -    items:
+> -      - const: phy
+> +    minItems: 1
+> +    maxItems: 3
+>  
+>  required:
+>    - compatible
+> @@ -46,6 +43,58 @@ required:
+>    - resets
+>    - reset-names
+>  
+> +allOf:
+> +  - $ref: nvmem.yaml#
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - rockchip,px30-otp
+> +              - rockchip,rk3308-otp
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 3
+> +          maxItems: 3
+> +        clock-names:
+> +          items:
+> +            - const: otp
+> +            - const: apb_pclk
+> +            - const: phy
+> +        resets:
+> +          maxItems: 1
+> +        reset-names:
+> +          items:
+> +            - const: phy
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - rockchip,rk3588-otp
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 4
+> +          maxItems: 4
+> +        clock-names:
+> +          items:
+> +            - const: otpc
+> +            - const: apb
+> +            - const: arb
+> +            - const: phy
+> +        resets:
+> +          minItems: 1
+> +          maxItems: 3
+> +        reset-names:
+> +          items:
+> +            - const: otpc
+> +            - const: apb
+> +            - const: arb
+> +
+>  unevaluatedProperties: false
+>  
+>  examples:
+> 
 
 
 
---=20
-With best wishes
-Dmitry
+
