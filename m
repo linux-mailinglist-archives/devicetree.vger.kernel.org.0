@@ -2,80 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7996A6F4753
-	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 17:35:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E14126F47CA
+	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 17:55:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232627AbjEBPfk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 May 2023 11:35:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50510 "EHLO
+        id S234617AbjEBPzJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 May 2023 11:55:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234212AbjEBPfj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 11:35:39 -0400
-Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB172E7;
-        Tue,  2 May 2023 08:35:37 -0700 (PDT)
-Received: from g550jk.localnet (unknown [62.108.10.64])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id C6C53C76A8;
-        Tue,  2 May 2023 15:35:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1683041706; bh=R9A1qU0xozFT1PTNbx8XF9Yii7u7muqM0dWSf6l21ug=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=jFIjUf8jPNHIGqUtQXcb8eZaH6a3cBc0gsQnwtR3J6XeKHROAfT8XhpfZKOzuGZUS
-         yZR6YajptRLzaksDUpkSSO0xitf2v3baxLFVVj/o6lOLNJAdgNvfU9i1dLacrFivVZ
-         3IORo94VhcuvJTJr3OFMmXTniCwvBXIXx/4V18Cs=
-From:   Luca Weiss <luca@z3ntu.xyz>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        with ESMTP id S233724AbjEBPzI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 11:55:08 -0400
+Received: from fgw23-7.mail.saunalahti.fi (fgw23-7.mail.saunalahti.fi [62.142.5.84])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 930441B6
+        for <devicetree@vger.kernel.org>; Tue,  2 May 2023 08:55:07 -0700 (PDT)
+Received: from localhost (88-113-26-95.elisa-laajakaista.fi [88.113.26.95])
+        by fgw23.mail.saunalahti.fi (Halon) with ESMTP
+        id b418ae39-e901-11ed-b972-005056bdfda7;
+        Tue, 02 May 2023 18:55:04 +0300 (EEST)
+From:   andy.shevchenko@gmail.com
+Date:   Tue, 2 May 2023 18:55:04 +0300
+To:     Okan Sahin <okan.sahin@analog.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Brian Masney <masneyb@onstation.org>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 3/4] Input: pwm-vibra - add support for enable GPIO
-Date:   Tue, 02 May 2023 17:35:04 +0200
-Message-ID: <841522397.0ifERbkFSE@z3ntu.xyz>
-In-Reply-To: <ZFBdobY1yxMXYfFt@google.com>
-References: <20230427-hammerhead-vibra-v1-0-e87eeb94da51@z3ntu.xyz>
- <20230427-hammerhead-vibra-v1-3-e87eeb94da51@z3ntu.xyz>
- <ZFBdobY1yxMXYfFt@google.com>
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] gpio: ds4520: Add ADI DS4520 GPIO Expander Support
+Message-ID: <ZFEyWH9PmtJIyeCK@surfacebook>
+References: <20230501230517.4491-1-okan.sahin@analog.com>
+ <20230501230517.4491-3-okan.sahin@analog.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230501230517.4491-3-okan.sahin@analog.com>
+X-Spam-Status: No, score=0.7 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+        FORGED_GMAIL_RCVD,FREEMAIL_FROM,NML_ADSP_CUSTOM_MED,SPF_HELO_NONE,
+        SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Dienstag, 2. Mai 2023 02:47:29 CEST Dmitry Torokhov wrote:
-> On Thu, Apr 27, 2023 at 10:34:28PM +0200, Luca Weiss wrote:
-> > Some pwm vibrators have a dedicated enable GPIO that needs to be set
-> > high so that the vibrator works. Add support for that optionally.
-> 
-> So this is not simply a power supply in your case controlled by a GPIO?
-> We truly can have both GPIO and a separate regulator?
+Tue, May 02, 2023 at 02:05:16AM +0300, Okan Sahin kirjoitti:
+> The DS4520 is a 9-bit nonvolatile (NV) I/O expander.
+> It offers users a digitally programmable alternative
+> to hardware jumpers and mechanical switches that are
+> being used to control digital logic node.
 
-Yes it appears to be the EN pin on the ISA1000A, see
-https://electronics.stackexchange.com/q/380475
+...
 
-On apq8026-lg-lenok there is a similar setup for the vibration motor although 
-there I don't know whether it's actually a fixed-regulator or not, but since 
-the two devices were built in a similar time (without checking further) I 
-could assume they both contain the same IC.
+> +#include <linux/device.h>
+> +#include <linux/gpio/driver.h>
+> +#include <linux/gpio/regmap.h>
+> +#include <linux/i2c.h>
 
-Regards
-Luca
+Missing property.h.
 
-> 
-> Thanks.
+> +#include <linux/regmap.h>
 
+...
 
+> +#define NUMBER_OF_GPIO	9
+> +
+> +#define PULLUP0		0xF0
+> +#define IO_CONTROL0	0xF2
+> +#define IO_STATUS0	0xF8
+
+No namespace for the above?
+
+...
+
+> +	struct gpio_regmap_config config = {0};
+
+0 is not needed.
+
+> +	ngpio = NUMBER_OF_GPIO;
+
+Do you really need this? Can Device Tree be sufficient here? (We have a
+GPIO-wide property for that).
+
+...
+
+> +	ret = device_property_read_u32(dev, "reg", &base);
+> +	if (ret)
+> +		return -EINVAL;
+
+Why shadowing error?
+
+...
+
+> +	regmap = devm_regmap_init_i2c(client, &ds4520_regmap_config);
+> +	if (IS_ERR(regmap)) {
+
+> +		ret = PTR_ERR(regmap);
+> +		dev_err_probe(dev, ret,
+> +			      "Failed to allocate register map\n");
+> +		return ret;
+
+	return dev_err_probe();
+
+> +	}
+
+...
+
+> +	config.ngpio = ngpio;
+
+Why do you use temporary variable ngpio and not assign directly here?
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
