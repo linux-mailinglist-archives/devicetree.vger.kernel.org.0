@@ -2,202 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C82B6F3F02
-	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 10:19:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68A1A6F3F11
+	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 10:26:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233705AbjEBITk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 May 2023 04:19:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35116 "EHLO
+        id S233120AbjEBI0e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 May 2023 04:26:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233693AbjEBITi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 04:19:38 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76526170A;
-        Tue,  2 May 2023 01:19:20 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 67EC924E156;
-        Tue,  2 May 2023 16:18:08 +0800 (CST)
-Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 2 May
- 2023 16:18:08 +0800
-Received: from ubuntu.localdomain (183.27.99.121) by EXMBX171.cuchost.com
- (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 2 May
- 2023 16:18:07 +0800
-From:   Minda Chen <minda.chen@starfivetech.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Pawel Laszczak <pawell@cadence.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Peter Chen <peter.chen@kernel.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>,
-        Minda Chen <minda.chen@starfivetech.com>
-Subject: [PATCH v1 2/2] usb: cdns3: cdns3-plat: Add clk and reset init
-Date:   Tue, 2 May 2023 16:18:05 +0800
-Message-ID: <20230502081805.112149-3-minda.chen@starfivetech.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230502081805.112149-1-minda.chen@starfivetech.com>
-References: <20230502081805.112149-1-minda.chen@starfivetech.com>
+        with ESMTP id S229936AbjEBI0d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 04:26:33 -0400
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A22FE58;
+        Tue,  2 May 2023 01:26:31 -0700 (PDT)
+Received: by mail-pj1-x1036.google.com with SMTP id 98e67ed59e1d1-24df6bbf765so2055230a91.0;
+        Tue, 02 May 2023 01:26:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1683015991; x=1685607991;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NThf51HN0Hmw05qsD82aWWnprkGApsME6/ez9gbwYD4=;
+        b=n8/iCIrvfM3Rw8xgWdhUOHvVhQBYT7UyRn4HPztbs65ck1gZ1UK76NurJZEocRb5N3
+         u8MawCk+S/y6KUip1hIe/R5OBrSL+TPGD86QZ4J6LOkWMmhAZZ80kHCVl9CsWrVex8/E
+         aWdKkV9+MswlpLUiDN5ayWNo/0pjjfN9e5OdYLjkYms+IA5xYhRnqbKtyTxnZOIp6ukx
+         Ccrt91MjJ3np5M8A2zHvkopMcW6IMAzM5VHzplBVGDHANnhHnulrDqThZKSUa0/3NQDa
+         KVwFTS2sLGDsoWX8/1V1/CMb6ymh8NBUE03tEc92HA/b2e5N/XCNPvlu+poiASlCHR1a
+         rgWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683015991; x=1685607991;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=NThf51HN0Hmw05qsD82aWWnprkGApsME6/ez9gbwYD4=;
+        b=kP1zfEuRTXr7YH/oPYiPQKrUpcSr+qDxnjbXOQD++CZnNn4+k9Q0Fzlu4OqVzSw+ML
+         kMsbK//NAtDfXhmsflsPlD8m5It7PgVxr4SL1gc+iGGbPagBuLwQYIGj/YTCggPTJgiI
+         eIrdrxHl6LufZB3zbF7IwQNufPztWgn/nps8ZDhYeYcUEfv7Z96XOa4qMHAM03BengVR
+         jGxXRe7bo8KtvskkbqIXJ56WxhuyMnKzVelRoBB+7mcL0Hns/6QKiplGkeiBZB7R2lX1
+         C/70RO097XZFa5pefIuTqQvcsBr6UyqTwcfmC2Hj75v7wcS7qMXItuX+9jtpbXsE7zcb
+         aB+w==
+X-Gm-Message-State: AC+VfDwUXlfOR5wS2jPI0AgzAhVq1sN1NcNEM/gW5sFboLngNFtyJrAf
+        OUC1KcSkR4B/EWVgsrf+O3y7Xe7NGU07UWfmGZFuNNH1BAA=
+X-Google-Smtp-Source: ACHHUZ7iAMN0h55/KOpCIA2bWw9W1t85gvPwlR81xT1RPkW9VX5dLbL993keQOYZwQ17tfDsJPGXC6VqZYdornRJbQU=
+X-Received: by 2002:a17:90a:a010:b0:249:6098:b068 with SMTP id
+ q16-20020a17090aa01000b002496098b068mr17532296pjp.45.1683015990989; Tue, 02
+ May 2023 01:26:30 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [183.27.99.121]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX171.cuchost.com
- (172.16.6.91)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20230501084401.765169-1-cristian.ciocaltea@collabora.com>
+In-Reply-To: <20230501084401.765169-1-cristian.ciocaltea@collabora.com>
+From:   Vincent Legoll <vincent.legoll@gmail.com>
+Date:   Tue, 2 May 2023 08:26:19 +0000
+Message-ID: <CAEwRq=pKBWsiE1EVf8+k2tZeeEqBpZFgJPCnSN2M005ajbpdmA@mail.gmail.com>
+Subject: Re: [PATCH 0/8] Add RK3588 OTP memory support
+To:     Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Shreeya Patel <shreeya.patel@collabora.com>,
+        Kever Yang <kever.yang@rock-chips.com>,
+        Finley Xiao <finley.xiao@rock-chips.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add gereric clk and reset init codes to Cadence USBSS
-controller. The codes has been tested by starfive vf2
-board.
+Hello,
 
-Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
----
- drivers/usb/cdns3/cdns3-plat.c | 52 ++++++++++++++++++++++++++++++++++
- drivers/usb/cdns3/core.h       |  3 ++
- 2 files changed, 55 insertions(+)
+On Mon, May 1, 2023 at 8:44=E2=80=AFAM Cristian Ciocaltea
+<cristian.ciocaltea@collabora.com> wrote:
+> This patch series adds OTP memory support for Rockchip RK3588 SoC,
+> while also providing a few improvements to the existing rockchip-otp
+> driver, in addition to converting the bindings to dt-schema.
 
-diff --git a/drivers/usb/cdns3/cdns3-plat.c b/drivers/usb/cdns3/cdns3-plat.c
-index 2bc5d094548b..1820844c74d2 100644
---- a/drivers/usb/cdns3/cdns3-plat.c
-+++ b/drivers/usb/cdns3/cdns3-plat.c
-@@ -12,11 +12,13 @@
-  *         Roger Quadros <rogerq@ti.com>
-  */
- 
-+#include <linux/clk.h>
- #include <linux/module.h>
- #include <linux/irq.h>
- #include <linux/kernel.h>
- #include <linux/platform_device.h>
- #include <linux/pm_runtime.h>
-+#include <linux/reset.h>
- 
- #include "core.h"
- #include "gadget-export.h"
-@@ -43,6 +45,34 @@ static void set_phy_power_off(struct cdns *cdns)
- 	phy_power_off(cdns->usb2_phy);
- }
- 
-+static int cdns3_clk_rst_init(struct cdns *cdns)
-+{
-+	int ret;
-+
-+	if (cdns->num_clks) {
-+		ret = clk_bulk_prepare_enable(cdns->num_clks, cdns->clks);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	ret = reset_control_deassert(cdns->resets);
-+	if (ret && cdns->num_clks)
-+		goto err_clk_init;
-+
-+	return ret;
-+
-+err_clk_init:
-+	clk_bulk_disable_unprepare(cdns->num_clks, cdns->clks);
-+	return ret;
-+}
-+
-+static void cdns3_clk_rst_deinit(struct cdns *cdns)
-+{
-+	reset_control_assert(cdns->resets);
-+	if (cdns->num_clks)
-+		clk_bulk_disable_unprepare(cdns->num_clks, cdns->clks);
-+}
-+
- /**
-  * cdns3_plat_probe - probe for cdns3 core device
-  * @pdev: Pointer to cdns3 core platform device
-@@ -116,6 +146,16 @@ static int cdns3_plat_probe(struct platform_device *pdev)
- 		cdns->wakeup_irq = 0x0;
- 	}
- 
-+	ret = devm_clk_bulk_get_all(dev, &cdns->clks);
-+	if (ret < 0)
-+		return ret;
-+
-+	cdns->num_clks = ret;
-+
-+	cdns->resets = devm_reset_control_array_get_optional_exclusive(dev);
-+	if (IS_ERR(cdns->resets))
-+		return PTR_ERR(cdns->resets);
-+
- 	cdns->usb2_phy = devm_phy_optional_get(dev, "cdns3,usb2-phy");
- 	if (IS_ERR(cdns->usb2_phy))
- 		return PTR_ERR(cdns->usb2_phy);
-@@ -128,6 +168,10 @@ static int cdns3_plat_probe(struct platform_device *pdev)
- 	if (IS_ERR(cdns->usb3_phy))
- 		return PTR_ERR(cdns->usb3_phy);
- 
-+	ret = cdns3_clk_rst_init(cdns);
-+	if (ret)
-+		return ret;
-+
- 	ret = phy_init(cdns->usb3_phy);
- 	if (ret)
- 		goto err_phy3_init;
-@@ -165,6 +209,7 @@ static int cdns3_plat_probe(struct platform_device *pdev)
- 	phy_exit(cdns->usb3_phy);
- err_phy3_init:
- 	phy_exit(cdns->usb2_phy);
-+	cdns3_clk_rst_deinit(cdns);
- 
- 	return ret;
- }
-@@ -187,6 +232,8 @@ static int cdns3_plat_remove(struct platform_device *pdev)
- 	set_phy_power_off(cdns);
- 	phy_exit(cdns->usb2_phy);
- 	phy_exit(cdns->usb3_phy);
-+	cdns3_clk_rst_deinit(cdns);
-+
- 	return 0;
- }
- 
-@@ -220,6 +267,8 @@ static int cdns3_controller_suspend(struct device *dev, pm_message_t msg)
- 
- 	cdns3_set_platform_suspend(cdns->dev, true, wakeup);
- 	set_phy_power_off(cdns);
-+	if (!PMSG_IS_AUTO(msg))
-+		cdns3_clk_rst_deinit(cdns);
- 	spin_lock_irqsave(&cdns->lock, flags);
- 	cdns->in_lpm = true;
- 	spin_unlock_irqrestore(&cdns->lock, flags);
-@@ -237,6 +286,9 @@ static int cdns3_controller_resume(struct device *dev, pm_message_t msg)
- 	if (!cdns->in_lpm)
- 		return 0;
- 
-+	if (!PMSG_IS_AUTO(msg))
-+		cdns3_clk_rst_init(cdns);
-+
- 	if (cdns_power_is_lost(cdns)) {
- 		phy_exit(cdns->usb2_phy);
- 		ret = phy_init(cdns->usb2_phy);
-diff --git a/drivers/usb/cdns3/core.h b/drivers/usb/cdns3/core.h
-index 2d332a788871..b894768ee485 100644
---- a/drivers/usb/cdns3/core.h
-+++ b/drivers/usb/cdns3/core.h
-@@ -111,6 +111,9 @@ struct cdns {
- 	struct mutex			mutex;
- 	enum usb_dr_mode		dr_mode;
- 	struct usb_role_switch		*role_sw;
-+	struct reset_control *resets;
-+	struct clk_bulk_data *clks;
-+	int num_clks;
- 	bool				in_lpm;
- 	bool				wakeup_pending;
- 	struct cdns3_platform_data	*pdata;
--- 
-2.17.1
+I tested this on a QuartzPro64 dev board, I applied your series top of my t=
+ree:
+Collabora's rk3588-v6.3 + some DT patches to add support for the qp64 board=
+.
 
+Here is the output from the commands you told me to try:
+
+# ls -1 /sys/bus/nvmem/devices/*/nvmem
+/sys/bus/nvmem/devices/rockchip-otp0/nvmem
+
+#  od -N 64 -A x -t x1z -v /sys/bus/nvmem/devices/rockchip-otp0/nvmem
+000000 52 4b 35 88 91 fe 21 41 5a 43 39 36 00 00 00 00  >RK5...!AZC96....<
+000010 00 00 00 00 0f 0b 0d 0a 0a 0c 25 0e 00 00 00 00  >..........%.....<
+000020 00 00 00 00 00 00 00 00 08 0c 00 00 00 00 00 00  >................<
+000030 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  >................<
+000040
+
+This is working as expected.
+
+You can add my T-B, for the whole series:
+
+Tested-by: Vincent Legoll <vincent.legoll@gmail.com>
+
+Regards
+
+--
+Vincent Legoll
