@@ -2,77 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5212A6F3E5D
-	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 09:22:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 117E66F3E61
+	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 09:26:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233615AbjEBHWa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 May 2023 03:22:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39902 "EHLO
+        id S233638AbjEBH0y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 May 2023 03:26:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229653AbjEBHWa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 03:22:30 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BDDF40C2
-        for <devicetree@vger.kernel.org>; Tue,  2 May 2023 00:22:28 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-3f19b9d5358so33333665e9.1
-        for <devicetree@vger.kernel.org>; Tue, 02 May 2023 00:22:28 -0700 (PDT)
+        with ESMTP id S233642AbjEBH0j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 03:26:39 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8067D358C
+        for <devicetree@vger.kernel.org>; Tue,  2 May 2023 00:26:36 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-9619095f479so339780266b.1
+        for <devicetree@vger.kernel.org>; Tue, 02 May 2023 00:26:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683012146; x=1685604146;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=cfc3shu25VAQBLjR0CRWBWzFrWGG2Jfrb9akd4uF1fc=;
-        b=b0Fed6b+eCmT8cV3xr3wlG4FF8mw3G/wDBEk06E4EJlwgGLdhjYYmaTHanorpuU5xU
-         SAUybqW0SFDeWqgmj1Gbu+Ho+8CS0HQ57uAlfCfb14Feln32WDvAvTJgQMi2ZwzaewIl
-         RQJ9MpLuwcJOULjBA+YC1gbkJcJmyLeTpSNciXhFkctHhbFjVsefgxDrVL3v0BA6DSqA
-         WdgpWxxAWEmJxANsrf35sLT07alHX99MNorU34Kd7N5u9RnLC/LbHn2LydQPh798aFwW
-         HsOKvEQwFDTzAh60j/TiLHoh7x/JvuTl0NybV4G+9DpvDzf22aQ+YUQqT1NHnUCiZFJ8
-         Kslg==
+        d=linaro.org; s=google; t=1683012395; x=1685604395;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Jw2MeZRG2SNHmSokjIGEeQ+7HfHpf9FvR5i6ApOel5o=;
+        b=GCn5ACoUV7FFh9LJPy2TpMfjpk/2HmvKOJlSGImfLeM3iSDhZ2/rv3n9ukFQtjXb/V
+         kcAuyurTA7xqSVY0JQuj0XErWDXSn3b1LvG6r2bYM4yKbHyJ7KnbDi9RzXQZTpP4wHs7
+         QK9MrNPRvLWSrXmaKj9F0AAsbQG1JvZ+aRPkb1YTskUqUete57k6VAjPYqU6ZbfGEo0Q
+         LLHuD8ruXPdG9EadkGd6uOJUlPdxzN3RCRTpRrTX+33A/VAI46mS5fq/iSzL9N85y072
+         1mCvwhJyAzDYOWOH3FS36loGZpqRMTNwjjOq6rFNoAUqxjK5x5soKZvb43GDkmqTtk1i
+         W3qw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683012146; x=1685604146;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cfc3shu25VAQBLjR0CRWBWzFrWGG2Jfrb9akd4uF1fc=;
-        b=CX0m9PBs7pkE0W6GR2nQUmDChQvxdJDi5CO+npaCfW5atMGIJ4HrueU3Ks+FZ6ASJK
-         Y+cOmFeqgkoJmTpx6DbQpY4/sL0tldNklqUZolDr1rlUMer04G2hJ+ka1xErxcJt6VwI
-         QRHrQWHehkP7ehvZ/2bpJUxg5cCsTy5Jg2h1WhAhRMF4w//6yX1GyfNWkqNULeco7bs4
-         m6CF2sMJCwFjeRMuelfKidIFgDNFqHt6486HLCP2DRTIidshx1fICuhcxsjuTooGHiYg
-         iv8JL7CAGOpAfl2j0/9EkDsIoR+1/OIrPpp0hf/ztCYZ/ki7IhJSXCb2lcpW9vkBqSYN
-         vExw==
-X-Gm-Message-State: AC+VfDyy1l1tESU8Ldtbbv5mLC9wQ7wDdw3mh/OzSDovbUoVSnYJ/V0R
-        8GlvI2UYVIBh8JdRnSlifSKLXQ==
-X-Google-Smtp-Source: ACHHUZ6Ty7St5+Sjn/T8sAFgQsPINWtfyPc/hBOGyfBpwxQPyOXrdrAjjcNqquluIL42F0ajaoYRKg==
-X-Received: by 2002:a7b:cb85:0:b0:3f1:7136:dd45 with SMTP id m5-20020a7bcb85000000b003f17136dd45mr11226104wmi.30.1683012146663;
-        Tue, 02 May 2023 00:22:26 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:e265:b513:556a:4149? ([2a01:e0a:982:cbb0:e265:b513:556a:4149])
-        by smtp.gmail.com with ESMTPSA id bi26-20020a05600c3d9a00b003eddc6aa5fasm34009357wmb.39.2023.05.02.00.22.25
+        d=1e100.net; s=20221208; t=1683012395; x=1685604395;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Jw2MeZRG2SNHmSokjIGEeQ+7HfHpf9FvR5i6ApOel5o=;
+        b=Q2o3vg3vai8uYCL6bD1zHauW5qIYdbzbYJL+lGdY4Ku5GO01EfsXQvp3y6KHjlVrsW
+         cCTQoJR1SZJELqShzUmQsK+XaVxhqBNmJcpiJ0atmJV7lKTrCXDlXrcsxb4CKBQa3I3N
+         xlVs+wNN7LoegB6F1kzm936L9oTUOhrg2AEEf+Iw+iVtNqN0V33IAvTeHIzs3Tntnhhl
+         mbmiDmc6Xccno6ssXGC7b5p6TyhFhUtMOin0Nus3aIggovffuDehvnVwOd3rGLIKOYVu
+         cVwymNLTk9ym/4JdcQ6YgmnsxvU/qcfFqHaIFv8sjueW4AZ4jiFBcG3ibj5DApXgUQxr
+         IAYA==
+X-Gm-Message-State: AC+VfDxkZC5Um4GxS/KSXNtqCo8WBqb5mH/o/Ww+E51ut4NUsLXF+9dU
+        AlikgXCmwhBOAodvMIs0XHsi3A==
+X-Google-Smtp-Source: ACHHUZ5tpQtK0nyexW1iTy+mBHeFxeiAQMAPOyIS+os/r9kldW+rmjEPsCp5t37OM26/IeJ59T0OXQ==
+X-Received: by 2002:a17:907:3207:b0:94a:44ef:853d with SMTP id xg7-20020a170907320700b0094a44ef853dmr14180332ejb.68.1683012394949;
+        Tue, 02 May 2023 00:26:34 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:bafd:1283:b136:5f6a? ([2a02:810d:15c0:828:bafd:1283:b136:5f6a])
+        by smtp.gmail.com with ESMTPSA id s22-20020a170906169600b0094f3132cb86sm15604927ejd.40.2023.05.02.00.26.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 May 2023 00:22:26 -0700 (PDT)
-Message-ID: <e7a8e78e-9e99-91fd-40a9-5cb8623f287e@linaro.org>
-Date:   Tue, 2 May 2023 09:22:27 +0200
+        Tue, 02 May 2023 00:26:34 -0700 (PDT)
+Message-ID: <5bcb2741-9212-f1aa-335b-6bc4b6fad448@linaro.org>
+Date:   Tue, 2 May 2023 09:26:32 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-From:   neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v5 2/2] arm64: dts: meson-gxl: add support for Xiaomi Mi
- box 3
+ Thunderbird/102.10.1
+Subject: Re: [PATCH 1/4] dt-bindings: sound: Add simple-iio-aux
 Content-Language: en-US
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Karl Chan <exkcmailist@inbox.lv>
-Cc:     linux-amlogic@lists.infradead.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
-        jbrunet@baylibre.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230425165624.11999-1-exkcmailist@inbox.lv>
- <20230425165624.11999-3-exkcmailist@inbox.lv>
- <CAFBinCA4c1qDC5=NWJKEMkTh5HfhkqpgrpetgEH3kJTY_qLVHA@mail.gmail.com>
-Organization: Linaro Developer Services
-In-Reply-To: <CAFBinCA4c1qDC5=NWJKEMkTh5HfhkqpgrpetgEH3kJTY_qLVHA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+To:     Herve Codina <herve.codina@bootlin.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-iio@vger.kernel.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20230421124122.324820-1-herve.codina@bootlin.com>
+ <20230421124122.324820-2-herve.codina@bootlin.com>
+ <20230425173029.GA1967523-robh@kernel.org>
+ <20230426093621.3834e703@bootlin.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230426093621.3834e703@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
@@ -83,29 +87,147 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/05/2023 14:54, Martin Blumenstingl wrote:
-> On Tue, Apr 25, 2023 at 6:57 PM Karl Chan <exkcmailist@inbox.lv> wrote:
->>
->> From: "Karl Chan"  <exkcmailist@inbox.lv>
->>
->> The Xiaomi Mi box 3 is a TV box based on the Amlogic S905X chipset.
->> There are two variants:
->> - 2 GiB/8GIB
->> - 1 GiB/4GIB
->>
->> Both variants come with:
->> - 802.11a/b/g/n/ac wifi (BCM4345)
->> - HDMI , AV (CVBS) and S/PDIF optical output
->> - 1x USB
->>
->> Signed-off-by: Karl Chan <exkcmailist@inbox.lv>
-> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+On 26/04/2023 09:36, Herve Codina wrote:
+> Hi Rob,
 > 
-> Note: Neil will probably only apply this (and the other patch from
-> this series) after 6.4-rc1 has been released
+> On Tue, 25 Apr 2023 12:30:29 -0500
+> Rob Herring <robh@kernel.org> wrote:
+> 
+>> On Fri, Apr 21, 2023 at 02:41:19PM +0200, Herve Codina wrote:
+>>> Industrial I/O devices can be present in the audio path.
+>>> These devices needs to be viewed as audio components in order to be
+>>> fully integrated in the audio path.
+>>>
+>>> simple-iio-aux allows to consider these Industrial I/O devices as
+>>> auxliary audio devices.  
+>>
+>> What makes it simple? Any binding called simple or generic is a trigger 
+>> for me. Best to avoid those terms. :)
+> 
+> I choose simple-iio-aux because some simple-* already exists.
+> For instance simple-audio-amplifier or simple-audio-mux.
+> 
+> Do you prefer audio-iio-aux ?
+> Let me know if I should change.
 
-Exact !
+It means that often what people call "simple" and "generic" works only
+for their specific case, because it is not really simple and generic.
+After some time the "simple" and "generic" becomes "complicated" and
+"huge". Conclusion: sometimes simple and generic bindings are bad idea
+and you should have something specific.
 
-Thanks,
-Neil
+Your description in the binding also does not help to match it to
+specific, real device. Provide the examples, as Rob asked.
+
+...
+
+>>> +  io-channels:
+>>> +    description:
+>>> +      Industrial I/O device channels used
+>>> +
+>>> +  io-channel-names:
+>>> +    description:
+>>> +      Industrial I/O channel names related to io-channels.
+>>> +      These names are used to provides sound controls, widgets and routes names.
+>>> +
+>>> +  invert:  
+>>
+>> Property names should globally only have 1 type definition. This is 
+>> generic enough I'd be concerned that's not the case.
+> 
+> What do you mean ?
+
+It is quite likely this will interfere with other properties having the
+same name but different type/definition. If you want to keep it named
+generic, then please investigate how this would affect any other
+bindings. So easier is to make it not that generic, some more specific name.
+
+> 
+>>
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>>> +    description: |
+>>> +      A list of 0/1 flags defining whether or not the related channel is
+>>> +      inverted
+>>> +    items:
+>>> +      enum: [0, 1]
+>>> +      default: 0
+>>> +      description: |
+>>> +        Invert the sound control value compared to the IIO channel raw value.
+>>> +          - 1: The related sound control value is inverted meaning that the
+>>> +               minimum sound control value correspond to the maximum IIO channel
+>>> +               raw value and the maximum sound control value correspond to the
+>>> +               minimum IIO channel raw value.
+>>> +          - 0: The related sound control value is not inverted meaning that the
+>>> +               minimum (resp maximum) sound control value correspond to the
+>>> +               minimum (resp maximum) IIO channel raw value.
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - io-channels
+>>> +  - io-channel-names
+>>> +
+>>> +unevaluatedProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    aux {
+>>> +        compatible = "simple-iio-aux";
+>>> +        io-channels = <&iio 0>, <&iio 1>, <&iio 2>, <&iio 3>;
+>>> +        io-channel-names = "CH0", "CH1", "CH2", "CH3";  
+>>
+>> Not really useful names. Do you have a real example?
+> 
+> As Mark said, for IIO channel, using CHx makes sense.
+> See below, I provide a full example.
+> 
+>>
+>>> +        /* Invert CH1 and CH2 */
+>>> +        invert = <0 1 1>;  
+>>
+>> IMO, invert should be same length as io-channels.
+> 
+> I will update.
+> 
+> Related to this topic, when I wrote this binding, I wanted to add some
+> rules/constraints in order to:
+> - Have this property optional
+> - If present, force to have as many items in the invert array as the
+>   number of items present in the io-channels array.
+> 
+> I never succeed in writing the constraint for the invert property.
+> It should be possible (it is done for some 'foo' 'foo-names' pair such
+> as clocks).
+> Can you tell me if possible in my case and give me some pointers ?
+> 
+>>
+>>> +    };  
+>>
+>> How do support multiple instances? Say you have 2 sound cards (or 1 
+>> sound card with multiple audio paths) each with different sets of IIO 
+>> channels associated with it. You'd need a link to each 'aux' node. Why 
+>> not just add io-channels to the sound card nodes directly? That's 
+>> already just a virtual, top-level container node grouping all the 
+>> components. I don't see why we need another virtual node grouping a 
+>> subset of them.
+> 
+> I don't see what you mean.
+> I use a simple-audio-card and here is a full example using several
+> instances:
+
+Just like Rob said: "You'd need a link to each 'aux' node"
+
+and you did it...
+
+So now the rest of Rob's answer:
+
+"Why not just add io-channels to the sound card nodes directly? That's
+already just a virtual, top-level container node grouping all the
+components. I don't see why we need another virtual node grouping a
+subset of them."
+
+Why do you need another node if it is not really representing a real,
+separate device?
+
+Best regards,
+Krzysztof
 
