@@ -2,42 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0A496F4410
-	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 14:47:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 033BA6F4434
+	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 14:50:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233771AbjEBMrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 May 2023 08:47:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60104 "EHLO
+        id S233856AbjEBMuA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 May 2023 08:50:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233944AbjEBMrC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 08:47:02 -0400
+        with ESMTP id S234305AbjEBMt6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 08:49:58 -0400
 Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA0545FCE;
-        Tue,  2 May 2023 05:46:57 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6C3D5252;
+        Tue,  2 May 2023 05:49:52 -0700 (PDT)
 Received: from [192.168.1.90] (unknown [188.27.34.213])
         (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
          key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
         (Authenticated sender: cristicc)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 57A6F6602121;
-        Tue,  2 May 2023 13:46:55 +0100 (BST)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 837F46602121;
+        Tue,  2 May 2023 13:49:50 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1683031616;
-        bh=NaKJyyPWlHN9Ghox5nlaOW5ko2zxa/A4ZsnzrN3xZyM=;
+        s=mail; t=1683031791;
+        bh=1SBHvxpiiP3vO8FDcUxSdgWcAeK19kTJhEfXoSg3Bz8=;
         h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=lDD+DhBxRnivcBILM1CnoJkcAAyxRI5um7/wJsE+DYEizYRyWXO1XGQWXqxCnQbhr
-         347qrJFWA+WvKPc3o4f9aDjf7iFKJlWYneIR24poZX8CVSAe6FirpsKTFLACtb7p8s
-         wii4MMzGOnFF0yzJCHk6kw9WPnkmE0X2xlIib50UbF7u41wm72+hkD1kOazU2ONwVs
-         4lwRZIZZIM1IJJ+t9aXAVmPqQ2h12kdoVU9026YSNNatth/+VEYb/AVeQQolpa6zbp
-         div6AN51e14EovwgIFpZFM/gvExNcvN5eM6Rir/mmVclwSt7OCOlWbJZDN1wsiRu5j
-         a0sI1iV0yQUMw==
-Message-ID: <9c8ca0e7-819a-ac6a-04be-c2dba1f61952@collabora.com>
-Date:   Tue, 2 May 2023 15:46:53 +0300
+        b=lVX3TX5nOP8T7DAc8DnTniZmRwQkSATanSOambI0L6/HJZCEogsIFtChW2g8t24bU
+         8KHdn8iVUlYv9kBuDsz0gI1UzjMBwHtUsvO+mhG5O+5g+aZnJNXJssb6WiPYtN47Rm
+         f0jJjslUabz66qmeaGQgvzakgmbGyIq+tRd2BTaaaV2Pb/jynGbtfzOQm7bCV9mZMh
+         /sDwpb07Ht05krpJVuU8BW4Jyk4Pey1OoFD/dDTVyefXM+0xA3Ehq4FG484w3MlLxj
+         cGWVHbZh+SvUHODfwkwJbGf2nvOORl6R+nVjv54/gBNzHRTDpawHaL6KKRponweb6J
+         Sm9+7MvfEGnAg==
+Message-ID: <70d71afc-5191-2995-9975-7a2871c226aa@collabora.com>
+Date:   Tue, 2 May 2023 15:49:47 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH 2/8] dt-bindings: nvmem: rockchip-otp: Add compatible for
- RK3588
+Subject: Re: [PATCH 3/8] nvmem: rockchip-otp: Add clocks and reg_read to
+ rockchip_data
 Content-Language: en-US
 To:     =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
         Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
@@ -52,10 +52,10 @@ Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
         kernel@collabora.com
 References: <20230501084401.765169-1-cristian.ciocaltea@collabora.com>
- <20230501084401.765169-3-cristian.ciocaltea@collabora.com>
- <5471965.k3LOHGUjKi@diego>
+ <20230501084401.765169-4-cristian.ciocaltea@collabora.com>
+ <6064284.AJdgDx1Vlc@diego>
 From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <5471965.k3LOHGUjKi@diego>
+In-Reply-To: <6064284.AJdgDx1Vlc@diego>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -68,23 +68,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Heiko,
-
-On 5/2/23 11:42, Heiko Stübner wrote:
-> Hi,
+On 5/2/23 11:47, Heiko Stübner wrote:
+> Am Montag, 1. Mai 2023, 10:43:55 CEST schrieb Cristian Ciocaltea:
+>> In preparation to support new Rockchip OTP memory devices with different
+>> clock configurations and register layout, extend rockchip_data struct
+>> with the related members: clocks, num_clks, reg_read.
+>>
+>> Additionally, to avoid managing redundant driver data, drop num_clks
+>> member from rockchip_otp struct and update all references to point to
+>> the equivalent member in rockchip_data.
+>>
+>> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+>> ---
+>>  drivers/nvmem/rockchip-otp.c | 79 ++++++++++++++++++++++--------------
+>>  1 file changed, 49 insertions(+), 30 deletions(-)
+>>
+>> diff --git a/drivers/nvmem/rockchip-otp.c b/drivers/nvmem/rockchip-otp.c
+>> index 9f53bcce2f87..a5b234e60735 100644
+>> --- a/drivers/nvmem/rockchip-otp.c
+>> +++ b/drivers/nvmem/rockchip-otp.c
+>> @@ -54,21 +54,19 @@
+>>  
+>>  #define OTPC_TIMEOUT			10000
+>>  
+>> +struct rockchip_data {
+>> +	int size;
+>> +	const char * const *clocks;
+>> +	int num_clks;
 > 
-> Am Montag, 1. Mai 2023, 10:43:54 CEST schrieb Cristian Ciocaltea:
->> Document the OTP memory found on Rockchip RK3588 SoC.
-> 
-> nit: I guess the changed clock and resets configuration for rk3588 variants
-> could be mentioned in the commit message.
+> nit: might be nice to use either "clocks" or "clks" as part for both names
 
-Sure, I will update the commit message if a new revision of the patch
-series is required.
+Indeed, will handle this in v2.
 
+> other than that
 > Reviewed-by: Heiko Stuebner <heiko@sntech.de>
 
-Thanks for reviewing!
-
-Regards,
+Thanks,
 Cristian
