@@ -2,155 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC07E6F3D0D
-	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 07:38:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5FF26F3CFC
+	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 07:35:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233286AbjEBFii (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 May 2023 01:38:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58910 "EHLO
+        id S229553AbjEBFfx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 May 2023 01:35:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233540AbjEBFih (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 01:38:37 -0400
-X-Greylist: delayed 206 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 01 May 2023 22:35:26 PDT
-Received: from n169-114.mail.139.com (n169-114.mail.139.com [120.232.169.114])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E6BB30FF
-        for <devicetree@vger.kernel.org>; Mon,  1 May 2023 22:35:25 -0700 (PDT)
-X-RM-TagInfo: emlType=0                                       
-X-RM-SPAM:                                                                                        
-X-RM-SPAM-FLAG: 00000000
-Received: from localhost.localdomain (unknown[183.194.159.16])
-        by rmsmtp-lg-appmail-38-12052 (RichMail) with SMTP id 2f146450a03fece-e31a3;
-        Tue, 02 May 2023 13:31:45 +0800 (CST)
-X-RM-TRANSID: 2f146450a03fece-e31a3
-From:   Shenghao Ding <13916275206@139.com>
-To:     devicetree@vger.kernel.org
-Cc:     krzysztof.kozlowski+dt@linaro.org, broonie@kernel.org,
-        lgirdwood@gmail.com, kevin-lu@ti.com, shenghao-ding@ti.com,
-        alsa-devel@alsa-project.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, x1077012@ti.com, peeyush@ti.com,
-        navada@ti.com, gentuser@gmail.com,
-        Shenghao Ding <13916275206@139.com>
-Subject: [PATCH v1 2/5] ASoC: dt-bindings: Add tas2781 amplifier
-Date:   Tue,  2 May 2023 13:31:35 +0800
-Message-Id: <20230502053135.27019-1-13916275206@139.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S229528AbjEBFfw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 01:35:52 -0400
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D02B33581
+        for <devicetree@vger.kernel.org>; Mon,  1 May 2023 22:35:48 -0700 (PDT)
+Received: by mail-pl1-x633.google.com with SMTP id d9443c01a7336-1aaebed5bd6so16847555ad.1
+        for <devicetree@vger.kernel.org>; Mon, 01 May 2023 22:35:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683005748; x=1685597748;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=WalWNBbqLP5+H0yr5WCCK7jHS95uZC4dq+Re1T637XE=;
+        b=S6dGmVSsgrHaEr0TUBQULNWA571DsS9PU8wYJmxTdyAfFKX5QzPWj2G39ZuDwKD/dZ
+         CpW/WrbXbGM7nss6yYYrNrjaWa+hlMdP+Gr04koV0DYIqUDXDbqnV85ODGmAuEupk5uN
+         DEk4JmyqMPXutFY1NLeUx2QFZPM1MckjDc82OOHnNWHQ+IfzHCbS/mISMopMzzaZ5Ley
+         /+u0dqewctMvnkSqz9vRCmO4IBkWt7yJiBrb5ROnqhe38hES6+bkB1XfRQQBbrZoe9S6
+         JiDDLZqGBWtZVDVgxBIZA9jmW2arcgMqahWBFdvkH/GmHBQriD1LgK4dACkw0bVH2Biu
+         0fjw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683005748; x=1685597748;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WalWNBbqLP5+H0yr5WCCK7jHS95uZC4dq+Re1T637XE=;
+        b=duNdD+fX7yh3qzUdfF8vpFpJlwtRfSk+BMIX/GqwBGI9QnvE6c6Ewk1KvCNvmmaZIZ
+         nruMhINSQ4NWlqe6f/OF0BB4TvuD/g6T9RF7gKcE0OGMA3vDZeB+/Qdexn93Janz2GeZ
+         NuNvhePQkZseBtQ6nMWKmcDn24kWH1oQAjFj73SYLd66Q2KByxIMBAE2s1sIXapJq75U
+         sGFy+E4cqMgQxEA6J2wkzF3wQZdUTVIBNuYg29SwLeXQVo0zMokPoDEjKfUyjKvBvd2Q
+         hwu6DMDP/Fgfvt1o2eamGz+03+FJJn2/JD679y2aV+SoAgGzfde5708S7eFAojZKYoB6
+         BEKg==
+X-Gm-Message-State: AC+VfDzyitG0lgIxDbY6MjNSCBACzrDl1Rqyspl69STl/dLlpWFnhowj
+        hRuEgiNOMZCqKUNgKRJwO7VU2w==
+X-Google-Smtp-Source: ACHHUZ74rhSOrYkhGkK2AaUtssN912iRZKoGc466lxGT7AqULsRjX6hsaMu1K2GGcRE1jlHuRsSc9g==
+X-Received: by 2002:a17:903:1248:b0:1a6:a6e7:8846 with SMTP id u8-20020a170903124800b001a6a6e78846mr18260120plh.40.1683005748053;
+        Mon, 01 May 2023 22:35:48 -0700 (PDT)
+Received: from localhost.localdomain ([2401:4900:1f3b:58fa:39f6:37e1:bb9a:a094])
+        by smtp.gmail.com with ESMTPSA id j12-20020a170902690c00b001a6a6169d45sm18870369plk.168.2023.05.01.22.35.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 May 2023 22:35:47 -0700 (PDT)
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-phy@lists.infradead.org
+Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
+        andersson@kernel.org, bhupesh.sharma@linaro.org,
+        bhupesh.linux@gmail.com, krzysztof.kozlowski@linaro.org,
+        robh+dt@kernel.org, konrad.dybcio@linaro.org, kishon@kernel.org,
+        vkoul@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        dmitry.baryshkov@linaro.org
+Subject: [PATCH v10 0/4] Enable USB SS qmp phy for Qualcomm SM6115 SoC
+Date:   Tue,  2 May 2023 11:05:30 +0530
+Message-Id: <20230502053534.1240553-1-bhupesh.sharma@linaro.org>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,FROM_LOCAL_DIGITS,
-        FROM_LOCAL_HEX,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Create tas2781.yaml for tas2781 driver.
+Changes since v9:
+-----------------
+- v9 can be seen here: https://lore.kernel.org/linux-arm-msm/20230501192432.1220727-1-bhupesh.sharma@linaro.org/
+- Addressed review comments from Dmitry on v9, regarding register size
+  and pcs_misc offset handling. Also collected his R-Bs.
 
-Signed-off-by: Shenghao Ding <13916275206@139.com>
+Changes since v8:
+-----------------
+- v8 can be seen here: https://lore.kernel.org/linux-arm-msm/20230410171010.2561393-1-bhupesh.sharma@linaro.org/
+- Added driver change for new bindings used for sm6115 / qcm2290
+  devices.
 
----
-Changes in v1:
- - Submit together with tas2781 codec driver code
- Changes to be committed:
-	new file:   Documentation/devicetree/bindings/sound/ti,tas2781.yaml
----
- .../devicetree/bindings/sound/ti,tas2781.yaml | 84 +++++++++++++++++++
- 1 file changed, 84 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/ti,tas2781.yaml
+Changes since v7:
+-----------------
+- v7 can be seen here: https://lore.kernel.org/linux-arm-msm/20230409200934.2329297-1-bhupesh.sharma@linaro.org/
+- Addressed review comments from Dmitry and added "pipe clk".
 
-diff --git a/Documentation/devicetree/bindings/sound/ti,tas2781.yaml b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
-new file mode 100644
-index 000000000000..028151c388bf
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
-@@ -0,0 +1,84 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (C) 2022 - 2023 Texas Instruments Incorporated
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/ti,tas2781.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments TAS2781 SmartAMP
-+
-+maintainers:
-+  - Shenghao Ding <shenghao-ding@ti.com>
-+
-+description:
-+  The TAS2781 is a mono, digital input Class-D audio amplifier
-+  optimized for efficiently driving high peak power into small
-+  loudspeakers. Integrated an on-chip DSP supports Texas Instruments
-+  Smart Amp speaker protection algorithm. The integrated speaker
-+  voltage and current sense provides for real time
-+  monitoring of loudspeaker behavior.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,tas2781
-+
-+  reg:
-+    description: I2C address of the primary device.
-+    items:
-+      minimum: 0x38
-+      maximum: 0x40
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  ti,audio-slots:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    minItems: 1
-+    maxItems: 4
-+    description:
-+      I2C address of the device for different audio slots,
-+      useless in mono case.
-+
-+  ti,broadcast-addr:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Generic I2C address for all the tas2781 devices in
-+      purpose of I2C broadcast during the multi-device
-+      writes, useless in mono case.
-+
-+  '#sound-dai-cells':
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+   #include <dt-bindings/gpio/gpio.h>
-+   i2c {
-+     /* example with quad support, such as tablet or pad device */
-+     #address-cells = <1>;
-+     #size-cells = <0>;
-+     quad: codec@38 {
-+       compatible = "ti,tas2781";
-+       reg = <0x38>;
-+       #sound-dai-cells = <1>;
-+       reset-gpios = < &gpio1 10 GPIO_ACTIVE_HIGH >;
-+       interrupt-parent = <&gpio1>;
-+       interrupts = <15>;
-+       ti,audio-slots = < 0x38 /* topleft-channel */
-+                          0x39 /* topright-channel */
-+                          0x3a /* bottomleft-channel */
-+                          0x3b /* bottomright-channel */
-+                        >;
-+       ti,broadcast-addr = <0x40>;
-+     };
-+   };
-+...
+Changes since v6:
+-----------------
+- v6 can be seen here: https://lore.kernel.org/linux-arm-msm/20230407061122.2036838-1-bhupesh.sharma@linaro.org/
+- Addressed review comments from Bjorn and Dmitry and dropped old bindings in this
+  version.
+
+Changes since v5:
+-----------------
+- v5 can be seen here: https://lore.kernel.org/linux-arm-msm/20230405191633.1864671-1-bhupesh.sharma@linaro.org/
+- Addressed review comments from Dmitry and made [PATCH 1/2] compatible with his 
+  'split away legacy USB+DP code' series:
+  <https://patchwork.kernel.org/project/linux-phy/cover/20230324215550.1966809-1-dmitry.baryshkov@linaro.org>
+
+Changes since v4:
+-----------------
+- v4 can be seen here: https://lore.kernel.org/linux-arm-msm/20230401154725.1059563-1-bhupesh.sharma@linaro.org/ 
+- Collected Krzysztof's Ack for [PATCH 1/2].
+- Added more descriptive commit logs as per Dmitry's comments on v4.
+
+Changes since v3:
+-----------------
+- v3 can be seen here: https://lore.kernel.org/linux-arm-msm/20221215094532.589291-4-bhupesh.sharma@linaro.org/
+- Fixed v4 as per the downstream driver code: https://android.googlesource.com/kernel/msm-extra/devicetree/+/refs/heads/android-msm-bramble-4.19-android11-qpr1/qcom/bengal-usb.dtsi#296
+
+This patchset adds the support for USB SS qmp phy for Qualcomm SM6115
+SoC. For the previous versions of this patch there were conversations
+on irc as to whether this was a 'qcom,usb-ssphy-qmp-usb3-or-dp' or a
+'qcom,usb-ssphy-qmp-dp-combo' as per downstream code and hardware
+documentation.
+
+But after a careful look at downstream dtsi (see [1]) it appears that
+this indeed is a 'qcom,usb-ssphy-qmp-usb3-or-dp' phy and not a
+'dp-combo' phy.
+
+[1]. https://android.googlesource.com/kernel/msm-extra/devicetree/+/refs/heads/android-msm-bramble-4.19-android11-qpr1/qcom/bengal-usb.dtsi#296
+
+Bhupesh Sharma (4):
+  dt-bindings: phy: qcom,qmp-usb: Drop legacy bindings and move to newer
+    one (SM6115 & QCM2290)
+  phy: qcom-qmp-usb: add support for updated qcm2290 / sm6115 binding
+  arm64: dts: qcom: sm6115: Add USB SS qmp phy node
+  arm64: dts: qcom: qrb4210-rb2: Enable USB node
+
+ .../phy/qcom,msm8996-qmp-usb3-phy.yaml        | 27 ------------
+ .../phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml   | 44 ++++++++++++++++---
+ arch/arm64/boot/dts/qcom/qrb4210-rb2.dts      | 24 ++++++++++
+ .../boot/dts/qcom/sm4250-oneplus-billie2.dts  |  3 ++
+ arch/arm64/boot/dts/qcom/sm6115.dtsi          | 29 +++++++++++-
+ .../boot/dts/qcom/sm6115p-lenovo-j606f.dts    |  3 ++
+ drivers/phy/qualcomm/phy-qcom-qmp-usb.c       | 22 ++++++++++
+ 7 files changed, 118 insertions(+), 34 deletions(-)
+
 -- 
-2.34.1
-
+2.38.1
 
