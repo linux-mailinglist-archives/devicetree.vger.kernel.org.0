@@ -2,85 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DE466F3DD7
-	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 08:53:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 091316F3DDD
+	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 08:53:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233704AbjEBGx3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 May 2023 02:53:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55298 "EHLO
+        id S233578AbjEBGxy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 May 2023 02:53:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233677AbjEBGxB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 02:53:01 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A10A4C02
-        for <devicetree@vger.kernel.org>; Mon,  1 May 2023 23:52:31 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-50bc075d6b2so4670100a12.0
-        for <devicetree@vger.kernel.org>; Mon, 01 May 2023 23:52:31 -0700 (PDT)
+        with ESMTP id S229703AbjEBGxX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 02:53:23 -0400
+Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F03DB4C03
+        for <devicetree@vger.kernel.org>; Mon,  1 May 2023 23:53:01 -0700 (PDT)
+Received: by mail-yb1-xb29.google.com with SMTP id 3f1490d57ef6-b9a6f17f2b6so23260894276.1
+        for <devicetree@vger.kernel.org>; Mon, 01 May 2023 23:53:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683010350; x=1685602350;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Qp50p2Ws7bkjK436XWAEC92FxJZeHIdYYG8HIYuRl1w=;
-        b=Y5pd7ipHf5khD4XXKqFvFfxPCqEek3mtfmLwTKDEHg7xHWpfqhktBQFGAo9UHWTgOv
-         3zdZU6nD1TC58buCWqJqP0aLcYi594gaFF1xeJ/KGUYh04G3wDTO0HYvAN15XuSCYxyR
-         kvdu20eomVrXxX9MVwcFM3uZGjOENIcCEhq/vCnK7cByoL+Q8md6dV1FHVe1kthW7V/2
-         Y8kvqlu9h7Jce79Oe4Y7/ZrnnYv9Plkvi4ePgBJQkYAy+gVs2+x3qPVlanp2fqnKkuHO
-         Dt/57xMiYLdgxaZlq7/+ftvHlJaqsCOEwCEU6R4+mAiBGWb7lDakeLjwcir5pzHnAsNp
-         KvIw==
+        d=9elements.com; s=google; t=1683010381; x=1685602381;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZcUXDXaT3ty1Xt8nlRve7aJUPr1+gS6+OMxz4c8SSi8=;
+        b=FBeH5yhzOigNo0qNk7msZqNEI0D4ajPcA+q1pNmp8oLq+RXNB270++fJuHY9JguMpi
+         EXKwUz+8/TIwzpBamFbT7ty2TQ+2JRGAK7Oo8h4y6eUI1wrzyzBKgkqo5l17MTaZz/E1
+         vvSdFncNC99UkJ3F/rxarMU0zqABAG7FsO5vlHodAdYjsXq0S06Z9qTyrd0GtZK8gjeq
+         E/aOLhH9m2fVqTxmov5aoS1hg5197zhHLjmAAvFk2CCY+Zbu/ECw5ikLM8fNVWmRpGk9
+         N8HZFSXNbAHfS2t0fZpmKAhHuNigc4FerJiqqFkv7guUMVKloazzUo1YpXKPi8FFwwRA
+         weOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683010350; x=1685602350;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Qp50p2Ws7bkjK436XWAEC92FxJZeHIdYYG8HIYuRl1w=;
-        b=JDghs7uWUs7W66DB/dYDbfO7xkuSGT7CnMy4L3nClc2jfGRlR+MzpW03vfNYSwPRMB
-         2IFy2Eyy2H5qZNB1NCKn071avb627rF4liQI2/wUq0OEjul4Fb3brhbjs7EITEUIm9jS
-         N8y4hPB75UqV+wW4v0yBecrcV4BK2JQPSXm+ClDz7wDqkhwonV0iwmPJtyoMhGXHeBTO
-         ooSNZz2BqIDYP/Bjr0NT5lQPiRX9Qa+ubRSA274Ay7gTb3pzyNeACBRqjzigSDVbhYal
-         ZXP4PJi/5FE8ef3QnadPaNJ9r/hIxobsAuJyohbpWCzt4eOqPlVwoG8BpT3R8vwmpyPP
-         /2Sg==
-X-Gm-Message-State: AC+VfDxakP1bKJP8HtQs2F/iB4ErHgmQYzWx3627OqG/8yBJmC56XrsM
-        lCyGR6T+SdOFdlNQ68bQDiKaew==
-X-Google-Smtp-Source: ACHHUZ4gBYHT+yHlP2EQUafOqVWSMCUgol+Ynv+bGX1fRtxeQk2R3Ue7g8hGpMWN1q2Xo43rvnlgZQ==
-X-Received: by 2002:a17:907:3f9e:b0:95e:d74d:c4e6 with SMTP id hr30-20020a1709073f9e00b0095ed74dc4e6mr15909803ejc.25.1683010349936;
-        Mon, 01 May 2023 23:52:29 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:bafd:1283:b136:5f6a? ([2a02:810d:15c0:828:bafd:1283:b136:5f6a])
-        by smtp.gmail.com with ESMTPSA id hy13-20020a1709068a6d00b009606806b2fesm6457878ejc.217.2023.05.01.23.52.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 May 2023 23:52:29 -0700 (PDT)
-Message-ID: <c3395692-7dbf-19b2-bd3f-31ba86fa4ac9@linaro.org>
-Date:   Tue, 2 May 2023 08:52:27 +0200
+        d=1e100.net; s=20221208; t=1683010381; x=1685602381;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZcUXDXaT3ty1Xt8nlRve7aJUPr1+gS6+OMxz4c8SSi8=;
+        b=aTeK/2nGLyFosT8l8VOt5Y4ZenlHOjJJQi8y4Q90ojTOTSl8mJ7Y7o+T/kbNVmrwHY
+         CpnIJy3lJUVRGcRuSMHiuhTppgZHEfHMKJ2i12pqDZiI25bSYY45547GLYjaPshg7Vck
+         8/lnpNs9w2S7NTsozsEeGMAnpuhN+3xJZ8XNU9swgyRrOHZXmma1IMehrHIyac9XM0F4
+         BD9QfaW1eFtU4DnLthQvfRvUAZvXhiK9I/CQJWE2+gVPlYns5qe8lmxXzClrV7bXASns
+         gZN2sMQa8WANrAoS5/BwCnBS4fxLiU721K8KGUiRPhBO3ogEv49GDUgJ7WKhsKgV3kJR
+         /4rA==
+X-Gm-Message-State: AC+VfDxjyddgQ+f3krGgX65g1ZEyXEnpDz/hIDQjzt8fY0pUm2o4D3l0
+        RN0RZcnhVQvdOnefxVlYaIj5nG/wa+qB2xePQTCpNw==
+X-Google-Smtp-Source: ACHHUZ7zG5ub4HnT4rMwgFf02SO3pOSYBKGhJ/AKw0Nc/jPYYyTotJFeknFJKuCcOs7u+0vMkwfvzv0/QE8qCuunqCE=
+X-Received: by 2002:a81:6c88:0:b0:55a:8293:e387 with SMTP id
+ h130-20020a816c88000000b0055a8293e387mr3222351ywc.19.1683010379722; Mon, 01
+ May 2023 23:52:59 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH v4 0/4] Enable multiple MCAN on AM62x
-Content-Language: en-US
-To:     Judith Mendez <jm@ti.com>,
-        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, linux-can@vger.kernel.org,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Schuyler Patton <spatton@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+References: <20230501091552.847240-1-patrick.rudolph@9elements.com>
+ <20230501091552.847240-3-patrick.rudolph@9elements.com> <fd20cad6-34f9-5f3c-abe7-cdf3a93d712c@axentia.se>
+In-Reply-To: <fd20cad6-34f9-5f3c-abe7-cdf3a93d712c@axentia.se>
+From:   Patrick Rudolph <patrick.rudolph@9elements.com>
+Date:   Tue, 2 May 2023 08:52:48 +0200
+Message-ID: <CALNFmy1gxUD-C62SH5GxA=fq8eKYxiOHe8wqXGsVdzsyiJc6Xg@mail.gmail.com>
+Subject: Re: [PATCH v14 2/4] dt-bindings: i2c: Add Maxim MAX735x/MAX736x variants
+To:     Peter Rosin <peda@axentia.se>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Oliver Hartkopp <socketcan@hartkopp.net>,
-        Simon Horman <simon.horman@corigine.com>
-References: <20230501224624.13866-1-jm@ti.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230501224624.13866-1-jm@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,58 +73,108 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/05/2023 00:46, Judith Mendez wrote:
-> On AM62x there is one MCAN in MAIN domain and two in MCU domain.
-> The MCANs in MCU domain were not enabled since there is no
-> hardware interrupt routed to A53 GIC interrupt controller.
-> Therefore A53 Linux cannot be interrupted by MCU MCANs.
-> 
-> This solution instantiates a hrtimer with 1 ms polling interval
-> for MCAN device when there is no hardware interrupt and there is
-> poll-interval property in DTB MCAN node. The hrtimer generates a
-> recurring software interrupt which allows to call the isr. The isr
-> will check if there is pending transaction by reading a register
-> and proceed normally if there is.
-> 
-> On AM62x, this series enables two MCU MCAN which will use the hrtimer
-> implementation. MCANs with hardware interrupt routed to A53 Linux
-> will continue to use the hardware interrupt as expected.
-> 
-> Timer polling method was tested on both classic CAN and CAN-FD
-> at 125 KBPS, 250 KBPS, 1 MBPS and 2.5 MBPS with 4 MBPS bitrate
-> switching.
-> 
-> Letency and CPU load benchmarks were tested on 3x MCAN on AM62x.
-> 1 MBPS timer polling interval is the better timer polling interval
-> since it has comparable latency to hardware interrupt with the worse
-> case being 1ms + CAN frame propagation time and CPU load is not
-> substantial. Latency can be improved further with less than 1 ms
-> polling intervals, howerver it is at the cost of CPU usage since CPU
-> load increases at 0.5 ms.
-> 
-> Note that in terms of power, enabling MCU MCANs with timer-polling
-> implementation might have negative impact since we will have to wake
-> up every 1 ms whether there are CAN packets pending in the RX FIFO or
-> not. This might prevent the CPU from entering into deeper idle states
-> for extended periods of time.
-> 
-> This patch series depends on 'Enable CAN PHY transceiver driver':
-> Link: https://lore.kernel.org/lkml/775ec9ce-7668-429c-a977-6c8995968d6e@app.fastmail.com/T/
-> 
-> v2:
-> Link: https://lore.kernel.org/linux-can/20230424195402.516-1-jm@ti.com/T/#t
-> 
-> V1:
-> Link: https://lore.kernel.org/linux-can/19d8ae7f-7b74-a869-a818-93b74d106709@ti.com/T/#t
-> 
-> RFC:
-> Link: https://lore.kernel.org/linux-can/52a37e51-4143-9017-42ee-8d17c67028e3@ti.com/T/#t
-> 
-> Changes since v3:
-> - Wrong patch sent, resend correct patch series
+Hi Peter,
+it could indeed cause problems when VDD1 !=3D VDD2 and at both needs to
+be enabled.
+The pca9846 datasheet seems to refer to VDD1 as VDD. Thus I could add
+an optional "vdd2" regulator to the binding and driver.
 
-Sending patchsets every 10 minutes does not help us...
+Please let me know if that's what you had in mind.
+Regards,
+Patrick
 
-Best regards,
-Krzysztof
-
+On Tue, May 2, 2023 at 8:03=E2=80=AFAM Peter Rosin <peda@axentia.se> wrote:
+>
+> Hi!
+>
+> 2023-05-01 at 11:15, Patrick Rudolph wrote:
+> > Update the pca954x bindings to add support for the Maxim MAX735x/MAX736=
+x
+> > chips. The functionality will be provided by the existing pca954x drive=
+r.
+> >
+> > For chips that are powered off by default add a regulator called vdd-su=
+pply.
+> >
+> > Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > ---
+> >  .../bindings/i2c/i2c-mux-pca954x.yaml         | 22 +++++++++++++++++--
+> >  1 file changed, 20 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml=
+ b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
+> > index e5c1070903ef..6fed6eae9c9b 100644
+> > --- a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
+> > +++ b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
+> > @@ -4,18 +4,29 @@
+> >  $id: http://devicetree.org/schemas/i2c/i2c-mux-pca954x.yaml#
+> >  $schema: http://devicetree.org/meta-schemas/core.yaml#
+> >
+> > -title: NXP PCA954x I2C bus switch
+> > +title: NXP PCA954x I2C and compatible bus switches
+> >
+> >  maintainers:
+> >    - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> >
+> >  description:
+> > -  The binding supports NXP PCA954x and PCA984x I2C mux/switch devices.
+> > +  The NXP PCA954x and compatible devices are I2C bus
+> > +  multiplexer/switches that share the same functionality
+> > +  and register layout.
+> > +  The devices usually have 4 or 8 child buses, which are
+> > +  attached to the parent bus by using the SMBus "Send Byte"
+> > +  command.
+> >
+> >  properties:
+> >    compatible:
+> >      oneOf:
+> >        - enum:
+> > +          - maxim,max7356
+> > +          - maxim,max7357
+> > +          - maxim,max7358
+> > +          - maxim,max7367
+> > +          - maxim,max7368
+> > +          - maxim,max7369
+> >            - nxp,pca9540
+> >            - nxp,pca9542
+> >            - nxp,pca9543
+> > @@ -56,6 +67,9 @@ properties:
+> >      description: if present, overrides i2c-mux-idle-disconnect
+> >      $ref: /schemas/mux/mux-controller.yaml#/properties/idle-state
+> >
+> > +  vdd-supply:
+> > +    description: A voltage regulator supplying power to the chip.
+> > +
+>
+> The pca9846-9 chips do not have one VDD, they have separate supplies for
+> "low level" (VDD1), and "core logic" (VDD2). I don't know how such a
+> situation is normally reflected in bindings, but could it not cause
+> headaches later if use of unqualified VDD is spreading for those chips?
+> Possibly with different semantics depending on if vdd-supply is tied to
+> VDD1, VDD2 or both?
+>
+> Cheers,
+> Peter
+>
+> >  required:
+> >    - compatible
+> >    - reg
+> > @@ -68,6 +82,8 @@ allOf:
+> >            compatible:
+> >              contains:
+> >                enum:
+> > +                - maxim,max7367
+> > +                - maxim,max7369
+> >                  - nxp,pca9542
+> >                  - nxp,pca9543
+> >                  - nxp,pca9544
+> > @@ -94,6 +110,8 @@ examples:
+> >              #size-cells =3D <0>;
+> >              reg =3D <0x74>;
+> >
+> > +            vdd-supply =3D <&p3v3>;
+> > +
+> >              interrupt-parent =3D <&ipic>;
+> >              interrupts =3D <17 IRQ_TYPE_LEVEL_LOW>;
+> >              interrupt-controller;
