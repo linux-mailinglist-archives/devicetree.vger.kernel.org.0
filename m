@@ -2,114 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 68A1A6F3F11
-	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 10:26:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70B516F3F1A
+	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 10:31:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233120AbjEBI0e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 May 2023 04:26:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38916 "EHLO
+        id S233766AbjEBIbC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 May 2023 04:31:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229936AbjEBI0d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 04:26:33 -0400
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A22FE58;
-        Tue,  2 May 2023 01:26:31 -0700 (PDT)
-Received: by mail-pj1-x1036.google.com with SMTP id 98e67ed59e1d1-24df6bbf765so2055230a91.0;
-        Tue, 02 May 2023 01:26:31 -0700 (PDT)
+        with ESMTP id S232117AbjEBIbA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 04:31:00 -0400
+Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 531E34230
+        for <devicetree@vger.kernel.org>; Tue,  2 May 2023 01:30:59 -0700 (PDT)
+Received: by mail-yb1-xb2b.google.com with SMTP id 3f1490d57ef6-b983027d0faso5385086276.0
+        for <devicetree@vger.kernel.org>; Tue, 02 May 2023 01:30:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683015991; x=1685607991;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NThf51HN0Hmw05qsD82aWWnprkGApsME6/ez9gbwYD4=;
-        b=n8/iCIrvfM3Rw8xgWdhUOHvVhQBYT7UyRn4HPztbs65ck1gZ1UK76NurJZEocRb5N3
-         u8MawCk+S/y6KUip1hIe/R5OBrSL+TPGD86QZ4J6LOkWMmhAZZ80kHCVl9CsWrVex8/E
-         aWdKkV9+MswlpLUiDN5ayWNo/0pjjfN9e5OdYLjkYms+IA5xYhRnqbKtyTxnZOIp6ukx
-         Ccrt91MjJ3np5M8A2zHvkopMcW6IMAzM5VHzplBVGDHANnhHnulrDqThZKSUa0/3NQDa
-         KVwFTS2sLGDsoWX8/1V1/CMb6ymh8NBUE03tEc92HA/b2e5N/XCNPvlu+poiASlCHR1a
-         rgWQ==
+        d=linaro.org; s=google; t=1683016258; x=1685608258;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=M5H+/Rm5qbtJ4dIdqMTXfShqYluqFFrGEQJ+3vG1k/0=;
+        b=k0ybPB1xZnsRzjE9uxsaLa3Y8YJel2TI9KYrfYu3ljKNEolwUFYqm+THgsx/O+pWyC
+         AQIEW9g78m/azzRz2AmN6kzRHwRDsf0N7mkcNscjJ29WanD1LxM3ss0wl51bB2TWgF+8
+         6XDkS4c9Z5WAonza3c1cCsTREmRa+S1rWHZHoxNNVHAbGUAymA5Jnqf7eE0Meq1haR5s
+         2JNPpcw0LjhserbAuCiZS7in0dlqg3KT/hZYEeeEVNsro3TOTdXhxz1rvgB18XfRMlmy
+         bSB8894esk49EnDBGXVxodqZDndgop+LzB9Vtecdg9tSfuXL3tcnQG1S6qz3Bs4a+4hh
+         OZgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683015991; x=1685607991;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NThf51HN0Hmw05qsD82aWWnprkGApsME6/ez9gbwYD4=;
-        b=kP1zfEuRTXr7YH/oPYiPQKrUpcSr+qDxnjbXOQD++CZnNn4+k9Q0Fzlu4OqVzSw+ML
-         kMsbK//NAtDfXhmsflsPlD8m5It7PgVxr4SL1gc+iGGbPagBuLwQYIGj/YTCggPTJgiI
-         eIrdrxHl6LufZB3zbF7IwQNufPztWgn/nps8ZDhYeYcUEfv7Z96XOa4qMHAM03BengVR
-         jGxXRe7bo8KtvskkbqIXJ56WxhuyMnKzVelRoBB+7mcL0Hns/6QKiplGkeiBZB7R2lX1
-         C/70RO097XZFa5pefIuTqQvcsBr6UyqTwcfmC2Hj75v7wcS7qMXItuX+9jtpbXsE7zcb
-         aB+w==
-X-Gm-Message-State: AC+VfDwUXlfOR5wS2jPI0AgzAhVq1sN1NcNEM/gW5sFboLngNFtyJrAf
-        OUC1KcSkR4B/EWVgsrf+O3y7Xe7NGU07UWfmGZFuNNH1BAA=
-X-Google-Smtp-Source: ACHHUZ7iAMN0h55/KOpCIA2bWw9W1t85gvPwlR81xT1RPkW9VX5dLbL993keQOYZwQ17tfDsJPGXC6VqZYdornRJbQU=
-X-Received: by 2002:a17:90a:a010:b0:249:6098:b068 with SMTP id
- q16-20020a17090aa01000b002496098b068mr17532296pjp.45.1683015990989; Tue, 02
- May 2023 01:26:30 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1683016258; x=1685608258;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=M5H+/Rm5qbtJ4dIdqMTXfShqYluqFFrGEQJ+3vG1k/0=;
+        b=HcD8OrTlH0uAGf2154Ogk/yUNSIJKdyK5Pq2s8plXcUyAuT0cCovNremeSlsHfF+sg
+         rhJA1K6dpV081M5ssx4z/MmsU1c6BctI1XHIUMJZN/w9hzPiy1E/EtRQrOruMXleWDfl
+         ojubNPpbbg8u4/k7paKlzCPonsDjAD7SbpI0I4c5WVekJ6VTOA8A5WjG77XMGHtC9tMj
+         pehiITGJ2DWC7NHigvZah9PmPKYHhMoemDU1gDz+gPYNvKZq0TeHKFCm3+vpxC0iVhcF
+         pMFMqlfJSd1WsXeTYdsXDv1PE6d93q29YOyGDL1d2LTghLdMXoUDJfBpbZ2i3r1f1FJC
+         BH8w==
+X-Gm-Message-State: AC+VfDyMo/PcIha/iKq5hiGde9PYuLkH8LBhX9QiCiRykMc0umRrCaV1
+        DPWLWKeFuJ21sY9oF/z3ac/FnDbODRxsRV0TVGGTY1eXnNDRxUQZjQ0=
+X-Google-Smtp-Source: ACHHUZ7Ytf30ch8se73LYe26Pqq1R7v3NpXReeiPnVBOxwOSUZAWV2rS0dN+5NiOu4gcx3/Kv7BabsWJ19Ut2dMnBSM=
+X-Received: by 2002:a81:d354:0:b0:541:694a:4c69 with SMTP id
+ d20-20020a81d354000000b00541694a4c69mr17244580ywl.52.1683016258565; Tue, 02
+ May 2023 01:30:58 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230501084401.765169-1-cristian.ciocaltea@collabora.com>
-In-Reply-To: <20230501084401.765169-1-cristian.ciocaltea@collabora.com>
-From:   Vincent Legoll <vincent.legoll@gmail.com>
-Date:   Tue, 2 May 2023 08:26:19 +0000
-Message-ID: <CAEwRq=pKBWsiE1EVf8+k2tZeeEqBpZFgJPCnSN2M005ajbpdmA@mail.gmail.com>
-Subject: Re: [PATCH 0/8] Add RK3588 OTP memory support
-To:     Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Shreeya Patel <shreeya.patel@collabora.com>,
-        Kever Yang <kever.yang@rock-chips.com>,
-        Finley Xiao <finley.xiao@rock-chips.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
+References: <20230502053534.1240553-1-bhupesh.sharma@linaro.org> <20230502053534.1240553-3-bhupesh.sharma@linaro.org>
+In-Reply-To: <20230502053534.1240553-3-bhupesh.sharma@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Tue, 2 May 2023 11:30:47 +0300
+Message-ID: <CAA8EJpqgmgNTHrXMyejk3-LV7wKo1tHSdixE+xJMhq3chy+B_Q@mail.gmail.com>
+Subject: Re: [PATCH v10 2/4] phy: qcom-qmp-usb: add support for updated
+ qcm2290 / sm6115 binding
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-phy@lists.infradead.org, agross@kernel.org,
+        linux-kernel@vger.kernel.org, andersson@kernel.org,
+        bhupesh.linux@gmail.com, krzysztof.kozlowski@linaro.org,
+        robh+dt@kernel.org, konrad.dybcio@linaro.org, kishon@kernel.org,
+        vkoul@kernel.org, krzysztof.kozlowski+dt@linaro.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+On Tue, 2 May 2023 at 08:35, Bhupesh Sharma <bhupesh.sharma@linaro.org> wrote:
+>
+> Add support for the new qcm2290 / sm6115 binding.
+>
+> The USB QMP phy on these devices supports 2 lanes. Note that the
+> binding now does not describe every register subregion and instead
+> the driver holds the corresponding offsets.
+>
+> While at it also include support for PCS_MISC region which was left
+> out earlier.
+>
+> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
 
-On Mon, May 1, 2023 at 8:44=E2=80=AFAM Cristian Ciocaltea
-<cristian.ciocaltea@collabora.com> wrote:
-> This patch series adds OTP memory support for Rockchip RK3588 SoC,
-> while also providing a few improvements to the existing rockchip-otp
-> driver, in addition to converting the bindings to dt-schema.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-I tested this on a QuartzPro64 dev board, I applied your series top of my t=
-ree:
-Collabora's rk3588-v6.3 + some DT patches to add support for the qp64 board=
-.
-
-Here is the output from the commands you told me to try:
-
-# ls -1 /sys/bus/nvmem/devices/*/nvmem
-/sys/bus/nvmem/devices/rockchip-otp0/nvmem
-
-#  od -N 64 -A x -t x1z -v /sys/bus/nvmem/devices/rockchip-otp0/nvmem
-000000 52 4b 35 88 91 fe 21 41 5a 43 39 36 00 00 00 00  >RK5...!AZC96....<
-000010 00 00 00 00 0f 0b 0d 0a 0a 0c 25 0e 00 00 00 00  >..........%.....<
-000020 00 00 00 00 00 00 00 00 08 0c 00 00 00 00 00 00  >................<
-000030 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  >................<
-000040
-
-This is working as expected.
-
-You can add my T-B, for the whole series:
-
-Tested-by: Vincent Legoll <vincent.legoll@gmail.com>
-
-Regards
-
---
-Vincent Legoll
+> ---
+>  drivers/phy/qualcomm/phy-qcom-qmp-usb.c | 22 ++++++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+>
+-- 
+With best wishes
+Dmitry
