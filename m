@@ -2,43 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C81A86F4236
-	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 13:02:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1FE76F4237
+	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 13:03:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229586AbjEBLCr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 May 2023 07:02:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54924 "EHLO
+        id S233817AbjEBLDN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 May 2023 07:03:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55150 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233807AbjEBLCr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 07:02:47 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A09AC4686
-        for <devicetree@vger.kernel.org>; Tue,  2 May 2023 04:02:45 -0700 (PDT)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=igor.pengutronix.de)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <s.trumtrar@pengutronix.de>)
-        id 1ptnmN-0000tr-DN; Tue, 02 May 2023 13:02:43 +0200
-References: <20230411083045.2850138-1-s.trumtrar@pengutronix.de>
-User-agent: mu4e 1.8.14; emacs 30.0.50
-From:   Steffen Trumtrar <s.trumtrar@pengutronix.de>
-To:     Steffen Trumtrar <s.trumtrar@pengutronix.de>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [Linux-stm32] [PATCH v8 00/10] ARM: stm32: add support for
- Phycore        STM32MP1
-Date:   Tue, 02 May 2023 13:02:16 +0200
-In-reply-to: <20230411083045.2850138-1-s.trumtrar@pengutronix.de>
-Message-ID: <87v8hbuhbi.fsf@pengutronix.de>
+        with ESMTP id S233696AbjEBLDL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 07:03:11 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE1794686
+        for <devicetree@vger.kernel.org>; Tue,  2 May 2023 04:03:10 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-3f192c23fffso21508435e9.3
+        for <devicetree@vger.kernel.org>; Tue, 02 May 2023 04:03:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683025389; x=1685617389;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=omwbtXCmGprdVyfpDAWlNQpT0MHCGGQZh74UI0S4H0s=;
+        b=A/XF1ZlGoYFgyErtfy81ofhnigJwr8K1zvzSZ3axHXBmrOu7BsuQxXmM94AuYXGuE6
+         ZF2MnjZ6R8d2F67omucqxoJ4Sbz1AuH+kRXvIPjyz8wSJVU+ZTwyGoVcpbOuZ8juaynz
+         p4qT/IIQrTMZJ1HU2mO9hczi5cxVKeKduu9OXb2tX5CptyIe12BOgBmcLAXKlXoSflb1
+         5AwSLkidXnfBe2NehdIabDM37yt0nztNC9hGujNogXpXxXXMxyYP8hlzroclpCxgPJbQ
+         qIr0crM7KhkN3dlWI5zJRHwf3jvX2MuOPbmcADmS15qL6ny2+LM7JdHzko8jKeL/QgKl
+         JBig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683025389; x=1685617389;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=omwbtXCmGprdVyfpDAWlNQpT0MHCGGQZh74UI0S4H0s=;
+        b=bUIJYyGJ/GrfvuwCECrcjTlKMHn5avGgCPNj88h+zzpYwK0vnOKbiDhozU8m3AyRGF
+         52qGqUxMTj2hYpN7f5ne5abQKVQQPXsCpPTHHxvW6VutS8OLcGZWpvTNOCfGfdtdrn1N
+         OOzFKnkwVaII25W1W+0KYEPJ9A+TNeHbPyfJ6cUskrN6/gwSWRf0d+0POkWJhIDk1Q2M
+         af+JObS9OIYdAGnTpkze06ci/UAsv34t1J1c7NJw7DUvuEhA3QM/wVChlz4YbpZrb5Lk
+         xEgsjqlDNsUoNdAiESf6L+M4x8tgA5R/Ba6ef8grTHuRsPgOVs86lKUwPJRmLI8DCoQN
+         ZcyQ==
+X-Gm-Message-State: AC+VfDxWg5H/X6iyaLHjNeIl6Tmnq/kEO7/Bos7SQvGu8fkfcbbV1bpl
+        E7rRScPXhyscyyK1E5ywx85Blg==
+X-Google-Smtp-Source: ACHHUZ7vDA6JxBmpj6Dic9Kq/hsRXtlWDtuyjDyKndSK/YCoOWRQ/quxBjO2e1CsWb5c6jAcX0b7jw==
+X-Received: by 2002:a05:600c:2248:b0:3f2:5a60:a042 with SMTP id a8-20020a05600c224800b003f25a60a042mr11383968wmm.4.1683025389137;
+        Tue, 02 May 2023 04:03:09 -0700 (PDT)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id 14-20020a05600c028e00b003f18b942338sm34858707wmk.3.2023.05.02.04.03.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 May 2023 04:03:08 -0700 (PDT)
+Message-ID: <b4bfe2f6-7ea3-fca5-9dc6-12270b3bbc42@linaro.org>
+Date:   Tue, 2 May 2023 12:03:07 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: s.trumtrar@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v6 12/13] arm64: dts: qcom: qrb5165-rb5: Switch on TCPM
+ usb-role-switching for usb_1
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>, linux@roeck-us.net,
+        heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, luca.weiss@fairphone.com,
+        linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     caleb.connolly@linaro.org, subbaram@quicinc.com, jackp@quicinc.com,
+        robertom@qti.qualcomm.com
+References: <20230501121111.1058190-1-bryan.odonoghue@linaro.org>
+ <20230501121111.1058190-13-bryan.odonoghue@linaro.org>
+ <109dc9fe-5ca7-1a98-3222-8c2297f4e8ce@linaro.org>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <109dc9fe-5ca7-1a98-3222-8c2297f4e8ce@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -47,69 +82,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 02/05/2023 12:00, Konrad Dybcio wrote:
+>> +			#address-cells = <1>;
+>> +			#size-cells = <0>;
+>> +
+>> +			port@0 {
+>> +				reg = <0>;
+>> +				pm8150b_role_switch_out: endpoint {
+> Similarly to the QMPPHY, the port definition can be moved to
+> the common node in the SoC DTSI
 
-On 2023-04-11 at 10:30 +02, Steffen Trumtrar <s.trumtrar@pengutronix.de> wrote:
+But then the connector would have to be defined in the SoC dtsi and not 
+all derivatives of SoC can be assumed to have a usb-c-connector.
 
-> Hi,
->
-> this is the eighth installement of my series for adding support for the
-> Phytec STM32MP1-based SoM and board.
->
-> Phytec itself calls the board "Phycore STM32MP1-3" and has other
-> endnumbers. I only have access to the "-3" and that's what this series
-> adds.
->
->     Changes since v7:
->       - remove unused gpu_reservde memory range
->       - get rid of duplicate ethernet clock assignments
->       - remove secure-status for sdmmc
->
->     Changes since v6:
->       - rename mdio0->mdio
->
->     Changes since v5:
->       - add reviewed/acked-by
->       - cleanup dt_bindings_check warnings
->
->     Changes since v4:
->       - cleanup usage of "status = okay|disabled"
->       - fix remaining non-generic node names
->       - rework sai nodes to not duplicate the existing settings in stm32mp151.dtsi
->
->     Changes since v3:
->       - cleanup board-compatible
->       - cleanup aliases
->       - rename nodes according to schema
->       - use interrupt flag
->
-> Steffen Trumtrar (10):
->   ARM: dts: stm32: Add alternate pinmux for ethernet
->   ARM: dts: stm32: Add alternate pinmux for sai2b
->   ARM: dts: stm32: Add new pinmux for sdmmc1_b4
->   ARM: dts: stm32: Add new pinmux for sdmmc2_d47
->   ARM: dts: stm32: Add pinmux for USART1 pins
->   ARM: dts: stm32: Add idle/sleep pinmux for USART3
->   ARM: dts: stm32: Add sleep pinmux for SPI1 pins_a
->   dt-bindings: arm: stm32: Add Phytec STM32MP1 board
->   ARM: dts: stm32: add STM32MP1-based Phytec SoM
->   ARM: dts: stm32: add STM32MP1-based Phytec board
->
->  .../devicetree/bindings/arm/stm32/stm32.yaml  |   6 +
->  arch/arm/boot/dts/Makefile                    |   3 +-
->  arch/arm/boot/dts/stm32mp15-pinctrl.dtsi      | 231 +++++++
->  .../dts/stm32mp157c-phycore-stm32mp1-3.dts    |  60 ++
->  .../stm32mp157c-phycore-stm32mp15-som.dtsi    | 577 ++++++++++++++++++
->  5 files changed, 876 insertions(+), 1 deletion(-)
->  create mode 100644 arch/arm/boot/dts/stm32mp157c-phycore-stm32mp1-3.dts
->  create mode 100644 arch/arm/boot/dts/stm32mp157c-phycore-stm32mp15-som.dtsi
+grep "usb-c-connector" arch/arm64/boot/dts/qcom/*
 
-Gentle ping. Anything I need to fix?
-
-Best regards,
-Steffen
-
---
-Pengutronix e.K.                | Dipl.-Inform. Steffen Trumtrar |
-Steuerwalder Str. 21            | https://www.pengutronix.de/    |
-31137 Hildesheim, Germany       | Phone: +49-5121-206917-0       |
-Amtsgericht Hildesheim, HRA 2686| Fax:   +49-5121-206917-5555    |
+---
+bod
