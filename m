@@ -2,163 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B07306F4204
-	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 12:53:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2940D6F4209
+	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 12:54:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233455AbjEBKxE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 May 2023 06:53:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49956 "EHLO
+        id S233367AbjEBKy4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 May 2023 06:54:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50614 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233367AbjEBKxD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 06:53:03 -0400
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E21AE43;
-        Tue,  2 May 2023 03:52:57 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-3f199696149so21946615e9.0;
-        Tue, 02 May 2023 03:52:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683024775; x=1685616775;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=H0eKN6Hr0G4edMHhhouzATJjO1XXtrTwSyKCJRRXUqE=;
-        b=nm/ucSki+JtJnvCn2wD+bINJ6vykRra42C5U7MDdJIYTIGU/Bz+lUqtl1wHrHmaLLD
-         T3u2t913CDE1EOLQg2jPQw+IzywCRa0gJdJ/slYGA+Anrc99D77NVEnU2Ky0MP09H5mh
-         79KbTCHRq57NdWKEsC7WfA5PyqX0Daz5NUGOwEb3NpT/HhVwawxIjqOtm/ERvrqDBiHe
-         /EKOiyhTyEi7xFL2zLlzr3Wt5wWPuIcpOCQMh7OOE9l0tVE5LPzv1DgkxvlE117T8yyq
-         65rpGDVpffFdyaUwoJMqLE8Na2vO/joStNAMCstRAo0NpImrs7WPxusO3eXBEvch9uy9
-         cR7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683024775; x=1685616775;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=H0eKN6Hr0G4edMHhhouzATJjO1XXtrTwSyKCJRRXUqE=;
-        b=VhAiKQioK/Yu4o95usVBqyjbFv43yIFjZMZ2F8nGfNsGAU6bPzFJZQwE0qctuzFj4h
-         qgLy1d5frmtLnLc3DpBI4MdnT/cfwwTZ/RpiEoumlM8s/fEVbFcnYyHJB5d+lUC2tpUf
-         nNVhFVYjniEAYoyt9GryOtGNV0ZxQGXvPl+twDZ3LnlrO1vh5ctx+9fgiRd3KThlzbwu
-         G9qSH9iKBKeaBQGuW0Hk3s7UN6mkBm+hFXmiERQf+/61+VOe6WM0AOgz5ejzVBRf8q51
-         MlOMNiABlo+X/HU5YeLYdFKBICDdLoPUcvoYjNPLg88M+zPA/1je+3e8/B9bHkEGRjOp
-         r9fQ==
-X-Gm-Message-State: AC+VfDzKe3TFE4ZK4b8fEVIWZstNbf0NlBlPt9exOIH8m/pGrkJ8pfUn
-        zo8owgJqIsDwLFQf2RAd4jUP9ddRpvg=
-X-Google-Smtp-Source: ACHHUZ7dMJBh/WMLCiOzm19U40TcGV3xJ78HP0JWuJAbAVkDHk91dAuauGwizFfZGQh+E850CANtoA==
-X-Received: by 2002:a7b:c046:0:b0:3f1:9b85:e305 with SMTP id u6-20020a7bc046000000b003f19b85e305mr11816259wmc.34.1683024775471;
-        Tue, 02 May 2023 03:52:55 -0700 (PDT)
-Received: from [192.168.2.202] (pd9ea3834.dip0.t-ipconnect.de. [217.234.56.52])
-        by smtp.gmail.com with ESMTPSA id l10-20020a1c790a000000b003f32f013c3csm9872477wme.6.2023.05.02.03.52.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 May 2023 03:52:54 -0700 (PDT)
-Message-ID: <4dd1860d-c5bf-cfe4-b4ae-e77207295b92@gmail.com>
-Date:   Tue, 2 May 2023 12:52:53 +0200
+        with ESMTP id S229703AbjEBKyz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 06:54:55 -0400
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2080.outbound.protection.outlook.com [40.107.220.80])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E98919AB;
+        Tue,  2 May 2023 03:54:54 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=BlfSGoe5PUASA+zk1gTJAVJ2uvuF+1Dt7oCfg3c9H0byOqLciGpMfZl4U55cR8uWbMDFWEu59kROjJ8KNcXb9CTmQxvkpB3O8JpBuw5xrjkN3dYpAgpZQmIZOAcQhrH/aZrPptZw+SPH/wcrAfYBep68Vu7vQImtKetsLX9HMoNS9JIsuq+k3Wz5q56ZbpTCRaNFD7zggzgp1cpq209y6EK0ShZjegT3JbkUl78L+3PcDmVKKXT+ElGLhnlZOze99MRmue2jZV2LgDQL4MFxYMMXvY5OEDSLyhPSaElNevbkUaOpr0pxq8rhQchktYvhcIXlT5Q3cZTBRM6EfsL8jw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=csjxRFqD8VX4FMTK/9a8EFjf5T7MrNRPGe0nBZbLlVM=;
+ b=i6NYXqaqXsuPkLoe8GBbDMvjoNsikPGErWe5YHqnnKmfopPLeq5tER/yj/DJ6RaAZ6mYAhfMRzMobHV6MOluUKHy+PYNN3UO0m2ZaN/9FuwwSWF7Usiqae6ZeZHpeloA1KRnzlsWNYTsECB4GckdoRiHivMX8kNGdZTYBuStrjrqaxa4SIV1Xj4VPJjn1D9Q4vugI4nMuKhq0laclgEL9KOpZVLspxhgzD6B/fckeuwWZ8IvlwWnWm41fhWL8c+0E/UmglRIULqTLQZbMc7DlThhGYTRKsBSlwmM4qbMROkVhBBKtvhqiuYL53yYOv0SKmTB7Dz2RANrwUbJ9kTYhA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.160) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=csjxRFqD8VX4FMTK/9a8EFjf5T7MrNRPGe0nBZbLlVM=;
+ b=swm2Fx51pgZ7tNnofmKdJlKV0p88hH9rci80GnUANTAWA2jnqgs0sn5eur2Bctv87f1Crxk6wzDJns0y3htInJlswWUVsbQBfpiRk1dHVib0PHGHpn767ZCm6AgSgb8w0cM52OrQkit/CuPsqi/j9xGnx3VoyvW4dAyVl6+XsRfs2beQblNZmWVeQFuONPfwT4MNalHmszabmY6nX0R1fj1hgsMad91bdFn+U7LB23CB/dnl08rPK0CjQ1N3+16OLcNlJdtq6r0+0RkAKVjMat8Mu+yQChL/fDOikhzmTTfXxeyEdPCqq8YT7UZefUrM3fzD6zQB7EnywUdvpvYdLg==
+Received: from DM6PR18CA0035.namprd18.prod.outlook.com (2603:10b6:5:15b::48)
+ by IA0PR12MB7555.namprd12.prod.outlook.com (2603:10b6:208:43d::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6340.30; Tue, 2 May
+ 2023 10:54:51 +0000
+Received: from DM6NAM11FT034.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:15b:cafe::4b) by DM6PR18CA0035.outlook.office365.com
+ (2603:10b6:5:15b::48) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6340.31 via Frontend
+ Transport; Tue, 2 May 2023 10:54:51 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.160) by
+ DM6NAM11FT034.mail.protection.outlook.com (10.13.173.47) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6363.20 via Frontend Transport; Tue, 2 May 2023 10:54:50 +0000
+Received: from rnnvmail203.nvidia.com (10.129.68.9) by mail.nvidia.com
+ (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.5; Tue, 2 May 2023
+ 03:54:41 -0700
+Received: from rnnvmail203.nvidia.com (10.129.68.9) by rnnvmail203.nvidia.com
+ (10.129.68.9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.37; Tue, 2 May 2023
+ 03:54:41 -0700
+Received: from build-shgarg-20230103T221109854.nvidia.com (10.127.8.13) by
+ mail.nvidia.com (10.129.68.9) with Microsoft SMTP Server id 15.2.986.37 via
+ Frontend Transport; Tue, 2 May 2023 03:54:40 -0700
+From:   Shubhi Garg <shgarg@nvidia.com>
+To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>
+CC:     <shgarg@nvidia.com>
+Subject: [PATCH 1/2] dt-bindings: tegra: Document compatible for IGX
+Date:   Tue, 2 May 2023 10:54:36 +0000
+Message-ID: <20230502105437.769350-1-shgarg@nvidia.com>
+X-Mailer: git-send-email 2.17.1
+X-NVConfidentiality: public
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v3 3/4] dt-bindings: firmware: Add Qualcomm QSEECOM
- interface
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Johan Hovold <johan@kernel.org>,
-        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Sumit Garg <sumit.garg@linaro.org>,
-        Steev Klimaszewski <steev@kali.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230305022119.1331495-1-luzmaximilian@gmail.com>
- <20230305022119.1331495-4-luzmaximilian@gmail.com>
- <20230308221657.GA3935330-robh@kernel.org>
- <93657561-d545-7ead-7f6c-dd2c62aab319@gmail.com>
- <c92a44fe-7057-2d81-41fc-2e84ae60f881@linaro.org>
- <951c717b-d094-4190-a04b-3ce9007d1554@gmail.com>
- <20230502083829.qetjuvoilows26m7@bogus>
-Content-Language: en-US
-From:   Maximilian Luz <luzmaximilian@gmail.com>
-In-Reply-To: <20230502083829.qetjuvoilows26m7@bogus>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT034:EE_|IA0PR12MB7555:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5d1146b4-8c80-4580-9f03-08db4afba77e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: fF55WL/Gy4XHUnqN3rZYab9oMXw7DCkNnDnrtuv6U/Dx6SsBnTW7/fyXhtvGaGcbk4+OfV/UNExlEDJudFLUTe8GvlcG/dJyg1dpANVWdS4fwYLsq4oqaWy1v5T/oCZEPDr3+mriEZeuKK8Wy6q9O73LSPIowJd14tW51G7LGclGFZ9PBBDiKkBxs3+7245JJ1XDC1KauqJJ85NmOgzrT86u2ngBpwo2xwXk6n4SgZidfnpZCaGZ5z3EFtpPUgBggrxS3ean99IkKBt4N9n0x9mYdWSOwN0vEaRu3zMobIOHA4ms+OXft142Wbds7g4OS3fjAxneP7U3ObgBkfbRC6U4ENXwMtLfMxy3P2KR2OdFLpG9V004eUQBEho04SK7cmiKlGdiLQDsDDADeXOx/bKA5n5Hq1/bVkoGRAqYF02l9VTX+7UP+U3d2UMb0V8/Up+H6CXmr3FnLnpQrDwWxwWKO4I+omU9wZapRR3N8YI5eBMvhveDBjL152xPPP4SBrs8QOke+ymVIZyCZ2O+o95nt57nQ9MfyyhgSOUFKhdg0MHBNNoCbzQDcmrr88H4XPtqXqLmaxLO9lHZim1hVx5WmEC7Eflcrp6kdLB2PeI/JMjwcC/4oQwpk8v0pQk9pVYBynZJ2ZJ+Ob9QvXcJmTecaRj4ghQ5fNrNyYMnihTp0adQAf2kGI3FlPTlKp2R7Bg45hidIEy/EtJfd+guVA==
+X-Forefront-Antispam-Report: CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230028)(4636009)(346002)(396003)(376002)(39860400002)(136003)(451199021)(40470700004)(36840700001)(46966006)(478600001)(36860700001)(36756003)(5660300002)(4744005)(2906002)(40460700003)(8936002)(8676002)(86362001)(316002)(70206006)(40480700001)(70586007)(4326008)(82310400005)(7636003)(356005)(41300700001)(82740400003)(426003)(336012)(47076005)(107886003)(1076003)(186003)(26005)(2616005)(7696005)(110136005)(6666004);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 May 2023 10:54:50.8991
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5d1146b4-8c80-4580-9f03-08db4afba77e
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT034.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB7555
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/2/23 10:38, Sudeep Holla wrote:
-> On Thu, Mar 09, 2023 at 03:27:01AM +0100, Maximilian Luz wrote:
->> On 3/9/23 02:33, Dmitry Baryshkov wrote:
->>> On 09/03/2023 00:44, Maximilian Luz wrote:
->>>> On 3/8/23 23:16, Rob Herring wrote:
->>>>> On Sun, Mar 05, 2023 at 03:21:18AM +0100, Maximilian Luz wrote:
->>>>>> Add bindings for the Qualcomm Secure Execution Environment interface
->>>>>> (QSEECOM).
->>>>>
->>>>> Pretty sure I already asked, but no answer in the commit message. Why do
->>>>> we need this? You've already declared the platform supports SCM calls
->>>>> with "qcom,scm". Why can't you probe whether you have QSEECOM or not? DT
->>>>> is for non-discoverable h/w we are stuck with.
->>>>
->>>> Yes, you've asked this before but I can only repeat what I've written in
->>>> my last response to your question: I am not aware of any way to properly
->>>> discover the interface at runtime from software.
->>>>
->>>> If it makes you happy, I can put this in the commit message as well...
->>>>
->>>>> Why is software made non-discoverable too?
->>>>
->>>> Please direct that question at the Qualcomm guys who actually designed
->>>> that interface. I can't give you an answer to that, and I'm not all that
->>>> happy about this either.
->>>>
->>>> To reiterate: I've reverse engineered this based on the Windows driver.
->>>> The Windows driver loads on an ACPI HID and it doesn't use any function
->>>> to check/verify whether the interface is actually present. Adding a DT
->>>> entry is the straight-forward adaption to having a HID in ACPI.
->>>>
->>>>> Nodes with only a compatible string are usually just an abuse of DT to
->>>>> instantiate some driver.
->>>>
->>>> If you or anyone here has any idea on how to discover the presence of
->>>> this, please feel free to let me know and I'd be happy to implement
->>>> that. Until then, I unfortunately don't see any other way of dealing
->>>> with this.
->>>
->>> You can probably try requesting QSEECOM version. According to msm-3.18:
->>>
->>>           uint32_t feature = 10;
->>>
->>>           rc = qseecom_scm_call(6, 3, &feature, sizeof(feature),
->>>                   &resp, sizeof(resp));
->>>           pr_info("qseecom.qsee_version = 0x%x\n", resp.result);
->>>           if (rc) {
->>>                   pr_err("Failed to get QSEE version info %d\n", rc);
->>>                   goto exit_del_cdev;
->>>           }
->>>
->>
->> Thanks! I'll give that a try.
->>
->> As I can't test this on a device that doesn't have qseecom, it would
->> probably be a good idea if someone could test this on a device that has
->> qcom_scm but no qseecom (if those even exist) to make sure this doesn't
->> misbehave.
->>
-> 
-> TBH, this has been going in round for quite sometime. We have been asking
-> you to depend on existing platform compatible + a query or a check on the
-> version. Since you do have a platform that is working, we can start making
-> it min "qseecom.qsee_version" supported and then adjust the version based
-> on the testing or the requirement. What do you think ?
-Sure, I will add a minimum version check to that.
+Document the compatible strings used for Nvidia IGX Orin Development
+kit which uses P3701 SKU8 and P3740 carrier board.
 
-Regards,
-Max
+Signed-off-by: Shubhi Garg <shgarg@nvidia.com>
+---
+ Documentation/devicetree/bindings/arm/tegra.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/tegra.yaml b/Documentation/devicetree/bindings/arm/tegra.yaml
+index 0df41f5b7e2a..6a5e303fba08 100644
+--- a/Documentation/devicetree/bindings/arm/tegra.yaml
++++ b/Documentation/devicetree/bindings/arm/tegra.yaml
+@@ -176,5 +176,11 @@ properties:
+           - const: nvidia,p3768-0000+p3767-0000
+           - const: nvidia,p3767-0000
+           - const: nvidia,tegra234
++      - description: NVIDIA IGX Orin Development Kit
++        items:
++          - const: nvidia,p3740-0002+p3701-0008
++          - const: nvidia,p3740-0002
++          - const: nvidia,p3701-0008
++          - const: nvidia,tegra234
+ 
+ additionalProperties: true
+-- 
+2.17.1
+
