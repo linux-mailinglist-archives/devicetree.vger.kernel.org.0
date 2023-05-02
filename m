@@ -2,76 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 46E446F3DE1
-	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 08:54:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 371026F3DE8
+	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 08:55:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233707AbjEBGyT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 May 2023 02:54:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55626 "EHLO
+        id S233158AbjEBGze (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 May 2023 02:55:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233697AbjEBGxv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 02:53:51 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E4814C00
-        for <devicetree@vger.kernel.org>; Mon,  1 May 2023 23:53:29 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-95369921f8eso547567966b.0
-        for <devicetree@vger.kernel.org>; Mon, 01 May 2023 23:53:29 -0700 (PDT)
+        with ESMTP id S229492AbjEBGzH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 02:55:07 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF33049D9
+        for <devicetree@vger.kernel.org>; Mon,  1 May 2023 23:54:59 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-50b8d2eed3dso4130834a12.0
+        for <devicetree@vger.kernel.org>; Mon, 01 May 2023 23:54:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683010408; x=1685602408;
+        d=linaro.org; s=google; t=1683010498; x=1685602498;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=eHeZV5s0aJS1RPelh1kTeaQiablAxI/Yvtd0/g+FdXU=;
-        b=eOXKa6uHdbsorztWW/6pbIcFsnns9Zov6NWocNT9koQq2Zdf0lhofeSh4PTiFnYf8Y
-         MFKWsnCqfzp/HzZDjJQQkvdOCQvOjsPmqHolauAV5s5KUl1q04NOdJkpSmHx7XSPAED2
-         hErM6Ds/jWOwH3srDt2WNG0mYF9x/R7xhIgQfxs2MOf31Fgj4BXfwQrl3xHd7mdRdwTb
-         VKzWQo7Uhe34qzQdpzWPocGh59kt8mhmEkmR1vNwp17yYK51GIY7nhr3WMgi4QN2TTCA
-         SpGvKglH26K+D4wFHuBiofiSyjb+ZMbwXUpX9jsTlG9C9w2KZtv/fX5nb2Hnrek/9pa0
-         VIng==
+        bh=MyPP+G2oB4NR99xi+mLJB0lVJW/KBDw98DjQ+N/w9e4=;
+        b=pWQ1ct/+JlBf25GRV5DEJD9CU2cQPd4cY1PVe7tqzCZ+yoO0ZgzKcbdXtJb+qI3bHZ
+         VMG5jV1TcsQUfON1Zr8D7f9qefX7r89IzkL/fgM0B/qcbSE/5cjzdHUFzbUMSyBZqPbo
+         9uXHMgIjDDgw4Pu8JjTszgWuAObQaHzZDPzUUwm0LCTQylIbjqNWVjAsJ0S4RvC7QBmu
+         iELydVyPYCLO2kfIUqh1ILll/8KugzlF4bba60mgeU85uMeSmINsf/cL7o+qdntJB6zu
+         FUFPU73iFhqioJ0SVUJq2Dcc/JSpNan+jj5JyNimgg1wokQiAkGvWvZTGd5YVfZwJsun
+         iLCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683010408; x=1685602408;
+        d=1e100.net; s=20221208; t=1683010498; x=1685602498;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eHeZV5s0aJS1RPelh1kTeaQiablAxI/Yvtd0/g+FdXU=;
-        b=RCak9XTsclsz+AV4LvlkN0DfRE6Rb+mok0yOI9Q1DXURWoi+aJ5gyd3w2KO2YXzXG5
-         9IwcSmDhA2VaxnhYAm1CTte08r4y1C5g/ubffF8visVjHec+IlcfgzFulmZ5wx3mNR0g
-         OMs2pC7SM/xH35Hk3MSor6NCi2Vcxlbm+h+oaevz0Ai1oLpo4D903sTNLOML4pSpzVwc
-         SjgdEAVMxIwGhuWAQ0PlP9t7QSNk6jqtw6ZRqyiNDHzxAmb4h7H/idP4x85nRUUt6wjK
-         DK2QXeJbOidNSbOp+dgX8lupwCqPDWtbi/QUFYsKm2HX1LDJrNR/RxctFHefbwLXdBdO
-         ajWw==
-X-Gm-Message-State: AC+VfDzFKhpZCmVbp5sOtM2jBqZpEC4T+d/9QSH3SU4tTP84QltbsNCR
-        ZZXauoXBLC6sQdMiYatveJ5cWg==
-X-Google-Smtp-Source: ACHHUZ65Hxxd8UQokTDHAfyuDzRv1c1FjmN8IynUxrq4/8mGNWy3iJil0BDnPUZTN6xp0YQIxD63xw==
-X-Received: by 2002:a17:907:7ea9:b0:931:df8d:113 with SMTP id qb41-20020a1709077ea900b00931df8d0113mr14442612ejc.26.1683010408003;
-        Mon, 01 May 2023 23:53:28 -0700 (PDT)
+        bh=MyPP+G2oB4NR99xi+mLJB0lVJW/KBDw98DjQ+N/w9e4=;
+        b=L16+V9IcDjXvcy/ExA3Qx0nwRHQVr7ot4SKGongglCgx3o+TW7TKGmbtDcn+EeCFKW
+         5ktqdFoQoOtRkQoybFJbwwU7iToPCmergECxaChfhZKpEGhM3/xbQaiilTdUmJ4lEBgd
+         aVWm3XUHFbilU05y1k9+Y31GQj9Kb3rmkKTCNLgdN0CBX+R+t4xRtSkmD4LjIdJaB0l3
+         S8l5Y6yqA6ipjOVbEEYFeZ3q4Rb2KZKZ/khSMIStqUxvDxUXSQrsIYlGcyMeavvuUQqi
+         qKWIKUmevcVoJn1zdTNOZSdK2CToCxf2ExQeAG7pVYmAVmDDd+SAEoECAwfei1CCGGWG
+         Ds0w==
+X-Gm-Message-State: AC+VfDwjXWXeAYxhkg9mYsEviewbSafLp7yzKgimKk/PA9Wd9spuZYLL
+        absg9KRAo6U14g4Mvf5OWEVtyAMwVE8pL1Bjbfc=
+X-Google-Smtp-Source: ACHHUZ63xWY8+0Vtw0D3NZziMzM43irH1/YildIr5NvyVZcCukpF36WSZIcoQJJh7qLKl3R1fJBbDg==
+X-Received: by 2002:aa7:d4d0:0:b0:50b:cd17:12a7 with SMTP id t16-20020aa7d4d0000000b0050bcd1712a7mr1945284edr.15.1683010498347;
+        Mon, 01 May 2023 23:54:58 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:bafd:1283:b136:5f6a? ([2a02:810d:15c0:828:bafd:1283:b136:5f6a])
-        by smtp.gmail.com with ESMTPSA id d5-20020a17090648c500b008c16025b318sm15741327ejt.155.2023.05.01.23.53.27
+        by smtp.gmail.com with ESMTPSA id u11-20020aa7d0cb000000b0050687dbb5dasm12950407edo.31.2023.05.01.23.54.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 May 2023 23:53:27 -0700 (PDT)
-Message-ID: <8b9545d7-2b59-cc58-2ff9-0c4c84ff3d15@linaro.org>
-Date:   Tue, 2 May 2023 08:53:26 +0200
+        Mon, 01 May 2023 23:54:57 -0700 (PDT)
+Message-ID: <4ef41597-c905-5c3f-f8b5-3e91f09a7501@linaro.org>
+Date:   Tue, 2 May 2023 08:54:56 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
-Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: ds4520: Add ADI DS4520
+Subject: Re: [PATCH v2 1/2] ARM: dts: mvebu: Add device tree binding for
+ Marvell Armada 38x
 Content-Language: en-US
-To:     Okan Sahin <okan.sahin@analog.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
+To:     Tony Dinh <mibodhi@gmail.com>, Rob Herring <robh@kernel.org>
+Cc:     Gregory Clement <gregory.clement@bootlin.com>,
         Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230501230517.4491-1-okan.sahin@analog.com>
- <20230501230517.4491-2-okan.sahin@analog.com>
+        devicetree@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
+References: <20230412025737.20280-1-mibodhi@gmail.com>
+ <20230412025737.20280-2-mibodhi@gmail.com>
+ <168130276446.1439316.3427548118074442016.robh@kernel.org>
+ <CAJaLiFyJcMxcJ-z0LRtazoMtGZCqdNXWMv7ZnvCdXREVDeMGEw@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230501230517.4491-2-okan.sahin@analog.com>
+In-Reply-To: <CAJaLiFyJcMxcJ-z0LRtazoMtGZCqdNXWMv7ZnvCdXREVDeMGEw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,17 +82,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/05/2023 01:05, Okan Sahin wrote:
-> Add ADI DS4520 devicetree document.
+On 02/05/2023 00:46, Tony Dinh wrote:
+> Hi Rob,
 > 
-> Signed-off-by: Okan Sahin <okan.sahin@analog.com>
-> ---
->  .../bindings/gpio/adi,ds4520-gpio.yaml        | 45 +++++++++++++++++++
->  1 file changed, 45 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/adi,ds4520-gpio.yaml
+> On Wed, Apr 12, 2023 at 5:36 AM Rob Herring <robh@kernel.org> wrote:
+>>
+>>
+>> On Tue, 11 Apr 2023 19:57:35 -0700, Tony Dinh wrote:
+>>> Add device tree binding for Marvell Armada 38x.
+>>>
+>>> Signed-off-by: Tony Dinh <mibodhi@gmail.com>
+>>> ---
+>>>
+>>> Changes in v2:
+>>> - Add marvell,38x.yaml. For now, add this binding to the Marvell
+>>> directory to keep it consistent with other Marvell yaml files.
+>>> At a later date and a separate patch, consolidate the Marvell
+>>> yaml files into  marvell.yaml.
+>>>
+>>>  .../bindings/arm/marvell/armada-38x.yaml      | 27 +++++++++++++++++++
+>>>  1 file changed, 27 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/arm/marvell/armada-38x.yaml
+>>>
+>>
+>> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+>> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>>
+>> yamllint warnings/errors:
+>>
+>> dtschema/dtc warnings/errors:
+>> ./Documentation/devicetree/bindings/arm/marvell/armada-38x.yaml: $id: relative path/filename doesn't match actual path or filename
+>>         expected: http://devicetree.org/schemas/arm/marvell/armada-38x.yaml#
+>>
+>> doc reference errors (make refcheckdocs):
+>>
+>> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230412025737.20280-2-mibodhi@gmail.com
+>>
+>> The base for the series is generally the latest rc1. A different dependency
+>> should be noted in *this* patch.
+>>
+>> If you already ran 'make dt_binding_check' and didn't see the above
+>> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+>> date:
+>>
+>> pip3 install dtschema --upgrade
+>>
+>> Please check and re-submit after running the above command yourself. Note
+>> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+>> your schema. However, it must be unset to test all examples with your schema.
+>>
 > 
+> Would dt-schema in Debian 12 work? or must it be the latest dtschema
+> installed by pip3 or from GitHub?
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+If Debian 12 has latest schema, it would work.
 
 Best regards,
 Krzysztof
