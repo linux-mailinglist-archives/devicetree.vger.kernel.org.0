@@ -2,73 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CDA296F3E64
-	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 09:28:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D1286F3E76
+	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 09:39:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233494AbjEBH2I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 May 2023 03:28:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41460 "EHLO
+        id S233676AbjEBHjT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 May 2023 03:39:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233490AbjEBH2I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 03:28:08 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C70DE4237
-        for <devicetree@vger.kernel.org>; Tue,  2 May 2023 00:28:06 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-956ff2399c9so689969966b.3
-        for <devicetree@vger.kernel.org>; Tue, 02 May 2023 00:28:06 -0700 (PDT)
+        with ESMTP id S233496AbjEBHjS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 03:39:18 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B8DB1717
+        for <devicetree@vger.kernel.org>; Tue,  2 May 2023 00:39:16 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-50bc25f0c7dso4616732a12.3
+        for <devicetree@vger.kernel.org>; Tue, 02 May 2023 00:39:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683012485; x=1685604485;
+        d=linaro.org; s=google; t=1683013154; x=1685605154;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=uxqIQluB2Z5De+KoFY9KA9mX8YPwnDskO3lw2FlElZs=;
-        b=q1fqgb3UJzeU3o8j7LOumaD2lYrexvbU2mq2hlvvdvwphrQAzfR3m/WhZUQXdzzXwo
-         anlCHeP/S2shFqkqDCJ8wbEsb12h/Q/gPtGe3ZSb+mV1q9Y7PQ0C51VKo8reaxjNYgPy
-         uGgDXcCzuVzu0aeA4qfc5kz4HJHutTyN2m6rcNR2qUlHfCAevmiaaLC3vSQH+SvVtvBh
-         6+2xCJhi8laSF7mkG6LmqhBP0tKfdk1QAxFJpjrm3T5hqDr9BzK68PCRCtYHizXFm6/L
-         8iE22+UgXIV88tYgeB9jQV3Px2RV1Rac1eDWlPp4P8XUoo9+1wuWJrWOFyt+iDfgsBSc
-         5rhQ==
+        bh=scTz1jek6y5+l9SdnFhQuw4xm0TqGFxUx1QJtMkBaKs=;
+        b=a78uGnmVax8AdRjW7AZExnTkFv0eZsYVvkFy9hSpCNS7BQWv/JTxTXGsGlZC+zElEj
+         KoKYLSHCYTr/1zL7bF2dOMQpw7GaKekzYVJhwCaPG8i8/e6EzraLOtrvdCCbNgcX5Xmf
+         CJ/kv6zdhMDyHqFX/SXg3u3lGfxOkIpNvQkUFn4JVGKd/fzgbhkH/gUAREsh2DKlZmqp
+         ZXMowX4HX2Vod+P3AwaYLgLokcFMX2nWav0jQS1A5bDmEtRaXKP8sI3h6uaiTzrDmGl9
+         SQMfnLmKxhWomqVPS56m1w7efyVqycAZ9FzAyfWfEszYmkk1PtmMj0wvRnWLL0wn4VDb
+         J/mQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683012485; x=1685604485;
+        d=1e100.net; s=20221208; t=1683013154; x=1685605154;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uxqIQluB2Z5De+KoFY9KA9mX8YPwnDskO3lw2FlElZs=;
-        b=TVolIBqdjHNviMgWicAPATivGuXwB/zrw68uNRsgktf4yNzcLJdIikBgRvtwJ1dzJX
-         MGwepKAT2h8VG8Z3TXmphF2Y3+vlaoaQePXuvbxY8a++WJ6qedqXc/lB8Ten2cJV6EOK
-         F1/rxCA9Z4Q/E1zjYnLn9lS7Sss6iwk3c9FcCymhiHU8+B3ey1Tdf2CyIA+/b9Nd8kRq
-         HlOOjRv/SbFzc59wlGeGYvgE5PURIujpkMX3Mj/9U3Egft6bfme6t0xrcjgx+4ek08EL
-         fYQqIFymbV0xahUgShoARn1xN+tJdBJ0pPn5hWTWGxI4UQEmqPospFUNDIyrAYnk4nb8
-         AZ+g==
-X-Gm-Message-State: AC+VfDwCBvMOf4sCyZxwHSlQZvr3zAQFlZBlsiAsGns8Vder7pWNsDi4
-        FrY2jPGoTOc03COlK4hJRhzBDg==
-X-Google-Smtp-Source: ACHHUZ4gNy/JK2zvP7iIWv5h2Du0eVngU8hcE0mrCK5p5SUEf7rR3RGpdFzEGjZusLEWsn3q7hbDVQ==
-X-Received: by 2002:a17:907:31c7:b0:94a:785e:6a46 with SMTP id xf7-20020a17090731c700b0094a785e6a46mr16023751ejb.24.1683012485294;
-        Tue, 02 May 2023 00:28:05 -0700 (PDT)
+        bh=scTz1jek6y5+l9SdnFhQuw4xm0TqGFxUx1QJtMkBaKs=;
+        b=fRFiTOiiAxG3gffxRrjHPnCXu+oZM7VHpt5ck6Vor1oQDQx89D/SGSe4iYMlxEVpOD
+         eGxHYAiEs7TF8G7yJJsUSvRjRllSE5DBj7g6Dhoz6m142rsZbZAVNpTzAh2xSd0wYQHh
+         weZ8JVFhuopJNZxS6DmnupKCzaCb3shW6HXYqcJzkBQymlu980esEMwqlb3p4zqbauqz
+         EGap+R5kiXvMYoTUI2VpafQ0MRH27L/MzTVGhjFIU1Zvf6wRVMOaKOyj4obCWBTNzUsP
+         U54vrcHtrMS4dJazFUXoLGK2DzYMhGBlkW+hDpEWtZD/eFIP9Hiou8PDeH8L9w+Q/0qS
+         MfoA==
+X-Gm-Message-State: AC+VfDxRZ1/E5/vn465hVdLA1bxtgEAMhsyt5OcqZsjcWHA15vpwsuVD
+        bXcRcv0G7begZRCc1M3qZN+8dw==
+X-Google-Smtp-Source: ACHHUZ7YOKbuPjna9OS0ZMD0EoDB8ZuNxcxOz3Ez7c4/r1mSyr0N11xwD8t8vZieZrHbXmRjDxFyaA==
+X-Received: by 2002:aa7:c758:0:b0:50b:c3a0:40e5 with SMTP id c24-20020aa7c758000000b0050bc3a040e5mr5612751eds.21.1683013154607;
+        Tue, 02 May 2023 00:39:14 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:bafd:1283:b136:5f6a? ([2a02:810d:15c0:828:bafd:1283:b136:5f6a])
-        by smtp.gmail.com with ESMTPSA id l13-20020a170906230d00b0094f2f1c5ea1sm16044643eja.174.2023.05.02.00.28.03
+        by smtp.gmail.com with ESMTPSA id q9-20020aa7da89000000b005069175dcb7sm13212239eds.58.2023.05.02.00.39.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 May 2023 00:28:04 -0700 (PDT)
-Message-ID: <5edec8db-64de-553b-6313-9b570f4d2a03@linaro.org>
-Date:   Tue, 2 May 2023 09:28:03 +0200
+        Tue, 02 May 2023 00:39:13 -0700 (PDT)
+Message-ID: <e29a7911-065a-04e2-f04f-027a0646362c@linaro.org>
+Date:   Tue, 2 May 2023 09:39:12 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
-Subject: Re: [PATCH v5 2/2] arm64: dts: meson-gxl: add support for Xiaomi Mi
- box 3
+Subject: Re: [PATCH v14 5/6] dt-bindings: clock: meson: add A1 Peripherals
+ clock controller bindings
 Content-Language: en-US
-To:     Karl Chan <exkcmailist@inbox.lv>, linux-amlogic@lists.infradead.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        neil.armstrong@linaro.org, khilman@baylibre.com,
-        jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20230425165624.11999-1-exkcmailist@inbox.lv>
- <20230425165624.11999-3-exkcmailist@inbox.lv>
+To:     Christian Hewitt <christianshewitt@gmail.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     Dmitry Rokosov <ddrokosov@sberdevices.ru>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Jerome Brunet <jbrunet@baylibre.com>, mturquette@baylibre.com,
+        sboyd@kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>, jian.hu@amlogic.com,
+        kernel@sberdevices.ru, rockosov@gmail.com,
+        AML <linux-amlogic@lists.infradead.org>,
+        linux-clk@vger.kernel.org, devicetree <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>
+References: <20230426095805.15338-1-ddrokosov@sberdevices.ru>
+ <20230426095805.15338-6-ddrokosov@sberdevices.ru>
+ <CAFBinCCdoaNuQymcjp5j9MHn2jpPWMqXe-+EgBo=5Ot8Bwaofw@mail.gmail.com>
+ <2F9DDB93-5EE7-4B5D-AFB5-052968081E0A@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230425165624.11999-3-exkcmailist@inbox.lv>
+In-Reply-To: <2F9DDB93-5EE7-4B5D-AFB5-052968081E0A@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
@@ -79,30 +88,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/04/2023 18:56, Karl Chan wrote:
-> From: "Karl Chan"  <exkcmailist@inbox.lv>
+On 02/05/2023 03:38, Christian Hewitt wrote:
+>> On 1 May 2023, at 7:51 pm, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
+>>
+>> Hi Dmitry,
+>>
+>> On Wed, Apr 26, 2023 at 11:58 AM Dmitry Rokosov
+>> <ddrokosov@sberdevices.ru> wrote:
+>>>
+>>> Add the documentation for Amlogic A1 Peripherals clock driver,
+>>> and A1 Peripherals clock controller bindings.
+>> Maybe a native English speaker can comment on whether it's
+>> "peripheral" or "peripherals".
 > 
-> The Xiaomi Mi box 3 is a TV box based on the Amlogic S905X chipset.
-> There are two variants:
-> - 2 GiB/8GIB
-> - 1 GiB/4GIB
+> I’m not a grammar specialist, but I would write:
 > 
+> “Add documentation and bindings for the Amlogic A1 SoC peripherals
+> clock driver”
+> 
+> Peripherals is the correct plural but reads better when you add
+> context on the type of peripherals.
 
-...
-
-> +&hdmi_tx_tmds_port {
-> +	hdmi_tx_tmds_out: endpoint {
-> +		remote-endpoint = <&hdmi_connector_in>;
-> +	};
-> +};
-> +
-> +/* This UART is brought out to the uart pad on upper left of the pcb */
-> +&uart_AO {
-> +	status = "okay";
-> +};
-> +
-
-Drop stray blank lines.
+Drop the "driver" references - from the binding itself and from commit
+msg. The bindings are for hardware, not for the driver, so: "for the
+Amlogic A1 SoC peripherals clock controller.".
 
 Best regards,
 Krzysztof
