@@ -2,76 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9B1F6F4338
-	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 14:01:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A75A66F4345
+	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 14:05:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233865AbjEBMBB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 May 2023 08:01:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59900 "EHLO
+        id S234101AbjEBMFy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 May 2023 08:05:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233876AbjEBMBB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 08:01:01 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01FBF4EFA
-        for <devicetree@vger.kernel.org>; Tue,  2 May 2023 05:00:59 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-94f910ea993so611902766b.3
-        for <devicetree@vger.kernel.org>; Tue, 02 May 2023 05:00:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683028857; x=1685620857;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+WYS2uNNoOkm3orqvZxxy/U4Nr8xICG5Dwp3aoTlmM4=;
-        b=KrNvgqnlCJ62jTv5QKIFn8l1MPz6NrKoUB/fs6ZiByAZQRfT32HlFohiu4KLlAKKv9
-         kLbaauMkSbT16Z6VAl1JcxnOE1qoMmLssiN+TlUwhoPWdLeVCdEVtWHaeUTklz1sr8Hy
-         FJjnyNlSUMs921zOgeC1Xf8RA6pCLNiYTAvj85ZV4Icmq2tHIgkDIj17EsDgmnt6484+
-         o5xo9O+atBqVzX14QE/WT32YhMBTEt+oFygM7LFwoy28EU+DU9dqXQm9clbOD7S3boUi
-         CsGfQ/xWDWdD3c/zo9kKqCsbOMV29Fh0qbFzDFKUv8VWsx6FN3IHSSLwabUYPSxQXyAV
-         qnpA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683028857; x=1685620857;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+WYS2uNNoOkm3orqvZxxy/U4Nr8xICG5Dwp3aoTlmM4=;
-        b=jb1x6B2DuEccW2cDD+Rx3m+fS2I6WgJDnztlHfGwbJf8YfDccSyADDSmT+896jnDzM
-         HeXG36BcLUrU+RKYaYkT2wgHB8yTABYINKhSa1HLiIhFqK4OYvQm6jAWDqnrVezADZEk
-         8HwVN2ezDYY4CyyyqxwQUOfZgL8ZmdJl2zl/D0kmzacIJuEDsGf8htI/Os9VIexQIpFL
-         19LgC4TYpH/lHpr1TDfRn+a3cu3Mt44i4tIdGbnHbSQj6We2cl2KIZQYRbxwnKEsISIk
-         wHwR75hsD29w4RVU3lO3Nf6haPQJSbUCYoKMVNxGpPKUDfec8nbw28QF8PufJ9a663tL
-         PkEQ==
-X-Gm-Message-State: AC+VfDzYYMyad/XlJdDfWSFBv7wszo+tv7bYhVd33Y+ZM1eLR2OQkByR
-        kscvdJPAhWyNDHIeYbfaZ8ZbYg==
-X-Google-Smtp-Source: ACHHUZ7UP4zneqUqBTSrVE1dz3gYWQRhrswBtXkRlQD/zyv1FGBW6b28N3mfaqsf3b5HIL1999Ir6g==
-X-Received: by 2002:a17:907:6e89:b0:94a:62e7:70e1 with SMTP id sh9-20020a1709076e8900b0094a62e770e1mr15086566ejc.68.1683028857540;
-        Tue, 02 May 2023 05:00:57 -0700 (PDT)
-Received: from krzk-bin.. ([2a02:810d:15c0:828:bafd:1283:b136:5f6a])
-        by smtp.gmail.com with ESMTPSA id v10-20020a1709063bca00b0094ee3e4c934sm16063403ejf.221.2023.05.02.05.00.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 May 2023 05:00:50 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S229722AbjEBMFw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 08:05:52 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B01865BA5;
+        Tue,  2 May 2023 05:05:51 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 455196238C;
+        Tue,  2 May 2023 12:05:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93155C4339B;
+        Tue,  2 May 2023 12:05:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1683029150;
+        bh=pjosqgAvcJiDE8ocsFRuyjcgaSS47imfs2wX0R23ors=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=mgrMCZV3PZlTUxJtlLltDnGq8PpAFqsf3Cpf9J8cImNxENWE13YAYt/fm9H/81QgF
+         u88v1rhOs2FgynKvqrkMA0JTGOq1ew7Ss4oLmiMy/ZOPctHcROxvgHgFMPogyAk+0g
+         XX/vZPZX9knrHjscuxBRy3Haov7Ie7VvT63/puN6exZ7bQ1ErQQyLxwL1BfZp7Jj5c
+         g5DjbazrYult8Hs3qRBcFFA3js3LEm8CnUj8xfrIB567Ti3whxP5gPqaOCZmHcEIrR
+         Dgc0iaEWGC+GI0KWCIFEWhe1ukMl+RaSO37msxENCVvU1a+SOpL7QDWYME6ijziRv4
+         qUscBxiY1BjWg==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1ptolV-0003eH-Di; Tue, 02 May 2023 14:05:53 +0200
+Date:   Tue, 2 May 2023 14:05:53 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Bjorn Andersson <quic_bjorande@quicinc.com>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jianhua Lu <lujianhua000@gmail.com>,
-        Del Regno <angelogioacchino.delregno@somainline.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 2/2] dt-bindings: display: novatek,nt36523: define ports
-Date:   Tue,  2 May 2023 14:00:36 +0200
-Message-Id: <20230502120036.47165-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230502120036.47165-1-krzysztof.kozlowski@linaro.org>
-References: <20230502120036.47165-1-krzysztof.kozlowski@linaro.org>
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 5/7] phy: qcom-qmp-combo: Introduce drm_bridge
+Message-ID: <ZFD8oQETtLuDH2Xg@hovoldconsulting.com>
+References: <20230425034010.3789376-1-quic_bjorande@quicinc.com>
+ <20230425034010.3789376-6-quic_bjorande@quicinc.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230425034010.3789376-6-quic_bjorande@quicinc.com>
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,41 +63,108 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The panel-common schema does not define what "ports" property is, so
-bring the definition to enforce the type.  All panels described by
-binding are dual-link, thus require both ports.
+On Mon, Apr 24, 2023 at 08:40:08PM -0700, Bjorn Andersson wrote:
+> The QMP combo PHY sits in an of_graph connected between the DisplayPort
+> controller and a USB Type-C connector (or possibly a redriver).
+> 
+> The TCPM needs to be able to convey the HPD signal to the DisplayPort
+> controller, but no directly link is provided by DeviceTree so the signal
+> needs to "pass through" the QMP combo phy.
+> 
+> Handle this by introducing a drm_bridge which upon initialization finds
+> the next bridge (i.e. the usb-c-connector) and chain this together. This
+> way HPD changes in the connector will propagate to the DisplayPort
+> driver.
+> 
+> The connector bridge is resolved lazily, as the TCPM is expected to be
+> able to resolve the typec mux and switch at probe time, so the QMP combo
+> phy will probe before the TCPM.
+> 
+> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> ---
+>  drivers/phy/qualcomm/phy-qcom-qmp-combo.c | 36 +++++++++++++++++++++++
+>  1 file changed, 36 insertions(+)
+> 
+> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
+> index 5d6d6ef3944b..84bc08002537 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
+> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
+> @@ -22,6 +22,8 @@
+>  #include <linux/usb/typec.h>
+>  #include <linux/usb/typec_mux.h>
+>  
+> +#include <drm/drm_bridge.h>
+> +
+>  #include <dt-bindings/phy/phy-qcom-qmp.h>
+>  
+>  #include "phy-qcom-qmp.h"
+> @@ -1332,6 +1334,8 @@ struct qmp_combo {
+>  	struct clk_hw dp_link_hw;
+>  	struct clk_hw dp_pixel_hw;
+>  
+> +	struct drm_bridge bridge;
+> +
+>  	struct typec_switch_dev *sw;
+>  	enum typec_orientation orientation;
+>  };
+> @@ -3196,6 +3200,34 @@ static int qmp_combo_register_clocks(struct qmp_combo *qmp, struct device_node *
+>  	return devm_add_action_or_reset(qmp->dev, phy_clk_release_provider, dp_np);
+>  }
+>  
+> +static int qmp_combo_bridge_attach(struct drm_bridge *bridge,
+> +				   enum drm_bridge_attach_flags flags)
+> +{
+> +	struct qmp_combo *qmp = container_of(bridge, struct qmp_combo, bridge);
+> +	struct drm_bridge *next_bridge;
+> +
+> +	if (!(flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR))
+> +		return -EINVAL;
+> +
+> +	next_bridge = devm_drm_of_get_bridge(qmp->dev, qmp->dev->of_node, 0, 0);
+> +	if (IS_ERR(next_bridge))
+> +		return dev_err_probe(qmp->dev, PTR_ERR(next_bridge), "failed to acquire drm_bridge\n");
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Using dev_err_probe() in an attach callback looks wrong as these
+functions should not be returning -EPROBE_DEFER (and this is not a probe
+function).
 
----
+> +
+> +	return drm_bridge_attach(bridge->encoder, next_bridge, bridge, DRM_BRIDGE_ATTACH_NO_CONNECTOR);
 
-Changes since v1:
-1. Rework to add ports to device schema, not to panel-common.
-https://lore.kernel.org/all/20230420160905.GA2952736-robh@kernel.org/
----
- .../bindings/display/panel/novatek,nt36523.yaml           | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+This line is over 100 chars, but there should be no reason not to break
+it before 80 here.
 
-diff --git a/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml b/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml
-index 0039561ef04c..a2a8c4e39573 100644
---- a/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml
-@@ -32,8 +32,14 @@ properties:
-   vddio-supply:
-     description: regulator that supplies the I/O voltage
- 
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+
-+    required:
-+      - port@0
-+      - port@1
-+
-   reg: true
--  ports: true
-   backlight: true
- 
- required:
--- 
-2.34.1
+> +}
+> +
+> +static const struct drm_bridge_funcs qmp_combo_bridge_funcs = {
+> +	.attach	= qmp_combo_bridge_attach,
+> +};
+> +
+> +static int qmp_combo_dp_register_bridge(struct qmp_combo *qmp)
+> +{
+> +	qmp->bridge.funcs = &qmp_combo_bridge_funcs;
+> +	qmp->bridge.of_node = qmp->dev->of_node;
+> +
+> +	return devm_drm_bridge_add(qmp->dev, &qmp->bridge);
+> +}
 
+Guess you need a dummy function also for qmp_combo_dp_register_bridge()
+in case of !CONFIG_DRM.
+
+> +
+>  static int qmp_combo_parse_dt_lecacy_dp(struct qmp_combo *qmp, struct device_node *np)
+>  {
+>  	struct device *dev = qmp->dev;
+> @@ -3459,6 +3491,10 @@ static int qmp_combo_probe(struct platform_device *pdev)
+>  	if (ret)
+>  		return ret;
+>  
+> +	ret = qmp_combo_dp_register_bridge(qmp);
+> +	if (ret)
+> +		return ret;
+> +
+>  	/* Check for legacy binding with child nodes. */
+>  	usb_np = of_get_child_by_name(dev->of_node, "usb3-phy");
+>  	if (usb_np) {
+
+Johan
