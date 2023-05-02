@@ -2,79 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D05A6F4214
-	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 12:57:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B78CC6F4217
+	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 12:57:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233824AbjEBK5J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 May 2023 06:57:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51500 "EHLO
+        id S233753AbjEBK5p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 May 2023 06:57:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233802AbjEBK5H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 06:57:07 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0F8C30F9
-        for <devicetree@vger.kernel.org>; Tue,  2 May 2023 03:57:05 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4efea4569f5so4249431e87.3
-        for <devicetree@vger.kernel.org>; Tue, 02 May 2023 03:57:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683025024; x=1685617024;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fvKKvkTKg6oLHxWWVpgf67tQd5w10evXj/uD0aHPu2E=;
-        b=EnmSSG1gIihEHIM6w4cQaJiWNxIuqd85Q29d8kY0uFabwFf4xeii3hJTSCmt5dDBnO
-         GwhKAU4GV8L+W8tiYrNVjA9Fz1N5DdoycTRxmu+0kIS/HlBvPflN2lTLdFgg9U5pnMTT
-         EjVA/NyolJiO9qeuGvgXCZRgQXAttqvj0DoubyLqgDhhmqdngrDXXXXyAfCeQJm2Arcq
-         7j+haD0yiUudv4lFCIz9Ge8AinHucmxVbyJKT7wBCuV6wizwyxPUBMbRpCUXZIvOtEeo
-         yfTQ5IotmLCKHC8PqLum4alHpGdXQVoVOxczUroJSQHMrMV8msoO3WSxvCW773Wcd+ud
-         KF9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683025024; x=1685617024;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fvKKvkTKg6oLHxWWVpgf67tQd5w10evXj/uD0aHPu2E=;
-        b=GDvP/1zURP38wY1pWZEuJJajanhQlbQLqgPuo9UoyElCp6ahsMhvJVbedY+LIr2Oyx
-         e1W9/3ZgAK1N9Jfqh/qhcqI/ouWhRJ8xDfL1nWlfjfq/oJ6Wkf6y+UOziI2/5+BF3uxI
-         sELbJpE/taqGOkXJAGHskncUrNgoK5dVdYu+juBjt5XB+0CBclWxjM0D3/HdlCwXmCfZ
-         nL9uVSDtCYjVxcpFW7M5NHL7ZhIRDyKtod4ysY3Z1euMFaWbcY80h06zGjuZoOqAfxnD
-         +bljSt1YlwAjKkShbL1r2NorTF+o9SBIEo+rIu37ieKpDMJJc7Ml5mYe4jKt2Lw/NKFB
-         Z5hw==
-X-Gm-Message-State: AC+VfDwXlv0ylgQvkSNO2RpouWunoj3Dottr6W3sgz5KriahbxOB9QRU
-        pEiopNyUQxnBkjFxYUQ3ljwifg==
-X-Google-Smtp-Source: ACHHUZ4SRyqTO729hyK62hC9hFKRzE18fGGOcV6TcgxJ3a2XmJT7r504daG1bjU2DgKZOKUDRjIaeA==
-X-Received: by 2002:ac2:522e:0:b0:4f0:9126:b7e3 with SMTP id i14-20020ac2522e000000b004f09126b7e3mr1910140lfl.26.1683025024258;
-        Tue, 02 May 2023 03:57:04 -0700 (PDT)
-Received: from [192.168.1.101] (abyl248.neoplus.adsl.tpnet.pl. [83.9.31.248])
-        by smtp.gmail.com with ESMTPSA id z6-20020ac24186000000b004edc0fc3c35sm5324459lfh.5.2023.05.02.03.57.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 May 2023 03:57:03 -0700 (PDT)
-Message-ID: <3b017384-9039-b558-dc94-7fe1f419f5c3@linaro.org>
-Date:   Tue, 2 May 2023 12:57:02 +0200
-MIME-Version: 1.0
+        with ESMTP id S233645AbjEBK5o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 06:57:44 -0400
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2053.outbound.protection.outlook.com [40.107.244.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B91E73C19;
+        Tue,  2 May 2023 03:57:42 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FI6nqUgysBxLSKu7UtDmdyixaO6lRkglbTerYKPVH/b3jhLWYlbwjM1zjiMUbFuZ1pWESfa59bnM9FDBVQd1FhYVxDMXGyi9gkX+3xoVpKp48ttntnbdgRqH67taSlt6zEkkcT5QdnjC/p0+qWv8LDMGY1bhABnUqXg6/PncvUMIa973e6bwhLI9uAhLZ+PoV2hnagtgQujJ+C+gMnLPyPLfHzfEdFoYm3gCmuFaJD6LgwuTDTIh4fh69W2w9g+xgWJR4pvUvZC7/vaxAxEVtNUetlApT5OQW6RjT0sVI1YizxUQm6AG3zlrexzXVWxc9PPKOHstIFCIQMceHpdANQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ry+IjZecHCSUkD3bP7lczR9c2MOknPHyey/Q5N9qkCk=;
+ b=Ri7rOzGPfQP+Gpxp/xmDaE3LEsz1EEP5C2XhxwShB/DbbgR/qBSEK10za677sDgdr1F14XPuBsZ6i3EHYLeoojR0/JrmhJcj2Hc6eYOT3HZ8oaWa3ss4AU5j2ER35JhHJPJh2X3lecxpQxgXQg9P233efE6ivSH96BKXs5JN45oPA53HJUkddhFdGZRwUG35ZKD7Y3HrLvYEV9mToB/eIpYdslopIhLnIt94vgOvVnScNuHLGLTsFhk0Msw09W2xf44SgG4HrEiGEMs5y1E2Out1JHRBH5kgj4tnx80LK8fV0+FCNnZIpgFWaF9PCCCa8YgSynSLWacBVUllcqifQQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ry+IjZecHCSUkD3bP7lczR9c2MOknPHyey/Q5N9qkCk=;
+ b=AUQiDHzND5/b/c+dFSYzSXKHvKJ+t6mxkgGWgw3BHxLnWeGdZLwa+FjrAG6RI0S3kAbxXUA851OxsxLOLDigatmhIRPRHRlV3keOspYhkMN6xPMrANVaY1sdXcqJTo3wiNsbhA+IUKwXbwRa7/61gjerRYrvOW/fGh/zzKVMFaE=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BYAPR12MB4758.namprd12.prod.outlook.com (2603:10b6:a03:a5::28)
+ by MW3PR12MB4570.namprd12.prod.outlook.com (2603:10b6:303:5f::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6340.31; Tue, 2 May
+ 2023 10:57:40 +0000
+Received: from BYAPR12MB4758.namprd12.prod.outlook.com
+ ([fe80::20b9:d472:1981:cf94]) by BYAPR12MB4758.namprd12.prod.outlook.com
+ ([fe80::20b9:d472:1981:cf94%4]) with mapi id 15.20.6340.031; Tue, 2 May 2023
+ 10:57:40 +0000
+Message-ID: <39d3e076-94ad-a349-5df6-b6e78714e407@amd.com>
+Date:   Tue, 2 May 2023 12:57:22 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH v6 11/13] arm64: dts: qcom: qrb5165-rb5: Switch on basic
- TCPM
+ Thunderbird/102.10.0
 Content-Language: en-US
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, linux@roeck-us.net,
-        heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org,
-        andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, luca.weiss@fairphone.com,
-        linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     caleb.connolly@linaro.org, subbaram@quicinc.com, jackp@quicinc.com,
-        robertom@qti.qualcomm.com
-References: <20230501121111.1058190-1-bryan.odonoghue@linaro.org>
- <20230501121111.1058190-12-bryan.odonoghue@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230501121111.1058190-12-bryan.odonoghue@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "Guntupalli, Manikanta" <manikanta.guntupalli@amd.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "michal.simek@xilinx.com" <michal.simek@xilinx.com>,
+        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "jirislaby@kernel.org" <jirislaby@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "git (AMD-Xilinx)" <git@amd.com>,
+        "Pandey, Radhey Shyam" <radhey.shyam.pandey@amd.com>,
+        "Datta, Shubhrajyoti" <shubhrajyoti.datta@amd.com>,
+        "Goud, Srinivas" <srinivas.goud@amd.com>,
+        "manion05gk@gmail.com" <manion05gk@gmail.com>
+References: <1682512187-8828-1-git-send-email-manikanta.guntupalli@amd.com>
+ <1682512187-8828-2-git-send-email-manikanta.guntupalli@amd.com>
+ <20230427164351.GA3146210-robh@kernel.org>
+ <DM4PR12MB6109C2BCDFD616AE37E10B9A8C6F9@DM4PR12MB6109.namprd12.prod.outlook.com>
+ <59b9214a-19e6-fd4e-6982-6e8c28c7e4a8@linaro.org>
+From:   Michal Simek <michal.simek@amd.com>
+Subject: Re: [PATCH 1/2] dt-bindings: Add optional gpio property to uartps
+ node to support rs485
+In-Reply-To: <59b9214a-19e6-fd4e-6982-6e8c28c7e4a8@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-ClientProxiedBy: VI1P190CA0037.EURP190.PROD.OUTLOOK.COM
+ (2603:10a6:800:1bb::12) To BYAPR12MB4758.namprd12.prod.outlook.com
+ (2603:10b6:a03:a5::28)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BYAPR12MB4758:EE_|MW3PR12MB4570:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2e88966d-0013-4538-63cd-08db4afc0b99
+X-LD-Processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 2vLhd/LbT9uyOwk+yjaVzqGt9+InY998fbpAscOt8yU/htO19aKAelU+Y3I1yqrdjewKHFhKxINAU+jbA+J3B5h9DmVkBW4UTfXvoMEsPf3vtpOmU/o6AglpuVbBnEJpPiywfTUEHJIRkytU1brb0yO8j4C+sql82iszdoveUzOH6WxujMzZnr1Z1tC0MpfLMPHdSPEDAoIkOR+lCgv3KEOIpfqkI4MqJQZs8sL5DumPFa9zTHEk39h4bksweXRQTsNnzkOfLdi8QEVRp6sHyIuw8eUuWks0ckw8+O6GC0eP2d/QR5FZuVRj92iklSwHzbJwI3FV+CaRUkN2k7hmaJG+6TdpIuFdTHHW36UXd0KwS3wnvZfim26ABGfHGBH8AuF5K/GHYwlIj1S/KUaV+fTCxXGwoE2NhLd+m9FwI+vTqkfpIHwS75hVp12loF1RE5HxWrZNVLkJyyaOLD1o9tBqjz+XasvzUtquy12KQx6W7Kkth5ecQ4h9MWnf/q78Xkux6MwO5K0OG8SiJph4eT+MLfBjKBFjy7Y5fkjKHNVzLZm9cc7Thnx6riE15cxIii5QzxTj3ums/ijcxvyNvgfJduyauqyucsarLca2toNRBmkq8/ZBb23Hwr2jKMAGuUw8BA37ny18WI8Vnd8euw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR12MB4758.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(136003)(39860400002)(376002)(396003)(366004)(346002)(451199021)(66946007)(66476007)(66556008)(316002)(4326008)(6486002)(478600001)(31696002)(110136005)(54906003)(36756003)(966005)(86362001)(6666004)(186003)(53546011)(6506007)(6512007)(26005)(5660300002)(2616005)(44832011)(31686004)(7416002)(83380400001)(38100700002)(8676002)(8936002)(41300700001)(2906002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bVlnTzdHTGtlNm1ETy93OWlVa3VHUitMV1gwWVlVc09OYkJJWE5nQXdHQ3dn?=
+ =?utf-8?B?MHdZUmxmRTU5U093bC9ycFhYOTFBeU5UdlhPSFRIM1QyRy8rTTJ2dFN6eEVU?=
+ =?utf-8?B?MzV5UnJTQjkzTjd2YXFzcnNFSWdVU0E3MDFJNUo4NW5SUmJBSGY2NldUcFNS?=
+ =?utf-8?B?QW41azhQT3UxcjJDNmMwTFpIR3pBODNJZFNyd3EyajRwaXRBMEZSY1VnYjB5?=
+ =?utf-8?B?bkwyQ2JabFpOS2tDMjd2aElhL2xuc2Uvbnlla21LanZNSGtseTBaSzBiV1Z5?=
+ =?utf-8?B?ZEkyNUsxMVVhSlM2TitOQVhxYnRIS1laVkFsV2g5QWFPazlpZkJQSXh2aHhS?=
+ =?utf-8?B?OUxBcmhDT3oraGZ3SmR2UVlPNXNqYjZmWEYxRDFLOURvTzRUbWhPcE03a3cy?=
+ =?utf-8?B?RmlFd0swczFPcHpZSTRLNm41NWlxbWZUaG54ckswZFBCSnJEUENjL2l1QzZJ?=
+ =?utf-8?B?WCt0a2FMaEplbXNSQUtMektMbzhoaTljU1RFMlJhTUJXR3F2YWcxbTBQNEZF?=
+ =?utf-8?B?aUJBWmZCeTdtTGxxRVpPY2VscGF6Mnl1VmNHODlkQmNHSzRwQW5lbDVuUG5D?=
+ =?utf-8?B?ODlyVllocXJhSUVaMCt0SG1KL216QjVGb1l0T1oyMVAvbVZMay92Rk1lb0hi?=
+ =?utf-8?B?dlNLK3c4Mm1IZUIzNzFNUG1POGZQN2x2WTNoUzk5WnlHcHFPZzVQSFJMRVBo?=
+ =?utf-8?B?L2FFOTdUUm9ZQUx1R09ocXEvYUR4RkxKb254SzRXK1E1M04rMkNnaUlhU2tq?=
+ =?utf-8?B?elZVTUlZeEVZS0RyTUdDNmV2WXVxODFYQTNGcGN0c1djSWhwc1J5cW9oWFNj?=
+ =?utf-8?B?WHlpMUFqd2YwZDluT0RETDdVazZMSEhhSmMxTFJoRFF6RGlpNmNtSGpiLzhG?=
+ =?utf-8?B?U3M1VUxRNElPS0Exem5CVkRSNGRNUXg3SnhhMXdzQlNHY3JrdHBDNVE0dGNL?=
+ =?utf-8?B?aEhqc21RUXBQaHFBbHdWYmovU0dxUXg5cVhNS1EyLzJrK0M0Y2hleGoyQWRo?=
+ =?utf-8?B?LzkvdzhhdFdQZHVzeERWa2tSVmlvSDFZbCtod0M1VFhGV2VaNTlkOTQ0VDZJ?=
+ =?utf-8?B?Z09Sbllhc0RhUmRUUTA1Z1FMZjJEZ1hyaEEzRmxITXdvTyt4ZXlHeHJRelZE?=
+ =?utf-8?B?aVdDV0ZBTmtPT2pBNFRxL09GSVBNOFNRck1kbnJTeUhrQytiSE5NVlJCeWNJ?=
+ =?utf-8?B?ampYR1lqZFh0TXJzQytZM1UwZzFkNlhESEZhVzBnQ2gvU1BnS1l5VGdpd0JP?=
+ =?utf-8?B?elRnOCt6Y3NERi9xYVh5RVNJYkl6ODZDek5GM3MwRkJreWFXY1FWMEZpNXgx?=
+ =?utf-8?B?R1RCN0hlNmtDMEY0eEQ5bUt4UkIxVDhqYS83eDFkYXNLV242SUFOU0dTeko4?=
+ =?utf-8?B?TjlPWWxqcWZzeVpxL0VuczJsQy96d2VQaE8wbUpCbjBvdUpnVmw1WFIxNEs3?=
+ =?utf-8?B?WFc4K0JWLzlVSUU0MHd1WjdrU1BLbkw1VmRqV01PTEpOTDk4V3B4aEZjYXdj?=
+ =?utf-8?B?MzFjd2lFNjR0cHd0QXRXVW1kVVZWd3lZa05nTDFXTzR3Y1NneG4vZjNabWVI?=
+ =?utf-8?B?eDZ4cy8wTkJSdEFXNGhwb05VNkxEQUJWbFZQU3cydVYrOUdXU2JkdUZxS25w?=
+ =?utf-8?B?ZElNdkh0akJmYUEzek45TnE1UGV3Yk9ieWNqOFUwZHpmU3N3MVFGOHpibkFt?=
+ =?utf-8?B?Qkw4bis4MHFDbVo3ZTdYUU1SQ0ZHekx0ZmR1aDk0WEJlVkc3ZlN0QW1oWlRU?=
+ =?utf-8?B?Rld1WFQxb3ZrN2dGYlFPLzF4NDEvUWZhWEZtY3FJYUliNEdEa0lTTnFPbURj?=
+ =?utf-8?B?ZExpdmQyNDQ1UmNtdmNVZFp2ZGdCbURIaHZWcnNrR29vNWRNb2wzT2t1dUo5?=
+ =?utf-8?B?bmV2enVFR0tZd24zSnYzbGRiaFZ6NFFoSHdHYUludXlsK1puaGMrZkI3Yjkz?=
+ =?utf-8?B?U0RqUUM2ZWcvQThISkhNOEpHUEZBMXpyczZNdFBtbXJYN3VrdUhUUEFXSmNK?=
+ =?utf-8?B?QXAvSGNKYVl3czJSUmJUSHU0QWQ3WmNGUmZkcnBhUlJkNGcxdVpDbGRneTg5?=
+ =?utf-8?B?WGcvQ3lRb2I1cDl0TkpMN2dFVDRxaXdydFI1SmdNVGdiQXgvUWw3UENRZ3RO?=
+ =?utf-8?Q?7c0hgPPtwwjDEWvacVZCkG1R3?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2e88966d-0013-4538-63cd-08db4afc0b99
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB4758.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 May 2023 10:57:39.2507
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: FosNAA6Fc2xck4isxjU3Xy8pr9KYf0Xsgv/t/iztY4dgqhoFwoo9Bq/Mh23bMRb6
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4570
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -83,49 +146,52 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 1.05.2023 14:11, Bryan O'Donoghue wrote:
-> Switch on TCPM for the RB5. Here we declare as a source only not a sink
-> since qrb5165 doesn't support powering exclusively from the type-c port.
+On 5/2/23 12:19, Krzysztof Kozlowski wrote:
+> On 02/05/2023 12:14, Guntupalli, Manikanta wrote:
+>> Hi Rob Herring,
+>>
+>>> -----Original Message-----
+>>> From: Rob Herring <robh@kernel.org>
+>>> Sent: Thursday, April 27, 2023 10:14 PM
+>>> To: Guntupalli, Manikanta <manikanta.guntupalli@amd.com>
+>>> Cc: gregkh@linuxfoundation.org; krzysztof.kozlowski+dt@linaro.org;
+>>> michal.simek@xilinx.com; linux-serial@vger.kernel.org;
+>>> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org;
+>>> jirislaby@kernel.org; linux-arm-kernel@lists.infradead.org; Simek, Michal
+>>> <michal.simek@amd.com>; git (AMD-Xilinx) <git@amd.com>; Pandey,
+>>> Radhey Shyam <radhey.shyam.pandey@amd.com>; Datta, Shubhrajyoti
+>>> <shubhrajyoti.datta@amd.com>; Goud, Srinivas <srinivas.goud@amd.com>;
+>>> manion05gk@gmail.com
+>>> Subject: Re: [PATCH 1/2] dt-bindings: Add optional gpio property to uartps
+>>> node to support rs485
+>>>
+>>> On Wed, Apr 26, 2023 at 05:59:46PM +0530, Manikanta Guntupalli wrote:
+>>>> Add optional gpio property to uartps node and add reference to rs485.yaml
+>>>
+>>> The diff tells me that already. Why?
+>> Please check Figure 11-3 (Page number 37) in the below mentioned data sheet, It shows PMOD (ISOW14x2) devices used in half duplex configuration. Driver outputs Y and Z are shorted to A and B respectively. This reduces overall cabling requirements. Also DE/RE are shorted to each other, and at a time, any node acts as either a driver or a receiver.
+>> Using above optional GPIO controlling driver or a receiver. This GPIO is optional because it is not required for uart console node.
+>>
+>> Here,
+>> DE - Driver enable. If pin is floating, driver is disabled (internal pull-down resistor)
+>> RE - Receiver enable. If pin is floating, receiver buffer is disabled (internal pull-up resistor)
+>>
+>> Datasheet:
+>> https://www.ti.com/lit/ds/symlink/isow1432.pdf?ts=1682607122706&ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FISOW1432%252Fpart-details%252FISOW1432DFMR%253FkeyMatch%253DISOW1432DFMR%2526tisearch%253Dsearch-everything%2526usecase%253DOPN
 > 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> index b326bdeeb7742..1e0b6fd59abc9 100644
-> --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> @@ -9,6 +9,7 @@
->  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
->  #include <dt-bindings/sound/qcom,q6afe.h>
->  #include <dt-bindings/sound/qcom,q6asm.h>
-> +#include <dt-bindings/usb/pd.h>
->  #include "sm8250.dtsi"
->  #include "pm8150.dtsi"
->  #include "pm8150b.dtsi"
-> @@ -1344,3 +1345,19 @@ &pm8150b_vbus {
->  	regulator-max-microamp = <3000000>;
->  	status = "okay";
->  };
-> +
-> +&pm8150b_typec {
-> +	status = "okay";
-Missing newline
+> Your request for us to get into some datasheet somewhere, to get the
+> answer to the basic question, is not reasonable. Commit must justify its
+> existence, not some external source.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Not really. Manual itself just shows picture of that connection if you are 
+interested.
+On schematics it looks like that DE and /RE are just handle via one gpio. That's 
+why you need 3 wires instead of 4. Definitely it should be described better.
 
-Konrad
-> +	connector {
-> +		compatible = "usb-c-connector";
-> +
-> +		power-role = "source";
-> +		data-role = "dual";
-> +		self-powered;
-> +
-> +		source-pdos = <PDO_FIXED(5000, 3000,
-> +					 PDO_FIXED_DUAL_ROLE |
-> +					 PDO_FIXED_USB_COMM |
-> +					 PDO_FIXED_DATA_SWAP)>;
-> +	};
-> +};
+My concern was more about choosing proper name for this functionality.
+
+Thanks,
+Michal
+
+
+
