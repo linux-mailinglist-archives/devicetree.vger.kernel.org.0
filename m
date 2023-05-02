@@ -2,126 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CCA96F48F7
-	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 19:13:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FE986F4928
+	for <lists+devicetree@lfdr.de>; Tue,  2 May 2023 19:33:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233832AbjEBRNw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 May 2023 13:13:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52838 "EHLO
+        id S233859AbjEBRdg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 May 2023 13:33:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232830AbjEBRNv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 13:13:51 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0239A1
-        for <devicetree@vger.kernel.org>; Tue,  2 May 2023 10:13:50 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-94f7a7a3351so802042666b.2
-        for <devicetree@vger.kernel.org>; Tue, 02 May 2023 10:13:50 -0700 (PDT)
+        with ESMTP id S233443AbjEBRdf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 13:33:35 -0400
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3FDA10CA;
+        Tue,  2 May 2023 10:33:34 -0700 (PDT)
+Received: by mail-pf1-x42c.google.com with SMTP id d2e1a72fcca58-63b64a32fd2so4673660b3a.2;
+        Tue, 02 May 2023 10:33:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683047629; x=1685639629;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8c7YTMrMqO6NiIk6aRyvvE9OvrnJpW6uZRx0Qb7U3uQ=;
-        b=zgnIXfrpmrq8W4s5EAIhf5gir1yUUW0Rx0zxLklNwXeuXbpmB0SdDfZCVD+E7FPEd9
-         6BhmsZ8/TcTnHL/BRfxgeQsmwDzUlStLP6i6H4vYmaH1ucMz1rchhg7qraphC84lkE6h
-         qxYtaHUSHhRC9026P2XwfrfhVy+80eLLtV6CG2d2jkv+K0r22dU0VkYbvBgTqcbvOKLu
-         3ZlHQvmP+ei9HoEBBcypNWv54MqVWa1WN56hjGrukmu+RnchIxiQV2L+crzXA0scMgm3
-         g90zJp+CSjAvRhguupJW9Yt085pjePwHvk3JL7sZB6FgOnpG+CzZJ96j6TBTOsTPdYph
-         ce0w==
+        d=gmail.com; s=20221208; t=1683048814; x=1685640814;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=/EMaROrI2i9KpLF638deVHA9SzhqcPHiPbIMxa+oqCs=;
+        b=TtfKjYFOngIpcabTXf4b3h5P92FouuwwzoU0MdOrVV9ICdP5I7cE04v128VkMD/gBR
+         1knChnz4/btHW9LVn3hmew0vHfTkgE3isnkZVyoowYcEdke6TEHaG2opUeaTzYTsMxvo
+         cjhvGGbG6INE78mcPmtQNZCakmZvXC54URqYPESN4i3sfvbJZxVIplW1cFy5hOQ9WEQo
+         mXtTJoFK1T4WbsTKiti2PYkAhFg18Mi8zCppUQhTqbvf5TvLg7SO93MxdRK3JypCa12K
+         p+8+pNKQYAQ+8rqxXOZ8PXmhG13DCVxNFUf9jup6MWrp0BuEI++E1isyjlZwTBIZ/uyn
+         oRjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683047629; x=1685639629;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8c7YTMrMqO6NiIk6aRyvvE9OvrnJpW6uZRx0Qb7U3uQ=;
-        b=Z19aKAmMuT3o0bg0g2qqVzmdyGW8zjvdKea6kBlME5kameFAMT2xJdu8lwNpAfZUUT
-         /6lw5iqV1NKqDeJ/5vubs3JjGZw7zk7CdEy0P49BGmJGh3SP6jXqTzV+tLzmAAZ0PYBC
-         mMi5B8masPARr5r6PxpaP6B312wnws2Xv4VzJ60fn7R8cebWJHcwRv8cXTsJNBYKbWVc
-         CeveZA1iOHeok6LAF+mbFR0G3K7VR2JBeYYeeV3QJez3fZvryTShZ6ZBqK5QZCKzz7Ik
-         5KcSItNibXyBFvEGEotNdUsvOfm9SOdPrRPbPnk7OzpyjbphaenFRwPl2jxvuKtbxqha
-         uqBA==
-X-Gm-Message-State: AC+VfDwivsgBYpd9K8TwBgxbDaxUl2KZs/zQEDrsnnEuVP7Y5BQchRQ5
-        HyHxnt3Y+R5NmDU24DuHsCjunA==
-X-Google-Smtp-Source: ACHHUZ6e7VBIhBT7ojisZ4f6uNBoZ8irQ8thLSU1xgomR8S5YlRCSGV/kFmz1qTvVSqYSp9UjDOPng==
-X-Received: by 2002:a17:907:608b:b0:88f:a236:69e6 with SMTP id ht11-20020a170907608b00b0088fa23669e6mr596274ejc.7.1683047629100;
-        Tue, 02 May 2023 10:13:49 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:37be:eda5:e303:19e0? ([2a02:810d:15c0:828:37be:eda5:e303:19e0])
-        by smtp.gmail.com with ESMTPSA id cw22-20020a170906479600b0095f06c0247asm8879918ejc.209.2023.05.02.10.13.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 May 2023 10:13:48 -0700 (PDT)
-Message-ID: <96feebd6-ce0c-576d-0747-647706692846@linaro.org>
-Date:   Tue, 2 May 2023 19:13:47 +0200
+        d=1e100.net; s=20221208; t=1683048814; x=1685640814;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/EMaROrI2i9KpLF638deVHA9SzhqcPHiPbIMxa+oqCs=;
+        b=OR9fO3esUuTWgr5jAoseVFS1G3uZhqj4Hv6mhgkCPLwA4PDgpE3dfbwn3f/ND7YU7N
+         Ru86pmhtBOyuarRHKE3EhZnnjAnNymEqsIvDowS5fbo4S/zxm9k7ZU1qkS5NNDRcDlqP
+         ymzNL+djyRbViGpzgE7DFxVqzZ41Od3ZNorFj0C6ZEvIZ03K4gwtj8iPbinf6Ax5K6Ha
+         UQQXtxU73qAq31qoIqlupsyhj3kkDpLaJ2dVopffwZGM1jkHU3iBr6RFdmU6VD3lHcVy
+         pK3jr5+lGT3XN8CeGgLltnyRIxV5HDSjYI2N0I95Z31HwmUmLtHFhyPtD1ixQW6ZiYTC
+         uCZw==
+X-Gm-Message-State: AC+VfDzz39abff2UFxv2kIYGkB4abt1UBSNssS0NTe//TcI6sQtYUTYb
+        jAfZA+FML8YH50S5s0RZoEVG/pTdqJLS5cgxsVk=
+X-Google-Smtp-Source: ACHHUZ68qqt9fL8QBUEzePOiQsVBewohCEhnx4pgxnWxwVJGIn4CLimeaidxqucP916AlMapZUM74VxBvFZQTP10ed4=
+X-Received: by 2002:a05:6a21:3945:b0:ee:d553:5cee with SMTP id
+ ac5-20020a056a21394500b000eed5535ceemr19675175pzc.16.1683048814212; Tue, 02
+ May 2023 10:33:34 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH v2 5/8] dt-bindings: power: supply: max77658: Add ADI
- MAX77658 Battery
-To:     "Arslanbenzer, Zeynep" <Zeynep.Arslanbenzer@analog.com>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        "lee@kernel.org" <lee@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "sre@kernel.org" <sre@kernel.org>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "broonie@kernel.org" <broonie@kernel.org>
-References: <20230322055628.4441-1-Zeynep.Arslanbenzer@analog.com>
- <20230322055628.4441-6-Zeynep.Arslanbenzer@analog.com>
- <afeecd42-ecda-4d92-bbb5-6dcff84fca7d@linaro.org>
- <MN2PR03MB5197BC6AEE58EFE098AF08358B6E9@MN2PR03MB5197.namprd03.prod.outlook.com>
- <1f520e8a-7785-f4dc-2f9b-d6afd1e3f671@linaro.org>
- <MN2PR03MB5197EB4B34DC82C62EF5A3798B6F9@MN2PR03MB5197.namprd03.prod.outlook.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <MN2PR03MB5197EB4B34DC82C62EF5A3798B6F9@MN2PR03MB5197.namprd03.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230429193336.600629-1-robimarko@gmail.com> <8feae59c-b762-8cc8-7aa9-237ce4af5b1e@linaro.org>
+ <CAOX2RU6wwvMLgScAgtqpOuSLeaULUAet4TtjQZkWK_uwwkr2Zw@mail.gmail.com> <4bfcbde3-c9e1-65a9-4494-3d9bb222a89f@linaro.org>
+In-Reply-To: <4bfcbde3-c9e1-65a9-4494-3d9bb222a89f@linaro.org>
+From:   Robert Marko <robimarko@gmail.com>
+Date:   Tue, 2 May 2023 19:33:23 +0200
+Message-ID: <CAOX2RU5qE-3_K+QMqkUQU5MO2P_nN5gpZVYG5JTUdxYf5oQ7SQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom,ids: Add IDs for IPQ5018 family
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/05/2023 17:05, Arslanbenzer, Zeynep wrote:
-> On Tue, 2 May 2023, Krzysztof Kozlowski wrote:
->> On 01/05/2023 22:20, Arslanbenzer, Zeynep wrote:
->>
->>>> You already said it above.
->>>>
->>>>> +      in battery.yaml, with the following properties being required:
->>>>> +      - alert-celsius
->>>>> +
->>>>> +required:
->>>>> +  - compatible
->>>>
->>>> Why reg and monitored-batter are not required?
->>>>
->>> If no monitored-battery information is supplied, we set default values for alert-celsius.
->>
->> So the device can operate without battery? Interesting... are you sure, you can physically remove battery and device will work?
->>
-> 
-> I mean if battery info is not supplied, we use default values.
-> 
-> ret = power_supply_get_battery_info(fg->battery, &info);
-> if (ret) {
->     dev_err(fg->dev, "Unable to get battery info\n");
->     fg->temp_alert_min = info->temp_alert_min;
->     fg->temp_alert_max = info->temp_alert_max;
-> } else {
->     fg->temp_alert_min = -128;
->     fg->temp_alert_max = 127;
-> }
+On Tue, 2 May 2023 at 11:51, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>
+>
+>
+> On 1.05.2023 23:22, Robert Marko wrote:
+> > On Mon, 1 May 2023 at 14:51, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+> >>
+> >>
+> >>
+> >> On 29.04.2023 21:33, Robert Marko wrote:
+> >>> Add SOC IDs for the IPQ5018 family.
+> >>>
+> >>> Signed-off-by: Robert Marko <robimarko@gmail.com>
+> >>> ---
+> >>>  include/dt-bindings/arm/qcom,ids.h | 8 ++++++++
+> >>>  1 file changed, 8 insertions(+)
+> >>>
+> >>> diff --git a/include/dt-bindings/arm/qcom,ids.h b/include/dt-bindings/arm/qcom,ids.h
+> >>> index 802495b20276..c1283bad81e1 100644
+> >>> --- a/include/dt-bindings/arm/qcom,ids.h
+> >>> +++ b/include/dt-bindings/arm/qcom,ids.h
+> >>> @@ -216,6 +216,9 @@
+> >>>  #define QCOM_ID_SM8350                       439
+> >>>  #define QCOM_ID_QCM2290                      441
+> >>>  #define QCOM_ID_SM6115                       444
+> >>> +#define QCOM_ID_IPQ5010                      446
+> >>> +#define QCOM_ID_IPQ5018                      447
+> >>> +#define QCOM_ID_IPQ5028                      448
+> >>>  #define QCOM_ID_SC8280XP             449
+> >>>  #define QCOM_ID_IPQ6005                      453
+> >>>  #define QCOM_ID_QRB5165                      455
+> >>> @@ -229,6 +232,9 @@
+> >>>  #define QCOM_ID_SM8450_3             482
+> >>>  #define QCOM_ID_SC7280                       487
+> >>>  #define QCOM_ID_SC7180P                      495
+> >>> +#define QCOM_ID_IPQ5000                      503
+> >>
+> >>> +#define QCOM_ID_IPQ0509                      504
+> >>> +#define QCOM_ID_IPQ0518                      505
+> >> Are you sure these names are in tact?
+> >
+> > Hi,
+> > They should be correct, I am seeing them being used downstream
+> > and in end products as well, IPQ0509 being one of those weird ones
+> > that integrate 256MB of RAM on the die as well.
+> Hmmm.. it's sketchy and weird-sounding, but also appealing in a way
+>
+> I got caught off-guard with the leading zeroes, but probably qcom
+> just didn't want to mess with the IPQabcd scheme!
 
-You speak about driver, but I speak about hardware. The bindings are for
-the latter.
+I would guess the same that they wanted to keep the naming scheme
+intact, I also thought it was an error but then I found FCC images with
+the IPQ0509 SoC being actually used.
 
-Best regards,
-Krzysztof
-
+Regards,
+Robert
+>
+> Konrad
+> >
+> > Regards,
+> > Robert
+> >
+> >>
+> >> Konrad
+> >>>  #define QCOM_ID_SM6375                       507
+> >>>  #define QCOM_ID_IPQ9514                      510
+> >>>  #define QCOM_ID_IPQ9550                      511
+> >>> @@ -236,6 +242,7 @@
+> >>>  #define QCOM_ID_IPQ9570                      513
+> >>>  #define QCOM_ID_IPQ9574                      514
+> >>>  #define QCOM_ID_SM8550                       519
+> >>> +#define QCOM_ID_IPQ5016                      520
+> >>>  #define QCOM_ID_IPQ9510                      521
+> >>>  #define QCOM_ID_QRB4210                      523
+> >>>  #define QCOM_ID_QRB2210                      524
+> >>> @@ -243,6 +250,7 @@
+> >>>  #define QCOM_ID_QRU1000                      539
+> >>>  #define QCOM_ID_QDU1000                      545
+> >>>  #define QCOM_ID_QDU1010                      587
+> >>> +#define QCOM_ID_IPQ5019                      569
+> >>>  #define QCOM_ID_QRU1032                      588
+> >>>  #define QCOM_ID_QRU1052                      589
+> >>>  #define QCOM_ID_QRU1062                      590
