@@ -2,146 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E39C96F57B0
-	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 14:14:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A44476F57BE
+	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 14:16:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229927AbjECMN7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 May 2023 08:13:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36124 "EHLO
+        id S229536AbjECMQo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 May 2023 08:16:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229902AbjECMNy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 08:13:54 -0400
-Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E352859C9
-        for <devicetree@vger.kernel.org>; Wed,  3 May 2023 05:13:51 -0700 (PDT)
-Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-55a214572e8so54946407b3.0
-        for <devicetree@vger.kernel.org>; Wed, 03 May 2023 05:13:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683116031; x=1685708031;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HLFpTw4Opsx0SIhXDBcwLEPI4lObbahA52WBgGIUVsM=;
-        b=w24SJl1jEsx1dsysGc/JqXn8TRE0UMobpr8S9T3y+gEnR/nI+CHCSx5trFpTNAVCVG
-         8XS7YABKoVXwdqhydgmtWe9LQJJ7LBPnr1fCtb0rshbAxTDbaTU+5U0WNdSypx0SKblE
-         0CP6meVuOVDCtCX96ONGJ58N4h4LCh6KY7HQXwOPLcftT7CWUqTxxZHaVMF/ygVuJ3xU
-         KtX9ixUBAF79tkLLjx9Hg+1rarQ5Su54dehEmdGZNBkbkoufEbwweYd9rnB2Q94mEjKe
-         bYeSIwtnrv7tEjxTeB2h1XUenyGb9cWojKfDEo4AC69c880iPhtph2axVQ7WlTkbXxO7
-         +S+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683116031; x=1685708031;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HLFpTw4Opsx0SIhXDBcwLEPI4lObbahA52WBgGIUVsM=;
-        b=cOCHYjbR3JtZRVR/faCVVAzgYJLtQtrW/trkW5qK3/LKDmqH8vrQkLtAWoECqbUKqb
-         T8UDp1TlQqPzqrDWsUi26xBVtxT3vGoAj/9ln1vQyOfYxeBcxnf86PrUkHRYqBy+7Os7
-         100yFeNBbGZ2G2m1k/xylUUj2GTr1qaYsFqZhnOvrbu7OnqtIe5zLdslhUHUWujJrxUg
-         E1SImWFwIG7KB/3S9eSo5APCW8BESLWBr9wKsCUZxp7RE5hHG2aRsarmGm1TKL/K3uPl
-         rjkyBv5F6BM5Ve5U3TE//M3cgGlzJ/1BeFaI5ZMKVrFvQeToxTrbI0z5mOemK8tVZRY/
-         GTQQ==
-X-Gm-Message-State: AC+VfDzk4TLdivvcexUtdfYfwVQm1mAnToeiyK+SzNVE2/hT4gXRLYw6
-        aOejpmZzl5IP8/kJsVdoSbI9PJaQYaB5EAvwdlwkow==
-X-Google-Smtp-Source: ACHHUZ66hRgZLiqP0HgNywmuyEJNjQjxpzuYU/Ewr0nLiWAs/k7+ydf4eMIyKQKo0mpz4nSzQd/diYDGzmnUCVXeNlI=
-X-Received: by 2002:a81:4f04:0:b0:54f:ddb9:95e7 with SMTP id
- d4-20020a814f04000000b0054fddb995e7mr20136923ywb.34.1683116031053; Wed, 03
- May 2023 05:13:51 -0700 (PDT)
+        with ESMTP id S229774AbjECMQU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 08:16:20 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70C465597;
+        Wed,  3 May 2023 05:16:19 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 343CGCRd027335;
+        Wed, 3 May 2023 07:16:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1683116172;
+        bh=yxvXld7ipziPs58UNC838TKUfUNu88KPeyoDk1IG0Fw=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=llUbpnhktEKDuGzZ1Blyln1bRhjBkCyInhZ/iFJepRBfrjVQ4GEjA1tDO0nkRJriQ
+         uDz0x7UL3q+2oPNp3uCZ1hGeuovmO1uTK28X8GPoAaYb/9AWnJhhnpr1cQ096FnjLQ
+         nNS0Syrq1I2iZNXDqSwakuFhGMC9Yrk4Gil/AArU=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 343CGC8Y007164
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 3 May 2023 07:16:12 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 3
+ May 2023 07:16:12 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 3 May 2023 07:16:11 -0500
+Received: from [172.24.145.195] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 343CG8bg068196;
+        Wed, 3 May 2023 07:16:09 -0500
+Message-ID: <eb6530ac-a999-fc03-5f11-e1cba6be504d@ti.com>
+Date:   Wed, 3 May 2023 17:46:08 +0530
 MIME-Version: 1.0
-References: <20220328000915.15041-1-ansuelsmth@gmail.com> <85eb14ec-f465-7447-ad77-a3dabc666f47@kernel.org>
- <YkKRYnN84D9VZhGj@Ansuel-xps.localdomain> <CAL_Jsq+RQQ-ADMxLPUFwk6S6kGmb6oNDy4k52fnU0EtbUvqmSA@mail.gmail.com>
- <CAMuHMdWNTE48MFy6fqxAsfMWz9b6E7dVNXtXtESP95sxk2PGwA@mail.gmail.com>
- <CAL_JsqJthKTm8bhRF2B=ae1tvtPeYYXx_Tm76qQtSwLtH5C6VA@mail.gmail.com>
- <720a2829-b6b5-411c-ac69-9a53e881f48d@app.fastmail.com> <CAL_JsqKCtmkwzKa01gyG65fH8ye6R3KhR41PJbJhOJ4X9j=znA@mail.gmail.com>
- <bce93654-fc36-3d12-282d-76fafb8f51ce@linaro.org> <CAL_JsqJXd_EpOQwwNEAn25mzFfkhEvqzur6ui5Ca+dbt2kA8-Q@mail.gmail.com>
- <5e318b02-8f33-4e2d-a956-5660e1c60619@app.fastmail.com>
-In-Reply-To: <5e318b02-8f33-4e2d-a956-5660e1c60619@app.fastmail.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Wed, 3 May 2023 15:13:39 +0300
-Message-ID: <CAA8EJpq8x5wQa3fMebaSP3hCdMiCsZRaF+B4Y3N3royW_CeXCA@mail.gmail.com>
-Subject: Re: [RFC PATCH 0/1] Categorize ARM dts directory
-To:     Arnd Bergmann <arnd@arndb.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Olof Johansson <olof@lixom.net>,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-actions@lists.infradead.org,
-        linux-sunxi@lists.linux.dev,
-        Linux-OMAP <linux-omap@vger.kernel.org>,
-        linux-amlogic@lists.infradead.org, linux-arm-kernel@axis.com,
-        linux-aspeed@lists.ozlabs.org,
-        linux-rpi-kernel@lists.infradead.org,
-        chrome-platform@lists.linux.dev,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        linux-samsung-soc@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        kernel@dh-electronics.com, linux-mediatek@lists.infradead.org,
-        openbmc@lists.ozlabs.org, linux-tegra@vger.kernel.org,
-        "linux-oxnas@groups.io" <linux-oxnas@groups.io>,
-        linux-arm-msm@vger.kernel.org, linux-unisoc@lists.infradead.org,
-        linux-rockchip@lists.infradead.org,
-        linux-realtek-soc@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v4 2/3] arm64: dts: ti: k3-j721e: Add ESM support
+Content-Language: en-US
+To:     Nishanth Menon <nm@ti.com>
+CC:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <u-kumar1@ti.com>
+References: <20230503093310.85779-1-n-francis@ti.com>
+ <20230503093310.85779-3-n-francis@ti.com>
+ <20230503114827.lutd2ebygxczvali@argue>
+ <82a39b8e-96ad-faa2-714f-c8c6bfbcc5d6@ti.com>
+ <20230503120200.4xqylyoiczx43esu@gradation>
+From:   Neha Malcom Francis <n-francis@ti.com>
+In-Reply-To: <20230503120200.4xqylyoiczx43esu@gradation>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-8.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 3 May 2023 at 13:39, Arnd Bergmann <arnd@arndb.de> wrote:
->
-> On Wed, May 3, 2023, at 03:17, Rob Herring wrote:
-> > On Tue, May 2, 2023 at 5:52=E2=80=AFPM Dmitry Baryshkov <dmitry.baryshk=
-ov@linaro.org> wrote:
-> >> On 02/05/2023 22:40, Rob Herring wrote:
-> >> >      'berlin' : 'berlin',
-> >> >      'pxa2' : 'pxa',
-> >> >      'pxa3' : 'pxa',
-> >> >      'pxa' : 'marvell',
-> >>
-> >> I'd question if it makes sense to split the pxa line. Yes, it was sold
-> >> by Intel to Marvell, but IIRC the devices still had some inheritance.
-> >> So, if we have the 'pxa' subdir, I'd move Marvell PXAs to that dir too=
-.
-> >
-> > I think I probably split it because it was different maintainers.
-> > Though it doesn't look like pxa168 or pxa910 have any maintainer. They
-> > are a mixture of pxa and mmp I think.
->
-> I think the original split here is probably the best we can do,
-> but there is no good way to do it because of the confusing naming
-> and the problem that there is no clear line between pxa and mmp.
-> As far as I can tell, the release timeline was:
->
-> Intel pxa2xx (mach-pxa, xscale, still exists)
-> Intel pxa3xx (mach-pxa, xscale, still exists)
-> Intel pxa90x (never merged)
-> Marvell pxa93x (mach-pxa, xscale, removed in Linux-6.3, no DT)
-> Marvell pxa92x (never merged)
-> Marvell pxa91x (mach-mmp, pj1, still exists)
-> Marvell pxa168 (mach-mmp, pj1, still exists)
-> Marvell pxa95x (mach-pxa, pj4, long gone)
-> Marvell pxa688 (mach-mmp, pj4, known as mmp2)
->
-> So with pxa93x out of the picture, we can simplify it as using
-> 'pxa' as the name for all the above chips with an Intel XScale
-> core, and 'marvell' for all the other ones that have a Marvell
-> core and exist in mach-mmp.
+Hi Nishanth
 
-Should it be 'intel' for pxa[23]xx then?
+On 03/05/23 17:32, Nishanth Menon wrote:
+> On 17:25-20230503, Neha Malcom Francis wrote:
+>> Hi Nishanth,
+>>
+>> On 03/05/23 17:18, Nishanth Menon wrote:
+>>> On 15:03-20230503, Neha Malcom Francis wrote:
+>>>> Add address entry mapping ESM on J721E.
+>>>>
+>>>> Signed-off-by: Neha Malcom Francis <n-francis@ti.com>
+>>>> ---
+>>>>    arch/arm64/boot/dts/ti/k3-j721e.dtsi | 1 +
+>>>>    1 file changed, 1 insertion(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/ti/k3-j721e.dtsi b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
+>>>> index b912143b6a11..52bcde601eb8 100644
+>>>> --- a/arch/arm64/boot/dts/ti/k3-j721e.dtsi
+>>>> +++ b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
+>>>
+>>> Why is'nt esm node introduced here?
+>>>
+>>
+>> As it stands esm node is already in
+>> arch/arm/dts/k3-j721e-r5-common-proc-board.dts in u-boot and since this
+>> patch is motivated to keep the u-boot and kernel dts in sync, I haven't
+>> added it here.
+>>
+>> Although... I could add it here similar to j7200 and take action to move to
+>> the same in u-boot... maybe that is better route.
+> 
+> The core problem we have is that part of the hardware description is in
+> u-boot and a large part is in kernel. That is wrong. eventually, we will
+> drop u-boot.dtsi and r5-xyz.dts files.. This cleanup journey is towards
+> that action.
+> 
+> we want kernel to be the canonical description of the hardware. which
+> means u-boot or zephyr or something else will eventually just copy the
+> kernel dts and it has information enough about the hardware to be able
+> to boot.
+> 
+> each of the dependent ecosystems (u-boot, zephyr etc..) have a little
+> bit of their own binding extensions (such as binman for u-boot), which
+> is maintained in their own repos. But, the SoC hardware description,
+> entirely should be available in kernel device tree.
+> 
+> So, please ensure esm is completely described as well.
+> 
 
->
->      Arnd
+Right got it, will add the node in v5, thanks!
 
-
-
---=20
-With best wishes
-Dmitry
+-- 
+Thanking You
+Neha Malcom Francis
