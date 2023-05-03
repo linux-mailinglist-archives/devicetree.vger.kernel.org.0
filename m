@@ -2,106 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 327886F5F78
-	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 21:57:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4FCF6F6005
+	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 22:25:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229627AbjECT5G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 May 2023 15:57:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35438 "EHLO
+        id S229584AbjECUZ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 May 2023 16:25:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229562AbjECT5F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 15:57:05 -0400
-Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DF627DB4;
-        Wed,  3 May 2023 12:57:04 -0700 (PDT)
-Received: by mail-pf1-x42e.google.com with SMTP id d2e1a72fcca58-64359d9c531so576480b3a.3;
-        Wed, 03 May 2023 12:57:04 -0700 (PDT)
+        with ESMTP id S229609AbjECUZz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 16:25:55 -0400
+Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1F5183E1
+        for <devicetree@vger.kernel.org>; Wed,  3 May 2023 13:25:52 -0700 (PDT)
+Received: by mail-yb1-xb2d.google.com with SMTP id 3f1490d57ef6-b9e2f227640so4848207276.3
+        for <devicetree@vger.kernel.org>; Wed, 03 May 2023 13:25:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683143824; x=1685735824;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Tw+MfuvJyy7U9A8Ej/IC8kSXl0aMwhX8e58xBtI5EH4=;
-        b=RiDuQr0rvOl6JjEq+TjkCKTPjddt/JtS5HkqLrkANiN1mpl9pBD8b35fTSzjyWU+Ji
-         xn3Q0WCHgHttxbQEPMdIwBNv7pD5h5wWED+Cx6B87pBkUwRZ5Jx7AtIxMjobK5fB9JmV
-         zdo7AKyww1HKF4ZVti8uJXGHPc7D/X6KCviKvhjoElI6zKyC/C9HAPy+QV9Y1vBFNI0m
-         TMig6QON2DUqK9ks/X0v4EqbXTQH1iwtifoB2zAhgrrcteDk4onKg6VfTiwBQCKi2s12
-         fujNU6cy1nqUz6guQy95cyiAJZJ+q2FiQQhTKfOHBukwcNOJJKsI7pbC+dBXCI1VM+Ye
-         H8SA==
+        d=linaro.org; s=google; t=1683145552; x=1685737552;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1gEz7yCW0YNWEyofUMW+bM1YB2JKr4lLhGCi/13fTrc=;
+        b=Mzh0ZV1liVt0pO7T3ehH+wp5tHq2eHIvxMQvgVLhBNtjThUcDrX/+aDvPu0tBZ/9ee
+         EXtPp3wMLIa74YOBsQ0e08IZyzEb9z2PtCzmiGLSL5FFkcqFzSprSbu/p4OtMtm5Z8vg
+         QTb+851VnqyKufW9AlhGHuA8W1rOsuyTf/U1ngEssyK7U0XiMTLfkIYXQJ/3BWdZ/+nL
+         IlkiQndW7FfaXvB3Wtdi5hEfH46S40YPblPeGAPLxeQ85pZXExi718VSSliADLafDbtF
+         EIagwxP3z0ZUYRpd+UFfoZPqXzZHPfYekCM7c+V8IvPd0peQzIxx4yrWJn2aqzP6n/mT
+         v8JQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683143824; x=1685735824;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Tw+MfuvJyy7U9A8Ej/IC8kSXl0aMwhX8e58xBtI5EH4=;
-        b=daPUSHp0EJe4t8aim9jCl9rnVKnUZVcxw0te4cHzW5CxWHGteos/wKEYcbQcpoHxXW
-         5BkfOc5UrWc9lhKBqw6YKvccBOr8XkZu+8ga+XPRK9I0FW/Wi7N7ZcQ+y2ztBLXHFDyQ
-         uGYVlgnxS9++IbKMVsXEQCRKyIvOiR3T7Xxqkn+mCj6JSXzyA4vTZbo3rhIilzs6Nh7G
-         nSnx7vcuvsrmrhmUXi8e7gkVtzYUiSscRDJcr96WGB987v2WYaUeQYYkbIDiu9tH0C/y
-         umM2qQAW2DIfFKy2dm/VT+J0K9qVVR08FvG13IWutNJzdUm3/3/6ZxWjVKlv4L0npACo
-         l+bA==
-X-Gm-Message-State: AC+VfDxL+orRHEm6/hX1Je3MItxNWy2Ch3OoynKYohUFAh4wDa6DYwqT
-        4DM9beym9E87sDMQ41nenj9ksuHG1nMdL8aHGqUEJa+Y
-X-Google-Smtp-Source: ACHHUZ55Ab4kZiRFReZsCAO79p9Mc6rj3ckjxcfIk4p+5Hx/eRXIA98kT4zvEcYMKN0nQYgKcA9qLBUNHJjn2D7eRwU=
-X-Received: by 2002:a05:6a00:2347:b0:643:96e:666b with SMTP id
- j7-20020a056a00234700b00643096e666bmr4990164pfj.34.1683143823964; Wed, 03 May
- 2023 12:57:03 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1683145552; x=1685737552;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1gEz7yCW0YNWEyofUMW+bM1YB2JKr4lLhGCi/13fTrc=;
+        b=cpA2c2EWyh9uPnmW/K1mYhg08r/50rmm9oJ6G1/zZefqG37vvSq6gpTrNVIc9SpRVt
+         QUWhjCgGihKGrBJDKbRz7gNRkW+Knysc7N5rLWQdIsM2OVm451NP7w2kx9ka+5K287/Z
+         m8HHzusCiE82JzbrG05t7qhvsEIItLKSh4eUVVmS2BhxKx0XhwI57myctzJrofzVn+2m
+         VTepwlH08RbS+8KpJbR99zmFquilu2vBaDYQpIR5ZZEmncLDDIvpSmJSZGkk/hEYorC5
+         yjlkrWMHkVpN7MdKzzi1srH/UEUZjgR/SR3K2UHOt+drsmoFPLBA2WF7SUfd88yLMuuY
+         lniQ==
+X-Gm-Message-State: AC+VfDw70xiitOMoP2LioGFMKHEZZdu53RVbZpYopyOouhRPOwAdmbgH
+        RyQqez+KtZ0sfLwiRmqcJ1jjPRkDau2NgGF20yHrxw==
+X-Google-Smtp-Source: ACHHUZ6bWBOMBfCcUnb1ZA+ngbZpzrLgmQlXt3j9zhiGPRBmWSduiRqy3n8tV6EAdgHxuWzjmwHy1P//RM78ldQ0LkU=
+X-Received: by 2002:a25:fc0c:0:b0:b9e:7ec8:5d41 with SMTP id
+ v12-20020a25fc0c000000b00b9e7ec85d41mr5902733ybd.55.1683145551966; Wed, 03
+ May 2023 13:25:51 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230426185647.180166-1-robimarko@gmail.com> <b5df5692-5319-b5ff-0e9a-c66fb1f8358d@linaro.org>
-In-Reply-To: <b5df5692-5319-b5ff-0e9a-c66fb1f8358d@linaro.org>
-From:   Robert Marko <robimarko@gmail.com>
-Date:   Wed, 3 May 2023 21:56:53 +0200
-Message-ID: <CAOX2RU5WYm-wJXByAx8yavDPhR1=2MHjj0Kh1z6h_EHhS8DVGw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: ipq8074: Add QUP5 SPI node
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+References: <20220328000915.15041-1-ansuelsmth@gmail.com> <85eb14ec-f465-7447-ad77-a3dabc666f47@kernel.org>
+ <YkKRYnN84D9VZhGj@Ansuel-xps.localdomain> <CAL_Jsq+RQQ-ADMxLPUFwk6S6kGmb6oNDy4k52fnU0EtbUvqmSA@mail.gmail.com>
+ <CAMuHMdWNTE48MFy6fqxAsfMWz9b6E7dVNXtXtESP95sxk2PGwA@mail.gmail.com>
+ <CAL_JsqJthKTm8bhRF2B=ae1tvtPeYYXx_Tm76qQtSwLtH5C6VA@mail.gmail.com>
+ <720a2829-b6b5-411c-ac69-9a53e881f48d@app.fastmail.com> <CAL_JsqKCtmkwzKa01gyG65fH8ye6R3KhR41PJbJhOJ4X9j=znA@mail.gmail.com>
+ <99b49e6b-e963-415a-a2c9-72505087833c@app.fastmail.com>
+In-Reply-To: <99b49e6b-e963-415a-a2c9-72505087833c@app.fastmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 3 May 2023 22:25:39 +0200
+Message-ID: <CACRpkdaZdxNZ3amHxE44NZOZcVMpBa4Kx126+7WW3XHGM2NU=A@mail.gmail.com>
+Subject: Re: [RFC PATCH 0/1] Categorize ARM dts directory
+To:     Arnd Bergmann <arnd@arndb.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Olof Johansson <olof@lixom.net>,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-actions@lists.infradead.org,
+        linux-sunxi@lists.linux.dev,
+        Linux-OMAP <linux-omap@vger.kernel.org>,
+        linux-amlogic@lists.infradead.org, linux-arm-kernel@axis.com,
+        linux-aspeed@lists.ozlabs.org,
+        linux-rpi-kernel@lists.infradead.org,
+        chrome-platform@lists.linux.dev,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        linux-samsung-soc@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        kernel@dh-electronics.com, linux-mediatek@lists.infradead.org,
+        openbmc@lists.ozlabs.org, linux-tegra@vger.kernel.org,
+        "linux-oxnas@groups.io" <linux-oxnas@groups.io>,
+        linux-arm-msm@vger.kernel.org, linux-unisoc@lists.infradead.org,
+        linux-rockchip@lists.infradead.org,
+        linux-realtek-soc@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 1 May 2023 at 12:03, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 26/04/2023 20:56, Robert Marko wrote:
-> > Add node to support the QUP5 SPI controller inside of IPQ8074.
-> > Some devices use this bus in order to manage external switches.
-> >
-> > Signed-off-by: Robert Marko <robimarko@gmail.com>
-> > ---
-> >  arch/arm64/boot/dts/qcom/ipq8074.dtsi | 14 ++++++++++++++
-> >  1 file changed, 14 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-> > index 64c2a30d9c25..4a682e3442f8 100644
-> > --- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-> > @@ -774,6 +774,20 @@ blsp1_i2c5: i2c@78b9000 {
-> >                       status = "disabled";
-> >               };
-> >
-> > +             blsp1_spi5: spi@78b9000 {
-> > +                     compatible = "qcom,spi-qup-v2.2.1";
-> > +                     #address-cells = <1>;
-> > +                     #size-cells = <0>;
-> > +                     reg = <0x78b9000 0x600>;
->
-> reg is always after compatible.
+On Wed, May 3, 2023 at 1:03=E2=80=AFPM Arnd Bergmann <arnd@arndb.de> wrote:
 
-I agree usually, but here its just matching the same pattern like
-other BLSP nodes.
+> >     'gemini' : 'gemini',
+>
+> This one is also a product name, not a company. Apparently,
+> gemini was originally made by Storm Semiconductor, and then
+> by Cortina, which was subsequently acquired by Inphi, and that ended
+> up in Marvell after the product was already discontinued.
+>
+> Out of the four, I'd probably go with 'cortina' as the
+> directory name.
+>
 
-Regards,
-Robert
->
-> Best regards,
-> Krzysztof
->
+StorLink was the initial company, thus SL3516, SL3512
+the name of the chips.
+
+Then that company changed name to Storm Semiconductor.
+
+Git acquired by Cortina.
+
+Then Inphi acquired Cortina.
+
+Then Marvell scooped up the IP.
+
+If we *have* to use a company name I would use storlink,
+because the chips are named after that.
+
+Yours,
+Linus Walleij
