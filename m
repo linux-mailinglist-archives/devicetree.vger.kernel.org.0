@@ -2,173 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 06CD26F528E
-	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 10:03:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F7396F52AF
+	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 10:07:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229733AbjECIDT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 May 2023 04:03:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58962 "EHLO
+        id S229667AbjECIHc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 May 2023 04:07:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229705AbjECIDQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 04:03:16 -0400
-Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C38244A9
-        for <devicetree@vger.kernel.org>; Wed,  3 May 2023 01:03:15 -0700 (PDT)
-Received: by mail-pf1-x429.google.com with SMTP id d2e1a72fcca58-6434e40394eso91342b3a.1
-        for <devicetree@vger.kernel.org>; Wed, 03 May 2023 01:03:15 -0700 (PDT)
+        with ESMTP id S229677AbjECIHV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 04:07:21 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FC174EDD
+        for <devicetree@vger.kernel.org>; Wed,  3 May 2023 01:06:53 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-50bc570b4a3so6329880a12.1
+        for <devicetree@vger.kernel.org>; Wed, 03 May 2023 01:06:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1683100995; x=1685692995;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=IuHTDynqLGxxmuU6R7soQb+HpPsi95aRNfhv/UWyEoU=;
-        b=Rdnmk0vMBR2RC1vLXadJgM8fodzer7Yx0bURvxnTjvM9DP90dd6BxlwMCzuNDW+Y90
-         +b25jTQ8OxHJcv9vxT7gHQJkoLmXrnpbMoxmKDBV+tS37zmzKEBWGjTL+end1UUmWmeJ
-         2PPMr8fcFXMU3bP/YWf93L3kB1pap6jwty6rLAT8TWibEgyVrqoM4RbaK3wDd8e8PyX/
-         dpYWzlD9F9etRCqOGfC/AI8COwicFA4Wh4iy1qmjpG9RLgKX8/Lb/rPWUSO8bfJ8YRvq
-         dxW9+KiyGNvrFHfPNjevanTHO30c1Zh5cNEcBwd3MNwofIAt1Vk15EeLTAM0IMfNFtKo
-         TRzg==
+        d=linaro.org; s=google; t=1683101175; x=1685693175;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+G17ZsMzCzeBMf7ULMEUmCtH+I4A/5ex+N+NoPJ79/w=;
+        b=nFsPDw8lMir0ASfgMqpvhF8EIj0opp4WEaIn9hbUCfmENKvoRlw7FGbkVWMBENO2zg
+         v6/V/0s+MAsz4UsyXPRf/h6ManZrOUZf+uLgeQWYMB8M2C5TIN0lJ444LFKqRnbDQ4wZ
+         b3elsmByE2hI3D4jNdnztDLnk+g1b72HYn3QkFHDA6ZA3flrRJy0Nv/PsBBIudxYHL9X
+         iqxBBqdw7hwojN+w9BWVP2H7ez4WlOOV88NLNSCNR7ucDjD9vqfg+T++iGhHZ9ixkbIu
+         Ge6T7m3Aot4q8AS0bdKLAUtet9SCvufQ3goRNAF+i5qOyN8pRzZ7/e3yffED/1qcAT1T
+         z1ew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683100995; x=1685692995;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1683101175; x=1685693175;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IuHTDynqLGxxmuU6R7soQb+HpPsi95aRNfhv/UWyEoU=;
-        b=fPltoJpctXdXyKDydU2t8J0t+aRNNu8W4Puse5siFMSrXU48+9pFYQRAj0zJ/T56Ib
-         40kZKau3I8Z7+2eHwxBql8wwSpaCrZ5XIGEBHSX+1Yv4Qf8h0l8nWj9+ICc44iUFXuQl
-         6Mv4uyM8MBcT8NZzy8HPGub/ERfNiBdO1UO/cQ7Y4rLPW9M13vGi6NMBdD0qFmia+Uaa
-         h1byDxQZf6rE4ZOWDmdxNb8KDWs2QIxQL6g7H5wSB057bTIXmOjL+ALuQ5AdvzSpBZW+
-         /MBp41znbvsjkqi5zrWKLWkuP0yxesINf3pg6eLqMLpTMnTyAhLkSyApKaWn0pbDDpc9
-         cGgg==
-X-Gm-Message-State: AC+VfDxJvkGgtkbyQuJg1H3qYYkZCC1XbPw/MQ5Jd7GPx0Uj57UEdP16
-        2W4d3Fu2A+4Bql8QcOnn138sM4hM86zdKSNu9Po=
-X-Google-Smtp-Source: ACHHUZ7VyC22IBkwxjzJKCko1UQWhzax+vegJjyCeInhiUfwECWGRVRc5Kf552leZ4srKUQyeP4EVw==
-X-Received: by 2002:a05:6a00:15c4:b0:63f:1eb3:824b with SMTP id o4-20020a056a0015c400b0063f1eb3824bmr30128381pfu.17.1683100994871;
-        Wed, 03 May 2023 01:03:14 -0700 (PDT)
-Received: from ?IPV6:2405:201:d02f:d855:461d:14be:2cce:b776? ([2405:201:d02f:d855:461d:14be:2cce:b776])
-        by smtp.gmail.com with ESMTPSA id z63-20020a626542000000b00642ea56f06fsm4566702pfb.0.2023.05.03.01.03.12
+        bh=+G17ZsMzCzeBMf7ULMEUmCtH+I4A/5ex+N+NoPJ79/w=;
+        b=XV45/9ewftbz1ABKVkwpDGMmkCFZgsWiWP3pAiNE9fucUEv0bs9Jhu+SM7A/c1afbg
+         PM2PpVTLnjE4mbkEy638HENV25T3JgANoFk8cwAIF3C1rVX/naJGpv2QRi2lTGy7KFv8
+         avwX1wS8+F8otwFJWWGWxPp08fmBdsHm0ikuJQRVJZIzNkWtpOQeUakOMzL1Js3zC1Cw
+         A1B++jGOg14USiGvVKUGmv6M1kDH4zGBp1Xtw6gWhSEX5vPJJX8lE1iCL9ZnsdWZa7W7
+         q8g4ENwBIdQ+iB19sdphKxs/ob/vfzxL7uAza0idHYTzAw44gxlS2S8sp2gRc90A9mYV
+         YZ7Q==
+X-Gm-Message-State: AC+VfDzrh1dZD0fqY4e/hk4eRKczbqB35qYobmOS7vK61cOeFzmu/295
+        TXz+q/WuNeVZkp1KUFV8ZbgIvA==
+X-Google-Smtp-Source: ACHHUZ6h60JRSNlVpv4EILvZzP54b1DdbOEWlsvNUVwPODCG38P7s4mE7/sDCi+z44gOt/u1fRYunA==
+X-Received: by 2002:a17:906:fd87:b0:933:4d37:82b2 with SMTP id xa7-20020a170906fd8700b009334d3782b2mr2045098ejb.57.1683101175017;
+        Wed, 03 May 2023 01:06:15 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:a40b:9d8:1fa0:ecc5? ([2a02:810d:15c0:828:a40b:9d8:1fa0:ecc5])
+        by smtp.gmail.com with ESMTPSA id e1-20020a17090681c100b0094f67ea6598sm16942997ejx.193.2023.05.03.01.06.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 May 2023 01:03:14 -0700 (PDT)
-Message-ID: <228e9d1d-47fc-e62b-b0dc-013b36ba2c9e@9elements.com>
-Date:   Wed, 3 May 2023 13:33:11 +0530
+        Wed, 03 May 2023 01:06:14 -0700 (PDT)
+Message-ID: <1d11d36b-9cfa-4d39-c521-aab2153e49a9@linaro.org>
+Date:   Wed, 3 May 2023 10:06:12 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: regulator: Add support for multiple
- supplies
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     zev@bewilderbeest.net, Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230420192402.3695265-1-Naresh.Solanki@9elements.com>
- <20230421213659.GA1786000-robh@kernel.org>
- <fa096963-c173-dacc-647f-21a367c772b0@9elements.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH] ARM: zynq: dts: Setting default i2c clock frequency to
+ 400kHz
 Content-Language: en-US
-In-Reply-To: <fa096963-c173-dacc-647f-21a367c772b0@9elements.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+To:     Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
+        monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com
+Cc:     Varalaxmi Bingi <varalaxmi.bingi@amd.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <4dde5d1eb8e4572dae4295a19a4c83002a58e5da.1683035611.git.michal.simek@amd.com>
+ <e0b50ae1-b501-cb41-829f-736903e5794f@linaro.org>
+ <958f4336-8c38-4cc1-4313-06a54e397d42@amd.com>
+ <89276de5-ded8-2f38-bcea-708fdd35ca6d@linaro.org>
+ <bfc2c9f9-a8cb-84a8-0800-fc90f6ec2eda@amd.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <bfc2c9f9-a8cb-84a8-0800-fc90f6ec2eda@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On 03/05/2023 10:02, Michal Simek wrote:
+> 
+> 
+> On 5/3/23 09:40, Krzysztof Kozlowski wrote:
+>> On 03/05/2023 09:27, Michal Simek wrote:
+>>>
+>>>
+>>> On 5/2/23 22:13, Krzysztof Kozlowski wrote:
+>>>> CAUTION: This message has originated from an External Source. Please use proper judgment and caution when opening attachments, clicking links, or responding to this email.
+>>>>
+>>>>
+>>>> On 02/05/2023 15:53, Michal Simek wrote:
+>>>>> From: Varalaxmi Bingi <varalaxmi.bingi@amd.com>
+>>>>>
+>>>>> Setting default i2c clock frequency for Zynq to maximum rate of 400kHz.
+>>>>> Current default value is 100kHz.
+>>>>>
+>>>>> Signed-off-by: Varalaxmi Bingi <varalaxmi.bingi@amd.com>
+>>>>> Signed-off-by: Michal Simek <michal.simek@amd.com>
+>>>>> ---
+>>>>>
+>>>>>    arch/arm/boot/dts/zynq-7000.dtsi | 2 ++
+>>>>>    1 file changed, 2 insertions(+)
+>>>>>
+>>>>> diff --git a/arch/arm/boot/dts/zynq-7000.dtsi b/arch/arm/boot/dts/zynq-7000.dtsi
+>>>>> index cd9931f6bcbd..a7db3f3009f2 100644
+>>>>> --- a/arch/arm/boot/dts/zynq-7000.dtsi
+>>>>> +++ b/arch/arm/boot/dts/zynq-7000.dtsi
+>>>>> @@ -149,6 +149,7 @@ i2c0: i2c@e0004000 {
+>>>>>                         clocks = <&clkc 38>;
+>>>>>                         interrupt-parent = <&intc>;
+>>>>>                         interrupts = <0 25 4>;
+>>>>> +                     clock-frequency = <400000>;
+>>>>
+>>>> I think this should be rather property of the board, because it depends
+>>>> on I2C devices, right?
+>>>
+>>> We have 15+ boards with i2c connected and from this count I am aware about only
+>>> one configuration which is not working on 400k.
+>>> It is a question if make sense to update all boards (except for 1 and not all in
+>>> kernel yet) to 400k or just say 400k is default and if there is any issue use
+>>> lower frequency.
+>>> Obviously this patch is setting up 400k as default and let "problematic" boards
+>>> to setup lower freq.
+>>> The same approach was used for modepin description.
+>>>
+>>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/arch/arm64/boot/dts/xilinx/zynqmp.dtsi?h=v6.3&id=53ba1b2bdaf7f481fdd878e9c18cd0e54081fac9
+>>>
+>>> The next point is that 100k is default in Linux but doesn't mean it is default
+>>> in other projects.
+>>>
+>>> But if you think that it must be board property I think we should setup 100k as
+>>> default in this file too to make it clear.
+>>
+>> No, if it is conscious choice, it's fine.
+> 
+> Is it Ack then or you want me to extend commit message?
 
-On 24-04-2023 02:22 pm, Naresh Solanki wrote:
-> Hi Rob,
-> 
-> On 22-04-2023 03:06 am, Rob Herring wrote:
->> On Thu, Apr 20, 2023 at 09:24:01PM +0200, Naresh Solanki wrote:
->>> Add optional DT property 'regulator-supplies' to handle connectors with
->>> multiple supplies.
->>> If this property is present, it will determine all regulator supplies.
->>> Otherwise, the 'vout' supply will be used as a fallback.
->>>
->>> This change improves support for connector like PCIe connectors on
->>> mainboards that can be powered by 12V and 3.3V supplies.
->>>
->>> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
->>> ...
->>> Change in V2:
->>> - Added example
->>> - Update property type & description.
->>> - Improve commit message
->>> ---
->>>   .../bindings/regulator/regulator-output.yaml  | 21 ++++++++++++++++---
->>>   1 file changed, 18 insertions(+), 3 deletions(-)
->>>
->>> diff --git 
->>> a/Documentation/devicetree/bindings/regulator/regulator-output.yaml 
->>> b/Documentation/devicetree/bindings/regulator/regulator-output.yaml
->>> index 078b37a1a71a..a9dce26991ff 100644
->>> --- a/Documentation/devicetree/bindings/regulator/regulator-output.yaml
->>> +++ b/Documentation/devicetree/bindings/regulator/regulator-output.yaml
->>> @@ -21,13 +21,22 @@ properties:
->>>     compatible:
->>>       const: regulator-output
->>> -  vout-supply:
->>> +  regulator-supplies:
->>> +    $ref: /schemas/types.yaml#/definitions/string-array
->>>       description:
->>> -      Phandle of the regulator supplying the output.
->>> +      Optional property that specifies supply names provided by
->>> +      the regulator. Defaults to "vout" if not specified. The
->>> +      array contains a list of supply names.
->>> +      Each supply name corresponds to a phandle in the
->>> +      patternProperties.
->>> +
->>> +patternProperties:
->>> +  ".*-supply":
->>> +    description:
->>> +      Specifies the phandle for various supplies
->>
->> While you say use 'vout-supply' for a single supply, nothing enforces
->> that anymore.
->>
->>>   required:
->>>     - compatible
->>> -  - vout-supply
->>>   additionalProperties: false
->>> @@ -37,3 +46,9 @@ examples:
->>>             compatible = "regulator-output";
->>>             vout-supply = <&output_reg>;
->>>         };
->>> +      out2 {
->>> +          compatible = "regulator-output";
->>> +          regulator-supplies = "sw0", "sw1";
->>> +          sw0-supply = <&out2_sw0>;
->>> +          sw1-supply = <&out2_sw1>;
->>
->> Names in the consumer are relative to the consumer. You appear to be
->> naming these by the supplier. Just add vout[0-9]-supply and iterate over
->> that name in the driver. Then you don't need "regulator-supplies".
->> Really, you never did. You could just find all properties ending in
->> "-supply".
-> Please correct me if I have misunderstood anything
-> What I understood is:
-> 1. Use 'for_each_property_of_node' & iterate each property,
-> 2. String compare each property name ending with '-supply',
-> 3. If there is match then initialize accordingly.
-> This way all *-supply property are also included including vout-supply.
-> This way, regulator-supplies isn't needed.
-> Shall I go ahead in this way ?
-I wanted to follow up on our previous discussion regarding the naming of 
-properties in the consumer. Based on your feedback, I believe that I 
-should use 'for_each_property_of_node' to iterate over each property and 
-then string compare each property name to find those that end with 
-'-supply'. This way, all *-supply properties will be included, including 
-vout-supply, and the 'regulator-supplies' won't be needed.
-Can you please confirm if my understanding is correct?
-Thank you.
-> 
->>
->> Rob
-> Regards,
-> Naresh
+Ack, although you don't need my acks for your platform :)
+
+FWIW:
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
