@@ -2,135 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A6826F5694
-	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 12:50:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0D376F56AC
+	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 13:00:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229643AbjECKul convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 3 May 2023 06:50:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54902 "EHLO
+        id S229922AbjECLAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 May 2023 07:00:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57948 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230081AbjECKuT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 06:50:19 -0400
-Received: from outpost1.zedat.fu-berlin.de (outpost1.zedat.fu-berlin.de [130.133.4.66])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85EBF49DF;
-        Wed,  3 May 2023 03:50:12 -0700 (PDT)
-Received: from inpost2.zedat.fu-berlin.de ([130.133.4.69])
-          by outpost.zedat.fu-berlin.de (Exim 4.95)
-          with esmtps (TLS1.3)
-          tls TLS_AES_256_GCM_SHA384
-          (envelope-from <glaubitz@zedat.fu-berlin.de>)
-          id 1puA3m-002YpK-J1; Wed, 03 May 2023 12:50:10 +0200
-Received: from p5b13ada3.dip0.t-ipconnect.de ([91.19.173.163] helo=suse-laptop.fritz.box)
-          by inpost2.zedat.fu-berlin.de (Exim 4.95)
-          with esmtpsa (TLS1.3)
-          tls TLS_AES_256_GCM_SHA384
-          (envelope-from <glaubitz@physik.fu-berlin.de>)
-          id 1puA3m-0040c6-CP; Wed, 03 May 2023 12:50:10 +0200
-Message-ID: <3a42b3b3da5499f1ec1e24f618dd46a75503da16.camel@physik.fu-berlin.de>
-Subject: Re: Fixing "int-to-pointer-cast" warning in J2 code
-From:   John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     linux-sh <linux-sh@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Date:   Wed, 03 May 2023 12:50:09 +0200
-In-Reply-To: <CAMuHMdWOJn97KMBa0YoQo+a7tGDwMTTQ8YPHT7VJ2zJjEYEV0Q@mail.gmail.com>
-References: <eed749a0ec500edf4f70a50578eaa50803fdaf3c.camel@physik.fu-berlin.de>
-         <CAMuHMdWOJn97KMBa0YoQo+a7tGDwMTTQ8YPHT7VJ2zJjEYEV0Q@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.48.1 
+        with ESMTP id S229569AbjECLAA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 07:00:00 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8153649DE;
+        Wed,  3 May 2023 03:59:59 -0700 (PDT)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3439oQNL020511;
+        Wed, 3 May 2023 10:59:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=61I/qHVeaDrVGfByyTdO3IToeDPjIKC0Vq4EoJrP05g=;
+ b=aJfdyJNgbkxy6juGv76E1/HoyOSfscT8VtxNa48kp4ElG6qu9ELD/BTDALw3qPxycn3V
+ GoAHIZChwwxfIKiDhBz7Ht7pfR/9k4jJVxPidWYrATNhNCuLxkl/6XXih82riQu6MstP
+ F4wKHIwEnT2ovYGtrKjW48BmmIx/hJQpAY9sAgvISv0P3dPJ/X31MPGAr8c5jSiTNcif
+ G61Q1dpbxJpLQdVoJCWtzksSPMKS8b0wn3YmvU9h9+L0w0bEgXaRJr1gdSUqMZEn/Rsm
+ PY+4aHhLx4j79oxTe2Au0DNdtCig7SsoqOKfcSDlO+FCz+6zn00sFi9EDuN1JuMresmT BA== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qbeb2s512-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 03 May 2023 10:59:48 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 343AxKsq022293
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 3 May 2023 10:59:20 GMT
+Received: from [10.242.242.243] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Wed, 3 May 2023
+ 03:59:09 -0700
+Message-ID: <9de5629f-0a69-7b5b-c312-ab6fe19d60f8@quicinc.com>
+Date:   Wed, 3 May 2023 16:29:06 +0530
 MIME-Version: 1.0
-X-Original-Sender: glaubitz@physik.fu-berlin.de
-X-Originating-IP: 91.19.173.163
-X-ZEDAT-Hint: PO
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.2
+Subject: Re: [PATCH 01/11] dt-bindings: remoteproc: qcom: Add support for
+ multipd model
+To:     Rob Herring <robh@kernel.org>
+CC:     <quic_sjaganat@quicinc.com>, <quic_gurus@quicinc.com>,
+        <quic_gokulsri@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <andersson@kernel.org>, <jassisinghbrar@gmail.com>,
+        <konrad.dybcio@linaro.org>, <quic_eberman@quicinc.com>,
+        <quic_poovendh@quicinc.com>, <robimarko@gmail.com>,
+        <mturquette@baylibre.com>, <mathieu.poirier@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <quic_arajkuma@quicinc.com>,
+        <sboyd@kernel.org>, <robh+dt@kernel.org>,
+        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <loic.poulain@linaro.org>, <quic_anusha@quicinc.com>,
+        <linux-kernel@vger.kernel.org>, <quic_srichara@quicinc.com>,
+        <quic_kathirav@quicinc.com>, <agross@kernel.org>,
+        <linux-remoteproc@vger.kernel.org>
+References: <1678164097-13247-1-git-send-email-quic_mmanikan@quicinc.com>
+ <1678164097-13247-2-git-send-email-quic_mmanikan@quicinc.com>
+ <167819522915.3831.12765243745569076133.robh@kernel.org>
+Content-Language: en-US
+From:   Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+In-Reply-To: <167819522915.3831.12765243745569076133.robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: -1i42SqUw0sue0zOijKvfEfpXK-YxAtg
+X-Proofpoint-GUID: -1i42SqUw0sue0zOijKvfEfpXK-YxAtg
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-03_06,2023-05-03_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ impostorscore=0 spamscore=0 bulkscore=0 mlxscore=0 phishscore=0
+ malwarescore=0 adultscore=0 clxscore=1011 priorityscore=1501
+ mlxlogscore=962 lowpriorityscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2303200000 definitions=main-2305030092
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert!
 
-On Wed, 2023-05-03 at 11:08 +0200, Geert Uytterhoeven wrote:
-> On Wed, May 3, 2023 at 10:14 AM John Paul Adrian Glaubitz
-> <glaubitz@physik.fu-berlin.de> wrote:
-> > When building j2_defconfig, the following warning is issued:
-> > 
-> > arch/sh/kernel/cpu/sh2/probe.c: In function 'scan_cache':
-> > arch/sh/kernel/cpu/sh2/probe.c:24:16: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
-> >    24 |  j2_ccr_base = (u32 __iomem *)of_flat_dt_translate_address(node);
-> >       |
-> > 
-> > Reading the code and look how other users of of_flat_dt_translate_address()
-> > used the return code, I came up with the following patch which fixes the issue:
-> > 
-> > diff --git a/arch/sh/kernel/cpu/sh2/probe.c b/arch/sh/kernel/cpu/sh2/probe.c
-> > index d342ea08843f..a0dc3675fc68 100644
-> > --- a/arch/sh/kernel/cpu/sh2/probe.c
-> > +++ b/arch/sh/kernel/cpu/sh2/probe.c
-> > @@ -14,14 +14,14 @@
-> >  #include <asm/cache.h>
-> > 
-> >  #if defined(CONFIG_CPU_J2)
-> > -extern u32 __iomem *j2_ccr_base;
-> > +extern phys_addr_t j2_ccr_base;
-> >  static int __init scan_cache(unsigned long node, const char *uname,
-> >                              int depth, void *data)
-> >  {
-> >         if (!of_flat_dt_is_compatible(node, "jcore,cache"))
-> >                 return 0;
-> > 
-> > -       j2_ccr_base = (u32 __iomem *)of_flat_dt_translate_address(node);
-> > +       j2_ccr_base = of_flat_dt_translate_address(node);
-> 
-> of_flat_dt_translate_address() indeed returns a CPU physical address
-> (perhaps its return type should be changed from u64 to phys_addr_t?)...
-> 
-> > 
-> >         return 1;
-> >  }
-> > diff --git a/arch/sh/mm/cache-j2.c b/arch/sh/mm/cache-j2.c
-> > index f277862a11f5..2bc6d38d6f7c 100644
-> > --- a/arch/sh/mm/cache-j2.c
-> > +++ b/arch/sh/mm/cache-j2.c
-> > @@ -22,7 +22,7 @@
-> >  #define DCACHE_FLUSH   0x200
-> >  #define CACHE_FLUSH    (ICACHE_FLUSH | DCACHE_FLUSH)
-> > 
-> > -u32 __iomem *j2_ccr_base;
-> > +phys_addr_t j2_ccr_base;
-> 
-> ... however, all other users of j2_ccr_base use this with __raw_*()
-> I/O accessors, so "u32 __iomem *" is correct.
-> 
-> What is missing is a proper conversion from physical to virtual
-> addresses, using e.g. ioremap().
-> 
-> As this is nommu, the identity mapping in ioremap() in
-> arch/sh/include/asm/io.h should do, and cannot fail.
-> 
-> So just:
-> 
->     j2_ccr_base = ioremap(of_flat_dt_translate_address(node), 4);
-> 
-> should be fine.
 
-Thanks, that actually makes much more sense. I was actually looking for
-such a function after reading what the __iomap attribute is for.
+On 3/7/2023 6:53 PM, Rob Herring wrote:
+> 
+> On Tue, 07 Mar 2023 10:11:27 +0530, Manikanta Mylavarapu wrote:
+>> Add new binding document for multipd model remoteproc.
+>> IPQ5018, IPQ9574 follows multipd model.
+>>
+>> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+>> ---
+>>   .../bindings/remoteproc/qcom,multipd-pil.yaml | 282 ++++++++++++++++++
+>>   1 file changed, 282 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,multipd-pil.yaml
+>>
+> 
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> Documentation/devicetree/bindings/remoteproc/qcom,multipd-pil.example.dts:22:18: fatal error: dt-bindings/clock/qcom,gcc-ipq5018.h: No such file or directory
+>     22 |         #include <dt-bindings/clock/qcom,gcc-ipq5018.h>
+>        |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> compilation terminated.
+> make[1]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/remoteproc/qcom,multipd-pil.example.dtb] Error 1
+> make[1]: *** Waiting for unfinished jobs....
+> make: *** [Makefile:1512: dt_binding_check] Error 2
+> 
+> doc reference errors (make refcheckdocs):
+> 
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/1678164097-13247-2-git-send-email-quic_mmanikan@quicinc.com
+> 
+> The base for the series is generally the latest rc1. A different dependency
+> should be noted in *this* patch.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your schema.
+> 
 
-> BTW, "jcore,cache" does not have any DT binding documentation.
+I mentioned dependency link 
+(https://lore.kernel.org/linux-arm-msm/20220621161126.15883-1-quic_srichara@quicinc.com/) 
+in cover page patch because it's required for entire series. I will add 
+dependency link's and raise new patchset.
 
-Jeff or Rob should look into this.
+Thanks & Regards,
+Manikanta.
 
-Adrian
-
--- 
- .''`.  John Paul Adrian Glaubitz
-: :' :  Debian Developer
-`. `'   Physicist
-  `-    GPG: 62FF 8A75 84E0 2956 9546  0006 7426 3B37 F5B5 F913
