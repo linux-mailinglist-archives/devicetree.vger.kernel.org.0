@@ -2,33 +2,33 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 544E06F5729
-	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 13:31:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1E896F572A
+	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 13:31:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229601AbjECLbV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 May 2023 07:31:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44628 "EHLO
+        id S229660AbjECLbX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 May 2023 07:31:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44634 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229595AbjECLbU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 07:31:20 -0400
+        with ESMTP id S229595AbjECLbW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 07:31:22 -0400
 Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CB3C44BE
-        for <devicetree@vger.kernel.org>; Wed,  3 May 2023 04:31:17 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9924D46AC
+        for <devicetree@vger.kernel.org>; Wed,  3 May 2023 04:31:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1683113478; x=1714649478;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=/EhQbTcjfV6LWsAZqMRrWlasp/Gcy+AaqCAG9kdB2rE=;
-  b=LYChWg5NHWCiFaA7DmoKvHcTI4kk37EhiVuxsbFfsRzNfnD1eVZ9sGfT
-   m9J5SeomdxIqcVJhM3A1H8MWz5ELu5GOmf1RzT5xNhaOGjtPk3Sp5p/sE
-   7EUrYiGoTsgUfVmwIlYb4/grRt0s2n62pvKGLk1KOvqtb3vDZqBWrww0+
-   /fCxeVFcN62D/UP/wdW+fM2rXLNI6kBp7tqoYusY7VKhmHw0Snr/89T6V
-   7u4iKAWHB1cF+04dcfKxSKi4/j1ubt9Eh9KmEDwdmGyU5EMppF4jJ34dw
-   YQK6nJpSgVPSeutLE4ByUVtFkfvk64umpC75msynQf2lDum4NY+FsWNuq
-   Q==;
+  t=1683113480; x=1714649480;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=0UzE43ySqCPT254bw8f1OxQOLkvILAnqPlI1V0xt3OI=;
+  b=JT4xvMQjCYOwQCEFABoQpOIQcQrj/BzklqYLe+m9sLI4Z1fwedjZH8dD
+   C9vNGg+SiqAwf86VFKi7h1Yx48Ei9wXzKyscBwCz9X0jMK+QpAtyR4/2f
+   h/WSjVHFLU3icd86c3VoDFYdH+P95VDhZdwKxYcKjaNQ9Q4aHgEbRtUAu
+   ghsJ3N9mrqeJGh3Mt/sKuAB9V4oP8tx+Kd4bdQevxI+DFOz4Q2NTxTtB+
+   7kfrmzw9sm0BBQfL/GpCbnMS/mmP8L204x/3CiXFgSi9lp+3xo7q9lOMT
+   VpIRhbI+WMTjs8/9q//1nssYX2f1t+/sSdMA5LIE+lTMe1z0Q/5bg8+D2
+   w==;
 X-IronPort-AV: E=Sophos;i="5.99,247,1677538800"; 
-   d="scan'208";a="30692129"
+   d="scan'208";a="30692132"
 Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
   by mx1-pgp.tq-group.com with ESMTP; 03 May 2023 13:31:16 +0200
 Received: from mx1.tq-group.com ([192.168.6.7])
@@ -39,24 +39,24 @@ X-PGP-Universal: processed;
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
   t=1683113476; x=1714649476;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=/EhQbTcjfV6LWsAZqMRrWlasp/Gcy+AaqCAG9kdB2rE=;
-  b=FYPAs6s5Za3ROE0+sivNHbUz9mKQnUiuEgr6hh9JyVijjLecArWW6mOL
-   jc9PGqUQFtDw9i9Vi/d3CIik31eeU0zMttCd20CMSYbr+pHNcszEM7hjM
-   T1xkruJT2kxEzjK/c4pgJB1IgC8rS5N4Ycx/EvFnl00J3qJVvT23TJ1yV
-   FqIKTzgDEkIvPiSZeHAqTHSLgbuKowPgN+8Gy4zsfH0+WyK5wSFMJj1R3
-   qncNgEYcPynJ+qBpwqNeH9kV4YUV6iY1hoHwvZmX4OW/FD8rtL4kO6bI/
-   +4Oa6gWwxBDqbNuLc9lHYTh+dD0/ojLZMbZVoFdNB7o8S8+t32avfmLXh
-   A==;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=0UzE43ySqCPT254bw8f1OxQOLkvILAnqPlI1V0xt3OI=;
+  b=QVB6LgxCoPMcsUTEzt1nkM2DaPHsG+N1TRY5sVWm+yiKYuPRJ6sXJ0Df
+   NdJycqVTJudGNRFvyQQ3h2pG4TkTHkH2PHicFQ1FYQfWCxM8G4aXPFg98
+   dqfvwe2Mn7ZI1NzJbLtDXoPumzgdevLYBnz9Sav2HQFIMUR9f0V3JJ++V
+   3PI9y4L+03F+cWQqJHCEv33830fn2mQpQhBrhmy7JjCJQu9AUkGnS47Mc
+   hQX+gPCxP4jzIkUduC7QhwZJJwPDvVgBKwRkuxxXSzs4W2RMZ3v3rcTfl
+   0QmqrfofOOJi9ziFFpkCBK80rOwHeX83C0metMtgzyh7NIrzM28980BbS
+   Q==;
 X-IronPort-AV: E=Sophos;i="5.99,247,1677538800"; 
-   d="scan'208";a="30692128"
+   d="scan'208";a="30692131"
 Received: from vtuxmail01.tq-net.de ([10.115.0.20])
   by mx1.tq-group.com with ESMTP; 03 May 2023 13:31:16 +0200
 Received: from steina-w.tq-net.de (unknown [10.123.53.21])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id BBADC280056;
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 02AF8280072;
         Wed,  3 May 2023 13:31:15 +0200 (CEST)
 From:   Alexander Stein <alexander.stein@ew.tq-group.com>
 To:     Rob Herring <robh+dt@kernel.org>,
@@ -70,10 +70,12 @@ Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         NXP Linux Team <linux-imx@nxp.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 1/3] ARM: dts: imx6qdl-mba6: Add missing pvcie-supply regulator
-Date:   Wed,  3 May 2023 13:31:10 +0200
-Message-Id: <20230503113112.1751886-1-alexander.stein@ew.tq-group.com>
+Subject: [PATCH 2/3] ARM: dts: imx6qdl-mba6: add mac address for USB ethernet controller
+Date:   Wed,  3 May 2023 13:31:11 +0200
+Message-Id: <20230503113112.1751886-2-alexander.stein@ew.tq-group.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230503113112.1751886-1-alexander.stein@ew.tq-group.com>
+References: <20230503113112.1751886-1-alexander.stein@ew.tq-group.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,33 +87,76 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This worked before by coincidence, as the regulator was probed and enabled
-before PCI RC probe. But probe order changed since commit 259b93b21a9f
-("regulator: Set PROBE_PREFER_ASYNCHRONOUS for drivers that existed in
-4.14") and PCIe supply is enabled after RC.
-Fix this by adding the regulator to RC node.
+The mac address is stored in mainboard eeprom.
 
-The PCIe vaux regulator still needs to be enabled unconditionally for
-Mini-PCIe USB-only devices.
-
-Fixes: ef3846247b41 ("ARM: dts: imx6qdl: add TQ-Systems MBa6x device trees")
 Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 ---
- arch/arm/boot/dts/imx6qdl-mba6.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm/boot/dts/imx6qdl-mba6.dtsi  | 16 ++++++++++++++++
+ arch/arm/boot/dts/imx6qdl-mba6a.dtsi |  6 ++++++
+ arch/arm/boot/dts/imx6qdl-mba6b.dtsi |  6 ++++++
+ 3 files changed, 28 insertions(+)
 
 diff --git a/arch/arm/boot/dts/imx6qdl-mba6.dtsi b/arch/arm/boot/dts/imx6qdl-mba6.dtsi
-index 78555a618851..7b7e6c2ad190 100644
+index 7b7e6c2ad190..9d90d7647024 100644
 --- a/arch/arm/boot/dts/imx6qdl-mba6.dtsi
 +++ b/arch/arm/boot/dts/imx6qdl-mba6.dtsi
-@@ -209,6 +209,7 @@ &pcie {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_pcie>;
- 	reset-gpio = <&gpio6 7 GPIO_ACTIVE_LOW>;
-+	vpcie-supply = <&reg_pcie>;
+@@ -272,6 +272,22 @@ &uart5 {
+ &usbh1 {
+ 	disable-over-current;
  	status = "okay";
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	hub@1 {
++		compatible = "usb424,2517";
++		reg = <1>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		ethernet@1 {
++			compatible = "usb424,9e00";
++			reg = <1>;
++			nvmem-cells = <&mba_mac_address>;
++			nvmem-cell-names = "mac-address";
++		};
++	};
  };
  
+ &usbotg {
+diff --git a/arch/arm/boot/dts/imx6qdl-mba6a.dtsi b/arch/arm/boot/dts/imx6qdl-mba6a.dtsi
+index df8fa169e9f6..c3f3a25133ca 100644
+--- a/arch/arm/boot/dts/imx6qdl-mba6a.dtsi
++++ b/arch/arm/boot/dts/imx6qdl-mba6a.dtsi
+@@ -21,6 +21,12 @@ m24c64_57: eeprom@57 {
+ 		compatible = "atmel,24c64";
+ 		reg = <0x57>;
+ 		pagesize = <32>;
++		#address-cells = <1>;
++		#size-cells = <1>;
++
++		mba_mac_address: mac-address@20 {
++				reg = <0x20 0x6>;
++		};
+ 	};
+ 
+ 	rtc0: rtc@68 {
+diff --git a/arch/arm/boot/dts/imx6qdl-mba6b.dtsi b/arch/arm/boot/dts/imx6qdl-mba6b.dtsi
+index 7d1cd7454c7f..85866cfed965 100644
+--- a/arch/arm/boot/dts/imx6qdl-mba6b.dtsi
++++ b/arch/arm/boot/dts/imx6qdl-mba6b.dtsi
+@@ -31,6 +31,12 @@ m24c64_57: eeprom@57 {
+ 		compatible = "atmel,24c64";
+ 		reg = <0x57>;
+ 		pagesize = <32>;
++		#address-cells = <1>;
++		#size-cells = <1>;
++
++		mba_mac_address: mac-address@20 {
++				reg = <0x20 0x6>;
++		};
+ 	};
+ 
+ 	rtc0: rtc@68 {
 -- 
 2.34.1
 
