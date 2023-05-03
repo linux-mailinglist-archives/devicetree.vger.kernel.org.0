@@ -2,83 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BCB5B6F5449
-	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 11:15:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23EFC6F5475
+	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 11:18:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229736AbjECJP5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 May 2023 05:15:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55064 "EHLO
+        id S229574AbjECJS4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 May 2023 05:18:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229665AbjECJPy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 05:15:54 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E238546B7
-        for <devicetree@vger.kernel.org>; Wed,  3 May 2023 02:15:41 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-2f3fe12de15so2998501f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 03 May 2023 02:15:41 -0700 (PDT)
+        with ESMTP id S229511AbjECJS4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 05:18:56 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A5BA1BFA;
+        Wed,  3 May 2023 02:18:54 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-3f1763ee8f8so31916385e9.1;
+        Wed, 03 May 2023 02:18:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683105340; x=1685697340;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=nnxyxW2LIpf3FgeSjcXMHAhw+bRdl8x1S9X/p8vOn8g=;
-        b=feDSc/GDEr/cMdnO8DNyIkvRHLZWiFTFiTYkgBFr/SofSWuU8hc9ghLqVwAPHd7/RF
-         C7cuIDPZwxNzL7BGVyEw6FJlowwUq1Z8X80XYlqn1ntGgXVB9xfmefP6GtWs7CM7kPFK
-         nYIUk3o+dyLfUy0tmXAXn5yu5Oyxd/n5gg74cRb/IB/kz98y327PagIk9YjKtxKN82JG
-         0mGqcnuUvuZrM+uKOzZPIcBUVRF0Oa+uKhwX1S7+5u1R0vN+UG1sn1Cb7gns4hwJzaW7
-         1PQhcZ3EfEne/B/G1AAqtFuq2pyt6fCBq76rUTKPEhr1XnV3MAAJ4dQ/9U48bgxQbiqa
-         9H0A==
+        d=gmail.com; s=20221208; t=1683105533; x=1685697533;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6SerbCvte8Ln3UHF66Me7IiNAwWVhU8rwwnMJP/YMH4=;
+        b=XKtYmTgBzIgJYdrVI+fTEAl29NG4jkWS5XPWQBBoHaSpZ0qsk4GOMhlvWrpfsHZ0Km
+         FyIF/CczMe+bxmK1heMH37Nj7z/tDapyRkEDggDcDrjoA0j1Ly562ctoHh8QGd9EMALz
+         yzdnoSyBSgBkLGrwwu+Ixw92ipTOx+Lt8rvpwDVaMFDRRE2Aktwrql+Oal8YRkqgaU1Y
+         vL74bmeaBO0jx4oLBNc7xcxTRIM/KnI3UM4zyJF2dq0xW44kICVQjUcBVa8vcpZE3VE2
+         hHR9GyD6kFz0EUyHYdLcgrV/1hSVDqmqHx+6cZEZqpYeiKUYUAiDlGAamPQJzuRm2CHI
+         V+vw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683105340; x=1685697340;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nnxyxW2LIpf3FgeSjcXMHAhw+bRdl8x1S9X/p8vOn8g=;
-        b=dObgXYbAFxvFSBDKIKVy+PbNxWLLY54OGChAZ47q/jHFgUvj7C2/KnBRPTn31Gs4pS
-         7PzREL0mVMOQLv/kJs+cWAK6zA7kaK/Ukj3ZV0ZTcb7QOEbzvcRvVTPmcdYuujnYBPt6
-         QqqX/vi+elZ+1wpknyyP44OyFOUu/L6fJobIlSCnNvpn99D7Yn2XDckTRsVxvYIK/O4W
-         yqbtQh1xCnXlCz+0hNuzpGb2qYp91sSjPSfjWI4Vk3qvH153G1NajVx21MedFP4BdBOW
-         Re89OSVEB6QWZak/CmA4FJTYFeZIPnXcrRUNdGgWvqmiBwYNkEBEVlAlAuUei7jsjwlj
-         jaSw==
-X-Gm-Message-State: AC+VfDwMdZySLCFZ1X9ELsH0oj2uO4a6xlUwsudfdCfT2yQvUdNUR2yu
-        XeMAZNGoJbWd7ZG+UCmRqpusgg==
-X-Google-Smtp-Source: ACHHUZ6eaGsYv3iCIVixt5Sj/mxQl+JmS4dm2WtL7LWCgzs7EZI/uUAjKQonoxTmKNjnBFAaXy59Ww==
-X-Received: by 2002:adf:e28a:0:b0:302:1b72:b951 with SMTP id v10-20020adfe28a000000b003021b72b951mr14017544wri.26.1683105340350;
-        Wed, 03 May 2023 02:15:40 -0700 (PDT)
-Received: from [197.55.55.58] ([93.107.151.186])
-        by smtp.gmail.com with ESMTPSA id p1-20020a05600c204100b003ed2c0a0f37sm1259871wmg.35.2023.05.03.02.15.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 May 2023 02:15:39 -0700 (PDT)
-Message-ID: <5d2814e8-b44d-39b2-8f1e-2751b66c33a9@linaro.org>
-Date:   Wed, 3 May 2023 10:15:38 +0100
+        d=1e100.net; s=20221208; t=1683105533; x=1685697533;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6SerbCvte8Ln3UHF66Me7IiNAwWVhU8rwwnMJP/YMH4=;
+        b=UiJO3/Cw6uFYnG0ovLof9X5pYlSPd+oXaEnLfjHFqi1/OUN4boBwKPuLSnl7JQht0i
+         Gz58KHhtkwBCKR2zlMV0aX6DVlUm43digtjfbRnQMiKyKHrwkg5iOlupaO/iI4A10Tnm
+         VEkgYo9ZULb3aYc5DeAwd+XR5mrgtSieaWyDDnRcw1S2lMoyaA2+r94/3P4+aNAALnzT
+         82XRUafQ9BqsOJTgyQc+7rZW8TgGWfYKXYCQNu1yhyL4UjJdvdyM38t/D2PqRlnK/svd
+         yLAVjGb/8m9hAOLqKD9Yki6HA5Ixo0B/VeMtgPYxriimlUdYLULqfSRMlrINBScN+eTh
+         Txwg==
+X-Gm-Message-State: AC+VfDxwmBYjmX4jBlxqpp32YfQy36aWjaaVkk8xs1cr9lA/klQeZA3V
+        SyRFAu9N1RVrcmtNJuqwssc=
+X-Google-Smtp-Source: ACHHUZ4/vbn7VAA8vSmpZ5hpqCHpFr8PVv8ONeC0ua0rZTsYIqWj9jPfyxpTnWEwUDYJ3+0s73ihTg==
+X-Received: by 2002:a05:600c:d7:b0:3f1:93c2:4df6 with SMTP id u23-20020a05600c00d700b003f193c24df6mr13714885wmm.12.1683105532602;
+        Wed, 03 May 2023 02:18:52 -0700 (PDT)
+Received: from orome (p200300e41f053a00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f05:3a00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id f21-20020a1c6a15000000b003ee6aa4e6a9sm1311299wmc.5.2023.05.03.02.18.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 May 2023 02:18:52 -0700 (PDT)
+Date:   Wed, 3 May 2023 11:18:50 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Shubhi Garg <shgarg@nvidia.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, jonathanh@nvidia.com,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] dt-bindings: tegra: Document compatible for IGX
+Message-ID: <ZFIm-nDpMZog9aOr@orome>
+References: <20230502150249.773425-1-shgarg@nvidia.com>
+ <664379bf-96c4-b66c-6b0b-7b848ae6000c@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH 3/3] media: camss: Link CAMSS power domain
-Content-Language: en-US
-To:     Yassine Oudjana <yassine.oudjana@gmail.com>,
-        Robert Foss <rfoss@kernel.org>,
-        Todor Tomov <todor.too@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Hans Verkuil <hansverk@cisco.com>
-Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230503072543.4837-1-y.oudjana@protonmail.com>
- <20230503072543.4837-4-y.oudjana@protonmail.com>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20230503072543.4837-4-y.oudjana@protonmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="6Vko1tQucAgVwjQX"
+Content-Disposition: inline
+In-Reply-To: <664379bf-96c4-b66c-6b0b-7b848ae6000c@linaro.org>
+User-Agent: Mutt/2.2.10 (2023-03-25)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,76 +75,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/05/2023 08:25, Yassine Oudjana wrote:
-> From: Yassine Oudjana <y.oudjana@protonmail.com>
-> 
-> The CAMSS power domain was previously enabled implicitly when the VFE power domains
-> were enabled. Commit 46cc03175498 (media: camss: Split power domain management, 2022-07-04)
-> delayed enabling VFE power domains which in turn delayed enabling the CAMSS power domain.
-> This made CSIPHY fail to enable camss_top_ahb_clk which requires the CAMSS power domain to
-> be on:
-> 
-> [  199.097810] ------------[ cut here ]------------
-> [  199.097893] camss_top_ahb_clk status stuck at 'off'
-> [  199.097913] WARNING: CPU: 3 PID: 728 at drivers/clk/qcom/clk-branch.c:91 clk_branch_wait+0x140/0x160
-> ...
-> [  199.100064]  clk_branch_wait+0x140/0x160
-> [  199.100112]  clk_branch2_enable+0x30/0x40
-> [  199.100159]  clk_core_enable+0x6c/0xb0
-> [  199.100211]  clk_enable+0x2c/0x50
-> [  199.100257]  camss_enable_clocks+0x94/0xe0 [qcom_camss]
-> [  199.100342]  csiphy_set_power+0x154/0x2a0 [qcom_camss]
-> ...
-> [  199.101594] ---[ end trace 0000000000000000 ]---
-> 
-> Link the CAMSS power domain in camss_configure_pd to make sure it gets enabled before
-> CSIPHY tries to enable clocks.
-> 
-> Fixes: 02afa816dbbf (media: camss: Add basic runtime PM support, 2018-07-25)
-> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
 
-Same comment as in the cover letter, your Fixes: tag is broken
+--6Vko1tQucAgVwjQX
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-WARNING: Please use correct Fixes: style 'Fixes: <12 chars of sha1> 
-("<title line>")' - ie: 'Fixes: 02afa816dbbf ("media: camss: Add basic 
-runtime PM support")'
-#28:
-Fixes: 02afa816dbbf (media: camss: Add basic runtime PM support, 2018-07-25)
+On Wed, May 03, 2023 at 08:22:21AM +0200, Krzysztof Kozlowski wrote:
+> On 02/05/2023 17:02, Shubhi Garg wrote:
+> > Document the compatible strings used for Nvidia IGX Orin Development
+> > kit which uses P3701 SKU8 and P3740 carrier board.
+> >=20
+> > Signed-off-by: Shubhi Garg <shgarg@nvidia.com>
+> > ---
+> >  Documentation/devicetree/bindings/arm/tegra.yaml | 5 +++++
+> >  1 file changed, 5 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/arm/tegra.yaml b/Documen=
+tation/devicetree/bindings/arm/tegra.yaml
+> > index 0df41f5b7e2a..34523b8b5d1f 100644
+> > --- a/Documentation/devicetree/bindings/arm/tegra.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/tegra.yaml
+> > @@ -176,5 +176,10 @@ properties:
+> >            - const: nvidia,p3768-0000+p3767-0000
+> >            - const: nvidia,p3767-0000
+> >            - const: nvidia,tegra234
+> > +      - description: NVIDIA IGX Orin Development Kit
+> > +        items:
+> > +          - const: nvidia,p3740-0002+p3701-0008
+> > +          - const: nvidia,p3701-0008
+> > +          - const: nvidia,tegra234
+> > =20
+>=20
+> Don't stuff things to the end, but put in some logical order. For
+> example 'I' could be before 'N'.
 
-> ---
->   drivers/media/platform/qcom/camss/camss.c | 9 ++++++++-
->   1 file changed, 8 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/media/platform/qcom/camss/camss.c b/drivers/media/platform/qcom/camss/camss.c
-> index 1ef26aea3eae..9aea8220d923 100644
-> --- a/drivers/media/platform/qcom/camss/camss.c
-> +++ b/drivers/media/platform/qcom/camss/camss.c
-> @@ -1453,6 +1453,7 @@ static const struct media_device_ops camss_media_ops = {
->   static int camss_configure_pd(struct camss *camss)
->   {
->   	struct device *dev = camss->dev;
-> +	int camss_pd_index;
->   	int i;
->   	int ret;
->   
-> @@ -1496,7 +1497,13 @@ static int camss_configure_pd(struct camss *camss)
->   		}
->   	}
->   
-> -	if (i > camss->vfe_num) {
-> +	/* Link CAMSS power domain if available */
-> +	camss_pd_index = device_property_match_string(camss->dev, "power-domain-names", "camss");
-> +	if (camss_pd_index >= 0)
-> +		device_link_add(camss->dev, camss->genpd[camss_pd_index], DL_FLAG_STATELESS |
-> +				DL_FLAG_PM_RUNTIME | DL_FLAG_RPM_ACTIVE);
-> +
-> +	if (i > camss->vfe_num && i != camss_pd_index) {
->   		camss->genpd_link[i - 1] = device_link_add(camss->dev, camss->genpd[i - 1],
->   							   DL_FLAG_STATELESS | DL_FLAG_PM_RUNTIME |
->   							   DL_FLAG_RPM_ACTIVE);
+Sorting these alphabetically doesn't work well because it's not very
+deterministic. So far we've always grouped these by SoC family and
+within each group they are sorted chronologically. Chronologically
+here being determined by the upstream activity. We could perhaps make
+that a bit more formal by sorting by part number. Those are usually
+assigned at design time (i.e. p3740 was designed prior to p3768), so
+in that case the IGX would be sorted after the AGX Orin.
 
-The rest of it seems reasonable to me. I'll give it a R/B T/B on your 
-next iteration - including Fixes: fix as I'm OOO ATM.
+The NVIDIA in the description is something we haven't been very strict
+about. It'd probably be a good idea to add that wherever relevant since
+other vendors make products with these modules.
 
----
-bod
+We could also add comments to the list to visually separate the SoC
+family groups. That's something for another patch, though.
+
+Would you agree with chronological (by part number) sorting? In practice
+this would tend towards new things getting added to the end, but I think
+it's the least confusing for people looking at these lists. For instance
+if I buy a very recent device, I would expect it to show up somewhere
+close to the end of a list rather than potentially very high up.
+
+Thierry
+
+--6Vko1tQucAgVwjQX
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmRSJvgACgkQ3SOs138+
+s6EDAg//SpMJpUx87PnrtyCorL3jf+UuYZXTUC8ih/qVZAw7j9vCp1KnGyy7CoZ+
+doA//mQl2VyK39pyor082omb2z6UPoe8QXF0Un9hn4+qPZPjXEGeSdUQHaIwTFNG
+qlcujWeLlDjORzv7kT/Tk44JxebTbLp7kzrTVhlA9vuCB/fl/JIIJhazQ4Um/7t6
+ZWHOxxgj91+dJD5zpzQtrOetRKhFkbXT4Po73C7dZmE6DzKo5lOhUh/TbNXeMxzu
+5Y/l+/oZ06eyLAPwnxreC3hScO1EeXRdGUdr+zomIM4FMnurCONM/uZp7XMpObzO
+yz+vs6bY91DgCTYDUTnS3soDUyljOHAZh7/Fa22FKqXiYy6YkuFWfcM9d6KXWuo1
+YalwYfosRyO2oo+pk7TzjafRHBIokwV9wyOwDRC3PCvizfsqbi3LXiMFwfJf26i+
+TbyIVZeZvYZqOZSyaVnaRBKceO8lyagI7bOW8i59WVCLBYvDGzttgIpdpsqlgDEF
+Nb3Al14ahr+h12O9B5N9fDgaXkJoR3CFg5//TgKV5ORrM3isHrsCM8XZaXeJ5hb7
+wOexoadRqOkdQzlNpxPoX84Zqy3lLfGwlDI/L2pFjwWbKDqyYM3sH2NBQHNmgjG4
+Sih+kzy1N5DGwEoiC3jrT19Crr85iRgcpbPvHrz0x8FbRoFJgJI=
+=S4US
+-----END PGP SIGNATURE-----
+
+--6Vko1tQucAgVwjQX--
