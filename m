@@ -2,291 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A5CC46F4D83
-	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 01:16:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E0FB6F4E4B
+	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 03:04:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229499AbjEBXQm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 May 2023 19:16:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58764 "EHLO
+        id S229458AbjECBEg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 May 2023 21:04:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229441AbjEBXQl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 19:16:41 -0400
-Received: from stravinsky.debian.org (stravinsky.debian.org [IPv6:2001:41b8:202:deb::311:108])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9BB83C11;
-        Tue,  2 May 2023 16:16:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=debian.org;
-        s=smtpauto.stravinsky; h=X-Debian-User:In-Reply-To:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description;
-        bh=pIlHDez9fg0KJ/IKw04KT23xKQ4mxvAUwD5s3LT5ebM=; b=pt6nW2ZSyLhIjB4FLaUWtSVH2O
-        IE7qnMOsTBD9u3119UT0y6ItmFW+3lghWW8tqQG5WpthKpNsHJup6+Yr+SvrJT3ZMGhbaYEYATBCX
-        P+LhwGePB6+KmYh8MWAoZ7zpHMPZ8Rkf5Yd0z6yChfAcK2fcF3/A2jNwQl3i/7SJ2D1ezyitiwILS
-        WK8JMTbklousfpZboFNd5jIMCLHRfsxAop+ny8rpl5eyYOKIoviIj6OLfEguIeZpX8g2sjm2bM+v7
-        1KpPVSXtfz93zg80jDaDzdfzXjQE5Zbv2k0C/SsqMEy1LhrX4Iv1XodUm4nDJc7+FbgWku5PLmNLG
-        f7LE7w7w==;
-Received: from authenticated user
-        by stravinsky.debian.org with esmtpsa (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
-        (Exim 4.94.2)
-        (envelope-from <kibi@debian.org>)
-        id 1ptzE2-002xjz-AE; Tue, 02 May 2023 23:16:01 +0000
-Date:   Wed, 3 May 2023 01:15:58 +0200
-From:   Cyril Brulebois <kibi@debian.org>
-To:     Jim Quinlan <jim2101024@gmail.com>
-Cc:     linux-pci@vger.kernel.org,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Phil Elwell <phil@raspberrypi.com>,
-        bcm-kernel-feedback-list@broadcom.com, james.quinlan@broadcom.com,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>
-Subject: Re: [PATCH v4 0/5] PCI: brcmstb: Configure appropriate HW CLKREQ#
- mode
-Message-ID: <20230502231558.5zt5tyxczd22ppjz@mraw.org>
-Organization: Debian
-References: <20230428223500.23337-1-jim2101024@gmail.com>
+        with ESMTP id S229441AbjECBEf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 May 2023 21:04:35 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2C1B2D61;
+        Tue,  2 May 2023 18:04:33 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3C8EB629CC;
+        Wed,  3 May 2023 01:04:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94028C433AE;
+        Wed,  3 May 2023 01:04:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1683075872;
+        bh=3tzUPFXqJgNCRsublfj+ZgGaTs7KzeK4/lauS5NgXbw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=QoGLyyHrVl2A+YTplbrnYiMEIz6wk+jP9SV8dz5UCtY76MWzNfxcDGsWDt7XzaFbR
+         Xr4LoafVLAa94EjThKoFMtXLMkvCzIlI51WqQfPmq+42ZRGmwhqCuG73rtNFS7wUkc
+         +fEXrSTR/j+xouT44ufNnuT7bR771W/YBDuqC0FtyyPhTIzbPY4lJHmmC4JrKp+LqL
+         VUXrPWi4q/OV1Ezdi6st//MbXuMfXSMqmAVFzsUiMTdstEd3wZmJZlVLjAXQcv6nMA
+         7k3X1222URsa6zFwyiuGaddxH/mAzA1qAvda1W1zjhNGD1pbVwdRUepxFlVrtRcox8
+         yQNSGRSC9H6BA==
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2a8b3ecf59fso46418061fa.0;
+        Tue, 02 May 2023 18:04:32 -0700 (PDT)
+X-Gm-Message-State: AC+VfDxrX1RTlyh35LQ1lyIfjVDZ9XSpUGaNTrbWR3iI+zmU2KY74l9I
+        wqQLSzBVjWvuMwcKlKrtaLj1AvVmhDES5zIw/w==
+X-Google-Smtp-Source: ACHHUZ4mSLqb1ExsMkOjNsdZYIFyOMFO5WWfDnvfwZvuM9fv3TyrxmQhN6hT67g4AYdNW/MVo7uZ6IBv6mL14dd4tuc=
+X-Received: by 2002:a2e:8402:0:b0:2a8:d103:dc8 with SMTP id
+ z2-20020a2e8402000000b002a8d1030dc8mr4705375ljg.2.1683075870337; Tue, 02 May
+ 2023 18:04:30 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="tnybm5pxv6yz42hv"
-Content-Disposition: inline
-In-Reply-To: <20230428223500.23337-1-jim2101024@gmail.com>
-X-Debian-User: kibi
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220328000915.15041-1-ansuelsmth@gmail.com> <85eb14ec-f465-7447-ad77-a3dabc666f47@kernel.org>
+ <YkKRYnN84D9VZhGj@Ansuel-xps.localdomain> <CAL_Jsq+RQQ-ADMxLPUFwk6S6kGmb6oNDy4k52fnU0EtbUvqmSA@mail.gmail.com>
+ <CAMuHMdWNTE48MFy6fqxAsfMWz9b6E7dVNXtXtESP95sxk2PGwA@mail.gmail.com>
+ <CAL_JsqJthKTm8bhRF2B=ae1tvtPeYYXx_Tm76qQtSwLtH5C6VA@mail.gmail.com>
+ <720a2829-b6b5-411c-ac69-9a53e881f48d@app.fastmail.com> <CAL_JsqKCtmkwzKa01gyG65fH8ye6R3KhR41PJbJhOJ4X9j=znA@mail.gmail.com>
+ <d4b52074-d11c-4c7a-ad74-b2fce64c6d30@gmail.com>
+In-Reply-To: <d4b52074-d11c-4c7a-ad74-b2fce64c6d30@gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 2 May 2023 20:04:17 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKRcMSijAdiP_BpyBGRuMhscZ12QFcLBAeZ+TcaQg7r4g@mail.gmail.com>
+Message-ID: <CAL_JsqKRcMSijAdiP_BpyBGRuMhscZ12QFcLBAeZ+TcaQg7r4g@mail.gmail.com>
+Subject: Re: [RFC PATCH 0/1] Categorize ARM dts directory
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Olof Johansson <olof@lixom.net>,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-actions@lists.infradead.org,
+        linux-sunxi@lists.linux.dev,
+        Linux-OMAP <linux-omap@vger.kernel.org>,
+        linux-amlogic@lists.infradead.org, linux-arm-kernel@axis.com,
+        linux-aspeed@lists.ozlabs.org,
+        linux-rpi-kernel@lists.infradead.org,
+        chrome-platform@lists.linux.dev,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        linux-samsung-soc@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        kernel@dh-electronics.com, linux-mediatek@lists.infradead.org,
+        openbmc@lists.ozlabs.org, linux-tegra@vger.kernel.org,
+        "linux-oxnas@groups.io" <linux-oxnas@groups.io>,
+        linux-arm-msm@vger.kernel.org, linux-unisoc@lists.infradead.org,
+        linux-rockchip@lists.infradead.org,
+        linux-realtek-soc@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, May 2, 2023 at 6:02=E2=80=AFPM Florian Fainelli <f.fainelli@gmail.c=
+om> wrote:
+>
+> On 5/2/23 12:40, Rob Herring wrote:
+> > On Tue, May 2, 2023 at 3:15=E2=80=AFAM Arnd Bergmann <arnd@arndb.de> wr=
+ote:
+> >>
+> >> On Tue, Apr 25, 2023, at 17:57, Rob Herring wrote:
+> >>> On Tue, Apr 25, 2023 at 2:28=E2=80=AFAM Geert Uytterhoeven <geert@lin=
+ux-m68k.org> wrote:
+> >>>
+> >>>> Does your script also cater for .dts files not matching any pattern,
+> >>>> but including a .dtsi file that does match a pattern?
+> >>>
+> >>> I assume I built everything after moving, but maybe not...
+> >>>
+> >>> That's all just "details". First, we need agreement on a) moving
+> >>> things to subdirs and b) doing it 1-by-1 or all at once. So far we've
+> >>> been stuck on a) for being 'too much churn'.
+> >>
+> >> Sorry for missing most of the discussion last week. The script sounds
+> >> fine to me, the only reason I didn't want to do this in the past is th=
+at
+> >> we had the plan to move platforms out of the kernel tree to an externa=
+l
+> >> repository and I wanted to do this platform at a time and also only mo=
+ve
+> >> each one once. I don't think that is going to happen anytime soon now,
+> >> so let's just do your script.
+> >>
+> >> Can you send me the script and/or a pull request of the resulting
+> >> tree based on my soc/dt branch? Everything is merged upstream,
+> >> and I think git-merge would handle the remaining merges with any
+> >> other changes in mainline.
+> >
+> > I've dusted off my script and made a branch[1] with the result.
+> > There's just a couple of fixes needed after the script is run (see the
+> > top commit). The cross arch includes are all fixed up by the script.
+> > dtbs_install maintains a flat install. I compared the number of .dtbs
+> > before and after to check the script.
+> >
+> > I think the only issue remaining is finalizing the mapping of
+> > platforms to subdirs. What I have currently is a mixture of SoC
+> > families and vendors. The most notable are all the Freescale/NXP
+> > platforms, pxa, socfpga, and stm32. It's not consistent with arm64
+> > either. Once that's finalized, I still need to go update MAINTAINERS.
+> >
+> > Here's the current mapping:
+> >
+> > vendor_map =3D {
+> >      'alphascale' : 'alphascale',
+> >      'alpine' : 'alpine',
+> >      'artpec' : 'axis',
+> >      'axm' : 'lsi',
+> >      'cx9' : 'cnxt',
+> >      'ecx' : 'calxeda',
+> >      'highbank' : 'calxeda',
+> >      'ep7' : 'cirrus',
+> >      'mxs': 'mxs',
+> >      'imx23': 'mxs',
+> >      'imx28': 'mxs',
+> >      'sun' : 'allwinner',
+> >      'imx': 'imx',
+> >      'e6' : 'imx',
+> >      'e7' : 'imx',
+> >      'mba6' : 'imx',
+> >      'ls': 'fsl',
+> >      'vf': 'fsl',
+> >      'qcom': 'qcom',
+> >      'am3' : 'ti',
+> >      'am4' : 'ti',
+> >      'am5' : 'ti',
+> >      'dra' : 'ti',
+> >      'keystone' : 'ti',
+> >      'omap' : 'ti',
+> >      'compulab' : 'ti',
+> >      'logicpd' : 'ti',
+> >      'elpida' : 'ti',
+> >      'motorola' : 'ti',
+> >      'twl' : 'ti',
+> >      'da' : 'ti',
+> >      'dm' : 'ti',
+> >      'nspire' : 'nspire',
+> >      'armada' : 'marvell',
+> >      'dove' : 'marvell',
+> >      'kirkwood' : 'marvell',
+> >      'orion' : 'marvell',
+> >      'mvebu' : 'marvell',
+> >      'mmp' : 'marvell',
+> >      'berlin' : 'berlin',
+> >      'pxa2' : 'pxa',
+> >      'pxa3' : 'pxa',
+> >      'pxa' : 'marvell',
+> >      'arm-' : 'arm',
+> >      'integ' : 'arm',
+> >      'mps' : 'arm',
+> >      've' : 'arm',
+> >      'aspeed' : 'aspeed',
+> >      'ast2' : 'aspeed',
+> >      'facebook' : 'aspeed',
+> >      'ibm' : 'aspeed',
+> >      'openbmc' : 'aspeed',
+> >      'en7' : 'airoha',
+> >      'at91' : 'microchip',
+> >      'sama' : 'microchip',
+> >      'sam9' : 'microchip',
+> >      'usb_' : 'microchip',
+> >      'tny_' : 'microchip',
+> >      'mpa1600' : 'microchip',
+> >      'animeo_ip' : 'microchip',
+> >      'aks-cdu' : 'microchip',
+> >      'ethernut5' : 'microchip',
+> >      'evk-pro3' : 'microchip',
+> >      'pm9g45' : 'microchip',
+> >      'ge86' : 'microchip',
+> >      'bcm' : 'brcm',
+>
+> How about we use 'broadcom' here, to follow what arm64 does? I could
+> rename arch/mips/boot/dts/brcm to arch/mips/boot/dts/broadcom for
+> consistency, too?
 
---tnybm5pxv6yz42hv
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Okay, though if starting clean I'd somewhat prefer to use the vendor
+prefix. I guess since arm and arm64 share dtsi files, they should
+match.
 
-Hi,
-
-Jim Quinlan <jim2101024@gmail.com> (2023-04-28):
-> Note: (a) With this series, all downstream devices should work w/o DT cha=
-nges.
->           Only if the user desires L1SS savings and has an L1SS-capable
->           device is a DT change required (brcm,enable-l1ss).
-
-I'm still seeing some problems, but tweaking two things can lead to
-massive improvements:
- - setting brcm,enable-l1ss;
- - upgrading the CM4's EEPROM.
-
-Seeing how patch #4 was about the bootloader, I've prepared an updated
-test image the following way:
- - Kernel: 76f598ba7d8e2bfb4855b5298caedd5af0c374a8 + this series.
- - Userland: Debian testing as of 2023-05-01.
- - Serial console set as previously.
- - Bootloader: latest release upstream, 1.20230405
-   (That is: bootcode.bin, *.dat, *.elf)
-
-Then, seeing how setting brcm,enable-l1ss was helping some test cases,
-I've extended testing to be quite systematic, using those components:
- - CM4 IO Board (always the same).
- - 1 CM4 among:
-    - CM4 Lite Rev 1.0 (extra test, storage much quicker to deploy)
-    - CM4 8/32 Rev 1.0 (as before)
-    - CM4 4/32 Rev 1.1 (as before)
- - 1 PCIe card among:
-    - 006 =3D SupaHub PCIe->USB adapter, reference PCE6U1C-R02, VER 006
-       =E2=86=92 based on Renesas UPD720201/UPD720202
-       =E2=86=92=C2=A0CONFIG_USB_XHCI_PCI_RENESAS=3Dm
-       =E2=86=92 /lib/firmware/renesas_usb_fw.mem
-    - 006S =3D SupaHub PCIe->USB adapter, reference PCE6U1C-R02, VER 006S
-       =E2=86=92 based on Renesas UPD720201/UPD720202
-       =E2=86=92=C2=A0CONFIG_USB_XHCI_PCI_RENESAS=3Dm
-       =E2=86=92 /lib/firmware/renesas_usb_fw.mem
-    - VIA =3D Waveshare PCIe-to-multiple-USB adapter (no obvious reference)
-       =E2=86=92 based on VIA VL805/806
- - 1 Kingston DataTraveler G4 32G (always the same), plugged on one of the
-   USB port of the PCIe card being tested.
-
-I've tested a cold boot with each combination, first without touching the
-DTB at all (pristine), then after enabling L1SS. The results are as
-follows, legend is below.
-
-                           +----------+----------+----------+
-                           |   006    |   006S   |   VIA    |
-  +------------------------+----------+----------+----------+
-  | 1. CM4 Lite Rev 1.0    |    KP*   |    KP*   |  OK, 72  |
-  |    pristine            |          |          |          |
-  +------------------------+----------+----------+----------+
-  | 2. CM4 Lite Rev 1.0    |  boot +  |  OK, 72  |  OK, 72  |
-  |    + brcm,enable-l1ss  | timeouts |          |          |
-  +------------------------+----------+----------+----------+
-  | 3. CM4 8/32 Rev 1.0    |    KP    |    KP    |    KP    |
-  |    pristine            |          |          |          |
-  +------------------------+----------+----------+----------+
-  | 4. CM4 8/32 Rev 1.0    |  OK, 69  |  OK, 69  |  OK, 69  |
-  |    + brcm,enable-l1ss  |          |          |          |
-  +------------------------+----------+----------+----------+
-  | 5. CM4 4/32 Rev 1.1    |  boot +  |  OK, 69  |  OK, 69  |
-  |    pristine            | timeouts |          |          |
-  +------------------------+----------+----------+----------+
-  | 6. CM4 4/32 Rev 1.1    |  OK, 82  |  OK, 69  |  OK, 69  |
-  |    + brcm,enable-l1ss  |          |          |          |
-  +------------------------+----------+----------+----------+
-
-Legend:
- - OK, XXX =3D boots fine, memory stick visible, and reading from it using
-   `dd if=3D/dev/sda of=3D/dev/null bs=3D8M status=3Dprogress` for a few se=
-conds
-   gives an XXX MB/s transfer rate.
- - KP =3D kernel panic involving brcm_pcie_probe().
- - KP* =3D probably the same kernel panic; unfortunately, the serial console
-   hardly works, but booting for 1 minute, shutting down for 10 seconds,
-   in a loop=E2=80=A6 ends up showing excerpts from a trace, one word or so=
-metimes
-   several lines at a time. Since brcm_pcie_driver_init() or SError
-   appeared, getting the same trace looks probable to me. [See also the
-   very end of the mail.]
- - boot + timeouts =3D the system boots, the memory stick is not visible
-   though, as XHCI timeouts show up, e.g.:
-
-   [   34.144748] xhci_hcd 0000:01:00.0: Timeout while waiting for setup de=
-vice command
-   [   34.357273] usb 3-1.4: Device not responding to setup address.
-   [   34.568429] usb 3-1.4: device not accepting address 6, error -71
-   [   34.575730] usb 3-1-port4: unable to enumerate USB device
-
-So it looks like *for these combinations* setting brcm,enable-l1ss is only
-helping, even if one particular thing remains not fully fonctional (but
-at least boots now): CM4 Lite Rev 1.0 + 006 card.
-
-
-And since you mentioned the EEPROM topic off-list, I've investigated that
-part as well. It turns out that what *seemed* (at least to my non-expert
-eyes) sort of related to the hardware revisions=E2=80=A6 could have actuall=
-y be
-directly linked to the EEPROM version shipped with each Compute Module.
-
-After deploying the relevant tooling, and based on the reported
-timestamps, here are the relevant EEPROM filenames in the rpi-eeprom
-repository (https://github.com/raspberrypi/rpi-eeprom):
- - CM4 Lite Rev 1.0 [lines 1-2]
-    =E2=86=92 firmware/stable/pieeprom-2021-02-16.bin
- - CM4 8/32 Rev 1.0 [lines 3-4]
-    =E2=86=92 firmware/stable/pieeprom-2021-02-16.bin
- - CM4 4/32 Rev 1.1 [lines 5-6]
-    =E2=86=92 firmware/stable/pieeprom-2021-12-02.bin
-
-Try to upgrade a first CM4 Lite to the latest version (2023-01-11) gave
-solid results (which I'm not including in this report as I was only in
-exploratory mode, with a slightly different Kingston DataTraveler anyway;
-for reference its EEPROM dated back to 2020, and it seemed to have ever
-been in some beta state=E2=80=A6), so I decided to replicate all the tests =
-above with
-the very same 3 CM4, upgraded to 2023-01-11.
-
-In passing: That might explain why it always felt like later revisions
-were working =E2=80=9Cbetter=E2=80=9D than the old ones: being designed + m=
-anufactured
-later, they just ended up being shipped with a newer/better EEPROM?
-
-Upgrade: via usbboot (https://github.com/raspberrypi/usbboot) and the
-recovery procedure (which by default deploys the latest stable version).
-
-Results with everyone at 2023-01-11.
-
-                           +----------+----------+----------+
-                           |   006    |   006S   |   VIA    |
-  +------------------------+----------+----------+----------+
-  | 1. CM4 Lite Rev 1.0    |  OK, 83  |  OK, 72  |  OK, 72  |
-  |    pristine            |          |          |          |
-  +------------------------+----------+----------+----------+
-  | 2. CM4 Lite Rev 1.0    |  OK, 82  |  OK, 72  |  OK, 72  |
-  |    + brcm,enable-l1ss  |          |          |          |
-  +------------------------+----------+----------+----------+
-  | 3. CM4 8/32 Rev 1.0    |  OK, 82  |  OK, 69  |  OK, 69  |
-  |    pristine            |          |          |          |
-  +------------------------+----------+----------+----------+
-  | 4. CM4 8/32 Rev 1.0    |  OK, 82  |  OK, 69  |  OK, 69  |
-  |    + brcm,enable-l1ss  |          |          |          |
-  +------------------------+----------+----------+----------+
-  | 5. CM4 4/32 Rev 1.1    |  OK, 82  |  OK, 69  |  OK, 69  |
-  |    pristine            |          |          |          |
-  +------------------------+----------+----------+----------+
-  | 6. CM4 4/32 Rev 1.1    |  OK, 82  |  OK, 69  |  OK, 69  |
-  |    + brcm,enable-l1ss  |          |          |          |
-  +------------------------+----------+----------+----------+
-
-Takeaways:
- - Upgrading the EEPROM solved all problems;
- - brcm,enable-l1ss (which used to help) is not needed, as mentioned in
-   your cover letter.
-
-Now that I'm a little more familiar with the EEPROM tooling:
- - It looks like I'm able to downgrade the EEPROM to an earlier version.
-   But I cannot guarantee I can recover exactly the previous state as
-   there are two different things at least: the EEPROM itself and what's
-   called =E2=80=9Cbootloader config=E2=80=9D in vcgencmd). I've seen at le=
-ast the LED
-   change behaviour (via POWER_OFF_ON_HALT).
- - Upon downgrading, without brcm,enable-l1ss, the CM4 Lite is indeed
-   showing me a black screen/no logs in the serial console again with
-   either one of the 006/006S cards.
- - It's possible to specify a boot config file when deploying the EEPROM,
-   and I've tried enabling BOOT_UART on the CM4 Lite. Now I'm getting the
-   kernel panic on the console!
-
-Where should I go from here?
- - Does it make sense to gather a trace for the kernel panic on say two
-   combinations, without brcm,enable-l1ss set:
-    + CM4 Lite Rev 1.0 (old EEPROM) + 006 [first KP* in first table]
-    + CM4 8/32 Rev 1.0 (old EEPROM) + 006 [first KP in first table]
-   then get a trace without your patches, and attach all four resulting
-   files?
- - Or should one just consider that the very first thing that each and
-   every CM4 user is supposed to do is upgrade their EEPROM?
-
-On a personal side, I'm very fine with being told to just upgrade the
-EEPROM already (and that seems to cover any use case I could think of,
-and test). But if getting and comparing traces before/after your patches
-is helpful to you and the wider community, I'm happy to spend some more
-time testing and gathering details.
-=20
-
-Cheers,
---=20
-Cyril Brulebois (kibi@debian.org)            <https://debamax.com/>
-D-I release manager -- Release team member -- Freelance Consultant
-
---tnybm5pxv6yz42hv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEtg6/KYRFPHDXTPR4/5FK8MKzVSAFAmRRmasACgkQ/5FK8MKz
-VSDhWQ//eZJXOnlldXWrTUxJmU6LaLVPt1knTnF8TX2WqP56REqO5ZVmROmcKTQp
-0dGOAt9wQ0LoKJKYWHBkSlQN83KfesAbVi32zuBllNx+zb+uLn5WvaHelTkGHhh8
-U4LP0V5bRq+qbnOfZraUdsH1vzk/7zRNFjZg/jGJRuoPZZcBslfUoPNDuIBkLMbG
-23qrTgITh1jAfshVkKGZe8bTq/Xc///DtKIHlouxcuZ1FQnQQkLbRNHDKkdoH+o2
-0R/qb+2C27jCLN+Kv7W7GkEIaQzlKIYfk64q8spu+f4dwg0+r2F6511VzlMu+ikP
-3RbtdFwvdCtNclMb4D/tMR2yCCpWuFloKJJPkC2is4u+4ygOEZdqlyNMO7yoXPC7
-3doMCNlaryeO+nuCnorRs/QadqOmX24cbbYZ37jEg1FpQYkjceLy1DUcvDtkuRmH
-0iXPQgZUOrvv8hscmwc1zFdIOHGqhgU407yJdAGcb58PRT29Mb8/fvTA2pQt2R5D
-+cKegIpQG0FDTiU+1czlza3shu2MPyfMp2rD6VECOBW5aiWZm3qcs3DpoLyR4ukM
-vl+DHraNMQSrB+Lh24caKwnSMnPe1IgWEWcSCGt18P8MAErJWn00ElFyVOMo0ogs
-hZmprOjFO3FDKoAWpLoB3dEQQFK2QrOwuoV3haMTwd8y6twKI94=
-=EOzA
------END PGP SIGNATURE-----
-
---tnybm5pxv6yz42hv--
+Rob
