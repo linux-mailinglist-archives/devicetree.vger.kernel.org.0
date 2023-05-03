@@ -2,103 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 126D16F57E1
-	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 14:28:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E0056F57F0
+	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 14:32:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229773AbjECM2t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 May 2023 08:28:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43216 "EHLO
+        id S229677AbjECMcf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 May 2023 08:32:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229554AbjECM2s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 08:28:48 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3768110E5
-        for <devicetree@vger.kernel.org>; Wed,  3 May 2023 05:28:47 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2a8afef50f2so52234911fa.2
-        for <devicetree@vger.kernel.org>; Wed, 03 May 2023 05:28:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683116925; x=1685708925;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=P9TINMhNvD4iFgDl9q787YpZQATv7CyKtUu8ciEROlE=;
-        b=iK1jUe0P2d/SFBREJ+5V9i2tPa8ypr6XFN8MEuDtln14cm9Y1Ru0J6ghxw1cMMnvVj
-         VfMArG6TDk2sS9c/BVwzEIq3lYL4MzVe25Jx06Am5EUBp7LRAy77uWsjQjVVJguiOB8S
-         /hetVC+bXOPshLa3WGtjaSgxG5zVl06BGuW4zTVENbSsdXDY36xr8xv4XPyUfaREkGyl
-         fnuT/s/4tjFoicVs8rElXrxgThShv0izhqYy28O6IudkGkIvWqCPrLc6kcTxOtO/vzYV
-         6KJN01qQnw1HEEPQdYiZSdvDQehWyLRMDd3azJx0r/VwWllAJnds0RvIXenyow/mhgB0
-         GjYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683116925; x=1685708925;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=P9TINMhNvD4iFgDl9q787YpZQATv7CyKtUu8ciEROlE=;
-        b=dCKdcuK5CaGKp0BPKxrXruojAW+Iov3ACDrl3HsxBrN3sxMXTQwsefq3oCvEOksTT1
-         GopycpOM/cklQ/LTHEh1muV3+oOMVzEfSoGvvJv4Ru3U4u/LB4/T9qAJ4YLLwPW4Ue/8
-         rPrk5H0qkiUKIBIV69a2qR/lMwFao/YtWF4lA9x6nUTS7uxfq5rHdn7xp+Y6kKL9NVpB
-         PVEIsnBngPrU44w7/k7Wx1PcP7MbXbwj6Z6BgpLjY023SqdPl6CFwL5rqv8RBaqOXyBH
-         xhQFqMfwDr8KJY0mk2H84rIQOibGiwiXQnahX2/e9ntA9VaZ2zmj0rz5DnTVQLtu3I65
-         87Dg==
-X-Gm-Message-State: AC+VfDw9SYvv+JWIv7sOagLVF4aRMAQXkpfdkFtrZviG9ETyTmUjdZix
-        Td9dgQEUfP1U4lQlIp8kJfmgRua4COg=
-X-Google-Smtp-Source: ACHHUZ5NJsxoFQ+QHUOSXLbDWtdEVCe9u0idf96WHxkWapbtlYvlNMCQ/uznOjjy3VEkGyy+EsRzkg==
-X-Received: by 2002:a2e:7410:0:b0:2a9:b6fe:18c5 with SMTP id p16-20020a2e7410000000b002a9b6fe18c5mr5810673ljc.52.1683116925335;
-        Wed, 03 May 2023 05:28:45 -0700 (PDT)
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id b10-20020a2e988a000000b002ac77768608sm149744ljj.100.2023.05.03.05.28.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 May 2023 05:28:44 -0700 (PDT)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Hauke Mehrtens <hauke@hauke-m.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH] ARM: dts: BCM5301X: Drop "clock-names" from the SPI binding
-Date:   Wed,  3 May 2023 14:28:30 +0200
-Message-Id: <20230503122830.3200-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.35.3
+        with ESMTP id S229697AbjECMcb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 08:32:31 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40FCF10E5;
+        Wed,  3 May 2023 05:32:23 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 343CWGli085168;
+        Wed, 3 May 2023 07:32:16 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1683117136;
+        bh=5YQaPu7RI6KK7I+0pfYHmnFamQ8Gc1rTUPQG622mMOg=;
+        h=From:To:CC:Subject:Date;
+        b=shJ6OWRi9B/dkVQIHa54xr4OSXg/nfZPQXRXqGYCdlW6413PdpQcdHhtAS4qxjMvY
+         qQmHLHyVUxrcTXpgc5P0eFwLvKCDdxt0nFzCqvcy6xnhFl/wxv20ewqhb/lca6nE+y
+         +PORNY0NNk2lgdwmVm+seqd1TOEDBMFJpz7HYNCE=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 343CWGgZ064838
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 3 May 2023 07:32:16 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 3
+ May 2023 07:32:16 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 3 May 2023 07:32:16 -0500
+Received: from ula0497641.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 343CWDo8124525;
+        Wed, 3 May 2023 07:32:14 -0500
+From:   Neha Malcom Francis <n-francis@ti.com>
+To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     <n-francis@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <u-kumar1@ti.com>
+Subject: [PATCH v5 0/3] Add support for ESM
+Date:   Wed, 3 May 2023 18:02:09 +0530
+Message-ID: <20230503123212.208457-1-n-francis@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+ESM (Error Signaling Module) is a fundamental IP responsible for
+handling safety events. The driver currently present in U-Boot is
+responsible for configuring ESM. This patch series adds dt-binding and
+nodes for J721E and J7200. This goes towards end goal of having DTB sync
+with that of U-Boot as well as ensuring completeness of hardware
+description in devicetree.
 
-There is no such property in the SPI controller binding documentation.
-Also Linux driver doesn't look for it.
+Changes in v5:
+	- added esm node to k3-j721e-main.dtsi
 
-This fixes:
-arch/arm/boot/dts/bcm4708-asus-rt-ac56u.dtb: spi@18029200: Unevaluated properties are not allowed ('clock-names' was unexpected)
-        From schema: Documentation/devicetree/bindings/spi/brcm,spi-bcm-qspi.yaml
+Changes in v4:
+	- hwmon/ti,j721e-esm.yaml -> misc/ti,j721e-esm.yaml
+	- retained tag by Krzysztof for dt-binding
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- arch/arm/boot/dts/bcm5301x.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+Changes in v3:
+	- formatting changes in dt-binding
+	- modified example in dt-binding cbass_main -> bus
+	- changed subject misc -> hwmon
 
-diff --git a/arch/arm/boot/dts/bcm5301x.dtsi b/arch/arm/boot/dts/bcm5301x.dtsi
-index 2890fa3c5e67..bc36edc24510 100644
---- a/arch/arm/boot/dts/bcm5301x.dtsi
-+++ b/arch/arm/boot/dts/bcm5301x.dtsi
-@@ -335,7 +335,6 @@ spi@18029200 {
- 				  "spi_lr_session_done",
- 				  "spi_lr_overread";
- 		clocks = <&iprocmed>;
--		clock-names = "iprocmed";
- 		num-cs = <2>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
+Changes in v2:
+	- misc/esm-k3.yaml -> hwmon/ti,j721e-esm.yaml
+	- formatting changes in dt-binding
+	- modified example in dt-binding
+
+Neha Malcom Francis (3):
+  dt-bindings: misc: esm: Add ESM support for TI K3 devices
+  arm64: dts: ti: k3-j721e: Add ESM support
+  arm64: dts: ti: k3-j7200: Add ESM support
+
+ .../bindings/misc/ti,j721e-esm.yaml           | 53 +++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j7200-main.dtsi     |  6 +++
+ arch/arm64/boot/dts/ti/k3-j7200.dtsi          |  1 +
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     |  6 +++
+ arch/arm64/boot/dts/ti/k3-j721e.dtsi          |  1 +
+ 5 files changed, 67 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/misc/ti,j721e-esm.yaml
+
 -- 
-2.35.3
+2.34.1
 
