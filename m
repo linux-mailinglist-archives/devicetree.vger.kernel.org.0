@@ -2,116 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB3356F5047
-	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 08:35:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BFA56F5061
+	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 08:53:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229676AbjECGfI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 May 2023 02:35:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43690 "EHLO
+        id S229519AbjECGxS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 May 2023 02:53:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229650AbjECGfH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 02:35:07 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E27BA420B
-        for <devicetree@vger.kernel.org>; Tue,  2 May 2023 23:35:01 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-953343581a4so725677366b.3
-        for <devicetree@vger.kernel.org>; Tue, 02 May 2023 23:35:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683095700; x=1685687700;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=EMFo4LAZa4YtLPJ6qEk81O5BipagK49hgJHUBqyoSis=;
-        b=E5s1u5FxHss0P+zTalLTG8HqkFTrJ37c1di9ToPR97HaOhNLGG4OJ2wKw/5GNzX3D8
-         uilYVLByW0yUy1RYGeTHqTFX0wvSoSppKsniLBC1RvAMcw2R5ykVQUnQm7DasVi986U5
-         8d2rgkaihLrNfFxeR/NdgaHh6ItG0EQTAp9e4BSCAMuFr/1qre3nkCwsskc4BHqfeF33
-         3Hn1BBN5QCZlnbwTFX8KnIZkTuP+NeBtyyreorZHJhLyseyZlhCv+rIfH1pi9c9qRQb9
-         RlExTG9zAuI4GuzOhvBo+hK/cDAtJg69HuNdF/JOY55qxjPrHXZZdnYYr6dXTzjFhfeN
-         tZnw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683095700; x=1685687700;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EMFo4LAZa4YtLPJ6qEk81O5BipagK49hgJHUBqyoSis=;
-        b=gcP2zHANLciSyie5iblJ+1y0lKBQQ8uwk5NghIv5AqNrWz2UeWj9Urx1CULJ4y24XW
-         8VaUJzvOa/kX5pqFd0IDvqixQpoC1jPf887BVKeWmrgObeZRBJ+HZ9C2IPBy1PUkGxic
-         jzYwOnh84LLzBRbXWE2VjPx+dWn/guX3j5LkCqy2jkrl8jFbUqavymSor69RmF2z5qVQ
-         vVhOnDPy8GRrGfrWCxO5TI5v/rGD2NUcj6fYL7UCnPptjD4TzW3MgQeN1I/M4olLgFsr
-         sXSvYhYGKLWkQic5AyA7bhFvRI8r3YfIcfrQZKq4CzJLOLU00mx/IPWAeVIxOWDzi4tU
-         LqGA==
-X-Gm-Message-State: AC+VfDwYhtuqnAVmxN38yxbLnF4mm4fSQ/QYRV7jX/nFB/z7EDPKdBCi
-        0Chu5xMfjCigPqDlglnAMOf88w==
-X-Google-Smtp-Source: ACHHUZ7FG/WPl+wSn/Qk7jTI3vhfRmWf5CtCycTgE9z6uCr2Cx9bg5PwVqINYyomcMsCZmMUvyQOlA==
-X-Received: by 2002:a17:907:62aa:b0:94f:31ee:ba36 with SMTP id nd42-20020a17090762aa00b0094f31eeba36mr2236824ejc.37.1683095700184;
-        Tue, 02 May 2023 23:35:00 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:a40b:9d8:1fa0:ecc5? ([2a02:810d:15c0:828:a40b:9d8:1fa0:ecc5])
-        by smtp.gmail.com with ESMTPSA id mm26-20020a170906cc5a00b00961828830d9sm3753484ejb.35.2023.05.02.23.34.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 May 2023 23:34:59 -0700 (PDT)
-Message-ID: <447ccdf7-8643-99c8-7eed-64333ebf2d95@linaro.org>
-Date:   Wed, 3 May 2023 08:34:58 +0200
+        with ESMTP id S229441AbjECGxR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 02:53:17 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 778161BEC;
+        Tue,  2 May 2023 23:53:15 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3436r5Xt015957;
+        Wed, 3 May 2023 01:53:05 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1683096785;
+        bh=VurFgGySbQkfcSExMQrzeXBMZ00w2zK+5oK6ceDKM9U=;
+        h=From:To:CC:Subject:Date;
+        b=bsHwi9PZdKcJG0N89hAdecEHuagUlb7Ygf/lN1SE0R3CxKDuhBaurpWTEWBnXVnnP
+         gMtOJz3JUr/TXpnqIR4RVikXKdEO9BIU+1j+Rs4D0RMhUzhMPTdKITXVLjBVEDUhu5
+         s26aXFznWdCm0FqZgr7W2NLnzS6zXRO+5ZNA8SvY=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3436r5q9126803
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 3 May 2023 01:53:05 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 3
+ May 2023 01:53:05 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 3 May 2023 01:53:05 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3436r4iG083057;
+        Wed, 3 May 2023 01:53:04 -0500
+From:   Vaishnav Achath <vaishnav.a@ti.com>
+To:     <peter.ujfalusi@gmail.com>, <vkoul@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
+CC:     <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <j-choudhary@ti.com>,
+        <u-kumar1@ti.com>, <vigneshr@ti.com>, <vaishnav.a@ti.com>
+Subject: [PATCH 1/2] dt-bindings: dma: ti: Add J721S2 BCDMA
+Date:   Wed, 3 May 2023 12:23:02 +0530
+Message-ID: <20230503065303.16674-1-vaishnav.a@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH v1 2/4] thermal/drivers/tsens: Add IPQ9574 support
-Content-Language: en-US
-To:     Varadarajan Narayanan <quic_varada@quicinc.com>, amitk@kernel.org,
-        thara.gopinath@gmail.com, agross@kernel.org, andersson@kernel.org,
-        konrad.dybcio@linaro.org, rafael@kernel.org,
-        daniel.lezcano@linaro.org, rui.zhang@intel.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-pm@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Praveenkumar I <quic_ipkumar@quicinc.com>
-References: <cover.1683027347.git.quic_varada@quicinc.com>
- <760555de9101e19a2301ad676dfe687ffb499622.1683027347.git.quic_varada@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <760555de9101e19a2301ad676dfe687ffb499622.1683027347.git.quic_varada@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/05/2023 06:46, Varadarajan Narayanan wrote:
-> From: Praveenkumar I <quic_ipkumar@quicinc.com>
-> 
-> Qualcomm IPQ9574 uses tsens v2.3.1 IP, which is similar to IPQ8074 tsens.
-> Hence reusing the data_ipq8074 for IPQ9574.
-> 
-> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> ---
->  drivers/thermal/qcom/tsens.c | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/drivers/thermal/qcom/tsens.c b/drivers/thermal/qcom/tsens.c
-> index d321812..e752b7d 100644
-> --- a/drivers/thermal/qcom/tsens.c
-> +++ b/drivers/thermal/qcom/tsens.c
-> @@ -1093,6 +1093,9 @@ static const struct of_device_id tsens_table[] = {
->  		.compatible = "qcom,ipq8074-tsens",
->  		.data = &data_ipq8074,
->  	}, {
-> +		.compatible = "qcom,ipq9574-tsens",
-> +		.data = &data_ipq8074,
+Add bindings for J721S2 BCDMA instance dedicated for Camera
+Serial Interface. Unlike AM62A CSI BCDMA, this instance has RX
+and TX channels but lacks block copy channels.
 
-This is a friendly reminder during the review process.
+Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
+---
+ .../devicetree/bindings/dma/ti/k3-bcdma.yaml  | 21 +++++++++++++++++++
+ 1 file changed, 21 insertions(+)
 
-It seems my previous comments were not fully addressed. Maybe my
-feedback got lost between the quotes, maybe you just forgot to apply it.
-Please go back to the previous discussion and either implement all
-requested changes or keep discussing them.
-
-Thank you.
-
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml b/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
+index beecfe7a1732..5ca9581a66f4 100644
+--- a/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
++++ b/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
+@@ -33,6 +33,7 @@ properties:
+     enum:
+       - ti,am62a-dmss-bcdma-csirx
+       - ti,am64-dmss-bcdma
++      - ti,j721s2-dmss-bcdma-csi
+ 
+   reg:
+     minItems: 3
+@@ -150,7 +151,27 @@ allOf:
+ 
+       required:
+         - power-domains
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: ti,j721s2-dmss-bcdma-csi
++    then:
++      properties:
++        ti,sci-rm-range-bchan: false
++
++        reg:
++          maxItems: 4
+ 
++        reg-names:
++          items:
++            - const: gcfg
++            - const: rchanrt
++            - const: tchanrt
++            - const: ringrt
++
++      required:
++        - ti,sci-rm-range-tchan
+     else:
+       properties:
+         reg:
+-- 
+2.17.1
 
