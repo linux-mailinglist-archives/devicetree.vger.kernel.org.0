@@ -2,194 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 55A766F50FD
-	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 09:16:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A414A6F5166
+	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 09:28:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229757AbjECHQM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 May 2023 03:16:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59818 "EHLO
+        id S229711AbjECH2W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 May 2023 03:28:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229693AbjECHQK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 03:16:10 -0400
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2119.outbound.protection.outlook.com [40.107.93.119])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCC82422D;
-        Wed,  3 May 2023 00:16:08 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=K/qQft16kzefIQ8LUGtVbLOaguitnUM+Uckb4BrJQkuiXyrmGqMV6+Jk3MEJ9CgmaGbkys5ttDSQsK2ubmT62Y/JdOaXlPBOV7F5q1MRfuJ/k9RxOGPQAjPL/2+ykRd3WErlcfAXp2bod/FMZ9ZYhvHddqSJrBK8/R7bOduMk6yXuxfDYDgm8VxbMdm9Bv1L0rlXhjLlRQN9vFQJJ3/Igsymin2QgkZqBqRR1wDnNQE90EGRkHFHlcdVjIHPG2C8PNrQzY1xczgGHACT+gID10UuhIR7yA8qcbLwAvgHtNdRRxhKRagE38t1nxuqdv3PDtaYW7R312lZZFmNnlwN9A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=m3KBTSJBb+abUahNgLzos10712LFwdZDW+Eus5T8OOk=;
- b=HL88NSKeJfsTXb7y/iqz21nyWoqIWopLz4t761XffxiM5Hk/v5ZDHY/CLqiTrjY4EJSYAWG4hLMC1+UTgmpYlWR39nwaCmMyHb/jWceUk+iF+HXCidCrYMwGdldHr4v6onuFeNvCHPJB5Tqaw/zI9EHSVbYi0Heos35qiRsmPW1w/Y/JzxYHIDIPFyyLgLmlDsmj3LVghCn2w/g0/QkVC2QWQl17CIZu86/x1R4GgYA5ORiTsVTbYP+G7dOiZIR9YEpCtv6bp+qp5MSHlxY8MNV/lwg/K8tg4GQI0MGMiKyu6g2BTI/vR8n77203UUTf8nnEmhSS1eFoIRNtQOGzdg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=corigine.com; dmarc=pass action=none header.from=corigine.com;
- dkim=pass header.d=corigine.com; arc=none
+        with ESMTP id S229766AbjECH1r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 03:27:47 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 024D249F9;
+        Wed,  3 May 2023 00:27:18 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-959a3e2dd27so926788066b.3;
+        Wed, 03 May 2023 00:27:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=corigine.onmicrosoft.com; s=selector2-corigine-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=m3KBTSJBb+abUahNgLzos10712LFwdZDW+Eus5T8OOk=;
- b=FEbXawT0/NnhvlGDJXtqijeXNJ7vVQ9shy6ZKOsWattM0w+Xb/B29/HVGDovc+TnOOu7y7N5z/9NMbP3h4JapTA+8vcNfWoz+LZ6oaczNBMF9hNhTg6hkNWT5cJXv0Iv9EnrUYE1lgMEh/CaP0gQksrx9HjnygcBvTZNagf+/0Q=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=corigine.com;
-Received: from PH0PR13MB4842.namprd13.prod.outlook.com (2603:10b6:510:78::6)
- by MW5PR13MB5972.namprd13.prod.outlook.com (2603:10b6:303:1cd::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6340.31; Wed, 3 May
- 2023 07:16:05 +0000
-Received: from PH0PR13MB4842.namprd13.prod.outlook.com
- ([fe80::f416:544d:18b7:bb34]) by PH0PR13MB4842.namprd13.prod.outlook.com
- ([fe80::f416:544d:18b7:bb34%5]) with mapi id 15.20.6340.031; Wed, 3 May 2023
- 07:16:05 +0000
-Date:   Wed, 3 May 2023 09:15:57 +0200
-From:   Simon Horman <simon.horman@corigine.com>
-To:     Justin Chen <justinpopo6@gmail.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        bcm-kernel-feedback-list@broadcom.com, justin.chen@broadcom.com,
-        f.fainelli@gmail.com, davem@davemloft.net, edumazet@google.com,
-        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, opendmb@gmail.com,
-        andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
-        richardcochran@gmail.com, sumit.semwal@linaro.org,
-        christian.koenig@amd.com
-Subject: Re: [PATCH v2 net-next 3/6] net: bcmasp: Add support for ASP2.0
- Ethernet controller
-Message-ID: <ZFIKLRqFaJSHEIwp@corigine.com>
-References: <1682535272-32249-1-git-send-email-justinpopo6@gmail.com>
- <1682535272-32249-4-git-send-email-justinpopo6@gmail.com>
- <ZFFn3UdlapiTlCam@corigine.com>
- <CAJx26kV9E7M5ULoPqT8eJ5byaUEZDtW6v25f3DT04xs4NGcd6g@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAJx26kV9E7M5ULoPqT8eJ5byaUEZDtW6v25f3DT04xs4NGcd6g@mail.gmail.com>
-X-ClientProxiedBy: AM4PR0501CA0043.eurprd05.prod.outlook.com
- (2603:10a6:200:68::11) To PH0PR13MB4842.namprd13.prod.outlook.com
- (2603:10b6:510:78::6)
+        d=gmail.com; s=20221208; t=1683098836; x=1685690836;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=kwi9ORlZc7hKI5IKGQjv7FwDWDdxvIkp9fio8PSzkaI=;
+        b=MDztZQnlaHhSODJX4osvghLx5ApZw4yayLTFza8uZUYiRFNvX7qw9timaQ3BH+OsAf
+         330kd2SVJZscnXbTTKX8hsZh6bO1rVSifGDFSsoaa64G4m7TxDYJiSrppODqTlcmYZGT
+         14mjI3uB9d787JBSLcOHsf8YiI7G2FpRWky+BU+DYO+MrfpgSstcRpHAcV5MixIrkK6Y
+         3CttbqMBotM6oN7KBtR+bhC67JruKko7FDxXHmteLP+pANOvP8S/cuiRH7Qb1GfgvHS/
+         JqhUCG8hfGQGAIOyBD8cTFU/ElEyf04XPhGEC2PXA9Tj2k5YK1QjY/kYkavfAQy3Stbl
+         Mh9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683098836; x=1685690836;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kwi9ORlZc7hKI5IKGQjv7FwDWDdxvIkp9fio8PSzkaI=;
+        b=MbPDzxu0XWLO9B0MqFRQZ4AxmhB8yPUbJzD0zZ8/caRsKKx8c66T9MF7WowBTkcUjZ
+         66wpEnFtDC6frEyuHhQUVfpopeT1DxxU9gMdxKsP/lDHDs0l0havJ2SUgE/cFerru5n5
+         bbMCMgX+lRxgHt/lFEapM9meO6ATRPqcWBQSoD06IuTWrzHcoETIkcxu0UH5dMgMyKh7
+         2OUhRGecHuEDR43w+w0tHVTiyfI9065sJrRgb2r4/rHap8FfszFEAd67slQMMvcLGq3L
+         UdQjH/cMmRWToCz1GbMahS/eOba0wFx+1JbzPBtGilInOE2pUQCQPP/FI5Idq9e6Bo9s
+         j+EQ==
+X-Gm-Message-State: AC+VfDxnEfxREddpiB67tM4wLQXvEb1AlYbjJvSTnQg4eyFzHhAxOcoD
+        Q8w+WRbi3/uJRQaQzM4aBxY=
+X-Google-Smtp-Source: ACHHUZ7BdwcbgAAtyizy0n7UtpDwVm66pU7k/DmSvFnp2U3uXMUoXj8ns5pRVoywu5iJP0770DMYyQ==
+X-Received: by 2002:a17:907:a088:b0:957:758e:df57 with SMTP id hu8-20020a170907a08800b00957758edf57mr2595941ejc.65.1683098836130;
+        Wed, 03 May 2023 00:27:16 -0700 (PDT)
+Received: from localhost.localdomain ([95.183.227.33])
+        by smtp.gmail.com with ESMTPSA id t26-20020a1709064f1a00b0094f34fe27c6sm17072009eju.170.2023.05.03.00.27.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 May 2023 00:27:15 -0700 (PDT)
+From:   Yassine Oudjana <yassine.oudjana@gmail.com>
+X-Google-Original-From: Yassine Oudjana <y.oudjana@protonmail.com>
+To:     Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+        "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Hans Verkuil <hansverk@cisco.com>
+Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
+        Yassine Oudjana <yassine.oudjana@gmail.com>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/3] media: camss: Link CAMSS power domain on MSM8996
+Date:   Wed,  3 May 2023 10:25:40 +0300
+Message-Id: <20230503072543.4837-1-y.oudjana@protonmail.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH0PR13MB4842:EE_|MW5PR13MB5972:EE_
-X-MS-Office365-Filtering-Correlation-Id: 36667392-9ee6-4680-c186-08db4ba6424e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: S7alDoF2QwjedV3SHYym86nXj+HDQheTO78ks16UeglLOdiC4y4HHgAYVVNqS2IhxAprt/WO+iDS5fUFoFoeLqI+AFx9Sp0jfp8VKu1SBbF4ms9x97RMb6kv7i8KUSWQJi4YoIfgWKM5duieqIHCPtabMpTgPSWwJBua5yuJd9Zk9yh7LM4QNnnYLcCZJiGff20uU+zRe6QYY4ybOl3uw0yZD+TDDkSQ/78tjlcTulLeuwNN3o+n5NBaNdMs7pMKf9xmjPGFAL7ErYWVHDfqhkdMw0kIpllhtjg0kZShnjuWdvdWvysB8y5iAo1r1iweYmA73roon13ICWIPFjm7MGd3Y/jQyQONWXZt+DY+ntF+XcbhPGtOKLkcy5U6H+yqte4B2av6PPrq75eu0Dnrihw3lotewLxVROcevyqzWcUrPnLDcQBVGtCv0zf9trX8daZu5ocrlerKruWrGsqsjrXagO32GpqNG1mz+Jx3lb7B1IGsosXR2mBpF5e8xsuOU6GfKBIhsNNIMJ4CbN5pk3mKscO8pz7FyZuINKDJKmb7efW22qw/OrxN4VXDiEEW
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR13MB4842.namprd13.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(366004)(346002)(136003)(396003)(39840400004)(376002)(451199021)(478600001)(83380400001)(36756003)(6512007)(53546011)(6486002)(186003)(6506007)(86362001)(38100700002)(2616005)(6666004)(66946007)(316002)(4326008)(6916009)(66556008)(66476007)(8676002)(41300700001)(8936002)(7416002)(44832011)(2906002)(5660300002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Wms2cXpHNG9Fbk1ycEwwdTlBSGlQN2VuT0Fia1hIaEN5V0U5cnREK2dVajEw?=
- =?utf-8?B?WTh3cGlZWXRIT0dmbGFJelYwbkw5YXQ5TUJLam5EZGJLUi84U3ZFTXNnN1Ey?=
- =?utf-8?B?cjRFZHY0MFJTUHNVaDc2STVrVUdzL3lGaHBHM1p5TXNyWmdyc3hicW1Ta3ZC?=
- =?utf-8?B?Y3hYZDBYR3A4WFJNTXpmSFlveFNsdXoxSitCWFNnb2RXU001UmlPTnQybSt3?=
- =?utf-8?B?Zk04REpTMXp4TjVlRU1XcG9yOG5xTTlTUFMzOVpIL2lOcUJ0RWdCTDBlNmQ2?=
- =?utf-8?B?OFZldFJjVE1nR2lWdlZlZTV1NzUvVlROeGxBYTM5Z0dWYisxeWh0ay9pbjBK?=
- =?utf-8?B?b3haQ1dzRGQ1elhza25QUE1LcWwwampRZTFWOTV0dlRIc0RFN3p4eWQxWFNU?=
- =?utf-8?B?eGhGSVo0eERBR2cwNlk2L0hsNTR4S0JrWit4OFh3VUZjR3FZNk05SFdJdUNo?=
- =?utf-8?B?UTFYaVZYZFFxb1JyRGhFNVRDYVpFTndOMjdQS2Z5MHc5MlViSnRleTltUGNx?=
- =?utf-8?B?Vk13ZmMvYVdacjJSS2U3T1NITis0ZkEwNjhZcjRxZS9wVTQyZEE4SXBvM3NU?=
- =?utf-8?B?WnMxZTNFd3RZR09VQWE0dm1IY1B2UzdYN1hXM0dJYU1CYkVWeW42WEdZVjlk?=
- =?utf-8?B?SWIrT24xamZhZWR5c3p4YVNVaU0zTGttanpCOFNwK0VvalJzUnR0MjgxZ0po?=
- =?utf-8?B?WW00SnlFQm9CeU41eFFGdnR3aW9QazV1aXZPanUrNzBHeGFPczV5TGxhcWVx?=
- =?utf-8?B?Q2hlc2d3THRvMjZCRFNTYVNJZzdYREhwYjVpSGxpM3F2d2NPak5oVDJHclM2?=
- =?utf-8?B?S2x5Z1FzekowZEFwcDEveDRhaFJQLytTRklQaWY2OTlwSlo4ejk0RUxoYURw?=
- =?utf-8?B?dDUwb3RwTE9zT21tMjRVOFdVM2paWUVEcmdlZUQ3QWcwK3hXV1JBYUh1dnZI?=
- =?utf-8?B?OVd6Z05OcGRIMjZRN1NJZFlTc0EyZ3drblVPR1Y2dXcvU2ZjdXRhQzE4dzMz?=
- =?utf-8?B?aWZXYk45UUorS0hIL3d6YW1yaEtKc3RWdFFEdFcrTTNmUE9KaU9CY3VtcitH?=
- =?utf-8?B?bFQyaWQyZnBSWXFHWTQ2cVNxRjFBWWVlYmhIRy9rOUNoQVYxS0IwVVZqeVVC?=
- =?utf-8?B?NXhqbjFPV3Z1RUJTS2xYOWZNb29xc2xJdXJpdHREVzc2ck1CNUszQXJKbFcz?=
- =?utf-8?B?Vjk4Ymk5TUdPWXI2OUNybTBobjRkemZtQ2lwVVF1YVpRRXNrVytCNXl1M2lT?=
- =?utf-8?B?ZDd5T253RHRLbUlpOTRjbTdMVDNBUHAvR0hlRkNvRHpWTUMwM1YvR0FnVHZw?=
- =?utf-8?B?ZFFtcFNnRTdsV3V2VnJKeGgxSmNCVnJvTzVEa2xHdU1PaWZhVHZWUjh1V1RC?=
- =?utf-8?B?OXlhWGFTeXk3QVFDYlFyVkI5c0xZUmhvZzd3SXQyNDVrSGs3VGJhaVZ0OEd2?=
- =?utf-8?B?WHRJdjRpMHlSd0JONlY2cklLM3V2ZklQZzF5YzF6SE5oY3VtMTROalFIZFhh?=
- =?utf-8?B?ZW43bzdFTndZZmlJNCtLM1NZemNtZWN5M2tjRXVCa3pUcmE0NUN1UENnbkh5?=
- =?utf-8?B?aXJiUkllSlRXcDBuYVBGUEpSTCtvd0NpSW1ENGVQWEdtYWZ0VjF3d1d0M0dN?=
- =?utf-8?B?WjlQWEJiZmFJUjJoK2xuQzhGYklocVNIVmZZZW1CbmxtUEdJTUUwSkF6YmM1?=
- =?utf-8?B?OXhKT2pRNHVndVlVOUxaaHk0a1F2QWlOTEZNYjV0TzVuTGlHYkJONTMrcWFs?=
- =?utf-8?B?NlFTVjhCU0Z3SnZMUk53YWtRM1RFUGRoNko3RGtQUnk2MnB1cnhuZ1FCUVVz?=
- =?utf-8?B?R0crYWRMd0xGVmVIb2pOcy9QMDhVZWlDKzJZeHVwaHRPNHdQTExmNXViTitl?=
- =?utf-8?B?d3F1eC95RE4vd2dKNW1SR1gxM2d3b0VBVWoxZU44N01VM0gyNHlrUmlCM3hY?=
- =?utf-8?B?ZVRDcjN5NDJ4cDNjSWxYUlR1QXRsSGUvZmFCU3drQm0zMHI4U1lNc0N3R0cv?=
- =?utf-8?B?ZW9OMXJybGdDZGNlNkR1dmY2WVI5eUg0aFZwTTlUaVpUNXZTZGI4SGUwQTRo?=
- =?utf-8?B?UDVUTjR5QXVIM3pzcFQxQm5hVndhNyt0Y3dDb1pzRWhaZ25ZVHFheEhQU011?=
- =?utf-8?B?SC9BQ3M0bXVmYXJmbi81cllZbW13SkUva2FNM1lwcEZsQ0tqSkhGeGR1dDlD?=
- =?utf-8?B?V3BFNnRlWXNZNzNXMUI4OUE3VDJKdVA2NkFrbXJ1WnBSbG9ibU1CVVZvaVds?=
- =?utf-8?B?bkI5Um5hRFROTEsxQm4yYldvL0VnPT0=?=
-X-OriginatorOrg: corigine.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 36667392-9ee6-4680-c186-08db4ba6424e
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR13MB4842.namprd13.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 May 2023 07:16:05.5082
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: fe128f2c-073b-4c20-818e-7246a585940c
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Xg+Ir7FE+BGLC3j5W8ZwwwS1wTTev3pAr+MzqvBFu2veFyyppeAgT8HDC06OLHgLz/7TXq3rqSKek5iU2P3h5c/wCdSuWPYTfk+tGAHl2b8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW5PR13MB5972
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 02, 2023 at 02:26:53PM -0700, Justin Chen wrote:
-> On Tue, May 2, 2023 at 12:44 PM Simon Horman <simon.horman@corigine.com> wrote:
-> >
-> > On Wed, Apr 26, 2023 at 11:54:29AM -0700, Justin Chen wrote:
+From: Yassine Oudjana <y.oudjana@protonmail.com>
 
+CAMSS on MSM8996 has been broken since commit
+46cc03175498 (media: camss: Split power domain management, 2022-07-04).
+
+This would happen when trying to start streaming:
+
+[  199.097810] ------------[ cut here ]------------
+[  199.097893] camss_top_ahb_clk status stuck at 'off'
+[  199.097913] WARNING: CPU: 3 PID: 728 at drivers/clk/qcom/clk-branch.c:91 clk_branch_wait+0x140/0x160
 ...
+[  199.100064]  clk_branch_wait+0x140/0x160
+[  199.100112]  clk_branch2_enable+0x30/0x40
+[  199.100159]  clk_core_enable+0x6c/0xb0
+[  199.100211]  clk_enable+0x2c/0x50
+[  199.100257]  camss_enable_clocks+0x94/0xe0 [qcom_camss]
+[  199.100342]  csiphy_set_power+0x154/0x2a0 [qcom_camss]
+...
+[  199.101594] ---[ end trace 0000000000000000 ]---
+[  199.101736] qcom-camss a34000.camss: clock enable failed: -16
+[  199.101813] qcom-camss a34000.camss: Failed to power up pipeline: -16
 
-> > > +static void bcmasp_update_mib_counters(struct bcmasp_intf *priv)
-> > > +{
-> > > +     int i, j = 0;
-> > > +
-> > > +     for (i = 0; i < BCMASP_STATS_LEN; i++) {
-> > > +             const struct bcmasp_stats *s;
-> > > +             u16 offset = 0;
-> > > +             u32 val = 0;
-> > > +             char *p;
-> > > +
-> > > +             s = &bcmasp_gstrings_stats[i];
-> > > +             switch (s->type) {
-> > > +             case BCMASP_STAT_NETDEV:
-> > > +             case BCMASP_STAT_SOFT:
-> > > +                     continue;
-> > > +             case BCMASP_STAT_RUNT:
-> > > +                     offset += BCMASP_STAT_OFFSET;
-> > > +                     fallthrough;
-> > > +             case BCMASP_STAT_MIB_TX:
-> > > +                     offset += BCMASP_STAT_OFFSET;
-> > > +                     fallthrough;
-> > > +             case BCMASP_STAT_MIB_RX:
-> > > +                     val = umac_rl(priv, UMC_MIB_START + j + offset);
-> > > +                     offset = 0;     /* Reset Offset */
-> > > +                     break;
-> > > +             case BCMASP_STAT_RX_EDPKT:
-> > > +                     val = rx_edpkt_core_rl(priv->parent, s->reg_offset);
-> > > +                     break;
-> > > +             case BCMASP_STAT_RX_CTRL:
-> > > +                     offset = bcmasp_stat_fixup_offset(priv, s);
-> > > +                     if (offset != ASP_RX_CTRL_FB_FILT_OUT_FRAME_COUNT)
-> > > +                             offset += sizeof(u32) * priv->port;
-> > > +                     val = rx_ctrl_core_rl(priv->parent, offset);
-> > > +                     break;
-> > > +             }
-> > > +
-> > > +             j += s->stat_sizeof;
-> > > +             p = (char *)priv + s->stat_offset;
-> > > +             *(u32 *)p = val;
-> >
-> > Is p always 32bit aligned?
-> >
-> 
-> Nope. I can make sure it is 32 bit aligned.
+Turns out camss_top_ahb_clk needs the CAMSS power domain to be on. Before the change,
+VFE power domains were enabled before CSIPHY enabled clocks, and since the CAMSS power
+domain was their parent, it got enabled as well. With the VFE power domains now enabled
+after CSIPHY is powered on, the CAMSS power domain remains off and things go south when
+CSIPHY tries to enable camss_top_ahb_clk.
 
-I'm not sure if it helps, but you could also consider put_unaligned().
+Link the CAMSS power domain in camss_configure_pd to make sure it gets enabled before
+CSIPHY tries to enable clocks.
 
-> Acked, the other comments. Will submit v3 when net-next window is
-> open. Thank you for the review.
+Yassine Oudjana (3):
+  media: dt-bindings: media: camss: qcom,msm8996-camss: Add CAMSS power
+    domain and power-domain-names
+  arm64: dts: qcom: msm8996: Add CAMSS power domain and
+    power-domain-names to CAMSS
+  media: camss: Link CAMSS power domain
 
-Likewise, thanks.
+ .../bindings/media/qcom,msm8996-camss.yaml          | 13 ++++++++++++-
+ arch/arm64/boot/dts/qcom/msm8996.dtsi               |  4 +++-
+ drivers/media/platform/qcom/camss/camss.c           |  9 ++++++++-
+ 3 files changed, 23 insertions(+), 3 deletions(-)
+
+-- 
+2.40.0
+
