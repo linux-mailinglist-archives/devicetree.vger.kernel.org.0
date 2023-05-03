@@ -2,73 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 443976F551B
-	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 11:46:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F7936F5531
+	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 11:49:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229553AbjECJqE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 May 2023 05:46:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43156 "EHLO
+        id S229633AbjECJte (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 May 2023 05:49:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229983AbjECJpf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 05:45:35 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30EC52D69;
-        Wed,  3 May 2023 02:44:54 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2aa39ce5d26so50335311fa.1;
-        Wed, 03 May 2023 02:44:54 -0700 (PDT)
+        with ESMTP id S229796AbjECJtA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 05:49:00 -0400
+Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com [IPv6:2607:f8b0:4864:20::735])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DAB35B92;
+        Wed,  3 May 2023 02:48:14 -0700 (PDT)
+Received: by mail-qk1-x735.google.com with SMTP id af79cd13be357-74db3642400so448558985a.2;
+        Wed, 03 May 2023 02:48:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683107086; x=1685699086;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ojEP9jyPYV0kD4k17U7z2zy6rqymh0kERFtXzzcztIU=;
-        b=Zv0OMcx+3tE1eL/oKZ1vLmKsrOS70sB8Y3JKt5oTugKAIGzBCrXdxXrfRw2nETQDRj
-         yn0u9pEABmPNFKhaIU9Vi/YG66R5ef71eDrHqFYTV2ojm+5qBD010v0zi+tAoHCi/hc6
-         +Lumqk1EW1BrS45MK4kLp3aH71ffjST5qHZ4KbxSKIV0UoZUSlAfsBeEFaq+NCN9wx9W
-         YsIfcyupolcFlkQHyyHO7Iwm8MuJUHranqQrhWldjODlf9DBi1FY9Ip2KHU63zro9Xbb
-         WSvIXUGqibhT+TzH38zCfWekFe0ve4GINNJYO24dH7YS86neAINd2cQbP0ffExyQudQO
-         UBFQ==
+        d=gmail.com; s=20221208; t=1683107293; x=1685699293;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tLkQD32F3IyzI9nuizEgzw57kW3UmWyAr9AlLHhtw/w=;
+        b=EzxTxtGSL3zdYaLaEhs72pGdeB0Zra/NxBtuqx7f8JwACc+XbqYDu37vlb6u8y2ohO
+         qFcW7MytFMXf+78FAiD9S0g4DGsNZy72i4FbVuz35UOrbuwStgOCmqwrj4VcNyr5DKWD
+         GdYS3KBu1ib4z11kTk8ZXXSNDyejh6T0UTLt2HsiKQf3xBZdYVJGS5GPCR7aTbCXS6AL
+         rfW8XO2hv5VC4eItvnc2zXcZIZtMlIxCt/7kKRh7pGOr71A6bBmnfp854IRTfyIWs1La
+         dKT3bN4+F73RsM1MnR5CFo/fpM7zEk9ALtzvcZJDKxfYq/oQKvW0iC5wq++VrhEdy0fs
+         gDvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683107086; x=1685699086;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ojEP9jyPYV0kD4k17U7z2zy6rqymh0kERFtXzzcztIU=;
-        b=ZO+xDYc+bmJLTTudcI7eCv9/oI1a1zjxPaeG/WiTfbYgE+Z0jh5dO+dRScJXTCnora
-         WX0WmCwkjFR1QhKYzk6+/mk5SNnnp2EeN5+Ec+mjTVOaXk1ehkuTVlJLevGW0PQK7/ZK
-         4kLTNEDELwcQQ+yTAWHkV6tXuq29p84aiTlMZZKs1+eYU92OZu77AejaGBxBgQ+NdaGS
-         LqurSROq9/FtTGRG5PxqaoqO8FnOZ51lI46SIU3TUmnp7mhnK0jQX9PNSrXW4305vzw+
-         Piz/PIKr9Cq9mTXLz0y5wClKJ/DB9bGW2XYDIjQMNa7B58FT/IoZkX0eCSUgGiw/NVWO
-         VQXQ==
-X-Gm-Message-State: AC+VfDwAJ/jXi663xn+2LxWg5POkeudAomgx1kpoH4EogXmfvTZ3Annx
-        5UEj12OqtTdIHeLn7mG7AGQ=
-X-Google-Smtp-Source: ACHHUZ7pgzWt3EBF0ftVh/qjbv7O9HsTVOsdlQkINcPMbcunzFiEfvfGCfeZQmH98HcoLckbOlS1MA==
-X-Received: by 2002:a2e:870a:0:b0:2a8:b579:225b with SMTP id m10-20020a2e870a000000b002a8b579225bmr5715324lji.40.1683107085468;
-        Wed, 03 May 2023 02:44:45 -0700 (PDT)
-Received: from fedora (62-78-225-252.bb.dnainternet.fi. [62.78.225.252])
-        by smtp.gmail.com with ESMTPSA id z23-20020a2e8857000000b002a8c271de33sm5778594ljj.67.2023.05.03.02.44.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 May 2023 02:44:44 -0700 (PDT)
-Date:   Wed, 3 May 2023 12:44:29 +0300
-From:   Matti Vaittinen <mazziesaccount@gmail.com>
-To:     Matti Vaittinen <mazziesaccount@gmail.com>,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matti Vaittinen <mazziesaccount@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Shreeya Patel <shreeya.patel@collabora.com>,
-        Zhigang Shi <Zhigang.Shi@liteon.com>,
-        Paul Gazzillo <paul@pgazz.com>,
-        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v4 0/5] Support ROHM BU27008 RGB sensor
-Message-ID: <cover.1683105758.git.mazziesaccount@gmail.com>
+        d=1e100.net; s=20221208; t=1683107293; x=1685699293;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=tLkQD32F3IyzI9nuizEgzw57kW3UmWyAr9AlLHhtw/w=;
+        b=OaUOjUHzaDjm5oAK+CTaeE0MXMYZ/KCQil9Z7HWdqC7Lt4/IW7sycwz0XQRBY/8Dne
+         8y5KMFOZbrWFDb+u2JmSl/vV6YX84vYGkF2U7zniPHLSX6wz3hQcLdT10v31GNiyEZCh
+         EPPxrwb/s3QfaeLR4YEHDRSU4blc3zM72s3zAUKcx3rwON5LpvoPu4wedDYAUev9hH6O
+         t7wMzj5TFehb3GphonZaAurWehmfgRTxkpIVV4rQ9/2v2AALLNB2xkkrKkcGge2qNElj
+         CM2XPeSE63d+h8kSus4s/I4JJr/07hI5qrw/KNYnvTGzrL2AIcGz2I4xk1NzMD0i3HwA
+         gksg==
+X-Gm-Message-State: AC+VfDzJsYsd4Hok4KC7stH7zNF9SMnVrzSg8QjtkamTz0vidZ5LWlkf
+        IO66+J+a9KtrxwB+czvPmfpkp8uBu9L7A8gsYUo=
+X-Google-Smtp-Source: ACHHUZ4Q5WQUaumtaNYI49nhQWXJyCnvaZUIKU+GwPX9rXu7Tuv0i4XSm6dxaPFhw0f4LYxtCet8Vcp57kX3RfIVqac=
+X-Received: by 2002:a05:6214:5012:b0:5ef:45a7:a3c0 with SMTP id
+ jo18-20020a056214501200b005ef45a7a3c0mr10842556qvb.27.1683107293366; Wed, 03
+ May 2023 02:48:13 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="P6C63pZ7fe5zi9Lk"
-Content-Disposition: inline
+References: <1683092380-29551-1-git-send-email-quic_rohiagar@quicinc.com> <1683092380-29551-4-git-send-email-quic_rohiagar@quicinc.com>
+In-Reply-To: <1683092380-29551-4-git-send-email-quic_rohiagar@quicinc.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Wed, 3 May 2023 12:47:37 +0300
+Message-ID: <CAHp75Ve0FqX7=x3B5eaCfj0AE5m1qMXGrYzLoHzqbLY7gdOSOg@mail.gmail.com>
+Subject: Re: [PATCH v5 3/3] pinctrl: qcom: Add SDX75 pincontrol driver
+To:     Rohit Agarwal <quic_rohiagar@quicinc.com>
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        linus.walleij@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, richardcochran@gmail.com,
+        manivannan.sadhasivam@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -79,177 +72,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, May 3, 2023 at 8:39=E2=80=AFAM Rohit Agarwal <quic_rohiagar@quicinc=
+.com> wrote:
+>
+> Add initial Qualcomm SDX75 pinctrl driver to support pin configuration
+> with pinctrl framework for SDX75 SoC.
+> While at it, reordering the SDX65 entry.
 
---P6C63pZ7fe5zi9Lk
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+...
 
-Add support for ROHM BU27008 RGB sensor.
+> +#define FUNCTION(n)                                                    \
+> +       [msm_mux_##n] =3D {                                              =
+ \
+> +                       .func =3D PINCTRL_PINFUNCTION(#n,                =
+ \
+> +                                       n##_groups,                     \
+> +                                       ARRAY_SIZE(n##_groups))         \
+> +                       }
 
-The ROHM BU27008 is a sensor with 5 photodiodes (red, green, blue, clear
-and IR) with four configurable channels. Red and green being always
-available and two out of the rest three (blue, clear, IR) can be
-selected to be simultaneously measured. Typical application is adjusting
-LCD backlight of TVs, mobile phones and tablet PCs.
+Or even define
 
-This series supports reading the RGBC and IR channels using IIO
-framework. However, only two of the BC+IR can be enabled at the same
-time. Series adds also support for scale and integration time
-configuration, where scale consists of impact of both the integration
-time and hardware gain. The gain and time support is backed by the newly
-introduced IIO GTS helper. This series depends on GTS helper patches
-added in BU27034 support series which is already merged in iio/togreg
-which this series is based on.
+  #define MSM_PIN_FUNCTION(fname) \
+      [msm_mux_##fname] =3D PINCTRL_PINFUNCTION(...)
 
-The hardware allows configuring gain setting by writing a 5-bit gain
-selector value to a register. Part of the gain setting is common for all
-channels (RGBC + IR) but part of the selector value can be set
-separately for RGBC and IR:
+in the header for all MSM related controllers.
 
-MODE_CONTROL2 REG:
-bit 7	    6	    5	    4	    3	    2	    1	    0
------------------------------------------------------------------
-|	RGB	selector		|
-+---------------------------------------+
------------------------------------------------------------------
-| high bits IR	|			| low bits IR selector	|
-+---------------+			+-----------------------+
-
-In theory it would be possible to set certain separate gain values for
-RGBC and IR channels, but this gets pretty confusing because there are a
-few 'unsupported' selector values. If only RGBC or IR was set, some
-extra handling should be done to prevent the other channel from getting
-unsupported value due to change in high-bits. Furthermore, allowing the
-channels to be set different gain values (in some cases when gains are
-such the HW supports it) would make the cases where also integration
-time is changed to achieve correct scale ... interesting. It might also
-be confusing for user to try predicting when setting different scales
-succeeds and when it does not. Furthermore, if for example the scale
-setting for RGBC caused IR selector to be invalid - it could also cause
-the IR scale to "jump" very far from previous value.
-
-To make the code simpler and more predictable for users, the current
-logic is as follows:
-
-1. Prevent setting IR scale. (My assumption is IR is less used than
-RGBC)
-2. When RGBC scale is set, set also the IR-selector to the same value.
-This prevents unsupported selector values and makes the IR scale changes
-predictable.
-
-The 2) could mean we effectively have the same scale for all channels.
-Unfortunately, the HW design is slightly peculiar and selector 0 means
-gain 1X on RGBC but gain 2X on IR. Rest of the selectors equal same gain
-values on RGBC and IR. The result is that while changin selector from 0
-=3D> 1 causes RGBC gain to go from 1X =3D> 4X, it causes IR gain to go from
-2X =3D> 4X.
-
-So, the driver provides separate scale entries for all channels (also
-RGB and C will have separate gain entries because these channels are of
-same type as IR channel). This makes it possible for user applications
-to go read the scales for all channels after setting scale for one (in
-order to detect the IR scale difference).
-
-Having the separate IR scale entry which applications can read to detect
-"arbitrary scale changes" makes it possible for applications to be
-written so they can cope if we need to implement the 'allow setting some
-different gains for IR and RGBC' - later.
-
-Finally, the scales_available is also provided for all other channels
-except the IR channel, which does not allow the scale to be changed.
-
-The sensor provides a data-ready IRQ and the driver implements a
-triggered buffer mode using this IRQ as a trigger.
-
-Finally, the series introduces generic iio_validate_own_trigger() helper
-which can be used as a validate_trigger callback for drivers which
-require the trigger and iio-device to be parented by same device. The
-KX022A driver is converted to use this new callback instead of rolling
-it's own function. The new helper and KX022A can be merged in as
-independent changes if need be.
-
-
-Revision history
-v3 =3D> v4:
-  bu27008 driver fixes
-    - Drop thread from device IRQ handler
-    - Styling and some minor improvements
-    - Use kernel-doc for enums
-    - Correctly order entries in Makefile
-v2 =3D> v3:
-  dt-bindings:
-    - No changes
-  iio_validate_own_trigger:
-    - subject fix
-  bu27008:
-    - Mostly styling based on comments from Andy and Andi
-
-  More accurate changelog in individual patches
-
-v1 =3D> v2:
-  dt-bindings:
-    - Fix issues pointed by Krzysztof.
-  bu27008 driver:
-    - Fix issues pointed by Jonathan
-  Add new helper for validating own trigger
-
-  More accurate changelog in individual patches
-
----
-
-
-Matti Vaittinen (5):
-  dt-bindings: iio: light: ROHM BU27008
-  iio: trigger: Add simple trigger_validation helper
-  iio: kx022a: Use new iio_validate_own_trigger()
-  iio: light: ROHM BU27008 color sensor
-  MAINTAINERS: Add ROHM BU27008
-
- .../bindings/iio/light/rohm,bu27008.yaml      |  49 +
- MAINTAINERS                                   |   3 +-
- drivers/iio/accel/kionix-kx022a.c             |  13 +-
- drivers/iio/industrialio-trigger.c            |  22 +-
- drivers/iio/light/Kconfig                     |  14 +
- drivers/iio/light/Makefile                    |   1 +
- drivers/iio/light/rohm-bu27008.c              | 993 ++++++++++++++++++
- include/linux/iio/trigger.h                   |   1 +
- 8 files changed, 1082 insertions(+), 14 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/iio/light/rohm,bu2700=
-8.yaml
- create mode 100644 drivers/iio/light/rohm-bu27008.c
-
-
-base-commit: 7fcbd72176076c44b47e8f68f0223c02c411f420
---=20
-2.40.0
-
+All the same for the rest groups (if any), otherwise use redefinition
+of FUNCTION inside each file.
 
 --=20
-Matti Vaittinen, Linux device drivers
-ROHM Semiconductors, Finland SWDC
-Kiviharjunlenkki 1E
-90220 OULU
-FINLAND
-
-~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
-Simon says - in Latin please.
-~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
-Thanks to Simon Glass for the translation =3D]=20
-
---P6C63pZ7fe5zi9Lk
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmRSLP0ACgkQeFA3/03a
-ocUDrQf+OxNKGB/FUi7i21Z8bsvmAsD8L+98eC7ffGG18ejsVA6OJ9vQksoOd3R3
-No+G8FNR/dM15gpbIH1VnCvEA8YGIzs66+YhzD73iMRyFS03BkcfLnZqmNVNL9uS
-XaFJPF+UmoamLn4rfIlBOjVDezGlzmdbIURLOg3w1vHMarXF7Xjr5MxaeHibc/bU
-wHOl9Q2b+9K7p3/5nNIOxbcFoiFulSffYvad3y6DMMckgP/PP0Ur4dQ0WbK1sN78
-7lGp8O46noD6LWRFxFa93u4TV/4Or6A7xlWQMnRBhsi2mBmz2QTmxyEwkTaNxYn/
-CvsRIpUuKSi+XTgLZO7mDgFY4m1VdQ==
-=7Cpw
------END PGP SIGNATURE-----
-
---P6C63pZ7fe5zi9Lk--
+With Best Regards,
+Andy Shevchenko
