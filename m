@@ -2,71 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 568B76F5961
-	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 15:54:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AD856F5983
+	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 16:07:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230064AbjECNye (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 May 2023 09:54:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59386 "EHLO
+        id S230133AbjECOHW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 May 2023 10:07:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230036AbjECNyd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 09:54:33 -0400
-Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 217DF59D1;
-        Wed,  3 May 2023 06:54:28 -0700 (PDT)
-Received: by mail-qk1-x733.google.com with SMTP id af79cd13be357-74e13e46cb9so231184285a.1;
-        Wed, 03 May 2023 06:54:28 -0700 (PDT)
+        with ESMTP id S229741AbjECOHV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 10:07:21 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1934A59DD
+        for <devicetree@vger.kernel.org>; Wed,  3 May 2023 07:07:20 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-50bd37ca954so7189036a12.0
+        for <devicetree@vger.kernel.org>; Wed, 03 May 2023 07:07:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683122067; x=1685714067;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9xUQbiTykYAvIdK6HEBeDPCbi8CS8G1uFcYtsrWp+q4=;
-        b=boNlRGA/cEF9KFonM+yRy0NGrsx4qeiT++wfyKSTFofkB0BIUqq5VY4iTL2FzvJpAH
-         56t+icdIn9V8tDwJy5dylefB/J+UpeyFHMcNJ649CIW7U9pu/zA8jMwVq+VlqSC4yHnH
-         WtviHfncvFc8mJk/krSb/36aTcbmb9Z2K+pkv5SErREB7fz4gX68fHUxOuY27kjYAkzv
-         dWO76V3ZyK+vwnBNchATPp+H5pZKES8uy3aXCin32usV3o0kXitug3eUlCG459RYuhqB
-         4LUuRNdUjaJ6neM+hbkAu/2h4fqwGPJR0qzl6FoCjdzL0ffufh9Wmq5DnRC50DNNc+uD
-         v77w==
+        d=linaro.org; s=google; t=1683122838; x=1685714838;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SPZd8mQM4MQ3mCONjF5npeqWZMaRA165Vw2srGHcbL0=;
+        b=My9PY/hCKy0PGEszhf3Kry5JFFR66CEiNTxHxyBD6k2H7fp31EzRk0vg66fDn9U75u
+         RLoqXeQTKaZQPmvywJAVJBj0WscQx7OM8U1cPwPyehCRAvpjVe7ZnXUa/hbiS+BYhXRf
+         2xTrbOgFWbsr+3bKSVs8Q6VNV4erqzMYpKMkWXckkkv+OjFfOA22yuJvzo+2YPPyMzHf
+         iFcJSII4aY13lwHaNGQHNC1EGhNzyvuxqJx/GUqgHU2L0UEdlG/yhzI0HY3e3WvDLErb
+         kVzJJnLTngRFWCfb9Q9OwOrQZaioYfZo0OskV4aPuTtO23OgSdGUu6sAKEiUMzeOZl5R
+         Ly+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683122067; x=1685714067;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9xUQbiTykYAvIdK6HEBeDPCbi8CS8G1uFcYtsrWp+q4=;
-        b=iHoQ2JXZPKg2LBkvo2qKTdfzPz1/kSSengYZie9gEKDHt/KKQXnAb4OwR5sfV+pc1g
-         36J+/LH0C7SWuEUlrTURLbOgu+z6ecOUSXlAReSzM6biJDC7dv4sCyFxl9xNY1QtFO40
-         wAv7gDWrNjmrTW4j+Pzvc4yjsfC3bUTH42jbFyPQR8U2T7dajEQPUIEXlpY+7hq+bqWk
-         CFrXiRuDD7+aXR7dvHFd3SjXJiKFlHbbow/9O1iL3ffY3Y47cfDhXiPTOd7F+tZUtHe7
-         sfaic/x9PVhatcbS7OdTqDbUJGREwVc41Wxi+m6fOsyF/ctvN3yEQ9UEQeh4H2S7FsGz
-         dW6g==
-X-Gm-Message-State: AC+VfDxzJwFnMGjZ3JzE0OAQ4FsLkvoBIJjb0FHKNSWmuB+9gdFqJj/1
-        c5Gw84PUcVYjXREcRzElcyn+DbfJOe5cT/Bw0zM=
-X-Google-Smtp-Source: ACHHUZ7ijvIFJIGPdN/7sNe7lc22jF+Py1AL218MhRZqDRJGqcJqlxvONjnHtn5y4jD5BoyJ0NMuXcQsa/ZmGAClCvo=
-X-Received: by 2002:a05:6214:2409:b0:605:648b:2adc with SMTP id
- fv9-20020a056214240900b00605648b2adcmr11265824qvb.19.1683122067145; Wed, 03
- May 2023 06:54:27 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1683122838; x=1685714838;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SPZd8mQM4MQ3mCONjF5npeqWZMaRA165Vw2srGHcbL0=;
+        b=XG9IDVoNWSJXzKaUp0BqNJd175rndHYbMZaNH6UL/bkEEZHVTEZW6zq9DqzY/kLMKj
+         ZbNEkPcqKqZclyVjbbz1jOmqKoGwMWUu/2bYE7F9tVcVe5FErNQktk0H3g2kw5CklbW6
+         6J7iH0f4Ger+bbqct21+xZI3Cjq+55f8hmai0nMKYJWNvnQOi+z+mYJyiW6SLDD6d3ks
+         XmucHnUFXulYX+3lw38tIfkgYT85yHslwU9Rxr/TIlLzXGt6ZN6CdtTCFYlnofLO/2zS
+         k6zkTm66bhEHeswbsbqS3baIXX5O7nGlX7U6XMMCXJicDf5pDFWfdSLr8TfhY8ofgP0I
+         489w==
+X-Gm-Message-State: AC+VfDzHVRpLdYpNpaxtMvw9TmhuYyrv609/g4TTP8MsyQjbsPOIxNH8
+        RMFC4I7wYdPziMrJqstsFG6jRA==
+X-Google-Smtp-Source: ACHHUZ49xuctmLyncdAFpBTUlj1RpxAea7lDh+1gFfdwPZ+9f3T7S3WLwRxhfXuO9fPmvwq5u7zU/g==
+X-Received: by 2002:a05:6402:3490:b0:50b:caf8:ddad with SMTP id v16-20020a056402349000b0050bcaf8ddadmr1920559edc.19.1683122838515;
+        Wed, 03 May 2023 07:07:18 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:db42:e3d0:c55a:8cf1? ([2a02:810d:15c0:828:db42:e3d0:c55a:8cf1])
+        by smtp.gmail.com with ESMTPSA id n20-20020a056402515400b00509d1c6dcefsm756452edd.13.2023.05.03.07.07.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 May 2023 07:07:17 -0700 (PDT)
+Message-ID: <8c142bc5-de77-2561-35a1-2358f0565ecf@linaro.org>
+Date:   Wed, 3 May 2023 16:07:16 +0200
 MIME-Version: 1.0
-References: <1683092380-29551-1-git-send-email-quic_rohiagar@quicinc.com>
- <1683092380-29551-3-git-send-email-quic_rohiagar@quicinc.com>
- <CAHp75VegxMgAamS3ORiJ2=D4MH7asD9PiWrM+3JAm-QOuEgcrg@mail.gmail.com> <20a45e1e-6e62-9940-33d8-af7bad02b68d@quicinc.com>
-In-Reply-To: <20a45e1e-6e62-9940-33d8-af7bad02b68d@quicinc.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Wed, 3 May 2023 16:53:50 +0300
-Message-ID: <CAHp75VekkTVzVCJs10GEi=1Andb2rWTwK8RELw6SqMzKYCPq2w@mail.gmail.com>
-Subject: Re: [PATCH v5 2/3] pinctrl: qcom: Refactor target specific pinctrl driver
-To:     Rohit Agarwal <quic_rohiagar@quicinc.com>
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        linus.walleij@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, richardcochran@gmail.com,
-        manivannan.sadhasivam@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH v1 1/2] dt-bindings: tegra: Document compatible for IGX
+Content-Language: en-US
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Shubhi Garg <shgarg@nvidia.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, jonathanh@nvidia.com,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+References: <20230502150249.773425-1-shgarg@nvidia.com>
+ <664379bf-96c4-b66c-6b0b-7b848ae6000c@linaro.org> <ZFIm-nDpMZog9aOr@orome>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <ZFIm-nDpMZog9aOr@orome>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,37 +76,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 3, 2023 at 2:14=E2=80=AFPM Rohit Agarwal <quic_rohiagar@quicinc=
-.com> wrote:
-> On 5/3/2023 3:11 PM, Andy Shevchenko wrote:
-> > On Wed, May 3, 2023 at 8:39=E2=80=AFAM Rohit Agarwal <quic_rohiagar@qui=
-cinc.com> wrote:
+On 03/05/2023 11:18, Thierry Reding wrote:
+> On Wed, May 03, 2023 at 08:22:21AM +0200, Krzysztof Kozlowski wrote:
+>> On 02/05/2023 17:02, Shubhi Garg wrote:
+>>> Document the compatible strings used for Nvidia IGX Orin Development
+>>> kit which uses P3701 SKU8 and P3740 carrier board.
+>>>
+>>> Signed-off-by: Shubhi Garg <shgarg@nvidia.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/arm/tegra.yaml | 5 +++++
+>>>  1 file changed, 5 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/arm/tegra.yaml b/Documentation/devicetree/bindings/arm/tegra.yaml
+>>> index 0df41f5b7e2a..34523b8b5d1f 100644
+>>> --- a/Documentation/devicetree/bindings/arm/tegra.yaml
+>>> +++ b/Documentation/devicetree/bindings/arm/tegra.yaml
+>>> @@ -176,5 +176,10 @@ properties:
+>>>            - const: nvidia,p3768-0000+p3767-0000
+>>>            - const: nvidia,p3767-0000
+>>>            - const: nvidia,tegra234
+>>> +      - description: NVIDIA IGX Orin Development Kit
+>>> +        items:
+>>> +          - const: nvidia,p3740-0002+p3701-0008
+>>> +          - const: nvidia,p3701-0008
+>>> +          - const: nvidia,tegra234
+>>>  
+>>
+>> Don't stuff things to the end, but put in some logical order. For
+>> example 'I' could be before 'N'.
+> 
+> Sorting these alphabetically doesn't work well because it's not very
+> deterministic. So far we've always grouped these by SoC family and
+> within each group they are sorted chronologically. Chronologically
+> here being determined by the upstream activity. We could perhaps make
+> that a bit more formal by sorting by part number. Those are usually
+> assigned at design time (i.e. p3740 was designed prior to p3768), so
+> in that case the IGX would be sorted after the AGX Orin.
+> 
+> The NVIDIA in the description is something we haven't been very strict
+> about. It'd probably be a good idea to add that wherever relevant since
+> other vendors make products with these modules.
+> 
+> We could also add comments to the list to visually separate the SoC
+> family groups. That's something for another patch, though.
+> 
+> Would you agree with chronological (by part number) sorting? In practice
+> this would tend towards new things getting added to the end, but I think
+> it's the least confusing for people looking at these lists. For instance
+> if I buy a very recent device, I would expect it to show up somewhere
+> close to the end of a list rather than potentially very high up.
 
-...
+Yeah, this works as well. I assumed something around this. Probably this
+should should go then one step up.
 
-> >>   /**
-> >>    * struct msm_function - a pinmux function
-> >> - * @name:    Name of the pinmux function.
-> >> - * @groups:  List of pingroups for this function.
-> >> - * @ngroups: Number of entries in @groups.
-> >> + * @func: Generic data of the pin function (name and groups of pins)
-> >>    */
-> >>   struct msm_function {
-> >> -       const char *name;
-> >> -       const char * const *groups;
-> >> -       unsigned ngroups;
-> >> +       struct pinfunction func;
-> >>   };
-> > But why? Just kill the entire structure.
-> Got it. Can we have a typedef for pinfunction to msm_function in the msm
-> header file?
+Best regards,
+Krzysztof
 
-But why? You can replace the type everywhere it needs to be replaced.
-I can't expect many lines to change.
-
-Also consider splitting struct pingroup change out of this. We will
-focus only on the struct pinfunction change and less code to review.
-
---=20
-With Best Regards,
-Andy Shevchenko
