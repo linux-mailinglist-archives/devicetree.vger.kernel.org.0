@@ -2,132 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 104456F5670
-	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 12:43:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A6826F5694
+	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 12:50:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229610AbjECKnZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 May 2023 06:43:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49648 "EHLO
+        id S229643AbjECKul convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 3 May 2023 06:50:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229587AbjECKnY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 06:43:24 -0400
-Received: from wnew2-smtp.messagingengine.com (wnew2-smtp.messagingengine.com [64.147.123.27])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F82835A6;
-        Wed,  3 May 2023 03:43:23 -0700 (PDT)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailnew.west.internal (Postfix) with ESMTP id 15E712B0695A;
-        Wed,  3 May 2023 06:43:21 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Wed, 03 May 2023 06:43:23 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-type:content-type:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm3; t=1683110600; x=1683117800; bh=m2
-        b7jemaeDgVDN/yXM9EiMNoy1q6cv1GnASV/ZhZJOc=; b=WrlcuJSZCuIXk9sb1Q
-        SpXXj5FyZRmxZuz1k8wKZV5++aVZGods0u4IsZKnp78HfY7/sgSBcYJrf1SjZ95o
-        AbWmVDysL5tbVj0mv23iDyWu48jMlAQ3P7oKNvBhmLdYV+aA/ClRwyyhJnw9Osor
-        Wp6KBCIET6wOTCgyzOtu43OWs9VyuSZntIJvxPB+uljtrIkduB7ZdrnRDkImSOl9
-        NuiJwExj+KJBYmqeKjfnzZvTIgLXCw8dfuvZtKsGy5gwRIgu2g+Hh5cbBJD/fWqW
-        2W1e67BSI2+jlGCI6RPTNOsGxwOIPVKQWcX3Dfu7VxUvgU2lBip0Xyd+nLyvKqJd
-        I3Bg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:content-type:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm3; t=1683110600; x=1683117800; bh=m2b7jemaeDgVD
-        N/yXM9EiMNoy1q6cv1GnASV/ZhZJOc=; b=FcKLcB5AhURyWSU9AeAkrNMWNPmzP
-        RN7TT7leW/rr6wgT486DThSzmv16TT0ttqKjcwZW8P+nv8iOzx1CAgQ7qdduWzxQ
-        /Gz/Tcw4EOx0qgSJzyfHZLyX0ySoPQeV4zdRo6+Z7HAc9vt4vJcmOsLPsWzJb3kx
-        O5niH9wc2uX7N1BZ1hMWuN0sCvoccvWcuLRJ4WbAxdtfzL4iETLx0JZ/2DPV9EWa
-        lREUL3KRPMFdQMUufxe+DGAVXX6ZA3hPEwaiCQ6pe4SSUvj3jssC8Snl0FUda3Dz
-        8L+4gh+rEf9s51OzAITtqaE5LWEdTZhmO7S7JsLOaRXCvXsgolbFT92Kg==
-X-ME-Sender: <xms:yDpSZPCqsf08zSuGB9S_Yyasjyfw8C7NFU4cOM__vE3LKtp5PZuGng>
-    <xme:yDpSZFiEb6HH6H_58GlixH3G-nv3jp37AdKwTgdBGBFYH0DY8nzkEJ5mgat6Fv9LK
-    KKIIOZPpYqGCV37HyY>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrfedvkedgfedtucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
-    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
-    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
-    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
-    hrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:yDpSZKnB4jWJCZbdAILCLoQ7Tb1JDWaGOQ4QRvtfyLGkz3ZL_6SLDg>
-    <xmx:yDpSZBy3OQb_c4T8ysdY1Cp9Lj863KLs0081WZpxCobqdPOlwPyYug>
-    <xmx:yDpSZETjKdOdSUw3JxfayiFtx-J69d0-e3sxVxrEKYSU1TR-jv4gqw>
-    <xmx:yDpSZAxATWHiqR3-vrO-mZXAs2G96Hf5p2LRUHruhuMW2qX03HsehI4wpP4>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 4B4C0B60086; Wed,  3 May 2023 06:43:20 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-386-g2404815117-fm-20230425.001-g24048151
-Mime-Version: 1.0
-Message-Id: <89dfb3e4-4009-4ed1-8cb0-d6ee16928caa@app.fastmail.com>
-In-Reply-To: <20230503011920.GB31464@dragon>
-References: <20220328000915.15041-1-ansuelsmth@gmail.com>
- <85eb14ec-f465-7447-ad77-a3dabc666f47@kernel.org>
- <YkKRYnN84D9VZhGj@Ansuel-xps.localdomain>
- <CAL_Jsq+RQQ-ADMxLPUFwk6S6kGmb6oNDy4k52fnU0EtbUvqmSA@mail.gmail.com>
- <CAMuHMdWNTE48MFy6fqxAsfMWz9b6E7dVNXtXtESP95sxk2PGwA@mail.gmail.com>
- <CAL_JsqJthKTm8bhRF2B=ae1tvtPeYYXx_Tm76qQtSwLtH5C6VA@mail.gmail.com>
- <720a2829-b6b5-411c-ac69-9a53e881f48d@app.fastmail.com>
- <CAL_JsqKCtmkwzKa01gyG65fH8ye6R3KhR41PJbJhOJ4X9j=znA@mail.gmail.com>
- <2783a3ba-8fcb-7e5f-3147-91d02e573ba4@kernel.org>
- <20230503011920.GB31464@dragon>
-Date:   Wed, 03 May 2023 12:43:00 +0200
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Shawn Guo" <shawnguo@kernel.org>,
-        "Krzysztof Kozlowski" <krzk@kernel.org>
-Cc:     "Rob Herring" <robh+dt@kernel.org>,
-        "Geert Uytterhoeven" <geert@linux-m68k.org>,
-        "Olof Johansson" <olof@lixom.net>,
-        "Christian Marangi" <ansuelsmth@gmail.com>,
-        "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-actions@lists.infradead.org,
-        linux-sunxi@lists.linux.dev,
-        Linux-OMAP <linux-omap@vger.kernel.org>,
-        linux-amlogic@lists.infradead.org, linux-arm-kernel@axis.com,
-        linux-aspeed@lists.ozlabs.org,
-        linux-rpi-kernel@lists.infradead.org,
-        chrome-platform@lists.linux.dev,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        linux-samsung-soc@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        kernel@dh-electronics.com, linux-mediatek@lists.infradead.org,
-        openbmc@lists.ozlabs.org, linux-tegra@vger.kernel.org,
-        "linux-oxnas@groups.io" <linux-oxnas@groups.io>,
-        linux-arm-msm@vger.kernel.org, linux-unisoc@lists.infradead.org,
-        linux-rockchip@lists.infradead.org,
-        linux-realtek-soc@lists.infradead.org
-Subject: Re: [RFC PATCH 0/1] Categorize ARM dts directory
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S230081AbjECKuT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 06:50:19 -0400
+Received: from outpost1.zedat.fu-berlin.de (outpost1.zedat.fu-berlin.de [130.133.4.66])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85EBF49DF;
+        Wed,  3 May 2023 03:50:12 -0700 (PDT)
+Received: from inpost2.zedat.fu-berlin.de ([130.133.4.69])
+          by outpost.zedat.fu-berlin.de (Exim 4.95)
+          with esmtps (TLS1.3)
+          tls TLS_AES_256_GCM_SHA384
+          (envelope-from <glaubitz@zedat.fu-berlin.de>)
+          id 1puA3m-002YpK-J1; Wed, 03 May 2023 12:50:10 +0200
+Received: from p5b13ada3.dip0.t-ipconnect.de ([91.19.173.163] helo=suse-laptop.fritz.box)
+          by inpost2.zedat.fu-berlin.de (Exim 4.95)
+          with esmtpsa (TLS1.3)
+          tls TLS_AES_256_GCM_SHA384
+          (envelope-from <glaubitz@physik.fu-berlin.de>)
+          id 1puA3m-0040c6-CP; Wed, 03 May 2023 12:50:10 +0200
+Message-ID: <3a42b3b3da5499f1ec1e24f618dd46a75503da16.camel@physik.fu-berlin.de>
+Subject: Re: Fixing "int-to-pointer-cast" warning in J2 code
+From:   John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     linux-sh <linux-sh@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Date:   Wed, 03 May 2023 12:50:09 +0200
+In-Reply-To: <CAMuHMdWOJn97KMBa0YoQo+a7tGDwMTTQ8YPHT7VJ2zJjEYEV0Q@mail.gmail.com>
+References: <eed749a0ec500edf4f70a50578eaa50803fdaf3c.camel@physik.fu-berlin.de>
+         <CAMuHMdWOJn97KMBa0YoQo+a7tGDwMTTQ8YPHT7VJ2zJjEYEV0Q@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.48.1 
+MIME-Version: 1.0
+X-Original-Sender: glaubitz@physik.fu-berlin.de
+X-Originating-IP: 91.19.173.163
+X-ZEDAT-Hint: PO
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 3, 2023, at 03:19, Shawn Guo wrote:
-> On Tue, May 02, 2023 at 10:02:03PM +0200, Krzysztof Kozlowski wrote:
->> On 02/05/2023 21:40, Rob Herring wrote:
->> 
->> If I remember correctly, Vybrid are a bit closer to iMX than to LS
->> (Layerscape), but it should be Shawn's call (+Cc).
->
-> I would suggest to have all Freescale/NXP platforms in a single
-> directory, which includes all mxs, imx, fsl ones.
+Hi Geert!
 
-I'd go with 'nxp' for all of those then, and also include the lpc* ones.
+On Wed, 2023-05-03 at 11:08 +0200, Geert Uytterhoeven wrote:
+> On Wed, May 3, 2023 at 10:14 AM John Paul Adrian Glaubitz
+> <glaubitz@physik.fu-berlin.de> wrote:
+> > When building j2_defconfig, the following warning is issued:
+> > 
+> > arch/sh/kernel/cpu/sh2/probe.c: In function 'scan_cache':
+> > arch/sh/kernel/cpu/sh2/probe.c:24:16: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+> >    24 |  j2_ccr_base = (u32 __iomem *)of_flat_dt_translate_address(node);
+> >       |
+> > 
+> > Reading the code and look how other users of of_flat_dt_translate_address()
+> > used the return code, I came up with the following patch which fixes the issue:
+> > 
+> > diff --git a/arch/sh/kernel/cpu/sh2/probe.c b/arch/sh/kernel/cpu/sh2/probe.c
+> > index d342ea08843f..a0dc3675fc68 100644
+> > --- a/arch/sh/kernel/cpu/sh2/probe.c
+> > +++ b/arch/sh/kernel/cpu/sh2/probe.c
+> > @@ -14,14 +14,14 @@
+> >  #include <asm/cache.h>
+> > 
+> >  #if defined(CONFIG_CPU_J2)
+> > -extern u32 __iomem *j2_ccr_base;
+> > +extern phys_addr_t j2_ccr_base;
+> >  static int __init scan_cache(unsigned long node, const char *uname,
+> >                              int depth, void *data)
+> >  {
+> >         if (!of_flat_dt_is_compatible(node, "jcore,cache"))
+> >                 return 0;
+> > 
+> > -       j2_ccr_base = (u32 __iomem *)of_flat_dt_translate_address(node);
+> > +       j2_ccr_base = of_flat_dt_translate_address(node);
+> 
+> of_flat_dt_translate_address() indeed returns a CPU physical address
+> (perhaps its return type should be changed from u64 to phys_addr_t?)...
+> 
+> > 
+> >         return 1;
+> >  }
+> > diff --git a/arch/sh/mm/cache-j2.c b/arch/sh/mm/cache-j2.c
+> > index f277862a11f5..2bc6d38d6f7c 100644
+> > --- a/arch/sh/mm/cache-j2.c
+> > +++ b/arch/sh/mm/cache-j2.c
+> > @@ -22,7 +22,7 @@
+> >  #define DCACHE_FLUSH   0x200
+> >  #define CACHE_FLUSH    (ICACHE_FLUSH | DCACHE_FLUSH)
+> > 
+> > -u32 __iomem *j2_ccr_base;
+> > +phys_addr_t j2_ccr_base;
+> 
+> ... however, all other users of j2_ccr_base use this with __raw_*()
+> I/O accessors, so "u32 __iomem *" is correct.
+> 
+> What is missing is a proper conversion from physical to virtual
+> addresses, using e.g. ioremap().
+> 
+> As this is nommu, the identity mapping in ioremap() in
+> arch/sh/include/asm/io.h should do, and cannot fail.
+> 
+> So just:
+> 
+>     j2_ccr_base = ioremap(of_flat_dt_translate_address(node), 4);
+> 
+> should be fine.
 
-It's fine to stay with historic names if changing it causes problems,
-but if we are going to change anyway, then let's call it the current
-owner's name. It will get messy again soon enough with the next round
-of mergers and acquisitions.
+Thanks, that actually makes much more sense. I was actually looking for
+such a function after reading what the __iomap attribute is for.
 
-      Arnd
+> BTW, "jcore,cache" does not have any DT binding documentation.
+
+Jeff or Rob should look into this.
+
+Adrian
+
+-- 
+ .''`.  John Paul Adrian Glaubitz
+: :' :  Debian Developer
+`. `'   Physicist
+  `-    GPG: 62FF 8A75 84E0 2956 9546  0006 7426 3B37 F5B5 F913
