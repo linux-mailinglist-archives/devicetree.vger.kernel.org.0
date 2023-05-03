@@ -2,138 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD5366F5300
-	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 10:20:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C5206F531B
+	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 10:26:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229666AbjECIUv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 May 2023 04:20:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47324 "EHLO
+        id S229656AbjECI0k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 May 2023 04:26:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229522AbjECIUu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 04:20:50 -0400
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2043.outbound.protection.outlook.com [40.107.92.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5A1C4C11;
-        Wed,  3 May 2023 01:20:44 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UkAjBk/Gx6hBGN6oub0rIuxkmhDv+lxL1kEDoSksc/CqIt4S+LXW26QV8QrjTxVRV8cbdS4Q9kR4gp+1aih8uk2NtqiKPkfvGQRqbiNVXReIeqIfLWxROk84A40kNRViLOx24uqo1wVHgs6aHJu0C0rU7we9EWcAX75JO5J/S69UOsa9eOUlzP8Xws3PqFMzf1KqwTYwimnI47lJIGglV1GF7FiuDWpqGaBalkwRs8Ucnbhabd4JXG/DbfD6FV91rHTYfAcFc6XQanD/Qhj4HCylfN5J0qK/7gxku85NWpPvBCVYiETX5UYalOevp2pOawuaURxwbk7/LD1SOHQ+MQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vvqAJqqOUwIYhs8O+Y/vEmh5LfIoU9uG10gu+3Pl07U=;
- b=Ni6HX0XTG+TwGSFdohlDWpW5wqRz+dKoNEeyN6ZHXUaa6ssjBk6EyEWigZIPNfHIiObBvNgRYVAd4y3eqLWscxaXyBp9VTBk9NR8ynWkY7sOfRpPuz6hBja2Yt+dRF2yVcygtfDM/gyiXsdDMCxhvPnTxnAlZ7wY3VccZtyM7FXc8czf4HXOqBDT9XqxjlEjtj3GB+I102iObfWv4Ttsd7EBZjUkXx4Hfjm2XvgE7J20ZmyCjqxCC9qmXedAZz0cJy5nTZUlPLjKurWAQZtV5za1jCDIwAbtUWopgXKFeug/km1/VHcvuY31lU9kiE1vQGuZPoqfaelGzM322fDKSQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vvqAJqqOUwIYhs8O+Y/vEmh5LfIoU9uG10gu+3Pl07U=;
- b=T0YZOeE0qKungkSNNi1zF8/XbiVtMAZzlnhDR2ogpuKWFB9cogSjc+jKJlFxy9MxGsoB9opBSvjfF/MHubCGR9luufkkHaLgfxA7x7XMz05pH9LpKy/JfL6NiuoiD7be8Ks8ssI1VCVMgteladvZtU2cIUkSFjI0vLzJ1oN934M=
-Received: from DM6PR12CA0011.namprd12.prod.outlook.com (2603:10b6:5:1c0::24)
- by DM4PR12MB6544.namprd12.prod.outlook.com (2603:10b6:8:8d::6) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6340.31; Wed, 3 May 2023 08:20:40 +0000
-Received: from DM6NAM11FT028.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:1c0:cafe::4e) by DM6PR12CA0011.outlook.office365.com
- (2603:10b6:5:1c0::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.22 via Frontend
- Transport; Wed, 3 May 2023 08:20:40 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT028.mail.protection.outlook.com (10.13.173.140) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6363.22 via Frontend Transport; Wed, 3 May 2023 08:20:40 +0000
-Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Wed, 3 May
- 2023 03:20:38 -0500
-From:   Michal Simek <michal.simek@amd.com>
-To:     <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
-        <michal.simek@xilinx.com>, <git@xilinx.com>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-spi@vger.kernel.org>
-Subject: [PATCH v2] dt-bindings: spi: zynqmp-qspi: Add power-domains and iommus properties
-Date:   Wed, 3 May 2023 10:20:36 +0200
-Message-ID: <2afed7285061abbb5d9ad3b1e795b737dcff9693.1683102032.git.michal.simek@amd.com>
-X-Mailer: git-send-email 2.36.1
+        with ESMTP id S229553AbjECI0i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 04:26:38 -0400
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F0E046B8
+        for <devicetree@vger.kernel.org>; Wed,  3 May 2023 01:26:35 -0700 (PDT)
+Received: by mail-pl1-x62f.google.com with SMTP id d9443c01a7336-1ab0c697c2bso16786525ad.1
+        for <devicetree@vger.kernel.org>; Wed, 03 May 2023 01:26:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=9elements.com; s=google; t=1683102394; x=1685694394;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=M3Wq2mDsRiC5O9kPiuao8JNBBGj+hKSi0U89lJICwv0=;
+        b=I+gldLRFsfsctKrLvw0VL/AIpCxmFAejWu1sePyD3VyYflWhFKmb4NHt9iI+0tlcsF
+         QWs+OqEV2bpnu14Z3I7iF7aB2DqT8B1PtPMp9KsfYfQoJyd0NFY9Alth9n2fn7lkK3M6
+         C/3Hw1plHa3OemkZmffK7jPNCWQN1Y9AXZ4SRG5KZ/21M2mVd0b5CazLYvKrXOOFEVOB
+         nsotXPrCt8zx4nC+GWDlzFffd+gXQPb384x20ksUAy+nlffrMt+L8QnbllLRVZrW4KkT
+         cYsVz8FM4HqSDr5ZhwCPCexiBTGno0dBbeCqjcBirwjmF74bDwrYpq2LwH9xIEPQBg/X
+         D8Eg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683102395; x=1685694395;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=M3Wq2mDsRiC5O9kPiuao8JNBBGj+hKSi0U89lJICwv0=;
+        b=KniVprSgj6NtG4HWx1Yw5Zap5ZpfAPjZ46b0JnLIXKGBy3X36iR5Qx18dc2/9dFRJs
+         QYWFv/rN0BX1Ousl3GTSh74lTfa65Q6TDROZhjP71pBNIUyOumvC4QMcm93XOrNNnJX5
+         2s2ma3G9763YGBHeVzUx6Cwr4ZixCz+xwKINedXsUPyPq1rJgHKiqUKnCpmCmi/DvQLn
+         XH1A0h/cYmAF9/0ywtjliM7OzbaGwPB9IbcrH8RnPcouNg+CcCXTyGNHNJqEycgEfW/+
+         YLOh8KSDqj/9MXgzJdCPXp18GOCzW3X2LYCrOlfCTPDOwiUGLHwCTJoRi7dinBPsF4MO
+         0bIA==
+X-Gm-Message-State: AC+VfDz34pABdxWMv9FDHMp+7tApp20E1yseByZ264pX+8ZJbprIgIjT
+        DUJRSjoRLIiZ6QY7MEw6w8Vobg==
+X-Google-Smtp-Source: ACHHUZ5v2z1eyR8cDV8ySn1KuW6MlrE14JuJaWVrzvi9x7m0y1TtQ0fwHxOS06Ky0WYMI04cicG1NA==
+X-Received: by 2002:a17:903:32d2:b0:1aa:f6c3:bd39 with SMTP id i18-20020a17090332d200b001aaf6c3bd39mr1861176plr.20.1683102394672;
+        Wed, 03 May 2023 01:26:34 -0700 (PDT)
+Received: from ?IPV6:2405:201:d02f:d855:461d:14be:2cce:b776? ([2405:201:d02f:d855:461d:14be:2cce:b776])
+        by smtp.gmail.com with ESMTPSA id x15-20020a170902b40f00b001a98f03af58sm13942331plr.17.2023.05.03.01.26.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 May 2023 01:26:34 -0700 (PDT)
+Message-ID: <bd45ea5d-e6e4-403a-e855-376e0f647f91@9elements.com>
+Date:   Wed, 3 May 2023 13:56:30 +0530
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: Add max6639
+Content-Language: en-US
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Marcello Sylvester Bauer <sylv@sylv.io>,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230420111759.2687001-1-Naresh.Solanki@9elements.com>
+ <76e57634-75dd-01e8-9c56-36ed7de17812@linaro.org>
+ <c8d1b5db-318e-3401-0834-b89769831eca@9elements.com>
+ <be129c4f-3ad7-c54b-936e-08b142608ebc@linaro.org>
+ <88f9a008-2861-284c-76c4-7d416c107fbb@9elements.com>
+In-Reply-To: <88f9a008-2861-284c-76c4-7d416c107fbb@9elements.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT028:EE_|DM4PR12MB6544:EE_
-X-MS-Office365-Filtering-Correlation-Id: 650e47e3-a897-4b08-1b21-08db4baf4806
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: nMgyN5U7G4Npz5uxb4FhjJBd0CLije9jizG4PIIIeQKbsQRbZxL+T6++FINitLexvF6+mbbuNAHoWqGQm1SdcjCc9G+Lg4CZUrwqKrGuem0VAzHDeatw/igJlNouSPmww3nwmo5GMSARQDuE/aEjei7nKsds0hmsm8kMnhK2PxLILbXz6qY97NVevX53IV4KbhuKo+seJOTcJhri8vzbHqMP7TZQT4UZS28UmAHxwwpdwGsznJ16jFZEfaT6NcW7pmVqKfcZEDsz9eFl4//4a1IwNJkUDvzDU3wdni6ev75EcanCfOEfXuC22JeRwstG/1UKPVcFJPL47kNWcVLgPtztug+weoTJmEkOMhZPXBYzgIuSCbgvp4gj/SCxTWKcPzZuglM0Eyfmk5Qjlbx19jlUCuOgVx4DcH1EmOoePfLCgZVjWlwL4tTBtP5haa/64aQzhJ+kDMYYrKTjqJUpAORE/YyOYXQ//k4IPVXXwPltOow0zkgIb+GVWbVr6SqqAHYb33VrFBMgD7hNMNnPHLFaPsc8S/SwZqFA5l5aeYRnJf0gJ8oTO6xVjHgmxJFkYU7pqjnqSPjnen3GfzZNoO2YhZcOhTZDSXwVRlKUuoSEGCyzJQGiikEkQZ5WeQJFVOjF2Hi005towiIn+z5WT91GS/58TYJ4fPFZACDhzQ0bklg1kQ3WgCHZOHyOGZa9BpoAUyqhZYaTcwuOT/T+GKHQb4yZdkuVh0qD0ylXbADBxdeZMZ/4r/8CIwwBJtSJ
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(396003)(136003)(39860400002)(376002)(346002)(451199021)(36840700001)(46966006)(40470700004)(41300700001)(83380400001)(426003)(336012)(36756003)(70586007)(86362001)(47076005)(36860700001)(5660300002)(2906002)(316002)(44832011)(8936002)(8676002)(82310400005)(4326008)(110136005)(54906003)(356005)(81166007)(82740400003)(2616005)(478600001)(70206006)(16526019)(186003)(40460700003)(40480700001)(26005)(36900700001)(2101003);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 May 2023 08:20:40.1995
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 650e47e3-a897-4b08-1b21-08db4baf4806
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT028.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6544
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-ZynqMP QSPI IP core has own power domain and also iommu ID that's why
-describe optional power-domains and iommus properties.
+Hi Krzysztof,
 
-Signed-off-by: Michal Simek <michal.simek@amd.com>
----
-
-Changes in v2:
-- rewrite commit message - requested by Krzysztof
-
-The commit 8ac47837f0e0 ("arm64: dts: zynqmp: Add missing iommu IDs") and
-the commit 959b86ae37c6 ("arm64: dts: xilinx: Add the power nodes for
-zynqmp") described these properties long time ago in Linux that's why the
-patch is also fixing dts_check warnings.
-
----
- Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml b/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
-index 20f77246d365..226d8b493b57 100644
---- a/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
-+++ b/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
-@@ -32,6 +32,12 @@ properties:
-   clocks:
-     maxItems: 2
- 
-+  iommus:
-+    maxItems: 1
-+
-+  power-domains:
-+    maxItems: 1
-+
- required:
-   - compatible
-   - reg
--- 
-2.36.1
-
+On 24-04-2023 03:23 pm, Naresh Solanki wrote:
+> Hi Krzysztof,
+> 
+> On 24-04-2023 03:12 pm, Krzysztof Kozlowski wrote:
+>> On 24/04/2023 11:18, Naresh Solanki wrote:
+>>
+>>>>> Changes in V2:
+>>>>> - Update subject
+>>>>> - Drop blank lines
+>>>>> ---
+>>>>>    .../bindings/hwmon/maxim,max6639.yaml         | 52 
+>>>>> +++++++++++++++++++
+>>>>>    1 file changed, 52 insertions(+)
+>>>>>    create mode 100644 
+>>>>> Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+>>>>>
+>>>>> diff --git 
+>>>>> a/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml 
+>>>>> b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000000..1aaedfd7cee0
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+>>>>> @@ -0,0 +1,52 @@
+>>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>>>> +%YAML 1.2
+>>>>> +---
+>>>>> +$id: http://devicetree.org/schemas/hwmon/maxim,max6639.yaml#
+>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>> +
+>>>>> +title: Maxim max6639
+>>>>
+>>>> What is this device? fan controller?
+>>> Yes Fan controller.
+>>> Do you want me to update the title here as:
+>>> "Maxim MAC6639 2 channel fan controller & temperature monitor" ?
+>>
+>> Enough would be:
+>> Maxim MAX6639 Fan Controller
+> Ack
+>>
+>>
+>>>
+>>>>
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - Naresh Solanki <Naresh.Solanki@9elements.com>
+>>>>> +
+>>>>> +description: |
+>>>>> +  The MAX6639 is a 2-channel temperature monitor with dual, 
+>>>>> automatic, PWM
+>>>>> +  fan-speed controller.  It monitors its own temperature and one 
+>>>>> external
+>>>>> +  diode-connected transistor or the temperatures of two external 
+>>>>> diode-connected
+>>>>> +  transistors, typically available in CPUs, FPGAs, or GPUs.
+>>>>> +
+>>>>> +  Datasheets:
+>>>>> +    https://datasheets.maximintegrated.com/en/ds/MAX6639-MAX6639F.pdf
+>>>>> +
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    enum:
+>>>>> +      - maxim,max6639
+>>>>> +
+>>>>> +  reg:
+>>>>> +    maxItems: 1
+>>>>> +
+>>>>> +  '#address-cells':
+>>>>> +    const: 1
+>>>>> +
+>>>>> +  '#size-cells':
+>>>>> +    const: 0
+>>>>
+>>>> Why do you need these two properties?
+>>> Ack. Will remove them.
+>>>>
+>>>> Anyway, the binding looks incomplete. Where are the supplies? 
+>>>> Interrupts?
+>>> This patch just adds basic support to the existing platform driver.
+>>> Intention is to be able to call the driver from DT with basic
+>>> initialization from driver the existing driver.
+>>
+>> Bindings should be rather complete. Here the datasheet is accessible and
+>> few properties quite obvious, so I don't see a reason to skip them.
+> I agree with you. But currently the driver which is already merged 
+> doesn't has it implemented.
+> And will be working on separate patch to include this later.
+Please let me know if this approach is acceptable, or if there are any 
+other suggestions or concerns that you have.
+Thanks,
+Naresh
+>>
+>>
+>> Best regards,
+>> Krzysztof
+>>
+> 
+> Regards,
+> Naresh.
