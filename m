@@ -2,109 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7359E6F5815
-	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 14:42:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68CAC6F581D
+	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 14:47:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229700AbjECMm4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 May 2023 08:42:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49910 "EHLO
+        id S229524AbjECMrG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 May 2023 08:47:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229660AbjECMmz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 08:42:55 -0400
-Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B33C46B7
-        for <devicetree@vger.kernel.org>; Wed,  3 May 2023 05:42:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=k1; bh=gYfwJ7GhWlbQkcMj1JcM56SejKNs
-        fbTZDXFiVzo4qr0=; b=S7GdNggFjoW5pgqnXLEQHxJBBL2PKlmITuenHqyWty80
-        B2qxSmi/90aBsRqjZiqOM9NnJq5lXMMQYCQrnxD3u+PHj8tn9sTMW/7lRPdMsH9M
-        STxaQzDJ8PQ7KKPcnsDNksw5JkjUB5XOAAPug1WUQ2WLqVVTe7PmYzE9ata4lgM=
-Received: (qmail 85566 invoked from network); 3 May 2023 14:42:52 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 3 May 2023 14:42:52 +0200
-X-UD-Smtp-Session: l3s3148p1@pl3rZMn6AK8ujnsI
-Date:   Wed, 3 May 2023 14:42:51 +0200
-From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     linux-renesas-soc@vger.kernel.org,
-        Phong Hoang <phong.hoang.wz@renesas.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: renesas: r8a779a0: Add PWM nodes
-Message-ID: <ZFJWyxPR2iLVcOoL@ninjato>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        linux-renesas-soc@vger.kernel.org,
-        Phong Hoang <phong.hoang.wz@renesas.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230502170618.55967-1-wsa+renesas@sang-engineering.com>
- <20230502170618.55967-3-wsa+renesas@sang-engineering.com>
- <CAMuHMdV0iZJwNDRTxZXr-Rg_=VDN1hYw2gbSwwys1EDrzgC7Ew@mail.gmail.com>
+        with ESMTP id S229691AbjECMrD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 08:47:03 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BBE649DE;
+        Wed,  3 May 2023 05:47:02 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9755162D38;
+        Wed,  3 May 2023 12:47:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03472C433A4;
+        Wed,  3 May 2023 12:47:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1683118021;
+        bh=EgiNiJbh15KE0Ia15kPVvnW13bZZDq3+PSwMvLc6Ois=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=NIfzEJ7naztoKrOkIDAEykRjVdZFitWMFmR0Pw+XFLAM0/K3e6QOJUVsWQIorOu4p
+         R7IIJb/74do45Btc5opX6zgBz1ejVpZPVZ2oZh0n8ZqkZjewhTbUG1POz0evYzWPAk
+         9uItN64Yt294K/8vbdCEg9OaDadt9VJymhJ0Svj19GrNTrMlXuBf0/6p1UdGUvAOCp
+         33yx3Uor/9Te4cpXJMW8tncCEq7uf7x3HhCOaVdRD7TzBe0DpM4A0ktbnRdTiE3TOB
+         9hXY79QgD+FjTRFKJfvUEOIIMR/XpTFVuaW+g4o2Hv7DWfKnMCNDcjWTeDMngMce/i
+         AH+I4O9Hb7KJg==
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-9505214c47fso1008666466b.1;
+        Wed, 03 May 2023 05:47:00 -0700 (PDT)
+X-Gm-Message-State: AC+VfDxAckV5g6bsz9JGhlz3ikGiia6+p4T3KTkSuJixOXdMnH+AHX+e
+        zVMpDGG6bydb9zuRYhygC9lNAP1amGr/RXiolWs=
+X-Google-Smtp-Source: ACHHUZ6IKHwFYCLYB5LqHR+3pNixMRRo4M6Cb27Yi39KHRdvN38tYrtbttUydFJNM4Zdu4mTeivPqROz4c/tClebcKQ=
+X-Received: by 2002:a17:906:6a1f:b0:94e:dbf7:2dfe with SMTP id
+ qw31-20020a1709066a1f00b0094edbf72dfemr3509786ejc.11.1683118019168; Wed, 03
+ May 2023 05:46:59 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="nlnmZCMUT4S19Qmp"
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdV0iZJwNDRTxZXr-Rg_=VDN1hYw2gbSwwys1EDrzgC7Ew@mail.gmail.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
+References: <20230322052504.2629429-1-peng.fan@oss.nxp.com>
+ <20230322052504.2629429-11-peng.fan@oss.nxp.com> <20230405130649.GA11367@dragon>
+ <DU0PR04MB94178755C624BCBE25D8073C88919@DU0PR04MB9417.eurprd04.prod.outlook.com>
+ <20230406014013.GJ11367@dragon> <ZEDzkhtUiUxQ0V4d@kroah.com> <20230503010731.GA31464@dragon>
+In-Reply-To: <20230503010731.GA31464@dragon>
+From:   Shawn Guo <shawnguo@kernel.org>
+Date:   Wed, 3 May 2023 20:46:46 +0800
+X-Gmail-Original-Message-ID: <CAJBJ56+DOuMa+-k2sspV7mKdHPpqAS38epbwOAmfC-42Bq-MfQ@mail.gmail.com>
+Message-ID: <CAJBJ56+DOuMa+-k2sspV7mKdHPpqAS38epbwOAmfC-42Bq-MfQ@mail.gmail.com>
+Subject: Re: [PATCH V7 10/10] ARM64: dts: imx7ulp: update usb compatible
+To:     Greg KH <gregkh@linuxfoundation.org>
+Cc:     Peng Fan <peng.fan@nxp.com>,
+        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        Xu Yang <xu.yang_2@nxp.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>, Jun Li <jun.li@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---nlnmZCMUT4S19Qmp
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-
-> > --- a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
-> > +++ b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
-> > @@ -1108,6 +1108,56 @@ msiof5: spi@e6c28000 {
-> >                         status =3D "disabled";
-> >                 };
+On Wed, May 3, 2023 at 9:07=E2=80=AFAM Shawn Guo <shawnguo@kernel.org> wrot=
+e:
+>
+> On Thu, Apr 20, 2023 at 10:10:58AM +0200, Greg KH wrote:
+> > On Thu, Apr 06, 2023 at 09:40:13AM +0800, Shawn Guo wrote:
+> > > On Thu, Apr 06, 2023 at 01:18:43AM +0000, Peng Fan wrote:
+> > > > Hi Shawn,
+> > > >
+> > > > > Subject: Re: [PATCH V7 10/10] ARM64: dts: imx7ulp: update usb com=
+patible
+> > > > >
+> > > > > On Wed, Mar 22, 2023 at 01:25:04PM +0800, Peng Fan (OSS) wrote:
+> > > > > > From: Peng Fan <peng.fan@nxp.com>
+> > > > > >
+> > > > > > Per binding doc, update the compatible
+> > > > > >
+> > > > > > Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> > > > >
+> > > > > ARM: dts: imx7ulp: ...
+> > > > >
+> > > > > Fixed it up and applied all DTS patches.
+> > > > [Peng Fan]
+> > > >
+> > > > Thanks for the fix. But I think Greg already applied the patchset.
+> > >
+> > > Okay, I will drop them from my tree, but ...
+> > >
+> > > Greg,
+> > >
+> > > May I suggest a couple of things on the future process?
+> > >
+> > > - Could you leave i.MX DTS patches to me, so that we can avoid potent=
+ial
+> > >   merge conflicts?
 > >
-> > +               pwm0: pwm@e6e30000 {
->=20
-> I'll move this before serial@e6e60000 while applying, to preserve sort
-> order (by unit address).
+> > How am I supposed to know this?
+>
+> Aren't we using patch prefix to tell the target subsystem?
+>
+> > Our tools take the whole patch series,
+> > not individual ones.  If someone wants patches to go through different
+> > trees, then they need to submit them as different patch series,
+> > otherwise it makes no sense.
+>
+> It's a quite common practice that people send a series containing
+> multiple patches targeting different subsystems, as that's what
+> reviewers have been asking for sake of completeness.  So we are asking
+> for two opposite things from what I can see.
 
-Oops, right, things have been added since I last worked on V3U. Thank
-you!
+Never mind.  I think I will just start pushing people to send DTS
+changes as separate patchset.
 
-
---nlnmZCMUT4S19Qmp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmRSVssACgkQFA3kzBSg
-KbYD/Q//byfip8AJ4NFJ+VuOVTkHRSqMm4tk+i5gyy3Q2DLMWmGEk/f7nXL4QB9x
-kzQSfTif8VDDuKpKa6CXFejaMJwRO0i7OwT20e2OrplqOr0cStHgY8/qdYNtU0OE
-n5m3UPTw+ndNIeaaVIi6IKVgwAEAFx3xriRWML79wqKut7IX/wW696KihXmFZoZu
-OoWDx16P1xPQErN3HgWe/YNU//8Ab0/hRX8RTjc4WZMT3dt8t7F4bncL5daB44nE
-7pLyx+8LQeo/5OJOLTeIQ5lVZKEMPidPD43H6t0D6shhPO88L2wDbyiryzh9jeuG
-eBYVCnRpYKdeRGUUiMygg6u+ozJzms0QcnFIFvis5Xzykww71gtJ/f8SyMurjfst
-MUXZeKXzEFg1d+kqCd/gfeU7UvZwgpClfR36rXyilpCD7uiFu/n60GlGc/jvWsls
-xYVSUly90Bl9A6qosHLkZwvQZXjMObYjMU5Gtf/jibE+0nRIwoiQJ4mwcuALdz3S
-VTsoMjOSXsGva1cxOU2Ci7zKUNuzy133OSbcl0TShmQDWQGFuJQ4le1ALJQnT48L
-QOnF4QsVF1dqQbiduVS7NHCCLyAY/CjO+irE1ScIxBzoGBodvKm8X6wHcjiqgRNy
-Av4hh+cBkmsYKpSLvMqdq8RNzvy1SgiZjQW6Kk6X0bMuHcYBz8c=
-=Fqdy
------END PGP SIGNATURE-----
-
---nlnmZCMUT4S19Qmp--
+Shawn
