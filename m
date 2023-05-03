@@ -2,78 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5416C6F593F
-	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 15:46:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 568B76F5961
+	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 15:54:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230053AbjECNqa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 May 2023 09:46:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55948 "EHLO
+        id S230064AbjECNye (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 May 2023 09:54:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229524AbjECNq3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 09:46:29 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 331EC2D4E
-        for <devicetree@vger.kernel.org>; Wed,  3 May 2023 06:46:28 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-50bd2d7ba74so6815644a12.1
-        for <devicetree@vger.kernel.org>; Wed, 03 May 2023 06:46:28 -0700 (PDT)
+        with ESMTP id S230036AbjECNyd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 09:54:33 -0400
+Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 217DF59D1;
+        Wed,  3 May 2023 06:54:28 -0700 (PDT)
+Received: by mail-qk1-x733.google.com with SMTP id af79cd13be357-74e13e46cb9so231184285a.1;
+        Wed, 03 May 2023 06:54:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683121586; x=1685713586;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=axb4hsXlmFr83tA4xeoHXLKOgCRNm9SMQj6gN9PpDXw=;
-        b=QAzuGmeNB88tZp09MZP0yiysHnaBQL2cCSdPygobX+guQiWepOealJNlfOK+r3g/AS
-         rAoFzy4Mm0EOQnZyGC2l86+uKx+sIRltqfAquaHCYPdxCnrJh4xUD4te+D7NG2U9U4o6
-         NL45bLJnD6ld8KkSOplfnBwJpOJV9xdTOCpVVKZbumYVHymGGAHiG0Pz60dkvcPpU1Bx
-         eVrQtKswaAc3V36t2+egEsImcQtKJ4dDVQMi+sIsVFK1IaaUNNQon1Ywuj9TMh0oTSjQ
-         GHlXN+qcqQZi0tLVB3K4f7mCgafvFsFhy/26JnIUNYVfNuMvBY0bf/rQvZOlX6EZNny2
-         r8Tg==
+        d=gmail.com; s=20221208; t=1683122067; x=1685714067;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9xUQbiTykYAvIdK6HEBeDPCbi8CS8G1uFcYtsrWp+q4=;
+        b=boNlRGA/cEF9KFonM+yRy0NGrsx4qeiT++wfyKSTFofkB0BIUqq5VY4iTL2FzvJpAH
+         56t+icdIn9V8tDwJy5dylefB/J+UpeyFHMcNJ649CIW7U9pu/zA8jMwVq+VlqSC4yHnH
+         WtviHfncvFc8mJk/krSb/36aTcbmb9Z2K+pkv5SErREB7fz4gX68fHUxOuY27kjYAkzv
+         dWO76V3ZyK+vwnBNchATPp+H5pZKES8uy3aXCin32usV3o0kXitug3eUlCG459RYuhqB
+         4LUuRNdUjaJ6neM+hbkAu/2h4fqwGPJR0qzl6FoCjdzL0ffufh9Wmq5DnRC50DNNc+uD
+         v77w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683121586; x=1685713586;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=axb4hsXlmFr83tA4xeoHXLKOgCRNm9SMQj6gN9PpDXw=;
-        b=MCTU6ZXgQ7DQVBx+bGH9uYj6eBUJP2hLO3iGqlK9NwB13rqvyhZf9MT7L4pd4ytYcx
-         dPJVtGZV1lnRCdiKvJx8+3vo3gNW+3evoUmLuN4n0fjBUFBKCXQLJjgk4UoIm77WW0eE
-         tbHZkcqdXigUoarXoG0JOwXkgOLdPGxcSTXPjKQmLjaXU5TI08MM/SNP3xrY3MyN8/Hi
-         T9R5Ow+9iwh1zqPJObHuxpuvUk/EWmeLV8V1iqVoyg6rGJcpZJK2z/Aj5bCOFxkuQaL+
-         5ZO20qJAHOX+9lo8vaf6+H39bLsLPERRfrqqo7lH3UvGYvUYzTk88rEt5gE+ffOPzPy3
-         iqEA==
-X-Gm-Message-State: AC+VfDxQblYjaSTfgn4ZH/wrEVOIw+YjCqeLlgW5J3AfT6AuULtLS9bQ
-        dlzoDUjfC10P6HAcfAijF/Ai4w==
-X-Google-Smtp-Source: ACHHUZ4NuFlJ/Wa7YCqOr30cagS7gjoxX7SmR72GunTu/7lDsfbshb9zK3nhCGjzdoiZaNi7Bm/2WA==
-X-Received: by 2002:a17:907:7e83:b0:94e:83d3:1b51 with SMTP id qb3-20020a1709077e8300b0094e83d31b51mr1842852ejc.23.1683121586596;
-        Wed, 03 May 2023 06:46:26 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:db42:e3d0:c55a:8cf1? ([2a02:810d:15c0:828:db42:e3d0:c55a:8cf1])
-        by smtp.gmail.com with ESMTPSA id s12-20020a170906bc4c00b00947ed087a2csm17309530ejv.154.2023.05.03.06.46.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 May 2023 06:46:25 -0700 (PDT)
-Message-ID: <64ce9447-7ae5-efbf-870f-74e45075a748@linaro.org>
-Date:   Wed, 3 May 2023 15:46:24 +0200
+        d=1e100.net; s=20221208; t=1683122067; x=1685714067;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9xUQbiTykYAvIdK6HEBeDPCbi8CS8G1uFcYtsrWp+q4=;
+        b=iHoQ2JXZPKg2LBkvo2qKTdfzPz1/kSSengYZie9gEKDHt/KKQXnAb4OwR5sfV+pc1g
+         36J+/LH0C7SWuEUlrTURLbOgu+z6ecOUSXlAReSzM6biJDC7dv4sCyFxl9xNY1QtFO40
+         wAv7gDWrNjmrTW4j+Pzvc4yjsfC3bUTH42jbFyPQR8U2T7dajEQPUIEXlpY+7hq+bqWk
+         CFrXiRuDD7+aXR7dvHFd3SjXJiKFlHbbow/9O1iL3ffY3Y47cfDhXiPTOd7F+tZUtHe7
+         sfaic/x9PVhatcbS7OdTqDbUJGREwVc41Wxi+m6fOsyF/ctvN3yEQ9UEQeh4H2S7FsGz
+         dW6g==
+X-Gm-Message-State: AC+VfDxzJwFnMGjZ3JzE0OAQ4FsLkvoBIJjb0FHKNSWmuB+9gdFqJj/1
+        c5Gw84PUcVYjXREcRzElcyn+DbfJOe5cT/Bw0zM=
+X-Google-Smtp-Source: ACHHUZ7ijvIFJIGPdN/7sNe7lc22jF+Py1AL218MhRZqDRJGqcJqlxvONjnHtn5y4jD5BoyJ0NMuXcQsa/ZmGAClCvo=
+X-Received: by 2002:a05:6214:2409:b0:605:648b:2adc with SMTP id
+ fv9-20020a056214240900b00605648b2adcmr11265824qvb.19.1683122067145; Wed, 03
+ May 2023 06:54:27 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH] dt-bindings: xilinx: Remove Naga from memory and mtd
- bindings
-To:     Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
-        monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Naga Sureshkumar Relli <nagasure@xilinx.com>,
-        Richard Weinberger <richard@nod.at>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mtd@lists.infradead.org
-References: <6b4cdc7158599b4a38409a03eda56e38975b6233.1683103250.git.michal.simek@amd.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <6b4cdc7158599b4a38409a03eda56e38975b6233.1683103250.git.michal.simek@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+References: <1683092380-29551-1-git-send-email-quic_rohiagar@quicinc.com>
+ <1683092380-29551-3-git-send-email-quic_rohiagar@quicinc.com>
+ <CAHp75VegxMgAamS3ORiJ2=D4MH7asD9PiWrM+3JAm-QOuEgcrg@mail.gmail.com> <20a45e1e-6e62-9940-33d8-af7bad02b68d@quicinc.com>
+In-Reply-To: <20a45e1e-6e62-9940-33d8-af7bad02b68d@quicinc.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Wed, 3 May 2023 16:53:50 +0300
+Message-ID: <CAHp75VekkTVzVCJs10GEi=1Andb2rWTwK8RELw6SqMzKYCPq2w@mail.gmail.com>
+Subject: Re: [PATCH v5 2/3] pinctrl: qcom: Refactor target specific pinctrl driver
+To:     Rohit Agarwal <quic_rohiagar@quicinc.com>
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        linus.walleij@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, richardcochran@gmail.com,
+        manivannan.sadhasivam@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,23 +74,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/05/2023 10:40, Michal Simek wrote:
-> Naga is no longer works for AMD/Xilinx and there is no activity from him to
-> continue to maintain Xilinx related drivers. Two drivers have Miquel as
-> maintainer and for the last one add myself instead to be kept in a loop if
-> there is any change required.
-> 
-> Signed-off-by: Michal Simek <michal.simek@amd.com>
-> ---
-> 
->  .../devicetree/bindings/memory-controllers/arm,pl35x-smc.yaml   | 1 -
->  .../devicetree/bindings/mtd/arasan,nand-controller.yaml         | 2 +-
->  Documentation/devicetree/bindings/mtd/arm,pl353-nand-r2p1.yaml  | 1 -
->  3 files changed, 1 insertion(+), 3 deletions(-)
+On Wed, May 3, 2023 at 2:14=E2=80=AFPM Rohit Agarwal <quic_rohiagar@quicinc=
+.com> wrote:
+> On 5/3/2023 3:11 PM, Andy Shevchenko wrote:
+> > On Wed, May 3, 2023 at 8:39=E2=80=AFAM Rohit Agarwal <quic_rohiagar@qui=
+cinc.com> wrote:
 
+...
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >>   /**
+> >>    * struct msm_function - a pinmux function
+> >> - * @name:    Name of the pinmux function.
+> >> - * @groups:  List of pingroups for this function.
+> >> - * @ngroups: Number of entries in @groups.
+> >> + * @func: Generic data of the pin function (name and groups of pins)
+> >>    */
+> >>   struct msm_function {
+> >> -       const char *name;
+> >> -       const char * const *groups;
+> >> -       unsigned ngroups;
+> >> +       struct pinfunction func;
+> >>   };
+> > But why? Just kill the entire structure.
+> Got it. Can we have a typedef for pinfunction to msm_function in the msm
+> header file?
 
-Best regards,
-Krzysztof
+But why? You can replace the type everywhere it needs to be replaced.
+I can't expect many lines to change.
 
+Also consider splitting struct pingroup change out of this. We will
+focus only on the struct pinfunction change and less code to review.
+
+--=20
+With Best Regards,
+Andy Shevchenko
