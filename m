@@ -2,149 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27A1F6F55AD
-	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 12:13:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B32A46F55BA
+	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 12:15:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229573AbjECKN1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 May 2023 06:13:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32926 "EHLO
+        id S229765AbjECKPH convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 3 May 2023 06:15:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229558AbjECKN0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 06:13:26 -0400
-Received: from mail.3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B3D8CE;
-        Wed,  3 May 2023 03:13:24 -0700 (PDT)
-Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.3ffe.de (Postfix) with ESMTPSA id 92F233EF;
-        Wed,  3 May 2023 12:13:21 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
-        t=1683108801;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=TPDO4Om9yjcPWH9ANN/EN8sQlVWPtQhVOQp30fzdMYU=;
-        b=p3mhAlx624E1Mtm8WvgkKyTUyjuOahHgpQXF5nZZyo+SHTN5KqDgeMixTXiorRE8qQAB30
-        wYQp/nM3+XwSugMK6j0O9lJKtchxZEhV4lqjF5Bvfq7ITplzXRwg6iVUcRse6K2NPfSDHC
-        fOhkuL+95YK70nmOdQq5zdbVuZFiYvEgrUEAAV0egGJFiB+kBhuRIqWwbYIU5F6vl15A4H
-        c44MijOSQazd49AD0kCVQp/eX7lIEeco9dXPCYVF3dj6idZxnto1wrOLFzxhnevYLyPZSB
-        FsDSYFGCPEMIV3V3LHDiqstlPN3m9WC9akKH8AbFweM8YK1FeaEUFTwEutl4ZA==
+        with ESMTP id S229679AbjECKPG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 06:15:06 -0400
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1526CE;
+        Wed,  3 May 2023 03:15:05 -0700 (PDT)
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-55a5e0f5b1aso30548947b3.0;
+        Wed, 03 May 2023 03:15:05 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683108905; x=1685700905;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=J9Ei4eIU9458pKjl+Q1vOAHQVhwFjS/Wijv4O7V3dZA=;
+        b=UYnvKE4IdOfoSSCZBKLUieqkiy5yblXhWBcGHAKmYmFxMazr1jazskY7EpKK4Xq2fl
+         8kRiiC6naTH8HU3XGgRfbyK91V4G4ToGyJfrdsPV9PMu/xyhtlMMGpZ4BfLgrWtEW6dD
+         yQnsoQqCr+VLCOg+fQ3p3bZz9mJ4qmyCJiFf9JujI6dwjTmOrmjfo15zKSYATcFXEp45
+         54uSn+iOXIoh5A40gcVmCp0yCl/qHDWoSHgx0VXig0uIvXQAawlkp0i4d70EpNj5wQ0j
+         b9c38FwIS4CEyWXhzvQEBugsvvZj6Y7VmguWR6uwC7ZrexcsdWeGbR2xz+KFmcO2uH39
+         1OvQ==
+X-Gm-Message-State: AC+VfDwo7qu5dbB4fncJ2Hy/+h8BcNHm6IMKTJHSo6gdNj5JxbkqvIkn
+        nXF7pa7ctsEvcm71xc30JBK5FZUEwV0M+w==
+X-Google-Smtp-Source: ACHHUZ6YoJDvn2lKwqaOBxilCH42V89xOozSpg7tc4F2+SJaSpGvieRF5ZnzK30qGnvpSpCSr59cUQ==
+X-Received: by 2002:a0d:f4c5:0:b0:556:b11e:ec34 with SMTP id d188-20020a0df4c5000000b00556b11eec34mr19442764ywf.50.1683108904693;
+        Wed, 03 May 2023 03:15:04 -0700 (PDT)
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com. [209.85.128.181])
+        by smtp.gmail.com with ESMTPSA id u205-20020a8147d6000000b00557027bf788sm3994773ywa.74.2023.05.03.03.15.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 May 2023 03:15:04 -0700 (PDT)
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-55a5e0f5b1aso30548467b3.0;
+        Wed, 03 May 2023 03:15:03 -0700 (PDT)
+X-Received: by 2002:a81:83cf:0:b0:55c:253b:91dc with SMTP id
+ t198-20020a8183cf000000b0055c253b91dcmr1626279ywf.34.1683108903696; Wed, 03
+ May 2023 03:15:03 -0700 (PDT)
 MIME-Version: 1.0
-Date:   Wed, 03 May 2023 12:13:21 +0200
-From:   Michael Walle <michael@walle.cc>
-To:     Edmund Berenson <edmund.berenson@emlix.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Lukasz Zemla <Lukasz.Zemla@woodward.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
+References: <20230502170618.55967-1-wsa+renesas@sang-engineering.com> <20230502170618.55967-3-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20230502170618.55967-3-wsa+renesas@sang-engineering.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 3 May 2023 12:14:52 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdV0iZJwNDRTxZXr-Rg_=VDN1hYw2gbSwwys1EDrzgC7Ew@mail.gmail.com>
+Message-ID: <CAMuHMdV0iZJwNDRTxZXr-Rg_=VDN1hYw2gbSwwys1EDrzgC7Ew@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: renesas: r8a779a0: Add PWM nodes
+To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc:     linux-renesas-soc@vger.kernel.org,
+        Phong Hoang <phong.hoang.wz@renesas.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] gpio: max7317: Add gpio expander driver
-In-Reply-To: <bb2bce8b-4d99-1a15-3a34-055ee7637fe2@emlix.com>
-References: <20230403114033.8336-1-edmund.berenson@emlix.com>
- <20230403114033.8336-2-edmund.berenson@emlix.com>
- <CACRpkdbnj-BiA8D0e4nza-za-E8g_AEBNjR4b3gWUZpw70U33g@mail.gmail.com>
- <bb2bce8b-4d99-1a15-3a34-055ee7637fe2@emlix.com>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <14574305d829de5befd39828b0b29cfe@walle.cc>
-X-Sender: michael@walle.cc
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2023-05-03 10:37, schrieb Edmund Berenson:
-> On 4/4/23 16:05, Linus Walleij wrote:
->> On Mon, Apr 3, 2023 at 1:41 PM Edmund Berenson
->> <edmund.berenson@emlix.com> wrote:
->> 
->>> Add driver for maxim MAX7317 SPI-Interfaced 10 Port
->>> GPIO Expander.
->>> 
->>> v2: adjust driver to use regmap
->>> 
->>> Co-developed-by: Lukasz Zemla <Lukasz.Zemla@woodward.com>
->>> Signed-off-by: Lukasz Zemla <Lukasz.Zemla@woodward.com>
->>> Signed-off-by: Edmund Berenson <edmund.berenson@emlix.com>
->> 
->> Notwithstanding the other comments from Bartosz, this seems like
->> a driver that should be using the regmap GPIO helper library.
->> git grep GPIO_REGMAP will show you examples of other drivers
->> that use this and how it is used.
->> 
->> Yours,
->> Linus Walleij
-> 
-> Hi,
-> 
-> thanks for the review and suggestion. I tried following your suggestion 
-> and use
-> GPIO_REGMAP to implement the driver.
-> 
-> Unfortunately I ran into two issues
-> 1. reg_set_base == 0: for the devcie reg_set base is 0x0. In 
-> gpio-regmap there
-> are several tests for !reg_set_base. There doesn't seem a way to 
-> distinguish
-> between is set to 0 and is not set. :)
+Hi Wolfram,
 
-That's what GPIO_REGMAP_ADDR(addr) is for :)
+On Tue, May 2, 2023 at 7:06 PM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> From: Phong Hoang <phong.hoang.wz@renesas.com>
+>
+> This patch adds PWM nodes for R-Car V3U (r8a779a0) SoC.
+>
+> Signed-off-by: Phong Hoang <phong.hoang.wz@renesas.com>
+> [wsa: rebased]
+> Tested-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-> 2. input/output direction: to set a gpio pin to input one has to write 
-> 0x1 to
-> the corresponding output register. The issue starts when I configure a 
-> port to
-> be an output, set output to 0x1, check the direction of the pin, doing 
-> so trough
-> sysfs the system will now assume the pin is an input and I can't set 
-> its values
-> anymore. Avoiding this I would like to track the direction of the pin 
-> separately
-> from the device register, which is atm done in the corresponding 
-> bespoke in/out
-> functions.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.5.
 
-I can't follow you here exactly. But I've briefly looked at the 
-datasheet
-and the output is an open drain one. Just like the one we are currently
-discussing in [1]. Here too, there seems to be no direction register,
-although it is mentioned in the datasheet. But Table 1. Register Address 
-Map
-is super confusing, so please correct me if I'm wrong.
+> --- a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
+> @@ -1108,6 +1108,56 @@ msiof5: spi@e6c28000 {
+>                         status = "disabled";
+>                 };
+>
+> +               pwm0: pwm@e6e30000 {
 
-Since we now have already two different chips with this OD output and 
-always
-active input buffer, it makes sense to add support to gpio-regmap for 
-these
-kind of devices. To me it is still unclear wether we need the direction 
-at
-all. Linus answered my question yesterday, but I haven't found time to 
-dig
-into that topic myself. Please go ahead and make some suggestions :)
+I'll move this before serial@e6e60000 while applying, to preserve sort
+order (by unit address).
 
-> I could probably solve both of these issues trough the reg_mask_xlate 
-> function
-> but I believe this would introduce unneeded obscurity in the driver.
-> 
-> I do not believe there are any other easy obvious/better fixes for 
-> this. (or
-> maybe you prove me wrong :))
-> Would you be okay for this driver to stick with direct regmap usage? 
-> (obviously
-> fixing the review suggestions)
+Gr{oetje,eeting}s,
 
--michael
+                        Geert
 
-[1] https://lore.kernel.org/r/20230502084406.3529645-1-michael@walle.cc/
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
