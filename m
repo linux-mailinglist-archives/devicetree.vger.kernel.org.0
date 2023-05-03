@@ -2,67 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 91C1A6F5006
-	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 08:22:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3BE66F5011
+	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 08:27:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229633AbjECGWd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 May 2023 02:22:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37372 "EHLO
+        id S229501AbjECG1U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 May 2023 02:27:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229618AbjECGWb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 02:22:31 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D8A02680
-        for <devicetree@vger.kernel.org>; Tue,  2 May 2023 23:22:30 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-95369921f8eso769650366b.0
-        for <devicetree@vger.kernel.org>; Tue, 02 May 2023 23:22:30 -0700 (PDT)
+        with ESMTP id S229484AbjECG1S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 02:27:18 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76B59124
+        for <devicetree@vger.kernel.org>; Tue,  2 May 2023 23:27:16 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-94a34a14a54so950159666b.1
+        for <devicetree@vger.kernel.org>; Tue, 02 May 2023 23:27:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683094948; x=1685686948;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=linaro.org; s=google; t=1683095235; x=1685687235;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=z8XVAqmXI+jhl3BFHPCqjLP+/G26BqqeUS0b4jpObIM=;
-        b=VME+7d3JdUeuTaP936ESeJYi8Rkg3Bkw5MUcPv9lLHvq10FrJs4+hA5FUwIjCipCfL
-         ib1DEfjqkARo8PuxhGP7YyTiFUPXXxI3cwbjRjlRG/jMinWGWg8e5hoHJowM2yvQnEDb
-         OPjkLXMOc7TEaG18GgBbu8yvIBDzE0FWD6/KvG73YAhOKcgY98tBwDG6L+2dZE3W2gdn
-         mW2O/IS0uBUUJzUGDBGa72VcQnlaBpDwnonPleryUXxwHApf05JYqT3VyGzxhxZC7pIf
-         hb+HuWoeOJG9/jhQqUEkLYnCJNeU1Aq1/Rb+uso6C9Lgxk5N6UgdYZMAfVmqdoN7CKf7
-         u3mw==
+        bh=ib+NX6C8d73xTfM6SAbpJ0BabmkXxvSxV2SrjCPzJ1o=;
+        b=L1IG+Q1hPtesn6elhAq19BbNUAfrubWB0i0LGPQzoM61f6mmhOqF+T/psuBk0DIJCx
+         qCtUpofFYmh6gE5KDywkApkla2sKS6DXs04gvaNdFdQsFKeH0a9gV8kF8gUWWKgu6kKy
+         IB0X45JtCWptrVuxhlKwJ/utCGYU87ugrKboZYWbJxxd4r/DjqVHmDsNImJA/gko8Blq
+         M0TZ8rrQGfr5e35Qg1WWtdM0vtURUU/m90zIS1LS6M4VOxk9XtsEtVU0XLHwZVMxUsvx
+         MI8CteKWi5yRQ+GgPtzwJc/XcGZAPgigit/ywNAP6GT3+fqA3gTGdTS8JZVaXVb0ZaZN
+         ivyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683094948; x=1685686948;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=1e100.net; s=20221208; t=1683095235; x=1685687235;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=z8XVAqmXI+jhl3BFHPCqjLP+/G26BqqeUS0b4jpObIM=;
-        b=apJyjWu0eO5jcHaOsfJQlKv3wLUdvpKNrEIVoSEY21qxyXJPA7GPzpioY8A+/YCwtO
-         iko26mZGLFkrfN7p2HOvtmCeye1/bB7jn6DrV7hSMPJ+I820W+A2FJ7h51eX3czz8lnW
-         Y7xpv9WbZLB5kQCMv/7aStqK4K9B9XiaOQi0k6kltusgyVuWRiS7qr/iTGdwwkAQEO0K
-         wfF06/gwpGpFU6zxLyHVqzhV1R+EDSGO+BnS28Uqw8oNMSxHNRUzVD+qjQBCMyV04yXQ
-         HJyyBRNUugVwvwbyuJZjP3ThzTyPu1WDxHgUgHpBkvMF6pQSyTDnHzJYGTGvw6MyIxo5
-         RHPw==
-X-Gm-Message-State: AC+VfDxisa0ejrfcCE2r/MZGnrO9CZCvH7TaGhBq5PqsNzMlWl/wFPfx
-        SAJN7OHH1bf1sJPklcEatRav0w==
-X-Google-Smtp-Source: ACHHUZ4aYV6FzcThjCWwcuu6vNy+xvXpJlGW+eUMldzJuswo1ddRZSQsgQQ2g5v2y51oCnhQf1mHVg==
-X-Received: by 2002:a17:907:1b17:b0:94a:4d06:3de3 with SMTP id mp23-20020a1709071b1700b0094a4d063de3mr2278494ejc.72.1683094948531;
-        Tue, 02 May 2023 23:22:28 -0700 (PDT)
+        bh=ib+NX6C8d73xTfM6SAbpJ0BabmkXxvSxV2SrjCPzJ1o=;
+        b=lf3u5I3UX9HEehiIaEhOQ/RQBGpqhmfeu/skbxxqQjyoG+8zn1trK3+MBBpwHk6h/h
+         dDECuMhcFOgi7TRbeFFUYm57ZMjLful8JKmVbjUHg712Ixbrwt5edPbsJukl3GQUsXUQ
+         xf3Bn+vAX3S6FGFX+UofyFuYVPd89ph8QMo9iTzQC2pVkEg4dZHp+1izV/3/UWguU6kP
+         YNOsnSM3WCO8iejJbTRsGG47b8cSQnZyh0Y9eIM9csM96X4/npToDX0Wu8mRmetZeF7g
+         PZjo0XAVBcejIB+mGC7Dv2/AnwRttPnKZ4hkT54L1kqSBpVEcDMfXPCL2J0+ChgwMqDA
+         LXBA==
+X-Gm-Message-State: AC+VfDwYte/g1BZu71WVMa1OcQ2bWq5qmbAgKYfFjE3gQ78dST4ojHlD
+        zUV74ewKYPbmzGTU87QlKRTEvQ==
+X-Google-Smtp-Source: ACHHUZ4ClccjOiqk3u9KuX48FibRso8I7ANwRDV0F/DCMSxt4hNIU37q2EsfuBPMhan5dsaQxfCErQ==
+X-Received: by 2002:a17:906:730e:b0:95f:bbb0:6d2d with SMTP id di14-20020a170906730e00b0095fbbb06d2dmr2210265ejc.63.1683095234902;
+        Tue, 02 May 2023 23:27:14 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:a40b:9d8:1fa0:ecc5? ([2a02:810d:15c0:828:a40b:9d8:1fa0:ecc5])
-        by smtp.gmail.com with ESMTPSA id t26-20020a1709064f1a00b0094f34fe27c6sm17016156eju.170.2023.05.02.23.22.26
+        by smtp.gmail.com with ESMTPSA id zu23-20020a17090708d700b0095807ab4b57sm14711637ejb.178.2023.05.02.23.27.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 May 2023 23:22:27 -0700 (PDT)
-Message-ID: <664379bf-96c4-b66c-6b0b-7b848ae6000c@linaro.org>
-Date:   Wed, 3 May 2023 08:22:21 +0200
+        Tue, 02 May 2023 23:27:13 -0700 (PDT)
+Message-ID: <87338a93-c285-3149-dc22-0fe4cd446a23@linaro.org>
+Date:   Wed, 3 May 2023 08:27:11 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
-Subject: Re: [PATCH v1 1/2] dt-bindings: tegra: Document compatible for IGX
+Subject: Re: [PATCH 1/8] dt-bindings: nvmem: Convert rockchip-otp.txt to
+ dt-schema
 Content-Language: en-US
-To:     Shubhi Garg <shgarg@nvidia.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-References: <20230502150249.773425-1-shgarg@nvidia.com>
+To:     Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Shreeya Patel <shreeya.patel@collabora.com>,
+        Kever Yang <kever.yang@rock-chips.com>,
+        Finley Xiao <finley.xiao@rock-chips.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com
+References: <20230501084401.765169-1-cristian.ciocaltea@collabora.com>
+ <20230501084401.765169-2-cristian.ciocaltea@collabora.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230502150249.773425-1-shgarg@nvidia.com>
+In-Reply-To: <20230501084401.765169-2-cristian.ciocaltea@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -75,33 +86,89 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/05/2023 17:02, Shubhi Garg wrote:
-> Document the compatible strings used for Nvidia IGX Orin Development
-> kit which uses P3701 SKU8 and P3740 carrier board.
+On 01/05/2023 10:43, Cristian Ciocaltea wrote:
+> Convert the Rockchip OTP memory bindings to dt-schema.
 > 
-> Signed-off-by: Shubhi Garg <shgarg@nvidia.com>
+> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
 > ---
->  Documentation/devicetree/bindings/arm/tegra.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+>  .../bindings/nvmem/rockchip-otp.txt           | 25 ------
+>  .../bindings/nvmem/rockchip-otp.yaml          | 83 +++++++++++++++++++
+>  2 files changed, 83 insertions(+), 25 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/nvmem/rockchip-otp.txt
+>  create mode 100644 Documentation/devicetree/bindings/nvmem/rockchip-otp.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/tegra.yaml b/Documentation/devicetree/bindings/arm/tegra.yaml
-> index 0df41f5b7e2a..34523b8b5d1f 100644
-> --- a/Documentation/devicetree/bindings/arm/tegra.yaml
-> +++ b/Documentation/devicetree/bindings/arm/tegra.yaml
-> @@ -176,5 +176,10 @@ properties:
->            - const: nvidia,p3768-0000+p3767-0000
->            - const: nvidia,p3767-0000
->            - const: nvidia,tegra234
-> +      - description: NVIDIA IGX Orin Development Kit
-> +        items:
-> +          - const: nvidia,p3740-0002+p3701-0008
-> +          - const: nvidia,p3701-0008
-> +          - const: nvidia,tegra234
->  
+> diff --git a/Documentation/devicetree/bindings/nvmem/rockchip-otp.txt b/Documentation/devicetree/bindings/nvmem/rockchip-otp.txt
+> deleted file mode 100644
+> index 40f649f7c2e5..000000000000
+> --- a/Documentation/devicetree/bindings/nvmem/rockchip-otp.txt
+> +++ /dev/null
+> @@ -1,25 +0,0 @@
+> -Rockchip internal OTP (One Time Programmable) memory device tree bindings
+> -
+> -Required properties:
+> -- compatible: Should be one of the following.
+> -  - "rockchip,px30-otp" - for PX30 SoCs.
+> -  - "rockchip,rk3308-otp" - for RK3308 SoCs.
+> -- reg: Should contain the registers location and size
+> -- clocks: Must contain an entry for each entry in clock-names.
+> -- clock-names: Should be "otp", "apb_pclk" and "phy".
+> -- resets: Must contain an entry for each entry in reset-names.
+> -  See ../../reset/reset.txt for details.
+> -- reset-names: Should be "phy".
+> -
+> -See nvmem.txt for more information.
+> -
+> -Example:
+> -	otp: otp@ff290000 {
+> -		compatible = "rockchip,px30-otp";
+> -		reg = <0x0 0xff290000 0x0 0x4000>;
+> -		#address-cells = <1>;
+> -		#size-cells = <1>;
+> -		clocks = <&cru SCLK_OTP_USR>, <&cru PCLK_OTP_NS>,
+> -			 <&cru PCLK_OTP_PHY>;
+> -		clock-names = "otp", "apb_pclk", "phy";
+> -	};
+> diff --git a/Documentation/devicetree/bindings/nvmem/rockchip-otp.yaml b/Documentation/devicetree/bindings/nvmem/rockchip-otp.yaml
+> new file mode 100644
+> index 000000000000..658ceed14ee2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/nvmem/rockchip-otp.yaml
 
-Don't stuff things to the end, but put in some logical order. For
-example 'I' could be before 'N'.
+Filename matching compatible, or at least it format. rockchip,otp
 
+
+> @@ -0,0 +1,83 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/nvmem/rockchip-otp.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Rockchip internal OTP (One Time Programmable) memory
+> +
+> +maintainers:
+> +  - Heiko Stuebner <heiko@sntech.de>
+> +
+> +allOf:
+> +  - $ref: nvmem.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - rockchip,px30-otp
+> +      - rockchip,rk3308-otp
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 3
+
+Drop minItems, not needed when equal to max.
+
+> +    maxItems: 3
+> +
+> +  clock-names:
 Best regards,
 Krzysztof
 
