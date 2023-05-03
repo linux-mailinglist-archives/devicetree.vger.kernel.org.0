@@ -2,78 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4397D6F56B9
-	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 13:00:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FD996F56D6
+	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 13:03:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230153AbjECLAu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 May 2023 07:00:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58972 "EHLO
+        id S229488AbjECLDU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 May 2023 07:03:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230075AbjECLAp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 07:00:45 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A969C59E2;
-        Wed,  3 May 2023 04:00:25 -0700 (PDT)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3439oW1R020552;
-        Wed, 3 May 2023 11:00:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=8jiLRyU6DTRkvpNPRSNdAkJ9zIZ0h5pDGG4GXsWSb8E=;
- b=W0C0BbwyHc6dy8SZPn5ox7dDDpSRxS3s7o/t9mi1KF1ZFz5yzuX+hXz960LI7JS+tfAe
- XILo+y+fkhdoJKROCkp+xK5s2HV9LQqXKgnGzu6SsHwN3u1oIP8ATc7qecBMRp5tctaF
- yiFpc/QtFOfIrBPNyq7niK9lbB+Oo3uYg+5xUsarrqxhIn2O8OSjHUyspuc/SuBSM6l1
- TkRwX8eGJo8l5KuTh78rEC6NUT1xTHEfgSjZ60P6E9kQTmU7ywF80UvAXy9d0iRc9fdp
- 9S2/FYaAK1MlK0teu2lFO9fdB1OBRpDc6isRGNS2GL+UMtfuPEccHofGkxgoUkkW79Rb LA== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qbeb2s593-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 03 May 2023 11:00:21 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 343B0L3W023647
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 3 May 2023 11:00:21 GMT
-Received: from hu-tdas-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Wed, 3 May 2023 04:00:16 -0700
-From:   Taniya Das <quic_tdas@quicinc.com>
-To:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>
-CC:     Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_skakitap@quicinc.com>, <quic_jkona@quicinc.com>
-Subject: [PATCH V3 3/3] arm64: dts: qcom: sm8450: Add video clock controller
-Date:   Wed, 3 May 2023 16:29:37 +0530
-Message-ID: <20230503105937.24911-4-quic_tdas@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230503105937.24911-1-quic_tdas@quicinc.com>
-References: <20230503105937.24911-1-quic_tdas@quicinc.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: NJCku49CYpp3rWN4BDWAEVguUAlhp-Jm
-X-Proofpoint-GUID: NJCku49CYpp3rWN4BDWAEVguUAlhp-Jm
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-03_06,2023-05-03_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- impostorscore=0 spamscore=0 bulkscore=0 mlxscore=0 phishscore=0
- malwarescore=0 adultscore=0 clxscore=1015 priorityscore=1501
- mlxlogscore=954 lowpriorityscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2303200000 definitions=main-2305030092
+        with ESMTP id S229577AbjECLDS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 07:03:18 -0400
+Received: from wnew2-smtp.messagingengine.com (wnew2-smtp.messagingengine.com [64.147.123.27])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E86DE5B9A;
+        Wed,  3 May 2023 04:03:00 -0700 (PDT)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailnew.west.internal (Postfix) with ESMTP id 6C7392B0671E;
+        Wed,  3 May 2023 07:02:32 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Wed, 03 May 2023 07:02:34 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-transfer-encoding:content-type:content-type:date
+        :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+        :references:reply-to:sender:subject:subject:to:to; s=fm3; t=
+        1683111752; x=1683118952; bh=MMamfdw2Idw7oZk+/E3mvL+dBo0TUHD8cWv
+        2z+u/0pc=; b=WBctjyvS2xYVsNx/PXLCezyBfk6d0fNGJLAbjyR93iv+JntYfRw
+        1FknZqmA6tsFPUoOxwPIzC92Rp5Y6yMCdnzeprisuAEmk/2FwjwhujnyjmXpkimB
+        SppIL5oaBfr59F6AzPecb7p3PngCPKwbucj2v1SwZaiAn0b8V6yRvxWIATOoB1yT
+        kTJFFdKrKoLxDca9M6vO2wD00yP0v9E+Y6cH9ws5eKi/SUd2UHkyPleSrFe3oyLX
+        8GenDC9VkDzpl0DM3D3MJqCCidmbvb4oXCVvEsbwuVU7zsrm1wOjex4kRkPwyRT1
+        Y3o5kMbVVaclWgwF5PhZKyT7r7Y+YHslZ1Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:content-type:date:date:feedback-id:feedback-id
+        :from:from:in-reply-to:in-reply-to:message-id:mime-version
+        :references:reply-to:sender:subject:subject:to:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=
+        1683111752; x=1683118952; bh=MMamfdw2Idw7oZk+/E3mvL+dBo0TUHD8cWv
+        2z+u/0pc=; b=AH+K36zaN4zYugn+q+n765d7RqYhBnYAkyeBKpd/jUwnO4cc17N
+        sOtk4fgnjqgBRejjoUPfmgWTaKFP4N6l86PC9yWkTl7qSHDYKt8zUNrMJm7hgsac
+        MAKOY5kQ55a0V+cd6KgpG+xKpJy4SWbnKyPbmZiW4Z0r+3tL/pAww5DKoBXtHvDI
+        i273D40wtniWtgLX4sC5ApVUdClgCvIzPssLKxyAw/v9JuPv2gH8vOUO3lADSDBb
+        NaXuK10560hVSSAb2s815TRFlAaY6HIsVEB4nLwDJq5pD3D+mqkoaNJij4p9s68c
+        FZWuHfNk6rEKY5SsKc3Dqj2x0oLyHX/paVw==
+X-ME-Sender: <xms:Rj9SZKlTTnbDiHX55Z0zVK4RRHqTtD34Ic0kr9gu8LXRZUd5vW1sNQ>
+    <xme:Rj9SZB2RRbTSlfnvoyCiq-CjuDURcGdNgs5GoDJl4qCHFJ5-ZHoIvp9bWKCYjpXN-
+    ODT0WgrXyw40LeC0sc>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrfedvkedgfeegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtgfesthhqredtreerjeenucfhrhhomhepfdet
+    rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
+    htthgvrhhnpeegfeejhedvledvffeijeeijeeivddvhfeliedvleevheejleetgedukedt
+    gfejveenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    grrhhnugesrghrnhgusgdruggv
+X-ME-Proxy: <xmx:Rj9SZIovGybcnhaYiLbWAMPNr2wtxMzL-NEtbKfgejz2jVx79Q3BOw>
+    <xmx:Rj9SZOmlZGrdb2-rGVi2XdPxahue8H13hkdPES4NDGwCeY-jXgd-ew>
+    <xmx:Rj9SZI2--fY13skOLwZ1x9wt_VRgsao0yXJv8XyToKLEhPijWfOSBw>
+    <xmx:SD9SZMJstDJSwk6E9VhGeSPmli8W6KuMDF8H4lCfg1AWmdfP8FfC5WnUfw0>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id B77FBB6008D; Wed,  3 May 2023 07:02:30 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-386-g2404815117-fm-20230425.001-g24048151
+Mime-Version: 1.0
+Message-Id: <99b49e6b-e963-415a-a2c9-72505087833c@app.fastmail.com>
+In-Reply-To: <CAL_JsqKCtmkwzKa01gyG65fH8ye6R3KhR41PJbJhOJ4X9j=znA@mail.gmail.com>
+References: <20220328000915.15041-1-ansuelsmth@gmail.com>
+ <85eb14ec-f465-7447-ad77-a3dabc666f47@kernel.org>
+ <YkKRYnN84D9VZhGj@Ansuel-xps.localdomain>
+ <CAL_Jsq+RQQ-ADMxLPUFwk6S6kGmb6oNDy4k52fnU0EtbUvqmSA@mail.gmail.com>
+ <CAMuHMdWNTE48MFy6fqxAsfMWz9b6E7dVNXtXtESP95sxk2PGwA@mail.gmail.com>
+ <CAL_JsqJthKTm8bhRF2B=ae1tvtPeYYXx_Tm76qQtSwLtH5C6VA@mail.gmail.com>
+ <720a2829-b6b5-411c-ac69-9a53e881f48d@app.fastmail.com>
+ <CAL_JsqKCtmkwzKa01gyG65fH8ye6R3KhR41PJbJhOJ4X9j=znA@mail.gmail.com>
+Date:   Wed, 03 May 2023 13:02:10 +0200
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Rob Herring" <robh+dt@kernel.org>
+Cc:     "Geert Uytterhoeven" <geert@linux-m68k.org>,
+        "Olof Johansson" <olof@lixom.net>,
+        "Christian Marangi" <ansuelsmth@gmail.com>,
+        "Krzysztof Kozlowski" <krzk@kernel.org>,
+        "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-actions@lists.infradead.org,
+        linux-sunxi@lists.linux.dev,
+        Linux-OMAP <linux-omap@vger.kernel.org>,
+        linux-amlogic@lists.infradead.org, linux-arm-kernel@axis.com,
+        linux-aspeed@lists.ozlabs.org,
+        linux-rpi-kernel@lists.infradead.org,
+        chrome-platform@lists.linux.dev,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        linux-samsung-soc@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        kernel@dh-electronics.com, linux-mediatek@lists.infradead.org,
+        openbmc@lists.ozlabs.org, linux-tegra@vger.kernel.org,
+        "linux-oxnas@groups.io" <linux-oxnas@groups.io>,
+        linux-arm-msm@vger.kernel.org, linux-unisoc@lists.infradead.org,
+        linux-rockchip@lists.infradead.org,
+        linux-realtek-soc@lists.infradead.org
+Subject: Re: [RFC PATCH 0/1] Categorize ARM dts directory
+Content-Type: text/plain;charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
         SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -82,42 +112,91 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device node for video clock controller on Qualcomm SM8450 platform.
+On Tue, May 2, 2023, at 21:40, Rob Herring wrote:
+> On Tue, May 2, 2023 at 3:15=E2=80=AFAM Arnd Bergmann <arnd@arndb.de> w=
+rote:
 
-Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
----
-Changes since V2:
- - No changes.
+> vendor_map =3D {
+>     'alphascale' : 'alphascale',
+>     'alpine' : 'alpine',
 
-Changes since V1:
- - No changes.
+I would make this one 'amazon' if we go with current manufacturers.
 
- arch/arm64/boot/dts/qcom/sm8450.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+>     'nspire' : 'nspire',
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index 595533aeafc4..00ff8efa53c7 100644
---- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -756,6 +756,18 @@ gcc: clock-controller@100000 {
- 				      "usb3_phy_wrapper_gcc_usb30_pipe_clk";
- 		};
- 
-+		videocc: clock-controller@aaf0000 {
-+			compatible = "qcom,sm8450-videocc";
-+			reg = <0 0x0aaf0000 0 0x10000>;
-+			clocks = <&rpmhcc RPMH_CXO_CLK>,
-+				 <&gcc GCC_VIDEO_AHB_CLK>;
-+			power-domains = <&rpmhpd SM8450_MMCX>;
-+			required-opps = <&rpmhpd_opp_low_svs>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			#power-domain-cells = <1>;
-+		};
-+
- 		gpi_dma2: dma-controller@800000 {
- 			compatible = "qcom,sm8450-gpi-dma", "qcom,sm6350-gpi-dma";
- 			#dma-cells = <3>;
--- 
-2.25.1
+nspire is the name of the end-user product, so that doesn't quite
+fit. The SoC was apparently an LSI logic Zevio, which is now owned
+by Broadcom.
 
+>     'mvebu' : 'marvell',
+>     'mmp' : 'marvell',
+>     'berlin' : 'berlin',
+
+While berlin is related to pxa/mmp, this one is now owned
+by Synaptics, and the 64-bit versions are already in the
+synaptics subdir, so I'd go with teh same here.
+
+>     'openbmc' : 'aspeed',
+>     'en7' : 'airoha',
+
+airoha is a separate company now, but the hardware is still
+shared with mediatek, so we could consider lumping it into
+that subdir, but a separate one may be better long-term.
+
+>     'gemini' : 'gemini',
+
+This one is also a product name, not a company. Apparently,
+gemini was originally made by Storm Semiconductor, and then
+by Cortina, which was subsequently acquired by Inphi, and that ended
+up in Marvell after the product was already discontinued.
+
+Out of the four, I'd probably go with 'cortina' as the
+directory name.
+
+>     'meson' : 'meson',
+
+-> amlogic
+
+>     'moxa' : 'moxa',
+>     'mstar' : 'mstar',
+
+-> sigmastar
+
+>     'nuvo' : 'nuvoton',
+>     'lpc' : 'lpc',
+
+-> nxp
+
+>     'lan96' : 'microchip',
+>     'owl' : 'actions',
+>     'ox8' : 'oxsemi',
+>     'rda' : 'rda',
+
+-> unisoc
+
+>     'rtd' : 'realtek',
+>     'r7' : 'renesas',
+>     'r8' : 'renesas',
+>     'r9' : 'renesas',
+>     'emev2' : 'renesas',
+>     'sh73a' : 'renesas',
+>     'gr-' : 'renesas',
+>     'iwg' : 'renesas',
+>     'rk' : 'rockchip',
+>     'rv11' : 'rockchip',
+>     'rockchip' : 'rockchip',
+>     'socfpga' : 'socfpga',
+
+-> intel
+
+>     'stm' : 'stm32',
+>     'sti' : 'sti',
+>     'st-pin' : 'sti',
+>     'ste' : 'st-ericsson',
+>     'spear' : 'spear',
+
+I would put all five of these into 'st'. The ux500 was developed
+in st-ericsson, but last sold by st, and the other ones are all
+original st products.
+
+      Arnd
