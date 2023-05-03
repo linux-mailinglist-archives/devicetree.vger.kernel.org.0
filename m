@@ -2,198 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD6566F5EF1
-	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 21:10:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 419AB6F5F29
+	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 21:34:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229441AbjECTKv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 May 2023 15:10:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39974 "EHLO
+        id S229755AbjECTeG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 May 2023 15:34:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229644AbjECTKu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 15:10:50 -0400
-Received: from stravinsky.debian.org (stravinsky.debian.org [IPv6:2001:41b8:202:deb::311:108])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DB0B7AB7;
-        Wed,  3 May 2023 12:10:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=debian.org;
-        s=smtpauto.stravinsky; h=X-Debian-User:In-Reply-To:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description;
-        bh=vfvdDUxST/TqMGs2ydRU881qJNF4aH49FdBpxMofuJ0=; b=JLs+g9xs0MLmDTPqd5+nKMO8ir
-        Y2u6LvHU9xKErSImBxIs70xY7WVtk6PGQImC9NxCP7gL0MO/hVm1uAvxzbBESjfTxuzGC3xWdSm8q
-        AMddS+QQMkCW45A6K1IXlDKVM5JVBEHi1ZyTScNXVn685gOJ3/svPdtPrnHfOmlQ0RT1OlaVFzxng
-        BaIKiIO91uq5kBwqkAU9w0oIrQqCGFLJuMKS2C3YkWC7sjlvpMmtZ2OHK8ow/nCFmyBNR6RKW4Rbe
-        UAxo/PTL2lmRmHzXlqC3yomU44seu9chJXF0t3mHloydHzRUgQ/u3rWFG+Osulq4kaS8+AoGjyjSL
-        IR9ifGOw==;
-Received: from authenticated user
-        by stravinsky.debian.org with esmtpsa (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
-        (Exim 4.94.2)
-        (envelope-from <kibi@debian.org>)
-        id 1puHs8-003gwQ-NP; Wed, 03 May 2023 19:10:42 +0000
-Date:   Wed, 3 May 2023 21:10:37 +0200
-From:   Cyril Brulebois <kibi@debian.org>
-To:     Jim Quinlan <james.quinlan@broadcom.com>
-Cc:     Jim Quinlan <jim2101024@gmail.com>, linux-pci@vger.kernel.org,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Phil Elwell <phil@raspberrypi.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>
-Subject: Re: [PATCH v4 0/5] PCI: brcmstb: Configure appropriate HW CLKREQ#
- mode
-Message-ID: <20230503191037.pqnpoiojdq5huyo6@mraw.org>
-Organization: Debian
-References: <20230428223500.23337-1-jim2101024@gmail.com>
- <20230502231558.5zt5tyxczd22ppjz@mraw.org>
- <CA+-6iNzD_YrrhDPfr0J7KA3rotbgDNB+vGOJyyRnW3-7G5vw6Q@mail.gmail.com>
+        with ESMTP id S229595AbjECTeE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 15:34:04 -0400
+Received: from sonic303-21.consmr.mail.ir2.yahoo.com (sonic303-21.consmr.mail.ir2.yahoo.com [77.238.178.202])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB6097DA8
+        for <devicetree@vger.kernel.org>; Wed,  3 May 2023 12:33:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rocketmail.com; s=s2048; t=1683142434; bh=ey9VVE3Uq687XRWPjw9xJG0+/i9NqHt1pJf3+QQYMkU=; h=Date:Subject:To:Cc:References:From:In-Reply-To:From:Subject:Reply-To; b=dUrwv+E18P+1nqMvWWwiLyhz3vFaqYAUyJ4qQlquWBDPa2XITjS8mQAmnYGT/ADw7R6D9Y6Rn61nFaeyw5uQrUPsuh0P93Dof6VsMluYMDU0HgL9xKb7FqpEZlm6mrdoOZ8s5FOhGYZkohxFuhM1kFfljA3VxH5OHX9QMseeuMT+u1xLnFuBDm5CWoQ2KUEdxnHSRyrJCAev1mfLK3IA6dMPrl+rWbfSIyLcWVE3IJUv/N/CyfcEuNHxf0di1thyJhTf6uRSv1yCfM4pZBTxDVQOuRZmVcOGXW+RVCun5TdLZA9Gh4RwF/ndRapAPQX5IHPmjK0QhCf7F3ibc+Horg==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1683142434; bh=yA9jaGS7se1Bezm4p7uzrd4/l/t5BDw8oa/i6BT6E8G=; h=X-Sonic-MF:Date:Subject:To:From:From:Subject; b=AG/gDbiLeZIp3xw1A1vd1kB5tyaAwgrdmqVLsHwkQVsJ2gfWoXGuTM8973huaKr9GJMra9il+20iRxQdBwKvUSp0B1yEg1/wq/pXYGt/FdrVfg9UH56Mn0jTuuqympWWuxEUe9fKTKtX07gSzDBYpAikv+d+ozMcfm25WXm/JiFpuDHTD/3QTqGgptsPzyZ9uIDhH4WgkjTDge8XBHC4c8ZBITOclahq5xPizu9b3C3+TvY6F/q77k6HFj5HlyBMyozYdUuOlbFkAEBop86Nu6fcsYwrRGQ9LHyiPR2wL0f73iICv4SjtWxpamzEQqHOUUhviLNJGyv32DA+m+DuRQ==
+X-YMail-OSG: 9KVGGWEVM1mUcFY.b6obNje.xO7veIhWrPxAqQWlA0AFXwl2.j85fOQA86M62FV
+ Goj7ryIWdOmpUeQ.n3zxZ5A4wIyFBWO02E79EBymFgGKCRaKmD9nAn3dcNlIzRfshFid6X9r5b2Z
+ 8x1RdNQiRjtWiY2zUswMqfWCnedDdu6goEKCWM.tWAGXpGQkxZuoFLgfaKhAJqQrlRiME9ZdXxOo
+ b77if20wBzS1gvq33jnPdf5BZJBPg.m_PXlZsXNLLIUMHroUIfmeqvZrm1yxhVmHhv.K5bBt8EyZ
+ t0kzaOU8vQA1Rbs_74HTrXjoImqFC4dTlZT1QIWEHeuU5Qf20.mEZNfFARGok6g4sUTXLMGBOmGX
+ cegJEe.5tboUcF1h2Mbv3JXb9W2pGvaISXWOp2dLvud6F11S6rFvimm5xzstt5AyfkC_i8sD2RdW
+ 29_wNx5fR8e3fVlcEfn6uz9fcI4ozgNtwfwNxwkM41TAaG5Uy6TaSi48zFYx_Gfjdw6eeWmAH4fx
+ TrOsO4J.RNA6SfrqketVgloMmbZkvJ_acws3kJ8Sr66wcT92VRoNubaIrqsFRF_y8KvZkpshVAYV
+ vqQpGVQyY62ALLM7o4dmgv8AFm7gJELBE2Q.2PdFTrNMI5sXOe7UBbA.03ltFavKQWrfOCj7lxBO
+ us0jJgQVl8ik4ehJzsCrYi1VrkqibrU4VgpzQVRcxoM75P5SnJiyfErNN7qKBkExNm8De37lxsuT
+ 9iodJ1BZAxR7zo0SGUFQnOks4W8g0oKkbIupRj4pMoX6zQiMM4SSf4obNHhPrR.IXzLrBh4fgbaA
+ aiFxX9UelEk5GLSkw5I6vS8XjGv8AhngaN7M.14asWPsNB9NBgnvKz26cPI1r5Jh3LwTXtDGQMYB
+ BvfsvvsrXW.xBASsA6MXY9J5pMEtCZYVbRVyVHHGkb0T0b4u8Rz1zJpTlqmN_NdBz14TKkPWScEo
+ 1LYnVh2bMom5_xurrJMEO7OumOVCLAdKgQ6I.t693ujbEIHDN62gKjPZCG.3CiAnkYZha86muEDy
+ wNu_2FO4Xcg_J10TXFolzXhv9Or6EC.OrjQtZhTJwVjRkW_LlMPemXYwFH1gtypi9tL4sUyt0kIt
+ ANxusOtpZ5H_8v9uqPkgr5Zx8ULJ_AaEkPOoWMuKWFOyqOm3Ap0mTvC2pZfh8hhXUvctEkhLSIGU
+ MbUW0nrtbu.f_IZeoJHRDC9FK1cdVItE6H4ojroSKLZNJnmVasm.fEp8NcBcZ9b9t909FBjvTEkX
+ ySmeRbOBW.tQ1hx1IydY2Ys1RZfZUR_FaLJ50cPnTk74mpyJbZj1PopNquUTO1p9iTLQNgLZrXK1
+ k5bYMgVX23KrG6D86cbyAIHWulPoVWKWfB_VQlBp6CxtUabT87Hi5qolxPzqJKlUSQsIvzeiELZD
+ .2o.6ho9gULDWNnKm8ULyam7beoS9aNffPlMi63o0sQ_pwmY5fjTLCXki4k9SzfRV7tLPpZ9ana3
+ 5uiiYEiK7FGk8sP.6uKZbK2QTjpUFOmRf2Xp3SUeqpQOfdag_cE7JNgh.TgJxFt7RACgBDZzo5kP
+ o.U1cNuoaQLFarncmN8Z.LkuXFyu2kwWS2nXgMvSpWnMX6bQBvbXNqiG2nQefLi1StpNozMNS7AV
+ DwsbfEUeIX0tN7i7wJUYodVw1OWDnateeTDXYZ_bLsQ4XQu6wdRWidk5R6khV8bqZJeXgBNImkQj
+ kxSEnQ_qcN5tvnHkDmuC9hocfJzLI1w48W_1mpqG1_wWAnMemBVU2vZdwNiyafSe4uQAfuruWWPt
+ bK3yRZ3QiXA6Y8aZ4X0OmQTwQ8u6Gsy4RmtsQ6xt8Q4JVdG5z88M0iNMQ4Fr2lAIcFNCmLbX83Fu
+ rd5uQ1SngxL2FeAfts4ihqQlIascOYO0IwtUmwNU1wdZbKfk_y8.Vvhcg68MlnAnXCQCBuiG0AXX
+ XpwE1OjWJXfkDpInnYgcCNTndXPyqqSR_S0_TjQVidjyMEqaRGGoZllvcmS8z05BIgJCE5N2dyId
+ 9CNUylSSfzEM8kJldkLgNkIexz0bPkhSj3pyUPLzYwLuAJHh2yI6T_dt6svL3lMFuYANyjNM5l1r
+ 9wEK.6ot5OT6XPfy.tu.rN6C2BuY2g_s7XBWUfQRgPOpVCTNKPk6g5IpmkvU6nZAiGpeHNMnTmwo
+ hO5SXyW2pzO5JlGk10_lgC4bvU94S_osHG8HlCM5.xDZ1OUZSCm82M4TgmAu..qJM.HFZXzXe8kj
+ csPgokK5PvoyJ1ATARcAkBM8XMWbgIQvGvXguVo03nHwWCKWEIo5P.8KIvIT_YYJtZ0hYxTlzGcn
+ 3Xt33wKyWn2O6MzMs
+X-Sonic-MF: <jahau@rocketmail.com>
+X-Sonic-ID: 0780ab79-d664-433a-92c4-ec9a24601688
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic303.consmr.mail.ir2.yahoo.com with HTTP; Wed, 3 May 2023 19:33:54 +0000
+Received: by hermes--production-ir2-74cd8fc864-qfvhg (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID c1dcf3a945446660b55a441263fb7e62;
+          Wed, 03 May 2023 19:33:52 +0000 (UTC)
+Message-ID: <73c02d98-c306-5e9d-2737-ff2d4a7393d1@rocketmail.com>
+Date:   Wed, 3 May 2023 21:33:49 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="d7okzvijjcoe4r4d"
-Content-Disposition: inline
-In-Reply-To: <CA+-6iNzD_YrrhDPfr0J7KA3rotbgDNB+vGOJyyRnW3-7G5vw6Q@mail.gmail.com>
-X-Debian-User: kibi
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v3 8/8] dt-bindings: Add rt5033 mfd, regulator and charger
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Sebastian Reichel <sre@kernel.org>, Lee Jones <lee@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Beomho Seo <beomho.seo@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Raymond Hackley <raymondhackley@protonmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Axel Lin <axel.lin@ingics.com>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+References: <cover.1682636929.git.jahau@rocketmail.com>
+ <5bd8b90713a61129acf292a941eb7fb5ccaa3db4.1682636929.git.jahau@rocketmail.com>
+ <1d187f41-ad9a-4e82-8557-20694a8294d0@linaro.org>
+ <e9d75e57-bdea-593d-7b05-136c9ad2e2fe@rocketmail.com>
+ <14daa006-5260-81a8-8ba0-4122e0c0509a@rocketmail.com>
+ <a0f4252d-7f27-6dd9-dea0-f8d242011f70@linaro.org>
+Content-Language: en-US
+From:   Jakob Hauser <jahau@rocketmail.com>
+In-Reply-To: <a0f4252d-7f27-6dd9-dea0-f8d242011f70@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailer: WebService/1.1.21417 mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
+X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Krzysztof, Hi all,
 
---d7okzvijjcoe4r4d
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 02.05.23 12:59, Krzysztof Kozlowski wrote:
+...
+> Apologies for this, just very busy times. :)
+> 
 
-Hi Jim,
+Thanks for letting me know. Take the time you need.
 
-Jim Quinlan <james.quinlan@broadcom.com> (2023-05-03):
-> >                            +----------+----------+----------+
-> >                            |   006    |   006S   |   VIA    |
-> >   +------------------------+----------+----------+----------+
-> >   | 1. CM4 Lite Rev 1.0    |    KP*   |    KP*   |  OK, 72  |
-> >   |    pristine            |          |          |          |
-> >   +------------------------+----------+----------+----------+
-> >   | 2. CM4 Lite Rev 1.0    |  boot +  |  OK, 72  |  OK, 72  |
-> >   |    + brcm,enable-l1ss  | timeouts |          |          |
-> >   +------------------------+----------+----------+----------+
-> >   | 3. CM4 8/32 Rev 1.0    |    KP    |    KP    |    KP    |
-> >   |    pristine            |          |          |          |
-> >   +------------------------+----------+----------+----------+
-> >   | 4. CM4 8/32 Rev 1.0    |  OK, 69  |  OK, 69  |  OK, 69  |
-> >   |    + brcm,enable-l1ss  |          |          |          |
-> >   +------------------------+----------+----------+----------+
-> >   | 5. CM4 4/32 Rev 1.1    |  boot +  |  OK, 69  |  OK, 69  |
-> >   |    pristine            | timeouts |          |          |
-> >   +------------------------+----------+----------+----------+
-> >   | 6. CM4 4/32 Rev 1.1    |  OK, 82  |  OK, 69  |  OK, 69  |
-> >   |    + brcm,enable-l1ss  |          |          |          |
-> >   +------------------------+----------+----------+----------+
->=20
-> Hello Cyril,
->=20
-> I'm confused by your result table above which has a number of
-> failures.  Further in your message you say:
->=20
-> Takeaways:
->  - Upgrading the EEPROM solved all problems;
->  - brcm,enable-l1ss (which used to help) is not needed [...]
->=20
-> May I conclude that if one uses a modern CM4 eeprom that these
-> failures go away?
+Writing towards the list:
 
-Sorry that wasn't clear enough. The table with failures, quoted above,
-was with 3 compute modules in their stock configuration:
- - CM4 Lite Rev 1.0 (lines 1-2) had an 2021-02-16 EEPROM;
- - CM4 8/32 Rev 1.0 (lines 3-4) had an 2021-02-16 EEPROM;
- - CM4 4/32 Rev 1.1 (lines 5-6) had an 2021-12-02 EEPROM.
+I think there is a misunderstanding here.
 
-Upgrading them all to current 2023-01-11 led to the second table when I
-tested again, where everything worked fine.
+The connector node provides information about the installed USB 
+hardware. E.g. property "usb-role-switch" means "Indicates that the 
+device is capable of assigning the USB data role (USB host or USB 
+device) for a given USB connector [...]" [5]. To my understanding, in 
+relation with a port node this actually says that this port has this 
+capability. This is not relevant to the rt5033-charger driver.
 
-The 2 versions (2021-02-16 and 2021-12-02) are marked as stable in the
-rpi-eeprom.git repository.
+The rt5033-charger driver needs to pair with the extcon chip because it 
+needs the information about *external* connectors being attached [6].
 
-> You mentioned in a personal email that at least one of your "CM4" was
-> running a Beta eeprom image.
+Extcon devices like SM5502 or SM5504 are real hardware. I'm not adding 
+new properties. The way of getting an excton device from the devicetree 
+by phandle is part of the extcon subsystem:
+  - function to get the excton device by phandle: [7]
+  - line that's looking for the property "extcon": [8]
 
-That one was another CM4 Lite Rev 1.0, and had a 2020-10-02 EEPROM. That
-one is marked as an old beta in the rpi-eeprom.git. (That CM4 Lite also
-works very fine once the current 2023-01-11 is deployed on it.)
+The connector node is the wrong approach, as far as I can tell on my 
+current state of knowledge. It doesn't provide the information needed by 
+the rt5033-charger driver.
 
-[Regarding EEPROM variety in the field: I've mentioned this topic on the
-#debian-raspberrypi IRC channel, warning others about troubles that
-might be linked to the EEPROM version. I've seen at least one CM4 user
-report the 2020-10-02 beta EEPROM, and another one report a different
-2022-04-26 stable EEPROM.]
+[5] 
+https://github.com/torvalds/linux/blob/v6.3/Documentation/devicetree/bindings/usb/usb-drd.yaml#L51-L55
+[6] 
+https://github.com/torvalds/linux/blob/v6.3/include/linux/extcon.h#L32-L60
+[7] 
+https://github.com/torvalds/linux/blob/v6.3/drivers/extcon/extcon.c#L1361-L1392
+[8] 
+https://github.com/torvalds/linux/blob/v6.3/drivers/extcon/extcon.c#L1381
 
-> I'm much less concerned about folks having problems with old  or
-> pre-release versions of the CM4 eeprom because (a) most of these folks
-> are using Raspian Linux anyway and (b) they can just upgrade their
-> eeprom.
-
-That looks totally fair to me. So I can stop here, wait for the next
-iteration of your patch series if there's one (rechecking everything
-still works fine), and only the latest EEPROM matters? Sounds good.
-
-> Further, the Rpi eeprom is closed-source and my questions on the Rpi
-> forum  and Rpi Github have not yet led to any answers  about why a
-> different eeprom image is changing the behavior of a clkreq signal.
-
-The following doesn't shed much light but seems consistent with results
-getting better with newer EEPROM versions (a number of =E2=80=9CPCIe=E2=80=
-=9D hits, some
-about probing, some about resets):
-  https://github.com/raspberrypi/rpi-eeprom/blob/master/firmware/release-no=
-tes.md
-
-[If I had known how much of a difference an upgraded EEPROM would make,
-and how easy it is to upgrade, I would have probably bothered you much
-less with all those weird results=E2=80=A6 Sorry about that.]
-
-
-The whole series is:
-
-Tested-By: Cyril Brulebois <cyril@debamax.com>
-
-
-Cheers,
---=20
-Cyril Brulebois (kibi@debian.org)            <https://debamax.com/>
-D-I release manager -- Release team member -- Freelance Consultant
-
---d7okzvijjcoe4r4d
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEtg6/KYRFPHDXTPR4/5FK8MKzVSAFAmRSsa0ACgkQ/5FK8MKz
-VSC0RBAAvA1uZTNBedOSof5kzCNp05mRkPl8jIRFLj7DDYMqF2zjzzjBVIrx4kXm
-rE+YsIDiQVZiiaFHVcWDt2PDulJSJdJLvdHsCZeUHiSaxyKezrZfimr4sZkgXVf0
-TBBhDAGIRWMom2V+RaSIyt8XyWfkaWVRa7+OJA+KwC3wVw2t1ah1mZyIGoWJNZjd
-ig3IkPbIaY7uNeU4KNmmoYehXXbY/guvFiF9l7iwdcQmW790zPkhf41yfKSzYzu/
-8cHVdB3wHFlLfg+eE50Vr9UTJfCTmWcH84pRoQA8QDPKZtX0GWMoFnRw4HAC2Fk7
-AUU4yu6TaDuDlxwnsvveFwmKWbjjlBEhJ0Dnw+mdVA/NdcnyrDyOVDHWpZnZWD+N
-VKKxbQ9k1yHUA4OQL47zQJIrfyUJOKG68Hu2dXBirRUh6G1ncuakKgI8lp8S09zH
-gqw5LPNfqLyk3KCptdI+i1kin8mfJNzFsgjxcD/KDgSQPsnG0Xr5+ZOdKjXjrCVN
-XNFSQqEIjSSsABmcya8DCx1kpLkUbpVvgszTLLGKCLidPREIAdj9mLYCV6/LM/sY
-n5Y4cRUOutzsAnZusasiiFClIJrAibUWWeLUHiMdBhnuB5qIGdcYDe+lHpCb3NPM
-78Cmb7FlvGWE7ZA8K9s2EtvyFsxOoh/wrKMUxSVlHaOisWrE3Us=
-=IvjH
------END PGP SIGNATURE-----
-
---d7okzvijjcoe4r4d--
+Kind regards,
+Jakob
