@@ -2,79 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E15A6F5988
-	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 16:09:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E30496F5996
+	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 16:13:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230002AbjECOJk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 May 2023 10:09:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36644 "EHLO
+        id S229901AbjECONf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 May 2023 10:13:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229784AbjECOJj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 10:09:39 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9218459F2
-        for <devicetree@vger.kernel.org>; Wed,  3 May 2023 07:09:37 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-94f1a6e66c9so1002933966b.2
-        for <devicetree@vger.kernel.org>; Wed, 03 May 2023 07:09:37 -0700 (PDT)
+        with ESMTP id S229675AbjECONe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 10:13:34 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E02005B84
+        for <devicetree@vger.kernel.org>; Wed,  3 May 2023 07:13:32 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-2f7db354092so3305788f8f.2
+        for <devicetree@vger.kernel.org>; Wed, 03 May 2023 07:13:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683122976; x=1685714976;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=mK68NYi4Md501UpiqLonzXIdRt1tnNyCrIythi7sS+M=;
-        b=noHAyyyWDYLPP6JO/zozkSkR2vkzidbvTevSRwNzUbJtQSxqGAz6P6BoNIlrpA2tgX
-         0Ax7FwFNNxXaxvq4AjYH3l57NVqojg41eZVsE2h5SSsCehHN+iCbJvkvSGd5t6soY04T
-         oMX9YalyuVn63F8wnmCgYqHfrYekJjagE9II6StQoP6XZQHZbEY+/hyuCD/VkdXgCBJJ
-         ejNtLOpI5Cjr2+mHCvoXIgJou5lWthj2vGJ0qlsnLJtAX4PQdKnckJvCw95W4LD5WWot
-         GA/UjQy6yVG2Rz1QebCVbZENPCi1x8UzZEZ9T2O3ZzsITG5rCjBsrDWkKyHVVosoSrIt
-         RDZg==
+        d=linaro.org; s=google; t=1683123211; x=1685715211;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=AwALSkvKDHtujUw26080EGh0+IX6T4U1b0JJECQI5Yg=;
+        b=K65F2ABVlyAL5wa9u9bqzQLkeyIIggK7j19+oSao42j1/RNz7OyFUTMGo3LtjYJpKP
+         OTpY+8jveYg9IWMFwE4REgNuutGIa+llCy6+orIq9KHAwsHztZ+DKdMZq85Bqtfeweus
+         i/bSo7quw4zNEjFdZiHT9Gw/XQFVO+Gl7YOnyXevNfV/cL5PagfdU1umZZKnQaY0+y4V
+         UJJsf2x0UJa8v+vNywF/UwVJy/bKTPtRNh0ykMRgy79a2zTYozLz9X7glDyNKBalbdUv
+         v8VRlruHc2KTDRPAQ/rh60rrltoFbjc9rZ94c3bAXXsL2+tdpg/4c9+K0zxdIqfQyzow
+         m0qw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683122976; x=1685714976;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mK68NYi4Md501UpiqLonzXIdRt1tnNyCrIythi7sS+M=;
-        b=h4MHnpzmatqTSYt5PW5RfEQIWEm9vAzgdw2C8q1lfoBIOqhrKoJ0mxuRlmw1KhZBrD
-         OqYXT0oV2KGH6yLeBAGkuAQzpXYQ+Dy4EL6w9amoqjE2ncPrPgs159FU732/EpASvY+Y
-         9GPiQir+seXkEmk+w2woFynfG1ozUkdkZjlKhuizhEsIgMH+r/tBUY8kH5E2f604HL8c
-         9Lf9HD3sSpBY/YWajOKZ3Yedp1PE+BZXTKTHucXsfSImVCEpijsYEQr+Dkqd9gdTHwe/
-         q9yxKUoNxi5orefBa1fxWL+kXAiXTg1YliBC/DHdlLz1wRMMsH/lEZu3WcBSjahDETGF
-         0DgQ==
-X-Gm-Message-State: AC+VfDzufaH54MlPDLzbZDSpcJ5gSdYNn67F5O7YqDcPSqh5I50Ylvs7
-        a3EPzQ1O24zdXBtgiVPUWkCVdQ==
-X-Google-Smtp-Source: ACHHUZ7MpB081+GYrlSXGSVot5dVaOLY86f0bU3jAd2a2xjuJu5mlKxTH5nx1WwtH/pn1/saQX/7nw==
-X-Received: by 2002:a17:906:58cf:b0:94f:2852:1d2b with SMTP id e15-20020a17090658cf00b0094f28521d2bmr3247307ejs.72.1683122976003;
-        Wed, 03 May 2023 07:09:36 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:db42:e3d0:c55a:8cf1? ([2a02:810d:15c0:828:db42:e3d0:c55a:8cf1])
-        by smtp.gmail.com with ESMTPSA id h20-20020a1709070b1400b009658f5a90d2sm127868ejl.189.2023.05.03.07.09.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 May 2023 07:09:35 -0700 (PDT)
-Message-ID: <0537e5be-87c3-c551-ac12-d2cdf5b18b07@linaro.org>
-Date:   Wed, 3 May 2023 16:09:34 +0200
+        d=1e100.net; s=20221208; t=1683123211; x=1685715211;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=AwALSkvKDHtujUw26080EGh0+IX6T4U1b0JJECQI5Yg=;
+        b=Rnl5VQ95+fab6jSAj3oC+4hJqGMajWmv6illTTyVcGr+6OgGxcAUuAf0nR4VkCJihB
+         gd8ZKxtMij/+Zd65A+bmnwaUC68RKu1IsjtptTdYC85n5FHcLUVBm8BUwhK++o4e0jBr
+         nE3AiYkD7PcKwH5ZjvQcCRV3UY/X8Od+iEjzQdxy5pzveN6ykY95zdHzyegtI1Q+BLUj
+         zYuKrh/OZeQ5n5miIQzCc9KJeS4OGdcNJWGE24HCRVEKEzp/a8x+r6BhK88KezbVprM0
+         W9s0coBmcURA5MXH9LEtkdw7AR0Ufe6DKR+QUrlISiPRE3Gv6bSAtATAptg5GVtAD2xM
+         XefA==
+X-Gm-Message-State: AC+VfDzn92j4M91jiCn+QOSqvfYUCWRS8zMhYssauMGzKOICPbwqOV7p
+        6BgIKVOAD3CKc7fGb+r3Qs44BA==
+X-Google-Smtp-Source: ACHHUZ6MOkzQkyGfaWvMMNk9dao/O7ohimeenJ7zgWo1S0c9nTeu1hwQA5p6/NQlOj2aDZe7xu4+PA==
+X-Received: by 2002:a5d:6241:0:b0:306:2c47:9736 with SMTP id m1-20020a5d6241000000b003062c479736mr175182wrv.15.1683123211117;
+        Wed, 03 May 2023 07:13:31 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id a13-20020a056000100d00b003063c130ef1sm3028638wrx.112.2023.05.03.07.13.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 May 2023 07:13:30 -0700 (PDT)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH 0/2] arm64: dts: qcom: pmk[345]50: enable reboot reason
+Date:   Wed, 03 May 2023 16:13:27 +0200
+Message-Id: <20230503-topic-sm8450-upstream-reboot-reason-v1-0-c5ac3dd5b49f@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH v2] dt-bindings: dma: xilinx: Add power-domains to
- xlnx,zynqmp-dpdma
-Content-Language: en-US
-To:     Michal Simek <michal.simek@amd.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
-        michal.simek@xilinx.com, git@xilinx.com,
-        Hyun Kwon <hyun.kwon@xilinx.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
-        dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <30424f5886ef42419f65c2d5131ad30881c727a4.1683100816.git.michal.simek@amd.com>
- <20230503125125.GE32586@pendragon.ideasonboard.com>
- <a5ff9c0f-6ee9-8b1a-5f77-fb56176bce22@amd.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <a5ff9c0f-6ee9-8b1a-5f77-fb56176bce22@amd.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-B4-Tracking: v=1; b=H4sIAAdsUmQC/x2NQQrDMAwEvxJ0rsB1ahL6ldKD7SqNILGD5JRCy
+ N8relpmDzMHKAmTwr07QOjDyrUYXC8d5DmWNyG/jME737vgemx144y6jrfgcN+0CcUVhVKtzSZ
+ qLUhhyqMfUsx+ADOlqIRJYsmzucq+LHZuQhN//+nH8zx/SDjG5ooAAAA=
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Abel Vesa <abel.vesa@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1068;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=EON79yjoVMWcDaKmyYQsV72yLHaegDJtRDFwAQR7DHY=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkUmwJNcUBNiXogIwF9iTh1raJDqEw4lawPumc4Gho
+ oVJOnDyJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZFJsCQAKCRB33NvayMhJ0W6gEA
+ DHQvGUX2jQtEO4t9fk6Y4boD3lb2ELVyTrZK/sTFkmJI9HcN5eEDeX+lmSIGy9+DKRBHn5DpZ34FUt
+ fVpH2PQcZJtiUBYr/4FvO60VpJc4qjlLxXu8i6wn+fdpUoLBw2EYHIU4CUvYd5vHIfDfi4zFF8sPIu
+ yRr+9EuJFDQZM394NdR9R83uc4LT5GM2WY0LO1xCeS/LjdsmXjcVCz+8sS1OwyffcyqsQR8nhyimiZ
+ tFnyyPcXIv0EZphFRhIi8xiYR9wc8Mmf/X5BwxQ/Bf3wAGTh1uT1MzUmizFDdlmr3ENg0svEiQe8eH
+ V6HUacMQy7+I6efzIwOleolRy61IiA+voPu8Ppr1MHVDZWs+JvRzYvMht9opTcmjXVboJqOKVRYQBx
+ sG1q+h2RmEi4rQqBOfxzyRa+inEG+XDxNTnHZAevo44HYjBagqQAEAUSjNOx+XQ3FAm6j/baKdBzZs
+ 0v9egFp7p1a1rb8eL2g6vmTxO/F5jX+OKNwU7bXS4jGq/vMD3htRfV1Iugy4MeAD/FGXrREawZbLFt
+ Vwv5ic5AzhI9LSjwgL1a327U8Tn8jeImLtxrrqh2jHu4ymV58Aa4wZv89p87FeflM0za9O79nt4aaQ
+ dHuC7V/OpyPgZ0eWvRJNPgH10dE3uye+zJMIpK7HIM7Ks9ek1Sl0oNJkDQlg==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -83,38 +95,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/05/2023 15:27, Michal Simek wrote:
-> Hi,
-> 
-> On 5/3/23 14:51, Laurent Pinchart wrote:
->> Hi Michal,
->>
->> Thank you for the patch.
->>
->> On Wed, May 03, 2023 at 10:00:20AM +0200, Michal Simek wrote:
->>> DP DMA has own power domain that's why describe optional power-domain
->>> property.
->>
->> As far as I understand, the property should always be specified, the
->> only reason why it's not mandatory is backward-compatibility (I would
->> make it mandatory, as I think proper validation of new DT is more
->> important than avoiding breaking validation - but not operation! - of
->> old DT, but that's a separate story). If my understanding is correct,
->> could you please update the example in the bindings to add the
->> power-domains property ?
-> 
-> backward compatible - of course
-> always specified - if pd driver is enabled it must be there. If not it doesn't 
-> do anything - just describes it.
-> 
-> I am not in a position to decide this. But if dt folks agree with your ask I am 
-> happy to make it mandatory and extend example.
+Like SA8775P (at [1]), the SM8350, SM8450 & SM8550 platforms uses
+the SDAM2 nvmem to pass the reboot reason.
 
-By making it mandatory in the bindings only, not in the driver, no real
-ABI gets broken. Linux won't stop booting if property is missing.
-Therefore if device is always part of power domain and it is actually
-required, then sure - making it required is useful.
+This simply adds the sdam2 and reboot reason nodes
+in the pmk8350 and pmk8550 dtsi.
+
+Tested with:
+
+and
+
+triggering the following ABL logs on HDK8450:
+  KeyPress:0, BootReason:2
+  Fastboot=1, Recovery:0
+and
+  KeyPress:0, BootReason:1
+  Fastboot=0, Recovery:1
+
+[1] https://lore.kernel.org/lkml/20230417145536.414490-1-brgl@bgdev.pl/T/
+
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Neil Armstrong (2):
+      arm64: dts: qcom: pmk8350: add reboot-mode node using sdam_2 nvmem
+      arm64: dts: qcom: pmk8550: add reboot-mode node using sdam_2 nvmem
+
+ arch/arm64/boot/dts/qcom/pmk8350.dtsi | 23 +++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/pmk8550.dtsi | 23 +++++++++++++++++++++++
+ 2 files changed, 46 insertions(+)
+---
+base-commit: 92e815cf07ed24ee1c51b122f24ffcf2964b4b13
+change-id: 20230503-topic-sm8450-upstream-reboot-reason-e5fc827bac27
 
 Best regards,
-Krzysztof
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
 
