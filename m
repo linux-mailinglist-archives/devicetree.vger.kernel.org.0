@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CBDC6F58A5
-	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 15:10:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 175A26F58A6
+	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 15:10:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230064AbjECNKo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 May 2023 09:10:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36078 "EHLO
+        id S229924AbjECNKq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 May 2023 09:10:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229995AbjECNKm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 09:10:42 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B1B75593
-        for <devicetree@vger.kernel.org>; Wed,  3 May 2023 06:10:41 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-3f315735514so23377305e9.1
-        for <devicetree@vger.kernel.org>; Wed, 03 May 2023 06:10:41 -0700 (PDT)
+        with ESMTP id S229745AbjECNKn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 09:10:43 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F5135598
+        for <devicetree@vger.kernel.org>; Wed,  3 May 2023 06:10:42 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-2f27a9c7970so4792850f8f.2
+        for <devicetree@vger.kernel.org>; Wed, 03 May 2023 06:10:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google; t=1683119440; x=1685711440;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=9NGIFkLLmK4Sr9kuOcuriuzObhMgDByOLRoFZOnzEg8=;
-        b=WSIpp0AyUyNK8ejbmI+2AA2CkhtIQRzo7l1bt4nzDfp84pk0uBpzNmaZM/bHoydPnE
-         JiNy2urDUO6Vj45zDRMZ5TzWPxOTn8iM4ySriyZIDj/V5rjhHTX+ryfsWePIU9DTPWMO
-         n7dBIt2gl3WR/oXRGd7t/Y2rI6p3+W/D3Y2VSZHYCgvUvfrz27A5hxXMUUOQGIZV1LAW
-         mxBbB72PcyiGAnvHnRo1USE4igrVcqZQySARze936WOuQbcnyRDray1o5J5G02dgbIYg
-         9qRBAVhxRuyZDKgk2ATkg7SaeUK2FMmmiLDPxTZT+Adx+JXol46FCaWINZIBwbW2lhP0
-         PIaA==
+        bh=RRRCfBO6zriGG0nKdP8d0t75xCVvsaU1mz5Nyygo3mM=;
+        b=is33I0lzOV2ICPraJ/KD3Yp3FRiAGD3WAWupEEYMkppZu2jq3twhkt0Id0GGIBZ1/X
+         9yvp49PCEiFuWlyFQ3e2/EEYD4pFbUWRmssVJNcTA4aoqqsOYpwmNg5Ozy9z6TcUrmJ+
+         AAvyVo7Qcg79Dpo9BYn0vIrXCSQMETEkyOBk532f71Sl3v6gxOaojAteQ4OePTmc+N5E
+         It2K9sag5ObfzDbN5MhCcDHS1wl6tz0i1ADh6HBqedHciPZjxRuNbo9GhTvJn/uDieJw
+         RFhHFA6dF/G67o4gm4tprsB6u5LdbjlGML6e94c9aGeWAiP4eLHxhYE0TRlc/l8snFYd
+         ffcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20221208; t=1683119440; x=1685711440;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=9NGIFkLLmK4Sr9kuOcuriuzObhMgDByOLRoFZOnzEg8=;
-        b=a7e6Zl8gAPLrFZ8VlntkoiaGIolm9z34/lmWl+AqsN8l4uB2Ko8T3qQS9bT715HqiK
-         3ctQjY2+OYaSeZ6FT8lkP/IJPREQ/t3tw4/+QMlxYNSF2BpPVWvCba60O5jw59J7v27/
-         jOJqVWHIuhSU3OjV2bAkMut7lqBdvrjNnYSD06U8PqTEf/ozwutyFCrkkz5aldX4vp4H
-         OIrKk6dgpRnAYzPQg1aQGamIHcdT/dlmDTk1rOTa0J/tm+YwD1bJTm2YjwT14BLkJJmc
-         aYuIEwrJYdO6umohn1jSFR0qe4g7xeQyhNJMiuBxXZe8ifwxzIuGUOuDS3OfrZvVHjD8
-         eY4g==
-X-Gm-Message-State: AC+VfDyxjdt+Eex6WAQzB8OvIfYe6MWkKq90z202NL8RdIJR+4z9ycGh
-        ukPDYIiyJc8eAgioNDr294fNNA==
-X-Google-Smtp-Source: ACHHUZ7MaD2EXQSyw90at3uuaScaXT0UHcM6Rth7weJFdKvGqxQTPpiwEAzlT35+ZqTu5SsRlQh8OQ==
-X-Received: by 2002:adf:f5c9:0:b0:2f8:33bd:a170 with SMTP id k9-20020adff5c9000000b002f833bda170mr1615972wrp.32.1683119439757;
-        Wed, 03 May 2023 06:10:39 -0700 (PDT)
+        bh=RRRCfBO6zriGG0nKdP8d0t75xCVvsaU1mz5Nyygo3mM=;
+        b=JUThZLqHHZd5ZbqHKsMfKgzLacedtiB36fhrvcryjAEEzCLcJL7YRtAqCNJRSb9Y5W
+         9BUBL3T3Xev36Xnwsa1/deTPbpUoNQyuw9CcklX2cUJK4MshNb3R7CT3rvVpKljeB2jm
+         Pg7VnA9DqfeUERI64+ar1/tUqm0VAh4Pgf14TIDbPRpFcVVbQawacGkSib+V1tLIriw3
+         HbcBEweVsx5S6HZbf90UAPbgdldea2oI+kmo7azYZw3rXGWEstsvqXtY4/rUVQZxq7Vg
+         qNL2nfT4Fq/lvR2D9F30BgZH21ru2l/XzS1D1tqzmKOE9PX8iEO43vzh7kU6kke9N6wb
+         wgoQ==
+X-Gm-Message-State: AC+VfDzm2bMK0pvUX6FHXAYOLfiHpsJjHLyTJVBjGwwwJzYZ3XMXyiG7
+        YxuI53iX9e1OUbRr7/w/KYZoVg==
+X-Google-Smtp-Source: ACHHUZ7YmNOQEeoWBoM+1c9TP4UZ3Rx8cmIbiP17RQtewUwL1cusQ6+rLY8NMFOXveXIxheZ36BMIQ==
+X-Received: by 2002:adf:fed0:0:b0:306:4162:ebbe with SMTP id q16-20020adffed0000000b003064162ebbemr18177wrs.49.1683119440626;
+        Wed, 03 May 2023 06:10:40 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id c10-20020adffb0a000000b00306344eaebfsm5413479wrr.28.2023.05.03.06.10.38
+        by smtp.gmail.com with ESMTPSA id c10-20020adffb0a000000b00306344eaebfsm5413479wrr.28.2023.05.03.06.10.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 May 2023 06:10:39 -0700 (PDT)
+        Wed, 03 May 2023 06:10:40 -0700 (PDT)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Wed, 03 May 2023 15:10:33 +0200
-Subject: [PATCH 1/6] arm64: dts: qcom: sm8350: add ports subnodes in usb1
+Date:   Wed, 03 May 2023 15:10:34 +0200
+Subject: [PATCH 2/6] arm64: dts: qcom: sm8450: add ports subnodes in usb1
  qmpphy node
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230503-topic-sm8450-graphics-dp-next-v1-1-d1ee9397f2a6@linaro.org>
+Message-Id: <20230503-topic-sm8450-graphics-dp-next-v1-2-d1ee9397f2a6@linaro.org>
 References: <20230503-topic-sm8450-graphics-dp-next-v1-0-d1ee9397f2a6@linaro.org>
 In-Reply-To: <20230503-topic-sm8450-graphics-dp-next-v1-0-d1ee9397f2a6@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
@@ -70,20 +70,20 @@ Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1091;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1093;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=ht6a5DmmF0kzfbJ/xYkExLJE+gjvRhpNJMZTSQyBu3s=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkUl1LZr/WEoMmnAXZ2nsJdqWSKijmZ4ONtGaZKPYP
- vI1wON2JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZFJdSwAKCRB33NvayMhJ0Xp5D/
- 0dbCCEjSD1BdP2zDtjdEUJjp8r7LYcR5nbJoVBq1awsPj50NqEboKoqF716e+5MifuMq+cTEVsgeQs
- PVV/xGHN37Tg/mZJPwJZvDtlX9u0lmCeP07x9fTXvEwTUYnddr4xi56O0BxjyUd6eORhnkMJFxvJew
- Fgm+oaHpKvsPO9lF5wfIdYcyPZ/wfxvn71rkctEgWusRgDEwr/H2sRsemePsscyo6DWE5dHUoAD1mg
- x15dk9iN8q7JTIGCOXobqqrEHUfEA/BzWS7F2ZGGsnEUhWO+yXhmImRHd3O13gMut9hDiLqaQCWLXg
- LUf7wS2Lu2KrDCuLAl9vU7Kgf1r5CIKFsYN8Jur/M0rvPzE4LxSETVvDIEIAsGvauYOEKMa0s6yEnX
- Dczb9kBAwH5y0QkLeFCdbA3CZEnFWgaJHAg97ouL4oZx5bva0YL3YF/tSiyX8X4o05EkXoK6FA5ZuB
- Fds3/+/5NJ9DOR+zqN9ozNJ4UXOBK2Q9d/dN/wl1+cwfH6QxJx/LSqSftkWc75JmwVf1D5xs4V4PdO
- riOlnbJoyMA3bAY0Zhul6Ur8Ig7btMmrRbSyrmIhBASt4ElE4Kr+EnPRGtAjm68ZUmHIsZM5VPT2UA
- WIJIcFMkGJjPBKXfZvs6E8r38psNp6TMFbFXuwpNiOmIGoVRCWYS7C2aRD8A==
+ bh=2NeDm2a5PIonvEq6H3mDXLNkkIBuy9fp6P7lG0yr9FI=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkUl1L7oVPDuhz64aBwhRYqvYFZ/tJifAQJ05Otmdq
+ 0luezMuJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZFJdSwAKCRB33NvayMhJ0ZOHEA
+ CXPa4vVJ/HlRdJPFG7o6Vw7pajeL/SvZ5L5NyQMnXyqjRNSQiqXsOPmod7yKQtcgZe0OwIZK1RgzOI
+ ZPkO9lJ24ACNbJuWe1E+ghe3OSXOT5eQJ2YQdU0E1pcTYnPaLpZSvtQ6mSRyHnnB3dax87q4ALJ2hQ
+ YYeyv3wmpvNtFuKHflWb4waUDmsqbnC2CRaw+k9XCSmIChycT/XYz5R+ACVK/4iTZLqNFL1U8+uJo6
+ +dxZX6Zx6Gt5nHXB9KtIcBr4GvmEqp2FkqZFJX4QlvSCpcHSA856ISgrial9Zlytt/ddF+vmai49m4
+ r7Ed+dzOF2fX6sC1YH596PhgJTYaKp7bMspLxITnsnFObPhXpF5rjOKp57MLNsnSLneQay4sNZcQx+
+ vHs8s4EDjgfktcXuodEhs3BvlbKKI4830WM6/s7+Iu0HxeT/PIUTQRg6g194LT4yEvRKn3A3d1ppP7
+ bpAeA6FsgRTMc0PbVdn+QRQ2BpktYuOsI1RVvz/5EpVthhSLVJRU3zbMhVriv50IJDt3lAAS5Oxycm
+ Pop88J8rpy/KVUt0oFA5PpCVonnlMCvmr4x2JjtHxm7AB4ndfPr6A1eb8pLC+if4f9MVHC3VWz2DVJ
+ obb/OBzutgisK4+aE4iUZXZBfiJO5m1wGHbnAVhvwNpFtBHs5oARt2uZri0g==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -96,19 +96,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the USB3+DP Combo QMP PHY port subnodes in the SM8350 SoC DTSI
+Add the USB3+DP Combo QMP PHY port subnodes in the SM8450 SoC DTSI
 to avoid duplication in the devices DTs.
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8350.dtsi | 26 ++++++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8450.dtsi | 26 ++++++++++++++++++++++++++
  1 file changed, 26 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-index ebcb481571c2..d048f4d35c89 100644
---- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-@@ -2149,6 +2149,32 @@ usb_1_qmpphy: phy@88e9000 {
+diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+index 595533aeafc4..207afd48788f 100644
+--- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+@@ -2044,6 +2044,32 @@ usb_1_qmpphy: phy@88e8000 {
  			#phy-cells = <1>;
  
  			status = "disabled";
@@ -140,7 +140,7 @@ index ebcb481571c2..d048f4d35c89 100644
 +			};
  		};
  
- 		usb_2_qmpphy: phy-wrapper@88eb000 {
+ 		remoteproc_slpi: remoteproc@2400000 {
 
 -- 
 2.34.1
