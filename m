@@ -2,221 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1013E6F5AD7
-	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 17:20:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AB996F5B5D
+	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 17:38:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230005AbjECPUW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 May 2023 11:20:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46592 "EHLO
+        id S230120AbjECPi1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 May 2023 11:38:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58604 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230418AbjECPUT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 11:20:19 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1CC37292
-        for <devicetree@vger.kernel.org>; Wed,  3 May 2023 08:20:15 -0700 (PDT)
-Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <m.felsch@pengutronix.de>)
-        id 1puEH0-0004bF-U4; Wed, 03 May 2023 17:20:06 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-Date:   Wed, 03 May 2023 17:20:05 +0200
-Subject: [PATCH 2/2] arm64: dts: add NXP i.MX8MM-EVKB support
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230503-b4-v6-3-topic-boards-imx8mm-evk-v1-2-1e15a371d374@pengutronix.de>
-References: <20230503-b4-v6-3-topic-boards-imx8mm-evk-v1-0-1e15a371d374@pengutronix.de>
-In-Reply-To: <20230503-b4-v6-3-topic-boards-imx8mm-evk-v1-0-1e15a371d374@pengutronix.de>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230029AbjECPi0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 11:38:26 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D67E1FDB;
+        Wed,  3 May 2023 08:38:25 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2756160AB4;
+        Wed,  3 May 2023 15:38:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE110C433EF;
+        Wed,  3 May 2023 15:38:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1683128304;
+        bh=LyAC9Uzz/+b0JzmwQtT+pFnyz2N1dBXrPdiGGOjCDNg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=lp2Wbu726JEDxrXLhsme63CEQx9vUgzOGVcoCc9ADitNWS2ijVUMRLrQ4FP3Awjna
+         xgzY/IGaN+vUx5/WQt397KYN7kFr8uphMh1UqJ3T1Kpe5XmgR0iO+kjJASTbVdyM+3
+         zBmXKaGNs6b+zZ4q4jqSTC2BVR14b0q7/o1kdeXrCraUp9YvNTEjRbFNUGjsGWd+vn
+         114m4PlJXHHHUf2mixib9ROTW3yFDBJo7oXd2z7wpaU9z0pEQcff3UyU2QuOgB3FGP
+         8EwytdsAFrmMW942iAIvMqCVl5WzopD2vshY86uJBf21mbbhXQtL4TUf/DpDJX3fCc
+         UVORci/k8drOw==
+Date:   Wed, 3 May 2023 17:38:19 +0200
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Stanislav Jakubek <stano.jakubek@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com, Ray Jui <rjui@broadcom.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Johannes Schneider <johannes.schneider@leica-geosystems.com>
-X-Mailer: b4 0.12.1
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::28
-X-SA-Exim-Mail-From: m.felsch@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 2/2] dt-bindings: i2c: brcm,kona-i2c: convert to YAML
+Message-ID: <ZFJ/67UgNRmB44HT@sai>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Stanislav Jakubek <stano.jakubek@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>, linux-i2c@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com, Ray Jui <rjui@broadcom.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <9875ec0211187e4f5e2a4379c63eacdb69b31d7a.1682252615.git.stano.jakubek@gmail.com>
+ <72ba28004afb733224f7294a146fc2a6a5a834a7.1682252615.git.stano.jakubek@gmail.com>
+ <168234258850.2489090.5138716439435477956.robh@kernel.org>
+ <20230426172354.GB2506@standask-GA-A55M-S2HP>
+ <ZE4Q6p1tAiIoZo/M@sai>
+ <d10e48cf-3cf8-89b7-8741-260adccfdfed@linaro.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="azXWXr9cX0NZ/8VD"
+Content-Disposition: inline
+In-Reply-To: <d10e48cf-3cf8-89b7-8741-260adccfdfed@linaro.org>
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Johannes Schneider <johannes.schneider@leica-geosystems.com>
 
-Add the i.MX8MM-EVKB [1] devicetree support. The EVKB is basically the
-same device except for the different used PMIC.
+--azXWXr9cX0NZ/8VD
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-[1] https://www.nxp.com/design/development-boards/ \
-        i-mx-evaluation-and-development-boards/ \
-	evaluation-kit-for-the-i-mx-8m-mini-applications-processor:8MMINILPD4-EVK
 
-Signed-off-by: Johannes Schneider <johannes.schneider@leica-geosystems.com>
-[m.felsch@pengutronix.de: Adapt the commit message]
-[m.felsch@pengutronix.de: Include Shawns feedback]
-[m.felsch@pengutronix.de: Fix the regulator settings]
-Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
----
- arch/arm64/boot/dts/freescale/Makefile        |   1 +
- arch/arm64/boot/dts/freescale/imx8mm-evkb.dts | 128 ++++++++++++++++++++++++++
- 2 files changed, 129 insertions(+)
+> The dtbs warnings - if fixed via any other pactch - can be safely
+> ignored. They do not affect bisectability. Please grab this patch via
+> I2C. The DTS will go separately via arm-soc.
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 198fff3731ae..a054313761a4 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -55,6 +55,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-data-modul-edm-sbc.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-ddr4-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-emcon-avari.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-evk.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mm-evkb.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-icore-mx8mm-ctouch2.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-icore-mx8mm-edimm2.2.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-innocomm-wb15-evk.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evkb.dts b/arch/arm64/boot/dts/freescale/imx8mm-evkb.dts
-new file mode 100644
-index 000000000000..164df627a213
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-evkb.dts
-@@ -0,0 +1,128 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2019-2020 NXP
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx8mm-evk.dtsi"
-+
-+/ {
-+	model = "FSL i.MX8MM EVKB";
-+	compatible = "fsl,imx8mm-evkb", "fsl,imx8mm";
-+};
-+
-+&i2c1 {
-+	/delete-node/ pmic@4b;
-+
-+	pmic@25 {
-+		compatible = "nxp,pca9450a";
-+		reg = <0x25>;
-+		pinctrl-0 = <&pinctrl_pmic>;
-+		pinctrl-names = "default";
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
-+
-+		regulators {
-+			/* VDD_SOC with PCIe */
-+			buck1_reg: BUCK1 {
-+				regulator-name = "BUCK1";
-+				regulator-min-microvolt = <850000>;
-+				regulator-max-microvolt = <850000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+				regulator-ramp-delay = <3125>;
-+			};
-+
-+			/* VDD_ARM */
-+			buck2_reg: BUCK2 {
-+				regulator-name = "BUCK2";
-+				regulator-min-microvolt = <850000>;
-+				regulator-max-microvolt = <1000000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+				regulator-ramp-delay = <3125>;
-+				nxp,dvs-standby-voltage = <850000>;
-+			};
-+
-+			/* VDD_GPU, VDD_VPU, VDD_DRAM */
-+			buck3_reg: BUCK3 {
-+				regulator-name = "BUCK3";
-+				regulator-min-microvolt = <850000>;
-+				regulator-max-microvolt = <1000000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			/* NVCC_3V3 */
-+			buck4_reg: BUCK4 {
-+				regulator-name = "BUCK4";
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			/* VDD_1V8, NVCC_1V8, NVCC_ENET */
-+			buck5_reg: BUCK5 {
-+				regulator-name = "BUCK5";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			/* NVCC_DRAM for LPDDR4 */
-+			buck6_reg: BUCK6 {
-+				regulator-name = "BUCK6";
-+				regulator-min-microvolt = <1100000>;
-+				regulator-max-microvolt = <1100000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			/* NVCC_SNVS_1P8 */
-+			ldo1_reg: LDO1 {
-+				regulator-name = "LDO1";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			/* VDD_SNVS_0P8 */
-+			ldo2_reg: LDO2 {
-+				regulator-name = "LDO2";
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <800000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			/* VDD_*_1V8 */
-+			ldo3_reg: LDO3 {
-+				regulator-name = "LDO3";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			/* VDD_PHY_0V9 */
-+			ldo4_reg: LDO4 {
-+				regulator-name = "LDO4";
-+				regulator-min-microvolt = <900000>;
-+				regulator-max-microvolt = <900000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			/* NVCC_SD2 */
-+			ldo5_reg: LDO5 {
-+				regulator-name = "LDO5";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+			};
-+		};
-+	};
-+};
+OK, thanks for the heads up!
 
--- 
-2.39.2
 
+--azXWXr9cX0NZ/8VD
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmRSf+EACgkQFA3kzBSg
+KbYnWw/9G1lwulnAIeVChE4f9/tIeNApXcZYGou0kOV8iAAKIoD7rHyI9O1og8JX
+CIK77xo6TZFk2aqbuKhZ88g6nf6m2DNuSRoADweRwhWJNEKzctudEEQ6qUM9ijh8
+ql0C/SVacOP2CEO7FhGO7dwTjqtxH2VRJNvseoKawtrgFc7A/2VGZccZFJXNnYZJ
+K4+jHiI8lGfzBrXtRc3MMa+gtyjn2cFz/j3RwntDwlfi/vtjgs1+MMGJqNAGX2tn
+wTV7fE7qUASlBMxQN0Z/VCCoqTzn8dy7lvgoNJ0NqPLfuO16a779FJejS2b3jaeb
+m6+NjDFAmyMT5G1KO4AXSBZb63paL+VQE8LeQVxPATYlHS9dyxTYr3t4I6T0Taqg
+sIzThlFkrjNuGQ+6uXX2pCTtqWonGeV1U4LUGkiCQzSny+89hdG8ItXOe9clKQhl
+n+6TLwG3gpbQnQmFyDlq/fb0GPQcn8dnxVvDru6ojqpnCEbVXWEUsa6WAM0khNXO
+PReAyHriVCGnPQAl48oPpe7Qqt8EiiZHs2himY68/YstYe2V5pYvMaIBqFExTHVL
+yUSev1ywjXPZT0yrJry1lWqur9+YvKXCJqAg0lM5nmOoV5GNYqlTCHWSC6uM4uMP
+JhZQh960Vfyqn4so1DoVSLAhal+Tdd4WngP6tZ2rLEYWie0nddM=
+=tfLc
+-----END PGP SIGNATURE-----
+
+--azXWXr9cX0NZ/8VD--
