@@ -2,90 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D77E6F55A4
-	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 12:11:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27A1F6F55AD
+	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 12:13:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229824AbjECKL2 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 3 May 2023 06:11:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59800 "EHLO
+        id S229573AbjECKN1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 May 2023 06:13:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229756AbjECKL1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 06:11:27 -0400
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B33B41A5;
-        Wed,  3 May 2023 03:11:26 -0700 (PDT)
-Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-b9a6eec8611so2515052276.0;
-        Wed, 03 May 2023 03:11:26 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683108686; x=1685700686;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8ZtrVLKnAX2pxnlVF4pY/ZydKFTcmn+Q19HXitjOZjU=;
-        b=ZOnCyP+Yv2IF+OUAsQAolALAArMqRrDRe/X5oE2UWiYQiLhXEOyIlVYVf4zwIER8UI
-         R6quEHkssFnBGseKKsB6hNpZ9yQTWlw6dF8Oxuh9id4HHxlkGVUqfQ/3h88+oFmAcfvd
-         jJ8b6XZkWxBIT44tj3uIYqQu8UMWE+aWWzh9Nk9rTkoVQL1L+oV+Gc1JTKp7IdKmU6WL
-         IvATSn9ZRMMjL/4m/URXcEc2bBjPL4ofCtGalidtXRf6aUp+hk++TYD242X4ud5vVPKc
-         dOf7qmJdBxIi6d+JFxoCizKZ77f/q7VxlznFQ+VYOmA1kydj5wwt11Lg4eMB8CGotOUw
-         Tm9g==
-X-Gm-Message-State: AC+VfDzc7KHiANtb708LSDKaZd0Ne3sgzh9KL2XDCKWxZb00vRNk4Qnl
-        GaYjJppfA0IBKhQDWS1MP2+gf7JAYUZOpQ==
-X-Google-Smtp-Source: ACHHUZ7D0fYYJ5jbojmA5YPHIjazHXSLmdQDImO1vrcPdUrDh4T2AgDndA3GvLlfYnsnN8IwkoLTGg==
-X-Received: by 2002:a81:160a:0:b0:552:a4af:da with SMTP id 10-20020a81160a000000b00552a4af00damr1537309yww.10.1683108685776;
-        Wed, 03 May 2023 03:11:25 -0700 (PDT)
-Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com. [209.85.219.179])
-        by smtp.gmail.com with ESMTPSA id z188-20020a8165c5000000b00545a08184d0sm8584840ywb.96.2023.05.03.03.11.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 May 2023 03:11:25 -0700 (PDT)
-Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-b9a6f17f2b6so2433565276.1;
-        Wed, 03 May 2023 03:11:24 -0700 (PDT)
-X-Received: by 2002:a0d:e894:0:b0:55d:626e:3dcf with SMTP id
- r142-20020a0de894000000b0055d626e3dcfmr396904ywe.12.1683108684523; Wed, 03
- May 2023 03:11:24 -0700 (PDT)
+        with ESMTP id S229558AbjECKN0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 06:13:26 -0400
+Received: from mail.3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B3D8CE;
+        Wed,  3 May 2023 03:13:24 -0700 (PDT)
+Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.3ffe.de (Postfix) with ESMTPSA id 92F233EF;
+        Wed,  3 May 2023 12:13:21 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
+        t=1683108801;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=TPDO4Om9yjcPWH9ANN/EN8sQlVWPtQhVOQp30fzdMYU=;
+        b=p3mhAlx624E1Mtm8WvgkKyTUyjuOahHgpQXF5nZZyo+SHTN5KqDgeMixTXiorRE8qQAB30
+        wYQp/nM3+XwSugMK6j0O9lJKtchxZEhV4lqjF5Bvfq7ITplzXRwg6iVUcRse6K2NPfSDHC
+        fOhkuL+95YK70nmOdQq5zdbVuZFiYvEgrUEAAV0egGJFiB+kBhuRIqWwbYIU5F6vl15A4H
+        c44MijOSQazd49AD0kCVQp/eX7lIEeco9dXPCYVF3dj6idZxnto1wrOLFzxhnevYLyPZSB
+        FsDSYFGCPEMIV3V3LHDiqstlPN3m9WC9akKH8AbFweM8YK1FeaEUFTwEutl4ZA==
 MIME-Version: 1.0
-References: <20230502165330.55769-1-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20230502165330.55769-1-wsa+renesas@sang-engineering.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 3 May 2023 12:11:13 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVh73ZzNy0Gv4hchQxzWwfMy5JinZz_972QoaZ2Obiy7A@mail.gmail.com>
-Message-ID: <CAMuHMdVh73ZzNy0Gv4hchQxzWwfMy5JinZz_972QoaZ2Obiy7A@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: pwm: Add R-Car V3U device tree bindings
-To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc:     linux-pwm@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
+Date:   Wed, 03 May 2023 12:13:21 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     Edmund Berenson <edmund.berenson@emlix.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Lukasz Zemla <Lukasz.Zemla@woodward.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] gpio: max7317: Add gpio expander driver
+In-Reply-To: <bb2bce8b-4d99-1a15-3a34-055ee7637fe2@emlix.com>
+References: <20230403114033.8336-1-edmund.berenson@emlix.com>
+ <20230403114033.8336-2-edmund.berenson@emlix.com>
+ <CACRpkdbnj-BiA8D0e4nza-za-E8g_AEBNjR4b3gWUZpw70U33g@mail.gmail.com>
+ <bb2bce8b-4d99-1a15-3a34-055ee7637fe2@emlix.com>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <14574305d829de5befd39828b0b29cfe@walle.cc>
+X-Sender: michael@walle.cc
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 2, 2023 at 6:53 PM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> Tested-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Am 2023-05-03 10:37, schrieb Edmund Berenson:
+> On 4/4/23 16:05, Linus Walleij wrote:
+>> On Mon, Apr 3, 2023 at 1:41 PM Edmund Berenson
+>> <edmund.berenson@emlix.com> wrote:
+>> 
+>>> Add driver for maxim MAX7317 SPI-Interfaced 10 Port
+>>> GPIO Expander.
+>>> 
+>>> v2: adjust driver to use regmap
+>>> 
+>>> Co-developed-by: Lukasz Zemla <Lukasz.Zemla@woodward.com>
+>>> Signed-off-by: Lukasz Zemla <Lukasz.Zemla@woodward.com>
+>>> Signed-off-by: Edmund Berenson <edmund.berenson@emlix.com>
+>> 
+>> Notwithstanding the other comments from Bartosz, this seems like
+>> a driver that should be using the regmap GPIO helper library.
+>> git grep GPIO_REGMAP will show you examples of other drivers
+>> that use this and how it is used.
+>> 
+>> Yours,
+>> Linus Walleij
+> 
+> Hi,
+> 
+> thanks for the review and suggestion. I tried following your suggestion 
+> and use
+> GPIO_REGMAP to implement the driver.
+> 
+> Unfortunately I ran into two issues
+> 1. reg_set_base == 0: for the devcie reg_set base is 0x0. In 
+> gpio-regmap there
+> are several tests for !reg_set_base. There doesn't seem a way to 
+> distinguish
+> between is set to 0 and is not set. :)
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+That's what GPIO_REGMAP_ADDR(addr) is for :)
 
-Gr{oetje,eeting}s,
+> 2. input/output direction: to set a gpio pin to input one has to write 
+> 0x1 to
+> the corresponding output register. The issue starts when I configure a 
+> port to
+> be an output, set output to 0x1, check the direction of the pin, doing 
+> so trough
+> sysfs the system will now assume the pin is an input and I can't set 
+> its values
+> anymore. Avoiding this I would like to track the direction of the pin 
+> separately
+> from the device register, which is atm done in the corresponding 
+> bespoke in/out
+> functions.
 
-                        Geert
+I can't follow you here exactly. But I've briefly looked at the 
+datasheet
+and the output is an open drain one. Just like the one we are currently
+discussing in [1]. Here too, there seems to be no direction register,
+although it is mentioned in the datasheet. But Table 1. Register Address 
+Map
+is super confusing, so please correct me if I'm wrong.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Since we now have already two different chips with this OD output and 
+always
+active input buffer, it makes sense to add support to gpio-regmap for 
+these
+kind of devices. To me it is still unclear wether we need the direction 
+at
+all. Linus answered my question yesterday, but I haven't found time to 
+dig
+into that topic myself. Please go ahead and make some suggestions :)
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> I could probably solve both of these issues trough the reg_mask_xlate 
+> function
+> but I believe this would introduce unneeded obscurity in the driver.
+> 
+> I do not believe there are any other easy obvious/better fixes for 
+> this. (or
+> maybe you prove me wrong :))
+> Would you be okay for this driver to stick with direct regmap usage? 
+> (obviously
+> fixing the review suggestions)
+
+-michael
+
+[1] https://lore.kernel.org/r/20230502084406.3529645-1-michael@walle.cc/
