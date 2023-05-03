@@ -2,51 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 593996F581B
-	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 14:47:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA7EA6F582C
+	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 14:51:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229575AbjECMq6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 May 2023 08:46:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51130 "EHLO
+        id S229681AbjECMvQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 May 2023 08:51:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229524AbjECMq5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 08:46:57 -0400
+        with ESMTP id S229554AbjECMvP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 08:51:15 -0400
 Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5263C4688;
-        Wed,  3 May 2023 05:46:55 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50A0DEE;
+        Wed,  3 May 2023 05:51:14 -0700 (PDT)
 Received: from pendragon.ideasonboard.com (133-32-181-51.west.xps.vectant.ne.jp [133.32.181.51])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7F3197FC;
-        Wed,  3 May 2023 14:46:49 +0200 (CEST)
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 4CCD6BC;
+        Wed,  3 May 2023 14:51:08 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1683118010;
-        bh=8tpFe1mRbMpuQYRWmCcz3C5R1eFk43c/5w1n3EfEaUs=;
+        s=mail; t=1683118270;
+        bh=fb1WH2nl1okN9IQEHKZRmq01W6X8milAU7kOiFOcfqk=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FhsmWa0sixUOzftKQtwho5RwLw2gOXgSmC/P3VXYP2UI9aw/85Eaqy5FPSijbOC9Q
-         Z6hqQusspQI8XN7J+lWSjQitUoyIsEKOuQQYH4KMgNvF0ZWXFJ8WlL8FD2ySmU+yIm
-         VcvSd90WihXf3Wb2Al9wGPMqSlc0jKf0hDvmIZ9M=
-Date:   Wed, 3 May 2023 15:47:06 +0300
+        b=ZCEU58e7Nw1hyQfKYaWVDG3uKrhYe4nsinKucz7azwM316CscewySD3xWeBNSpLC0
+         u4iSdGDx2MCVW3UGb3JkHpBrEVsaQtE/c9VlG+AufxhtY/xFf3q86EeVE9rf0RhzNL
+         mSCFa918qVPYJuZPwhnqlgYCTo+pSvPOgs5nt5TM=
+Date:   Wed, 3 May 2023 15:51:25 +0300
 From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 To:     Michal Simek <michal.simek@amd.com>
 Cc:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
         michal.simek@xilinx.com, git@xilinx.com,
-        Harini Katakam <harini.katakam@amd.com>,
+        Hyun Kwon <hyun.kwon@xilinx.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Grzeschik <m.grzeschik@pengutronix.de>,
-        Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Robert Hancock <robert.hancock@calian.com>,
-        Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>,
-        Tanmay Shah <tanmay.shah@amd.com>,
-        Vishal Sagar <vishal.sagar@amd.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] Revert "arm64: dts: zynqmp: Add address-cells property
- to interrupt controllers"
-Message-ID: <20230503124706.GD32586@pendragon.ideasonboard.com>
-References: <e3312910db0922bb8c24a8e681de41709ca11bdf.1683035456.git.michal.simek@amd.com>
+        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
+        dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2] dt-bindings: dma: xilinx: Add power-domains to
+ xlnx,zynqmp-dpdma
+Message-ID: <20230503125125.GE32586@pendragon.ideasonboard.com>
+References: <30424f5886ef42419f65c2d5131ad30881c727a4.1683100816.git.michal.simek@amd.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <e3312910db0922bb8c24a8e681de41709ca11bdf.1683035456.git.michal.simek@amd.com>
+In-Reply-To: <30424f5886ef42419f65c2d5131ad30881c727a4.1683100816.git.michal.simek@amd.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
@@ -61,44 +56,46 @@ Hi Michal,
 
 Thank you for the patch.
 
-On Tue, May 02, 2023 at 03:51:01PM +0200, Michal Simek wrote:
-> This reverts commit c6badbd2d321c19d4f55ee56b0ef12bb3352feac.
-> 
-> Long time ago this was discussed with Rob at link below that there is no
-> need to add address-cells to gpio and interrupt nodes that's why reverting
-> this patch for ZynqMP.
-> Also there is no visible DTC warning which was seen in past.
-> 
-> Link: https://lore.kernel.org/r/91e3405245c89f134676449cf3822285798d2ed2.1612189652.git.michal.simek@xilinx.com
+On Wed, May 03, 2023 at 10:00:20AM +0200, Michal Simek wrote:
+> DP DMA has own power domain that's why describe optional power-domain
+> property.
+
+As far as I understand, the property should always be specified, the
+only reason why it's not mandatory is backward-compatibility (I would
+make it mandatory, as I think proper validation of new DT is more
+important than avoiding breaking validation - but not operation! - of
+old DT, but that's a separate story). If my understanding is correct,
+could you please update the example in the bindings to add the
+power-domains property ?
+
 > Signed-off-by: Michal Simek <michal.simek@amd.com>
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
 > ---
 > 
->  arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 2 --
->  1 file changed, 2 deletions(-)
+> Changes in v2:
+> - rewrite commit message - requested by Krzysztof
 > 
-> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> index 51b8349dcacd..2d564ba7e9e4 100644
-> --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> @@ -419,7 +419,6 @@ fpd_dma_chan8: dma-controller@fd570000 {
+> The commit b06112cd5e08 ("arm64: dts: zynqmp: Add power domain for the
+> DisplayPort DMA controller") added this property already in Linux that's
+> why the patch is also fixing dts_check warnings.
+> 
+> ---
+>  .../devicetree/bindings/dma/xilinx/xlnx,zynqmp-dpdma.yaml      | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dpdma.yaml b/Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dpdma.yaml
+> index 825294e3f0e8..f066f6983899 100644
+> --- a/Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dpdma.yaml
+> +++ b/Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dpdma.yaml
+> @@ -41,6 +41,9 @@ properties:
+>    clock-names:
+>      const: axi_clk
 >  
->  		gic: interrupt-controller@f9010000 {
->  			compatible = "arm,gic-400";
-> -			#address-cells = <0>;
->  			#interrupt-cells = <3>;
->  			reg = <0x0 0xf9010000 0x0 0x10000>,
->  			      <0x0 0xf9020000 0x0 0x20000>,
-> @@ -633,7 +632,6 @@ gem3: ethernet@ff0e0000 {
->  		gpio: gpio@ff0a0000 {
->  			compatible = "xlnx,zynqmp-gpio-1.0";
->  			status = "disabled";
-> -			#address-cells = <0>;
->  			#gpio-cells = <0x2>;
->  			gpio-controller;
->  			interrupt-parent = <&gic>;
+> +  power-domains:
+> +    maxItems: 1
+> +
+>  required:
+>    - "#dma-cells"
+>    - compatible
 
 -- 
 Regards,
