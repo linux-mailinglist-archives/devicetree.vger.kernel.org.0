@@ -2,111 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AB996F5B5D
-	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 17:38:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 172716F5BC4
+	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 18:10:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230120AbjECPi1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 May 2023 11:38:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58604 "EHLO
+        id S230481AbjECQK4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 May 2023 12:10:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230029AbjECPi0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 11:38:26 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D67E1FDB;
-        Wed,  3 May 2023 08:38:25 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2756160AB4;
-        Wed,  3 May 2023 15:38:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE110C433EF;
-        Wed,  3 May 2023 15:38:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1683128304;
-        bh=LyAC9Uzz/+b0JzmwQtT+pFnyz2N1dBXrPdiGGOjCDNg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=lp2Wbu726JEDxrXLhsme63CEQx9vUgzOGVcoCc9ADitNWS2ijVUMRLrQ4FP3Awjna
-         xgzY/IGaN+vUx5/WQt397KYN7kFr8uphMh1UqJ3T1Kpe5XmgR0iO+kjJASTbVdyM+3
-         zBmXKaGNs6b+zZ4q4jqSTC2BVR14b0q7/o1kdeXrCraUp9YvNTEjRbFNUGjsGWd+vn
-         114m4PlJXHHHUf2mixib9ROTW3yFDBJo7oXd2z7wpaU9z0pEQcff3UyU2QuOgB3FGP
-         8EwytdsAFrmMW942iAIvMqCVl5WzopD2vshY86uJBf21mbbhXQtL4TUf/DpDJX3fCc
-         UVORci/k8drOw==
-Date:   Wed, 3 May 2023 17:38:19 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Stanislav Jakubek <stano.jakubek@gmail.com>,
-        Rob Herring <robh@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com, Ray Jui <rjui@broadcom.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/2] dt-bindings: i2c: brcm,kona-i2c: convert to YAML
-Message-ID: <ZFJ/67UgNRmB44HT@sai>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Stanislav Jakubek <stano.jakubek@gmail.com>,
-        Rob Herring <robh@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>, linux-i2c@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com, Ray Jui <rjui@broadcom.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <9875ec0211187e4f5e2a4379c63eacdb69b31d7a.1682252615.git.stano.jakubek@gmail.com>
- <72ba28004afb733224f7294a146fc2a6a5a834a7.1682252615.git.stano.jakubek@gmail.com>
- <168234258850.2489090.5138716439435477956.robh@kernel.org>
- <20230426172354.GB2506@standask-GA-A55M-S2HP>
- <ZE4Q6p1tAiIoZo/M@sai>
- <d10e48cf-3cf8-89b7-8741-260adccfdfed@linaro.org>
+        with ESMTP id S230505AbjECQKx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 12:10:53 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3BE476A2
+        for <devicetree@vger.kernel.org>; Wed,  3 May 2023 09:10:25 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-956eacbe651so1067790166b.3
+        for <devicetree@vger.kernel.org>; Wed, 03 May 2023 09:10:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683130222; x=1685722222;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=MYyaoj8Q/I/Us7y08GPiQ94EBKjj+lyd3WqGJBJPwSw=;
+        b=dBw2i5oMj1+va8VKpl00IwyUGoupq4xPQDQptcJvuMkjcbLcNeSJFH2HHsZHH1AniB
+         6gtW4T/W15RqkusHKqKl4dsiKN7iE3piruslynidYHEOsu8lTTl1xqqnmsXfcJc7UE+m
+         30zleAz44oWe50z6DC8Cv5Whv8y6IdZgTZ1VVF9dtaWHI2cJEnLzTRXTA/bhDu0zjlBE
+         iYXeOuFRuEdLX8AyMkyoMDJcjXztIR3hetQgSoOGNV4oC6NkI67zT1m6rS2Gb5mToO0d
+         vpcYE76VdrtDmH9DsObFj9dWkWoMru3l3BsqZBLpyiroKiITMnJtIsC4vN67HXHP2kvs
+         ot0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683130222; x=1685722222;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MYyaoj8Q/I/Us7y08GPiQ94EBKjj+lyd3WqGJBJPwSw=;
+        b=Hq67giUS0cxfxRVLVjJUbngaSnM/Lo+6jGcz6bWUpxZP+qRemqBmTERxIa9us+mJvc
+         GwpWiepJC3seXX6dIlDSTlDZoOnd09XPXskiWe+6RNs0UYOktBDnxGZPbu6GOIzk4ZjQ
+         V+DtelUMDnoLfxnzTWGnjDjpjfW0wZQQCIaPxyL7cGpGFDi1GtR78Mjq9Jl+mzfDEy+Q
+         k94a8GbgbGGfZ1iFyS1Frg+o78fpZ/3egkfuuPxuoiCnuFNd9KY2CjTRJELaD5oNRfaZ
+         X3VEpuKiwrbEcXn3NdH4rKplniNrvuJ7zyjumFAeQu5BcvH8jIr4qypWUDbIDxBlBc2V
+         zfxQ==
+X-Gm-Message-State: AC+VfDzxCd2wo4o5eoHFWtuZQWVHsXb/WjRoICN6CVIRGg3OtH46iF6o
+        Zjj6ZsOY+oMvKVHJsWJ0slPEyw==
+X-Google-Smtp-Source: ACHHUZ5JrR5tK7SVHz0wY51w7D5j4qxwGQim+Bv3sQJV2ke2Jfo4xmib8u1tVuHBcaqfsphHttNTvQ==
+X-Received: by 2002:a17:907:3182:b0:94f:432f:242f with SMTP id xe2-20020a170907318200b0094f432f242fmr2973889ejb.67.1683130222354;
+        Wed, 03 May 2023 09:10:22 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:db42:e3d0:c55a:8cf1? ([2a02:810d:15c0:828:db42:e3d0:c55a:8cf1])
+        by smtp.gmail.com with ESMTPSA id s12-20020a170906bc4c00b00947ed087a2csm17455836ejv.154.2023.05.03.09.10.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 May 2023 09:10:21 -0700 (PDT)
+Message-ID: <08a20847-bf6a-20bc-4e80-1b74030ed80d@linaro.org>
+Date:   Wed, 3 May 2023 18:10:19 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="azXWXr9cX0NZ/8VD"
-Content-Disposition: inline
-In-Reply-To: <d10e48cf-3cf8-89b7-8741-260adccfdfed@linaro.org>
-X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH 1/2] dt-bindings: arm: fsl: Add i.MX8MM-EVKB
+Content-Language: en-US
+To:     Marco Felsch <m.felsch@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Johannes Schneider <johannes.schneider@leica-geosystems.com>
+References: <20230503-b4-v6-3-topic-boards-imx8mm-evk-v1-0-1e15a371d374@pengutronix.de>
+ <20230503-b4-v6-3-topic-boards-imx8mm-evk-v1-1-1e15a371d374@pengutronix.de>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230503-b4-v6-3-topic-boards-imx8mm-evk-v1-1-1e15a371d374@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 03/05/2023 17:20, Marco Felsch wrote:
+> From: Johannes Schneider <johannes.schneider@leica-geosystems.com>
+> 
+> Add DT compatible for the imx8mm EVKB [1].
+> 
+> [1] https://www.nxp.com/design/development-boards/ \
+> 	i-mx-evaluation-and-development-boards/ \
+> 	evaluation-kit-for-the-i-mx-8m-mini-applications-processor:8MMINILPD4-EVK
+> 
+> Signed-off-by: Johannes Schneider <johannes.schneider@leica-geosystems.com>
+> [m.felsch@pengutronix.de: Adapt the commit message]
+> [m.felsch@pengutronix.de: Adapt the yaml comment]
 
---azXWXr9cX0NZ/8VD
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+I don't see any differences. The comment is exactly the same as before.
+
+This is a friendly reminder during the review process.
+
+It looks like you received a tag and forgot to add it.
+
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions. However, there's no need to repost patches *only* to add the
+tags. The upstream maintainer will do that for acks received on the
+version they apply.
+
+https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
+
+If a tag was not added on purpose, please state why and what changed.
 
 
-> The dtbs warnings - if fixed via any other pactch - can be safely
-> ignored. They do not affect bisectability. Please grab this patch via
-> I2C. The DTS will go separately via arm-soc.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-OK, thanks for the heads up!
+Best regards,
+Krzysztof
 
-
---azXWXr9cX0NZ/8VD
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmRSf+EACgkQFA3kzBSg
-KbYnWw/9G1lwulnAIeVChE4f9/tIeNApXcZYGou0kOV8iAAKIoD7rHyI9O1og8JX
-CIK77xo6TZFk2aqbuKhZ88g6nf6m2DNuSRoADweRwhWJNEKzctudEEQ6qUM9ijh8
-ql0C/SVacOP2CEO7FhGO7dwTjqtxH2VRJNvseoKawtrgFc7A/2VGZccZFJXNnYZJ
-K4+jHiI8lGfzBrXtRc3MMa+gtyjn2cFz/j3RwntDwlfi/vtjgs1+MMGJqNAGX2tn
-wTV7fE7qUASlBMxQN0Z/VCCoqTzn8dy7lvgoNJ0NqPLfuO16a779FJejS2b3jaeb
-m6+NjDFAmyMT5G1KO4AXSBZb63paL+VQE8LeQVxPATYlHS9dyxTYr3t4I6T0Taqg
-sIzThlFkrjNuGQ+6uXX2pCTtqWonGeV1U4LUGkiCQzSny+89hdG8ItXOe9clKQhl
-n+6TLwG3gpbQnQmFyDlq/fb0GPQcn8dnxVvDru6ojqpnCEbVXWEUsa6WAM0khNXO
-PReAyHriVCGnPQAl48oPpe7Qqt8EiiZHs2himY68/YstYe2V5pYvMaIBqFExTHVL
-yUSev1ywjXPZT0yrJry1lWqur9+YvKXCJqAg0lM5nmOoV5GNYqlTCHWSC6uM4uMP
-JhZQh960Vfyqn4so1DoVSLAhal+Tdd4WngP6tZ2rLEYWie0nddM=
-=tfLc
------END PGP SIGNATURE-----
-
---azXWXr9cX0NZ/8VD--
