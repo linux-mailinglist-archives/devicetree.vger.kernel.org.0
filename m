@@ -2,330 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70A7D6F521B
-	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 09:45:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 875BD6F5272
+	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 10:00:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229569AbjECHpF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 May 2023 03:45:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48964 "EHLO
+        id S229697AbjECIAC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 May 2023 04:00:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229491AbjECHpC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 03:45:02 -0400
-Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DCF72690
-        for <devicetree@vger.kernel.org>; Wed,  3 May 2023 00:44:57 -0700 (PDT)
-Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-55d2e87048cso2323907b3.1
-        for <devicetree@vger.kernel.org>; Wed, 03 May 2023 00:44:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683099896; x=1685691896;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=az3ZjZw5c+oMwn1F0ZqH0yI5AWLiLyNI1BlVOd3ymQ8=;
-        b=zir+QTa2OoYRyEL82qbdMjPM4PdjHMEJZY1MWJvAskJCX9GmJP35sQw11Pz/ae8iZI
-         LK1uvUO9Yb09slOZ0h2VU2o6LxBLLXBPAn0lM+i23XeI31IBGAMn9LDnPf85h3nXEu7W
-         /7lcfLKxWlWg80qPzKTTHQsA0tK94v1RQFJwLfXKFdbVSjKVvWS8G1q1Aq1g8CdRJW2P
-         RiYMX4qkZDTKuTpQoq4xXiIT9r7zG3ZeWzZP8UBf959kQlWLRLqWHI1EskALyQJ+giZY
-         SyglIN3PcF7IDp3j0DC8O9D2GxfaD5oD/I+04S+wsp9y3Rb4KP/PdyCj9ym1yV+JaqP9
-         sf6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683099896; x=1685691896;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=az3ZjZw5c+oMwn1F0ZqH0yI5AWLiLyNI1BlVOd3ymQ8=;
-        b=BEUJxyWBDF57orYbumo+GmVx9V6a3f/8bxHClYvee8Ny1y08vQ1bHQCXEK1Do+v973
-         FVJTZmAK9Ud7iw5B9HqUnpyzLt9EBRAVE7IYwuUyE9H7Bpye3cRzKi1wKF8y9yyGw99D
-         XZbBnrzwpRV2JJqVGGwfyMvnZkE3h6TBRua1MOIjPSAQfy3K4KlHrOKcMgr9KI0MaM8m
-         41dy6YRRDLbObePdH6heXxxpR/XMFWQPUiGddv/dKwSjnt7DyCLBtY2c/KU96hbA3H7R
-         McRHbPN7oKdD1f/440w3gCvt7KXfOMw1fQ4JbkLpkE14PgEPmrP1oEVgavOLc+XP+E81
-         UUJw==
-X-Gm-Message-State: AC+VfDwOw3VCQkUyLHAmxiUdJgb4PRVoXANRc8OlYaay2XmwNV0EO4ti
-        m+EDL2+skJUv/O4UfQTKy4ONYw==
-X-Google-Smtp-Source: ACHHUZ6nzF9dKBpKYl4KrQ1B3kU7KyZBLmv5XILSEzR8eD10wsiU6RQ9szs3+zgoxeFB55g7Mr6CjQ==
-X-Received: by 2002:a0d:efc2:0:b0:556:ceb2:c462 with SMTP id y185-20020a0defc2000000b00556ceb2c462mr17663236ywe.2.1683099896640;
-        Wed, 03 May 2023 00:44:56 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id k63-20020a0dc842000000b00555ca01b112sm3283263ywd.105.2023.05.03.00.44.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 May 2023 00:44:56 -0700 (PDT)
-Message-ID: <0a7caa8d-289a-d76a-d57b-611b178fdc34@linaro.org>
-Date:   Wed, 3 May 2023 10:44:52 +0300
+        with ESMTP id S229693AbjECIAA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 04:00:00 -0400
+Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2105.outbound.protection.outlook.com [40.107.113.105])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 052D4198E;
+        Wed,  3 May 2023 00:59:58 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Js3E7qea5NhSYKJT9lN+xNd5xizZBDnnFqee+snTNkL1yuPRsiMXdisPQ0KymZ1iEHZw1bnD17yX/r+Eah0LVOAS8L9MZxFBONPVxCxMvlvc5ECFDBJzaemlszuPlPQwjItouZGDFiImTTCAI5vlW8lzVLYxSus0Bn2JeAPx8vswqjf9D+49NKduRWwcx/Tea3xCahsRSTYMNsBnvwuwvwIjZyPfq3jNN7LVrmn/e4JsZc+mp5Ncpzg5j4b/Op5s+LNzwcjAla9a7aNsJRyvDzXG7Y/u6+xJVfPRTl8kP3tRCbS9TqAVxMYOM4DAI7/NPEb3IiqrGgAVWkkKrU5b4Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=h0BUmMgjZcJtInd1W3aIVPCDmxqjcOuPKyYM/qZP9A4=;
+ b=YKd3iQ7ZTMmnIsi5TolnvUldgHpuFgLlBuTMkmhNeqXypEcqkdigxLzyMzPFGYbWA7hfzvEWKXH3vYEVsJDr6KXiWQfZUsXaGQfWAQVfM/hQ7E5k4h55G84DWXe1YBUBd9+Z4l9AacNUV6JXcBEcjvZqqhd/zpru1X++Fgp4a1YSyXn6RWP1+6S41p5jjd0Yf+Ag2kQtKndHTtTowdPgpP8udoz7Nmrn6iTO9RniMtZcTk4eF6wlwzA/biEREhvDj0T8uKki4VzxC+0U6aiGVO3uEVzpg1R57G1RmG33oA44JF+XtfsrQt6R2AClXZituxNeV9mwWUUcwRGe5ByWDA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=h0BUmMgjZcJtInd1W3aIVPCDmxqjcOuPKyYM/qZP9A4=;
+ b=ipROBXz+q9esQtCuNcKhx+TEwdqP2DfpczHda9iOtFAbvlARdX8tBSn1lo+8AkkrIcKRsnH3RShPjuH3DzTVHBMsqtmi2lBuclbXoW8tIxs7H47hk2bWOrFelZXqK2/9kMXAOt4DINXF96wUiG0ztf8Cn1XPEdq/J1I7H7L4tkY=
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
+ by TYYPR01MB8183.jpnprd01.prod.outlook.com (2603:1096:400:fe::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6340.31; Wed, 3 May
+ 2023 07:59:55 +0000
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::bd0a:a38d:b4d2:5d2]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::bd0a:a38d:b4d2:5d2%6]) with mapi id 15.20.6363.021; Wed, 3 May 2023
+ 07:59:52 +0000
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: RE: [PATCH v5 0/3] Add Versa3 clock generator support
+Thread-Topic: [PATCH v5 0/3] Add Versa3 clock generator support
+Thread-Index: AQHZbhxjDSdzuZdA9kCC1BBZdg8cZa9HJZ+QgABmWgCAAMIcoA==
+Date:   Wed, 3 May 2023 07:59:52 +0000
+Message-ID: <OS0PR01MB5922738C7DED2C62C2E8670F866C9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+References: <20230413152648.89089-1-biju.das.jz@bp.renesas.com>
+ <OS0PR01MB59220C350DFB9C221C801907866F9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <68d2fa14-5504-cee1-5278-bd138c499b9a@linaro.org>
+In-Reply-To: <68d2fa14-5504-cee1-5278-bd138c499b9a@linaro.org>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: OS0PR01MB5922:EE_|TYYPR01MB8183:EE_
+x-ms-office365-filtering-correlation-id: 40777dde-f61b-4e5f-cac3-08db4bac6070
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: AnxPaq6srF2FkZG7JeKHX/kAHMWpsZ9FEp8hVB0JzjHh8fks0SLXJWR0/mTgoCrTH/Bn0WAjtWBZIlj8F5XEkDrZQGn4l5/1j7+Gxrf61s9kbM0PE2BzqqB4H5cso4Ms5I9jnFBdhLj64AOlteEnPqwp+8555+2Pmhf2KtT/zJDN55b90nSAqtao9aT9ebI5aJhi/rTNp4ByAfqtGZhnn9GgxABH73KQAOfWiK1I0269IteLOTzXAJlwZdevopdgsBXttQ2YyONcWc6HUQOWUCBOjRWH6B/B67zNyrYwvrIwVc8UNpll2ASWwKhHlcINy5QC0z1bFX491l6GVTSRFrnvdRp/NIwLVQSnBCuIbY5SNIgyR5jrqleup39UepB32haoYvZF0hdX+LTzCCsfVqZHZ4wsf1kercJQNMLDoaJCbMMIigo0TGqHlLhf+A3Fzs798uWgQZxkC0o2sfgGtebvDKl2UUwtX1d5JDYrSFIJNd/qI6DTO8cwR525ILDEzeLiyrT8npwz3OL1sbVwThd7RDqOw2jih415h9swWf0CdPvuY3s7Ar7c0bpHkf1msLeQUN3JOoIfIP3OFnIXaOEalr4o0vt0/K8b4drXc6ltYbJfmvqxMtETowuUk4Oe
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(376002)(346002)(396003)(136003)(366004)(39860400002)(451199021)(41300700001)(8936002)(8676002)(316002)(76116006)(66946007)(4326008)(66476007)(66446008)(64756008)(66556008)(52536014)(5660300002)(2906002)(7696005)(33656002)(83380400001)(478600001)(54906003)(110136005)(71200400001)(6506007)(26005)(107886003)(186003)(9686003)(53546011)(55016003)(86362001)(122000001)(38100700002)(558084003)(38070700005);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?enh1QmlwN3pSMytXMGllR3dPTUZGUklhbjM2RlhxUytidmM5enM3U0Z4cGp1?=
+ =?utf-8?B?dDFQVEtwNUN0VU9ucEQ4d1Q3czIwMHRZck9ZUDV2c3dsSkk1czE3QkM0NUhE?=
+ =?utf-8?B?cEwzTG13cFNWdmw0aFA0OXFKNnI4eXUzMzJkZWxHUUdTcWk0TEhRYW83U3lJ?=
+ =?utf-8?B?SEdydE1SNkJFNmRDL1U0eEhleGtaOG9xdS95N1k4bFJjNDZzbnBpeEl6Yit6?=
+ =?utf-8?B?UGl6cUVHeE96OTFuSGp2NnY0eFhMSmJwWVFKZndRUEtUdDNVejBkZUZwRk9z?=
+ =?utf-8?B?SXZzQ2pLVDY1MUw0cHNxR2NFRUhvNVFpSHhqSTY0Nm5GcUNhNjBLRTkwdTZ1?=
+ =?utf-8?B?a0krSzdoOWJrNjRyMnUrbncyUkMraGNRSW8xMmVCZmVOb25hV3JLd2VRYTVF?=
+ =?utf-8?B?YTRoaVYvQytXR0I0VkVlY1RVeURNSmtabUphOURXN3hhblhvSjQ0a0MzbVc1?=
+ =?utf-8?B?Qy9UZXZBZWJubEpWSXc1NUplNXkwRC8yMmJjZmZBM3JHdllEdVdBa3ROTUZo?=
+ =?utf-8?B?b1lxeGtNMzB1WFpKSmNBZyt0RGk2eStLdE5XN05PR0tNUEZCNjF4YWdPQ1k2?=
+ =?utf-8?B?OEhkU0RWZlBHR1R2SEJXQ0Z1MUJQblJ2SDRibGFndG0vYWtxeHlGZTAzZHZp?=
+ =?utf-8?B?ekdmQ3lkZENsb09mRnRWYmJEZC91eGVNc0FHdzg0MFlKWFBJM1Z0WkhXMWZD?=
+ =?utf-8?B?Zi92OXFiaEVOK2pkczNUQVV2SUZjbENPWTN6Zk1uclR3M2tLMFBXMEpqVG8z?=
+ =?utf-8?B?cTN4VHpuTExLT0E2eVVidHcreVJZQWYxWWN4RFlXMzloVzB6RXJwbDh4eVlm?=
+ =?utf-8?B?eXNQYytUenlLcTlqUjhTcitwQnRJZ3pmOEVCLzhnTHNaWU9BQ3ltdnJuNWtJ?=
+ =?utf-8?B?d3c3RHBQcnhCbWRsMlovNzVvSWxJUnhtZE9tYjR4U1JJNXozWGFBR3lEdTZl?=
+ =?utf-8?B?T1U4WEJiOUEwdmFMUTFHMWRSWHRJbjhuWXRrREQ4TGxibXVUYmRuV3YvR1Rh?=
+ =?utf-8?B?Rmk4OWJqSDNxU3pJQTV3eVlLenA4UlIvOTRiM1Y2WFRGRDVSelFFallpK3ZG?=
+ =?utf-8?B?TDF3d05iNjdLazNkcFZWZEhqazhleElKRm9YRWZ2RTdFaThrV1lXTzhYM0p2?=
+ =?utf-8?B?VGM4ZWVLMHZOT1pmNVlyc0hkZGQ0dytWQ3BPZG1LSzdSYTZJanJQS1lrb0VM?=
+ =?utf-8?B?MGhhNklkMGpvbHJwckEvSkJ3QXp6VE1MOFoza1RCUGNrb0RIRUFURkZDMXo3?=
+ =?utf-8?B?amxvY0RBaVQ4TVRFTG4rb0Z5aGMzU1VMUXlQNlVCT0RZdW9JM2hiamlJWEFB?=
+ =?utf-8?B?TDU3TXNkRmgyRlkyWVFMRDBDOVhMSkhJRlduOUJTTlRzam5VVVJnWUVnOENM?=
+ =?utf-8?B?S2hMMGQwM1hZdGpCbE1VZVFsNk12L1JqNU00WWY3V2Y1RVlUUUQxdkNZS0x2?=
+ =?utf-8?B?WVFQVFdTZWw1NjQ2ODRpQnFiWW9xcUthcTJvM0xTd1FsUUo5N1FCMTRRTUVp?=
+ =?utf-8?B?MlhlNVVHRklOb2NwS0s1UktwdlpueGtzbWI2ZXdRRGdTQktQdFMrdm5ET3hM?=
+ =?utf-8?B?VUJTdlV6cDkvcHFKNjlaTzlvTzJxTThRengydVNnUXF4bjRVbXhDR2VPeG9u?=
+ =?utf-8?B?dTdob2x1bTBCbE92VlpaaU5LVzFOQzkvWDcrdll5TkRBL1F0dy83UzNNcGFj?=
+ =?utf-8?B?emJrOFZteWhIdTgzR2pNdThxUzJGdmo2dklGZE03NG9RZzV4K2JoeXlpUFpY?=
+ =?utf-8?B?NEhIekJjMFg3aVhqS0hnQm51Sy9oS2pldXd2SHNGTWZjajE0U2FVZlVHTnRz?=
+ =?utf-8?B?SUwyeHRsYlBXc0xqN2ZmRnNJZ0pvQTJqYklPdmpFU0E4Z2xvdWNEcTErWEFG?=
+ =?utf-8?B?NVRjVUh4aHlvUko2UUthSnVTc1lOekFtbTFNeldjNDV2U08wUlByZWZ1bnVN?=
+ =?utf-8?B?SXowZkdBK3FzbmpwbUpNR0VYWnZPNXE3Vk5GeFErM2FIaUJYbkpYKy9ZWjAv?=
+ =?utf-8?B?WWQ3VmdwcnhiN1BadlVDUmFLVU1qT2NCbEY4Uis2ajIzUFR1SXNQQUtJeWNq?=
+ =?utf-8?B?NVFZak05V3F5M0tnUWxXM0Q1K0hDbFprUEVxYmpsLzVGU2tQb0p5OXk4SGNy?=
+ =?utf-8?Q?JG4NGl6WF4GSSptfI5QRECQ5P?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v1 4/4] arm64: dts: qcom: ipq9574: add thermal zone nodes
-Content-Language: en-GB
-To:     Varadarajan Narayanan <quic_varada@quicinc.com>, amitk@kernel.org,
-        thara.gopinath@gmail.com, agross@kernel.org, andersson@kernel.org,
-        konrad.dybcio@linaro.org, rafael@kernel.org,
-        daniel.lezcano@linaro.org, rui.zhang@intel.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-pm@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Praveenkumar I <quic_ipkumar@quicinc.com>
-References: <cover.1683027347.git.quic_varada@quicinc.com>
- <65d05b81201a8d24c14f0d7564e708348a368068.1683027347.git.quic_varada@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <65d05b81201a8d24c14f0d7564e708348a368068.1683027347.git.quic_varada@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 40777dde-f61b-4e5f-cac3-08db4bac6070
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 May 2023 07:59:52.7435
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: YoPZSpFq/0+LNYZfrJwIxhcYGA6yQaGzkOl9e65CBSXRdTe3/Hut83WJgiCTaRvsGUL09daceRSbkkwu3mtpNxym/VTjeWE438hiXyf9KqY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYYPR01MB8183
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/05/2023 07:46, Varadarajan Narayanan wrote:
-> This patch adds thermal zone nodes for the various
-> sensors present in IPQ9574
-> 
-> Co-developed-by: Praveenkumar I <quic_ipkumar@quicinc.com>
-> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-
-
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-
-one nit below.
-
-
-> ---
-> [v1]:
-> 	Fix node names
-> ---
->   arch/arm64/boot/dts/qcom/ipq9574.dtsi | 208 ++++++++++++++++++++++++++++++++++
->   1 file changed, 208 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> index b22b999..bc4d061 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> @@ -1067,6 +1067,214 @@
->   		};
->   	};
->   
-> +	thermal-zones {
-> +		nss-top-thermal {
-> +			polling-delay-passive = <0>;
-> +			polling-delay = <0>;
-> +			thermal-sensors = <&tsens 3>;
-> +
-> +			trips {
-> +				nss-top-critical {
-> +					temperature = <125000>;
-> +					hysteresis = <1000>;
-> +					type = "critical";
-> +				};
-> +			};
-> +		};
-> +
-> +		ubi-0-thermal {
-> +			polling-delay-passive = <0>;
-> +			polling-delay = <0>;
-> +			thermal-sensors = <&tsens 4>;
-> +
-> +			trips {
-> +				ubi_0-critical {
-> +					temperature = <125000>;
-> +					hysteresis = <1000>;
-> +					type = "critical";
-> +				};
-> +			};
-> +		};
-> +
-> +		ubi-1-thermal {
-> +			polling-delay-passive = <0>;
-> +			polling-delay = <0>;
-> +			thermal-sensors = <&tsens 5>;
-> +
-> +			trips {
-> +				ubi_1-critical {
-> +					temperature = <125000>;
-> +					hysteresis = <1000>;
-> +					type = "critical";
-> +				};
-> +			};
-> +		};
-> +
-> +		ubi-2-thermal {
-> +			polling-delay-passive = <0>;
-> +			polling-delay = <0>;
-> +			thermal-sensors = <&tsens 6>;
-> +
-> +			trips {
-> +				ubi_2-critical {
-> +					temperature = <125000>;
-> +					hysteresis = <1000>;
-> +					type = "critical";
-> +				};
-> +			};
-> +		};
-> +
-> +		ubi-3-thermal {
-> +			polling-delay-passive = <0>;
-> +			polling-delay = <0>;
-> +			thermal-sensors = <&tsens 7>;
-> +
-> +			trips {
-> +				ubi_3-critical {
-> +					temperature = <125000>;
-> +					hysteresis = <1000>;
-> +					type = "critical";
-> +				};
-> +			};
-> +		};
-> +
-> +		cluster0-thermal {
-
-I think we were usually using cpussN instead of clusterN, but this is 
-really a minor issue, we don't have that standardized.
-
-> +			polling-delay-passive = <0>;
-> +			polling-delay = <0>;
-> +			thermal-sensors = <&tsens 8>;
-> +
-> +			trips {
-> +				cpu-critical {
-> +					temperature = <125000>;
-> +					hysteresis = <1000>;
-> +					type = "critical";
-> +				};
-> +			};
-> +		};
-> +
-> +		cluster1-thermal {
-> +			polling-delay-passive = <0>;
-> +			polling-delay = <0>;
-> +			thermal-sensors = <&tsens 9>;
-> +
-> +			trips {
-> +				cpu-critical {
-> +					temperature = <125000>;
-> +					hysteresis = <1000>;
-> +					type = "critical";
-> +				};
-> +			};
-> +		};
-> +
-> +		cpu0-thermal {
-> +			polling-delay-passive = <0>;
-> +			polling-delay = <0>;
-> +			thermal-sensors = <&tsens 10>;
-> +
-> +			trips {
-> +				cpu-critical {
-> +					temperature = <120000>;
-> +					hysteresis = <10000>;
-> +					type = "critical";
-> +				};
-> +
-> +				cpu-passive {
-> +					temperature = <110000>;
-> +					hysteresis = <1000>;
-> +					type = "passive";
-> +				};
-> +			};
-> +		};
-> +
-> +		cpu1-thermal {
-> +			polling-delay-passive = <0>;
-> +			polling-delay = <0>;
-> +			thermal-sensors = <&tsens 11>;
-> +
-> +			trips {
-> +				cpu-critical {
-> +					temperature = <120000>;
-> +					hysteresis = <10000>;
-> +					type = "critical";
-> +				};
-> +
-> +				cpu-passive {
-> +					temperature = <110000>;
-> +					hysteresis = <1000>;
-> +					type = "passive";
-> +				};
-> +			};
-> +		};
-> +
-> +		cpu2-thermal {
-> +			polling-delay-passive = <0>;
-> +			polling-delay = <0>;
-> +			thermal-sensors = <&tsens 12>;
-> +
-> +			trips {
-> +				cpu-critical {
-> +					temperature = <120000>;
-> +					hysteresis = <10000>;
-> +					type = "critical";
-> +				};
-> +
-> +				cpu-passive {
-> +					temperature = <110000>;
-> +					hysteresis = <1000>;
-> +					type = "passive";
-> +				};
-> +			};
-> +		};
-> +
-> +		cpu3-thermal {
-> +			polling-delay-passive = <0>;
-> +			polling-delay = <0>;
-> +			thermal-sensors = <&tsens 13>;
-> +
-> +			trips {
-> +				cpu-critical {
-> +					temperature = <120000>;
-> +					hysteresis = <10000>;
-> +					type = "critical";
-> +				};
-> +
-> +				cpu-passive {
-> +					temperature = <110000>;
-> +					hysteresis = <1000>;
-> +					type = "passive";
-> +				};
-> +			};
-> +		};
-> +
-> +		wcss-phyb-thermal {
-> +			polling-delay-passive = <0>;
-> +			polling-delay = <0>;
-> +			thermal-sensors = <&tsens 14>;
-> +
-> +			trips {
-> +				wcss_phyb-critical {
-> +					temperature = <125000>;
-> +					hysteresis = <1000>;
-> +					type = "critical";
-> +				};
-> +			};
-> +		};
-> +
-> +		top-glue-thermal {
-> +			polling-delay-passive = <0>;
-> +			polling-delay = <0>;
-> +			thermal-sensors = <&tsens 15>;
-> +
-> +			trips {
-> +				top_glue-critical {
-> +					temperature = <125000>;
-> +					hysteresis = <1000>;
-> +					type = "critical";
-> +				};
-> +			};
-> +		};
-> +	};
-> +
->   	timer {
->   		compatible = "arm,armv8-timer";
->   		interrupts = <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-
--- 
-With best wishes
-Dmitry
-
+SGkgS3J6eXN6dG9mIEtvemxvd3NraSwNCg0KPiBTdWJqZWN0OiBSZTogW1BBVENIIHY1IDAvM10g
+QWRkIFZlcnNhMyBjbG9jayBnZW5lcmF0b3Igc3VwcG9ydA0KPiANCj4gT24gMDIvMDUvMjAyMyAx
+NjoxOCwgQmlqdSBEYXMgd3JvdGU6DQo+ID4gSGkgQWxsLA0KPiA+DQo+ID4gR2VudGxlIFBpbmcu
+DQo+IA0KPiBJdCdzIG1lcmdlIHdpbmRvdy4gUGluZywgb3IgYmV0dGVyIHJlc2VuZCwgYWZ0ZXIg
+aXQgZmluaXNoZXMuDQoNClRoYW5rcyBmb3IgdGhlIGluZm8uDQoNCkNoZWVycywNCkJpanUNCg==
