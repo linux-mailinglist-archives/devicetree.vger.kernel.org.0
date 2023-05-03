@@ -2,68 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AD856F5983
-	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 16:07:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E15A6F5988
+	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 16:09:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230133AbjECOHW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 May 2023 10:07:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36078 "EHLO
+        id S230002AbjECOJk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 May 2023 10:09:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229741AbjECOHV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 10:07:21 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1934A59DD
-        for <devicetree@vger.kernel.org>; Wed,  3 May 2023 07:07:20 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-50bd37ca954so7189036a12.0
-        for <devicetree@vger.kernel.org>; Wed, 03 May 2023 07:07:20 -0700 (PDT)
+        with ESMTP id S229784AbjECOJj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 10:09:39 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9218459F2
+        for <devicetree@vger.kernel.org>; Wed,  3 May 2023 07:09:37 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-94f1a6e66c9so1002933966b.2
+        for <devicetree@vger.kernel.org>; Wed, 03 May 2023 07:09:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683122838; x=1685714838;
+        d=linaro.org; s=google; t=1683122976; x=1685714976;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=SPZd8mQM4MQ3mCONjF5npeqWZMaRA165Vw2srGHcbL0=;
-        b=My9PY/hCKy0PGEszhf3Kry5JFFR66CEiNTxHxyBD6k2H7fp31EzRk0vg66fDn9U75u
-         RLoqXeQTKaZQPmvywJAVJBj0WscQx7OM8U1cPwPyehCRAvpjVe7ZnXUa/hbiS+BYhXRf
-         2xTrbOgFWbsr+3bKSVs8Q6VNV4erqzMYpKMkWXckkkv+OjFfOA22yuJvzo+2YPPyMzHf
-         iFcJSII4aY13lwHaNGQHNC1EGhNzyvuxqJx/GUqgHU2L0UEdlG/yhzI0HY3e3WvDLErb
-         kVzJJnLTngRFWCfb9Q9OwOrQZaioYfZo0OskV4aPuTtO23OgSdGUu6sAKEiUMzeOZl5R
-         Ly+g==
+        bh=mK68NYi4Md501UpiqLonzXIdRt1tnNyCrIythi7sS+M=;
+        b=noHAyyyWDYLPP6JO/zozkSkR2vkzidbvTevSRwNzUbJtQSxqGAz6P6BoNIlrpA2tgX
+         0Ax7FwFNNxXaxvq4AjYH3l57NVqojg41eZVsE2h5SSsCehHN+iCbJvkvSGd5t6soY04T
+         oMX9YalyuVn63F8wnmCgYqHfrYekJjagE9II6StQoP6XZQHZbEY+/hyuCD/VkdXgCBJJ
+         ejNtLOpI5Cjr2+mHCvoXIgJou5lWthj2vGJ0qlsnLJtAX4PQdKnckJvCw95W4LD5WWot
+         GA/UjQy6yVG2Rz1QebCVbZENPCi1x8UzZEZ9T2O3ZzsITG5rCjBsrDWkKyHVVosoSrIt
+         RDZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683122838; x=1685714838;
+        d=1e100.net; s=20221208; t=1683122976; x=1685714976;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SPZd8mQM4MQ3mCONjF5npeqWZMaRA165Vw2srGHcbL0=;
-        b=XG9IDVoNWSJXzKaUp0BqNJd175rndHYbMZaNH6UL/bkEEZHVTEZW6zq9DqzY/kLMKj
-         ZbNEkPcqKqZclyVjbbz1jOmqKoGwMWUu/2bYE7F9tVcVe5FErNQktk0H3g2kw5CklbW6
-         6J7iH0f4Ger+bbqct21+xZI3Cjq+55f8hmai0nMKYJWNvnQOi+z+mYJyiW6SLDD6d3ks
-         XmucHnUFXulYX+3lw38tIfkgYT85yHslwU9Rxr/TIlLzXGt6ZN6CdtTCFYlnofLO/2zS
-         k6zkTm66bhEHeswbsbqS3baIXX5O7nGlX7U6XMMCXJicDf5pDFWfdSLr8TfhY8ofgP0I
-         489w==
-X-Gm-Message-State: AC+VfDzHVRpLdYpNpaxtMvw9TmhuYyrv609/g4TTP8MsyQjbsPOIxNH8
-        RMFC4I7wYdPziMrJqstsFG6jRA==
-X-Google-Smtp-Source: ACHHUZ49xuctmLyncdAFpBTUlj1RpxAea7lDh+1gFfdwPZ+9f3T7S3WLwRxhfXuO9fPmvwq5u7zU/g==
-X-Received: by 2002:a05:6402:3490:b0:50b:caf8:ddad with SMTP id v16-20020a056402349000b0050bcaf8ddadmr1920559edc.19.1683122838515;
-        Wed, 03 May 2023 07:07:18 -0700 (PDT)
+        bh=mK68NYi4Md501UpiqLonzXIdRt1tnNyCrIythi7sS+M=;
+        b=h4MHnpzmatqTSYt5PW5RfEQIWEm9vAzgdw2C8q1lfoBIOqhrKoJ0mxuRlmw1KhZBrD
+         OqYXT0oV2KGH6yLeBAGkuAQzpXYQ+Dy4EL6w9amoqjE2ncPrPgs159FU732/EpASvY+Y
+         9GPiQir+seXkEmk+w2woFynfG1ozUkdkZjlKhuizhEsIgMH+r/tBUY8kH5E2f604HL8c
+         9Lf9HD3sSpBY/YWajOKZ3Yedp1PE+BZXTKTHucXsfSImVCEpijsYEQr+Dkqd9gdTHwe/
+         q9yxKUoNxi5orefBa1fxWL+kXAiXTg1YliBC/DHdlLz1wRMMsH/lEZu3WcBSjahDETGF
+         0DgQ==
+X-Gm-Message-State: AC+VfDzufaH54MlPDLzbZDSpcJ5gSdYNn67F5O7YqDcPSqh5I50Ylvs7
+        a3EPzQ1O24zdXBtgiVPUWkCVdQ==
+X-Google-Smtp-Source: ACHHUZ7MpB081+GYrlSXGSVot5dVaOLY86f0bU3jAd2a2xjuJu5mlKxTH5nx1WwtH/pn1/saQX/7nw==
+X-Received: by 2002:a17:906:58cf:b0:94f:2852:1d2b with SMTP id e15-20020a17090658cf00b0094f28521d2bmr3247307ejs.72.1683122976003;
+        Wed, 03 May 2023 07:09:36 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:db42:e3d0:c55a:8cf1? ([2a02:810d:15c0:828:db42:e3d0:c55a:8cf1])
-        by smtp.gmail.com with ESMTPSA id n20-20020a056402515400b00509d1c6dcefsm756452edd.13.2023.05.03.07.07.17
+        by smtp.gmail.com with ESMTPSA id h20-20020a1709070b1400b009658f5a90d2sm127868ejl.189.2023.05.03.07.09.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 May 2023 07:07:17 -0700 (PDT)
-Message-ID: <8c142bc5-de77-2561-35a1-2358f0565ecf@linaro.org>
-Date:   Wed, 3 May 2023 16:07:16 +0200
+        Wed, 03 May 2023 07:09:35 -0700 (PDT)
+Message-ID: <0537e5be-87c3-c551-ac12-d2cdf5b18b07@linaro.org>
+Date:   Wed, 3 May 2023 16:09:34 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
-Subject: Re: [PATCH v1 1/2] dt-bindings: tegra: Document compatible for IGX
+Subject: Re: [PATCH v2] dt-bindings: dma: xilinx: Add power-domains to
+ xlnx,zynqmp-dpdma
 Content-Language: en-US
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Shubhi Garg <shgarg@nvidia.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jonathanh@nvidia.com,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-References: <20230502150249.773425-1-shgarg@nvidia.com>
- <664379bf-96c4-b66c-6b0b-7b848ae6000c@linaro.org> <ZFIm-nDpMZog9aOr@orome>
+To:     Michal Simek <michal.simek@amd.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
+        michal.simek@xilinx.com, git@xilinx.com,
+        Hyun Kwon <hyun.kwon@xilinx.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
+        dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <30424f5886ef42419f65c2d5131ad30881c727a4.1683100816.git.michal.simek@amd.com>
+ <20230503125125.GE32586@pendragon.ideasonboard.com>
+ <a5ff9c0f-6ee9-8b1a-5f77-fb56176bce22@amd.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ZFIm-nDpMZog9aOr@orome>
+In-Reply-To: <a5ff9c0f-6ee9-8b1a-5f77-fb56176bce22@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -76,58 +83,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/05/2023 11:18, Thierry Reding wrote:
-> On Wed, May 03, 2023 at 08:22:21AM +0200, Krzysztof Kozlowski wrote:
->> On 02/05/2023 17:02, Shubhi Garg wrote:
->>> Document the compatible strings used for Nvidia IGX Orin Development
->>> kit which uses P3701 SKU8 and P3740 carrier board.
->>>
->>> Signed-off-by: Shubhi Garg <shgarg@nvidia.com>
->>> ---
->>>  Documentation/devicetree/bindings/arm/tegra.yaml | 5 +++++
->>>  1 file changed, 5 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/arm/tegra.yaml b/Documentation/devicetree/bindings/arm/tegra.yaml
->>> index 0df41f5b7e2a..34523b8b5d1f 100644
->>> --- a/Documentation/devicetree/bindings/arm/tegra.yaml
->>> +++ b/Documentation/devicetree/bindings/arm/tegra.yaml
->>> @@ -176,5 +176,10 @@ properties:
->>>            - const: nvidia,p3768-0000+p3767-0000
->>>            - const: nvidia,p3767-0000
->>>            - const: nvidia,tegra234
->>> +      - description: NVIDIA IGX Orin Development Kit
->>> +        items:
->>> +          - const: nvidia,p3740-0002+p3701-0008
->>> +          - const: nvidia,p3701-0008
->>> +          - const: nvidia,tegra234
->>>  
+On 03/05/2023 15:27, Michal Simek wrote:
+> Hi,
+> 
+> On 5/3/23 14:51, Laurent Pinchart wrote:
+>> Hi Michal,
 >>
->> Don't stuff things to the end, but put in some logical order. For
->> example 'I' could be before 'N'.
+>> Thank you for the patch.
+>>
+>> On Wed, May 03, 2023 at 10:00:20AM +0200, Michal Simek wrote:
+>>> DP DMA has own power domain that's why describe optional power-domain
+>>> property.
+>>
+>> As far as I understand, the property should always be specified, the
+>> only reason why it's not mandatory is backward-compatibility (I would
+>> make it mandatory, as I think proper validation of new DT is more
+>> important than avoiding breaking validation - but not operation! - of
+>> old DT, but that's a separate story). If my understanding is correct,
+>> could you please update the example in the bindings to add the
+>> power-domains property ?
 > 
-> Sorting these alphabetically doesn't work well because it's not very
-> deterministic. So far we've always grouped these by SoC family and
-> within each group they are sorted chronologically. Chronologically
-> here being determined by the upstream activity. We could perhaps make
-> that a bit more formal by sorting by part number. Those are usually
-> assigned at design time (i.e. p3740 was designed prior to p3768), so
-> in that case the IGX would be sorted after the AGX Orin.
+> backward compatible - of course
+> always specified - if pd driver is enabled it must be there. If not it doesn't 
+> do anything - just describes it.
 > 
-> The NVIDIA in the description is something we haven't been very strict
-> about. It'd probably be a good idea to add that wherever relevant since
-> other vendors make products with these modules.
-> 
-> We could also add comments to the list to visually separate the SoC
-> family groups. That's something for another patch, though.
-> 
-> Would you agree with chronological (by part number) sorting? In practice
-> this would tend towards new things getting added to the end, but I think
-> it's the least confusing for people looking at these lists. For instance
-> if I buy a very recent device, I would expect it to show up somewhere
-> close to the end of a list rather than potentially very high up.
+> I am not in a position to decide this. But if dt folks agree with your ask I am 
+> happy to make it mandatory and extend example.
 
-Yeah, this works as well. I assumed something around this. Probably this
-should should go then one step up.
+By making it mandatory in the bindings only, not in the driver, no real
+ABI gets broken. Linux won't stop booting if property is missing.
+Therefore if device is always part of power domain and it is actually
+required, then sure - making it required is useful.
 
 Best regards,
 Krzysztof
