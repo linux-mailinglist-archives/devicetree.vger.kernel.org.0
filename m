@@ -2,99 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC1676F576F
-	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 13:52:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D4436F5776
+	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 13:55:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229587AbjECLwe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 May 2023 07:52:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56576 "EHLO
+        id S229675AbjECLzl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 May 2023 07:55:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229482AbjECLwd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 07:52:33 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0185E619C;
-        Wed,  3 May 2023 04:52:08 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 343BpUc4116898;
-        Wed, 3 May 2023 06:51:30 -0500
+        with ESMTP id S229528AbjECLzk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 07:55:40 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 553D2198E;
+        Wed,  3 May 2023 04:55:38 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 343BtVmZ030833;
+        Wed, 3 May 2023 06:55:31 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1683114690;
-        bh=0bc4uxJ3QNL7TupRSDyhXckx3Cj2zST7F454qt74Zto=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=YhxYkWGSIMRRwqQzPRTaBoBS0N1YVjsBP8PWwG2rLyOJX2o3LcxBd7yYjnclnBkJY
-         MYI/6oCOVZg3x36jcAiTyOUdnkb5PX0L4kVmRr2v0wCG2nDRV0Gq1TVVV9vREO1NNM
-         a8wHN2ShQH0xallvoTpa9jaUXsI9myEDbxOAAVJg=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 343BpUOe124374
+        s=ti-com-17Q1; t=1683114931;
+        bh=8JlE9yalpV3u/aozeCheT4uMh+zsvHV9fsp9+UYGgQE=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=yiB9Eg+ZJBiZYR5qay2oDLSAb0enzhn1SlvjG36AIxrUzAOMBAe6ntLtwmX9de3l6
+         0E+0lishQ/KkiFWEVbU/LwE8c0ezk3CmegrzeGakILEO3PF00LI26BuBk9IgslvJwp
+         SzENsOFVvEE3F8IDYCtKSbovLfmivO3xVSHQGdF4=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 343BtVcv021547
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 3 May 2023 06:51:30 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+        Wed, 3 May 2023 06:55:31 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 3
- May 2023 06:51:30 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ May 2023 06:55:31 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 3 May 2023 06:51:30 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 343BpUHB045349;
-        Wed, 3 May 2023 06:51:30 -0500
-Date:   Wed, 3 May 2023 06:51:30 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Vaishnav Achath <vaishnav.a@ti.com>
-CC:     <kristo@kernel.org>, <vigneshr@ti.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <u-kumar1@ti.com>
-Subject: Re: [PATCH 0/4] arm64: dts: ti: Describe flash partitions for J7
- platforms
-Message-ID: <20230503115130.c7m4a7crub7kmfjw@gluten>
-References: <20230503091218.25899-1-vaishnav.a@ti.com>
+ Frontend Transport; Wed, 3 May 2023 06:55:31 -0500
+Received: from [172.24.145.195] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 343BtRBE048188;
+        Wed, 3 May 2023 06:55:28 -0500
+Message-ID: <82a39b8e-96ad-faa2-714f-c8c6bfbcc5d6@ti.com>
+Date:   Wed, 3 May 2023 17:25:27 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230503091218.25899-1-vaishnav.a@ti.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v4 2/3] arm64: dts: ti: k3-j721e: Add ESM support
+Content-Language: en-US
+To:     Nishanth Menon <nm@ti.com>
+CC:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <u-kumar1@ti.com>
+References: <20230503093310.85779-1-n-francis@ti.com>
+ <20230503093310.85779-3-n-francis@ti.com>
+ <20230503114827.lutd2ebygxczvali@argue>
+From:   Neha Malcom Francis <n-francis@ti.com>
+In-Reply-To: <20230503114827.lutd2ebygxczvali@argue>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-8.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14:42-20230503, Vaishnav Achath wrote:
-> This series adds flash partition description through DT, currently
-> the flash partitions for J7 platforms is described through the mtdparts
-> commandline parameter passed from bootloader, this requires maintenance
-> of the partition information in a mtdparts string which is error prone.
-> 
-> Once the flash partitions are described through DT, the support for
-> mtdparts can be removed for these platforms from u-boot also.
-> 
-> Vaishnav Achath (4):
->   arm64: dts: ti: k3-j721e-som: Describe OSPI flash partition info
->   arm64: dts: ti: k3-j721e-som: Describe QSPI flash partition info
->   arm64: dts: ti: k3-j721e-sk: Describe OSPI flash partition info
->   arm64: dts: ti: k3-j7200-som: Describe OSPI and Hyperflash partition
->     info
-> 
->  arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi   | 72 +++++++++++++++++++
->  .../dts/ti/k3-j721e-common-proc-board.dts     | 46 ++++++++++++
->  arch/arm64/boot/dts/ti/k3-j721e-sk.dts        | 46 ++++++++++++
->  arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi   | 46 ++++++++++++
->  4 files changed, 210 insertions(+)
+Hi Nishanth,
 
-Please address the feedback in [1] prior to adding the partitions? and
-could you ensure it is done for all the impacted k3 SoCs?
+On 03/05/23 17:18, Nishanth Menon wrote:
+> On 15:03-20230503, Neha Malcom Francis wrote:
+>> Add address entry mapping ESM on J721E.
+>>
+>> Signed-off-by: Neha Malcom Francis <n-francis@ti.com>
+>> ---
+>>   arch/arm64/boot/dts/ti/k3-j721e.dtsi | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j721e.dtsi b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
+>> index b912143b6a11..52bcde601eb8 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j721e.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
+> 
+> Why is'nt esm node introduced here?
+> 
 
+As it stands esm node is already in 
+arch/arm/dts/k3-j721e-r5-common-proc-board.dts in u-boot and since this 
+patch is motivated to keep the u-boot and kernel dts in sync, I haven't 
+added it here.
 
-[1] https://lore.kernel.org/all/f5861b8b-637a-e127-2945-8994a472015a@ti.com/
+Although... I could add it here similar to j7200 and take action to move 
+to the same in u-boot... maybe that is better route.
+
+>> @@ -131,6 +131,7 @@ cbass_main: bus@100000 {
+>>   		#size-cells = <2>;
+>>   		ranges = <0x00 0x00100000 0x00 0x00100000 0x00 0x00020000>, /* ctrl mmr */
+>>   			 <0x00 0x00600000 0x00 0x00600000 0x00 0x00031100>, /* GPIO */
+>> +			 <0x00 0x00700000 0x00 0x00700000 0x00 0x00001000>, /* ESM */
+>>   			 <0x00 0x00900000 0x00 0x00900000 0x00 0x00012000>, /* serdes */
+>>   			 <0x00 0x00a40000 0x00 0x00a40000 0x00 0x00000800>, /* timesync router */
+>>   			 <0x00 0x06000000 0x00 0x06000000 0x00 0x00400000>, /* USBSS0 */
+>> -- 
+>> 2.34.1
+>>
+> 
 
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Thanking You
+Neha Malcom Francis
