@@ -2,131 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48B526F52BD
-	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 10:09:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD5366F5300
+	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 10:20:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229628AbjECIJm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 May 2023 04:09:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38502 "EHLO
+        id S229666AbjECIUv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 May 2023 04:20:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229581AbjECIJk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 04:09:40 -0400
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2046.outbound.protection.outlook.com [40.107.223.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F2E649E6;
-        Wed,  3 May 2023 01:09:20 -0700 (PDT)
+        with ESMTP id S229522AbjECIUu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 04:20:50 -0400
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2043.outbound.protection.outlook.com [40.107.92.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5A1C4C11;
+        Wed,  3 May 2023 01:20:44 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PbK5WyfhjruV+y687Xl0j/Ron0Yi6zOCElOgh5qWPVhfrsckvSg2KqtfC3a2UZplmuOhCM96SGCVcCwk++Wrf9o3ggYEM1Fk5rL/lGX12L0f7guWEaToh/r2BhbDv6wDN0kZ2e+bR4Af0sXNYYEwo/arJrpC2GjAd65VEPc2rrHmKeR584iUGxw5cUi23DusIK/4oECV+Z3Qu10BODFvxFlaeSrSPuMIAz9ZiaD8EX09CNs/cU28fAoajZGVNtD4aERqAPyJWW4ehcK3Q/kl2IHbjfmUbfTilsFeD6qeD8TXbpcGeeztX7y6OVYYvr4R6MJ5NyM56YYmuBkDjE+g+Q==
+ b=UkAjBk/Gx6hBGN6oub0rIuxkmhDv+lxL1kEDoSksc/CqIt4S+LXW26QV8QrjTxVRV8cbdS4Q9kR4gp+1aih8uk2NtqiKPkfvGQRqbiNVXReIeqIfLWxROk84A40kNRViLOx24uqo1wVHgs6aHJu0C0rU7we9EWcAX75JO5J/S69UOsa9eOUlzP8Xws3PqFMzf1KqwTYwimnI47lJIGglV1GF7FiuDWpqGaBalkwRs8Ucnbhabd4JXG/DbfD6FV91rHTYfAcFc6XQanD/Qhj4HCylfN5J0qK/7gxku85NWpPvBCVYiETX5UYalOevp2pOawuaURxwbk7/LD1SOHQ+MQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gxFliDIiG1EWU7AfkVcqLnI29K4WXrsPGUiDwBFew04=;
- b=J4LDbXWkOQ0HtQRSw0bCv0+w1sB8v84jjmqaxA9IinI6TiHpwpPVnzjW8N0ZY7WV0j2suc7QH0HR9ygSrVeFWrK/18Qj4d2mLYLiyHYgFsFjAxWMFe5VrwtXRqxSHrgoSc6IXlrRMcH8PqkWske37HTEPA5mKSoCJ4REL9O0catMfKYLPSF6R/FfPq1iV5KBqOiatmTKBRpDciVHJpBBFKSY/cChpbAFhHBfUt8UZWZPqxxyaPoc2dyP4WkeiySpnKDXCrQXZellVnWWaFdHF50ZURyLnETyYTCggc9GxqGi+o+hGRh7csCYYnkgBDmk8kBlmT7L5KRsIHXkxGH03Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
+ bh=vvqAJqqOUwIYhs8O+Y/vEmh5LfIoU9uG10gu+3Pl07U=;
+ b=Ni6HX0XTG+TwGSFdohlDWpW5wqRz+dKoNEeyN6ZHXUaa6ssjBk6EyEWigZIPNfHIiObBvNgRYVAd4y3eqLWscxaXyBp9VTBk9NR8ynWkY7sOfRpPuz6hBja2Yt+dRF2yVcygtfDM/gyiXsdDMCxhvPnTxnAlZ7wY3VccZtyM7FXc8czf4HXOqBDT9XqxjlEjtj3GB+I102iObfWv4Ttsd7EBZjUkXx4Hfjm2XvgE7J20ZmyCjqxCC9qmXedAZz0cJy5nTZUlPLjKurWAQZtV5za1jCDIwAbtUWopgXKFeug/km1/VHcvuY31lU9kiE1vQGuZPoqfaelGzM322fDKSQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gxFliDIiG1EWU7AfkVcqLnI29K4WXrsPGUiDwBFew04=;
- b=IKDdf5LCDiRuSDC0YECQgfVcKnpXNrZw+3Z+rqjCHptrTV7ISpCj2KYAGyYLiMUFtggGwvt4VrtYD0ZDq3eftQWaEUmMvDEHN2sWltzlvWCUTfQPxTeNQoGDutVKv8oHS1lTkMrOtn/Nph3+cxnZTL2yXvbDRl5kybQps68ey9I=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BYAPR12MB4758.namprd12.prod.outlook.com (2603:10b6:a03:a5::28)
- by DS0PR12MB8220.namprd12.prod.outlook.com (2603:10b6:8:f5::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.20; Wed, 3 May
- 2023 08:09:16 +0000
-Received: from BYAPR12MB4758.namprd12.prod.outlook.com
- ([fe80::20b9:d472:1981:cf94]) by BYAPR12MB4758.namprd12.prod.outlook.com
- ([fe80::20b9:d472:1981:cf94%4]) with mapi id 15.20.6340.031; Wed, 3 May 2023
- 08:09:16 +0000
-Message-ID: <a6c21b11-880a-8209-b45f-bba10a7acc68@amd.com>
-Date:   Wed, 3 May 2023 10:09:02 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH] ARM: zynq: dts: Setting default i2c clock frequency to
- 400kHz
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-kernel@vger.kernel.org, monstr@monstr.eu,
-        michal.simek@xilinx.com, git@xilinx.com
-Cc:     Varalaxmi Bingi <varalaxmi.bingi@amd.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <4dde5d1eb8e4572dae4295a19a4c83002a58e5da.1683035611.git.michal.simek@amd.com>
- <e0b50ae1-b501-cb41-829f-736903e5794f@linaro.org>
- <958f4336-8c38-4cc1-4313-06a54e397d42@amd.com>
- <89276de5-ded8-2f38-bcea-708fdd35ca6d@linaro.org>
- <bfc2c9f9-a8cb-84a8-0800-fc90f6ec2eda@amd.com>
- <1d11d36b-9cfa-4d39-c521-aab2153e49a9@linaro.org>
+ bh=vvqAJqqOUwIYhs8O+Y/vEmh5LfIoU9uG10gu+3Pl07U=;
+ b=T0YZOeE0qKungkSNNi1zF8/XbiVtMAZzlnhDR2ogpuKWFB9cogSjc+jKJlFxy9MxGsoB9opBSvjfF/MHubCGR9luufkkHaLgfxA7x7XMz05pH9LpKy/JfL6NiuoiD7be8Ks8ssI1VCVMgteladvZtU2cIUkSFjI0vLzJ1oN934M=
+Received: from DM6PR12CA0011.namprd12.prod.outlook.com (2603:10b6:5:1c0::24)
+ by DM4PR12MB6544.namprd12.prod.outlook.com (2603:10b6:8:8d::6) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6340.31; Wed, 3 May 2023 08:20:40 +0000
+Received: from DM6NAM11FT028.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:1c0:cafe::4e) by DM6PR12CA0011.outlook.office365.com
+ (2603:10b6:5:1c0::24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.22 via Frontend
+ Transport; Wed, 3 May 2023 08:20:40 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DM6NAM11FT028.mail.protection.outlook.com (10.13.173.140) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6363.22 via Frontend Transport; Wed, 3 May 2023 08:20:40 +0000
+Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Wed, 3 May
+ 2023 03:20:38 -0500
 From:   Michal Simek <michal.simek@amd.com>
-In-Reply-To: <1d11d36b-9cfa-4d39-c521-aab2153e49a9@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR2P281CA0055.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:93::14) To BYAPR12MB4758.namprd12.prod.outlook.com
- (2603:10b6:a03:a5::28)
+To:     <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
+        <michal.simek@xilinx.com>, <git@xilinx.com>
+CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-spi@vger.kernel.org>
+Subject: [PATCH v2] dt-bindings: spi: zynqmp-qspi: Add power-domains and iommus properties
+Date:   Wed, 3 May 2023 10:20:36 +0200
+Message-ID: <2afed7285061abbb5d9ad3b1e795b737dcff9693.1683102032.git.michal.simek@amd.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BYAPR12MB4758:EE_|DS0PR12MB8220:EE_
-X-MS-Office365-Filtering-Correlation-Id: d6cc3a4c-0ba6-4ae6-843c-08db4badb058
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT028:EE_|DM4PR12MB6544:EE_
+X-MS-Office365-Filtering-Correlation-Id: 650e47e3-a897-4b08-1b21-08db4baf4806
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: kPCYC0mAv1PjctskpTM5sTDaWhklzsrqYzjcifasPFAwiqr9HRP1vDgTtx6HaOi124jYsDuOFoPwYq0mgNn9djdqbZisMDpmqC+E4DIuaX3vsTJCKjFzOoDq9SZe1CiVauAlGPYkhH7PRZxLQ1Tcdg3GehfBTo+8aCsaAw5EhjtzQRt53mn4r/xF0/PnSPEAWIH0pxcNrZdH+MY29y9JixqUn7tqVdGG+Pd7ABiFFJDyDIjIBkZMoft5ZU664ZXficwdpiTtLcBMW/6Fha3vGLYSybWQeZdM5PFhD5vkSl4ciPLSMsfQcSBC60WsFc7qdTsgdvc/YmakWydqUGFGSYc7BktJ/+uWO+1TokMRzRlnjoRtcCD9xi0OOQiCDCxomDDe3no8ktopWOeFiFVDQUFCFHSJeupvxFPrIaw/sOlTblrAT2uFHob3STMVMLUUsglxnw7mQJtfLjVYPjR8ojn4Id7Ii2SQ0XcyVs68j4o786WGNo8ffo1nxw9x9aoXYgrypNodTb9nIIxKKP0VtKswsn7PpGp1fP0xzRkikoendgao6OSleEW2/FxXa6uyYH46/E7/fiSCqV+91ymA+tMeqrWkhrqfzaL6xRUDIWn0nUEYebCDImzG/3UaRevj4kr7KurkelJnfyXas0lGmw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR12MB4758.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(366004)(396003)(376002)(346002)(39860400002)(136003)(451199021)(31686004)(66476007)(66946007)(2906002)(2616005)(86362001)(31696002)(44832011)(66556008)(5660300002)(8676002)(8936002)(36756003)(41300700001)(4326008)(54906003)(478600001)(316002)(6666004)(966005)(186003)(6506007)(26005)(6512007)(53546011)(83380400001)(6486002)(38100700002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?b1N2NXZiQlZEMlBLbDFMdDVCVktoQk84SURqamsrUTg2b2s0bmZZbDgvU0w5?=
- =?utf-8?B?a04wQVBXRE1IWTZ2TUhTMkJYRGMxUWRoRUw5L29kZ1Y0Yk8rclExZFVzRVZB?=
- =?utf-8?B?dFJHNzJLQ2NFejFTQ2ZtUW40R3Q4cjJLSnl2UmxjRHF0OXFJSlkrV0hYNkVK?=
- =?utf-8?B?YlBKdk1kN2VCYzVhQWVUaEpOYVk3VUJCYUtPZ1pIS2FwOWhHNmpRR0pGVTVF?=
- =?utf-8?B?VkFSQkhXbGllNThPOE1HMGVQbEFXeS83cHo1cG5UM0F4Q0FqL3ExTzQvMVo5?=
- =?utf-8?B?b1pwYS82VUs3ZXIwT1VTeDk4QzF2QXVxM253bjB5eVBJRmFSRCthSHdUVHA2?=
- =?utf-8?B?T3R1MlYxYWhHNjhXUkJ4Y2ZzZHZyc1RFeVJSSHpkVTRpTnhicFhtK2MzMlpQ?=
- =?utf-8?B?Zk54TmcvQmUyM3YzcTVZdkhTWUh1RUVhNXh5R3ozQzJ3RmhMVFozRlhWRVU4?=
- =?utf-8?B?UmdNS2VVSDBmSnpNVTM3WWIzcmY4R2tHZ3dpMlRVaSt6VURhMXBkVXc3Z0lw?=
- =?utf-8?B?ZkhYOUdXWXhiQngwWGpkWlZ0dVRNK1UxM0tWczRqcDczWitCQlJUaFg1RHVM?=
- =?utf-8?B?M29IK1QxcEdCRFZVSzd3TURFZUt6MlpSMGQrWVE2a3ZBeEN0U2N6NXljU0hH?=
- =?utf-8?B?dHd4N1BPb3hVQlFDUVh5c2JHNE5OcVh5bE52MTJXRjMxRlZDRDNqWTRRZHdC?=
- =?utf-8?B?ME13SDBudllycktPcXhPQ0lSUUtPanFhdUozcllwUTMzMUp0WTlJZXFQSHJo?=
- =?utf-8?B?UThnUi9DOS9nRkxlQWVCVW5nRmZxMkorMFdVQ2d6NlJpT3lNaHorQnZPSEN4?=
- =?utf-8?B?WWJSWUhJdjZ2M2QzWVZlQzc1RHVOd1JMTUJlSFhOYmtNaFVUcHlhQlgzT0ty?=
- =?utf-8?B?a1ZaMG5SdlJvYlN2TTFnUkRIaHVCc0FNUkNLRGM4aDh6Y3lsN2xQU08yWTZT?=
- =?utf-8?B?d2VyWjAzeDdaWklyV1lRUm5sQ1dRbG1QMGVKU0xDdWJOYUN4eHJEMGl6Tm51?=
- =?utf-8?B?bHFCUnVKMURORFFzWkZkUWFWRWpESkNtc3VSNkFXdElVR3hsVXdVQ1dxNWw4?=
- =?utf-8?B?S2dEU0diaXpkOCtFdytnSGlLU2dOZUZUV3Jmemh5ZW9JQXJ3TmhZSDdsdWV6?=
- =?utf-8?B?UlQ5aFdHNE5TT2E1UmN6Z0k3YjY0OEg5aTJNclV4MjhKY0U5cTlRZFl5MXNm?=
- =?utf-8?B?MmI2N1NVMkxuNzlSaEtIYXVGbmNxVkZ0OGMvSnBmNjlsSDRkZDlaK2xUYmJp?=
- =?utf-8?B?Q3F0eVcrSEoyNk03RThobk1PVTFKc0ZaNGxoMytPeGMwNHVQSzBrNHJyem5j?=
- =?utf-8?B?anZnak1vVmpWcElobFkzbFFKTXllSzR3L0haZmovK2hNRTBFR3pNRGEvK1N1?=
- =?utf-8?B?TXcybGx6aFpGaitvMUVBRFR5aUdvd3VrdXlXT05FMXphUGhQS3FmdXBQeFV3?=
- =?utf-8?B?enp3MGxLU2Uzem1hYmtreElJZG14c2hqU1lVTjNneVJHNEt6RW9PZXF2REJM?=
- =?utf-8?B?Vmsra3F6TGJ5NkllWGVzOTlDUDArKzd0ZjZtb2E1SXZDamR0ZDc2NTJTdEpB?=
- =?utf-8?B?c2xjYlZvWnJzOGJ5RkswR3JLZWFIUXFvU2VaS1B3UEZkeGljakZGZEwyNW8r?=
- =?utf-8?B?ZjQ2ZlJRaFB3Ri9RS0FOTVltU2VNTCtoSTgrbUJPazVEQjNNYms0dWE0ZDhO?=
- =?utf-8?B?bmc4UHhZaVg1UjhyN0tTeXVkS0RzYk5LdnovVXlrbzRVYlRlZ2RiOTdYdkJZ?=
- =?utf-8?B?NzFWQTZJU3Qwd0NWbGJsbzB6M3E1NmlMZDBMa2x0aTlQWWpzUGc0Um9BdHRZ?=
- =?utf-8?B?ZXkrN1AxdUcvWVVvR3MrQWh6U1FJb2VBOGMvU1VkWWRHME9KRzgybElZazFS?=
- =?utf-8?B?b2RuS280b2t0eThDb3RYdVNHY3BHb0hXdlhPZkFpcktVVS83clRibHVjckxH?=
- =?utf-8?B?LzZSakg2aEIzZHZNeGQzZTh1Q0tHbEE1RHFsdzkvTTErbFlYQnBmVzFNbjZz?=
- =?utf-8?B?NlhOTy9kdHI2azNZWkMydXZ5MzJ1N2N2V0NVU0hMeUIwMVl1eExwdURYeTN5?=
- =?utf-8?B?OU16cS9RSTRiZ3F5amdtWUhnUnF2bTFCV0dKdlRJaU5ZcE4wblMvYWQ4RXNr?=
- =?utf-8?Q?omP6pV3a56uMClI12s2wO9dmo?=
+X-Microsoft-Antispam-Message-Info: nMgyN5U7G4Npz5uxb4FhjJBd0CLije9jizG4PIIIeQKbsQRbZxL+T6++FINitLexvF6+mbbuNAHoWqGQm1SdcjCc9G+Lg4CZUrwqKrGuem0VAzHDeatw/igJlNouSPmww3nwmo5GMSARQDuE/aEjei7nKsds0hmsm8kMnhK2PxLILbXz6qY97NVevX53IV4KbhuKo+seJOTcJhri8vzbHqMP7TZQT4UZS28UmAHxwwpdwGsznJ16jFZEfaT6NcW7pmVqKfcZEDsz9eFl4//4a1IwNJkUDvzDU3wdni6ev75EcanCfOEfXuC22JeRwstG/1UKPVcFJPL47kNWcVLgPtztug+weoTJmEkOMhZPXBYzgIuSCbgvp4gj/SCxTWKcPzZuglM0Eyfmk5Qjlbx19jlUCuOgVx4DcH1EmOoePfLCgZVjWlwL4tTBtP5haa/64aQzhJ+kDMYYrKTjqJUpAORE/YyOYXQ//k4IPVXXwPltOow0zkgIb+GVWbVr6SqqAHYb33VrFBMgD7hNMNnPHLFaPsc8S/SwZqFA5l5aeYRnJf0gJ8oTO6xVjHgmxJFkYU7pqjnqSPjnen3GfzZNoO2YhZcOhTZDSXwVRlKUuoSEGCyzJQGiikEkQZ5WeQJFVOjF2Hi005towiIn+z5WT91GS/58TYJ4fPFZACDhzQ0bklg1kQ3WgCHZOHyOGZa9BpoAUyqhZYaTcwuOT/T+GKHQb4yZdkuVh0qD0ylXbADBxdeZMZ/4r/8CIwwBJtSJ
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(396003)(136003)(39860400002)(376002)(346002)(451199021)(36840700001)(46966006)(40470700004)(41300700001)(83380400001)(426003)(336012)(36756003)(70586007)(86362001)(47076005)(36860700001)(5660300002)(2906002)(316002)(44832011)(8936002)(8676002)(82310400005)(4326008)(110136005)(54906003)(356005)(81166007)(82740400003)(2616005)(478600001)(70206006)(16526019)(186003)(40460700003)(40480700001)(26005)(36900700001)(2101003);DIR:OUT;SFP:1101;
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d6cc3a4c-0ba6-4ae6-843c-08db4badb058
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB4758.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 May 2023 08:09:16.4149
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 May 2023 08:20:40.1995
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Network-Message-Id: 650e47e3-a897-4b08-1b21-08db4baf4806
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: WmSgrDqsbDUP0Umdxk8pS2ZlQHU050MgC+sT1PI4u9vRGs+8LeSUMO7J3G6dwxNi
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8220
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,NICE_REPLY_A,
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT028.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6544
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
         RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -134,75 +99,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+ZynqMP QSPI IP core has own power domain and also iommu ID that's why
+describe optional power-domains and iommus properties.
 
+Signed-off-by: Michal Simek <michal.simek@amd.com>
+---
 
-On 5/3/23 10:06, Krzysztof Kozlowski wrote:
-> On 03/05/2023 10:02, Michal Simek wrote:
->>
->>
->> On 5/3/23 09:40, Krzysztof Kozlowski wrote:
->>> On 03/05/2023 09:27, Michal Simek wrote:
->>>>
->>>>
->>>> On 5/2/23 22:13, Krzysztof Kozlowski wrote:
->>>>> CAUTION: This message has originated from an External Source. Please use proper judgment and caution when opening attachments, clicking links, or responding to this email.
->>>>>
->>>>>
->>>>> On 02/05/2023 15:53, Michal Simek wrote:
->>>>>> From: Varalaxmi Bingi <varalaxmi.bingi@amd.com>
->>>>>>
->>>>>> Setting default i2c clock frequency for Zynq to maximum rate of 400kHz.
->>>>>> Current default value is 100kHz.
->>>>>>
->>>>>> Signed-off-by: Varalaxmi Bingi <varalaxmi.bingi@amd.com>
->>>>>> Signed-off-by: Michal Simek <michal.simek@amd.com>
->>>>>> ---
->>>>>>
->>>>>>     arch/arm/boot/dts/zynq-7000.dtsi | 2 ++
->>>>>>     1 file changed, 2 insertions(+)
->>>>>>
->>>>>> diff --git a/arch/arm/boot/dts/zynq-7000.dtsi b/arch/arm/boot/dts/zynq-7000.dtsi
->>>>>> index cd9931f6bcbd..a7db3f3009f2 100644
->>>>>> --- a/arch/arm/boot/dts/zynq-7000.dtsi
->>>>>> +++ b/arch/arm/boot/dts/zynq-7000.dtsi
->>>>>> @@ -149,6 +149,7 @@ i2c0: i2c@e0004000 {
->>>>>>                          clocks = <&clkc 38>;
->>>>>>                          interrupt-parent = <&intc>;
->>>>>>                          interrupts = <0 25 4>;
->>>>>> +                     clock-frequency = <400000>;
->>>>>
->>>>> I think this should be rather property of the board, because it depends
->>>>> on I2C devices, right?
->>>>
->>>> We have 15+ boards with i2c connected and from this count I am aware about only
->>>> one configuration which is not working on 400k.
->>>> It is a question if make sense to update all boards (except for 1 and not all in
->>>> kernel yet) to 400k or just say 400k is default and if there is any issue use
->>>> lower frequency.
->>>> Obviously this patch is setting up 400k as default and let "problematic" boards
->>>> to setup lower freq.
->>>> The same approach was used for modepin description.
->>>>
->>>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/arch/arm64/boot/dts/xilinx/zynqmp.dtsi?h=v6.3&id=53ba1b2bdaf7f481fdd878e9c18cd0e54081fac9
->>>>
->>>> The next point is that 100k is default in Linux but doesn't mean it is default
->>>> in other projects.
->>>>
->>>> But if you think that it must be board property I think we should setup 100k as
->>>> default in this file too to make it clear.
->>>
->>> No, if it is conscious choice, it's fine.
->>
->> Is it Ack then or you want me to extend commit message?
-> 
-> Ack, although you don't need my acks for your platform :)
+Changes in v2:
+- rewrite commit message - requested by Krzysztof
 
-you spell that properly. But I can. :-)
+The commit 8ac47837f0e0 ("arm64: dts: zynqmp: Add missing iommu IDs") and
+the commit 959b86ae37c6 ("arm64: dts: xilinx: Add the power nodes for
+zynqmp") described these properties long time ago in Linux that's why the
+patch is also fixing dts_check warnings.
 
-> 
-> FWIW:
-> 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-Thanks,
-Michal
+diff --git a/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml b/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
+index 20f77246d365..226d8b493b57 100644
+--- a/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
++++ b/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
+@@ -32,6 +32,12 @@ properties:
+   clocks:
+     maxItems: 2
+ 
++  iommus:
++    maxItems: 1
++
++  power-domains:
++    maxItems: 1
++
+ required:
+   - compatible
+   - reg
+-- 
+2.36.1
+
