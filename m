@@ -2,117 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EF136F5784
-	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 14:02:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADA196F5796
+	for <lists+devicetree@lfdr.de>; Wed,  3 May 2023 14:08:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229552AbjECMCK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 May 2023 08:02:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60422 "EHLO
+        id S229575AbjECMIh convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 3 May 2023 08:08:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229528AbjECMCJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 08:02:09 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA4875585;
-        Wed,  3 May 2023 05:02:08 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 343C21r5032374;
-        Wed, 3 May 2023 07:02:01 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1683115321;
-        bh=MIf99BfN5GAxrHPaX4Iy2F4CqpygWl3DmZAiV3GRb4k=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=E62KV0rtoPz0Yms9hQ0jCw9GcQfOKDoEArrOh3e+2pcR+orw2TJTqDloY+gPVRwMS
-         ZJFQEltbfGkPgszWsdD5fIIxLGRhL+DMx4jf3zBuD5I2/QWT6K7NufAJkIEjKvfivA
-         e9Fer8xnpPB2DpQmLNy/zTCPsp7F8/Ed4PgTu4ZM=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 343C21Kn045508
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 3 May 2023 07:02:01 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 3
- May 2023 07:02:01 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 3 May 2023 07:02:01 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 343C20fk030040;
-        Wed, 3 May 2023 07:02:00 -0500
-Date:   Wed, 3 May 2023 07:02:00 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Neha Malcom Francis <n-francis@ti.com>
-CC:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <u-kumar1@ti.com>
-Subject: Re: [PATCH v4 2/3] arm64: dts: ti: k3-j721e: Add ESM support
-Message-ID: <20230503120200.4xqylyoiczx43esu@gradation>
-References: <20230503093310.85779-1-n-francis@ti.com>
- <20230503093310.85779-3-n-francis@ti.com>
- <20230503114827.lutd2ebygxczvali@argue>
- <82a39b8e-96ad-faa2-714f-c8c6bfbcc5d6@ti.com>
+        with ESMTP id S229484AbjECMIV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 08:08:21 -0400
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2DE95275;
+        Wed,  3 May 2023 05:08:20 -0700 (PDT)
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-55a76ed088aso42191997b3.2;
+        Wed, 03 May 2023 05:08:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683115699; x=1685707699;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=bpsHFL7YRssR1zdtRWNSlgPS/yovpaWATc7ePeWkLLo=;
+        b=aqkQsUX2sqZa1mn6F3g/gfPdvdXTEOvpy4l0+oUmrdWRW/FdFxjn8xydI8Ovi8FtFe
+         CHVw+tMXLsBIJMw6npf0czxv1Qa9zH4XhP8YeHGfrK+Mv4oihP+r/UInBsheYtrC3PE0
+         77WfRjs5CvGebJkUJCmgVvb89ZQeRVvMYLj/1xi2m+/sgkze8qkTaws9lDhPuCIILu/X
+         0U1i1I0+20jsnVGp74QPBPW1rIxzdsXt8ZiZA5h8rIB5RvIOYDhCIGgP+BLnKy8ge5Lk
+         VBBjl2I4zDvdUIaQjUFvyf+/oJ62SXmgw4JIzz+YQXTjr0+Ir3XqmArXk7je5199kuVb
+         /4NQ==
+X-Gm-Message-State: AC+VfDx9993t2thz7Mxn8a0ue0r8D5AXNrwj/MaOOw2inkicIr/gvahT
+        76RlwHEV/bLLoZ48oYn8KzROcZCZnHiV3Q==
+X-Google-Smtp-Source: ACHHUZ4o5vkv5oUC1O7UHYp2YTLYb4EPujz/W1vTF29uUFyxrCUTQvET4Qj/yGUOP55zaJCyTCy9Gg==
+X-Received: by 2002:a25:d807:0:b0:b9d:c877:b302 with SMTP id p7-20020a25d807000000b00b9dc877b302mr13366943ybg.10.1683115699673;
+        Wed, 03 May 2023 05:08:19 -0700 (PDT)
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
+        by smtp.gmail.com with ESMTPSA id z82-20020a256555000000b00b9a82c1b070sm3611869ybb.27.2023.05.03.05.08.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 May 2023 05:08:18 -0700 (PDT)
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-55a64f0053fso45269777b3.3;
+        Wed, 03 May 2023 05:08:18 -0700 (PDT)
+X-Received: by 2002:a0d:c783:0:b0:556:c778:9d60 with SMTP id
+ j125-20020a0dc783000000b00556c7789d60mr20051582ywd.43.1683115698169; Wed, 03
+ May 2023 05:08:18 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <82a39b8e-96ad-faa2-714f-c8c6bfbcc5d6@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20230503084608.14008-1-biju.das.jz@bp.renesas.com>
+ <20230503084608.14008-5-biju.das.jz@bp.renesas.com> <CAMuHMdVrH5R4mAjm1c9zRqiGhNsfT7Y13xxaV-v05T-MCJ6=RQ@mail.gmail.com>
+ <OS0PR01MB5922FDA33F631ADD1B9962C3866C9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+In-Reply-To: <OS0PR01MB5922FDA33F631ADD1B9962C3866C9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 3 May 2023 14:08:06 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdX9Dsymn530q9_qJ2ZBinx33S=kXDuiisBDJOcV4_msFA@mail.gmail.com>
+Message-ID: <CAMuHMdX9Dsymn530q9_qJ2ZBinx33S=kXDuiisBDJOcV4_msFA@mail.gmail.com>
+Subject: Re: [PATCH RFC 4/6] dt-bindings: rtc: isl1208: Document built-in RTC
+ device on PMIC RAA215300
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        Trent Piepho <tpiepho@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17:25-20230503, Neha Malcom Francis wrote:
-> Hi Nishanth,
-> 
-> On 03/05/23 17:18, Nishanth Menon wrote:
-> > On 15:03-20230503, Neha Malcom Francis wrote:
-> > > Add address entry mapping ESM on J721E.
-> > > 
-> > > Signed-off-by: Neha Malcom Francis <n-francis@ti.com>
+Hi Biju,
+
+On Wed, May 3, 2023 at 12:08 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> > Subject: Re: [PATCH RFC 4/6] dt-bindings: rtc: isl1208: Document built-in
+> > RTC device on PMIC RAA215300
+> > On Wed, May 3, 2023 at 10:46 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> > > The Built-in RTC device found on PMIC RAA215300 is similar to the
+> > > isl1208 IP. However, RTC is enabled by PMIC RAA215300 and the polarity
+> > > of the external oscillator is determined by the PMIC revision.
+> > >
+> > > Document renesas,raa215300-isl1208 compatible and
+> > > renesas,raa215300-pmic property to handle these differences.
+> > >
+> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 > > > ---
-> > >   arch/arm64/boot/dts/ti/k3-j721e.dtsi | 1 +
-> > >   1 file changed, 1 insertion(+)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/ti/k3-j721e.dtsi b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
-> > > index b912143b6a11..52bcde601eb8 100644
-> > > --- a/arch/arm64/boot/dts/ti/k3-j721e.dtsi
-> > > +++ b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
-> > 
-> > Why is'nt esm node introduced here?
-> > 
-> 
-> As it stands esm node is already in
-> arch/arm/dts/k3-j721e-r5-common-proc-board.dts in u-boot and since this
-> patch is motivated to keep the u-boot and kernel dts in sync, I haven't
-> added it here.
-> 
-> Although... I could add it here similar to j7200 and take action to move to
-> the same in u-boot... maybe that is better route.
+> > >  .../devicetree/bindings/rtc/isil,isl1208.yaml       | 13 +++++++++++++
+> > >  1 file changed, 13 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/rtc/isil,isl1208.yaml
+> > > b/Documentation/devicetree/bindings/rtc/isil,isl1208.yaml
+> > > index 04d51887855f..888a832ed1db 100644
+> > > --- a/Documentation/devicetree/bindings/rtc/isil,isl1208.yaml
+> > > +++ b/Documentation/devicetree/bindings/rtc/isil,isl1208.yaml
+> > > @@ -18,6 +18,7 @@ properties:
+> > >            - isil,isl1209
+> > >            - isil,isl1218
+> > >            - isil,isl1219
+> > > +          - renesas,raa215300-isl1208
+> >
+> > That sounds a bit over-complicated.
+> > What about just "renesas,raa215300-rtc"?
+>
+> OK, good to me.
+>
+> > If you consider them sufficiently compatible, you could add "isil,isl1208"
+> > as a fallback.
+>
+> The pmic has to enable RTC block to make it functional.
+> The registers and functionality are compatible.
+> But the configuration of Oscillator polarity is different on PMIC version.
+> So we need to handle it here.
+>
+> You mean like below?
+>
+> +      - items:
+> +          - enum:
+> +              - renesas, raa215300-rtc
+> +          - const: isil,isl1208
 
-The core problem we have is that part of the hardware description is in
-u-boot and a large part is in kernel. That is wrong. eventually, we will
-drop u-boot.dtsi and r5-xyz.dts files.. This cleanup journey is towards
-that action.
+That's indeed what I meant.  But given the inverted osc bit, I think the
+fallback is not appropriate.
 
-we want kernel to be the canonical description of the hardware. which
-means u-boot or zephyr or something else will eventually just copy the
-kernel dts and it has information enough about the hardware to be able
-to boot.
+Gr{oetje,eeting}s,
 
-each of the dependent ecosystems (u-boot, zephyr etc..) have a little
-bit of their own binding extensions (such as binman for u-boot), which
-is maintained in their own repos. But, the SoC hardware description,
-entirely should be available in kernel device tree.
-
-So, please ensure esm is completely described as well.
+                        Geert
 
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
