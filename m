@@ -2,150 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 163BE6F685A
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 11:34:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3DE06F6860
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 11:36:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229620AbjEDJee (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 05:34:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51876 "EHLO
+        id S229915AbjEDJgR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 05:36:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229577AbjEDJed (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 05:34:33 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BE38448F
-        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 02:34:31 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-50bc3a2d333so303417a12.0
-        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 02:34:31 -0700 (PDT)
+        with ESMTP id S229828AbjEDJgQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 05:36:16 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB60846BA
+        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 02:36:14 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-50bcb00a4c2so344379a12.1
+        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 02:36:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683192870; x=1685784870;
+        d=linaro.org; s=google; t=1683192973; x=1685784973;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=jHpNhqVirJHtfj48DuYU6pqasfvlpaN+Pya2uIQJJVo=;
-        b=JYU1WqchEc/ywUMdVk0jiC0ulHZJz6qSUKspsh3gj2iG4/jKj3V1+lGhph6oKSDsWR
-         PE9wL3kh8D0ZzYwcXgZxnbpxgfHslll0Xki8NL9Lb06eHQWTuC5jwkjfcL1Iq+a9pJkG
-         WPNeGpS3fSyRpFTMK8WV4Q2YUGIpI3B44pdJ7vrSLDQVenRROXpKOeILszqDLCRyyGae
-         oQSgZ6VObuRPNsIj70OJNo430dMIHpF5h/tlKLlPRrykGkmBXUjUPYO1BVgZ7+hiolG4
-         GK77DxlFYGnn7fzxyQboZ+ccCsCIs1b9V5wITOpa4p+gI6HRfcVP/pT/ikAZwFGhImoS
-         PQHw==
+        bh=mRcoOC8fngP6Il2rAzvXIOhnaTFot/xB1pDV/8xXBhI=;
+        b=MM3fLTuvY1THuF+Jes6bTaFgdLgelBxjG9Qs0YrJ62r2rXYT0XrFa3z3syIzosle/b
+         ndQzUCfwxP0iURGIxMkTVDjBIChW3aQKQa5lej+0hWz/zOU+BYcZpLtkfqufI9lhZ7es
+         qhlX/+ZSVEuTfyzLRaTd7wSuwjcjxrMHgq8WR24DyKR0x1kNqmw1BPJywXnPdZSaw/uQ
+         v66XZknaiYzEr+EDAw3mGYpAzFgZ8hMx+Krhne2k4sav+gyjx359mGzZ3ot1qt34/94A
+         ghRo/Cb+pg7QBb8ZQd8FiQIU4dfjKh2kVt6C+eOHJNmtQ6FMaiDDLxp2MrDt/PzbP4MN
+         7bgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683192870; x=1685784870;
+        d=1e100.net; s=20221208; t=1683192973; x=1685784973;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jHpNhqVirJHtfj48DuYU6pqasfvlpaN+Pya2uIQJJVo=;
-        b=F7/qHgSjudlmRjQjA0zHxvGJyBS259lqiIymZu2qtyCly23J2inNO2itXTQ5RJB1LD
-         z3f1wEFVRZWf9B7lIUXGd0iKNhGUSqns7ekYYveTfi9uXGVFCVbh+K1MmOBy9Ul0e5vt
-         7xOQswH7ksDDzj1kDOf6489Ue+eYT4t1/iIKNd+wCSqvuHajB02xy+F1yo1KsBZ0zfiq
-         JW5hJBTsa/TtV5hnpiYutKBIumD4HRR3f3PCa2qyVHbDffyIHj5oTftpMXLUcZCVk0dG
-         r55IKcJ1Lb64BXq7Rx5a/uhe4fVxmA4yvg2P/BCZ7tZrk4xoxE5983zKzvuWkMr3ibBx
-         UPVg==
-X-Gm-Message-State: AC+VfDwZFYfXp01EqqhVC9//zJSrzM9YdbInEN+8Cvtmv8PdKEjkE8d+
-        XB+9DfwcC/SkwBYuYQJighwZXA==
-X-Google-Smtp-Source: ACHHUZ6uuLndnjDHvVZLxdO+9rwlDW+R6xuWDQVXD8Cv1vYeh5QLopEn0YoZzmx5Ynfbn/Y7Gtst9A==
-X-Received: by 2002:a17:907:9717:b0:94a:44ef:853d with SMTP id jg23-20020a170907971700b0094a44ef853dmr6424356ejc.68.1683192869944;
-        Thu, 04 May 2023 02:34:29 -0700 (PDT)
+        bh=mRcoOC8fngP6Il2rAzvXIOhnaTFot/xB1pDV/8xXBhI=;
+        b=VYEigwdJOyfZ4T9y0XBQg78oOvRv/+0TK7SxExbwW9+4UtdFvFaMK6uTY/XiSIch9Q
+         VJPw0+AC6Fx92vmI4dlz62E6mY573hM5tg8HtPt3wGpr3ky9r21WKbpU88xcJ08BSuz+
+         O24lvCC37OkrvkxWEWId3XR2MYlgww03GaJLekXGPWR4vroI12iJeMLwZ/rH4rVu63gB
+         fOVOduxKucg3NAife4QoA5FJKon6eZaY5ejnnywvwF5eIJSl4QaRAsY7whMpCpXpedkN
+         fiehBoWGD7O0iJR2x6GeqBdK1HXuSjauvSOhjgfbrcR6DhkM5MlZlGBRtQC0K2ZzGmZj
+         FF+g==
+X-Gm-Message-State: AC+VfDy+h4RAvDTURbXnzqeS1kCeuvFLvyuZ3dQIxBi8QmFKqUcPPap2
+        cUPSPM/Q7hqxPGdxfPohK/lL2w==
+X-Google-Smtp-Source: ACHHUZ76/GLGEckds5wB/s6mHv5yN0exDgClTi+UZl555s4ZPAcE2DRB69WKyTxronDQzYc5TFp31A==
+X-Received: by 2002:a17:907:1b08:b0:957:1df0:9cbf with SMTP id mp8-20020a1709071b0800b009571df09cbfmr6548125ejc.19.1683192973372;
+        Thu, 04 May 2023 02:36:13 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:cbf1:e7ef:fb81:e912? ([2a02:810d:15c0:828:cbf1:e7ef:fb81:e912])
-        by smtp.gmail.com with ESMTPSA id pv4-20020a170907208400b0094f49f58019sm18371630ejb.27.2023.05.04.02.34.29
+        by smtp.gmail.com with ESMTPSA id sb21-20020a170906edd500b0094f4d2d81d9sm18480946ejb.94.2023.05.04.02.36.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 May 2023 02:34:29 -0700 (PDT)
-Message-ID: <dfd3498c-62ab-92d3-22d6-21729dc619fa@linaro.org>
-Date:   Thu, 4 May 2023 11:34:28 +0200
+        Thu, 04 May 2023 02:36:12 -0700 (PDT)
+Message-ID: <86693969-59bf-5bcc-42a3-b6e94a0d6f3e@linaro.org>
+Date:   Thu, 4 May 2023 11:36:11 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
-Subject: Re: [PATCH v2 1/2] regulator: Add bindings for TPS6287x
+Subject: Re: [RESEND v2 1/6] dt-bindings: power: Add JH7110 AON PMU support
 Content-Language: en-US
-To:     =?UTF-8?Q?M=c3=a5rten_Lindahl?= <marten.lindahl@axis.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+To:     Changhuang Liang <changhuang.liang@starfivetech.com>,
+        Conor Dooley <conor@kernel.org>
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        kernel@axis.com
-References: <20230502-tps6287x-driver-v2-0-fb5419d46c49@axis.com>
- <20230502-tps6287x-driver-v2-1-fb5419d46c49@axis.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Walker Chen <walker.chen@starfivetech.com>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, vkoul@kernel.org,
+        linux-phy@lists.infradead.org
+References: <20230419-labored-camper-644d51a7ca96@spud>
+ <1a5b15fa-4f20-51c2-2ba1-a04a2911a694@starfivetech.com>
+ <20230424-baffle-punch-ec73098f2b6a@spud>
+ <d685a1d4-c07d-7dfa-f1fb-b35ceb2aa0eb@starfivetech.com>
+ <20230425-unquote-eligible-09f743d81981@wendy>
+ <a7cdfabf-2312-eaf3-f462-5bda7f0a120d@starfivetech.com>
+ <68cb565d-bf39-10b0-9e3e-35ba7f54b90b@linaro.org>
+ <0988495f-b87a-7f69-f222-37c67d6eae23@starfivetech.com>
+ <20230425-resale-footrest-de667778c4fe@wendy>
+ <663e9933-b9b3-a48f-98b6-2207215a8ed7@starfivetech.com>
+ <20230425-commotion-prewashed-876247bed4ab@spud>
+ <0b0f9187-ad6b-a1d9-6ec4-beb8989ca731@starfivetech.com>
+ <3ed72340-accc-4ad1-098f-4a2eb6448828@linaro.org>
+ <482e812a-05dd-105c-189c-e926b4be9d28@starfivetech.com>
+ <089e24d1-588a-4a56-f00b-0b35d1d99295@linaro.org>
+ <ea5b5534-8fc2-7c84-a011-c1b42c6ed7a0@starfivetech.com>
+ <1ac26c1a-1726-515d-6598-849a07ed0b86@linaro.org>
+ <5adda0ad-965c-fbf0-878c-9d41d28b5c39@starfivetech.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230502-tps6287x-driver-v2-1-fb5419d46c49@axis.com>
+In-Reply-To: <5adda0ad-965c-fbf0-878c-9d41d28b5c39@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/05/2023 10:30, Mårten Lindahl wrote:
-> Add bindings for the TPS62870/TPS62871/TPS62872/TPS62873 voltage
-> regulators.
+On 04/05/2023 10:43, Changhuang Liang wrote:
 > 
-
-Use subject prefixes matching the subsystem (which you can get for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching).
-
-Just a hint - I in general ignore all the emails without dt-bindings prefix.
-
-> Signed-off-by: Mårten Lindahl <marten.lindahl@axis.com>
-> ---
->  .../devicetree/bindings/regulator/ti,tps62870.yaml | 62 ++++++++++++++++++++++
->  1 file changed, 62 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/regulator/ti,tps62870.yaml b/Documentation/devicetree/bindings/regulator/ti,tps62870.yaml
-> new file mode 100644
-> index 000000000000..32f259f16314
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/regulator/ti,tps62870.yaml
-> @@ -0,0 +1,62 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/regulator/ti,tps62870.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: TI TPS62870/TPS62871/TPS62872/TPS62873 voltage regulator
-> +
-> +maintainers:
-> +  - Mårten Lindahl <marten.lindahl@axis.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ti,tps62870
-> +      - ti,tps62871
-> +      - ti,tps62872
-> +      - ti,tps62873
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  regulators:
-> +    type: object
-> +
-> +    properties:
-> +      "vout":
+> On 2023/5/4 15:26, Krzysztof Kozlowski wrote:
+>> On 04/05/2023 09:20, Changhuang Liang wrote:
+>>>>>
+>>>>> Krzysztof,
+>>>>>
+>>>>> I am confused about what to do next. How to add this power-controller's
+>>>>> node in device tree?
+>>>>>
+>>>>
+>>>> You just move power-domain-cells up.
+>>>>
+>>>> Best regards,
+>>>> Krzysztof
+>>>>
+>>>
+>>> Like this? 
+>>>
+>>> aon_syscon: syscon@17010000 {
+>>> 	compatible = "starfive,jh7110-aon-syscon", "syscon", "starfive,jh7110-aon-pmu";
+>>> 	reg = <0x0 0x17010000 0x0 0x1000>;
+>>> 	#power-domain-cells = <1>;
+>>> };
+>>>
+>>> If right? I will tell the syscon patch's owner delete the "simple-mfd" in aon_syscon node.
+>>
+>> Yes, but your compatibles are now wrong. Just compatible =
+>> "starfive,jh7110-aon-syscon", "syscon".
+>>
+> 
+> If compatible = "starfive,jh7110-aon-syscon", "syscon". My pmu drivers need use 
+> "starfive,jh7110-aon-syscon" to match.
 
-Drop quotes.
+And how it would even work with your proposal
+"starfive,jh7110-aon-syscon", "syscon", "starfive,jh7110-aon-pmu"?
 
-Why do you need entire "regulators" node for one regulator? Why do you
-need child at first place. Drop it entirely.
+Try...
 
+>  And my pmu series will add this 
+> aon_syscon in yaml and device tree, so the syscon patch's owner don't need 
+> to add the aon_syscon in its yaml and device tree?
 
-> +        type: object
-> +        $ref: regulator.yaml#
-> +        unevaluatedProperties: false
-
-You missed that piece of explanation:
-
-"The set of possible operating modes depends on the capabilities of
-every hardware so each device binding documentation explains which
-values the regulator supports."
-
-
+I don't understand. But if you need to drop syscon, sure, drop it.
 
 Best regards,
 Krzysztof
