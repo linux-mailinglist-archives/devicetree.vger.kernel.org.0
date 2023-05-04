@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 77F646F650F
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 08:31:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28BFE6F6513
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 08:33:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229994AbjEDGbK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 02:31:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49084 "EHLO
+        id S229901AbjEDGc7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 02:32:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229973AbjEDGbJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 02:31:09 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44649273A
-        for <devicetree@vger.kernel.org>; Wed,  3 May 2023 23:30:58 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-50bcae898b2so31330a12.0
-        for <devicetree@vger.kernel.org>; Wed, 03 May 2023 23:30:58 -0700 (PDT)
+        with ESMTP id S229463AbjEDGc5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 02:32:57 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9ABC1FDA
+        for <devicetree@vger.kernel.org>; Wed,  3 May 2023 23:32:56 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-50be17a1eceso73083a12.2
+        for <devicetree@vger.kernel.org>; Wed, 03 May 2023 23:32:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683181857; x=1685773857;
+        d=linaro.org; s=google; t=1683181975; x=1685773975;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=4ebgEagdbLvw8JiIkyMu+Kvj49caVzL1eFfSb+2cj4c=;
-        b=ir0arSP2uyG4zmJbl4X4tOqRxmlX/VaxRZDv9b+ySUttvHL424BOlabkODqAzkspHq
-         b4rA9CNO3fJbMpol07tQ0Oobfi1YEPH8DtvJOOLNIa38qbYuf2SvAfE/yQV3yuQ5JB+P
-         MPNazFExIRQiRHiEhTPwgy8zUv6mw5E+MuSlfGJjswbd4JAQRKl/PIVITt70kX2cF5RT
-         RXi5TEePUZvRSI++rHfaQhG29MbtNMnwjBzAv/RzVyjSTe40PgZFLJQRXAaWiBB2Wq2f
-         9knUy14zIoH0AlK/DAx/W3qXbkGYQFj9eE/8jhZvHGVK/D/J1hqLln7M0DW6tEYiw1yX
-         spvw==
+        bh=3RBEhpd3xEUlZ6Us/X/cjuw9/V+kcP7bYejuz1B4OPg=;
+        b=IhGqbZGuMUF4xJ8W9u/Pr1NiZ3uruaJUW/ekux+SG7T1u60WXizi9DkjVmlg+9J96c
+         fkwWuvCI4mb4POHNlsUxFJ07dd4xIPTeYzVpq1RmCFeTCsiGXNsSdJyc4dLZQWPLLkYC
+         n5BQXDGfVnCYnTtk+k57tCmH+y0/CxM2MWvQAm9VDTOhazq9RcZMhNfAo+9FIGhKdNHZ
+         mqzH8pPxTbOju4k7zJYeOSJO8mX0IQLfHLooxIflhBum1dmDmqxROVVncQEljT/CCJpS
+         ZfGIpjR1stIiaEEc06rHAzIT+Ix9bxibCMdIH8N+TJWIQDfI3cGdNcq+Zpml9ExW38w5
+         XaXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683181857; x=1685773857;
+        d=1e100.net; s=20221208; t=1683181975; x=1685773975;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4ebgEagdbLvw8JiIkyMu+Kvj49caVzL1eFfSb+2cj4c=;
-        b=U2rORuoNPxv9cZdla2pvMolsNIm5u5v3Eq4PKflOx+Dz7aSBJQLNzSyV8N9491Wiyq
-         E2jEdnmQPiuomfgmVx33uaNtZtlsp8/b15GBmbC4szL/ahljEG8QmCAOnPYnumHbpQAE
-         /I4HqEtWdZQDgDjhv7knD5f1Fl5WtlMWSG5H80ZArScMpWXJVrS6mksIbC1demeeMN6G
-         Xhb4heoi8xgbfwPgVagVPfn5CuTPr0bXOjtvT3uuMdUa0sM+F3kVxqV2RVCyFli/qZHQ
-         gR5p8MeiqG2z1R8FiJjX7MDlAd5JL+QyYGPPmTsdcnDViKBPULIaD3jRdmuIEeygiEpk
-         lozQ==
-X-Gm-Message-State: AC+VfDyM5cGDphz1P35C1W/dP0PdZCFtEY98Mmu7djvhcjmC9Qn01Dvw
-        DKCfQwwJ8Kre4VQcmTPMtnTtSw==
-X-Google-Smtp-Source: ACHHUZ74haS5/ntUyjYBA6onMa+wvPx9zG937Wn1k3MUsJ6LcDD/cvjrBsnzNtFXg7BSghNEUZQ1Fg==
-X-Received: by 2002:a05:6402:138d:b0:504:94b9:f21 with SMTP id b13-20020a056402138d00b0050494b90f21mr604533edv.27.1683181856698;
-        Wed, 03 May 2023 23:30:56 -0700 (PDT)
+        bh=3RBEhpd3xEUlZ6Us/X/cjuw9/V+kcP7bYejuz1B4OPg=;
+        b=ISq6ctyViFvq3jbR6KckwSefWlpwLq6s6+vh0M5aUn6Og0A0CCu/Lnz3qfPjD0bW4q
+         6UG0Nzfzw0hUvEiWD1MUSB2nE1ZAWH6Cgbgcxtwh4UiVfJmHLmbE78wFxtMwxPwVBDff
+         Ga3gvRBfF6SdsBlt7cuKeWJsuHP3Etgt8vzJ+FVLNdEyovivBL+5ziFe9tgBUGjI8G42
+         cQ9IBkuB1PR22UwdcckOcYa7a4efr6619t6HKCcQZXDwv7h5ePcY8NsF2x6u4zyx/nVK
+         nYKRZUJZjxDJnUfBl5J82tgJoJjevOBf0XMIuCBK8XqnA+Tmwo74AqZ7HZPFbcStPYso
+         8UfA==
+X-Gm-Message-State: AC+VfDy+MPDQ4EIbTa62yYGOQBkBrjfzI4zh3n7NDwg6o0Rv7dgq8K7Z
+        tB5ZoQkRtFoRzLE1v7qng83+xg==
+X-Google-Smtp-Source: ACHHUZ6cU1GIx7gdw1AGNelLdQi0YhZ6hCvTdTZP7dgeRkG1vnyMmM+bjaey386+6gjK3w0+zCTr6Q==
+X-Received: by 2002:a17:907:31c4:b0:94f:e00:c8c9 with SMTP id xf4-20020a17090731c400b0094f0e00c8c9mr4344851ejb.34.1683181975206;
+        Wed, 03 May 2023 23:32:55 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:cbf1:e7ef:fb81:e912? ([2a02:810d:15c0:828:cbf1:e7ef:fb81:e912])
-        by smtp.gmail.com with ESMTPSA id j2-20020aa7c402000000b00501c96564b5sm1491183edq.93.2023.05.03.23.30.55
+        by smtp.gmail.com with ESMTPSA id vh7-20020a170907d38700b0094f31208918sm18056053ejc.108.2023.05.03.23.32.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 May 2023 23:30:56 -0700 (PDT)
-Message-ID: <958cca71-b2f2-80af-541c-d1e84b151d3c@linaro.org>
-Date:   Thu, 4 May 2023 08:30:54 +0200
+        Wed, 03 May 2023 23:32:54 -0700 (PDT)
+Message-ID: <8ce93998-84c3-0640-a6e1-76ff17b3953c@linaro.org>
+Date:   Thu, 4 May 2023 08:32:53 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
-Subject: Re: [PATCH v9 08/10] clk: nuvoton: Add clock driver for ma35d1 clock
- controller
+Subject: Re: [PATCH v9 01/10] arm64: Kconfig.platforms: Add config for Nuvoton
+ MA35 platform
 Content-Language: en-US
 To:     Jacky Huang <ychuang570808@gmail.com>, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
@@ -67,15 +67,15 @@ Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
         linux-serial@vger.kernel.org, arnd@arndb.de, schung@nuvoton.com,
         mjchen@nuvoton.com, Jacky Huang <ychuang3@nuvoton.com>
 References: <20230504033726.93-1-ychuang570808@gmail.com>
- <20230504033726.93-9-ychuang570808@gmail.com>
+ <20230504033726.93-2-ychuang570808@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230504033726.93-9-ychuang570808@gmail.com>
+In-Reply-To: <20230504033726.93-2-ychuang570808@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -85,33 +85,26 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 04/05/2023 05:37, Jacky Huang wrote:
 > From: Jacky Huang <ychuang3@nuvoton.com>
 > 
-> The clock controller generates clocks for the whole chip, including
-> system clocks and all peripheral clocks. This driver support ma35d1
-> clock gating, divider, and individual PLL configuration.
-> 
-> There are 6 PLLs in ma35d1 SoC:
->   - CA-PLL for the two Cortex-A35 CPU clock
->   - SYS-PLL for system bus, which comes from the companion MCU
->     and cannot be programmed by clock controller.
->   - DDR-PLL for DDR
->   - EPLL for GMAC and GFX, Display, and VDEC IPs.
->   - VPLL for video output pixel clock
->   - APLL for SDHC, I2S audio, and other IPs.
-> CA-PLL has only one operation mode.
-> DDR-PLL, EPLL, VPLL, and APLL are advanced PLLs which have 3
-> operation modes: integer mode, fraction mode, and spread specturm mode.
+> Add ARCH_NUVOTON configuration option for Nuvoton MA35 family SoCs.
 > 
 > Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
 > ---
->  drivers/clk/Makefile                     |   1 +
->  drivers/clk/nuvoton/Kconfig              |  19 +
->  drivers/clk/nuvoton/Makefile             |   4 +
->  drivers/clk/nuvoton/clk-ma35d1-divider.c | 140 ++++
->  drivers/clk/nuvoton/clk-ma35d1-pll.c     | 365 +++++++++
->  drivers/clk/nuvoton/clk-ma35d1.c         | 948 +++++++++++++++++++++++
+>  arch/arm64/Kconfig.platforms | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
+> index 89a0b13b058d..c1f277c05569 100644
+> --- a/arch/arm64/Kconfig.platforms
+> +++ b/arch/arm64/Kconfig.platforms
+> @@ -236,6 +236,15 @@ config ARCH_NPCM
+>  	  General support for NPCM8xx BMC (Arbel).
+>  	  Nuvoton NPCM8xx BMC based on the Cortex A35.
+>  
+> +config ARCH_NUVOTON
 
+Either this should be ARCH_MA35 or you should integrate it with NPCM.
+ARCH_NUVOTON means all Nuvoton platforms.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
