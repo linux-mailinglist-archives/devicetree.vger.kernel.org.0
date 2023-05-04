@@ -2,60 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EBB2B6F6C35
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 14:45:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD00C6F6C40
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 14:47:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230148AbjEDMpO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 08:45:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32978 "EHLO
+        id S229993AbjEDMr5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 08:47:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229886AbjEDMpN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 08:45:13 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3CB7618C;
-        Thu,  4 May 2023 05:45:12 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6AB03633F5;
-        Thu,  4 May 2023 12:45:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DFB6C4339B;
-        Thu,  4 May 2023 12:45:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1683204311;
-        bh=gPDpwHaZLpcuwo+yeaqsdX5K3yYZqbkDzLbGHNtw1pw=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=RjLxLXt5ENZAg0ev79QkpNelt/7kWF6OLdvDHCxmsfT/MBEm1F1iLm+9duMLTby4P
-         Gi660e14sDdDwvBAEWytKF3IJHOYEovEoKD7VZgq8o+E86waVKuo9ltMLaRA58gbWg
-         PuqBlmCZwk3G62h/MI+IxERiM8OsJYsaDAWngtjH4s/451K4V1rk+BVWPnr5LF8YL2
-         SR2pSWYWdSTxA5qj5ZW7cudG/Nd7iAtXU+89O0NYZYxjsP+sH0WOiXb/N6HkR5yLCh
-         rMshAEc2N2n2gydOGWcid6NuOKTMcottLSHMA4Yta/FHpajGqbcjcgT99+dv5HV9cX
-         C65pI45OVTykA==
-Message-ID: <8bedea06-b68e-0f17-87fc-5d1317f315eb@kernel.org>
-Date:   Thu, 4 May 2023 15:45:06 +0300
+        with ESMTP id S229806AbjEDMr4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 08:47:56 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF00846BC
+        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 05:47:54 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-965ab8ed1c0so71453666b.2
+        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 05:47:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683204473; x=1685796473;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jbqmEvSI8fNnq/copnGLAXkGX86AYweHmXiMD8VPVeY=;
+        b=eKDW7e2kSJUwvj9cuUAef9rRN5YE1ZPGTM8A2q/DhOtAQ/RxCw+vjayCwzmsLREXQz
+         h/zrn0FI9uL5uk8ofeNGy2gLnybDyYlrRDA7wrUk2gDj9FPaDxMIxqEcBzKFRX2pzJ+3
+         4zdT67vYlEZ/Ai9Em508YZNSRz0fJncw1ilURfL/zUfgjmDXCfpGxqeeMO+0DXLl/YXv
+         CcioFf+cHII6yQSILoE0aMq0NDnPYH50PYzCsMAs2xY/RJWflrEW0HI2nhW1NdQ0G4Pu
+         Nfmk3jxBe+UtO29v4X8lXiaGqJJrWVv5esn1ji9fVL0rNiSSQd/sDKpWBHiEpLj0j6Io
+         UMfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683204473; x=1685796473;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jbqmEvSI8fNnq/copnGLAXkGX86AYweHmXiMD8VPVeY=;
+        b=kBgxNCGU0doWHjIHqux3mWfR4lHm8Yc9WOEwmKXk9f41Vvoady7TXQE2NMvXY4Xkyy
+         TS/h8ztUw0duG7adRwN0Nqos41pSRN2ddprbtpqf+ArfvIXHIW5irWd2z/5jvLUcCpZo
+         6czrnwk5QkRihF1pCxVjtPAkt/4AXrzfyyn2uiXPR9gDS9OutM/C6+0DGacnSq60w87p
+         cNJgQrD0a7iR6juGfbFfh8D4qKJyxYHR4tGwxsCmTMKljCpLjCqBC+w2mu0nt0v33L2H
+         GLpzxgKj5KKafgDCi9ARQT4hcgQx+nwjOnj48M4/fxBgxpH1fGrE9Cv+/cJwidbrxiiz
+         V11A==
+X-Gm-Message-State: AC+VfDx/GYlpuEu6wtTGRuglayibpSX7vVvxEXgIdieAONR0H5qHuRPw
+        iw6x82UP1WRy/vxUfxoR5/gooQ==
+X-Google-Smtp-Source: ACHHUZ5a5T0CbH2FVRK40w4xfIAoT1WHLaqmHed+xyVHOrOBsjEmHjTvIBxh1FKgrAEezuTq2URoRQ==
+X-Received: by 2002:a17:907:e90:b0:965:c58f:f8b9 with SMTP id ho16-20020a1709070e9000b00965c58ff8b9mr272891ejc.19.1683204473160;
+        Thu, 04 May 2023 05:47:53 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:cbf1:e7ef:fb81:e912? ([2a02:810d:15c0:828:cbf1:e7ef:fb81:e912])
+        by smtp.gmail.com with ESMTPSA id w14-20020a170907270e00b009659fed3612sm1083638ejk.24.2023.05.04.05.47.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 May 2023 05:47:52 -0700 (PDT)
+Message-ID: <a964eeef-1db0-0d8a-e2a5-9e4c5fd8b2f0@linaro.org>
+Date:   Thu, 4 May 2023 14:47:51 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v1 2/2] usb: cdns3: cdns3-plat: Add clk and reset init
+ Thunderbird/102.10.1
+Subject: Re: [PATCH 2/5] dt-bindings: clocks: atmel,at91rm9200-pmc: convert to
+ yaml
 Content-Language: en-US
-To:     Minda Chen <minda.chen@starfivetech.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Pawel Laszczak <pawell@cadence.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Peter Chen <peter.chen@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org
-References: <20230502081805.112149-1-minda.chen@starfivetech.com>
- <20230502081805.112149-3-minda.chen@starfivetech.com>
-From:   Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20230502081805.112149-3-minda.chen@starfivetech.com>
+To:     Claudiu Beznea <claudiu.beznea@microchip.com>,
+        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, nicolas.ferre@microchip.com,
+        alexandre.belloni@bootlin.com
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230504060729.689579-1-claudiu.beznea@microchip.com>
+ <20230504060729.689579-3-claudiu.beznea@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230504060729.689579-3-claudiu.beznea@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-11.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,164 +79,212 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On 02/05/2023 11:18, Minda Chen wrote:
-> Add gereric clk and reset init codes to Cadence USBSS
-> controller. The codes has been tested by starfive vf2
-> board.
+On 04/05/2023 08:07, Claudiu Beznea wrote:
+> Convert Atmel PMC documentation to yaml.
 > 
-> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
-> ---
->  drivers/usb/cdns3/cdns3-plat.c | 52 ++++++++++++++++++++++++++++++++++
->  drivers/usb/cdns3/core.h       |  3 ++
->  2 files changed, 55 insertions(+)
-> 
-> diff --git a/drivers/usb/cdns3/cdns3-plat.c b/drivers/usb/cdns3/cdns3-plat.c
-> index 2bc5d094548b..1820844c74d2 100644
-> --- a/drivers/usb/cdns3/cdns3-plat.c
-> +++ b/drivers/usb/cdns3/cdns3-plat.c
-> @@ -12,11 +12,13 @@
->   *         Roger Quadros <rogerq@ti.com>
->   */
->  
-> +#include <linux/clk.h>
->  #include <linux/module.h>
->  #include <linux/irq.h>
->  #include <linux/kernel.h>
->  #include <linux/platform_device.h>
->  #include <linux/pm_runtime.h>
-> +#include <linux/reset.h>
->  
->  #include "core.h"
->  #include "gadget-export.h"
-> @@ -43,6 +45,34 @@ static void set_phy_power_off(struct cdns *cdns)
->  	phy_power_off(cdns->usb2_phy);
->  }
->  
-> +static int cdns3_clk_rst_init(struct cdns *cdns)
-> +{
-> +	int ret;
-> +
-> +	if (cdns->num_clks) {
-> +		ret = clk_bulk_prepare_enable(cdns->num_clks, cdns->clks);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	ret = reset_control_deassert(cdns->resets);
-> +	if (ret && cdns->num_clks)
-> +		goto err_clk_init;
+> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
 
-if (ret)
-	goto err_clk_init;
+Thank you for your patch. There is something to discuss/improve.
+
+
+> diff --git a/Documentation/devicetree/bindings/clock/atmel,at91rm9200-pmc.yaml b/Documentation/devicetree/bindings/clock/atmel,at91rm9200-pmc.yaml
+> new file mode 100644
+> index 000000000000..c4023c3a85f2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/atmel,at91rm9200-pmc.yaml
+> @@ -0,0 +1,161 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/clock/atmel,at91rm9200-pmc.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+
+Drop quotes from both.
 
 > +
-> +	return ret;
+> +title: Atmel Power Management Controller (PMC)
 > +
-> +err_clk_init:
-> +	clk_bulk_disable_unprepare(cdns->num_clks, cdns->clks);
+> +maintainers:
+> +  - Claudiu Beznea <claudiu.beznea@microchip.com>
+> +
+> +description:
+> +  The power management controller optimizes power consumption by controlling all
+> +  system and user peripheral clocks. The PMC enables/disables the clock inputs
+> +  to many of the peripherals and to the processor.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - const: atmel,at91sam9260-pmc
 
-if (cdns->num_clks)
-	clk_bulk_disable_unprepare(cdns->num_clks, cdns->clks);
+Why this is separate, not part of bottom enum?
 
-This way is more nicer I think.
+> +          - const: syscon
 
-> +	return ret;
-> +}
-> +
-> +static void cdns3_clk_rst_deinit(struct cdns *cdns)
-> +{
-> +	reset_control_assert(cdns->resets);
-> +	if (cdns->num_clks)
-> +		clk_bulk_disable_unprepare(cdns->num_clks, cdns->clks);
-> +}
-> +
->  /**
->   * cdns3_plat_probe - probe for cdns3 core device
->   * @pdev: Pointer to cdns3 core platform device
-> @@ -116,6 +146,16 @@ static int cdns3_plat_probe(struct platform_device *pdev)
->  		cdns->wakeup_irq = 0x0;
->  	}
->  
-> +	ret = devm_clk_bulk_get_all(dev, &cdns->clks);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	cdns->num_clks = ret;
-> +
-> +	cdns->resets = devm_reset_control_array_get_optional_exclusive(dev);
-> +	if (IS_ERR(cdns->resets))
-> +		return PTR_ERR(cdns->resets);
-> +
->  	cdns->usb2_phy = devm_phy_optional_get(dev, "cdns3,usb2-phy");
->  	if (IS_ERR(cdns->usb2_phy))
->  		return PTR_ERR(cdns->usb2_phy);
-> @@ -128,6 +168,10 @@ static int cdns3_plat_probe(struct platform_device *pdev)
->  	if (IS_ERR(cdns->usb3_phy))
->  		return PTR_ERR(cdns->usb3_phy);
->  
-> +	ret = cdns3_clk_rst_init(cdns);
-> +	if (ret)
-> +		return ret;
-> +
->  	ret = phy_init(cdns->usb3_phy);
->  	if (ret)
->  		goto err_phy3_init;
-> @@ -165,6 +209,7 @@ static int cdns3_plat_probe(struct platform_device *pdev)
->  	phy_exit(cdns->usb3_phy);
->  err_phy3_init:
->  	phy_exit(cdns->usb2_phy);
-> +	cdns3_clk_rst_deinit(cdns);
->  
->  	return ret;
->  }
-> @@ -187,6 +232,8 @@ static int cdns3_plat_remove(struct platform_device *pdev)
->  	set_phy_power_off(cdns);
->  	phy_exit(cdns->usb2_phy);
->  	phy_exit(cdns->usb3_phy);
-> +	cdns3_clk_rst_deinit(cdns);
-> +
->  	return 0;
->  }
->  
-> @@ -220,6 +267,8 @@ static int cdns3_controller_suspend(struct device *dev, pm_message_t msg)
->  
->  	cdns3_set_platform_suspend(cdns->dev, true, wakeup);
->  	set_phy_power_off(cdns);
-> +	if (!PMSG_IS_AUTO(msg))
-> +		cdns3_clk_rst_deinit(cdns);
+> +      - items:
+> +          - enum:
+> +              - atmel,at91sam9g20-pmc
+> +          - enum:
+> +              - atmel,at91sam9260-pmc
 
-If you reset the controller here all state will be lost.
-How is it expected to work on system resume?
+This should be const. You cannot have here different compatibles.
 
->  	spin_lock_irqsave(&cdns->lock, flags);
->  	cdns->in_lpm = true;
->  	spin_unlock_irqrestore(&cdns->lock, flags);
-> @@ -237,6 +286,9 @@ static int cdns3_controller_resume(struct device *dev, pm_message_t msg)
->  	if (!cdns->in_lpm)
->  		return 0;
->  
-> +	if (!PMSG_IS_AUTO(msg))
-> +		cdns3_clk_rst_init(cdns);
+> +          - const: syscon
+> +      - items:
+> +          - enum:
+> +              - atmel,at91sam9g15-pmc
+> +              - atmel,at91sam9g25-pmc
+> +              - atmel,at91sam9g35-pmc
+> +              - atmel,at91sam9x25-pmc
+> +              - atmel,at91sam9x35-pmc
+> +          - enum:
+> +              - atmel,at91sam9x5-pmc
+> +          - const: syscon
+> +      - items:
+> +          - enum:
+> +              - atmel,at91sam9g45-pmc
+> +              - atmel,at91sam9n12-pmc
+> +              - atmel,at91sam9rl-pmc
+> +              - atmel,at91rm9200-pmc
+
+Order by name?
+
+> +              - atmel,sama5d4-pmc
+> +              - atmel,sama5d3-pmc
+> +              - atmel,sama5d2-pmc
+> +              - microchip,sam9x60-pmc
+> +              - microchip,sama7g5-pmc
+> +          - const: syscon
 > +
->  	if (cdns_power_is_lost(cdns)) {
->  		phy_exit(cdns->usb2_phy);
->  		ret = phy_init(cdns->usb2_phy);
-> diff --git a/drivers/usb/cdns3/core.h b/drivers/usb/cdns3/core.h
-> index 2d332a788871..b894768ee485 100644
-> --- a/drivers/usb/cdns3/core.h
-> +++ b/drivers/usb/cdns3/core.h
-> @@ -111,6 +111,9 @@ struct cdns {
->  	struct mutex			mutex;
->  	enum usb_dr_mode		dr_mode;
->  	struct usb_role_switch		*role_sw;
-> +	struct reset_control *resets;
-> +	struct clk_bulk_data *clks;
-> +	int num_clks;
->  	bool				in_lpm;
->  	bool				wakeup_pending;
->  	struct cdns3_platform_data	*pdata;
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#clock-cells":
+> +    const: 2
 
-cheers,
--roger
+Explain what the cells are for in description. Having '2' for clock
+controller is not obvious.
+
+> +
+> +  clocks:
+> +    minItems: 2
+> +    maxItems: 3
+> +
+> +  clock-names:
+> +    minItems: 2
+> +    maxItems: 3
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  atmel,osc-bypass:
+> +    type: boolean
+> +    description: set when a clock signal is directly provided on XIN
+> +
+> +
+
+Just one blank line.
+
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - "#clock-cells"
+> +  - clocks
+> +  - clock-names
+
+Keep the same order here as they appear in properties:.
+
+
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - microchip,sam9x60-pmc
+> +              - microchip,sama7g5-pmc
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 3
+> +          maxItems: 3
+> +        clock-names:
+> +          items:
+> +            - const: td_slck
+> +            - const: md_slck
+> +            - const: main_xtal
+> +      required:
+> +        - clock-names
+> +        - clocks
+
+Drop required: here. It's already in top-level. Same in places below.
+
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - atmel,at91rm9200-pmc
+> +              - atmel,at91sam9260-pmc
+> +              - atmel,at91sam9g20-pmc
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 2
+> +          maxItems: 2
+> +        clock-names:
+> +          items:
+> +            - const: slow_xtal
+> +            - const: main_xtal
+> +      required:
+> +        - clock-names
+> +        - clocks
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - atmel,sama5d4-pmc
+> +              - atmel,sama5d3-pmc
+> +              - atmel,sama5d2-pmc
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 2
+> +          maxItems: 2
+> +        clock-names:
+> +          items:
+> +            - const: slow_clk
+> +            - const: main_xtal
+> +      required:
+> +        - clock-names
+> +        - clocks
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    pmc: clock-controller@f0018000 {
+> +        compatible = "atmel,sama5d4-pmc", "syscon";
+> +        reg = <0xf0018000 0x120>;
+> +        interrupts = <1 IRQ_TYPE_LEVEL_HIGH 7>;
+
+interrupt looks a bit odd. Are you sure it is correct?
+
+> +        #clock-cells = <2>;
+> +        clocks = <&clk32k>, <&main_xtal>;
+> +        clock-names = "slow_clk", "main_xtal";
+> +    };
+> +
+> +...
+
+Best regards,
+Krzysztof
+
