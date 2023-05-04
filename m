@@ -2,60 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F107E6F6CF7
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 15:32:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A90A6F6D11
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 15:42:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230436AbjEDNcz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 09:32:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58288 "EHLO
+        id S230463AbjEDNmn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 09:42:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230347AbjEDNcx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 09:32:53 -0400
-Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77BCD99;
-        Thu,  4 May 2023 06:32:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-        d=metrotek.ru; s=mail;
-        h=from:subject:date:message-id:to:cc:mime-version:content-transfer-encoding:
-         in-reply-to:references;
-        bh=bNgFnbd+g4Sv6e0pXoB62gBAXsqMYor9c2jjfpKvLNs=;
-        b=jLHH/OP/ZbTw+soqkXA6EW/pQU4NYH3zP/Nnsh8aGA3cMQi0W8riFLK5XOCAxvIBlieXsk8gNommK
-         3gR9AibKSPtM16cGhxrrjl/rFJi06D2SffSZXP/ibHkTTZj6QWxGifKLy4KYPCmlozFPhhc9IbnnrP
-         eRnAaPMhNk1krz8YQQDg/FGJEjQA0rpPe46n0gCjwB0DjcFaxiCh8fDRHVXrWnOlX+mth0YsJaxKEB
-         sXjAp32rSoQmeNHFBDKNzg0E0TnJ2t7Bvwgl/jMg7kq7mMJpd4fikjIen9dxb2SZvGQx2HEbKJWAYF
-         nXkLCra1/PPr7dmos0bh3iQFYmLAllg==
-X-Kerio-Anti-Spam:  Build: [Engines: 2.17.2.1477, Stamp: 3], Multi: [Enabled, t: (0.000005,0.002386)], BW: [Enabled, t: (0.000015,0.000001)], RTDA: [Enabled, t: (0.113823), Hit: No, Details: v2.49.0; Id: 15.d9pmw.1gvjfdbtj.1su; mclb], total: 0(700)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
-X-Spam-Level: 
-X-Footer: bWV0cm90ZWsucnU=
-Received: from dragon.ddg ([85.143.252.66])
-        (authenticated user v.georgiev@metrotek.ru)
-        by mail.pr-group.ru with ESMTPSA
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
-        Thu, 4 May 2023 16:32:16 +0300
-From:   Vladimir Georgiev <v.georgiev@metrotek.ru>
-To:     i.bornyakov@metrotek.ru
-Cc:     conor.dooley@microchip.com, devicetree@vger.kernel.org,
-        hao.wu@intel.com, krzysztof.kozlowski+dt@linaro.org,
-        linux-fpga@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mdf@kernel.org, robh+dt@kernel.org, system@metrotek.ru,
-        trix@redhat.com, v.georgiev@metrotek.ru, yilun.xu@intel.com
-Subject: Re: [PATCH v3 2/2] dt-bindings: fpga: replace Ivan Bornyakov maintainership
-Date:   Thu,  4 May 2023 16:32:13 +0300
-Message-Id: <20230504133213.322613-1-v.georgiev@metrotek.ru>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230429104838.5064-3-i.bornyakov@metrotek.ru>
-References: <20230429104838.5064-3-i.bornyakov@metrotek.ru>
+        with ESMTP id S230265AbjEDNmm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 09:42:42 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BA0A7AA6
+        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 06:42:40 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-96598a7c5e0so81965266b.3
+        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 06:42:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683207759; x=1685799759;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XclQCB7wsuLH7QcRppmPyiTXI2wCqwp/OyebX9CqAQA=;
+        b=zqfiCvIhfmN9k4zckos1BJ2EGxuh8hVux6Xi9B8ad3l2UBt2yLXeWcfkomMNI+NXyJ
+         9lBXGvMuEvMSdrOMqfCGozbmrIoFqSqslvWpDyrqbvqM/LpY0sdS4+6VLTt6dAmVNdfP
+         bmp6YIby9HTpseFTzUsBQzBx0MjIjySjXnUeRUxLGyxP462HXJkxx8XF6aBqsvcKGJ8S
+         s8lGRm3qCO9YtdeFZDUlC1sIwC8dYInivBdmeI+i+eQ6b84Sm+8U9bRAqkkvnR1o+PqF
+         uIu8f+JSXgWYQWGN1GUxB/wPb3vBKDY9+dpToktlALtS906bL7/IH6xKNyix+gIRTuph
+         qGvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683207759; x=1685799759;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XclQCB7wsuLH7QcRppmPyiTXI2wCqwp/OyebX9CqAQA=;
+        b=hJitl09OrLp5LhRb/S7H7BTQfwu1iSKmEbhqgIA0KsmUtJfS8t9/fiuNKOZ2lzqgh4
+         OgbFMhAzBrbq1TcJ+wxxnacbdFvgnS6UPIdcJD8wTxPCiI4Zttw0adbpv8xAZM6dcRGd
+         Xigs+4nNbeXU1VTSF0OFSE467z1VXI6r6Slkjk4Ahxi5sVE8wumZFKe/CaFfl1Kql/2w
+         hZMYxAcLg6OgkwzBZJzvbHOCigHIquTAQioVxRtPKAAMVOn4sBHK9NL3oMCt+IgSiX+E
+         glOPN6e7kmaar8baVn2VO58mI4AGQ3DBllmQhOAhtTqb34+ym2bfIufB3mAjQBKAVSSL
+         KL0Q==
+X-Gm-Message-State: AC+VfDwvO+ajj5asX3TEqvLPMOOaZPzIFCBguRtVVSEiwJNWgt+Cx5GN
+        ZfXhlUY95kDz09iQEnniPS5i/A==
+X-Google-Smtp-Source: ACHHUZ7NyhfTSFqzA3q9IMvmTqtn0LeSPOINeaVwsKiDoUZEg2vNSGTls9aalOuKm/qfsIEtkWa7lg==
+X-Received: by 2002:a17:907:7f08:b0:94f:12c0:4c8f with SMTP id qf8-20020a1709077f0800b0094f12c04c8fmr7109448ejc.50.1683207758733;
+        Thu, 04 May 2023 06:42:38 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:cbf1:e7ef:fb81:e912? ([2a02:810d:15c0:828:cbf1:e7ef:fb81:e912])
+        by smtp.gmail.com with ESMTPSA id ia22-20020a170907a07600b0096595cc0810sm1431932ejc.72.2023.05.04.06.42.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 May 2023 06:42:38 -0700 (PDT)
+Message-ID: <a86c0a3e-91b6-965e-0857-bbcb1ba63ef9@linaro.org>
+Date:   Thu, 4 May 2023 15:42:36 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH v5 1/2] dt-bindings: hwmon: add MAX31827
+Content-Language: en-US
+To:     Daniel Matyas <daniel.matyas@analog.com>
+Cc:     Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org
+References: <20230504161714.6281-1-daniel.matyas@analog.com>
+ <20230504161714.6281-2-daniel.matyas@analog.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230504161714.6281-2-daniel.matyas@analog.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Acked-by: Vladimir Georgiev <v.georgiev@metrotek.ru>
+On 04/05/2023 18:17, Daniel Matyas wrote:
+> MAX31827 is a low-power temperature switch with I2C interface.
+> 
+> The device is a ±1°C accuracy from -40°C to +125°C
+> (12 bits) local temperature switch and sensor with I2C/SM-
+> Bus interface. The combination of small 6-bump wafer-lev-
+> el package (WLP) and high accuracy makes this temper-
+> ature sensor/switch ideal for a wide range of applications.
+> 
+> Signed-off-by: Daniel Matyas <daniel.matyas@analog.com>
+
+Guenter asked for changelog... What do you expect us to do here?
+
+Best regards,
+Krzysztof
 
