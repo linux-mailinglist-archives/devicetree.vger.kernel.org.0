@@ -2,63 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 087F76F6FC4
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 18:19:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76A5F6F6FD1
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 18:22:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229707AbjEDQTY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 12:19:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46048 "EHLO
+        id S229505AbjEDQWL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 12:22:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229656AbjEDQTX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 12:19:23 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A9583AA9
-        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 09:19:21 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2ac77ddcb3dso8238591fa.3
-        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 09:19:21 -0700 (PDT)
+        with ESMTP id S229739AbjEDQWK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 12:22:10 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C00F63AA7
+        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 09:22:07 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2ac826a1572so4195301fa.0
+        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 09:22:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683217160; x=1685809160;
+        d=linaro.org; s=google; t=1683217326; x=1685809326;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Vo5rW4D2buAZqQwwd6Aqk9WkGhPA3mqzeuCzA9HHXHw=;
-        b=bUS8e2wntjbH4LIDt48dgSCo0uqIWnegtQFEJEgwSD+CzwL21vgpK5JkWWVj3T+tla
-         sqUyyzUosaupjxiWJbAPlBW4UUGCbCf4q6sqkDbjIH4muva3RDC4O50rzSHBQE2DNBDZ
-         ikn/K2HRBqPqKWbg/eTC83hl6CQ4EV0bp5bubAjtDAHgqM4vB4WZBXQ7V7sZfkxNAHoa
-         uy6yCVsWnURMRQEqsTybCcqhifPVDKNybbFdg36mCjF6sFDoYbpI5eVFagzkFcJbfH1R
-         boWNBH6H7/ohyRj5ppNy4W0PVwi2Nm/mWuzXN65Odc14yHxcwscxpaWRQ0Ej37iJCmCr
-         FqaA==
+        bh=Y0//78+uXYFr6PUUQe4KmtdkJ/mFw3NuDFvW5FcRoZQ=;
+        b=b2PPRS393qwzfXujkfb1itL3HU4nmRZ2GeFjtSbxbb4B5LWfmP2u/7SUg3VP6ZfnId
+         JuSqBYz9XknIcLBR5BSO2b+0duwUwM6ypEiA3aRpz5wbdWz9R1ricHxiKK4T2KEmbbEY
+         ok27nLjU0jqjlBkP5hxLkRSPXDJeJgFdP4Trcaecy4XbcnrZfB+3zH2CavTN2tAw+Pon
+         8iFEHWgBI3j0XanI+EcsXcaFZlZ2hf5NiG47XY6zSAJ1wqtVBW58mT+QrBuWKw5dLsrY
+         YloQuSMGfNajcySaziY/1qubxqI6oztOMv4Iw0Ue8pZEt89v6IbF4iQeFhe5uL+NYcYO
+         T9TQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683217160; x=1685809160;
+        d=1e100.net; s=20221208; t=1683217326; x=1685809326;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Vo5rW4D2buAZqQwwd6Aqk9WkGhPA3mqzeuCzA9HHXHw=;
-        b=HnH2KVGiKNRTZXT4jzuEwplKK0JPNZm/62ehpnWWWT9X1vA4RSr7KM0C8T0cECTsDG
-         cLE8SpwlVgRvZQ86AvmLDY9X2I4sIjHLor9SOU4kUxbEaTJYUF8X5DB60EsENF9tcHJR
-         4vSg2K24Rc1uTZXuUjggDcT6Qspo0uW8nGZ9dslrlTuoHYJRlMODq/LrCIEFd+dss52J
-         Zt+FfxNsVah3b/U5aWT+mOA8sSTQgqjQvIYuqqNVkGjZGabhhDy1Hv+k8U6BvEDqtmV7
-         PbzxwU1XS9a9/A8MhO8NpnxPpr9yqc3PeatxwCpqc7WBHmwpUi2bWTAYqR8CrUkecKvW
-         8X0g==
-X-Gm-Message-State: AC+VfDwbJraQHBZ9PECmuJjNxJiphgb/95d+D4EycdOX/vkVwa6vkfyU
-        7Ij/yIDBM/le69IQnYbDF0O+xA==
-X-Google-Smtp-Source: ACHHUZ7FQe9V76G9mpp4s9UGUHEHt3Z6SAErVNGGT9aBvjJDagHMe8oKF+6DaUEkU1YasdRhd6V0JA==
-X-Received: by 2002:a2e:8356:0:b0:2a8:e6fd:5e57 with SMTP id l22-20020a2e8356000000b002a8e6fd5e57mr1180897ljh.11.1683217159769;
-        Thu, 04 May 2023 09:19:19 -0700 (PDT)
+        bh=Y0//78+uXYFr6PUUQe4KmtdkJ/mFw3NuDFvW5FcRoZQ=;
+        b=WS/SkZsaNerjEhdvidLLY87T/PO19RjqvJg9NdclTpXWnHmTciGwK4Rhjszm+0fM5i
+         Ht0XJc0CIxhzhaNJIqkLKz8TiEo4sBKREwzN5a1vw4O0AwXAGHAPlzVTzW1V3ixNeHwU
+         gXJgYWx240S9eRPB9RFJkDr0EGSkeUyGRLN7kf1YyJutrAelTbPWqoInj9hRorYPDw4C
+         hs+iIQ5Z6mfQRtj6lCZy4u8PM2uuEHELTL9BX8N5GuIadt+SLn56cwoVn2kXV+rr6ddY
+         li+7p7TLLtuUuWzJHycz+Ten6p+2J5lFiybrNGUsxEOzrJj4rJjGLqs1zYEl+51jSmD6
+         W7rw==
+X-Gm-Message-State: AC+VfDzSlYm7tk7CrB97QncQa/K+6e7EOk8R2Ojuk756PuTfDbxA9ppP
+        PKlC7IIU7F/MxfhITgvHaW1vLQ==
+X-Google-Smtp-Source: ACHHUZ7nzyVmwttPurr+ePQF0cmLpk+IMorprUHkikxMLmIjeifJSsAylHxffCQRQTHoMTrpLLc5bA==
+X-Received: by 2002:a2e:a30b:0:b0:2aa:af16:5c55 with SMTP id l11-20020a2ea30b000000b002aaaf165c55mr1105267lje.44.1683217326048;
+        Thu, 04 May 2023 09:22:06 -0700 (PDT)
 Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id j25-20020a2e8519000000b002a76c16ad65sm6634378lji.87.2023.05.04.09.19.19
+        by smtp.gmail.com with ESMTPSA id p16-20020a2e8050000000b002a8c409f1f5sm6658915ljg.110.2023.05.04.09.22.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 May 2023 09:19:19 -0700 (PDT)
-Message-ID: <35ac64ab-512d-1425-7a1b-6e8d3806c8a8@linaro.org>
-Date:   Thu, 4 May 2023 19:19:18 +0300
+        Thu, 04 May 2023 09:22:05 -0700 (PDT)
+Message-ID: <4d6568cd-3678-f3ec-36b3-0b4b474d9871@linaro.org>
+Date:   Thu, 4 May 2023 19:22:05 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH V4 2/3] soc: qcom: boot_stat: Add Driver Support for Boot
- Stats
+Subject: Re: [PATCH V4 1/3] dt-bindings: sram: qcom,imem: Add Boot Stat region
+ within IMEM
 Content-Language: en-GB
-To:     Souradeep Chowdhury <quic_schowdhu@quicinc.com>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Caleb Connolly <caleb.connolly@linaro.org>,
+        Souradeep Chowdhury <quic_schowdhu@quicinc.com>,
         Andy Gross <agross@kernel.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -69,125 +70,74 @@ Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         Sibi Sankar <quic_sibis@quicinc.com>,
         Rajendra Nayak <quic_rjendra@quicinc.com>
 References: <cover.1681742910.git.quic_schowdhu@quicinc.com>
- <C1eDJi-H9uWRAtbInRclmCgPb4EcgaeS3sk5FKO9cw8KscgMCH8dxRSvdPGUMwDFKpte7cBVeaqPhlLog-CRrg==@protonmail.internalid>
- <2ef76ce292c059c144e559123a9a54201ae2d0cf.1681742910.git.quic_schowdhu@quicinc.com>
- <575ee047-c6ce-95c3-8781-8c9a78534bb1@linaro.org>
- <f42637c8-400b-e39f-412d-60328e176585@quicinc.com>
+ <NO2MhqhxQqjQ33CVOtaXXxo2iBfl6Ugz1lE5oJAl-mjUyrRu4l9vCBWV8AVJZoCrVF0Cw0j49t44Bn5yEAv3mA==@protonmail.internalid>
+ <bd3350e3b0b02669cffa4bdaf9a0a1d8ae9072d1.1681742910.git.quic_schowdhu@quicinc.com>
+ <9da030c6-6a9f-6766-7120-94aaa8fcd8ab@linaro.org>
+ <3ef818c8-1ee4-5bee-6b37-20658b2e4637@linaro.org>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <f42637c8-400b-e39f-412d-60328e176585@quicinc.com>
+In-Reply-To: <3ef818c8-1ee4-5bee-6b37-20658b2e4637@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/05/2023 09:35, Souradeep Chowdhury wrote:
-> 
-> 
-> On 5/4/2023 4:23 AM, Caleb Connolly wrote:
+On 04/05/2023 09:26, Krzysztof Kozlowski wrote:
+> On 04/05/2023 00:10, Caleb Connolly wrote:
 >>
 >>
 >> On 17/04/2023 16:08, Souradeep Chowdhury wrote:
->>> All of Qualcomm's proprietary Android boot-loaders capture boot time
->>> stats, like the time when the bootloader started execution and at what
->>> point the bootloader handed over control to the kernel etc. in the IMEM
->>> region. This information is captured in a specific format by this driver
->>> by mapping a structure to the IMEM memory region and then accessing the
->>> members of the structure to show the information within debugfs file.
->>> This information is useful in verifying if the existing boot KPIs have
->>> regressed or not. The information is shown in milliseconds, a sample
->>> log from sm8450(waipio) device is as follows:-
->>>
->>> /sys/kernel/debug/146aa6b0.boot_stats # cat abl_time
->>> 17898 ms
->>> /sys/kernel/debug/146aa6b0.boot_stats # cat pre_abl_time
->>> 2879 ms
->>>
->>> The Module Power Manager(MPM) sleep counter starts ticking at the PBL
->>> stage and the timestamp generated by the sleep counter is logged by
->>> the Qualcomm proprietary bootloader(ABL) at two points-> First when it
->>> starts execution which is logged here as "pre_abl_time" and the second
->>> when it is about to load the kernel logged as "abl_time". Documentation
->>> details are also added in 
->>> Documentation/ABI/testing/debugfs-driver-bootstat
+>>> All Qualcomm bootloaders log useful timestamp information related
+>>> to bootloader stats in the IMEM region. Add the child node within
+>>> IMEM for the boot stat region containing register address and
+>>> compatible string.
 >>>
 >>> Signed-off-by: Souradeep Chowdhury <quic_schowdhu@quicinc.com>
->>
->> Hi,
->>
->> [...]
->>> +
->>> +static int boot_stats_probe(struct platform_device *pdev)
->>> +{
->>> +    struct device *bootstat_dev = &pdev->dev;
->>> +    struct bs_data *drvdata;
->>> +
->>> +    drvdata = devm_kzalloc(bootstat_dev, sizeof(*drvdata), GFP_KERNEL);
->>> +    platform_set_drvdata(pdev, drvdata);
->>> +
->>> +    drvdata->dbg_dir = debugfs_create_dir(dev_name(bootstat_dev), 
->>> NULL);
->>
->> This might be better as just "qcom_boot_stats", rather than including
->> the address.
-> 
-> We usually use the dev_name to represent the one to one correspondence 
-
-Who is "we"?
-
-> of the debugfs file with the device. Will create the root dir as
-> "qcom_boot_stats" and push the dev_name dir inside it.
-
-No, this doesn't sound logical. Please use just the "qcom_boot_stats" as 
-Caleb suggested.
-
-> 
->>
->> [...]
->>> +
->>> +static const struct of_device_id boot_stats_dt_match[] = {
->>> +    { .compatible = "qcom,sm8450-bootstats" },
->>
->> This driver doesn't only support sm8450, I've tested this on sdm845 and
->> it works just fine. Can we use a generic compatible here instead?
-> 
-> We can add soc specific compatibles here to extend support for other 
-> socs. This also captures the SoCs for which the driver is supported 
-> which won't be the case if we use a generic compatible.
-
-No. If there is no difference between SoCs, please don't add 
-soc-specific compatibles. They pollute the kernel and provide no 
-additional benefits. Please use generic compatible and add 
-platform-specific ones only if you have something to override.
-
-> 
-> 
->>> +    { }
->>> +};
->>> +MODULE_DEVICE_TABLE(of, boot_stats_dt_match);
->>> +
->>> +static struct platform_driver boot_stat_driver = {
->>> +    .probe  = boot_stats_probe,
->>> +    .remove_new = boot_stats_remove,
->>> +    .driver = {
->>> +        .name = "qcom-boot-stats",
->>> +        .of_match_table = boot_stats_dt_match,
->>> +    },
->>> +};
->>> +module_platform_driver(boot_stat_driver);
->>> +
->>> +MODULE_DESCRIPTION("Qualcomm Technologies Inc. Boot Stat driver");
->>> +MODULE_LICENSE("GPL");
->>> -- 
->>> 2.7.4
+>>> ---
+>>>   .../devicetree/bindings/sram/qcom,imem.yaml        | 22 ++++++++++++++++++++++
+>>>   1 file changed, 22 insertions(+)
 >>>
+>>> diff --git a/Documentation/devicetree/bindings/sram/qcom,imem.yaml b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+>>> index ba694ce..d028bed 100644
+>>> --- a/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+>>> +++ b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+>>> @@ -49,6 +49,28 @@ patternProperties:
+>>>       $ref: /schemas/remoteproc/qcom,pil-info.yaml#
+>>>       description: Peripheral image loader relocation region
+>>>
+>>> +  "^stats@[0-9a-f]+$":
+>>> +    type: object
+>>> +    description:
+>>> +      Imem region dedicated for storing timestamps related
+>>> +      information regarding bootstats.
+>>> +
+>>> +    additionalProperties: false
+>>> +
+>>> +    properties:
+>>> +      compatible:
+>>> +        items:
+>>> +          - enum:
+>>> +              - qcom,sm8450-bootstats
 >>
+>> This region isn't exclusive to sm8450, it exists also on sdm845 and
+>> presumably other platforms. Is there any need for an SoC specific
+>> compatible?
+> 
+> Yes.
+> https://elixir.bootlin.com/linux/v6.1-rc1/source/Documentation/devicetree/bindings/writing-bindings.rst#L42
+> 
+> Also see many discussions on LKML about this.
+
+
+I checked the closest relative: qcom_stats.c driver. It defines several 
+platform-specific overrides and also a generic "qcom,rpm-stats" / 
+"qcom,rpmh-stats" drivers.
 
 -- 
 With best wishes
