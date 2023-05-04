@@ -2,70 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82B046F629D
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 03:21:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C08E6F62AD
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 03:34:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229463AbjEDBVv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 May 2023 21:21:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38172 "EHLO
+        id S229506AbjEDBeu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 May 2023 21:34:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229602AbjEDBVu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 21:21:50 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 252F0101;
-        Wed,  3 May 2023 18:21:45 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        with ESMTP id S229565AbjEDBep (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 21:34:45 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 733ED170A;
+        Wed,  3 May 2023 18:34:43 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
         (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 2A1117F8A;
-        Thu,  4 May 2023 09:21:37 +0800 (CST)
-Received: from EXMBX062.cuchost.com (172.16.6.62) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 4 May
- 2023 09:21:37 +0800
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 9B0B224E09F;
+        Thu,  4 May 2023 09:34:33 +0800 (CST)
+Received: from EXMBX062.cuchost.com (172.16.6.62) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 4 May
+ 2023 09:34:33 +0800
 Received: from [192.168.125.107] (183.27.99.121) by EXMBX062.cuchost.com
  (172.16.6.62) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 4 May
- 2023 09:21:36 +0800
-Message-ID: <d2044dc1-ff5c-7398-5646-1bfdfb8ea935@starfivetech.com>
-Date:   Thu, 4 May 2023 09:21:41 +0800
+ 2023 09:34:32 +0800
+Message-ID: <0b0f9187-ad6b-a1d9-6ec4-beb8989ca731@starfivetech.com>
+Date:   Thu, 4 May 2023 09:34:37 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH v4 1/3] dt-bindings: phy: Add starfive,jh7110-dphy-rx
+Subject: Re: [RESEND v2 1/6] dt-bindings: power: Add JH7110 AON PMU support
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
+To:     Conor Dooley <conor@kernel.org>
+CC:     Conor Dooley <conor.dooley@microchip.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
         Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor@kernel.org>,
         Paul Walmsley <paul.walmsley@sifive.com>,
         Palmer Dabbelt <palmer@dabbelt.com>,
         Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC:     Jack Zhu <jack.zhu@starfivetech.com>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
-References: <20230412084540.295411-1-changhuang.liang@starfivetech.com>
- <20230412084540.295411-2-changhuang.liang@starfivetech.com>
- <8dd0dc63-e0df-8764-f756-da032d9d671c@linaro.org>
- <eb47b7c7-bdbb-92d9-ba39-604ce487f297@starfivetech.com>
- <f6a4fb28-d635-4d99-44bb-d929cb41eef2@linaro.org>
- <b34a8d59-34e4-8358-9d2b-367f4707ca7c@starfivetech.com>
- <f0d82428-aaa5-3dd4-bc29-f1057fe749bc@linaro.org>
- <0c94aadf-fac3-d05c-1c54-ae8337526849@starfivetech.com>
- <31c582a7-682a-330e-51d4-53b4a0c5f3a2@linaro.org>
+        Walker Chen <walker.chen@starfivetech.com>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, <vkoul@kernel.org>,
+        <linux-phy@lists.infradead.org>
+References: <20230419-labored-camper-644d51a7ca96@spud>
+ <1a5b15fa-4f20-51c2-2ba1-a04a2911a694@starfivetech.com>
+ <20230424-baffle-punch-ec73098f2b6a@spud>
+ <d685a1d4-c07d-7dfa-f1fb-b35ceb2aa0eb@starfivetech.com>
+ <20230425-unquote-eligible-09f743d81981@wendy>
+ <a7cdfabf-2312-eaf3-f462-5bda7f0a120d@starfivetech.com>
+ <68cb565d-bf39-10b0-9e3e-35ba7f54b90b@linaro.org>
+ <0988495f-b87a-7f69-f222-37c67d6eae23@starfivetech.com>
+ <20230425-resale-footrest-de667778c4fe@wendy>
+ <663e9933-b9b3-a48f-98b6-2207215a8ed7@starfivetech.com>
+ <20230425-commotion-prewashed-876247bed4ab@spud>
 From:   Changhuang Liang <changhuang.liang@starfivetech.com>
-In-Reply-To: <31c582a7-682a-330e-51d4-53b4a0c5f3a2@linaro.org>
+In-Reply-To: <20230425-commotion-prewashed-876247bed4ab@spud>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 X-Originating-IP: [183.27.99.121]
-X-ClientProxiedBy: EXCAS061.cuchost.com (172.16.6.21) To EXMBX062.cuchost.com
+X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX062.cuchost.com
  (172.16.6.62)
 X-YovoleRuleAgent: yovoleflag
 X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -74,39 +76,87 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 2023/4/17 1:29, Krzysztof Kozlowski wrote:
->>>> A standard property? Like "clocks" or "resets"?
+On 2023/4/26 0:56, Conor Dooley wrote:
+> On Tue, Apr 25, 2023 at 08:26:35PM +0800, Changhuang Liang wrote:
+>> On 2023/4/25 17:35, Conor Dooley wrote:
+>>> On Tue, Apr 25, 2023 at 05:18:10PM +0800, Changhuang Liang wrote:
+>>>> On 2023/4/25 16:19, Krzysztof Kozlowski wrote:
+>>>>> On 25/04/2023 09:57, Changhuang Liang wrote:
+>>>>>> Yes, "starfive,jh7110-aon-pmu" is a child-node of "starfive,jh7110-aon-syscon".
+>>>>>> In my opinion, "0x17010000" is "aon-syscon" on JH7110 SoC, and this "aon-pmu" is just 
+>>>>>> a part of "aon-syscon" function, so I think it is inappropriate to make "aon-syscon"
+>>>>>> to a power domain controller. I think using the child-node description is closer to
+>>>>>> JH7110 SoC. 
+>>>>>
+>>>>> Unfortunately, I do not see the correlation between these, any
+>>>>> connection. Why being a child of syscon block would mean that this
+>>>>> should no be power domain controller? Really, why? These are two
+>>>>> unrelated things.
+>>>>
+>>>> Let me summarize what has been discussed above. 
+>>>>
+>>>> There has two ways to describe this "starfive,jh7110-aon-syscon"(0x17010000).
+>>>> 1. (0x17010000) is power-controller node:
+>>>>
+>>>> 	aon_pwrc: power-controller@17010000 {
+>>>> 		compatible = "starfive,jh7110-aon-pmu", "syscon";
+>>>> 		reg = <0x0 0x17010000 0x0 0x1000>;
+>>>> 		#power-domain-cells = <1>;
+>>>> 	};
+>>>>
+>>>>
+>>>> 2. (0x17010000) is syscon node, power-controller is child-node of syscon:
+>>>>
+>>>> 	aon_syscon: syscon@17010000 {
+>>>> 		compatible = "starfive,jh7110-aon-syscon", "syscon", "simple-mfd";
+>>>> 		reg = <0x0 0x17010000 0x0 0x1000>;
+>>>>
+>>>> 		aon_pwrc: power-controller {
+>>>> 			compatible = "starfive,jh7110-aon-pmu";
+>>>> 			#power-domain-cells = <1>;
+>>>> 		};
+>>>> 	};
 >>>
->>> Like lane-polarities now submitted to one MIPI.
->>>
->>> Anyway it does not look like a property of a board. You said it is fixed
->>> per SoC, so it should be implied from the compatible. Otherwise please
->>> explain in description and provide some rationale.
->>>
->>> Best regards,
->>> Krzysztof
->>>
->>
->> This property is the only one used for this IP, I have compared this IP with
->> other DPHY rx module, DPHY modules form the other manufacturers not have this
->> configure.
->> And we also have a SoC called JH7100. It DPHY rx module is the same as JH7110.
->> But we don't do the upstream work on it. If it use this lane-maps will be 
->> configure as "lane_maps = /bits/ 8 <0 1 2 3 4 5>;".
+>>> I thought that Rob was suggesting something like this:
+>>> 	aon_syscon: syscon@17010000 {
+>>> 		compatible = "starfive,jh7110-aon-syscon", ...
+>>> 		reg = <0x0 0x17010000 0x0 0x1000>;
+>>> 		#power-domain-cells = <1>;
+>>> 	};
 > 
-> And JH7100 is different SoC, so you have different compatible. Again -
-> is this board specific? If not, looks like SoC specific, thus imply it
-> from compatible.
+>> I see the kernel:
+>> https://elixir.bootlin.com/linux/latest/source/arch/arm64/boot/dts/mediatek/mt8167.dtsi
+>> this file line 42:
+>> it's power-controller also has no meaningful properties.
+>> What do you think?
 > 
+> I'm not sure that I follow. It has a bunch of child-nodes does it not,
+> each of which is a domain?
 > 
-> Best regards,
-> Krzysztof
+> I didn't see such domains in your dts patch, they're defined directly in
+> the driver instead AFAIU. Assuming I have understood that correctly,
+> your situation is different to that mediatek one?
 > 
+> Cheers,
+> Conor.
 
-Vinod,
+Conor and Rob, 
 
-Hi, could you give me some suggestions about Krzysztof's comment? Thanks for
-your time.
+How about this way:
+
+aon_syscon: syscon@17010000 {
+	compatible = "starfive,jh7110-aon-syscon", "syscon", "simple-mfd";
+	reg = <0x0 0x17010000 0x0 0x1000>;
+	
+	aon_pwrc: power-controller {
+		compatible = "starfive,jh7110-aon-pmu";
+		regmap = <&aon_syscon>;
+		#power-domain-cells = <1>;
+	};
+};
+
+Add a "regmap" property which is phandle. And it can keep the present child-node
+structure. This is more consistent with our soc design.
 
 Best regards,
 Changhuang
