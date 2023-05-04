@@ -2,74 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA93C6F6554
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 08:54:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 080FE6F6557
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 08:55:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229836AbjEDGya (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 02:54:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59712 "EHLO
+        id S229907AbjEDGzL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 02:55:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229751AbjEDGyY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 02:54:24 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A412430D8
-        for <devicetree@vger.kernel.org>; Wed,  3 May 2023 23:54:13 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2ac811c6691so359401fa.3
-        for <devicetree@vger.kernel.org>; Wed, 03 May 2023 23:54:13 -0700 (PDT)
+        with ESMTP id S229898AbjEDGzK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 02:55:10 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60B282728
+        for <devicetree@vger.kernel.org>; Wed,  3 May 2023 23:54:57 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-50bd2d7ba74so14045240a12.1
+        for <devicetree@vger.kernel.org>; Wed, 03 May 2023 23:54:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683183252; x=1685775252;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=linaro.org; s=google; t=1683183296; x=1685775296;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=KHCGOfUYtqR6tCUbzOdPKIgkFgXtwzujgmUslCJyBVI=;
-        b=JWR4sASd6R6szCSV3B2M8a1C+bRnpoYuQdUbsHAZ5WY/U2+wyGHJWyjO1wXwpKfqsh
-         CsaVHyK0NtB4tyCtxhlS5luUyArzCBrkGeBJm5bMoOzjnvUiV/CJTbsQyiZEtSchEFmH
-         GS9BeYN3QLLxixkgH9rY93PMjQVMYnMm4G0Zyk391nJ4P4iq1TlfC5WNSnZs9KRKez6Q
-         WpgQpjuIB6Fbnb8EwSIiiIxRySrpBJudTlc2ll7dFLFvlppQoKd1zlHmq58W9Bd6DHGf
-         RfNayqFzvle1MHEvlheL4+mnSz3oOjK//Ppk/LZwPw0h6XyshxNQU+cUddGXoqFQzuoy
-         202Q==
+        bh=J5+Q+OdYAMSACigiNubfdFv7NYmkqIBZgeNNPwu92V8=;
+        b=SOt5NGlxsv3scAoWnC1OpOF48Xr2BCzHiIwuhNKW9juwi1ncsC98fKzqjMRZ7qNnye
+         ZScDIqlKPjN3t66uO4TIzmaCfD4Z3iV8O30fOtPOdrjFBG/l2/ys2KIzas+TmHHzEvid
+         xHtta2oPJ153AR8DfztQlsHvy7FdeNjUEW7JPFY46uzRmj2hRWcZI3EEGg8h1MVOaMwd
+         ayvDrbc9TbtbNSH0IYPqafRnLbCYmqodjQdEUqo0HUjzXCJUmoWV5nnQruoKuRTl80X1
+         iZjib6Rq0kGgZeOIniY5mQUqCYsNugrxL53Hfwm0ac+k8E5xoX1IaLxPP9fRnfyuk0m2
+         aecw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683183252; x=1685775252;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=1e100.net; s=20221208; t=1683183296; x=1685775296;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KHCGOfUYtqR6tCUbzOdPKIgkFgXtwzujgmUslCJyBVI=;
-        b=IKnnrnt1ZHzZCbCdrtiKs+TcJ1ZcJDCbYZ//ZCiVrIuN2DrljG0G9Xurr118DYzxve
-         1ePB8R0iiwVHAK92oloQw+E3Uw0CvUEdWX1QZetCsI7TX98ASH3wy6iUY3P6RMD9wro7
-         97S/gRAIzRO1H3IOUKXK8coe2KAfmjWXEiP/1hEYSxq7dv1gRHNf97Q1YKjukZpU4Vnn
-         pi60X/qZAqcUxhl1e5h97jDvHNbkXn8DTUjnb/PzlP63eXPBfc5OAj69BaUOV8Lrug2j
-         ofmbRrihyE8xLLuY4lktxeWR5oWAzL/E+0bxM79FVUqnncgSu+F0o7iM+44vjHDpagwC
-         J64Q==
-X-Gm-Message-State: AC+VfDzPtt9KuY1o5vJHPWKpA2bySkHBvaURlfku1VjDaTHM89RRbTOR
-        MAOzWCBd+1BPOJjAZnKyY/tAbQ==
-X-Google-Smtp-Source: ACHHUZ6IhS/XLQit3LElxmynOzCUvcvuJBWTUfPMwMErPMz2oZe4MyAjg12ARcpkZprdX3CTtK+6+A==
-X-Received: by 2002:a2e:8058:0:b0:2a9:b6fe:18b3 with SMTP id p24-20020a2e8058000000b002a9b6fe18b3mr697840ljg.19.1683183251933;
-        Wed, 03 May 2023 23:54:11 -0700 (PDT)
-Received: from [192.168.1.101] (abyl248.neoplus.adsl.tpnet.pl. [83.9.31.248])
-        by smtp.gmail.com with ESMTPSA id 9-20020a05651c008900b002a776dbc277sm6458331ljq.124.2023.05.03.23.54.10
+        bh=J5+Q+OdYAMSACigiNubfdFv7NYmkqIBZgeNNPwu92V8=;
+        b=kyZpX/AyNp4A414CWVTq540wtqxojEeyXxrK/RhreF+Hri0S4Mif7P0/42pnp9kLng
+         P4a4/FN+5tib5a/Rbf4esbFQv8A27COl4w43Ecmr3yrpuRtutYTBxjVY1zjl+PMmXJV8
+         1//kkMT+KFx3EK2TbpnVO+dBMyq0uq8GWUlgeVddwFPl7+TMUNck+MnkiRHXWcLtO/iP
+         Fluw0rGp54smzEtBgWVk8uD6jM1O8OJ0k23nDCMdhSlMcq3+4f69Fq+OSv8WeH7m3KsK
+         YQLJYdu6ngaOTf+jqiwMPNQULfR1vvELZ3XozYJeOwox1GPJbKK0MiRLWfHvOPDKDoiC
+         Me2g==
+X-Gm-Message-State: AC+VfDyjlctje5AGuAHikDiQrDRAnnJaG2B4p77L4qARDVdy1H0l9uQ4
+        YBWP+MxjEQEn0PjHZClp3by7bcgL3NwWwOS6FO+d0iGZ
+X-Google-Smtp-Source: ACHHUZ5Qirw2entWZsB7xdHxGKaEYFXn5/Fr6P5GvbmQpYZy8ZIdF7GRT5/16G7cdvguSJhYDhN0Ww==
+X-Received: by 2002:a17:907:3d92:b0:953:87bf:3caa with SMTP id he18-20020a1709073d9200b0095387bf3caamr4126644ejc.22.1683183295895;
+        Wed, 03 May 2023 23:54:55 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:cbf1:e7ef:fb81:e912? ([2a02:810d:15c0:828:cbf1:e7ef:fb81:e912])
+        by smtp.gmail.com with ESMTPSA id gx13-20020a1709068a4d00b009658264076asm1089576ejc.45.2023.05.03.23.54.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 May 2023 23:54:11 -0700 (PDT)
-Message-ID: <beb24bbe-034e-128b-0a77-84981574adb7@linaro.org>
-Date:   Thu, 4 May 2023 08:54:10 +0200
+        Wed, 03 May 2023 23:54:55 -0700 (PDT)
+Message-ID: <9911bb17-e8f7-b552-7056-a26b3194c416@linaro.org>
+Date:   Thu, 4 May 2023 08:54:54 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
-Subject: Re: [PATCH 4/6] arm64: dts: qcom: sm8450-hdk: Add QMP & DP to
- SuperSpeed graph
+Subject: Re: [PATCH 1/2 v5] dt-bindings: watchdog: marvell GTI system watchdog
+ driver
 Content-Language: en-US
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20230503-topic-sm8450-graphics-dp-next-v1-0-d1ee9397f2a6@linaro.org>
- <20230503-topic-sm8450-graphics-dp-next-v1-4-d1ee9397f2a6@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230503-topic-sm8450-graphics-dp-next-v1-4-d1ee9397f2a6@linaro.org>
+To:     Bharat Bhushan <bbhushan2@marvell.com>, wim@linux-watchdog.org,
+        linux@roeck-us.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <linux-kernel@vger.kernel.org, sgoutham@marvell.com>
+ <20230503121016.6093-1-bbhushan2@marvell.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230503121016.6093-1-bbhushan2@marvell.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,135 +77,102 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 3.05.2023 15:10, Neil Armstrong wrote:
-> With support for the QMP combo phy to react to USB Type-C switch events,
-> introduce it as the next hop for the SuperSpeed lanes of the Type-C
-> connector, and connect the output of the DisplayPort controller
-> to the QMP combo phy.
+On 03/05/2023 14:10, Bharat Bhushan wrote:
+> Add binding documentation for the Marvell GTI system
+> watchdog driver.
 > 
-> This allows the TCPM to perform orientation switching of both USB and
-> DisplayPort signals.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Bharat Bhushan <bbhushan2@marvell.com>
 > ---
-same comments as p3
+> v5:
+>  - Added wdt-timer-index property
 
-Konrad
->  arch/arm64/boot/dts/qcom/sm8450-hdk.dts | 71 ++++++++++++++++++++++++++++++++-
->  1 file changed, 69 insertions(+), 2 deletions(-)
+I did not ask for it...
+
+>  - Get clock frequency from clocks/clock-name device tree property
+
+Where? It's not possible in current code. I don't think you tested this
+at all.
+
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-> index e931545a2cac..52a14ae0321b 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-> @@ -114,9 +114,18 @@ port@1 {
->  					reg = <1>;
->  
->  					pmic_glink_ss_in: endpoint {
-> -						remote-endpoint = <&usb_1_dwc3_ss>;
-> +						remote-endpoint = <&usb_1_qmpphy_out>;
->  					};
->  				};
-> +
-> +				port@2 {
-> +					reg = <2>;
-> +
-> +					pmic_glink_sbu: endpoint {
-> +						remote-endpoint = <&fsa4480_sbu_mux>;
-> +					};
-> +				};
-> +
->  			};
->  		};
->  	};
-> @@ -494,6 +503,36 @@ lt9611_out: endpoint {
->  	};
->  };
->  
-> +&i2c5 {
-> +	status = "okay";
-> +	clock-frequency = <100000>;
-> +
-> +	fsa4480@42 {
-> +		compatible = "fcs,fsa4480";
-> +		reg = <0x42>;
-> +
-> +		interrupts-extended = <&tlmm 2 IRQ_TYPE_LEVEL_LOW>;
-> +
-> +		vcc-supply = <&vreg_bob>;
-> +		mode-switch;
-> +		orientation-switch;
-> +		svid = /bits/ 16 <0xff01>;
-> +
-> +		ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			port@0 {
-> +				reg = <0>;
-> +
-> +				fsa4480_sbu_mux: endpoint {
-> +					remote-endpoint = <&pmic_glink_sbu>;
-> +				};
-> +			};
-> +		};
-> +	};
-> +};
-> +
->  &mdss {
->  	status = "okay";
->  };
-> @@ -513,6 +552,20 @@ &mdss_dsi0_phy {
->  	status = "okay";
->  };
->  
-> +&mdss_dp0 {
-> +	status = "okay";
-> +
-> +	ports {
-> +		port@1 {
-> +			reg = <1>;
-> +			mdss_dp0_out: endpoint {
-> +				data-lanes = <0 1>;
-> +				remote-endpoint = <&usb_1_qmpphy_dp_in>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
->  &mdss_mdp {
->  	status = "okay";
->  };
-> @@ -766,7 +819,7 @@ &usb_1_dwc3_hs {
->  };
->  
->  &usb_1_dwc3_ss {
-> -	remote-endpoint = <&pmic_glink_ss_in>;
-> +	remote-endpoint = <&usb_1_qmpphy_usb_ss_in>;
->  };
->  
->  &usb_1_hsphy {
-> @@ -782,6 +835,20 @@ &usb_1_qmpphy {
->  
->  	vdda-phy-supply = <&vreg_l6b_1p2>;
->  	vdda-pll-supply = <&vreg_l1b_0p91>;
-> +
-> +	orientation-switch;
-> +};
-> +
-> +&usb_1_qmpphy_out {
-> +	remote-endpoint = <&pmic_glink_ss_in>;
-> +};
-> +
-> +&usb_1_qmpphy_usb_ss_in {
-> +	remote-endpoint = <&usb_1_dwc3_ss>;
-> +};
-> +
-> +&usb_1_qmpphy_dp_in {
-> +	remote-endpoint = <&mdss_dp0_out>;
->  };
->  
->  &vamacro {
+>  .../bindings/watchdog/marvell,gti-wdt.yaml    | 54 +++++++++++++++++++
+>  1 file changed, 54 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/watchdog/marvell,gti-wdt.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/watchdog/marvell,gti-wdt.yaml b/Documentation/devicetree/bindings/watchdog/marvell,gti-wdt.yaml
+> new file mode 100644
+> index 000000000000..e3315653f961
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/watchdog/marvell,gti-wdt.yaml
+> @@ -0,0 +1,54 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/watchdog/marvell,gti-wdt.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Marvell Global Timer (GTI) system watchdog
+> +
+> +allOf:
+> +  - $ref: watchdog.yaml#
+> +
+> +maintainers:
+> +  - Bharat Bhushan <bbhushan2@marvell.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: marvell,gti-wdt
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  wdt-timer-index:
+
+missing vendor prefix
+
+missing type
+
+> +    maxItems: 1
+
+???
+
+> +    description:
+> +      This contains the timer number out of total 64 timers supported
+> +      by GTI hardware block.
+
+Why do you need it? What does it represent?
+
+We do not keep indices of devices other than something in reg, so please
+justify why exception must be made here.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - wdt-timer-index
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        watchdog@802000040000 {
+> +            compatible = "marvell,gti-wdt";
+> +            reg = <0x00008020 0x00040000 0x00000000 0x00020000>;
+> +            interrupts = <0 38 IRQ_TYPE_EDGE_RISING>;
+
+Use defines for flags.
+
+> +            wdt-timer-index = <63>;
+
+
+Best regards,
+Krzysztof
+
