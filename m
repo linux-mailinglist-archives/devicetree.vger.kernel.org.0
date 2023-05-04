@@ -2,163 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 779636F68BC
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 11:57:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB9216F68D5
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 12:08:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229978AbjEDJ5m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 05:57:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38740 "EHLO
+        id S229988AbjEDKI5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 06:08:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229524AbjEDJ5l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 05:57:41 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28B8A44AD;
-        Thu,  4 May 2023 02:57:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1683194260; x=1714730260;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=skX0KctM5NyGzhY5XFNMWtwT33oUgFCc7oCsUf4NI6Q=;
-  b=XEFJ2kMaqd4rQVov0VjplSuYtGm6LsMf9aCa/56hH8W716f6bJTM63+O
-   xNd9ErDNrytGF0tL0uGkM5tqg2DK/jee6V4GM6Uj4kMjqsmyNyL/ZS7dm
-   Q7TCbXaxg04EC0zZYopND4kP6FEi5cx4AjhjkVDTQExERu/KrjecIfPAC
-   pCEpW4brDPvvikaWoQ2XUlHSE2eWo5Rbc9XL8UtmwvKxZHA63pGlMFDE7
-   1qNHGNMQvLkB2ocRSo+aGhylHIvfK9CdxWkgU3zLXY5atUcq756mKSu51
-   SGGcCDJFc5vBX7/tl/3KWeaMmhooKj+96ejNJiqSQqFveAuFZEk3ZHc61
-   A==;
-X-IronPort-AV: E=Sophos;i="5.99,249,1677567600"; 
-   d="asc'?scan'208";a="213646175"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 May 2023 02:57:38 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Thu, 4 May 2023 02:57:33 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Thu, 4 May 2023 02:57:31 -0700
-Date:   Thu, 4 May 2023 10:57:12 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Changhuang Liang <changhuang.liang@starfivetech.com>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Conor Dooley <conor@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Walker Chen <walker.chen@starfivetech.com>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>, <vkoul@kernel.org>,
-        <linux-phy@lists.infradead.org>
-Subject: Re: [RESEND v2 1/6] dt-bindings: power: Add JH7110 AON PMU support
-Message-ID: <20230504-worshiper-ongoing-5581e1f2c2c4@wendy>
-References: <20230425-commotion-prewashed-876247bed4ab@spud>
- <0b0f9187-ad6b-a1d9-6ec4-beb8989ca731@starfivetech.com>
- <3ed72340-accc-4ad1-098f-4a2eb6448828@linaro.org>
- <482e812a-05dd-105c-189c-e926b4be9d28@starfivetech.com>
- <089e24d1-588a-4a56-f00b-0b35d1d99295@linaro.org>
- <ea5b5534-8fc2-7c84-a011-c1b42c6ed7a0@starfivetech.com>
- <1ac26c1a-1726-515d-6598-849a07ed0b86@linaro.org>
- <5adda0ad-965c-fbf0-878c-9d41d28b5c39@starfivetech.com>
- <86693969-59bf-5bcc-42a3-b6e94a0d6f3e@linaro.org>
- <fcfc8ba4-40a7-da43-3375-712bd7e7f4d5@starfivetech.com>
+        with ESMTP id S229577AbjEDKIz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 06:08:55 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDBAD4C04
+        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 03:08:53 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4f139de8cefso8150961e87.0
+        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 03:08:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683194932; x=1685786932;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jfq4Q0bzKgqrrdmGoknn8Gs1xzMa+RN+wrvnwiQJFjM=;
+        b=cSyFFQbvDN3WMuHAWCxfwE8GIqkKZ2xDrgeCKigzBghlDNPxcVEPKbZitXUsUPmgjD
+         PLh1yVu99pW7I1KjB7wNs3LebkD+4TymZRwylcxhj8RgdkcpawQxGSFN32ZetVaJBG8u
+         5TDmGIi3rLctyZrmXmVGKlWpz8ZyGdmAMTYoW+UZXuHercyRCxpgd9YbYh1jub883fRI
+         Y7M+tEKbV89W8fa5t+TDKGemGjc84/Uqn2Eklx/4fZnG1okOPAW0ONplIG7vwmpUQciv
+         fhSVoF96Neg1+uCMWWfgtBKJkFOohrqxnlmyzc/5sxI/We33grIu7gaSMIIQkzX5Lphe
+         6bEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683194932; x=1685786932;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jfq4Q0bzKgqrrdmGoknn8Gs1xzMa+RN+wrvnwiQJFjM=;
+        b=FqOYcvsyrstFlkyYCEVbyHzjuZTcusn9jzkIWPw7+SsU/VpF+d8rHtPEYuPoDdN3vD
+         x98XVQTVliPvAiuDOABUmu1YFOfODAxj0IsmqIp2SPpZOH4T36EiMShqMkl37l1JSW22
+         flqbpOFuM3CrmzWgD9pc7Q/ycRdiYThoWYu0evqXcHMilYQCSQH1DcYIqlAinjfrl4fP
+         V+uWSwIZRfqo2BreiLeHLFzNaCIabRw1hTJuUa4YJmbZxctvB0rhTL6ciqu2ZoiqRhM0
+         hZH80zFuhJXyhxqIpKxOWs3X+jBmolIDllRsnZzeBTm1t4M6UIHlFTkXdh2B7oBLXYqh
+         JPlg==
+X-Gm-Message-State: AC+VfDwp7nBQGRdLiITMPgvswL7PggCSFE8hpvbZPkVX7nRbCYp0pJ3z
+        UdzCVo1ZmwgsH0ybZhoRLFNruA==
+X-Google-Smtp-Source: ACHHUZ6Cq/N2Z10u4/9KpdPELT4RkD+I/Ruwf4DKPzXnq0qBktOAKbyATb7vY1fXJ1VKdyn8ZgZiog==
+X-Received: by 2002:a2e:721a:0:b0:2a4:fada:edd1 with SMTP id n26-20020a2e721a000000b002a4fadaedd1mr669030ljc.16.1683194932007;
+        Thu, 04 May 2023 03:08:52 -0700 (PDT)
+Received: from [192.168.1.101] (abyl248.neoplus.adsl.tpnet.pl. [83.9.31.248])
+        by smtp.gmail.com with ESMTPSA id u22-20020a2ea176000000b002ab1216de44sm5108191ljl.71.2023.05.04.03.08.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 May 2023 03:08:51 -0700 (PDT)
+Message-ID: <37603081-e41a-2977-7905-2063abed98cc@linaro.org>
+Date:   Thu, 4 May 2023 12:08:50 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="+N3Mbg4s7LcQH++0"
-Content-Disposition: inline
-In-Reply-To: <fcfc8ba4-40a7-da43-3375-712bd7e7f4d5@starfivetech.com>
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH v3 5/5] arm64: dts: qcom: qrb4210-rb2: Enable EUD debug
+ peripheral
+Content-Language: en-US
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     agross@kernel.org, andersson@kernel.org,
+        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
+        robh+dt@kernel.org, linux-usb@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org
+References: <20230504082644.1461582-1-bhupesh.sharma@linaro.org>
+ <20230504082644.1461582-6-bhupesh.sharma@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230504082644.1461582-6-bhupesh.sharma@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---+N3Mbg4s7LcQH++0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, May 04, 2023 at 05:48:20PM +0800, Changhuang Liang wrote:
-> On 2023/5/4 17:36, Krzysztof Kozlowski wrote:
-> > On 04/05/2023 10:43, Changhuang Liang wrote:
 
-> >> On 2023/5/4 15:26, Krzysztof Kozlowski wrote:
+On 4.05.2023 10:26, Bhupesh Sharma wrote:
+> Since the USB-C type port on the Qualcomm QRB4210-RB2 board
+> can be set primarily in a 'device' configuration (with the default
+> DIP switch settings), it makes sense to enable the EUD debug
+> peripheral on the board by default by setting the USB 'dr_mode' property
+> as 'otg'.
+> 
+> Now, the EUD debug peripheral can be enabled by executing:
+>  $ echo 1 > /sys/bus/platform/drivers/qcom_eud/1610000.eud/enable
+> 
+> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 27 +++++++++++++++++++++++-
+>  1 file changed, 26 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
+> index 1a0776a0cfd0..0ce72f1ebc10 100644
+> --- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
+> +++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
+> @@ -30,6 +30,10 @@ vph_pwr: vph-pwr-regulator {
+>  	};
+>  };
+>  
+> +&eud {
+> +	status = "okay";
+> +};
+> +
+>  &qupv3_id_0 {
+>  	status = "okay";
+>  };
+> @@ -253,7 +257,28 @@ &usb {
+>  
+>  &usb_dwc3 {
+>  	maximum-speed = "super-speed";
+> -	dr_mode = "peripheral";
+> +
+> +	/*
+> +	 * There is only one USB DWC3 controller on QRB4210 board and it is connected
+> +	 * via a DIP Switch:
+> +	 * - to either an USB - C type connector or an USB - A type connector
+> +	 *   (via a GL3590-S hub), and
+> +	 * - to either an USB - A type connector (via a GL3590-S hub) or a connector
+> +	 *   for further connection with a mezzanine board.
+> +	 *
+> +	 * All of the above hardware muxes would allow us to hook things up in
+> +	 * different ways to some potential benefit for static configurations (for e.g.
+> +	 * on one hand we can have two USB - A type connectors and a USB - Ethernet
+> +	 * connection available and on the other we can use the USB - C type in
+> +	 * peripheral mode).
+> +	 *
+> +	 * Note that since the USB - C type can be used only in peripehral mode,
+> +	 * so hardcoding the mode to 'peripheral' here makes sense.
+> +	 *
+> +	 * However since we want to use the EUD debug device, we set the mode as
+> +	 * 'otg' here.
+> +	 */
+> +	dr_mode = "otg";
+So if I understand correctly, EUD works via the type-C connector and
+only when the switch is turned such that the type-C connector is in use?
 
-> >>>> aon_syscon: syscon@17010000 {
-> >>>> 	compatible =3D "starfive,jh7110-aon-syscon", "syscon", "starfive,jh=
-7110-aon-pmu";
-> >>>> 	reg =3D <0x0 0x17010000 0x0 0x1000>;
-> >>>> 	#power-domain-cells =3D <1>;
-> >>>> };
-> >>>>
-> >>>> If right? I will tell the syscon patch's owner delete the "simple-mf=
-d" in aon_syscon node.
-> >>>
-> >>> Yes, but your compatibles are now wrong. Just compatible =3D
-> >>> "starfive,jh7110-aon-syscon", "syscon".
-> >>>
-> >>
-> >> If compatible =3D "starfive,jh7110-aon-syscon", "syscon". My pmu drive=
-rs need use=20
-> >> "starfive,jh7110-aon-syscon" to match.
-> >=20
-> > And how it would even work with your proposal
-> > "starfive,jh7110-aon-syscon", "syscon", "starfive,jh7110-aon-pmu"?
-> >=20
-> > Try...
-> >=20
-> >>  And my pmu series will add this=20
-> >> aon_syscon in yaml and device tree, so the syscon patch's owner don't =
-need=20
-> >> to add the aon_syscon in its yaml and device tree?
-> >=20
-> > I don't understand. But if you need to drop syscon, sure, drop it.
-> >=20
->=20
-> Yes, I think it can drop aon_syscon node in syscon patch series. And mayb=
-e my
-> compatible =3D "starfive,jh7110-aon-pmu", "syscon"; is better.
->=20
-> aon_syscon: syscon@17010000 {
-> 	compatible =3D "starfive,jh7110-aon-pmu", "syscon";
-
-I don't really understand why you actually need to have this compatible.
-Why not keep "starfive,jh7110-aon-syscon" & register the PMU using a
-software mechanism?
-
-> 	reg =3D <0x0 0x17010000 0x0 0x1000>;
-> 	#power-domain-cells =3D <1>;
-> };
->=20
-> Best regards,
-> Krzysztof
-
-^^^^^^^^^^^^^^
-btw, your mailer is doing something odd with quotation.
-
-Cheers,
-Conor.
-
---+N3Mbg4s7LcQH++0
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZFOBbgAKCRB4tDGHoIJi
-0kPXAQDud5N7nXj7gDMGD+6MnWsxLG803WiUGD455jBCgzvmeAEAps+uRCXiT365
-KJIw/A5d325YftGjykNMpI0usmQWPg4=
-=HjHL
------END PGP SIGNATURE-----
-
---+N3Mbg4s7LcQH++0--
+Konrad
+>  };
+>  
+>  &usb_hsphy {
