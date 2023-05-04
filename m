@@ -2,129 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C11D6F65BD
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 09:32:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B4396F65C2
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 09:32:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229965AbjEDHb7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 03:31:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48776 "EHLO
+        id S230084AbjEDHcc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 03:32:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229585AbjEDHb6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 03:31:58 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CAD62711
-        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 00:31:56 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-956ff2399b1so20254866b.3
-        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 00:31:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683185514; x=1685777514;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=miV7b+SshaQlHrD2jqZS3Us38P+QM+iYksIAvVacfxk=;
-        b=zrOnMPWAnce687JSlYUR27AdFML+XzKEnjg24lepkBzDlxOuyi3iCF94+CVHNcGGKs
-         lbXyiVZDtuS8IUgcJgu7OiGb83e5sdTyVPckDjZEbTMc/nDUE4uut1PTq3AG/LfFMsjH
-         EsOOLyqLdr9SJUTjkVs639ivEC8fcHxnbi4SUeCrY4+BZmnLOt+AIX+Us8tCVr1yT/zI
-         ad1vNzBMrw9FzOZCULvuW7r54MzVSTE8fZEfGidkqlSlCjx/CFvjsPfuFYAQx6rv0HdX
-         1QnoktYzMkCxavN8ICrSmAgMhors+DxbQp2t2O+xF/zVbX3nCgCKNBdf+Zj0/5JeUUr4
-         b4lA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683185514; x=1685777514;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=miV7b+SshaQlHrD2jqZS3Us38P+QM+iYksIAvVacfxk=;
-        b=PLxrP0L5oAD1P1lo1QPKJlrM5C5gIqsg+k3ZkrZgbXPBpT828Oog0sdovlhbCxP4qu
-         kNXocHvS5xG7mh4740xcVtOITB5OGyoIGpEFlzh6s5IsTFWa6v4nSzumc8GLl/+Pi2Q0
-         ktTfhtkXeImOB0gdTlDfsn9BmLZa0QhnlWwwdetCwBkcipGkzK9TcSOiwRcrG11WnZDL
-         vQAwfiNqbiw8+fZjpaH3fR6ERwWykmNmy4pBXw07khXZsU3ZpaioZDv/utkydmaWaQpk
-         TH3AcYOqsJrvU/R5v/HbC6GawmsD9gek9M2ahXDdKPPpobdYoBBxs80pS1qs2Fn+vern
-         waWA==
-X-Gm-Message-State: AC+VfDwjZiEkN5uefkueAVWQCJxCaxTu2he9U81iAc5mQrLAc+lZn6Jz
-        cn08TSZ6hEPplRtmm+1qu7lWsg==
-X-Google-Smtp-Source: ACHHUZ7pAW7s9g3po57k0AkL6h6LbDWiYlNgz4s2ncT/hDscFpRG5nwoXCfZhtRy6isyrcLNBlpahw==
-X-Received: by 2002:a17:907:3209:b0:94e:8d26:f610 with SMTP id xg9-20020a170907320900b0094e8d26f610mr4773457ejb.28.1683185514476;
-        Thu, 04 May 2023 00:31:54 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:cbf1:e7ef:fb81:e912? ([2a02:810d:15c0:828:cbf1:e7ef:fb81:e912])
-        by smtp.gmail.com with ESMTPSA id u13-20020a170906c40d00b0094aa087578csm18626016ejz.171.2023.05.04.00.31.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 May 2023 00:31:54 -0700 (PDT)
-Message-ID: <d5763073-3aaa-8a7f-1336-337c125b1a0e@linaro.org>
-Date:   Thu, 4 May 2023 09:31:52 +0200
+        with ESMTP id S230072AbjEDHc1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 03:32:27 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A63EE3586
+        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 00:32:19 -0700 (PDT)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <j.zink@pengutronix.de>)
+        id 1puTRk-0001GQ-Mb; Thu, 04 May 2023 09:32:12 +0200
+Message-ID: <0a5d631a-037e-5158-82dd-e53d478befea@pengutronix.de>
+Date:   Thu, 4 May 2023 09:32:11 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH] dt-bindings: usb: Add binding for Microchip usb5744 hub
- controller
-Content-Language: en-US
-To:     Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
-        monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com,
-        ilias.apalodimas@linaro.org
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Piyush Mehta <piyush.mehta@amd.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org
-References: <cca068980ae0b902168a9a9b78cab4efb43157a8.1683121150.git.michal.simek@amd.com>
- <4aa7adbf-f89e-6819-64d2-5942a456528a@linaro.org>
- <eb325b2a-d265-d8bb-8e98-9eef8f03355a@amd.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <eb325b2a-d265-d8bb-8e98-9eef8f03355a@amd.com>
-Content-Type: text/plain; charset=UTF-8
+ Thunderbird/102.10.0
+Subject: Re: [PATCH 1/2] dt-bindings: phy: imx8mq-usb: add phy tuning
+ properties
+Content-Language: en-US, de-DE
+From:   Johannes Zink <j.zink@pengutronix.de>
+To:     Rob Herring <robh@kernel.org>
+Cc:     kishon@kernel.org, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, festevam@gmail.com,
+        s.hauer@pengutronix.de, vkoul@kernel.org, haibo.chen@nxp.com,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-imx@nxp.com, kernel@pengutronix.de,
+        linux-phy@lists.infradead.org, shawnguo@kernel.org,
+        linux-arm-kernel@lists.infradead.org, jun.li@nxp.com,
+        patchwork-jzi@pengutronix.de
+References: <20230405112118.1256151-1-j.zink@pengutronix.de>
+ <20230405112118.1256151-2-j.zink@pengutronix.de>
+ <5398cbe0-c681-5dd7-0b3e-3a586cc4915f@linaro.org>
+ <3f7257ee36dc44f162a87281c8279fd5bad91dea.camel@pengutronix.de>
+ <95b4afd4-c93e-628b-fd22-6fcbc1d1234e@linaro.org>
+ <b394b456540943b1022a7b093bf369924fca0566.camel@pengutronix.de>
+ <20230412133921.GA2017891-robh@kernel.org>
+ <6953b608-973f-c603-f852-edf7ba183e64@pengutronix.de>
+ <67d283f3-d0db-5fc0-79e9-e7531d591aab@pengutronix.de>
+In-Reply-To: <67d283f3-d0db-5fc0-79e9-e7531d591aab@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: j.zink@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-8.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/05/2023 09:25, Michal Simek wrote:
-> 
-> 
-> On 5/4/23 08:46, Krzysztof Kozlowski wrote:
->> On 03/05/2023 15:39, Michal Simek wrote:
->>> The Microchip usb5744 is a SS/HS USB 3.0 hub controller with 4 ports.
->>> The binding describes USB related aspects of the USB5744 hub, it as
->>> well cover the option of connecting the controller as an i2c slave.
->>> When i2c interface is connected hub needs to be initialized first.
->>> Hub itself has fixed i2c address 0x2D but hardcoding address is not good
->>> idea because address can be shifted by i2c address translator in the
->>> middle.
->>>
->>> Signed-off-by: Piyush Mehta <piyush.mehta@amd.com>
->>> Signed-off-by: Michal Simek <michal.simek@amd.com>
->>> ---
->>>
->>> It looks like that usb8041 has also an optional i2c interface which is not
->>> covered. But it is mentioned at commit 40e58a8a7ca6 ("dt-bindings: usb:
->>> Add binding for TI USB8041 hub controller").
->>>
->>> i2c-bus name property was suggested by Rob at
->>> https://lore.kernel.org/all/CAL_JsqJedhX6typpUKbnzV7CLK6UZVjq3CyG9iY_j5DLPqvVdw@mail.gmail.com/
->>> and
->>> https://lore.kernel.org/all/CAL_JsqJZBbu+UXqUNdZwg-uv0PAsNg55026PTwhKr5wQtxCjVQ@mail.gmail.com/
->>>
->>> the question is if adding address like this is acceptable.
->>> But it must be specified.
->>
->> Why? phandle points it explicitly.
-> 
-> Ok it means just list usb hub on i2c with label and point to it. Works for me.
+Hi Rob, hi Krzysztof,
 
-Right. I missed you want the address of the hub but phandle goes to the
-bus. I think listing it on I2C bus (see
-arch/arm/boot/dts/vf610-zii-scu4-aib.dts) should work. I think we can
-have I2C devices without compatibles.
+[snip]
+ > gentle ping - any opinions on this? Shall I just send a V2 along the 
+lines of the phy-stm32-usbphy.c?
 
-The problem is that property should have only one definition/type and
-i2c-bus is already used in other cases as just "phandle". If we go with
-your phandle+address approach, then this should be phandle-array with
-items and then we have two different types.
+This would be something like (example for the trim-hs-current, taken 
+from pyh-stm32-usbphyc):
 
-Best regards,
-Krzysztof
+       st,trim-hs-current:
+         description: |
+           Controls HS driver current trimming for choke compensation
+           - <0> = 18.87 mA target current / nominal + 0%
+           - <1> = 19.165 mA target current / nominal + 1.56%
+           - <2> = 19.46 mA target current / nominal + 3.12%
+           - <3> = 19.755 mA target current / nominal + 4.68%
+           - <4> = 20.05 mA target current / nominal + 6.24%
+           - <5> = 20.345 mA target current / nominal + 7.8%
+           - <6> = 20.64 mA target current / nominal + 9.36%
+           - <7> = 20.935 mA target current / nominal + 10.92%
+           - <8> = 21.23 mA target current / nominal + 12.48%
+           - <9> = 21.525 mA target current / nominal + 14.04%
+           - <10> = 21.82 mA target current / nominal + 15.6%
+           - <11> = 22.115 mA target current / nominal + 17.16%
+           - <12> = 22.458 mA target current / nominal + 19.01%
+           - <13> = 22.755 mA target current / nominal + 20.58%
+           - <14> = 23.052 mA target current / nominal + 22.16%
+           - <15> = 23.348 mA target current / nominal + 23.73%
+         $ref: /schemas/types.yaml#/definitions/uint32
+         minimum: 0
+         maximum: 15
+         default: 0
 
+If you think something along these lines is acceptable, I would like to 
+prepare and send a V2.
+
+Best regards
+Johannes
+
+[snip]
