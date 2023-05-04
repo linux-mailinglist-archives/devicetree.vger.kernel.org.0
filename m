@@ -2,116 +2,262 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FE1E6F7081
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 19:10:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D8986F7086
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 19:10:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229934AbjEDRK3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 13:10:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42378 "EHLO
+        id S229639AbjEDRKz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 13:10:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229761AbjEDRKX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 13:10:23 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA54B46A3;
-        Thu,  4 May 2023 10:10:18 -0700 (PDT)
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 344GYtMP016288;
-        Thu, 4 May 2023 19:10:02 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=rkbvLyVT3Mb/rSSlFLY4A805v2Hk2Yhfbj8z298Ej7M=;
- b=BSdj86tRf6c/laZrSlGXBL3fYo19jKVP2cAxj8qbQ63UZu2NCz8DnuhxngaNn9CWlCh6
- anfKkr3HY3kWzAmzD8//aLI0sCLRt/SaQX7cKWho/TPXSApiZeFsNs72EI/G+yJwr9ZF
- lgOBn15eIgjKs08ydxGOQ/mqOOGaxhS39iwmf1pwhqQ+FyI7MLW/a4MBuGIpNXfU6bRx
- UxJEYuuxjYs8vmzW/OuPs1fXrsupmM6xU3mwRDGqZbZrzN12/TeMXTVGjOpy6pPjf7S8
- mvYWjRED/zdlnouyq3Rue0t1epNrM6fry8VxGHcaaxIAc2y2EKzwr6UMj/Md1zG8xUGJ 2Q== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3qc6uwcjhh-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 04 May 2023 19:10:02 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id E7AE910002A;
-        Thu,  4 May 2023 19:10:01 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C77DC227F0C;
-        Thu,  4 May 2023 19:10:01 +0200 (CEST)
-Received: from [10.201.20.168] (10.201.20.168) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Thu, 4 May
- 2023 19:10:00 +0200
-Message-ID: <9100bb4f-d12b-79f6-659c-0005294886fa@foss.st.com>
-Date:   Thu, 4 May 2023 19:09:56 +0200
+        with ESMTP id S229717AbjEDRKs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 13:10:48 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFAE659EA
+        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 10:10:28 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-3f1738d0d4cso5711335e9.1
+        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 10:10:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683220227; x=1685812227;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=pJpYk7FyfhnD3BtuxCCzvxRDbIq/0dZEMKhDfDZ1Z+U=;
+        b=Q9AvnvHwE5GSMeGC8jWp6Nj/YSzX0zhUv0s9ljtRnNTHUQK2qAkxwqPV1wU2d5ZwfN
+         lQSV5Kbyj57j+s9eCtYj3LUZ17NawG7sqWXH14qLZlo1s/0QVda0M2YCTV9I3hsIkViv
+         gWyxno1lg/nwW0bYxUUKm88jzKrZj0/QtcM0VC902mxWIK0GVCfeu9K2PXBS7RU9U2wv
+         sY942RASuaqv6oqEuhvBtjACcZV85c1N9wtmG9rdYdZr0TuT1b04p23lzKCZ2Pjx0Kth
+         MFwQOIZI456IlTaeeKnqaxLaHNtvA6TV6YGCQijuryq3rHJJpoIYBrRpHb7HwMMakd07
+         S+cw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683220227; x=1685812227;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pJpYk7FyfhnD3BtuxCCzvxRDbIq/0dZEMKhDfDZ1Z+U=;
+        b=kFrsz3DznFVCjWGRaeNzSUcbfwxSS3gjpszTHFOXEJOzOsGwLDaD8ZcjG2GF6iCEx6
+         zOcaHClvEP7Pg0cho0x2SXDlsGleqkfung+n8CvyvK/yraRYZAO4jEMqtqfyucQ2MUBb
+         Sz5BVw9dnijJ4fMaZ399P+/+cNKVbJlkITf4bzSKC/CDllY/ajThHotZciIBySYz6oW2
+         /lDql+2ZfcHGXUX6w4yYl8LE4oTjqQOeu+76ycp0u1b75989Rf1xEBwpYoaL7v4v+TaC
+         BW4GdauOA1CwwBn/1tDZ2JdZFOySYSZy4JY7VnB2/aSVKpB6j3z7PYpoUG/rZcSOziIA
+         YS1A==
+X-Gm-Message-State: AC+VfDzjhCepQjJzAP8uMucLAG8NwGYTbkL+8Gkcq/C4Z7pNOt0DiQuO
+        opbhjeu/2BYMw40z1OcI4kiFJybmlLOk1ZuGjlT/yA==
+X-Google-Smtp-Source: ACHHUZ41LmJZheJk/hsWyMJ2KDBn+M67xJfyItsrxUnGzlMD8NznalIeiSZvmwu8HOuRatJjMpWQM2HmtzeAsTHMc24=
+X-Received: by 2002:a5d:5547:0:b0:306:30e2:c84c with SMTP id
+ g7-20020a5d5547000000b0030630e2c84cmr2929684wrw.49.1683220226723; Thu, 04 May
+ 2023 10:10:26 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH 1/7] dt-bindings: spi: stm32: add address-cells and
- size-cells into yaml
-To:     Rob Herring <robh@kernel.org>
-CC:     Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Alain Volmat <alain.volmat@foss.st.com>,
-        <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20230428121524.2125832-1-valentin.caron@foss.st.com>
- <20230428121524.2125832-2-valentin.caron@foss.st.com>
- <20230428214157.GA322525-robh@kernel.org>
-Content-Language: en-US
-From:   Valentin CARON <valentin.caron@foss.st.com>
-In-Reply-To: <20230428214157.GA322525-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.201.20.168]
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-04_10,2023-05-04_01,2023-02-09_01
-X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230504082644.1461582-1-bhupesh.sharma@linaro.org>
+ <20230504082644.1461582-4-bhupesh.sharma@linaro.org> <344b34d8-c69e-bde4-7446-30d32657ee40@linaro.org>
+In-Reply-To: <344b34d8-c69e-bde4-7446-30d32657ee40@linaro.org>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Thu, 4 May 2023 22:40:14 +0530
+Message-ID: <CAH=2NtzVEatke2LFyTFJDBgrQ07yz-AQgV7ubq+F6oxPmbKiZw@mail.gmail.com>
+Subject: Re: [PATCH v3 3/5] usb: misc: eud: Add driver support for SM6115 / SM4250
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        agross@kernel.org, andersson@kernel.org,
+        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
+        robh+dt@kernel.org, linux-usb@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Thu, 4 May 2023 at 15:22, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>
+> On 4.05.2023 10:26, Bhupesh Sharma wrote:
+> > Add SM6115 / SM4250 SoC EUD support in qcom_eud driver.
+> >
+> > On some SoCs (like the SM6115 / SM4250 SoC), the mode manager
+> > needs to be accessed only via the secure world (through 'scm'
+> > calls).
+> >
+> > Also, the enable bit inside 'tcsr_check_reg' needs to be set
+> > first to set the eud in 'enable' mode on these SoCs.
+> >
+> > Since this difference comes from how the firmware is configured, so
+> > the driver now relies on the presence of an extra boolean DT property
+> > to identify if secure access is needed.
+> >
+> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> > ---
+> >  drivers/usb/misc/Kconfig    |  1 +
+> >  drivers/usb/misc/qcom_eud.c | 66 ++++++++++++++++++++++++++++++++++---
+> >  2 files changed, 62 insertions(+), 5 deletions(-)
+> >
+> > diff --git a/drivers/usb/misc/Kconfig b/drivers/usb/misc/Kconfig
+> > index 99b15b77dfd5..fe1b5fec1dfc 100644
+> > --- a/drivers/usb/misc/Kconfig
+> > +++ b/drivers/usb/misc/Kconfig
+> > @@ -147,6 +147,7 @@ config USB_APPLEDISPLAY
+> >  config USB_QCOM_EUD
+> >       tristate "QCOM Embedded USB Debugger(EUD) Driver"
+> >       depends on ARCH_QCOM || COMPILE_TEST
+> > +     select QCOM_SCM
+> >       select USB_ROLE_SWITCH
+> >       help
+> >         This module enables support for Qualcomm Technologies, Inc.
+> > diff --git a/drivers/usb/misc/qcom_eud.c b/drivers/usb/misc/qcom_eud.c
+> > index b7f13df00764..b4736edcc64c 100644
+> > --- a/drivers/usb/misc/qcom_eud.c
+> > +++ b/drivers/usb/misc/qcom_eud.c
+> > @@ -5,12 +5,14 @@
+> >
+> >  #include <linux/bitops.h>
+> >  #include <linux/err.h>
+> > +#include <linux/firmware/qcom/qcom_scm.h>
+> >  #include <linux/interrupt.h>
+> >  #include <linux/io.h>
+> >  #include <linux/iopoll.h>
+> >  #include <linux/kernel.h>
+> >  #include <linux/module.h>
+> >  #include <linux/of.h>
+> > +#include <linux/of_device.h>
+> >  #include <linux/platform_device.h>
+> >  #include <linux/slab.h>
+> >  #include <linux/sysfs.h>
+> > @@ -30,15 +32,22 @@
+> >  #define EUD_INT_SAFE_MODE    BIT(4)
+> >  #define EUD_INT_ALL          (EUD_INT_VBUS | EUD_INT_SAFE_MODE)
+> >
+> > +struct eud_soc_cfg {
+> > +     u32 tcsr_check_offset;
+> > +};
+> Not sure if turning this into a struct is necessary.. can't
+> we just store the offset, or do we expect more changes?
 
-On 4/28/23 23:41, Rob Herring wrote:
-> On Fri, Apr 28, 2023 at 02:15:18PM +0200, Valentin Caron wrote:
->> Theses properties need to be described to satisfy dtbs_check.
-> No, they are defined in spi-controller.yaml, so they should not be
-> needed here.
+I can see future versions already supporting newer features, so I kept
+it a struct for now.
 
-Yes, you're right, I cannot remember why I need to add theses properties.
+> > +
+> >  struct eud_chip {
+> >       struct device                   *dev;
+> >       struct usb_role_switch          *role_sw;
+> > +     const struct eud_soc_cfg        *eud_cfg;
+> >       void __iomem                    *base;
+> >       void __iomem                    *mode_mgr;
+> >       unsigned int                    int_status;
+> >       int                             irq;
+> >       bool                            enabled;
+> >       bool                            usb_attached;
+> > +     bool                            secure_mode_enable;
+> > +     phys_addr_t                     secure_mode_mgr;
+> >  };
+> >
+> >  static int enable_eud(struct eud_chip *priv)
+> > @@ -46,7 +55,11 @@ static int enable_eud(struct eud_chip *priv)
+> >       writel(EUD_ENABLE, priv->base + EUD_REG_CSR_EUD_EN);
+> >       writel(EUD_INT_VBUS | EUD_INT_SAFE_MODE,
+> >                       priv->base + EUD_REG_INT1_EN_MASK);
+> > -     writel(1, priv->mode_mgr + EUD_REG_EUD_EN2);
+> > +
+> > +     if (priv->secure_mode_mgr)
+> > +             qcom_scm_io_writel(priv->secure_mode_mgr + EUD_REG_EUD_EN2, BIT(0));
+> #define [field name] BIT(0)
 
-Thank you,
-Valentin
+Ok.
 
->> Signed-off-by: Valentin Caron <valentin.caron@foss.st.com>
->> ---
->>   Documentation/devicetree/bindings/spi/st,stm32-spi.yaml | 3 +++
->>   1 file changed, 3 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/spi/st,stm32-spi.yaml b/Documentation/devicetree/bindings/spi/st,stm32-spi.yaml
->> index 9ca1a843c820..c599eb359d56 100644
->> --- a/Documentation/devicetree/bindings/spi/st,stm32-spi.yaml
->> +++ b/Documentation/devicetree/bindings/spi/st,stm32-spi.yaml
->> @@ -29,6 +29,9 @@ allOf:
->>           st,spi-midi-ns: false
->>   
->>   properties:
->> +  "#address-cells": true
->> +  "#size-cells": true
->> +
->>     compatible:
->>       enum:
->>         - st,stm32f4-spi
->> -- 
->> 2.25.1
->>
+> > +     else
+> > +             writel(1, priv->mode_mgr + EUD_REG_EUD_EN2);
+> s/1/[field name]/
+
+Ok.
+
+> >       return usb_role_switch_set_role(priv->role_sw, USB_ROLE_DEVICE);
+> >  }
+> > @@ -54,7 +67,11 @@ static int enable_eud(struct eud_chip *priv)
+> >  static void disable_eud(struct eud_chip *priv)
+> >  {
+> >       writel(0, priv->base + EUD_REG_CSR_EUD_EN);
+> > -     writel(0, priv->mode_mgr + EUD_REG_EUD_EN2);
+> > +
+> > +     if (priv->secure_mode_mgr)
+> > +             qcom_scm_io_writel(priv->secure_mode_mgr + EUD_REG_EUD_EN2, 0);
+> > +     else
+> > +             writel(0, priv->mode_mgr + EUD_REG_EUD_EN2);
+> >  }
+> >
+> >  static ssize_t enable_show(struct device *dev,
+> > @@ -178,12 +195,15 @@ static void eud_role_switch_release(void *data)
+> >  static int eud_probe(struct platform_device *pdev)
+> >  {
+> >       struct eud_chip *chip;
+> > +     struct resource *res;
+> > +     phys_addr_t tcsr_base, tcsr_check;
+> >       int ret;
+> >
+> >       chip = devm_kzalloc(&pdev->dev, sizeof(*chip), GFP_KERNEL);
+> >       if (!chip)
+> >               return -ENOMEM;
+> >
+> > +
+> ?
+
+Oops, I will fix it in v4.
+
+> >       chip->dev = &pdev->dev;
+> >
+> >       chip->role_sw = usb_role_switch_get(&pdev->dev);
+> > @@ -200,9 +220,40 @@ static int eud_probe(struct platform_device *pdev)
+> >       if (IS_ERR(chip->base))
+> >               return PTR_ERR(chip->base);
+> >
+> > -     chip->mode_mgr = devm_platform_ioremap_resource(pdev, 1);
+> > -     if (IS_ERR(chip->mode_mgr))
+> > -             return PTR_ERR(chip->mode_mgr);
+> > +     chip->secure_mode_enable = of_property_read_bool(chip->dev->of_node,
+> > +                                             "qcom,secure-mode-enable");
+> If we map this region iff it's supposed to be used, we may just check
+> for its presence and skip the additional property. Then, the address
+> being non-NULL would invalidate the boolean property.
+
+Bjorn requested during the review of the last version that we should not ioremap
+the secure mode_mgr region. So, I followed this approach instead.
+
+> > +     /*
+> > +      * EUD block on a few Qualcomm SoCs need secure register access.
+> > +      * Check for the same.
+> > +      */
+> > +     if (chip->secure_mode_enable) {
+> > +             res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
+> > +             if (!res)
+> > +                     return dev_err_probe(chip->dev, -ENODEV,
+> > +                                          "failed to get secure_mode_mgr reg base\n");
+> > +
+> > +             chip->secure_mode_mgr = res->start;
+> > +     } else {
+> > +             chip->mode_mgr = devm_platform_ioremap_resource(pdev, 1);
+> > +             if (IS_ERR(chip->mode_mgr))
+> > +                     return PTR_ERR(chip->mode_mgr);
+> > +     }
+> > +
+> > +     /* Check for any SoC specific config data */
+> > +     chip->eud_cfg = of_device_get_match_data(&pdev->dev);
+> > +     if (chip->eud_cfg) {
+> > +             res = platform_get_resource(pdev, IORESOURCE_MEM, 2);
+> I'd vouch to use _byname, in case we get some EUD impl that needs a
+> different sort of a register set..
+
+Sure, it makes sense.
+
+> > +             if (!res)
+> > +                     return dev_err_probe(chip->dev, -ENODEV,
+> > +                                          "failed to get tcsr reg base\n");
+> > +
+> > +             tcsr_base = res->start;
+> > +             tcsr_check = tcsr_base + chip->eud_cfg->tcsr_check_offset;
+> > +
+> > +             ret = qcom_scm_io_writel(tcsr_check, BIT(0));
+> s/BIT(0)/..
+
+Ok.
+
+Thanks,
+Bhupesh
