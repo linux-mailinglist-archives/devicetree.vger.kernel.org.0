@@ -2,89 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 938A96F69FD
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 13:31:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F15976F6356
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 05:32:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230253AbjEDLbn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 07:31:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48874 "EHLO
+        id S229584AbjEDDcH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 May 2023 23:32:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229935AbjEDLbe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 07:31:34 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4D2659E2
-        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 04:30:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1683199845;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=etM/xsyH0Yws4Ss9w0FeDxzo7Qe+jK+oUIOXEFjGcd8=;
-        b=dlYnvWjIPMMIJNlhZbqnWYvraz60hLGKi+tufyS7jpeEfNdTJfI+34q0JntlLKduAEBxLo
-        hozEJmqNDVZuBohE4yrQYf6ieo7+xBdQum0Y2HSeBhkzcRd75TbzKQACHICNFJW9e2I3xc
-        6vWyiCooEOGjGU1F4DSt+s2WwzGp6PM=
-Received: from mail-yw1-f199.google.com (mail-yw1-f199.google.com
- [209.85.128.199]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-659-KnsJAf-GM3aTwJOF4Wq6XA-1; Thu, 04 May 2023 07:30:37 -0400
-X-MC-Unique: KnsJAf-GM3aTwJOF4Wq6XA-1
-Received: by mail-yw1-f199.google.com with SMTP id 00721157ae682-55a42c22300so3809647b3.2
-        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 04:30:37 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683199836; x=1685791836;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=etM/xsyH0Yws4Ss9w0FeDxzo7Qe+jK+oUIOXEFjGcd8=;
-        b=RHRo2ezlwZZnf/vosxGGPip6s7bCXJDdMfxE4/RjF7dlqDX0KaIugeM1iSLqmIrDhm
-         +sdUMxIuitau8mFlXhhmPa2n6AxUJbF1zQv2HCQfAbT9cvTlKLbhXCWNo8qqfR1l+Las
-         dUH8mopfrDvH/GnZ8uPtyFgS3Ifi3e+Iul9msgSqQGv7kw2ivJlIZW/F4xKHu0LrLe/X
-         Z6EpD9ZDdRVOsEQ1jrx4Bz1qLW4AObF3I8kZMmcBgh5jlTHdxVSHO0xFscvMYVTNvNJH
-         RGUWc+JdBE085UCVeDGs08LZI7jGovrlY0KliSpIR5++eCR1YptzNKZqwrxzrfJjgl4X
-         Usgw==
-X-Gm-Message-State: AC+VfDwhzdRIirC/pB7ryp4HyU+180J3k1BryRgqz3g0cHQ04GgMIMND
-        mBIpMkhSYDOPXitf4QYsZhDBOFNdKLoTMUlfBCR8nrb0K0VdtxfKheHmDTduXwFxrHvhzVACgUG
-        VjlubIwIPtax9EuHwU0Nkew==
-X-Received: by 2002:a0d:df47:0:b0:546:cbe:df90 with SMTP id i68-20020a0ddf47000000b005460cbedf90mr2130342ywe.30.1683199836745;
-        Thu, 04 May 2023 04:30:36 -0700 (PDT)
-X-Google-Smtp-Source: ACHHUZ6WqSfhXeOgcoG9W336jrt9NurtLdPMvCA2qb+J24+Wvkaf3h4qxOXU5wi4L6FB4BZ+du91Sw==
-X-Received: by 2002:a0d:df47:0:b0:546:cbe:df90 with SMTP id i68-20020a0ddf47000000b005460cbedf90mr2130319ywe.30.1683199836481;
-        Thu, 04 May 2023 04:30:36 -0700 (PDT)
-Received: from brian-x1 (c-73-214-169-22.hsd1.pa.comcast.net. [73.214.169.22])
-        by smtp.gmail.com with ESMTPSA id c198-20020a814ecf000000b0054fa9e39be0sm334848ywb.56.2023.05.04.04.30.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 May 2023 04:30:35 -0700 (PDT)
-Date:   Thu, 4 May 2023 07:30:33 -0400
-From:   Brian Masney <bmasney@redhat.com>
-To:     Andrew Halaney <ahalaney@redhat.com>
-Cc:     linux-kernel@vger.kernel.org, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 v0/4] sa8155p-adp devicetree ethernet cleanup
-Message-ID: <ZFOXWTwOxK2+SioB@brian-x1>
-References: <20230501212446.2570364-1-ahalaney@redhat.com>
+        with ESMTP id S229499AbjEDDcG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 23:32:06 -0400
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D9D9198A;
+        Wed,  3 May 2023 20:32:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1683171125; x=1714707125;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=rjq6kEAE37ZXdqXsLJPk3r0TYSNxOiuwP3NhKVSX78M=;
+  b=bAVU7kA3YwKmBs0gKRttJAWAuNNZkJcFNLM9TzlAOp2jNJXRDMlrRO7y
+   7WnMzjAFdrcvzjl0kk/Aej4VeG3i1PPZXaeoRz4rnDDpc/NkV3Ik1Kvbr
+   TxCCU6scZwBu5++U7eqc8cAiz1Me1d4Vx/z1VhbJux5rXzayaBgVelFm/
+   rziyewYyMCjhR7na9hg8fipWJvniA/1gngFN3G353T5qt2QROXp92zxSs
+   b6nl8Omn9H8EFP6RsDW1k1VFtl5q4STou0I5Fl0NeUW/7jiO/1cTL9Yen
+   pNv8Kh3UN9MfqosRJB6YhEpyW+eofjcsS9ceRRuH26WPp4/HVi46VilsV
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10699"; a="411998246"
+X-IronPort-AV: E=Sophos;i="5.99,249,1677571200"; 
+   d="scan'208";a="411998246"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 May 2023 20:32:04 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10699"; a="786354576"
+X-IronPort-AV: E=Sophos;i="5.99,249,1677571200"; 
+   d="scan'208";a="786354576"
+Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
+  by FMSMGA003.fm.intel.com with ESMTP; 03 May 2023 20:32:01 -0700
+Date:   Thu, 4 May 2023 19:32:13 +0800
+From:   Xu Yilun <yilun.xu@intel.com>
+To:     Ivan Bornyakov <i.bornyakov@metrotek.ru>
+Cc:     Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org,
+        Moritz Fischer <mdf@kernel.org>, Wu Hao <hao.wu@intel.com>,
+        Tom Rix <trix@redhat.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Vladimir Georgiev <v.georgiev@metrotek.ru>, system@metrotek.ru,
+        linux-fpga@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] dt-bindings: fpga: replace Ivan Bornyakov
+ maintainership
+Message-ID: <ZFOXvQAjA5bri+Zb@yilunxu-OptiPlex-7050>
+References: <20230428140150.2592-1-i.bornyakov@metrotek.ru>
+ <20230428140150.2592-3-i.bornyakov@metrotek.ru>
+ <20230428220415.GA351049-robh@kernel.org>
+ <20230429082919.i4pmerf4qeckl3w6@x260>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230501212446.2570364-1-ahalaney@redhat.com>
-User-Agent: Mutt/2.2.9 (2022-11-12)
-X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <20230429082919.i4pmerf4qeckl3w6@x260>
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DATE_IN_FUTURE_06_12,
+        DKIMWL_WL_HIGH,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 01, 2023 at 04:24:42PM -0500, Andrew Halaney wrote:
-> This series cleans up some devicetree conventions in sa8155p-adp based
-> on feedback from other platforms.
+On 2023-04-29 at 11:29:19 +0300, Ivan Bornyakov wrote:
+> On Fri, Apr 28, 2023 at 05:04:15PM -0500, Rob Herring wrote:
+> > On Fri, Apr 28, 2023 at 05:01:50PM +0300, Ivan Bornyakov wrote:
+> > > As I'm leaving Metrotek, hand over Lattice Slave SPI sysCONFIG FPGA
+> > > manager and Microchip Polarfire FPGA manager maintainership duties to
+> > > Vladimir.
+> > > 
+> > > Signed-off-by: Ivan Bornyakov <i.bornyakov@metrotek.ru>
+> > > Signed-off-by: Vladimir Georgiev <v.georgiev@metrotek.ru>
+> > 
+> > The patch sender's Sob goes last. And only Vladimir should add his Sob 
+> > (when an author or sender).
+> > 
 > 
-> The hope is that by getting it right here, future contributors won't
-> repeat the same mistakes as I did!
+> For the moment, when I'm still sender, would it be alright if we replace
+> Vladimir's "Signed-off-by" to "Acked-by"?
 
-Reviewed-by: Brian Masney <bmasney@redhat.com>
+Yes. I actually need an "Acked-by" that sent from Vladimir.
 
+> 
+> > > ---
+> > >  Documentation/devicetree/bindings/fpga/lattice,sysconfig.yaml   | 2 +-
+> > >  .../devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml    | 2 +-
+> > >  2 files changed, 2 insertions(+), 2 deletions(-)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/fpga/lattice,sysconfig.yaml b/Documentation/devicetree/bindings/fpga/lattice,sysconfig.yaml
+> > > index 4fb05eb84e2a..164331eb6275 100644
+> > > --- a/Documentation/devicetree/bindings/fpga/lattice,sysconfig.yaml
+> > > +++ b/Documentation/devicetree/bindings/fpga/lattice,sysconfig.yaml
+> > > @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+> > >  title: Lattice Slave SPI sysCONFIG FPGA manager
+> > >  
+> > >  maintainers:
+> > > -  - Ivan Bornyakov <i.bornyakov@metrotek.ru>
+> > > +  - Vladimir Georgiev <v.georgiev@metrotek.ru>
+> > >  
+> > >  description: |
+> > >    Lattice sysCONFIG port, which is used for FPGA configuration, among others,
+> > > diff --git a/Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml b/Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
+> > > index 527532f039ce..a157eecfb5fc 100644
+> > > --- a/Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
+> > > +++ b/Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
+> > > @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+> > >  title: Microchip Polarfire FPGA manager.
+> > >  
+> > >  maintainers:
+> > > -  - Ivan Bornyakov <i.bornyakov@metrotek.ru>
+> > > +  - Vladimir Georgiev <v.georgiev@metrotek.ru>
+> > >  
+> > >  description:
+> > >    Device Tree Bindings for Microchip Polarfire FPGA Manager using slave SPI to
+> > > -- 
+> > > 2.40.0
+> > > 
+> > > 
+> 
