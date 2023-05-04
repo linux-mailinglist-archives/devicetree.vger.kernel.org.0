@@ -2,154 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49F4A6F6D4C
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 15:51:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8DD36F6D97
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 16:17:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231264AbjEDNu6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 09:50:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41974 "EHLO
+        id S230424AbjEDORB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 10:17:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230366AbjEDNu5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 09:50:57 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F7BF12A
-        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 06:50:56 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-3f3331f928cso4131815e9.2
-        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 06:50:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683208254; x=1685800254;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :cc:to:content-language:subject:reply-to:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=CBa5yf09RWH4yiJkKKfGA5cpxuaznqIjeI5vqh5jKnc=;
-        b=xXTCdKLJQRFOFCzlTq25XVRG7iQ2YTig8JrOBlX202YIt83MpXRScjaLxgVkY0zWnX
-         DAVukRu+mKp/O1lsgwViKkyFW5TflkdO+9RSnOsPHJf1UAuvmWhLpdvus2AS6Xx56NDm
-         CfWYEWqfh/q/sQRS9cAWeu5+0DKAw8bGkidhmv8yzMLKCAVlMYDjKTkaErzmqMlx9vh1
-         DbS/JUBo+CCNe2h2qgjAEEJuEUOYtQ2xsNqwMrt8nEvQB4N73in46NuRPL+RS0Rw5t61
-         ZjElPUzI86zAglFLOI5kjjaAYdQ2zK8mOxkBdMX3cvwx4ZC5ZEWZEDh6z887sMcghrwC
-         EYaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683208254; x=1685800254;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :cc:to:content-language:subject:reply-to:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CBa5yf09RWH4yiJkKKfGA5cpxuaznqIjeI5vqh5jKnc=;
-        b=llHJiKQEyXWy8hb+LUNF5buMTYyXTKxmx0MQ3MB0VzuvjTBM0HFHUVszkITVzjvpQO
-         q6xcbGkVBPsADtuCpJsa/xB+9S6sMcyGbx2ZLHrocHDcf1q/7PAWuUKO+oF5SibXTU0Y
-         pz4JqzOqJ1zA47dD3ZbUDDaV82in9cSiSHMBkHi9oig+ufDi7EeN9azAZrqMqMZbgEEe
-         6lEmiHkVyrW41p5b4vWicAbVE21JrBtlu8XpxLXqXwpXLoDupI/nm2SH87quErS1VWsR
-         BZU0TGEzmDEQwYcrPuZQqz6FEJdgA3R5hjd5UJc9vwimT0HpINvZrxmz5PMOOEpUsEua
-         5xxw==
-X-Gm-Message-State: AC+VfDy4rNvL4+Z2yDvgj4K5SB9yw5luZcsTgpsdCPOXhOZnDoMgMyWO
-        gJ8kJASVvmGg7coWn45MhRjgog==
-X-Google-Smtp-Source: ACHHUZ5cfrBrKo0XKh8lYl7HP9vVSfMA8XPRqej+s9gQ4qUP1IFXfzgg0heMVynEUJsKqQXaLU6aZw==
-X-Received: by 2002:a05:6000:1b82:b0:306:2a21:b5ff with SMTP id r2-20020a0560001b8200b003062a21b5ffmr2371851wru.17.1683208254591;
-        Thu, 04 May 2023 06:50:54 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:52fb:80bd:bee3:f741? ([2a01:e0a:982:cbb0:52fb:80bd:bee3:f741])
-        by smtp.gmail.com with ESMTPSA id y6-20020a1c4b06000000b003f17131952fsm4982246wma.29.2023.05.04.06.50.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 May 2023 06:50:54 -0700 (PDT)
-Message-ID: <ea0ec8b4-ec87-65f0-4f0e-504d8059b1e6@linaro.org>
-Date:   Thu, 4 May 2023 15:50:53 +0200
+        with ESMTP id S231204AbjEDOQ7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 10:16:59 -0400
+Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06D0983FD
+        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 07:16:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+        q=dns/txt; i=@phytec.de; t=1683208913; x=1685800913;
+        h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=/jhHcFJ1LJ1W+GNxuQ4Xu89JZAN9lv1YtQk70nLZhYg=;
+        b=KbnkbKv1o2EtOnTBGYsM8AxL1zbPUpKPNMicgIkPwhMC0ePhDQjrhrwkGvIf57dw
+        W/5SI8H0vvbayuVQK+kA28emst2RIpiSOYFsu54zQpeVuP3lcAPqeJPzb076wFd3
+        1ivkmGdK/KKYBMdzlAIKPBWT1Wl2fG+ewYi7bT/sKyg=;
+X-AuditID: ac14000a-923ff70000007ecb-c6-6453bad1c0cc
+Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
+        (using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (Client did not present a certificate)
+        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 20.DD.32459.1DAB3546; Thu,  4 May 2023 16:01:53 +0200 (CEST)
+Received: from augenblix2.phytec.de (172.25.0.11) by Berlix.phytec.de
+ (172.25.0.12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Thu, 4 May
+ 2023 16:01:53 +0200
+From:   Wadim Egorov <w.egorov@phytec.de>
+To:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-hardening@vger.kernel.org>
+CC:     <upstream@lists.phytec.de>, <nm@ti.com>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <keescook@chromium.org>,
+        <tony.luck@intel.com>, <gpiccoli@igalia.com>
+Subject: [PATCH 1/2] dt-bindings: arm: ti: Add bindings for PHYTEC AM62x based hardware
+Date:   Thu, 4 May 2023 16:01:42 +0200
+Message-ID: <20230504140143.1425951-1-w.egorov@phytec.de>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 1/7] dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp: Add
- ports and orientation-switch
-Content-Language: en-US
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Bryan O'Donoghue <pure.logic@nexus-software.ie>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Johan Hovold <johan@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230425034010.3789376-1-quic_bjorande@quicinc.com>
- <20230425034010.3789376-2-quic_bjorande@quicinc.com>
- <CAJB8c06H+3pxoUGXWOXyCgtbOj6y0OhSxb9dvoTo1b6iChy7ng@mail.gmail.com>
- <20230427195232.GB870858@hu-bjorande-lv.qualcomm.com>
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <20230427195232.GB870858@hu-bjorande-lv.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [172.25.0.11]
+X-ClientProxiedBy: Berlix.phytec.de (172.25.0.12) To Berlix.phytec.de
+ (172.25.0.12)
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrBLMWRmVeSWpSXmKPExsWyRpKBR/firuAUgwcvZSzmHznHajHv/GF2
+        izPduRbLP89mt+h78ZDZYtPja0Dx9T8ZLS7vmsNm8ebHWSaL1r1H2C3eXLjHYtH9Tt3i/9kP
+        7A68HrMbLrJ4TJjdzeaxeM9LJo9NqzrZPO5c28PmsXlJvUd/dwurx/Eb25k8Pm+SC+CM4rJJ
+        Sc3JLEst0rdL4Mo4+SOx4C9bxaq7W5gaGNexdjFycEgImEi0TK7uYuTkEBJYwiSx6LFSFyMX
+        kP2YUeLX2ZvsIAk2AXWJOxu+sYLYIgK9jBJnWgpBipgFbjNKbF6ygw0kISwQLvHi3n4wm0VA
+        RWL7s9dgNq+ApcT923vAbAkBeYmZl76zQ8QFJU7OfMICYjMDxZu3zmaGsCUkDr54wQxxkbzE
+        i0vLWWB6p517zQxhh0ps/bKdaQKjwCwko2YhGTULyagFjMyrGIVyM5OzU4sys/UKMipLUpP1
+        UlI3MYJiR4SBawdj3xyPQ4xMHIyHGCU4mJVEeD8U+qUI8aYkVlalFuXHF5XmpBYfYpTmYFES
+        573fw5QoJJCeWJKanZpakFoEk2Xi4JRqYJz+MSzh1jNhgYYzqT+lr3w2qXfZJR/eVvJ0u9fi
+        NduW/uurz1h7S/KTFMd3l8t7G7bkqKpt3Oz0mXW6ssuzuojeoyFbHXPy/KOOaWqLpl24d7hD
+        65/XZo3l39ziO2ceUD4dzWzbwyHsff6G/JO512VP2e3LcJH9pnDsh398imOw2KyfhgaPniix
+        FGckGmoxFxUnAgBl/Fz4iwIAAA==
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/04/2023 21:52, Bjorn Andersson wrote:
-> On Wed, Apr 26, 2023 at 11:21:29AM +0100, Bryan O'Donoghue wrote:
->> On Tue, Apr 25, 2023 at 4:40 AM Bjorn Andersson
->> <quic_bjorande@quicinc.com> wrote:
->>>
->>> The QMP combo phy can be connected to a TCPM, a USB controller and a
->>> DisplayPort controller for handling USB Type-C orientation switching
->>> and propagating HPD signals.
->>>
->>> Extend the binding to allow these connections to be described.
->>>
->>> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
->>> ---
->>>   .../phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml    | 51 +++++++++++++++++++
->>>   1 file changed, 51 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
->>> index 3cd5fc3e8fab..c037ac90ce7f 100644
->>> --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
->>> +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
->>> @@ -60,6 +60,26 @@ properties:
->>>       description:
->>>         See include/dt-bindings/dt-bindings/phy/phy-qcom-qmp.h
->>>
->>> +  orientation-switch:
->>> +    description:
->>> +      Flag the PHY as possible handler of USB Type-C orientation switching
->>> +    type: boolean
->>> +
->>> +  ports:
->>> +    $ref: /schemas/graph.yaml#/properties/ports
->>> +    properties:
->>> +      port@0:
->>> +        $ref: /schemas/graph.yaml#/properties/port
->>> +        description: Output endpoint of the PHY
->>> +
->>> +      port@1:
->>> +        $ref: /schemas/graph.yaml#/$defs/port-base
->>> +        description: Incoming endpoint from the USB controller
->>
->> Do you really need this one ?
->>
->> The controller doesn't process orientation switching.
->>
-> 
-> I don't have a need for it, as we can deal with role switching by
-> connecting connector/port@0 to the dwc3.
-> 
-> But if we ever have a need to describe the dwc3 -> QMP -> connector path
-> in the of_graph I think it would look prettier to have USB input as
-> port@1 and DP input as port@2...
+Add devicetree bindings for AM62x based phyCORE-AM62 SoM
+and phyBOARD-Lyra RDK.
 
-I think it would be great to have port@1 for USB SS and port@2 for DP,
-otherwise we need to add 2 endpoints as I sent in
-https://lore.kernel.org/all/20230503-topic-sm8450-graphics-dp-next-v1-1-d1ee9397f2a6@linaro.org/
-since we split USB HS and SS streams on SM8[345]50 platforms.
+Signed-off-by: Wadim Egorov <w.egorov@phytec.de>
+---
+ Documentation/devicetree/bindings/arm/ti/k3.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-> 
-> Do you have a concern with keeping it around in the DT (the
-> implementation doesn't need to care)?
-> 
-> Regards,
-> Bjorn
+diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+index e1183f90bb06..254b5ec51f34 100644
+--- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
++++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+@@ -25,6 +25,12 @@ properties:
+               - ti,am62a7-sk
+           - const: ti,am62a7
+ 
++      - description: K3 AM625 SoC PHYTEC phyBOARD-Lyra
++        items:
++          - const: phytec,am625-phyboard-lyra-rdk
++          - const: phytec,am62-phycore-som
++          - const: ti,am625
++
+       - description: K3 AM625 SoC
+         items:
+           - enum:
+-- 
+2.25.1
 
