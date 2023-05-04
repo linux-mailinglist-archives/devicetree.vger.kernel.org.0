@@ -2,137 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AC626F6783
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 10:30:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C3AE6F678E
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 10:33:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230380AbjEDIa4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 04:30:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38810 "EHLO
+        id S230352AbjEDIdh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 04:33:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230091AbjEDIaZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 04:30:25 -0400
-Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54EF961B6
-        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 01:27:32 -0700 (PDT)
-Received: by mail-pf1-x42d.google.com with SMTP id d2e1a72fcca58-63b5ce4f069so299809b3a.1
-        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 01:27:32 -0700 (PDT)
+        with ESMTP id S229709AbjEDIdX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 04:33:23 -0400
+Received: from smtp2.axis.com (smtp2.axis.com [195.60.68.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E930259FB;
+        Thu,  4 May 2023 01:30:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683188851; x=1685780851;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fz6g2/625qlFmhiR93VnIJ+EVOsf12tbuuuDirZwZ9U=;
-        b=uh/cVkAvbCAQeNz+eFz44pqdjg9k5CWL5VqL1bx9HCYSnp54SVpjfh+R89DQ3unScf
-         saWw0OzTNf3ReNCe4N6JqvMpOxFz5ATlmbMkuYTWgnHHzAYfdUL+A3KKAOFOAOR/DE7f
-         1PT6V6GD0pxlBsO6yDgIiO7UM+33qmlscNyrseKXanMfXdvJCox4Qvyqy5/7WIDobQ9P
-         8MMPZvhLdmas2kEuxJwqjufeFWPC7iDi7nx0meJab/Zy6+6NYLtZr/1uqUX9lv7zcPlC
-         1i7U1iIIJ7ylSMdxDWz4xRQBCDATihGJr85QSD81mMELTbvY/oYX3oXJWRv24m2SETBQ
-         ed5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683188851; x=1685780851;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=fz6g2/625qlFmhiR93VnIJ+EVOsf12tbuuuDirZwZ9U=;
-        b=a5jKTzNtqGd2+wM+He+VU5hUfsNM+RQ2IpmIbk/LTxpdvLSz7AgeMB2sThU4Lb+AQO
-         P0ffT8df5I2/Z0aBU8lY16ryhItZLSb98+UofTKFQ91V0pNy5AKz+d9wy5besXSehVOq
-         g+qpSR8nTuY2M1m5L4xn+/twfE3vYQHPptnRo//vLzN5743nodjirHYk1qfwwFeJk4DU
-         vWez/7Wh372IgfWjvX/msuriHr/D6aTkFFHyVj2Ynv/xeFiia1Lmlnc2A4yF20clAG/W
-         mFPg6pL7ReFKdZh8/eKhyOTqnNP8mQ1VVZBftITChieSnVp59ng4VpngnAKd08xX6CVX
-         kM3g==
-X-Gm-Message-State: AC+VfDyyedgX5VGOHbvWXJu/KcEo+ABNddM8Xwvwmk27Qs1Jnnnm4mQ+
-        jiD0uXM095sw1VIz+Pq4lK65OQ==
-X-Google-Smtp-Source: ACHHUZ5pJk4+pL/gurW2SaGLZq20EkbWIIas0Rnxk/sNmRNhNANYG/Q7F0Ky1Z8TEduY/ecGWla3qQ==
-X-Received: by 2002:a05:6a00:b86:b0:63d:3a18:4a03 with SMTP id g6-20020a056a000b8600b0063d3a184a03mr1878881pfj.5.1683188851588;
-        Thu, 04 May 2023 01:27:31 -0700 (PDT)
-Received: from localhost.localdomain ([223.233.65.180])
-        by smtp.gmail.com with ESMTPSA id s1-20020a056a00178100b00625d84a0194sm24913973pfg.107.2023.05.04.01.27.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 May 2023 01:27:31 -0700 (PDT)
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
-        bhupesh.sharma@linaro.org, robh+dt@kernel.org,
-        linux-usb@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        krzysztof.kozlowski@linaro.org
-Subject: [PATCH v3 5/5] arm64: dts: qcom: qrb4210-rb2: Enable EUD debug peripheral
-Date:   Thu,  4 May 2023 13:56:44 +0530
-Message-Id: <20230504082644.1461582-6-bhupesh.sharma@linaro.org>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20230504082644.1461582-1-bhupesh.sharma@linaro.org>
-References: <20230504082644.1461582-1-bhupesh.sharma@linaro.org>
+  d=axis.com; q=dns/txt; s=axis-central1; t=1683189059;
+  x=1714725059;
+  h=from:subject:date:message-id:mime-version:
+   content-transfer-encoding:to:cc;
+  bh=HhTeVThYjqC5+zx24jz47KblfR0STIeFxg+9UBQHkxE=;
+  b=WdfJFzDj2HDUlSHGIE/egn4OQkkN4CHY7FkYKHFmFsIwlgVEapx9eXFz
+   N2qDaEOm71trj9xlR0nPXFFlhgMk7ju5bxlA3/QUysF2rkFVRjk32Imrj
+   RKeQ+HvLoe2qkYMTr/hRTBrxc+u3Yc32vf8PHMZbG1EQJKtQsNCgUgFH2
+   yWCAmOeT2c+fdIyoLabCM5ClB8UWM1FffT8YEriqghLsAZjD/HP5DaUiL
+   pyI2p8k49OFmVSOTXfst2A7Dx6hRkcS1FfrvHzzQSQ9gRKht5Zn4GYv8a
+   2xqKFvCaQ+TfQ/PS2I/syLqB/+r7y0KF591LBCg/vbP6HQrZAfQi0HqZB
+   w==;
+From:   =?utf-8?q?M=C3=A5rten_Lindahl?= <marten.lindahl@axis.com>
+Subject: [PATCH v2 0/2] regulator: Add support for TPS6287x
+Date:   Thu, 4 May 2023 10:30:25 +0200
+Message-ID: <20230502-tps6287x-driver-v2-0-fb5419d46c49@axis.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-B4-Tracking: v=1; b=H4sIACFtU2QC/3WNOw6DMBAFrxJtHUe2IZikyj0iChsvYQs+2kUWE
+ eLuMfQp5z2NZgNBJhR4XjZgTCQ0jRns9QJt78cPKoqZwWpb6Lu2apmlsrVbVWRKyMp3pnRlKIw
+ xCNkKXlAF9mPbH97gZUE+jpmxo/VMvZvMPcky8fcsJ3Os/yPJKK1cfFS21IULsX75leTWTgM0+
+ 77/AK99gcfGAAAA
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <kernel@axis.com>,
+        =?utf-8?q?M=C3=A5rten_Lindahl?= <marten.lindahl@axis.com>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1683189034; l=1221;
+ i=marten.lindahl@axis.com; s=20230329; h=from:subject:message-id;
+ bh=hw3y+o1+BDEcAyYiL8zhlT5s48d44X6D8C3M/5vWEdc=;
+ b=vA4Edp+B0E44f44phW9rS1WNhy12IQFxZxMfSKqqgKv58YGtSkijuDnpCpGH+lcPxxOCqRMmg
+ rhvoN6CmSNVDDEECGwMguQ/lrOjLLVcpXI+tDjYb+JBNKW9aGNml2Cf
+X-Developer-Key: i=marten.lindahl@axis.com; a=ed25519;
+ pk=JfbjqFPJnIDIQOkJBeatC8+S3Ax3N0RIdmN+fL3wXgw=
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since the USB-C type port on the Qualcomm QRB4210-RB2 board
-can be set primarily in a 'device' configuration (with the default
-DIP switch settings), it makes sense to enable the EUD debug
-peripheral on the board by default by setting the USB 'dr_mode' property
-as 'otg'.
+This series adds basic support for TI's TPS62870/TPS62871/TPS62872/
+TPS62873 high-frequency single-channel step-down converters with an
+I2C interface.
 
-Now, the EUD debug peripheral can be enabled by executing:
- $ echo 1 > /sys/bus/platform/drivers/qcom_eud/1610000.eud/enable
+The devices can operate in power save mode for maximum efficiency, or
+forced-PWM mode for best transient performance and lowest output
+voltage ripple. All chip variants have four output voltage ranges and
+the active range is set via the I2C interface.
 
-Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+There are differences in the electrical characteristics and packaging
+between the variants, but the register interfaces are identical.
+
+Signed-off-by: Mårten Lindahl <marten.lindahl@axis.com>
 ---
- arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 27 +++++++++++++++++++++++-
- 1 file changed, 26 insertions(+), 1 deletion(-)
+Mårten Lindahl (2):
+      regulator: Add bindings for TPS6287x
+      regulator: Add support for TI TPS6287x regulators
 
-diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-index 1a0776a0cfd0..0ce72f1ebc10 100644
---- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-+++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-@@ -30,6 +30,10 @@ vph_pwr: vph-pwr-regulator {
- 	};
- };
- 
-+&eud {
-+	status = "okay";
-+};
-+
- &qupv3_id_0 {
- 	status = "okay";
- };
-@@ -253,7 +257,28 @@ &usb {
- 
- &usb_dwc3 {
- 	maximum-speed = "super-speed";
--	dr_mode = "peripheral";
-+
-+	/*
-+	 * There is only one USB DWC3 controller on QRB4210 board and it is connected
-+	 * via a DIP Switch:
-+	 * - to either an USB - C type connector or an USB - A type connector
-+	 *   (via a GL3590-S hub), and
-+	 * - to either an USB - A type connector (via a GL3590-S hub) or a connector
-+	 *   for further connection with a mezzanine board.
-+	 *
-+	 * All of the above hardware muxes would allow us to hook things up in
-+	 * different ways to some potential benefit for static configurations (for e.g.
-+	 * on one hand we can have two USB - A type connectors and a USB - Ethernet
-+	 * connection available and on the other we can use the USB - C type in
-+	 * peripheral mode).
-+	 *
-+	 * Note that since the USB - C type can be used only in peripehral mode,
-+	 * so hardcoding the mode to 'peripheral' here makes sense.
-+	 *
-+	 * However since we want to use the EUD debug device, we set the mode as
-+	 * 'otg' here.
-+	 */
-+	dr_mode = "otg";
- };
- 
- &usb_hsphy {
+ .../devicetree/bindings/regulator/ti,tps62870.yaml |  62 +++++
+ drivers/regulator/Kconfig                          |  11 +
+ drivers/regulator/Makefile                         |   1 +
+ drivers/regulator/tps6287x-regulator.c             | 289 +++++++++++++++++++++
+ 4 files changed, 363 insertions(+)
+---
+base-commit: 457391b0380335d5e9a5babdec90ac53928b23b4
+change-id: 20230502-tps6287x-driver-af1474b3111e
+
+Best regards,
 -- 
-2.38.1
+Mårten Lindahl <marten.lindahl@axis.com>
 
