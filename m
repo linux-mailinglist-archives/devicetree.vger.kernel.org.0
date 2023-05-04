@@ -2,295 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C622D6F6FB2
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 18:16:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 779C96F6CC7
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 15:17:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229598AbjEDQQ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 12:16:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43204 "EHLO
+        id S230183AbjEDNR4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 09:17:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229482AbjEDQQ2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 12:16:28 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FC9D1FC3
-        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 09:16:25 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2ac75500798so8629811fa.0
-        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 09:16:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683216984; x=1685808984;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LigwU+83P/omJYPgtFUAJyYnXKmXjLTOz9cEHCL7Srw=;
-        b=BA5ExJqvpUpc4A3AYTNK1oYIAWwsF6QJzh2N5YlEf6/jdAq90Iy+g6dKx1KQKafC5d
-         gBo0IGpbK677E77sdWTLKx3Pe3tozSLEUI4T9Sqx2Uqv0ECh66LRO41Dx6QrJ5GTIvD5
-         4N4SZIQIBGxP+27PoWKVX1sMFypeucArPeiIIKnjMDLKAoraEbeEdlajiGbawR/8ojm8
-         PA+BCZoctVI6mEDuvYVzVhR2uAaXfekf+oITQ4iokkJfE6CXQUynGLBbExexGcs39Rr8
-         Hdi5xIE+xBE6gvLrrmJbXh7PtGldtWKlIAWpw9dMIXHNMz5rN2QgMQl777+ohvJOibIz
-         6ITA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683216984; x=1685808984;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LigwU+83P/omJYPgtFUAJyYnXKmXjLTOz9cEHCL7Srw=;
-        b=ZijuZSBExV0UGYyhqfk4s0uct45g5dkzWwoPvDUyaXbyyCZtnzoYnD9T4SFIUk7ZfW
-         67x0qdDD/hkMMPjVtMma+6qkp1CveCHYhDQHM49Rwht/h5pBDZno+LOeAgxo3cCIocRE
-         I4Zkz3ope2CVE3VRnco/hUfPSWAyVLRPTXQ7aU1wnuColbiJgEoEPzxXDzdG5HFYQevl
-         QUsP9//p7Qz1sKtXkb2fHwQHvnS2khdskBTyX2k96wn9Jk+zA5WnhBLdTEIFR3mP0wlX
-         rgoE/C7R1MljIZh+1frx9cAE0rMwwZIIRi7djsYkiOpDVurvvQm3xMWjYmUS1AeU5VpR
-         C2Wg==
-X-Gm-Message-State: AC+VfDxQ4pXasuob0zwfrzWUsKCgx2uqqbT8SD0BBhlMsf7HMU4RZpot
-        4GWICA84ySQ2ZDxa30k4iJt5uw==
-X-Google-Smtp-Source: ACHHUZ64f4O0foR3Jqs8bOc7BfLHbDu6ypG9tQoA6nLt0E789aqfLK0UdoybsK2T0W35VZRuNS+pGA==
-X-Received: by 2002:a05:651c:87:b0:2a8:c374:c0f2 with SMTP id 7-20020a05651c008700b002a8c374c0f2mr1181381ljq.42.1683216983782;
-        Thu, 04 May 2023 09:16:23 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id u15-20020a2e9f0f000000b002aa3cff0529sm6266615ljk.74.2023.05.04.09.16.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 May 2023 09:16:23 -0700 (PDT)
-Message-ID: <1d762fc8-c9ce-2ff5-465c-ad016654803c@linaro.org>
-Date:   Thu, 4 May 2023 19:16:22 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH V4 2/3] soc: qcom: boot_stat: Add Driver Support for Boot
- Stats
-Content-Language: en-GB
-To:     Souradeep Chowdhury <quic_schowdhu@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        with ESMTP id S229606AbjEDNRz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 09:17:55 -0400
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 850AB4C24;
+        Thu,  4 May 2023 06:17:54 -0700 (PDT)
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 344CX03c016081;
+        Thu, 4 May 2023 09:17:38 -0400
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3qc40yumch-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 04 May 2023 09:17:37 -0400
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 344DHa4M018001
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 4 May 2023 09:17:36 -0400
+Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Thu, 4 May 2023 09:17:35 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Thu, 4 May 2023 09:17:35 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Thu, 4 May 2023 09:17:35 -0400
+Received: from daniel-Precision-5530.ad.analog.com ([10.48.65.214])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 344DHKoQ020836;
+        Thu, 4 May 2023 09:17:22 -0400
+From:   Daniel Matyas <daniel.matyas@analog.com>
+CC:     Daniel Matyas <daniel.matyas@analog.com>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Sibi Sankar <quic_sibis@quicinc.com>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>
-References: <cover.1681742910.git.quic_schowdhu@quicinc.com>
- <2ef76ce292c059c144e559123a9a54201ae2d0cf.1681742910.git.quic_schowdhu@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <2ef76ce292c059c144e559123a9a54201ae2d0cf.1681742910.git.quic_schowdhu@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        Jonathan Corbet <corbet@lwn.net>,
+        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>
+Subject: [PATCH v5 0/2] Hwmon driver for MAX31827 temperature switch
+Date:   Thu, 4 May 2023 19:17:09 +0300
+Message-ID: <20230504161714.6281-1-daniel.matyas@analog.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: Z7A3Hbr773vN-GlW6s-RVpdHSh_Ezqnd
+X-Proofpoint-GUID: Z7A3Hbr773vN-GlW6s-RVpdHSh_Ezqnd
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-04_08,2023-05-04_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
+ malwarescore=0 adultscore=0 clxscore=1015 suspectscore=0 spamscore=0
+ phishscore=0 mlxlogscore=764 impostorscore=0 bulkscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303200000 definitions=main-2305040107
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/04/2023 18:08, Souradeep Chowdhury wrote:
-> All of Qualcomm's proprietary Android boot-loaders capture boot time
-> stats, like the time when the bootloader started execution and at what
-> point the bootloader handed over control to the kernel etc. in the IMEM
-> region. This information is captured in a specific format by this driver
-> by mapping a structure to the IMEM memory region and then accessing the
-> members of the structure to show the information within debugfs file.
-> This information is useful in verifying if the existing boot KPIs have
-> regressed or not. The information is shown in milliseconds, a sample
-> log from sm8450(waipio) device is as follows:-
-> 
-> /sys/kernel/debug/146aa6b0.boot_stats # cat abl_time
-> 17898 ms
-> /sys/kernel/debug/146aa6b0.boot_stats # cat pre_abl_time
-> 2879 ms
-> 
-> The Module Power Manager(MPM) sleep counter starts ticking at the PBL
-> stage and the timestamp generated by the sleep counter is logged by
-> the Qualcomm proprietary bootloader(ABL) at two points-> First when it
-> starts execution which is logged here as "pre_abl_time" and the second
-> when it is about to load the kernel logged as "abl_time". Documentation
-> details are also added in Documentation/ABI/testing/debugfs-driver-bootstat
-> 
-> Signed-off-by: Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-> ---
->   Documentation/ABI/testing/debugfs-driver-bootstat |  17 ++++
->   drivers/soc/qcom/Kconfig                          |   9 ++
->   drivers/soc/qcom/Makefile                         |   1 +
->   drivers/soc/qcom/boot_stats.c                     | 101 ++++++++++++++++++++++
->   4 files changed, 128 insertions(+)
->   create mode 100644 Documentation/ABI/testing/debugfs-driver-bootstat
->   create mode 100644 drivers/soc/qcom/boot_stats.c
-> 
-> diff --git a/Documentation/ABI/testing/debugfs-driver-bootstat b/Documentation/ABI/testing/debugfs-driver-bootstat
-> new file mode 100644
-> index 0000000..2543029
-> --- /dev/null
-> +++ b/Documentation/ABI/testing/debugfs-driver-bootstat
-> @@ -0,0 +1,17 @@
-> +What:		/sys/kernel/debug/...stats/pre_abl_time
-> +Date:           April 2023
-> +Contact:        Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-> +Description:
-> +		This file is used to read the KPI value pre abl time.
-> +		It shows the time in milliseconds from the starting
-> +		point of PBL to the point when the control shifted
-> +		to ABL(Qualcomm proprietary bootloader).
-> +
-> +What:           /sys/kernel/debug/...stats/abl_time
-> +Date:           April 2023
-> +Contact:        Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-> +Description:
-> +		This file is used to read the KPI value abl time.
-> +		It show the duration in milliseconds from the
-> +		time control switched to ABL to the point when
-> +		the linux kernel started getting loaded.
-> diff --git a/drivers/soc/qcom/Kconfig b/drivers/soc/qcom/Kconfig
-> index a8f2830..0d2cbd3 100644
-> --- a/drivers/soc/qcom/Kconfig
-> +++ b/drivers/soc/qcom/Kconfig
-> @@ -16,6 +16,15 @@ config QCOM_AOSS_QMP
->   	  subsystems as well as controlling the debug clocks exposed by the Always On
->   	  Subsystem (AOSS) using Qualcomm Messaging Protocol (QMP).
->   
-> +config QCOM_BOOTSTAT
-> +	tristate "Qualcomm Technologies, Boot Stat driver"
-> +	depends on ARCH_QCOM || COMPILE_TEST
-> +	help
-> +	  This option enables driver support for boot stats. Boot stat driver logs
-> +	  the kernel bootloader information by accessing the imem region. These
-> +	  information are exposed in the form of debugfs files. This is used to
-> +	  determine if there is any regression in boot timings.
-> +
->   config QCOM_COMMAND_DB
->   	tristate "Qualcomm Command DB"
->   	depends on ARCH_QCOM || COMPILE_TEST
-> diff --git a/drivers/soc/qcom/Makefile b/drivers/soc/qcom/Makefile
-> index 6e88da8..bdaa41a 100644
-> --- a/drivers/soc/qcom/Makefile
-> +++ b/drivers/soc/qcom/Makefile
-> @@ -1,6 +1,7 @@
->   # SPDX-License-Identifier: GPL-2.0
->   CFLAGS_rpmh-rsc.o := -I$(src)
->   obj-$(CONFIG_QCOM_AOSS_QMP) +=	qcom_aoss.o
-> +obj-$(CONFIG_QCOM_BOOTSTAT) += boot_stats.o
->   obj-$(CONFIG_QCOM_GENI_SE) +=	qcom-geni-se.o
->   obj-$(CONFIG_QCOM_COMMAND_DB) += cmd-db.o
->   obj-$(CONFIG_QCOM_CPR)		+= cpr.o
-> diff --git a/drivers/soc/qcom/boot_stats.c b/drivers/soc/qcom/boot_stats.c
-> new file mode 100644
-> index 0000000..7fa8efb
-> --- /dev/null
-> +++ b/drivers/soc/qcom/boot_stats.c
-> @@ -0,0 +1,101 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2013-2019, 2021 The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#include <linux/debugfs.h>
-> +#include <linux/err.h>
-> +#include <linux/io.h>
-> +#include <linux/init.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_address.h>
-> +#include <linux/platform_device.h>
-> +
-> +#define TO_MS(timestamp) ((timestamp * 1000) / 32768)
+Readded the of_match_table.
 
-Some of the platforms DTs define 32KHz clock instead of 32.768 KHz What 
-should be the divisor in this case?
+Added default cases where it was necessary.
 
-> +
-> +/**
-> + *  struct boot_stats - timestamp information related to boot stats
-> + *  @abl_start: Time for the starting point of the abl
-> + *  @abl_end: Time when the kernel starts loading from abl
-> + */
-> +struct boot_stats {
-> +	u32 abl_start;
-> +	u32 abl_end;
-> +} __packed;
-> +
-> +struct bs_data {
-> +	struct boot_stats __iomem *b_stats;
-> +	struct dentry *dbg_dir;
-> +};
-> +
-> +static int abl_time_show(struct seq_file *seq, void *v)
-> +{
-> +	struct boot_stats *boot_stats = seq->private;
-> +	u32 abl_time = TO_MS(boot_stats->abl_end) - TO_MS(boot_stats->abl_start);
-> +
-> +	seq_printf(seq, "%u ms\n", abl_time);
-> +	return 0;
-> +}
-> +DEFINE_SHOW_ATTRIBUTE(abl_time);
-> +
-> +static int pre_abl_time_show(struct seq_file *seq, void *v)
-> +{
-> +	struct boot_stats *boot_stats = seq->private;
-> +
-> +	seq_printf(seq, "%u ms\n", TO_MS(boot_stats->abl_start));
+Used mutex where it was necessary.
 
-It would be better to move the unit to the file name and include just 
-the number.
+Added conversion to milli-degrees and milli-seconds.
 
-> +	return 0;
-> +}
-> +DEFINE_SHOW_ATTRIBUTE(pre_abl_time);
-> +
-> +static int boot_stats_probe(struct platform_device *pdev)
-> +{
-> +	struct device *bootstat_dev = &pdev->dev;
-> +	struct bs_data *drvdata;
-> +
-> +	drvdata = devm_kzalloc(bootstat_dev, sizeof(*drvdata), GFP_KERNEL);
-> +	platform_set_drvdata(pdev, drvdata);
-> +
-> +	drvdata->dbg_dir = debugfs_create_dir(dev_name(bootstat_dev), NULL);
-> +	if (IS_ERR(drvdata->dbg_dir))
-> +		return dev_err_probe(bootstat_dev, -ENOENT, "failed to create debugfs directory");
-> +
-> +	drvdata->b_stats = devm_of_iomap(bootstat_dev, bootstat_dev->of_node, 0, NULL);
-> +	if (!drvdata->b_stats)
-> +		return dev_err_probe(bootstat_dev, -ENOMEM, "failed to map imem region\n");
-> +
-> +	debugfs_create_file("pre_abl_time", 0200, drvdata->dbg_dir,
-> +			    drvdata->b_stats, &pre_abl_time_fops);
-> +	debugfs_create_file("abl_time", 0200, drvdata->dbg_dir, drvdata->b_stats, &abl_time_fops);
-> +
-> +	return 0;
-> +}
-> +
-> +void boot_stats_remove(struct platform_device *pdev)
-> +{
-> +	struct bs_data *drvdata = platform_get_drvdata(pdev);
-> +
-> +	debugfs_remove_recursive(drvdata->dbg_dir);
-> +	iounmap(drvdata->b_stats);
-> +}
-> +
-> +static const struct of_device_id boot_stats_dt_match[] = {
-> +	{ .compatible = "qcom,sm8450-bootstats" },
+Daniel Matyas (2):
+  dt-bindings: hwmon: add MAX31827
+  hwmon: max31827: add MAX31827 driver
 
-Is it specific to sm8450 only?
-
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, boot_stats_dt_match);
-> +
-> +static struct platform_driver boot_stat_driver = {
-> +	.probe  = boot_stats_probe,
-> +	.remove_new = boot_stats_remove,
-> +	.driver = {
-> +		.name = "qcom-boot-stats",
-> +		.of_match_table = boot_stats_dt_match,
-> +	},
-> +};
-> +module_platform_driver(boot_stat_driver);
-> +
-> +MODULE_DESCRIPTION("Qualcomm Technologies Inc. Boot Stat driver");
-> +MODULE_LICENSE("GPL");
+ .../bindings/hwmon/adi,max31827.yaml          |  54 +++
+ Documentation/hwmon/index.rst                 |   1 +
+ Documentation/hwmon/max31827.rst              |  83 ++++
+ MAINTAINERS                                   |   9 +
+ drivers/hwmon/Kconfig                         |  11 +
+ drivers/hwmon/Makefile                        |   2 +-
+ drivers/hwmon/max31827.c                      | 427 ++++++++++++++++++
+ 7 files changed, 586 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
+ create mode 100644 Documentation/hwmon/max31827.rst
+ create mode 100644 drivers/hwmon/max31827.c
 
 -- 
-With best wishes
-Dmitry
+2.34.1
 
