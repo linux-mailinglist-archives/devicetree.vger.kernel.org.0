@@ -2,217 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 65ACD6F6A1F
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 13:36:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C2CD6F6A4F
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 13:45:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230177AbjEDLgz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 07:36:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53564 "EHLO
+        id S230316AbjEDLpS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 07:45:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229622AbjEDLgy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 07:36:54 -0400
-Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6314559CA
-        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 04:36:51 -0700 (PDT)
-Received: by mail-pl1-x62a.google.com with SMTP id d9443c01a7336-1aafa03f541so3193025ad.0
-        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 04:36:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1683200211; x=1685792211;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=nUHArhlcp3qSfySTPqT1ZPP2t/W0eOsOr4roXo47DNw=;
-        b=J/rrtMF5eCYfqJL/HfPD3lLSqeolJkc1WqXkA+11V/xw5p59FxZsSiSfU5fDFdgioK
-         fWR/Nu3fnyEVoFMzsBNx4N4P6YXKBy3wOThnXz60Eme/oAbDCdl4aYLNdXeOahywONLc
-         ibszmyZKUmKA2JBc6aE8bpSO9vjWVIvQXK48A5uGFeOX8AjERGohb97ZwXqqlsP1/mmD
-         PiFn3vbrnTYHeSVJs/Y7BQYTGDkRF0MQEFtH/Qd2MQ+0YRPv39iurrd5sG0J3kn7a7Wn
-         YshYzlnop5x/oUxl1bX87LSTCad/d4lRxdIDPib3Tmt9/Coj8vlgZo+pcVYEQmxTGuJr
-         s6gA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683200211; x=1685792211;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nUHArhlcp3qSfySTPqT1ZPP2t/W0eOsOr4roXo47DNw=;
-        b=Hn+L9UIGLJ677AIuoB043MW4W64MlPWuY8onYdcbN3PzLwuGHrO/8OGJFEfzDypch1
-         sh1Q46xghCvT6kXR40teoHMe43VXLudwMMbgXkRBJIp7IJUST/oAdG0dlqfUEq5pZXLn
-         8GlG3vhmgi4utNpwiYsHE1ymXFJelLzAfEQtMizq1880FX/GGw+zSuufJ1LTYky0aqS1
-         u3NzLjAAsk4565csrwwGrNXX4tSjMR36fUXoi10kYo1d6VX2VGldnDbNMdkoyJONxnOW
-         +jJ4dZHuqsYLTzUXR1PmnxozkUuYU9XrRDY9DCEabZbBzZw/yn/ZXud+yR+TO+T8h4Dv
-         cCLA==
-X-Gm-Message-State: AC+VfDwNvMVebwC7X/bfG1GdSbb+Z+yUinlH1Au1FL2YfaNrFvx8KCv9
-        ghNHxnIrBtPS5pjOXBhVLd9Xog==
-X-Google-Smtp-Source: ACHHUZ4reHpy6jWeeqIb6ngwMygitIdCsQkqiY1aIy5R9QV1Oa/nx+X0X9zQP6eTsEh/Lhn2ZXAzQw==
-X-Received: by 2002:a17:902:b591:b0:1ab:8f4:af3a with SMTP id a17-20020a170902b59100b001ab08f4af3amr2860275pls.39.1683200210820;
-        Thu, 04 May 2023 04:36:50 -0700 (PDT)
-Received: from ?IPV6:2405:201:d02f:d855:461d:14be:2cce:b776? ([2405:201:d02f:d855:461d:14be:2cce:b776])
-        by smtp.gmail.com with ESMTPSA id q10-20020a170902daca00b001a9b29b6759sm12996966plx.183.2023.05.04.04.36.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 May 2023 04:36:50 -0700 (PDT)
-Message-ID: <45236017-22d2-f9f8-0069-77195e49221d@9elements.com>
-Date:   Thu, 4 May 2023 17:06:48 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: Add max6639
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Marcello Sylvester Bauer <sylv@sylv.io>,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230420111759.2687001-1-Naresh.Solanki@9elements.com>
- <76e57634-75dd-01e8-9c56-36ed7de17812@linaro.org>
- <c8d1b5db-318e-3401-0834-b89769831eca@9elements.com>
- <be129c4f-3ad7-c54b-936e-08b142608ebc@linaro.org>
- <88f9a008-2861-284c-76c4-7d416c107fbb@9elements.com>
- <bd45ea5d-e6e4-403a-e855-376e0f647f91@9elements.com>
- <20eb1d0e-0aa2-9d41-7ba5-2feb148748d0@linaro.org>
- <9d989c4c-7c9e-9e95-133f-03741d07198b@9elements.com>
- <80b60de0-dcb5-303f-8d13-f4b1cf7d8521@linaro.org>
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-In-Reply-To: <80b60de0-dcb5-303f-8d13-f4b1cf7d8521@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229835AbjEDLpR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 07:45:17 -0400
+Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com [66.111.4.229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D11DE4223;
+        Thu,  4 May 2023 04:45:12 -0700 (PDT)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 7F8E7580E74;
+        Thu,  4 May 2023 07:45:09 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Thu, 04 May 2023 07:45:09 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm3; t=1683200709; x=1683207909; bh=rv
+        dn+vPe48KPGDs0leGYpaM1jtugXaszLFPftQ7tCmQ=; b=K3vb/txYtZKnDaX7av
+        yXDErCEtK8JWoojEYV/KOhr/Dv3+/xOdTNnlfPilF7nZ1vUsdDP7l+AgwDbRQSuE
+        5AUT6SPooYuy01IO6jURwU7twh1iCROPuF4Hz3zAUJdbJERGRcVw7wLAOdZON0f2
+        AhZwSiy8u7IYmN4dU7xIQbvrXShHBkCkYnYnC0IoMvFDdx6WQKJ4rLgfLXj0hCW/
+        ckDTGcWhommWigg7s6rAmkjQ1+FesSQJLbAeZIs8XTPkdZlzCBQmlaWbCOt46UI7
+        TaQrFKOEB7Nrxln82bVy1GZqe9KuSEr+WJIPa6wdhqmLquSGvkDqg3ABmaiUtN8f
+        /V6A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:content-type:date:date
+        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm3; t=1683200709; x=1683207909; bh=rvdn+vPe48KPG
+        Ds0leGYpaM1jtugXaszLFPftQ7tCmQ=; b=Pw6Rg+XVCkD8w3YHy7jGkIyjxzhiF
+        bN/nWbfwIR4ZK/F9LSR2lSdh5WuOB6Zd/S/dxjLYOJX2pQKrTV0T8idbkjcOcQF5
+        SwoSgg9l8jKzkx3OOYZXp9IzAPIUyKCbJYXfJ1Co1zpAhWXPmQXpDlG8hbdhXCqo
+        Ide3agAfwauTe+q41YGw5qJ2db95dqZn1JU+kHQVa7baSeKRpcpIB14hYe498UV1
+        qSbU08XfSJ51vZL4nbzqAVErhFeOyUkPmcXy3uA1E2ZHbZ12aj+TO8581K6JMOqx
+        WSKLMOUGfU3GMPJTvVpyvFa7UxM2y027LOl0hEHvk1DeHWVGhQTOePmWQ==
+X-ME-Sender: <xms:xJpTZBRFDKFjpUX2zSPaH_4Nc8R2Qpk2no6uSQvOfRDhdZKlcM2S1w>
+    <xme:xJpTZKx9r-aiclDw81Wu7rGAVEGjfn7b8plKzDI0Fm4sbn8ToKgyao_lHGOMzamjl
+    uNZIJ6W5xJhlsHwBQU>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrfeeftddggedvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
+    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
+    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
+    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
+    hrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:xJpTZG1ikd38RTtD1R071POfBXt5S1hFZ6Fml4H3RBTwbc4m3wVYQA>
+    <xmx:xJpTZJBCtHzUiKeZoBrJeZc8fH8Ed5ISfh9DPuxYIqK6axwqLg053Q>
+    <xmx:xJpTZKh7kYU5y_FppCdiasiBdQUPjv6lvIKqgolP6FEiBuWg49SF6g>
+    <xmx:xZpTZKDU9-4LKKK2Ti8y1N5SEny0C66Vm4BJmIaG1feFi_OTmPFchA>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 5DF60B60089; Thu,  4 May 2023 07:45:08 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-386-g2404815117-fm-20230425.001-g24048151
+Mime-Version: 1.0
+Message-Id: <6ece505b-1075-48e6-9ff9-1673014e5df1@app.fastmail.com>
+In-Reply-To: <ZFOE4wd31hpJh0ro@shell.armlinux.org.uk>
+References: <20220328000915.15041-1-ansuelsmth@gmail.com>
+ <85eb14ec-f465-7447-ad77-a3dabc666f47@kernel.org>
+ <YkKRYnN84D9VZhGj@Ansuel-xps.localdomain>
+ <CAL_Jsq+RQQ-ADMxLPUFwk6S6kGmb6oNDy4k52fnU0EtbUvqmSA@mail.gmail.com>
+ <CAMuHMdWNTE48MFy6fqxAsfMWz9b6E7dVNXtXtESP95sxk2PGwA@mail.gmail.com>
+ <CAL_JsqJthKTm8bhRF2B=ae1tvtPeYYXx_Tm76qQtSwLtH5C6VA@mail.gmail.com>
+ <720a2829-b6b5-411c-ac69-9a53e881f48d@app.fastmail.com>
+ <CAL_JsqKCtmkwzKa01gyG65fH8ye6R3KhR41PJbJhOJ4X9j=znA@mail.gmail.com>
+ <ZFOE4wd31hpJh0ro@shell.armlinux.org.uk>
+Date:   Thu, 04 May 2023 13:44:37 +0200
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Russell King" <linux@armlinux.org.uk>,
+        "Rob Herring" <robh+dt@kernel.org>
+Cc:     "Geert Uytterhoeven" <geert@linux-m68k.org>,
+        "Olof Johansson" <olof@lixom.net>,
+        "Christian Marangi" <ansuelsmth@gmail.com>,
+        "Krzysztof Kozlowski" <krzk@kernel.org>,
+        "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-actions@lists.infradead.org,
+        linux-sunxi@lists.linux.dev,
+        Linux-OMAP <linux-omap@vger.kernel.org>,
+        linux-amlogic@lists.infradead.org, linux-arm-kernel@axis.com,
+        linux-aspeed@lists.ozlabs.org,
+        linux-rpi-kernel@lists.infradead.org,
+        chrome-platform@lists.linux.dev,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        linux-samsung-soc@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        kernel@dh-electronics.com, linux-mediatek@lists.infradead.org,
+        openbmc@lists.ozlabs.org, linux-tegra@vger.kernel.org,
+        "linux-oxnas@groups.io" <linux-oxnas@groups.io>,
+        linux-arm-msm@vger.kernel.org, linux-unisoc@lists.infradead.org,
+        linux-rockchip@lists.infradead.org,
+        linux-realtek-soc@lists.infradead.org
+Subject: Re: [RFC PATCH 0/1] Categorize ARM dts directory
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On Thu, May 4, 2023, at 12:11, Russell King (Oracle) wrote:
+> On Tue, May 02, 2023 at 02:40:19PM -0500, Rob Herring wrote:
+>> I think the only issue remaining is finalizing the mapping of
+>> platforms to subdirs. What I have currently is a mixture of SoC
+>> families and vendors. The most notable are all the Freescale/NXP
+>> platforms, pxa, socfpga, and stm32. It's not consistent with arm64
+>> either. Once that's finalized, I still need to go update MAINTAINERS.
+>
+> I haven't followed this discussion at all, so here's a question.
+>
+> What does this mean for the _installed_ dtb files? Do they move
+> location? If they do, lots is going to break, because there will
+> be u-boot configurations and other scripts that assume the flat
+> directory structure for the installed dtb files.
+>
+> I don't think changing the installed dtb structure is acceptable
+> at this point in time. It's something that _should_ have been
+> thought about when ARM was converted to dtb, it's too late to be
+> changing that now.
 
-On 04-05-2023 04:17 pm, Krzysztof Kozlowski wrote:
-> On 04/05/2023 11:47, Naresh Solanki wrote:
->> Hi Krzysztof,
->>
->> On 03-05-2023 09:48 pm, Krzysztof Kozlowski wrote:
->>> On 03/05/2023 10:26, Naresh Solanki wrote:
->>>> Hi Krzysztof,
->>>>
->>>> On 24-04-2023 03:23 pm, Naresh Solanki wrote:
->>>>> Hi Krzysztof,
->>>>>
->>>>> On 24-04-2023 03:12 pm, Krzysztof Kozlowski wrote:
->>>>>> On 24/04/2023 11:18, Naresh Solanki wrote:
->>>>>>
->>>>>>>>> Changes in V2:
->>>>>>>>> - Update subject
->>>>>>>>> - Drop blank lines
->>>>>>>>> ---
->>>>>>>>>      .../bindings/hwmon/maxim,max6639.yaml         | 52
->>>>>>>>> +++++++++++++++++++
->>>>>>>>>      1 file changed, 52 insertions(+)
->>>>>>>>>      create mode 100644
->>>>>>>>> Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
->>>>>>>>>
->>>>>>>>> diff --git
->>>>>>>>> a/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
->>>>>>>>> b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
->>>>>>>>> new file mode 100644
->>>>>>>>> index 000000000000..1aaedfd7cee0
->>>>>>>>> --- /dev/null
->>>>>>>>> +++ b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
->>>>>>>>> @@ -0,0 +1,52 @@
->>>>>>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>>>>>>>> +%YAML 1.2
->>>>>>>>> +---
->>>>>>>>> +$id: http://devicetree.org/schemas/hwmon/maxim,max6639.yaml#
->>>>>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>>>>>> +
->>>>>>>>> +title: Maxim max6639
->>>>>>>>
->>>>>>>> What is this device? fan controller?
->>>>>>> Yes Fan controller.
->>>>>>> Do you want me to update the title here as:
->>>>>>> "Maxim MAC6639 2 channel fan controller & temperature monitor" ?
->>>>>>
->>>>>> Enough would be:
->>>>>> Maxim MAX6639 Fan Controller
->>>>> Ack
->>>>>>
->>>>>>
->>>>>>>
->>>>>>>>
->>>>>>>>> +
->>>>>>>>> +maintainers:
->>>>>>>>> +  - Naresh Solanki <Naresh.Solanki@9elements.com>
->>>>>>>>> +
->>>>>>>>> +description: |
->>>>>>>>> +  The MAX6639 is a 2-channel temperature monitor with dual,
->>>>>>>>> automatic, PWM
->>>>>>>>> +  fan-speed controller.  It monitors its own temperature and one
->>>>>>>>> external
->>>>>>>>> +  diode-connected transistor or the temperatures of two external
->>>>>>>>> diode-connected
->>>>>>>>> +  transistors, typically available in CPUs, FPGAs, or GPUs.
->>>>>>>>> +
->>>>>>>>> +  Datasheets:
->>>>>>>>> +    https://datasheets.maximintegrated.com/en/ds/MAX6639-MAX6639F.pdf
->>>>>>>>> +
->>>>>>>>> +properties:
->>>>>>>>> +  compatible:
->>>>>>>>> +    enum:
->>>>>>>>> +      - maxim,max6639
->>>>>>>>> +
->>>>>>>>> +  reg:
->>>>>>>>> +    maxItems: 1
->>>>>>>>> +
->>>>>>>>> +  '#address-cells':
->>>>>>>>> +    const: 1
->>>>>>>>> +
->>>>>>>>> +  '#size-cells':
->>>>>>>>> +    const: 0
->>>>>>>>
->>>>>>>> Why do you need these two properties?
->>>>>>> Ack. Will remove them.
->>>>>>>>
->>>>>>>> Anyway, the binding looks incomplete. Where are the supplies?
->>>>>>>> Interrupts?
->>>>>>> This patch just adds basic support to the existing platform driver.
->>>>>>> Intention is to be able to call the driver from DT with basic
->>>>>>> initialization from driver the existing driver.
->>>>>>
->>>>>> Bindings should be rather complete. Here the datasheet is accessible and
->>>>>> few properties quite obvious, so I don't see a reason to skip them.
->>>>> I agree with you. But currently the driver which is already merged
->>>>> doesn't has it implemented.
->>>>> And will be working on separate patch to include this later.
->>>> Please let me know if this approach is acceptable, or if there are any
->>>> other suggestions or concerns that you have.
->>>
->>> You are adding new bindings, so what does the driver has to do with it?
->> The reason for adding these new bindings is to enable the use of the
->> driver on my machine. Without the compatible string, it would not be
->> possible to use the driver.
->>
->> Currently, the driver initializes the device with defaults, which is
->> good enough for my application. Also, as you previously pointed out, it
->> uses the optional 'fan-supply' which will be included in the next patch
->> revision.
->>
->> I hope this clarifies my reasoning. Could you kindly confirm if we can
->> proceed with this approach?
-> 
-> No, we cannot, because we asked you to fix things there. Your entire
-> explanation about compatible and driver is not related to the comment
-> you received: bindings should be complete. You argue that bindings do
-> not have to be complete, because of something with driver. This is not
-> related. Bindings are not for driver.
+Rob said earlier that his script does keep a flat directory
+for the output of 'make dtbs_install'.
 
-I understand that complete bindings are important, but as the driver is 
-already merged and functional, my immediate goal is to enable its use on 
-my machine. I will work on a separate patch to include the interrupts in 
-both binding & driver.
-
-> 
-> Best regards,
-> Krzysztof
-> 
+     Arnd
