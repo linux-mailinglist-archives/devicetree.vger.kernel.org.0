@@ -2,77 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A3186F653A
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 08:48:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08DE16F6546
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 08:51:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230020AbjEDGr6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 02:47:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55364 "EHLO
+        id S229689AbjEDGvz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 02:51:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229793AbjEDGr5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 02:47:57 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56A872700
-        for <devicetree@vger.kernel.org>; Wed,  3 May 2023 23:47:56 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-94a34a14a54so15965566b.1
-        for <devicetree@vger.kernel.org>; Wed, 03 May 2023 23:47:56 -0700 (PDT)
+        with ESMTP id S229827AbjEDGvu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 02:51:50 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF475359D
+        for <devicetree@vger.kernel.org>; Wed,  3 May 2023 23:51:48 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-50bc5197d33so112533a12.1
+        for <devicetree@vger.kernel.org>; Wed, 03 May 2023 23:51:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683182875; x=1685774875;
+        d=linaro.org; s=google; t=1683183107; x=1685775107;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=YNoB1CN4mNjbzbyJ7ifXkPbkV+dgOC11t9BHcH2q8pY=;
-        b=sSweCCGjrdmyJj2jSGtItrUmsI6bPOIG5TckUrtu/iIlxrDEqWImvvtyrqMtWCwhMp
-         sBgI7GLHOoWO7BTiidKBun7BFlEq4I7/oFUK/F8Iw0ENDjA8BbxlpuOIGroFqD9sxLpc
-         v7CHBOpmXxOMRqOIXHAcEUJ7t5asysNxom/TvXW7gld/a8lF31FftLJG7NdDW6w6sXk3
-         L5iL0Mur6sMIG9xxyy1FXokDihqUIHSuPHTWMK5bzQf9Q5jDuCHd43CymXkXCKo4iLN2
-         OQnA9aEMJ1tX3II5itslGhIVNBPGf25YphMBla+rUYqcHXO0CMczwG1VHVk7xv4XsFUQ
-         A95g==
+        bh=XkriIEnF+SMi7XmO2oQEpJ9/7UJVN1m657QRAcHFU2I=;
+        b=J3GbqpxAY4W/MgxqPnU150ta59l75BznB3UgAPNMxO6JGTcgVV95AJ2L9yyY+oE8dB
+         GBe5ZacDzmN9jbnRJ9S/TeKGM7SbiouSk47W/IQxs5DLNNwu3WmkCCV17kOV5tAH/GfK
+         PVZEKFlNGlOVAIfKI9NvLmX+N23P5f+FHixLw5s1pvCJPhtxmqy7OYoT++pnQeClRzTa
+         3v1bbHRVAjWrKYLr0xpjLKAUGFbvnkSq+nrvmXSOt6vS1s+6AHPGWcGF31XhkHHoVxV4
+         W0lyAPzs9gEr3myvQwBldjIsszJSgtd/cxu/tmIXfW4+wqm1jvlsHLzdVNGW3Ob+w3Mz
+         dhWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683182875; x=1685774875;
+        d=1e100.net; s=20221208; t=1683183107; x=1685775107;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YNoB1CN4mNjbzbyJ7ifXkPbkV+dgOC11t9BHcH2q8pY=;
-        b=BJEHhfNBbihDdpshqWJ5QqNyJYR8ZRtGYQSoH4FBI8jQHeCFbf8AebXeSoIxK89Xar
-         gH8v6KbBxTXbsgft2zqTlFEZeRq5rsZl73kcAaXpnhtzmRgawf2R7jEyOH/s0oppUZwp
-         rq4b+FJfvjHvDXRFnjvLLXxtv2Jwe0UG9ZjdwVmamcbdx8nmtQR+gcSWB5FCh01DZKX2
-         09bH9LfBwWnCgnE5nGeQCQK7VYIAlheZyWRCNUKdhWgetDx6CyTi9SOfaVD0qnZ4yhJq
-         abdJM3TYH8g+lEa4CDA1FaXeAZTokxPExLn9LiJpMN3u490dn2sU4eb8roBebUMb91wc
-         yHLA==
-X-Gm-Message-State: AC+VfDyQ10aD9rKRYaYFL90LeDEix2jtZ3MA2xEkCRO5m/tjTg1Dx49L
-        ZQzMdVwDystCS+76f2hzwopI0w==
-X-Google-Smtp-Source: ACHHUZ7PfA9SaWdGNw6CarkGjGW5noqaere74jXmcRAxtY4uIC+Sp8pC+Pvnt00LCkqoxHvBk+JvbA==
-X-Received: by 2002:a17:907:c20:b0:965:5668:d0ed with SMTP id ga32-20020a1709070c2000b009655668d0edmr5359045ejc.22.1683182874882;
-        Wed, 03 May 2023 23:47:54 -0700 (PDT)
+        bh=XkriIEnF+SMi7XmO2oQEpJ9/7UJVN1m657QRAcHFU2I=;
+        b=U4nnbdg5NCi76TR8V5x0M021fcoNdES4TbsVP9ABYbJHZUtKvqEvDEBpOSvX6aEz5Q
+         PInzgG/Vi1B/x13cBXaw3DxDEpKbjG29qoXtEL+CxDQ5ClYLZOCb/hls/jXcM+s54/ee
+         eqaUt8YvG8bBiFxScvpdHXTQCPwzQ4To/L0hvvD1+tHKXr+SVygx514v35+IcOVJGjgI
+         WGRMaS/VnpVsgMWO41pCVm+aVzxmD00yQ/FpZW5qBIpNUjA79Rsieo6Lspfu6EROfHpG
+         ml4i25Uya5DZhD8mCRbp6wbY1A17gM8y7lHvv03FI2CRBzgcPOLftRRMNKy3y1exL484
+         qUyQ==
+X-Gm-Message-State: AC+VfDyDOiIEy5xm84QDwij/OV+l9GPZBWy6AFACBq8A080+yijhIoOO
+        EOhetN+aWzx8+AKCM3StZkYhTMz2sVIh4ECqkeRliJ8e
+X-Google-Smtp-Source: ACHHUZ6M1HW1OJBBntDHesKB293NwEgDd5tSONL4R5C7U9TnYJfZLcDt8psT86IVYo2nmcnZF1fEGQ==
+X-Received: by 2002:a17:907:868a:b0:95e:e0fa:f724 with SMTP id qa10-20020a170907868a00b0095ee0faf724mr5639869ejc.39.1683183107411;
+        Wed, 03 May 2023 23:51:47 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:cbf1:e7ef:fb81:e912? ([2a02:810d:15c0:828:cbf1:e7ef:fb81:e912])
-        by smtp.gmail.com with ESMTPSA id jy7-20020a170907762700b00947740a4373sm18154982ejc.81.2023.05.03.23.47.53
+        by smtp.gmail.com with ESMTPSA id lh15-20020a170906f8cf00b0094e62aa8bcesm18368176ejb.29.2023.05.03.23.51.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 May 2023 23:47:54 -0700 (PDT)
-Message-ID: <bffd777f-c076-58ac-f26b-bee671a57992@linaro.org>
-Date:   Thu, 4 May 2023 08:47:53 +0200
+        Wed, 03 May 2023 23:51:46 -0700 (PDT)
+Message-ID: <9ece615f-0a6b-fff4-e129-ea7ca224a6a8@linaro.org>
+Date:   Thu, 4 May 2023 08:51:45 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
-Subject: Re: [PATCH RESEND 1/3] dt-bindings: clock: qcom,msm8996-cbf: Add
- compatible for MSM8996 Pro
+Subject: Re: [PATCH v5 1/3] dt-bindings: misc: esm: Add ESM support for TI K3
+ devices
 Content-Language: en-US
-To:     Yassine Oudjana <yassine.oudjana@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230503130051.144708-1-y.oudjana@protonmail.com>
- <20230503130051.144708-2-y.oudjana@protonmail.com>
+To:     Neha Malcom Francis <n-francis@ti.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     nm@ti.com, vigneshr@ti.com, kristo@kernel.org, u-kumar1@ti.com
+References: <20230503123212.208457-1-n-francis@ti.com>
+ <20230503123212.208457-2-n-francis@ti.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230503130051.144708-2-y.oudjana@protonmail.com>
+In-Reply-To: <20230503123212.208457-2-n-francis@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,19 +77,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/05/2023 15:00, Yassine Oudjana wrote:
-> From: Yassine Oudjana <y.oudjana@protonmail.com>
+On 03/05/2023 14:32, Neha Malcom Francis wrote:
+> Document the binding for TI K3 ESM (Error Signaling Module) block.
 > 
-> The CBF clock on MSM8996 Pro has a different divisor compared to MSM8996
-> and is therefore not fully compatible with it. Add a new compatible string
-> to differentiate between them.
-> 
-> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
-> ---
->  Documentation/devicetree/bindings/clock/qcom,msm8996-cbf.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
+> Signed-off-by: Neha Malcom Francis <n-francis@ti.com>
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+???
+
+You were already asked to keep it and it was in v4, so you had to
+explicitly remove it from your git... It takes me time to figure out
+what is happening here. But ok, if you do not keep my review, comment
+follows.
+
+...
+
+> +  ti,esm-pins:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    description:
+> +      integer array of ESM interrupt pins to route to external event pin
+> +      which can be used to reset the SoC.
+> +    minItems: 1
+> +    maxItems: 255
+> +
+> +additionalProperties: false
+
+Put aditionalProperties after required:, just like in example-schema.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - ti,esm-pins
+
+
 
 Best regards,
 Krzysztof
