@@ -2,129 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E9196F6F3F
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 17:41:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B3076F6F5B
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 17:47:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230459AbjEDPl2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 11:41:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53572 "EHLO
+        id S230183AbjEDPry (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 11:47:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229768AbjEDPl1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 11:41:27 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79C42E40;
-        Thu,  4 May 2023 08:41:26 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 12CC963532;
-        Thu,  4 May 2023 15:41:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53847C433D2;
-        Thu,  4 May 2023 15:41:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1683214885;
-        bh=6eAF+PDzJKSUispa3X1kRM2MZ4pCLVUtY5fjeRCGXiA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=W8Oo7i3roM/RRef6hNcEKwGGoFpbQR86l34KO/NKH1a0qCn5JBSz0FWfUB3+HaeNE
-         aLhSa1x2/xFf99elNs4U+71UWXgagW5a3BtU8JIDTjBUdq/gcJK5cSDbsTixoF4BIZ
-         gF/XGhyxVJLgHJVSnF3g3OXIHy1vMYZtgS+vGW9VXw4uLmRBvZVOoCoT616t3oF82u
-         cQXpUTlP+N9UFtEnRoiAKrEla/+JFYaWymO5VZtoeOkKZ38197H/zCECJ5d07sVRQF
-         +zC8KfxBIYAzFgJ9c2JVcHBvvSCH9JLVCgdkw768ccchzjq4WmkCebAd2Og2dovStE
-         vVIpopmID/A5w==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1pub5J-00014L-JQ; Thu, 04 May 2023 17:41:34 +0200
-Date:   Thu, 4 May 2023 17:41:33 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S230147AbjEDPrw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 11:47:52 -0400
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A608E1BF7;
+        Thu,  4 May 2023 08:47:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1683215270; x=1714751270;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=+W/UCTBIfYK9iU0TR7/tMzBfgHk4eby0Qe2D0HTr7Rc=;
+  b=nJr7YyuC2Ez1D903Tr5UOTsQL59dMgR1IvGZfLQg3T0sM+VFz3K5KIPs
+   MfMC422sADwtBCiAwy13HD1oEiTOlSxSHpSt1KiFuPq6Jis7pm/WeQTgO
+   BpGrFIAS5Ky6s24kDjG19Wzw3MwGgHfdApskZ7gga4ojYtsghZDr/ZEUf
+   /EYfHXobL2CKdVWgSHQ4EewM6JARD/JMnmP50qGMV/Nfb4I6vXuZ6dvYU
+   vRYHMNs5BJjrft3K2/kQa90Q6MdEkJ+BZWoEOzhD7ttSeu1sDPpAPfQz0
+   ptNeGcgeIP9VE1Y+RwvfOsxqsU7e3AYfh7c08dIvI3u15ngy68whDVSU2
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10700"; a="328594515"
+X-IronPort-AV: E=Sophos;i="5.99,249,1677571200"; 
+   d="scan'208";a="328594515"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 May 2023 08:47:49 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10700"; a="1027007589"
+X-IronPort-AV: E=Sophos;i="5.99,249,1677571200"; 
+   d="scan'208";a="1027007589"
+Received: from lkp-server01.sh.intel.com (HELO 64cf2984a3fe) ([10.239.97.150])
+  by fmsmga005.fm.intel.com with ESMTP; 04 May 2023 08:47:45 -0700
+Received: from kbuild by 64cf2984a3fe with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pubBI-00001Y-1Q;
+        Thu, 04 May 2023 15:47:44 +0000
+Date:   Thu, 4 May 2023 23:46:55 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Marco Felsch <m.felsch@pengutronix.de>, andreas@fatal.se,
+        jun.li@nxp.com, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/7] phy: qcom-qmp-combo: Introduce orientation variable
-Message-ID: <ZFPSLTgOiPMgwHzP@hovoldconsulting.com>
-References: <20230425034010.3789376-1-quic_bjorande@quicinc.com>
- <20230425034010.3789376-4-quic_bjorande@quicinc.com>
- <ZFD4gM9dUQwBmSUe@hovoldconsulting.com>
- <20230504032907.GF870858@hu-bjorande-lv.qualcomm.com>
- <ZFO21fLWSNc7orpb@hovoldconsulting.com>
- <20230504151633.GH870858@hu-bjorande-lv.qualcomm.com>
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>
+Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Marco Felsch <m.felsch@pengutronix.de>
+Subject: Re: [PATCH v2 2/4] usb: typec: mux: gpio-sbu-mux: add support for ss
+ data lane muxing
+Message-ID: <202305042306.TmTuYCAJ-lkp@intel.com>
+References: <20230504-b4-v6-3-topic-boards-imx8mp-evk-dual-role-usb-v2-2-3889b1b2050c@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230504151633.GH870858@hu-bjorande-lv.qualcomm.com>
-X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230504-b4-v6-3-topic-boards-imx8mp-evk-dual-role-usb-v2-2-3889b1b2050c@pengutronix.de>
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 04, 2023 at 08:16:33AM -0700, Bjorn Andersson wrote:
-> On Thu, May 04, 2023 at 03:44:53PM +0200, Johan Hovold wrote:
-> > On Wed, May 03, 2023 at 08:29:07PM -0700, Bjorn Andersson wrote:
-> > > On Tue, May 02, 2023 at 01:48:16PM +0200, Johan Hovold wrote:
-> > > > On Mon, Apr 24, 2023 at 08:40:06PM -0700, Bjorn Andersson wrote:
-> > 
-> > > > >  static void qmp_v3_dp_aux_init(struct qmp_combo *qmp);
-> > > > > @@ -1955,29 +1962,23 @@ static void qmp_v3_configure_dp_tx(struct qmp_combo *qmp)
-> > > > >  static bool qmp_combo_configure_dp_mode(struct qmp_combo *qmp)
-> > > > >  {
-> > > > >  	u32 val;
-> > > > > -	bool reverse = false;
-> > > > > +	bool reverse = qmp->orientation == TYPEC_ORIENTATION_REVERSE;
-> > 
-> > > > It also looks like these callbacks end up being called without holding
-> > > > the qmp->phy_mutex via phy->power_on(). Perhaps there is no risk for a
-> > > > concurrent switch notification and dp phy power-on but it's not that
-> > > > obvious.
-> > 
-> > > It seems we're arriving here from hpd_event_thread(), while
-> > > phy_power_on() and phy_power_off() will be called in some other context.
-> > > I've not been able to convince myself if DP driver ensures ordering, or
-> > > if we have an existing race here...
-> > 
-> > > Unless you insist, I would prefer to follow up with an additional patch
-> > > once we've landed this series. The fix will depend on the phy_mutex
-> > > shuffling patch anyways...
-> > 
-> > Sure.
-> > 
-> > But perhaps you can just move the orientation == qmp->orientation check
-> > under the mutex in qmp_combo_typec_switch_set() for now (in case I
-> > forgot to point that out earlier).
-> > 
-> 
-> qmp_combo_probe() and qmp_combo_typec_switch_set() are the only writers
-> to qmp->orientation, so that check can't race with any updates and hence
-> doesn't need to be protected.
+Hi Marco,
 
-Only if you happen to know that the callers of
-qmp_combo_typec_switch_set() are serialised, right? That happens to be
-the case for pmic_glink, but it may not be the case generally.
- 
-> Reading the code again, qmp_combo_configure_dp_mode() is invoked from
-> phy_power_on(), not the hpd_event_thread(), as I claimed yesterday.
+kernel test robot noticed the following build warnings:
 
-Yeah, but phy_power_on() is typically called from that thread. But
-perhaps not only from there.
+[auto build test WARNING on 457391b0380335d5e9a5babdec90ac53928b23b4]
 
-> But we shouldn't do qmp_combo_dp_power_on() in parallel with the
-> reinitialization following a switch in orientation, qmp->orientation
-> might change, but we definitely would have two contexts reconfiguring
-> the hardware simultaneously - perhaps this was the cause for the 10%
-> crashes I hit when trying to extend this to handle typec_mux as well...
-> 
-> I will grab the phy_mux in qmp_combo_configure_dp_mode() as well, thanks
-> for "insisting" :)
+url:    https://github.com/intel-lab-lkp/linux/commits/Marco-Felsch/dt-bindings-usb-gpio-sbu-mux-add-support-for-ss-data-lanes-mux/20230504-214927
+base:   457391b0380335d5e9a5babdec90ac53928b23b4
+patch link:    https://lore.kernel.org/r/20230504-b4-v6-3-topic-boards-imx8mp-evk-dual-role-usb-v2-2-3889b1b2050c%40pengutronix.de
+patch subject: [PATCH v2 2/4] usb: typec: mux: gpio-sbu-mux: add support for ss data lane muxing
+config: riscv-randconfig-r042-20230501 (https://download.01.org/0day-ci/archive/20230504/202305042306.TmTuYCAJ-lkp@intel.com/config)
+compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project b1465cd49efcbc114a75220b153f5a055ce7911f)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # install riscv cross compiling tool for clang build
+        # apt-get install binutils-riscv64-linux-gnu
+        # https://github.com/intel-lab-lkp/linux/commit/8cbffd4f358b26347855cb2dcae31dd8c012226f
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Marco-Felsch/dt-bindings-usb-gpio-sbu-mux-add-support-for-ss-data-lanes-mux/20230504-214927
+        git checkout 8cbffd4f358b26347855cb2dcae31dd8c012226f
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=riscv olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=riscv SHELL=/bin/bash drivers/usb/typec/mux/
 
-:)
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202305042306.TmTuYCAJ-lkp@intel.com/
 
-Johan
+All warnings (new ones prefixed by >>):
+
+>> drivers/usb/typec/mux/gpio-sbu-mux.c:119:18: warning: cast to smaller integer type 'enum gpio_sbu_mux_type' from 'const void *' [-Wvoid-pointer-to-enum-cast]
+           sbu_mux->type = (enum gpio_sbu_mux_type)device_get_match_data(&pdev->dev);
+                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   1 warning generated.
+
+
+vim +119 drivers/usb/typec/mux/gpio-sbu-mux.c
+
+   107	
+   108	static int gpio_sbu_mux_probe(struct platform_device *pdev)
+   109	{
+   110		struct typec_switch_desc sw_desc = { };
+   111		struct typec_mux_desc mux_desc = { };
+   112		struct device *dev = &pdev->dev;
+   113		struct gpio_sbu_mux *sbu_mux;
+   114	
+   115		sbu_mux = devm_kzalloc(dev, sizeof(*sbu_mux), GFP_KERNEL);
+   116		if (!sbu_mux)
+   117			return -ENOMEM;
+   118	
+ > 119		sbu_mux->type = (enum gpio_sbu_mux_type)device_get_match_data(&pdev->dev);
+   120	
+   121		mutex_init(&sbu_mux->lock);
+   122	
+   123		sbu_mux->enable_gpio = devm_gpiod_get(dev, "enable", GPIOD_OUT_LOW);
+   124		if (IS_ERR(sbu_mux->enable_gpio))
+   125			return dev_err_probe(dev, PTR_ERR(sbu_mux->enable_gpio),
+   126					     "unable to acquire enable gpio\n");
+   127	
+   128		sbu_mux->select_gpio = devm_gpiod_get(dev, "select", GPIOD_OUT_LOW);
+   129		if (IS_ERR(sbu_mux->select_gpio))
+   130			return dev_err_probe(dev, PTR_ERR(sbu_mux->select_gpio),
+   131					     "unable to acquire select gpio\n");
+   132	
+   133		sw_desc.drvdata = sbu_mux;
+   134		sw_desc.fwnode = dev_fwnode(dev);
+   135		sw_desc.set = gpio_sbu_switch_set;
+   136	
+   137		sbu_mux->sw = typec_switch_register(dev, &sw_desc);
+   138		if (IS_ERR(sbu_mux->sw))
+   139			return dev_err_probe(dev, PTR_ERR(sbu_mux->sw),
+   140					     "failed to register typec switch\n");
+   141	
+   142		mux_desc.drvdata = sbu_mux;
+   143		mux_desc.fwnode = dev_fwnode(dev);
+   144		mux_desc.set = gpio_sbu_mux_set;
+   145	
+   146		sbu_mux->mux = typec_mux_register(dev, &mux_desc);
+   147		if (IS_ERR(sbu_mux->mux)) {
+   148			typec_switch_unregister(sbu_mux->sw);
+   149			return dev_err_probe(dev, PTR_ERR(sbu_mux->mux),
+   150					     "failed to register typec mux\n");
+   151		}
+   152	
+   153		platform_set_drvdata(pdev, sbu_mux);
+   154	
+   155		return 0;
+   156	}
+   157	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
