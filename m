@@ -2,167 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 544E06F7090
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 19:12:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A9676F7097
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 19:13:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229680AbjEDRM2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 13:12:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44946 "EHLO
+        id S229914AbjEDRNX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 13:13:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229446AbjEDRM1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 13:12:27 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57AE849D9
-        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 10:11:55 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4f13a72ff53so910572e87.0
-        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 10:11:55 -0700 (PDT)
+        with ESMTP id S229907AbjEDRNV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 13:13:21 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BA924C2F
+        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 10:12:57 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-305f0491e62so714535f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 10:12:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683220312; x=1685812312;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vz0+DWIAMutu2Xz/Rkb3FV0Lzh5CDdxOEiMrTU8YU2w=;
-        b=The7/RhtFK1E7Mp1mhR4nnfynkOjiBUTilB6tAzhXGfg+rZP6URLbA8L9d+qZ6vYOB
-         z9LKL5vzQS/bYd6P1wvAHEtMVyk0XPVVGJe6Me1DCvTlOyH9V5Z3ZUj1OVy0lbx3dBIP
-         hoXk2sI/WfePB5mPs41Jk7SlWKZ419O7atVVqEg2AmB5Gbce2ar7AbzqPskRTBqZsEWA
-         ag9yUN954Ec238wMXXBngMs7D+dkN1VySKt20FVGFhJ6I1CV/JK5W7bY8XrENqrNylCE
-         0d73SyhPr/JnI7l31QLsoZA4nGBmVOcu0KRE12F8zHkg35uUhSc9Zw+Xe+JjX7IC83+t
-         nQ2A==
+        d=linaro.org; s=google; t=1683220375; x=1685812375;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=kddkMECWVqpDHWo8u3obun/sMKv5JNOK16rXJVgFx4g=;
+        b=LOOkQU6n9tZyRfwdWMsGPy6aLyJfZxBcZwYdRCAQ9umZn6cN0gLH+p93ev7FnwrMRA
+         NbRkWvvBVxSMZNqOUuWQUtSKP2TsBNKH5v4PNOvPkZhihSHgZk97wQqcxgYxPCCSLIIl
+         lvW572eEAcmp0BTPpbmx8wBPF718WrmwX6LmTUVxDLY3Ky6pQdVqRauIEjSkuih0FSBF
+         qow/nBQVdOmsZw/s3SPf5BoQIX1C036ioczaiYShWh20sjVWZ71NC8lJjOlWc5EUO36N
+         OiXgZ6FMupA3/w/TEZR4+liF5SzHpETSQDXKZrhx7T4hgiVILnSCi7bDgXtSGgDz9YfX
+         j7kw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683220312; x=1685812312;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vz0+DWIAMutu2Xz/Rkb3FV0Lzh5CDdxOEiMrTU8YU2w=;
-        b=NbW4kcQmv2EDSousrAJ53lp+S6ffvFuOkkRyZBHS34aERMpouuh2W84HXsumAVZulx
-         XOsJX7fJR+aq93roYPlzpEjsZElxxsyPy8qLmpu+hyi/ACgnAx9wWeB/BHUtb6uR9uWJ
-         1EpAsKqio7SYdnUr/KzZy0owkmAvfM79VoiF3kACrRMF7zvXnqYxeCR2CtkzE0kHlXHm
-         ewg79yV0tQVVbODlKSrKUL+NI8NEcwWVjsnPdXEKyYuYhuYAdbcwYyWbzD5y6HpH+iz2
-         ow7XSTZj8KyAg4gW0r5VhyEwzL1YPcY6deJl1kBs9pbcQc/bpysbXGUc4scUWKkhy7TS
-         3wkg==
-X-Gm-Message-State: AC+VfDywBGWPgVZQ9+oEmhZtVv125HAeSmsTfmBL1P3ZyIeFzKrQAB8Y
-        J8CFsHjdalFL4iWLAd58M/jbpA==
-X-Google-Smtp-Source: ACHHUZ6TDIc10NRPmOzuD1yPbh68NQTP0w+3g5hHCzGGNXbNo875UIkeFkOLLgKOcv3ahxr/0rtNwQ==
-X-Received: by 2002:ac2:410b:0:b0:4ef:f667:16aa with SMTP id b11-20020ac2410b000000b004eff66716aamr2224578lfi.43.1683220311842;
-        Thu, 04 May 2023 10:11:51 -0700 (PDT)
-Received: from [192.168.1.101] (abyl248.neoplus.adsl.tpnet.pl. [83.9.31.248])
-        by smtp.gmail.com with ESMTPSA id w15-20020ac2442f000000b004f09126b291sm2724539lfl.213.2023.05.04.10.11.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 May 2023 10:11:51 -0700 (PDT)
-Message-ID: <723f23b2-c4d8-d688-b261-4198537eefe4@linaro.org>
-Date:   Thu, 4 May 2023 19:11:49 +0200
+        d=1e100.net; s=20221208; t=1683220375; x=1685812375;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kddkMECWVqpDHWo8u3obun/sMKv5JNOK16rXJVgFx4g=;
+        b=Z2S6p2g3MiwQrGqlJGJVk/xq6gm4fh6uSyHESk9C/PSVjwN67gcjJfZjeE7uKgcSRI
+         2B4u1QNNvYJNUox80qmy/+fPb9Dgatq8J5Wd5kXtDjjJx7/5ZiKYOQ9ZwHa6WnWFzuJ+
+         MGaoPRMc08L/xfHX3jOi12+QYnQ7LX6qzlTb+ACZ1y8ijIKWt1pCEGj6lq/fhwhhbfaM
+         +yyqunNB8srnKCs7ul9uO4iS4Ao0C0IRrObF3ZKlqTs9/IeM+hC1D2n1eVhrqakzpOGM
+         3OG5qdGz4z9SSIH2wxE4Hd1w2HSnHjdMXp4kSPhnFM0Y27Hvwsr/opAc/gIrZSRL8Jzr
+         eTwA==
+X-Gm-Message-State: AC+VfDzMt9yMtWcVITVo1hUy+8OyMlg9ia849ouGKhMuq26FYxrE4kdj
+        9tFOi2Bb31lbRoBMHzUQLwGCM9CmHRcbO6wGcnAdoHzshdZUjB4k
+X-Google-Smtp-Source: ACHHUZ7QxZl1x5phuIX1RVMMYcOgzgMlXlTEPdp+xl3jrd8L/fw1k3OPIva4SO7dTMcMaHMRdDpUBxe7jqpzTrGx8UA=
+X-Received: by 2002:a5d:504a:0:b0:306:35d1:7a98 with SMTP id
+ h10-20020a5d504a000000b0030635d17a98mr3021869wrt.8.1683220375596; Thu, 04 May
+ 2023 10:12:55 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH] arm64: dts: qcom: enable dual ("bonded") DSI mode for
- DB845c
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org,
-        Amit Pundir <amit.pundir@linaro.org>
-References: <20230504160430.4014206-1-dmitry.baryshkov@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230504160430.4014206-1-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+References: <20230502053534.1240553-1-bhupesh.sharma@linaro.org>
+ <20230502053534.1240553-2-bhupesh.sharma@linaro.org> <faefbbed-0f62-e569-455d-0d21b363f8f3@linaro.org>
+In-Reply-To: <faefbbed-0f62-e569-455d-0d21b363f8f3@linaro.org>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Thu, 4 May 2023 22:42:44 +0530
+Message-ID: <CAH=2NtzfH+7XMFdCq0JENgpJymsHNUfzwhWmDx=g8xBJ4aACpA@mail.gmail.com>
+Subject: Re: [PATCH v10 1/4] dt-bindings: phy: qcom,qmp-usb: Drop legacy
+ bindings and move to newer one (SM6115 & QCM2290)
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-phy@lists.infradead.org, agross@kernel.org,
+        linux-kernel@vger.kernel.org, andersson@kernel.org,
+        bhupesh.linux@gmail.com, robh+dt@kernel.org,
+        konrad.dybcio@linaro.org, kishon@kernel.org, vkoul@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, dmitry.baryshkov@linaro.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 3 May 2023 at 21:55, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 02/05/2023 07:35, Bhupesh Sharma wrote:
+> > 'qcom,msm8996-qmp-usb3-phy.yaml' defines bindings for several PHYs
+> > which predate USB -> USB+DP migration. Since SM6115 and QCM2290
+> > nodes for USB QMP phy are being added to dtsi files by followup patches,
+> > move these bindings instead to the newer style
+> > 'qcom,sc8280xp-qmp-usb3-uni-phy.yaml' file.
+> >
+>
+>
+> >    clock-names:
+> > -    items:
+> > -      - const: aux
+> > -      - const: ref
+> > -      - const: com_aux
+> > -      - const: pipe
+> > +    maxItems: 4
+> >
+> >    power-domains:
+> >      maxItems: 1
+> > @@ -71,6 +69,42 @@ required:
+> >
+> >  additionalProperties: false
+> >
+> > +allOf:
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - qcom,qcm2290-qmp-usb3-phy
+> > +              - qcom,sm6115-qmp-usb3-phy
+> > +    then:
+> > +      properties:
+> > +        clocks:
+> > +          maxItems: 4
+> > +        clock-names:
+> > +          items:
+> > +            - const: cfg_ahb
+> > +            - const: ref
+> > +            - const: com_aux
+> > +            - const: pipe
+>
+> I am pretty sure I acked it and there were no changes here... but since
+> you did not include it, then lets keep the clock order the same as
+> sc8280xp. ABI is anyway affected, right?
 
+Yes, I forgot to include your Ack in this version :(
+Ok, I will fix the clock order in v11.
 
-On 4.05.2023 18:04, Dmitry Baryshkov wrote:
-> Now as both lt9611 and drm/msm drivers were updated to handle the 4k
-> modes over DSI, enable "bonded" DSI mode on DB845c. This way the board
-> utilizes both DSI links and thus can support 4k on the HDMI output.
-> 
-> Cc: Amit Pundir <amit.pundir@linaro.org>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-
-Konrad
->  arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 36 ++++++++++++++++++++++
->  1 file changed, 36 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> index e14fe9bbb386..4dea2c04b22f 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> @@ -419,6 +419,9 @@ &dsi0 {
->  	status = "okay";
-P.S. wanna move status last by chance?
-
-Konrad
->  	vdda-supply = <&vreg_l26a_1p2>;
->  
-> +	qcom,dual-dsi-mode;
-> +	qcom,master-dsi;
-> +
->  	ports {
->  		port@1 {
->  			endpoint {
-> @@ -434,6 +437,31 @@ &dsi0_phy {
->  	vdds-supply = <&vreg_l1a_0p875>;
->  };
->  
-> +&dsi1 {
-> +	vdda-supply = <&vreg_l26a_1p2>;
-> +
-> +	qcom,dual-dsi-mode;
-> +
-> +	/* DSI1 is slave, so use DSI0 clocks */
-> +	assigned-clock-parents = <&dsi0_phy 0>, <&dsi0_phy 1>;
-> +
-> +	status = "okay";
-> +
-> +	ports {
-> +		port@1 {
-> +			endpoint {
-> +				remote-endpoint = <&lt9611_b>;
-> +				data-lanes = <0 1 2 3>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&dsi1_phy {
-> +	vdds-supply = <&vreg_l1a_0p875>;
-> +	status = "okay";
-> +};
-> +
->  &gcc {
->  	protected-clocks = <GCC_QSPI_CORE_CLK>,
->  			   <GCC_QSPI_CORE_CLK_SRC>,
-> @@ -493,6 +521,14 @@ lt9611_a: endpoint {
->  				};
->  			};
->  
-> +			port@1 {
-> +				reg = <1>;
-> +
-> +				lt9611_b: endpoint {
-> +					remote-endpoint = <&dsi1_out>;
-> +				};
-> +			};
-> +
->  			port@2 {
->  				reg = <2>;
->  
+Thanks,
+Bhupesh
