@@ -2,152 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3DE06F6860
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 11:36:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2470C6F6936
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 12:40:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229915AbjEDJgR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 05:36:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53286 "EHLO
+        id S229853AbjEDKkh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 06:40:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229828AbjEDJgQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 05:36:16 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB60846BA
-        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 02:36:14 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-50bcb00a4c2so344379a12.1
-        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 02:36:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683192973; x=1685784973;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=mRcoOC8fngP6Il2rAzvXIOhnaTFot/xB1pDV/8xXBhI=;
-        b=MM3fLTuvY1THuF+Jes6bTaFgdLgelBxjG9Qs0YrJ62r2rXYT0XrFa3z3syIzosle/b
-         ndQzUCfwxP0iURGIxMkTVDjBIChW3aQKQa5lej+0hWz/zOU+BYcZpLtkfqufI9lhZ7es
-         qhlX/+ZSVEuTfyzLRaTd7wSuwjcjxrMHgq8WR24DyKR0x1kNqmw1BPJywXnPdZSaw/uQ
-         v66XZknaiYzEr+EDAw3mGYpAzFgZ8hMx+Krhne2k4sav+gyjx359mGzZ3ot1qt34/94A
-         ghRo/Cb+pg7QBb8ZQd8FiQIU4dfjKh2kVt6C+eOHJNmtQ6FMaiDDLxp2MrDt/PzbP4MN
-         7bgw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683192973; x=1685784973;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mRcoOC8fngP6Il2rAzvXIOhnaTFot/xB1pDV/8xXBhI=;
-        b=VYEigwdJOyfZ4T9y0XBQg78oOvRv/+0TK7SxExbwW9+4UtdFvFaMK6uTY/XiSIch9Q
-         VJPw0+AC6Fx92vmI4dlz62E6mY573hM5tg8HtPt3wGpr3ky9r21WKbpU88xcJ08BSuz+
-         O24lvCC37OkrvkxWEWId3XR2MYlgww03GaJLekXGPWR4vroI12iJeMLwZ/rH4rVu63gB
-         fOVOduxKucg3NAife4QoA5FJKon6eZaY5ejnnywvwF5eIJSl4QaRAsY7whMpCpXpedkN
-         fiehBoWGD7O0iJR2x6GeqBdK1HXuSjauvSOhjgfbrcR6DhkM5MlZlGBRtQC0K2ZzGmZj
-         FF+g==
-X-Gm-Message-State: AC+VfDy+h4RAvDTURbXnzqeS1kCeuvFLvyuZ3dQIxBi8QmFKqUcPPap2
-        cUPSPM/Q7hqxPGdxfPohK/lL2w==
-X-Google-Smtp-Source: ACHHUZ76/GLGEckds5wB/s6mHv5yN0exDgClTi+UZl555s4ZPAcE2DRB69WKyTxronDQzYc5TFp31A==
-X-Received: by 2002:a17:907:1b08:b0:957:1df0:9cbf with SMTP id mp8-20020a1709071b0800b009571df09cbfmr6548125ejc.19.1683192973372;
-        Thu, 04 May 2023 02:36:13 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:cbf1:e7ef:fb81:e912? ([2a02:810d:15c0:828:cbf1:e7ef:fb81:e912])
-        by smtp.gmail.com with ESMTPSA id sb21-20020a170906edd500b0094f4d2d81d9sm18480946ejb.94.2023.05.04.02.36.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 May 2023 02:36:12 -0700 (PDT)
-Message-ID: <86693969-59bf-5bcc-42a3-b6e94a0d6f3e@linaro.org>
-Date:   Thu, 4 May 2023 11:36:11 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [RESEND v2 1/6] dt-bindings: power: Add JH7110 AON PMU support
-Content-Language: en-US
-To:     Changhuang Liang <changhuang.liang@starfivetech.com>,
-        Conor Dooley <conor@kernel.org>
-Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        with ESMTP id S229915AbjEDKkf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 06:40:35 -0400
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BABDB4EDC;
+        Thu,  4 May 2023 03:40:33 -0700 (PDT)
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3449XJjr026664;
+        Thu, 4 May 2023 06:40:15 -0400
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3qca678amw-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 04 May 2023 06:40:14 -0400
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 344AeD0o056870
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 4 May 2023 06:40:13 -0400
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Thu, 4 May 2023 06:40:12 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Thu, 4 May 2023 06:40:12 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Thu, 4 May 2023 06:40:12 -0400
+Received: from daniel-Precision-5530.ad.analog.com ([10.48.65.214])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 344AdtQJ012745;
+        Thu, 4 May 2023 06:39:58 -0400
+From:   Daniel Matyas <daniel.matyas@analog.com>
+CC:     Daniel Matyas <daniel.matyas@analog.com>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Walker Chen <walker.chen@starfivetech.com>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, vkoul@kernel.org,
-        linux-phy@lists.infradead.org
-References: <20230419-labored-camper-644d51a7ca96@spud>
- <1a5b15fa-4f20-51c2-2ba1-a04a2911a694@starfivetech.com>
- <20230424-baffle-punch-ec73098f2b6a@spud>
- <d685a1d4-c07d-7dfa-f1fb-b35ceb2aa0eb@starfivetech.com>
- <20230425-unquote-eligible-09f743d81981@wendy>
- <a7cdfabf-2312-eaf3-f462-5bda7f0a120d@starfivetech.com>
- <68cb565d-bf39-10b0-9e3e-35ba7f54b90b@linaro.org>
- <0988495f-b87a-7f69-f222-37c67d6eae23@starfivetech.com>
- <20230425-resale-footrest-de667778c4fe@wendy>
- <663e9933-b9b3-a48f-98b6-2207215a8ed7@starfivetech.com>
- <20230425-commotion-prewashed-876247bed4ab@spud>
- <0b0f9187-ad6b-a1d9-6ec4-beb8989ca731@starfivetech.com>
- <3ed72340-accc-4ad1-098f-4a2eb6448828@linaro.org>
- <482e812a-05dd-105c-189c-e926b4be9d28@starfivetech.com>
- <089e24d1-588a-4a56-f00b-0b35d1d99295@linaro.org>
- <ea5b5534-8fc2-7c84-a011-c1b42c6ed7a0@starfivetech.com>
- <1ac26c1a-1726-515d-6598-849a07ed0b86@linaro.org>
- <5adda0ad-965c-fbf0-878c-9d41d28b5c39@starfivetech.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <5adda0ad-965c-fbf0-878c-9d41d28b5c39@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        Jonathan Corbet <corbet@lwn.net>,
+        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>
+Subject: [PATCH v4 1/2] dt-bindings: hwmon: add MAX31827
+Date:   Thu, 4 May 2023 12:39:30 +0300
+Message-ID: <20230504093933.70660-1-daniel.matyas@analog.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: mgnzufv0GoJSOMbELjfVOl1xHWPiTpa5
+X-Proofpoint-ORIG-GUID: mgnzufv0GoJSOMbELjfVOl1xHWPiTpa5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-04_06,2023-05-04_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 spamscore=0
+ suspectscore=0 impostorscore=0 adultscore=0 bulkscore=0 phishscore=0
+ priorityscore=1501 clxscore=1015 mlxlogscore=999 malwarescore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303200000 definitions=main-2305040086
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/05/2023 10:43, Changhuang Liang wrote:
-> 
-> 
-> On 2023/5/4 15:26, Krzysztof Kozlowski wrote:
->> On 04/05/2023 09:20, Changhuang Liang wrote:
->>>>>
->>>>> Krzysztof,
->>>>>
->>>>> I am confused about what to do next. How to add this power-controller's
->>>>> node in device tree?
->>>>>
->>>>
->>>> You just move power-domain-cells up.
->>>>
->>>> Best regards,
->>>> Krzysztof
->>>>
->>>
->>> Like this? 
->>>
->>> aon_syscon: syscon@17010000 {
->>> 	compatible = "starfive,jh7110-aon-syscon", "syscon", "starfive,jh7110-aon-pmu";
->>> 	reg = <0x0 0x17010000 0x0 0x1000>;
->>> 	#power-domain-cells = <1>;
->>> };
->>>
->>> If right? I will tell the syscon patch's owner delete the "simple-mfd" in aon_syscon node.
->>
->> Yes, but your compatibles are now wrong. Just compatible =
->> "starfive,jh7110-aon-syscon", "syscon".
->>
-> 
-> If compatible = "starfive,jh7110-aon-syscon", "syscon". My pmu drivers need use 
-> "starfive,jh7110-aon-syscon" to match.
+MAX31827 is a low-power temperature switch with I2C interface.
 
-And how it would even work with your proposal
-"starfive,jh7110-aon-syscon", "syscon", "starfive,jh7110-aon-pmu"?
+The device is a ±1°C accuracy from -40°C to +125°C
+(12 bits) local temperature switch and sensor with I2C/SM-
+Bus interface. The combination of small 6-bump wafer-lev-
+el package (WLP) and high accuracy makes this temper-
+ature sensor/switch ideal for a wide range of applications.
 
-Try...
+Signed-off-by: Daniel Matyas <daniel.matyas@analog.com>
+---
+ .../bindings/hwmon/adi,max31827.yaml          | 54 +++++++++++++++++++
+ MAINTAINERS                                   |  7 +++
+ 2 files changed, 61 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
 
->  And my pmu series will add this 
-> aon_syscon in yaml and device tree, so the syscon patch's owner don't need 
-> to add the aon_syscon in its yaml and device tree?
-
-I don't understand. But if you need to drop syscon, sure, drop it.
-
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml b/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
+new file mode 100644
+index 000000000000..2dc8b07b4d3b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
+@@ -0,0 +1,54 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/hwmon/adi,max31827.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Analog Devices MAX31827, MAX31828, MAX31829 Low-Power Temperature Switch
++
++maintainers:
++  - Daniel Matyas <daniel.matyas@analog.com>
++
++description: |
++  Analog Devices MAX31827, MAX31828, MAX31829 Low-Power Temperature Switch with
++  I2C Interface
++  https://www.analog.com/media/en/technical-documentation/data-sheets/MAX31827-MAX31829.pdf
++
++properties:
++  compatible:
++    oneOf:
++      - const: adi,max31827
++      - items:
++          - enum:
++              - adi,max31828
++              - adi,max31829
++          - const: adi,max31827
++
++  reg:
++    maxItems: 1
++
++  vref-supply:
++    description:
++      Must have values in the interval (1.6V; 3.6V) in order for the device to
++      function correctly.
++
++required:
++  - compatible
++  - reg
++  - vref-supply
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        temperature-sensor@42 {
++            compatible = "adi,max31827";
++            reg = <0x42>;
++            vref-supply = <&reg_vdd>;
++        };
++    };
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index c6545eb54104..0997a0490c97 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -12535,6 +12535,13 @@ F:	Documentation/userspace-api/media/drivers/max2175.rst
+ F:	drivers/media/i2c/max2175*
+ F:	include/uapi/linux/max2175.h
+ 
++MAX31827 TEMPERATURE SWITCH DRIVER
++M:	Daniel Matyas <daniel.matyas@analog.com>
++L:	linux-hwmon@vger.kernel.org
++S:	Supported
++W:	http://ez.analog.com/community/linux-device-drivers
++F:	Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
++
+ MAX6650 HARDWARE MONITOR AND FAN CONTROLLER DRIVER
+ L:	linux-hwmon@vger.kernel.org
+ S:	Orphan
+-- 
+2.34.1
 
