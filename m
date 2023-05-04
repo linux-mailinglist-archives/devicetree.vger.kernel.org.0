@@ -2,57 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A77786F6AD0
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 14:05:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6391B6F6AE5
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 14:10:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230064AbjEDME7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 08:04:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41658 "EHLO
+        id S230017AbjEDMKi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 08:10:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230353AbjEDMEx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 08:04:53 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36F875FCE;
-        Thu,  4 May 2023 05:04:52 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 74A6D633C0;
-        Thu,  4 May 2023 12:04:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F4AEC4339C;
-        Thu,  4 May 2023 12:04:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1683201890;
-        bh=AQVjob/5f+sN7+xlipG3xZlIavAHmNeW1nlxRjdKY0k=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=RamKx6oCJf5udMicwJnw8+gVS3U9LmDiOry8Tbeo5kbRPnJrFSRVFnKIiKHzcSh91
-         LSpHhqb0NJ79GK5q8SPujt2nz9y0WnbjnUTquZyWC+zoUrAg1zW6az8ess2vPY8LrE
-         QLOFkZsGs9B/VQInluK9+hxdeLx+hL1oeLGyCH2XyyFG+87oS19PUgUUiIl6D2B+iU
-         9xID3FCXKro5WNTGyzOzg3CQPSfVZqpAgGcdAVI8P7WWbyxm5KenMVo5SuigfbRsrk
-         l7FLSYcpnZRqOak6y2JZqjtRT9xFKC7EfzeusLLap9eVAMz1FCC81FG1ZTJ0UNf3SM
-         ZpH6wR7Gf1LjQ==
-Date:   Thu, 4 May 2023 21:04:47 +0900
-From:   Mark Brown <broonie@kernel.org>
-To:     =?iso-8859-1?Q?M=E5rten?= Lindahl <marten.lindahl@axis.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        kernel@axis.com
-Subject: Re: [PATCH v2 2/2] regulator: Add support for TI TPS6287x regulators
-Message-ID: <ZFOfX+PTsmA35TsC@finisterre.sirena.org.uk>
-References: <20230502-tps6287x-driver-v2-0-fb5419d46c49@axis.com>
- <20230502-tps6287x-driver-v2-2-fb5419d46c49@axis.com>
+        with ESMTP id S230306AbjEDMKh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 08:10:37 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A820619F;
+        Thu,  4 May 2023 05:10:33 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 344CAPEf053045;
+        Thu, 4 May 2023 07:10:25 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1683202225;
+        bh=Dbu5qyYWZQkEinvxkuN7EfgdmcEyIwFauHLsvIRwG7s=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=PfeCetWo1Q3ZLzsGOt6/5TLLgE/Zh6EYfhSqYfy49jF6lhhMBxmx6okKvRzW9nKy+
+         Cgt7fibslRxKWqvth/0qmVCb/B1aT8fsFava88Y3K4bbNee6lB5qwR7L4CCT2HRCpx
+         +YKH3L7yxxXim/QN0I1DXRgsFbORHKfG2mKw4uN4=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 344CAPto123332
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 4 May 2023 07:10:25 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 4
+ May 2023 07:10:25 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 4 May 2023 07:10:25 -0500
+Received: from [172.24.147.77] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 344CAMPH035120;
+        Thu, 4 May 2023 07:10:22 -0500
+Message-ID: <67eccecb-f4a4-7f15-5316-27fd39e65b51@ti.com>
+Date:   Thu, 4 May 2023 17:40:21 +0530
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="7fPur/hBqaL3u1Si"
-Content-Disposition: inline
-In-Reply-To: <20230502-tps6287x-driver-v2-2-fb5419d46c49@axis.com>
-X-Cookie: Avoid contact with eyes.
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH] arm64: dts: ti: k3-j784s4: Fix wakeup pinmux range and
+ pinctrl node offsets
+To:     Nishanth Menon <nm@ti.com>
+CC:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Andrew Davis <afd@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Apurva Nandan <a-nandan@ti.com>, Udit Kumar <u-kumar1@ti.com>
+References: <20230503083143.32369-1-t-konduru@ti.com>
+ <20230503114625.gqnijd3bog5bwemz@parameter>
+ <31b31af7-6c54-7d05-f7ef-fcceba48580e@ti.com>
+ <20230504115207.h6trzy4mqjcbkcm3@comment>
+Content-Language: en-US
+From:   Thejasvi Konduru <t-konduru@ti.com>
+In-Reply-To: <20230504115207.h6trzy4mqjcbkcm3@comment>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-8.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -60,103 +75,28 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---7fPur/hBqaL3u1Si
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 04/05/23 17:22, Nishanth Menon wrote:
+> On 14:36-20230504, Thejasvi Konduru wrote:
+>> On 03/05/23 17:16, Nishanth Menon wrote:
+>>> On 14:01-20230503, Thejasvi Konduru wrote:
+>>>> The wkup_pmx register region in j784s4 has multiple non-addressable
+>>>> regions, hence the existing wkup_pmx region is split as follows to
+>>>> avoid the non-addressable regions. The pinctrl node offsets are
+>>>> also corrected as per the newly split wkup_pmx* nodes.
+>>>>
+>>>> wkup_pmx0 -> 13 pins (WKUP_PADCONFIG 0 - 12)
+>>>> wkup_pmx1 -> 11 pins (WKUP_PADCONFIG 14 - 24)
+>>>> wkup_pmx2 -> 72 pins (WKUP_PADCONFIG 26 - 97)
+>>>> wkup_pmx3 -> 1 pin (WKUP_PADCONFIG 100)
+>>>>
+>>>> Fixes: 4664ebd8346a ("arm64: dts: ti: Add initial support for J784S4 SoC")
+>>>> Signed-off-by: Thejasvi Konduru <t-konduru@ti.com>
+>>>> ---
+>>> Could you provide a link to the output of:
+>>> $ cat /sys/kernel/debug/pinctrl/*/pins
+>> https://gist.github.com/thejasvikonduru/05b1a8e0fd8176116b7a3cc4e43b244a
+> Was this failing prior to this patch? Trying to understand the "Fix"
+> aspect of this patch.
+>
+Yes,it was failing prior to this patch.
 
-On Thu, May 04, 2023 at 10:30:27AM +0200, M=E5rten Lindahl wrote:
-
-> +static int tps6287x_get_voltage(struct regulator_dev *rdev)
-> +{
-> +	struct device *dev =3D rdev_get_dev(rdev);
-> +	struct tps6287x_chip *chip =3D
-> +	    i2c_get_clientdata(to_i2c_client(dev->parent));
-> +	unsigned int val;
-> +	int ret;
-> +
-> +	ret =3D regmap_read(rdev->regmap, TPS6287X_VSET, &val);
-> +	if (ret !=3D 0)
-> +		return -ENOTRECOVERABLE;
-> +
-> +	return (val * chip->uv_step) + rdev->constraints->min_uV;
-> +}
-
-Don't open code the voltage conversion, just use selectors - in which
-case you can simply describe the bitfield that the device has and use
-the generic regmap helpers.
-
-The driver should also never be referring to constraints to figure out
-what the register values mean, this is just not going to work - boards
-will typically be able to use far fewer voltages than the regulator
-supports.
-
-Also try to avoid squashing error codes, just pass the result back.
-
-> +static int tps6287x_set_voltage(struct regulator_dev *rdev, int min_uv,
-> +				int max_uv, unsigned int *selector)
-
-Similarly here, describe the bitfield and use the generic helpers.
-
-> +static int tps6287x_setup_vrange(struct tps6287x_chip *chip)
-> +{
-> +	struct regulator_dev *rdev =3D chip->rdev;
-> +	unsigned int val, r;
-> +	bool found =3D false;
-> +	int ret;
-> +
-> +	/*
-> +	 * Match DT voltage range to one of the predefined ranges,
-> +	 * and configure the regulator with the selected range.
-> +	 */
-> +	for (r =3D 0; r < ARRAY_SIZE(tps6287x_voltage_table); r++) {
-> +		if (tps6287x_voltage_table[r][0] =3D=3D rdev->constraints->min_uV &&
-> +		    tps6287x_voltage_table[r][1] =3D=3D rdev->constraints->max_uV) {
-> +			found =3D true;
-> +			break;
-> +		}
-> +	}
-
-No, as I said above the driver should just know what the device
-supports based on the device ID.  In general if a regulator driver is
-looking at the constraints that indicates that it's doing something
-wrong, the purpose of constraints is to grant permission for the
-features of the regulator to be used on the board.
-
-> +static const struct of_device_id tps6287x_dt_ids[] =3D {
-> +	{ .compatible =3D "ti,tps62870", },
-> +	{ .compatible =3D "ti,tps62871", },
-> +	{ .compatible =3D "ti,tps62872", },
-> +	{ .compatible =3D "ti,tps62873", },
-> +	{ }
-> +};
-
-Use the .data field here...
-
-> +static const struct i2c_device_id tps6287x_i2c_id[] =3D {
-> +	{ "tps62870", 0 },
-> +	{ "tps62871", 0 },
-> +	{ "tps62872", 0 },
-> +	{ "tps62873", 0 },
-> +	{},
-> +};
-
-=2E..and here to enumerate which of the variants is being used and hence
-which voltage range is required.
-
---7fPur/hBqaL3u1Si
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmRTn14ACgkQJNaLcl1U
-h9AYswf/QHQLzxn3Fis4kjKIRfIdHfO6913zQeqLZTBAVfI55azO4zetB/QZTl9x
-Z2XW79tJp6znoFvL+MZttVyqCAOKE7Aczydo0xZ8IBhPUKzKIEfQZtd1q/8gJmiH
-owuAoucBUrrTNn+U4EGrnAnvOPH2ER9m29kD1un1PWmzs24X/OneWCWtQPOdcHlX
-Oxc9nwoUVJA5fhpGK26QVgh080oQrdu2nZblGZLmkTCYW9uRj90LLf16JmsAvSfO
-ls1xWpUXzpmbO/+BOrUj7ysdqCYf52ZoNm6CXo3Q38fjJiVnH6loqjutPqjvV5TR
-tw31NiK8dpeLojbZWnGj7TkVHd2Csg==
-=+kH3
------END PGP SIGNATURE-----
-
---7fPur/hBqaL3u1Si--
