@@ -2,124 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D41DE6F6584
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 09:11:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8BF16F659F
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 09:21:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229644AbjEDHLE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 03:11:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39858 "EHLO
+        id S229807AbjEDHVG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 03:21:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229514AbjEDHLD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 03:11:03 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 108441730
-        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 00:11:02 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-50bc070c557so155178a12.0
-        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 00:11:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683184260; x=1685776260;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=g1/n5t8cbAz/vTg5FkETYVpfmK/xJOmvhikwe5AgFf0=;
-        b=E8jm+UUSVE3+c4PIoyP/U6pd168gH8yKP/q8sy+KWWbcxzpSfPCfzZR6JgOCsxna8P
-         wemgyOJfX5DlmZFCdrAbcKArBp0D0gdSDkLIk8rnRVc5jzqK5RFKgpar3CGmw+hXlTWl
-         sRDt898GEWCSKpt19h9wvQwqizQ9+KKRiywafhvb35W7p8eAzcrsGkbgSO0nOwwRlQEG
-         MGoLWuwijtkbYwl/ZYg2ebydDQHzw17as8pLgk1h0PpIen2bHb4LsgUCIXpQu8lWBVPN
-         orJXlVVhRlRn6c8HRtDtVENBlWLYv9CMagcpYWIme3wJYDklxtxI8BUVSoucCIoxPjQB
-         0BBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683184260; x=1685776260;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=g1/n5t8cbAz/vTg5FkETYVpfmK/xJOmvhikwe5AgFf0=;
-        b=lFcosVxBd036SUX9CSxZDOrQBrDABMhLf1POrFglxxvCcJ3e5IkrFgeFZMujgA7ddd
-         NoT+x/TDE8xx9AC5OH2aR0O9fo2llLed+4CSeUKJVAki2Y7vG/qABIdK6PtWzlfPkt2e
-         GZygazPzMh/EIpD7E0Rcr76h+guFu5ZuVj1lWxCzcpjBpLvjASyqIbtnqKrLWbRUYoJ9
-         t2Y44tptFupU6Rr+I6tAT1JK1eqPcIrhG/OwqgYnL6Ea86Mytc5qHR+GOWzSnq6BW5yC
-         FwDh2V1c6ontpfHNi0chHQ3wBply1eRiLDiZfwT1z1kHdQga9pBqSOVNLvOFVitzhFv4
-         v35g==
-X-Gm-Message-State: AC+VfDzDPywjwAKMZPPkb+IktCA87MO/tfAcZRQZvijHVfrgyIRfFs/l
-        Q0d8d811vBv8U9RK5cVazPu8RA==
-X-Google-Smtp-Source: ACHHUZ5dI1Sl1PKEhM/0Um5KIiHcB5ACuNCKI4muv2v6NQ/5wC9ngpxjyHRSh27lnFATl5h/bUaJ1w==
-X-Received: by 2002:aa7:d90c:0:b0:50b:f8c0:d793 with SMTP id a12-20020aa7d90c000000b0050bf8c0d793mr635452edr.27.1683184260533;
-        Thu, 04 May 2023 00:11:00 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:cbf1:e7ef:fb81:e912? ([2a02:810d:15c0:828:cbf1:e7ef:fb81:e912])
-        by smtp.gmail.com with ESMTPSA id r5-20020aa7d585000000b0050696c2d2f6sm1543284edq.88.2023.05.04.00.10.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 May 2023 00:11:00 -0700 (PDT)
-Message-ID: <db7ae5f9-393a-b892-dd6f-08c4f25ce7a8@linaro.org>
-Date:   Thu, 4 May 2023 09:10:58 +0200
+        with ESMTP id S229459AbjEDHVG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 03:21:06 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BA261BEA;
+        Thu,  4 May 2023 00:21:04 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 075C124E207;
+        Thu,  4 May 2023 15:20:57 +0800 (CST)
+Received: from EXMBX062.cuchost.com (172.16.6.62) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 4 May
+ 2023 15:20:56 +0800
+Received: from [192.168.125.107] (183.27.99.121) by EXMBX062.cuchost.com
+ (172.16.6.62) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 4 May
+ 2023 15:20:56 +0800
+Message-ID: <ea5b5534-8fc2-7c84-a011-c1b42c6ed7a0@starfivetech.com>
+Date:   Thu, 4 May 2023 15:20:55 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH RFC 4/6] dt-bindings: rtc: isl1208: Document built-in RTC
- device on PMIC RAA215300
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [RESEND v2 1/6] dt-bindings: power: Add JH7110 AON PMU support
 Content-Language: en-US
-To:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Conor Dooley <conor@kernel.org>
+CC:     Conor Dooley <conor.dooley@microchip.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Trent Piepho <tpiepho@impinj.com>, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-References: <20230503084608.14008-1-biju.das.jz@bp.renesas.com>
- <20230503084608.14008-5-biju.das.jz@bp.renesas.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230503084608.14008-5-biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset=UTF-8
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Walker Chen <walker.chen@starfivetech.com>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, <vkoul@kernel.org>,
+        <linux-phy@lists.infradead.org>
+References: <20230419-labored-camper-644d51a7ca96@spud>
+ <1a5b15fa-4f20-51c2-2ba1-a04a2911a694@starfivetech.com>
+ <20230424-baffle-punch-ec73098f2b6a@spud>
+ <d685a1d4-c07d-7dfa-f1fb-b35ceb2aa0eb@starfivetech.com>
+ <20230425-unquote-eligible-09f743d81981@wendy>
+ <a7cdfabf-2312-eaf3-f462-5bda7f0a120d@starfivetech.com>
+ <68cb565d-bf39-10b0-9e3e-35ba7f54b90b@linaro.org>
+ <0988495f-b87a-7f69-f222-37c67d6eae23@starfivetech.com>
+ <20230425-resale-footrest-de667778c4fe@wendy>
+ <663e9933-b9b3-a48f-98b6-2207215a8ed7@starfivetech.com>
+ <20230425-commotion-prewashed-876247bed4ab@spud>
+ <0b0f9187-ad6b-a1d9-6ec4-beb8989ca731@starfivetech.com>
+ <3ed72340-accc-4ad1-098f-4a2eb6448828@linaro.org>
+ <482e812a-05dd-105c-189c-e926b4be9d28@starfivetech.com>
+ <089e24d1-588a-4a56-f00b-0b35d1d99295@linaro.org>
+From:   Changhuang Liang <changhuang.liang@starfivetech.com>
+In-Reply-To: <089e24d1-588a-4a56-f00b-0b35d1d99295@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Originating-IP: [183.27.99.121]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX062.cuchost.com
+ (172.16.6.62)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/05/2023 10:46, Biju Das wrote:
-> The Built-in RTC device found on PMIC RAA215300 is similar to the isl1208
-> IP. However, RTC is enabled by PMIC RAA215300 and the polarity of the
-> external oscillator is determined by the PMIC revision.
-> 
-> Document renesas,raa215300-isl1208 compatible and renesas,raa215300-pmic
-> property to handle these differences.
-> 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
->  .../devicetree/bindings/rtc/isil,isl1208.yaml       | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/rtc/isil,isl1208.yaml b/Documentation/devicetree/bindings/rtc/isil,isl1208.yaml
-> index 04d51887855f..888a832ed1db 100644
-> --- a/Documentation/devicetree/bindings/rtc/isil,isl1208.yaml
-> +++ b/Documentation/devicetree/bindings/rtc/isil,isl1208.yaml
-> @@ -18,6 +18,7 @@ properties:
->            - isil,isl1209
->            - isil,isl1218
->            - isil,isl1219
-> +          - renesas,raa215300-isl1208
->  
->    reg:
->      maxItems: 1
-> @@ -40,6 +41,10 @@ properties:
->          <0> : Enable internal pull-up
->          <1> : Disable internal pull-up
->  
-> +  renesas,raa215300-pmic:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: phandle to the pmic device with isl1208 built-in RTC.
 
-No. You don't need cross-linking. We do not represent one device as two
-and then fix this by cross-linking them. The existing binding does not
-have it, so it should be a hint for you.
+
+On 2023/5/4 15:04, Krzysztof Kozlowski wrote:
+> On 04/05/2023 08:53, Changhuang Liang wrote:
+>>>> 	};
+>>>> };
+>>>>
+>>>> Add a "regmap" property which is phandle. And it can keep the present child-node
+>>>> structure. This is more consistent with our soc design.
+>>>
+>>> Adding property from child to parent does not make any sense. Didn't you
+>>> already receive comment on this?
+>>>
+>>> Best regards,
+>>> Krzysztof
+>>>
+>>
+>> Krzysztof,
+>>
+>> I am confused about what to do next. How to add this power-controller's
+>> node in device tree?
+>>
+> 
+> You just move power-domain-cells up.
+> 
+> Best regards,
+> Krzysztof
+> 
+
+Like this? 
+
+aon_syscon: syscon@17010000 {
+	compatible = "starfive,jh7110-aon-syscon", "syscon", "starfive,jh7110-aon-pmu";
+	reg = <0x0 0x17010000 0x0 0x1000>;
+	#power-domain-cells = <1>;
+};
+
+If right? I will tell the syscon patch's owner delete the "simple-mfd" in aon_syscon node.
 
 Best regards,
 Krzysztof
-
