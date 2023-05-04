@@ -2,148 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 068D36F66DC
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 10:10:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06B346F670D
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 10:14:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230166AbjEDIKl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 04:10:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50174 "EHLO
+        id S230091AbjEDIO3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 04:14:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230347AbjEDIJw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 04:09:52 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5013525F
-        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 01:08:14 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-96598a7c5e0so22515266b.3
-        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 01:08:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683187691; x=1685779691;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=byDPUDOt8GYOJTy7S9gC54C3ZXLMwnnDCwgExcgBbwE=;
-        b=jUVQge6ZTztk15UsR6kt2KVGMyX190Jy8FmDLHp7XDobF+uXgFac3qVXk8o1y8ZaLi
-         YzJSzkHrJvnjjSiDmTOD3Ou8ZcM3yurHQo+9yvUo0A41qMXMyglkj99MAW6lEW8DPruh
-         HL2ivjbE9YEYBLRxRPibRaOhC8IgKxwgDxziqfIm4FLPjgqpQ7QrkKEfaa2rpbZYMqkm
-         qYx4Oq3+QwK7xBXWFKj4yzSn3d9F8C+s3RxS6Ky9KLvilSL3VdtZMbelOHGFOk0+kPn2
-         2cQboQoS3QG49qvvAxxnOc1K26oM2JImD18iesEQAEF3fr1kX8kULe5EDYi7iDKpuwo1
-         zacg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683187691; x=1685779691;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=byDPUDOt8GYOJTy7S9gC54C3ZXLMwnnDCwgExcgBbwE=;
-        b=iOlELcHmhT3d7XhkC8iQW1KYBizhhYj7cHum7pir2NLsdUfe3LcNaowvLSWFQRAVaj
-         L6cohhWXwPX1Y69+cmGf2tWB+mZoyqU8R7YtYpTKjNn93BGwFao5+MrQXyiGeaZKn7XZ
-         rmITei7WPnsq6Qi44pCzPWRKOU2pj47EP5J3NNdVH2/JK7iHq4ktCNhzRE+Fan3ivdW9
-         wamfx8/57JgOkqt3M1N5wQCmQehITedtQyPFZ+khMXjuAo1E/aJz7GGnr23IsAbvD8Qy
-         iz+Vhbrx8fLqa5XFNC8rPQ1Jyl0mf97DQYcbu24x/gMgnK1SBjruaPtyWBDYtiT/YZZO
-         yjig==
-X-Gm-Message-State: AC+VfDxYJ43g77TWX3CLnd+F8Y6e5MmhImHkMFQDTVsg3au+r/gSeX6k
-        Vvo3panOlfP+ZW/zkqb9ouSLYg==
-X-Google-Smtp-Source: ACHHUZ7V4VVbuu2QABVgsj2CM8GAltUPKXVXETrFrfDTBh8Bi5Dawj08rUb7EF/Ch99f+XpES0mFPQ==
-X-Received: by 2002:a17:907:2681:b0:961:272d:bdb9 with SMTP id bn1-20020a170907268100b00961272dbdb9mr6177923ejc.43.1683187691630;
-        Thu, 04 May 2023 01:08:11 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:cbf1:e7ef:fb81:e912? ([2a02:810d:15c0:828:cbf1:e7ef:fb81:e912])
-        by smtp.gmail.com with ESMTPSA id my34-20020a1709065a6200b0094f6f45b2c1sm18500238ejc.156.2023.05.04.01.08.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 May 2023 01:08:11 -0700 (PDT)
-Message-ID: <5564bc98-2de9-d697-23f4-a778dec8088c@linaro.org>
-Date:   Thu, 4 May 2023 10:08:10 +0200
+        with ESMTP id S230120AbjEDIM5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 04:12:57 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCAF240FD;
+        Thu,  4 May 2023 01:10:36 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3448AUat032194;
+        Thu, 4 May 2023 03:10:30 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1683187830;
+        bh=s+Ys96Yudt+ULH0EPdgm7zVCRR4Q7qjSR+OtIRskrwo=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=LBNuVKOs5Yvm+/vtJLc7IGpAeMCPUjDPYK2ZFy0ytsCm/IfTpwS3Yc3xwOZpgnhKP
+         GpFwzWJwcnQHrzyHtULqfVhaar86v2WNkFFb21LGmp/WkI2ool4tuVk54Kbg+OYdPA
+         0TP4Po0MQjZXvt5ijRwaoPFj7bhM7etwaNsFpfNw=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3448ATJi101839
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 4 May 2023 03:10:30 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 4
+ May 2023 03:10:29 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 4 May 2023 03:10:29 -0500
+Received: from [10.24.69.249] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3448AQrD095902;
+        Thu, 4 May 2023 03:10:26 -0500
+Message-ID: <72eb1506-e915-8547-ac6d-587404a40197@ti.com>
+Date:   Thu, 4 May 2023 13:40:25 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH] dt-bindings: usb: Add binding for Microchip usb5744 hub
- controller
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v3 0/2] arm64: dts: ti: k3-j784s4-evm: Add support for
+ OSPI and QSPI flashes
 Content-Language: en-US
-To:     Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
-        monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com,
-        ilias.apalodimas@linaro.org, Marek Vasut <marex@denx.de>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Piyush Mehta <piyush.mehta@amd.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org
-References: <cca068980ae0b902168a9a9b78cab4efb43157a8.1683121150.git.michal.simek@amd.com>
- <4aa7adbf-f89e-6819-64d2-5942a456528a@linaro.org>
- <eb325b2a-d265-d8bb-8e98-9eef8f03355a@amd.com>
- <d5763073-3aaa-8a7f-1336-337c125b1a0e@linaro.org>
- <66c1efb3-32c1-b751-0faf-1fd6814bf05c@amd.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <66c1efb3-32c1-b751-0faf-1fd6814bf05c@amd.com>
-Content-Type: text/plain; charset=UTF-8
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     Dhruva Gole <d-gole@ti.com>, Udit Kumar <u-kumar1@ti.com>,
+        Vaishnav Achath <vaishnav.a@ti.com>
+References: <20230504080305.38986-1-a-nandan@ti.com>
+From:   Apurva Nandan <a-nandan@ti.com>
+In-Reply-To: <20230504080305.38986-1-a-nandan@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-8.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/05/2023 09:55, Michal Simek wrote:
-> 
-> 
-> On 5/4/23 09:31, Krzysztof Kozlowski wrote:
->> CAUTION: This message has originated from an External Source. Please use proper judgment and caution when opening attachments, clicking links, or responding to this email.
->>
->>
->> On 04/05/2023 09:25, Michal Simek wrote:
->>>
->>>
->>> On 5/4/23 08:46, Krzysztof Kozlowski wrote:
->>>> On 03/05/2023 15:39, Michal Simek wrote:
->>>>> The Microchip usb5744 is a SS/HS USB 3.0 hub controller with 4 ports.
->>>>> The binding describes USB related aspects of the USB5744 hub, it as
->>>>> well cover the option of connecting the controller as an i2c slave.
->>>>> When i2c interface is connected hub needs to be initialized first.
->>>>> Hub itself has fixed i2c address 0x2D but hardcoding address is not good
->>>>> idea because address can be shifted by i2c address translator in the
->>>>> middle.
->>>>>
->>>>> Signed-off-by: Piyush Mehta <piyush.mehta@amd.com>
->>>>> Signed-off-by: Michal Simek <michal.simek@amd.com>
->>>>> ---
->>>>>
->>>>> It looks like that usb8041 has also an optional i2c interface which is not
->>>>> covered. But it is mentioned at commit 40e58a8a7ca6 ("dt-bindings: usb:
->>>>> Add binding for TI USB8041 hub controller").
->>>>>
->>>>> i2c-bus name property was suggested by Rob at
->>>>> https://lore.kernel.org/all/CAL_JsqJedhX6typpUKbnzV7CLK6UZVjq3CyG9iY_j5DLPqvVdw@mail.gmail.com/
->>>>> and
->>>>> https://lore.kernel.org/all/CAL_JsqJZBbu+UXqUNdZwg-uv0PAsNg55026PTwhKr5wQtxCjVQ@mail.gmail.com/
->>>>>
->>>>> the question is if adding address like this is acceptable.
->>>>> But it must be specified.
->>>>
->>>> Why? phandle points it explicitly.
->>>
->>> Ok it means just list usb hub on i2c with label and point to it. Works for me.
->>
->> Right. I missed you want the address of the hub but phandle goes to the
->> bus. I think listing it on I2C bus (see
->> arch/arm/boot/dts/vf610-zii-scu4-aib.dts) should work. I think we can
->> have I2C devices without compatibles.
-> 
-> Device is definitely on i2c bus. But the problem with phande to bus is that 
-> there could more the same usb hubs and different i2c addresses of it. That's why 
-> I need to have exact match.
-> Marek has similar hub where i2c address can be strapped too.
-> 
->> The problem is that property should have only one definition/type and
->> i2c-bus is already used in other cases as just "phandle". If we go with
->> your phandle+address approach, then this should be phandle-array with
->> items and then we have two different types.
-> 
-> What to do with it then?
 
-Your idea. I think you missed part of my comment. Add hub to the I2C bus
-and phandle to the hub I2C device node.
-
-Best regards,
-Krzysztof
+On 04/05/23 13:33, Apurva Nandan wrote:
+> From: Vaishnav Achath <vaishnav.a@ti.com>
+>
+> J784S4 has S28HS512T OSPI flash connected to OSPI0 and MT25QU512A QSPI
+> flash connected to OSPI1, enable support for the same.
+>
+> Changes in v3:
+> - Split the SoC dtsi changes and EVM dts changes into separate patches
+> - Added QSPI flash node and partition information in EVM dts
+> - Removed address-cells = <1>; and size-cells = <1>; in OSPI0 flash node
+> - Add flash partition information for OSPI flash.
+Link to v2 patch: 
+https://lore.kernel.org/linux-arm-kernel/20230329060057.13654-1-a-nandan@ti.com/
+> Changes in v2:
+> - Fixed address 0x0 to 0x00
+> - Fixed dtbs_check errors (removed syscon and created simple bus)
+> - Fixed whitespace error
+Link to v1 patch: 
+https://lore.kernel.org/linux-arm-kernel/20230327082924.12427-1-a-nandan@ti.com/
+> Apurva Nandan (2):
+>    arm64: dts: ti: k3-j784s4-mcu-wakeup: Add FSS OSPI0 and FSS OSPI1
+>    arm64: dts: ti: k3-j784s4-evm: Add support for OSPI and QSPI flashes
+>
+>   arch/arm64/boot/dts/ti/k3-j784s4-evm.dts      | 158 ++++++++++++++++++
+>   .../boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi     |  41 +++++
+>   2 files changed, 199 insertions(+)
+>
+-- 
+Thanks and regards,
+Apurva Nandan,
+Texas Instruments India.
 
