@@ -2,103 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B4396F65C2
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 09:32:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 671886F65CE
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 09:34:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230084AbjEDHcc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 03:32:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49246 "EHLO
+        id S229958AbjEDHeV convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 4 May 2023 03:34:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230072AbjEDHc1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 03:32:27 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A63EE3586
-        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 00:32:19 -0700 (PDT)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <j.zink@pengutronix.de>)
-        id 1puTRk-0001GQ-Mb; Thu, 04 May 2023 09:32:12 +0200
-Message-ID: <0a5d631a-037e-5158-82dd-e53d478befea@pengutronix.de>
-Date:   Thu, 4 May 2023 09:32:11 +0200
+        with ESMTP id S229816AbjEDHeU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 03:34:20 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 945BB1990;
+        Thu,  4 May 2023 00:34:14 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 16A2624E1FE;
+        Thu,  4 May 2023 15:34:08 +0800 (CST)
+Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 4 May
+ 2023 15:34:07 +0800
+Received: from ubuntu.localdomain (161.142.156.10) by EXMBX168.cuchost.com
+ (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 4 May
+ 2023 15:34:02 +0800
+From:   Jia Jie Ho <jiajie.ho@starfivetech.com>
+To:     Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>
+CC:     <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+Subject: [PATCH v7 0/4] crypto: starfive - Add drivers for crypto engine
+Date:   Thu, 4 May 2023 15:33:56 +0800
+Message-ID: <20230504073400.1170979-1-jiajie.ho@starfivetech.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH 1/2] dt-bindings: phy: imx8mq-usb: add phy tuning
- properties
-Content-Language: en-US, de-DE
-From:   Johannes Zink <j.zink@pengutronix.de>
-To:     Rob Herring <robh@kernel.org>
-Cc:     kishon@kernel.org, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, festevam@gmail.com,
-        s.hauer@pengutronix.de, vkoul@kernel.org, haibo.chen@nxp.com,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-imx@nxp.com, kernel@pengutronix.de,
-        linux-phy@lists.infradead.org, shawnguo@kernel.org,
-        linux-arm-kernel@lists.infradead.org, jun.li@nxp.com,
-        patchwork-jzi@pengutronix.de
-References: <20230405112118.1256151-1-j.zink@pengutronix.de>
- <20230405112118.1256151-2-j.zink@pengutronix.de>
- <5398cbe0-c681-5dd7-0b3e-3a586cc4915f@linaro.org>
- <3f7257ee36dc44f162a87281c8279fd5bad91dea.camel@pengutronix.de>
- <95b4afd4-c93e-628b-fd22-6fcbc1d1234e@linaro.org>
- <b394b456540943b1022a7b093bf369924fca0566.camel@pengutronix.de>
- <20230412133921.GA2017891-robh@kernel.org>
- <6953b608-973f-c603-f852-edf7ba183e64@pengutronix.de>
- <67d283f3-d0db-5fc0-79e9-e7531d591aab@pengutronix.de>
-In-Reply-To: <67d283f3-d0db-5fc0-79e9-e7531d591aab@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: j.zink@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-8.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [161.142.156.10]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX168.cuchost.com
+ (172.16.6.78)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob, hi Krzysztof,
+This patch series adds kernel driver support for StarFive JH7110 crypto
+engine. The first patch adds Documentations for the device and Patch 2
+adds device probe and DMA init for the module. Patch 3 adds crypto and
+DMA dts node for VisionFive 2 board. Patch 4 adds hash/hmac support to
+the module.
 
-[snip]
- > gentle ping - any opinions on this? Shall I just send a V2 along the 
-lines of the phy-stm32-usbphy.c?
+Patch 3 needs to be applied on top of:
+https://lore.kernel.org/lkml/20230424135409.6648-3-xingyu.wu@starfivetech.com/
 
-This would be something like (example for the trim-hs-current, taken 
-from pyh-stm32-usbphyc):
+Patch 4 needs to be applied on top of:
+https://lore.kernel.org/linux-crypto/ZEEOXIHwqKblKfBJ@gondor.apana.org.au/T/#u
 
-       st,trim-hs-current:
-         description: |
-           Controls HS driver current trimming for choke compensation
-           - <0> = 18.87 mA target current / nominal + 0%
-           - <1> = 19.165 mA target current / nominal + 1.56%
-           - <2> = 19.46 mA target current / nominal + 3.12%
-           - <3> = 19.755 mA target current / nominal + 4.68%
-           - <4> = 20.05 mA target current / nominal + 6.24%
-           - <5> = 20.345 mA target current / nominal + 7.8%
-           - <6> = 20.64 mA target current / nominal + 9.36%
-           - <7> = 20.935 mA target current / nominal + 10.92%
-           - <8> = 21.23 mA target current / nominal + 12.48%
-           - <9> = 21.525 mA target current / nominal + 14.04%
-           - <10> = 21.82 mA target current / nominal + 15.6%
-           - <11> = 22.115 mA target current / nominal + 17.16%
-           - <12> = 22.458 mA target current / nominal + 19.01%
-           - <13> = 22.755 mA target current / nominal + 20.58%
-           - <14> = 23.052 mA target current / nominal + 22.16%
-           - <15> = 23.348 mA target current / nominal + 23.73%
-         $ref: /schemas/types.yaml#/definitions/uint32
-         minimum: 0
-         maximum: 15
-         default: 0
+Changes v6->v7
+- Remove NULL assignment as struct is kzalloc()-ed (Christophe)
+- Do clk_disable_unprepare and assert reset if probe failed (Christophe)
+- Remove unnecessary null pointer check (Christophe)
+- Update module name in Kconfig description (Christophe)
 
-If you think something along these lines is acceptable, I would like to 
-prepare and send a V2.
+Changes v5->v6
+- Remove set_crypt in export as request will have been created by
+  init/updated calls (Herbert)
+- Use new helper to set statesize of crypto_ahash (Herbert)
+- Use crypto_ahash_blocksize instead of crypto_ahash_tfm (Herbert)
+- Switch to init_tfm/exit_tfm instead of cra_init/cra_exit (Herbert)
 
-Best regards
-Johannes
+Changes v4->v5
+- Schedule tasklet from IRQ handler instead of using completion to sync
+  events (Herbert)
 
-[snip]
+Changes v3->v4:
+- Use fallback for non-aligned cases as hardware doesn't support
+  hashing piece-meal (Herbert)
+- Use ahash_request_set_* helpers to update members of ahash_request
+  (Herbert)
+- Set callbacks for async fallback (Herbert)
+- Remove completion variable and use dma_callback to do the rest of
+  processing instead. (Herbert)
+
+Changes v2->v3:
+- Only implement digest and use fallback for other ops (Herbert)
+- Use interrupt instead of polling for hash complete (Herbert)
+- Remove manual data copy from out-of-bound memory location as it will
+  be handled by DMA API. (Christoph & Herbert)
+
+Changes v1->v2:
+- Fixed yaml filename and format (Krzysztof)
+- Removed unnecessary property names in yaml (Krzysztof)
+- Moved of_device_id table close to usage (Krzysztof)
+- Use dev_err_probe for error returns (Krzysztof)
+- Dropped redundant readl and writel wrappers (Krzysztof)
+- Updated commit signed offs (Conor)
+- Dropped redundant node in dts, module set to on in dtsi (Conor)
+
+Jia Jie Ho (4):
+  dt-bindings: crypto: Add StarFive crypto module
+  crypto: starfive - Add crypto engine support
+  riscv: dts: starfive: Add crypto and DMA node for VisionFive 2
+  crypto: starfive - Add hash and HMAC support
+
+ .../crypto/starfive,jh7110-crypto.yaml        |  70 ++
+ MAINTAINERS                                   |   7 +
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      |  28 +
+ drivers/crypto/Kconfig                        |   1 +
+ drivers/crypto/Makefile                       |   1 +
+ drivers/crypto/starfive/Kconfig               |  21 +
+ drivers/crypto/starfive/Makefile              |   4 +
+ drivers/crypto/starfive/jh7110-cryp.c         | 240 +++++
+ drivers/crypto/starfive/jh7110-cryp.h         | 127 +++
+ drivers/crypto/starfive/jh7110-hash.c         | 892 ++++++++++++++++++
+ 10 files changed, 1391 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/crypto/starfive,jh7110-crypto.yaml
+ create mode 100644 drivers/crypto/starfive/Kconfig
+ create mode 100644 drivers/crypto/starfive/Makefile
+ create mode 100644 drivers/crypto/starfive/jh7110-cryp.c
+ create mode 100644 drivers/crypto/starfive/jh7110-cryp.h
+ create mode 100644 drivers/crypto/starfive/jh7110-hash.c
+
+-- 
+2.25.1
+
