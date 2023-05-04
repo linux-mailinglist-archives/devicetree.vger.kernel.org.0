@@ -2,232 +2,249 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2006C6F6C64
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 14:52:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF2EF6F6C73
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 14:55:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229846AbjEDMwH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 08:52:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39562 "EHLO
+        id S230361AbjEDMzZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 08:55:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230363AbjEDMwG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 08:52:06 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2ADEC6EAB
-        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 05:51:33 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-957dbae98b4so67715266b.1
-        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 05:51:33 -0700 (PDT)
+        with ESMTP id S230363AbjEDMzY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 08:55:24 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4618C10DE
+        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 05:55:22 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-3f315712406so62586935e9.0
+        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 05:55:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683204653; x=1685796653;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=O2obC0cCkbuuZfXfRaApQUsjUhYRjOVjT9ma5uBlilE=;
-        b=CGgnPsWj7gT8G7a/TeYTnrfIH3GbZXAzKzl23MMuVFADFRvnPFzYGHCDV6EW588TTc
-         NBC8WfsuRahYRm8RI4X2gf+uyXrI+j+qHTschHy4PaeotgnwkGI/DRmgTFVJsjW+XOCD
-         7r4Fv8Vxljud0g0AWCsEfBDo/9XKvuUrqtch6A2OnMLyqre0Qqog8IpVJ7AiHL4GayIV
-         VLviGVXEcTleBbbfN+5/LH7PGrTPv5PjyBmT1CNkJ27grPWohmOC7XV5VSxpJiNvqQQL
-         iiBCGOs9wx8mITE9kkBgNr4TzeoEiem+9d40DWtCdkcgyImU2kOwmRIQU7L7PH09WK8k
-         ShHg==
+        d=linaro.org; s=google; t=1683204921; x=1685796921;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=TwKH5OHkDV/MpZ9yrdw81ApCoAA4gk5I47srjkhQU+0=;
+        b=YpPw9mHfAJxQ6CjbhpKohzqG56cQCfKAsDGoAtpjQT/Ev9QAxQYnrL4ZV1Askhy9PI
+         T941FhMz6i+3/qDiHy4zFYgu3EIVivdVq7QIyouI2OKNpDAzqG2H4XhR0cd+3FR+yJcw
+         hjBqp7/5UVTKhenkIVvXOYwzXB/HzQJHyif3BM1SWkUolIv+S+e6ddSWctMztZ9tzcWP
+         W4W6beeMjzo4XVjpMQxo0hhE0k3TZFuq9PTu5jBsqSfugZT8LlPCIQHgHIYVKB42VZfs
+         9sjcq+T0ekua36zu4GAL4svoSk8byRqO9AkRxKEDPQZA4IL2jc90PlkTy6FBtxwVK2a4
+         xdVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683204653; x=1685796653;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=O2obC0cCkbuuZfXfRaApQUsjUhYRjOVjT9ma5uBlilE=;
-        b=bccgRfkw6Tqgb8Pfxt1hjptSbtgdkWAUPdrBHR7+AidpMUcrUJF5KFimsSG/8EyanQ
-         XMwPXK8bQjgU025pG1Be4a32HWGxt8YB3Q2Y+mXlJGsIahy3wtgAeCSdvDty8nj55msN
-         yc1PfPWvFrqBjtrcQiba8pm6l9mAWfLkz/qDcv22ZYdiQmay5sA/QBu8+ke5LqULvQln
-         +lhWVRApS2U5iIUvecOeu7KPweDuTzDJiL3k2jZoOXQeJ5CVBwHDTCbeeFplv8ugsxRU
-         aFcMua6oSaUJg0XWlFeZnSkskxFEpPnvgsri0RIr/xmjBc6Bl+9/OZIvw1198dQxXjCI
-         tYqg==
-X-Gm-Message-State: AC+VfDxu/B/S3in+Vymc99Nq7zxPEwLT6eX8V7ncxS9L6n7UniBHnKbp
-        GomLwQd5VCs9Uy0hVEM4ENxngw==
-X-Google-Smtp-Source: ACHHUZ4p5/ZI/MQhoR/P1zQKgfq+Cw+kXOWRIR8givCmU3e+NL2+9TtXsspQiz2YNPuMLAIm9b1HRw==
-X-Received: by 2002:a17:907:1c21:b0:94b:cd7c:59f4 with SMTP id nc33-20020a1709071c2100b0094bcd7c59f4mr6549002ejc.16.1683204653018;
-        Thu, 04 May 2023 05:50:53 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:cbf1:e7ef:fb81:e912? ([2a02:810d:15c0:828:cbf1:e7ef:fb81:e912])
-        by smtp.gmail.com with ESMTPSA id e5-20020a170906504500b0094f124a37c4sm18826340ejk.18.2023.05.04.05.50.51
+        d=1e100.net; s=20221208; t=1683204921; x=1685796921;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TwKH5OHkDV/MpZ9yrdw81ApCoAA4gk5I47srjkhQU+0=;
+        b=OYsX83JrQR2UWTp0w0FGMtK7sDBgbIXj8wmI6rn4nnk+ZcRBpoQDLapVr+XkUd6+94
+         2cxvd7NPXVv/Ik7Z6i02g3ZOcJ1oBqsYOR+JqGGal8W0D3n6lktvdIUEidCMTJYHqleo
+         ChsPfLxo7Hg5z1oZ8XJqyRuBJ/LAFDLyT2BbnyOERUZzLq/4ZzZcCb6EaywhJnUoE09R
+         BOEeomz7a5jWva670Pu0/xNfnscbJmcLFt0kw1o3GR8tQ59ETWEMFnNa8Cu0DPyR+zqM
+         sj0rghGAGRWxJQEwr2nMa9fIAaJiol5HKNC05B1e/dQ14eCgd4dB2x8meAA/Eu9IBDel
+         MlZA==
+X-Gm-Message-State: AC+VfDxpKTllmjAj+aNyCAuPmFuzcI8yCZmfLCUvtN4UpOFlE0IVP9pn
+        XD0hCampTtqc6Hku9rt4a5xcKQ==
+X-Google-Smtp-Source: ACHHUZ6CDWxhk+dhSH8qLQE79fBassliV0GQlKPgAAM0MVDziCfBXEKP0mKuYXtpd45JN7ujvYKCxw==
+X-Received: by 2002:a5d:61d1:0:b0:306:2be3:6d40 with SMTP id q17-20020a5d61d1000000b003062be36d40mr2268666wrv.35.1683204920678;
+        Thu, 04 May 2023 05:55:20 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:52fb:80bd:bee3:f741? ([2a01:e0a:982:cbb0:52fb:80bd:bee3:f741])
+        by smtp.gmail.com with ESMTPSA id c11-20020a5d63cb000000b003062cdc6ac5sm11554084wrw.89.2023.05.04.05.55.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 May 2023 05:50:52 -0700 (PDT)
-Message-ID: <7f9f991a-fa56-2f65-293b-bd0ec5d07c40@linaro.org>
-Date:   Thu, 4 May 2023 14:50:46 +0200
+        Thu, 04 May 2023 05:55:20 -0700 (PDT)
+Message-ID: <b18a22c0-2cc2-d361-262c-2e5cf802641b@linaro.org>
+Date:   Thu, 4 May 2023 14:55:19 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
-Subject: Re: [PATCH 5/5] dt-bindings: clocks: at91sam9x5-sckc: convert to yaml
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 3/6] arm64: dts: qcom: sm8350-hdk: Add QMP & DP to
+ SuperSpeed graph
 Content-Language: en-US
-To:     Claudiu Beznea <claudiu.beznea@microchip.com>,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, nicolas.ferre@microchip.com,
-        alexandre.belloni@bootlin.com
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230504060729.689579-1-claudiu.beznea@microchip.com>
- <20230504060729.689579-6-claudiu.beznea@microchip.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230504060729.689579-6-claudiu.beznea@microchip.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20230503-topic-sm8450-graphics-dp-next-v1-0-d1ee9397f2a6@linaro.org>
+ <20230503-topic-sm8450-graphics-dp-next-v1-3-d1ee9397f2a6@linaro.org>
+ <c985201e-6916-1ad8-4a11-cfc3bc288733@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <c985201e-6916-1ad8-4a11-cfc3bc288733@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/05/2023 08:07, Claudiu Beznea wrote:
-> Convert Atmel slow clock controller documentation to yaml.
+On 04/05/2023 08:53, Konrad Dybcio wrote:
 > 
-> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
-> ---
->  .../devicetree/bindings/clock/at91-clock.txt  | 30 -------
->  .../bindings/clock/atmel,at91sam9x5-sckc.yaml | 84 +++++++++++++++++++
->  2 files changed, 84 insertions(+), 30 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/clock/at91-clock.txt
->  create mode 100644 Documentation/devicetree/bindings/clock/atmel,at91sam9x5-sckc.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/at91-clock.txt b/Documentation/devicetree/bindings/clock/at91-clock.txt
-> deleted file mode 100644
-> index 57394785d3b0..000000000000
-> --- a/Documentation/devicetree/bindings/clock/at91-clock.txt
-> +++ /dev/null
-> @@ -1,30 +0,0 @@
-> -Device Tree Clock bindings for arch-at91
-> -
-> -This binding uses the common clock binding[1].
-> -
-> -[1] Documentation/devicetree/bindings/clock/clock-bindings.txt
-> -
-> -Slow Clock controller:
-> -
-> -Required properties:
-> -- compatible : shall be one of the following:
-> -	"atmel,at91sam9x5-sckc",
-> -	"atmel,sama5d3-sckc",
-> -	"atmel,sama5d4-sckc" or
-> -	"microchip,sam9x60-sckc":
-> -		at91 SCKC (Slow Clock Controller)
-> -- #clock-cells : shall be 1 for "microchip,sam9x60-sckc" otherwise shall be 0.
-> -- clocks : shall be the input parent clock phandle for the clock.
-> -
-> -Optional properties:
-> -- atmel,osc-bypass : boolean property. Set this when a clock signal is directly
-> -  provided on XIN.
-> -
-> -For example:
-> -	sckc@fffffe50 {
-> -		compatible = "atmel,at91sam9x5-sckc";
-> -		reg = <0xfffffe50 0x4>;
-> -		clocks = <&slow_xtal>;
-> -		#clock-cells = <0>;
-> -	};
-> -
-> diff --git a/Documentation/devicetree/bindings/clock/atmel,at91sam9x5-sckc.yaml b/Documentation/devicetree/bindings/clock/atmel,at91sam9x5-sckc.yaml
-> new file mode 100644
-> index 000000000000..62660c823ea1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/atmel,at91sam9x5-sckc.yaml
-> @@ -0,0 +1,84 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/clock/atmel,at91sam9x5-sckc.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> On 3.05.2023 15:10, Neil Armstrong wrote:
+>> With support for the QMP combo phy to react to USB Type-C switch events,
+>> introduce it as the next hop for the SuperSpeed lanes of the Type-C
+>> connector, and connect the output of the DisplayPort controller
+>> to the QMP combo phy.
+>>
+>> This allows the TCPM to perform orientation switching of both USB and
+>> DisplayPort signals.
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sm8350-hdk.dts | 74 ++++++++++++++++++++++++++++++++-
+>>   1 file changed, 72 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
+>> index 2ee1b121686a..fa835bdb7408 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
+>> +++ b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
+>> @@ -58,7 +58,15 @@ port@1 {
+>>   					reg = <1>;
+>>   
+>>   					pmic_glink_ss_in: endpoint {
+>> -						remote-endpoint = <&usb_1_dwc3_ss>;
+>> +						remote-endpoint = <&usb_1_qmpphy_out>;
+>> +					};
+>> +				};
+>> +
+>> +				port@2 {
+>> +					reg = <2>;
+>> +
+>> +					pmic_glink_sbu: endpoint {
+>> +						remote-endpoint = <&fsa4480_sbu_mux>;
+>>   					};
+>>   				};
+>>   			};
+>> @@ -326,6 +334,36 @@ zap-shader {
+>>   	};
+>>   };
+>>   
+>> +&i2c13 {
+>> +	status = "okay";
+>> +	clock-frequency = <100000>;
+> Status last
 
-Drop quotes.
+Ack
 
-> +
-> +title: Atmel Slow Clock Controller (SCKC)
-> +
-> +maintainers:
-> +  - Claudiu Beznea <claudiu.beznea@microchip.com>
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
+> 
+>> +
+>> +	fsa4480@42 {
+>> +		compatible = "fcs,fsa4480";
+>> +		reg = <0x42>;
+>> +
+>> +		interrupts-extended = <&tlmm 2 IRQ_TYPE_LEVEL_LOW>;
+>> +
+>> +		vcc-supply = <&vreg_bob>;
+>> +		mode-switch;
+>> +		orientation-switch;
+>> +		svid = /bits/ 16 <0xff01>;
+>> +
+>> +		ports {
+>> +			#address-cells = <1>;
+>> +			#size-cells = <0>;
+>> +
+>> +			port@0 {
+>> +				reg = <0>;
+>> +
+>> +				fsa4480_sbu_mux: endpoint {
+>> +					remote-endpoint = <&pmic_glink_sbu>;
+>> +				};
+>> +			};
+>> +		};
+>> +	};
+>> +};
+>> +
+>>   &i2c15 {
+>>   	clock-frequency = <400000>;
+>>   	status = "okay";
+>> @@ -370,6 +408,20 @@ &mdss {
+>>   	status = "okay";
+>>   };
+>>   
+>> +&mdss_dp {
+>> +	status = "okay";
+>> +
+>> +	ports {
+>> +		port@1 {
+>> +			reg = <1>;
+> missing newline
+> 
+>> +			mdss_dp0_out: endpoint {
+>> +				data-lanes = <0 1>;
+>> +				remote-endpoint = <&usb_1_qmpphy_dp_in>;
+>> +			};
+>> +		};
+>> +	};
+>> +};
+>> +
+>>   &mdss_mdp {
+>>   	status = "okay";
+>>   };
+>> @@ -416,6 +468,10 @@ &qupv3_id_0 {
+>>   	status = "okay";
+>>   };
+>>   
+>> +&qupv3_id_1 {
+>> +	status = "okay";
+>> +};
+>> +
+>>   &qupv3_id_2 {
+>>   	status = "okay";
+>>   };
+>> @@ -716,7 +772,7 @@ &usb_1_dwc3_hs {
+>>   };
+>>   
+>>   &usb_1_dwc3_ss {
+>> -	remote-endpoint = <&pmic_glink_ss_in>;
+>> +	remote-endpoint = <&usb_1_qmpphy_usb_ss_in>;
+>>   };
+>>   
+>>   &usb_1_hsphy {
+>> @@ -732,6 +788,20 @@ &usb_1_qmpphy {
+>>   
+>>   	vdda-phy-supply = <&vreg_l6b_1p2>;
+>>   	vdda-pll-supply = <&vreg_l1b_0p88>;
+>> +
+>> +	orientation-switch;
+> this is a common property which will/should be ignored if no
+> usbc is present
 
-Drop items here.
+So, do you mean it should be in the common dtsi ? I don't see why since
+it's only true if there's an USB-C connector
 
-> +          - enum:
-> +              - atmel,at91sam9x5-sckc
-> +              - atmel,sama5d4-sckc
-> +              - atmel,sama5d3-sckc
+> 
+>> +};
+>> +
+>> +&usb_1_qmpphy_out {
+>> +	remote-endpoint = <&pmic_glink_ss_in>;
+>> +};
+>> +
+>> +&usb_1_qmpphy_usb_ss_in {
+>> +	remote-endpoint = <&usb_1_dwc3_ss>;
+>> +};
+>> +
+>> +&usb_1_qmpphy_dp_in {
+>> +	remote-endpoint = <&mdss_dp0_out>;
+> 'd' < 'o' < 'u'
+Exact...
 
-Keep order by name, so 5d3 and then 5d4.
-
-> +              - microchip,sam9x60-sckc
-> +      - items:
-> +          - const: microchip,sama7g5-sckc
-> +          - const: microchip,sam9x60-sckc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  "#clock-cells":
-> +    enum: [0, 1]
-> +
-> +  atmel,osc-bypass:
-> +    type: boolean
-> +    description: set when a clock signal is directly provided on XIN
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-
-put it after allOf, just like previous patch.
-
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - microchip,sam9x60-sckc
-> +              - microchip,sama7g5-sckc
-
-Drop this one. It's not needed.
-
-> +    then:
-> +      properties:
-> +        "#clock-cells":
-> +          const: 1
-> +      required:
-> +        - "#clock-cells"
-> +        - clocks
-
-Move these to top-level.
-
-> +    else:
-> +      properties:
-> +        "#clock-cells":
-> +          const: 0
-> +      if:
-> +        properties:
-> +          compatible:
-> +            contains:
-> +              enum:
-> +                - atmel,sama5d4-sckc
-> +                - atmel,sama5d3-sckc
-> +      then:
-> +        required:
-> +          - "#clock-cells"
-> +          - clocks
-
-and drop these required... but this is if-within-else. Very confusing.
-Which case you want to handle that way? So other compatibles do not need
-clock cells or clocks?
-
-
-Best regards,
-Krzysztof
+> 
+> with that fixed
+> 
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> 
+> Konrad
+>>   };
+>>   
+>>   &usb_2 {
+>>
 
