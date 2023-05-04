@@ -2,91 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8C666F71B2
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 20:04:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A2E06F71CA
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 20:17:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229545AbjEDSEN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 14:04:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51496 "EHLO
+        id S229851AbjEDSR3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 14:17:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229449AbjEDSEM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 14:04:12 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 554D51BCC;
-        Thu,  4 May 2023 11:04:10 -0700 (PDT)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 344BlV63013169;
-        Thu, 4 May 2023 18:03:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=dIQM/IxZx2gsJVXsqEYgNIwEqFxDum1d1ZVaPq4CXv4=;
- b=De4imCXjRvkP8hRycq1OUTBeZtouNEV17SaswUr9m0VCP6tetyFPqOr2zaug6rYfS2LR
- /aRy2P0CLAi61z5IlbPL2RNzkivADdLqJlRWWHb6V/cvwclZkVbJdVMWOAHcJsbrzdro
- nY+1T1x3EhQiX4Ik8OWW8fJN+ViHKWvvuNB2P35lCbwUZBqg0rDCj59YoJS+cN2LE4e7
- 80UaocMOcEXINwvehSuH1dUNyW8PI5MUeZ/ypvzEjblUn/CBQgm4yqYna8AIFVU3lDXm
- +GRwX9rrV+TxWSSgkdSPSxg62/ZGTFELKJXUptg9ccFIbuxjXTiNAFeLTWc6Ekiz1RRW Jg== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qc7a41msc-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 04 May 2023 18:03:55 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 344I3sQq005175
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 4 May 2023 18:03:54 GMT
-Received: from [10.216.20.183] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Thu, 4 May 2023
- 11:03:48 -0700
-Message-ID: <50c37e0c-3171-bce2-d97e-371150e1854f@quicinc.com>
-Date:   Thu, 4 May 2023 23:33:44 +0530
+        with ESMTP id S229817AbjEDSR2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 14:17:28 -0400
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79AA65FF4
+        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 11:17:26 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-3f1950f569eso6438115e9.2
+        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 11:17:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683224245; x=1685816245;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=af9GcgFX/WrAwyrN5Pm/dlbY9v6jxEsxMAwF1mQThbU=;
+        b=eA6F8Kt23w8sPb+T3BfTaGb1EsbmWZWbmIhNJKw3Eo7a2YWzb6UDCe3EOwsQOx+4gT
+         uSr7Q/1CuShPtUT3YKYzViZ8/BwbS46fyyFz6VvswyOX5aDYF/AL0AhNk/qLhUW2zRTk
+         7LdGkauNVpODFkymNeTowu5LFZygtkwTFhCVlPT5RVq+8n1ghn+xPvRtM39lPtK+WmQa
+         +xoKQA6MmueI24i7sI7xEVU074a4ychc0QvwKOBFdY+5L2MD11XLWxE7OGCOCk/pA8Z3
+         4u2F7ctM/96bvZ+9qZbv9QdH0LDa8I29EbAlFxpUpxW0M6zGtyUxJIcE1SAsAUHl0m/C
+         hxXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683224245; x=1685816245;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=af9GcgFX/WrAwyrN5Pm/dlbY9v6jxEsxMAwF1mQThbU=;
+        b=XouzbpUyOLBqPKBS5pRs2lAofvLQfGJkY2JAxB3W2lMxQObK7AZ7v83xGRrUlvbDIn
+         PAwODtOy21FhLU5/sAprQyONMflQCJoIXhXHAVo85SDTPGjWJ+f5Di9sQ8V0XgxD3GZq
+         KjIT8U8GXJEwv4yvyrQuPH/pWJx5AorFmK3pEwlD7OtBYPIRu1/XcWVbFyi4VGTYCpgK
+         JV7PeRIEO8VCH15BeLSRzgXN4ztmlmPXg1FX5GMrSC6tuOvu7wwPxeMi8ASbwBUP0Z0E
+         ZZf3lVibH3vUPT166HGLoRMz/G/5PFUCI1W5BbIb0FLpxUcQt0zy/6OXcM+KTSpB2bu5
+         d2gw==
+X-Gm-Message-State: AC+VfDxlUOPmVmlVtPsz3eJp+PqKxdHB8xFerD3T2qa2Fe5JDORRkmrG
+        KitZDd7SXj2BI8K6qTRVLkNTMQW3Ux7BlZ6+5E7K1w==
+X-Google-Smtp-Source: ACHHUZ7HNojQ9qBf9UqD9aO1exlZbJ/tuFvyD+yYUXXB+vMf61YPUYepha7/n2bHFo64K/wWm+QzLA==
+X-Received: by 2002:adf:db8a:0:b0:306:b3f9:e2c9 with SMTP id u10-20020adfdb8a000000b00306b3f9e2c9mr2468592wri.6.1683224244857;
+        Thu, 04 May 2023 11:17:24 -0700 (PDT)
+Received: from [192.168.0.15] (cpc76484-cwma10-2-0-cust274.7-3.cable.virginm.net. [82.31.201.19])
+        by smtp.gmail.com with ESMTPSA id q20-20020a1ce914000000b003edc4788fa0sm5617959wmc.2.2023.05.04.11.17.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 May 2023 11:17:24 -0700 (PDT)
+Message-ID: <09c9545c-9808-6815-5b20-1276ba136ef8@linaro.org>
+Date:   Thu, 4 May 2023 19:17:22 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.1
-Subject: Re: [PATCH v7 9/9] arm64: dts: qcom: sa8540-ride: Enable first port
- of tertiary usb controller
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Andy Gross <agross@kernel.org>,
-        "Bjorn Andersson" <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>
-CC:     <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <quic_pkondeti@quicinc.com>, <quic_ppratap@quicinc.com>,
-        <quic_jackp@quicinc.com>, <quic_harshq@quicinc.com>,
-        <ahalaney@redhat.com>, <quic_shazhuss@quicinc.com>
-References: <20230501143445.3851-1-quic_kriskura@quicinc.com>
- <20230501143445.3851-10-quic_kriskura@quicinc.com>
- <0e76a9f6-f062-2802-d9de-3c0b2b897a4e@linaro.org>
+Subject: Re: [PATCH V4 1/3] dt-bindings: sram: qcom,imem: Add Boot Stat region
+ within IMEM
 Content-Language: en-US
-From:   Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <0e76a9f6-f062-2802-d9de-3c0b2b897a4e@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 5u2iymyeyDmAHLUFP63Y4Y9eE9SwnywN
-X-Proofpoint-ORIG-GUID: 5u2iymyeyDmAHLUFP63Y4Y9eE9SwnywN
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-04_12,2023-05-04_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 spamscore=0
- malwarescore=0 priorityscore=1501 adultscore=0 clxscore=1015
- mlxlogscore=832 mlxscore=0 lowpriorityscore=0 phishscore=0 bulkscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2305040145
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Souradeep Chowdhury <quic_schowdhu@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>
+References: <cover.1681742910.git.quic_schowdhu@quicinc.com>
+ <NO2MhqhxQqjQ33CVOtaXXxo2iBfl6Ugz1lE5oJAl-mjUyrRu4l9vCBWV8AVJZoCrVF0Cw0j49t44Bn5yEAv3mA==@protonmail.internalid>
+ <bd3350e3b0b02669cffa4bdaf9a0a1d8ae9072d1.1681742910.git.quic_schowdhu@quicinc.com>
+ <9da030c6-6a9f-6766-7120-94aaa8fcd8ab@linaro.org>
+ <3ef818c8-1ee4-5bee-6b37-20658b2e4637@linaro.org>
+ <77c4ba62-1566-993b-ec33-0da2fa9936ec@linaro.org>
+From:   Caleb Connolly <caleb.connolly@linaro.org>
+In-Reply-To: <77c4ba62-1566-993b-ec33-0da2fa9936ec@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -95,79 +91,58 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 5/2/2023 4:37 PM, Konrad Dybcio wrote:
-> 
-> 
-> On 1.05.2023 16:34, Krishna Kurapati wrote:
->> There is now support for the multiport USB controller this uses so
->> enable it.
+On 04/05/2023 17:26, Dmitry Baryshkov wrote:
+> On 04/05/2023 09:26, Krzysztof Kozlowski wrote:
+>> On 04/05/2023 00:10, Caleb Connolly wrote:
+>>>
+>>>
+>>> On 17/04/2023 16:08, Souradeep Chowdhury wrote:
+>>>> +
+>>>> +    properties:
+>>>> +      compatible:
+>>>> +        items:
+>>>> +          - enum:
+>>>> +              - qcom,sm8450-bootstats
+>>>
+>>> This region isn't exclusive to sm8450, it exists also on sdm845 and
+>>> presumably other platforms. Is there any need for an SoC specific
+>>> compatible?
 >>
->> The board only has a single port hooked up (despite it being wired up to
->> the multiport IP on the SoC). There's also a USB 2.0 mux hooked up,
->> which by default on boot is selected to mux properly. Grab the gpio
->> controlling that and ensure it stays in the right position so USB 2.0
->> continues to be routed from the external port to the SoC.
+>> Yes.
+>> https://elixir.bootlin.com/linux/v6.1-rc1/source/Documentation/devicetree/bindings/writing-bindings.rst#L42
 >>
->> Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
->> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
->> ---
-> same comments as patch 8
+>> Also see many discussions on LKML about this.
+
+Ah, thanks both for the clarification and apologies for the confusion.
+My main concern is that this binding and the associated driver work just
+fine on sdm845 with no additional changes. Is it acceptable then to use
+the qcom,sm8450-bootstats compatible there? If not, then for someone to
+enable this driver on sdm845 would require not just a patch to add the
+DT node, but also a patch to dt-bindings to add a compatible AND a patch
+to the driver to use it.
+
+Based on Dmitry's response on the driver patch [1], perhaps adding the
+catch-all "qcom,imem-bootstats" compatible to the driver would be
+suitable. If there are SoC specific parts in the future then match data
+or gating with of_device_is_compatible() can be used with the SoC
+specific compatible. This is how the qcom_stats driver handles things,
+would this be an OK solution for everyone?
+
 > 
-> Konrad
+> After taking another glance at the parent device (IMEM), I start to
+> think that we should not be defining the device at all. The imem has the
+> SoC name in it. So I think there should be a proper driver for IMEM.
+> Then it will instantiate the ABL stats platform device depending on the
+> SoC compat. Also this would allow us to rewrite qcom_pil_info_init() in
+> a way to query IMEM instead of poking into DT directly.
 
-Hi Konrad,
++1 for handling this automagically in driver code, I'd be happy to look
+into this in the future.
 
-   Sure, will add a default value for drive-strength for this pinctrl node.
+[1]
+https://lore.kernel.org/linux-arm-msm/35ac64ab-512d-1425-7a1b-6e8d3806c8a8@linaro.org/
+> 
 
-Hi Andrew Halaney,
-
-  I currently don't have a Ride device with me to test this change. Can 
-you help test this patch on SA8540-Ride including (drive-strength = 
-<2>;) property (which I believe is the default value).
-
-I can test the same on SA8295-ADP and can push the next version quickly.
-
-Regards,
-Krishna,
-
->>   arch/arm64/boot/dts/qcom/sa8540p-ride.dts | 22 ++++++++++++++++++++++
->>   1 file changed, 22 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
->> index 24fa449d48a6..53d47593306e 100644
->> --- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
->> +++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
->> @@ -309,6 +309,19 @@ &usb_2_qmpphy0 {
->>   	status = "okay";
->>   };
->>   
->> +&usb_2 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&usb2_en_state>;
->> +
->> +	status = "okay";
->> +};
->> +
->> +&usb_2_dwc3 {
->> +	dr_mode = "host";
->> +	phy-names = "usb2-port0", "usb3-port0";
->> +	phys = <&usb_2_hsphy0>, <&usb_2_qmpphy0>;
->> +};
->> +
->>   &xo_board_clk {
->>   	clock-frequency = <38400000>;
->>   };
->> @@ -401,4 +414,13 @@ wake-pins {
->>   			bias-pull-up;
->>   		};
->>   	};
->> +
->> +	usb2_en_state: usb2-en-state {
->> +		/* TS3USB221A USB2.0 mux select */
->> +		pins = "gpio24";
->> +		function = "gpio";
->> +		drive-strength = <2>;
->> +		bias-disable;
->> +		output-low;
->> +	};
->>   };
+-- 
+Kind Regards,
+Caleb (they/them)
