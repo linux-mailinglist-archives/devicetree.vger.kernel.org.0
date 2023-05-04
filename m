@@ -2,62 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C46576F6D1C
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 15:44:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 091C76F6D36
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 15:47:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230457AbjEDNot (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 09:44:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35630 "EHLO
+        id S231218AbjEDNrd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 09:47:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230500AbjEDNot (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 09:44:49 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E5467D93;
-        Thu,  4 May 2023 06:44:47 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A6967633EA;
-        Thu,  4 May 2023 13:44:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 116E2C433EF;
-        Thu,  4 May 2023 13:44:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1683207886;
-        bh=cxXZ0Mv9fZe8AzkErEvTVxOOrlIoataPJcnAJ93nNR4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=O315kDjLiPUAsQ6xGpos4WTKEs50qI7zNpaj3f5JBpT11niVq2Dd4d0nT4K+WWtC6
-         bihPy/onuSp3833LpgoGH3e1AeRuCL3oBwHcyGEzQ/5zvencqvm51XpP7wCIulpwsG
-         T/rIndpoISt6pzekCOJk/PuT/VFxrsK0UMfKL+OFYDqQif6XoSP7jPd7ekerDuLNw6
-         WoXACFIqNAA2xC9mPvNVqYkqvayWczEmfyy0OJFQwZoAObGqcUWWAtZS3jiyBaWsAp
-         Ywse2+V3+hjXG/wFqwGAs4foDgViBq2TSYTgsj4CsDelqYDKwNMBRYhlGNsDcGOJJp
-         CVgaKL/iiCKjw==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1puZGP-00078W-RV; Thu, 04 May 2023 15:44:54 +0200
-Date:   Thu, 4 May 2023 15:44:53 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S231220AbjEDNra (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 09:47:30 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5EBA7D9D
+        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 06:47:23 -0700 (PDT)
+Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <m.felsch@pengutronix.de>)
+        id 1puZIT-0004SX-Dt; Thu, 04 May 2023 15:47:01 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+Subject: [PATCH v2 0/4] Add i.MX8MP-EVK USB Gadget Support
+Date:   Thu, 04 May 2023 15:46:49 +0200
+Message-Id: <20230504-b4-v6-3-topic-boards-imx8mp-evk-dual-role-usb-v2-0-3889b1b2050c@pengutronix.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEm3U2QC/x2OTQqDMBQGryJZ9wOJqbW9SukiP8/6aEwkaYIg3
+ r2hy5nFMIfIlJiyeHSHSFQ5cwwN5KUTdtHhTWDXWMheDv21VzAKdcSAb9zYwkSdXAav+7RuoPq
+ BK9ojRU8o2WBydh7lTbm7m0VrGp0JJulgl1YNxfsmt0Qz7/+J5+s8f36w3qSUAAAA
+To:     andreas@fatal.se, jun.li@nxp.com,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/7] phy: qcom-qmp-combo: Introduce orientation variable
-Message-ID: <ZFO21fLWSNc7orpb@hovoldconsulting.com>
-References: <20230425034010.3789376-1-quic_bjorande@quicinc.com>
- <20230425034010.3789376-4-quic_bjorande@quicinc.com>
- <ZFD4gM9dUQwBmSUe@hovoldconsulting.com>
- <20230504032907.GF870858@hu-bjorande-lv.qualcomm.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230504032907.GF870858@hu-bjorande-lv.qualcomm.com>
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        Bjorn Andersson <andersson@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>
+Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Marco Felsch <m.felsch@pengutronix.de>
+X-Mailer: b4 0.12.1
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::28
+X-SA-Exim-Mail-From: m.felsch@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,36 +57,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 03, 2023 at 08:29:07PM -0700, Bjorn Andersson wrote:
-> On Tue, May 02, 2023 at 01:48:16PM +0200, Johan Hovold wrote:
-> > On Mon, Apr 24, 2023 at 08:40:06PM -0700, Bjorn Andersson wrote:
+Hi all,
 
-> > >  static void qmp_v3_dp_aux_init(struct qmp_combo *qmp);
-> > > @@ -1955,29 +1962,23 @@ static void qmp_v3_configure_dp_tx(struct qmp_combo *qmp)
-> > >  static bool qmp_combo_configure_dp_mode(struct qmp_combo *qmp)
-> > >  {
-> > >  	u32 val;
-> > > -	bool reverse = false;
-> > > +	bool reverse = qmp->orientation == TYPEC_ORIENTATION_REVERSE;
+this adds the usb gadget support to the i.MX8MP-EVK. This Series is
+based on [1] and therefore it is already a v2. Thanks to Li and Andreas
+for the very useful feedback.
 
-> > It also looks like these callbacks end up being called without holding
-> > the qmp->phy_mutex via phy->power_on(). Perhaps there is no risk for a
-> > concurrent switch notification and dp phy power-on but it's not that
-> > obvious.
+Patch1-3: Add the mssing support for USB-SS GPIO muxes. This is required
+          to have proper USB-SS support on the EVK.
 
-> It seems we're arriving here from hpd_event_thread(), while
-> phy_power_on() and phy_power_off() will be called in some other context.
-> I've not been able to convince myself if DP driver ensures ordering, or
-> if we have an existing race here...
+Patch4: Adds the devicetree integration.
 
-> Unless you insist, I would prefer to follow up with an additional patch
-> once we've landed this series. The fix will depend on the phy_mutex
-> shuffling patch anyways...
+[1] https://lore.kernel.org/all/20230323105826.2058003-1-m.felsch@pengutronix.de/
 
-Sure.
+Regards,
+  Marco
 
-But perhaps you can just move the orientation == qmp->orientation check
-under the mutex in qmp_combo_typec_switch_set() for now (in case I
-forgot to point that out earlier).
+---
+Marco Felsch (4):
+      dt-bindings: usb: gpio-sbu-mux: add support for ss-data lanes mux
+      usb: typec: mux: gpio-sbu-mux: add support for ss data lane muxing
+      usb: typec: tcpci: clear the fault status bit
+      arm64: dts: imx8mp-evk: add dual-role usb port1 support
 
-Johan
+ .../devicetree/bindings/usb/gpio-sbu-mux.yaml      | 82 +++++++++++++++++---
+ arch/arm64/boot/dts/freescale/imx8mp-evk.dts       | 88 ++++++++++++++++++++++
+ drivers/usb/typec/mux/Kconfig                      |  5 +-
+ drivers/usb/typec/mux/gpio-sbu-mux.c               | 18 ++++-
+ drivers/usb/typec/tcpm/tcpci.c                     |  5 ++
+ include/linux/usb/tcpci.h                          |  1 +
+ 6 files changed, 185 insertions(+), 14 deletions(-)
+---
+base-commit: 457391b0380335d5e9a5babdec90ac53928b23b4
+change-id: 20230504-b4-v6-3-topic-boards-imx8mp-evk-dual-role-usb-8dcf6274d9df
+
+Best regards,
+-- 
+Marco Felsch <m.felsch@pengutronix.de>
+
