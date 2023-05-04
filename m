@@ -2,110 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A6296F647D
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 07:40:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3C966F648F
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 07:54:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229619AbjEDFkA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 01:40:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52162 "EHLO
+        id S229602AbjEDFyj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 01:54:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55948 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229607AbjEDFj7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 01:39:59 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABCB91BD1;
-        Wed,  3 May 2023 22:39:57 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3445dmJJ047770;
-        Thu, 4 May 2023 00:39:48 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1683178788;
-        bh=oR2MHd3HvqUBnw7oAdxihcalkQQ9fQ3xU3sIFl4ma98=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=AbVfQZuIxnoGSNP0PDhj51lcVuhvPN978HzniFv8ZcA29+amwByDjCEqQKDgKlooW
-         AhVQ+2MTgcqij8qDAFkoy9SneVti5bee0SFbsVqTQHC4pbRaLBn7GUrzpP1snteEvW
-         4LKIRauFITvo/pFvOwWYSTmM+oVrirzjKSeiZ5zI=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3445dmT5010711
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 4 May 2023 00:39:48 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 4
- May 2023 00:39:47 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 4 May 2023 00:39:47 -0500
-Received: from [10.24.69.141] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3445dhBP094370;
-        Thu, 4 May 2023 00:39:44 -0500
-Message-ID: <2a7f3c1f-a7c3-149b-5678-b9108b859c71@ti.com>
-Date:   Thu, 4 May 2023 11:09:43 +0530
+        with ESMTP id S229559AbjEDFyi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 01:54:38 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF5391734;
+        Wed,  3 May 2023 22:54:35 -0700 (PDT)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3444vqHI032527;
+        Thu, 4 May 2023 05:54:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=6QD+UUqp5Wny2XM5mTmbKD4z/Yty4CjJdkTZoJdqbo8=;
+ b=QbDpsNVXWC5bko162mPOh9VHaVVwJKGe6xTYPEIXG8s4RtfoEje5LLFvc7OitkCIjl8f
+ WcAFBukwLCgE0XxVpEV0fOs+WcP4HPl72ucMgdTYEJyv4otvh/fdBVeVzqrU6hA0Xi6p
+ z4eTs1tQB+1xfLSjufgZ8u5eEbB8dgtiycSOCv10+yX+nI4E5YaG8MmzqdavXQJIe34L
+ ejsK5qnVXb8dvvzCCE+x6WbRukqkRIZbF2CKPmpkH6yYT/jAfMzMiVC/djRPBj2g7nYZ
+ Kh6oIswoQFSO2kxFQtfQ/098zzC+txfw9v39n46YQl0QQdJXIiuGT29CvPrYRxNRKSw/ gA== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qc652g39s-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 04 May 2023 05:54:25 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3445rvZP019164
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 4 May 2023 05:53:57 GMT
+Received: from [10.50.29.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Wed, 3 May 2023
+ 22:53:53 -0700
+Message-ID: <ca7eb35e-e68d-6794-625a-a6c3cd587e8f@quicinc.com>
+Date:   Thu, 4 May 2023 11:23:32 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH 0/4] arm64: dts: ti: Describe flash partitions for J7
- platforms
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH V4 1/3] dt-bindings: sram: qcom,imem: Add Boot Stat region
+ within IMEM
+To:     Caleb Connolly <caleb.connolly@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>
+References: <cover.1681742910.git.quic_schowdhu@quicinc.com>
+ <NO2MhqhxQqjQ33CVOtaXXxo2iBfl6Ugz1lE5oJAl-mjUyrRu4l9vCBWV8AVJZoCrVF0Cw0j49t44Bn5yEAv3mA==@protonmail.internalid>
+ <bd3350e3b0b02669cffa4bdaf9a0a1d8ae9072d1.1681742910.git.quic_schowdhu@quicinc.com>
+ <9da030c6-6a9f-6766-7120-94aaa8fcd8ab@linaro.org>
 Content-Language: en-US
-To:     Nishanth Menon <nm@ti.com>
-CC:     <kristo@kernel.org>, <vigneshr@ti.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <u-kumar1@ti.com>
-References: <20230503091218.25899-1-vaishnav.a@ti.com>
- <20230503115130.c7m4a7crub7kmfjw@gluten>
-From:   Vaishnav Achath <vaishnav.a@ti.com>
-In-Reply-To: <20230503115130.c7m4a7crub7kmfjw@gluten>
-Content-Type: text/plain; charset="UTF-8"
+From:   Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+In-Reply-To: <9da030c6-6a9f-6766-7120-94aaa8fcd8ab@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-8.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: qP8VBzZTYjQVM-ktIBuigNVYGwoiqJXs
+X-Proofpoint-ORIG-GUID: qP8VBzZTYjQVM-ktIBuigNVYGwoiqJXs
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-04_02,2023-05-03_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
+ mlxlogscore=919 mlxscore=0 bulkscore=0 clxscore=1011 spamscore=0
+ impostorscore=0 phishscore=0 suspectscore=0 lowpriorityscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303200000 definitions=main-2305040049
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nishanth,
 
-On 03/05/23 17:21, Nishanth Menon wrote:
-> On 14:42-20230503, Vaishnav Achath wrote:
->> This series adds flash partition description through DT, currently
->> the flash partitions for J7 platforms is described through the mtdparts
->> commandline parameter passed from bootloader, this requires maintenance
->> of the partition information in a mtdparts string which is error prone.
+
+On 5/4/2023 3:40 AM, Caleb Connolly wrote:
+> 
+> 
+> On 17/04/2023 16:08, Souradeep Chowdhury wrote:
+>> All Qualcomm bootloaders log useful timestamp information related
+>> to bootloader stats in the IMEM region. Add the child node within
+>> IMEM for the boot stat region containing register address and
+>> compatible string.
 >>
->> Once the flash partitions are described through DT, the support for
->> mtdparts can be removed for these platforms from u-boot also.
+>> Signed-off-by: Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+>> ---
+>>   .../devicetree/bindings/sram/qcom,imem.yaml        | 22 ++++++++++++++++++++++
+>>   1 file changed, 22 insertions(+)
 >>
->> Vaishnav Achath (4):
->>   arm64: dts: ti: k3-j721e-som: Describe OSPI flash partition info
->>   arm64: dts: ti: k3-j721e-som: Describe QSPI flash partition info
->>   arm64: dts: ti: k3-j721e-sk: Describe OSPI flash partition info
->>   arm64: dts: ti: k3-j7200-som: Describe OSPI and Hyperflash partition
->>     info
+>> diff --git a/Documentation/devicetree/bindings/sram/qcom,imem.yaml b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+>> index ba694ce..d028bed 100644
+>> --- a/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+>> +++ b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+>> @@ -49,6 +49,28 @@ patternProperties:
+>>       $ref: /schemas/remoteproc/qcom,pil-info.yaml#
+>>       description: Peripheral image loader relocation region
 >>
->>  arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi   | 72 +++++++++++++++++++
->>  .../dts/ti/k3-j721e-common-proc-board.dts     | 46 ++++++++++++
->>  arch/arm64/boot/dts/ti/k3-j721e-sk.dts        | 46 ++++++++++++
->>  arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi   | 46 ++++++++++++
->>  4 files changed, 210 insertions(+)
+>> +  "^stats@[0-9a-f]+$":
+>> +    type: object
+>> +    description:
+>> +      Imem region dedicated for storing timestamps related
+>> +      information regarding bootstats.
+>> +
+>> +    additionalProperties: false
+>> +
+>> +    properties:
+>> +      compatible:
+>> +        items:
+>> +          - enum:
+>> +              - qcom,sm8450-bootstats
 > 
-> Please address the feedback in [1] prior to adding the partitions? and
-> could you ensure it is done for all the impacted k3 SoCs?
+> This region isn't exclusive to sm8450, it exists also on sdm845 and
+> presumably other platforms. Is there any need for an SoC specific
+> compatible?
+
+Yes SOC specific compatibles are needed for device tree nodes. This has 
+been clarified as per prior discussion on this patch series.
+
+https://lore.kernel.org/lkml/e1d53083-82b6-d193-517e-02af281a066a@linaro.org/ 
+
+
 > 
-
-I will do both of these in corresponding next revisions.
-
-Thanks and Regards,
-Vaishnav
-
+>> +          - const: qcom,imem-bootstats
+>> +
+>> +      reg:
+>> +        maxItems: 1
+>> +
+>> +    required:
+>> +      - compatible
+>> +      - reg
+>> +
+>>   required:
+>>     - compatible
+>>     - reg
+>> --
+>> 2.7.4
+>>
 > 
-> [1] https://lore.kernel.org/all/f5861b8b-637a-e127-2945-8994a472015a@ti.com/
-> 
-
-
