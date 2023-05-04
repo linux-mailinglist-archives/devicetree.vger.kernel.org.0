@@ -2,136 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4763E6F7065
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 19:04:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FE1E6F7081
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 19:10:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229943AbjEDRER (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 13:04:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39120 "EHLO
+        id S229934AbjEDRK3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 13:10:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229661AbjEDREP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 13:04:15 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C739359E
-        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 10:04:14 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-50bc394919cso1140252a12.2
-        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 10:04:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683219852; x=1685811852;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=MlRk1RCeKU7o3gs8w9KIlX6up9OV2t4PRbCSyTcr+6o=;
-        b=OdOnw/9rrisJ4kZZyA1yqfRJn9iJ6lIRfQL0QjO85+SIHsSigEj2aa8z2izyQHBn9M
-         RW/g2MTkt5L/Kr3Q+cVgkxsFl0Jm6LP5swk4tHtqClMn7H7rJf1ywAOvbixBFl4PI/Wz
-         fgq/VwyxMfaXunFE+yXZI49L0+EpVCIynbFIVIZxFuXXx79bMObNZ3emC+5acTdWKSRh
-         D0cZw8Cx+MgLJxreej+W72jEzTpZYrBXyLNj1i91Lxcr2NwMA8EcN+5ww4Ypfz6eCDuZ
-         gX9nvtG5+auPWp+92IIlB+5hIuVEoQR3IYQAztyjPmnkBMYFNDrT41URMYs9uuCNjWxD
-         8vsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683219852; x=1685811852;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MlRk1RCeKU7o3gs8w9KIlX6up9OV2t4PRbCSyTcr+6o=;
-        b=VBUiymckoJZ6R2X6GzVx53Uxl18gctIVN4NdtfquDVtjJDGZRd3UU+D5e1GpY4Htc6
-         pMWcaAcdb/xQQjLv5SjQROeOb+8Y0FW4JBuWrQ2tI0MyEJ8eWnQBEbJS7gPrEB1BPtOh
-         6dLL2X07oOwlesW9rEbBjyrT2QC2wRe+58HNpv0reQGzmXw5v1eY1bJhaZ2NbvB5z8iB
-         Y0zlscXzbE7bPV4kIzMLZ7z4I8DrL1LykyqrbwWQssOMSKEYDibdgOsIZLMhiIMkCZS3
-         h+JvkEBSBbZ/U3T5lPIyy/eoilO8wPQWwFxeU3L97Pp02K3mLd1xNDdulNGia9lHiywr
-         Qfaw==
-X-Gm-Message-State: AC+VfDx2ajiJu1iKZbNbufebB04qKxsdEGhQL+hrv9P/hlroaKSzCdAU
-        3/74QmPqvSUpb045UxRJCdU5Bg==
-X-Google-Smtp-Source: ACHHUZ4yw01j72V7v00qdVG/i73OsQ/JtKCOYW5DeoWzDcJ2LoqAxwuyyDltufUE0IdLZz20m8aA7g==
-X-Received: by 2002:aa7:d14b:0:b0:50b:c164:526c with SMTP id r11-20020aa7d14b000000b0050bc164526cmr2610944edo.13.1683219852591;
-        Thu, 04 May 2023 10:04:12 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:bdb9:99c4:33a5:6114? ([2a02:810d:15c0:828:bdb9:99c4:33a5:6114])
-        by smtp.gmail.com with ESMTPSA id n7-20020aa7db47000000b0050bcbb5708asm2082323edt.35.2023.05.04.10.04.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 May 2023 10:04:12 -0700 (PDT)
-Message-ID: <6bce9c65-12f3-0128-91d0-142f0b5a791e@linaro.org>
-Date:   Thu, 4 May 2023 19:04:11 +0200
+        with ESMTP id S229761AbjEDRKX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 13:10:23 -0400
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA54B46A3;
+        Thu,  4 May 2023 10:10:18 -0700 (PDT)
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 344GYtMP016288;
+        Thu, 4 May 2023 19:10:02 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=rkbvLyVT3Mb/rSSlFLY4A805v2Hk2Yhfbj8z298Ej7M=;
+ b=BSdj86tRf6c/laZrSlGXBL3fYo19jKVP2cAxj8qbQ63UZu2NCz8DnuhxngaNn9CWlCh6
+ anfKkr3HY3kWzAmzD8//aLI0sCLRt/SaQX7cKWho/TPXSApiZeFsNs72EI/G+yJwr9ZF
+ lgOBn15eIgjKs08ydxGOQ/mqOOGaxhS39iwmf1pwhqQ+FyI7MLW/a4MBuGIpNXfU6bRx
+ UxJEYuuxjYs8vmzW/OuPs1fXrsupmM6xU3mwRDGqZbZrzN12/TeMXTVGjOpy6pPjf7S8
+ mvYWjRED/zdlnouyq3Rue0t1epNrM6fry8VxGHcaaxIAc2y2EKzwr6UMj/Md1zG8xUGJ 2Q== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3qc6uwcjhh-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 04 May 2023 19:10:02 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id E7AE910002A;
+        Thu,  4 May 2023 19:10:01 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C77DC227F0C;
+        Thu,  4 May 2023 19:10:01 +0200 (CEST)
+Received: from [10.201.20.168] (10.201.20.168) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Thu, 4 May
+ 2023 19:10:00 +0200
+Message-ID: <9100bb4f-d12b-79f6-659c-0005294886fa@foss.st.com>
+Date:   Thu, 4 May 2023 19:09:56 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH 1/2] dt-bindings: dma: ti: Add J721S2 BCDMA
+ Thunderbird/102.10.0
+Subject: Re: [PATCH 1/7] dt-bindings: spi: stm32: add address-cells and
+ size-cells into yaml
+To:     Rob Herring <robh@kernel.org>
+CC:     Mark Brown <broonie@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Alain Volmat <alain.volmat@foss.st.com>,
+        <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20230428121524.2125832-1-valentin.caron@foss.st.com>
+ <20230428121524.2125832-2-valentin.caron@foss.st.com>
+ <20230428214157.GA322525-robh@kernel.org>
 Content-Language: en-US
-To:     Vaishnav Achath <vaishnav.a@ti.com>, peter.ujfalusi@gmail.com,
-        vkoul@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, j-choudhary@ti.com, u-kumar1@ti.com,
-        vigneshr@ti.com
-References: <20230503065303.16674-1-vaishnav.a@ti.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230503065303.16674-1-vaishnav.a@ti.com>
-Content-Type: text/plain; charset=UTF-8
+From:   Valentin CARON <valentin.caron@foss.st.com>
+In-Reply-To: <20230428214157.GA322525-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [10.201.20.168]
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-04_10,2023-05-04_01,2023-02-09_01
+X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/05/2023 08:53, Vaishnav Achath wrote:
-> Add bindings for J721S2 BCDMA instance dedicated for Camera
-> Serial Interface. Unlike AM62A CSI BCDMA, this instance has RX
-> and TX channels but lacks block copy channels.
-> 
-> Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
-> ---
->  .../devicetree/bindings/dma/ti/k3-bcdma.yaml  | 21 +++++++++++++++++++
->  1 file changed, 21 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml b/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
-> index beecfe7a1732..5ca9581a66f4 100644
-> --- a/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
-> +++ b/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
-> @@ -33,6 +33,7 @@ properties:
->      enum:
->        - ti,am62a-dmss-bcdma-csirx
->        - ti,am64-dmss-bcdma
-> +      - ti,j721s2-dmss-bcdma-csi
->  
->    reg:
->      minItems: 3
-> @@ -150,7 +151,27 @@ allOf:
->  
->        required:
->          - power-domains
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: ti,j721s2-dmss-bcdma-csi
-> +    then:
-> +      properties:
-> +        ti,sci-rm-range-bchan: false
-> +
-> +        reg:
-> +          maxItems: 4
->  
-> +        reg-names:
-> +          items:
-> +            - const: gcfg
-> +            - const: rchanrt
-> +            - const: tchanrt
-> +            - const: ringrt
-> +
-> +      required:
-> +        - ti,sci-rm-range-tchan
->      else:
->        properties:
+Hi Rob,
 
+On 4/28/23 23:41, Rob Herring wrote:
+> On Fri, Apr 28, 2023 at 02:15:18PM +0200, Valentin Caron wrote:
+>> Theses properties need to be described to satisfy dtbs_check.
+> No, they are defined in spi-controller.yaml, so they should not be
+> needed here.
 
-You now require 5 reg items on ti,am62a-dmss-bcdma-csirx. I don't think
-you tested your DTS against this change. Rework the else: so it will
-match specific variant (if:).
+Yes, you're right, I cannot remember why I need to add theses properties.
 
-Best regards,
-Krzysztof
+Thank you,
+Valentin
 
+>> Signed-off-by: Valentin Caron <valentin.caron@foss.st.com>
+>> ---
+>>   Documentation/devicetree/bindings/spi/st,stm32-spi.yaml | 3 +++
+>>   1 file changed, 3 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/spi/st,stm32-spi.yaml b/Documentation/devicetree/bindings/spi/st,stm32-spi.yaml
+>> index 9ca1a843c820..c599eb359d56 100644
+>> --- a/Documentation/devicetree/bindings/spi/st,stm32-spi.yaml
+>> +++ b/Documentation/devicetree/bindings/spi/st,stm32-spi.yaml
+>> @@ -29,6 +29,9 @@ allOf:
+>>           st,spi-midi-ns: false
+>>   
+>>   properties:
+>> +  "#address-cells": true
+>> +  "#size-cells": true
+>> +
+>>     compatible:
+>>       enum:
+>>         - st,stm32f4-spi
+>> -- 
+>> 2.25.1
+>>
