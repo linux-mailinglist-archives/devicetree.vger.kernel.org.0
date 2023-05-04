@@ -2,146 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E06AC6F65AF
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 09:26:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C11D6F65BD
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 09:32:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229795AbjEDH0n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 03:26:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46872 "EHLO
+        id S229965AbjEDHb7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 03:31:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230030AbjEDH0m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 03:26:42 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0235535A7
-        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 00:26:27 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-50bc040c7b8so132565a12.2
-        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 00:26:27 -0700 (PDT)
+        with ESMTP id S229585AbjEDHb6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 03:31:58 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CAD62711
+        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 00:31:56 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-956ff2399b1so20254866b.3
+        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 00:31:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683185186; x=1685777186;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1683185514; x=1685777514;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Veea/UdjGX427jFOli9vB9D6CHqmWA/T+0M7h9xVaJE=;
-        b=Cb16lGCLHN1QqCy5MTQ6fwtjmgT/VdffV3xWOGUsBe8guwFY8wzvsY6Q6QwA5GQ66t
-         A3Jgg64o5Fbr8KT8F4BO7Tb2NxUPsgAtNSBUUQH1dPh51+R71M3TUbMLyYZJN5eNqqb9
-         p2dwFabC7DG7jPueCR4PS+pXJZ3ZO92/t4lKijJqloJ5YTYJBzUBw0wjsUvDxCAjvLQe
-         IWN+P5WA6Psary2jwEJ7ZWIAl6Xw3qp8iu4WY9xK606iUK3rEQzt1dn75cpES0EIKj1r
-         dwV8e+GHmtEAmqLIDhLCnREyST9qFEErCz1yQAA2D6jy03Sn4ALsk267Wd/zJgLVs/k8
-         0ktA==
+        bh=miV7b+SshaQlHrD2jqZS3Us38P+QM+iYksIAvVacfxk=;
+        b=zrOnMPWAnce687JSlYUR27AdFML+XzKEnjg24lepkBzDlxOuyi3iCF94+CVHNcGGKs
+         lbXyiVZDtuS8IUgcJgu7OiGb83e5sdTyVPckDjZEbTMc/nDUE4uut1PTq3AG/LfFMsjH
+         EsOOLyqLdr9SJUTjkVs639ivEC8fcHxnbi4SUeCrY4+BZmnLOt+AIX+Us8tCVr1yT/zI
+         ad1vNzBMrw9FzOZCULvuW7r54MzVSTE8fZEfGidkqlSlCjx/CFvjsPfuFYAQx6rv0HdX
+         1QnoktYzMkCxavN8ICrSmAgMhors+DxbQp2t2O+xF/zVbX3nCgCKNBdf+Zj0/5JeUUr4
+         b4lA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683185186; x=1685777186;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1683185514; x=1685777514;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Veea/UdjGX427jFOli9vB9D6CHqmWA/T+0M7h9xVaJE=;
-        b=SrPIlZX2yfXUe8fDKV/wIh5iM3mb5AHJhHHEasf6ThhRM7n14yi9RCR0aUKpTBhjK+
-         Su9GGI7F3LL1mHZ/w2tQr6/xDSK2XeEMDl7xXUar7vOZeg3zcCs4qSVZ8tEPCD2BK9Si
-         K1v3e5o9obcJ0DW2bH2jSbhw6jlCeF/AXRZthf4Mfu5hC4y+wyqjJ36j4f0+niDk45xT
-         VdlrkznDH+I8icIse3V3uxoIIy2PWH4A/pZ3o1053QymbC6lKjBO41B0wAu31QhmVJnP
-         NS1BDgxrJ0DpKxaHPYtWPx/YtxFCebofClv86lwlweiH5V1+JZ59frMMjpYZSSs3wzSV
-         yt2w==
-X-Gm-Message-State: AC+VfDztP9NnNeohR04crqWJRSTUoiaCZpRipUetIDymwzkV+okl7FBI
-        gKWt2mK91Rd/8KlMGl+1PWjkhQ==
-X-Google-Smtp-Source: ACHHUZ6x7SMojw1hUma3+8M6WtWKOixbNJW5a+nedr/mf1YnHqtTnFcwCnsf9OGKAF/fwPEKoE65Lw==
-X-Received: by 2002:a17:907:360a:b0:94f:c72:1ddf with SMTP id bk10-20020a170907360a00b0094f0c721ddfmr5234499ejc.41.1683185186192;
-        Thu, 04 May 2023 00:26:26 -0700 (PDT)
+        bh=miV7b+SshaQlHrD2jqZS3Us38P+QM+iYksIAvVacfxk=;
+        b=PLxrP0L5oAD1P1lo1QPKJlrM5C5gIqsg+k3ZkrZgbXPBpT828Oog0sdovlhbCxP4qu
+         kNXocHvS5xG7mh4740xcVtOITB5OGyoIGpEFlzh6s5IsTFWa6v4nSzumc8GLl/+Pi2Q0
+         ktTfhtkXeImOB0gdTlDfsn9BmLZa0QhnlWwwdetCwBkcipGkzK9TcSOiwRcrG11WnZDL
+         vQAwfiNqbiw8+fZjpaH3fR6ERwWykmNmy4pBXw07khXZsU3ZpaioZDv/utkydmaWaQpk
+         TH3AcYOqsJrvU/R5v/HbC6GawmsD9gek9M2ahXDdKPPpobdYoBBxs80pS1qs2Fn+vern
+         waWA==
+X-Gm-Message-State: AC+VfDwjZiEkN5uefkueAVWQCJxCaxTu2he9U81iAc5mQrLAc+lZn6Jz
+        cn08TSZ6hEPplRtmm+1qu7lWsg==
+X-Google-Smtp-Source: ACHHUZ7pAW7s9g3po57k0AkL6h6LbDWiYlNgz4s2ncT/hDscFpRG5nwoXCfZhtRy6isyrcLNBlpahw==
+X-Received: by 2002:a17:907:3209:b0:94e:8d26:f610 with SMTP id xg9-20020a170907320900b0094e8d26f610mr4773457ejb.28.1683185514476;
+        Thu, 04 May 2023 00:31:54 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:cbf1:e7ef:fb81:e912? ([2a02:810d:15c0:828:cbf1:e7ef:fb81:e912])
-        by smtp.gmail.com with ESMTPSA id gz9-20020a170907a04900b00965a52d2bf6sm598741ejc.88.2023.05.04.00.26.24
+        by smtp.gmail.com with ESMTPSA id u13-20020a170906c40d00b0094aa087578csm18626016ejz.171.2023.05.04.00.31.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 May 2023 00:26:25 -0700 (PDT)
-Message-ID: <1ac26c1a-1726-515d-6598-849a07ed0b86@linaro.org>
-Date:   Thu, 4 May 2023 09:26:24 +0200
+        Thu, 04 May 2023 00:31:54 -0700 (PDT)
+Message-ID: <d5763073-3aaa-8a7f-1336-337c125b1a0e@linaro.org>
+Date:   Thu, 4 May 2023 09:31:52 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
-Subject: Re: [RESEND v2 1/6] dt-bindings: power: Add JH7110 AON PMU support
-To:     Changhuang Liang <changhuang.liang@starfivetech.com>,
-        Conor Dooley <conor@kernel.org>
-Cc:     Conor Dooley <conor.dooley@microchip.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Walker Chen <walker.chen@starfivetech.com>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, vkoul@kernel.org,
-        linux-phy@lists.infradead.org
-References: <20230419-labored-camper-644d51a7ca96@spud>
- <1a5b15fa-4f20-51c2-2ba1-a04a2911a694@starfivetech.com>
- <20230424-baffle-punch-ec73098f2b6a@spud>
- <d685a1d4-c07d-7dfa-f1fb-b35ceb2aa0eb@starfivetech.com>
- <20230425-unquote-eligible-09f743d81981@wendy>
- <a7cdfabf-2312-eaf3-f462-5bda7f0a120d@starfivetech.com>
- <68cb565d-bf39-10b0-9e3e-35ba7f54b90b@linaro.org>
- <0988495f-b87a-7f69-f222-37c67d6eae23@starfivetech.com>
- <20230425-resale-footrest-de667778c4fe@wendy>
- <663e9933-b9b3-a48f-98b6-2207215a8ed7@starfivetech.com>
- <20230425-commotion-prewashed-876247bed4ab@spud>
- <0b0f9187-ad6b-a1d9-6ec4-beb8989ca731@starfivetech.com>
- <3ed72340-accc-4ad1-098f-4a2eb6448828@linaro.org>
- <482e812a-05dd-105c-189c-e926b4be9d28@starfivetech.com>
- <089e24d1-588a-4a56-f00b-0b35d1d99295@linaro.org>
- <ea5b5534-8fc2-7c84-a011-c1b42c6ed7a0@starfivetech.com>
+Subject: Re: [PATCH] dt-bindings: usb: Add binding for Microchip usb5744 hub
+ controller
 Content-Language: en-US
+To:     Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
+        monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com,
+        ilias.apalodimas@linaro.org
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Piyush Mehta <piyush.mehta@amd.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org
+References: <cca068980ae0b902168a9a9b78cab4efb43157a8.1683121150.git.michal.simek@amd.com>
+ <4aa7adbf-f89e-6819-64d2-5942a456528a@linaro.org>
+ <eb325b2a-d265-d8bb-8e98-9eef8f03355a@amd.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ea5b5534-8fc2-7c84-a011-c1b42c6ed7a0@starfivetech.com>
+In-Reply-To: <eb325b2a-d265-d8bb-8e98-9eef8f03355a@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/05/2023 09:20, Changhuang Liang wrote:
+On 04/05/2023 09:25, Michal Simek wrote:
 > 
 > 
-> On 2023/5/4 15:04, Krzysztof Kozlowski wrote:
->> On 04/05/2023 08:53, Changhuang Liang wrote:
->>>>> 	};
->>>>> };
->>>>>
->>>>> Add a "regmap" property which is phandle. And it can keep the present child-node
->>>>> structure. This is more consistent with our soc design.
->>>>
->>>> Adding property from child to parent does not make any sense. Didn't you
->>>> already receive comment on this?
->>>>
->>>> Best regards,
->>>> Krzysztof
->>>>
+> On 5/4/23 08:46, Krzysztof Kozlowski wrote:
+>> On 03/05/2023 15:39, Michal Simek wrote:
+>>> The Microchip usb5744 is a SS/HS USB 3.0 hub controller with 4 ports.
+>>> The binding describes USB related aspects of the USB5744 hub, it as
+>>> well cover the option of connecting the controller as an i2c slave.
+>>> When i2c interface is connected hub needs to be initialized first.
+>>> Hub itself has fixed i2c address 0x2D but hardcoding address is not good
+>>> idea because address can be shifted by i2c address translator in the
+>>> middle.
 >>>
->>> Krzysztof,
+>>> Signed-off-by: Piyush Mehta <piyush.mehta@amd.com>
+>>> Signed-off-by: Michal Simek <michal.simek@amd.com>
+>>> ---
 >>>
->>> I am confused about what to do next. How to add this power-controller's
->>> node in device tree?
+>>> It looks like that usb8041 has also an optional i2c interface which is not
+>>> covered. But it is mentioned at commit 40e58a8a7ca6 ("dt-bindings: usb:
+>>> Add binding for TI USB8041 hub controller").
 >>>
+>>> i2c-bus name property was suggested by Rob at
+>>> https://lore.kernel.org/all/CAL_JsqJedhX6typpUKbnzV7CLK6UZVjq3CyG9iY_j5DLPqvVdw@mail.gmail.com/
+>>> and
+>>> https://lore.kernel.org/all/CAL_JsqJZBbu+UXqUNdZwg-uv0PAsNg55026PTwhKr5wQtxCjVQ@mail.gmail.com/
+>>>
+>>> the question is if adding address like this is acceptable.
+>>> But it must be specified.
 >>
->> You just move power-domain-cells up.
->>
->> Best regards,
->> Krzysztof
->>
+>> Why? phandle points it explicitly.
 > 
-> Like this? 
-> 
-> aon_syscon: syscon@17010000 {
-> 	compatible = "starfive,jh7110-aon-syscon", "syscon", "starfive,jh7110-aon-pmu";
-> 	reg = <0x0 0x17010000 0x0 0x1000>;
-> 	#power-domain-cells = <1>;
-> };
-> 
-> If right? I will tell the syscon patch's owner delete the "simple-mfd" in aon_syscon node.
+> Ok it means just list usb hub on i2c with label and point to it. Works for me.
 
-Yes, but your compatibles are now wrong. Just compatible =
-"starfive,jh7110-aon-syscon", "syscon".
+Right. I missed you want the address of the hub but phandle goes to the
+bus. I think listing it on I2C bus (see
+arch/arm/boot/dts/vf610-zii-scu4-aib.dts) should work. I think we can
+have I2C devices without compatibles.
+
+The problem is that property should have only one definition/type and
+i2c-bus is already used in other cases as just "phandle". If we go with
+your phandle+address approach, then this should be phandle-array with
+items and then we have two different types.
 
 Best regards,
 Krzysztof
