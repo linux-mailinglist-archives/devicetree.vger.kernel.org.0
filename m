@@ -2,62 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A6F216F66D2
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 10:07:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 068D36F66DC
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 10:10:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230319AbjEDIHk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 04:07:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49562 "EHLO
+        id S230166AbjEDIKl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 04:10:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230212AbjEDIG6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 04:06:58 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15A6A49C9;
-        Thu,  4 May 2023 01:06:23 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34485dZu087762;
-        Thu, 4 May 2023 03:05:39 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1683187539;
-        bh=1GIZKi464DswWpYYI8PkLUvrxRe5Lbt01DrvEsUrNoA=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=Vc7gbfmBmDHdjx0pSamnichWeKc88NN79sJGIL58gjk9FZGjp26+PWWro0BecSkew
-         YcfV6qz7INRQKyt5Yp/pAEZNmDYXnKzdOL8Lws9DuOkwioORgM905dXnPcDfArzmA5
-         FdGve1QEq/5WohlQ5CvOoVnicC9xcAsBziB8J4Nw=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34485diR012046
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 4 May 2023 03:05:39 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 4
- May 2023 03:05:39 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 4 May 2023 03:05:39 -0500
-Received: from ula0497641.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34485R1R090093;
-        Thu, 4 May 2023 03:05:37 -0500
-From:   Neha Malcom Francis <n-francis@ti.com>
-To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC:     <n-francis@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <u-kumar1@ti.com>
-Subject: [PATCH v6 3/3] arm64: dts: ti: k3-j7200: Add ESM support
-Date:   Thu, 4 May 2023 13:35:26 +0530
-Message-ID: <20230504080526.133149-4-n-francis@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230504080526.133149-1-n-francis@ti.com>
-References: <20230504080526.133149-1-n-francis@ti.com>
+        with ESMTP id S230347AbjEDIJw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 04:09:52 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5013525F
+        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 01:08:14 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-96598a7c5e0so22515266b.3
+        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 01:08:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683187691; x=1685779691;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=byDPUDOt8GYOJTy7S9gC54C3ZXLMwnnDCwgExcgBbwE=;
+        b=jUVQge6ZTztk15UsR6kt2KVGMyX190Jy8FmDLHp7XDobF+uXgFac3qVXk8o1y8ZaLi
+         YzJSzkHrJvnjjSiDmTOD3Ou8ZcM3yurHQo+9yvUo0A41qMXMyglkj99MAW6lEW8DPruh
+         HL2ivjbE9YEYBLRxRPibRaOhC8IgKxwgDxziqfIm4FLPjgqpQ7QrkKEfaa2rpbZYMqkm
+         qYx4Oq3+QwK7xBXWFKj4yzSn3d9F8C+s3RxS6Ky9KLvilSL3VdtZMbelOHGFOk0+kPn2
+         2cQboQoS3QG49qvvAxxnOc1K26oM2JImD18iesEQAEF3fr1kX8kULe5EDYi7iDKpuwo1
+         zacg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683187691; x=1685779691;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=byDPUDOt8GYOJTy7S9gC54C3ZXLMwnnDCwgExcgBbwE=;
+        b=iOlELcHmhT3d7XhkC8iQW1KYBizhhYj7cHum7pir2NLsdUfe3LcNaowvLSWFQRAVaj
+         L6cohhWXwPX1Y69+cmGf2tWB+mZoyqU8R7YtYpTKjNn93BGwFao5+MrQXyiGeaZKn7XZ
+         rmITei7WPnsq6Qi44pCzPWRKOU2pj47EP5J3NNdVH2/JK7iHq4ktCNhzRE+Fan3ivdW9
+         wamfx8/57JgOkqt3M1N5wQCmQehITedtQyPFZ+khMXjuAo1E/aJz7GGnr23IsAbvD8Qy
+         iz+Vhbrx8fLqa5XFNC8rPQ1Jyl0mf97DQYcbu24x/gMgnK1SBjruaPtyWBDYtiT/YZZO
+         yjig==
+X-Gm-Message-State: AC+VfDxYJ43g77TWX3CLnd+F8Y6e5MmhImHkMFQDTVsg3au+r/gSeX6k
+        Vvo3panOlfP+ZW/zkqb9ouSLYg==
+X-Google-Smtp-Source: ACHHUZ7V4VVbuu2QABVgsj2CM8GAltUPKXVXETrFrfDTBh8Bi5Dawj08rUb7EF/Ch99f+XpES0mFPQ==
+X-Received: by 2002:a17:907:2681:b0:961:272d:bdb9 with SMTP id bn1-20020a170907268100b00961272dbdb9mr6177923ejc.43.1683187691630;
+        Thu, 04 May 2023 01:08:11 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:cbf1:e7ef:fb81:e912? ([2a02:810d:15c0:828:cbf1:e7ef:fb81:e912])
+        by smtp.gmail.com with ESMTPSA id my34-20020a1709065a6200b0094f6f45b2c1sm18500238ejc.156.2023.05.04.01.08.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 May 2023 01:08:11 -0700 (PDT)
+Message-ID: <5564bc98-2de9-d697-23f4-a778dec8088c@linaro.org>
+Date:   Thu, 4 May 2023 10:08:10 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH] dt-bindings: usb: Add binding for Microchip usb5744 hub
+ controller
+Content-Language: en-US
+To:     Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
+        monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com,
+        ilias.apalodimas@linaro.org, Marek Vasut <marex@denx.de>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Piyush Mehta <piyush.mehta@amd.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org
+References: <cca068980ae0b902168a9a9b78cab4efb43157a8.1683121150.git.michal.simek@amd.com>
+ <4aa7adbf-f89e-6819-64d2-5942a456528a@linaro.org>
+ <eb325b2a-d265-d8bb-8e98-9eef8f03355a@amd.com>
+ <d5763073-3aaa-8a7f-1336-337c125b1a0e@linaro.org>
+ <66c1efb3-32c1-b751-0faf-1fd6814bf05c@amd.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <66c1efb3-32c1-b751-0faf-1fd6814bf05c@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,41 +84,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add address entry mapping ESM on J7200.
+On 04/05/2023 09:55, Michal Simek wrote:
+> 
+> 
+> On 5/4/23 09:31, Krzysztof Kozlowski wrote:
+>> CAUTION: This message has originated from an External Source. Please use proper judgment and caution when opening attachments, clicking links, or responding to this email.
+>>
+>>
+>> On 04/05/2023 09:25, Michal Simek wrote:
+>>>
+>>>
+>>> On 5/4/23 08:46, Krzysztof Kozlowski wrote:
+>>>> On 03/05/2023 15:39, Michal Simek wrote:
+>>>>> The Microchip usb5744 is a SS/HS USB 3.0 hub controller with 4 ports.
+>>>>> The binding describes USB related aspects of the USB5744 hub, it as
+>>>>> well cover the option of connecting the controller as an i2c slave.
+>>>>> When i2c interface is connected hub needs to be initialized first.
+>>>>> Hub itself has fixed i2c address 0x2D but hardcoding address is not good
+>>>>> idea because address can be shifted by i2c address translator in the
+>>>>> middle.
+>>>>>
+>>>>> Signed-off-by: Piyush Mehta <piyush.mehta@amd.com>
+>>>>> Signed-off-by: Michal Simek <michal.simek@amd.com>
+>>>>> ---
+>>>>>
+>>>>> It looks like that usb8041 has also an optional i2c interface which is not
+>>>>> covered. But it is mentioned at commit 40e58a8a7ca6 ("dt-bindings: usb:
+>>>>> Add binding for TI USB8041 hub controller").
+>>>>>
+>>>>> i2c-bus name property was suggested by Rob at
+>>>>> https://lore.kernel.org/all/CAL_JsqJedhX6typpUKbnzV7CLK6UZVjq3CyG9iY_j5DLPqvVdw@mail.gmail.com/
+>>>>> and
+>>>>> https://lore.kernel.org/all/CAL_JsqJZBbu+UXqUNdZwg-uv0PAsNg55026PTwhKr5wQtxCjVQ@mail.gmail.com/
+>>>>>
+>>>>> the question is if adding address like this is acceptable.
+>>>>> But it must be specified.
+>>>>
+>>>> Why? phandle points it explicitly.
+>>>
+>>> Ok it means just list usb hub on i2c with label and point to it. Works for me.
+>>
+>> Right. I missed you want the address of the hub but phandle goes to the
+>> bus. I think listing it on I2C bus (see
+>> arch/arm/boot/dts/vf610-zii-scu4-aib.dts) should work. I think we can
+>> have I2C devices without compatibles.
+> 
+> Device is definitely on i2c bus. But the problem with phande to bus is that 
+> there could more the same usb hubs and different i2c addresses of it. That's why 
+> I need to have exact match.
+> Marek has similar hub where i2c address can be strapped too.
+> 
+>> The problem is that property should have only one definition/type and
+>> i2c-bus is already used in other cases as just "phandle". If we go with
+>> your phandle+address approach, then this should be phandle-array with
+>> items and then we have two different types.
+> 
+> What to do with it then?
 
-Signed-off-by: Neha Malcom Francis <n-francis@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j7200-main.dtsi | 6 ++++++
- arch/arm64/boot/dts/ti/k3-j7200.dtsi      | 1 +
- 2 files changed, 7 insertions(+)
+Your idea. I think you missed part of my comment. Add hub to the I2C bus
+and phandle to the hub I2C device node.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-index ef352e32f19d..89f816f5e53d 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-@@ -1010,4 +1010,10 @@ main_r5fss0_core1: r5f@5d00000 {
- 			ti,loczrama = <1>;
- 		};
- 	};
-+
-+	main_esm: esm@700000 {
-+		compatible = "ti,j721e-esm";
-+		reg = <0x0 0x700000 0x0 0x1000>;
-+		ti,esm-pins = <656>, <657>;
-+	};
- };
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200.dtsi b/arch/arm64/boot/dts/ti/k3-j7200.dtsi
-index bbe380c72a7e..4998eb4fbe75 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200.dtsi
-@@ -128,6 +128,7 @@ cbass_main: bus@100000 {
- 		#size-cells = <2>;
- 		ranges = <0x00 0x00100000 0x00 0x00100000 0x00 0x00020000>, /* ctrl mmr */
- 			 <0x00 0x00600000 0x00 0x00600000 0x00 0x00031100>, /* GPIO */
-+			 <0x00 0x00700000 0x00 0x00700000 0x00 0x00001000>, /* ESM */
- 			 <0x00 0x00a40000 0x00 0x00a40000 0x00 0x00000800>, /* timesync router */
- 			 <0x00 0x01000000 0x00 0x01000000 0x00 0x0d000000>, /* Most peripherals */
- 			 <0x00 0x30000000 0x00 0x30000000 0x00 0x0c400000>, /* MAIN NAVSS */
--- 
-2.34.1
+Best regards,
+Krzysztof
 
