@@ -2,258 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 402E86F6601
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 09:45:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6148A6F663C
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 09:48:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229805AbjEDHo5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 03:44:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58052 "EHLO
+        id S229622AbjEDHsN convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 4 May 2023 03:48:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229817AbjEDHow (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 03:44:52 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4FF31990
-        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 00:44:49 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4f00d41df22so8519195e87.1
-        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 00:44:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683186288; x=1685778288;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LfamGK95L+shtKWfvXNNPR9RRxOgFB5QM2YbhoEVVqE=;
-        b=hOLEbElJK9OzG8WkSCfjbVqPnwn5RdI3RWFtetVBN9XwSmMh3prbEmmw9yM0cg7O0f
-         sunVqwCpEoPRUqLrOq83GXoTSezM3eV91r1GDUq5jfNBOawtQBYgYYUkXJj1t9d674rU
-         J3J8HNoV0fTmlvap2nFYhdCraYJBl01VjNm2nQK5B0glW5rYO6rzG8AaUzfcFsnFEcom
-         Lf0NeVZXGnQVHLEHXhKRhyKtzDbFeWdA5jl+UO+vUFP1HRi1FAsCnM/GADp4PxUO1Vf7
-         ur017G3Mn520usYlTlz0T9S3udcstZyFoQJQt9wI2C1I79Ub97V5xxcuVs3fsQi0OJzF
-         hnAQ==
+        with ESMTP id S229522AbjEDHsM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 03:48:12 -0400
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F63D30FB;
+        Thu,  4 May 2023 00:47:59 -0700 (PDT)
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-55c939fb24dso582597b3.2;
+        Thu, 04 May 2023 00:47:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683186288; x=1685778288;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LfamGK95L+shtKWfvXNNPR9RRxOgFB5QM2YbhoEVVqE=;
-        b=Ju0hhn7xDyKpXA3h1TtqxP4qBcsNh46xZwfJXt5X99CQ3x+OOzGC8DH4ZJdM+xRwkI
-         JYgnlfktWqRHuDPQFRcBvncIfIQgT9hpRyOSYJRovmddl/vg4zZK+WADnxLUEWXXuFnO
-         W9MdieX2U36f0Qsma7pIF/0zejF1ToPcTuZ0X1g7x9aBNvsPc/GOObvrYzUY0Ti17R5t
-         jCjduVvIgjw2kVfVUNoOPhS08ZZ98sApiJp0zISaFmZbJG9WVZApLxdKhoNhN4zjBaSV
-         9TwTmVf92lpmL+VSOBvHW0VtffHe5ZPRp/dAtM/pj93D8vpSvsyUNMhdLPqRrLNUQ2m8
-         8i6Q==
-X-Gm-Message-State: AC+VfDwUbVc2auAPsqjV2/Z2vnBAQfsn56NzUlzXJ+SZBph97z95Dz/6
-        2nZnjtUxraiQKNSY70WmUzqV8A==
-X-Google-Smtp-Source: ACHHUZ6OyuDrnuI6B2dXfAvUFDvrQvW82yL68F6vo71nrIvDxoYl8ED8ckvgYzcT6aimdn+S9ZiMwg==
-X-Received: by 2002:a05:6512:31c8:b0:4ec:83fd:1599 with SMTP id j8-20020a05651231c800b004ec83fd1599mr1377305lfe.33.1683186288063;
-        Thu, 04 May 2023 00:44:48 -0700 (PDT)
-Received: from [192.168.1.101] (abyl248.neoplus.adsl.tpnet.pl. [83.9.31.248])
-        by smtp.gmail.com with ESMTPSA id y15-20020ac255af000000b004f00333804esm4300355lfg.176.2023.05.04.00.44.46
+        d=1e100.net; s=20221208; t=1683186478; x=1685778478;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=m9LICh5eVGQYl7Vd8WDHBQlr+z/LAV3M6z3s9DeJXLI=;
+        b=PmneL4HyQe9OJmf+p5P7Csog9u8zFglPGENsuKD9tzFWaFP4dLmWeGYmMi1EUTy8uJ
+         gFr34CRWA/0TvY5HpTqIthSaFL6FaLFhZ5HKCAiJpAiT2NfETeNImA59pZ5WKy4WrNen
+         iuEKbpB/ofWQ7+bBNOtLhModvMrzcwvIhMz1wYiU4tHxECuGjKwwqWgliAJNEU8Tw0tp
+         qjzbiOtqeKtoratDY50bUyjoNnN8OXlF3jxnHRdaCzUhktqNP34kk1n//jg6Sq+BUo4C
+         kLFiuNWmuESwss/hujls4H2E+n/3fXkNspDt2lmmuMJkvSifYc41XQJqI8UwMXw5+8WM
+         rKQg==
+X-Gm-Message-State: AC+VfDxdCUn5vgUi09QPz6VKVWwU81Vyog5NbGspuU6MAQuH9qd3TtbT
+        Edl7ehIyeqI70dwTagwO6FM1wrw6xrf2bw==
+X-Google-Smtp-Source: ACHHUZ5eVY5vvXBBMryU5gNR68k7hiPxdNJbaTzO6QrOEy6ivZVT1W9GlxV29CEUxxaCNsjjGhlQrQ==
+X-Received: by 2002:a81:a082:0:b0:55a:2cb9:c79c with SMTP id x124-20020a81a082000000b0055a2cb9c79cmr1391983ywg.9.1683186478137;
+        Thu, 04 May 2023 00:47:58 -0700 (PDT)
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com. [209.85.219.172])
+        by smtp.gmail.com with ESMTPSA id j137-20020a81928f000000b0055a486140b6sm2642843ywg.36.2023.05.04.00.47.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 May 2023 00:44:47 -0700 (PDT)
-Message-ID: <4c09119e-2a18-d98f-d3ee-9b88e1b87d8e@linaro.org>
-Date:   Thu, 4 May 2023 09:44:46 +0200
+        Thu, 04 May 2023 00:47:57 -0700 (PDT)
+Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-b9e27684b53so164754276.0;
+        Thu, 04 May 2023 00:47:57 -0700 (PDT)
+X-Received: by 2002:a81:a082:0:b0:55a:2cb9:c79c with SMTP id
+ x124-20020a81a082000000b0055a2cb9c79cmr1391945ywg.9.1683186476971; Thu, 04
+ May 2023 00:47:56 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH V3 2/3] clk: qcom: videocc-sm8450: Add video clock
- controller driver for SM8450
-Content-Language: en-US
-To:     Taniya Das <quic_tdas@quicinc.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+References: <20230503084608.14008-1-biju.das.jz@bp.renesas.com>
+ <20230503084608.14008-5-biju.das.jz@bp.renesas.com> <db7ae5f9-393a-b892-dd6f-08c4f25ce7a8@linaro.org>
+In-Reply-To: <db7ae5f9-393a-b892-dd6f-08c4f25ce7a8@linaro.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 4 May 2023 09:47:45 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVMsdvwq3t50ifKuCJ6LvPUcDjSu14tkdrSquizA=TsTw@mail.gmail.com>
+Message-ID: <CAMuHMdVMsdvwq3t50ifKuCJ6LvPUcDjSu14tkdrSquizA=TsTw@mail.gmail.com>
+Subject: Re: [PATCH RFC 4/6] dt-bindings: rtc: isl1208: Document built-in RTC
+ device on PMIC RAA215300
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_skakitap@quicinc.com, quic_jkona@quicinc.com
-References: <20230503105937.24911-1-quic_tdas@quicinc.com>
- <20230503105937.24911-3-quic_tdas@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230503105937.24911-3-quic_tdas@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Trent Piepho <tpiepho@impinj.com>, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Krzysztof,
 
+On Thu, May 4, 2023 at 9:11 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> On 03/05/2023 10:46, Biju Das wrote:
+> > The Built-in RTC device found on PMIC RAA215300 is similar to the isl1208
+> > IP. However, RTC is enabled by PMIC RAA215300 and the polarity of the
+> > external oscillator is determined by the PMIC revision.
+> >
+> > Document renesas,raa215300-isl1208 compatible and renesas,raa215300-pmic
+> > property to handle these differences.
+> >
+> > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > ---
+> >  .../devicetree/bindings/rtc/isil,isl1208.yaml       | 13 +++++++++++++
+> >  1 file changed, 13 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/rtc/isil,isl1208.yaml b/Documentation/devicetree/bindings/rtc/isil,isl1208.yaml
+> > index 04d51887855f..888a832ed1db 100644
+> > --- a/Documentation/devicetree/bindings/rtc/isil,isl1208.yaml
+> > +++ b/Documentation/devicetree/bindings/rtc/isil,isl1208.yaml
+> > @@ -18,6 +18,7 @@ properties:
+> >            - isil,isl1209
+> >            - isil,isl1218
+> >            - isil,isl1219
+> > +          - renesas,raa215300-isl1208
+> >
+> >    reg:
+> >      maxItems: 1
+> > @@ -40,6 +41,10 @@ properties:
+> >          <0> : Enable internal pull-up
+> >          <1> : Disable internal pull-up
+> >
+> > +  renesas,raa215300-pmic:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description: phandle to the pmic device with isl1208 built-in RTC.
+>
+> No. You don't need cross-linking. We do not represent one device as two
+> and then fix this by cross-linking them. The existing binding does not
+> have it, so it should be a hint for you.
 
-On 3.05.2023 12:59, Taniya Das wrote:
-> Add support for the video clock controller driver for peripheral clock
-> clients to be able to request for video cc clocks.
-> 
-> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
-> ---
-> Changes since V2:
->  - Update the header file name to match the latest upstream header
->    files.
-> 
-> Changes since V1:
->  - Use DT indices instead of fw_name.
->  - Replace pm_runtime_enable with devm_pm_runtime_enable.
->  - Change license to GPL from GPL V2.
-> 
->  drivers/clk/qcom/Kconfig          |   9 +
->  drivers/clk/qcom/Makefile         |   1 +
->  drivers/clk/qcom/videocc-sm8450.c | 459 ++++++++++++++++++++++++++++++
->  3 files changed, 469 insertions(+)
->  create mode 100644 drivers/clk/qcom/videocc-sm8450.c
-> 
-> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
-> index 12be3e2371b3..927aa5983464 100644
-> --- a/drivers/clk/qcom/Kconfig
-> +++ b/drivers/clk/qcom/Kconfig
-> @@ -962,4 +962,13 @@ config CLK_GFM_LPASS_SM8250
->  	  Support for the Glitch Free Mux (GFM) Low power audio
->            subsystem (LPASS) clocks found on SM8250 SoCs.
->  
-> +config SM_VIDEOCC_8450
-> +	tristate "SM8450 Video Clock Controller"
-> +	select SM_GCC_8450
-> +	select QCOM_GDSC
-> +	help
-> +	  Support for the video clock controller on Qualcomm Technologies, Inc.
-> +	  SM8450 devices.
-> +	  Say Y if you want to support video devices and functionality such as
-> +	  video encode/decode.
->  endif
-> diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
-> index 9ff4c373ad95..1960ad8e8713 100644
-> --- a/drivers/clk/qcom/Makefile
-> +++ b/drivers/clk/qcom/Makefile
-> @@ -127,6 +127,7 @@ obj-$(CONFIG_SM_GPUCC_8350) += gpucc-sm8350.o
->  obj-$(CONFIG_SM_TCSRCC_8550) += tcsrcc-sm8550.o
->  obj-$(CONFIG_SM_VIDEOCC_8150) += videocc-sm8150.o
->  obj-$(CONFIG_SM_VIDEOCC_8250) += videocc-sm8250.o
-> +obj-$(CONFIG_SM_VIDEOCC_8450) += videocc-sm8450.o
->  obj-$(CONFIG_SPMI_PMIC_CLKDIV) += clk-spmi-pmic-div.o
->  obj-$(CONFIG_KPSS_XCC) += kpss-xcc.o
->  obj-$(CONFIG_QCOM_HFPLL) += hfpll.o
-> diff --git a/drivers/clk/qcom/videocc-sm8450.c b/drivers/clk/qcom/videocc-sm8450.c
-> new file mode 100644
-> index 000000000000..ce0ab764eb35
-> --- /dev/null
-> +++ b/drivers/clk/qcom/videocc-sm8450.c
-> @@ -0,0 +1,459 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#include <linux/clk-provider.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/regmap.h>
-> +
-> +#include <dt-bindings/clock/qcom,sm8450-videocc.h>
-> +
-> +#include "clk-alpha-pll.h"
-> +#include "clk-branch.h"
-> +#include "clk-rcg.h"
-> +#include "clk-regmap.h"
-> +#include "clk-regmap-divider.h"
-> +#include "common.h"
-> +#include "gdsc.h"
-> +#include "reset.h"
-> +
-> +enum {
-> +	DT_BI_TCXO,
-> +};
-> +
-> +enum {
-> +	P_BI_TCXO,
-> +	P_VIDEO_CC_PLL0_OUT_MAIN,
-> +	P_VIDEO_CC_PLL1_OUT_MAIN,
-> +};
-> +
-> +static const struct pll_vco lucid_evo_vco[] = {
-> +	{ 249600000, 2020000000, 0 },
-> +};
-> +
-> +static const struct alpha_pll_config video_cc_pll0_config = {
-> +	.l = 0x1E,
-lowercase hex, please, everywhere
+Makes sense.
+So there should be a single device node with 2 reg cells, and
+a "renesas,raa215300" compatible value.
 
-> +	.alpha = 0x0,
-> +	.config_ctl_val = 0x20485699,
-> +	.config_ctl_hi_val = 0x00182261,
-> +	.config_ctl_hi1_val = 0x32AA299C,
-> +	.user_ctl_val = 0x00000000,
-> +	.user_ctl_hi_val = 0x00000805,
-> +};
-[...]
+On the Linux side, the "renesas,raa215300" MFD driver can instantiate
+a PMIC and an RTC cell, the latter served by the (enhanced) existing
+rtc-isl1208 driver.
 
-> +static int video_cc_sm8450_probe(struct platform_device *pdev)
-> +{
-> +	struct regmap *regmap;
-> +	int ret;
-> +
-> +	devm_pm_runtime_enable(&pdev->dev);
-Please check the return value here and bail out early on failure.
+Gr{oetje,eeting}s,
 
-> +
-> +	ret = pm_runtime_resume_and_get(&pdev->dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	regmap = qcom_cc_map(pdev, &video_cc_sm8450_desc);
-> +	if (IS_ERR(regmap)) {
-> +		pm_runtime_put(&pdev->dev);
-> +		return PTR_ERR(regmap);
-> +	}
-> +
-> +	clk_lucid_evo_pll_configure(&video_cc_pll0, regmap, &video_cc_pll0_config);
-> +	clk_lucid_evo_pll_configure(&video_cc_pll1, regmap, &video_cc_pll1_config);
-> +
-> +	/*
-> +	 * Keep clocks always enabled:
-> +	 *	video_cc_ahb_clk
-> +	 *	video_cc_sleep_clk
-> +	 *	video_cc_xo_clk
-> +	 */
-> +	regmap_update_bits(regmap, 0x80e4, BIT(0), BIT(0));
-> +	regmap_update_bits(regmap, 0x8130, BIT(0), BIT(0));
-> +	regmap_update_bits(regmap, 0x8114, BIT(0), BIT(0));
-> +
-> +	ret = qcom_cc_really_probe(pdev, &video_cc_sm8450_desc, regmap);
-> +
-> +	pm_runtime_put(&pdev->dev);
-> +
-> +	return ret;
-> +}
-> +
-> +static struct platform_driver video_cc_sm8450_driver = {
-> +	.probe = video_cc_sm8450_probe,
-> +	.driver = {
-> +		.name = "video_cc-sm8450",
-> +		.of_match_table = video_cc_sm8450_match_table,
-> +	},
-> +};
-> +
-> +static int __init video_cc_sm8450_init(void)
-> +{
-> +	return platform_driver_register(&video_cc_sm8450_driver);
-> +}
-> +subsys_initcall(video_cc_sm8450_init);
-module_platform_driver?
+                        Geert
 
-Venus won't probe earlier
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Konrad
-> +
-> +static void __exit video_cc_sm8450_exit(void)
-> +{
-> +	platform_driver_unregister(&video_cc_sm8450_driver);
-> +}
-> +module_exit(video_cc_sm8450_exit);
-> +
-> +MODULE_DESCRIPTION("QTI VIDEO_CC SM8450 Driver");
-> +MODULE_LICENSE("GPL");
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
