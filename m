@@ -2,56 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B7B86F6E7C
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 16:59:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C4EC6F6E7D
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 16:59:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231411AbjEDO7b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 10:59:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52444 "EHLO
+        id S231128AbjEDO7c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 10:59:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231128AbjEDO7H (ORCPT
+        with ESMTP id S230350AbjEDO7H (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 10:59:07 -0400
-Received: from mail-yw1-x114a.google.com (mail-yw1-x114a.google.com [IPv6:2607:f8b0:4864:20::114a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55FA6448B
-        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 07:58:45 -0700 (PDT)
-Received: by mail-yw1-x114a.google.com with SMTP id 00721157ae682-559de0d40b1so7792747b3.0
-        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 07:58:45 -0700 (PDT)
+Received: from mail-yb1-xb49.google.com (mail-yb1-xb49.google.com [IPv6:2607:f8b0:4864:20::b49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 456243AA7
+        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 07:58:46 -0700 (PDT)
+Received: by mail-yb1-xb49.google.com with SMTP id 3f1490d57ef6-b9a7c58ec19so756576276.2
+        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 07:58:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20221208; t=1683212309; x=1685804309;
+        d=google.com; s=20221208; t=1683212314; x=1685804314;
         h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
          :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=FyjCHPBh44PN3ytyHlUnOM1ASgpqY1cxsBMty1tbu/M=;
-        b=h2Q3dtiMAz5jAvOjfEHVY9ZA7j1QyQ6803OyYx4Pu17ci2sEWteu8ncbtegLvhtM3z
-         zyOk45a71QSLyNnKQBRHprHb1Rw2yijPAd2tX+coUVnx6V8L7uorPPpiAeEpgE98A+Ee
-         5PwjCttFi/znmNl1oOtlqvba5bv7IZRJ+4WBDirEtT5NCvZSA+kbf6z3fuG+jykVqSKD
-         HbxYGUWJN5+PFHCdQoAJFjiw2njnbj/M3wglMj0/2MWH7CqQ2RlYoCKR8k+iWiGmNRvD
-         PY9ry6L9MoT87ezIzwLA0UUivnN8NagCOnQOmTyiG5z1xM1Fzh+eaGCTe6laa5VQzCdd
-         3X6g==
+        bh=h8IvnB7h0HAb5+pIi9GxWOAfPdgUl4BJHVh6FYr/ed4=;
+        b=kuPcLL3YoUQz+usR6xPzkJy7Qzr+xCOBwv6dT38Ejb2rkKMHl6Kndt9vgn2RH4iitP
+         GJzORCEA21O3g7/+GS33g9uei5QHrpLimIHK6fsQUacmH2Ffj7SjKmI206Xa7q3FfAQi
+         y0KxVKkNxuqVL/Y5uOl7Vn77LsMWYTuLC9BGNUjEoBMOCy3RNHDuPInha6yTRnHysOvv
+         87lKZJwjKlaTS/8g3dW2kRdfZ59pgJYwl/S5nwAj4svodlkgx0dFw2640Q/nGRWC7fPl
+         qDXmBQWzRWA9JPZf/U42JKCVkiRpstLjCijuixLhhfkoz85C07G08kXg+HuqmmsDwhzu
+         hgkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683212309; x=1685804309;
+        d=1e100.net; s=20221208; t=1683212314; x=1685804314;
         h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
          :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FyjCHPBh44PN3ytyHlUnOM1ASgpqY1cxsBMty1tbu/M=;
-        b=WWnbH7xPBtV8crxIGSuahLZP0BhKQBWI1w2wLeLB+nA9POq8wS4lTkn49oSepE2j17
-         FEAqMz+EIQDLNCJ1wqewsikn3lCnQ06jkCPHm8Vrj1XKs10l66ih1xS+6l+LUKc+zf3T
-         DDPNL3C2eqkpeJEnU8n/jlWbfv1SUITiRNaY8yoy9uh8B03Hnlghvi3yFGC3In+nai+f
-         R8LSU8GqqbW4Gy+lncIOm2VIDXfK5BSryw5YfzEuqJapyUUTUXVy0+B2t5OL1s/rHmpy
-         bP10dLNQSBEe99+ZaVG1XnaRxkZtdFBtYsxnOW43h+gqXSu5yV/b7GPvQa2RFNDxm7pj
-         eVpA==
-X-Gm-Message-State: AC+VfDyZeTH9rEN3UFdR0kBL+N1lnPHCS+mq9nwF9WIYIckVw6KRWkke
-        ayv0z05JdAcwWivEVdRMFGJSbXb3z9vwZw==
-X-Google-Smtp-Source: ACHHUZ5BMZeZjQNr/gvWsVnq9rcpIvfwCumLLTCq6TEDVAAacoRXILpdcbvGImnMWO7kwHpXUjQHla0C0g3kdA==
+        bh=h8IvnB7h0HAb5+pIi9GxWOAfPdgUl4BJHVh6FYr/ed4=;
+        b=PhJJ3H2LF18xxZ9cej66L40L4tvwVPgZk2dyC4HHYsKG9wPGq6aFmegKj/+bNOmFdn
+         Qtd008weeHxxVKyp6KlemixouiOiScA+JhH2z1URUHovK1fUTuPzNGim3DdtXMwwf3Kz
+         QiZ53ky0LEu4DGjXx/Wv5scnjw5HAnwimvC7++Ef31Lfwgr0BrJTKPYPK7aSDAkMoFp3
+         +EAi4YDYDO6tNvJThxh/HJoBV/3bPm27LhNXAGI2CkMgSMhGcquMi8faogtj95Ih9dim
+         DHlE6afMqlrUAM5aTsrksEd8+AXtZu3ak4mSzGYHO2oU3IcxOJcbN03Tlz6JZeVp6vor
+         LbUA==
+X-Gm-Message-State: AC+VfDzCrp/1pwTDcEMvn/T808+kHMF7F/2U7J7aQvheR4pdyTMrxjZx
+        eFtKPDYuuZ2Z4eV4j5SwvRbvxd3ppf/Jdg==
+X-Google-Smtp-Source: ACHHUZ6iw4g9UiLmwSI+Th1Vi+OjDYXsXi9WmxXGjir0X1Fu8w/cioZXKeCSGJecPFY3tcD4sPqcliqCieMm+Q==
 X-Received: from joychakr.c.googlers.com ([fda3:e722:ac3:cc00:4f:4b78:c0a8:6ea])
- (user=joychakr job=sendgmr) by 2002:a81:ad21:0:b0:54f:a60c:12eb with SMTP id
- l33-20020a81ad21000000b0054fa60c12ebmr1423741ywh.1.1683212309438; Thu, 04 May
- 2023 07:58:29 -0700 (PDT)
-Date:   Thu,  4 May 2023 14:57:36 +0000
+ (user=joychakr job=sendgmr) by 2002:a05:6902:c2:b0:b96:7676:db4a with SMTP id
+ i2-20020a05690200c200b00b967676db4amr152609ybs.0.1683212314520; Thu, 04 May
+ 2023 07:58:34 -0700 (PDT)
+Date:   Thu,  4 May 2023 14:57:37 +0000
 In-Reply-To: <20230504145737.286444-1-joychakr@google.com>
 Mime-Version: 1.0
 References: <20230504145737.286444-1-joychakr@google.com>
 X-Mailer: git-send-email 2.40.1.495.gc816e09b53d-goog
-Message-ID: <20230504145737.286444-7-joychakr@google.com>
-Subject: [PATCH 6/7] dmaengine: pl330: Quirk to use DMA singles for peripheral _dregs
+Message-ID: <20230504145737.286444-8-joychakr@google.com>
+Subject: [PATCH 7/7] dt-bindings: dmaengine: pl330: Add new quirks
 From:   Joy Chakraborty <joychakr@google.com>
 To:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
@@ -70,172 +70,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add quirk "arm,pl330-periph-single-dregs" to use DMA singles in a loop
-to load/store the remaining bytes left after chucks of bursts are done
-which is handled by the _dregs() function.
-
-If the transfer length is not a multiple of (AxLen*AxSize) then the
-_dregs function takes care of setting up CCR with residual burst
-required to complete the transaction. It does so by changing the
-AxLen in CCR and 1 burst of Load and Store.
-But some peripherals might not set the burst request signal to the DMA
-controller since the number of bytes to transfer is less then the
-initial size of burst requested i.e. AxLen*AxSize leading to a forever
-wait.
-
-Example of such a case :
-    Considering a peripheral having an RX FIFO of n bytes and a sw
-    configurable threshold level logic which drives the RX burst req
-    signal to PL330 i.e. when data in the RX fifo crosses the threshold
-    value the peripheral asserts the RX burst request to PL330 to copy
-    data from the fifo in bursts.
-    Taking an example say the Rx Fifo is 256 bytes in depth, the max
-    AxLen is 16, max AxSize is 4bytes and 304 bytes had to copied from
-    peripheral to memory.
-    In this case the peripheral SW driver would configure the threshold
-    to the maximum possible burst size (AxLen*AxSize) i.e. 64 bytes and
-    pass the same to pl330 driver using src/dst_maxburst variable.
-    PL330 would copy the first 256 bytes with 4 burst transactions and
-    the 48 remaining bytes would be handled by _dregs().
-    Currently _dregs() would setup a burst for AxLen=3 and AxSize=16 to
-    copy the 48bytes but since 48bytes is below the threshold configured
-    at the peripheral the Rx burst request signal would not get set
-    leading to a forever wait and timeout.
-    This quirk will copy the remaining 48bytes using single transactions
-    of 4bytes each which would not depend on the burst req signal from
-    the peripheral.
-
-Instructions generated for above example with quirk set:
-    DMAMOV CCR 0xbd0239
-    DMAMOV SAR 0xffffe000
-    DMAMOV DAR 0xffffc860
-    DMALP_1 3
-    DMAFLUSHP 0
-    DMAWFPB 0
-    DMALDB
-    DMASTPB 0
-    DMALPENDA_1 bjmpto_7
-    DMAMOV CCR 0xad0229
-    DMALDA
-    DMALP_0 11
-    DMAFLUSHP 0
-    DMAWFPS 0
-    DMASTPS 0
-    DMALPENDA_0 bjmpto_6
-    DMASEV 3
-    DMAEND
+Add 2 new quirks added to the driver "arm,pl330-optimize-dev2mem-axsize"
+and "arm,pl330-periph-single-dregs"
 
 Signed-off-by: Joy Chakraborty <joychakr@google.com>
 ---
- drivers/dma/pl330.c | 74 +++++++++++++++++++++++++++++++++++++++++++--
- 1 file changed, 72 insertions(+), 2 deletions(-)
+ Documentation/devicetree/bindings/dma/arm,pl330.yaml | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/dma/pl330.c b/drivers/dma/pl330.c
-index b4933fab8a62..0b4e5390bace 100644
---- a/drivers/dma/pl330.c
-+++ b/drivers/dma/pl330.c
-@@ -36,6 +36,7 @@
- #define PL330_QUIRK_BROKEN_NO_FLUSHP	BIT(0)
- #define PL330_QUIRK_PERIPH_BURST	BIT(1)
- #define PL330_QUIRK_OPTIMIZE_DEV2MEM_AXSIZE	BIT(2)
-+#define PL330_QUIRK_PERIPH_SINGLE_DREGS	BIT(3)
+diff --git a/Documentation/devicetree/bindings/dma/arm,pl330.yaml b/Documentation/devicetree/bindings/dma/arm,pl330.yaml
+index 4a3dd6f5309b..0499a7fba88d 100644
+--- a/Documentation/devicetree/bindings/dma/arm,pl330.yaml
++++ b/Documentation/devicetree/bindings/dma/arm,pl330.yaml
+@@ -53,6 +53,14 @@ properties:
+     type: boolean
+     description: quirk for performing burst transfer only
  
- enum pl330_cachectrl {
- 	CCTRL0,		/* Noncacheable and nonbufferable */
-@@ -524,6 +525,10 @@ static struct pl330_of_quirks {
- 	{
- 		.quirk = "arm,pl330-optimize-dev2mem-axsize",
- 		.id = PL330_QUIRK_OPTIMIZE_DEV2MEM_AXSIZE,
-+	},
-+	{
-+		.quirk = "arm,pl330-periph-single-dregs",
-+		.id = PL330_QUIRK_PERIPH_SINGLE_DREGS,
- 	}
- };
++  arm,pl330-optimize-dev2mem-axsize:
++    type: boolean
++    description: quirk for optimizing AxSize used between dev<->mem
++
++  arm,pl330-periph-single-dregs:
++    type: boolean
++    description: quirk for using dma-singles for peripherals in _dregs()
++
+   dma-coherent: true
  
-@@ -1213,6 +1218,67 @@ static inline int _ldst_peripheral(struct pl330_dmac *pl330,
- 	return off;
- }
- 
-+/*
-+ * Sets up transfers to peripheral using DMA Singles instead of Bursts.
-+ * Data is moved between fifo and memory in bursts following which it is
-+ * loaded/stored to peripheral using Loops of DMA singles based on
-+ * transfer direction.
-+ */
-+static inline int _ldst_periph_single_dregs(struct pl330_dmac *pl330,
-+					    unsigned int dry_run, u8 buf[],
-+					    const struct _xfer_spec *pxs,
-+					    int src_length, int dst_length)
-+{
-+	int off = 0;
-+	unsigned int ljmp, lpcnt;
-+	struct _arg_LPEND lpend;
-+	enum dma_transfer_direction direction = pxs->desc->rqtype;
-+
-+	if (direction == DMA_MEM_TO_DEV) {
-+		off += _emit_load(dry_run, &buf[off], ALWAYS, direction,
-+				  pxs->desc->peri);
-+		lpcnt = dst_length;
-+	} else {
-+		lpcnt = src_length;
-+	}
-+
-+	/*
-+	 * Use Loop Cnt 0 to load/store from/to peripheral in single transactions
-+	 * since Burst Req might not be set as pending transfer length maybe less
-+	 * size of bytes to burst (AxSize * AxLen).
-+	 */
-+	off += _emit_LP(dry_run, &buf[off], 0, lpcnt);
-+	ljmp = off;
-+
-+	/*
-+	 * do FLUSHP at beginning to clear any stale dma requests before the
-+	 * first WFP.
-+	 */
-+	if (!(pl330->quirks & PL330_QUIRK_BROKEN_NO_FLUSHP))
-+		off += _emit_FLUSHP(dry_run, &buf[off], pxs->desc->peri);
-+
-+	off += _emit_WFP(dry_run, &buf[off], SINGLE, pxs->desc->peri);
-+
-+	if (direction == DMA_MEM_TO_DEV)
-+		off += _emit_store(dry_run, &buf[off], SINGLE, direction,
-+				   pxs->desc->peri);
-+	else
-+		off += _emit_load(dry_run, &buf[off], SINGLE, direction,
-+				  pxs->desc->peri);
-+
-+	lpend.cond = ALWAYS;
-+	lpend.forever = false;
-+	lpend.loop = 0;
-+	lpend.bjump = off - ljmp;
-+	off += _emit_LPEND(dry_run, &buf[off], &lpend);
-+
-+	if (direction == DMA_DEV_TO_MEM)
-+		off += _emit_store(dry_run, &buf[off], ALWAYS, direction,
-+				   pxs->desc->peri);
-+
-+	return off;
-+}
-+
- static int _bursts(struct pl330_dmac *pl330, unsigned dry_run, u8 buf[],
- 		const struct _xfer_spec *pxs, int cyc)
- {
-@@ -1278,8 +1344,12 @@ static int _dregs(struct pl330_dmac *pl330, unsigned int dry_run, u8 buf[],
- 	case DMA_MEM_TO_DEV:
- 	case DMA_DEV_TO_MEM:
- 		off += _emit_MOV(dry_run, &buf[off], CCR, dregs_ccr);
--		off += _ldst_peripheral(pl330, dry_run, &buf[off], pxs, 1,
--					BURST);
-+		if (pl330->quirks & PL330_QUIRK_PERIPH_SINGLE_DREGS)
-+			off += _ldst_periph_single_dregs(pl330, dry_run, &buf[off],
-+							 pxs, src_length, dst_length);
-+		else
-+			off += _ldst_peripheral(pl330, dry_run, &buf[off], pxs, 1,
-+						BURST);
- 		break;
- 
- 	case DMA_MEM_TO_MEM:
+   iommus:
 -- 
 2.40.1.495.gc816e09b53d-goog
 
