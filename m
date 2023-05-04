@@ -2,117 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 108E36F6EA9
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 17:09:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2E716F6EB4
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 17:11:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231475AbjEDPJE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 11:09:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34992 "EHLO
+        id S231357AbjEDPLP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 11:11:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231379AbjEDPI6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 11:08:58 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AC6244A9
-        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 08:08:42 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-94ed7e49541so95699866b.1
-        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 08:08:41 -0700 (PDT)
+        with ESMTP id S231373AbjEDPLM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 11:11:12 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41078422C
+        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 08:11:09 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-50bd37ca954so18344251a12.0
+        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 08:11:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683212920; x=1685804920;
+        d=linaro.org; s=google; t=1683213068; x=1685805068;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=PIp4DKXxo+zp8Ph9xjPC7rzrFgpP5SUcYok+aLyEVyM=;
-        b=g8Li0JxC53ab/FftbLLHq7tOR2Yyc3MYuJ3XUkhUcQx9NIqH5S1oRJO/xMMoE0KULf
-         Lo50THCw6Tib59Q7CkXm4JONVy5uYQMLNs3hjVrLsRFSYozCTsTL0pFjsNENKC0/3zRJ
-         JFbt7pRugIPXSLPsoNHYTC7Z57GY7yidDzSVDCjhJK4DcT7ksZ8ue3m8sGcqUZi5uQb+
-         ZyadixZCBF6WKZMfI1p0X5X4JvhPlU7iLj96PRaKLWa26Z/UUWzyt/+3x8BXayyC7nql
-         3PAtceS+CTjMYvI5bES8OWHrT6b0/Kiv95KL1S+auLxnuCsdVF/6heAIlyleRLvG+/b4
-         nuew==
+        bh=tey8IgI2Eogyj8DLj3lLUefcK0DJhrR1c7b9md2XLUE=;
+        b=uoADGRnblbN10K68CxS87dVz38pA4RgZ/2simzlTF+StA8B1qAewYPJ8cOLYkYbF+x
+         MPOyft4UAtYobhg2pEKcbaoS/eEdRFLzjK6BSUsY8p+yoENlH/Kv7Oc9WtK/XjEsy9Dj
+         w8G2mKr1aJe4aCkZyszkOSbM93/Tvsfbs/UAGYKvvsA8QP/IarswSm0oAwII5SNmwFhV
+         rngDFgIywFKAKYop8sBgkYicsNu8I6uH5hgynvv28jIY9vmsFhXTXwH0T1KiU957vHvW
+         bGJq3Z2NuvuKan/6zi77FEd7jjLufGPfd8mNvpovupdkv/SBjfiAWDuO7u7mHzx5zlPU
+         /2+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683212920; x=1685804920;
+        d=1e100.net; s=20221208; t=1683213068; x=1685805068;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PIp4DKXxo+zp8Ph9xjPC7rzrFgpP5SUcYok+aLyEVyM=;
-        b=Gr464guYMyS5UvIqUDFGOLoZmH48q5QQ3E9sexBdpOdVgolHTqGT7ve7z3dHJZyt2F
-         +OAutnXfW/lzXCrkC+9EnlI1y48Wtx4ivBGC3WgGYu1gD6LxH3j44wSyi9hRHycmjQgC
-         WBU75ONI3+GWbq/vJ/tSLVHE6RjyqC2ayII4FHprpM11lZzOlLTzGnwj66xGQ+icIzIQ
-         fIizOPo9YWPjhsLApJt8AzryCIZprxwAYisxDYnhO6xxXuZ1eTgI+BAW6XvXupa0aLIb
-         iqURcntjVpmIMqmp85uemwK86DBnxe0tRI+bKT7O8IIm1WlByzp7dIeXtofbIc9aajsC
-         FZLA==
-X-Gm-Message-State: AC+VfDwUVJSWFZh52zaOz3MBF5XcDfjqmIp9U+dJpcwa51eQR52oT4EP
-        cY6uVwwh993F6x4KkdIry6prHA==
-X-Google-Smtp-Source: ACHHUZ6/tidMBBOHdOPNqdgzWoQ8Y6QV5hHtyArlFHEFdIvczhELlOjj2No5eq1nQaZjwcXCvQvqFQ==
-X-Received: by 2002:a17:907:a426:b0:94a:9c9e:6885 with SMTP id sg38-20020a170907a42600b0094a9c9e6885mr7259100ejc.58.1683212920481;
-        Thu, 04 May 2023 08:08:40 -0700 (PDT)
+        bh=tey8IgI2Eogyj8DLj3lLUefcK0DJhrR1c7b9md2XLUE=;
+        b=XZA7EhOBYPHLYXcYs74ydhbjv0ylZ16BWCn28hKCq7MxNZr7slmF3gO0GbdF1TtA5G
+         2DwfOiFwBbZ1vDUC2TpS75bGe+neJ1ecvE2AL0ZIXJZ0r/VOtLIdkJaYDwqZXAsbIb/i
+         MPSlfTKrlEAgT7d64VqTs92uH1VdLp3b6oI/dmxfT0cutEoU1Ak9HPVmVzdpcEsnJ+3h
+         QxNtOCgQDoXBVHAn9jdJ+Ky/oX6Upab4qbF1Cda1sORTc81VaqWpVHQTV3/YNImZGFlr
+         TZQVGFoKnNQNCqBHzGZbPok3MFjnLEOtYebTEm1AQmp8HyKxfol0h9RnEygN1O0M5jM6
+         e8og==
+X-Gm-Message-State: AC+VfDzVDgYu6lV9a7AzloApY86Z2wG4s+15+cCDcnPKqrEuzirtYQP/
+        JNysbAG1ytuapnkd/a7gcxSkfoGy9+Wg2d4MeOc=
+X-Google-Smtp-Source: ACHHUZ4xo5vjjee9U6LJ8ueGUC3O0IY85SY9/ukGO4581/zqT3bF9s4ZZl+aAhKLUYtKdMAYrN/BWA==
+X-Received: by 2002:a05:6402:274a:b0:50b:d668:10a8 with SMTP id z10-20020a056402274a00b0050bd66810a8mr1968590edd.12.1683213067666;
+        Thu, 04 May 2023 08:11:07 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:cbf1:e7ef:fb81:e912? ([2a02:810d:15c0:828:cbf1:e7ef:fb81:e912])
-        by smtp.gmail.com with ESMTPSA id cw5-20020a170906478500b0095728d6f3b6sm17176152ejc.125.2023.05.04.08.08.39
+        by smtp.gmail.com with ESMTPSA id f12-20020a05640214cc00b005068fe6f3d8sm1948195edx.87.2023.05.04.08.11.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 May 2023 08:08:40 -0700 (PDT)
-Message-ID: <78616bc1-8d9e-4a1c-70d6-ad62c2cfa8a8@linaro.org>
-Date:   Thu, 4 May 2023 17:08:38 +0200
+        Thu, 04 May 2023 08:11:07 -0700 (PDT)
+Message-ID: <1f62d6dd-1ab8-a8e8-c881-da03ad9bfbd9@linaro.org>
+Date:   Thu, 4 May 2023 17:11:06 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
-Subject: Re: [PATCH 7/7] dt-bindings: dmaengine: pl330: Add new quirks
+Subject: Re: [PATCH v2 1/2] regulator: Add bindings for TPS6287x
 Content-Language: en-US
-To:     Joy Chakraborty <joychakr@google.com>,
-        Vinod Koul <vkoul@kernel.org>,
+To:     =?UTF-8?Q?M=c3=a5rten_Lindahl?= <martenli@axis.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, manugautam@google.com,
-        danielmentz@google.com, sjadavani@google.com
-References: <20230504145737.286444-1-joychakr@google.com>
- <20230504145737.286444-8-joychakr@google.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel@axis.com
+References: <20230502-tps6287x-driver-v2-0-fb5419d46c49@axis.com>
+ <20230502-tps6287x-driver-v2-1-fb5419d46c49@axis.com>
+ <dfd3498c-62ab-92d3-22d6-21729dc619fa@linaro.org>
+ <c42a721c-13a4-16a1-efe6-002c76f5c69b@axis.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230504145737.286444-8-joychakr@google.com>
+In-Reply-To: <c42a721c-13a4-16a1-efe6-002c76f5c69b@axis.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/05/2023 16:57, Joy Chakraborty wrote:
-> Add 2 new quirks added to the driver "arm,pl330-optimize-dev2mem-axsize"
-> and "arm,pl330-periph-single-dregs"
-
-This we can see from the diff. You need to answer why?
-
+On 04/05/2023 17:08, Mårten Lindahl wrote:
+> Hi Krzysztof!
 > 
-> Signed-off-by: Joy Chakraborty <joychakr@google.com>
-> ---
->  Documentation/devicetree/bindings/dma/arm,pl330.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/dma/arm,pl330.yaml b/Documentation/devicetree/bindings/dma/arm,pl330.yaml
-> index 4a3dd6f5309b..0499a7fba88d 100644
-> --- a/Documentation/devicetree/bindings/dma/arm,pl330.yaml
-> +++ b/Documentation/devicetree/bindings/dma/arm,pl330.yaml
-> @@ -53,6 +53,14 @@ properties:
->      type: boolean
->      description: quirk for performing burst transfer only
->  
-> +  arm,pl330-optimize-dev2mem-axsize:
-> +    type: boolean
-> +    description: quirk for optimizing AxSize used between dev<->mem
+> On 5/4/23 11:34, Krzysztof Kozlowski wrote:
+>> On 04/05/2023 10:30, Mårten Lindahl wrote:
+>>> Add bindings for the TPS62870/TPS62871/TPS62872/TPS62873 voltage
+>>> regulators.
+>>>
+>> Use subject prefixes matching the subsystem (which you can get for
+>> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+>> your patch is touching).
+>>
+>> Just a hint - I in general ignore all the emails without dt-bindings prefix.
+> Ok, I'll prefix it "dt-bindings: regulator:"
 
-This tells me nothing... Neither what it is about nor why this is
-property of a board or PL330 hardware implementation. Please describe
-hardware, not drivers.
+You got command to run, so run it.  This semi-automated response is made
+longer for the purpose to help you, not to be quickly scrolled and
+ignored. When you run it you will see the order is opposite, regulator
+followed by dt-bindings.
 
-> +
-> +  arm,pl330-periph-single-dregs:
-> +    type: boolean
-> +    description: quirk for using dma-singles for peripherals in _dregs()
+You can apply such habit for other subsystems where maintainers also
+expect certain prefixes.
 
-Same concerns.
+
+>>
+>>> Signed-off-by: Mårten Lindahl <marten.lindahl@axis.com>
+>>> ---
+>>>   .../devicetree/bindings/regulator/ti,tps62870.yaml | 62 ++++++++++++++++++++++
+>>>   1 file changed, 62 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/regulator/ti,tps62870.yaml b/Documentation/devicetree/bindings/regulator/ti,tps62870.yaml
+>>> new file mode 100644
+>>> index 000000000000..32f259f16314
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/regulator/ti,tps62870.yaml
+>>> @@ -0,0 +1,62 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/regulator/ti,tps62870.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: TI TPS62870/TPS62871/TPS62872/TPS62873 voltage regulator
+>>> +
+>>> +maintainers:
+>>> +  - Mårten Lindahl <marten.lindahl@axis.com>
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - ti,tps62870
+>>> +      - ti,tps62871
+>>> +      - ti,tps62872
+>>> +      - ti,tps62873
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  regulators:
+>>> +    type: object
+>>> +
+>>> +    properties:
+>>> +      "vout":
+>> Drop quotes.
+>>
+>> Why do you need entire "regulators" node for one regulator? Why do you
+>> need child at first place. Drop it entirely.
+> I will remove the regulators node. I think the vout node is needed to 
+> get the of_get_regulator_init_data.
+
+Hmmm, how other simple regulators deal with it? Like all the fixed ones
+and few other one-regulator-devices?
 
 
 Best regards,
