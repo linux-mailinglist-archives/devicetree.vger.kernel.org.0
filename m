@@ -2,78 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47D606F7095
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 19:13:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6A9F6F709D
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 19:14:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229767AbjEDRNT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 13:13:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46016 "EHLO
+        id S229626AbjEDROL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 13:14:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229873AbjEDRNS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 13:13:18 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5717446B6
-        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 10:12:51 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4eff055d4d3so866991e87.3
-        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 10:12:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683220369; x=1685812369;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=s/CEdgtUpi43mveuf39uYFXUUNC2tD6NAcNS1FOuE/c=;
-        b=glRedMD+CCYZs68XnbUGejYxfbxN2A1ctKi63s1kFo+NAe4Xu3ziikfeT3YuW0p7c/
-         lByRyNIfiUVM7PTYuqX3EJOx71gldftTyQDl/+J2iJJgq90sFOSiOmXsWPAwoyTUS04o
-         A9/r4kXkz3UOogc1qvYCpzK3Wvx5hvrR4XNZbX3DpWizl5//rtTQFe8C+5Rpq7rO2M7Q
-         JA1UDuXS4Ls7GB6g6/CctAC8DJvYYTn4FBVQqMMhn2PxMPru2YxOdSnG2OvCuKX90gHY
-         WLkLXeuXv/T+5t1csToF9pQ7o9W4nTMiCeuvDus+4n8ptyclcQpnVYxL7CP8z9JUAVVV
-         xaXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683220369; x=1685812369;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=s/CEdgtUpi43mveuf39uYFXUUNC2tD6NAcNS1FOuE/c=;
-        b=ZVOICoG+50i7ak812ir5h2n0IVLE2FOG+1v3Pmc5vybm22pwa5iou7+zuTy2abbpgT
-         SYPSObNB7BFlGuOVA2zvc4IbPlF4jh8P9aB0sg6S6rXs2zFDf28SG9L/7KiZEc2Ay6tl
-         rL6lPeiav8pMd/LJ2hWoebWt/477YWpNUYC3yMjy2KV/tCrq02Qh6oZsWFy/GxI71ojd
-         AzigreiLESGqgTqmbGHeGaFB8Fs8y7gFwk14Xryp3HKI0iF4yO3jOjI6oUnqrAi4Jy2d
-         GOrp+Qn0PD8NULtDH9fUADvVkHHIcYKhAkrJiYJG78EJ23qSAg1jnTb4CbIPeM+YuPrW
-         T5Mg==
-X-Gm-Message-State: AC+VfDyhEI2utS5gLn8opeVSKYOTjU/4II31ALqHd0mQdCoMoj3CM/Uz
-        uiAhjvxMGEniemzQaroKn2x9BQ==
-X-Google-Smtp-Source: ACHHUZ7hTVLK8eEhO1dOL53juI+UHyGvUD0vBRFkSB59bxxkMCyfvfsmbQkNLpxSxsSiACB0FK7TKA==
-X-Received: by 2002:ac2:4887:0:b0:4f0:223e:7916 with SMTP id x7-20020ac24887000000b004f0223e7916mr2104795lfc.62.1683220369491;
-        Thu, 04 May 2023 10:12:49 -0700 (PDT)
-Received: from [192.168.1.101] (abyl248.neoplus.adsl.tpnet.pl. [83.9.31.248])
-        by smtp.gmail.com with ESMTPSA id s5-20020ac25fa5000000b004e83f386878sm6567522lfe.153.2023.05.04.10.12.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 May 2023 10:12:49 -0700 (PDT)
-Message-ID: <40e5dd8a-e729-524d-8c16-1999ba4ff279@linaro.org>
-Date:   Thu, 4 May 2023 19:12:47 +0200
+        with ESMTP id S229613AbjEDROJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 13:14:09 -0400
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F1504491;
+        Thu,  4 May 2023 10:13:44 -0700 (PDT)
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 344GOodc004106;
+        Thu, 4 May 2023 19:13:36 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=ihg12T+69B+3QoBkRHL955kHcMtgqd6NplSZmSmTng0=;
+ b=xOTudm6fa9ewAcy2R/FOby93Uc/fzNtqjriXqM5uNuVInv+UaVEHxP0hZQ3vfe1AsMMN
+ zeTz81wXONSYfDetpdbVlOz5K8+WOTyzEaqMtdPQ48pM1wYto8eS/Y/hVn9uwTJwxLf7
+ QluN2Gz5hSspBcl3pYsuXoUs/8o3oGS1MXpL2NwEzPemkBJnjgUJ4Vi2PlU5PC5ePdib
+ uzY6PusJ08QxaXi49vSWM1Ul7PYfcLMZARcF3JysW+fQKW0oQxUxRN20Ny3sm7qoIqZ+
+ b5wwmYm3MMsOyx3e5WwR1mp8VAcDJQhn9/PpSuKKPdUYzmQUYFKw7Kdizf6OFo1gA2lK 2A== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3qbu4j7au3-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 04 May 2023 19:13:36 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 76E5110002A;
+        Thu,  4 May 2023 19:13:35 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 6C5F3227F18;
+        Thu,  4 May 2023 19:13:35 +0200 (CEST)
+Received: from [10.201.20.168] (10.201.20.168) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Thu, 4 May
+ 2023 19:13:34 +0200
+Message-ID: <b03257a8-2236-c709-043d-ffa4e6b062a8@foss.st.com>
+Date:   Thu, 4 May 2023 19:13:33 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sa8775p: enable AOSS
+ Thunderbird/102.10.0
+Subject: Re: [PATCH 6/7] dt-bindings: spi: stm32: add stm32h7
+ st,spi-slave-underrun property
 Content-Language: en-US
-To:     Bartosz Golaszewski <brgl@bgdev.pl>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-References: <20230504161755.197417-1-brgl@bgdev.pl>
- <20230504161755.197417-2-brgl@bgdev.pl>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230504161755.197417-2-brgl@bgdev.pl>
-Content-Type: text/plain; charset=UTF-8
+To:     Rob Herring <robh@kernel.org>
+CC:     Mark Brown <broonie@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Alain Volmat <alain.volmat@foss.st.com>,
+        <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20230428121524.2125832-1-valentin.caron@foss.st.com>
+ <20230428121524.2125832-7-valentin.caron@foss.st.com>
+ <20230428215641.GA332435-robh@kernel.org>
+From:   Valentin CARON <valentin.caron@foss.st.com>
+In-Reply-To: <20230428215641.GA332435-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [10.201.20.168]
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-04_10,2023-05-04_01,2023-02-09_01
+X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -81,47 +81,60 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+On 4/28/23 23:56, Rob Herring wrote:
+> On Fri, Apr 28, 2023 at 02:15:23PM +0200, Valentin Caron wrote:
+>> This property is used to enable and configure stm32h7 SPI controller to
+>> handle underrun that could appear in slave mode.
+>>
+>> Signed-off-by: Valentin Caron <valentin.caron@foss.st.com>
+>> ---
+>>   .../devicetree/bindings/spi/st,stm32-spi.yaml     |  8 ++++++++
+>>   MAINTAINERS                                       |  1 +
+>>   include/dt-bindings/spi/spi-stm32.h               | 15 +++++++++++++++
+>>   3 files changed, 24 insertions(+)
+>>   create mode 100644 include/dt-bindings/spi/spi-stm32.h
+>>
+>> diff --git a/Documentation/devicetree/bindings/spi/st,stm32-spi.yaml b/Documentation/devicetree/bindings/spi/st,stm32-spi.yaml
+>> index 1d26fa2658c5..e946ea71a247 100644
+>> --- a/Documentation/devicetree/bindings/spi/st,stm32-spi.yaml
+>> +++ b/Documentation/devicetree/bindings/spi/st,stm32-spi.yaml
+>> @@ -28,6 +28,7 @@ allOf:
+>>         properties:
+>>           st,spi-midi-ns: false
+>>           spi-slave: false
+>> +        st,spi-slave-underrun: false
+>>   
+>>   properties:
+>>     "#address-cells": true
+>> @@ -70,6 +71,13 @@ properties:
+>>         In case of spi-slave defined, if <0>, indicate that SS should be
+>>         detected via the dedicated HW pin
+>>   
+>> +  st,spi-slave-underrun:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>> +    description:
+>> +      First parameter enables and selects slave underrun reaction.
+>> +      Refer to "dt-bindings/spi/spi-stm32.h" for the supported values.
+>> +      Second parameter is the pattern in case of SPI_SEND_PATTERN mode.
+> So, max 2 cells? Then:
+>
+> minItems: 1
+> maxItems: 2
+>
+> Though I don't really think this belongs in DT. The driver implementing
+> the SPI slave function defines all the rest of the protocol the slave
+> implements. Why not this little bit? Perhaps there is no way for a SPI
+> slave driver to tell the SPI controller which controller specific mode
+> to use, so you abuse DT to configure the SPI controller. Also, with a
+> controller specific response, then the slave driver is coupled to that
+> SPI controller which isn't great either.
+>
+> Rob
+I basically made this DT property to configure the controler and doesn't
+give attention to the fact that this parameter can came from framework.
 
-On 4.05.2023 18:17, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> 
-> Enable the always-on subsystem controller on SA8775P platforms for use
-> by upcoming support for other peripherals.
-> 
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+I will not rework this functionality, but simply let it down as we has
+no demands on it.
 
-Konrad
->  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> index 0737ba38fefe..c5e2e3256bc4 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> @@ -9,6 +9,7 @@
->  #include <dt-bindings/clock/qcom,sa8775p-gcc.h>
->  #include <dt-bindings/clock/qcom,sa8775p-gpucc.h>
->  #include <dt-bindings/interconnect/qcom,sa8775p-rpmh.h>
-> +#include <dt-bindings/mailbox/qcom-ipcc.h>
->  #include <dt-bindings/power/qcom-rpmpd.h>
->  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
->  
-> @@ -752,6 +753,16 @@ pdc: interrupt-controller@b220000 {
->  			interrupt-controller;
->  		};
->  
-> +		aoss_qmp: power-management@c300000 {
-> +			compatible = "qcom,sa8775p-aoss-qmp", "qcom,aoss-qmp";
-> +			reg = <0x0 0x0c300000 0x0 0x400>;
-> +			interrupts-extended = <&ipcc IPCC_CLIENT_AOP
-> +					       IPCC_MPROC_SIGNAL_GLINK_QMP
-> +					       IRQ_TYPE_EDGE_RISING>;
-> +			mboxes = <&ipcc IPCC_CLIENT_AOP IPCC_MPROC_SIGNAL_GLINK_QMP>;
-> +			#clock-cells = <0>;
-> +		};
-> +
->  		spmi_bus: spmi@c440000 {
->  			compatible = "qcom,spmi-pmic-arb";
->  			reg = <0x0 0x0c440000 0x0 0x1100>,
+Thanks for all your remarks,
+Valentin
