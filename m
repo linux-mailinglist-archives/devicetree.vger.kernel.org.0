@@ -2,91 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 326D96F705B
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 19:02:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4763E6F7065
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 19:04:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229967AbjEDRBw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 13:01:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37664 "EHLO
+        id S229943AbjEDRER (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 13:04:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229470AbjEDRBv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 13:01:51 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DE603ABE
-        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 10:01:50 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-95f4c5cb755so130996566b.0
-        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 10:01:50 -0700 (PDT)
+        with ESMTP id S229661AbjEDREP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 13:04:15 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C739359E
+        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 10:04:14 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-50bc394919cso1140252a12.2
+        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 10:04:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683219709; x=1685811709;
+        d=linaro.org; s=google; t=1683219852; x=1685811852;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=AfsYi2ajE7KBB+3cu+gy9TJnH8eupsyTucE+Ap7OLfE=;
-        b=MSCT7Z3CZOlyP5WXEUSAnCxuI1NG877g68kGf51CG5q8jxXg+ivoFrJ4frg5PE5m4G
-         WzdxPVTK9oMR0gudg80O1YGwsAbG5b5LQvbrafooIFlF8ZB1fQnU0+iYUnHi9V6iZH38
-         mDNE2Ub8BddqDDUDzNm84H9ivBfHpcWESTLbyiDbAIwU2ihrtNdwYJ1ecydV1PRhGl8z
-         IETG/dydu01P16aijauq9IARk7efRUD0HkY0Tl+F3dVnXFPjDR1mwTP3sgkkUHski6qq
-         23oqUq798pfJwYsjYcRqT4JK18ZZ8MZocD6C0poXMCdYYdHU5QjcLlhU5Hf0QPb7zNdF
-         wZWQ==
+        bh=MlRk1RCeKU7o3gs8w9KIlX6up9OV2t4PRbCSyTcr+6o=;
+        b=OdOnw/9rrisJ4kZZyA1yqfRJn9iJ6lIRfQL0QjO85+SIHsSigEj2aa8z2izyQHBn9M
+         RW/g2MTkt5L/Kr3Q+cVgkxsFl0Jm6LP5swk4tHtqClMn7H7rJf1ywAOvbixBFl4PI/Wz
+         fgq/VwyxMfaXunFE+yXZI49L0+EpVCIynbFIVIZxFuXXx79bMObNZ3emC+5acTdWKSRh
+         D0cZw8Cx+MgLJxreej+W72jEzTpZYrBXyLNj1i91Lxcr2NwMA8EcN+5ww4Ypfz6eCDuZ
+         gX9nvtG5+auPWp+92IIlB+5hIuVEoQR3IYQAztyjPmnkBMYFNDrT41URMYs9uuCNjWxD
+         8vsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683219709; x=1685811709;
+        d=1e100.net; s=20221208; t=1683219852; x=1685811852;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AfsYi2ajE7KBB+3cu+gy9TJnH8eupsyTucE+Ap7OLfE=;
-        b=BOLMiIJPS0wiJ/RTnSNFtW/66wMHF7AjYUxgMWevTwQELBjr9XNTrBPk8+xb0wzZOl
-         Nql4SB9EnQ8yBrMfvyz1GD4yA0W6OwUTGZaD8lKiO48tzUewhhJIGT/K+uRcdqQ6q0pg
-         VN+3/Ug9CkGv+uxqEarGzm52I/voX9RbOKIQYwddQTVgygtkol4chWhysTlBKiaywt6P
-         p+SbEelQ04qxiNGUaCycy4CSNkAra0tBPrk7fiqgvpq8GnKdLJOnk+uLDlD9viWSe2QL
-         lCwxaPKZ0ip0WWcB+nKQUQgt9RMGhNmiXZziCr8KTls0xcxrwRF/fVO8MHJU19Wp1/eE
-         817Q==
-X-Gm-Message-State: AC+VfDyn0G2QglscAYPxPSHSYU0KjMXAt26QbItjCxpUrAnoziuJ2Fn9
-        ILb5d77RPXXfa2JRzoXruevRo/vW32bFg+k5+Jo=
-X-Google-Smtp-Source: ACHHUZ6YYh1nZpUG5otxrpWFVvmW85S+krxdrcrlKhVFZeG92EX7ruAI/eRnwOpJa5nj0EceB0neqQ==
-X-Received: by 2002:a17:907:94cf:b0:965:bf30:9a21 with SMTP id dn15-20020a17090794cf00b00965bf309a21mr1617983ejc.7.1683219708620;
-        Thu, 04 May 2023 10:01:48 -0700 (PDT)
+        bh=MlRk1RCeKU7o3gs8w9KIlX6up9OV2t4PRbCSyTcr+6o=;
+        b=VBUiymckoJZ6R2X6GzVx53Uxl18gctIVN4NdtfquDVtjJDGZRd3UU+D5e1GpY4Htc6
+         pMWcaAcdb/xQQjLv5SjQROeOb+8Y0FW4JBuWrQ2tI0MyEJ8eWnQBEbJS7gPrEB1BPtOh
+         6dLL2X07oOwlesW9rEbBjyrT2QC2wRe+58HNpv0reQGzmXw5v1eY1bJhaZ2NbvB5z8iB
+         Y0zlscXzbE7bPV4kIzMLZ7z4I8DrL1LykyqrbwWQssOMSKEYDibdgOsIZLMhiIMkCZS3
+         h+JvkEBSBbZ/U3T5lPIyy/eoilO8wPQWwFxeU3L97Pp02K3mLd1xNDdulNGia9lHiywr
+         Qfaw==
+X-Gm-Message-State: AC+VfDx2ajiJu1iKZbNbufebB04qKxsdEGhQL+hrv9P/hlroaKSzCdAU
+        3/74QmPqvSUpb045UxRJCdU5Bg==
+X-Google-Smtp-Source: ACHHUZ4yw01j72V7v00qdVG/i73OsQ/JtKCOYW5DeoWzDcJ2LoqAxwuyyDltufUE0IdLZz20m8aA7g==
+X-Received: by 2002:aa7:d14b:0:b0:50b:c164:526c with SMTP id r11-20020aa7d14b000000b0050bc164526cmr2610944edo.13.1683219852591;
+        Thu, 04 May 2023 10:04:12 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:bdb9:99c4:33a5:6114? ([2a02:810d:15c0:828:bdb9:99c4:33a5:6114])
-        by smtp.gmail.com with ESMTPSA id li14-20020a170907198e00b009572db67bf2sm17220234ejc.89.2023.05.04.10.01.46
+        by smtp.gmail.com with ESMTPSA id n7-20020aa7db47000000b0050bcbb5708asm2082323edt.35.2023.05.04.10.04.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 May 2023 10:01:47 -0700 (PDT)
-Message-ID: <417d7d9e-5d9a-e0cf-11b3-f191f4a9c9f2@linaro.org>
-Date:   Thu, 4 May 2023 19:01:46 +0200
+        Thu, 04 May 2023 10:04:12 -0700 (PDT)
+Message-ID: <6bce9c65-12f3-0128-91d0-142f0b5a791e@linaro.org>
+Date:   Thu, 4 May 2023 19:04:11 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
-Subject: Re: [PATCH v2] dt-bindings: spi: zynqmp-qspi: Add power-domains and
- iommus properties
+Subject: Re: [PATCH 1/2] dt-bindings: dma: ti: Add J721S2 BCDMA
 Content-Language: en-US
-To:     Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
-        monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org
-References: <2afed7285061abbb5d9ad3b1e795b737dcff9693.1683102032.git.michal.simek@amd.com>
+To:     Vaishnav Achath <vaishnav.a@ti.com>, peter.ujfalusi@gmail.com,
+        vkoul@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, j-choudhary@ti.com, u-kumar1@ti.com,
+        vigneshr@ti.com
+References: <20230503065303.16674-1-vaishnav.a@ti.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <2afed7285061abbb5d9ad3b1e795b737dcff9693.1683102032.git.michal.simek@amd.com>
+In-Reply-To: <20230503065303.16674-1-vaishnav.a@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/05/2023 10:20, Michal Simek wrote:
-> ZynqMP QSPI IP core has own power domain and also iommu ID that's why
-> describe optional power-domains and iommus properties.
+On 03/05/2023 08:53, Vaishnav Achath wrote:
+> Add bindings for J721S2 BCDMA instance dedicated for Camera
+> Serial Interface. Unlike AM62A CSI BCDMA, this instance has RX
+> and TX channels but lacks block copy channels.
 > 
-> Signed-off-by: Michal Simek <michal.simek@amd.com>
+> Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
 > ---
+>  .../devicetree/bindings/dma/ti/k3-bcdma.yaml  | 21 +++++++++++++++++++
+>  1 file changed, 21 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml b/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
+> index beecfe7a1732..5ca9581a66f4 100644
+> --- a/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
+> +++ b/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
+> @@ -33,6 +33,7 @@ properties:
+>      enum:
+>        - ti,am62a-dmss-bcdma-csirx
+>        - ti,am64-dmss-bcdma
+> +      - ti,j721s2-dmss-bcdma-csi
+>  
+>    reg:
+>      minItems: 3
+> @@ -150,7 +151,27 @@ allOf:
+>  
+>        required:
+>          - power-domains
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: ti,j721s2-dmss-bcdma-csi
+> +    then:
+> +      properties:
+> +        ti,sci-rm-range-bchan: false
+> +
+> +        reg:
+> +          maxItems: 4
+>  
+> +        reg-names:
+> +          items:
+> +            - const: gcfg
+> +            - const: rchanrt
+> +            - const: tchanrt
+> +            - const: ringrt
+> +
+> +      required:
+> +        - ti,sci-rm-range-tchan
+>      else:
+>        properties:
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+You now require 5 reg items on ti,am62a-dmss-bcdma-csirx. I don't think
+you tested your DTS against this change. Rework the else: so it will
+match specific variant (if:).
 
 Best regards,
 Krzysztof
