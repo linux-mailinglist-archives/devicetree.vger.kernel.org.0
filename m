@@ -2,181 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED2976F68B7
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 11:53:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 779636F68BC
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 11:57:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229976AbjEDJxv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 05:53:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37416 "EHLO
+        id S229978AbjEDJ5m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 05:57:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229914AbjEDJxt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 05:53:49 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1EF944AD
-        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 02:53:46 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-4efe8b3f3f7so302865e87.2
-        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 02:53:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683194025; x=1685786025;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fhz3O9BzWKakpJoLNASXwlnplTMxOKAb7/tbotrDYZA=;
-        b=n9bfzA293hypbCgNkm5RhVK68ZEqXzMn5XlurLUe9KNExGlTMb5sVYBxtF6HuoxZZY
-         fo0bfZBQd3Y+XOY2Mb/G3ujYS9rTs8sqvrnFCPOucvvMhp+/jVe6n0eHevJymQ+MJkol
-         pQqToh4BzFTlQ+LeRnW66EiEpKOx63L7hSWxrArrSUk3QSnPj2mdN3UpsUMj8kQfjaQ2
-         prB6SgAPphBE+3Jm6hRcRUnw5ocNi7EET2ZDI6P2cwM83nqM//vbxHKktxXzYWayfjq2
-         1Ll2bj5LtnsQodBPa2Zb0qHT2Q9SgMeCZwcbz0MTxo0QV+qZhStTz2ABHpJTitYqlzY5
-         8CqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683194025; x=1685786025;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fhz3O9BzWKakpJoLNASXwlnplTMxOKAb7/tbotrDYZA=;
-        b=Hw7Pg9aNXOy589ida7lpmEgOS1eHwV/yc1Rss0/AHoLc6ebdZ+PB9JnmZGjXRu6J7T
-         dtnBy2+zn2iGkvFxk017EBkBcZd4Zkc5VU+DWPpaw2kP77IpuaUsoqf+tm0Pm9LSCXIi
-         SSgjsBRCkp+Z+1cdmCgllsNXQyPvUj7MeJWwPI3mDi41coRjvgrx90vUT4xhVZsRiM12
-         UnZK4DsiG/NV7iiNgljoQ9MbVIY3E+VQ4s8ssHlts3V2A2JipQeTjYi1B4LFGwr26S0c
-         TC7h0fSy7gx69M1D+dIXLaxuemT2jf0C1R5mCy2KuA3yn077dGsp3E7h+P0qeBblsyRU
-         m+Fw==
-X-Gm-Message-State: AC+VfDzEnmre43SOodpquBtjyPBWxesb+dgCpGoHqXhheQWp5x6Y12iq
-        o2KJz43kXNnMm/1NKS9V9dteCA==
-X-Google-Smtp-Source: ACHHUZ4qUP3oJDTPyYnMqjUWG5RqMudfjwAWrR9EbIYc2Ic9y0gIf0WyKkeeIobgBRA/aDyXDKz4PA==
-X-Received: by 2002:a05:6512:505:b0:4ef:d4ee:1a6a with SMTP id o5-20020a056512050500b004efd4ee1a6amr1478525lfb.44.1683194025045;
-        Thu, 04 May 2023 02:53:45 -0700 (PDT)
-Received: from [192.168.1.101] (abyl248.neoplus.adsl.tpnet.pl. [83.9.31.248])
-        by smtp.gmail.com with ESMTPSA id u5-20020a056512040500b004efd2b04f7fsm901483lfk.87.2023.05.04.02.53.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 May 2023 02:53:44 -0700 (PDT)
-Message-ID: <99686fdf-73eb-30e0-8ad2-64af1b6b3508@linaro.org>
-Date:   Thu, 4 May 2023 11:53:43 +0200
+        with ESMTP id S229524AbjEDJ5l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 05:57:41 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28B8A44AD;
+        Thu,  4 May 2023 02:57:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1683194260; x=1714730260;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=skX0KctM5NyGzhY5XFNMWtwT33oUgFCc7oCsUf4NI6Q=;
+  b=XEFJ2kMaqd4rQVov0VjplSuYtGm6LsMf9aCa/56hH8W716f6bJTM63+O
+   xNd9ErDNrytGF0tL0uGkM5tqg2DK/jee6V4GM6Uj4kMjqsmyNyL/ZS7dm
+   Q7TCbXaxg04EC0zZYopND4kP6FEi5cx4AjhjkVDTQExERu/KrjecIfPAC
+   pCEpW4brDPvvikaWoQ2XUlHSE2eWo5Rbc9XL8UtmwvKxZHA63pGlMFDE7
+   1qNHGNMQvLkB2ocRSo+aGhylHIvfK9CdxWkgU3zLXY5atUcq756mKSu51
+   SGGcCDJFc5vBX7/tl/3KWeaMmhooKj+96ejNJiqSQqFveAuFZEk3ZHc61
+   A==;
+X-IronPort-AV: E=Sophos;i="5.99,249,1677567600"; 
+   d="asc'?scan'208";a="213646175"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 May 2023 02:57:38 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Thu, 4 May 2023 02:57:33 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Thu, 4 May 2023 02:57:31 -0700
+Date:   Thu, 4 May 2023 10:57:12 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Changhuang Liang <changhuang.liang@starfivetech.com>
+CC:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Conor Dooley <conor@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Walker Chen <walker.chen@starfivetech.com>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, <vkoul@kernel.org>,
+        <linux-phy@lists.infradead.org>
+Subject: Re: [RESEND v2 1/6] dt-bindings: power: Add JH7110 AON PMU support
+Message-ID: <20230504-worshiper-ongoing-5581e1f2c2c4@wendy>
+References: <20230425-commotion-prewashed-876247bed4ab@spud>
+ <0b0f9187-ad6b-a1d9-6ec4-beb8989ca731@starfivetech.com>
+ <3ed72340-accc-4ad1-098f-4a2eb6448828@linaro.org>
+ <482e812a-05dd-105c-189c-e926b4be9d28@starfivetech.com>
+ <089e24d1-588a-4a56-f00b-0b35d1d99295@linaro.org>
+ <ea5b5534-8fc2-7c84-a011-c1b42c6ed7a0@starfivetech.com>
+ <1ac26c1a-1726-515d-6598-849a07ed0b86@linaro.org>
+ <5adda0ad-965c-fbf0-878c-9d41d28b5c39@starfivetech.com>
+ <86693969-59bf-5bcc-42a3-b6e94a0d6f3e@linaro.org>
+ <fcfc8ba4-40a7-da43-3375-712bd7e7f4d5@starfivetech.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH v3 4/5] arm64: dts: qcom: sm6115: Add EUD dt node and dwc3
- connector
-Content-Language: en-US
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     agross@kernel.org, andersson@kernel.org,
-        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
-        robh+dt@kernel.org, linux-usb@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org
-References: <20230504082644.1461582-1-bhupesh.sharma@linaro.org>
- <20230504082644.1461582-5-bhupesh.sharma@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230504082644.1461582-5-bhupesh.sharma@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="+N3Mbg4s7LcQH++0"
+Content-Disposition: inline
+In-Reply-To: <fcfc8ba4-40a7-da43-3375-712bd7e7f4d5@starfivetech.com>
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+--+N3Mbg4s7LcQH++0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Thu, May 04, 2023 at 05:48:20PM +0800, Changhuang Liang wrote:
+> On 2023/5/4 17:36, Krzysztof Kozlowski wrote:
+> > On 04/05/2023 10:43, Changhuang Liang wrote:
 
-On 4.05.2023 10:26, Bhupesh Sharma wrote:
-> Add the Embedded USB Debugger(EUD) device tree node for
-> SM6115 / SM4250 SoC.
-> 
-> The node contains EUD base register region, EUD mode manager
-> register region and TCSR Base register region along with the
-> interrupt entry.
-> 
-> Also add the typec connector node for EUD which is attached to
-> EUD node via port. EUD is also attached to DWC3 node via port.
-> 
-> To enable the role switch, we need to set dr_mode = "otg" property
-> for 'usb_dwc3' sub-node in the board dts file.
-> 
-> Also the EUD device can be enabled on a board once linux is boot'ed
-> by setting:
->  $ echo 1 > /sys/bus/platform/drivers/qcom_eud/../enable
-> 
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sm6115.dtsi | 48 ++++++++++++++++++++++++++++
->  1 file changed, 48 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> index f67863561f3f..6865342fc42f 100644
-> --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> @@ -180,6 +180,18 @@ core3 {
->  		};
->  	};
->  
-> +	eud_typec: connector {
-> +		compatible = "usb-c-connector";
-> +
-> +		ports {
-> +			port@0 {
-> +				con_eud: endpoint {
-> +					remote-endpoint = <&eud_con>;
-> +				};
-> +			};
-> +		};
-> +	};
-> +
->  	firmware {
->  		scm: scm {
->  			compatible = "qcom,scm-sm6115", "qcom,scm";
-> @@ -647,6 +659,35 @@ gcc: clock-controller@1400000 {
->  			#power-domain-cells = <1>;
->  		};
->  
-> +		eud: eud@1610000 {
-> +			compatible = "qcom,sm6115-eud", "qcom,eud";
-> +			reg = <0x0 0x01610000 0x0 0x2000>,
-> +			      <0x0 0x01612000 0x0 0x1000>,
-> +			      <0x0 0x003c0000 0x0 0x40000>;
-> +			interrupts = <GIC_SPI 189 IRQ_TYPE_LEVEL_HIGH>;
-> +			qcom,secure-mode-enable;
-> +			status = "disabled";
-> +
-> +			ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@0 {
-> +					reg = <0>;
-Please insert a newline before each child node.
+> >> On 2023/5/4 15:26, Krzysztof Kozlowski wrote:
 
-Konrad
-> +					eud_ep: endpoint {
-> +						remote-endpoint = <&usb2_role_switch>;
-> +					};
-> +				};
-> +
-> +				port@1 {
-> +					reg = <1>;
-> +					eud_con: endpoint {
-> +						remote-endpoint = <&con_eud>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
->  		usb_hsphy: phy@1613000 {
->  			compatible = "qcom,sm6115-qusb2-phy";
->  			reg = <0x0 0x01613000 0x0 0x180>;
-> @@ -1144,6 +1185,13 @@ usb_dwc3: usb@4e00000 {
->  				snps,has-lpm-erratum;
->  				snps,hird-threshold = /bits/ 8 <0x10>;
->  				snps,usb3_lpm_capable;
-> +				usb-role-switch;
-> +
-> +				port {
-> +					usb2_role_switch: endpoint {
-> +						remote-endpoint = <&eud_ep>;
-> +					};
-> +				};
->  			};
->  		};
->  
+> >>>> aon_syscon: syscon@17010000 {
+> >>>> 	compatible =3D "starfive,jh7110-aon-syscon", "syscon", "starfive,jh=
+7110-aon-pmu";
+> >>>> 	reg =3D <0x0 0x17010000 0x0 0x1000>;
+> >>>> 	#power-domain-cells =3D <1>;
+> >>>> };
+> >>>>
+> >>>> If right? I will tell the syscon patch's owner delete the "simple-mf=
+d" in aon_syscon node.
+> >>>
+> >>> Yes, but your compatibles are now wrong. Just compatible =3D
+> >>> "starfive,jh7110-aon-syscon", "syscon".
+> >>>
+> >>
+> >> If compatible =3D "starfive,jh7110-aon-syscon", "syscon". My pmu drive=
+rs need use=20
+> >> "starfive,jh7110-aon-syscon" to match.
+> >=20
+> > And how it would even work with your proposal
+> > "starfive,jh7110-aon-syscon", "syscon", "starfive,jh7110-aon-pmu"?
+> >=20
+> > Try...
+> >=20
+> >>  And my pmu series will add this=20
+> >> aon_syscon in yaml and device tree, so the syscon patch's owner don't =
+need=20
+> >> to add the aon_syscon in its yaml and device tree?
+> >=20
+> > I don't understand. But if you need to drop syscon, sure, drop it.
+> >=20
+>=20
+> Yes, I think it can drop aon_syscon node in syscon patch series. And mayb=
+e my
+> compatible =3D "starfive,jh7110-aon-pmu", "syscon"; is better.
+>=20
+> aon_syscon: syscon@17010000 {
+> 	compatible =3D "starfive,jh7110-aon-pmu", "syscon";
+
+I don't really understand why you actually need to have this compatible.
+Why not keep "starfive,jh7110-aon-syscon" & register the PMU using a
+software mechanism?
+
+> 	reg =3D <0x0 0x17010000 0x0 0x1000>;
+> 	#power-domain-cells =3D <1>;
+> };
+>=20
+> Best regards,
+> Krzysztof
+
+^^^^^^^^^^^^^^
+btw, your mailer is doing something odd with quotation.
+
+Cheers,
+Conor.
+
+--+N3Mbg4s7LcQH++0
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZFOBbgAKCRB4tDGHoIJi
+0kPXAQDud5N7nXj7gDMGD+6MnWsxLG803WiUGD455jBCgzvmeAEAps+uRCXiT365
+KJIw/A5d325YftGjykNMpI0usmQWPg4=
+=HjHL
+-----END PGP SIGNATURE-----
+
+--+N3Mbg4s7LcQH++0--
