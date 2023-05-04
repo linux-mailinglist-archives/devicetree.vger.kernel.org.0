@@ -2,100 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E9F346F636C
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 05:34:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65ACD6F6A1F
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 13:36:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229651AbjEDDem (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 May 2023 23:34:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48550 "EHLO
+        id S230177AbjEDLgz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 07:36:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229545AbjEDDej (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 23:34:39 -0400
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0AFC1BF6;
-        Wed,  3 May 2023 20:34:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1683171257; x=1714707257;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=3KiOAT90UU7GzEuS/S0TppUB/RAnJK0O9UmCMBs0ZBM=;
-  b=RX9+w68TDldESwTGAJ75inYBOaFpYuB7r/uiZknU4YRIAk9MOKNBvLdx
-   NuUdkDfIkSFjv6SzibL2YGq4W2t5nVy+Mny6zy3+X4fsnaonjkKBGageN
-   NyAv2/cFyXVr+JyLNTeTuj5hyGrHPJGRK9a44T6I6su7MxR0AOSXtYAMC
-   vo4dmfNz48aL5anbn7ZjOSw1mdtsKv/RFAcC+LQrS4aHjsGig4KEf6M0j
-   mnMA58SeC69Gbv2tnE3xXm+7ZOcSwUNRR8JZz29GODz4v760/mDE2r3xp
-   1HR5bIGHuErgbcX9/knZbnUEt6miQNWAKlpKdX6dfemVePBHWT+Ly/It1
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10699"; a="348868849"
-X-IronPort-AV: E=Sophos;i="5.99,249,1677571200"; 
-   d="scan'208";a="348868849"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 May 2023 20:34:17 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10699"; a="871198748"
-X-IronPort-AV: E=Sophos;i="5.99,249,1677571200"; 
-   d="scan'208";a="871198748"
-Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
-  by orsmga005.jf.intel.com with ESMTP; 03 May 2023 20:34:14 -0700
-Date:   Thu, 4 May 2023 19:34:26 +0800
-From:   Xu Yilun <yilun.xu@intel.com>
-To:     Ivan Bornyakov <i.bornyakov@metrotek.ru>
-Cc:     linux-kernel@vger.kernel.org, Moritz Fischer <mdf@kernel.org>,
-        Wu Hao <hao.wu@intel.com>, Tom Rix <trix@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Vladimir Georgiev <v.georgiev@metrotek.ru>, system@metrotek.ru,
-        linux-fpga@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] MAINTAINERS: update Microchip MPF FPGA reviewers
-Message-ID: <ZFOYQgA6TYa8hCjS@yilunxu-OptiPlex-7050>
-References: <20230429104838.5064-1-i.bornyakov@metrotek.ru>
- <20230429104838.5064-2-i.bornyakov@metrotek.ru>
+        with ESMTP id S229622AbjEDLgy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 07:36:54 -0400
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6314559CA
+        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 04:36:51 -0700 (PDT)
+Received: by mail-pl1-x62a.google.com with SMTP id d9443c01a7336-1aafa03f541so3193025ad.0
+        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 04:36:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=9elements.com; s=google; t=1683200211; x=1685792211;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=nUHArhlcp3qSfySTPqT1ZPP2t/W0eOsOr4roXo47DNw=;
+        b=J/rrtMF5eCYfqJL/HfPD3lLSqeolJkc1WqXkA+11V/xw5p59FxZsSiSfU5fDFdgioK
+         fWR/Nu3fnyEVoFMzsBNx4N4P6YXKBy3wOThnXz60Eme/oAbDCdl4aYLNdXeOahywONLc
+         ibszmyZKUmKA2JBc6aE8bpSO9vjWVIvQXK48A5uGFeOX8AjERGohb97ZwXqqlsP1/mmD
+         PiFn3vbrnTYHeSVJs/Y7BQYTGDkRF0MQEFtH/Qd2MQ+0YRPv39iurrd5sG0J3kn7a7Wn
+         YshYzlnop5x/oUxl1bX87LSTCad/d4lRxdIDPib3Tmt9/Coj8vlgZo+pcVYEQmxTGuJr
+         s6gA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683200211; x=1685792211;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nUHArhlcp3qSfySTPqT1ZPP2t/W0eOsOr4roXo47DNw=;
+        b=Hn+L9UIGLJ677AIuoB043MW4W64MlPWuY8onYdcbN3PzLwuGHrO/8OGJFEfzDypch1
+         sh1Q46xghCvT6kXR40teoHMe43VXLudwMMbgXkRBJIp7IJUST/oAdG0dlqfUEq5pZXLn
+         8GlG3vhmgi4utNpwiYsHE1ymXFJelLzAfEQtMizq1880FX/GGw+zSuufJ1LTYky0aqS1
+         u3NzLjAAsk4565csrwwGrNXX4tSjMR36fUXoi10kYo1d6VX2VGldnDbNMdkoyJONxnOW
+         +jJ4dZHuqsYLTzUXR1PmnxozkUuYU9XrRDY9DCEabZbBzZw/yn/ZXud+yR+TO+T8h4Dv
+         cCLA==
+X-Gm-Message-State: AC+VfDwNvMVebwC7X/bfG1GdSbb+Z+yUinlH1Au1FL2YfaNrFvx8KCv9
+        ghNHxnIrBtPS5pjOXBhVLd9Xog==
+X-Google-Smtp-Source: ACHHUZ4reHpy6jWeeqIb6ngwMygitIdCsQkqiY1aIy5R9QV1Oa/nx+X0X9zQP6eTsEh/Lhn2ZXAzQw==
+X-Received: by 2002:a17:902:b591:b0:1ab:8f4:af3a with SMTP id a17-20020a170902b59100b001ab08f4af3amr2860275pls.39.1683200210820;
+        Thu, 04 May 2023 04:36:50 -0700 (PDT)
+Received: from ?IPV6:2405:201:d02f:d855:461d:14be:2cce:b776? ([2405:201:d02f:d855:461d:14be:2cce:b776])
+        by smtp.gmail.com with ESMTPSA id q10-20020a170902daca00b001a9b29b6759sm12996966plx.183.2023.05.04.04.36.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 May 2023 04:36:50 -0700 (PDT)
+Message-ID: <45236017-22d2-f9f8-0069-77195e49221d@9elements.com>
+Date:   Thu, 4 May 2023 17:06:48 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230429104838.5064-2-i.bornyakov@metrotek.ru>
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DATE_IN_FUTURE_06_12,
-        DKIMWL_WL_HIGH,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: Add max6639
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Marcello Sylvester Bauer <sylv@sylv.io>,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230420111759.2687001-1-Naresh.Solanki@9elements.com>
+ <76e57634-75dd-01e8-9c56-36ed7de17812@linaro.org>
+ <c8d1b5db-318e-3401-0834-b89769831eca@9elements.com>
+ <be129c4f-3ad7-c54b-936e-08b142608ebc@linaro.org>
+ <88f9a008-2861-284c-76c4-7d416c107fbb@9elements.com>
+ <bd45ea5d-e6e4-403a-e855-376e0f647f91@9elements.com>
+ <20eb1d0e-0aa2-9d41-7ba5-2feb148748d0@linaro.org>
+ <9d989c4c-7c9e-9e95-133f-03741d07198b@9elements.com>
+ <80b60de0-dcb5-303f-8d13-f4b1cf7d8521@linaro.org>
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+In-Reply-To: <80b60de0-dcb5-303f-8d13-f4b1cf7d8521@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023-04-29 at 13:48:37 +0300, Ivan Bornyakov wrote:
-> As I'm leaving Metrotek, hand over reviewing duty of Microchip MPF FPGA
-> driver to Vladimir.
-> 
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Acked-by: Vladimir Georgiev <v.georgiev@metrotek.ru>
-> Signed-off-by: Ivan Bornyakov <i.bornyakov@metrotek.ru>
+Hi Krzysztof,
 
-Hi Vladimir:
-
-I need the "Acked-by" from your mail address.
-
-> ---
->  MAINTAINERS | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+On 04-05-2023 04:17 pm, Krzysztof Kozlowski wrote:
+> On 04/05/2023 11:47, Naresh Solanki wrote:
+>> Hi Krzysztof,
+>>
+>> On 03-05-2023 09:48 pm, Krzysztof Kozlowski wrote:
+>>> On 03/05/2023 10:26, Naresh Solanki wrote:
+>>>> Hi Krzysztof,
+>>>>
+>>>> On 24-04-2023 03:23 pm, Naresh Solanki wrote:
+>>>>> Hi Krzysztof,
+>>>>>
+>>>>> On 24-04-2023 03:12 pm, Krzysztof Kozlowski wrote:
+>>>>>> On 24/04/2023 11:18, Naresh Solanki wrote:
+>>>>>>
+>>>>>>>>> Changes in V2:
+>>>>>>>>> - Update subject
+>>>>>>>>> - Drop blank lines
+>>>>>>>>> ---
+>>>>>>>>>      .../bindings/hwmon/maxim,max6639.yaml         | 52
+>>>>>>>>> +++++++++++++++++++
+>>>>>>>>>      1 file changed, 52 insertions(+)
+>>>>>>>>>      create mode 100644
+>>>>>>>>> Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+>>>>>>>>>
+>>>>>>>>> diff --git
+>>>>>>>>> a/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+>>>>>>>>> b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+>>>>>>>>> new file mode 100644
+>>>>>>>>> index 000000000000..1aaedfd7cee0
+>>>>>>>>> --- /dev/null
+>>>>>>>>> +++ b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+>>>>>>>>> @@ -0,0 +1,52 @@
+>>>>>>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>>>>>>>> +%YAML 1.2
+>>>>>>>>> +---
+>>>>>>>>> +$id: http://devicetree.org/schemas/hwmon/maxim,max6639.yaml#
+>>>>>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>>>>>> +
+>>>>>>>>> +title: Maxim max6639
+>>>>>>>>
+>>>>>>>> What is this device? fan controller?
+>>>>>>> Yes Fan controller.
+>>>>>>> Do you want me to update the title here as:
+>>>>>>> "Maxim MAC6639 2 channel fan controller & temperature monitor" ?
+>>>>>>
+>>>>>> Enough would be:
+>>>>>> Maxim MAX6639 Fan Controller
+>>>>> Ack
+>>>>>>
+>>>>>>
+>>>>>>>
+>>>>>>>>
+>>>>>>>>> +
+>>>>>>>>> +maintainers:
+>>>>>>>>> +  - Naresh Solanki <Naresh.Solanki@9elements.com>
+>>>>>>>>> +
+>>>>>>>>> +description: |
+>>>>>>>>> +  The MAX6639 is a 2-channel temperature monitor with dual,
+>>>>>>>>> automatic, PWM
+>>>>>>>>> +  fan-speed controller.  It monitors its own temperature and one
+>>>>>>>>> external
+>>>>>>>>> +  diode-connected transistor or the temperatures of two external
+>>>>>>>>> diode-connected
+>>>>>>>>> +  transistors, typically available in CPUs, FPGAs, or GPUs.
+>>>>>>>>> +
+>>>>>>>>> +  Datasheets:
+>>>>>>>>> +    https://datasheets.maximintegrated.com/en/ds/MAX6639-MAX6639F.pdf
+>>>>>>>>> +
+>>>>>>>>> +properties:
+>>>>>>>>> +  compatible:
+>>>>>>>>> +    enum:
+>>>>>>>>> +      - maxim,max6639
+>>>>>>>>> +
+>>>>>>>>> +  reg:
+>>>>>>>>> +    maxItems: 1
+>>>>>>>>> +
+>>>>>>>>> +  '#address-cells':
+>>>>>>>>> +    const: 1
+>>>>>>>>> +
+>>>>>>>>> +  '#size-cells':
+>>>>>>>>> +    const: 0
+>>>>>>>>
+>>>>>>>> Why do you need these two properties?
+>>>>>>> Ack. Will remove them.
+>>>>>>>>
+>>>>>>>> Anyway, the binding looks incomplete. Where are the supplies?
+>>>>>>>> Interrupts?
+>>>>>>> This patch just adds basic support to the existing platform driver.
+>>>>>>> Intention is to be able to call the driver from DT with basic
+>>>>>>> initialization from driver the existing driver.
+>>>>>>
+>>>>>> Bindings should be rather complete. Here the datasheet is accessible and
+>>>>>> few properties quite obvious, so I don't see a reason to skip them.
+>>>>> I agree with you. But currently the driver which is already merged
+>>>>> doesn't has it implemented.
+>>>>> And will be working on separate patch to include this later.
+>>>> Please let me know if this approach is acceptable, or if there are any
+>>>> other suggestions or concerns that you have.
+>>>
+>>> You are adding new bindings, so what does the driver has to do with it?
+>> The reason for adding these new bindings is to enable the use of the
+>> driver on my machine. Without the compatible string, it would not be
+>> possible to use the driver.
+>>
+>> Currently, the driver initializes the device with defaults, which is
+>> good enough for my application. Also, as you previously pointed out, it
+>> uses the optional 'fan-supply' which will be included in the next patch
+>> revision.
+>>
+>> I hope this clarifies my reasoning. Could you kindly confirm if we can
+>> proceed with this approach?
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index a81ba8328704..aab9fbb20362 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -8100,7 +8100,7 @@ F:	drivers/fpga/intel-m10-bmc-sec-update.c
->  
->  MICROCHIP POLARFIRE FPGA DRIVERS
->  M:	Conor Dooley <conor.dooley@microchip.com>
-> -R:	Ivan Bornyakov <i.bornyakov@metrotek.ru>
-> +R:	Vladimir Georgiev <v.georgiev@metrotek.ru>
->  L:	linux-fpga@vger.kernel.org
->  S:	Supported
->  F:	Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
-> -- 
-> 2.40.0
+> No, we cannot, because we asked you to fix things there. Your entire
+> explanation about compatible and driver is not related to the comment
+> you received: bindings should be complete. You argue that bindings do
+> not have to be complete, because of something with driver. This is not
+> related. Bindings are not for driver.
+
+I understand that complete bindings are important, but as the driver is 
+already merged and functional, my immediate goal is to enable its use on 
+my machine. I will work on a separate patch to include the interrupts in 
+both binding & driver.
+
 > 
+> Best regards,
+> Krzysztof
 > 
