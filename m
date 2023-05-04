@@ -2,135 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6148A6F663C
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 09:48:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71D1A6F6645
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 09:49:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229622AbjEDHsN convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 4 May 2023 03:48:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32882 "EHLO
+        id S229609AbjEDHtp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 03:49:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229522AbjEDHsM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 03:48:12 -0400
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F63D30FB;
-        Thu,  4 May 2023 00:47:59 -0700 (PDT)
-Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-55c939fb24dso582597b3.2;
-        Thu, 04 May 2023 00:47:59 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683186478; x=1685778478;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=m9LICh5eVGQYl7Vd8WDHBQlr+z/LAV3M6z3s9DeJXLI=;
-        b=PmneL4HyQe9OJmf+p5P7Csog9u8zFglPGENsuKD9tzFWaFP4dLmWeGYmMi1EUTy8uJ
-         gFr34CRWA/0TvY5HpTqIthSaFL6FaLFhZ5HKCAiJpAiT2NfETeNImA59pZ5WKy4WrNen
-         iuEKbpB/ofWQ7+bBNOtLhModvMrzcwvIhMz1wYiU4tHxECuGjKwwqWgliAJNEU8Tw0tp
-         qjzbiOtqeKtoratDY50bUyjoNnN8OXlF3jxnHRdaCzUhktqNP34kk1n//jg6Sq+BUo4C
-         kLFiuNWmuESwss/hujls4H2E+n/3fXkNspDt2lmmuMJkvSifYc41XQJqI8UwMXw5+8WM
-         rKQg==
-X-Gm-Message-State: AC+VfDxdCUn5vgUi09QPz6VKVWwU81Vyog5NbGspuU6MAQuH9qd3TtbT
-        Edl7ehIyeqI70dwTagwO6FM1wrw6xrf2bw==
-X-Google-Smtp-Source: ACHHUZ5eVY5vvXBBMryU5gNR68k7hiPxdNJbaTzO6QrOEy6ivZVT1W9GlxV29CEUxxaCNsjjGhlQrQ==
-X-Received: by 2002:a81:a082:0:b0:55a:2cb9:c79c with SMTP id x124-20020a81a082000000b0055a2cb9c79cmr1391983ywg.9.1683186478137;
-        Thu, 04 May 2023 00:47:58 -0700 (PDT)
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com. [209.85.219.172])
-        by smtp.gmail.com with ESMTPSA id j137-20020a81928f000000b0055a486140b6sm2642843ywg.36.2023.05.04.00.47.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 May 2023 00:47:57 -0700 (PDT)
-Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-b9e27684b53so164754276.0;
-        Thu, 04 May 2023 00:47:57 -0700 (PDT)
-X-Received: by 2002:a81:a082:0:b0:55a:2cb9:c79c with SMTP id
- x124-20020a81a082000000b0055a2cb9c79cmr1391945ywg.9.1683186476971; Thu, 04
- May 2023 00:47:56 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230503084608.14008-1-biju.das.jz@bp.renesas.com>
- <20230503084608.14008-5-biju.das.jz@bp.renesas.com> <db7ae5f9-393a-b892-dd6f-08c4f25ce7a8@linaro.org>
-In-Reply-To: <db7ae5f9-393a-b892-dd6f-08c4f25ce7a8@linaro.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 4 May 2023 09:47:45 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVMsdvwq3t50ifKuCJ6LvPUcDjSu14tkdrSquizA=TsTw@mail.gmail.com>
-Message-ID: <CAMuHMdVMsdvwq3t50ifKuCJ6LvPUcDjSu14tkdrSquizA=TsTw@mail.gmail.com>
-Subject: Re: [PATCH RFC 4/6] dt-bindings: rtc: isl1208: Document built-in RTC
- device on PMIC RAA215300
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Trent Piepho <tpiepho@impinj.com>, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S229502AbjEDHto (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 03:49:44 -0400
+Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C06810B;
+        Thu,  4 May 2023 00:49:43 -0700 (PDT)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.nyi.internal (Postfix) with ESMTP id 8CC1B5C04C2;
+        Thu,  4 May 2023 03:49:40 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Thu, 04 May 2023 03:49:40 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm3; t=1683186580; x=1683272980; bh=n2
+        GbdBfIgCBE58XNSQRg32j+lkULH8rlZExOFkhoATU=; b=NpUQT61PnuCvxpZQ9L
+        r2vJRK57pFzOadLeneWmS2d6J4S92NYySlykPB+NcFW4/D41FN/JidU9ZWZQCDhl
+        WQWmeaz088E5ZL6nxKqiBPjSDoBoL1CPrpPO/L5V62rCaLs7adI6zTc0A4DospA3
+        QP+IZR01f4h8c4VXzvqAaM659ePEdj6Z65qfNVSSE7vFCNzz9nDitxw9ezWzJsKM
+        dkuuUi8teR17JYF9k7dxZ/EvJaKN4nT4Mx+d8qEgPynSQN7i+w/WOFE2YGNwBOmq
+        REe9KiXlsc8HQ/w75+7ukdYqEtqp0oiT2MBmJWOXsmKwmO2iaCna4MwG8TU9d1k3
+        cWeQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:content-type:date:date
+        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm3; t=1683186580; x=1683272980; bh=n2GbdBfIgCBE5
+        8XNSQRg32j+lkULH8rlZExOFkhoATU=; b=N3QH6uoTp8OfXd8qt5f6/4cDDN0DI
+        PxWGyiuu1mKeeWmUs9X7Xf0eGqASgfFfyUMzKoO7e58rozalESbgKn7vMy8WYuWw
+        1y9Tvsswqp4OMJoTeOXnwuHz2BX1/YaAtMyKL3PO3vkkAlmxO/vNzRKMJs23BqNJ
+        8Ie47owE0UCJkRmHwY2XTkooXBxlklqVPdqNa8tuXdtzJDomuXyb0t/rwuWWpMWv
+        b/Qn5PwZS2XBLCy1yiggWO0z96HmO9N0kKJHbjdcBdlT9eOYYiEV4yYCYo6tp014
+        awIshPQL8YyOq175Et/1wVi3xpB9UM8iNJBJqQVxFqXfDaXPGh6yrkDsw==
+X-ME-Sender: <xms:k2NTZM11WBehmDrimYGaqmhPSp308g9IgJD5creEfGc5y6pRXulydg>
+    <xme:k2NTZHFychF0oAlEkWHEqNvZvCTM0CkrDdO-HHvSyTE2WxjLnlDxmB0BFpNB3agB0
+    wB7AfIiaI-LpIIHSxM>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrfedvledguddvvdcutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdet
+    rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
+    htthgvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedt
+    keetffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    grrhhnugesrghrnhgusgdruggv
+X-ME-Proxy: <xmx:k2NTZE6YGLbMnzjjS5plkNa9c1zOIA3NRPUWgolCm-U_TXd75oI7Hw>
+    <xmx:k2NTZF1ZGvLWlA2AEbmfAz8qUPKu1yBw1pA2AuQECvqWIWefH_o4GA>
+    <xmx:k2NTZPFegQWsoS2rsdthHljjLQNRYsrvuU9V_j0yocmlAtBrRTKLkw>
+    <xmx:lGNTZN9Ro-vGT1NvHngo5BI70ovDiID5EG2K00a7QXgU8m0UJj2QhQ>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id BCC33B60086; Thu,  4 May 2023 03:49:39 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-386-g2404815117-fm-20230425.001-g24048151
+Mime-Version: 1.0
+Message-Id: <c99babb3-532a-4d00-876c-3c316b456325@app.fastmail.com>
+In-Reply-To: <8ce93998-84c3-0640-a6e1-76ff17b3953c@linaro.org>
+References: <20230504033726.93-1-ychuang570808@gmail.com>
+ <20230504033726.93-2-ychuang570808@gmail.com>
+ <8ce93998-84c3-0640-a6e1-76ff17b3953c@linaro.org>
+Date:   Thu, 04 May 2023 09:49:18 +0200
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
+        "Jacky Huang" <ychuang570808@gmail.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org, "Lee Jones" <lee@kernel.org>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        "Stephen Boyd" <sboyd@kernel.org>,
+        "Philipp Zabel" <p.zabel@pengutronix.de>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        "Jiri Slaby" <jirislaby@kernel.org>,
+        "Tomer Maimon" <tmaimon77@gmail.com>,
+        "Catalin Marinas" <catalin.marinas@arm.com>,
+        "Will Deacon" <will@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-serial@vger.kernel.org, schung@nuvoton.com,
+        mjchen@nuvoton.com, "Jacky Huang" <ychuang3@nuvoton.com>
+Subject: Re: [PATCH v9 01/10] arm64: Kconfig.platforms: Add config for Nuvoton MA35
+ platform
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
-
-On Thu, May 4, 2023 at 9:11 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
-> On 03/05/2023 10:46, Biju Das wrote:
-> > The Built-in RTC device found on PMIC RAA215300 is similar to the isl1208
-> > IP. However, RTC is enabled by PMIC RAA215300 and the polarity of the
-> > external oscillator is determined by the PMIC revision.
-> >
-> > Document renesas,raa215300-isl1208 compatible and renesas,raa215300-pmic
-> > property to handle these differences.
-> >
-> > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > ---
-> >  .../devicetree/bindings/rtc/isil,isl1208.yaml       | 13 +++++++++++++
-> >  1 file changed, 13 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/rtc/isil,isl1208.yaml b/Documentation/devicetree/bindings/rtc/isil,isl1208.yaml
-> > index 04d51887855f..888a832ed1db 100644
-> > --- a/Documentation/devicetree/bindings/rtc/isil,isl1208.yaml
-> > +++ b/Documentation/devicetree/bindings/rtc/isil,isl1208.yaml
-> > @@ -18,6 +18,7 @@ properties:
-> >            - isil,isl1209
-> >            - isil,isl1218
-> >            - isil,isl1219
-> > +          - renesas,raa215300-isl1208
-> >
-> >    reg:
-> >      maxItems: 1
-> > @@ -40,6 +41,10 @@ properties:
-> >          <0> : Enable internal pull-up
-> >          <1> : Disable internal pull-up
-> >
-> > +  renesas,raa215300-pmic:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description: phandle to the pmic device with isl1208 built-in RTC.
+On Thu, May 4, 2023, at 08:32, Krzysztof Kozlowski wrote:
+> On 04/05/2023 05:37, Jacky Huang wrote:
+>> From: Jacky Huang <ychuang3@nuvoton.com>
+>> 
+>> Add ARCH_NUVOTON configuration option for Nuvoton MA35 family SoCs.
+>> 
+>> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
+>> ---
+>>  arch/arm64/Kconfig.platforms | 9 +++++++++
+>>  1 file changed, 9 insertions(+)
+>> 
+>> diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
+>> index 89a0b13b058d..c1f277c05569 100644
+>> --- a/arch/arm64/Kconfig.platforms
+>> +++ b/arch/arm64/Kconfig.platforms
+>> @@ -236,6 +236,15 @@ config ARCH_NPCM
+>>  	  General support for NPCM8xx BMC (Arbel).
+>>  	  Nuvoton NPCM8xx BMC based on the Cortex A35.
+>>  
+>> +config ARCH_NUVOTON
 >
-> No. You don't need cross-linking. We do not represent one device as two
-> and then fix this by cross-linking them. The existing binding does not
-> have it, so it should be a hint for you.
+> Either this should be ARCH_MA35 or you should integrate it with NPCM.
+> ARCH_NUVOTON means all Nuvoton platforms.
 
-Makes sense.
-So there should be a single device node with 2 reg cells, and
-a "renesas,raa215300" compatible value.
+I'd go with two separate Kconfig options here (ARCH_MA35 and ARCH_NPCM)
+for arm64, but keep the shared arch/arm64/boot/dts/nuvoton directory,
+I think that fits most closely what we do on other targets, and there
+is apparently very little sharing of IP blocks between npcm and ma35,
+if any.
 
-On the Linux side, the "renesas,raa215300" MFD driver can instantiate
-a PMIC and an RTC cell, the latter served by the (enhanced) existing
-rtc-isl1208 driver.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+      Arnd
