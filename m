@@ -2,101 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0731A6F698E
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 13:08:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60D156F69BB
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 13:21:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230182AbjEDLIw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 07:08:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40910 "EHLO
+        id S229768AbjEDLV5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 07:21:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229818AbjEDLIv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 07:08:51 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 022752D51
-        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 04:08:50 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-50bc394919cso482326a12.2
-        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 04:08:49 -0700 (PDT)
+        with ESMTP id S229564AbjEDLV4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 07:21:56 -0400
+Received: from mail-vk1-xa36.google.com (mail-vk1-xa36.google.com [IPv6:2607:f8b0:4864:20::a36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78EDA49F7
+        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 04:21:55 -0700 (PDT)
+Received: by mail-vk1-xa36.google.com with SMTP id 71dfb90a1353d-44062aa1b5bso118537e0c.1
+        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 04:21:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683198528; x=1685790528;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=pGU2jbPQn6t2sze0AsSE9JK2oVMBpoZVTCCBJWP0I9E=;
-        b=xoNxjMC0KmOHPsAl76qpFcoXrns5TB9wWi6GV8NCJ0ovgsmZfS/5lsZZvey19iZ0nO
-         qK3sFFio/0uMiAeiYxfx6Yj0Mg6lnH/YTus1bN8H82A+f39qWTpXsy0xl5dJ5pxkZsOv
-         PjY1RBI7iCmTekUnGE5m6j1h2WykO6c0srXtE4+UrylakGSbXF8bwYgUgfhh38WJvEqL
-         FZF2ELPCaaA4/19MGS1Fcw7UfEjljsWs+hVwp7a8yOA0f3v05FzWW5fuBFc9npKRJ8zB
-         LzAvfAVDKZyMIifP+X9aKyC5uP96u6fKHUEBs7tn6ljEVBAGpyY35epppMOXFmW2A8he
-         t/9Q==
+        d=gmail.com; s=20221208; t=1683199314; x=1685791314;
+        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=HJLlk5da4L8Ltn8jDx/W/MCW09bm52RtkanOa7KHQUw=;
+        b=R+BgV7xQaGsSuUhsoLc/9wEzX2f0sdwtRhoH/e++pTijHvitz40vFF4Sh9UaW4PxSf
+         yIKAIjH2RaYyBwdesDeIDU2U98biAtjfQipblePdzyYCW/45bdvGgWF4H7tkiURGTvAc
+         LV3uXMREjOf9Av6DDdPoqGuowvxhmOA1jo7/PwObJ0X1qHhJ56zyBh56T3m9PFxCh52s
+         WbJPQ2CZCAbPf8aZIuOg2nQn9hrsQEwn8lZMbDamnlavEGuVA0ZtdBeVSG1zaXTKLnpX
+         Bb2wgdNqEwwvDDcjJM0czzgSk95sN7vwXsbZvDr67GacGp6ZGPlypeiXt7vvjF3+B2zR
+         64dw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683198528; x=1685790528;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1683199314; x=1685791314;
+        h=to:subject:message-id:date:from:reply-to:mime-version
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pGU2jbPQn6t2sze0AsSE9JK2oVMBpoZVTCCBJWP0I9E=;
-        b=CLKBe+qFPOF/pRy294+WH4sSd85aUwlINVxGpkNVSNAsnfCnQB/DzogGcVC0/CE/B/
-         HxAEKpyOi3G1CUoYW6CvW3obOt3yBWHo/7J1a7vCKlUeyrx6ju9q0S9NcQyDM/M0stFs
-         JtPKS31IVrd5ojRCmFO595DGtvukOIyWHlU5KsE9Gzqcc76AVyyraLX3AePKmbkJefcL
-         VfbBM2iqgqyyTZ3wVznwvN+ciIQI4GCijM07Z+CLL/2vaAkNTGkRp+542p5ltbTBJlC2
-         0y99pKVIzJ/mwwM0nTVaY7KGkMH50PyRAggVE91u4uHtgajuMuYX3SMvH2lNt4zyGRiz
-         qqgw==
-X-Gm-Message-State: AC+VfDw/UNPTbOpzCMERN+mfOoK2ImfByNmJHuWooqSFvyFUcxL0hu3D
-        dUPW4dQ++VwNaP2JmNih0RPUwg==
-X-Google-Smtp-Source: ACHHUZ4QQdpUK7oj9UoJ4UfdVPyMjWPBgMfVs/DMbYC+OTthReBajhWNR1Mp5i2gBTajr16BjQIXkA==
-X-Received: by 2002:a17:906:4791:b0:965:a00d:ab1e with SMTP id cw17-20020a170906479100b00965a00dab1emr2585563ejc.8.1683198528458;
-        Thu, 04 May 2023 04:08:48 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:cbf1:e7ef:fb81:e912? ([2a02:810d:15c0:828:cbf1:e7ef:fb81:e912])
-        by smtp.gmail.com with ESMTPSA id lh11-20020a170906f8cb00b0094a789256dcsm18662059ejb.111.2023.05.04.04.08.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 May 2023 04:08:47 -0700 (PDT)
-Message-ID: <c6df0d21-21bb-0fb2-a91f-dec9ab46b1ac@linaro.org>
-Date:   Thu, 4 May 2023 13:08:46 +0200
+        bh=HJLlk5da4L8Ltn8jDx/W/MCW09bm52RtkanOa7KHQUw=;
+        b=VK4DxP22JQu5fhHziByYM/8yPR9qZCDe2tN7J+/yKtigfbMsy9lxn1ez8D6YK3Ouz4
+         d7qCznsMwdRM9p0mpRwi8i06VkOzbiR14Qtj03ga21Urs/5HiZNgCppDuv54zbF2bYC8
+         hnxiFkSP+CWFfHb61sPWfYVgwOKoimJE+gXyv0JuwzX0tvWObvLgCHoh/xQYwMzcbh2L
+         lA1dnWqywy6MLYQ7gfuMklSKVjRIra8OxzYmVnbzkzwD1zsKO4Uwx4lRyRU7uXxh2CUz
+         LNTC1LnvRt2G9zzyrd+KHO4TZskGuhz5nrBPJDAe2JfyFxTtbw8sO/Vc8a2kDW89Zefn
+         dArw==
+X-Gm-Message-State: AC+VfDx/bb6g/YZT7cDuSucZrix8wOGVDSTwLranud8o95a+Ebpi6bck
+        rvHS0OXGSUoebdhVIdKN8H27ILz6CNiN3JXGWVU=
+X-Google-Smtp-Source: ACHHUZ5OmaSuKaPuy9I1JeqayWS5t3DGeMxbo4hMNx8s+29Y7qqICNgbAQdrMTEeAO6NyDAoSmUYMomIQ4sgG0JhCWY=
+X-Received: by 2002:a1f:4342:0:b0:44f:e6ff:f316 with SMTP id
+ q63-20020a1f4342000000b0044fe6fff316mr275041vka.12.1683199314089; Thu, 04 May
+ 2023 04:21:54 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH 1/2 v6] dt-bindings: watchdog: marvell GTI system watchdog
- driver
-Content-Language: en-US
-To:     Bharat Bhushan <bbhushan2@marvell.com>, wim@linux-watchdog.org,
-        linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-watchdog@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        sgoutham@marvell.com
-References: <20230504105439.18261-1-bbhushan2@marvell.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230504105439.18261-1-bbhushan2@marvell.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Received: by 2002:a05:6124:590:b0:35e:69e6:84a8 with HTTP; Thu, 4 May 2023
+ 04:21:53 -0700 (PDT)
+Reply-To: avamedicinemed1@gmail.com
+From:   Dr Ava Smith <okwumasochi@gmail.com>
+Date:   Thu, 4 May 2023 04:21:53 -0700
+Message-ID: <CAHN+otzei8F+CBnEHx+s8MMFAmP3aNGafDiaAz6-0nAX5kvOQA@mail.gmail.com>
+Subject: HI DEAR
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: Yes, score=7.7 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLYTO,
+        FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNDISC_FREEM,UNDISC_MONEY autolearn=no
+        autolearn_force=no version=3.4.6
+X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+        *      https://www.dnswl.org/, no trust
+        *      [2607:f8b0:4864:20:0:0:0:a36 listed in]
+        [list.dnswl.org]
+        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+        *      [score: 0.4966]
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+        *      provider
+        *      [okwumasochi[at]gmail.com]
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
+        *      digit
+        *      [avamedicinemed1[at]gmail.com]
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
+        *  2.8 UNDISC_FREEM Undisclosed recipients + freemail reply-to
+        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
+        *      different freemails
+        *  3.1 UNDISC_MONEY Undisclosed recipients + money/fraud signs
+X-Spam-Level: *******
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/05/2023 12:54, Bharat Bhushan wrote:
-> Add binding documentation for the Marvell GTI system
-> watchdog driver.
-> 
-> Signed-off-by: Bharat Bhushan <bbhushan2@marvell.com>
-> ---
-> v6:
->  - Added missed clocks/clock-name device tree property
->  - wdt-timer-index changed to marvell,wdt-timer-index, added "type"
->    and added more detail to discription
-> 
->  .../bindings/watchdog/marvell,gti-wdt.yaml    | 68 +++++++++++++++++++
->  1 file changed, 68 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/watchdog/marvell,gti-wdt.yaml
-
-We did not finish discussion and you immediately send new version. Wait
-for review and comments.
-
-The patch has unresolved comments, so to be clear: NAK for now.
-
-Best regards,
-Krzysztof
-
+Hello Dear,
+how are you today?hope you are fine.
+My name is Dr Ava Smith ,Am an English and French nationalities.
+I will give you pictures and more details about me as soon as i hear from you
+Reply me through my official email (avamedicinemed1@gmail.com)
+Thanks
+Ava
