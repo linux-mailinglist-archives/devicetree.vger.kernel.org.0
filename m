@@ -2,170 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B70286F6353
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 05:30:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D7FB6F6372
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 05:37:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229659AbjEDDaE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 May 2023 23:30:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45808 "EHLO
+        id S229659AbjEDDhg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 May 2023 23:37:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229501AbjEDDaD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 23:30:03 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FDE9198E;
-        Wed,  3 May 2023 20:29:57 -0700 (PDT)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3443M0iN010768;
-        Thu, 4 May 2023 03:29:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
- cc : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=qcppdkim1; bh=8Fr63kfb0qAml3Qgr7x5BnMF93LqV2bwaEcrP8GYe+U=;
- b=bFUNwaj/CokqNgWgcymo+gSJPsEz36yv1ioeKPRhEyaRl9wTL//tbtt0UeYM/D1+xNJb
- t0iEJc+f41F1ZnzABRUnw39A3FUDpgNhBS8A00GytQITOJ9PfD08iS/WMmwXE0m4Z7jW
- iqyArHj5ng9BzLO9DI2r67msSJrMk6ckgMUur+Wy0jphEAm6OCVaCy0Uf689DOqsVAOT
- Kn5Y/OMxOQE7MX9vpXV2qCvD5TztnveBTZzVRUeJppP3N0FOj/LepznYM9M6LMhka7Zz
- sUByF6/eZSZ7QL3/cRAIxWL+1tK4P3my5ve9OWfvgiTyhEXMkRDCJVm9Wjf2sfCot/cH XQ== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qbeb2twe9-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 04 May 2023 03:29:48 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3443T8V9014515
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 4 May 2023 03:29:08 GMT
-Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Wed, 3 May 2023 20:29:08 -0700
-Date:   Wed, 3 May 2023 20:29:07 -0700
-From:   Bjorn Andersson <quic_bjorande@quicinc.com>
-To:     Johan Hovold <johan@kernel.org>
-CC:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 3/7] phy: qcom-qmp-combo: Introduce orientation variable
-Message-ID: <20230504032907.GF870858@hu-bjorande-lv.qualcomm.com>
-References: <20230425034010.3789376-1-quic_bjorande@quicinc.com>
- <20230425034010.3789376-4-quic_bjorande@quicinc.com>
- <ZFD4gM9dUQwBmSUe@hovoldconsulting.com>
+        with ESMTP id S229461AbjEDDhf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 May 2023 23:37:35 -0400
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9787F10B;
+        Wed,  3 May 2023 20:37:33 -0700 (PDT)
+Received: by mail-pl1-x62b.google.com with SMTP id d9443c01a7336-1ab267e3528so8518875ad.0;
+        Wed, 03 May 2023 20:37:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1683171453; x=1685763453;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LgN7t4ySVrsePI7gTpw7jm/XrMm27nwpeBG4Gq9yHWM=;
+        b=pEo0jS86RBGaBUdC325/Uzz8UKWyJr7la/6/yXu6/+9GVnLYxGn7/46D9XYOQ58CU/
+         JTmjAXRBrbuLdmSCFO016EIMfMFRQo2YwHX7j8ebUhq/1kGk+DeumNiSVldDxe1Lu6hE
+         /rO9R0izSGZyR3bdOD1z3MAbOmXUpsSXkpRcXXrIvrTYlt3LXsYJZiAlrmUYh0LPLiRM
+         W+An6SxErPsQiOmyhILiKhXqbM67B03x9G4dvurUE79nAzeq2RAyGBqLvf6TwWUnAqjl
+         eN05QPAj0MrGdTUytZXuxAmXIicZMd8sD6srvzv7vYsEmYKcGy7pk+SSh3ZM1hu/EfX0
+         Syng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683171453; x=1685763453;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LgN7t4ySVrsePI7gTpw7jm/XrMm27nwpeBG4Gq9yHWM=;
+        b=Tgy69nRm7wuf4/gHI7Hx43JGamhEusiv708w2T8bdd2dZpaTcgyZ4SjlgR4RQ/4TPd
+         35pgQ45Wp66QWl993CXiuwcatO6x6UzpVKY2n/qafTYN7PTKEcg50xtvoP45zGM9wWzC
+         iX95XUOJoJRiSA4LbdrLzjcKeAbTtby7yRh8MuXtOM1OIeG4diqHPQQGIYKXlp26TLDD
+         YOfDUn+Bz4fO8yEMJklnvtEkCwIIMEEoiWAbS058MzP1RN+aema0ZOAij2FjN+pe+YTx
+         suqTZv/RPto5pfiv+DfE+up5Pp4E5Yiz48O+6nUNf20QhgSdsxtv9gs5QTHHNWAxP+Sn
+         NzBA==
+X-Gm-Message-State: AC+VfDxqj73LdhQz5dgM+TdM+frjnFKgLieQfCZkorBK2Dbe723G9/tO
+        tgVUNmiJyvzsjYSYEzdARts=
+X-Google-Smtp-Source: ACHHUZ7So9rhL/k5QU4+DAR7KJPod4FKhCQJ+bVR9MzYkiwrJOT1+Q9ztYV34qRPFppkos9x3LtyMA==
+X-Received: by 2002:a17:902:b48d:b0:1ab:8f4:af2b with SMTP id y13-20020a170902b48d00b001ab08f4af2bmr1811115plr.38.1683171452874;
+        Wed, 03 May 2023 20:37:32 -0700 (PDT)
+Received: from a28aa0606c51.. (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id jj3-20020a170903048300b001ab849b46d3sm468761plb.178.2023.05.03.20.37.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 May 2023 20:37:32 -0700 (PDT)
+From:   Jacky Huang <ychuang570808@gmail.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lee@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        p.zabel@pengutronix.de, gregkh@linuxfoundation.org,
+        jirislaby@kernel.org, tmaimon77@gmail.com, catalin.marinas@arm.com,
+        will@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-serial@vger.kernel.org, arnd@arndb.de, schung@nuvoton.com,
+        mjchen@nuvoton.com, Jacky Huang <ychuang3@nuvoton.com>
+Subject: [PATCH v9 00/10] Introduce Nuvoton ma35d1 SoC
+Date:   Thu,  4 May 2023 03:37:16 +0000
+Message-Id: <20230504033726.93-1-ychuang570808@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <ZFD4gM9dUQwBmSUe@hovoldconsulting.com>
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: F59Z4Zrn3cNGM6MqNcKJpje30pYIbVf7
-X-Proofpoint-GUID: F59Z4Zrn3cNGM6MqNcKJpje30pYIbVf7
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-04_01,2023-05-03_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- impostorscore=0 spamscore=0 bulkscore=0 mlxscore=0 phishscore=0
- malwarescore=0 adultscore=0 clxscore=1015 priorityscore=1501
- mlxlogscore=999 lowpriorityscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2303200000 definitions=main-2305040028
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 02, 2023 at 01:48:16PM +0200, Johan Hovold wrote:
-> On Mon, Apr 24, 2023 at 08:40:06PM -0700, Bjorn Andersson wrote:
-> > In multiple places throughout the driver code has been written in
-> > prepration for handling of orientation switching.
-> > 
-> > Introduce a typec_orientation in qmp_combo and fill out the various
-> > "placeholders" with the associated logic. By initializing the
-> > orientation to "normal" this change has no functional impact, but
-> > reduces the size of the upcoming introduction of dynamic orientation
-> > switching.
-> > 
-> > Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> > ---
-> >  drivers/phy/qualcomm/phy-qcom-qmp-combo.c | 54 +++++++++++++----------
-> >  1 file changed, 30 insertions(+), 24 deletions(-)
-> > 
-> > diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
-> > index 7280f7141961..6748f31da7a3 100644
-> > --- a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
-> > +++ b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
-> > @@ -19,6 +19,7 @@
-> >  #include <linux/regulator/consumer.h>
-> >  #include <linux/reset.h>
-> >  #include <linux/slab.h>
-> > +#include <linux/usb/typec.h>
-> >  
-> >  #include <dt-bindings/phy/phy-qcom-qmp.h>
-> >  
-> > @@ -63,6 +64,10 @@
-> >  /* QPHY_V3_PCS_MISC_CLAMP_ENABLE register bits */
-> >  #define CLAMP_EN				BIT(0) /* enables i/o clamp_n */
-> >  
-> > +/* QPHY_V3_DP_COM_TYPEC_CTRL register bits */
-> > +#define SW_PORTSELECT_VAL			BIT(0)
-> > +#define SW_PORTSELECT_MUX			BIT(1)
-> > +
-> >  #define PHY_INIT_COMPLETE_TIMEOUT		10000
-> >  
-> >  struct qmp_phy_init_tbl {
-> > @@ -1323,6 +1328,8 @@ struct qmp_combo {
-> >  	struct clk_fixed_rate pipe_clk_fixed;
-> >  	struct clk_hw dp_link_hw;
-> >  	struct clk_hw dp_pixel_hw;
-> > +
-> > +	enum typec_orientation orientation;
-> >  };
-> >  
-> >  static void qmp_v3_dp_aux_init(struct qmp_combo *qmp);
-> > @@ -1955,29 +1962,23 @@ static void qmp_v3_configure_dp_tx(struct qmp_combo *qmp)
-> >  static bool qmp_combo_configure_dp_mode(struct qmp_combo *qmp)
-> >  {
-> >  	u32 val;
-> > -	bool reverse = false;
-> > +	bool reverse = qmp->orientation == TYPEC_ORIENTATION_REVERSE;
-> 
-> Adding parentheses around the right-hand side should make this a little
-> easier to parse.
-> 
-> It also looks like these callbacks end up being called without holding
-> the qmp->phy_mutex via phy->power_on(). Perhaps there is no risk for a
-> concurrent switch notification and dp phy power-on but it's not that
-> obvious.
-> 
+From: Jacky Huang <ychuang3@nuvoton.com>
 
-It seems we're arriving here from hpd_event_thread(), while
-phy_power_on() and phy_power_off() will be called in some other context.
-I've not been able to convince myself if DP driver ensures ordering, or
-if we have an existing race here...
+This patchset adds initial support for the Nuvoton ma35d1 SoC, including
+initial device tree, clock driver, reset driver, and serial driver.
 
-Unless you insist, I would prefer to follow up with an additional patch
-once we've landed this series. The fix will depend on the phy_mutex
-shuffling patch anyways...
+This patchset cover letter is based from the initial support for Nuvoton
+ma35d1 to keep tracking the version history.
 
-> > +	const struct phy_configure_opts_dp *dp_opts = &qmp->dp_opts;
-> 
-> Also could you add these before u32 val to maintain an approximation of
-> reverse xmas style?
-> 
+This patchset had been applied to Linux kernel 6.3.0-12728-g348551ddaf31-dirty
+and tested on the Nuvoton ma35d1 SOM evaluation board.
 
-I'd be happy to do so :)
+(ma35d1 information: https://www.nuvoton.com/products/microprocessors/arm-cortex-a35-mpus/)
+MA35D1 porting on linux-5.10.y can be found at: https://github.com/OpenNuvoton/MPU-Family
 
-Regards,
-Bjorn
+v9:
+  - Combine MAINTAINERS patch into patch 5 'dt-bindings: arm: Add initial bindings
+    for Nuvoton platform'
+  - Modify clock driver
+    - Use the helper function for 64-bit division
+    - Fixed minor issues
+  - Modify reset driver
+    - Refine coding style and add required header files
+    - Add spin_lock protection
+  - Add error return handling to the serial driver probe function
 
-> And similar below.
-> 
-> Johan
+v8:
+  - Remove '0005-dt-bindings-mfd-syscon-Add-nuvoton-ma35d1-sys-compat.patch' as it was applied.
+  - Modify MAINTAINERS NUVOTON MA35 and NPCM path settings
+  - Remove 'syscon' from dtsi 'sys' node and modify the corresponding yaml
+  - Modify clock driver
+    - Remove the header file and move definitions into .c files.
+    - Use parent_data instead of parent name.
+  - Modify serial driver
+  - Modify reset driver
+    - Modify reset register/offset lookup table to be indexed by reset id
+    - Combined reset and reboot structure
+
+v7:
+  - Fixed dts system-management node and compatible driver
+  - move 'nuvoton,npcm-gcr.yaml' from 'binding/arm/nuvoton' to 'binding/soc/nuvoton'
+  - In ma35d1.dtsi, create the soc node for ma35d1 SoC
+  - Modify the issues found in serial driver
+  - Modify the issues found in clock driver
+  - Modify the IDs of reset driver to be contiguous numbers and use lookup table
+    to find register offset and bit position.
+  - Modify MAINTAINERS NUVOTON NPCM path as npcm directory name to nuvoton
+
+v6:
+  - Combine nuvoton,ma35d1-clk.yaml and nuvoton,ma35d1-clk.h into one patch
+  - Combine nuvoton,ma35d1-reset.yaml and nuvoton,ma35d1-reset.h into one patch
+  - rename Documentation/devicetree/bindings/arm/npcm directory as nuvoton
+  - Remove patch for adding include/linux/mfd/ma35d1-sys.h as it's not required
+  - Update dtsi & dts files and move board-specific nodes to dts
+  - Modify reset driver
+  - Modify serial driver, fix coding style issues
+  - Modify clock driver, rewrite the PLL calculation functions
+
+v5:
+  - Add ARCH_NUVOTON to arm64 Kconfig
+  - Add ARCH_NUVOTON to defconfig
+  - Add the clock driver
+  - Add the reset driver
+  - Add the serial driver
+  - Add us to the maintainer
+
+v4:
+  - patch 4/5 is a resend
+  - Fixed dt_binding_check errors of nuvoton,ma35d1-clk.yaml
+  - Modify ma35d1.dtsi
+    1. Add a node hxt_24m
+    2. Fixed the base address of gic node
+    3. Add clocks and clock-names to clock node
+  - Fixed borad binding mistakes of nuvoton.yaml
+
+v3:
+  - added patch 4/5 and 5/5
+  - introduce CONFIG_ARCH_NUVOTON option
+  - add initial bindings for Nuvoton Platform boards
+  - fixed coding style problem of nuvoton,ma35d1-clk.h
+  - added CAPLL to clock-controller node
+  - modify the chosen node of ma35d1-evb.dts
+  - modify clock yaml "clk-pll-mode" to "nuvoton,clk-pll-mode"
+
+v2:
+  - fixed dt_binding_check failed of nuvoton,ma35d1-clk.yaml
+
+Jacky Huang (10):
+  arm64: Kconfig.platforms: Add config for Nuvoton MA35 platform
+  arm64: defconfig: Add support for Nuvoton MA35 family SoCs
+  dt-bindings: clock: nuvoton: add binding for ma35d1 clock controller
+  dt-bindings: reset: nuvoton: Document ma35d1 reset control
+  dt-bindings: arm: Add initial bindings for Nuvoton platform
+  dt-bindings: serial: Document ma35d1 uart controller
+  arm64: dts: nuvoton: Add initial ma35d1 device tree
+  clk: nuvoton: Add clock driver for ma35d1 clock controller
+  reset: Add Nuvoton ma35d1 reset driver support
+  tty: serial: Add Nuvoton ma35d1 serial driver support
+
+ .../bindings/arm/nuvoton/nuvoton,ma35d1.yaml  |  30 +
+ .../npcm.yaml => nuvoton/nuvoton,npcm.yaml}   |   2 +-
+ .../bindings/clock/nuvoton,ma35d1-clk.yaml    |  63 ++
+ .../bindings/reset/nuvoton,ma35d1-reset.yaml  |  45 +
+ .../serial/nuvoton,ma35d1-serial.yaml         |  48 +
+ .../nuvoton/nuvoton,npcm-gcr.yaml}            |   2 +-
+ MAINTAINERS                                   |  13 +-
+ arch/arm64/Kconfig.platforms                  |   9 +
+ arch/arm64/boot/dts/nuvoton/Makefile          |   2 +
+ .../boot/dts/nuvoton/ma35d1-iot-512m.dts      |  56 ++
+ .../boot/dts/nuvoton/ma35d1-som-256m.dts      |  56 ++
+ arch/arm64/boot/dts/nuvoton/ma35d1.dtsi       | 232 +++++
+ arch/arm64/configs/defconfig                  |   1 +
+ drivers/clk/Makefile                          |   1 +
+ drivers/clk/nuvoton/Kconfig                   |  19 +
+ drivers/clk/nuvoton/Makefile                  |   4 +
+ drivers/clk/nuvoton/clk-ma35d1-divider.c      | 140 +++
+ drivers/clk/nuvoton/clk-ma35d1-pll.c          | 365 +++++++
+ drivers/clk/nuvoton/clk-ma35d1.c              | 948 ++++++++++++++++++
+ drivers/reset/Kconfig                         |   6 +
+ drivers/reset/Makefile                        |   1 +
+ drivers/reset/reset-ma35d1.c                  | 234 +++++
+ drivers/tty/serial/Kconfig                    |  18 +
+ drivers/tty/serial/Makefile                   |   1 +
+ drivers/tty/serial/ma35d1_serial.c            | 796 +++++++++++++++
+ .../dt-bindings/clock/nuvoton,ma35d1-clk.h    | 253 +++++
+ .../dt-bindings/reset/nuvoton,ma35d1-reset.h  | 108 ++
+ 27 files changed, 3450 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/arm/nuvoton/nuvoton,ma35d1.yaml
+ rename Documentation/devicetree/bindings/arm/{npcm/npcm.yaml => nuvoton/nuvoton,npcm.yaml} (93%)
+ create mode 100644 Documentation/devicetree/bindings/clock/nuvoton,ma35d1-clk.yaml
+ create mode 100644 Documentation/devicetree/bindings/reset/nuvoton,ma35d1-reset.yaml
+ create mode 100644 Documentation/devicetree/bindings/serial/nuvoton,ma35d1-serial.yaml
+ rename Documentation/devicetree/bindings/{arm/npcm/nuvoton,gcr.yaml => soc/nuvoton/nuvoton,npcm-gcr.yaml} (93%)
+ create mode 100644 arch/arm64/boot/dts/nuvoton/ma35d1-iot-512m.dts
+ create mode 100644 arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts
+ create mode 100644 arch/arm64/boot/dts/nuvoton/ma35d1.dtsi
+ create mode 100644 drivers/clk/nuvoton/Kconfig
+ create mode 100644 drivers/clk/nuvoton/Makefile
+ create mode 100644 drivers/clk/nuvoton/clk-ma35d1-divider.c
+ create mode 100644 drivers/clk/nuvoton/clk-ma35d1-pll.c
+ create mode 100644 drivers/clk/nuvoton/clk-ma35d1.c
+ create mode 100644 drivers/reset/reset-ma35d1.c
+ create mode 100644 drivers/tty/serial/ma35d1_serial.c
+ create mode 100644 include/dt-bindings/clock/nuvoton,ma35d1-clk.h
+ create mode 100644 include/dt-bindings/reset/nuvoton,ma35d1-reset.h
+
+-- 
+2.34.1
+
