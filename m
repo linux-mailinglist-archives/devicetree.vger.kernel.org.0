@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A90A6F6D11
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 15:42:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 778506F6D18
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 15:43:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230463AbjEDNmn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 09:42:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34002 "EHLO
+        id S230380AbjEDNn4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 09:43:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230265AbjEDNmm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 09:42:42 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BA0A7AA6
-        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 06:42:40 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-96598a7c5e0so81965266b.3
-        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 06:42:40 -0700 (PDT)
+        with ESMTP id S230038AbjEDNnz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 09:43:55 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B34387D81
+        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 06:43:53 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-956ff2399c9so87654166b.3
+        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 06:43:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683207759; x=1685799759;
+        d=linaro.org; s=google; t=1683207832; x=1685799832;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=XclQCB7wsuLH7QcRppmPyiTXI2wCqwp/OyebX9CqAQA=;
-        b=zqfiCvIhfmN9k4zckos1BJ2EGxuh8hVux6Xi9B8ad3l2UBt2yLXeWcfkomMNI+NXyJ
-         9lBXGvMuEvMSdrOMqfCGozbmrIoFqSqslvWpDyrqbvqM/LpY0sdS4+6VLTt6dAmVNdfP
-         bmp6YIby9HTpseFTzUsBQzBx0MjIjySjXnUeRUxLGyxP462HXJkxx8XF6aBqsvcKGJ8S
-         s8lGRm3qCO9YtdeFZDUlC1sIwC8dYInivBdmeI+i+eQ6b84Sm+8U9bRAqkkvnR1o+PqF
-         uIu8f+JSXgWYQWGN1GUxB/wPb3vBKDY9+dpToktlALtS906bL7/IH6xKNyix+gIRTuph
-         qGvw==
+        bh=Q84mWcYMxDEvd8YZPYKI5dHtMMY1HQ2x8IlzEX6KNjQ=;
+        b=Iw0fvW2W/ZRyO+X1d5fC8dre5uYE900wTxM9cVMADy9syUIV6R7HL/uXHHwJa28thf
+         LVvTHtieL7jB2k/0P02K7Q79hgK5WGcMpHy+lHKlps8kehOFdrOcEaCTtQdUJcGG56Pd
+         Z3Na0pGviZV9mhLuUBmgtIO5vYQixJA3YdSnwoi9fVXyt6qq+adq2jribijGE5f3yDDz
+         YKQ2C3DYMfeM/aN2/Rzi5XuNwv4A6GrtSD9HMWcUsD88mXBYsvjtNSK6unDEkr5DPkyQ
+         9gOmMGZvtWRsyIjC6PP/PQypEk+mpXRtxpve/MZ3k8GV+hL/OUYFxvLQQlUzatioL5QP
+         0xBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683207759; x=1685799759;
+        d=1e100.net; s=20221208; t=1683207832; x=1685799832;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XclQCB7wsuLH7QcRppmPyiTXI2wCqwp/OyebX9CqAQA=;
-        b=hJitl09OrLp5LhRb/S7H7BTQfwu1iSKmEbhqgIA0KsmUtJfS8t9/fiuNKOZ2lzqgh4
-         OgbFMhAzBrbq1TcJ+wxxnacbdFvgnS6UPIdcJD8wTxPCiI4Zttw0adbpv8xAZM6dcRGd
-         Xigs+4nNbeXU1VTSF0OFSE467z1VXI6r6Slkjk4Ahxi5sVE8wumZFKe/CaFfl1Kql/2w
-         hZMYxAcLg6OgkwzBZJzvbHOCigHIquTAQioVxRtPKAAMVOn4sBHK9NL3oMCt+IgSiX+E
-         glOPN6e7kmaar8baVn2VO58mI4AGQ3DBllmQhOAhtTqb34+ym2bfIufB3mAjQBKAVSSL
-         KL0Q==
-X-Gm-Message-State: AC+VfDwvO+ajj5asX3TEqvLPMOOaZPzIFCBguRtVVSEiwJNWgt+Cx5GN
-        ZfXhlUY95kDz09iQEnniPS5i/A==
-X-Google-Smtp-Source: ACHHUZ7NyhfTSFqzA3q9IMvmTqtn0LeSPOINeaVwsKiDoUZEg2vNSGTls9aalOuKm/qfsIEtkWa7lg==
-X-Received: by 2002:a17:907:7f08:b0:94f:12c0:4c8f with SMTP id qf8-20020a1709077f0800b0094f12c04c8fmr7109448ejc.50.1683207758733;
-        Thu, 04 May 2023 06:42:38 -0700 (PDT)
+        bh=Q84mWcYMxDEvd8YZPYKI5dHtMMY1HQ2x8IlzEX6KNjQ=;
+        b=j1hFJXcvNptpuNg1BplZYDJwUKvIgC+iFWKoXWzd/se0j1KacdrXemcsJCXKGGhPL9
+         QQ49SqUW7ScDWXTiMbLhRX58cqGAjEwjWB8zuajdKKgMaYJwkrWIo0CAGhGvmyuwewpY
+         NRwLj3LX0D37r+a30tKIIp7D5iUXFw57iPf9oCLlAgm+iretgk0LKRwTuP3RtjYAHI4W
+         ULiRQqiEF9WBLwzf86hchvVGxbIztA5waQ0IfRxiCxLBeZPt+Dc9ARxE8ugY08tj1C2C
+         29vC+BgkLo7wsfUtoTZ9WOGeRWWpljRPzFq9sZ93VDww2f+wg4Wrj0KYvuOVPZ7PBqNY
+         2TEA==
+X-Gm-Message-State: AC+VfDyf6CLwJBU8eGZ8gNiYeTLelco5xtUuNZOEpUWJtRKc9H8V8ucp
+        usEBjTQPKJfXIt0T76ilHN9CFA==
+X-Google-Smtp-Source: ACHHUZ5+6vZD8DQEcDcllibUIlq4Uqnivo5RlCCxosmsuQPc56WsPLj23s6NCbCu+fXymcz5/4uZwQ==
+X-Received: by 2002:a17:907:9304:b0:94b:958c:8827 with SMTP id bu4-20020a170907930400b0094b958c8827mr6255020ejc.56.1683207832130;
+        Thu, 04 May 2023 06:43:52 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:cbf1:e7ef:fb81:e912? ([2a02:810d:15c0:828:cbf1:e7ef:fb81:e912])
-        by smtp.gmail.com with ESMTPSA id ia22-20020a170907a07600b0096595cc0810sm1431932ejc.72.2023.05.04.06.42.37
+        by smtp.gmail.com with ESMTPSA id v8-20020a17090610c800b0093313f4fc3csm18730621ejv.70.2023.05.04.06.43.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 May 2023 06:42:38 -0700 (PDT)
-Message-ID: <a86c0a3e-91b6-965e-0857-bbcb1ba63ef9@linaro.org>
-Date:   Thu, 4 May 2023 15:42:36 +0200
+        Thu, 04 May 2023 06:43:51 -0700 (PDT)
+Message-ID: <31377f4b-56e3-4600-3171-a795c940e74d@linaro.org>
+Date:   Thu, 4 May 2023 15:43:50 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
@@ -91,7 +91,24 @@ On 04/05/2023 18:17, Daniel Matyas wrote:
 > 
 > Signed-off-by: Daniel Matyas <daniel.matyas@analog.com>
 
-Guenter asked for changelog... What do you expect us to do here?
+Hm, now I see the tag - did you just ignore it or did you change something?
+
+Standard message follows:
+
+This is a friendly reminder during the review process.
+
+It looks like you received a tag and forgot to add it.
+
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions. However, there's no need to repost patches *only* to add the
+tags. The upstream maintainer will do that for acks received on the
+version they apply.
+
+https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
+
+If a tag was not added on purpose, please state why and what changed.
+
 
 Best regards,
 Krzysztof
