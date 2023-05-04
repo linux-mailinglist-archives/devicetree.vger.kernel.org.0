@@ -2,58 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 172786F6792
-	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 10:34:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79AD46F67A0
+	for <lists+devicetree@lfdr.de>; Thu,  4 May 2023 10:38:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230248AbjEDIeI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 04:34:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45320 "EHLO
+        id S229628AbjEDIiu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 04:38:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229886AbjEDIdg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 04:33:36 -0400
-Received: from smtp2.axis.com (smtp2.axis.com [195.60.68.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BE5949D1;
-        Thu,  4 May 2023 01:31:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1683189083;
-  x=1714725083;
-  h=from:date:subject:mime-version:content-transfer-encoding:
-   message-id:references:in-reply-to:to:cc;
-  bh=+1mD+2G/YQf+1sysUFKbadN741GOKVAcFB3DDi0P978=;
-  b=I/YyRhyJGLpTzXIE5Eq8ILvVjFRGIC0GxiLJ7RbnS+pcIMRAejbwisIS
-   kmi921/5BUUgf2BU/Mk3cUKZ8DjUAtw+lTO5uHDQ++RtWEhuSH2GK+Qh+
-   IjftYrGoKpsa4RFjsRJZLiyr5kEWZk0pKoYchhAYE8IiKffALNGEfLq7/
-   3j28T0apWt/QeFE8jS0WqdtU6PaPH/Refv1WHtM73aB7xPjVrgdL6ClAF
-   NXQovhwGu1gfCfSByta7gIF/Ry74HYTZXylq/af6LEiqi+n2L8FCLa/R+
-   eJRXdNyH1BN18lhxoLR5rl0yYmIjQ4agr6X2uAVgKYDrfTEa26KSrK0yG
-   g==;
-From:   =?utf-8?q?M=C3=A5rten_Lindahl?= <marten.lindahl@axis.com>
-Date:   Thu, 4 May 2023 10:30:27 +0200
-Subject: [PATCH v2 2/2] regulator: Add support for TI TPS6287x regulators
+        with ESMTP id S229772AbjEDIit (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 04:38:49 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE7B01722;
+        Thu,  4 May 2023 01:38:48 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5E2E76326B;
+        Thu,  4 May 2023 08:38:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC04EC433D2;
+        Thu,  4 May 2023 08:38:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1683189527;
+        bh=lyHDvvruE+QpJiz2b8/hfSd8MdRly286qX04fvZa2mM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ueEtORMx7XS5bd+UDk3Hr/ohERrwMQUCuGtyanSCF/qNjohVAwU4el94X3HosnmfN
+         ETP75+9gTknkcKlqcBro8PMcmkQI7ZzOBReJPYQADnyMQRLe/dBXro9plhtEFfRidH
+         NyA0Y+AjLTD5OKqjaR+a9yqC0sa3/+ByJf/grmabaGxmiMBkrzfUD8UcI3yEeK3Xdz
+         wS/ljmpfls87SrEw+JM6buDTQYapRU9QVBx1bafQxfv7JXiRrp8uxVPWti2GrNhRU6
+         4QJTIzdfnCejK4fqWTeTJdDAjl6yleCjTYdtyuzp5dONrJS2aN8hveC3VVMITijJ0g
+         tNWkAGSCuPTZw==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1puUUJ-0005SO-05; Thu, 04 May 2023 10:38:55 +0200
+Date:   Thu, 4 May 2023 10:38:54 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Bjorn Andersson <quic_bjorande@quicinc.com>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 5/7] phy: qcom-qmp-combo: Introduce drm_bridge
+Message-ID: <ZFNvHgaYsHUc2Y9L@hovoldconsulting.com>
+References: <20230425034010.3789376-1-quic_bjorande@quicinc.com>
+ <20230425034010.3789376-6-quic_bjorande@quicinc.com>
+ <ZFD8oQETtLuDH2Xg@hovoldconsulting.com>
+ <20230504031354.GE870858@hu-bjorande-lv.qualcomm.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-ID: <20230502-tps6287x-driver-v2-2-fb5419d46c49@axis.com>
-References: <20230502-tps6287x-driver-v2-0-fb5419d46c49@axis.com>
-In-Reply-To: <20230502-tps6287x-driver-v2-0-fb5419d46c49@axis.com>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <kernel@axis.com>,
-        =?utf-8?q?M=C3=A5rten_Lindahl?= <marten.lindahl@axis.com>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1683189034; l=9815;
- i=marten.lindahl@axis.com; s=20230329; h=from:subject:message-id;
- bh=9aHD25qFdvOpdJ3aJnbh13Wp3O397F9k/dHxjJw1ekE=;
- b=uUspr+o0FcQli3o+2+Ekr7hx9P/n1mI4POKO8l4jgYOaavvHGoK+71ZSyBe14+8+nyBz9/nzY
- ItLornvWLzCAH785OYtbfVBKaTCuC+JWUBiI0KuULQS6mBjhdw+PH9A
-X-Developer-Key: i=marten.lindahl@axis.com; a=ed25519;
- pk=JfbjqFPJnIDIQOkJBeatC8+S3Ax3N0RIdmN+fL3wXgw=
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230504031354.GE870858@hu-bjorande-lv.qualcomm.com>
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,346 +65,75 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for Texas Instruments TPS6287x, single-channel
-synchronous step-down converters with four output voltage ranges.
+On Wed, May 03, 2023 at 08:13:54PM -0700, Bjorn Andersson wrote:
+> On Tue, May 02, 2023 at 02:05:53PM +0200, Johan Hovold wrote:
+> > On Mon, Apr 24, 2023 at 08:40:08PM -0700, Bjorn Andersson wrote:
+> > > The QMP combo PHY sits in an of_graph connected between the DisplayPort
+> > > controller and a USB Type-C connector (or possibly a redriver).
+> > > 
+> > > The TCPM needs to be able to convey the HPD signal to the DisplayPort
+> > > controller, but no directly link is provided by DeviceTree so the signal
+> > > needs to "pass through" the QMP combo phy.
+> > > 
+> > > Handle this by introducing a drm_bridge which upon initialization finds
+> > > the next bridge (i.e. the usb-c-connector) and chain this together. This
+> > > way HPD changes in the connector will propagate to the DisplayPort
+> > > driver.
+> > > 
+> > > The connector bridge is resolved lazily, as the TCPM is expected to be
+> > > able to resolve the typec mux and switch at probe time, so the QMP combo
+> > > phy will probe before the TCPM.
+> > > 
+> > > Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> > > ---
+> > >  drivers/phy/qualcomm/phy-qcom-qmp-combo.c | 36 +++++++++++++++++++++++
+> > >  1 file changed, 36 insertions(+)
+> > > 
+> > > diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
+> > > index 5d6d6ef3944b..84bc08002537 100644
+> > > --- a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
+> > > +++ b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
 
-Signed-off-by: Mårten Lindahl <marten.lindahl@axis.com>
----
- drivers/regulator/Kconfig              |  11 ++
- drivers/regulator/Makefile             |   1 +
- drivers/regulator/tps6287x-regulator.c | 289 +++++++++++++++++++++++++++++++++
- 3 files changed, 301 insertions(+)
+> > > @@ -3196,6 +3200,34 @@ static int qmp_combo_register_clocks(struct qmp_combo *qmp, struct device_node *
+> > >  	return devm_add_action_or_reset(qmp->dev, phy_clk_release_provider, dp_np);
+> > >  }
+> > >  
+> > > +static int qmp_combo_bridge_attach(struct drm_bridge *bridge,
+> > > +				   enum drm_bridge_attach_flags flags)
+> > > +{
+> > > +	struct qmp_combo *qmp = container_of(bridge, struct qmp_combo, bridge);
+> > > +	struct drm_bridge *next_bridge;
+> > > +
+> > > +	if (!(flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR))
+> > > +		return -EINVAL;
+> > > +
+> > > +	next_bridge = devm_drm_of_get_bridge(qmp->dev, qmp->dev->of_node, 0, 0);
+> > > +	if (IS_ERR(next_bridge))
+> > > +		return dev_err_probe(qmp->dev, PTR_ERR(next_bridge), "failed to acquire drm_bridge\n");
+> > 
+> > Using dev_err_probe() in an attach callback looks wrong as these
+> > functions should not be returning -EPROBE_DEFER (and this is not a probe
+> > function).
+> 
+> The problem is that this might return EPROBE_DEFER, and at least today
+> propagates out to returning EPROBE_DEFER from our DP controller's
+> bind().
 
-diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
-index aae28d0a489c..d7923ac53f53 100644
---- a/drivers/regulator/Kconfig
-+++ b/drivers/regulator/Kconfig
-@@ -1374,6 +1374,17 @@ config REGULATOR_TPS6286X
- 	  high-frequency synchronous step-down converters with an I2C
- 	  interface.
- 
-+config REGULATOR_TPS6287X
-+	tristate "TI TPS6287x Power Regulator"
-+	depends on I2C && OF
-+	select REGMAP_I2C
-+	help
-+	  This driver supports TPS6287x voltage regulator chips. These are
-+	  pin-to-pin high-frequency synchronous step-down dc-dc converters
-+	  with an I2C interface.
-+
-+	  If built as a module it will be called tps6287x-regulator.
-+
- config REGULATOR_TPS65023
- 	tristate "TI TPS65023 Power regulators"
- 	depends on I2C
-diff --git a/drivers/regulator/Makefile b/drivers/regulator/Makefile
-index ee383d8fc835..857995db3fa4 100644
---- a/drivers/regulator/Makefile
-+++ b/drivers/regulator/Makefile
-@@ -161,6 +161,7 @@ obj-$(CONFIG_REGULATOR_TI_ABB) += ti-abb-regulator.o
- obj-$(CONFIG_REGULATOR_TPS6105X) += tps6105x-regulator.o
- obj-$(CONFIG_REGULATOR_TPS62360) += tps62360-regulator.o
- obj-$(CONFIG_REGULATOR_TPS6286X) += tps6286x-regulator.o
-+obj-$(CONFIG_REGULATOR_TPS6287X) += tps6287x-regulator.o
- obj-$(CONFIG_REGULATOR_TPS65023) += tps65023-regulator.o
- obj-$(CONFIG_REGULATOR_TPS6507X) += tps6507x-regulator.o
- obj-$(CONFIG_REGULATOR_TPS65086) += tps65086-regulator.o
-diff --git a/drivers/regulator/tps6287x-regulator.c b/drivers/regulator/tps6287x-regulator.c
-new file mode 100644
-index 000000000000..644549b6856e
---- /dev/null
-+++ b/drivers/regulator/tps6287x-regulator.c
-@@ -0,0 +1,289 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (C) 2023 Axis Communications AB
-+ *
-+ * Driver for Texas Instruments TPS6287x PMIC.
-+ * Datasheet: https://www.ti.com/lit/ds/symlink/tps62873.pdf
-+ */
-+
-+#include <linux/err.h>
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/regmap.h>
-+#include <linux/regulator/of_regulator.h>
-+#include <linux/regulator/machine.h>
-+#include <linux/regulator/driver.h>
-+#include <linux/bitfield.h>
-+
-+#define TPS6287X_VSET		0x00
-+#define TPS6287X_CTRL1		0x01
-+#define TPS6287X_CTRL1_VRAMP	GENMASK(1, 0)
-+#define TPS6287X_CTRL1_FPWMEN	BIT(4)
-+#define TPS6287X_CTRL1_SWEN	BIT(5)
-+#define TPS6287X_CTRL2		0x02
-+#define TPS6287X_CTRL2_VRANGE	GENMASK(3, 2)
-+#define TPS6287X_CTRL3		0x03
-+#define TPS6287X_STATUS		0x04
-+
-+#define TPS6287X_VRANGE_DFLT	2
-+#define TPS6287X_MIN_UV_DFLT	400000
-+#define TPS6287X_MAX_UV_DFLT	1675000
-+#define TPS6287X_STEP_UV_DFLT	5000
-+
-+struct tps6287x_chip {
-+	struct regulator_dev *rdev;
-+	struct regmap *regmap;
-+	unsigned int uv_step;
-+};
-+
-+static const struct regmap_config tps6287x_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = TPS6287X_STATUS,
-+};
-+
-+/* min_uv, max_uv, uv_step */
-+static const unsigned int tps6287x_voltage_table[][3] = {
-+	{ 400000, 718750, 1250 },
-+	{ 400000, 1037500, 2500 },
-+	{ 400000, 1675000, 5000 },
-+	{ 800000, 3350000, 10000 },
-+};
-+
-+static const unsigned int tps6287x_ramp_table[] = {
-+	10000, 5000, 1250, 500
-+};
-+
-+static int tps6287x_get_voltage(struct regulator_dev *rdev)
-+{
-+	struct device *dev = rdev_get_dev(rdev);
-+	struct tps6287x_chip *chip =
-+	    i2c_get_clientdata(to_i2c_client(dev->parent));
-+	unsigned int val;
-+	int ret;
-+
-+	ret = regmap_read(rdev->regmap, TPS6287X_VSET, &val);
-+	if (ret != 0)
-+		return -ENOTRECOVERABLE;
-+
-+	return (val * chip->uv_step) + rdev->constraints->min_uV;
-+}
-+
-+static int tps6287x_set_voltage(struct regulator_dev *rdev, int min_uv,
-+				int max_uv, unsigned int *selector)
-+{
-+	struct device *dev = rdev_get_dev(rdev);
-+	struct tps6287x_chip *chip =
-+	    i2c_get_clientdata(to_i2c_client(dev->parent));
-+	int val = min_uv;
-+
-+	*selector = 0;
-+
-+	if (val < rdev->constraints->min_uV)
-+		val = rdev->constraints->min_uV;
-+	if (val > rdev->constraints->max_uV)
-+		val = rdev->constraints->max_uV;
-+
-+	val -= rdev->constraints->min_uV;
-+	val = DIV_ROUND_CLOSEST(val, chip->uv_step);
-+
-+	return regmap_write(rdev->regmap, TPS6287X_VSET, val);
-+}
-+
-+static int tps6287x_set_mode(struct regulator_dev *rdev, unsigned int mode)
-+{
-+	unsigned int val;
-+
-+	switch (mode) {
-+	case REGULATOR_MODE_NORMAL:
-+		val = 0;
-+		break;
-+	case REGULATOR_MODE_FAST:
-+		val = TPS6287X_CTRL1_FPWMEN;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return regmap_update_bits(rdev->regmap, TPS6287X_CTRL1,
-+				  TPS6287X_CTRL1_FPWMEN, val);
-+}
-+
-+static unsigned int tps6287x_get_mode(struct regulator_dev *rdev)
-+{
-+	unsigned int val;
-+	int ret;
-+
-+	ret = regmap_read(rdev->regmap, TPS6287X_CTRL1, &val);
-+	if (ret < 0)
-+		return 0;
-+
-+	return (val & TPS6287X_CTRL1_FPWMEN) ? REGULATOR_MODE_FAST :
-+	    REGULATOR_MODE_NORMAL;
-+}
-+
-+static unsigned int tps6287x_of_map_mode(unsigned int mode)
-+{
-+	switch (mode) {
-+	case REGULATOR_MODE_NORMAL:
-+	case REGULATOR_MODE_FAST:
-+		return mode;
-+	default:
-+		return REGULATOR_MODE_INVALID;
-+	}
-+}
-+
-+static const struct regulator_ops tps6287x_regulator_ops = {
-+	.enable = regulator_enable_regmap,
-+	.disable = regulator_disable_regmap,
-+	.set_mode = tps6287x_set_mode,
-+	.get_mode = tps6287x_get_mode,
-+	.is_enabled = regulator_is_enabled_regmap,
-+	.get_voltage = tps6287x_get_voltage,
-+	.set_voltage = tps6287x_set_voltage,
-+	.set_ramp_delay = regulator_set_ramp_delay_regmap,
-+};
-+
-+static struct regulator_desc tps6287x_reg = {
-+	.name = "tps6287x",
-+	.of_match = of_match_ptr("vout"),
-+	.owner = THIS_MODULE,
-+	.ops = &tps6287x_regulator_ops,
-+	.of_map_mode = tps6287x_of_map_mode,
-+	.regulators_node = of_match_ptr("regulators"),
-+	.type = REGULATOR_VOLTAGE,
-+	.enable_reg = TPS6287X_CTRL1,
-+	.enable_mask = TPS6287X_CTRL1_SWEN,
-+	.ramp_reg = TPS6287X_CTRL1,
-+	.ramp_mask = TPS6287X_CTRL1_VRAMP,
-+	.ramp_delay_table = tps6287x_ramp_table,
-+	.n_ramp_values = ARRAY_SIZE(tps6287x_ramp_table),
-+};
-+
-+static int tps6287x_setup_vrange(struct tps6287x_chip *chip)
-+{
-+	struct regulator_dev *rdev = chip->rdev;
-+	unsigned int val, r;
-+	bool found = false;
-+	int ret;
-+
-+	/*
-+	 * Match DT voltage range to one of the predefined ranges,
-+	 * and configure the regulator with the selected range.
-+	 */
-+	for (r = 0; r < ARRAY_SIZE(tps6287x_voltage_table); r++) {
-+		if (tps6287x_voltage_table[r][0] == rdev->constraints->min_uV &&
-+		    tps6287x_voltage_table[r][1] == rdev->constraints->max_uV) {
-+			found = true;
-+			break;
-+		}
-+	}
-+
-+	if (!found) {
-+		dev_warn(rdev_get_dev(rdev)->parent, "Missing or invalid voltage range. Using default.\n");
-+		rdev->constraints->min_uV = TPS6287X_MIN_UV_DFLT;
-+		rdev->constraints->max_uV = TPS6287X_MAX_UV_DFLT;
-+		return 0;
-+	}
-+
-+	if (r == TPS6287X_VRANGE_DFLT)
-+		return 0;
-+
-+	ret = regmap_update_bits(chip->regmap, TPS6287X_CTRL2,
-+				 TPS6287X_CTRL2_VRANGE,
-+				 FIELD_PREP(TPS6287X_CTRL2_VRANGE, r));
-+	if (ret < 0)
-+		return ret;
-+
-+	chip->uv_step = tps6287x_voltage_table[r][2];
-+
-+	/*
-+	 * When voltage range is changed the setpoint register must be cleared
-+	 * and rewritten to make the regulator start using the new range.
-+	 */
-+	ret = regmap_read(rdev->regmap, TPS6287X_VSET, &val);
-+	if (ret != 0)
-+		return ret;
-+
-+	ret = regmap_write(rdev->regmap, TPS6287X_VSET, 0);
-+	if (ret != 0)
-+		return ret;
-+
-+	return regmap_write(rdev->regmap, TPS6287X_VSET, val);
-+}
-+
-+static int tps6287x_i2c_probe(struct i2c_client *i2c)
-+{
-+	struct device *dev = &i2c->dev;
-+	struct regulator_config config = {};
-+	struct tps6287x_chip *chip;
-+	int ret;
-+
-+	chip = devm_kzalloc(dev, sizeof(*chip), GFP_KERNEL);
-+	if (!chip)
-+		return -ENOMEM;
-+
-+	chip->uv_step = TPS6287X_STEP_UV_DFLT;
-+
-+	chip->regmap = devm_regmap_init_i2c(i2c, &tps6287x_regmap_config);
-+	if (IS_ERR(chip->regmap)) {
-+		dev_err(dev, "Failed to init i2c\n");
-+		return PTR_ERR(chip->regmap);
-+	}
-+
-+	i2c_set_clientdata(i2c, chip);
-+
-+	config.dev = dev;
-+	config.of_node = dev->of_node;
-+	config.regmap = chip->regmap;
-+
-+	chip->rdev = devm_regulator_register(dev, &tps6287x_reg, &config);
-+	if (IS_ERR(chip->rdev)) {
-+		dev_err(dev, "Failed to register regulator\n");
-+		return PTR_ERR(chip->rdev);
-+	}
-+
-+	ret = tps6287x_setup_vrange(chip);
-+	if (ret)
-+		return ret;
-+
-+	dev_dbg(dev, "Probed regulator\n");
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id tps6287x_dt_ids[] = {
-+	{ .compatible = "ti,tps62870", },
-+	{ .compatible = "ti,tps62871", },
-+	{ .compatible = "ti,tps62872", },
-+	{ .compatible = "ti,tps62873", },
-+	{ }
-+};
-+
-+MODULE_DEVICE_TABLE(of, tps6287x_dt_ids);
-+
-+static const struct i2c_device_id tps6287x_i2c_id[] = {
-+	{ "tps62870", 0 },
-+	{ "tps62871", 0 },
-+	{ "tps62872", 0 },
-+	{ "tps62873", 0 },
-+	{},
-+};
-+
-+MODULE_DEVICE_TABLE(i2c, tps6287x_i2c_id);
-+
-+static struct i2c_driver tps6287x_regulator_driver = {
-+	.driver = {
-+		.name = "tps6287x",
-+		.of_match_table = tps6287x_dt_ids,
-+	},
-+	.probe_new = tps6287x_i2c_probe,
-+	.id_table = tps6287x_i2c_id,
-+};
-+
-+module_i2c_driver(tps6287x_regulator_driver);
-+
-+MODULE_AUTHOR("Mårten Lindahl <marten.lindahl@axis.com>");
-+MODULE_DESCRIPTION("Regulator driver for TI TPS6287X PMIC");
-+MODULE_LICENSE("GPL");
+Due to the known issue with the MSM driver panel lookup, or due to some
+more fundamental problem with the stack?
 
--- 
-2.30.2
+At least in the former case, I don't think we should hide the fact that
+we have an unresolved issue with the MSM driver this way even if it
+means printing an extra error message until it has been resolved (cf.
+the panel lookup errors that we've intentionally kept in place).
 
+> This is not optimal, but unfortunately we have a two way dependency
+> across the of_graph, so we need to make one of the sides lazy...
+
+But this comments seems to suggest this is a bigger issue than the panel
+lookup.
+
+Could you describe the issue in some more detail (e.g. when would you
+see -EPROBE_DEFER here)?
+
+Johan
