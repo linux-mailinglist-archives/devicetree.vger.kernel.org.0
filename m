@@ -2,71 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B1626F7D39
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 08:47:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83ACE6F7D3D
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 08:48:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230497AbjEEGrX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 02:47:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34308 "EHLO
+        id S231181AbjEEGsy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 02:48:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230377AbjEEGrW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 02:47:22 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC43E30F6
-        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 23:47:20 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-50c8d87c775so522570a12.3
-        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 23:47:20 -0700 (PDT)
+        with ESMTP id S231185AbjEEGsn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 02:48:43 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26F60FF
+        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 23:48:41 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-3f1738d0d4cso9000435e9.1
+        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 23:48:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683269239; x=1685861239;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KvgN318sT0yfBIN/aP/qcfyseQBG87rA5CSxzTBMcCg=;
-        b=LlmHlROVf+CF/F+YYmB7vT5vPFDolgM2wqHp5gsFmU3cvKBtaLw28AXBOWOb7thKXj
-         aaPBM9chfc7Oxma9ovvDYfZHTQfCEg/nqgZBVGV6xfrHwOH0ZfiEpS3v6NoiU9R5atrx
-         ryO2Bj4A6p2Ytz5ZSlD8o7yjFSJgRiEy5SgKGa7wQP8DmXZ6jypiLsK705FJ/95iXNLN
-         UNiuwlHfo7Y9GTG2KH8lEF8ri7P29HmEHHQeBXXxcGnIdSobjCp40vubYp7E2x49FnHy
-         4o4k32DyLHQWV5FtURMQX13LrZ291YkhrZGRH/6mpMECANuc/RJBTPqELhiGum5LLxGy
-         +AmA==
+        d=linaro.org; s=google; t=1683269319; x=1685861319;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=rtN4oMlLlW4QqPQK8hFrv2bFItCp38Em6zDqy+ipvU0=;
+        b=vO64qFhPeibbS/4AnTmWdoubVj/CcofJxbAXZG/2Y41HCD8tEwUGQEAjL8Sz3L3eMs
+         LX/ry87diVtXsDk7srORWbWqwT+k9/SZhmiyEKoEzgUQj2bMyRIUL81E/3Xwwg3ExmOw
+         MnLFZTa74zhK27T1vBLe1iNQuBenPHS+6X796U60BA+st7TbsDSwZYng5oMS58UgsTkT
+         Mcnd80H/psqnwPUKwpicj2P+9Hl2zThdDJXYaD8q/ZLjbCy710sZxkU09/THy/BNTJDu
+         6R8/KOUqdOiywRkmnOTYsWbnfVME+I28TOkiFHi6Z96CzhPT1zTaNHemCKRNorXI4cXm
+         zEPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683269239; x=1685861239;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KvgN318sT0yfBIN/aP/qcfyseQBG87rA5CSxzTBMcCg=;
-        b=DkSXC+1tyfCfQyyc0186eExIccoSnowt0VUXIz8TEPaAlqN7yWLurJ2HmsiYSRah7T
-         6gTA8lyOE8dsS7YjCIGXB+fFmEDXDlmSvqiMLP4Zepxu/6tdpViTpCUGSZTIWUhilAOX
-         pjVP9o19j1CWkPjycUbV0KrSk8O0fm+UCMQFys5JVrbnO9A03LP6wCa/JNblu16TCwqI
-         QH0g5geyyrse4u3nZuhhzdM4mm9gLdcDu+GJ746n5T9QxZpn4cJeWOZ0Q0RSuDK2F2uA
-         PKscwq+LZG3yxEtf05Rbm4IUizANEjPirmg9uD9Q+dZv7Vzw2e7zVYSrKWN7HrLPc3zZ
-         Ehpg==
-X-Gm-Message-State: AC+VfDwQ7NJZrmpxAZwe/9TM1aJBdAUaOiHa9ZdyNeSt55Y1yNl4iqWL
-        zeEt+1yzKbshG0V/V/arjVmE8A==
-X-Google-Smtp-Source: ACHHUZ617oSGRYLQ033DYm8gUv1Nc/kxyw6P01hhEkt+ijKxYBRPZhkX/hcblYpLaINYzuWfHJy1mA==
-X-Received: by 2002:a05:6402:1a48:b0:50b:c3bf:c9ef with SMTP id bf8-20020a0564021a4800b0050bc3bfc9efmr597880edb.40.1683269239274;
-        Thu, 04 May 2023 23:47:19 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:52e:24ce:bbc1:127d? ([2a02:810d:15c0:828:52e:24ce:bbc1:127d])
-        by smtp.gmail.com with ESMTPSA id d12-20020a056402516c00b0050bd2f16ef5sm2657796ede.84.2023.05.04.23.47.18
+        d=1e100.net; s=20221208; t=1683269319; x=1685861319;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rtN4oMlLlW4QqPQK8hFrv2bFItCp38Em6zDqy+ipvU0=;
+        b=CFmEwZ/aLruIWK4Lk6m7HdaQZMJAZmyW+bM7d1tqdjg79qgMbJfL9YaWCrXLpEg3v0
+         D8YfX0qOTBN0Iw09OmN5Pr5oLupN5OSkX3ovzZJrXgNTRWZC9yE3opSlJMyQwWcr9j3M
+         FHl0fds8ie+D6EiJxDtAD97Ub8YR1+9qz3FFsW5eq/qf4IlbguI06Ox0s7jtsRpSaJIP
+         jppHwyygKcOJdoIK1knFlYFisEKX/ATlSwN7y+PtPZSbXCJZvjpBJfTlCEi3LSvYnxZF
+         l2Yi6r6toFL/YV/iRQmqjorwDsYYRAxmrDsqmDdl0Ky3TWU+f83HE1s97IsHsAJhCFom
+         c48A==
+X-Gm-Message-State: AC+VfDw2BgQTo/BYuWIKajE41vQXqaolyJ8C8NZCRXYFr3hJVJdgro9L
+        wWE0ZObr5I4Ak2Xzha2041ZC+g==
+X-Google-Smtp-Source: ACHHUZ4870aZXVeMzfgUOk5ToMNkHvIEW8SwW9PQdL63ZDDVaN64SJlt5Tv4kXOtRHhXWGxGJirb4w==
+X-Received: by 2002:a1c:f310:0:b0:3f1:74bd:bc22 with SMTP id q16-20020a1cf310000000b003f174bdbc22mr250544wmq.6.1683269319442;
+        Thu, 04 May 2023 23:48:39 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:f548:bbaf:d95f:43ff? ([2a01:e0a:982:cbb0:f548:bbaf:d95f:43ff])
+        by smtp.gmail.com with ESMTPSA id x2-20020a05600c21c200b003f182c11667sm6993181wmj.39.2023.05.04.23.48.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 May 2023 23:47:18 -0700 (PDT)
-Message-ID: <0f271a02-dffe-876c-3e41-5697c5917503@linaro.org>
-Date:   Fri, 5 May 2023 08:47:17 +0200
+        Thu, 04 May 2023 23:48:38 -0700 (PDT)
+Message-ID: <6f6afb3c-ae8b-5b33-1b51-2e97148c249b@linaro.org>
+Date:   Fri, 5 May 2023 08:48:36 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
-Subject: Re: [PATCH 1/2] dt-bindings:iio:temperature:melexis,mlx90614:
- Document MLX90615 support
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 4/4] ARM: dts: Move .dts files to vendor sub-directories
 Content-Language: en-US
-To:     Marek Vasut <marex@denx.de>, linux-iio@vger.kernel.org
-Cc:     Crt Mori <cmo@melexis.com>, Jonathan Cameron <jic23@kernel.org>,
+To:     Rob Herring <robh@kernel.org>, soc@kernel.org,
+        Christian Marangi <ansuelsmth@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-References: <20230504194750.4489-1-marex@denx.de>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230504194750.4489-1-marex@denx.de>
-Content-Type: text/plain; charset=UTF-8
+        Russell King <linux@armlinux.org.uk>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Antoine Tenart <atenart@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Lars Persson <lars.persson@axis.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Andre Przywara <andre.przywara@arm.com>,
+        Baruch Siach <baruch@tkos.co.il>,
+        Wei Xu <xuwei5@hisilicon.com>,
+        Jean-Marie Verdun <verdun@hpe.com>,
+        Nick Hawkins <nick.hawkins@hpe.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Vladimir Zapolskiy <vz@mleia.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Peter Rosin <peda@axentia.se>, Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.neuschaefer@gmx.net>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Daniel Palmer <daniel@thingy.jp>,
+        Romain Perier <romain.perier@gmail.com>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Shiraz Hashim <shiraz.linux.kernel@gmail.com>,
+        Patrice Chotard <patrice.chotard@foss.st.com>,
+        Marek Vasut <marex@denx.de>, Qin Jian <qinjian@cqplus1.com>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Paul Barker <paul.barker@sancloud.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Nishanth Menon <nm@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Enric Balletbo i Serra <eballetbo@gmail.com>,
+        Javier Martinez Canillas <javier@dowhile0.org>,
+        Michal Simek <michal.simek@xilinx.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@axis.com,
+        "linux-amlogic@lists.infradead.org" 
+        <linux-amlogic@lists.infradead.org>
+References: <20230504-arm-dts-mv-v1-0-2c8e51a2b6c4@kernel.org>
+ <20230504-arm-dts-mv-v1-4-2c8e51a2b6c4@kernel.org>
+Organization: Linaro Developer Services
+In-Reply-To: <20230504-arm-dts-mv-v1-4-2c8e51a2b6c4@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -78,17 +138,126 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/05/2023 21:47, Marek Vasut wrote:
-> Document support for MLX90615 Infra Red Thermometer, which seems to
-> be the predecesor of MLX90614 . There are significant differences in
-> the register layout compared to MLX90614, but the functionality of
-> the device is virtually identical.
+On 05/05/2023 05:29, Rob Herring wrote:
+> The arm dts directory has grown to 1553 boards which makes it a bit
+> unwieldy to maintain and use. Past attempts stalled out due to plans to
+> move .dts files out of the kernel tree. Doing that is no longer planned
+> (any time soon at least), so let's go ahead and group .dts files by
+> vendors. This move aligns arm with arm64 .dts file structure.
+> 
+> Doing this enables building subsets of dts files by vendor easily
+> without changing kernel configs:
+> 
+> make allyesconfig
+> make arch/arm/boot/dts/ti/
+> 
+> There's no change to dtbs_install as the flat structure is maintained on
+> install.
+> 
+> The naming of vendor directories is roughly in this order of preference:
+> - Matching original and current SoC vendor prefix/name (e.g. ti, qcom)
+> - Current vendor prefix/name if still actively sold (SoCs which have
+>    been aquired) (e.g. nxp/imx)
+> - Existing platform name for older platforms not sold/maintained by any
+>    company (e.g. gemini, nspire)
+> 
+> The whole move was scripted with the exception of MAINTAINERS.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>   MAINTAINERS                                        |  181 +--
 
-Subject: add spaces after each prefix:.
+<snip>
+
+>   arch/arm/boot/dts/amlogic/Makefile                 |    9 +
+>   arch/arm/boot/dts/{ => amlogic}/meson.dtsi         |    0
+>   arch/arm/boot/dts/{ => amlogic}/meson6-atv1200.dts |    0
+>   arch/arm/boot/dts/{ => amlogic}/meson6.dtsi        |    0
+>   .../boot/dts/{ => amlogic}/meson8-minix-neo-x8.dts |    0
+>   arch/arm/boot/dts/{ => amlogic}/meson8.dtsi        |    0
+>   arch/arm/boot/dts/{ => amlogic}/meson8b-ec100.dts  |    0
+>   arch/arm/boot/dts/{ => amlogic}/meson8b-mxq.dts    |    0
+>   .../boot/dts/{ => amlogic}/meson8b-odroidc1.dts    |    0
+>   arch/arm/boot/dts/{ => amlogic}/meson8b.dtsi       |    0
+>   .../boot/dts/{ => amlogic}/meson8m2-mxiii-plus.dts |    0
+>   arch/arm/boot/dts/{ => amlogic}/meson8m2.dtsi      |    0
+
+<snip>
+
+> @@ -1909,7 +1909,7 @@ L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+>   L:	linux-amlogic@lists.infradead.org
+>   S:	Maintained
+>   W:	http://linux-meson.com/
+> -F:	arch/arm/boot/dts/meson*
+> +F:	arch/arm/boot/dts/amlogic/
+>   F:	arch/arm/mach-meson/
+>   F:	arch/arm64/boot/dts/amlogic/
+>   F:	drivers/mmc/host/meson*
+
+<snip>
+
+> diff --git a/arch/arm/boot/dts/amlogic/Makefile b/arch/arm/boot/dts/amlogic/Makefile
+> new file mode 100644
+> index 000000000000..a84310780ea3
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/amlogic/Makefile
+> @@ -0,0 +1,9 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +dtb-$(CONFIG_MACH_MESON6) += \
+> +	meson6-atv1200.dtb
+> +dtb-$(CONFIG_MACH_MESON8) += \
+> +	meson8-minix-neo-x8.dtb \
+> +	meson8b-ec100.dtb \
+> +	meson8b-mxq.dtb \
+> +	meson8b-odroidc1.dtb \
+> +	meson8m2-mxiii-plus.dtb
+> diff --git a/arch/arm/boot/dts/meson.dtsi b/arch/arm/boot/dts/amlogic/meson.dtsi
+> similarity index 100%
+> rename from arch/arm/boot/dts/meson.dtsi
+> rename to arch/arm/boot/dts/amlogic/meson.dtsi
+> diff --git a/arch/arm/boot/dts/meson6-atv1200.dts b/arch/arm/boot/dts/amlogic/meson6-atv1200.dts
+> similarity index 100%
+> rename from arch/arm/boot/dts/meson6-atv1200.dts
+> rename to arch/arm/boot/dts/amlogic/meson6-atv1200.dts
+> diff --git a/arch/arm/boot/dts/meson6.dtsi b/arch/arm/boot/dts/amlogic/meson6.dtsi
+> similarity index 100%
+> rename from arch/arm/boot/dts/meson6.dtsi
+> rename to arch/arm/boot/dts/amlogic/meson6.dtsi
+> diff --git a/arch/arm/boot/dts/meson8-minix-neo-x8.dts b/arch/arm/boot/dts/amlogic/meson8-minix-neo-x8.dts
+> similarity index 100%
+> rename from arch/arm/boot/dts/meson8-minix-neo-x8.dts
+> rename to arch/arm/boot/dts/amlogic/meson8-minix-neo-x8.dts
+> diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/amlogic/meson8.dtsi
+> similarity index 100%
+> rename from arch/arm/boot/dts/meson8.dtsi
+> rename to arch/arm/boot/dts/amlogic/meson8.dtsi
+> diff --git a/arch/arm/boot/dts/meson8b-ec100.dts b/arch/arm/boot/dts/amlogic/meson8b-ec100.dts
+> similarity index 100%
+> rename from arch/arm/boot/dts/meson8b-ec100.dts
+> rename to arch/arm/boot/dts/amlogic/meson8b-ec100.dts
+> diff --git a/arch/arm/boot/dts/meson8b-mxq.dts b/arch/arm/boot/dts/amlogic/meson8b-mxq.dts
+> similarity index 100%
+> rename from arch/arm/boot/dts/meson8b-mxq.dts
+> rename to arch/arm/boot/dts/amlogic/meson8b-mxq.dts
+> diff --git a/arch/arm/boot/dts/meson8b-odroidc1.dts b/arch/arm/boot/dts/amlogic/meson8b-odroidc1.dts
+> similarity index 100%
+> rename from arch/arm/boot/dts/meson8b-odroidc1.dts
+> rename to arch/arm/boot/dts/amlogic/meson8b-odroidc1.dts
+> diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/amlogic/meson8b.dtsi
+> similarity index 100%
+> rename from arch/arm/boot/dts/meson8b.dtsi
+> rename to arch/arm/boot/dts/amlogic/meson8b.dtsi
+> diff --git a/arch/arm/boot/dts/meson8m2-mxiii-plus.dts b/arch/arm/boot/dts/amlogic/meson8m2-mxiii-plus.dts
+> similarity index 100%
+> rename from arch/arm/boot/dts/meson8m2-mxiii-plus.dts
+> rename to arch/arm/boot/dts/amlogic/meson8m2-mxiii-plus.dts
+> diff --git a/arch/arm/boot/dts/meson8m2.dtsi b/arch/arm/boot/dts/amlogic/meson8m2.dtsi
+> similarity index 100%
+> rename from arch/arm/boot/dts/meson8m2.dtsi
+> rename to arch/arm/boot/dts/amlogic/meson8m2.dtsi
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+<snip>
 
-Best regards,
-Krzysztof
+Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
 
