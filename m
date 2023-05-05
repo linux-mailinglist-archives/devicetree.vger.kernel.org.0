@@ -2,77 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E7DD6F7D06
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 08:38:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59BA36F7D0B
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 08:40:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229675AbjEEGir (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 02:38:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54642 "EHLO
+        id S230470AbjEEGkN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 02:40:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229810AbjEEGir (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 02:38:47 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27161160A1
-        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 23:38:13 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-965cc5170bdso129967366b.2
-        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 23:38:13 -0700 (PDT)
+        with ESMTP id S230460AbjEEGkL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 02:40:11 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AE3015EC6
+        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 23:40:09 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-965e4be7541so43593466b.1
+        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 23:40:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683268691; x=1685860691;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=linaro.org; s=google; t=1683268807; x=1685860807;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=qpIULi0+4Bfp/xJiTfMWkQ/k6JUnhuNHrZ6LaNN7SPA=;
-        b=JLsG15svrFd18sXbxlA7hwHcbt3U/K7KPeX5Z9zDBevBqE+3rVq0285qQM2a/Sqb5H
-         nMoxE4qHW84ZJgdBhcqXFDfdla7kCjpxGRMXsrIhVvmA8Ze5a493hi3vC3RyhtysYVlN
-         2eKVRjNFkaoabacBwA3UXsoJMtWrFpJ4ik2B3W+XIaTrm4UB+vI+35h4Cx2SkBO5WgEq
-         qyIxC9p3XwilwG+KenmADDRisRx4lOBm7l7VI40naeNGkVpMxBQARrbTfb4dI3byNUSI
-         iOGimAnoI3RmkqguVa2jpZIrTGuFQKF1wxo+uiXByWnssWr3qFjEcTF107eOao7KcKma
-         cxZw==
+        bh=aTyxP1vj9LhqUkDcFtKF0jIyEwscl+LdksMcxhoHIX0=;
+        b=G0z6pdfLLcpRXBMfXu84fwOiLH0bYZ8N7aA7FRIkIs0vmuL5QK+Hg79DyL5CSrXb5V
+         pDi6+8ung1wbRWg4QD9/iahFef2T8Fw5inu/rt85I9j9MZb3MQYjV1WBLLGxkayID4Q+
+         9y/RD2zLE2X7Qxcb1qMa3PVbD1JRwS1mNiSx8327nKJJDeK8GE7jBN6pKMsJYCCn4wAy
+         3IlDplqBMPEgFJVRHOu5aGcqkLm1pjC4wXuE6UApKlM6foHQ+MlQFPJ8TUpivm+ZJ8ea
+         zMhL/XQhIod4bPJfcGEWa016dW+/WsPBzztT8vbMfGKHLolZ6QN+rsOU7eBE05dnJEws
+         Y7XQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683268691; x=1685860691;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=1e100.net; s=20221208; t=1683268807; x=1685860807;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qpIULi0+4Bfp/xJiTfMWkQ/k6JUnhuNHrZ6LaNN7SPA=;
-        b=DlsgjSqgndE/KFBgBjDCe4UzqEFpJ1BK+7U+BExcomTV8worQFdTj+3xPQymGvegb4
-         eF+vOgPLYowMCK6MfkM5Qn2eHJtscErNszHHKhf+vq0KYHa263yGSMNzzqJgwGezCuea
-         znEF7Q6XDg3lmmdNu/B3OUTJl6u9Ajisq55oFQwCLraAkd4KrnmAcbaUbcpVXbiXE2F2
-         cWaE08tMehrLZkdPkCBLTJpAofHqAuIu+6wNwWcwvLmOzzbxognVXBNXrB3g23IDb/Ee
-         50FkmhxzEJ4otOhfzZUGGZMfXvGE50U4UPF7oAXn2ZD26vfcZZ6I1UCNK4fxu8sSgSIL
-         +HHA==
-X-Gm-Message-State: AC+VfDz7HJGGghQmNauVkenwORR5/2XWyP69gjhyRO0dm0UFYrlZpTZO
-        a4x11AW8Y744Vmkpd3NlAuNRDA==
-X-Google-Smtp-Source: ACHHUZ4KPWrb7SjKexz/1Aq185oQXmNDo2LtlnYVg5D4qGnObf00khD10WFgBBMG6CA73RI+Q6eCLg==
-X-Received: by 2002:a17:907:a409:b0:94e:ffcb:b15d with SMTP id sg9-20020a170907a40900b0094effcbb15dmr216456ejc.71.1683268691269;
-        Thu, 04 May 2023 23:38:11 -0700 (PDT)
+        bh=aTyxP1vj9LhqUkDcFtKF0jIyEwscl+LdksMcxhoHIX0=;
+        b=bD/FR3IQNw9IfAwaT0GTDxNxIAIyAbWyayqQ8juMYr03oa5Bl+k1OEOX9VISXbfc37
+         gpXwi6IuVd/Ue38SCNyEdmk+cGQ9MVSDhPI/pTZVEJ1eR/zTe6lLYUh38hVCjdsHzcYY
+         Xqry2vb/6+ZAJDfZ//lZ1FwPOV7u/dUBQ9XY20TOgDUaA5PFVHEGG0Zxvdd4zABfwoZu
+         2Im6TTtDB6Ld16EYa7w8qWW7X31dpvuj2zgcIEZp8sGWfoyitLxiq9LLly3t/66QO4HO
+         HnNfjNF5CnIyDtdyQYcTjnFhWDqzPZYhKzrI0rBKKvtEWZeghktQjUWgTV87zgHJUH4r
+         IlQw==
+X-Gm-Message-State: AC+VfDzLabONkhLK/EdkvnYCR71rLlEMv5Ymig0p9QSxYDkEXg7RpNs9
+        dNguajf2K9LOUpfNX56Dr6JEKg==
+X-Google-Smtp-Source: ACHHUZ60yiXciR7c56Q3PWRYkZepdVsaqppKAlJGiNIex8+MxKDx3TzcHvQ6hw7Gfdaj7zjLGfntrA==
+X-Received: by 2002:a17:907:6d1f:b0:94e:f1b9:e933 with SMTP id sa31-20020a1709076d1f00b0094ef1b9e933mr236593ejc.53.1683268807573;
+        Thu, 04 May 2023 23:40:07 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:52e:24ce:bbc1:127d? ([2a02:810d:15c0:828:52e:24ce:bbc1:127d])
-        by smtp.gmail.com with ESMTPSA id ci17-20020a170907267100b00965cfc209d5sm536358ejc.8.2023.05.04.23.38.10
+        by smtp.gmail.com with ESMTPSA id ak19-20020a170906889300b009545230e682sm522940ejc.91.2023.05.04.23.40.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 May 2023 23:38:10 -0700 (PDT)
-Message-ID: <e1760ba6-4200-4fa0-5298-f76575522764@linaro.org>
-Date:   Fri, 5 May 2023 08:38:09 +0200
+        Thu, 04 May 2023 23:40:06 -0700 (PDT)
+Message-ID: <925bf170-bb54-b427-976a-87e0dca230da@linaro.org>
+Date:   Fri, 5 May 2023 08:40:05 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
-Subject: Re: [EXT] Re: [PATCH 1/2 v5] dt-bindings: watchdog: marvell GTI
- system watchdog driver
+Subject: Re: [PATCH v4 0/8] Add StarFive Camera Subsystem driver
 Content-Language: en-US
-To:     Bharat Bhushan <bbhushan2@marvell.com>,
-        "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
-        "linux@roeck-us.net" <linux@roeck-us.net>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <linux-kernel@vger.kernel.org, sgoutham@marvell.com>
- <20230503121016.6093-1-bbhushan2@marvell.com>
- <9911bb17-e8f7-b552-7056-a26b3194c416@linaro.org>
- <DM5PR1801MB1883A469C355797CE4A6E83CE36D9@DM5PR1801MB1883.namprd18.prod.outlook.com>
- <bb52dbb7-7225-552c-2daa-688aa304a9a0@linaro.org>
- <DM5PR1801MB18835D6D376910DA60B36D5FE36D9@DM5PR1801MB1883.namprd18.prod.outlook.com>
+To:     Jack Zhu <jack.zhu@starfivetech.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Todor Tomov <todor.too@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Eugen Hristev <eugen.hristev@collabora.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, changhuang.liang@starfivetech.com
+References: <20230413035541.62129-1-jack.zhu@starfivetech.com>
+ <14c06503-621f-2477-7b15-b17f1890ecfe@starfivetech.com>
+ <7bd29805-11e7-68ee-aa47-68bae2a2fb38@starfivetech.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <DM5PR1801MB18835D6D376910DA60B36D5FE36D9@DM5PR1801MB1883.namprd18.prod.outlook.com>
+In-Reply-To: <7bd29805-11e7-68ee-aa47-68bae2a2fb38@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,94 +87,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/05/2023 19:10, Bharat Bhushan wrote:>>>>> +maintainers:
->>>>> +  - Bharat Bhushan <bbhushan2@marvell.com>
->>>>> +
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    const: marvell,gti-wdt
+On 05/05/2023 07:57, Jack Zhu wrote:
+> 
+> 
+> On 2023/4/24 19:19, Jack Zhu wrote:
 >>
->> So I guess we all thought "gti" means some soc. Now it is clear - you miss specific
->> compatibles. Generic blocks alone or wildcards are not allowed.
 >>
->> And we have it clearly documented:
+>> On 2023/4/13 11:55, Jack Zhu wrote:
+>>> Hi,
+>>>
+>>> This patch series adds support for the StarFive Camera Subsystem
+>>> found on StarFive JH7110 SoC.
+>>>
+>>> The driver implements V4L2, Media controller and V4L2 subdev interfaces.
+>>> Camera sensor using V4L2 subdev interface in the kernel is supported.
+>>>
+>>> The driver is tested on VisionFive V2 board with IMX219 camera sensor.
+>>> GStreamer 1.18.5 with v4l2src plugin is supported.
+>>>
+>>> Changes since v3:
+>>> Patch 1:
+>>> - Modified port@0 and port@1 properties.
+>>> - Extended the port@0 example with appropriate properties.
+>>> - Added 'port@0' for 'required'
+>>> Patch 2:
+>>> - Modified spelling errors.
+>>> Patch 3:
+>>> - Merged patch 5 into the patch with an explanation for compatible in
+>>>   commit msg.
+>>> Patch 6:
+>>> - Asserted pixel_rst[i] reset in the loop after the err_disable_pixclk
+>>>   label.
+>>> - Modified Code Style for getting sys_rst and p_rst.
+>>> - Renamed clk_name to name and modified the relevant code.
+>>> Patch 9:
+>>> - Added static for stfcamss_get_mem_res function.
+>>> - Added static for isp_close function.
+>>> - Fixed implicit conversion warning for stf_vin_map_isp_pad function.
+>>> - Dropped unused variables.
+>>>
+>>>   v3: https://lore.kernel.org/all/20230331121826.96973-1-jack.zhu@starfivetech.com/
+>>>
 >>
->> https://urldefense.proofpoint.com/v2/url?u=https-
->> 3A__elixir.bootlin.com_linux_v6.1-
->> 2Drc1_source_Documentation_devicetree_bindings_writing-2Dbindings.rst-
->> 23L42&d=DwICaQ&c=nKjWec2b6R0mOyPaz7xtfQ&r=PAAlWswPe7d8gHlGbCLmy
->> 2YezyK7O3Hv_t2heGnouBw&m=uy18AXnbGKMIcyPkTnWrPZoVBj8yzyjlGeNemR
->> MFgMVqkT6-4JVU5hWsVbcKPzTJ&s=XkqN7nbFOrtRnOJVqrgEDA9zinZxML4-
->> qSYQPElzVeg&e=
-> 
-> So Say currently Marvell have GTI watchdog timer in following series of SoCs
->  - octeon
->  - octeontx2
->  - cn10k
-> 
-> Compatible for octeon series is "marvell,octeon-wdt"
-> Compatible for octeontx2 series is "marvell,octeontx2-wdt"
-> Compatible for cn10k series is "marvell,cn10k-wdt"
-> 
-> So effectively we will have 3 compatibles, Is that correct?
-
-I don't know your SoCs. I assume you should know.
-
-> 
+>> Hello everyone,
 >>
->>>>> +
->>>>> +  reg:
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  interrupts:
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  wdt-timer-index:
->>>>
->>>> missing vendor prefix
->>>
->>> ack
->>>
->>>>
->>>> missing type
->>>
->>> Will add
->>>
->>>>
->>>>> +    maxItems: 1
->>>>
->>>> ???
->>>
->>> Removed
->>>
->>>>
->>>>> +    description:
->>>>> +      This contains the timer number out of total 64 timers supported
->>>>> +      by GTI hardware block.
->>>>
->>>> Why do you need it? What does it represent?
->>>>
->>>> We do not keep indices of devices other than something in reg, so
->>>> please justify why exception must be made here.
->>>
->>> Different platform have different number of GTI timers, for example some
->> platform have total 64 timer and other have 32 timers.
->>> So which GTI timer will be used for watchdog will depend on platform. So
->> added this property to enable this driver on platforms.
+>> From the current review status, the patches related to the CSI module
+>> have 'reviewed-by' tags. I would like to know if it is okay to add
+>> patches 1-5 from this series to a PR first.
 >>
->> This should be deducted from compatible.
+>> Thank you!
+>>
+>> Jack
+>>
 > 
-> If I understood correctly, we should add different compatible for each soc and use same to get the information we tried to get using "wdt-timer-index" property, is that correct?
+> Hello Mauro, Laurent, Maxime, Rob, Krzysztof, Robert, Todor and Philipp,
 > 
-> But each series have many socs (10s) and GTI hardware is same except number of timers they supports, so should we add that many compatibles or add a property like this?
+> Can you give me some suggestions and comments on the previous request
+> to commit CSI related patches first? Thank you for your time.
 
-Same story every time... and was discussed many, many times on the lists.
+You received very specific feedback, so know you decided to ignore it?
 
-https://elixir.bootlin.com/linux/v6.1-rc1/source/Documentation/devicetree/bindings/writing-bindings.rst#L42
-
-You need anyway SoC specific compatibles. Once you add proper
-compatibles, you will see that property is not needed.
-
+No, implement what you were asked for.
 
 Best regards,
 Krzysztof
