@@ -2,110 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A35C86F7FA5
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 11:12:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 34CCD6F7FAB
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 11:14:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231326AbjEEJMt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 05:12:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55078 "EHLO
+        id S231604AbjEEJOM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 05:14:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231604AbjEEJMr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 05:12:47 -0400
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2057.outbound.protection.outlook.com [40.107.21.57])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B449191F8;
-        Fri,  5 May 2023 02:12:44 -0700 (PDT)
+        with ESMTP id S230526AbjEEJOL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 05:14:11 -0400
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2045.outbound.protection.outlook.com [40.107.21.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 846FA191E7;
+        Fri,  5 May 2023 02:14:10 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XK5TgYDFrnOXqe27lVtWMBApjO7gpTtMgisPHSFC8JtHc7uB4oyyJQYB++EErrCAU1AcPJWpzQ64qElX7Q7VwU5WrZFE872AytO6asW5joqDq2hkARx2A649N1ldfBay2jxx5bqqoRhqWdzSen/lQ6zQ02I2nxnmjJJHMABALPfXzVBVy05JxF1Oqc/JbXaI/nIOkC8p0ivS6BxS8K7A0Mb95J7HiixkyiA03lWAr/jaQvf+YnRm5klCmdc62/JttHp65ZvevA8j9CEHy3nZUvQf91OOJlXovxC8iI8xSWvt8VotGNzSYWENKa8xH5HEjduDQwslSPU6O9LmKWbadg==
+ b=eQRERsh9RyKzPAD7nzjHAdO3Q61PaHcr5q5BKdbewkH091hlew6nOJPj/3zWa7tGnOY9dpm67xhwdvjA7Ed9+Q2SoVAB5U1esCUIrJqAARnB4tXYEEMcVF7zoCFRMV2ySeROKF1U3OtFc/syg1uJI+ZajwEjJLGhWnC5S7I6Abl/+qGvW+2Y3a6LcyK5ffW1/nueLIOVTCVB5jCkrzCDlZjo6ne2w9NhG7myhBEWPcLYTm6Xv+KqhJOCU6xOw4w38t48rEw/9PVFdAqTuoc9+xPuxlXyB3bzZcKwHXBvYCRM5364N/HuyVC4pqXnBMeVsqDDfc7bv0QjKdLNEJkbzQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zQpvwvMEt/w+CxaW4UdaMomVOJLvxjcQAfzxgjm8Ss0=;
- b=Idabf6mr2WCYhMg4cKpItgqhFlxp+oZBQWRH7RDaOy2GNQouqIKgUSuIzsN426/nm258CF/RzoGVVJ8lrPxaEKjP1TJATtaxSHgZFTX3Cke0S7/9XUTm15AvxWgsyVhoJvnoXi08GJAgp6EMlxbtt7AFJyouIG6DpkezD/7iUow9xPXu7/yid3QlyHgRXvW6crPFbznrukcgHxM2r6nFP0nECnDOOMEdAO6Z3CLhSSuyh3jKnlP/5eJ7/AihQ8SoHQZRdBYInFe4oQVL96EruKMlWQnxq58AG776zTlG/MpTh5+m96J9ijajDdj2E95pyS4+fmqrNCGT0/rCQG5JvA==
+ bh=eAY1lPqAFzpk4yEKZvQTsAandTTbpMyksnkYJSz9c0o=;
+ b=A5YXQTgEiV9arWu+oJeT/Sm6qURxKnkcV1kO2/IpFcOZZBatE5+1YiEGcxSLC5F8BJeS3dbYswxvJOIUNHDLtrx6rT+nIxsjI5k5rp6r1T3bb/DzsVleDHtS1DfJv3nFgtGM+eepe7sHyUOz+ksb2htZRS64PKSEzMgJw1h3tS3Rta77Kf7ISSiN41JhwJSYSiKAUtf6iBuwXrwrlQ/8xEb2Q0m5fWNqHiVhYaKu2qsFiUg+ByUBoKW78d6Nve4POKcumDS3/RfSchpB3eKc14hCVspAc7qPUFHSfv5QE0nuR5BpyO010iBDU0+mj9c8jVTMHUGCsOOTaywMNXUvTw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
  dkim=pass header.d=oss.nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
  s=selector2-NXP1-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zQpvwvMEt/w+CxaW4UdaMomVOJLvxjcQAfzxgjm8Ss0=;
- b=OtSCy2xR0kVYM11oET7U29tIlQlYt/ao4zvovD8KiomsNg/a2lAxI3hP/FU4/wKmulSE8o79cmONh+xewVNW2v3cVpLzlBtrTCDhvzM69RNQg7fcW337aAgYqje6bwNbIhN5BSPcJB3kAR5ibuvoDGNk3uPrs+OZmXmrd2mkz1Q=
+ bh=eAY1lPqAFzpk4yEKZvQTsAandTTbpMyksnkYJSz9c0o=;
+ b=hchZJ6SH1Z9W6c/jxwHvg5u1RPEfgWrmOR1MrMENHiAE7lOaYA88FH7K2eI3VVJIb8AuPYYhAHh1JtdH/7AOC48sGXDoNO+y0Qc6JHmKQoBRjXk+ba8Lprx929p8XXg+3Mv8nQjjUUFPGaQRNkZhVOg/F8UdaFlnZfwPQft9pE4=
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=oss.nxp.com;
 Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
  by DB9PR04MB9473.eurprd04.prod.outlook.com (2603:10a6:10:369::11) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.21; Fri, 5 May
- 2023 09:12:41 +0000
+ 2023 09:14:07 +0000
 Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
  ([fe80::b999:f2c6:a8cc:7b4]) by DU0PR04MB9417.eurprd04.prod.outlook.com
  ([fe80::b999:f2c6:a8cc:7b4%4]) with mapi id 15.20.6363.027; Fri, 5 May 2023
- 09:12:41 +0000
+ 09:14:07 +0000
 From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
 To:     srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org
-Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Peng Fan <peng.fan@nxp.com>
-Subject: [PATCH 2/2] nvmem: imx: support i.MX93 OCOTP
-Date:   Fri,  5 May 2023 17:17:33 +0800
-Message-Id: <20230505091733.1819521-2-peng.fan@oss.nxp.com>
+Subject: [PATCH] dt-bindings: nvmem: add nvmem-cell-cells property
+Date:   Fri,  5 May 2023 17:19:06 +0800
+Message-Id: <20230505091906.1820081-1-peng.fan@oss.nxp.com>
 X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20230505091733.1819521-1-peng.fan@oss.nxp.com>
-References: <20230505091733.1819521-1-peng.fan@oss.nxp.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: SI2P153CA0028.APCP153.PROD.OUTLOOK.COM (2603:1096:4:190::9)
- To DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+X-ClientProxiedBy: SI2PR02CA0021.apcprd02.prod.outlook.com
+ (2603:1096:4:195::10) To DU0PR04MB9417.eurprd04.prod.outlook.com
+ (2603:10a6:10:358::11)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: DU0PR04MB9417:EE_|DB9PR04MB9473:EE_
-X-MS-Office365-Filtering-Correlation-Id: 967f7cc0-31fa-4ab2-116b-08db4d48e137
+X-MS-Office365-Filtering-Correlation-Id: c3d0360f-7e49-48e0-f8e3-08db4d49140a
 X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: zKNTQSlvs87Jd1eFnuNm0U3layP2tixKxjw0iBqg/HaFQ5dzBG9nw3qiZixXJgox8lm4DrJm9LZr4hcfwteRtcm45OpKDTIPM2NxcKvE0CJbH95skZrqOi4J4DJ77XaUJ8Xy9dMAQhEy17M7+Gb3aXd+n8R5STFvewxFtLrPm9G2ogwR/1nRb63rQjU9UqP35oWYpIJyk0Mfrv1owlH5KA7mSJpsajRAug3OhGbECyG6wvTCble+pe2JomgbnPyVrEgXPQZ48uWw21mQ+J0Mla/PY01BH+zRaCwtYjtyDNUAav198Jc4zC6LfxO3bMrqsQialFX5UkDQ4zYbv6ZqqLap6gHPkvVI6gPBTS1bGurqZIaK+rPGkdrZksF17yfjYvPZzkHmUepyNkC7wUAeoB6a0i1bHs8CGEa10mKZk/bfYFTeLjAGV/8U8SYxIx8UJrQCQsdUwIw4J0npFtVXRpe+m/Vpw/NnYbbn0A2O+4X7i26CVjtDoSMNmd8y7CbGADAgIaCLYcZ15fqPq65dg/hjR8PsGrfzIzO8HoePLkzDSExET05GWstR9mxhGv6m6fVGp/0L/9PIRZVQiZv7VhtBheXEi2zIun86502wlxQ=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(346002)(136003)(376002)(366004)(396003)(451199021)(66946007)(2616005)(478600001)(83380400001)(6486002)(6666004)(52116002)(66476007)(316002)(4326008)(66556008)(26005)(186003)(6506007)(6512007)(1076003)(8936002)(8676002)(7416002)(5660300002)(38350700002)(38100700002)(2906002)(41300700001)(86362001);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam-Message-Info: J1/9YYKgXouD4AwcybyC1yzPoT50mS3WJ2myR7s3vFLb/t/6tApjRNA8MwNCIlE+9vL/XyHm35WRqfF5uGGYRpjAW2Y95q0cG/rtVwuQI7zR3fx9Y1js4EUz+UBDgcuFsmcF5Pe5URiHaYzjio60I8ufs6bgaUqqMR2bf7f7uT494XMyE4bfRLX5359ZnKb+BG/7qTfAOngXktZBY/Wptdth43wwy1TG+2Z4Uk/ohXjmJu7dk7/9KigePZBn4iEradoL70BB6SjEhVbdHxUc3x3WLPULJZCYn9zEl8FtMUMMMg6jxXQ1gKaBfDfY2nPrTMTJg9fHRGTdMuOG7k62KFL5mPKyQ5apx+C3AIYgL9X5dE0tti331VawsP3+N9lhAbletBogGVBLvGCsBiTvt5Xk9v+Laqsrxm+P1D+GBPMZ7q+cyPVEo1f+nB34949DlhIrnzsC+aqp+Cg4O4lHyC3opzYm6b71Kj4zdU6AZJugEmtvR+jZdjJqaXe+6TWvXQ69MSLfpB3IvSDP/mQnscAzDiePUQ5qMdX4vZOAGvTlqpaZbOJB35aiSf8I/u7zDkjW5jNm7u/qX+QxIw3bD06jaJz1hawebu10nAlLch2nyqb2wZqaNm8mjv43GGzS
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(346002)(136003)(376002)(366004)(396003)(451199021)(66946007)(2616005)(478600001)(6486002)(52116002)(66476007)(316002)(4326008)(66556008)(26005)(186003)(6506007)(6512007)(1076003)(8936002)(8676002)(5660300002)(38350700002)(4744005)(38100700002)(2906002)(41300700001)(86362001);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?YPD7Kc7Ra2C3l+x7WZcrYivUkyZZbZNlSPlUCQoKt5ltrNopYjbA+gswSppP?=
- =?us-ascii?Q?QKIdsmryPIxvhMvNhEPWhavYU/QSLh2rJoueSIA5ucHlJqr162Qw8KzrTfiE?=
- =?us-ascii?Q?TTPum7ya80w/rBYGNTYR130BQr5xIXha/e2Z7U7wYSr9siRglVN8dDz8fMO4?=
- =?us-ascii?Q?PkJ4XWJrW3F+76vv3+80iLxV8fD78kO8/CIKmIGxyhmEetVTTwGAmIPGVUJT?=
- =?us-ascii?Q?W7S0aBfjK88jsZel/2sIYY7bqVQ1f2MXXNrjR/h1wDZwX8Y5unl09bWGhdWT?=
- =?us-ascii?Q?R96yw5dcZ9ELZi/ZnZRE/I60LUU7OsCTn3L26jXunoxbEJAIxzqhogKKIHQM?=
- =?us-ascii?Q?QKgkAliw7O7kzzrPC5i4cUdKiUkPX8j7fh+YQMKlI88WGGVl0JbG9pQgR+jm?=
- =?us-ascii?Q?TRo0sSbDBejBWwj03vlAGjrJ2NC7gP5h4v5jTGLhsPHq58v7O8rG8h4q04ol?=
- =?us-ascii?Q?H4Ovs5TKmyN6NGkjysYHtVZIrEctfafGeLDnAjJALNNKc1QLvNVlxC75xvQs?=
- =?us-ascii?Q?T+36NqpN2TkL6wTdnu2hc3LX/ZQpWhZxMrLn0YIwFityKcR6zyfDuHfl5IF2?=
- =?us-ascii?Q?7SBW10WD4ehz3I2fImBxwDUt0+3kVb9uLxyKAtwh7euNP5PnZCnMAREk8zlS?=
- =?us-ascii?Q?GJWUFQ2VPx/eqnlePbGr8MJXYOXdK/JzYLW0k8p99/04GHFnrqHNa5KyIPB/?=
- =?us-ascii?Q?4kB+Lk5bMYLfOOnJLYZh2mnOcDywFxuV5WHYXPBzsTszEaSTu0ExLHqluazS?=
- =?us-ascii?Q?XG7mSpG/OcAO6erWNuqVrhfSt7ov2zfbiz5GfTU7sL/RZYD3/S66YqwSm+nC?=
- =?us-ascii?Q?cAJomUCEPCBjtpTn+CTolHdyLi7q1Swsra06fysCxGoyN9HF9tVY8cLbnExT?=
- =?us-ascii?Q?p1PPsrsVVCU4ZBJUlyokKGiJl1OJaATDG6U2LLX3d8iuC/eWjYz1To+mco0y?=
- =?us-ascii?Q?N1tgaFd3KKeBpV6dUaJWroXaCuYBn6EYAI3TMbzVNgLfwiWzLbCMogQCckyN?=
- =?us-ascii?Q?njIjiTtLB01HZ0YaOHpLUV2ogNrKw0Uz7cyjGfqEFqRyqdPdBvrjGBCBWlT7?=
- =?us-ascii?Q?uYuf40jy6obBMCQh748XUAS2yr8C3M8hn0cr/6NY6gFAbL0DH9B0siv4A6iK?=
- =?us-ascii?Q?ZjIjs2WksDDNnR9bymSyJluNFmXcjajybV6updyCBYR8LbLeNQsaFQldoeW9?=
- =?us-ascii?Q?OCDC1aLgvyJqAxpUx5k6EP+mSS5wNVKGKiRVi144SYWLlsJy63jz5POx4Y3r?=
- =?us-ascii?Q?xi1B+vQvrvpnUZIxCxUrPQ6niyPdr4N/AmnqnrbccLjJSM/MMDafNBVNiIJl?=
- =?us-ascii?Q?tN4VNdwcN/t+5z2qHSL8No6omRneuFTO8EnTUICHaG3ydWiiV6Emsh5F4a8z?=
- =?us-ascii?Q?SMgjNuy43Qg7QiwBSuq92p7vRLnHnka9QVPkeqWg6lH8wdKPdJwR52dMeM6c?=
- =?us-ascii?Q?lcK9dtlSIlIAa77MJoizqyEwkCXnFzSC8iatYWUBJ+kNM4OTjiBAs0wxLykr?=
- =?us-ascii?Q?bGzr3LEOxfPQckOf/BH/DJRA+naGFa3V+ATrlSTnwLB4xt8WSQRmvllaqB2+?=
- =?us-ascii?Q?bOGKCJW/VQq7GKGZ+VEFkVn0rge2L/AkmbbHGzco?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?zlzgSpOfeiDYSTm3NkXGZ3lZaoX9eimW6aTJBL1oGkHg7ZF4HVSP4mvqW31D?=
+ =?us-ascii?Q?MibITMkx0Vowhng7fYSAv78qtM4yNuEs8yEHhdZsLbyQKGCPt9dWAh1S5TFb?=
+ =?us-ascii?Q?+qS6c6A1VgsVEB05v04gU1pXF3zYP/MAZzSrwFH16Tw0i3fhB1nK/scJNjKW?=
+ =?us-ascii?Q?z5MEda3tA2PJ1RN6MDyfq4uGJtHA/5A0u/mUQfiLEE1CiNbUvRNuyDXDVmw+?=
+ =?us-ascii?Q?gg9yNk8kaBFm5/3w18iGMWeMLX2uOLmmiLMA2rXqNo1ge58o5uTYnW/ah5e9?=
+ =?us-ascii?Q?vIMDWoGp741Vl5/SoQLq2WZrRlTyO4EH3rvY6aK5NRFs+p6fE5s0UyVSKvlF?=
+ =?us-ascii?Q?YsoUVSC9tMmS6fTIv4469p9cO7Z454IOAbgSVbe4Cc65PbblJohsqlnievCn?=
+ =?us-ascii?Q?LWf7iSHedzfDzVL2I35sogdhnfIgJW64OmKyENzPioTkLIsZw8P7MwQP5ueN?=
+ =?us-ascii?Q?t42IXtEflRkY3D9csO8rNNMw4bvGg+clXBEbmDneOwts8R0nHPQiBxnBwm15?=
+ =?us-ascii?Q?VOH1ma+HLEhB46HnhzVVzcYkvsmRCqKTh3eU073MlD/utvxUCOlfHLFHA/0V?=
+ =?us-ascii?Q?2HCIWTsXl7H3JJVA+M+/EXRJwLGuBDW8bvv3y/UCz1GpUbhSZBApIH4aZxho?=
+ =?us-ascii?Q?f3do+HOMy5ZnXBFl7QvwURzF4/knIVnPB4wXxhedbnlC2AVPQfY6S7tCvlGB?=
+ =?us-ascii?Q?hQOnv/Eqpz3NjUNHRCQTpyqhw1K3smNtB+LXRBF1CvDg/90Io9lUUKxnY3kB?=
+ =?us-ascii?Q?JdolbMoI4Mgr7RGzqtLiHm+UO/fag3fXxkUV4AixYgdCEm+pEl9DhJ4csMLg?=
+ =?us-ascii?Q?M7CcwoEXtcBxpqpM5zObjZWXA3eJsl82DOx4w5p8dmTEgz3AkO4x155XRdm1?=
+ =?us-ascii?Q?MAGF8dAmSQd66x5D7SIYo9ExtSHKFFGmJFXNcQYdN8ZX2xjEePuFUANDgciG?=
+ =?us-ascii?Q?y3zqJaRRYRxN+d0UVMHHgihYMp9azdqRe7z8inSQEkOyK35CPrMQ1/lNmaPn?=
+ =?us-ascii?Q?XAeRYtcb9+WLJhj6wFqXfRGemLPIUshZZjq5ArrSroMCOriGyC9C03aKdQe8?=
+ =?us-ascii?Q?CxV89CEhDTLacgVEshcYt0Y0fdctP8Mpqy40mM59FHxqxa+VdUQuDNVvXEPp?=
+ =?us-ascii?Q?Qs73Bx3Kb7KXAH5TZAEZLqZfeKfZbL2X0HEZY247HjI811T+e4ue2fo89DTB?=
+ =?us-ascii?Q?Z+vFSPnWM36pmCu/q9rpR5qoLGonMLQtNgwU8kt8JPr69qfCALfeqE98m6hn?=
+ =?us-ascii?Q?psaqdWKtBJCbf5yPfLWEhQ6gGpVwPW03zZNydWcP+qV1iq+GS+JVcsAxp9fd?=
+ =?us-ascii?Q?rxJcg2Y6bWITOxHH0F2IDd0hxRmUe1crLELGn9PqbsATfX6h0Z62jCSTAfKc?=
+ =?us-ascii?Q?Y+yqqMfiNa52N849QI2nZw1FH9SQW41UiK7Njapb4Xn72ZBywzNqDbf53uop?=
+ =?us-ascii?Q?MG7x8KuBhWVcrOIGrkGVFK89zfE9JsDJKCl1TJwF7Q6Mrgz/WdUWa5Cm846J?=
+ =?us-ascii?Q?iO46m0g/yyl2pnPlcHscXG6U0USXKGp8szFwf3UyB+MkkXa2Ym6uEuLHc72t?=
+ =?us-ascii?Q?nog5IWFL4tVOI8gywymOj4xAhOvXdH4IUNJW/W4c?=
 X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 967f7cc0-31fa-4ab2-116b-08db4d48e137
+X-MS-Exchange-CrossTenant-Network-Message-Id: c3d0360f-7e49-48e0-f8e3-08db4d49140a
 X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2023 09:12:41.6721
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2023 09:14:07.0458
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xc7HfBHgiiNBOZ8S9WRcgahYYZgqCShDOzmqU+iuTGKE2N7axn7TOZane7G9ZvDtTP8B/JMMRlEMMU2iLKEcvA==
+X-MS-Exchange-CrossTenant-UserPrincipalName: f9Hr6HoxMYZb9Drnt9kioLLTcuJg5jbmiDmpQEiffXXPFrvsxqVw5PkXi09NelvfAAevsFXwXHvL75SU0Yad/g==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9473
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
@@ -118,243 +115,27 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Peng Fan <peng.fan@nxp.com>
 
-Add i.MX93 OCOTP support. i.MX93 OCOTP has two parts: Fuse shadow
-block(fsb) and fuse managed by ELE. The FSB part could be directly
-accessed with MMIO, the ELE could only be accessed with ELE API.
-
-Currently the ELE API is not ready, so NULL function callback is used,
-but it was tested with downstream ELE API.
+The driver has been using this property, so add it.
 
 Signed-off-by: Peng Fan <peng.fan@nxp.com>
 ---
- drivers/nvmem/Kconfig         |   9 ++
- drivers/nvmem/Makefile        |   2 +
- drivers/nvmem/imx-ocotp-ele.c | 183 ++++++++++++++++++++++++++++++++++
- 3 files changed, 194 insertions(+)
- create mode 100644 drivers/nvmem/imx-ocotp-ele.c
+ Documentation/devicetree/bindings/nvmem/nvmem.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
-index b291b27048c7..e7093726b28e 100644
---- a/drivers/nvmem/Kconfig
-+++ b/drivers/nvmem/Kconfig
-@@ -82,6 +82,15 @@ config NVMEM_IMX_OCOTP
- 	  This driver can also be built as a module. If so, the module
- 	  will be called nvmem-imx-ocotp.
+diff --git a/Documentation/devicetree/bindings/nvmem/nvmem.yaml b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
+index 75bb93dda9df..3fc3982da102 100644
+--- a/Documentation/devicetree/bindings/nvmem/nvmem.yaml
++++ b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
+@@ -67,6 +67,9 @@ patternProperties:
+             description:
+               Size in bit within the address range specified by reg.
  
-+config NVMEM_IMX_OCOTP_ELE
-+	tristate "i.MX On-Chip OTP Controller support"
-+	depends on ARCH_MXC || COMPILE_TEST
-+	depends on HAS_IOMEM
-+	depends on OF
-+	help
-+	  This is a driver for the On-Chip OTP Controller (OCOTP)
-+	  available on i.MX SoCs which has ELE.
++      "#nvmem-cell-cells":
++         const: 1
 +
- config NVMEM_IMX_OCOTP_SCU
- 	tristate "i.MX8 SCU On-Chip OTP Controller support"
- 	depends on IMX_SCU
-diff --git a/drivers/nvmem/Makefile b/drivers/nvmem/Makefile
-index f82431ec8aef..cc23ce4ffb1f 100644
---- a/drivers/nvmem/Makefile
-+++ b/drivers/nvmem/Makefile
-@@ -18,6 +18,8 @@ obj-$(CONFIG_NVMEM_IMX_IIM)		+= nvmem-imx-iim.o
- nvmem-imx-iim-y				:= imx-iim.o
- obj-$(CONFIG_NVMEM_IMX_OCOTP)		+= nvmem-imx-ocotp.o
- nvmem-imx-ocotp-y			:= imx-ocotp.o
-+obj-$(CONFIG_NVMEM_IMX_OCOTP_ELE)	+= nvmem-imx-ocotp-ele.o
-+nvmem-imx-ocotp-ele-y			:= imx-ocotp-ele.o
- obj-$(CONFIG_NVMEM_IMX_OCOTP_SCU)	+= nvmem-imx-ocotp-scu.o
- nvmem-imx-ocotp-scu-y			:= imx-ocotp-scu.o
- obj-$(CONFIG_NVMEM_JZ4780_EFUSE)	+= nvmem_jz4780_efuse.o
-diff --git a/drivers/nvmem/imx-ocotp-ele.c b/drivers/nvmem/imx-ocotp-ele.c
-new file mode 100644
-index 000000000000..a8d2aa7488de
---- /dev/null
-+++ b/drivers/nvmem/imx-ocotp-ele.c
-@@ -0,0 +1,183 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * i.MX9 OCOTP fusebox driver
-+ *
-+ * Copyright 2023 NXP
-+ */
-+
-+#include <linux/device.h>
-+#include <linux/io.h>
-+#include <linux/module.h>
-+#include <linux/nvmem-provider.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include <linux/slab.h>
-+
-+#define FSB_FUSE	BIT(0)
-+#define ELE_FUSE	BIT(1)
-+
-+struct ocotp_map_entry {
-+	u32 start; /* start word */
-+	u32 num; /* num words */
-+};
-+
-+struct ocotp_devtype_data {
-+	u32 reg_off;
-+	char *name;
-+	u32 size;
-+	u32 num_entry;
-+	u32 flag;
-+	nvmem_reg_read_t reg_read;
-+	struct ocotp_map_entry entry[];
-+};
-+
-+struct imx_ocotp_priv {
-+	struct device *dev;
-+	void __iomem *base;
-+	struct nvmem_config config;
-+	struct mutex lock;
-+	const struct ocotp_devtype_data *data;
-+};
-+
-+static bool in_hole(void *context, u32 index)
-+{
-+	struct imx_ocotp_priv *priv = context;
-+	const struct ocotp_devtype_data *data = priv->data;
-+	u32 start, end;
-+	int i;
-+
-+	for (i = 0; i < data->num_entry; i++) {
-+		start = data->entry[i].start;
-+		end = data->entry[i].start + data->entry[i].num;
-+
-+		if (index >= start && index < end)
-+			return false;
-+	}
-+
-+	return true;
-+}
-+
-+static int imx_ocotp_fsb_read(void *context, unsigned int offset, void *val, size_t bytes)
-+{
-+	struct imx_ocotp_priv *priv = context;
-+	void __iomem *reg = priv->base + priv->data->reg_off;
-+	u32 count, index, num_bytes;
-+	u32 *buf;
-+	void *p;
-+	int i;
-+
-+	index = offset;
-+	num_bytes = round_up(bytes, 4);
-+	count = num_bytes >> 2;
-+
-+	if (count > ((priv->data->size >> 2) - index))
-+		count = (priv->data->size >> 2) - index;
-+
-+	p = kzalloc(num_bytes, GFP_KERNEL);
-+	if (!p)
-+		return -ENOMEM;
-+
-+	mutex_lock(&priv->lock);
-+
-+	buf = p;
-+
-+	for (i = index; i < (index + count); i++) {
-+		if (in_hole(context, i)) {
-+			*buf++ = 0;
-+			continue;
-+		}
-+
-+		*buf++ = readl_relaxed(reg + (i << 2));
-+	}
-+
-+	memcpy(val, (u8 *)p, bytes);
-+
-+	mutex_unlock(&priv->lock);
-+
-+	kfree(p);
-+
-+	return 0;
-+};
-+
-+static int imx_ele_ocotp_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct imx_ocotp_priv *priv;
-+	struct nvmem_device *nvmem;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->data = of_device_get_match_data(dev);
-+	if (priv->data && (priv->data->flag & FSB_FUSE)) {
-+		priv->base = devm_platform_ioremap_resource(pdev, 0);
-+		if (IS_ERR(priv->base))
-+			return PTR_ERR(priv->base);
-+	}
-+
-+	priv->config.dev = dev;
-+	priv->config.name = priv->data->name;
-+	priv->config.id = NVMEM_DEVID_AUTO;
-+	priv->config.owner = THIS_MODULE;
-+	priv->config.size = priv->data->size;
-+	priv->config.reg_read = priv->data->reg_read;
-+	priv->config.word_size = 4;
-+	priv->config.stride = 1;
-+	priv->config.priv = priv;
-+	priv->config.read_only = true;
-+	mutex_init(&priv->lock);
-+
-+	nvmem = devm_nvmem_register(dev, &priv->config);
-+	if (IS_ERR(nvmem))
-+		return PTR_ERR(nvmem);
-+
-+	return devm_of_platform_populate(dev);
-+}
-+
-+static const struct ocotp_devtype_data imx93_fsb_data = {
-+	.flag = FSB_FUSE,
-+	.reg_off = 0x8000,
-+	.name = "FSB_FUSE",
-+	.reg_read = imx_ocotp_fsb_read,
-+	.size = 2048,
-+	.num_entry = 2,
-+	.entry = {
-+		{ 0, 52 },
-+		{ 312, 200 },
-+	},
-+};
-+
-+static const struct ocotp_devtype_data imx93_ele_data = {
-+	.flag = ELE_FUSE,
-+	.name = "ELE_FUSE",
-+	.reg_read = NULL,
-+	.size = 2048,
-+	.num_entry = 4,
-+	.entry = {
-+		{ 63, 1 },
-+		{ 128, 16 },
-+		{ 182, 1 },
-+		{ 188, 1 },
-+	},
-+};
-+
-+static const struct of_device_id imx_ele_ocotp_dt_ids[] = {
-+	{ .compatible = "fsl,imx93-ocotp-fsb", .data = &imx93_fsb_data, },
-+	{ .compatible = "fsl,imx93-ocotp-ele", .data = &imx93_ele_data, },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, imx_ele_ocotp_dt_ids);
-+
-+static struct platform_driver imx_ele_ocotp_driver = {
-+	.driver = {
-+		.name = "imx_ele_ocotp",
-+		.of_match_table = imx_ele_ocotp_dt_ids,
-+	},
-+	.probe = imx_ele_ocotp_probe,
-+};
-+module_platform_driver(imx_ele_ocotp_driver);
-+
-+MODULE_DESCRIPTION("i.MX OCOTP/ELE driver");
-+MODULE_AUTHOR("Peng Fan <peng.fan@nxp.com>");
-+MODULE_LICENSE("GPL");
+ additionalProperties: true
+ 
+ examples:
 -- 
 2.37.1
 
