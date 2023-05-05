@@ -2,132 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 929C36F897D
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 21:26:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B04826F8986
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 21:30:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231676AbjEET0f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 15:26:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53854 "EHLO
+        id S232168AbjEET37 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 15:29:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232782AbjEET0e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 15:26:34 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DEA340FE
-        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 12:26:33 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4eff4ea8e39so2495364e87.1
-        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 12:26:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683314791; x=1685906791;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3iZJ9fGhjhbbNzeAFBlmfcQc+gjKnOZ5KfzSZflffhY=;
-        b=MVs6djWgRKnZBGYNxps9/00kkcIaVpTanY0bv6lV+9QuA7oAe+zMsz/Z9EBDcKc5jl
-         0bqAauyycDZjfZh1tkcrdMerW9qhOGSVeeYM4Fd6ZlZNFK6+cdVq0a+UL/rxP6xwo4IY
-         S63BnY3xe3LWVd49BKJaKOA7Urzl2zKsNijhneotxntoU1K40jMqh+zqtBv0Rn34ki/1
-         9n67nRds4PjfHaAPCTyIZkogoQtU23tkya5NLJWqZDASMq8Ln+Xy6lgTaVVwE94O93Cu
-         sNmWOMTBAaL1qlI0iEpgjS9M/pOeVNknYAGpwJfX7m7Uo3VrhkJzQYkn8sixe31WzEg0
-         zXeg==
+        with ESMTP id S233466AbjEET3y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 15:29:54 -0400
+Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F01D92D7C;
+        Fri,  5 May 2023 12:29:53 -0700 (PDT)
+Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-18f4a6d2822so19517872fac.1;
+        Fri, 05 May 2023 12:29:53 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683314791; x=1685906791;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1683314993; x=1685906993;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3iZJ9fGhjhbbNzeAFBlmfcQc+gjKnOZ5KfzSZflffhY=;
-        b=mHehIwOV9bEwwqtxtskgvfpV2YjKJYn6AnI2+LfZjFNgNMFK3VWsEx/WQAzEv06v2G
-         N0SjFWhka/CgETiyebqk31xqKyILuFqew4fbJyvtnstxPyY3LsHqJQruM6WzhWsIO9Sw
-         vxWew3Q2S2ba+23LePZdvZbrenjc29YpxxK8hmq9wMBbAs/stz16qi21yYvXdNG1207k
-         26u+0jvpi8bWvyqGjsVdtupvMAe3hZ69+IWcy1dfss3w5VR5sMQUg4PUBxqEqurd7pWc
-         mH8901R41/vX0g5LmILdfgSurqT05AHTHSgA35VONuDlmFxFK3MhPuXJ9AoKHAZMWOza
-         HNhA==
-X-Gm-Message-State: AC+VfDxmJqodOWRlwhDgw+/c7lDpCWzXQgvBDw+PgNJrT5TiEWVjRlCZ
-        CmoHZaWQvpTyiB4MEU7vLANAyQ==
-X-Google-Smtp-Source: ACHHUZ7BIu14SzjFhQTIytIPXgPw1F11LQCkHeaQR0KLUgWzQKpVnrM71jbROal0OQ7L/ot5xDESgg==
-X-Received: by 2002:a05:6512:3905:b0:4a4:68b9:1a14 with SMTP id a5-20020a056512390500b004a468b91a14mr743687lfu.60.1683314791074;
-        Fri, 05 May 2023 12:26:31 -0700 (PDT)
-Received: from [192.168.1.101] (abyl248.neoplus.adsl.tpnet.pl. [83.9.31.248])
-        by smtp.gmail.com with ESMTPSA id n6-20020a056512388600b004eaeb0a984csm387537lft.88.2023.05.05.12.26.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 May 2023 12:26:30 -0700 (PDT)
-Message-ID: <958fec66-2978-1d45-baad-c735fab85108@linaro.org>
-Date:   Fri, 5 May 2023 21:26:28 +0200
+        bh=4Pig4YACD/UgX2hQKgAOpS3srvDEjTrIf9fD2QloV1A=;
+        b=gM7Tkt419Aox11QLana/HdeXL2ho6mLdfFXhtwpp+lhGXS5RQD3ennXfwNjJq7ZJ0c
+         dCAdMLNsOH7mejX++eCXmWALCt83+uTptt5Dxfa6EzFY2pUbwxKjKCEogMN2WU655+NO
+         lNKMEr8+mlY5SsdmtJO0MRW/ci27p9Vr5g1fSFVUqzk0gEbWDWGfta2afZ61UYBPracv
+         ++0vtIhHl/IzfeTyGg1+m+j4zgOZ+qc1HGBDs/szYmrBZOk96KEApX9MMTZtyTGwATTF
+         oNdyNvZTzlPDtUtQXYc/ou+aWCtOD+SfMmt1yMYbEZ0ZFeNibiVvl6Lm0NE99B2qqxTZ
+         AoCg==
+X-Gm-Message-State: AC+VfDwbZNksxwJSsNUtgco2i7U39WXmb614wkT61yV/GnbETGRbZW+M
+        BNlYY3uKOs5zdYnQTzHF7g==
+X-Google-Smtp-Source: ACHHUZ5nfCS8okSJ27dYmJp75kHHJBypd/p/CQexWTC36kJPDRbZf0TRU3In6KTQ7voiBFFF78V4lg==
+X-Received: by 2002:a05:6830:18f0:b0:6a1:2c80:5a3f with SMTP id d16-20020a05683018f000b006a12c805a3fmr1355264otf.19.1683314993195;
+        Fri, 05 May 2023 12:29:53 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id v4-20020a9d69c4000000b006a7b28e052dsm1247718oto.40.2023.05.05.12.29.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 May 2023 12:29:52 -0700 (PDT)
+Received: (nullmailer pid 3426450 invoked by uid 1000);
+        Fri, 05 May 2023 19:29:51 -0000
+Date:   Fri, 5 May 2023 14:29:51 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [GIT PULL] Devicetree fixes for v6.4, part 1
+Message-ID: <20230505192951.GA3409270-robh@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH v10 8/9] arm64: dts: qcom: ipq9574: Add LDO regulator node
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Varadarajan Narayanan <quic_varada@quicinc.com>
-Cc:     agross@kernel.org, andersson@kernel.org, vkoul@kernel.org,
-        kishon@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
-        mturquette@baylibre.com, sboyd@kernel.org, quic_wcheng@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-clk@vger.kernel.org
-References: <cover.1683183860.git.quic_varada@quicinc.com>
- <8894bf2c44eaf4959c7a1966b66229e6cf5cda96.1683183860.git.quic_varada@quicinc.com>
- <CAA8EJppvj2nzqwdsC+Xct4cJg2-_yPpiGDELjHJG4HyAH3zGMA@mail.gmail.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <CAA8EJppvj2nzqwdsC+Xct4cJg2-_yPpiGDELjHJG4HyAH3zGMA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Linus,
 
+Please pull.
 
-On 5.05.2023 11:29, Dmitry Baryshkov wrote:
-> On Fri, 5 May 2023 at 11:23, Varadarajan Narayanan
-> <quic_varada@quicinc.com> wrote:
->>
->> Add LDO regulator node
-> 
-> As this LDO is provided by the PMIC, it would be nice to know why it
-> is modelled as an always-on regulator instead of the proper PMIC
-> regulator. Up to now we were doing this only for the outstanding power
-> rails like CX/MX or EBI.
-(which we then stopped registering as regulators and started
-to manage through rpm(h)pd drivers and the genpd framework)
+Note that I'll be out the next month, so you may see stuff from 
+Krzysztof if there's anything urgent.
 
-Konrad
-> 
->>
->> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
->> ---
->>  Changes in v10:
->>         - Add LDO regulator node
->> ---
->>  arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts | 7 +++++++
->>  1 file changed, 7 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
->> index bdc1434..1f5d14f 100644
->> --- a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
->> +++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
->> @@ -60,6 +60,13 @@
->>                         regulator-min-microvolt = <725000>;
->>                         regulator-max-microvolt = <1075000>;
->>                 };
->> +
->> +               mp5496_l2: l2 {
->> +                       regulator-min-microvolt = <1800000>;
->> +                       regulator-max-microvolt = <1800000>;
->> +                       regulator-boot-on;
->> +                       regulator-always-on;
->> +               };
->>         };
->>  };
->>
->> --
->> 2.7.4
->>
-> 
-> 
+Rob
+
+The following changes since commit 66ae0535167660e427f9fcadeee5d05646e2bb22:
+
+  dt-bindings: rng: Drop unneeded quotes (2023-04-20 16:30:03 -0500)
+
+are available in the Git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.4-1
+
+for you to fetch changes up to 6997f847cbb72082a2e9aa0fef8ebfcc3bd4ddc5:
+
+  MAINTAINERS: add Conor as a dt-bindings maintainer (2023-05-05 07:45:17 -0500)
+
+----------------------------------------------------------------
+Devicetree fixes for 6.4, part 1:
+
+- Add Conor Dooley as a DT binding maintainer
+
+- Swap the order of parsing /memreserve/ and /reserved-memory nodes so
+  that the /reserved-memory nodes which have more information are
+  handled first
+
+- Fix some property dependencies in riscv,pmu binding
+
+- Update maintainers entries on a couple of bindings
+
+----------------------------------------------------------------
+Chris Paterson (4):
+      dt-bindings: i2c: renesas,rzv2m: Change maintainer to Fabrizio Castro
+      dt-bindings: pinctrl: renesas,rzn1: Change maintainer to Fabrizio Castro
+      dt-bindings: pinctrl: renesas,rzv2m: Change maintainer to Fabrizio Castro
+      dt-bindings: clock: r9a06g032-sysctrl: Change maintainer to Fabrizio Castro
+
+Conor Dooley (2):
+      dt-bindings: perf: riscv,pmu: fix property dependencies
+      MAINTAINERS: add Conor as a dt-bindings maintainer
+
+Lucas Tanure (1):
+      of: fdt: Scan /memreserve/ last
+
+Michal Simek (1):
+      dt-bindings: xilinx: Remove Naga from memory and mtd bindings
+
+ .../devicetree/bindings/clock/renesas,r9a06g032-sysctrl.yaml         | 2 +-
+ Documentation/devicetree/bindings/i2c/renesas,rzv2m.yaml             | 2 +-
+ .../devicetree/bindings/memory-controllers/arm,pl35x-smc.yaml        | 1 -
+ Documentation/devicetree/bindings/mtd/arasan,nand-controller.yaml    | 2 +-
+ Documentation/devicetree/bindings/mtd/arm,pl353-nand-r2p1.yaml       | 1 -
+ Documentation/devicetree/bindings/perf/riscv,pmu.yaml                | 1 -
+ Documentation/devicetree/bindings/pinctrl/renesas,rzn1-pinctrl.yaml  | 2 +-
+ Documentation/devicetree/bindings/pinctrl/renesas,rzv2m-pinctrl.yaml | 2 +-
+ MAINTAINERS                                                          | 1 +
+ drivers/of/fdt.c                                                     | 5 +++--
+ 10 files changed, 9 insertions(+), 10 deletions(-)
