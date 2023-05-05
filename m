@@ -2,122 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B4ACA6F8892
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 20:21:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EF896F889C
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 20:32:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231644AbjEESVo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 14:21:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42428 "EHLO
+        id S233242AbjEEScK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 14:32:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230473AbjEESVn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 14:21:43 -0400
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2128.outbound.protection.outlook.com [40.107.114.128])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D8D711D90;
-        Fri,  5 May 2023 11:21:41 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=leG52Z9CcuEO1Qi5/ECbyDc/f5KxjSacvS9eYBP4mtSFKczEiL9/vRUY6x95UBkoJdGB9kF0qnjRVRRS9dnoifwZb5PMInxnkv7WpWHbRRuiLClsJNub7zc105TQ/ZyRWvFKIqaBJaPoRm5Xyv4scqLoqGnzlAO8iwmgLH+JNev+zOlayoboeX0Jjq4fwzU/lfGPK8VujzpaZcvOoRwN/sDpUuoOy//PuiHRvOej8mVl35/4o2nhOP0r0uiJMZLKLvrtcXMJ40oKuu4rJyz70yo2Gq5vvoANtH7dz109hLenZdzueH8q1nBkciWX9Hsi0DsEmUtRJ9VZxZBdR5ETPg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FE2JDiobppSCMI/I2nOGhg5+H/9oTQYS2fKSfM0jmRY=;
- b=R/kn295iCt/Cd4Wyeev5Ru14anx6vXKvnq5cToMTcfP1o0YiikQSqdkY8m5ta5pFhSxiTcz+QvXNwh6cFvmOfJsZGgW197N+PHIaFzafT+yOS1jmvlH+P95zJB82YaoJwnJZwH2gTllbh68pbSgJ+7QkSOHynXrFw7DzX2JcrMm/Ljhev9MqrPzOXt5rmCSIXf/rqDoZzvIvO19zZSHMbnRXo2Ly1ZGpJxbJ6AWGW4WCMGAtbh8XLfld8G/3Qbdx/zHykOD0zUMrAVtxvR4weGy5CGVt5MFF5ZLoPCdH9B68vAIAWL7E7TPP/8QmofZoUknt5p8WyZCg/lEb8Uh5Vg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FE2JDiobppSCMI/I2nOGhg5+H/9oTQYS2fKSfM0jmRY=;
- b=uBifouaZt2z5QSTDcuyACj3PTH6sNkVbEOWjKRKuEwiV5yBrS6EEonJe2iu7Bslw37lfd7IJQ39b7jQzSB2QSZMSWbgg+w95+05yzwGdYuFgWf24zS9CK0faaH637e84moHugLT8aRC/Oq7EnPQDRl1Q2qjpSlk3nvoR+YhKids=
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
- by TYVPR01MB11183.jpnprd01.prod.outlook.com (2603:1096:400:367::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.27; Fri, 5 May
- 2023 18:21:38 +0000
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::bd0a:a38d:b4d2:5d2]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::bd0a:a38d:b4d2:5d2%6]) with mapi id 15.20.6363.028; Fri, 5 May 2023
- 18:21:34 +0000
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Subject: RE: [PATCH v2 1/5] dt-bindings: mfd: Add Renesas RAA215300 PMIC
- bindings
-Thread-Topic: [PATCH v2 1/5] dt-bindings: mfd: Add Renesas RAA215300 PMIC
- bindings
-Thread-Index: AQHZf3aejB91VGFKJ0a6jUxtT8S7PK9L+iaAgAACpAA=
-Date:   Fri, 5 May 2023 18:21:34 +0000
-Message-ID: <OS0PR01MB59226713E010AF3F9030052B86729@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-References: <20230505172530.357455-1-biju.das.jz@bp.renesas.com>
- <20230505172530.357455-2-biju.das.jz@bp.renesas.com>
- <e2393abc-53a2-4216-cd85-1033560421ee@linaro.org>
-In-Reply-To: <e2393abc-53a2-4216-cd85-1033560421ee@linaro.org>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: OS0PR01MB5922:EE_|TYVPR01MB11183:EE_
-x-ms-office365-filtering-correlation-id: 6e4d8795-ad53-41c8-c210-08db4d958ef1
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: aQEDiMfnGHIYnkFjQx7hXTndU2mmBom2dbeTfKCquvrQW1qJtPqisoSpzRTUlAmgt7dJgG3cCjN87CFV8PvXQKg+0jkEnI61q3WzyuiHNustywaYbIh/iQ3AbpGLThUx1Sv6AFwuY5yQ1Fr52O5hP2C17I3NZ+Wv9qdQ9vuNteOah6F9bDcSW5KPHitBIS3TZ16rcuEnB8d1O7cWNxutRxpTju5D67c1ZzlKrnULpfsBko8SLll1Nb/eAuUUDU7qD1g4iJJdeBTkGRxhicAglxC/AZ1dOICCQwJzxr5kx/nK7+gONBCoXFStuWOmD6dUU+6znPCFfmPFcY4aQkpprovyJ4jLHsVv2o/pEHkkTm47m7yQGTNVVReaQcizL+rOWu7nuSutovAMylBPBXRpSc4P5Egh/ZUsgWSnoy2K3RkUEggckldSN9WDlV3Swmrwzgu2bN69BWvs2McubpAaljrxP61MzOjSAhYP084m6AmIiCu8PUJGPoRf5GFmqgKofGrZNNwLN6ddLcSHzdZ3sQd0w9k5a2oCs6e7kk9YLoztUoWkWpQ7R9mD5VncoYYynSVJ1+Sr19rMASfHaAMmaAKgVHXCRUGQWU11dCo3OBI=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(136003)(366004)(39860400002)(396003)(376002)(346002)(451199021)(86362001)(33656002)(7696005)(316002)(110136005)(54906003)(66556008)(66446008)(66476007)(64756008)(4326008)(66946007)(478600001)(966005)(76116006)(71200400001)(41300700001)(55016003)(52536014)(8676002)(5660300002)(8936002)(2906002)(38070700005)(122000001)(186003)(38100700002)(107886003)(53546011)(26005)(6506007)(83380400001)(9686003)(66899021);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Y78Q+FdI1/l1gmDCua9H4lPt+3t/ZB02SuB036X9msLSV6NRqTiBsFgI6h0a?=
- =?us-ascii?Q?ev6DEtHaoFq7/PDoUN5LeJyZ07mRdWZ5dtAjlRWCQ6BJdns/Va1iIdJD3gTs?=
- =?us-ascii?Q?AQi1cWR3eTJf3QFl7DOKPKHr57ma82ScCZpuNi6yuEXDN7Zin23YWaFGXTTU?=
- =?us-ascii?Q?5h0qp4IIbSBYPkgBKbuFsPucg8v6XFI9AAtB2WhvMdBZCeZd4pVeNHVyCuq8?=
- =?us-ascii?Q?Cy7PVuCJVNRVQmXtbvi8VwC1lxieKDpIvB91OuGgCHtENaPWaYLei48Q/my8?=
- =?us-ascii?Q?hlDsB8p66th2LMV1O6xrRfcajkzgezgUz45i7ovrzJQlcU8qd4Kf4tBxzyd5?=
- =?us-ascii?Q?BkGmL7aBdUHN+qEWq90umgjxrcgmReFp7oYbH0jvWQNpqccHdzLB5Sonl7j6?=
- =?us-ascii?Q?NlQB8fTJeyeRoAOWQINzkMnpqlTpG3e2B4FfRN9Ms0xnpgV/UuPULIRdOG8R?=
- =?us-ascii?Q?vVo99Nq/vOFELOt1p9FtKEvxQFBqkMTacJMu0gCauIvi8rDwb0F2wqFVY9Dz?=
- =?us-ascii?Q?GyzSLI0XHVfANsD1+0GtnjgDE8ZyMtvUCe9QoMFNnv7x8ehXoIp+mWYFBYnd?=
- =?us-ascii?Q?BYSe/2qOBP97CRn1Oo/45Kt20FQc/1PMxldOnNaJoYHLzSGE5o1FcnUImhJ7?=
- =?us-ascii?Q?0N3JY2rAeP895VdFZ7/pxLDOP/2mmurUyETwicmy3DBwiJCr2PHtWgg15fmY?=
- =?us-ascii?Q?172FipbHfU64mGuRyu/F8KCrVwUJsNJaKef7yFSkcMCw6ywWT+EyApRJkq1d?=
- =?us-ascii?Q?Jshhe+tybV1ybHg+/yG6oRvZxwvPQ7jkJKnUqcJgSlx3PfR4xCjU3xTt2V1S?=
- =?us-ascii?Q?fl/G7PA6STkFsU4vaT2y9kRxM2Y+DWoTSMjUHCR5sfL0LgLmaw63/vyTd9wm?=
- =?us-ascii?Q?yw129vWbCdtSMN/ELyMgs8sUPxUwAx4elXURf9VF4AgGxR1NbIZgK/PSdC6a?=
- =?us-ascii?Q?5thpV/0mngCTqgCu4pYsiaiJsMCeTPHWoiowY1HNPKoQ2Rw1EP2jdcdzRkg/?=
- =?us-ascii?Q?zdHQD0NWjV4kFO2tQ4hjYxNRKfd++fojfs/DBG7203eUYkYEDO4pIhwdUFQ2?=
- =?us-ascii?Q?FntbRiPW+1SfqsYhGL5SGm8Ru9lSvmvVXCJSXaVz1HC0fzwHjMNzvVlycGaB?=
- =?us-ascii?Q?Yv7ewB/V6MZXTNrtV+iM/Gq+gTCy8seKAtiIhQEKUEY3B+76mXM+isM+6o/v?=
- =?us-ascii?Q?gMaGmT4uOeXYNfTx8CnUB6VGbGiculVbOR4CQmQ8e308lY8b//HhA9+bK9S0?=
- =?us-ascii?Q?TSzcynrgQu+GZzjOwbNHX8j4Jm1PUNYerg3JhKRF7WYMtoafE7l5Y7xzRB4m?=
- =?us-ascii?Q?9XKBD6As1KP8LFJLaEfzADuZugOxJSmiDmY0hI5ESl8Cczds0RwQDHyFwoTf?=
- =?us-ascii?Q?h00xMFuRzfo7QiaEE75Ur1QHVTqyaYrX6L06npK8J837gMHup1PoByx/zz12?=
- =?us-ascii?Q?jOpemQZPl5IG+Si0MguHb09Y9IaZc75LUXq9+8Obl03HS8RacVF+CJHB2tMm?=
- =?us-ascii?Q?lBZotxW8QnzoIfPiNx3JmskYdUTJ0ZdQoM/T7rDjUDRNUtk/Rfzfzo2+9rb4?=
- =?us-ascii?Q?Z3xZKLqs2eHn0HWkN1/GWR0nRVN5Vy/6yCMPDIi8?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S233235AbjEEScE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 14:32:04 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 835371816B
+        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 11:32:01 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-4ec8133c59eso2452580e87.0
+        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 11:32:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683311520; x=1685903520;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=87CO6u55bY9fxbyxmat+MZTuGrG/SzxPjQee+cLjdW0=;
+        b=YRNyeENB2381AgPUSYv2YI3S4aGnh/3v18Pvwom/wQq9GpjdVsZcjbOISNefzw8d7W
+         zcEMvlk2uC+2eqdrwps9VzfdDpt83UpAlVPbaq/2k1VKOvRsvEiq28QxMep38wSeNhk2
+         RP5deirdKVdRIR82PauvjIq1Yi/+MV3Y9xb6hODm/qsWqCah45cqNGDl5CNZAWDOLWgG
+         /TLYz5anfmOM9uwa/9HrfwnHupV5Pd/gTC2E6rK6P4Ru0X0w8BNhi+SKDWqhk+1e9HWg
+         ouihsLE9+xzPwRYn2CUXOlVIY5f4nyWVEJyETfPoCp4s5oAY+H3+6AZVVP8C4ID9oQ8K
+         nnXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683311520; x=1685903520;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=87CO6u55bY9fxbyxmat+MZTuGrG/SzxPjQee+cLjdW0=;
+        b=kYJ6I9UOt2MUf2IYrjKKDePQ+VeV0Sk5HmmbySMhHbBHJ2nSxL+r090iKtLO42LFEM
+         M3wgFcDMFw7mM918q0bY3VRXKn6sIbt/Ecr44WRSpUDE+ZyjNoKFJNgnWC+gwtRXFnNr
+         bUwolsIo5boflei4ywulyd9ey1iaQi55JMXoJqSZRr1YhptYgomuk4vLvsL/8lheN4f7
+         fTigYb0AEaeo8Rm+3n6hhPlTVqyb5uOjatvfsKq5k+AvP2cweGnAEb4HsAbNt84fpe3T
+         OyfoQwtAgHH+FWatVvV3HLVW0Xf6Cu+De4/YspHnwc6r9b76GZnDlt2hm4gFeiTH2nNh
+         YQqQ==
+X-Gm-Message-State: AC+VfDxPKq2a/YXcyEkGqikoH4KVgsysIp5ucmFF7+A/nBxdOIla0ubn
+        dcqMMVmXhJHhFtQ2NRLtj1uW/w==
+X-Google-Smtp-Source: ACHHUZ6kERLpMlb/soxMCjnOefEKK4kWF0YnHfroc5CDuknCNqEVdtKmvTb0M2jno5Dbp6Y8i13Evw==
+X-Received: by 2002:ac2:52a4:0:b0:4ef:f3bf:93a6 with SMTP id r4-20020ac252a4000000b004eff3bf93a6mr634760lfm.51.1683311519682;
+        Fri, 05 May 2023 11:31:59 -0700 (PDT)
+Received: from [192.168.1.101] (abyl248.neoplus.adsl.tpnet.pl. [83.9.31.248])
+        by smtp.gmail.com with ESMTPSA id d26-20020ac241da000000b004eb44c2ab6bsm371008lfi.294.2023.05.05.11.31.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 05 May 2023 11:31:59 -0700 (PDT)
+Message-ID: <d4b2b826-27e8-a4e6-1323-6a091111d36f@linaro.org>
+Date:   Fri, 5 May 2023 20:31:57 +0200
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6e4d8795-ad53-41c8-c210-08db4d958ef1
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 May 2023 18:21:34.6109
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 4u8iGgk6KOx2bnJSX96xmVpNPNneLqKCWYtzhsWFH5kU8OaNpKsCEBF6pBwy4AuqJ4lQFfKcFMIIEHYVIX6aJN3UAq9+bE1xQYqw4WzbASs=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYVPR01MB11183
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH v4 3/5] usb: misc: eud: Add driver support for SM6115 /
+ SM4250
+Content-Language: en-US
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org, agross@kernel.org, andersson@kernel.org,
+        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        krzysztof.kozlowski@linaro.org
+References: <20230505064039.1630025-1-bhupesh.sharma@linaro.org>
+ <20230505064039.1630025-4-bhupesh.sharma@linaro.org>
+ <84dd0aa0-0ee3-fc85-449d-a9509d7bb765@linaro.org>
+ <CAH=2NtwbGCFzGNvgNdtTR2h0CWzKtA-_=XimKQECZmf+BrSYQw@mail.gmail.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <CAH=2NtwbGCFzGNvgNdtTR2h0CWzKtA-_=XimKQECZmf+BrSYQw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -125,127 +81,227 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof Kozlowski,
 
-Thanks for the feedback.
 
-> Subject: Re: [PATCH v2 1/5] dt-bindings: mfd: Add Renesas RAA215300 PMIC
-> bindings
->=20
-> On 05/05/2023 19:25, Biju Das wrote:
-> > Document Renesas RAA215300 PMIC bindings.
-> >
-> > The RAA215300 is a high Performance 9-Channel PMIC supporting DDR
-> > Memory, with Built-In Charger and RTC.
-> >
-> > It supports DDR3, DDR3L, DDR4, and LPDDR4 memory power requirements.
-> > The internally compensated regulators, built-in Real-Time Clock (RTC),
-> > 32kHz crystal oscillator, and coin cell battery charger provide a
-> > highly integrated, small footprint power solution ideal for
-> > System-On-Module (SOM) applications. A spread spectrum feature
-> > provides an ease-of-use solution for noise-sensitive audio or RF
-> > applications.
-> >
-> > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > ---
-> > RFC->v2:
-> >  * Updated reg property
-> >  * Added optional reg-names, interrupts and renesas,rtc-enabled
-> >    properties.
-> >  * Fixed the node name in the example
-> >  * Dropped the cross link property renesas,raa215300-rtc.
-> >  * Updated the example
-> > ---
-> >  .../bindings/mfd/renesas,raa215300.yaml       | 68 +++++++++++++++++++
-> >  1 file changed, 68 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/mfd/renesas,raa215300.yaml
-> >
-> > diff --git
-> > a/Documentation/devicetree/bindings/mfd/renesas,raa215300.yaml
-> > b/Documentation/devicetree/bindings/mfd/renesas,raa215300.yaml
-> > new file mode 100644
-> > index 000000000000..85cb4f0b5711
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/mfd/renesas,raa215300.yaml
-> > @@ -0,0 +1,68 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
-> > +---
-> > +$id:
-> > +
-> > +title: Renesas RAA215300 Power Management Integrated Circuit (PMIC)
-> > +
-> > +maintainers:
-> > +  - Biju Das <biju.das.jz@bp.renesas.com>
-> > +
-> > +description: |
-> > +  The RAA215300 is a high-performance, low-cost 9-channel PMIC
-> > +designed for
-> > +  32-bit and 64-bit MCU and MPU applications. It supports DDR3,
-> > +DDR3L, DDR4,
-> > +  and LPDDR4 memory power requirements. The internally compensated
-> > +regulators,
-> > +  built-in Real-Time Clock (RTC), 32kHz crystal oscillator, and coin
-> > +cell
-> > +  battery charger provide a highly integrated, small footprint power
-> > +solution
-> > +  ideal for System-On-Module (SOM) applications. A spread spectrum
-> > +feature
-> > +  provides an ease-of-use solution for noise-sensitive audio or RF
-> applications.
-> > +
-> > +  This device exposes two devices via I2C. One for the integrated RTC
-> > + IP, and  one for everything else.
-> > +
-> > +  Link to datasheet:
-> > +
-> > + https://www.renesas.com/in/en/products/power-power-management/multi-
-> > + channel-power-management-ics-pmics/ssdsoc-power-management-ics-pmic-
-> > + and-pmus/raa215300-high-performance-9-channel-pmic-supporting-ddr-me
-> > + mory-built-charger-and-rtc
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - renesas,raa215300
-> > +
-> > +  reg:
-> > +    minItems: 1
-> > +    maxItems: 2
-> > +
-> > +  reg-names:
-> > +    items:
-> > +      - const: main
-> > +      - const: rtc
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  renesas,rtc-enabled:
-> > +    description:
-> > +      To indicate RTC is enabled on the PMIC.
->=20
-> "Enabled" by who or what? This looks like some policy, so Devicetree is n=
-ot
-> a place for it.
+On 5.05.2023 17:50, Bhupesh Sharma wrote:
+> On Fri, 5 May 2023 at 16:35, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>>
+>> On 5.05.2023 08:40, Bhupesh Sharma wrote:
+>>> Add SM6115 / SM4250 SoC EUD support in qcom_eud driver.
+>>>
+>>> On some SoCs (like the SM6115 / SM4250 SoC), the mode manager
+>>> needs to be accessed only via the secure world (through 'scm'
+>>> calls).
+>>>
+>>> Also, the enable bit inside 'tcsr_check_reg' needs to be set
+>>> first to set the eud in 'enable' mode on these SoCs.
+>>>
+>>> Since this difference comes from how the firmware is configured, so
+>>> the driver now relies on the presence of an extra boolean DT property
+>>> to identify if secure access is needed.
+>>>
+>>> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+>>> ---
+>>>  drivers/usb/misc/Kconfig    |  1 +
+>>>  drivers/usb/misc/qcom_eud.c | 74 +++++++++++++++++++++++++++++++++----
+>>>  2 files changed, 68 insertions(+), 7 deletions(-)
+>>>
+>>> diff --git a/drivers/usb/misc/Kconfig b/drivers/usb/misc/Kconfig
+>>> index 99b15b77dfd5..fe1b5fec1dfc 100644
+>>> --- a/drivers/usb/misc/Kconfig
+>>> +++ b/drivers/usb/misc/Kconfig
+>>> @@ -147,6 +147,7 @@ config USB_APPLEDISPLAY
+>>>  config USB_QCOM_EUD
+>>>       tristate "QCOM Embedded USB Debugger(EUD) Driver"
+>>>       depends on ARCH_QCOM || COMPILE_TEST
+>>> +     select QCOM_SCM
+>>>       select USB_ROLE_SWITCH
+>>>       help
+>>>         This module enables support for Qualcomm Technologies, Inc.
+>>> diff --git a/drivers/usb/misc/qcom_eud.c b/drivers/usb/misc/qcom_eud.c
+>>> index b7f13df00764..18a2dee3b4b9 100644
+>>> --- a/drivers/usb/misc/qcom_eud.c
+>>> +++ b/drivers/usb/misc/qcom_eud.c
+>>> @@ -5,12 +5,14 @@
+>>>
+>>>  #include <linux/bitops.h>
+>>>  #include <linux/err.h>
+>>> +#include <linux/firmware/qcom/qcom_scm.h>
+>>>  #include <linux/interrupt.h>
+>>>  #include <linux/io.h>
+>>>  #include <linux/iopoll.h>
+>>>  #include <linux/kernel.h>
+>>>  #include <linux/module.h>
+>>>  #include <linux/of.h>
+>>> +#include <linux/of_device.h>
+>>>  #include <linux/platform_device.h>
+>>>  #include <linux/slab.h>
+>>>  #include <linux/sysfs.h>
+>>> @@ -22,23 +24,35 @@
+>>>  #define EUD_REG_VBUS_INT_CLR 0x0080
+>>>  #define EUD_REG_CSR_EUD_EN   0x1014
+>>>  #define EUD_REG_SW_ATTACH_DET        0x1018
+>>> -#define EUD_REG_EUD_EN2        0x0000
+>>> +#define EUD_REG_EUD_EN2              0x0000
+>>>
+>>>  #define EUD_ENABLE           BIT(0)
+>>> -#define EUD_INT_PET_EUD      BIT(0)
+>>> +#define EUD_INT_PET_EUD              BIT(0)
+>>>  #define EUD_INT_VBUS         BIT(2)
+>>>  #define EUD_INT_SAFE_MODE    BIT(4)
+>>>  #define EUD_INT_ALL          (EUD_INT_VBUS | EUD_INT_SAFE_MODE)
+>>>
+>>> +#define EUD_EN2_SECURE_EN    BIT(0)
+>>> +#define EUD_EN2_NONSECURE_EN (1)
+>> BIT(0) == 1, is that actually a separate register or does it just
+>> reflect whether scm_writel is used?
+>>
+>> If the latter, perhaps it'd be okay to just call it EUD_EN2_EN or
+>> something along those lines? Isn't that perhaps what the docs call it?
+> 
+> Ok, let's name it as EUD_EN2_ENABLE then.
+> 
+>>> +#define EUD_EN2_DISABLE              (0)
+>>> +#define TCSR_CHECK_EN                BIT(0)
+>>> +
+>>> +struct eud_soc_cfg {
+>>> +     u32 tcsr_check_offset;
+>>> +};
+>>> +
+>>>  struct eud_chip {
+>>>       struct device                   *dev;
+>>>       struct usb_role_switch          *role_sw;
+>>> +     const struct eud_soc_cfg        *eud_cfg;
+>>>       void __iomem                    *base;
+>>>       void __iomem                    *mode_mgr;
+>>>       unsigned int                    int_status;
+>>>       int                             irq;
+>>>       bool                            enabled;
+>>>       bool                            usb_attached;
+>>> +     bool                            secure_mode_enable;
+>> Since it's only used in the probe function now, we can get rid
+>> of it!
+> 
+> Ok.
+> 
+>>> +     phys_addr_t                     secure_mode_mgr;
+>>>  };
+>>>
+>>>  static int enable_eud(struct eud_chip *priv)
+>>> @@ -46,7 +60,11 @@ static int enable_eud(struct eud_chip *priv)
+>>>       writel(EUD_ENABLE, priv->base + EUD_REG_CSR_EUD_EN);
+>>>       writel(EUD_INT_VBUS | EUD_INT_SAFE_MODE,
+>>>                       priv->base + EUD_REG_INT1_EN_MASK);
+>>> -     writel(1, priv->mode_mgr + EUD_REG_EUD_EN2);
+>>> +
+>>> +     if (priv->secure_mode_mgr)
+>>> +             qcom_scm_io_writel(priv->secure_mode_mgr + EUD_REG_EUD_EN2, EUD_EN2_SECURE_EN);
+>>> +     else
+>>> +             writel(EUD_EN2_NONSECURE_EN, priv->mode_mgr + EUD_REG_EUD_EN2);
+>>>
+>>>       return usb_role_switch_set_role(priv->role_sw, USB_ROLE_DEVICE);
+>>>  }
+>>> @@ -54,7 +72,11 @@ static int enable_eud(struct eud_chip *priv)
+>>>  static void disable_eud(struct eud_chip *priv)
+>>>  {
+>>>       writel(0, priv->base + EUD_REG_CSR_EUD_EN);
+>>> -     writel(0, priv->mode_mgr + EUD_REG_EUD_EN2);
+>>> +
+>>> +     if (priv->secure_mode_mgr)
+>>> +             qcom_scm_io_writel(priv->secure_mode_mgr + EUD_REG_EUD_EN2, EUD_EN2_DISABLE);
+>>> +     else
+>>> +             writel(EUD_EN2_DISABLE, priv->mode_mgr + EUD_REG_EUD_EN2);
+>>>  }
+>>>
+>>>  static ssize_t enable_show(struct device *dev,
+>>> @@ -178,6 +200,8 @@ static void eud_role_switch_release(void *data)
+>>>  static int eud_probe(struct platform_device *pdev)
+>>>  {
+>>>       struct eud_chip *chip;
+>>> +     struct resource *res;
+>>> +     phys_addr_t tcsr_base, tcsr_check;
+>>>       int ret;
+>>>
+>>>       chip = devm_kzalloc(&pdev->dev, sizeof(*chip), GFP_KERNEL);
+>>> @@ -200,9 +224,40 @@ static int eud_probe(struct platform_device *pdev)
+>>>       if (IS_ERR(chip->base))
+>>>               return PTR_ERR(chip->base);
+>>>
+>>> -     chip->mode_mgr = devm_platform_ioremap_resource(pdev, 1);
+>>> -     if (IS_ERR(chip->mode_mgr))
+>>> -             return PTR_ERR(chip->mode_mgr);
+>>> +     chip->secure_mode_enable = of_property_read_bool(chip->dev->of_node,
+>>> +                                             "qcom,secure-mode-enable");
+>>> +     /*
+>>> +      * EUD block on a few Qualcomm SoCs need secure register access.
+>>> +      * Check for the same.
+>>> +      */
+>>> +     if (chip->secure_mode_enable) {
+>> if (of_property_read_bool...)
+> 
+> Sure.
+> 
+>>> +             res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
+>>> +             if (!res)
+>>> +                     return dev_err_probe(chip->dev, -ENODEV,
+>>> +                                          "failed to get secure_mode_mgr reg base\n");
+>>> +
+>>> +             chip->secure_mode_mgr = res->start;
+>>> +     } else {
+>>> +             chip->mode_mgr = devm_platform_ioremap_resource(pdev, 1);
+>>> +             if (IS_ERR(chip->mode_mgr))
+>>> +                     return PTR_ERR(chip->mode_mgr);
+>>> +     }
+>>> +
+>>> +     /* Check for any SoC specific config data */
+>>> +     chip->eud_cfg = of_device_get_match_data(&pdev->dev);
+>>> +     if (chip->eud_cfg) {
+>>> +             res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "tcsr-base");
+>>> +             if (!res)
+>>> +                     return dev_err_probe(chip->dev, -ENODEV,
+>>> +                                          "failed to get tcsr reg base\n");
+>>> +
+>>> +             tcsr_base = res->start;
+>> This variable does not seem very useful, we can get rid of it.
+> 
+> Ok.
+> 
+>>> +             tcsr_check = tcsr_base + chip->eud_cfg->tcsr_check_offset;
+>>> +
+>>> +             ret = qcom_scm_io_writel(tcsr_check, TCSR_CHECK_EN);
+>>> +             if (ret)
+>>> +                     return dev_err_probe(chip->dev, ret, "failed to write tcsr check reg\n");
+>>> +     }
+>>>
+>>>       chip->irq = platform_get_irq(pdev, 0);
+>>>       ret = devm_request_threaded_irq(&pdev->dev, chip->irq, handle_eud_irq,
+>>> @@ -230,8 +285,13 @@ static int eud_remove(struct platform_device *pdev)
+>>>       return 0;
+>>>  }
+>>>
+>>> +static const struct eud_soc_cfg sm6115_eud_cfg = {
+>> This could be marked __initconst, but I'm not sure if future
+>> additions won't need to be accessed after the driver has already
+>> gone through its probe function.. Your call!
+> 
+> Like Dmitry also mentioned, I have my apprehensions as well marking this
+> as __initconst, so let's not do that.
+Right, thanks Dmitry for pointing this out, I didn't think of usecases
+where a driver can be removed..
 
-It is based on system design. System designers may chose not to populate bu=
-ilt-in RTC by
-grounding XIN and XOUT pins.
-
-Do we need to add this info in description to make it clear??
-
-Cheers,
-Biju
-
->=20
-> > +    type: boolean
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
->=20
->=20
-> Best regards,
-> Krzysztof
-
+Konrad
+> 
+> I will wait for a few more comments and then will send a new version across.
+> 
+> Thanks,
+> Bhupesh
+> 
+>>> +     .tcsr_check_offset = 0x25018,
+>>> +};
+>>> +
+>>>  static const struct of_device_id eud_dt_match[] = {
+>>>       { .compatible = "qcom,sc7280-eud" },
+>>> +     { .compatible = "qcom,sm6115-eud", .data = &sm6115_eud_cfg },
+>>>       { }
+>>>  };
+>>>  MODULE_DEVICE_TABLE(of, eud_dt_match);
