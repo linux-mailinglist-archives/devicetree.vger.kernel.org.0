@@ -2,60 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB4FD6F869E
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 18:24:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA9A66F86A1
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 18:24:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230163AbjEEQYY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 12:24:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55600 "EHLO
+        id S232713AbjEEQY5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 12:24:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231730AbjEEQYX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 12:24:23 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D21E1814D
-        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 09:24:21 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-965fc25f009so55424266b.3
-        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 09:24:21 -0700 (PDT)
+        with ESMTP id S232805AbjEEQYz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 12:24:55 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D4741891F
+        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 09:24:54 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-50bceaf07b8so3800649a12.3
+        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 09:24:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683303859; x=1685895859;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1683303893; x=1685895893;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=dOsC+7mQ12H8XAMAhE003bPySwrUQw/0QUxgIIw8mBQ=;
-        b=EFL1cEjgNv1aConkpEiyPVcWGo1k8EG/5+VARBE/GofKOULWCTltGLl2HRGRRJd5Nt
-         0dfvvn5O6whQhX2bdMnEqawUNWL4/172KqTZuheMFMc5vQynV7OmGFUSVH/PaD3YCNJL
-         EVDrgMQx99BdvoBelTl9aJwpiwB+lDqSijIctxgX2kf1XCKAc0GaY23J4lgT4uvuNQbH
-         kLZXC1hB9ctSGxtf2F91MhAErahxcu18ZaJ/81jmALFF1mZw4BtUk9pV0fecHo4xb0x2
-         reXq3KcZdT1BPirUGrUeg4351OL2t0d/qkeRxrkCOfHXbVIQukrRFxaCikPdzU6T1/d8
-         l+Eg==
+        bh=24rov95Pw/D/6yd2vrKv3pCCwoezwm9EvOcBB2jFiWI=;
+        b=Y8bPuB6jeBeeJ0ZIc6dQeJojVRVIMY3urzuCtW1P8SwCbZ/BNYWjCpuo8vvngV1sWP
+         87UA567X3w8JGdtb2MGJYpTvCXqII6Eb0nseGy7z5Mi3WEjVGMP7VmNNhH/EAJK3Fuk0
+         vz5EZ1ycPRC148kT4SdHZ634sGyxb3HTvG26YIoPyUSUJeFRKpq9lyjv6jjSwAqObP9U
+         e1aavA1wD3D46RfgY3Uy7sDcOt4uXeNAePGcEBSZbTKIx9eLVXHDjtQYCrKGwd5buMVO
+         ip9g6NhbSoXOW8RK+zb4w8HqVJ94Qa1hUFWomSx5T3hzRszjVl1vx2hrnI3mcdOm0pj5
+         gXHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683303859; x=1685895859;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1683303893; x=1685895893;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dOsC+7mQ12H8XAMAhE003bPySwrUQw/0QUxgIIw8mBQ=;
-        b=PF6W+C8+2oEttrGii3YG/SecRJ078e+Kder73m6ERTuvb7k2HdtLAr3x0Gal6l4j9+
-         lsjr9bF7wSxKGzvD63B2qi6AbPOfh4QluW3sm2NDfn+xyhUpOls1HlLtA6RUQLrtZXsR
-         cEMWXPZeOwxhXSDpNM330wIEPkb3pQtF2VkFEBLOvcj03vlzqgSuoijZPFRFjZ79PC16
-         fObQCZIjvlrVeeYnzsNE/KIzQn4p/frC/JobR2R/oF0P5QEPNjn7I5DfA9cD5QUk5LLW
-         96Tj3ZN0ZCpfOdKOBfufXMSUTy0PJxs8SjbRhiB8vAAPVF5Ce/W5LaohjdUDWYEq96Rr
-         n94w==
-X-Gm-Message-State: AC+VfDwfgyMbCW4/y5DxcRUPHKL9IkUKu7MMS/G8KYzm4FCrgOElZOPW
-        pyYBjQ9x20M7Xjcb+/uXwf8Ugg==
-X-Google-Smtp-Source: ACHHUZ59msLJ2mB6dF6aa/iMQi768x0mvN63nnwgqTzVM2vQRUMx/o8H4Yxd7vLs+bi9Cgd2ybWu8A==
-X-Received: by 2002:a17:906:4787:b0:94a:658e:1180 with SMTP id cw7-20020a170906478700b0094a658e1180mr2061781ejc.26.1683303859473;
-        Fri, 05 May 2023 09:24:19 -0700 (PDT)
+        bh=24rov95Pw/D/6yd2vrKv3pCCwoezwm9EvOcBB2jFiWI=;
+        b=YBE7SlinPXoxMlCaVk4b1tbDRnPo2gsSP0F2+WYEsVdhyAwn89A7MKMMK1GQP9jljy
+         vUs6fxNm23WD3L0kTY40Q/NrxBZpd15IEqU3lk0mMk2ZZa++gDXVF8ErtdSXq3oOk8wY
+         tiWDr5jj4p49NOr77qxQBQ1cX3osLvcxBQMpsjn9GHhv4i8nEu5ZDZl8zZnXPmLw81AS
+         FiiwD+zNioiXO04SDp4FWltB5b03t3R2ekpy6VebgEpmzVXbL53zE+pF9Ncwp2VVt2YF
+         o0NrJ4E4NHrjD2YLupwkXZ+4mqr5J9TOYINgZwOLGU1/hFHyae7uShX79HXNB6s/5442
+         UBeQ==
+X-Gm-Message-State: AC+VfDxJgcGZB5Cyy4G3g1wb0R7lGgqmCKRV67qhR2HwzdzbF516p9pv
+        5GhF6DH4vZ0KP+82Xr1eAtx9ww==
+X-Google-Smtp-Source: ACHHUZ7zWKBsjditqoR/jFKEfhg/MLDNa158jOKYXrrHb0DqUjCOFB2dSVmIiXybd/Aucda7GXJdkA==
+X-Received: by 2002:a17:907:9405:b0:93b:5f2:36c with SMTP id dk5-20020a170907940500b0093b05f2036cmr1902294ejc.61.1683303893026;
+        Fri, 05 May 2023 09:24:53 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:52e:24ce:bbc1:127d? ([2a02:810d:15c0:828:52e:24ce:bbc1:127d])
-        by smtp.gmail.com with ESMTPSA id u3-20020aa7db83000000b0050c04bcc3b2sm1914373edt.64.2023.05.05.09.24.17
+        by smtp.gmail.com with ESMTPSA id qn10-20020a170907210a00b0094f432f2429sm1130455ejb.109.2023.05.05.09.24.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 May 2023 09:24:18 -0700 (PDT)
-Message-ID: <fe326d38-ee52-b0a4-21d8-f00f22449417@linaro.org>
-Date:   Fri, 5 May 2023 18:24:11 +0200
+        Fri, 05 May 2023 09:24:52 -0700 (PDT)
+Message-ID: <1374d7ea-94a3-60b0-f9db-7528aae22a34@linaro.org>
+Date:   Fri, 5 May 2023 18:24:50 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
 Subject: Re: [PATCH v4 2/5] dt-bindings: soc: qcom: eud: Add SM6115 / SM4250
  support
+Content-Language: en-US
 To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-usb@vger.kernel.org
@@ -64,7 +65,6 @@ Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
         robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
 References: <20230505064039.1630025-1-bhupesh.sharma@linaro.org>
  <20230505064039.1630025-3-bhupesh.sharma@linaro.org>
-Content-Language: en-US
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 In-Reply-To: <20230505064039.1630025-3-bhupesh.sharma@linaro.org>
 Content-Type: text/plain; charset=UTF-8
@@ -91,49 +91,8 @@ On 05/05/2023 08:40, Bhupesh Sharma wrote:
 > Also for these SoCs, introduce a new bool property
 > 'qcom,secure-mode-enable', which indicates that the mode manager
 > needs to be accessed only via the secure world.
-> 
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> ---
->  .../devicetree/bindings/soc/qcom/qcom,eud.yaml   | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,eud.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,eud.yaml
-> index f2c5ec7e6437..3b92cdf4e306 100644
-> --- a/Documentation/devicetree/bindings/soc/qcom/qcom,eud.yaml
-> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,eud.yaml
-> @@ -18,17 +18,33 @@ properties:
->      items:
->        - enum:
->            - qcom,sc7280-eud
-> +          - qcom,sm6115-eud
->        - const: qcom,eud
->  
->    reg:
-> +    minItems: 2
->      items:
->        - description: EUD Base Register Region
->        - description: EUD Mode Manager Register
-> +      - description: TCSR Base Register Region
-> +
-> +  reg-names:
-> +    minItems: 2
-> +    items:
-> +      - const: eud-base
-> +      - const: eud-mode-mgr
-> +      - const: tcsr-base
->  
->    interrupts:
->      description: EUD interrupt
->      maxItems: 1
->  
-> +  qcom,secure-mode-enable:
-> +    type: boolean
-> +    description:
-> +      Indicates that the mode manager needs to be accessed only via the secure
-> +      world (through 'scm' calls).
 
-I understood tcsr-base aplies only to SM6115, so this should be further
-constrained in allOf:if:then:.
+Cannot it be implied by compatible?
 
 Best regards,
 Krzysztof
