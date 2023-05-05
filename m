@@ -2,76 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 245FF6F87FB
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 19:49:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16B276F8801
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 19:52:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233214AbjEERtj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 13:49:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45710 "EHLO
+        id S233153AbjEERwD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 13:52:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233213AbjEERtS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 13:49:18 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDA271A48E
-        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 10:48:48 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-50bcb00a4c2so3293829a12.1
-        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 10:48:48 -0700 (PDT)
+        with ESMTP id S232539AbjEERwC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 13:52:02 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6870018DFC
+        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 10:51:18 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-50bd37ca954so29529509a12.0
+        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 10:51:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683308870; x=1685900870;
+        d=linaro.org; s=google; t=1683309032; x=1685901032;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=2Wzob2dHF0KkWSNjIRIz2tGtcAjsnWSRmcTEAPISVmA=;
-        b=q2zdx9ulSlYse92yCHhBae4x+PK8Hejlf0LWzBFknr8Ldbpw26zX0dEXRNVhTFWOpL
-         I+OYMYWFWmsfZASQ2o914lqreCQAJRwtNLih4PS8aLD79zddeWZ2I9xEsnA9oka3KG1h
-         v4JRqgPLBFqol7AQUMRtucTbS+d/c9krj6adlDrZdOHTg/RCngTF20O1voqZT0hLhcHi
-         NczlLjg9WGuUHqBizZDE9FSAfC+q9yW4850ENwU1Mjc06C3gWGCbMXOxBoLO1VDpoUTA
-         UDhQNzsjABWRNEjh9uAmDQgudkphJXCSEm4DxySZebBz6hc0qABhJ8CIjJwAg/h/83T4
-         kUiA==
+        bh=uNAjtGkZTnyvPXFM1hkH3rcTHl1qTgleJ0X8KEi0be8=;
+        b=crVV77F4duLe0194uuxbJ39uu++eszWvoJx05GoKD+iHRs6bG65rcDWXFqM6Tz+Ppw
+         EJN4Xp2vCYvQaXZAy6S9bdPHbvPSiGgRk5Bzfo028gUL/TQdQJe3cb43NDNZ+Jf3eq9b
+         NcmJ8BuPTy+ZVFIqG0HoCa49tlW+vp8P6LQvG5sImxdEtUdopSEJvkeBzypGw4yc40x+
+         OseD/p1NPVkzI/vnE1xfBR/zQFsm8HHvRqSRsSipcDlAUMlEDNNvBI/eobaPT8pRCpeq
+         JXgNQ8a/BfcM+ksfp94gfbSzs8XNJggvMl+AJKLnGOZpR9h3EdiU6ek4qy3uex4Lg0yT
+         wb6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683308870; x=1685900870;
+        d=1e100.net; s=20221208; t=1683309032; x=1685901032;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2Wzob2dHF0KkWSNjIRIz2tGtcAjsnWSRmcTEAPISVmA=;
-        b=YLMyOq3s6LmXs27sHeGryBmPTjA7bXFzhBQHB+Ola/LIo8DdIVcBwLEuDtekkPHJpm
-         nqatAg7thyS+j/QFagcE50z5SHQ3l300vg0uNRs0iT8ghThIfN1ASvDahSwGsehgNVPR
-         KhwqePvLTFNCKfYRHtCD544I8tPr/p6KuQHFXOoHj/ALnkMgMjEW/ySxLZx+O9Yw2ZoD
-         F9rNU0xnbR5v+wM73UV7OxLyq7pxdAT4qJPbyvq+qoKhK/NjAo08LdKJWh97wjrUb6YS
-         eZ/z6UJz+OhskuuQG1QTNh7Qg+T38qLQqYDGao8SpDFLZXqaV+QGMcptuAwMRdjavAyW
-         OQlg==
-X-Gm-Message-State: AC+VfDwXJhIk6C2YjPyqfQSLHAI79n7SpDJ7n04h8kQ2hgyRINDZdBaL
-        r9vY56mgOEsszr68V9IKiZJ5RA==
-X-Google-Smtp-Source: ACHHUZ6uPKGDcp2DmGLEX3+8Z1M0GITzeM9xO1FejUN7zVZHHMNHwEoHNK54Lh5bglLls5QlQYdr1w==
-X-Received: by 2002:a17:907:9415:b0:94f:395b:df1b with SMTP id dk21-20020a170907941500b0094f395bdf1bmr1754098ejc.21.1683308870218;
-        Fri, 05 May 2023 10:47:50 -0700 (PDT)
+        bh=uNAjtGkZTnyvPXFM1hkH3rcTHl1qTgleJ0X8KEi0be8=;
+        b=AKVaSP/K1dMoXYOw39hlzBu8QvUlqz6qrdvCGvkAjxCCqXQVoBlWB6zuxHs4D8fNgK
+         81HMb2KjdRiJZH5vmmr7+uC8L6iJXcC2MpAmqq6iAEAdK7BmZ2bZzmh2QCkdYktSuoGv
+         kIKws8sgyoct9w3KCFy9xX28EvSo9MGXRne+Pibs3euvrYSSV4UsRzwY5qot9LNIvJtP
+         FgszqlZtPCSTqEWLnEH7nE3BIhzBaSCxboukInQrgoBWPC7MmnYVS7PcQjrz/karN55M
+         eOjtIjvIcJ3FSpnnS57/BGbFo2jQR9+GlqBfFpUwIK++QR9eOc4OOHUvwCImu5qBPp2P
+         aPAA==
+X-Gm-Message-State: AC+VfDxrUMUKY4E91fpI2u1qDmEqQHRqLqTNEh4QhwVHRSrj5ngFnGxL
+        KQJnHLf+2DfjOcJJbLCOR4AWXg==
+X-Google-Smtp-Source: ACHHUZ4aXnYE6LxyyVrhPHgqL43SWNyHVz4GZAj8nJEgzI/1iOUrsrsRv6RWp4wzWl0RJ/YLjsba2w==
+X-Received: by 2002:aa7:d29a:0:b0:504:81d4:118d with SMTP id w26-20020aa7d29a000000b0050481d4118dmr2297086edq.3.1683309032559;
+        Fri, 05 May 2023 10:50:32 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:52e:24ce:bbc1:127d? ([2a02:810d:15c0:828:52e:24ce:bbc1:127d])
-        by smtp.gmail.com with ESMTPSA id v12-20020a170906858c00b0095334355a34sm1221569ejx.96.2023.05.05.10.47.48
+        by smtp.gmail.com with ESMTPSA id n5-20020aa7c785000000b0050d89daaa70sm5885eds.2.2023.05.05.10.50.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 May 2023 10:47:49 -0700 (PDT)
-Message-ID: <fe8c1063-b8d4-1707-5434-89b3d1edf1a8@linaro.org>
-Date:   Fri, 5 May 2023 19:47:47 +0200
+        Fri, 05 May 2023 10:50:31 -0700 (PDT)
+Message-ID: <db835ac3-cf3e-8dd3-62b3-ffca9a7f6c03@linaro.org>
+Date:   Fri, 5 May 2023 19:50:30 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
-Subject: Re: [PATCH v2 3/4] dt-bindings: mmc: fsl-imx-esdhc: remove property
- "fsl,wp-controller"
+Subject: Re: [PATCH 1/3] media: dt-bindings: media: camss: qcom,msm8996-camss:
+ Add CAMSS power domain and power-domain-names
 Content-Language: en-US
-To:     haibo.chen@nxp.com, adrian.hunter@intel.com,
-        ulf.hansson@linaro.org, linux-mmc@vger.kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de
-Cc:     linux-imx@nxp.com, kernel@pengutronix.de, festevam@gmail.com,
-        cniedermaier@dh-electronics.com, devicetree@vger.kernel.org,
-        kernel@dh-electronics.com
-References: <20230505101246.289278-1-haibo.chen@nxp.com>
+To:     Yassine Oudjana <yassine.oudjana@gmail.com>,
+        Robert Foss <rfoss@kernel.org>,
+        Todor Tomov <todor.too@gmail.com>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Hans Verkuil <hansverk@cisco.com>
+Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230503072543.4837-1-y.oudjana@protonmail.com>
+ <20230503072543.4837-2-y.oudjana@protonmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230505101246.289278-1-haibo.chen@nxp.com>
+In-Reply-To: <20230503072543.4837-2-y.oudjana@protonmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,19 +88,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/05/2023 12:12, haibo.chen@nxp.com wrote:
-> From: Haibo Chen <haibo.chen@nxp.com>
+On 03/05/2023 09:25, Yassine Oudjana wrote:
+> From: Yassine Oudjana <y.oudjana@protonmail.com>
 > 
-> Driver do not use this property, so remove it here.
+> Add the CAMSS power domain which is needed for the proper operation of CAMSS, and add
+> power-domain-names to ease fetching it as well as the other power domains.
 
-That's not true, it uses. I got only patch #3 and nothing else.
+Please wrap commit message according to Linux coding style / submission
+process (neither too early nor over the limit):
+https://elixir.bootlin.com/linux/v5.18-rc4/source/Documentation/process/submitting-patches.rst#L586
 
-> 
-> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
-> ---
->  Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml | 6 ------
->  1 file changed, 6 deletions(-)
+Same for all other patches.
 
+
+Subject: you have double media, drop the latter one.
+
+Your subject is anyway too long, so shorten it. camss: is also a
+redundant prefix.
 
 Best regards,
 Krzysztof
