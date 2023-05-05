@@ -2,151 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB2956F8094
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 12:10:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02A626F80AB
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 12:19:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229441AbjEEKKj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 06:10:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34120 "EHLO
+        id S231406AbjEEKS6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 06:18:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231693AbjEEKKi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 06:10:38 -0400
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2042.outbound.protection.outlook.com [40.107.20.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D54A13864;
-        Fri,  5 May 2023 03:10:37 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gAIK1WUfb8GJbs62ShEA/yyOIxIMqYtT2n8f69sBKNmb8uZ+qtCjZrZozx+7RjBWCcynDYqgH8eHT1Z+v5t65OzTe8PVOqatNd5LZJ89sWHxxT7bjUtUJRAKqrzcoeb7AhN7V1fMGtGmXp4HVimAaXrw/qJgaIqXskq7ndRBsStoS1FCTolKeMRpueQZ+d6jUMFY+t+qmDpl3mcUjpYcu9Q/lybWH4wgzptIGcBjTtxAkoxkqESbWAgEVwBXOtLkZeytPgNfkHIGp+bpWPeRPn7NPYraBIIuuC/kmqeHNc4r79ctTgpVVxS1/K6xA/kvdKvMzgYUBQom83xIXlGEKA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OPqaID97zX3dsYBwz21hYomtWEi69Tlx29FDEfIj/Uw=;
- b=IJyVAXARCGurxA/daq/VMZmWdcqCb5A+pOxh4sukL8+Xpgp2mpuim+kQPXmCpAMkTH9LrIl5gHJOTEABs+uFKWLh1HC78f5LsRwCJHJNm4LCUlODEQvIeWyXWJWiVT5MIIp2Ynld7omrS4cKdXV7pkaUjbiJ2zwABVTUFxmddVNv+ollQqn9cBkSaQCX8cytfwkUJlvqAjiPSlfHcap8z22Gz30mkJWEgIS1W8757hphMNWaak50XqeSKKqUy0dLNIG9u1cKaRj4dmXkaCHpbFuwRtAKQOyyxtd12EbxkPxX8yJLbUwSpJ8NcSPacrEVu5uLeDwf1UH6xKurOCspfg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OPqaID97zX3dsYBwz21hYomtWEi69Tlx29FDEfIj/Uw=;
- b=kzasKyq8Lbw8Ra8pUi/VYa6mOcyQv/0FWGE/7d4nrx5yEeblLpc5XH0V9baF30vTfu1sz287FQRE/1zqiafr75MeskhteJ5s9rxji5EphgSSxT2Y9/OVzffwZUgYH8ll8+tt9q72GPkTrM+cAg8ib5RoZQCnrnXrEBitBPOSp1c=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DB7PR04MB4010.eurprd04.prod.outlook.com (2603:10a6:5:21::30) by
- AS8PR04MB8690.eurprd04.prod.outlook.com (2603:10a6:20b:429::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.27; Fri, 5 May
- 2023 10:10:34 +0000
-Received: from DB7PR04MB4010.eurprd04.prod.outlook.com
- ([fe80::9d1e:facb:ae5a:25b6]) by DB7PR04MB4010.eurprd04.prod.outlook.com
- ([fe80::9d1e:facb:ae5a:25b6%3]) with mapi id 15.20.6363.022; Fri, 5 May 2023
- 10:10:34 +0000
-From:   haibo.chen@nxp.com
-To:     adrian.hunter@intel.com, ulf.hansson@linaro.org,
-        linux-mmc@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de
-Cc:     linux-imx@nxp.com, haibo.chen@nxp.com, kernel@pengutronix.de,
-        festevam@gmail.com, cniedermaier@dh-electronics.com,
-        devicetree@vger.kernel.org, kernel@dh-electronics.com
-Subject: [PATCH v2 3/4] dt-bindings: mmc: fsl-imx-esdhc: remove property "fsl,wp-controller"
-Date:   Fri,  5 May 2023 18:12:46 +0800
-Message-Id: <20230505101246.289278-1-haibo.chen@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR03CA0104.apcprd03.prod.outlook.com
- (2603:1096:4:7c::32) To DB7PR04MB4010.eurprd04.prod.outlook.com
- (2603:10a6:5:21::30)
+        with ESMTP id S231200AbjEEKS6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 06:18:58 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6DE818854;
+        Fri,  5 May 2023 03:18:56 -0700 (PDT)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3458uUqo009519;
+        Fri, 5 May 2023 10:18:11 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
+ cc : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=qcppdkim1; bh=L3toYGN2IeYTp4IXuzuFszzQE7VcZSvRPCNJ4OBU574=;
+ b=mr+KRxQIRJLbqzy9uTjAhwNabGEKhmlEgsDZicDwOR1xY/tGVLldzOkSXotfwnH2S9Xg
+ j6iB7luBzKH7pQ8WGb4rwfDs3Ij575axSVZl3AeZV3aOmixfl0Ol71wAF9tiykGAPgMm
+ E3vUuzszOFjErdJOpuLGTjRcIea41vrgKZ8wOBs/ExZtsWgaNsNQF8RHozjDqohXOH50
+ low7BtwbBew6jbNutxIkoFyL5lZ+fF4GZeP5GzmOwlvuKMqiPV4J0TwFD9c9WsYJgfi5
+ ykA+ONfYW8unXYlVXR2BEFHUsIYIrwd9rA0Be6VH5IPljN/tSQA927Oia/umFxfvzakI Rw== 
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qcwdeg923-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 05 May 2023 10:18:11 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+        by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 345AIAwp014339
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 5 May 2023 10:18:10 GMT
+Received: from varda-linux.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Fri, 5 May 2023 03:18:05 -0700
+Date:   Fri, 5 May 2023 15:48:01 +0530
+From:   Varadarajan Narayanan <quic_varada@quicinc.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <amitk@kernel.org>,
+        <thara.gopinath@gmail.com>, <rafael@kernel.org>,
+        <daniel.lezcano@linaro.org>, <rui.zhang@intel.com>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Praveenkumar I <quic_ipkumar@quicinc.com>
+Subject: Re: [PATCH 1/4] dt-bindings: thermal: tsens: Add ipq9574 compatible
+Message-ID: <20230505101800.GA10918@varda-linux.qualcomm.com>
+References: <cover.1682682753.git.quic_varada@quicinc.com>
+ <3c6f7510d175ba5a3c81730b010f6c421b2fbf2d.1682682753.git.quic_varada@quicinc.com>
+ <16443d11-7948-d224-cfef-b6c1b5c3d60d@linaro.org>
+ <20230503071055.GB1087@varda-linux.qualcomm.com>
+ <915eea5b-6cef-d346-7cbd-b679726113ad@linaro.org>
+ <20230504045757.GA13434@varda-linux.qualcomm.com>
+ <1b449a78-b57e-7e1e-0261-d35a5a2582a6@linaro.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB7PR04MB4010:EE_|AS8PR04MB8690:EE_
-X-MS-Office365-Filtering-Correlation-Id: 61cc7049-1812-4b11-128a-08db4d50f73c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: oFYvURpYKI6vSL1NyT3Z1Q1Hf8khRBWg16LpTiFfI48ouy4fup3jSxzHSsZS7Gnnx261OTkLodJ7/EnbzVHKwkzZbdNrpU1eknl+XgeS1+pHWRF44yBXL01l2X148MKpQiG3jgJwNVSAcVnHiE3P7EyNRY1IRqRYI3KLRIJDh9e/fxbQSIe13RMyXUqjGrvWYfeFrpTuq9m50SIqWpDkoqtotSiaCjUR2clt7q/uJFYKYG+qs07BKlqdn011fMWaKrCbCFm4zxKNcObbMbGLFTwW28o8SaxuXGj+JX9Cfqnn4qg2E/PTbE9R6wfuTk0qWmCGv3k8JpXxb1MwC7J9Ta6DtbUYqz77KAwkNYWlCNslUA42F291hUFTrLgqaFEyl+FrQl/a3iCBYaIXL/wlNBanFPpfeNOcm5zMMglqusSzd8NzEZVo8zX/7T1vbWfY0o7lal0JuarsOtDNbdIs5EGe5HQwGMWktUHjIIHzUmfA/hPECQoakWFya0cjmCmNZFHwBSmwtZamx5B7qY4STNEJzN4ZOhaxc2ruzfx6EHbfyNWjP+x8oadWUpd4oX9PqVxivTCA++MyTxSaeM2hYHM9g5I8IbOeeWT7xmWrISZAhPZGEqw9Ldsm9Jg43GaO
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR04MB4010.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(396003)(39860400002)(366004)(136003)(376002)(346002)(451199021)(41300700001)(4744005)(2906002)(66946007)(5660300002)(4326008)(66476007)(66556008)(316002)(8676002)(7416002)(8936002)(478600001)(6486002)(52116002)(6666004)(26005)(186003)(2616005)(36756003)(6506007)(6512007)(9686003)(83380400001)(1076003)(38350700002)(38100700002)(86362001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?OzGBWjuSCGbXQqfcjIRnBaTaHVEoDsE1hv3Dyk0bRlogngjJGjGq1VcROrSr?=
- =?us-ascii?Q?RU1THJI9sd86fHjAZrTjW802YTdyzRSSP5254xI62B2txdXDF7jSfR97pSva?=
- =?us-ascii?Q?OhhWFPfje/Dj9qQbKKJXPQVfvbOGLvtsgpsvXdpEcCj8ePfqeXwlAxYxMnw4?=
- =?us-ascii?Q?RcHuVr8Ae6Fm3jx6s4kAcSDiiPvCAwZv/pNTJMyhE1+rAGZWxk9xcDWY7WiX?=
- =?us-ascii?Q?h97dlnrggv//6dzcGjQOuCCeCFpZNmeO/Sksol7PDDOZPnxX9CFI3JbdC/8b?=
- =?us-ascii?Q?Bw+jOqSXZ+tswhYHWM/UWe8PZgCMl/NyYotJYug2WHLZYBO53CK3Scfqs3Cy?=
- =?us-ascii?Q?46CwB/Uj/FQhKK1LbuhT6vEFzRCPMR6dq9lCkdjRzfd1NuHZn68D7pm6QiYG?=
- =?us-ascii?Q?WxzqqXwz3tPB2tHKKR+g2xBBUhxJQ18BaAW6DVQbLF0iAV+s1AMVPT0lrERr?=
- =?us-ascii?Q?kDYPJigrMwhYsYJfWMFPC5EHvu0E4VKGN31RZERELiWeWByUh8r2F5W3Crqc?=
- =?us-ascii?Q?51Yy8tJcyHaZjA53u9yLmy73hYZiY0kCSY9aqXoMnjZQMi4rwQQ28A5NEW5f?=
- =?us-ascii?Q?B9Q22aFsUfwdI9Nfl/clJNGbZGmZZSvLBqerMVu+oVB0cfQkWHlExZn/J048?=
- =?us-ascii?Q?hT/Vh3sPjcFKO8ZWxyS6yIYVYpNu739MBhYQ/bQAWzASAiZSsUNdBY6sSf5p?=
- =?us-ascii?Q?8/fw9c28YbmfIF/OzZ+Z2lCf6Y+xSni1+CxxlKv8OMrnJVVRTT88KRiNfpL/?=
- =?us-ascii?Q?C7JGJNQ1c9Mls+MWrQ8OfAHpo+WXhN30O5qs6QkyYE/PD90DsifYf4Xecg5x?=
- =?us-ascii?Q?t0sXfAOaQjwPpoMeAAS6IwVUhi3upvAZHKMCh2AjxTqzpxeydp6Ky7U8EPZ7?=
- =?us-ascii?Q?Ze3u94G/OdbTr8iwYTQCLI0jq4fxfLSzU8wzSrSJmvbZNL6EluRfDr0FAS1/?=
- =?us-ascii?Q?p8K+8EgPpOWQu9/w7ym35t8RdJpgLhMCuVuCxCcx8f0NjGf3NiTecpkENon5?=
- =?us-ascii?Q?0J11dWh02Mb7y/LDqYUgQHr5ztXeuacDgnDN7sjLjC5plgRoNyfvw9Cot8yR?=
- =?us-ascii?Q?WTdsMsNUa8lT/7oXXZtMeZar7W66V3DUeOE0Vn++82al20uTM14mxmbyBcfP?=
- =?us-ascii?Q?c3KX1obsQ9tJdsMamhCeEsWhQFBbdCEeO8uiuicZSZS0RCVKXu3Ie9zq/Rr+?=
- =?us-ascii?Q?Ty5PKavX1+HNLfbD8SaV805GjgbxQm0zwyHPw3OZXWbhMwCf34Ni3GFeVkc6?=
- =?us-ascii?Q?hflYPRczhPbkFKRChOZ/dVHSa/fEtc4SrmuwgOPFb7zaV1bxcPB8hJCfdozk?=
- =?us-ascii?Q?fUrv89i+8O4ddjX9lm7ypGsH+eAI7FwgrZOZtTGP1nq9aYBF3vmrCX4wIjCT?=
- =?us-ascii?Q?ZbTGJ4VQ3rlLAvBRB67dgSC+QBbhgqDgq7wiiqQopXcLls0fB+9R+1B3Jptf?=
- =?us-ascii?Q?Ua7ZQSKTWRMAlB2q1WXOOjo+fcODpTh0MbAmRi/1n7HZOKz6mm7PlyfGgs6d?=
- =?us-ascii?Q?uu6TsxmGJ7THuHAEJLK+pGZbR3qNc2durI5IHG72H6zfB4e90vfaZQ31d/1z?=
- =?us-ascii?Q?gGb9rM6MLiYNH1WqByeYMOtw7/u1Gy2g2+jrNAEl?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 61cc7049-1812-4b11-128a-08db4d50f73c
-X-MS-Exchange-CrossTenant-AuthSource: DB7PR04MB4010.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2023 10:10:34.6919
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: VIjGB0ID/5fG0ROqOlwPFVI7DX+j332OAyRWGK8E+qiGMrlXK/AOJwP/XqXPvaJFR7vPUL9s+CU8Tu76pA/Qhg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8690
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <1b449a78-b57e-7e1e-0261-d35a5a2582a6@linaro.org>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: U3NJxz7c26qb5CSQdr631xF7hqiJ0Fva
+X-Proofpoint-GUID: U3NJxz7c26qb5CSQdr631xF7hqiJ0Fva
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-05_16,2023-05-04_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ clxscore=1015 mlxlogscore=999 malwarescore=0 adultscore=0
+ lowpriorityscore=0 spamscore=0 mlxscore=0 phishscore=0 bulkscore=0
+ impostorscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2303200000 definitions=main-2305050084
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Haibo Chen <haibo.chen@nxp.com>
+On Thu, May 04, 2023 at 08:22:44AM +0200, Krzysztof Kozlowski wrote:
+> On 04/05/2023 06:57, Varadarajan Narayanan wrote:
+> > On Wed, May 03, 2023 at 09:42:28AM +0200, Krzysztof Kozlowski wrote:
+> >> On 03/05/2023 09:10, Varadarajan Narayanan wrote:
+> >>> On Mon, May 01, 2023 at 09:08:49AM +0200, Krzysztof Kozlowski wrote:
+> >>>> On 28/04/2023 16:52, Varadarajan Narayanan wrote:
+> >>>>> From: Praveenkumar I <quic_ipkumar@quicinc.com>
+> >>>>>
+> >>>>> Qualcomm IPQ9574 has tsens v2.3.1 block, which is similar to IPQ8074 tsens.
+> >>>>>
+> >>>>> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+> >>>>> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> >>>>> ---
+> >>>>>  Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 3 +++
+> >>>>>  1 file changed, 3 insertions(+)
+> >>>>>
+> >>>>> diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> >>>>> index d1ec963..8e2208c 100644
+> >>>>> --- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> >>>>> +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> >>>>> @@ -66,6 +66,7 @@ properties:
+> >>>>>        - description: v2 of TSENS with combined interrupt
+> >>>>>          enum:
+> >>>>>            - qcom,ipq8074-tsens
+> >>>>> +          - qcom,ipq9574-tsens
+> >>>>
+> >>>> Your drive change indicates they are compatible, so make them
+> >>>> compatible. 9574 followed by 8074.
+> >>>
+> >>> Not able to understand. You want IPQ9574 to use "qcom,ipq8074-tsens"
+> >>> instead of adding a "qcom,ipq9574-tsens" and no need to add an extra
+> >>> entry to the driver like
+> >>
+> >> Assuming the devices are really compatible, which your driver change
+> >> suggests, I want to use two compatibles. 9574 followed by 8074 fallback,
+> >> just like we do for all Qualcomm IP blocks. Then as you said - no need
+> >> for driver change.
+> >
+> > With schema like this
+> > 	items:
+> > 	  - enum:
+> > 	      - qcom,ipq8074-tsens
+> > 	      - qcom,ipq9574-tsens
+> > and DTS as
+> > 	compatible = "qcom,ipq9574-tsens", "qcom,ipq8074-tsens";
+>
+> This file (and many others) shows you how to encode it in the DT schema
+>
+> https://elixir.bootlin.com/linux/v6.3-rc6/source/Documentation/devicetree/bindings/sound/nvidia,tegra210-ope.yaml#L31
 
-Driver do not use this property, so remove it here.
+Thanks for the pointer.
+Will rework and post.
 
-Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
----
- Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml | 6 ------
- 1 file changed, 6 deletions(-)
+-Varada
 
-diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-index fbfd822b9270..e34b4fb4778a 100644
---- a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-+++ b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-@@ -96,11 +96,6 @@ properties:
-   interrupts:
-     maxItems: 1
- 
--  fsl,wp-controller:
--    description: |
--      boolean, if present, indicate to use controller internal write protection.
--    type: boolean
--
-   fsl,delay-line:
-     $ref: /schemas/types.yaml#/definitions/uint32
-     description: |
-@@ -190,7 +185,6 @@ examples:
-         compatible = "fsl,imx51-esdhc";
-         reg = <0x70004000 0x4000>;
-         interrupts = <1>;
--        fsl,wp-controller;
-     };
- 
-     mmc@70008000 {
--- 
-2.34.1
-
+> > 'make dtbs_check' gives the following error
+> >
+> > arch/arm64/boot/dts/qcom/ipq9574-rdp433.dtb: thermal-sensor@4a9000: compatible: 'oneOf' conditional failed, one must be fixed:
+> >         ['qcom,ipq9574-tsens', 'qcom,ipq8074-tsens'] is too long
+> >
+> > To fix the above error, I have to change the schema as
+> >
+> > 	items:
+> > 	  - enum:
+> > 	      - qcom,ipq8074-tsens
+> > 	      - qcom,ipq9574-tsens
+> > 	  - const: qcom,tsens-v2-combined-int
+>
+> This is not what we talked about.
+>
+> Best regards,
+> Krzysztof
+>
