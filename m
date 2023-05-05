@@ -2,154 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81DA26F7ED7
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 10:24:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC7AB6F7E57
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 10:04:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229904AbjEEIX6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 04:23:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52492 "EHLO
+        id S231158AbjEEIE5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 04:04:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231441AbjEEIXU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 04:23:20 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18CF117FF5;
-        Fri,  5 May 2023 01:23:03 -0700 (PDT)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3458BdVp013141;
-        Fri, 5 May 2023 08:22:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=FtwnUZ36Lc0zaZTvI3cx1AAnpycwroNKm1a/0KFDusY=;
- b=aB5PkICTOduH31NZz57HHQ3hDA4grxbHh1bK6p13X7WAtRliEjRFmCjFjFcXOdPX8LSl
- bZZ1zTd22FyXDbdQXfDBa7PCv4EtFBiLZUQywjHryX3Ndb4Z2gV8UFZgA1yfomRvniVi
- ATIQw72CMMydjeM7y7mkgH7zPj5YUGUspPHHPfMbKAtjgnRbGEgHCJTz6KkqdA28hl7x
- in685+9lseZdcCw+600tGy3+0yb3kvbKSwSjzNCsOJRC3plTf92NYANK06Sojq7q6Yef
- aqXqTYy9y7FFvuQt17y1KXEj6etx5Q9PAO+1nKoV2ILb97wZCHQ6BcJWPt1rwHRTg1Mq Eg== 
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qcmm391g9-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 05 May 2023 08:22:56 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3458MtWo016951
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 5 May 2023 08:22:55 GMT
-Received: from varda-linux.qualcomm.com (10.80.80.8) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Fri, 5 May 2023 01:22:50 -0700
-From:   Varadarajan Narayanan <quic_varada@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <vkoul@kernel.org>,
-        <kishon@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <gregkh@linuxfoundation.org>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <quic_wcheng@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>
-CC:     Varadarajan Narayanan <quic_varada@quicinc.com>
-Subject: [PATCH v10 9/9] arm64: dts: qcom: ipq9574: Enable USB
-Date:   Fri, 5 May 2023 13:05:10 +0530
-Message-ID: <0ac9037a184bf95d4532f37cdd91007af58942ed.1683183860.git.quic_varada@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <cover.1683183860.git.quic_varada@quicinc.com>
-References: <cover.1683183860.git.quic_varada@quicinc.com>
+        with ESMTP id S229875AbjEEIE4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 04:04:56 -0400
+Received: from albert.telenet-ops.be (albert.telenet-ops.be [IPv6:2a02:1800:110:4::f00:1a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D628717FF5
+        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 01:04:53 -0700 (PDT)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed30:83f:2c6b:b7ae:7358])
+        by albert.telenet-ops.be with bizsmtp
+        id sw3l290093nKn5u06w3lFr; Fri, 05 May 2023 10:04:50 +0200
+Received: from geert (helo=localhost)
+        by ramsan.of.borg with local-esmtp (Exim 4.95)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1puqPp-001AUW-An;
+        Fri, 05 May 2023 10:03:45 +0200
+Date:   Fri, 5 May 2023 10:03:45 +0200 (CEST)
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+To:     Rob Herring <robh@kernel.org>
+cc:     soc@kernel.org, Christian Marangi <ansuelsmth@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        =?ISO-8859-15?Q?Andreas_F=E4rber?= <afaerber@suse.de>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Antoine Tenart <atenart@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Lars Persson <lars.persson@axis.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Andre Przywara <andre.przywara@arm.com>,
+        Baruch Siach <baruch@tkos.co.il>,
+        Wei Xu <xuwei5@hisilicon.com>,
+        Jean-Marie Verdun <verdun@hpe.com>,
+        Nick Hawkins <nick.hawkins@hpe.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Vladimir Zapolskiy <vz@mleia.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Peter Rosin <peda@axentia.se>, Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        =?ISO-8859-15?Q?Jonathan_Neusch=E4fer?= <j.neuschaefer@gmx.net>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Daniel Palmer <daniel@thingy.jp>,
+        Romain Perier <romain.perier@gmail.com>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Shiraz Hashim <shiraz.linux.kernel@gmail.com>,
+        Patrice Chotard <patrice.chotard@foss.st.com>,
+        Marek Vasut <marex@denx.de>, Qin Jian <qinjian@cqplus1.com>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Paul Barker <paul.barker@sancloud.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Nishanth Menon <nm@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Enric Balletbo i Serra <eballetbo@gmail.com>,
+        Javier Martinez Canillas <javier@dowhile0.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@axis.com
+Subject: Re: [PATCH 4/4] ARM: dts: Move .dts files to vendor
+ sub-directories
+In-Reply-To: <20230504-arm-dts-mv-v1-4-2c8e51a2b6c4@kernel.org>
+Message-ID: <9d67cbbf-9be8-13c0-98fb-d0146bba79c8@linux-m68k.org>
+References: <20230504-arm-dts-mv-v1-4-2c8e51a2b6c4@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: BtwaytZvHGYcWKSoUBD-GhEESUe_C66x
-X-Proofpoint-GUID: BtwaytZvHGYcWKSoUBD-GhEESUe_C66x
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-04_15,2023-05-04_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=652 mlxscore=0
- priorityscore=1501 impostorscore=0 adultscore=0 malwarescore=0
- suspectscore=0 phishscore=0 clxscore=1015 bulkscore=0 spamscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2305050069
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=US-ASCII; format=flowed
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Turn on USB related nodes
-Provide vdd info
+On Thu, 4 May 2023, Rob Herring wrote:
+> The arm dts directory has grown to 1553 boards which makes it a bit
+> unwieldy to maintain and use. Past attempts stalled out due to plans to
+> move .dts files out of the kernel tree. Doing that is no longer planned
+> (any time soon at least), so let's go ahead and group .dts files by
+> vendors. This move aligns arm with arm64 .dts file structure.
+>
+> Doing this enables building subsets of dts files by vendor easily
+> without changing kernel configs:
+>
+> make allyesconfig
+> make arch/arm/boot/dts/ti/
+>
+> There's no change to dtbs_install as the flat structure is maintained on
+> install.
+>
+> The naming of vendor directories is roughly in this order of preference:
+> - Matching original and current SoC vendor prefix/name (e.g. ti, qcom)
+> - Current vendor prefix/name if still actively sold (SoCs which have
+>  been aquired) (e.g. nxp/imx)
+> - Existing platform name for older platforms not sold/maintained by any
+>  company (e.g. gemini, nspire)
+>
+> The whole move was scripted with the exception of MAINTAINERS.
+>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
----
- Changes in v10:
-	- Provide vdd info
+> arch/arm/boot/dts/renesas/Makefile                 |   33 +
+> arch/arm/boot/dts/{ => renesas}/emev2-kzm9d.dts    |    0
+> arch/arm/boot/dts/{ => renesas}/emev2.dtsi         |    0
+> .../{ => renesas}/gr-peach-audiocamerashield.dtsi  |    0
+> .../boot/dts/{ => renesas}/iwg20d-q7-common.dtsi   |    0
+> .../boot/dts/{ => renesas}/iwg20d-q7-dbcm-ca.dtsi  |    0
+> .../arm/boot/dts/{ => renesas}/r7s72100-genmai.dts |    0
+> .../boot/dts/{ => renesas}/r7s72100-gr-peach.dts   |    0
+> .../boot/dts/{ => renesas}/r7s72100-rskrza1.dts    |    0
+> arch/arm/boot/dts/{ => renesas}/r7s72100.dtsi      |    0
+> .../boot/dts/{ => renesas}/r7s9210-rza2mevb.dts    |    0
+> arch/arm/boot/dts/{ => renesas}/r7s9210.dtsi       |    0
+> .../arm/boot/dts/{ => renesas}/r8a73a4-ape6evm.dts |    0
+> arch/arm/boot/dts/{ => renesas}/r8a73a4.dtsi       |    0
+> .../dts/{ => renesas}/r8a7740-armadillo800eva.dts  |    0
+> arch/arm/boot/dts/{ => renesas}/r8a7740.dtsi       |    0
+> .../{ => renesas}/r8a7742-iwg21d-q7-dbcm-ca.dts    |    0
+> .../r8a7742-iwg21d-q7-dbcm-ov5640-single.dtsi      |    0
+> .../r8a7742-iwg21d-q7-dbcm-ov7725-single.dtsi      |    0
+> .../boot/dts/{ => renesas}/r8a7742-iwg21d-q7.dts   |    0
+> .../arm/boot/dts/{ => renesas}/r8a7742-iwg21m.dtsi |    0
+> arch/arm/boot/dts/{ => renesas}/r8a7742.dtsi       |    0
+> .../{ => renesas}/r8a7743-iwg20d-q7-dbcm-ca.dts    |    0
+> .../boot/dts/{ => renesas}/r8a7743-iwg20d-q7.dts   |    0
+> .../arm/boot/dts/{ => renesas}/r8a7743-iwg20m.dtsi |    0
+> .../boot/dts/{ => renesas}/r8a7743-sk-rzg1m.dts    |    0
+> arch/arm/boot/dts/{ => renesas}/r8a7743.dtsi       |    0
+> .../{ => renesas}/r8a7744-iwg20d-q7-dbcm-ca.dts    |    0
+> .../boot/dts/{ => renesas}/r8a7744-iwg20d-q7.dts   |    0
+> .../arm/boot/dts/{ => renesas}/r8a7744-iwg20m.dtsi |    0
+> arch/arm/boot/dts/{ => renesas}/r8a7744.dtsi       |    0
+> .../r8a7745-iwg22d-sodimm-dbhd-ca.dts              |    0
+> .../dts/{ => renesas}/r8a7745-iwg22d-sodimm.dts    |    0
+> .../arm/boot/dts/{ => renesas}/r8a7745-iwg22m.dtsi |    0
+> .../boot/dts/{ => renesas}/r8a7745-sk-rzg1e.dts    |    0
+> arch/arm/boot/dts/{ => renesas}/r8a7745.dtsi       |    0
+> .../boot/dts/{ => renesas}/r8a77470-iwg23s-sbc.dts |    0
+> arch/arm/boot/dts/{ => renesas}/r8a77470.dtsi      |    0
+> arch/arm/boot/dts/{ => renesas}/r8a7778-bockw.dts  |    0
+> arch/arm/boot/dts/{ => renesas}/r8a7778.dtsi       |    0
+> arch/arm/boot/dts/{ => renesas}/r8a7779-marzen.dts |    0
+> arch/arm/boot/dts/{ => renesas}/r8a7779.dtsi       |    0
+> arch/arm/boot/dts/{ => renesas}/r8a7790-lager.dts  |    0
+> arch/arm/boot/dts/{ => renesas}/r8a7790-stout.dts  |    0
+> arch/arm/boot/dts/{ => renesas}/r8a7790.dtsi       |    0
+> .../arm/boot/dts/{ => renesas}/r8a7791-koelsch.dts |    0
+> arch/arm/boot/dts/{ => renesas}/r8a7791-porter.dts |    0
+> arch/arm/boot/dts/{ => renesas}/r8a7791.dtsi       |    0
+> .../arm/boot/dts/{ => renesas}/r8a7792-blanche.dts |    0
+> arch/arm/boot/dts/{ => renesas}/r8a7792-wheat.dts  |    0
+> arch/arm/boot/dts/{ => renesas}/r8a7792.dtsi       |    0
+> arch/arm/boot/dts/{ => renesas}/r8a7793-gose.dts   |    0
+> arch/arm/boot/dts/{ => renesas}/r8a7793.dtsi       |    0
+> arch/arm/boot/dts/{ => renesas}/r8a7794-alt.dts    |    0
+> arch/arm/boot/dts/{ => renesas}/r8a7794-silk.dts   |    0
+> arch/arm/boot/dts/{ => renesas}/r8a7794.dtsi       |    0
+> .../dts/{ => renesas}/r8a77xx-aa121td01-panel.dtsi |    0
+> .../dts/{ => renesas}/r9a06g032-rzn1d400-db.dts    |    0
+> arch/arm/boot/dts/{ => renesas}/r9a06g032.dtsi     |    0
+> arch/arm/boot/dts/{ => renesas}/sh73a0-kzm9g.dts   |    0
+> arch/arm/boot/dts/{ => renesas}/sh73a0.dtsi        |    0
 
- Changes in v5:
-	- Move "host" mode specification to board dts
-	- Due to dependency with earlier patches board dts
-	  filename changed ipq9574-al02-c7.dts -> ipq9574-rdp433.dts
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -2646,13 +2636,7 @@ C:	irc://irc.libera.chat/renesas-soc
+> T:	git git://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-devel.git next
+> F:	Documentation/devicetree/bindings/hwinfo/renesas,prr.yaml
+> F:	Documentation/devicetree/bindings/soc/renesas/
+> -F:	arch/arm/boot/dts/emev2*
+> -F:	arch/arm/boot/dts/gr-peach*
+> -F:	arch/arm/boot/dts/iwg20d-q7*
+> -F:	arch/arm/boot/dts/r7s*
+> -F:	arch/arm/boot/dts/r8a*
+> -F:	arch/arm/boot/dts/r9a*
+> -F:	arch/arm/boot/dts/sh*
+> +F:	arch/arm/boot/dts/renesas/
+> F:	arch/arm/configs/shmobile_defconfig
+> F:	arch/arm/include/debug/renesas-scif.S
+> F:	arch/arm/mach-shmobile/
 
- Changes in v2:
-	- Fix node placement and coding style
-	- "ok" -> "okay"
----
- arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+Acked-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
-index 1f5d14f..18d642c 100644
---- a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
-+++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
-@@ -70,6 +70,10 @@
- 	};
- };
- 
-+&dwc_0 {
-+	dr_mode = "host";
-+};
-+
- &pcie1_phy {
- 	status = "okay";
- };
-@@ -122,6 +126,21 @@
- 	clock-frequency = <32000>;
- };
- 
-+&usb_0_qmpphy {
-+	vdda-pll-supply = <&mp5496_l2>;
-+	vdda-phy-supply = <&fixed_0p925>;
-+
-+	status = "okay";
-+};
-+
-+&usb_0_qusbphy {
-+	vdd-supply = <&fixed_0p925>;
-+	vdda-pll-supply = <&mp5496_l2>;
-+	vdda-phy-dpdm-supply = <&fixed_3p3>;
-+
-+	status = "okay";
-+};
-+
- &tlmm {
- 
- 	pcie_1_pin: pcie-1-state {
-@@ -188,6 +207,10 @@
- 	};
- };
- 
-+&usb3 {
-+	status = "okay";
-+};
-+
- &xo_board_clk {
- 	clock-frequency = <24000000>;
- };
--- 
-2.7.4
+Gr{oetje,eeting}s,
 
+ 						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+ 							    -- Linus Torvalds
