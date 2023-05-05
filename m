@@ -2,121 +2,250 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EAD876F887F
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 20:12:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4ACA6F8892
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 20:21:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231644AbjEESM5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 14:12:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39022 "EHLO
+        id S231644AbjEESVo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 14:21:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231611AbjEESM4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 14:12:56 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8EDE2D63;
-        Fri,  5 May 2023 11:12:55 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-50bc1612940so4072388a12.2;
-        Fri, 05 May 2023 11:12:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683310374; x=1685902374;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=HmHicytrcbhYG1LQpJweqPCoU5ghflJtHDrXHt4yT6U=;
-        b=LTjpqnR/MCosrtY1yKegt6qzRoTGUGs5wivg06/+V9yNazqC3eWcCJzwGaHfaPAde0
-         eHhpFSNANpCRVdZnkceyPVnLIgP54R/gcxUaa2outoCB9nTMDcMr53BrlCKXCftY+cWL
-         Wp2XcLH1nhFV5Qq6nTk7lRSsSNp4RmGIuhk9LbtjUb1SUodBc47L2GwVQM6BLqFVoj4t
-         2ACqncF4j1Rvzx6ppme+sxqwBw0WajzWrJiH2qv9+XBm9w+CmGbZc0+MzwkotK9pgawu
-         sxGznNL+LjR3+NoUQuofOTz41wfRALRTuHlG8OeE0qLFGwBSR7fGabXgsiEqzaTw7q89
-         IA4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683310374; x=1685902374;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HmHicytrcbhYG1LQpJweqPCoU5ghflJtHDrXHt4yT6U=;
-        b=cY6IzP8UVNxkwxNWgckWFgfcB7fyXa0OXGxyr/PN9TdaAd/2fA2nXqx1ZldDErozst
-         ViZPv7PKgquSQ3Fd3CcDH1qx3qbiHnugigOyXEPxe1qPz619sazldwYVAWRrAzufSfqd
-         fyULIgkug/9+0zZ9wpy8nnm7K4FoDiQpRqA9JwPOMZCzFdTvPz4Lq7wZ/Y6e8vLYY3le
-         DYI/0zu9O1xB2s4mAoJzySsq5eAwXCYThP3GioUX4o3usuZ3mA0P5VcHHJ6QIt4JcUnt
-         WFDmF64IzkNphLBmIU2nDvjCM+uiPg1p+fA5MVggYt4WVrn25fOV27fJMWpWyRPkc2Ov
-         sg8Q==
-X-Gm-Message-State: AC+VfDyqUTu7+Rd+FH4SRl2b9jhQTgisgNG/W/ZMde+xhebutfpsLXVG
-        OJjIyUI/J8tw4OXE8bEmFL8=
-X-Google-Smtp-Source: ACHHUZ7MB77ShmRRjIJoqa2u75q1Kh92hHgHg8dZCaaOOrcaFHYCMC1jEmav/1uigT2VaFVWMW5mXQ==
-X-Received: by 2002:a17:907:720e:b0:94e:3d6f:9c0f with SMTP id dr14-20020a170907720e00b0094e3d6f9c0fmr1991467ejc.55.1683310374228;
-        Fri, 05 May 2023 11:12:54 -0700 (PDT)
-Received: from carbian ([2a02:8109:aa3f:ead8::5908])
-        by smtp.gmail.com with ESMTPSA id gz6-20020a170907a04600b0094a90d3e385sm1231676ejc.30.2023.05.05.11.12.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 May 2023 11:12:52 -0700 (PDT)
-Date:   Fri, 5 May 2023 20:12:50 +0200
-From:   Mehdi Djait <mehdi.djait.k@gmail.com>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Andi Shyti <andi.shyti@kernel.org>, mazziesaccount@gmail.com,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        lars@metafoo.de, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 5/7] iio: accel: kionix-kx022a: Refactor driver and
- add chip_info structure
-Message-ID: <ZFVHImk2U6wI3Dg/@carbian>
-References: <cover.1682373451.git.mehdi.djait.k@gmail.com>
- <bf0269aff66483f2323914170707203749b33f0f.1682373451.git.mehdi.djait.k@gmail.com>
- <20230425155734.ywdle4pv6y2wjk2s@intel.intel>
- <ZE0WopTBS8S08tjX@carbian>
- <20230430184910.48d6c1b4@jic23-huawei>
- <ZFFna3MUzEtBkMxr@smile.fi.intel.com>
+        with ESMTP id S230473AbjEESVn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 14:21:43 -0400
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2128.outbound.protection.outlook.com [40.107.114.128])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D8D711D90;
+        Fri,  5 May 2023 11:21:41 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=leG52Z9CcuEO1Qi5/ECbyDc/f5KxjSacvS9eYBP4mtSFKczEiL9/vRUY6x95UBkoJdGB9kF0qnjRVRRS9dnoifwZb5PMInxnkv7WpWHbRRuiLClsJNub7zc105TQ/ZyRWvFKIqaBJaPoRm5Xyv4scqLoqGnzlAO8iwmgLH+JNev+zOlayoboeX0Jjq4fwzU/lfGPK8VujzpaZcvOoRwN/sDpUuoOy//PuiHRvOej8mVl35/4o2nhOP0r0uiJMZLKLvrtcXMJ40oKuu4rJyz70yo2Gq5vvoANtH7dz109hLenZdzueH8q1nBkciWX9Hsi0DsEmUtRJ9VZxZBdR5ETPg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=FE2JDiobppSCMI/I2nOGhg5+H/9oTQYS2fKSfM0jmRY=;
+ b=R/kn295iCt/Cd4Wyeev5Ru14anx6vXKvnq5cToMTcfP1o0YiikQSqdkY8m5ta5pFhSxiTcz+QvXNwh6cFvmOfJsZGgW197N+PHIaFzafT+yOS1jmvlH+P95zJB82YaoJwnJZwH2gTllbh68pbSgJ+7QkSOHynXrFw7DzX2JcrMm/Ljhev9MqrPzOXt5rmCSIXf/rqDoZzvIvO19zZSHMbnRXo2Ly1ZGpJxbJ6AWGW4WCMGAtbh8XLfld8G/3Qbdx/zHykOD0zUMrAVtxvR4weGy5CGVt5MFF5ZLoPCdH9B68vAIAWL7E7TPP/8QmofZoUknt5p8WyZCg/lEb8Uh5Vg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FE2JDiobppSCMI/I2nOGhg5+H/9oTQYS2fKSfM0jmRY=;
+ b=uBifouaZt2z5QSTDcuyACj3PTH6sNkVbEOWjKRKuEwiV5yBrS6EEonJe2iu7Bslw37lfd7IJQ39b7jQzSB2QSZMSWbgg+w95+05yzwGdYuFgWf24zS9CK0faaH637e84moHugLT8aRC/Oq7EnPQDRl1Q2qjpSlk3nvoR+YhKids=
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
+ by TYVPR01MB11183.jpnprd01.prod.outlook.com (2603:1096:400:367::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.27; Fri, 5 May
+ 2023 18:21:38 +0000
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::bd0a:a38d:b4d2:5d2]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::bd0a:a38d:b4d2:5d2%6]) with mapi id 15.20.6363.028; Fri, 5 May 2023
+ 18:21:34 +0000
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Subject: RE: [PATCH v2 1/5] dt-bindings: mfd: Add Renesas RAA215300 PMIC
+ bindings
+Thread-Topic: [PATCH v2 1/5] dt-bindings: mfd: Add Renesas RAA215300 PMIC
+ bindings
+Thread-Index: AQHZf3aejB91VGFKJ0a6jUxtT8S7PK9L+iaAgAACpAA=
+Date:   Fri, 5 May 2023 18:21:34 +0000
+Message-ID: <OS0PR01MB59226713E010AF3F9030052B86729@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+References: <20230505172530.357455-1-biju.das.jz@bp.renesas.com>
+ <20230505172530.357455-2-biju.das.jz@bp.renesas.com>
+ <e2393abc-53a2-4216-cd85-1033560421ee@linaro.org>
+In-Reply-To: <e2393abc-53a2-4216-cd85-1033560421ee@linaro.org>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: OS0PR01MB5922:EE_|TYVPR01MB11183:EE_
+x-ms-office365-filtering-correlation-id: 6e4d8795-ad53-41c8-c210-08db4d958ef1
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: aQEDiMfnGHIYnkFjQx7hXTndU2mmBom2dbeTfKCquvrQW1qJtPqisoSpzRTUlAmgt7dJgG3cCjN87CFV8PvXQKg+0jkEnI61q3WzyuiHNustywaYbIh/iQ3AbpGLThUx1Sv6AFwuY5yQ1Fr52O5hP2C17I3NZ+Wv9qdQ9vuNteOah6F9bDcSW5KPHitBIS3TZ16rcuEnB8d1O7cWNxutRxpTju5D67c1ZzlKrnULpfsBko8SLll1Nb/eAuUUDU7qD1g4iJJdeBTkGRxhicAglxC/AZ1dOICCQwJzxr5kx/nK7+gONBCoXFStuWOmD6dUU+6znPCFfmPFcY4aQkpprovyJ4jLHsVv2o/pEHkkTm47m7yQGTNVVReaQcizL+rOWu7nuSutovAMylBPBXRpSc4P5Egh/ZUsgWSnoy2K3RkUEggckldSN9WDlV3Swmrwzgu2bN69BWvs2McubpAaljrxP61MzOjSAhYP084m6AmIiCu8PUJGPoRf5GFmqgKofGrZNNwLN6ddLcSHzdZ3sQd0w9k5a2oCs6e7kk9YLoztUoWkWpQ7R9mD5VncoYYynSVJ1+Sr19rMASfHaAMmaAKgVHXCRUGQWU11dCo3OBI=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(136003)(366004)(39860400002)(396003)(376002)(346002)(451199021)(86362001)(33656002)(7696005)(316002)(110136005)(54906003)(66556008)(66446008)(66476007)(64756008)(4326008)(66946007)(478600001)(966005)(76116006)(71200400001)(41300700001)(55016003)(52536014)(8676002)(5660300002)(8936002)(2906002)(38070700005)(122000001)(186003)(38100700002)(107886003)(53546011)(26005)(6506007)(83380400001)(9686003)(66899021);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Y78Q+FdI1/l1gmDCua9H4lPt+3t/ZB02SuB036X9msLSV6NRqTiBsFgI6h0a?=
+ =?us-ascii?Q?ev6DEtHaoFq7/PDoUN5LeJyZ07mRdWZ5dtAjlRWCQ6BJdns/Va1iIdJD3gTs?=
+ =?us-ascii?Q?AQi1cWR3eTJf3QFl7DOKPKHr57ma82ScCZpuNi6yuEXDN7Zin23YWaFGXTTU?=
+ =?us-ascii?Q?5h0qp4IIbSBYPkgBKbuFsPucg8v6XFI9AAtB2WhvMdBZCeZd4pVeNHVyCuq8?=
+ =?us-ascii?Q?Cy7PVuCJVNRVQmXtbvi8VwC1lxieKDpIvB91OuGgCHtENaPWaYLei48Q/my8?=
+ =?us-ascii?Q?hlDsB8p66th2LMV1O6xrRfcajkzgezgUz45i7ovrzJQlcU8qd4Kf4tBxzyd5?=
+ =?us-ascii?Q?BkGmL7aBdUHN+qEWq90umgjxrcgmReFp7oYbH0jvWQNpqccHdzLB5Sonl7j6?=
+ =?us-ascii?Q?NlQB8fTJeyeRoAOWQINzkMnpqlTpG3e2B4FfRN9Ms0xnpgV/UuPULIRdOG8R?=
+ =?us-ascii?Q?vVo99Nq/vOFELOt1p9FtKEvxQFBqkMTacJMu0gCauIvi8rDwb0F2wqFVY9Dz?=
+ =?us-ascii?Q?GyzSLI0XHVfANsD1+0GtnjgDE8ZyMtvUCe9QoMFNnv7x8ehXoIp+mWYFBYnd?=
+ =?us-ascii?Q?BYSe/2qOBP97CRn1Oo/45Kt20FQc/1PMxldOnNaJoYHLzSGE5o1FcnUImhJ7?=
+ =?us-ascii?Q?0N3JY2rAeP895VdFZ7/pxLDOP/2mmurUyETwicmy3DBwiJCr2PHtWgg15fmY?=
+ =?us-ascii?Q?172FipbHfU64mGuRyu/F8KCrVwUJsNJaKef7yFSkcMCw6ywWT+EyApRJkq1d?=
+ =?us-ascii?Q?Jshhe+tybV1ybHg+/yG6oRvZxwvPQ7jkJKnUqcJgSlx3PfR4xCjU3xTt2V1S?=
+ =?us-ascii?Q?fl/G7PA6STkFsU4vaT2y9kRxM2Y+DWoTSMjUHCR5sfL0LgLmaw63/vyTd9wm?=
+ =?us-ascii?Q?yw129vWbCdtSMN/ELyMgs8sUPxUwAx4elXURf9VF4AgGxR1NbIZgK/PSdC6a?=
+ =?us-ascii?Q?5thpV/0mngCTqgCu4pYsiaiJsMCeTPHWoiowY1HNPKoQ2Rw1EP2jdcdzRkg/?=
+ =?us-ascii?Q?zdHQD0NWjV4kFO2tQ4hjYxNRKfd++fojfs/DBG7203eUYkYEDO4pIhwdUFQ2?=
+ =?us-ascii?Q?FntbRiPW+1SfqsYhGL5SGm8Ru9lSvmvVXCJSXaVz1HC0fzwHjMNzvVlycGaB?=
+ =?us-ascii?Q?Yv7ewB/V6MZXTNrtV+iM/Gq+gTCy8seKAtiIhQEKUEY3B+76mXM+isM+6o/v?=
+ =?us-ascii?Q?gMaGmT4uOeXYNfTx8CnUB6VGbGiculVbOR4CQmQ8e308lY8b//HhA9+bK9S0?=
+ =?us-ascii?Q?TSzcynrgQu+GZzjOwbNHX8j4Jm1PUNYerg3JhKRF7WYMtoafE7l5Y7xzRB4m?=
+ =?us-ascii?Q?9XKBD6As1KP8LFJLaEfzADuZugOxJSmiDmY0hI5ESl8Cczds0RwQDHyFwoTf?=
+ =?us-ascii?Q?h00xMFuRzfo7QiaEE75Ur1QHVTqyaYrX6L06npK8J837gMHup1PoByx/zz12?=
+ =?us-ascii?Q?jOpemQZPl5IG+Si0MguHb09Y9IaZc75LUXq9+8Obl03HS8RacVF+CJHB2tMm?=
+ =?us-ascii?Q?lBZotxW8QnzoIfPiNx3JmskYdUTJ0ZdQoM/T7rDjUDRNUtk/Rfzfzo2+9rb4?=
+ =?us-ascii?Q?Z3xZKLqs2eHn0HWkN1/GWR0nRVN5Vy/6yCMPDIi8?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZFFna3MUzEtBkMxr@smile.fi.intel.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6e4d8795-ad53-41c8-c210-08db4d958ef1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 May 2023 18:21:34.6109
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 4u8iGgk6KOx2bnJSX96xmVpNPNneLqKCWYtzhsWFH5kU8OaNpKsCEBF6pBwy4AuqJ4lQFfKcFMIIEHYVIX6aJN3UAq9+bE1xQYqw4WzbASs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYVPR01MB11183
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Andy,
+Hi Krzysztof Kozlowski,
 
-On Tue, May 02, 2023 at 10:41:31PM +0300, Andy Shevchenko wrote:
-> On Sun, Apr 30, 2023 at 06:49:10PM +0100, Jonathan Cameron wrote:
-> > On Sat, 29 Apr 2023 15:07:46 +0200
-> > Mehdi Djait <mehdi.djait.k@gmail.com> wrote:
-> > > On Tue, Apr 25, 2023 at 05:57:34PM +0200, Andi Shyti wrote:
-> > > > On Tue, Apr 25, 2023 at 12:22:25AM +0200, Mehdi Djait wrote:  
-> 
-> ...
-> 
-> > > > > +	chip_info = device_get_match_data(&spi->dev);
-> > > > > +	if (!chip_info) {
-> > > > > +		const struct spi_device_id *id = spi_get_device_id(spi);
-> > > > > +		chip_info = (const struct kx022a_chip_info *)id->driver_data;  
-> > > > 
-> > > > you don't need the cast here... if you don't find it messy, I
-> > > > wouldn't mind this form... some hate it, I find it easier to
-> > > > read:
-> > > > 
-> > > > 	chip_info = spi_get_device_id(spi)->driver_data;
-> > > > 
-> > > > your choice.  
-> > > 
-> > > I don't really have any strong opinion about this other than keeping the
-> > > same style used in iio drivers
-> > > 
-> > > Again thank you for the review
-> > 
-> > I'm fairly sure the cast is needed because driver_data is (via defines)
-> > an unsigned long, which you cannot implicitly cast to a pointer without
-> > various warnings being generated.
-> 
-> Instead we have a specific SPI provided helper for the above, please use it
-> instead of open coded stuff.
+Thanks for the feedback.
 
-I will change it in the next version
+> Subject: Re: [PATCH v2 1/5] dt-bindings: mfd: Add Renesas RAA215300 PMIC
+> bindings
+>=20
+> On 05/05/2023 19:25, Biju Das wrote:
+> > Document Renesas RAA215300 PMIC bindings.
+> >
+> > The RAA215300 is a high Performance 9-Channel PMIC supporting DDR
+> > Memory, with Built-In Charger and RTC.
+> >
+> > It supports DDR3, DDR3L, DDR4, and LPDDR4 memory power requirements.
+> > The internally compensated regulators, built-in Real-Time Clock (RTC),
+> > 32kHz crystal oscillator, and coin cell battery charger provide a
+> > highly integrated, small footprint power solution ideal for
+> > System-On-Module (SOM) applications. A spread spectrum feature
+> > provides an ease-of-use solution for noise-sensitive audio or RF
+> > applications.
+> >
+> > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > ---
+> > RFC->v2:
+> >  * Updated reg property
+> >  * Added optional reg-names, interrupts and renesas,rtc-enabled
+> >    properties.
+> >  * Fixed the node name in the example
+> >  * Dropped the cross link property renesas,raa215300-rtc.
+> >  * Updated the example
+> > ---
+> >  .../bindings/mfd/renesas,raa215300.yaml       | 68 +++++++++++++++++++
+> >  1 file changed, 68 insertions(+)
+> >  create mode 100644
+> > Documentation/devicetree/bindings/mfd/renesas,raa215300.yaml
+> >
+> > diff --git
+> > a/Documentation/devicetree/bindings/mfd/renesas,raa215300.yaml
+> > b/Documentation/devicetree/bindings/mfd/renesas,raa215300.yaml
+> > new file mode 100644
+> > index 000000000000..85cb4f0b5711
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/mfd/renesas,raa215300.yaml
+> > @@ -0,0 +1,68 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
+> > +---
+> > +$id:
+> > +
+> > +title: Renesas RAA215300 Power Management Integrated Circuit (PMIC)
+> > +
+> > +maintainers:
+> > +  - Biju Das <biju.das.jz@bp.renesas.com>
+> > +
+> > +description: |
+> > +  The RAA215300 is a high-performance, low-cost 9-channel PMIC
+> > +designed for
+> > +  32-bit and 64-bit MCU and MPU applications. It supports DDR3,
+> > +DDR3L, DDR4,
+> > +  and LPDDR4 memory power requirements. The internally compensated
+> > +regulators,
+> > +  built-in Real-Time Clock (RTC), 32kHz crystal oscillator, and coin
+> > +cell
+> > +  battery charger provide a highly integrated, small footprint power
+> > +solution
+> > +  ideal for System-On-Module (SOM) applications. A spread spectrum
+> > +feature
+> > +  provides an ease-of-use solution for noise-sensitive audio or RF
+> applications.
+> > +
+> > +  This device exposes two devices via I2C. One for the integrated RTC
+> > + IP, and  one for everything else.
+> > +
+> > +  Link to datasheet:
+> > +
+> > + https://www.renesas.com/in/en/products/power-power-management/multi-
+> > + channel-power-management-ics-pmics/ssdsoc-power-management-ics-pmic-
+> > + and-pmus/raa215300-high-performance-9-channel-pmic-supporting-ddr-me
+> > + mory-built-charger-and-rtc
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - renesas,raa215300
+> > +
+> > +  reg:
+> > +    minItems: 1
+> > +    maxItems: 2
+> > +
+> > +  reg-names:
+> > +    items:
+> > +      - const: main
+> > +      - const: rtc
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  renesas,rtc-enabled:
+> > +    description:
+> > +      To indicate RTC is enabled on the PMIC.
+>=20
+> "Enabled" by who or what? This looks like some policy, so Devicetree is n=
+ot
+> a place for it.
 
---
-Kind Regards
-Mehdi Djait
+It is based on system design. System designers may chose not to populate bu=
+ilt-in RTC by
+grounding XIN and XOUT pins.
+
+Do we need to add this info in description to make it clear??
+
+Cheers,
+Biju
+
+>=20
+> > +    type: boolean
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+>=20
+>=20
+> Best regards,
+> Krzysztof
+
