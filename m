@@ -2,107 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1EEE6F7FC1
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 11:20:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 382DD6F7FD0
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 11:24:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231625AbjEEJUm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 05:20:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60070 "EHLO
+        id S231643AbjEEJYC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 05:24:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231623AbjEEJUl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 05:20:41 -0400
-Received: from mail-yw1-x1129.google.com (mail-yw1-x1129.google.com [IPv6:2607:f8b0:4864:20::1129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BDD92127
-        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 02:20:40 -0700 (PDT)
-Received: by mail-yw1-x1129.google.com with SMTP id 00721157ae682-55a8e9e2c53so13783057b3.1
-        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 02:20:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683278439; x=1685870439;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=CUmVNNVC+NFm1W3KNQtznbgGM7aUA3zExZZF/LzaVUs=;
-        b=FP/p5a3Rz53t8Hiu9p1mm5qnJtqy8k8DPZEj9OIZWBicvtZTm0NV6bUKvKL9s/LyuT
-         kPWITrgznSc7G0gHTudHZg51Ym5Jz85rr3xxjeAE4g9c3tQhWPM88PNPAnYyA8iRv2Rc
-         /qaAudMVsKqE0av2f9jkQUu9kV+fuM/cUQX7t6s8o+A1Yb5IMJseFDL0OMiEXWfxStxN
-         7GmxgySoOXuIhVDIuS2TVRt/UoC35jKuy2okLrVpnPrPI2ShD/1X/uQO4nFF6yuUp+1H
-         UQqCdYvj3wW+hT+k0rc/yV5szgmhj1m/6qfDuD1KM2j6JxEQiyvkOxB0HY59bDNjQJ/T
-         kGfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683278439; x=1685870439;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CUmVNNVC+NFm1W3KNQtznbgGM7aUA3zExZZF/LzaVUs=;
-        b=VtGARNWfJkmrxmeNoof51hdfEqZ+vILYbenNkxqderT//woG4PHb5We3LUMMuTlaPM
-         ane6QeE9DBwqONFmXesD+e7DDDrwrxVIpfhLqlyVNXee5gSum0OgwpHT3pnasxu4npV5
-         iTc7stOBzxtX3G8CprkZFP8JCloBt0futf+IkQ0ZesHpTYmTgCTLUrqaUnpArwZzTMKZ
-         QkzDAXOvTXNYo1E6vWLdmo/QWiGVxgO1YY0lK/QIap/TEBpFz/Ln6kF35UaKrcDjW4Av
-         if5Pm44yJ7F09+PZwquNKSO8enzylCid8NwiLpE7tZdjIRCoQ1G2dYFW9Sv7AePmrdwl
-         jbZA==
-X-Gm-Message-State: AC+VfDyeKS9cCzEv/tpmYMctl13Yk3bRW272CC6vgR3SsHuVrGBDRkIt
-        49YbNOeQHXdVYVgqhOG+LZTIgkmuY4qcJ8DJEiH5Bw==
-X-Google-Smtp-Source: ACHHUZ58rj28L5oxCYIFKkyMOzoHfNWeQkq2DTYySQPBe8Qwd4K17ixkp8gSzmsMgU09dboiqo31SDXmeK2W4fGOIpM=
-X-Received: by 2002:a0d:e405:0:b0:54e:ffbc:7ac2 with SMTP id
- n5-20020a0de405000000b0054effbc7ac2mr832957ywe.45.1683278439545; Fri, 05 May
- 2023 02:20:39 -0700 (PDT)
+        with ESMTP id S230398AbjEEJYA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 05:24:00 -0400
+Received: from relay10.mail.gandi.net (relay10.mail.gandi.net [IPv6:2001:4b98:dc4:8::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72D047EF3;
+        Fri,  5 May 2023 02:23:57 -0700 (PDT)
+Received: from booty (unknown [77.244.183.192])
+        (Authenticated sender: luca.ceresoli@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 05C59240006;
+        Fri,  5 May 2023 09:23:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1683278636;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=mWElEqoC0tf6AE16wm3wb4hzf8ICo35KcifM6UnLMzo=;
+        b=gAdUn58zRii8F5j9HadQN4CxZRzA5r+uSeedshZX4vU10xEvC3twC47IIhZGAeHGmyI9pF
+        cKE/T0V/qJJFYy8MK1yIAFz6k8g1tDAP6ONhv3ehCthYYReSR0N6YS9KaU8j4EjJecS2VG
+        Yl9C7rgu1/FzdL578HPrX8NMotO8E+BoGVP6k2dJN4cDbbSu6FhIHLmztuFORS3T1iCVee
+        uZACtTPtRvIihqG3JL4yzO4LzF1xnAXMguHdK+pu2nMlNQe7GOBZngFbBgKTnBSzCBVSSm
+        OWG/K8tre5GbMqejMgI4zh4rFKT9eng7izNuNpDzg1sNh4PT28JQtLPOwbhP6g==
+Date:   Fri, 5 May 2023 11:23:51 +0200
+From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
+To:     Francesco Dolcini <francesco@dolcini.it>
+Cc:     devicetree@vger.kernel.org, festevam@gmail.com,
+        gregkh@linuxfoundation.org, jun.li@nxp.com, kernel@pengutronix.de,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        peter.chen@nxp.com, robh+dt@kernel.org, s.hauer@pengutronix.de,
+        shawnguo@kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        francesco.dolcini@toradex.com
+Subject: Re: [PATCH v2 2/3] usb: chipidea: imx: support disabling runtime-pm
+Message-ID: <20230505112351.1c79f6b2@booty>
+In-Reply-To: <ZFPiRvoF5l8uGzzZ@francesco-nb.int.toradex.com>
+References: <23672d66d229d3be4cc854ddf1462c3507f1c2fc.camel@toradex.com>
+        <20230504162312.1506763-1-luca.ceresoli@bootlin.com>
+        <ZFPiRvoF5l8uGzzZ@francesco-nb.int.toradex.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <cover.1683183860.git.quic_varada@quicinc.com> <4464003b6d955c6f5da991acbecf0411348fc38d.1683183860.git.quic_varada@quicinc.com>
-In-Reply-To: <4464003b6d955c6f5da991acbecf0411348fc38d.1683183860.git.quic_varada@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Fri, 5 May 2023 12:20:28 +0300
-Message-ID: <CAA8EJprcSEFgQzfX-ULVv3HA2LzBMArZobAuabmE74Ft6mJTzg@mail.gmail.com>
-Subject: Re: [PATCH v10 6/9] phy: qcom: qmp: Update IPQ9574 USB Phy
- initialization Sequence
-To:     Varadarajan Narayanan <quic_varada@quicinc.com>
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        vkoul@kernel.org, kishon@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
-        mturquette@baylibre.com, sboyd@kernel.org, quic_wcheng@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-clk@vger.kernel.org,
-        Praveenkumar I <quic_ipkumar@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 5 May 2023 at 11:23, Varadarajan Narayanan
-<quic_varada@quicinc.com> wrote:
->
-> Updated USB QMP PHY Init sequence based on HPG for IPQ9574.
-> Reused clock and reset list from existing targets.
->
-> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> ---
->  Changes in v6:
->         - Fix pcs_usb offset
->         - Use correct clock names array
->  Changes in v5:
->         - Fix additional review comments
->         - Use V3 register offsets
->  Changes in v4:
->         - Use qmp_usb_offsets for register space access
->  Changes in v3:
->         - Fix hex captitalization
->  Changes in v2:
->         - Removed unused phy register offsets
->         - Moved the clock entries to the correct place
->         - Maintain sorted order
-> ---
->  drivers/phy/qualcomm/phy-qcom-qmp-usb.c | 115 ++++++++++++++++++++++++++++++++
->  1 file changed, 115 insertions(+)
->
+Hello Francesco,
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+On Thu, 4 May 2023 18:50:14 +0200
+Francesco Dolcini <francesco@dolcini.it> wrote:
 
---
-With best wishes
-Dmitry
+> Hello Luca,
+> I guess your mail to Philippe bounced, let me try to answer since I am aware
+> of the issue here.
+> 
+> On Thu, May 04, 2023 at 06:23:12PM +0200, Luca Ceresoli wrote:
+> > I found this thread after several hours spent in debugging why USB host is
+> > not detecting new devices on a custom board using the iMX6ULL Colibri
+> > SoM.
+> > 
+> > My best workaround at the moment is:  
+> We have the same workaround in our BSP since quite some time, see
+> https://git.toradex.com/cgit/meta-toradex-bsp-common.git/tree/recipes-kernel/linux/linux-toradex-mainline-git/0002-drivers-chipidea-disable-runtime-pm-for-imx6ul.patch
+> 
+> > I haven't found any follow-up patches from you, so I'm wondering whether
+> > you have made any progress on this issue.  
+> You can find the latest discussion on that regard here
+> https://lore.kernel.org/all/Y1vLpaxpc5WBCuGD@francesco-nb.int.toradex.com/
+
+Thanks for this pointer! I have read the discussion and it was a bit
+confusing, especially about whether the hardware can work at all.
+
+Are you planning to continue on that work? I would be very glad to test
+on product based on the i.MX6ULL Colibri module I am currently working
+on.
+
+Best regards,
+Luca
+
+-- 
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
