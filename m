@@ -2,145 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA6006F7C5B
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 07:21:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F36E66F7C76
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 07:39:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230356AbjEEFVw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 01:21:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53998 "EHLO
+        id S229459AbjEEFjn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 01:39:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230350AbjEEFVr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 01:21:47 -0400
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC71314E77;
-        Thu,  4 May 2023 22:21:40 -0700 (PDT)
-Received: (Authenticated sender: me@crly.cz)
-        by mail.gandi.net (Postfix) with ESMTPSA id 3AE901BF208;
-        Fri,  5 May 2023 05:21:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crly.cz; s=gm1;
-        t=1683264099;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=MA7Dv2Qs3SnMl09WxFtijC9xKkxYGB+hhEONwk+AOpE=;
-        b=KRxGZnPIwFPcXwsh95D8QJGiTws0jL1SgdggYOeNdxHN2tLFu4HCSu5X7f9udRmDknwQ8j
-        PGD3r6spEUAp6+4VkbtTk7vhSjD7fZvmpXSRF7Y+wJP+eXOM9OtiXUA2ee6EvjVeOcSC60
-        T8p8Np2hXSMdk6AggOc+AMiOUamTC5KZHkVw4Z3VjNoCVMlak3YJEt9rkw2jSAHZCMjgdy
-        pxMaby2+q96VF3MvfXHhEHaJ07BbQ2DTFqFCz+3zkZg/7uf5LFYlnCTKurKb1dBHdh5Ltd
-        NBpVVWhjcdsQvg8+ysJszRpAQdvIX8kFInl1XnOGZ0UAebddt4DaHhQFQrvffQ==
-From:   Roman Beranek <me@crly.cz>
-To:     Maxime Ripard <mripard@kernel.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Frank Oltmanns <frank@oltmanns.dev>,
-        Icenowy Zheng <icenowy@aosc.io>, Ondrej Jirman <megi@xff.cz>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v4 4/4] drm: sun4i: calculate proper DCLK rate for DSI
-Date:   Fri,  5 May 2023 07:21:10 +0200
-Message-Id: <20230505052110.67514-5-me@crly.cz>
-X-Mailer: git-send-email 2.32.0 (Apple Git-132)
-In-Reply-To: <20230505052110.67514-1-me@crly.cz>
-References: <20230505052110.67514-1-me@crly.cz>
+        with ESMTP id S229577AbjEEFjn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 01:39:43 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 386FF11B78
+        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 22:39:42 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A9E7463B11
+        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 05:39:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53015C433D2;
+        Fri,  5 May 2023 05:39:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1683265181;
+        bh=uh1kQHu5s5onnVsdGBIesWXuOxiVJVv/CmRHeYdQo8Q=;
+        h=Date:From:To:CC:Subject:In-Reply-To:References:From;
+        b=RupiNL2y8pX1VYRryak5pHxhsx3u29LuF8t6gv//p9AOhkrSjMHXD0FJ9znVoSF4k
+         uaYxYOLsylComHfpiKP51lkkDar5d4yGarlK8r3O7Ai4B9UdFWPk8X1uakyp/8PGy0
+         ejt2zeJtSAJ7hzMkHGmXLHGDZy1f7Xm9kA9U+bMC76R/v6IfWMY8CeyfwDn4KCieOU
+         39HyLu219iT38VbcnpCn1WT6GA2tBG7yKMPHnWvcZYPpNYsE6ZURZd1accD7e24kC4
+         3c7HHaGrC32sb7q9Glb5Bk2GnaWEXexydnAuNGQ/gCoHXXiwvYjFsT7qoamayTIcdB
+         FVRTOnIyfOusg==
+Date:   Fri, 05 May 2023 06:39:38 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>
+CC:     Conor Dooley <conor.dooley@microchip.com>,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v1] MAINTAINERS: add Conor as a dt-bindings maintainer
+User-Agent: K-9 Mail for Android
+In-Reply-To: <CAL_JsqLUj4b0fpV_6juoeQqBY83GezZNh-UTH9vmaFAyEVUzPw@mail.gmail.com>
+References: <20230504-renderer-alive-1c01d431b2a7@spud> <CAL_JsqLUj4b0fpV_6juoeQqBY83GezZNh-UTH9vmaFAyEVUzPw@mail.gmail.com>
+Message-ID: <DDDDD1F1-774A-483A-9962-FFD14D525725@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In DSI mode, TCON0's data clock is required to run at 1/4 the per-lane
-bit rate.
 
-Signed-off-by: Roman Beranek <me@crly.cz>
----
- drivers/gpu/drm/sun4i/sun4i_tcon.c | 36 +++++++++++++++++-------------
- 1 file changed, 21 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/sun4i/sun4i_tcon.c b/drivers/gpu/drm/sun4i/sun4i_tcon.c
-index eec26b1faa4b..b263de7a8237 100644
---- a/drivers/gpu/drm/sun4i/sun4i_tcon.c
-+++ b/drivers/gpu/drm/sun4i/sun4i_tcon.c
-@@ -291,18 +291,6 @@ static int sun4i_tcon_get_clk_delay(const struct drm_display_mode *mode,
- 	return delay;
- }
- 
--static void sun4i_tcon0_mode_set_common(struct sun4i_tcon *tcon,
--					const struct drm_display_mode *mode)
--{
--	/* Configure the dot clock */
--	clk_set_rate(tcon->dclk, mode->crtc_clock * 1000);
--
--	/* Set the resolution */
--	regmap_write(tcon->regs, SUN4I_TCON0_BASIC0_REG,
--		     SUN4I_TCON0_BASIC0_X(mode->crtc_hdisplay) |
--		     SUN4I_TCON0_BASIC0_Y(mode->crtc_vdisplay));
--}
--
- static void sun4i_tcon0_mode_set_dithering(struct sun4i_tcon *tcon,
- 					   const struct drm_connector *connector)
- {
-@@ -367,10 +355,18 @@ static void sun4i_tcon0_mode_set_cpu(struct sun4i_tcon *tcon,
- 	u32 block_space, start_delay;
- 	u32 tcon_div;
- 
-+	/*
-+	 * dclk is required to run at 1/4 the DSI per-lane bit rate.
-+	 */
- 	tcon->dclk_min_div = SUN6I_DSI_TCON_DIV;
- 	tcon->dclk_max_div = SUN6I_DSI_TCON_DIV;
-+	clk_set_rate(tcon->dclk, mode->crtc_clock * 1000 * (bpp / lanes)
-+						  / SUN6I_DSI_TCON_DIV);
- 
--	sun4i_tcon0_mode_set_common(tcon, mode);
-+	/* Set the resolution */
-+	regmap_write(tcon->regs, SUN4I_TCON0_BASIC0_REG,
-+		     SUN4I_TCON0_BASIC0_X(mode->crtc_hdisplay) |
-+		     SUN4I_TCON0_BASIC0_Y(mode->crtc_vdisplay));
- 
- 	/* Set dithering if needed */
- 	sun4i_tcon0_mode_set_dithering(tcon, sun4i_tcon_get_connector(encoder));
-@@ -438,7 +434,12 @@ static void sun4i_tcon0_mode_set_lvds(struct sun4i_tcon *tcon,
- 
- 	tcon->dclk_min_div = 7;
- 	tcon->dclk_max_div = 7;
--	sun4i_tcon0_mode_set_common(tcon, mode);
-+	clk_set_rate(tcon->dclk, mode->crtc_clock * 1000);
-+
-+	/* Set the resolution */
-+	regmap_write(tcon->regs, SUN4I_TCON0_BASIC0_REG,
-+		     SUN4I_TCON0_BASIC0_X(mode->crtc_hdisplay) |
-+		     SUN4I_TCON0_BASIC0_Y(mode->crtc_vdisplay));
- 
- 	/* Set dithering if needed */
- 	sun4i_tcon0_mode_set_dithering(tcon, sun4i_tcon_get_connector(encoder));
-@@ -515,7 +516,12 @@ static void sun4i_tcon0_mode_set_rgb(struct sun4i_tcon *tcon,
- 
- 	tcon->dclk_min_div = tcon->quirks->dclk_min_div;
- 	tcon->dclk_max_div = 127;
--	sun4i_tcon0_mode_set_common(tcon, mode);
-+	clk_set_rate(tcon->dclk, mode->crtc_clock * 1000);
-+
-+	/* Set the resolution */
-+	regmap_write(tcon->regs, SUN4I_TCON0_BASIC0_REG,
-+		     SUN4I_TCON0_BASIC0_X(mode->crtc_hdisplay) |
-+		     SUN4I_TCON0_BASIC0_Y(mode->crtc_vdisplay));
- 
- 	/* Set dithering if needed */
- 	sun4i_tcon0_mode_set_dithering(tcon, connector);
--- 
-2.32.0 (Apple Git-132)
+On 5 May 2023 01:02:52 IST, Rob Herring <robh+dt@kernel=2Eorg> wrote:
+>On Thu, May 4, 2023 at 4:59=E2=80=AFPM Conor Dooley <conor@kernel=2Eorg> =
+wrote:
+>>
+>> From: Conor Dooley <conor=2Edooley@microchip=2Ecom>
+>>
+>> Rob asked if I would be interested in helping with the dt-bindings
+>> maintenance, and since I am a glutton for punishment I accepted=2E
+>>
+>> Signed-off-by: Conor Dooley <conor=2Edooley@microchip=2Ecom>
+>> ---
+>>  MAINTAINERS | 1 +
+>>  1 file changed, 1 insertion(+)
+>>
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index 4e9370793300=2E=2E687d7a3d2e85 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -15697,6 +15697,7 @@ K:      of_overlay_remove
+>>  OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
+>>  M:     Rob Herring <robh+dt@kernel=2Eorg>
+>>  M:     Krzysztof Kozlowski <krzysztof=2Ekozlowski+dt@linaro=2Eorg>
+>> +M:     Conor Dooley <conor+dt@kernel=2Eorg>
+>
+>Do you really want '+dt'? I've never really used it, and I think it
+>suffers from the same issue as MAINTAINERS=2E It won't get used
+>consistently=2E
 
+Yeah, I've seen you previously mention that, but
+at least it gives my filters a chance to split stuff out=2E
