@@ -2,46 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C15E96F7C8F
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 07:50:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D6DB6F7C9A
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 07:57:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230354AbjEEFuO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 01:50:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35244 "EHLO
+        id S230309AbjEEF5z convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 5 May 2023 01:57:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230397AbjEEFt7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 01:49:59 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87998156AC
-        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 22:49:56 -0700 (PDT)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=igor.pengutronix.de)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <s.trumtrar@pengutronix.de>)
-        id 1puoKI-00046m-Rk; Fri, 05 May 2023 07:49:54 +0200
-References: <20230411083045.2850138-1-s.trumtrar@pengutronix.de>
- <20230411083045.2850138-2-s.trumtrar@pengutronix.de>
- <ebb3050c-c045-3758-5c23-349ab949340e@foss.st.com>
-User-agent: mu4e 1.8.14; emacs 30.0.50
-From:   Steffen Trumtrar <s.trumtrar@pengutronix.de>
-To:     Alexandre TORGUE <alexandre.torgue@foss.st.com>
-Cc:     linux-stm32@st-md-mailman.stormreply.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v8 01/10] ARM: dts: stm32: Add alternate pinmux for
- ethernet
-Date:   Fri, 05 May 2023 07:48:57 +0200
-In-reply-to: <ebb3050c-c045-3758-5c23-349ab949340e@foss.st.com>
-Message-ID: <87y1m31g5c.fsf@pengutronix.de>
+        with ESMTP id S230055AbjEEF5x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 01:57:53 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A796E11DB9;
+        Thu,  4 May 2023 22:57:50 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id EE8CA24DD6E;
+        Fri,  5 May 2023 13:57:48 +0800 (CST)
+Received: from EXMBX073.cuchost.com (172.16.6.83) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 5 May
+ 2023 13:57:48 +0800
+Received: from [192.168.60.114] (180.164.60.184) by EXMBX073.cuchost.com
+ (172.16.6.83) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 5 May
+ 2023 13:57:47 +0800
+Message-ID: <7bd29805-11e7-68ee-aa47-68bae2a2fb38@starfivetech.com>
+Date:   Fri, 5 May 2023 13:57:46 +0800
 MIME-Version: 1.0
-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: s.trumtrar@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v4 0/8] Add StarFive Camera Subsystem driver
+From:   Jack Zhu <jack.zhu@starfivetech.com>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        "Todor Tomov" <todor.too@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Laurent Pinchart" <laurent.pinchart@ideasonboard.com>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Eugen Hristev <eugen.hristev@collabora.com>
+CC:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <changhuang.liang@starfivetech.com>
+References: <20230413035541.62129-1-jack.zhu@starfivetech.com>
+ <14c06503-621f-2477-7b15-b17f1890ecfe@starfivetech.com>
+Content-Language: en-US
+In-Reply-To: <14c06503-621f-2477-7b15-b17f1890ecfe@starfivetech.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Originating-IP: [180.164.60.184]
+X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX073.cuchost.com
+ (172.16.6.83)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -50,67 +65,178 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 2023-05-02 at 17:20 +02, Alexandre TORGUE <alexandre.torgue@foss.st.com> wrote:
-> Hi Steffen
->
-> On 4/11/23 10:30, Steffen Trumtrar wrote:
->> Add another option for the ethernet0 pins.
->> It is almost identical to ethernet0_rgmii_pins_c apart from TXD0/1.
->> This is used on the Phycore STM32MP1.
->> Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
->> ---
->>   arch/arm/boot/dts/stm32mp15-pinctrl.dtsi | 50 ++++++++++++++++++++++++
->>   1 file changed, 50 insertions(+)
->> diff --git a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
->> b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
->> index a9d2bec990141..1c97db4dbfc6d 100644
->> --- a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
->> +++ b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
->> @@ -341,6 +341,56 @@ pins1 {
->>   		};
->>   	};
->>   +	ethernet0_rgmii_pins_d: rgmii-3 {
->> +		pins1 {
->> +			pinmux = <STM32_PINMUX('G', 5, AF11)>, /* ETH_RGMII_CLK125 */
->> +				 <STM32_PINMUX('G', 13, AF11)>,	/* ETH_RGMII_TXD0 */
->> +				 <STM32_PINMUX('G', 14, AF11)>,	/* ETH_RGMII_TXD1 */
->> +				 <STM32_PINMUX('C', 2, AF11)>, /* ETH_RGMII_TXD2 */
->> +				 <STM32_PINMUX('E', 2, AF11)>, /* ETH_RGMII_TXD3 */
->> +				 <STM32_PINMUX('B', 11, AF11)>,	/* ETH_RGMII_TX_CTL */
->> +				 <STM32_PINMUX('C', 1, AF11)>; /* ETH_MDC */
->> +			bias-disable;
->> +			drive-push-pull;
->> +			slew-rate = <2>;
->> +		};
->> +		pins2 {
->> +			pinmux = <STM32_PINMUX('A', 2, AF11)>; /* ETH_MDIO */
->> +			bias-disable;
->> +			drive-push-pull;
->> +			slew-rate = <0>;
->> +		};
->> +		pins3 {
->> +			pinmux = <STM32_PINMUX('C', 4, AF11)>, /* ETH_RGMII_RXD0 */
->> +				 <STM32_PINMUX('C', 5, AF11)>, /* ETH_RGMII_RXD1 */
->> +				 <STM32_PINMUX('H', 6, AF11)>, /* ETH_RGMII_RXD2 */
->> +				 <STM32_PINMUX('B', 1, AF11)>, /* ETH_RGMII_RXD3 */
->> +				 <STM32_PINMUX('A', 1, AF11)>, /* ETH_RGMII_RX_CLK */
->> +				 <STM32_PINMUX('A', 7, AF11)>; /* ETH_RGMII_RX_CTL */
->> +			bias-disable;
->> +		};
->> +	};
->> +
->> +	ethernet0_rgmii_sleep_pins_d: rgmii-sleep-8 {
->
-> Mistake here, it should be rgmii-sleep-3
 
-Meh, good catch. You're right of course, will send a v9.
+On 2023/4/24 19:19, Jack Zhu wrote:
+> 
+> 
+> On 2023/4/13 11:55, Jack Zhu wrote:
+>> Hi,
+>> 
+>> This patch series adds support for the StarFive Camera Subsystem
+>> found on StarFive JH7110 SoC.
+>> 
+>> The driver implements V4L2, Media controller and V4L2 subdev interfaces.
+>> Camera sensor using V4L2 subdev interface in the kernel is supported.
+>> 
+>> The driver is tested on VisionFive V2 board with IMX219 camera sensor.
+>> GStreamer 1.18.5 with v4l2src plugin is supported.
+>> 
+>> Changes since v3:
+>> Patch 1:
+>> - Modified port@0 and port@1 properties.
+>> - Extended the port@0 example with appropriate properties.
+>> - Added 'port@0' for 'required'
+>> Patch 2:
+>> - Modified spelling errors.
+>> Patch 3:
+>> - Merged patch 5 into the patch with an explanation for compatible in
+>>   commit msg.
+>> Patch 6:
+>> - Asserted pixel_rst[i] reset in the loop after the err_disable_pixclk
+>>   label.
+>> - Modified Code Style for getting sys_rst and p_rst.
+>> - Renamed clk_name to name and modified the relevant code.
+>> Patch 9:
+>> - Added static for stfcamss_get_mem_res function.
+>> - Added static for isp_close function.
+>> - Fixed implicit conversion warning for stf_vin_map_isp_pad function.
+>> - Dropped unused variables.
+>> 
+>>   v3: https://lore.kernel.org/all/20230331121826.96973-1-jack.zhu@starfivetech.com/
+>> 
+> 
+> Hello everyone,
+> 
+> From the current review status, the patches related to the CSI module
+> have 'reviewed-by' tags. I would like to know if it is okay to add
+> patches 1-5 from this series to a PR first.
+> 
+> Thank you!
+> 
+> Jack
+> 
 
+Hello Mauro, Laurent, Maxime, Rob, Krzysztof, Robert, Todor and Philipp,
 
-Thanks,
-Steffen
+Can you give me some suggestions and comments on the previous request
+to commit CSI related patches first? Thank you for your time.
 
---
-Pengutronix e.K.                | Dipl.-Inform. Steffen Trumtrar |
-Steuerwalder Str. 21            | https://www.pengutronix.de/    |
-31137 Hildesheim, Germany       | Phone: +49-5121-206917-0       |
-Amtsgericht Hildesheim, HRA 2686| Fax:   +49-5121-206917-5555    |
+Jack
+
+>> Changes since v2:
+>> - Rebased on v6.3-rc1.
+>> Patch 1:
+>> - Modified spelling errors.
+>> - Added port@0.
+>> - Modified '$ref' of port.
+>> - Added 'ports' to 'required'.
+>> - Dropped 'stfcamss' label in example.
+>> - Added port@0 in example.
+>> - Added MAINTAINERS file.
+>> Patch 2:
+>> - Split this patch into three new patches.
+>> - Modified compatible property.
+>> - Replaced clock names with the existing names.
+>> - Modified 'bus-type' and 'clock-lanes'
+>> - Added port@2 - port@4
+>> - Dropped 'csi2rx' label in example.
+>> Patch 3:
+>> - Updated rst and dot file as three pipelines were deleted.
+>> Patch 4:
+>> - Split this patch into three new patches.
+>> - Dropped .s_power() and .get_fmt().
+>> - Dropped CSI-2 DT support.
+>> - Dropped v4l2_device_register_subdev_nodes().
+>> - Used assigned-clock-rates in DT to set clk value.
+>> - Modified 'compatible' field.
+>> Patch 5:
+>> - Deleted three pipelines. 
+>> - Modified 'stfcamss_clocks'/'stfcamss_resets' struct.
+>> - Dropped stfcamss_find_sensor() function.
+>> - Removed redundant code from stfcamss_of_parse_endpoint_node().
+>> - Modified spelling errors.
+>> - Rewrote stfcamss_reg_media_subdev_node() function.
+>> - Modified stfcamss_subdev_notifier_bound().
+>> - Modified stfcamss_probe() function.
+>> - Dropped stfcamss_suspend() and stfcamss_resume().
+>> - Dropped dev_info() in stfcamss_remove() function.
+>> - Added 'stf_' prefix for enum subdev_type.
+>> - Moved all includes to the top in stf_camss.h file.
+>> - Dropped unused fields in stfcamss struct.
+>> - Replaced Custom logging macros with regular macros.
+>> - Rewrote register read and write functions.
+>> - Used lowercase for all hex constants.
+>> - Used macro to name registers.
+>> - Dropped unused ioctl and stf_isp_ioctl.h file.
+>> 
+>>   v2: https://lore.kernel.org/all/20230310120553.60586-1-jack.zhu@starfivetech.com/
+>> 
+>> Changes since v1:
+>> - Deleted starfive,jh7110-mipi-csi2.yaml.
+>> - Converted cdns,csi2rx.txt to cdns,csi2rx.yaml and added ‘resets’
+>>   properties.
+>> - Added ‘cdns,csi2rx.yaml’ in ‘CADENCE MIPI-CSI2 BRIDGES’ entry.
+>> - The following contents were modified in starfive,jh7110-camss.yaml:
+>>   dropped quotes from ’id’ and ‘schema’; dropped ‘|’ for ‘description’;
+>>   corrected the wrong or redundant words: ‘a ISP’, ‘PD ISP’;
+>>   dropped ‘minItems’ for ‘reg’, ‘clocks’, ‘resets’ and ‘interrupts’;
+>>   dropped the '_clk' and 'rst_' prefix about the 'clock-names' and
+>>   'reset-names';
+>>   changed ‘endpoint@1’ to ‘endpoint’; updated examples;
+>> - Updated Subject for some patches.
+>> - Merged patch 6, 7, 8, 9, 10, 11 into one patch.
+>> 
+>> Jack Zhu (8):
+>>   media: dt-bindings: cadence-csi2rx: Convert to DT schema
+>>   media: dt-bindings: cadence-csi2rx: Add resets property
+>>   media: cadence: Add operation on reset
+>>   media: cadence: Add support for external dphy
+>>   media: cadence: Add support for JH7110 SoC
+>>   media: dt-bindings: Add bindings for JH7110 Camera Subsystem
+>>   media: admin-guide: Add starfive_camss.rst for Starfive Camera
+>>     Subsystem
+>>   media: starfive: Add Starfive Camera Subsystem driver
+>> 
+>>  .../admin-guide/media/starfive_camss.rst      |   57 +
+>>  .../media/starfive_camss_graph.dot            |   16 +
+>>  .../admin-guide/media/v4l-drivers.rst         |    1 +
+>>  .../devicetree/bindings/media/cdns,csi2rx.txt |  100 --
+>>  .../bindings/media/cdns,csi2rx.yaml           |  201 +++
+>>  .../bindings/media/starfive,jh7110-camss.yaml |  164 +++
+>>  MAINTAINERS                                   |   10 +
+>>  drivers/media/platform/Kconfig                |    1 +
+>>  drivers/media/platform/Makefile               |    1 +
+>>  drivers/media/platform/cadence/cdns-csi2rx.c  |  107 +-
+>>  drivers/media/platform/starfive/Kconfig       |   18 +
+>>  drivers/media/platform/starfive/Makefile      |   14 +
+>>  drivers/media/platform/starfive/stf_camss.c   |  477 +++++++
+>>  drivers/media/platform/starfive/stf_camss.h   |  150 +++
+>>  drivers/media/platform/starfive/stf_common.h  |   18 +
+>>  drivers/media/platform/starfive/stf_isp.c     |  737 +++++++++++
+>>  drivers/media/platform/starfive/stf_isp.h     |  999 +++++++++++++++
+>>  .../media/platform/starfive/stf_isp_hw_ops.c  |  715 +++++++++++
+>>  drivers/media/platform/starfive/stf_video.c   |  989 ++++++++++++++
+>>  drivers/media/platform/starfive/stf_video.h   |   89 ++
+>>  drivers/media/platform/starfive/stf_vin.c     | 1138 +++++++++++++++++
+>>  drivers/media/platform/starfive/stf_vin.h     |  174 +++
+>>  .../media/platform/starfive/stf_vin_hw_ops.c  |  211 +++
+>>  23 files changed, 6272 insertions(+), 115 deletions(-)
+>>  create mode 100644 Documentation/admin-guide/media/starfive_camss.rst
+>>  create mode 100644 Documentation/admin-guide/media/starfive_camss_graph.dot
+>>  delete mode 100644 Documentation/devicetree/bindings/media/cdns,csi2rx.txt
+>>  create mode 100644 Documentation/devicetree/bindings/media/cdns,csi2rx.yaml
+>>  create mode 100644 Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
+>>  create mode 100644 drivers/media/platform/starfive/Kconfig
+>>  create mode 100644 drivers/media/platform/starfive/Makefile
+>>  create mode 100644 drivers/media/platform/starfive/stf_camss.c
+>>  create mode 100644 drivers/media/platform/starfive/stf_camss.h
+>>  create mode 100644 drivers/media/platform/starfive/stf_common.h
+>>  create mode 100644 drivers/media/platform/starfive/stf_isp.c
+>>  create mode 100644 drivers/media/platform/starfive/stf_isp.h
+>>  create mode 100644 drivers/media/platform/starfive/stf_isp_hw_ops.c
+>>  create mode 100644 drivers/media/platform/starfive/stf_video.c
+>>  create mode 100644 drivers/media/platform/starfive/stf_video.h
+>>  create mode 100644 drivers/media/platform/starfive/stf_vin.c
+>>  create mode 100644 drivers/media/platform/starfive/stf_vin.h
+>>  create mode 100644 drivers/media/platform/starfive/stf_vin_hw_ops.c
+>> 
