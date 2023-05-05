@@ -2,77 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 641D36F82A5
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 14:09:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CA3A6F82B0
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 14:11:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232207AbjEEMJw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 08:09:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33622 "EHLO
+        id S231993AbjEEMLu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 08:11:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35604 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231940AbjEEMJo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 08:09:44 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43FD41AECD
-        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 05:09:23 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-956ff2399b1so312163866b.3
-        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 05:09:23 -0700 (PDT)
+        with ESMTP id S231959AbjEEMLt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 08:11:49 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 045321A112
+        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 05:11:48 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4eff50911bfso1900668e87.2
+        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 05:11:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683288562; x=1685880562;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        d=linaro.org; s=google; t=1683288706; x=1685880706;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=IgB4QgM1yECi7w3uQUentakzBrJPTPMX/E/zSU5My38=;
-        b=F/1DoSW5PpbcfkcqC19rebXR8nuff4fL9IOsqw6Nn6SlUhj3wIfy+8qM/XT0ljUwre
-         jkwPBMHYlTLILs+exAu801N1K/GOs1DxAGJIsFbQ0Tu7tAG0SHUtdPIEhuGyzAe9DiZs
-         SQpTeoxHGD1d1/mYpNaUvp7b9MXN3MZdonX7blDKmuVGZnxprVdaG80sqL6Rqfl1mm+v
-         dBa1Ec6kCod6GgKPRYAwPEPYLhl3os1SFPcILrQsNY0Ml1jJ7+guw2KzVqhPs9iFs7tB
-         3EM/p7kO0vNYAIKYoTeiQn99iMKwjw0GvqTwStw4nObGuOflIbUReNdxijFqk0DbqQiv
-         TO6A==
+        bh=2h/CWEwyJq3P5FCMXAryqXO9WR4aBfMB6PjoKhzl8U4=;
+        b=Zbu8EzgqpkD96pt/0mSDWzGiFSmWODcuaUmVyreABq7m1znvVzYxy3l3faRkivY2vY
+         oLDI2Z5XuRhTnKbuFBXLPc79Hw/MPZxeUXAQnNwDtXe14aQjma+HI0G1sbW7eDeTzzEv
+         ET9OzwJbVh4F0fVY55KUrnh73Q4nFx6eiftAoxcso4H8tEn0IhBMqdm5mBrn4c6XKXWU
+         aYEgXzNvaiCEIbvMqEm/CYVmSXbLBHRsfCj5feqRL4dfICy7bloK6AgaXukl9ki6l80Z
+         qywFsTyxuplXRXKuaqUoh1JXnQdVgz6mEfvzQ40jCwV+5MiGVQDFUocZaHQ7RJY3r3C4
+         dEGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683288562; x=1685880562;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        d=1e100.net; s=20221208; t=1683288706; x=1685880706;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IgB4QgM1yECi7w3uQUentakzBrJPTPMX/E/zSU5My38=;
-        b=ZffY5DdqHdMqUJaNhAEzCAUNyyGqm55hdZ8ax74LHT9Nah7am0yin5MIwabAWh9Rmd
-         Ckr8Sr74xvpMWw8N8AofaAVoockVpI7UHMeV0NfqYMncBjGAYIiko/dfwvJXNUK18tkv
-         x3xq2ivciFMDdxsBIkeNjeMwjX6mfVHtJUB3+QqtCZyRmqkKwfpgGaEdNBhekp855Lqf
-         pI1A8MaCszCEaeYrfnR1tNKn6SJUwjAIw+qEEImtPDx/4NTKUDqwiAurt2OElBhfiu0N
-         5MKFlzoYd6BHMLl1qf6d82m+sOanmNkNt5Ek24f77srfyMBDqG7SUO2Qd7r6r5Oaz+M0
-         OrUQ==
-X-Gm-Message-State: AC+VfDxBuDptwGKTn0yF6kx/phF29oLliP63B5XY09waEpkDgLhcwTp6
-        BN+KZ5zJAVIVx4KlK9nQzUFOtw==
-X-Google-Smtp-Source: ACHHUZ6Sab7WEqAi9O00UdPyemL3Yfzg1mXVyAhJjcCrYWBw6dPGXk1PvLm91r4WtClPEwsTnbix+Q==
-X-Received: by 2002:a17:907:9287:b0:959:6fb2:1c3b with SMTP id bw7-20020a170907928700b009596fb21c3bmr944834ejc.39.1683288561845;
-        Fri, 05 May 2023 05:09:21 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:52e:24ce:bbc1:127d? ([2a02:810d:15c0:828:52e:24ce:bbc1:127d])
-        by smtp.gmail.com with ESMTPSA id ka7-20020a170907990700b00947ed087a2csm860359ejc.154.2023.05.05.05.09.20
+        bh=2h/CWEwyJq3P5FCMXAryqXO9WR4aBfMB6PjoKhzl8U4=;
+        b=J4fCudt8rTaGPXDPkjYjnfqZV7GwEHARiI4m3zmXCF+/Kb7+X37Gw5aFew1YhfmMNR
+         hqv8nBkH6Y7QICu+t4MFTZrWdihH4nOe8ZLi/ixHog9PZoYDE8ShG2nOrcrrP8gooj5F
+         IDfWvIUzslrsPM3MRDXdtmjQpmXMuIX0A5Fwn909KQwdFzyzK3LcmBRwV+S4DPEgM3kY
+         xaslacUG0IVNGXNjsK2xr6zey85Nfoshz09AW0NZy5+3bL1CBqD3LSSreUAu+QmnkSTm
+         nf/rXnpIPdtkqX/R2sk17mi1+FUpVSDBZjXKXLjZZxvhDawgGoSo1MvRvdotpkzTqQxn
+         loVQ==
+X-Gm-Message-State: AC+VfDzwocB+r9WDWrm8aKCNmHYUxdn1HTHhsoqlBpsRW80gpzlHKwRs
+        O7xUW5jqz7Wkt7GICMlPBISHqg==
+X-Google-Smtp-Source: ACHHUZ65oVZBAu9sTHfvlhswi1d1wC5/971YPvE+M2PAFaQfj7qir5wd68R9OeFyzxYBUMg/1QjD6w==
+X-Received: by 2002:ac2:5108:0:b0:4f1:1de7:1aab with SMTP id q8-20020ac25108000000b004f11de71aabmr554324lfb.44.1683288706252;
+        Fri, 05 May 2023 05:11:46 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
+        by smtp.gmail.com with ESMTPSA id b21-20020ac25635000000b004f13633c260sm264975lff.145.2023.05.05.05.11.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 May 2023 05:09:21 -0700 (PDT)
-Message-ID: <c7f11b40-e4d7-3c4e-53d7-6549f840b702@linaro.org>
-Date:   Fri, 5 May 2023 14:09:20 +0200
+        Fri, 05 May 2023 05:11:45 -0700 (PDT)
+Message-ID: <91a390b2-db3d-90f4-a2e2-6ccb75303d04@linaro.org>
+Date:   Fri, 5 May 2023 15:11:44 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH 1/2] dt-bindings: nvmem: add binding doc for i.MX
- OCOTP/ELE
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Peng Fan <peng.fan@nxp.com>
-References: <20230505091733.1819521-1-peng.fan@oss.nxp.com>
- <bb3d374d-0dc1-cf15-2458-f294c5ef23fd@linaro.org>
-In-Reply-To: <bb3d374d-0dc1-cf15-2458-f294c5ef23fd@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v2 07/13] drm/msm/dpu: Add SM6350 support
+Content-Language: en-GB
+To:     Marijn Suijten <marijn.suijten@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+References: <20230411-topic-straitlagoon_mdss-v2-0-5def73f50980@linaro.org>
+ <20230411-topic-straitlagoon_mdss-v2-7-5def73f50980@linaro.org>
+ <k25jg7cez2kimpxr4ztbdzjr2adq6a2vjknyvfe5frxujtogfg@vhfdyt45unv6>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <k25jg7cez2kimpxr4ztbdzjr2adq6a2vjknyvfe5frxujtogfg@vhfdyt45unv6>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,62 +89,123 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/05/2023 14:01, Krzysztof Kozlowski wrote:
-> On 05/05/2023 11:17, Peng Fan (OSS) wrote:
->> From: Peng Fan <peng.fan@nxp.com>
+On 27/04/2023 18:37, Marijn Suijten wrote:
+> On 2023-04-21 00:31:16, Konrad Dybcio wrote:
+>> Add SM6350 support to the DPU1 driver to enable display output.
 >>
->> There are two parts of i.MX93 OCOTP, with 1st part Fuse shadow block(fsb),
->> 2nd part managed by ELE firmware. This binding doc supports both.
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > 
-> Subject: drop second/last, redundant "binding doc for". The
-> "dt-bindings" prefix is already stating that these are bindings and
-> documentation.
+> After addressing the comments from Dmitry (CURSOR0->DMA1 and
+> CURSOR1->DMA2), this is:
 > 
->>
->> Signed-off-by: Peng Fan <peng.fan@nxp.com>
->> ---
->>  .../bindings/nvmem/imx-ocotp-ele.yaml         | 65 +++++++++++++++++++
->>  1 file changed, 65 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/nvmem/imx-ocotp-ele.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/nvmem/imx-ocotp-ele.yaml b/Documentation/devicetree/bindings/nvmem/imx-ocotp-ele.yaml
->> new file mode 100644
->> index 000000000000..024594a2bcb4
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/nvmem/imx-ocotp-ele.yaml
+> Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
 > 
-> Filename matching compatible style. fsl,imx93-ocotp.yaml
-> 
-> 
->> @@ -0,0 +1,65 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/nvmem/imx-ocotp-ele.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: NXP i.MX9 On-Chip OTP Controller (OCOTP)
->> +
->> +maintainers:
->> +  - Peng Fan <peng.fan@nxp.com>
->> +
->> +allOf:
->> +  - $ref: nvmem.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    oneOf:
->> +      - items:
->> +          - const: fsl,imx93-ocotp-fsb
->> +          - const: syscon
->> +      - items:
->> +          - const: fsl,imx93-ocotp-ele
->> +
+> See below for some nits.
 
-Actually this is the same as existing bindings. Just squash it.
+[...]
 
-However I wonder - why this is syscon?
+>> +static const struct dpu_mdp_cfg sm6350_mdp[] = {
+>> +	{
+>> +	.name = "top_0", .id = MDP_TOP,
+>> +	.base = 0x0, .len = 0x494,
+>> +	.features = 0,
+>> +	.clk_ctrls[DPU_CLK_CTRL_VIG0] = { .reg_off = 0x2ac, .bit_off = 0 },
+>> +	.clk_ctrls[DPU_CLK_CTRL_DMA0] = { .reg_off = 0x2ac, .bit_off = 8 },
+>> +	.clk_ctrls[DPU_CLK_CTRL_DMA1] = { .reg_off = 0x2b4, .bit_off = 8 },
+>> +	.clk_ctrls[DPU_CLK_CTRL_DMA2] = { .reg_off = 0x2c4, .bit_off = 8 },
+>> +	.clk_ctrls[DPU_CLK_CTRL_REG_DMA] = { .reg_off = 0x2bc, .bit_off = 20 },
+>> +	},
+>> +};
+>> +
+>> +static const struct dpu_ctl_cfg sm6350_ctl[] = {
+>> +	{
+>> +	.name = "ctl_0", .id = CTL_0,
+>> +	.base = 0x1000, .len = 0x1dc,
+>> +	.features = BIT(DPU_CTL_ACTIVE_CFG),
+>> +	.intr_start = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR2, 9),
+>> +	},
+>> +	{
+>> +	.name = "ctl_1", .id = CTL_1,
+>> +	.base = 0x1200, .len = 0x1dc,
+>> +	.features = BIT(DPU_CTL_ACTIVE_CFG),
+>> +	.intr_start = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR2, 10),
+>> +	},
+>> +	{
+>> +	.name = "ctl_2", .id = CTL_2,
+>> +	.base = 0x1400, .len = 0x1dc,
+>> +	.features = BIT(DPU_CTL_ACTIVE_CFG),
+>> +	.intr_start = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR2, 11),
+>> +	},
+>> +	{
+>> +	.name = "ctl_3", .id = CTL_3,
+>> +	.base = 0x1600, .len = 0x1dc,
+>> +	.features = BIT(DPU_CTL_ACTIVE_CFG),
+>> +	.intr_start = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR2, 12),
+>> +	},
+>> +};
+>> +
+>> +static const struct dpu_sspp_cfg sm6350_sspp[] = {
+>> +	SSPP_BLK("sspp_0", SSPP_VIG0, 0x4000, 0x1f8, VIG_SC7180_MASK,
+>> +		 sc7180_vig_sblk_0, 0,  SSPP_TYPE_VIG, DPU_CLK_CTRL_VIG0),
+>> +	SSPP_BLK("sspp_8", SSPP_DMA0, 0x24000, 0x1f8, DMA_SDM845_MASK,
+>> +		 sdm845_dma_sblk_0, 1, SSPP_TYPE_DMA, DPU_CLK_CTRL_DMA0),
+>> +	SSPP_BLK("sspp_9", SSPP_DMA1, 0x26000, 0x1f8, DMA_CURSOR_SDM845_MASK,
+>> +		 sdm845_dma_sblk_1, 5, SSPP_TYPE_DMA, DPU_CLK_CTRL_CURSOR0),
+>> +	SSPP_BLK("sspp_10", SSPP_DMA2, 0x28000, 0x1f8, DMA_CURSOR_SDM845_MASK,
+>> +		 sdm845_dma_sblk_2, 9, SSPP_TYPE_DMA, DPU_CLK_CTRL_CURSOR1),
+>> +};
+>> +
+>> +static const struct dpu_lm_cfg sm6350_lm[] = {
+>> +	LM_BLK("lm_0", LM_0, 0x44000, MIXER_SDM845_MASK,
+>> +		&sc7180_lm_sblk, PINGPONG_0, LM_1, DSPP_0),
+>> +	LM_BLK("lm_1", LM_1, 0x45000, MIXER_SDM845_MASK,
+>> +		&sc7180_lm_sblk, PINGPONG_1, LM_0, 0),
+> 
+> These two entries are indented with two tabs and have one character too
+> many to align with the opening parenthesis on the previous line.  Can we
+> please settle on a single style, as this commit mostly uses tabs+spaces
+> to align with the opening parenthesis?
+> 
+> Dmitry vouched for `cino=(0` (when in unclosed parenthesis, align next
+> line with zero extra characters to the opening parenthesis), but I find
+> double tabs more convenient as it doesn't require reindenting when
+> changing the name of the macro (which happened too often in my INTF TE
+> series).
 
-Best regards,
-Krzysztof
+I mainly vote for 'cino=(0' for indenting conditions (where double tab 
+is confusing) and for function calls. I do not have a strong opinion 
+about macros expansions. We have been using double-tab there, which is 
+fine with me.
+
+Another option (which I personally find more appealing, but it doesn't 
+play well with the current guidelines) is to have all macro arguments in 
+a single line. It makes it easier to compare things.
+
+And another option would be to expand these macros up to some point. 
+Previous experience with clock and interconnect drivers showed that 
+expanding such multi-arg acros makes it _easier_ to handle the data. 
+Counterintuitive, but true.
+
+> 
+>> +};
+>> +
+>> +static const struct dpu_dspp_cfg sm6350_dspp[] = {
+>> +	DSPP_BLK("dspp_0", DSPP_0, 0x54000, DSPP_SC7180_MASK,
+>> +		 &sm8150_dspp_sblk),
+>> +};
+>> +
+>> +static struct dpu_pingpong_cfg sm6350_pp[] = {
+>> +	PP_BLK("pingpong_0", PINGPONG_0, 0x70000, PINGPONG_SM8150_MASK, 0, sdm845_pp_sblk,
+>> +	       DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 8),
+>> +	       -1),
+>> +	PP_BLK("pingpong_1", PINGPONG_1, 0x70800, PINGPONG_SM8150_MASK, 0, sdm845_pp_sblk,
+>> +	       DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 9),
+>> +	       -1),
+
+[skipped the rest]
+
+-- 
+With best wishes
+Dmitry
 
