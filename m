@@ -2,71 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 65B016F884F
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 20:00:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B47076F8864
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 20:08:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232149AbjEESAH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 14:00:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59236 "EHLO
+        id S232260AbjEESIL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 14:08:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233221AbjEER7t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 13:59:49 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD4ED11A
-        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 10:59:47 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-50bd37ca954so29601505a12.0
-        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 10:59:47 -0700 (PDT)
+        with ESMTP id S230473AbjEESIK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 14:08:10 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0503160A1
+        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 11:08:08 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-50bcb00a4c2so3328912a12.1
+        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 11:08:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683309586; x=1685901586;
+        d=linaro.org; s=google; t=1683310087; x=1685902087;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=rey0KwBHM7411diwiWKCmyMvBOFP1gJrFypl112tTpk=;
-        b=FIWg5//zkmQBoHwXGNqCTnDVWd1gtbUfxOhUrcgaPtk+qmt14BgBQFyKSrZ/5ymBeR
-         RsUN1ZKzdkXoEogPG1w/QMfr6ONZDAhX3uJnIz1sweZmmPFctJ5Ag9T41uM9eK6ZHZ/I
-         D5bza/THw4Cbb9obL5BmJ+zf/3sLWsB43QWya3eLDxV2zXY1dGmOk6V3FFVMqU+YMiHV
-         HtuMV3JZAJlLPHp8ogDSBDZVYRvrwysgUozGtaq9/cbJAnWNCmXsruOHZl+rtTvKmbvc
-         SoH+gHp1hRKk/lTwN/Gbq9tVZrnMHVdssuplZ7ZqEkfg7aUlhqk3/mDh6Jdo3VTK4I4l
-         9xRA==
+        bh=liqV6NqUdeMiUfLaQ9XT4OjLy4lag2MJKfmHrTaiAXA=;
+        b=tHVhUwKAcKu9p76BGLqvnCJr9lQrO9DJLkeKWZHYcLI6aZKekinU9Qkwj8dGGaXIZT
+         cAjyiCuIw1fUAZL84iC39VGfbLIAUgBZ4J6D68Pyjgky/0WMU9DbXww/6eTgHsZSAAb/
+         RiOY7bg8HybrQJgCIFYn2TAfpxuvXHCJncIxZbWG8pcRe7on99qg21RQrMaJYDTZO4lv
+         axbr2n+6cKuGGKH/VmdePxmnKCSU1zRq1XmKDjLUp4yKmdy9Y/2zrf0XaIcQjG4g5Wr5
+         SwSi0+NSj0AYEmzV6yLCELjNDWow0KNFkbfayQx6Rz1WCIfteG6IIbT28ZYPDuXmoFjK
+         cedw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683309586; x=1685901586;
+        d=1e100.net; s=20221208; t=1683310087; x=1685902087;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rey0KwBHM7411diwiWKCmyMvBOFP1gJrFypl112tTpk=;
-        b=d/ClqFS6LZ5vr6h3dBeSCNGGL4nxBKKTtseSp+tW91omxU9iK6PABmwqnYJwWBkX3s
-         U5v37Vi5Gcg6tvyr2TMweE0IjNdoZakJdYJbQb7QUDI6xTvy5GUgtAnNdDGBkvuRUaCP
-         Xmcw+GprQ/GjqSY/mbeuxuA82Zax9AipyIPKsv7gyaxfZTkRaL2e11qhP/kU+27hqyZ5
-         URMdZgKDbV+JJbbN1voldApJSoojIaGzQw1/nMXSIvuE3y5mTI357FGlw0q3iDtNHoBz
-         JPpxjbi1mvHBBKjUpXaG121tSnAdhT3sOCD8fL4oo1WfcsFf6ZqvvsYCm7X3BJAiJyjA
-         Tw7w==
-X-Gm-Message-State: AC+VfDxLiffgevUeo06dqMYmCzq9VNmk432MV8mkhut4e5gl7qqUwlEs
-        lbtPwg9m1HbUM+mLDF9vv8hZWg==
-X-Google-Smtp-Source: ACHHUZ5QsPEulEy0kj2+EyVMU3Y5hH5nToROx8vdNuK76JsBo6gj5bsviqNIgrxk+C2GcjyIWyz78Q==
-X-Received: by 2002:a17:907:9728:b0:960:ddba:e5bf with SMTP id jg40-20020a170907972800b00960ddbae5bfmr2567704ejc.0.1683309586112;
-        Fri, 05 May 2023 10:59:46 -0700 (PDT)
+        bh=liqV6NqUdeMiUfLaQ9XT4OjLy4lag2MJKfmHrTaiAXA=;
+        b=FZ0I4INh7BGB9GGL6vFYm/dosqnk0AWHpmI2yfoOO7AOTlSdrpqBNgNWjBluSdGSxY
+         GH9FMUqLjPy9qkUp0C/BMRy7wubstbqe4PLR7H29QfcSPD2KiXMQBkIIBNyfb8Lu8i90
+         Vw2iVNdoE6/7fNOjChV9PXtxLCqYneymbB8Z1QMX6wFu9bwOn3d2+RFP+bcbFDSqXhcK
+         a3i1Xo3Epd9eahhmrfWjCHgNqfmOZdTqx7GC9jPF0tE42mHlZdmcHgtd8rwrNFwUCyA/
+         4LdSgswahAYUoVxIWTJbn9IwRhB0R4WxtUTs2mZH7CxTlFz3wz1CUzhaeG2hhvmUiB3F
+         QHIA==
+X-Gm-Message-State: AC+VfDxfrcjjwCYPDc++GPMj1vlCdfrG3tdNfZi3dmncM++EFxVY6V2K
+        yXlOS98lg/QGVDKUCUezCh/Hq9EZLaeLihrunztdcA==
+X-Google-Smtp-Source: ACHHUZ70HceySeIRZzJuDfcNllYZ1FTV3pLwKfPt4aGBnGT5bBOo35PmHVWf8gRmXI3gwn1A+aBYOA==
+X-Received: by 2002:a05:6402:14e:b0:50b:ff3c:d497 with SMTP id s14-20020a056402014e00b0050bff3cd497mr2078703edu.23.1683310087306;
+        Fri, 05 May 2023 11:08:07 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:52e:24ce:bbc1:127d? ([2a02:810d:15c0:828:52e:24ce:bbc1:127d])
-        by smtp.gmail.com with ESMTPSA id ss13-20020a170907038d00b009659fed3612sm1211351ejb.24.2023.05.05.10.59.45
+        by smtp.gmail.com with ESMTPSA id v18-20020aa7dbd2000000b0050bd85ab1cfsm3181803edt.48.2023.05.05.11.08.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 May 2023 10:59:45 -0700 (PDT)
-Message-ID: <bee3bfbc-a8fe-ec91-e9ce-287347da5aac@linaro.org>
-Date:   Fri, 5 May 2023 19:59:44 +0200
+        Fri, 05 May 2023 11:08:06 -0700 (PDT)
+Message-ID: <e2393abc-53a2-4216-cd85-1033560421ee@linaro.org>
+Date:   Fri, 5 May 2023 20:08:05 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
-Subject: Re: [PATCH v2 1/2] arm64: dts: qcom: Add Fxtec Pro1X (QX1050) DTS
+Subject: Re: [PATCH v2 1/5] dt-bindings: mfd: Add Renesas RAA215300 PMIC
+ bindings
 Content-Language: en-US
-To:     Dang Huynh <danct12@riseup.net>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+To:     Biju Das <biju.das.jz@bp.renesas.com>, Lee Jones <lee@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230505-fxtec-pro1x-support-v2-0-0ea2378ba9ae@riseup.net>
- <20230505-fxtec-pro1x-support-v2-1-0ea2378ba9ae@riseup.net>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+References: <20230505172530.357455-1-biju.das.jz@bp.renesas.com>
+ <20230505172530.357455-2-biju.das.jz@bp.renesas.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230505-fxtec-pro1x-support-v2-1-0ea2378ba9ae@riseup.net>
+In-Reply-To: <20230505172530.357455-2-biju.das.jz@bp.renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,157 +80,96 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/05/2023 19:12, Dang Huynh wrote:
-> The F(x)tec Pro1X is a mobile phone released by FX Technologies Ltd
-> in 2022.
+On 05/05/2023 19:25, Biju Das wrote:
+> Document Renesas RAA215300 PMIC bindings.
 > 
-> The phone is exactly the same as the Pro1 released in 2019 with some
-> changes:
-> - MSM8998 -> SM6115
-> - Camera button is no longer multistate
-> - Only one 48MP back camera
-> - A new keyboard layout picked by the community.
+> The RAA215300 is a high Performance 9-Channel PMIC supporting DDR
+> Memory, with Built-In Charger and RTC.
 > 
-> This commit has the following features working:
-> - Display (using simplefb)
-> - UFS
-> - Power and volume buttons
-> - Pinctrl
-> - RPM Regulators
-> - USB (Device Mode)
+> It supports DDR3, DDR3L, DDR4, and LPDDR4 memory power requirements.
+> The internally compensated regulators, built-in Real-Time Clock (RTC),
+> 32kHz crystal oscillator, and coin cell battery charger provide a
+> highly integrated, small footprint power solution ideal for
+> System-On-Module (SOM) applications. A spread spectrum feature
+> provides an ease-of-use solution for noise-sensitive audio or RF
+> applications.
 > 
-> To get a successful boot run:
-> 
-> cat arch/arm64/boot/Image.gz arch/arm64/boot/dts/qcom/\
-> sm6115-fxtec-pro1x.dtb  > .Image.gz-dtb
-> 
-> mkbootimg --kernel .Image.gz-dtb \
-> --ramdisk initrd.img \
-> --base 0x0 \
-> --kernel_offset 0x8000 \
-> --ramdisk_offset 0x1000000 \
-> --second_offset 0xf00000 \
-> --tags_offset 0x100 \
-> --pagesize 4096 \
-> --cmdline "CMDLINE HERE" \
-> -o qx1050-boot.img
-> 
-> fastboot flash boot qx1050-boot.img
-> fastboot erase dtbo
-> fastboot reboot
-> 
-> Signed-off-by: Dang Huynh <danct12@riseup.net>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 > ---
->  arch/arm64/boot/dts/qcom/Makefile               |   1 +
->  arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts | 248 ++++++++++++++++++++++++
->  2 files changed, 249 insertions(+)
+> RFC->v2:
+>  * Updated reg property
+>  * Added optional reg-names, interrupts and renesas,rtc-enabled
+>    properties.
+>  * Fixed the node name in the example
+>  * Dropped the cross link property renesas,raa215300-rtc.
+>  * Updated the example
+> ---
+>  .../bindings/mfd/renesas,raa215300.yaml       | 68 +++++++++++++++++++
+>  1 file changed, 68 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/renesas,raa215300.yaml
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index d42c59572ace..e311ba675f35 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -174,6 +174,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-shift-axolotl.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-lenovo-yoga-c630.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-samsung-w737.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm4250-oneplus-billie2.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= sm6115-fxtec-pro1x.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm6115p-lenovo-j606f.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm6125-sony-xperia-seine-pdx201.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm6125-xiaomi-laurel-sprout.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts b/arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts
+> diff --git a/Documentation/devicetree/bindings/mfd/renesas,raa215300.yaml b/Documentation/devicetree/bindings/mfd/renesas,raa215300.yaml
 > new file mode 100644
-> index 000000000000..a9ff1d9534ae
+> index 000000000000..85cb4f0b5711
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts
-> @@ -0,0 +1,248 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2023, Dang Huynh <danct12@riseup.net>
-> + */
+> +++ b/Documentation/devicetree/bindings/mfd/renesas,raa215300.yaml
+> @@ -0,0 +1,68 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/renesas,raa215300.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +/dts-v1/;
+> +title: Renesas RAA215300 Power Management Integrated Circuit (PMIC)
 > +
-> +#include "sm6115.dtsi"
-> +#include "pm6125.dtsi"
+> +maintainers:
+> +  - Biju Das <biju.das.jz@bp.renesas.com>
 > +
-> +/ {
-> +	model = "F(x)tec Pro1X (QX1050)";
-> +	compatible = "fxtec,pro1x", "qcom,sm6115";
-> +	chassis-type = "handset";
+> +description: |
+> +  The RAA215300 is a high-performance, low-cost 9-channel PMIC designed for
+> +  32-bit and 64-bit MCU and MPU applications. It supports DDR3, DDR3L, DDR4,
+> +  and LPDDR4 memory power requirements. The internally compensated regulators,
+> +  built-in Real-Time Clock (RTC), 32kHz crystal oscillator, and coin cell
+> +  battery charger provide a highly integrated, small footprint power solution
+> +  ideal for System-On-Module (SOM) applications. A spread spectrum feature
+> +  provides an ease-of-use solution for noise-sensitive audio or RF applications.
 > +
-> +	qcom,msm-id = <417 0x10000>, <444 0x10000>;
-> +	qcom,board-id = <34 0>;
+> +  This device exposes two devices via I2C. One for the integrated RTC IP, and
+> +  one for everything else.
 > +
-> +	chosen {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
+> +  Link to datasheet:
+> +  https://www.renesas.com/in/en/products/power-power-management/multi-channel-power-management-ics-pmics/ssdsoc-power-management-ics-pmic-and-pmus/raa215300-high-performance-9-channel-pmic-supporting-ddr-memory-built-charger-and-rtc
 > +
-> +		framebuffer0: framebuffer@5c000000 {
-> +			compatible = "simple-framebuffer";
-> +			reg = <0 0x5c000000 0 (1080 * 2160 * 4)>;
-> +			width = <1080>;
-> +			height = <2160>;
-> +			stride = <(1080 * 4)>;
-> +			format = "a8r8g8b8";
-> +			clocks = <&gcc GCC_DISP_HF_AXI_CLK>;
-> +		};
-> +	};
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - renesas,raa215300
 > +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
+> +  reg:
+> +    minItems: 1
+> +    maxItems: 2
 > +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&vol_up_n>;
+> +  reg-names:
+> +    items:
+> +      - const: main
+> +      - const: rtc
 > +
-> +		key-volume-up {
-> +			label = "Volume Up";
-> +			linux,code = <KEY_VOLUMEUP>;
-> +			gpios = <&pm6125_gpios 5 GPIO_ACTIVE_LOW>;
-> +			debounce-interval = <15>;
-> +			linux,can-disable;
-> +			gpio-key,wakeup;
-> +		};
-> +	};
-> +};
+> +  interrupts:
+> +    maxItems: 1
 > +
-> +&dispcc {
-> +	/* HACK: disable until a panel driver is ready to retain simplefb */
-> +	status = "disabled";
-> +};
-> +
-> +&pm6125_gpios {
-> +	vol_up_n: vol-up-n-state {
-> +		pins = "gpio5";
-> +		function = "normal";
-> +		power-source = <0>;
-> +		bias-pull-up;
-> +		input-enable;
-> +	};
-> +};
-> +
-> +&pon_pwrkey {
-> +	status = "okay";
-> +};
-> +
-> +&pon_resin {
-> +	linux,code = <KEY_VOLUMEDOWN>;
-> +	status = "okay";
-> +};
-> +
-> +&rpm_requests {
-> +	pm6125-regulators {
+> +  renesas,rtc-enabled:
+> +    description:
+> +      To indicate RTC is enabled on the PMIC.
 
-No improvements.
+"Enabled" by who or what? This looks like some policy, so Devicetree is
+not a place for it.
 
-This is a friendly reminder during the review process.
+> +    type: boolean
+> +
+> +required:
+> +  - compatible
+> +  - reg
 
-It seems my previous comments were not fully addressed. Maybe my
-feedback got lost between the quotes, maybe you just forgot to apply it.
-Please go back to the previous discussion and either implement all
-requested changes or keep discussing them.
-
-Thank you.
 
 Best regards,
 Krzysztof
