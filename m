@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A4DEA6F8B5D
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 23:41:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EB5B6F8B59
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 23:41:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233659AbjEEVlk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 17:41:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39942 "EHLO
+        id S233633AbjEEVll (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 17:41:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233628AbjEEVlh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 17:41:37 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF9C24692
-        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 14:40:46 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2ac80ed7f26so24837401fa.1
-        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 14:40:46 -0700 (PDT)
+        with ESMTP id S233634AbjEEVli (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 17:41:38 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 962C35B8C
+        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 14:40:48 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2ac7462d9f1so26312381fa.2
+        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 14:40:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683322845; x=1685914845;
+        d=linaro.org; s=google; t=1683322847; x=1685914847;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Olp/PVXIJr8fEMjOP3fCHDkSYD0xJnBud5aoQtWwMD4=;
-        b=bcyb7PU+mB0xuZcC98A3z4xrQTA4cCO9fBd6WOSZ4BXU+qSJ1uguBXdCQkKkfa1qOG
-         tz29LlHe+jDhfBGEkFjUPX0kG/zMnGQdZaUbfQGKVC24x4niiJcGNPPWgl7i8TZEGNgy
-         zKaTUKwGCrCIiCDNEutlCwoHmLJVBCSeUhO+emE5U24E0omFmV1YfVxmBKvL5bsPsNb/
-         CvU5JYSMOwJrZmG3cpVKwpR/DwiFu6t/cGXEaeJzn/dSt0Glh6iKohWshJo9Q21rz8DN
-         vmzfXNbcmz8axbxYCWdVpFDXPsbEUSf3l2CUlGgX6r3WJ1n0PqpnxZs7iJ2vu3RlcxlH
-         j+5w==
+        bh=NO5fRgfBpga7Z40GIKnv5Lmg/IglAEvXvStQNi4ygG0=;
+        b=rsLrKdrhy2a2Rdz5SOu60AlU7/txqFbmO0OQH8+ltM/lW7FX9rbeTouQ6vJyl0+RiU
+         p1HId9R0wqX8PyhheHxe6biuExlNfHhvZ8CMrCNOBbszxA5K9rCKzn4xoSOkDxhG2Kox
+         2Uh5EiLbpL0ZGmx4MkXpriy0J83Hq6im4kmOzEMn/+mkfjorCpGTiJJ+JvizLOhmJUQB
+         KMjdQv+81CtZJRmo4scmg0KiajwCfaY/1LD84lkq348SripmPGITWsY48s4Gr3B+1no0
+         jElDpJzebopdjfEuTKiUlorIhOOhyUqQ1d1NNWxXQ35SLSMh//ekq//SfxdMb+VGUr8Y
+         iXiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683322845; x=1685914845;
+        d=1e100.net; s=20221208; t=1683322847; x=1685914847;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Olp/PVXIJr8fEMjOP3fCHDkSYD0xJnBud5aoQtWwMD4=;
-        b=OKHQWs8kL/QqJf/WS6WB68Eg+gVzSE1LrkNtuGMHQgihKTLhM2LZuw5awnmnbOJpQj
-         tF8iG3I3STxUf6ELYHoXBDC8GExRrWPpoM9sYIhry3BB+noYMdJCHHdq5dbGxzN9cOI0
-         xRSDMhRzlKtKW5MvteiA1mdGbwrPz2San8OZXlhUSh78hGY8j3dzcM3omaxGeE3Ondk/
-         lTQA5lj7IFC8RNW+dBZntbWDQMjNGAFYearBM26OrNziX5kM2g/es9L/rByig7A0oOJG
-         oonpGgYTvR5tlSmWGaZDJHbwuOO+F+bNWC0EUtGWAQ7R3YdEAfE4kLJ/T7AVBRdODAgA
-         w+qg==
-X-Gm-Message-State: AC+VfDzUjdxflKuuWpuu80oIFugioR+aZfNyWVPkwNCEIfSnf50oXdYl
-        T1ir5AVP7NN2Sevb48IAd9PGIQ==
-X-Google-Smtp-Source: ACHHUZ4gXaB+RYZgmcooayAAK8tmsa/H8nYRTCwojYzNiGeovBEiytzLG1KPmci+aNtG4Z3ZdQlYPQ==
-X-Received: by 2002:a2e:8815:0:b0:2a8:bf35:3b7 with SMTP id x21-20020a2e8815000000b002a8bf3503b7mr821445ljh.32.1683322845019;
-        Fri, 05 May 2023 14:40:45 -0700 (PDT)
+        bh=NO5fRgfBpga7Z40GIKnv5Lmg/IglAEvXvStQNi4ygG0=;
+        b=foP6hmypsXmdXfRBVggY7itO9Wiv7RwO1NT4xDgj3XfFuPFWCZG77JzCAKJLwCrqhX
+         ik3CcLjsNqlRjxW37A+3DRv/2FKOrL2UeOR69kuLKB0wMPx9Dx5SuinT4XyDTQXNtgE3
+         hzUpMgXXnS60/d8WqrRNoDVvyStIauGFN7fGLPnNNSfOXOwBZhFNwz3yMVAr7YryOIv+
+         w4TwaGq8cq3xM0xn+wmXDzOg4GqekJ/hP2adNeZGA9V+1CFs84aB6FqgDljh7VP8WuZ/
+         apOlV4crMQwIqeOWnraJOEEp4n2tIN93fK/4mWIUAteJzRJ7whfS0LJcyXZPVztyFvK3
+         curg==
+X-Gm-Message-State: AC+VfDxe57CDxQBSow7/OPSpv6iTJY6wmPx8HzPsy6/GXreEcLMJXRQ5
+        Lo6OP+GxAcMbV0+FayYDmv0DxA==
+X-Google-Smtp-Source: ACHHUZ4gXeCJE4zlDMMHxTrHrsNhicdcqhAMyXIpqTGgh3AleIuYXLThx3eNJjWiq9OkwNC2MIBVIA==
+X-Received: by 2002:a2e:c52:0:b0:2a8:c374:c0f2 with SMTP id o18-20020a2e0c52000000b002a8c374c0f2mr914494ljd.42.1683322846941;
+        Fri, 05 May 2023 14:40:46 -0700 (PDT)
 Received: from [192.168.1.101] (abyl248.neoplus.adsl.tpnet.pl. [83.9.31.248])
-        by smtp.gmail.com with ESMTPSA id n12-20020a2e720c000000b002a776dbc277sm126453ljc.124.2023.05.05.14.40.43
+        by smtp.gmail.com with ESMTPSA id n12-20020a2e720c000000b002a776dbc277sm126453ljc.124.2023.05.05.14.40.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 May 2023 14:40:44 -0700 (PDT)
+        Fri, 05 May 2023 14:40:46 -0700 (PDT)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Fri, 05 May 2023 23:40:28 +0200
-Subject: [PATCH v3 02/12] dt-bindings: display/msm: dsi-controller-main:
- Add SM6375
+Date:   Fri, 05 May 2023 23:40:29 +0200
+Subject: [PATCH v3 03/12] dt-bindings: display/msm: sc7180-dpu: Describe
+ SM6350 and SM6375
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230411-topic-straitlagoon_mdss-v3-2-9837d6b3516d@linaro.org>
+Message-Id: <20230411-topic-straitlagoon_mdss-v3-3-9837d6b3516d@linaro.org>
 References: <20230411-topic-straitlagoon_mdss-v3-0-9837d6b3516d@linaro.org>
 In-Reply-To: <20230411-topic-straitlagoon_mdss-v3-0-9837d6b3516d@linaro.org>
 To:     Rob Clark <robdclark@gmail.com>,
@@ -74,14 +74,13 @@ Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
         linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
         freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux.dev, Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh@kernel.org>
+        iommu@lists.linux.dev, Konrad Dybcio <konrad.dybcio@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1683322839; l=1145;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1683322839; l=2117;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=VsWoYP7GHCgHOv33piyXwEtJ6/KtKH5SJYQ2EDUVEdo=;
- b=+3R0ILIrXzT82PWwbsl52w/wP4I53hpnomknSN5Kg5vAI7isrjcQm4SRnGPHieDAD+1Jm6gke
- 4m7bCcjT25dAP6HBg9UzJaX/QBj7wkbo8MX8s82R3DQp7aHegBP1CeB
+ bh=0YTG0EAw+lDImyg5bB4Ke78N5DjTkdTQlY35rQdmXMI=;
+ b=klLfGuhE6s72yhtk0LTrI5AIStLgGemG4Bbu3dYCHWIq3DabAQyTXOmCql9t0a70N13bG4Qk8
+ 2aXq/aWxoCqBMDTNWXPK0q3mCrWZdN+WYlos93WAVJtJZRjvr17jIOl
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -94,34 +93,84 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the DSI host found on SM6375.
+SC7180, SM6350 and SM6375 use a rather similar hw setup for DPU, with
+the main exception being that the last one requires an additional
+throttle clock.
 
-Acked-by: Rob Herring <robh@kernel.org>
+It is not well understood yet, but failing to toggle it on makes the
+display hardware stall and not output any frames.
+
+Document SM6350 and SM6375 DPU.
+
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ .../bindings/display/msm/qcom,sc7180-dpu.yaml      | 23 +++++++++++++++++++++-
+ 1 file changed, 22 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-index 6f367a1fabf8..f7dc05a65420 100644
---- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-@@ -27,6 +27,7 @@ properties:
-               - qcom,sdm845-dsi-ctrl
-               - qcom,sm6115-dsi-ctrl
-               - qcom,sm6350-dsi-ctrl
-+              - qcom,sm6375-dsi-ctrl
-               - qcom,sm8150-dsi-ctrl
-               - qcom,sm8250-dsi-ctrl
-               - qcom,sm8350-dsi-ctrl
-@@ -354,6 +355,7 @@ allOf:
-             enum:
-               - qcom,sdm845-dsi-ctrl
-               - qcom,sm6115-dsi-ctrl
-+              - qcom,sm6375-dsi-ctrl
-     then:
-       properties:
-         clocks:
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sc7180-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sc7180-dpu.yaml
+index 1fb8321d9ee8..630b11480496 100644
+--- a/Documentation/devicetree/bindings/display/msm/qcom,sc7180-dpu.yaml
++++ b/Documentation/devicetree/bindings/display/msm/qcom,sc7180-dpu.yaml
+@@ -13,7 +13,10 @@ $ref: /schemas/display/msm/dpu-common.yaml#
+ 
+ properties:
+   compatible:
+-    const: qcom,sc7180-dpu
++    enum:
++      - qcom,sc7180-dpu
++      - qcom,sm6350-dpu
++      - qcom,sm6375-dpu
+ 
+   reg:
+     items:
+@@ -26,6 +29,7 @@ properties:
+       - const: vbif
+ 
+   clocks:
++    minItems: 6
+     items:
+       - description: Display hf axi clock
+       - description: Display ahb clock
+@@ -33,8 +37,10 @@ properties:
+       - description: Display lut clock
+       - description: Display core clock
+       - description: Display vsync clock
++      - description: Display core throttle clock
+ 
+   clock-names:
++    minItems: 6
+     items:
+       - const: bus
+       - const: iface
+@@ -42,6 +48,7 @@ properties:
+       - const: lut
+       - const: core
+       - const: vsync
++      - const: throttle
+ 
+ required:
+   - compatible
+@@ -52,6 +59,20 @@ required:
+ 
+ unevaluatedProperties: false
+ 
++allOf:
++  - if:
++      properties:
++        compatible:
++          const: qcom,sm6375-dpu
++
++    then:
++      properties:
++        clocks:
++          minItems: 7
++
++        clock-names:
++          minItems: 7
++
+ examples:
+   - |
+     #include <dt-bindings/clock/qcom,dispcc-sc7180.h>
 
 -- 
 2.40.1
