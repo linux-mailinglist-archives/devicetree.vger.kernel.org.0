@@ -2,58 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43CA96F8250
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 13:52:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38D8D6F825C
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 13:57:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231699AbjEELwk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 07:52:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48524 "EHLO
+        id S230251AbjEEL5g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 07:57:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231549AbjEELwj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 07:52:39 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EB231387D;
-        Fri,  5 May 2023 04:52:38 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2B6B263D81;
-        Fri,  5 May 2023 11:52:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09619C433D2;
-        Fri,  5 May 2023 11:52:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1683287557;
-        bh=hWgrq4PVk1KU2XGCVuo0Pah6GURPLB+1toh9U5Jz2mk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=O3egb8XlhjEu9CRfQwi00mB60WzQTyxTyEu8vq8WOf+pbBDXg802b+0pvI6Xe6gC5
-         bv6OnCoP6f3qcpZFVxqLfrRVXbffgbtpPklT61WP/Xos8zcJQqMvqvpiInEHwUtu21
-         p20SUovVPVAS4WEwrNdS/XWwAr6lAOGOUUZRdoFnWMRndZEBkKCHJ6cu/b9JWG10Jp
-         CpLHtp3MYpSfBXORmxw9LhRoaYd+c9HLtm7g0Yr2Rh3ARj37yyGcWwLEoPFBFZ1MDA
-         9fcFAYdOKsCBkXmPQTflvJrtRmragVakFDl0BDO+NsfGbZvUGZmFXr0eBDWd4l/vbD
-         5PkwfEeJH6SFA==
-Date:   Fri, 5 May 2023 20:52:33 +0900
-From:   Mark Brown <broonie@kernel.org>
-To:     =?iso-8859-1?Q?M=E5rten?= Lindahl <martenli@axis.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        kernel@axis.com
-Subject: Re: [PATCH v2 2/2] regulator: Add support for TI TPS6287x regulators
-Message-ID: <ZFTuAZvnvY2sSXrm@finisterre.sirena.org.uk>
-References: <20230502-tps6287x-driver-v2-0-fb5419d46c49@axis.com>
- <20230502-tps6287x-driver-v2-2-fb5419d46c49@axis.com>
- <ZFOfX+PTsmA35TsC@finisterre.sirena.org.uk>
- <e02589b8-118d-0feb-d32a-bdf39d1b88f6@axis.com>
+        with ESMTP id S231699AbjEEL5e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 07:57:34 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D56B01A638
+        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 04:57:30 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-50bd2d7ba74so26195125a12.1
+        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 04:57:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683287849; x=1685879849;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=k1h6TlZ3XcQPUIwIHsCNcSEEsdfENwVRWlIa4SCh0jM=;
+        b=H0yd5VGDnV7yLOhlh3WDDz3sVfRlMbI14kuh615ecivAmjRuY5iWjz35FvyeNZtr2a
+         Vk5gHv2oLeG6in5PJnj/woS/Y/I574DpfhIn5r9E5eH3ZgEYFtyN7t/a3PtgGVseAm/s
+         aeFB+LuyrdBO20XBm2Yr1vcdaV9TaeqEnY/uiRsZ6XKCNTNKqwUuIa4oLQHmBfizz4lY
+         guuT51hENau4g47WK7UFf4mFmWcyu3LP+jjTY1SZWGZJAOBYwAfyqBATgayIvqTzZqFX
+         cBtUtGIaZOO6pP7iMenZvbvkl1CEhQQDq5GJmGfKoMNPfdwzktmBjURjvjh/ozR/K7cj
+         PqmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683287849; x=1685879849;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=k1h6TlZ3XcQPUIwIHsCNcSEEsdfENwVRWlIa4SCh0jM=;
+        b=laC1Lr3pMbLUUr0cLd8erNm1oFOLgqYqjfFekfJA0TBCpzy2s/Qm2+LukJflDs8Ic+
+         jDT/hAhUp3L2C1jo/kBmbnW3wkdTc2mqO5fQr+JW8yf1xvZXnlhFgvAPw4AiDxxM8S8B
+         fyutGiHODL2u904ZBXyvsD9Vz+rP15oWBPlF2sRFxb7WwyEGwi7hAK7W5Hr0+S4Q5saD
+         ArBjf6pVu8PzaRWiqqoh3m7N3iWSTkmeRmXb3s5nJXikk43uXxKVWbYrEy7Mq8pBzALw
+         /vdTExL3/sl1qYzXd7iXnN1mlq3W/d4rIVJFh+bfaXE1IbiwLABGl/h/pfrlkDgRssB1
+         kA1w==
+X-Gm-Message-State: AC+VfDz+kq2QR8aaYRtlg6J65nRzXW8xCzQ0P19lKrWcDtXZca504Lsy
+        GKWmPXdI9opOj+QhQidnj+Pu3g==
+X-Google-Smtp-Source: ACHHUZ6GLKQ8Cwm0kHM+vtGN9Ongi2CCZvHNsXMAn5lgUA3q9ck0YP9LVePpfPOcxBJTConx9TqJHg==
+X-Received: by 2002:a17:906:5d13:b0:960:6263:138f with SMTP id g19-20020a1709065d1300b009606263138fmr2216338ejt.27.1683287849326;
+        Fri, 05 May 2023 04:57:29 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:52e:24ce:bbc1:127d? ([2a02:810d:15c0:828:52e:24ce:bbc1:127d])
+        by smtp.gmail.com with ESMTPSA id sz26-20020a1709078b1a00b00965d1ecef30sm848979ejc.155.2023.05.05.04.57.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 05 May 2023 04:57:28 -0700 (PDT)
+Message-ID: <72205e59-f535-cba1-dc65-544f919b7b6b@linaro.org>
+Date:   Fri, 5 May 2023 13:57:26 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="EhXQxqQUrxVHaHKj"
-Content-Disposition: inline
-In-Reply-To: <e02589b8-118d-0feb-d32a-bdf39d1b88f6@axis.com>
-X-Cookie: Avoid contact with eyes.
-X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [EXT] Re: [PATCH 1/2 v5] dt-bindings: watchdog: marvell GTI
+ system watchdog driver
+Content-Language: en-US
+To:     Bharat Bhushan <bbhushan2@marvell.com>,
+        "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
+        "linux@roeck-us.net" <linux@roeck-us.net>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <linux-kernel@vger.kernel.org, sgoutham@marvell.com>
+ <20230503121016.6093-1-bbhushan2@marvell.com>
+ <9911bb17-e8f7-b552-7056-a26b3194c416@linaro.org>
+ <DM5PR1801MB1883A469C355797CE4A6E83CE36D9@DM5PR1801MB1883.namprd18.prod.outlook.com>
+ <bb52dbb7-7225-552c-2daa-688aa304a9a0@linaro.org>
+ <DM5PR1801MB18835D6D376910DA60B36D5FE36D9@DM5PR1801MB1883.namprd18.prod.outlook.com>
+ <e1760ba6-4200-4fa0-5298-f76575522764@linaro.org>
+ <DM5PR1801MB1883EE6116A2D63660871F8DE3729@DM5PR1801MB1883.namprd18.prod.outlook.com>
+ <d9c0bef4-de7a-2a0d-17b1-822978d27177@linaro.org>
+ <DM5PR1801MB1883479AE3CE111B5FC3E5C8E3729@DM5PR1801MB1883.namprd18.prod.outlook.com>
+ <731e99e6-9e48-8f80-7f95-ec8d23a85252@linaro.org>
+ <DM5PR1801MB18838CCEDD015A9E09E9CC01E3729@DM5PR1801MB1883.namprd18.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <DM5PR1801MB18838CCEDD015A9E09E9CC01E3729@DM5PR1801MB1883.namprd18.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,37 +91,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 05/05/2023 13:15, Bharat Bhushan wrote:
+> 
+> 
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Sent: Friday, May 5, 2023 4:27 PM
+>> To: Bharat Bhushan <bbhushan2@marvell.com>; wim@linux-watchdog.org;
+>> linux@roeck-us.net; robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
+>> linux-watchdog@vger.kernel.org; devicetree@vger.kernel.org
+>> Subject: Re: [EXT] Re: [PATCH 1/2 v5] dt-bindings: watchdog: marvell GTI system
+>> watchdog driver
+>>
+>> On 05/05/2023 12:41, Bharat Bhushan wrote:
+>>>>>>
+>>>>>> You need anyway SoC specific compatibles. Once you add proper
+>>>>>> compatibles, you will see that property is not needed.
+>>>>>
+>>>>> Also on a given soc, firmware can configure one of 64 timer to be
+>>>>> used as
+>>>> system watchdog time then compatible will not work.
+>>>>
+>>>> Can't you query the firmware for that? Or can't you just choose first
+>>>> unused timer? DT is for non-discoverable properties.
+>>>
+>>> Query to firmware required arm SMC call, to me that does not look correct
+>> approach. Thought of using first one but that is already used and moving that is as
+>> same as this.
+>>>
+>>> Hardcoding to 63 will make it work on some SoCs but not all.
+>>
+>> But you know which one is started or is not. GTI_CWD_WDOG tells you this.
+> 
+> On a given SoC, Firmware can reserve and/or use one or more timer for some other use case (customer use) and configure one of the timer as watchdog timer. Linux have to use the configured timer only and cannot decide by its own.
 
---EhXQxqQUrxVHaHKj
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Then the SoCs which have such firmware could use proposed property.
+Provide some rationale property description in your next version (adding
+necessary compatibles).
 
-On Fri, May 05, 2023 at 08:46:06AM +0200, M=E5rten Lindahl wrote:
+Best regards,
+Krzysztof
 
-> 2. Dynamically set the range when a new voltage is set. This way any
->    voltage from
->    0.4V to 3.35V could be set if the DT node has:
->    regulator-min-microvolt =3D <400000>;
->    regulator-max-microvolt =3D <3350000>;
-
-You can probably use one of the linear range mappings with a custom
-set/get which munges the range selection and voltage selection into a
-single value.
-
---EhXQxqQUrxVHaHKj
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmRU7f4ACgkQJNaLcl1U
-h9CwRgf/dLKlR6BbmRLBx9RkkjxLLVQsUb/7LgmfuG5a3WXf1nTeYUm//FhETl2F
-D4b28YC0p6VDKaeJmdrCAEzlHIIAFuRocUmy35a7LTGWXYVdL+QNCPxjVWWQp/FM
-T41gzibx3OUFHeApwf82Sqte4yXCFN48cMtaO5R8chBS4oK94IeedoT6fsoYvbrq
-oSoif1Ar+YxLN5PLbNRaUwOsapZPbb71NMtMPDW/f7mYLRe/zC3luSgfykTsGPfx
-QfzU4RuYcSDQP4uPCkgZG/X6IdB+DQ5O4XONRkuG5qJqP3rlbt/2yYaWNMKGzrVf
-qI7tRrSPNwYOESI9roSrjW96K0BmPg==
-=qybo
------END PGP SIGNATURE-----
-
---EhXQxqQUrxVHaHKj--
