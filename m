@@ -2,231 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A7C246F7E8F
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 10:17:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FE0B6F7EFD
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 10:28:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230055AbjEEIRQ convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 5 May 2023 04:17:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49676 "EHLO
+        id S231617AbjEEI2q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 04:28:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229810AbjEEIRP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 04:17:15 -0400
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77064160B0;
-        Fri,  5 May 2023 01:17:13 -0700 (PDT)
-Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-b9d8730fe5aso2016154276.1;
-        Fri, 05 May 2023 01:17:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683274632; x=1685866632;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=V2Fr1q2Z/5djJnHNDczEpfmdeuoZiikwsxBLMccGUGY=;
-        b=JYV6LcVbefTZ3NhWLXFycIKotPgFCoUDk6IEJb7p7kx3cvMUmP6JeY/nSS6CigW99i
-         PxlChq807nLWKUVVvjlHvQV+FM60IMXpMuHlM+fdlGlQ1FFFsyQh7yOIQQOISRGp12mc
-         Pvn44dv4Y7w3v8z3Othp6hBU4JT3fKeE+mxDU724JcWUU7QY+UMLf04FEJpIRVGpdxV8
-         1MCGOu8tyfxwtSoJ8UruwcR8uCR/e7/TuGGrzS4b2Bz/9U1DHZL3f+pk731QAFuG71FU
-         gvLH3MJnOceyIZAf71xkKsWG9Aw148t+2578Of1AMtHORC88RZt1+qjJ4K1JwhhIzTnp
-         7+yQ==
-X-Gm-Message-State: AC+VfDw1KwXW6j9h8sXKfCAq2kJhYYDFdzfELXoOt9pe8OBEtzC6FvL7
-        GgcpanpTWezAaB49fTas91m5HSmK3lmpVQ==
-X-Google-Smtp-Source: ACHHUZ4w4dPkAptvoWV/bDDgnbUmydNcTUXsmCfuWgnxjunON8KDAl3ve2VEDM3wL+WRQ91fje1lsg==
-X-Received: by 2002:a81:8494:0:b0:55a:1c7b:2dc4 with SMTP id u142-20020a818494000000b0055a1c7b2dc4mr737892ywf.15.1683274632396;
-        Fri, 05 May 2023 01:17:12 -0700 (PDT)
-Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com. [209.85.219.182])
-        by smtp.gmail.com with ESMTPSA id b64-20020a0dd943000000b0055a8e67d55dsm334604ywe.23.2023.05.05.01.17.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 May 2023 01:17:10 -0700 (PDT)
-Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-b996127ec71so2030501276.0;
-        Fri, 05 May 2023 01:17:09 -0700 (PDT)
-X-Received: by 2002:a25:abac:0:b0:ba1:d06d:fb6b with SMTP id
- v41-20020a25abac000000b00ba1d06dfb6bmr827844ybi.33.1683274629641; Fri, 05 May
- 2023 01:17:09 -0700 (PDT)
+        with ESMTP id S231216AbjEEI2T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 04:28:19 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4632419D49;
+        Fri,  5 May 2023 01:27:08 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3458Q4Pe003850;
+        Fri, 5 May 2023 03:26:04 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1683275164;
+        bh=eu/74Sw0rtrmZ5O0JjpRT++g3ExmODuSvlKPnoGzrTM=;
+        h=From:To:CC:Subject:Date;
+        b=WpipYlk1/x/MPbJv5TBj/EVIc1oo5N2r7zs9B7eGGSGDJgzzfGjzFvVXl5xhnRQwQ
+         JmJM/61f2q/4b2n1oCdElIyrCX8vjW56RpBsoWkhwETj0TGjfjMc6mHEIjA8GPfmNl
+         zFPHwCy+BVomoArz0g563CQx7v4zkVOCADA5gCMQ=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3458Q4EN129030
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 5 May 2023 03:26:04 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 5
+ May 2023 03:26:04 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 5 May 2023 03:26:04 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3458Q39M120461;
+        Fri, 5 May 2023 03:26:03 -0500
+From:   Vaishnav Achath <vaishnav.a@ti.com>
+To:     <krzysztof.kozlowski+dt@linaro.org>, <peter.ujfalusi@gmail.com>,
+        <robh+dt@kernel.org>, <vkoul@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <dmaengine@vger.kernel.org>,
+        <j-choudhary@ti.com>, <linux-kernel@vger.kernel.org>,
+        <u-kumar1@ti.com>, <vigneshr@ti.com>, <vaishnav.a@ti.com>
+Subject: [PATCH v2 0/2] Add support for J721S2 CSI BCDMA
+Date:   Fri, 5 May 2023 13:56:00 +0530
+Message-ID: <20230505082602.31783-1-vaishnav.a@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <20230505080621.96646-1-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20230505080621.96646-1-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 5 May 2023 10:16:56 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVMtMhrPMqMS77t6dJLPCr+Uu2F-hQPybWijbFyz6KCCQ@mail.gmail.com>
-Message-ID: <CAMuHMdVMtMhrPMqMS77t6dJLPCr+Uu2F-hQPybWijbFyz6KCCQ@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: rtc: isl1208: Convert to json-schema
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Trent Piepho <tpiepho@gmail.com>, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+This series adds support for J721S2 BCDMA instance for Camera Serial
+Interface (CSI). 
 
-On Fri, May 5, 2023 at 10:06 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Convert the isl1208 RTC device tree binding documentation to json-schema.
->
-> Update the example to match reality.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> RFC->v2:
->  * Updated maintainers list
->  * Updated description from original bindings
->  * removed default from isil,ev-evienb properties to match with the original
->    bindings.
->  * Added conditional check for interrupts.
+V1 : https://lore.kernel.org/all/20230503065303.16674-1-vaishnav.a@ti.com/
 
-Thanks for the update!
+V1->V2:
+  Address Krzysztof's feedback:
+     * Move J721S2 BCDMA entry to else condition to avoid failure
+     with AM62A BCDMA in binding.
+     dtbs_check :
+  https://gist.github.com/vaishnavachath/221155d02575e0c5803a62f2ee22e70e
 
-> --- a/Documentation/devicetree/bindings/rtc/isil,isl1208.txt
-> +++ /dev/null
-> @@ -1,38 +0,0 @@
-> -Intersil ISL1209/19 I2C RTC/Alarm chip with event in
-> -
-> -ISL12X9 have additional pins EVIN and #EVDET for tamper detection, while the
-> -ISL1208 and ISL1218 do not.  They are all use the same driver with the bindings
-> -described here, with chip specific properties as noted.
-> -
-> -Required properties supported by the device:
-> - - "compatible": Should be one of the following:
-> -               - "isil,isl1208"
-> -               - "isil,isl1209"
-> -               - "isil,isl1218"
-> -               - "isil,isl1219"
-> - - "reg": I2C bus address of the device
-> -
-> -Optional properties:
-> - - "interrupt-names": list which may contains "irq" and "evdet"
-> -       evdet applies to isl1209 and isl1219 only
-> - - "interrupts": list of interrupts for "irq" and "evdet"
-> -       evdet applies to isl1209 and isl1219 only
-> - - "isil,ev-evienb": Enable or disable internal pull on EVIN pin
-> -       Applies to isl1209 and isl1219 only
-> -       Possible values are 0 and 1
-> -       Value 0 enables internal pull-up on evin pin, 1 disables it.
-> -       Default will leave the non-volatile configuration of the pullup
-> -       as is.
-> -
-> -Example isl1219 node with #IRQ pin connected to SoC gpio1 pin12 and #EVDET pin
-> -connected to SoC gpio2 pin 24 and internal pull-up enabled in EVIN pin.
-> -
-> -       isl1219: rtc@68 {
-> -               compatible = "isil,isl1219";
-> -               reg = <0x68>;
-> -               interrupt-names = "irq", "evdet";
-> -               interrupts-extended = <&gpio1 12 IRQ_TYPE_EDGE_FALLING>,
-> -                       <&gpio2 24 IRQ_TYPE_EDGE_FALLING>;
-> -               isil,ev-evienb = <1>;
-> -       };
-> -
-> diff --git a/Documentation/devicetree/bindings/rtc/isil,isl1208.yaml b/Documentation/devicetree/bindings/rtc/isil,isl1208.yaml
-> new file mode 100644
-> index 000000000000..ca72f64a655c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/rtc/isil,isl1208.yaml
-> @@ -0,0 +1,86 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/rtc/isil,isl1208.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Intersil ISL1209/19 I2C RTC/Alarm chip with event in
-> +
-> +maintainers:
-> +  - Trent Piepho <tpiepho@gmail.com>
-> +
-> +description: |
-> +  ISL12X9 have additional pins EVIN and #EVDET for tamper detection, while the
-> +  ISL1208 and ISL1218 do not.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - enum:
-> +          - isil,isl1208
-> +          - isil,isl1209
-> +          - isil,isl1218
-> +          - isil,isl1219
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  interrupt-names: true
+Vaishnav Achath (2):
+  dt-bindings: dma: ti: Add J721S2 BCDMA
+  dmaengine: ti: k3-udma: Add support for J721S2 CSI BCDMA instance
 
-Please keep the list of names here.
-
-> +
-> +  isil,ev-evienb:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [ 0, 1 ]
-> +    description: |
-> +      Enable or disable internal pull on EVIN pin
-> +      Default will leave the non-volatile configuration of the pullup
-> +      as is.
-> +        <0> : Enables internal pull-up on evin pin
-> +        <1> : Disables internal pull-up on evin pin
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +allOf:
-> +  - $ref: rtc.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - isil,isl1209
-> +              - isil,isl1219
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          maxItems: 2
-> +        interrupt-names:
-> +          items:
-> +            - const: irq
-> +            - const: evdet
-> +      required:
-> +        - interrupts
-> +        - interrupt-names
-
-Interrupts are not required (may not be wired), and are considered
-optional by the driver, too.
-
-> +        - isil,ev-evienb
-
-Also not required, as per the default (leave as-is).
-
-> +    else:
-> +      properties:
-> +        interrupts:
-> +          maxItems: 1
-
-Gr{oetje,eeting}s,
-
-                        Geert
+ .../devicetree/bindings/dma/ti/k3-bcdma.yaml  | 54 +++++++++++++------
+ drivers/dma/ti/k3-udma.c                      | 25 +++++++++
+ 2 files changed, 64 insertions(+), 15 deletions(-)
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.17.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
