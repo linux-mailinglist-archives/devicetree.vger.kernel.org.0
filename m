@@ -2,422 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 263656F7AF1
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 04:30:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6609B6F7B07
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 04:34:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229919AbjEECav (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 22:30:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36852 "EHLO
+        id S229535AbjEECeu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 22:34:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229823AbjEECau (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 22:30:50 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B82411579
-        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 19:30:46 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-3f1950f569eso8603635e9.2
-        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 19:30:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683253845; x=1685845845;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SHd6awHMIT1ZuZgmRC4EFRtAIxyb2YMEXiL1eYpLWGk=;
-        b=t9UJ1pVXFIvVM7dI7nTIdM06HGovKEtoRqskwSI9K2YrcdD2OQJcNbbVru9lTvwZJP
-         ZiNHHbnhSEkEf70cS+Kntf61SYLn+wNOeCECyZp6kSvlJYfvFFw2VzX4/JlAxJ/oRAZJ
-         zQg0IZ1upvUpg45Lw+GEe5nE3MsVb409CqrmZPmdv9w0qNnmR0kaUQB4ld7flT8/OFU4
-         rlRYHAwXwqBKPIC7N8SB4gkTbv/8EqNWTv/vbs5vq6T53PJk4bPr4VxBT0n9YbzQIYlT
-         34EXGKx6RCt4KjeCR2i4QBbPxWHEf6r7HwkCRFYGYL/SSs0c2XKvoSHK0oVndnmg8s0K
-         ddEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683253845; x=1685845845;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SHd6awHMIT1ZuZgmRC4EFRtAIxyb2YMEXiL1eYpLWGk=;
-        b=H0p4ajadcRBTzWHRH9YSBKeM3YMB1Yd43i+DNqu2cqfPKvRy5Ww1Z3iZt9uwAtR0x0
-         9vrhS1CHHu57mo5KdWjIPm/BgfHcWCfXZvwad7aU4iI9vgZhMPTb3wCrVnWwolloFdcd
-         gGSUYfqPD0dYDJnK/Wkho6BwZg2heQlTxcK69G1ANYm0meF6dd/ayrj3PFDXwiPTRi2B
-         zkcmfKwmzebpAW8QizvjPQ3hjl+gvsypGmmHRv56jZv27yw1yq2PKqtY9DP/0LKjbgCX
-         63GW3B+3knYXqZjB2RXmvPP+MFO89AMlfPZHtu7VNpVeAdzFRemqPf3Z29c5gz+w/ntG
-         GYkg==
-X-Gm-Message-State: AC+VfDwePv1Q76CsZaKZW+S6V4Zqh1Kz82fW2NhbOXvltbkmXbO6V+hF
-        gVUT5Ba2u82mjb8dEsHV8/AACw==
-X-Google-Smtp-Source: ACHHUZ6BDD1/Prkvjl0XcavBE6I5FXn/S+wkQqh4TH7ZELpZgTcesll6erynrQhhw344aaZ+gmDARQ==
-X-Received: by 2002:a05:600c:ca:b0:3f3:1299:5625 with SMTP id u10-20020a05600c00ca00b003f312995625mr990611wmm.30.1683253844968;
-        Thu, 04 May 2023 19:30:44 -0700 (PDT)
-Received: from [192.168.0.15] (cpc76484-cwma10-2-0-cust274.7-3.cable.virginm.net. [82.31.201.19])
-        by smtp.gmail.com with ESMTPSA id f16-20020a7bc8d0000000b003f17e79d74asm6477899wml.7.2023.05.04.19.30.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 May 2023 19:30:44 -0700 (PDT)
-Message-ID: <67e5f823-e9bf-cc52-3693-59880f495cbb@linaro.org>
-Date:   Fri, 5 May 2023 03:30:43 +0100
+        with ESMTP id S229446AbjEECet (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 22:34:49 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19A0012095;
+        Thu,  4 May 2023 19:34:41 -0700 (PDT)
+X-UUID: 5ffb98c6eaed11ed9cb5633481061a41-20230505
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=c/gpMxHSMBF9nw2cBYHvnoTyggukET34MrMEfdLJ3R8=;
+        b=ZSRPj/cOgF/YJrUvE3p8h3h6GXxuHGru/ZprNILyKbmdNfe4OsDCCQ6gnZ8p/1onbkAlo82qSVbj+sk92+mJ0tGCmNHgN/aXM1ZEa6jAO3NJM+PdZeu868kNB6dv3pQTA2LH6cwvsSI8qUuQRS7XecHRH0LrUpLya+fqNDejsFo=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.23,REQID:06162b39-c0eb-407e-a485-3d828b488987,IP:0,U
+        RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:100,FILE:0,BULK:0,RULE:Release_Ham,ACTI
+        ON:release,TS:95
+X-CID-INFO: VERSION:1.1.23,REQID:06162b39-c0eb-407e-a485-3d828b488987,IP:0,URL
+        :0,TC:0,Content:-5,EDM:0,RT:0,SF:100,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTI
+        ON:quarantine,TS:95
+X-CID-META: VersionHash:697ab71,CLOUDID:2769d9bf-e32c-4c97-918d-fbb3fc224d4e,B
+        ulkID:230505103436HVAXJSXD,BulkQuantity:0,Recheck:0,SF:38|29|28|17|19|48,T
+        C:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+        ,OSI:0,OSA:0,AV:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-UUID: 5ffb98c6eaed11ed9cb5633481061a41-20230505
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+        (envelope-from <yunfei.dong@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 871325226; Fri, 05 May 2023 10:34:35 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Fri, 5 May 2023 10:34:34 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.25 via Frontend Transport; Fri, 5 May 2023 10:34:33 +0800
+From:   Yunfei Dong <yunfei.dong@mediatek.com>
+To:     Chen-Yu Tsai <wenst@chromium.org>,
+        Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
+        <nfraprado@collabora.com>
+CC:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Steve Cho <stevecho@chromium.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v4,0/2] media: mediatek: vcodec: add hevc stateless decoder driver in MT8195
+Date:   Fri, 5 May 2023 10:34:30 +0800
+Message-ID: <20230505023432.22559-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH] arm64: dts: qcom: Add Fxtec Pro1X (QX1050) DTS
-Content-Language: en-US
-To:     Dang Huynh <danct12@riseup.net>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230505-fxtec-pro1x-support-v1-1-1d9473b4d6e4@riseup.net>
-From:   Caleb Connolly <caleb.connolly@linaro.org>
-In-Reply-To: <20230505-fxtec-pro1x-support-v1-1-1d9473b4d6e4@riseup.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,
+        T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add hevc stateless decoder driver to support hardware decode in MT8195, and the driver
+need num_delta_pocs_of_ref_rps_idx value to parse slice header short_term_ref_pic_set().
 
+patch 1 add num_delta_pocs_of_ref_rps_idx field.
+patch 2 add hevc stateless decoder driver.
+---
+Changed from v3:
+- add the dependency patch to this patch series for patch 1.
 
-On 04/05/2023 21:33, Dang Huynh wrote:
-> The F(x)tec Pro1X is a mobile phone released by FX Technologies Ltd
-> in 2022.
-> 
-> The phone is exactly the same as the Pro1 released in 2019 with some
-> changes:
-> - MSM8998 -> SM6115
-> - Camera button is no longer multistate
-> - Only one 48MP back camera
-> - A new keyboard layout picked by the community.
-> 
-> This commit has the following features working:
-> - Display (using simplefb)
-> - UFS
-> - Power and volume buttons
-> - Pinctrl
-> - RPM Regulators
-> - USB (Device Mode)
-> 
-> To get a successful boot run:
-> 
-> cat arch/arm64/boot/Image.gz arch/arm64/boot/dts/qcom/\
-> sm6115-fxtec-pro1x.dtb  > .Image.gz-dtb
-> 
-> mkbootimg --kernel .Image.gz-dtb \
-> --ramdisk initrd.img \
-> --base 0x0 \
-> --kernel_offset 0x8000 \
-> --ramdisk_offset 0x1000000 \
-> --second_offset 0xf00000 \
-> --tags_offset 0x100 \
-> --pagesize 4096 \
-> --cmdline "CMDLINE HERE" \
-> -o qx1050-boot.img
-> 
-> fastboot flash boot qx1050-boot.img
-> fastboot erase dtbo
-> fastboot reboot
-> 
-> Signed-off-by: Dang Huynh <danct12@riseup.net>
+Changed from v2:
+- fix one build warning.
+- add the dependency patch link.
 
-Hi Dang,
+Changed from v1:
+- fix build error when build 32bit system.
+- hevc fluster test result: 132/147 (not support: 10bit => 11 and resolution => 4).
+---
+Benjamin Gaignard (1):
+  media: uapi: HEVC: Add num_delta_pocs_of_ref_rps_idx field
 
-Thanks for the patch! I'm glad to see it :D
+Yunfei Dong (1):
+  media: mediatek: vcodec: support stateless hevc decoder
 
-Just a few minor suggestions from me. Firstly, please can you re-order
-the devicetree nodes to be alphabetical. I also left a few comments below.
-
-With these nitpicks fixed:
-
-Reviewed-by: Caleb Connolly <caleb.connolly@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/Makefile               |   1 +
->  arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts | 252 ++++++++++++++++++++++++
->  2 files changed, 253 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index d42c59572ace..e311ba675f35 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -174,6 +174,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-shift-axolotl.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-lenovo-yoga-c630.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-samsung-w737.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm4250-oneplus-billie2.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= sm6115-fxtec-pro1x.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm6115p-lenovo-j606f.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm6125-sony-xperia-seine-pdx201.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm6125-xiaomi-laurel-sprout.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts b/arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts
-> new file mode 100644
-> index 000000000000..f1d18710d2f0
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts
-> @@ -0,0 +1,252 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2023, Dang Huynh <danct12@riseup.net>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "sm6115.dtsi"
-> +#include "pm6125.dtsi"
-> +
-> +/ {
-> +	model = "F(x)tec Pro1 (QX1050)";
-> +	compatible = "fxtec,pro1x", "qcom,sm6115";
-> +	chassis-type = "handset";
-> +
-> +	/* required for bootloader to select correct board */
-
-This comment isn't necessary, these two properties are documented in
-Documentation/devicetree/bindings/arm/qcom.yaml and are easily searchable.
-> +	qcom,msm-id = <417 0x10000>, <444 0x10000>;
-> +	qcom,board-id = <34 0>;
-> +
-> +	aliases {
-> +	};
-
-I think this node can be dropped if it's empty.
-> +
-> +	chosen {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		framebuffer0: framebuffer@5c000000 {
-> +			compatible = "simple-framebuffer";
-> +			reg = <0 0x5c000000 0 (1080 * 2160 * 4)>;
-> +			width = <1080>;
-> +			height = <2160>;
-> +			stride = <(1080 * 4)>;
-> +			format = "a8r8g8b8";
-> +			clocks = <&gcc GCC_DISP_HF_AXI_CLK>;
-> +		};
-> +	};
-> +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&vol_up_n>;
-> +
-> +		key-volume-up {
-> +			label = "Volume Up";
-> +			linux,code = <KEY_VOLUMEUP>;
-> +			gpios = <&pm6125_gpios 5 GPIO_ACTIVE_LOW>;
-> +			debounce-interval = <15>;
-> +			linux,can-disable;
-> +			gpio-key,wakeup;
-> +		};
-> +	};
-> +};
-> +
-> +&tlmm {
-> +	gpio-reserved-ranges = <0 4>, <14 4>;
-> +};
-> +
-> +&pm6125_gpios {
-> +	vol_up_n: vol-up-n-state {
-> +		pins = "gpio5";
-> +		function = "normal";
-> +		power-source = <0>;
-> +		bias-pull-up;
-> +		input-enable;
-> +	};
-> +};
-> +
-> +&dispcc {
-> +	/* HACK: disable until a panel driver is ready to retain simplefb */
-> +	status = "disabled";
-> +};
-> +
-> +&pon_pwrkey {
-> +	status = "okay";
-> +};
-> +
-> +&pon_resin {
-> +	linux,code = <KEY_VOLUMEDOWN>;
-> +	status = "okay";
-> +};
-> +
-> +&rpm_requests {
-> +	pm6125-regulators {
-> +		compatible = "qcom,rpm-pm6125-regulators";
-> +
-> +		vreg_s6a: s6 {
-> +			regulator-min-microvolt = <304000>;
-> +			regulator-max-microvolt = <1456000>;
-> +		};
-> +
-> +		vreg_s7a: s7 {
-> +			regulator-min-microvolt = <1280000>;
-> +			regulator-max-microvolt = <2040000>;
-> +		};
-> +
-> +		vreg_s8a: s8 {
-> +			regulator-min-microvolt = <1064000>;
-> +			regulator-max-microvolt = <1304000>;
-> +		};
-> +
-> +		vreg_l1a: l1 {
-> +			regulator-min-microvolt = <952000>;
-> +			regulator-max-microvolt = <1152000>;
-> +		};
-> +
-> +		vreg_l4a: l4 {
-> +			regulator-min-microvolt = <488000>;
-> +			regulator-max-microvolt = <1000000>;
-> +		};
-> +
-> +		vreg_l5a: l5 {
-> +			regulator-min-microvolt = <1648000>;
-> +			regulator-max-microvolt = <3056000>;
-> +		};
-> +
-> +		vreg_l6a: l6 {
-> +			regulator-min-microvolt = <576000>;
-> +			regulator-max-microvolt = <656000>;
-> +		};
-> +
-> +		vreg_l7a: l7 {
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1304000>;
-> +		};
-> +
-> +		vreg_l8a: l8 {
-> +			regulator-min-microvolt = <400000>;
-> +			regulator-max-microvolt = <728000>;
-> +		};
-> +
-> +		vreg_l9a: l9 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <2000000>;
-> +		};
-> +
-> +		vreg_l10a: l10 {
-> +			regulator-min-microvolt = <1704000>;
-> +			regulator-max-microvolt = <1904000>;
-> +		};
-> +
-> +		vreg_l11a: l11 {
-> +			regulator-min-microvolt = <1704000>;
-> +			regulator-max-microvolt = <1952000>;
-> +		};
-> +
-> +		vreg_l12a: l12 {
-> +			regulator-min-microvolt = <1624000>;
-> +			regulator-max-microvolt = <1984000>;
-> +		};
-> +
-> +		vreg_l13a: l13 {
-> +			regulator-min-microvolt = <1504000>;
-> +			regulator-max-microvolt = <1952000>;
-> +		};
-> +
-> +		vreg_l14a: l14 {
-> +			regulator-min-microvolt = <1704000>;
-> +			regulator-max-microvolt = <1904000>;
-> +		};
-> +
-> +		vreg_l15a: l15 {
-> +			regulator-min-microvolt = <2920000>;
-> +			regulator-max-microvolt = <3232000>;
-> +		};
-> +
-> +		vreg_l16a: l16 {
-> +			regulator-min-microvolt = <1704000>;
-> +			regulator-max-microvolt = <1904000>;
-> +		};
-> +
-> +		vreg_l17a: l17 {
-> +			regulator-min-microvolt = <1152000>;
-> +			regulator-max-microvolt = <1384000>;
-> +		};
-> +
-> +		vreg_l18a: l18 {
-> +			regulator-min-microvolt = <1104000>;
-> +			regulator-max-microvolt = <1312000>;
-> +		};
-> +
-> +		vreg_l19a: l19 {
-> +			regulator-min-microvolt = <1624000>;
-> +			regulator-max-microvolt = <3304000>;
-> +		};
-> +
-> +		vreg_l20a: l20 {
-> +			regulator-min-microvolt = <1624000>;
-> +			regulator-max-microvolt = <3304000>;
-> +		};
-> +
-> +		vreg_l21a: l21 {
-> +			regulator-min-microvolt = <2400000>;
-> +			regulator-max-microvolt = <3600000>;
-> +		};
-> +
-> +		vreg_l22a: l22 {
-> +			regulator-min-microvolt = <2952000>;
-> +			regulator-max-microvolt = <3304000>;
-> +		};
-> +
-> +		vreg_l23a: l23 {
-> +			regulator-min-microvolt = <3200000>;
-> +			regulator-max-microvolt = <3400000>;
-> +		};
-> +
-> +		vreg_l24a: l24 {
-> +			regulator-min-microvolt = <2704000>;
-> +			regulator-max-microvolt = <3600000>;
-> +		};
-> +	};
-> +};
-> +
-> +&xo_board {
-> +	clock-frequency = <19200000>;
-> +};
-> +
-> +&sleep_clk {
-> +	clock-frequency = <32764>;
-> +};
-> +
-> +&ufs_mem_hc {
-> +	vcc-supply = <&vreg_l24a>;
-> +	vcc-max-microamp = <600000>;
-> +	vccq2-supply = <&vreg_l11a>;
-> +	vccq2-max-microamp = <600000>;
-> +	status = "okay";
-> +};
-> +
-> +&ufs_mem_phy {
-> +	vdda-phy-supply = <&vreg_l4a>;
-> +	vdda-pll-supply = <&vreg_l12a>;
-> +	vddp-ref-clk-supply = <&vreg_l18a>;
-> +	status = "okay";
-> +};
-> +
-> +&usb {
-> +	status = "okay";
-> +};
-> +
-> +&usb_dwc3 {
-> +	maximum-speed = "high-speed";
-> +	dr_mode = "peripheral";
-> +};
-> +
-> +&usb_hsphy {
-> +	vdd-supply = <&vreg_l4a>;
-> +	vdda-pll-supply = <&vreg_l12a>;
-> +	vdda-phy-dpdm-supply = <&vreg_l15a>;
-> +	status = "okay";
-> +};
-> 
-> ---
-> base-commit: 145e5cddfe8b4bf607510b2dcf630d95f4db420f
-> change-id: 20230505-fxtec-pro1x-support-7f782f0480e9
-> 
-> Best regards,
+ .../media/v4l/ext-ctrls-codec-stateless.rst   |    7 +
+ .../media/platform/mediatek/vcodec/Makefile   |    1 +
+ .../vcodec/mtk_vcodec_dec_stateless.c         |   59 +-
+ .../platform/mediatek/vcodec/mtk_vcodec_drv.h |    1 +
+ .../vcodec/vdec/vdec_hevc_req_multi_if.c      | 1101 +++++++++++++++++
+ .../platform/mediatek/vcodec/vdec_drv_if.c    |    4 +
+ .../platform/mediatek/vcodec/vdec_drv_if.h    |    1 +
+ include/uapi/linux/v4l2-controls.h            |    6 +-
+ 8 files changed, 1178 insertions(+), 2 deletions(-)
+ create mode 100644 drivers/media/platform/mediatek/vcodec/vdec/vdec_hevc_req_multi_if.c
 
 -- 
-Kind Regards,
-Caleb (they/them)
+2.18.0
+
