@@ -2,211 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BDF86F7D90
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 09:13:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AE876F7D8E
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 09:13:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230099AbjEEHNv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 03:13:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45724 "EHLO
+        id S231234AbjEEHN0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 03:13:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230427AbjEEHNv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 03:13:51 -0400
-Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF92A14922;
-        Fri,  5 May 2023 00:13:04 -0700 (PDT)
-Received: from droid01-cd.amlogic.com (10.98.11.200) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Fri, 5 May 2023
- 15:12:52 +0800
-From:   Xianwei Zhao <xianwei.zhao@amlogic.com>
-To:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-amlogic@lists.infradead.org>, <devicetree@vger.kernel.org>
-CC:     Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
+        with ESMTP id S231248AbjEEHNZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 03:13:25 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A15CB1609B
+        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 00:13:23 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-50bcc565280so2114494a12.2
+        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 00:13:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683270802; x=1685862802;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=LjPti0SVf6hmj4N0H313/55MiUrWdpZNvzPtpM8uR3Y=;
+        b=KSRYsw+W1lrvQqIyAomaDqVEM8xAGeLseIR/4uBsLmebPEyJUBuQBwvCTXEzpOMq9u
+         AFiPu0uEzbyPyzn/5fKp3RBeQMnx7feR/ep6QzWHp/2GN2vv3/We/tZUk1tgEgcKNSIp
+         mXSsfR6GbTtiv2QRS62IWB/gi0a//k2zL+Cdpz66A6DgxenD1aLu3730CP0th8T9h9D+
+         6oOFUvslt6PzDG8AIJ9JtBmzRGaXUmxuf0JRYaj7trhS36t9EBUtFLHhzruYWePdnZyv
+         fEXX4eXaza5nVCYWycGrLxXoIt9a+fmY08OiLyJNT1E0gcmJfkZSunZD/TsWGrmAh2/I
+         Sccw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683270802; x=1685862802;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=LjPti0SVf6hmj4N0H313/55MiUrWdpZNvzPtpM8uR3Y=;
+        b=ceKBel7fUIFsZvUhcL2W++WKxWB/mW9Mh49ni887g+8BKIgbq+YJ7q17tsmvsRQZ3f
+         m6gkKuibr3VYGweiIGLKdxdlBqUROkfVGx1h3tmEOTm63TeUfbf1n4DwLyZFBZtnTso9
+         8oP9sFUn7ipIS5IAWg4zSSsbCjJdzvj8EQx946HzlrSswygOu38T1oIP1L6fAPS3NImQ
+         HpiKC9TGKpDgB8J0oj5yd688XIT7IKcfznJxZJv0HvxnxX6cJ+RGkRwI/zYSkR3jT9GR
+         k6zLjQ7sxK8TB1zQ6G8R5Ni+50gQa/Sy7RC0gRUlMPrAtXaJJ5AZePpsuHxFy8KbnARK
+         Ij9w==
+X-Gm-Message-State: AC+VfDxa0ljcAdlAgU38wky1514IGy3KAmSqTyjMsHo3/J+rRWgDM63u
+        dPvwMDoVOKUjr1lRNl2qx+qmQA==
+X-Google-Smtp-Source: ACHHUZ51C0pF2OmSh3ZV19RMD0Jz6GfDImw2bVfTjB/4HVx9UvCSzaKvElz8ivKA9nmTvCyMTvu8Tg==
+X-Received: by 2002:a17:907:98e:b0:94a:5c6d:3207 with SMTP id bf14-20020a170907098e00b0094a5c6d3207mr320366ejc.44.1683270802121;
+        Fri, 05 May 2023 00:13:22 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:52e:24ce:bbc1:127d? ([2a02:810d:15c0:828:52e:24ce:bbc1:127d])
+        by smtp.gmail.com with ESMTPSA id n22-20020a170906b31600b00965e9a23f2bsm205645ejz.134.2023.05.05.00.13.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 05 May 2023 00:13:21 -0700 (PDT)
+Message-ID: <66d344b2-899b-3d00-2d8f-5dd86f0af985@linaro.org>
+Date:   Fri, 5 May 2023 09:13:20 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH v2 1/4] dt-bindings: remoteproc: st,stm32-rproc: Rework
+ reset declarations
+Content-Language: en-US
+To:     Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Xianwei Zhao <xianwei.zhao@amlogic.com>
-Subject: [PATCH V3] arm64: dts: add support for C3 based Amlogic AW409
-Date:   Fri, 5 May 2023 15:12:54 +0800
-Message-ID: <20230505071254.2571429-1-xianwei.zhao@amlogic.com>
-X-Mailer: git-send-email 2.37.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.98.11.200]
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc:     devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230504094641.870378-1-arnaud.pouliquen@foss.st.com>
+ <20230504094641.870378-2-arnaud.pouliquen@foss.st.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230504094641.870378-2-arnaud.pouliquen@foss.st.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Amlogic C3 is an advanced edge AI processor designed for smart IP camera
-applications.
+On 04/05/2023 11:46, Arnaud Pouliquen wrote:
+> With the introduction of the SCMI (System Control and Management
+> Interface), it is now possible to use the SCMI to handle the
+> hold boot instead of a dedicated SMC call.
 
-Add basic support for the C3 based Amlogic AW409 board, which describes
-the following components: CPU, GIC, IRQ, Timer, UART. It's capable of
-booting up into the serial console.
 
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Link: https://lore.kernel.org/all/20230407102704.1055152-1-kelvin.zhang@amlogic.com
-Link: https://lore.kernel.org/all/20230307222651.2106615-2-martin.blumenstingl@googlemail.com
----
-v2 -> V3: Remove '256m' from filename;
-          Keep alphabetical order of Makefile.
-V1 -> V2: Remove new arch, and use ARCH_MESON;
-          Modify node name, and delete superfluous blank line.
----
- arch/arm64/boot/dts/amlogic/Makefile          |  1 +
- .../dts/amlogic/amlogic-c3-c302x-aw409.dts    | 29 +++++++
- arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi   | 86 +++++++++++++++++++
- 3 files changed, 116 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409.dts
- create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index cd1c5b04890a..6f61798a109f 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -1,4 +1,5 @@
- # SPDX-License-Identifier: GPL-2.0
-+dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c302x-aw409.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-a1-ad401.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j100.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j110-rev-2.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409.dts b/arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409.dts
-new file mode 100644
-index 000000000000..edce8850b338
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409.dts
-@@ -0,0 +1,29 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
-+ */
-+
-+/dts-v1/;
-+
-+#include "amlogic-c3.dtsi"
-+
-+/ {
-+	model = "Amlogic C302 aw409 Development Board";
-+	compatible = "amlogic,aw409", "amlogic,c3";
-+	interrupt-parent = <&gic>;
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	aliases {
-+		serial0 = &uart_b;
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x10000000>;
-+	};
-+};
-+
-+&uart_b {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-new file mode 100644
-index 000000000000..93b335aef605
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-@@ -0,0 +1,86 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
-+ */
-+
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/gpio/gpio.h>
-+
-+/ {
-+	cpus {
-+		#address-cells = <2>;
-+		#size-cells = <0>;
-+
-+		cpu0: cpu@0 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a35";
-+			reg = <0x0 0x0>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu1: cpu@1 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a35";
-+			reg = <0x0 0x1>;
-+			enable-method = "psci";
-+		};
-+	};
-+
-+	timer {
-+		compatible = "arm,armv8-timer";
-+		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
-+	};
-+
-+	psci {
-+		compatible = "arm,psci-1.0";
-+		method = "smc";
-+	};
-+
-+	xtal: xtal-clk {
-+		compatible = "fixed-clock";
-+		clock-frequency = <24000000>;
-+		clock-output-names = "xtal";
-+		#clock-cells = <0>;
-+	};
-+
-+	soc {
-+		compatible = "simple-bus";
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		gic: interrupt-controller@fff01000 {
-+			compatible = "arm,gic-400";
-+			#interrupt-cells = <3>;
-+			#address-cells = <0>;
-+			interrupt-controller;
-+			reg = <0x0 0xfff01000 0 0x1000>,
-+			      <0x0 0xfff02000 0 0x2000>,
-+			      <0x0 0xfff04000 0 0x2000>,
-+			      <0x0 0xfff06000 0 0x2000>;
-+			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
-+		};
-+
-+		apb4: bus@fe000000 {
-+			compatible = "simple-bus";
-+			reg = <0x0 0xfe000000 0x0 0x480000>;
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
-+
-+			uart_b: serial@7a000 {
-+				compatible = "amlogic,meson-g12a-uart";
-+				reg = <0x0 0x7a000 0x0 0x18>;
-+				interrupts = <GIC_SPI 169 IRQ_TYPE_EDGE_RISING>;
-+				status = "disabled";
-+				clocks = <&xtal>, <&xtal>, <&xtal>;
-+				clock-names = "xtal", "pclk", "baud";
-+			};
-+
-+		};
-+	};
-+};
+>  additionalProperties: false
+>  
+>  examples:
+>    - |
+>      #include <dt-bindings/reset/stm32mp1-resets.h>
+> -    m4_rproc: m4@10000000 {
+> +    m4_rproc_example1: m4@10000000 {
 
-base-commit: ae68fb187b59bc8645974320808ab2d7c41b1833
--- 
-2.37.1
+Just drop the label. It's not used.
+
+
+>        compatible = "st,stm32mp1-m4";
+>        reg = <0x10000000 0x40000>,
+>              <0x30000000 0x40000>,
+>              <0x38000000 0x10000>;
+>        resets = <&rcc MCU_R>;
+> +      reset-names = "mcu_rst";
+>        st,syscfg-holdboot = <&rcc 0x10C 0x1>;
+> -      st,syscfg-tz = <&rcc 0x000 0x1>;
+> +      st,syscfg-rsc-tbl = <&tamp 0x144 0xFFFFFFFF>;
+> +      st,syscfg-m4-state = <&tamp 0x148 0xFFFFFFFF>;
+> +    };
+> +  - |
+> +    #include <dt-bindings/reset/stm32mp1-resets.h>
+> +    m4_rproc_example2: m4@10000000 {
+
+Also here.
+
+
+Best regards,
+Krzysztof
 
