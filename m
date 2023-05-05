@@ -2,89 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CBEB6F8439
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 15:38:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E4B96F8471
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 16:02:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232685AbjEENig (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 09:38:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32856 "EHLO
+        id S232764AbjEEOCs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 10:02:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42482 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232682AbjEENie (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 09:38:34 -0400
-Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E806421541;
-        Fri,  5 May 2023 06:38:32 -0700 (PDT)
-Received: by mail-pf1-x430.google.com with SMTP id d2e1a72fcca58-63b5ce4f069so1960641b3a.1;
-        Fri, 05 May 2023 06:38:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683293912; x=1685885912;
-        h=in-reply-to:content-disposition:content-description:mime-version
-         :references:message-id:subject:cc:to:date:from:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Mz4evSv67hQPNV6oClHQJu53Y2013LybJpvcP/3rYWU=;
-        b=TBySTqTx6D329de6pIqxKPksV2SP41ErBZxOvFEAhZ5kQlqc0eJ5/NbmGyaT4gtAju
-         Oqxh0fnWWcFFq4pNWDjDgouY3OBBklA+9z1iUZUrpcoYjGmg6/KsH0CLeysDBpOMz/aU
-         5eqSMf9WIUB2NYcqtw+h0eYBE6qcZ9V2YJts8jZkI4LF6MmEfeE431yfjdpA25Cv6nyC
-         gXXvu3e/LRKDwx8589uKdf4AeEkU5fp7oLRV7FvTI8I1yMlgxjEKIlJ6Gmi4DESPBnFL
-         h/6e0zLmZoqPcL7VitXcgTUcex8Rsq9uzMEDyW7jgbljTJ3I9ja3MLMYKVXYoLSJ7Ley
-         uJNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683293912; x=1685885912;
-        h=in-reply-to:content-disposition:content-description:mime-version
-         :references:message-id:subject:cc:to:date:from:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Mz4evSv67hQPNV6oClHQJu53Y2013LybJpvcP/3rYWU=;
-        b=PdmgzNNu14XAh/V5lf3zbPQc8Wuhopj9fissTsLeS5pp1cZPYBbY/daRfqlMTGffai
-         Ua0BKYJ82sw95QeKoeznP0WQ7i9MAHatmCl4lvAqxMemtemxkgjFHZ1CV7BJ0nUUmhqB
-         fY3Xcb4qCYqiPrd6eozGb4lFPyvk+/r1taqE4DYRMdMhyMItgW5WEKlkmEAEZ9mdiBxI
-         Gg2IZPUqvvaHY0HggPfYDGNIYRp3mwz0xURO0FQu5GGHhOd8LIt4p3DoEqAis4iIDFdp
-         NMUZ/nSMRFjxVplxOuwe4DzCTX1WkSRtV16pVExNF61i5Frxh75neaJjPzJ98wNwQT0k
-         F7tQ==
-X-Gm-Message-State: AC+VfDwcZNA2qA8jPTQhlfOLltXrplixH/UZ6N6ZHZ3pNgRoQJcjEO5A
-        41cV+woaZO/CODo7n9R80dQ=
-X-Google-Smtp-Source: ACHHUZ6jqvBp3DoOq6QbmnOZPC1jBE589QcBJHn3Ic731Vt39CAjAls8FFVH+ZQr5GZDp92TA0lpEg==
-X-Received: by 2002:a05:6a21:6704:b0:ef:ed72:779c with SMTP id wh4-20020a056a21670400b000efed72779cmr1761265pzb.8.1683293912071;
-        Fri, 05 May 2023 06:38:32 -0700 (PDT)
-Received: from yoga ([202.131.133.155])
-        by smtp.gmail.com with ESMTPSA id y2-20020a17090a6c8200b0024e135c2ea1sm5248770pjj.18.2023.05.05.06.38.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 May 2023 06:38:31 -0700 (PDT)
-From:   Anup Sharma <anupnewsmail@gmail.com>
-X-Google-Original-From: Anup Sharma <AnupSharma>
-Date:   Fri, 5 May 2023 19:08:26 +0530
-To:     Mark Brown <broonie@kernel.org>
-Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        oder_chiou@realtek.com
-Subject: Re: [PATCH] ASoC: dt-bindings: rt1016: Convert to dtschema
-Message-ID: <ZFUG0vZG68hjZ0n9@yoga>
-References: <ZFUFAmBJXvkQAG7m@yoga>
- <ZFUFrWqOHVmzE+ut@finisterre.sirena.org.uk>
+        with ESMTP id S232052AbjEEOCr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 10:02:47 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F96B61B4;
+        Fri,  5 May 2023 07:02:42 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id A70848469B;
+        Fri,  5 May 2023 16:02:34 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1683295355;
+        bh=FvOK/5NmHWC6hBlswNcw10wjxr8Il3rr5UUFBtSyWH8=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=wbBUFp5XnRSN+AnXkKQnO+AXax5su/MmD2nZeMTQqXgxbkdzVX78J/LwR/zQw1Oba
+         gF+ZA5EWh5+C4lGU80UE6mBM/8wrOsChaUVQaKw1ZAYwVH9vK16EdESBlxO0Lp7lAM
+         1XXw/r0JQu5XHiH8GuwI/pdaGrg/VlEeFnizLQK/05ADC6jVaUjh0rGY1GkZjNKKaB
+         Er0FzxrLkPAGLZ+3gEVUdGtoDOV4rdugzQyQGkn9KeiFPKxb6PhRT/EDKhAJreOQcT
+         YleiA7pqaqrAyVOseJHjKFLKnf+/LjBuYXPaTu0VlZO/1oxgIocvuB9MyT3M1U9vr9
+         GfoXLgOjPeDUQ==
+Message-ID: <022b927f-7567-b1e9-56c7-8038cc5a42fd@denx.de>
+Date:   Fri, 5 May 2023 16:02:34 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Description: evicetree@vger.kernel.org,
-Content-Disposition: inline
-In-Reply-To: <ZFUFrWqOHVmzE+ut@finisterre.sirena.org.uk>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH 1/2] dt-bindings:iio:temperature:melexis,mlx90614:
+ Document MLX90615 support
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-iio@vger.kernel.org
+Cc:     Crt Mori <cmo@melexis.com>, Jonathan Cameron <jic23@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+References: <20230504194750.4489-1-marex@denx.de>
+ <0f271a02-dffe-876c-3e41-5697c5917503@linaro.org>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <0f271a02-dffe-876c-3e41-5697c5917503@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-8.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 05, 2023 at 10:33:33PM +0900, Mark Brown wrote:
-> On Fri, May 05, 2023 at 07:00:42PM +0530, Anup Sharma wrote:
+On 5/5/23 08:47, Krzysztof Kozlowski wrote:
+> On 04/05/2023 21:47, Marek Vasut wrote:
+>> Document support for MLX90615 Infra Red Thermometer, which seems to
+>> be the predecesor of MLX90614 . There are significant differences in
+>> the register layout compared to MLX90614, but the functionality of
+>> the device is virtually identical.
 > 
-> > +maintainers:
-> > +  - oder_chiou@realtek.com
-> 
-> If you're nominating someone as the maintainer for a binding it's
-> probably best to copy them on the patch so they're aware...
+> Subject: add spaces after each prefix:.
 
-Thank you, will keep that in mind. 
+I just followed the prior tags from the only other commit:
 
+39616b4e4a02f dt-bindings:iio:temperature:melexis,mlx90614 yaml conversion
 
+But I also prefer the spaces, so added.
