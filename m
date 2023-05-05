@@ -2,70 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 79E496F83F8
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 15:27:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE3606F8411
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 15:30:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232538AbjEEN12 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 09:27:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51244 "EHLO
+        id S232528AbjEENav (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 09:30:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232574AbjEEN1X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 09:27:23 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CA03203C9;
-        Fri,  5 May 2023 06:27:20 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-50bc5197d33so3389714a12.1;
-        Fri, 05 May 2023 06:27:20 -0700 (PDT)
+        with ESMTP id S232474AbjEENau (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 09:30:50 -0400
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BC6F1C0DA;
+        Fri,  5 May 2023 06:30:49 -0700 (PDT)
+Received: by mail-pl1-x633.google.com with SMTP id d9443c01a7336-1aaf21bb42bso12088745ad.2;
+        Fri, 05 May 2023 06:30:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683293239; x=1685885239;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=pJVTeItn3/q+rs4Fp3PPs4uhLe3EOiwtZ3p5vx2OZsc=;
-        b=pW1eSFQtUOf4qd5Tqc4nNA0Lxc0orupxla+piV27edUUubj0zCl0YBkqsHBTbF1tz/
-         shZdBzRzJe/A/ESNBMVAqzGsJu/AzM2GR7Vme5pGfkRQ33GFyXbqkfr05hDtF3lluygb
-         ob7DwNWNnLG1srjhhp2cOse/kn/5/0QBVA/eFLxiMKNFwzbiJYDT+3WpcqvXcBxuTODL
-         m01ijHjxSezLk8GFHifw9arl0IJDzEWpb1C+SCMXboqI3V4VctTKfd4WAkkgPn+4ipKV
-         FHoUO3GseDFID+qZdDBuoxD78K+IAzlmeAvEnGsCIzaBUyzFyLSG884H+VKhqF8UIylS
-         LQNg==
+        d=gmail.com; s=20221208; t=1683293449; x=1685885449;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=k7jCr7W/FI3aFXYPnC0hqNFeny2rAOk/VL+jdI5ieBk=;
+        b=FdSmeTr1tdaMdcTKYwHAy5czhxIDodmH++ULQd8fwCqvjhBDJV4nzDqgE4wkIS5VQY
+         1GuvqsSIQoiPf9ANBdpotVCgefREYblbUczW8PJIePj74iUQc7lCkgdXFt5z2wcW0HrM
+         /TRh+go4t6Ji/XeEqPMSLbGKMEmqKz3LIeGR8cQKslcY10u+PK3pZu2/tCFfhPUNRQDP
+         4AQNGVpw6KSvATSIe3h1U0khbhg0gLIvD9iZFwA1vxfeRoHPn/+wCg+6ezx0NxSCZA78
+         lc70OpH05PXKtTFOLFj4YQzlZB09LkMz1g1nlgWZCu+84QR0WCziCFrR6AmR7qJQ2Hm+
+         StGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683293239; x=1685885239;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pJVTeItn3/q+rs4Fp3PPs4uhLe3EOiwtZ3p5vx2OZsc=;
-        b=eeJeBWSrXRD3XWcfKfEIY4xzVK00BnfIbtUx7b0+FxBkTjACrIWO4LL/cDyze9hC1U
-         gHkpS0YSD2LRiGiKfWo2NFNllVZ8Jk17gneIz0dUMvUxeelt7RjGvBFwEVLwBgc5VMhX
-         kV6/NQdpqZ6jb2lNVb3xI/OneVp/C9rKMF8XMHaFhd06pktpPGwz2qhBHuQlM3lfwnpe
-         dH+YZgnO4gJbEXY6CDm1Y8aNCRZNBPZHgEcrWnZR2IOQpsJAafwtqMUQj3rBMT3SLh29
-         HMt/nwBfUx8gum80LmfBCPwHOeo/XWnJZsXGRo/TZ9O/NozcagQZvjcly3M7vgE05MIM
-         QafA==
-X-Gm-Message-State: AC+VfDxOzunShWJdV+4OfdGG3YEUGTEv9v66RX+0qun7MveGSqmk/Txi
-        jI+6jP5sAyEsYk0hN/qcKo2pXvFLqh3MXokwZ7U=
-X-Google-Smtp-Source: ACHHUZ4j4o+3ks7gqO0Cc3az7qvWANuOL9pmgjp9OgEvccsoElcFtMR8UppD8ccMx0iGR4Z540YQjU8jVHujZAMcF4c=
-X-Received: by 2002:a17:907:3e05:b0:94e:988d:acc5 with SMTP id
- hp5-20020a1709073e0500b0094e988dacc5mr1256436ejc.46.1683293238964; Fri, 05
- May 2023 06:27:18 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230505074701.1030980-1-bigunclemax@gmail.com> <20230505105805.548d1a1b@donnerap.cambridge.arm.com>
-In-Reply-To: <20230505105805.548d1a1b@donnerap.cambridge.arm.com>
-From:   Maxim Kiselev <bigunclemax@gmail.com>
-Date:   Fri, 5 May 2023 17:27:07 +0400
-Message-ID: <CALHCpMi8=t1bMceTOfZjh7aKEQcEEpfeG4wi9pB=5o34Ca+N3w@mail.gmail.com>
-Subject: Re: [PATCH] riscv: dts: allwinner: d1: Add SPI0 controller node
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     robh+dt@kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        d=1e100.net; s=20221208; t=1683293449; x=1685885449;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=k7jCr7W/FI3aFXYPnC0hqNFeny2rAOk/VL+jdI5ieBk=;
+        b=jfroXHJEq4JyAwO4hAe3oQZmTDG52ccDL+EoCM4U/2MNbTrWC/eV7N3uQGAn1QKFeh
+         6EflLmrN992l253MIvKG0U1iiU77Yp9Wg1tB3y96pEjp/MlYGfZT+kMBk45OTgUrB1kM
+         hevbdOHYOvLcRhryRQ83PgPVjA9hwdwKlSK4Yi++jVweziEQdc2VbhFHXc0y/yNJ/zym
+         I/JN4OSP58SWSnwq8wlSVJQ+Lr1d4IZSklxUequQ0I31ANHm6smVz/cmv2ek43f7dCPi
+         kjDww00SXj8WgKJsYvnfP2ZDZ2BpeqBl09TPimbxCRemOF693Q8opkcbrR5b3br5aSQf
+         Jptg==
+X-Gm-Message-State: AC+VfDxRbVVCT+H7S//rclGtTN9nsAQLcNdM3cATSE86EUrkTmEujBAu
+        JGjS71vxEzBKvftT9GnZIxODqX4U9o7M9ibD
+X-Google-Smtp-Source: ACHHUZ6YTKLwPCN7D+WAoHB+acEnPplFDn5bF7gYSisfHLgidWRPNl9QzYULSdm4gLahQ3+1dHO7Ew==
+X-Received: by 2002:a17:90a:128e:b0:24d:eb30:daa6 with SMTP id g14-20020a17090a128e00b0024deb30daa6mr1369608pja.40.1683293448677;
+        Fri, 05 May 2023 06:30:48 -0700 (PDT)
+Received: from yoga ([202.131.133.155])
+        by smtp.gmail.com with ESMTPSA id iq14-20020a17090afb4e00b0024df400a9e6sm9771850pjb.37.2023.05.05.06.30.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 May 2023 06:30:48 -0700 (PDT)
+Date:   Fri, 5 May 2023 19:00:42 +0530
+From:   Anup Sharma <anupnewsmail@gmail.com>
+To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Subject: [PATCH] ASoC: dt-bindings: rt1016: Convert to dtschema
+Message-ID: <ZFUFAmBJXvkQAG7m@yoga>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -76,19 +68,85 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andre,
+Convert the RT1016 Stereo Audio Amplifier bindings to DT schema
 
-> From a quick glance at the manuals, it
-> looks like there are not quite the same, though: the D1/R528/T113s
-> mentions a SPI_SAMP_DL register @0x28, whereas the older IP has a SPI_CCR
-> register @0x24 - which is not mentioned in the newer manuals. The driver
-> relies on that clock control register, so it wouldn't really work
-> reliably, if that register is not there.
+Signed-off-by: Anup Sharma <anupnewsmail@gmail.com>
+---
+ .../bindings/sound/realtek,rt1016.yaml        | 40 +++++++++++++++++++
+ .../devicetree/bindings/sound/rt1016.txt      | 17 --------
+ 2 files changed, 40 insertions(+), 17 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/realtek,rt1016.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/rt1016.txt
 
-Thank you for pointing this out. I missed this difference.
-I actually have a board with T113 SoC, and it looks like writing to
-SPI_CCR@0x24 does nothing.
-And it doesn't affect access to connected SPI NOR flash (read\write
-operations are fine).
-But I completely agree with you that this difference should be handled
-by the spi driver.
+diff --git a/Documentation/devicetree/bindings/sound/realtek,rt1016.yaml b/Documentation/devicetree/bindings/sound/realtek,rt1016.yaml
+new file mode 100644
+index 000000000000..5287e9c9197e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/realtek,rt1016.yaml
+@@ -0,0 +1,40 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/realtek,rt1016.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Reaktek RT1016 Stereo Class D Audio Amplifier
++
++maintainers:
++  - oder_chiou@realtek.com
++
++allOf:
++  - $ref: dai-common.yaml#
++
++properties:
++  compatible:
++    const: realtek,rt1016
++
++  reg:
++    maxItems: 1
++
++  "#sound-dai-cells":
++    const: 0
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        codec@1a {
++            compatible = "realtek,rt1016";
++            reg = <0x1a>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/sound/rt1016.txt b/Documentation/devicetree/bindings/sound/rt1016.txt
+deleted file mode 100644
+index 2310f8ff259b..000000000000
+--- a/Documentation/devicetree/bindings/sound/rt1016.txt
++++ /dev/null
+@@ -1,17 +0,0 @@
+-RT1016 Stereo Class D Audio Amplifier
+-
+-This device supports I2C only.
+-
+-Required properties:
+-
+-- compatible : "realtek,rt1016".
+-
+-- reg : The I2C address of the device.
+-
+-
+-Example:
+-
+-rt1016: codec@1a {
+-	compatible = "realtek,rt1016";
+-	reg = <0x1a>;
+-};
+-- 
+2.34.1
+
