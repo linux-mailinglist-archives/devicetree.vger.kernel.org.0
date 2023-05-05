@@ -2,74 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A242E6F83BD
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 15:18:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB6B76F83CC
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 15:20:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231764AbjEENS5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 09:18:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43556 "EHLO
+        id S232433AbjEENUY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 09:20:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232426AbjEENSz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 09:18:55 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C5501E9BF;
-        Fri,  5 May 2023 06:18:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=Y2Pl3joU3ArKu+3fIECnoIyOrPTGQkO/uS8PYdBCeGI=; b=FILjLS8qVmBxsL4CzOIaB+7NCr
-        UPK30itFQC6woX+pzzT2Xmo6M+mBXjazlcra8sE8dGaoVZKA9XYjnL+m+3O7no2Hqc0dS53Ke7pof
-        cCJDQkas880JB92podbSB5R2HMV2uHDNmJpgjUbmslVH8ayHPJ3/DK7Q0Nb8VXt5npJ8=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1puvKa-00C03Z-14; Fri, 05 May 2023 15:18:40 +0200
-Date:   Fri, 5 May 2023 15:18:40 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Samin Guo <samin.guo@starfivetech.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, Peter Geis <pgwipeout@gmail.com>,
-        Frank <Frank.Sae@motor-comm.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S232387AbjEENUX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 09:20:23 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.73])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B65A72688;
+        Fri,  5 May 2023 06:20:19 -0700 (PDT)
+Received: from localhost ([31.220.113.235]) by mrelayeu.kundenserver.de
+ (mreue109 [212.227.15.183]) with ESMTPSA (Nemesis) id
+ 1N6KMR-1qJ7Bu324H-016cR9; Fri, 05 May 2023 15:19:59 +0200
+Date:   Fri, 5 May 2023 15:19:59 +0200
+From:   Andreas Klinger <ak@it-klinger.de>
+To:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Yanhong Wang <yanhong.wang@starfivetech.com>
-Subject: Re: [PATCH v2 2/2] net: phy: motorcomm: Add pad drive strength cfg
- support
-Message-ID: <fc516e65-cde2-4a65-a3c5-bd8c939e7eb1@lunn.ch>
-References: <20230505090558.2355-1-samin.guo@starfivetech.com>
- <20230505090558.2355-3-samin.guo@starfivetech.com>
+        Angel Iglesias <ang.iglesiasg@gmail.com>,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/3] Support Honeywell mprls0025pa pressure sensor
+Message-ID: <ZFUCf059+PSR+3Wb@arbad>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230505090558.2355-3-samin.guo@starfivetech.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Provags-ID: V03:K1:LvWwahpDxbW5ietDton1MeJ49tRciW1sgnT3RH04aGs3/1qpbKX
+ eZBZd34zYne/ZVfSfg6QPVXmfqdBEqkhuZ2rvDSFdzgnp8XpxMB2BcAIquVJPhDs5eQqIyS
+ U7zoINps68Fhft5D3djciOI2CIX37ihSe+r3lkUcHaIHtWQSF3HBiDjHgAPabDPzEmeNLct
+ ocQCQ0T/fqVXejTPiHeVQ==
+UI-OutboundReport: notjunk:1;M01:P0:TMie43ZwBSE=;ueCGyBUvD621qQ8q/ae9m/jhKK7
+ r0QAp574iP8Pbpc3pnVlWtP3Eq8QHL8X5OE4eVUzAWdTLV2hEXnfFN2W85v57Vk10E0kv/gct
+ eEKVft6teWgu/0NU6sokfXvw55h4rSYfepJB8yyQh0OoIx4rEfJvvzAY7lSGnQTbHcN5s4sys
+ hQzdG0UP/ej/hlAr1ySeNKzVBGHVZcddIdMYyJ0kMNpQAO7PUfenFg5AUIe+apan3mIIXiNmT
+ K2GZg/ZdtWHfW/+rmylUjTWVhmCNKEFofwjSTFb6fl5GoX1rnHN+iLgrQIZSvz5UjVvcrIpVG
+ j7w/vehxVvh3LTqwmegVtxsgtAxJJp2PyiN391Li3rjPuf7N927dOH3Z/AgiFyn+eeHlR4mNU
+ JpDD2tWypSZcLv5QHxdZLkd77TqmNEWivhpYzWsVDM4WuSO6z2qfjF4nqqPrZi7kTXISBAG8j
+ ZeuCpWjF0OdM9uCP7+bc0cIeFwaWnpo7idiodJeo6uP2I/fYMHVc83hfXH2aFYE3GOCbLXzMZ
+ B7GTvOYUWICj3TgKtQMdtqP20DjLTg+9NvNkMX9aWLtEVWVbQz5jXHQN6LlFN/gBiGNua1tW/
+ HYZ2LSjLtTRJSXiKwbaAXE2L4tK6zbZFr9Tjs44TRy78t6VgQvArtlnjJrKhFKYX5dhnZAfkt
+ Y3Hzmhal6/cNYN9f59eOkATAiuAAoSGsr5rP6VDJCw==
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
->  #define YTPHY_DTS_OUTPUT_CLK_DIS		0
-> @@ -1495,6 +1504,7 @@ static int yt8531_config_init(struct phy_device *phydev)
->  {
->  	struct device_node *node = phydev->mdio.dev.of_node;
->  	int ret;
-> +	u32 ds, val;
+Support Honeywell mprls0025pa pressure sensor.
 
-Reverse Christmas tree.  Sort these longest first, shortest last.
+This patch series adds support for Honeywell mprls0025pa pressure sensor series.
+There are a variety of sensors with different pressure ranges supported.
 
-Otherwise this looks O.K.
+Changes in v4:
+- Patch 1: "dt-bindings: iio: pressure: Support Honeywell mprls0025pa sensor"
+  - change line length to 80 characters
+  - make vdd-supply mandatory
+- Patch 2: "iio: pressure: Honeywell mprls0025pa pressure sensor"
+  - change line length to 80 characters
+  - change regulator vcc to devm_regulator_get_enable()
+  - switch to probe_new
+  - many changes from the review
+- Patch 3: "MAINTAINERS: Add Honeywell mprls0025pa sensor"
+  - no changes
 
-The only open question is if real unit should be used, uA, not some
-magic numbers. Lets see what the DT Maintainers say.
+Changes in v3:
+- Patch 1: "dt-bindings: iio: pressure: Support Honeywell mprls0025pa sensor"
+  - fix errors while doing dt_binding_check
+  - add vdd-supply
+- Patch 2: "iio: pressure: Honeywell mpr pressure sensor"
+  - change to _RAW interface
+  - add transfer function
+  - add regulator
+  - move to device_property_xxx functions
+  - many more changes from the feedbacks
+- Patch 3: "MAINTAINERS: Add Honeywell mpr sensor"
+  - change file names
 
-      Andrew
+Changes in v2:
+- Patch 1: "dt-bindings: iio: pressure: Support Honeywell mprls0025pa sensor"
+  - change the global sensor decription of mpr to the specific sensor
+    mprls0025pa
+  - change compatible string
+  - rename the file to honeywell,mprls0025pa.yaml
+  - honeywell,pmin-pascal and honeywell,pmax-pascal: add unit pascal to property
+    names 
+  - add new property honeywell,transfer-function
+- Patch 2: "iio: pressure: Honeywell mpr pressure sensor"
+  - no change so far
+  - will be changed and send out as new version when the dt definition is
+    settled down
+- Patch 3: "MAINTAINERS: Add Honeywell mpr sensor"
+  - no change so far
+
+Andreas Klinger (3):
+  dt-bindings: iio: pressure: Support Honeywell mprls0025pa sensor
+  iio: pressure: Honeywell mprls0025pa pressure sensor
+  MAINTAINERS: Add Honeywell mprls0025pa sensor
+
+ .../iio/pressure/honeywell,mprls0025pa.yaml   | 104 +++++
+ MAINTAINERS                                   |   7 +
+ drivers/iio/pressure/Kconfig                  |  13 +
+ drivers/iio/pressure/Makefile                 |   1 +
+ drivers/iio/pressure/mprls0025pa.c            | 441 ++++++++++++++++++
+ 5 files changed, 566 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml
+ create mode 100644 drivers/iio/pressure/mprls0025pa.c
+
+
+base-commit: 457391b0380335d5e9a5babdec90ac53928b23b4
+-- 
+2.30.2
