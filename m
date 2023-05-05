@@ -2,107 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F7296F800C
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 11:33:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1097A6F802E
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 11:39:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231709AbjEEJdI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 05:33:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42080 "EHLO
+        id S231808AbjEEJjo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 05:39:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229717AbjEEJdH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 05:33:07 -0400
-Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6AB9E4B;
-        Fri,  5 May 2023 02:33:05 -0700 (PDT)
-Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-18f4a6d2822so16211529fac.1;
-        Fri, 05 May 2023 02:33:05 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683279185; x=1685871185;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=foYZfjSWQ9XEg3+X0YFxAS8ZxcDOViTVK2FhC3WnFyg=;
-        b=il6iKb1qzvz5Q1yr6xx8s9bkoU14M26iaWVNb8/Y8JfLrhGvTborle0wbnAwpTkehh
-         XZsj6Dy1anFCHofGQ7IqXp9CAr8VhMyfEB7rRdysXZ/yfY4hz0d7xtDZbR+dNSz7+Hi+
-         83xIIzrXBUONrW/q+skkMIoQLi2vmCvdHASp5FsIBtX5F11/LvNnxLoHSLJfx9ZTSKh4
-         nX/99IzmVD3E1x4AifAQ//c/g0FnoWAoOzs7GFV1kR85eFUIYdsL3zcIxijTMLjuzee4
-         idyPRmiaQ0y8QzW9wP9A+C/qxp5fbpeZd48ywCCDGkNEH9am8x+KYhrLCx6i1+ts0rbj
-         GhLQ==
-X-Gm-Message-State: AC+VfDwV4GK+7BXViFmsHb6RV6njyAn0oZqRkbSEN1iR7j8ck56omN0C
-        2hCoBHdiP8ZZwkIzod8kYw==
-X-Google-Smtp-Source: ACHHUZ7/Bvo6e4IS+A0BRBq1EW4h8UO56UACPEEq24rcsGRSiUq3y+9x2Vp5LVN0QW+75WL7Sc43iQ==
-X-Received: by 2002:a9d:70cc:0:b0:6a4:42a4:3e69 with SMTP id w12-20020a9d70cc000000b006a442a43e69mr1292329otj.15.1683279184970;
-        Fri, 05 May 2023 02:33:04 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id d19-20020a056830005300b0068bd922a244sm600711otp.20.2023.05.05.02.33.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 May 2023 02:33:04 -0700 (PDT)
-Received: (nullmailer pid 1945758 invoked by uid 1000);
-        Fri, 05 May 2023 09:33:03 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S231800AbjEEJjk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 05:39:40 -0400
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5C1681A109;
+        Fri,  5 May 2023 02:39:32 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 5848F80FC;
+        Fri,  5 May 2023 09:39:31 +0000 (UTC)
+Date:   Fri, 5 May 2023 12:39:30 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     Nishanth Menon <nm@ti.com>
+Cc:     Wadim Egorov <w.egorov@phytec.de>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-hardening@vger.kernel.org, upstream@lists.phytec.de,
+        vigneshr@ti.com, kristo@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, keescook@chromium.org,
+        tony.luck@intel.com, gpiccoli@igalia.com
+Subject: Re: [PATCH 2/2] arm64: dts: ti: Add basic support for
+ phyBOARD-Lyra-AM625
+Message-ID: <20230505093930.GS14287@atomide.com>
+References: <20230504140143.1425951-1-w.egorov@phytec.de>
+ <20230504140143.1425951-2-w.egorov@phytec.de>
+ <20230504142643.pkzsftrsrqph4vql@banked>
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     haibo.chen@nxp.com
-Cc:     linux-imx@nxp.com, ulf.hansson@linaro.org,
-        cniedermaier@dh-electronics.com, krzysztof.kozlowski+dt@linaro.org,
-        kernel@pengutronix.de, kernel@dh-electronics.com,
-        adrian.hunter@intel.com, festevam@gmail.com,
-        devicetree@vger.kernel.org, linux-mmc@vger.kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, robh+dt@kernel.org
-In-Reply-To: <20230505084955.238940-3-haibo.chen@nxp.com>
-References: <20230505084955.238940-1-haibo.chen@nxp.com>
- <20230505084955.238940-3-haibo.chen@nxp.com>
-Message-Id: <168327918323.1945739.8862496839976686617.robh@kernel.org>
-Subject: Re: [PATCH 3/4] dt-bindings: mmc: fsl-imx-esdhc: remove property
- "fsl,wp-controller"
-Date:   Fri, 05 May 2023 04:33:03 -0500
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230504142643.pkzsftrsrqph4vql@banked>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+* Nishanth Menon <nm@ti.com> [230504 14:33]:
+> Just wondering: if the carrier board can easily work with different
+> SoMs.. in which case, we could do overlay to create the som + carrier
+> overlay to create rdk dtb - this might allow the scheme to scale to
+> additional SoMs and carrier combinations.. and the SoM dtb could be
+> sufficient for something like a bootloader.
 
-On Fri, 05 May 2023 16:49:54 +0800, haibo.chen@nxp.com wrote:
-> From: Haibo Chen <haibo.chen@nxp.com>
-> 
-> Driver do not use this property, so remove it here.
-> 
-> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
-> ---
->  Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml | 5 -----
->  1 file changed, 5 deletions(-)
-> 
+It might be best to limit the overlay usage to devices that might see
+dual use on the carrier board.. Not sure if setting up the entire
+carrier board makes sense as an overlay :) Not sure if folks want to
+debug boot issues on a remote server for example if an overlay is
+needed to boot with Ethernet :)
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Regards,
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.example.dtb: mmc@70004000: Unevaluated properties are not allowed ('fsl,wp-controller' was unexpected)
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230505084955.238940-3-haibo.chen@nxp.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Tony
