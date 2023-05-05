@@ -2,172 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CA046F8AAD
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 23:23:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF31A6F8ACE
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 23:25:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232718AbjEEVXp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 17:23:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54464 "EHLO
+        id S230127AbjEEVZn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 17:25:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231438AbjEEVXo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 17:23:44 -0400
-Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B980A3;
-        Fri,  5 May 2023 14:23:43 -0700 (PDT)
-Received: by mail-ot1-f44.google.com with SMTP id 46e09a7af769-6a5ec0d8d8aso1445206a34.2;
-        Fri, 05 May 2023 14:23:43 -0700 (PDT)
+        with ESMTP id S231438AbjEEVZm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 17:25:42 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B59F5BA6;
+        Fri,  5 May 2023 14:25:16 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-965ac4dd11bso448906466b.2;
+        Fri, 05 May 2023 14:25:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1683321914; x=1685913914;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=PVt2/GzWyz5Ess7y+OCZ33ZvS4WPkfBPz+s8yoY7/9o=;
+        b=cBhPsq7jc79GPzYqA9o+PUh5onUk8i5uaj49kXEhrw/1lEyz5LxLW/7/fVWlojfhKK
+         F/8GRStnKtjRe8D3XJpOieqLlOBSAwYFMxUU2YiPGwfDQNplUTfZ6jz7LmZrfojhrFMY
+         Hhgj9ov39uVCjETc9guBXenKjp3+W0YC7xT/a2TTlJUk1v3MOK5XvT/UChQYX39DE3il
+         eWK0qiavlThnGZPE/Au01gwhHp1NVu1FD8vgzIc4J5lZGDsJTMlLe6zvM1IxGyT4fSS9
+         Hr7e/LSBMx5Ek302/V8iR0+9eJk3iL7W9Sit+dXKZQl+iXl+CLuhGZrMbWYbr1rJGWBL
+         N+0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683321822; x=1685913822;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GwdhZdKqyhuaiAmSNIpDtAl7IfbJSYB+daUBPaVksik=;
-        b=Nur8IoEtyk1cPVgkS2VkZbhFlJ3JLwjf+J6+ePhisi0lrioVX3+mtOf6gKjGIQTk0W
-         9iosGnbdIsj538QfScDq6WTAAdRKmF0T1XxpbylZ/Im8gvAjfIJ7SWQVij+JzUv0iJ7A
-         3vBDyKateDck3Na3VKd/TOeyDkhddK7qjON5y1oc1/dGLgsVUorYVRvivpz9qSq7QrgI
-         ZPh8XBDoKSeAOz8fkC6vE8cJcedj8k/MmvoaqfPTtpjBPZBWaiEAarn+Y/ZcXxq2jBxn
-         4GsWDz+x9DoA7LdJACaZVN5vuFlEsV+humMkLt237naLtz2J5d+af0JH7Lus9O0pLMN9
-         jgJA==
-X-Gm-Message-State: AC+VfDwzt0nRSI3tlqDZq7lz4vXoc/4uFnC/ApjkadYjZlZ6akh6NUzv
-        p3w+HC1juHXBhrBzVb7SBg==
-X-Google-Smtp-Source: ACHHUZ5aScoYRGug8/b0YvTj0vwFXK6C0WhOO7mcg4F0Md4vayUd4T69DoSmGy8fggvRw39K2vP6pg==
-X-Received: by 2002:a05:6808:46:b0:38d:f03f:935b with SMTP id v6-20020a056808004600b0038df03f935bmr1325252oic.24.1683321822415;
-        Fri, 05 May 2023 14:23:42 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id es10-20020a056808278a00b0038edc69490bsm3185925oib.10.2023.05.05.14.23.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 May 2023 14:23:41 -0700 (PDT)
-Received: (nullmailer pid 3587437 invoked by uid 1000);
-        Fri, 05 May 2023 21:23:40 -0000
-Date:   Fri, 5 May 2023 16:23:40 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Artur Weber <aweber.kernel@gmail.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v4 1/3] dt-bindings: display: panel: Add Samsung S6D7AA0
- LCD panel controller
-Message-ID: <20230505212340.GA3585766-robh@kernel.org>
-References: <20230501185103.25939-1-aweber.kernel@gmail.com>
- <20230501185103.25939-2-aweber.kernel@gmail.com>
+        d=1e100.net; s=20221208; t=1683321914; x=1685913914;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PVt2/GzWyz5Ess7y+OCZ33ZvS4WPkfBPz+s8yoY7/9o=;
+        b=UT9WN/W8UJiuh171K3mNaCt8B/4j/Tznj3Aob5IRUAGgaK162fm7FK5Gf0KzZTHIrl
+         hToOr+XtZ4BvClVfThEl1cZfo85Qj0TcUIH6bk0/I7os/92nFZSk+BtJnpxeKHKdAe60
+         PPeLIEiKHWBUBwGeJtrAKRitjSaxXc05zhGtjJdYVSVkpRPjcbMBQp5T92vH48Uzrpha
+         tmMTs2l8ckih+c3SMuJ7bRHVmeV470s7jja37eIBWgK9scZp5Xn3nojWxZihYSOUmVRe
+         brU3luroGsKb7PeRLBWZwhOBxhD+U8DjlGeKApkXUpN6Nm5QKO9M6U89a5GARaoBC3f9
+         15jw==
+X-Gm-Message-State: AC+VfDwrckHyAt4hoXBF1CyQ+Gw+RvKWGRvZsIjffW11x3HgsgGhaye+
+        S8cTPklFGAu2c3v/WwcJYBxBQQGimtc8lO00pyM=
+X-Google-Smtp-Source: ACHHUZ4uG8c0N6L9crKfvVhzWNWIj4OGzXKzRUKG1CM3TRYjrUABbTN/yhe0vAftEiN/MCLVhaCovH677AnMW9adMYk=
+X-Received: by 2002:a17:907:d86:b0:953:42c0:86e7 with SMTP id
+ go6-20020a1709070d8600b0095342c086e7mr2517436ejc.4.1683321914389; Fri, 05 May
+ 2023 14:25:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230501185103.25939-2-aweber.kernel@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+References: <20230505074701.1030980-1-bigunclemax@gmail.com>
+ <20230505105805.548d1a1b@donnerap.cambridge.arm.com> <CALHCpMi8=t1bMceTOfZjh7aKEQcEEpfeG4wi9pB=5o34Ca+N3w@mail.gmail.com>
+ <20230505170015.664c18bc@donnerap.cambridge.arm.com>
+In-Reply-To: <20230505170015.664c18bc@donnerap.cambridge.arm.com>
+From:   Maxim Kiselev <bigunclemax@gmail.com>
+Date:   Sat, 6 May 2023 01:25:02 +0400
+Message-ID: <CALHCpMiwqkMRV2Nv0sKG8ZD2D6jbjVaB6_jcShf6hMBUP3D3Dg@mail.gmail.com>
+Subject: Re: [PATCH] riscv: dts: allwinner: d1: Add SPI0 controller node
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     robh+dt@kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, icenowy@outlook.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 01, 2023 at 08:51:01PM +0200, Artur Weber wrote:
-> Add bindings for the S6D7AA0 LCD panel controller, including the
-> S6D7AA0-LSL080AL02 panel used in the Samsung Galaxy Tab 3 8.0 family
-> of tablets, and the S6D7AA0-LSL080AL03 and S6D7AA0-LTL101AT01 panels
-> used in the Samsung Galaxy Tab A 8.0 and 9.7 2015.
-> 
-> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
-> ---
-> Changed in v2:
->  - Updated commit message
->  - Applied suggestions from Krzysztof Kozlowski
-> Changed in v3:
->  - Correctly applied suggestions
-> Changed in v4:
->  - Added LSL080AL03, LTL101AT01 compatibles
->  - Added description to reset-gpios
->  - Added vmipi-supply, renamed enable-supply to power-supply
-> ---
->  .../display/panel/samsung,s6d7aa0.yaml        | 68 +++++++++++++++++++
->  1 file changed, 68 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/samsung,s6d7aa0.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/panel/samsung,s6d7aa0.yaml b/Documentation/devicetree/bindings/display/panel/samsung,s6d7aa0.yaml
-> new file mode 100644
-> index 000000000000..918f62a78ecd
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/samsung,s6d7aa0.yaml
-> @@ -0,0 +1,68 @@
-> +# SPDX-License-Identifier: GPL-2.0
+> Can you please try these patches, and use:
+> compatible = "allwinner,sun20i-d1-spi", "allwinner,sun50i-r329-spi";
+> for the compatible string?
 
-Dual license please.
+I tested my patch (with compatible prop changed to
+allwinner,sun50i-r329-spi) on top of these patches and it works fine
+for me.
 
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/panel/samsung,s6d7aa0.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Samsung S6D7AA0 MIPI-DSI LCD panel controller
-> +
-> +maintainers:
-> +  - Artur Weber <aweber.kernel@gmail.com>
-> +
-> +allOf:
-> +  - $ref: panel-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      # 1280x800 LSL080AL02 panel
-> +      - samsung,s6d7aa0-lsl080al02
-> +      # 1024x768 LSL080AL03 panel
-> +      - samsung,s6d7aa0-lsl080al03
-> +      # 1024x768 LTL101AT01 panel
-> +      - samsung,s6d7aa0-ltl101at01
-> +
-> +  reg: true
-> +
-> +  backlight:
-> +    description: |
-> +      Backlight to use for the panel. If this property is set on panels
-> +      that have DSI-based backlight control (LSL080AL03 and LTL101AT01),
-> +      it overrides the DSI-based backlight.
-> +
-> +  reset-gpios:
-> +    description: Reset GPIO pin, usually GPIO_ACTIVE_LOW.
-> +
-> +  power-supply:
-> +    description: |
-> +      Main power supply for the panel; the exact voltage differs between
-> +      panels, and is usually somewhere around 3.3-5v.
-> +
-> +  vmipi-supply:
-> +    description: VMIPI supply, usually 1.8v.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reset-gpios
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    dsi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        panel@0 {
-> +            compatible = "samsung,s6d7aa0-lsl080al02";
-> +            reg = <0>;
-> +            power-supply = <&display_3v3_supply>;
-> +            reset-gpios = <&gpf0 4 GPIO_ACTIVE_LOW>;
-> +            backlight = <&backlight>;
-> +        };
-> +    };
-> +
-> +...
-> -- 
-> 2.40.1
-> 
+> If possible, you could revive this series, and add the D1/T113s support on
+> top: just add the compatible string combo to the binding document.
+
+Just one question. Should I do it now, or is it better to wait while
+Icenowy Zheng finishes work on the next revision of this series?
