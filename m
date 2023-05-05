@@ -2,122 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24BF36F8B6D
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 23:42:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB53B6F8B84
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 23:45:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232277AbjEEVmS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 17:42:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40184 "EHLO
+        id S231282AbjEEVpi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 17:45:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233675AbjEEVlu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 17:41:50 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78F755FC7
-        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 14:41:05 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4f00d41df22so18571911e87.1
-        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 14:41:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683322864; x=1685914864;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KKTw5Zfw+dKxxnY8fd/tof/aQPft5PObVsbIBwm4nOE=;
-        b=ukT0/Gbl014hMNt6POWBZru46jjtyO67bCDOzbZQZOMZh/Xs1H+L8K6mDJGk6hCggf
-         hP8OvDws58qepr8kd9WeIEaA83Rd6PluO+iUO5+29SlGxYywQWhIQE8qIa4GBG418mt8
-         c5l3uHkpi/5r7sB13IdmqPFrrHzj/BxFMY0JaZPSq0RF8ukN/qvrdcvLllwn9NNL5paG
-         xQMSTWDqos2eRlNGrdkBtaReQd/VjqO7SYfT15338L6qPFxVkRTh6Q6AfSncogyQyH45
-         fZbyB/xTGzrtQcYxtMwV24Pyo+2bBYQzas5NnRA2v+FQniqofEXyRf8f/6JQ4+lNTg6F
-         2clg==
+        with ESMTP id S229775AbjEEVph (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 17:45:37 -0400
+Received: from mail-oa1-x33.google.com (mail-oa1-x33.google.com [IPv6:2001:4860:4864:20::33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 285CF2120;
+        Fri,  5 May 2023 14:45:06 -0700 (PDT)
+Received: by mail-oa1-x33.google.com with SMTP id 586e51a60fabf-187df75c901so995036fac.1;
+        Fri, 05 May 2023 14:45:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683322864; x=1685914864;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KKTw5Zfw+dKxxnY8fd/tof/aQPft5PObVsbIBwm4nOE=;
-        b=gn2UyweSdbghOo/qHxe31OsvKGy6g8rv0aMOJG0gtzJgAT08LdgX6OOWpIEQt3AxnD
-         OqFDWbkTntSJo1NFkjkCXUDZZLd2POVvfY07J7lAIl7vVKnh4DhODJv/5+U0khZq6v2+
-         qiFs8o2SGv5gvA8KF/hMMv3kZFQ/tHu3thgbDlgw8bwnXWXnL/0rhX1dUJP0mKjp31s8
-         p2KI2KNm25W+XEgEJyFATYsXuvoFedgfzaLTcl9lFwFUopPXYKmSf5uhdC0C9PIKo+Qf
-         Biv7MTRFn5I7hTrDOrvBYuFuQujL61B+E3DGr1PLZYLvg0Uki2wFDnf5MgoFt5TiJaRN
-         U2aQ==
-X-Gm-Message-State: AC+VfDyyumgHp4FjDRvURPAnN7Tm06lp/xZhzmcb6DUCBmhpRAo0shfT
-        LiR26ngz3LNgNmRyLjf0COEPAQ==
-X-Google-Smtp-Source: ACHHUZ6ZtEMdLb5DxiTNnLAorcEKFTUditPxbDFGZDHqLOLxFtWNDnrraKKGdt84CJWoao5/f5ySSg==
-X-Received: by 2002:a2e:994c:0:b0:295:d7a8:559b with SMTP id r12-20020a2e994c000000b00295d7a8559bmr880720ljj.10.1683322863863;
-        Fri, 05 May 2023 14:41:03 -0700 (PDT)
-Received: from [192.168.1.101] (abyl248.neoplus.adsl.tpnet.pl. [83.9.31.248])
-        by smtp.gmail.com with ESMTPSA id n12-20020a2e720c000000b002a776dbc277sm126453ljc.124.2023.05.05.14.41.02
+        d=1e100.net; s=20221208; t=1683322991; x=1685914991;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=d67AXOmWylM0/SckTFt/S26gCo7UanrJn2W3elREHSg=;
+        b=KGOhduR0G4vrj2UQUlurjilWxTxXRWSfMESL3oT0doWXrO2Mr4yfBiLXiytMnkYefF
+         HtOGf/FauaYzm/7aa57VxoXzJHmfK1dMkTNSt7hpQ1eNpm+cmrdpwW5g0KrHN2zRRN94
+         J0p2gzDRk2Vp053QfMCEurFh/hG6SUdkdbyY7jexaG9f4wiFUTRfL3y8b7cJMmKFNgiP
+         9DF/Xxuy8RMiQtY02bHL7CdnOLy/lJoazCs85AolMBOD8NkZEcr2AYoyfh4icxqLznjq
+         UR6JZ+CbG/9XGDRK84BlFsODe38Gh2bBNqEDDUbrnyK949PU6GJ2TPfC4SqhynDLdaVO
+         d5yA==
+X-Gm-Message-State: AC+VfDycRqrn32K9YbkblmpczXx1yL3GxMqTrD3mldKS1nrm0+rkt7ks
+        67V5zOpmy1SmfKVbIi3QFwZvWBQbtw==
+X-Google-Smtp-Source: ACHHUZ5uobplnVA6/byhUFmIwgQB1k0JkXUKu5NuHq3CLXccWshup491ufmc/AocnoMQfW8Cfk3Xzw==
+X-Received: by 2002:a05:6870:d501:b0:184:5f08:a130 with SMTP id b1-20020a056870d50100b001845f08a130mr1196854oan.33.1683322991085;
+        Fri, 05 May 2023 14:43:11 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id t5-20020a056870e74500b001762d1bf6a9sm2303787oak.45.2023.05.05.14.43.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 May 2023 14:41:03 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Fri, 05 May 2023 23:40:38 +0200
-Subject: [PATCH v3 12/12] iommu/arm-smmu-qcom: Add SM6350 DPU compatible
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230411-topic-straitlagoon_mdss-v3-12-9837d6b3516d@linaro.org>
-References: <20230411-topic-straitlagoon_mdss-v3-0-9837d6b3516d@linaro.org>
-In-Reply-To: <20230411-topic-straitlagoon_mdss-v3-0-9837d6b3516d@linaro.org>
-To:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Fri, 05 May 2023 14:43:10 -0700 (PDT)
+Received: (nullmailer pid 3612999 invoked by uid 1000);
+        Fri, 05 May 2023 21:43:09 -0000
+Date:   Fri, 5 May 2023 16:43:09 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
         Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux.dev, Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1683322839; l=1014;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=d3S3xhOuliIdaa9KoHmUn1yxgnvenr1zId8Sw3Pr4Gg=;
- b=u3I52rgeZRIPJW2hyj/d+O+JrD0lLVAtextnz9mrc5yCQjY92j+5ZQdr3tADqPYJVA4RutRv3
- 92CfHxICo1ADBe7zjWqCKUtgraxwFrHDFKvLO1TZbLhn+tvZjWcQpLU
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Jianhua Lu <lujianhua000@gmail.com>,
+        Del Regno <angelogioacchino.delregno@somainline.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] dt-bindings: display: novatek,nt36523: define
+ ports
+Message-ID: <20230505214309.GA3609047-robh@kernel.org>
+References: <20230502120036.47165-1-krzysztof.kozlowski@linaro.org>
+ <20230502120036.47165-2-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230502120036.47165-2-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Konrad Dybcio <konrad.dybcio@somainline.org>
+On Tue, May 02, 2023 at 02:00:36PM +0200, Krzysztof Kozlowski wrote:
+> The panel-common schema does not define what "ports" property is, so
+> bring the definition to enforce the type.  All panels described by
+> binding are dual-link, thus require both ports.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
+> 
+> Changes since v1:
+> 1. Rework to add ports to device schema, not to panel-common.
+> https://lore.kernel.org/all/20230420160905.GA2952736-robh@kernel.org/
+> ---
+>  .../bindings/display/panel/novatek,nt36523.yaml           | 8 +++++++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml b/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml
+> index 0039561ef04c..a2a8c4e39573 100644
+> --- a/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml
+> +++ b/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml
+> @@ -32,8 +32,14 @@ properties:
+>    vddio-supply:
+>      description: regulator that supplies the I/O voltage
+>  
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    required:
+> +      - port@0
+> +      - port@1
 
-Add the SM6350 DPU compatible to clients compatible list, as it also
-needs the workarounds.
+What is each port?
+ 
+You need:
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-Acked-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c | 1 +
- 1 file changed, 1 insertion(+)
+additionalProperties: false
+properties:
+  port@0:
+    $ref: ...
+    description: ...
 
-diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-index d7d5d1dbee17..e64c737724c4 100644
---- a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-+++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-@@ -253,6 +253,7 @@ static const struct of_device_id qcom_smmu_client_of_match[] __maybe_unused = {
- 	{ .compatible = "qcom,sc8280xp-mdss" },
- 	{ .compatible = "qcom,sdm845-mdss" },
- 	{ .compatible = "qcom,sdm845-mss-pil" },
-+	{ .compatible = "qcom,sm6350-mdss" },
- 	{ .compatible = "qcom,sm6375-mdss" },
- 	{ .compatible = "qcom,sm8150-mdss" },
- 	{ .compatible = "qcom,sm8250-mdss" },
-
--- 
-2.40.1
+  port@1:
+    $ref: ...
+    description: ...
 
