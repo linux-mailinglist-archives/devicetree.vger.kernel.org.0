@@ -2,235 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDCAF6F8735
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 19:04:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2ADE6F8746
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 19:13:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231676AbjEEREA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 13:04:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47116 "EHLO
+        id S230508AbjEERNU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 13:13:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231194AbjEERD7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 13:03:59 -0400
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62EC7150D7
-        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 10:03:58 -0700 (PDT)
-Received: by mail-pl1-x62e.google.com with SMTP id d9443c01a7336-1aaf21bb427so14470535ad.1
-        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 10:03:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683306238; x=1685898238;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=JMDVesgAKasFsor4GeKqlCagXQ7DH3+AoXUlf3OElm8=;
-        b=bR6gi0lcTDkNWyn7wz8u78OloJBPQ6KfsiLCSKJtSrf/mwTyj4RnLq3ZZsQz1dPnbt
-         YK9sctpzPhvjPa52msOKNb71MrX9QuGHxcjpZuU8MGICBCkBa6eWB9EHqDkaXzxExAeW
-         FPSm1Tea8e42GTKd966cAYYcdLDWPu6xE/hQeQUEo8fWlHBrOmBhtHxUicyfTT6TJWZj
-         gdLsXFigde8hbfEGXnwwZxx8j5oUZBhL4nJhOrzEA9MpP5f51RJbStN4VgCurhtsSYua
-         lGPxMvVeQXhWZLel1UYlHTqXLmtDeCWCBZJiBnr6VZn0Ox3VVAsNLkc8agKkEFCtkjTl
-         ZLCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683306238; x=1685898238;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JMDVesgAKasFsor4GeKqlCagXQ7DH3+AoXUlf3OElm8=;
-        b=JvKA4R0Zr4KqihS1zwtNJiDwugoe2CMLwJ6v5QH2LJpk9NpyfvmkGan58OFeHhY/2w
-         byzDmW5Fj/6mpBKVgNpHw4O8BJJUpYq10h5RyKDaW3E+NAnGOaCtujGcui8Yz9JU4Zpy
-         IFfnXs/tUxdUTTWoapvutEfungVsQjqz/5dE2mEQ9Cd4Ivz3kHZjiKmB0T/SzyT0WKIA
-         K+gs2bvcEj6ivVfAT0VcumflhBxaQmYOOUOoJFmRZjKSAGZWNAm+psxEXfseAMckqlp/
-         VNJoeYBwpwvnwyetQZR5rGe3Iun9z/nygiVUPPKYnQRC3ojlKyadktjPQBmWqUbngQeJ
-         TMcg==
-X-Gm-Message-State: AC+VfDzH2Yg+9VvndQuAF8V34DU7Lqj+Nvu3t6C4f4yAJaExDZAGYA7K
-        s+2tfAVMvfdJiUAwTsFPFQJxEYqPJGg/l+J5dnU=
-X-Google-Smtp-Source: ACHHUZ6UMaUB3IhahmbRyxKYzoTmEg9HFyUQpdd2o5G9PGG44utHoVF+53YsCBC0g19omuVtmiHoaw==
-X-Received: by 2002:a17:902:6901:b0:1a1:956e:5417 with SMTP id j1-20020a170902690100b001a1956e5417mr1763516plk.22.1683306237785;
-        Fri, 05 May 2023 10:03:57 -0700 (PDT)
-Received: from p14s ([2604:3d09:148c:c800:fd16:b4b6:ee7c:e4e5])
-        by smtp.gmail.com with ESMTPSA id c13-20020a170902d48d00b001994fc55998sm2013388plg.217.2023.05.05.10.03.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 May 2023 10:03:57 -0700 (PDT)
-Date:   Fri, 5 May 2023 11:03:54 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] remoteproc: stm32: Allow hold boot management by
- the SCMI reset controller
-Message-ID: <ZFU2+ni/tKOIIHbq@p14s>
-References: <20230504094641.870378-1-arnaud.pouliquen@foss.st.com>
- <20230504094641.870378-3-arnaud.pouliquen@foss.st.com>
+        with ESMTP id S229875AbjEERNU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 13:13:20 -0400
+Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56ACD2D67;
+        Fri,  5 May 2023 10:13:19 -0700 (PDT)
+Received: from fews01-sea.riseup.net (fews01-sea-pn.riseup.net [10.0.1.109])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mx1.riseup.net (Postfix) with ESMTPS id 4QCchZ4Rs2zDqTP;
+        Fri,  5 May 2023 17:13:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
+        t=1683306798; bh=eSi3WUlOLZpOpliG+mKyLLFN8XvqBvBGPK0vZC39QSk=;
+        h=From:Subject:Date:To:Cc:From;
+        b=UrbkyoxCy9pyPx2OZ3RjYXbe3VbPl+/DTdgcQocchkljGKarpk2BUoY7zOW4xsGI6
+         ccEUGoQ/hp1ZQmp7Tll8RqWcvNpcfEZj66CpalfRQtrmAfHvdPApVAurTTjdGEmVrT
+         5v7r4kNpElAHl614xb2TIAXVQLGSDQljbURs4wcc=
+X-Riseup-User-ID: C914164F47E2FF18657AD20A4487CC900B030506F8F0107575D941C66991DA44
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+         by fews01-sea.riseup.net (Postfix) with ESMTPSA id 4QCchX1g2MzJn8c;
+        Fri,  5 May 2023 17:13:15 +0000 (UTC)
+From:   Dang Huynh <danct12@riseup.net>
+Subject: [PATCH v2 0/2] Add F(x)tec Pro1X (QX1050) DTS
+Date:   Sat, 06 May 2023 00:12:57 +0700
+Message-Id: <20230505-fxtec-pro1x-support-v2-0-0ea2378ba9ae@riseup.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230504094641.870378-3-arnaud.pouliquen@foss.st.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABk5VWQC/32OzQ6DIBCEX8VwLg0iVu2p79F48GepewGyoKExv
+ nvB9tzM6ZvM7OzOPBCCZ/diZwQberQmgbwUbFoG8wKOc2ImhaxELWquY4CJO7Jl5H51zlLgjW5
+ aqYVqBXQsNcfBAx9pMNOSu9+wgRh+V1QOOQKN8Zx+9okX9MHS+/xkK7P7f3QredLcqaYa1XwD9
+ SD0sLqrgcD64zg+zIAGJdwAAAA=
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Dang Huynh <danct12@riseup.net>
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1085; i=danct12@riseup.net;
+ h=from:subject:message-id; bh=eSi3WUlOLZpOpliG+mKyLLFN8XvqBvBGPK0vZC39QSk=;
+ b=owEBbQKS/ZANAwAIAWbKt+qkXdeBAcsmYgBkVTkruTZvUxeaI96TcCRJAlKc0cHR8MgGftFbz
+ N5/5cX9KhuJAjMEAAEIAB0WIQTwmpM8D+AzHlWMpOFmyrfqpF3XgQUCZFU5KwAKCRBmyrfqpF3X
+ gdZSD/wNnXwtsP+hXiWb0W/F3bN24ose2KFQZYETq2C6g5h+DrtzAFuLTidOBSQz9wHaE1hmrKO
+ yKgQmQJi5N2rFUf34s7rG8MKilYRl30aRK18MMuA/k6B/MFjn2uFa4kkvhkHhyVBBNm0MKaxgt1
+ Kp70yN84gQQ0IguktXDhz1OYhTSOIbd8V9wOTpNH3ovRR9Y2Lrh5O5crX0j0vM96ibl3DXEDUAs
+ YENBdBpo7RvJebKpTEfqA9XhuSI+Xf0XMMcHKpzyrORtDa7//H9bej3n4BnKC4uMFJwn4InYpt1
+ GcRcipP4dEMEN65gGgs4aDdUYfC0ZBmCy2GOdZJnkjle5fJQuOGMhK6qNMO6wlTgs0yPyJ/FuoF
+ VjxxyoHXwlwFld/FxsZneiuBrhFND12XJ5sL1NjXcfDCGEk+7SBaxJeXyGwTCymdeI/mKHYARt/
+ yvA63L0gEI+Gl00D7EVUs1cGmfKXqUjPCJXbvpaMGecE0nvvEfp7jBFLeWOhEH4cWI+qktxsSjs
+ Cv+LxaWDTYa5PepXsBUcctb5AExlUF2GPvsXrgu+rL6hD/4OG4BHXZ7igCFN7hLARn/grZL1hg5
+ pFCIgfHcRooHrBG8zsbbIQ10d5MCw4gQ5HzqWq3XILRFW/aiAx2pXBcwIpIvAC4gK2hMBp4so9Q
+ 5jZUyKumpaJk9pA==
+X-Developer-Key: i=danct12@riseup.net; a=openpgp;
+ fpr=F09A933C0FE0331E558CA4E166CAB7EAA45DD781
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Arnaud,
+The F(x)tec Pro1X is a mobile phone released by FX Technologies Ltd
+in 2022.
 
-On Thu, May 04, 2023 at 11:46:39AM +0200, Arnaud Pouliquen wrote:
-> The hold boot can be managed by the SCMI controller as a reset.
-> If the "hold_boot" reset is defined in the device tree, use it.
-> Else use the syscon controller directly to access to the register.
-> The support of the SMC call is deprecated but kept for legacy support.
-> 
-> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-> ---
-> Updates vs previous version
-> - keep support of the "st,syscfg-tz" property for legacy compatibility
-> - rename secured_soc in hold_boot_smc for readability
-> - add comments to explain hold boot management.
-> - update commit message
-> ---
->  drivers/remoteproc/stm32_rproc.c | 78 +++++++++++++++++++++++---------
->  1 file changed, 57 insertions(+), 21 deletions(-)
-> 
-> diff --git a/drivers/remoteproc/stm32_rproc.c b/drivers/remoteproc/stm32_rproc.c
-> index 7d782ed9e589..e9cf24274345 100644
-> --- a/drivers/remoteproc/stm32_rproc.c
-> +++ b/drivers/remoteproc/stm32_rproc.c
-> @@ -79,6 +79,7 @@ struct stm32_mbox {
->  
->  struct stm32_rproc {
->  	struct reset_control *rst;
-> +	struct reset_control *hold_boot_rst;
->  	struct stm32_syscon hold_boot;
->  	struct stm32_syscon pdds;
->  	struct stm32_syscon m4_state;
-> @@ -88,7 +89,7 @@ struct stm32_rproc {
->  	struct stm32_rproc_mem *rmems;
->  	struct stm32_mbox mb[MBOX_NB_MBX];
->  	struct workqueue_struct *workqueue;
-> -	bool secured_soc;
-> +	bool hold_boot_smc;
->  	void __iomem *rsc_va;
->  };
->  
-> @@ -401,13 +402,28 @@ static int stm32_rproc_set_hold_boot(struct rproc *rproc, bool hold)
->  	struct arm_smccc_res smc_res;
->  	int val, err;
->  
-> +	/*
-> +	 * Three ways to manage the hold boot
-> +	 * - using SCMI: the hold boot is managed as a reset,
-> +	 * - using Linux(no SCMI): the hold boot is managed as a syscon register
-> +	 * - using SMC call (deprecated): use SMC reset interface
-> +	 */
-> +
->  	val = hold ? HOLD_BOOT : RELEASE_BOOT;
->  
-> -	if (IS_ENABLED(CONFIG_HAVE_ARM_SMCCC) && ddata->secured_soc) {
-> +	if (ddata->hold_boot_rst) {
-> +		/* Use the SCMI reset controller */
-> +		if (!hold)
-> +			err = reset_control_deassert(ddata->hold_boot_rst);
-> +		else
-> +			err =  reset_control_assert(ddata->hold_boot_rst);
-> +	} else if (IS_ENABLED(CONFIG_HAVE_ARM_SMCCC) && ddata->hold_boot_smc) {
-> +		/* Use the SMC call */
->  		arm_smccc_smc(STM32_SMC_RCC, STM32_SMC_REG_WRITE,
->  			      hold_boot.reg, val, 0, 0, 0, 0, &smc_res);
->  		err = smc_res.a0;
->  	} else {
-> +		/* Use syscon */
->  		err = regmap_update_bits(hold_boot.map, hold_boot.reg,
->  					 hold_boot.mask, val);
->  	}
-> @@ -705,34 +721,54 @@ static int stm32_rproc_parse_dt(struct platform_device *pdev,
->  		dev_info(dev, "wdg irq registered\n");
->  	}
->  
-> -	ddata->rst = devm_reset_control_get_by_index(dev, 0);
-> +	ddata->rst = devm_reset_control_get_optional(dev, "mcu_rst");
-> +	if (!ddata->rst) {
-> +		/* Try legacy fallback method: get it by index */
-> +		ddata->rst = devm_reset_control_get_by_index(dev, 0);
-> +	}
->  	if (IS_ERR(ddata->rst))
->  		return dev_err_probe(dev, PTR_ERR(ddata->rst),
->  				     "failed to get mcu_reset\n");
->  
->  	/*
-> -	 * if platform is secured the hold boot bit must be written by
-> -	 * smc call and read normally.
-> -	 * if not secure the hold boot bit could be read/write normally
-> +	 * Three ways to manage the hold boot
-> +	 * - using SCMI: the hold boot is managed as a reset
-> +	 *    The DT "reset-mames" property should be defined with 2 items:
-> +	 *        reset-names = "mcu_rst", "hold_boot";
-> +	 * - using SMC call (deprecated): use SMC reset interface
-> +	 *    The DT "reset-mames" property is optional, "st,syscfg-tz" is required
-> +	 * - default(no SCMI, no SMC): the hold boot is managed as a syscon register
-> +	 *    The DT "reset-mames" property is optional, "st,syscfg-holdboot" is required
->  	 */
-> -	err = stm32_rproc_get_syscon(np, "st,syscfg-tz", &tz);
-> -	if (err) {
-> -		dev_err(dev, "failed to get tz syscfg\n");
-> -		return err;
-> -	}
->  
-> -	err = regmap_read(tz.map, tz.reg, &tzen);
-> -	if (err) {
-> -		dev_err(dev, "failed to read tzen\n");
-> -		return err;
-> +	ddata->hold_boot_rst = devm_reset_control_get_optional(dev, "hold_boot");
-> +	if (IS_ERR(ddata->hold_boot_rst)) {
-> +		if (PTR_ERR(ddata->hold_boot_rst) == -EPROBE_DEFER)
-> +			return PTR_ERR(ddata->hold_boot_rst);
+The phone is exactly the same as the Pro1 released in 2019 with some
+changes:
+- MSM8998 -> SM6115
+- Camera button is no longer multistate
+- Only one 48MP back camera
+- A new keyboard layout picked by the community.
 
-Here we know that devm_reset_control_get_optional() has returned an error that is
-not -EPROBE_DEFER and as such, I think we should return that error instead of
-continuing on with the probing.  Calling dev_err_probe() should be just fine. 
+Signed-off-by: Dang Huynh <danct12@riseup.net>
+---
+Changes in v2:
+- Corrected model property in DTS. 
+- Changes requested by Caleb and Krzysztof. 
+- Link to v1: https://lore.kernel.org/r/20230505-fxtec-pro1x-support-v1-1-1d9473b4d6e4@riseup.net
 
-Otherwise I'm good with this set.  Many thanks for the enhanced explanation.
+---
+Dang Huynh (2):
+      arm64: dts: qcom: Add Fxtec Pro1X (QX1050) DTS
+      dt-bindings: arm: qcom: Add Fxtec Pro1X
 
-Mathieu
+ Documentation/devicetree/bindings/arm/qcom.yaml |   1 +
+ arch/arm64/boot/dts/qcom/Makefile               |   1 +
+ arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts | 248 ++++++++++++++++++++++++
+ 3 files changed, 250 insertions(+)
+---
+base-commit: 145e5cddfe8b4bf607510b2dcf630d95f4db420f
+change-id: 20230505-fxtec-pro1x-support-7f782f0480e9
 
-> +		ddata->hold_boot_rst = NULL;
-> +	}
-> +
-> +	if (!ddata->hold_boot_rst && IS_ENABLED(CONFIG_HAVE_ARM_SMCCC)) {
-> +		/* Manage the MCU_BOOT using SMC call */
-> +		err = stm32_rproc_get_syscon(np, "st,syscfg-tz", &tz);
-> +		if (!err) {
-> +			err = regmap_read(tz.map, tz.reg, &tzen);
-> +			if (err) {
-> +				dev_err(dev, "failed to read tzen\n");
-> +				return err;
-> +			}
-> +			ddata->hold_boot_smc = tzen & tz.mask;
-> +		}
->  	}
-> -	ddata->secured_soc = tzen & tz.mask;
->  
-> -	err = stm32_rproc_get_syscon(np, "st,syscfg-holdboot",
-> -				     &ddata->hold_boot);
-> -	if (err) {
-> -		dev_err(dev, "failed to get hold boot\n");
-> -		return err;
-> +	if (!ddata->hold_boot_rst && !ddata->hold_boot_smc) {
-> +		/* Default: hold boot manage it through the syscon controller */
-> +		err = stm32_rproc_get_syscon(np, "st,syscfg-holdboot",
-> +					     &ddata->hold_boot);
-> +		if (err) {
-> +			dev_err(dev, "failed to get hold boot\n");
-> +			return err;
-> +		}
->  	}
->  
->  	err = stm32_rproc_get_syscon(np, "st,syscfg-pdds", &ddata->pdds);
-> -- 
-> 2.25.1
-> 
+Best regards,
+-- 
+Dang Huynh <danct12@riseup.net>
+
