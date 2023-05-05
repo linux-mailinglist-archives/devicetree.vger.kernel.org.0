@@ -2,115 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D9A36F7CFC
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 08:37:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E7DD6F7D06
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 08:38:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230411AbjEEGhR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 02:37:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53106 "EHLO
+        id S229675AbjEEGir (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 02:38:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229675AbjEEGhQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 02:37:16 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8153F9ED0;
-        Thu,  4 May 2023 23:37:15 -0700 (PDT)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34567Dr7026814;
-        Fri, 5 May 2023 06:36:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=s1UdkRzzF8cFAQcoYxajxf72HMv1k5ObWuqkwuK/fiM=;
- b=lD13AUn8nQAnwH9vqOHayl65rJeqVohdmPfJL2Tl5g9vAXAa7YJUew6jRiX9W0izkD9p
- P7vtOqtR0PPGrOSNsphLh1YY8yX3Sy0AagGjlmei0EOTvchqwp3T0V7cxueZgQYdocZ9
- kA7Rk4eMtTh/BWkciRRsWKrds+a9ZueFVjTEU1a4SbyM5uGeW9h5G7I7D8uPQ8maY73Y
- NHdHPGv5GeFGK2tK2LLLAQb4pSyt8lCdTxVA4UgVofIbFh2n9SRnSUnMrZ41gQWR0YSc
- IQLOuN7oVSGQZySctgf3//lCR5aAa3QQDD8pLIsNovjDZLJ5YfKQKsC93AuFau5wq8K5 IQ== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qctfu897v-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 05 May 2023 06:36:58 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3456av1s007763
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 5 May 2023 06:36:57 GMT
-Received: from hu-schowdhu-lv.qualcomm.com (10.49.16.6) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Thu, 4 May 2023 23:36:56 -0700
-From:   Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-To:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Alex Elder <elder@ieee.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>,
-        Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-Subject: [PATCH V23 3/3] MAINTAINERS: Add the entry for DCC(Data Capture and Compare) driver support
-Date:   Thu, 4 May 2023 23:36:23 -0700
-Message-ID: <ac9186e43afa1334ff54156eeef05e5a95bb93dc.1683265984.git.quic_schowdhu@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <cover.1683265984.git.quic_schowdhu@quicinc.com>
-References: <cover.1683265984.git.quic_schowdhu@quicinc.com>
+        with ESMTP id S229810AbjEEGir (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 02:38:47 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27161160A1
+        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 23:38:13 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-965cc5170bdso129967366b.2
+        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 23:38:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683268691; x=1685860691;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qpIULi0+4Bfp/xJiTfMWkQ/k6JUnhuNHrZ6LaNN7SPA=;
+        b=JLsG15svrFd18sXbxlA7hwHcbt3U/K7KPeX5Z9zDBevBqE+3rVq0285qQM2a/Sqb5H
+         nMoxE4qHW84ZJgdBhcqXFDfdla7kCjpxGRMXsrIhVvmA8Ze5a493hi3vC3RyhtysYVlN
+         2eKVRjNFkaoabacBwA3UXsoJMtWrFpJ4ik2B3W+XIaTrm4UB+vI+35h4Cx2SkBO5WgEq
+         qyIxC9p3XwilwG+KenmADDRisRx4lOBm7l7VI40naeNGkVpMxBQARrbTfb4dI3byNUSI
+         iOGimAnoI3RmkqguVa2jpZIrTGuFQKF1wxo+uiXByWnssWr3qFjEcTF107eOao7KcKma
+         cxZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683268691; x=1685860691;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qpIULi0+4Bfp/xJiTfMWkQ/k6JUnhuNHrZ6LaNN7SPA=;
+        b=DlsgjSqgndE/KFBgBjDCe4UzqEFpJ1BK+7U+BExcomTV8worQFdTj+3xPQymGvegb4
+         eF+vOgPLYowMCK6MfkM5Qn2eHJtscErNszHHKhf+vq0KYHa263yGSMNzzqJgwGezCuea
+         znEF7Q6XDg3lmmdNu/B3OUTJl6u9Ajisq55oFQwCLraAkd4KrnmAcbaUbcpVXbiXE2F2
+         cWaE08tMehrLZkdPkCBLTJpAofHqAuIu+6wNwWcwvLmOzzbxognVXBNXrB3g23IDb/Ee
+         50FkmhxzEJ4otOhfzZUGGZMfXvGE50U4UPF7oAXn2ZD26vfcZZ6I1UCNK4fxu8sSgSIL
+         +HHA==
+X-Gm-Message-State: AC+VfDz7HJGGghQmNauVkenwORR5/2XWyP69gjhyRO0dm0UFYrlZpTZO
+        a4x11AW8Y744Vmkpd3NlAuNRDA==
+X-Google-Smtp-Source: ACHHUZ4KPWrb7SjKexz/1Aq185oQXmNDo2LtlnYVg5D4qGnObf00khD10WFgBBMG6CA73RI+Q6eCLg==
+X-Received: by 2002:a17:907:a409:b0:94e:ffcb:b15d with SMTP id sg9-20020a170907a40900b0094effcbb15dmr216456ejc.71.1683268691269;
+        Thu, 04 May 2023 23:38:11 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:52e:24ce:bbc1:127d? ([2a02:810d:15c0:828:52e:24ce:bbc1:127d])
+        by smtp.gmail.com with ESMTPSA id ci17-20020a170907267100b00965cfc209d5sm536358ejc.8.2023.05.04.23.38.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 May 2023 23:38:10 -0700 (PDT)
+Message-ID: <e1760ba6-4200-4fa0-5298-f76575522764@linaro.org>
+Date:   Fri, 5 May 2023 08:38:09 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: dOba35aUKxDYJDAZyitMJ4OKdpyJBOQo
-X-Proofpoint-ORIG-GUID: dOba35aUKxDYJDAZyitMJ4OKdpyJBOQo
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-04_15,2023-05-04_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- mlxlogscore=744 lowpriorityscore=0 malwarescore=0 suspectscore=0
- spamscore=0 mlxscore=0 phishscore=0 adultscore=0 priorityscore=1501
- bulkscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2305050056
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [EXT] Re: [PATCH 1/2 v5] dt-bindings: watchdog: marvell GTI
+ system watchdog driver
+Content-Language: en-US
+To:     Bharat Bhushan <bbhushan2@marvell.com>,
+        "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
+        "linux@roeck-us.net" <linux@roeck-us.net>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <linux-kernel@vger.kernel.org, sgoutham@marvell.com>
+ <20230503121016.6093-1-bbhushan2@marvell.com>
+ <9911bb17-e8f7-b552-7056-a26b3194c416@linaro.org>
+ <DM5PR1801MB1883A469C355797CE4A6E83CE36D9@DM5PR1801MB1883.namprd18.prod.outlook.com>
+ <bb52dbb7-7225-552c-2daa-688aa304a9a0@linaro.org>
+ <DM5PR1801MB18835D6D376910DA60B36D5FE36D9@DM5PR1801MB1883.namprd18.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <DM5PR1801MB18835D6D376910DA60B36D5FE36D9@DM5PR1801MB1883.namprd18.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the entries for all the files added as a part of driver support for
-DCC(Data Capture and Compare).
+On 04/05/2023 19:10, Bharat Bhushan wrote:>>>>> +maintainers:
+>>>>> +  - Bharat Bhushan <bbhushan2@marvell.com>
+>>>>> +
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    const: marvell,gti-wdt
+>>
+>> So I guess we all thought "gti" means some soc. Now it is clear - you miss specific
+>> compatibles. Generic blocks alone or wildcards are not allowed.
+>>
+>> And we have it clearly documented:
+>>
+>> https://urldefense.proofpoint.com/v2/url?u=https-
+>> 3A__elixir.bootlin.com_linux_v6.1-
+>> 2Drc1_source_Documentation_devicetree_bindings_writing-2Dbindings.rst-
+>> 23L42&d=DwICaQ&c=nKjWec2b6R0mOyPaz7xtfQ&r=PAAlWswPe7d8gHlGbCLmy
+>> 2YezyK7O3Hv_t2heGnouBw&m=uy18AXnbGKMIcyPkTnWrPZoVBj8yzyjlGeNemR
+>> MFgMVqkT6-4JVU5hWsVbcKPzTJ&s=XkqN7nbFOrtRnOJVqrgEDA9zinZxML4-
+>> qSYQPElzVeg&e=
+> 
+> So Say currently Marvell have GTI watchdog timer in following series of SoCs
+>  - octeon
+>  - octeontx2
+>  - cn10k
+> 
+> Compatible for octeon series is "marvell,octeon-wdt"
+> Compatible for octeontx2 series is "marvell,octeontx2-wdt"
+> Compatible for cn10k series is "marvell,cn10k-wdt"
+> 
+> So effectively we will have 3 compatibles, Is that correct?
 
-Signed-off-by: Souradeep Chowdhury <quic_schowdhu@quicinc.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+I don't know your SoCs. I assume you should know.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index cb932c6f8959..30b0e23cd31e 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -5721,6 +5721,14 @@ W:	http://lists.twibble.org/mailman/listinfo/dc395x/
- F:	Documentation/scsi/dc395x.rst
- F:	drivers/scsi/dc395x.*
- 
-+DCC QTI DRIVER
-+M:	Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-+L:	linux-arm-msm@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/ABI/testing/debugfs-driver-dcc
-+F:	Documentation/devicetree/bindings/misc/qcom,dcc.yaml
-+F:	drivers/misc/qcom-dcc.c
-+
- DCCP PROTOCOL
- L:	dccp@vger.kernel.org
- S:	Orphan
--- 
-2.17.1
+> 
+>>
+>>>>> +
+>>>>> +  reg:
+>>>>> +    maxItems: 1
+>>>>> +
+>>>>> +  interrupts:
+>>>>> +    maxItems: 1
+>>>>> +
+>>>>> +  wdt-timer-index:
+>>>>
+>>>> missing vendor prefix
+>>>
+>>> ack
+>>>
+>>>>
+>>>> missing type
+>>>
+>>> Will add
+>>>
+>>>>
+>>>>> +    maxItems: 1
+>>>>
+>>>> ???
+>>>
+>>> Removed
+>>>
+>>>>
+>>>>> +    description:
+>>>>> +      This contains the timer number out of total 64 timers supported
+>>>>> +      by GTI hardware block.
+>>>>
+>>>> Why do you need it? What does it represent?
+>>>>
+>>>> We do not keep indices of devices other than something in reg, so
+>>>> please justify why exception must be made here.
+>>>
+>>> Different platform have different number of GTI timers, for example some
+>> platform have total 64 timer and other have 32 timers.
+>>> So which GTI timer will be used for watchdog will depend on platform. So
+>> added this property to enable this driver on platforms.
+>>
+>> This should be deducted from compatible.
+> 
+> If I understood correctly, we should add different compatible for each soc and use same to get the information we tried to get using "wdt-timer-index" property, is that correct?
+> 
+> But each series have many socs (10s) and GTI hardware is same except number of timers they supports, so should we add that many compatibles or add a property like this?
+
+Same story every time... and was discussed many, many times on the lists.
+
+https://elixir.bootlin.com/linux/v6.1-rc1/source/Documentation/devicetree/bindings/writing-bindings.rst#L42
+
+You need anyway SoC specific compatibles. Once you add proper
+compatibles, you will see that property is not needed.
+
+
+Best regards,
+Krzysztof
 
