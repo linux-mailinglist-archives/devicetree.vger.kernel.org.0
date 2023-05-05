@@ -2,44 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB53B6F8B84
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 23:45:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A3E36F8B86
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 23:46:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231282AbjEEVpi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 17:45:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44934 "EHLO
+        id S231252AbjEEVqR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 17:46:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229775AbjEEVph (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 17:45:37 -0400
-Received: from mail-oa1-x33.google.com (mail-oa1-x33.google.com [IPv6:2001:4860:4864:20::33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 285CF2120;
-        Fri,  5 May 2023 14:45:06 -0700 (PDT)
-Received: by mail-oa1-x33.google.com with SMTP id 586e51a60fabf-187df75c901so995036fac.1;
-        Fri, 05 May 2023 14:45:06 -0700 (PDT)
+        with ESMTP id S230519AbjEEVqP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 17:46:15 -0400
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5CF810C6;
+        Fri,  5 May 2023 14:45:55 -0700 (PDT)
+Received: by mail-oi1-f176.google.com with SMTP id 5614622812f47-38e12d973bfso1240213b6e.0;
+        Fri, 05 May 2023 14:45:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683322991; x=1685914991;
+        d=1e100.net; s=20221208; t=1683323131; x=1685915131;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=d67AXOmWylM0/SckTFt/S26gCo7UanrJn2W3elREHSg=;
-        b=KGOhduR0G4vrj2UQUlurjilWxTxXRWSfMESL3oT0doWXrO2Mr4yfBiLXiytMnkYefF
-         HtOGf/FauaYzm/7aa57VxoXzJHmfK1dMkTNSt7hpQ1eNpm+cmrdpwW5g0KrHN2zRRN94
-         J0p2gzDRk2Vp053QfMCEurFh/hG6SUdkdbyY7jexaG9f4wiFUTRfL3y8b7cJMmKFNgiP
-         9DF/Xxuy8RMiQtY02bHL7CdnOLy/lJoazCs85AolMBOD8NkZEcr2AYoyfh4icxqLznjq
-         UR6JZ+CbG/9XGDRK84BlFsODe38Gh2bBNqEDDUbrnyK949PU6GJ2TPfC4SqhynDLdaVO
-         d5yA==
-X-Gm-Message-State: AC+VfDycRqrn32K9YbkblmpczXx1yL3GxMqTrD3mldKS1nrm0+rkt7ks
-        67V5zOpmy1SmfKVbIi3QFwZvWBQbtw==
-X-Google-Smtp-Source: ACHHUZ5uobplnVA6/byhUFmIwgQB1k0JkXUKu5NuHq3CLXccWshup491ufmc/AocnoMQfW8Cfk3Xzw==
-X-Received: by 2002:a05:6870:d501:b0:184:5f08:a130 with SMTP id b1-20020a056870d50100b001845f08a130mr1196854oan.33.1683322991085;
-        Fri, 05 May 2023 14:43:11 -0700 (PDT)
+        bh=RY/eXSCNgcg1l+d5z3txUiSd1IDYl3P2//k5Gq9XXUY=;
+        b=WONLNqPYemslfHTz3Yvq+2XeYy/iqE74TKjV1HpK1q39gczkXGJQoY5Eb+TkZ8huaL
+         qka6dEetDhSSFAXWnutGMNNAyyA9XnClSbcvLryynOSamQ5ciSlNdvCO8kGJVqtM5VOS
+         Na35l83q7sBR+5dalHjwP59gek4dEWEaZbATOcycMs67o0Jl2QKcOBHJ/uTOggznUfiX
+         mvUHlnHK4c90kMKGuDttm9dv2gukNfpv8i62KlyfqX3kSP65HFovrOxY54OS6W8E4f2T
+         fDtIAyR/cLVfZn1g7aHlxQvbYJYtHOjJmOsrZUrVB0M8ipqsJko/PyIpyPMyyEJHDdbJ
+         5Vpw==
+X-Gm-Message-State: AC+VfDwMHeUcCM09fuFXHUij80ZvsxJ0L/CniA9rl5tBXgWTAWnJYcs4
+        r2Ndu/6bzkca+JLtsq/O9Q==
+X-Google-Smtp-Source: ACHHUZ4C5l8ALq0mTUv2IjXe/kxKCI1lSv66O5mZNz9Pe/is9TVS3MYfOyhEyPYDZp5nqgCqoOxcMw==
+X-Received: by 2002:a05:6808:aa8:b0:38e:aa4:e4a4 with SMTP id r8-20020a0568080aa800b0038e0aa4e4a4mr1289438oij.8.1683323131028;
+        Fri, 05 May 2023 14:45:31 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id t5-20020a056870e74500b001762d1bf6a9sm2303787oak.45.2023.05.05.14.43.09
+        by smtp.gmail.com with ESMTPSA id du3-20020a056808628300b0038bffe1332dsm3173068oib.57.2023.05.05.14.45.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 May 2023 14:43:10 -0700 (PDT)
-Received: (nullmailer pid 3612999 invoked by uid 1000);
-        Fri, 05 May 2023 21:43:09 -0000
-Date:   Fri, 5 May 2023 16:43:09 -0500
+        Fri, 05 May 2023 14:45:30 -0700 (PDT)
+Received: (nullmailer pid 3616075 invoked by uid 1000);
+        Fri, 05 May 2023 21:45:29 -0000
+Date:   Fri, 5 May 2023 16:45:29 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
@@ -51,30 +51,29 @@ Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
         Del Regno <angelogioacchino.delregno@somainline.org>,
         dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] dt-bindings: display: novatek,nt36523: define
+Subject: Re: [PATCH v2 1/2] dt-bindings: display: novatek,nt35950: define
  ports
-Message-ID: <20230505214309.GA3609047-robh@kernel.org>
+Message-ID: <20230505214529.GB3609047-robh@kernel.org>
 References: <20230502120036.47165-1-krzysztof.kozlowski@linaro.org>
- <20230502120036.47165-2-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230502120036.47165-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230502120036.47165-1-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 02, 2023 at 02:00:36PM +0200, Krzysztof Kozlowski wrote:
+On Tue, May 02, 2023 at 02:00:35PM +0200, Krzysztof Kozlowski wrote:
 > The panel-common schema does not define what "ports" property is, so
-> bring the definition to enforce the type.  All panels described by
-> binding are dual-link, thus require both ports.
+> bring the definition to enforce the type.  Panels can be single- or
+> dual-link, thus require only one port@0.
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
@@ -84,35 +83,41 @@ On Tue, May 02, 2023 at 02:00:36PM +0200, Krzysztof Kozlowski wrote:
 > 1. Rework to add ports to device schema, not to panel-common.
 > https://lore.kernel.org/all/20230420160905.GA2952736-robh@kernel.org/
 > ---
->  .../bindings/display/panel/novatek,nt36523.yaml           | 8 +++++++-
+>  .../bindings/display/panel/novatek,nt35950.yaml           | 8 +++++++-
 >  1 file changed, 7 insertions(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml b/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml
-> index 0039561ef04c..a2a8c4e39573 100644
-> --- a/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml
-> @@ -32,8 +32,14 @@ properties:
+> diff --git a/Documentation/devicetree/bindings/display/panel/novatek,nt35950.yaml b/Documentation/devicetree/bindings/display/panel/novatek,nt35950.yaml
+> index 377a05d48a02..c93cc1018b41 100644
+> --- a/Documentation/devicetree/bindings/display/panel/novatek,nt35950.yaml
+> +++ b/Documentation/devicetree/bindings/display/panel/novatek,nt35950.yaml
+> @@ -47,8 +47,13 @@ properties:
 >    vddio-supply:
 >      description: regulator that supplies the I/O voltage
 >  
 > +  ports:
 > +    $ref: /schemas/graph.yaml#/properties/ports
+
+Similarly needed on this one.
+
+Perhaps what you want here is a dual-link panel schema?
+
 > +
 > +    required:
 > +      - port@0
-> +      - port@1
-
-What is each port?
- 
-You need:
-
-additionalProperties: false
-properties:
-  port@0:
-    $ref: ...
-    description: ...
-
-  port@1:
-    $ref: ...
-    description: ...
-
+> +
+>    backlight: true
+> -  ports: true
+>    reg: true
+>  
+>  required:
+> @@ -59,6 +64,7 @@ required:
+>    - avee-supply
+>    - dvdd-supply
+>    - vddio-supply
+> +  - ports
+>  
+>  additionalProperties: false
+>  
+> -- 
+> 2.34.1
+> 
