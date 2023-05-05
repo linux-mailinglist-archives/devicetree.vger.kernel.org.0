@@ -2,70 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 148806F7D2E
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 08:45:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B1626F7D39
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 08:47:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231133AbjEEGpR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 02:45:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60628 "EHLO
+        id S230497AbjEEGrX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 02:47:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229972AbjEEGpR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 02:45:17 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE63230F6
-        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 23:45:15 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-965cc5170bdso130739066b.2
-        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 23:45:15 -0700 (PDT)
+        with ESMTP id S230377AbjEEGrW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 02:47:22 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC43E30F6
+        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 23:47:20 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-50c8d87c775so522570a12.3
+        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 23:47:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683269114; x=1685861114;
+        d=linaro.org; s=google; t=1683269239; x=1685861239;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=f1F8TUb0vE+6tu+UVmJ0AzgABHlR7ADfS8FFXBxRieA=;
-        b=UK0H7SvI8XLENMldv8m6kP0ZOtVPN6jLEgL+NVDGS4xY4pOviX0TlMDLPiOJzKkVpY
-         r1E21fJSLXmSn+BKOrwceUdmwgXLLt94CorxzRHPjMCeYoLJ92xjGs0xVwK0fdJaVWJV
-         3VAcSGNDwKeIf8PmNSpfTvUz/UPhAQn3T56MoAHX0a91TdnGvGaJmHyD9UZ+77/R77/l
-         Cs8r3YMdJDF3e8OZl8mGWJZkuocp3AuKu9y2XE0WEiLl+OkSEoJLKDvcjfOuFSoNtllk
-         IgdJH/gJnymbzdllN9wY8zQ3SxQaRrivemzhUIHRcX53mtDJekOJkoA5K0BvRULz3cQG
-         9z8w==
+        bh=KvgN318sT0yfBIN/aP/qcfyseQBG87rA5CSxzTBMcCg=;
+        b=LlmHlROVf+CF/F+YYmB7vT5vPFDolgM2wqHp5gsFmU3cvKBtaLw28AXBOWOb7thKXj
+         aaPBM9chfc7Oxma9ovvDYfZHTQfCEg/nqgZBVGV6xfrHwOH0ZfiEpS3v6NoiU9R5atrx
+         ryO2Bj4A6p2Ytz5ZSlD8o7yjFSJgRiEy5SgKGa7wQP8DmXZ6jypiLsK705FJ/95iXNLN
+         UNiuwlHfo7Y9GTG2KH8lEF8ri7P29HmEHHQeBXXxcGnIdSobjCp40vubYp7E2x49FnHy
+         4o4k32DyLHQWV5FtURMQX13LrZ291YkhrZGRH/6mpMECANuc/RJBTPqELhiGum5LLxGy
+         +AmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683269114; x=1685861114;
+        d=1e100.net; s=20221208; t=1683269239; x=1685861239;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=f1F8TUb0vE+6tu+UVmJ0AzgABHlR7ADfS8FFXBxRieA=;
-        b=cI7pQT/jl2wh2KWWzbmexGW89d80btXBTT+MOAnYu507BQWY/UJ95ib1RpDXNd+TWY
-         a1dUpkzfSBCFjRf0iRi81WNsyXNtD0ekxR69fSYS1VRjC8vYK1K2+bdK0uvXPme6EhX4
-         QmWzZJL8xhf+S/tmuhN8IV8ztZx2eWFOniThrUfOa+7/Gz7ZPJE6JQMp2VDyeF3kgfYA
-         roEQ345vFvyL7XOQSf5kZtBXWdOqaa8VonvEz32tD6t0H8Rk2P0ulQ3o8bC37Dcjnh4R
-         fqjlKRTvipVjw/29yFDHY2uP669jqSUXXXVsHprzXH/j8Gj0Twh6nIqoPZscVPPvy+cp
-         A35w==
-X-Gm-Message-State: AC+VfDwfME492l157CBipMSln7DBqvmz41vIdXhOjI2UXDdyLHPWcJjE
-        I+DSSlInWiLSY+fkrk2dNY2kzw==
-X-Google-Smtp-Source: ACHHUZ7e7CM816XOA8JH1lGUFzOlkUl5vywj1RnY1LL4ilUqUe6wTzu5vYAUKtEeQGlRPbffNQbYGQ==
-X-Received: by 2002:a17:906:db03:b0:965:4b43:11f1 with SMTP id xj3-20020a170906db0300b009654b4311f1mr230527ejb.3.1683269114140;
-        Thu, 04 May 2023 23:45:14 -0700 (PDT)
+        bh=KvgN318sT0yfBIN/aP/qcfyseQBG87rA5CSxzTBMcCg=;
+        b=DkSXC+1tyfCfQyyc0186eExIccoSnowt0VUXIz8TEPaAlqN7yWLurJ2HmsiYSRah7T
+         6gTA8lyOE8dsS7YjCIGXB+fFmEDXDlmSvqiMLP4Zepxu/6tdpViTpCUGSZTIWUhilAOX
+         pjVP9o19j1CWkPjycUbV0KrSk8O0fm+UCMQFys5JVrbnO9A03LP6wCa/JNblu16TCwqI
+         QH0g5geyyrse4u3nZuhhzdM4mm9gLdcDu+GJ746n5T9QxZpn4cJeWOZ0Q0RSuDK2F2uA
+         PKscwq+LZG3yxEtf05Rbm4IUizANEjPirmg9uD9Q+dZv7Vzw2e7zVYSrKWN7HrLPc3zZ
+         Ehpg==
+X-Gm-Message-State: AC+VfDwQ7NJZrmpxAZwe/9TM1aJBdAUaOiHa9ZdyNeSt55Y1yNl4iqWL
+        zeEt+1yzKbshG0V/V/arjVmE8A==
+X-Google-Smtp-Source: ACHHUZ617oSGRYLQ033DYm8gUv1Nc/kxyw6P01hhEkt+ijKxYBRPZhkX/hcblYpLaINYzuWfHJy1mA==
+X-Received: by 2002:a05:6402:1a48:b0:50b:c3bf:c9ef with SMTP id bf8-20020a0564021a4800b0050bc3bfc9efmr597880edb.40.1683269239274;
+        Thu, 04 May 2023 23:47:19 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:52e:24ce:bbc1:127d? ([2a02:810d:15c0:828:52e:24ce:bbc1:127d])
-        by smtp.gmail.com with ESMTPSA id bj6-20020a170906b04600b0096595cc0810sm549923ejb.72.2023.05.04.23.45.13
+        by smtp.gmail.com with ESMTPSA id d12-20020a056402516c00b0050bd2f16ef5sm2657796ede.84.2023.05.04.23.47.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 May 2023 23:45:13 -0700 (PDT)
-Message-ID: <76a8662d-25ce-cd8c-7851-d163f4b3496b@linaro.org>
-Date:   Fri, 5 May 2023 08:45:12 +0200
+        Thu, 04 May 2023 23:47:18 -0700 (PDT)
+Message-ID: <0f271a02-dffe-876c-3e41-5697c5917503@linaro.org>
+Date:   Fri, 5 May 2023 08:47:17 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
-Subject: Re: [PATCH] arm64: dts: qcom: Add Fxtec Pro1X (QX1050) DTS
+Subject: Re: [PATCH 1/2] dt-bindings:iio:temperature:melexis,mlx90614:
+ Document MLX90615 support
 Content-Language: en-US
-To:     Dang Huynh <danct12@riseup.net>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230505-fxtec-pro1x-support-v1-1-1d9473b4d6e4@riseup.net>
+To:     Marek Vasut <marex@denx.de>, linux-iio@vger.kernel.org
+Cc:     Crt Mori <cmo@melexis.com>, Jonathan Cameron <jic23@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+References: <20230504194750.4489-1-marex@denx.de>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230505-fxtec-pro1x-support-v1-1-1d9473b4d6e4@riseup.net>
+In-Reply-To: <20230504194750.4489-1-marex@denx.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,117 +78,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/05/2023 22:33, Dang Huynh wrote:
-> The F(x)tec Pro1X is a mobile phone released by FX Technologies Ltd
-> in 2022.
-> 
-> The phone is exactly the same as the Pro1 released in 2019 with some
-> changes:
-> - MSM8998 -> SM6115
-> - Camera button is no longer multistate
-> - Only one 48MP back camera
-> - A new keyboard layout picked by the community.
-> 
+On 04/05/2023 21:47, Marek Vasut wrote:
+> Document support for MLX90615 Infra Red Thermometer, which seems to
+> be the predecesor of MLX90614 . There are significant differences in
+> the register layout compared to MLX90614, but the functionality of
+> the device is virtually identical.
 
-Thank you for your patch. There is something to discuss/improve.
+Subject: add spaces after each prefix:.
 
-> + * Copyright (c) 2023, Dang Huynh <danct12@riseup.net>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "sm6115.dtsi"
-> +#include "pm6125.dtsi"
-> +
-> +/ {
-> +	model = "F(x)tec Pro1 (QX1050)";
-> +	compatible = "fxtec,pro1x", "qcom,sm6115";
 
-Missing bindings (first patch in the series).
-
-> +	chassis-type = "handset";
-> +
-> +	/* required for bootloader to select correct board */
-> +	qcom,msm-id = <417 0x10000>, <444 0x10000>;
-> +	qcom,board-id = <34 0>;
-> +
-> +	aliases {
-> +	};
-
-Drop empty node.
-
-> +
-> +	chosen {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		framebuffer0: framebuffer@5c000000 {
-> +			compatible = "simple-framebuffer";
-> +			reg = <0 0x5c000000 0 (1080 * 2160 * 4)>;
-> +			width = <1080>;
-> +			height = <2160>;
-> +			stride = <(1080 * 4)>;
-> +			format = "a8r8g8b8";
-> +			clocks = <&gcc GCC_DISP_HF_AXI_CLK>;
-> +		};
-> +	};
-> +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&vol_up_n>;
-> +
-> +		key-volume-up {
-> +			label = "Volume Up";
-> +			linux,code = <KEY_VOLUMEUP>;
-> +			gpios = <&pm6125_gpios 5 GPIO_ACTIVE_LOW>;
-> +			debounce-interval = <15>;
-> +			linux,can-disable;
-> +			gpio-key,wakeup;
-> +		};
-> +	};
-> +};
-> +
-> +&tlmm {
-
-Override/label entries should be ordered by name. tlmm is after pm6125.
-
-> +	gpio-reserved-ranges = <0 4>, <14 4>;
-> +};
-> +
-> +&pm6125_gpios {
-> +	vol_up_n: vol-up-n-state {
-> +		pins = "gpio5";
-> +		function = "normal";
-> +		power-source = <0>;
-> +		bias-pull-up;
-> +		input-enable;
-> +	};
-> +};
-> +
-> +&dispcc {
-> +	/* HACK: disable until a panel driver is ready to retain simplefb */
-> +	status = "disabled";
-> +};
-> +
-> +&pon_pwrkey {
-> +	status = "okay";
-> +};
-> +
-> +&pon_resin {
-> +	linux,code = <KEY_VOLUMEDOWN>;
-> +	status = "okay";
-> +};
-> +
-> +&rpm_requests {
-> +	pm6125-regulators {
-
-Does not look like you tested the DTS against bindings. Please run `make
-dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
-for instructions).
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
