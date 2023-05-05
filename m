@@ -2,68 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2992A6F8274
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 14:01:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98C826F828A
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 14:05:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232039AbjEEMBl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 08:01:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54038 "EHLO
+        id S232079AbjEEMFo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 08:05:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58484 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232023AbjEEMB0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 08:01:26 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AB921AEDD;
-        Fri,  5 May 2023 05:01:23 -0700 (PDT)
-X-UUID: 8b846f32eb3c11ed9cb5633481061a41-20230505
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=WENEAGI81W/kSnUcxhlJRn72rPH1x58Xnf1xu4O5Qs4=;
-        b=HU7UaHYiHYiAURa7HkRomZyDaSa5i1wkhLuzO3VQZm538+A43c8W3SMubU8uW37+qXbEq6i6vkE1RgjOkiJv43z5+gndHiK3aDLICsnQpjm++sbJG2YoQSXT/DpgWcKsdIR8rg6qFuNpwfKA2CgUzD3G9lxtPmHjopwUxaora2U=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.23,REQID:8e385da2-741f-4c69-9e00-536aa3ff802e,IP:0,U
-        RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-        :release,TS:-5
-X-CID-META: VersionHash:697ab71,CLOUDID:40afdd30-6935-4eab-a959-f84f8da15543,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-UUID: 8b846f32eb3c11ed9cb5633481061a41-20230505
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
-        (envelope-from <runyang.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 877711924; Fri, 05 May 2023 20:01:18 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.25; Fri, 5 May 2023 20:01:17 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.25 via Frontend Transport; Fri, 5 May 2023 20:01:16 +0800
-From:   Runyang Chen <runyang.chen@mediatek.com>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
+        with ESMTP id S232075AbjEEMFo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 08:05:44 -0400
+Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2D699ED7
+        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 05:05:42 -0700 (PDT)
+Received: by mail-pg1-x532.google.com with SMTP id 41be03b00d2f7-51452556acdso1065929a12.2
+        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 05:05:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683288342; x=1685880342;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=NWXugzf9IwHfTkCjdGSHgOMZEK8Ay75ykttzhebpUiU=;
+        b=MoZOxXq9olSI26ve+QVUvreFy9I9MRIXESMUrHNeIjgS5/+xdLE0FVbj59UlK0dXpo
+         Q/e8zaee6rgmO4GHx5yoaRQGUspVlyNXRfRySTLh5DzY4a1E0UiK3Hv9jIJgi5T7e1Bk
+         XR1H0/3hihiZr6fXhJIAYrynGI3y50rEivNnNauUJ9KPTPyuI518qRiUK/kIxhu+Pno9
+         vZxWBgZrNry2ERbCaYItbfH3or7E7rhUqbjHlLmAASiQvxgjEVX06jciXovgtZVhJxwK
+         pmVNl4dz4CSr8gdfh6Sm6ut98FjZ9xhwd9aoWakMgBjWfQq8MPA043RTcNTW/J6tBVrx
+         R0ZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683288342; x=1685880342;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NWXugzf9IwHfTkCjdGSHgOMZEK8Ay75ykttzhebpUiU=;
+        b=KuN63xrnv1Nt1/1kLAnzNoIAHMGqakJpN3t0YoT80a0bQ3NYhfjNZOX+aIJl9JKYxi
+         Xg+Tz6PUNQxTcEzh6DJ2Z0Vy/FpUzPuBd88AH3FmYyQ99+OupH3eXzaQ7MxnWtNrUx4z
+         IBmjkMeYYZ/wbLTEKMf3DXJAjFPqTrvzxnZheDazvLsKXjrO7c/aEQlJaYv1x39pkCpF
+         3Ux/8vRNjpFMWjVvsrkEAneNalcCz1YDp7JNKkDzWx2Ovhgg5ee/x7a1ACj5LQJkrCqR
+         G7f/uZ4CHV36XlA0mrOFnkIrpzug5Zf1CYl2n7FUPJINlkPEIPJgHd6K/iCAIZjVhQ5J
+         Fc4w==
+X-Gm-Message-State: AC+VfDwi5/KxHW48a1wQivFjjK8sAf65UR8EfeKsyJUPkE41KGvkz2G7
+        t2ANYmZvVkO70J/y3aJLhWrdmA==
+X-Google-Smtp-Source: ACHHUZ5krNkiPeRVhHxeYrz0et4F4wGWS5JLUD/rLBhKxSpjJ0ze4Kz+k3UrsgXBdBFupw0mQlVyAA==
+X-Received: by 2002:a17:902:6901:b0:1a1:956e:5417 with SMTP id j1-20020a170902690100b001a1956e5417mr985308plk.22.1683288341941;
+        Fri, 05 May 2023 05:05:41 -0700 (PDT)
+Received: from leoy-yangtze.lan ([107.151.177.135])
+        by smtp.gmail.com with ESMTPSA id v24-20020a17090331d800b001a245b49731sm1623301ple.128.2023.05.05.05.05.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 May 2023 05:05:41 -0700 (PDT)
+Date:   Fri, 5 May 2023 20:05:29 +0800
+From:   Leo Yan <leo.yan@linaro.org>
+To:     Suzuki K Poulose <suzuki.poulose@arm.com>
+Cc:     Hao Zhang <quic_hazha@quicinc.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Konrad Dybcio <konradybcio@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        Runyang Chen <runyang.chen@mediatek.com>,
-        Runyang Chen <runyang.chen@mediatek.corp-partner.google.com>
-Subject: [PATCH 2/2] clk: mediatek: reset: add infra_ao reset support for MT8188
-Date:   Fri, 5 May 2023 20:01:08 +0800
-Message-ID: <20230505120108.26603-3-runyang.chen@mediatek.com>
-X-Mailer: git-send-email 2.9.2
-In-Reply-To: <20230505120108.26603-1-runyang.chen@mediatek.com>
-References: <20230505120108.26603-1-runyang.chen@mediatek.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Jinlong Mao <quic_jinlmao@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Tao Zhang <quic_taozha@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        linux-doc@vger.kernel.org
+Subject: Re: [PATCH v4 2/3] dt-bindings: arm: Add Coresight Dummy Trace
+Message-ID: <20230505120529.GB898031@leoy-yangtze.lan>
+References: <20230505092422.32217-1-quic_hazha@quicinc.com>
+ <20230505092422.32217-3-quic_hazha@quicinc.com>
+ <958ae925-dee2-3273-0cd6-b5edc891ba70@arm.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <958ae925-dee2-3273-0cd6-b5edc891ba70@arm.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,61 +93,125 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The infra_ao reset is needed for MT8188.
-- Add mtk_clk_rst_desc for MT8188.
-- Add register reset controller function for MT8188 infra_ao.
-- Add infra_ao_idx_map for MT8188.
+On Fri, May 05, 2023 at 11:54:03AM +0100, Suzuki Kuruppassery Poulose wrote:
 
-Signed-off-by: Runyang Chen <runyang.chen@mediatek.corp-partner.google.com>
----
- drivers/clk/mediatek/clk-mt8188-infra_ao.c | 24 ++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+[...]
 
-diff --git a/drivers/clk/mediatek/clk-mt8188-infra_ao.c b/drivers/clk/mediatek/clk-mt8188-infra_ao.c
-index 91c35db40b4e..1d4b27ba06be 100644
---- a/drivers/clk/mediatek/clk-mt8188-infra_ao.c
-+++ b/drivers/clk/mediatek/clk-mt8188-infra_ao.c
-@@ -5,6 +5,7 @@
-  */
- 
- #include <dt-bindings/clock/mediatek,mt8188-clk.h>
-+#include <dt-bindings/reset/mt8188-resets.h>
- #include <linux/clk-provider.h>
- #include <linux/platform_device.h>
- 
-@@ -176,9 +177,32 @@ static const struct mtk_gate infra_ao_clks[] = {
- 		       "infra_ao_aes_msdcfde_0p", "top_aes_msdcfde", 18),
- };
- 
-+static u16 infra_ao_rst_ofs[] = {
-+	INFRA_RST0_SET_OFFSET,
-+	INFRA_RST1_SET_OFFSET,
-+	INFRA_RST2_SET_OFFSET,
-+	INFRA_RST3_SET_OFFSET,
-+	INFRA_RST4_SET_OFFSET,
-+};
-+
-+static u16 infra_ao_idx_map[] = {
-+	[MT8188_INFRA_RST1_THERMAL_MCU_RST] = 1 * RST_NR_PER_BANK + 2,
-+	[MT8188_INFRA_RST1_THERMAL_CTRL_RST] = 1 * RST_NR_PER_BANK + 4,
-+	[MT8188_INFRA_RST3_PTP_CTRL_RST] = 3 * RST_NR_PER_BANK + 5,
-+};
-+
-+static struct mtk_clk_rst_desc infra_ao_rst_desc = {
-+	.version = MTK_RST_SET_CLR,
-+	.rst_bank_ofs = infra_ao_rst_ofs,
-+	.rst_bank_nr = ARRAY_SIZE(infra_ao_rst_ofs),
-+	.rst_idx_map = infra_ao_idx_map,
-+	.rst_idx_map_nr = ARRAY_SIZE(infra_ao_idx_map),
-+};
-+
- static const struct mtk_clk_desc infra_ao_desc = {
- 	.clks = infra_ao_clks,
- 	.num_clks = ARRAY_SIZE(infra_ao_clks),
-+	.rst_desc = &infra_ao_rst_desc,
- };
- 
- static const struct of_device_id of_match_clk_mt8188_infra_ao[] = {
--- 
-2.18.0
+> > +title: ARM Coresight Dummy component
+> > +
+> > +description: |
+> > +  Coresight Dummy Trace Module is for the specific devices that kernel
+> > +  don't have permission to access or configure, e.g., CoreSight TPDMs
+> > +  on Qualcomm platforms. So there need driver to register dummy devices
+> > +  as Coresight devices. It may also be used to define components that
+> > +  may not have any programming interfaces (e.g, static links), so that
+> > +  paths can be established in the driver. Provide Coresight API for
+> > +  dummy device operations, such as enabling and disabling dummy devices.
+> > +  Build the Coresight path for dummy sink or dummy source for debugging. > +
+> > +  The primary use case of the coresight dummy is to build path in kernel
+> > +  side for dummy sink and dummy source.
+> > +
+> > +maintainers:
+> > +  - Mao Jinlong <quic_jinlmao@quicinc.com>
+> > +  - Tao Zhang <quic_taozha@quicinc.com>
+> > +  - Hao Zhang <quic_hazha@quicinc.com>
+> > +  - Yuanfang Zhang <quic_yuanfang@quicinc.com>
+> 
+> Given this is a generic "CoreSight" component, I would prefer to have the
+> CoreSight subsystem maintainers listed here (too). I don't mind
+> the entries above, but would like to make sure that the subsystem
+> people are aware of the changes happening here. Please use:
+> 
+> Mike Leach <mike.leach@linaro.org>
+> Suzuki K Poulose <suzuki.poulose@arm.com>
+> Leo Yan <leo.yan@linaro.org>
 
+Given I am spending little time on CoreSight reviewing, I'd like to
+use James Clark's email address to replace my own; I believe this
+would benefit long term maintenance.
+
+  James Clark <james.clark@arm.com>
+
+Thanks!
+
+> With the above:
+> 
+> Acked-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+> 
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - enum:
+> > +          - arm,coresight-dummy-sink
+> > +          - arm,coresight-dummy-source
+> > +
+> > +  out-ports:
+> > +    $ref: /schemas/graph.yaml#/properties/ports
+> > +
+> > +    properties:
+> > +      port:
+> > +        description: Output connection from the source to Coresight
+> > +          Trace bus.
+> > +        $ref: /schemas/graph.yaml#/properties/port
+> > +
+> > +  in-ports:
+> > +    $ref: /schemas/graph.yaml#/properties/ports
+> > +
+> > +    properties:
+> > +      port:
+> > +        description: Input connection from the Coresight Trace bus to
+> > +          dummy sink, such as Embedded USB debugger(EUD).
+> > +        $ref: /schemas/graph.yaml#/properties/port
+> > +
+> > +required:
+> > +  - compatible
+> > +
+> > +if:
+> > +  # If the compatible contains the below value
+> > +  properties:
+> > +    compatible:
+> > +      contains:
+> > +        const: arm,coresight-dummy-sink
+> > +
+> > +then:
+> > +  required:
+> > +    - in-ports
+> > +
+> > +else:
+> > +  required:
+> > +    - out-ports
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  # Minimum dummy sink definition. Dummy sink connect to coresight replicator.
+> > +  - |
+> > +    sink {
+> > +      compatible = "arm,coresight-dummy-sink";
+> > +
+> > +      in-ports {
+> > +        port {
+> > +          eud_in_replicator_swao: endpoint {
+> > +            remote-endpoint = <&replicator_swao_out_eud>;
+> > +          };
+> > +        };
+> > +      };
+> > +    };
+> > +
+> > +  # Minimum dummy source definition. Dummy source connect to coresight funnel.
+> > +  - |
+> > +    source {
+> > +      compatible = "arm,coresight-dummy-source";
+> > +
+> > +      out-ports {
+> > +        port {
+> > +          dummy_riscv_out_funnel_swao: endpoint {
+> > +            remote-endpoint = <&funnel_swao_in_dummy_riscv>;
+> > +          };
+> > +        };
+> > +      };
+> > +    };
+> > +
+> > +...
+> 
