@@ -2,84 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF27E6F83DD
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 15:23:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 315D26F83E6
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 15:25:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232498AbjEENXH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 09:23:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47072 "EHLO
+        id S232519AbjEENY7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 09:24:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232488AbjEENXE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 09:23:04 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.13])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23757203EB;
-        Fri,  5 May 2023 06:22:56 -0700 (PDT)
-Received: from localhost ([31.220.113.235]) by mrelayeu.kundenserver.de
- (mreue109 [212.227.15.183]) with ESMTPSA (Nemesis) id
- 1MAfQk-1q5y0W4AXY-00B68k; Fri, 05 May 2023 15:22:41 +0200
-Date:   Fri, 5 May 2023 15:22:40 +0200
-From:   Andreas Klinger <ak@it-klinger.de>
-To:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Angel Iglesias <ang.iglesiasg@gmail.com>,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v4 3/3] MAINTAINERS: Add Honeywell mprls0025pa sensor
-Message-ID: <ZFUDIGl4z9H/tfeA@arbad>
+        with ESMTP id S232517AbjEENYu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 09:24:50 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A19720759
+        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 06:24:49 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-965fc25f009so15134766b.3
+        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 06:24:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683293088; x=1685885088;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=88pW8qWBWl/gwLo1P5APo+OBYDB/KVhHfdTYqAO9eAY=;
+        b=AYnqjAD5rvuD0ZLSQ5l7Hx9KJ9x+C+/56HPgqiMC3wy3USc+lyae/7wy9iNF7t0vxb
+         lvrAaaQBdc0S1YkRVHZo+0sD3UDvZNQSkuwx6CPFfAUibMm1mHqyPM3TMSp351Jn6VIt
+         VrwvYV30SSKTYqbhmhusdZFioAnNVpYUwfVWEwLuG11XE9PNhZcecwjcCY9Erbtv5Uci
+         FHYoc8dBhR6TNPell11XM5U3IEOj8EjSZfnQQpI5Rlzhy3y9OnheMWlcHj+ztw3baaDJ
+         PIuHKw9ZbJ/toYNj6//FTWJMhfHsi3HUbmsWXGeWMBjxmNcnAfPDv5rAZ3pJvbLAKiNv
+         r/cw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683293088; x=1685885088;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=88pW8qWBWl/gwLo1P5APo+OBYDB/KVhHfdTYqAO9eAY=;
+        b=lBFbNXAPohM/ljUyMAT+dMOvsnBP+1q1C4wdFrjBj4IOpGUHy6DOtIGp4fQ8atfnKo
+         kkxCm7iLQYJhloLfn60ipTpk0Av8MTRNNSQDIbTKrcsyDHGi9zp3eN1Yj91jWRbC/AZE
+         0LDWBtQ+SWprHki+rzjD5gQBf1TUkm5p1SkifNdm4TO+VE5dyFSFs+D2uUq5ZHL4F+cn
+         iGNPSc19JSOj/m7jvzvorKX9yFMAAPwniTDInNQ6b/Oa+Vp++lEHH5KfP9rjAKwBznZ6
+         PZqdZn1KMrSJptBk1+aCwk4ZoUONDPx08PG1sGTSdV0hUez+Lc6JVy2yHGuNfbpPpJGR
+         8+xg==
+X-Gm-Message-State: AC+VfDxFD4kXuqbDFNuTjQq32nnbAykX1hTWvDUiz8U2Ir/oG/Y18UCS
+        5prAMtRHftRiuVeGNsu7d1jyqQ==
+X-Google-Smtp-Source: ACHHUZ7tE6qiopnAwq868iND3B4v8MQrCg6KKrBzkP+dMPCgtv9gp6t7xiaJTraOtyF4Q0MGc7vvBw==
+X-Received: by 2002:a17:907:7d94:b0:961:b0:3e0e with SMTP id oz20-20020a1709077d9400b0096100b03e0emr1314712ejc.30.1683293087751;
+        Fri, 05 May 2023 06:24:47 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:52e:24ce:bbc1:127d? ([2a02:810d:15c0:828:52e:24ce:bbc1:127d])
+        by smtp.gmail.com with ESMTPSA id i19-20020a17090685d300b0094ebc041e20sm930557ejy.46.2023.05.05.06.24.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 05 May 2023 06:24:47 -0700 (PDT)
+Message-ID: <6582da01-03c0-77cf-9646-fc536ceb9b3d@linaro.org>
+Date:   Fri, 5 May 2023 15:24:45 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZFUCf059+PSR+3Wb@arbad>
-X-Provags-ID: V03:K1:/fsn1w4SfKbWyG9rqpbeOL1Yf6IVtQ0SC6bOfnJLczQe2vxM9rz
- aARtXyfm5oTFWe4c5xTXmEVFAaKp/lTkl1iZwjROISMM7N4gLsPcUSy/Vo5DquKjaxy/iMX
- 0OFHF9JIdULoe1ATqup7hd9PmR2QotBbF78YVjvFdIE5gwpuJimQ6n9fc1p+7KdAC1T69Va
- GPAcmwTfvn3GGYtpbg9wg==
-UI-OutboundReport: notjunk:1;M01:P0:WCrxDYDJzc0=;yQJjsLP3+3G/RQH7RBrxS4CQp+Y
- WHbE2949Szl/S7DNM/8BjRR/DQ2PBakSHVZy0VEshIAh+vvazaknlj9T6wAiroidzCKKJFlRd
- HlEH1i+QWR42CiVXzPS0Gfx6oMjo5lEvHDh3yq+740PfA+HKuyHvwlb0Pm9DN7KoDsFpxUBbp
- QqwJKGXQ2WtnPP7D1BeAn04q1hTKwLwtwK5zTzFluQ+2xkfTvYq3TbKJFHyUG3hPYXqwGuOaj
- xbYJArzYchlffYSah7PHdaw5RdZReIHdZU13zQwbzrQ1VNcTcPeVZOfRjGS7gUd7oOSbLdLa0
- e9M7g31KGgJY3hNZ74XqUrlwAcnyvadwZ/zS87iah3I6j0828uiZ/cUnwDTZW3z/Hep8t9uK9
- WJZiO2iuMApJl/ht5fWkmZqn6Kg1J8+D85/Sgo18woIx+Dmqi5a7wIntRAZwU0t2uu3oqRCKH
- 5by3Em0zOoAqMIxEP9QAfOq9pA4YS85u20shyCnH0orEim0DVXRI+uA8Lmf8WwCIflEYx8dRT
- FlOY0znvutgglCCo9Xlbgazmu+rx4Ymq3qao+Yx16CZ8jbtiZhOtAaiwjFXCZ8s27rjiTquVn
- HhNhX9a2Jt3b/zP/ix2cYGkTrRtrf0VSU6/8YgJuK7GPxJ4NLMEJDbjvFgxjZm5vEqM3w9lNp
- OGqWnBSXL6IAn/3+9L435f9QiTgsCN3YkpPgZ4knIQ==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH v2 1/2] dt-bindings: reset: mt8188: add thermal reset
+ control bit
+To:     Runyang Chen <runyang.chen@mediatek.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
+References: <20230505131308.27190-1-runyang.chen@mediatek.com>
+ <20230505131308.27190-2-runyang.chen@mediatek.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230505131308.27190-2-runyang.chen@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add myself as a maintainer for Honeywell mprls0025pa sensor.
+On 05/05/2023 15:13, Runyang Chen wrote:
+> To support reset of infra_ao, add the index of infra_ao reset of thermal
+> for MT8188.
+> 
+> Signed-off-by: Runyang Chen <runyang.chen@mediatek.com>
+> ---
+>  include/dt-bindings/reset/mt8188-resets.h | 5 +++++
+>  1 file changed, 5 insertions(+)
 
-Signed-off-by: Andreas Klinger <ak@it-klinger.de>
----
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index c6545eb54104..7b68ec3fba88 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -9361,6 +9361,13 @@ F:	lib/test_hmm*
- F:	mm/hmm*
- F:	tools/testing/selftests/mm/*hmm*
- 
-+HONEYWELL MPRLS0025PA PRESSURE SENSOR SERIES IIO DRIVER
-+M:	Andreas Klinger <ak@it-klinger.de>
-+L:	linux-iio@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml
-+F:	drivers/iio/pressure/mprls0025pa.c
-+
- HOST AP DRIVER
- M:	Jouni Malinen <j@w1.fi>
- L:	linux-wireless@vger.kernel.org
--- 
-2.30.2
+Best regards,
+Krzysztof
+
