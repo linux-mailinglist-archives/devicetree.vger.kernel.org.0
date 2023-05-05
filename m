@@ -2,130 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C89E46F809F
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 12:12:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB2956F8094
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 12:10:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229553AbjEEKMr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 06:12:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34882 "EHLO
+        id S229441AbjEEKKj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 06:10:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231777AbjEEKMn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 06:12:43 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4834219D69
-        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 03:12:42 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-3f178da219bso15880725e9.1
-        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 03:12:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683281561; x=1685873561;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=y0bRf+iBVXoyw2t48+nk5d/eoVvSBwgKQazCXSoXiA8=;
-        b=RQ4mYduUsWNc0p6PCP6mjiMa2MJKUEZT8iS1NELl4zSnwqWAIpyF0Wu32HpdCmmZBS
-         rSjP39WVQpJbqQsqdeIjNMEjmFmugdj2PL9BFHSK0NpXosmx9O98bKtrFLx/tPzJWBPS
-         I8JTgUWQrYApiotbuxQUTxeAWQKrRjelt/d50EZFWkHT9ZOyTiL4rO8LmiBt4A+9JkrC
-         ULhP7BhCUf7bYi2m+AZs7OwVAFkKHp8/jI1ptpstxB1qjc6b/mtXIit6hRaW3E6HmRju
-         bNdXj3xVwnu+HzVYeH98IJTTj2PNoJoCj3XvKmPen2cSf6hP2a3TUaCIA/YXiWnEDiBN
-         YGhQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683281561; x=1685873561;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=y0bRf+iBVXoyw2t48+nk5d/eoVvSBwgKQazCXSoXiA8=;
-        b=AWvtDh18SGhDZQSXiy7nSYggn+kNgyx6NPYilPv5h+4L3GJQn7acMVjmhx3BRGLPFy
-         uZRAw/HHmCCCBPPWK8Ziwl06v2CkLRoQ8zcjKbyFmop4mWpNqpQFtabIRkv264Vf4SIw
-         MQFmYF2HTVKkWy8S/aev9CpJuHLVGs3n9QL9sKvAneLGxfOr8Ge5bmPJSxowO52ul12+
-         Q/Tt4hqoDL0Mt8g4yTzwcxiE4XK0UyXr/Md3mMThJyfql/9Iy3g9V6PfKPjcDAf/25Zj
-         8O5CFJrh3w81LROIvMqpiXp+S/ut3fVA2drOKz3PbZ7s0BpyGZ1kFLxPS+xG4cm/G+Ja
-         5xcw==
-X-Gm-Message-State: AC+VfDx+9WQmOsAybBl9gkPML1RoVZ25bgRtQOFJrePusSk21J0jyQKu
-        IDptzLRE9P8+Wpz6bs1E9usKe7zESj93dP/aVTKcxA==
-X-Google-Smtp-Source: ACHHUZ4JHzv+IXATh4YQe/DhLOy1ZoUi7cMInaGDAzwlWZtEmHRKVVxjHBtTX5ZG65Kwk1hBgk0OZkEsxgEk2FVkiiM=
-X-Received: by 2002:adf:f2c3:0:b0:305:fbfb:c7d7 with SMTP id
- d3-20020adff2c3000000b00305fbfbc7d7mr994297wrp.44.1683281560698; Fri, 05 May
- 2023 03:12:40 -0700 (PDT)
+        with ESMTP id S231693AbjEEKKi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 06:10:38 -0400
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2042.outbound.protection.outlook.com [40.107.20.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D54A13864;
+        Fri,  5 May 2023 03:10:37 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gAIK1WUfb8GJbs62ShEA/yyOIxIMqYtT2n8f69sBKNmb8uZ+qtCjZrZozx+7RjBWCcynDYqgH8eHT1Z+v5t65OzTe8PVOqatNd5LZJ89sWHxxT7bjUtUJRAKqrzcoeb7AhN7V1fMGtGmXp4HVimAaXrw/qJgaIqXskq7ndRBsStoS1FCTolKeMRpueQZ+d6jUMFY+t+qmDpl3mcUjpYcu9Q/lybWH4wgzptIGcBjTtxAkoxkqESbWAgEVwBXOtLkZeytPgNfkHIGp+bpWPeRPn7NPYraBIIuuC/kmqeHNc4r79ctTgpVVxS1/K6xA/kvdKvMzgYUBQom83xIXlGEKA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=OPqaID97zX3dsYBwz21hYomtWEi69Tlx29FDEfIj/Uw=;
+ b=IJyVAXARCGurxA/daq/VMZmWdcqCb5A+pOxh4sukL8+Xpgp2mpuim+kQPXmCpAMkTH9LrIl5gHJOTEABs+uFKWLh1HC78f5LsRwCJHJNm4LCUlODEQvIeWyXWJWiVT5MIIp2Ynld7omrS4cKdXV7pkaUjbiJ2zwABVTUFxmddVNv+ollQqn9cBkSaQCX8cytfwkUJlvqAjiPSlfHcap8z22Gz30mkJWEgIS1W8757hphMNWaak50XqeSKKqUy0dLNIG9u1cKaRj4dmXkaCHpbFuwRtAKQOyyxtd12EbxkPxX8yJLbUwSpJ8NcSPacrEVu5uLeDwf1UH6xKurOCspfg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OPqaID97zX3dsYBwz21hYomtWEi69Tlx29FDEfIj/Uw=;
+ b=kzasKyq8Lbw8Ra8pUi/VYa6mOcyQv/0FWGE/7d4nrx5yEeblLpc5XH0V9baF30vTfu1sz287FQRE/1zqiafr75MeskhteJ5s9rxji5EphgSSxT2Y9/OVzffwZUgYH8ll8+tt9q72GPkTrM+cAg8ib5RoZQCnrnXrEBitBPOSp1c=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DB7PR04MB4010.eurprd04.prod.outlook.com (2603:10a6:5:21::30) by
+ AS8PR04MB8690.eurprd04.prod.outlook.com (2603:10a6:20b:429::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.27; Fri, 5 May
+ 2023 10:10:34 +0000
+Received: from DB7PR04MB4010.eurprd04.prod.outlook.com
+ ([fe80::9d1e:facb:ae5a:25b6]) by DB7PR04MB4010.eurprd04.prod.outlook.com
+ ([fe80::9d1e:facb:ae5a:25b6%3]) with mapi id 15.20.6363.022; Fri, 5 May 2023
+ 10:10:34 +0000
+From:   haibo.chen@nxp.com
+To:     adrian.hunter@intel.com, ulf.hansson@linaro.org,
+        linux-mmc@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de
+Cc:     linux-imx@nxp.com, haibo.chen@nxp.com, kernel@pengutronix.de,
+        festevam@gmail.com, cniedermaier@dh-electronics.com,
+        devicetree@vger.kernel.org, kernel@dh-electronics.com
+Subject: [PATCH v2 3/4] dt-bindings: mmc: fsl-imx-esdhc: remove property "fsl,wp-controller"
+Date:   Fri,  5 May 2023 18:12:46 +0800
+Message-Id: <20230505101246.289278-1-haibo.chen@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR03CA0104.apcprd03.prod.outlook.com
+ (2603:1096:4:7c::32) To DB7PR04MB4010.eurprd04.prod.outlook.com
+ (2603:10a6:5:21::30)
 MIME-Version: 1.0
-References: <20230505075354.1634547-1-bhupesh.sharma@linaro.org>
- <20230505075354.1634547-4-bhupesh.sharma@linaro.org> <CAA8EJprw-KP94Q-8V-uvdsj7y64AdHoMxJQS2X-wtspGmFiifQ@mail.gmail.com>
-In-Reply-To: <CAA8EJprw-KP94Q-8V-uvdsj7y64AdHoMxJQS2X-wtspGmFiifQ@mail.gmail.com>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Fri, 5 May 2023 15:42:29 +0530
-Message-ID: <CAH=2NtyRQ+qjookORagY1TUSW5oWjoMwv=rof52O1ejqQ9x1WA@mail.gmail.com>
-Subject: Re: [PATCH v3 3/3] arm64: dts: qcom: qrb4210-rb2: Enable aDSP and
- cDSP remoteproc nodes
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org,
-        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski@linaro.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB7PR04MB4010:EE_|AS8PR04MB8690:EE_
+X-MS-Office365-Filtering-Correlation-Id: 61cc7049-1812-4b11-128a-08db4d50f73c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: oFYvURpYKI6vSL1NyT3Z1Q1Hf8khRBWg16LpTiFfI48ouy4fup3jSxzHSsZS7Gnnx261OTkLodJ7/EnbzVHKwkzZbdNrpU1eknl+XgeS1+pHWRF44yBXL01l2X148MKpQiG3jgJwNVSAcVnHiE3P7EyNRY1IRqRYI3KLRIJDh9e/fxbQSIe13RMyXUqjGrvWYfeFrpTuq9m50SIqWpDkoqtotSiaCjUR2clt7q/uJFYKYG+qs07BKlqdn011fMWaKrCbCFm4zxKNcObbMbGLFTwW28o8SaxuXGj+JX9Cfqnn4qg2E/PTbE9R6wfuTk0qWmCGv3k8JpXxb1MwC7J9Ta6DtbUYqz77KAwkNYWlCNslUA42F291hUFTrLgqaFEyl+FrQl/a3iCBYaIXL/wlNBanFPpfeNOcm5zMMglqusSzd8NzEZVo8zX/7T1vbWfY0o7lal0JuarsOtDNbdIs5EGe5HQwGMWktUHjIIHzUmfA/hPECQoakWFya0cjmCmNZFHwBSmwtZamx5B7qY4STNEJzN4ZOhaxc2ruzfx6EHbfyNWjP+x8oadWUpd4oX9PqVxivTCA++MyTxSaeM2hYHM9g5I8IbOeeWT7xmWrISZAhPZGEqw9Ldsm9Jg43GaO
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR04MB4010.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(396003)(39860400002)(366004)(136003)(376002)(346002)(451199021)(41300700001)(4744005)(2906002)(66946007)(5660300002)(4326008)(66476007)(66556008)(316002)(8676002)(7416002)(8936002)(478600001)(6486002)(52116002)(6666004)(26005)(186003)(2616005)(36756003)(6506007)(6512007)(9686003)(83380400001)(1076003)(38350700002)(38100700002)(86362001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?OzGBWjuSCGbXQqfcjIRnBaTaHVEoDsE1hv3Dyk0bRlogngjJGjGq1VcROrSr?=
+ =?us-ascii?Q?RU1THJI9sd86fHjAZrTjW802YTdyzRSSP5254xI62B2txdXDF7jSfR97pSva?=
+ =?us-ascii?Q?OhhWFPfje/Dj9qQbKKJXPQVfvbOGLvtsgpsvXdpEcCj8ePfqeXwlAxYxMnw4?=
+ =?us-ascii?Q?RcHuVr8Ae6Fm3jx6s4kAcSDiiPvCAwZv/pNTJMyhE1+rAGZWxk9xcDWY7WiX?=
+ =?us-ascii?Q?h97dlnrggv//6dzcGjQOuCCeCFpZNmeO/Sksol7PDDOZPnxX9CFI3JbdC/8b?=
+ =?us-ascii?Q?Bw+jOqSXZ+tswhYHWM/UWe8PZgCMl/NyYotJYug2WHLZYBO53CK3Scfqs3Cy?=
+ =?us-ascii?Q?46CwB/Uj/FQhKK1LbuhT6vEFzRCPMR6dq9lCkdjRzfd1NuHZn68D7pm6QiYG?=
+ =?us-ascii?Q?WxzqqXwz3tPB2tHKKR+g2xBBUhxJQ18BaAW6DVQbLF0iAV+s1AMVPT0lrERr?=
+ =?us-ascii?Q?kDYPJigrMwhYsYJfWMFPC5EHvu0E4VKGN31RZERELiWeWByUh8r2F5W3Crqc?=
+ =?us-ascii?Q?51Yy8tJcyHaZjA53u9yLmy73hYZiY0kCSY9aqXoMnjZQMi4rwQQ28A5NEW5f?=
+ =?us-ascii?Q?B9Q22aFsUfwdI9Nfl/clJNGbZGmZZSvLBqerMVu+oVB0cfQkWHlExZn/J048?=
+ =?us-ascii?Q?hT/Vh3sPjcFKO8ZWxyS6yIYVYpNu739MBhYQ/bQAWzASAiZSsUNdBY6sSf5p?=
+ =?us-ascii?Q?8/fw9c28YbmfIF/OzZ+Z2lCf6Y+xSni1+CxxlKv8OMrnJVVRTT88KRiNfpL/?=
+ =?us-ascii?Q?C7JGJNQ1c9Mls+MWrQ8OfAHpo+WXhN30O5qs6QkyYE/PD90DsifYf4Xecg5x?=
+ =?us-ascii?Q?t0sXfAOaQjwPpoMeAAS6IwVUhi3upvAZHKMCh2AjxTqzpxeydp6Ky7U8EPZ7?=
+ =?us-ascii?Q?Ze3u94G/OdbTr8iwYTQCLI0jq4fxfLSzU8wzSrSJmvbZNL6EluRfDr0FAS1/?=
+ =?us-ascii?Q?p8K+8EgPpOWQu9/w7ym35t8RdJpgLhMCuVuCxCcx8f0NjGf3NiTecpkENon5?=
+ =?us-ascii?Q?0J11dWh02Mb7y/LDqYUgQHr5ztXeuacDgnDN7sjLjC5plgRoNyfvw9Cot8yR?=
+ =?us-ascii?Q?WTdsMsNUa8lT/7oXXZtMeZar7W66V3DUeOE0Vn++82al20uTM14mxmbyBcfP?=
+ =?us-ascii?Q?c3KX1obsQ9tJdsMamhCeEsWhQFBbdCEeO8uiuicZSZS0RCVKXu3Ie9zq/Rr+?=
+ =?us-ascii?Q?Ty5PKavX1+HNLfbD8SaV805GjgbxQm0zwyHPw3OZXWbhMwCf34Ni3GFeVkc6?=
+ =?us-ascii?Q?hflYPRczhPbkFKRChOZ/dVHSa/fEtc4SrmuwgOPFb7zaV1bxcPB8hJCfdozk?=
+ =?us-ascii?Q?fUrv89i+8O4ddjX9lm7ypGsH+eAI7FwgrZOZtTGP1nq9aYBF3vmrCX4wIjCT?=
+ =?us-ascii?Q?ZbTGJ4VQ3rlLAvBRB67dgSC+QBbhgqDgq7wiiqQopXcLls0fB+9R+1B3Jptf?=
+ =?us-ascii?Q?Ua7ZQSKTWRMAlB2q1WXOOjo+fcODpTh0MbAmRi/1n7HZOKz6mm7PlyfGgs6d?=
+ =?us-ascii?Q?uu6TsxmGJ7THuHAEJLK+pGZbR3qNc2durI5IHG72H6zfB4e90vfaZQ31d/1z?=
+ =?us-ascii?Q?gGb9rM6MLiYNH1WqByeYMOtw7/u1Gy2g2+jrNAEl?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 61cc7049-1812-4b11-128a-08db4d50f73c
+X-MS-Exchange-CrossTenant-AuthSource: DB7PR04MB4010.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2023 10:10:34.6919
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: VIjGB0ID/5fG0ROqOlwPFVI7DX+j332OAyRWGK8E+qiGMrlXK/AOJwP/XqXPvaJFR7vPUL9s+CU8Tu76pA/Qhg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8690
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 5 May 2023 at 14:45, Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
->
-> On Fri, 5 May 2023 at 10:58, Bhupesh Sharma <bhupesh.sharma@linaro.org> wrote:
-> >
-> > Enable the aDSP and cDSP remoteproc nodes on Qualcomm QRB4210 RB2 board.
-> >
-> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 12 ++++++++++++
-> >  1 file changed, 12 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-> > index abea44fd369d..3e8ace0ceebc 100644
-> > --- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-> > +++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-> > @@ -34,6 +34,18 @@ &qupv3_id_0 {
-> >         status = "okay";
-> >  };
-> >
-> > +&remoteproc_adsp {
-> > +       firmware-name = "qcom/qrb4210-rb2/adsp.mbn";
->
-> Please follow the established practice of firmware names. As the
-> firmware is not signed by the device vendor and is generic, this
-> should go to "qcom/qrb4210/adsp.mbn". Same applies to the rest of
-> firmware paths.
+From: Haibo Chen <haibo.chen@nxp.com>
 
-I think this minor name-change can be done while applying the patch
-and should not require a new version.
+Driver do not use this property, so remove it here.
 
-@Bjorn Andersson , please let me know if you think otherwise and want
-me to send a new one.
+Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
+---
+ Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml | 6 ------
+ 1 file changed, 6 deletions(-)
 
-Thanks,
-Bhupesh
+diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+index fbfd822b9270..e34b4fb4778a 100644
+--- a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
++++ b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+@@ -96,11 +96,6 @@ properties:
+   interrupts:
+     maxItems: 1
+ 
+-  fsl,wp-controller:
+-    description: |
+-      boolean, if present, indicate to use controller internal write protection.
+-    type: boolean
+-
+   fsl,delay-line:
+     $ref: /schemas/types.yaml#/definitions/uint32
+     description: |
+@@ -190,7 +185,6 @@ examples:
+         compatible = "fsl,imx51-esdhc";
+         reg = <0x70004000 0x4000>;
+         interrupts = <1>;
+-        fsl,wp-controller;
+     };
+ 
+     mmc@70008000 {
+-- 
+2.34.1
 
-> > +
-> > +       status = "okay";
-> > +};
-> > +
-> > +&remoteproc_cdsp {
-> > +       firmware-name = "qcom/qrb4210-rb2/cdsp.mbn";
-> > +
-> > +       status = "okay";
-> > +};
-> > +
-> >  &rpm_requests {
-> >         regulators {
-> >                 compatible = "qcom,rpm-pm6125-regulators";
-> > --
-> > 2.38.1
-> >
->
->
-> --
-> With best wishes
-> Dmitry
