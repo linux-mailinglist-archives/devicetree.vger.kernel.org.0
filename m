@@ -2,49 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A394D6F80BB
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 12:24:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA8006F80C6
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 12:32:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231384AbjEEKY2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 06:24:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38828 "EHLO
+        id S231406AbjEEKb6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 06:31:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230460AbjEEKY1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 06:24:27 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84A2B18DFA
-        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 03:24:26 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1pusbq-00080v-Gd; Fri, 05 May 2023 12:24:18 +0200
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1pusbp-0007F2-4a; Fri, 05 May 2023 12:24:17 +0200
-Date:   Fri, 5 May 2023 12:24:17 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        Peng Fan <peng.fan@nxp.com>, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, linux-kernel@vger.kernel.org,
-        linux-imx@nxp.com, kernel@pengutronix.de, festevam@gmail.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/2] dt-bindings: nvmem: add binding doc for i.MX
- OCOTP/ELE
-Message-ID: <20230505102417.vtluekzx2oqsbcux@pengutronix.de>
-References: <20230505091733.1819521-1-peng.fan@oss.nxp.com>
+        with ESMTP id S231359AbjEEKb5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 06:31:57 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2D0618908
+        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 03:31:55 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-50bc25f0c7dso3054799a12.3
+        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 03:31:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683282714; x=1685874714;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Tss2iYAogsWUkj4oYWrGVmAbKaoB0zM9wE54WqqKd0Y=;
+        b=tNSLEHALkywvpQv1FwYipENAvoPjczA7Bxx9bEuVPexutY+1UE6shZWOfe6kxdOOx5
+         NQhDYrsjGsweQxlbK/FNWZ0+G8/OtTI5nDyyp5kcxr1qEUW1+3Ddzs7JSliBN49Gj4lT
+         ZgzYPu1u/GpfxnPcQ19UEjA5bWdBrPUpZMQqy75M/1a4oQmSUdydgQfClCWE7idFvvP1
+         Ib0KLpn11BbAw6m5k9hgP2KTmWXZ1B62LdU0tkzWK/BYMvvPXRNw2PRa7ESEfpglOz2t
+         Zv1pWH4qxSKjyFgBv0fvQ/+UrS9TJd+u9AKYwk952IllAO8MwF6cY3KcqTEEcSv8Yl+H
+         IEnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683282714; x=1685874714;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Tss2iYAogsWUkj4oYWrGVmAbKaoB0zM9wE54WqqKd0Y=;
+        b=Jwp9i6KDz2K2/ZDhpvOHQOh7FL7+iPRUnXJ3K2upMoM7EWtRe+FNRshmfJ52zpZasT
+         PXHEXFDrDI1DqFfo8EWHVwTkrrz5+gB/tD3rGgfP0WfZ7JwnRyV99Fsnxds1QmK1J/N3
+         jiXSRSzhiArJZa+jkOzS+q/VU43Ch7J9DAIYCG3ywrIyrYGNkDjIGOZi7qrXYsy1GxbZ
+         l/t2Mo8g7az4I9AoMSd0M+SndZpb4H5TXRTsp0zQPCGKFiyG7z2S+PAVVWKuUmr70/Ip
+         di4ihVpLryZlUWZoGjhM6jfV/9WEWQyAH1Mr1mGMXp5Ptr/X92JI6IhYQxndOKjuNlmq
+         2NGA==
+X-Gm-Message-State: AC+VfDy0CHgtM0wfSPHrSe5ZAwhkfk3pCsnXabYX35GbTQnHfrm7osUw
+        fpuoZN3YHNrdAifbpgmnK8OvjA==
+X-Google-Smtp-Source: ACHHUZ6Aww/tkHL01E2blbKoNpK2dQxvdbFSq2DqZgWwrWJths3LOb5cIJUBfPMQ90i6K+u007ymwg==
+X-Received: by 2002:a17:906:d550:b0:94e:ffab:296a with SMTP id cr16-20020a170906d55000b0094effab296amr851246ejc.73.1683282714213;
+        Fri, 05 May 2023 03:31:54 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:52e:24ce:bbc1:127d? ([2a02:810d:15c0:828:52e:24ce:bbc1:127d])
+        by smtp.gmail.com with ESMTPSA id bz6-20020a1709070aa600b0095850aef138sm763402ejc.6.2023.05.05.03.31.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 05 May 2023 03:31:53 -0700 (PDT)
+Message-ID: <b0a97e91-aba3-f624-2b8b-a82462bfe2ea@linaro.org>
+Date:   Fri, 5 May 2023 12:31:52 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230505091733.1819521-1-peng.fan@oss.nxp.com>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [EXT] Re: [PATCH 1/2 v5] dt-bindings: watchdog: marvell GTI
+ system watchdog driver
+Content-Language: en-US
+To:     Bharat Bhushan <bbhushan2@marvell.com>,
+        "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
+        "linux@roeck-us.net" <linux@roeck-us.net>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <linux-kernel@vger.kernel.org, sgoutham@marvell.com>
+ <20230503121016.6093-1-bbhushan2@marvell.com>
+ <9911bb17-e8f7-b552-7056-a26b3194c416@linaro.org>
+ <DM5PR1801MB1883A469C355797CE4A6E83CE36D9@DM5PR1801MB1883.namprd18.prod.outlook.com>
+ <bb52dbb7-7225-552c-2daa-688aa304a9a0@linaro.org>
+ <DM5PR1801MB18835D6D376910DA60B36D5FE36D9@DM5PR1801MB1883.namprd18.prod.outlook.com>
+ <e1760ba6-4200-4fa0-5298-f76575522764@linaro.org>
+ <DM5PR1801MB1883331A14517B4268D07E41E3729@DM5PR1801MB1883.namprd18.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <DM5PR1801MB1883331A14517B4268D07E41E3729@DM5PR1801MB1883.namprd18.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -53,47 +87,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On 23-05-05, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-
-...
-
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/imx6sx-clock.h>
-> +
-> +    ocotp: efuse@21bc000 {
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +        compatible = "fsl,imx6sx-ocotp", "syscon";
-> +        reg = <0x021bc000 0x4000>;
-> +        clocks = <&clks IMX6SX_CLK_OCOTP>;
-
-Nit: the "compatible" should be the first property followed by the "reg"
-property.
-
-Regards,
-  Marco
-
-> +
-> +        cpu_speed_grade: speed-grade@10 {
-> +            reg = <0x10 4>;
-> +        };
-> +
-> +        tempmon_calib: calib@38 {
-> +            reg = <0x38 4>;
-> +        };
-> +
-> +        tempmon_temp_grade: temp-grade@20 {
-> +            reg = <0x20 4>;
-> +        };
-> +    };
-> +
-> +...
-> -- 
-> 2.37.1
+On 05/05/2023 09:17, Bharat Bhushan wrote:
+>> Same story every time... and was discussed many, many times on the lists.
+>>
+>> https://urldefense.proofpoint.com/v2/url?u=https-
+>> 3A__elixir.bootlin.com_linux_v6.1-
+>> 2Drc1_source_Documentation_devicetree_bindings_writing-2Dbindings.rst-
+>> 23L42&d=DwICaQ&c=nKjWec2b6R0mOyPaz7xtfQ&r=PAAlWswPe7d8gHlGbCLmy
+>> 2YezyK7O3Hv_t2heGnouBw&m=3aeejmHQ5C8TyLM5odlaq6KnLYHt4PhpJp70FQa
+>> qbNf7w15KFHA3fmeDR2V-en4m&s=FKeW5tpOG-
+>> CJoV_JKuqTa0k_tRrYWAQZG1UfqlW3c74&e=
+>>
+>> You need anyway SoC specific compatibles. Once you add proper compatibles,
+>> you will see that property is not needed.
 > 
-> 
-> 
+> Looks odd to add N number of compatible for N socs belong to one class of soc, but anyways will do.
+
+Why this is odd? How does it differ from other SoCs?
+
+Best regards,
+Krzysztof
+
