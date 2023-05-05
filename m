@@ -2,109 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA8006F80C6
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 12:32:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C7DD6F80CC
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 12:33:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231406AbjEEKb6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 06:31:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40666 "EHLO
+        id S231552AbjEEKdR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 06:33:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231359AbjEEKb5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 06:31:57 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2D0618908
-        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 03:31:55 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-50bc25f0c7dso3054799a12.3
-        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 03:31:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683282714; x=1685874714;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Tss2iYAogsWUkj4oYWrGVmAbKaoB0zM9wE54WqqKd0Y=;
-        b=tNSLEHALkywvpQv1FwYipENAvoPjczA7Bxx9bEuVPexutY+1UE6shZWOfe6kxdOOx5
-         NQhDYrsjGsweQxlbK/FNWZ0+G8/OtTI5nDyyp5kcxr1qEUW1+3Ddzs7JSliBN49Gj4lT
-         ZgzYPu1u/GpfxnPcQ19UEjA5bWdBrPUpZMQqy75M/1a4oQmSUdydgQfClCWE7idFvvP1
-         Ib0KLpn11BbAw6m5k9hgP2KTmWXZ1B62LdU0tkzWK/BYMvvPXRNw2PRa7ESEfpglOz2t
-         Zv1pWH4qxSKjyFgBv0fvQ/+UrS9TJd+u9AKYwk952IllAO8MwF6cY3KcqTEEcSv8Yl+H
-         IEnw==
+        with ESMTP id S229904AbjEEKdQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 06:33:16 -0400
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D56561248E;
+        Fri,  5 May 2023 03:33:14 -0700 (PDT)
+Received: by mail-ot1-f51.google.com with SMTP id 46e09a7af769-6a5ec0d8d8aso957549a34.2;
+        Fri, 05 May 2023 03:33:14 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683282714; x=1685874714;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Tss2iYAogsWUkj4oYWrGVmAbKaoB0zM9wE54WqqKd0Y=;
-        b=Jwp9i6KDz2K2/ZDhpvOHQOh7FL7+iPRUnXJ3K2upMoM7EWtRe+FNRshmfJ52zpZasT
-         PXHEXFDrDI1DqFfo8EWHVwTkrrz5+gB/tD3rGgfP0WfZ7JwnRyV99Fsnxds1QmK1J/N3
-         jiXSRSzhiArJZa+jkOzS+q/VU43Ch7J9DAIYCG3ywrIyrYGNkDjIGOZi7qrXYsy1GxbZ
-         l/t2Mo8g7az4I9AoMSd0M+SndZpb4H5TXRTsp0zQPCGKFiyG7z2S+PAVVWKuUmr70/Ip
-         di4ihVpLryZlUWZoGjhM6jfV/9WEWQyAH1Mr1mGMXp5Ptr/X92JI6IhYQxndOKjuNlmq
-         2NGA==
-X-Gm-Message-State: AC+VfDy0CHgtM0wfSPHrSe5ZAwhkfk3pCsnXabYX35GbTQnHfrm7osUw
-        fpuoZN3YHNrdAifbpgmnK8OvjA==
-X-Google-Smtp-Source: ACHHUZ6Aww/tkHL01E2blbKoNpK2dQxvdbFSq2DqZgWwrWJths3LOb5cIJUBfPMQ90i6K+u007ymwg==
-X-Received: by 2002:a17:906:d550:b0:94e:ffab:296a with SMTP id cr16-20020a170906d55000b0094effab296amr851246ejc.73.1683282714213;
-        Fri, 05 May 2023 03:31:54 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:52e:24ce:bbc1:127d? ([2a02:810d:15c0:828:52e:24ce:bbc1:127d])
-        by smtp.gmail.com with ESMTPSA id bz6-20020a1709070aa600b0095850aef138sm763402ejc.6.2023.05.05.03.31.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 May 2023 03:31:53 -0700 (PDT)
-Message-ID: <b0a97e91-aba3-f624-2b8b-a82462bfe2ea@linaro.org>
-Date:   Fri, 5 May 2023 12:31:52 +0200
+        d=1e100.net; s=20221208; t=1683282794; x=1685874794;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=nWRIpuovVIMEpYtjLpD/cnXdXD4NVVRLvuPXNC9ShqY=;
+        b=hn3y8tzkXgaxW5ECuPqcWxJm9ySnHyWMiaAAtvLVGMWQyTM1Bz5ous8eqDEpzrDnAF
+         PaXGlOhh843H+F6j5BPiSMg5lX5QDXeAZKijgIRVYt+Dl9S4ScNhvK5xaup8V8DUrqHL
+         bwM5tjspOsQoVM0aK4T8cjX9UQJVTP8k8WkFp4GP61d75Fe+6hyg01RaBxhPoqIDpx12
+         WwNMC3Jl4rB14HV3G0CefMYKIRFRUW8Eidu/JUyzdofpyr4sL8j5hai+CRa2L91ETqXa
+         ot7EG8K6Or6E/9ElC9H8BLXp4R061lf014/CXlIuCX9y2+oR2r2iaXHDqCIS6kGjZaYY
+         rpWg==
+X-Gm-Message-State: AC+VfDxECcckNRWngtcnYk5VYKg2R4vrrOiNCwiSvQFDT6tl88RtrdLV
+        WVC+/zWPVqEJToBl2Z9rsA==
+X-Google-Smtp-Source: ACHHUZ63qjBpdDEoG+mkzHnRevLEIiM6flJK5carhmNlA3y2k9Zu7wt+fPTh+MCRNzjtFYiJtxM+mw==
+X-Received: by 2002:a9d:62c6:0:b0:6a9:73f0:4b1d with SMTP id z6-20020a9d62c6000000b006a973f04b1dmr486853otk.32.1683282793972;
+        Fri, 05 May 2023 03:33:13 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id f3-20020a9d7b43000000b006a65fface3esm624037oto.64.2023.05.05.03.33.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 May 2023 03:33:13 -0700 (PDT)
+Received: (nullmailer pid 2152116 invoked by uid 1000);
+        Fri, 05 May 2023 10:33:12 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [EXT] Re: [PATCH 1/2 v5] dt-bindings: watchdog: marvell GTI
- system watchdog driver
-Content-Language: en-US
-To:     Bharat Bhushan <bbhushan2@marvell.com>,
-        "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
-        "linux@roeck-us.net" <linux@roeck-us.net>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <linux-kernel@vger.kernel.org, sgoutham@marvell.com>
- <20230503121016.6093-1-bbhushan2@marvell.com>
- <9911bb17-e8f7-b552-7056-a26b3194c416@linaro.org>
- <DM5PR1801MB1883A469C355797CE4A6E83CE36D9@DM5PR1801MB1883.namprd18.prod.outlook.com>
- <bb52dbb7-7225-552c-2daa-688aa304a9a0@linaro.org>
- <DM5PR1801MB18835D6D376910DA60B36D5FE36D9@DM5PR1801MB1883.namprd18.prod.outlook.com>
- <e1760ba6-4200-4fa0-5298-f76575522764@linaro.org>
- <DM5PR1801MB1883331A14517B4268D07E41E3729@DM5PR1801MB1883.namprd18.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <DM5PR1801MB1883331A14517B4268D07E41E3729@DM5PR1801MB1883.namprd18.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, srinivas.kandagatla@linaro.org,
+        Peng Fan <peng.fan@nxp.com>, devicetree@vger.kernel.org
+In-Reply-To: <20230505091906.1820081-1-peng.fan@oss.nxp.com>
+References: <20230505091906.1820081-1-peng.fan@oss.nxp.com>
+Message-Id: <168328279233.2152093.17111412703321602955.robh@kernel.org>
+Subject: Re: [PATCH] dt-bindings: nvmem: add nvmem-cell-cells property
+Date:   Fri, 05 May 2023 05:33:12 -0500
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/05/2023 09:17, Bharat Bhushan wrote:
->> Same story every time... and was discussed many, many times on the lists.
->>
->> https://urldefense.proofpoint.com/v2/url?u=https-
->> 3A__elixir.bootlin.com_linux_v6.1-
->> 2Drc1_source_Documentation_devicetree_bindings_writing-2Dbindings.rst-
->> 23L42&d=DwICaQ&c=nKjWec2b6R0mOyPaz7xtfQ&r=PAAlWswPe7d8gHlGbCLmy
->> 2YezyK7O3Hv_t2heGnouBw&m=3aeejmHQ5C8TyLM5odlaq6KnLYHt4PhpJp70FQa
->> qbNf7w15KFHA3fmeDR2V-en4m&s=FKeW5tpOG-
->> CJoV_JKuqTa0k_tRrYWAQZG1UfqlW3c74&e=
->>
->> You need anyway SoC specific compatibles. Once you add proper compatibles,
->> you will see that property is not needed.
+
+On Fri, 05 May 2023 17:19:06 +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> Looks odd to add N number of compatible for N socs belong to one class of soc, but anyways will do.
+> The driver has been using this property, so add it.
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  Documentation/devicetree/bindings/nvmem/nvmem.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
 
-Why this is odd? How does it differ from other SoCs?
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Best regards,
-Krzysztof
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/nvmem/nvmem.yaml:71:10: [warning] wrong indentation: expected 8 but found 9 (indentation)
+
+dtschema/dtc warnings/errors:
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230505091906.1820081-1-peng.fan@oss.nxp.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
