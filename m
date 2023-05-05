@@ -2,179 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DE5F6F832C
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 14:43:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F3FD6F833B
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 14:46:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231852AbjEEMn6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 08:43:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52874 "EHLO
+        id S232258AbjEEMqL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 08:46:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231842AbjEEMn5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 08:43:57 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 317771AECD
-        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 05:43:56 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4f13ef4ad91so1991207e87.3
-        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 05:43:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683290634; x=1685882634;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=SuYX5zR3BqGct76Msm/Q12tOnmEfYOVRBCf1o9KituA=;
-        b=pXi1NF2hC8Mlyi9G5+hesmETmbCBHVsqsMSHgBikHhwlsraKEhENeSKFJMnwg/1etQ
-         iH9dnNmI3vGwhdOBdV4j5kz6zYkRAjmvJvPmquJUnpELLF5EUteuUDaPNCeA+ya9EqOE
-         RH16ymx4qSD873aVaskfmaacoP1yWD6iRXy6fJO0ifJx1pL1wCGMroDgS25UekdXSUDe
-         hpHy7fNbjegegMoVERBKZ4krMNjBf3SqwXcefxa2M+1uTbfszNxvU9LcGUhU20q+vN4p
-         1sosMX+zrg6dqyDYIsq3wS4uSzjEPDXkvSV6hfR80PvZCOCb1+FDWlCcSH4q1AXyRyMk
-         BgiQ==
+        with ESMTP id S232263AbjEEMqI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 08:46:08 -0400
+Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0996F1D96B
+        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 05:45:58 -0700 (PDT)
+Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-192cd5579faso1463283fac.1
+        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 05:45:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683290634; x=1685882634;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=SuYX5zR3BqGct76Msm/Q12tOnmEfYOVRBCf1o9KituA=;
-        b=eX3t+jzDodzhwR+D28UflTR5i6nB00XeZL7lt0fiZqkW1+pbuVbwsd36lZO1I6BDEF
-         v2fm+9Xnt9hZyVUy/DW48lML59Kvbl/C2K7pgtDjV9MwDFGGkGA5ty+k4ldWVwfbENMI
-         H/gTIuOdd4Dk2v1exDRvCCm0RuBRA6jl6RXjotcU3Poyd+DR601i328Qwj4IUlHdP7o3
-         NBVAJHwRtQz1qKif1bJiQPCQiBYESdWvIt9i/USReA6U9ZdkEXcP1rVPKJMmDNzd24WT
-         qnnDLNVv3RqMhdhr6mJH/wuYGSpeKoSnLekL3URJthURmGZUnxdmUCJA1NoHOz98JsoY
-         YUmA==
-X-Gm-Message-State: AC+VfDxu//4hh3cub/WBX16yOOyI7mNOgWI0IFQWPj+xsXeQ+QO6qmwA
-        wRCx53jSaK3z5ybmswr/NUe09Yf7OWzGdy57G50=
-X-Google-Smtp-Source: ACHHUZ4asDX2x0oLz+jAca7e1zelHbDaspA1IEvg3iW85PoBEPjsKMFyfArzyUwWk4dV44SzBStKHA==
-X-Received: by 2002:a2e:8945:0:b0:2a8:d39b:1496 with SMTP id b5-20020a2e8945000000b002a8d39b1496mr413793ljk.24.1683290634359;
-        Fri, 05 May 2023 05:43:54 -0700 (PDT)
-Received: from [127.0.1.1] ([85.235.12.238])
-        by smtp.gmail.com with ESMTPSA id p3-20020a2ea403000000b002ac7a25c001sm310838ljn.24.2023.05.05.05.43.53
+        d=1e100.net; s=20221208; t=1683290758; x=1685882758;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HRJRQ0UETCwajV8o0hoH4rj6ViayRkurN2vMWQnHeqU=;
+        b=ck06SXtfwBMHTqomZZEPuMN4J38Iq5v60mNdTZVwpepMfw4FzJe97CH7IyWPn3lkV4
+         LG08/OTTSq0dhyhGt7GIVGALm0RKVeUQ8s5W1RJKq2CTE4cf5PTGauPNAQ0Cm0oywH7u
+         gn/pxhBkXYnMeyEam1GHjKzZYF9xz4Jgc2bqrHShcQZaX7lJ8ciy6vtj7lDPBStWnpXx
+         iUSuPmQ0W4Cd29wGbJq9xf8dm6SJwZbm2VH8ofEBhyPJqcAMQDqd8Uzfvsb5w5UFDo/X
+         ghUKMCeZn/SPDAqBpi5ZZnBT/O2Scnydrge6PfD755sFlSUBmzackUBDGe6oLu8m8z/k
+         saWQ==
+X-Gm-Message-State: AC+VfDybWr5oX5E+3n/g0RkPjTSsvFI7nl7r9xH3NsuzJFWwYAlMiumt
+        xOaeEOvuo/xRTj6Bw6D5Yw==
+X-Google-Smtp-Source: ACHHUZ44JmIFhFU7z8g6wUNK0y/Mx1Q6mbh5GRH32DT74E4ugKJbKFYS2/F1Tav7VKLgNHbFuZ9ZMw==
+X-Received: by 2002:a05:6870:8c08:b0:187:aeb3:81a6 with SMTP id ec8-20020a0568708c0800b00187aeb381a6mr803362oab.6.1683290758100;
+        Fri, 05 May 2023 05:45:58 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id l5-20020a4ae385000000b00545442d89b3sm886369oov.23.2023.05.05.05.45.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 May 2023 05:43:53 -0700 (PDT)
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 05 May 2023 14:43:53 +0200
-Subject: [PATCH v2] docs: dt: Make references and mention kernel
- abstractions
+        Fri, 05 May 2023 05:45:57 -0700 (PDT)
+Received: (nullmailer pid 2408705 invoked by uid 1000);
+        Fri, 05 May 2023 12:45:56 -0000
+Date:   Fri, 5 May 2023 07:45:56 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Conor Dooley <conor@kernel.org>
+Cc:     devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v1] MAINTAINERS: add Conor as a dt-bindings maintainer
+Message-ID: <168329073579.2408219.8798697389690352941.robh@kernel.org>
+References: <20230504-renderer-alive-1c01d431b2a7@spud>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230505-dt-docs-refresh-v2-1-56bf359c53b4@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAAj6VGQC/x3NMQrDMAyF4asEzRU4Dl56ldLBtpRYQ+0glTYQc
- vc4GX94H28HYxU2eA47KP/EpNUe/jFALrEujEK9wTs/ueAC0hepZUPlWdkKhjEwJUqJ3AhdpWi
- MSWPN5XJr+7N+YsYl4CzbtVg7le3+fL2P4wR1vInZgwAAAA==
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Grant Likely <grant.likely@linaro.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>
-X-Mailer: b4 0.12.1
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230504-renderer-alive-1c01d431b2a7@spud>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This document is named "Linux and Devicetree" so I think we
-should write a bit more about how the device tree fits into
-the Linux kernel frameworks these days after we have created
-the fwnode and swnode.
 
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
-These docs are old and outdated and need to be edited to
-reflect the current situation.
----
-ChangeLog v1->v2:
-- Spelling mistakes
-- Resend because nothing happens
----
- Documentation/devicetree/usage-model.rst | 45 +++++++++++++++++++++++++++++---
- 1 file changed, 41 insertions(+), 4 deletions(-)
+On Thu, 04 May 2023 22:58:39 +0100, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
+> 
+> Rob asked if I would be interested in helping with the dt-bindings
+> maintenance, and since I am a glutton for punishment I accepted.
+> 
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+>  MAINTAINERS | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-diff --git a/Documentation/devicetree/usage-model.rst b/Documentation/devicetree/usage-model.rst
-index b6a287955ee5..37605cb549cf 100644
---- a/Documentation/devicetree/usage-model.rst
-+++ b/Documentation/devicetree/usage-model.rst
-@@ -75,7 +75,44 @@ out of mainline (nios) have some level of DT support.
- If you haven't already read the Device Tree Usage\ [1]_ page,
- then go read it now.  It's okay, I'll wait....
- 
--2.1 High Level View
-+2.1 Linux Kernel Firmware Abstractions
-+--------------------------------------
-+
-+The Linux kernel supports several different hardware description
-+frameworks and DT is just one of them. The closest sibling is the
-+:ref:`Documentation/firmware-guide/acpi/index.rst ACPI`
-+DSDT (Differentiated System Description Table).
-+
-+To make it possible to write a device driver that will adapt to DT
-+or other hardware description models, the kernel has grown some
-+abstractions, first and foremost the firmware node API, exposing
-+device properties. The firmware node "fwnode" internals can be found
-+in ``<linux/fwnode.h>`` while the device driver-facing API can be
-+found in ``<linux/property.h>``. The idea is that if a driver is using
-+the firmware node API, it should be trivial to support DT and ACPI
-+DSDT alike in the same driver.
-+
-+The fwnode framework also makes it possible to modify and extend the
-+Linux in-kernel model with software-managed nodes "swnodes" to apply
-+quirks or manage registration of devices that cannot be handled any
-+other way. This API can also be found in ``<linux/property.h>``.
-+
-+Further, when the DT core register devices these need to fold into the
-+Linux device driver model, which essentially means that some kind of
-+``struct device`` has to be created to match a corresponding
-+``struct device_driver``. This API can be explored in
-+detail in :ref:`Documentation/driver-api/driver-model/index.rst the driver API documentation`
-+but what you need to know is that the Linux DT parser code will on its
-+own mostly spawn platform devices and AMBA devices on the platform
-+and AMBA bus respectively, and apart from that it will augment devices
-+spawn on other buses where applicable.
-+
-+Every Linux kernel subsystem that want to supply additional data to
-+detected devices using the device tree, or that want to provide
-+resources to other devices in the DT, will need to implement calls into
-+the DT abstractions.
-+
-+2.2 High Level View
- -------------------
- The most important thing to understand is that the DT is simply a data
- structure that describes the hardware.  There is nothing magical about
-@@ -97,7 +134,7 @@ Linux uses DT data for three major purposes:
- 2) runtime configuration, and
- 3) device population.
- 
--2.2 Platform Identification
-+2.3 Platform Identification
- ---------------------------
- First and foremost, the kernel will use data in the DT to identify the
- specific machine.  In a perfect world, the specific platform shouldn't
-@@ -180,7 +217,7 @@ However, this approach does not take into account the priority of the
- compatible list, and probably should be avoided for new architecture
- support.
- 
--2.3 Runtime configuration
-+2.4 Runtime configuration
- -------------------------
- In most cases, a DT will be the sole method of communicating data from
- firmware to the kernel, so also gets used to pass in runtime and
-@@ -217,7 +254,7 @@ On ARM, the function setup_machine_fdt() is responsible for early
- scanning of the device tree after selecting the correct machine_desc
- that supports the board.
- 
--2.4 Device population
-+2.5 Device population
- ---------------------
- After the board has been identified, and after the early configuration data
- has been parsed, then kernel initialization can proceed in the normal
-
----
-base-commit: 457391b0380335d5e9a5babdec90ac53928b23b4
-change-id: 20230505-dt-docs-refresh-515edbdbbd01
-
-Best regards,
--- 
-Linus Walleij <linus.walleij@linaro.org>
+Applied, thanks!
 
