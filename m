@@ -2,98 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CBEAF6F868D
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 18:20:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB4FD6F869E
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 18:24:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232056AbjEEQUt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 12:20:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53994 "EHLO
+        id S230163AbjEEQYY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 12:24:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230163AbjEEQUs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 12:20:48 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 296CA1814D;
-        Fri,  5 May 2023 09:20:47 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2AF982F4;
-        Fri,  5 May 2023 09:21:31 -0700 (PDT)
-Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4DCA43F5A1;
-        Fri,  5 May 2023 09:20:39 -0700 (PDT)
-Date:   Fri, 5 May 2023 17:20:36 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     soc@kernel.org, Christian Marangi <ansuelsmth@gmail.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Andreas =?utf-8?Q?F=C3=A4rber?= <afaerber@suse.de>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Antoine Tenart <atenart@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Lars Persson <lars.persson@axis.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Baruch Siach <baruch@tkos.co.il>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        Jean-Marie Verdun <verdun@hpe.com>,
-        Nick Hawkins <nick.hawkins@hpe.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Vladimir Zapolskiy <vz@mleia.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Peter Rosin <peda@axentia.se>, Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Daniel Palmer <daniel@thingy.jp>,
-        Romain Perier <romain.perier@gmail.com>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Shiraz Hashim <shiraz.linux.kernel@gmail.com>,
-        Patrice Chotard <patrice.chotard@foss.st.com>,
-        Marek Vasut <marex@denx.de>, Qin Jian <qinjian@cqplus1.com>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Paul Barker <paul.barker@sancloud.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Nishanth Menon <nm@ti.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Enric Balletbo i Serra <eballetbo@gmail.com>,
-        Javier Martinez Canillas <javier@dowhile0.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@axis.com
-Subject: Re: [PATCH 4/4] ARM: dts: Move .dts files to vendor sub-directories
-Message-ID: <20230505162036.4jxonptrre7zzx5b@bogus>
-References: <20230504-arm-dts-mv-v1-0-2c8e51a2b6c4@kernel.org>
- <20230504-arm-dts-mv-v1-4-2c8e51a2b6c4@kernel.org>
+        with ESMTP id S231730AbjEEQYX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 12:24:23 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D21E1814D
+        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 09:24:21 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-965fc25f009so55424266b.3
+        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 09:24:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683303859; x=1685895859;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dOsC+7mQ12H8XAMAhE003bPySwrUQw/0QUxgIIw8mBQ=;
+        b=EFL1cEjgNv1aConkpEiyPVcWGo1k8EG/5+VARBE/GofKOULWCTltGLl2HRGRRJd5Nt
+         0dfvvn5O6whQhX2bdMnEqawUNWL4/172KqTZuheMFMc5vQynV7OmGFUSVH/PaD3YCNJL
+         EVDrgMQx99BdvoBelTl9aJwpiwB+lDqSijIctxgX2kf1XCKAc0GaY23J4lgT4uvuNQbH
+         kLZXC1hB9ctSGxtf2F91MhAErahxcu18ZaJ/81jmALFF1mZw4BtUk9pV0fecHo4xb0x2
+         reXq3KcZdT1BPirUGrUeg4351OL2t0d/qkeRxrkCOfHXbVIQukrRFxaCikPdzU6T1/d8
+         l+Eg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683303859; x=1685895859;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dOsC+7mQ12H8XAMAhE003bPySwrUQw/0QUxgIIw8mBQ=;
+        b=PF6W+C8+2oEttrGii3YG/SecRJ078e+Kder73m6ERTuvb7k2HdtLAr3x0Gal6l4j9+
+         lsjr9bF7wSxKGzvD63B2qi6AbPOfh4QluW3sm2NDfn+xyhUpOls1HlLtA6RUQLrtZXsR
+         cEMWXPZeOwxhXSDpNM330wIEPkb3pQtF2VkFEBLOvcj03vlzqgSuoijZPFRFjZ79PC16
+         fObQCZIjvlrVeeYnzsNE/KIzQn4p/frC/JobR2R/oF0P5QEPNjn7I5DfA9cD5QUk5LLW
+         96Tj3ZN0ZCpfOdKOBfufXMSUTy0PJxs8SjbRhiB8vAAPVF5Ce/W5LaohjdUDWYEq96Rr
+         n94w==
+X-Gm-Message-State: AC+VfDwfgyMbCW4/y5DxcRUPHKL9IkUKu7MMS/G8KYzm4FCrgOElZOPW
+        pyYBjQ9x20M7Xjcb+/uXwf8Ugg==
+X-Google-Smtp-Source: ACHHUZ59msLJ2mB6dF6aa/iMQi768x0mvN63nnwgqTzVM2vQRUMx/o8H4Yxd7vLs+bi9Cgd2ybWu8A==
+X-Received: by 2002:a17:906:4787:b0:94a:658e:1180 with SMTP id cw7-20020a170906478700b0094a658e1180mr2061781ejc.26.1683303859473;
+        Fri, 05 May 2023 09:24:19 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:52e:24ce:bbc1:127d? ([2a02:810d:15c0:828:52e:24ce:bbc1:127d])
+        by smtp.gmail.com with ESMTPSA id u3-20020aa7db83000000b0050c04bcc3b2sm1914373edt.64.2023.05.05.09.24.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 05 May 2023 09:24:18 -0700 (PDT)
+Message-ID: <fe326d38-ee52-b0a4-21d8-f00f22449417@linaro.org>
+Date:   Fri, 5 May 2023 18:24:11 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230504-arm-dts-mv-v1-4-2c8e51a2b6c4@kernel.org>
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH v4 2/5] dt-bindings: soc: qcom: eud: Add SM6115 / SM4250
+ support
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+References: <20230505064039.1630025-1-bhupesh.sharma@linaro.org>
+ <20230505064039.1630025-3-bhupesh.sharma@linaro.org>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230505064039.1630025-3-bhupesh.sharma@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -101,48 +79,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 04, 2023 at 10:29:29PM -0500, Rob Herring wrote:
-> The arm dts directory has grown to 1553 boards which makes it a bit
-> unwieldy to maintain and use. Past attempts stalled out due to plans to
-> move .dts files out of the kernel tree. Doing that is no longer planned
-> (any time soon at least), so let's go ahead and group .dts files by
-> vendors. This move aligns arm with arm64 .dts file structure.
+On 05/05/2023 08:40, Bhupesh Sharma wrote:
+> Add dt-bindings for EUD found on Qualcomm SM6115 / SM4250 SoC.
 > 
-> Doing this enables building subsets of dts files by vendor easily
-> without changing kernel configs:
+> On this SoC (and derivatives) the enable bit inside 'tcsr_check_reg'
+> needs to be set first to 'enable' the eud module.
 > 
-> make allyesconfig
-> make arch/arm/boot/dts/ti/
+> So, update the dt-bindings to accommodate the third register
+> property (TCSR Base) required by the driver on these SoCs.
 > 
-> There's no change to dtbs_install as the flat structure is maintained on
-> install.
+> Also for these SoCs, introduce a new bool property
+> 'qcom,secure-mode-enable', which indicates that the mode manager
+> needs to be accessed only via the secure world.
 > 
-> The naming of vendor directories is roughly in this order of preference:
-> - Matching original and current SoC vendor prefix/name (e.g. ti, qcom)
-> - Current vendor prefix/name if still actively sold (SoCs which have
->   been aquired) (e.g. nxp/imx)
-> - Existing platform name for older platforms not sold/maintained by any
->   company (e.g. gemini, nspire)
-> 
-> The whole move was scripted with the exception of MAINTAINERS.
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
 > ---
->  MAINTAINERS                                        |  181 +--
+>  .../devicetree/bindings/soc/qcom/qcom,eud.yaml   | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,eud.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,eud.yaml
+> index f2c5ec7e6437..3b92cdf4e306 100644
+> --- a/Documentation/devicetree/bindings/soc/qcom/qcom,eud.yaml
+> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,eud.yaml
+> @@ -18,17 +18,33 @@ properties:
+>      items:
+>        - enum:
+>            - qcom,sc7280-eud
+> +          - qcom,sm6115-eud
+>        - const: qcom,eud
+>  
+>    reg:
+> +    minItems: 2
+>      items:
+>        - description: EUD Base Register Region
+>        - description: EUD Mode Manager Register
+> +      - description: TCSR Base Register Region
+> +
+> +  reg-names:
+> +    minItems: 2
+> +    items:
+> +      - const: eud-base
+> +      - const: eud-mode-mgr
+> +      - const: tcsr-base
+>  
+>    interrupts:
+>      description: EUD interrupt
+>      maxItems: 1
+>  
+> +  qcom,secure-mode-enable:
+> +    type: boolean
+> +    description:
+> +      Indicates that the mode manager needs to be accessed only via the secure
+> +      world (through 'scm' calls).
 
-[...]
+I understood tcsr-base aplies only to SM6115, so this should be further
+constrained in allOf:if:then:.
 
->  arch/arm/boot/dts/{ => arm}/vexpress-v2m-rs1.dtsi  |    0
->  arch/arm/boot/dts/{ => arm}/vexpress-v2m.dtsi      |    0
->  .../boot/dts/{ => arm}/vexpress-v2p-ca15-tc1.dts   |    0
->  .../boot/dts/{ => arm}/vexpress-v2p-ca15_a7.dts    |    0
->  arch/arm/boot/dts/{ => arm}/vexpress-v2p-ca5s.dts  |    0
->  arch/arm/boot/dts/{ => arm}/vexpress-v2p-ca9.dts   |    0
+Best regards,
+Krzysztof
 
-For all vexpress related changes:
-
-Acked-by: Sudeep Holla <sudeep.holla@arm.com>
-
---
-Regards,
-Sudeep
