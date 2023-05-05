@@ -2,130 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C53A06F7AD6
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 04:20:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4939B6F7AE3
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 04:28:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229818AbjEECUI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 22:20:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33160 "EHLO
+        id S229905AbjEEC2d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 22:28:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229781AbjEECUG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 22:20:06 -0400
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2098.outbound.protection.outlook.com [40.107.215.98])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA4E6A27D;
-        Thu,  4 May 2023 19:19:23 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZN4GOXF17eFBAhUMaWIpj/bcJWk1LU/Wm/A/N2I8kbww56g6k8ZUhvJUiRKWUzZ+a2LcniF+4NhZ/1vAwQNudE1V30e/tblC/XYoe8T2AdmqxxUFst/ekVw0237cJKxaCvAUvB71RZjC5GObQmzMMkPmUL+G5Xp0jVr3tK79IBuSJiZKIBu4xTe7NAshcxo+nC0+jo5an1qht1cjQ2BK6C4w2xr6Uzkm5t4277bE9Q5GmNaLyDEvE9f8z/oR1hEDaPcBw5oGSaSp4G3lnlzBa0MihciMwQxFTchBTYSBGzRoxdroTvKzHDRWRlTutwZL8jbTU2yLvp8IKxjsJxe0yQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gVgZ/GJPwaLCZaAMqmcJ5w9XyjaDKbnXAWAxfH3hBPo=;
- b=F06POU+D0o+SQQsiTdETeDvhbFpcIL41ulnsl3W8wmG+22xT18Uzs9l8U8Th0mMXc6ENzdp6IDC8TGplfAua2bboyzz0bB9/P6yIm1OcayKB6SKH8KIRMhFlCURKu99Y162kdQ1UPxbhaFoFx8C6dMbUDs3vnGadEiUl97GK+v/m9J148iI5t7eYSIeI7Q1bcraVWl6jb0ucLCUuRvTg8NEaZjeanjtaKOy5jiIuAlMQTYxDIEZW1vSjlB9wHAa5OfQqJFYxu4pRdClvGoPkJLH/7If+F2NHPOQydHUCrpwkKOwIkSh2ei+E8rxzFYuJonGgRipY87TMHQWFGBrysw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gVgZ/GJPwaLCZaAMqmcJ5w9XyjaDKbnXAWAxfH3hBPo=;
- b=xygVWRiyIPVvg1jJqf+vF8ZRu4EYGmYh0Ao7MlQBT1wOR1/r5aA4n90D1xd7xxU/RfARG7HOO+rQcNRAaCp0/HPenBtePDC7LdV+kr4IC09x1sX2hpTKau74ICw0rCQEkRz/kjEr6PzFtZKe/Ixy2EdTKc5+fEvd3HWljmgHRhmrxp12yEh6vhPWKg5+6EtjA0rEGRL5iTxpmBBwRdXeI7JwpJlB34eTNC3YUZO1m0Iyl6LaautXWhK3pb+e2goKMt3wORWPvz7M0VYjrp2t2tIfC55d+q29fU5442ZVu4qgD4OsfFumBvXGM2b5QVGGSmgWHknX0TStamBLNdivnQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from SG2PR03MB2734.apcprd03.prod.outlook.com (2603:1096:3:21::22) by
- JH0PR03MB7655.apcprd03.prod.outlook.com (2603:1096:990:d::5) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6363.27; Fri, 5 May 2023 02:19:18 +0000
-Received: from SG2PR03MB2734.apcprd03.prod.outlook.com
- ([fe80::9c6d:3128:b370:5fb4]) by SG2PR03MB2734.apcprd03.prod.outlook.com
- ([fe80::9c6d:3128:b370:5fb4%3]) with mapi id 15.20.6363.026; Fri, 5 May 2023
- 02:19:18 +0000
-Message-ID: <f6c78299-1dcc-7231-a524-6eb64157e1cc@amlogic.com>
-Date:   Fri, 5 May 2023 10:19:10 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH V2] arm64: dts: add support for C3 based Amlogic AW409
-Content-Language: en-US
-To:     Christian Hewitt <christianshewitt@gmail.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        LKML <linux-kernel@vger.kernel.org>,
-        AML <linux-amlogic@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-References: <20230427085859.793802-1-xianwei.zhao@amlogic.com>
- <1C87B1C1-122F-491C-9D3A-1FE1EF6F2B87@gmail.com>
-From:   "xianwei.zhao" <xianwei.zhao@amlogic.com>
-In-Reply-To: <1C87B1C1-122F-491C-9D3A-1FE1EF6F2B87@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: TYCP286CA0182.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:382::9) To SG2PR03MB2734.apcprd03.prod.outlook.com
- (2603:1096:3:21::22)
+        with ESMTP id S229758AbjEEC2c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 22:28:32 -0400
+Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59C9CAD37;
+        Thu,  4 May 2023 19:28:30 -0700 (PDT)
+Received: by mail-yb1-xb32.google.com with SMTP id 3f1490d57ef6-b9a7c1b86e8so1595998276.2;
+        Thu, 04 May 2023 19:28:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1683253709; x=1685845709;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IQTwCtOioJF8t/OiNx/dPasS+fdTMROa/SSWtKZQgKs=;
+        b=JIWVovMpQ3sB1Y2LItd2ey9cLqND5SVtLG/8J4+W6kJJosibN1+m8+ousRJlYRLjms
+         pFD42ttOvGyeO0vBmCLohiRM/cmdb3MEslUpdzxtDeEqb0XLI+Nv88W8baeZka2pUK83
+         UTCAQNM/6duTyT8/c5ngSJaFw6ocRwUNOd8mydPI84GdzFbgSAKdJbqJWJl6Nl/W66tN
+         UmAVwigIsyaIH5OWjFSQe6cYlBKFaE87zB7VL/4zOcbCDjMOiP0Ccha1IjsgDeyh3uuZ
+         LnBOZEHjyUntMlacBaSUb5kDv5FC8cFQXH8xoReYqYbVlcDa0rK8idPo2sG0u2pCrByo
+         Rlkg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683253709; x=1685845709;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=IQTwCtOioJF8t/OiNx/dPasS+fdTMROa/SSWtKZQgKs=;
+        b=U0y3VKZRMnV3mV4rdWJyJ+whKM/BWkvjYVCyD1tdCw8PwB7F5whLsIv9zc/4UUG1+S
+         pQBWDhaGgRoiIE9Z4bGpJ8FGOhluxnaS7LsMGVzr1j1YvPOjKwfV3QqtUPj0UKH2FYeU
+         Y5XFPe7EwkFZ1rzzbYM7JxGeen+ZtzncWA7+M7NZtNFdXGMtxOHt8YXS5iGhyh9Jw6x8
+         mbXmerphyBTd8QUyPztZHtmInvmMChgaXo/+29vLqyUsjbUy5m1YCX8NqoxFnQ3BHPJM
+         dQGx1SaRVNFNP/aWgyP8F/eq2blgh2cJMcj/fCw/rwwRHdEZZnO5x2Bujj/tnEVxdRFK
+         5xKg==
+X-Gm-Message-State: AC+VfDy2cyC+aU9ifwWSf0gIJfKPLqqIePhoEOkAFbCMDc1VfUIDnrhS
+        Xa2ATkOe/1AydjNlbINis7cXwAvD0gGzcQo88vY=
+X-Google-Smtp-Source: ACHHUZ6s8kmM5Dp5ih24Bs2hjigFmkgmEJakDis6EgSGdU/4H1aET/JyFpi3QqfwTFH10DYcjaA8FESVKsOzzJ1oQFQ=
+X-Received: by 2002:a25:c78f:0:b0:b9a:8298:d873 with SMTP id
+ w137-20020a25c78f000000b00b9a8298d873mr30812ybe.49.1683253709325; Thu, 04 May
+ 2023 19:28:29 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SG2PR03MB2734:EE_|JH0PR03MB7655:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7ccd2f01-2161-4d18-7cca-08db4d0f20c9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: i8or8s1cfKPlUKziVlMOWUGkY7cb8fKQX7Q6+an5Cpxngxh46jgkXXnaNv3b6o/KvmgCCN0RGegZPZExzIf1aTQeCjyk2jvs8mfW5Ld+0xVkD0Li1ZQlTmco0CgaX8e1w4SX89nn7s50JeZ61pJ6OUz48fGieRLeWhAHhTj38ctOz+SeNHXGbsb/hWtlkSH+FKm4JI+mll3IVyOmqPiG1p5FdvUCJvZfvKf457MPvgqY/KRtC5vCUjqHGzoDSIqUY9Mhs1brPDtmNStMmnaABiSOvWno25zDhkBYUU0D4s9KaZBZhrklVugXwuRlCL76oBUxzdYN/Xf0hOjszGmYkCxf15lf+g89VGqMDXv+cyyD490Uum/miED4N+eu9SJ6D3VOJODYA885/luAShaHIT+uYMg1lea06n2EEc7J0SQwKTuOTMi9ZJxwMxrlK82kMqA2JfLZoog/P5U7UgrW5M+OJcCuA5EC9r7Z5tETUa77cl44s57zro2xml5SB++3eOqJrL6nXWyduyB83ShIZ6CdHDZJozU/9387W3nA0sONa7B3cDBze8iia/kmx8OhNBkoiFyYjB8KFspD/26biF/m8JA9lrd+zC7Dto2zWqeFHYjr1JcXHz4TD82E+mn84XkQCSz4uKkAz3N4XcaguA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SG2PR03MB2734.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(366004)(346002)(376002)(136003)(39850400004)(396003)(451199021)(5660300002)(31686004)(7416002)(31696002)(83380400001)(86362001)(38100700002)(6486002)(4326008)(6666004)(2616005)(966005)(8936002)(41300700001)(478600001)(8676002)(54906003)(36756003)(66556008)(316002)(6916009)(66476007)(66946007)(2906002)(186003)(6512007)(26005)(53546011)(6506007)(43740500002)(45980500001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aThteVRkNG1OZVkyQWVuQ2hIR3NiYll3Z0hIeS8rSmRERTJ2QU03bjY3bWpK?=
- =?utf-8?B?ckxNMjlEdnROTWlORS9JbUllVGdHQ2svYXQyb1hCNGpRdzF0eE1TbUV2ekNn?=
- =?utf-8?B?dDk0ODE3VXVuR0dIazNydUxzQVFuT1M4eEd4RVNKc2ttUDM0dTBZTWVIbWQx?=
- =?utf-8?B?VFJSclZ0aW9wc1JUWVluNjdqL3JMK28yVXBGYVh1cGh6dDVvRms5amV1eU82?=
- =?utf-8?B?dHAwY1Q1VVVMYVFnU1lLNFkvTVZnTDF6bWdwTE5PUllBUE5IVTQxZVV5UFpR?=
- =?utf-8?B?UDFqOVFDc2NFRTE5TTFzeEsvSFdDUzFYUGVoVkNiWjVlTStSOVpCMERpNnRs?=
- =?utf-8?B?dU9kZ1RHYUJxWE5la1F1WFhDeXFpczRjQkU3bWNoUFM3VGROU282YTNDMWhk?=
- =?utf-8?B?UEhGU0RpTFk2elJ0aktGWDlUWjNsT1hVTjJmb01qR0podGxKUnEwNFN5WFNX?=
- =?utf-8?B?L1QycjNlSm84R2M5REM3NUVBMFJHS2lDeWZUWXNRUzh6ckN2UGxKZUVnNTlJ?=
- =?utf-8?B?TlNybWJxSEVjb2pIY29XSDdWK2RCYmNMdFhxRXlQL1lxblprYVlFN0Iwd21S?=
- =?utf-8?B?d05WU1Qwc1hRaHlicm5QdFEvZGJJVWdwdmtHYkthODl0OTZ6ZFNzZmNTMmI5?=
- =?utf-8?B?SUhleUFkdkI1QTRoMExRS1Z6U2o4dy9WSlc5VlVxaGpBMk84VTBEWHU3UTgv?=
- =?utf-8?B?aVpSOEJGdVYyeFFzZDQxb24wYnQ2cHphZHpaQ3J2dDNoVS9IWFAzUnFIVm5i?=
- =?utf-8?B?RmExRnNKTkhCb21KcHFRN2N4VDdDVUVMZytiN3hGbjBjclhrQS8xV2tuZitu?=
- =?utf-8?B?eE1DNVl1RGdubUY4VG50UlcwQU5MQStraGNsOE1KMnYvdUJvbURDRVBmZm1R?=
- =?utf-8?B?UlgvaG8ybUdXTlVFVnlwbnFEeXdLWmo2cVV5dTJ6cktIVHFKbDgxSWVHSWJ3?=
- =?utf-8?B?YWxCWUF6cFY1SVdaaXNPS2dUNnNlMXZkenFhUm5FVk45cGRac1pWdzhhbHdq?=
- =?utf-8?B?eVdJL3RGdHducE1tVmZvSkFKS045S1lpaDlDckg1OVM1NWF2eU16TDdaaGht?=
- =?utf-8?B?WjhpR0wzMzRGVC80LytRQTEvc1YxeWxCTHFSOHQvbTRlNkw0ZDA2dkMza1V6?=
- =?utf-8?B?OXgrd05iZjkvNTV2NVV4WmhQbVZZN0dlcFhMWGZPd1EwUW0xT0Q0b0hZbGlw?=
- =?utf-8?B?UEh4b0Nhd3M1bXF1MzJsYk0yZzNDOEZPOVk1SGJJZUZneWh4YUJuQ0ZPeVIv?=
- =?utf-8?B?TXo4N2RWM2pzSXdOQVFDZk4rdGxCTkRzZjBwa1A1eENEVHNsZ283Ykk4QWs2?=
- =?utf-8?B?YVVqTkVmMzNWTm5UTEt1eTJZVTJSRWVWZ3k2eXRHbzFMcEdPdHNCMmI1Sy8z?=
- =?utf-8?B?ODJwV1MyN25WQWUzZ3RqWW82NG53NVA4Z0xCU0ErMVFwTytrYVkxN2xqSzJo?=
- =?utf-8?B?NlhHMy9sTk5HTGtFc2lFZ0xhOCtHdFJTSk1nUHc0TjhKd1p6a1ZsNFJsM3pH?=
- =?utf-8?B?SHErVWpuRkRIWFhmZXU5amtSTTdSbzgrYkNIWThQdC9ZMjMyeU5wNjlwODF1?=
- =?utf-8?B?U0hIVFpCSFhJdTczQlFyMGprOU5jMzE2dzh0R3MyWGJ4U3ZqaUlmc3pDOGJy?=
- =?utf-8?B?RjlvR1J3TVl1YTRNN2xWd0xOakYzZHYxMkpJNEpKUE1JWE1ZM3hhVnQyYVps?=
- =?utf-8?B?K0YxNGovUnNjeWZjS0JBNmNUT3FmdW83eWZzbk1oelovTDR3NDlyd3l1UmdL?=
- =?utf-8?B?L2liMmZnS2F0QzQrakVkM2grR1pRZGhRMmlOWFZRT0RtZEMxVkdzQ2VkalJL?=
- =?utf-8?B?RStrNnVRS1lvRTE1Z3lVc0d1Q285YWdXV1JteEZrWGdNZUladUFzM3Jnb0tG?=
- =?utf-8?B?SFRhMXRaV3hCZXN5Ym5FWVpKV2plUzR6QzRxR1JQWG5RNFZVYTdzc1ZuVTB1?=
- =?utf-8?B?eTEvc2FSRWNFZVNmSmFqcXY3a05NWVZ2RUNNZy82MzFYS1RVejZCN1VKN3My?=
- =?utf-8?B?T2M1RFl0d3lLbVpML0piVEpFWVZBYklFZXlWWS9BdEc0MjZHbUFGQXl0eXRy?=
- =?utf-8?B?WkFUOWZMYUNKQlBrQ3V5R3JIaUFTbmxUVTFZQXY4RjhuNGFPVGJjeUYrWlRh?=
- =?utf-8?B?L3pFYS9VQjhPdHptSjVSMDUvNGpqQ0dZTjdyanRxOVRyZXZCV3hYVXBYZklw?=
- =?utf-8?B?d2c9PQ==?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7ccd2f01-2161-4d18-7cca-08db4d0f20c9
-X-MS-Exchange-CrossTenant-AuthSource: SG2PR03MB2734.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2023 02:19:17.8360
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: utxoNcRB0EUAjy4tT+ykElaYxuR58t/3nNoR3KtkQlVkFuDhwk9iv0XBN9aWf3RcM8nhpOIYsmBLmqB405TevlI4Ez8l7SRZkutGW00qKXY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR03MB7655
-X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+References: <cover.1681370153.git.zhoubinbin@loongson.cn> <09f381f445cfbcf857845f61d10238452037b2e8.1681370153.git.zhoubinbin@loongson.cn>
+ <20230416194901b538cb7c@mail.local>
+In-Reply-To: <20230416194901b538cb7c@mail.local>
+From:   Binbin Zhou <zhoubb.aaron@gmail.com>
+Date:   Fri, 5 May 2023 10:28:16 +0800
+Message-ID: <CAMpQs4LhkupxQExQCqg9qJ0eWCzLZEaeKDrJThTVyezz=ne53A@mail.gmail.com>
+Subject: Re: [PATCH V3 2/7] rtc: Add support for the Loongson-2K/LS7A RTC
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Binbin Zhou <zhoubinbin@loongson.cn>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        WANG Xuerui <kernel@xen0n.name>, linux-rtc@vger.kernel.org,
+        linux-mips@vger.kernel.org, loongarch@lists.linux.dev,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, keguang.zhang@gmail.com,
+        Huacai Chen <chenhuacai@kernel.org>,
+        WANG Xuerui <git@xen0n.name>, zhangbaoqi@loongson.cn
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -133,191 +79,343 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Christian,
-      Thanks for your advice.
+On Mon, Apr 17, 2023 at 3:49=E2=80=AFAM Alexandre Belloni
+<alexandre.belloni@bootlin.com> wrote:
+>
+> On 13/04/2023 15:57:34+0800, Binbin Zhou wrote:
+> > This RTC module is integrated into the Loongson-2K SoC and the LS7A
+> > bridge chip. This version is almost entirely rewritten to make use of
+> > current kernel API, and it supports both ACPI and DT.
+> >
+> > This driver is shared by MIPS-based Loongson-3A4000 system (use FDT) an=
+d
+> > LoongArch-based Loongson-3A5000 system (use ACPI).
+> >
+> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> > Signed-off-by: Huacai Chen <chenhuacai@kernel.org>
+> > Signed-off-by: WANG Xuerui <git@xen0n.name>
+> > ---
+> >  drivers/rtc/Kconfig    |  11 ++
+> >  drivers/rtc/Makefile   |   1 +
+> >  drivers/rtc/rtc-ls2x.c | 345 +++++++++++++++++++++++++++++++++++++++++
+>
+> This is v3 and this is still not merged in rtc-ls1x.c.
 
-On 2023/4/27 17:28, Christian Hewitt wrote:
-> [你通常不会收到来自 christianshewitt@gmail.com 的电子邮件。请访问 https://aka.ms/LearnAboutSenderIdentification，以了解这一点为什么很重要]
-> 
-> [ EXTERNAL EMAIL ]
-> 
->> On 27 Apr 2023, at 9:58 am, Xianwei Zhao <xianwei.zhao@amlogic.com> wrote:
->>
->> Amlogic C3 is an advanced edge AI processor designed for smart IP camera
->> applications.
->>
->> Add basic support for the C3 based Amlogic AW409 board, which describes
->> the following components: CPU, GIC, IRQ, Timer, UART. It's capable of
->> booting up into the serial console.
->>
->> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
->>
->> ---
->> V1 -> V2: Remove new arch, and use ARCH_MESON;
->>          Modify node name, and delete superfluous blank lines.
->> ---
->> arch/arm64/boot/dts/amlogic/Makefile          |  1 +
->> .../amlogic/amlogic-c3-c302x-aw409-256m.dts   | 29 +++++++
->> arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi   | 86 +++++++++++++++++++
->> 3 files changed, 116 insertions(+)
->> create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409-256m.dts
->> create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
->>
->> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
->> index cd1c5b04890a..bcec872c2444 100644
->> --- a/arch/arm64/boot/dts/amlogic/Makefile
->> +++ b/arch/arm64/boot/dts/amlogic/Makefile
->> @@ -74,3 +74,4 @@ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-hc4.dtb
->> dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
->> dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air-gbit.dtb
->> dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air.dtb
->> +dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c302x-aw409-256m.dtb
-> 
-> ^ please keep the list alpha-sorted, and 256m is described in the dts
-> so there is no need to include it in the board filename. I would also
-> expect meson-c3* to align with existing filenames, but I’ll let others
-> comment on naming rules.
-> 
-Keep alpha-sorted will do in next version, the characters "256m" will 
-delete also. The word meson will be removed in the future before 
-discuss, so use the word amlogic.
-> Christian
-> 
->> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409-256m.dts b/arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409-256m.dts
->> new file mode 100644
->> index 000000000000..edce8850b338
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409-256m.dts
->> @@ -0,0 +1,29 @@
->> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->> +/*
->> + * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
->> + */
->> +
->> +/dts-v1/;
->> +
->> +#include "amlogic-c3.dtsi"
->> +
->> +/ {
->> +     model = "Amlogic C302 aw409 Development Board";
->> +     compatible = "amlogic,aw409", "amlogic,c3";
->> +     interrupt-parent = <&gic>;
->> +     #address-cells = <2>;
->> +     #size-cells = <2>;
->> +
->> +     aliases {
->> +             serial0 = &uart_b;
->> +     };
->> +
->> +     memory@0 {
->> +             device_type = "memory";
->> +             reg = <0x0 0x0 0x0 0x10000000>;
->> +     };
->> +};
->> +
->> +&uart_b {
->> +     status = "okay";
->> +};
->> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
->> new file mode 100644
->> index 000000000000..93b335aef605
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
->> @@ -0,0 +1,86 @@
->> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->> +/*
->> + * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
->> + */
->> +
->> +#include <dt-bindings/interrupt-controller/irq.h>
->> +#include <dt-bindings/interrupt-controller/arm-gic.h>
->> +#include <dt-bindings/gpio/gpio.h>
->> +
->> +/ {
->> +     cpus {
->> +             #address-cells = <2>;
->> +             #size-cells = <0>;
->> +
->> +             cpu0: cpu@0 {
->> +                     device_type = "cpu";
->> +                     compatible = "arm,cortex-a35";
->> +                     reg = <0x0 0x0>;
->> +                     enable-method = "psci";
->> +             };
->> +
->> +             cpu1: cpu@1 {
->> +                     device_type = "cpu";
->> +                     compatible = "arm,cortex-a35";
->> +                     reg = <0x0 0x1>;
->> +                     enable-method = "psci";
->> +             };
->> +     };
->> +
->> +     timer {
->> +             compatible = "arm,armv8-timer";
->> +             interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
->> +                          <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
->> +                          <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
->> +                          <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
->> +     };
->> +
->> +     psci {
->> +             compatible = "arm,psci-1.0";
->> +             method = "smc";
->> +     };
->> +
->> +     xtal: xtal-clk {
->> +             compatible = "fixed-clock";
->> +             clock-frequency = <24000000>;
->> +             clock-output-names = "xtal";
->> +             #clock-cells = <0>;
->> +     };
->> +
->> +     soc {
->> +             compatible = "simple-bus";
->> +             #address-cells = <2>;
->> +             #size-cells = <2>;
->> +             ranges;
->> +
->> +             gic: interrupt-controller@fff01000 {
->> +                     compatible = "arm,gic-400";
->> +                     #interrupt-cells = <3>;
->> +                     #address-cells = <0>;
->> +                     interrupt-controller;
->> +                     reg = <0x0 0xfff01000 0 0x1000>,
->> +                           <0x0 0xfff02000 0 0x2000>,
->> +                           <0x0 0xfff04000 0 0x2000>,
->> +                           <0x0 0xfff06000 0 0x2000>;
->> +                     interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
->> +             };
->> +
->> +             apb4: bus@fe000000 {
->> +                     compatible = "simple-bus";
->> +                     reg = <0x0 0xfe000000 0x0 0x480000>;
->> +                     #address-cells = <2>;
->> +                     #size-cells = <2>;
->> +                     ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
->> +
->> +                     uart_b: serial@7a000 {
->> +                             compatible = "amlogic,meson-g12a-uart";
->> +                             reg = <0x0 0x7a000 0x0 0x18>;
->> +                             interrupts = <GIC_SPI 169 IRQ_TYPE_EDGE_RISING>;
->> +                             status = "disabled";
->> +                             clocks = <&xtal>, <&xtal>, <&xtal>;
->> +                             clock-names = "xtal", "pclk", "baud";
->> +                     };
->> +
->> +             };
->> +     };
->> +};
->>
->> base-commit: ae68fb187b59bc8645974320808ab2d7c41b1833
->> --
->> 2.37.1
->>
->>
->> _______________________________________________
->> linux-amlogic mailing list
->> linux-amlogic@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-amlogic
-> 
+Hi Alexandre:
+
+The ls1x rtc has been merged in at my local repository and Keguang has
+helped test it through, so it will be ready for release in the next
+version.
+In the meantime rtc-ls2x will be renamed to rtc-loongson.
+
+>
+> >  3 files changed, 357 insertions(+)
+> >  create mode 100644 drivers/rtc/rtc-ls2x.c
+> >
+> > diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
+> > index 753872408615..e1b9d64d2678 100644
+> > --- a/drivers/rtc/Kconfig
+> > +++ b/drivers/rtc/Kconfig
+> > @@ -1706,6 +1706,17 @@ config RTC_DRV_LPC32XX
+> >         This driver can also be built as a module. If so, the module
+> >         will be called rtc-lpc32xx.
+> >
+> > +config RTC_DRV_LS2X
+> > +     tristate "Loongson LS2X RTC"
+> > +     depends on MACH_LOONGSON64 || COMPILE_TEST
+> > +     select REGMAP_MMIO
+> > +     help
+> > +       If you say yes here you get support for the RTC on the Loongson=
+-2K
+> > +       SoC and LS7A bridge, which first appeared on the Loongson-2H.
+> > +
+> > +       This driver can also be built as a module. If so, the module
+> > +       will be called rtc-ls2x.
+> > +
+> >  config RTC_DRV_PM8XXX
+> >       tristate "Qualcomm PMIC8XXX RTC"
+> >       depends on MFD_PM8XXX || MFD_SPMI_PMIC || COMPILE_TEST
+> > diff --git a/drivers/rtc/Makefile b/drivers/rtc/Makefile
+> > index ea445d1ebb17..cff5df09fc60 100644
+> > --- a/drivers/rtc/Makefile
+> > +++ b/drivers/rtc/Makefile
+> > @@ -82,6 +82,7 @@ obj-$(CONFIG_RTC_DRV_LOONGSON1)     +=3D rtc-ls1x.o
+> >  obj-$(CONFIG_RTC_DRV_LP8788) +=3D rtc-lp8788.o
+> >  obj-$(CONFIG_RTC_DRV_LPC24XX)        +=3D rtc-lpc24xx.o
+> >  obj-$(CONFIG_RTC_DRV_LPC32XX)        +=3D rtc-lpc32xx.o
+> > +obj-$(CONFIG_RTC_DRV_LS2X)   +=3D rtc-ls2x.o
+> >  obj-$(CONFIG_RTC_DRV_M41T80) +=3D rtc-m41t80.o
+> >  obj-$(CONFIG_RTC_DRV_M41T93) +=3D rtc-m41t93.o
+> >  obj-$(CONFIG_RTC_DRV_M41T94) +=3D rtc-m41t94.o
+> > diff --git a/drivers/rtc/rtc-ls2x.c b/drivers/rtc/rtc-ls2x.c
+> > new file mode 100644
+> > index 000000000000..c74dd88ae11b
+> > --- /dev/null
+> > +++ b/drivers/rtc/rtc-ls2x.c
+> > @@ -0,0 +1,345 @@
+> > +// SPDX-License-Identifier: GPL-2.0-or-later
+> > +/*
+> > + * Loongson-2K/LS7A RTC driver
+> > + *
+> > + * Based on the original out-of-tree Loongson-2H RTC driver for Linux =
+2.6.32,
+> > + * by Shaozong Liu <liushaozong@loongson.cn>.
+> > + *
+> > + * Maintained out-of-tree by Huacai Chen <chenhuacai@kernel.org>.
+> > + * Rewritten for mainline by WANG Xuerui <git@xen0n.name>.
+> > + *                           Binbin Zhou <zhoubinbin@loongson.cn>
+> > + */
+> > +
+> > +#include <linux/bitfield.h>
+> > +#include <linux/kernel.h>
+> > +#include <linux/module.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/regmap.h>
+> > +#include <linux/rtc.h>
+> > +#include <linux/acpi.h>
+> > +
+> > +/* Time Of Year(TOY) counters registers */
+> > +#define TOY_TRIM_REG         0x20 /* Must be initialized to 0 */
+> > +#define TOY_WRITE0_REG               0x24 /* TOY low 32-bits value (wr=
+ite-only) */
+> > +#define TOY_WRITE1_REG               0x28 /* TOY high 32-bits value (w=
+rite-only) */
+> > +#define TOY_READ0_REG                0x2c /* TOY low 32-bits value (re=
+ad-only) */
+> > +#define TOY_READ1_REG                0x30 /* TOY high 32-bits value (r=
+ead-only) */
+> > +#define TOY_MATCH0_REG               0x34 /* TOY timing interrupt 0 */
+> > +#define TOY_MATCH1_REG               0x38 /* TOY timing interrupt 1 */
+> > +#define TOY_MATCH2_REG               0x3c /* TOY timing interrupt 2 */
+> > +
+> > +/* RTC counters registers */
+> > +#define RTC_CTRL_REG         0x40 /* TOY and RTC control register */
+> > +#define RTC_TRIM_REG         0x60 /* Must be initialized to 0 */
+> > +#define RTC_WRITE0_REG               0x64 /* RTC counters value (write=
+-only) */
+> > +#define RTC_READ0_REG                0x68 /* RTC counters value (read-=
+only) */
+> > +#define RTC_MATCH0_REG               0x6c /* RTC timing interrupt 0 */
+> > +#define RTC_MATCH1_REG               0x70 /* RTC timing interrupt 1 */
+> > +#define RTC_MATCH2_REG               0x74 /* RTC timing interrupt 2 */
+> > +
+> > +/* bitmask of TOY_WRITE0_REG */
+> > +#define TOY_MON                      GENMASK(31, 26)
+> > +#define TOY_DAY                      GENMASK(25, 21)
+> > +#define TOY_HOUR             GENMASK(20, 16)
+> > +#define TOY_MIN                      GENMASK(15, 10)
+> > +#define TOY_SEC                      GENMASK(9, 4)
+> > +#define TOY_MSEC             GENMASK(3, 0)
+> > +
+> > +/* bitmask of TOY_MATCH0/1/2_REG */
+> > +#define TOY_MATCH_YEAR               GENMASK(31, 26)
+> > +#define TOY_MATCH_MON                GENMASK(25, 22)
+> > +#define TOY_MATCH_DAY                GENMASK(21, 17)
+> > +#define TOY_MATCH_HOUR               GENMASK(16, 12)
+> > +#define TOY_MATCH_MIN                GENMASK(11, 6)
+> > +#define TOY_MATCH_SEC                GENMASK(5, 0)
+> > +
+> > +/* bitmask of RTC_CTRL_REG */
+> > +#define RTC_ENABLE           BIT(13) /* 1: RTC counters enable */
+> > +#define TOY_ENABLE           BIT(11) /* 1: TOY counters enable */
+> > +#define OSC_ENABLE           BIT(8) /* 1: 32.768k crystal enable */
+> > +#define TOY_ENABLE_MASK              (TOY_ENABLE | OSC_ENABLE)
+> > +
+> > +/* PM domain registers */
+> > +#define PM1_STS_REG          0x0c /* Power management 1 status registe=
+r */
+> > +#define RTC_STS                      BIT(10) /* RTC status */
+> > +#define PM1_EN_REG           0x10 /* Power management 1 enable registe=
+r */
+> > +#define RTC_EN                       BIT(10) /* RTC event enable */
+> > +
+> > +/* Offset of PM domain from RTC domain, for rtc alarm */
+> > +enum ls2x_pm_offset {
+> > +     GENERIC_OFFSET =3D 0x100,
+> > +     LS2K1000_OFFSET =3D 0x800,
+> > +};
+> > +
+> > +struct ls2x_rtc_priv {
+> > +     spinlock_t lock; /* protects PM registers access */
+> > +     int irq;
+> > +     struct rtc_device *rtcdev;
+> > +     struct regmap *regmap;
+> > +     void __iomem *pm_base; /* PM domain base, for rtc alarm */
+> > +};
+> > +
+> > +static const struct regmap_config ls2x_rtc_regmap_config =3D {
+> > +     .reg_bits =3D 32,
+> > +     .val_bits =3D 32,
+> > +     .reg_stride =3D 4,
+> > +};
+> > +
+> > +/* IRQ Handlers */
+> > +static irqreturn_t ls2x_rtc_isr(int irq, void *id)
+> > +{
+> > +     struct ls2x_rtc_priv *priv =3D (struct ls2x_rtc_priv *)id;
+> > +
+> > +     rtc_update_irq(priv->rtcdev, 1, RTC_AF | RTC_IRQF);
+> > +     return IRQ_HANDLED;
+> > +}
+> > +
+> > +static u32 ls2x_rtc_handler(void *id)
+> > +{
+> > +     u32 ret;
+> > +     struct ls2x_rtc_priv *priv =3D (struct ls2x_rtc_priv *)id;
+> > +
+> > +     spin_lock(&priv->lock);
+> > +     /* Disable rtc event */
+> > +     writel(readl(priv->pm_base + PM1_EN_REG) & ~RTC_EN,
+> > +            priv->pm_base + PM1_EN_REG);
+> > +
+> > +     /* Clear rtc interrupt status */
+> > +     writel(RTC_STS, priv->pm_base + PM1_STS_REG);
+> > +     spin_unlock(&priv->lock);
+> > +
+> > +     /*
+> > +      * The TOY_MATCH0_REG should be cleared 0 here,
+> > +      * otherwise the interrupt cannot be cleared.
+> > +      */
+> > +     ret =3D regmap_write(priv->regmap, TOY_MATCH0_REG, 0);
+> > +     if (ret < 0)
+> > +             return ret;
+> > +
+> > +     rtc_update_irq(priv->rtcdev, 1, RTC_AF | RTC_IRQF);
+> > +     return 0;
+> > +}
+> > +
+> > +static int ls2x_rtc_read_time(struct device *dev, struct rtc_time *tm)
+> > +{
+> > +     int ret;
+> > +     u32 ctrl_data, rtc_data[2];
+> > +     struct ls2x_rtc_priv *priv =3D dev_get_drvdata(dev);
+> > +
+> > +     ret =3D regmap_read(priv->regmap, RTC_CTRL_REG, &ctrl_data);
+> > +     if (ret < 0)
+> > +             return ret;
+> > +
+> > +     if (!(ctrl_data & TOY_ENABLE_MASK))
+> > +             return -EINVAL;
+> > +
+> > +     ret =3D regmap_bulk_read(priv->regmap, TOY_READ0_REG, rtc_data,
+> > +                            ARRAY_SIZE(rtc_data));
+>
+> There is still no answer on whether the TOY_READ0_REG and TOY_READ1_REG
+> are latched.
+>
+
+After talking to colleagues offline, the RTC hardware itself can
+guarantee atomicity for bulk reads.
+
+> > +     if (ret < 0)
+> > +             return ret;
+> > +
+> > +     tm->tm_sec =3D FIELD_GET(TOY_SEC, rtc_data[0]);
+> > +     tm->tm_min =3D FIELD_GET(TOY_MIN, rtc_data[0]);
+> > +     tm->tm_hour =3D FIELD_GET(TOY_HOUR, rtc_data[0]);
+> > +     tm->tm_mday =3D FIELD_GET(TOY_DAY, rtc_data[0]);
+> > +     tm->tm_mon =3D FIELD_GET(TOY_MON, rtc_data[0]) - 1;
+> > +     tm->tm_year =3D rtc_data[1];
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static int ls2x_rtc_set_time(struct device *dev, struct rtc_time *tm)
+> > +{
+> > +     int ret;
+> > +     u32 rtc_data[2];
+> > +     struct ls2x_rtc_priv *priv =3D dev_get_drvdata(dev);
+> > +
+> > +     rtc_data[0] =3D FIELD_PREP(TOY_SEC, tm->tm_sec)
+> > +                 | FIELD_PREP(TOY_MIN, tm->tm_min)
+> > +                 | FIELD_PREP(TOY_HOUR, tm->tm_hour)
+> > +                 | FIELD_PREP(TOY_DAY, tm->tm_mday)
+> > +                 | FIELD_PREP(TOY_MON, tm->tm_mon + 1);
+> > +     rtc_data[1] =3D tm->tm_year;
+> > +
+> > +     ret =3D regmap_bulk_write(priv->regmap, TOY_WRITE0_REG, rtc_data,
+> > +                             ARRAY_SIZE(rtc_data));
+> > +     if (ret < 0)
+> > +             return ret;
+> > +
+> > +     /* Enable RTC TOY counters and crystal */
+> > +     return regmap_update_bits(priv->regmap, RTC_CTRL_REG, TOY_ENABLE_=
+MASK,
+> > +                               TOY_ENABLE_MASK);
+> > +}
+> > +
+> > +static int ls2x_rtc_read_alarm(struct device *dev, struct rtc_wkalrm *=
+alrm)
+> > +{
+> > +     int ret;
+> > +     u32 alarm_data;
+> > +     struct ls2x_rtc_priv *priv =3D dev_get_drvdata(dev);
+> > +
+> > +     ret =3D regmap_read(priv->regmap, TOY_MATCH0_REG, &alarm_data);
+> > +     if (ret < 0)
+> > +             return ret;
+> > +
+> > +     alrm->time.tm_sec =3D FIELD_GET(TOY_MATCH_SEC, alarm_data);
+> > +     alrm->time.tm_min =3D FIELD_GET(TOY_MATCH_MIN, alarm_data);
+> > +     alrm->time.tm_hour =3D FIELD_GET(TOY_MATCH_HOUR, alarm_data);
+> > +     alrm->time.tm_mday =3D FIELD_GET(TOY_MATCH_DAY, alarm_data);
+> > +     alrm->time.tm_mon =3D FIELD_GET(TOY_MATCH_MON, alarm_data) - 1;
+> > +     /*
+> > +      * This is a hardware bug.
+> > +      * The year field in the SYS_TOYMATCH has only 6 bits(bits[31:26]=
+),
+> > +      * so it can only be set from 1900 to 1963.
+> > +      * In order to avoid an invalid alarm value during booting, we ma=
+nually
+> > +      * add 64 after reading the year field (equivalent to filling in =
+the
+> > +      * high bits).
+> > +      */
+> > +     alrm->time.tm_year =3D FIELD_GET(TOY_MATCH_YEAR, alarm_data) + 64=
+;
+>
+> This is restricting to the 1964 to 2027 range whereas you claim the RTC
+> has a 2000 to 2099 range. Why don't you simply do 2000 to 2063 which
+> would at least match most of it.
+>
+
+I have compiled a description of this hardware defect:
+
+Firstly, the root cause of the defect is that there are not enough
+bits in the MATCH register to indicate the year, only 6 bits.
+The rtc hardware uses the MATCH register to compare the alarm time
+values and to determine if an alarm is triggered.
+
+Therefore, we have to ensure that the lower 6 bits remain unchanged
+during the conversion of the year value . Otherwise the rtc hardware
+will definitely not succeed when matching and thus the alarm function
+will not work.
+In summary, here we can only add or subtract 64 (or a multiple of 64).
+
+To avoid the year being described only up to 2027, how about the
+following solution:
+1. define the global variable year_offset, which holds the required offset.
+2. In ls2x_rtc_read_time(), calculate year_offset =3D tm->tm_year / 64 * 64=
+.
+
+> I am very very disappointed. I had all these comments on v1 and v2, you
+> are sending v3 with the exact same issues. How can I trust this is ever
+> going to progress in the right direction?
+
+I apologise that the time between these two patch sets is a bit long
+and I did not double check the relevant change points.
+I will double check each point that needs to be changed before sending
+out subsequent patches.
+
+Again, I apologise.
+
+Thanks.
+Binbin
+
+>
+>
+> --
+> Alexandre Belloni, co-owner and COO, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
+>
