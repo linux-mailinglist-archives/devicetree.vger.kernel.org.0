@@ -2,420 +2,422 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4939B6F7AE3
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 04:28:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 263656F7AF1
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 04:30:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229905AbjEEC2d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 May 2023 22:28:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36516 "EHLO
+        id S229919AbjEECav (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 May 2023 22:30:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229758AbjEEC2c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 22:28:32 -0400
-Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59C9CAD37;
-        Thu,  4 May 2023 19:28:30 -0700 (PDT)
-Received: by mail-yb1-xb32.google.com with SMTP id 3f1490d57ef6-b9a7c1b86e8so1595998276.2;
-        Thu, 04 May 2023 19:28:30 -0700 (PDT)
+        with ESMTP id S229823AbjEECau (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 May 2023 22:30:50 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B82411579
+        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 19:30:46 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-3f1950f569eso8603635e9.2
+        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 19:30:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683253709; x=1685845709;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IQTwCtOioJF8t/OiNx/dPasS+fdTMROa/SSWtKZQgKs=;
-        b=JIWVovMpQ3sB1Y2LItd2ey9cLqND5SVtLG/8J4+W6kJJosibN1+m8+ousRJlYRLjms
-         pFD42ttOvGyeO0vBmCLohiRM/cmdb3MEslUpdzxtDeEqb0XLI+Nv88W8baeZka2pUK83
-         UTCAQNM/6duTyT8/c5ngSJaFw6ocRwUNOd8mydPI84GdzFbgSAKdJbqJWJl6Nl/W66tN
-         UmAVwigIsyaIH5OWjFSQe6cYlBKFaE87zB7VL/4zOcbCDjMOiP0Ccha1IjsgDeyh3uuZ
-         LnBOZEHjyUntMlacBaSUb5kDv5FC8cFQXH8xoReYqYbVlcDa0rK8idPo2sG0u2pCrByo
-         Rlkg==
+        d=linaro.org; s=google; t=1683253845; x=1685845845;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SHd6awHMIT1ZuZgmRC4EFRtAIxyb2YMEXiL1eYpLWGk=;
+        b=t9UJ1pVXFIvVM7dI7nTIdM06HGovKEtoRqskwSI9K2YrcdD2OQJcNbbVru9lTvwZJP
+         ZiNHHbnhSEkEf70cS+Kntf61SYLn+wNOeCECyZp6kSvlJYfvFFw2VzX4/JlAxJ/oRAZJ
+         zQg0IZ1upvUpg45Lw+GEe5nE3MsVb409CqrmZPmdv9w0qNnmR0kaUQB4ld7flT8/OFU4
+         rlRYHAwXwqBKPIC7N8SB4gkTbv/8EqNWTv/vbs5vq6T53PJk4bPr4VxBT0n9YbzQIYlT
+         34EXGKx6RCt4KjeCR2i4QBbPxWHEf6r7HwkCRFYGYL/SSs0c2XKvoSHK0oVndnmg8s0K
+         ddEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683253709; x=1685845709;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IQTwCtOioJF8t/OiNx/dPasS+fdTMROa/SSWtKZQgKs=;
-        b=U0y3VKZRMnV3mV4rdWJyJ+whKM/BWkvjYVCyD1tdCw8PwB7F5whLsIv9zc/4UUG1+S
-         pQBWDhaGgRoiIE9Z4bGpJ8FGOhluxnaS7LsMGVzr1j1YvPOjKwfV3QqtUPj0UKH2FYeU
-         Y5XFPe7EwkFZ1rzzbYM7JxGeen+ZtzncWA7+M7NZtNFdXGMtxOHt8YXS5iGhyh9Jw6x8
-         mbXmerphyBTd8QUyPztZHtmInvmMChgaXo/+29vLqyUsjbUy5m1YCX8NqoxFnQ3BHPJM
-         dQGx1SaRVNFNP/aWgyP8F/eq2blgh2cJMcj/fCw/rwwRHdEZZnO5x2Bujj/tnEVxdRFK
-         5xKg==
-X-Gm-Message-State: AC+VfDy2cyC+aU9ifwWSf0gIJfKPLqqIePhoEOkAFbCMDc1VfUIDnrhS
-        Xa2ATkOe/1AydjNlbINis7cXwAvD0gGzcQo88vY=
-X-Google-Smtp-Source: ACHHUZ6s8kmM5Dp5ih24Bs2hjigFmkgmEJakDis6EgSGdU/4H1aET/JyFpi3QqfwTFH10DYcjaA8FESVKsOzzJ1oQFQ=
-X-Received: by 2002:a25:c78f:0:b0:b9a:8298:d873 with SMTP id
- w137-20020a25c78f000000b00b9a8298d873mr30812ybe.49.1683253709325; Thu, 04 May
- 2023 19:28:29 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1683253845; x=1685845845;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SHd6awHMIT1ZuZgmRC4EFRtAIxyb2YMEXiL1eYpLWGk=;
+        b=H0p4ajadcRBTzWHRH9YSBKeM3YMB1Yd43i+DNqu2cqfPKvRy5Ww1Z3iZt9uwAtR0x0
+         9vrhS1CHHu57mo5KdWjIPm/BgfHcWCfXZvwad7aU4iI9vgZhMPTb3wCrVnWwolloFdcd
+         gGSUYfqPD0dYDJnK/Wkho6BwZg2heQlTxcK69G1ANYm0meF6dd/ayrj3PFDXwiPTRi2B
+         zkcmfKwmzebpAW8QizvjPQ3hjl+gvsypGmmHRv56jZv27yw1yq2PKqtY9DP/0LKjbgCX
+         63GW3B+3knYXqZjB2RXmvPP+MFO89AMlfPZHtu7VNpVeAdzFRemqPf3Z29c5gz+w/ntG
+         GYkg==
+X-Gm-Message-State: AC+VfDwePv1Q76CsZaKZW+S6V4Zqh1Kz82fW2NhbOXvltbkmXbO6V+hF
+        gVUT5Ba2u82mjb8dEsHV8/AACw==
+X-Google-Smtp-Source: ACHHUZ6BDD1/Prkvjl0XcavBE6I5FXn/S+wkQqh4TH7ZELpZgTcesll6erynrQhhw344aaZ+gmDARQ==
+X-Received: by 2002:a05:600c:ca:b0:3f3:1299:5625 with SMTP id u10-20020a05600c00ca00b003f312995625mr990611wmm.30.1683253844968;
+        Thu, 04 May 2023 19:30:44 -0700 (PDT)
+Received: from [192.168.0.15] (cpc76484-cwma10-2-0-cust274.7-3.cable.virginm.net. [82.31.201.19])
+        by smtp.gmail.com with ESMTPSA id f16-20020a7bc8d0000000b003f17e79d74asm6477899wml.7.2023.05.04.19.30.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 May 2023 19:30:44 -0700 (PDT)
+Message-ID: <67e5f823-e9bf-cc52-3693-59880f495cbb@linaro.org>
+Date:   Fri, 5 May 2023 03:30:43 +0100
 MIME-Version: 1.0
-References: <cover.1681370153.git.zhoubinbin@loongson.cn> <09f381f445cfbcf857845f61d10238452037b2e8.1681370153.git.zhoubinbin@loongson.cn>
- <20230416194901b538cb7c@mail.local>
-In-Reply-To: <20230416194901b538cb7c@mail.local>
-From:   Binbin Zhou <zhoubb.aaron@gmail.com>
-Date:   Fri, 5 May 2023 10:28:16 +0800
-Message-ID: <CAMpQs4LhkupxQExQCqg9qJ0eWCzLZEaeKDrJThTVyezz=ne53A@mail.gmail.com>
-Subject: Re: [PATCH V3 2/7] rtc: Add support for the Loongson-2K/LS7A RTC
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Binbin Zhou <zhoubinbin@loongson.cn>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        WANG Xuerui <kernel@xen0n.name>, linux-rtc@vger.kernel.org,
-        linux-mips@vger.kernel.org, loongarch@lists.linux.dev,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH] arm64: dts: qcom: Add Fxtec Pro1X (QX1050) DTS
+Content-Language: en-US
+To:     Dang Huynh <danct12@riseup.net>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, keguang.zhang@gmail.com,
-        Huacai Chen <chenhuacai@kernel.org>,
-        WANG Xuerui <git@xen0n.name>, zhangbaoqi@loongson.cn
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230505-fxtec-pro1x-support-v1-1-1d9473b4d6e4@riseup.net>
+From:   Caleb Connolly <caleb.connolly@linaro.org>
+In-Reply-To: <20230505-fxtec-pro1x-support-v1-1-1d9473b4d6e4@riseup.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 17, 2023 at 3:49=E2=80=AFAM Alexandre Belloni
-<alexandre.belloni@bootlin.com> wrote:
->
-> On 13/04/2023 15:57:34+0800, Binbin Zhou wrote:
-> > This RTC module is integrated into the Loongson-2K SoC and the LS7A
-> > bridge chip. This version is almost entirely rewritten to make use of
-> > current kernel API, and it supports both ACPI and DT.
-> >
-> > This driver is shared by MIPS-based Loongson-3A4000 system (use FDT) an=
-d
-> > LoongArch-based Loongson-3A5000 system (use ACPI).
-> >
-> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> > Signed-off-by: Huacai Chen <chenhuacai@kernel.org>
-> > Signed-off-by: WANG Xuerui <git@xen0n.name>
-> > ---
-> >  drivers/rtc/Kconfig    |  11 ++
-> >  drivers/rtc/Makefile   |   1 +
-> >  drivers/rtc/rtc-ls2x.c | 345 +++++++++++++++++++++++++++++++++++++++++
->
-> This is v3 and this is still not merged in rtc-ls1x.c.
 
-Hi Alexandre:
 
-The ls1x rtc has been merged in at my local repository and Keguang has
-helped test it through, so it will be ready for release in the next
-version.
-In the meantime rtc-ls2x will be renamed to rtc-loongson.
+On 04/05/2023 21:33, Dang Huynh wrote:
+> The F(x)tec Pro1X is a mobile phone released by FX Technologies Ltd
+> in 2022.
+> 
+> The phone is exactly the same as the Pro1 released in 2019 with some
+> changes:
+> - MSM8998 -> SM6115
+> - Camera button is no longer multistate
+> - Only one 48MP back camera
+> - A new keyboard layout picked by the community.
+> 
+> This commit has the following features working:
+> - Display (using simplefb)
+> - UFS
+> - Power and volume buttons
+> - Pinctrl
+> - RPM Regulators
+> - USB (Device Mode)
+> 
+> To get a successful boot run:
+> 
+> cat arch/arm64/boot/Image.gz arch/arm64/boot/dts/qcom/\
+> sm6115-fxtec-pro1x.dtb  > .Image.gz-dtb
+> 
+> mkbootimg --kernel .Image.gz-dtb \
+> --ramdisk initrd.img \
+> --base 0x0 \
+> --kernel_offset 0x8000 \
+> --ramdisk_offset 0x1000000 \
+> --second_offset 0xf00000 \
+> --tags_offset 0x100 \
+> --pagesize 4096 \
+> --cmdline "CMDLINE HERE" \
+> -o qx1050-boot.img
+> 
+> fastboot flash boot qx1050-boot.img
+> fastboot erase dtbo
+> fastboot reboot
+> 
+> Signed-off-by: Dang Huynh <danct12@riseup.net>
 
->
-> >  3 files changed, 357 insertions(+)
-> >  create mode 100644 drivers/rtc/rtc-ls2x.c
-> >
-> > diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
-> > index 753872408615..e1b9d64d2678 100644
-> > --- a/drivers/rtc/Kconfig
-> > +++ b/drivers/rtc/Kconfig
-> > @@ -1706,6 +1706,17 @@ config RTC_DRV_LPC32XX
-> >         This driver can also be built as a module. If so, the module
-> >         will be called rtc-lpc32xx.
-> >
-> > +config RTC_DRV_LS2X
-> > +     tristate "Loongson LS2X RTC"
-> > +     depends on MACH_LOONGSON64 || COMPILE_TEST
-> > +     select REGMAP_MMIO
-> > +     help
-> > +       If you say yes here you get support for the RTC on the Loongson=
--2K
-> > +       SoC and LS7A bridge, which first appeared on the Loongson-2H.
-> > +
-> > +       This driver can also be built as a module. If so, the module
-> > +       will be called rtc-ls2x.
-> > +
-> >  config RTC_DRV_PM8XXX
-> >       tristate "Qualcomm PMIC8XXX RTC"
-> >       depends on MFD_PM8XXX || MFD_SPMI_PMIC || COMPILE_TEST
-> > diff --git a/drivers/rtc/Makefile b/drivers/rtc/Makefile
-> > index ea445d1ebb17..cff5df09fc60 100644
-> > --- a/drivers/rtc/Makefile
-> > +++ b/drivers/rtc/Makefile
-> > @@ -82,6 +82,7 @@ obj-$(CONFIG_RTC_DRV_LOONGSON1)     +=3D rtc-ls1x.o
-> >  obj-$(CONFIG_RTC_DRV_LP8788) +=3D rtc-lp8788.o
-> >  obj-$(CONFIG_RTC_DRV_LPC24XX)        +=3D rtc-lpc24xx.o
-> >  obj-$(CONFIG_RTC_DRV_LPC32XX)        +=3D rtc-lpc32xx.o
-> > +obj-$(CONFIG_RTC_DRV_LS2X)   +=3D rtc-ls2x.o
-> >  obj-$(CONFIG_RTC_DRV_M41T80) +=3D rtc-m41t80.o
-> >  obj-$(CONFIG_RTC_DRV_M41T93) +=3D rtc-m41t93.o
-> >  obj-$(CONFIG_RTC_DRV_M41T94) +=3D rtc-m41t94.o
-> > diff --git a/drivers/rtc/rtc-ls2x.c b/drivers/rtc/rtc-ls2x.c
-> > new file mode 100644
-> > index 000000000000..c74dd88ae11b
-> > --- /dev/null
-> > +++ b/drivers/rtc/rtc-ls2x.c
-> > @@ -0,0 +1,345 @@
-> > +// SPDX-License-Identifier: GPL-2.0-or-later
-> > +/*
-> > + * Loongson-2K/LS7A RTC driver
-> > + *
-> > + * Based on the original out-of-tree Loongson-2H RTC driver for Linux =
-2.6.32,
-> > + * by Shaozong Liu <liushaozong@loongson.cn>.
-> > + *
-> > + * Maintained out-of-tree by Huacai Chen <chenhuacai@kernel.org>.
-> > + * Rewritten for mainline by WANG Xuerui <git@xen0n.name>.
-> > + *                           Binbin Zhou <zhoubinbin@loongson.cn>
-> > + */
-> > +
-> > +#include <linux/bitfield.h>
-> > +#include <linux/kernel.h>
-> > +#include <linux/module.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/regmap.h>
-> > +#include <linux/rtc.h>
-> > +#include <linux/acpi.h>
-> > +
-> > +/* Time Of Year(TOY) counters registers */
-> > +#define TOY_TRIM_REG         0x20 /* Must be initialized to 0 */
-> > +#define TOY_WRITE0_REG               0x24 /* TOY low 32-bits value (wr=
-ite-only) */
-> > +#define TOY_WRITE1_REG               0x28 /* TOY high 32-bits value (w=
-rite-only) */
-> > +#define TOY_READ0_REG                0x2c /* TOY low 32-bits value (re=
-ad-only) */
-> > +#define TOY_READ1_REG                0x30 /* TOY high 32-bits value (r=
-ead-only) */
-> > +#define TOY_MATCH0_REG               0x34 /* TOY timing interrupt 0 */
-> > +#define TOY_MATCH1_REG               0x38 /* TOY timing interrupt 1 */
-> > +#define TOY_MATCH2_REG               0x3c /* TOY timing interrupt 2 */
-> > +
-> > +/* RTC counters registers */
-> > +#define RTC_CTRL_REG         0x40 /* TOY and RTC control register */
-> > +#define RTC_TRIM_REG         0x60 /* Must be initialized to 0 */
-> > +#define RTC_WRITE0_REG               0x64 /* RTC counters value (write=
--only) */
-> > +#define RTC_READ0_REG                0x68 /* RTC counters value (read-=
-only) */
-> > +#define RTC_MATCH0_REG               0x6c /* RTC timing interrupt 0 */
-> > +#define RTC_MATCH1_REG               0x70 /* RTC timing interrupt 1 */
-> > +#define RTC_MATCH2_REG               0x74 /* RTC timing interrupt 2 */
-> > +
-> > +/* bitmask of TOY_WRITE0_REG */
-> > +#define TOY_MON                      GENMASK(31, 26)
-> > +#define TOY_DAY                      GENMASK(25, 21)
-> > +#define TOY_HOUR             GENMASK(20, 16)
-> > +#define TOY_MIN                      GENMASK(15, 10)
-> > +#define TOY_SEC                      GENMASK(9, 4)
-> > +#define TOY_MSEC             GENMASK(3, 0)
-> > +
-> > +/* bitmask of TOY_MATCH0/1/2_REG */
-> > +#define TOY_MATCH_YEAR               GENMASK(31, 26)
-> > +#define TOY_MATCH_MON                GENMASK(25, 22)
-> > +#define TOY_MATCH_DAY                GENMASK(21, 17)
-> > +#define TOY_MATCH_HOUR               GENMASK(16, 12)
-> > +#define TOY_MATCH_MIN                GENMASK(11, 6)
-> > +#define TOY_MATCH_SEC                GENMASK(5, 0)
-> > +
-> > +/* bitmask of RTC_CTRL_REG */
-> > +#define RTC_ENABLE           BIT(13) /* 1: RTC counters enable */
-> > +#define TOY_ENABLE           BIT(11) /* 1: TOY counters enable */
-> > +#define OSC_ENABLE           BIT(8) /* 1: 32.768k crystal enable */
-> > +#define TOY_ENABLE_MASK              (TOY_ENABLE | OSC_ENABLE)
-> > +
-> > +/* PM domain registers */
-> > +#define PM1_STS_REG          0x0c /* Power management 1 status registe=
-r */
-> > +#define RTC_STS                      BIT(10) /* RTC status */
-> > +#define PM1_EN_REG           0x10 /* Power management 1 enable registe=
-r */
-> > +#define RTC_EN                       BIT(10) /* RTC event enable */
-> > +
-> > +/* Offset of PM domain from RTC domain, for rtc alarm */
-> > +enum ls2x_pm_offset {
-> > +     GENERIC_OFFSET =3D 0x100,
-> > +     LS2K1000_OFFSET =3D 0x800,
-> > +};
-> > +
-> > +struct ls2x_rtc_priv {
-> > +     spinlock_t lock; /* protects PM registers access */
-> > +     int irq;
-> > +     struct rtc_device *rtcdev;
-> > +     struct regmap *regmap;
-> > +     void __iomem *pm_base; /* PM domain base, for rtc alarm */
-> > +};
-> > +
-> > +static const struct regmap_config ls2x_rtc_regmap_config =3D {
-> > +     .reg_bits =3D 32,
-> > +     .val_bits =3D 32,
-> > +     .reg_stride =3D 4,
-> > +};
-> > +
-> > +/* IRQ Handlers */
-> > +static irqreturn_t ls2x_rtc_isr(int irq, void *id)
-> > +{
-> > +     struct ls2x_rtc_priv *priv =3D (struct ls2x_rtc_priv *)id;
-> > +
-> > +     rtc_update_irq(priv->rtcdev, 1, RTC_AF | RTC_IRQF);
-> > +     return IRQ_HANDLED;
-> > +}
-> > +
-> > +static u32 ls2x_rtc_handler(void *id)
-> > +{
-> > +     u32 ret;
-> > +     struct ls2x_rtc_priv *priv =3D (struct ls2x_rtc_priv *)id;
-> > +
-> > +     spin_lock(&priv->lock);
-> > +     /* Disable rtc event */
-> > +     writel(readl(priv->pm_base + PM1_EN_REG) & ~RTC_EN,
-> > +            priv->pm_base + PM1_EN_REG);
-> > +
-> > +     /* Clear rtc interrupt status */
-> > +     writel(RTC_STS, priv->pm_base + PM1_STS_REG);
-> > +     spin_unlock(&priv->lock);
-> > +
-> > +     /*
-> > +      * The TOY_MATCH0_REG should be cleared 0 here,
-> > +      * otherwise the interrupt cannot be cleared.
-> > +      */
-> > +     ret =3D regmap_write(priv->regmap, TOY_MATCH0_REG, 0);
-> > +     if (ret < 0)
-> > +             return ret;
-> > +
-> > +     rtc_update_irq(priv->rtcdev, 1, RTC_AF | RTC_IRQF);
-> > +     return 0;
-> > +}
-> > +
-> > +static int ls2x_rtc_read_time(struct device *dev, struct rtc_time *tm)
-> > +{
-> > +     int ret;
-> > +     u32 ctrl_data, rtc_data[2];
-> > +     struct ls2x_rtc_priv *priv =3D dev_get_drvdata(dev);
-> > +
-> > +     ret =3D regmap_read(priv->regmap, RTC_CTRL_REG, &ctrl_data);
-> > +     if (ret < 0)
-> > +             return ret;
-> > +
-> > +     if (!(ctrl_data & TOY_ENABLE_MASK))
-> > +             return -EINVAL;
-> > +
-> > +     ret =3D regmap_bulk_read(priv->regmap, TOY_READ0_REG, rtc_data,
-> > +                            ARRAY_SIZE(rtc_data));
->
-> There is still no answer on whether the TOY_READ0_REG and TOY_READ1_REG
-> are latched.
->
+Hi Dang,
 
-After talking to colleagues offline, the RTC hardware itself can
-guarantee atomicity for bulk reads.
+Thanks for the patch! I'm glad to see it :D
 
-> > +     if (ret < 0)
-> > +             return ret;
-> > +
-> > +     tm->tm_sec =3D FIELD_GET(TOY_SEC, rtc_data[0]);
-> > +     tm->tm_min =3D FIELD_GET(TOY_MIN, rtc_data[0]);
-> > +     tm->tm_hour =3D FIELD_GET(TOY_HOUR, rtc_data[0]);
-> > +     tm->tm_mday =3D FIELD_GET(TOY_DAY, rtc_data[0]);
-> > +     tm->tm_mon =3D FIELD_GET(TOY_MON, rtc_data[0]) - 1;
-> > +     tm->tm_year =3D rtc_data[1];
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int ls2x_rtc_set_time(struct device *dev, struct rtc_time *tm)
-> > +{
-> > +     int ret;
-> > +     u32 rtc_data[2];
-> > +     struct ls2x_rtc_priv *priv =3D dev_get_drvdata(dev);
-> > +
-> > +     rtc_data[0] =3D FIELD_PREP(TOY_SEC, tm->tm_sec)
-> > +                 | FIELD_PREP(TOY_MIN, tm->tm_min)
-> > +                 | FIELD_PREP(TOY_HOUR, tm->tm_hour)
-> > +                 | FIELD_PREP(TOY_DAY, tm->tm_mday)
-> > +                 | FIELD_PREP(TOY_MON, tm->tm_mon + 1);
-> > +     rtc_data[1] =3D tm->tm_year;
-> > +
-> > +     ret =3D regmap_bulk_write(priv->regmap, TOY_WRITE0_REG, rtc_data,
-> > +                             ARRAY_SIZE(rtc_data));
-> > +     if (ret < 0)
-> > +             return ret;
-> > +
-> > +     /* Enable RTC TOY counters and crystal */
-> > +     return regmap_update_bits(priv->regmap, RTC_CTRL_REG, TOY_ENABLE_=
-MASK,
-> > +                               TOY_ENABLE_MASK);
-> > +}
-> > +
-> > +static int ls2x_rtc_read_alarm(struct device *dev, struct rtc_wkalrm *=
-alrm)
-> > +{
-> > +     int ret;
-> > +     u32 alarm_data;
-> > +     struct ls2x_rtc_priv *priv =3D dev_get_drvdata(dev);
-> > +
-> > +     ret =3D regmap_read(priv->regmap, TOY_MATCH0_REG, &alarm_data);
-> > +     if (ret < 0)
-> > +             return ret;
-> > +
-> > +     alrm->time.tm_sec =3D FIELD_GET(TOY_MATCH_SEC, alarm_data);
-> > +     alrm->time.tm_min =3D FIELD_GET(TOY_MATCH_MIN, alarm_data);
-> > +     alrm->time.tm_hour =3D FIELD_GET(TOY_MATCH_HOUR, alarm_data);
-> > +     alrm->time.tm_mday =3D FIELD_GET(TOY_MATCH_DAY, alarm_data);
-> > +     alrm->time.tm_mon =3D FIELD_GET(TOY_MATCH_MON, alarm_data) - 1;
-> > +     /*
-> > +      * This is a hardware bug.
-> > +      * The year field in the SYS_TOYMATCH has only 6 bits(bits[31:26]=
-),
-> > +      * so it can only be set from 1900 to 1963.
-> > +      * In order to avoid an invalid alarm value during booting, we ma=
-nually
-> > +      * add 64 after reading the year field (equivalent to filling in =
-the
-> > +      * high bits).
-> > +      */
-> > +     alrm->time.tm_year =3D FIELD_GET(TOY_MATCH_YEAR, alarm_data) + 64=
-;
->
-> This is restricting to the 1964 to 2027 range whereas you claim the RTC
-> has a 2000 to 2099 range. Why don't you simply do 2000 to 2063 which
-> would at least match most of it.
->
+Just a few minor suggestions from me. Firstly, please can you re-order
+the devicetree nodes to be alphabetical. I also left a few comments below.
 
-I have compiled a description of this hardware defect:
+With these nitpicks fixed:
 
-Firstly, the root cause of the defect is that there are not enough
-bits in the MATCH register to indicate the year, only 6 bits.
-The rtc hardware uses the MATCH register to compare the alarm time
-values and to determine if an alarm is triggered.
+Reviewed-by: Caleb Connolly <caleb.connolly@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/Makefile               |   1 +
+>  arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts | 252 ++++++++++++++++++++++++
+>  2 files changed, 253 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> index d42c59572ace..e311ba675f35 100644
+> --- a/arch/arm64/boot/dts/qcom/Makefile
+> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> @@ -174,6 +174,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-shift-axolotl.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-lenovo-yoga-c630.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-samsung-w737.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sm4250-oneplus-billie2.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)	+= sm6115-fxtec-pro1x.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sm6115p-lenovo-j606f.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sm6125-sony-xperia-seine-pdx201.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sm6125-xiaomi-laurel-sprout.dtb
+> diff --git a/arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts b/arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts
+> new file mode 100644
+> index 000000000000..f1d18710d2f0
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts
+> @@ -0,0 +1,252 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2023, Dang Huynh <danct12@riseup.net>
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "sm6115.dtsi"
+> +#include "pm6125.dtsi"
+> +
+> +/ {
+> +	model = "F(x)tec Pro1 (QX1050)";
+> +	compatible = "fxtec,pro1x", "qcom,sm6115";
+> +	chassis-type = "handset";
+> +
+> +	/* required for bootloader to select correct board */
 
-Therefore, we have to ensure that the lower 6 bits remain unchanged
-during the conversion of the year value . Otherwise the rtc hardware
-will definitely not succeed when matching and thus the alarm function
-will not work.
-In summary, here we can only add or subtract 64 (or a multiple of 64).
+This comment isn't necessary, these two properties are documented in
+Documentation/devicetree/bindings/arm/qcom.yaml and are easily searchable.
+> +	qcom,msm-id = <417 0x10000>, <444 0x10000>;
+> +	qcom,board-id = <34 0>;
+> +
+> +	aliases {
+> +	};
 
-To avoid the year being described only up to 2027, how about the
-following solution:
-1. define the global variable year_offset, which holds the required offset.
-2. In ls2x_rtc_read_time(), calculate year_offset =3D tm->tm_year / 64 * 64=
-.
+I think this node can be dropped if it's empty.
+> +
+> +	chosen {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		framebuffer0: framebuffer@5c000000 {
+> +			compatible = "simple-framebuffer";
+> +			reg = <0 0x5c000000 0 (1080 * 2160 * 4)>;
+> +			width = <1080>;
+> +			height = <2160>;
+> +			stride = <(1080 * 4)>;
+> +			format = "a8r8g8b8";
+> +			clocks = <&gcc GCC_DISP_HF_AXI_CLK>;
+> +		};
+> +	};
+> +
+> +	gpio-keys {
+> +		compatible = "gpio-keys";
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&vol_up_n>;
+> +
+> +		key-volume-up {
+> +			label = "Volume Up";
+> +			linux,code = <KEY_VOLUMEUP>;
+> +			gpios = <&pm6125_gpios 5 GPIO_ACTIVE_LOW>;
+> +			debounce-interval = <15>;
+> +			linux,can-disable;
+> +			gpio-key,wakeup;
+> +		};
+> +	};
+> +};
+> +
+> +&tlmm {
+> +	gpio-reserved-ranges = <0 4>, <14 4>;
+> +};
+> +
+> +&pm6125_gpios {
+> +	vol_up_n: vol-up-n-state {
+> +		pins = "gpio5";
+> +		function = "normal";
+> +		power-source = <0>;
+> +		bias-pull-up;
+> +		input-enable;
+> +	};
+> +};
+> +
+> +&dispcc {
+> +	/* HACK: disable until a panel driver is ready to retain simplefb */
+> +	status = "disabled";
+> +};
+> +
+> +&pon_pwrkey {
+> +	status = "okay";
+> +};
+> +
+> +&pon_resin {
+> +	linux,code = <KEY_VOLUMEDOWN>;
+> +	status = "okay";
+> +};
+> +
+> +&rpm_requests {
+> +	pm6125-regulators {
+> +		compatible = "qcom,rpm-pm6125-regulators";
+> +
+> +		vreg_s6a: s6 {
+> +			regulator-min-microvolt = <304000>;
+> +			regulator-max-microvolt = <1456000>;
+> +		};
+> +
+> +		vreg_s7a: s7 {
+> +			regulator-min-microvolt = <1280000>;
+> +			regulator-max-microvolt = <2040000>;
+> +		};
+> +
+> +		vreg_s8a: s8 {
+> +			regulator-min-microvolt = <1064000>;
+> +			regulator-max-microvolt = <1304000>;
+> +		};
+> +
+> +		vreg_l1a: l1 {
+> +			regulator-min-microvolt = <952000>;
+> +			regulator-max-microvolt = <1152000>;
+> +		};
+> +
+> +		vreg_l4a: l4 {
+> +			regulator-min-microvolt = <488000>;
+> +			regulator-max-microvolt = <1000000>;
+> +		};
+> +
+> +		vreg_l5a: l5 {
+> +			regulator-min-microvolt = <1648000>;
+> +			regulator-max-microvolt = <3056000>;
+> +		};
+> +
+> +		vreg_l6a: l6 {
+> +			regulator-min-microvolt = <576000>;
+> +			regulator-max-microvolt = <656000>;
+> +		};
+> +
+> +		vreg_l7a: l7 {
+> +			regulator-min-microvolt = <1200000>;
+> +			regulator-max-microvolt = <1304000>;
+> +		};
+> +
+> +		vreg_l8a: l8 {
+> +			regulator-min-microvolt = <400000>;
+> +			regulator-max-microvolt = <728000>;
+> +		};
+> +
+> +		vreg_l9a: l9 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <2000000>;
+> +		};
+> +
+> +		vreg_l10a: l10 {
+> +			regulator-min-microvolt = <1704000>;
+> +			regulator-max-microvolt = <1904000>;
+> +		};
+> +
+> +		vreg_l11a: l11 {
+> +			regulator-min-microvolt = <1704000>;
+> +			regulator-max-microvolt = <1952000>;
+> +		};
+> +
+> +		vreg_l12a: l12 {
+> +			regulator-min-microvolt = <1624000>;
+> +			regulator-max-microvolt = <1984000>;
+> +		};
+> +
+> +		vreg_l13a: l13 {
+> +			regulator-min-microvolt = <1504000>;
+> +			regulator-max-microvolt = <1952000>;
+> +		};
+> +
+> +		vreg_l14a: l14 {
+> +			regulator-min-microvolt = <1704000>;
+> +			regulator-max-microvolt = <1904000>;
+> +		};
+> +
+> +		vreg_l15a: l15 {
+> +			regulator-min-microvolt = <2920000>;
+> +			regulator-max-microvolt = <3232000>;
+> +		};
+> +
+> +		vreg_l16a: l16 {
+> +			regulator-min-microvolt = <1704000>;
+> +			regulator-max-microvolt = <1904000>;
+> +		};
+> +
+> +		vreg_l17a: l17 {
+> +			regulator-min-microvolt = <1152000>;
+> +			regulator-max-microvolt = <1384000>;
+> +		};
+> +
+> +		vreg_l18a: l18 {
+> +			regulator-min-microvolt = <1104000>;
+> +			regulator-max-microvolt = <1312000>;
+> +		};
+> +
+> +		vreg_l19a: l19 {
+> +			regulator-min-microvolt = <1624000>;
+> +			regulator-max-microvolt = <3304000>;
+> +		};
+> +
+> +		vreg_l20a: l20 {
+> +			regulator-min-microvolt = <1624000>;
+> +			regulator-max-microvolt = <3304000>;
+> +		};
+> +
+> +		vreg_l21a: l21 {
+> +			regulator-min-microvolt = <2400000>;
+> +			regulator-max-microvolt = <3600000>;
+> +		};
+> +
+> +		vreg_l22a: l22 {
+> +			regulator-min-microvolt = <2952000>;
+> +			regulator-max-microvolt = <3304000>;
+> +		};
+> +
+> +		vreg_l23a: l23 {
+> +			regulator-min-microvolt = <3200000>;
+> +			regulator-max-microvolt = <3400000>;
+> +		};
+> +
+> +		vreg_l24a: l24 {
+> +			regulator-min-microvolt = <2704000>;
+> +			regulator-max-microvolt = <3600000>;
+> +		};
+> +	};
+> +};
+> +
+> +&xo_board {
+> +	clock-frequency = <19200000>;
+> +};
+> +
+> +&sleep_clk {
+> +	clock-frequency = <32764>;
+> +};
+> +
+> +&ufs_mem_hc {
+> +	vcc-supply = <&vreg_l24a>;
+> +	vcc-max-microamp = <600000>;
+> +	vccq2-supply = <&vreg_l11a>;
+> +	vccq2-max-microamp = <600000>;
+> +	status = "okay";
+> +};
+> +
+> +&ufs_mem_phy {
+> +	vdda-phy-supply = <&vreg_l4a>;
+> +	vdda-pll-supply = <&vreg_l12a>;
+> +	vddp-ref-clk-supply = <&vreg_l18a>;
+> +	status = "okay";
+> +};
+> +
+> +&usb {
+> +	status = "okay";
+> +};
+> +
+> +&usb_dwc3 {
+> +	maximum-speed = "high-speed";
+> +	dr_mode = "peripheral";
+> +};
+> +
+> +&usb_hsphy {
+> +	vdd-supply = <&vreg_l4a>;
+> +	vdda-pll-supply = <&vreg_l12a>;
+> +	vdda-phy-dpdm-supply = <&vreg_l15a>;
+> +	status = "okay";
+> +};
+> 
+> ---
+> base-commit: 145e5cddfe8b4bf607510b2dcf630d95f4db420f
+> change-id: 20230505-fxtec-pro1x-support-7f782f0480e9
+> 
+> Best regards,
 
-> I am very very disappointed. I had all these comments on v1 and v2, you
-> are sending v3 with the exact same issues. How can I trust this is ever
-> going to progress in the right direction?
-
-I apologise that the time between these two patch sets is a bit long
-and I did not double check the relevant change points.
-I will double check each point that needs to be changed before sending
-out subsequent patches.
-
-Again, I apologise.
-
-Thanks.
-Binbin
-
->
->
-> --
-> Alexandre Belloni, co-owner and COO, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
->
+-- 
+Kind Regards,
+Caleb (they/them)
