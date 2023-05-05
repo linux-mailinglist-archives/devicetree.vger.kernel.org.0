@@ -2,165 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 605446F86EC
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 18:42:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A82A06F8700
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 18:48:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229658AbjEEQmI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 12:42:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35646 "EHLO
+        id S231368AbjEEQsY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 12:48:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229577AbjEEQmH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 12:42:07 -0400
-Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ACC512EAA;
-        Fri,  5 May 2023 09:42:03 -0700 (PDT)
-Received: by mail-qk1-x72c.google.com with SMTP id af79cd13be357-74df47ad36eso95799885a.0;
-        Fri, 05 May 2023 09:42:03 -0700 (PDT)
+        with ESMTP id S231358AbjEEQsY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 12:48:24 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 250D4156BF
+        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 09:48:22 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-965ab8ed1c0so328759266b.2
+        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 09:48:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683304922; x=1685896922;
+        d=linaro.org; s=google; t=1683305300; x=1685897300;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=JjU8cYkMR/D2AH+UUT1RqaNNUKIe0G8elGCtMhJnuH4=;
-        b=dQMFTWxVHoCavdfbZX3UgZJ0Ihfx3/rCt8H/bqO9rw11mqpajR8QFEeg+n6QZVMGg/
-         s29pan4NW+ytzB/YOXNpuczxnVbeh1Sjb292d4RYJoHtL0GHtrKhZr3iXRUyhv0p0Yge
-         YbMiAajWHcnU/43IrmRecC2ImOjjYpprMsWzdwykYVdzFybpiXIot6JUNA085eKHeX8y
-         BeONHzO28SllK1s56ioAZNR8C5fQrfejIHHJiZXRuipTvVOXI7rLyMephBRcKkzFsnY6
-         GEO9MGMX35x4qoGDHmO/9pjul8WtaFEDlbLdwQZPPBYuHk2sKLW7wtkV8fETM5C8q3qr
-         CDFg==
+        bh=DzAMX4Kz9IJKO+zvZ0xc8kUOpcxC2lFYPzqNj8WVdAs=;
+        b=MAbdQFhdJO0A+Ih6Eoq3XWdlI0+r8kLA925xdP3fJdPqzm3HPm7ERSKbLG+M0FB7ha
+         c9FVpnAhpMKU44vxnx7PEd6OheCBrCsYgk370n5Uy/uM1LHOzZ8F4SEt+0QaGgLsH4rc
+         aMd4C5aUpWkoea62w9Nbv6dDz57I5ikSYd9zJjDqYdzgAZxNgn75oCFpO++zLSDz1bDt
+         CNsBCXO5Z6zvO+qJfu9lAx/cqkGNhHuFVK+O5eQ3PRaHhEiAxALVEU8aGQeObYVC+f80
+         /Qrs7I8/1xsUgk5rrSC1uR4QvE1LwtC7tO+vZx4eL5WBgkthlQMrmDvQUGsKW1tahY4P
+         KNKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683304922; x=1685896922;
+        d=1e100.net; s=20221208; t=1683305300; x=1685897300;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JjU8cYkMR/D2AH+UUT1RqaNNUKIe0G8elGCtMhJnuH4=;
-        b=FGqt4S3kw6j2QwcFl70wHie61+3iqHJPgLAkVvO9c6VzNL1D7HnzOrh0RU4sqLBo0R
-         HEJO6fzzLkXzmoYDa7RWrDR1SoM1ADOimJd5NqmiBvgr3Ld4C/I01P8T8UJF4q+GukLS
-         EMdx7edZEiuLSLeu1j9NYvUmwbHO3z46M+DVyenFYsRqwH2JrVuxXxDBJOTyncmplqOO
-         U9LtT1TJPdSWV4YkPD4oDnfiuuX33kgA/NiJ07WsKrIx+1K65jRnTdWB6b6lI+6N6RAq
-         r8S7JjZ6w1kdD4VnWrCa5IRyLKo1ZEg3RXu0S1MhXD75IhAKahxLGYJk5em4e0d1kzYg
-         Go4w==
-X-Gm-Message-State: AC+VfDw+udiBgsimHQQaNe2EgnkdJuoKC/Bo7BUKYzeekUVHN3+DzMxL
-        1TkzKlcCMEjnqL2R4za2mjk=
-X-Google-Smtp-Source: ACHHUZ4rq9RQOWNlJXcSFS/sC2a2G8ddqQ8jofrxPQhdo6mwHjlu5iAOMhwhC/v+ZzBUSf1OEu6gMg==
-X-Received: by 2002:a05:622a:287:b0:3e6:59c2:cbae with SMTP id z7-20020a05622a028700b003e659c2cbaemr3330439qtw.34.1683304921985;
-        Fri, 05 May 2023 09:42:01 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id g22-20020a37e216000000b0074de7b1fe1csm715174qki.17.2023.05.05.09.41.44
+        bh=DzAMX4Kz9IJKO+zvZ0xc8kUOpcxC2lFYPzqNj8WVdAs=;
+        b=QSmF0UW8x0Zl1xVjJiBxk2jD87tqjAa4cZCPEflbUBLt0fZBpvDaJ3VL2ABqUG5Qd8
+         J1n23KNJg5G+0wR7j8V/t/z+wl8+O6Ek1QY/LLD5KBN9egMCBxz6D49M6+pBZt2bjFfo
+         HNX5coG8wrXn5+8oaoMcjxXzIthv2glLWj8lc5CggAwX/fk5D8RdcR6syMLOTKxIB/2+
+         fezQaybilrUCAZXVhO6RAtufhvvAk8XI8AJDXe0INoCQs2tJwxLjfn8bFHHnIVxTh+1N
+         eta1rI9xM0fKj/7UCmY2SlO0yEJa4cIe9ZYr9nsqhw32kHEygb8/AqccDFQ+jldO5EW4
+         QKvA==
+X-Gm-Message-State: AC+VfDz1Bxi0s9v2Ec9GiKsB+r31oFGx9KYimaulVcb9dBkkZ1gryrjl
+        dF8ZdJg38hCxF83A3vxCkujXeQ==
+X-Google-Smtp-Source: ACHHUZ6qLQDbAdXWLOl8HQxIAXGdgKXK+tKEcWtC8K+v9wpTVrXIZhvS6P2QN4oC0XkkQogQbitwYA==
+X-Received: by 2002:a17:907:6e1c:b0:94f:2249:61d4 with SMTP id sd28-20020a1709076e1c00b0094f224961d4mr1778686ejc.34.1683305300480;
+        Fri, 05 May 2023 09:48:20 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:52e:24ce:bbc1:127d? ([2a02:810d:15c0:828:52e:24ce:bbc1:127d])
+        by smtp.gmail.com with ESMTPSA id kg20-20020a17090776f400b0094f3e169ca5sm1142063ejc.158.2023.05.05.09.48.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 May 2023 09:42:01 -0700 (PDT)
-Message-ID: <d178b551-50f9-fb26-5844-1f1d3632fd20@gmail.com>
-Date:   Fri, 5 May 2023 09:41:42 -0700
+        Fri, 05 May 2023 09:48:19 -0700 (PDT)
+Message-ID: <3af0c3a9-70b8-4c2b-8ab9-dd43c531b3b6@linaro.org>
+Date:   Fri, 5 May 2023 18:48:18 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH 4/4] ARM: dts: Move .dts files to vendor sub-directories
+ Thunderbird/102.10.1
+Subject: Re: [PATCH v4 1/3] dt-bindings: iio: pressure: Support Honeywell
+ mprls0025pa sensor
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>, soc@kernel.org,
-        Christian Marangi <ansuelsmth@gmail.com>,
+To:     Andreas Klinger <ak@it-klinger.de>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Antoine Tenart <atenart@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Lars Persson <lars.persson@axis.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Baruch Siach <baruch@tkos.co.il>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        Jean-Marie Verdun <verdun@hpe.com>,
-        Nick Hawkins <nick.hawkins@hpe.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Vladimir Zapolskiy <vz@mleia.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Peter Rosin <peda@axentia.se>, Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.neuschaefer@gmx.net>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Daniel Palmer <daniel@thingy.jp>,
-        Romain Perier <romain.perier@gmail.com>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Shiraz Hashim <shiraz.linux.kernel@gmail.com>,
-        Patrice Chotard <patrice.chotard@foss.st.com>,
-        Marek Vasut <marex@denx.de>, Qin Jian <qinjian@cqplus1.com>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Paul Barker <paul.barker@sancloud.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Nishanth Menon <nm@ti.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Enric Balletbo i Serra <eballetbo@gmail.com>,
-        Javier Martinez Canillas <javier@dowhile0.org>,
-        Michal Simek <michal.simek@xilinx.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@axis.com
-References: <20230504-arm-dts-mv-v1-0-2c8e51a2b6c4@kernel.org>
- <20230504-arm-dts-mv-v1-4-2c8e51a2b6c4@kernel.org>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <20230504-arm-dts-mv-v1-4-2c8e51a2b6c4@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Angel Iglesias <ang.iglesiasg@gmail.com>,
+        linux-kernel@vger.kernel.org
+References: <ZFUC6Tsku+aWod/+@arbad>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <ZFUC6Tsku+aWod/+@arbad>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/4/23 20:29, Rob Herring wrote:
-> The arm dts directory has grown to 1553 boards which makes it a bit
-> unwieldy to maintain and use. Past attempts stalled out due to plans to
-> move .dts files out of the kernel tree. Doing that is no longer planned
-> (any time soon at least), so let's go ahead and group .dts files by
-> vendors. This move aligns arm with arm64 .dts file structure.
+On 05/05/2023 15:21, Andreas Klinger wrote:
+> Honeywell mprls0025pa is a pressure sensor series. There are many
+> different models with different pressure ranges, units and transfer
+> functions.
 > 
-> Doing this enables building subsets of dts files by vendor easily
-> without changing kernel configs:
+> The range and transfer function need to be set up in the dt. Therefore
+> new properties honeywell,pmin-pascal, honeywell,pmax-pascal,
+> honeywell,transfer-function are introduced.
 > 
-> make allyesconfig
-> make arch/arm/boot/dts/ti/
+> Add dt-bindings.
 > 
-> There's no change to dtbs_install as the flat structure is maintained on
-> install.
+> Signed-off-by: Andreas Klinger <ak@it-klinger.de>
+> ---
+>  .../iio/pressure/honeywell,mprls0025pa.yaml   | 104 ++++++++++++++++++
+>  1 file changed, 104 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml
 > 
-> The naming of vendor directories is roughly in this order of preference:
-> - Matching original and current SoC vendor prefix/name (e.g. ti, qcom)
-> - Current vendor prefix/name if still actively sold (SoCs which have
->    been aquired) (e.g. nxp/imx)
-> - Existing platform name for older platforms not sold/maintained by any
->    company (e.g. gemini, nspire)
-> 
-> The whole move was scripted with the exception of MAINTAINERS.
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> diff --git a/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml b/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml
+> new file mode 100644
+> index 000000000000..84a61721b597
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml
+> @@ -0,0 +1,104 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/pressure/honeywell,mprls0025pa.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Honeywell mprls0025pa pressure sensor
+> +
+> +maintainers:
+> +  - Andreas Klinger <ak@it-klinger.de>
+> +
+> +description: |
+> +  Honeywell pressure sensor of model mprls0025pa.
+> +
+> +  This sensor has an I2C and SPI interface. Only the I2C interface is
+> +  implemented.
+> +
+> +  There are many models with different pressure ranges available. The vendor
+> +  calls them "mpr series". All of them have the identical programming model and
+> +  differ in the pressure range, unit and transfer function.
+> +
+> +  To support different models one need to specify the pressure range as well as
+> +  the transfer function. Pressure range needs to be converted from its unit to
+> +  pascal.
+> +
+> +  The transfer function defines the ranges of numerical values delivered by the
+> +  sensor. The minimal range value stands for the minimum pressure and the
+> +  maximum value also for the maximum pressure with linear relation inside the
+> +  range.
+> +
+> +  Specifications about the devices can be found at:
+> +    https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/
+> +      products/sensors/pressure-sensors/board-mount-pressure-sensors/
+> +      micropressure-mpr-series/documents/
+> +      sps-siot-mpr-series-datasheet-32332628-ciid-172626.pdf
+> +
+> +properties:
+> +  compatible:
+> +    const: honeywell,mprls0025pa
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    description:
+> +      Optional GPIO for resetting the device.
+> +      If not present the device is not resetted during the probe.
+> +    maxItems: 1
+> +
+> +  honeywell,pmin-pascal:
+> +    description:
+> +      Minimum pressure value the sensor can measure in pascal.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  honeywell,pmax-pascal:
+> +    description:
+> +      Maximum pressure value the sensor can measure in pascal.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  honeywell,transfer-function:
+> +    description:
 
-Acked-by: Florian Fainelli <f.fainelli@gmail.com> #broadcom
--- 
-Florian
+Here you need | to preserve formatting.
+
+> +      Transfer function which defines the range of valid values delivered by the
+> +      sensor.
+> +      1 - A, 10% to 90% of 2^24 (1677722 .. 15099494)
+> +      2 - B, 2.5% to 22.5% of 2^24 (419430 .. 3774874)
+> +      3 - C, 20% to 80% of 2^24 (3355443 .. 13421773)
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  vdd-supply:
+> +    description: provide VDD power to the sensor.
+> +
+> +required:
+> +  - compatible
+> +  - honeywell,pmax-pascal
+> +  - honeywell,pmin-pascal
+> +  - honeywell,transfer-function
+> +  - reg
+> +  - vdd-supply
+
+Keep the same order as they appear in properties:.
+
+Rest looks good, so with these fixes:
+
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
+---
+
+This is an automated instruction, just in case, because many review tags
+are being ignored. If you do not know the process, here is a short
+explanation:
+
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions, under or above your Signed-off-by tag. Tools like b4 can help
+here. However, there's no need to repost patches *only* to add the tags.
+The upstream maintainer will do that for acks received on the version
+they apply.
+
+https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
+
+Best regards,
+Krzysztof
 
