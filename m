@@ -2,154 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 876796F7CDE
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 08:18:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D4C16F7CEF
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 08:30:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230402AbjEEGST (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 02:18:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46592 "EHLO
+        id S230456AbjEEGaI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 02:30:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49940 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229577AbjEEGSS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 02:18:18 -0400
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDE3214906
-        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 23:18:16 -0700 (PDT)
-Received: by mail-pf1-x433.google.com with SMTP id d2e1a72fcca58-64384c6797eso1229441b3a.2
-        for <devicetree@vger.kernel.org>; Thu, 04 May 2023 23:18:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683267496; x=1685859496;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=2cpNnZUMjxe8omI5N7a3yxPaft5joAL0ch8TrhFB8Z8=;
-        b=KggfgirWJGkp7qmBLEOljOsiAwzZXpaW2VuvMX+isJXSmxtXh2V0abiogt8OHDlF0R
-         /4A00chD4UN4bShQ25HS8gLCSVWDrX/SnmwSkgNiZPa2rrOs/VxoLuyx3Y4G1ZW+v64B
-         F1eUB6ShLnHykX9chUKMoTaTKjRjY214k1WfBxr6cUqyNBMwfhQGBT8AebUkmOQFkoqt
-         zPrjlVTFNe3jQTS8WH1cDVVLaO4vuKDrnarMcysZnleayX5K35gQG+Y9v6X73jrNcKtg
-         LvUgkScNpfbxymaE8DI5BnkNmEh7ckrp97uLw67+WpWATrnAdUSmciBj3FwMcG6OxTYy
-         IgWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683267496; x=1685859496;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2cpNnZUMjxe8omI5N7a3yxPaft5joAL0ch8TrhFB8Z8=;
-        b=bnqt0R3FMaCbNUqhsaosiMgL+3ldVzYnM/2IspppRMxj0N85L9e+BXhzINifzxgDSN
-         8XYvttNQLp2iMERefVdulDMoaPadW6YofiCARQVXfP/ajqudjuru80QZnexi6ymCpwTV
-         jkR7HmTXunSZOAiqI31N8a5+EoTQqfcMqo1Tc0bFw+VTCEop+6b5ERI1xj2Zu8NEZGdy
-         alHCgOyPXmJwzxff43KRS9Y7LnMVgbJsJNviSO99TnvcDpjc0wTBJKQjOI1VDqtg1jYC
-         adDF54rR6lrVT7ggJmDQDJ8xcEoPJ1j/31xowG/7pDDo7A0+7gDO0HFD0fIDFF+Fm6eh
-         wdAw==
-X-Gm-Message-State: AC+VfDzEvolt3l+mB1wWxBMPfd7d4fNXD52/eBtdn3ssSg0YagYHjTxa
-        RfePs9AZl6OCUlDhjdt0wQKHTg==
-X-Google-Smtp-Source: ACHHUZ4PLkadb3fwQqdgi8WHpXvUUAVWN2Jptu1Jc5PeyEviOACTLxDsTzBDAOk6BLAw4YsLxzKBOg==
-X-Received: by 2002:a05:6a20:7295:b0:ef:205f:8184 with SMTP id o21-20020a056a20729500b000ef205f8184mr651085pzk.13.1683267496411;
-        Thu, 04 May 2023 23:18:16 -0700 (PDT)
-Received: from localhost ([122.172.85.8])
-        by smtp.gmail.com with ESMTPSA id h16-20020aa786d0000000b0063b8f33cb81sm798014pfo.93.2023.05.04.23.18.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 May 2023 23:18:15 -0700 (PDT)
-Date:   Fri, 5 May 2023 11:48:13 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     soc@kernel.org, Christian Marangi <ansuelsmth@gmail.com>,
+        with ESMTP id S230105AbjEEGaD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 02:30:03 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFACA156AC;
+        Thu,  4 May 2023 23:30:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1683268201; x=1714804201;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Qc7fG6VouXbKbHHlRomViVIdE9mWho9KSNjrEuBZBgs=;
+  b=yIUPXA9zJvXm5RxPirwA9tYAvqyb9dVoCXO9XxT+j0k7rupUCRxx3pUd
+   HZ+3z0RuGGW4GbsI7OEy5xxrMZOfpcpfsylB5hEtgkw/m/BSf5WHjAjI+
+   xLBzQHWMMvSmbegQHqAOrOwW0lIrEdE8N20PZtllaZYUzkGIk4Qs7N4+s
+   Ykb6jwF7vMes7AImZzuK4k++WHCVILy/vymWOxgKCgiGEgQrSuc6xsXTe
+   chcCIiY2FpZ91HFqupf4WoDNmG+hn1a4SOkBYCIg2pqI2QlCiI/TGZkEa
+   6Ai1LIaexPKhcDI8agHh5frlIkM6mKUFMqDhScxUqLB6eP8pYe/c6OnXm
+   A==;
+X-IronPort-AV: E=Sophos;i="5.99,251,1677567600"; 
+   d="asc'?scan'208";a="223952954"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 May 2023 23:30:00 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Thu, 4 May 2023 23:30:00 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Thu, 4 May 2023 23:29:57 -0700
+Date:   Fri, 5 May 2023 07:29:38 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Mason Huo <mason.huo@starfivetech.com>
+CC:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Andreas =?utf-8?Q?F=C3=A4rber?= <afaerber@suse.de>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Antoine Tenart <atenart@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Lars Persson <lars.persson@axis.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Baruch Siach <baruch@tkos.co.il>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        Jean-Marie Verdun <verdun@hpe.com>,
-        Nick Hawkins <nick.hawkins@hpe.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Vladimir Zapolskiy <vz@mleia.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Peter Rosin <peda@axentia.se>, Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Daniel Palmer <daniel@thingy.jp>,
-        Romain Perier <romain.perier@gmail.com>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Shiraz Hashim <shiraz.linux.kernel@gmail.com>,
-        Patrice Chotard <patrice.chotard@foss.st.com>,
-        Marek Vasut <marex@denx.de>, Qin Jian <qinjian@cqplus1.com>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Paul Barker <paul.barker@sancloud.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Nishanth Menon <nm@ti.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Enric Balletbo i Serra <eballetbo@gmail.com>,
-        Javier Martinez Canillas <javier@dowhile0.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@axis.com
-Subject: Re: [PATCH 4/4] ARM: dts: Move .dts files to vendor sub-directories
-Message-ID: <20230505061813.pu36aup2p5yqcpuh@vireshk-i7>
-References: <20230504-arm-dts-mv-v1-0-2c8e51a2b6c4@kernel.org>
- <20230504-arm-dts-mv-v1-4-2c8e51a2b6c4@kernel.org>
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Shengyu Qu <wiagn233@outlook.com>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>
+Subject: Re: [PATCH v3 0/3] Add JH7110 cpufreq support
+Message-ID: <20230505-gusty-corset-e451d947c10d@wendy>
+References: <20230421031431.23010-1-mason.huo@starfivetech.com>
+ <457c35b5-aec4-1147-673f-947052b5f944@starfivetech.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="PSNHXBMMJYphhDWy"
 Content-Disposition: inline
-In-Reply-To: <20230504-arm-dts-mv-v1-4-2c8e51a2b6c4@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <457c35b5-aec4-1147-673f-947052b5f944@starfivetech.com>
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04-05-23, 22:29, Rob Herring wrote:
->  arch/arm/boot/dts/st/Makefile                      |   73 +
->  arch/arm/boot/dts/{ => st}/spear1310-evb.dts       |    0
->  arch/arm/boot/dts/{ => st}/spear1310.dtsi          |    0
->  arch/arm/boot/dts/{ => st}/spear1340-evb.dts       |    0
->  arch/arm/boot/dts/{ => st}/spear1340.dtsi          |    0
->  arch/arm/boot/dts/{ => st}/spear13xx.dtsi          |    0
->  arch/arm/boot/dts/{ => st}/spear300-evb.dts        |    0
->  arch/arm/boot/dts/{ => st}/spear300.dtsi           |    0
->  arch/arm/boot/dts/{ => st}/spear310-evb.dts        |    0
->  arch/arm/boot/dts/{ => st}/spear310.dtsi           |    0
->  arch/arm/boot/dts/{ => st}/spear320-evb.dts        |    0
->  arch/arm/boot/dts/{ => st}/spear320-hmi.dts        |    0
->  arch/arm/boot/dts/{ => st}/spear320.dtsi           |    0
->  arch/arm/boot/dts/{ => st}/spear320s.dtsi          |    0
->  arch/arm/boot/dts/{ => st}/spear3xx.dtsi           |    0
->  arch/arm/boot/dts/{ => st}/spear600-evb.dts        |    0
->  arch/arm/boot/dts/{ => st}/spear600.dtsi           |    0
+--PSNHXBMMJYphhDWy
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
+On Fri, May 05, 2023 at 09:38:38AM +0800, Mason Huo wrote:
+> Hi Conor & Shengyu,
+>=20
+> Thanks for your review, and is there any comments about these v3 patches?
 
--- 
-viresh
+Firstly there appears to have been some mess-up with the driver/bindings
+for 1/3, so I am waiting to see if the binding gets reverted before
+doing anything and secondly it's the merge window so I can't do anything
+about 3/3 until next week.
+
+Cheers,
+Conor.
+
+--PSNHXBMMJYphhDWy
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZFSiRgAKCRB4tDGHoIJi
+0r5hAP0YWltPpwr1izMQlhksHrJ1Nsu+nh7ZltEKQl+EUT7mZwD+Nja7QwXhJfN8
+PS+uHl3ESNKd2rWmiwAV2HVtGWwC7gw=
+=N0Ys
+-----END PGP SIGNATURE-----
+
+--PSNHXBMMJYphhDWy--
