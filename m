@@ -2,184 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D57326F8314
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 14:38:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3C906F831C
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 14:39:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231954AbjEEMiQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 08:38:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48984 "EHLO
+        id S232198AbjEEMjA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 08:39:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231256AbjEEMiP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 08:38:15 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCA305FF6
-        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 05:38:13 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4efe8991bafso2011770e87.0
-        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 05:38:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683290292; x=1685882292;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=yplmN4cjcMjpz7yzL0GhEZF8x3n7FeMV/awLTpA1Cds=;
-        b=n+PCrxjHUW0iFTpnRlAN+eLhhGWqBvzuhiThIKBoygAfxiDUU+LH53XkQvLLeoTfS6
-         bqfQFUQP0SoeF1DHMmjXuUC6NQBJuT1auu3P5Y8z5nRm3YB6tB/s99I1e4zlHaHsgILv
-         IgjKdwFBmJKQ9Kpwv3f7IAGiwVh6ykYmZutvqca/tZPhwsVX7jEbCtgEPoX11bfnfgSf
-         HHjl3+0JLKKsXnhWZ0NCUN+zCwdnJ+PfkAHy7UhGZpvtuP355tmBx+wP2nw/5h0xCh7/
-         C/9/TiZvwWfpQFeAs4ZlV4rKrn2sgiSd+bldhNBWVxRPF/KtWRAiS3tCaqbG2uWmALcl
-         airw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683290292; x=1685882292;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yplmN4cjcMjpz7yzL0GhEZF8x3n7FeMV/awLTpA1Cds=;
-        b=c+jK2TCnD7F13qnXZjN6C2Xn4JClduoCDqaKA4WudE6ac60adpENbsrlzGcY0s22FX
-         NFfWOt3iSKkhEPXTZ5hh69DxfCgAb8T7W6ObrSYVgTXE+VM9OhsaKictX1DvPu5DmTBB
-         AkqH1g+NMEVofJLJNEeSbKngRuRbvKU2UXuAnZzum139DCBEFYW57hcoUPIQcE3fgWc4
-         rt6nKqrsrWN96Mks4L3QSBWTy8JMyQP7eYayzUakGmoEdM/CA+fy2re3LP20/hYTFBKy
-         JvQgA1yhrDUgRglNF+R7VXdEbQSg+40x0ny4paiIxk6J8mdF5vCOLAPwlrL/WBDvWbOv
-         NDSg==
-X-Gm-Message-State: AC+VfDwoBJhyxp605ZjquWt6Jsie7aTFp2TZp5HJa2cgcubwLbn8L0a9
-        4gG5zFHWgjyTLV9GGHjSpRMFRw==
-X-Google-Smtp-Source: ACHHUZ6z59O8tplENC2bhQXd/JQWSp6AWPiroQfHmJwWkxLtJstvOyAq5du4f7CXb+84rHWoJ6jtOw==
-X-Received: by 2002:a19:f502:0:b0:4f1:43b3:90bf with SMTP id j2-20020a19f502000000b004f143b390bfmr429933lfb.41.1683290292180;
-        Fri, 05 May 2023 05:38:12 -0700 (PDT)
-Received: from [192.168.1.101] (abyl248.neoplus.adsl.tpnet.pl. [83.9.31.248])
-        by smtp.gmail.com with ESMTPSA id z23-20020a19f717000000b004f142eac23fsm273394lfe.114.2023.05.05.05.38.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 May 2023 05:38:11 -0700 (PDT)
-Message-ID: <61a1441c-a948-bf89-a44f-a94c3956c41d@linaro.org>
-Date:   Fri, 5 May 2023 14:38:09 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH v2 03/13] dt-bindings: display/msm: Add SM6350 DPU
-To:     Rob Herring <robh@kernel.org>
-Cc:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S232200AbjEEMi7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 08:38:59 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2AA81CFF2;
+        Fri,  5 May 2023 05:38:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1683290338; x=1714826338;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=8xaX52aaPvTWMjYeqa0TqYNGO9iqMeWfTGMQ8/3Jsag=;
+  b=YzRd0Kb6GY9xNP/hRdU9DU6kfOfEMmTWZs+5OmCGG7t/qI1rc2SJDoPt
+   iMGq+yYiMV4sUN1vooydLwjGd/4NN/JojdhZgtkN40D7YysPmOx+o7bCg
+   AylHbVw1tlqZ0E78XQ6S1pdjWuTgchDE/R7c/D2qVx4i/mpPcG5mXLRcy
+   nPRY3HISuVLEb9vmkjGHPmuHjmE/hk4Q61gAAx52bmXcffIfv6ds8Xt27
+   t+dqcpDh2CMfhuPt+6DgGRcbliAVoJOyDh+aAUafivBNjZwlplTlJNuTt
+   /Dci2+pGaQAlU+GqFgjZxzTsmjiwmr8K6BDXcsFUnZUQaWrYrHp2qJRhY
+   A==;
+X-IronPort-AV: E=Sophos;i="5.99,252,1677567600"; 
+   d="asc'?scan'208";a="223989201"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 05 May 2023 05:38:57 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Fri, 5 May 2023 05:38:57 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Fri, 5 May 2023 05:38:55 -0700
+Date:   Fri, 5 May 2023 13:38:36 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Changhuang Liang <changhuang.liang@starfivetech.com>
+CC:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Conor Dooley <conor@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux.dev
-References: <20230411-topic-straitlagoon_mdss-v2-0-5def73f50980@linaro.org>
- <20230411-topic-straitlagoon_mdss-v2-3-5def73f50980@linaro.org>
- <20230425170320.GA1931576-robh@kernel.org>
-Content-Language: en-US
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230425170320.GA1931576-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Walker Chen <walker.chen@starfivetech.com>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, <vkoul@kernel.org>,
+        <linux-phy@lists.infradead.org>
+Subject: Re: [RESEND v2 1/6] dt-bindings: power: Add JH7110 AON PMU support
+Message-ID: <20230505-magician-poet-724c96020c2f@wendy>
+References: <3ed72340-accc-4ad1-098f-4a2eb6448828@linaro.org>
+ <482e812a-05dd-105c-189c-e926b4be9d28@starfivetech.com>
+ <089e24d1-588a-4a56-f00b-0b35d1d99295@linaro.org>
+ <ea5b5534-8fc2-7c84-a011-c1b42c6ed7a0@starfivetech.com>
+ <1ac26c1a-1726-515d-6598-849a07ed0b86@linaro.org>
+ <5adda0ad-965c-fbf0-878c-9d41d28b5c39@starfivetech.com>
+ <86693969-59bf-5bcc-42a3-b6e94a0d6f3e@linaro.org>
+ <fcfc8ba4-40a7-da43-3375-712bd7e7f4d5@starfivetech.com>
+ <20230504-worshiper-ongoing-5581e1f2c2c4@wendy>
+ <2f473307-2219-61a4-fa66-5848fe566cf0@starfivetech.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="joHxcNEPtN2DDJ9p"
+Content-Disposition: inline
+In-Reply-To: <2f473307-2219-61a4-fa66-5848fe566cf0@starfivetech.com>
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+--joHxcNEPtN2DDJ9p
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Fri, May 05, 2023 at 09:29:15AM +0800, Changhuang Liang wrote:
+
+> But if keep this "starfive,jh7110-aon-syscon" compatible. Which .yaml match to
+> it? Use this series dt-bindings or syscon series dt-bindings.
+
+There is no syscon series anymore, it's part of the PLL series now:
+https://lore.kernel.org/linux-clk/20230414024157.53203-1-xingyu.wu@starfivetech.com/
+
+I don't really care what you, Walker & Xingyu decide to do, but add the
+binding in one series in a complete form. It's far less confusing to
+have only have one version of the binding on the go at once.
+
+Thanks,
+Conor.
 
 
-On 25.04.2023 19:03, Rob Herring wrote:
-> On Fri, Apr 21, 2023 at 12:31:12AM +0200, Konrad Dybcio wrote:
->> Document the SM6350 DPU.
->>
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->> ---
->>  .../bindings/display/msm/qcom,sm6350-dpu.yaml      | 94 ++++++++++++++++++++++
->>  1 file changed, 94 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm6350-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm6350-dpu.yaml
->> new file mode 100644
->> index 000000000000..979fcf81afc9
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sm6350-dpu.yaml
->> @@ -0,0 +1,94 @@
->> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/display/msm/qcom,sm6350-dpu.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm Display DPU dt properties for SM6350 target
->> +
->> +maintainers:
->> +  - Konrad Dybcio <konrad.dybcio@linaro.org>
->> +
->> +$ref: /schemas/display/msm/dpu-common.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    items:
->> +      - const: qcom,sm6350-dpu
->> +
->> +  reg:
->> +    items:
->> +      - description: Address offset and size for mdp register set
->> +      - description: Address offset and size for vbif register set
->> +
->> +  reg-names:
->> +    items:
->> +      - const: mdp
->> +      - const: vbif
->> +
->> +  clocks:
->> +    items:
->> +      - description: Display axi clock
->> +      - description: Display ahb clock
->> +      - description: Display rot clock
->> +      - description: Display lut clock
->> +      - description: Display core clock
->> +      - description: Display vsync clock
->> +
->> +  clock-names:
->> +    items:
->> +      - const: bus
->> +      - const: iface
->> +      - const: rot
->> +      - const: lut
->> +      - const: core
->> +      - const: vsync
-> 
-> Is there some reason the clocks are in different order?
-Nope, I'll sort this out
+--joHxcNEPtN2DDJ9p
+Content-Type: application/pgp-signature; name="signature.asc"
 
-They appear to 
-> be the same minus the 'throttle' clock. Is there really no 'throttle' 
-> clock?
-Looks like GCC_DISP_THROTTLE_AXI_CLK does exist on sm6350 as well, no
-idea how/if it's used though.. Perhaps I can just remove it from sm6375
-and if it turns out necessary we can reintroduce it another day.
+-----BEGIN PGP SIGNATURE-----
 
-Maybe this platform just tied it to one of the same clocks in the 
-> above?
-Unlikely, most likely it's for some dire deep power saving stuff that
-does not seem to be used/exposed, even on the bsp kernel
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZFT4zAAKCRB4tDGHoIJi
+0j7sAQC3yBu80qw2HVfxwCss7YeMwglVk3XoMJwU5Edb0+UMYwD/TodA8cpmhYbt
+lWKK0yqBI6MEjCP3wB/OBKkdc3DOeQI=
+=SIb4
+-----END PGP SIGNATURE-----
 
-> 
-> I really hate the mess that is clocks. We have the same or related 
-> blocks with just totally different names and order. The result is 
-> if/then schemas or separate schemas like this. Neither option is great, 
-> but at least the if/then schemas provides some motivation to not have 
-> pointless variations like this. </rant>
-It's a totally valid rant..
-
-> 
-> As it seems the only difference between these 2 bindings is 1 extra 
-> clock, can't they be shared?
-Sounds like a plan!
-
-Konrad
-> 
-> Rob
+--joHxcNEPtN2DDJ9p--
