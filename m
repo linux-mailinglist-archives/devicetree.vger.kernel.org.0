@@ -2,85 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9289B6F8BBA
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 23:58:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 382FB6F8C4F
+	for <lists+devicetree@lfdr.de>; Sat,  6 May 2023 00:21:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233705AbjEEV6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 17:58:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55684 "EHLO
+        id S231840AbjEEWVE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 18:21:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230458AbjEEV6w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 17:58:52 -0400
-Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 616575244;
-        Fri,  5 May 2023 14:58:44 -0700 (PDT)
-Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-192cd5579faso1972067fac.1;
-        Fri, 05 May 2023 14:58:44 -0700 (PDT)
+        with ESMTP id S229775AbjEEWVD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 18:21:03 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09470EA
+        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 15:21:02 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2ac74633339so4193651fa.1
+        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 15:21:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1683325260; x=1685917260;
+        h=to:subject:message-id:date:from:sender:mime-version:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8ecYicVNlqCwpTD7keug9XpsIRW3LWPQcbFkS4Vo5hc=;
+        b=PZ+wV1I9vR6uSFxCpfwo9mBqBn0KRjhdZcpscZJpv42P5Syrv3GlyzbCEEkNVPzlmN
+         t7k0zQYRH5Vkk4XN0wtEyt4mbgtlzp/UZDymL9Fk4V1uGDlmgEjqLjUmzq5j/7qYqNHx
+         ApiPSn8Iy4vAEIjuF5UgsvxiWpEG6sB3MztIbzUT9oKvdJZnxOMJGdgsXZnKCMMnQ3D3
+         EvqxUGpwVj7LUAoktf/hUDVt/v5KrOUezZeH/v0vAxkSwsABwXF0Qo+LnzMu2V6achCu
+         dFQfF8WD7xVAqb3pNV//avkFaDc6AfbXyuTvHl7a2OCRgWZchvT2ynOq61V/2xXYoSvx
+         1lHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683323923; x=1685915923;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hbgIOnkpYCYYpEoxomNQGFoUuvsXx9duXQwywtiwyZ4=;
-        b=EWQeF/a4c8L0Ifk5Oow3iEB50abgoJcYPi8bjHKPjCQO2G3rphvvbDId9825s8yOSc
-         +siXkNgCjmvpu6SKHOc9raDtwEMPYqumrFnl7R28s7V/bDxGo0ywbkfS3OmrfKfAoCjQ
-         CscOnjGhC9tbIiH31d8B3JQghWODocALBVO/eUe9En6W3GIK0aIlLFDjsw9opup4EsHF
-         Jhmdew+FXOLvKZ8q6zGRSna09EOQcL1xweOdcKbPLuNQTJmXvzc71JTBg1mC9ww22mBV
-         WStmUfNoTaWqpurCHWhyLhBHWbts29umnVqmVIzXdgVx1sJ+HrBV//ZpQmPh2paU6zdX
-         S7iA==
-X-Gm-Message-State: AC+VfDyQE73R+WnXD5M5kxf4UEW0m67doV5598/I0fz6T5yyHy8HJ+c/
-        ol4Mq2ViUuxsMnDj1nou+w==
-X-Google-Smtp-Source: ACHHUZ5OymvDRj77K/L2WzILHBdu6s//tHlq/nfzZShylPCvd7YmeQDLnFN7vYge8apcmW2hecM1mQ==
-X-Received: by 2002:a05:6808:4394:b0:38e:25f1:ddcd with SMTP id dz20-20020a056808439400b0038e25f1ddcdmr1269717oib.20.1683323923587;
-        Fri, 05 May 2023 14:58:43 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id f11-20020a4ae60b000000b00547372059afsm1487720oot.4.2023.05.05.14.58.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 May 2023 14:58:42 -0700 (PDT)
-Received: (nullmailer pid 3633776 invoked by uid 1000);
-        Fri, 05 May 2023 21:58:41 -0000
-Date:   Fri, 5 May 2023 16:58:41 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Varadarajan Narayanan <quic_varada@quicinc.com>
-Cc:     Praveenkumar I <quic_ipkumar@quicinc.com>,
-        konrad.dybcio@linaro.org, linux-kernel@vger.kernel.org,
-        thara.gopinath@gmail.com, devicetree@vger.kernel.org,
-        amitk@kernel.org, andersson@kernel.org, daniel.lezcano@linaro.org,
-        agross@kernel.org, rui.zhang@intel.com, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        rafael@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Subject: Re: [PATCH v1 1/4] dt-bindings: thermal: tsens: Add ipq9574
- compatible
-Message-ID: <168332392113.3633716.4128640191394678480.robh@kernel.org>
-References: <cover.1683027347.git.quic_varada@quicinc.com>
- <cbf916e31b00e0e0599a3012a84a4740df89f4e0.1683027347.git.quic_varada@quicinc.com>
+        d=1e100.net; s=20221208; t=1683325260; x=1685917260;
+        h=to:subject:message-id:date:from:sender:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8ecYicVNlqCwpTD7keug9XpsIRW3LWPQcbFkS4Vo5hc=;
+        b=QWJ0brjYr0dB/JSC4AXCwf0+yjeKsUHByZCr2gzogMLpRFTgqWP3f9MwxrFw/cWQKg
+         cpVr7nEpee6gu8GEnxplWBFcmePWKlihzm4TepwqSaCG4Q33DxFC8QjT/gsS5tTA4xqY
+         QMjfwNZ7DMtJrL7QvAcuy2FypHLnvoft6wQg6eLyTcYns1cZ1ojqw43jFQg+F2AlpVRM
+         xLy+2ilNDjGBcOMRTyppHh5oAncCdNMr+L9+29t86LA1O0QXl06QdghP5Cb5CFv2rYkh
+         SPs54O9ToUnK6oyPk+VTADhEsYGsrUwzcRbj34KqAPauoC8gQSK4WRxU2mvAxWOHaWul
+         TyRA==
+X-Gm-Message-State: AC+VfDz62+iBgpLYbYn5oh3kVUSp6DS4ydLARmwD9WW6Eney0SuuPQpZ
+        uhq+1+8zd7bLzKFV4yu7gSNug/RcDtcVdJu3dsc=
+X-Google-Smtp-Source: ACHHUZ6Y1jtAz8pu7XmghqIeon+YsUHQesyvoF2exE3wUMmvTPqNC0i6GxiBrQiWZhpqOtOTxcAAlGE89cPnxRX/mFM=
+X-Received: by 2002:a2e:1f02:0:b0:2a6:142e:ee70 with SMTP id
+ f2-20020a2e1f02000000b002a6142eee70mr839611ljf.4.1683325260130; Fri, 05 May
+ 2023 15:21:00 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cbf916e31b00e0e0599a3012a84a4740df89f4e0.1683027347.git.quic_varada@quicinc.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Sender: innocentyakububawa@gmail.com
+Received: by 2002:a05:6022:51a8:b0:3b:757e:d7cd with HTTP; Fri, 5 May 2023
+ 15:20:59 -0700 (PDT)
+From:   "Mrs. Margaret Christopher" <mrsmargaretchristopher001@gmail.com>
+Date:   Fri, 5 May 2023 16:20:59 -0600
+X-Google-Sender-Auth: 2Xo6camzfWssG1NwlMNx5R9IW_4
+Message-ID: <CAO=JbK0z5byRkkN0HdRqKd8bjUQ6z4rYqVpWsSLJnPzonrt-0g@mail.gmail.com>
+Subject: Humanitarian Project For Less Privileged.
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=0.6 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_HK_NAME_FM_MR_MRS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+-- 
+Hello Dear
 
-On Wed, 03 May 2023 10:15:59 +0530, Varadarajan Narayanan wrote:
-> From: Praveenkumar I <quic_ipkumar@quicinc.com>
-> 
-> Qualcomm IPQ9574 has tsens v2.3.1 block, which is similar to IPQ8074 tsens.
-> 
-> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 3 +++
->  1 file changed, 3 insertions(+)
-> 
+  Am a dying woman here in the hospital, i was diagnose as a
+Coronavirus patient over 2 months ago. I am A business woman who is
+dealing with Gold Exportation, I Am 59 year old from USA California i
+have a charitable and unfufilling  project that am about to handover
+to you, if you are interested to know more about this project please reply me.
 
-Acked-by: Rob Herring <robh@kernel.org>
-
+ Hope to hear from you
