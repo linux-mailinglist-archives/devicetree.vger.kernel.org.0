@@ -2,151 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89EE16F8489
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 16:12:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6638C6F8493
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 16:14:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232160AbjEEOMB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 10:12:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46976 "EHLO
+        id S232728AbjEEOOV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 10:14:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232011AbjEEOL7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 10:11:59 -0400
-Received: from smtp2.axis.com (smtp2.axis.com [195.60.68.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B768AD0B;
-        Fri,  5 May 2023 07:11:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1683295916;
-  x=1714831916;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=IQhrMEmbkdIeS/c4Mo1VR2kSTS1Kx2MwOx7h09x0ziM=;
-  b=Sbp+QawjUEriutBHJrSW3jf6P7+wqpaCu7jTqyrqAF/JUIz/og1QOs1X
-   StlBEw2fFtpFH/OkFhKW6VHYA/KJz6CxHwtyMIXw8vlkXR3CcJYhPNX56
-   ZOQy28lYqGeljx2NuigRz9VtHa2Jj03EZaF9gnKXpVQK5aHJa5ui3mH90
-   wa3VvhplAxst5bspGH6B1hmm2uFvVEfQfigKDJ5nIOi607zz2Ki1NSwi6
-   f9lQ0Z38UlDlO6CWZHQ7qOTMVOaxJBgOR/mhdmQwdiQWxLbLOm5x85S36
-   q27N46tmXX717vjxM8lOEgIhsDxag6DHIUBNHuGsuvUkWiIe68LN1N1L9
-   w==;
-Date:   Fri, 5 May 2023 16:11:52 +0200
-From:   Jesper Nilsson <jesper.nilsson@axis.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     <soc@kernel.org>, Christian Marangi <ansuelsmth@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Antoine Tenart <atenart@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Lars Persson <lars.persson@axis.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Baruch Siach <baruch@tkos.co.il>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        Jean-Marie Verdun <verdun@hpe.com>,
-        Nick Hawkins <nick.hawkins@hpe.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Vladimir Zapolskiy <vz@mleia.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Peter Rosin <peda@axentia.se>, Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Daniel Palmer <daniel@thingy.jp>,
-        Romain Perier <romain.perier@gmail.com>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Shiraz Hashim <shiraz.linux.kernel@gmail.com>,
-        Patrice Chotard <patrice.chotard@foss.st.com>,
-        Marek Vasut <marex@denx.de>, Qin Jian <qinjian@cqplus1.com>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Paul Barker <paul.barker@sancloud.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Nishanth Menon <nm@ti.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Enric Balletbo i Serra <eballetbo@gmail.com>,
-        Javier Martinez Canillas <javier@dowhile0.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-arm-kernel@axis.com>
-Subject: Re: [PATCH 4/4] ARM: dts: Move .dts files to vendor sub-directories
-Message-ID: <20230505141152.GK19396@axis.com>
-References: <20230504-arm-dts-mv-v1-0-2c8e51a2b6c4@kernel.org>
- <20230504-arm-dts-mv-v1-4-2c8e51a2b6c4@kernel.org>
+        with ESMTP id S232024AbjEEOOV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 10:14:21 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CE8811556;
+        Fri,  5 May 2023 07:14:19 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 345EE97h126078;
+        Fri, 5 May 2023 09:14:09 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1683296049;
+        bh=OVIMJEOTw58a5+zeZXdnuWbw6urjw5K0715hy8nuTNk=;
+        h=From:To:CC:Subject:Date;
+        b=Gg/ye8sl/ga21PKHywDBiTo+sbJTfaTkJ2iugWkorwIlH2mw5OXrp2SqhxlsxXHiI
+         zNhech7D0likr9N/voff6F67zjBU/1CAQJPRaDfB7mCO+Sfm57Y50GuUlxJlrav23F
+         7ZpEo3aLRKT/+RFDv+BorweqCvu/YIgicPYIXuBo=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 345EE9mm000557
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 5 May 2023 09:14:09 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 5
+ May 2023 09:14:09 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 5 May 2023 09:14:08 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 345EE7xb022255;
+        Fri, 5 May 2023 09:14:08 -0500
+From:   Vaishnav Achath <vaishnav.a@ti.com>
+To:     <nm@ti.com>, <afd@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>,
+        <vaishnav.a@ti.com>
+Subject: [PATCH 0/4] arm64: dts: ti: j721e: Add HyperFlash support
+Date:   Fri, 5 May 2023 19:44:03 +0530
+Message-ID: <20230505141407.15134-1-vaishnav.a@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230504-arm-dts-mv-v1-4-2c8e51a2b6c4@kernel.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 04, 2023 at 10:29:29PM -0500, Rob Herring wrote:
-> The arm dts directory has grown to 1553 boards which makes it a bit
-> unwieldy to maintain and use. Past attempts stalled out due to plans to
-> move .dts files out of the kernel tree. Doing that is no longer planned
-> (any time soon at least), so let's go ahead and group .dts files by
-> vendors. This move aligns arm with arm64 .dts file structure.
-> 
-> Doing this enables building subsets of dts files by vendor easily
-> without changing kernel configs:
-> 
-> make allyesconfig
-> make arch/arm/boot/dts/ti/
-> 
-> There's no change to dtbs_install as the flat structure is maintained on
-> install.
-> 
-> The naming of vendor directories is roughly in this order of preference:
-> - Matching original and current SoC vendor prefix/name (e.g. ti, qcom)
-> - Current vendor prefix/name if still actively sold (SoCs which have
->   been aquired) (e.g. nxp/imx)
-> - Existing platform name for older platforms not sold/maintained by any
->   company (e.g. gemini, nspire)
-> 
-> The whole move was scripted with the exception of MAINTAINERS.
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  MAINTAINERS                                        |  181 +--
-> [...]
->  arch/arm/boot/dts/axis/Makefile                    |    3 +
->  arch/arm/boot/dts/{ => axis}/artpec6-devboard.dts  |    0
->  arch/arm/boot/dts/{ => axis}/artpec6.dtsi          |    0
+This series adds hyperflash support for J721E. J721E SoC has HyperBus
+and OSPI controller muxed within the FSS subsystem and the J721E SoM
+has a 64 MiB S28 OSPI flash and a 64 MiB Hyperflash present which is
+muxed externally also.
 
-For the Axis ARTPEC ports,
+* Patch 1/4 adds the hyperbus controller nodes and fixes DT compile
+warnings.
+* Patch 2/4 adds the hyperflash support in the SoM DTS.
+* Patch 3 and 4/4 enables the pinmux for external mux that selects
+between hyperflash or OSPI NOR flash, this is done for J7200 and 
+J721E platforms since it is required in U-Boot and helps keep the
+DT in sync.
 
-Acked-by: Jesper Nilsson <jesper.nilsson@axis.com>
+Patch 1/4 depends on the following patch:
+https://lore.kernel.org/all/20230424184810.29453-1-afd@ti.com/
 
-/^JN - Jesper Nilsson
+Patch 3 depends on the below fix for pinmux offsets in J7200:
+https://lore.kernel.org/all/20230419040007.3022780-2-u-kumar1@ti.com/
+
+Bootlog and basic hyperflash erase-write-read test:
+https://gist.github.com/vaishnavachath/be652108f3e360f1e2d41b499df844ef
+
+Thanks and Regards,
+Vaishnav
+
+Vaishnav Achath (4):
+  arm64: dts: ti: k3-j721e-mcu-wakeup: Add HyperBus node
+  arm64: dts: ti: k3-j721e-som-p0: Add HyperFlash node
+  arm64: dts: ti: k3-j7200-common-proc-board: Add OSPI/Hyperflash select
+    pinmux
+  arm64: dts: ti: k3-j721e-common-proc-board: Add OSPI/Hyperflash select
+    pinmux
+
+ .../dts/ti/k3-j7200-common-proc-board.dts     | 11 ++++++
+ .../dts/ti/k3-j721e-common-proc-board.dts     | 11 ++++++
+ .../boot/dts/ti/k3-j721e-mcu-wakeup.dtsi      | 25 +++++++++++--
+ arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi   | 35 +++++++++++++++++++
+ 4 files changed, 80 insertions(+), 2 deletions(-)
+
 -- 
-               Jesper Nilsson -- jesper.nilsson@axis.com
+2.17.1
+
