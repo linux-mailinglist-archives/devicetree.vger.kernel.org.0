@@ -2,88 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F36E66F7C76
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 07:39:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B44DB6F7C89
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 07:49:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229459AbjEEFjn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 01:39:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60832 "EHLO
+        id S230309AbjEEFtr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 01:49:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229577AbjEEFjn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 01:39:43 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 386FF11B78
-        for <devicetree@vger.kernel.org>; Thu,  4 May 2023 22:39:42 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A9E7463B11
-        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 05:39:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53015C433D2;
-        Fri,  5 May 2023 05:39:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1683265181;
-        bh=uh1kQHu5s5onnVsdGBIesWXuOxiVJVv/CmRHeYdQo8Q=;
-        h=Date:From:To:CC:Subject:In-Reply-To:References:From;
-        b=RupiNL2y8pX1VYRryak5pHxhsx3u29LuF8t6gv//p9AOhkrSjMHXD0FJ9znVoSF4k
-         uaYxYOLsylComHfpiKP51lkkDar5d4yGarlK8r3O7Ai4B9UdFWPk8X1uakyp/8PGy0
-         ejt2zeJtSAJ7hzMkHGmXLHGDZy1f7Xm9kA9U+bMC76R/v6IfWMY8CeyfwDn4KCieOU
-         39HyLu219iT38VbcnpCn1WT6GA2tBG7yKMPHnWvcZYPpNYsE6ZURZd1accD7e24kC4
-         3c7HHaGrC32sb7q9Glb5Bk2GnaWEXexydnAuNGQ/gCoHXXiwvYjFsT7qoamayTIcdB
-         FVRTOnIyfOusg==
-Date:   Fri, 05 May 2023 06:39:38 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>
-CC:     Conor Dooley <conor.dooley@microchip.com>,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v1] MAINTAINERS: add Conor as a dt-bindings maintainer
-User-Agent: K-9 Mail for Android
-In-Reply-To: <CAL_JsqLUj4b0fpV_6juoeQqBY83GezZNh-UTH9vmaFAyEVUzPw@mail.gmail.com>
-References: <20230504-renderer-alive-1c01d431b2a7@spud> <CAL_JsqLUj4b0fpV_6juoeQqBY83GezZNh-UTH9vmaFAyEVUzPw@mail.gmail.com>
-Message-ID: <DDDDD1F1-774A-483A-9962-FFD14D525725@kernel.org>
+        with ESMTP id S230317AbjEEFtm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 01:49:42 -0400
+Received: from smtp1.axis.com (smtp1.axis.com [195.60.68.17])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0AF6150D7;
+        Thu,  4 May 2023 22:49:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; q=dns/txt; s=axis-central1; t=1683265773;
+  x=1714801773;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=By1zElzEqUICh73uUeUdo6GgTEEpWsDQwesL5Ji0Geg=;
+  b=mwNcx39sU/dLrQPBQ+476T1RbJnsfSdomONlpb/WpssSp0kKTP/7gwO0
+   1o/HcK7uD9TI6HYu4JlZG2188qkRTgh4GngEibfNswkA/tEwlN1+NX/TR
+   ANSRE3qgX/OfYvWI6IXOEhjWFWGbM7EKYjO1BFA8XV8AVUmAtmiEptb+m
+   wXGsgsmOzx2trYdehAu3K+DUR1DYE4f4JQ4p0vjbXByKUg9Ud8/DD4xJf
+   /BulwufqFRqjAzqXFaI3rqIQK/7vvLnmYYGAym3ylZRYbO61A8RdiKyA/
+   FErQOXFY1OjdsbaiVb+g+GtLqZZmSqNOplgsVH8B1w6Eqf7+W/G+cKoS/
+   Q==;
+From:   Hermes Zhang <chenhuiz@axis.com>
+To:     <jic23@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <robh+dt@kernel.org>,
+        Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>
+CC:     <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <kernel@axis.com>, Hermes Zhang <chenhuiz@axis.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        <devicetree@vger.kernel.org>
+Subject: [PATCH v3 1/2] dt-bindings: iio: imu: mpu6050: Add icm20600 bindings to mpu6050
+Date:   Fri, 5 May 2023 13:48:52 +0800
+Message-ID: <20230505054853.2155326-2-chenhuiz@axis.com>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20230505054853.2155326-1-chenhuiz@axis.com>
+References: <20230505054853.2155326-1-chenhuiz@axis.com>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+ICM-20600 is almost same as ICM-20602 which already support in mpu6050
+driver. Specify "invensense,icm20602" as a fallback compatible
 
+Signed-off-by: Hermes Zhang <chenhuiz@axis.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
 
-On 5 May 2023 01:02:52 IST, Rob Herring <robh+dt@kernel=2Eorg> wrote:
->On Thu, May 4, 2023 at 4:59=E2=80=AFPM Conor Dooley <conor@kernel=2Eorg> =
-wrote:
->>
->> From: Conor Dooley <conor=2Edooley@microchip=2Ecom>
->>
->> Rob asked if I would be interested in helping with the dt-bindings
->> maintenance, and since I am a glutton for punishment I accepted=2E
->>
->> Signed-off-by: Conor Dooley <conor=2Edooley@microchip=2Ecom>
->> ---
->>  MAINTAINERS | 1 +
->>  1 file changed, 1 insertion(+)
->>
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index 4e9370793300=2E=2E687d7a3d2e85 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -15697,6 +15697,7 @@ K:      of_overlay_remove
->>  OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
->>  M:     Rob Herring <robh+dt@kernel=2Eorg>
->>  M:     Krzysztof Kozlowski <krzysztof=2Ekozlowski+dt@linaro=2Eorg>
->> +M:     Conor Dooley <conor+dt@kernel=2Eorg>
->
->Do you really want '+dt'? I've never really used it, and I think it
->suffers from the same issue as MAINTAINERS=2E It won't get used
->consistently=2E
+Notes:
+    v2: require specifying "invensense,icm20602" as a fallback compatible
+        in the binding, as suggested
+    v3: reorder "invensense,icm20602" entry before icm20608 and add
+        Reviewed-by tag from Krzysztof
 
-Yeah, I've seen you previously mention that, but
-at least it gives my filters a chance to split stuff out=2E
+ .../devicetree/bindings/iio/imu/invensense,mpu6050.yaml        | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/iio/imu/invensense,mpu6050.yaml b/Documentation/devicetree/bindings/iio/imu/invensense,mpu6050.yaml
+index ec64d7877fe5..1db6952ddca5 100644
+--- a/Documentation/devicetree/bindings/iio/imu/invensense,mpu6050.yaml
++++ b/Documentation/devicetree/bindings/iio/imu/invensense,mpu6050.yaml
+@@ -30,6 +30,9 @@ properties:
+           - invensense,mpu9150
+           - invensense,mpu9250
+           - invensense,mpu9255
++      - items:
++          - const: invensense,icm20600
++          - const: invensense,icm20602
+       - items:
+           - const: invensense,icm20608d
+           - const: invensense,icm20608
+-- 
+2.30.2
+
