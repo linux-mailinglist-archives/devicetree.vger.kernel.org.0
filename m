@@ -2,54 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B04826F8986
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 21:30:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DB8E6F89D3
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 21:51:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232168AbjEET37 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 15:29:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55510 "EHLO
+        id S232137AbjEETvE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 15:51:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233466AbjEET3y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 15:29:54 -0400
-Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F01D92D7C;
-        Fri,  5 May 2023 12:29:53 -0700 (PDT)
-Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-18f4a6d2822so19517872fac.1;
-        Fri, 05 May 2023 12:29:53 -0700 (PDT)
+        with ESMTP id S232549AbjEETvD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 15:51:03 -0400
+Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45470138;
+        Fri,  5 May 2023 12:51:02 -0700 (PDT)
+Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-192814aa343so1848090fac.1;
+        Fri, 05 May 2023 12:51:02 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683314993; x=1685906993;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4Pig4YACD/UgX2hQKgAOpS3srvDEjTrIf9fD2QloV1A=;
-        b=gM7Tkt419Aox11QLana/HdeXL2ho6mLdfFXhtwpp+lhGXS5RQD3ennXfwNjJq7ZJ0c
-         dCAdMLNsOH7mejX++eCXmWALCt83+uTptt5Dxfa6EzFY2pUbwxKjKCEogMN2WU655+NO
-         lNKMEr8+mlY5SsdmtJO0MRW/ci27p9Vr5g1fSFVUqzk0gEbWDWGfta2afZ61UYBPracv
-         ++0vtIhHl/IzfeTyGg1+m+j4zgOZ+qc1HGBDs/szYmrBZOk96KEApX9MMTZtyTGwATTF
-         oNdyNvZTzlPDtUtQXYc/ou+aWCtOD+SfMmt1yMYbEZ0ZFeNibiVvl6Lm0NE99B2qqxTZ
-         AoCg==
-X-Gm-Message-State: AC+VfDwbZNksxwJSsNUtgco2i7U39WXmb614wkT61yV/GnbETGRbZW+M
-        BNlYY3uKOs5zdYnQTzHF7g==
-X-Google-Smtp-Source: ACHHUZ5nfCS8okSJ27dYmJp75kHHJBypd/p/CQexWTC36kJPDRbZf0TRU3In6KTQ7voiBFFF78V4lg==
-X-Received: by 2002:a05:6830:18f0:b0:6a1:2c80:5a3f with SMTP id d16-20020a05683018f000b006a12c805a3fmr1355264otf.19.1683314993195;
-        Fri, 05 May 2023 12:29:53 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1683316261; x=1685908261;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dguMNfMk4wcW3nSZUAYy0tuJ0r9bBR9l9tF40g9fY7I=;
+        b=H32MLflslUzjFmRaKQ9PT9wGDVM76NV1o0IyFvk9wwBBfG4zp8jEB00Cmt30fTti0F
+         okkAiYVWB662fS/qFCXwo5kMMxyBu3jsw+9ZiuCO1Jwi14dxRenshYHKg+KazFKClrk/
+         wWkCKrF/dxRszwDyAhhpuMzzubsr9TrSh70Or/t4cFI6Pr3h0eeQDjNDhkFLj7dfIw5y
+         jmqphdXoVpE2UXKdIvVuwF3pj6JOLL8i3p2Wd3cGDOpaw8Rw66Ddc/mHQQCulaJZ+nAb
+         qeZvBF7gyRk6L1+hF6AI3hU/xyeMoiXG11Wm02l2GHImIjFxbM38VgUtVEbSCJGaabVy
+         Sjkw==
+X-Gm-Message-State: AC+VfDyOYOFp1yDiEAq2Xdfov+sQi24vnH3H3LxI9J0EjzX6qeD/OEoQ
+        NnTFC9Gtdw6hQ9kxzqNUlA==
+X-Google-Smtp-Source: ACHHUZ7b1sGcz+WaT+MXyYJMCCmoh/Da9MtxtY9aquw0oa5YHEQhZYwLP6Ds8cyve+AMTX6K19GXTw==
+X-Received: by 2002:a05:6870:304:b0:187:85c1:8075 with SMTP id m4-20020a056870030400b0018785c18075mr1432649oaf.15.1683316261202;
+        Fri, 05 May 2023 12:51:01 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id v4-20020a9d69c4000000b006a7b28e052dsm1247718oto.40.2023.05.05.12.29.51
+        by smtp.gmail.com with ESMTPSA id e1-20020a056870c34100b0018449ae08cesm2222138oak.13.2023.05.05.12.50.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 May 2023 12:29:52 -0700 (PDT)
-Received: (nullmailer pid 3426450 invoked by uid 1000);
-        Fri, 05 May 2023 19:29:51 -0000
-Date:   Fri, 5 May 2023 14:29:51 -0500
+        Fri, 05 May 2023 12:51:00 -0700 (PDT)
+Received: (nullmailer pid 3459191 invoked by uid 1000);
+        Fri, 05 May 2023 19:50:58 -0000
+Date:   Fri, 5 May 2023 14:50:58 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Linus Torvalds <torvalds@linux-foundation.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
+To:     Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc:     Wolfgang Grandegger <wg@grandegger.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-can@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Amarula patchwork <linux-amarula@amarulasolutions.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
+        michael@amarulasolutions.com,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [GIT PULL] Devicetree fixes for v6.4, part 1
-Message-ID: <20230505192951.GA3409270-robh@kernel.org>
+        Paolo Abeni <pabeni@redhat.com>,
+        Eric Dumazet <edumazet@google.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/5] dt-bindings: net: can: add "st,can-secondary"
+ property
+Message-ID: <168331625833.3459132.18047945812995754036.robh@kernel.org>
+References: <20230427204540.3126234-1-dario.binacchi@amarulasolutions.com>
+ <20230427204540.3126234-2-dario.binacchi@amarulasolutions.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <20230427204540.3126234-2-dario.binacchi@amarulasolutions.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -61,65 +78,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Linus,
 
-Please pull.
+On Thu, 27 Apr 2023 22:45:36 +0200, Dario Binacchi wrote:
+> On the stm32f7 Socs the can peripheral can be in single or dual
+> configuration. In the dual configuration, in turn, it can be in primary
+> or secondary mode. The addition of the 'st,can-secondary' property allows
+> you to specify this mode in the dual configuration.
+> 
+> CAN peripheral nodes in single configuration contain neither
+> "st,can-primary" nor "st,can-secondary".
+> 
+> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> ---
+> 
+> (no changes since v1)
+> 
+>  .../bindings/net/can/st,stm32-bxcan.yaml      | 19 +++++++++++++++----
+>  1 file changed, 15 insertions(+), 4 deletions(-)
+> 
 
-Note that I'll be out the next month, so you may see stuff from 
-Krzysztof if there's anything urgent.
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-Rob
-
-The following changes since commit 66ae0535167660e427f9fcadeee5d05646e2bb22:
-
-  dt-bindings: rng: Drop unneeded quotes (2023-04-20 16:30:03 -0500)
-
-are available in the Git repository at:
-
-  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.4-1
-
-for you to fetch changes up to 6997f847cbb72082a2e9aa0fef8ebfcc3bd4ddc5:
-
-  MAINTAINERS: add Conor as a dt-bindings maintainer (2023-05-05 07:45:17 -0500)
-
-----------------------------------------------------------------
-Devicetree fixes for 6.4, part 1:
-
-- Add Conor Dooley as a DT binding maintainer
-
-- Swap the order of parsing /memreserve/ and /reserved-memory nodes so
-  that the /reserved-memory nodes which have more information are
-  handled first
-
-- Fix some property dependencies in riscv,pmu binding
-
-- Update maintainers entries on a couple of bindings
-
-----------------------------------------------------------------
-Chris Paterson (4):
-      dt-bindings: i2c: renesas,rzv2m: Change maintainer to Fabrizio Castro
-      dt-bindings: pinctrl: renesas,rzn1: Change maintainer to Fabrizio Castro
-      dt-bindings: pinctrl: renesas,rzv2m: Change maintainer to Fabrizio Castro
-      dt-bindings: clock: r9a06g032-sysctrl: Change maintainer to Fabrizio Castro
-
-Conor Dooley (2):
-      dt-bindings: perf: riscv,pmu: fix property dependencies
-      MAINTAINERS: add Conor as a dt-bindings maintainer
-
-Lucas Tanure (1):
-      of: fdt: Scan /memreserve/ last
-
-Michal Simek (1):
-      dt-bindings: xilinx: Remove Naga from memory and mtd bindings
-
- .../devicetree/bindings/clock/renesas,r9a06g032-sysctrl.yaml         | 2 +-
- Documentation/devicetree/bindings/i2c/renesas,rzv2m.yaml             | 2 +-
- .../devicetree/bindings/memory-controllers/arm,pl35x-smc.yaml        | 1 -
- Documentation/devicetree/bindings/mtd/arasan,nand-controller.yaml    | 2 +-
- Documentation/devicetree/bindings/mtd/arm,pl353-nand-r2p1.yaml       | 1 -
- Documentation/devicetree/bindings/perf/riscv,pmu.yaml                | 1 -
- Documentation/devicetree/bindings/pinctrl/renesas,rzn1-pinctrl.yaml  | 2 +-
- Documentation/devicetree/bindings/pinctrl/renesas,rzv2m-pinctrl.yaml | 2 +-
- MAINTAINERS                                                          | 1 +
- drivers/of/fdt.c                                                     | 5 +++--
- 10 files changed, 9 insertions(+), 10 deletions(-)
