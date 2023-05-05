@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58EAB6F8B5C
+	by mail.lfdr.de (Postfix) with ESMTP id A4DEA6F8B5D
 	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 23:41:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232708AbjEEVlj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 17:41:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40148 "EHLO
+        id S233659AbjEEVlk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 17:41:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233612AbjEEVlh (ORCPT
+        with ESMTP id S233628AbjEEVlh (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 17:41:37 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEE6359D8
-        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 14:40:44 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2a8ba693f69so26009471fa.0
-        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 14:40:44 -0700 (PDT)
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF9C24692
+        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 14:40:46 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2ac80ed7f26so24837401fa.1
+        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 14:40:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683322843; x=1685914843;
+        d=linaro.org; s=google; t=1683322845; x=1685914845;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=H1+Xx964Do5+Dd75p0npXtM1tzzF2n1YUbY/5ffcryg=;
-        b=mGExL8SrQ5XCe3yqvDTrnGVkTIhBUhG8YPsyQ1/e/44Q3cEhZJ1/08XjzeuiRUyQD6
-         M7LB6Ez57o3AzvLFjeyAWMJALzYXdNP5M+2jminPeixrUPikkepbM+Bm56WqlLmrBYfw
-         xKPWLHO6S0mh/OQ30sBadObt6s1ZrWJldEJ5AiUbHKsECbbpI1IdFDU+3k8vdctN9mBE
-         SG9OPTHzZjUZY+VcadBG3WVZvfW0b26y9XZhml/nM1KrjY7pd5EcHbn90zlgmvZQEHKY
-         QnGsUU3nMC72ua2pgZZ2l2gEKdrQfbjYoR+3X7r9uojNgEerTz0gxTkVc2hX0l8wKsfl
-         Sd6w==
+        bh=Olp/PVXIJr8fEMjOP3fCHDkSYD0xJnBud5aoQtWwMD4=;
+        b=bcyb7PU+mB0xuZcC98A3z4xrQTA4cCO9fBd6WOSZ4BXU+qSJ1uguBXdCQkKkfa1qOG
+         tz29LlHe+jDhfBGEkFjUPX0kG/zMnGQdZaUbfQGKVC24x4niiJcGNPPWgl7i8TZEGNgy
+         zKaTUKwGCrCIiCDNEutlCwoHmLJVBCSeUhO+emE5U24E0omFmV1YfVxmBKvL5bsPsNb/
+         CvU5JYSMOwJrZmG3cpVKwpR/DwiFu6t/cGXEaeJzn/dSt0Glh6iKohWshJo9Q21rz8DN
+         vmzfXNbcmz8axbxYCWdVpFDXPsbEUSf3l2CUlGgX6r3WJ1n0PqpnxZs7iJ2vu3RlcxlH
+         j+5w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683322843; x=1685914843;
+        d=1e100.net; s=20221208; t=1683322845; x=1685914845;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=H1+Xx964Do5+Dd75p0npXtM1tzzF2n1YUbY/5ffcryg=;
-        b=XAXw6e2eoFrFjrIhy17eSAFjgnqta/E/kblMKrhBy5xQVHuNKTArBiz+BaakSgoOjA
-         AVX/x96MuVTklzxHBeYcKa+CB/tyNF3yurUC7MGkOd/W5yX2C1oZy59Xelllg+vT7KR/
-         LUAjUvhH3C3nfnWtJjjLo4+3CZpGDgsqvCC4a9R8yXqUmkGVooIuQs/Wx/OK74EXOPvS
-         Np8HTycOXpRBPUC4qFjQGdQBnzWyV2PsAMwu45h+hYX/BZrHfiaZ1iFeCPqQZVj9ImqJ
-         LWyH4RhTWDX4xsTw43hnJQCobmV6FNVQBll4Zt1Y1WFtxAqcAY3EUi76/xS0BAq+teHp
-         1VNQ==
-X-Gm-Message-State: AC+VfDwFTwpKxb4aYhWziIU/o0mUTVq5W5cJjqNKXDMAAJ7v7xz21zgW
-        xwmUB35PWsCmyp/kUWVzYAy5qQ==
-X-Google-Smtp-Source: ACHHUZ7dbutd62hVffBmQka6SJs8tp9PNCSqis8xhLAT3IIrAmJco8X7JFwSYcMQzrd1Segejocbug==
-X-Received: by 2002:a2e:9202:0:b0:2ac:7a77:1d4e with SMTP id k2-20020a2e9202000000b002ac7a771d4emr790219ljg.24.1683322843242;
-        Fri, 05 May 2023 14:40:43 -0700 (PDT)
+        bh=Olp/PVXIJr8fEMjOP3fCHDkSYD0xJnBud5aoQtWwMD4=;
+        b=OKHQWs8kL/QqJf/WS6WB68Eg+gVzSE1LrkNtuGMHQgihKTLhM2LZuw5awnmnbOJpQj
+         tF8iG3I3STxUf6ELYHoXBDC8GExRrWPpoM9sYIhry3BB+noYMdJCHHdq5dbGxzN9cOI0
+         xRSDMhRzlKtKW5MvteiA1mdGbwrPz2San8OZXlhUSh78hGY8j3dzcM3omaxGeE3Ondk/
+         lTQA5lj7IFC8RNW+dBZntbWDQMjNGAFYearBM26OrNziX5kM2g/es9L/rByig7A0oOJG
+         oonpGgYTvR5tlSmWGaZDJHbwuOO+F+bNWC0EUtGWAQ7R3YdEAfE4kLJ/T7AVBRdODAgA
+         w+qg==
+X-Gm-Message-State: AC+VfDzUjdxflKuuWpuu80oIFugioR+aZfNyWVPkwNCEIfSnf50oXdYl
+        T1ir5AVP7NN2Sevb48IAd9PGIQ==
+X-Google-Smtp-Source: ACHHUZ4gXaB+RYZgmcooayAAK8tmsa/H8nYRTCwojYzNiGeovBEiytzLG1KPmci+aNtG4Z3ZdQlYPQ==
+X-Received: by 2002:a2e:8815:0:b0:2a8:bf35:3b7 with SMTP id x21-20020a2e8815000000b002a8bf3503b7mr821445ljh.32.1683322845019;
+        Fri, 05 May 2023 14:40:45 -0700 (PDT)
 Received: from [192.168.1.101] (abyl248.neoplus.adsl.tpnet.pl. [83.9.31.248])
-        by smtp.gmail.com with ESMTPSA id n12-20020a2e720c000000b002a776dbc277sm126453ljc.124.2023.05.05.14.40.41
+        by smtp.gmail.com with ESMTPSA id n12-20020a2e720c000000b002a776dbc277sm126453ljc.124.2023.05.05.14.40.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 May 2023 14:40:42 -0700 (PDT)
+        Fri, 05 May 2023 14:40:44 -0700 (PDT)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Fri, 05 May 2023 23:40:27 +0200
-Subject: [PATCH v3 01/12] dt-bindings: display/msm: dsi-controller-main:
- Add SM6350
+Date:   Fri, 05 May 2023 23:40:28 +0200
+Subject: [PATCH v3 02/12] dt-bindings: display/msm: dsi-controller-main:
+ Add SM6375
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230411-topic-straitlagoon_mdss-v3-1-9837d6b3516d@linaro.org>
+Message-Id: <20230411-topic-straitlagoon_mdss-v3-2-9837d6b3516d@linaro.org>
 References: <20230411-topic-straitlagoon_mdss-v3-0-9837d6b3516d@linaro.org>
 In-Reply-To: <20230411-topic-straitlagoon_mdss-v3-0-9837d6b3516d@linaro.org>
 To:     Rob Clark <robdclark@gmail.com>,
@@ -77,11 +77,11 @@ Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
         iommu@lists.linux.dev, Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh@kernel.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1683322839; l=1129;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1683322839; l=1145;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=+O75/n498bCPQBt/QSpDKi1r6jFyvKeD8W9H7IyUIm4=;
- b=H5Kkgj24gPlGZUMzlH7o48hrPaPJDKbNQlfIh6lS7Er20KgpF2LUCpCvwkInzjXJDZ0bDJ9aS
- 6QteD0gUYBmCf9xOsDUgvrXBc64n/3AF6qfnUgjhKnmSXHBb+EfyOrm
+ bh=VsWoYP7GHCgHOv33piyXwEtJ6/KtKH5SJYQ2EDUVEdo=;
+ b=+3R0ILIrXzT82PWwbsl52w/wP4I53hpnomknSN5Kg5vAI7isrjcQm4SRnGPHieDAD+1Jm6gke
+ 4m7bCcjT25dAP6HBg9UzJaX/QBj7wkbo8MX8s82R3DQp7aHegBP1CeB
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -94,7 +94,7 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the DSI host found on SM6350.
+Add the DSI host found on SM6375.
 
 Acked-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
@@ -103,22 +103,22 @@ Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
  1 file changed, 2 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-index e6c1ebfe8a32..6f367a1fabf8 100644
+index 6f367a1fabf8..f7dc05a65420 100644
 --- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
 +++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-@@ -26,6 +26,7 @@ properties:
-               - qcom,sdm660-dsi-ctrl
+@@ -27,6 +27,7 @@ properties:
                - qcom,sdm845-dsi-ctrl
                - qcom,sm6115-dsi-ctrl
-+              - qcom,sm6350-dsi-ctrl
+               - qcom,sm6350-dsi-ctrl
++              - qcom,sm6375-dsi-ctrl
                - qcom,sm8150-dsi-ctrl
                - qcom,sm8250-dsi-ctrl
                - qcom,sm8350-dsi-ctrl
-@@ -285,6 +286,7 @@ allOf:
-           contains:
+@@ -354,6 +355,7 @@ allOf:
              enum:
-               - qcom,msm8998-dsi-ctrl
-+              - qcom,sm6350-dsi-ctrl
+               - qcom,sdm845-dsi-ctrl
+               - qcom,sm6115-dsi-ctrl
++              - qcom,sm6375-dsi-ctrl
      then:
        properties:
          clocks:
