@@ -2,99 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 14E486F864E
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 18:00:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FCBB6F84CF
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 16:26:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232060AbjEEQAW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 12:00:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47652 "EHLO
+        id S232893AbjEEO0Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 10:26:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55268 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232761AbjEEQAV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 12:00:21 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4CF07160BE;
-        Fri,  5 May 2023 09:00:20 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0B3E61FB;
-        Fri,  5 May 2023 09:01:04 -0700 (PDT)
-Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CFA093F5A1;
-        Fri,  5 May 2023 09:00:17 -0700 (PDT)
-Date:   Fri, 5 May 2023 17:00:15 +0100
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Maxim Kiselev <bigunclemax@gmail.com>
-Cc:     robh+dt@kernel.org,
+        with ESMTP id S232897AbjEEO0W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 10:26:22 -0400
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D07E16097;
+        Fri,  5 May 2023 07:26:21 -0700 (PDT)
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 345EFaWP023938;
+        Fri, 5 May 2023 10:25:58 -0400
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3qcwc6jcvm-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 05 May 2023 10:25:58 -0400
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 345EPuT2038197
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 5 May 2023 10:25:56 -0400
+Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Fri, 5 May 2023 10:25:56 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Fri, 5 May 2023 10:25:55 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Fri, 5 May 2023 10:25:55 -0400
+Received: from daniel-Precision-5530.ad.analog.com ([10.48.65.214])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 345EPg7i008557;
+        Fri, 5 May 2023 10:25:45 -0400
+From:   Daniel Matyas <daniel.matyas@analog.com>
+CC:     Daniel Matyas <daniel.matyas@analog.com>,
+        Rob Herring <robh@kernel.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        "Rob Herring" <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] riscv: dts: allwinner: d1: Add SPI0 controller node
-Message-ID: <20230505170015.664c18bc@donnerap.cambridge.arm.com>
-In-Reply-To: <CALHCpMi8=t1bMceTOfZjh7aKEQcEEpfeG4wi9pB=5o34Ca+N3w@mail.gmail.com>
-References: <20230505074701.1030980-1-bigunclemax@gmail.com>
-        <20230505105805.548d1a1b@donnerap.cambridge.arm.com>
-        <CALHCpMi8=t1bMceTOfZjh7aKEQcEEpfeG4wi9pB=5o34Ca+N3w@mail.gmail.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+        Jonathan Corbet <corbet@lwn.net>,
+        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>
+Subject: [PATCH v6 1/2] dt-bindings: hwmon: add MAX31827
+Date:   Fri, 5 May 2023 20:25:34 +0300
+Message-ID: <20230505172538.32733-1-daniel.matyas@analog.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: _49SgFAvKKAcNfpwtGLGA-3YoD9EPFrC
+X-Proofpoint-ORIG-GUID: _49SgFAvKKAcNfpwtGLGA-3YoD9EPFrC
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-05_21,2023-05-05_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 mlxscore=0
+ phishscore=0 lowpriorityscore=0 spamscore=0 suspectscore=0 bulkscore=0
+ impostorscore=0 malwarescore=0 priorityscore=1501 adultscore=0
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303200000 definitions=main-2305050120
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 5 May 2023 17:27:07 +0400
-Maxim Kiselev <bigunclemax@gmail.com> wrote:
+MAX31827 is a low-power temperature switch with I2C interface.
 
-Hi Maxim,
+The device is a ±1°C accuracy from -40°C to +125°C
+(12 bits) local temperature switch and sensor with I2C/SM-
+Bus interface. The combination of small 6-bump wafer-lev-
+el package (WLP) and high accuracy makes this temper-
+ature sensor/switch ideal for a wide range of applications.
 
-> > From a quick glance at the manuals, it
-> > looks like there are not quite the same, though: the D1/R528/T113s
-> > mentions a SPI_SAMP_DL register @0x28, whereas the older IP has a SPI_CCR
-> > register @0x24 - which is not mentioned in the newer manuals. The driver
-> > relies on that clock control register, so it wouldn't really work
-> > reliably, if that register is not there.  
-> 
-> Thank you for pointing this out. I missed this difference.
-> I actually have a board with T113 SoC, and it looks like writing to
-> SPI_CCR@0x24 does nothing.
+Signed-off-by: Daniel Matyas <daniel.matyas@analog.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+ .../bindings/hwmon/adi,max31827.yaml          | 54 +++++++++++++++++++
+ MAINTAINERS                                   |  7 +++
+ 2 files changed, 61 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
 
-According to the manual, the register doesn't exist, so this would support
-this theory. Most Allwinner IP just implements non-existing registers as
-RAZ/WI.
+diff --git a/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml b/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
+new file mode 100644
+index 000000000000..2dc8b07b4d3b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
+@@ -0,0 +1,54 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/hwmon/adi,max31827.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Analog Devices MAX31827, MAX31828, MAX31829 Low-Power Temperature Switch
++
++maintainers:
++  - Daniel Matyas <daniel.matyas@analog.com>
++
++description: |
++  Analog Devices MAX31827, MAX31828, MAX31829 Low-Power Temperature Switch with
++  I2C Interface
++  https://www.analog.com/media/en/technical-documentation/data-sheets/MAX31827-MAX31829.pdf
++
++properties:
++  compatible:
++    oneOf:
++      - const: adi,max31827
++      - items:
++          - enum:
++              - adi,max31828
++              - adi,max31829
++          - const: adi,max31827
++
++  reg:
++    maxItems: 1
++
++  vref-supply:
++    description:
++      Must have values in the interval (1.6V; 3.6V) in order for the device to
++      function correctly.
++
++required:
++  - compatible
++  - reg
++  - vref-supply
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        temperature-sensor@42 {
++            compatible = "adi,max31827";
++            reg = <0x42>;
++            vref-supply = <&reg_vdd>;
++        };
++    };
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index c0cde28c62c6..91de1e95f11d 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -12618,6 +12618,13 @@ F:	Documentation/userspace-api/media/drivers/max2175.rst
+ F:	drivers/media/i2c/max2175*
+ F:	include/uapi/linux/max2175.h
+ 
++MAX31827 TEMPERATURE SWITCH DRIVER
++M:	Daniel Matyas <daniel.matyas@analog.com>
++L:	linux-hwmon@vger.kernel.org
++S:	Supported
++W:	http://ez.analog.com/community/linux-device-drivers
++F:	Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
++
+ MAX6650 HARDWARE MONITOR AND FAN CONTROLLER DRIVER
+ L:	linux-hwmon@vger.kernel.org
+ S:	Orphan
+-- 
+2.34.1
 
-> And it doesn't affect access to connected SPI NOR flash (read\write
-> operations are fine).
-
-I guess it just works with *some* (default?) clock settings then. Might be
-faster than configured, but the SPI flash chip might be fine with that.
-
-> But I completely agree with you that this difference should be handled
-> by the spi driver.
-
-As Samuel pointed out on IRC, there are patches, for the R329, using the
-same IP:
-https://lore.kernel.org/lkml/BYAPR20MB2472E8B10BFEF75E7950BBC0BCF79@BYAPR20MB2472.namprd20.prod.outlook.com/
-And he also seemed to have issues, at least with SPI-NAND on one board:
-https://lore.kernel.org/lkml/0b5b586a-3bc7-384e-103c-e40d0b2fac23@sholland.org/
-
-Can you please try these patches, and use:
-compatible = "allwinner,sun20i-d1-spi", "allwinner,sun50i-r329-spi";
-for the compatible string?
-If possible, you could revive this series, and add the D1/T113s support on
-top: just add the compatible string combo to the binding document.
-
-Cheers,
-Andre
