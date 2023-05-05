@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CD3B6F8297
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 14:08:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20EC16F829B
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 14:08:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232023AbjEEMIY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 08:08:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60006 "EHLO
+        id S231256AbjEEMI2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 08:08:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231256AbjEEMIY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 08:08:24 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D84D1163D
-        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 05:08:22 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-965ac4dd11bso327026766b.2
-        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 05:08:22 -0700 (PDT)
+        with ESMTP id S232117AbjEEMI0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 08:08:26 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FF941AEF8
+        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 05:08:24 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-956ff2399b1so311967566b.3
+        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 05:08:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683288501; x=1685880501;
+        d=linaro.org; s=google; t=1683288503; x=1685880503;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=9gBgZGB2bEIFktr1qkY6AiQNPmmdhmRh1tLggMSoGz4=;
-        b=NoHFuOHFJE782btFNmfxDrM+gE0y+XwmDdR2+aD7CCe6721pIxHon+vhykZWfdcVgM
-         FbM+o5y0qrCYjih+/SOnAnNoNkn8KZLZJZPUhj9i3QVLZ3P6YXTQb2JPlWhaJNnuzICz
-         dlyABdQ0Sexl9BM7USe6dcCgCBvJC5ZSMShIkotx5Knqq3dQdkZTHyMAiPjniMGsnHq6
-         V2P8k5xXxlYQL9sLbTfYXqAvqRsmYcWIavSVeHUiHtzxAkpfsfqY0qYD+zjrNzUtMsjo
-         f8w1efL0wkhfQwHgDqcGxPu4rfdHPxzRa0+eHUeXvdN1AhFD9b11f6ibcaSP6XTICm34
-         dQyA==
+        bh=+ed6pQ8Jv0woMB8pCe9CrwPsuj3qE7mzNeUftZwY93Q=;
+        b=zMEKt5DHn7D/+Kr5Kz4o3nV2XzCJppVOXeBQrixZksHA4cTed8yixbF999tT2h/bl0
+         tDC9I2+GjdpsMvEz6jbtglydLJIs/9BGCpXACZz7NQFucNn3YQ1WgIU6sn/auPzZcANT
+         MdwaB+FUyYKgqfx8q5pd/aFwwxMeILkIChZx7htq1a8362snsd/TyubKPsqkdc3bKR8+
+         V8qi8C1DoOVtHrCHSCFdBk97Vv5+bVUeKqsJ5yR52YshV/++67CGJlqgwL6GUyJNrneW
+         APPcj3Q+xROO5i6RCkn+35efIYJZVGRRNpKyYaPfUArjCz2MULLF/Ab5orvuIwlWq1C4
+         +2bA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683288501; x=1685880501;
+        d=1e100.net; s=20221208; t=1683288503; x=1685880503;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=9gBgZGB2bEIFktr1qkY6AiQNPmmdhmRh1tLggMSoGz4=;
-        b=Q9ncVoW+e3OrVWnPrKDGlJDp5qNOU5I+rOJkzAoWHV81qJQ9A/vhJzRWQ+ytVWTapQ
-         2tc1WZa7/qzNXNUQIZX/1NWRxtfL9N7oAJuLn2HKh1ovk3XwoPhD1yntl9OxNQGpmcmy
-         kc4VlwVVWVwL5KTUhEt4XibHpCugUVz/GESbJRVBxh4i5YqAsesUeO3r0Sops9wo6ZXm
-         8OEg4l2qG07k8Uz1iF1pNHHNjiU1fX0wc2/CGYwvmZ+ozVZV5DYgi7+BL7wJoaWjGXQ3
-         iMbQYgrzu+IM1qT86pMlB0NTMDgxu0zS6XxhpnFmY4Lya5uOh+yWZmeQZnpFWOqVRFtu
-         kurw==
-X-Gm-Message-State: AC+VfDwsiO4rWXWVfz7ZC4nSFim8p3bZASdyerSJVk9VJmVjohohjm/e
-        V4DZKQ7frnEcQl3A0W7yZGHySQ==
-X-Google-Smtp-Source: ACHHUZ6zGz6thFQpO8Q01/ymUIvqeROCHPEzLbyq2CsniFFrOKPgnph/E31HbCKXKtkk2lVtzlB/WQ==
-X-Received: by 2002:a17:906:ee84:b0:959:a9a1:589e with SMTP id wt4-20020a170906ee8400b00959a9a1589emr829109ejb.76.1683288500874;
-        Fri, 05 May 2023 05:08:20 -0700 (PDT)
+        bh=+ed6pQ8Jv0woMB8pCe9CrwPsuj3qE7mzNeUftZwY93Q=;
+        b=Lu2pKFXqRA1d/UFJtQ0fAGlFc/gL7cO8ELKdAIwPK3YZt0yD5V4ubeo5gBTZgaQArO
+         5NRDNmbnkotJx6RYkoZf9K/uzXMOItyo8G2QdHOty4Y/qZN9IDNqNVmlpOCAIXngFhbL
+         Lzr3R5Ibmaq6xfBpJAlLmjaOvtBIlQYBMvHj7o4BbMJC5mfUGVRbyMT55aus/zAIZVly
+         lRQFwcTh3JCI5gvBE1jwcESFx9pnUkjz8Rp8CrFpgcA2ypYty04eHbbmohrUD7OhY73K
+         OEPThiOe/rsJSlGTLKPuU/pFsiyMq7Jah1viFt5A23sNOpGbCkBmkOiNwuJ8p5Ujz7s8
+         dEGQ==
+X-Gm-Message-State: AC+VfDy4cToipWdD1tPOsmWMZNqeA6U/hC89DPBQxv7SMZM7fEUy29Yz
+        L1ZEX4vfjh7PFtlMYNOXRtTQcA==
+X-Google-Smtp-Source: ACHHUZ77NuLjQuDE8k4p+a4rjhRWrxqlpzjTntCrTGyBJcS5ySmwPQ4Qx7zF8dawe3ZKrzcLXmLyaQ==
+X-Received: by 2002:a17:907:26c6:b0:91f:b13f:a028 with SMTP id bp6-20020a17090726c600b0091fb13fa028mr844439ejc.34.1683288502827;
+        Fri, 05 May 2023 05:08:22 -0700 (PDT)
 Received: from krzk-bin.. ([2a02:810d:15c0:828:52e:24ce:bbc1:127d])
-        by smtp.gmail.com with ESMTPSA id ze16-20020a170906ef9000b00965ec1faf27sm457551ejb.74.2023.05.05.05.08.19
+        by smtp.gmail.com with ESMTPSA id ze16-20020a170906ef9000b00965ec1faf27sm457551ejb.74.2023.05.05.05.08.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 May 2023 05:08:20 -0700 (PDT)
+        Fri, 05 May 2023 05:08:22 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -70,9 +70,9 @@ To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 3/5] dt-bindings: nvmem: qcom,spmi-sdam: drop unneeded address/size-cells
-Date:   Fri,  5 May 2023 14:08:12 +0200
-Message-Id: <20230505120814.1057152-3-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 4/5] dt-bindings: nvmem: socionext,uniphier-efuse: drop unneeded address/size-cells
+Date:   Fri,  5 May 2023 14:08:13 +0200
+Message-Id: <20230505120814.1057152-4-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230505120814.1057152-1-krzysztof.kozlowski@linaro.org>
 References: <20230505120814.1057152-1-krzysztof.kozlowski@linaro.org>
@@ -93,26 +93,23 @@ remove redundant entries.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/devicetree/bindings/nvmem/qcom,spmi-sdam.yaml | 6 ------
- 1 file changed, 6 deletions(-)
+ .../devicetree/bindings/nvmem/socionext,uniphier-efuse.yaml    | 3 ---
+ 1 file changed, 3 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/nvmem/qcom,spmi-sdam.yaml b/Documentation/devicetree/bindings/nvmem/qcom,spmi-sdam.yaml
-index dce0c7d84ce7..cd980def97b8 100644
---- a/Documentation/devicetree/bindings/nvmem/qcom,spmi-sdam.yaml
-+++ b/Documentation/devicetree/bindings/nvmem/qcom,spmi-sdam.yaml
-@@ -25,12 +25,6 @@ properties:
-   reg:
-     maxItems: 1
+diff --git a/Documentation/devicetree/bindings/nvmem/socionext,uniphier-efuse.yaml b/Documentation/devicetree/bindings/nvmem/socionext,uniphier-efuse.yaml
+index b8bca0599c45..efccc5aacbe0 100644
+--- a/Documentation/devicetree/bindings/nvmem/socionext,uniphier-efuse.yaml
++++ b/Documentation/devicetree/bindings/nvmem/socionext,uniphier-efuse.yaml
+@@ -14,9 +14,6 @@ allOf:
+   - $ref: nvmem.yaml#
  
--  "#address-cells":
--    const: 1
+ properties:
+-  "#address-cells": true
+-  "#size-cells": true
 -
--  "#size-cells":
--    const: 1
--
-   ranges: true
+   compatible:
+     const: socionext,uniphier-efuse
  
- required:
 -- 
 2.34.1
 
