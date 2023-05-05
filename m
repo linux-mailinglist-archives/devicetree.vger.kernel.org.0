@@ -2,67 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F21286F8716
-	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 18:55:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDCAF6F8735
+	for <lists+devicetree@lfdr.de>; Fri,  5 May 2023 19:04:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231702AbjEEQz3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 12:55:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42884 "EHLO
+        id S231676AbjEEREA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 13:04:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229551AbjEEQz2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 12:55:28 -0400
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84B6D191FE;
-        Fri,  5 May 2023 09:55:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1683305726; x=1714841726;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=/M3gQoGII5mFFWeYtKEFpt2tNhHvNDZduPkof6u7PJI=;
-  b=UpHJVENn437M+n9lmiP+GLzIJOrpBDmvNpqajdiBISoz3YOFFVz69K/5
-   YDVCIytbNqnKONgQPTWKhss/W5g/QV80K3TdhmjChBNLe8Ut3rY4oruYy
-   JAzcF2TiQn+xhm7yV5c+4RDh+e36g8uAoGmhlnSo+Y1Sx+kAVo5/pWqXJ
-   3MmncCUbX5tBVazT04UjurUSiMOIv6uQA7n5gVnUMb55ez7qPECP+If/N
-   7x7/NBSBpFtOKhI1EbEwyaNbz1ABDswJkUXO3Y8TJ3PPYNPfEq9WfM22e
-   jj2y4sCQZOxo7mz9xjjySbd45LPp+PXoHbQzvJRFmOR0PIVG0iLq32NBt
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10701"; a="349289701"
-X-IronPort-AV: E=Sophos;i="5.99,252,1677571200"; 
-   d="scan'208";a="349289701"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 May 2023 09:55:26 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10701"; a="728156604"
-X-IronPort-AV: E=Sophos;i="5.99,252,1677571200"; 
-   d="scan'208";a="728156604"
-Received: from lkp-server01.sh.intel.com (HELO fe5d646e317d) ([10.239.97.150])
-  by orsmga008.jf.intel.com with ESMTP; 05 May 2023 09:55:23 -0700
-Received: from kbuild by fe5d646e317d with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1puyiI-0000lV-2P;
-        Fri, 05 May 2023 16:55:22 +0000
-Date:   Sat, 6 May 2023 00:55:10 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Andreas Klinger <ak@it-klinger.de>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     oe-kbuild-all@lists.linux.dev, Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Angel Iglesias <ang.iglesiasg@gmail.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/3] iio: pressure: Honeywell mprls0025pa pressure
- sensor
-Message-ID: <202305060054.AFXCprUA-lkp@intel.com>
-References: <ZFUC/3zBFQRBsYUk@arbad>
+        with ESMTP id S231194AbjEERD7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 13:03:59 -0400
+Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62EC7150D7
+        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 10:03:58 -0700 (PDT)
+Received: by mail-pl1-x62e.google.com with SMTP id d9443c01a7336-1aaf21bb427so14470535ad.1
+        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 10:03:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683306238; x=1685898238;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=JMDVesgAKasFsor4GeKqlCagXQ7DH3+AoXUlf3OElm8=;
+        b=bR6gi0lcTDkNWyn7wz8u78OloJBPQ6KfsiLCSKJtSrf/mwTyj4RnLq3ZZsQz1dPnbt
+         YK9sctpzPhvjPa52msOKNb71MrX9QuGHxcjpZuU8MGICBCkBa6eWB9EHqDkaXzxExAeW
+         FPSm1Tea8e42GTKd966cAYYcdLDWPu6xE/hQeQUEo8fWlHBrOmBhtHxUicyfTT6TJWZj
+         gdLsXFigde8hbfEGXnwwZxx8j5oUZBhL4nJhOrzEA9MpP5f51RJbStN4VgCurhtsSYua
+         lGPxMvVeQXhWZLel1UYlHTqXLmtDeCWCBZJiBnr6VZn0Ox3VVAsNLkc8agKkEFCtkjTl
+         ZLCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683306238; x=1685898238;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JMDVesgAKasFsor4GeKqlCagXQ7DH3+AoXUlf3OElm8=;
+        b=JvKA4R0Zr4KqihS1zwtNJiDwugoe2CMLwJ6v5QH2LJpk9NpyfvmkGan58OFeHhY/2w
+         byzDmW5Fj/6mpBKVgNpHw4O8BJJUpYq10h5RyKDaW3E+NAnGOaCtujGcui8Yz9JU4Zpy
+         IFfnXs/tUxdUTTWoapvutEfungVsQjqz/5dE2mEQ9Cd4Ivz3kHZjiKmB0T/SzyT0WKIA
+         K+gs2bvcEj6ivVfAT0VcumflhBxaQmYOOUOoJFmRZjKSAGZWNAm+psxEXfseAMckqlp/
+         VNJoeYBwpwvnwyetQZR5rGe3Iun9z/nygiVUPPKYnQRC3ojlKyadktjPQBmWqUbngQeJ
+         TMcg==
+X-Gm-Message-State: AC+VfDzH2Yg+9VvndQuAF8V34DU7Lqj+Nvu3t6C4f4yAJaExDZAGYA7K
+        s+2tfAVMvfdJiUAwTsFPFQJxEYqPJGg/l+J5dnU=
+X-Google-Smtp-Source: ACHHUZ6UMaUB3IhahmbRyxKYzoTmEg9HFyUQpdd2o5G9PGG44utHoVF+53YsCBC0g19omuVtmiHoaw==
+X-Received: by 2002:a17:902:6901:b0:1a1:956e:5417 with SMTP id j1-20020a170902690100b001a1956e5417mr1763516plk.22.1683306237785;
+        Fri, 05 May 2023 10:03:57 -0700 (PDT)
+Received: from p14s ([2604:3d09:148c:c800:fd16:b4b6:ee7c:e4e5])
+        by smtp.gmail.com with ESMTPSA id c13-20020a170902d48d00b001994fc55998sm2013388plg.217.2023.05.05.10.03.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 May 2023 10:03:57 -0700 (PDT)
+Date:   Fri, 5 May 2023 11:03:54 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] remoteproc: stm32: Allow hold boot management by
+ the SCMI reset controller
+Message-ID: <ZFU2+ni/tKOIIHbq@p14s>
+References: <20230504094641.870378-1-arnaud.pouliquen@foss.st.com>
+ <20230504094641.870378-3-arnaud.pouliquen@foss.st.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ZFUC/3zBFQRBsYUk@arbad>
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <20230504094641.870378-3-arnaud.pouliquen@foss.st.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,178 +78,159 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andreas,
+Hi Arnaud,
 
-kernel test robot noticed the following build warnings:
+On Thu, May 04, 2023 at 11:46:39AM +0200, Arnaud Pouliquen wrote:
+> The hold boot can be managed by the SCMI controller as a reset.
+> If the "hold_boot" reset is defined in the device tree, use it.
+> Else use the syscon controller directly to access to the register.
+> The support of the SMC call is deprecated but kept for legacy support.
+> 
+> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+> ---
+> Updates vs previous version
+> - keep support of the "st,syscfg-tz" property for legacy compatibility
+> - rename secured_soc in hold_boot_smc for readability
+> - add comments to explain hold boot management.
+> - update commit message
+> ---
+>  drivers/remoteproc/stm32_rproc.c | 78 +++++++++++++++++++++++---------
+>  1 file changed, 57 insertions(+), 21 deletions(-)
+> 
+> diff --git a/drivers/remoteproc/stm32_rproc.c b/drivers/remoteproc/stm32_rproc.c
+> index 7d782ed9e589..e9cf24274345 100644
+> --- a/drivers/remoteproc/stm32_rproc.c
+> +++ b/drivers/remoteproc/stm32_rproc.c
+> @@ -79,6 +79,7 @@ struct stm32_mbox {
+>  
+>  struct stm32_rproc {
+>  	struct reset_control *rst;
+> +	struct reset_control *hold_boot_rst;
+>  	struct stm32_syscon hold_boot;
+>  	struct stm32_syscon pdds;
+>  	struct stm32_syscon m4_state;
+> @@ -88,7 +89,7 @@ struct stm32_rproc {
+>  	struct stm32_rproc_mem *rmems;
+>  	struct stm32_mbox mb[MBOX_NB_MBX];
+>  	struct workqueue_struct *workqueue;
+> -	bool secured_soc;
+> +	bool hold_boot_smc;
+>  	void __iomem *rsc_va;
+>  };
+>  
+> @@ -401,13 +402,28 @@ static int stm32_rproc_set_hold_boot(struct rproc *rproc, bool hold)
+>  	struct arm_smccc_res smc_res;
+>  	int val, err;
+>  
+> +	/*
+> +	 * Three ways to manage the hold boot
+> +	 * - using SCMI: the hold boot is managed as a reset,
+> +	 * - using Linux(no SCMI): the hold boot is managed as a syscon register
+> +	 * - using SMC call (deprecated): use SMC reset interface
+> +	 */
+> +
+>  	val = hold ? HOLD_BOOT : RELEASE_BOOT;
+>  
+> -	if (IS_ENABLED(CONFIG_HAVE_ARM_SMCCC) && ddata->secured_soc) {
+> +	if (ddata->hold_boot_rst) {
+> +		/* Use the SCMI reset controller */
+> +		if (!hold)
+> +			err = reset_control_deassert(ddata->hold_boot_rst);
+> +		else
+> +			err =  reset_control_assert(ddata->hold_boot_rst);
+> +	} else if (IS_ENABLED(CONFIG_HAVE_ARM_SMCCC) && ddata->hold_boot_smc) {
+> +		/* Use the SMC call */
+>  		arm_smccc_smc(STM32_SMC_RCC, STM32_SMC_REG_WRITE,
+>  			      hold_boot.reg, val, 0, 0, 0, 0, &smc_res);
+>  		err = smc_res.a0;
+>  	} else {
+> +		/* Use syscon */
+>  		err = regmap_update_bits(hold_boot.map, hold_boot.reg,
+>  					 hold_boot.mask, val);
+>  	}
+> @@ -705,34 +721,54 @@ static int stm32_rproc_parse_dt(struct platform_device *pdev,
+>  		dev_info(dev, "wdg irq registered\n");
+>  	}
+>  
+> -	ddata->rst = devm_reset_control_get_by_index(dev, 0);
+> +	ddata->rst = devm_reset_control_get_optional(dev, "mcu_rst");
+> +	if (!ddata->rst) {
+> +		/* Try legacy fallback method: get it by index */
+> +		ddata->rst = devm_reset_control_get_by_index(dev, 0);
+> +	}
+>  	if (IS_ERR(ddata->rst))
+>  		return dev_err_probe(dev, PTR_ERR(ddata->rst),
+>  				     "failed to get mcu_reset\n");
+>  
+>  	/*
+> -	 * if platform is secured the hold boot bit must be written by
+> -	 * smc call and read normally.
+> -	 * if not secure the hold boot bit could be read/write normally
+> +	 * Three ways to manage the hold boot
+> +	 * - using SCMI: the hold boot is managed as a reset
+> +	 *    The DT "reset-mames" property should be defined with 2 items:
+> +	 *        reset-names = "mcu_rst", "hold_boot";
+> +	 * - using SMC call (deprecated): use SMC reset interface
+> +	 *    The DT "reset-mames" property is optional, "st,syscfg-tz" is required
+> +	 * - default(no SCMI, no SMC): the hold boot is managed as a syscon register
+> +	 *    The DT "reset-mames" property is optional, "st,syscfg-holdboot" is required
+>  	 */
+> -	err = stm32_rproc_get_syscon(np, "st,syscfg-tz", &tz);
+> -	if (err) {
+> -		dev_err(dev, "failed to get tz syscfg\n");
+> -		return err;
+> -	}
+>  
+> -	err = regmap_read(tz.map, tz.reg, &tzen);
+> -	if (err) {
+> -		dev_err(dev, "failed to read tzen\n");
+> -		return err;
+> +	ddata->hold_boot_rst = devm_reset_control_get_optional(dev, "hold_boot");
+> +	if (IS_ERR(ddata->hold_boot_rst)) {
+> +		if (PTR_ERR(ddata->hold_boot_rst) == -EPROBE_DEFER)
+> +			return PTR_ERR(ddata->hold_boot_rst);
 
-[auto build test WARNING on 457391b0380335d5e9a5babdec90ac53928b23b4]
+Here we know that devm_reset_control_get_optional() has returned an error that is
+not -EPROBE_DEFER and as such, I think we should return that error instead of
+continuing on with the probing.  Calling dev_err_probe() should be just fine. 
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Andreas-Klinger/dt-bindings-iio-pressure-Support-Honeywell-mprls0025pa-sensor/20230505-212836
-base:   457391b0380335d5e9a5babdec90ac53928b23b4
-patch link:    https://lore.kernel.org/r/ZFUC%2F3zBFQRBsYUk%40arbad
-patch subject: [PATCH v4 2/3] iio: pressure: Honeywell mprls0025pa pressure sensor
-config: sparc-allyesconfig (https://download.01.org/0day-ci/archive/20230506/202305060054.AFXCprUA-lkp@intel.com/config)
-compiler: sparc64-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/2e6fb6a53d15af5fb86052a7d5d64c4d343157d0
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Andreas-Klinger/dt-bindings-iio-pressure-Support-Honeywell-mprls0025pa-sensor/20230505-212836
-        git checkout 2e6fb6a53d15af5fb86052a7d5d64c4d343157d0
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sparc olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sparc SHELL=/bin/bash drivers/iio/pressure/
+Otherwise I'm good with this set.  Many thanks for the enhanced explanation.
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202305060054.AFXCprUA-lkp@intel.com/
+Mathieu
 
-All warnings (new ones prefixed by >>):
-
-   In file included from include/linux/device.h:15,
-                    from drivers/iio/pressure/mprls0025pa.c:18:
-   drivers/iio/pressure/mprls0025pa.c: In function 'mpr_read_pressure':
->> drivers/iio/pressure/mprls0025pa.c:178:30: warning: format '%u' expects argument of type 'unsigned int', but argument 4 has type 'long unsigned int' [-Wformat=]
-     178 |                 dev_err(dev, "received size doesn't fit - ret: %d / %u\n", ret,
-         |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/dev_printk.h:110:30: note: in definition of macro 'dev_printk_index_wrap'
-     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
-         |                              ^~~
-   include/linux/dev_printk.h:144:56: note: in expansion of macro 'dev_fmt'
-     144 |         dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
-         |                                                        ^~~~~~~
-   drivers/iio/pressure/mprls0025pa.c:178:17: note: in expansion of macro 'dev_err'
-     178 |                 dev_err(dev, "received size doesn't fit - ret: %d / %u\n", ret,
-         |                 ^~~~~~~
-   drivers/iio/pressure/mprls0025pa.c:178:70: note: format string is defined here
-     178 |                 dev_err(dev, "received size doesn't fit - ret: %d / %u\n", ret,
-         |                                                                     ~^
-         |                                                                      |
-         |                                                                      unsigned int
-         |                                                                     %lu
-   drivers/iio/pressure/mprls0025pa.c:221:30: warning: format '%u' expects argument of type 'unsigned int', but argument 4 has type 'long unsigned int' [-Wformat=]
-     221 |                 dev_err(dev, "received size doesn't fit - ret: %d / %u\n", ret,
-         |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/dev_printk.h:110:30: note: in definition of macro 'dev_printk_index_wrap'
-     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
-         |                              ^~~
-   include/linux/dev_printk.h:144:56: note: in expansion of macro 'dev_fmt'
-     144 |         dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
-         |                                                        ^~~~~~~
-   drivers/iio/pressure/mprls0025pa.c:221:17: note: in expansion of macro 'dev_err'
-     221 |                 dev_err(dev, "received size doesn't fit - ret: %d / %u\n", ret,
-         |                 ^~~~~~~
-   drivers/iio/pressure/mprls0025pa.c:221:70: note: format string is defined here
-     221 |                 dev_err(dev, "received size doesn't fit - ret: %d / %u\n", ret,
-         |                                                                     ~^
-         |                                                                      |
-         |                                                                      unsigned int
-         |                                                                     %lu
-
-
-vim +178 drivers/iio/pressure/mprls0025pa.c
-
-   144	
-   145	/**
-   146	 * mpr_read_pressure() - Read pressure value from sensor via I2C
-   147	 * @data: Pointer to private data struct.
-   148	 * @press: Output value read from sensor.
-   149	 *
-   150	 * Reading from the sensor by sending and receiving I2C telegrams.
-   151	 *
-   152	 * If there is an end of conversion (EOC) interrupt registered the function
-   153	 * waits for a maximum of one second for the interrupt.
-   154	 *
-   155	 * Context: The function can sleep and data->lock should be held when calling it
-   156	 * Return:
-   157	 * * 0		- OK, the pressure value could be read
-   158	 * * -ETIMEDOUT	- Timeout while waiting for the EOC interrupt or busy flag is
-   159	 *		  still set after nloops attempts of reading
-   160	 */
-   161	static int mpr_read_pressure(struct mpr_data *data, s32 *press)
-   162	{
-   163		struct device *dev = &data->client->dev;
-   164		int ret, i;
-   165		u8 wdata[] = {0xAA, 0x00, 0x00};
-   166		s32 status;
-   167		int nloops = 10;
-   168		u8 buf[5];
-   169	
-   170		reinit_completion(&data->completion);
-   171	
-   172		ret = i2c_master_send(data->client, wdata, sizeof(wdata));
-   173		if (ret < 0) {
-   174			dev_err(dev, "error while writing ret: %d\n", ret);
-   175			return ret;
-   176		}
-   177		if (ret != sizeof(wdata)) {
- > 178			dev_err(dev, "received size doesn't fit - ret: %d / %u\n", ret,
-   179									sizeof(wdata));
-   180			return -EIO;
-   181		}
-   182	
-   183		if (data->irq > 0) {
-   184			ret = wait_for_completion_timeout(&data->completion, HZ);
-   185			if (!ret) {
-   186				dev_err(dev, "timeout while waiting for eoc irq\n");
-   187				return -ETIMEDOUT;
-   188			}
-   189		} else {
-   190			/* wait until status indicates data is ready */
-   191			for (i = 0; i < nloops; i++) {
-   192				/*
-   193				 * datasheet only says to wait at least 5 ms for the
-   194				 * data but leave the maximum response time open
-   195				 * --> let's try it nloops (10) times which seems to be
-   196				 *     quite long
-   197				 */
-   198				usleep_range(5000, 10000);
-   199				status = i2c_smbus_read_byte(data->client);
-   200				if (status < 0) {
-   201					dev_err(dev,
-   202						"error while reading, status: %d\n",
-   203						status);
-   204					return status;
-   205				}
-   206				if (!(status & MPR_I2C_BUSY))
-   207					break;
-   208			}
-   209			if (i == nloops) {
-   210				dev_err(dev, "timeout while reading\n");
-   211				return -ETIMEDOUT;
-   212			}
-   213		}
-   214	
-   215		ret = i2c_master_recv(data->client, buf, sizeof(buf));
-   216		if (ret < 0) {
-   217			dev_err(dev, "error in i2c_master_recv ret: %d\n", ret);
-   218			return ret;
-   219		}
-   220		if (ret != sizeof(buf)) {
-   221			dev_err(dev, "received size doesn't fit - ret: %d / %u\n", ret,
-   222									sizeof(buf));
-   223			return -EIO;
-   224		}
-   225	
-   226		if (buf[0] & MPR_I2C_BUSY) {
-   227			/*
-   228			 * it should never be the case that status still indicates
-   229			 * business
-   230			 */
-   231			dev_err(dev, "data still not ready: %08x\n", buf[0]);
-   232			return -ETIMEDOUT;
-   233		}
-   234	
-   235		*press = get_unaligned_be24(&buf[1]);
-   236	
-   237		dev_dbg(dev, "received: %*ph cnt: %d\n", ret, buf, *press);
-   238	
-   239		return 0;
-   240	}
-   241	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+> +		ddata->hold_boot_rst = NULL;
+> +	}
+> +
+> +	if (!ddata->hold_boot_rst && IS_ENABLED(CONFIG_HAVE_ARM_SMCCC)) {
+> +		/* Manage the MCU_BOOT using SMC call */
+> +		err = stm32_rproc_get_syscon(np, "st,syscfg-tz", &tz);
+> +		if (!err) {
+> +			err = regmap_read(tz.map, tz.reg, &tzen);
+> +			if (err) {
+> +				dev_err(dev, "failed to read tzen\n");
+> +				return err;
+> +			}
+> +			ddata->hold_boot_smc = tzen & tz.mask;
+> +		}
+>  	}
+> -	ddata->secured_soc = tzen & tz.mask;
+>  
+> -	err = stm32_rproc_get_syscon(np, "st,syscfg-holdboot",
+> -				     &ddata->hold_boot);
+> -	if (err) {
+> -		dev_err(dev, "failed to get hold boot\n");
+> -		return err;
+> +	if (!ddata->hold_boot_rst && !ddata->hold_boot_smc) {
+> +		/* Default: hold boot manage it through the syscon controller */
+> +		err = stm32_rproc_get_syscon(np, "st,syscfg-holdboot",
+> +					     &ddata->hold_boot);
+> +		if (err) {
+> +			dev_err(dev, "failed to get hold boot\n");
+> +			return err;
+> +		}
+>  	}
+>  
+>  	err = stm32_rproc_get_syscon(np, "st,syscfg-pdds", &ddata->pdds);
+> -- 
+> 2.25.1
+> 
