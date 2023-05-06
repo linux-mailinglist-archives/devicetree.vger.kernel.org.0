@@ -2,104 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 93B7D6F9155
-	for <lists+devicetree@lfdr.de>; Sat,  6 May 2023 12:59:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3F726F9160
+	for <lists+devicetree@lfdr.de>; Sat,  6 May 2023 13:08:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232062AbjEFK7L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 6 May 2023 06:59:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46902 "EHLO
+        id S231489AbjEFLIM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 6 May 2023 07:08:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48928 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231978AbjEFK7K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 6 May 2023 06:59:10 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DBE159D7
-        for <devicetree@vger.kernel.org>; Sat,  6 May 2023 03:59:09 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-50bc394919cso4117195a12.2
-        for <devicetree@vger.kernel.org>; Sat, 06 May 2023 03:59:09 -0700 (PDT)
+        with ESMTP id S231976AbjEFLIK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 6 May 2023 07:08:10 -0400
+Received: from mail-yw1-x112e.google.com (mail-yw1-x112e.google.com [IPv6:2607:f8b0:4864:20::112e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C921472BC
+        for <devicetree@vger.kernel.org>; Sat,  6 May 2023 04:08:07 -0700 (PDT)
+Received: by mail-yw1-x112e.google.com with SMTP id 00721157ae682-55cc8aadc97so41275237b3.3
+        for <devicetree@vger.kernel.org>; Sat, 06 May 2023 04:08:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683370748; x=1685962748;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tW2+xJRmgdZ27ZcNr9TxMjP3bjf3obnjeQgSvhehL34=;
-        b=ZpalZUe+XDuhte7Qv99Tcs5pg/4uvbJYtbOJq2PmRGOEVNt9kwkHXlkGORrKzST9dO
-         j1F/MvxjocP4l7/Iz/LkG3BwRVDqeJ8zvnZUih6vYtNFkZI4qcfwEWQd4qy7u5K6oc3h
-         prhib9n75xxmRA+7c0wLK03PjYM5esATCosz2grt2Iw0FdtNFY3Mnt3H+Lbb0cDyipNr
-         g5WZcMgORpa6LHKatnlrqZO/Q6nTqrDjTUFZDRPZHDxEmvsuyGIZazW4yFQ1jEucoHvD
-         HRsUJWV3Lag9vln46tYyfhv1K9lfnUOp5ERFbiPCZ343o2Pe3JqGIc62oZ0LvY8aFz4J
-         ZTfw==
+        d=linaro.org; s=google; t=1683371287; x=1685963287;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=j5XlcbqFrzQXxIYxdf0VxKIx0ZoUFzqDbvv5tK0E9jE=;
+        b=cNdP/pr/9KcytvLHAV2KR7Egci52zCTCKkiPfBelrMkxfVg2Xrji0fuF9zAV7yv3vg
+         hs5EOpYp+wSYnwJCPDcDdrTmBGWmO+CHCoMHp4mo6VBaFvPm+y/NSFnT6bXajfjMmtuz
+         ojWMmcXun5Fqk94LvGIUcYHfYQRLtXQ2YhVZpXjl9MQmB4w/DAPX0TWFS+tqEs+VIwDQ
+         RVGBIjOgPqNOSXkXTNs7ThOqqZv3rPNZjJhrH6weBkHpICKta7n9r15dF/DsuyhmJoUf
+         2e+2Uqg53HIDmIXS5+OpDq139GlOVBHCnD+yI1MrIu9gCpsjL57l1AKEN7e5JbFRUk+q
+         zNlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683370748; x=1685962748;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tW2+xJRmgdZ27ZcNr9TxMjP3bjf3obnjeQgSvhehL34=;
-        b=DSll8+yEEJJh5RQUHCqCfZ2kYG2sSXtahSzroZrnOgesuGTzSi3lF1eIhN8M+VOjTv
-         xCRy2tsBp8bbsGH78W3z+nAkpm1xtLFGqC6JRgy1oY3w0pV0KPKyjTQ8LVVAqO0onQfp
-         s0k79DFCHB1Cx7WyXTvKKQ9/FAIGt77hW7vDWv09VRNm53V2HPKF76zsggz1bEdSDlNd
-         LlBCZpE5RL6Rvw8L9rA8frEKuOqXpL9LFio6bYapd3Laz6MZHm05L6yuNO8CbOEHYvBp
-         MkY6n4d2GfnVbdeuCeB1mGAAaUpfBf+3B9M5mf8g4gv80y+ftDlKWMXJb8j+9QMRWlyh
-         mX7g==
-X-Gm-Message-State: AC+VfDwGt+oDj7jo/2RDXWEJlmZ14nEAPHkoGXzl8zyBj1WkzSEBKDxb
-        QNOTLpj28yX2+EDYle1ssL6wDQ==
-X-Google-Smtp-Source: ACHHUZ7zxK0jUQk4P0Am2rVH4Uu+S39TYN8L+DrKj+fLMnpvW7dy7eMWBZgIriGBInj1X5k0EWBCqA==
-X-Received: by 2002:a17:907:97c8:b0:966:17b2:5b0b with SMTP id js8-20020a17090797c800b0096617b25b0bmr1036600ejc.49.1683370747792;
-        Sat, 06 May 2023 03:59:07 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:efe5:7c03:a10a:7a40? ([2a02:810d:15c0:828:efe5:7c03:a10a:7a40])
-        by smtp.gmail.com with ESMTPSA id z18-20020a170906715200b0094ea3a32694sm2138449ejj.190.2023.05.06.03.59.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 06 May 2023 03:59:07 -0700 (PDT)
-Message-ID: <d0329227-b579-5557-b449-7961ec0a1463@linaro.org>
-Date:   Sat, 6 May 2023 12:59:05 +0200
+        d=1e100.net; s=20221208; t=1683371287; x=1685963287;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=j5XlcbqFrzQXxIYxdf0VxKIx0ZoUFzqDbvv5tK0E9jE=;
+        b=SsKCS7YAliPOmWpw3tnT94TNxfeIvEVfFwkIwUDvyji6pXptQsxVV4FdRkZUmZbijI
+         G49Tee4Hfgc/dp9q9Kox6/Dum6tlYkPeAHyjUKwBDrxCjFMQTV/taFBWsNhNRp32a/CC
+         79uH52eMbo6hHaV8M7sftNmpvHglw8mDWTZy7IBqdq9m4mRr8qvt7ii5vmuHhOjUdXXR
+         ipyCNk1pCqgNB4XYI67R8lIKMlC+eX8ZEUIWaCzUkbgbc/oVVd9zx0/yAs+4Wrrtd9nm
+         m+2yziHmDeBuT1Z0xJncFWQkMt+ZNcQMRxmjs+rX0Lrss3Xn3dqQ4ovoN21zrM1ARYh+
+         SDQg==
+X-Gm-Message-State: AC+VfDwDXYcR8JP9m0BRfTtLd7r0IEkaaJf2QjnqHKgzUmvE+75wVf2P
+        SkhSI5jZUYNS+fl1m8R17anqgsIq7cOPm/QaH94Flw==
+X-Google-Smtp-Source: ACHHUZ6iGINkfuXu3mA7YpSLZ0z+S5X733K8fJ48YS7ZTvxkCFk9w0Uq/7dKFQuiu1WU6SIM6RHjU1LUAVNNM2nfp/M=
+X-Received: by 2002:a0d:cc09:0:b0:55a:5870:3d47 with SMTP id
+ o9-20020a0dcc09000000b0055a58703d47mr4375122ywd.26.1683371286931; Sat, 06 May
+ 2023 04:08:06 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH v2 3/4] dt-bindings: mmc: fsl-imx-esdhc: remove property
- "fsl,wp-controller"
-Content-Language: en-US
-To:     haibo.chen@nxp.com, adrian.hunter@intel.com,
-        ulf.hansson@linaro.org, linux-mmc@vger.kernel.org,
+References: <cover.1683183860.git.quic_varada@quicinc.com> <8894bf2c44eaf4959c7a1966b66229e6cf5cda96.1683183860.git.quic_varada@quicinc.com>
+ <CAA8EJppvj2nzqwdsC+Xct4cJg2-_yPpiGDELjHJG4HyAH3zGMA@mail.gmail.com> <958fec66-2978-1d45-baad-c735fab85108@linaro.org>
+In-Reply-To: <958fec66-2978-1d45-baad-c735fab85108@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Sat, 6 May 2023 14:07:56 +0300
+Message-ID: <CAA8EJpqEk=dQkChFh3HaTuTpO3wsebS8_p4RH-1_JrWoS_HbeQ@mail.gmail.com>
+Subject: Re: [PATCH v10 8/9] arm64: dts: qcom: ipq9574: Add LDO regulator node
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Varadarajan Narayanan <quic_varada@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, vkoul@kernel.org, kishon@kernel.org,
         robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de
-Cc:     linux-imx@nxp.com, kernel@pengutronix.de, festevam@gmail.com,
-        cniedermaier@dh-electronics.com, devicetree@vger.kernel.org,
-        kernel@dh-electronics.com
-References: <20230506074037.522961-1-haibo.chen@nxp.com>
- <20230506074037.522961-4-haibo.chen@nxp.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230506074037.522961-4-haibo.chen@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        gregkh@linuxfoundation.org, mturquette@baylibre.com,
+        sboyd@kernel.org, quic_wcheng@quicinc.com,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/05/2023 09:40, haibo.chen@nxp.com wrote:
-> From: Haibo Chen <haibo.chen@nxp.com>
-> 
-> Driver do not use this property, so remove it here.
+On Fri, 5 May 2023 at 22:26, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>
+>
+>
+> On 5.05.2023 11:29, Dmitry Baryshkov wrote:
+> > On Fri, 5 May 2023 at 11:23, Varadarajan Narayanan
+> > <quic_varada@quicinc.com> wrote:
+> >>
+> >> Add LDO regulator node
+> >
+> > As this LDO is provided by the PMIC, it would be nice to know why it
+> > is modelled as an always-on regulator instead of the proper PMIC
+> > regulator. Up to now we were doing this only for the outstanding power
+> > rails like CX/MX or EBI.
+> (which we then stopped registering as regulators and started
+> to manage through rpm(h)pd drivers and the genpd framework)
 
-You still need to expand the commit msg and justify why this property is
-being removed. "Driver" is vague, as it can be BSD driver which also
-might use this binding. Instead describe why this property should be
-removed, so we can understand also ABI implications.
+I mean having regulator-fixed s4a on sm8250 in addition to the CX
+genpd, because some of the parts really expect to have a regulator.
+But anyway, we are getting away from the subj. Let's wait for the
+answer from Varadarajan.
 
-> 
-> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
-> 
-> ---
-> v2:
-> -fix dt-binding-check issue, also remove "fsl,wp-controller" in examples.
-> ---
->  Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml | 6 ------
->  1 file changed, 6 deletions(-)
+>
+> Konrad
+> >
+> >>
+> >> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> >> ---
+> >>  Changes in v10:
+> >>         - Add LDO regulator node
+> >> ---
+> >>  arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts | 7 +++++++
+> >>  1 file changed, 7 insertions(+)
+> >>
+> >> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
+> >> index bdc1434..1f5d14f 100644
+> >> --- a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
+> >> +++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
+> >> @@ -60,6 +60,13 @@
+> >>                         regulator-min-microvolt = <725000>;
+> >>                         regulator-max-microvolt = <1075000>;
+> >>                 };
+> >> +
+> >> +               mp5496_l2: l2 {
+> >> +                       regulator-min-microvolt = <1800000>;
+> >> +                       regulator-max-microvolt = <1800000>;
+> >> +                       regulator-boot-on;
+> >> +                       regulator-always-on;
+> >> +               };
+> >>         };
+> >>  };
 
-Best regards,
-Krzysztof
-
+-- 
+With best wishes
+Dmitry
