@@ -2,202 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA0266F8F34
-	for <lists+devicetree@lfdr.de>; Sat,  6 May 2023 08:34:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80AEB6F8F36
+	for <lists+devicetree@lfdr.de>; Sat,  6 May 2023 08:37:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230359AbjEFGej (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 6 May 2023 02:34:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45652 "EHLO
+        id S230443AbjEFGhE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 6 May 2023 02:37:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230339AbjEFGei (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 6 May 2023 02:34:38 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1FF84481
-        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 23:34:36 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-965ddb2093bso248442166b.2
-        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 23:34:36 -0700 (PDT)
+        with ESMTP id S230432AbjEFGhD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 6 May 2023 02:37:03 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F55926A5
+        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 23:37:02 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9619095f479so412475466b.1
+        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 23:37:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683354875; x=1685946875;
+        d=linaro.org; s=google; t=1683355020; x=1685947020;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=RxlqWXbCB9qr1p9Srs8bmWLYx1r4gaKppnNXXKsVBOw=;
-        b=vMl4RM/Y5I7xBLeUDS6EUKD2BuXH6c7JFV5VvXmOY9Pw9ZaCtf5O6zBiawSVJQSTL1
-         GiEtKsoUDcMk7QX1xwK64nXePrsxP5kT9Nrao9Wlpz2DkAUlXPmCom04jmdZe/ySaOVs
-         eIrFlvJgA+I/xR7nMEtSxTprKjsFGnFq+zXYMujhMdk2PpDD+b7QZJj+pkVomhol5uxS
-         TXFhWWUNqfUIS29nh9ikSFYbYz00gcfTfdEjdia0c9QWNIvRU42ZIRC+vGh8GBulBm8w
-         pYERT5gAsxR3fNkL0QlMesZgDsrUBNkkFhKH6a3A3BiXf//WXWMxDhRl1bMzNZtU8WoE
-         SHDw==
+        bh=LZboJ2AcfG2i+m7KR3oj9UG4okF7V9oFRqLJdVeXu00=;
+        b=sqbK77gE/K8uGJnG0euiLgrOb+mQ/Qlj5CbLADFYpxePtOAkIMAxoq+w+hbr7Q2sM4
+         XkzlWFQAQ7xP/SZAqN7VYSbShQRw7+0p/qP6QopCRolXqABRSnDBpNjCZiWoI0vRVtyB
+         Uf3eG/QyBpiafVW1B08egphgKgEdYrPONezlb4u/boLf4A1B9txWBP0Avvag1aEFJtRR
+         dOo1mUwIdeFm5QudDdDFHlyWyHoxKpCw9qvq0UWYxOHcTm68zF1FV8POR28jHVBnHmOh
+         hWQV9ItVOcI1QDD+sj42uYt20ud75AOro6KjWMYqE8Bxe0gQRCmZjZgo7pgxJA3CR+Uy
+         YaHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683354875; x=1685946875;
+        d=1e100.net; s=20221208; t=1683355020; x=1685947020;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RxlqWXbCB9qr1p9Srs8bmWLYx1r4gaKppnNXXKsVBOw=;
-        b=EYxEAdsbF6ij6zQNXXZ+FB6c3lWqC1rIQylquOKk78nF4R3xwwmVWJJK3EPlhrgsCt
-         ZDCSaP1mVuXillaypmsrwCQsU78iB2zsbvNyx9SEDxsQ3sMaEvQmPrRXT8rFRmcwstC2
-         vP/DktKzhFbHfzX2FWX6D06FdNKlabmDKPImblc0SZIRkpaCVz99btAmRSTj72HfU7vh
-         GkklS5/ufQttxm/+hV5j4nfAPwO50nba7jyZDh4H3i1NKcznziY9T0c6JcjzCLABN+0S
-         X+5l+/PqBPW6I7gyTEvlZbvrCs4TKkuCq615JnpAicJuzxYFsmSv8rl01F5J+gV1UUiN
-         bHPA==
-X-Gm-Message-State: AC+VfDxUDdc704+9cAXiF7JumwlvVX+AdjkxcJJH8qLy97FrhZ01O4mK
-        XUadxhdgWPOIqK8MHF1JskIFSw==
-X-Google-Smtp-Source: ACHHUZ65luJLR1eolPcDXVXLAvHlNGfoRtWRoGn/G/UYxJTx9D5P1y3kZJxUkigUvNLdNb9VTnyGxg==
-X-Received: by 2002:a17:907:1c05:b0:930:f953:9608 with SMTP id nc5-20020a1709071c0500b00930f9539608mr4107389ejc.0.1683354875384;
-        Fri, 05 May 2023 23:34:35 -0700 (PDT)
+        bh=LZboJ2AcfG2i+m7KR3oj9UG4okF7V9oFRqLJdVeXu00=;
+        b=fdZY0rEj3f4Bd92Eqbk47J4PW9XyzRaF+PgpUEnuhme4FcUstMYHoSweGzqa8c84QM
+         10jXnrbtG24li7k8bk7Io+CYQuH8NkGAkLSS8SI8IFyrjUvZtO1aPANJAQdbbPkah0f6
+         zNkhY13c4uFTW3WyC2Jxb5R47ErOkKRfRL4Sa+itZexCZMZKJgcNndbHaD7u0ZyBV39O
+         PDsLyvmBAezgHwb4trU0nllm3XYdMGzF+Uf/R6vpe+Ba//32ixD4qEwORhjVF8eR70yO
+         Avle0/4a9+vIPiv8mKnIbumutCYk2uBMTYmUBPzDDe6bR5K6s8D5oj0Jyyt3G59JIfRk
+         FMMA==
+X-Gm-Message-State: AC+VfDxPzgeqMgPG1prhf6PWk09liXTO6ZDRxKfcRw14POwzrzBnm8bV
+        qtfdJp0mf8oKCcYjpiL0cE5Dhg==
+X-Google-Smtp-Source: ACHHUZ6qBIwFNcX8Zed88zdfNbAP4yo52ji/k3Ood5s46VKsgf9BnrXEsBtmR9pEExyp9J+3tD07eA==
+X-Received: by 2002:a17:907:97ce:b0:94f:80d6:b825 with SMTP id js14-20020a17090797ce00b0094f80d6b825mr3954375ejc.19.1683355020499;
+        Fri, 05 May 2023 23:37:00 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:efe5:7c03:a10a:7a40? ([2a02:810d:15c0:828:efe5:7c03:a10a:7a40])
-        by smtp.gmail.com with ESMTPSA id kj26-20020a170907765a00b009584c5bcbc7sm1861776ejc.49.2023.05.05.23.34.33
+        by smtp.gmail.com with ESMTPSA id e5-20020a170906844500b0095fd0462695sm1890949ejy.5.2023.05.05.23.36.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 May 2023 23:34:34 -0700 (PDT)
-Message-ID: <a544409a-7b65-820c-2b48-48207c55aa7e@linaro.org>
-Date:   Sat, 6 May 2023 08:34:33 +0200
+        Fri, 05 May 2023 23:37:00 -0700 (PDT)
+Message-ID: <4909ddbf-12bb-c082-7c47-e6607678db6b@linaro.org>
+Date:   Sat, 6 May 2023 08:36:58 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
-Subject: Re: [PATCH 1/2] dt-bindings: nvmem: add binding doc for i.MX
- OCOTP/ELE
+Subject: Re: [PATCH v2 3/4] dt-bindings: mmc: fsl-imx-esdhc: remove property
+ "fsl,wp-controller"
 Content-Language: en-US
-To:     Peng Fan <peng.fan@nxp.com>,
-        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        "srinivas.kandagatla@linaro.org" <srinivas.kandagatla@linaro.org>,
+To:     Bough Chen <haibo.chen@nxp.com>,
+        "adrian.hunter@intel.com" <adrian.hunter@intel.com>,
+        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
         "robh+dt@kernel.org" <robh+dt@kernel.org>,
         "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-Cc:     "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
+Cc:     dl-linux-imx <linux-imx@nxp.com>,
         "kernel@pengutronix.de" <kernel@pengutronix.de>,
         "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
+        "cniedermaier@dh-electronics.com" <cniedermaier@dh-electronics.com>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20230505091733.1819521-1-peng.fan@oss.nxp.com>
- <bb3d374d-0dc1-cf15-2458-f294c5ef23fd@linaro.org>
- <c7f11b40-e4d7-3c4e-53d7-6549f840b702@linaro.org>
- <DU0PR04MB9417AE9BA8F91B2E06DB09BF88739@DU0PR04MB9417.eurprd04.prod.outlook.com>
+        "kernel@dh-electronics.com" <kernel@dh-electronics.com>
+References: <20230505101246.289278-1-haibo.chen@nxp.com>
+ <fe8c1063-b8d4-1707-5434-89b3d1edf1a8@linaro.org>
+ <DB7PR04MB401046EF6FFFB367BFE4741090739@DB7PR04MB4010.eurprd04.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <DU0PR04MB9417AE9BA8F91B2E06DB09BF88739@DU0PR04MB9417.eurprd04.prod.outlook.com>
+In-Reply-To: <DB7PR04MB401046EF6FFFB367BFE4741090739@DB7PR04MB4010.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/05/2023 04:58, Peng Fan wrote:
->> Subject: Re: [PATCH 1/2] dt-bindings: nvmem: add binding doc for i.MX
->> OCOTP/ELE
+On 06/05/2023 04:37, Bough Chen wrote:
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Sent: 2023年5月6日 1:48
+>> To: Bough Chen <haibo.chen@nxp.com>; adrian.hunter@intel.com;
+>> ulf.hansson@linaro.org; linux-mmc@vger.kernel.org; robh+dt@kernel.org;
+>> krzysztof.kozlowski+dt@linaro.org; shawnguo@kernel.org;
+>> s.hauer@pengutronix.de
+>> Cc: dl-linux-imx <linux-imx@nxp.com>; kernel@pengutronix.de;
+>> festevam@gmail.com; cniedermaier@dh-electronics.com;
+>> devicetree@vger.kernel.org; kernel@dh-electronics.com
+>> Subject: Re: [PATCH v2 3/4] dt-bindings: mmc: fsl-imx-esdhc: remove property
+>> "fsl,wp-controller"
 >>
->> On 05/05/2023 14:01, Krzysztof Kozlowski wrote:
->>> On 05/05/2023 11:17, Peng Fan (OSS) wrote:
->>>> From: Peng Fan <peng.fan@nxp.com>
->>>>
->>>> There are two parts of i.MX93 OCOTP, with 1st part Fuse shadow
->>>> block(fsb), 2nd part managed by ELE firmware. This binding doc supports
->> both.
+>> On 05/05/2023 12:12, haibo.chen@nxp.com wrote:
+>>> From: Haibo Chen <haibo.chen@nxp.com>
 >>>
->>> Subject: drop second/last, redundant "binding doc for". The
->>> "dt-bindings" prefix is already stating that these are bindings and
->>> documentation.
->>>
->>>>
->>>> Signed-off-by: Peng Fan <peng.fan@nxp.com>
->>>> ---
->>>>  .../bindings/nvmem/imx-ocotp-ele.yaml         | 65 +++++++++++++++++++
->>>>  1 file changed, 65 insertions(+)
->>>>  create mode 100644
->>>> Documentation/devicetree/bindings/nvmem/imx-ocotp-ele.yaml
->>>>
->>>> diff --git
->>>> a/Documentation/devicetree/bindings/nvmem/imx-ocotp-ele.yaml
->>>> b/Documentation/devicetree/bindings/nvmem/imx-ocotp-ele.yaml
->>>> new file mode 100644
->>>> index 000000000000..024594a2bcb4
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/nvmem/imx-ocotp-ele.yaml
->>>
->>> Filename matching compatible style. fsl,imx93-ocotp.yaml
->>>
->>>
->>>> @@ -0,0 +1,65 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
->>>> +---
->>>> +$id:
->>>>
->> +https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdev
->>>> +icetree.org%2Fschemas%2Fnvmem%2Fimx-ocotp-
->> ele.yaml%23&data=05%7C01%7
->>>>
->> +Cpeng.fan%40nxp.com%7Cd779f2b1abe94a0d493208db4d618fd9%7C686e
->> a1d3bc2
->>>>
->> +b4c6fa92cd99c5c301635%7C0%7C0%7C638188853636582816%7CUnknown
->> %7CTWFpb
->>>>
->> +GZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXV
->> CI6M
->>>>
->> +n0%3D%7C3000%7C%7C%7C&sdata=2uIFOmUqlbgPIRasl%2FyO0CdZAFPhV
->> 2qpHnhwKB
->>>> +OZ008%3D&reserved=0
->>>> +$schema:
->>>>
->> +https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdev
->>>> +icetree.org%2Fmeta-
->> schemas%2Fcore.yaml%23&data=05%7C01%7Cpeng.fan%40
->>>>
->> +nxp.com%7Cd779f2b1abe94a0d493208db4d618fd9%7C686ea1d3bc2b4c6f
->> a92cd99
->>>>
->> +c5c301635%7C0%7C0%7C638188853636582816%7CUnknown%7CTWFpbG
->> Zsb3d8eyJWI
->>>>
->> +joiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7
->> C3000
->>>>
->> +%7C%7C%7C&sdata=iKJpzjsi7TuqxDim7sUjHmwFR1eK9hFNp2ygMap9bq8%
->> 3D&reser
->>>> +ved=0
->>>> +
->>>> +title: NXP i.MX9 On-Chip OTP Controller (OCOTP)
->>>> +
->>>> +maintainers:
->>>> +  - Peng Fan <peng.fan@nxp.com>
->>>> +
->>>> +allOf:
->>>> +  - $ref: nvmem.yaml#
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    oneOf:
->>>> +      - items:
->>>> +          - const: fsl,imx93-ocotp-fsb
->>>> +          - const: syscon
->>>> +      - items:
->>>> +          - const: fsl,imx93-ocotp-ele
->>>> +
+>>> Driver do not use this property, so remove it here.
 >>
->> Actually this is the same as existing bindings. Just squash it.
+>> That's not true, it uses. I got only patch #3 and nothing else.
 > 
-> You mean add the compatible to imx-ocotp.yaml?
+> This v2 patch only fix a dt-check error, for patch1,2,4, still not get comments, so I do not send out to avoid noise.
 
-I missed this file, I was thinking about mxs, but sure, can go to imx.
-All of them are the same...
+So while sending a patchset of 4 patches you skipped 1+2+4? This does
+not make sense. Send entire patchset.
 
-> 
->>
->> However I wonder - why this is syscon?
-> 
-> Someone may wanna to use syscon_to_regmap?
-> I just follow imx-ocotp.yaml.
-
-That's not a good reason to add syscon. Drop it.
+The patch by itself, without context, is incorrect and not justified.
 
 Best regards,
 Krzysztof
