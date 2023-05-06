@@ -2,641 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3ACDB6F90AB
-	for <lists+devicetree@lfdr.de>; Sat,  6 May 2023 10:55:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CBE36F90BB
+	for <lists+devicetree@lfdr.de>; Sat,  6 May 2023 11:01:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230209AbjEFIzU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 6 May 2023 04:55:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40618 "EHLO
+        id S231226AbjEFJBa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 6 May 2023 05:01:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229527AbjEFIzT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 6 May 2023 04:55:19 -0400
-Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A923483FD
-        for <devicetree@vger.kernel.org>; Sat,  6 May 2023 01:55:17 -0700 (PDT)
-Received: by mail-pl1-x629.google.com with SMTP id d9443c01a7336-1aad5245571so17938675ad.1
-        for <devicetree@vger.kernel.org>; Sat, 06 May 2023 01:55:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=huaqin-corp-partner-google-com.20221208.gappssmtp.com; s=20221208; t=1683363317; x=1685955317;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZTDLWztyx6gi0W8qzn4U19R9BmkeEI4J/bQrlnE0vDU=;
-        b=i2OrIQAaC/Fto7u3973OCUsutrzhHGBlnqq2EsqXd9kL/WgzGUYl7r17Hb0nAldtpQ
-         h7B7BXXub6wvWxOYNL7eY/Hef7ilFaTvGOaNBkItapexyJymbsPyK1rTGjiTv/9qXCbS
-         CaS29C6F+ZyH1IPZO+37AW3hXopLi8M4yJUqIsubZDTbtkzt3PjrIhA1IhoVKCC9n9fk
-         Gx5r7BybdbEdzWFPx+kc1YOYaylWj31L24117LybglmZqldau5oM9yKvrn/6bq8ZJolm
-         /RzvMB+HsAZkut/JOEC1A0gOSo9G32Oi7RikE44MokZLNAZlsS4y1PJ2crinc0m3AFr+
-         SuNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683363317; x=1685955317;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ZTDLWztyx6gi0W8qzn4U19R9BmkeEI4J/bQrlnE0vDU=;
-        b=C85zajcENHbzEiqgdcjNPJXUmbXtAGU7r4v7MZ4bCn2UxesSCVLJzWrJR458OSI1P5
-         wbtPhg+bvj+wOPDhwVWi50iiXYlk0WdGTkknlhN4GoxVIKRnVsIcxTJJLiG4YyZ14weA
-         pNTy9a/9dE4RSE2bHMZ0xWdXOv6puoZXaBh6jIaG3YQOG+DOByrxeVyx5ZF40Ao9dlYG
-         kaUkngsRgeW+M28jUw654w56LlpT6C2qNxUtJu2/4os0Oaxg/9gEQ4jJeK1nSX8g/Msx
-         XSKnf6as2fdIJkIzIjjxuXkpcKdaT3uXXNjbNTZI1tIKUKraCrdwtqCBTeV0ggMHPqMu
-         Q4Lw==
-X-Gm-Message-State: AC+VfDzTBMQpnO/dKnbuuvkWtqWQjdRgSHNFX1iqP0255l2sBk/f+ZMr
-        XE6THxkMTzWDL3l9mKHa1b2nuA==
-X-Google-Smtp-Source: ACHHUZ4ncKU5AkF0vUGdTKtOwdhErZfEMBLgbxaSPADvevfUdu+zD+csrcH9kEtXEVkQIpqM8ybrkA==
-X-Received: by 2002:a17:903:1103:b0:1ab:d89:5ef6 with SMTP id n3-20020a170903110300b001ab0d895ef6mr4454311plh.68.1683363317036;
-        Sat, 06 May 2023 01:55:17 -0700 (PDT)
-Received: from yc.huaqin.com ([101.78.151.214])
-        by smtp.gmail.com with ESMTPSA id a6-20020a170902b58600b001aaecb74f82sm3096381pls.72.2023.05.06.01.55.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 06 May 2023 01:55:16 -0700 (PDT)
-From:   Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-To:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@linux.ie,
-        daniel@ffwll.ch, dianders@google.com, hsinyi@google.com
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-Subject: [PATCH] drm/panel: Modify innolux hj110iz panel inital code
-Date:   Sat,  6 May 2023 16:54:15 +0800
-Message-Id: <20230506085415.469400-1-yangcong5@huaqin.corp-partner.google.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S231553AbjEFJB0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 6 May 2023 05:01:26 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C4A0729A;
+        Sat,  6 May 2023 02:01:24 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 8569D24DEF0;
+        Sat,  6 May 2023 17:01:17 +0800 (CST)
+Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Sat, 6 May
+ 2023 17:01:17 +0800
+Received: from SD-Server.starfivetech.com (183.27.98.219) by
+ EXMBX168.cuchost.com (172.16.6.78) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.42; Sat, 6 May 2023 17:01:16 +0800
+From:   Walker Chen <walker.chen@starfivetech.com>
+To:     Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Walker Chen <walker.chen@starfivetech.com>
+CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+Subject: [PATCH v3 0/3]  Add TDM audio on StarFive JH7110
+Date:   Sat, 6 May 2023 17:01:13 +0800
+Message-ID: <20230506090116.9206-1-walker.chen@starfivetech.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UPPERCASE_50_75 autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [183.27.98.219]
+X-ClientProxiedBy: EXCAS061.cuchost.com (172.16.6.21) To EXMBX168.cuchost.com
+ (172.16.6.78)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Optimize flickering problem and power off sequence GOP timing at sleep in mode.
-When display sleep in raise the potential of all GOP signals to VGHO and then
-lower to GND.
+This patchset adds TDM audio driver for the StarFive JH7110 SoC. The
+first patch adds device tree binding for TDM module. The second patch
+adds tdm driver support for JH7110 SoC. The last patch adds device node
+of tdm and sound card to JH7110 dts.
 
-Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+The series has been tested on the VisionFive 2 board by plugging an
+audio expansion board. 
+
+For more information of audio expansion board, you can take a look
+at the following webpage:
+https://wiki.seeedstudio.com/ReSpeaker_2_Mics_Pi_HAT/
+
+Changes since v2:
+- Use dt-overlay to describe sound card because need to plug the audio
+  expansion board into the VisionFive2 board.
+- Modified the coding style for driver.
+- Moved assignment of stop_dma_first to startup function of dai_driver.
+- Dropped some useless macro definition.
+- Use loops to get/enable/disable clocks. 
+
+Changes since v1:
+- Rebased on Linux 6.3-rc4.
+- Added the dts file dedicated to describe audio card.
+- Added the item for JH7110 audio board to the dt-binding of StarFive
+  SoC-based boards.
+
 ---
- .../gpu/drm/panel/panel-boe-tv101wum-nl6.c    | 391 +++++++++++-------
- 1 file changed, 232 insertions(+), 159 deletions(-)
+v2: https://lore.kernel.org/all/20230420024118.22677-1-walker.chen@starfivetech.com/
+v1: https://lore.kernel.org/all/20230329153320.31390-1-walker.chen@starfivetech.com/
 
-diff --git a/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c b/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c
-index 783234ae0f57..9c2561e4ed0f 100644
---- a/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c
-+++ b/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c
-@@ -451,11 +451,14 @@ static const struct panel_init_cmd inx_hj110iz_init_cmd[] = {
- 	_INIT_DCS_CMD(0xFF, 0x20),
- 	_INIT_DCS_CMD(0xFB, 0x01),
- 	_INIT_DCS_CMD(0x05, 0xD1),
--	_INIT_DCS_CMD(0x0D, 0x63),
--	_INIT_DCS_CMD(0x07, 0x8C),
-+	_INIT_DCS_CMD(0x06, 0xC0),
-+	_INIT_DCS_CMD(0x07, 0x87),
- 	_INIT_DCS_CMD(0x08, 0x4B),
-+
-+	_INIT_DCS_CMD(0x0D, 0x63),
- 	_INIT_DCS_CMD(0x0E, 0x91),
- 	_INIT_DCS_CMD(0x0F, 0x69),
-+	_INIT_DCS_CMD(0x94, 0x00),
- 	_INIT_DCS_CMD(0x95, 0xF5),
- 	_INIT_DCS_CMD(0x96, 0xF5),
- 	_INIT_DCS_CMD(0x9D, 0x00),
-@@ -463,98 +466,96 @@ static const struct panel_init_cmd inx_hj110iz_init_cmd[] = {
- 	_INIT_DCS_CMD(0x69, 0x98),
- 	_INIT_DCS_CMD(0x75, 0xA2),
- 	_INIT_DCS_CMD(0x77, 0xB3),
-+
-+	_INIT_DCS_CMD(0x58, 0x43),
- 	_INIT_DCS_CMD(0xFF, 0x24),
- 	_INIT_DCS_CMD(0xFB, 0x01),
- 	_INIT_DCS_CMD(0x91, 0x44),
--	_INIT_DCS_CMD(0x92, 0x7A),
--	_INIT_DCS_CMD(0x93, 0x1A),
--	_INIT_DCS_CMD(0x94, 0x40),
--	_INIT_DCS_CMD(0x9A, 0x08),
-+	_INIT_DCS_CMD(0x92, 0x4C),
-+	_INIT_DCS_CMD(0x94, 0x86),
- 	_INIT_DCS_CMD(0x60, 0x96),
- 	_INIT_DCS_CMD(0x61, 0xD0),
- 	_INIT_DCS_CMD(0x63, 0x70),
--	_INIT_DCS_CMD(0xC2, 0xCF),
--	_INIT_DCS_CMD(0x9B, 0x0F),
--	_INIT_DCS_CMD(0x9A, 0x08),
-+	_INIT_DCS_CMD(0xC2, 0xCA),
-+
- 	_INIT_DCS_CMD(0x00, 0x03),
- 	_INIT_DCS_CMD(0x01, 0x03),
- 	_INIT_DCS_CMD(0x02, 0x03),
--	_INIT_DCS_CMD(0x03, 0x03),
--	_INIT_DCS_CMD(0x04, 0x03),
--	_INIT_DCS_CMD(0x05, 0x03),
--	_INIT_DCS_CMD(0x06, 0x22),
--	_INIT_DCS_CMD(0x07, 0x06),
--	_INIT_DCS_CMD(0x08, 0x00),
--	_INIT_DCS_CMD(0x09, 0x1D),
--	_INIT_DCS_CMD(0x0A, 0x1C),
--	_INIT_DCS_CMD(0x0B, 0x13),
--	_INIT_DCS_CMD(0x0C, 0x12),
--	_INIT_DCS_CMD(0x0D, 0x11),
--	_INIT_DCS_CMD(0x0E, 0x10),
--	_INIT_DCS_CMD(0x0F, 0x0F),
--	_INIT_DCS_CMD(0x10, 0x0E),
--	_INIT_DCS_CMD(0x11, 0x0D),
--	_INIT_DCS_CMD(0x12, 0x0C),
-+	_INIT_DCS_CMD(0x03, 0x29),
-+	_INIT_DCS_CMD(0x04, 0x22),
-+	_INIT_DCS_CMD(0x05, 0x22),
-+	_INIT_DCS_CMD(0x06, 0x0B),
-+	_INIT_DCS_CMD(0x07, 0x1D),
-+	_INIT_DCS_CMD(0x08, 0x1C),
-+	_INIT_DCS_CMD(0x09, 0x05),
-+	_INIT_DCS_CMD(0x0A, 0x08),
-+	_INIT_DCS_CMD(0x0B, 0x09),
-+	_INIT_DCS_CMD(0x0C, 0x0A),
-+	_INIT_DCS_CMD(0x0D, 0x0C),
-+	_INIT_DCS_CMD(0x0E, 0x0D),
-+	_INIT_DCS_CMD(0x0F, 0x0E),
-+	_INIT_DCS_CMD(0x10, 0x0F),
-+	_INIT_DCS_CMD(0x11, 0x10),
-+	_INIT_DCS_CMD(0x12, 0x11),
- 	_INIT_DCS_CMD(0x13, 0x04),
--	_INIT_DCS_CMD(0x14, 0x03),
-+	_INIT_DCS_CMD(0x14, 0x00),
- 	_INIT_DCS_CMD(0x15, 0x03),
- 	_INIT_DCS_CMD(0x16, 0x03),
- 	_INIT_DCS_CMD(0x17, 0x03),
- 	_INIT_DCS_CMD(0x18, 0x03),
--	_INIT_DCS_CMD(0x19, 0x03),
--	_INIT_DCS_CMD(0x1A, 0x03),
--	_INIT_DCS_CMD(0x1B, 0x03),
--	_INIT_DCS_CMD(0x1C, 0x22),
--	_INIT_DCS_CMD(0x1D, 0x06),
--	_INIT_DCS_CMD(0x1E, 0x00),
--	_INIT_DCS_CMD(0x1F, 0x1D),
--	_INIT_DCS_CMD(0x20, 0x1C),
--	_INIT_DCS_CMD(0x21, 0x13),
--	_INIT_DCS_CMD(0x22, 0x12),
--	_INIT_DCS_CMD(0x23, 0x11),
--	_INIT_DCS_CMD(0x24, 0x10),
--	_INIT_DCS_CMD(0x25, 0x0F),
--	_INIT_DCS_CMD(0x26, 0x0E),
--	_INIT_DCS_CMD(0x27, 0x0D),
--	_INIT_DCS_CMD(0x28, 0x0C),
-+	_INIT_DCS_CMD(0x19, 0x29),
-+	_INIT_DCS_CMD(0x1A, 0x22),
-+	_INIT_DCS_CMD(0x1B, 0x22),
-+	_INIT_DCS_CMD(0x1C, 0x0B),
-+	_INIT_DCS_CMD(0x1D, 0x1D),
-+	_INIT_DCS_CMD(0x1E, 0x1C),
-+	_INIT_DCS_CMD(0x1F, 0x05),
-+	_INIT_DCS_CMD(0x20, 0x08),
-+	_INIT_DCS_CMD(0x21, 0x09),
-+	_INIT_DCS_CMD(0x22, 0x0A),
-+	_INIT_DCS_CMD(0x23, 0x0C),
-+	_INIT_DCS_CMD(0x24, 0x0D),
-+	_INIT_DCS_CMD(0x25, 0x0E),
-+	_INIT_DCS_CMD(0x26, 0x0F),
-+	_INIT_DCS_CMD(0x27, 0x10),
-+	_INIT_DCS_CMD(0x28, 0x11),
- 	_INIT_DCS_CMD(0x29, 0x04),
--	_INIT_DCS_CMD(0x2A, 0x03),
-+	_INIT_DCS_CMD(0x2A, 0x00),
- 	_INIT_DCS_CMD(0x2B, 0x03),
- 
--	_INIT_DCS_CMD(0x2F, 0x05),
--	_INIT_DCS_CMD(0x30, 0x32),
--	_INIT_DCS_CMD(0x31, 0x43),
--	_INIT_DCS_CMD(0x33, 0x05),
--	_INIT_DCS_CMD(0x34, 0x32),
--	_INIT_DCS_CMD(0x35, 0x43),
--	_INIT_DCS_CMD(0x37, 0x44),
--	_INIT_DCS_CMD(0x38, 0x40),
-+	_INIT_DCS_CMD(0x2F, 0x0A),
-+	_INIT_DCS_CMD(0x30, 0x35),
-+	_INIT_DCS_CMD(0x37, 0xA7),
- 	_INIT_DCS_CMD(0x39, 0x00),
--	_INIT_DCS_CMD(0x3A, 0x18),
--	_INIT_DCS_CMD(0x3B, 0x00),
--	_INIT_DCS_CMD(0x3D, 0x93),
--	_INIT_DCS_CMD(0xAB, 0x44),
--	_INIT_DCS_CMD(0xAC, 0x40),
-+	_INIT_DCS_CMD(0x3A, 0x46),
-+	_INIT_DCS_CMD(0x3B, 0x32),
-+	_INIT_DCS_CMD(0x3D, 0x12),
-+
-+	_INIT_DCS_CMD(0x3F, 0x33),
-+	_INIT_DCS_CMD(0x40, 0x31),
-+	_INIT_DCS_CMD(0x41, 0x40),
-+	_INIT_DCS_CMD(0x42, 0x42),
-+	_INIT_DCS_CMD(0x47, 0x77),
-+	_INIT_DCS_CMD(0x48, 0x77),
-+	_INIT_DCS_CMD(0x4A, 0x45),
-+	_INIT_DCS_CMD(0x4B, 0x45),
-+	_INIT_DCS_CMD(0x4C, 0x14),
- 
- 	_INIT_DCS_CMD(0x4D, 0x21),
- 	_INIT_DCS_CMD(0x4E, 0x43),
- 	_INIT_DCS_CMD(0x4F, 0x65),
--	_INIT_DCS_CMD(0x50, 0x87),
--	_INIT_DCS_CMD(0x51, 0x78),
--	_INIT_DCS_CMD(0x52, 0x56),
--	_INIT_DCS_CMD(0x53, 0x34),
--	_INIT_DCS_CMD(0x54, 0x21),
--	_INIT_DCS_CMD(0x55, 0x83),
--	_INIT_DCS_CMD(0x56, 0x08),
-+	_INIT_DCS_CMD(0x55, 0x06),
-+	_INIT_DCS_CMD(0x56, 0x06),
- 	_INIT_DCS_CMD(0x58, 0x21),
--	_INIT_DCS_CMD(0x59, 0x40),
--	_INIT_DCS_CMD(0x5A, 0x00),
--	_INIT_DCS_CMD(0x5B, 0x2C),
--	_INIT_DCS_CMD(0x5E, 0x00, 0x10),
-+	_INIT_DCS_CMD(0x59, 0x70),
-+	_INIT_DCS_CMD(0x5A, 0x46),
-+	_INIT_DCS_CMD(0x5B, 0x32),
-+	_INIT_DCS_CMD(0x5C, 0x88),
-+	_INIT_DCS_CMD(0x5E, 0x00, 0x00),
- 	_INIT_DCS_CMD(0x5F, 0x00),
- 
--	_INIT_DCS_CMD(0x7A, 0x00),
--	_INIT_DCS_CMD(0x7B, 0x00),
-+	_INIT_DCS_CMD(0x7A, 0xFF),
-+	_INIT_DCS_CMD(0x7B, 0xFF),
- 	_INIT_DCS_CMD(0x7C, 0x00),
- 	_INIT_DCS_CMD(0x7D, 0x00),
- 	_INIT_DCS_CMD(0x7E, 0x20),
-@@ -564,152 +565,183 @@ static const struct panel_init_cmd inx_hj110iz_init_cmd[] = {
- 	_INIT_DCS_CMD(0x82, 0x08),
- 	_INIT_DCS_CMD(0x97, 0x02),
- 	_INIT_DCS_CMD(0xC5, 0x10),
-+
-+	_INIT_DCS_CMD(0xD7, 0x55),
-+	_INIT_DCS_CMD(0xD8, 0x55),
-+	_INIT_DCS_CMD(0xD9, 0x23),
- 	_INIT_DCS_CMD(0xDA, 0x05),
- 	_INIT_DCS_CMD(0xDB, 0x01),
--	_INIT_DCS_CMD(0xDC, 0x7A),
-+	_INIT_DCS_CMD(0xDC, 0x65),
- 	_INIT_DCS_CMD(0xDD, 0x55),
- 	_INIT_DCS_CMD(0xDE, 0x27),
- 	_INIT_DCS_CMD(0xDF, 0x01),
--	_INIT_DCS_CMD(0xE0, 0x7A),
-+	_INIT_DCS_CMD(0xE0, 0x65),
- 	_INIT_DCS_CMD(0xE1, 0x01),
--	_INIT_DCS_CMD(0xE2, 0x7A),
-+	_INIT_DCS_CMD(0xE2, 0x65),
- 	_INIT_DCS_CMD(0xE3, 0x01),
--	_INIT_DCS_CMD(0xE4, 0x7A),
-+	_INIT_DCS_CMD(0xE4, 0x65),
- 	_INIT_DCS_CMD(0xE5, 0x01),
--	_INIT_DCS_CMD(0xE6, 0x7A),
-+	_INIT_DCS_CMD(0xE6, 0x65),
- 	_INIT_DCS_CMD(0xE7, 0x00),
- 	_INIT_DCS_CMD(0xE8, 0x00),
- 	_INIT_DCS_CMD(0xE9, 0x01),
--	_INIT_DCS_CMD(0xEA, 0x7A),
-+	_INIT_DCS_CMD(0xEA, 0x65),
- 	_INIT_DCS_CMD(0xEB, 0x01),
--	_INIT_DCS_CMD(0xEE, 0x7A),
-+	_INIT_DCS_CMD(0xEE, 0x65),
- 	_INIT_DCS_CMD(0xEF, 0x01),
--	_INIT_DCS_CMD(0xF0, 0x7A),
--
-+	_INIT_DCS_CMD(0xF0, 0x65),
- 	_INIT_DCS_CMD(0xB6, 0x05, 0x00, 0x05, 0x00, 0x00, 0x00, 0x00, 0x00, 0x05, 0x05, 0x00, 0x00),
-+
- 	_INIT_DCS_CMD(0xFF, 0x25),
--	_INIT_DCS_CMD(0xFB, 0x01),
- 
-+	_INIT_DCS_CMD(0xFB, 0x01),
- 	_INIT_DCS_CMD(0x05, 0x00),
--
--	_INIT_DCS_CMD(0x13, 0x02),
--	_INIT_DCS_CMD(0x14, 0xDF),
- 	_INIT_DCS_CMD(0xF1, 0x10),
-+
- 	_INIT_DCS_CMD(0x1E, 0x00),
--	_INIT_DCS_CMD(0x1F, 0x00),
--	_INIT_DCS_CMD(0x20, 0x2C),
-+	_INIT_DCS_CMD(0x1F, 0x46),
-+	_INIT_DCS_CMD(0x20, 0x32),
-+
- 	_INIT_DCS_CMD(0x25, 0x00),
--	_INIT_DCS_CMD(0x26, 0x00),
--	_INIT_DCS_CMD(0x27, 0x2C),
-+	_INIT_DCS_CMD(0x26, 0x46),
-+	_INIT_DCS_CMD(0x27, 0x32),
-+
- 	_INIT_DCS_CMD(0x3F, 0x80),
- 	_INIT_DCS_CMD(0x40, 0x00),
- 	_INIT_DCS_CMD(0x43, 0x00),
- 
--	_INIT_DCS_CMD(0x44, 0x18),
--	_INIT_DCS_CMD(0x45, 0x00),
-+	_INIT_DCS_CMD(0x44, 0x46),
-+	_INIT_DCS_CMD(0x45, 0x46),
-+
-+	_INIT_DCS_CMD(0x48, 0x46),
-+	_INIT_DCS_CMD(0x49, 0x32),
- 
--	_INIT_DCS_CMD(0x48, 0x00),
--	_INIT_DCS_CMD(0x49, 0x2C),
- 	_INIT_DCS_CMD(0x5B, 0x80),
-+
- 	_INIT_DCS_CMD(0x5C, 0x00),
--	_INIT_DCS_CMD(0x5D, 0x00),
--	_INIT_DCS_CMD(0x5E, 0x00),
--	_INIT_DCS_CMD(0x61, 0x00),
--	_INIT_DCS_CMD(0x62, 0x2C),
--	_INIT_DCS_CMD(0x68, 0x10),
-+	_INIT_DCS_CMD(0x5D, 0x46),
-+	_INIT_DCS_CMD(0x5E, 0x32),
-+
-+	_INIT_DCS_CMD(0x5F, 0x46),
-+	_INIT_DCS_CMD(0x60, 0x32),
-+
-+	_INIT_DCS_CMD(0x61, 0x46),
-+	_INIT_DCS_CMD(0x62, 0x32),
-+	_INIT_DCS_CMD(0x68, 0x0C),
-+
-+	_INIT_DCS_CMD(0x6C, 0x0D),
-+	_INIT_DCS_CMD(0x6E, 0x0D),
-+	_INIT_DCS_CMD(0x78, 0x00),
-+	_INIT_DCS_CMD(0x79, 0xC5),
-+	_INIT_DCS_CMD(0x7A, 0x0C),
-+	_INIT_DCS_CMD(0x7B, 0xB0),
-+
- 	_INIT_DCS_CMD(0xFF, 0x26),
- 	_INIT_DCS_CMD(0xFB, 0x01),
- 
- 	_INIT_DCS_CMD(0x00, 0xA1),
- 	_INIT_DCS_CMD(0x02, 0x31),
--	_INIT_DCS_CMD(0x0A, 0xF2),
--	_INIT_DCS_CMD(0x04, 0x28),
-+	_INIT_DCS_CMD(0x0A, 0xF4),
-+	_INIT_DCS_CMD(0x04, 0x50),
- 	_INIT_DCS_CMD(0x06, 0x30),
- 	_INIT_DCS_CMD(0x0C, 0x16),
- 	_INIT_DCS_CMD(0x0D, 0x0D),
- 	_INIT_DCS_CMD(0x0F, 0x00),
- 	_INIT_DCS_CMD(0x11, 0x00),
- 	_INIT_DCS_CMD(0x12, 0x50),
--	_INIT_DCS_CMD(0x13, 0x56),
--	_INIT_DCS_CMD(0x14, 0x57),
-+	_INIT_DCS_CMD(0x13, 0x40),
-+	_INIT_DCS_CMD(0x14, 0x58),
- 	_INIT_DCS_CMD(0x15, 0x00),
- 	_INIT_DCS_CMD(0x16, 0x10),
- 	_INIT_DCS_CMD(0x17, 0xA0),
- 	_INIT_DCS_CMD(0x18, 0x86),
- 	_INIT_DCS_CMD(0x22, 0x00),
- 	_INIT_DCS_CMD(0x23, 0x00),
--	_INIT_DCS_CMD(0x19, 0x0D),
--	_INIT_DCS_CMD(0x1A, 0x7F),
--	_INIT_DCS_CMD(0x1B, 0x0C),
--	_INIT_DCS_CMD(0x1C, 0xBF),
--	_INIT_DCS_CMD(0x2A, 0x0D),
--	_INIT_DCS_CMD(0x2B, 0x7F),
--	_INIT_DCS_CMD(0x20, 0x00),
-+
-+	_INIT_DCS_CMD(0x19, 0x0E),
-+	_INIT_DCS_CMD(0x1A, 0x31),
-+	_INIT_DCS_CMD(0x1B, 0x0D),
-+	_INIT_DCS_CMD(0x1C, 0x29),
-+	_INIT_DCS_CMD(0x2A, 0x0E),
-+	_INIT_DCS_CMD(0x2B, 0x31),
- 
- 	_INIT_DCS_CMD(0x1D, 0x00),
--	_INIT_DCS_CMD(0x1E, 0x78),
--	_INIT_DCS_CMD(0x1F, 0x78),
-+	_INIT_DCS_CMD(0x1E, 0x62),
-+	_INIT_DCS_CMD(0x1F, 0x62),
- 
--	_INIT_DCS_CMD(0x2F, 0x03),
--	_INIT_DCS_CMD(0x30, 0x78),
--	_INIT_DCS_CMD(0x33, 0x78),
--	_INIT_DCS_CMD(0x34, 0x66),
--	_INIT_DCS_CMD(0x35, 0x11),
-+	_INIT_DCS_CMD(0x2F, 0x06),
-+	_INIT_DCS_CMD(0x30, 0x62),
-+	_INIT_DCS_CMD(0x31, 0x06),
-+	_INIT_DCS_CMD(0x32, 0x7F),
-+	_INIT_DCS_CMD(0x33, 0x11),
-+	_INIT_DCS_CMD(0x34, 0x89),
-+	_INIT_DCS_CMD(0x35, 0x67),
- 
--	_INIT_DCS_CMD(0x39, 0x10),
--	_INIT_DCS_CMD(0x3A, 0x78),
-+	_INIT_DCS_CMD(0x39, 0x0B),
-+	_INIT_DCS_CMD(0x3A, 0x62),
- 	_INIT_DCS_CMD(0x3B, 0x06),
- 
- 	_INIT_DCS_CMD(0xC8, 0x04),
--	_INIT_DCS_CMD(0xC9, 0x84),
-+	_INIT_DCS_CMD(0xC9, 0x89),
- 	_INIT_DCS_CMD(0xCA, 0x4E),
- 	_INIT_DCS_CMD(0xCB, 0x00),
-+	_INIT_DCS_CMD(0xA9, 0x3F),
-+	_INIT_DCS_CMD(0xAA, 0x3E),
-+	_INIT_DCS_CMD(0xAB, 0x3D),
-+	_INIT_DCS_CMD(0xAC, 0x3C),
-+	_INIT_DCS_CMD(0xAD, 0x3B),
-+	_INIT_DCS_CMD(0xAE, 0x3A),
-+	_INIT_DCS_CMD(0xAF, 0x39),
-+	_INIT_DCS_CMD(0xB0, 0x38),
- 
--	_INIT_DCS_CMD(0xA9, 0x50),
--	_INIT_DCS_CMD(0xAA, 0x4F),
--	_INIT_DCS_CMD(0xAB, 0x4D),
--	_INIT_DCS_CMD(0xAC, 0x4A),
--	_INIT_DCS_CMD(0xAD, 0x48),
--	_INIT_DCS_CMD(0xAE, 0x46),
- 	_INIT_DCS_CMD(0xFF, 0x27),
- 	_INIT_DCS_CMD(0xFB, 0x01),
-+
-+	_INIT_DCS_CMD(0xD0, 0x11),
-+	_INIT_DCS_CMD(0xD1, 0x54),
-+	_INIT_DCS_CMD(0xDE, 0x43),
-+	_INIT_DCS_CMD(0xDF, 0x02),
-+
- 	_INIT_DCS_CMD(0xC0, 0x18),
- 	_INIT_DCS_CMD(0xC1, 0x00),
- 	_INIT_DCS_CMD(0xC2, 0x00),
-+	_INIT_DCS_CMD(0x00, 0x00),
-+	_INIT_DCS_CMD(0xC3, 0x00),
- 	_INIT_DCS_CMD(0x56, 0x06),
-+
- 	_INIT_DCS_CMD(0x58, 0x80),
--	_INIT_DCS_CMD(0x59, 0x75),
-+	_INIT_DCS_CMD(0x59, 0x78),
- 	_INIT_DCS_CMD(0x5A, 0x00),
--	_INIT_DCS_CMD(0x5B, 0x02),
-+	_INIT_DCS_CMD(0x5B, 0x18),
- 	_INIT_DCS_CMD(0x5C, 0x00),
--	_INIT_DCS_CMD(0x5D, 0x00),
-+	_INIT_DCS_CMD(0x5D, 0x01),
- 	_INIT_DCS_CMD(0x5E, 0x20),
- 	_INIT_DCS_CMD(0x5F, 0x10),
- 	_INIT_DCS_CMD(0x60, 0x00),
--	_INIT_DCS_CMD(0x61, 0x2E),
-+	_INIT_DCS_CMD(0x61, 0x1C),
- 	_INIT_DCS_CMD(0x62, 0x00),
- 	_INIT_DCS_CMD(0x63, 0x01),
--	_INIT_DCS_CMD(0x64, 0x43),
--	_INIT_DCS_CMD(0x65, 0x2D),
-+	_INIT_DCS_CMD(0x64, 0x44),
-+	_INIT_DCS_CMD(0x65, 0x1B),
- 	_INIT_DCS_CMD(0x66, 0x00),
- 	_INIT_DCS_CMD(0x67, 0x01),
--	_INIT_DCS_CMD(0x68, 0x43),
-+	_INIT_DCS_CMD(0x68, 0x44),
-+
- 	_INIT_DCS_CMD(0x98, 0x01),
- 	_INIT_DCS_CMD(0xB4, 0x03),
--	_INIT_DCS_CMD(0x9B, 0xBD),
--	_INIT_DCS_CMD(0xA0, 0x90),
--	_INIT_DCS_CMD(0xAB, 0x1B),
--	_INIT_DCS_CMD(0xBC, 0x0C),
-+	_INIT_DCS_CMD(0x9B, 0xBE),
-+
-+	_INIT_DCS_CMD(0xAB, 0x14),
-+	_INIT_DCS_CMD(0xBC, 0x08),
- 	_INIT_DCS_CMD(0xBD, 0x28),
- 
- 	_INIT_DCS_CMD(0xFF, 0x2A),
- 	_INIT_DCS_CMD(0xFB, 0x01),
--
- 	_INIT_DCS_CMD(0x22, 0x2F),
- 	_INIT_DCS_CMD(0x23, 0x08),
- 
- 	_INIT_DCS_CMD(0x24, 0x00),
--	_INIT_DCS_CMD(0x25, 0x65),
-+	_INIT_DCS_CMD(0x25, 0x62),
- 	_INIT_DCS_CMD(0x26, 0xF8),
- 	_INIT_DCS_CMD(0x27, 0x00),
- 	_INIT_DCS_CMD(0x28, 0x1A),
-@@ -719,18 +751,29 @@ static const struct panel_init_cmd inx_hj110iz_init_cmd[] = {
- 	_INIT_DCS_CMD(0x2D, 0x1A),
- 
- 	_INIT_DCS_CMD(0x64, 0x96),
--	_INIT_DCS_CMD(0x65, 0x00),
-+	_INIT_DCS_CMD(0x65, 0x10),
- 	_INIT_DCS_CMD(0x66, 0x00),
-+	_INIT_DCS_CMD(0x67, 0x96),
-+	_INIT_DCS_CMD(0x68, 0x10),
-+	_INIT_DCS_CMD(0x69, 0x00),
- 	_INIT_DCS_CMD(0x6A, 0x96),
--	_INIT_DCS_CMD(0x6B, 0x00),
-+	_INIT_DCS_CMD(0x6B, 0x10),
- 	_INIT_DCS_CMD(0x6C, 0x00),
- 	_INIT_DCS_CMD(0x70, 0x92),
--	_INIT_DCS_CMD(0x71, 0x00),
-+	_INIT_DCS_CMD(0x71, 0x10),
- 	_INIT_DCS_CMD(0x72, 0x00),
--	_INIT_DCS_CMD(0xA2, 0x33),
-+	_INIT_DCS_CMD(0x79, 0x96),
-+	_INIT_DCS_CMD(0x7A, 0x10),
-+	_INIT_DCS_CMD(0x88, 0x96),
-+	_INIT_DCS_CMD(0x89, 0x10),
-+
-+	_INIT_DCS_CMD(0xA2, 0x3F),
- 	_INIT_DCS_CMD(0xA3, 0x30),
- 	_INIT_DCS_CMD(0xA4, 0xC0),
-+	_INIT_DCS_CMD(0xA5, 0x03),
-+
- 	_INIT_DCS_CMD(0xE8, 0x00),
-+
- 	_INIT_DCS_CMD(0x97, 0x3C),
- 	_INIT_DCS_CMD(0x98, 0x02),
- 	_INIT_DCS_CMD(0x99, 0x95),
-@@ -739,38 +782,68 @@ static const struct panel_init_cmd inx_hj110iz_init_cmd[] = {
- 	_INIT_DCS_CMD(0x9C, 0x0B),
- 	_INIT_DCS_CMD(0x9D, 0x0A),
- 	_INIT_DCS_CMD(0x9E, 0x90),
-+
-+	_INIT_DCS_CMD(0xFF, 0x25),
-+	_INIT_DCS_CMD(0x13, 0x02),
-+	_INIT_DCS_CMD(0x14, 0xD7),
-+	_INIT_DCS_CMD(0xDB, 0x02),
-+	_INIT_DCS_CMD(0xDC, 0xD7),
-+	_INIT_DCS_CMD(0x17, 0xCF),
-+	_INIT_DCS_CMD(0x19, 0x0F),
-+	_INIT_DCS_CMD(0x1B, 0x5B),
-+
-+	_INIT_DCS_CMD(0xFF, 0x20),
-+
-+	_INIT_DCS_CMD(0xB0, 0x00, 0x00, 0x00, 0x0C, 0x00, 0x24, 0x00, 0x38, 0x00, 0x4C, 0x00, 0x5E, 0x00, 0x6F, 0x00, 0x7E),
-+	_INIT_DCS_CMD(0xB1, 0x00, 0x8C, 0x00, 0xBE, 0x00, 0xE5, 0x01, 0x27, 0x01, 0x58, 0x01, 0xA8, 0x01, 0xE8, 0x01, 0xEA),
-+	_INIT_DCS_CMD(0xB2, 0x02, 0x28, 0x02, 0x71, 0x02, 0x9E, 0x02, 0xDA, 0x03, 0x00, 0x03, 0x31, 0x03, 0x40, 0x03, 0x51),
-+	_INIT_DCS_CMD(0xB3, 0x03, 0x62, 0x03, 0x75, 0x03, 0x89, 0x03, 0x9C, 0x03, 0xAA, 0x03, 0xB2),
-+
-+	_INIT_DCS_CMD(0xB4, 0x00, 0x00, 0x00, 0x0D, 0x00, 0x27, 0x00, 0x3D, 0x00, 0x52, 0x00, 0x64, 0x00, 0x75, 0x00, 0x84),
-+	_INIT_DCS_CMD(0xB5, 0x00, 0x93, 0x00, 0xC5, 0x00, 0xEC, 0x01, 0x2C, 0x01, 0x5D, 0x01, 0xAC, 0x01, 0xEC, 0x01, 0xEE),
-+	_INIT_DCS_CMD(0xB6, 0x02, 0x2B, 0x02, 0x73, 0x02, 0xA0, 0x02, 0xDB, 0x03, 0x01, 0x03, 0x31, 0x03, 0x41, 0x03, 0x51),
-+	_INIT_DCS_CMD(0xB7, 0x03, 0x63, 0x03, 0x75, 0x03, 0x89, 0x03, 0x9C, 0x03, 0xAA, 0x03, 0xB2),
-+
-+	_INIT_DCS_CMD(0xB8, 0x00, 0x00, 0x00, 0x0E, 0x00, 0x2A, 0x00, 0x40, 0x00, 0x56, 0x00, 0x68, 0x00, 0x7A, 0x00, 0x89),
-+	_INIT_DCS_CMD(0xB9, 0x00, 0x98, 0x00, 0xC9, 0x00, 0xF1, 0x01, 0x30, 0x01, 0x61, 0x01, 0xB0, 0x01, 0xEF, 0x01, 0xF1),
-+	_INIT_DCS_CMD(0xBA, 0x02, 0x2E, 0x02, 0x76, 0x02, 0xA3, 0x02, 0xDD, 0x03, 0x02, 0x03, 0x32, 0x03, 0x42, 0x03, 0x53),
-+	_INIT_DCS_CMD(0xBB, 0x03, 0x66, 0x03, 0x75, 0x03, 0x89, 0x03, 0x9C, 0x03, 0xAA, 0x03, 0xB2),
-+
-+	_INIT_DCS_CMD(0xFF, 0x21),
-+	_INIT_DCS_CMD(0xB0, 0x00, 0x00, 0x00, 0x0C, 0x00, 0x24, 0x00, 0x38, 0x00, 0x4C, 0x00, 0x5E, 0x00, 0x6F, 0x00, 0x7E),
-+	_INIT_DCS_CMD(0xB1, 0x00, 0x8C, 0x00, 0xBE, 0x00, 0xE5, 0x01, 0x27, 0x01, 0x58, 0x01, 0xA8, 0x01, 0xE8, 0x01, 0xEA),
-+	_INIT_DCS_CMD(0xB2, 0x02, 0x28, 0x02, 0x71, 0x02, 0x9E, 0x02, 0xDA, 0x03, 0x00, 0x03, 0x31, 0x03, 0x40, 0x03, 0x51),
-+	_INIT_DCS_CMD(0xB3, 0x03, 0x62, 0x03, 0x77, 0x03, 0x90, 0x03, 0xAC, 0x03, 0xCA, 0x03, 0xDA),
-+
-+	_INIT_DCS_CMD(0xB4, 0x00, 0x00, 0x00, 0x0D, 0x00, 0x27, 0x00, 0x3D, 0x00, 0x52, 0x00, 0x64, 0x00, 0x75, 0x00, 0x84),
-+	_INIT_DCS_CMD(0xB5, 0x00, 0x93, 0x00, 0xC5, 0x00, 0xEC, 0x01, 0x2C, 0x01, 0x5D, 0x01, 0xAC, 0x01, 0xEC, 0x01, 0xEE),
-+	_INIT_DCS_CMD(0xB6, 0x02, 0x2B, 0x02, 0x73, 0x02, 0xA0, 0x02, 0xDB, 0x03, 0x01, 0x03, 0x31, 0x03, 0x41, 0x03, 0x51),
-+	_INIT_DCS_CMD(0xB7, 0x03, 0x63, 0x03, 0x77, 0x03, 0x90, 0x03, 0xAC, 0x03, 0xCA, 0x03, 0xDA),
-+
-+	_INIT_DCS_CMD(0xB8, 0x00, 0x00, 0x00, 0x0E, 0x00, 0x2A, 0x00, 0x40, 0x00, 0x56, 0x00, 0x68, 0x00, 0x7A, 0x00, 0x89),
-+	_INIT_DCS_CMD(0xB9, 0x00, 0x98, 0x00, 0xC9, 0x00, 0xF1, 0x01, 0x30, 0x01, 0x61, 0x01, 0xB0, 0x01, 0xEF, 0x01, 0xF1),
-+	_INIT_DCS_CMD(0xBA, 0x02, 0x2E, 0x02, 0x76, 0x02, 0xA3, 0x02, 0xDD, 0x03, 0x02, 0x03, 0x32, 0x03, 0x42, 0x03, 0x53),
-+	_INIT_DCS_CMD(0xBB, 0x03, 0x66, 0x03, 0x77, 0x03, 0x90, 0x03, 0xAC, 0x03, 0xCA, 0x03, 0xDA),
-+
- 	_INIT_DCS_CMD(0xFF, 0xF0),
- 	_INIT_DCS_CMD(0xFB, 0x01),
- 	_INIT_DCS_CMD(0x3A, 0x08),
--	_INIT_DCS_CMD(0xFF, 0xD0),
--	_INIT_DCS_CMD(0xFB, 0x01),
--	_INIT_DCS_CMD(0x00, 0x33),
--	_INIT_DCS_CMD(0x08, 0x01),
--	_INIT_DCS_CMD(0x09, 0xBF),
--	_INIT_DCS_CMD(0x2F, 0x33),
--	_INIT_DCS_CMD(0xFF, 0x23),
--	_INIT_DCS_CMD(0xFB, 0x01),
--	_INIT_DCS_CMD(0x00, 0x80),
--	_INIT_DCS_CMD(0x07, 0x00),
--	_INIT_DCS_CMD(0xFF, 0x20),
--	_INIT_DCS_CMD(0xFB, 0x01),
--	_INIT_DCS_CMD(0x30, 0x00),
--	_INIT_DCS_CMD(0xFF, 0x24),
--	_INIT_DCS_CMD(0x5C, 0x88),
--	_INIT_DCS_CMD(0x5D, 0x08),
-+
- 	_INIT_DCS_CMD(0xFF, 0x10),
- 	_INIT_DCS_CMD(0xB9, 0x01),
-+
- 	_INIT_DCS_CMD(0xFF, 0x20),
-+
- 	_INIT_DCS_CMD(0x18, 0x40),
- 	_INIT_DCS_CMD(0xFF, 0x10),
-+
- 	_INIT_DCS_CMD(0xB9, 0x02),
- 	_INIT_DCS_CMD(0xFF, 0x10),
-+
- 	_INIT_DCS_CMD(0xFB, 0x01),
--	_INIT_DCS_CMD(0xBB, 0x13),
--	_INIT_DCS_CMD(0x3B, 0x03, 0x96, 0x1A, 0x04, 0x04),
-+	_INIT_DCS_CMD(0xB0, 0x01),
- 	_INIT_DCS_CMD(0x35, 0x00),
--	_INIT_DCS_CMD(0x51, 0x0F, 0xFF),
--	_INIT_DCS_CMD(0x53, 0x24),
-+	_INIT_DCS_CMD(0x3B, 0x03, 0xAE, 0x1A, 0x04, 0x04),
- 	_INIT_DELAY_CMD(100),
- 	_INIT_DCS_CMD(0x11),
- 	_INIT_DELAY_CMD(200),
+Walker Chen (3):
+  dt-bindings: sound: Add TDM for StarFive JH7110
+  ASoC: starfive: Add JH7110 TDM driver
+  riscv: dts: starfive: add tdm node and sound card
+
+ .../bindings/sound/starfive,jh7110-tdm.yaml   |  98 +++
+ MAINTAINERS                                   |   6 +
+ arch/riscv/boot/dts/starfive/Makefile         |   3 +
+ .../jh7110-starfive-visionfive-2-wm8960.dtso  |  70 +++
+ .../jh7110-starfive-visionfive-2.dtsi         |  40 ++
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      |  21 +
+ sound/soc/Kconfig                             |   1 +
+ sound/soc/Makefile                            |   1 +
+ sound/soc/starfive/Kconfig                    |  15 +
+ sound/soc/starfive/Makefile                   |   2 +
+ sound/soc/starfive/jh7110_tdm.c               | 573 ++++++++++++++++++
+ sound/soc/starfive/jh7110_tdm.h               | 147 +++++
+ 12 files changed, 977 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/starfive,jh7110-tdm.yaml
+ create mode 100644 arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-wm8960.dtso
+ create mode 100644 sound/soc/starfive/Kconfig
+ create mode 100644 sound/soc/starfive/Makefile
+ create mode 100644 sound/soc/starfive/jh7110_tdm.c
+ create mode 100644 sound/soc/starfive/jh7110_tdm.h
+
+
+base-commit: 197b6b60ae7bc51dd0814953c562833143b292aa
+prerequisite-patch-id: 30bec4dba6f250a6edd0c2cbab2ce09442e50e8a
+prerequisite-patch-id: bb939c0c7c26b08addfccd890f9d3974b6eaec53
+prerequisite-patch-id: 8a6f135bcabdad4a4bfb21f0c6a0ffd2bb57efe7
+prerequisite-patch-id: c2366f993a9d85e28c06d8d09f064dd5e8b29a61
+prerequisite-patch-id: 50d53a21f91f4087fc80b6f1f72864adfb0002b9
+prerequisite-patch-id: 0df3703af91c30f1ca2c47f5609012f2d7200028
+prerequisite-patch-id: 89f049f951e5acf75aab92541992f816fd0acc0d
+prerequisite-patch-id: 551fae54377090044c3612fca9740a9b359abdd2
+prerequisite-patch-id: c7fdf904f398d478f0ed6d57eb878982bc73329d
+prerequisite-patch-id: 1b2d0982b18da060c82134f05bf3ce16425bac8d
+prerequisite-patch-id: 090ba4b78d47bc19204916e76fdbc70021785388
+prerequisite-patch-id: a5d9e0f7d4f8163f566678894cf693015119f2d9
+prerequisite-patch-id: 4637a8fa2334a45fa6b64351f4e9e28d3e2d60d3
+prerequisite-patch-id: 32647ec60a3b614e1c59ec8e54cb511ae832c22f
+prerequisite-patch-id: aa06658ecf89c92d0dfdd6a4ba6d9e6e67532971
+prerequisite-patch-id: 1387a7e87b446329dfc21f3e575ceae7ebcf954c
+prerequisite-patch-id: 258ea5f9b8bf41b6981345dcc81795f25865d38f
+prerequisite-patch-id: 8b6f2c9660c0ac0ee4e73e4c21aca8e6b75e81b9
+prerequisite-patch-id: dbb0c0151b8bdf093e6ce79fd2fe3f60791a6e0b
+prerequisite-patch-id: 9007c8610fdcd387592475949864edde874c20a2
+prerequisite-patch-id: d57e95d31686772abc4c4d5aa1cadc344dc293cd
+prerequisite-patch-id: 9f911969d0a550648493952c99096d26e05d4d83
+prerequisite-patch-id: 2ddada18ab6ea5cd1da14212aaf59632f5203d40
+prerequisite-patch-id: 80042661ff6156ce577a72e9eb8c0b218b624829
+prerequisite-patch-id: 398744c61913c76a35754de867c4f820ca7a8d99
+prerequisite-patch-id: f59269382164b5d642a5e10443ca447f5caa595c
+prerequisite-patch-id: 1babe83d6bf999bad17584dc595480f9070a5369
+prerequisite-patch-id: 77be3d122d66df813f13088141ce27b21107a341
+prerequisite-patch-id: 9fbb7ad1dd258bb8ff5946c4a0e59de4bfd82a04
+prerequisite-patch-id: 6f6984916dffd0cc66aa733c9b6bd3a55495a50c
+prerequisite-patch-id: 39e1be2a3d1593577ab997f55f59367cba665aa7
+prerequisite-patch-id: 584c256c9acb52ee2773d0c81c3f4977fc18155a
+prerequisite-patch-id: b37ac15032973e1fcd918f157c82a0606775c9e9
+prerequisite-patch-id: 32deea16304859842af5c2151bc41d91cf6dfc9b
+prerequisite-patch-id: 20ac2450fb93b3f69f83fc720fd4800a95e618a6
+prerequisite-patch-id: 6abf359fa445f4104432ddee27044dfbfb128417
 -- 
-2.25.1
+2.17.1
 
