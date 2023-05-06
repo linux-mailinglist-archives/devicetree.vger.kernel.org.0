@@ -2,97 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1A356F8F84
-	for <lists+devicetree@lfdr.de>; Sat,  6 May 2023 08:50:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 422FA6F8F93
+	for <lists+devicetree@lfdr.de>; Sat,  6 May 2023 09:00:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230127AbjEFGuq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 6 May 2023 02:50:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52650 "EHLO
+        id S229889AbjEFHAR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 6 May 2023 03:00:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229947AbjEFGup (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 6 May 2023 02:50:45 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D220DA5C8
-        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 23:50:43 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-50bc4ba28cbso4730585a12.0
-        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 23:50:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683355842; x=1685947842;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uyLSGcqzev4ScCUTVAy/dI0FShLpsKcG+iQhkbBmwu4=;
-        b=AlfRNVG3E3APA+Cf7R720DagAe1db7tpRUYFB5jhqr3xtQD0uysDqwcdi3u6Ezxk7m
-         KP70xR7fbiv48VXV98A86UvtqVHK01ERc2R5PuMt5hT6q540GxKOUFECRkrcrqYFdtUY
-         cOAVmo4HkSVubck+5re4/FrqcoCKARUE+PqsrOdHpoKh9Z5m+o5OqsVkQlCjK3h2zRyM
-         OPuhnNA5r1Z4mHkrQ5Sl7992aAFU/ZyrsLwxTCBDSOPtf2kNcElmYTi1qiJjkrlGxw5z
-         SGoZHEf/NoNhESk59YswB3fJz4QcGdJ3e+5zfmD7ixDyi5oA/5Be3+SfDfYZ1Zwn+5Pw
-         V6ig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683355842; x=1685947842;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uyLSGcqzev4ScCUTVAy/dI0FShLpsKcG+iQhkbBmwu4=;
-        b=HWGRRC5oXn9oOotp5VgAlEeiqHs1u+IuBqW5gOShlX8ooNk5iKBbR/MoiL5PgEluKl
-         HDPAgo2hktY8HkMSQRds919yw8z6PEO4a5hz54OA/FSsNdmacBK4cEgekHWZ7NongXZr
-         ZKsESmDvE9FaD+OLDj63FZjlVkCmFUEFeRU5hmhJh+goPt0EEMdfOLeijWu4uSvuwZWB
-         A/pBv8OEmelYhUVipHNZwPaN1D483pMLbgfLu/GpuDdcQ98vW1sXIJaeTXCD6q7LVSOn
-         Kuvc0IUU1k8TVrE4URfDsVGk38yAv2eLm9Opnr/MUy7ioFxGXP/f5uEWM3P+KRo2lSjI
-         I5mg==
-X-Gm-Message-State: AC+VfDyXD6ug1o93C2VcoTEjooJNrYUP+y63IjI4P3gtUEMKDAfKrnoy
-        kQ9A5x4vr3iADV/5EHbnU3JXJA==
-X-Google-Smtp-Source: ACHHUZ4qwZlWqW21bAjZx+NhonFjoZxHRzhnBe74050ohLqDg+tEhybkuwIbcn3+p0SMly0JESZ5CQ==
-X-Received: by 2002:a17:907:6d1f:b0:94e:f1b9:e933 with SMTP id sa31-20020a1709076d1f00b0094ef1b9e933mr3426437ejc.53.1683355842265;
-        Fri, 05 May 2023 23:50:42 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:efe5:7c03:a10a:7a40? ([2a02:810d:15c0:828:efe5:7c03:a10a:7a40])
-        by smtp.gmail.com with ESMTPSA id ia24-20020a170907a07800b00959b3c30f2csm1880807ejc.222.2023.05.05.23.50.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 May 2023 23:50:41 -0700 (PDT)
-Message-ID: <b799be60-0ba6-c856-517d-0b0ed3adeab7@linaro.org>
-Date:   Sat, 6 May 2023 08:50:40 +0200
+        with ESMTP id S229602AbjEFHAQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 6 May 2023 03:00:16 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9ABBAD13;
+        Sat,  6 May 2023 00:00:14 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id C110424E21E;
+        Sat,  6 May 2023 15:00:11 +0800 (CST)
+Received: from EXMBX062.cuchost.com (172.16.6.62) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Sat, 6 May
+ 2023 15:00:11 +0800
+Received: from [192.168.125.107] (183.27.98.219) by EXMBX062.cuchost.com
+ (172.16.6.62) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Sat, 6 May
+ 2023 15:00:10 +0800
+Message-ID: <c4b72d59-8b50-df57-1cc5-586f5c13b60c@starfivetech.com>
+Date:   Sat, 6 May 2023 15:00:10 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH v4 tty-next 1/2] dt-bindings: serial: ni,ni16650: add
- bindings
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [RESEND v2 1/6] dt-bindings: power: Add JH7110 AON PMU support
 Content-Language: en-US
-To:     Brenda Streiff <brenda.streiff@ni.com>
-Cc:     ilpo.jarvinen@linux.intel.com,
-        Gratian Crisan <gratian.crisan@ni.com>,
-        Jason Smith <jason.smith@ni.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Conor Dooley <conor.dooley@microchip.com>
+CC:     Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230505213850.829639-1-brenda.streiff@ni.com>
- <20230505213850.829639-2-brenda.streiff@ni.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230505213850.829639-2-brenda.streiff@ni.com>
-Content-Type: text/plain; charset=UTF-8
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Walker Chen <walker.chen@starfivetech.com>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, <vkoul@kernel.org>,
+        <linux-phy@lists.infradead.org>
+References: <3ed72340-accc-4ad1-098f-4a2eb6448828@linaro.org>
+ <482e812a-05dd-105c-189c-e926b4be9d28@starfivetech.com>
+ <089e24d1-588a-4a56-f00b-0b35d1d99295@linaro.org>
+ <ea5b5534-8fc2-7c84-a011-c1b42c6ed7a0@starfivetech.com>
+ <1ac26c1a-1726-515d-6598-849a07ed0b86@linaro.org>
+ <5adda0ad-965c-fbf0-878c-9d41d28b5c39@starfivetech.com>
+ <86693969-59bf-5bcc-42a3-b6e94a0d6f3e@linaro.org>
+ <fcfc8ba4-40a7-da43-3375-712bd7e7f4d5@starfivetech.com>
+ <20230504-worshiper-ongoing-5581e1f2c2c4@wendy>
+ <2f473307-2219-61a4-fa66-5848fe566cf0@starfivetech.com>
+ <20230505-magician-poet-724c96020c2f@wendy>
+ <ba6a1a47-d3b1-ee16-4785-f5c61d593127@starfivetech.com>
+ <9e7b265d-bfe5-f583-2357-d8e342bcf982@linaro.org>
+From:   Changhuang Liang <changhuang.liang@starfivetech.com>
+In-Reply-To: <9e7b265d-bfe5-f583-2357-d8e342bcf982@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Originating-IP: [183.27.98.219]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX062.cuchost.com
+ (172.16.6.62)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/05/2023 23:38, Brenda Streiff wrote:
-> Add bindings for the NI 16550 UART.
+
+
+On 2023/5/6 14:31, Krzysztof Kozlowski wrote:
+> On 06/05/2023 03:45, Changhuang Liang wrote:
+>>
+>> Hi, Krzysztof and Conor
+>>
+>> Due to the current aon pmu needs to be adjusted, it affects the syscon in PLL series.
+>> So It's inevitable to change syscon in PLL series.
+>>
+>> My current idea is PLL series don't add the aon_syscon node. I will add it in my
+>> aon pmu series in next version like this:
+>>
+>> aon_syscon: syscon@17010000 {
+>> 	compatible = "starfive,jh7110-aon-pmu", "syscon";
+>> 	reg = <0x0 0x17010000 0x0 0x1000>;
+>> 	#power-domain-cells = <1>;
+>> };
+>>
+>> In my opinion, the first we add "starfive,jh7110-aon-syscon" because "syscon" can 
+>> not appear alone in the compatible. If we have "starfive,jh7110-aon-pmu", this
+>> "starfive,jh7110-aon-syscon" is not a must-be need.
+>>
+>> Do you agree with doing so.
 > 
-> Signed-off-by: Brenda Streiff <brenda.streiff@ni.com>
-> Cc: Gratian Crisan <gratian.crisan@ni.com>
-> Cc: Jason Smith <jason.smith@ni.com>
-> ---
+> Sorry guys, I don't know what you talk about. I have no clue what are
+> PLL and aon series. More over I don't understand what is complicated
+> here... all SoCs follow the same rules and similar way of development.
+> 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+In other words, if I use the above approach, 
+[1] https://lore.kernel.org/all/20230414024157.53203-6-xingyu.wu@starfivetech.com/
+[2] https://lore.kernel.org/all/20230414024157.53203-7-xingyu.wu@starfivetech.com/
+Links [1][2] need to be dropped "aon_syscon" node.
