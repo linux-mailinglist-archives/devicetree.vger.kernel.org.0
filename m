@@ -2,108 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CCAD6F8F70
-	for <lists+devicetree@lfdr.de>; Sat,  6 May 2023 08:43:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1A356F8F84
+	for <lists+devicetree@lfdr.de>; Sat,  6 May 2023 08:50:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229709AbjEFGnF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 6 May 2023 02:43:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49130 "EHLO
+        id S230127AbjEFGuq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 6 May 2023 02:50:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229812AbjEFGnE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 6 May 2023 02:43:04 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A5DB9EFD
-        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 23:43:01 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-50bd875398dso3939178a12.1
-        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 23:43:01 -0700 (PDT)
+        with ESMTP id S229947AbjEFGup (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 6 May 2023 02:50:45 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D220DA5C8
+        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 23:50:43 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-50bc4ba28cbso4730585a12.0
+        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 23:50:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683355380; x=1685947380;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=CK6Hha4S+ymoMFaX86nTLwUb9e5d5dlAPNIoyxTLm24=;
-        b=vaKUAo95kZe1ke86mFL+IhWZKbgxuV99GMcvRIFAvSeBZkN1VF1e2xtYoy8yxDliIe
-         RgiqvHSWuY5kzZrsKSk00YQ2GfBxPLBwsrDWw5G9tI2dxHM5fehKtY53GSnfW5JQjezL
-         vBd4WhKtVLgNuxrT0lutszhiMQZPCs1lPwa9MWmLdguKHtchzabP8r+EWWISZF68Znc5
-         p/uAsonPkNjjoWfQeyXeAnPcLzGTFi6dlDyQFWnuiiGCiBR5LH3VB21MLRFOGCF/DtK9
-         Nr/jvL4uEjMynq1YO3xxCueZJBVH0pl2GnLgFX6x6BCdfHEK0dIYO5IN9UEiL1r5Jz38
-         aHug==
+        d=linaro.org; s=google; t=1683355842; x=1685947842;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=uyLSGcqzev4ScCUTVAy/dI0FShLpsKcG+iQhkbBmwu4=;
+        b=AlfRNVG3E3APA+Cf7R720DagAe1db7tpRUYFB5jhqr3xtQD0uysDqwcdi3u6Ezxk7m
+         KP70xR7fbiv48VXV98A86UvtqVHK01ERc2R5PuMt5hT6q540GxKOUFECRkrcrqYFdtUY
+         cOAVmo4HkSVubck+5re4/FrqcoCKARUE+PqsrOdHpoKh9Z5m+o5OqsVkQlCjK3h2zRyM
+         OPuhnNA5r1Z4mHkrQ5Sl7992aAFU/ZyrsLwxTCBDSOPtf2kNcElmYTi1qiJjkrlGxw5z
+         SGoZHEf/NoNhESk59YswB3fJz4QcGdJ3e+5zfmD7ixDyi5oA/5Be3+SfDfYZ1Zwn+5Pw
+         V6ig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683355380; x=1685947380;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CK6Hha4S+ymoMFaX86nTLwUb9e5d5dlAPNIoyxTLm24=;
-        b=OEWSrgZidUaF/eUNq2ThtwyQuRwwPtFNrCcyU1ovfMizqDOx9K4BGossgVWgvi1A6f
-         ZxMmGwg+RhBxaJ0+AqtnUcefgKMiVX6WzgWx3YdwPAA2lNF1vuAQw9SuUX8UQ91WUz96
-         yetofiIBGcNFHe5chJJShtIHvXT6N4c4H9pj1LdcOPmT7Fvn9xccE8P1TFkgOiOBvVo+
-         iWDqUOc5m/5qoBeAM9qNQDe/mJWkY8hHkWMmRBN2Md0MSQdp8V7P0dw3Mm15N91LqWHk
-         z3aXOo0+cUkfXvWx5Nm1kdx7u7UwAAFmHo3gTfk7kZzh3fWdsVPGMDFnN0PfVQSoNih8
-         F9Pg==
-X-Gm-Message-State: AC+VfDysA8Yb14+Wfe6B0agKILGNwo9W4IKp2QkaV5TMRCaFGaKV3pQp
-        1FLpCF8164tw4ZBZVRM1f1KWvg==
-X-Google-Smtp-Source: ACHHUZ5PO0xFJsbtnP2qeemE7wg+ozaEsp+6Y9dZmq4+kpYlxHj598hqmh0/WtyMbmT82N5cplT//A==
-X-Received: by 2002:a17:906:eecd:b0:965:8edf:8028 with SMTP id wu13-20020a170906eecd00b009658edf8028mr3329753ejb.42.1683355379759;
-        Fri, 05 May 2023 23:42:59 -0700 (PDT)
-Received: from krzk-bin.. ([2a02:810d:15c0:828:efe5:7c03:a10a:7a40])
-        by smtp.gmail.com with ESMTPSA id hx25-20020a170906847900b00965ff04f9f6sm910719ejc.161.2023.05.05.23.42.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 May 2023 23:42:59 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Peng Fan <peng.fan@nxp.com>
-Subject: [PATCH] ARM: dts: imx7ulp: add address/size-cells to OCOTP
-Date:   Sat,  6 May 2023 08:42:55 +0200
-Message-Id: <20230506064255.34290-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        d=1e100.net; s=20221208; t=1683355842; x=1685947842;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=uyLSGcqzev4ScCUTVAy/dI0FShLpsKcG+iQhkbBmwu4=;
+        b=HWGRRC5oXn9oOotp5VgAlEeiqHs1u+IuBqW5gOShlX8ooNk5iKBbR/MoiL5PgEluKl
+         HDPAgo2hktY8HkMSQRds919yw8z6PEO4a5hz54OA/FSsNdmacBK4cEgekHWZ7NongXZr
+         ZKsESmDvE9FaD+OLDj63FZjlVkCmFUEFeRU5hmhJh+goPt0EEMdfOLeijWu4uSvuwZWB
+         A/pBv8OEmelYhUVipHNZwPaN1D483pMLbgfLu/GpuDdcQ98vW1sXIJaeTXCD6q7LVSOn
+         Kuvc0IUU1k8TVrE4URfDsVGk38yAv2eLm9Opnr/MUy7ioFxGXP/f5uEWM3P+KRo2lSjI
+         I5mg==
+X-Gm-Message-State: AC+VfDyXD6ug1o93C2VcoTEjooJNrYUP+y63IjI4P3gtUEMKDAfKrnoy
+        kQ9A5x4vr3iADV/5EHbnU3JXJA==
+X-Google-Smtp-Source: ACHHUZ4qwZlWqW21bAjZx+NhonFjoZxHRzhnBe74050ohLqDg+tEhybkuwIbcn3+p0SMly0JESZ5CQ==
+X-Received: by 2002:a17:907:6d1f:b0:94e:f1b9:e933 with SMTP id sa31-20020a1709076d1f00b0094ef1b9e933mr3426437ejc.53.1683355842265;
+        Fri, 05 May 2023 23:50:42 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:efe5:7c03:a10a:7a40? ([2a02:810d:15c0:828:efe5:7c03:a10a:7a40])
+        by smtp.gmail.com with ESMTPSA id ia24-20020a170907a07800b00959b3c30f2csm1880807ejc.222.2023.05.05.23.50.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 05 May 2023 23:50:41 -0700 (PDT)
+Message-ID: <b799be60-0ba6-c856-517d-0b0ed3adeab7@linaro.org>
+Date:   Sat, 6 May 2023 08:50:40 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH v4 tty-next 1/2] dt-bindings: serial: ni,ni16650: add
+ bindings
+Content-Language: en-US
+To:     Brenda Streiff <brenda.streiff@ni.com>
+Cc:     ilpo.jarvinen@linux.intel.com,
+        Gratian Crisan <gratian.crisan@ni.com>,
+        Jason Smith <jason.smith@ni.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230505213850.829639-1-brenda.streiff@ni.com>
+ <20230505213850.829639-2-brenda.streiff@ni.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230505213850.829639-2-brenda.streiff@ni.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The OCOTP node should have address/size-cells so the cells can have unit
-address:
+On 05/05/2023 23:38, Brenda Streiff wrote:
+> Add bindings for the NI 16550 UART.
+> 
+> Signed-off-by: Brenda Streiff <brenda.streiff@ni.com>
+> Cc: Gratian Crisan <gratian.crisan@ni.com>
+> Cc: Jason Smith <jason.smith@ni.com>
+> ---
 
-  imx7ulp-evk.dtb: efuse@410a6000: '#address-cells' is a required property
-  imx7ulp-evk.dtb: efuse@410a6000: '#size-cells' is a required property
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
----
-
-Cc: Peng Fan <peng.fan@nxp.com>
----
- arch/arm/boot/dts/imx7ulp.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/arm/boot/dts/imx7ulp.dtsi b/arch/arm/boot/dts/imx7ulp.dtsi
-index f91bf719d4e2..b01ddda7bd9e 100644
---- a/arch/arm/boot/dts/imx7ulp.dtsi
-+++ b/arch/arm/boot/dts/imx7ulp.dtsi
-@@ -459,6 +459,8 @@ ocotp: efuse@410a6000 {
- 			compatible = "fsl,imx7ulp-ocotp", "syscon";
- 			reg = <0x410a6000 0x4000>;
- 			clocks = <&scg1 IMX7ULP_CLK_DUMMY>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
- 		};
- 	};
- };
--- 
-2.34.1
+Best regards,
+Krzysztof
 
