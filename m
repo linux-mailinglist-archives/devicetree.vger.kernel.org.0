@@ -2,659 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 277B76F90E9
-	for <lists+devicetree@lfdr.de>; Sat,  6 May 2023 11:33:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 380946F9117
+	for <lists+devicetree@lfdr.de>; Sat,  6 May 2023 12:09:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231907AbjEFJc7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 6 May 2023 05:32:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54804 "EHLO
+        id S231354AbjEFKJH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 6 May 2023 06:09:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34080 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230196AbjEFJc4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 6 May 2023 05:32:56 -0400
-Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AE849ECC
-        for <devicetree@vger.kernel.org>; Sat,  6 May 2023 02:32:54 -0700 (PDT)
-Received: by mail-pf1-x42c.google.com with SMTP id d2e1a72fcca58-64115e652eeso24669995b3a.0
-        for <devicetree@vger.kernel.org>; Sat, 06 May 2023 02:32:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=huaqin-corp-partner-google-com.20221208.gappssmtp.com; s=20221208; t=1683365574; x=1685957574;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=sECiGbZksYkv4TQMefnoALSIrTkCHrwfdiJVAH6EWLo=;
-        b=ekVk4eS97Bi/9lAfVuWkGzzAxdOWW515szCnPWt+20YfMGVJ1Kz0hlj8DuwZVxIzQv
-         9QUokUMbCQaIOsWpeinMtSDn/2Qgwu2iNjKmNk+2OomeqanxdBlNwPv+iJb8gUzfbgRh
-         fd2mil/6Tm4nYh9MvrrcEMmhw4tBft5U5IxVVEdrasKcY4mGKaY8xIW4MoStxuHUSy7g
-         9hWOQYFmo1s2z/A+NWU48PGRMJp5i97Ow97jC0VPC5gQ7gvIa6D55PQXh9HRXtB5c8Up
-         sU93/wAS7xsqev4Y+ac1ydYkWok1KQ4cBe+MOcLmLiQh6eFycx195d/0OleoBCuzavxY
-         F/Yg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683365574; x=1685957574;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=sECiGbZksYkv4TQMefnoALSIrTkCHrwfdiJVAH6EWLo=;
-        b=GDTnU203OoDFOM/HEAlcwgct7Mp//3i/emfOdobUy382Rsuo0qK9Z51bd7MfCEhYDx
-         rfCzsL1Y3QU0tHCiPCw0NFsfhJGDcalm2/MXF+nAWPGPXUK+/mTKf3iZMp3L1r0G3rS3
-         pZaNZ/vfqJk2C3Hz9VAqQTi82JB5WPC2LglIklKQ9z3+182NzqSvS9NbMP806fJHzqHC
-         WUXrRGtJPZaHZOcyGCy0OvCbKTo0gxIiTgKJ7A9eZ4b1DLCpvrvnUBKM/PEtnTQM1PsN
-         iTPjO3hw1VjKH126G5RWjQBYLlQPcWAjsViVLoTt44fKbveW06I1YvB1pW/dYdAL6hv6
-         +jkg==
-X-Gm-Message-State: AC+VfDy6lisHc1vVy9Ijvr73Epfx+UpZxz9q6Y71w1tI+oz0EYkqcweR
-        r08KqFeSB3S2IjNznS8vnT35ig==
-X-Google-Smtp-Source: ACHHUZ7xT094O80aSbuQElXy0bgmVPv9ZT+b+mV6ly7aLWRGLoRdVrAhaKwmFlO39vOTuFw4PY8gbw==
-X-Received: by 2002:a17:902:e746:b0:1ac:4b76:29a1 with SMTP id p6-20020a170902e74600b001ac4b7629a1mr3330306plf.29.1683365573591;
-        Sat, 06 May 2023 02:32:53 -0700 (PDT)
-Received: from yc.huaqin.com ([101.78.151.214])
-        by smtp.gmail.com with ESMTPSA id x14-20020a1709027c0e00b001a24e2eec75sm3155445pll.193.2023.05.06.02.32.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 06 May 2023 02:32:53 -0700 (PDT)
-From:   Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-To:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@linux.ie,
-        daniel@ffwll.ch, dianders@google.com, hsinyi@google.com
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-Subject: [PATCH] drm/panel: Modify innolux hj110iz panel inital code
-Date:   Sat,  6 May 2023 17:32:43 +0800
-Message-Id: <20230506093243.540406-1-yangcong5@huaqin.corp-partner.google.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S230229AbjEFKJG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 6 May 2023 06:09:06 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA8304C04;
+        Sat,  6 May 2023 03:09:03 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 346A8iqt097916;
+        Sat, 6 May 2023 05:08:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1683367724;
+        bh=ZcGs+6i6xW4Yu7JgT5yx4TaDMr7IDnOHdOmGqI71KKE=;
+        h=From:To:CC:Subject:Date;
+        b=q7NV2Kl9IHFFShNgd9OZoDYL1x39PLuxG4GFBiiMc1qTzWYcMkhwI4hm81v46R6+M
+         4d7xL7wVX1eoQ+9VlqUCUVNvf5Ps209LisemW9C7BEG5yso8RlhlgyuuhPcToGtuy0
+         9DSfSPpdaQLSsol8V+WDVXXGOWDJzD6yWHMCquK4=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 346A8iew118434
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Sat, 6 May 2023 05:08:44 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sat, 6
+ May 2023 05:08:43 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Sat, 6 May 2023 05:08:43 -0500
+Received: from udit-HP-Z2-Tower-G9-Workstation-Desktop-PC.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 346A8eAu025949;
+        Sat, 6 May 2023 05:08:40 -0500
+From:   Udit Kumar <u-kumar1@ti.com>
+To:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <afd@ti.com>, <n-francis@ti.com>
+CC:     Udit Kumar <u-kumar1@ti.com>
+Subject: [RFC PATCH v2] arm64: dts: ti: k3-j721s2: Add reserved status in msmc node.
+Date:   Sat, 6 May 2023 15:38:26 +0530
+Message-ID: <20230506100826.1525641-1-u-kumar1@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Optimize flickering problem and power off sequence GOP timing at sleep in mode.
-When display sleep in raise the potential of all GOP signals to VGHO and then
-lower to GND.
+TI K3 SOCs have msmc sram, part of it can be configured as L3 cache
+depending upon system firmware configuration file.
 
-Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+This could be possible to have no L3 cache or variable size of
+L3 cache.
+In either case top of 64KB of SRAM has to be reserved for system
+firmware called tifs.
+
+https://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/general/core.html?highlight=msmc
+Section: TISCI_MSG_QUERY_MSMC.
+
+But u-boot as part of fix up is deleting sysfw and l3cache node
+before passing DT to OS
+https://github.com/u-boot/u-boot/blob/master/arch/arm/mach-k3/common.c#L412
+
+But keeping tifs subnode as is, tifs subnode memory region is also not
+accessible to OS.
+
+In my view we can handle in two ways
+1) delete tifs node as well
+In this case, only accessible sram will be visible to OS
+https://lore.kernel.org/all/20230420081128.3617214-1-u-kumar1@ti.com/
+
+2) make these nodes (tifs, atf and l3cache) as reserved,
+so that OS has complete view of memory.
+
+This is patch for option 2 to mark atf, l3-cache and tifs as
+reserved. and let u-boot to set correct size for these nodes
+as part of runtime fixup.
+
+Nishanth suggested to discuss in k.org group
+https://lore.kernel.org/all/20230502230022.5pjywy6h7oqrkmwh@elusive/
+
+So sending this patch for suggestion for selection right option.
+Also other options are welcome.
+
+
+Signed-off-by: Udit Kumar <u-kumar1@ti.com>
 ---
- .../gpu/drm/panel/panel-boe-tv101wum-nl6.c    | 397 +++++++++++-------
- 1 file changed, 235 insertions(+), 162 deletions(-)
+Changes since v1:
+https://lore.kernel.org/all/20230503144706.1265672-1-u-kumar1@ti.com/
+- remove cover letter for 1 patch
 
-diff --git a/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c b/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c
-index 783234ae0f57..4aebb20d5ff8 100644
---- a/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c
-+++ b/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c
-@@ -451,11 +451,14 @@ static const struct panel_init_cmd inx_hj110iz_init_cmd[] = {
- 	_INIT_DCS_CMD(0xFF, 0x20),
- 	_INIT_DCS_CMD(0xFB, 0x01),
- 	_INIT_DCS_CMD(0x05, 0xD1),
--	_INIT_DCS_CMD(0x0D, 0x63),
--	_INIT_DCS_CMD(0x07, 0x8C),
-+	_INIT_DCS_CMD(0x06, 0xC0),
-+	_INIT_DCS_CMD(0x07, 0x87),
- 	_INIT_DCS_CMD(0x08, 0x4B),
-+
-+	_INIT_DCS_CMD(0x0D, 0x63),
- 	_INIT_DCS_CMD(0x0E, 0x91),
- 	_INIT_DCS_CMD(0x0F, 0x69),
-+	_INIT_DCS_CMD(0x94, 0x00),
- 	_INIT_DCS_CMD(0x95, 0xF5),
- 	_INIT_DCS_CMD(0x96, 0xF5),
- 	_INIT_DCS_CMD(0x9D, 0x00),
-@@ -463,98 +466,96 @@ static const struct panel_init_cmd inx_hj110iz_init_cmd[] = {
- 	_INIT_DCS_CMD(0x69, 0x98),
- 	_INIT_DCS_CMD(0x75, 0xA2),
- 	_INIT_DCS_CMD(0x77, 0xB3),
-+
-+	_INIT_DCS_CMD(0x58, 0x43),
- 	_INIT_DCS_CMD(0xFF, 0x24),
- 	_INIT_DCS_CMD(0xFB, 0x01),
- 	_INIT_DCS_CMD(0x91, 0x44),
--	_INIT_DCS_CMD(0x92, 0x7A),
--	_INIT_DCS_CMD(0x93, 0x1A),
--	_INIT_DCS_CMD(0x94, 0x40),
--	_INIT_DCS_CMD(0x9A, 0x08),
-+	_INIT_DCS_CMD(0x92, 0x4C),
-+	_INIT_DCS_CMD(0x94, 0x86),
- 	_INIT_DCS_CMD(0x60, 0x96),
- 	_INIT_DCS_CMD(0x61, 0xD0),
- 	_INIT_DCS_CMD(0x63, 0x70),
--	_INIT_DCS_CMD(0xC2, 0xCF),
--	_INIT_DCS_CMD(0x9B, 0x0F),
--	_INIT_DCS_CMD(0x9A, 0x08),
-+	_INIT_DCS_CMD(0xC2, 0xCA),
-+
- 	_INIT_DCS_CMD(0x00, 0x03),
- 	_INIT_DCS_CMD(0x01, 0x03),
- 	_INIT_DCS_CMD(0x02, 0x03),
--	_INIT_DCS_CMD(0x03, 0x03),
--	_INIT_DCS_CMD(0x04, 0x03),
--	_INIT_DCS_CMD(0x05, 0x03),
--	_INIT_DCS_CMD(0x06, 0x22),
--	_INIT_DCS_CMD(0x07, 0x06),
--	_INIT_DCS_CMD(0x08, 0x00),
--	_INIT_DCS_CMD(0x09, 0x1D),
--	_INIT_DCS_CMD(0x0A, 0x1C),
--	_INIT_DCS_CMD(0x0B, 0x13),
--	_INIT_DCS_CMD(0x0C, 0x12),
--	_INIT_DCS_CMD(0x0D, 0x11),
--	_INIT_DCS_CMD(0x0E, 0x10),
--	_INIT_DCS_CMD(0x0F, 0x0F),
--	_INIT_DCS_CMD(0x10, 0x0E),
--	_INIT_DCS_CMD(0x11, 0x0D),
--	_INIT_DCS_CMD(0x12, 0x0C),
-+	_INIT_DCS_CMD(0x03, 0x29),
-+	_INIT_DCS_CMD(0x04, 0x22),
-+	_INIT_DCS_CMD(0x05, 0x22),
-+	_INIT_DCS_CMD(0x06, 0x0B),
-+	_INIT_DCS_CMD(0x07, 0x1D),
-+	_INIT_DCS_CMD(0x08, 0x1C),
-+	_INIT_DCS_CMD(0x09, 0x05),
-+	_INIT_DCS_CMD(0x0A, 0x08),
-+	_INIT_DCS_CMD(0x0B, 0x09),
-+	_INIT_DCS_CMD(0x0C, 0x0A),
-+	_INIT_DCS_CMD(0x0D, 0x0C),
-+	_INIT_DCS_CMD(0x0E, 0x0D),
-+	_INIT_DCS_CMD(0x0F, 0x0E),
-+	_INIT_DCS_CMD(0x10, 0x0F),
-+	_INIT_DCS_CMD(0x11, 0x10),
-+	_INIT_DCS_CMD(0x12, 0x11),
- 	_INIT_DCS_CMD(0x13, 0x04),
--	_INIT_DCS_CMD(0x14, 0x03),
-+	_INIT_DCS_CMD(0x14, 0x00),
- 	_INIT_DCS_CMD(0x15, 0x03),
- 	_INIT_DCS_CMD(0x16, 0x03),
- 	_INIT_DCS_CMD(0x17, 0x03),
- 	_INIT_DCS_CMD(0x18, 0x03),
--	_INIT_DCS_CMD(0x19, 0x03),
--	_INIT_DCS_CMD(0x1A, 0x03),
--	_INIT_DCS_CMD(0x1B, 0x03),
--	_INIT_DCS_CMD(0x1C, 0x22),
--	_INIT_DCS_CMD(0x1D, 0x06),
--	_INIT_DCS_CMD(0x1E, 0x00),
--	_INIT_DCS_CMD(0x1F, 0x1D),
--	_INIT_DCS_CMD(0x20, 0x1C),
--	_INIT_DCS_CMD(0x21, 0x13),
--	_INIT_DCS_CMD(0x22, 0x12),
--	_INIT_DCS_CMD(0x23, 0x11),
--	_INIT_DCS_CMD(0x24, 0x10),
--	_INIT_DCS_CMD(0x25, 0x0F),
--	_INIT_DCS_CMD(0x26, 0x0E),
--	_INIT_DCS_CMD(0x27, 0x0D),
--	_INIT_DCS_CMD(0x28, 0x0C),
-+	_INIT_DCS_CMD(0x19, 0x29),
-+	_INIT_DCS_CMD(0x1A, 0x22),
-+	_INIT_DCS_CMD(0x1B, 0x22),
-+	_INIT_DCS_CMD(0x1C, 0x0B),
-+	_INIT_DCS_CMD(0x1D, 0x1D),
-+	_INIT_DCS_CMD(0x1E, 0x1C),
-+	_INIT_DCS_CMD(0x1F, 0x05),
-+	_INIT_DCS_CMD(0x20, 0x08),
-+	_INIT_DCS_CMD(0x21, 0x09),
-+	_INIT_DCS_CMD(0x22, 0x0A),
-+	_INIT_DCS_CMD(0x23, 0x0C),
-+	_INIT_DCS_CMD(0x24, 0x0D),
-+	_INIT_DCS_CMD(0x25, 0x0E),
-+	_INIT_DCS_CMD(0x26, 0x0F),
-+	_INIT_DCS_CMD(0x27, 0x10),
-+	_INIT_DCS_CMD(0x28, 0x11),
- 	_INIT_DCS_CMD(0x29, 0x04),
--	_INIT_DCS_CMD(0x2A, 0x03),
-+	_INIT_DCS_CMD(0x2A, 0x00),
- 	_INIT_DCS_CMD(0x2B, 0x03),
+ arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+index 2dd7865f7654..791993060f44 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+@@ -14,14 +14,17 @@ msmc_ram: sram@70000000 {
+ 		ranges = <0x0 0x0 0x70000000 0x400000>;
  
--	_INIT_DCS_CMD(0x2F, 0x05),
--	_INIT_DCS_CMD(0x30, 0x32),
--	_INIT_DCS_CMD(0x31, 0x43),
--	_INIT_DCS_CMD(0x33, 0x05),
--	_INIT_DCS_CMD(0x34, 0x32),
--	_INIT_DCS_CMD(0x35, 0x43),
--	_INIT_DCS_CMD(0x37, 0x44),
--	_INIT_DCS_CMD(0x38, 0x40),
-+	_INIT_DCS_CMD(0x2F, 0x0A),
-+	_INIT_DCS_CMD(0x30, 0x35),
-+	_INIT_DCS_CMD(0x37, 0xA7),
- 	_INIT_DCS_CMD(0x39, 0x00),
--	_INIT_DCS_CMD(0x3A, 0x18),
--	_INIT_DCS_CMD(0x3B, 0x00),
--	_INIT_DCS_CMD(0x3D, 0x93),
--	_INIT_DCS_CMD(0xAB, 0x44),
--	_INIT_DCS_CMD(0xAC, 0x40),
-+	_INIT_DCS_CMD(0x3A, 0x46),
-+	_INIT_DCS_CMD(0x3B, 0x32),
-+	_INIT_DCS_CMD(0x3D, 0x12),
-+
-+	_INIT_DCS_CMD(0x3F, 0x33),
-+	_INIT_DCS_CMD(0x40, 0x31),
-+	_INIT_DCS_CMD(0x41, 0x40),
-+	_INIT_DCS_CMD(0x42, 0x42),
-+	_INIT_DCS_CMD(0x47, 0x77),
-+	_INIT_DCS_CMD(0x48, 0x77),
-+	_INIT_DCS_CMD(0x4A, 0x45),
-+	_INIT_DCS_CMD(0x4B, 0x45),
-+	_INIT_DCS_CMD(0x4C, 0x14),
+ 		atf-sram@0 {
++			status = "reserved";
+ 			reg = <0x0 0x20000>;
+ 		};
  
- 	_INIT_DCS_CMD(0x4D, 0x21),
- 	_INIT_DCS_CMD(0x4E, 0x43),
- 	_INIT_DCS_CMD(0x4F, 0x65),
--	_INIT_DCS_CMD(0x50, 0x87),
--	_INIT_DCS_CMD(0x51, 0x78),
--	_INIT_DCS_CMD(0x52, 0x56),
--	_INIT_DCS_CMD(0x53, 0x34),
--	_INIT_DCS_CMD(0x54, 0x21),
--	_INIT_DCS_CMD(0x55, 0x83),
--	_INIT_DCS_CMD(0x56, 0x08),
-+	_INIT_DCS_CMD(0x55, 0x06),
-+	_INIT_DCS_CMD(0x56, 0x06),
- 	_INIT_DCS_CMD(0x58, 0x21),
--	_INIT_DCS_CMD(0x59, 0x40),
--	_INIT_DCS_CMD(0x5A, 0x00),
--	_INIT_DCS_CMD(0x5B, 0x2C),
--	_INIT_DCS_CMD(0x5E, 0x00, 0x10),
-+	_INIT_DCS_CMD(0x59, 0x70),
-+	_INIT_DCS_CMD(0x5A, 0x46),
-+	_INIT_DCS_CMD(0x5B, 0x32),
-+	_INIT_DCS_CMD(0x5C, 0x88),
-+	_INIT_DCS_CMD(0x5E, 0x00, 0x00),
- 	_INIT_DCS_CMD(0x5F, 0x00),
+ 		tifs-sram@1f0000 {
++			status = "reserved";
+ 			reg = <0x1f0000 0x10000>;
+ 		};
  
--	_INIT_DCS_CMD(0x7A, 0x00),
--	_INIT_DCS_CMD(0x7B, 0x00),
-+	_INIT_DCS_CMD(0x7A, 0xFF),
-+	_INIT_DCS_CMD(0x7B, 0xFF),
- 	_INIT_DCS_CMD(0x7C, 0x00),
- 	_INIT_DCS_CMD(0x7D, 0x00),
- 	_INIT_DCS_CMD(0x7E, 0x20),
-@@ -564,152 +565,183 @@ static const struct panel_init_cmd inx_hj110iz_init_cmd[] = {
- 	_INIT_DCS_CMD(0x82, 0x08),
- 	_INIT_DCS_CMD(0x97, 0x02),
- 	_INIT_DCS_CMD(0xC5, 0x10),
-+
-+	_INIT_DCS_CMD(0xD7, 0x55),
-+	_INIT_DCS_CMD(0xD8, 0x55),
-+	_INIT_DCS_CMD(0xD9, 0x23),
- 	_INIT_DCS_CMD(0xDA, 0x05),
- 	_INIT_DCS_CMD(0xDB, 0x01),
--	_INIT_DCS_CMD(0xDC, 0x7A),
-+	_INIT_DCS_CMD(0xDC, 0x65),
- 	_INIT_DCS_CMD(0xDD, 0x55),
- 	_INIT_DCS_CMD(0xDE, 0x27),
- 	_INIT_DCS_CMD(0xDF, 0x01),
--	_INIT_DCS_CMD(0xE0, 0x7A),
-+	_INIT_DCS_CMD(0xE0, 0x65),
- 	_INIT_DCS_CMD(0xE1, 0x01),
--	_INIT_DCS_CMD(0xE2, 0x7A),
-+	_INIT_DCS_CMD(0xE2, 0x65),
- 	_INIT_DCS_CMD(0xE3, 0x01),
--	_INIT_DCS_CMD(0xE4, 0x7A),
-+	_INIT_DCS_CMD(0xE4, 0x65),
- 	_INIT_DCS_CMD(0xE5, 0x01),
--	_INIT_DCS_CMD(0xE6, 0x7A),
-+	_INIT_DCS_CMD(0xE6, 0x65),
- 	_INIT_DCS_CMD(0xE7, 0x00),
- 	_INIT_DCS_CMD(0xE8, 0x00),
- 	_INIT_DCS_CMD(0xE9, 0x01),
--	_INIT_DCS_CMD(0xEA, 0x7A),
-+	_INIT_DCS_CMD(0xEA, 0x65),
- 	_INIT_DCS_CMD(0xEB, 0x01),
--	_INIT_DCS_CMD(0xEE, 0x7A),
-+	_INIT_DCS_CMD(0xEE, 0x65),
- 	_INIT_DCS_CMD(0xEF, 0x01),
--	_INIT_DCS_CMD(0xF0, 0x7A),
--
-+	_INIT_DCS_CMD(0xF0, 0x65),
- 	_INIT_DCS_CMD(0xB6, 0x05, 0x00, 0x05, 0x00, 0x00, 0x00, 0x00, 0x00, 0x05, 0x05, 0x00, 0x00),
-+
- 	_INIT_DCS_CMD(0xFF, 0x25),
--	_INIT_DCS_CMD(0xFB, 0x01),
- 
-+	_INIT_DCS_CMD(0xFB, 0x01),
- 	_INIT_DCS_CMD(0x05, 0x00),
--
--	_INIT_DCS_CMD(0x13, 0x02),
--	_INIT_DCS_CMD(0x14, 0xDF),
- 	_INIT_DCS_CMD(0xF1, 0x10),
-+
- 	_INIT_DCS_CMD(0x1E, 0x00),
--	_INIT_DCS_CMD(0x1F, 0x00),
--	_INIT_DCS_CMD(0x20, 0x2C),
-+	_INIT_DCS_CMD(0x1F, 0x46),
-+	_INIT_DCS_CMD(0x20, 0x32),
-+
- 	_INIT_DCS_CMD(0x25, 0x00),
--	_INIT_DCS_CMD(0x26, 0x00),
--	_INIT_DCS_CMD(0x27, 0x2C),
-+	_INIT_DCS_CMD(0x26, 0x46),
-+	_INIT_DCS_CMD(0x27, 0x32),
-+
- 	_INIT_DCS_CMD(0x3F, 0x80),
- 	_INIT_DCS_CMD(0x40, 0x00),
- 	_INIT_DCS_CMD(0x43, 0x00),
- 
--	_INIT_DCS_CMD(0x44, 0x18),
--	_INIT_DCS_CMD(0x45, 0x00),
-+	_INIT_DCS_CMD(0x44, 0x46),
-+	_INIT_DCS_CMD(0x45, 0x46),
-+
-+	_INIT_DCS_CMD(0x48, 0x46),
-+	_INIT_DCS_CMD(0x49, 0x32),
- 
--	_INIT_DCS_CMD(0x48, 0x00),
--	_INIT_DCS_CMD(0x49, 0x2C),
- 	_INIT_DCS_CMD(0x5B, 0x80),
-+
- 	_INIT_DCS_CMD(0x5C, 0x00),
--	_INIT_DCS_CMD(0x5D, 0x00),
--	_INIT_DCS_CMD(0x5E, 0x00),
--	_INIT_DCS_CMD(0x61, 0x00),
--	_INIT_DCS_CMD(0x62, 0x2C),
--	_INIT_DCS_CMD(0x68, 0x10),
-+	_INIT_DCS_CMD(0x5D, 0x46),
-+	_INIT_DCS_CMD(0x5E, 0x32),
-+
-+	_INIT_DCS_CMD(0x5F, 0x46),
-+	_INIT_DCS_CMD(0x60, 0x32),
-+
-+	_INIT_DCS_CMD(0x61, 0x46),
-+	_INIT_DCS_CMD(0x62, 0x32),
-+	_INIT_DCS_CMD(0x68, 0x0C),
-+
-+	_INIT_DCS_CMD(0x6C, 0x0D),
-+	_INIT_DCS_CMD(0x6E, 0x0D),
-+	_INIT_DCS_CMD(0x78, 0x00),
-+	_INIT_DCS_CMD(0x79, 0xC5),
-+	_INIT_DCS_CMD(0x7A, 0x0C),
-+	_INIT_DCS_CMD(0x7B, 0xB0),
-+
- 	_INIT_DCS_CMD(0xFF, 0x26),
- 	_INIT_DCS_CMD(0xFB, 0x01),
- 
- 	_INIT_DCS_CMD(0x00, 0xA1),
- 	_INIT_DCS_CMD(0x02, 0x31),
--	_INIT_DCS_CMD(0x0A, 0xF2),
--	_INIT_DCS_CMD(0x04, 0x28),
-+	_INIT_DCS_CMD(0x0A, 0xF4),
-+	_INIT_DCS_CMD(0x04, 0x50),
- 	_INIT_DCS_CMD(0x06, 0x30),
- 	_INIT_DCS_CMD(0x0C, 0x16),
- 	_INIT_DCS_CMD(0x0D, 0x0D),
- 	_INIT_DCS_CMD(0x0F, 0x00),
- 	_INIT_DCS_CMD(0x11, 0x00),
- 	_INIT_DCS_CMD(0x12, 0x50),
--	_INIT_DCS_CMD(0x13, 0x56),
--	_INIT_DCS_CMD(0x14, 0x57),
-+	_INIT_DCS_CMD(0x13, 0x40),
-+	_INIT_DCS_CMD(0x14, 0x58),
- 	_INIT_DCS_CMD(0x15, 0x00),
- 	_INIT_DCS_CMD(0x16, 0x10),
- 	_INIT_DCS_CMD(0x17, 0xA0),
- 	_INIT_DCS_CMD(0x18, 0x86),
- 	_INIT_DCS_CMD(0x22, 0x00),
- 	_INIT_DCS_CMD(0x23, 0x00),
--	_INIT_DCS_CMD(0x19, 0x0D),
--	_INIT_DCS_CMD(0x1A, 0x7F),
--	_INIT_DCS_CMD(0x1B, 0x0C),
--	_INIT_DCS_CMD(0x1C, 0xBF),
--	_INIT_DCS_CMD(0x2A, 0x0D),
--	_INIT_DCS_CMD(0x2B, 0x7F),
--	_INIT_DCS_CMD(0x20, 0x00),
-+
-+	_INIT_DCS_CMD(0x19, 0x0E),
-+	_INIT_DCS_CMD(0x1A, 0x31),
-+	_INIT_DCS_CMD(0x1B, 0x0D),
-+	_INIT_DCS_CMD(0x1C, 0x29),
-+	_INIT_DCS_CMD(0x2A, 0x0E),
-+	_INIT_DCS_CMD(0x2B, 0x31),
- 
- 	_INIT_DCS_CMD(0x1D, 0x00),
--	_INIT_DCS_CMD(0x1E, 0x78),
--	_INIT_DCS_CMD(0x1F, 0x78),
-+	_INIT_DCS_CMD(0x1E, 0x62),
-+	_INIT_DCS_CMD(0x1F, 0x62),
- 
--	_INIT_DCS_CMD(0x2F, 0x03),
--	_INIT_DCS_CMD(0x30, 0x78),
--	_INIT_DCS_CMD(0x33, 0x78),
--	_INIT_DCS_CMD(0x34, 0x66),
--	_INIT_DCS_CMD(0x35, 0x11),
-+	_INIT_DCS_CMD(0x2F, 0x06),
-+	_INIT_DCS_CMD(0x30, 0x62),
-+	_INIT_DCS_CMD(0x31, 0x06),
-+	_INIT_DCS_CMD(0x32, 0x7F),
-+	_INIT_DCS_CMD(0x33, 0x11),
-+	_INIT_DCS_CMD(0x34, 0x89),
-+	_INIT_DCS_CMD(0x35, 0x67),
- 
--	_INIT_DCS_CMD(0x39, 0x10),
--	_INIT_DCS_CMD(0x3A, 0x78),
-+	_INIT_DCS_CMD(0x39, 0x0B),
-+	_INIT_DCS_CMD(0x3A, 0x62),
- 	_INIT_DCS_CMD(0x3B, 0x06),
- 
- 	_INIT_DCS_CMD(0xC8, 0x04),
--	_INIT_DCS_CMD(0xC9, 0x84),
-+	_INIT_DCS_CMD(0xC9, 0x89),
- 	_INIT_DCS_CMD(0xCA, 0x4E),
- 	_INIT_DCS_CMD(0xCB, 0x00),
-+	_INIT_DCS_CMD(0xA9, 0x3F),
-+	_INIT_DCS_CMD(0xAA, 0x3E),
-+	_INIT_DCS_CMD(0xAB, 0x3D),
-+	_INIT_DCS_CMD(0xAC, 0x3C),
-+	_INIT_DCS_CMD(0xAD, 0x3B),
-+	_INIT_DCS_CMD(0xAE, 0x3A),
-+	_INIT_DCS_CMD(0xAF, 0x39),
-+	_INIT_DCS_CMD(0xB0, 0x38),
- 
--	_INIT_DCS_CMD(0xA9, 0x50),
--	_INIT_DCS_CMD(0xAA, 0x4F),
--	_INIT_DCS_CMD(0xAB, 0x4D),
--	_INIT_DCS_CMD(0xAC, 0x4A),
--	_INIT_DCS_CMD(0xAD, 0x48),
--	_INIT_DCS_CMD(0xAE, 0x46),
- 	_INIT_DCS_CMD(0xFF, 0x27),
- 	_INIT_DCS_CMD(0xFB, 0x01),
-+
-+	_INIT_DCS_CMD(0xD0, 0x11),
-+	_INIT_DCS_CMD(0xD1, 0x54),
-+	_INIT_DCS_CMD(0xDE, 0x43),
-+	_INIT_DCS_CMD(0xDF, 0x02),
-+
- 	_INIT_DCS_CMD(0xC0, 0x18),
- 	_INIT_DCS_CMD(0xC1, 0x00),
- 	_INIT_DCS_CMD(0xC2, 0x00),
-+	_INIT_DCS_CMD(0x00, 0x00),
-+	_INIT_DCS_CMD(0xC3, 0x00),
- 	_INIT_DCS_CMD(0x56, 0x06),
-+
- 	_INIT_DCS_CMD(0x58, 0x80),
--	_INIT_DCS_CMD(0x59, 0x75),
-+	_INIT_DCS_CMD(0x59, 0x78),
- 	_INIT_DCS_CMD(0x5A, 0x00),
--	_INIT_DCS_CMD(0x5B, 0x02),
-+	_INIT_DCS_CMD(0x5B, 0x18),
- 	_INIT_DCS_CMD(0x5C, 0x00),
--	_INIT_DCS_CMD(0x5D, 0x00),
-+	_INIT_DCS_CMD(0x5D, 0x01),
- 	_INIT_DCS_CMD(0x5E, 0x20),
- 	_INIT_DCS_CMD(0x5F, 0x10),
- 	_INIT_DCS_CMD(0x60, 0x00),
--	_INIT_DCS_CMD(0x61, 0x2E),
-+	_INIT_DCS_CMD(0x61, 0x1C),
- 	_INIT_DCS_CMD(0x62, 0x00),
- 	_INIT_DCS_CMD(0x63, 0x01),
--	_INIT_DCS_CMD(0x64, 0x43),
--	_INIT_DCS_CMD(0x65, 0x2D),
-+	_INIT_DCS_CMD(0x64, 0x44),
-+	_INIT_DCS_CMD(0x65, 0x1B),
- 	_INIT_DCS_CMD(0x66, 0x00),
- 	_INIT_DCS_CMD(0x67, 0x01),
--	_INIT_DCS_CMD(0x68, 0x43),
-+	_INIT_DCS_CMD(0x68, 0x44),
-+
- 	_INIT_DCS_CMD(0x98, 0x01),
- 	_INIT_DCS_CMD(0xB4, 0x03),
--	_INIT_DCS_CMD(0x9B, 0xBD),
--	_INIT_DCS_CMD(0xA0, 0x90),
--	_INIT_DCS_CMD(0xAB, 0x1B),
--	_INIT_DCS_CMD(0xBC, 0x0C),
-+	_INIT_DCS_CMD(0x9B, 0xBE),
-+
-+	_INIT_DCS_CMD(0xAB, 0x14),
-+	_INIT_DCS_CMD(0xBC, 0x08),
- 	_INIT_DCS_CMD(0xBD, 0x28),
- 
- 	_INIT_DCS_CMD(0xFF, 0x2A),
- 	_INIT_DCS_CMD(0xFB, 0x01),
--
- 	_INIT_DCS_CMD(0x22, 0x2F),
- 	_INIT_DCS_CMD(0x23, 0x08),
- 
- 	_INIT_DCS_CMD(0x24, 0x00),
--	_INIT_DCS_CMD(0x25, 0x65),
-+	_INIT_DCS_CMD(0x25, 0x62),
- 	_INIT_DCS_CMD(0x26, 0xF8),
- 	_INIT_DCS_CMD(0x27, 0x00),
- 	_INIT_DCS_CMD(0x28, 0x1A),
-@@ -719,18 +751,29 @@ static const struct panel_init_cmd inx_hj110iz_init_cmd[] = {
- 	_INIT_DCS_CMD(0x2D, 0x1A),
- 
- 	_INIT_DCS_CMD(0x64, 0x96),
--	_INIT_DCS_CMD(0x65, 0x00),
-+	_INIT_DCS_CMD(0x65, 0x10),
- 	_INIT_DCS_CMD(0x66, 0x00),
-+	_INIT_DCS_CMD(0x67, 0x96),
-+	_INIT_DCS_CMD(0x68, 0x10),
-+	_INIT_DCS_CMD(0x69, 0x00),
- 	_INIT_DCS_CMD(0x6A, 0x96),
--	_INIT_DCS_CMD(0x6B, 0x00),
-+	_INIT_DCS_CMD(0x6B, 0x10),
- 	_INIT_DCS_CMD(0x6C, 0x00),
- 	_INIT_DCS_CMD(0x70, 0x92),
--	_INIT_DCS_CMD(0x71, 0x00),
-+	_INIT_DCS_CMD(0x71, 0x10),
- 	_INIT_DCS_CMD(0x72, 0x00),
--	_INIT_DCS_CMD(0xA2, 0x33),
-+	_INIT_DCS_CMD(0x79, 0x96),
-+	_INIT_DCS_CMD(0x7A, 0x10),
-+	_INIT_DCS_CMD(0x88, 0x96),
-+	_INIT_DCS_CMD(0x89, 0x10),
-+
-+	_INIT_DCS_CMD(0xA2, 0x3F),
- 	_INIT_DCS_CMD(0xA3, 0x30),
- 	_INIT_DCS_CMD(0xA4, 0xC0),
-+	_INIT_DCS_CMD(0xA5, 0x03),
-+
- 	_INIT_DCS_CMD(0xE8, 0x00),
-+
- 	_INIT_DCS_CMD(0x97, 0x3C),
- 	_INIT_DCS_CMD(0x98, 0x02),
- 	_INIT_DCS_CMD(0x99, 0x95),
-@@ -739,38 +782,68 @@ static const struct panel_init_cmd inx_hj110iz_init_cmd[] = {
- 	_INIT_DCS_CMD(0x9C, 0x0B),
- 	_INIT_DCS_CMD(0x9D, 0x0A),
- 	_INIT_DCS_CMD(0x9E, 0x90),
-+
-+	_INIT_DCS_CMD(0xFF, 0x25),
-+	_INIT_DCS_CMD(0x13, 0x02),
-+	_INIT_DCS_CMD(0x14, 0xD7),
-+	_INIT_DCS_CMD(0xDB, 0x02),
-+	_INIT_DCS_CMD(0xDC, 0xD7),
-+	_INIT_DCS_CMD(0x17, 0xCF),
-+	_INIT_DCS_CMD(0x19, 0x0F),
-+	_INIT_DCS_CMD(0x1B, 0x5B),
-+
-+	_INIT_DCS_CMD(0xFF, 0x20),
-+
-+	_INIT_DCS_CMD(0xB0, 0x00, 0x00, 0x00, 0x0C, 0x00, 0x24, 0x00, 0x38, 0x00, 0x4C, 0x00, 0x5E, 0x00, 0x6F, 0x00, 0x7E),
-+	_INIT_DCS_CMD(0xB1, 0x00, 0x8C, 0x00, 0xBE, 0x00, 0xE5, 0x01, 0x27, 0x01, 0x58, 0x01, 0xA8, 0x01, 0xE8, 0x01, 0xEA),
-+	_INIT_DCS_CMD(0xB2, 0x02, 0x28, 0x02, 0x71, 0x02, 0x9E, 0x02, 0xDA, 0x03, 0x00, 0x03, 0x31, 0x03, 0x40, 0x03, 0x51),
-+	_INIT_DCS_CMD(0xB3, 0x03, 0x62, 0x03, 0x75, 0x03, 0x89, 0x03, 0x9C, 0x03, 0xAA, 0x03, 0xB2),
-+
-+	_INIT_DCS_CMD(0xB4, 0x00, 0x00, 0x00, 0x0D, 0x00, 0x27, 0x00, 0x3D, 0x00, 0x52, 0x00, 0x64, 0x00, 0x75, 0x00, 0x84),
-+	_INIT_DCS_CMD(0xB5, 0x00, 0x93, 0x00, 0xC5, 0x00, 0xEC, 0x01, 0x2C, 0x01, 0x5D, 0x01, 0xAC, 0x01, 0xEC, 0x01, 0xEE),
-+	_INIT_DCS_CMD(0xB6, 0x02, 0x2B, 0x02, 0x73, 0x02, 0xA0, 0x02, 0xDB, 0x03, 0x01, 0x03, 0x31, 0x03, 0x41, 0x03, 0x51),
-+	_INIT_DCS_CMD(0xB7, 0x03, 0x63, 0x03, 0x75, 0x03, 0x89, 0x03, 0x9C, 0x03, 0xAA, 0x03, 0xB2),
-+
-+	_INIT_DCS_CMD(0xB8, 0x00, 0x00, 0x00, 0x0E, 0x00, 0x2A, 0x00, 0x40, 0x00, 0x56, 0x00, 0x68, 0x00, 0x7A, 0x00, 0x89),
-+	_INIT_DCS_CMD(0xB9, 0x00, 0x98, 0x00, 0xC9, 0x00, 0xF1, 0x01, 0x30, 0x01, 0x61, 0x01, 0xB0, 0x01, 0xEF, 0x01, 0xF1),
-+	_INIT_DCS_CMD(0xBA, 0x02, 0x2E, 0x02, 0x76, 0x02, 0xA3, 0x02, 0xDD, 0x03, 0x02, 0x03, 0x32, 0x03, 0x42, 0x03, 0x53),
-+	_INIT_DCS_CMD(0xBB, 0x03, 0x66, 0x03, 0x75, 0x03, 0x89, 0x03, 0x9C, 0x03, 0xAA, 0x03, 0xB2),
-+
-+	_INIT_DCS_CMD(0xFF, 0x21),
-+	_INIT_DCS_CMD(0xB0, 0x00, 0x00, 0x00, 0x0C, 0x00, 0x24, 0x00, 0x38, 0x00, 0x4C, 0x00, 0x5E, 0x00, 0x6F, 0x00, 0x7E),
-+	_INIT_DCS_CMD(0xB1, 0x00, 0x8C, 0x00, 0xBE, 0x00, 0xE5, 0x01, 0x27, 0x01, 0x58, 0x01, 0xA8, 0x01, 0xE8, 0x01, 0xEA),
-+	_INIT_DCS_CMD(0xB2, 0x02, 0x28, 0x02, 0x71, 0x02, 0x9E, 0x02, 0xDA, 0x03, 0x00, 0x03, 0x31, 0x03, 0x40, 0x03, 0x51),
-+	_INIT_DCS_CMD(0xB3, 0x03, 0x62, 0x03, 0x77, 0x03, 0x90, 0x03, 0xAC, 0x03, 0xCA, 0x03, 0xDA),
-+
-+	_INIT_DCS_CMD(0xB4, 0x00, 0x00, 0x00, 0x0D, 0x00, 0x27, 0x00, 0x3D, 0x00, 0x52, 0x00, 0x64, 0x00, 0x75, 0x00, 0x84),
-+	_INIT_DCS_CMD(0xB5, 0x00, 0x93, 0x00, 0xC5, 0x00, 0xEC, 0x01, 0x2C, 0x01, 0x5D, 0x01, 0xAC, 0x01, 0xEC, 0x01, 0xEE),
-+	_INIT_DCS_CMD(0xB6, 0x02, 0x2B, 0x02, 0x73, 0x02, 0xA0, 0x02, 0xDB, 0x03, 0x01, 0x03, 0x31, 0x03, 0x41, 0x03, 0x51),
-+	_INIT_DCS_CMD(0xB7, 0x03, 0x63, 0x03, 0x77, 0x03, 0x90, 0x03, 0xAC, 0x03, 0xCA, 0x03, 0xDA),
-+
-+	_INIT_DCS_CMD(0xB8, 0x00, 0x00, 0x00, 0x0E, 0x00, 0x2A, 0x00, 0x40, 0x00, 0x56, 0x00, 0x68, 0x00, 0x7A, 0x00, 0x89),
-+	_INIT_DCS_CMD(0xB9, 0x00, 0x98, 0x00, 0xC9, 0x00, 0xF1, 0x01, 0x30, 0x01, 0x61, 0x01, 0xB0, 0x01, 0xEF, 0x01, 0xF1),
-+	_INIT_DCS_CMD(0xBA, 0x02, 0x2E, 0x02, 0x76, 0x02, 0xA3, 0x02, 0xDD, 0x03, 0x02, 0x03, 0x32, 0x03, 0x42, 0x03, 0x53),
-+	_INIT_DCS_CMD(0xBB, 0x03, 0x66, 0x03, 0x77, 0x03, 0x90, 0x03, 0xAC, 0x03, 0xCA, 0x03, 0xDA),
-+
- 	_INIT_DCS_CMD(0xFF, 0xF0),
- 	_INIT_DCS_CMD(0xFB, 0x01),
- 	_INIT_DCS_CMD(0x3A, 0x08),
--	_INIT_DCS_CMD(0xFF, 0xD0),
--	_INIT_DCS_CMD(0xFB, 0x01),
--	_INIT_DCS_CMD(0x00, 0x33),
--	_INIT_DCS_CMD(0x08, 0x01),
--	_INIT_DCS_CMD(0x09, 0xBF),
--	_INIT_DCS_CMD(0x2F, 0x33),
--	_INIT_DCS_CMD(0xFF, 0x23),
--	_INIT_DCS_CMD(0xFB, 0x01),
--	_INIT_DCS_CMD(0x00, 0x80),
--	_INIT_DCS_CMD(0x07, 0x00),
--	_INIT_DCS_CMD(0xFF, 0x20),
--	_INIT_DCS_CMD(0xFB, 0x01),
--	_INIT_DCS_CMD(0x30, 0x00),
--	_INIT_DCS_CMD(0xFF, 0x24),
--	_INIT_DCS_CMD(0x5C, 0x88),
--	_INIT_DCS_CMD(0x5D, 0x08),
-+
- 	_INIT_DCS_CMD(0xFF, 0x10),
- 	_INIT_DCS_CMD(0xB9, 0x01),
-+
- 	_INIT_DCS_CMD(0xFF, 0x20),
-+
- 	_INIT_DCS_CMD(0x18, 0x40),
- 	_INIT_DCS_CMD(0xFF, 0x10),
-+
- 	_INIT_DCS_CMD(0xB9, 0x02),
- 	_INIT_DCS_CMD(0xFF, 0x10),
-+
- 	_INIT_DCS_CMD(0xFB, 0x01),
--	_INIT_DCS_CMD(0xBB, 0x13),
--	_INIT_DCS_CMD(0x3B, 0x03, 0x96, 0x1A, 0x04, 0x04),
-+	_INIT_DCS_CMD(0xB0, 0x01),
- 	_INIT_DCS_CMD(0x35, 0x00),
--	_INIT_DCS_CMD(0x51, 0x0F, 0xFF),
--	_INIT_DCS_CMD(0x53, 0x24),
-+	_INIT_DCS_CMD(0x3B, 0x03, 0xAE, 0x1A, 0x04, 0x04),
- 	_INIT_DELAY_CMD(100),
- 	_INIT_DCS_CMD(0x11),
- 	_INIT_DELAY_CMD(200),
-@@ -1431,15 +1504,15 @@ static const struct panel_desc boe_tv110c9m_desc = {
- };
- 
- static const struct drm_display_mode inx_hj110iz_default_mode = {
--	.clock = 166594,
-+	.clock = 168432,
- 	.hdisplay = 1200,
- 	.hsync_start = 1200 + 40,
- 	.hsync_end = 1200 + 40 + 8,
- 	.htotal = 1200 + 40 + 8 + 28,
- 	.vdisplay = 2000,
- 	.vsync_start = 2000 + 26,
--	.vsync_end = 2000 + 26 + 1,
--	.vtotal = 2000 + 26 + 1 + 149,
-+	.vsync_end = 2000 + 26 + 2,
-+	.vtotal = 2000 + 26 + 2 + 172,
- 	.type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED,
- };
- 
+ 		l3cache-sram@200000 {
++			status = "reserved";
+ 			reg = <0x200000 0x200000>;
+ 		};
+ 	};
 -- 
-2.25.1
+2.34.1
 
