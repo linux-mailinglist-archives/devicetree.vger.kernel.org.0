@@ -2,146 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 253716F911B
-	for <lists+devicetree@lfdr.de>; Sat,  6 May 2023 12:17:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F9826F9120
+	for <lists+devicetree@lfdr.de>; Sat,  6 May 2023 12:29:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231738AbjEFKRL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 6 May 2023 06:17:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35754 "EHLO
+        id S230136AbjEFK3R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 6 May 2023 06:29:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231343AbjEFKRK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 6 May 2023 06:17:10 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C307A4EDB;
-        Sat,  6 May 2023 03:17:09 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 68DE360C43;
-        Sat,  6 May 2023 10:17:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6B11C433EF;
-        Sat,  6 May 2023 10:17:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1683368228;
-        bh=2BKyMfWbuzam8pPIQKLxv0HwFgMr99AvmaRkf2dAMAo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=eIlKEx96qJxg5USu2rhGUPWJhb9u/8flrMmDA0LQgtPSgW5Tf0Pv/FJFVLoUijcDt
-         pu4/D0odINeiCivQMNpjTt7hM/yIbbAt5q1YAMW37qWmOvMV8fIodOm9kUQh8xxF+e
-         TERZyFDzjLbo5PEZRrfR2C4oqJSMs0/juZm/XhYx2z3UCWrXnTjhwf3u7nqz13//sM
-         Be9XcwPCT3fwubVr9HcokKmXGetwyx/nQR1I7i+/DbtyRyj+pH4DuwlUbcOUethHbB
-         kM06XhXg+iXLKvzBPchI19Qr76NsBiITQ1Ug1MO9Wf8QFX2Eqe9A/xrixtKD7rpUO7
-         WMff7sfQQysgw==
-Date:   Sat, 6 May 2023 11:17:03 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Changhuang Liang <changhuang.liang@starfivetech.com>
-Cc:     Conor Dooley <conor.dooley@microchip.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Walker Chen <walker.chen@starfivetech.com>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, vkoul@kernel.org,
-        linux-phy@lists.infradead.org
-Subject: Re: [RESEND v2 1/6] dt-bindings: power: Add JH7110 AON PMU support
-Message-ID: <20230506-dating-twiddling-b364de21ed2b@spud>
-References: <089e24d1-588a-4a56-f00b-0b35d1d99295@linaro.org>
- <ea5b5534-8fc2-7c84-a011-c1b42c6ed7a0@starfivetech.com>
- <1ac26c1a-1726-515d-6598-849a07ed0b86@linaro.org>
- <5adda0ad-965c-fbf0-878c-9d41d28b5c39@starfivetech.com>
- <86693969-59bf-5bcc-42a3-b6e94a0d6f3e@linaro.org>
- <fcfc8ba4-40a7-da43-3375-712bd7e7f4d5@starfivetech.com>
- <20230504-worshiper-ongoing-5581e1f2c2c4@wendy>
- <2f473307-2219-61a4-fa66-5848fe566cf0@starfivetech.com>
- <20230505-magician-poet-724c96020c2f@wendy>
- <ba6a1a47-d3b1-ee16-4785-f5c61d593127@starfivetech.com>
+        with ESMTP id S229872AbjEFK3Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 6 May 2023 06:29:16 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F223FA267
+        for <devicetree@vger.kernel.org>; Sat,  6 May 2023 03:29:14 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-50bdd7b229cso5266355a12.0
+        for <devicetree@vger.kernel.org>; Sat, 06 May 2023 03:29:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683368953; x=1685960953;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=Q89WWNqgDfTX8XQe+iwDXWhftOpjNe+SVaLkM27Jjlk=;
+        b=pmATmgnNBn1vaw2zFc9jefVTFkd0dnlE2vqaWyus03GIzYhi4HyzVnyelO40yuG4Nf
+         FbsLdOYL+TPWBZlc0TzBjLv23EisWOaFqVtJ7I8hyRdQkIJyGxnKJWf8U+17lEnl87UF
+         nk5FPFUIX9YjFAbDzbOwMQxx/W/figOX/gCjvtt/cHh4kuwHBv699IQhnIP1Th5OsiD4
+         qSZ4Flnl9RaMHEnbxZyUcucZD7QgTsn44dLXogGymzjwvrMwJP1njxSDT/gl5FqAFwMA
+         +xJPkkV4fuyksFjlazHpTM9bvRGVUs2rEmA75iCMNANIdV/MyaVhtx8GrJiSrrhlgeiN
+         QHQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683368953; x=1685960953;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Q89WWNqgDfTX8XQe+iwDXWhftOpjNe+SVaLkM27Jjlk=;
+        b=lWP7xdwoDhAHHIXbS3go28yZ7WuGA2iqVOZGP9xb+scFEQYbolxwRdvVZ04KEIGisF
+         XKNQ4v4o10BTGC4glxM/twWh1EPXm5cbcPTPJtlVDaKZi3FAUP8RempEkJswq9fPPJVG
+         8XBypCQVLtiZXIJJZUTYVpF+CgN+Ui7PkhnR+CwpdQzqkUCT+sEVvK+LU9CfdlWNrFWi
+         2HsB6CPfOYVCyiJCVqYehUHZApe+bvdLptuiPefoujrq+LWj7VrE7EnkcD6VQ6R6CdjG
+         89o0aKqC9ejVnBP2yqonzikYNBCdg5BIXqGp9G+ifyQ6UeFTMgf+Oe681y6PCQbzBENf
+         l9tA==
+X-Gm-Message-State: AC+VfDx0xrgGlv4CKolGQUpUU5jZn53DKL8firjeDfXngRgl7gSGMuCY
+        gMDLSRxFugE+PgYiEY5ylh4o4A==
+X-Google-Smtp-Source: ACHHUZ6/wPqlS3DByla0DrxWiLfSctxz7UcT+4RZsEyKv1NRwAVpbGbddpmZMuF0gSHXShBQ1JQNRA==
+X-Received: by 2002:a17:907:709:b0:961:69a2:c8d6 with SMTP id xb9-20020a170907070900b0096169a2c8d6mr3030336ejb.69.1683368953421;
+        Sat, 06 May 2023 03:29:13 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:efe5:7c03:a10a:7a40? ([2a02:810d:15c0:828:efe5:7c03:a10a:7a40])
+        by smtp.gmail.com with ESMTPSA id hx1-20020a170906846100b00965f1f4bac5sm1532711ejc.124.2023.05.06.03.29.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 06 May 2023 03:29:12 -0700 (PDT)
+Message-ID: <2dd9f9bd-c55e-a887-2e9b-61b2b66512ef@linaro.org>
+Date:   Sat, 6 May 2023 12:29:11 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="olYpGZlk/8KzYW4Y"
-Content-Disposition: inline
-In-Reply-To: <ba6a1a47-d3b1-ee16-4785-f5c61d593127@starfivetech.com>
-X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH 1/2] phy: cadence: salvo: Add
+ usb2-disconnect-threshold-microvolt property
+To:     Frank Li <Frank.Li@nxp.com>, vkoul@kernel.org, kishon@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        imx@lists.linux.dev, fushi.peng@nxp.com
+References: <20230505185247.1854677-1-Frank.Li@nxp.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230505185247.1854677-1-Frank.Li@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 05/05/2023 20:52, Frank Li wrote:
+> Add usb2-disconnect-threshold-microvolt property to address fake USB
+> disconnection issue during enumeration or suspend state for difference
+> platform.
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8x-mek.dtsi |  1 +
+>  drivers/phy/cadence/phy-cadence-salvo.c      | 30 +++++++++++++++++++-
 
---olYpGZlk/8KzYW4Y
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+DTS and drivers are always separate.
 
-On Sat, May 06, 2023 at 09:45:07AM +0800, Changhuang Liang wrote:
->=20
->=20
-> On 2023/5/5 20:38, Conor Dooley wrote:
-> > On Fri, May 05, 2023 at 09:29:15AM +0800, Changhuang Liang wrote:
-> >=20
-> >> But if keep this "starfive,jh7110-aon-syscon" compatible. Which .yaml =
-match to
-> >> it? Use this series dt-bindings or syscon series dt-bindings.
-> >=20
-> > There is no syscon series anymore, it's part of the PLL series now:
-> > https://lore.kernel.org/linux-clk/20230414024157.53203-1-xingyu.wu@star=
-fivetech.com/
-> >=20
-> > I don't really care what you, Walker & Xingyu decide to do, but add the
-> > binding in one series in a complete form. It's far less confusing to
-> > have only have one version of the binding on the go at once.
-> >=20
->=20
-> Due to the current aon pmu needs to be adjusted, it affects the syscon in=
- PLL series.
-> So It's inevitable to change syscon in PLL series.
->=20
-> My current idea is PLL series don't add the aon_syscon node. I will add i=
-t in my
-> aon pmu series in next version
+Best regards,
+Krzysztof
 
-That's fine. Rob was happy with the clock related parts, which was the
-original source of confusion there.
-
-> like this:
->=20
-> aon_syscon: syscon@17010000 {
-> 	compatible =3D "starfive,jh7110-aon-pmu", "syscon";
-
-The syscon does a bunch of things of which one is a pmu. I don't see a
-reason to name this other than "starfive,jh100-aon-syscon".
-
-> 	reg =3D <0x0 0x17010000 0x0 0x1000>;
-> 	#power-domain-cells =3D <1>;
-> };
->=20
-> In my opinion, the first we add "starfive,jh7110-aon-syscon" because "sys=
-con" can=20
-> not appear alone in the compatible. If we have "starfive,jh7110-aon-pmu",=
- this
-> "starfive,jh7110-aon-syscon" is not a must-be need.
->=20
-> Do you agree with doing so.
->=20
-> Thanks,
-> Changhuang
-
---olYpGZlk/8KzYW4Y
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZFYpHwAKCRB4tDGHoIJi
-0kWCAQCtW6PQ5IpHye69XI8USA4fSTwZKDy0/Fm4JQDlGIHRMgD+K+m3qWCEW3WU
-3xk9P7m7lDqQ3ymNIrglttPFeuusjAs=
-=098q
------END PGP SIGNATURE-----
-
---olYpGZlk/8KzYW4Y--
