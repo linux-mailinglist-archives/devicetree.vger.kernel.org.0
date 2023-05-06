@@ -2,66 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 047186F8CAC
-	for <lists+devicetree@lfdr.de>; Sat,  6 May 2023 01:14:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BAD86F8D2C
+	for <lists+devicetree@lfdr.de>; Sat,  6 May 2023 02:37:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231287AbjEEXOg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 19:14:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33798 "EHLO
+        id S231274AbjEFAhb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 20:37:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229681AbjEEXOf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 19:14:35 -0400
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0E5049EC;
-        Fri,  5 May 2023 16:14:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1683328474; x=1714864474;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=bn9rIXC2Q9CkYc/5/WBXDL7bL8vDXlXsynHQzgsGgZc=;
-  b=TFP0+VbUXEYdLiW9ubFmK6VH/COxuly2zpsGj8o3TNyHa4t+8OPsz0M9
-   iZ5TAqikXBwl4ZuZcUNUAnMhVaygzJsRSzAtEFkrgVuXMl35v0DskpSVE
-   kuQrAgmpbufd+iyIq4CGS/XDv/nvE7nUzh42bNXdIUR6OcCh/40LVqLMn
-   ygO19v3YxHuAivYkiUAO7ngPKYFqRXWbyKOXfNtuljLM/+vbKlDFbIQUN
-   YEsV2b803WNh3GD3OT8yqzn9pehbQw1ubCd7i6Tr/+Jr9zPtUik+SK0k9
-   m+LWKigxBasgaCN//nf43yYxG6QGlqxDb4ch2zatjdHYZydayq7HZxyOJ
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10701"; a="351462858"
-X-IronPort-AV: E=Sophos;i="5.99,253,1677571200"; 
-   d="scan'208";a="351462858"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 May 2023 16:14:33 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10701"; a="675290752"
-X-IronPort-AV: E=Sophos;i="5.99,253,1677571200"; 
-   d="scan'208";a="675290752"
-Received: from lkp-server01.sh.intel.com (HELO fe5d646e317d) ([10.239.97.150])
-  by orsmga006.jf.intel.com with ESMTP; 05 May 2023 16:14:30 -0700
-Received: from kbuild by fe5d646e317d with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pv4dB-0000uv-1l;
-        Fri, 05 May 2023 23:14:29 +0000
-Date:   Sat, 6 May 2023 07:14:28 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>
-Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-i2c@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/2] hwmon: pmbus: Add ltc4286 driver
-Message-ID: <202305060716.5xAx86T8-lkp@intel.com>
-References: <20230424101352.28117-3-Delphine_CC_Chiu@Wiwynn.com>
+        with ESMTP id S229792AbjEFAha (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 20:37:30 -0400
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63A504C19;
+        Fri,  5 May 2023 17:37:29 -0700 (PDT)
+Received: by mail-pl1-x62a.google.com with SMTP id d9443c01a7336-1aaea3909d1so22108715ad.2;
+        Fri, 05 May 2023 17:37:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1683333449; x=1685925449;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Lksvsdy5ZBGz5N+QewT9TIbE/aUyvQ4IEKQ9nU6eAT4=;
+        b=ZsTAe8yYgYPZkeBQ6jCuPIh7HAbrjZXPTPTwxPQHhJWwbyJs3VqikzIgIAXsklozz7
+         ogCXZC71rWThF8C3b57hqJce2yovmE/7HGpic98964RxoWIdINg+wSN1iZMnREXELfVD
+         mE1J4I6nXAOAXSlQI6ryMjYaYRdHTDr2K5ctlDJu2ITi1RHWVwl9Ny2XwnOCQceEGNxJ
+         3sDE820K7EVBWM3llYfYZGcG+X3xUuWPe27f13FIxh0PCOaZHphwewUvRcDnpX81t0jX
+         riYdDncDClW/lmvdzm/Z8KvTYvypolz5QQeImR3RENbkWPSBWHhJfaQR4pFhEFe7EPZ7
+         oHFQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683333449; x=1685925449;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Lksvsdy5ZBGz5N+QewT9TIbE/aUyvQ4IEKQ9nU6eAT4=;
+        b=PASn2RN8geo67UT1b1ch15/TyIeTG4TvkWXFojkfU4ziziwlFD6oXKbG+mVLKNXewh
+         mDQRCS+I0eHXG4Q6w17n0AipuT2LPTGQGwBMwFwoTiCLnzne2AJq2BN1dZRMGhH3He0k
+         VC2rKJpnPxjLGs1/MH61O0GMtDhdqOUFwJdA8lklk2Srg1vbes7vyQWd/dp2Ekj2mB0k
+         Cg7XDyfrvWnwX2CU8kNfFFeWFWHggNonpUiUL2oLIoOpvG00dtvl99DQzFHakOjJ6O/o
+         TZjSyawKhVJAzbwIcywFfU9XeiJyHOayEhu2ZnQcvzKCl72o6gUrHbG3O96r3jgRiXZJ
+         4fSg==
+X-Gm-Message-State: AC+VfDxmF0cEJWceN7nzrAxebmP3Pf82MKbCF7Pmmrflu5jsiN1HFO4D
+        asYpWZ0yzYchSxI6+S+1vvoxFKeOzAjzeOEtCjQ=
+X-Google-Smtp-Source: ACHHUZ6L+OdKMWK4KYhldGKKBjgPUe9JHsTqL/XXyO5DO4jQas2oQY/plfyzWaUic4tDX0AkQEYTN4ITTebEFYifFuo=
+X-Received: by 2002:a17:90b:1d0d:b0:24d:ea7f:9ea2 with SMTP id
+ on13-20020a17090b1d0d00b0024dea7f9ea2mr3355514pjb.15.1683333448544; Fri, 05
+ May 2023 17:37:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230424101352.28117-3-Delphine_CC_Chiu@Wiwynn.com>
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+References: <20230423123513.1346323-1-aford173@gmail.com>
+In-Reply-To: <20230423123513.1346323-1-aford173@gmail.com>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Fri, 5 May 2023 19:37:17 -0500
+Message-ID: <CAHCN7xLJ8D3dkbdEtUFd5RSvt=V0Xjmus2MxSKyRPhGRMrH+LA@mail.gmail.com>
+Subject: Re: [PATCH V2] arm64: dts: imx8mn: Fix video clock parents
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     aford@beaconembedded.com, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,63 +75,114 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Delphine,
+On Sun, Apr 23, 2023 at 7:35=E2=80=AFAM Adam Ford <aford173@gmail.com> wrot=
+e:
+>
+> There are a few clocks whose parents are set in mipi_dsi
+> and mxsfb nodes, but these clocks are used by the disp_blk_ctrl
+> power domain which may cause an issue when re-parenting, resuling
+> in a disp_pixel clock having the wrong parent and wrong rate.
+>
+> Fix this by moving the assigned-clock-parents as associate clock
+> assignments to the power-domain node to setup these clocks before
+> they are enabled.
+>
+> Fixes: d825fb6455d5 ("arm64: dts: imx8mn: Add display pipeline components=
+")
+> Signed-off-by: Adam Ford <aford173@gmail.com>
 
-kernel test robot noticed the following build errors:
+Shawn,
 
-[auto build test ERROR on groeck-staging/hwmon-next]
-[also build test ERROR on linus/master v6.3 next-20230505]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Any chance this can get applied?  Without it, the 8MN video doesn't
+have correct parents and therefore the wrong clock rates too.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Delphine-CC-Chiu/dt-bindings-hwmon-Add-lltc-ltc4286-driver-bindings/20230424-181521
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
-patch link:    https://lore.kernel.org/r/20230424101352.28117-3-Delphine_CC_Chiu%40Wiwynn.com
-patch subject: [PATCH v1 2/2] hwmon: pmbus: Add ltc4286 driver
-config: i386-allyesconfig (https://download.01.org/0day-ci/archive/20230506/202305060716.5xAx86T8-lkp@intel.com/config)
-compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/318b8a252bb2d7430f1cf7b93bb5df8d0e4fee29
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Delphine-CC-Chiu/dt-bindings-hwmon-Add-lltc-ltc4286-driver-bindings/20230424-181521
-        git checkout 318b8a252bb2d7430f1cf7b93bb5df8d0e4fee29
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202305060716.5xAx86T8-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   drivers/hwmon/pmbus/ltc4286.c:46:24: warning: implicit conversion from 'double' to 'int' changes value from 273.15 to 273 [-Wliteral-conversion]
-           .b[PSC_TEMPERATURE] = 273.15,
-                                 ^~~~~~
->> drivers/hwmon/pmbus/ltc4286.c:134:11: error: incompatible function pointer types initializing 'int (*)(struct i2c_client *)' with an expression of type 'int (struct i2c_client *, const struct i2c_device_id *)' [-Werror,-Wincompatible-function-pointer-types]
-           .probe = ltc4286_probe,
-                    ^~~~~~~~~~~~~
-   1 warning and 1 error generated.
-
-
-vim +134 drivers/hwmon/pmbus/ltc4286.c
-
-   127	
-   128	/* This is the driver that will be inserted */
-   129	static struct i2c_driver ltc4286_driver = {
-   130		.driver = {
-   131			.name = "ltc4286",
-   132			.of_match_table = ltc4286_of_match,
-   133		},
- > 134		.probe = ltc4286_probe,
-   135		.id_table = ltc4286_id,
-   136	};
-   137	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+adam
+> ---
+> V2:  Split this into a separate patch away from a series of DSIM changes.
+>      No actual changes made to the patch.
+>
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/=
+dts/freescale/imx8mn.dtsi
+> index bd84db550053..8be8f090e8b8 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+> @@ -1069,13 +1069,6 @@ lcdif: lcdif@32e00000 {
+>                                          <&clk IMX8MN_CLK_DISP_APB_ROOT>,
+>                                          <&clk IMX8MN_CLK_DISP_AXI_ROOT>;
+>                                 clock-names =3D "pix", "axi", "disp_axi";
+> -                               assigned-clocks =3D <&clk IMX8MN_CLK_DISP=
+_PIXEL_ROOT>,
+> -                                                 <&clk IMX8MN_CLK_DISP_A=
+XI>,
+> -                                                 <&clk IMX8MN_CLK_DISP_A=
+PB>;
+> -                               assigned-clock-parents =3D <&clk IMX8MN_C=
+LK_DISP_PIXEL>,
+> -                                                        <&clk IMX8MN_SYS=
+_PLL2_1000M>,
+> -                                                        <&clk IMX8MN_SYS=
+_PLL1_800M>;
+> -                               assigned-clock-rates =3D <594000000>, <50=
+0000000>, <200000000>;
+>                                 interrupts =3D <GIC_SPI 5 IRQ_TYPE_LEVEL_=
+HIGH>;
+>                                 power-domains =3D <&disp_blk_ctrl IMX8MN_=
+DISPBLK_PD_LCDIF>;
+>                                 status =3D "disabled";
+> @@ -1093,12 +1086,6 @@ mipi_dsi: dsi@32e10000 {
+>                                 clocks =3D <&clk IMX8MN_CLK_DSI_CORE>,
+>                                          <&clk IMX8MN_CLK_DSI_PHY_REF>;
+>                                 clock-names =3D "bus_clk", "sclk_mipi";
+> -                               assigned-clocks =3D <&clk IMX8MN_CLK_DSI_=
+CORE>,
+> -                                                 <&clk IMX8MN_CLK_DSI_PH=
+Y_REF>;
+> -                               assigned-clock-parents =3D <&clk IMX8MN_S=
+YS_PLL1_266M>,
+> -                                                        <&clk IMX8MN_CLK=
+_24M>;
+> -                               assigned-clock-rates =3D <266000000>, <24=
+000000>;
+> -                               samsung,pll-clock-frequency =3D <24000000=
+>;
+>                                 interrupts =3D <GIC_SPI 18 IRQ_TYPE_LEVEL=
+_HIGH>;
+>                                 power-domains =3D <&disp_blk_ctrl IMX8MN_=
+DISPBLK_PD_MIPI_DSI>;
+>                                 status =3D "disabled";
+> @@ -1142,6 +1129,21 @@ disp_blk_ctrl: blk-ctrl@32e28000 {
+>                                               "lcdif-axi", "lcdif-apb", "=
+lcdif-pix",
+>                                               "dsi-pclk", "dsi-ref",
+>                                               "csi-aclk", "csi-pclk";
+> +                               assigned-clocks =3D <&clk IMX8MN_CLK_DSI_=
+CORE>,
+> +                                                 <&clk IMX8MN_CLK_DSI_PH=
+Y_REF>,
+> +                                                 <&clk IMX8MN_CLK_DISP_P=
+IXEL>,
+> +                                                 <&clk IMX8MN_CLK_DISP_A=
+XI>,
+> +                                                 <&clk IMX8MN_CLK_DISP_A=
+PB>;
+> +                               assigned-clock-parents =3D <&clk IMX8MN_S=
+YS_PLL1_266M>,
+> +                                                        <&clk IMX8MN_CLK=
+_24M>,
+> +                                                        <&clk IMX8MN_VID=
+EO_PLL1_OUT>,
+> +                                                        <&clk IMX8MN_SYS=
+_PLL2_1000M>,
+> +                                                        <&clk IMX8MN_SYS=
+_PLL1_800M>;
+> +                               assigned-clock-rates =3D <266000000>,
+> +                                                      <24000000>,
+> +                                                      <594000000>,
+> +                                                      <500000000>,
+> +                                                      <200000000>;
+>                                 #power-domain-cells =3D <1>;
+>                         };
+>
+> --
+> 2.39.2
+>
