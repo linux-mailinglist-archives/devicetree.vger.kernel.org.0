@@ -2,87 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12D136F8F2D
-	for <lists+devicetree@lfdr.de>; Sat,  6 May 2023 08:32:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA0266F8F34
+	for <lists+devicetree@lfdr.de>; Sat,  6 May 2023 08:34:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230131AbjEFGb7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 6 May 2023 02:31:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43550 "EHLO
+        id S230359AbjEFGej (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 6 May 2023 02:34:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230132AbjEFGb5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 6 May 2023 02:31:57 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0F089018
-        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 23:31:25 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-50bd37ca954so33565835a12.0
-        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 23:31:25 -0700 (PDT)
+        with ESMTP id S230339AbjEFGei (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 6 May 2023 02:34:38 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1FF84481
+        for <devicetree@vger.kernel.org>; Fri,  5 May 2023 23:34:36 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-965ddb2093bso248442166b.2
+        for <devicetree@vger.kernel.org>; Fri, 05 May 2023 23:34:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683354683; x=1685946683;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1683354875; x=1685946875;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=LAtZBzGq/K371lgu2uGriXQv86Ola8BpEn4aIcDi9OQ=;
-        b=m9MzzgGRrTGwMDNjRn1SfcbtC0bE+JN12uUt+jLjTrZ5ZuHakyZdEdbV94qNFvLFuq
-         RimCyEsemP3RchBaz3DsuHMr3+ZTrJgSHMFUSKsWV4Ys2bqrTW8S/K0m0u0N5W3MG7p3
-         mKIoXzBNZ0e6fAww/isJIycI4nDbmKgRkBGukwyu5lFGyTCDIQByg/yFU0uVeD4lJZ40
-         gvvj3v/qs3HZw7bMnIs7o+YE0HAuENH8DdwaAPBTgvYyOAFopBidrA8NTrVz1tyiUp/J
-         WiLabHKJYfOHPTpzMWZACHM83Qe38692dzkEjQMPEbmmGJqEp69MwDOfyICxCCR6PA8A
-         rkxw==
+        bh=RxlqWXbCB9qr1p9Srs8bmWLYx1r4gaKppnNXXKsVBOw=;
+        b=vMl4RM/Y5I7xBLeUDS6EUKD2BuXH6c7JFV5VvXmOY9Pw9ZaCtf5O6zBiawSVJQSTL1
+         GiEtKsoUDcMk7QX1xwK64nXePrsxP5kT9Nrao9Wlpz2DkAUlXPmCom04jmdZe/ySaOVs
+         eIrFlvJgA+I/xR7nMEtSxTprKjsFGnFq+zXYMujhMdk2PpDD+b7QZJj+pkVomhol5uxS
+         TXFhWWUNqfUIS29nh9ikSFYbYz00gcfTfdEjdia0c9QWNIvRU42ZIRC+vGh8GBulBm8w
+         pYERT5gAsxR3fNkL0QlMesZgDsrUBNkkFhKH6a3A3BiXf//WXWMxDhRl1bMzNZtU8WoE
+         SHDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683354683; x=1685946683;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1683354875; x=1685946875;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LAtZBzGq/K371lgu2uGriXQv86Ola8BpEn4aIcDi9OQ=;
-        b=KrnwEqHKyurbB0s45YKoBoroa17ACQfVNOiQ8IAxyI2UruWhYR97RuiiyEmoDSECBG
-         fE9h9DlIocHOBbCy6F8BzOUJ7hGq6llcEanaxj0IZsMQo/EFMgNs1RyOs15FBHOm3CfK
-         3JheuaF+wfe772Qe4UkXpNIImHsp4c0nGc2IF/DaG/qFDfYILopgRxPI2SSe2/E9jN4K
-         VTttRix40R5gGbm3qXrg7Na8BU1/i8A9BbiiLkT1XgAtUhSUsJlHlQrJDUs9FCADiCQT
-         bn1d7XuzptvhYQxKYB4o/DzO6qeAfDwqUwwi1npx35qJOGyZoEjkieoGTbKAKmr4euHa
-         uZlg==
-X-Gm-Message-State: AC+VfDwNOvrcaHHbIlHShfGxVYZHxva0y8E+e2rmw4t1V9vv2W5cX/+3
-        lRe4ebheV6CcybUL1IO76X+lOg==
-X-Google-Smtp-Source: ACHHUZ6pZsEivEFSme4odojv7RRMViKRqgoDTFoMhFVUH8QIGY17Kx6qZrjLonbVuVyerntCZm25VQ==
-X-Received: by 2002:a05:6402:4405:b0:50b:2088:3533 with SMTP id y5-20020a056402440500b0050b20883533mr4681883eda.1.1683354683120;
-        Fri, 05 May 2023 23:31:23 -0700 (PDT)
+        bh=RxlqWXbCB9qr1p9Srs8bmWLYx1r4gaKppnNXXKsVBOw=;
+        b=EYxEAdsbF6ij6zQNXXZ+FB6c3lWqC1rIQylquOKk78nF4R3xwwmVWJJK3EPlhrgsCt
+         ZDCSaP1mVuXillaypmsrwCQsU78iB2zsbvNyx9SEDxsQ3sMaEvQmPrRXT8rFRmcwstC2
+         vP/DktKzhFbHfzX2FWX6D06FdNKlabmDKPImblc0SZIRkpaCVz99btAmRSTj72HfU7vh
+         GkklS5/ufQttxm/+hV5j4nfAPwO50nba7jyZDh4H3i1NKcznziY9T0c6JcjzCLABN+0S
+         X+5l+/PqBPW6I7gyTEvlZbvrCs4TKkuCq615JnpAicJuzxYFsmSv8rl01F5J+gV1UUiN
+         bHPA==
+X-Gm-Message-State: AC+VfDxUDdc704+9cAXiF7JumwlvVX+AdjkxcJJH8qLy97FrhZ01O4mK
+        XUadxhdgWPOIqK8MHF1JskIFSw==
+X-Google-Smtp-Source: ACHHUZ65luJLR1eolPcDXVXLAvHlNGfoRtWRoGn/G/UYxJTx9D5P1y3kZJxUkigUvNLdNb9VTnyGxg==
+X-Received: by 2002:a17:907:1c05:b0:930:f953:9608 with SMTP id nc5-20020a1709071c0500b00930f9539608mr4107389ejc.0.1683354875384;
+        Fri, 05 May 2023 23:34:35 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:efe5:7c03:a10a:7a40? ([2a02:810d:15c0:828:efe5:7c03:a10a:7a40])
-        by smtp.gmail.com with ESMTPSA id r12-20020a056402018c00b0050bcaedc299sm3664387edv.33.2023.05.05.23.31.21
+        by smtp.gmail.com with ESMTPSA id kj26-20020a170907765a00b009584c5bcbc7sm1861776ejc.49.2023.05.05.23.34.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 May 2023 23:31:22 -0700 (PDT)
-Message-ID: <9e7b265d-bfe5-f583-2357-d8e342bcf982@linaro.org>
-Date:   Sat, 6 May 2023 08:31:19 +0200
+        Fri, 05 May 2023 23:34:34 -0700 (PDT)
+Message-ID: <a544409a-7b65-820c-2b48-48207c55aa7e@linaro.org>
+Date:   Sat, 6 May 2023 08:34:33 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
-Subject: Re: [RESEND v2 1/6] dt-bindings: power: Add JH7110 AON PMU support
-To:     Changhuang Liang <changhuang.liang@starfivetech.com>,
-        Conor Dooley <conor.dooley@microchip.com>
-Cc:     Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Walker Chen <walker.chen@starfivetech.com>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, vkoul@kernel.org,
-        linux-phy@lists.infradead.org
-References: <3ed72340-accc-4ad1-098f-4a2eb6448828@linaro.org>
- <482e812a-05dd-105c-189c-e926b4be9d28@starfivetech.com>
- <089e24d1-588a-4a56-f00b-0b35d1d99295@linaro.org>
- <ea5b5534-8fc2-7c84-a011-c1b42c6ed7a0@starfivetech.com>
- <1ac26c1a-1726-515d-6598-849a07ed0b86@linaro.org>
- <5adda0ad-965c-fbf0-878c-9d41d28b5c39@starfivetech.com>
- <86693969-59bf-5bcc-42a3-b6e94a0d6f3e@linaro.org>
- <fcfc8ba4-40a7-da43-3375-712bd7e7f4d5@starfivetech.com>
- <20230504-worshiper-ongoing-5581e1f2c2c4@wendy>
- <2f473307-2219-61a4-fa66-5848fe566cf0@starfivetech.com>
- <20230505-magician-poet-724c96020c2f@wendy>
- <ba6a1a47-d3b1-ee16-4785-f5c61d593127@starfivetech.com>
+Subject: Re: [PATCH 1/2] dt-bindings: nvmem: add binding doc for i.MX
+ OCOTP/ELE
 Content-Language: en-US
+To:     Peng Fan <peng.fan@nxp.com>,
+        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+        "srinivas.kandagatla@linaro.org" <srinivas.kandagatla@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>
+Cc:     "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20230505091733.1819521-1-peng.fan@oss.nxp.com>
+ <bb3d374d-0dc1-cf15-2458-f294c5ef23fd@linaro.org>
+ <c7f11b40-e4d7-3c4e-53d7-6549f840b702@linaro.org>
+ <DU0PR04MB9417AE9BA8F91B2E06DB09BF88739@DU0PR04MB9417.eurprd04.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ba6a1a47-d3b1-ee16-4785-f5c61d593127@starfivetech.com>
+In-Reply-To: <DU0PR04MB9417AE9BA8F91B2E06DB09BF88739@DU0PR04MB9417.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -95,46 +90,114 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/05/2023 03:45, Changhuang Liang wrote:
-> 
-> 
-> On 2023/5/5 20:38, Conor Dooley wrote:
->> On Fri, May 05, 2023 at 09:29:15AM +0800, Changhuang Liang wrote:
+On 06/05/2023 04:58, Peng Fan wrote:
+>> Subject: Re: [PATCH 1/2] dt-bindings: nvmem: add binding doc for i.MX
+>> OCOTP/ELE
 >>
->>> But if keep this "starfive,jh7110-aon-syscon" compatible. Which .yaml match to
->>> it? Use this series dt-bindings or syscon series dt-bindings.
+>> On 05/05/2023 14:01, Krzysztof Kozlowski wrote:
+>>> On 05/05/2023 11:17, Peng Fan (OSS) wrote:
+>>>> From: Peng Fan <peng.fan@nxp.com>
+>>>>
+>>>> There are two parts of i.MX93 OCOTP, with 1st part Fuse shadow
+>>>> block(fsb), 2nd part managed by ELE firmware. This binding doc supports
+>> both.
+>>>
+>>> Subject: drop second/last, redundant "binding doc for". The
+>>> "dt-bindings" prefix is already stating that these are bindings and
+>>> documentation.
+>>>
+>>>>
+>>>> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+>>>> ---
+>>>>  .../bindings/nvmem/imx-ocotp-ele.yaml         | 65 +++++++++++++++++++
+>>>>  1 file changed, 65 insertions(+)
+>>>>  create mode 100644
+>>>> Documentation/devicetree/bindings/nvmem/imx-ocotp-ele.yaml
+>>>>
+>>>> diff --git
+>>>> a/Documentation/devicetree/bindings/nvmem/imx-ocotp-ele.yaml
+>>>> b/Documentation/devicetree/bindings/nvmem/imx-ocotp-ele.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..024594a2bcb4
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/nvmem/imx-ocotp-ele.yaml
+>>>
+>>> Filename matching compatible style. fsl,imx93-ocotp.yaml
+>>>
+>>>
+>>>> @@ -0,0 +1,65 @@
+>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
+>>>> +---
+>>>> +$id:
+>>>>
+>> +https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdev
+>>>> +icetree.org%2Fschemas%2Fnvmem%2Fimx-ocotp-
+>> ele.yaml%23&data=05%7C01%7
+>>>>
+>> +Cpeng.fan%40nxp.com%7Cd779f2b1abe94a0d493208db4d618fd9%7C686e
+>> a1d3bc2
+>>>>
+>> +b4c6fa92cd99c5c301635%7C0%7C0%7C638188853636582816%7CUnknown
+>> %7CTWFpb
+>>>>
+>> +GZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXV
+>> CI6M
+>>>>
+>> +n0%3D%7C3000%7C%7C%7C&sdata=2uIFOmUqlbgPIRasl%2FyO0CdZAFPhV
+>> 2qpHnhwKB
+>>>> +OZ008%3D&reserved=0
+>>>> +$schema:
+>>>>
+>> +https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdev
+>>>> +icetree.org%2Fmeta-
+>> schemas%2Fcore.yaml%23&data=05%7C01%7Cpeng.fan%40
+>>>>
+>> +nxp.com%7Cd779f2b1abe94a0d493208db4d618fd9%7C686ea1d3bc2b4c6f
+>> a92cd99
+>>>>
+>> +c5c301635%7C0%7C0%7C638188853636582816%7CUnknown%7CTWFpbG
+>> Zsb3d8eyJWI
+>>>>
+>> +joiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7
+>> C3000
+>>>>
+>> +%7C%7C%7C&sdata=iKJpzjsi7TuqxDim7sUjHmwFR1eK9hFNp2ygMap9bq8%
+>> 3D&reser
+>>>> +ved=0
+>>>> +
+>>>> +title: NXP i.MX9 On-Chip OTP Controller (OCOTP)
+>>>> +
+>>>> +maintainers:
+>>>> +  - Peng Fan <peng.fan@nxp.com>
+>>>> +
+>>>> +allOf:
+>>>> +  - $ref: nvmem.yaml#
+>>>> +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    oneOf:
+>>>> +      - items:
+>>>> +          - const: fsl,imx93-ocotp-fsb
+>>>> +          - const: syscon
+>>>> +      - items:
+>>>> +          - const: fsl,imx93-ocotp-ele
+>>>> +
 >>
->> There is no syscon series anymore, it's part of the PLL series now:
->> https://lore.kernel.org/linux-clk/20230414024157.53203-1-xingyu.wu@starfivetech.com/
->>
->> I don't really care what you, Walker & Xingyu decide to do, but add the
->> binding in one series in a complete form. It's far less confusing to
->> have only have one version of the binding on the go at once.
->>
+>> Actually this is the same as existing bindings. Just squash it.
 > 
-> Hi, Krzysztof and Conor
-> 
-> Due to the current aon pmu needs to be adjusted, it affects the syscon in PLL series.
-> So It's inevitable to change syscon in PLL series.
-> 
-> My current idea is PLL series don't add the aon_syscon node. I will add it in my
-> aon pmu series in next version like this:
-> 
-> aon_syscon: syscon@17010000 {
-> 	compatible = "starfive,jh7110-aon-pmu", "syscon";
-> 	reg = <0x0 0x17010000 0x0 0x1000>;
-> 	#power-domain-cells = <1>;
-> };
-> 
-> In my opinion, the first we add "starfive,jh7110-aon-syscon" because "syscon" can 
-> not appear alone in the compatible. If we have "starfive,jh7110-aon-pmu", this
-> "starfive,jh7110-aon-syscon" is not a must-be need.
-> 
-> Do you agree with doing so.
+> You mean add the compatible to imx-ocotp.yaml?
 
-Sorry guys, I don't know what you talk about. I have no clue what are
-PLL and aon series. More over I don't understand what is complicated
-here... all SoCs follow the same rules and similar way of development.
+I missed this file, I was thinking about mxs, but sure, can go to imx.
+All of them are the same...
+
+> 
+>>
+>> However I wonder - why this is syscon?
+> 
+> Someone may wanna to use syscon_to_regmap?
+> I just follow imx-ocotp.yaml.
+
+That's not a good reason to add syscon. Drop it.
 
 Best regards,
 Krzysztof
