@@ -2,185 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1799C6F94B7
-	for <lists+devicetree@lfdr.de>; Sun,  7 May 2023 00:09:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B648C6F94D5
+	for <lists+devicetree@lfdr.de>; Sun,  7 May 2023 00:59:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229628AbjEFWJW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 6 May 2023 18:09:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55238 "EHLO
+        id S229551AbjEFW7G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 6 May 2023 18:59:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229478AbjEFWJV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 6 May 2023 18:09:21 -0400
-Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:3::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9CAF1D94A;
-        Sat,  6 May 2023 15:09:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
-        Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-        Message-ID:Sender:Reply-To:Content-ID:Content-Description;
-        bh=7Nqo5bKfuTZba1hZN68GWMHPj4YsyKzg7tKEqE/0XMo=; b=cnCchV7wfZz3LVTKwt/fyWKBUA
-        jRAo1TsWPoxS5NO/QJuTVLqghxqboaPpI0W5UfX5WfAJnL9Kl5m8b1TnKjRj2/cQylTAbc6CO8JoL
-        XA0D5OeRB8KEHgYX7RsPXVDkSC56Ho8JI/0cwxfsDTQg5nUeIwbByHSZfVf1D/LbkPccc+3T7sYk4
-        N1IXnyjFXHh4Lb9L1FSj2KpRT3Zj1S7VFnswbZGhDb6c83ck6Lg9x4FNkWJjn2IM1stkAeaqezUtg
-        /Dy1KYp+vW67z+veJz4k/SXUdRk2GPHklQ3ZuOZt/4lxAknUMkdiA9dxT7tTw8S9s+ojPui0lq35I
-        TC1+KVQQ==;
-Received: from [2601:1c2:980:9ec0::2764]
-        by bombadil.infradead.org with esmtpsa (Exim 4.96 #2 (Red Hat Linux))
-        id 1pvQ5e-00ET1N-1F;
-        Sat, 06 May 2023 22:09:18 +0000
-Message-ID: <4b0249cd-7538-6df4-777b-d25a72f06668@infradead.org>
-Date:   Sat, 6 May 2023 15:09:11 -0700
+        with ESMTP id S229454AbjEFW7F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 6 May 2023 18:59:05 -0400
+Received: from mx.kolabnow.com (mx.kolabnow.com [212.103.80.153])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAEA219D4E;
+        Sat,  6 May 2023 15:59:03 -0700 (PDT)
+Received: from localhost (unknown [127.0.0.1])
+        by mx.kolabnow.com (Postfix) with ESMTP id 77BE243580;
+        Sun,  7 May 2023 00:59:01 +0200 (CEST)
+Authentication-Results: ext-mx-out003.mykolab.com (amavisd-new);
+        dkim=pass (4096-bit key) reason="pass (just generated, assumed good)"
+        header.d=kolabnow.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kolabnow.com; h=
+        content-transfer-encoding:organization:mime-version:message-id
+        :date:date:subject:subject:from:from:received:received:received;
+         s=dkim20160331; t=1683413938; x=1685228339; bh=NGmi/Yp30yWXlFgp
+        Ioa4xyZmRtWwzedF9jz+aQrN8TU=; b=XmB8K0mJQvNWRyUSw2uYjz/x1IuvgXIV
+        NhHH7nxBFKtJl8AHr/lDmQE8AXR2a5GWhd1t376d0vfaXU2tSnT53gA7BloNc74B
+        b6BKMzMRDJFtxWLrzs9dkzf4P5N04psvFkDcDtE99I0RwvoqJn/Z1brUxJVNSMZa
+        8ad3X+Y55VX8LkEXyUbvt2GoSFAnOjyZhuqyNc7ALUdBEiLuKR6ybSkdDnLEBHBn
+        kREj3jfdSnry8uRVQUbohIlmvPEsWAZDCg+ZQp5NIrq17RcvrV/Yhc2dPeoCFZxa
+        oq2zhDFEpQFnZ5peJxxZXBWk8vH7xsiQlk6v6H1grHgnKCXxrrXROTj1CHN/UN1O
+        h4idy+1y948HdqZlhyVo8agxAeeBXRHr3zvhAv3IDPyygTb+cGO/Nw+iFDPe65uo
+        J+tq3L6EWxHWrCrv6o7r8jWn26DuUFNrDkNxcqCm6VM385y68YrZRlGTNfp2jiuK
+        IRng3rh8G046IRxwKIJMvYiLw4wK4YFzbwz5yIuCcp4r9L8ohpzttgdVRjtgq4+9
+        JhLWXWs/VqTfaeHV+V1EowSQ38I91y7V8GShynyP0xeeT0L0W7C1YR3ybFiSJXGT
+        nVPPBCRGlCQbesfciQ3OxMYOPdejWz9eR0Iuc8+YzBN0u0ZxsWyulxe+0pW3DOdb
+        kQS4o5LdgIo=
+X-Virus-Scanned: amavisd-new at mykolab.com
+X-Spam-Score: -1.9
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
+Received: from mx.kolabnow.com ([127.0.0.1])
+        by localhost (ext-mx-out003.mykolab.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id F-QQ4ALpNP_Z; Sun,  7 May 2023 00:58:58 +0200 (CEST)
+Received: from int-mx001.mykolab.com (unknown [10.9.13.1])
+        by mx.kolabnow.com (Postfix) with ESMTPS id 2C5A94357D;
+        Sun,  7 May 2023 00:58:56 +0200 (CEST)
+Received: from ext-subm002.mykolab.com (unknown [10.9.6.2])
+        by int-mx001.mykolab.com (Postfix) with ESMTPS id 6F869D201;
+        Sun,  7 May 2023 00:58:56 +0200 (CEST)
+From:   alison@she-devel.com
+To:     johan@kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alison@she-devel.com,
+        achaiken@aurora.tech, kernel test robot <lkp@intel.com>
+Subject: [PATCH v4 0/2]  support config of U-Blox Zed-F9P GNSS
+Date:   Sat,  6 May 2023 15:58:47 -0700
+Message-Id: <20230506225849.2752103-1-alison@she-devel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH v2] docs: dt: Make references and mention kernel
- abstractions
-Content-Language: en-US
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Grant Likely <grant.likely@linaro.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>
-References: <20230505-dt-docs-refresh-v2-1-56bf359c53b4@linaro.org>
-From:   Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <20230505-dt-docs-refresh-v2-1-56bf359c53b4@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-8.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Organization: Aurora Innovation
+Content-Transfer-Encoding: 8bit
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
+From: Alison Chaiken <alison@she-devel.com>
 
-I am noting a few grammar nits below...
+Add generalized support for setting arbitrary configuration of the
+U-Blox Zed-F9P GNSS.  Employ the new functionality to set the baud rate
+of the Zed-F9P if the devicetree specifies a non-default value.
 
-[and + linux-doc]
+Tested with 6.1.22, only on a U-Blox Zed-F9P GNSS.
 
-On 5/5/23 05:43, Linus Walleij wrote:
-> This document is named "Linux and Devicetree" so I think we
-> should write a bit more about how the device tree fits into
-> the Linux kernel frameworks these days after we have created
-> the fwnode and swnode.
-> 
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
-> These docs are old and outdated and need to be edited to
-> reflect the current situation.
-> ---
-> ChangeLog v1->v2:
-> - Spelling mistakes
-> - Resend because nothing happens
-> ---
->  Documentation/devicetree/usage-model.rst | 45 +++++++++++++++++++++++++++++---
->  1 file changed, 41 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/usage-model.rst b/Documentation/devicetree/usage-model.rst
-> index b6a287955ee5..37605cb549cf 100644
-> --- a/Documentation/devicetree/usage-model.rst
-> +++ b/Documentation/devicetree/usage-model.rst
-> @@ -75,7 +75,44 @@ out of mainline (nios) have some level of DT support.
->  If you haven't already read the Device Tree Usage\ [1]_ page,
->  then go read it now.  It's okay, I'll wait....
->  
-> -2.1 High Level View
-> +2.1 Linux Kernel Firmware Abstractions
-> +--------------------------------------
-> +
-> +The Linux kernel supports several different hardware description
-> +frameworks and DT is just one of them. The closest sibling is the
-> +:ref:`Documentation/firmware-guide/acpi/index.rst ACPI`
-> +DSDT (Differentiated System Description Table).
-> +
-> +To make it possible to write a device driver that will adapt to DT
-> +or other hardware description models, the kernel has grown some
-> +abstractions, first and foremost the firmware node API, exposing
-> +device properties. The firmware node "fwnode" internals can be found
-> +in ``<linux/fwnode.h>`` while the device driver-facing API can be
-> +found in ``<linux/property.h>``. The idea is that if a driver is using
-> +the firmware node API, it should be trivial to support DT and ACPI
-> +DSDT alike in the same driver.
-> +
-> +The fwnode framework also makes it possible to modify and extend the
-> +Linux in-kernel model with software-managed nodes "swnodes" to apply
-> +quirks or manage registration of devices that cannot be handled any
-> +other way. This API can also be found in ``<linux/property.h>``.
-> +
-> +Further, when the DT core register devices these need to fold into the
+V4 -> V3 Lookup device-specific properties by matching driver data.
+V2 -> V3 Add email recipients whom I foolishly missed the first two times.
+V1 -> V2 Fixes error identified by kernel test robot:
+Reported-by: kernel test robot <lkp@intel.com>
+Closes: https://lore.kernel.org/oe-kbuild-all/202304300819.u0hfUj33-lkp@intel.com/
 
-                        core registers
+Alison Chaiken (2):
+  gnss: ubx: customize serial device open to set U-Blox Zed-F9P baud
+  dt-bindings: gnss: Add U-Blox Zed-F9
 
-> +Linux device driver model, which essentially means that some kind of
-> +``struct device`` has to be created to match a corresponding
-> +``struct device_driver``. This API can be explored in
-> +detail in :ref:`Documentation/driver-api/driver-model/index.rst the driver API documentation`
-> +but what you need to know is that the Linux DT parser code will on its
-> +own mostly spawn platform devices and AMBA devices on the platform
-> +and AMBA bus respectively, and apart from that it will augment devices
-> +spawn on other buses where applicable.
-
-   spawned
-
-> +
-> +Every Linux kernel subsystem that want to supply additional data to
-
-                                that wants
-
-> +detected devices using the device tree, or that want to provide
-
-                                              that wants
-
-> +resources to other devices in the DT, will need to implement calls into
-> +the DT abstractions.
-> +
-> +2.2 High Level View
->  -------------------
->  The most important thing to understand is that the DT is simply a data
->  structure that describes the hardware.  There is nothing magical about
-> @@ -97,7 +134,7 @@ Linux uses DT data for three major purposes:
->  2) runtime configuration, and
->  3) device population.
->  
-> -2.2 Platform Identification
-> +2.3 Platform Identification
->  ---------------------------
->  First and foremost, the kernel will use data in the DT to identify the
->  specific machine.  In a perfect world, the specific platform shouldn't
-> @@ -180,7 +217,7 @@ However, this approach does not take into account the priority of the
->  compatible list, and probably should be avoided for new architecture
->  support.
->  
-> -2.3 Runtime configuration
-> +2.4 Runtime configuration
->  -------------------------
->  In most cases, a DT will be the sole method of communicating data from
->  firmware to the kernel, so also gets used to pass in runtime and
-> @@ -217,7 +254,7 @@ On ARM, the function setup_machine_fdt() is responsible for early
->  scanning of the device tree after selecting the correct machine_desc
->  that supports the board.
->  
-> -2.4 Device population
-> +2.5 Device population
->  ---------------------
->  After the board has been identified, and after the early configuration data
->  has been parsed, then kernel initialization can proceed in the normal
-> 
-> ---
-> base-commit: 457391b0380335d5e9a5babdec90ac53928b23b4
-> change-id: 20230505-dt-docs-refresh-515edbdbbd01
-> 
-> Best regards,
-
-For @linux-doc: Is there something in ReST that does auto section numbering
-so that this renumbering does not have to be repeated in the future?
+ .../bindings/gnss/u-blox,neo-6m.yaml          |   1 +
+ drivers/gnss/ubx.c                            | 237 +++++++++++++++++-
+ 2 files changed, 228 insertions(+), 10 deletions(-)
 
 
-Thanks for the additional documentation.
+base-commit: dd9e11d6477a52ede9ebe575c83285e79e823889
 -- 
-~Randy
+2.39.2
+
