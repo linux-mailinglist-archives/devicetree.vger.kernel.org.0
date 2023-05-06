@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B3266F92B8
-	for <lists+devicetree@lfdr.de>; Sat,  6 May 2023 17:29:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 729526F92BA
+	for <lists+devicetree@lfdr.de>; Sat,  6 May 2023 17:29:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232909AbjEFP3t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 6 May 2023 11:29:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49998 "EHLO
+        id S232953AbjEFP3w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 6 May 2023 11:29:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232904AbjEFP3s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 6 May 2023 11:29:48 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4594B2711
-        for <devicetree@vger.kernel.org>; Sat,  6 May 2023 08:29:47 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2ac80da3443so32896121fa.0
-        for <devicetree@vger.kernel.org>; Sat, 06 May 2023 08:29:47 -0700 (PDT)
+        with ESMTP id S232942AbjEFP3u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 6 May 2023 11:29:50 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F1A719909
+        for <devicetree@vger.kernel.org>; Sat,  6 May 2023 08:29:48 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4f13d8f74abso3283250e87.0
+        for <devicetree@vger.kernel.org>; Sat, 06 May 2023 08:29:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683386985; x=1685978985;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=T8hWHGuwmr5mvcRO9xWp0sVfGZwfYtl73f18uwHlJMc=;
-        b=mNiQ0UDS2BUcvU4LntQeVmsiQUODFkPh8PySaX6ucBq7F5zKYFGH5BIL21VYHsS/Rb
-         Ad5fGY92zFbpAHSC72PDkEukkm0w6dfI8dRd1g82wyUJu2Z3Kx7btxOZSpUfpiylCGi+
-         RKP2R1pTVir2VeqCumdztRmrt3CV4ui0t6GVMu7B4E6JDFYM7hRR85TjzWdaU154eopl
-         BrB4meyYy2XHysDZBB0CMAVgGR9NlI8G9v1faKidLOJqS48ZeD6SEXN2lD8SqHnBITJW
-         ddbCKpkw03apGuuPuM3UMWMQ+dX0CCi9WFyL0p/hM+g2uGpTzWAUQAt9MAAMPGKmk2Ja
-         CAaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683386985; x=1685978985;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1683386986; x=1685978986;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=T8hWHGuwmr5mvcRO9xWp0sVfGZwfYtl73f18uwHlJMc=;
-        b=aFarLykd4o8M5WD6xx3UvaVIVzcWOLshqOkv5WO9CtOCp8IB63XxOHXm0RTuLWjiS2
-         seeeittu39/m5Wvl8qeV+QcKZd7sXrvv0JrHFkFYZlScfW2VZj4UbkSMSExXgM6XpO+K
-         fOg9D/q8exsLM97muXNoCzbXKSdSQLMGJ2bKTVxD0cO4AnN2CDiCKdjhqOr3nyr4TVZ0
-         OY2yIaieQ6hxFn4BsDc+ydDErdGn8zTAsH2WXhao4gAqNCAsR+1f3Yg419TBeVi8bFTy
-         WW+yGP9L7+W76WNB5BvJDTiN9nykMKiiSZOpud5lKoNoKNNK3bs7WOZiPmX1O7GL3ZT6
-         lGmQ==
-X-Gm-Message-State: AC+VfDxHbIjGjhRsnpk/7g95X/XopRKw0d7bw+0XDOCQFnQMRECpD4nO
-        YL8u+boN+TtpWErUVQ3mFNMP/w==
-X-Google-Smtp-Source: ACHHUZ6miK2s5Xpjs644BMeWUfktmkUFGbsUk9aP5jX14WBNbOM2Oc42j/yd+sDB4hGnBVdj/8QJVw==
-X-Received: by 2002:ac2:5dfb:0:b0:4f1:3ef5:35a6 with SMTP id z27-20020ac25dfb000000b004f13ef535a6mr1250503lfq.8.1683386985531;
-        Sat, 06 May 2023 08:29:45 -0700 (PDT)
+        bh=kcFNxwZJjHoZpWKSHiKHs54BtGGOGq9ohvpv73Bd18I=;
+        b=dJfpUgM6CZ/H3KrBlF220za0DUnhwRNDMlR/kzl8wWqnFA4DgVnHkZwAbpOTDjAlkM
+         HigvIxMZShpDWvvX39CH3UhnaeyrkxB9KMsZSBuS9zMYMSri9QYJLfsZfG07MKxcBqRu
+         tk88mzSsbBDhFlIpKo2IjpWAhyk77MIJAg5fs9YHM82CPN9tqmHCpdEO8MiqUgsNI0wK
+         pxwqh9XbuJTIjHYJy4VLvBM29R+nBacy4GS1BojXQVGDimfGGYFPEmUNffHI2/inLPsJ
+         NskppM6iNqwJxHyq8qsokTsLy2oRx0n0nupYHkH2e2sT3MIqdlqufomzjIFmGczYU8XY
+         G53Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683386986; x=1685978986;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=kcFNxwZJjHoZpWKSHiKHs54BtGGOGq9ohvpv73Bd18I=;
+        b=ZuEZUXCh0Bc8hqkV9fIDGQoIU9rS/AJVheY2j+Di/g4bNJX10f/0dolgqV/Cfaag17
+         mu/nL5xJ0ryN9eTo+0ma+H707FtckOichN4SNJIZrS1H8JxDW9KVYffanc84SyoqdFNy
+         HuK/5nuG1lmwFU8WIs4EStMDnGwVdZ1P0mLphZ3zizwis9V9Ver2wIHk6v8wfLafeKDx
+         D2NNlrvuoFXZwX2qL7/HEDXUfcZxjk23RKAbk8A0cHBfcjvVA8jEI0Cax+DUb6OvcxW6
+         d2o5Nv8BbiPpT/8wNkYL/QDODG2zRZ+raw54dfYcSJnv0IiJsyn8GSg0x+eO7RaTU4f2
+         szMw==
+X-Gm-Message-State: AC+VfDzNuPO8xorWBQ+TX632NDOgNXrRcnWzhxQvr2cxTDmqzpS4ocdt
+        BPxI86HCGkhRQ9HtlQKQ/bO00g==
+X-Google-Smtp-Source: ACHHUZ6GtyMk+NQ6GhlKalLwusNPGRbxL5sJNgSk9QivSz+TC736wa6j9aBzMTZaA949wCMGrPiWQg==
+X-Received: by 2002:ac2:5298:0:b0:4ef:ec6a:198c with SMTP id q24-20020ac25298000000b004efec6a198cmr1448431lfm.26.1683386986519;
+        Sat, 06 May 2023 08:29:46 -0700 (PDT)
 Received: from [127.0.1.1] ([85.235.12.238])
-        by smtp.gmail.com with ESMTPSA id v5-20020a197405000000b004eff32d6a21sm680814lfe.121.2023.05.06.08.29.44
+        by smtp.gmail.com with ESMTPSA id v5-20020a197405000000b004eff32d6a21sm680814lfe.121.2023.05.06.08.29.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 06 May 2023 08:29:45 -0700 (PDT)
+        Sat, 06 May 2023 08:29:46 -0700 (PDT)
 From:   Linus Walleij <linus.walleij@linaro.org>
-Subject: [PATCH 0/2] Add SEAMA partition types
-Date:   Sat, 06 May 2023 17:29:43 +0200
-Message-Id: <20230506-seama-partitions-v1-0-5806af1e4ac7@linaro.org>
+Date:   Sat, 06 May 2023 17:29:44 +0200
+Subject: [PATCH 1/2] dt-bindings: mtd: Add SEAMA partition bindings
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAGdyVmQC/0WNQQqDQAxFryJZG5gZ0dZeRVxkNK1ZdCqJiCDe3
- bEbl4//Hn8HYxU2eBU7KK9i8ksZfFnAMFH6MMqYGYILlatdg8b0JZxJF1myaxib4Lx/xLZ91pC
- zSMYYldIwXeHtX+Os/Jbt/9f1x3ECx3j3K38AAAA=
+Message-Id: <20230506-seama-partitions-v1-1-5806af1e4ac7@linaro.org>
+References: <20230506-seama-partitions-v1-0-5806af1e4ac7@linaro.org>
+In-Reply-To: <20230506-seama-partitions-v1-0-5806af1e4ac7@linaro.org>
 To:     Miquel Raynal <miquel.raynal@bootlin.com>,
         Richard Weinberger <richard@nod.at>,
         Vignesh Raghavendra <vigneshr@ti.com>,
@@ -75,34 +75,78 @@ X-Mailer: b4 0.12.1
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This type of firmware partition appear in some devices in
-NAND flash, so we need to be able to tag the partitions
-with the appropriate type.
-
-The origin of the "SEAttle iMAge" is unknown.
+This types of NAND partitions appear in OpenWrt and
+U-Boot.
 
 Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
-Linus Walleij (2):
-      dt-bindings: mtd: Add SEAMA partition bindings
-      ARM: dts: bcm5301x: Add SEAMA compatibles
-
  .../devicetree/bindings/mtd/partitions/seama.yaml  | 50 ++++++++++++++++++++++
- arch/arm/boot/dts/bcm47094-dlink-dir-885l.dts      |  1 +
- arch/arm/boot/dts/bcm47094-dlink-dir-890l.dts      |  1 +
- 3 files changed, 52 insertions(+)
----
-base-commit: caad71e7d226920623d78be2e6283516decdc502
-change-id: 20230506-seama-partitions-b620117b9985
+ 1 file changed, 50 insertions(+)
 
-Best regards,
+diff --git a/Documentation/devicetree/bindings/mtd/partitions/seama.yaml b/Documentation/devicetree/bindings/mtd/partitions/seama.yaml
+new file mode 100644
+index 000000000000..352f008ffdb1
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mtd/partitions/seama.yaml
+@@ -0,0 +1,50 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mtd/partitions/seama.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Seattle Image Partitions
++
++description: The SEAttle iMAge (SEAMA) partition is a type of partition
++  used for NAND flash devices. This type of flash image is found in some
++  D-Link routers such as DIR-645, DIR-842, DIR-859, DIR-860L, DIR-885L,
++  DIR890L and DCH-M225, as well as in WD and NEC routers on the ath79
++  (MIPS), Broadcom BCM53xx, and RAMIPS platforms.
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++
++select: false
++
++properties:
++  compatible:
++    const: seama
++
++  '#address-cells': false
++
++  '#size-cells': false
++
++patternProperties:
++  "@[0-9a-f]+$":
++    $ref: partition.yaml#
++
++required:
++  - compatible
++
++additionalProperties: false
++
++examples:
++  - |
++    flash {
++      partitions {
++        compatible = "fixed-partitions";
++        #address-cells = <1>;
++        #size-cells = <1>;
++        firmware@0 {
++          compatible = "seama";
++          label = "firmware";
++          reg = <0x00000000 0x08000000>;
++        };
++      };
++    };
+
 -- 
-Linus Walleij <linus.walleij@linaro.org>
+2.34.1
 
