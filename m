@@ -2,127 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7087B6F9149
-	for <lists+devicetree@lfdr.de>; Sat,  6 May 2023 12:49:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 416CF6F914E
+	for <lists+devicetree@lfdr.de>; Sat,  6 May 2023 12:52:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231584AbjEFKto (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 6 May 2023 06:49:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44234 "EHLO
+        id S231489AbjEFKwW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 6 May 2023 06:52:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229872AbjEFKtn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 6 May 2023 06:49:43 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C68E3A85;
-        Sat,  6 May 2023 03:49:42 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2DEDF61A0A;
-        Sat,  6 May 2023 10:49:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E23DC433EF;
-        Sat,  6 May 2023 10:49:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1683370181;
-        bh=OlQOxYKW4SXZYcXypb34XxCl3+X160znYrTJbr+qWUM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MLl1/gdKFqK8ElwObuC+WmydhWi4GpDT7ht6fPKxoC6hAUDlfnZwMPHHpmiEKs0fx
-         qsR6Wu5FitpadgxOoLkKSwVGXv7vEPiGm/tYXDQx2+cap8x77SaAZQFnmC5kJqUTrk
-         54Br4GZfN6uo1v7JlHDWpBYqWbFBVpUqJtVWQKQRJAoLZDmQtkaP7AJa8bZFFQybge
-         lBgOTEj82f2x0u2Ib0GpPib75XdT58vynnHnbbUY9Mt8SP3/lb050p+UvpQY/tf/kX
-         NcPAyrhuNBcH0XoxXkAcS+/yLhROBcJgr+MFxaKMvBJ2w9uecCttj0VXZMLK/xnfGO
-         y5lvhkTp5vC5Q==
-Date:   Sat, 6 May 2023 11:49:35 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Maksim Kiselev <bigunclemax@gmail.com>
-Cc:     Andre Przywara <andre.przywara@arm.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-        Maxime Ripard <mripard@kernel.org>, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 5/6] dt-bindings: spi: sun6i: add DT bindings for
- Allwinner D1/R528/T113s SPI
-Message-ID: <20230506-unfixable-lavish-eb7907a1a887@spud>
-References: <20230506073018.1411583-1-bigunclemax@gmail.com>
- <20230506073018.1411583-6-bigunclemax@gmail.com>
+        with ESMTP id S229872AbjEFKwU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 6 May 2023 06:52:20 -0400
+Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9384F4C1E;
+        Sat,  6 May 2023 03:52:16 -0700 (PDT)
+Received: by mail-pg1-x52f.google.com with SMTP id 41be03b00d2f7-52caed90d17so920379a12.0;
+        Sat, 06 May 2023 03:52:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1683370336; x=1685962336;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2WPWQzoKyocx4jwyrEWsU5/Mb3QtUt6PFyws4Xy1T9Y=;
+        b=Y02N91RBlzP2MsrhYJsjugMSEbfcZeRHNsSeyLH0V4jJ25bvKsKxum9+cfrKRdmtyE
+         2jatmgCyio0UXbdC5JSLlzi8onHkp8ZHKZZn/iLsDX8mWZKwY6PFx1qPx7x/NJZ8rYbm
+         KxrX+GYTu+U36gmbDb55e+PAqY6n2+SMxQ1x9yCiI/l/76xBikEFrFFYU8t+TYJM2kbd
+         sJB5bKMu/Xu3nppT0lSI4csaJQ8m86fKjwN+ZwE5VCDsAhEsVMsbhGyKHh4oBCOSM1c6
+         5ZEYz2hvMQTPDuVgNKp9LKmVynKqFqtITxT1OE3W8fUW5cd/82N15gDukM3QRmhdqkY2
+         rAxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683370336; x=1685962336;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2WPWQzoKyocx4jwyrEWsU5/Mb3QtUt6PFyws4Xy1T9Y=;
+        b=b0PFRd/85KlJwKgdyeKkuJNmlERlRjBwht6R4oI0Kz7dGk4LB8yxfpiIf9iSE6mASh
+         1PQTu40cQW2bCXOXLsrVJURkYXiz57WuaK4vc2lSosAzQq7ioCzI32QVyA2a9Butn3Yl
+         fdiJ/pR1Xo+Sp5NTcZAgxjnR9bpQoZSflCGN9/RzPm2kWVOkvmo+xOhoy9js6K9rLCQC
+         8XNa++lYCfMaRSpU1nwCBeKp86me2qeoQCpuEP5E5a6NQd3/rwPYMELKYTCSpA4iUuCy
+         lDwSrNevWk4cO49jxr/cH3+Lta9EuaAat34sb+IkrAqVV1SM++kT+T7OpOlYqXH2gpIu
+         6KMA==
+X-Gm-Message-State: AC+VfDwj4uqQobc0FJ/Ma2DkwPLuW4II3F0O8p8H6u2UD6+e1+8EHhTM
+        8L8MsF/cwVdBe3Eii5FS2DN3DCj/EkP5zKVs
+X-Google-Smtp-Source: ACHHUZ64Hd99wZVk+p30c+4tID1J1V+hd30DeVjfmgF0X5yIzsDDwYEdecW6dcmGNDwQPN+e5WT1Rw==
+X-Received: by 2002:a17:902:d4c3:b0:1ab:14da:981 with SMTP id o3-20020a170902d4c300b001ab14da0981mr5141456plg.35.1683370335839;
+        Sat, 06 May 2023 03:52:15 -0700 (PDT)
+Received: from yoga ([2400:1f00:13:6324:7c97:8040:5b6b:bbd5])
+        by smtp.gmail.com with ESMTPSA id h12-20020a170902748c00b001a9581d3ef5sm3322457pll.97.2023.05.06.03.52.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 06 May 2023 03:52:15 -0700 (PDT)
+Date:   Sat, 6 May 2023 16:22:09 +0530
+From:   Anup Sharma <anupnewsmail@gmail.com>
+To:     robh@kernel.org
+Cc:     lgirdwood@gmail.com, broonie@kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        KCHSU0@nuvoton.com, linux-kernel@vger.kernel.org
+Subject: [PATCH v2] ASoC: dt-bindings: nau8540: Convert to dtschema
+Message-ID: <ZFYxWVdE9YkMKvXv@yoga>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="5lAUstyTyaabrUyb"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230506073018.1411583-6-bigunclemax@gmail.com>
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Convert the NAU8540 audio CODEC bindings to DT schema
 
---5lAUstyTyaabrUyb
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Anup Sharma <anupnewsmail@gmail.com>
 
-On Sat, May 06, 2023 at 10:30:13AM +0300, Maksim Kiselev wrote:
-> Allwinner D1/R528/T113s SPI has the same as R329 controllers
->=20
-> Add compatible string for this controller
->=20
-> Signed-off-by: Maksim Kiselev <bigunclemax@gmail.com>
-> ---
->  .../devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml      | 4 ++++
->  1 file changed, 4 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-sp=
-i.yaml b/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml
-> index 2c1b8da35339..164bd6af9299 100644
-> --- a/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml
-> +++ b/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml
-> @@ -30,6 +30,10 @@ properties:
->                - allwinner,sun50i-h616-spi
->                - allwinner,suniv-f1c100s-spi
->            - const: allwinner,sun8i-h3-spi
-> +      - items:
-> +          - enum:
-> +              - allwinner,sun20i-d1-spi
+Changes:
+V1 -> V2: Adhere to the correct procedure by including the maintainer's name.
+          Drop Mark from maintainer.
+---
+ .../devicetree/bindings/sound/nau8540.txt     | 16 --------
+ .../bindings/sound/nuvoton,nau8540.yaml       | 40 +++++++++++++++++++
+ 2 files changed, 40 insertions(+), 16 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/nau8540.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/nuvoton,nau8540.yaml
 
-Yah, this one is more like it. The "allwinner,sun50i-r329-spi-dbi" one
-should be done in the way too.
+diff --git a/Documentation/devicetree/bindings/sound/nau8540.txt b/Documentation/devicetree/bindings/sound/nau8540.txt
+deleted file mode 100644
+index 307a76528320..000000000000
+--- a/Documentation/devicetree/bindings/sound/nau8540.txt
++++ /dev/null
+@@ -1,16 +0,0 @@
+-NAU85L40 audio CODEC
+-
+-This device supports I2C only.
+-
+-Required properties:
+-
+-  - compatible : "nuvoton,nau8540"
+-
+-  - reg : the I2C address of the device.
+-
+-Example:
+-
+-codec: nau8540@1c {
+-       compatible = "nuvoton,nau8540";
+-       reg = <0x1c>;
+-};
+diff --git a/Documentation/devicetree/bindings/sound/nuvoton,nau8540.yaml b/Documentation/devicetree/bindings/sound/nuvoton,nau8540.yaml
+new file mode 100644
+index 000000000000..7ccfbb8d8b04
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/nuvoton,nau8540.yaml
+@@ -0,0 +1,40 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/nuvoton,nau8540.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Nuvoton Technology Corporation NAU85L40 Audio CODEC
++
++maintainers:
++  - John Hsu <KCHSU0@nuvoton.com>
++
++allOf:
++  - $ref: dai-common.yaml#
++
++properties:
++  compatible:
++    const: nuvoton,nau8540
++
++  reg:
++    maxItems: 1
++
++  "#sound-dai-cells":
++    const: 0
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        codec@1c {
++            compatible = "nuvoton,nau8540";
++            reg = <0x1c>;
++        };
++    };
+-- 
+2.34.1
 
-Cheers,
-Conor.
-
-> +          - const: allwinner,sun50i-r329-spi
-> =20
->    reg:
->      maxItems: 1
-> --=20
-> 2.39.2
->=20
-
---5lAUstyTyaabrUyb
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZFYwvwAKCRB4tDGHoIJi
-0kJmAQDqt8aTRyBU1JudXMxWI7MO+3HuHjTKN+FXiHOxoEwPRAEA9d6bTe/01zz2
-D1porgB5E8jZK3nBcEWbGNZ04hDmaQk=
-=RXB8
------END PGP SIGNATURE-----
-
---5lAUstyTyaabrUyb--
