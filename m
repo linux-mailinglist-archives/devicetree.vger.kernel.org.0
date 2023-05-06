@@ -2,125 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5662E6F9152
-	for <lists+devicetree@lfdr.de>; Sat,  6 May 2023 12:53:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93B7D6F9155
+	for <lists+devicetree@lfdr.de>; Sat,  6 May 2023 12:59:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229872AbjEFKxO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 6 May 2023 06:53:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45986 "EHLO
+        id S232062AbjEFK7L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 6 May 2023 06:59:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231956AbjEFKxN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 6 May 2023 06:53:13 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 172E56193
-        for <devicetree@vger.kernel.org>; Sat,  6 May 2023 03:53:11 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-94ef0a8546fso440539966b.1
-        for <devicetree@vger.kernel.org>; Sat, 06 May 2023 03:53:11 -0700 (PDT)
+        with ESMTP id S231978AbjEFK7K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 6 May 2023 06:59:10 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DBE159D7
+        for <devicetree@vger.kernel.org>; Sat,  6 May 2023 03:59:09 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-50bc394919cso4117195a12.2
+        for <devicetree@vger.kernel.org>; Sat, 06 May 2023 03:59:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683370389; x=1685962389;
+        d=linaro.org; s=google; t=1683370748; x=1685962748;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=R+UErNxwinHQ3Gbr526y3MMdqkGlpH1N4yA85BQu/jQ=;
-        b=ZnnPcnv8ZBylQRbOhTSgc7oOzcDTDJvIepvAiTQC79+MygS56SCqReDEyF0mvUhgHU
-         EAjNO5d0xcDcvPJabqJsnAvQaB4wF4QVBi/aoMWpjjFAalyT0lHrai5RZ/TN6WliMMso
-         QseBxIY0eDXDKpjBxfWhXaCbikTrNjNX5O13OFwA91j+X0fvUMozhhUNwauaZyGmrm/R
-         RF9YD7HZZ8Va24bLly+sx7TTMY2iILIkmn4YRe4mRCXesg2TvuetmkZbiSNw5YUD8CQi
-         w0uE57IQnBinE+2+RppNVO/9dqxOYxDYLvBaa2u4MkEliXG8mo0JBb3Fc68/O9RiT5ZV
-         yvzg==
+        bh=tW2+xJRmgdZ27ZcNr9TxMjP3bjf3obnjeQgSvhehL34=;
+        b=ZpalZUe+XDuhte7Qv99Tcs5pg/4uvbJYtbOJq2PmRGOEVNt9kwkHXlkGORrKzST9dO
+         j1F/MvxjocP4l7/Iz/LkG3BwRVDqeJ8zvnZUih6vYtNFkZI4qcfwEWQd4qy7u5K6oc3h
+         prhib9n75xxmRA+7c0wLK03PjYM5esATCosz2grt2Iw0FdtNFY3Mnt3H+Lbb0cDyipNr
+         g5WZcMgORpa6LHKatnlrqZO/Q6nTqrDjTUFZDRPZHDxEmvsuyGIZazW4yFQ1jEucoHvD
+         HRsUJWV3Lag9vln46tYyfhv1K9lfnUOp5ERFbiPCZ343o2Pe3JqGIc62oZ0LvY8aFz4J
+         ZTfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683370389; x=1685962389;
+        d=1e100.net; s=20221208; t=1683370748; x=1685962748;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=R+UErNxwinHQ3Gbr526y3MMdqkGlpH1N4yA85BQu/jQ=;
-        b=Ach30w53HX2EeQ1f++aYCMzUQhr6Bop6ppB9ank7tR51/4ndhdrQHfIqT+8cjJxG7T
-         v35mMPmoR+zh9ytZNCjr2WnCu02jJBIok9CaU7Usb+svsqdhsOn9BFfyu/qz5MAoA9iL
-         iQPs5Bga+/Z5jMOYTelotq/e4a+azzvq7oMxtinkuZHP1h1EXycMglKHOOqteG2sOKmP
-         RgXetw2gstc8tuIJELExMMq143BjBuoOZ2qgspxaPUxN29LjrxHGZY88hEtjF64d7+RZ
-         QbnKbRBTRpQZdLkpFQGDQBsjTleh2crm8OfROt4MgZ7tWUCDBq2MvQw+yAXelx+ruaml
-         m+WQ==
-X-Gm-Message-State: AC+VfDyINjSKny+PAMz61AcVJGns9jOQ3VFNsCAuEEqMjsjsYP4mwcbl
-        0T3ZK/5sP8W1xNLPSBVZ3XEyDg==
-X-Google-Smtp-Source: ACHHUZ6i+Y7zVINwjFBxl6CnKYAnCnn/zV1ojQVX9NQ093UjfJjxB0nkCiJ8/BQ6zNwikObpGIENCw==
-X-Received: by 2002:a17:907:60c9:b0:965:c42d:ac71 with SMTP id hv9-20020a17090760c900b00965c42dac71mr4128109ejc.51.1683370389513;
-        Sat, 06 May 2023 03:53:09 -0700 (PDT)
+        bh=tW2+xJRmgdZ27ZcNr9TxMjP3bjf3obnjeQgSvhehL34=;
+        b=DSll8+yEEJJh5RQUHCqCfZ2kYG2sSXtahSzroZrnOgesuGTzSi3lF1eIhN8M+VOjTv
+         xCRy2tsBp8bbsGH78W3z+nAkpm1xtLFGqC6JRgy1oY3w0pV0KPKyjTQ8LVVAqO0onQfp
+         s0k79DFCHB1Cx7WyXTvKKQ9/FAIGt77hW7vDWv09VRNm53V2HPKF76zsggz1bEdSDlNd
+         LlBCZpE5RL6Rvw8L9rA8frEKuOqXpL9LFio6bYapd3Laz6MZHm05L6yuNO8CbOEHYvBp
+         MkY6n4d2GfnVbdeuCeB1mGAAaUpfBf+3B9M5mf8g4gv80y+ftDlKWMXJb8j+9QMRWlyh
+         mX7g==
+X-Gm-Message-State: AC+VfDwGt+oDj7jo/2RDXWEJlmZ14nEAPHkoGXzl8zyBj1WkzSEBKDxb
+        QNOTLpj28yX2+EDYle1ssL6wDQ==
+X-Google-Smtp-Source: ACHHUZ7zxK0jUQk4P0Am2rVH4Uu+S39TYN8L+DrKj+fLMnpvW7dy7eMWBZgIriGBInj1X5k0EWBCqA==
+X-Received: by 2002:a17:907:97c8:b0:966:17b2:5b0b with SMTP id js8-20020a17090797c800b0096617b25b0bmr1036600ejc.49.1683370747792;
+        Sat, 06 May 2023 03:59:07 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:efe5:7c03:a10a:7a40? ([2a02:810d:15c0:828:efe5:7c03:a10a:7a40])
-        by smtp.gmail.com with ESMTPSA id ig2-20020a1709072e0200b00959b810efcbsm2142263ejc.36.2023.05.06.03.53.07
+        by smtp.gmail.com with ESMTPSA id z18-20020a170906715200b0094ea3a32694sm2138449ejj.190.2023.05.06.03.59.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 06 May 2023 03:53:08 -0700 (PDT)
-Message-ID: <e38cbcdf-5963-fb00-d7b2-66d4129f9fce@linaro.org>
-Date:   Sat, 6 May 2023 12:53:07 +0200
+        Sat, 06 May 2023 03:59:07 -0700 (PDT)
+Message-ID: <d0329227-b579-5557-b449-7961ec0a1463@linaro.org>
+Date:   Sat, 6 May 2023 12:59:05 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
-Subject: Re: [PATCH v2 1/6] dt-bindings: spi: sun6i: add DT bindings for
- Allwinner R329 SPI
+Subject: Re: [PATCH v2 3/4] dt-bindings: mmc: fsl-imx-esdhc: remove property
+ "fsl,wp-controller"
 Content-Language: en-US
-To:     Maksim Kiselev <bigunclemax@gmail.com>,
-        Andre Przywara <andre.przywara@arm.com>
-Cc:     Icenowy Zheng <icenowy@aosc.io>, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-        Heiko Stuebner <heiko.stuebner@vrull.eu>,
-        Maxime Ripard <mripard@kernel.org>, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-References: <20230506073018.1411583-1-bigunclemax@gmail.com>
- <20230506073018.1411583-2-bigunclemax@gmail.com>
+To:     haibo.chen@nxp.com, adrian.hunter@intel.com,
+        ulf.hansson@linaro.org, linux-mmc@vger.kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de
+Cc:     linux-imx@nxp.com, kernel@pengutronix.de, festevam@gmail.com,
+        cniedermaier@dh-electronics.com, devicetree@vger.kernel.org,
+        kernel@dh-electronics.com
+References: <20230506074037.522961-1-haibo.chen@nxp.com>
+ <20230506074037.522961-4-haibo.chen@nxp.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230506073018.1411583-2-bigunclemax@gmail.com>
+In-Reply-To: <20230506074037.522961-4-haibo.chen@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/05/2023 09:30, Maksim Kiselev wrote:
-> From: Icenowy Zheng <icenowy@aosc.io>
+On 06/05/2023 09:40, haibo.chen@nxp.com wrote:
+> From: Haibo Chen <haibo.chen@nxp.com>
 > 
-> Allwinner R329 SPI has two controllers, and the second one has helper
-> functions for MIPI-DBI Type C.
+> Driver do not use this property, so remove it here.
 
-I wonder what is the difference of DBI compatible. You refer to "helper
-functions", which sounds like driver... do you mean some parts of SPI
-controller?
+You still need to expand the commit msg and justify why this property is
+being removed. "Driver" is vague, as it can be BSD driver which also
+might use this binding. Instead describe why this property should be
+removed, so we can understand also ABI implications.
 
 > 
-> Add compatible strings for these controllers
+> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
 > 
-> Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
 > ---
->  .../devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml        | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml b/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml
-> index de36c6a34a0f..2c1b8da35339 100644
-> --- a/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml
-> +++ b/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml
-> @@ -21,6 +21,8 @@ properties:
->      oneOf:
->        - const: allwinner,sun6i-a31-spi
->        - const: allwinner,sun8i-h3-spi
-> +      - const: allwinner,sun50i-r329-spi
-> +      - const: allwinner,sun50i-r329-spi-dbi
-
-As Conor pointed out, nothing improved here.
+> v2:
+> -fix dt-binding-check issue, also remove "fsl,wp-controller" in examples.
+> ---
+>  Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml | 6 ------
+>  1 file changed, 6 deletions(-)
 
 Best regards,
 Krzysztof
