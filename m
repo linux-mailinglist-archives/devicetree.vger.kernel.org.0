@@ -2,175 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E63E6F8DFD
-	for <lists+devicetree@lfdr.de>; Sat,  6 May 2023 04:26:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 871576F8E14
+	for <lists+devicetree@lfdr.de>; Sat,  6 May 2023 04:37:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231694AbjEFC0C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 22:26:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50210 "EHLO
+        id S229649AbjEFCh1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 May 2023 22:37:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231278AbjEFC0B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 22:26:01 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5419976AA;
-        Fri,  5 May 2023 19:25:42 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 5C2937F8A;
-        Sat,  6 May 2023 10:25:35 +0800 (CST)
-Received: from EXMBX073.cuchost.com (172.16.6.83) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Sat, 6 May
- 2023 10:25:35 +0800
-Received: from [192.168.60.114] (180.164.60.184) by EXMBX073.cuchost.com
- (172.16.6.83) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Sat, 6 May
- 2023 10:25:34 +0800
-Message-ID: <84b67a9f-d6d3-f584-3160-8edccc6bef83@starfivetech.com>
-Date:   Sat, 6 May 2023 10:25:34 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v4 0/8] Add StarFive Camera Subsystem driver
-Content-Language: en-US
+        with ESMTP id S230280AbjEFCh0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 22:37:26 -0400
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on2047.outbound.protection.outlook.com [40.107.7.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 944982D63;
+        Fri,  5 May 2023 19:37:24 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=QWmuVxrNopuvVQC6LQ/gVBvmU5uM/JwpZUj/QRyzTaTS07mYxJzZ8wi/DP74aNe8OeegF+SmVGn+N5TVnqfe0UTVPB6YokZUWSl/7AQJ7qAd9+oWHzEF1mf26CwSh7c6pra9abRehFOYG7wq0nSzeNDS7ouTcrAyFRAKJu8dd0b84GCNYkKMEdfxJZ5LhYr7F4edp/M4m59SCFvx6pM6/yHINY/9wnQ2kRySQojhZfMe+baczlOaoAArCqut7BnNUQwMCKsVhOqf75WNc/ERrHensUn8HVyntUcI3aMMo1EdepQd4tc379hBpUs4MV9XiiqvLrHxlf5GVAQHEfpXNA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=1S7fgci7WRthgUM82rIhJhdWcH2HPvJ/CynlqomncM4=;
+ b=BZ8N2QgZoOj4kLwxh2WzbWKJCdru8LLgqrInVS8Gcbr4FREmkt/br0ro2ONyTWgeF7lZzVhN3LMQvPzfq/wXabyl7wDSSRczlU6pBdhjcusGKTvac9YYgEeHBs6Rd4/ob4ne+Vh05CjPjipUl4rnOT2hlW2UCKwMnfTjotVB3U2Oo1+1pyHKnDFaxG65eWQKlx8eUHlhYZuG3A9knKnHJIatylhXGfPtTtrbJuIbQJ3nP/2R/dOIlb8Ys42t5VQ1OWV0HQ9u9AqWZGOYQ1O+hG4RHD6ysmR5/0YjcccDv8tK+UjQaALqlOfdMcn0OY5p/BtLY5Ph5zLHE98J7cX95w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1S7fgci7WRthgUM82rIhJhdWcH2HPvJ/CynlqomncM4=;
+ b=UEF/GTSCuaZ2+nXZQkz4oTg25LXycnWTtShKep/J4c8rYkitTPImVkuaYyEEva2ttnbLkcDjmaKIZqQaIqu1Fm4UNDtk7rl6N1aCCT4JRnMvhEGbWbXgwXBwhaSOfU8kZVYkhR1ZIPDAPUybYKDVefzILsbWhLcpqSLu6oy+cyw=
+Received: from DB7PR04MB4010.eurprd04.prod.outlook.com (2603:10a6:5:21::30) by
+ AM7PR04MB6807.eurprd04.prod.outlook.com (2603:10a6:20b:104::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.29; Sat, 6 May
+ 2023 02:37:21 +0000
+Received: from DB7PR04MB4010.eurprd04.prod.outlook.com
+ ([fe80::86a3:5425:d6fd:2346]) by DB7PR04MB4010.eurprd04.prod.outlook.com
+ ([fe80::86a3:5425:d6fd:2346%4]) with mapi id 15.20.6363.028; Sat, 6 May 2023
+ 02:37:20 +0000
+From:   Bough Chen <haibo.chen@nxp.com>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "Mauro Carvalho Chehab" <mchehab@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        "Todor Tomov" <todor.too@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Laurent Pinchart" <laurent.pinchart@ideasonboard.com>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Eugen Hristev <eugen.hristev@collabora.com>
-CC:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <changhuang.liang@starfivetech.com>
-References: <20230413035541.62129-1-jack.zhu@starfivetech.com>
- <14c06503-621f-2477-7b15-b17f1890ecfe@starfivetech.com>
- <7bd29805-11e7-68ee-aa47-68bae2a2fb38@starfivetech.com>
- <925bf170-bb54-b427-976a-87e0dca230da@linaro.org>
- <817b8919-e9dd-cf2a-41e0-9b50747ab4cf@starfivetech.com>
- <ef7ab2dd-8f6c-a7f2-7aa6-90fe1caa96b4@linaro.org>
-From:   Jack Zhu <jack.zhu@starfivetech.com>
-In-Reply-To: <ef7ab2dd-8f6c-a7f2-7aa6-90fe1caa96b4@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [180.164.60.184]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX073.cuchost.com
- (172.16.6.83)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        "adrian.hunter@intel.com" <adrian.hunter@intel.com>,
+        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
+CC:     dl-linux-imx <linux-imx@nxp.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "cniedermaier@dh-electronics.com" <cniedermaier@dh-electronics.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "kernel@dh-electronics.com" <kernel@dh-electronics.com>
+Subject: RE: [PATCH v2 3/4] dt-bindings: mmc: fsl-imx-esdhc: remove property
+ "fsl,wp-controller"
+Thread-Topic: [PATCH v2 3/4] dt-bindings: mmc: fsl-imx-esdhc: remove property
+ "fsl,wp-controller"
+Thread-Index: AQHZfznU1FszfifvBU6TZCq/G3gpYa9L9PSAgACSxpA=
+Date:   Sat, 6 May 2023 02:37:20 +0000
+Message-ID: <DB7PR04MB401046EF6FFFB367BFE4741090739@DB7PR04MB4010.eurprd04.prod.outlook.com>
+References: <20230505101246.289278-1-haibo.chen@nxp.com>
+ <fe8c1063-b8d4-1707-5434-89b3d1edf1a8@linaro.org>
+In-Reply-To: <fe8c1063-b8d4-1707-5434-89b3d1edf1a8@linaro.org>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DB7PR04MB4010:EE_|AM7PR04MB6807:EE_
+x-ms-office365-filtering-correlation-id: ac889e49-f480-4e2e-bfb8-08db4ddad0c2
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 77bzyyGzzPtRWimxQp8sVRDMMcAk96GKsXBZ5UNpRvKAOJIzIdXeQnADNqd4smb+VKZwo9JELqt6clIr+ofCIR94pjUmo2lOKJiQeitwmNxQrZvcwh1rf2W7eYkxGOA/3xal1BzQXEjVDIeSGt8K1nGzkUJCWEY7mSt+NGlTJ3xNhpakhbgYwytVMcVAi51iqAuh1/UXlVUQQtAB6jKCy4fo++X76z1s4fTYOVKjDvriBaHsc4stmeRlV83sFwUxx36PtvC2IojqibMI4iABLfUPz56Rus6zgiSXGTBh1NL86fRXEzgWF+mUgHqQXjqf3SIVoUj1+L7kK5Z/GR4m7wLTPqEmPR4PN/MzpAbB4/1yGfYeEbiONe/pOlgo4XAW0Nuu03/MU24tN8JRi8zxvqQpa+n872E9L+FdH40w7qtwsVxrG+svaCf00ScPjLAMYyUBf15tYcxx9UxBXWYcIgLPw5BHwaTyj8sj6aB9RcXc7vldQyxPUWUyzcdl/5OhcWbrinAfTGFoWbKAwVjtLbu3Vg5cnU64L03/mSdZyHh9A5AWks8V4OcOY5y+fslljmAzUV2kfsEymoGsJoS4GIB+KDxRT+vt48f0rTt824k=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR04MB4010.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(376002)(346002)(396003)(136003)(366004)(451199021)(38100700002)(7696005)(54906003)(110136005)(71200400001)(316002)(66446008)(478600001)(4326008)(86362001)(66556008)(66476007)(41300700001)(76116006)(64756008)(66946007)(55016003)(26005)(186003)(53546011)(6506007)(9686003)(122000001)(83380400001)(8676002)(8936002)(5660300002)(52536014)(33656002)(38070700005)(7416002)(2906002)(966005);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?WDNOOXR0UG5VeFFKdmlTMkUwU0RRY3hmNFRZZHlIN1ZLUFFmVXdpUkwvamQ1?=
+ =?utf-8?B?NFJodEJERUFrbUU3ZmtXczhKeEdNYThnNjNyMThpY08wdlJZSHd0UnYwV1My?=
+ =?utf-8?B?aVFaTlRLYUpnVTl0TWwyMStoUWxRRDdKTTdsZFZGTzl5U0xZbU1odHNiTzd3?=
+ =?utf-8?B?K0NUQ3pnMzVaYlZOMTJRUytHaFhIWitkVlp6UmFpU290Z25VOWdkMXJFNEFp?=
+ =?utf-8?B?ckd3UXcwYTRhOW4zQjR0aWpHcHgvaDhnbWZKejk0ZUN4bVdnSWVuY0hmV1dt?=
+ =?utf-8?B?NnpXTU1hcmszaDcrVmd3UjNuaC80RktUN0c5bFBXUHpzbWNEQWFMNkJYeHQ2?=
+ =?utf-8?B?cTZHNHB4S296UkhSSE1FQ2ZWZHA2S0FPcExISGcwYnhuSi9YUDhCSjIvTzF3?=
+ =?utf-8?B?WG11bjEyWEZVNXBKSnNsT3gvN3JFNTVENHVyVGc2R2cySFJuVGpWa2cyYkFy?=
+ =?utf-8?B?V1B6eDRZUUVBN2M5RG5HdUpkbDhXQzgyV2h3WlNpNlJUSmk3WUo5NVNrQVdr?=
+ =?utf-8?B?ZytwNmhSNjdLVkFtZG5veHJ5Y21URVY1Z3lpTGFNTjU4K0tLZjd2T3JOMFpF?=
+ =?utf-8?B?OW1mYmJFWStVSzlRTko2Q3V0dVFsVUUxR3FHcFBBUnBUTjJBclNGMGdZcCtD?=
+ =?utf-8?B?b1g3MWF0dG5aS01tNFhzR2p1dWJoTUN3ZThMRXNXRCs1SjE4T0xVZUhRQm5L?=
+ =?utf-8?B?RU9ZS0NncDRTcDdrdHVYb2V0WEtxdkRSR2lhbHZTVkJheE9TcDVnVjVGMGFV?=
+ =?utf-8?B?TWhLMllYQWNEaXZwV2h4QVc4UzNoMGRmN0NQSFJIc1Fwc1RCb2NmazBHYmFZ?=
+ =?utf-8?B?Vko1QXE4dk5Mc3JyWkJqcDQ5NU8xUWlKb0dBclQydG1VRm1WSCtZeXVlM2pi?=
+ =?utf-8?B?bGx6dkJkTGZtNk04aEtoVzA3eUR4UjhMczVaWkYwdkQ1bWZNS1NjUFZ4TWJT?=
+ =?utf-8?B?TkVJQjl3cjl1UjFHdU1LOWRTV3B6N2tielVxNTJTQ0VkWXBaczB0cWJnRmdZ?=
+ =?utf-8?B?OHlhUlpxNmFtMDV1N2xvVno3SHVLQlN1UlVCbEVPUUFUTkNlbk12SmRwWGhz?=
+ =?utf-8?B?dzNjcjROUVBPQ1JhU09rRWFIMGZ5TlpQc093L3VIWHJGdXVlNFhPUkpoUnp5?=
+ =?utf-8?B?MUZMKzRETDR3MDQyeFV1ZXN2YUQzc2I4a0pYYUE1SzBXRDVVUGJsZmR0ekRK?=
+ =?utf-8?B?L0hnSEVkRm92QTJJa3VHaEpHYTlaWjdXTTI3UzJ4d0o1UEhzODc0QkRQL2s1?=
+ =?utf-8?B?SHBOekIvZWYvaDMyVFB2RTVCTW9tN21zb244L3pBM1MvMU0yQWFZZnlDRTVy?=
+ =?utf-8?B?SmY1NnpOTmtReStoNDlRQW5GMHBkaFNwMk5KZ1UyVDVHYk1TMXdFcmQvcXdD?=
+ =?utf-8?B?b0hWU3dwK1B1dFZCMzZ5QlY3R2lwQldzVExOK0dmOGxFSlczYnkwZUdxazFL?=
+ =?utf-8?B?L0FaTmxBYnIwZ0xlYkZ4dTdqOWIyVkRPK3VGZVB2ZG92Y0hFamZ2TG95Z2pq?=
+ =?utf-8?B?VWl0Q1NaelRWZnVnaEkzT0RrSFZmRkJhbVljRnBDeXFEYkRMc01IazZXYW9i?=
+ =?utf-8?B?UE5ocTJ2ek0zZ3pKdTQ4TkpwVUdyeEJ6SEZ2NVIzVUwvcGNqckdEY0huWDI2?=
+ =?utf-8?B?ZG9Xckg4cUZrV2ViVm9sdjgwT0l2WWJmVnJQaW01Ry85SDM4WDdVaXd3V2l5?=
+ =?utf-8?B?RnE1eStmYmRkWUJhbnI1OXZ5MkhndzN0ZUZ2aGwvS2xoRXZUMTNtdHFDSjlE?=
+ =?utf-8?B?TkhxdmJOZzBVWC93eGtXVW94NE1lbTUzak52MjdFUWlpYXM1VDVPWWh0bHo2?=
+ =?utf-8?B?V2NVL3QzTkRJbWFVNG9GcDJLaTFEVzBzVnpCNGVtUTJNTGlQVkQvand3SWJp?=
+ =?utf-8?B?NUVLS3V5N1VCc2JiWWVHRVoyQmd5QzZ2dWlIem9NQlpRMjltaFVWanZzbGIw?=
+ =?utf-8?B?WmpWVEdSZXBBVG9hU2VSK3pyZjRRM0dvYkNKaTRwQ1MrdjBiNHJMN2dQTW1l?=
+ =?utf-8?B?K1lVYWdPandwZFhZR283di9VSUhqUUtoUlZsc3lwOC93TGJkSXFleXdHcC92?=
+ =?utf-8?B?MmtGemlaMVZzaGNnOHdKalg4QU9BVzhrVVB2RHErbDZ2Nm1BU1JlSXFNR25X?=
+ =?utf-8?Q?BtIg=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DB7PR04MB4010.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ac889e49-f480-4e2e-bfb8-08db4ddad0c2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 May 2023 02:37:20.3293
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: wFLcqYys2tKEfGJizW+AjAAIyWI1yD5gXRZRI4/S/6eqxCwg8mcx0eVMlJKryW1ZQ4ioMjnIBTgVFdbACRR+rA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR04MB6807
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 2023/5/5 20:24, Krzysztof Kozlowski wrote:
-> On 05/05/2023 10:14, Jack Zhu wrote:
->> 
->> 
->> On 2023/5/5 14:40, Krzysztof Kozlowski wrote:
->>> On 05/05/2023 07:57, Jack Zhu wrote:
->>>>
->>>>
->>>> On 2023/4/24 19:19, Jack Zhu wrote:
->>>>>
->>>>>
->>>>> On 2023/4/13 11:55, Jack Zhu wrote:
->>>>>> Hi,
->>>>>>
->>>>>> This patch series adds support for the StarFive Camera Subsystem
->>>>>> found on StarFive JH7110 SoC.
->>>>>>
->>>>>> The driver implements V4L2, Media controller and V4L2 subdev interfaces.
->>>>>> Camera sensor using V4L2 subdev interface in the kernel is supported.
->>>>>>
->>>>>> The driver is tested on VisionFive V2 board with IMX219 camera sensor.
->>>>>> GStreamer 1.18.5 with v4l2src plugin is supported.
->>>>>>
->>>>>> Changes since v3:
->>>>>> Patch 1:
->>>>>> - Modified port@0 and port@1 properties.
->>>>>> - Extended the port@0 example with appropriate properties.
->>>>>> - Added 'port@0' for 'required'
->>>>>> Patch 2:
->>>>>> - Modified spelling errors.
->>>>>> Patch 3:
->>>>>> - Merged patch 5 into the patch with an explanation for compatible in
->>>>>>   commit msg.
->>>>>> Patch 6:
->>>>>> - Asserted pixel_rst[i] reset in the loop after the err_disable_pixclk
->>>>>>   label.
->>>>>> - Modified Code Style for getting sys_rst and p_rst.
->>>>>> - Renamed clk_name to name and modified the relevant code.
->>>>>> Patch 9:
->>>>>> - Added static for stfcamss_get_mem_res function.
->>>>>> - Added static for isp_close function.
->>>>>> - Fixed implicit conversion warning for stf_vin_map_isp_pad function.
->>>>>> - Dropped unused variables.
->>>>>>
->>>>>>   v3: https://lore.kernel.org/all/20230331121826.96973-1-jack.zhu@starfivetech.com/
->>>>>>
->>>>>
->>>>> Hello everyone,
->>>>>
->>>>> From the current review status, the patches related to the CSI module
->>>>> have 'reviewed-by' tags. I would like to know if it is okay to add
->>>>> patches 1-5 from this series to a PR first.
->>>>>
->>>>> Thank you!
->>>>>
->>>>> Jack
->>>>>
->>>>
->>>> Hello Mauro, Laurent, Maxime, Rob, Krzysztof, Robert, Todor and Philipp,
->>>>
->>>> Can you give me some suggestions and comments on the previous request
->>>> to commit CSI related patches first? Thank you for your time.
->>>
->>> You received very specific feedback, so know you decided to ignore it?
->>>
->>> No, implement what you were asked for.
->>>
->> 
->> Hi Krzysztof,
->> 
->> Thank you for your comments.
->> 
->> I am talking about CSI-related patches 1-5, not including the patches
->> 6-8. The CSI module is a relatively functionally independent hardware
->> module. The CSI-related patches 1-5 already have 'reviewed-by' tags,
->> and there are no unprocessed comments left. So, made the previous
->> request. Please let me know if I understand something wrong.
-> 
-> You pinged also me, so we talk about bindings. You got comments to fix,
-
-Hello Krzysztof,
-
-Sorry, I'm not sure, the 'comments to fix' refers to your comments in
-patch 6?
-
-> so if you are not going to fix them, the patches will not get accepted.
-> 
->> I don't want to ignore any comments, I will continue to modify the isp
->> patches 6-8 in subsequent versions according to your comments. The
->> ISP-related patches are being prepared.
-> 
-> And how are these patches related to me and Rob?
-> 
-
-Yes, there are bindings files related to ISP.
-
-Maybe I need to split the series into two separate series, a CSI
-series(patches 1-5) and an ISP series(patches 6-8). Does this make it
-easier for the CSI patches 1-5 to integrate into the main line?
-
-> Best regards,
-> Krzysztof
-> 
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBLcnp5c3p0b2YgS296bG93c2tp
+IDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+DQo+IFNlbnQ6IDIwMjPlubQ15pyINuaX
+pSAxOjQ4DQo+IFRvOiBCb3VnaCBDaGVuIDxoYWliby5jaGVuQG54cC5jb20+OyBhZHJpYW4uaHVu
+dGVyQGludGVsLmNvbTsNCj4gdWxmLmhhbnNzb25AbGluYXJvLm9yZzsgbGludXgtbW1jQHZnZXIu
+a2VybmVsLm9yZzsgcm9iaCtkdEBrZXJuZWwub3JnOw0KPiBrcnp5c3p0b2Yua296bG93c2tpK2R0
+QGxpbmFyby5vcmc7IHNoYXduZ3VvQGtlcm5lbC5vcmc7DQo+IHMuaGF1ZXJAcGVuZ3V0cm9uaXgu
+ZGUNCj4gQ2M6IGRsLWxpbnV4LWlteCA8bGludXgtaW14QG54cC5jb20+OyBrZXJuZWxAcGVuZ3V0
+cm9uaXguZGU7DQo+IGZlc3RldmFtQGdtYWlsLmNvbTsgY25pZWRlcm1haWVyQGRoLWVsZWN0cm9u
+aWNzLmNvbTsNCj4gZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7IGtlcm5lbEBkaC1lbGVjdHJv
+bmljcy5jb20NCj4gU3ViamVjdDogUmU6IFtQQVRDSCB2MiAzLzRdIGR0LWJpbmRpbmdzOiBtbWM6
+IGZzbC1pbXgtZXNkaGM6IHJlbW92ZSBwcm9wZXJ0eQ0KPiAiZnNsLHdwLWNvbnRyb2xsZXIiDQo+
+IA0KPiBPbiAwNS8wNS8yMDIzIDEyOjEyLCBoYWliby5jaGVuQG54cC5jb20gd3JvdGU6DQo+ID4g
+RnJvbTogSGFpYm8gQ2hlbiA8aGFpYm8uY2hlbkBueHAuY29tPg0KPiA+DQo+ID4gRHJpdmVyIGRv
+IG5vdCB1c2UgdGhpcyBwcm9wZXJ0eSwgc28gcmVtb3ZlIGl0IGhlcmUuDQo+IA0KPiBUaGF0J3Mg
+bm90IHRydWUsIGl0IHVzZXMuIEkgZ290IG9ubHkgcGF0Y2ggIzMgYW5kIG5vdGhpbmcgZWxzZS4N
+Cg0KVGhpcyB2MiBwYXRjaCBvbmx5IGZpeCBhIGR0LWNoZWNrIGVycm9yLCBmb3IgcGF0Y2gxLDIs
+NCwgc3RpbGwgbm90IGdldCBjb21tZW50cywgc28gSSBkbyBub3Qgc2VuZCBvdXQgdG8gYXZvaWQg
+bm9pc2UuDQoNCkhlcmUgaXMgdGhlIHBhdGNoIHRvIHJlbW92ZSAiZnNsLHdwLWNvbnRyb2xsZXIi
+IGluIGRyaXZlcjoNCmh0dHBzOi8vcGF0Y2h3b3JrLmtlcm5lbC5vcmcvcHJvamVjdC9saW51eC1t
+bWMvcGF0Y2gvMjAyMzA1MDUwODQ5NTUuMjM4OTQwLTItaGFpYm8uY2hlbkBueHAuY29tLw0KDQpC
+ZXN0IFJlZ2FyZHMNCkhhaWJvIENoZW4NCj4gDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBIYWli
+byBDaGVuIDxoYWliby5jaGVuQG54cC5jb20+DQo+ID4gLS0tDQo+ID4gIERvY3VtZW50YXRpb24v
+ZGV2aWNldHJlZS9iaW5kaW5ncy9tbWMvZnNsLWlteC1lc2RoYy55YW1sIHwgNiAtLS0tLS0NCj4g
+PiAgMSBmaWxlIGNoYW5nZWQsIDYgZGVsZXRpb25zKC0pDQo+IA0KPiANCj4gQmVzdCByZWdhcmRz
+LA0KPiBLcnp5c3p0b2YNCg0K
