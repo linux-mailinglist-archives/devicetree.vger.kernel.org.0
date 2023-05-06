@@ -2,170 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B1046F91AE
-	for <lists+devicetree@lfdr.de>; Sat,  6 May 2023 13:48:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 34A156F91F7
+	for <lists+devicetree@lfdr.de>; Sat,  6 May 2023 14:26:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231675AbjEFLsw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 6 May 2023 07:48:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60350 "EHLO
+        id S231675AbjEFM0X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 6 May 2023 08:26:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231584AbjEFLsv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 6 May 2023 07:48:51 -0400
-Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E4F29033
-        for <devicetree@vger.kernel.org>; Sat,  6 May 2023 04:48:49 -0700 (PDT)
-Received: by mail-yb1-xb31.google.com with SMTP id 3f1490d57ef6-b9a6f17f2b6so17954639276.1
-        for <devicetree@vger.kernel.org>; Sat, 06 May 2023 04:48:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683373728; x=1685965728;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=xXhdre3g6H6MxYfxQGqp7f/RjF8xgr6/bS/OJWM+1K0=;
-        b=MQA9OcXbL/XwwsogkZ4TESHUPK3/H6PVWHQbaJBYohKYAbVa9divMjrh24i5VM3qlu
-         VPoFQx/k3xzIqtyQ1BD8ubBNoG0tNDyLQWbhJtJ6EwuDXMu3etuDWilDOvrKP4cBD7mR
-         8wwAlR9LG/gDlSBzpKvq7noxAXE3s2BzAeR9I0DRZ54nIkBzDcmyjt9hijysM+XtnQ7h
-         Ou6nUtUiPCpSLHpUy2FzLO2W/Ddxzj2/ui8x3Tnvgzh4IFOglLN9td/lNPzKYQFa+/pP
-         BOfEAfWhE6rL6tUmZo5Q/gStZl/1ezuiY2C+D5lYWzFvcSm3zewWWNJnSjzw6olfQdYq
-         M9Rg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683373728; x=1685965728;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xXhdre3g6H6MxYfxQGqp7f/RjF8xgr6/bS/OJWM+1K0=;
-        b=OckwggxtxiujQDop77VKXxGVSwGL02juS79ROpurB+gELt6Gda1yzlpCWNNU3Z4YP3
-         79FmXtJQoLkpHDT8VALO7qddZuzk/tlR26P4v23KtNpHk/gEt2MhvkXA+kHuRGXVzDFY
-         bMEXKvUUsgiHFXSOpKjUJyye0Ix6X2E/ExiVltptjPekOb7GWpcCcrArp8Jp8evJCx8d
-         BOL2KK97Vli9otYfSss/d9UJS1Dy/OW/BStXpLgtHkVKkS6PY9m0geac2dOxdySMnlJc
-         6JWTDjLZo4JESfJdA2nrVHBn8JaQmfjPg2FOZZdv5UHiQPybvgArZ05e9NR+ThBmzIyd
-         u+dg==
-X-Gm-Message-State: AC+VfDzvXrJGrTCyVcoE3ah14txT3lvk9CsUl1v+FB4RyL7rsM9zEnpX
-        F8SE8IgdRNweW2NJneIbMNbNe0GoShkeTwQCFLhxcA==
-X-Google-Smtp-Source: ACHHUZ5SDRauCpEt7XaCf+06S56cEsOSrg/dB2Z2CGa/crPII7bRor+mCq0qb5hLwv8tjTALyOdssnJyVVCTIB9bjVQ=
-X-Received: by 2002:a0d:e812:0:b0:559:deee:be50 with SMTP id
- r18-20020a0de812000000b00559deeebe50mr4862100ywe.21.1683373728242; Sat, 06
- May 2023 04:48:48 -0700 (PDT)
+        with ESMTP id S232273AbjEFM0K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 6 May 2023 08:26:10 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFE39150E8;
+        Sat,  6 May 2023 05:26:04 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 953FA24E272;
+        Sat,  6 May 2023 20:26:02 +0800 (CST)
+Received: from EXMBX062.cuchost.com (172.16.6.62) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Sat, 6 May
+ 2023 20:26:02 +0800
+Received: from [192.168.125.107] (183.27.98.219) by EXMBX062.cuchost.com
+ (172.16.6.62) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Sat, 6 May
+ 2023 20:26:01 +0800
+Message-ID: <b1965ae2-af2d-b11c-3e34-8129c29333b8@starfivetech.com>
+Date:   Sat, 6 May 2023 20:26:01 +0800
 MIME-Version: 1.0
-References: <20230505-fxtec-pro1x-support-v2-0-0ea2378ba9ae@riseup.net>
- <20230505-fxtec-pro1x-support-v2-1-0ea2378ba9ae@riseup.net> <abae55ef-172b-036f-40a9-b27c38e850ec@linaro.org>
-In-Reply-To: <abae55ef-172b-036f-40a9-b27c38e850ec@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Sat, 6 May 2023 14:48:37 +0300
-Message-ID: <CAA8EJprxyHSQqoeNpiLGbx7v+CUgh7Tezw8D3RRY01izywckBg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] arm64: dts: qcom: Add Fxtec Pro1X (QX1050) DTS
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Dang Huynh <danct12@riseup.net>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [RESEND v2 1/6] dt-bindings: power: Add JH7110 AON PMU support
+Content-Language: en-US
+To:     Conor Dooley <conor@kernel.org>
+CC:     Conor Dooley <conor.dooley@microchip.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Walker Chen <walker.chen@starfivetech.com>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, <vkoul@kernel.org>,
+        <linux-phy@lists.infradead.org>
+References: <089e24d1-588a-4a56-f00b-0b35d1d99295@linaro.org>
+ <ea5b5534-8fc2-7c84-a011-c1b42c6ed7a0@starfivetech.com>
+ <1ac26c1a-1726-515d-6598-849a07ed0b86@linaro.org>
+ <5adda0ad-965c-fbf0-878c-9d41d28b5c39@starfivetech.com>
+ <86693969-59bf-5bcc-42a3-b6e94a0d6f3e@linaro.org>
+ <fcfc8ba4-40a7-da43-3375-712bd7e7f4d5@starfivetech.com>
+ <20230504-worshiper-ongoing-5581e1f2c2c4@wendy>
+ <2f473307-2219-61a4-fa66-5848fe566cf0@starfivetech.com>
+ <20230505-magician-poet-724c96020c2f@wendy>
+ <ba6a1a47-d3b1-ee16-4785-f5c61d593127@starfivetech.com>
+ <20230506-dating-twiddling-b364de21ed2b@spud>
+From:   Changhuang Liang <changhuang.liang@starfivetech.com>
+In-Reply-To: <20230506-dating-twiddling-b364de21ed2b@spud>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [183.27.98.219]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX062.cuchost.com
+ (172.16.6.62)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 5 May 2023 at 21:41, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->
->
->
-> On 5.05.2023 19:12, Dang Huynh wrote:
-> > The F(x)tec Pro1X is a mobile phone released by FX Technologies Ltd
-> > in 2022.
-> >
-> > The phone is exactly the same as the Pro1 released in 2019 with some
-> > changes:
-> > - MSM8998 -> SM6115
-> > - Camera button is no longer multistate
-> > - Only one 48MP back camera
-> > - A new keyboard layout picked by the community.
-> >
-> > This commit has the following features working:
-> > - Display (using simplefb)
-> > - UFS
-> > - Power and volume buttons
-> > - Pinctrl
-> > - RPM Regulators
-> > - USB (Device Mode)
-> >
-> > To get a successful boot run:
-> >
-> > cat arch/arm64/boot/Image.gz arch/arm64/boot/dts/qcom/\
-> > sm6115-fxtec-pro1x.dtb  > .Image.gz-dtb
-> >
-> > mkbootimg --kernel .Image.gz-dtb \
-> > --ramdisk initrd.img \
-> > --base 0x0 \
-> > --kernel_offset 0x8000 \
-> > --ramdisk_offset 0x1000000 \
-> > --second_offset 0xf00000 \
-> > --tags_offset 0x100 \
-> > --pagesize 4096 \
-> > --cmdline "CMDLINE HERE" \
-> > -o qx1050-boot.img
-> >
-> > fastboot flash boot qx1050-boot.img
-> > fastboot erase dtbo
-> > fastboot reboot
-> >
-> > Signed-off-by: Dang Huynh <danct12@riseup.net>
-> > ---
-> >  arch/arm64/boot/dts/qcom/Makefile               |   1 +
-> >  arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts | 248 ++++++++++++++++++++++++
-> >  2 files changed, 249 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> > index d42c59572ace..e311ba675f35 100644
-> > --- a/arch/arm64/boot/dts/qcom/Makefile
-> > +++ b/arch/arm64/boot/dts/qcom/Makefile
-> > @@ -174,6 +174,7 @@ dtb-$(CONFIG_ARCH_QCOM)   += sdm845-shift-axolotl.dtb
-> >  dtb-$(CONFIG_ARCH_QCOM)      += sdm850-lenovo-yoga-c630.dtb
-> >  dtb-$(CONFIG_ARCH_QCOM)      += sdm850-samsung-w737.dtb
-> >  dtb-$(CONFIG_ARCH_QCOM)      += sm4250-oneplus-billie2.dtb
-> > +dtb-$(CONFIG_ARCH_QCOM)      += sm6115-fxtec-pro1x.dtb
-> >  dtb-$(CONFIG_ARCH_QCOM)      += sm6115p-lenovo-j606f.dtb
-> >  dtb-$(CONFIG_ARCH_QCOM)      += sm6125-sony-xperia-seine-pdx201.dtb
-> >  dtb-$(CONFIG_ARCH_QCOM)      += sm6125-xiaomi-laurel-sprout.dtb
-> > diff --git a/arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts b/arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts
-> > new file mode 100644
-> > index 000000000000..a9ff1d9534ae
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts
-> > @@ -0,0 +1,248 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> I'm not a licensing expert, but fyi sm6115.dtsi uses (GPL2+ & BSD3)
 
-Yes, we usually ask for the DTs to be dual-licensed, since they may be
-e.g. used or distributed as a part of the bootloader.
 
->
+On 2023/5/6 18:17, Conor Dooley wrote:
+> On Sat, May 06, 2023 at 09:45:07AM +0800, Changhuang Liang wrote:
+>>
+>>
+>> On 2023/5/5 20:38, Conor Dooley wrote:
+>>> On Fri, May 05, 2023 at 09:29:15AM +0800, Changhuang Liang wrote:
+>>>
+>>>> But if keep this "starfive,jh7110-aon-syscon" compatible. Which .yaml match to
+>>>> it? Use this series dt-bindings or syscon series dt-bindings.
+>>>
+>>> There is no syscon series anymore, it's part of the PLL series now:
+>>> https://lore.kernel.org/linux-clk/20230414024157.53203-1-xingyu.wu@starfivetech.com/
+>>>
+>>> I don't really care what you, Walker & Xingyu decide to do, but add the
+>>> binding in one series in a complete form. It's far less confusing to
+>>> have only have one version of the binding on the go at once.
+>>>
+>>
+>> Due to the current aon pmu needs to be adjusted, it affects the syscon in PLL series.
+>> So It's inevitable to change syscon in PLL series.
+>>
+>> My current idea is PLL series don't add the aon_syscon node. I will add it in my
+>> aon pmu series in next version
+> 
+> That's fine. Rob was happy with the clock related parts, which was the
+> original source of confusion there.
+> 
+>> like this:
+>>
+>> aon_syscon: syscon@17010000 {
+>> 	compatible = "starfive,jh7110-aon-pmu", "syscon";
+> 
+> The syscon does a bunch of things of which one is a pmu. I don't see a
+> reason to name this other than "starfive,jh100-aon-syscon".
+> 
 
-[skipped]
+OK, will replace "starfive,jh7110-aon-pmu" with "starfive,jh100-aon-syscon" in this series.
 
-> > +
-> > +&rpm_requests {
-> > +     pm6125-regulators {
-> > +             compatible = "qcom,rpm-pm6125-regulators";
-> > +
-> > +             vreg_s6a: s6 {
-> You can keep the PMIC name apparent by renaming vreg_s6a to
-> pm6125_s6 etc.
+Thanks,
+Changhuang
 
-Hmm, we were usually using the resource-name here, so vreg_s6a is fine
-(usually it would be vreg_s6a_0p3 or vreg_s6a_1p5).
 
->
-> Konrad
-> > +                     regulator-min-microvolt = <304000>;
-> > +                     regulator-max-microvolt = <1456000>;
-> > +             };
-
--- 
-With best wishes
-Dmitry
