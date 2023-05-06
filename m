@@ -2,159 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 881056F8E69
-	for <lists+devicetree@lfdr.de>; Sat,  6 May 2023 05:52:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27B526F8F02
+	for <lists+devicetree@lfdr.de>; Sat,  6 May 2023 08:11:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231143AbjEFDv7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 May 2023 23:51:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44202 "EHLO
+        id S229462AbjEFGLP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 6 May 2023 02:11:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229803AbjEFDv6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 May 2023 23:51:58 -0400
-Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4385F7695;
-        Fri,  5 May 2023 20:51:55 -0700 (PDT)
-Received: by mail-pg1-x52f.google.com with SMTP id 41be03b00d2f7-51f1b6e8179so1683323a12.3;
-        Fri, 05 May 2023 20:51:55 -0700 (PDT)
+        with ESMTP id S229446AbjEFGLO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 6 May 2023 02:11:14 -0400
+Received: from mail-il1-x134.google.com (mail-il1-x134.google.com [IPv6:2607:f8b0:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D89B8A55;
+        Fri,  5 May 2023 23:11:12 -0700 (PDT)
+Received: by mail-il1-x134.google.com with SMTP id e9e14a558f8ab-332cc0efe88so10506345ab.0;
+        Fri, 05 May 2023 23:11:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683345115; x=1685937115;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=lntOibfeThJPpn1VJ7xfamv/ry4wwbglMlCIgAw/SuQ=;
-        b=KsAu+SR+0lyn3VqoKAZIBZeGRpu2Mrb+jVusCwgtPeRHwbO92SgJpOSO7Oy5UAJexe
-         7y6v6Uw3RCZ7e6eqZBg9bPcKtQA/GyMoz0kkybZFlT9ctFBBQLFf8wbiXbIbVDIjtK+c
-         lQEAaTHYixT8SD1MDhdlg5VtGU2pOJn7ND93nK5pPMoUkjzUe4Gs8iQLi13q9CZMXOSj
-         nY/UJ54CAwvG27njWZtoXwKPZ84Sc6nmUBE4yfgam/dGvAp9M9O49DLQ5tBTgbLrguSm
-         MRiqk8fwlEEQ7ZWE+7rzKly3dl4NjNggmZKzh9enV6u3XXYiFP9VS5daBjNfZBVqvZQl
-         SpWw==
+        d=gmail.com; s=20221208; t=1683353472; x=1685945472;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=VE2YlrUyq5bOerpTSJ4F3tPsUEgEruXEc28cG2wMg3A=;
+        b=jzHAeMwNfRTd0NdZ/iG/nzD4VC5m1KPVuLB3sK/Jjb/bDlh//nDvbPLAuEY9j4ehHm
+         zcs7hbymYw5mgo+474DHEgkcBXD7W3mYdqqgb1YL82jIyeL5mXjO+d1plbqtksNn/23z
+         Sxl9s9cLSSGgrGuFBxl8t5zlFb+hwTUeSgpdcPUayIvlRGPzH1U78/u0Hl8N7rOWi01n
+         JQuIk/WLE4XqdPBNeTvYVbvrQi4S7KsOfRCZoxb+bDinjuSEL1Sh37VOI1ZFRwwJpIgi
+         xNwWbPiDSfDSEpadl9/paJp2evrY+vi0b7zW7j1gbQicrsPzQ1KFuuN5ESX0HAel1z1K
+         8VMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683345115; x=1685937115;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lntOibfeThJPpn1VJ7xfamv/ry4wwbglMlCIgAw/SuQ=;
-        b=Pgi/bKDeLvDYvDhrJfiI2OzhLIZvl4JRP+D8mXLlMNKQvi8Wh+Scfp0R+Aku6IeTrq
-         4pT/5J6BGxtyuLK4e3inXWPvbnwe7ZPE52eeCb5bIWUviwMiYeJY1GrQ98CbVvmzOJM2
-         0OzuOHo6CwM6ChgQ0OqmQOCMmD2J1R7c9pu4YGdHx5DCpCJI7Lrlf2VyUWyn3pthRkoc
-         f+tM3tVlmJwzeYSIkGiwMcPMLylyS1jKSPVf7kTKcfmH5rsMi+3zmZgggI57HCB9EnVf
-         HFVoIeFWcrNbZguNsuppJKspu0z9DomeOTE3Mtv2IVrFKqI1SLW0evgWNAChdyxn2nyC
-         9izg==
-X-Gm-Message-State: AC+VfDxUFwH2jYf8Fh2NDUg8clH9EGpYXA2MYBz+OhYptiA/Bi4SYXAl
-        qHY8UWlmaszuumeUzsnErn4=
-X-Google-Smtp-Source: ACHHUZ5zj0iukVw0Wp6lKsVZ8izr5sCbXHEPIoKgZMiu/WjkBSbE8RdqI9SBwEBeJTRBDcPanyiuhA==
-X-Received: by 2002:a17:902:8695:b0:19c:a9b8:4349 with SMTP id g21-20020a170902869500b0019ca9b84349mr3168517plo.32.1683345114610;
-        Fri, 05 May 2023 20:51:54 -0700 (PDT)
-Received: from debian.me (subs02-180-214-232-14.three.co.id. [180.214.232.14])
-        by smtp.gmail.com with ESMTPSA id g5-20020a170902740500b001ab09f5ca61sm2482665pll.55.2023.05.05.20.51.53
+        d=1e100.net; s=20221208; t=1683353472; x=1685945472;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VE2YlrUyq5bOerpTSJ4F3tPsUEgEruXEc28cG2wMg3A=;
+        b=Km/kUCztKumKuL7AO6bdXACXcRba2EOvMMoMYSF0dktiW1Z93AJFcOEHPzKU5KN4RN
+         YmfHNoPIcf9RQxD5XR+XiBYZ4VYTC5QurK7sXRNvSHrIlpTM1A7+cWxzZRoA7cMpH4eS
+         rYfaWqUwbZILJgtPSAGuzKMi+vB/TuGbeDxKuUliGRfbzoZME3AQTjwwsp77q/ODJM7P
+         GA7OV7wlaEKAX9T69wjtT9SIC52hmQUPE2RbqWa/Dfecx3hVnqzQ9HU4ah/G2wXRiXm2
+         XjXemoySwO/VX4io0ozaTryH2eYap+k9e0/qy6vJtPVuMAVToVFurk6Qrb6kR7t6Ug3n
+         0PxA==
+X-Gm-Message-State: AC+VfDziDw4EaPcGwXLu0uEWkrPEpaiN8pbeP8DCSUgYfFZsArUX3JaU
+        qQbCvW3Jhj00Y1H3qBZx3cg=
+X-Google-Smtp-Source: ACHHUZ6ZnHVBxAHo7DZR0rRf52cK96e9/U3YCE1XTTh+l9xyr4FPCfqeGMLrwoJoW7Uv32XIJa50bA==
+X-Received: by 2002:a92:c60f:0:b0:332:dd0a:c6df with SMTP id p15-20020a92c60f000000b00332dd0ac6dfmr2498088ilm.22.1683353471686;
+        Fri, 05 May 2023 23:11:11 -0700 (PDT)
+Received: from localhost.localdomain (tunnel785484-pt.tunnel.tserv9.chi1.ipv6.he.net. [2001:470:1f10:aed::2])
+        by smtp.googlemail.com with ESMTPSA id b16-20020a92c850000000b0032e28db67dcsm413047ilq.84.2023.05.05.23.11.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 May 2023 20:51:54 -0700 (PDT)
-Received: by debian.me (Postfix, from userid 1000)
-        id BE241106849; Sat,  6 May 2023 10:51:50 +0700 (WIB)
-Date:   Sat, 6 May 2023 10:51:50 +0700
-From:   Bagas Sanjaya <bagasdotme@gmail.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Grant Likely <grant.likely@linaro.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Linux Documentation <linux-doc@vger.kernel.org>
-Subject: Re: [PATCH v2] docs: dt: Make references and mention kernel
- abstractions
-Message-ID: <ZFXO1pRq4/fNw33/@debian.me>
-References: <20230505-dt-docs-refresh-v2-1-56bf359c53b4@linaro.org>
+        Fri, 05 May 2023 23:11:11 -0700 (PDT)
+From:   Tianling Shen <cnsztl@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Tianling Shen <cnsztl@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>, Andy Yan <andyshrk@163.com>,
+        Chris Morgan <macromorgan@hotmail.com>,
+        Brian Norris <briannorris@chromium.org>,
+        Andrew Lunn <andrew@lunn.ch>, Shawn Guo <shawnguo@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Maya Matuszczyk <maccraft123mc@gmail.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Vasily Khoruzhick <anarsoul@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 1/3] dt-bindings: Add doc for Fastrhino R66S / R68S
+Date:   Sat,  6 May 2023 14:11:06 +0800
+Message-Id: <20230506061108.17658-1-cnsztl@gmail.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="4FC0DSTJcODP+zd/"
-Content-Disposition: inline
-In-Reply-To: <20230505-dt-docs-refresh-v2-1-56bf359c53b4@linaro.org>
-X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add devicetree binding documentation for the
+Lunzn Fastrhino R66S and R68S boards.
 
---4FC0DSTJcODP+zd/
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Tianling Shen <cnsztl@gmail.com>
+---
 
-On Fri, May 05, 2023 at 02:43:53PM +0200, Linus Walleij wrote:
-> This document is named "Linux and Devicetree" so I think we
-> should write a bit more about how the device tree fits into
-> the Linux kernel frameworks these days after we have created
-> the fwnode and swnode.
->=20
+Changes in v2:
+* Collected Ack-by tag.
 
-Also Cc: linux-doc list.
+---
+ Documentation/devicetree/bindings/arm/rockchip.yaml    | 7 +++++++
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 2 files changed, 9 insertions(+)
 
-> +The Linux kernel supports several different hardware description
-> +frameworks and DT is just one of them. The closest sibling is the
-> +:ref:`Documentation/firmware-guide/acpi/index.rst ACPI`
-> +DSDT (Differentiated System Description Table).
-> <snipped>...
-> +Further, when the DT core register devices these need to fold into the
-> +Linux device driver model, which essentially means that some kind of
-> +``struct device`` has to be created to match a corresponding
-> +``struct device_driver``. This API can be explored in
-> +detail in :ref:`Documentation/driver-api/driver-model/index.rst the driv=
-er API documentation`
-> +but what you need to know is that the Linux DT parser code will on its
-> +own mostly spawn platform devices and AMBA devices on the platform
-> +and AMBA bus respectively, and apart from that it will augment devices
-> +spawn on other buses where applicable.
-> +
+diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+index ec141c937b8b..b1d271778179 100644
+--- a/Documentation/devicetree/bindings/arm/rockchip.yaml
++++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+@@ -562,6 +562,13 @@ properties:
+           - const: leez,p710
+           - const: rockchip,rk3399
+ 
++      - description: Lunzn FastRhino R66S / R68S
++        items:
++          - enum:
++              - lunzn,fastrhino-r66s
++              - lunzn,fastrhino-r68s
++          - const: rockchip,rk3568
++
+       - description: mqmaker MiQi
+         items:
+           - const: mqmaker,miqi
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 82d39ab0231b..c3d426509e7e 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -781,6 +781,8 @@ patternProperties:
+     description: Nanjing Loongmasses Ltd.
+   "^lsi,.*":
+     description: LSI Corp. (LSI Logic)
++  "^lunzn,.*":
++    description: Shenzhen Lunzn Technology Co., Ltd.
+   "^lwn,.*":
+     description: Liebherr-Werk Nenzing GmbH
+   "^lxa,.*":
+-- 
+2.40.1
 
-Anchor text for :ref: links above don't mix well, so I have to override
-them (also specifying intended doc target - correct me if these are wrong):
-
-diff --git a/Documentation/devicetree/usage-model.rst b/Documentation/devic=
-etree/usage-model.rst
-index 37605cb549cf59..87f522d5feba81 100644
---- a/Documentation/devicetree/usage-model.rst
-+++ b/Documentation/devicetree/usage-model.rst
-@@ -80,8 +80,7 @@ then go read it now.  It's okay, I'll wait....
-=20
- The Linux kernel supports several different hardware description
- frameworks and DT is just one of them. The closest sibling is the
--:ref:`Documentation/firmware-guide/acpi/index.rst ACPI`
--DSDT (Differentiated System Description Table).
-+:doc:`DSDT (Differentiated System Description Table) from ACPI </firmware-=
-guide/acpi/namespace>`.
-=20
- To make it possible to write a device driver that will adapt to DT
- or other hardware description models, the kernel has grown some
-@@ -101,7 +100,7 @@ Further, when the DT core register devices these need t=
-o fold into the
- Linux device driver model, which essentially means that some kind of
- ``struct device`` has to be created to match a corresponding
- ``struct device_driver``. This API can be explored in
--detail in :ref:`Documentation/driver-api/driver-model/index.rst the driver=
- API documentation`
-+detail in :doc:`the driver API documentation </driver-api/driver-model/ove=
-rview>`
- but what you need to know is that the Linux DT parser code will on its
- own mostly spawn platform devices and AMBA devices on the platform
- and AMBA bus respectively, and apart from that it will augment devices
-
-Thanks.
-
---=20
-An old man doll... just what I always wanted! - Clara
-
---4FC0DSTJcODP+zd/
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCZFXO0QAKCRD2uYlJVVFO
-o1ADAP0U4Eqkto8ez70YgMni5+n70+3PXK2Djzh36Qxvq/oLfgD/ZqqHP4lXarNA
-2qxmUqeGfJ78jWC2apff2dUzqklVLAw=
-=2tz4
------END PGP SIGNATURE-----
-
---4FC0DSTJcODP+zd/--
