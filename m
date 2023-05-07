@@ -2,141 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA6696F9BBE
-	for <lists+devicetree@lfdr.de>; Sun,  7 May 2023 23:18:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2937E6F9BCF
+	for <lists+devicetree@lfdr.de>; Sun,  7 May 2023 23:19:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229863AbjEGVSJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 May 2023 17:18:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47368 "EHLO
+        id S231563AbjEGVT0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 May 2023 17:19:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229577AbjEGVSI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 May 2023 17:18:08 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 767D11989;
-        Sun,  7 May 2023 14:18:07 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0CA8961208;
-        Sun,  7 May 2023 21:18:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D63D0C433D2;
-        Sun,  7 May 2023 21:18:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1683494286;
-        bh=1NZQml9zDBqx7taKKzTrx2YDBLgFsAyXf+f6+N6GDoU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Dn3AWSGljGjMD2p0S8VMI0fOVlM0XNeTp7X8O+57Q5f57bCPuI3kjTT5eGjdjGIiG
-         VtPPFA7lcF7r3ROfl8bk3/G/VurgGG6NGupj051IyDTLqlVJAwyO7eGtV18MkObjAc
-         1feGuiYDzcacZ26mAkR8i3uw3sWdTFg/3BaO8fQDKTV2xA04xyNRFC4w0lPc//6amA
-         Qj7iudIdOqDtbDaR7gu9OUceS0TgHVhFahhezUI2g0YfvOyI95qCjtiLby1qNRRDtB
-         9/z/W60nOVJkv8fCJoTVt2LJZEzqxwQSA2Xd+v3EqaMN+U4sfuEbMXYyD49OKg3g7c
-         UiYhnzB8USLrw==
-Date:   Sun, 7 May 2023 22:18:01 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Jisheng Zhang <jszhang@kernel.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+        with ESMTP id S231589AbjEGVTZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 May 2023 17:19:25 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 204317EDC
+        for <devicetree@vger.kernel.org>; Sun,  7 May 2023 14:19:23 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4f1fe1208a4so1385107e87.2
+        for <devicetree@vger.kernel.org>; Sun, 07 May 2023 14:19:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683494361; x=1686086361;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7M6ub/NmPwBZXz6BefX6rH5VtXUTAlDRqSeqfc1qlxg=;
+        b=EsAGTRj4To4BnlSeJPHuQ6zLtRUgWkHzrZG3B2PmWYSFLmEvY/OCEu/yuc2F8AtK82
+         /OSXzCpBPOQGFMw+g1cqRYA1gS51dfuMHx+IsN1a4qsqhUJlO0THP8/1rscWRTQiQQN1
+         SUbhDJVLQZPbRkCKZcdFulgZpMs6h/brht98wBzdimvW51IcqLh+M5xH5zJL7/Q0h0ph
+         dR7hRuSXpn5nLr41KfQBq77unyiZL6lQmBG+LPH1Ml0GTNZ8kqntxU8UCoTMMLfgsbS1
+         8BalEB+UDuc7452mxBLZBr0VN1v1pdw6ex3KXsNvbhEfKyB+Hyh5t+kxO2jwQ/3Snyxw
+         kCmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683494361; x=1686086361;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7M6ub/NmPwBZXz6BefX6rH5VtXUTAlDRqSeqfc1qlxg=;
+        b=RguzIbwG83RTOLdtBtPNiS7BIOWuFYuJLxRORCfsOCU51USK/+a+f8imbTwsTIe1CG
+         mj6/oSNCU26vCxsYLU1II050wgFG7KROUy0AhXyQCTkpbPkoPFUmaDIcsDjPRCdZ+8NA
+         Za3ZgBno7Vp2VD05itcvyAgwSFjUN2lZO/tQeSqsS8Xl96pLq5QfzATKFF1qXFbHkiq2
+         e0M03T2FLnjJ3H1p9pN6ciL0qlcqiYt8Zx5o5K9XaaBzHwVqGMBc3wB7VLdfuSVqWgga
+         JPvO3LTn/QBQCrXoSNttDdSMOUGKhtoxLbVuGU69I0ir6oSHRGCwoVo5Cs8m+ZfmD8b+
+         1Y0w==
+X-Gm-Message-State: AC+VfDy58DVRPNuFI3qfD/szH5/ShT5E/9GwayJJjoAvoJH6sKz1n4NC
+        9l/4Y1L1CUq7AmwzoQuT1pzTnw==
+X-Google-Smtp-Source: ACHHUZ42PhnxOTSa9MUk+fDi4qwQQ2n7hdg3WYajR6JoHgqh87ZZbsxPnSWkcYDti3YOqkZNiHTpUQ==
+X-Received: by 2002:a05:6512:2185:b0:4f1:1de7:1aac with SMTP id b5-20020a056512218500b004f11de71aacmr2169073lft.20.1683494361230;
+        Sun, 07 May 2023 14:19:21 -0700 (PDT)
+Received: from [127.0.1.1] ([85.235.12.238])
+        by smtp.gmail.com with ESMTPSA id c27-20020ac244bb000000b004f195cc3918sm623424lfm.176.2023.05.07.14.19.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 07 May 2023 14:19:20 -0700 (PDT)
+From:   Linus Walleij <linus.walleij@linaro.org>
+Subject: [PATCH v3 0/2] STMPE device tree bindings
+Date:   Sun, 07 May 2023 23:19:18 +0200
+Message-Id: <20230426-stmpe-dt-bindings-v3-0-eac1d736e488@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANYVWGQC/32OOw6DMBBEr4JcZyMwJJBUuUdEsfgDK4GNvBYKQ
+ tw9hiJlyjejp5lNsAlkWDyzTQSzEJN3CcpLJtSArjdAOrGQuSzzSt6B4zQb0BE6cppcz6DKqn5
+ oXRcoG5G8DtlAF9Cp4TB/worTePRzMJY+5+a7TTwQRx/W88Iij/Tf2iIhB2mbGxbWWqXxNZLD4
+ K8+9KLd9/0LVFwtENMAAAA=
+To:     Bartosz Golaszewski <brgl@bgdev.pl>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, Guo Ren <guoren@kernel.org>
-Subject: Re: [PATCH 1/5] irqchip/sifive-plic: Support T-HEAD's C910 PLIC
-Message-ID: <20230507-spiny-purify-bd1a0bc395ee@spud>
-References: <20230507182304.2934-1-jszhang@kernel.org>
- <20230507182304.2934-2-jszhang@kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="BFuuXvLmezuA9yIP"
-Content-Disposition: inline
-In-Reply-To: <20230507182304.2934-2-jszhang@kernel.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Lee Jones <lee@kernel.org>,
+        Philippe Schenker <philippe.schenker@toradex.com>,
+        Stefan Agner <stefan@agner.ch>, Marek Vasut <marex@denx.de>,
+        Steffen Trumtrar <s.trumtrar@pengutronix.de>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-input@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh@kernel.org>
+X-Mailer: b4 0.12.1
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This adds the missing GPIO bindings for the STMPE port expander
+and converts the existing MFD binding to YAML.
 
---BFuuXvLmezuA9yIP
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+Changes in v3:
+- Update to review feedback
+- Collected some ack/review tags
+- I guess Bartosz should apply 1/2 and Lee should apply 2/2.
+- Link to v2: https://lore.kernel.org/r/20230426-stmpe-dt-bindings-v2-0-2f85a1fffcda@linaro.org
 
-Hey Jisheng,
+Changes in v2:
+- Split off a separate GPIO binding
+- Updated the MFD binding according to feedback
 
-On Mon, May 08, 2023 at 02:23:00AM +0800, Jisheng Zhang wrote:
-> The T-HEAD's C910 PLIC still needs the delegation bit settingto allow
-> access from S-mode, but it doesn't need the edge quirk.
->=20
-> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-> ---
->  .../bindings/interrupt-controller/sifive,plic-1.0.0.yaml      | 4 ++++
->  drivers/irqchip/irq-sifive-plic.c                             | 1 +
+---
+Linus Walleij (2):
+      dt-bindings: gpio: Add STMPE YAML DT schema
+      dt-bindings: MFD: Convert STMPE to YAML schema
 
-dt-bindings changes need to be in their own patch.
+ .../devicetree/bindings/gpio/st,stmpe-gpio.yaml    |  51 ++++
+ .../devicetree/bindings/input/stmpe-keypad.txt     |  41 ---
+ .../bindings/input/touchscreen/stmpe.txt           | 108 --------
+ .../devicetree/bindings/mfd/st,stmpe.yaml          | 297 +++++++++++++++++++++
+ Documentation/devicetree/bindings/mfd/stmpe.txt    |  42 ---
+ 5 files changed, 348 insertions(+), 191 deletions(-)
+---
+base-commit: c712a112ed4e91afab1cc7c978af228c77a4fb13
+change-id: 20230426-stmpe-dt-bindings-c3479dd71a28
 
->  2 files changed, 5 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/sifiv=
-e,plic-1.0.0.yaml b/Documentation/devicetree/bindings/interrupt-controller/=
-sifive,plic-1.0.0.yaml
-> index f75736a061af..64b43a3c3748 100644
-> --- a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-=
-1.0.0.yaml
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-=
-1.0.0.yaml
-> @@ -62,6 +62,10 @@ properties:
->                - starfive,jh7110-plic
->                - canaan,k210-plic
->            - const: sifive,plic-1.0.0
-> +      - items:
-> +          - enum:
-> +              - thead,light-plic
+Best regards,
+-- 
+Linus Walleij <linus.walleij@linaro.org>
 
-If "light" is a code name, but "TH1520" is what this is known as to the
-wider world, I think we should use thead,th1520-plic here.
-
-Thanks,
-Conor.
-
-> +          - const: thead,c910-plic
->        - items:
->            - enum:
->                - allwinner,sun20i-d1-plic
-> diff --git a/drivers/irqchip/irq-sifive-plic.c b/drivers/irqchip/irq-sifi=
-ve-plic.c
-> index e1484905b7bd..71afa2a584d9 100644
-> --- a/drivers/irqchip/irq-sifive-plic.c
-> +++ b/drivers/irqchip/irq-sifive-plic.c
-> @@ -569,6 +569,7 @@ static int __init plic_init(struct device_node *node,
->  }
-> =20
->  IRQCHIP_DECLARE(sifive_plic, "sifive,plic-1.0.0", plic_init);
-> +IRQCHIP_DECLARE(thead_c910_plic, "thead,c910-plic", plic_init);
->  IRQCHIP_DECLARE(riscv_plic0, "riscv,plic0", plic_init); /* for legacy sy=
-stems */
-> =20
->  static int __init plic_edge_init(struct device_node *node,
-> --=20
-> 2.40.0
->=20
-
---BFuuXvLmezuA9yIP
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZFgViQAKCRB4tDGHoIJi
-0ip+AP4np3bd4vMrd0RXgyATUrdb76pBpi/32O/A4+EtjoCCqAEAhjBHhz7U+tAv
-V4QSEXP0R6ThmABGVDXyj6/5ver+GAk=
-=zm2X
------END PGP SIGNATURE-----
-
---BFuuXvLmezuA9yIP--
