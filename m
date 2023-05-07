@@ -2,51 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9916C6F9B6E
-	for <lists+devicetree@lfdr.de>; Sun,  7 May 2023 22:23:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FCBC6F9B75
+	for <lists+devicetree@lfdr.de>; Sun,  7 May 2023 22:27:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231415AbjEGUXO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 May 2023 16:23:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35690 "EHLO
+        id S231993AbjEGU1L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 May 2023 16:27:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229757AbjEGUXN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 May 2023 16:23:13 -0400
+        with ESMTP id S231986AbjEGU1K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 May 2023 16:27:10 -0400
 Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37C1F11603;
-        Sun,  7 May 2023 13:23:12 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D2C035BF;
+        Sun,  7 May 2023 13:27:07 -0700 (PDT)
 Received: from g550jk.localnet (unknown [62.108.10.64])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 9B019CC041;
-        Sun,  7 May 2023 20:22:40 +0000 (UTC)
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id B1E79CEC2E;
+        Sun,  7 May 2023 20:27:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1683490960; bh=rSEWE+NNdB2qvc4lOzuHSt9+wl5zozokXlgl0+rnHRM=;
+        t=1683491225; bh=6XPFg6n/QATK/aTr9w55XEB4/N+ENG1ZYSPsFzf1AR8=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=dskw3fv+11YBMcY8OYCQOihd5YtUOCBMXvpIlG2bDTAhxkqh4gs9Zhb3fHlvSduzF
-         MsXLbCaXe/NdFVg+VqV9xEEAAjWP2aDNLfSJYe3dia8cQy07Ei/+bMzJeU2iT7cwko
-         8e7oxNf1I8m3zFDxCByCau0zDTSsezkw41VJ44rE=
+        b=hr4dVbMoKvQupkRHTV+do/r7TUu9pPaB3j423XiOnGxJWinwTQo3tof3FqrBhtkDp
+         TgLf7cDlLg3pFR3hlRatl7wQTWxIMz16tK2kNL5GVvIy38WLXQgjfMY+IWXtDDvfnz
+         ADGP/3ipkZ6gr440zYKVrG5pR3k483x6icOSNr6o=
 From:   Luca Weiss <luca@z3ntu.xyz>
 To:     linux-arm-msm@vger.kernel.org,
         ~postmarketos/upstreaming@lists.sr.ht
 Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
         Matti =?ISO-8859-1?Q?Lehtim=E4ki?= <matti.lehtimaki@gmail.com>,
-        Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Matti =?ISO-8859-1?Q?Lehtim=E4ki?= <matti.lehtimaki@gmail.com>
-Subject: Re: [PATCH 2/6] dt-bindings: thermal: tsens: Add compatible for MSM8226
-Date:   Sun, 07 May 2023 22:22:39 +0200
-Message-ID: <6291728.lOV4Wx5bFT@z3ntu.xyz>
-In-Reply-To: <20230507201225.89694-3-matti.lehtimaki@gmail.com>
+Subject: Re: [PATCH 4/6] ARM: dts: msm8226: Add qfprom node
+Date:   Sun, 07 May 2023 22:27:05 +0200
+Message-ID: <5160214.GXAFRqVoOG@z3ntu.xyz>
+In-Reply-To: <20230507201225.89694-5-matti.lehtimaki@gmail.com>
 References: <20230507201225.89694-1-matti.lehtimaki@gmail.com>
- <20230507201225.89694-3-matti.lehtimaki@gmail.com>
+ <20230507201225.89694-5-matti.lehtimaki@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="iso-8859-1"
@@ -60,30 +54,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sonntag, 7. Mai 2023 22:12:20 CEST Matti Lehtim=E4ki wrote:
-> Qualcomm MSM8226 has tsens v0.1 block.
+On Sonntag, 7. Mai 2023 22:12:22 CEST Matti Lehtim=E4ki wrote:
+> Add missing QFPROM definition for MSM8226 SoC.
 >=20
 > Signed-off-by: Matti Lehtim=E4ki <matti.lehtimaki@gmail.com>
 
 Reviewed-by: Luca Weiss <luca@z3ntu.xyz>
 
 > ---
->  Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  arch/arm/boot/dts/qcom-msm8226.dtsi | 7 +++++++
+>  1 file changed, 7 insertions(+)
 >=20
-> diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-> b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml index
-> 926e9c51c93c..d6b2957d5137 100644
-> --- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-> +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-> @@ -29,6 +29,7 @@ properties:
->          items:
->            - enum:
->                - qcom,mdm9607-tsens
-> +              - qcom,msm8226-tsens
->                - qcom,msm8916-tsens
->                - qcom,msm8939-tsens
->                - qcom,msm8974-tsens
+> diff --git a/arch/arm/boot/dts/qcom-msm8226.dtsi
+> b/arch/arm/boot/dts/qcom-msm8226.dtsi index c373081bc21b..c34b8f3139ae
+> 100644
+> --- a/arch/arm/boot/dts/qcom-msm8226.dtsi
+> +++ b/arch/arm/boot/dts/qcom-msm8226.dtsi
+> @@ -505,6 +505,13 @@ restart@fc4ab000 {
+>  			reg =3D <0xfc4ab000 0x4>;
+>  		};
+>=20
+> +		qfprom: qfprom@fc4bc000 {
+> +			compatible =3D "qcom,msm8226-qfprom",=20
+"qcom,qfprom";
+> +			reg =3D <0xfc4bc000 0x1000>;
+> +			#address-cells =3D <1>;
+> +			#size-cells =3D <1>;
+> +		};
+> +
+>  		spmi_bus: spmi@fc4cf000 {
+>  			compatible =3D "qcom,spmi-pmic-arb";
+>  			reg-names =3D "core", "intr", "cnfg";
 
 
 
