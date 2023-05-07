@@ -2,76 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 693526F9B49
-	for <lists+devicetree@lfdr.de>; Sun,  7 May 2023 22:12:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6AB06F9B51
+	for <lists+devicetree@lfdr.de>; Sun,  7 May 2023 22:12:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231644AbjEGUM0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 May 2023 16:12:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59526 "EHLO
+        id S231686AbjEGUMn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 May 2023 16:12:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59712 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231654AbjEGUMZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 May 2023 16:12:25 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB6F72130
-        for <devicetree@vger.kernel.org>; Sun,  7 May 2023 13:12:23 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2ac78bb48eeso42325951fa.1
-        for <devicetree@vger.kernel.org>; Sun, 07 May 2023 13:12:23 -0700 (PDT)
+        with ESMTP id S231654AbjEGUMn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 May 2023 16:12:43 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFD9A269E;
+        Sun,  7 May 2023 13:12:41 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2ac89e6a5a1so30151711fa.0;
+        Sun, 07 May 2023 13:12:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683490342; x=1686082342;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=92Z832aMBC33/Bfq4zZaoBxYDVdvd+BYhXisQliMM1w=;
-        b=LqrDriwjwo8e3FhHxwRi6zW6yQmmotVBbQob+58IhXiHrr0A5YFpaITYvd4lMUNerM
-         noKx6dD2Qz4TG6tNrtwEJzhV8KAdEo+awr/9yk89xLqJVIkcuPnxdCMQNBBnAAGIxTer
-         uEJnkGainOSUvRSETKNHLvimu3cYIepJr3DPOYTX05ABxVTk4VRGKY68wHQRoHkffaT+
-         11/NP4s1DXZ2clFrp32kLy2WQsB9HrmUjr2/aKHSQRGt8olE69GNzgViXi9Flwsemvie
-         L3Vct9egyiAIamaGjESbiPpn8NRdip4M63HV+9RujAywT/ZxP+bhQKcN7l/w2+7iKs2e
-         7UIQ==
+        d=gmail.com; s=20221208; t=1683490361; x=1686082361;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZkTrjWn9MXIx9ar7sdUfBpNB62vFCZeO4ohEw8FEUIo=;
+        b=VdixB5NjZcMvRHt8b1EKbYy8A/KU5sq5dWqBZLGQVLGcq751KXhSInQRhGRPNGy3DV
+         nPlinNKv6AdF5FV4ecOTfUlwQdgO2CLTD21rtkRdPyZpr7cedoJsDJT6Cj4TGNvTjizm
+         N2rUkMWqurGp2u7mpazlcLYHsBwDK02vFctv+trdUjqSXbyZbbnulNbd1ekFN1qoNBAO
+         0z2A0b/te1uVJctzUQTvZyEBiGL4WEsQsFWK1A6q5oWGPyt7sPBrLyYvXpXZcqd/jjfD
+         JyUrVLrcIwQ2D1RxbeKgyUrukWH9h5NRxfh5un5DL5rQsHyKnPzdFCW2b+TPEcTLfdeM
+         a89g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683490342; x=1686082342;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=92Z832aMBC33/Bfq4zZaoBxYDVdvd+BYhXisQliMM1w=;
-        b=EabGhti8aymIQziaovE5uYv4yN6P6BJ5G8Yw0zyuG3PW2Z6r7pyscC3BJx3TbWWHwe
-         8ZgbigkMiUw0gsNrwEuTE3BbHSuLwo/2nRRfqRMSXO/07C0kXSFphAOH24/QDNmxmX5p
-         APnnzLKtj/gVFbFH7oNMyFXbrXXrtAip5O9106vJq7BCChe0T3FLF1GL7eyWVzL7QOIL
-         de7RdqH38wWFPzQXOw1QOidV9J2OdHLQMReLriomHpsOBDU4aEZE4Fo1w69cbORVhXbx
-         nkCbnVSHqZ1ezupG0QE2XzAXDRalO3eMvf7VlfyzkswZgGMscnsHS3l9bK8uumEYx2gf
-         cHtA==
-X-Gm-Message-State: AC+VfDxEgI1v75FvGX+QAgxFUnnj/k7IxL2J8+FFHp4WW1onHo4odqHN
-        e6f4zLUO9YyheTwm6oagR4m2PQ==
-X-Google-Smtp-Source: ACHHUZ7r6qt3TaSWm4LhzF/81gZ5OK/0uOnM2ZCXJvJX/0kOufF46BJDlTje8RYxybzOErdmGQLC9Q==
-X-Received: by 2002:a2e:908c:0:b0:2a8:eee0:59f3 with SMTP id l12-20020a2e908c000000b002a8eee059f3mr2123188ljg.41.1683490341899;
-        Sun, 07 May 2023 13:12:21 -0700 (PDT)
-Received: from lothlorien.lan (dzdqv0yyyyyyyyyyybm5y-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::ab2])
-        by smtp.gmail.com with ESMTPSA id f5-20020a2e3805000000b002ac74f5f022sm916522lja.0.2023.05.07.13.12.21
+        d=1e100.net; s=20221208; t=1683490361; x=1686082361;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZkTrjWn9MXIx9ar7sdUfBpNB62vFCZeO4ohEw8FEUIo=;
+        b=FUZHQoY89EmvfMkHlVuXnuerKilwrX1BAB7dL5RgHnkx9/+uTOgsGfglTgLgFzA8vJ
+         Hp/N4Mt2tPukfqFINqjhEHdoub6puRlnzJYZbY2F2rLucqZVDqTW+thxEqjhmc+fL6yU
+         iBMsJqPFX/e/caPIEOOLlaxaZErHDsb8u9CnPe179oFBmSuPEg2phqiU6XVr9jiWDGjh
+         voYuEt/+GxGMcNrdLEj1ywP3OqNdJkm+eDGYUDM9HBqARWlHCDN5pv9rEhZ49ToVHWjV
+         K9kpIRRhfoxSnVH9SR7VWVaNuDxLHI4bo1fBsCRN2RNOHu+AYH3z9qSFpzAeF8zrAJIb
+         bolw==
+X-Gm-Message-State: AC+VfDw2fIBK9K5kobmsSjri4Q3SecGZeykHGyjHaC5O+zVf7ggdgruQ
+        KZVxSN5Dx44X7/UjegxWUkoktPDhbDk=
+X-Google-Smtp-Source: ACHHUZ51+VQTFiy6DyJv03cqNFG965h0mnjVDc23i/s7gKTCdIFqUYaOOQdAYhuoOZzUe8YkCY0JAg==
+X-Received: by 2002:a05:651c:1044:b0:2a8:c858:fb9 with SMTP id x4-20020a05651c104400b002a8c8580fb9mr2289679ljm.29.1683490361330;
+        Sun, 07 May 2023 13:12:41 -0700 (PDT)
+Received: from i-vetokaappi.home.lan (dsl-hkibng42-56733b-36.dhcp.inet.fi. [86.115.59.36])
+        by smtp.gmail.com with ESMTPSA id m19-20020a2e9113000000b00293d7c95df1sm918031ljg.78.2023.05.07.13.12.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 07 May 2023 13:12:21 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        freedreno@lists.freedesktop.org
-Subject: [PATCH 3/3] drm/bridge: display-connector: handle hdmi-pwr supply
+        Sun, 07 May 2023 13:12:40 -0700 (PDT)
+From:   =?UTF-8?q?Matti=20Lehtim=C3=A4ki?= <matti.lehtimaki@gmail.com>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        =?UTF-8?q?Matti=20Lehtim=C3=A4ki?= <matti.lehtimaki@gmail.com>,
+        Amit Kucheria <amitk@kernel.org>, devicetree@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>
+Subject: [PATCH 0/6] Enable MSM8226 TSENS support
 Date:   Sun,  7 May 2023 23:12:18 +0300
-Message-Id: <20230507201218.2339014-4-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230507201218.2339014-1-dmitry.baryshkov@linaro.org>
-References: <20230507201218.2339014-1-dmitry.baryshkov@linaro.org>
+Message-Id: <20230507201225.89694-1-matti.lehtimaki@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,75 +74,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On some devices the 5V pin of the HDMI connector and/or the ESD
-protection logic is powered on by a separate regulator. Instead of
-declaring this regulator as always-on, make hdmi-connector support the
-additional hdmi-pwr supply.
+Add support for tsens in MSM8226. Add qfprom compatible for MSM8226.
+Add device tree nodes for qfprom, tsens and thermal zones for MSM8226.
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- drivers/gpu/drm/bridge/display-connector.c | 37 +++++++++++++++++-----
- 1 file changed, 29 insertions(+), 8 deletions(-)
+Matti Lehtimäki (6):
+  dt-bindings: nvmem: qfprom: Add compatible for MSM8226
+  dt-bindings: thermal: tsens: Add compatible for MSM8226
+  thermal/drivers/qcom/tsens-v0_1: Add support for MSM8226
+  ARM: dts: msm8226: Add qfprom node
+  ARM: dts: msm8226: Add tsens node and related nvmem cells
+  ARM: dts: msm8226: Add thermal zones node
 
-diff --git a/drivers/gpu/drm/bridge/display-connector.c b/drivers/gpu/drm/bridge/display-connector.c
-index 0d94e6edea50..037ba2eb5a2f 100644
---- a/drivers/gpu/drm/bridge/display-connector.c
-+++ b/drivers/gpu/drm/bridge/display-connector.c
-@@ -337,18 +337,12 @@ static int display_connector_probe(struct platform_device *pdev)
- 				return ret;
- 			}
- 		}
--
--		if (conn->connector_pwr) {
--			ret = regulator_enable(conn->connector_pwr);
--			if (ret) {
--				dev_err(&pdev->dev, "failed to enable DP PWR regulator: %d\n", ret);
--				return ret;
--			}
--		}
- 	}
- 
- 	/* enable DDC */
- 	if (type == DRM_MODE_CONNECTOR_HDMIA) {
-+		int ret;
-+
- 		conn->ddc_en = devm_gpiod_get_optional(&pdev->dev, "ddc-en",
- 						       GPIOD_OUT_HIGH);
- 
-@@ -356,6 +350,33 @@ static int display_connector_probe(struct platform_device *pdev)
- 			dev_err(&pdev->dev, "Couldn't get ddc-en gpio\n");
- 			return PTR_ERR(conn->ddc_en);
- 		}
-+
-+		conn->connector_pwr = devm_regulator_get_optional(&pdev->dev, "hdmi-pwr");
-+
-+		if (IS_ERR(conn->connector_pwr)) {
-+			ret = PTR_ERR(conn->connector_pwr);
-+
-+			switch (ret) {
-+			case -ENODEV:
-+				conn->connector_pwr = NULL;
-+				break;
-+
-+			case -EPROBE_DEFER:
-+				return -EPROBE_DEFER;
-+
-+			default:
-+				dev_err(&pdev->dev, "failed to get HDMI PWR regulator: %d\n", ret);
-+				return ret;
-+			}
-+		}
-+	}
-+
-+	if (conn->connector_pwr) {
-+		ret = regulator_enable(conn->connector_pwr);
-+		if (ret) {
-+			dev_err(&pdev->dev, "failed to enable DP PWR regulator: %d\n", ret);
-+			return ret;
-+		}
- 	}
- 
- 	conn->bridge.funcs = &display_connector_bridge_funcs;
+ .../bindings/nvmem/qcom,qfprom.yaml           |   1 +
+ .../bindings/thermal/qcom-tsens.yaml          |   1 +
+ arch/arm/boot/dts/qcom-msm8226.dtsi           | 164 ++++++++++++++++++
+ drivers/thermal/qcom/tsens-v0_1.c             |  27 ++-
+ drivers/thermal/qcom/tsens.c                  |   3 +
+ drivers/thermal/qcom/tsens.h                  |   2 +-
+ 6 files changed, 196 insertions(+), 2 deletions(-)
+
 -- 
-2.39.2
+2.34.1
 
