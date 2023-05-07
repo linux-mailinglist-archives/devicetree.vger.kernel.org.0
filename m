@@ -2,87 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 76A886F9932
-	for <lists+devicetree@lfdr.de>; Sun,  7 May 2023 17:10:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 109026F993A
+	for <lists+devicetree@lfdr.de>; Sun,  7 May 2023 17:16:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229653AbjEGPKB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 May 2023 11:10:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54532 "EHLO
+        id S230231AbjEGPQB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 May 2023 11:16:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229533AbjEGPKA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 May 2023 11:10:00 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93A0CB9;
-        Sun,  7 May 2023 08:09:59 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-956ff2399c9so675277866b.3;
-        Sun, 07 May 2023 08:09:59 -0700 (PDT)
+        with ESMTP id S229533AbjEGPQA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 May 2023 11:16:00 -0400
+Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47614124A7;
+        Sun,  7 May 2023 08:15:59 -0700 (PDT)
+Received: by mail-io1-xd2d.google.com with SMTP id ca18e2360f4ac-76355514e03so285382339f.0;
+        Sun, 07 May 2023 08:15:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683472198; x=1686064198;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=6k7of+oD7aUsR3ZuT5Ha6yGbmcWNRVYGMihlsEz0Xhg=;
-        b=cN8WCKzL3z0UDeYh32zhcfq6BPnbBq/473XGNaamAepsq0ySGTjyRZYn8xTBDG2mrx
-         QYm9QwRYg8Z85CR6gGPTGK4GULfL8f+pKD68yRYQdXIAGUV3LBBHTnfMYJ8nYBT4jzVU
-         Kn9p81vKiVi6kP10iYxs+NageUXik6ESyKb5ARp1JRLGmPNGA49Sd+KTCRZvAdso4I/f
-         mKl6RD5w6Af+0s1ur//68pdNLm94Ol78n13MZ6N1Get+dRZGYcgDpqnGSWYnldDkRTnh
-         fZkeXR5FGvujWH1pM8KZkj3kxKQWmSeIJMIfQgHkiDteGeqvZO31cZlUcdMTWKnGAx+i
-         F5oA==
+        d=gmail.com; s=20221208; t=1683472558; x=1686064558;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=4nbuBL7Zla4w3yRTggafEgE8ynuUvfM99IQbcp/hNf0=;
+        b=sq+ArR+X7CV3ieO+RMaWHvKBYucfkvVF8Q6qQjQU50UH1JQYk+bzUzv2KAPyMWNZlZ
+         TLS4X9mAp74u+ibZwDHi+Bux08oeEiHAQs0/j2o2IgqcmqYx6COcQh1qGStNE1Oo5gtD
+         R3YCrwfrDTuTTb0CTbqPRT1ulROeAk+5JjZiB6aR96oJLqWgc1krHe2DfCPPI4PstEpx
+         VTz+TsfNnqKauu2E0Z6rUYOHZJTzcEadzAqm9dfB6wz8RL/FmJ7J+5NmJZvRvvPSy9RC
+         ljNzyaqQU3/0ElPaDOciOfVGW5ld4/AdrTRuUFPConQmW+B+FTYjb5LDqGhfBLhAZdCe
+         fQJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683472198; x=1686064198;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20221208; t=1683472558; x=1686064558;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=6k7of+oD7aUsR3ZuT5Ha6yGbmcWNRVYGMihlsEz0Xhg=;
-        b=aGv4dL/ZDZkP0x+TcdafnycY/L0Tvkg46Na9CISz1n/a2yWV/n04zOsTeMlEzSpQAR
-         +dmoOOhW1ukQnGhCAF7C7dEJ4zMrtRe8YAWp2m985rmRe8zFZQxKW4ADQVnMRxcZ30rX
-         7IEo5rOO7Liss6+Gx7SkYirvYVFy/eBbYivlOs/mQWTX5Ra7K0zsHca58DyFykUpG0lH
-         t7x9Pjy9Cj5xPq0MOIjs72bh9+Vdk7yefNXAaRCCsho0EkXSePH6xsGVF77bmIS+eIIQ
-         Fokl24OAGrXTS9j2oxJCy4dT4ZwMadN1lbh2MGXK64VcilfpLMYLbZAfs8eXsvv8D6t7
-         TIgw==
-X-Gm-Message-State: AC+VfDwreMo/Yq1Wkwxuz168Kvu5y7PwJgChHslg46gIoPW37KgjJAw1
-        W/Smq3OKvIwKbC1gp1LktKRX5W9uXwArinixDEE=
-X-Google-Smtp-Source: ACHHUZ6+VFC93AW7h4sZdYiyaPqZUGGXGfe8vKSCHC7hQOOltYg0zJcH53vc/h7kUSkTyJjHMOz1gnBQknP7XOjm+v4=
-X-Received: by 2002:a17:906:7955:b0:94f:9f76:c74f with SMTP id
- l21-20020a170906795500b0094f9f76c74fmr7323137ejo.52.1683472197958; Sun, 07
- May 2023 08:09:57 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230506232616.1792109-1-bigunclemax@gmail.com>
- <20230506232616.1792109-4-bigunclemax@gmail.com> <20230507105150.31643b87@slackpad.lan>
-In-Reply-To: <20230507105150.31643b87@slackpad.lan>
-From:   Maxim Kiselev <bigunclemax@gmail.com>
-Date:   Sun, 7 May 2023 18:09:45 +0300
-Message-ID: <CALHCpMgxsLzRF0FfazMXYiWK1fV99dbxYNDvoj+a0S-RvZP9Hg@mail.gmail.com>
-Subject: Re: [PATCH v3 3/5] spi: sun6i: add quirk for in-controller clock divider
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Icenowy Zheng <icenowy@aosc.io>, Mark Brown <broonie@kernel.org>,
+        bh=4nbuBL7Zla4w3yRTggafEgE8ynuUvfM99IQbcp/hNf0=;
+        b=A2AHjFVtoxJ0ufzmaY5r6IZh9t2LFgrir0ejpJf0IDx7nghgIIrV9dDwZXxlLuSIMD
+         sAJF10I4nYfHAVoTZ5/37f1Nr+gwQeTCBhExcPodK3d+yw5EPcooQ0zsjFqy047VwUCa
+         xAPOIk4ry0g09I1s86yUlNiV/HKuHe4Fm4I/ZheGDJuXRjmfW/nAol38X/O+aPdg53Mp
+         4aT0xwNhMSU5X4d4kfm/2+2NEyX2LiDI2H2ResyTH5fBKzPKL+bKhyighSh6Z9jtMb6Z
+         Dzyj0LltMFwQvHxr9pYOj3VaazNDlRJ7I5pEIQFxvbIN/CN8wfoiY4TNHKiHQrevFbzs
+         A4+Q==
+X-Gm-Message-State: AC+VfDweLMmtxh1jqd3TBgwsRe7iwwlcXq0xsMfgnkWSrLilQ3gRywQW
+        vOgHIYoXr076yXT/5T7eU0yIXqF0bS51Uw==
+X-Google-Smtp-Source: ACHHUZ7LFCKjZxyGUHjBS8/Nt9+JEgMTYIz07RzkSo1rJLwQ1li1PD6d1xAW/8crSdLThh5ZGYAGzw==
+X-Received: by 2002:a5d:9c96:0:b0:763:68c9:9d07 with SMTP id p22-20020a5d9c96000000b0076368c99d07mr6308999iop.10.1683472558519;
+        Sun, 07 May 2023 08:15:58 -0700 (PDT)
+Received: from aford-B741.lan ([2601:447:d001:897f:32f2:3dc9:fe53:5220])
+        by smtp.gmail.com with ESMTPSA id s1-20020a02b141000000b0040faf05071asm1293566jah.156.2023.05.07.08.15.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 07 May 2023 08:15:57 -0700 (PDT)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Maxime Ripard <mripard@kernel.org>, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH V2 1/3] arm64: dts: imx8mn: Add CSI and ISI Nodes
+Date:   Sun,  7 May 2023 10:15:46 -0500
+Message-Id: <20230507151549.1216019-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> This case assumes that the SDM bit is zero already. I think just
-> masking both bits off above, right after the read, is the easiest, then
-> you can also lose the else branch below entirely.
+The CSI in the imx8mn is the same as what is used in the imx8mm,
+but it's routed to the ISI on the Nano. Add both the ISI and CSI
+nodes, and pointing them to each other. Since the CSI capture is
+dependent on an attached camera, mark both ISI and CSI as
+disabled by default.
 
-Thanks for this remark. I fixed it in the next revision.
+Signed-off-by: Adam Ford <aford173@gmail.com>
+---
+V2:  Change from a singular 'port' to 'ports' per feedback from Laurent Pinchart
+     "When a single port is present using a "port" node directly
+     is fine from an OF graph point of view, but to avoid too much complexity
+     in the ISI binding the consensus was to always require a "ports" node
+     for the ISI."
+     This is also consistent with the binding YAML file.
+
+     Change the size allocated to the ISI to 32k.  The datasheet indicates it should
+     be 64K, but the disp_blk_ctrl sits at 32e28000.
+
+     Change the subject from 'Enable' to 'Add' since the ISI and CSI nodes are both
+     technically disabled.
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+index 8be8f090e8b8..9869fe7652fc 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+@@ -1104,6 +1104,30 @@ dsim_from_lcdif: endpoint {
+ 				};
+ 			};
+ 
++			isi: isi@32e20000 {
++				compatible = "fsl,imx8mn-isi";
++				reg = <0x32e20000 0x8000>;
++				interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&clk IMX8MN_CLK_DISP_AXI_ROOT>,
++					 <&clk IMX8MN_CLK_DISP_APB_ROOT>;
++				clock-names = "axi", "apb";
++				fsl,blk-ctrl = <&disp_blk_ctrl>;
++				power-domains = <&disp_blk_ctrl IMX8MN_DISPBLK_PD_ISI>;
++				status = "disabled";
++
++				ports {
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					port@0 {
++						reg = <0>;
++						isi_in: endpoint {
++							remote-endpoint = <&mipi_csi_out>;
++						};
++					};
++				};
++			};
++
+ 			disp_blk_ctrl: blk-ctrl@32e28000 {
+ 				compatible = "fsl,imx8mn-disp-blk-ctrl", "syscon";
+ 				reg = <0x32e28000 0x100>;
+@@ -1147,6 +1171,42 @@ disp_blk_ctrl: blk-ctrl@32e28000 {
+ 				#power-domain-cells = <1>;
+ 			};
+ 
++			mipi_csi: mipi-csi@32e30000 {
++				compatible = "fsl,imx8mm-mipi-csi2";
++				reg = <0x32e30000 0x1000>;
++				interrupts = <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
++				assigned-clocks = <&clk IMX8MN_CLK_CAMERA_PIXEL>,
++						  <&clk IMX8MN_CLK_CSI1_PHY_REF>;
++				assigned-clock-parents = <&clk IMX8MN_SYS_PLL2_1000M>,
++							  <&clk IMX8MN_SYS_PLL2_1000M>;
++				assigned-clock-rates = <333000000>;
++				clock-frequency = <333000000>;
++				clocks = <&clk IMX8MN_CLK_DISP_APB_ROOT>,
++					 <&clk IMX8MN_CLK_CAMERA_PIXEL>,
++					 <&clk IMX8MN_CLK_CSI1_PHY_REF>,
++					 <&clk IMX8MN_CLK_DISP_AXI_ROOT>;
++				clock-names = "pclk", "wrap", "phy", "axi";
++				power-domains = <&disp_blk_ctrl IMX8MN_DISPBLK_PD_MIPI_CSI>;
++				status = "disabled";
++
++				ports {
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					port@0 {
++						reg = <0>;
++					};
++
++					port@1 {
++						reg = <1>;
++
++						mipi_csi_out: endpoint {
++							remote-endpoint = <&isi_in>;
++						};
++					};
++				};
++			};
++
+ 			usbotg1: usb@32e40000 {
+ 				compatible = "fsl,imx8mn-usb", "fsl,imx7d-usb", "fsl,imx27-usb";
+ 				reg = <0x32e40000 0x200>;
+-- 
+2.39.2
+
