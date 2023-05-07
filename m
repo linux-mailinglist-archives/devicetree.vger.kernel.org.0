@@ -2,204 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4245C6F993E
-	for <lists+devicetree@lfdr.de>; Sun,  7 May 2023 17:16:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43E6D6F9984
+	for <lists+devicetree@lfdr.de>; Sun,  7 May 2023 17:49:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231639AbjEGPQN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 May 2023 11:16:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55958 "EHLO
+        id S231827AbjEGPtR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 May 2023 11:49:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231593AbjEGPQE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 May 2023 11:16:04 -0400
-Received: from mail-io1-xd33.google.com (mail-io1-xd33.google.com [IPv6:2607:f8b0:4864:20::d33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68806124A7;
-        Sun,  7 May 2023 08:16:03 -0700 (PDT)
-Received: by mail-io1-xd33.google.com with SMTP id ca18e2360f4ac-768d75b2369so283612739f.0;
-        Sun, 07 May 2023 08:16:03 -0700 (PDT)
+        with ESMTP id S230399AbjEGPtQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 May 2023 11:49:16 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9369444B7;
+        Sun,  7 May 2023 08:49:14 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2ac8ee9cf7aso20869501fa.2;
+        Sun, 07 May 2023 08:49:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683472563; x=1686064563;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Myks9ibscFfLfkvDsV+jBK2okCgS5xjyuH4qT5dxmZ0=;
-        b=onyWJMmFOO1TQOmJseYcIWCtrQBEiplRPkAB9WIdvl5+kyG8S9ge3IF2L46VZ7KKm1
-         yFhmuTtY52l9OTE/zBZZKTRMc2yl+N2aUpEFmxOmFax3IsOQD9MNgLwctwZcN3Ci5I8o
-         OktDqnAlxKcvyWi+Jo/x78AaM5jMxMpPY5/vU7qeiqxYsu9XgljVYy1qkjR/6C/YygEF
-         SO8D2/L7N/ai6zjD4n2dHtWuC4YhXNZsJNEUXGWhmC5LIYEO+Qihqu59DEDZ8p3IcW5u
-         4OcBfjrZ6toWObcWdn78qUtMF22lPDUvNpkpURA7ADUgXPo9BY43NjaL35yxRsJvW1Ou
-         rO7A==
+        d=gmail.com; s=20221208; t=1683474550; x=1686066550;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yXVmMTlzGpsqwxVNqIgVPdFj3pbPWyuy+sB1it/GnoM=;
+        b=f9lJpX2arNLau6lrCSNLSgUcb/dKOh/FKQUW8blzJBTu5MnOzOt3TFDwqjqKL+xP7R
+         vQ06yP/zvy/cjxbtQKYQ236AAAdO7O6WfB1seEBSNn5lmiHLIsu9UIkl/iFFp/0yzuDd
+         pc5g3712gdGD1AUwmXUFK4NR9u0qt3l+xR+hukEodFLoI73v+Ocw8+VIu8CfqqSeZqEB
+         Vclh5jS55crFtnbDeXd2AIOvp8lC5tNfe5XMNsyXDzj5Jrftn7/zletbQvZz1QPj1YYJ
+         x0+3JMySJ4dzaZf8os5pcVtFfGlVfhMRIiS2suh0bBGpRknlpt5tRmuVlr+qkttnQPA6
+         zyxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683472563; x=1686064563;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Myks9ibscFfLfkvDsV+jBK2okCgS5xjyuH4qT5dxmZ0=;
-        b=ZTS2AR/PdV75jyLjhVUM41Rvi7J7iN/MjXQD4a1PdsUNhEnTa1O6gD+JnmfTsAnr1F
-         WHLO8YyLyafSx0NGLaobjgCpmnghuwRUqY12Srsjy3fwBb2UvCMiWcogYG9Hs3SleBeb
-         XrfTPWZEKq/t4Ml5csw6hl79S0Xs3Iq6VVzW79WkKaJGwVS9Tzyz7Jmjz3HKFCjgYkVL
-         POTXSITJAFexuCfokG8NMx60ZZkV2syHraavBa1066wQYUlfolVa2BTYiwRABCWxC1md
-         0aImbZWQICcqJRlfc/OrM63viyymd6i8o7FhX+zuiUmwVqiQoWKGW17qmfE3K0IN9c8Q
-         PvFg==
-X-Gm-Message-State: AC+VfDx9h9M4XPRI07al2QdAcLENryrAWQxxL1bG9y9hCSOVHmFQ8l66
-        7dFfAuTYiw8ipQEsINnlgAM=
-X-Google-Smtp-Source: ACHHUZ5EW+UX337znXIuV+VfxGZaiPOGCaaj+iujviYeC29RLMN38vohJNQq5Vi2M2qpiuXKCvlD+w==
-X-Received: by 2002:a92:c04d:0:b0:331:3fe4:f2ec with SMTP id o13-20020a92c04d000000b003313fe4f2ecmr5082583ilf.26.1683472562627;
-        Sun, 07 May 2023 08:16:02 -0700 (PDT)
-Received: from aford-B741.lan ([2601:447:d001:897f:32f2:3dc9:fe53:5220])
-        by smtp.gmail.com with ESMTPSA id s1-20020a02b141000000b0040faf05071asm1293566jah.156.2023.05.07.08.16.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 07 May 2023 08:16:01 -0700 (PDT)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
+        d=1e100.net; s=20221208; t=1683474550; x=1686066550;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yXVmMTlzGpsqwxVNqIgVPdFj3pbPWyuy+sB1it/GnoM=;
+        b=gNAeJjYhcqMQwqK+a8P4yavi2BU1Y9OTJ3NSHpLHcq4zhByQ2b0p5y6RmC63VjBXCM
+         2+t5dwfN2uoBfe/joQLjQI3m2k/Zh+qNWX/fGvAZhk+2pfxdlj3IccWNQ7gRfkuREm0J
+         SBgEmtO5fB4e+vLBjET62w0b4qQ5k4A0ZcaXjvpANQtymuWvAFJg4NqQUWyyRXsoyE/w
+         EjaM3+JDT55bjdGo1w+zJepbE40yGvdY7ijHA+cVQBjlJfI1Dv22EUstxIXNewI8eiuu
+         IGCAH+xMnoVCxa0aIqP4uX++Te5r0gAaX6p+Qwk3JfAhV1dO2NIM5LyUDOO2ukXgbjBc
+         yiVA==
+X-Gm-Message-State: AC+VfDz+1g/WLG2b2Wo1phfQ6mkgxklCd45UV9pKJJNJhzTaTbWZxSKG
+        ef0tYhgrqLUh7FmZegZ0qZU=
+X-Google-Smtp-Source: ACHHUZ6Jm4w6vQZ+oNrNLJOiZriMuE7yGRQggT7eTwiriv3/sTn/k90vt5Thejo2Cg+t6vP2mZHqQQ==
+X-Received: by 2002:a2e:938c:0:b0:2a7:6fee:2503 with SMTP id g12-20020a2e938c000000b002a76fee2503mr2093662ljh.14.1683474550519;
+        Sun, 07 May 2023 08:49:10 -0700 (PDT)
+Received: from [192.168.1.111] (62-78-225-252.bb.dnainternet.fi. [62.78.225.252])
+        by smtp.gmail.com with ESMTPSA id w8-20020a2e9588000000b002a77583b718sm847073ljh.12.2023.05.07.08.49.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 07 May 2023 08:49:10 -0700 (PDT)
+Message-ID: <84a732f4-0890-307d-2b08-d7d545f1fc42@gmail.com>
+Date:   Sun, 7 May 2023 18:49:09 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v3 4/5] iio: light: ROHM BU27008 color sensor
+Content-Language: en-US, en-GB
+To:     Jonathan Cameron <jic23@kernel.org>,
+        "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
+Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH V2 3/3] arm64: dts: imx8mn-beacon:  Add support for OV5640 Camera
-Date:   Sun,  7 May 2023 10:15:48 -0500
-Message-Id: <20230507151549.1216019-3-aford173@gmail.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230507151549.1216019-1-aford173@gmail.com>
-References: <20230507151549.1216019-1-aford173@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Shreeya Patel <shreeya.patel@collabora.com>,
+        Zhigang Shi <Zhigang.Shi@liteon.com>,
+        Paul Gazzillo <paul@pgazz.com>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Andi Shyti <andi.shyti@kernel.org>
+References: <cover.1682495921.git.mazziesaccount@gmail.com>
+ <fb35de40a3908988f5f83e25d17119e6944d289b.1682495921.git.mazziesaccount@gmail.com>
+ <ZFF1NMaR1RYThcSB@smile.fi.intel.com>
+ <307cc8ce-6178-7a86-2c90-eaf0ac8c122d@fi.rohmeurope.com>
+ <20230507152443.754f2fab@jic23-huawei>
+From:   Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <20230507152443.754f2fab@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The baseboard has a very specific pinout for the TD Next 5640
-camera which uses an OV5640 sensor.  Enable it as part of the
-deveopment kit baseboard instead of an overlay.
+On 5/7/23 17:24, Jonathan Cameron wrote:
+> On Wed, 3 May 2023 05:11:53 +0000
+> "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com> wrote:
+> 
+>> Hi Andy
+>>
+>> Thanks for the review.
+>>
+>> On 5/2/23 23:40, Andy Shevchenko wrote:
+>>> On Wed, Apr 26, 2023 at 11:08:17AM +0300, Matti Vaittinen wrote:
+>>>> The ROHM BU27008 is a sensor with 5 photodiodes (red, green, blue, clear
+>>>> and IR) with four configurable channels. Red and green being always
+>>>> available and two out of the rest three (blue, clear, IR) can be
+>>>> selected to be simultaneously measured. Typical application is adjusting
+>>>> LCD backlight of TVs, mobile phones and tablet PCs.
+>>>>
+>>>> Add initial support for the ROHM BU27008 color sensor.
+>>>>    - raw_read() of RGB and clear channels
+>>>>    - triggered buffer w/ DRDY interrtupt
+>>>
+>>> ...
+>>>    
+>>>> +enum {
+>>>> +	BU27008_RED,	/* Always data0 */
+>>>> +	BU27008_GREEN,	/* Always data1 */
+>>>> +	BU27008_BLUE,	/* data2, configurable (blue / clear) */
+>>>> +	BU27008_CLEAR,	/* data2 or data3 */
+>>>> +	BU27008_IR,	/* data3 */
+>>>> +	BU27008_NUM_CHANS
+>>>
+>>> Why not converting comments to a kernel-doc?
+>>>    
+>>>> +};
+>>>> +
+>>>> +enum {
+>>>> +	BU27008_DATA0, /* Always RED */
+>>>> +	BU27008_DATA1, /* Always GREEN */
+>>>> +	BU27008_DATA2, /* Blue or Clear */
+>>>> +	BU27008_DATA3, /* IR or Clear */
+>>>> +	BU27008_NUM_HW_CHANS
+>>>> +};
+>>>
+>>> Ditto.
+>>
+>> I see no value having entities which are not intended to be used outside
+>> this file documented in any "global" documentation. One who is ever
+>> going to use these or wonder what these are - will most likely be
+>> watching this file. My personal view is that the generated docs should
+>> be kept lean. In my opinion the problem of the day is the time we spend
+>> looking for a needle hidden in a haystack. In my opinion adding this to
+>> kernel-doc just adds hay :)
+> 
+>>
+>> I still can do this if no-one else objects. I almost never look at the
+>> generated docs myself. Usually I just look the docs from code files -
+>> and kernel-doc format is not any worse for me to read. Still, I can
+>> imagine including this type of stuff to generic doc just bloats them and
+>> my not serve well those who use them.
+> 
+> 
+> Unless someone specifically adds this doc to the main docs build, the
+> kernel-doc won't end up in the docs anyway.
 
-Enable the camera with the following
-  media-ctl -l "'ov5640 1-0010':0 -> 'csis-32e30000.mipi-csi':0 [1]"
-  media-ctl -v -V "'ov5640 1-0010':0 [fmt:UYVY8_1X16/640x480 field:none]"
-  media-ctl -v -V "'crossbar':0 [fmt:UYVY8_1X16/640x480 field:none]"
-  media-ctl -v -V "'mxc_isi.0':0 [fmt:UYVY8_1X16/640x480 field:none]"
+Ah! This makes sense. Thanks for correcting me!
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
----
-V2:  New to series, since Laurent asked me to add a board which supports
-     the previous two commits.
-     
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-beacon-baseboard.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-beacon-baseboard.dtsi
-index 9e82069c941f..6dce77a6114c 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-beacon-baseboard.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-beacon-baseboard.dtsi
-@@ -43,6 +43,17 @@ reg_audio: regulator-audio {
- 		enable-active-high;
- 	};
- 
-+	reg_camera: regulator-camera {
-+		compatible = "regulator-fixed";
-+		regulator-name = "mipi_pwr";
-+		regulator-min-microvolt = <2800000>;
-+		regulator-max-microvolt = <2800000>;
-+		gpio = <&pca6416_1 0 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		startup-delay-us = <100000>;
-+		regulator-always-on;
-+	};
-+
- 	reg_usdhc2_vmmc: regulator-usdhc2 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vsd_3v3";
-@@ -96,6 +107,36 @@ eeprom@0 {
- 	};
- };
- 
-+&i2c2 {
-+	clock-frequency = <384000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c2>;
-+	status = "okay";
-+
-+	camera@10 {
-+		compatible = "ovti,ov5640";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_ov5640>;
-+		reg = <0x10>;
-+		clocks = <&clk IMX8MN_CLK_CLKO1>;
-+		clock-names = "xclk";
-+		assigned-clocks = <&clk IMX8MN_CLK_CLKO1>;
-+		assigned-clock-parents = <&clk IMX8MN_CLK_24M>;
-+		assigned-clock-rates = <24000000>;
-+		AVDD-supply = <&reg_camera>;  /* 2.8v */
-+		powerdown-gpios = <&gpio1 7 GPIO_ACTIVE_HIGH>;
-+		reset-gpios = <&gpio1 6 GPIO_ACTIVE_LOW>;
-+
-+		port {
-+			/* MIPI CSI-2 bus endpoint */
-+			ov5640_to_mipi_csi2: endpoint {
-+				remote-endpoint = <&mipi_csi_in>;
-+				clock-lanes = <0>;
-+				data-lanes = <1 2>;
-+			};
-+		};
-+	};
-+};
- &i2c4 {
- 	clock-frequency = <400000>;
- 	pinctrl-names = "default";
-@@ -145,11 +186,28 @@ wm8962: audio-codec@1a {
- 	};
- };
- 
-+&isi {
-+	status = "okay";
-+};
-+
- &easrc {
- 	fsl,asrc-rate = <48000>;
- 	status = "okay";
- };
- 
-+&mipi_csi {
-+	status = "okay";
-+
-+	ports {
-+		port@0 {
-+			mipi_csi_in: endpoint {
-+				remote-endpoint = <&ov5640_to_mipi_csi2>;
-+				data-lanes = <1 2>;
-+			};
-+		};
-+	};
-+};
-+
- &sai3 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_sai3>;
-@@ -226,6 +284,14 @@ MX8MN_IOMUXC_SAI3_RXFS_GPIO4_IO28	0x41
- 		>;
- 	};
- 
-+	pinctrl_ov5640: ov5640grp {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_GPIO1_IO07_GPIO1_IO7		0x19
-+			MX8MN_IOMUXC_GPIO1_IO06_GPIO1_IO6		0x19
-+			MX8MN_IOMUXC_GPIO1_IO14_CCMSRCGPCMIX_CLKO1	0x59
-+		>;
-+	};
-+
- 	pinctrl_pcal6414: pcal6414-gpiogrp {
- 		fsl,pins = <
- 			MX8MN_IOMUXC_SAI2_MCLK_GPIO4_IO27		0x19
+> It just provides a nice
+> bit of consistent formatting. Even if they do add this for some reason,
+> there are controls on internal vs external (exported stuff) being added
+> to the docs.
+
+I'll use kernel-doc for this then.
+
+
+Yours,
+	-- Matti
+
 -- 
-2.39.2
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
 
