@@ -2,96 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E7F406F9BA0
-	for <lists+devicetree@lfdr.de>; Sun,  7 May 2023 22:50:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE1C46F9BAF
+	for <lists+devicetree@lfdr.de>; Sun,  7 May 2023 23:07:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231892AbjEGUu4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 May 2023 16:50:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42654 "EHLO
+        id S231654AbjEGVHD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 May 2023 17:07:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229757AbjEGUuy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 May 2023 16:50:54 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37194A5DD
-        for <devicetree@vger.kernel.org>; Sun,  7 May 2023 13:50:53 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2ac82912a59so39748771fa.3
-        for <devicetree@vger.kernel.org>; Sun, 07 May 2023 13:50:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683492651; x=1686084651;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=HjBrxK8qc3xLnnr2R60HyqhiwwpGTFeasR6j9aUXl18=;
-        b=wIqNDsfN0z6yBX/VVpdrkPMvJGlRY10siClhXAPgQGqvQ5AfmZZ640ida1ZiyToIr+
-         NQbDzhWRuOLUOI+XZAC8fCj30+5jVzF3KNzHFUFYkk5XBmiec/f9tau5yajJZ1A9qjX7
-         jn+8tN6YJBfy3nE5spTLIKh0fcNma5ArIevbfx+fSTzcV4fGC54WB1hN3yXcLLjJn3+d
-         1kwENGSIJa3Ti7/xyjv5Ctv4e4/L1lTaoqvB/d6rYjSy/Nn6Xr2hfIk365QcKd0KEq/i
-         ECLmuaI9AQGfROn4zE04bDvKNMp1dPnm64ZajXReLmQfSZ3b0IAPucNwu1v2RM635/ms
-         6h/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683492651; x=1686084651;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HjBrxK8qc3xLnnr2R60HyqhiwwpGTFeasR6j9aUXl18=;
-        b=IttJMAj2tOIgl5TXQTB/Q3OMWc/ooZi1wAEFwh8QkXkdsrfM3jloTNJRpDgXFpo1Jt
-         4uKw3jZw3iApPlJnrTYadicpr7HoT2uX2a8AKAuUO6jzltM9QObMQi3yttvuWRXdWPGO
-         hbe5E0rrLX50u1xVryyzjy9K309+KIyKQDDRille/xMnwOyVTEIvtSKlCvfkSFgOI15K
-         LbFcstHqsQMDhkGf38/wydhXrxVDZAAfEfNM1UzM5WZRh3vBQK+ZrhKsBpRm2rurcXPr
-         frztnun0pSQNoFDps41v63cG4zMoc4Di6E/Lnhdp8EJH3ao8wPgxD8aMjZw3EpFPnF6z
-         fYJw==
-X-Gm-Message-State: AC+VfDx48FWvcWVENm39Ny8WJIdVxqQGDc7df/NuALfmFajOuep5iAp2
-        L67uAYYGBl9HBoUfrnEWkH2zvA==
-X-Google-Smtp-Source: ACHHUZ6CJi6Oe3pMcbkYpstoXB9PUlE7AlvcRdkEhZs6+g0ljHXjs5PiFlQTNvpZ1wHUwDn4oeg12w==
-X-Received: by 2002:a2e:9c99:0:b0:2ac:8db5:a717 with SMTP id x25-20020a2e9c99000000b002ac8db5a717mr1877948lji.1.1683492651260;
-        Sun, 07 May 2023 13:50:51 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id f4-20020a2e3804000000b002a634bfa224sm929889lja.40.2023.05.07.13.50.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 07 May 2023 13:50:50 -0700 (PDT)
-Message-ID: <45492699-9e1c-2a45-372f-5ce467de8f7a@linaro.org>
-Date:   Sun, 7 May 2023 23:50:50 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH 4/6] ARM: dts: msm8226: Add qfprom node
-Content-Language: en-GB
-To:     =?UTF-8?Q?Matti_Lehtim=c3=a4ki?= <matti.lehtimaki@gmail.com>,
-        linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S229814AbjEGVHD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 May 2023 17:07:03 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48D35100F0;
+        Sun,  7 May 2023 14:07:02 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9CB4E60FA0;
+        Sun,  7 May 2023 21:07:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3E34C433D2;
+        Sun,  7 May 2023 21:06:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1683493621;
+        bh=XPnBjKoldpYno0O1tuQ16AzF8oEJrDIxbKIF/vVQi0Q=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Thxp4kzzkQT3cIYymiZv06NSQqdsHONF3Vw89XEfedX/zq35HczfrJgCjIGijedEZ
+         wAXYpL33pEh9bbZ72eHPPdH4SiqeGzYub9m16b5ZRq8WWJkBWJae4vRgBgo2hs64nI
+         b0b/TqZpX30Qob8pBePqziaB7oatjJ7OiOH5gfmtrT8/VxLb02g8CebTvxbOWOzpEJ
+         6PK/Hz+KQzhqISAQPMstCPnhNrMF50ouNMOWk9jTHgLWP6qcmBQJtFXbdsXdM5W/Vy
+         CezYH7gA+6UfMF/SJ8HmHEocCr6zSfOENZK5lrPrOor6KcIifY+0pRWd+uDergjP8v
+         n/BiLkey4c/cg==
+Date:   Sun, 7 May 2023 22:06:56 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Lorenzo Bianconi <lorenzo@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230507201225.89694-1-matti.lehtimaki@gmail.com>
- <20230507201225.89694-5-matti.lehtimaki@gmail.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230507201225.89694-5-matti.lehtimaki@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        Daniel Campello <campello@chromium.org>,
+        Gwendal Grignou <gwendal@chromium.org>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: iio: st,lsm6dsx: reference common
+ schema for mount-matrix
+Message-ID: <20230507-brutishly-underhand-48c2949eb46c@spud>
+References: <20230507173923.263741-1-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="xffzJ8lz6swB158w"
+Content-Disposition: inline
+In-Reply-To: <20230507173923.263741-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/05/2023 23:12, Matti Lehtimäki wrote:
-> Add missing QFPROM definition for MSM8226 SoC.
-> 
-> Signed-off-by: Matti Lehtimäki <matti.lehtimaki@gmail.com>
-> ---
->   arch/arm/boot/dts/qcom-msm8226.dtsi | 7 +++++++
->   1 file changed, 7 insertions(+)
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+--xffzJ8lz6swB158w
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
--- 
-With best wishes
-Dmitry
+On Sun, May 07, 2023 at 07:39:21PM +0200, Krzysztof Kozlowski wrote:
+> Reference iio.yaml schema from dtschema to allow already used
+> mount-matrix property:
+>=20
+>   msm8953-xiaomi-daisy.dtb: imu@6a: Unevaluated properties are not allowe=
+d ('mount-matrix' was unexpected)
+>=20
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Thanks,
+Conor.
+
+--xffzJ8lz6swB158w
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZFgS8AAKCRB4tDGHoIJi
+0jt9AQC6QhCXgMaGd3EBvrt5fWNfnKzWBDEeDb2WDcSylheG5wD/cRR3VYPJjpGA
+D6gSybHEtldKV3KekTISIP8JTbbAZAs=
+=h9Fc
+-----END PGP SIGNATURE-----
+
+--xffzJ8lz6swB158w--
