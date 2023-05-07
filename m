@@ -2,58 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D0EB6F9BFA
-	for <lists+devicetree@lfdr.de>; Sun,  7 May 2023 23:38:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E08C6F9C62
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 00:02:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231543AbjEGVfU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 May 2023 17:35:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53668 "EHLO
+        id S230452AbjEGWCY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 May 2023 18:02:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229814AbjEGVfU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 May 2023 17:35:20 -0400
+        with ESMTP id S229852AbjEGWCX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 May 2023 18:02:23 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15FB32113;
-        Sun,  7 May 2023 14:35:19 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C31212107;
+        Sun,  7 May 2023 15:02:22 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9711A61D22;
-        Sun,  7 May 2023 21:35:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EA98C4339C;
-        Sun,  7 May 2023 21:35:15 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 50ADE611E7;
+        Sun,  7 May 2023 22:02:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A32AEC433EF;
+        Sun,  7 May 2023 22:02:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1683495318;
-        bh=NdcD+9ij+DOpkLob2FE8gAcGrtbnol7u+fW5Ls8BxTU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=nhKKmRi0ny4VVMdAikGPgyZsaYig2yu7iCJGXn81dqF1HzqjVGMXGHo2sqgYUgSSb
-         sf3Se+AS0s+mR+vmq6DOv37rsTClJHsafIAJATyKXCC6X6JZVUmBFR92AjmgsY1u4Q
-         4WlBkVXcgkyNGM4xF2Z/xvdimWNiBpeoHFdrA6aDRL2R/IXYpug1pQs4/2tJ86rMGn
-         Q8l4z+KXPU7Ip/XJqW/xCyUswiWGtpBA467TyQHD23/tbvxVBxj5KX9G8eA7yK4CT/
-         3eHz4m5RXOmpDvmfjlqIOL3wFVUqGGlivBkdAOLeWWLG6S2R1GluXQcKYcF7aIhuwZ
-         qP5qm4yBrDw+A==
-Date:   Sun, 7 May 2023 22:35:12 +0100
+        s=k20201202; t=1683496941;
+        bh=BJlaWwcTZmYTjOELCU/kndId2NcMMsVmpbbLNpJal9k=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=G6LyHD5mOb5RnU0RIMjrhBt1Kscv/GXcxFuyFZew4aDlpmQ9xBrLjtNTFgE9fhnz6
+         PaIDa2GpUkYob+ZnT9n/k/x2jFkCE5sttPksYn+Tvor4Ch4HrokQpafzpXDcF8q75x
+         j/lmmVwLi9X4FPuw5sYG8hUvDCxB0Ckqr8dQJLs7tfNwJLb8Xl62TJgxfxZaEFCObg
+         RX4nBfQlQGpkHqXVR0aiLehIGTJKIAe9KphukoZBqVsB+m+PfweZdesiL056SG41z1
+         7zNxoe2dOhZjJu17JSJaSp/QY8gmPKYEGKGD6gkM1tCT3LfQhYWomWkSABIHNYFIde
+         C7q1T9/Je18Cg==
 From:   Conor Dooley <conor@kernel.org>
-To:     Jisheng Zhang <jszhang@kernel.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Conor Dooley <conor@kernel.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, Guo Ren <guoren@kernel.org>,
-        heiko@sntech.de
-Subject: Re: [PATCH 3/5] riscv: dts: add initial T-HEAD light SoC device tree
-Message-ID: <20230507-calamari-gentleman-bbe62af06f92@spud>
-References: <20230507182304.2934-1-jszhang@kernel.org>
- <20230507182304.2934-4-jszhang@kernel.org>
+        Rob Herring <robh+dt@kernel.org>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        Walker Chen <walker.chen@starfivetech.com>
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v1] riscv: dts: starfive: Add PMU controller node
+Date:   Sun,  7 May 2023 23:02:10 +0100
+Message-Id: <20230507-postwar-discount-89cc89917fe2@spud>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230417034728.2670-1-walker.chen@starfivetech.com>
+References: <20230417034728.2670-1-walker.chen@starfivetech.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="OKce/XdTtjQB3lJP"
-Content-Disposition: inline
-In-Reply-To: <20230507182304.2934-4-jszhang@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+X-Developer-Signature: v=1; a=openpgp-sha256; l=354; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=j5UAhVrZomsiM9bXTzDgVTozeZ71uctOxV2VIj5ocB8=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDCkR8g/CZ3yKszifvO4Zh++pqxrps9ac6HM0ENls8He+7 N+iSRu6O0pZGMQ4GGTFFFkSb/e1SK3/47LDuectzBxWJpAhDFycAjCRoMOMDB2rNzv2SYY6Rl3K VjP+9ZjnoHhUx8mJu0Qm90VOE1b468XI8NHl8Sq+fytn7Oq0Uzrzx3baaxa+hyuOSHVkZi02WFg xix8A
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -64,91 +62,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Conor Dooley <conor.dooley@microchip.com>
 
---OKce/XdTtjQB3lJP
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Mon, 17 Apr 2023 11:47:28 +0800, Walker Chen wrote:
+> Add the pmu controller node for the StarFive JH7110 SoC. The PMU needs
+> to be used by other modules, e.g. VPU,ISP,etc.
+> 
+> 
 
-Hey Jisheng,
+Applied to riscv-dt-for-next, thanks!
 
-On Mon, May 08, 2023 at 02:23:02AM +0800, Jisheng Zhang wrote:
+[1/1] riscv: dts: starfive: Add PMU controller node
+      https://git.kernel.org/conor/c/6a887bcc4138
 
-> +		c910_0: cpu@0 {
-> +			compatible = "thead,c910", "riscv";
-> +			device_type = "cpu";
-> +			riscv,isa = "rv64imafdc";
-
-Does this support more than "rv64imafdc"?
-I assume there's some _xtheadfoo extensions that it does support,
-although I am not sure how we are proceeding with those - Heiko might
-have a more nuanced take.
-
-> +		reset: reset-sample {
-> +			compatible = "thead,reset-sample";
-
-What is a "reset-sample"?
-
-> +			entry-reg = <0xff 0xff019050>;
-> +			entry-cnt = <4>;
-> +			control-reg = <0xff 0xff015004>;
-> +			control-val = <0x1c>;
-> +			csr-copy = <0x7f3 0x7c0 0x7c1 0x7c2 0x7c3 0x7c5 0x7cc>;
-> +		};
-> +
-> +		plic: interrupt-controller@ffd8000000 {
-> +			compatible = "thead,c910-plic";
-> +			reg = <0xff 0xd8000000 0x0 0x01000000>;
-> +			interrupts-extended = <&cpu0_intc 11>, <&cpu0_intc 9>,
-> +					      <&cpu1_intc 11>, <&cpu1_intc 9>,
-> +					      <&cpu2_intc 11>, <&cpu2_intc 9>,
-> +					      <&cpu3_intc 11>, <&cpu3_intc 9>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <1>;
-> +			riscv,ndev = <240>;
-> +		};
-> +
-> +		clint: timer@ffdc000000 {
-> +			compatible = "thead,c900-clint";
-
-"c900"? That a typo or intentional. Hard to tell since this compatible
-is undocumented ;)
-
-> +			reg = <0xff 0xdc000000 0x0 0x00010000>;
-> +			interrupts-extended = <&cpu0_intc 3>, <&cpu0_intc 7>,
-> +					      <&cpu1_intc 3>, <&cpu1_intc 7>,
-> +					      <&cpu2_intc 3>, <&cpu2_intc 7>,
-> +					      <&cpu3_intc 3>, <&cpu3_intc 7>;
-> +		};
-> +
-> +		uart0: serial@ffe7014000 {
-> +			compatible = "snps,dw-apb-uart";
-> +			reg = <0xff 0xe7014000 0x0 0x4000>;
-> +			interrupts = <36>;
-> +			clocks = <&uart_sclk>;
-> +			clock-names = "baudclk";
-
-dtbs_check complains about this clock name.
-> +
-> +		dmac0: dmac@ffefc00000 {
-
-dma-controller@
-
-As I mentioned in the other patch, please clean up the dtbs_check
-complaints for v2.
-
-Cheers,
+Thanks,
 Conor.
-
-
---OKce/XdTtjQB3lJP
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZFgZkAAKCRB4tDGHoIJi
-0gJkAP9TyzjHcuAsWbOpJ8RnqioUEWne+Q8oDh+GeealrSC1hAEAjWjGDNcOBF7i
-EgCMKjbIUEwwPx/9ox6mnCrgpzj20gA=
-=Xg5D
------END PGP SIGNATURE-----
-
---OKce/XdTtjQB3lJP--
