@@ -2,95 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE1C46F9BAF
-	for <lists+devicetree@lfdr.de>; Sun,  7 May 2023 23:07:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74FAC6F9BB1
+	for <lists+devicetree@lfdr.de>; Sun,  7 May 2023 23:09:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231654AbjEGVHD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 May 2023 17:07:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44868 "EHLO
+        id S230415AbjEGVJl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 May 2023 17:09:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45402 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229814AbjEGVHD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 May 2023 17:07:03 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48D35100F0;
-        Sun,  7 May 2023 14:07:02 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9CB4E60FA0;
-        Sun,  7 May 2023 21:07:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3E34C433D2;
-        Sun,  7 May 2023 21:06:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1683493621;
-        bh=XPnBjKoldpYno0O1tuQ16AzF8oEJrDIxbKIF/vVQi0Q=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Thxp4kzzkQT3cIYymiZv06NSQqdsHONF3Vw89XEfedX/zq35HczfrJgCjIGijedEZ
-         wAXYpL33pEh9bbZ72eHPPdH4SiqeGzYub9m16b5ZRq8WWJkBWJae4vRgBgo2hs64nI
-         b0b/TqZpX30Qob8pBePqziaB7oatjJ7OiOH5gfmtrT8/VxLb02g8CebTvxbOWOzpEJ
-         6PK/Hz+KQzhqISAQPMstCPnhNrMF50ouNMOWk9jTHgLWP6qcmBQJtFXbdsXdM5W/Vy
-         CezYH7gA+6UfMF/SJ8HmHEocCr6zSfOENZK5lrPrOor6KcIifY+0pRWd+uDergjP8v
-         n/BiLkey4c/cg==
-Date:   Sun, 7 May 2023 22:06:56 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Lorenzo Bianconi <lorenzo@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Daniel Campello <campello@chromium.org>,
-        Gwendal Grignou <gwendal@chromium.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: iio: st,lsm6dsx: reference common
- schema for mount-matrix
-Message-ID: <20230507-brutishly-underhand-48c2949eb46c@spud>
-References: <20230507173923.263741-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S229814AbjEGVJl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 May 2023 17:09:41 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 825B7100F2
+        for <devicetree@vger.kernel.org>; Sun,  7 May 2023 14:09:39 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-3078d1c8828so1090610f8f.3
+        for <devicetree@vger.kernel.org>; Sun, 07 May 2023 14:09:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683493778; x=1686085778;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8uqWO0qQpK7ufgShdgqRMNTR/7ovm2xVdfX8EelQzFI=;
+        b=UaMnXm/bH9hqkgRvevcUk9l8LrRqSKJD03P9umeCXMIUJyzfvrrQP8TUO+8DX3cMFl
+         0zt/7/wc6qJwFLZjuQRVTY/s064xJ7xVvLWuAYVy8IL0It5N3IKgm7RNm2ipc7sjmdpv
+         gTx28FqVOOyp/g4Dng2yOoTkT95nDHnzQCG7gP0uMRh9pUSC/TiG+rsu4A/1PimI4ymW
+         dZqWuByQjtKhEK2jwAHnrrxBEMiLx16296k3ilkhE9zZU+yovAp2AeSKEfzQNjtR250R
+         SpPy749cJau2LJJRJ1NVeF5djuKmZ5WwC1gKin1SXuiBtGVX/5YaMCEYKM7cNpbhaVMg
+         Dvbg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683493778; x=1686085778;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8uqWO0qQpK7ufgShdgqRMNTR/7ovm2xVdfX8EelQzFI=;
+        b=jtHgOGpFZ2VMl1KLeq/6abC649QpexGvv9x1i7B1Gz54Y9hQfstGe/++Iw72VlpjzQ
+         TWFtntDhTpqPFiJrhfUaDsF/QRXpSd4SqL9R/3s/aTys1WjMmM8ySj/s+8bspyuNHSMG
+         V3a+x1Lw/oKHBk4TBMwvbyHC1g1EpxvtQEO5StRbAmIjsfiD+uQW747ZAnxpB5eTHB2N
+         ajnZv/+dsH0NLcVXvBhhiMWkjycsKTu9x/Q8y//HI4H1VseSolCjt58PgE7WIx/YjU8U
+         YCr0rUW0Nbm/GQgm/L5JgZGw9CBuAh9K17DKTx9NUv1qalo+TXs1Vnah1tnsuIrrmV35
+         sQeg==
+X-Gm-Message-State: AC+VfDzHAY+cI/+UjqsfZePP4+DfpKcAGLepKilJ3K4c6MB9kxC50c7O
+        VKxkn7tJga/wWnrI654rcCn5EQ==
+X-Google-Smtp-Source: ACHHUZ6AkZkK0j34tKN5sY9ByIuNF2/oH5xGsWbla3vcWmeLVo2011h/Jnelf2r0web/v1Rlk42ukw==
+X-Received: by 2002:a5d:4530:0:b0:306:43a7:c2f0 with SMTP id j16-20020a5d4530000000b0030643a7c2f0mr6466675wra.31.1683493777936;
+        Sun, 07 May 2023 14:09:37 -0700 (PDT)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id n2-20020a5d4c42000000b003063db8f45bsm9169375wrt.23.2023.05.07.14.09.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 07 May 2023 14:09:37 -0700 (PDT)
+Message-ID: <dbee2473-0768-606f-7a0e-a07c44da4648@linaro.org>
+Date:   Sun, 7 May 2023 22:09:36 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="xffzJ8lz6swB158w"
-Content-Disposition: inline
-In-Reply-To: <20230507173923.263741-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v6 12/13] arm64: dts: qcom: qrb5165-rb5: Switch on TCPM
+ usb-role-switching for usb_1
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>, linux@roeck-us.net,
+        heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, luca.weiss@fairphone.com,
+        linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     caleb.connolly@linaro.org, subbaram@quicinc.com, jackp@quicinc.com,
+        robertom@qti.qualcomm.com
+References: <20230501121111.1058190-1-bryan.odonoghue@linaro.org>
+ <20230501121111.1058190-13-bryan.odonoghue@linaro.org>
+ <109dc9fe-5ca7-1a98-3222-8c2297f4e8ce@linaro.org>
+ <b4bfe2f6-7ea3-fca5-9dc6-12270b3bbc42@linaro.org>
+ <41581143-2caa-bac1-479c-c8feaf2de1b9@linaro.org>
+ <378d0ec8-5ce1-57d3-eccf-8e053d647f47@linaro.org>
+ <44c26ca6-12b3-74ad-70de-1dc2d4f42dca@linaro.org>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <44c26ca6-12b3-74ad-70de-1dc2d4f42dca@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 02/05/2023 12:47, Konrad Dybcio wrote:
+>>          connector {
+>>                  compatible = "usb-c-connector";
+>>                  ports {
+>>                          #address-cells = <1>;
+>>                          #size-cells = <0>;
+>>
+>>                          port@0 {
+>>                                  reg = <0>;
+>>                                  pm8150b_role_switch_out: endpoint {
+>>                                          remote-endpoint = <&dwc3_role_switch_in>;
+>>                                  };
+>>                          };
+> ====
 
---xffzJ8lz6swB158w
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hmm, I'm actually recoiling from doing this now that I look at it.
 
-On Sun, May 07, 2023 at 07:39:21PM +0200, Krzysztof Kozlowski wrote:
-> Reference iio.yaml schema from dtschema to allow already used
-> mount-matrix property:
->=20
->   msm8953-xiaomi-daisy.dtb: imu@6a: Unevaluated properties are not allowe=
-d ('mount-matrix' was unexpected)
->=20
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+- Every other implementation defines the connector in the platfrom
+   dts not the core dtsi
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+- The connector would have to be named something like
+   pm8150b_type_connector which is not consistent with the
+   rest of the Type-C connector namespace
 
-Thanks,
-Conor.
 
---xffzJ8lz6swB158w
-Content-Type: application/pgp-signature; name="signature.asc"
+Yes it can be done that the connector with the ports can be defined in 
+the pm8150b dtsi but TBH I think it is more confusing that way and not 
+consistent with other implementations.
 
------BEGIN PGP SIGNATURE-----
+I'm citing prior art here I just think this is nicer/easier to follow
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZFgS8AAKCRB4tDGHoIJi
-0jt9AQC6QhCXgMaGd3EBvrt5fWNfnKzWBDEeDb2WDcSylheG5wD/cRR3VYPJjpGA
-D6gSybHEtldKV3KekTISIP8JTbbAZAs=
-=h9Fc
------END PGP SIGNATURE-----
+- arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+- arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
 
---xffzJ8lz6swB158w--
+So for now
+
+https://imgflip.com/i/7kw6ck
+
+---
+bod
