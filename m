@@ -2,186 +2,602 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 99CF36F9675
-	for <lists+devicetree@lfdr.de>; Sun,  7 May 2023 03:30:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 896366F9693
+	for <lists+devicetree@lfdr.de>; Sun,  7 May 2023 04:21:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229578AbjEGBae (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 6 May 2023 21:30:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45790 "EHLO
+        id S230079AbjEGCVW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 6 May 2023 22:21:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230218AbjEGBad (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 6 May 2023 21:30:33 -0400
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 115153A8F;
-        Sat,  6 May 2023 18:30:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1683423032; x=1714959032;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=FIrZiayXiglnGHTRWgoTjb29nAt02JSHA3Qb5CdPV7c=;
-  b=G0cclg31iVgoC7RCtCJv9+qz9d3j/VEQ1ZWvPF6fERA9AyMDMk9HsvO3
-   K8mVdkM1w+ji8Ca0CIs03ThpxXiSRBZUIe66xyOXjCDG8UAj3hc+ZkYK3
-   frTmw99gMCP0h3kHujtYXJQQzg0TKJ7oJWS5AgZ9820SvWZishZr7nXgC
-   UD2hbDQCxh+Ra0u093sUoRW8w5+R5MlD4crYGTvo0P0M+mIaCscdVCqE8
-   YBlEFPxF1aPbpFigvfuzy8jgGp7r6zczoIP2ZgPw3nzaiWLVHMs1y9trD
-   fw499zQshHICIy89HPxLH+bxm8VbS2vIRoe7MdKl6VInQ2qgjYKetyrS5
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10702"; a="348259152"
-X-IronPort-AV: E=Sophos;i="5.99,256,1677571200"; 
-   d="scan'208";a="348259152"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 May 2023 18:30:28 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10702"; a="675615776"
-X-IronPort-AV: E=Sophos;i="5.99,256,1677571200"; 
-   d="scan'208";a="675615776"
-Received: from lkp-server01.sh.intel.com (HELO dea6d5a4f140) ([10.239.97.150])
-  by orsmga006.jf.intel.com with ESMTP; 06 May 2023 18:30:25 -0700
-Received: from kbuild by dea6d5a4f140 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pvTEH-0000YH-04;
-        Sun, 07 May 2023 01:30:25 +0000
-Date:   Sun, 7 May 2023 09:29:57 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     alison@she-devel.com, johan@kernel.org
-Cc:     oe-kbuild-all@lists.linux.dev, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        alison@she-devel.com, achaiken@aurora.tech
-Subject: Re: [PATCH v3 1/2] gnss: ubx: customize serial device open to set
- U-Blox Zed-F9P baud
-Message-ID: <202305070938.8vWQFfIQ-lkp@intel.com>
-References: <20230506225849.2752103-2-alison@she-devel.com>
+        with ESMTP id S229446AbjEGCVV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 6 May 2023 22:21:21 -0400
+Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2112.outbound.protection.outlook.com [40.107.117.112])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0746012087;
+        Sat,  6 May 2023 19:21:16 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=PLKOgnkMHzX0R8o2SU5eutGthSmNnMXElEbF9LqWvKrOC7/L6EWEIL40o0iOPhXNyk9nJYMZOCfgHvhLs/Ad5vzxqhNbbKN+tHn+mTqCdFtQf9yPp7Pw8xW7Ua74x9rUWBg9MtIZ6HnScntGwaONiXfvE+Aj3qxM20wFo7xK0QfjE4KAZmMGft7qes3sPEFTq7fGVtHYA9MCb7G3mxUZhibfK4SDCvJVEQHEv6O7ZwVJVTDfI47L5hwA1GMELEGoqV9Zrv0WVb27PdSebG9CtSA900q8Y4J/e5rUDij9fXLm+iHAVvOohdJofCkC6LWU58q4H4y1S1gHO0F5Bgj53Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6upfybPELbzHVKfDxljbgRD0nNEHohSZSsTjDaAKivw=;
+ b=e6OHMAivmf+oCf80QT/tZ+6CA20zLnt+wqn7cX0C5ZSo+TLhyA3IhGuzpgbeWIAjlDhiHFPH+EKtapXwnmxWlD15Al5YqgL7HV8XNFNTdorlv0hfD0873ehaZjQcO/v9vuMiDltT01V9r2L9XHCt7vJ0P/JI078arbAyKobhKJiJcK5ToIQJXXN0FmlKqLdw/UDx2OmHcHeTtuiINXMo256bGbTYuLgHLVD2WNDEepY1eAzsju7WHfOi40IpxSfbAt4zIFr3BM7SjC8WkXoz+9Gxz31z6VIXc0S2ctWRzIbptjcRSHrB6vYb7ql6o1sNEWyNKlJ52RaGE0UIcxO7xg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
+ header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6upfybPELbzHVKfDxljbgRD0nNEHohSZSsTjDaAKivw=;
+ b=mWt7eBISDnLiJ72sifttXiuRUTyeMNDKvJrX/5VgyOZyxkxi9HBRLWv9wai1uznxrOJ8yayXaTahnbcK6AGRfdJIa/Ta4cuOfyYnVQ6Wkq4QCZA/AnBtZAI7H20TVmUdE1o1Liz/r8Q9pWDSJy/GAac6rJNe2XBEsrQXTnKOFHoZOGlyQQwYz1JNBZHLGWhNvibMZwFeGtGF+qRJx4c+vQB8/pUqrOvIuILISVxIEpfv+2n4G8URZEYMuFSRuHXvZWZ2kLAk/z3FbeYAZNIrINkcmae/jawroa29DnjJssPlaEFgSuq9DpDB/gSe0iAKoeRHWZA/97WrrGJFIzCPPg==
+Received: from SEZPR06MB5269.apcprd06.prod.outlook.com (2603:1096:101:78::6)
+ by SEYPR06MB5015.apcprd06.prod.outlook.com (2603:1096:101:50::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.29; Sun, 7 May
+ 2023 02:21:11 +0000
+Received: from SEZPR06MB5269.apcprd06.prod.outlook.com
+ ([fe80::76d6:4828:7e80:2965]) by SEZPR06MB5269.apcprd06.prod.outlook.com
+ ([fe80::76d6:4828:7e80:2965%7]) with mapi id 15.20.6363.029; Sun, 7 May 2023
+ 02:21:10 +0000
+From:   Ryan Chen <ryan_chen@aspeedtech.com>
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+CC:     "jk@codeconstruct.com.au" <jk@codeconstruct.com.au>,
+        Brendan Higgins <brendan.higgins@linux.dev>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Wolfram Sang <wsa@kernel.org>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Jean Delvare <jdelvare@suse.de>,
+        William Zhang <william.zhang@broadcom.com>,
+        Tyrone Ting <kfting@nuvoton.com>,
+        Tharun Kumar P <tharunkumar.pasumarthi@microchip.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "=linux-kernel@vger.kernel.org" <=linux-kernel@vger.kernel.org>,
+        Andi Shyti <andi.shyti@kernel.org>
+Subject: RE: [PATCH v11 2/2] i2c: aspeed: support ast2600 i2c new register
+ mode driver
+Thread-Topic: [PATCH v11 2/2] i2c: aspeed: support ast2600 i2c new register
+ mode driver
+Thread-Index: AQHZexqquS1FAKmTS0msEvFixuRDUa9HdBoAgAJWy8A=
+Date:   Sun, 7 May 2023 02:21:10 +0000
+Message-ID: <SEZPR06MB526906C3DAFFE0A8FA924AA7F2709@SEZPR06MB5269.apcprd06.prod.outlook.com>
+References: <20230430041712.3247998-1-ryan_chen@aspeedtech.com>
+ <20230430041712.3247998-3-ryan_chen@aspeedtech.com>
+ <ZFFzRL/+73Ftix4Q@smile.fi.intel.com>
+In-Reply-To: <ZFFzRL/+73Ftix4Q@smile.fi.intel.com>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=aspeedtech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SEZPR06MB5269:EE_|SEYPR06MB5015:EE_
+x-ms-office365-filtering-correlation-id: b2d608a5-f32c-4f06-20d3-08db4ea1b8e8
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: TOvynNvd96ppo93orBpG/Zx9RrhKQEtt0NHIaH8JJZ6xk1Eq85ans/tLTxWKULSR05svMo4qUNt3WpZXfce5HMjG9nOJxQrxZnAXFV+tVTbCTz0LHuDZdNiDjPQ1PuciNWHO0iHPSasY6ZPwhQiS4rgMzRfS+xZqw2JUZaWNhO+dGf1P81MlbZRW97qZfpYFu8esITjbMr98JQZNHsjpZ/tYhymLScTZpuMTrDcsibLe49ZTIn9aSuY8ZPEoWqOgIUvp09qyXEpf8V24qxrh0D+VkPoYBUymcv7LgkqO8p/leRx6d1hHa15OAqvNlbqhCsh2WLza/pqiGZmogPod/DQZPlAJGodwvKrzM43hruxOKH9ya6ZU++7w+Ru83f4cA71tiCho6YP84VQOp7RgvlUz50NuVZmnIwidaCkWCH1uL3/gNVdASA038QicoQCYahyKMNJscCmw3UoLNefRQV/ASBCA2ZQGv2hviW5JM7UFiDzAA+o5cc5FR+FmNT71OWmhK6xZ1ZF9VakTqMox1QqWlRzqgjyc73tXTBUUKdN2blLC+oqkMG+ZQ31p0M3slFjnt9UqeSWUoVhdL6+YAB3tChNx2eNnJA3WpQbxBUQ=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SEZPR06MB5269.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(396003)(136003)(346002)(376002)(39830400003)(366004)(451199021)(41300700001)(2906002)(30864003)(54906003)(83380400001)(478600001)(122000001)(186003)(6506007)(26005)(33656002)(9686003)(316002)(86362001)(8936002)(8676002)(52536014)(7416002)(5660300002)(4326008)(38100700002)(71200400001)(55016003)(966005)(38070700005)(6916009)(7696005)(76116006)(66476007)(66556008)(66446008)(64756008)(66946007);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?wz+7ml4/ToA3x7GWojGLEvYzXl76UZNcjw/6J6ypf7ooQPXaveNGsNkDJlib?=
+ =?us-ascii?Q?E7+ff6KjE80eoqSG1s73MjPxxDYIVztUylCmvpjOzzkexQSV2mjchoqrsX8w?=
+ =?us-ascii?Q?sP+TJpycvPSPKg2jGtryItze/jWeNDs0CuaPW7GyP5MJgQbUXO5HrcjHgZp/?=
+ =?us-ascii?Q?RcqfmB+FhWAQ7dtaD2lKqFd6yCfUQnC9XI2RzVvmsAwwbjEp/WHtwRAftd3g?=
+ =?us-ascii?Q?ftlIjoCoH0DYPT9GfP1JJwj6irzqbrgLYoNP+TmpAqDIvwmkKk7zJUcNSRkK?=
+ =?us-ascii?Q?2LuLgTbX73M964sf76H+R1pc9BCeokVU44Z3NNfmNpwjt31iKbnZtCnc0gkw?=
+ =?us-ascii?Q?ML/4FWbKOsRCtE1x8y0phpTSqCHj1VQbjFZ+ws2+D9F6HQ8m3Fa89XicZgUj?=
+ =?us-ascii?Q?OtAvOL3aNfEF6TlDOxwD71B24Rx+wDkDwq5i4LVDZNEcYPacFkZkWGx/WgON?=
+ =?us-ascii?Q?1ZrBL5o/KWe6VPf2ZRSCdceVKfKpJ5TjSngOv3r6OJKXg3LeTwK+CIUFx9Nn?=
+ =?us-ascii?Q?awz/D6dwIT/EVCCIBlT4JOPkgCZgBU5aZdrXoU2RdF6KJk6pvyKltFGPtOWh?=
+ =?us-ascii?Q?yRLqQY0iQN8sD0AwvI7kfxjOvxYmEaxJ1O+ghM9DiFw5n0/93AWrES1aLXgx?=
+ =?us-ascii?Q?md4iXSRxBgs0eZXERsZdos1xQ5XnhIpXDZ6wvvhna92c+ClYffKH/2HoWZjy?=
+ =?us-ascii?Q?sOCBFVlpUGdh6NBnc8PsRl78HMxq4Xk1VanM2ZBfWhBXQZg0vRuYAw4NBifX?=
+ =?us-ascii?Q?h2yGeKA3OkuRToNJlPnpQpAHB3s7XdPE/Zw369tSzM4iyKBI+qZNTuqe+H26?=
+ =?us-ascii?Q?jTtDLiqfb+8owf3sfIGrchaRVgDIJ/QTrqAKj2JIBJZxTzgDvahkspXSb8/L?=
+ =?us-ascii?Q?f5XDKz5n+OaD1zezqHS7r93lP4oZuBStUW4vH/+9D+JVaeIh9AhqcPx9C9W/?=
+ =?us-ascii?Q?ANdZOTigU8D+F8Y9WA2UiJFp9KizOgkGdEoHhEHuvgQd29sDxXlFaDzootF2?=
+ =?us-ascii?Q?IAkkQFIgdgn+clAlcQPtLyxOXuExwyYEaXXGHe2bIDckq5wi6aufhq9+ZxA+?=
+ =?us-ascii?Q?LS3z0M2GlOq+cZvERkukOvXvWvOWcFaL8J2Ax2diTvbWVSVhYd2HobAHe3+Z?=
+ =?us-ascii?Q?o5RxRD8EewPDs5tgy7twEVk5RsseCRbp0uwIBl8vkcWpLSpnMTuDqHIMrdcp?=
+ =?us-ascii?Q?e4QHN/kYVWl4PZZakT3h6PoBuhJHkwLbLsO39Y7PdRX86A5EkSpCFV1nxurl?=
+ =?us-ascii?Q?YoyG+I3PCmMi/+sen2J6uLV+PyjM8DzrbULlCNw/s3+wX36D+DlTO/R0qZED?=
+ =?us-ascii?Q?bpFTpUOFy4TodyZkBsDW2irGkshJ0sFu7zCG35GAzW2lMJBfaxw6DW9SrPf7?=
+ =?us-ascii?Q?bJ0U8y4/4opDIvW+DUpLTcVfgxdYTgy4OBSS0U72IX2SkJQCNchwHArXF+Lh?=
+ =?us-ascii?Q?X2opByLiFebNNxjRRodXOSpvu8DU8siKWpxX/4NeNQuJsJEhTahG989HTogL?=
+ =?us-ascii?Q?7Eh9PUPYX6gqzloDx7CXxa+SyvHGwdq+TtJ2Jq2sApYXu7RrmMCQL/SC2BTM?=
+ =?us-ascii?Q?in3Ih93oSVrhTvWO+mlo0UCheTj3WNm6rtGxNPLE?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230506225849.2752103-2-alison@she-devel.com>
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-OriginatorOrg: aspeedtech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SEZPR06MB5269.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b2d608a5-f32c-4f06-20d3-08db4ea1b8e8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 May 2023 02:21:10.1608
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: kawdubgZlqE580GLXJhCf8MZdfb20Gkqadfj6BiqZ6GuPnsyCoZJJcl0xw7SqbWiyPhDRWHS8WZlmeWoTTQRDNKaJuIOhFlDoUz2eZqT0RM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR06MB5015
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hello Andy,
+>=20
+> On Sun, Apr 30, 2023 at 12:17:12PM +0800, Ryan Chen wrote:
+> > Add i2c new register mode driver to support AST2600 i2c new register
+> > mode. AST2600 i2c controller have legacy and new register mode. The
+> > new register mode have global register support 4 base clock for scl
+> > clock selection, and new clock divider mode. The i2c new register mode
+> > have separate register set to control i2c master and slave.
+>=20
+> ...
+>=20
+> > +#include <linux/clk.h>
+> > +#include <linux/err.h>
+> > +#include <linux/i2c.h>
+> > +#include <linux/io.h>
+> > +#include <linux/slab.h>
+> > +#include <linux/delay.h>
+> > +#include <linux/reset.h>
+> > +#include <linux/module.h>
+> > +#include <linux/interrupt.h>
+> > +#include <linux/completion.h>
+> > +#include <linux/of.h>
+> > +#include <linux/of_irq.h>
+> > +#include <linux/mfd/syscon.h>
+> > +#include <linux/regmap.h>
+> > +#include <linux/of_device.h>
+> > +#include <linux/dma-mapping.h>
+> > +#include <linux/i2c-smbus.h>
+>=20
+> Ordered?
+Update by alphabetical order
 
-kernel test robot noticed the following build errors:
+#include <linux/clk.h>
+#include <linux/completion.h>
+#include <linux/delay.h>
+#include <linux/dma-mapping.h>
+#include <linux/err.h>
+#include <linux/i2c.h>
+#include <linux/i2c-smbus.h>
+#include <linux/interrupt.h>
+#include <linux/io.h>
+#include <linux/mfd/syscon.h>
+#include <linux/module.h>
+#include <linux/of.h>
+#include <linux/of_device.h>
+#include <linux/of_irq.h>
+#include <linux/regmap.h>
+#include <linux/reset.h>
+#include <linux/slab.h>
+> ...
+>=20
+> > +#define AST2600_GLOBAL_INIT				\
+> > +			(AST2600_I2CG_CTRL_NEW_REG |	\
+> > +			AST2600_I2CG_CTRL_NEW_CLK_DIV)
+>=20
+> Make just a one TAB and put the last two lines on the single one.
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on linus/master v6.3 next-20230505]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Update by following.=20
 
-url:    https://github.com/intel-lab-lkp/linux/commits/alison-she-devel-com/dt-bindings-gnss-Add-U-Blox-Zed-F9/20230507-075854
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20230506225849.2752103-2-alison%40she-devel.com
-patch subject: [PATCH v3 1/2] gnss: ubx: customize serial device open to set U-Blox Zed-F9P baud
-config: i386-randconfig-a001 (https://download.01.org/0day-ci/archive/20230507/202305070938.8vWQFfIQ-lkp@intel.com/config)
-compiler: gcc-11 (Debian 11.3.0-12) 11.3.0
-reproduce (this is a W=1 build):
-        # https://github.com/intel-lab-lkp/linux/commit/637fad08b78d20ec3f1c07e6e37dc97f85eac7b9
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review alison-she-devel-com/dt-bindings-gnss-Add-U-Blox-Zed-F9/20230507-075854
-        git checkout 637fad08b78d20ec3f1c07e6e37dc97f85eac7b9
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        make W=1 O=build_dir ARCH=i386 olddefconfig
-        make W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/
+#define AST2600_GLOBAL_INIT		\
+	(AST2600_I2CG_CTRL_NEW_REG |	\
+	 AST2600_I2CG_CTRL_NEW_CLK_DIV)
+> ...
+>=20
+> > +#define I2CCG_DIV_CTRL 0xC6411208
+>=20
+> Is it decimal? Is it combination of bitfields? Can you add a comment what=
+ is
+> this magic?
+>=20
+This have been comment in previous line. I will move above of this magic co=
+de.
+/*
+ * APB clk : 100Mhz
+ * div	: scl		: baseclk [APB/((div/2) + 1)] : tBuf [1/bclk * 16]
+ * I2CG10[31:24] base clk4 for i2c auto recovery timeout counter (0xC6)
+ * I2CG10[23:16] base clk3 for Standard-mode (100Khz) min tBuf 4.7us
+ * 0x3c : 100.8Khz	: 3.225Mhz					  : 4.96us
+ * 0x3d : 99.2Khz	: 3.174Mhz					  : 5.04us
+ * 0x3e : 97.65Khz	: 3.125Mhz					  : 5.12us
+ * 0x40 : 97.75Khz	: 3.03Mhz					  : 5.28us
+ * 0x41 : 99.5Khz	: 2.98Mhz					  : 5.36us (default)
+ * I2CG10[15:8] base clk2 for Fast-mode (400Khz) min tBuf 1.3us
+ * 0x12 : 400Khz	: 10Mhz						  : 1.6us
+ * I2CG10[7:0] base clk1 for Fast-mode Plus (1Mhz) min tBuf 0.5us
+ * 0x08 : 1Mhz		: 20Mhz						  : 0.8us
+ */
+> ...
+>=20
+> > +struct ast2600_i2c_timing_table {
+> > +	u32 divisor;
+> > +	u32 timing;
+> > +};
+>=20
+> Is it even used?
+>=20
+Will remove.=20
+> ...
+>=20
+> > +enum xfer_mode {
+> > +	BYTE_MODE =3D 0,
+>=20
+> Why explicit assignment?
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202305070938.8vWQFfIQ-lkp@intel.com/
+Will remove.
+>=20
+> > +	BUFF_MODE,
+> > +	DMA_MODE,
+> > +};
+>=20
+> ...
+>=20
+> > +	base_clk1 =3D (i2c_bus->apb_clk * 10) / ((((clk_div_reg & 0xff) + 2) =
+* 10) /
+> 2);
+> > +	base_clk2 =3D (i2c_bus->apb_clk * 10) /
+> > +			(((((clk_div_reg >> 8) & 0xff) + 2) * 10) / 2);
+> > +	base_clk3 =3D (i2c_bus->apb_clk * 10) /
+> > +			(((((clk_div_reg >> 16) & 0xff) + 2) * 10) / 2);
+> > +	base_clk4 =3D (i2c_bus->apb_clk * 10) /
+> > +			(((((clk_div_reg >> 24) & 0xff) + 2) * 10) / 2);
+>=20
+> The same equation is used per each byte of clk_div_reg? Can it be rewritt=
+en to
+> avoid this and using loop, so you will have an array of base_clk to be fi=
+lled?
+>=20
+> Don't forget to use GENMASK().
+>=20
+Will update for loop.
+	for (i =3D 0; i < AST2600_NUM_CLK_DIV_BYTES; i++) {
+		u32 byte_val =3D (clk_div_reg >> (i * 8)) & GENMASK(7, 0);
+		base_clk[i] =3D (i2c_bus->apb_clk * 10) / ((byte_val + 2) * 5);
+	}
+> ...
+>=20
+> > +	if ((i2c_bus->apb_clk / i2c_bus->bus_frequency) <=3D 32) {
+> > +		baseclk_idx =3D 0;
+> > +		divisor =3D DIV_ROUND_UP(i2c_bus->apb_clk,
+> i2c_bus->bus_frequency);
+> > +	} else if ((base_clk1 / i2c_bus->bus_frequency) <=3D 32) {
+> > +		baseclk_idx =3D 1;
+> > +		divisor =3D DIV_ROUND_UP(base_clk1, i2c_bus->bus_frequency);
+> > +	} else if ((base_clk2 / i2c_bus->bus_frequency) <=3D 32) {
+> > +		baseclk_idx =3D 2;
+> > +		divisor =3D DIV_ROUND_UP(base_clk2, i2c_bus->bus_frequency);
+> > +	} else if ((base_clk3 / i2c_bus->bus_frequency) <=3D 32) {
+> > +		baseclk_idx =3D 3;
+> > +		divisor =3D DIV_ROUND_UP(base_clk3, i2c_bus->bus_frequency);
+>=20
+> Will be optimized with above suggestion, I believe.
 
-All errors (new ones prefixed by >>):
+Will up with previous
+>=20
+> > +	} else {
+> > +		baseclk_idx =3D 4;
+> > +		divisor =3D DIV_ROUND_UP(base_clk4, i2c_bus->bus_frequency);
+> > +		inc =3D 0;
+> > +		while ((divisor + inc) > 32) {
+> > +			inc |=3D divisor & 0x1;
+> > +			divisor >>=3D 1;
+> > +			baseclk_idx++;
+> > +		}
+> > +		divisor +=3D inc;
+>=20
+> I think the above loop can be rewritten to have better representation.
+>=20
+Will up with previous
 
-   drivers/gnss/ubx.c: In function 'ubx_probe':
->> drivers/gnss/ubx.c:303:42: error: 'ubx_of_match' undeclared (first use in this function)
-     303 |         data->features = of_match_device(ubx_of_match, &serdev->dev)->data;
-         |                                          ^~~~~~~~~~~~
-   drivers/gnss/ubx.c:303:42: note: each undeclared identifier is reported only once for each function it appears in
-   At top level:
-   drivers/gnss/ubx.c:176:12: warning: 'zed_f9p_serial_open' defined but not used [-Wunused-function]
-     176 | static int zed_f9p_serial_open(struct gnss_device *gdev)
-         |            ^~~~~~~~~~~~~~~~~~~
+> > +	}
+>=20
+> ...
+>=20
+> > +	baseclk_idx &=3D 0xf;
+>=20
+> GENMASK()?
+>=20
+Will update=20
+> ...
+>=20
+> > +	scl_low =3D ((divisor * 9) / 16) - 1;
+> > +	scl_low =3D min_t(u32, scl_low, 0xf);
+>=20
+> This can be done in one line. Also, why not 15?
+>=20
+> ...
+>=20
+> > +	scl_high =3D (divisor - scl_low - 2) & 0xf;
+>=20
+> GENMASK()?
+Will update
 
+>=20
+> ...
+>=20
+> > +	data =3D ((scl_high - 1) << 20) | (scl_high << 16) | (scl_low << 12) =
+|
+> > +(baseclk_idx);
+>=20
+> Too many parentheses.
+Update to=20
+data =3D ((scl_high - 1) << 20) | (scl_high << 16) | (scl_low << 12) | base=
+clk_idx;
 
-vim +/ubx_of_match +303 drivers/gnss/ubx.c
+>=20
+> ...
+>=20
+> > +	/* due to master slave is common buffer, so need force the master sto=
+p
+> not issue */
+> > +	if (readl(i2c_bus->reg_base + AST2600_I2CM_CMD_STS) & 0xffff) {
+>=20
+> GENMASK() ?
+>=20
+> > +		writel(0, i2c_bus->reg_base + AST2600_I2CM_CMD_STS);
+> > +		i2c_bus->cmd_err =3D -EBUSY;
+> > +		writel(0, i2c_bus->reg_base + AST2600_I2CC_BUFF_CTRL);
+> > +		complete(&i2c_bus->cmd_complete);
+> > +	}
+>=20
+> ...
+>=20
+> > +	/* send start */
+> > +	dev_dbg(i2c_bus->dev, "[%d] %sing %d byte%s %s 0x%02x\n",
+> > +		i2c_bus->msgs_index, msg->flags & I2C_M_RD ? "read" : "write",
+>=20
+> str_read_write() ?
+Sorry do you mean there have a function call str_read_write?
+Can you point me where it is for refer?
+>=20
+> > +		msg->len, msg->len > 1 ? "s" : "",
+> > +		msg->flags & I2C_M_RD ? "from" : "to", msg->addr);
+>=20
+> ...
+>=20
+> > +				for (i =3D 0; i < xfer_len; i++) {
+> > +					wbuf[i % 4] =3D msg->buf[i];
+> > +					if (i % 4 =3D=3D 3)
+> > +						writel(*(u32 *)wbuf, i2c_bus->buf_base + i - 3);
+>=20
+> Err.. There can be alignment issues.
 
-   278	
-   279	static int ubx_probe(struct serdev_device *serdev)
-   280	{
-   281		struct gnss_serial *gserial;
-   282		struct ubx_data *data;
-   283		struct gnss_operations *ubx_gnss_ops;
-   284		int ret;
-   285	
-   286		gserial = gnss_serial_allocate(serdev, sizeof(*data));
-   287		if (IS_ERR(gserial)) {
-   288			ret = PTR_ERR(gserial);
-   289			return ret;
-   290		}
-   291		ubx_gnss_ops = kzalloc(sizeof(struct gnss_operations), GFP_KERNEL);
-   292		if (IS_ERR(ubx_gnss_ops)) {
-   293			ret = PTR_ERR(ubx_gnss_ops);
-   294			return ret;
-   295		}
-   296	
-   297		gserial->ops = &ubx_gserial_ops;
-   298	
-   299		gserial->gdev->type = GNSS_TYPE_UBX;
-   300	
-   301		data = gnss_serial_get_drvdata(gserial);
-   302		data->is_configured = 0;
- > 303		data->features = of_match_device(ubx_of_match, &serdev->dev)->data;
-   304		if (data->features && data->features->open) {
-   305			ubx_gnss_ops->open  = data->features->open;
-   306			ubx_gnss_ops->close = gserial->gdev->ops->close;
-   307			ubx_gnss_ops->write_raw = gserial->gdev->ops->write_raw;
-   308			gserial->gdev->ops = ubx_gnss_ops;
-   309		}
-   310	
-   311		data->vcc = devm_regulator_get(&serdev->dev, "vcc");
-   312		if (IS_ERR(data->vcc)) {
-   313			ret = PTR_ERR(data->vcc);
-   314			goto err_free_gserial;
-   315		}
-   316	
-   317		data->v_bckp = devm_regulator_get_optional(&serdev->dev, "v-bckp");
-   318		if (IS_ERR(data->v_bckp)) {
-   319			ret = PTR_ERR(data->v_bckp);
-   320			if (ret == -ENODEV)
-   321				data->v_bckp = NULL;
-   322			else
-   323				goto err_free_gserial;
-   324		}
-   325	
-   326		if (data->v_bckp) {
-   327			ret = regulator_enable(data->v_bckp);
-   328			if (ret)
-   329				goto err_free_gserial;
-   330		}
-   331	
-   332		ret = gnss_serial_register(gserial);
-   333		if (ret)
-   334			goto err_disable_v_bckp;
-   335	
-   336		return 0;
-   337	
-   338	err_disable_v_bckp:
-   339		if (data->v_bckp)
-   340			regulator_disable(data->v_bckp);
-   341	err_free_gserial:
-   342		gnss_serial_free(gserial);
-   343	
-   344		return ret;
-   345	}
-   346	
+Will update
+>=20
+> > +				}
+> > +				if (--i % 4 !=3D 3)
+> > +					writel(*(u32 *)wbuf, i2c_bus->buf_base + i - (i % 4));
+>=20
+> The above code is ugly. Can you think about it and write in a better way?
+Sorry, that is because the register only support for 4 byte align write.
+That the reason I need put for byte write to 4 byte align write.
+>=20
+> ...
+>=20
+> > +				for (i =3D 0; i < xfer_len; i++) {
+> > +					wbuf[i % 4] =3D msg->buf[i2c_bus->master_xfer_cnt + i];
+> > +					if (i % 4 =3D=3D 3)
+> > +						writel(*(u32 *)wbuf, i2c_bus->buf_base + i - 3);
+> > +				}
+> > +				if (--i % 4 !=3D 3)
+> > +					writel(*(u32 *)wbuf, i2c_bus->buf_base + i - (i % 4));
+>=20
+> Ditto.
+Will update
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+>=20
+> ...
+>=20
+> Do you have similar code pieces? Why not doing it in a separate function =
+with
+> parameters?
+>=20
+I will think it to be MICRO function call.
+> ...
+>=20
+> > +	return ast2600_i2c_master_irq(i2c_bus) ? IRQ_HANDLED : IRQ_NONE;
+>=20
+> IRQ_RETVAL() ?
+Sorry, most return is handled or not handled.
+Do you mean replace it just " return IRQ_RETVAL(ret);"
+
+>=20
+> ...
+>=20
+> > +	writel(0xfffffff, i2c_bus->reg_base + AST2600_I2CM_ISR);
+>=20
+> GENMASK()
+>=20
+Will Update
+> ...
+>=20
+> > +	writel(0xfffffff, i2c_bus->reg_base + AST2600_I2CS_ISR);
+>=20
+> Ditto.
+Will Update
+>=20
+> > +	if (i2c_bus->mode =3D=3D BYTE_MODE) {
+> > +		writel(0xffff, i2c_bus->reg_base + AST2600_I2CS_IER);
+>=20
+> Ditto.
+Will Update
+>=20
+> > +	} else {
+> > +		/* Set interrupt generation of I2C slave controller */
+> > +		writel(AST2600_I2CS_PKT_DONE, i2c_bus->reg_base +
+> AST2600_I2CS_IER);
+> > +	}
+>=20
+> ...
+>=20
+> > +	WARN_ON(!i2c_bus->slave);
+>=20
+> Why?
+It can be removed.=20
+>=20
+> ...
+>=20
+> > +static const struct of_device_id ast2600_i2c_bus_of_table[] =3D {
+> > +	{
+> > +		.compatible =3D "aspeed,ast2600-i2cv2",
+> > +	},
+> > +	{}
+> > +};
+>=20
+> > +
+>=20
+> Redundant blank line.
+Will removed.
+>=20
+> > +MODULE_DEVICE_TABLE(of, ast2600_i2c_bus_of_table);
+>=20
+> ...
+>=20
+> > +	i2c_bus =3D devm_kzalloc(dev, sizeof(*i2c_bus), GFP_KERNEL);
+> > +	if (!i2c_bus)
+> > +		return dev_err_probe(dev, -ENOMEM, "no memory allocated\n");
+>=20
+> No. We do not print error message for ENOMEM.
+> You homework to find why.
+>=20
+Got it, will update.
+
+> ...
+>=20
+> > +	if (of_property_read_bool(pdev->dev.of_node, "aspeed,enable-dma"))
+>=20
+> device_property_read_bool() ?
+>=20
+> > +		i2c_bus->mode =3D DMA_MODE;
+>=20
+> ...
+>=20
+> > +	if (i2c_bus->mode =3D=3D BUFF_MODE) {
+> > +		res =3D platform_get_resource(pdev, IORESOURCE_MEM, 1);
+> > +		if (res && resource_size(res) >=3D 2) {
+> > +			i2c_bus->buf_base =3D devm_ioremap_resource(dev, res);
+> > +
+> > +			if (!IS_ERR_OR_NULL(i2c_bus->buf_base))
+> > +				i2c_bus->buf_size =3D resource_size(res) / 2;
+> > +		} else {
+> > +			i2c_bus->mode =3D BYTE_MODE;
+> > +		}
+> > +	}
+>=20
+> Can be done without additional checks and with a simple call to
+> devm_platform_ioremap_resource(). No?
+>=20
+Sorry, I can't catch your point, can you guide me more about it?
+> ...
+>=20
+> > +	/* i2c timeout counter: use base clk4 1Mhz,
+> > +	 * per unit: 1/(1000/4096) =3D 4096us
+> > +	 */
+>=20
+> Wrong multi-line style of the comment.
+>=20
+Will update to
+/*
+ * i2c timeout counter: use base clk4 1Mhz,
+ * per unit: 1/(1000/4096) =3D 4096us
+ */
+> ...
+>=20
+> > +	ret =3D of_property_read_u32(dev->of_node,
+> > +				   "i2c-scl-clk-low-timeout-us",
+> > +				   &i2c_bus->timeout);
+> > +	if (!ret)
+> > +		i2c_bus->timeout /=3D 4096;
+>=20
+> What is this and why I2C core timings (standard) can't be utilized here?
+It is scl clk timout setting. That have been discuss with following.
+https://lore.kernel.org/lkml/20230314221614.24205-1-andi.shyti@kernel.org/T=
+/
+
+>=20
+> ...
+>=20
+> > +	ret =3D of_property_read_u32(dev->of_node, "clock-frequency",
+> &i2c_bus->bus_frequency);
+> > +	if (ret < 0) {
+> > +		dev_warn(dev, "Could not read clock-frequency property\n");
+> > +		i2c_bus->bus_frequency =3D 100000;
+> > +	}
+>=20
+> There are macro for standard speeds. Moreover, there is a function to par=
+se
+> properties, no need to open code.
+>=20
+Will update
+ret =3D of_property_read_u32(dev->of_node, "clock-frequency", &bus_freq);
+if (ret < 0) {
+    dev_warn(dev, "Could not read clock-frequency property\n");
+    i2c_bus->bus_frequency =3D I2C_SPEED_STANDARD;
+} else {
+    i2c_bus->bus_frequency =3D bus_freq;
+}
+> ...
+>=20
+> > +	i2c_bus->adap.dev.of_node =3D dev->of_node;
+>=20
+> device_set_node()
+>=20
+> ...
+>=20
+> > +	if (of_property_read_bool(dev->of_node, "smbus-alert")) {
+>=20
+> Doesn't core have already support for this?
+Will remove it.=20
+>=20
+> > +		i2c_bus->alert_enable =3D true;
+> > +		i2c_bus->ara =3D i2c_new_smbus_alert_device(&i2c_bus->adap,
+> &i2c_bus->alert_data);
+> > +		if (!i2c_bus->ara)
+> > +			dev_warn(dev, "Failed to register ARA client\n");
+> > +
+> > +		writel(AST2600_I2CM_PKT_DONE | AST2600_I2CM_BUS_RECOVER |
+> AST2600_I2CM_SMBUS_ALT,
+> > +		       i2c_bus->reg_base + AST2600_I2CM_IER);
+> > +	} else {
+> > +		i2c_bus->alert_enable =3D false;
+> > +		/* Set interrupt generation of I2C master controller */
+> > +		writel(AST2600_I2CM_PKT_DONE | AST2600_I2CM_BUS_RECOVER,
+> > +		       i2c_bus->reg_base + AST2600_I2CM_IER);
+> > +	}
+>=20
+> ...
+>=20
+> > +	dev_info(dev, "%s [%d]: adapter [%d khz] mode [%d]\n",
+> > +		 dev->of_node->name, i2c_bus->adap.nr, i2c_bus->bus_frequency /
+> 1000,
+> > +		 i2c_bus->mode);
+>=20
+> Useless noise.
+>=20
+Will remove it.
+
+Thanks your review.
+
+Best Regards,
+Ryan Chen.
