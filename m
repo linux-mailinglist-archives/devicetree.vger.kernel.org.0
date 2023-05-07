@@ -2,181 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E2636F976F
-	for <lists+devicetree@lfdr.de>; Sun,  7 May 2023 10:07:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBDC16F9780
+	for <lists+devicetree@lfdr.de>; Sun,  7 May 2023 10:14:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231140AbjEGIHR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 May 2023 04:07:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50272 "EHLO
+        id S229872AbjEGIOn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 May 2023 04:14:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230526AbjEGIHQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 May 2023 04:07:16 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2229512E8B
-        for <devicetree@vger.kernel.org>; Sun,  7 May 2023 01:07:15 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-965ab8ed1fcso612697566b.2
-        for <devicetree@vger.kernel.org>; Sun, 07 May 2023 01:07:15 -0700 (PDT)
+        with ESMTP id S229670AbjEGIOm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 May 2023 04:14:42 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8E31EE
+        for <devicetree@vger.kernel.org>; Sun,  7 May 2023 01:14:40 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-50bd875398dso5166927a12.1
+        for <devicetree@vger.kernel.org>; Sun, 07 May 2023 01:14:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683446833; x=1686038833;
+        d=linaro.org; s=google; t=1683447279; x=1686039279;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=BPCDpA9ON3RbTUJjWYPJh7fPUugTZXUrag6brzxvZjU=;
-        b=MV1Rn4JZg0E/0wPwKg5LUYpXfczpW2IBak6tuxhJqYghHy2Ci7zcXALAgkdwzXHivH
-         iChtB/zp5ys3zXL1LTQTvG2GQ/MQWby7w/z7u/+rIC4GEH3rKuQuimN+J6QiZgIJAENS
-         eG6Xk3inB3pjrbdwutVCrtOVObNPScCNj4rYf+BPT9DqtYjUAoVV1RG6m3ktHYlmiesu
-         7KKtwufgRgeWzvXEf0Jx4PxuLjRimgbyRcWZmMXQJXx7uZv1Jldti+/wxzVYKVqnC1hZ
-         VswtVxRuq0MaDUGThOPLg3mvbnqTeIKtujJ9S6mDxt32ozApa/AgD8TQBLXiqlrCCCav
-         WZcQ==
+        bh=BxVB0qLFtd7CR9jihrYp0GNvnYgnGOXU77sZFAD78Ko=;
+        b=lQ8wbMLMxVi1VNeZmvEyGYzKpbgaxtJnY28HvxU+BEBpZ8FeBnSDRICXtW3enFRIZA
+         pr/+2Dbc42LGRxoVvPzwJ5MB2NCNxi6pnP6yDOw5nkjObjBpevlnW9dKBoPn/K1SXCNT
+         pkhW5N+8wz+VhFeGfFiIIRLNp+7qS/lEHO9IdaIr/LJt5W3vVc/ac9xyDy6bHIbnAhwP
+         LPOExGfZozKbRdkDhUGQScJcMXCnWvVSJKZIfus1RCMuOw9jTFa5bLdAwgZ0XGBmXNHJ
+         7Po5KPeAc60TPxTfQhevXE2pqJwaxwip5zQNhfxwMTO9LZDKT9D1zxUgiob69Al82Kcc
+         JqLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683446833; x=1686038833;
+        d=1e100.net; s=20221208; t=1683447279; x=1686039279;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BPCDpA9ON3RbTUJjWYPJh7fPUugTZXUrag6brzxvZjU=;
-        b=MGfa7ikqLxBrtYdFQIUyyvKCV9o0yzVQRo9z1J0U8Z8yHuU3TsK6j4sewOo7Z8z3cB
-         GahS/Sd6FggFkO+MUxk6rKQW38jluy30yyieCqyvCxvRSVhpnG1BIPR9/IxMkbZbQEp5
-         Adcdbi3EdZiULz8LWhLTZRkEcIybQIm9QaxBpnvW84SC4jRF+Ft9ZzGnAoesc05U3lJa
-         W3+4tZt8NOISVaIVAEOlRRlMhGpIgtMUolyjTlWTjDOlHKne+KVa/a1lXSLPfQxzlNl8
-         1fwzqrQDDOVQ5hDiYlOwCLCtstBHTv7CbKWvm3eEZWnXA4N7MXKRH/+aIWyL24rtC3tx
-         fUfg==
-X-Gm-Message-State: AC+VfDwCoFSQtnOXd3QhiTHfRYPblecNmoNpnXV+JFYQPn46UH4XXRzy
-        P6AwxWcwU3/IY4SOOYkbKHu8ww==
-X-Google-Smtp-Source: ACHHUZ4Hh4C+4JQeDZol3Tut9oWeVm/8kkfUix9/AkgjyNscJVuDTqOo0Wy0E77C60kSrnGRaSfZnA==
-X-Received: by 2002:a17:907:9806:b0:958:5817:1e08 with SMTP id ji6-20020a170907980600b0095858171e08mr6362425ejc.11.1683446833604;
-        Sun, 07 May 2023 01:07:13 -0700 (PDT)
+        bh=BxVB0qLFtd7CR9jihrYp0GNvnYgnGOXU77sZFAD78Ko=;
+        b=E2HIXl4jBIzxdIN3u36HJWLo2i3xffmHTorWpK90mAgA+k7HICYc5RUVG781bYKwGH
+         23gOmFoMgaPe11d7YwlIdkgkJXKo8aNfX+gYm9TqEFCLUPpLOTV4az/pUFSLWZRZJCog
+         WJEdi+8Y84tHmqNbSlXDh0d3zL/9P4c8PRmpJMQsR9wkxFtD5PWhaOey8yo9Q3P07yR2
+         ZM0uq4IK05F3pmjjWY92RtR7K2KsKMXq4vDEbUdP4XCEDlEeQGHCsoVrQcMs8tPi2QGV
+         eM3osFdZREcnAzV6Qh8Ff7aU5cQZjCQq7hBtBOD/m8+6iwU69LlrLYvth4KvJFS9gC5w
+         34zg==
+X-Gm-Message-State: AC+VfDyOfyWN+W+W0FwZtmAG8JhOXkE1QJsE6hrDMbNvy4qi/CHS/Juv
+        AadDaBwHaSBhvV5H+N5ffo1H3A==
+X-Google-Smtp-Source: ACHHUZ6ylY1jyYRHzSyEND1iTejr0FcmzoLeOjgWmgkYfOXU4kIRdEKQmFEebU76i+rY1fPhrd2i9Q==
+X-Received: by 2002:a17:907:9444:b0:966:5730:c3fe with SMTP id dl4-20020a170907944400b009665730c3femr377381ejc.52.1683447279207;
+        Sun, 07 May 2023 01:14:39 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:183b:950f:b4d5:135a? ([2a02:810d:15c0:828:183b:950f:b4d5:135a])
-        by smtp.gmail.com with ESMTPSA id ks22-20020a170906f85600b0094f67ea6598sm3343513ejb.193.2023.05.07.01.07.12
+        by smtp.gmail.com with ESMTPSA id h13-20020a1709070b0d00b0094efdfe60dcsm3287860ejl.206.2023.05.07.01.14.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 07 May 2023 01:07:12 -0700 (PDT)
-Message-ID: <32aa46df-9ed5-7d2a-868f-a36414f54534@linaro.org>
-Date:   Sun, 7 May 2023 10:07:11 +0200
+        Sun, 07 May 2023 01:14:38 -0700 (PDT)
+Message-ID: <31147c6d-e77a-8abd-0b55-73ead2385bb9@linaro.org>
+Date:   Sun, 7 May 2023 10:14:37 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
-Subject: Re: [PATCH v2] dt-bindings: usb: Add binding for Microchip usb5744
- hub controller
+Subject: Re: [PATCH v3 03/12] dt-bindings: display/msm: sc7180-dpu: Describe
+ SM6350 and SM6375
 Content-Language: en-US
-To:     Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
-        monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com,
-        ilias.apalodimas@linaro.org
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Piyush Mehta <piyush.mehta@amd.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org
-References: <dd31f987316fb2739644628b5840a6d447b5a587.1683293125.git.michal.simek@amd.com>
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux.dev
+References: <20230411-topic-straitlagoon_mdss-v3-0-9837d6b3516d@linaro.org>
+ <20230411-topic-straitlagoon_mdss-v3-3-9837d6b3516d@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <dd31f987316fb2739644628b5840a6d447b5a587.1683293125.git.michal.simek@amd.com>
+In-Reply-To: <20230411-topic-straitlagoon_mdss-v3-3-9837d6b3516d@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/05/2023 15:25, Michal Simek wrote:
-> The Microchip usb5744 is a SS/HS USB 3.0 hub controller with 4 ports.
-> The binding describes USB related aspects of the USB5744 hub, it as
-> well cover the option of connecting the controller as an i2c slave.
-> When i2c interface is connected hub needs to be initialized first.
-> Hub itself has fixed i2c address 0x2D but hardcoding address is not good
-> idea because address can be shifted by i2c address translator in the
-> middle.
+On 05/05/2023 23:40, Konrad Dybcio wrote:
+> SC7180, SM6350 and SM6375 use a rather similar hw setup for DPU, with
+> the main exception being that the last one requires an additional
+> throttle clock.
 > 
-> Signed-off-by: Piyush Mehta <piyush.mehta@amd.com>
-> Signed-off-by: Michal Simek <michal.simek@amd.com>
+> It is not well understood yet, but failing to toggle it on makes the
+> display hardware stall and not output any frames.
+> 
+> Document SM6350 and SM6375 DPU.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
+>  .../bindings/display/msm/qcom,sc7180-dpu.yaml      | 23 +++++++++++++++++++++-
+>  1 file changed, 22 insertions(+), 1 deletion(-)
 > 
-> Changes in v2:
-> - fix i2c-bus property
-> - swap usb2.0/3.0 compatible strings
-> - fix indentation in example (4 spaces)
-> - add new i2c node with microchip,usb5744 compatible property
-> 
-> It looks like that usb8041 has also an optional i2c interface which is not
-> covered. But it is mentioned at commit 40e58a8a7ca6 ("dt-bindings: usb:
-> Add binding for TI USB8041 hub controller").
-> 
-> i2c-bus name property was suggested by Rob at
-> https://lore.kernel.org/all/CAL_JsqJedhX6typpUKbnzV7CLK6UZVjq3CyG9iY_j5DLPqvVdw@mail.gmail.com/
-> and
-> https://lore.kernel.org/all/CAL_JsqJZBbu+UXqUNdZwg-uv0PAsNg55026PTwhKr5wQtxCjVQ@mail.gmail.com/
-> 
-> the question is if adding address like this is acceptable.
-> But it must be specified.
-> 
-> Driver will follow based on final dt-binding.
-> 
-> $ref: usb-device.yaml# should be also added but have no idea how to wire it
-> up to be applied only on usb node not i2c one.
-> 
-> ---
->  .../bindings/usb/microchip,usb5744.yaml       | 110 ++++++++++++++++++
->  1 file changed, 110 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml b/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
-> new file mode 100644
-> index 000000000000..7e0a3472ea95
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
-> @@ -0,0 +1,110 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/usb/microchip,usb5744.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microchip USB5744 4-port Hub Controller
-> +
-> +description:
-> +  Microchip's USB5744 SmartHubTM IC is a 4 port, SuperSpeed (SS)/Hi-Speed (HS),
-> +  low power, low pin count configurable and fully compliant with the USB 3.1
-> +  Gen 1 specification. The USB5744 also supports Full Speed (FS) and Low Speed
-> +  (LS) USB signaling, offering complete coverage of all defined USB operating
-> +  speeds. The new SuperSpeed hubs operate in parallel with the USB 2.0
-> +  controller, so 5 Gbps SuperSpeed data transfers are not affected by slower
-> +  USB 2.0 traffic.
-> +
-> +maintainers:
-> +  - Piyush Mehta <piyush.mehta@amd.com>
-> +  - Michal Simek <michal.simek@amd.com>
-> +
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        const: microchip,usb5744
-> +  required:
-> +    - compatible
-
-I don't understand why do you need this select. It basically disables
-schema matching for other ones.
-
-> +
-> +properties:
-> +  compatible:
+> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sc7180-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sc7180-dpu.yaml
+> index 1fb8321d9ee8..630b11480496 100644
+> --- a/Documentation/devicetree/bindings/display/msm/qcom,sc7180-dpu.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sc7180-dpu.yaml
+> @@ -13,7 +13,10 @@ $ref: /schemas/display/msm/dpu-common.yaml#
+>  
+>  properties:
+>    compatible:
+> -    const: qcom,sc7180-dpu
 > +    enum:
-> +      - usb424,2744
-> +      - usb424,5744
-> +      - microchip,usb5744
-> +
-> +  reg: true
+> +      - qcom,sc7180-dpu
+> +      - qcom,sm6350-dpu
+> +      - qcom,sm6375-dpu
+>  
+>    reg:
+>      items:
+> @@ -26,6 +29,7 @@ properties:
+>        - const: vbif
+>  
+>    clocks:
+> +    minItems: 6
+>      items:
+>        - description: Display hf axi clock
+>        - description: Display ahb clock
+> @@ -33,8 +37,10 @@ properties:
+>        - description: Display lut clock
+>        - description: Display core clock
+>        - description: Display vsync clock
+> +      - description: Display core throttle clock
+>  
+>    clock-names:
+> +    minItems: 6
+>      items:
+>        - const: bus
+>        - const: iface
+> @@ -42,6 +48,7 @@ properties:
+>        - const: lut
+>        - const: core
+>        - const: vsync
+> +      - const: throttle
+>  
+>  required:
+>    - compatible
+> @@ -52,6 +59,20 @@ required:
+>  
+>  unevaluatedProperties: false
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          const: qcom,sm6375-dpu
 
-maxItems: 1
+And the two other variants? Is the clock valid there or not? If not
+really, then you should have else: with maxItems: 6.
 
 > +
-> +required:
-> +  - compatible
-> +  - reg
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 7
 > +
+> +        clock-names:
+> +          minItems: 7
 
+If there is going new version - put allOf: before
+unevaluatedProperties:. Otherwise it is fine.
+
+> +
+>  examples:
+>    - |
+>      #include <dt-bindings/clock/qcom,dispcc-sc7180.h>
+> 
 
 Best regards,
 Krzysztof
