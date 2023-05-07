@@ -2,134 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 557866F975D
-	for <lists+devicetree@lfdr.de>; Sun,  7 May 2023 09:44:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F1EE6F976B
+	for <lists+devicetree@lfdr.de>; Sun,  7 May 2023 10:04:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230415AbjEGHoF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 May 2023 03:44:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46064 "EHLO
+        id S230452AbjEGIEV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 May 2023 04:04:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230387AbjEGHoF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 May 2023 03:44:05 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 418BF13868
-        for <devicetree@vger.kernel.org>; Sun,  7 May 2023 00:44:01 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-94a34a14a54so685801766b.1
-        for <devicetree@vger.kernel.org>; Sun, 07 May 2023 00:44:01 -0700 (PDT)
+        with ESMTP id S229619AbjEGIET (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 May 2023 04:04:19 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE67D11B54
+        for <devicetree@vger.kernel.org>; Sun,  7 May 2023 01:04:17 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-50bdd7b229cso6542581a12.0
+        for <devicetree@vger.kernel.org>; Sun, 07 May 2023 01:04:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683445440; x=1686037440;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1683446656; x=1686038656;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=8X7J0rVubekG+DrRrQuBm6C1ywPBgjwPpumVcwGX+HQ=;
-        b=rWcUEwlQJpV+ycrxz/+0KJoAxqQmMQrWo5GfzIqEGoPRyDBz2d+L+9XPBTpuPW1BEE
-         7inHPMTKghSfeJUSlzMt86K5tsOSxTMXP5xgRr5v6RQZr+XoSBXOqu0tVMfEK8indjkg
-         amJt97l/vCXBHr5voY09o91QhrNvuqv/COZGiDHzxQQlFvzA7LT7lr6Pn+MdmiDIt81r
-         SmO8prh7tQTVsEGg7Iws7vQJGL1joiSAYJG8VVopngkhm0M4Ed4Mr4vSpYHTU5riPO9C
-         6jrsbrvwvYYrMbkqolOpSF9y+nTjtI7KUM28I9V8gQNZCiZ2roM+GHncS/R2ljPwVSZg
-         qmNg==
+        bh=BzBNd9mB5wevctFzDqblL5y/HaLP/sCPOrJ09H89d90=;
+        b=MVCuZl35RQPJZR23/XADAkTbybkeimBpPbbp8bfmqQUcSLKaLhQuJZK302ughK2VIb
+         DFudRcnVlJvbpmMiSjCbF+v0h7V6T8OO7vVtU3SHmAEuprimh+U7b/Yds9oS1ZbK0o/q
+         DNi/lkutV2coLlKQkgwWyKcloMOrme0Eil4ngwyrNn2isXzxQYbE5mTXI9vAwsnQ8Wq5
+         8JTQoVE2357eL6P2AuWcGRSyq3VzGKG1FbrR+Db6W0kFmkSbB+FovQ5FqmJHct/pkZuj
+         YJJS5nx+2+pKo5z5u3Jk4q0EoisFMZ06elsOKvYQUXS0zKokx5ZUt5Xs5gwmIWWT0KoT
+         uaYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683445440; x=1686037440;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1683446656; x=1686038656;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8X7J0rVubekG+DrRrQuBm6C1ywPBgjwPpumVcwGX+HQ=;
-        b=ReFArSSGVniCbO8OBxt82bsQJf4uYvZ6H2y258yQ7WkxRKtAWtEVsGb6aV0CzO4IOq
-         x58QJOLpSpFcDRKY9Bp53SIMquYskN5ztnnnxSLjwBCmyRGQkUwJZSSnFwcmguvbyigS
-         dxVgHSka31q/DiJwxIWUpBD1OT32wShaikXCJS+1pAi7fB6mTgZ4sZZIlqr3uz4QJY+x
-         3kchooBy3LjdvQXhN4prLrZPBd0SzBttEpSeI89ZQtJoTXrCX4QeJGARcAoOKQus0FFt
-         NjwxUxc27bwlJoBLIsUYZ+j2qa83ih0QOQyXGQ1G5q20Mpy6ggACQXsq/MFNFzFYoseb
-         nr+g==
-X-Gm-Message-State: AC+VfDxwCTjKyslb/VTduaq4rEfmBOgfTOCUwrp5sBDt001u75z5tHxK
-        K+0vPSBmNxIeMVrzbde4h3926w==
-X-Google-Smtp-Source: ACHHUZ5JGEdSovi3dxyHchKR/hKO87oq5KWsTOg10yOhk2jCXZqX6mRsswt41WqNAgRTvqy5CBpc2A==
-X-Received: by 2002:a17:907:360c:b0:94a:845c:3528 with SMTP id bk12-20020a170907360c00b0094a845c3528mr5491362ejc.45.1683445439836;
-        Sun, 07 May 2023 00:43:59 -0700 (PDT)
+        bh=BzBNd9mB5wevctFzDqblL5y/HaLP/sCPOrJ09H89d90=;
+        b=e9SB09YJk/9YWw+X6lCeUjCW+J5TMJI0MC46uIq/7llR1V0HMSJnhm60tNbQ83hevC
+         M7vZA2Ib5dWaa3L49VW1sToLFxCNCANS5HTlKFq1lVP77Yopy9qPhMWAGT6VhKMhsdu3
+         Uz+KAU5tcfZHr7tDC8Adm8+vJWPvtWfF48/1s+yNg70yRkZSsUg1q++U8XMwsF6iDRhT
+         apL7ZK3ZaFw00eFYRb///TKHmQg9vQ9QGfGac8Wu63Zf/mdo6cMe1A7GykEBDTTHE//3
+         nlsenEtfFKEaqYNpI5ftqPALXM628mSSj81vGYaTzgImOOy+fmx7gbC4skU91pruK11k
+         zrOA==
+X-Gm-Message-State: AC+VfDySE8DHgld+JzSi9ywkYnLxcpwaR+imZUcvsEEgmxIu9i2h+FBA
+        rRwm9POi7KsT9jKlSbyfjwn/mg==
+X-Google-Smtp-Source: ACHHUZ4vXTIy9jC51n4f4/F0174cdi8EwNzCcxOibShQXTs4ABy9qn7IdCrVQ2DUkSbtGpqA2QsFeA==
+X-Received: by 2002:aa7:dd4e:0:b0:50b:fc7f:b281 with SMTP id o14-20020aa7dd4e000000b0050bfc7fb281mr5478735edw.1.1683446656431;
+        Sun, 07 May 2023 01:04:16 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:183b:950f:b4d5:135a? ([2a02:810d:15c0:828:183b:950f:b4d5:135a])
-        by smtp.gmail.com with ESMTPSA id g4-20020a170906348400b009659cdb2f98sm3319965ejb.23.2023.05.07.00.43.58
+        by smtp.gmail.com with ESMTPSA id d12-20020a056402516c00b0050bd2f16ef5sm4861843ede.84.2023.05.07.01.04.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 07 May 2023 00:43:59 -0700 (PDT)
-Message-ID: <ec31e502-6b40-ca5d-1294-2e5f174a37b9@linaro.org>
-Date:   Sun, 7 May 2023 09:43:58 +0200
+        Sun, 07 May 2023 01:04:15 -0700 (PDT)
+Message-ID: <99343862-6b6a-30ba-40e5-7f984434b1dc@linaro.org>
+Date:   Sun, 7 May 2023 10:04:13 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
-Subject: Re: [PATCH v3 1/5] dt-bindings: spi: sun6i: add DT bindings for
- Allwinner R329/D1/R528/T113s SPI
-Content-Language: en-US
-To:     Maksim Kiselev <bigunclemax@gmail.com>,
-        Andre Przywara <andre.przywara@arm.com>
-Cc:     Icenowy Zheng <icenowy@aosc.io>, Mark Brown <broonie@kernel.org>,
+Subject: Re: [PATCH v4 2/3] dt-bindings: arm: Add Coresight Dummy Trace
+To:     Hao Zhang <quic_hazha@quicinc.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        Leo Yan <leo.yan@linaro.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Konrad Dybcio <konradybcio@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
+        Andy Gross <agross@kernel.org>,
         Paul Walmsley <paul.walmsley@sifive.com>,
         Palmer Dabbelt <palmer@dabbelt.com>,
         Albert Ou <aou@eecs.berkeley.edu>,
-        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-        Maxime Ripard <mripard@kernel.org>, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-References: <20230506232616.1792109-1-bigunclemax@gmail.com>
- <20230506232616.1792109-2-bigunclemax@gmail.com>
+        Jonathan Corbet <corbet@lwn.net>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Jinlong Mao <quic_jinlmao@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Tao Zhang <quic_taozha@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        linux-doc@vger.kernel.org
+References: <20230505092422.32217-1-quic_hazha@quicinc.com>
+ <20230505092422.32217-3-quic_hazha@quicinc.com>
+Content-Language: en-US
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230506232616.1792109-2-bigunclemax@gmail.com>
+In-Reply-To: <20230505092422.32217-3-quic_hazha@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/05/2023 01:26, Maksim Kiselev wrote:
-> Listed above Allwinner SoCs has two SPI controllers. First is the regular
-> SPI controller and the second one has additional functionality for
-> MIPI-DBI Type C.
+On 05/05/2023 11:24, Hao Zhang wrote:
+> Add new coresight-dummy.yaml file describing the bindings required
+> to define coresight dummy trace in the device trees.
 > 
-> Add compatible strings for these controllers
-> 
-> Signed-off-by: Maksim Kiselev <bigunclemax@gmail.com>
+> Signed-off-by: Hao Zhang <quic_hazha@quicinc.com>
 > ---
->  .../devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml   | 7 +++++++
->  1 file changed, 7 insertions(+)
+>  .../bindings/arm/arm,coresight-dummy.yaml     | 102 ++++++++++++++++++
+>  1 file changed, 102 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/arm,coresight-dummy.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml b/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml
-> index de36c6a34a0f..807dde457e3b 100644
-> --- a/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml
-> +++ b/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml
-> @@ -21,6 +21,7 @@ properties:
->      oneOf:
->        - const: allwinner,sun6i-a31-spi
->        - const: allwinner,sun8i-h3-spi
-> +      - const: allwinner,sun50i-r329-spi
+> diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-dummy.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-dummy.yaml
+> new file mode 100644
+> index 000000000000..126518863eea
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/arm,coresight-dummy.yaml
+> @@ -0,0 +1,102 @@
+> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/arm,coresight-dummy.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ARM Coresight Dummy component
+> +
+> +description: |
+> +  Coresight Dummy Trace Module is for the specific devices that kernel
+> +  don't have permission to access or configure, e.g., CoreSight TPDMs
+> +  on Qualcomm platforms. So there need driver to register dummy devices
+> +  as Coresight devices. It may also be used to define components that
+> +  may not have any programming interfaces (e.g, static links), so that
+> +  paths can be established in the driver. Provide Coresight API for
+> +  dummy device operations, such as enabling and disabling dummy devices.
+> +  Build the Coresight path for dummy sink or dummy source for debugging.
+> +
+> +  The primary use case of the coresight dummy is to build path in kernel
+> +  side for dummy sink and dummy source.
+> +
+> +maintainers:
+> +  - Mao Jinlong <quic_jinlmao@quicinc.com>
+> +  - Tao Zhang <quic_taozha@quicinc.com>
+> +  - Hao Zhang <quic_hazha@quicinc.com>
+> +  - Yuanfang Zhang <quic_yuanfang@quicinc.com>
+> +
+> +properties:
+> +  compatible:
+> +    items:
 
-Keep the list ordered.
+You were asked to drop oneOf, not to replace with items. Drop items.
+Drop oneOf. It's just enum.
 
->        - items:
->            - enum:
->                - allwinner,sun8i-r40-spi
-> @@ -28,6 +29,12 @@ properties:
->                - allwinner,sun50i-h616-spi
->                - allwinner,suniv-f1c100s-spi
->            - const: allwinner,sun8i-h3-spi
-> +      - items:
-> +          - enum:
-> +              - allwinner,sun20i-d1-spi
-> +              - allwinner,sun20i-d1-spi-dbi
-> +              - allwinner,sun50i-r329-spi-dbi
-> +          - const: allwinner,sun50i-r329-spi
+> +      - enum:
+> +          - arm,coresight-dummy-sink
+> +          - arm,coresight-dummy-source
+> +
+> +  out-ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port:
+> +        description: Output connection from the source to Coresight
+> +          Trace bus.
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +
+> +  in-ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port:
+> +        description: Input connection from the Coresight Trace bus to
+> +          dummy sink, such as Embedded USB debugger(EUD).
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +
+> +required:
+> +  - compatible
+> +
+> +if:
+> +  # If the compatible contains the below value
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        const: arm,coresight-dummy-sink
+> +
+> +then:
+> +  required:
+> +    - in-ports
+> +
+> +else:
+> +  required:
+> +    - out-ports
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+No improvements. Implement Rob's comments.
 
 Best regards,
 Krzysztof
