@@ -2,102 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DE806F9AB5
-	for <lists+devicetree@lfdr.de>; Sun,  7 May 2023 19:46:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09F7D6F9AE8
+	for <lists+devicetree@lfdr.de>; Sun,  7 May 2023 20:34:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229757AbjEGRqN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 May 2023 13:46:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34828 "EHLO
+        id S229948AbjEGSeP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 May 2023 14:34:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229619AbjEGRqL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 May 2023 13:46:11 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79DA713289
-        for <devicetree@vger.kernel.org>; Sun,  7 May 2023 10:45:47 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-956ff2399c9so694251166b.3
-        for <devicetree@vger.kernel.org>; Sun, 07 May 2023 10:45:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683481546; x=1686073546;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=dBqbH1+Z/yG5/u58VKF5l00D91rsZqi2F+V+kyJbRdc=;
-        b=RpDW5Vi3uTdoyCjyi53VzpkqVQaNrS40tYTDxbxN9kUakAZNq4qVOJTSuh3RHz/ggm
-         KU3J2EdpqTqZD+IOwwMKe2M6gpQKXQKMBnJ1Y47q/bVip9GCzTMtKAaaGyyuvF7MQOT3
-         YjK/D+sSTPW/vNKoSlrbrCxS7ZQ4WVmki1Xheqok/VhjyNk4hmdRYYUogfHOU8vKzh8f
-         MV/ULu7RRUnxrspXFf/YirAreJJVzhUpmOZnyAaxVr+4JxUxYJPDsbqSEnKxk7J2nWA/
-         yAwu2DhwRn0XC+XNC+a1kx5nHBJIen7vznQiujaiFyhqq54uJMDmDyRbKLduUk+KWjgI
-         e4YA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683481546; x=1686073546;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=dBqbH1+Z/yG5/u58VKF5l00D91rsZqi2F+V+kyJbRdc=;
-        b=YYKFe8b+4C07/7aGctOe+9PeovNdn2nUCASnENNGy8MZco9xtgsnyR1jPdpqe9y9WU
-         moEsDSXur9EBKWHfKCQqSiZ5nAT1N/0B4DupBX2U2aGXdZqOFw/ecFCu6xt7RWRqTRhB
-         6UeNCR7yuqWcl2DSvi05JtUTCmptVmoTtRT/KGq9Lf+1gdp1F8L9Ky0AoFY9koyIsBTm
-         kjx3BDR1N9PI68yZLdCyUV79cFThu8MJaRrsHQeIQ/OfcCgCDhm1IEt/Rw+8fiKQlZXE
-         HsIpt8MipMdl3ugdzgVunPGVrdmpgx9DfI63lHgPU/HB2PZXp8e3Khq/IhXqOBPpFKP4
-         dL6Q==
-X-Gm-Message-State: AC+VfDw5tNyHDoremaKyFZDqX+PhR/dBXm+nhlyx7EFG/VtBhTelch9H
-        ZqC0Troni2mVFZNRQD+KoLVvDw==
-X-Google-Smtp-Source: ACHHUZ5nFUVIAjPvidnpQiyRlIFWqFXgGzJU+QS95ur+bwGnLQ0VHfJA9T3y/aUGsZ06MePHXwR8gg==
-X-Received: by 2002:a17:907:2d0b:b0:94a:6953:602d with SMTP id gs11-20020a1709072d0b00b0094a6953602dmr8408613ejc.37.1683481545978;
-        Sun, 07 May 2023 10:45:45 -0700 (PDT)
-Received: from krzk-bin.. ([2a02:810d:15c0:828:1757:b51a:9965:e81])
-        by smtp.gmail.com with ESMTPSA id d7-20020a1709067a0700b009662d0e637esm1828849ejo.155.2023.05.07.10.45.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 07 May 2023 10:45:45 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S229460AbjEGSeO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 May 2023 14:34:14 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11CCA6E93;
+        Sun,  7 May 2023 11:34:14 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9543161C65;
+        Sun,  7 May 2023 18:34:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 691D1C433D2;
+        Sun,  7 May 2023 18:34:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1683484453;
+        bh=6wkccwfFp70jUqmzDa70DrICPNNNF/6YSnMyCoDzYtA=;
+        h=From:To:Cc:Subject:Date:From;
+        b=GGfJb8xhCtbBizsSgq+L/pzFC+wkkmQpgHPMmB2mCjLgflAzd1Jz4/tmtpjbC4qVl
+         latiE9fgxVZ0BitcJNUdSCf7T5/A4dEXi6ytz/HhYq3qlpRparmrSSccKBVMQ65UQw
+         pQFhGKhIMe/4ubpF4kqqezODN9244vkj2GaOBU0KwswKkuiHdPZHvW6kTzJsvqSHEp
+         6SVC5mFuPhZfVAoHSV/mTzlEd5M61gV6cREX2WkExyYl3ioaB0vV8hYohrkBABxWK5
+         Kg/JWGMiaaVJ3eBqnVKpAdrOyXnUdtU98a0TOROKFJ8fvYr1rwG4uYdeLyPL9rplCo
+         w1aiD2EpYsSHw==
+From:   Jisheng Zhang <jszhang@kernel.org>
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rohit kumar <rohitkr@codeaurora.org>,
-        Cheng-Yi Chiang <cychiang@chromium.org>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] ASoC: dt-bindings: google,sc7180-trogdor: allow up to four codec DAIs
-Date:   Sun,  7 May 2023 19:45:43 +0200
-Message-Id: <20230507174543.264987-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        Conor Dooley <conor+dt@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, Guo Ren <guoren@kernel.org>
+Subject: [PATCH 0/5] Add Sipeed Lichee Pi 4A RISC-V board support
+Date:   Mon,  8 May 2023 02:22:59 +0800
+Message-Id: <20230507182304.2934-1-jszhang@kernel.org>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SC7180 Trogdor sound cards come with multiple audio amplifiers, so allow
-up to four of them to fix dtbs_check warnings like:
+Sipeed's Lichee Pi 4A development board uses Lichee Module 4A core
+module which is powered by T-HEAD's light(a.k.a TH1520) SoC. Add
+minimal device tree files for the core module and the development
+board.
 
-  sc7180-trogdor-homestar-r3.dtb: sound: dai-link@1:codec:sound-dai: [[275], [276], [277], [278]] is too long
+Support basic uart/gpio/dmac drivers, so supports booting to a basic
+shell.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../devicetree/bindings/sound/google,sc7180-trogdor.yaml       | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Jisheng Zhang (5):
+  irqchip/sifive-plic: Support T-HEAD's C910 PLIC
+  riscv: Add the T-HEAD SoC family Kconfig option
+  riscv: dts: add initial T-HEAD light SoC device tree
+  riscv: dts: thead: add sipeed Lichee Pi 4A board device tree
+  MAINTAINERS: add entry for T-HEAD RISC-V SoC
 
-diff --git a/Documentation/devicetree/bindings/sound/google,sc7180-trogdor.yaml b/Documentation/devicetree/bindings/sound/google,sc7180-trogdor.yaml
-index 67ccddd44489..666a95ac22c8 100644
---- a/Documentation/devicetree/bindings/sound/google,sc7180-trogdor.yaml
-+++ b/Documentation/devicetree/bindings/sound/google,sc7180-trogdor.yaml
-@@ -74,7 +74,8 @@ patternProperties:
- 
-         properties:
-           sound-dai:
--            maxItems: 1
-+            minItems: 1
-+            maxItems: 4
- 
-     required:
-       - link-name
+ .../sifive,plic-1.0.0.yaml                    |   4 +
+ MAINTAINERS                                   |   6 +
+ arch/riscv/Kconfig.socs                       |   6 +
+ arch/riscv/boot/dts/Makefile                  |   1 +
+ arch/riscv/boot/dts/thead/Makefile            |   2 +
+ .../dts/thead/light-lichee-module-4a.dtsi     |  38 ++
+ .../boot/dts/thead/light-lichee-pi-4a.dts     |  32 ++
+ arch/riscv/boot/dts/thead/light.dtsi          | 454 ++++++++++++++++++
+ drivers/irqchip/irq-sifive-plic.c             |   1 +
+ 9 files changed, 544 insertions(+)
+ create mode 100644 arch/riscv/boot/dts/thead/Makefile
+ create mode 100644 arch/riscv/boot/dts/thead/light-lichee-module-4a.dtsi
+ create mode 100644 arch/riscv/boot/dts/thead/light-lichee-pi-4a.dts
+ create mode 100644 arch/riscv/boot/dts/thead/light.dtsi
+
 -- 
-2.34.1
+2.40.0
 
