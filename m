@@ -2,128 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F36B6FB490
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 18:02:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F2BF6FB497
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 18:04:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230414AbjEHQCw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 12:02:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42004 "EHLO
+        id S232438AbjEHQEw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 12:04:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229608AbjEHQCv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 12:02:51 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87FF85588;
-        Mon,  8 May 2023 09:02:50 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-3f315735514so175743005e9.1;
-        Mon, 08 May 2023 09:02:50 -0700 (PDT)
+        with ESMTP id S231784AbjEHQEv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 12:04:51 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1C3A55B6
+        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 09:04:49 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-4f1411e8111so5270548e87.1
+        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 09:04:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683561769; x=1686153769;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:subject:cc:to:from:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=8QMhc552UlUsj7kYvZWtMUMNf+gVyj2eysVQyi2xaKM=;
-        b=HlBZP9zPGcvY5f1n0Z0Uf8lOdCdbUV5xpjGQS4G389s8eIBv01rai4p4cryDNgB+j9
-         3qaIMo3beQUAjsH2QS1gNZi94/Wr6yV7ZVuQzW3MkWKKAk9VlWyniZqTKB317aIq93Ls
-         AgM/iO383zjxC9eLglL1a2xJxlTqJRutlnCml/ApPRnUSAws2ctrbcsfhlCtXHLJIDIv
-         kGbcTrMA5bE/zjCBzx+EXLS+UZrH+N2j5biSigIzNcZIXTeG12ZGAWDpolwh7tZTKdnt
-         ozBrgxQW7UkkCukatEzjJnex8KgE7hdnIOor2cB5r4NXhryw6JI5QCx7gBi54WImVVB8
-         7v6w==
+        d=linaro.org; s=google; t=1683561888; x=1686153888;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=38AF8nxzOttpxjGEqN4XiKny+LIjfNIP7wF2d4kn7Y8=;
+        b=E5vNHeWDkMnvrPEDlrca3wB2OK03eO31HFXQhFGg9xXk1TpMVQVTpKK1+EETWkQuLb
+         ONXMtG97Y9R9cexLAVh3vuei7SVsZ5mS/Tvl3nKwS8oNd9CcYxrA4KLUxq+2WPp0C9rx
+         Wws/71xPGXLGs/VCuLr1LhBRmMkpo4tmFYfk9NJqiF7XzDo2G6bHIQCSklOpLVmMAbr3
+         wmn4UXlTDnexPxUdEfTpc7k5ENgrb2wrFbOST16H/DT/7zxINl51L2ue9CJ7UuvHajow
+         wINK9asyWr1DxMbslPqUV68AffAX4P5NShrjkvRFZk48ncINuSrbjZtnXMT/7FwZYrSC
+         iaWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683561769; x=1686153769;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:subject:cc:to:from:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8QMhc552UlUsj7kYvZWtMUMNf+gVyj2eysVQyi2xaKM=;
-        b=GVuGv/he8vJv9tKszokXqOqHOqJQyTF+5tnjuidJEzsLThboyQzJqcgbI8ECybi8Zd
-         QPgrqlYsxuuz68aiDfeG7SlZ8Q8D1L0gKRmjiYEKVYlfb/Ovn3b6RQLeUktj7tffp1sJ
-         8DLwjE2KHOWg9iQF+xTvmUGE53dDnaW2dfTWOxfs3Y57mAUktTi4jQYeroptZ594kSxj
-         1lAs5fZu9Cgb2/cBxmHB7QBvjbVN9DsTDa3RLBGA2nFpnlQUjEL/T1jnf6ZY4Rc16hes
-         PEwMJP4qtAsNjixhWMSYkpjdg9SlZ9SCutAlMLQ1uW0ABIvO0Is7iwL5ACh/BiKTI8X3
-         SXcQ==
-X-Gm-Message-State: AC+VfDwiJonBXwEA5JwVVRxuxVTSisCrK1J2JABBKbZqqiy8Y4dqlOUE
-        bpDgTe+04xIcge/BHrPAJ88=
-X-Google-Smtp-Source: ACHHUZ5gut9Av3LAVbmrxULeIcOJYi74sqsnH/+A0yslUft1sWoiypVuYj5H2hMqmRzhO5GwVeo11Q==
-X-Received: by 2002:adf:f785:0:b0:2f2:79aa:c8b9 with SMTP id q5-20020adff785000000b002f279aac8b9mr6830879wrp.35.1683561767917;
-        Mon, 08 May 2023 09:02:47 -0700 (PDT)
-Received: from Ansuel-xps. (93-34-93-173.ip49.fastwebnet.it. [93.34.93.173])
-        by smtp.gmail.com with ESMTPSA id g14-20020adff3ce000000b00300aee6c9cesm11744439wrp.20.2023.05.08.09.02.46
+        d=1e100.net; s=20221208; t=1683561888; x=1686153888;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=38AF8nxzOttpxjGEqN4XiKny+LIjfNIP7wF2d4kn7Y8=;
+        b=FeXvv7fvJFr+MdHVjebUngiyK9Jl1qY5t20zUbuWpuWDeYQGzGYEYOpdgllnaXsMq5
+         70IK5xMwnOeG/olXwJaUHan5FSu1NiC76qOwz4lS3kgT4oHKgR6TTigWjBmu0EGL5XyG
+         rdMPo4lXeueTbtWXmdN72zdme6YwHBAekFdZ/QXaqtdeJ/mTmP7IF3i+3K5hZi17ziwA
+         rD0dcxM387RptrtQRxuaInP+e9ZFn3FWW0actSCBkC58pWdq6arlDpkA4CUQwQXPW057
+         DITDNU8+Gob998rG40FXFi0U9qOVVwJPtjU3btAgaZ4bSh3u86oeHmxQGf3O31fR+RBj
+         0k2w==
+X-Gm-Message-State: AC+VfDx91oQshSLQUpR8nJ9b1F/dfxa4onyXzle/FdzyEwvJCNzT0Rpk
+        sz28wztPXwAe7q6B1rxLJ/K/PxqKSNtMWb0L+V4=
+X-Google-Smtp-Source: ACHHUZ66YitfnJd8D2n3isV7TMX2yXp5JnKySLqANxS/X11ZnVoFFFoBeUeSuCjBDXw2UxGRmWiQzA==
+X-Received: by 2002:a19:f80c:0:b0:4d5:ae35:b221 with SMTP id a12-20020a19f80c000000b004d5ae35b221mr2433424lff.34.1683561888223;
+        Mon, 08 May 2023 09:04:48 -0700 (PDT)
+Received: from lothlorien.lan (dzdqv0yyyyyyyyyyybm5y-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::ab2])
+        by smtp.gmail.com with ESMTPSA id h3-20020ac25963000000b004eff4ea8dd3sm32372lfp.76.2023.05.08.09.04.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 May 2023 09:02:47 -0700 (PDT)
-Message-ID: <64591d27.df0a0220.d1f7b.ca4a@mx.google.com>
-X-Google-Original-Message-ID: <ZFkdJNHT2ARUKFic@Ansuel-xps.>
-Date:   Mon, 8 May 2023 18:02:44 +0200
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Felix Fietkau <nbd@nbd.name>, Rob Herring <robh+dt@kernel.org>,
+        Mon, 08 May 2023 09:04:47 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lorenzo Bianconi <lorenzo@kernel.org>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Shayne Chen <shayne.chen@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Kalle Valo <kvalo@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH] dt-bindings: mt76: support pointing to EEPROM using
- NVMEM cell
-References: <20230508155820.9963-1-zajec5@gmail.com>
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: [PATCH v2 0/6] ARM: dts: qcom: apq8074-dragonboard: enable additional devices
+Date:   Mon,  8 May 2023 19:04:40 +0300
+Message-Id: <20230508160446.2374438-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230508155820.9963-1-zajec5@gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 08, 2023 at 05:58:20PM +0200, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> All kind of calibration data should be described as NVMEM cells of NVMEM
-> devices. That is more generic solution than "mediatek,mtd-eeprom" which
-> is MTD specific.
-> 
-> Add support for EEPROM NVMEM cells and deprecate existing MTD-based
-> property.
-> 
-> Cc: Christian Marangi <ansuelsmth@gmail.com>
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
-> Ansuel is working on mt76 driver support for NVMEM based EEPROM access:
-> https://github.com/openwrt/mt76/pull/765
-> 
-> I took the liberty to propose this binding patch.
-> 
-> One important difference: my binding uses "eeprom" while Ansuel went
-> with "precal". I found a lot of "eeprom" references and only one
-> "precal". If you think however "precal" fits better please comment.
+Add support for buttons, LEDs and coincell charger found on the APQ8074
+dragonboard device.
 
-The name is totally "to decide". I feel eeprom might be also way too
-much generic...
-I was thinking to something like cal or precal following ath10k or
-ath11k pattern.
+For PM8941 we don't have a defined field to store the reset reason.
+Support wrapping pwrkey and resin, but without writing the reset
+reason.
 
-Also in the code itself I notice there can be different calibration
-hence the idea of precal and cal... (currently we define the entire mtd
-partition and call it eeprom but on some card different data are
-referenced with an offset... that will be dropped since nvmem cell will
-reference directly the data without using offset, which seems an hack to
-me)
+Changes since v1 (noted by Konrad):
+ - Changed to use freshly defined qcom,pm8941-pon compat
+ - Fixed indentiation for LEDs definition
+ - Reverted the order of pinctrl fields
+ - Moved status field to the last position
+ - Removed unnecessary pinconf indirection
+
+Dmitry Baryshkov (6):
+  dt-bindings: power: reset: qcom-pon: define pm8941-pon
+  power: reset: qcom-pon: add support for pm8941-pon
+  ARM: dts: qcom-pm8941: add resin support
+  ARM: dts: qcom: apq8074-dragonboard: add resin and gpio keys
+  ARM: dts: qcom: apq8074-dragonboard: add onboard leds
+  ARM: dts: qcom: apq8074-dragonboard: enable coincell charger
+
+ .../bindings/power/reset/qcom,pon.yaml        |  2 +
+ .../arm/boot/dts/qcom-apq8074-dragonboard.dts | 69 +++++++++++++++++++
+ arch/arm/boot/dts/qcom-pm8941.dtsi            | 22 ++++--
+ drivers/power/reset/qcom-pon.c                | 22 ++++--
+ 4 files changed, 103 insertions(+), 12 deletions(-)
 
 -- 
-	Ansuel
+2.39.2
+
