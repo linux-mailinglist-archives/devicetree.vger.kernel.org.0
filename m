@@ -2,56 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE4AA6FB31E
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 16:42:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 165B36FB337
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 16:48:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234511AbjEHOmC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 10:42:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49876 "EHLO
+        id S233749AbjEHOsc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 10:48:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233648AbjEHOmA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 10:42:00 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B4C16E81;
-        Mon,  8 May 2023 07:41:59 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7C63264074;
-        Mon,  8 May 2023 14:41:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 79973C4331E;
-        Mon,  8 May 2023 14:41:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1683556916;
-        bh=iiK+/z6CHwJS0C1NeEmEWs+kZ4yRiOpMM4oq3dhmQMA=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=oD2N2ApPYCUX15+T/aoqbi8hBBsCsi/nM1W74A0Au9Rv2QM/7nVsd0b+Rjqql5+CZ
-         XC9x8YusKHhbFzMYd8/rKiAZKo+VWLpxqqHxoyW1E+YUg4z/pPZudQNiPuEDcpWye6
-         5sUQf3/ms5YdMxxBBinVDnlBgGmPHePwTlzzrv6+7EPRw+ShPRSbuxPkXSpy+63jYa
-         /icexnPsOMnz/kyZxVQTnEWAOrE2FS0/e+Bc0q6+yakVuZXnUm+zUPkCM17k5Yb6FM
-         +9Lya6QE4dUVSb9+Thi28513dGrAb08lMW53IPCJp8Z2ZCqDuOOzn1GVUj2sURDibd
-         q+DMDWehcEYkg==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 5AA9AE26D2A;
-        Mon,  8 May 2023 14:41:56 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S233408AbjEHOsb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 10:48:31 -0400
+Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F975128
+        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 07:48:29 -0700 (PDT)
+Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-559de1d36a9so66298717b3.1
+        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 07:48:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683557309; x=1686149309;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dBRDdEMkcJinIhxYo+B9YRkKgZD79DRuOOXoD9mvqrA=;
+        b=iD0hSzpClyLDSlsnaJ2NGcfs5E32cBiwzYfcZo6LCcWAHRSKDUETJfz3+7n45JTCwt
+         douc/nbRktVg+S9fgzdZd9ScZKiQ+MLW3/muv3NLSJFv+HVZ1RbAevD7TlvCK57ZbvsL
+         WbMNsnumNBYCgNcGj9soUX8blE5RPgua8v/9CbQ9T+ZTUmF4CWk5O7uuwGp0/o9HtmFA
+         qyXKiledds2jlCCRcHNZCkTa7gVrJPZ0JjWU86yuchOPpVmmabEi+k8tUyz46CCBxqZu
+         lkwDO47kj1R1h518ubnwuTvtPDxjClD3JFwmyETVbTvSrq7BD1t2WPJWAC3zXBCHpNJT
+         kT/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683557309; x=1686149309;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=dBRDdEMkcJinIhxYo+B9YRkKgZD79DRuOOXoD9mvqrA=;
+        b=A5AQAqtWWKiwS9eU0rngHY8sfuH7T1uwB5k/aKU08UxmDdeazBz64ybIHtt6ML5S+/
+         YjDG1KkyWY1iQjfIRewQkOA+Hr+Q34LamXOOBOu5Fi6M+t9+P3nIhCxhYRJKVEhO/6tp
+         ADh4yrI1QnGJgOSD/EgH3end4X+1s96cABVhAID/yhDJbOks9WJ+hnoIRCGKTe+BM2Yj
+         fwcPsaDR7AthNJet/7gB/5a3L4HnGsLp1xCuHlQpJ8cNdv3wy82IoCnplE487aymyfPv
+         IwSlH3GNnO5YmJbZWn6f7I9BBBA9VUizXg4qIQJj6K1J5ql+jWnoVGpSXq2w7DNETlKq
+         nrEg==
+X-Gm-Message-State: AC+VfDx6rH3oafhr6QgTpoUdT6wBGgWqj2MiMsmCM/X+Iam3DwtcqvBe
+        NwqbCOOEEqYuK4IGOJqVJ3BruKKyLj3PnRS75ck9xQ==
+X-Google-Smtp-Source: ACHHUZ5YUrkJZ/Z2beY5zA4zYoasGmvc6Wh2Js2To2GzZo6nfjG/1CfaA4enPcYkeZdCT/H+sD/SeZS62t99vhljdDw=
+X-Received: by 2002:a05:6902:18c6:b0:b99:5707:4e6f with SMTP id
+ ck6-20020a05690218c600b00b9957074e6fmr15005818ybb.32.1683557308817; Mon, 08
+ May 2023 07:48:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v1] dt-bindings: perf: riscv,pmu: fix property dependencies
-From:   patchwork-bot+linux-riscv@kernel.org
-Message-Id: <168355691636.25692.16621694024321930278.git-patchwork-notify@kernel.org>
-Date:   Mon, 08 May 2023 14:41:56 +0000
-References: <20230404-tractor-confusing-8852e552539a@spud>
-In-Reply-To: <20230404-tractor-confusing-8852e552539a@spud>
-To:     Conor Dooley <conor@kernel.org>
-Cc:     linux-riscv@lists.infradead.org, atishp@rivosinc.com,
-        conor.dooley@microchip.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, paul.walmsley@sifive.com,
-        palmer@dabbelt.com, ajones@ventanamicro.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+References: <20230504-arm-dts-mv-v1-0-2c8e51a2b6c4@kernel.org> <20230504-arm-dts-mv-v1-2-2c8e51a2b6c4@kernel.org>
+In-Reply-To: <20230504-arm-dts-mv-v1-2-2c8e51a2b6c4@kernel.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 8 May 2023 16:48:17 +0200
+Message-ID: <CACRpkdbfKdR=ru8dCJL0Tincu2-Smsi56vt=C7OW3K9JuQ=47Q@mail.gmail.com>
+Subject: Re: [PATCH 2/4] ARM: dts: Add .dts files missing from the build
+To:     Rob Herring <robh@kernel.org>
+Cc:     soc@kernel.org, Christian Marangi <ansuelsmth@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Antoine Tenart <atenart@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Lars Persson <lars.persson@axis.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Andre Przywara <andre.przywara@arm.com>,
+        Baruch Siach <baruch@tkos.co.il>,
+        Wei Xu <xuwei5@hisilicon.com>,
+        Jean-Marie Verdun <verdun@hpe.com>,
+        Nick Hawkins <nick.hawkins@hpe.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Vladimir Zapolskiy <vz@mleia.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Peter Rosin <peda@axentia.se>, Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Daniel Palmer <daniel@thingy.jp>,
+        Romain Perier <romain.perier@gmail.com>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Shiraz Hashim <shiraz.linux.kernel@gmail.com>,
+        Patrice Chotard <patrice.chotard@foss.st.com>,
+        Marek Vasut <marex@denx.de>, Qin Jian <qinjian@cqplus1.com>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Paul Barker <paul.barker@sancloud.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Nishanth Menon <nm@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Enric Balletbo i Serra <eballetbo@gmail.com>,
+        Javier Martinez Canillas <javier@dowhile0.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@axis.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,28 +126,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+On Fri, May 5, 2023 at 5:29=E2=80=AFAM Rob Herring <robh@kernel.org> wrote:
 
-This patch was applied to riscv/linux.git (fixes)
-by Rob Herring <robh@kernel.org>:
+> Comparing .dts files to built .dtb files yielded a few .dts files which
+> are never built. Add them to the build.
+>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-On Tue,  4 Apr 2023 19:03:22 +0100 you wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
-> 
-> Seemingly I mis-implemented the dependencies here. The OpenSBI docs only
-> point out that the "riscv,event-to-mhpmcounters property is mandatory if
-> riscv,event-to-mhpmevent is present". It never claims that
-> riscv,event-to-mhpmcounters requires riscv,event-to-mhpmevent.
-> 
-> [...]
+Wow weird.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-Here is the summary with links:
-  - [v1] dt-bindings: perf: riscv,pmu: fix property dependencies
-    https://git.kernel.org/riscv/c/4d276e4d3bb4
-
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+Yours,
+Linus Walleij
