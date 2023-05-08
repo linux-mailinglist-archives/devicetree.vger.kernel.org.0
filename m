@@ -2,96 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A4E36F9D3E
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 03:12:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 069986F9D60
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 03:26:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232218AbjEHBMq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 May 2023 21:12:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35310 "EHLO
+        id S232203AbjEHB0T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 May 2023 21:26:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232166AbjEHBMk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 May 2023 21:12:40 -0400
-Received: from mx.kolabnow.com (mx.kolabnow.com [212.103.80.154])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38FAD30FF;
-        Sun,  7 May 2023 18:12:39 -0700 (PDT)
-Received: from localhost (unknown [127.0.0.1])
-        by mx.kolabnow.com (Postfix) with ESMTP id D3FB714EC;
-        Mon,  8 May 2023 03:12:37 +0200 (CEST)
-Authentication-Results: ext-mx-out002.mykolab.com (amavisd-new);
-        dkim=pass (4096-bit key) reason="pass (just generated, assumed good)"
-        header.d=kolabnow.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kolabnow.com; h=
-        content-transfer-encoding:organization:mime-version:references
-        :in-reply-to:message-id:date:date:subject:subject:from:from
-        :received:received:received; s=dkim20160331; t=1683508357; x=
-        1685322758; bh=IeHcnYGT8x5oIMpt7vaj6WJo5TzDUMMrc5PAh+gHWeM=; b=g
-        7W463VF/adkDqa44QzzkcPInNaz36baWwB1FizUBPUXnJCs0846IrDj414oyUMG1
-        vm1MMBTcScaH0DWJtqKXQXHtvlNreuhdwmLUbMbcoiJjxr6q6VZDvL9t+FfK7aFd
-        4gzArBT/QaUnJsFwLRarUErQ9/hGiobcPG0SHYrRAYrCpffcSny+/gYgZ3Kl49BV
-        efgziOatftBsMLlhHGuqJ72kV0sshI65Lp+pLk2zRLlGnObxswRxkbnJakfJ20m9
-        64Fv64FKEV6k8NR0nrjZer8pO/xBw6cUY9cGDikQhwsXid1ompVtZu6oMBENS9hL
-        EpByPmG3nxb8FTyyrZik5cRCxJXDTsZbjD4KefkVVMlZm60bTl4ccTUKKG4zGpaB
-        4Df7u4oWGIhANv3Jet9eWsEJGVSt1nFmf1RBrOFE5ukXXIhdEwnbhIpla2YOv+6d
-        TR6MlQnoEk/v7VNIdj48asCk06N+p8MuaZ3H1VJE6VUbj4hXtWjC1DFcljCrZYcG
-        QVzfkf8/SwZqPMvSFo1iyGHc65G7CYEpPkAaVpphXUJxUOQrJRgYxQkRznfP8091
-        BOlJvKxmJaumzZnhoFMHQZklu8tV35oyquoMNlls75vFbETj5QA6rSRm9Z+yzKMK
-        FID/xhKKUsd5SOFnQP7wqdp8ojyX26X6rRDiQlBUDs=
-X-Virus-Scanned: amavisd-new at mykolab.com
-X-Spam-Score: -1.9
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
-Received: from mx.kolabnow.com ([127.0.0.1])
-        by localhost (ext-mx-out002.mykolab.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id ejdT8ismRjGi; Mon,  8 May 2023 03:12:37 +0200 (CEST)
-Received: from int-mx002.mykolab.com (unknown [10.9.13.2])
-        by mx.kolabnow.com (Postfix) with ESMTPS id 4834B14A3;
-        Mon,  8 May 2023 03:12:37 +0200 (CEST)
-Received: from ext-subm001.mykolab.com (unknown [10.9.6.1])
-        by int-mx002.mykolab.com (Postfix) with ESMTPS id D274614280;
-        Mon,  8 May 2023 03:12:35 +0200 (CEST)
-From:   alison@she-devel.com
-To:     johan@kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alison@she-devel.com,
-        achaiken@aurora.tech
-Subject: [PATCH 2/2] dt-bindings: gnss: Add U-Blox Zed-F9
-Date:   Sun,  7 May 2023 18:11:59 -0700
-Message-Id: <20230508011159.263322-3-alison@she-devel.com>
-In-Reply-To: <20230508011159.263322-1-alison@she-devel.com>
-References: <20230508011159.263322-1-alison@she-devel.com>
-MIME-Version: 1.0
-Organization: Aurora Innovation
+        with ESMTP id S229757AbjEHB0R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 May 2023 21:26:17 -0400
+Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3542E12C;
+        Sun,  7 May 2023 18:26:14 -0700 (PDT)
+Received: by mail-ot1-f48.google.com with SMTP id 46e09a7af769-6ab087111faso69987a34.3;
+        Sun, 07 May 2023 18:26:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683509173; x=1686101173;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=E0WGVqQd3crr5/xk4aA5GRbZA5RzgIzcfwtNz3kKyK8=;
+        b=i5lHy7cFZsT2/NY/PJhYi7WA1mLt73CE8/CRULYBQoKXMYKNXCKWdXjt/ku909QoBp
+         YLgRxqWthu5uvWirLJ5wiCPYqiujHGURLHJi3qbmE+O+xOWkwJD3vpf0GIySdl9ug5Yj
+         Zp6X5EWROXsf/ooXEesgl8C2cy7Kz00962Ejtx7tuJdMntEJF3l7i75aHPGzbTJOjGns
+         vNXPOy1saILyQbdbjQ4ssnkV0Iu5KdmINCjvrtTtkqFV5ADZiKHCc+xgo5+trN3Z4OU/
+         rVwECx9N5ODSiy6FDck+ghLod9twK5lVQx9OMjoUOTge+fLFsA0n+9OnBbXo4XhXyVqR
+         bfLA==
+X-Gm-Message-State: AC+VfDxwyjJzptc8zaiSZWULu7RY+UaCw+X+DMdKkIF8jQzO+B4/Swhq
+        iRviDSw+8ODnnVGaCesIkg==
+X-Google-Smtp-Source: ACHHUZ6H9eBYio6qGDMOwk8cjb89NYIm3MN/qp2X9z0JKWHk2TFOrWQVDdy1An/FopnsmcrTn/TLiQ==
+X-Received: by 2002:a9d:7acf:0:b0:6aa:e821:88eb with SMTP id m15-20020a9d7acf000000b006aae82188ebmr2194275otn.4.1683509173213;
+        Sun, 07 May 2023 18:26:13 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id t13-20020a05683022ed00b006a4244d2a7asm3592444otc.9.2023.05.07.18.26.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 07 May 2023 18:26:12 -0700 (PDT)
+Received: (nullmailer pid 3860869 invoked by uid 1000);
+        Mon, 08 May 2023 01:26:11 -0000
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+From:   Rob Herring <robh@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        devicetree@vger.kernel.org, Sebastian Reichel <sre@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+In-Reply-To: <20230508003309.2363787-2-dmitry.baryshkov@linaro.org>
+References: <20230508003309.2363787-1-dmitry.baryshkov@linaro.org>
+ <20230508003309.2363787-2-dmitry.baryshkov@linaro.org>
+Message-Id: <168350917132.3860853.17086591118019075384.robh@kernel.org>
+Subject: Re: [PATCH 1/6] dt-bindings: power: reset: qcom-pon: define
+ pm8941-pon
+Date:   Sun, 07 May 2023 20:26:11 -0500
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Alison Chaiken <achaiken@aurora.tech>
 
-Add support for the U-Blox Zed-F9P GNSS device.
+On Mon, 08 May 2023 03:33:04 +0300, Dmitry Baryshkov wrote:
+> On PM8941 pon doesn't store the reset reason. However we still need the
+> wrapping node for pwrkey and resin nodes. Add bindings for pm8941-pon
+> device.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/power/reset/qcom,pon.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
-Signed-off-by: Alison Chaiken <achaiken@aurora.tech>
----
- Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml | 1 +
- 1 file changed, 1 insertion(+)
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-diff --git a/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml b/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
-index 4835a280b3bf..86b65d4d9266 100644
---- a/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
-+++ b/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
-@@ -21,6 +21,7 @@ properties:
-       - u-blox,neo-6m
-       - u-blox,neo-8
-       - u-blox,neo-m8
-+      - u-blox,zed-f9p
- 
-   reg:
-     description: >
--- 
-2.39.2
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.example.dtb: camera-sensor@3c: port:endpoint:data-lanes: [[1]] is too short
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/rockchip-isp1.example.dtb: camera@3c: port:endpoint:data-lanes: [[1]] is too short
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.example.dtb: pcie-ep@33800000: Unevaluated properties are not allowed ('assigned-clock-parents', 'assigned-clock-rates', 'assigned-clocks' were unexpected)
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml
+
+doc reference errors (make refcheckdocs):
+Documentation/usb/gadget_uvc.rst: Documentation/userspace-api/media/v4l/pixfmt-packed.yuv.rst
+MAINTAINERS: Documentation/devicetree/bindings/pwm/pwm-apple.yaml
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230508003309.2363787-2-dmitry.baryshkov@linaro.org
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
