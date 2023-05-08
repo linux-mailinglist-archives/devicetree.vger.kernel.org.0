@@ -2,132 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F16FD6FB33F
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 16:50:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 058EA6FB362
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 17:04:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234060AbjEHOuf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 10:50:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56764 "EHLO
+        id S234309AbjEHPE1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 11:04:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229764AbjEHOue (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 10:50:34 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBC27A7
-        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 07:50:32 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-965d2749e2eso603324166b.1
-        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 07:50:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683557431; x=1686149431;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gMmZCKvPSgtFZs9o13Tig/KfWa59Ms4zy6g+NjJ0joQ=;
-        b=XjHfVTNS7RPgE5uMNqBQZYYU1GHP/gHYtMXKaN3iX9Wr5HwDo9N9A3ire6KDFgWwQx
-         nlbUP6YRublx+RB4abMEZRBoYIte1TlgktsGloqxjFzctwAIo0jBLqcc+cGpEit5gmKc
-         nTlteuP2thrdZKg4xeRcw7FsfOtz/L/5d66s6FZj7DNmu6ppfkG2gwoo0ZQz2cxnJmXF
-         pL4qcygEEQGKMQiEQzJ8R9UV38DVSIKsBMOqWTzJNLl3/JtgiYFmdT6MIzoU97qG0MiX
-         2+kzQOVLtcpDBdL9q64Ej8uPgan4p5jpX/m6T83XRFnKRZa+OYlNRrQIICAC+NLaiXds
-         tMKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683557431; x=1686149431;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gMmZCKvPSgtFZs9o13Tig/KfWa59Ms4zy6g+NjJ0joQ=;
-        b=c210b27wf6MAl9R+YD1WzZ/f6PNdSkLtTu+jJ+i77QrQT+Xx2sECG/BRViGO6Jb0X/
-         Ja9HefeeQ7xr2g+i7fQhXiiRQ/CrBZ46eMp2MmI4WEW/QjGVz6far4H6h8bq34hNSVi5
-         Bw4hmmVu4SbtscgoHsw4o6TjqpNyT6XxLbIUCjzavr+nUZws/jpEc+/Fa9iTFbtQs1IK
-         RNIImBVQVXZHzhQdZdTMrDmAdsBADkTYIzO4fTifyAGEN4KjAyrtfxyWnGVtr26aEYg0
-         BgEVfT7xlzGL7/l9xkBZvHOMs+lLmBsjD6OMgxqoslBF2ILvJJkyPJB/D2bJ3HdbOgXq
-         5+GQ==
-X-Gm-Message-State: AC+VfDyhNRz+YYRQqqSlCZZzXA0EiMuQYs7+aWqrbPIUni5p+W2JLzoo
-        kX+MKKpA8L2He6IrbGWu6co+yg==
-X-Google-Smtp-Source: ACHHUZ5SG0QojaChuSrchOK7fGRM4vlmbcHOXVXAIXai8UkeYvgifoSmigtg9gE8tLFTKRugSiG76g==
-X-Received: by 2002:a17:907:3faa:b0:966:17b2:5b15 with SMTP id hr42-20020a1709073faa00b0096617b25b15mr7285332ejc.7.1683557431048;
-        Mon, 08 May 2023 07:50:31 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:50e0:ebdf:b755:b300? ([2a02:810d:15c0:828:50e0:ebdf:b755:b300])
-        by smtp.gmail.com with ESMTPSA id rq12-20020a17090788cc00b0094f0f0de1bcsm46430ejc.200.2023.05.08.07.50.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 May 2023 07:50:30 -0700 (PDT)
-Message-ID: <9e637c7e-c7b5-6eb6-c3e0-c7842d2756ac@linaro.org>
-Date:   Mon, 8 May 2023 16:50:27 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 2/4] ARM: dts: Add .dts files missing from the build
-Content-Language: en-US
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Cc:     soc@kernel.org, Christian Marangi <ansuelsmth@gmail.com>,
+        with ESMTP id S229600AbjEHPE1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 11:04:27 -0400
+Received: from fgw22-7.mail.saunalahti.fi (fgw22-7.mail.saunalahti.fi [62.142.5.83])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F132CE71
+        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 08:04:24 -0700 (PDT)
+Received: from localhost (88-113-26-95.elisa-laajakaista.fi [88.113.26.95])
+        by fgw22.mail.saunalahti.fi (Halon) with ESMTP
+        id 93d5ad66-edb1-11ed-a9de-005056bdf889;
+        Mon, 08 May 2023 18:04:10 +0300 (EEST)
+From:   andy.shevchenko@gmail.com
+Date:   Mon, 8 May 2023 18:04:06 +0300
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Antoine Tenart <atenart@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Lars Persson <lars.persson@axis.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Baruch Siach <baruch@tkos.co.il>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        Jean-Marie Verdun <verdun@hpe.com>,
-        Nick Hawkins <nick.hawkins@hpe.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Vladimir Zapolskiy <vz@mleia.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Peter Rosin <peda@axentia.se>, Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.neuschaefer@gmx.net>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Daniel Palmer <daniel@thingy.jp>,
-        Romain Perier <romain.perier@gmail.com>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Shiraz Hashim <shiraz.linux.kernel@gmail.com>,
-        Patrice Chotard <patrice.chotard@foss.st.com>,
-        Marek Vasut <marex@denx.de>, Qin Jian <qinjian@cqplus1.com>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Paul Barker <paul.barker@sancloud.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Nishanth Menon <nm@ti.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Enric Balletbo i Serra <eballetbo@gmail.com>,
-        Javier Martinez Canillas <javier@dowhile0.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@axis.com
-References: <20230504-arm-dts-mv-v1-0-2c8e51a2b6c4@kernel.org>
- <20230504-arm-dts-mv-v1-2-2c8e51a2b6c4@kernel.org>
- <CACRpkdbfKdR=ru8dCJL0Tincu2-Smsi56vt=C7OW3K9JuQ=47Q@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CACRpkdbfKdR=ru8dCJL0Tincu2-Smsi56vt=C7OW3K9JuQ=47Q@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Jianmin Lv <lvjianmin@loongson.cn>,
+        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn
+Subject: Re: [PATCH v9 2/2] spi: loongson: add bus driver for the loongson
+ spi controller
+Message-ID: <ZFkPZhF8QqScXAmH@surfacebook>
+References: <20230426071045.20753-1-zhuyinbo@loongson.cn>
+ <20230426071045.20753-3-zhuyinbo@loongson.cn>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230426071045.20753-3-zhuyinbo@loongson.cn>
+X-Spam-Status: No, score=0.7 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+        FORGED_GMAIL_RCVD,FREEMAIL_FROM,NML_ADSP_CUSTOM_MED,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -135,18 +46,367 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/05/2023 16:48, Linus Walleij wrote:
-> On Fri, May 5, 2023 at 5:29 AM Rob Herring <robh@kernel.org> wrote:
-> 
->> Comparing .dts files to built .dtb files yielded a few .dts files which
->> are never built. Add them to the build.
->>
->> Signed-off-by: Rob Herring <robh@kernel.org>
-> 
-> Wow weird.
+Wed, Apr 26, 2023 at 03:10:45PM +0800, Yinbo Zhu kirjoitti:
+> This bus driver supports the Loongson spi hardware controller in the
+> Loongson platforms and supports to use DTS and PCI framework to
+> register spi device resources.
 
-I wonder now whether there are such *.c files as well...
+SPI
 
-Best regards,
-Krzysztof
+...
+
+> +config SPI_LOONGSON_CORE
+> +	tristate "Loongson SPI Controller Core Driver Support"
+
+Does it need to be visible to the user?
+
+> +	depends on LOONGARCH || COMPILE_TEST
+> +	help
+> +	  This core driver supports the Loongson spi hardware controller in
+> +	  the Loongson platforms.
+> +	  Say Y or M here if you want to use the SPI controller on
+> +	  Loongson platform.
+
+...
+
+> +config SPI_LOONGSON_PLATFORM
+> +	tristate "Loongson SPI Controller Platform Driver Support"
+> +	select SPI_LOONGSON_CORE
+> +	depends on OF && (LOONGARCH || COMPILE_TEST)
+
+Is it really dependent to OF? Why?
+
+> +	help
+> +	  This bus driver supports the Loongson spi hardware controller in
+> +	  the Loongson platforms and supports to use DTS framework to
+> +	  register spi device resources.
+> +	  Say Y or M here if you want to use the SPI controller on
+> +	  Loongson platform.
+
+...
+
+> +#include <linux/init.h>
+> +#include <linux/module.h>
+> +#include <linux/kernel.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/delay.h>
+> +#include <linux/err.h>
+> +#include <linux/spi/spi.h>
+> +#include <linux/clk.h>
+> +#include <linux/io.h>
+
+Ordered?
+
+...
+
+> +	if (loongson_spi->mode & SPI_NO_CS)
+> +		loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_SFCS_REG, 0);
+
+Missing {}
+
+> +	else {
+> +		cs = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_SFCS_REG)
+> +					   & ~(0x11 << spi->chip_select);
+> +		loongson_spi_write_reg(loongson_spi,
+> +				       LOONGSON_SPI_SFCS_REG,
+> +				       (val ? (0x11 << spi->chip_select) :
+> +				       (0x1 << spi->chip_select)) | cs);
+
+Too many parentheses.
+
+> +	}
+
+...
+
+> +	const char rdiv[12] = {0, 1, 4, 2, 3, 5, 6, 7, 8, 9, 10, 11};
+
+Oh, why?!
+
+...
+
+> +	if ((hz && loongson_spi->hz != hz) ||
+> +	    ((spi->mode ^ loongson_spi->mode) & (SPI_CPOL | SPI_CPHA))) {
+> +		div = DIV_ROUND_UP_ULL(loongson_spi->clk_rate, hz);
+
+> +		if (div < 2)
+> +			div = 2;
+> +		if (div > 4096)
+> +			div = 4096;
+
+NIH clamp_val()
+
+> +		bit = fls(div) - 1;
+> +		if ((1<<bit) == div)
+> +			bit--;
+> +		div_tmp = rdiv[bit];
+
+I believe this can be optimized.
+
+> +		dev_dbg(&spi->dev, "clk_rate = %llu hz = %d div_tmp = %d bit = %d\n",
+> +			loongson_spi->clk_rate, hz, div_tmp, bit);
+> +
+> +		loongson_spi->hz = hz;
+> +		loongson_spi->spcr = div_tmp & 3;
+> +		loongson_spi->sper = (div_tmp >> 2) & 3;
+> +		val = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_SPCR_REG);
+> +		val &= ~0xc;
+
+GENMASK()
+
+> +		if (spi->mode & SPI_CPOL)
+> +			val |= 8;
+
+BIT()
+
+> +		if (spi->mode & SPI_CPHA)
+> +			val |= 4;
+
+> +		loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_SPCR_REG, (val & ~3) |
+> +				       loongson_spi->spcr);
+> +		val = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_SPER_REG);
+> +		loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_SPER_REG, (val & ~3) |
+> +				       loongson_spi->sper);
+> +		loongson_spi->mode &= SPI_NO_CS;
+> +		loongson_spi->mode |= spi->mode;
+> +	}
+
+...
+
+> +		while ((loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_SPSR_REG) & 0x1) == 1 &&
+> +			time_after(timeout, jiffies))
+> +			cpu_relax();
+
+iopoll.h has a suitable macro for this.
+
+...
+
+> +		while ((loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_SPSR_REG) & 0x1) == 1 &&
+> +			time_after(timeout, jiffies))
+> +			cpu_relax();
+
+Ditto.
+
+...
+
+> +	master = devm_spi_alloc_master(dev, sizeof(struct loongson_spi));
+> +	if (master == NULL) {
+
+> +		dev_info(dev, "master allocation failed\n");
+
+We do not issue a message for ENOMEM
+
+> +		return -ENOMEM;
+> +	}
+
+...
+
+> +	master->dev.of_node = of_node_get(dev->of_node);
+
+device_set_node()
+
+...
+
+> +	spi->base = devm_ioremap(dev, res->start, resource_size(res));
+
+Why not devm_ioremap_resource()?
+
+
+> +	if (spi->base == NULL) {
+> +		dev_err(dev, "cannot map io\n");
+> +		return -ENXIO;
+
+	return dev_err_probe();
+
+> +	}
+
+...
+
+> +	clk = devm_clk_get(dev, NULL);
+
+Can we hav
+
+> +	if (!IS_ERR(clk))
+
+Use _optional variant above instead of this.
+Do not forget about deferred probe.
+
+> +		spi->clk_rate = clk_get_rate(clk);
+
+...
+
+> +	if (of_get_property(dev->of_node, "spi-nocs", NULL))
+> +		spi->mode |= SPI_NO_CS;
+
+Don't we have something in the SPI core to handle this in a generic way?
+
+...
+
+
+> +EXPORT_SYMBOL_GPL(loongson_spi_init_master);
+
+Please, use _NS variant.
+
+...
+
+> +MODULE_DESCRIPTION("Loongson spi core driver");
+
+SPI
+
+...
+
+> +	struct resource res[2];
+> +	struct device *dev = &pdev->dev;
+> +
+> +	ret = pci_enable_device(pdev);
+
+pcim_enable_device()
+
+> +	if (ret < 0) {
+> +		dev_err(dev, "cannot enable pci device\n");
+> +		goto err_out;
+
+	return dev_err_probe();
+
+> +	}
+> +
+> +	ret = pci_request_region(pdev, 0, "loongson-spi io");
+> +	if (ret < 0) {
+> +		dev_err(dev, "cannot request region 0.\n");
+> +		goto err_out;
+> +	}
+> +
+> +	res[0].start = pci_resource_start(pdev, 0);
+> +	res[0].end = pci_resource_end(pdev, 0);
+
+What's wrong with pcim_iomap_regions()?
+
+...
+
+> +	ret = pci_read_config_byte(pdev, PCI_INTERRUPT_LINE, &v8);
+
+What?!
+
+What's wrong with pci_alloc_irq_vectors()?
+
+> +
+> +	if (ret == PCIBIOS_SUCCESSFUL) {
+> +		res[1].start = v8;
+> +		res[1].end = v8;
+> +	}
+> +
+> +	ret = loongson_spi_init_master(dev, res);
+
+Why not passing the remapped address and IRQ number instead?
+
+> +	if (ret)
+> +		dev_err(dev, "failed to initialize master\n");
+
+	return dev_err_probe();
+
+> +
+> +err_out:
+
+Completely useless. Return in-line.
+
+> +	return ret;
+> +}
+
+...
+
+> +static struct pci_device_id loongson_spi_devices[] = {
+> +	{PCI_DEVICE(0x14, 0x7a0b)},
+> +	{PCI_DEVICE(0x14, 0x7a1b)},
+
+Can you define vendor ID in pci_ids.h?
+
+
+> +	{0, 0, 0, 0, 0, 0, 0}
+
+What is this? Why {} is not working for you?
+
+> +};
+
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +	if (res == NULL) {
+
+Why not using devm_platform_ioremap_resource()?
+
+> +		dev_err(dev, "cannot get io resource memory\n");
+> +		return -ENOENT;
+
+	return dev_err_probe();
+
+> +	}
+> +
+> +	ret = loongson_spi_init_master(dev, res);
+> +	if (ret)
+> +		dev_err(dev, "failed to initialize master\n");
+
+Ditto.
+
+...
+
+> +static const struct of_device_id loongson_spi_id_table[] = {
+> +	{ .compatible = "loongson,ls2k-spi", },
+
+Inned comma is redundant.
+
+> +	{ }
+> +};
+
+...
+
+> +#ifndef __LINUX_SPI_LOONGSON_H
+> +#define __LINUX_SPI_LOONGSON_H
+
+Missing bits.h
+Missing types.h
+Missing declaration for msecs_to_jiffies()
+Missing forward declarations for struct spi_master and struct device.
+MIssing declaration for dev_pm_ops.
+
+
+> +#define	LOONGSON_SPI_SPCR_REG	0x00
+> +#define	LOONGSON_SPI_SPSR_REG	0x01
+> +#define	LOONGSON_SPI_FIFO_REG	0x02
+> +#define	LOONGSON_SPI_SPER_REG	0x03
+> +#define	LOONGSON_SPI_PARA_REG	0x04
+> +#define	LOONGSON_SPI_SFCS_REG	0x05
+> +#define	LOONGSON_SPI_TIMI_REG	0x06
+> +
+> +/* Bits definition for Loongson SPI register */
+> +#define	LOONGSON_SPI_PARA_MEM_EN	BIT(0)
+> +#define	LOONGSON_SPI_SPSR_SPIF	BIT(7)
+> +#define	LOONGSON_SPI_SPSR_WCOL	BIT(6)
+> +#define	LOONGSON_SPI_SPCR_SPE	BIT(6)
+> +
+> +#define SPI_COMPLETION_TIMEOUT	msecs_to_jiffies(2000)
+> +
+> +struct loongson_spi {
+> +	struct	spi_master	*master;
+> +	void __iomem		*base;
+> +	int			cs_active;
+> +	unsigned int		hz;
+> +	unsigned char		spcr;
+> +	unsigned char		sper;
+> +	unsigned char		spsr;
+> +	unsigned char		para;
+> +	unsigned char		sfcs;
+> +	unsigned char		timi;
+> +	unsigned int		mode;
+> +	u64			clk_rate;
+> +};
+> +
+> +extern int loongson_spi_init_master(struct device *dev, struct resource *res);
+
+No extern for the function declarations.
+
+> +extern const struct dev_pm_ops loongson_spi_dev_pm_ops;
+
+> +#endif /* __LINUX_SPI_LOONGSON_H */
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
