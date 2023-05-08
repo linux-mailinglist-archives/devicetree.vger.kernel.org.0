@@ -2,79 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 885266FB1A0
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 15:34:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E4B56FB1CD
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 15:39:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234295AbjEHNel (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 09:34:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51012 "EHLO
+        id S234124AbjEHNjA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 09:39:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233869AbjEHNei (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 09:34:38 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4BDA2FA00
-        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 06:34:35 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-94f910ea993so701023466b.3
-        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 06:34:35 -0700 (PDT)
+        with ESMTP id S232069AbjEHNi4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 09:38:56 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D4CA34E1B
+        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 06:38:27 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4f13a72ff53so5014069e87.0
+        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 06:38:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683552874; x=1686144874;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=dNv2I8D8lHC3anjLGdCgDfw3zwn1qSi0/Ip3IkTMaV0=;
-        b=tOIFXK+lcH2ykBPyI8q9+jKClkFjlnFfoO3N14ovB/CYtesjCHJJmlb8dkToJGhO+6
-         QAoykSOtKQLG/ZLkx2qFyD5crlXQayazRidED74shOgBwO7S7mLTWot8pXyn/Z4WrIT3
-         Zjh+dqDt91gUt+MmbO4U+9WmhPnWBlmapabIIbvZ3OS8t4dERqAJULeiNk6F1GyqhaXT
-         TRoZNTgnQ+J20M9zAtT94kpiYNITnDeqMKbGrBsiUnswaIMCrIssL4/NJ8dqIcmx7Tlw
-         GHl4VPGWiAxP0IBV11SvPpOhb+y0pghAA3EIfXMk4hLXPJsvM5Tzn+qLLT2gNtE+I4tp
-         9bDQ==
+        d=linaro.org; s=google; t=1683553101; x=1686145101;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=bpiJVQGtmpGeWD2h/OMRu+hOxlvzEgfNUk4kR+fQklM=;
+        b=NEuSP0poH2UiHRVG40dJJ4LXsnXZlFCsZcnO/BX0gHe4yzvPFLgprRqA66QRM/htDH
+         6uBdz93p+fpE0arzyrOtJBscIpndpWhnofCtn0odmegQDHP0rG+ea8UqvE2TfAascGwl
+         Uuv3WCwC2Wgal1TQ72/IFUS+mLZlPoF+qWFMICwbIyDYLdd1VhsuRorBbdZ0lu7ndv0v
+         r5Z/PtDT/SdrQ8iAG4rrwZ2SxWbtqDvIB7abaed96DDZy9Q/JK/nBUpvuBpSrqISvDeE
+         uDaMhnQ/ObMNcsSa353K0ApMxwjm5CkSDJ2J8a5f8TPDHKp+AMJSPaBeijNvLEs+JLLY
+         FlHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683552874; x=1686144874;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dNv2I8D8lHC3anjLGdCgDfw3zwn1qSi0/Ip3IkTMaV0=;
-        b=FgXQ0Y/YGdEcijz1J3K9ONeOLKCr6YMew3NtwVR4IchGsTP1JQpwCH8IH6RcA04AsT
-         oCItHywepsodLdKET3aj/rqFIAky6vp5tFzfGWO8eKEso50VcX6Ao6y0N7WXJ5dP1YjY
-         m9AxtX527i6DVYd9vNJ0FrNqn0PGkVceFDIUIlArWe6KTCA6rRJl1pAgJgVtM8vpnzh2
-         y7khbDPWUu3gId5AAdoKi5G+XCgSruOWYjJcj6RheVe2ph52GP4YLZDsflwm3R3OXusV
-         +NmYEcc7VXNQTnnqGJ6EjbswHFY1JT6444hng8RYj2Ja/TaY0/QJU9FPRZUVtKDyFyNF
-         bHWg==
-X-Gm-Message-State: AC+VfDxv4G424xYvsA3OJwH+38myE6aLkIbD9FI8BgTvcpHabssFo26o
-        nFEpblzhmjj7b3fD//Lr137J4w==
-X-Google-Smtp-Source: ACHHUZ4ccIzX5gazJRfi3DwQwRaXaprMkRCzcmHzIhwgt0MLpsVSjOBy5X0r6zj7lZcpfTtUfJAYQA==
-X-Received: by 2002:a17:907:5ca:b0:965:6cb9:b768 with SMTP id wg10-20020a17090705ca00b009656cb9b768mr7216816ejb.31.1683552874325;
-        Mon, 08 May 2023 06:34:34 -0700 (PDT)
-Received: from krzk-bin ([2a02:810d:15c0:828:50e0:ebdf:b755:b300])
-        by smtp.gmail.com with ESMTPSA id ib11-20020a1709072c6b00b00965ac1510f8sm5007185ejc.185.2023.05.08.06.34.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 May 2023 06:34:33 -0700 (PDT)
-Date:   Mon, 8 May 2023 15:34:31 +0200
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-gpio@vger.kernel.org,
-        linux-input@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Marek Vasut <marex@denx.de>,
-        Philippe Schenker <philippe.schenker@toradex.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Steffen Trumtrar <s.trumtrar@pengutronix.de>,
-        devicetree@vger.kernel.org, Lee Jones <lee@kernel.org>,
-        linux-kernel@vger.kernel.org, Stefan Agner <stefan@agner.ch>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 2/2] dt-bindings: MFD: Convert STMPE to YAML schema
-Message-ID: <20230508133431.tqi7jmgcmfs5c3cf@krzk-bin>
-References: <20230426-stmpe-dt-bindings-v4-0-36fdd53d9919@linaro.org>
- <20230426-stmpe-dt-bindings-v4-2-36fdd53d9919@linaro.org>
+        d=1e100.net; s=20221208; t=1683553101; x=1686145101;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=bpiJVQGtmpGeWD2h/OMRu+hOxlvzEgfNUk4kR+fQklM=;
+        b=EcVsraup0PAUG90ONrZ+1xBuF4vYlu0N/mihW5EHR3WCMweYLT4/gnJMyqB07m7scX
+         BWiUPEV1gjD4kpXmcnyKe8orC80ehBpRhFWMAKsAjvGEnEXwKEkTP+aFNAZGJjDfO8wU
+         z4KCFClPd4iN/ImcBjBdaBPcBfqDHT37P48SklR/48O0NFo1NDTyUobicv1CmSJINiMw
+         n8I+8lZICrOBhsiS10XGgDNr5WXUdrQN6XuxnM9DT2YdrJbQbGwfDhiwKb/HMyYU1snR
+         YeD5p1bbtrmj4K54OSBjAHY0gVQdPWzPacfFDxYKM6zGilbyuUYW1FIYnEC7xtQBmRnI
+         aqgg==
+X-Gm-Message-State: AC+VfDwAe3MapxBSOIDqCIkzBDhnhs+mbwvhZAPVPKj01q7IxObD9OQU
+        j+5se71OwvgCobJZRHouqyGR0w==
+X-Google-Smtp-Source: ACHHUZ5wavKYuce/KoPJbJp3bMQJZiYfuiKtwh04eQeDJR+b96oQL05KrCL64PAvYEEcz2+pphAc5Q==
+X-Received: by 2002:a2e:9cd6:0:b0:2ac:d51f:2d60 with SMTP id g22-20020a2e9cd6000000b002acd51f2d60mr1961110ljj.33.1683553100680;
+        Mon, 08 May 2023 06:38:20 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
+        by smtp.gmail.com with ESMTPSA id h22-20020a2eb0f6000000b002ad8bccceb2sm726381ljl.57.2023.05.08.06.38.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 May 2023 06:38:20 -0700 (PDT)
+Message-ID: <ab9c0681-64b1-8bdd-ba9c-bf87a2edefef@linaro.org>
+Date:   Mon, 8 May 2023 16:38:19 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20230426-stmpe-dt-bindings-v4-2-36fdd53d9919@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v4 3/6] thermal: qcom: tsens-v0_1: Add mdm9607 correction
+ offsets
+Content-Language: en-GB
+To:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc:     Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230508-msm8909-tsens-v4-0-d9119622cb19@kernkonzept.com>
+ <20230508-msm8909-tsens-v4-3-d9119622cb19@kernkonzept.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230508-msm8909-tsens-v4-3-d9119622cb19@kernkonzept.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -83,75 +87,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 08 May 2023 14:35:10 +0200, Linus Walleij wrote:
-> This converts the STMPE MFD device tree bindings to the YAML
-> schema.
+On 08/05/2023 16:13, Stephan Gerhold wrote:
+> According to the msm-3.18 vendor kernel from Qualcomm, mdm9607 needs
+> "correction factors" to adjust for additional offsets observed after the
+> factory calibration values in the fuses [1, 2].
 > 
-> Reference the existing schema for the ADC, just define the
-> other subnode schemas directly in the MFD schema.
+> The fixed offsets should be applied unless there is a special
+> calibration mode value that indicates that no offsets are needed [3].
 > 
-> Add two examples so we have examples covering both the simple
-> GPIO expander and the more complex with ADC and touchscreen.
+> Note that the new calibration mode values are called differently in this
+> patch compared to the vendor kernel:
+>    - TSENS_TWO_POINT_CALIB_N_WA        -> ONE_PT_CALIB2_NO_OFFSET
+>    - TSENS_TWO_POINT_CALIB_N_OFFSET_WA -> TWO_PT_CALIB_NO_OFFSET
+> This is because close inspection of the calibration function [3] reveals
+> that TSENS_TWO_POINT_CALIB_N_WA is actually a "one point" calibration
+> because the if statements skip all "point2" related code for it.
+
+Indeed.
+
 > 
-> Some in-tree users do not follow the naming conventions for nodes
-> so these DTS files need to be augmented to use proper node names
-> like "adc", "pwm", "gpio", "keyboard-controller" etc before the
-> bindings take effect on them.
+> [1]: https://git.codelinaro.org/clo/la/kernel/msm-3.18/-/commit/d9d2db1b82bf3f72f5de0803d55e6849eb5b671e
+> [2]: https://git.codelinaro.org/clo/la/kernel/msm-3.18/-/commit/d75aef53a760e8ff7bac54049d00c8b2ee1b193e
+> [3]: https://git.codelinaro.org/clo/la/kernel/msm-3.18/-/blob/LE.UM.4.3.2.r1-04200-9x07/drivers/thermal/msm-tsens.c#L2987-3136
 > 
-> Acked-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> Fixes: a2149ab815fc ("thermal/drivers/qcom/tsens-v0_1: Add support for MDM9607")
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
 > ---
-> ChangeLog v2->v3:
-> - Drop the required pwm properties already required by the
->   template pwm schema.
-> - Add the number of PWM cells as const.
-> ChangeLog v1->v2:
-> - Split off the GPIO bindings to their own schema, as the old
->   bindings didn't even have any GPIO bindings. Put the GPIO
->   schema before this schema so we can use GPIO in the examples.
-> - Drop nodename and pattern as STMPE is not a generic name.
-> - Add maxItems to the resets.
-> - Make wakeup-source just :true, as it is a generic property.
-> - Move unevaluatedProperties for subnodes right before properties
->   as requested.
-> - Name devices "port-expander" in the examples.
-> - Use lowercase hex in line init.
-> ---
->  .../devicetree/bindings/input/stmpe-keypad.txt     |  41 ---
->  .../bindings/input/touchscreen/stmpe.txt           | 108 --------
->  .../devicetree/bindings/mfd/st,stmpe.yaml          | 297 +++++++++++++++++++++
->  Documentation/devicetree/bindings/mfd/stmpe.txt    |  42 ---
->  4 files changed, 297 insertions(+), 191 deletions(-)
+>   drivers/thermal/qcom/tsens-v0_1.c | 11 +++++++++++
+>   drivers/thermal/qcom/tsens.c      | 16 +++++++++++++++-
+>   drivers/thermal/qcom/tsens.h      |  4 ++++
+>   3 files changed, 30 insertions(+), 1 deletion(-)
+
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
 > 
+> diff --git a/drivers/thermal/qcom/tsens-v0_1.c b/drivers/thermal/qcom/tsens-v0_1.c
+> index 1b454de3928d..e69889dd524a 100644
+> --- a/drivers/thermal/qcom/tsens-v0_1.c
+> +++ b/drivers/thermal/qcom/tsens-v0_1.c
+> @@ -229,6 +229,17 @@ static int __init init_9607(struct tsens_priv *priv)
+>   	for (i = 0; i < priv->num_sensors; ++i)
+>   		priv->sensor[i].slope = 3000;
+>   
+> +	priv->sensor[0].p1_calib_offset = 1;
+> +	priv->sensor[0].p2_calib_offset = 1;
+> +	priv->sensor[1].p1_calib_offset = -4;
+> +	priv->sensor[1].p2_calib_offset = -2;
+> +	priv->sensor[2].p1_calib_offset = 4;
+> +	priv->sensor[2].p2_calib_offset = 8;
+> +	priv->sensor[3].p1_calib_offset = -3;
+> +	priv->sensor[3].p2_calib_offset = -5;
+> +	priv->sensor[4].p1_calib_offset = -4;
+> +	priv->sensor[4].p2_calib_offset = -4;
+> +
+>   	return init_common(priv);
+>   }
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+I should check if using these offsets would allow us to drop the custom 
+code for 8974.
 
-yamllint warnings/errors:
+-- 
+With best wishes
+Dmitry
 
-dtschema/dtc warnings/errors:
-./Documentation/devicetree/bindings/mfd/st,stmpe.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/gpio/st,stmpe-gpio.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/st,stmpe.example.dtb: port-expander@43: gpio: False schema does not allow {'compatible': ['st,stmpe-gpio'], 'gpio-controller': True, '#gpio-cells': [[2]], 'interrupt-controller': True, '#interrupt-cells': [[2]], 'st,norequest-mask': [[15790082]]}
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/st,stmpe.yaml
-Documentation/devicetree/bindings/mfd/st,stmpe.example.dtb: /example-0/i2c/port-expander@43/gpio: failed to match any schema with compatible: ['st,stmpe-gpio']
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/st,stmpe.example.dtb: port-expander@41: gpio: False schema does not allow {'compatible': ['st,stmpe-gpio'], 'gpio-controller': True, '#gpio-cells': [[2]], 'interrupt-controller': True, '#interrupt-cells': [[2]]}
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/st,stmpe.yaml
-Documentation/devicetree/bindings/mfd/st,stmpe.example.dtb: /example-0/i2c/port-expander@41/gpio: failed to match any schema with compatible: ['st,stmpe-gpio']
-
-doc reference errors (make refcheckdocs):
-Documentation/usb/gadget_uvc.rst: Documentation/userspace-api/media/v4l/pixfmt-packed.yuv.rst
-MAINTAINERS: Documentation/devicetree/bindings/pwm/pwm-apple.yaml
-
-See https://patchwork.ozlabs.org/patch/1778351
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
