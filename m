@@ -2,58 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C34076FACC8
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 13:28:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C140C6FACC6
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 13:28:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235842AbjEHL2L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 07:28:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44878 "EHLO
+        id S235832AbjEHL2I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 07:28:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235835AbjEHL1q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 07:27:46 -0400
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D9EB3C1ED;
-        Mon,  8 May 2023 04:27:33 -0700 (PDT)
-Received: by mail-oi1-f172.google.com with SMTP id 5614622812f47-38dfdc1daa9so2456008b6e.1;
-        Mon, 08 May 2023 04:27:33 -0700 (PDT)
+        with ESMTP id S235765AbjEHL1o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 07:27:44 -0400
+Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0903C38F18;
+        Mon,  8 May 2023 04:27:31 -0700 (PDT)
+Received: by mail-oi1-f182.google.com with SMTP id 5614622812f47-38e12d973bfso2257344b6e.0;
+        Mon, 08 May 2023 04:27:31 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683545252; x=1686137252;
+        d=1e100.net; s=20221208; t=1683545250; x=1686137250;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=bKwEmXkLjouRbvIPiHn1eDAbzcuCzcpIkYFR5yMyldU=;
-        b=S1gp6vk1svJCkNRjAOwPNIPhC5oGJs0J1pcVbgUo9l61lhkdkvdHYwKJjGVXDywHs2
-         5YlU4LLBA1OZ4gGPfgGCQdXm7tEnBdb78ucxzlJSTcRcHgjJuh9SwDGla83G1tOS3s2n
-         xtRSRE5HcjeMfeLkfhkltGSqz6sgHV8beP6kvQfy+/PR4OyiEmdUwvYj7PHnJ+j9W83g
-         wRNnVDlgsh9PZsn5yXY+3pJyCd4F9rq2Ssqm0au9cfRku8AW668UgcyjN6qdOcirxQen
-         Dg7Yjjy4M0L8tLuU2+PyP3W2/jYEwlou4cJGjStXaG6PkmA+8d19NlgRTg0CRyRmlef1
-         OZHA==
-X-Gm-Message-State: AC+VfDxGKSr75fCHNRV7qQfWV4eyS5k7V7XK0nnhd3beB4w7BWGBeH04
-        oh1Di5Ji/7V9PVxSxcZ0GA==
-X-Google-Smtp-Source: ACHHUZ4b6HS6Nj3l3V+FkuKZw06PtKKqfLgSHl9DVMrriWGJBclIpRE3DXVBZrM2HLrg7mcM2ZUlgA==
-X-Received: by 2002:a05:6808:2819:b0:38e:9203:44eb with SMTP id et25-20020a056808281900b0038e920344ebmr4922218oib.28.1683545251961;
-        Mon, 08 May 2023 04:27:31 -0700 (PDT)
+        bh=RLxQz9u+YcsKkSQbgJAL99s7i6wSU+2HHEAtjvqTVhA=;
+        b=XX2CuI0Vd9FeD8pXjpRj34F1wX1jzya4fbB0jiLIRLzIO5VyOeqOKxKMkQdCO+cndQ
+         GSDQAI9VoXBOxe+I7kstFF/yWJ4fkpCqFReUAJ/JjjaA4pO0xfJsB2L8ENvsjx99Tk6i
+         OZA8+2yK35uD+FS3HKw8kkj+c/UJUVmtz2y8tQD96UVCNOTh4IRRCLlv09FrLIW46vj+
+         5oqRfuUx/oP0UkS0fKJwifPoSIqUXXmwyFg5Bw4Qsl+bQ5Yv6ocKbAfsss1fOkGmiJr8
+         gFN1t2xczckgqtcFS7stbZ5YrCqQr+8Ny1q6kCC19tvRLPtuC+vkqU1KoqTOTfISgQab
+         /ytw==
+X-Gm-Message-State: AC+VfDwGj439dZzbfP3/KDalfdg5hodimQR03xfi3brT0VzO+LgpF8p0
+        d/6/oVl+i+oYDoLQ9mFDdHo7CM7w73yI
+X-Google-Smtp-Source: ACHHUZ7Ju49ObLf4ykRvD1k8VLj0HUMhfkD4xURbYUOAbhVb6eK2iJHUr7gBK1NfSK4+Z+P4zuyqzA==
+X-Received: by 2002:a05:6808:5c8:b0:383:ca99:c70e with SMTP id d8-20020a05680805c800b00383ca99c70emr4326254oij.59.1683545249993;
+        Mon, 08 May 2023 04:27:29 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id i18-20020a4addd2000000b00541f66fdac8sm3955409oov.17.2023.05.08.04.27.30
+        by smtp.gmail.com with ESMTPSA id n23-20020a4ae1d7000000b0054574f35b8esm3918332oot.41.2023.05.08.04.27.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 May 2023 04:27:31 -0700 (PDT)
-Received: (nullmailer pid 789284 invoked by uid 1000);
+        Mon, 08 May 2023 04:27:29 -0700 (PDT)
+Received: (nullmailer pid 789281 invoked by uid 1000);
         Mon, 08 May 2023 11:27:28 -0000
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
 From:   Rob Herring <robh@kernel.org>
-To:     Stanislav Jakubek <stano.jakubek@gmail.com>
-Cc:     Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-In-Reply-To: <20230508103255.GA18424@standask-GA-A55M-S2HP>
-References: <20230508103255.GA18424@standask-GA-A55M-S2HP>
-Message-Id: <168354524719.789190.15173683031952415240.robh@kernel.org>
-Subject: Re: [PATCH v3] dt-bindings: firmware: brcm,kona-smc: convert to
- YAML
+To:     Shubhi Garg <shgarg@nvidia.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        thierry.reding@gmail.com, jonathanh@nvidia.com
+In-Reply-To: <20230508102733.1751527-1-shgarg@nvidia.com>
+References: <20230508102733.1751527-1-shgarg@nvidia.com>
+Message-Id: <168354524653.789162.6725251128865957840.robh@kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: tegra: Document compatible for IGX
 Date:   Mon, 08 May 2023 06:27:28 -0500
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
@@ -67,30 +64,18 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Mon, 08 May 2023 12:32:55 +0200, Stanislav Jakubek wrote:
-> Convert Broadcom Kona family Secure Monitor bounce buffer bindings
-> to DT schema.
+On Mon, 08 May 2023 10:27:32 +0000, Shubhi Garg wrote:
+> Document the compatible strings used for Nvidia IGX Orin Development
+> kit which uses P3701 SKU8 and P3740 carrier board.
 > 
-> Changes during conversion:
->   - move from misc to firmware subdirectory
->   - add used, but previously undocumented SoC-specific compatibles
->   - drop deprecated compatibles (they've been deprecated for ~10 years)
-> 
-> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+> Signed-off-by: Shubhi Garg <shgarg@nvidia.com>
 > ---
-> Changes in V3:
->   - remove unnecessary oneOf (Krzysztof)
 > 
-> Changes in V2:
->   - move to firmware subdirectory (Krzysztof)
->   - drop deprecated compatibles (Krzysztof)
->   - adjusted commit message to reflect the above changes
+> v2: sorted IGX Orin position as per part number. Since
+> P3740 is designed prior to P3768, it is placed before Orin NX.
 > 
->  .../bindings/firmware/brcm,kona-smc.yaml      | 39 +++++++++++++++++++
->  .../bindings/misc/brcm,kona-smc.txt           | 15 -------
->  2 files changed, 39 insertions(+), 15 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/firmware/brcm,kona-smc.yaml
->  delete mode 100644 Documentation/devicetree/bindings/misc/brcm,kona-smc.txt
+>  Documentation/devicetree/bindings/arm/tegra.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -99,18 +84,18 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.example.dtb: pcie-ep@33800000: Unevaluated properties are not allowed ('assigned-clock-parents', 'assigned-clock-rates', 'assigned-clocks' were unexpected)
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/rockchip-isp1.example.dtb: camera@3c: port:endpoint:data-lanes: [[1]] is too short
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.yaml
 /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.example.dtb: camera-sensor@3c: port:endpoint:data-lanes: [[1]] is too short
 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/rockchip-isp1.example.dtb: camera@3c: port:endpoint:data-lanes: [[1]] is too short
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.example.dtb: pcie-ep@33800000: Unevaluated properties are not allowed ('assigned-clock-parents', 'assigned-clock-rates', 'assigned-clocks' were unexpected)
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml
 
 doc reference errors (make refcheckdocs):
 Documentation/usb/gadget_uvc.rst: Documentation/userspace-api/media/v4l/pixfmt-packed.yuv.rst
 MAINTAINERS: Documentation/devicetree/bindings/pwm/pwm-apple.yaml
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230508103255.GA18424@standask-GA-A55M-S2HP
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230508102733.1751527-1-shgarg@nvidia.com
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
