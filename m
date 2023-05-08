@@ -2,131 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB3DD6FB478
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 17:56:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73C5A6FB488
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 17:58:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232674AbjEHP4P convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 8 May 2023 11:56:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38078 "EHLO
+        id S234186AbjEHP6l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 11:58:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229523AbjEHP4O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 11:56:14 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4D2C90;
-        Mon,  8 May 2023 08:56:11 -0700 (PDT)
-Received: from ip4d1634d3.dynamic.kabel-deutschland.de ([77.22.52.211] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1pw3DW-00063i-N6; Mon, 08 May 2023 17:56:02 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     Conor Dooley <conor@kernel.org>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Icenowy Zheng <uwu@icenowy.me>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, Guo Ren <guoren@kernel.org>
-Subject: Re: [PATCH 3/5] riscv: dts: add initial T-HEAD light SoC device tree
-Date:   Mon, 08 May 2023 17:56:01 +0200
-Message-ID: <3554468.R56niFO833@diego>
-In-Reply-To: <20230508-refute-reliable-f50dafa6afbd@wendy>
-References: <20230507182304.2934-1-jszhang@kernel.org> <7518428.EvYhyI6sBW@diego>
- <20230508-refute-reliable-f50dafa6afbd@wendy>
+        with ESMTP id S234080AbjEHP6k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 11:58:40 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C6E040D4;
+        Mon,  8 May 2023 08:58:39 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-4f00d41df22so29644816e87.1;
+        Mon, 08 May 2023 08:58:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1683561517; x=1686153517;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=qoKeBGVLOBu4DrLK/qM8cN/bO+eEqfiWPQ9nbUj9vHo=;
+        b=njc2uBhQTwCCXVHXm/oE2IOFTW4zhdBqaTkEe+Jkvty3fbq0HmDNIHQ+Dtnov5JE5B
+         DlCRgIXF4wRZsVTIxt/In6dIIJjr93rvVkJbdIsGM0WJCVM2PkZZP6nK3YzraVbSFXZ/
+         y1axOGjBwCE6LLrV2/3hb3EdM9u2ked3GmCe5fNpfHcYDPSYlh20egY3TJDc/69WfH/S
+         JxsccU+FleZQKxQ98hjZKKI9ARdJDrE+RaZG1h0IycyLct/DXTCWhglMwDQ/8TryxT10
+         x6tdLtYXTIzB2e7w21vFDYkqfD65okleWow13EfeXpkPHi+Q2wdW6Wp9I8giWU6MD12i
+         BE7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683561517; x=1686153517;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qoKeBGVLOBu4DrLK/qM8cN/bO+eEqfiWPQ9nbUj9vHo=;
+        b=VU3FADEDuY01raMw91lD/L4S9sUuOURItKEASwE1vIWy/6GSoOiGuy/KSa6gWCvRbT
+         8AwJvpMIXqW+XY3nRMi2sWEfUzh7YAiokIWiG0rUxgHwqILQAM0AoCX663rHo1ZOJ0M2
+         eOOAaqSGmQwUqs0b3+8Bq/r7WoRuZfcfU3vXEs97ZBZasFuFEiwRBZl0KWQqbH5gs1AJ
+         Vew9rY7K/vd35NDgDzQ4psPwlb6WDDWpaBgUpyFA9AYLis1BrtyYW67pa0nHOETs3Hrr
+         d23hQttWWUSlM5ZXQFVclDbJLUl7DiMVkAasDU5ZF850J9eKecRXtPAo1C6uQeJQmKz6
+         IE8w==
+X-Gm-Message-State: AC+VfDyIYnfKRXbu6jOBF84j6s0GTpAQ+8utGr55Wrf+UFY+EJKMn4oP
+        0yzXiQPgUDlYbRyQLb2cOFY=
+X-Google-Smtp-Source: ACHHUZ6pT3RD+p8XzST+vQ2EfJpmtSMjPL9zzBcCqUFO+eXzEx90tVk4CD3LshCQFBxntLgVrASleA==
+X-Received: by 2002:a05:6512:3b14:b0:4f1:b38d:bfb8 with SMTP id f20-20020a0565123b1400b004f1b38dbfb8mr1765747lfv.24.1683561517097;
+        Mon, 08 May 2023 08:58:37 -0700 (PDT)
+Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.gmail.com with ESMTPSA id b29-20020ac25e9d000000b004edce1d338csm30878lfq.89.2023.05.08.08.58.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 May 2023 08:58:36 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Felix Fietkau <nbd@nbd.name>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Lorenzo Bianconi <lorenzo@kernel.org>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Shayne Chen <shayne.chen@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Kalle Valo <kvalo@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+        Christian Marangi <ansuelsmth@gmail.com>
+Subject: [PATCH] dt-bindings: mt76: support pointing to EEPROM using NVMEM cell
+Date:   Mon,  8 May 2023 17:58:20 +0200
+Message-Id: <20230508155820.9963-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.35.3
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Montag, 8. Mai 2023, 10:35:38 CEST schrieb Conor Dooley:
-> On Mon, May 08, 2023 at 10:23:02AM +0200, Heiko Stübner wrote:
-> > Am Montag, 8. Mai 2023, 05:32:17 CEST schrieb Icenowy Zheng:
-> > > 在 2023-05-07星期日的 22:35 +0100，Conor Dooley写道：
-> > > > Hey Jisheng,
-> > > > 
-> > > > On Mon, May 08, 2023 at 02:23:02AM +0800, Jisheng Zhang wrote:
-> > > > 
-> > > > > +               c910_0: cpu@0 {
-> > > > > +                       compatible = "thead,c910", "riscv";
-> > > > > +                       device_type = "cpu";
-> > > > > +                       riscv,isa = "rv64imafdc";
-> > > > 
-> > > > Does this support more than "rv64imafdc"?
-> > > > I assume there's some _xtheadfoo extensions that it does support,
-> > > > although I am not sure how we are proceeding with those - Heiko might
-> > > > have a more nuanced take.
-> > 
-> > I guess the interesting question still is, are these part of the isa
-> > string or more of an errata?
-> 
-> Yeah, I dunno. That's possible a policy decision more than anything
-> else. I don't remember if it was one of your patchsets or elsewhere, but
-> I do recall a split between xtheadba etc and vector, where xtheadba was
-> defined as a vendor extension, whereas vector is not. Their extension
-> spec repo <https://github.com/T-head-Semi/thead-extension-spec> appears
-> to be aligned with that view, apart from the CMOs that we have already
-> called an erratum.
+From: Rafał Miłecki <rafal@milecki.pl>
 
-I think the CMO stuff came a bit before that repo actually existed ;-) .
+All kind of calibration data should be described as NVMEM cells of NVMEM
+devices. That is more generic solution than "mediatek,mtd-eeprom" which
+is MTD specific.
 
-I guess another argument for riscv,isa would be that we don't have to
-trust MVENDORID, and especially values in MARCHID and MIMPID.
+Add support for EEPROM NVMEM cells and deprecate existing MTD-based
+property.
 
-Somehow part of me doesn't have enough trust that these values will
-always be suitably different when they are baked into the hardware ;-) .
+Cc: Christian Marangi <ansuelsmth@gmail.com>
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+Ansuel is working on mt76 driver support for NVMEM based EEPROM access:
+https://github.com/openwrt/mt76/pull/765
 
+I took the liberty to propose this binding patch.
 
-I guess vector is somewhat special, with it implementing version 0.7.1
-it's not a t-head invention but also not the real RISCV "v" .
+One important difference: my binding uses "eeprom" while Ansuel went
+with "precal". I found a lot of "eeprom" references and only one
+"precal". If you think however "precal" fits better please comment.
+---
+ .../bindings/net/wireless/mediatek,mt76.yaml         | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
 
-So I _guess_ the jury might still be out on how to handle that everywhere.
-
-
-> > The binding currently says
-> >       Identifies the specific RISC-V instruction set architecture
-> >       supported by the hart.  These are documented in the RISC-V
-> >       User-Level ISA document, available from
-> >       https://riscv.org/specifications/
-> > 
-> > 
-> > I guess if we decide to make them part of the isa-string the binding
-> > then should get a paragraph mention _xfoo vendor-extensions too.
-> 
-> I have an idea in the works that may allow dealing with this kind of
-> thing, but it's a bit of a departure from the existing binding.
-> I will hopefully post an early RFC of it later today.
-> That said, the binding does currently allow you to put in _xfoo vendor
-> extensions as-is.
-> 
-> > Personally, making these part of the ISA string definitly sounds like
-> > the best solution though :-) .
-> 
-> You would say that wouldn't you! In general, I'd rather we filled in as
-> much information as possible here, even if it is not currently in use,
-> to avoid having to retrofit as support becomes available.
-
-yep definitively.
-Especially as switching to expecting _xfoo later on then causes of course
-compatiblity issues. The fun part will be though to get vendors,
-toolchains and friends to agree on the naming.
-
-
-Heiko
+diff --git a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+index 67b63f119f64..0500caa4107c 100644
+--- a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
++++ b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+@@ -71,6 +71,14 @@ properties:
  
-
-
+   ieee80211-freq-limit: true
+ 
++  nvmem-cells:
++    items:
++      - description: NVMEM cell with EEPROM
++
++  nvmem-cell-names:
++    items:
++      - const: eeprom
++
+   mediatek,eeprom-data:
+     $ref: /schemas/types.yaml#/definitions/uint32-array
+     description:
+@@ -84,6 +92,7 @@ properties:
+           - description: offset containing EEPROM data
+     description:
+       Phandle to a MTD partition + offset containing EEPROM data
++    deprecated: true
+ 
+   big-endian:
+     $ref: /schemas/types.yaml#/definitions/flag
+@@ -258,7 +267,8 @@ examples:
+       interrupt-parent = <&cpuintc>;
+       interrupts = <6>;
+ 
+-      mediatek,mtd-eeprom = <&factory 0x0>;
++      nvmem-cells = <&eeprom>;
++      nvmem-cell-names = "eeprom";
+     };
+ 
+   - |
+-- 
+2.35.3
 
