@@ -2,78 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F13C06F9FEF
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 08:30:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F3466F9FF7
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 08:31:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232847AbjEHGae (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 02:30:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53172 "EHLO
+        id S232887AbjEHGbj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 02:31:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232753AbjEHGab (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 02:30:31 -0400
-Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com [IPv6:2607:f8b0:4864:20::112d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB3177D9E
-        for <devicetree@vger.kernel.org>; Sun,  7 May 2023 23:30:22 -0700 (PDT)
-Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-55cc8aadc97so61699507b3.3
-        for <devicetree@vger.kernel.org>; Sun, 07 May 2023 23:30:22 -0700 (PDT)
+        with ESMTP id S232840AbjEHGbi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 02:31:38 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A145D1A128
+        for <devicetree@vger.kernel.org>; Sun,  7 May 2023 23:31:09 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-50bcc565280so6277136a12.2
+        for <devicetree@vger.kernel.org>; Sun, 07 May 2023 23:31:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683527421; x=1686119421;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EiW0EErM60L5kKyN8Tg1XRCsrwIPCFSbfaR0hDH4fIM=;
-        b=PD5U7ZMhII+6+SjvgyG4A5wFy7HdkIORS9BQEGaFBmJjE9+oMN0Vx8HqiWZs4eVOPs
-         afuHj1WMTyyw/hS0ED2tANEKGvJ4ptWToyfBrqtRdOtAe6SfT5kQODSfuLqgeUr4tX7o
-         mU0JgACABNru85+HGLVuNmKLvj1xgeGQDFlGX5IprfGDeoDm/jnmj3MtccOX8TBDvXPK
-         65cCc7knVFso0feyk/QJtDFhd+2nFo4LbgZjLF+Z/r0gtsRAtmxkcyrkqyyMOTHznhrg
-         gcRiVhptcrcmE32WIR6JYFjATJ6rWFR9+WRi0NzOlRuGV0gLL9vNkyAM3kH9UFCIAMNo
-         hang==
+        d=linaro.org; s=google; t=1683527468; x=1686119468;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/OQ1Y1Dy1DcmXDOkFF4+nxsd0s1CfphsQW74olTDqGw=;
+        b=K/w0jKgME2AOUJJRKDKulpIP5BE7fu316yYG2yR5ZiMAlp063cVXzESZRRRAMDM1GG
+         GsP793uiIpYFthczfdKDGo8K4AzLs+UMJ0/NtCP5/4cfK+Q7tpBMXzjtYqid0BtySlbB
+         q5FhM31BQTeEHEcA/IWnJL/ftQf6AGcNisNQNbwrIqZf2pqJCnEjKi1vhnhfQGniItZg
+         s6s0WWp7NBfzwrocMErcUaHYuFfdJfBx82k3rOxlmNwE8MULZhmJ0jEoMG05Po/p4rrZ
+         7C5CLCKbI34fRRtp5ddxW6ye0pmDaCoJ7xrcDNKoxqJigU+6I9EjmxhV2U0w8q2jBCYV
+         o+kQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683527421; x=1686119421;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EiW0EErM60L5kKyN8Tg1XRCsrwIPCFSbfaR0hDH4fIM=;
-        b=LB1QgBg+R3hgPrhDm59w/QPgK0WtrW1Ppyfmk3vFS1EzKI646Kr6sGry20b/n82SbS
-         3ThwayImkm75lqCbbJ7fX2KufTzbL7+pL1RVM8smY4/NFL7MwjYCiVXY7zpU2wh2fsvX
-         tUYQ0wzHDIy11xdowS9WJvDpMKfP3TDDTvi8g+x9IUZFqtsF5l9iq42mTu93j0NGpzPm
-         QXYWhAH12miapJ7zjKSoIH23t2SH+vu34TDU2LLkVYTTxlyZoO9a8IBrcFGudLNLplw9
-         BqzZ0gLDrHxmkLdP1Yva9ZpsmJ6LKKuxz1V9wtU6zgXT9YhBqqdhdN2qLgo8kKfNjrDm
-         41JQ==
-X-Gm-Message-State: AC+VfDz5doQtR61pkvES1g0B89ycf5zKEav+eVCrhpWAWbLQHEshrueo
-        n6bEpTfmy9enMBvO0BOpRCsAYQUuvTyovVJ/B76esQ==
-X-Google-Smtp-Source: ACHHUZ56+p3cOj5Ygdf5gAj+LPJUGFCGrlnUoUN/TeVRSYGs3dJ22juJvikJC8sZjsPhzK4znwJaCoGPzbb8PFzrKkw=
-X-Received: by 2002:a81:6587:0:b0:555:cee3:d143 with SMTP id
- z129-20020a816587000000b00555cee3d143mr10089004ywb.4.1683527421593; Sun, 07
- May 2023 23:30:21 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1683527468; x=1686119468;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/OQ1Y1Dy1DcmXDOkFF4+nxsd0s1CfphsQW74olTDqGw=;
+        b=MhVOH/TrFezT+eQ+O9f+5965n9MIo6uAHQFf8nye+L3SABbvIKCGlLAKm9g+vvAHWn
+         9CUsx4F1bL7hFCGE8HnXuJLYOovfSniA72QtnhgHPGVzXX1v4tKB/6zPVgmnjh0zZhkY
+         BsqtrUjXEHITmYo/pwISQMkhz8x2mFZVUzR8bI2qTsBdBy/zY90SNdxwWnS799UnyS4G
+         PNUobMsXG5MQb5j9xFAu6K+sVs25j2aMKbfEUxRpMe4jKabusN0RBqQVDGLkPc3yHwTj
+         5Du7XkeEP9exTQ2AamPZg5ECQaCDQqz0P0VWUCYqaxbOCu91osUFKIMuJNUi7f+nHwEs
+         d7sg==
+X-Gm-Message-State: AC+VfDywVA0/jxEt9JUrZibxrbVE+bHzDPLO3zYOjy1vW0BRwJR5L8tt
+        r8ZvDRmFa+aMQq2pgFw7qW8aPQ==
+X-Google-Smtp-Source: ACHHUZ5Ej9KOXTs2EAx/CHeY+tmJXILRqG31KllqiRtW3HMLq46+8Gb6Tsjesrbj2kRrYN64WAhpRQ==
+X-Received: by 2002:aa7:c991:0:b0:50d:88f3:2e30 with SMTP id c17-20020aa7c991000000b0050d88f32e30mr5953819edt.13.1683527467870;
+        Sun, 07 May 2023 23:31:07 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:50e0:ebdf:b755:b300? ([2a02:810d:15c0:828:50e0:ebdf:b755:b300])
+        by smtp.gmail.com with ESMTPSA id i5-20020aa7c705000000b0050673b13b58sm5690029edq.56.2023.05.07.23.31.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 07 May 2023 23:31:07 -0700 (PDT)
+Message-ID: <65914d45-95fb-9b44-daf2-5885ba62a180@linaro.org>
+Date:   Mon, 8 May 2023 08:31:05 +0200
 MIME-Version: 1.0
-References: <20230426-stmpe-dt-bindings-v3-0-eac1d736e488@linaro.org>
- <20230426-stmpe-dt-bindings-v3-1-eac1d736e488@linaro.org> <168349835606.3623231.4270033272905089508.robh@kernel.org>
-In-Reply-To: <168349835606.3623231.4270033272905089508.robh@kernel.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 8 May 2023 08:30:10 +0200
-Message-ID: <CACRpkdZsC6s3MjX5Mkr5u763CYSAotJKcK5wZMwCQxgEzvw+vQ@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: gpio: Add STMPE YAML DT schema
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        linux-gpio@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Steffen Trumtrar <s.trumtrar@pengutronix.de>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Philippe Schenker <philippe.schenker@toradex.com>,
-        Stefan Agner <stefan@agner.ch>, linux-kernel@vger.kernel.org,
-        linux-input@vger.kernel.org, Marek Vasut <marex@denx.de>,
-        Lee Jones <lee@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH v10 06/10] dt-bindings: serial: Document ma35d1 uart
+ controller
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>,
+        Jacky Huang <ychuang570808@gmail.com>
+Cc:     p.zabel@pengutronix.de, arnd@arndb.de, jirislaby@kernel.org,
+        schung@nuvoton.com, tmaimon77@gmail.com,
+        devicetree@vger.kernel.org, catalin.marinas@arm.com,
+        gregkh@linuxfoundation.org, sboyd@kernel.org,
+        linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, will@kernel.org,
+        Jacky Huang <ychuang3@nuvoton.com>, lee@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+        mjchen@nuvoton.com, robh+dt@kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230508025936.36776-1-ychuang570808@gmail.com>
+ <20230508025936.36776-7-ychuang570808@gmail.com>
+ <168351638748.4154745.16515916544783600377.robh@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <168351638748.4154745.16515916544783600377.robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,50 +86,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 8, 2023 at 12:26=E2=80=AFAM Rob Herring <robh@kernel.org> wrote=
-:
-> On Sun, 07 May 2023 23:19:19 +0200, Linus Walleij wrote:
-
-> > This adds a schema for the STMPE GPIO that while it is used a
-> > lot in the kernel tree is anyway missing its bindings.
-> >
-> > Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> > ---
-> > ChangeLog v2->v3:
-> > - Use a compact hog node schema backed by the standard hog
-> >   schema.
-> > ChangeLog v1->v2:
-> > - New patch split off from the MFD patch.
-> > ---
-> >  .../devicetree/bindings/gpio/st,stmpe-gpio.yaml    | 51 ++++++++++++++=
-++++++++
-> >  1 file changed, 51 insertions(+)
-> >
->
-> My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_check'
+On 08/05/2023 05:26, Rob Herring wrote:
+> 
+> On Mon, 08 May 2023 02:59:32 +0000, Jacky Huang wrote:
+>> From: Jacky Huang <ychuang3@nuvoton.com>
+>>
+>> Add documentation that describes the nuvoton ma35d1 UART driver bindings.
+>>
+>> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>  .../serial/nuvoton,ma35d1-serial.yaml         | 48 +++++++++++++++++++
+>>  1 file changed, 48 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/serial/nuvoton,ma35d1-serial.yaml
+>>
+> 
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 > on your patch (DT_CHECKER_FLAGS is new in v5.13):
->
+> 
 > yamllint warnings/errors:
->
+> 
 > dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/m=
-edia/i2c/ovti,ov2685.example.dtb: camera-sensor@3c: port:endpoint:data-lane=
-s: [[1]] is too short
->         From schema: /builds/robherring/dt-review-ci/linux/Documentation/=
-devicetree/bindings/media/i2c/ovti,ov2685.yaml
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/m=
-edia/rockchip-isp1.example.dtb: camera@3c: port:endpoint:data-lanes: [[1]] =
-is too short
->         From schema: /builds/robherring/dt-review-ci/linux/Documentation/=
-devicetree/bindings/media/i2c/ovti,ov2685.yaml
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/p=
-ci/fsl,imx6q-pcie-ep.example.dtb: pcie-ep@33800000: Unevaluated properties =
-are not allowed ('assigned-clock-parents', 'assigned-clock-rates', 'assigne=
-d-clocks' were unexpected)
->         From schema: /builds/robherring/dt-review-ci/linux/Documentation/=
-devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.example.dtb: camera-sensor@3c: port:endpoint:data-lanes: [[1]] is too short
+> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.yaml
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/rockchip-isp1.example.dtb: camera@3c: port:endpoint:data-lanes: [[1]] is too short
+> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.yaml
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.example.dtb: pcie-ep@33800000: Unevaluated properties are not allowed ('assigned-clock-parents', 'assigned-clock-rates', 'assigned-clocks' were unexpected)
+> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml
+> Documentation/devicetree/bindings/serial/nuvoton,ma35d1-serial.example.dts:25:18: fatal error: dt-bindings/clock/nuvoton,ma35d1-clk.h: No such file or directory
+>    25 |         #include <dt-bindings/clock/nuvoton,ma35d1-clk.h>
+>       |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> compilation terminated.
+> make[1]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/serial/nuvoton,ma35d1-serial.example.dtb] Error 1
 
-Looks like these are not mine...
+This however is related, although might be coming from earlier failure.
+I assume you run the check and you do not see any errors?
 
-Yours,
-Linus Walleij
+Best regards,
+Krzysztof
+
