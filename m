@@ -2,80 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4820F6FB2EF
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 16:30:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE4336FB2F3
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 16:31:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235015AbjEHOax (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 10:30:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38114 "EHLO
+        id S234941AbjEHObN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 10:31:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235122AbjEHOaW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 10:30:22 -0400
-Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C60488693
-        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 07:29:54 -0700 (PDT)
-Received: by mail-pf1-x429.google.com with SMTP id d2e1a72fcca58-64115e652eeso34966473b3a.0
-        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 07:29:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1683556193; x=1686148193;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ds73gnsFVEJ6u1RVbKPdKJnDIubBpKmFNgu55xzWEbU=;
-        b=lJgy3Bj1z5Uiu48QnHfq5K+VBP28Zxgip9ER4Yf6hmQQ8lPjaEpD0RK119Wik1cOJJ
-         iTNHWt1R/TFttkaNBKF61wx8kI5nvD0D/9ouPhVmGkGdKBAO/f6u7tSxBsDns2PtEpHY
-         oIiE2l2cRByWteEpf1vB2MkOni0dvyrKrnVlA/aMsfRfyhdhsK9izbxuoBPC0x7czg3s
-         juTXnjpVJf5pYCmVakR0Cgvp94ANIYMAK+LbvnfCPgH307fCgx//lO8LcLCqPQvCnR2s
-         yrH86CmjZ09YK9L2qscqvWOhivunsdFbAzxUvjvEKMVRsEx5Gn4gHywXyeDI8k3mww/1
-         TxzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683556193; x=1686148193;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Ds73gnsFVEJ6u1RVbKPdKJnDIubBpKmFNgu55xzWEbU=;
-        b=B3QGl4LadXGPmojfU5wc/5qSq1HIVJdVave6yqxRD3Cb/WSdaKsmBkzFRE/JH4ZyYG
-         EOA9TJlRA3ZQzaGNoVoNRL3ge16jfGFqSQ5wAdU8+G/B8GNswxbqrpOCsE2382KNYn8j
-         QCY/CtA3LFwy8A02i6WVQ20J0+K0rVVUQAHgGVYJ43z64QrmNXe+9RixWFAOIG1enG2D
-         /t4VZvA/W1vHZ+zD9xqjZNMDSWCRNMumJL/xjx0VwkcWOS7pIEVGDFsrEPYoGqFpq9h2
-         hjEsQDdNiQlgoCWP9lMKv2bFwV/0IxVZVLyAY5Ob+ZcTEEGSOVPM80aLcWZYuxmHpidG
-         rf4w==
-X-Gm-Message-State: AC+VfDyChnr4BzfkDh0xOEqxj8sLO3yROVWBRESQUQoZaApVtGSCChYu
-        vKPaX2CXozYc3I6291XxHiwN1g==
-X-Google-Smtp-Source: ACHHUZ7IFh1sQXPuJWRHj2WWGpozWbXGdVg2fdaqzgld/0LycsTzWlJonjSeEsRixOIeWaZl5X+7Vg==
-X-Received: by 2002:a05:6a20:a5a8:b0:d9:adc3:6a71 with SMTP id bc40-20020a056a20a5a800b000d9adc36a71mr10379138pzb.1.1683556193560;
-        Mon, 08 May 2023 07:29:53 -0700 (PDT)
-Received: from anup-ubuntu-vm.localdomain ([171.76.84.206])
-        by smtp.gmail.com with ESMTPSA id k3-20020aa790c3000000b0063d46ec5777sm6082pfk.158.2023.05.08.07.29.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 May 2023 07:29:53 -0700 (PDT)
-From:   Anup Patel <apatel@ventanamicro.com>
-To:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     Atish Patra <atishp@atishpatra.org>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Anup Patel <anup@brainfault.org>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, iommu@lists.linux.dev,
-        Anup Patel <apatel@ventanamicro.com>
-Subject: [PATCH v3 11/11] MAINTAINERS: Add entry for RISC-V AIA drivers
-Date:   Mon,  8 May 2023 19:58:42 +0530
-Message-Id: <20230508142842.854564-12-apatel@ventanamicro.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230508142842.854564-1-apatel@ventanamicro.com>
-References: <20230508142842.854564-1-apatel@ventanamicro.com>
+        with ESMTP id S235218AbjEHOa0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 10:30:26 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BFFF9010;
+        Mon,  8 May 2023 07:29:57 -0700 (PDT)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 348ETpNA015244;
+        Mon, 8 May 2023 14:29:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=5OtZQNzTavdtMmiQ3BQTEPQPhnMBmFVHCrTtzHQe0Aw=;
+ b=W/3rtYJh7L7iF3oFVojlRC1xzGSh4RwWlEI+dV9Y3G8fqsasyTNggb5+x2TDfK9XfObS
+ Ka5ZEzKeLq2QYAN7G/asVvP6eFxlOv0dubZ0iArzc9NAHNqlQkCW4Ef91f7+O2UyTah7
+ Dn7D2dTFMrngwHGvLo0oYV8IzD3SUGgn7zMr6pgN6OdYCi0E5CIByGgQVIwaXR1sbJMJ
+ 69std41K2GlRGw+wAotOpAooJazvbnnbKt+gqwMya5Pz+SXeurxBfsV769KUj3+A43op
+ rnNBUYQhfI9NFHcasakcg4b6E1N0WwDNYBEAOslPzg0e0FiLknnGeTgUP3o9KS2fazUy jA== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qf0vk09g6-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 08 May 2023 14:29:51 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 348EToXa017015
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 8 May 2023 14:29:50 GMT
+Received: from [10.242.242.190] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Mon, 8 May 2023
+ 07:29:42 -0700
+Message-ID: <3d876a44-0145-09b8-0722-80f57d6c96ac@quicinc.com>
+Date:   Mon, 8 May 2023 19:59:39 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.2
+Subject: Re: [PATCH 05/11] dt-bindings: clock: qcom: gcc-ipq9574: Add Q6 gcc
+ clock control
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <jassisinghbrar@gmail.com>,
+        <mathieu.poirier@linaro.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <quic_gurus@quicinc.com>,
+        <loic.poulain@linaro.org>, <quic_eberman@quicinc.com>,
+        <robimarko@gmail.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-remoteproc@vger.kernel.org>, <linux-clk@vger.kernel.org>
+CC:     <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
+        <quic_sjaganat@quicinc.com>, <quic_kathirav@quicinc.com>,
+        <quic_arajkuma@quicinc.com>, <quic_anusha@quicinc.com>,
+        <quic_poovendh@quicinc.com>
+References: <1678164097-13247-1-git-send-email-quic_mmanikan@quicinc.com>
+ <1678164097-13247-6-git-send-email-quic_mmanikan@quicinc.com>
+ <95c57098-aa37-a203-2ed3-f36449abefea@linaro.org>
+From:   Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+In-Reply-To: <95c57098-aa37-a203-2ed3-f36449abefea@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: KqQ7f46CIgekKZiO7U2LP9DA5aiSHFvY
+X-Proofpoint-ORIG-GUID: KqQ7f46CIgekKZiO7U2LP9DA5aiSHFvY
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-08_10,2023-05-05_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ priorityscore=1501 lowpriorityscore=0 mlxlogscore=990 bulkscore=0
+ malwarescore=0 adultscore=0 spamscore=0 mlxscore=0 clxscore=1015
+ impostorscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2303200000 definitions=main-2305080097
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,37 +92,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add myself as maintainer for RISC-V AIA drivers including the
-RISC-V INTC driver which supports both AIA and non-AIA platforms.
 
-Signed-off-by: Anup Patel <apatel@ventanamicro.com>
----
- MAINTAINERS | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 083ba321fc7c..8f00b56ef8d5 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -18111,6 +18111,18 @@ F:	drivers/perf/riscv_pmu.c
- F:	drivers/perf/riscv_pmu_legacy.c
- F:	drivers/perf/riscv_pmu_sbi.c
- 
-+RISC-V AIA DRIVERS
-+M:	Anup Patel <anup@brainfault.org>
-+L:	linux-riscv@lists.infradead.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/interrupt-controller/riscv,aplic.yaml
-+F:	Documentation/devicetree/bindings/interrupt-controller/riscv,imsics.yaml
-+F:	drivers/irqchip/irq-riscv-aplic.c
-+F:	drivers/irqchip/irq-riscv-imsic.c
-+F:	drivers/irqchip/irq-riscv-intc.c
-+F:	include/linux/irqchip/riscv-aplic.h
-+F:	include/linux/irqchip/riscv-imsic.h
-+
- RISC-V ARCHITECTURE
- M:	Paul Walmsley <paul.walmsley@sifive.com>
- M:	Palmer Dabbelt <palmer@dabbelt.com>
--- 
-2.34.1
+On 3/7/2023 8:49 PM, Krzysztof Kozlowski wrote:
+> On 07/03/2023 05:41, Manikanta Mylavarapu wrote:
+>> Add support for the QDSP6 gcc clock control used on IPQ9574
+>> based devices. This would allow mpd remoteproc driver to control
+>> the required gcc clocks to bring the subsystem out of reset.
+>>
+>> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+>> ---
+>>   include/dt-bindings/clock/qcom,ipq9574-gcc.h | 159 ++++++++++---------
+>>   1 file changed, 83 insertions(+), 76 deletions(-)
+>>
+>> diff --git a/include/dt-bindings/clock/qcom,ipq9574-gcc.h b/include/dt-bindings/clock/qcom,ipq9574-gcc.h
+>> index c89e96d568c6..8bd6350ecd56 100644
+>> --- a/include/dt-bindings/clock/qcom,ipq9574-gcc.h
+>> +++ b/include/dt-bindings/clock/qcom,ipq9574-gcc.h
+>> @@ -138,80 +138,87 @@
+>>   #define WCSS_AHB_CLK_SRC				129
+>>   #define GCC_Q6_AHB_CLK					130
+>>   #define GCC_Q6_AHB_S_CLK				131
+>> -#define GCC_WCSS_ECAHB_CLK				132
+>> -#define GCC_WCSS_ACMT_CLK				133
+> 
+> That's an ABI break, if file was accepted. Or a very weird change
+> anyway, if it wasn't (why adding entry and immediately changing it?).
+> 
+> Best regards,
+> Krzysztof
+> 
 
+I will add new macros at the end instead in middle.
+
+Thanks & Regards,
+Manikanta.
