@@ -2,50 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 070EE6FA090
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 09:06:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C8FC6FA0AE
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 09:10:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233348AbjEHHGO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 03:06:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46586 "EHLO
+        id S233405AbjEHHKg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 03:10:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231301AbjEHHFj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 03:05:39 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EEB51A113;
-        Mon,  8 May 2023 00:04:56 -0700 (PDT)
+        with ESMTP id S233016AbjEHHKN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 03:10:13 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A35D1A113;
+        Mon,  8 May 2023 00:10:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1683529496; x=1715065496;
+  t=1683529801; x=1715065801;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=ZZ6t4bzLYyyTNc77pLgan2R4HqwxIpGpMYRfnF0UJwA=;
-  b=Aoo+8bHbsim44st8Lkz8bnUlBd6eH9CpeZwGqTKDOfg7jD2UgJDXvm8B
-   Th6OH01n/PeKsrbOw5aNpGWAiD3LcVc+FY6Ajq1cVn7eaoltLKoUB2t9J
-   AOGMDDB8RLf+frUh9ALY3+crxfUsZaTAJsiAHDemtG+3609HQsRtrwY/Q
-   881S6BpkbHYIuKG74Jwkf1GoPOZ9sQ1IoiSbW7j/YxVzlrOEw0LsRcDTS
-   Ll+q5Ok3uwonrkjcCc32rjB9PwbwtLT768OLy6d0haL/9NsCguseONGcP
-   5V8YqL99s37S7C0RwYCDidRUCDg3D5lCMSSEpd0laYVx5JSBDfiCVY7ix
-   A==;
+  bh=gIJQeimsaJg9aD/2efIKyUiZi5Rpjyt1p5VyLjuLh18=;
+  b=dbM+RMNL490k5OVTR3iWNxEGYuMnH9nA4ns1+iyqFbGwkDUDPk0ek5eU
+   th2YdrH+q+fevkcGPB0/Cjta8+vHgZNs7EHtCO/osXYvVbcov9r2IKTxj
+   XeXXwL6s+7vGRxsOx8ScbVNas4HKxhjDVEdogRnkZTg4qzOm7+NdZv5ep
+   H49VlFILCWMio9USdTJ5F+GSEe7wsdAugTaWyQXyVjFSGohVSBKQtmLMO
+   6w3k+kLK/gKIC2Au5zTqxCuAXzMhfJMGP0menSF5F8Lw/RcmGfFrViSgD
+   LUCNDYnlTeS6DUlDnj/7q6K0dk/P1vwApva/aPDQUdttLPI7S3qWNMLwY
+   w==;
 X-IronPort-AV: E=Sophos;i="5.99,258,1677567600"; 
-   d="asc'?scan'208";a="214169603"
+   d="asc'?scan'208";a="224269826"
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 08 May 2023 00:04:48 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 08 May 2023 00:08:00 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Mon, 8 May 2023 00:04:46 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
+ 15.1.2507.21; Mon, 8 May 2023 00:07:59 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Mon, 8 May 2023 00:04:44 -0700
-Date:   Mon, 8 May 2023 08:04:24 +0100
+ Transport; Mon, 8 May 2023 00:07:57 -0700
+Date:   Mon, 8 May 2023 08:07:37 +0100
 From:   Conor Dooley <conor.dooley@microchip.com>
 To:     Guo Ren <guoren@kernel.org>
-CC:     Conor Dooley <conor@kernel.org>,
-        Jisheng Zhang <jszhang@kernel.org>,
+CC:     Jisheng Zhang <jszhang@kernel.org>,
         Thomas Gleixner <tglx@linutronix.de>,
         Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -56,19 +55,16 @@ CC:     Conor Dooley <conor@kernel.org>,
         Albert Ou <aou@eecs.berkeley.edu>,
         <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-riscv@lists.infradead.org>
-Subject: Re: [PATCH 2/5] riscv: Add the T-HEAD SoC family Kconfig option
-Message-ID: <20230508-compacted-lyricism-65e824882225@wendy>
+Subject: Re: [PATCH 1/5] irqchip/sifive-plic: Support T-HEAD's C910 PLIC
+Message-ID: <20230508-shining-slug-ac097b6e84ae@wendy>
 References: <20230507182304.2934-1-jszhang@kernel.org>
- <20230507182304.2934-3-jszhang@kernel.org>
- <20230507-sleeve-tacky-21e817e31fb2@spud>
- <CAJF2gTTSRQUX8C3C-tgq4o5iGJqKTja7-1Dv8epG_qZizUvSow@mail.gmail.com>
- <20230508-splashed-voicing-bc6e91aeb053@wendy>
- <CAJF2gTSZmjScBERVxxsEJ-q-HdXn+daT5-H-QvGt2iWxPCaT3g@mail.gmail.com>
+ <20230507182304.2934-2-jszhang@kernel.org>
+ <CAJF2gTTni=G5FP80rSArErXGWQatR1P8rCy9nNOggeA4vtXftQ@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="e1kl4iCssdrqfp3Y"
+        protocol="application/pgp-signature"; boundary="7VenwF0zXlIg4UWR"
 Content-Disposition: inline
-In-Reply-To: <CAJF2gTSZmjScBERVxxsEJ-q-HdXn+daT5-H-QvGt2iWxPCaT3g@mail.gmail.com>
+In-Reply-To: <CAJF2gTTni=G5FP80rSArErXGWQatR1P8rCy9nNOggeA4vtXftQ@mail.gmail.com>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE
@@ -79,77 +75,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---e1kl4iCssdrqfp3Y
-Content-Type: text/plain; charset=utf-8
+--7VenwF0zXlIg4UWR
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, May 08, 2023 at 02:58:02PM +0800, Guo Ren wrote:
-> On Mon, May 8, 2023 at 2:53=E2=80=AFPM Conor Dooley <conor.dooley@microch=
-ip.com> wrote:
-> >
-> > On Mon, May 08, 2023 at 02:42:10PM +0800, Guo Ren wrote:
-> > > On Mon, May 8, 2023 at 5:22=E2=80=AFAM Conor Dooley <conor@kernel.org=
-> wrote:
-> > > >
-> > > > On Mon, May 08, 2023 at 02:23:01AM +0800, Jisheng Zhang wrote:
-> > > > > The first SoC in the T-HEAD series is light(a.k.a th1520), contai=
-ning
-> > > > > quad T-HEAD C910 cores.
-> > > > >
-> > > > > Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-> > > > > ---
-> > > > >  arch/riscv/Kconfig.socs | 6 ++++++
-> > > > >  1 file changed, 6 insertions(+)
-> > > > >
-> > > > > diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
-> > > > > index 1cf69f958f10..ce10a38dff37 100644
-> > > > > --- a/arch/riscv/Kconfig.socs
-> > > > > +++ b/arch/riscv/Kconfig.socs
-> > > > > @@ -41,6 +41,12 @@ config ARCH_SUNXI
-> > > > >         This enables support for Allwinner sun20i platform hardwa=
-re,
-> > > > >         including boards based on the D1 and D1s SoCs.
-> > > > >
-> > > > > +config ARCH_THEAD
-> > > >
-> > > > Could you please add a defconfig patch, adding this option, so that=
- we
-> > > > build support for this platform by default?
-> >
-> > > Yes, but it's another patch, see: 'commit eb20e7cb91ba ("riscv:
-> > > defconfig: Enable the Allwinner D1 platform and drivers")'
-> >
-> > But that's ARCH_SUNXI for the Allwinner D1. If the TH1520 is a
-> > first-party SoC, and not an Allwinner product, it needs a new Kconfig
-> > entry etc.
-> > If it is an Allwinner, then the dts etc should be in the Allwinner
-> > directory too.
-> Do you mean?
-> config ARCH_THEAD
->         def_bool SOC_THEAD
->=20
-> config SOC_THEAD
->         bool "T-HEAD SoCs"
->=20
-> In defconfig:
-> +CONFIG_SOC_THEAD=3Dy
+On Mon, May 08, 2023 at 02:52:29PM +0800, Guo Ren wrote:
 
-No, this patch is okay as-is. CONFIG_ARCH_THEAD=3Dy would go into
-defconfig in another patch.
+> Another question, Could we change the name of Sifive to RISC-V when
+> "cat /proc/interrupts" ?
+
+Previously NAKed by Marc as it is ABI:
+https://lore.kernel.org/all/20511a05f39408c8ffbcc98923c4abd2@kernel.org
 
 Cheers,
 Conor.
 
---e1kl4iCssdrqfp3Y
+--7VenwF0zXlIg4UWR
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZFie+AAKCRB4tDGHoIJi
-0mfbAP48d8TBcCsCQGtiT1lMKGfAAs+1cpZRXOnjVTIJPrX9LgEArDXRzSr/wvgG
-qH2PJZIhiqQRwnMebnT/WZkqIEVSxQU=
-=cMrX
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZFifuQAKCRB4tDGHoIJi
+0h/FAQD5GQTBSDo5ioR96jkLYSfHS+30cKqxlbjj1g/5O8mwYwD/dNHbabmC3eDn
+FM78yqmpsQLOkYOMt/l/5SXnme+0Cws=
+=jZRC
 -----END PGP SIGNATURE-----
 
---e1kl4iCssdrqfp3Y--
+--7VenwF0zXlIg4UWR--
