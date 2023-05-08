@@ -2,35 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E8F06FB63F
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 20:17:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D2226FB640
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 20:17:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232692AbjEHSRJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 14:17:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57356 "EHLO
+        id S232820AbjEHSRN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 14:17:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232779AbjEHSRI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 14:17:08 -0400
+        with ESMTP id S232779AbjEHSRL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 14:17:11 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 589FE5FC3
-        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 11:17:06 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 570295BBE
+        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 11:17:09 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B97CC62A6B
-        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 18:17:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 834AEC433D2;
-        Mon,  8 May 2023 18:17:02 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C1B0F61E7B
+        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 18:17:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92CB0C4339E;
+        Mon,  8 May 2023 18:17:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1683569825;
-        bh=m1G1BRdMTCNy9nabH55EoneK/uJPRkjoflMbNgoNWdo=;
+        s=k20201202; t=1683569828;
+        bh=gDn1qNH4xsBYthgkWZ/em1+NKvHh2zOBpGtKE3Kkd9E=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=mcnCkZ46j6oxLE98sDmh6+9bihhKsTWmz/1OOC5GKP0XmkLqaeqADDLokqO8i2yeg
-         f04WfpOOh7G2n8F6cSgdUhEastHka1mlLkZIt8mtRKnp102avvMJYzENux1Z1+LXWi
-         P45lZp21BpAkhV0PLNbuN2gnXbJJNB8y+QwDKcEhK+a23j8B4c4D1YJZoP0o8uU0o5
-         s1b4gEScPK7oi5WCNBNwmxZzWzsEu3Q5F+EZ5PNTPED9CUMXQbSQQ4hlvQlIT8JXS0
-         sDQeJYlgXljowOIh7WXW9HrHs/FSF+Fc2Rlh2onuZWEzxvMW5Lxub/6uJkX6Ahtgp9
-         Kl5lM+98qEjsA==
+        b=fy0R37YJZ+qpMbPvgvndws5ZRECKzZAA0rPv9fBFCZ5RDt6lPp3ZQS9YpHUdlEjs3
+         EpOsR/MTJRTk3VlrX97HGv9a7dZaitvOksgQ6zNz71wxhTl4tvdMvdZ32hl+/G8+jS
+         HK/UpBPYtWdViiU9JEfj2v7o4AKaeH7V8bXSD72G4srhVpLVBx3mIqP6eBfk4Oo5pn
+         zFhl8eYUIOV5673izj4FirYSR/GfTWDoUuwMhBnlnWtPKdqUx7C2mdZgWSq6TJU4uB
+         BZxlXEvsRfG140EKi9KkXdwwpFa8YMevkljNfeHGlioWEfhm01yHF75OOhj7G/xoGV
+         ZclSh88zLAPIw==
 From:   Conor Dooley <conor@kernel.org>
 To:     linux-riscv@lists.infradead.org
 Cc:     conor@kernel.org, Conor Dooley <conor.dooley@microchip.com>,
@@ -43,14 +43,14 @@ Cc:     conor@kernel.org, Conor Dooley <conor.dooley@microchip.com>,
         Andrew Jones <ajones@ventanamicro.com>,
         Sunil V L <sunilvl@ventanamicro.com>,
         Yangyu Chen <cyy@cyyself.name>, devicetree@vger.kernel.org
-Subject: [RFC 3/6] RISC-V: deprecate riscv,isa & replace it with per-extension properties
-Date:   Mon,  8 May 2023 19:16:23 +0100
-Message-Id: <20230508-luckiness-skimmer-c4a3b7ab35d5@spud>
+Subject: [RFC 4/6] RISC-V: add support for riscv,isa-base property
+Date:   Mon,  8 May 2023 19:16:24 +0100
+Message-Id: <20230508-village-robotics-54fdbcb96ee5@spud>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230508-hypnotic-phobia-99598439d828@spud>
 References: <20230508-hypnotic-phobia-99598439d828@spud>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=9031; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=EZX0K7JP6BwAIxrZk7szxRZe/KOVJqORkMa2rW8UkA8=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDCmRNmUsmly+aqoNO8qY/Se3cc8z/vUgrPzTF9uyFfaz5 W76Oid2lLIwiHEwyIopsiTe7muRWv/HZYdzz1uYOaxMIEMYuDgFYCJaQYwMzdHcGhn2hzleHot9 oZnw3y1gkccVxZds0QaVe47yhRg5MvyVmOnHZ/3B7/Dq1NSigrbymr6wqomP+XIq6gz29F1W4WQ GAA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=9974; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=X1JoMdz0XypRBvha+Fq4gfZjd7/ZEaml0zIsOaAfMPE=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDCmRNmXXEnd9sfxbW63MLP0ksi1Ifovs3piU92fy/Z6vu tU+cf7FjlIWBjEOBlkxRZbE230tUuv/uOxw7nkLM4eVCWQIAxenAExk1TWG/5U/nX4ZKKdNM7rE tHKRs7rYJYlNrRz1kmZOhu6ve+SPljMyvKn+lepQonj+1OM1Vs4T5pR9XOhsr5Y7oSpP4NF1ddE 8dgA=
 X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
@@ -65,266 +65,263 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Conor Dooley <conor.dooley@microchip.com>
 
-riscv,isa is a bit of a problem-in-waiting, as we don't have control
-over what the extensions mean. Give us the ability to define what the
-versions of an extension mean, and provide a compatible-like interface
-for a dts to specify which known-version of an extension a hart is
-compatible with.
+I'm not entirely sure if this is needed, but I felt we still needed a
+mechanism for communicating the base ISA. Perhaps the i here should not
+even be present, but a way to encode the bit-width is missing from my
+key-value stuff. Very much open to suggestions on this aspect.
 
 Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- arch/riscv/include/asm/hwcap.h |  25 +++++-
- arch/riscv/kernel/cpufeature.c | 147 +++++++++++++++++++++++++++------
- 2 files changed, 146 insertions(+), 26 deletions(-)
+ arch/riscv/include/asm/hwcap.h |   8 +--
+ arch/riscv/kernel/cpu.c        | 119 +++++++++------------------------
+ arch/riscv/kernel/cpufeature.c |  41 ++++++++++++
+ 3 files changed, 73 insertions(+), 95 deletions(-)
 
 diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
-index aa61031f7923..f963a7a82ce1 100644
+index f963a7a82ce1..cb4b3df0a5d5 100644
 --- a/arch/riscv/include/asm/hwcap.h
 +++ b/arch/riscv/include/asm/hwcap.h
-@@ -14,15 +14,20 @@
- #include <uapi/asm/hwcap.h>
+@@ -59,13 +59,6 @@
  
- #define RISCV_ISA_EXT_a		('a' - 'a')
-+#define RISCV_ISA_EXT_b		('b' - 'a')
- #define RISCV_ISA_EXT_c		('c' - 'a')
- #define RISCV_ISA_EXT_d		('d' - 'a')
- #define RISCV_ISA_EXT_f		('f' - 'a')
- #define RISCV_ISA_EXT_h		('h' - 'a')
- #define RISCV_ISA_EXT_i		('i' - 'a')
-+#define RISCV_ISA_EXT_j		('j' - 'a')
-+#define RISCV_ISA_EXT_k		('k' - 'a')
- #define RISCV_ISA_EXT_m		('m' - 'a')
-+#define RISCV_ISA_EXT_p		('p' - 'a')
-+#define RISCV_ISA_EXT_q		('q' - 'a')
- #define RISCV_ISA_EXT_s		('s' - 'a')
- #define RISCV_ISA_EXT_u		('u' - 'a')
+ #include <linux/jump_label.h>
+ 
+-struct riscv_isa_ext_data {
+-	/* Name of the extension displayed to userspace via /proc/cpuinfo */
+-	char uprop[RISCV_ISA_EXT_NAME_LEN_MAX];
+-	/* The logical ISA extension ID */
+-	unsigned int isa_ext_id;
+-};
 -
-+#define RISCV_ISA_EXT_v		('v' - 'a')
- /*
-  * These macros represent the logical IDs of each multi-letter RISC-V ISA
-  * extension and are used in the ISA bitmap. The logical IDs start from
-@@ -61,6 +66,24 @@ struct riscv_isa_ext_data {
- 	unsigned int isa_ext_id;
- };
+ struct riscv_isa_extension {
+ 	const u64 key;
+ 	const char *name;
+@@ -83,6 +76,7 @@ struct riscv_isa_extension {
+ }
  
-+struct riscv_isa_extension {
-+	const u64 key;
-+	const char *name;
-+	const char *version;
-+	const char *prop_name;
-+	const bool multi_letter;
-+};
-+
-+#define RISCV_ISA_EXT_CFG(_name, _key, _version, _multi) {	\
-+	.name = #_name,						\
-+	.prop_name = "riscv,isa-extension-" #_name,		\
-+	.key = _key,						\
-+	.version = _version,					\
-+	.multi_letter = _multi,					\
-+}
-+
-+extern const struct riscv_isa_extension riscv_isa_extensions[];
-+
+ extern const struct riscv_isa_extension riscv_isa_extensions[];
++extern const size_t riscv_isa_extensions_count;
+ 
  unsigned long riscv_isa_extension_base(const unsigned long *isa_bitmap);
  
- #define riscv_isa_extension_mask(ext) BIT_MASK(RISCV_ISA_EXT_##ext)
+diff --git a/arch/riscv/kernel/cpu.c b/arch/riscv/kernel/cpu.c
+index 0d5d580dca61..c29643dca0f7 100644
+--- a/arch/riscv/kernel/cpu.c
++++ b/arch/riscv/kernel/cpu.c
+@@ -59,8 +59,25 @@ int riscv_early_of_processor_hartid(struct device_node *node, unsigned long *har
+ 		return -ENODEV;
+ 	}
+ 
++	if (of_property_read_string(node, "riscv,isa-base", &isa))
++		goto old_interface;
++
++	if (IS_ENABLED(CONFIG_32BIT) && strncasecmp(isa, "rv32i", 5))
++		return -ENODEV;
++
++	if (IS_ENABLED(CONFIG_64BIT) && strncasecmp(isa, "rv64i", 5))
++		return -ENODEV;
++
++	if (!of_property_present(node, "riscv,isa-extension-m") ||
++	    !of_property_present(node, "riscv,isa-extension-a"))
++		return -ENODEV;
++
++	return 0;
++
++old_interface:
+ 	if (of_property_read_string(node, "riscv,isa", &isa)) {
+-		pr_warn("CPU with hartid=%lu has no \"riscv,isa\" property\n", *hart);
++		pr_warn("CPU with hartid=%lu has no \"riscv,isa-base\" or \"riscv,isa\" property\n",
++			*hart);
+ 		return -ENODEV;
+ 	}
+ 
+@@ -157,106 +174,33 @@ static int __init riscv_cpuinfo_init(void)
+ arch_initcall(riscv_cpuinfo_init);
+ 
+ #ifdef CONFIG_PROC_FS
+-
+-#define __RISCV_ISA_EXT_DATA(UPROP, EXTID) \
+-	{							\
+-		.uprop = #UPROP,				\
+-		.isa_ext_id = EXTID,				\
+-	}
+-
+-/*
+- * The canonical order of ISA extension names in the ISA string is defined in
+- * chapter 27 of the unprivileged specification.
+- *
+- * Ordinarily, for in-kernel data structures, this order is unimportant but
+- * isa_ext_arr defines the order of the ISA string in /proc/cpuinfo.
+- *
+- * The specification uses vague wording, such as should, when it comes to
+- * ordering, so for our purposes the following rules apply:
+- *
+- * 1. All multi-letter extensions must be separated from other extensions by an
+- *    underscore.
+- *
+- * 2. Additional standard extensions (starting with 'Z') must be sorted after
+- *    single-letter extensions and before any higher-privileged extensions.
+-
+- * 3. The first letter following the 'Z' conventionally indicates the most
+- *    closely related alphabetical extension category, IMAFDQLCBKJTPVH.
+- *    If multiple 'Z' extensions are named, they must be ordered first by
+- *    category, then alphabetically within a category.
+- *
+- * 3. Standard supervisor-level extensions (starting with 'S') must be listed
+- *    after standard unprivileged extensions.  If multiple supervisor-level
+- *    extensions are listed, they must be ordered alphabetically.
+- *
+- * 4. Standard machine-level extensions (starting with 'Zxm') must be listed
+- *    after any lower-privileged, standard extensions.  If multiple
+- *    machine-level extensions are listed, they must be ordered
+- *    alphabetically.
+- *
+- * 5. Non-standard extensions (starting with 'X') must be listed after all
+- *    standard extensions. If multiple non-standard extensions are listed, they
+- *    must be ordered alphabetically.
+- *
+- * An example string following the order is:
+- *    rv64imadc_zifoo_zigoo_zafoo_sbar_scar_zxmbaz_xqux_xrux
+- *
+- * New entries to this struct should follow the ordering rules described above.
+- */
+-static struct riscv_isa_ext_data isa_ext_arr[] = {
+-	__RISCV_ISA_EXT_DATA(zicsr, RISCV_ISA_EXT_ZICSR),
+-	__RISCV_ISA_EXT_DATA(zicbom, RISCV_ISA_EXT_ZICBOM),
+-	__RISCV_ISA_EXT_DATA(zicboz, RISCV_ISA_EXT_ZICBOZ),
+-	__RISCV_ISA_EXT_DATA(zifencei, RISCV_ISA_EXT_ZIFENCEI),
+-	__RISCV_ISA_EXT_DATA(zihintpause, RISCV_ISA_EXT_ZIHINTPAUSE),
+-	__RISCV_ISA_EXT_DATA(zbb, RISCV_ISA_EXT_ZBB),
+-	__RISCV_ISA_EXT_DATA(sscofpmf, RISCV_ISA_EXT_SSCOFPMF),
+-	__RISCV_ISA_EXT_DATA(sstc, RISCV_ISA_EXT_SSTC),
+-	__RISCV_ISA_EXT_DATA(svinval, RISCV_ISA_EXT_SVINVAL),
+-	__RISCV_ISA_EXT_DATA(svnapot, RISCV_ISA_EXT_SVNAPOT),
+-	__RISCV_ISA_EXT_DATA(svpbmt, RISCV_ISA_EXT_SVPBMT),
+-	__RISCV_ISA_EXT_DATA("", RISCV_ISA_EXT_MAX),
+-};
+-
+ static void print_isa_ext(struct seq_file *f)
+ {
+-	struct riscv_isa_ext_data *edata;
+ 	int i = 0, arr_sz;
+ 
+-	arr_sz = ARRAY_SIZE(isa_ext_arr) - 1;
++	arr_sz = riscv_isa_extensions_count - 1;
+ 
+ 	/* No extension support available */
+ 	if (arr_sz <= 0)
+ 		return;
+ 
+-	for (i = 0; i <= arr_sz; i++) {
+-		edata = &isa_ext_arr[i];
+-		if (!__riscv_isa_extension_available(NULL, edata->isa_ext_id))
++	for (i = 0; i < arr_sz; i++) {
++		if (!__riscv_isa_extension_available(NULL, riscv_isa_extensions[i].key))
+ 			continue;
+-		seq_printf(f, "_%s", edata->uprop);
++		if (riscv_isa_extensions[i].multi_letter)
++			seq_printf(f, "_");
++
++		seq_printf(f, "%s", riscv_isa_extensions[i].name);
+ 	}
+ }
+ 
+-/*
+- * These are the only valid base (single letter) ISA extensions as per the spec.
+- * It also specifies the canonical order in which it appears in the spec.
+- * Some of the extension may just be a place holder for now (B, K, P, J).
+- * This should be updated once corresponding extensions are ratified.
+- */
+-static const char base_riscv_exts[13] = "imafdqcbkjpvh";
+-
+-static void print_isa(struct seq_file *f, const char *isa)
++static void print_isa(struct seq_file *f)
+ {
+-	int i;
++	if (IS_ENABLED(CONFIG_64BIT))
++		seq_puts(f, "isa\t\t: rv64");
++	else
++		seq_puts(f, "isa\t\t: rv32");
+ 
+-	seq_puts(f, "isa\t\t: ");
+-	/* Print the rv[64/32] part */
+-	seq_write(f, isa, 4);
+-	for (i = 0; i < sizeof(base_riscv_exts); i++) {
+-		if (__riscv_isa_extension_available(NULL, base_riscv_exts[i] - 'a'))
+-			/* Print only enabled the base ISA extensions */
+-			seq_write(f, &base_riscv_exts[i], 1);
+-	}
+ 	print_isa_ext(f);
+ 	seq_puts(f, "\n");
+ }
+@@ -312,8 +256,7 @@ static int c_show(struct seq_file *m, void *v)
+ 
+ 	seq_printf(m, "processor\t: %lu\n", cpu_id);
+ 	seq_printf(m, "hart\t\t: %lu\n", cpuid_to_hartid_map(cpu_id));
+-	if (!of_property_read_string(node, "riscv,isa", &isa))
+-		print_isa(m, isa);
++	print_isa(m);
+ 	print_mmu(m);
+ 	if (!of_property_read_string(node, "compatible", &compat)
+ 	    && strcmp(compat, "riscv"))
 diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-index 92f0e7b78eef..1ead76adf60f 100644
+index 1ead76adf60f..d415a86a11e7 100644
 --- a/arch/riscv/kernel/cpufeature.c
 +++ b/arch/riscv/kernel/cpufeature.c
-@@ -93,12 +93,39 @@ static bool riscv_isa_extension_check(int id)
+@@ -93,6 +93,45 @@ static bool riscv_isa_extension_check(int id)
  	return true;
  }
  
--void __init riscv_fill_hwcap(void)
-+const struct riscv_isa_extension riscv_isa_extensions[] = {
-+	RISCV_ISA_EXT_CFG(i, RISCV_ISA_EXT_i, "v1.0.0", false),
-+	RISCV_ISA_EXT_CFG(m, RISCV_ISA_EXT_m, "v1.0.0", false),
-+	RISCV_ISA_EXT_CFG(a, RISCV_ISA_EXT_a, "v1.0.0", false),
-+	RISCV_ISA_EXT_CFG(f, RISCV_ISA_EXT_f, "v1.0.0", false),
-+	RISCV_ISA_EXT_CFG(d, RISCV_ISA_EXT_d, "v1.0.0", false),
-+	RISCV_ISA_EXT_CFG(q, RISCV_ISA_EXT_q, "v1.0.0", false),
-+	RISCV_ISA_EXT_CFG(c, RISCV_ISA_EXT_c, "v1.0.0", false),
-+	RISCV_ISA_EXT_CFG(b, RISCV_ISA_EXT_b, "v1.0.0", false),
-+	RISCV_ISA_EXT_CFG(k, RISCV_ISA_EXT_k, "v1.0.0", false),
-+	RISCV_ISA_EXT_CFG(j, RISCV_ISA_EXT_j, "v1.0.0", false),
-+	RISCV_ISA_EXT_CFG(p, RISCV_ISA_EXT_p, "v1.0.0", false),
-+	RISCV_ISA_EXT_CFG(v, RISCV_ISA_EXT_v, "v1.0.0", false),
-+	RISCV_ISA_EXT_CFG(h, RISCV_ISA_EXT_h, "v1.0.0", false),
-+	RISCV_ISA_EXT_CFG(zicbom, RISCV_ISA_EXT_ZICBOM, "v1.0.0", true),
-+	RISCV_ISA_EXT_CFG(zicboz, RISCV_ISA_EXT_ZICBOZ, "v1.0.0", true),
-+	RISCV_ISA_EXT_CFG(zicsr, RISCV_ISA_EXT_ZICSR, "v1.0.0", true),
-+	RISCV_ISA_EXT_CFG(zifencei, RISCV_ISA_EXT_ZIFENCEI, "v1.0.0", true),
-+	RISCV_ISA_EXT_CFG(zihintpause, RISCV_ISA_EXT_ZIHINTPAUSE, "v1.0.0", true),
-+	RISCV_ISA_EXT_CFG(zbb, RISCV_ISA_EXT_ZBB, "v1.0.0", true),
-+	RISCV_ISA_EXT_CFG(sscofpmf, RISCV_ISA_EXT_SSCOFPMF, "v1.0.0", true),
-+	RISCV_ISA_EXT_CFG(sstc, RISCV_ISA_EXT_SSTC, "v1.0.0", true),
-+	RISCV_ISA_EXT_CFG(svinval, RISCV_ISA_EXT_SVINVAL, "v1.0.0", true),
-+	RISCV_ISA_EXT_CFG(svnapot, RISCV_ISA_EXT_SVNAPOT, "v1.0.0", true),
-+	RISCV_ISA_EXT_CFG(svpbmt, RISCV_ISA_EXT_SVPBMT, "v1.0.0", true),
-+	RISCV_ISA_EXT_CFG("", RISCV_ISA_EXT_MAX, "", false),
-+};
++/*
++ * The canonical order of ISA extension names in the ISA string is defined in
++ * chapter 27 of the unprivileged specification.
++ *
++ * Ordinarily, for in-kernel data structures, this order is unimportant but
++ * isa_ext_arr defines the order of the ISA string in /proc/cpuinfo.
++ *
++ * The specification uses vague wording, such as should, when it comes to
++ * ordering, so for our purposes the following rules apply:
++ *
++ * 1. All multi-letter extensions must be separated from other extensions by an
++ *    underscore.
++ *
++ * 2. Additional standard extensions (starting with 'Z') must be sorted after
++ *    single-letter extensions and before any higher-privileged extensions.
 +
-+static void __init riscv_fill_hwcap_isa_string(void)
++ * 3. The first letter following the 'Z' conventionally indicates the most
++ *    closely related alphabetical extension category, IMAFDQLCBKJTPVH.
++ *    If multiple 'Z' extensions are named, they must be ordered first by
++ *    category, then alphabetically within a category.
++ *
++ * 3. Standard supervisor-level extensions (starting with 'S') must be listed
++ *    after standard unprivileged extensions.  If multiple supervisor-level
++ *    extensions are listed, they must be ordered alphabetically.
++ *
++ * 4. Standard machine-level extensions (starting with 'Zxm') must be listed
++ *    after any lower-privileged, standard extensions.  If multiple
++ *    machine-level extensions are listed, they must be ordered
++ *    alphabetically.
++ *
++ * 5. Non-standard extensions (starting with 'X') must be listed after all
++ *    standard extensions. If multiple non-standard extensions are listed, they
++ *    must be ordered alphabetically.
++ *
++ * An example string following the order is:
++ *    rv64imadc_zifoo_zigoo_zafoo_sbar_scar_zxmbaz_xqux_xrux
++ *
++ * New entries to this struct should follow the ordering rules described above.
++ */
+ const struct riscv_isa_extension riscv_isa_extensions[] = {
+ 	RISCV_ISA_EXT_CFG(i, RISCV_ISA_EXT_i, "v1.0.0", false),
+ 	RISCV_ISA_EXT_CFG(m, RISCV_ISA_EXT_m, "v1.0.0", false),
+@@ -121,6 +160,8 @@ const struct riscv_isa_extension riscv_isa_extensions[] = {
+ 	RISCV_ISA_EXT_CFG("", RISCV_ISA_EXT_MAX, "", false),
+ };
+ 
++const size_t riscv_isa_extensions_count = ARRAY_SIZE(riscv_isa_extensions);
++
+ static void __init riscv_fill_hwcap_isa_string(void)
  {
  	struct device_node *node;
- 	const char *isa;
--	char print_str[NUM_ALPHA_EXTS + 1];
--	int i, j, rc;
-+	int rc;
- 	unsigned long isa2hwcap[26] = {0};
- 	unsigned int cpu;
- 
-@@ -109,13 +136,12 @@ void __init riscv_fill_hwcap(void)
- 	isa2hwcap['d' - 'a'] = COMPAT_HWCAP_ISA_D;
- 	isa2hwcap['c' - 'a'] = COMPAT_HWCAP_ISA_C;
- 
--	elf_hwcap = 0;
--
--	bitmap_zero(riscv_isa, RISCV_ISA_EXT_MAX);
-+	pr_info("Falling back to reading hwcap from deprecated riscv,isa\n");
- 
- 	for_each_possible_cpu(cpu) {
- 		unsigned long this_hwcap = 0;
- 		DECLARE_BITMAP(this_isa, RISCV_ISA_EXT_MAX);
-+		bitmap_zero(this_isa, RISCV_ISA_EXT_MAX);
- 
- 		node = of_cpu_device_node_get(cpu);
- 		if (!node) {
-@@ -138,7 +164,6 @@ void __init riscv_fill_hwcap(void)
- 		 */
- 		isa += 4;
- 
--		bitmap_zero(this_isa, RISCV_ISA_EXT_MAX);
- 		while (*isa) {
- 			const char *ext = isa++;
- 			const char *ext_end = isa;
-@@ -278,26 +303,77 @@ void __init riscv_fill_hwcap(void)
- 					set_bit(nr, this_isa);
- 				}
- 			} else {
--				/* sorted alphabetically */
--				SET_ISA_EXT_MAP("sscofpmf", RISCV_ISA_EXT_SSCOFPMF);
--				SET_ISA_EXT_MAP("sstc", RISCV_ISA_EXT_SSTC);
--				SET_ISA_EXT_MAP("svinval", RISCV_ISA_EXT_SVINVAL);
--				SET_ISA_EXT_MAP("svnapot", RISCV_ISA_EXT_SVNAPOT);
--				SET_ISA_EXT_MAP("svpbmt", RISCV_ISA_EXT_SVPBMT);
--				SET_ISA_EXT_MAP("zbb", RISCV_ISA_EXT_ZBB);
--				SET_ISA_EXT_MAP("zicbom", RISCV_ISA_EXT_ZICBOM);
--				SET_ISA_EXT_MAP("zicboz", RISCV_ISA_EXT_ZICBOZ);
--				SET_ISA_EXT_MAP("zihintpause", RISCV_ISA_EXT_ZIHINTPAUSE);
-+				for (int i = 0; i < ARRAY_SIZE(riscv_isa_extensions); i++)
-+					SET_ISA_EXT_MAP(riscv_isa_extensions[i].name, riscv_isa_extensions[i].key);
- 			}
- #undef SET_ISA_EXT_MAP
- 		}
- 
--		/*
--		 * Linux requires Zicsr & Zifencei, so we may as well always
--		 * set them.
--		 */
--		set_bit(RISCV_ISA_EXT_ZIFENCEI, this_isa);
--		set_bit(RISCV_ISA_EXT_ZICSR, this_isa);
-+	/*
-+	 * Linux requires Zicsr & Zifencei, so we may as well always
-+	 * set them.
-+	 */
-+	set_bit(RISCV_ISA_EXT_ZIFENCEI, this_isa);
-+	set_bit(RISCV_ISA_EXT_ZICSR, this_isa);
-+
-+	/*
-+	 * All "okay" hart should have same isa. Set HWCAP based on
-+	 * common capabilities of every "okay" hart, in case they don't
-+	 * have.
-+	 */
-+	if (elf_hwcap)
-+		elf_hwcap &= this_hwcap;
-+	else
-+		elf_hwcap = this_hwcap;
-+
-+	if (bitmap_empty(riscv_isa, RISCV_ISA_EXT_MAX))
-+		bitmap_copy(riscv_isa, this_isa, RISCV_ISA_EXT_MAX);
-+	else
-+		bitmap_and(riscv_isa, riscv_isa, this_isa, RISCV_ISA_EXT_MAX);
-+	}
-+}
-+
-+static bool __init riscv_fill_hwcap_new(void)
-+{
-+	struct device_node *node;
-+	bool detected;
-+	unsigned long isa2hwcap[26] = {0};
-+	unsigned int cpu;
-+
-+	isa2hwcap['i' - 'a'] = COMPAT_HWCAP_ISA_I;
-+	isa2hwcap['m' - 'a'] = COMPAT_HWCAP_ISA_M;
-+	isa2hwcap['a' - 'a'] = COMPAT_HWCAP_ISA_A;
-+	isa2hwcap['f' - 'a'] = COMPAT_HWCAP_ISA_F;
-+	isa2hwcap['d' - 'a'] = COMPAT_HWCAP_ISA_D;
-+	isa2hwcap['c' - 'a'] = COMPAT_HWCAP_ISA_C;
-+
-+	for_each_possible_cpu(cpu) {
-+		unsigned long this_hwcap = 0;
-+		DECLARE_BITMAP(this_isa, RISCV_ISA_EXT_MAX);
-+
-+		node = of_cpu_device_node_get(cpu);
-+		if (!node) {
-+			pr_warn("Unable to find cpu node\n");
-+			continue;
-+		}
-+
-+		for (int k = 0; k < ARRAY_SIZE(riscv_isa_extensions) - 1; k++) {
-+			const char *tmp;
-+
-+			of_property_read_string(node, riscv_isa_extensions[k].prop_name, &tmp);
-+			if (!tmp)
-+				continue;
-+
-+			detected = true;
-+
-+			if (riscv_isa_extension_check(riscv_isa_extensions[k].key) &&
-+			    !strcmp(riscv_isa_extensions[k].version, tmp)) {
-+				if (!riscv_isa_extensions[k].multi_letter)
-+					this_hwcap |= isa2hwcap[riscv_isa_extensions[k].key];
-+
-+				set_bit(riscv_isa_extensions[k].key, this_isa);
-+			}
-+		}
- 
- 		/*
- 		 * All "okay" hart should have same isa. Set HWCAP based on
-@@ -315,8 +391,29 @@ void __init riscv_fill_hwcap(void)
- 			bitmap_and(riscv_isa, riscv_isa, this_isa, RISCV_ISA_EXT_MAX);
- 	}
- 
--	/* We don't support systems with F but without D, so mask those out
--	 * here. */
-+	return detected;
-+}
-+
-+void __init riscv_fill_hwcap(void)
-+{
-+	char print_str[NUM_ALPHA_EXTS + 1];
-+	int i, j;
-+
-+	elf_hwcap = 0;
-+
-+	bitmap_zero(riscv_isa, RISCV_ISA_EXT_MAX);
-+
-+	/*
-+	 * Since old dtbs must continue to work just as well/badly as they ever
-+	 * did, fall back to the isa string if the new method doesn't work.
-+	 */
-+	if (!riscv_fill_hwcap_new())
-+		riscv_fill_hwcap_isa_string();
-+
-+	/*
-+	 * We don't support systems with F but without D, so mask those out
-+	 * here.
-+	 */
- 	if ((elf_hwcap & COMPAT_HWCAP_ISA_F) && !(elf_hwcap & COMPAT_HWCAP_ISA_D)) {
- 		pr_info("This kernel does not support systems with F but not D\n");
- 		elf_hwcap &= ~COMPAT_HWCAP_ISA_F;
 -- 
 2.39.2
 
