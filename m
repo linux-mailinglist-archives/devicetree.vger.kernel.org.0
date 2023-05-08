@@ -2,84 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB8CE6FA744
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 12:28:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D5316FA779
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 12:30:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234679AbjEHK2y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 06:28:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54902 "EHLO
+        id S234510AbjEHKar (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 06:30:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234530AbjEHK2g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 06:28:36 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74CEFD2E7
-        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 03:28:34 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2ac836f4447so41752241fa.2
-        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 03:28:34 -0700 (PDT)
+        with ESMTP id S234647AbjEHKap (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 06:30:45 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B62C924A8D;
+        Mon,  8 May 2023 03:30:43 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2ac831bb762so41740931fa.3;
+        Mon, 08 May 2023 03:30:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683541712; x=1686133712;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=gmail.com; s=20221208; t=1683541842; x=1686133842;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=I2Jb+xA8QGd1sVsf3f5607mlfCv/gv10lcVV2z3QNTI=;
-        b=f3mTLwEfdvUiXjDcEzJ3Z+m0bt6D1IXVPzbEtXDvgGVP8nekC+GD6PIenAt/TlLgce
-         7u+B2bdtASR6O3VIlfVzmZdwasDY0VeReTexR9/I99aZMqVmyNiajsrkXUSjmUelJ6YW
-         DHOIahsjXRerPO2EI/l48ZlYZAgxIbNsJTLrowmfF2ryvWoO5mMMMCzcj1FHM4UN75G0
-         UQM3BHRCT5azEWlgwHGX3AH2P+VSlQbyhLYztdRJPXu5DgA275k+XoFR+fO4ayCbU17I
-         oreSPnESoyGzDalguQee8j0QVdjCkufWkMm96h41vZKX7eP5wodoGRadQfoMIU1b/xE+
-         H46w==
+        bh=u4n+sPW796mS9dhJ6fHd9qvr1mW3PkrYQCtXjQ0ZTZo=;
+        b=QJ2rbssUzSgbKCZkXM9w7Jy0q9Ix8lJSjNabHHhe83scfou2njTVA3OeVd6BRwpSAS
+         Y2kXOkoQHhszriKKexHeyuv5TkLFALBm0HfQ8P8OcZZDMbXMKdBDppYtwoAh1uv+jt9c
+         S1fIL9/nb7bkjAY4tGXwjoRoolDp+C6Oum9P5o1ksQqlrYU8YSrY1Lm6BIbElpSNWhmR
+         CiTm/JmGS5ZaLUBN6uVGcpo3AdXaDcSzVzPmCytsq14l3uPhMCdWWN0UxSKLFmvfYIHW
+         K4YYUiGoWmu7o3Uklb0nH1xljrlZKEWBLdJnaMrmuzL12a5oh5J6YSuup+RrDFVGgrfP
+         nZvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683541712; x=1686133712;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1683541842; x=1686133842;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=I2Jb+xA8QGd1sVsf3f5607mlfCv/gv10lcVV2z3QNTI=;
-        b=UTm9DP06rvKn9B6gwukg2eT2pkVqognl5ZF6wrcDWAcnF4rx+sxAW95/Ga9ib9ojtO
-         Eg0fa3yxqAmt9C6e5Faj+BkguCSw6sFJp26RXzvc1rxo7tAxBrixVKgolVaxQe+yGBi1
-         R70pb4jm/I4372K8iCiObZVKwIy9YUCLf9WfJOueTk+w4ht9VArdf5LxanINkaNbX3fC
-         3RebuvZUJ0T6IuvGIfEJto54hcNfP8juDNj/Tdb5t6jJpwwWx70IPkeSZm9fvthlDlOI
-         PxvFWA04gZFoACQQXMWLVXHN0x2VK2QTDSUMmSKcCIXlmKRjhasDIRzt0F/AcANYy4F+
-         yAwQ==
-X-Gm-Message-State: AC+VfDzoRsM30F3UMiSQp5nd3P0QJklid/fAs0EooK4RSbYlK8j/aCNS
-        q9Jgz6AtmPSnQAAIt+vbBUPxz6SL7mwlU6AXRlI=
-X-Google-Smtp-Source: ACHHUZ4h0seTe4/zh3HmwznORxKSXd7UYJS5RgdNNFU0wGGRhLw3cbZnlmYxmIDSQ1Nw4afv8SwzXQ==
-X-Received: by 2002:a2e:2419:0:b0:2ad:85dd:f3a8 with SMTP id k25-20020a2e2419000000b002ad85ddf3a8mr1287361ljk.30.1683541712491;
-        Mon, 08 May 2023 03:28:32 -0700 (PDT)
-Received: from [192.168.1.101] (abyl248.neoplus.adsl.tpnet.pl. [83.9.31.248])
-        by smtp.gmail.com with ESMTPSA id p19-20020a2e9a93000000b002ad94c4351asm241662lji.66.2023.05.08.03.28.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 May 2023 03:28:32 -0700 (PDT)
-Message-ID: <d357a6f9-d66b-0ba1-138c-4b541c3bebfb@linaro.org>
-Date:   Mon, 8 May 2023 12:28:29 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH 1/4] ARM: dts: qcom: msm8974: add ocmem clock to GPU
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        bh=u4n+sPW796mS9dhJ6fHd9qvr1mW3PkrYQCtXjQ0ZTZo=;
+        b=idry36PbWBvxLmL6t2TRuwP2KC1Rxmfi3IAj2Mm4a2HoeGPXh7cEMxNH4M7LduKo/B
+         HZJfEjaAnQ322dW1v2I/wkfqFej0+N5Jc/VSQnHznVfTp8nM415GDlVbpZz2mBINlhMT
+         4c4xWNz+CUOG9O+/dfZm5FlooX0S1wRPyrOWLfAppDqpeFTQGe1eR9cVpCYuCipd1MZ9
+         WCQfLp1f/VvxvrRwRGu4jfJQx/+R50q3A2LpL5unxuAuQ2AUghONw9wcudDCuniI1gQX
+         82QKSfUTMVy3dZVfMLLTvwOVYyL8Bv3+jwhwnwLYZE1oTYdYmAtbmOoRcF6tLGB/lODH
+         ascg==
+X-Gm-Message-State: AC+VfDw+hybmBte7tWtAnHdQNtSXLtJj60lO+UR6+o+iEfEIaFb3h0Q3
+        9n3DJLi3lsu8wmMTj/gwMWA=
+X-Google-Smtp-Source: ACHHUZ4YOM1piwm7Fu+MPvieFGLO26hzkwFNae5/vCt1pwGMpJ94UX0EIzV3mxdVa3/6NfG6InqJEQ==
+X-Received: by 2002:a2e:9e45:0:b0:2ac:7764:aa4 with SMTP id g5-20020a2e9e45000000b002ac77640aa4mr2886398ljk.10.1683541841688;
+        Mon, 08 May 2023 03:30:41 -0700 (PDT)
+Received: from fedora (62-78-225-252.bb.dnainternet.fi. [62.78.225.252])
+        by smtp.gmail.com with ESMTPSA id w8-20020a2e9bc8000000b002a8b205bb50sm1104959ljj.61.2023.05.08.03.30.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 May 2023 03:30:40 -0700 (PDT)
+Date:   Mon, 8 May 2023 13:30:28 +0300
+From:   Matti Vaittinen <mazziesaccount@gmail.com>
+To:     Matti Vaittinen <mazziesaccount@gmail.com>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-References: <20230507190735.2333145-1-dmitry.baryshkov@linaro.org>
- <20230507190735.2333145-2-dmitry.baryshkov@linaro.org>
- <8cdecc51-2a42-4b82-9eb3-2ab77860c5d4@linaro.org>
- <c8144b21-d672-318e-2761-5d1daf384c30@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <c8144b21-d672-318e-2761-5d1daf384c30@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matti Vaittinen <mazziesaccount@gmail.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Zhigang Shi <Zhigang.Shi@liteon.com>,
+        Paul Gazzillo <paul@pgazz.com>,
+        Shreeya Patel <shreeya.patel@collabora.com>,
+        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v5 0/5] Support ROHM BU27008 RGB sensor
+Message-ID: <cover.1683541225.git.mazziesaccount@gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="tywmqNVigfIf5Z/k"
+Content-Disposition: inline
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -87,48 +80,181 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--tywmqNVigfIf5Z/k
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 8.05.2023 12:24, Dmitry Baryshkov wrote:
-> On 08/05/2023 11:30, Konrad Dybcio wrote:
->>
->>
->> On 7.05.2023 21:07, Dmitry Baryshkov wrote:
->>> To get GPU working with the OCMEM, the oxili_ocmemgx_clk clock should be
->>> enabled. Pass it to the GPU to get it to work on apq8074/msm8974 boards.
->>>
->>> Fixes: fe079442db63 ("ARM: dts: qcom: msm8974: add gpu support")
->>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>> ---
->> Uhh.. this clock should be managed by RPM with:
->>
->> type = MEM
->> id = 2
->>
->> just like it's defined for 8994 today.
->>
->> Could you try adding it in rpmcc and confirming?
-> 
-> There is an RPM_SMD_OCMEMGX_CLK clk already, it is a bus clock for the ocmemnoc.
-It's wrong.
+Add support for ROHM BU27008 RGB sensor.
 
-Konrad
-> 
->>
->> Konrad
->>>   arch/arm/boot/dts/qcom-msm8974.dtsi | 3 ++-
->>>   1 file changed, 2 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
->>> index 834ad95515b1..fb661c1bd3d5 100644
->>> --- a/arch/arm/boot/dts/qcom-msm8974.dtsi
->>> +++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
->>> @@ -2104,8 +2104,9 @@ gpu: adreno@fdb00000 {
->>>                 clocks = <&mmcc OXILI_GFX3D_CLK>,
->>>                    <&mmcc OXILICX_AHB_CLK>,
->>> +                 <&mmcc OXILI_OCMEMGX_CLK>,
->>>                    <&mmcc OXILICX_AXI_CLK>;
->>> -            clock-names = "core", "iface", "mem_iface";
->>> +            clock-names = "core", "iface", "mem", "mem_iface";
->>>                 sram = <&gmu_sram>;
->>>               power-domains = <&mmcc OXILICX_GDSC>;
-> 
+The ROHM BU27008 is a sensor with 5 photodiodes (red, green, blue, clear
+and IR) with four configurable channels. Red and green being always
+available and two out of the rest three (blue, clear, IR) can be
+selected to be simultaneously measured. Typical application is adjusting
+LCD backlight of TVs, mobile phones and tablet PCs.
+
+This series supports reading the RGBC and IR channels using IIO
+framework. However, only two of the BC+IR can be enabled at the same
+time. Series adds also support for scale and integration time
+configuration, where scale consists of impact of both the integration
+time and hardware gain. The gain and time support is backed by the newly
+introduced IIO GTS helper. This series depends on GTS helper patches
+added in BU27034 support series which is already merged in iio/togreg
+which this series is based on.
+
+The hardware allows configuring gain setting by writing a 5-bit gain
+selector value to a register. Part of the gain setting is common for all
+channels (RGBC + IR) but part of the selector value can be set
+separately for RGBC and IR:
+
+MODE_CONTROL2 REG:
+bit 7	    6	    5	    4	    3	    2	    1	    0
+-----------------------------------------------------------------
+|	RGB	selector		|
++---------------------------------------+
+-----------------------------------------------------------------
+| high bits IR	|			| low bits IR selector	|
++---------------+			+-----------------------+
+
+In theory it would be possible to set certain separate gain values for
+RGBC and IR channels, but this gets pretty confusing because there are a
+few 'unsupported' selector values. If only RGBC or IR was set, some
+extra handling should be done to prevent the other channel from getting
+unsupported value due to change in high-bits. Furthermore, allowing the
+channels to be set different gain values (in some cases when gains are
+such the HW supports it) would make the cases where also integration
+time is changed to achieve correct scale ... interesting. It might also
+be confusing for user to try predicting when setting different scales
+succeeds and when it does not. Furthermore, if for example the scale
+setting for RGBC caused IR selector to be invalid - it could also cause
+the IR scale to "jump" very far from previous value.
+
+To make the code simpler and more predictable for users, the current
+logic is as follows:
+
+1. Prevent setting IR scale. (My assumption is IR is less used than
+RGBC)
+2. When RGBC scale is set, set also the IR-selector to the same value.
+This prevents unsupported selector values and makes the IR scale changes
+predictable.
+
+The 2) could mean we effectively have the same scale for all channels.
+Unfortunately, the HW design is slightly peculiar and selector 0 means
+gain 1X on RGBC but gain 2X on IR. Rest of the selectors equal same gain
+values on RGBC and IR. The result is that while changin selector from 0
+=3D> 1 causes RGBC gain to go from 1X =3D> 4X, it causes IR gain to go from
+2X =3D> 4X.
+
+So, the driver provides separate scale entries for all channels (also
+RGB and C will have separate gain entries because these channels are of
+same type as IR channel). This makes it possible for user applications
+to go read the scales for all channels after setting scale for one (in
+order to detect the IR scale difference).
+
+Having the separate IR scale entry which applications can read to detect
+"arbitrary scale changes" makes it possible for applications to be
+written so they can cope if we need to implement the 'allow setting some
+different gains for IR and RGBC' - later.
+
+Finally, the scales_available is also provided for all other channels
+except the IR channel, which does not allow the scale to be changed.
+
+The sensor provides a data-ready IRQ and the driver implements a
+triggered buffer mode using this IRQ as a trigger.
+
+Finally, the series introduces generic iio_validate_own_trigger() helper
+which can be used as a validate_trigger callback for drivers which
+require the trigger and iio-device to be parented by same device. The
+KX022A driver is converted to use this new callback instead of rolling
+it's own function. The new helper and KX022A can be merged in as
+independent changes if need be.
+
+
+Revision history
+v3 =3D> v4:
+  iio_validate_own_trigger:
+    - kernel-doc fix
+  bu27008 driver fixes:
+    - re-enable IRQ in trigger renable-callback
+    - do trigger setup on own function
+    - drop regmap lock
+    - configure channels in appropriate callback
+v3 =3D> v4:
+  bu27008 driver fixes:
+    - Drop thread from device IRQ handler
+    - Styling and some minor improvements
+    - Use kernel-doc for enums
+    - Correctly order entries in Makefile
+v2 =3D> v3:
+  dt-bindings:
+    - No changes
+  iio_validate_own_trigger:
+    - subject fix
+  bu27008:
+    - Mostly styling based on comments from Andy and Andi
+
+  More accurate changelog in individual patches
+
+v1 =3D> v2:
+  dt-bindings:
+    - Fix issues pointed by Krzysztof.
+  bu27008 driver:
+    - Fix issues pointed by Jonathan
+  Add new helper for validating own trigger
+
+  More accurate changelog in individual patches
+
+---
+
+Matti Vaittinen (5):
+  dt-bindings: iio: light: ROHM BU27008
+  iio: trigger: Add simple trigger_validation helper
+  iio: kx022a: Use new iio_validate_own_trigger()
+  iio: light: ROHM BU27008 color sensor
+  MAINTAINERS: Add ROHM BU27008
+
+ .../bindings/iio/light/rohm,bu27008.yaml      |   49 +
+ MAINTAINERS                                   |    3 +-
+ drivers/iio/accel/kionix-kx022a.c             |   13 +-
+ drivers/iio/industrialio-trigger.c            |   22 +-
+ drivers/iio/light/Kconfig                     |   14 +
+ drivers/iio/light/Makefile                    |    1 +
+ drivers/iio/light/rohm-bu27008.c              | 1026 +++++++++++++++++
+ include/linux/iio/trigger.h                   |    1 +
+ 8 files changed, 1115 insertions(+), 14 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/light/rohm,bu2700=
+8.yaml
+ create mode 100644 drivers/iio/light/rohm-bu27008.c
+
+--=20
+2.40.1
+
+
+--=20
+Matti Vaittinen, Linux device drivers
+ROHM Semiconductors, Finland SWDC
+Kiviharjunlenkki 1E
+90220 OULU
+FINLAND
+
+~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
+Simon says - in Latin please.
+~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
+Thanks to Simon Glass for the translation =3D]=20
+
+--tywmqNVigfIf5Z/k
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmRYzzcACgkQeFA3/03a
+ocVJyAf/VKRrGdriwVFe902yrspxGTs9cHVLsvCSBdREg2ByVVDXwdczq8M7UJy0
+/VWxHBR66SGXskuovDp2pnBh/8JJHU9p4UmnnGfdTndOCL14y+gFp5BElKyb8u0o
+p3/tuz2kwAILqpSfcJpSQp7az5Qeu6Hzl6Fo8fyLQThsDZgAgHEKZKFGrZrk+V7O
+FnCXpSg6CL648VB70oZNSXbBF+MeGe6REzvImxFztCC2pLkCqviQ+eBcwD+NPzVx
+zAdKsOwBfz1UXOHO95pHjzD1qZhQAm6JVAJvV49aJZTohhnN4ffZzN5yx1rVkjtc
+t8+VdFiwVE/Hr4K6w2fge/sefB0drw==
+=GBvF
+-----END PGP SIGNATURE-----
+
+--tywmqNVigfIf5Z/k--
