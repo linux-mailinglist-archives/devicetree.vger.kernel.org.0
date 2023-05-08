@@ -2,53 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 94C306FA02A
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 08:52:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16B3F6FA05D
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 08:58:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232753AbjEHGwr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 02:52:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36096 "EHLO
+        id S233165AbjEHG6s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 02:58:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41976 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229852AbjEHGwq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 02:52:46 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 572DD11628;
-        Sun,  7 May 2023 23:52:44 -0700 (PDT)
+        with ESMTP id S233203AbjEHG6g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 02:58:36 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6D271A62E;
+        Sun,  7 May 2023 23:58:16 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D9EEB61F3A;
-        Mon,  8 May 2023 06:52:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50B12C433A1;
-        Mon,  8 May 2023 06:52:43 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4E8BA61F37;
+        Mon,  8 May 2023 06:58:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3668C433EF;
+        Mon,  8 May 2023 06:58:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1683528763;
-        bh=ZE6Vr9Yajp3snKfRb/T4DJi7T/W3uvjeYiZ1cxbbIQ8=;
+        s=k20201202; t=1683529095;
+        bh=3NvGzGZUDejWf2Tsc/ruVQPX/c2lUYLZP2mcCabAqpE=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Hs/uQexpO/8RkhQ8GVASe16K5oogngtqWb4hWHGsYN+phIhOYKsxuEyHuOVWH8dqq
-         s/ycLF9sGenZ526Kv7dFj2xUkEvU1/sAoaThocwUfx64gipZijsklWVrgLo72kfKBQ
-         h5V551044EuiZ2nA1xveZU1dtjwIBRiseKdLIOdeY04gb1ZkMcflkaTqCfU75TIQh6
-         jD3DqwZv4Zgg/tZssm8y7r8QYvu6pDhZEmy8lGmDpaSwZrN3X7/1DipxA004TyGs2C
-         VpH4n3+VYflmI7qStjblaHRawAOhN+lZ4EtvO14IDz7r+O5seIIGF3Bea1ze+HmySL
-         HfszT9KBNABBA==
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-965ac4dd11bso833864566b.2;
-        Sun, 07 May 2023 23:52:43 -0700 (PDT)
-X-Gm-Message-State: AC+VfDwqaXAaU9vghMopTBYMdIpQMQhNSqmH89QoyRyD/G+5q//kgcrO
-        HuILqeExyYl/7KfZdMsADcaRT/i9fiTb+61KQTU=
-X-Google-Smtp-Source: ACHHUZ6Y6grqgRLTUhlimPBKynh9DnHZoR/6MpPmj9ylOios2EVUGTDYz+S0kva/uFN5mGCt7yUrdJztk28ZabD8yiM=
-X-Received: by 2002:a17:907:5c6:b0:94e:e293:cf34 with SMTP id
- wg6-20020a17090705c600b0094ee293cf34mr8100801ejb.6.1683528761470; Sun, 07 May
- 2023 23:52:41 -0700 (PDT)
+        b=NXE7z5SvCZ/k3TCIBRogKFdMhzfn0wpJbvPqtyXIAyoSti38t5Ep2rO3WqDfUkUW+
+         bwzb6RlFG6+pPCquLjxl0Ch/Rgj699XEnKTCwLKJS3pbRLhiBILtp2ALPR7wYAVcBk
+         /Yb7dLOLcZ8qiRavKbYNrnDsGSbCmfalUyBRXHjG671oGchEFI9RNKwR756GnA0VFM
+         dq9TWjCJWKAGyo/055cMy1R3rso1RqSSB/hyKdPpyVVnYkpb+lYtPig2u7BlJeTdsu
+         lBRCKks+Pz76u1WU5tEb9aM4V6FHEsz8AWjAFKLW/2xDoj9p6czkGMRZUIyF8JkhJN
+         s1HsirNbBRpEg==
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-965d2749e2eso528401566b.1;
+        Sun, 07 May 2023 23:58:15 -0700 (PDT)
+X-Gm-Message-State: AC+VfDxY9RtB3CjPo8TBBKkEWl1kFPwqnj7+1MKtA5kvXszksNOCMvY9
+        x6jCSCnnhqZJeVLhvVeXFmZR1meGNSBrOr3a6lE=
+X-Google-Smtp-Source: ACHHUZ4eTiPCDomhQD8cUrrT/3bGwzPZ7F4C644pKdOt1JjzD5ZlEtq5hNlN2UT0wNlBk1g+j/KrEa+J7Swd/5aMHM4=
+X-Received: by 2002:a17:906:7304:b0:94c:ea3b:27a with SMTP id
+ di4-20020a170906730400b0094cea3b027amr9183323ejc.16.1683529093952; Sun, 07
+ May 2023 23:58:13 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230507182304.2934-1-jszhang@kernel.org> <20230507182304.2934-2-jszhang@kernel.org>
-In-Reply-To: <20230507182304.2934-2-jszhang@kernel.org>
+References: <20230507182304.2934-1-jszhang@kernel.org> <20230507182304.2934-3-jszhang@kernel.org>
+ <20230507-sleeve-tacky-21e817e31fb2@spud> <CAJF2gTTSRQUX8C3C-tgq4o5iGJqKTja7-1Dv8epG_qZizUvSow@mail.gmail.com>
+ <20230508-splashed-voicing-bc6e91aeb053@wendy>
+In-Reply-To: <20230508-splashed-voicing-bc6e91aeb053@wendy>
 From:   Guo Ren <guoren@kernel.org>
-Date:   Mon, 8 May 2023 14:52:29 +0800
-X-Gmail-Original-Message-ID: <CAJF2gTTni=G5FP80rSArErXGWQatR1P8rCy9nNOggeA4vtXftQ@mail.gmail.com>
-Message-ID: <CAJF2gTTni=G5FP80rSArErXGWQatR1P8rCy9nNOggeA4vtXftQ@mail.gmail.com>
-Subject: Re: [PATCH 1/5] irqchip/sifive-plic: Support T-HEAD's C910 PLIC
-To:     Jisheng Zhang <jszhang@kernel.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
+Date:   Mon, 8 May 2023 14:58:02 +0800
+X-Gmail-Original-Message-ID: <CAJF2gTSZmjScBERVxxsEJ-q-HdXn+daT5-H-QvGt2iWxPCaT3g@mail.gmail.com>
+Message-ID: <CAJF2gTSZmjScBERVxxsEJ-q-HdXn+daT5-H-QvGt2iWxPCaT3g@mail.gmail.com>
+Subject: Re: [PATCH 2/5] riscv: Add the T-HEAD SoC family Kconfig option
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     Conor Dooley <conor@kernel.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
         Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -60,8 +64,8 @@ Cc:     Thomas Gleixner <tglx@linutronix.de>,
         linux-riscv@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -70,83 +74,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 8, 2023 at 2:34=E2=80=AFAM Jisheng Zhang <jszhang@kernel.org> w=
-rote:
+On Mon, May 8, 2023 at 2:53=E2=80=AFPM Conor Dooley <conor.dooley@microchip=
+.com> wrote:
 >
-> The T-HEAD's C910 PLIC still needs the delegation bit settingto allow
-> access from S-mode, but it doesn't need the edge quirk.
+> On Mon, May 08, 2023 at 02:42:10PM +0800, Guo Ren wrote:
+> > On Mon, May 8, 2023 at 5:22=E2=80=AFAM Conor Dooley <conor@kernel.org> =
+wrote:
+> > >
+> > > On Mon, May 08, 2023 at 02:23:01AM +0800, Jisheng Zhang wrote:
+> > > > The first SoC in the T-HEAD series is light(a.k.a th1520), containi=
+ng
+> > > > quad T-HEAD C910 cores.
+> > > >
+> > > > Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> > > > ---
+> > > >  arch/riscv/Kconfig.socs | 6 ++++++
+> > > >  1 file changed, 6 insertions(+)
+> > > >
+> > > > diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
+> > > > index 1cf69f958f10..ce10a38dff37 100644
+> > > > --- a/arch/riscv/Kconfig.socs
+> > > > +++ b/arch/riscv/Kconfig.socs
+> > > > @@ -41,6 +41,12 @@ config ARCH_SUNXI
+> > > >         This enables support for Allwinner sun20i platform hardware=
+,
+> > > >         including boards based on the D1 and D1s SoCs.
+> > > >
+> > > > +config ARCH_THEAD
+> > >
+> > > Could you please add a defconfig patch, adding this option, so that w=
+e
+> > > build support for this platform by default?
 >
-> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-> ---
->  .../bindings/interrupt-controller/sifive,plic-1.0.0.yaml      | 4 ++++
->  drivers/irqchip/irq-sifive-plic.c                             | 1 +
->  2 files changed, 5 insertions(+)
+> > Yes, but it's another patch, see: 'commit eb20e7cb91ba ("riscv:
+> > defconfig: Enable the Allwinner D1 platform and drivers")'
 >
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/sifiv=
-e,plic-1.0.0.yaml b/Documentation/devicetree/bindings/interrupt-controller/=
-sifive,plic-1.0.0.yaml
-> index f75736a061af..64b43a3c3748 100644
-> --- a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-=
-1.0.0.yaml
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-=
-1.0.0.yaml
-> @@ -62,6 +62,10 @@ properties:
->                - starfive,jh7110-plic
->                - canaan,k210-plic
->            - const: sifive,plic-1.0.0
-> +      - items:
-> +          - enum:
-> +              - thead,light-plic
-> +          - const: thead,c910-plic
->        - items:
->            - enum:
->                - allwinner,sun20i-d1-plic
-> diff --git a/drivers/irqchip/irq-sifive-plic.c b/drivers/irqchip/irq-sifi=
-ve-plic.c
-> index e1484905b7bd..71afa2a584d9 100644
-> --- a/drivers/irqchip/irq-sifive-plic.c
-> +++ b/drivers/irqchip/irq-sifive-plic.c
-> @@ -569,6 +569,7 @@ static int __init plic_init(struct device_node *node,
->  }
->
->  IRQCHIP_DECLARE(sifive_plic, "sifive,plic-1.0.0", plic_init);
-> +IRQCHIP_DECLARE(thead_c910_plic, "thead,c910-plic", plic_init);
->  IRQCHIP_DECLARE(riscv_plic0, "riscv,plic0", plic_init); /* for legacy sy=
-stems */
->
->  static int __init plic_edge_init(struct device_node *node,
-> --
-> 2.40.0
->
-opensbi needs thead,c900-plic, and we could put multi compatible name
-in the dts. So, it's no need here.
+> But that's ARCH_SUNXI for the Allwinner D1. If the TH1520 is a
+> first-party SoC, and not an Allwinner product, it needs a new Kconfig
+> entry etc.
+> If it is an Allwinner, then the dts etc should be in the Allwinner
+> directory too.
+Do you mean?
+config ARCH_THEAD
+        def_bool SOC_THEAD
 
-Another question, Could we change the name of Sifive to RISC-V when
-"cat /proc/interrupts" ?
+config SOC_THEAD
+        bool "T-HEAD SoCs"
 
-diff --git a/drivers/irqchip/irq-sifive-plic.c
-b/drivers/irqchip/irq-sifive-plic.c
-index ff47bd0dec45..b5844d784bfa 100644
---- a/drivers/irqchip/irq-sifive-plic.c
-+++ b/drivers/irqchip/irq-sifive-plic.c
-@@ -177,7 +177,7 @@ static int plic_set_affinity(struct irq_data *d,
- #endif
+In defconfig:
++CONFIG_SOC_THEAD=3Dy
 
- static struct irq_chip plic_edge_chip =3D {
--       .name           =3D "SiFive PLIC",
-+       .name           =3D "RISC-V PLIC",
-        .irq_enable     =3D plic_irq_enable,
-        .irq_disable    =3D plic_irq_disable,
-        .irq_ack        =3D plic_irq_eoi,
-@@ -192,7 +192,7 @@ static struct irq_chip plic_edge_chip =3D {
- };
+>
+> Cheers,
+> Conor.
 
- static struct irq_chip plic_chip =3D {
--       .name           =3D "SiFive PLIC",
-+       .name           =3D "RISC-V PLIC",
-        .irq_enable     =3D plic_irq_enable,
-        .irq_disable    =3D plic_irq_disable,
-        .irq_mask       =3D plic_irq_mask,
+
 
 --=20
 Best Regards
