@@ -2,59 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 517716FACCE
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 13:28:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C34076FACC8
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 13:28:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235859AbjEHL2N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 07:28:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45512 "EHLO
+        id S235842AbjEHL2L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 07:28:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235797AbjEHL1v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 07:27:51 -0400
-Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06E2D3D55C;
-        Mon,  8 May 2023 04:27:37 -0700 (PDT)
-Received: by mail-oi1-f169.google.com with SMTP id 5614622812f47-38dfa504391so2369979b6e.3;
-        Mon, 08 May 2023 04:27:36 -0700 (PDT)
+        with ESMTP id S235835AbjEHL1q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 07:27:46 -0400
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D9EB3C1ED;
+        Mon,  8 May 2023 04:27:33 -0700 (PDT)
+Received: by mail-oi1-f172.google.com with SMTP id 5614622812f47-38dfdc1daa9so2456008b6e.1;
+        Mon, 08 May 2023 04:27:33 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683545256; x=1686137256;
+        d=1e100.net; s=20221208; t=1683545252; x=1686137252;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=hgY1TG/HeMuxKUbL+5g1oS6I4Kij1PvcnYZww9LHLxw=;
-        b=Ocx34fuZ1afSLUvPCl5vHgu5/AA+JCYUdOsG+eqrqkYZCfprYN+C2gpdt+pox+ZbbN
-         a88kEywP3+geoidRLLDsHHQPBAnxltwGfjOtGMGi0bkIGYeHp8TPR7xz4MI8rkjN2fel
-         +eBaZlrrHZZSSUFN35YIC4BBGzp8oTGk72dhTg24K8nYudbhk2xHrrWdlOqMKS1/JIac
-         dzcdGAu1wn/Pfal24GpfmZ4mA682X/EUtFeny9tpw9jX0sjMMvPGRfExdZ982QmJGX9T
-         i3JFd45ZkgI8SIiCnPKvobsxdTEBNFdfj/u0B7NB5pWh8KmdF/OXI2JJzXXKd4gcU+gu
-         Wz7Q==
-X-Gm-Message-State: AC+VfDz3DPNb86644s2z933IakSR/SK8B4W8iXCvR+DaU8KM9aHhb5pU
-        xMDx5SrBusdI5fnUBXLF41w16ORGtXjb
-X-Google-Smtp-Source: ACHHUZ6CnaupNBoI+FoKCFTYjq8Y0Zi59PAtLLATG0Oc1ZTR6Wn71A3JmNl66+ywJlOAJS/NHTClRQ==
-X-Received: by 2002:a05:6808:6243:b0:38e:7bb:5a0d with SMTP id dt3-20020a056808624300b0038e07bb5a0dmr4703743oib.27.1683545255953;
-        Mon, 08 May 2023 04:27:35 -0700 (PDT)
+        bh=bKwEmXkLjouRbvIPiHn1eDAbzcuCzcpIkYFR5yMyldU=;
+        b=S1gp6vk1svJCkNRjAOwPNIPhC5oGJs0J1pcVbgUo9l61lhkdkvdHYwKJjGVXDywHs2
+         5YlU4LLBA1OZ4gGPfgGCQdXm7tEnBdb78ucxzlJSTcRcHgjJuh9SwDGla83G1tOS3s2n
+         xtRSRE5HcjeMfeLkfhkltGSqz6sgHV8beP6kvQfy+/PR4OyiEmdUwvYj7PHnJ+j9W83g
+         wRNnVDlgsh9PZsn5yXY+3pJyCd4F9rq2Ssqm0au9cfRku8AW668UgcyjN6qdOcirxQen
+         Dg7Yjjy4M0L8tLuU2+PyP3W2/jYEwlou4cJGjStXaG6PkmA+8d19NlgRTg0CRyRmlef1
+         OZHA==
+X-Gm-Message-State: AC+VfDxGKSr75fCHNRV7qQfWV4eyS5k7V7XK0nnhd3beB4w7BWGBeH04
+        oh1Di5Ji/7V9PVxSxcZ0GA==
+X-Google-Smtp-Source: ACHHUZ4b6HS6Nj3l3V+FkuKZw06PtKKqfLgSHl9DVMrriWGJBclIpRE3DXVBZrM2HLrg7mcM2ZUlgA==
+X-Received: by 2002:a05:6808:2819:b0:38e:9203:44eb with SMTP id et25-20020a056808281900b0038e920344ebmr4922218oib.28.1683545251961;
+        Mon, 08 May 2023 04:27:31 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id es10-20020a056808278a00b0038edc69490bsm5433912oib.10.2023.05.08.04.27.34
+        by smtp.gmail.com with ESMTPSA id i18-20020a4addd2000000b00541f66fdac8sm3955409oov.17.2023.05.08.04.27.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 May 2023 04:27:35 -0700 (PDT)
-Received: (nullmailer pid 789288 invoked by uid 1000);
+        Mon, 08 May 2023 04:27:31 -0700 (PDT)
+Received: (nullmailer pid 789284 invoked by uid 1000);
         Mon, 08 May 2023 11:27:28 -0000
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
 From:   Rob Herring <robh@kernel.org>
-To:     Claudiu Beznea <claudiu.beznea@microchip.com>
-Cc:     linux-clk@vger.kernel.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, mturquette@baylibre.com,
-        sboyd@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, nicolas.ferre@microchip.com,
-        alexandre.belloni@bootlin.com, devicetree@vger.kernel.org
-In-Reply-To: <20230508104801.445261-3-claudiu.beznea@microchip.com>
-References: <20230508104801.445261-1-claudiu.beznea@microchip.com>
- <20230508104801.445261-3-claudiu.beznea@microchip.com>
-Message-Id: <168354524853.789265.9741363586759296275.robh@kernel.org>
-Subject: Re: [PATCH v2 2/5] dt-bindings: clocks: atmel,at91rm9200-pmc:
- convert to yaml
+To:     Stanislav Jakubek <stano.jakubek@gmail.com>
+Cc:     Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+In-Reply-To: <20230508103255.GA18424@standask-GA-A55M-S2HP>
+References: <20230508103255.GA18424@standask-GA-A55M-S2HP>
+Message-Id: <168354524719.789190.15173683031952415240.robh@kernel.org>
+Subject: Re: [PATCH v3] dt-bindings: firmware: brcm,kona-smc: convert to
+ YAML
 Date:   Mon, 08 May 2023 06:27:28 -0500
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
@@ -68,15 +67,30 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Mon, 08 May 2023 13:47:58 +0300, Claudiu Beznea wrote:
-> Convert Atmel PMC documentation to yaml.
+On Mon, 08 May 2023 12:32:55 +0200, Stanislav Jakubek wrote:
+> Convert Broadcom Kona family Secure Monitor bounce buffer bindings
+> to DT schema.
 > 
-> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+> Changes during conversion:
+>   - move from misc to firmware subdirectory
+>   - add used, but previously undocumented SoC-specific compatibles
+>   - drop deprecated compatibles (they've been deprecated for ~10 years)
+> 
+> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
 > ---
->  .../devicetree/bindings/clock/at91-clock.txt  |  28 ----
->  .../bindings/clock/atmel,at91rm9200-pmc.yaml  | 154 ++++++++++++++++++
->  2 files changed, 154 insertions(+), 28 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/clock/atmel,at91rm9200-pmc.yaml
+> Changes in V3:
+>   - remove unnecessary oneOf (Krzysztof)
+> 
+> Changes in V2:
+>   - move to firmware subdirectory (Krzysztof)
+>   - drop deprecated compatibles (Krzysztof)
+>   - adjusted commit message to reflect the above changes
+> 
+>  .../bindings/firmware/brcm,kona-smc.yaml      | 39 +++++++++++++++++++
+>  .../bindings/misc/brcm,kona-smc.txt           | 15 -------
+>  2 files changed, 39 insertions(+), 15 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/firmware/brcm,kona-smc.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/misc/brcm,kona-smc.txt
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -85,18 +99,18 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.example.dtb: camera-sensor@3c: port:endpoint:data-lanes: [[1]] is too short
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/rockchip-isp1.example.dtb: camera@3c: port:endpoint:data-lanes: [[1]] is too short
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.yaml
 /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.example.dtb: pcie-ep@33800000: Unevaluated properties are not allowed ('assigned-clock-parents', 'assigned-clock-rates', 'assigned-clocks' were unexpected)
 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/rockchip-isp1.example.dtb: camera@3c: port:endpoint:data-lanes: [[1]] is too short
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.example.dtb: camera-sensor@3c: port:endpoint:data-lanes: [[1]] is too short
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.yaml
 
 doc reference errors (make refcheckdocs):
 Documentation/usb/gadget_uvc.rst: Documentation/userspace-api/media/v4l/pixfmt-packed.yuv.rst
 MAINTAINERS: Documentation/devicetree/bindings/pwm/pwm-apple.yaml
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230508104801.445261-3-claudiu.beznea@microchip.com
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230508103255.GA18424@standask-GA-A55M-S2HP
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
