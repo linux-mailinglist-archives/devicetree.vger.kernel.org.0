@@ -2,109 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F0606FB5E3
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 19:25:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 194866FB5FF
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 19:36:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232748AbjEHRZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 13:25:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39826 "EHLO
+        id S229457AbjEHRgB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 13:36:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229691AbjEHRZy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 13:25:54 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD012524E
-        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 10:25:52 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-50bd87539c2so7679190a12.0
-        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 10:25:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683566751; x=1686158751;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=x9QTaLy23UxSA3/Ja7A73J2rpYH5H6/h3lbZWyBIFJg=;
-        b=psMZ+aIT7AE3t8MX6jXm9EMUVxA1uGAV4vYkTWYKuLivSNWRH+ue7T97KB6kMvVfzg
-         pIYMfTXegVZ/aJ5hx8gr9Ww5F4q9G/O/tXIbTDNvgH5BFSP7FyKnorEvlc3Htf0CefJd
-         WnQNGL49P9KFJdWmWsoMuTWylE/CPNNcovbxOgYHkwDiBA4+5IAfpPeBn6qCe1c26OAh
-         nTspNz/HUi9FyPzDys+BZDOZ2V8LLjzkD607Btc6NolZ1WzBYTAiwVWmpr2PlP5XA0gg
-         6aMaGx+FjuSJQyTRF5dZ39MLxf80AjNFNr/vVxXctOKPw9T0werCxAisIT7gOLWQ4GwX
-         B+iQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683566751; x=1686158751;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=x9QTaLy23UxSA3/Ja7A73J2rpYH5H6/h3lbZWyBIFJg=;
-        b=FcJLQOutUIsfdIe3vx2pY3n6oXCQU43mhibd1ALypNujDFSnpsuMM8NHivFyT/us6D
-         jqGzPNgfhaM/MIzt/uvDU3CIqv95eiVrhHMLYR+mPL5Z4/v9TRhKCAnTH9Hii/3xtLvN
-         I+rEio8UVPTWm3iB3ihpW0q4Z28QwdTmxoa/SOMOBwsCUoT9hvsDgz8FUg4diqBLKzOz
-         AtNyw5smY20mHWionaz9rGhLVT9yrRnohQPYEez9DO6iTwb3+VNU77gr0LdvvFiCGwA+
-         E+kX2aYtsnXXfOoAndG1DuzFUg5Kilm7ZxulPk8G7UqZmSTWz1YDmqzGN9mjlPPyW1lN
-         eUOg==
-X-Gm-Message-State: AC+VfDwCVFR3rte9PmleIaG/pJFcZBJ1XcgjvGuKHxoBlsPjTk5GPrYB
-        UGDjtI6UKYGLkqdjHnckj87nTg==
-X-Google-Smtp-Source: ACHHUZ6aLDDj2us27QpBpK4XJuTG3gJdJ/8iVz+Ed8CX+SAQkuF+Evt0QRKtQuUhEkrRiLRuALMxcw==
-X-Received: by 2002:a17:907:3faa:b0:966:17b2:5b15 with SMTP id hr42-20020a1709073faa00b0096617b25b15mr7783203ejc.7.1683566751249;
-        Mon, 08 May 2023 10:25:51 -0700 (PDT)
-Received: from krzk-bin ([2a02:810d:15c0:828:50e0:ebdf:b755:b300])
-        by smtp.gmail.com with ESMTPSA id s3-20020a170906bc4300b0095fde299e83sm204140ejv.214.2023.05.08.10.25.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 May 2023 10:25:50 -0700 (PDT)
-Date:   Mon, 8 May 2023 19:25:48 +0200
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org,
-        robh+dt@kernel.org, luca.weiss@fairphone.com, subbaram@quicinc.com,
-        lujianhua000@gmail.com, jackp@quicinc.com,
-        konrad.dybcio@linaro.org, linux@roeck-us.net,
-        krzysztof.kozlowski+dt@linaro.org, andersson@kernel.org,
-        linux-arm-msm@vger.kernel.org, caleb.connolly@linaro.org,
-        robertom@qti.qualcomm.com, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 06/13] dt-bindings: mfd: qcom,spmi-pmic: Add typec to
- SPMI device types
-Message-ID: <20230508172548.mizzb4iymneqf7nz@krzk-bin>
-References: <20230508142308.1656410-1-bryan.odonoghue@linaro.org>
- <20230508142308.1656410-7-bryan.odonoghue@linaro.org>
+        with ESMTP id S233491AbjEHRgA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 13:36:00 -0400
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53C6F5FC3;
+        Mon,  8 May 2023 10:35:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1683567359; x=1715103359;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=e1JmpXn99KX4PvxeQe9Giaqhj7Jo074wNTWAfE5wjzc=;
+  b=G88Q3z86GauvSEPV3rOLc1+5jx2dejyFsiWD2w9c6Z63kRHq9rYeGr1h
+   KkoXMhtCJnb6bPf4JCJy/+AGlIsUfOSDnttSyzwFnS6y7fZXW+7t/1oan
+   2SlGIJWAm1cbo8eN/hiGjkezmhdQdVxKstOPwDCxmxNUO+34kN11ldAn2
+   hsDPW0dMUhalKjB4IHKcEQaOdDZEhTByEV46Nvt+tkPSAYpdCTGnY4FBA
+   u2VWbrWRlTtLM8WY2cVL8aOBiFxSkUJSzVFDIwK9mGgLP9m8IDWPRw9mG
+   jhAJO0Zfp5fxoTJaNBDUDdW1YiQL7ZM1rkYCWvXnkNlb+xYn6NzKwCB45
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="334156694"
+X-IronPort-AV: E=Sophos;i="5.99,259,1677571200"; 
+   d="scan'208";a="334156694"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 May 2023 10:35:41 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="768159934"
+X-IronPort-AV: E=Sophos;i="5.99,259,1677571200"; 
+   d="scan'208";a="768159934"
+Received: from lkp-server01.sh.intel.com (HELO dea6d5a4f140) ([10.239.97.150])
+  by fmsmga004.fm.intel.com with ESMTP; 08 May 2023 10:35:38 -0700
+Received: from kbuild by dea6d5a4f140 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pw4lt-0001LV-1z;
+        Mon, 08 May 2023 17:35:37 +0000
+Date:   Tue, 9 May 2023 01:35:07 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Bharat Bhushan <bbhushan2@marvell.com>, wim@linux-watchdog.org,
+        linux@roeck-us.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        sgoutham@marvell.com
+Cc:     oe-kbuild-all@lists.linux.dev,
+        Bharat Bhushan <bbhushan2@marvell.com>
+Subject: Re: [PATCH 2/2 v7] Watchdog: Add marvell GTI watchdog driver
+Message-ID: <202305090120.Ji2xbrTK-lkp@intel.com>
+References: <20230508131515.19403-2-bbhushan2@marvell.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230508142308.1656410-7-bryan.odonoghue@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230508131515.19403-2-bbhushan2@marvell.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 08 May 2023 15:23:01 +0100, Bryan O'Donoghue wrote:
-> Add the PMIC Type-C port driver to the list of devices.
-> 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
->  Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
+Hi Bharat,
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+kernel test robot noticed the following build errors:
 
-yamllint warnings/errors:
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on groeck-staging/hwmon-next linus/master v6.4-rc1 next-20230508]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-dtschema/dtc warnings/errors:
-./Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/usb/qcom,pmic-typec.yaml
+url:    https://github.com/intel-lab-lkp/linux/commits/Bharat-Bhushan/Watchdog-Add-marvell-GTI-watchdog-driver/20230508-211645
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20230508131515.19403-2-bbhushan2%40marvell.com
+patch subject: [PATCH 2/2 v7] Watchdog: Add marvell GTI watchdog driver
+config: sparc-allyesconfig (https://download.01.org/0day-ci/archive/20230509/202305090120.Ji2xbrTK-lkp@intel.com/config)
+compiler: sparc64-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/0b1fbcf987da442c837b205256c6400adf6d298e
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Bharat-Bhushan/Watchdog-Add-marvell-GTI-watchdog-driver/20230508-211645
+        git checkout 0b1fbcf987da442c837b205256c6400adf6d298e
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sparc olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sparc SHELL=/bin/bash drivers/
 
-See https://patchwork.ozlabs.org/patch/1778444
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202305090120.Ji2xbrTK-lkp@intel.com/
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+All errors (new ones prefixed by >>):
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+   drivers/watchdog/marvell_gti_wdt.c: In function 'gti_wdt_interrupt':
+>> drivers/watchdog/marvell_gti_wdt.c:89:9: error: implicit declaration of function 'writeq' [-Werror=implicit-function-declaration]
+      89 |         writeq(GTI_CWD_INT_PENDING_STATUS(priv->wdt_timer_idx),
+         |         ^~~~~~
+   drivers/watchdog/marvell_gti_wdt.c: In function 'gti_wdt_start':
+>> drivers/watchdog/marvell_gti_wdt.c:126:18: error: implicit declaration of function 'readq' [-Werror=implicit-function-declaration]
+     126 |         regval = readq(priv->base + GTI_CWD_WDOG(priv->wdt_timer_idx));
+         |                  ^~~~~
+   cc1: some warnings being treated as errors
 
-pip3 install dtschema --upgrade
 
-Please check and re-submit.
+vim +/writeq +89 drivers/watchdog/marvell_gti_wdt.c
+
+    82	
+    83	static irqreturn_t gti_wdt_interrupt(int irq, void *data)
+    84	{
+    85		struct watchdog_device *wdev = data;
+    86		struct gti_wdt_priv *priv = watchdog_get_drvdata(wdev);
+    87	
+    88		/* Clear Interrupt Pending Status */
+  > 89		writeq(GTI_CWD_INT_PENDING_STATUS(priv->wdt_timer_idx),
+    90		       priv->base + GTI_CWD_INT);
+    91	
+    92		watchdog_notify_pretimeout(wdev);
+    93	
+    94		return IRQ_HANDLED;
+    95	}
+    96	
+    97	static int gti_wdt_ping(struct watchdog_device *wdev)
+    98	{
+    99		struct gti_wdt_priv *priv = watchdog_get_drvdata(wdev);
+   100	
+   101		writeq(GTI_CWD_POKE_VAL,
+   102		       priv->base + GTI_CWD_POKE(priv->wdt_timer_idx));
+   103	
+   104		return 0;
+   105	}
+   106	
+   107	static int gti_wdt_start(struct watchdog_device *wdev)
+   108	{
+   109		struct gti_wdt_priv *priv = watchdog_get_drvdata(wdev);
+   110		u64 regval;
+   111	
+   112		if (!wdev->pretimeout)
+   113			return -EINVAL;
+   114	
+   115		set_bit(WDOG_HW_RUNNING, &wdev->status);
+   116	
+   117		/* Clear any pending interrupt */
+   118		writeq(GTI_CWD_INT_PENDING_STATUS(priv->wdt_timer_idx),
+   119		       priv->base + GTI_CWD_INT);
+   120	
+   121		/* Enable Interrupt */
+   122		writeq(GTI_CWD_INT_ENA_SET_VAL(priv->wdt_timer_idx),
+   123		       priv->base + GTI_CWD_INT_ENA_SET);
+   124	
+   125		/* Set (Interrupt + SCP interrupt (DEL3T) + core domain reset) Mode */
+ > 126		regval = readq(priv->base + GTI_CWD_WDOG(priv->wdt_timer_idx));
+   127		regval |= GTI_CWD_WDOG_MODE_INT_DEL3T_RST;
+   128		writeq(regval, priv->base + GTI_CWD_WDOG(priv->wdt_timer_idx));
+   129	
+   130		return 0;
+   131	}
+   132	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
