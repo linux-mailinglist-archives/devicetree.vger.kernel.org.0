@@ -2,79 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F6DD6FA13B
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 09:42:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDEF36FA159
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 09:46:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233452AbjEHHmW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 03:42:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50622 "EHLO
+        id S233463AbjEHHqY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 03:46:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233442AbjEHHmV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 03:42:21 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A0F9100E0
-        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 00:42:19 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4f13ef4ad91so4794894e87.3
-        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 00:42:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683531737; x=1686123737;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gffsMC5tKiPhlpHpP8KgpHzg+d0NHyCkcFBsaTzuAQk=;
-        b=h08IenH+ZC6UY+utZkFK6hbkNrEySaynLsS0kzHezKew1D9ubuvA3WyAaIip9xgG3V
-         9NgA1Ph2fnzjbMR7ExoYzQ1I/G6r689nJRFQsqXJI4k1wnscu8ZeBbzR9dnhkb/RBuyV
-         vZ/n9oTkage/jBtwAdv/+sWEY3q3nWPJNttd1I86e5gSWirb8A4GbYb6bW33SmqBy+bE
-         XU+PwuONFDkSz/X33cubQF4iluIFBvV9As6Mgu0V6WvXlTh8/7GZGJdz/rnhFiVlsBBS
-         MPm6o82B1hoT9k/vBYAqdAKRYu0A+2ZgLEEEH3XEq662PRgVt+4N/O/uqTWavqNO98oe
-         Tw1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683531737; x=1686123737;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gffsMC5tKiPhlpHpP8KgpHzg+d0NHyCkcFBsaTzuAQk=;
-        b=NMI9QNyNkDIsoDhCuFs3PfE5i1VIPS3bZhFHCUveP1bzYxqn52tiLvHWNOMJXNP6Pc
-         hxnzlHaJqdDByVguzNkn99F3eF8gC9Nr+f1xQ3qlEbuW14EyALSxOSjZsqq2pG893Vfg
-         vPJpHwN/W0Y8hzjj29cpKyvnew3XVf4W0RgBWiXZkzhVJWNOfi9MTN9abae0RjQkjngu
-         1ZptptDR/0V9TzVXVtH4+H9podoM4ch0p8HSRijzmJZ/z1POdoEfV97A/LikAeC/5t+E
-         Xn3eDyRJS5zHHtsTjgSCVkG4lZ61DdBSuWMq1uZOeRagD235M7Rp6c8QCZWD8mZM/elf
-         ST4w==
-X-Gm-Message-State: AC+VfDzZo+FLS4QiTArTq3bml/rKv44uRy5PiJ9b/8rahFHR9YI+xyri
-        zYaPVPlsuoLNciGp/BCaD+P0OA==
-X-Google-Smtp-Source: ACHHUZ63TYuPvAGlamFDwVqcicngnKW3teRc1FlxvNTT7nNCGhrKNee4AHg5RFHuhOMeUCOPmqH/bA==
-X-Received: by 2002:ac2:4357:0:b0:4ec:8e7e:46f1 with SMTP id o23-20020ac24357000000b004ec8e7e46f1mr2358472lfl.66.1683531737490;
-        Mon, 08 May 2023 00:42:17 -0700 (PDT)
-Received: from [192.168.1.101] (abyl248.neoplus.adsl.tpnet.pl. [83.9.31.248])
-        by smtp.gmail.com with ESMTPSA id a17-20020ac25211000000b004f002961a96sm1203912lfl.230.2023.05.08.00.42.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 May 2023 00:42:17 -0700 (PDT)
-Message-ID: <39f89f7d-77e2-3f73-940d-1891008279bc@linaro.org>
-Date:   Mon, 8 May 2023 09:42:15 +0200
+        with ESMTP id S233483AbjEHHqW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 03:46:22 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 595E98687;
+        Mon,  8 May 2023 00:46:20 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E39196203B;
+        Mon,  8 May 2023 07:46:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2B69C433D2;
+        Mon,  8 May 2023 07:46:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1683531979;
+        bh=kO6fJ/GkPqwLv735oDhZh3GcxwMT25MvPjdP9/q6LWs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=IsJASFt06VowLI4Mojie4o75uKwK4x8l3NIR2zXGgoXLJisE91lOQtoOs0Aicbx3N
+         a6/vQU4f/ARxugTFcJF8XT2PWkjfYEcNUaezefnR7vg5+CsPspqyaGOKQlHVcpF4Z+
+         EyHeCKrN3z89UH6lE7hDbJQsxBzakyfXAKBVmQ9eXsKkkGfdWJf/mLbhX4ubY6RGq3
+         swjDAfLofuceyifU3rfTQ6pXP+EZSohgGs1Xe61Xnc6U5MU932sKfnRbFfou98b5qx
+         kVTq1HwhHjE8xjN5vMN4SFwStCBu4pGRhz+/MgkbCN1zMq8Crc114B8wtj0PGjdl3o
+         WFTz/uCmt/0VQ==
+Date:   Mon, 8 May 2023 13:16:14 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Frank Li <Frank.Li@nxp.com>
+Cc:     kishon@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        imx@lists.linux.dev, fushi.peng@nxp.com
+Subject: Re: [PATCH 1/2] phy: cadence: salvo: Add
+ usb2-disconnect-threshold-microvolt property
+Message-ID: <ZFioxpLaXNeDUnFY@matsya>
+References: <20230505185247.1854677-1-Frank.Li@nxp.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH 5/6] soc: qcom: ocmem: Add support for msm8226
-Content-Language: en-US
-To:     Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
-        phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Brian Masney <masneyb@onstation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230506-msm8226-ocmem-v1-0-3e24e2724f01@z3ntu.xyz>
- <20230506-msm8226-ocmem-v1-5-3e24e2724f01@z3ntu.xyz>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230506-msm8226-ocmem-v1-5-3e24e2724f01@z3ntu.xyz>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230505185247.1854677-1-Frank.Li@nxp.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,40 +58,113 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 7.05.2023 11:12, Luca Weiss wrote:
-> The msm8226 SoC also contains OCMEM but with one region only.
+On 05-05-23, 14:52, Frank Li wrote:
+> Add usb2-disconnect-threshold-microvolt property to address fake USB
+> disconnection issue during enumeration or suspend state for difference
+> platform.
 > 
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-
-Konrad
->  drivers/soc/qcom/ocmem.c | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  arch/arm64/boot/dts/freescale/imx8x-mek.dtsi |  1 +
+>  drivers/phy/cadence/phy-cadence-salvo.c      | 30 +++++++++++++++++++-
+>  2 files changed, 30 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/soc/qcom/ocmem.c b/drivers/soc/qcom/ocmem.c
-> index 6235065d3bc9..d5892ce999c9 100644
-> --- a/drivers/soc/qcom/ocmem.c
-> +++ b/drivers/soc/qcom/ocmem.c
-> @@ -413,12 +413,18 @@ static int ocmem_dev_remove(struct platform_device *pdev)
->  	return 0;
->  }
+> diff --git a/arch/arm64/boot/dts/freescale/imx8x-mek.dtsi b/arch/arm64/boot/dts/freescale/imx8x-mek.dtsi
+> index 2f8fe59fc131..6a396844c02d 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8x-mek.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8x-mek.dtsi
+> @@ -1051,6 +1051,7 @@ &usbotg1 {
 >  
-> +static const struct ocmem_config ocmem_8226_config = {
-> +	.num_regions = 1,
-> +	.macro_size = SZ_128K,
+>  &usb3_phy {
+>  	status = "okay";
+> +	usb2-disconnect-threshold-microvolt = <645>;
+>  };
+>  
+>  &usbotg3 {
+> diff --git a/drivers/phy/cadence/phy-cadence-salvo.c b/drivers/phy/cadence/phy-cadence-salvo.c
+> index 23be27a747a9..06e705dbbc3c 100644
+> --- a/drivers/phy/cadence/phy-cadence-salvo.c
+> +++ b/drivers/phy/cadence/phy-cadence-salvo.c
+> @@ -5,7 +5,7 @@
+>   *
+>   * Copyright (c) 2019-2020 NXP
+>   */
+> -
+
+why this change?
+
+> +#include <linux/bitfield.h>
+>  #include <linux/clk.h>
+>  #include <linux/io.h>
+>  #include <linux/module.h>
+> @@ -91,9 +91,19 @@
+>  
+>  /* USB2 PHY register definition */
+>  #define UTMI_REG15				0xaf
+> +#define UTMI_AFE_RX_REG0			0x0d
+>  #define UTMI_AFE_RX_REG5			0x12
+>  #define UTMI_AFE_BC_REG4			0x29
+>  
+> +/* Align UTMI_AFE_RX_REG0 bit[7:6] define */
+> +enum usb2_disconn_threshold {
+> +	USB2_DISCONN_THRESHOLD_575 = 0x0,
+> +	USB2_DISCONN_THRESHOLD_610 = 0x1,
+> +	USB2_DISCONN_THRESHOLD_645 = 0x3,
 > +};
 > +
->  static const struct ocmem_config ocmem_8974_config = {
->  	.num_regions = 3,
->  	.macro_size = SZ_128K,
+> +#define RX_USB2_DISCONN_MASK			GENMASK(7, 6)
+> +
+>  /* TB_ADDR_TX_RCVDETSC_CTRL */
+>  #define RXDET_IN_P3_32KHZ			BIT(0)
+>  /*
+> @@ -125,6 +135,7 @@ struct cdns_salvo_phy {
+>  	struct clk *clk;
+>  	void __iomem *base;
+>  	struct cdns_salvo_data *data;
+> +	enum usb2_disconn_threshold usb2_disconn;
 >  };
 >  
->  static const struct of_device_id ocmem_of_match[] = {
-> +	{ .compatible = "qcom,msm8226-ocmem", .data = &ocmem_8226_config },
->  	{ .compatible = "qcom,msm8974-ocmem", .data = &ocmem_8974_config },
->  	{ }
->  };
-> 
+>  static const struct of_device_id cdns_salvo_phy_of_match[];
+> @@ -261,6 +272,12 @@ static int cdns_salvo_phy_init(struct phy *phy)
+>  
+>  	cdns_salvo_write(salvo_phy, USB2_PHY_OFFSET, UTMI_AFE_RX_REG5,
+>  			 0x5);
+> +
+> +	value = cdns_salvo_read(salvo_phy, USB2_PHY_OFFSET, UTMI_AFE_RX_REG0);
+> +	value &= ~RX_USB2_DISCONN_MASK;
+> +	value = FIELD_PREP(RX_USB2_DISCONN_MASK, salvo_phy->usb2_disconn);
+> +	cdns_salvo_write(salvo_phy, USB2_PHY_OFFSET, UTMI_AFE_RX_REG0, value);
+> +
+>  	udelay(10);
+>  
+>  	clk_disable_unprepare(salvo_phy->clk);
+> @@ -315,6 +332,7 @@ static int cdns_salvo_phy_probe(struct platform_device *pdev)
+>  	struct device *dev = &pdev->dev;
+>  	struct cdns_salvo_phy *salvo_phy;
+>  	struct cdns_salvo_data *data;
+> +	u32 val;
+>  
+>  	data = (struct cdns_salvo_data *)of_device_get_match_data(dev);
+>  	salvo_phy = devm_kzalloc(dev, sizeof(*salvo_phy), GFP_KERNEL);
+> @@ -326,6 +344,16 @@ static int cdns_salvo_phy_probe(struct platform_device *pdev)
+>  	if (IS_ERR(salvo_phy->clk))
+>  		return PTR_ERR(salvo_phy->clk);
+>  
+> +	if (of_property_read_u32(dev->of_node, "usb2-disconnect-threshold-microvolt", &val))
+> +		val = 575;
+> +
+> +	if (val < 610)
+> +		salvo_phy->usb2_disconn = USB2_DISCONN_THRESHOLD_575;
+> +	else if (val < 645)
+> +		salvo_phy->usb2_disconn = USB2_DISCONN_THRESHOLD_610;
+> +	else
+> +		salvo_phy->usb2_disconn = USB2_DISCONN_THRESHOLD_645;
+> +
+>  	salvo_phy->base = devm_platform_ioremap_resource(pdev, 0);
+>  	if (IS_ERR(salvo_phy->base))
+>  		return PTR_ERR(salvo_phy->base);
+> -- 
+> 2.34.1
+
+-- 
+~Vinod
