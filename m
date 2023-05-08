@@ -2,149 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BB736FA7A8
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 12:33:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E3E86FA7B9
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 12:34:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234702AbjEHKdg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 06:33:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33218 "EHLO
+        id S234753AbjEHKeY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 06:34:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234761AbjEHKdP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 06:33:15 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F0FD2ABDA
-        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 03:32:24 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2ac733b813fso47887701fa.1
-        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 03:32:24 -0700 (PDT)
+        with ESMTP id S234749AbjEHKd5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 06:33:57 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 323282674A;
+        Mon,  8 May 2023 03:33:02 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-3062b101ae1so2680664f8f.2;
+        Mon, 08 May 2023 03:33:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683541941; x=1686133941;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=gmail.com; s=20221208; t=1683541977; x=1686133977;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ScXfOKBt81Z5zV2cG1662UPRXJFST6VZnBC6VouOjSc=;
-        b=GrmDkGJvrRaoi7LAewDtfUAM0YYBpgUMUKRpSX8RbK2obuLwBwfJlk2QZkc/b7PuJo
-         HYWBbWCm6V2TXoHPv+iyQppf1PoYXtBvLAsZFcz5WgJI/QqSZMMF/sXoRZRS7bYhTX7u
-         WwtTxeGprytGUZBpLQVgODKMSnmy8v6+XsCbjnm8J1ZIdM6GP0mN3E6/WvSHAO2l0AWe
-         sgYQkjyPLeHPI4DErBPWlFeYnfWDxB7oN+SGqAUhJRzN1kmhH4kHm55/TPs4VUZPBhBn
-         wWV+Y/Fk3TjSwEnn4WENzWiF0nqRTD6pmpzZdeH9eLGTDKYDM2MpSVAm9Qp2xLqeIZOt
-         wnnA==
+        bh=5RO31PIvOJ1a+cgiuJEFwT9RyHnjbLWAMpuWQH4KIaA=;
+        b=LTe8i/EEI090DJOGzB6O8dy8nt7yJ29tkNzWmyiXQ/QaXCPWnIHwSAIb7Gult7iaVR
+         RXXWmCqC0C4cwaQb6N00PRITSZeG18Su4yucjYPo280JqskpqwG6CIxtLf+rUsi4r5Yl
+         fSzxO+sCpUeYhH5EI20ELsHRRoBMgRXy+Fd0GEYmsYNj1T51PKxVTD9x7uNeKuX5EZoP
+         YLioH6cqA6ZqEVGYbVVfCK62sI3BZjlingJ+tdcqtOjWyNokyzInctZTXO1Ql2FsKl0X
+         wb6VzscfnaQGyu0JfStfa0EfXvaFgUUBtFkPEdVZRVnvnkTpRfp2hPVgTr1PO5cyLc5v
+         GIxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683541941; x=1686133941;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1683541977; x=1686133977;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ScXfOKBt81Z5zV2cG1662UPRXJFST6VZnBC6VouOjSc=;
-        b=Y9vL4M30W0mhRd7tD4UDnhpLnbTRXFZoeY2dadVlrnO73L3PmzN+hisrm4ej2GNYtL
-         va4GZ8gcHUU1S38UbCCgk+EXCMp8jOXdFJkmTwNIiM6IlXAdXnxjPvdTScv/W55tL7ko
-         b8pVVDpQqPSWhceFuBxYyvfevV2CtLK9FDNy3Bije/D5lofPnTaAglGnSuw8j9rBXcgO
-         1Od4bUR7M/1BOZdzLWvsMgxeRn470/sLfxUY9A8mScdkd5eHOuIXnPyo6fSjEPqLAvcW
-         FlTVAvi8HcNcp2ulniQ97sADIs49h59VESIDvncaWJPbn4QM5bkPHQsV6RpYguYLQ4K0
-         68Jw==
-X-Gm-Message-State: AC+VfDxeOA6IoibR8vWyiU4IOExbhioiewLm3WB02fQ6jZWvFqbJE2Dc
-        TndKx1uE0cLRnkRp5kL1AD3WVBWtk/P4tVye0Cw=
-X-Google-Smtp-Source: ACHHUZ4gpZuq2LgpGp2cEbClw5qjF/b0rPeJcLA8iwjKT4SpwOE0zQ62tK/5XBVkS0mkN6iyEv87UA==
-X-Received: by 2002:a05:651c:236:b0:295:9be0:212b with SMTP id z22-20020a05651c023600b002959be0212bmr2763621ljn.8.1683541941628;
-        Mon, 08 May 2023 03:32:21 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id l11-20020a2e3e0b000000b002a8dce82cf6sm1127122lja.32.2023.05.08.03.32.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 May 2023 03:32:21 -0700 (PDT)
-Message-ID: <01fc4065-681f-daba-1c73-cc57768f880e@linaro.org>
-Date:   Mon, 8 May 2023 13:32:20 +0300
+        bh=5RO31PIvOJ1a+cgiuJEFwT9RyHnjbLWAMpuWQH4KIaA=;
+        b=bA3QyrtK+ANJyrJpXnO5z6HIoHj8Jtezw6d+K2G2Fr8/btDyf+LPp9vVXCS9gXTxby
+         EXnw63gWHD3TH1tpv9/ZmBsSrguR6axIRNZnbvqNuhpYxor5FXQZISXbR/hDG8DRYjZS
+         gsYNOr5Y67C+dfuphXjJSDZaR0wLTMTpydrIN1gmgMGZ4AguV+nCSwBCG3RiuXiAmy9M
+         wQYG2bNyndFmJQkBouDxQh5HbwC46uIpDDhw8Lwoaa0zOxo/F8yP1kUTEPPO56xpRQ0N
+         KWZkFQqwsnCkg1CwoeNRvQgWale3jBgTn8CwuxdETyuLqBzoLfxIh2/XXnAzQ+owD6rE
+         mZJg==
+X-Gm-Message-State: AC+VfDxmea6T9lZekikbiyyiKunKx0L+Lxsyqc7ftGCE4a/DbXtwMlDw
+        e2sI4PvAYoKorvBC45TBsaDqu/i8zh/LRw==
+X-Google-Smtp-Source: ACHHUZ6fBe+qiJgUVzfdb6H6qzEqFT1QwIdcbJsLKwaksUowloncRa2eTgJ2kBkRYnXxoikN1qwAcg==
+X-Received: by 2002:a5d:4570:0:b0:2fe:c0ea:18b5 with SMTP id a16-20020a5d4570000000b002fec0ea18b5mr6094585wrc.35.1683541977506;
+        Mon, 08 May 2023 03:32:57 -0700 (PDT)
+Received: from standask-GA-A55M-S2HP ([188.123.113.247])
+        by smtp.gmail.com with ESMTPSA id k11-20020adff5cb000000b0030649242b72sm10931916wrp.113.2023.05.08.03.32.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 May 2023 03:32:57 -0700 (PDT)
+Date:   Mon, 8 May 2023 12:32:55 +0200
+From:   Stanislav Jakubek <stano.jakubek@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>
+Cc:     bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v3] dt-bindings: firmware: brcm,kona-smc: convert to YAML
+Message-ID: <20230508103255.GA18424@standask-GA-A55M-S2HP>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH 1/4] ARM: dts: qcom: msm8974: add ocmem clock to GPU
-Content-Language: en-GB
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-References: <20230507190735.2333145-1-dmitry.baryshkov@linaro.org>
- <20230507190735.2333145-2-dmitry.baryshkov@linaro.org>
- <8cdecc51-2a42-4b82-9eb3-2ab77860c5d4@linaro.org>
- <c8144b21-d672-318e-2761-5d1daf384c30@linaro.org>
- <d357a6f9-d66b-0ba1-138c-4b541c3bebfb@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <d357a6f9-d66b-0ba1-138c-4b541c3bebfb@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/05/2023 13:28, Konrad Dybcio wrote:
-> 
-> 
-> On 8.05.2023 12:24, Dmitry Baryshkov wrote:
->> On 08/05/2023 11:30, Konrad Dybcio wrote:
->>>
->>>
->>> On 7.05.2023 21:07, Dmitry Baryshkov wrote:
->>>> To get GPU working with the OCMEM, the oxili_ocmemgx_clk clock should be
->>>> enabled. Pass it to the GPU to get it to work on apq8074/msm8974 boards.
->>>>
->>>> Fixes: fe079442db63 ("ARM: dts: qcom: msm8974: add gpu support")
->>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>>> ---
->>> Uhh.. this clock should be managed by RPM with:
->>>
->>> type = MEM
->>> id = 2
->>>
->>> just like it's defined for 8994 today.
->>>
->>> Could you try adding it in rpmcc and confirming?
->>
->> There is an RPM_SMD_OCMEMGX_CLK clk already, it is a bus clock for the ocmemnoc.
-> It's wrong.
+Convert Broadcom Kona family Secure Monitor bounce buffer bindings
+to DT schema.
 
-Can you possibly be more specific here?
+Changes during conversion:
+  - move from misc to firmware subdirectory
+  - add used, but previously undocumented SoC-specific compatibles
+  - drop deprecated compatibles (they've been deprecated for ~10 years)
 
-On 8974 RPM_SMD_OCMEMGX_CLK is a core clock for ocmem and a bus clock 
-for ocmemnoc.
+Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+---
+Changes in V3:
+  - remove unnecessary oneOf (Krzysztof)
 
-On 8994 this clocks is just a core clock for ocmem, there is no ocmemnoc.
+Changes in V2:
+  - move to firmware subdirectory (Krzysztof)
+  - drop deprecated compatibles (Krzysztof)
+  - adjusted commit message to reflect the above changes
+  
+ .../bindings/firmware/brcm,kona-smc.yaml      | 39 +++++++++++++++++++
+ .../bindings/misc/brcm,kona-smc.txt           | 15 -------
+ 2 files changed, 39 insertions(+), 15 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/firmware/brcm,kona-smc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/misc/brcm,kona-smc.txt
 
-
-> 
-> Konrad
->>
->>>
->>> Konrad
->>>>    arch/arm/boot/dts/qcom-msm8974.dtsi | 3 ++-
->>>>    1 file changed, 2 insertions(+), 1 deletion(-)
->>>>
->>>> diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
->>>> index 834ad95515b1..fb661c1bd3d5 100644
->>>> --- a/arch/arm/boot/dts/qcom-msm8974.dtsi
->>>> +++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
->>>> @@ -2104,8 +2104,9 @@ gpu: adreno@fdb00000 {
->>>>                  clocks = <&mmcc OXILI_GFX3D_CLK>,
->>>>                     <&mmcc OXILICX_AHB_CLK>,
->>>> +                 <&mmcc OXILI_OCMEMGX_CLK>,
->>>>                     <&mmcc OXILICX_AXI_CLK>;
->>>> -            clock-names = "core", "iface", "mem_iface";
->>>> +            clock-names = "core", "iface", "mem", "mem_iface";
->>>>                  sram = <&gmu_sram>;
->>>>                power-domains = <&mmcc OXILICX_GDSC>;
->>
-
+diff --git a/Documentation/devicetree/bindings/firmware/brcm,kona-smc.yaml b/Documentation/devicetree/bindings/firmware/brcm,kona-smc.yaml
+new file mode 100644
+index 000000000000..684b15ba9ad0
+--- /dev/null
++++ b/Documentation/devicetree/bindings/firmware/brcm,kona-smc.yaml
+@@ -0,0 +1,39 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/firmware/brcm,kona-smc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Broadcom Kona family Secure Monitor bounce buffer
++
++description:
++  A bounce buffer used for non-secure to secure communications.
++
++maintainers:
++  - Florian Fainelli <f.fainelli@gmail.com>
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - brcm,bcm11351-smc
++          - brcm,bcm21664-smc
++          - brcm,bcm23550-smc
++      - const: brcm,kona-smc
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    smc@3404c000 {
++        compatible = "brcm,bcm11351-smc", "brcm,kona-smc";
++        reg = <0x3404c000 0x400>; /* 1 KiB in SRAM */
++    };
++...
+diff --git a/Documentation/devicetree/bindings/misc/brcm,kona-smc.txt b/Documentation/devicetree/bindings/misc/brcm,kona-smc.txt
+deleted file mode 100644
+index 05b47232ed9e..000000000000
+--- a/Documentation/devicetree/bindings/misc/brcm,kona-smc.txt
++++ /dev/null
+@@ -1,15 +0,0 @@
+-Broadcom Secure Monitor Bounce buffer
+------------------------------------------------------
+-This binding defines the location of the bounce buffer
+-used for non-secure to secure communications.
+-
+-Required properties:
+-- compatible : "brcm,kona-smc"
+-- DEPRECATED: compatible : "bcm,kona-smc"
+-- reg : Location and size of bounce buffer
+-
+-Example:
+-	smc@3404c000 {
+-		compatible = "brcm,bcm11351-smc", "brcm,kona-smc";
+-		reg = <0x3404c000 0x400>; //1 KiB in SRAM
+-	};
 -- 
-With best wishes
-Dmitry
+2.25.1
 
