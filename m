@@ -2,67 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A0ED6F9E42
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 05:32:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C8BF6F9E54
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 05:45:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229852AbjEHDcq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 May 2023 23:32:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49930 "EHLO
+        id S232011AbjEHDpS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 May 2023 23:45:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229716AbjEHDcm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 May 2023 23:32:42 -0400
-Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5392040FC;
-        Sun,  7 May 2023 20:32:40 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1683516745; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=RBTuCgMHRK2gfh8llovAYCPGNBvmstD+1XFvCqwc4ASaeoG328ZYM6CZ/YYf70QZKS9+OJovRVXQkslOUfAhICMW7XCF9qc8axN1K4R5fzHLBhEpI+1GDGwAotfQKmVaXPG2nzieIy+aivxmKILCVAY5THQQBjYeihc9sfDwfpA=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1683516745; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=oRGcZerxA6Lwws1tmfxkffu7f7raQvcnx2Pon0KubIU=; 
-        b=INXBlqKVSz6gV7x3LLpuzqpnUX5g0HEa61FAGTg+IE4E7kxf1k1jiduQ43Dlcah/9p7KadCo8rrx04W2WfiQDoxV/vwMUbUmc+Z1FThSrY8JaknQeo7NDqAcX8aihgkhlDje6oaA6btmbVjiF3abSVY+IFOfzLUnQwan5bzqcYE=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=icenowy.me;
-        spf=pass  smtp.mailfrom=uwu@icenowy.me;
-        dmarc=pass header.from=<uwu@icenowy.me>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1683516745;
-        s=zmail; d=icenowy.me; i=uwu@icenowy.me;
-        h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-        bh=oRGcZerxA6Lwws1tmfxkffu7f7raQvcnx2Pon0KubIU=;
-        b=G20n1ds2gW6n9QfjxJ4ksfKQ7GldodmljuT8fMjiDjNSJLqO/MoTSJ9PqAyvpMGw
-        Ibb4vQrYEeICFzAZto3jW+guJ7BlJqPSHPuwIWXav7tHUGJcwtfLLPwMKWAlTvTH/VN
-        Jk0Y/T/uTmc4zKvIJwlRl0ylxmyhAncjQPrqQhCQ=
-Received: from edelgard.fodlan.icenowy.me (120.85.98.36 [120.85.98.36]) by mx.zohomail.com
-        with SMTPS id 1683516743648863.2035343610653; Sun, 7 May 2023 20:32:23 -0700 (PDT)
-Message-ID: <394696a52bf1d767044e3f990cebfbaf69dabe70.camel@icenowy.me>
-Subject: Re: [PATCH 3/5] riscv: dts: add initial T-HEAD light SoC device tree
-From:   Icenowy Zheng <uwu@icenowy.me>
-To:     Conor Dooley <conor@kernel.org>, Jisheng Zhang <jszhang@kernel.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, Guo Ren <guoren@kernel.org>,
-        heiko@sntech.de
-Date:   Mon, 08 May 2023 11:32:17 +0800
-In-Reply-To: <20230507-calamari-gentleman-bbe62af06f92@spud>
-References: <20230507182304.2934-1-jszhang@kernel.org>
-         <20230507182304.2934-4-jszhang@kernel.org>
-         <20230507-calamari-gentleman-bbe62af06f92@spud>
-Organization: Anthon Open-Source Community
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
-User-Agent: Evolution 3.44.4 
+        with ESMTP id S229814AbjEHDpQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 May 2023 23:45:16 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A86DE59E0;
+        Sun,  7 May 2023 20:45:15 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2D5E361E4F;
+        Mon,  8 May 2023 03:45:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 7A211C4339C;
+        Mon,  8 May 2023 03:45:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1683517514;
+        bh=f2Av221AoBzvVpsH70Hd2B/gNLrcWY+8qXBN329HBxg=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=nEMBgVLhaQ/GoILqUrKV2WfNuBDu5mLPOOj9sViK68lLfyn6E0fZntmkvnEMNczw5
+         EbF5rNVhHN+XhMIfqzf1UNOJAvGLFf1PZVgzcgIPbPUE+EwIJWNZrxKVVu1yFZrOhf
+         s8S+L6xb14/7tsLMxJDA7y8wc3jJ9+7cIDk3pHrL6rtse3xqHds20s1LvdzMi69CX3
+         sD1NUw/iq+udiMYY3F7egaakUU8HvudVxijwt2VMDUN+uQboAs0MBTyeA+XTCUEqzf
+         NoXJ9Hu6Gkj4k8e+xl8irP1QcmcNT3m3V1HVwOj2I/NLdVEEvvhzuSZLo4r3peUdU6
+         9jGWM/RANoSkw==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 4B4C7C395C8;
+        Mon,  8 May 2023 03:45:14 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLACK autolearn=no
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH] dt-bindings: google,cros-ec-keyb: Fix spelling error
+From:   patchwork-bot+chrome-platform@kernel.org
+Message-Id: <168351751430.5651.15940266526657898557.git-patchwork-notify@kernel.org>
+Date:   Mon, 08 May 2023 03:45:14 +0000
+References: <20230220135531.1987351-1-linus.walleij@linaro.org>
+In-Reply-To: <20230220135531.1987351-1-linus.walleij@linaro.org>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     dmitry.torokhov@gmail.com, linux-input@vger.kernel.org,
+        bleung@chromium.org, groeck@chromium.org,
+        devicetree@vger.kernel.org, chrome-platform@lists.linux.dev,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,82 +58,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-5ZyoIDIwMjMtMDUtMDfmmJ/mnJ/ml6XnmoQgMjI6MzUgKzAxMDDvvIxDb25vciBEb29sZXnlhpnp
-gZPvvJoKPiBIZXkgSmlzaGVuZywKPiAKPiBPbiBNb24sIE1heSAwOCwgMjAyMyBhdCAwMjoyMzow
-MkFNICswODAwLCBKaXNoZW5nIFpoYW5nIHdyb3RlOgo+IAo+ID4gK8KgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoGM5MTBfMDogY3B1QDAgewo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBjb21wYXRpYmxlID0gInRoZWFkLGM5MTAiLCAicmlzY3Yi
-Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBkZXZp
-Y2VfdHlwZSA9ICJjcHUiOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqByaXNjdixpc2EgPSAicnY2NGltYWZkYyI7Cj4gCj4gRG9lcyB0aGlzIHN1cHBv
-cnQgbW9yZSB0aGFuICJydjY0aW1hZmRjIj8KPiBJIGFzc3VtZSB0aGVyZSdzIHNvbWUgX3h0aGVh
-ZGZvbyBleHRlbnNpb25zIHRoYXQgaXQgZG9lcyBzdXBwb3J0LAo+IGFsdGhvdWdoIEkgYW0gbm90
-IHN1cmUgaG93IHdlIGFyZSBwcm9jZWVkaW5nIHdpdGggdGhvc2UgLSBIZWlrbyBtaWdodAo+IGhh
-dmUgYSBtb3JlIG51YW5jZWQgdGFrZS4KPiAKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqByZXNldDogcmVzZXQtc2FtcGxlIHsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgY29tcGF0aWJsZSA9ICJ0aGVhZCxyZXNldC1zYW1wbGUiOwo+
-IAo+IFdoYXQgaXMgYSAicmVzZXQtc2FtcGxlIj8KPiAKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZW50cnktcmVnID0gPDB4ZmYgMHhmZjAxOTA1MD47
-Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGVudHJ5
-LWNudCA9IDw0PjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgY29udHJvbC1yZWcgPSA8MHhmZiAweGZmMDE1MDA0PjsKPiA+ICvCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgY29udHJvbC12YWwgPSA8MHgxYz47Cj4g
-PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGNzci1jb3B5
-ID0gPDB4N2YzIDB4N2MwIDB4N2MxIDB4N2MyIDB4N2MzCj4gPiAweDdjNSAweDdjYz47Cj4gPiAr
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgfTsKPiA+ICsKPiA+ICvCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqBwbGljOiBpbnRlcnJ1cHQtY29udHJvbGxlckBmZmQ4MDAwMDAwIHsK
-PiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgY29tcGF0
-aWJsZSA9ICJ0aGVhZCxjOTEwLXBsaWMiOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqByZWcgPSA8MHhmZiAweGQ4MDAwMDAwIDB4MCAweDAxMDAwMDAw
-PjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgaW50
-ZXJydXB0cy1leHRlbmRlZCA9IDwmY3B1MF9pbnRjIDExPiwKPiA+IDwmY3B1MF9pbnRjIDk+LAo+
-ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgPCZjcHUxX2ludGMgMTE+LAo+ID4g
-PCZjcHUxX2ludGMgOT4sCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCA8JmNw
-dTJfaW50YyAxMT4sCj4gPiA8JmNwdTJfaW50YyA5PiwKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgIDwmY3B1M19pbnRjIDExPiwKPiA+IDwmY3B1M19pbnRjIDk+Owo+ID4gK8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBpbnRlcnJ1cHQtY29u
-dHJvbGxlcjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgI2ludGVycnVwdC1jZWxscyA9IDwxPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgcmlzY3YsbmRldiA9IDwyNDA+Owo+ID4gK8KgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoH07Cj4gPiArCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgY2xpbnQ6IHRpbWVyQGZmZGMwMDAwMDAgewo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBjb21wYXRpYmxlID0gInRoZWFkLGM5MDAtY2xpbnQi
-Owo+IAo+ICJjOTAwIj8gVGhhdCBhIHR5cG8gb3IgaW50ZW50aW9uYWwuIEhhcmQgdG8gdGVsbCBz
-aW5jZSB0aGlzCj4gY29tcGF0aWJsZQo+IGlzIHVuZG9jdW1lbnRlZCA7KQoKSW50ZW50aW9uYWws
-IGZvciBzdXBwb3J0aW5nIGJvdGggQzkwNiBhbmQgQzkxMC4KCkhvd2V2ZXIsIGFzIHdlIGRpc2N1
-c3NlZCBpbiBzb21lIGJpbmRpbmcgcGF0Y2hlcywgdGhlcmUgc2hvdWxkIGJlIGEgRFQKYmluZGlu
-ZyBzdHJpbmcgcGVyIGNoaXAuCgpTbyBoZXJlIHNob3VsZCBiZSAidGhlYWQsbGlnaHQtY2xpbnQi
-LCAidGhlYWQsYzkwMC1jbGludCIuCgooT3IgdXNlIHRoMTUyMCwgdGhlIG1hcmtldGluZyBuYW1l
-LCBpbnN0ZWFkIG9mIGxpZ2h0LCB0aGUgY29kZW5hbWUpCgpQLlMuIHdoaWNoIG9uZSBpcyBwcmVm
-ZXJyZWQgYnkgRFQgYmluZGluZyBtYWludGFpbmVycywgdGhlIG1hcmtldGluZwpuYW1lIG9yIHRo
-ZSBjb2RlbmFtZT8KCj4gCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoHJlZyA9IDwweGZmIDB4ZGMwMDAwMDAgMHgwIDB4MDAwMTAwMDA+Owo+ID4gK8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBpbnRlcnJ1cHRzLWV4
-dGVuZGVkID0gPCZjcHUwX2ludGMgMz4sCj4gPiA8JmNwdTBfaW50YyA3PiwKPiA+ICvCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIDwmY3B1MV9pbnRjIDM+LAo+ID4gPCZjcHUxX2ludGMg
-Nz4sCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCA8JmNwdTJfaW50YyAzPiwK
-PiA+IDwmY3B1Ml9pbnRjIDc+LAo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-PCZjcHUzX2ludGMgMz4sCj4gPiA8JmNwdTNfaW50YyA3PjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqB9Owo+ID4gKwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oHVhcnQwOiBzZXJpYWxAZmZlNzAxNDAwMCB7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoGNvbXBhdGlibGUgPSAic25wcyxkdy1hcGItdWFydCI7Cj4g
-PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJlZyA9IDww
-eGZmIDB4ZTcwMTQwMDAgMHgwIDB4NDAwMD47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoGludGVycnVwdHMgPSA8MzY+Owo+ID4gK8KgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBjbG9ja3MgPSA8JnVhcnRfc2Nsaz47
-Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGNsb2Nr
-LW5hbWVzID0gImJhdWRjbGsiOwo+IAo+IGR0YnNfY2hlY2sgY29tcGxhaW5zIGFib3V0IHRoaXMg
-Y2xvY2sgbmFtZS4KPiA+ICsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBkbWFj
-MDogZG1hY0BmZmVmYzAwMDAwIHsKPiAKPiBkbWEtY29udHJvbGxlckAKPiAKPiBBcyBJIG1lbnRp
-b25lZCBpbiB0aGUgb3RoZXIgcGF0Y2gsIHBsZWFzZSBjbGVhbiB1cCB0aGUgZHRic19jaGVjawo+
-IGNvbXBsYWludHMgZm9yIHYyLgo+IAo+IENoZWVycywKPiBDb25vci4KPiAKPiBfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IGxpbnV4LXJpc2N2IG1haWxp
-bmcgbGlzdAo+IGxpbnV4LXJpc2N2QGxpc3RzLmluZnJhZGVhZC5vcmcKPiBodHRwOi8vbGlzdHMu
-aW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LXJpc2N2Cgo=
+Hello:
+
+This patch was applied to chrome-platform/linux.git (for-kernelci)
+by Dmitry Torokhov <dmitry.torokhov@gmail.com>:
+
+On Mon, 20 Feb 2023 14:55:31 +0100 you wrote:
+> The dependency had an obvious spelling error. Fix it.
+> 
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> ---
+>  .../devicetree/bindings/input/google,cros-ec-keyb.yaml          | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+
+Here is the summary with links:
+  - dt-bindings: google,cros-ec-keyb: Fix spelling error
+    https://git.kernel.org/chrome-platform/c/c6f3b684c2c4
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
