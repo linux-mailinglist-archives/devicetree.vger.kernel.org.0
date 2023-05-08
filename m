@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 918FD6FB28B
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 16:23:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 894B56FB28F
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 16:23:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234563AbjEHOXa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 10:23:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59402 "EHLO
+        id S234583AbjEHOXb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 10:23:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234548AbjEHOX3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 10:23:29 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAAA919B9
-        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 07:23:24 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-3f37a36b713so46842375e9.1
-        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 07:23:24 -0700 (PDT)
+        with ESMTP id S234571AbjEHOXa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 10:23:30 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F9C81FDA
+        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 07:23:26 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-3f417ea5252so14666665e9.0
+        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 07:23:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683555803; x=1686147803;
+        d=linaro.org; s=google; t=1683555804; x=1686147804;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=6omFeCMKQQj09/ceCLTqpP2YWnzqMpAujAZuytfA25g=;
-        b=WK+4x1du+EC0kKmIMlbzuqct0pE/0Cko9zQNslmdC1PkWznBLsyekEUc59uHehlgT7
-         TV7EME148ZTglVq1oDdbQOsugEBWIPJ9TDf9IOLB9cT6BrEtjL/Wk6+QmMQaO4rbOsHE
-         hIm6UycPld+H7fLDQ1RgcWDWYPoZBQ8pqrd0AZJw8/NXltyreAcFM0VWqEpvHmhKR+3H
-         clPSEVs8OSv5UAyQQ0Nwgrzrkublz5a69VA2cOPpmTJpS2qKxQhpUjYlsypfdPuRX7/o
-         59qKLWpPCa6Y8yzrK+L4h+soyig9/bHhKSnQMvKgm1dwPVOFe/xCTAMJ1TfbhyyhV8GF
-         ZhGg==
+        bh=3oIx/YOLzSm+eiNVRyxGbhFkd6n9hgzPbuCkSewwSeo=;
+        b=lnCwCq87XPSgFh7byB6nfDVrw1QBlsfxHnqMnikJBWXftT+hsDu801yZh6CvbfQHE2
+         dziKG5BEMK+4gEVAOokR7bS26iGYdI6Ykz40wPZ5q2Wukg00XD/eOR6ZKxjWPQ/z7EjC
+         COnVWIEt6LnZz5w0pTK86INIrkyCa72kCnAxKJqA1zfOqR1wUY7EZW+PU5hwf9rJJhM8
+         WTsGDqIaAiQlcclyiZUp12vtEoc2CfELyJTvzKtvZ2DVB4M0t1GWl85mXqj/GSbMef8D
+         0haZTHVnh+/F6rrrgQY/vZ/Iv7wl7LHwoQxKkMc6jjk0LctAgOEvIUghGlAPnyB8+Zle
+         A+fQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683555803; x=1686147803;
+        d=1e100.net; s=20221208; t=1683555804; x=1686147804;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=6omFeCMKQQj09/ceCLTqpP2YWnzqMpAujAZuytfA25g=;
-        b=SWAG3yUsdGzB9vpyaz8iVbo4AsateY2EwIzgg0o0zE7/IlRBYsDpRZOugt18HKgXub
-         U9Ir/rjJZSLAqceChp6tM/eZFI+WyNkExZODtyEvU3EXOkHOV1tlmXZQQDRzNKHLDrct
-         mk+tdsNZjWBXfzVcQ9B/uiCpE9iR0qXn1Q2tS9mWnpsLHkj6cZutAkqWhNjbSkfVyIkg
-         voGaYzTr6URQ++ifWtaRWLk5typqrc+W0Eu2R66TKEDtZrCn+FpOXTXEUhuNqW6S5XMI
-         NWCQVQuQigiDCGvQMMZbv5Oa4t5jEqT3NOibdIuaX2hSnO3FlsuwbCy/F54Y3EGASYQO
-         MM7g==
-X-Gm-Message-State: AC+VfDxaZTvwtiSRk0E1KdCa4r7fcyZfvEX+Y/SBmM24m+Kkl7sixAie
-        fL9IlrKux0IO+1nmG/7qFGYc/Q==
-X-Google-Smtp-Source: ACHHUZ669I3J8BxvCD34EU7zYHtD35zO6U6nKxZAB1HtQo0VhKGbXrcH05zACMG5zDRvfdgD1hDGLg==
-X-Received: by 2002:a7b:cd93:0:b0:3f1:6ec5:bc6f with SMTP id y19-20020a7bcd93000000b003f16ec5bc6fmr6799958wmj.24.1683555803164;
-        Mon, 08 May 2023 07:23:23 -0700 (PDT)
+        bh=3oIx/YOLzSm+eiNVRyxGbhFkd6n9hgzPbuCkSewwSeo=;
+        b=g6T/Cim4UaLh37M8/MXmERf8EBb1DF01fTXWFQF3AC1/yf3s8ll4jTHOYHxUWgWCKg
+         KdZ/BLvI4ZPc0R1o57znodCMXn156v72qALTWcjkHea3614+Oz+HH7U0ruWtV3StWgUe
+         XDTfteNII7Uubnm9pwSrGTqScEB4/YJcd3adQnf7NwLRYf3zg4bwUtbzxGOhQ2VCjZbc
+         awNAEYGKrB+OZC8XB0eaZF1G7K348TbI9HxXfYmpAeGIW2srde8b8ONnf8qnz74MvSZ9
+         45Yq8c059IaxLrQ4f8jSyUj91WwisEV8qykgMbcsCEbu/nqZE/IdmEG+aVsEWiihUVkG
+         BSug==
+X-Gm-Message-State: AC+VfDyTsVKl8JjK+yvIkMjQJor7GwQXD/lWBWjCKWMCMZXgW7txP5Ux
+        CSATMIJLYg/RhtL9IzU9+nDDvw==
+X-Google-Smtp-Source: ACHHUZ59fjhFuwsN+1tesyFgb9pAM2X0g9QnwLHnlbs6lSJLD0pc9aElu0uSauVicOZrW+zep5QU+w==
+X-Received: by 2002:a05:600c:cf:b0:3f4:29c2:1cd0 with SMTP id u15-20020a05600c00cf00b003f429c21cd0mr46172wmm.25.1683555804559;
+        Mon, 08 May 2023 07:23:24 -0700 (PDT)
 Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id y25-20020a05600c365900b003f42456c490sm4081544wmq.33.2023.05.08.07.23.21
+        by smtp.gmail.com with ESMTPSA id y25-20020a05600c365900b003f42456c490sm4081544wmq.33.2023.05.08.07.23.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 May 2023 07:23:22 -0700 (PDT)
+        Mon, 08 May 2023 07:23:24 -0700 (PDT)
 From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 To:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
         gregkh@linuxfoundation.org, andersson@kernel.org,
@@ -59,10 +59,11 @@ To:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
 Cc:     konrad.dybcio@linaro.org, caleb.connolly@linaro.org,
         bryan.odonoghue@linaro.org, subbaram@quicinc.com,
         jackp@quicinc.com, robertom@qti.qualcomm.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v7 04/13] dt-bindings: phy: qcom,sc7180-qmp-usb3-dp-phy: Add input and output ports
-Date:   Mon,  8 May 2023 15:22:59 +0100
-Message-Id: <20230508142308.1656410-5-bryan.odonoghue@linaro.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Wesley Cheng <wcheng@codeaurora.org>
+Subject: [PATCH v7 05/13] dt-bindings: usb: Add Qualcomm PMIC Type-C
+Date:   Mon,  8 May 2023 15:23:00 +0100
+Message-Id: <20230508142308.1656410-6-bryan.odonoghue@linaro.org>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230508142308.1656410-1-bryan.odonoghue@linaro.org>
 References: <20230508142308.1656410-1-bryan.odonoghue@linaro.org>
@@ -70,7 +71,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,78 +79,215 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a ports declaration which is optional containing two port@
-declarations.
+Add a description for the Type-C silicon interface inside Qualcomm's
+PM8150b hardware block.
 
-port@0 to receive an orientation-switch message from the Type-C port or
-redriver
-
-port@1 to subsequently transmit the orientation-switch on once the PHY has
-finished doing its orientation turn-around.
-
-If ports is declared the input port port@0 is mandatory but the output
-port@1 is optional.
+Based on original work by Wesley.
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Wesley Cheng <wcheng@codeaurora.org>
 Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 ---
- .../phy/qcom,sc7180-qmp-usb3-dp-phy.yaml      | 38 +++++++++++++++++++
- 1 file changed, 38 insertions(+)
+ .../bindings/usb/qcom,pmic-typec.yaml         | 190 ++++++++++++++++++
+ 1 file changed, 190 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/usb/qcom,pmic-typec.yaml
 
-diff --git a/Documentation/devicetree/bindings/phy/qcom,sc7180-qmp-usb3-dp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc7180-qmp-usb3-dp-phy.yaml
-index d307343388888..c370b9cd58c2e 100644
---- a/Documentation/devicetree/bindings/phy/qcom,sc7180-qmp-usb3-dp-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/qcom,sc7180-qmp-usb3-dp-phy.yaml
-@@ -65,6 +65,25 @@ properties:
-     description: Flag the port as possible handler of orientation switching
-     type: boolean
- 
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+    description: OF graph bindings that model incoming orientation-switch and
-+      outgoing orientation-switch messages. An example of an incoming
-+      orientation-switch message might come form a Type-C connector or a USB
-+      redriver. An example of an output would be a DisplayPort controller.
+diff --git a/Documentation/devicetree/bindings/usb/qcom,pmic-typec.yaml b/Documentation/devicetree/bindings/usb/qcom,pmic-typec.yaml
+new file mode 100644
+index 0000000000000..55df3129a0bc7
+--- /dev/null
++++ b/Documentation/devicetree/bindings/usb/qcom,pmic-typec.yaml
+@@ -0,0 +1,190 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/usb/qcom,pmic-typec.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Type-C mux orientation-switch input.
++title: Qualcomm PMIC based USB Type-C block
 +
-+      port@1:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: PHY orientation-switch output.
++maintainers:
++  - Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 +
-+    required:
-+      - port@0
++description:
++  Qualcomm PMIC Type-C block
 +
-   resets:
-     items:
-       - description: reset of phy block.
-@@ -279,4 +298,23 @@ examples:
-             #clock-cells = <1>;
-             #phy-cells = <0>;
-         };
++properties:
++  compatible:
++    enum:
++      - qcom,pm8150b-typec
 +
-+        ports {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
++  connector:
++    type: object
++    $ref: /schemas/connector/usb-connector.yaml#
++    unevaluatedProperties: false
 +
-+            port@0 {
-+                reg = <0>;
-+                qmpphy_typec_mux_in: endpoint {
-+                    remote-endpoint = <&pmic_typec_mux_out>;
-+                };
-+            };
++  reg:
++    description: Type-C port and pdphy SPMI register base offsets
++    maxItems: 2
 +
-+            port@1 {
-+                reg = <1>;
-+                qmpphy_typec_mux_out: endpoint {
-+                    remote-endpoint = <&dp_typec_mux_in>;
++  interrupts:
++    items:
++      - description: Type-C CC attach notification, VBUS error, tCCDebounce done
++      - description: Type-C VCONN powered
++      - description: Type-C CC state change
++      - description: Type-C VCONN over-current
++      - description: Type-C VBUS state change
++      - description: Type-C Attach/detach notification
++      - description: Type-C Legacy cable detect
++      - description: Type-C Try.Src Try.Snk state change
++      - description: Power Domain Signal TX - HardReset or CableReset signal TX
++      - description: Power Domain Signal RX - HardReset or CableReset signal RX
++      - description: Power Domain TX complete
++      - description: Power Domain RX complete
++      - description: Power Domain TX fail
++      - description: Power Domain TX message discard
++      - description: Power Domain RX message discard
++      - description: Power Domain Fast Role Swap event
++
++  interrupt-names:
++    items:
++      - const: or-rid-detect-change
++      - const: vpd-detect
++      - const: cc-state-change
++      - const: vconn-oc
++      - const: vbus-change
++      - const: attach-detach
++      - const: legacy-cable-detect
++      - const: try-snk-src-detect
++      - const: sig-tx
++      - const: sig-rx
++      - const: msg-tx
++      - const: msg-rx
++      - const: msg-tx-failed
++      - const: msg-tx-discarded
++      - const: msg-rx-discarded
++      - const: fr-swap
++
++  vdd-vbus-supply:
++    description: VBUS power supply.
++
++  vdd-pdphy-supply:
++    description: VDD regulator supply to the PDPHY.
++
++  port:
++    $ref: /schemas/graph.yaml#/properties/port
++    description:
++      Contains a port which produces data-role switching messages.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - interrupt-names
++  - vdd-vbus-supply
++  - vdd-pdphy-supply
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/usb/pd.h>
++
++    pmic {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        pm8150b_typec: typec@1500 {
++            compatible = "qcom,pm8150b-typec";
++            reg = <0x1500>,
++                  <0x1700>;
++
++            interrupts = <0x2 0x15 0x00 IRQ_TYPE_EDGE_RISING>,
++                         <0x2 0x15 0x01 IRQ_TYPE_EDGE_BOTH>,
++                         <0x2 0x15 0x02 IRQ_TYPE_EDGE_RISING>,
++                         <0x2 0x15 0x03 IRQ_TYPE_EDGE_BOTH>,
++                         <0x2 0x15 0x04 IRQ_TYPE_EDGE_RISING>,
++                         <0x2 0x15 0x05 IRQ_TYPE_EDGE_RISING>,
++                         <0x2 0x15 0x06 IRQ_TYPE_EDGE_BOTH>,
++                         <0x2 0x15 0x07 IRQ_TYPE_EDGE_RISING>,
++                         <0x2 0x17 0x00 IRQ_TYPE_EDGE_RISING>,
++                         <0x2 0x17 0x01 IRQ_TYPE_EDGE_RISING>,
++                         <0x2 0x17 0x02 IRQ_TYPE_EDGE_RISING>,
++                         <0x2 0x17 0x03 IRQ_TYPE_EDGE_RISING>,
++                         <0x2 0x17 0x04 IRQ_TYPE_EDGE_RISING>,
++                         <0x2 0x17 0x05 IRQ_TYPE_EDGE_RISING>,
++                         <0x2 0x17 0x06 IRQ_TYPE_EDGE_RISING>,
++                         <0x2 0x17 0x07 IRQ_TYPE_EDGE_RISING>;
++
++            interrupt-names = "or-rid-detect-change",
++                              "vpd-detect",
++                              "cc-state-change",
++                              "vconn-oc",
++                              "vbus-change",
++                              "attach-detach",
++                              "legacy-cable-detect",
++                              "try-snk-src-detect",
++                              "sig-tx",
++                              "sig-rx",
++                              "msg-tx",
++                              "msg-rx",
++                              "msg-tx-failed",
++                              "msg-tx-discarded",
++                              "msg-rx-discarded",
++                              "fr-swap";
++
++            vdd-vbus-supply = <&pm8150b_vbus>;
++            vdd-pdphy-supply = <&vreg_l2a_3p1>;
++
++            connector {
++                compatible = "usb-c-connector";
++
++                power-role = "source";
++                data-role = "dual";
++                self-powered;
++
++                source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_DUAL_ROLE |
++                               PDO_FIXED_USB_COMM | PDO_FIXED_DATA_SWAP)>;
++
++                ports {
++                    #address-cells = <1>;
++                    #size-cells = <0>;
++
++                    port@0 {
++                        reg = <0>;
++                        pmic_typec_mux_out: endpoint {
++                            remote-endpoint = <&usb_phy_typec_mux_in>;
++                        };
++                    };
++
++                    port@1 {
++                        reg = <1>;
++                        pmic_typec_role_switch_out: endpoint {
++                            remote-endpoint = <&usb_role_switch_in>;
++                        };
++                    };
 +                };
 +            };
 +        };
-     };
++    };
++
++    usb {
++        dr_mode = "otg";
++        usb-role-switch;
++        port {
++            usb_role_switch_in: endpoint {
++                remote-endpoint = <&pmic_typec_role_switch_out>;
++            };
++        };
++    };
++
++    usb-phy {
++        orientation-switch;
++        port {
++            usb_phy_typec_mux_in: endpoint {
++                remote-endpoint = <&pmic_typec_mux_out>;
++            };
++        };
++    };
++
++...
 -- 
 2.39.2
 
