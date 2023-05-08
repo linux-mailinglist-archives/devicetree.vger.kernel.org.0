@@ -2,77 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 029746FA305
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 11:10:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CCF56FA30A
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 11:13:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233577AbjEHJKM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 05:10:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51012 "EHLO
+        id S232784AbjEHJN5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 05:13:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233002AbjEHJKI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 05:10:08 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76DBC20755
-        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 02:10:06 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4f13d8f74abso4803165e87.0
-        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 02:10:06 -0700 (PDT)
+        with ESMTP id S232967AbjEHJN4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 05:13:56 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF44F1A1D4
+        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 02:13:54 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-965d73eb65fso604016566b.2
+        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 02:13:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683537005; x=1686129005;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1683537233; x=1686129233;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=OnfVyFSn31B+nyS/SZa/G75Krp06veCTxpPxh0j9G8E=;
-        b=jJTxs54GT9sCoDJVUV42dYGIzIkF9heU3bsxsOCxiUnv0wtzxs8Vro26mo7ke8cS0M
-         Ha6qtrgeoVHDivjSvAIZZ/qKR6ebaIfdKbwfPMkY9jOs0MFgrG1Lhp9SKD4r23mMQlHY
-         5nG/VcS1J5SaEHUpMpNeF8b9sklrMyLpvdbQx5Zk9PUoFbom+cCPSCyg04I2oXBxWK3d
-         xMlcYGikeKiZLFnekzouICyn+oVjopPiQkd5xyRS0LOHxffn6RKL9bmUO+XBUPSx+rC1
-         vwbFqyKNxVWP/thpVhRsn28+nAgpg4svV4KjYsNrkpgk4lCFr6uj2bd5UEChU3rDqh0c
-         XBNA==
+        bh=qAZ6CsgLyXDUXidggc9B7i/76Tv3nelFvXsBdxV+W8A=;
+        b=m5MbGhdNrmIrhGmpeuVqGJpbXYnF153bWj1X+5Seu51227ZVA99QPTgEEfXloV2/Xr
+         w3lwQ34PjRMwb19KgxhKdBDRdAobxqa6iU4k89AfnqBvJh0v7CBTU+iaF0NRjtkxypBz
+         YpfEeALHA8aybrulaHuPJo4ctFHxE7O3XnMWvIS3xWtPEglxVj2/JkbVlT8BV5F8yDKv
+         UDIzLgjbdJPJ3h0RE/yOGwgsxrakeMsD1nfMTAsRh9aPKlJy7BPOOtg6ACUJ7Aw+7OKn
+         3jfgwd4SAgl40Ay3HJt+WYrfwR5F4eYQMqpCkaR3jTVNX/3hJT3SQShcA4KwpCrXt5kV
+         kMRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683537005; x=1686129005;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1683537233; x=1686129233;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OnfVyFSn31B+nyS/SZa/G75Krp06veCTxpPxh0j9G8E=;
-        b=NKYI5bZEQyGS/00tf6JClYPHF9wrztDeghX9GBEO3pUJwf9RTm9MMBG7lGZ3VtNRD8
-         X+jbE67OW9GfdiBxYhy6vz29ylSBibxDtF3RKSJNZeGm+dwas+1rmdL9aA/TWhp6WvfN
-         OIMmAdNyU9C6+vaNpTfeVhAPBRvAh0Fo83jMgycCZEcI5IQOemJjwolHuqNTcGalqRxW
-         YMUvf9+sDViAQwxJRZp1q89/+SXxURaempZpTH/K+ivytIEzOvAuYNUJNe72xdGEr1Cu
-         G4MLaVh4Gwf92g62C3F7qCLpDYF/GzWVgnhCRf8ENwjetbB/ywN4JwxYUNL0xSUODdrZ
-         HUMA==
-X-Gm-Message-State: AC+VfDyhJQOTe2hi4fOoCz4TqoMhKI28KAGdyg32G/lxO6iEgSMtcijV
-        qjOP85QzdwbO8FjWxFA5Rwac7Q==
-X-Google-Smtp-Source: ACHHUZ4zMrSGmYIGKNnjlfU8D1OYBsz7+8v2RvjakyKacrKqdWjDfSQyeq+VlFMd+R85jM7fQEAQyA==
-X-Received: by 2002:ac2:5399:0:b0:4dc:84c2:96f1 with SMTP id g25-20020ac25399000000b004dc84c296f1mr2254171lfh.22.1683537004848;
-        Mon, 08 May 2023 02:10:04 -0700 (PDT)
-Received: from [192.168.1.101] (abyl248.neoplus.adsl.tpnet.pl. [83.9.31.248])
-        by smtp.gmail.com with ESMTPSA id m21-20020ac24295000000b004eeda2caa3fsm1235434lfh.55.2023.05.08.02.10.03
+        bh=qAZ6CsgLyXDUXidggc9B7i/76Tv3nelFvXsBdxV+W8A=;
+        b=gfkL7G2f1fwMAO9r+SnYclOWGGAu8VYJBr7PBbdukpChHj6A2PpbqEbOI/wNSDE3JK
+         oBeM0p9TcLo/pS50EtrrMrMnHaE85qhNpBxQYgKt07QvyioqM+YB0jtL2Kjsmrm/gJDI
+         HH0w2DxZJPzlCfGyBOdwzqHVDIJnvvJAQ3WX9UQE6thKW/kA0fmWwmeHW2jq0PQhw92P
+         fCSEqQjLC8D3iaDBE+a/a0n+xtFv3r6mncB+5Qaj9pKB6mYwlyNvHAEoDQ4B8BfzCplY
+         PLndXoRztRkZzMNSjR5H9VAJNa/fnnAb5ja7HAI+mZmuvKIEc4D1+Y1e6i/aWpkIQXRb
+         LqwA==
+X-Gm-Message-State: AC+VfDywQ8Jdd8AHvdO8F/5bRMVDR+JmCs5Z8FQU+xZ5WTXk1QWKTwc7
+        nnRTU7ymzMT5wQ710SMRofJ/RxQGf3K0PE14TgFdbg==
+X-Google-Smtp-Source: ACHHUZ554FbjGsQiLN+oF18BXW6+jPtXDgjZQipLJ0LMS+kJZEFCZtZMlzQZm3PBY2o2KRLbAxmmmw==
+X-Received: by 2002:a17:907:26c7:b0:966:5bc0:bfe6 with SMTP id bp7-20020a17090726c700b009665bc0bfe6mr2337997ejc.2.1683537233306;
+        Mon, 08 May 2023 02:13:53 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:50e0:ebdf:b755:b300? ([2a02:810d:15c0:828:50e0:ebdf:b755:b300])
+        by smtp.gmail.com with ESMTPSA id gn29-20020a1709070d1d00b00968382ebf40sm514227ejc.40.2023.05.08.02.13.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 May 2023 02:10:04 -0700 (PDT)
-Message-ID: <fb22e37d-770f-40f6-678d-b2fb2b288cf1@linaro.org>
-Date:   Mon, 8 May 2023 11:10:02 +0200
+        Mon, 08 May 2023 02:13:52 -0700 (PDT)
+Message-ID: <6eb7f1f8-89c2-ffb3-c810-4f34b5a6e178@linaro.org>
+Date:   Mon, 8 May 2023 11:13:51 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [RFC PATCH v1 3/3] ARM: dts: qcom: apq8074-dragonboard: enable
- HDMI output
-Content-Language: en-US
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 1/6] dt-bindings: power: reset: qcom-pon: define
+ pm8941-pon
 To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-References: <20230507202841.2339127-1-dmitry.baryshkov@linaro.org>
- <20230507202841.2339127-4-dmitry.baryshkov@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230507202841.2339127-4-dmitry.baryshkov@linaro.org>
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+References: <20230508003309.2363787-1-dmitry.baryshkov@linaro.org>
+ <20230508003309.2363787-2-dmitry.baryshkov@linaro.org>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230508003309.2363787-2-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,64 +83,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 7.05.2023 22:28, Dmitry Baryshkov wrote:
-> Enable HDMI output on the APQ8074 dragonboard device.
+On 08/05/2023 02:33, Dmitry Baryshkov wrote:
+> On PM8941 pon doesn't store the reset reason. However we still need the
+> wrapping node for pwrkey and resin nodes. Add bindings for pm8941-pon
+> device.
 > 
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>  Documentation/devicetree/bindings/power/reset/qcom,pon.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 
-Konrad
->  .../arm/boot/dts/qcom-apq8074-dragonboard.dts | 30 +++++++++++++++++++
->  1 file changed, 30 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/qcom-apq8074-dragonboard.dts b/arch/arm/boot/dts/qcom-apq8074-dragonboard.dts
-> index 72f7e09a5bbf..850427bd2f82 100644
-> --- a/arch/arm/boot/dts/qcom-apq8074-dragonboard.dts
-> +++ b/arch/arm/boot/dts/qcom-apq8074-dragonboard.dts
-> @@ -20,6 +20,18 @@ chosen {
->  		stdout-path = "serial0:115200n8";
->  	};
->  
-> +	hdmi-out {
-> +		compatible = "hdmi-connector";
-> +		hdmi-pwr-supply = <&pm8941_5vs2>;
-> +		type = "a";
-> +
-> +		port {
-> +			hdmi_con: endpoint {
-> +				remote-endpoint = <&mdss_hdmi_out>;
-> +			};
-> +		};
-> +	};
-> +
->  	reserved-memory {
->  		mpss_region: mpss@ac00000 {
->  			reg = <0x0ac00000 0x2500000>;
-> @@ -90,6 +102,24 @@ &mdss {
->  	status = "okay";
->  };
->  
-> +&mdss_hdmi {
-> +	core-vdda-supply = <&pm8941_l12>;
-> +	core-vcc-supply = <&pm8941_s3>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&mdss_hdmi_out {
-> +	remote-endpoint = <&hdmi_con>;
-> +};
-> +
-> +&mdss_hdmi_phy {
-> +	core-vdda-supply = <&pm8941_l12>;
-> +	vddio-supply = <&pm8941_l12>;
-> +
-> +	status = "okay";
-> +};
-> +
->  &pm8941_wled {
->  	qcom,cs-out;
->  	qcom,switching-freq = <3200>;
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
