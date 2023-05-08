@@ -2,61 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EB2F6FB5DE
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 19:23:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F0606FB5E3
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 19:25:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233049AbjEHRXy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 13:23:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38880 "EHLO
+        id S232748AbjEHRZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 13:25:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39826 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232230AbjEHRXx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 13:23:53 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06D9B49EA;
-        Mon,  8 May 2023 10:23:53 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8D04361F43;
-        Mon,  8 May 2023 17:23:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FBD8C433EF;
-        Mon,  8 May 2023 17:23:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1683566631;
-        bh=o/W/upx1oxojt1pe4iM5As9FLK8IM26SwU7IdjNmdic=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Vavk1aH4LhGTgSh9NkidLrV8NHrkBidhBM6Hidv08ZSmSvHsALg6+qSJIGuAZtCA+
-         z2xbjNHytvlsPBf3kP5dh+ytxtT+FL3EA4bCVAa/8R2KrkCOt/Sk5hT9/BSZO0Ggiu
-         NsnM7UCw+UMMpvY/6Di2BpgcUy2FGjMxHWaPmK3VxxAkumIzwknPgPrzNPF7xZNwmQ
-         CkY07sWgc8xgjrO3e81I2WSgYfUxGHEEcyn6aBFNOIU/fClvvdxLJvagBOr+7PNvL/
-         0Mbu7vnY82GaJsettzFO4ybqJ+gRThiIqtAJBuHJQrI/ZMVZZQ3JqUbD53yVgyZecc
-         l+9/BknBT/rlw==
-Date:   Mon, 8 May 2023 18:23:46 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Jisheng Zhang <jszhang@kernel.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, Guo Ren <guoren@kernel.org>
-Subject: Re: [PATCH 5/5] MAINTAINERS: add entry for T-HEAD RISC-V SoC
-Message-ID: <20230508-problem-repulsive-939edfdf7663@spud>
-References: <20230507182304.2934-1-jszhang@kernel.org>
- <20230507182304.2934-6-jszhang@kernel.org>
- <20230507-woof-eldercare-f1323b10bde6@spud>
- <ZFkgsHGvEIxGDxXv@xhacker>
+        with ESMTP id S229691AbjEHRZy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 13:25:54 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD012524E
+        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 10:25:52 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-50bd87539c2so7679190a12.0
+        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 10:25:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683566751; x=1686158751;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=x9QTaLy23UxSA3/Ja7A73J2rpYH5H6/h3lbZWyBIFJg=;
+        b=psMZ+aIT7AE3t8MX6jXm9EMUVxA1uGAV4vYkTWYKuLivSNWRH+ue7T97KB6kMvVfzg
+         pIYMfTXegVZ/aJ5hx8gr9Ww5F4q9G/O/tXIbTDNvgH5BFSP7FyKnorEvlc3Htf0CefJd
+         WnQNGL49P9KFJdWmWsoMuTWylE/CPNNcovbxOgYHkwDiBA4+5IAfpPeBn6qCe1c26OAh
+         nTspNz/HUi9FyPzDys+BZDOZ2V8LLjzkD607Btc6NolZ1WzBYTAiwVWmpr2PlP5XA0gg
+         6aMaGx+FjuSJQyTRF5dZ39MLxf80AjNFNr/vVxXctOKPw9T0werCxAisIT7gOLWQ4GwX
+         B+iQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683566751; x=1686158751;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=x9QTaLy23UxSA3/Ja7A73J2rpYH5H6/h3lbZWyBIFJg=;
+        b=FcJLQOutUIsfdIe3vx2pY3n6oXCQU43mhibd1ALypNujDFSnpsuMM8NHivFyT/us6D
+         jqGzPNgfhaM/MIzt/uvDU3CIqv95eiVrhHMLYR+mPL5Z4/v9TRhKCAnTH9Hii/3xtLvN
+         I+rEio8UVPTWm3iB3ihpW0q4Z28QwdTmxoa/SOMOBwsCUoT9hvsDgz8FUg4diqBLKzOz
+         AtNyw5smY20mHWionaz9rGhLVT9yrRnohQPYEez9DO6iTwb3+VNU77gr0LdvvFiCGwA+
+         E+kX2aYtsnXXfOoAndG1DuzFUg5Kilm7ZxulPk8G7UqZmSTWz1YDmqzGN9mjlPPyW1lN
+         eUOg==
+X-Gm-Message-State: AC+VfDwCVFR3rte9PmleIaG/pJFcZBJ1XcgjvGuKHxoBlsPjTk5GPrYB
+        UGDjtI6UKYGLkqdjHnckj87nTg==
+X-Google-Smtp-Source: ACHHUZ6aLDDj2us27QpBpK4XJuTG3gJdJ/8iVz+Ed8CX+SAQkuF+Evt0QRKtQuUhEkrRiLRuALMxcw==
+X-Received: by 2002:a17:907:3faa:b0:966:17b2:5b15 with SMTP id hr42-20020a1709073faa00b0096617b25b15mr7783203ejc.7.1683566751249;
+        Mon, 08 May 2023 10:25:51 -0700 (PDT)
+Received: from krzk-bin ([2a02:810d:15c0:828:50e0:ebdf:b755:b300])
+        by smtp.gmail.com with ESMTPSA id s3-20020a170906bc4300b0095fde299e83sm204140ejv.214.2023.05.08.10.25.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 May 2023 10:25:50 -0700 (PDT)
+Date:   Mon, 8 May 2023 19:25:48 +0200
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc:     heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org,
+        robh+dt@kernel.org, luca.weiss@fairphone.com, subbaram@quicinc.com,
+        lujianhua000@gmail.com, jackp@quicinc.com,
+        konrad.dybcio@linaro.org, linux@roeck-us.net,
+        krzysztof.kozlowski+dt@linaro.org, andersson@kernel.org,
+        linux-arm-msm@vger.kernel.org, caleb.connolly@linaro.org,
+        robertom@qti.qualcomm.com, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 06/13] dt-bindings: mfd: qcom,spmi-pmic: Add typec to
+ SPMI device types
+Message-ID: <20230508172548.mizzb4iymneqf7nz@krzk-bin>
+References: <20230508142308.1656410-1-bryan.odonoghue@linaro.org>
+ <20230508142308.1656410-7-bryan.odonoghue@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="dSqjxm9sPfcjRPhf"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <ZFkgsHGvEIxGDxXv@xhacker>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <20230508142308.1656410-7-bryan.odonoghue@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -65,47 +78,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, 08 May 2023 15:23:01 +0100, Bryan O'Donoghue wrote:
+> Add the PMIC Type-C port driver to the list of devices.
+> 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
 
---dSqjxm9sPfcjRPhf
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-On Tue, May 09, 2023 at 12:17:52AM +0800, Jisheng Zhang wrote:
-> On Sun, May 07, 2023 at 10:21:26PM +0100, Conor Dooley wrote:
-> > Hey Jisheng,
->=20
-> Hi Conor,
->=20
-> >=20
-> > On Mon, May 08, 2023 at 02:23:04AM +0800, Jisheng Zhang wrote:
-> > > I would like to temporarily maintain the T-HEAD RISC-V SoC support.
-> >=20
-> > What does "temporarily" mean?
->=20
-> I got a Lichee Pi 4A board, and want to mainline its support. Sending
-> the new dts patches needs to touch MAINTAINERS entry, so I added it.
-> But I expected an experienced people from T-HEAD, with many
-> kernel contribuitions in the past, will take the maintainership
-> finally, for example, Ren Guo. He knew this SoC better than me.
+yamllint warnings/errors:
 
-I see. I don't mind applying the patches for the platform for now, it's
-not too much more on top of the other vendors that I am doing as things
-are still low enough volume, as long as someone is willing to review
-them as they come in.
+dtschema/dtc warnings/errors:
+./Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/usb/qcom,pmic-typec.yaml
 
-Cheers,
-Conor.
+See https://patchwork.ozlabs.org/patch/1778444
 
---dSqjxm9sPfcjRPhf
-Content-Type: application/pgp-signature; name="signature.asc"
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
------BEGIN PGP SIGNATURE-----
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZFkwIgAKCRB4tDGHoIJi
-0tkSAP9xd/XjooRGUlzzIUbh3gmKoz4mYhqIJ9UqthFrEHzv0gEAygtJ+Nsi4GLZ
-kgnge/Y+sUV+cRzazxPcssoUADlu7gE=
-=L9rr
------END PGP SIGNATURE-----
+pip3 install dtschema --upgrade
 
---dSqjxm9sPfcjRPhf--
+Please check and re-submit.
