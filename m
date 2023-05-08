@@ -2,429 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B84586FBA16
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 23:41:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4558D6FB9EF
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 23:36:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233912AbjEHVlC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 17:41:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52470 "EHLO
+        id S234062AbjEHVga (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 17:36:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234369AbjEHVkn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 17:40:43 -0400
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 000EE93CB;
-        Mon,  8 May 2023 14:40:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1683582021; x=1715118021;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=hKHsoNGSMMtx6Q9tcu30hatw3LMK0bAjnC3I6pBAw90=;
-  b=kh1TJajYrqqOrsY/bqIBp3yTXEf0fsUSIt2lfh+DsIX5x3IUurUCE0kp
-   OAVgiq7YbAG0+CnNHLSoZSFgswLBlFEdFiEZ+A3Zcqx8VD9FAKDxUgdaY
-   TI6ijfhDu9f/Gnaatzhl/IWfZW2nPYJP/tcJlY8ujAtXvj5FyHGjCHS2Y
-   +jPZAHaOcNKLlrZax/3Cydrrdjse21jhT7Ey8w4QLKsoXLwD+IgmW9js5
-   i3Sg68mkvlKhY3Zxg9s+aBwN9lpMxXGatVP7O0/qy4b93uq2vrq/cMcgZ
-   GSL8indkKrfNy8Eo6nzTl49r6dj2EzjuPkqTOQJ7/xvaAjnKk0ztxtDmW
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="349796708"
-X-IronPort-AV: E=Sophos;i="5.99,259,1677571200"; 
-   d="scan'208";a="349796708"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 May 2023 14:39:04 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="945018727"
-X-IronPort-AV: E=Sophos;i="5.99,259,1677571200"; 
-   d="scan'208";a="945018727"
-Received: from linux-builds1.an.intel.com ([10.122.105.32])
-  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 May 2023 14:39:00 -0700
-From:   dinh.nguyen@linux.intel.com
-To:     linux-hwmon@vger.kernel.org
-Cc:     dinguyen@kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-kernel@vger.kernel.org, jdelvare@suse.com,
-        linux@roeck-us.net, Dinh Nguyen <dinh.nguyen@linux.intel.com>
-Subject: [PATCHv2 6/6] arm64: dts: socfpga: add hwmon properties
-Date:   Mon,  8 May 2023 16:28:52 -0500
-Message-Id: <20230508212852.8413-6-dinh.nguyen@linux.intel.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230508212852.8413-1-dinh.nguyen@linux.intel.com>
-References: <20230508212852.8413-1-dinh.nguyen@linux.intel.com>
+        with ESMTP id S234162AbjEHVgV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 17:36:21 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE9C9903C;
+        Mon,  8 May 2023 14:35:46 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id CB44C642F7;
+        Mon,  8 May 2023 21:35:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E543FC433EF;
+        Mon,  8 May 2023 21:35:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1683581739;
+        bh=lePxUD2RwGwx/yLwKafG9xCR8tb9Igp6SNSrOmIyFFY=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=IFxsfNq46eOIc/XKbCOl1PWs29uP0l3dlW9g+C0zyqx8WFs65Icfu23RHbd52P+e+
+         sCLg0SNrbY178672jUJ7m0Xi+t6okG1fyNP3UeqYwSZ0tq0dF0LbS2knRoyMzDZfG9
+         2shZhHB2YYXpChiAdSNGwXhvypDBlxVjD6S0CwMXvBsDUSSZRfsAlDpwZWI+CIUWkW
+         TK6p5NzVPsfXj/n37QwUQtP96PVPhF8ac6LCt3nipSoqPXxDJJNKlreDtlVJ3Erk6T
+         1ya1mae9daXDmKhdo3o0Les67CmRAILAAPgcSNCOQj/oFWGbzw4TgQOgs6RHnpyeS3
+         V4jvUPazBYeHQ==
+Date:   Mon, 8 May 2023 16:35:37 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Richard Zhu <hongxing.zhu@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH fixes] dt-bindings: PCI: fsl,imx6q: fix assigned-clocks
+ warning
+Message-ID: <20230508213537.GA1193015@bhelgaas>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230508071837.68552-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Dinh Nguyen <dinh.nguyen@linux.intel.com>
+On Mon, May 08, 2023 at 09:18:37AM +0200, Krzysztof Kozlowski wrote:
+> assigned-clocks are a dependency of clocks, however the dtschema has
+> limitation and expects clocks to be present in the binding using
+> assigned-clocks, not in other referenced bindings.  The clocks were
+> defined in common fsl,imx6q-pcie-common.yaml, which is referenced by fsl,imx6q-pcie-ep.yaml.  The fsl,imx6q-pcie-ep.yaml used assigned-clocks thus leading to warnings:
 
-Add the hardware monitoring properties for Stratix10 and Agilex.
+Weirdly long line here.  I think it's good to preserve longs lines in
+warnings and error messages themselves, but in the normal text it
+looks like an oversight.
 
-Signed-off-by: Dinh Nguyen <dinh.nguyen@linux.intel.com>
----
-v2: add platform specific platforms to DTS files
----
- .../boot/dts/altera/socfpga_stratix10.dtsi    |  4 ++
- .../dts/altera/socfpga_stratix10_socdk.dts    | 31 +++++++++
- arch/arm64/boot/dts/intel/socfpga_agilex.dtsi |  4 ++
- .../boot/dts/intel/socfpga_agilex_n6000.dts   | 66 +++++++++++++++++++
- .../boot/dts/intel/socfpga_agilex_socdk.dts   | 66 +++++++++++++++++++
- .../dts/intel/socfpga_agilex_socdk_nand.dts   | 66 +++++++++++++++++++
- .../boot/dts/intel/socfpga_n5x_socdk.dts      | 47 +++++++++++++
- 7 files changed, 284 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-index 41c9eb51d0ee..2526afa687d6 100644
---- a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-+++ b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-@@ -633,6 +633,10 @@ svc {
- 				fpga_mgr: fpga-mgr {
- 					compatible = "intel,stratix10-soc-fpga-mgr";
- 				};
-+
-+				hwmon: temp-volt {
-+					compatible = "intel,socfpga-stratix10-hwmon", "intel,socfpga-hwmon";
-+				};
- 			};
- 		};
- 	};
-diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
-index 38ae674f2f02..d506dcf8dc7c 100644
---- a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
-+++ b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
-@@ -212,3 +212,34 @@ qspi_rootfs: partition@3FE0000 {
- 		};
- 	};
- };
-+
-+&hwmon {
-+	voltage {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		input@2 {
-+			label = "0.8V VCC";
-+			reg = <2>;
-+		};
-+
-+		input@3 {
-+			label = "1.0V VCCIO";
-+			reg = <3>;
-+		};
-+
-+		input@6 {
-+			label = "0.9V VCCERAM";
-+			reg = <6>;
-+		};
-+	};
-+
-+	temperature {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		input@0 {
-+			label = "Main Die SDM";
-+			reg = <0x0>;
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
-index f9674cc46764..552f9a05d039 100644
---- a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
-+++ b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
-@@ -666,6 +666,10 @@ svc {
- 				fpga_mgr: fpga-mgr {
- 					compatible = "intel,agilex-soc-fpga-mgr";
- 				};
-+
-+				hwmon: temp-volt {
-+					compatible = "intel,socfpga-agilex-hwmon", "intel,socfpga-hwmon";
-+				};
- 			};
- 		};
- 	};
-diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts b/arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts
-index 6231a69204b1..c0642353b506 100644
---- a/arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts
-+++ b/arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts
-@@ -64,3 +64,69 @@ &watchdog0 {
- &fpga_mgr {
- 	status = "disabled";
- };
-+
-+&hwmon {
-+	voltage {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		input@2 {
-+			label = "0.8V VCC";
-+			reg = <2>;
-+		};
-+
-+		input@3 {
-+			label = "1.8V VCCIO_SDM";
-+			reg = <3>;
-+		};
-+
-+		input@4 {
-+			label = "1.8V VCCPT";
-+			reg = <4>;
-+		};
-+
-+		input@5 {
-+			label = "1.2V VCCCRCORE";
-+			reg = <5>;
-+		};
-+
-+		input@6 {
-+			label = "0.9V VCCH";
-+			reg = <6>;
-+		};
-+
-+		input@7 {
-+			label = "0.8V VCCL";
-+			reg = <7>;
-+		};
-+	};
-+
-+	temperature {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		input@0 {
-+			label = "Main Die SDM";
-+			reg = <0x0>;
-+		};
-+
-+		input@10000 {
-+			label = "Main Die corner bottom left max";
-+			reg = <0x10000>;
-+		};
-+
-+		input@20000 {
-+			label = "Main Die corner top left max";
-+			reg = <0x20000>;
-+		};
-+
-+		input@30000 {
-+			label = "Main Die corner bottom right max";
-+			reg = <0x30000>;
-+		};
-+
-+		input@40000 {
-+			label = "Main Die corner top right max";
-+			reg = <0x40000>;
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts b/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
-index 07c3f8876613..4bd8cdd8a7ca 100644
---- a/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
-+++ b/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
-@@ -138,3 +138,69 @@ qspi_rootfs: partition@3FE0000 {
- 		};
- 	};
- };
-+
-+&hwmon {
-+	voltage {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		input@2 {
-+			label = "0.8V VCC";
-+			reg = <2>;
-+		};
-+
-+		input@3 {
-+			label = "1.8V VCCIO_SDM";
-+			reg = <3>;
-+		};
-+
-+		input@4 {
-+			label = "1.8V VCCPT";
-+			reg = <4>;
-+		};
-+
-+		input@5 {
-+			label = "1.2V VCCCRCORE";
-+			reg = <5>;
-+		};
-+
-+		input@6 {
-+			label = "0.9V VCCH";
-+			reg = <6>;
-+		};
-+
-+		input@7 {
-+			label = "0.8V VCCL";
-+			reg = <7>;
-+		};
-+	};
-+
-+	temperature {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		input@0 {
-+			label = "Main Die SDM";
-+			reg = <0x0>;
-+		};
-+
-+		input@10000 {
-+			label = "Main Die corner bottom left max";
-+			reg = <0x10000>;
-+		};
-+
-+		input@20000 {
-+			label = "Main Die corner top left max";
-+			reg = <0x20000>;
-+		};
-+
-+		input@30000 {
-+			label = "Main Die corner bottom right max";
-+			reg = <0x30000>;
-+		};
-+
-+		input@40000 {
-+			label = "Main Die corner top right max";
-+			reg = <0x40000>;
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex_socdk_nand.dts b/arch/arm64/boot/dts/intel/socfpga_agilex_socdk_nand.dts
-index 51f83f96ec65..bfee1ca0bd6e 100644
---- a/arch/arm64/boot/dts/intel/socfpga_agilex_socdk_nand.dts
-+++ b/arch/arm64/boot/dts/intel/socfpga_agilex_socdk_nand.dts
-@@ -114,3 +114,69 @@ &usb0 {
- &watchdog0 {
- 	status = "okay";
- };
-+
-+&hwmon {
-+	voltage {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		input@2 {
-+			label = "0.8V VCC";
-+			reg = <2>;
-+		};
-+
-+		input@3 {
-+			label = "1.8V VCCIO_SDM";
-+			reg = <3>;
-+		};
-+
-+		input@4 {
-+			label = "1.8V VCCPT";
-+			reg = <4>;
-+		};
-+
-+		input@5 {
-+			label = "1.2V VCCCRCORE";
-+			reg = <5>;
-+		};
-+
-+		input@6 {
-+			label = "0.9V VCCH";
-+			reg = <6>;
-+		};
-+
-+		input@7 {
-+			label = "0.8V VCCL";
-+			reg = <7>;
-+		};
-+	};
-+
-+	temperature {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		input@0 {
-+			label = "Main Die SDM";
-+			reg = <0x0>;
-+		};
-+
-+		input@10000 {
-+			label = "Main Die corner bottom left max";
-+			reg = <0x10000>;
-+		};
-+
-+		input@20000 {
-+			label = "Main Die corner top left max";
-+			reg = <0x20000>;
-+		};
-+
-+		input@30000 {
-+			label = "Main Die corner bottom right max";
-+			reg = <0x30000>;
-+		};
-+
-+		input@40000 {
-+			label = "Main Die corner top right max";
-+			reg = <0x40000>;
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/intel/socfpga_n5x_socdk.dts b/arch/arm64/boot/dts/intel/socfpga_n5x_socdk.dts
-index 08c088571270..090b0382db98 100644
---- a/arch/arm64/boot/dts/intel/socfpga_n5x_socdk.dts
-+++ b/arch/arm64/boot/dts/intel/socfpga_n5x_socdk.dts
-@@ -129,3 +129,50 @@ &usb0 {
- &watchdog0 {
- 	status = "okay";
- };
-+
-+&hwmon {
-+	compatible = "intel,socfpga-n5x-hwmon", "intel,socfpga-hwmon";
-+	voltage {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		input@2 {
-+			label = "0.8V VDD";
-+			reg = <2>;
-+		};
-+
-+		input@3 {
-+			label = "0.8V VDD_SDM";
-+			reg = <3>;
-+		};
-+
-+		input@4 {
-+			label = "1.8V VCCADC";
-+			reg = <4>;
-+		};
-+
-+		input@5 {
-+			label = "1.8V VCCPD";
-+			reg = <5>;
-+		};
-+
-+		input@6 {
-+			label = "1.8V VCCIO_SDM";
-+			reg = <6>;
-+		};
-+
-+		input@7 {
-+			label = "0.8V VDD_HPS";
-+			reg = <7>;
-+		};
-+	};
-+
-+	temperature {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		input@0 {
-+			label = "Main Die SDM";
-+			reg = <0x0>;
-+		};
-+	};
-+};
--- 
-2.40.0
-
+>   Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.example.dtb: pcie-ep@33800000:
+>     Unevaluated properties are not allowed ('assigned-clock-parents', 'assigned-clock-rates', 'assigned-clocks' were unexpected)
+>   From schema: Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml
