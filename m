@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0B196F9D07
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 02:33:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BD136F9D0C
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 02:33:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232203AbjEHAdV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 May 2023 20:33:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51302 "EHLO
+        id S232095AbjEHAdX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 May 2023 20:33:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232050AbjEHAdR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 May 2023 20:33:17 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04A409033
+        with ESMTP id S232132AbjEHAdS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 May 2023 20:33:18 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA1EC93E2
         for <devicetree@vger.kernel.org>; Sun,  7 May 2023 17:33:14 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4ecb137af7eso4409122e87.2
-        for <devicetree@vger.kernel.org>; Sun, 07 May 2023 17:33:13 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-4efe8991b8aso4508497e87.0
+        for <devicetree@vger.kernel.org>; Sun, 07 May 2023 17:33:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683505992; x=1686097992;
+        d=linaro.org; s=google; t=1683505993; x=1686097993;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=60+RN5IXt2QTmhFV4LWN/OmeuPm2E4Pe1J71Zr5me3w=;
-        b=VRc/4nSOlsan7d95XurHx2XuEyg2u4WeTOOrMobCoystpLkzP7H4oOUHrAwulYkjT8
-         Ga6Tky/TcYzYOJvnoDyXB68K28tjtt3Pw2XOU0s+c6dqpD17Q6TcJooWMay/6yxKzqD4
-         pD4rjXO5GP4IdG8J8GE6pNBe9QCNC7Lz+O616dV+4hnV/2q08dFoaVczjDScxr6+CoGq
-         yi0fhJl7rRiJEu6MQmkrhc7OY9ULn0kLipL1+TM/AgsraxVDEm9p/KfwucBQDalB4IzL
-         4nGmjARqWezxExK/KuPVH1ljHkrjeCFCG4eyAIZCpxZc+6pOrdwzWWj9VyOTfD2fKgGI
-         yk6Q==
+        bh=K1wI9viazUk4MMRKC5k2TgaknGOtp8xfB+NZ3J6gsmc=;
+        b=nLabFqI7hTdKlm1IOb+KK/Nehh3xTJNzcDQ+59LuNs4UBVDgAMuVHD6O3FwUi0C2Kw
+         u//lmqQoxDv0tmFklaKfIUeSVIU3QTgDXW1O0t+0WK2j7hYjhGEr32IdynKFzgg6xA/d
+         ox7TAFbZnfAR/BwYozAG+ie/MFkatbzoYY4TETIrW4CK4RpdqvVQK5aXkRjWmvOprd+l
+         AvIGMgQ3soKaSkCZ8le8wPBzRiAQLz/IjiJFy7plu6lq5cfhc+LLWE3zVABIqNz8O5c7
+         UTXwT5mI+6R9KUIRxfQAzW4PIO+IV0t4N45hLwjeARiiwzniW/M6RyB/yMU4tKvuxyLH
+         GvFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683505992; x=1686097992;
+        d=1e100.net; s=20221208; t=1683505993; x=1686097993;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=60+RN5IXt2QTmhFV4LWN/OmeuPm2E4Pe1J71Zr5me3w=;
-        b=MX87zRMNNh1MF7w2BZZ/gF2AiYXN/486QZC9D4J+6VMbakr0R6qtuGgRv0xSG3RXaX
-         +VpAa3X0Rj5QR7S0AvPAjPnz3EMyvfKquyGcYYQ2I403UfOS1Y30WSKHRN/2w6s3MoaG
-         2I+t4rouYZoCwe4CY9+rNOh+6zakFGiIoNU6zy4pdDF1TCWeHecOpHnHxU2XTt9sBi89
-         qjNtmHRt60y4t+OJhCskGGqt1zwjqFfBKTSzYCo+xjyzV8uYVvnvec8vTxKbUXFsDt3i
-         4H7HeZN7h8e8t48uQ9HVUsGAk/tw/famV8sC2vjh37dZh3hbJiL6suRdKh2oBD3gFHYE
-         6kbA==
-X-Gm-Message-State: AC+VfDyd/orp1mkpiX1huT5sFrWj11I9TSXDzwz2/jcJd/LZ8Me1/EdP
-        wgTqVUAOfVXsE2WroKyURdrR0w==
-X-Google-Smtp-Source: ACHHUZ56IuHCb9krnV3H/zXiOep0NRvIJfd3WAi6IPzpjviYdMipBpeWAdBdOwYbLXyEEfklfQhRVQ==
-X-Received: by 2002:a19:ae06:0:b0:4db:3927:e2bc with SMTP id f6-20020a19ae06000000b004db3927e2bcmr1993106lfc.50.1683505992334;
-        Sun, 07 May 2023 17:33:12 -0700 (PDT)
+        bh=K1wI9viazUk4MMRKC5k2TgaknGOtp8xfB+NZ3J6gsmc=;
+        b=IAXeale/AXek/2oW+pBPJXwgr5suvwXvxo3d7bc89XeWuFmbzt6G4OxVjWXN3o6llw
+         tt9+Gz1r/XHUFhLq3PuvMI0HGEH4WvX1mf+thNHWg/zCt94sPU8ldCARw2pWTLZ20CQq
+         eDMR2SfNOr6XLCK7axP7XEN4vyxmxo5Wr5cYTUPJ12Cj862ML8TP4OjBzfwbXUEqcVeG
+         2rMuJByz+ipx13kMhfMbhFb+5CXgE2XanoFkeLNuJ025MHZwOFGo+My20nIbXUFuOlGE
+         jUXmd7nJHhgvKjsI/JtERnCYDqiyiEjBR3RJAtpJR4FmQ5uy5eYfMpCbB/hwa+g9nN54
+         yu0w==
+X-Gm-Message-State: AC+VfDwS2QE4+KRFqeSqtne7THmmzAC4qZ5z9FEHOGpx2EuzWDxI1so0
+        5LIv7g4MfUz7uR3AoUHrDzi+Gg==
+X-Google-Smtp-Source: ACHHUZ6/q1j48+E9petP95PUM7S1AuOFAS4TsIXUxGaajCHK9jzPr1hWaEAujUmJR7acyKn2NLQrow==
+X-Received: by 2002:ac2:4428:0:b0:4ef:f670:3bd with SMTP id w8-20020ac24428000000b004eff67003bdmr2115844lfl.18.1683505993013;
+        Sun, 07 May 2023 17:33:13 -0700 (PDT)
 Received: from lothlorien.lan (dzdqv0yyyyyyyyyyybm5y-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::ab2])
-        by smtp.gmail.com with ESMTPSA id m22-20020ac24256000000b004eca2b8b6bdsm1114807lfl.4.2023.05.07.17.33.11
+        by smtp.gmail.com with ESMTPSA id m22-20020ac24256000000b004eca2b8b6bdsm1114807lfl.4.2023.05.07.17.33.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 07 May 2023 17:33:11 -0700 (PDT)
+        Sun, 07 May 2023 17:33:12 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Sebastian Reichel <sre@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -59,9 +59,9 @@ To:     Sebastian Reichel <sre@kernel.org>,
         Vinod Koul <vkoul@kernel.org>
 Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-msm@vger.kernel.org
-Subject: [PATCH 3/6] ARM: dts: qcom-pm8941: add resin support
-Date:   Mon,  8 May 2023 03:33:06 +0300
-Message-Id: <20230508003309.2363787-4-dmitry.baryshkov@linaro.org>
+Subject: [PATCH 4/6] ARM: dts: qcom: apq8074-dragonboard: add resin and gpio keys
+Date:   Mon,  8 May 2023 03:33:07 +0300
+Message-Id: <20230508003309.2363787-5-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230508003309.2363787-1-dmitry.baryshkov@linaro.org>
 References: <20230508003309.2363787-1-dmitry.baryshkov@linaro.org>
@@ -69,7 +69,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,48 +77,79 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Wrap existing pwrkey and new resin nodes into the new pon node to enable
-volume-down key support on platforms using pm8941 PMIC.
+Add device nodes for resin (reset, volume-down) and gpio-keys
+(volume-up, general key) device nodes.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm/boot/dts/qcom-pm8941.dtsi | 22 +++++++++++++++++-----
- 1 file changed, 17 insertions(+), 5 deletions(-)
+ .../arm/boot/dts/qcom-apq8074-dragonboard.dts | 41 +++++++++++++++++++
+ 1 file changed, 41 insertions(+)
 
-diff --git a/arch/arm/boot/dts/qcom-pm8941.dtsi b/arch/arm/boot/dts/qcom-pm8941.dtsi
-index a821f0368a28..ce30946ccf58 100644
---- a/arch/arm/boot/dts/qcom-pm8941.dtsi
-+++ b/arch/arm/boot/dts/qcom-pm8941.dtsi
-@@ -19,12 +19,24 @@ rtc@6000 {
- 			interrupts = <0x0 0x61 0x1 IRQ_TYPE_EDGE_RISING>;
- 		};
+diff --git a/arch/arm/boot/dts/qcom-apq8074-dragonboard.dts b/arch/arm/boot/dts/qcom-apq8074-dragonboard.dts
+index 72f7e09a5bbf..2017bdf81677 100644
+--- a/arch/arm/boot/dts/qcom-apq8074-dragonboard.dts
++++ b/arch/arm/boot/dts/qcom-apq8074-dragonboard.dts
+@@ -1,5 +1,7 @@
+ // SPDX-License-Identifier: GPL-2.0
+ #include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/input/input.h>
++#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+ #include "qcom-msm8974.dtsi"
+ #include "qcom-pm8841.dtsi"
+ #include "qcom-pm8941.dtsi"
+@@ -20,6 +22,26 @@ chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
  
--		pwrkey@800 {
--			compatible = "qcom,pm8941-pwrkey";
-+		pon@800 {
-+			compatible = "qcom,pm8916-pon";
- 			reg = <0x800>;
--			interrupts = <0x0 0x8 0 IRQ_TYPE_EDGE_BOTH>;
--			debounce = <15625>;
--			bias-pull-up;
++	gpio-keys {
++		compatible = "gpio-keys";
++		autorepeat;
 +
-+			pwrkey {
-+				compatible = "qcom,pm8941-pwrkey";
-+				interrupts = <0x0 0x8 0 IRQ_TYPE_EDGE_BOTH>;
-+				debounce = <15625>;
-+				bias-pull-up;
-+			};
++		pinctrl-names = "default";
++		pinctrl-0 = <&msm_keys_default>;
 +
-+			pm8941_resin: resin {
-+				compatible = "qcom,pm8941-resin";
-+				interrupts = <0x0 0x8 1 IRQ_TYPE_EDGE_BOTH>;
-+				debounce = <15625>;
-+				bias-pull-up;
-+				status = "disabled";
-+			};
- 		};
++		button-volup {
++			label = "Volume Up";
++			linux,code = <KEY_VOLUMEUP>;
++			gpios = <&pm8941_gpios 5 GPIO_ACTIVE_LOW>;
++		};
++
++		button-general {
++			label = "General";
++			linux,code = <KEY_PROG1>;
++			gpios = <&pm8941_gpios 23 GPIO_ACTIVE_LOW>;
++		};
++	};
++
+ 	reserved-memory {
+ 		mpss_region: mpss@ac00000 {
+ 			reg = <0x0ac00000 0x2500000>;
+@@ -90,6 +112,25 @@ &mdss {
+ 	status = "okay";
+ };
  
- 		usb_id: usb-detect@900 {
++&pm8941_gpios {
++        msm_keys_default: pm8941-gpio-keys-state {
++                pinconf {
++                        pins = "gpio5", "gpio23";
++                        function = "normal";
++                        input-enable;
++                        drive-push-pull;
++                        bias-pull-up;
++                        qcom,drive-strength = <PMIC_GPIO_STRENGTH_NO>;
++                        power-source = <PM8941_GPIO_S3>; /* 1.8V */
++                };
++        };
++};
++
++&pm8941_resin {
++	status = "okay";
++	linux,code = <KEY_VOLUMEDOWN>;
++};
++
+ &pm8941_wled {
+ 	qcom,cs-out;
+ 	qcom,switching-freq = <3200>;
 -- 
 2.39.2
 
