@@ -2,72 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9707B6FA003
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 08:39:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D85586FA009
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 08:42:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232603AbjEHGjJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 02:39:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57556 "EHLO
+        id S232313AbjEHGm0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 02:42:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231926AbjEHGjI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 02:39:08 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0B5F4492
-        for <devicetree@vger.kernel.org>; Sun,  7 May 2023 23:39:06 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-9619095f479so652607666b.1
-        for <devicetree@vger.kernel.org>; Sun, 07 May 2023 23:39:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683527945; x=1686119945;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=sjLZkRK76k/wkevUoBquP1EnIYn4hn3yK257zuPgKq0=;
-        b=i2/mJ9U9EO9CleT8Tfa4ae4iEnPAlMS7Z/yXmuN7WsSKdYcG5+Wr55jaWSsKItJpqb
-         ZvJOnFpgEJ/VMel5jGXf0mUPs/e+FX35JchIqfU1WmIqZEh9ILpqB+LIoSQA8BEJkjQo
-         YiZBCcPOWc3yoxWcnvsu2l2bOiPF9qimDO/G8dM2C4LOZQfEojGqfx3+v2XaMoWrk0jn
-         G7QyrN57Ibi4j6B59AUTgM1AVkEbLtwnFebc1DT4XGYG1g/RH5Ij19/ERokAUxjaBUQB
-         lxF/rcQZGDC/ivOkvkboB1mMtx444p117IuUNla+um/oJ94o84dTxHh5aABo4XA/bgSa
-         RqEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683527945; x=1686119945;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sjLZkRK76k/wkevUoBquP1EnIYn4hn3yK257zuPgKq0=;
-        b=AVp31urM1ZVzECyc2/TZh5264EreQTAwuwexngSj0W+CQ0KI754Z9VdyV54wn7bwfB
-         xwlvfuyIs8nANCn4ofcqBWGkQGUhJPXL4YNORYy9vYLS4y8DpBj0WyHCu6tgzFzJWUtj
-         hW0DRPqdKa3lyyejW3kPCLd1tkBAs6+8WTvyQstdtzoRL9bggFEp+NDRbiM/a/bglOxI
-         pQc2emXsNInqIebcuVmOiPJvOv8QjB71VhPksso1kFqmuJoidbhjqN9wBn+PGdakpfl7
-         9OkSn1U2SEhaP9oXhOl6sDj0bWBA8ukwO6mV/QH9xM0fZSAn+Mg1WaN9CgMpD8r1hLLe
-         WxAQ==
-X-Gm-Message-State: AC+VfDwiY/ju3lQCM4bBSSMrQLt8I9VT4JfnvTIGS1P9F4+/ivSQ2ol6
-        Zm+/3m9wQmafaNbbVbVE5F6NsIQ7KI9gf8Hb6V7r3Q==
-X-Google-Smtp-Source: ACHHUZ5ajzFkWG+WzE6FqplmHDuqClJwLSo/36C1lVTLEU8agdoGbPPNutaBFOB5JLcAp9zSM0z/VA==
-X-Received: by 2002:a17:907:3f9e:b0:966:54ac:17d7 with SMTP id hr30-20020a1709073f9e00b0096654ac17d7mr2964786ejc.76.1683527945142;
-        Sun, 07 May 2023 23:39:05 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:50e0:ebdf:b755:b300? ([2a02:810d:15c0:828:50e0:ebdf:b755:b300])
-        by smtp.gmail.com with ESMTPSA id jy1-20020a170907762100b0094e6a9c1d24sm4619148ejc.12.2023.05.07.23.39.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 07 May 2023 23:39:04 -0700 (PDT)
-Message-ID: <a2718541-9dd7-e093-0f62-d62e56dcb04d@linaro.org>
-Date:   Mon, 8 May 2023 08:39:03 +0200
+        with ESMTP id S231791AbjEHGmZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 02:42:25 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C88476EB9;
+        Sun,  7 May 2023 23:42:24 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 58D8D61F1D;
+        Mon,  8 May 2023 06:42:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE278C433D2;
+        Mon,  8 May 2023 06:42:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1683528143;
+        bh=r4iJVdq+kSsrznQO5iASjJKSVcwHIpX8k/weFqPL9PI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Q7kcmg1iT3UqoMWAplBRwyuluRJxI8j7Y+GLwaHViQ7KuLs7RGOUVeVyY7gwJyOyB
+         KG94ukA6ksrI4RkIM9j0YBB9EajPNCkD/mNhkfsuMonQFvf1XYcfXdK1VWoU+HjMSd
+         SheLyaDBcWQ5Ks8REeDwSqHWzBLYkuKcFnNoiCd/wqWN1O/fArsOYIzDBvVXYANcz3
+         EdCHu8W+TwziYxkltnqmQ3lGDMFvH9xbjK5MmUgGptXTEAjzPWjxniclbc5Bq1/Di/
+         0tMPHMPhP0XYEnjSWjpEpqOeJgFg//ImzuwDJS5L7QobAv5AzPaPYKJBUkorYBF02r
+         7CFgBQ9gQR7Vg==
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-965e4be7541so568268666b.1;
+        Sun, 07 May 2023 23:42:23 -0700 (PDT)
+X-Gm-Message-State: AC+VfDzqgsudndp3sXQzYdJOHubSc6omZScJBcFn8o3TqHvGTonqTqsm
+        Qg9pwZhJb7LvQXiAED3vqvmWVpx+Mvmfnb37Ew0=
+X-Google-Smtp-Source: ACHHUZ4mwkcqjrAbBZUuOGbMCbkwPBgYeaGSSqohUR7fCRsoF+JinJDShKS4My6aDu+hZJHKsZERSxfc7mVo1Rq0h1Q=
+X-Received: by 2002:a17:907:7f87:b0:965:d7c7:24d4 with SMTP id
+ qk7-20020a1709077f8700b00965d7c724d4mr10802839ejc.77.1683528141910; Sun, 07
+ May 2023 23:42:21 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH 2/2] dt-bindings: gnss: Add U-Blox Zed-F9
-Content-Language: en-US
-To:     alison@she-devel.com, johan@kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, achaiken@aurora.tech
-References: <20230508011159.263322-1-alison@she-devel.com>
- <20230508011159.263322-3-alison@she-devel.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230508011159.263322-3-alison@she-devel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+References: <20230507182304.2934-1-jszhang@kernel.org> <20230507182304.2934-3-jszhang@kernel.org>
+ <20230507-sleeve-tacky-21e817e31fb2@spud>
+In-Reply-To: <20230507-sleeve-tacky-21e817e31fb2@spud>
+From:   Guo Ren <guoren@kernel.org>
+Date:   Mon, 8 May 2023 14:42:10 +0800
+X-Gmail-Original-Message-ID: <CAJF2gTTSRQUX8C3C-tgq4o5iGJqKTja7-1Dv8epG_qZizUvSow@mail.gmail.com>
+Message-ID: <CAJF2gTTSRQUX8C3C-tgq4o5iGJqKTja7-1Dv8epG_qZizUvSow@mail.gmail.com>
+Subject: Re: [PATCH 2/5] riscv: Add the T-HEAD SoC family Kconfig option
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Jisheng Zhang <jszhang@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -76,39 +72,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/05/2023 03:11, alison@she-devel.com wrote:
-> From: Alison Chaiken <achaiken@aurora.tech>
-> 
-> Add support for the U-Blox Zed-F9P GNSS device.
-> 
-> Signed-off-by: Alison Chaiken <achaiken@aurora.tech>
-> ---
-
-You miss versioning your paches and changelog here.
-
-Also:
-
-This is a friendly reminder during the review process.
-
-It looks like you received a tag and forgot to add it.
-
-If you do not know the process, here is a short explanation:
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions. However, there's no need to repost patches *only* to add the
-tags. The upstream maintainer will do that for acks received on the
-version they apply.
-
-https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
-
-If a tag was not added on purpose, please state why and what changed.
-
-Missing tag:
-Acked-by: Rob Herring <robh@kernel.org>
+On Mon, May 8, 2023 at 5:22=E2=80=AFAM Conor Dooley <conor@kernel.org> wrot=
+e:
+>
+> On Mon, May 08, 2023 at 02:23:01AM +0800, Jisheng Zhang wrote:
+> > The first SoC in the T-HEAD series is light(a.k.a th1520), containing
+> > quad T-HEAD C910 cores.
+> >
+> > Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> > ---
+> >  arch/riscv/Kconfig.socs | 6 ++++++
+> >  1 file changed, 6 insertions(+)
+> >
+> > diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
+> > index 1cf69f958f10..ce10a38dff37 100644
+> > --- a/arch/riscv/Kconfig.socs
+> > +++ b/arch/riscv/Kconfig.socs
+> > @@ -41,6 +41,12 @@ config ARCH_SUNXI
+> >         This enables support for Allwinner sun20i platform hardware,
+> >         including boards based on the D1 and D1s SoCs.
+> >
+> > +config ARCH_THEAD
+>
+> Could you please add a defconfig patch, adding this option, so that we
+> build support for this platform by default?
+Yes, but it's another patch, see: 'commit eb20e7cb91ba ("riscv:
+defconfig: Enable the Allwinner D1 platform and drivers")'
 
 
->  Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>
+> Thanks,
+> Conor.
+>
+> > +     bool "T-HEAD RISC-V SoCs"
+> > +     select ERRATA_THEAD
+> > +     help
+> > +       This enables support for the RISC-V based T-HEAD SoCs.
+> > +
+> >  config ARCH_VIRT
+> >       def_bool SOC_VIRT
+> >
+> > --
+> > 2.40.0
+> >
 
-Best regards,
-Krzysztof
 
+
+--=20
+Best Regards
+ Guo Ren
