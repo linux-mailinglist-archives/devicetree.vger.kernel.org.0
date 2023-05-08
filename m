@@ -2,77 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC0ED6FA17B
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 09:50:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7882E6FA19B
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 09:53:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233560AbjEHHuo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 03:50:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57256 "EHLO
+        id S233594AbjEHHxf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 03:53:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232911AbjEHHun (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 03:50:43 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4D166A47
-        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 00:50:41 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4f14ec8d72aso2683557e87.1
-        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 00:50:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683532240; x=1686124240;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ibNVBuHYe9fL+tZMxKvDkgC8R3VwMnCsobxbhfpCifY=;
-        b=vx/c9RRg9v/0KwGIdsolrCj1gVRTaGBp5gc7DPc9+99+/PSuW2TxbmDcAakyqc3XRg
-         yHHTmL/2H/JpMh+5NUj5K6qdGlXw6srdGGTzsR9EWd8R0LK84xQtgQewN9NjSwEv7SVr
-         jlBizbF5AMFvhO7PD9t0i7JL3gOvleUzF7tbEm6wQFG0fGaffnj694rds7b+KOqxoP4H
-         HJZwSZkPZMFJfBUJtHMI8nwwbW8zj4ycAksDYJcH+OSX5dJxBwXxdIYvQZe7lXnkbRZR
-         EPJ8dqqqi6UXb6S7A0/dLggDVA1Ym+7r6V6QKHSj78uU62roUaKVA6fGAaITrkx3IeS/
-         YTGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683532240; x=1686124240;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ibNVBuHYe9fL+tZMxKvDkgC8R3VwMnCsobxbhfpCifY=;
-        b=itrBMx3Mho79GJ9ZyOcwEAnwLgEGA8VuM7uw6Sevy2SzQQHg2WLFE7FoB/ozPYitX6
-         kiqedQOYHk3bMRzi/J41dIp9PJXpxAuVNSC3wn5tTGbCAqZRE4u+0/1H/xPioJEDDAmv
-         TMfqaptd/vTEqdGzBqhG18HcqpLGS5SWtn2CKziCm8e5mdkw9N5Ap/3nSage7dNUJuXb
-         0pX7+y5aJsmRTQzFUXXfmWlCormaNfL+Qjrawfu/tlHyk0n8Hw8mLSUwlPqDTeGxbKF4
-         jLoYlf3X2M3YV75dT8ePPygIuln1yb4bhIuTB6JSlV8ZQL9Eiata7mao752LLD4lEgcM
-         HTjQ==
-X-Gm-Message-State: AC+VfDwIBTOoEYamqrrRYziuU+4gO2qClE1++r06H36hmQjaChHipYYb
-        ol/Aee5vcyOjNdXvI2IXNy1aMg==
-X-Google-Smtp-Source: ACHHUZ6oovEZDt+IsUfKGbug4wog7OjdROAzT/UNf9jrGTxQOZkG8N61gSx70ZRS5Ot9Vin5FJWnpg==
-X-Received: by 2002:ac2:508e:0:b0:4f0:4b3:fb1f with SMTP id f14-20020ac2508e000000b004f004b3fb1fmr2442764lfm.6.1683532240098;
-        Mon, 08 May 2023 00:50:40 -0700 (PDT)
-Received: from [192.168.1.101] (abyl248.neoplus.adsl.tpnet.pl. [83.9.31.248])
-        by smtp.gmail.com with ESMTPSA id c3-20020ac244a3000000b004f252f48e5fsm18221lfm.40.2023.05.08.00.50.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 May 2023 00:50:39 -0700 (PDT)
-Message-ID: <4565dc25-eec2-61c1-2d4b-b7472d244daf@linaro.org>
-Date:   Mon, 8 May 2023 09:50:38 +0200
+        with ESMTP id S232632AbjEHHxd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 03:53:33 -0400
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D2761BCB;
+        Mon,  8 May 2023 00:53:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1683532409; x=1715068409;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=4Tu2WMi9r4rbtbprNUAWE/SRewUCDAJL/iZHE274epA=;
+  b=ng5WBSKt9s+wXtPOaCmnqGy2wec7zvsGmunX09owtBDnFwmOruY4YIA7
+   HhVn9Q9WWF/bNkhmUHPGLKAs+rCan4J+lPy6eHNb17srJiykelaEPnjDe
+   X0hoaZXv+xImaipbvyTK1CULV6RiZqsa36n//6eBGZ7ZGycKjsM7i0osn
+   8NNgKJO0gs7fQye3q5ynY7N50MUEuCsbV5CV7PH9LuGHLcxUd2QRiu7VY
+   UervR4eU+oHXxlxDysrSFR/434mESsyZgSzz6IFF52r7El3XOodoeV8th
+   DlUbvSpRcsvjZiXdQQeap2T8jsBBKhgmNTLtd9BXTL8pwp4+otQ5jVA7Z
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10703"; a="349615662"
+X-IronPort-AV: E=Sophos;i="5.99,258,1677571200"; 
+   d="scan'208";a="349615662"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 May 2023 00:53:29 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10703"; a="1028328725"
+X-IronPort-AV: E=Sophos;i="5.99,258,1677571200"; 
+   d="scan'208";a="1028328725"
+Received: from lkp-server01.sh.intel.com (HELO dea6d5a4f140) ([10.239.97.150])
+  by fmsmga005.fm.intel.com with ESMTP; 08 May 2023 00:53:26 -0700
+Received: from kbuild by dea6d5a4f140 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pvvgT-00017p-2H;
+        Mon, 08 May 2023 07:53:25 +0000
+Date:   Mon, 8 May 2023 15:52:42 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     alison@she-devel.com, johan@kernel.org
+Cc:     oe-kbuild-all@lists.linux.dev, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        alison@she-devel.com, achaiken@aurora.tech
+Subject: Re: [PATCH v4 1/2] gnss: ubx: customize serial device open to set
+ U-Blox Zed-F9P baud
+Message-ID: <202305081529.zgHsJsZq-lkp@intel.com>
+References: <20230508011159.263322-2-alison@she-devel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: apq8096: fix fixed regulator name
- property
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230507174516.264936-1-krzysztof.kozlowski@linaro.org>
- <20230507174516.264936-3-krzysztof.kozlowski@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230507174516.264936-3-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230508011159.263322-2-alison@she-devel.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,44 +67,245 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
+
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v6.4-rc1 next-20230508]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/alison-she-devel-com/dt-bindings-gnss-Add-U-Blox-Zed-F9/20230508-101304
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20230508011159.263322-2-alison%40she-devel.com
+patch subject: [PATCH v4 1/2] gnss: ubx: customize serial device open to set U-Blox Zed-F9P baud
+config: x86_64-randconfig-a004 (https://download.01.org/0day-ci/archive/20230508/202305081529.zgHsJsZq-lkp@intel.com/config)
+compiler: gcc-11 (Debian 11.3.0-12) 11.3.0
+reproduce (this is a W=1 build):
+        # https://github.com/intel-lab-lkp/linux/commit/93acd4265d325a1881a411703abc6dd45b81c1d0
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review alison-she-devel-com/dt-bindings-gnss-Add-U-Blox-Zed-F9/20230508-101304
+        git checkout 93acd4265d325a1881a411703abc6dd45b81c1d0
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        make W=1 O=build_dir ARCH=x86_64 olddefconfig
+        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202305081529.zgHsJsZq-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/gnss/ubx.c: In function 'ubx_set_active':
+>> drivers/gnss/ubx.c:225:36: error: invalid use of undefined type 'struct ubx_data'
+     225 |         ret = regulator_enable(data->vcc);
+         |                                    ^~
+   drivers/gnss/ubx.c: In function 'ubx_set_standby':
+   drivers/gnss/ubx.c:237:37: error: invalid use of undefined type 'struct ubx_data'
+     237 |         ret = regulator_disable(data->vcc);
+         |                                     ^~
+   drivers/gnss/ubx.c: In function 'ubx_probe':
+>> drivers/gnss/ubx.c:288:54: error: invalid application of 'sizeof' to incomplete type 'struct ubx_data'
+     288 |         gserial = gnss_serial_allocate(serdev, sizeof(*data));
+         |                                                      ^
+   drivers/gnss/ubx.c:305:21: error: invalid use of undefined type 'struct ubx_data'
+     305 |                 data->is_configured = 0;
+         |                     ^~
+   drivers/gnss/ubx.c:306:21: error: invalid use of undefined type 'struct ubx_data'
+     306 |                 data->features = of_match_device(ubx_of_match, &serdev->dev)->data;
+         |                     ^~
+   drivers/gnss/ubx.c:306:50: error: 'ubx_of_match' undeclared (first use in this function)
+     306 |                 data->features = of_match_device(ubx_of_match, &serdev->dev)->data;
+         |                                                  ^~~~~~~~~~~~
+   drivers/gnss/ubx.c:306:50: note: each undeclared identifier is reported only once for each function it appears in
+   drivers/gnss/ubx.c:307:25: error: invalid use of undefined type 'struct ubx_data'
+     307 |                 if (data->features && data->features->open) {
+         |                         ^~
+   drivers/gnss/ubx.c:307:43: error: invalid use of undefined type 'struct ubx_data'
+     307 |                 if (data->features && data->features->open) {
+         |                                           ^~
+   drivers/gnss/ubx.c:308:51: error: invalid use of undefined type 'struct ubx_data'
+     308 |                         ubx_gnss_ops->open  = data->features->open;
+         |                                                   ^~
+   drivers/gnss/ubx.c:314:13: error: invalid use of undefined type 'struct ubx_data'
+     314 |         data->vcc = devm_regulator_get(&serdev->dev, "vcc");
+         |             ^~
+   drivers/gnss/ubx.c:315:24: error: invalid use of undefined type 'struct ubx_data'
+     315 |         if (IS_ERR(data->vcc)) {
+         |                        ^~
+   drivers/gnss/ubx.c:316:35: error: invalid use of undefined type 'struct ubx_data'
+     316 |                 ret = PTR_ERR(data->vcc);
+         |                                   ^~
+   drivers/gnss/ubx.c:320:13: error: invalid use of undefined type 'struct ubx_data'
+     320 |         data->v_bckp = devm_regulator_get_optional(&serdev->dev, "v-bckp");
+         |             ^~
+   drivers/gnss/ubx.c:321:24: error: invalid use of undefined type 'struct ubx_data'
+     321 |         if (IS_ERR(data->v_bckp)) {
+         |                        ^~
+   drivers/gnss/ubx.c:322:35: error: invalid use of undefined type 'struct ubx_data'
+     322 |                 ret = PTR_ERR(data->v_bckp);
+         |                                   ^~
+   drivers/gnss/ubx.c:324:29: error: invalid use of undefined type 'struct ubx_data'
+     324 |                         data->v_bckp = NULL;
+         |                             ^~
+   drivers/gnss/ubx.c:329:17: error: invalid use of undefined type 'struct ubx_data'
+     329 |         if (data->v_bckp) {
+         |                 ^~
+   drivers/gnss/ubx.c:330:44: error: invalid use of undefined type 'struct ubx_data'
+     330 |                 ret = regulator_enable(data->v_bckp);
+         |                                            ^~
+   drivers/gnss/ubx.c:342:17: error: invalid use of undefined type 'struct ubx_data'
+     342 |         if (data->v_bckp)
+         |                 ^~
+   drivers/gnss/ubx.c:343:39: error: invalid use of undefined type 'struct ubx_data'
+     343 |                 regulator_disable(data->v_bckp);
+         |                                       ^~
+   drivers/gnss/ubx.c: In function 'ubx_remove':
+   drivers/gnss/ubx.c:356:17: error: invalid use of undefined type 'struct ubx_data'
+     356 |         if (data->v_bckp)
+         |                 ^~
+   drivers/gnss/ubx.c:357:39: error: invalid use of undefined type 'struct ubx_data'
+     357 |                 regulator_disable(data->v_bckp);
+         |                                       ^~
 
 
-On 7.05.2023 19:45, Krzysztof Kozlowski wrote:
-> Correct the typo in 'regulator-name' property.
-> 
->   apq8096-ifc6640.dtb: v1p05-regulator: 'regulator-name' is a required property
->   apq8096-ifc6640.dtb: v1p05-regulator: Unevaluated properties are not allowed ('reglator-name' was unexpected)
-dt-schema is a blessing
+vim +225 drivers/gnss/ubx.c
 
-> 
-> Fixes: 6cbdec2d3ca6 ("arm64: dts: qcom: msm8996: Introduce IFC6640")
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+93acd4265d325a Alison Chaiken 2023-05-07  219  
+1ad69f10e3a58d Johan Hovold   2018-06-01  220  static int ubx_set_active(struct gnss_serial *gserial)
+1ad69f10e3a58d Johan Hovold   2018-06-01  221  {
+1ad69f10e3a58d Johan Hovold   2018-06-01  222  	struct ubx_data *data = gnss_serial_get_drvdata(gserial);
+1ad69f10e3a58d Johan Hovold   2018-06-01  223  	int ret;
+1ad69f10e3a58d Johan Hovold   2018-06-01  224  
+1ad69f10e3a58d Johan Hovold   2018-06-01 @225  	ret = regulator_enable(data->vcc);
+1ad69f10e3a58d Johan Hovold   2018-06-01  226  	if (ret)
+1ad69f10e3a58d Johan Hovold   2018-06-01  227  		return ret;
+1ad69f10e3a58d Johan Hovold   2018-06-01  228  
+1ad69f10e3a58d Johan Hovold   2018-06-01  229  	return 0;
+1ad69f10e3a58d Johan Hovold   2018-06-01  230  }
+1ad69f10e3a58d Johan Hovold   2018-06-01  231  
+1ad69f10e3a58d Johan Hovold   2018-06-01  232  static int ubx_set_standby(struct gnss_serial *gserial)
+1ad69f10e3a58d Johan Hovold   2018-06-01  233  {
+1ad69f10e3a58d Johan Hovold   2018-06-01  234  	struct ubx_data *data = gnss_serial_get_drvdata(gserial);
+1ad69f10e3a58d Johan Hovold   2018-06-01  235  	int ret;
+1ad69f10e3a58d Johan Hovold   2018-06-01  236  
+1ad69f10e3a58d Johan Hovold   2018-06-01  237  	ret = regulator_disable(data->vcc);
+1ad69f10e3a58d Johan Hovold   2018-06-01  238  	if (ret)
+1ad69f10e3a58d Johan Hovold   2018-06-01  239  		return ret;
+1ad69f10e3a58d Johan Hovold   2018-06-01  240  
+1ad69f10e3a58d Johan Hovold   2018-06-01  241  	return 0;
+1ad69f10e3a58d Johan Hovold   2018-06-01  242  }
+1ad69f10e3a58d Johan Hovold   2018-06-01  243  
+1ad69f10e3a58d Johan Hovold   2018-06-01  244  static int ubx_set_power(struct gnss_serial *gserial,
+1ad69f10e3a58d Johan Hovold   2018-06-01  245  				enum gnss_serial_pm_state state)
+1ad69f10e3a58d Johan Hovold   2018-06-01  246  {
+1ad69f10e3a58d Johan Hovold   2018-06-01  247  	switch (state) {
+1ad69f10e3a58d Johan Hovold   2018-06-01  248  	case GNSS_SERIAL_ACTIVE:
+1ad69f10e3a58d Johan Hovold   2018-06-01  249  		return ubx_set_active(gserial);
+1ad69f10e3a58d Johan Hovold   2018-06-01  250  	case GNSS_SERIAL_OFF:
+1ad69f10e3a58d Johan Hovold   2018-06-01  251  	case GNSS_SERIAL_STANDBY:
+1ad69f10e3a58d Johan Hovold   2018-06-01  252  		return ubx_set_standby(gserial);
+1ad69f10e3a58d Johan Hovold   2018-06-01  253  	}
+1ad69f10e3a58d Johan Hovold   2018-06-01  254  
+1ad69f10e3a58d Johan Hovold   2018-06-01  255  	return -EINVAL;
+1ad69f10e3a58d Johan Hovold   2018-06-01  256  }
+1ad69f10e3a58d Johan Hovold   2018-06-01  257  
+55570f1a441787 Colin Ian King 2018-07-16  258  static const struct gnss_serial_ops ubx_gserial_ops = {
+1ad69f10e3a58d Johan Hovold   2018-06-01  259  	.set_power = ubx_set_power,
+1ad69f10e3a58d Johan Hovold   2018-06-01  260  };
+1ad69f10e3a58d Johan Hovold   2018-06-01  261  
+93acd4265d325a Alison Chaiken 2023-05-07  262  #ifdef CONFIG_OF
+93acd4265d325a Alison Chaiken 2023-05-07  263  static const struct ubx_features zedf9p_feats = {
+93acd4265d325a Alison Chaiken 2023-05-07  264  	.min_baud		=	9600,
+93acd4265d325a Alison Chaiken 2023-05-07  265  	.default_baud		=	38400,
+93acd4265d325a Alison Chaiken 2023-05-07  266  	.max_baud		=	921600,
+93acd4265d325a Alison Chaiken 2023-05-07  267  	.baud_config_reg	=	0x40520001,
+93acd4265d325a Alison Chaiken 2023-05-07  268  	.open			=	zed_f9p_serial_open,
+93acd4265d325a Alison Chaiken 2023-05-07  269  };
+93acd4265d325a Alison Chaiken 2023-05-07  270  
+93acd4265d325a Alison Chaiken 2023-05-07  271  static const struct of_device_id ubx_of_match[] = {
+93acd4265d325a Alison Chaiken 2023-05-07  272  	{ .compatible = "u-blox,neo-6m" },
+93acd4265d325a Alison Chaiken 2023-05-07  273  	{ .compatible = "u-blox,neo-8" },
+93acd4265d325a Alison Chaiken 2023-05-07  274  	{ .compatible = "u-blox,neo-m8" },
+93acd4265d325a Alison Chaiken 2023-05-07  275  	{ .compatible = "u-blox,zed-f9p", .data = &zedf9p_feats },
+93acd4265d325a Alison Chaiken 2023-05-07  276  	{},
+93acd4265d325a Alison Chaiken 2023-05-07  277  };
+93acd4265d325a Alison Chaiken 2023-05-07  278  MODULE_DEVICE_TABLE(of, ubx_of_match);
+93acd4265d325a Alison Chaiken 2023-05-07  279  #endif
+93acd4265d325a Alison Chaiken 2023-05-07  280  
+1ad69f10e3a58d Johan Hovold   2018-06-01  281  static int ubx_probe(struct serdev_device *serdev)
+1ad69f10e3a58d Johan Hovold   2018-06-01  282  {
+1ad69f10e3a58d Johan Hovold   2018-06-01  283  	struct gnss_serial *gserial;
+1ad69f10e3a58d Johan Hovold   2018-06-01  284  	struct ubx_data *data;
+93acd4265d325a Alison Chaiken 2023-05-07  285  	struct gnss_operations *ubx_gnss_ops;
+1ad69f10e3a58d Johan Hovold   2018-06-01  286  	int ret;
+1ad69f10e3a58d Johan Hovold   2018-06-01  287  
+1ad69f10e3a58d Johan Hovold   2018-06-01 @288  	gserial = gnss_serial_allocate(serdev, sizeof(*data));
+1ad69f10e3a58d Johan Hovold   2018-06-01  289  	if (IS_ERR(gserial)) {
+1ad69f10e3a58d Johan Hovold   2018-06-01  290  		ret = PTR_ERR(gserial);
+1ad69f10e3a58d Johan Hovold   2018-06-01  291  		return ret;
+1ad69f10e3a58d Johan Hovold   2018-06-01  292  	}
+93acd4265d325a Alison Chaiken 2023-05-07  293  	ubx_gnss_ops = kzalloc(sizeof(struct gnss_operations), GFP_KERNEL);
+93acd4265d325a Alison Chaiken 2023-05-07  294  	if (IS_ERR(ubx_gnss_ops)) {
+93acd4265d325a Alison Chaiken 2023-05-07  295  		ret = PTR_ERR(ubx_gnss_ops);
+93acd4265d325a Alison Chaiken 2023-05-07  296  		return ret;
+93acd4265d325a Alison Chaiken 2023-05-07  297  	}
+1ad69f10e3a58d Johan Hovold   2018-06-01  298  
+1ad69f10e3a58d Johan Hovold   2018-06-01  299  	gserial->ops = &ubx_gserial_ops;
+1ad69f10e3a58d Johan Hovold   2018-06-01  300  
+10f146639fee5f Johan Hovold   2018-06-01  301  	gserial->gdev->type = GNSS_TYPE_UBX;
+10f146639fee5f Johan Hovold   2018-06-01  302  
+1ad69f10e3a58d Johan Hovold   2018-06-01  303  	data = gnss_serial_get_drvdata(gserial);
+93acd4265d325a Alison Chaiken 2023-05-07  304  	if (IS_ENABLED(CONFIG_OF)) {
+93acd4265d325a Alison Chaiken 2023-05-07  305  		data->is_configured = 0;
+93acd4265d325a Alison Chaiken 2023-05-07  306  		data->features = of_match_device(ubx_of_match, &serdev->dev)->data;
+93acd4265d325a Alison Chaiken 2023-05-07  307  		if (data->features && data->features->open) {
+93acd4265d325a Alison Chaiken 2023-05-07  308  			ubx_gnss_ops->open  = data->features->open;
+93acd4265d325a Alison Chaiken 2023-05-07  309  			ubx_gnss_ops->close = gserial->gdev->ops->close;
+93acd4265d325a Alison Chaiken 2023-05-07  310  			ubx_gnss_ops->write_raw = gserial->gdev->ops->write_raw;
+93acd4265d325a Alison Chaiken 2023-05-07  311  			gserial->gdev->ops = ubx_gnss_ops;
+93acd4265d325a Alison Chaiken 2023-05-07  312  		}
+93acd4265d325a Alison Chaiken 2023-05-07  313  	}
+1ad69f10e3a58d Johan Hovold   2018-06-01  314  	data->vcc = devm_regulator_get(&serdev->dev, "vcc");
+1ad69f10e3a58d Johan Hovold   2018-06-01  315  	if (IS_ERR(data->vcc)) {
+1ad69f10e3a58d Johan Hovold   2018-06-01  316  		ret = PTR_ERR(data->vcc);
+1ad69f10e3a58d Johan Hovold   2018-06-01  317  		goto err_free_gserial;
+1ad69f10e3a58d Johan Hovold   2018-06-01  318  	}
+1ad69f10e3a58d Johan Hovold   2018-06-01  319  
+1ad69f10e3a58d Johan Hovold   2018-06-01  320  	data->v_bckp = devm_regulator_get_optional(&serdev->dev, "v-bckp");
+1ad69f10e3a58d Johan Hovold   2018-06-01  321  	if (IS_ERR(data->v_bckp)) {
+1ad69f10e3a58d Johan Hovold   2018-06-01  322  		ret = PTR_ERR(data->v_bckp);
+1ad69f10e3a58d Johan Hovold   2018-06-01  323  		if (ret == -ENODEV)
+1ad69f10e3a58d Johan Hovold   2018-06-01  324  			data->v_bckp = NULL;
+1ad69f10e3a58d Johan Hovold   2018-06-01  325  		else
+1ad69f10e3a58d Johan Hovold   2018-06-01  326  			goto err_free_gserial;
+1ad69f10e3a58d Johan Hovold   2018-06-01  327  	}
+1ad69f10e3a58d Johan Hovold   2018-06-01  328  
+1ad69f10e3a58d Johan Hovold   2018-06-01  329  	if (data->v_bckp) {
+1ad69f10e3a58d Johan Hovold   2018-06-01  330  		ret = regulator_enable(data->v_bckp);
+1ad69f10e3a58d Johan Hovold   2018-06-01  331  		if (ret)
+1ad69f10e3a58d Johan Hovold   2018-06-01  332  			goto err_free_gserial;
+1ad69f10e3a58d Johan Hovold   2018-06-01  333  	}
+1ad69f10e3a58d Johan Hovold   2018-06-01  334  
+1ad69f10e3a58d Johan Hovold   2018-06-01  335  	ret = gnss_serial_register(gserial);
+1ad69f10e3a58d Johan Hovold   2018-06-01  336  	if (ret)
+1ad69f10e3a58d Johan Hovold   2018-06-01  337  		goto err_disable_v_bckp;
+1ad69f10e3a58d Johan Hovold   2018-06-01  338  
+1ad69f10e3a58d Johan Hovold   2018-06-01  339  	return 0;
+1ad69f10e3a58d Johan Hovold   2018-06-01  340  
+1ad69f10e3a58d Johan Hovold   2018-06-01  341  err_disable_v_bckp:
+1ad69f10e3a58d Johan Hovold   2018-06-01  342  	if (data->v_bckp)
+1ad69f10e3a58d Johan Hovold   2018-06-01  343  		regulator_disable(data->v_bckp);
+1ad69f10e3a58d Johan Hovold   2018-06-01  344  err_free_gserial:
+1ad69f10e3a58d Johan Hovold   2018-06-01  345  	gnss_serial_free(gserial);
+1ad69f10e3a58d Johan Hovold   2018-06-01  346  
+1ad69f10e3a58d Johan Hovold   2018-06-01  347  	return ret;
+1ad69f10e3a58d Johan Hovold   2018-06-01  348  }
+1ad69f10e3a58d Johan Hovold   2018-06-01  349  
 
-Konrad
->  arch/arm64/boot/dts/qcom/apq8096-ifc6640.dts | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/apq8096-ifc6640.dts b/arch/arm64/boot/dts/qcom/apq8096-ifc6640.dts
-> index 71e0a500599c..ed2e2f6c6775 100644
-> --- a/arch/arm64/boot/dts/qcom/apq8096-ifc6640.dts
-> +++ b/arch/arm64/boot/dts/qcom/apq8096-ifc6640.dts
-> @@ -26,7 +26,7 @@ chosen {
->  
->  	v1p05: v1p05-regulator {
->  		compatible = "regulator-fixed";
-> -		reglator-name = "v1p05";
-> +		regulator-name = "v1p05";
->  		regulator-always-on;
->  		regulator-boot-on;
->  
-> @@ -38,7 +38,7 @@ v1p05: v1p05-regulator {
->  
->  	v12_poe: v12-poe-regulator {
->  		compatible = "regulator-fixed";
-> -		reglator-name = "v12_poe";
-> +		regulator-name = "v12_poe";
->  		regulator-always-on;
->  		regulator-boot-on;
->  
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
