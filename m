@@ -2,108 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D484A6FB17C
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 15:28:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E15F16FB184
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 15:29:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233551AbjEHN2S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 09:28:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45602 "EHLO
+        id S234281AbjEHN33 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 09:29:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232924AbjEHN2P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 09:28:15 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C7612E838
-        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 06:27:56 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-4f14e499ffcso3265325e87.0
-        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 06:27:56 -0700 (PDT)
+        with ESMTP id S234291AbjEHN3T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 09:29:19 -0400
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 189342BCF0;
+        Mon,  8 May 2023 06:29:12 -0700 (PDT)
+Received: by mail-pl1-x636.google.com with SMTP id d9443c01a7336-1aad6f2be8eso42390825ad.3;
+        Mon, 08 May 2023 06:29:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683552473; x=1686144473;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=r+TBigWM2ehipDbkRUdAuCgzID6oBks8XaTBJDdkWFc=;
-        b=eS7emUUOn4F7Dukn/WB491e2CrR9WAQJaU2V1vp36zAA69l6FzUum8JDxcJ2Wyhgif
-         lZoiFmDmoCyJvxCDuWixBkeTYIcC3/it4iy08Q3gjFfTnK+UV7719hE3GmZXUfz0PymG
-         lP+ZKVyqvvEjVeYul/TAShygGL0igZ+xtEa1Lf7V3fg/p1Xy7Ae4EPBd5xhbVEwi2vt9
-         K6WmPjYz8OZIg23hqj7YmXBXlj/9G/xLtjnNSO33a7XSqq+R4dDmCqI1zPmyL46FVfdX
-         L8AC5+sWdtfoaykk4Xv9+O73d0Y2xntpQH5jFd9TwMYW1nasqviyrEEX9TPatyWPXh8q
-         bAbg==
+        d=gmail.com; s=20221208; t=1683552551; x=1686144551;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=v3PaC+u4I8/xCvBzjXljSbT+ExOFEPX4hvoclskNFFw=;
+        b=MWzI31C4XaHMcFzzVuAi/60gb6uwvtco6/TBowcdMuXPSg6ouaWHsUC+w3hk0vsXS6
+         oPTulJVX1PGaYLCMzcH3+8oB8oL6BeHvikIF2RUuD8i87DyMG4PNHYh6Z2Ue8r+V/LO4
+         4+SpbLukuQnI/I/HwQtnPFwDtuQ15FAhlMf2Uwry1bPCxSzZ23nAsjh8ONAQObnmWMZ9
+         PYMtxSD454r+qxmt021fSN5+vt7owtGLGVc/NwhGChX6bn9RWyQe6MCrEzPSANGHkeeX
+         em9zjjCOXakgtbHs6pbRHIsAlOQ8q974MBE6f7as19Vz+C21I3sbbgtVOo4hoAnCHtHQ
+         f9mA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683552473; x=1686144473;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=r+TBigWM2ehipDbkRUdAuCgzID6oBks8XaTBJDdkWFc=;
-        b=Z1Dx49vLs5VNl2sh4Pz17yMLnKQjtSCrg5v++cKwa0gxRdndujlHjovcV3wWlSttd6
-         /K4AeNWIdesoYowM1io7LW2sDWtHEwVxou3/R+HwzK1OT84ggWCmtGq4Ym6vL/53kq+8
-         QQllGBZ6vCuWYeFnSAjPc6uHS7N9TnTwFKrAQohIMg6/fnT5YAX9B/qpl4FbG1gs3drH
-         okk0KkX2deT+Jpf4X8RIf6hXJP3JP/h/XhHCcs5kDibp2MsWp5wg323JsamV6fRV7D3u
-         f5nkO+0Fs06ir+XC0QUZVJWzHtqWSjRNXidKY9xnY7TSD/+gqFz6a4d743buX6/Jjlsr
-         IJ0g==
-X-Gm-Message-State: AC+VfDxukWejppRAAvq+O0fbhbyB+bSoZ/sRkhDYVtxjLNuuXVl5QkzF
-        f+OAp8KNHffR5H9AZ9lLK6t/fQ==
-X-Google-Smtp-Source: ACHHUZ6tSkDWh0vYddQ9hk5i8imyUIVF7oZz7m751SD3qNwFBLPxX7uzZ9yTb7bZHmVRYVKPW0RiCQ==
-X-Received: by 2002:a05:6512:38d1:b0:4f1:4468:ee65 with SMTP id p17-20020a05651238d100b004f14468ee65mr2639843lft.30.1683552468354;
-        Mon, 08 May 2023 06:27:48 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id 19-20020ac24833000000b004f0049433adsm1294617lft.307.2023.05.08.06.27.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 May 2023 06:27:47 -0700 (PDT)
-Message-ID: <a4f72011-5505-77c2-da3c-dd4e22a4f8d8@linaro.org>
-Date:   Mon, 8 May 2023 16:27:47 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v4 2/6] thermal: qcom: tsens-v0_1: Fix mdm9607 slope
- values
-Content-Language: en-GB
-To:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
+        d=1e100.net; s=20221208; t=1683552551; x=1686144551;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=v3PaC+u4I8/xCvBzjXljSbT+ExOFEPX4hvoclskNFFw=;
+        b=NXQn1n3QVjc9ilpFkgZhS1iMk5wmIsfS2s0nwo1g7iO8ZHXmTquLkiCKL1s+ZqaNHx
+         +zFJag+fGjf2HyT7P0FrYV9G8aTvSLQ8RyJBBuL3rKKzw8wgTkFzv57zSBcYMsGlBiI8
+         LvzwK3hW6UaQNRv5TJh1lvCgz242b8x9WDzy90P/Jn4H+MBWhsazBxOj6G5GsQ+lGtUf
+         OrvRb4pa/KU8UQrj0/liXvJaNp1ntUaSPW3DnMUqtANvfYwYunNF8ZyH58xDkJSVEGZY
+         6/oTEtf4tBRQh+3rT2/prEcbZhKuen7+e/q56A+TSUBWu43tAlQp5IBsPGorUzHHx0Nu
+         fj6g==
+X-Gm-Message-State: AC+VfDzEWlyAZzTJZ/llpri3blYzd4DOMFFkgjWAEUiXzWclnuFPuRvv
+        yTy7R/0fw/C8fu8LfCjSzeo=
+X-Google-Smtp-Source: ACHHUZ7KAFR45h+/U8HBtUfGhPJcOvkhRnZ3gz7CGtsMf4W1x4+mYkZaOv9TKK1YDMVLKRQ2r39hPw==
+X-Received: by 2002:a17:902:8a95:b0:1aa:cddd:57d8 with SMTP id p21-20020a1709028a9500b001aacddd57d8mr9863298plo.30.1683552551322;
+        Mon, 08 May 2023 06:29:11 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id v13-20020a170903238d00b001aafdf8063dsm7253193plh.157.2023.05.08.06.29.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 May 2023 06:29:10 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Mon, 8 May 2023 06:29:09 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Wim Van Sebroeck <wim@linux-watchdog.org>
+Cc:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230508-msm8909-tsens-v4-0-d9119622cb19@kernkonzept.com>
- <20230508-msm8909-tsens-v4-2-d9119622cb19@kernkonzept.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230508-msm8909-tsens-v4-2-d9119622cb19@kernkonzept.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Jacopo Mondi <jacopo@jmondi.org>
+Subject: Re: [PATCH 1/3] watchdog: rzg2l_wdt: Fix reboot for RZ/V2M
+Message-ID: <7d3b2991-f755-42e5-87ca-727fd8fb9164@roeck-us.net>
+References: <20221103223956.50575-1-fabrizio.castro.jz@renesas.com>
+ <20221103223956.50575-2-fabrizio.castro.jz@renesas.com>
+ <20221115132811.GA4189373@roeck-us.net>
+ <TYWPR01MB87753203F46FA9C744FEF7E6C2069@TYWPR01MB8775.jpnprd01.prod.outlook.com>
+ <20230507153625.GA3135@www.linux-watchdog.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230507153625.GA3135@www.linux-watchdog.org>
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/05/2023 16:13, Stephan Gerhold wrote:
-> According to the msm-3.18 vendor kernel from Qualcomm [1], mdm9607 uses
-> a non-standard slope value of 3000 (instead of 3200) for all sensors.
-> Fill it properly similar to the 8939 code added recently.
+On Sun, May 07, 2023 at 05:36:25PM +0200, Wim Van Sebroeck wrote:
+> Hi Fabrizio,
 > 
-> [1]: https://git.codelinaro.org/clo/la/kernel/msm-3.18/-/blob/LE.UM.4.3.2.r1-04200-9x07/arch/arm/boot/dts/qcom/mdm9607.dtsi#L875
+> Based on below e-mail I excluded this patch from the merge window.
+> I saw that Guenter still has it in his branch.
+
+Thanks for the note. I'll drop it.
+
+Guenter
+
+> So can we have an update on this please?
 > 
-> Fixes: a2149ab815fc ("thermal/drivers/qcom/tsens-v0_1: Add support for MDM9607")
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
-> ---
->   drivers/thermal/qcom/tsens-v0_1.c | 24 +++++++++++++++++-------
->   1 file changed, 17 insertions(+), 7 deletions(-)
-
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-
--- 
-With best wishes
-Dmitry
-
+> Thanks in advance,
+> Wim.
+> 
+> > Hi Geert and Guenter,
+> > 
+> > Thank you for your reviews!
+> > 
+> > As it turns out, the rzg2l_wdt driver has some reset related issues
+> > (currently not addressed by the driver) for the RZ/V2M and RZ/Five
+> > SoCs. More specifically to this patch, there is a better way to fix
+> > the restart callback by addressing the way the reset is handled
+> > for the watchdog IP.
+> > 
+> > I am dropping this patch, and I'll send out a series to address
+> > the above concerns (which will tackle the issues with the restart
+> > callback in a better way).
+> > 
+> > 
+> > Thanks,
+> > Fab
+> > 
+> > 
+> > > From: Guenter Roeck <groeck7@gmail.com> On Behalf Of Guenter Roeck
+> > > Sent: 15 November 2022 13:28
+> > > Subject: Re: [PATCH 1/3] watchdog: rzg2l_wdt: Fix reboot for RZ/V2M
+> > > 
+> > > On Thu, Nov 03, 2022 at 10:39:54PM +0000, Fabrizio Castro wrote:
+> > > > The setting for the RZ/V2M watchdog cannot be changed once
+> > > > the watchdog has been enabled, unless the IP gets reset.
+> > > > The current implementation of the restart callback assumes
+> > > > that the watchdog is not enabled, but that's not always the
+> > > > case, and it leads to longer than necessary reboot times if
+> > > > the watchdog is already running.
+> > > >
+> > > > Always reset the RZ/V2M watchdog first, so that we can always
+> > > > restart quickly.
+> > > >
+> > > > Fixes: ec122fd94eeb ("watchdog: rzg2l_wdt: Add rzv2m support")
+> > > > Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> > > 
+> > > Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+> > > 
+> > > > ---
+> > > >  drivers/watchdog/rzg2l_wdt.c | 11 ++++++++---
+> > > >  1 file changed, 8 insertions(+), 3 deletions(-)
+> > > >
+> > > > diff --git a/drivers/watchdog/rzg2l_wdt.c b/drivers/watchdog/rzg2l_wdt.c
+> > > > index 974a4194a8fd..00438ceed17a 100644
+> > > > --- a/drivers/watchdog/rzg2l_wdt.c
+> > > > +++ b/drivers/watchdog/rzg2l_wdt.c
+> > > > @@ -145,10 +145,10 @@ static int rzg2l_wdt_restart(struct
+> > > watchdog_device *wdev,
+> > > >  {
+> > > >  	struct rzg2l_wdt_priv *priv = watchdog_get_drvdata(wdev);
+> > > >
+> > > > -	clk_prepare_enable(priv->pclk);
+> > > > -	clk_prepare_enable(priv->osc_clk);
+> > > > -
+> > > >  	if (priv->devtype == WDT_RZG2L) {
+> > > > +		clk_prepare_enable(priv->pclk);
+> > > > +		clk_prepare_enable(priv->osc_clk);
+> > > > +
+> > > >  		/* Generate Reset (WDTRSTB) Signal on parity error */
+> > > >  		rzg2l_wdt_write(priv, 0, PECR);
+> > > >
+> > > > @@ -157,6 +157,11 @@ static int rzg2l_wdt_restart(struct watchdog_device
+> > > *wdev,
+> > > >  	} else {
+> > > >  		/* RZ/V2M doesn't have parity error registers */
+> > > >
+> > > > +		reset_control_reset(priv->rstc);
+> > > > +
+> > > > +		clk_prepare_enable(priv->pclk);
+> > > > +		clk_prepare_enable(priv->osc_clk);
+> > > > +
+> > > >  		wdev->timeout = 0;
+> > > >
+> > > >  		/* Initialize time out */
+> > > > --
+> > > > 2.34.1
+> > > >
