@@ -2,220 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E2FAF6FB552
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 18:38:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F36B6FB490
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 18:02:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234497AbjEHQiJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 12:38:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36240 "EHLO
+        id S230414AbjEHQCw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 12:02:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234382AbjEHQhp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 12:37:45 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA1146E87;
-        Mon,  8 May 2023 09:37:36 -0700 (PDT)
-Received: from mercury (195-23-45-170.net.novis.pt [195.23.45.170])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 16749660574D;
-        Mon,  8 May 2023 17:37:33 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1683563853;
-        bh=es+2Vg5vpbSoOm58wIOQnVTmBCiV+CnwrUUXaKbUTLY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=iUdnBvZrUQkwiAEIWZdSWd6P6yq+4KdNH+/saBQkhQjrfCrIQYTreHqGaD6h+iRtD
-         S9geDZl9fP1waE7OTdWixXuAhB3KOr4mwMqNiaHX3hO1Fl6+X43FXAahRVsaVSMwMY
-         334UbpWXdW8b0lwm1/3ML2/jc70kkBhtkHJ3xdEVrk+IwUhYU70AQZc6XyyUZyzf6B
-         uJymUPGtBQsqoJtPBLdL0WXyo9AlYD1GzKwEZJHiaiLIm589jFIo85bWEZ60o5IPov
-         ZZX589b0YrwbfdBizAIntCAJ5liQ0rqSeTUYW/M3GHtvoSX+rgsS5/KglCMb+lgCVb
-         n0SCrf+mg/7pw==
-Received: by mercury (Postfix, from userid 1000)
-        id 5C3E61066FBE; Mon,  8 May 2023 14:39:34 +0200 (CEST)
-Date:   Mon, 8 May 2023 14:39:34 +0200
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Bartosz Golaszewski <brgl@bgdev.pl>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229608AbjEHQCv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 12:02:51 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87FF85588;
+        Mon,  8 May 2023 09:02:50 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-3f315735514so175743005e9.1;
+        Mon, 08 May 2023 09:02:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1683561769; x=1686153769;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:subject:cc:to:from:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=8QMhc552UlUsj7kYvZWtMUMNf+gVyj2eysVQyi2xaKM=;
+        b=HlBZP9zPGcvY5f1n0Z0Uf8lOdCdbUV5xpjGQS4G389s8eIBv01rai4p4cryDNgB+j9
+         3qaIMo3beQUAjsH2QS1gNZi94/Wr6yV7ZVuQzW3MkWKKAk9VlWyniZqTKB317aIq93Ls
+         AgM/iO383zjxC9eLglL1a2xJxlTqJRutlnCml/ApPRnUSAws2ctrbcsfhlCtXHLJIDIv
+         kGbcTrMA5bE/zjCBzx+EXLS+UZrH+N2j5biSigIzNcZIXTeG12ZGAWDpolwh7tZTKdnt
+         ozBrgxQW7UkkCukatEzjJnex8KgE7hdnIOor2cB5r4NXhryw6JI5QCx7gBi54WImVVB8
+         7v6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683561769; x=1686153769;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:subject:cc:to:from:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8QMhc552UlUsj7kYvZWtMUMNf+gVyj2eysVQyi2xaKM=;
+        b=GVuGv/he8vJv9tKszokXqOqHOqJQyTF+5tnjuidJEzsLThboyQzJqcgbI8ECybi8Zd
+         QPgrqlYsxuuz68aiDfeG7SlZ8Q8D1L0gKRmjiYEKVYlfb/Ovn3b6RQLeUktj7tffp1sJ
+         8DLwjE2KHOWg9iQF+xTvmUGE53dDnaW2dfTWOxfs3Y57mAUktTi4jQYeroptZ594kSxj
+         1lAs5fZu9Cgb2/cBxmHB7QBvjbVN9DsTDa3RLBGA2nFpnlQUjEL/T1jnf6ZY4Rc16hes
+         PEwMJP4qtAsNjixhWMSYkpjdg9SlZ9SCutAlMLQ1uW0ABIvO0Is7iwL5ACh/BiKTI8X3
+         SXcQ==
+X-Gm-Message-State: AC+VfDwiJonBXwEA5JwVVRxuxVTSisCrK1J2JABBKbZqqiy8Y4dqlOUE
+        bpDgTe+04xIcge/BHrPAJ88=
+X-Google-Smtp-Source: ACHHUZ5gut9Av3LAVbmrxULeIcOJYi74sqsnH/+A0yslUft1sWoiypVuYj5H2hMqmRzhO5GwVeo11Q==
+X-Received: by 2002:adf:f785:0:b0:2f2:79aa:c8b9 with SMTP id q5-20020adff785000000b002f279aac8b9mr6830879wrp.35.1683561767917;
+        Mon, 08 May 2023 09:02:47 -0700 (PDT)
+Received: from Ansuel-xps. (93-34-93-173.ip49.fastwebnet.it. [93.34.93.173])
+        by smtp.gmail.com with ESMTPSA id g14-20020adff3ce000000b00300aee6c9cesm11744439wrp.20.2023.05.08.09.02.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 May 2023 09:02:47 -0700 (PDT)
+Message-ID: <64591d27.df0a0220.d1f7b.ca4a@mx.google.com>
+X-Google-Original-Message-ID: <ZFkdJNHT2ARUKFic@Ansuel-xps.>
+Date:   Mon, 8 May 2023 18:02:44 +0200
+From:   Christian Marangi <ansuelsmth@gmail.com>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Felix Fietkau <nbd@nbd.name>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Lorenzo Bianconi <lorenzo@kernel.org>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Shayne Chen <shayne.chen@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Kalle Valo <kvalo@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v2 2/3] dt-bindings: power: reset: convert
- nvmem-reboot-mode bindings to YAML
-Message-ID: <20230508123934.om25c73xuprqviwq@mercury.elektranox.org>
-References: <20230417145536.414490-1-brgl@bgdev.pl>
- <20230417145536.414490-3-brgl@bgdev.pl>
+        linux-mediatek@lists.infradead.org,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH] dt-bindings: mt76: support pointing to EEPROM using
+ NVMEM cell
+References: <20230508155820.9963-1-zajec5@gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="mdqi6q4wcgrzti64"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230417145536.414490-3-brgl@bgdev.pl>
-X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_00,DATE_IN_PAST_03_06,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230508155820.9963-1-zajec5@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---mdqi6q4wcgrzti64
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-On Mon, Apr 17, 2023 at 04:55:35PM +0200, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->=20
-> Convert the DT binding document for nvmem-reboot-mode from .txt to YAML.
->=20
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Mon, May 08, 2023 at 05:58:20PM +0200, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> All kind of calibration data should be described as NVMEM cells of NVMEM
+> devices. That is more generic solution than "mediatek,mtd-eeprom" which
+> is MTD specific.
+> 
+> Add support for EEPROM NVMEM cells and deprecate existing MTD-based
+> property.
+> 
+> Cc: Christian Marangi <ansuelsmth@gmail.com>
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 > ---
+> Ansuel is working on mt76 driver support for NVMEM based EEPROM access:
+> https://github.com/openwrt/mt76/pull/765
+> 
+> I took the liberty to propose this binding patch.
+> 
+> One important difference: my binding uses "eeprom" while Ansuel went
+> with "precal". I found a lot of "eeprom" references and only one
+> "precal". If you think however "precal" fits better please comment.
 
-Thanks, queued.
+The name is totally "to decide". I feel eeprom might be also way too
+much generic...
+I was thinking to something like cal or precal following ath10k or
+ath11k pattern.
 
--- Sebastian
+Also in the code itself I notice there can be different calibration
+hence the idea of precal and cal... (currently we define the entire mtd
+partition and call it eeprom but on some card different data are
+referenced with an offset... that will be dropped since nvmem cell will
+reference directly the data without using offset, which seems an hack to
+me)
 
->  .../power/reset/nvmem-reboot-mode.txt         | 26 ----------
->  .../power/reset/nvmem-reboot-mode.yaml        | 52 +++++++++++++++++++
->  2 files changed, 52 insertions(+), 26 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/power/reset/nvmem-r=
-eboot-mode.txt
->  create mode 100644 Documentation/devicetree/bindings/power/reset/nvmem-r=
-eboot-mode.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/power/reset/nvmem-reboot-m=
-ode.txt b/Documentation/devicetree/bindings/power/reset/nvmem-reboot-mode.t=
-xt
-> deleted file mode 100644
-> index 752d6126d5da..000000000000
-> --- a/Documentation/devicetree/bindings/power/reset/nvmem-reboot-mode.txt
-> +++ /dev/null
-> @@ -1,26 +0,0 @@
-> -NVMEM reboot mode driver
-> -
-> -This driver gets reboot mode magic value from reboot-mode driver
-> -and stores it in a NVMEM cell named "reboot-mode". Then the bootloader
-> -can read it and take different action according to the magic
-> -value stored.
-> -
-> -Required properties:
-> -- compatible: should be "nvmem-reboot-mode".
-> -- nvmem-cells: A phandle to the reboot mode provided by a nvmem device.
-> -- nvmem-cell-names: Should be "reboot-mode".
-> -
-> -The rest of the properties should follow the generic reboot-mode descrip=
-tion
-> -found in reboot-mode.txt
-> -
-> -Example:
-> -	reboot-mode {
-> -		compatible =3D "nvmem-reboot-mode";
-> -		nvmem-cells =3D <&reboot_mode>;
-> -		nvmem-cell-names =3D "reboot-mode";
-> -
-> -		mode-normal     =3D <0xAAAA5501>;
-> -		mode-bootloader =3D <0xBBBB5500>;
-> -		mode-recovery   =3D <0xCCCC5502>;
-> -		mode-test       =3D <0xDDDD5503>;
-> -	};
-> diff --git a/Documentation/devicetree/bindings/power/reset/nvmem-reboot-m=
-ode.yaml b/Documentation/devicetree/bindings/power/reset/nvmem-reboot-mode.=
-yaml
-> new file mode 100644
-> index 000000000000..14a262bcbf7c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/power/reset/nvmem-reboot-mode.yaml
-> @@ -0,0 +1,52 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/power/reset/nvmem-reboot-mode.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Generic NVMEM reboot mode
-> +
-> +maintainers:
-> +  - Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> +
-> +description:
-> +  This driver gets the reboot mode magic value from the reboot-mode driv=
-er
-> +  and stores it in the NVMEM cell named "reboot-mode". The bootloader can
-> +  then read it and take different action according to the value.
-> +
-> +properties:
-> +  compatible:
-> +    const: nvmem-reboot-mode
-> +
-> +  nvmem-cells:
-> +    description:
-> +      A phandle pointing to the nvmem-cells node where the vendor-specif=
-ic
-> +      magic value representing the reboot mode is stored.
-> +    maxItems: 1
-> +
-> +  nvmem-cell-names:
-> +    items:
-> +      - const: reboot-mode
-> +
-> +patternProperties:
-> +  "^mode-.+":
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Vendor-specific mode value written to the mode register
-> +
-> +required:
-> +  - compatible
-> +  - nvmem-cells
-> +  - nvmem-cell-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    reboot-mode {
-> +        compatible =3D "nvmem-reboot-mode";
-> +        nvmem-cells =3D <&reboot_reason>;
-> +        nvmem-cell-names =3D "reboot-mode";
-> +        mode-recovery =3D <0x01>;
-> +        mode-bootloader =3D <0x02>;
-> +    };
-> +...
-> --=20
-> 2.37.2
->=20
-
---mdqi6q4wcgrzti64
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmRY7YUACgkQ2O7X88g7
-+pqliA/+PTCQsQ+tMps+bNbGAcfRdYA0vzp4XVryQtM8fDKsYjHPbIVNbo6m1Jzj
-m8M0JG97Rv4vtAxAaAShGGRwmt0siViFBMHF3+rY0MMoXEDqyu1mgo3DUo31oglY
-cguJUCXyGonf+jCtPKjDiMAiszKUhGzbp7HLlAPNlajPse3H08fOpIf7+4YK3ejy
-4UecDxLoHwk2dWxH68unPODaHvoDCAF7hW5kTd6Czz8A6Z3x46IMF0J9/5Zn2vzU
-ia2IdAHhjd7/PHdf7ehJaG7dcYn53cnjy2ADSjM5nl9Q5Nw1iBn8ZcBuktEYp7gZ
-wKDV4U0zMlgpzSaAYe9RXElUJygJ+2BrNauEm8OJuD9FqW+mtPtlZOmLevmkDW4U
-Xu9zEK2xDx5cN3DBydlxdoy2e2wmHkAZCCuoqJh9bC4RIKCraLVNLg2MjJWVK4R6
-iixAIqkJPfS+JW94eXLYTFq89PC7gvDzWye5uP47dp+8f1Y2+qQ09VGPn4UQwCkM
-+URv6OuH7kNMoFlFk9BJPBbyUxkjXlATIXj8OuZptVNl5l9/RS1fV2moy6otk0qm
-/lVokTTJpp0JvmeqA+Et4imrKQA9rCkfFTHsHNcTCLlZxMpuY9+jiySVGEfnzB4G
-/SoHiG4BPeb69Rn1JcTPkvvRONZvxgCTrdLh3POtVYfvxR82Fas=
-=HEcC
------END PGP SIGNATURE-----
-
---mdqi6q4wcgrzti64--
+-- 
+	Ansuel
