@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F2BF6FB497
+	by mail.lfdr.de (Postfix) with ESMTP id 0049F6FB498
 	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 18:04:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232438AbjEHQEw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 12:04:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43234 "EHLO
+        id S232967AbjEHQE6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 12:04:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231784AbjEHQEv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 12:04:51 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1C3A55B6
-        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 09:04:49 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-4f1411e8111so5270548e87.1
-        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 09:04:49 -0700 (PDT)
+        with ESMTP id S232717AbjEHQEw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 12:04:52 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AB8659F1
+        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 09:04:51 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4eff50911bfso5193646e87.2
+        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 09:04:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683561888; x=1686153888;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=38AF8nxzOttpxjGEqN4XiKny+LIjfNIP7wF2d4kn7Y8=;
-        b=E5vNHeWDkMnvrPEDlrca3wB2OK03eO31HFXQhFGg9xXk1TpMVQVTpKK1+EETWkQuLb
-         ONXMtG97Y9R9cexLAVh3vuei7SVsZ5mS/Tvl3nKwS8oNd9CcYxrA4KLUxq+2WPp0C9rx
-         Wws/71xPGXLGs/VCuLr1LhBRmMkpo4tmFYfk9NJqiF7XzDo2G6bHIQCSklOpLVmMAbr3
-         wmn4UXlTDnexPxUdEfTpc7k5ENgrb2wrFbOST16H/DT/7zxINl51L2ue9CJ7UuvHajow
-         wINK9asyWr1DxMbslPqUV68AffAX4P5NShrjkvRFZk48ncINuSrbjZtnXMT/7FwZYrSC
-         iaWA==
+        d=linaro.org; s=google; t=1683561889; x=1686153889;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QLu6la4M2S+eq30bRBxEn3j3JQWM6yeWV3xnHdJprV4=;
+        b=U1T92bLP9KjsMOvz+8xGEjU3pO6jpYbf7knLt2es3jGHdIWQ+fHuOrfMSfzK8I0pDD
+         HeQbQh55+iE5rRlGRgw0dety+6AaVR+I7ACbCOwgJLl8CY0EfqF7Sb7Yp4e1iWYpFMr0
+         j6OK3/2T/3IzhhRZNi/JdAgClF2ADY7KpsFQqTxdkO5u54amHm9PiTgrENVhRUnHRGyp
+         esM2rZ0FwNx9ve4FkqvMQHq82zmYVhoKTG4zAODs3EIcdmrZAs5+aA2PZEIOrxDJEx2m
+         0J91hBqCSNprTwa637cDer8MnpP355jsTE/JC21EImykDm8RywaiBzRmugN4dswuh6f0
+         USCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683561888; x=1686153888;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=38AF8nxzOttpxjGEqN4XiKny+LIjfNIP7wF2d4kn7Y8=;
-        b=FeXvv7fvJFr+MdHVjebUngiyK9Jl1qY5t20zUbuWpuWDeYQGzGYEYOpdgllnaXsMq5
-         70IK5xMwnOeG/olXwJaUHan5FSu1NiC76qOwz4lS3kgT4oHKgR6TTigWjBmu0EGL5XyG
-         rdMPo4lXeueTbtWXmdN72zdme6YwHBAekFdZ/QXaqtdeJ/mTmP7IF3i+3K5hZi17ziwA
-         rD0dcxM387RptrtQRxuaInP+e9ZFn3FWW0actSCBkC58pWdq6arlDpkA4CUQwQXPW057
-         DITDNU8+Gob998rG40FXFi0U9qOVVwJPtjU3btAgaZ4bSh3u86oeHmxQGf3O31fR+RBj
-         0k2w==
-X-Gm-Message-State: AC+VfDx91oQshSLQUpR8nJ9b1F/dfxa4onyXzle/FdzyEwvJCNzT0Rpk
-        sz28wztPXwAe7q6B1rxLJ/K/PxqKSNtMWb0L+V4=
-X-Google-Smtp-Source: ACHHUZ66YitfnJd8D2n3isV7TMX2yXp5JnKySLqANxS/X11ZnVoFFFoBeUeSuCjBDXw2UxGRmWiQzA==
-X-Received: by 2002:a19:f80c:0:b0:4d5:ae35:b221 with SMTP id a12-20020a19f80c000000b004d5ae35b221mr2433424lff.34.1683561888223;
-        Mon, 08 May 2023 09:04:48 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1683561889; x=1686153889;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=QLu6la4M2S+eq30bRBxEn3j3JQWM6yeWV3xnHdJprV4=;
+        b=NgsLbm2KbJSoAW7JBjejl5G49BIs6NaaSVdQVn01eu0ocr4dYFY7zVIYQFfmc80wQV
+         f0REyZVOsxdOmKjdsyr1+2PV8JzCUT9nAeAsheUPcITFfPgp1usqkL2WCqv7Q3iS/G7V
+         8SCmp9zHiK9FlTGy+UAWoWyhBwd5lMQEFU+KNA0wE5+I9iopbDOy8Ip4GsDrqh+Sh4/U
+         4Cy4q36RCRrRt/4pcyjWb6smrcBv99Uzwfep1wuERH3uRIJBbKxhmsQVUwUt2Z0ueMyp
+         DQYqfSmo9RqY6efFtSTBWB6mGzldd0lR46blj1gZIwCAwTm0BfSo6tVammXhHu8rfo1F
+         zcHQ==
+X-Gm-Message-State: AC+VfDy6aBUpXaMYQqjuohxgBGanqhbE2t/Dw2m1RjhYz81mbopuCpng
+        U7qb5WfPKzVLUMz0yggoeeHONg==
+X-Google-Smtp-Source: ACHHUZ4QiKu8q75nnHDsmzWRA51cCxJapIE1UKFcsWVd9AN5EFpzV7cAVjfBbVdy+ljY/NLWUCJg2g==
+X-Received: by 2002:ac2:44c3:0:b0:4f1:36fb:7533 with SMTP id d3-20020ac244c3000000b004f136fb7533mr2476376lfm.66.1683561889310;
+        Mon, 08 May 2023 09:04:49 -0700 (PDT)
 Received: from lothlorien.lan (dzdqv0yyyyyyyyyyybm5y-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::ab2])
-        by smtp.gmail.com with ESMTPSA id h3-20020ac25963000000b004eff4ea8dd3sm32372lfp.76.2023.05.08.09.04.46
+        by smtp.gmail.com with ESMTPSA id h3-20020ac25963000000b004eff4ea8dd3sm32372lfp.76.2023.05.08.09.04.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 May 2023 09:04:47 -0700 (PDT)
+        Mon, 08 May 2023 09:04:48 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Sebastian Reichel <sre@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -57,11 +58,14 @@ To:     Sebastian Reichel <sre@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
         Vinod Koul <vkoul@kernel.org>
 Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: [PATCH v2 0/6] ARM: dts: qcom: apq8074-dragonboard: enable additional devices
-Date:   Mon,  8 May 2023 19:04:40 +0300
-Message-Id: <20230508160446.2374438-1-dmitry.baryshkov@linaro.org>
+        linux-arm-msm@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 1/6] dt-bindings: power: reset: qcom-pon: define pm8941-pon
+Date:   Mon,  8 May 2023 19:04:41 +0300
+Message-Id: <20230508160446.2374438-2-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230508160446.2374438-1-dmitry.baryshkov@linaro.org>
+References: <20230508160446.2374438-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -74,34 +78,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for buttons, LEDs and coincell charger found on the APQ8074
-dragonboard device.
+On PM8941 pon doesn't store the reset reason. However we still need the
+wrapping node for pwrkey and resin nodes. Add bindings for pm8941-pon
+device.
 
-For PM8941 we don't have a defined field to store the reset reason.
-Support wrapping pwrkey and resin, but without writing the reset
-reason.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ Documentation/devicetree/bindings/power/reset/qcom,pon.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Changes since v1 (noted by Konrad):
- - Changed to use freshly defined qcom,pm8941-pon compat
- - Fixed indentiation for LEDs definition
- - Reverted the order of pinctrl fields
- - Moved status field to the last position
- - Removed unnecessary pinconf indirection
-
-Dmitry Baryshkov (6):
-  dt-bindings: power: reset: qcom-pon: define pm8941-pon
-  power: reset: qcom-pon: add support for pm8941-pon
-  ARM: dts: qcom-pm8941: add resin support
-  ARM: dts: qcom: apq8074-dragonboard: add resin and gpio keys
-  ARM: dts: qcom: apq8074-dragonboard: add onboard leds
-  ARM: dts: qcom: apq8074-dragonboard: enable coincell charger
-
- .../bindings/power/reset/qcom,pon.yaml        |  2 +
- .../arm/boot/dts/qcom-apq8074-dragonboard.dts | 69 +++++++++++++++++++
- arch/arm/boot/dts/qcom-pm8941.dtsi            | 22 ++++--
- drivers/power/reset/qcom-pon.c                | 22 ++++--
- 4 files changed, 103 insertions(+), 12 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml b/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
+index d96170eecbd2..0f4f55dd4eac 100644
+--- a/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
++++ b/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
+@@ -19,6 +19,7 @@ properties:
+   compatible:
+     enum:
+       - qcom,pm8916-pon
++      - qcom,pm8941-pon
+       - qcom,pms405-pon
+       - qcom,pm8998-pon
+       - qcom,pmk8350-pon
+@@ -63,6 +64,7 @@ allOf:
+           contains:
+             enum:
+               - qcom,pm8916-pon
++              - qcom,pm8941-pon
+               - qcom,pms405-pon
+               - qcom,pm8998-pon
+     then:
 -- 
 2.39.2
 
