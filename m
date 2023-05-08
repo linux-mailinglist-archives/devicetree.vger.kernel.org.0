@@ -2,185 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E15F16FB184
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 15:29:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A0F746FB18F
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 15:33:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234281AbjEHN33 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 09:29:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47152 "EHLO
+        id S234029AbjEHNdc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 09:33:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234291AbjEHN3T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 09:29:19 -0400
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 189342BCF0;
-        Mon,  8 May 2023 06:29:12 -0700 (PDT)
-Received: by mail-pl1-x636.google.com with SMTP id d9443c01a7336-1aad6f2be8eso42390825ad.3;
-        Mon, 08 May 2023 06:29:12 -0700 (PDT)
+        with ESMTP id S232692AbjEHNdc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 09:33:32 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A273E70F
+        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 06:33:30 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-50bc075d6b2so8664303a12.0
+        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 06:33:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683552551; x=1686144551;
+        d=linaro.org; s=google; t=1683552809; x=1686144809;
         h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=v3PaC+u4I8/xCvBzjXljSbT+ExOFEPX4hvoclskNFFw=;
-        b=MWzI31C4XaHMcFzzVuAi/60gb6uwvtco6/TBowcdMuXPSg6ouaWHsUC+w3hk0vsXS6
-         oPTulJVX1PGaYLCMzcH3+8oB8oL6BeHvikIF2RUuD8i87DyMG4PNHYh6Z2Ue8r+V/LO4
-         4+SpbLukuQnI/I/HwQtnPFwDtuQ15FAhlMf2Uwry1bPCxSzZ23nAsjh8ONAQObnmWMZ9
-         PYMtxSD454r+qxmt021fSN5+vt7owtGLGVc/NwhGChX6bn9RWyQe6MCrEzPSANGHkeeX
-         em9zjjCOXakgtbHs6pbRHIsAlOQ8q974MBE6f7as19Vz+C21I3sbbgtVOo4hoAnCHtHQ
-         f9mA==
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=rGZFobhDL5KrtJvIVQA1pg81QY7WNmO1VNXBMl/SSNw=;
+        b=yUZoZ3P6QZHl8p862Wqs7BCZ42+QTF1AZs9T+PfQDwg1GCyeIAEK20EXEMVhUiG/RD
+         WuIe5l0DxrkxkZaffWceyl9N+0ygtr2dbhWnnxGuWLuoZbnRaiwTQZ80bwtx2vSQKtI1
+         ow/8DPJDUZJunSCXM9kTGcy22aTEe0rdQjt6H6cxmISLaHJ7MAHWZ/QbAjHxUIiPwJWW
+         t5q+SNR5UoKnX/4yrQ5XkK7BRjlc32g7eHZXUkK/hvYXQ7dit6CkCPn2AyOsv07c3hJT
+         bAvjSEj9cw/jctjqBomczMsg8bNSItV17OOSGfwXfjlffnBy76gedc09A38ndgAj4osi
+         IRpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683552551; x=1686144551;
+        d=1e100.net; s=20221208; t=1683552809; x=1686144809;
         h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=v3PaC+u4I8/xCvBzjXljSbT+ExOFEPX4hvoclskNFFw=;
-        b=NXQn1n3QVjc9ilpFkgZhS1iMk5wmIsfS2s0nwo1g7iO8ZHXmTquLkiCKL1s+ZqaNHx
-         +zFJag+fGjf2HyT7P0FrYV9G8aTvSLQ8RyJBBuL3rKKzw8wgTkFzv57zSBcYMsGlBiI8
-         LvzwK3hW6UaQNRv5TJh1lvCgz242b8x9WDzy90P/Jn4H+MBWhsazBxOj6G5GsQ+lGtUf
-         OrvRb4pa/KU8UQrj0/liXvJaNp1ntUaSPW3DnMUqtANvfYwYunNF8ZyH58xDkJSVEGZY
-         6/oTEtf4tBRQh+3rT2/prEcbZhKuen7+e/q56A+TSUBWu43tAlQp5IBsPGorUzHHx0Nu
-         fj6g==
-X-Gm-Message-State: AC+VfDzEWlyAZzTJZ/llpri3blYzd4DOMFFkgjWAEUiXzWclnuFPuRvv
-        yTy7R/0fw/C8fu8LfCjSzeo=
-X-Google-Smtp-Source: ACHHUZ7KAFR45h+/U8HBtUfGhPJcOvkhRnZ3gz7CGtsMf4W1x4+mYkZaOv9TKK1YDMVLKRQ2r39hPw==
-X-Received: by 2002:a17:902:8a95:b0:1aa:cddd:57d8 with SMTP id p21-20020a1709028a9500b001aacddd57d8mr9863298plo.30.1683552551322;
-        Mon, 08 May 2023 06:29:11 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id v13-20020a170903238d00b001aafdf8063dsm7253193plh.157.2023.05.08.06.29.10
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rGZFobhDL5KrtJvIVQA1pg81QY7WNmO1VNXBMl/SSNw=;
+        b=TAl4n66JVB7S3/aoYS5OalepcYf1Lb58ZYnVof0tEdjVgl7QeqYvyHCnzMcD9DkpuB
+         u4pMkdPSxS3UmnDZPWPa3uIE6hO12Ir6M3D2HIPWX/mGRvazISWYX5QkB7kei/363HNY
+         /PWy6QsLr2HgY/kmIzE4fZ87TveZ/tLOtR38wbwftk1WiLQ8bc9QiDHM/bGn3SnUi14e
+         yv5jPVvu+zRh/Bj1U5BuEuDqUt1iLLy4fqO2jpgUEK/E7rCCDXoM3HzzSys03LIFKTC8
+         QTTPPpOTWisus4HmQ5jWu5AieNZ7ME5tfssayJEo09RUGfT1z+FS9XFE8wyoF00XUbjN
+         CnRg==
+X-Gm-Message-State: AC+VfDyst7g5xOe/GdISceqzG/xZASNunjGIyoxQ2da4/pbP8r6C10Z9
+        w4OeaaFSzKhs+uqG8id3m29KIQ==
+X-Google-Smtp-Source: ACHHUZ4fRkLXrslmIhIM8+Kqs1j4thCUZSlxgNvfcuzmmB7Z7emPT0GTwOPmXUpMDWZ4mddzp+epQg==
+X-Received: by 2002:aa7:c849:0:b0:50b:c88b:b227 with SMTP id g9-20020aa7c849000000b0050bc88bb227mr7173469edt.35.1683552808913;
+        Mon, 08 May 2023 06:33:28 -0700 (PDT)
+Received: from krzk-bin ([2a02:810d:15c0:828:50e0:ebdf:b755:b300])
+        by smtp.gmail.com with ESMTPSA id s2-20020aa7cb02000000b0050d82f96860sm3562784edt.59.2023.05.08.06.33.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 May 2023 06:29:10 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Mon, 8 May 2023 06:29:09 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Wim Van Sebroeck <wim@linux-watchdog.org>
-Cc:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Jacopo Mondi <jacopo@jmondi.org>
-Subject: Re: [PATCH 1/3] watchdog: rzg2l_wdt: Fix reboot for RZ/V2M
-Message-ID: <7d3b2991-f755-42e5-87ca-727fd8fb9164@roeck-us.net>
-References: <20221103223956.50575-1-fabrizio.castro.jz@renesas.com>
- <20221103223956.50575-2-fabrizio.castro.jz@renesas.com>
- <20221115132811.GA4189373@roeck-us.net>
- <TYWPR01MB87753203F46FA9C744FEF7E6C2069@TYWPR01MB8775.jpnprd01.prod.outlook.com>
- <20230507153625.GA3135@www.linux-watchdog.org>
+        Mon, 08 May 2023 06:33:28 -0700 (PDT)
+Date:   Mon, 8 May 2023 15:33:25 +0200
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Peter De Schrijver <pdeschrijver@nvidia.com>
+Cc:     thierry.reding@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, jonathanh@nvidia.com,
+        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+        stefank@nvidia.com
+Subject: Re: [PATCH 4/5] dt-bindings: Add bindings to support DRAM MRQ GSCs
+Message-ID: <20230508133325.xllmriwydkczk6lh@krzk-bin>
+References: <20230508122048.99953-1-pdeschrijver@nvidia.com>
+ <20230508122048.99953-5-pdeschrijver@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230507153625.GA3135@www.linux-watchdog.org>
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20230508122048.99953-5-pdeschrijver@nvidia.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, May 07, 2023 at 05:36:25PM +0200, Wim Van Sebroeck wrote:
-> Hi Fabrizio,
+On Mon, 08 May 2023 15:20:52 +0300, Peter De Schrijver wrote:
+> Add bindings for DRAM MRQ GSC support.
 > 
-> Based on below e-mail I excluded this patch from the merge window.
-> I saw that Guenter still has it in his branch.
-
-Thanks for the note. I'll drop it.
-
-Guenter
-
-> So can we have an update on this please?
+> Co-developed-by: Stefan Kristiansson <stefank@nvidia.com>
+> Signed-off-by: Stefan Kristiansson <stefank@nvidia.com>
+> Signed-off-by: Peter De Schrijver <pdeschrijver@nvidia.com>
+> ---
+>  .../firmware/nvidia,tegra186-bpmp.yaml        | 69 ++++++++++++++++++-
+>  .../nvidia,tegra264-bpmp-shmem.yaml           | 40 +++++++++++
+>  2 files changed, 106 insertions(+), 3 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/reserved-memory/nvidia,tegra264-bpmp-shmem.yaml
 > 
-> Thanks in advance,
-> Wim.
-> 
-> > Hi Geert and Guenter,
-> > 
-> > Thank you for your reviews!
-> > 
-> > As it turns out, the rzg2l_wdt driver has some reset related issues
-> > (currently not addressed by the driver) for the RZ/V2M and RZ/Five
-> > SoCs. More specifically to this patch, there is a better way to fix
-> > the restart callback by addressing the way the reset is handled
-> > for the watchdog IP.
-> > 
-> > I am dropping this patch, and I'll send out a series to address
-> > the above concerns (which will tackle the issues with the restart
-> > callback in a better way).
-> > 
-> > 
-> > Thanks,
-> > Fab
-> > 
-> > 
-> > > From: Guenter Roeck <groeck7@gmail.com> On Behalf Of Guenter Roeck
-> > > Sent: 15 November 2022 13:28
-> > > Subject: Re: [PATCH 1/3] watchdog: rzg2l_wdt: Fix reboot for RZ/V2M
-> > > 
-> > > On Thu, Nov 03, 2022 at 10:39:54PM +0000, Fabrizio Castro wrote:
-> > > > The setting for the RZ/V2M watchdog cannot be changed once
-> > > > the watchdog has been enabled, unless the IP gets reset.
-> > > > The current implementation of the restart callback assumes
-> > > > that the watchdog is not enabled, but that's not always the
-> > > > case, and it leads to longer than necessary reboot times if
-> > > > the watchdog is already running.
-> > > >
-> > > > Always reset the RZ/V2M watchdog first, so that we can always
-> > > > restart quickly.
-> > > >
-> > > > Fixes: ec122fd94eeb ("watchdog: rzg2l_wdt: Add rzv2m support")
-> > > > Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> > > 
-> > > Reviewed-by: Guenter Roeck <linux@roeck-us.net>
-> > > 
-> > > > ---
-> > > >  drivers/watchdog/rzg2l_wdt.c | 11 ++++++++---
-> > > >  1 file changed, 8 insertions(+), 3 deletions(-)
-> > > >
-> > > > diff --git a/drivers/watchdog/rzg2l_wdt.c b/drivers/watchdog/rzg2l_wdt.c
-> > > > index 974a4194a8fd..00438ceed17a 100644
-> > > > --- a/drivers/watchdog/rzg2l_wdt.c
-> > > > +++ b/drivers/watchdog/rzg2l_wdt.c
-> > > > @@ -145,10 +145,10 @@ static int rzg2l_wdt_restart(struct
-> > > watchdog_device *wdev,
-> > > >  {
-> > > >  	struct rzg2l_wdt_priv *priv = watchdog_get_drvdata(wdev);
-> > > >
-> > > > -	clk_prepare_enable(priv->pclk);
-> > > > -	clk_prepare_enable(priv->osc_clk);
-> > > > -
-> > > >  	if (priv->devtype == WDT_RZG2L) {
-> > > > +		clk_prepare_enable(priv->pclk);
-> > > > +		clk_prepare_enable(priv->osc_clk);
-> > > > +
-> > > >  		/* Generate Reset (WDTRSTB) Signal on parity error */
-> > > >  		rzg2l_wdt_write(priv, 0, PECR);
-> > > >
-> > > > @@ -157,6 +157,11 @@ static int rzg2l_wdt_restart(struct watchdog_device
-> > > *wdev,
-> > > >  	} else {
-> > > >  		/* RZ/V2M doesn't have parity error registers */
-> > > >
-> > > > +		reset_control_reset(priv->rstc);
-> > > > +
-> > > > +		clk_prepare_enable(priv->pclk);
-> > > > +		clk_prepare_enable(priv->osc_clk);
-> > > > +
-> > > >  		wdev->timeout = 0;
-> > > >
-> > > >  		/* Initialize time out */
-> > > > --
-> > > > 2.34.1
-> > > >
+
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/reserved-memory/nvidia,tegra264-bpmp-shmem.yaml:10:2: [warning] wrong indentation: expected 2 but found 1 (indentation)
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/reserved-memory/nvidia,tegra264-bpmp-shmem.yaml: 'oneOf' conditional failed, one must be fixed:
+	'unevaluatedProperties' is a required property
+	'additionalProperties' is a required property
+	hint: Either unevaluatedProperties or additionalProperties must be present
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+Documentation/devicetree/bindings/firmware/nvidia,tegra186-bpmp.example.dts:110.31-116.11: ERROR (duplicate_label): /example-1/hsp@3c00000: Duplicate label 'hsp_top0' on /example-1/hsp@3c00000 and /example-0/hsp@3c00000
+ERROR: Input tree has errors, aborting (use -f to force output)
+make[1]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/firmware/nvidia,tegra186-bpmp.example.dtb] Error 2
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1512: dt_binding_check] Error 2
+
+doc reference errors (make refcheckdocs):
+Documentation/usb/gadget_uvc.rst: Documentation/userspace-api/media/v4l/pixfmt-packed.yuv.rst
+MAINTAINERS: Documentation/devicetree/bindings/pwm/pwm-apple.yaml
+
+See https://patchwork.ozlabs.org/patch/1778345
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
