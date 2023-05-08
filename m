@@ -2,73 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1516E6FB4F3
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 18:22:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC6886FB4F8
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 18:22:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230263AbjEHQWR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 12:22:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54626 "EHLO
+        id S232906AbjEHQWo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 12:22:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233725AbjEHQWQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 12:22:16 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F6F14C04
-        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 09:22:14 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-966287b0f72so395392066b.0
-        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 09:22:14 -0700 (PDT)
+        with ESMTP id S233734AbjEHQWn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 12:22:43 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7284E6E8C
+        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 09:22:41 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-965cc5170bdso654678866b.2
+        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 09:22:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683562933; x=1686154933;
+        d=linaro.org; s=google; t=1683562960; x=1686154960;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=XpcKYq5WNbrrjAsU7QABCwsl+Vtpgt8ratCRA6azzLU=;
-        b=F8fFaT4exJ15WiriCuCDj7OiPh+SryIAo2VIJkZ0aTKpamfXKgR+7Vwl+XjcW3rrRY
-         RfByxRr3dWp4i+we8nzuCRi4fbYXfFy9B8c/VhT6OY3H2X8Forvmm1NJcoqHdQG112DD
-         o5OnOjXgn+ZsQvQMIy6TNDGOc9of5zwDud2axxHOxARl/VC7bqXwXuoMic/rY4Gn3vdl
-         OXo1A76MWpYzLsp2hz3Zd3LDCPtMXsEQemUgWlIWSQ8zWxjfenWEV+q6UYRN9X8FH3lm
-         tttA7kFmQioyLLy5nq7deQQZHIvqw1RywTxofXod2A6lKWtaFLWxVSzSA5d/kbSO+QlC
-         FpqA==
+        bh=yMEF0WSJvUh33vaUqnZYN4TcD7T+ib2FTpwoVdwEQJo=;
+        b=l/NIc/dsRNlSKhlTsW9bWkIrz9i6BS17/75HwbDRDSKXuwaanmMEAWkIh5U6NpJtAS
+         HTry0AGsF8CVTZuAmRklP+12M1w0nshCc207Bh7u0WFZJGgNwkQLJlYUtj6QzlRJrnEi
+         yk7/FPWPC8JjoN8d+EvdosHsMd77HfsA2GmW1yj6DFw90KfBgs4RYTreMId5iWLZD5KA
+         0OA/he+wy4/rVt7sZSo8/lHF5/9gWNqRGLTdykyRxUbMhcjkX8R1n5egOsZDHEdTuDEf
+         4H+GUUc4Ho/xgMsZpg5Fm4mz09qhczMWpPJbYhR0AqY2O3HQiJBKSd8BSTnLqbdc5pu/
+         MrEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683562933; x=1686154933;
+        d=1e100.net; s=20221208; t=1683562960; x=1686154960;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XpcKYq5WNbrrjAsU7QABCwsl+Vtpgt8ratCRA6azzLU=;
-        b=U6PBl59M+PsE1awKlPhAw3moNMJpsp2Ezyz0v+uCC2hT22oyEWmgSOPKfwKKgwBbRp
-         nLwJp1QTHUmhZiJeL+uL3E8Miv9fD2Y0UoGPHN5NDA8JAR07SiGSVFxvwWFqK4joVjNy
-         yI8dVlfMa4ynIg1nGsMx08mK6StVaysBWQomN6TQ+uwp6244oC11UFctXM46YZEYeFMb
-         qan8KjoubqUa9OAFwRSfphk8VJ61kfaszdOn24Pz7b9TWSE1WPXLNREBJKLtupAcQavL
-         pJgNb4xxIE+uxpiLD/cE3HWRfxu9MQSbNsUv6i1ng0W5/7fBKMQJ3A2wStO3R18ztPw4
-         a6mw==
-X-Gm-Message-State: AC+VfDy5505vE7DEnkb35K/O6Ai2ghWxhA7oWgZw7bdL3QfiIAxVbeSp
-        v9DagDTGU23uKC1aoFX8kfZBYBiYj7avLHN1fEA=
-X-Google-Smtp-Source: ACHHUZ6C0tR9B3FrVoNNhKWZTeKkcQfXspZdKGpP/WKSbwK/PFncjib6aLbjJw4xTQeMJ2HBm09mwQ==
-X-Received: by 2002:a17:907:934d:b0:959:c6cb:9fc8 with SMTP id bv13-20020a170907934d00b00959c6cb9fc8mr8791011ejc.29.1683562933067;
-        Mon, 08 May 2023 09:22:13 -0700 (PDT)
+        bh=yMEF0WSJvUh33vaUqnZYN4TcD7T+ib2FTpwoVdwEQJo=;
+        b=TM5DJZAdqfMKh2gcChZbje9E1X5SmEv1b+/nq5OnxKZgfQKhcR2YFYRcYD8rMdZvNO
+         ZiXQ5sNsu+LDgnEjhHtJgBPuBpccOg/7lqrTtQ2bJ01hfSOlYCgCVIZvpaqYU379RzaG
+         ViHnV6eb/d3ZkfnS+l5/feUbfDLI4TB44J5pxjMhXgMA3L88E0UklAdl5lvTOAUoOg5m
+         7NpqRN1+uOiSz/ZVC9aJlSwBcioTAomwjDvyyX+TCA5M0jrp2A2xMZfkbFV3QMF9SeAv
+         3Y2/gFWkAXs82LGmB25mhYcKqjCB99Pr8GMIs9/zKhL7H6CBgKnrY+pJ02WNfbLJ8uYw
+         Hp8w==
+X-Gm-Message-State: AC+VfDz26ulBPh5r9j2FzO9mMtrA+ckO3jAgFf+EYjPn8iMqDNeTZsb+
+        7lopz7rIFdZmXLpvW1LqRkBSyQ==
+X-Google-Smtp-Source: ACHHUZ5Semx0Qyf5W4lNDrOleMZGsYp1D2/sYQew3pVB4wfxYzRezsyJGhLL2oFddoN1GwGMiuNvJA==
+X-Received: by 2002:a17:907:a409:b0:94e:ffcb:b15d with SMTP id sg9-20020a170907a40900b0094effcbb15dmr9564296ejc.71.1683562959901;
+        Mon, 08 May 2023 09:22:39 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:50e0:ebdf:b755:b300? ([2a02:810d:15c0:828:50e0:ebdf:b755:b300])
-        by smtp.gmail.com with ESMTPSA id l21-20020a170906a41500b00965c6c63ea3sm165594ejz.35.2023.05.08.09.22.12
+        by smtp.gmail.com with ESMTPSA id ty20-20020a170907c71400b0096621340285sm141283ejc.198.2023.05.08.09.22.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 May 2023 09:22:12 -0700 (PDT)
-Message-ID: <dd0deabd-defa-7ead-4720-c93bdf17feed@linaro.org>
-Date:   Mon, 8 May 2023 18:22:11 +0200
+        Mon, 08 May 2023 09:22:39 -0700 (PDT)
+Message-ID: <095239ec-973a-c333-b7de-28b573e02422@linaro.org>
+Date:   Mon, 8 May 2023 18:22:38 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: tegra: Document compatible for IGX
+Subject: Re: [PATCH v2 2/5] dt-bindings: clocks: atmel,at91rm9200-pmc: convert
+ to yaml
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>, Shubhi Garg <shgarg@nvidia.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        thierry.reding@gmail.com, jonathanh@nvidia.com
-References: <20230508102733.1751527-1-shgarg@nvidia.com>
- <168354524653.789162.6725251128865957840.robh@kernel.org>
+To:     Rob Herring <robh@kernel.org>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>
+Cc:     linux-clk@vger.kernel.org, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, mturquette@baylibre.com,
+        sboyd@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, nicolas.ferre@microchip.com,
+        alexandre.belloni@bootlin.com, devicetree@vger.kernel.org
+References: <20230508104801.445261-1-claudiu.beznea@microchip.com>
+ <20230508104801.445261-3-claudiu.beznea@microchip.com>
+ <168354524853.789265.9741363586759296275.robh@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <168354524653.789162.6725251128865957840.robh@kernel.org>
+In-Reply-To: <168354524853.789265.9741363586759296275.robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,18 +83,15 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On 08/05/2023 13:27, Rob Herring wrote:
 > 
-> On Mon, 08 May 2023 10:27:32 +0000, Shubhi Garg wrote:
->> Document the compatible strings used for Nvidia IGX Orin Development
->> kit which uses P3701 SKU8 and P3740 carrier board.
+> On Mon, 08 May 2023 13:47:58 +0300, Claudiu Beznea wrote:
+>> Convert Atmel PMC documentation to yaml.
 >>
->> Signed-off-by: Shubhi Garg <shgarg@nvidia.com>
+>> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
 >> ---
->>
->> v2: sorted IGX Orin position as per part number. Since
->> P3740 is designed prior to P3768, it is placed before Orin NX.
->>
->>  Documentation/devicetree/bindings/arm/tegra.yaml | 5 +++++
->>  1 file changed, 5 insertions(+)
+>>  .../devicetree/bindings/clock/at91-clock.txt  |  28 ----
+>>  .../bindings/clock/atmel,at91rm9200-pmc.yaml  | 154 ++++++++++++++++++
+>>  2 files changed, 154 insertions(+), 28 deletions(-)
+>>  create mode 100644 Documentation/devicetree/bindings/clock/atmel,at91rm9200-pmc.yaml
 >>
 > 
 > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
