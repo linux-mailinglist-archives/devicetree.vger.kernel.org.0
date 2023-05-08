@@ -2,134 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 579776F9FD1
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 08:27:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D33E6F9FE0
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 08:28:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232683AbjEHG1B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 02:27:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49214 "EHLO
+        id S232840AbjEHG2l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 02:28:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232388AbjEHG1A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 02:27:00 -0400
-Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF06A30E8;
-        Sun,  7 May 2023 23:26:58 -0700 (PDT)
-Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-195ee1be41aso1168524fac.1;
-        Sun, 07 May 2023 23:26:58 -0700 (PDT)
+        with ESMTP id S232835AbjEHG2j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 02:28:39 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ADC4191FD
+        for <devicetree@vger.kernel.org>; Sun,  7 May 2023 23:28:34 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-50bc0117683so7565436a12.1
+        for <devicetree@vger.kernel.org>; Sun, 07 May 2023 23:28:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683527312; x=1686119312;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=PQjnNOO8BB5bP1FBeXaARhBVIx0Gxl1xygzkHI4CtA4=;
+        b=mxikMzT3JpDYt02scuY8Hx+p1fR78YfEnEuuEHgeXf7uPrn2HFYT7pwz7zNGaX5zF1
+         XPuvhOwDtgoRFBa94BSLHKc6Q6Q21Src9F7N5NI2y96v35EHCBx1P83lRgJVSu60Ojwb
+         uuuwkS7Lhd9J14mvI/IJ5z5MzE9ixn1j7NqEgrOKoZPQ+yB97eZwfbadH6GDq9tWTeIP
+         NbDb57FJA5y/7uREE7aTdEluBWIbH+bkDwQoLQE/PtFR4XuadBlukE3mvdRgnLKjq+bi
+         EFiyzFYXS7SkNKTBqUY9jSLPuc/wJfz1I2QzPUuLzT9cGpV/M5BprRhGjIRyt0XZmQVB
+         iO5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683527218; x=1686119218;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=zA2dOrgpR+LAShw4lI3fM62PxuKc8EjiFypsxPezBTE=;
-        b=lf0FFkvBpGxl4IS3wCnkrJa8CMwaC5ViIFPSlh3k0FdRl0m2s7fvPV7gG17TZVn9XL
-         rzu1rpHGNYPvZdrIBFVz5xRpwnl14SzVjEYZhrkyckU588P8HoGBl6iPCSkt+Ly0VADN
-         D2GgVpMxbEGyGCJrlvjtXsMAjl0fy8wsNQ8+n/HlpZFfQLfyqxj4UcLvinE1aksCbEOt
-         37smaY4HPgDZFZGVscv3IgyOEWFKtit+1Yj8TwE/yvjTqQWEniInvupvqL3pO1U5u3Cm
-         30TX/S4kQuvlgRCzt7U5Gj9Xrkg3CEcyFeWRICdM8mXE8jBNgwFk6DrphllCvQ0D/hrr
-         buZQ==
-X-Gm-Message-State: AC+VfDy5yKkWz0UpcjC9tea7z3Zab6WonuFHvGoElO8L815vPU74VgBP
-        ToowMo0l3gSKd0rhc14GAQ==
-X-Google-Smtp-Source: ACHHUZ79sO6V/lar1ARUIsYqRQiGqHQtNQzJC5YOgirC6ArGbU6WU1wCuu4pynsdBPC15daXAVoiyw==
-X-Received: by 2002:a05:6870:2201:b0:192:b536:259 with SMTP id i1-20020a056870220100b00192b5360259mr4424969oaf.19.1683527218009;
-        Sun, 07 May 2023 23:26:58 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id a19-20020a056870e35300b0018456166c7asm4635438oae.39.2023.05.07.23.26.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 07 May 2023 23:26:57 -0700 (PDT)
-Received: (nullmailer pid 213417 invoked by uid 1000);
-        Mon, 08 May 2023 06:26:53 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        d=1e100.net; s=20221208; t=1683527312; x=1686119312;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=PQjnNOO8BB5bP1FBeXaARhBVIx0Gxl1xygzkHI4CtA4=;
+        b=Hsgs7MWL+3Sa1e6Dw0qF9Nmk3gA0ARrYY66sy/9407WcVJle9Lk+PSoOR0lVb3/BC7
+         8iexD4ZjK7rqFA6SPZmQ4btSk7W4v7NNP/vlbBV7zYyNET8t5sYDu6vschurff3Se0OC
+         FO0OcK782XR7nGjDEgA2R6nnmS/BE7bmfN2UIyy7Zq4IMwxRGIl6bi/KVQNFb18zk6/s
+         jVTVaB4KJ1rdjMY6rtJcVhRsDWhuN/PfD0Q+G83oASrPhwHdUSsTPMW1UzM+h84z+6n/
+         EVKL2Ob8uurVDiNOeLUBCzi1uOIoD//Mcd2cK0zp/lOZbz/MXp2VkybaeUF11GNdOo1Z
+         1yaQ==
+X-Gm-Message-State: AC+VfDytHRQwEm9HU2mM1uFrKfeB/6DBmT4PquryogLlXF3SaOIyGx11
+        zLdljI2mg7OOq2tWrkM8pAm/XA==
+X-Google-Smtp-Source: ACHHUZ4p8mpjVy0cqAqWdS/0JPsaDIUuGYt7YCGkityC0XXPE9PJ8U0Lblf3KFwE1nKxqbLriWs6Cw==
+X-Received: by 2002:a17:907:2d0c:b0:966:5c04:2c5a with SMTP id gs12-20020a1709072d0c00b009665c042c5amr2289584ejc.69.1683527312460;
+        Sun, 07 May 2023 23:28:32 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:50e0:ebdf:b755:b300? ([2a02:810d:15c0:828:50e0:ebdf:b755:b300])
+        by smtp.gmail.com with ESMTPSA id 22-20020a170906301600b00965b416585bsm4593498ejz.118.2023.05.07.23.28.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 07 May 2023 23:28:31 -0700 (PDT)
+Message-ID: <cdf26b5b-79d3-3818-1676-4e2be204a0ee@linaro.org>
+Date:   Mon, 8 May 2023 08:28:29 +0200
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Liu Ying <victor.liu@nxp.com>
-Cc:     linux-arm-kernel@lists.infradead.org, shawnguo@kernel.org,
-        marex@denx.de, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
-        linux-imx@nxp.com, krzysztof.kozlowski+dt@linaro.org,
-        festevam@gmail.com, airlied@gmail.com, robh+dt@kernel.org,
-        stefan@agner.ch, conor+dt@kernel.org,
-        dri-devel@lists.freedesktop.org, krzysztof.kozlowski@linaro.org,
-        LW@karo-electronics.de, alexander.stein@ew.tq-group.com,
-        daniel@ffwll.ch, s.hauer@pengutronix.de
-In-Reply-To: <20230508055740.635256-2-victor.liu@nxp.com>
-References: <20230508055740.635256-1-victor.liu@nxp.com>
- <20230508055740.635256-2-victor.liu@nxp.com>
-Message-Id: <168352721348.213381.2072764987425735233.robh@kernel.org>
-Subject: Re: [PATCH v5 1/6] dt-bindings: lcdif: Add i.MX93 LCDIF support
-Date:   Mon, 08 May 2023 01:26:53 -0500
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH v2 1/3] dt-bindings: thermal: tsens: Add ipq9574
+ compatible
+Content-Language: en-US
+To:     Varadarajan Narayanan <quic_varada@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, amitk@kernel.org,
+        thara.gopinath@gmail.com, rafael@kernel.org,
+        daniel.lezcano@linaro.org, rui.zhang@intel.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Praveenkumar I <quic_ipkumar@quicinc.com>
+References: <cover.1683523370.git.quic_varada@quicinc.com>
+ <345a61f6cd56e504e1f82ac2328ffa6d89e2d510.1683523370.git.quic_varada@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <345a61f6cd56e504e1f82ac2328ffa6d89e2d510.1683523370.git.quic_varada@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Mon, 08 May 2023 13:57:35 +0800, Liu Ying wrote:
-> There is one LCDIF embedded in i.MX93 SoC to connect with
-> MIPI DSI controller through LCDIF cross line pattern(controlled
-> by mediamix blk-ctrl) or connect with LVDS display bridge(LDB)
-> directly or connect with a parallel display through parallel
-> display format(also controlled by mediamix blk-ctrl).  i.MX93
-> LCDIF IP is essentially the same to i.MX8MP LCDIF IP.  Add device
-> tree binding for i.MX93 LCDIF.
+On 08/05/2023 07:32, Varadarajan Narayanan wrote:
+> From: Praveenkumar I <quic_ipkumar@quicinc.com>
 > 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: Marek Vasut <marex@denx.de>
-> Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> Qualcomm IPQ9574 has tsens v2.3.1 block, which is similar to IPQ8074 tsens.
+> 
+> Acked-by: Rob Herring <robh@kernel.org>
+
+Drop the ack, it's a bigger change.
+
+> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
 > ---
-> v4->v5:
-> * No change.
+> [v2]:
+> 	Thanks to Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 	for the tip to make qcom,ipq8074-tsens as fallback.
+> ---
+>  Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 9 +++++++--
+>  1 file changed, 7 insertions(+), 2 deletions(-)
 > 
-> v3->v4:
-> * Add Alexander's R-b tag.
-> 
-> v2->v3:
-> * No change.
-> 
-> v1->v2:
-> * Add Krzysztof's A-b and Marek's R-b tags.
-> 
->  Documentation/devicetree/bindings/display/fsl,lcdif.yaml | 7 ++++++-
->  1 file changed, 6 insertions(+), 1 deletion(-)
-> 
+> diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> index d1ec963..ea67cf9 100644
+> --- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> @@ -64,8 +64,11 @@ properties:
+>            - const: qcom,tsens-v2
+>  
+>        - description: v2 of TSENS with combined interrupt
+> -        enum:
+> -          - qcom,ipq8074-tsens
+> +        - const: qcom,ipq8074-tsens
+> +        - items:
+> +          - enum:
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Please test the patch after changes and before sending. Missing indent
+which test would point out.
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.example.dtb: camera-sensor@3c: port:endpoint:data-lanes: [[1]] is too short
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/rockchip-isp1.example.dtb: camera@3c: port:endpoint:data-lanes: [[1]] is too short
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.example.dtb: pcie-ep@33800000: Unevaluated properties are not allowed ('assigned-clock-parents', 'assigned-clock-rates', 'assigned-clocks' were unexpected)
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml
-
-doc reference errors (make refcheckdocs):
-Documentation/usb/gadget_uvc.rst: Documentation/userspace-api/media/v4l/pixfmt-packed.yuv.rst
-MAINTAINERS: Documentation/devicetree/bindings/pwm/pwm-apple.yaml
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230508055740.635256-2-victor.liu@nxp.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Best regards,
+Krzysztof
 
