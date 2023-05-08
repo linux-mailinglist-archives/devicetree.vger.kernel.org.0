@@ -2,169 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34AAF6FB6B9
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 21:25:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95D426FB6C5
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 21:33:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232717AbjEHTZC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 15:25:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51082 "EHLO
+        id S229560AbjEHTdv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 15:33:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53826 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229464AbjEHTZC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 15:25:02 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1A8CE7;
-        Mon,  8 May 2023 12:25:00 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2AAFB62A69;
-        Mon,  8 May 2023 19:25:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FE64C433EF;
-        Mon,  8 May 2023 19:24:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1683573899;
-        bh=d25zkj4QIGqo1q9tRg60u0/yBs9nIpXewK+TJMWlDW4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=KLRAJbBdRK515SCcYa1oYJQKak5uw89c+v1lYRyQNEYe9Rku839yD9vkdD2MALzRx
-         2hHmvo3ulnCy9ifr4zGje4M0roh1X+ugpS2Wew0Mk21s/j3Q7PLDgZRSMwqeNTHowm
-         ZXAp5vS02JoKUM3VnHz7HpWTKXZGUv5x+lAJfDay8i2OVmHFCg2+JuqI1++489ye4S
-         b3aR3TcYLOoFpnL92z2zBV0jM/wgZxqhpGFdJsc/mjZLwVFQdB36t2AcFS9KkID6b2
-         FmlnqXnINf0TSEuhagyPh0OX78cdwy95tMDESZOiCGcLN2pXQIvFXUy+K5NjiAcW1a
-         /VAo+mf6lNt/A==
-Date:   Mon, 8 May 2023 20:24:53 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Xingyu Wu <xingyu.wu@starfivetech.com>
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        William Qiu <william.qiu@starfivetech.com>,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH v3 5/7] dt-bindings: soc: starfive: Add StarFive syscon
- module
-Message-ID: <20230508-margarita-fondling-c9b970ad73a9@spud>
-References: <20230414024157.53203-1-xingyu.wu@starfivetech.com>
- <20230414024157.53203-6-xingyu.wu@starfivetech.com>
- <20230424-footsie-compost-d6624c8ef4e8@spud>
+        with ESMTP id S229492AbjEHTdv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 15:33:51 -0400
+Received: from mail-vs1-xe35.google.com (mail-vs1-xe35.google.com [IPv6:2607:f8b0:4864:20::e35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80EE655B6
+        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 12:33:50 -0700 (PDT)
+Received: by mail-vs1-xe35.google.com with SMTP id ada2fe7eead31-4360e73d0d4so206131137.1
+        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 12:33:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1683574429; x=1686166429;
+        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=C+z24Pl7od6xO10XmMEfecsYemTIfW+XARlPRi62dVY=;
+        b=NKC2xbsrIAqwZnAVNovjf8zjnCsKt/8YyTNqe4ImJn8rgL9ns2ZMrJEkZ34wn0c8rs
+         46gcStl2U/KjyFl4mnFCno9P+lzFVRo7kRqWxYXd+VA8ZOmjrUri2yKB6fB4fz1jZK/A
+         ncjNfzRSPZRLfwdyxwLhhXW8GM7DGs6zxfW0BpQrmCKRjG2Srk6DDG6VNAgioaEwVakp
+         RW15D74SryfFaHEY6Dyp2uTgiwqwzthRK7ACfVvfAmsNxbBh/Nlt3hmHEuv16fZ6fIAq
+         mMzokxLXkm8F3N49ZQlnOCoz2NN35PV6WNqGUQ2F6Rb9GNvaBu1ZM+Dy0opIZlz8agqe
+         sgDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683574429; x=1686166429;
+        h=to:subject:message-id:date:from:reply-to:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=C+z24Pl7od6xO10XmMEfecsYemTIfW+XARlPRi62dVY=;
+        b=WMXNO+H82IRuRAJ+D2oZjg+Wwf7YNi6fuDFq+17dt6X3vGiGksZGjp/ihq4OH9yJow
+         AEXWsRhtSVXYgCwFworh6RdBPnUQKZJP9A3boLn69BjDhykzA4l54QfhmAQkgKlmWqpa
+         8zxij3cD1QH+8wwQQK3zhgfxAGMyJrMgVvMPXjDPW/Fv7EdZ5McdHzUPDN9U48Iv1bpc
+         F9JE9o7ZAY6wOPxRSxuoDn95tazb54O+NQTV3+8zynPRGZDQMXN6QNG49kKVGrjYjA85
+         nDlCPR82b1T55no8O2BRAFaQ8/aZbEYvueKggbClokv5RV4qwouAH5m+IeSCWOjufAb9
+         n5zQ==
+X-Gm-Message-State: AC+VfDw5fwJffivTxNu1nG6jQW84VnFoAzEUbF3IZ031MXQAupO+ah7o
+        aRY4OXjcOh+3/GfJSstGvNmhquJzWZ/6ERFZgSQ=
+X-Google-Smtp-Source: ACHHUZ4RT2WyYwe1mgXBePxLL+IG5Mbt5GuuADocBhrpxGceOn6PCQr3WQgqkJsr5PMPALjlOfRE/fBIrzNbsicaGmQ=
+X-Received: by 2002:a05:6102:445:b0:42c:59ad:1bc2 with SMTP id
+ e5-20020a056102044500b0042c59ad1bc2mr3990874vsq.33.1683574429489; Mon, 08 May
+ 2023 12:33:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="mn9OXjbT0/L5FxUF"
-Content-Disposition: inline
-In-Reply-To: <20230424-footsie-compost-d6624c8ef4e8@spud>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Received: by 2002:a59:a74d:0:b0:3cd:9013:43b6 with HTTP; Mon, 8 May 2023
+ 12:33:48 -0700 (PDT)
+Reply-To: pmichae7707@gmail.com
+From:   paul michael <paulmichael2124@gmail.com>
+Date:   Mon, 8 May 2023 20:33:48 +0100
+Message-ID: <CABh2_VmzE5iOXC69yFc76G5oBusF-7L-4QT-oWf6p-A6BRxeoA@mail.gmail.com>
+Subject: Greetings
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=4.9 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        UNDISC_FREEM autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: ****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---mn9OXjbT0/L5FxUF
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Apr 24, 2023 at 06:15:47PM +0100, Conor Dooley wrote:
-> On Fri, Apr 14, 2023 at 10:41:55AM +0800, Xingyu Wu wrote:
-> > From: William Qiu <william.qiu@starfivetech.com>
-> >=20
-> > Add documentation to describe StarFive System Controller Registers.
-> >=20
-> > Signed-off-by: William Qiu <william.qiu@starfivetech.com>
-> > ---
-> >  .../soc/starfive/starfive,jh7110-syscon.yaml  | 58 +++++++++++++++++++
-> >  MAINTAINERS                                   |  6 ++
-> >  2 files changed, 64 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/soc/starfive/star=
-five,jh7110-syscon.yaml
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/soc/starfive/starfive,jh=
-7110-syscon.yaml b/Documentation/devicetree/bindings/soc/starfive/starfive,=
-jh7110-syscon.yaml
-> > new file mode 100644
-> > index 000000000000..de086e74a229
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-sy=
-scon.yaml
-> > @@ -0,0 +1,58 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/soc/starfive/starfive,jh7110-syscon=
-=2Eyaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: StarFive JH7110 SoC system controller
-> > +
-> > +maintainers:
-> > +  - William Qiu <william.qiu@starfivetech.com>
-> > +
-> > +description: |
-> > +  The StarFive JH7110 SoC system controller provides register informat=
-ion such
-> > +  as offset, mask and shift to configure related modules such as MMC a=
-nd PCIe.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - items:
-> > +          - enum:
-> > +              - starfive,jh7110-aon-syscon
-> > +              - starfive,jh7110-sys-syscon
-> > +          - const: syscon
-> > +          - const: simple-mfd
-> > +      - items:
-> > +          - const: starfive,jh7110-stg-syscon
-> > +          - const: syscon
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clock-controller:
-> > +    $ref: /schemas/clock/starfive,jh7110-pll.yaml#
-> > +    type: object
-> > +
-> > +  power-controller:
-> > +    $ref: /schemas/power/starfive,jh7110-pmu.yaml#
-> > +    type: object
->=20
-> My plan was to grab this patch after the merge window, but there's been
-> some back and forth [1] about what exactly should be a power-controller
-> here. Given the merge window is open & I know Emil wants to look at the
-> various clock bits for the JH7110, I don't think there's a pressing need
-> for you to do anything here, but figured I'd at least mention how things
-> are going on this thread too.
-
-To follow up on this, it transpired in that thread that this node, not a
-child node, should be the power controller.
-
-Up to you StarFive folk how you wish to resend, but I am fine with it
-being in this series, I shall just not pick up the soc driver patches
-until the resent binding is applied by Stephen.
-
-Thanks,
-Conor.
-
---mn9OXjbT0/L5FxUF
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZFlMhQAKCRB4tDGHoIJi
-0qDRAQC/Oe6fBxsiKfuTm43qtFROX9XPTmdIibQnwwOi+PzIEQD8DfYgZYAzC53a
-PgLCy7zOEWGuwYyL6gtESmlBXNsYlQY=
-=Nsa4
------END PGP SIGNATURE-----
-
---mn9OXjbT0/L5FxUF--
+Every time I retest your email, it tells me to check with my ISP or
+Log onto incoming mail server (POP3): Your e-mail server rejected .
+Kindly verify if your email is still valid for us to talk.
