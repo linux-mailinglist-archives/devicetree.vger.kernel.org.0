@@ -2,137 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C53A66FBAB6
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 00:02:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B97C6FBACA
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 00:04:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234394AbjEHWCA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 18:02:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40216 "EHLO
+        id S233831AbjEHWEc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 18:04:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234528AbjEHWBm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 18:01:42 -0400
-Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com [IPv6:2607:f8b0:4864:20::829])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BE877D87;
-        Mon,  8 May 2023 15:01:31 -0700 (PDT)
-Received: by mail-qt1-x829.google.com with SMTP id d75a77b69052e-3f394fe5465so4127861cf.3;
-        Mon, 08 May 2023 15:01:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683583290; x=1686175290;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=WMcPX7+XH5SaqSZhnB/TBndNwmDuSe3GPgEuJujl4r8=;
-        b=VdVNDZe3sBM86o4kgh7s/hG71/9NvX4vBEcRwSjXafvuy8kTj5uCwAKBNW0rPbZXhj
-         3TJdQblny3mIevgZDOEOl6eiAwM2FfWWbQzyrCh2SVp9VPEJvniSty+muMR9doizTMni
-         TDHr3M6l6KJtIdzOILw8beUbiReg50M4GaOtK342qRYhQSOEpmAYp2gjw1v5krXj3oEz
-         oCr0L4OzueQ7MKOPv+H/crWucDhawcM1r+o5BguJ3VNCBYk+RaMi5rZTIIwk6JrGX8Jq
-         YHsVCWABEWWpRE5FGig22JcNR3efG4V4x2UDsHsJaPrH4ycpXD/bXc1qMRS95PfdD55J
-         9YqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683583290; x=1686175290;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WMcPX7+XH5SaqSZhnB/TBndNwmDuSe3GPgEuJujl4r8=;
-        b=JL9pvdxSFMtGyRryj40LRrYyJBI5ZAyBZRkXtJW2YtKBZJFtxBJWId0+W7razc3h5P
-         BlmhDUUuahG9HxlofFaZwopplJx336E4pUlqLMjlt3vNV6StB2c0TOvvjGU3KVczqwtD
-         fZhiEbXJQXikf/AX/G7LfUNoUP2Vt5buUwiHSRLXEjrSYcOglXIq1QHO4HlVfkcdUBQf
-         k6E3nJPPavjqCl5rba1eMO4NCnCMaPIAkqgiGBx7cfkbLPnUPjszRRJRiu78Sdkq1VUH
-         6fFOhSMhZo1dADzjCpoh53L5j9Zk54VpOtyklTNXAdd7XjFCmX31WUrRGj2cVl7o5/lq
-         Axaw==
-X-Gm-Message-State: AC+VfDx9fVcCA24LFMWVUDoxBsGr/wwrCXvBoIemkcRSXwTOr4pYqvPv
-        oxSOfrHH0mzJ8zs7fGMmyEcy3FHHFHc=
-X-Google-Smtp-Source: ACHHUZ74X+AdPVZ7ThRjyNYy/SKDI899Z3VKFuulzxP9kSFMSkbPUpl6w4tWh9H/0/Kn2xVCRxUdaQ==
-X-Received: by 2002:a05:622a:308:b0:3f3:633b:2888 with SMTP id q8-20020a05622a030800b003f3633b2888mr15816018qtw.54.1683583290242;
-        Mon, 08 May 2023 15:01:30 -0700 (PDT)
-Received: from stbsrv-and-01.and.broadcom.net ([192.19.144.250])
-        by smtp.gmail.com with ESMTPSA id e11-20020ac8010b000000b003d7e923736asm3315176qtg.6.2023.05.08.15.01.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 May 2023 15:01:29 -0700 (PDT)
-From:   Jim Quinlan <jim2101024@gmail.com>
-To:     linux-pci@vger.kernel.org,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Cyril Brulebois <kibi@debian.org>,
-        Phil Elwell <phil@raspberrypi.com>,
-        bcm-kernel-feedback-list@broadcom.com, jim2101024@gmail.com,
-        james.quinlan@broadcom.com
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
+        with ESMTP id S234023AbjEHWEZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 18:04:25 -0400
+Received: from relay07.th.seeweb.it (relay07.th.seeweb.it [5.144.164.168])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63D4EA246
+        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 15:03:57 -0700 (PDT)
+Received: from SoMainline.org (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id E398B3F586;
+        Tue,  9 May 2023 00:03:24 +0200 (CEST)
+Date:   Tue, 9 May 2023 00:03:23 +0200
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-rpi-kernel@lists.infradead.org (moderated list:BROADCOM
-        BCM2711/BCM2835 ARM ARCHITECTURE),
-        linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM
-        BCM2711/BCM2835 ARM ARCHITECTURE),
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v5 1/5] dt-bindings: PCI: brcmstb: Add brcm,enable-l1ss property
-Date:   Mon,  8 May 2023 18:01:21 -0400
-Message-Id: <20230508220126.16241-2-jim2101024@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230508220126.16241-1-jim2101024@gmail.com>
-References: <20230508220126.16241-1-jim2101024@gmail.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+Subject: Re: [PATCH v2 07/13] drm/msm/dpu: Add SM6350 support
+Message-ID: <7pqaid23xlcksxy3pzc7wzud226nmucklhe37bpy6n2b3bbft3@g6lpuun6kpk5>
+References: <20230411-topic-straitlagoon_mdss-v2-0-5def73f50980@linaro.org>
+ <20230411-topic-straitlagoon_mdss-v2-7-5def73f50980@linaro.org>
+ <k25jg7cez2kimpxr4ztbdzjr2adq6a2vjknyvfe5frxujtogfg@vhfdyt45unv6>
+ <bfed3b0a-9672-fa59-5591-27ad17f5e96c@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <bfed3b0a-9672-fa59-5591-27ad17f5e96c@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This commit adds the boolean "brcm,enable-l1ss" property:
+On 2023-04-28 16:03:54, Dmitry Baryshkov wrote:
+<snip>
+> >> +	.qseed_type = DPU_SSPP_SCALER_QSEED4,
+> > 
+> > I thought it was QSEED3LITE, but doesn't really matter as both are
+> > handled similarly.  It'll anyway change when I resubmit:
+> 
+> If I understood correctly, we mixed two things: hw stuff and the 
+> userspace library. QSEEDv2 was a hardware scaler. "qseedv3/v3lite/v4" 
+> are software library names that are used with the scalers newer than 
+> QSEED2. From the driver point we can ignore that and use scaler's hw 
+> version (which mostly but not always corresponds to the 3/3lite/4).
 
-  The Broadcom STB/CM PCIe HW -- a core that is also used by RPi SOCs --
-  requires the driver probe() to deliberately place the HW one of three
-  CLKREQ# modes:
+If I remember correctly, that matches the register changes we intended
+to do in the patch below.  This was only available starting at qseedv3.
+One of the replies in that thread clarifies which register value is used
+on what hardware, and that is what downstream switches on.
 
-  (a) CLKREQ# driven by the RC unconditionally
-  (b) CLKREQ# driven by the EP for ASPM L0s, L1
-  (c) Bidirectional CLKREQ#, as used for L1 Substates (L1SS).
+I'll try and respin it once we're through the DSC series.
 
-  The HW+driver can tell the difference between downstream devices that
-  need (a) and (b), but does not know when to configure (c).  All devices
-  should work fine when the driver chooses (a) or (b), but (c) may be
-  desired to realize the extra power savings that L1SS offers.  So we
-  introduce the boolean "brcm,enable-l1ss" property to inform the driver
-  that (c) is desired.  Setting this property only makes sense when the
-  downstream device is L1SS-capable and the OS is configured to activate
-  this mode (e.g. policy==powersupersave).
+- Marijn
 
-  This property is already present in the Raspian version of Linux, but the
-  upstream driver implementation that follows adds more details and
-  discerns between (a) and (b).
+> > https://lore.kernel.org/linux-arm-msm/20230215-sspp-scaler-version-v1-0-416b1500b85b@somainline.org/T/#u
+> > 
+> > which should hardcode the register value directly, making this field
+> > superfluous.
 
-Signed-off-by: Jim Quinlan <jim2101024@gmail.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml | 9 +++++++++
- 1 file changed, 9 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-index 7e15aae7d69e..8b61c2179608 100644
---- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-+++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-@@ -64,6 +64,15 @@ properties:
- 
-   aspm-no-l0s: true
- 
-+  brcm,enable-l1ss:
-+    description: Indicates that PCIe L1SS power savings
-+      are desired, the downstream device is L1SS-capable, and the
-+      OS has been configured to enable this mode.  For boards
-+      using a mini-card connector, this mode may not meet the
-+      TCRLon maximum time of 400ns, as specified in 3.2.5.2.2
-+      of the PCI Express Mini CEM 2.0 specification.
-+    type: boolean
-+
-   brcm,scb-sizes:
-     description: u64 giving the 64bit PCIe memory
-       viewport size of a memory controller.  There may be up to
--- 
-2.17.1
-
+<snip>
