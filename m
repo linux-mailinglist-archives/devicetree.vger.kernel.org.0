@@ -2,99 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 709356F9DF2
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 05:00:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93F406F9E22
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 05:17:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232024AbjEHC7w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 May 2023 22:59:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37732 "EHLO
+        id S231563AbjEHDRQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 May 2023 23:17:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229540AbjEHC7v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 May 2023 22:59:51 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CD2683C2
-        for <devicetree@vger.kernel.org>; Sun,  7 May 2023 19:59:50 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (softbank126090219015.bbtec.net [126.90.219.15])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3B916814;
-        Mon,  8 May 2023 04:59:41 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1683514783;
-        bh=XpKaegjrUuuBU+lYU7WtJvcFA2w3wSOoDTm1CNlD8Io=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=CLwm57VPuAOuDjKt9jAKlsqDa7z+WiDnc1r3hI10JpMCdSL3QD2QDO2xOb4TftxX2
-         lhF0A6Y338EjJ+SG9ppNlCctTncIXSeqWHNQWahy89VTxW5lqiTTC9qaTwGUa98aBf
-         YCtYFbdKl2sXHwqwaha//O1EraxNV2ZgwyPf99sg=
-Date:   Mon, 8 May 2023 06:00:01 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        with ESMTP id S231814AbjEHDRM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 May 2023 23:17:12 -0400
+X-Greylist: delayed 127 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 07 May 2023 20:17:11 PDT
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3852A61B1
+        for <devicetree@vger.kernel.org>; Sun,  7 May 2023 20:17:10 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1683515679; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=l9Yk2ZpIGQ75skWpiIgtduLusGE0oPB3mXGTsifKZOd4htya3Lqri6vqKzS+RAv0h8tGa6qEoIzSUPoHrga+izsHhKMJAhvntlkmkHzigs8jpJwMJ8NioaVFqypgoLjUA6GSxNGvaR6aa7OE90VOs0bfyVuOYACp6DntwGfvxsw=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1683515679; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=qnDzkRSag6SxflxnrB+gJTuVsWsOkNdIPE1k2QWE8XE=; 
+        b=RUnwG9k5DIpDNtpbg3Bo0K5nvSIveaan3d38/FCtTLP4mdnPLHeUOrJ7MLyOAiPSgdnJKxKfQkiHuadbVtXbg059Vy2H5ImNegQZwQkMxUx8QJCmuu1rKZFBgJzS5SkWqDAZ6md27ajQirnwbmN66nnfamsAcsLCj4yYoCCWliU=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=icenowy.me;
+        spf=pass  smtp.mailfrom=uwu@icenowy.me;
+        dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1683515679;
+        s=zmail; d=icenowy.me; i=uwu@icenowy.me;
+        h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+        bh=qnDzkRSag6SxflxnrB+gJTuVsWsOkNdIPE1k2QWE8XE=;
+        b=TzPxT1lMzDl+M0OheL8u2UY+r17jtv5k9D2Ui8pLXoO6w0j+soRqNs2YdOAYiXsE
+        6qCNPWUjcfS/lE7tROLVaGJYcWNlWKc6yn5m5128QFJatuU/Ei+0jx7MDktcY8Rd9Ld
+        lQTTX2V3CI6y7FFBdMs7qDn9qLnUQgOTXw/hzWuk=
+Received: from edelgard.fodlan.icenowy.me (120.85.98.36 [120.85.98.36]) by mx.zohomail.com
+        with SMTPS id 1683515678721325.31977442907953; Sun, 7 May 2023 20:14:38 -0700 (PDT)
+Message-ID: <56489d3f1b23a90baf3ef024da09b4c8c02a2204.camel@icenowy.me>
+Subject: Re: [PATCH 1/5] irqchip/sifive-plic: Support T-HEAD's C910 PLIC
+From:   Icenowy Zheng <uwu@icenowy.me>
+To:     Jisheng Zhang <jszhang@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        freedreno@lists.freedesktop.org
-Subject: Re: [PATCH 1/3] dt-bindings: display: hdmi-connector: add hdmi-pwr
- supply
-Message-ID: <20230508030001.GT23514@pendragon.ideasonboard.com>
-References: <20230507201218.2339014-1-dmitry.baryshkov@linaro.org>
- <20230507201218.2339014-2-dmitry.baryshkov@linaro.org>
+        Conor Dooley <conor+dt@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, Guo Ren <guoren@kernel.org>
+Date:   Mon, 08 May 2023 11:14:32 +0800
+In-Reply-To: <20230507182304.2934-2-jszhang@kernel.org>
+References: <20230507182304.2934-1-jszhang@kernel.org>
+         <20230507182304.2934-2-jszhang@kernel.org>
+Organization: Anthon Open-Source Community
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20230507201218.2339014-2-dmitry.baryshkov@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLACK autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dmitry,
+=E5=9C=A8 2023-05-08=E6=98=9F=E6=9C=9F=E4=B8=80=E7=9A=84 02:23 +0800=EF=BC=
+=8CJisheng Zhang=E5=86=99=E9=81=93=EF=BC=9A
+> The T-HEAD's C910 PLIC still needs the delegation bit settingto allow
+> access from S-mode, but it doesn't need the edge quirk.
 
-Thank you for the patch.
+No, the PLIC controller seems to be the same between C906 and C910,
+which has level/edge selectable via external signal.
 
-On Sun, May 07, 2023 at 11:12:16PM +0300, Dmitry Baryshkov wrote:
-> Follow the dp-connector example and add hdmi-pwr supply to drive the 5V
-> pin of the HDMI connector (together with some simple glue logic possibly
-> attached to the connector).
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+See openc906 and openc910 repositories, especially the documents with
+it: =E7=8E=84=E9=93=81C9{06,10}=E9=9B=86=E6=88=90=E6=89=8B=E5=86=8C.pdf .
+
+In addition, such problem won't arise when the system uses only level-
+triggered interrupts.
+
+>=20
+> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
 > ---
->  .../devicetree/bindings/display/connector/hdmi-connector.yaml  | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/connector/hdmi-connector.yaml b/Documentation/devicetree/bindings/display/connector/hdmi-connector.yaml
-> index 83c0d008265b..94f75359c6ff 100644
-> --- a/Documentation/devicetree/bindings/display/connector/hdmi-connector.yaml
-> +++ b/Documentation/devicetree/bindings/display/connector/hdmi-connector.yaml
-> @@ -36,6 +36,9 @@ properties:
->      description: GPIO signal to enable DDC bus
->      maxItems: 1
->  
-> +  hdmi-pwr-supply:
-> +    description: Power supply for the HDMI 5v pin connector
+> =C2=A0.../bindings/interrupt-controller/sifive,plic-1.0.0.yaml=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 | 4
+> ++++
+> =C2=A0drivers/irqchip/irq-sifive-plic.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 1 +
+> =C2=A02 files changed, 5 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/interrupt-
+> controller/sifive,plic-1.0.0.yaml
+> b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-
+> 1.0.0.yaml
+> index f75736a061af..64b43a3c3748 100644
+> --- a/Documentation/devicetree/bindings/interrupt-
+> controller/sifive,plic-1.0.0.yaml
+> +++ b/Documentation/devicetree/bindings/interrupt-
+> controller/sifive,plic-1.0.0.yaml
+> @@ -62,6 +62,10 @@ properties:
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 - starfive,jh7110-plic
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 - canaan,k210-plic
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: sif=
+ive,plic-1.0.0
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - items:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - enum:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 - thead,light-plic
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: thead,c9=
+10-plic
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - items:
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - enum:
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 - allwinner,sun20i-d1-plic
+> diff --git a/drivers/irqchip/irq-sifive-plic.c b/drivers/irqchip/irq-
+> sifive-plic.c
+> index e1484905b7bd..71afa2a584d9 100644
+> --- a/drivers/irqchip/irq-sifive-plic.c
+> +++ b/drivers/irqchip/irq-sifive-plic.c
+> @@ -569,6 +569,7 @@ static int __init plic_init(struct device_node
+> *node,
+> =C2=A0}
+> =C2=A0
+> =C2=A0IRQCHIP_DECLARE(sifive_plic, "sifive,plic-1.0.0", plic_init);
+> +IRQCHIP_DECLARE(thead_c910_plic, "thead,c910-plic", plic_init);
+> =C2=A0IRQCHIP_DECLARE(riscv_plic0, "riscv,plic0", plic_init); /* for
+> legacy systems */
+> =C2=A0
+> =C2=A0static int __init plic_edge_init(struct device_node *node,
 
-I'd write
-
-    description: Power supply for the HDMI +5V Power pin
-
-to match the HDMI specification. With that,
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-> +
->    port:
->      $ref: /schemas/graph.yaml#/properties/port
->      description: Connection to controller providing HDMI signals
-
--- 
-Regards,
-
-Laurent Pinchart
