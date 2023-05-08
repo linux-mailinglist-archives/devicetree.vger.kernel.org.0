@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E17C6FB5A7
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 19:04:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE1206FB5AA
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 19:04:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234358AbjEHRE0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 13:04:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56856 "EHLO
+        id S234328AbjEHREi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 13:04:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232876AbjEHREZ (ORCPT
+        with ESMTP id S234258AbjEHREZ (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 13:04:25 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 009A96A53
-        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 10:04:22 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-50bc3088b7aso9342533a12.3
-        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 10:04:22 -0700 (PDT)
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB2DE6A71
+        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 10:04:23 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-50bc25f0c7dso9051615a12.3
+        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 10:04:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683565461; x=1686157461;
+        d=linaro.org; s=google; t=1683565462; x=1686157462;
         h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KMFdLRNKQ89jJWRkxs/WTlt3m6Pbvn2x9h9FIbEb5x0=;
-        b=AxnghwstEQhO39B6QSm2G8PlgQCU/YSWbI6KEW0CUllAThoQL1D8ZF6rDIxZVaXieM
-         ZkecNE0Jb9tUnJz7UFK2pHacZu1wBqY+tkndEA6n9zIqaEr8ccGdF7n3p6Y+anLuZyip
-         12EHqkEa+iN2sRE7tZT+loysW9l7elKiXj69EqoQcFwJasVDepuh+W/Yop9ndEVThlaG
-         8FlLKYBfiofA5AjSJeqbV0/Xper1I8iOZUIn/w7l6OMj1b6WrrvBCahDKX9nxNXPR2qd
-         x/i11oI2LuvrrNBsMRf3SC3E5yX2Kb9Fw00p6OrTeuh25OHWkew0YllVcRPjrvnGbTXf
-         6dOA==
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=s2cd1HKoe1xvHZvAaQyjCVVxtTdmPdHHIApQESUTdMA=;
+        b=PgzQgJviuCoY/VSEKdyJmkIjv3LLFQa31PMU8KrfQVC33YfKagvGzrG6Yf4qyC3pO1
+         /yHugDeIK2kbTBeWv61vYy5vFeSo8gkw51B2QHdCCK0oh/1XBm2COp1vk3v/s3eyBSNS
+         iH1Dw2up9S5llqmcDEzGg/eody8zLGMVOhk3sbd2MnH4AVmlGQCJ4wcsoRi46FwFwJvs
+         vR6/BgDvLTINdGYpF2XwyVg5nu2oBnRzKWEUrLHyW6+Bj1QteDBMwvaNA6k7eWubBQHU
+         skyMOryO7pfwq3YqCGg+vbQnDJ2mhi/QRw8FfiFaHtjRVdRSXAGQVv/+oVyueOhmyDsq
+         aECQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683565461; x=1686157461;
+        d=1e100.net; s=20221208; t=1683565462; x=1686157462;
         h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=KMFdLRNKQ89jJWRkxs/WTlt3m6Pbvn2x9h9FIbEb5x0=;
-        b=LvHkOJcE4gTJYREDyJOcXflSOWJh+2sb97mXmkajZANELpw6XkI9yA6sCh3llhnfIh
-         qfrXwFHfb9FK2VfFobbg9bOVlxo/y7bQBZ5GzsOG1oAAFqHkhloXUCzpaJm2VTXGCBhB
-         agyOiBY46tk2wWj9lY6ZERBZpCRoyjSnytXyylWBmbfEdfyOVPGQUpOc3Go35JWtQFKZ
-         1QhN5YWW3XgcS83KowuoB4sDH53K8ZvggWpEaVjmjgLCI0VTvtAZgYVqKQsxh2RexO98
-         YDDTw75nHY3rnj5m3jQrfwoPbvGpgCKD58tCx5GQT4y0JLirRDhUEOvmkltX37Lre6BC
-         WWPw==
-X-Gm-Message-State: AC+VfDyf/BKeGV44Kuml+gwr3TePNoWvhG6kVdXuowIXvGbjilSwEqs9
-        /BpSEDmZ7EYlVuz/I6CRM8OVfA==
-X-Google-Smtp-Source: ACHHUZ7heYG/3KrnBEYF/XVGw7VXdqdVwiYVnNEeRZ+GWNpSFSE08M6AJptKknVSO+zhUto4UiMDYQ==
-X-Received: by 2002:a17:907:1687:b0:94e:1764:b0b5 with SMTP id hc7-20020a170907168700b0094e1764b0b5mr11381209ejc.69.1683565461155;
-        Mon, 08 May 2023 10:04:21 -0700 (PDT)
+        bh=s2cd1HKoe1xvHZvAaQyjCVVxtTdmPdHHIApQESUTdMA=;
+        b=Wqn1U4xy0+qUty30dDCCqCCHp4xRU8WU8E9E0fEpuIZbHEgTy4bPOe4rm1vBiiXKf9
+         wr8JYTSSgSVj3417vDxLmTE3JVLAs7KI0H7lm7RQ2AOXwmMhkKBz5e4dnBGHUtd4EyBm
+         BXclueZmXwVEaUvnd0VZSvk69gyXvMtC+MnKoVmfem8N09Ps1PjRZBmAnDTLOAAiSawA
+         gZbX9WiWUiQRHlIHuAI9q+6ANxQgcog0CNbwrzRwa1QfdapHg7XpsEJYSLXAFiMFarXW
+         o/B2+4wYBwvMOs/IbXfagL1MugGAwcBdQ47JSNb6EGrvsrsabtmfiMnP94STK64gqTcP
+         ZNfA==
+X-Gm-Message-State: AC+VfDy7+UhCPjBaGn3+IevhIb2yujiZCyLuR7HIJsc11Y/7sieiZeGL
+        t5+cVGBdhtAjuZI3WUb/9UnYIQ==
+X-Google-Smtp-Source: ACHHUZ7W/UQrXAutwKs+cqlLFhoTiCfPqITKPtbKVlgL9z/ztRjbdxMbNWaNgOWyFrbaki6lXgGhpg==
+X-Received: by 2002:a17:907:784:b0:94c:b183:bb6f with SMTP id xd4-20020a170907078400b0094cb183bb6fmr8444278ejb.18.1683565462225;
+        Mon, 08 May 2023 10:04:22 -0700 (PDT)
 Received: from krzk-bin.. ([2a02:810d:15c0:828:50e0:ebdf:b755:b300])
-        by smtp.gmail.com with ESMTPSA id lh2-20020a170906f8c200b00965b7bf6aa5sm206862ejb.52.2023.05.08.10.04.20
+        by smtp.gmail.com with ESMTPSA id lh2-20020a170906f8c200b00965b7bf6aa5sm206862ejb.52.2023.05.08.10.04.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 May 2023 10:04:20 -0700 (PDT)
+        Mon, 08 May 2023 10:04:21 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -56,16 +56,12 @@ To:     Rob Herring <robh+dt@kernel.org>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     replicant@osuosl.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Jonathan Bakker <xc-racer2@live.ca>,
-        Pawel Chmiel <pawel.mikolaj.chmiel@gmail.com>
-Subject: Re: [PATCH 1/4] ARM: dts: s5pv210: align pin configuration nodes with bindings
-Date:   Mon,  8 May 2023 19:04:13 +0200
-Message-Id: <168356544397.281925.18235527816257782599.b4-ty@linaro.org>
+Subject: Re: (subset) [PATCH 1/7] ARM: dts: exynos: Remove empty camera pinctrl configuration in Trats
+Date:   Mon,  8 May 2023 19:04:14 +0200
+Message-Id: <168356544396.281925.16991071694505725135.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230421095721.31857-1-krzysztof.kozlowski@linaro.org>
-References: <20230421095721.31857-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230207210020.677007-1-krzysztof.kozlowski@linaro.org>
+References: <20230207210020.677007-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -80,26 +76,18 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Fri, 21 Apr 2023 11:57:18 +0200, Krzysztof Kozlowski wrote:
-> Bindings expect that pins in initial and sleep states nodes end with
-> '-pin':
+On Tue, 07 Feb 2023 22:00:14 +0100, Krzysztof Kozlowski wrote:
+> The camera's pinctrl configuration is simply empty and not effective.
+> Remove it to fix dtbs_check warning:
 > 
->   s5pv210-fascinate4g.dtb: pinctrl@e0200000: sleep-state: 'gpa0-0', ...
->     'mp07-7' do not match any of the regexes: '^(pin-[a-z0-9-]+|[a-z0-9-]+-pin)$', 'pinctrl-[0-9]+'
+>   arch/arm/boot/dts/exynos4210-trats.dt.yaml: camera: pinctrl-0: True is not of type 'array'
 > 
 > 
-> [...]
 
 Applied, thanks!
 
-[1/4] ARM: dts: s5pv210: align pin configuration nodes with bindings
-      https://git.kernel.org/krzk/linux/c/7e98d368887c08a6cb79e79684f851e9bd9a3550
-[2/4] ARM: dts: s5pv210: align USB node name with bindings
-      https://git.kernel.org/krzk/linux/c/64f92c24aa57f8bfc389fe6638f0ffb7e4605928
-[3/4] ARM: dts: s5pv210: re-order MFC clock names to match Exynos and bindings
-      https://git.kernel.org/krzk/linux/c/6175f658ae07804f7c347903b8c6781e0914d3e6
-[4/4] ARM: dts: s5pv210: add dummy 5V regulator for backlight on SMDKv210
-      https://git.kernel.org/krzk/linux/c/b77904ba177a9c67b6dbc3637fdf1faa22df6e5c
+[1/7] ARM: dts: exynos: Remove empty camera pinctrl configuration in Trats
+      https://git.kernel.org/krzk/linux/c/8a9e495b3a07e04a7d86d9c706a38e69863348ae
 
 Best regards,
 -- 
