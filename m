@@ -2,268 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84D726FAF20
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 13:53:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 530976FAF94
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 14:02:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236438AbjEHLxa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 07:53:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56306 "EHLO
+        id S236314AbjEHMCB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 08:02:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236366AbjEHLx0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 07:53:26 -0400
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on2047.outbound.protection.outlook.com [40.107.7.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DF083EFB3;
-        Mon,  8 May 2023 04:53:10 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=foez5qaA7Uxhl2V/AOl/KKGx8BSJJShMsvRjU7r0NAyHHNXzKBgRL2FQv4QFQONAeGjiCwpMcXdxRV07uOMHhunAS0HZGnVXdppnBhl4ib/QcaKuuU5zPSfDe6oUceYZp4SdhPiE2w0AEXivhxefnJZMt9wBbGwNaSKhR71C1eNU40al6jUDROkEUGTnUC/TRBnWaT2fMcx4v9P+hd6cfAp3+hrpP28QA67o4HyjlwZv2b2dmQbFVDm3r/43wv9cdwaM/s3I27KM1XQDJUMKUNJo2cPvCcK0UVuJGiYmGXlNrp8NFfJ9OkjQ0LlJoTCunI7M2sgCvHkbGZrc5yPiCw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VyaSqIrLbQ1AFgAmJF3eMEqYE42gCGx0nJ34th+Hp40=;
- b=L8vZvpeYrx2Fthmhk7uryTSZ95zz3DchOxyilwaHeS1XyRnCo3fwRf0lTY+0XH3mvXtmY+3hIWR10fB1Rde+2XLXoEHbKVx8umY2CJM7sRNWYowdJVwcJf5h2T0VlR5+nmj/PDwbRvZy7P1s0eW90+VP/4EWAy+Z/bmhblLYMAB5npekgnMGe14Rn9GtkRvW6TM06J22895fe7H59htWFwGWxrxEwz24iHY2didHDauFoG6GNYLbhCw7OMYCCsSI0lDRysBIoFutNX1yGBVUXnJzOv3QmEOpzXuI6nlQw4r0kJTkq/JIRWGM26xaRwnQ4YPdvBWhArlR9Gh4XVJlpQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VyaSqIrLbQ1AFgAmJF3eMEqYE42gCGx0nJ34th+Hp40=;
- b=QXFMIy6Tby7HA6NM2GFyc9tMwWnANyescblMvA/NIko9CMB2Pius+cIxlRmOmWzPbprZ6q6tKjkBbXjQT6J0C8dEaGlz8gniSmtxt1W88xF0zDgyKMusKMjkcr9I2Urb5rt2hU3G2ND9KZ8OAZFo+LdcGMw4SNovmfVZPOVJIHA=
-Received: from PA4PR04MB9640.eurprd04.prod.outlook.com (2603:10a6:102:261::21)
- by AM7PR04MB7159.eurprd04.prod.outlook.com (2603:10a6:20b:111::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.32; Mon, 8 May
- 2023 11:53:07 +0000
-Received: from PA4PR04MB9640.eurprd04.prod.outlook.com
- ([fe80::adc9:9956:50dc:d10e]) by PA4PR04MB9640.eurprd04.prod.outlook.com
- ([fe80::adc9:9956:50dc:d10e%7]) with mapi id 15.20.6363.032; Mon, 8 May 2023
- 11:53:07 +0000
-From:   Jun Li <jun.li@nxp.com>
-To:     Francesco Dolcini <francesco@dolcini.it>
-CC:     Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Xu Yang <xu.yang_2@nxp.com>
-Subject: RE: [PATCH v2 2/3] usb: chipidea: imx: support disabling runtime-pm
-Thread-Topic: [PATCH v2 2/3] usb: chipidea: imx: support disabling runtime-pm
-Thread-Index: AQHWWfIP+etXd7nQnUiONRrlcYizuqkH0FqAgACfy4CAB2whAIAARP2AgAAEJ4CAACLRAIZATVEAgAAHjgCAARDykIAAEIcAgAAPIACAAABSsIAEu1uAgAAGyoA=
-Date:   Mon, 8 May 2023 11:53:07 +0000
-Message-ID: <PA4PR04MB9640C09FDDDD4C29804C05BB89719@PA4PR04MB9640.eurprd04.prod.outlook.com>
-References: <23672d66d229d3be4cc854ddf1462c3507f1c2fc.camel@toradex.com>
- <20230504162312.1506763-1-luca.ceresoli@bootlin.com>
- <ZFPiRvoF5l8uGzzZ@francesco-nb.int.toradex.com>
- <PA4PR04MB96403377F5E37C12AD8C25B389729@PA4PR04MB9640.eurprd04.prod.outlook.com>
- <20230505120618.2f4cf22c@booty>
- <ZFThyn/D/dDK9nk3@francesco-nb.int.toradex.com>
- <PA4PR04MB96405EE2468555EA900B340189739@PA4PR04MB9640.eurprd04.prod.outlook.com>
- <ZFjaNzY32x8o2XG7@francesco-nb.int.toradex.com>
-In-Reply-To: <ZFjaNzY32x8o2XG7@francesco-nb.int.toradex.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PA4PR04MB9640:EE_|AM7PR04MB7159:EE_
-x-ms-office365-filtering-correlation-id: 5a0b0b31-3dcf-4f58-e3e1-08db4fbaca03
-x-ld-processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: AWhd99D1uE697FD+ZeW1ORe5/EBDy9Q24uSgyfWb3PTlb00Lt4ez/V++TK6R38xoaXXWt4sKtfXSxLjyOVKNWp+4qCtIXe2aqoa41eYQWcUF6oa3sWW0ZivRXbjMIqZaowLpZhUmdUf8Y6czMD3xsceYV8+BMPmFG0ePWoK24CGeoTbY2byyWBvNYk7OGBJdxCwK3rX1mj3sz4kJnQkTZ5clVuPA9rTV5Dox9R1yZA1ivD4qVuA5MWc3+aNxI02RmtiC6oy96CFdekMUx/82N8HE+hUIiSHsNfQURwT84V+I3JTWvZHSPD0s2HtFI7tJ6YCHwZ8708h/Qw8vGcl1KgaSi60yMMmD0o1C33vx9P6EZyCT6y/hPhe+pigGLNtbjhzLnMbmMakN5FMkq7EdKayxYhgQV2tQh6K4iQ/lrv9QnmQ0yeQk5sZSM7DhzrC37uFT4IF34aF1tIVXFpJ0XYsT0NuExuQ05vZlhTuDxeP+xyBpm7cA134kcDz7u0pST1REbjoYtKZ5cduE/ATlFCYauNEXbPvVlCz0Aat98qu+qd7Wk7lUuS5Iqvc6lgTzFut4VjN764AMvNCCxnjGwOZoxzAf+nQX2Fz4RuW64zDPI/N9dr8a6rT8Lc59TkW3
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9640.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(346002)(366004)(39860400002)(376002)(136003)(396003)(451199021)(6506007)(9686003)(26005)(53546011)(7696005)(83380400001)(55016003)(38100700002)(33656002)(122000001)(86362001)(38070700005)(186003)(6916009)(5660300002)(66446008)(4326008)(66476007)(54906003)(66946007)(2906002)(478600001)(8676002)(8936002)(66556008)(64756008)(44832011)(7416002)(76116006)(41300700001)(52536014)(71200400001)(316002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?JiMG+5i+EiyJuKy3aZOT8j+glyPuQNcxU+2zDa+G0z+3sz1VI49eRYgHgdFy?=
- =?us-ascii?Q?slE1wBrJ7CxUwGco+U4dlpKfRR7lPgbWWwP79ska8lUrCheG1rQuK5fZrYIH?=
- =?us-ascii?Q?r5xDj+9PbVUWuW9mcY6f8SwexvV5ThycJmIoPkETb8XZwf4QfnibN8gLzoCO?=
- =?us-ascii?Q?1RpidH1sZ+1DdBODETsTIBIfrFyH05UgiOU+s8DQONB5RlYo5L5nub5VEgBn?=
- =?us-ascii?Q?Bhu2xroqXqrFg3Xtw5oY+pCJPxDRxgUrl1kqPNk5StL8GbQimIDkxE0Sse7Q?=
- =?us-ascii?Q?04x1UFv6zBFvM8YZKiSPJbVh9nYuHIFUx8EvnYRyWT8J9Ld/i0iSguXyY9oO?=
- =?us-ascii?Q?jJdOmHNjDaJbe35XhbklvoDLLrijgcsBChKfUFvHqB1/O4ePchaHx4c0maM0?=
- =?us-ascii?Q?pqmAKSZ//b5pn+qDQyEKaVsXmR0Unx+iVYxQqnrgoaW6xBC/AHmxIy6rDq2+?=
- =?us-ascii?Q?fSbL2g6+ap+scsWbNNlGps9SPLpaOEaNMuteCy0kHe2bSUDvfRcRGZZielE/?=
- =?us-ascii?Q?fio+oBiBtuP+ruCQId0uJhMLcd4Y77paSLuSHsBcq14lr6SEALNkWvMolNMe?=
- =?us-ascii?Q?omGixrnGG+5tdozsi4owQ5rAuMflcdYnJmexm7A7V4zVebt9Wnva1g5WdZ3z?=
- =?us-ascii?Q?N5B3b+Pf76xj+e7ywvHKIDYAhbxkR84SGuM0nic4nstPfRmPCrNfQpg2iDzq?=
- =?us-ascii?Q?Yz+SAJeRMwLByPRtJhnsrCqYW5ZUqgZy2I0Q0IxXZCbQmLGFtQSVu/6OfUFb?=
- =?us-ascii?Q?EpbyIM0SyU7qxufenrwr08H4V7cB8TR2GdKPsjaJkcQQ2PLqUwosMqMXddve?=
- =?us-ascii?Q?HxizwwAnHGrCMfZ1aAr2eHuBK0UaxIgXZ8j3dYPtXCy6MA+oRC7OmK0LNXUT?=
- =?us-ascii?Q?yRr9R3N6k5jJCEsE2L5O0fMd4BP07jCAmnsv5A+DrnRKUQBDEllTmK6QbBBu?=
- =?us-ascii?Q?3DvKS+LGLZUaREtPvBBkAPdU601iZgWEWI4pWeGxfSXXlBAKa3BMseg1dsIn?=
- =?us-ascii?Q?O3HJCr0WS21Ktk+7BmR+EC1fs5agtKAh2A53Rmc6YHxio4RZE3j7c1dKKcB/?=
- =?us-ascii?Q?vbSiO2upzNE61RrYvHbXdFCumYOHZVRvd33buGaMhLWQjOmPtpl/3Ro0UGsz?=
- =?us-ascii?Q?o96gu25QkGrFQq+bsmeKxuT5VLRhqeOkx0r8ZYj9Rk5r6tpKGyvjn2edrvKa?=
- =?us-ascii?Q?U20/r9xzugSWdfsDeIgR+EOJubL+PE7HXB5MnQUa3fQNgkojalPrs6xsrypk?=
- =?us-ascii?Q?ZI4NOBhiPE0UsC5z2tKdmkEJ4j6QKAQJtjJMU+16LZwLrSaxiPnJyxiqBxX3?=
- =?us-ascii?Q?0Z9xyHVyBIKgqR/VCJxV5JC193ZcM/j0SW0EIaBwjDKekFe8jDn3/tXSsW48?=
- =?us-ascii?Q?U211UScfl9tICZJ1Olo/1JyfIlnOdyalAvMFPk1/Y9t01qk+flhAB4eHg3Lk?=
- =?us-ascii?Q?xyWAG2pG4XLT+JPxRKPWeYNseygrqc/zG199Gts0JCjDllMVvRCFXamlNJRA?=
- =?us-ascii?Q?CRe8OM4pWF+RHACZkxHEX5gQhLnJ9y54A+H10k873BXEOmLjuX9ljdInebNA?=
- =?us-ascii?Q?HRehb0V/BKxUvp2glnc=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S234334AbjEHMB2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 08:01:28 -0400
+Received: from mail-yw1-x112a.google.com (mail-yw1-x112a.google.com [IPv6:2607:f8b0:4864:20::112a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A90584C9AD
+        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 04:59:08 -0700 (PDT)
+Received: by mail-yw1-x112a.google.com with SMTP id 00721157ae682-55a76ed088aso65930077b3.2
+        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 04:59:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20221208; t=1683547143; x=1686139143;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QIowkfIi/w2/lZ9wY1KVia8iKFoETo3oMoKgAYwhoeg=;
+        b=CUXUoK5y3HKeeFBmYl0RX9X0y83y8VWqHwJiui8cI4DkfLD1RiJUf/RSH2G80oDA28
+         /1foKFJRT2NsXFxLDP0E63bplVXdaFRFYas+EABmp3j9ck3kuP8NsKeaCY6USAeu57G5
+         dQqStiBALTt5xf+aiA/UxCCkSxntt+2yJoyq4CtS/p0AHMbK5pANnniFF3vYIj0hz5B9
+         Aya9gvzS6N9ooDUX+hfozUwDxoOKaL7qHu3GxCChRyDSvazQENY0VgvZ9kP0Dh050Ljz
+         CdTu8KB4gpmMw7DuVtRr4XEPyyTwRR5Ck05T3qSP5O3q/MbTrmzP64bF4OAhZJRMHKM8
+         RnCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683547143; x=1686139143;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=QIowkfIi/w2/lZ9wY1KVia8iKFoETo3oMoKgAYwhoeg=;
+        b=GGviKqWusbI1qTQklVfdTFt7bmcCe+Hc0PQhD0DzHYtBLy1as71/KSFBo+6pSEjzCn
+         dw9N6iJ7/4cKQY+geeJcRv2kXmsCcZnaABp1vfWxB+2TAkeKAVoGJx1sTJcPwBA7UiQt
+         VsfAW33M11IRARUdQfYbHOAcjf+JnjMVuWT0NWMxNBlqqg1V6mlmz25yFAwvaiFWQWdE
+         Fan4AdJXL55szs0MREq0reCVRK1WbVw58eIsp7ysCmLwYqJkiKCMmCfVw5hJNfzHf8RQ
+         p5P4AUPgLY82uGGIPW4dKaur8lOVDiiw9ivfLzrH3H4B7bbcqmVqEzhC80pVAdapkYf1
+         dVaw==
+X-Gm-Message-State: AC+VfDwaa3JmCxr4R/1MQWSjmacO0hnwoaOPcgVtWou1X/LL5H8e/7re
+        CZI33nl28BWXNlVSFQlWVQJ/bSORTTlKNLQT9N265A==
+X-Google-Smtp-Source: ACHHUZ6HUZVug7ZDRRKUd20kN2DYD1F/ilVsXiwLgoLzYKoGNVYq9ZU6JXNMvLJltqVpFR6OojeV1Uz99EAQLmyEqUY=
+X-Received: by 2002:a81:a1c9:0:b0:559:f85e:44e8 with SMTP id
+ y192-20020a81a1c9000000b00559f85e44e8mr11335498ywg.29.1683547143242; Mon, 08
+ May 2023 04:59:03 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9640.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5a0b0b31-3dcf-4f58-e3e1-08db4fbaca03
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 May 2023 11:53:07.4692
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: JB01KPclAbItGWcmhgdaK5Ugm3TCC7lxFe15/83KDzXFfgcwy0qnAdijKit/mNr8
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR04MB7159
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20230504145737.286444-1-joychakr@google.com> <20230504145737.286444-8-joychakr@google.com>
+ <78616bc1-8d9e-4a1c-70d6-ad62c2cfa8a8@linaro.org> <CAOSNQF15UN2Rckes55UHxbUvN1PJcbj9aWirVGSLDOs5Y5EPnQ@mail.gmail.com>
+ <3d9d545d-a620-85f6-b7bd-d57a8729f818@linaro.org>
+In-Reply-To: <3d9d545d-a620-85f6-b7bd-d57a8729f818@linaro.org>
+From:   Joy Chakraborty <joychakr@google.com>
+Date:   Mon, 8 May 2023 17:28:50 +0530
+Message-ID: <CAOSNQF0jJLc78_1aGYY3=csJc7WqqvydwxmQ22rvXpLruQ-XRg@mail.gmail.com>
+Subject: Re: [PATCH 7/7] dt-bindings: dmaengine: pl330: Add new quirks
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, manugautam@google.com,
+        danielmentz@google.com, sjadavani@google.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-> -----Original Message-----
-> From: Francesco Dolcini <francesco@dolcini.it>
-> Sent: Monday, May 8, 2023 7:17 PM
-> To: Jun Li <jun.li@nxp.com>
-> Cc: Francesco Dolcini <francesco@dolcini.it>; Luca Ceresoli
-> <luca.ceresoli@bootlin.com>; devicetree@vger.kernel.org;
-> festevam@gmail.com; gregkh@linuxfoundation.org; kernel@pengutronix.de;
-> linux-arm-kernel@lists.infradead.org; dl-linux-imx <linux-imx@nxp.com>;
-> linux-kernel@vger.kernel.org; linux-usb@vger.kernel.org;
-> robh+dt@kernel.org; s.hauer@pengutronix.de; shawnguo@kernel.org;
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>; Francesco Dolcini
-> <francesco.dolcini@toradex.com>; Xu Yang <xu.yang_2@nxp.com>
-> Subject: Re: [PATCH v2 2/3] usb: chipidea: imx: support disabling runtime=
--pm
->=20
-> On Sat, May 06, 2023 at 09:02:39AM +0000, Jun Li wrote:
-> > > -----Original Message-----
-> > > From: Francesco Dolcini <francesco@dolcini.it>
-> > > Sent: Friday, May 5, 2023 7:00 PM
-> > > To: Luca Ceresoli <luca.ceresoli@bootlin.com>; Jun Li <jun.li@nxp.com=
+On Fri, May 5, 2023 at 5:53=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 >
-> > > Cc: Francesco Dolcini <francesco@dolcini.it>;
-> devicetree@vger.kernel.org;
-> > > festevam@gmail.com; gregkh@linuxfoundation.org;
-> kernel@pengutronix.de;
-> > > linux-arm-kernel@lists.infradead.org; dl-linux-imx
-> <linux-imx@nxp.com>;
-> > > linux-kernel@vger.kernel.org; linux-usb@vger.kernel.org;
-> > > peter.chen@nxp.com; robh+dt@kernel.org; s.hauer@pengutronix.de;
-> > > shawnguo@kernel.org; Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org>;
-> > > Francesco Dolcini <francesco.dolcini@toradex.com>
-> > > Subject: Re: [PATCH v2 2/3] usb: chipidea: imx: support disabling
-> runtime-pm
-> > >
-> > > On Fri, May 05, 2023 at 12:06:18PM +0200, Luca Ceresoli wrote:
-> > > > On Fri, 5 May 2023 09:49:16 +0000
-> > > > Jun Li <jun.li@nxp.com> wrote:
-> > > > > Is your board design similar like Francesco's as below?
-> > > >
-> > > > Possibly, but I'm afraid I can't say: I am using the Toradex Colibr=
-i
-> > > > i.MX6ULL SoM, whose schematics are not public.
-> > >
-> > > I can confirm that it's the same.
+> On 05/05/2023 11:44, Joy Chakraborty wrote:
+> > On Thu, May 4, 2023 at 8:38=E2=80=AFPM Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> On 04/05/2023 16:57, Joy Chakraborty wrote:
+> >>> Add 2 new quirks added to the driver "arm,pl330-optimize-dev2mem-axsi=
+ze"
+> >>> and "arm,pl330-periph-single-dregs"
+> >>
+> >> This we can see from the diff. You need to answer why?
+> >>
 > >
-> > Thanks Francesco for the confirmation, had a check with design team,
-> > there is no status bit which can be used to judge the VDD_USB_CAP is
-> > powered or not, so we have to add a board level dts property to tell
-> > this usb phy driver to bypass MXS_PHY_DISCONNECT_LINE_WITHOUT_VBUS.
-> >
-> > Before send a formal patch, I want to confirm this should work for your
-> > HW design, like below simple hack:
->=20
-> Thanks Li Jun, I tested it with v6.3.1 kernel and it's all good.
-> I would be happy to test the patch as soon as you send it.
->=20
->=20
-> With that said I had another issue that I assume is unrelated.
-> In addition to the USB Host port, we have an additional OTG one. This
-> interface has the same circuit WRT to the VBUS, however in this case
-> it's possible to read the VBUS using extcon, e.g. a standard GPIO input.
->=20
-> With that setup, while doing a role switch, I had a couple of time this
-> error:
->=20
-> [  187.310421] ci_hdrc ci_hdrc.0: USB bus 2 deregistered
-> [  192.351452] ci_hdrc ci_hdrc.0: timeout waiting for 00000800 in OTGSC
->=20
-> that was recovered only doing an additional transition.
->=20
-> More complete logs here:
->=20
-> [  184.997619] usb 2-1: USB disconnect, device number 9
-> [  185.019620] ci_hdrc ci_hdrc.0: remove, state 1
-> [  185.024271] usb usb2: USB disconnect, device number 1
-> [  185.334975] ci_hdrc ci_hdrc.0: USB bus 2 deregistered
-> [  185.353857] ci_hdrc ci_hdrc.0: EHCI Host Controller
-> [  185.389670] ci_hdrc ci_hdrc.0: new USB bus registered, assigned bus nu=
-mber
-> 2
-> [  185.470170] ci_hdrc ci_hdrc.0: USB 2.0 started, EHCI 1.00
-> [  185.476097] usb usb2: New USB device found, idVendor=3D1d6b, idProduct=
-=3D0002,
-> bcdDevice=3D 6.01
-> [  185.484527] usb usb2: New USB device strings: Mfr=3D3, Product=3D2,
-> SerialNumber=3D1
-> [  185.491811] usb usb2: Product: EHCI Host Controller
-> [  185.496704] usb usb2: Manufacturer: Linux 6.1.22-6.2.0+git.3b29299e5f6=
-0
-> ehci_hcd
-> [  185.504148] usb usb2: SerialNumber: ci_hdrc.0
-> [  185.531121] hub 2-0:1.0: USB hub found
-> [  185.542636] hub 2-0:1.0: 1 port detected
-> [  185.556586] mxs_phy 20c9000.usbphy: vbus is not valid
-> [  187.271684] ci_hdrc ci_hdrc.0: remove, state 4
-> [  187.276281] usb usb2: USB disconnect, device number 1
-> [  187.310421] ci_hdrc ci_hdrc.0: USB bus 2 deregistered
-> [  192.351452] ci_hdrc ci_hdrc.0: timeout waiting for 00000800 in OTGSC
+> > Sure will change it to:
+> > "
+> > Addition of following quirks :
+> > - "arm,pl330-periph-use-diff-axsize"
+> >    AxSize of transactions to peripherals are limited by the peripheral
+> > address width which inturn limits the AxSize used for transactions
+> > towards memory.
+> >    This quirk will make transactions to memory use the maximum
+> > possible bus width(AxSize), store data in MFIFO and use narrow
+> > multi-beat transactions to move data to peripherals.
+> >    This only applies to transfers between memory and peripherals where
+> > bus widths available are different for memory and the peripheral.
+> > - "arm,pl330-periph-complete-with-singles" :
+> >    When transfer sizes are not a multiple of a block of burst
+> > transfers (AxLen * AxSize configured at the peripheral), certain
+> > peripherals might choose not to set the burst request at the
+> > peripheral request interface of the DMA.
+> >    This quirk moves the remaining bytes to the peripheral using single
+> > transactions.
+> > "
+>
+> This does not answer why. You just copied again the patch contents.
+>
+Hi Krzysztof,
+Both the changes could be useful for SOC's which have PL330 integrated
+with a peripheral but I am not sure if all SOC's need/want this change
+hence wanted to keep it as a DT knob to avoid any regressions.
+But like you say it might not be the right thing to do.
 
-I have 2 questions:
-1. Can your OTG port work fine in device/gadget mode if you did not
-   do usb role switch?(e.g. the OTG port *never* switch to host mode
-   after system boot).
-2. Please show me your dts file node of your USB OTG port, I want to
-   Know how you config your OTG port.=20
+> >
+> >>>
+> >>> Signed-off-by: Joy Chakraborty <joychakr@google.com>
+> >>> ---
+> >>>  Documentation/devicetree/bindings/dma/arm,pl330.yaml | 8 ++++++++
+> >>>  1 file changed, 8 insertions(+)
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/dma/arm,pl330.yaml b/D=
+ocumentation/devicetree/bindings/dma/arm,pl330.yaml
+> >>> index 4a3dd6f5309b..0499a7fba88d 100644
+> >>> --- a/Documentation/devicetree/bindings/dma/arm,pl330.yaml
+> >>> +++ b/Documentation/devicetree/bindings/dma/arm,pl330.yaml
+> >>> @@ -53,6 +53,14 @@ properties:
+> >>>      type: boolean
+> >>>      description: quirk for performing burst transfer only
+> >>>
+> >>> +  arm,pl330-optimize-dev2mem-axsize:
+> >>> +    type: boolean
+> >>> +    description: quirk for optimizing AxSize used between dev<->mem
+> >>
+> >> This tells me nothing... Neither what it is about nor why this is
+> >> property of a board or PL330 hardware implementation. Please describe
+> >> hardware, not drivers.
+> >>
+> >
+> > Will change the name to "arm,pl330-periph-use-diff-axsize" and add desc=
+ription:
+> > "
+> > Quirk to use different AxSize for bursts while accessing source and
+> > destination when moving data between memory and peripheral.
+> > Maximum possible bus width is used as AxSize for transactions towards
+> > memory and transactions towards peripherals use AxSize as per
+> > peripheral address width.
+> > "
+>
+> Still no answer. Why this is property of a board or PL330 hardware
+> implementation?
+> I also asked to describe hardware but I still see "quirk to ...". We use
+> "quirk" as concept in Linux driver. Describe the hardware, not Linux driv=
+er.
+>
+
+This comes to use when the bus width requirement between peripheral
+and memory is different, but buswidth is something we read from HW
+registers so this can be enabled by default.
+
+>
+> >
+> >>> +
+> >>> +  arm,pl330-periph-single-dregs:
+> >>> +    type: boolean
+> >>> +    description: quirk for using dma-singles for peripherals in _dre=
+gs()
+> >>
+> >> Same concerns.
+> >>
+
+An example of such a case is given in the ARM TRM for PL330, so maybe
+we can have this by default as well.
+Link : https://developer.arm.com/documentation/ddi0424/d/functional-overvie=
+w/peripheral-request-interface/dmac-length-management#:~:text=3DDMAC%20leng=
+th%20management-,Example%202.3,-shows%20a%20DMAC
+
+> >
+> > Will change the name to  "arm,pl330-periph-complete-with-singles" and
+> > add description:
+> > "
+> > Quirk to use dma singles n times instead of an n beat burst to
+> > complete a transfer when the transfer size is not a multiple of the
+>
+> No, how you wrote it sounds like driver. Don't add driver quirks to DT.
+>
+> Best regards,
+> Krzysztof
+>
+
+Hi Vinod Kaul,
+
+Do you think it is feasible to enable these changes by default instead
+of a DT property ?
 
 Thanks
-Li Jun
->=20
->=20
-> > diff --git a/drivers/usb/phy/phy-mxs-usb.c
-> b/drivers/usb/phy/phy-mxs-usb.c
-> > index e1a2b2ea098b..ec5ee790455e 100644
-> > --- a/drivers/usb/phy/phy-mxs-usb.c
-> > +++ b/drivers/usb/phy/phy-mxs-usb.c
-> > @@ -178,7 +178,6 @@ static const struct mxs_phy_data imx6sx_phy_data =
-=3D
-> {
-> >  };
-> >
-> >  static const struct mxs_phy_data imx6ul_phy_data =3D {
-> > -       .flags =3D MXS_PHY_DISCONNECT_LINE_WITHOUT_VBUS,
-> >  };
-> >
-> >  static const struct mxs_phy_data imx7ulp_phy_data =3D {
->=20
-> Francesco
-
+Joy
