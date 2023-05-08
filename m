@@ -2,454 +2,359 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3128B6FB233
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 16:05:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E69146FB256
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 16:12:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234425AbjEHOF1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 10:05:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44246 "EHLO
+        id S234429AbjEHOM6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 10:12:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234396AbjEHOFQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 10:05:16 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0A5F37C42;
-        Mon,  8 May 2023 07:05:13 -0700 (PDT)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 348CNTFT017582;
-        Mon, 8 May 2023 14:05:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=3eH3oKkRpoSS635ozsE25u1bXGhuQ2RQXFT4VKNRzP0=;
- b=KWA3/IEUxpUEDu5eBXifq4tpWO2dY0a0Gq0MB13SKG8KWZjONvQ5SjisAGDWSB2Hqspl
- sqMS/HRZL7qvJsnxM2itLLK5vDgJnvc345fUo8ClNYs8922dmixbTouVSru3ZtJ7bhUx
- FcPlg/9P5cnf7qMhFG+ozHGrufgb4vVGiE1G9cG5d4BH/Aw5XhCttu8+f3zExfDRnmPO
- uUAT8zpH7oRKc6hlxkdC7dfhe1+FHhuGQ2X/Jc89odzq3vNQLhGyx1jrYlsffVvN/JYe
- MtPlNyzHF8q6gZIsNMEX8QnHjYFmMjNrS6NjHi+m2YM56UvPAGIIqpvOtj2jQrD7ZYj/ PQ== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qexf1ghm9-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 08 May 2023 14:05:06 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 348E55f8004312
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 8 May 2023 14:05:06 GMT
-Received: from [10.242.242.190] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Mon, 8 May 2023
- 07:04:58 -0700
-Message-ID: <835c32ba-4a29-9ef1-ba3d-ac1296a44538@quicinc.com>
-Date:   Mon, 8 May 2023 19:34:55 +0530
+        with ESMTP id S233971AbjEHOM4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 10:12:56 -0400
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2055.outbound.protection.outlook.com [40.107.94.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEC86658B;
+        Mon,  8 May 2023 07:12:51 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Pn/JTuC2GOqLsWiVD/K9xvHvSGo5G1yZqU5EimUBfoql4IlmGCbiI2RDxswQktA5G8ppipbdJfgQl0/DdmXUWlQBaULsdVmUDCbgEwvZNXahAAbm1mwOYUpvYhaLCPU1eFRkjYSZUM1IbBSz4O/2NolB8GBRC+z1VyIUBRif0UbejMwvzfO9bBRBxZAQEXjAoVeVroUIAtWDOxrwugn8rQmaomyOqFCkGAqQQsnaFa7iV4lhMxe6kDQWwRG2UIksGNjMjMqy4bPi37axwCX4JgW6jojRGe0hnAM9Dj1l/6ymiWcGzMCFCw/58KkJPPvoRk/BMOSA4bZ73abnQHl24w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=yvdVcix3EKZL02iyqz8QSv4I/kKlndFiHlbx7gI1fdo=;
+ b=VyGQSjP/xxUq1WhgehLI7rZyxKbtEHKI4mK7giJdiu02wH8JYNUrTv1qhjnt5svTzwQBMssB26XyzOioKN6wISuoze7GfmjPhqGGsgINl96x4hWNE9M/7cyy+I2CdHkiUiPxsk0vkEwlBvGtAik6DazVKiuZQ29Q0Tsgx4ZfE6NvSTFDN3UNgCRzW7lL2M4INdv5Qh++Sx37YSr2PQaWIX1FeL+SiRftjV9vJK1PWsf+nWVVtiNPAJ1xpvcU2mah4tR5LaJWF0hqnphKqIbXnxztvpz14gO4BxJfznqDVdvnjAWTV6YKTR8nYydvy1aSublalHo0E1xjbfl0oA8WJA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=yvdVcix3EKZL02iyqz8QSv4I/kKlndFiHlbx7gI1fdo=;
+ b=MhMx1VyfwzgJbjFCRnCdflEda8UtIwJb0LK5kmXp5xFN4h/sfmzP05j3jMf+l9Otow9plhxVRtaOeuISot2S/WlHk5pjofPBP+eUqkMevBMRxFsvMrCWjoe/yfKH5gWKzneih/vP62sYeRqN7uZeX9BqLM2asB5t8MsPzoMoDRe/aGluXy1C2yOsuqZfB8vfQMUhQ03bJwSjT0D2Og6WAZr3myeZiB0lg+IhSDZ4lNQ45q4TULJQ5hPFm+eyg1LrsGt9OpVqATnOZu88lYWVxljkEliNp3kVHYoOV3JD6Z5pZKHKRb5WlwHYsackCHKTsNS8QNDEsUJI0zRzB8TDaw==
+Received: from MW3PR12MB4346.namprd12.prod.outlook.com (2603:10b6:303:58::20)
+ by MW6PR12MB8868.namprd12.prod.outlook.com (2603:10b6:303:242::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.32; Mon, 8 May
+ 2023 14:12:49 +0000
+Received: from MW3PR12MB4346.namprd12.prod.outlook.com
+ ([fe80::42f0:9bed:2b:32e8]) by MW3PR12MB4346.namprd12.prod.outlook.com
+ ([fe80::42f0:9bed:2b:32e8%4]) with mapi id 15.20.6363.032; Mon, 8 May 2023
+ 14:12:49 +0000
+From:   Peter De Schrijver <pdeschrijver@nvidia.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Stefan Kristiansson <stefank@nvidia.com>
+Subject: Re: [PATCH 4/5] dt-bindings: Add bindings to support DRAM MRQ GSCs
+Thread-Topic: [PATCH 4/5] dt-bindings: Add bindings to support DRAM MRQ GSCs
+Thread-Index: AQHZgah4ktUTN2aU+EKhTdV7EHkSYK9QaM8AgAAAstQ=
+Date:   Mon, 8 May 2023 14:12:49 +0000
+Message-ID: <MW3PR12MB4346ED32BBE6EAA7CB8C91A8B1719@MW3PR12MB4346.namprd12.prod.outlook.com>
+References: <20230508122048.99953-1-pdeschrijver@nvidia.com>
+ <20230508122048.99953-5-pdeschrijver@nvidia.com>
+ <43945fad-f57b-cfd9-78bd-9ec9e6628382@linaro.org>
+In-Reply-To: <43945fad-f57b-cfd9-78bd-9ec9e6628382@linaro.org>
+Accept-Language: en-GB, en-US
+Content-Language: en-GB
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: MW3PR12MB4346:EE_|MW6PR12MB8868:EE_
+x-ms-office365-filtering-correlation-id: 7e471ca5-a949-4494-59d1-08db4fce4e38
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: J7F1TtdRFvw8aeK4r5v3b46Thlu0hmPf77hAzVG/aj4dskta9Dm7CCV5RE7U5pAbj3G8XDq/eHsNOPM/Kah1eeP4i9n50ohZhBMfiQV1RftYhAIebRMCGJ04pIq8J1NPNWLxVpQITSGeEhSfV51ussQLY2wjeD6UfziWS71r0f0LTIeZu7eWMBFiWPJdbcSIHMgFkw5VIYmTImcu4pX99+x1hEaWXOx1Os1wNYjnge9jf7uB1UQbLqoupI6raq/vgPWZK0SNqJZxwtSW3FlbZCOD6LEUDvUiQpTh0LC7VMQ6tq1fokI70o45aJKarBoVmn6ccfRt7VDyTte2DDd1gi+LX0HiNmKAZy+riW1T8MaOpRU6vUAc3A7SkWa1trcqqyIEvKD3oo5cDG4thYQI5WhXJEeTzeu5s3H1iuASml+oTr60jPPDdkoJ8Iag6liazxuqCBLG7hWWgJVI1Csfmgq5TtN8ig5zqGxVKRUr6un/TD1ditfBkReOm5ewbSe8Q6H/UyZ7AyhRJpck3iXYoM9Pp+7WiwSN7+dKc2akvHzFBXpFJ0ektlBSm9z/tLniENB1bX6JidcADj5kan66uYmPWWTQdySy9Wp30itlqo3p/UptfMib7dJFLEZEGxv6XutOZlwUmKAd4gkUjrO3XC3aiRl2Iz52S4MXGdOwIuDW6idU6N38zvWkowwesdYi
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MW3PR12MB4346.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(366004)(396003)(346002)(376002)(136003)(451199021)(53546011)(9686003)(26005)(6506007)(107886003)(7696005)(966005)(83380400001)(55016003)(38100700002)(33656002)(122000001)(86362001)(38070700005)(186003)(110136005)(41300700001)(2906002)(54906003)(5660300002)(6636002)(4326008)(64756008)(66476007)(66446008)(66556008)(316002)(8936002)(8676002)(478600001)(91956017)(52536014)(76116006)(66946007)(71200400001)(586874003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?i5zMRey/er4A8z/+WrNWxxIPSOi+r0KNoH4igOJLRN3xNPRa/RKyAIyr2F?=
+ =?iso-8859-1?Q?/Sl0SWWFtnBUntWO7Ehd/lhgKYXqg8lQ3mnXlxDyCR2A8s95nkUuOit93T?=
+ =?iso-8859-1?Q?UnqsrpbZCYAvOLGhMbcO7MiZGepv4h65kOFoGUIYm5VcJXMxW4y5cvYJzN?=
+ =?iso-8859-1?Q?S3s4JwY1SRX6GU9vz0qoP8YosIf862DNdTZ8SUGbpM634zvd3MDDio33pl?=
+ =?iso-8859-1?Q?Pm2nizjMMH4iYKEP2mGWEtCGvUoeo657A2VYUq0lnpUSkbMN92f4ciO7Bs?=
+ =?iso-8859-1?Q?0bSE6gqm4z3RYAtj5xY31y5yLsUYjSzqRX74MVWrLTDRSovRbGmzbJY5+8?=
+ =?iso-8859-1?Q?uJ7eCCtMnDqJYDrM3aWPZbUeEoirDQBgkS/DJkCQdDpc1v4wMbcqPI+WqB?=
+ =?iso-8859-1?Q?rq/C0dum1e5KaEAiWROhl9szKTIYiK8kF+Q+nOGkePn+MQGY0/s38PSWf6?=
+ =?iso-8859-1?Q?WNDltQhXrRjCnYcCCGz+SyTxoHKPAuWeCk7xmuvkqoniBHsqMGt0F3Vfwb?=
+ =?iso-8859-1?Q?+8PnJ1sUZsHQA8d5Wl5JmwlzPQb117Ijv0Dedrlc8INO3ZAisuO61RLBDZ?=
+ =?iso-8859-1?Q?emOklrL8e0Zp5KtqQ3TJiYhizuk0mUv2R3cvNy0srQeCWfyn697Vc3b//U?=
+ =?iso-8859-1?Q?FxGF5R3O4Y4P8Mfv02z5WlnYf65WLovT0SSObn19ROJ8eUsTXk2mjxnyVM?=
+ =?iso-8859-1?Q?iRSfi881XD69+dSQ5W+XfLQ+T6fhD6JaewEuvsil1A63CfAXVXa5rIyAK6?=
+ =?iso-8859-1?Q?kFf5DrWpyaJ6qqzAbMO34cIH3ROhrUcOHzRNT7n3mMV61iT/VH03G3GPBI?=
+ =?iso-8859-1?Q?GJdUtIKFlB9NKBKU+LYtTdP8UTpA7vgVK25gkBj37xHItpHOakWILCHZ03?=
+ =?iso-8859-1?Q?gbY81MI2jZWFpsdEkAzQESRqzNSGRWoXXTlwu014irS1KesIQW6Yvm0HiV?=
+ =?iso-8859-1?Q?lw0w7tlGttsd3s9Sg8FlQrXuXa9Y3yjTMLC50S09W5hzoTnjHVL3U0+CdZ?=
+ =?iso-8859-1?Q?luNnel+XBO+FgByQo6M7ACnlQy/V8I+z+/VB1hARlfcBbVoaAut8UxBsc7?=
+ =?iso-8859-1?Q?iG6r2Z940o2xk0/gmAAuRJ95Nmu//TGWH04+e4peddqg42wEg68zz1MEjl?=
+ =?iso-8859-1?Q?dFU4hQD/j8KzebyLnFM4FE2OL8TzCq/m/sqxLD/p+0dDC/8w235tZQz+j2?=
+ =?iso-8859-1?Q?qUhdIpm/QeIWWb8Sooije+kEAVvqqgamFg7OSzir9zrbIpEoyHFX6bNkVq?=
+ =?iso-8859-1?Q?rGa8uP3otdTpmB2pjobZzGHnDgevuARHQbxbWE0+MwOBV12xtWl3o/8jln?=
+ =?iso-8859-1?Q?DwsdP6EbmSOtBBnFKHlUFffrvcYDCgt7ZxRkGg8dGPp0VMiM496eASyW+/?=
+ =?iso-8859-1?Q?YTdgDHGeqtvMzgSUJMONr5MF/plAiR6X39n565vceFd91a6GDE1lNYiBcR?=
+ =?iso-8859-1?Q?eWYATJLWSWAt8toBFpJ04gVeRyOsTURp7igWOqbudpQsX88CgZP06anWvW?=
+ =?iso-8859-1?Q?IbK7/idYGfS0en+H92fTqhO3YlKbtPYa9qOflqRhg+qSxW6wLP9sxuajDx?=
+ =?iso-8859-1?Q?LLPdtZdtk5o5Q8cIkCkRuoY6k+RNfsQK1lIdevKHYIPkpaVju+1bPnY8kw?=
+ =?iso-8859-1?Q?Iir8akgfWuUpv6yAakjCZaemI4eSQdXF22?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-Subject: Re: [PATCH 01/11] dt-bindings: remoteproc: qcom: Add support for
- multipd model
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-CC:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <jassisinghbrar@gmail.com>, <mathieu.poirier@linaro.org>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <quic_gurus@quicinc.com>, <loic.poulain@linaro.org>,
-        <quic_eberman@quicinc.com>, <robimarko@gmail.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <quic_srichara@quicinc.com>,
-        <quic_gokulsri@quicinc.com>, <quic_sjaganat@quicinc.com>,
-        <quic_kathirav@quicinc.com>, <quic_arajkuma@quicinc.com>,
-        <quic_anusha@quicinc.com>, <quic_poovendh@quicinc.com>
-References: <1678164097-13247-1-git-send-email-quic_mmanikan@quicinc.com>
- <1678164097-13247-2-git-send-email-quic_mmanikan@quicinc.com>
- <20230307142614.GA2742-robh@kernel.org>
-From:   Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-In-Reply-To: <20230307142614.GA2742-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: WS8cxtMfuI661o-LKmDzX3ipUFmw27AL
-X-Proofpoint-GUID: WS8cxtMfuI661o-LKmDzX3ipUFmw27AL
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-08_10,2023-05-05_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- mlxlogscore=999 priorityscore=1501 mlxscore=0 suspectscore=0 phishscore=0
- adultscore=0 bulkscore=0 malwarescore=0 lowpriorityscore=0 spamscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2305080095
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MW3PR12MB4346.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7e471ca5-a949-4494-59d1-08db4fce4e38
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 May 2023 14:12:49.7188
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: qcAhe8gKshjSJ3AvSIFllP/LGMRVoFfn5wKjZkhaYSyrM7VLrIamVwddPZIGpm24IvTweZuZniwpW9BXY5dpqw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR12MB8868
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 3/7/2023 7:56 PM, Rob Herring wrote:
-> On Tue, Mar 07, 2023 at 10:11:27AM +0530, Manikanta Mylavarapu wrote:
->> Add new binding document for multipd model remoteproc.
->> IPQ5018, IPQ9574 follows multipd model.
->>
->> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
->> ---
->>   .../bindings/remoteproc/qcom,multipd-pil.yaml | 282 ++++++++++++++++++
->>   1 file changed, 282 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,multipd-pil.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,multipd-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,multipd-pil.yaml
->> new file mode 100644
->> index 000000000000..b788607f5abd
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,multipd-pil.yaml
->> @@ -0,0 +1,282 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/remoteproc/qcom,multipd-pil.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm Multipd Secure Peripheral Image Loader
->> +
->> +maintainers:
->> +  - Bjorn Andersson <andersson@kernel.org>
->> +  - Mathieu Poirier <mathieu.poirier@linaro.org>
->> +
->> +description:
->> +  Multipd Peripheral Image Loader loads firmware and boots Q6 pd, WCSS pd
->> +  remoteproc's on the Qualcomm IPQ5018, IPQ9574 SoC.
-> 
-> What is PD? I don't see it defined anywhere.
-> 
-Pd means protection domain.
-It's similar to process in Linux. Here QDSP6 processor runs each wifi 
-radio functionality on a separate process. One process can't access 
-other process resources, so this is termed as PD i.e protection domain.
-Here we have two pd's called root and user pd. We can correlate Root pd
-as root and user pd as user in linux. Root pd has more privileges than
-user pd.
- From remoteproc driver perspective, root pd corresponds to QDSP6 
-processor bring up and user pd corresponds to Wifi radio (WCSS) bring up.
-
-I will try to add this info in cover page.
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - qcom,ipq5018-q6-mpd
->> +      - qcom,ipq9574-q6-mpd
->> +
->> +  '#address-cells': true
-> 
-> Need to define the size.
-> 
->> +
->> +  '#size-cells': true
-> 
-> ditto
-> 
-It's not required. I am going to remove it.
->> +
->> +  'ranges': true
-> 
-> Don't need quotes
-> 
-It's not required. I am going to remove it.
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts-extended:
-> 
-> Just 'interrupts'. Both forms are always supported.
-> 
-Sure, will use 'interrupts'
->> +    items:
->> +      - description: Watchdog interrupt
->> +      - description: Fatal interrupt
->> +      - description: Ready interrupt
->> +      - description: Handover interrupt
->> +      - description: Stop acknowledge interrupt
->> +
->> +  interrupt-names:
->> +    items:
->> +      - const: wdog
->> +      - const: fatal
->> +      - const: ready
->> +      - const: handover
->> +      - const: stop-ack
->> +
->> +  clocks:
->> +    minItems: 25
->> +    maxItems: 25
-> 
-> You need to list out what the clocks are.
-> 
-Sure. I will do.
->> +
->> +  clock-names:
->> +    minItems: 25
->> +    maxItems: 25
->> +
->> +  assigned-clocks:
-> 
-> You can drop this. Implicitly supported.
-> 
->> +    minItems: 13
->> +    maxItems: 13
->> +
->> +  assigned-clock-rates:
->> +    minItems: 13
->> +    maxItems: 13
->> +
->> +  qcom,smem-states:
->> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> 
-> I believe this already has a type. It should be defined in a common
-> schema if not already and then included in this schema.
-> 
->> +    description: States used by the AP to signal the remoteprocessor
->> +    items:
->> +      - description: Shutdown Q6
->> +      - description: Stop Q6
->> +
->> +  qcom,smem-state-names:
->> +    description:
->> +      Names of the states used by the AP to signal the remoteprocessor
->> +    items:
->> +      - const: shutdown
->> +      - const: stop
->> +
->> +  memory-region:
->> +    items:
->> +      - description: Q6 pd reserved region
->> +
->> +  glink-edge:
->> +    $ref: /schemas/remoteproc/qcom,glink-edge.yaml#
->> +    description:
->> +      Qualcomm G-Link subnode which represents communication edge, channels
->> +      and devices related to the Modem.
->> +
->> +patternProperties:
->> +  "^remoteproc_pd1|remoteproc_pd2|remoteproc_pd3":
->> +    type: object
->> +    description:
->> +      In Multipd model, WCSS pd depends on Q6 pd i.e Q6 pd should be up before
->> +      WCSS. It can be achieved by keeping wcss pd node as subnode of Q6
->> +      device node.
->> +
->> +    properties:
->> +      compatible:
->> +        enum:
->> +          - "qcom,ipq5018-wcss-ahb-mpd"
-> 
-> Don't need quotes.
-> 
-I will remove it.
->> +          - "qcom,ipq9574-wcss-ahb-mpd"
->> +          - "qcom,ipq5018-wcss-pcie-mpd"
->> +
->> +      interrupts-extended:
-> 
-> Just interrupts
-> 
-I will use 'interrupts'
->> +        items:
->> +          - description: Fatal interrupt
->> +          - description: Ready interrupt
->> +          - description: Spawn acknowledge interrupt
->> +          - description: Stop acknowledge interrupt
->> +
->> +      interrupt-names:
->> +        items:
->> +          - const: fatal
->> +          - const: ready
->> +          - const: spawn-ack
->> +          - const: stop-ack
->> +
->> +      qcom,smem-states:
->> +        $ref: /schemas/types.yaml#/definitions/phandle-array
->> +        description: States used by the AP to signal the remoteprocessor
->> +        items:
->> +          - description: Shutdown WCSS pd
->> +          - description: Stop WCSS pd
->> +          - description: Spawn WCSS pd
->> +
->> +      qcom,smem-state-names:
->> +        description:
->> +          Names of the states used by the AP to signal the remoteprocessor
->> +        items:
->> +          - const: shutdown
->> +          - const: stop
->> +          - const: spawn
->> +
->> +    required:
->> +      - compatible
->> +
->> +    additionalProperties: false
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupts-extended
->> +  - interrupt-names
->> +  - qcom,smem-states
->> +  - qcom,smem-state-names
->> +  - memory-region
->> +
->> +additionalProperties: false
->> +
->> +allOf:
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          enum:
->> +            - qcom,ipq9574-q6-mpd
->> +    then:
->> +      properties:
->> +        assigned-clocks:
-> 
-> Don't need to define assigned-clocks
-> 
->> +          items:
->> +            - description: Phandle, clock specifier of GCC_ANOC_WCSS_AXI_M_CLK
->> +            - description: Phandle, clock specifier of GCC_WCSS_AHB_S_CLK
->> +            - description: Phandle, clock specifier of GCC_WCSS_ECAHB_CLK
->> +            - description: Phandle, clock specifier of GCC_WCSS_ACMT_CLK
->> +            - description: Phandle, clock specifier of GCC_WCSS_AXI_M_CLK
->> +            - description: Phandle, clock specifier of GCC_Q6_AXIM_CLK
->> +            - description: Phandle, clock specifier of GCC_Q6_AXIM2_CLK
->> +            - description: Phandle, clock specifier of GCC_Q6_AHB_CLK
->> +            - description: Phandle, clock specifier of GCC_Q6_AHB_S_CLK
->> +            - description: Phandle, clock specifier of GCC_Q6SS_BOOT_CLK
->> +            - description: Phandle, clock specifier of GCC_MEM_NOC_Q6_AXI_CLK
->> +            - description: Phandle, clock specifier of GCC_WCSS_Q6_TBU_CLK
->> +            - description: Phandle, clock specifier of GCC_SYS_NOC_WCSS_AHB_CLK
->> +        assigned-clock-rates:
->> +          items:
->> +            - description: Must be 266666667 HZ
->> +            - description: Must be 133333333 HZ
->> +            - description: Must be 133333333 HZ
->> +            - description: Must be 133333333 HZ
->> +            - description: Must be 266666667 HZ
->> +            - description: Must be 533000000 HZ
->> +            - description: Must be 342857143 HZ
->> +            - description: Must be 133333333 HZ
->> +            - description: Must be 133333333 HZ
->> +            - description: Must be 342857143 HZ
->> +            - description: Must be 533000000 HZ
->> +            - description: Must be 533000000 HZ
->> +            - description: Must be 133333333 HZ
->> +
->> +examples:
->> +  - |
->> +        #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +        #include <dt-bindings/clock/qcom,gcc-ipq5018.h>
->> +        #include <dt-bindings/reset/qcom,gcc-ipq5018.h>
->> +
->> +        q6v5_wcss: remoteproc@cd00000 {
->> +                compatible = "qcom,ipq5018-q6-mpd";
->> +                #address-cells = <1>;
->> +                #size-cells = <1>;
->> +                ranges;
->> +                reg = <0x0cd00000 0x4040>;
->> +                interrupts-extended = <&intc GIC_SPI 291 IRQ_TYPE_EDGE_RISING>,
->> +                                <&wcss_smp2p_in 0 0>,
->> +                                <&wcss_smp2p_in 1 0>,
->> +                                <&wcss_smp2p_in 2 0>,
->> +                                <&wcss_smp2p_in 3 0>;
->> +                interrupt-names = "wdog",
->> +                                  "fatal",
->> +                                  "ready",
->> +                                  "handover",
->> +                                  "stop-ack";
->> +
->> +                qcom,smem-states = <&wcss_smp2p_out 0>,
->> +                                   <&wcss_smp2p_out 1>;
->> +                qcom,smem-state-names = "shutdown",
->> +                                        "stop";
->> +
->> +                memory-region = <&q6_region>;
->> +
->> +                glink-edge {
->> +                        interrupts = <GIC_SPI 179 IRQ_TYPE_EDGE_RISING>;
->> +                        label = "rtr";
->> +                        qcom,remote-pid = <1>;
->> +                        mboxes = <&apcs_glb 8>;
->> +                };
->> +
->> +                q6_wcss_pd1: remoteproc_pd1 {
->> +                        compatible = "qcom,ipq5018-wcss-ahb-mpd";
->> +                        interrupts-extended = <&wcss_smp2p_in 8 0>,
->> +                                        <&wcss_smp2p_in 9 0>,
->> +                                        <&wcss_smp2p_in 12 0>,
->> +                                        <&wcss_smp2p_in 11 0>;
->> +                        interrupt-names = "fatal",
->> +                                          "ready",
->> +                                          "spawn-ack",
->> +                                          "stop-ack";
->> +                        qcom,smem-states = <&wcss_smp2p_out 8>,
->> +                                           <&wcss_smp2p_out 9>,
->> +                                           <&wcss_smp2p_out 10>;
->> +                        qcom,smem-state-names = "shutdown",
->> +                                                "stop",
->> +                                                "spawn";
->> +                };
->> +
->> +                q6_wcss_pd2: remoteproc_pd2 {
->> +                        compatible = "qcom,ipq5018-wcss-pcie-mpd";
->> +                        interrupts-extended = <&wcss_smp2p_in 16 0>,
->> +                                        <&wcss_smp2p_in 17 0>,
->> +                                        <&wcss_smp2p_in 20 0>,
->> +                                        <&wcss_smp2p_in 19 0>;
->> +                        interrupt-names = "fatal",
->> +                                          "ready",
->> +                                          "spawn-ack",
->> +                                          "stop-ack";
->> +
->> +                        qcom,smem-states = <&wcss_smp2p_out 16>,
->> +                                           <&wcss_smp2p_out 17>,
->> +                                           <&wcss_smp2p_out 18>;
->> +                        qcom,smem-state-names = "shutdown",
->> +                                                "stop",
->> +                                                "spawn";
->> +                        status = "okay";
-> 
-> Don't need status in examples.
-> 
-I will remove status property.
-
-Thanks & Regards,
-Manikanta.
->> +                };
->> +
->> +                q6_wcss_pd3: remoteproc_pd3 {
->> +                        compatible = "qcom,ipq5018-wcss-pcie-mpd";
->> +                        interrupts-extended = <&wcss_smp2p_in 24 0>,
->> +                                        <&wcss_smp2p_in 25 0>,
->> +                                        <&wcss_smp2p_in 28 0>,
->> +                                        <&wcss_smp2p_in 27 0>;
->> +                        interrupt-names = "fatal",
->> +                                          "ready",
->> +                                          "spawn-ack",
->> +                                          "stop-ack";
->> +
->> +                        qcom,smem-states = <&wcss_smp2p_out 24>,
->> +                                           <&wcss_smp2p_out 25>,
->> +                                           <&wcss_smp2p_out 26>;
->> +                        qcom,smem-state-names = "shutdown",
->> +                                                "stop",
->> +                                                "spawn";
->> +                        status = "okay";
->> +                };
->> +        };
->> -- 
->> 2.34.1
->>
+=0A=
+=0A=
+________________________________________=0A=
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>=0A=
+Sent: 08 May 2023 17:04=0A=
+To: Peter De Schrijver; thierry.reding@gmail.com; Jonathan Hunter=0A=
+Cc: robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.=
+org; devicetree@vger.kernel.org; linux-tegra@vger.kernel.org; linux-kernel@=
+vger.kernel.org; Stefan Kristiansson=0A=
+Subject: Re: [PATCH 4/5] dt-bindings: Add bindings to support DRAM MRQ GSCs=
+=0A=
+=0A=
+On 08/05/2023 14:20, Peter De Schrijver wrote:=0A=
+> Add bindings for DRAM MRQ GSC support.=0A=
+>=0A=
+> Co-developed-by: Stefan Kristiansson <stefank@nvidia.com>=0A=
+> Signed-off-by: Stefan Kristiansson <stefank@nvidia.com>=0A=
+> Signed-off-by: Peter De Schrijver <pdeschrijver@nvidia.com>=0A=
+> ---=0A=
+>  .../firmware/nvidia,tegra186-bpmp.yaml        | 69 ++++++++++++++++++-=
+=0A=
+>  .../nvidia,tegra264-bpmp-shmem.yaml           | 40 +++++++++++=0A=
+=0A=
+> Why touching two files?=0A=
+=0A=
+Because both are needed to support having MRQ GSCs in DRAM.=0A=
+=0A=
+>  2 files changed, 106 insertions(+), 3 deletions(-)=0A=
+>  create mode 100644 Documentation/devicetree/bindings/reserved-memory/nvi=
+dia,tegra264-bpmp-shmem.yaml=0A=
+>=0A=
+> diff --git a/Documentation/devicetree/bindings/firmware/nvidia,tegra186-b=
+pmp.yaml b/Documentation/devicetree/bindings/firmware/nvidia,tegra186-bpmp.=
+yaml=0A=
+> index 833c07f1685c..d818cfe1d783 100644=0A=
+> --- a/Documentation/devicetree/bindings/firmware/nvidia,tegra186-bpmp.yam=
+l=0A=
+> +++ b/Documentation/devicetree/bindings/firmware/nvidia,tegra186-bpmp.yam=
+l=0A=
+> @@ -57,8 +57,11 @@ description: |=0A=
+>    "#address-cells" or "#size-cells" property.=0A=
+>=0A=
+>    The shared memory area for the IPC TX and RX between CPU and BPMP are=
+=0A=
+> -  predefined and work on top of sysram, which is an SRAM inside the=0A=
+> -  chip. See ".../sram/sram.yaml" for the bindings.=0A=
+> +  predefined and work on top of either sysram, which is an SRAM inside t=
+he=0A=
+> +  chip, or in normal SDRAM.=0A=
+> +  See ".../sram/sram.yaml" for the bindings for the SRAM case.=0A=
+> +  See "../reserved-memory/nvidia,tegra264-bpmp-shmem.yaml" for bindings =
+for=0A=
+> +  the SDRAM case.=0A=
+>=0A=
+>  properties:=0A=
+>    compatible:=0A=
+> @@ -81,6 +84,11 @@ properties:=0A=
+>      minItems: 2=0A=
+>      maxItems: 2=0A=
+>=0A=
+> +  memory-region:=0A=
+> +    description: phandle to reserved memory region used for IPC between=
+=0A=
+> +      CPU-NS and BPMP.=0A=
+> +    maxItems: 1=0A=
+> +=0A=
+>    "#clock-cells":=0A=
+>      const: 1=0A=
+>=0A=
+> @@ -115,10 +123,16 @@ properties:=0A=
+>=0A=
+>  additionalProperties: false=0A=
+>=0A=
+> +allOf:=0A=
+> +  - oneOf:=0A=
+=0A=
+Keep just oneOf and drop allOf.=0A=
+=0A=
+> +      - required:=0A=
+> +          - memory-region=0A=
+> +      - required:=0A=
+> +          - shmem=0A=
+> +=0A=
+>  required:=0A=
+>    - compatible=0A=
+>    - mboxes=0A=
+> -  - shmem=0A=
+>    - "#clock-cells"=0A=
+>    - "#power-domain-cells"=0A=
+>    - "#reset-cells"=0A=
+> @@ -184,3 +198,52 @@ examples:=0A=
+>              #thermal-sensor-cells =3D <1>;=0A=
+>          };=0A=
+>      };=0A=
+> +=0A=
+> +  - |=0A=
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>=0A=
+> +    #include <dt-bindings/mailbox/tegra186-hsp.h>=0A=
+> +    #include <dt-bindings/memory/tegra186-mc.h>=0A=
+> +=0A=
+> +    hsp_top0: hsp@3c00000 {=0A=
+> +        compatible =3D "nvidia,tegra186-hsp";=0A=
+> +        reg =3D <0x03c00000 0xa0000>;=0A=
+> +        interrupts =3D <GIC_SPI 176 IRQ_TYPE_LEVEL_HIGH>;=0A=
+> +        interrupt-names =3D "doorbell";=0A=
+> +        #mbox-cells =3D <2>;=0A=
+=0A=
+> Why HSP example is here?=0A=
+=0A=
+Because it's referred to further down the example.=0A=
+=0A=
+> +    };=0A=
+> +=0A=
+> +    reserved-memory {=0A=
+> +        dram_cpu_bpmp_mail: shmem@f1be0000  {=0A=
+> +            compatible =3D "nvidia,tegra264-bpmp-shmem";=0A=
+> +            reg =3D <0x0 0xf1be0000 0x0 0x2000>;=0A=
+> +            no-map;=0A=
+> +        };=0A=
+> +    };=0A=
+=0A=
+Drop, fairly obvious and should be in that binding, not here.=0A=
+=0A=
+> +=0A=
+> +    bpmp {=0A=
+> +        compatible =3D "nvidia,tegra186-bpmp";=0A=
+> +        interconnects =3D <&mc TEGRA186_MEMORY_CLIENT_BPMPR &emc>,=0A=
+> +                        <&mc TEGRA186_MEMORY_CLIENT_BPMPW &emc>,=0A=
+> +                        <&mc TEGRA186_MEMORY_CLIENT_BPMPDMAR &emc>,=0A=
+> +                        <&mc TEGRA186_MEMORY_CLIENT_BPMPDMAW &emc>;=0A=
+> +        interconnect-names =3D "read", "write", "dma-mem", "dma-write";=
+=0A=
+> +        iommus =3D <&smmu TEGRA186_SID_BPMP>;=0A=
+> +        mboxes =3D <&hsp_top0 TEGRA_HSP_MBOX_TYPE_DB=0A=
+=0A=
+^^^ refers to hsp_top0.=0A=
+=0A=
+> +                            TEGRA_HSP_DB_MASTER_BPMP>;=0A=
+> +        memory-region =3D <&dram_cpu_bpmp_mail>;=0A=
+> +        #clock-cells =3D <1>;=0A=
+> +        #power-domain-cells =3D <1>;=0A=
+> +        #reset-cells =3D <1>;=0A=
+> +=0A=
+> +        i2c {=0A=
+> +            compatible =3D "nvidia,tegra186-bpmp-i2c";=0A=
+> +            nvidia,bpmp-bus-id =3D <5>;=0A=
+> +            #address-cells =3D <1>;=0A=
+> +            #size-cells =3D <0>;=0A=
+> +        };=0A=
+> +=0A=
+> +        thermal {=0A=
+> +            compatible =3D "nvidia,tegra186-bpmp-thermal";=0A=
+> +            #thermal-sensor-cells =3D <1>;=0A=
+> +        };=0A=
+> +    };=0A=
+> diff --git a/Documentation/devicetree/bindings/reserved-memory/nvidia,teg=
+ra264-bpmp-shmem.yaml b/Documentation/devicetree/bindings/reserved-memory/n=
+vidia,tegra264-bpmp-shmem.yaml=0A=
+> new file mode 100644=0A=
+> index 000000000000..6cd9a61cd31f=0A=
+> --- /dev/null=0A=
+> +++ b/Documentation/devicetree/bindings/reserved-memory/nvidia,tegra264-b=
+pmp-shmem.yaml=0A=
+> @@ -0,0 +1,40 @@=0A=
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)=0A=
+> +%YAML 1.2=0A=
+> +---=0A=
+> +$id: http://devicetree.org/schemas/reserved-memory/nvidia,tegra264-bpmp-=
+shmem.yaml#=0A=
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#=0A=
+> +=0A=
+> +title: Tegra CPU-NS - BPMP IPC reserved memory binding=0A=
+=0A=
+Drop "binding"=0A=
+=0A=
+> +=0A=
+> +maintainers:=0A=
+> + - Peter De Schrijver <pdeschrijver@nvidia.com>=0A=
+> +=0A=
+> +description: |=0A=
+> +  Define a memory region used for communication between CPU-NS and BPMP.=
+=0A=
+> +  Typically this node is created by the bootloader as the physical addre=
+ss=0A=
+> +  has to be known to both CPU-NS and BPMP for correct IPC operation.=0A=
+> +  The memory region is defined using a child node under /reserved-memory=
+.=0A=
+> +  The sub-node is named shmem@<address>.=0A=
+> +=0A=
+=0A=
+> Open other files there and implement it similar way. I really wonder why=
+=0A=
+> this should be done differently than for example other nvidia stuff -=0A=
+> without reserved-memory schema?=0A=
+=0A=
+Because up to now, the GSC was kept in sysram which is considered to be a d=
+evice by the kernel. Now part of the DRAM will be reserved for this, so the=
+ kernel needs to know about it.=0A=
+=0A=
+> +properties:=0A=
+> +  compatible:=0A=
+> +    const: nvidia,tegra264-bpmp-shmem=0A=
+> +=0A=
+> +  reg:=0A=
+> +    description: The physical address and size of the shared SDRAM regio=
+n=0A=
+> +=0A=
+> +required:=0A=
+> +  - compatible=0A=
+> +  - reg=0A=
+> +  - no-map=0A=
+> +=0A=
+=0A=
+Does not look like you tested the bindings. Please run `make=0A=
+dt_binding_check` (see=0A=
+Documentation/devicetree/bindings/writing-schema.rst for instructions).=0A=
+=0A=
+> +examples:=0A=
+> +  - |=0A=
+> +    reserved-memory {=0A=
+> +       dram_cpu_bpmp_mail: shmem@f1be0000  {=0A=
+> +           compatible =3D "nvidia,tegra264-bpmp-shmem";=0A=
+> +           reg =3D <0x0 0xf1be0000 0x0 0x2000>;=0A=
+> +           no-map;=0A=
+> +       };=0A=
+> +    };=0A=
+> +...=0A=
+=0A=
+Best regards,=0A=
+Krzysztof=0A=
+=0A=
