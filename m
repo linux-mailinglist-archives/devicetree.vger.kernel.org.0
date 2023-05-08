@@ -2,60 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 258FD6FA33D
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 11:27:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 193056FA33A
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 11:27:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233637AbjEHJ1V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 05:27:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58532 "EHLO
+        id S233630AbjEHJ1U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 05:27:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233642AbjEHJ1U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 05:27:20 -0400
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F160D59FB;
-        Mon,  8 May 2023 02:27:18 -0700 (PDT)
-Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-6aaffc866c4so324654a34.2;
-        Mon, 08 May 2023 02:27:18 -0700 (PDT)
+        with ESMTP id S233626AbjEHJ1T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 05:27:19 -0400
+Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 331388F;
+        Mon,  8 May 2023 02:27:17 -0700 (PDT)
+Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-1928253dd95so1776719fac.3;
+        Mon, 08 May 2023 02:27:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683538038; x=1686130038;
+        d=1e100.net; s=20221208; t=1683538036; x=1686130036;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=DguH7yd98IO9no2ougJQcRCCw8JxeycA5jMXenEALPQ=;
-        b=cMAX1HkLFqT3tMBaTB6+aDEc5c2kPAugnE4YPP/JAJRq2yhPIOkovQymh4lqDrksZ0
-         4IQzTii0Wr6etbxQQS0K2KW9dPAYtgmLZf9BEO7YjJ5wDqtrzWAYrVPsXLMfUcQUp1Rn
-         0ji32M9Sv9r9pv5RmLpGgIc2l8LUFS0kGnX4GLSFQpIyNLgDiJpD59MJ3FEM92fE79Wh
-         Tnul+qkoYyAg6JHLX6Ezy3D8TwaQyAd3gQ+ZMqVnUDC9sEoK23GpkC/30V9vcLouiL7p
-         naazbrrpv6FUtGOuJgJ2sZ9W3oD8kqsZdlAaVPNe6rxc2k1wjUmGsaIOyw7Ymbp5iq0W
-         pbog==
-X-Gm-Message-State: AC+VfDxGDEwazJc/mH40B/KBW3rNSNXnQ9NJTCBD3up03FQJZoYxDX7J
-        1xwEzCT1+XQFsYxbDg763FZo9IpZYubp
-X-Google-Smtp-Source: ACHHUZ4aCjwS3clxMxZaGq8mqr3vyeaqLy0a5Z1wm8QlVNY4m6uxyOmhNS1CHyug8eYUUbVMjFrUlg==
-X-Received: by 2002:a9d:6443:0:b0:6a1:1bd4:d8c8 with SMTP id m3-20020a9d6443000000b006a11bd4d8c8mr4421158otl.26.1683538038151;
-        Mon, 08 May 2023 02:27:18 -0700 (PDT)
+        bh=T+phZhc9+/yemeqtaxpRhq+37BIQlVelYnOaxp7TxHA=;
+        b=DDrapKT1klKw1NpVUu0qeuRkWCcxss9d34pfg9lJ100V5TptTVBpikP+xhLKCEQr1v
+         jdlKBnXUSnjUMm9BAI+Xhn8VpOeSC+gvajob/yh1tRu3G9vPq/c2t0i7iy0bkCN1ebxQ
+         LCv7jOVY2+PB4b1Lhe3tyOD2VDnqoaoq7ZLESluRsZrhFJUDFym233eOHhEoh68uoJU8
+         85plXIn/h/C+F/WiI/Qy2stHsPddSJkr43yXv4iUSJfuptKNdQFk7xjBf2+zV1gKJtUU
+         Yts9wJMFqA2URQs5N2fgoJSZjhVUSHBN7B1y+tVMHoDsqANnHwDiyMFSLGI1mpHscLcZ
+         5WbA==
+X-Gm-Message-State: AC+VfDwFAZdF9YDvPw8e67NUFuuomLRfO/IsQK5aSs5XylN1JI7jlmnw
+        ur/sL30+ipfV81mf7vEd1A==
+X-Google-Smtp-Source: ACHHUZ4zEz3lotUMpKgI4ZPVHP7xU9QrTR7Bpg4c27qYYicbSaDkcubir3d0oL+l+tWFQxu7lzT4GQ==
+X-Received: by 2002:a05:6870:e506:b0:177:c2bd:3f6d with SMTP id y6-20020a056870e50600b00177c2bd3f6dmr4022359oag.45.1683538036369;
+        Mon, 08 May 2023 02:27:16 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id c5-20020a9d6845000000b006aaf62e838dsm1798202oto.53.2023.05.08.02.27.16
+        by smtp.gmail.com with ESMTPSA id j5-20020a056870a48500b0018b12e3a392sm4724440oal.42.2023.05.08.02.27.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 May 2023 02:27:17 -0700 (PDT)
-Received: (nullmailer pid 575486 invoked by uid 1000);
+        Mon, 08 May 2023 02:27:15 -0700 (PDT)
+Received: (nullmailer pid 575488 invoked by uid 1000);
         Mon, 08 May 2023 09:27:12 -0000
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
 From:   Rob Herring <robh@kernel.org>
-To:     Liu Ying <victor.liu@nxp.com>
-Cc:     thierry.reding@gmail.com, linux-kernel@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org,
-        neil.armstrong@linaro.org, robh+dt@kernel.org, conor+dt@kernel.org,
-        daniel@ffwll.ch, sam@ravnborg.org, devicetree@vger.kernel.org,
-        airlied@gmail.com, dri-devel@lists.freedesktop.org,
-        linux-imx@nxp.com
-In-Reply-To: <20230508083826.1016206-2-victor.liu@nxp.com>
-References: <20230508083826.1016206-1-victor.liu@nxp.com>
- <20230508083826.1016206-2-victor.liu@nxp.com>
-Message-Id: <168353803230.575435.10408042054525345719.robh@kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: display: simple: Add BOE
- EV121WXM-N10-1850 panel
+To:     Stanislav Jakubek <stano.jakubek@gmail.com>
+Cc:     bcm-kernel-feedback-list@broadcom.com, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+        linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+        Conor Dooley <conor+dt@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+In-Reply-To: <20230508085727.GA7252@standask-GA-A55M-S2HP>
+References: <20230508085727.GA7252@standask-GA-A55M-S2HP>
+Message-Id: <168353803294.575457.2741110608666580664.robh@kernel.org>
+Subject: Re: [PATCH] dt-bindings: pwm: brcm,kona-pwm: convert to YAML
 Date:   Mon, 08 May 2023 04:27:12 -0500
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
@@ -69,21 +71,16 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Mon, 08 May 2023 16:38:25 +0800, Liu Ying wrote:
-> Add BOE EV121WXM-N10-1850 12.1" WXGA (1280x800) TFT LCD panel
-> compatible string.  The panel has a LVDS display interface.
+On Mon, 08 May 2023 10:57:27 +0200, Stanislav Jakubek wrote:
+> Convert Broadcom Kona family PWM controller bindings to DT schema.
 > 
-> The panel's product specification can be found at:
-> http://www.onetech.com.tw/files/EV121WXM-N10-1850ProductSpecification_20180801.pdf
-> 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
 > ---
-> v1->v2:
-> * Add Krzysztof's A-b tag.
-> 
->  .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
->  1 file changed, 2 insertions(+)
+>  .../devicetree/bindings/pwm/brcm,kona-pwm.txt | 21 --------
+>  .../bindings/pwm/brcm,kona-pwm.yaml           | 51 +++++++++++++++++++
+>  2 files changed, 51 insertions(+), 21 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/pwm/brcm,kona-pwm.txt
+>  create mode 100644 Documentation/devicetree/bindings/pwm/brcm,kona-pwm.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -92,18 +89,18 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.example.dtb: pcie-ep@33800000: Unevaluated properties are not allowed ('assigned-clock-parents', 'assigned-clock-rates', 'assigned-clocks' were unexpected)
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml
 /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/rockchip-isp1.example.dtb: camera@3c: port:endpoint:data-lanes: [[1]] is too short
 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.yaml
 /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.example.dtb: camera-sensor@3c: port:endpoint:data-lanes: [[1]] is too short
 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.example.dtb: pcie-ep@33800000: Unevaluated properties are not allowed ('assigned-clock-parents', 'assigned-clock-rates', 'assigned-clocks' were unexpected)
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml
 
 doc reference errors (make refcheckdocs):
 Documentation/usb/gadget_uvc.rst: Documentation/userspace-api/media/v4l/pixfmt-packed.yuv.rst
 MAINTAINERS: Documentation/devicetree/bindings/pwm/pwm-apple.yaml
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230508083826.1016206-2-victor.liu@nxp.com
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230508085727.GA7252@standask-GA-A55M-S2HP
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
