@@ -2,71 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A0F746FB18F
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 15:33:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 932B96FB192
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 15:33:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234029AbjEHNdc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 09:33:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49880 "EHLO
+        id S234233AbjEHNdo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 09:33:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232692AbjEHNdc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 09:33:32 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A273E70F
-        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 06:33:30 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-50bc075d6b2so8664303a12.0
-        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 06:33:30 -0700 (PDT)
+        with ESMTP id S234202AbjEHNdn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 09:33:43 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12D962FA01
+        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 06:33:41 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-965e4be7541so641933466b.1
+        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 06:33:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683552809; x=1686144809;
+        d=linaro.org; s=google; t=1683552819; x=1686144819;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=rGZFobhDL5KrtJvIVQA1pg81QY7WNmO1VNXBMl/SSNw=;
-        b=yUZoZ3P6QZHl8p862Wqs7BCZ42+QTF1AZs9T+PfQDwg1GCyeIAEK20EXEMVhUiG/RD
-         WuIe5l0DxrkxkZaffWceyl9N+0ygtr2dbhWnnxGuWLuoZbnRaiwTQZ80bwtx2vSQKtI1
-         ow/8DPJDUZJunSCXM9kTGcy22aTEe0rdQjt6H6cxmISLaHJ7MAHWZ/QbAjHxUIiPwJWW
-         t5q+SNR5UoKnX/4yrQ5XkK7BRjlc32g7eHZXUkK/hvYXQ7dit6CkCPn2AyOsv07c3hJT
-         bAvjSEj9cw/jctjqBomczMsg8bNSItV17OOSGfwXfjlffnBy76gedc09A38ndgAj4osi
-         IRpg==
+        bh=1tYR6P7sJcX8oTnpRUorpFral+vjD58DTCG1fvb35J4=;
+        b=K0Pl1X4E7bwAlAkGzbEs+5B6FpFXS/1au19R5NBCEt+BTR9L9vL+JJ7Q8We0MaeiTr
+         AXp8Q5O+3Zagr9DINU7ZJFFCdazz8yoLhImXOoF9Vx2D1+N94hEg51ETviAh40lpcF1L
+         MJozvy6Y+xYd1yipRQU/RYAo1QYxYnSKP+8Kt1B5y4ENseBtokBKir2yUNhkw4fYztA6
+         FoHQfrGLmHTs5Ol78OcTG5YUkbzMZAsgQjESMWW8UY7dq8G0EZUVCSDd/SV7wJtKag/Z
+         j6jfzQGt0hK8Jhj5yQIuIgSq7mEgazlur+m31ypVfX6K5FymykQGawkNSJJlvxzc7Kkn
+         65+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683552809; x=1686144809;
+        d=1e100.net; s=20221208; t=1683552819; x=1686144819;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=rGZFobhDL5KrtJvIVQA1pg81QY7WNmO1VNXBMl/SSNw=;
-        b=TAl4n66JVB7S3/aoYS5OalepcYf1Lb58ZYnVof0tEdjVgl7QeqYvyHCnzMcD9DkpuB
-         u4pMkdPSxS3UmnDZPWPa3uIE6hO12Ir6M3D2HIPWX/mGRvazISWYX5QkB7kei/363HNY
-         /PWy6QsLr2HgY/kmIzE4fZ87TveZ/tLOtR38wbwftk1WiLQ8bc9QiDHM/bGn3SnUi14e
-         yv5jPVvu+zRh/Bj1U5BuEuDqUt1iLLy4fqO2jpgUEK/E7rCCDXoM3HzzSys03LIFKTC8
-         QTTPPpOTWisus4HmQ5jWu5AieNZ7ME5tfssayJEo09RUGfT1z+FS9XFE8wyoF00XUbjN
-         CnRg==
-X-Gm-Message-State: AC+VfDyst7g5xOe/GdISceqzG/xZASNunjGIyoxQ2da4/pbP8r6C10Z9
-        w4OeaaFSzKhs+uqG8id3m29KIQ==
-X-Google-Smtp-Source: ACHHUZ4fRkLXrslmIhIM8+Kqs1j4thCUZSlxgNvfcuzmmB7Z7emPT0GTwOPmXUpMDWZ4mddzp+epQg==
-X-Received: by 2002:aa7:c849:0:b0:50b:c88b:b227 with SMTP id g9-20020aa7c849000000b0050bc88bb227mr7173469edt.35.1683552808913;
-        Mon, 08 May 2023 06:33:28 -0700 (PDT)
+        bh=1tYR6P7sJcX8oTnpRUorpFral+vjD58DTCG1fvb35J4=;
+        b=IFwMmhZ8ofH3s0AEX9fMjWIjnAuO0Rp63lLBy640Iq4NLNArhaaaw6j9KWrnVxFIQF
+         UjTNAXcRJtF1so/cS2g+t2Fi3qH4ynVs3/MYpsFln9AcbBHbAGjyOrNzb97G3XxFP1W0
+         CQm5DjguAIuAtnPrgG6R2mjo7pRYnmZUW9HzSb5L2l8h6Z+EFI8lYVubx8sOe3muf67m
+         c0Nh/StIUsGOuQiXEnEy8snhIujFVIZLtg7q4oKlKkK943oYGlF4zn32mXkVk9TG4dPy
+         IyQTQ8a2ICHqofIuUtKDCrBaYLO9BiDdOfb8Xjn9fiV2bh9ppT70+qMGHuXpNbtalqdh
+         NjpA==
+X-Gm-Message-State: AC+VfDzNEHMjN6/MKpzMwvAqFoFRh2fP4Tl/u2RO1PjwTvqcsXAu+Yh/
+        vYuA3yH//LQzgJQ4kxXNMSo97g==
+X-Google-Smtp-Source: ACHHUZ7P68NqwCqkZU5gLXoPHzHQvITJ1zWXVGW18yaw8iQMK7pibINZp1l+7h5Fqnn+2VayEQJxGw==
+X-Received: by 2002:a17:906:fe04:b0:966:1984:9d21 with SMTP id wy4-20020a170906fe0400b0096619849d21mr5389819ejb.9.1683552819421;
+        Mon, 08 May 2023 06:33:39 -0700 (PDT)
 Received: from krzk-bin ([2a02:810d:15c0:828:50e0:ebdf:b755:b300])
-        by smtp.gmail.com with ESMTPSA id s2-20020aa7cb02000000b0050d82f96860sm3562784edt.59.2023.05.08.06.33.27
+        by smtp.gmail.com with ESMTPSA id ht7-20020a170907608700b00968242f8c37sm848320ejc.50.2023.05.08.06.33.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 May 2023 06:33:28 -0700 (PDT)
-Date:   Mon, 8 May 2023 15:33:25 +0200
+        Mon, 08 May 2023 06:33:38 -0700 (PDT)
+Date:   Mon, 8 May 2023 15:33:35 +0200
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Peter De Schrijver <pdeschrijver@nvidia.com>
-Cc:     thierry.reding@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, jonathanh@nvidia.com,
-        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        stefank@nvidia.com
-Subject: Re: [PATCH 4/5] dt-bindings: Add bindings to support DRAM MRQ GSCs
-Message-ID: <20230508133325.xllmriwydkczk6lh@krzk-bin>
-References: <20230508122048.99953-1-pdeschrijver@nvidia.com>
- <20230508122048.99953-5-pdeschrijver@nvidia.com>
+To:     Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc:     Praveenkumar I <quic_ipkumar@quicinc.com>, andersson@kernel.org,
+        konrad.dybcio@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, thara.gopinath@gmail.com,
+        rafael@kernel.org, linux-pm@vger.kernel.org, amitk@kernel.org,
+        linux-kernel@vger.kernel.org, daniel.lezcano@linaro.org,
+        rui.zhang@intel.com, agross@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: thermal: tsens: Add ipq9574
+ compatible
+Message-ID: <20230508133335.rppr54ywbwwh7qth@krzk-bin>
+References: <cover.1683523370.git.quic_varada@quicinc.com>
+ <345a61f6cd56e504e1f82ac2328ffa6d89e2d510.1683523370.git.quic_varada@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230508122048.99953-5-pdeschrijver@nvidia.com>
+In-Reply-To: <345a61f6cd56e504e1f82ac2328ffa6d89e2d510.1683523370.git.quic_varada@quicinc.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,42 +77,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 08 May 2023 15:20:52 +0300, Peter De Schrijver wrote:
-> Add bindings for DRAM MRQ GSC support.
+On Mon, 08 May 2023 11:02:38 +0530, Varadarajan Narayanan wrote:
+> From: Praveenkumar I <quic_ipkumar@quicinc.com>
 > 
-> Co-developed-by: Stefan Kristiansson <stefank@nvidia.com>
-> Signed-off-by: Stefan Kristiansson <stefank@nvidia.com>
-> Signed-off-by: Peter De Schrijver <pdeschrijver@nvidia.com>
+> Qualcomm IPQ9574 has tsens v2.3.1 block, which is similar to IPQ8074 tsens.
+> 
+> Acked-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
 > ---
->  .../firmware/nvidia,tegra186-bpmp.yaml        | 69 ++++++++++++++++++-
->  .../nvidia,tegra264-bpmp-shmem.yaml           | 40 +++++++++++
->  2 files changed, 106 insertions(+), 3 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/reserved-memory/nvidia,tegra264-bpmp-shmem.yaml
+> [v2]:
+> 	Thanks to Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 	for the tip to make qcom,ipq8074-tsens as fallback.
+> ---
+>  Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 9 +++++++--
+>  1 file changed, 7 insertions(+), 2 deletions(-)
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/reserved-memory/nvidia,tegra264-bpmp-shmem.yaml:10:2: [warning] wrong indentation: expected 2 but found 1 (indentation)
+./Documentation/devicetree/bindings/thermal/qcom-tsens.yaml:67:9: [error] syntax error: expected <block end>, but found '-' (syntax)
+./Documentation/devicetree/bindings/thermal/qcom-tsens.yaml:69:11: [warning] wrong indentation: expected 12 but found 10 (indentation)
 
 dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/reserved-memory/nvidia,tegra264-bpmp-shmem.yaml: 'oneOf' conditional failed, one must be fixed:
-	'unevaluatedProperties' is a required property
-	'additionalProperties' is a required property
-	hint: Either unevaluatedProperties or additionalProperties must be present
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-Documentation/devicetree/bindings/firmware/nvidia,tegra186-bpmp.example.dts:110.31-116.11: ERROR (duplicate_label): /example-1/hsp@3c00000: Duplicate label 'hsp_top0' on /example-1/hsp@3c00000 and /example-0/hsp@3c00000
-ERROR: Input tree has errors, aborting (use -f to force output)
-make[1]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/firmware/nvidia,tegra186-bpmp.example.dtb] Error 2
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/thermal/qcom-tsens.example.dts'
+Documentation/devicetree/bindings/thermal/qcom-tsens.yaml:67:9: did not find expected key
+make[1]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/thermal/qcom-tsens.example.dts] Error 1
 make[1]: *** Waiting for unfinished jobs....
+./Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/thermal/qcom-tsens.yaml
+./Documentation/devicetree/bindings/clock/qcom,gcc-ipq8064.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/thermal/qcom-tsens.yaml
+./Documentation/devicetree/bindings/thermal/qcom-tsens.yaml:67:9: did not find expected key
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml: ignoring, error parsing file
 make: *** [Makefile:1512: dt_binding_check] Error 2
 
 doc reference errors (make refcheckdocs):
 Documentation/usb/gadget_uvc.rst: Documentation/userspace-api/media/v4l/pixfmt-packed.yuv.rst
 MAINTAINERS: Documentation/devicetree/bindings/pwm/pwm-apple.yaml
 
-See https://patchwork.ozlabs.org/patch/1778345
+See https://patchwork.ozlabs.org/patch/1778256
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
