@@ -2,123 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 46C286F9E2E
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 05:26:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A0ED6F9E42
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 05:32:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231956AbjEHD0g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 May 2023 23:26:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47238 "EHLO
+        id S229852AbjEHDcq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 May 2023 23:32:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230113AbjEHD0d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 May 2023 23:26:33 -0400
-Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51D9CA5E9;
-        Sun,  7 May 2023 20:26:32 -0700 (PDT)
-Received: by mail-oo1-f41.google.com with SMTP id 006d021491bc7-54cbb666aa5so2163309eaf.1;
-        Sun, 07 May 2023 20:26:32 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683516391; x=1686108391;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=GUP740VSIFLDV8rZCQ5oBsU29cPyJ7u+vd58HVBat4Y=;
-        b=WNg9LdmW9hKC+3u6qdtyh03vW/t+SFJlh0j+umH8H3Avh7EUoTS/plV7eL2OM81sSc
-         0Uzp9qtkax88v1YerIAH69Zz0Ekdh09zY7/vr9P2/f70iWMX2+samMypIVGXmYI+eWSU
-         xe394LkK6rK5LqC2gUC6xx0036/1ru9TttzsGbcg7TSAhgS/WoUROAE4KoVvwbrGA2+9
-         QsoDyB8yBCQkeQcNj0B8oEDOHU4Htkw4N985DL55wOWDARWvX8m+AvW6033gz/1WCSt2
-         Tax5sg0HfW0rCsDxCCZRRzMmLBx+NCLAA63bAiVYALm6GnXAo9nT/8XNcJEcbojHZAGU
-         Tvrg==
-X-Gm-Message-State: AC+VfDyDp4JQqDDOvSoDHCQbb1Tfr+MKDDOJcH50KN1Vr1kRo8zMncjq
-        0p3WvaW9VVOplNVIFJvVdf9ZSsiUDnqB
-X-Google-Smtp-Source: ACHHUZ59A+v/ZumD/ssBM+TZ58XgiyDzEywM9UukDF60uWTxIK5s4tu0gz+Y+rdJF7rmlB0m0eKp1A==
-X-Received: by 2002:a05:6808:251:b0:38e:8e30:677d with SMTP id m17-20020a056808025100b0038e8e30677dmr4240684oie.3.1683516391495;
-        Sun, 07 May 2023 20:26:31 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id fe9-20020a0568082b0900b0038bb2f60064sm5199849oib.30.2023.05.07.20.26.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 07 May 2023 20:26:30 -0700 (PDT)
-Received: (nullmailer pid 4154764 invoked by uid 1000);
-        Mon, 08 May 2023 03:26:27 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S229716AbjEHDcm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 May 2023 23:32:42 -0400
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5392040FC;
+        Sun,  7 May 2023 20:32:40 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1683516745; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=RBTuCgMHRK2gfh8llovAYCPGNBvmstD+1XFvCqwc4ASaeoG328ZYM6CZ/YYf70QZKS9+OJovRVXQkslOUfAhICMW7XCF9qc8axN1K4R5fzHLBhEpI+1GDGwAotfQKmVaXPG2nzieIy+aivxmKILCVAY5THQQBjYeihc9sfDwfpA=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1683516745; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=oRGcZerxA6Lwws1tmfxkffu7f7raQvcnx2Pon0KubIU=; 
+        b=INXBlqKVSz6gV7x3LLpuzqpnUX5g0HEa61FAGTg+IE4E7kxf1k1jiduQ43Dlcah/9p7KadCo8rrx04W2WfiQDoxV/vwMUbUmc+Z1FThSrY8JaknQeo7NDqAcX8aihgkhlDje6oaA6btmbVjiF3abSVY+IFOfzLUnQwan5bzqcYE=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=icenowy.me;
+        spf=pass  smtp.mailfrom=uwu@icenowy.me;
+        dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1683516745;
+        s=zmail; d=icenowy.me; i=uwu@icenowy.me;
+        h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+        bh=oRGcZerxA6Lwws1tmfxkffu7f7raQvcnx2Pon0KubIU=;
+        b=G20n1ds2gW6n9QfjxJ4ksfKQ7GldodmljuT8fMjiDjNSJLqO/MoTSJ9PqAyvpMGw
+        Ibb4vQrYEeICFzAZto3jW+guJ7BlJqPSHPuwIWXav7tHUGJcwtfLLPwMKWAlTvTH/VN
+        Jk0Y/T/uTmc4zKvIJwlRl0ylxmyhAncjQPrqQhCQ=
+Received: from edelgard.fodlan.icenowy.me (120.85.98.36 [120.85.98.36]) by mx.zohomail.com
+        with SMTPS id 1683516743648863.2035343610653; Sun, 7 May 2023 20:32:23 -0700 (PDT)
+Message-ID: <394696a52bf1d767044e3f990cebfbaf69dabe70.camel@icenowy.me>
+Subject: Re: [PATCH 3/5] riscv: dts: add initial T-HEAD light SoC device tree
+From:   Icenowy Zheng <uwu@icenowy.me>
+To:     Conor Dooley <conor@kernel.org>, Jisheng Zhang <jszhang@kernel.org>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, Guo Ren <guoren@kernel.org>,
+        heiko@sntech.de
+Date:   Mon, 08 May 2023 11:32:17 +0800
+In-Reply-To: <20230507-calamari-gentleman-bbe62af06f92@spud>
+References: <20230507182304.2934-1-jszhang@kernel.org>
+         <20230507182304.2934-4-jszhang@kernel.org>
+         <20230507-calamari-gentleman-bbe62af06f92@spud>
+Organization: Anthon Open-Source Community
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+User-Agent: Evolution 3.44.4 
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Jacky Huang <ychuang570808@gmail.com>
-Cc:     tmaimon77@gmail.com, mjchen@nuvoton.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        gregkh@linuxfoundation.org, catalin.marinas@arm.com,
-        linux-arm-kernel@lists.infradead.org, linux-serial@vger.kernel.org,
-        mturquette@baylibre.com, linux-kernel@vger.kernel.org,
-        p.zabel@pengutronix.de, krzysztof.kozlowski+dt@linaro.org,
-        sboyd@kernel.org, will@kernel.org, schung@nuvoton.com,
-        robh+dt@kernel.org, jirislaby@kernel.org, arnd@arndb.de,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        Jacky Huang <ychuang3@nuvoton.com>, lee@kernel.org
-In-Reply-To: <20230508025936.36776-5-ychuang570808@gmail.com>
-References: <20230508025936.36776-1-ychuang570808@gmail.com>
- <20230508025936.36776-5-ychuang570808@gmail.com>
-Message-Id: <168351638608.4154679.2636482702680796849.robh@kernel.org>
-Subject: Re: [PATCH v10 04/10] dt-bindings: reset: nuvoton: Document ma35d1
- reset control
-Date:   Sun, 07 May 2023 22:26:27 -0500
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLACK autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Mon, 08 May 2023 02:59:30 +0000, Jacky Huang wrote:
-> From: Jacky Huang <ychuang3@nuvoton.com>
-> 
-> Add the dt-bindings header for Nuvoton ma35d1, that gets shared
-> between the reset controller and reset references in the dts.
-> Add documentation to describe nuvoton ma35d1 reset driver.
-> 
-> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../bindings/reset/nuvoton,ma35d1-reset.yaml  |  45 ++++++++
->  .../dt-bindings/reset/nuvoton,ma35d1-reset.h  | 108 ++++++++++++++++++
->  2 files changed, 153 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/reset/nuvoton,ma35d1-reset.yaml
->  create mode 100644 include/dt-bindings/reset/nuvoton,ma35d1-reset.h
-> 
-
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.example.dtb: camera-sensor@3c: port:endpoint:data-lanes: [[1]] is too short
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/rockchip-isp1.example.dtb: camera@3c: port:endpoint:data-lanes: [[1]] is too short
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.example.dtb: pcie-ep@33800000: Unevaluated properties are not allowed ('assigned-clock-parents', 'assigned-clock-rates', 'assigned-clocks' were unexpected)
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml
-
-doc reference errors (make refcheckdocs):
-Documentation/usb/gadget_uvc.rst: Documentation/userspace-api/media/v4l/pixfmt-packed.yuv.rst
-MAINTAINERS: Documentation/devicetree/bindings/pwm/pwm-apple.yaml
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230508025936.36776-5-ychuang570808@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+5ZyoIDIwMjMtMDUtMDfmmJ/mnJ/ml6XnmoQgMjI6MzUgKzAxMDDvvIxDb25vciBEb29sZXnlhpnp
+gZPvvJoKPiBIZXkgSmlzaGVuZywKPiAKPiBPbiBNb24sIE1heSAwOCwgMjAyMyBhdCAwMjoyMzow
+MkFNICswODAwLCBKaXNoZW5nIFpoYW5nIHdyb3RlOgo+IAo+ID4gK8KgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoGM5MTBfMDogY3B1QDAgewo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBjb21wYXRpYmxlID0gInRoZWFkLGM5MTAiLCAicmlzY3Yi
+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBkZXZp
+Y2VfdHlwZSA9ICJjcHUiOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqByaXNjdixpc2EgPSAicnY2NGltYWZkYyI7Cj4gCj4gRG9lcyB0aGlzIHN1cHBv
+cnQgbW9yZSB0aGFuICJydjY0aW1hZmRjIj8KPiBJIGFzc3VtZSB0aGVyZSdzIHNvbWUgX3h0aGVh
+ZGZvbyBleHRlbnNpb25zIHRoYXQgaXQgZG9lcyBzdXBwb3J0LAo+IGFsdGhvdWdoIEkgYW0gbm90
+IHN1cmUgaG93IHdlIGFyZSBwcm9jZWVkaW5nIHdpdGggdGhvc2UgLSBIZWlrbyBtaWdodAo+IGhh
+dmUgYSBtb3JlIG51YW5jZWQgdGFrZS4KPiAKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqByZXNldDogcmVzZXQtc2FtcGxlIHsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgY29tcGF0aWJsZSA9ICJ0aGVhZCxyZXNldC1zYW1wbGUiOwo+
+IAo+IFdoYXQgaXMgYSAicmVzZXQtc2FtcGxlIj8KPiAKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZW50cnktcmVnID0gPDB4ZmYgMHhmZjAxOTA1MD47
+Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGVudHJ5
+LWNudCA9IDw0PjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgY29udHJvbC1yZWcgPSA8MHhmZiAweGZmMDE1MDA0PjsKPiA+ICvCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgY29udHJvbC12YWwgPSA8MHgxYz47Cj4g
+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGNzci1jb3B5
+ID0gPDB4N2YzIDB4N2MwIDB4N2MxIDB4N2MyIDB4N2MzCj4gPiAweDdjNSAweDdjYz47Cj4gPiAr
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgfTsKPiA+ICsKPiA+ICvCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqBwbGljOiBpbnRlcnJ1cHQtY29udHJvbGxlckBmZmQ4MDAwMDAwIHsK
+PiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgY29tcGF0
+aWJsZSA9ICJ0aGVhZCxjOTEwLXBsaWMiOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqByZWcgPSA8MHhmZiAweGQ4MDAwMDAwIDB4MCAweDAxMDAwMDAw
+PjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgaW50
+ZXJydXB0cy1leHRlbmRlZCA9IDwmY3B1MF9pbnRjIDExPiwKPiA+IDwmY3B1MF9pbnRjIDk+LAo+
+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgPCZjcHUxX2ludGMgMTE+LAo+ID4g
+PCZjcHUxX2ludGMgOT4sCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCA8JmNw
+dTJfaW50YyAxMT4sCj4gPiA8JmNwdTJfaW50YyA5PiwKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgIDwmY3B1M19pbnRjIDExPiwKPiA+IDwmY3B1M19pbnRjIDk+Owo+ID4gK8Kg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBpbnRlcnJ1cHQtY29u
+dHJvbGxlcjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgI2ludGVycnVwdC1jZWxscyA9IDwxPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgcmlzY3YsbmRldiA9IDwyNDA+Owo+ID4gK8KgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoH07Cj4gPiArCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgY2xpbnQ6IHRpbWVyQGZmZGMwMDAwMDAgewo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBjb21wYXRpYmxlID0gInRoZWFkLGM5MDAtY2xpbnQi
+Owo+IAo+ICJjOTAwIj8gVGhhdCBhIHR5cG8gb3IgaW50ZW50aW9uYWwuIEhhcmQgdG8gdGVsbCBz
+aW5jZSB0aGlzCj4gY29tcGF0aWJsZQo+IGlzIHVuZG9jdW1lbnRlZCA7KQoKSW50ZW50aW9uYWws
+IGZvciBzdXBwb3J0aW5nIGJvdGggQzkwNiBhbmQgQzkxMC4KCkhvd2V2ZXIsIGFzIHdlIGRpc2N1
+c3NlZCBpbiBzb21lIGJpbmRpbmcgcGF0Y2hlcywgdGhlcmUgc2hvdWxkIGJlIGEgRFQKYmluZGlu
+ZyBzdHJpbmcgcGVyIGNoaXAuCgpTbyBoZXJlIHNob3VsZCBiZSAidGhlYWQsbGlnaHQtY2xpbnQi
+LCAidGhlYWQsYzkwMC1jbGludCIuCgooT3IgdXNlIHRoMTUyMCwgdGhlIG1hcmtldGluZyBuYW1l
+LCBpbnN0ZWFkIG9mIGxpZ2h0LCB0aGUgY29kZW5hbWUpCgpQLlMuIHdoaWNoIG9uZSBpcyBwcmVm
+ZXJyZWQgYnkgRFQgYmluZGluZyBtYWludGFpbmVycywgdGhlIG1hcmtldGluZwpuYW1lIG9yIHRo
+ZSBjb2RlbmFtZT8KCj4gCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoHJlZyA9IDwweGZmIDB4ZGMwMDAwMDAgMHgwIDB4MDAwMTAwMDA+Owo+ID4gK8Kg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBpbnRlcnJ1cHRzLWV4
+dGVuZGVkID0gPCZjcHUwX2ludGMgMz4sCj4gPiA8JmNwdTBfaW50YyA3PiwKPiA+ICvCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIDwmY3B1MV9pbnRjIDM+LAo+ID4gPCZjcHUxX2ludGMg
+Nz4sCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCA8JmNwdTJfaW50YyAzPiwK
+PiA+IDwmY3B1Ml9pbnRjIDc+LAo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
+PCZjcHUzX2ludGMgMz4sCj4gPiA8JmNwdTNfaW50YyA3PjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqB9Owo+ID4gKwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oHVhcnQwOiBzZXJpYWxAZmZlNzAxNDAwMCB7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoGNvbXBhdGlibGUgPSAic25wcyxkdy1hcGItdWFydCI7Cj4g
+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJlZyA9IDww
+eGZmIDB4ZTcwMTQwMDAgMHgwIDB4NDAwMD47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoGludGVycnVwdHMgPSA8MzY+Owo+ID4gK8KgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBjbG9ja3MgPSA8JnVhcnRfc2Nsaz47
+Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGNsb2Nr
+LW5hbWVzID0gImJhdWRjbGsiOwo+IAo+IGR0YnNfY2hlY2sgY29tcGxhaW5zIGFib3V0IHRoaXMg
+Y2xvY2sgbmFtZS4KPiA+ICsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBkbWFj
+MDogZG1hY0BmZmVmYzAwMDAwIHsKPiAKPiBkbWEtY29udHJvbGxlckAKPiAKPiBBcyBJIG1lbnRp
+b25lZCBpbiB0aGUgb3RoZXIgcGF0Y2gsIHBsZWFzZSBjbGVhbiB1cCB0aGUgZHRic19jaGVjawo+
+IGNvbXBsYWludHMgZm9yIHYyLgo+IAo+IENoZWVycywKPiBDb25vci4KPiAKPiBfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IGxpbnV4LXJpc2N2IG1haWxp
+bmcgbGlzdAo+IGxpbnV4LXJpc2N2QGxpc3RzLmluZnJhZGVhZC5vcmcKPiBodHRwOi8vbGlzdHMu
+aW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LXJpc2N2Cgo=
 
