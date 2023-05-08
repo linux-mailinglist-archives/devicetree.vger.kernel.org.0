@@ -2,69 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 68A8E6FB2A6
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 16:24:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F0746FB2D4
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 16:29:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234433AbjEHOX7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 10:23:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60216 "EHLO
+        id S234268AbjEHO3H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 10:29:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36150 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233836AbjEHOX6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 10:23:58 -0400
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8774040FF
-        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 07:23:50 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-3f42711865eso5604185e9.0
-        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 07:23:50 -0700 (PDT)
+        with ESMTP id S234486AbjEHO3D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 10:29:03 -0400
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31AFC18B
+        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 07:29:01 -0700 (PDT)
+Received: by mail-pf1-x42b.google.com with SMTP id d2e1a72fcca58-6438d95f447so3072869b3a.3
+        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 07:29:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683555816; x=1686147816;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6epDoREeyW7xiYpBIh+9OmW/8MwkayI69pNElj0rHko=;
-        b=npeYlGIXEpZf1feJ6JsnaYPH5yx6gv4uJQsVxnQiU1Dx/dgmfF3/NYaOmVv+/99mn5
-         EuDL8zfDWvy5inU0rhs6N1NO7B3idhd1EiMihMmoYo9Bhy70K/UGBgEYRK92oxBIdpf8
-         wAyDLQcooDvyjP10LZ4CYcehP+3+tbJ6/R+reHTn+0MfstK7cCOYJRZcn1kDBXeBn01t
-         pjxqLvxJROuuqHn7gaTV6irF1qPk186pocjS/8hPsueq/kBJN5qlFXc5UQIuOtmoB6m5
-         uE9K4EkCaYfS+vJ5yiwMEXFXesekkZFdeLK+FoJ/I/zuF4ZmgGauDowC0qZR0jrQNX+8
-         P7xg==
+        d=ventanamicro.com; s=google; t=1683556140; x=1686148140;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LF2qNorYNLRrXW28snaYMh/0mPEE++mM1Q0BSuQRSa4=;
+        b=kcHDao+S780JBaV1TVug8QoMhZqjuxlDyLk91S1Z3S7CbJUtjYpQUJoeJmIB4KkmTS
+         AaQLA/HqwR+8aeckGXkUsVofYU6PkE4DTFkMasE3xP2IwuQUszK3rYnt46m2fwomfnfW
+         BAzq2z44tuRWB+IeEXwY8b5zUBiEKksmje/vDiUFlm7PdT9wj5BB+NPDeGgz7BC7VxDt
+         3IrQ6dkStHgY7fA53CT531zYrc4RaJwe8uv9LxKEQeyc1rPGW3iniMfU6GOPN2R9Y18i
+         4uY0QY2Q6k8oLiXEpyBAQTXY9c9EDyGlgSkPLWaoKaVFjesa+3ISvi9jb0JHB+MiGYXJ
+         cYVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683555816; x=1686147816;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6epDoREeyW7xiYpBIh+9OmW/8MwkayI69pNElj0rHko=;
-        b=dJPR0qM5OJrRZBMeZQuZK14pXJ2I3pr3YehnwXag6pA/+9ICL1VCvJSx8ANnFXT2jo
-         YDb91MoA3HCBVmhzV33fC3K8JtG3xhTahQ+CvqxAnDr0HYIKMUo7WX5PdfhhxVv5elta
-         EtLbl+5sVlcbxs0bMtBLNYZnNbKTDTIE/Kx7Jf1+HUTWCsCA+I45EGLQfbhLmaWNFy9D
-         nBi6WP4btRGUlEkgH7FPftZSjU8uYtT4wQpbebMeuYGUfcYAgfmAjpD4QqUt0nlyP+Pn
-         l63Ep5tAHjpU75rBWxGywkUJdBiw+ykjI3NgsgQZFvByt8DKPM9v/8OgU5GvWvzoryoi
-         Hs+Q==
-X-Gm-Message-State: AC+VfDyXCgWlMnqZ6xiChyEl91kqxsNz/3lJef0tFIfomp8WqLkWRVcB
-        4ZzFgpldE5awE6NSmmtaibOIbQ==
-X-Google-Smtp-Source: ACHHUZ5HrOPi4Zh1EtE+UopHE3YIu0K/UpyHlxZ8n6MukD06Vdr+QFlp2AagNqa9j3E1587ccsbtGg==
-X-Received: by 2002:a1c:f715:0:b0:3f1:6fe2:c4b2 with SMTP id v21-20020a1cf715000000b003f16fe2c4b2mr6992686wmh.23.1683555816729;
-        Mon, 08 May 2023 07:23:36 -0700 (PDT)
-Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id y25-20020a05600c365900b003f42456c490sm4081544wmq.33.2023.05.08.07.23.35
+        d=1e100.net; s=20221208; t=1683556140; x=1686148140;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LF2qNorYNLRrXW28snaYMh/0mPEE++mM1Q0BSuQRSa4=;
+        b=UbnW+Enobci+afLNtCvNi0fn+3r2rvGVY3e5SDPZMDEJ06/AGViiXxWX0WygDHPihK
+         1JSkPnGOl0qaSg9m9C9R+KSqojpehLRfjZ/m0WB88gLtrfLPhsaSR9EAWkIN+/7PKVob
+         2C7YFFslsqqeC6xj/o6hogG85qG/qdlUMGetyi6zRuCFmVra2zBAl3L9PxchJfvkqIyy
+         s3L+vYf+HZJEWhKQyuWBO7WFAGY/+Ri/p0yzAdVY8EPDr09/pgXcBA/EshwgX7FTiPI6
+         OQsxssFpNmMcBoKzn02jr+e70lBwA+k5bAT2axyb9KxZDDkR4/fms8kDhgArxZvIatBW
+         oBNw==
+X-Gm-Message-State: AC+VfDxQObhaa/SH2h/yutszYUK78VWXr0E9TAz4g5IhuWGM6eYwRd7L
+        AmgZMepyhk0wJ3IltJq2tO5OOw==
+X-Google-Smtp-Source: ACHHUZ79HQjgxg2rLlN2Li60VZ7yxkETrrybO4Lw/VSG8fE5OPE74vz3oUoA/TjdCH+4TkgRWFk3ww==
+X-Received: by 2002:a05:6a20:5488:b0:100:fc8d:feaf with SMTP id i8-20020a056a20548800b00100fc8dfeafmr1080471pzk.21.1683556140030;
+        Mon, 08 May 2023 07:29:00 -0700 (PDT)
+Received: from anup-ubuntu-vm.localdomain ([171.76.84.206])
+        by smtp.gmail.com with ESMTPSA id k3-20020aa790c3000000b0063d46ec5777sm6082pfk.158.2023.05.08.07.28.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 May 2023 07:23:36 -0700 (PDT)
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
-        gregkh@linuxfoundation.org, andersson@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        luca.weiss@fairphone.com, lujianhua000@gmail.com,
-        linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     konrad.dybcio@linaro.org, caleb.connolly@linaro.org,
-        bryan.odonoghue@linaro.org, subbaram@quicinc.com,
-        jackp@quicinc.com, robertom@qti.qualcomm.com
-Subject: [PATCH v7 13/13] arm64: dts: qcom: qrb5165-rb5: Switch on TCPM orientation-switch for usb_1_qmpphy
-Date:   Mon,  8 May 2023 15:23:08 +0100
-Message-Id: <20230508142308.1656410-14-bryan.odonoghue@linaro.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230508142308.1656410-1-bryan.odonoghue@linaro.org>
-References: <20230508142308.1656410-1-bryan.odonoghue@linaro.org>
+        Mon, 08 May 2023 07:28:59 -0700 (PDT)
+From:   Anup Patel <apatel@ventanamicro.com>
+To:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     Atish Patra <atishp@atishpatra.org>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Anup Patel <anup@brainfault.org>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, iommu@lists.linux.dev,
+        Anup Patel <apatel@ventanamicro.com>
+Subject: [PATCH v3 00/11] Linux RISC-V AIA Support
+Date:   Mon,  8 May 2023 19:58:31 +0530
+Message-Id: <20230508142842.854564-1-apatel@ventanamicro.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,57 +80,98 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Switch on USB orientation-switching for usb_1_qmp via TCPM. Detecting the
-orientation switch is required to get the PHY to reset and bring-up the PHY
-with the CC lines set to the appropriate lane.
+The RISC-V AIA specification is now frozen as-per the RISC-V international
+process. The latest frozen specifcation can be found at:
+https://github.com/riscv/riscv-aia/releases/download/1.0-RC1/riscv-interrupts-1.0-RC1.pdf
 
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 11 +++++++++++
- arch/arm64/boot/dts/qcom/sm8250.dtsi     |  1 +
- 2 files changed, 12 insertions(+)
+At a high-level, the AIA specification adds three things:
+1) AIA CSRs
+   - Improved local interrupt support
+2) Incoming Message Signaled Interrupt Controller (IMSIC)
+   - Per-HART MSI controller
+   - Support MSI virtualization
+   - Support IPI along with virtualization
+3) Advanced Platform-Level Interrupt Controller (APLIC)
+   - Wired interrupt controller
+   - In MSI-mode, converts wired interrupt into MSIs (i.e. MSI generator)
+   - In Direct-mode, injects external interrupts directly into HARTs
 
-diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-index 286bf63caedd1..f522a48547472 100644
---- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-+++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-@@ -1294,6 +1294,11 @@ &usb_1_qmpphy {
- 
- 	vdda-phy-supply = <&vreg_l9a_1p2>;
- 	vdda-pll-supply = <&vreg_l18a_0p92>;
-+	orientation-switch;
-+};
-+
-+&usb_1_qmpphy_typec_mux_in {
-+	remote-endpoint = <&pm8150b_typec_mux_out>;
- };
- 
- &usb_2 {
-@@ -1376,6 +1381,12 @@ pm8150b_role_switch_out: endpoint {
- 					remote-endpoint = <&usb_1_dwc3_role_switch_in>;
- 				};
- 			};
-+			port@1 {
-+				reg = <1>;
-+				pm8150b_typec_mux_out: endpoint {
-+					remote-endpoint = <&usb_1_qmpphy_typec_mux_in>;
-+				};
-+			};
- 		};
- 	};
- };
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index 3d79110892298..0ffca1bd217f7 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -3588,6 +3588,7 @@ ports {
- 
- 				port@0 {
- 					reg = <0>;
-+					usb_1_qmpphy_typec_mux_in: endpoint {};
- 				};
- 
- 				port@1 {
+For an overview of the AIA specification, refer the recent AIA virtualization
+talk at KVM Forum 2022:
+https://static.sched.com/hosted_files/kvmforum2022/a1/AIA_Virtualization_in_KVM_RISCV_final.pdf
+https://www.youtube.com/watch?v=r071dL8Z0yo
+
+The PATCH3 of this series conflicts with the "irqchip/riscv-intc: Add ACPI
+support" patch of the "Add basic ACPI support for RISC-V" series.
+(Refer, https://lore.kernel.org/linux-riscv/20230508115237.216337-1-sunilvl@ventanamicro.com/)
+
+To test this series, use QEMU v7.2 (or higher) and OpenSBI v1.2 (or higher).
+
+These patches can also be found in the riscv_aia_v3 branch at:
+https://github.com/avpatel/linux.git
+
+Changes since v2:
+ - Rebased on Linux-6.4-rc1
+ - Addressed Rob's comments on DT bindings patches 4 and 8.
+ - Addessed Marc's comments on IMSIC driver PATCH5
+ - Replaced use of OF apis in APLIC and IMSIC drivers with FWNODE apis
+   this makes both drivers easily portable for ACPI support. This also
+   removes unnecessary indirection from the APLIC and IMSIC drivers.
+ - PATCH1 is a new patch for portability with ACPI support
+ - PATCH2 is a new patch to fix probing in APLIC drivers for APLIC-only systems.
+ - PATCH7 is a new patch which addresses the IOMMU DMA domain issues pointed
+   out by SiFive
+
+Changes since v1:
+ - Rebased on Linux-6.2-rc2
+ - Addressed comments on IMSIC DT bindings for PATCH4
+ - Use raw_spin_lock_irqsave() on ids_lock for PATCH5
+ - Improved MMIO alignment checks in PATCH5 to allow MMIO regions
+   with holes.
+ - Addressed comments on APLIC DT bindings for PATCH6
+ - Fixed warning splat in aplic_msi_write_msg() caused by
+   zeroed MSI message in PATCH7
+ - Dropped DT property riscv,slow-ipi instead will have module
+   parameter in future.
+
+Anup Patel (11):
+  RISC-V: Add riscv_fw_parent_hartid() function
+  of/irq: Set FWNODE_FLAG_BEST_EFFORT for the interrupt controller DT
+    nodes
+  irqchip/riscv-intc: Add support for RISC-V AIA
+  dt-bindings: interrupt-controller: Add RISC-V incoming MSI controller
+  irqchip: Add RISC-V incoming MSI controller driver
+  irqchip/riscv-imsic: Add support for PCI MSI irqdomain
+  irqchip/riscv-imsic: Improve IOMMU DMA support
+  dt-bindings: interrupt-controller: Add RISC-V advanced PLIC
+  irqchip: Add RISC-V advanced PLIC driver
+  RISC-V: Select APLIC and IMSIC drivers
+  MAINTAINERS: Add entry for RISC-V AIA drivers
+
+ .../interrupt-controller/riscv,aplic.yaml     |  162 +++
+ .../interrupt-controller/riscv,imsics.yaml    |  172 +++
+ MAINTAINERS                                   |   12 +
+ arch/riscv/Kconfig                            |    2 +
+ arch/riscv/include/asm/processor.h            |    3 +
+ arch/riscv/kernel/cpu.c                       |   12 +
+ drivers/iommu/dma-iommu.c                     |   38 +
+ drivers/irqchip/Kconfig                       |   20 +-
+ drivers/irqchip/Makefile                      |    2 +
+ drivers/irqchip/irq-riscv-aplic.c             |  750 ++++++++++++
+ drivers/irqchip/irq-riscv-imsic.c             | 1080 +++++++++++++++++
+ drivers/irqchip/irq-riscv-intc.c              |   36 +-
+ drivers/of/irq.c                              |   10 +
+ include/linux/iommu.h                         |    6 +
+ include/linux/irqchip/riscv-aplic.h           |  119 ++
+ include/linux/irqchip/riscv-imsic.h           |   86 ++
+ 16 files changed, 2503 insertions(+), 7 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,aplic.yaml
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,imsics.yaml
+ create mode 100644 drivers/irqchip/irq-riscv-aplic.c
+ create mode 100644 drivers/irqchip/irq-riscv-imsic.c
+ create mode 100644 include/linux/irqchip/riscv-aplic.h
+ create mode 100644 include/linux/irqchip/riscv-imsic.h
+
 -- 
-2.39.2
+2.34.1
 
