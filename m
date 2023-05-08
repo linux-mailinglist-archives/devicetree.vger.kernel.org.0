@@ -2,66 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BACD6FA59B
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 12:11:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 717006FA5BE
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 12:12:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234187AbjEHKLS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 06:11:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39180 "EHLO
+        id S234227AbjEHKMz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 06:12:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234181AbjEHKLR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 06:11:17 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45D2F398B0
-        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 03:11:15 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2ac88d9edf3so36304311fa.0
-        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 03:11:15 -0700 (PDT)
+        with ESMTP id S234261AbjEHKMq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 06:12:46 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07DD13A2A4
+        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 03:12:39 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-3f4000ec6ecso43623335e9.0
+        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 03:12:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=melexis.com; s=google; t=1683540673; x=1686132673;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=8u6WB6jtixs7X6y9FDxOX9g5fZTvKGDvv+p9yLL1Vks=;
-        b=e8klmY4Cy/DY4lgolcoyCswAy4Ix6hUPD0Fef1ihMp5cCAP51N8XF1ExEWTOkCYWE/
-         r7xPlc2mp2hEd4Cys1XudNMWP12lHHZ+V8e9gTaLV17jYwoCM3AQRYLqzKkumpbhYccB
-         vUBqp6YmCMCRdZcLxDqGobLoHYOxXhlU7GiBGZgPlX4rvVhTaelIz26nVzIpESJjbPP2
-         bQJTjwdufr/MezN4/QwOk92WHViLJkQGmQbosk0My3Q6voE4NaI/rl4yKD2EvPU23A6N
-         SBDwpkWM2iD+ao9jw4knhRrsE/rhrUlYywzBsZiMf4Hf3iAKEk85mshgntENGoUcQ6Di
-         +Cew==
+        d=linaro.org; s=google; t=1683540757; x=1686132757;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=CW1CrQHJLz8y5NRMKwH4VbDOuDhahJccLLFgC8z0Cko=;
+        b=bkSR9I5KWjEl2O8PBVSfJZASLto5/+12iQL/MJvC7IVe/iQvpnAROgsodJ8kSWPcVR
+         VT1xB7qH3hWW3BOTisZuCtto1ebKvDOi+AUTACmbhH3JutgJTfUuzZ/GYdConfA/hiPl
+         sQ4tlo5/tg3tnBP7OxJbAPgBMmPFVtd/Kft3Puqvltn+PGAmEQNLsdESuHijNqjExmW/
+         NWeU7IOlRlw578ds5qrz1gCk36lqds7w/LR1ghdM2CLpoq/QRh9swf5uREsLN0V3SV5V
+         3Wz9TEq/SyIZdsvGWBs0OEWkgAB8M2gD0MkcDEJGgYAJyQnqXwcER9I+D0BGHtSuMH9K
+         r0Ug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683540673; x=1686132673;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8u6WB6jtixs7X6y9FDxOX9g5fZTvKGDvv+p9yLL1Vks=;
-        b=I0FD1KlRA2kt8JahLBm/ehLxtaHDZFEfT/Vui9nh21SxPXYUoZoCTuqS+zc8Lz6aHZ
-         +iAneFK3U7P95gwJsHFfFDjVeF6GemViHrZLWGp4h9i6Hoaw1jKRGU85e8fi3g5VBrma
-         wD6oFFjwZdvnLBeOCPQCzsz9j/2Z4YFOHsEz23UW2cKbTIHAZNvWGsoiPND4Pp9qj1SP
-         p7m/5rds9X87aLpOJuMPdPNuYtjBCB7d4vgvYC7guFQSYcEjfbGp54tSloxw3dk2EkE5
-         d3tXl+Dc70VlVi6uqmWgpOE36VGYENhiWU+7jtvievVAbMVbs84Rly9XrchJdqp0k+f+
-         JkQQ==
-X-Gm-Message-State: AC+VfDxx5kAdhSdS2XvT2H2nhDEKnsqjf2UK+tDa1DVIxMNxi5Mrgtnv
-        BpRct6NGFSAZener7JI9Ca04xQzvCWmoBoSY8SQmxA==
-X-Google-Smtp-Source: ACHHUZ5/lJIRYmcTNM+S8EysGihAI1KmX0Wfsre2tZZrF51czrkMka3TX8UV/CkG9EjnlpvYXEfd0HXMern19vUb8uE=
-X-Received: by 2002:a2e:9545:0:b0:2a8:c87f:d220 with SMTP id
- t5-20020a2e9545000000b002a8c87fd220mr3091732ljh.5.1683540673468; Mon, 08 May
- 2023 03:11:13 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1683540757; x=1686132757;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=CW1CrQHJLz8y5NRMKwH4VbDOuDhahJccLLFgC8z0Cko=;
+        b=KUAoCjZ98P9ww+X2MRd18cOEvHTs6zwaZsfaXmfDI2hMZsOtUgWUiVyRL4F/qEYPo5
+         nSk0RgQ+8fCJVk7g470RywOj8O+cCSE/1FqkCKgPHNj3UNRDBt4ipol5oZofCC6MAMk6
+         vBA7FDnPR+z1u17gU7dCFf8O4kxEXmYD8DRZj6YJDyXeWt8SfyiWRH/1UlS8E+qAqU16
+         PJrfpPLa5/c1Yupn9jUMvkM3RA+BYUgRjlsYWFz/iG82InqpORXAFJiSFrIpzN+/D2Dc
+         dOw30/9vcOYiBOM1vi0i+vfntedvi9m0HJmSIiSvChRMwe6WsMea4AsxaJlSRJwAprnj
+         wGZQ==
+X-Gm-Message-State: AC+VfDwy1zgSlMu06VTezH0eEqdBoHTLuDhw4YVFQPFDjReu00LzCpOG
+        cheQysg4V0UYpfbw5G02qbH4zQ==
+X-Google-Smtp-Source: ACHHUZ6lxAW47l5XpnDkEBIH0ZXISClFDRJBRASwkzYiJLIN4ZO2ZeHNoy7I5LxuLjPjf1tvPXi9sw==
+X-Received: by 2002:a1c:720e:0:b0:3f0:7e15:f8fc with SMTP id n14-20020a1c720e000000b003f07e15f8fcmr7219061wmc.14.1683540757331;
+        Mon, 08 May 2023 03:12:37 -0700 (PDT)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id z24-20020a1cf418000000b003f3e50eb606sm16153364wma.13.2023.05.08.03.12.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 May 2023 03:12:36 -0700 (PDT)
+Message-ID: <6c7c1e04-affe-d68c-9edc-aea10edb3e85@linaro.org>
+Date:   Mon, 8 May 2023 11:12:35 +0100
 MIME-Version: 1.0
-References: <20230507184649.39290-1-marex@denx.de> <20230507184649.39290-5-marex@denx.de>
-In-Reply-To: <20230507184649.39290-5-marex@denx.de>
-From:   Crt Mori <cmo@melexis.com>
-Date:   Mon, 8 May 2023 12:10:36 +0200
-Message-ID: <CAKv63utbVqRjmyP_cN=d2Jewpp6hgVHzSJdm4gjKBkaHKb2LuQ@mail.gmail.com>
-Subject: Re: [PATCH v2 5/5] iio: mlx90614: Add MLX90615 support
-To:     Marek Vasut <marex@denx.de>
-Cc:     linux-iio@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v9 0/4] Add MSM8939 SoC support with two devices
+Content-Language: en-US
+To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        djakov@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        benl@squareup.com, shawn.guo@linaro.org, fabien.parent@linaro.org,
+        leo.yan@linaro.org, dmitry.baryshkov@linaro.org,
+        stephan@gerhold.net
+References: <20230407194905.611461-1-bryan.odonoghue@linaro.org>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20230407194905.611461-1-bryan.odonoghue@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,152 +79,306 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 7 May 2023 at 20:47, Marek Vasut <marex@denx.de> wrote:
->
-> Add support for MLX90615 Infra Red Thermometer, which seems to be
-> the predecesor of MLX90614 . There are significant differences in
-> the register layout compared to MLX90614, but the functionality
-> of the device is virtually identical.
->
-> The following differences have been identified:
-> - RAM/EEPROM/SLEEP access opcodes are different
-> - RAM/EEPROM registers are at different offsets
-> - EEPROM emissivity and configuration registers are at different offsets
-> - EEPROM configuration register bits are shuffled around
-> - EEPROM emissivity settings are 14 bit on MLX90615 , 16 bit on MLX90614
-> - MLX90615 can only ever support one sensor, MLX90614 could support two
-> - FIR filter is set to fixed settings on MLX90615
-> - IIR filter coefficients are different
->
-> This patch fills in the MLX90615 specific description and quirk handling.
->
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> NOTE: The IIR coefficients need to be checked
-> ---
-> Cc: Crt Mori <cmo@melexis.com>
-> Cc: Jonathan Cameron <jic23@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Lars-Peter Clausen <lars@metafoo.de>
-> Cc: Marek Vasut <marex@denx.de>
-> Cc: Peter Meerwald <pmeerw@pmeerw.net>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-iio@vger.kernel.org
-> ---
-> V2: Split the patch up into cleanups, abstraction and MLX90615 addition
-> ---
->  drivers/iio/temperature/mlx90614.c | 49 +++++++++++++++++++++++++++---
->  1 file changed, 45 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/iio/temperature/mlx90614.c b/drivers/iio/temperature/mlx90614.c
-> index d6d2a5afaf8c0..5bcd323921db5 100644
-> --- a/drivers/iio/temperature/mlx90614.c
-> +++ b/drivers/iio/temperature/mlx90614.c
-> @@ -1,12 +1,15 @@
->  // SPDX-License-Identifier: GPL-2.0-only
->  /*
-> - * mlx90614.c - Support for Melexis MLX90614 contactless IR temperature sensor
-> + * mlx90614.c - Support for Melexis MLX90614/MLX90615 contactless IR temperature sensor
->   *
->   * Copyright (c) 2014 Peter Meerwald <pmeerw@pmeerw.net>
->   * Copyright (c) 2015 Essensium NV
->   * Copyright (c) 2015 Melexis
->   *
-> - * Driver for the Melexis MLX90614 I2C 16-bit IR thermopile sensor
-> + * Driver for the Melexis MLX90614/MLX90615 I2C 16-bit IR thermopile sensor
-> + *
-> + * MLX90614 - 17-bit ADC + MLX90302 DSP
-> + * MLX90615 - 16-bit ADC + MLX90325 DSP
->   *
->   * (7-bit I2C slave address 0x5a, 100KHz bus speed only!)
->   *
-> @@ -35,6 +38,10 @@
->  #define MLX90614_OP_EEPROM     0x20
->  #define MLX90614_OP_SLEEP      0xff
->
-> +#define MLX90615_OP_EEPROM     0x10
-> +#define MLX90615_OP_RAM                0x20
-> +#define MLX90615_OP_SLEEP      0xc6
-> +
->  /* Control bits in configuration register */
->  #define MLX90614_CONFIG_IIR_SHIFT 0 /* IIR coefficient */
->  #define MLX90614_CONFIG_IIR_MASK (0x7 << MLX90614_CONFIG_IIR_SHIFT)
-> @@ -43,11 +50,16 @@
->  #define MLX90614_CONFIG_FIR_SHIFT 8 /* FIR coefficient */
->  #define MLX90614_CONFIG_FIR_MASK (0x7 << MLX90614_CONFIG_FIR_SHIFT)
->
-> +#define MLX90615_CONFIG_IIR_SHIFT 12 /* IIR coefficient */
-> +#define MLX90615_CONFIG_IIR_MASK (0x7 << MLX90615_CONFIG_IIR_SHIFT)
-> +
->  /* Timings (in ms) */
->  #define MLX90614_TIMING_EEPROM 20 /* time for EEPROM write/erase to complete */
->  #define MLX90614_TIMING_WAKEUP 34 /* time to hold SDA low for wake-up */
->  #define MLX90614_TIMING_STARTUP 250 /* time before first data after wake-up */
->
-> +#define MLX90615_TIMING_WAKEUP 22 /* time to hold SCL low for wake-up */
-> +
->  #define MLX90614_AUTOSLEEP_DELAY 5000 /* default autosleep delay */
->
->  /* Magic constants */
-> @@ -306,8 +318,8 @@ static int mlx90614_read_raw(struct iio_dev *indio_dev,
->                         *val2 = ret * chip_info->emissivity_res;
->                 }
->                 return IIO_VAL_INT_PLUS_NANO;
-> -       case IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY: /* IIR setting with
-> -                                                            FIR = 1024 */
-> +       /* IIR setting with FIR=1024 (MLX90614) or FIR=65536 (MLX90615) */
-> +       case IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY:
->                 ret = mlx90614_power_get(data, false);
->                 if (ret < 0)
->                         return ret;
-> @@ -666,14 +678,43 @@ static const struct mlx_chip_info mlx90614_chip_info = {
->         },
->  };
->
-> +static const struct mlx_chip_info mlx90615_chip_info = {
-> +       .op_eeprom_emissivity           = MLX90615_OP_EEPROM | 0x03,
-> +       .op_eeprom_config1              = MLX90615_OP_EEPROM | 0x02,
-> +       .op_ram_ta                      = MLX90615_OP_RAM | 0x06,
-> +       .op_ram_tobj1                   = MLX90615_OP_RAM | 0x07,
-> +       .op_ram_tobj2                   = MLX90615_OP_RAM | 0x08,
-> +       .op_sleep                       = MLX90615_OP_SLEEP,
-> +       .dual_channel                   = false,
-> +       .wakeup_delay_ms                = MLX90615_TIMING_WAKEUP,
-> +       .emissivity_max                 = 16383,
-> +       .emissivity_res                 = 1000000000 / 16383,
-This makes me wonder if we could just drop the emissivity_res and have
-it calculate it using emissivity_max, since both chips will do it.
+On 07/04/2023 20:49, Bryan O'Donoghue wrote:
+> V9:
+> - Fixes name of tsens
+>    s4 is not present
+>    s4->s5
+>    s5->s6
+>    s6->s7
+>    s7->s8
+>    s8->s9
+>    I erroneously thought the last sensor needed to be brought in but,
+>    as has been pointed out to me, the last sensor isn't used, so
+>    no need to support the reading and reassembly of the non-contiguous
+>    calibration data - Stephan/Dmitry
+> 
+> - pronto/s//wcnss - Stephan
+> 
+> - tulip dr_mode = "otg" not dr_mode = "device"
+>    I set the value to device for debug purposes but the role-switch
+>    works just fine and should be upstream - Stephan
+> 
+> - fixed alphabetisation in pm8939-8916.dtsi - bod
+> 
+> Bootable: https://git.codelinaro.org/bryan.odonoghue/kernel/-/commits/linux-next-23-04-07-msm8939-nocpr
+> Previous: https://lore.kernel.org/linux-arm-msm/20230330153222.2875121-1-bryan.odonoghue@linaro.org/
+> 
+> git diff linux-next-23-03-27-msm8939-nocpr -- arch/arm64/boot/dts/qcom/*39*
+> 
+> V8:
+> - Addresses all of Stephan's comments from v7
+> - Moves M4 Aqua display to a separate series
+> - Retains s4_p1/p2 done on purpose I believe
+> - Adds Konrad's RB as indicated
+> 
+> Bootable: https://git.codelinaro.org/bryan.odonoghue/kernel/-/commits/linux-next-23-03-27-msm8939-nocpr
+> Previous: https://lore.kernel.org/lkml/20230223153655.262783-1-bryan.odonoghue@linaro.org/
+> 
+> V7:
+> - Addresses all of Konrad's asks on V6
+> - Adds Konrad's RB for patch #3
+> Bootable: https://git.codelinaro.org/bryan.odonoghue/kernel/-/commits/linux-next-23-02-23-msm8939-nocpr
+> Previous: https://lore.kernel.org/lkml/20230222120411.55197-2-bryan.odonoghue@linaro.org/T/
+> 
+> V6:
+> - Adds Krzysztof's Ack for Square vendor addition - Krzysztof
+> - Incorporates all of Stephan's comments from V5, including
+>    dropping CPR dummy given the dependent patch [1] has been merged, now.
+> 
+> Bootable: https://git.codelinaro.org/bryan.odonoghue/kernel/-/commits/linux-next-23-02-21-msm8939-nocpr
+> Previous: https://lore.kernel.org/lkml/20230206012336.2130341-1-bryan.odonoghue@linaro.org/T/
+> [1]: https://lore.kernel.org/linux-arm-msm/20230208153913.24436-2-ansuelsmth@gmail.com/
+> 
+> V5:
+> - Adds Square as a vendor - Krzysztof
+> 
+> - typec_pd: usb-pd@38 - Krzysztof
+> 
+> - Drops gcc clock controller extension. It looks like phy0 actually
+>    provides a PLL to phy1 for its byte clock. - Bryan, Krzysztof, Stephan
+> 
+> - Adds RB Konrad as indicated - Konrad
+> 
+> - wcnss VDDMX_AO -> VDDMX - Bjorn
+> 
+> - Adds dsi_phy0 as clock-parent to dsi1
+> 
+> - mdss interconnect drops Androidism "register-mem" - Stephan
+> 
+> - cpu power-domain. I've retained the "dummy" cpr reference to
+>    satiate dtbs_check [1] but renamed &vreg_cpr_stub to remove any confusion
+>    between now and when we finish off CPR on 8939.
+> 
+> Bootable: https://git.codelinaro.org/bryan.odonoghue/kernel/-/commits/linux-next-23-02-02-msm8939-nocpr
+> Previous: https://lore.kernel.org/linux-arm-msm/20230123023127.1186619-1-bryan.odonoghue@linaro.org/
+> [1] https://lore.kernel.org/linux-arm-msm/20230126150026.14590-1-ansuelsmth@gmail.com/
+> 
+> V4:
+> - Adds Krzysztof's RB to snoc-mm
+> - Re-orders alphabetically missed nodes in previous iteration - Bjorn
+> - Adds LK address/size cells comment - Bjorn
+> 
+> - Left _AO for wcnss as downstream reference uses this - Bjorn/Bryan
+> - Uses qcom,ids.h and QCOM_ID_SOCNAME for qcom,msm-id - Bjorn
+> - Revises comment from "Regulator" to "Power supply" - Bjorn
+> - Leaves dummy power-domain reference in cpu defintion as this
+> 
+> - Relabels "cpu" to "CPU" to be more consistent with other dtsi - Bryan
+> - Moves msm8939 gcc to its own yaml file to capture 8939 specific form - Bryan
+> 
+>    is a required property and the dt checker complains - Stephan/Bryan
+> - Removes CPR entries from qfprom - Stephan
+> - Left MDSS interconnects. I don't see a bug to fix here - Stephan/Bryan
+> - power-domain in MDSS - dropped its not longer required after
+>    commit a6f033938beb ("dt-bindings: msm: dsi-controller-main: Fix power-domain constraint") - Stephan
+> - Adds gcc dsi1pll and dsi1pllbyte to gcc clock list.
+>    Reviewing the silicon documentation we see dsi0_phy_pll is used to clock
+>    GCC_BYTE1_CFG_RCGR : SRC_SEL
+>    Root Source Select
+>    000 : cxo
+>    001 : dsi0_phy_pll_out_byteclk
+>    010 : GPLL0_OUT_AUX
+>    011 : gnd
+>    100 : gnd
+>    101 : gnd
+>    110 : gnd
+>    111 : reserved - Stephan/Bryan
+> 
+> - pm8916_l16 -> pm8916_l6 in dsi definition, typo - Konrad
+> - Moved regulator_set_load location - Konrad
+> 
+> Previous: https://lore.kernel.org/lkml/20230118050948.bibhq26s6sgzullg@builder.lan/T/
+> Bootable: https://git.linaro.org/people/bryan.odonoghue/kernel.git/log/?h=linux-next-23-01-23-msm8939-nocpr
+> 
+> V3:
+> - Happily I don't currently depend on any other series to be merged.
+>    Bjorn and Chanwoo picked up everything I need to unblock this series. ＼(^o^)／
+> 
+> - Moves xo_board to RPM/PMIC clock gated CXO, not including rpmcc: obvs - Konrad/Bjorn
+> - qcom,msm-id = <239 0> - left as in V2 valid according to Sony references - bod
+> - cpu-release-addr - as stated below we rely on lk2nd to take the second cluster
+>    out of reset - bod
+> - smem child node update - Konrad
+> - Whitespace updates - Konrad
+> - gpu no interconnect - Konrad - No bod
+> - 19.2 MHz dropped from timer@b020000 - Konrad
+> - Added vreg_dummy comment - Konrad
+> - sdc_pins grouped - Konrad
+> - startup-delay-us = <0> - left as is
+> - bias - added no-bias - Konrad
+> - :g/msmgpio/s//tlmm/g - Konrad
+> - mdss/s//display-controller - Konrad
+> - l11 set-load - Korad
+> 
+> - l12 upper voltage raised to 3.3v since this is what the
+>    downstream kernel says when I boot and interrogate it - bod
+> 
+> - sdhc@address - Discussed with Krzysztof and implemented as discussed
+> - snoc-mm fix - Discussed with Krzysztof implemented if:then:else:not
+> - dtc -I dtb -fs apq8039-t2.dtb prodcues
+>    /soc@0/i2c@78b5000: duplicate unit-address
+>    as does every other component that uses this polymorphic dts node
+> - Renamed type-c i2c port manager IC to "typec" - Krzysztof
+> 
+>    /smsm/hexagon@1: Missing #address-cells in interrupt provider
+>    Same output as other upstream and recently upstreamed SoCs
+>    I left these alone for now
+> 
+> link: https://lore.kernel.org/lkml/20230103010904.3201835-1-bryan.odonoghue@linaro.org/T/
+> bootable: https://git.linaro.org/people/bryan.odonoghue/kernel.git/log/?h=linux-next-23-01-16-msm8939-nocpr
+> 
+> V2:
+> - Sorts core dtsi node list by address followed by alpahbetical sorting
+>    within address sorted nodes - Bjorn
+> - Drops use of 8916-pins - Bjorn
+> - Adds msm8939-pm8916.dtsi - Stephan
+> - Fixes every dts splat from previous submission minus non-converted
+>    .txt compat strings [1] and one yaml error in Bjorn's tree not in -next yet
+> - I haven't applied Dmitry's change for tsens since that's not been
+>    picked up yet
+> - Picks up a number of suggestions and fixes from Stephan Gerhold and Vincent Knecht
+> 
+> - Depends on
+> 
+>    Applied:
+>    [PATCH v4 0/7] remoteproc: qcom_q6v5_mss: Add MSM8909 and MSM8953
+>    https://lore.kernel.org/linux-arm-msm/167216232800.738877.17567287056128563074.b4-ty@kernel.org/
+> 
+>    [PATCH v6 0/5] remoteproc: qcom: Add support for pronto-v3
+>    https://lore.kernel.org/linux-arm-msm/167216232801.738877.15895916910585144737.b4-ty@kernel.org/
+> 
+>    [PATCH v6 00/18] mdss-dsi-ctrl binding and dts fixes
+>    https://lore.kernel.org/linux-arm-msm/167233461766.1099840.17628700245792986354.b4-ty@kernel.org/
+> 
+>    Awaiting application:
+>    https://lore.kernel.org/linux-arm-msm/20221228133058.213886-1-bryan.odonoghue@linaro.org/
+> 
+> - Previous
+>    https://lore.kernel.org/linux-arm-msm/20220419010903.3109514-1-bryan.odonoghue@linaro.org/
+> 
+> - Bootable tree
+>    https://git.linaro.org/people/bryan.odonoghue/kernel.git/log/?h=linux-next-23-01-03-msm8939-no-cpr
+> 
+> - [1] DTC_CHK arch/arm64/boot/dts/qcom/apq8039-t2.dtb
+> 
+>    Documentation/devicetree/bindings/arm/msm/qcom,idle-state.txt
+>    qcom/apq8039-t2.dtb: idle-states: cpu-sleep-0:compatible:0: 'qcom,idle-state-spc' is not one of ['arm,idle-state', 'riscv,idle-state']
+>          From schema: Documentation/devicetree/bindings/cpu/idle-states.yaml
+>    qcom/apq8039-t2.dtb: idle-states: cpu-sleep-0:compatible: ['qcom,idle-state-spc', 'arm,idle-state'] is too long
+>          From schema: Documentation/devicetree/bindings/cpu/idle-states.yaml
+>    arch/arm64/boot/dts/qcom/apq8039-t2.dtb:0:0: /cpus/idle-states/cpu-sleep-0: failed to match any schema with compatible: ['qcom,idle-state-spc', 'arm,idle-state']
+> 
+>    Documentation/devicetree/bindings/iommu/qcom,iommu.txt
+>    arch/arm64/boot/dts/qcom/apq8039-t2.dtb:0:0: /soc@0/iommu@1ef0000: failed to match any schema with compatible: ['qcom,msm8916-iommu', 'qcom,msm-iommu-v1']
+>    arch/arm64/boot/dts/qcom/apq8039-t2.dtb:0:0: /soc@0/iommu@1ef0000/iommu-ctx@4000: failed to match any schema with compatible: ['qcom,msm-iommu-v1-ns']
+>    arch/arm64/boot/dts/qcom/apq8039-t2.dtb:0:0: /soc@0/iommu@1ef0000/iommu-ctx@5000: failed to match any schema with compatible: ['qcom,msm-iommu-v1-sec']
+>    arch/arm64/boot/dts/qcom/apq8039-t2.dtb:0:0: /soc@0/iommu@1f08000: failed to match any schema with compatible: ['qcom,msm8916-iommu', 'qcom,msm-iommu-v1']
+>    arch/arm64/boot/dts/qcom/apq8039-t2.dtb:0:0: /soc@0/iommu@1f08000/iommu-ctx@1000: failed to match any schema with compatible: ['qcom,msm-iommu-v1-ns']
+>    arch/arm64/boot/dts/qcom/apq8039-t2.dtb:0:0: /soc@0/iommu@1f08000/iommu-ctx@2000: failed to match any schema with compatible: ['qcom,msm-iommu-v1-ns']
+> 
+>    arch/arm64/boot/dts/qcom/pm8916.dtsi f5d7bca55425c8
+>    qcom/apq8039-t2.dtb: pmic@0: 'extcon@1300' does not match any of the regexes: '(.*)?(wled|leds)@[0-9a-f]+$', '^adc-tm@[0-9a-f]+$', '^adc@[0-9a-f]+$', '^audio-codec@[0-9a-f]+$', '^charger@[0-9a-f]+$', '^mpps@[0-9a-f]+$', '^rtc@[0-9a-f]+$', '^temp-alarm@[0-9a-f]+$', '^usb-detect@[0-9a-f]+$', '^usb-vbus-regulator@[0-9a-f]+$', '^vibrator@[0-9a-f]+$', 'gpio@[0-9a-f]+$', 'pinctrl-[0-9]+', 'pon@[0-9a-f]+$'
+>          From schema: Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
+> 
+>    Documentation/devicetree/bindings/sound/qcom,msm8916-wcd-analog.txt
+>    arch/arm64/boot/dts/qcom/apq8039-t2.dtb:0:0: /soc@0/spmi@200f000/pmic@1/audio-codec@f000: failed to match any schema with compatible: ['qcom,pm8916-wcd-analog-codec']
+> 
+>    yaml documentation error not yet in -next
+>    arm64/boot/dts/qcom/apq8039-t2.dtb: remoteproc@4080000: qcom,halt-regs:0: [33] is too short
+>          From schema: Documentation/devicetree/bindings/remoteproc/qcom,msm8916-mss-pil.yaml
+> 
+>    Documentation/devicetree/bindings/usb/ci-hdrc-usb2.txt
+>    arch/arm64/boot/dts/qcom/apq8039-t2.dtb:0:0: /soc@0/usb@78d9000: failed to match any schema with compatible: ['qcom,ci-hdrc']
+> 
+>    Documentation/devicetree/bindings/arm/msm/qcom,kpss-acc.txt:            compatible = "qcom,kpss-acc-v2";
+>    arch/arm64/boot/dts/qcom/apq8039-t2.dtb:0:0: /soc@0/clock-controller@b088000: failed to match any schema with compatible: ['qcom,kpss-acc-v2']
+>    arch/arm64/boot/dts/qcom/apq8039-t2.dtb:0:0: /soc@0/clock-controller@b098000: failed to match any schema with compatible: ['qcom,kpss-acc-v2']
+>    arch/arm64/boot/dts/qcom/apq8039-t2.dtb:0:0: /soc@0/clock-controller@b0a8000: failed to match any schema with compatible: ['qcom,kpss-acc-v2']
+>    arch/arm64/boot/dts/qcom/apq8039-t2.dtb:0:0: /soc@0/clock-controller@b0b8000: failed to match any schema with compatible: ['qcom,kpss-acc-v2']
+>    arch/arm64/boot/dts/qcom/apq8039-t2.dtb:0:0: /soc@0/clock-controller@b188000: failed to match any schema with compatible: ['qcom,kpss-acc-v2']
+>    arch/arm64/boot/dts/qcom/apq8039-t2.dtb:0:0: /soc@0/clock-controller@b198000: failed to match any schema with compatible: ['qcom,kpss-acc-v2']
+>    arch/arm64/boot/dts/qcom/apq8039-t2.dtb:0:0: /soc@0/clock-controller@b1a8000: failed to match any schema with compatible: ['qcom,kpss-acc-v2']
+>    arch/arm64/boot/dts/qcom/apq8039-t2.dtb:0:0: /soc@0/clock-controller@b1b8000: failed to match any schema with compatible: ['qcom,kpss-acc-v2']
+> 
+> V1:
+> This series adds in MSM8939 SoC support with two supported devices.
+> 
+> - CPU
+>    MSM8939 is a non-PSCI compliant device. As such in the downstreaming
+>    shipped image custom code is used to bring non-boot cores out of reset.
+> 
+>    This drop specifies the boot-method as spin-table instead and is
+>    completely standard. To accomplish this, we rely on lk2nd.
+> 
+>    https://github.com/msm8916-mainline/lk2nd/pull/142
+> 
+> - Serial
+> - i2c
+> - USB
+> - eMMC
+> - MDP/DSI
+> - WiFi
+> - Bluetooth
+> 
+> What's not included
+> 
+> - CPR
+>    We have CPR working in a 4.19 kernel quite well but for now it feels like
+>    putting the cart before the horse to gate the SoC and boards on CPR.
+> 
+> - Venus
+>    I've been told this works but I haven't tried it myself and right now
+>    consider it maybe working but probably not 100%.
+> 
+> - Sound
+>    We have a copy-exactly from the 4.19 kernel here in the DTS.
+>    I haven't run the sound through any sort of reasonable test.
+>    Vincent Knecht has some PostmarketOS kernels which use a 5.17 version of
+>    this DTS to get sound up so, I think sound is in good shape.
+> 
+> - CAMSS
+>    There are slight differences between msm8916 and msm8939 for CAMSS. It
+>    doesn't feel like tons of work but, right now it is work we haven't even
+>    started.
+> 
+> - Devices
+>    I've booted on the Square device obviously and this is my regular
+>    hardware for upstream development. I've also booted on the Sony Xperia M4
+>    Aqua including mutli-core bring-up, WiFi and ADB.
+> 
+> Dependencies for this drop:
+> 
+> qcom-cpufreq-nvmem: Add msm8939 with some fixups
+> link: https://lore.kernel.org/linux-arm-msm/20220418162226.2983117-1-bryan.odonoghue@linaro.org/T/#t
+> 
+> Fix apq8016 compat string
+> link: https://lore.kernel.org/linux-arm-msm/20220418230956.3059563-1-bryan.odonoghue@linaro.org/T/#t
+> 
+> dt-bindings: soc: qcom: smd-rpm: Fix missing MSM8936 compatible
+> link: https://lore.kernel.org/linux-arm-msm/20220418231857.3061053-1-bryan.odonoghue@linaro.org/T/#u
+> 
+> Bootable tree here:
+> https://git.linaro.org/people/bryan.odonoghue/kernel.git/log/?h=v5.18-rc2%2bapq8039-without-cpr
+> 
+> Bryan O'Donoghue (3):
+>    arm64: dts: qcom: Add msm8939 SoC
+>    arm64: dts: qcom: Add Square apq8039-t2 board
+>    arm64: dts: qcom: Add msm8939 Sony Xperia M4 Aqua
+> 
+> Stephan Gerhold (1):
+>    arm64: dts: qcom: Add msm8939-pm8916.dtsi include
+> 
+>   arch/arm64/boot/dts/qcom/Makefile             |    2 +
+>   arch/arm64/boot/dts/qcom/apq8039-t2.dts       |  492 ++++
+>   arch/arm64/boot/dts/qcom/msm8939-pm8916.dtsi  |   82 +
+>   .../qcom/msm8939-sony-xperia-kanuti-tulip.dts |  184 ++
+>   arch/arm64/boot/dts/qcom/msm8939.dtsi         | 2452 +++++++++++++++++
+>   5 files changed, 3212 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/qcom/apq8039-t2.dts
+>   create mode 100644 arch/arm64/boot/dts/qcom/msm8939-pm8916.dtsi
+>   create mode 100644 arch/arm64/boot/dts/qcom/msm8939-sony-xperia-kanuti-tulip.dts
+>   create mode 100644 arch/arm64/boot/dts/qcom/msm8939.dtsi
+> 
 
-> +       .fir_config_mask                = 0,    /* MLX90615 FIR is fixed */
-> +       .iir_config_mask                = MLX90615_CONFIG_IIR_MASK,
-> +       /* IIR value 0 is FORBIDDEN COMBINATION on MLX90615 */
-> +       .iir_valid_offset               = 1,
-> +       .iir_values                     = { 723, 77, 42, 31, 28, 20, 18 },
-> +       .iir_freqs                      = {
-> +               { 0, 180000 },  /* 14% ~= 0.18 Hz */
-> +               { 0, 200000 },  /* 17% ~= 0.20 Hz */
-> +               { 0, 280000 },  /* 20% ~= 0.28 Hz */
-> +               { 0, 310000 },  /* 25% ~= 0.31 Hz */
-> +               { 0, 420000 },  /* 33% ~= 0.42 Hz */
-> +               { 0, 770000 },  /* 50% ~= 0.77 Hz */
-> +               { 7, 230000 },  /* 100% ~= 7.23 Hz */
-> +       },
-> +};
-> +
->  static const struct i2c_device_id mlx90614_id[] = {
->         { "mlx90614", .driver_data = (kernel_ulong_t)&mlx90614_chip_info },
-> +       { "mlx90615", .driver_data = (kernel_ulong_t)&mlx90615_chip_info },
->         { }
->  };
->  MODULE_DEVICE_TABLE(i2c, mlx90614_id);
->
->  static const struct of_device_id mlx90614_of_match[] = {
->         { .compatible = "melexis,mlx90614", .data = &mlx90614_chip_info },
-> +       { .compatible = "melexis,mlx90615", .data = &mlx90615_chip_info },
->         { }
->  };
->  MODULE_DEVICE_TABLE(of, mlx90614_of_match);
-> --
-> 2.39.2
->
+ping
