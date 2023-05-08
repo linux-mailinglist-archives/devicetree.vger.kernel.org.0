@@ -2,76 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 403D36FB0BB
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 15:00:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E3736FB0F5
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 15:12:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233746AbjEHNAq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 09:00:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55216 "EHLO
+        id S233631AbjEHNMK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 09:12:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233990AbjEHNAp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 09:00:45 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2361F394A4;
-        Mon,  8 May 2023 06:00:38 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-50bd87539c2so7122212a12.0;
-        Mon, 08 May 2023 06:00:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683550836; x=1686142836;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=w+QjjUsqPsRzGGA/4usgRP155s5O6ap9iO72HiNoLsU=;
-        b=n1SjO1FgoC5mu9I6JHanqYgGMBXZaGY3Fi9v5Jqi/Mg/AheBVd337VSTDCPgnax99K
-         nUCyvJY1vYQagkjY94DzLMCDU4ZDnOA5SCBrRdoc9YF8BBWIOULyQ7SBmtHp3QmlePps
-         Pk/hFqd5Y6hi73jCHcNuJfylU1p1JkavUmTSqK62zZ4sGsSY+/hDsmRTYu4LQK0BQJOG
-         O2rVY+QRxzKAdErkNtVPgZmFO0j0FRhXPAuxO+FtfYGmXl+gZV4951k2qr524KijvUc5
-         tZyM3yJN8YTllpoV438LeBHzIRV4uTjiKGXCAMrC+Vebh/xTLXr3wOFQlSMRRrHZW1EG
-         r6kA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683550836; x=1686142836;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=w+QjjUsqPsRzGGA/4usgRP155s5O6ap9iO72HiNoLsU=;
-        b=ie7gVaE7v0h/nu022V0NF7ezno1dDrylM873b22rWcS3Q72OWK88O5fVJOb1vRU4ma
-         O7vC02UpY3N9rzYUo51V0D8wZZe8Y97/K82NAKHkWxTpy1T6YI++tiEMrucQGcdJTgx1
-         Ep9aRzfQ1CQjhWkneQejzWeYYfSqqZNW9bstktX5ISGoqaVT/lLTC0ceBic1J3L4iBFv
-         8AnQFcxEhRbQZOjF+FwQGjowSgDHx1bxo3H78oGMdWaiFwcuwDai3FXexIp1tPR54NRm
-         SWzDrdyLoE3Nekgclugno0Z9nAiYb6kCCZHt8PbTDVVvxhpcXYHrFvzkVXttDf04M0zb
-         A/Pg==
-X-Gm-Message-State: AC+VfDzX/FA8nQd/sFoBS73hinevgj2H/kkzOqV0XrytEjEm9EXIvYfG
-        ClTZaEKdPD/6f4pzJgfGCZ8=
-X-Google-Smtp-Source: ACHHUZ76jV5bGibIwaI1JJ4+4/ch3ab8j/FtzhL7zYdGULD1+QnF9WTIN+NmIMZ1wnmNySeCLyaZ1Q==
-X-Received: by 2002:aa7:da95:0:b0:50b:d553:3822 with SMTP id q21-20020aa7da95000000b0050bd5533822mr6720950eds.7.1683550836297;
-        Mon, 08 May 2023 06:00:36 -0700 (PDT)
-Received: from orome (p200300e41f305300f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f30:5300:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id v18-20020aa7dbd2000000b0050d9bd4d557sm1610140edt.47.2023.05.08.06.00.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 May 2023 06:00:35 -0700 (PDT)
-Date:   Mon, 8 May 2023 15:00:34 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Peter De Schrijver <pdeschrijver@nvidia.com>
-Cc:     Jonathan Hunter <jonathanh@nvidia.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Joe Perches <joe@perches.com>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH 1/5] dt-bindings: mailbox: tegra: Document Tegra264 HSP
-Message-ID: <ZFjycrcgRyYnmHm2@orome>
-References: <20230508122048.99953-1-pdeschrijver@nvidia.com>
- <20230508122048.99953-2-pdeschrijver@nvidia.com>
+        with ESMTP id S232161AbjEHNMJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 09:12:09 -0400
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C83BA1FF3;
+        Mon,  8 May 2023 06:12:08 -0700 (PDT)
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 348D1sYn003279;
+        Mon, 8 May 2023 09:11:58 -0400
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3qdkt9b82y-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 08 May 2023 09:11:58 -0400
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 348DBvJn020329
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 8 May 2023 09:11:57 -0400
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Mon, 8 May 2023 09:11:56 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Mon, 8 May 2023 09:11:56 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Mon, 8 May 2023 09:11:56 -0400
+Received: from IST-LT-42339.ad.analog.com ([10.158.19.231])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 348DBdTJ009014;
+        Mon, 8 May 2023 09:11:42 -0400
+From:   Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>
+To:     <lee@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <sre@kernel.org>,
+        <lgirdwood@gmail.com>, <broonie@kernel.org>
+CC:     <Zeynep.Arslanbenzer@analog.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-pm@vger.kernel.org>
+Subject: [PATCH v3 0/7] Add MAX77643/MAX77654/MAX77658/MAX77659 PMIC Support
+Date:   Mon, 8 May 2023 16:10:38 +0300
+Message-ID: <20230508131045.9399-1-Zeynep.Arslanbenzer@analog.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="4F8XSA1RY80B7563"
-Content-Disposition: inline
-In-Reply-To: <20230508122048.99953-2-pdeschrijver@nvidia.com>
-User-Agent: Mutt/2.2.10 (2023-03-25)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: LkDOQoopkfvGDBVlK7Z9k9yMa5vS8X9Z
+X-Proofpoint-ORIG-GUID: LkDOQoopkfvGDBVlK7Z9k9yMa5vS8X9Z
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-08_09,2023-05-05_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
+ adultscore=0 mlxlogscore=832 mlxscore=0 priorityscore=1501
+ lowpriorityscore=0 malwarescore=0 bulkscore=0 clxscore=1015
+ impostorscore=0 spamscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2303200000 definitions=main-2305080089
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,45 +72,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Changes in v3:
+* Remove regulator adi,max77658-regulator.yaml
+* Patch 1: "mfd: max77658: Add ADI MAX77643/54/58/59 MFD Support"
+  * Use MAX77643/54/58/59 instead of listing every device
+  * Move max77658_pmic_setup function body to probe function
+  * Remove dev from max77658_dev struct
+  * Fix error explanations
+  * Drop chip structure, use only id
+  * Fix the wrong indentations
+* Patch 2: "dt-bindings: mfd: max77658: Add ADI MAX77658"
+  * Decrease the example count
+* Patch 3: "power: supply: max77658: Add ADI MAX77658 Battery Support"
+  * Use default values to initialize SALRT min-max thresholds
+* Patch 4: "dt-bindings: power: supply: max77658: Add ADI MAX77658 Battery"
+  * Fix syntax
+  * Remove SALRT properties from the device tree
+  * State monitored-battery as required
+  * Remove reg
+* PATCH 5: "power: supply: max77658: Add ADI MAX77654/58/59 Charger Support"
+  * Use MAX77643/54/58/59 instead of listing every device
+  * Use sysfs entries for fast-charge-timer and topoff-timer    
+* Patch 6: "dt-bindings: power: supply: max77658: Add ADI MAX77654/58/59 Charger"
+  * Remove fast-charge-timer and topoff-timer properties from the device tree
+* PATCH 7: "regulator: max77658: Add ADI MAX77643/54/58/59 Regulator Support"
+  * Use MAX77643/54/58/59 instead of listing every device
+  * Use only one entry id id_table
 
---4F8XSA1RY80B7563
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Changes in v2:
+* Add MAX77643, MAX77654, MAX77658 device support
 
-On Mon, May 08, 2023 at 03:20:46PM +0300, Peter De Schrijver wrote:
-> Add the compatible string for the HSP block found on the Tegra264 SoC.
->=20
-> Signed-off-by: Peter De Schrijver <pdeschrijver@nvidia.com>
-> ---
->  .../devicetree/bindings/mailbox/nvidia,tegra186-hsp.yaml         | 1 +
->  1 file changed, 1 insertion(+)
+Zeynep Arslanbenzer (7):
+  regulator: max77658: Add ADI MAX77643/54/58/59 Regulator Support
+  dt-bindings: power: supply: max77658: Add ADI MAX77654/58/59 Charger
+  power: supply: max77658: Add ADI MAX77654/58/59 Charger Support
+  dt-bindings: power: supply: max77658: Add ADI MAX77658 Battery
+  power: supply: max77658: Add ADI MAX77658 Battery Support
+  dt-bindings: mfd: max77658: Add ADI MAX77658
+  mfd: max77658: Add ADI MAX77643/54/58/59 MFD Support
 
-Might be a good idea to say in the commit message that this isn't
-backwards compatible with Tegra194/Tegra234, hence no fallback
-compatible string. That's already in the commit message for the driver,
-so either way is fine with me:
+ .../devicetree/bindings/mfd/adi,max77658.yaml | 160 ++++
+ .../power/supply/adi,max77658-battery.yaml    |  47 +
+ .../power/supply/adi,max77658-charger.yaml    |  53 ++
+ drivers/mfd/Kconfig                           |  13 +
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/max77658.c                        | 426 +++++++++
+ drivers/power/supply/Kconfig                  |  14 +
+ drivers/power/supply/Makefile                 |   2 +
+ drivers/power/supply/max77658-battery.c       | 633 +++++++++++++
+ drivers/power/supply/max77658-charger.c       | 844 ++++++++++++++++++
+ drivers/regulator/Kconfig                     |   8 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/max77658-regulator.c        | 170 ++++
+ include/linux/mfd/max77658.h                  |  80 ++
+ 14 files changed, 2452 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/adi,max77658.yaml
+ create mode 100644 Documentation/devicetree/bindings/power/supply/adi,max77658-battery.yaml
+ create mode 100644 Documentation/devicetree/bindings/power/supply/adi,max77658-charger.yaml
+ create mode 100644 drivers/mfd/max77658.c
+ create mode 100644 drivers/power/supply/max77658-battery.c
+ create mode 100644 drivers/power/supply/max77658-charger.c
+ create mode 100644 drivers/regulator/max77658-regulator.c
+ create mode 100644 include/linux/mfd/max77658.h
 
-Acked-by: Thierry Reding <treding@nvidia.com>
+-- 
+2.25.1
 
---4F8XSA1RY80B7563
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmRY8nIACgkQ3SOs138+
-s6FhLxAAtVSMVas/p4dUEysgZFobEgWmE8m1ZpXtA7wXfxFSTI7vPqpTpZTmYlm6
-z10wKif/vtp11TE8M5fjUaNPmNBvkUJSUtzWHVASlh1Uo4IdCcK6jAg+T/BhgEy2
-eoKgQNWt13KQVvElWjjnIK1X/+NZJKAdDgQe1QENN1bZqpRsBTMU9aXax9GrBSfq
-7wm6MMrPAnmi4viYV2GCeO6Oz0OC3GPa7L8gf4doR8IiYiwPG0RnisI7Qayorul0
-cTSCp4V5bStEKI/u830QFSdYZY8qExLS6voh22OcHsrM2qgU0RY9apH+iKjGE3K2
-/4i39v5t1PG6rYUKzw4KAuiOCzPkqH4+WdqG+DB7Hyq+rX+VZPob9NsEK+sZ5HVF
-86SvPhcuTBc/IdS1hldRzl7mdQwB2VGBrfh4i3LG3Yo1mR5FlsnDgCy1gAcndLFG
-pS+hU+8ERHQRnr66+WXvjRSL2shrgj/1sQfS0mO7aqfPPnVopWpYZngIMIx3qGh7
-MwIKhtLGRLghqD6/p0ohUHhpYT2InDg0smVk2mJGFYG8f7/pDzmyDBdDGaXCbal+
-Gq9flM5cHphl8u/P7B4FIQrCYyJjp/Xoa6fafy+LnxCnsOvDkifnBBYmc/8A4Zwc
-GPKRH2KNZl3sFvTj6OIGbBsaYHdrGhBO9LfhzY7vMQVs8SXAP+s=
-=OBUe
------END PGP SIGNATURE-----
-
---4F8XSA1RY80B7563--
