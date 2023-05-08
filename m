@@ -2,164 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0FBC6FA25F
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 10:35:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4679B6FA260
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 10:36:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231857AbjEHIfA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 04:35:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55372 "EHLO
+        id S232854AbjEHIgF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 04:36:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55604 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233496AbjEHIez (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 04:34:55 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35B8E9ED6
-        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 01:34:50 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-4f24cfb8539so1189627e87.3
-        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 01:34:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683534888; x=1686126888;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qCNtPr0JwlvjsNFu67DIeJ3GgI3iGTtI8/7LXS2wZYk=;
-        b=V5vXNQ5GWe8KUpKdHN0fnMvcPOUhlsyB5PxpWSVkiOpt16uzeZWmHsLIN12yFm+5Yj
-         9MIm4tjLtxmpIa4vJZCHhpYU1SAw5ILnU4tw6oxBcNLR2XsPXy0uXgo9NSn7wfJkk2Ow
-         X5vCImpRhKUZIcCqGjd0x5b9YsU95zpjhUwMx4HBXc8a5Ok1EZ0H3PHD607cWVy/5nCs
-         kJtCl665w2PDl0ZdqYszREFCTMlhJGrbowvUwU96KHkQxrlUh28MfaGvILi34MqpiXV1
-         uEDDPugmFJknA7tZY1GLfcPBRYlxKbDA0uPrUt6kVEEjADNaL2gOs1gz54mM4Zu1s2Zl
-         KvNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683534888; x=1686126888;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qCNtPr0JwlvjsNFu67DIeJ3GgI3iGTtI8/7LXS2wZYk=;
-        b=BGSfKIOlI8XUZj1OdRsRieOO2LDwKEmGkK1v8t3lHkBnialGNY2SWqQwZAgSJkUP6A
-         VGbzTQxNC1eZ7rlH6QzNre3NC+abFL3MctvLm9AgDNcs73/GaqnxZyz00V0D2FkJbK5s
-         t+LeuVEtYkvFzjDDExSFDHbk4a65x4q2L/6v1BTpZ3paVAgSzHLfhZ0BHYSC89tJ18xB
-         Nasq6Ry9XdhDSZ9Ji6PcKWZR9ivZE+Xbs/VFBGmObs9XRJInc4LzP5Fnw/YalZOTNR7i
-         RDGwrYJYLpJ7WKz4J77h0y5HnK2FCF45Gw6lNgkdrRp1zACeKzWkE2O8sBRsBfL6y097
-         W6Ng==
-X-Gm-Message-State: AC+VfDyFGNWkI5l29tcRip0OcLStndeYZNGQNHAfPqB9LSxPKn7Q6nWZ
-        RqwejjFYgX2r0/SJ8oKDmgAqlQ==
-X-Google-Smtp-Source: ACHHUZ6PIEja33Tsnyi1eGOgotXjqEbCn17WNyUoqoCXNnTL2k/aocmrdgrbsEBA9RKenXcbUU4CAA==
-X-Received: by 2002:ac2:4d1a:0:b0:4ec:363a:5f24 with SMTP id r26-20020ac24d1a000000b004ec363a5f24mr2443926lfi.23.1683534888453;
-        Mon, 08 May 2023 01:34:48 -0700 (PDT)
-Received: from [192.168.1.101] (abyl248.neoplus.adsl.tpnet.pl. [83.9.31.248])
-        by smtp.gmail.com with ESMTPSA id d2-20020a05651221c200b004eff66716a6sm1206330lft.113.2023.05.08.01.34.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 May 2023 01:34:48 -0700 (PDT)
-Message-ID: <ca09ce7d-b0c4-1544-0c9e-fab823aa79e6@linaro.org>
-Date:   Mon, 8 May 2023 10:34:46 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH 4/4] ARM: dts: qcom: apq8074-dragonboard: enable DSI panel
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        with ESMTP id S229567AbjEHIgE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 04:36:04 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59AC41BEC;
+        Mon,  8 May 2023 01:36:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1683534963; x=1715070963;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Q5ODJunHXC2mcC++rxUZpJJ+DUhK13R4N+xZYOfCDPU=;
+  b=pOEzSwFbIhfUkzwtf80HeQwxd527nDJ9JKvuXVvxIkUAWdhLOLiR+qbG
+   bXRC+Cv/eB+KiYvcYuOnvq1p5rLI1yNkp1XvypkUDBlgnPV0EMpPpcUSd
+   U0fisEJPCrc+EVvcht0S6vltZT7DjtrwwgBSVSjoCvWz2IlrKEwCn9SAK
+   N8o4v1QYp3P3YT+6r8Vw/GXs1MT4E46TnOL4DT+0ZolTwdFFFyS0GnI4/
+   G1YeSJif/PubQJOF6pzpZN6qkGoUcx2d24CJl7utoidknJUiZzxI7kTFW
+   JyxrshFN4tf7UNkjEHhCgQor4NlU87zFJM3ezcFTARK14GjXg5H1VRn5y
+   A==;
+X-IronPort-AV: E=Sophos;i="5.99,258,1677567600"; 
+   d="asc'?scan'208";a="210122642"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 08 May 2023 01:36:01 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Mon, 8 May 2023 01:36:00 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Mon, 8 May 2023 01:35:58 -0700
+Date:   Mon, 8 May 2023 09:35:38 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+CC:     Conor Dooley <conor@kernel.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Icenowy Zheng <uwu@icenowy.me>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-References: <20230507190735.2333145-1-dmitry.baryshkov@linaro.org>
- <20230507190735.2333145-5-dmitry.baryshkov@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230507190735.2333145-5-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, Guo Ren <guoren@kernel.org>
+Subject: Re: [PATCH 3/5] riscv: dts: add initial T-HEAD light SoC device tree
+Message-ID: <20230508-refute-reliable-f50dafa6afbd@wendy>
+References: <20230507182304.2934-1-jszhang@kernel.org>
+ <20230507-calamari-gentleman-bbe62af06f92@spud>
+ <394696a52bf1d767044e3f990cebfbaf69dabe70.camel@icenowy.me>
+ <7518428.EvYhyI6sBW@diego>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="bEoJ+zKkEnHhY3/3"
+Content-Disposition: inline
+In-Reply-To: <7518428.EvYhyI6sBW@diego>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+--bEoJ+zKkEnHhY3/3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Mon, May 08, 2023 at 10:23:02AM +0200, Heiko St=C3=BCbner wrote:
+> Am Montag, 8. Mai 2023, 05:32:17 CEST schrieb Icenowy Zheng:
+> > =E5=9C=A8 2023-05-07=E6=98=9F=E6=9C=9F=E6=97=A5=E7=9A=84 22:35 +0100=EF=
+=BC=8CConor Dooley=E5=86=99=E9=81=93=EF=BC=9A
+> > > Hey Jisheng,
+> > >=20
+> > > On Mon, May 08, 2023 at 02:23:02AM +0800, Jisheng Zhang wrote:
+> > >=20
+> > > > +               c910_0: cpu@0 {
+> > > > +                       compatible =3D "thead,c910", "riscv";
+> > > > +                       device_type =3D "cpu";
+> > > > +                       riscv,isa =3D "rv64imafdc";
+> > >=20
+> > > Does this support more than "rv64imafdc"?
+> > > I assume there's some _xtheadfoo extensions that it does support,
+> > > although I am not sure how we are proceeding with those - Heiko might
+> > > have a more nuanced take.
+>=20
+> I guess the interesting question still is, are these part of the isa
+> string or more of an errata?
 
-On 7.05.2023 21:07, Dmitry Baryshkov wrote:
-> Enable MDSS, GPU and DSI panel output on the APQ8074 dragonboard.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  .../arm/boot/dts/qcom-apq8074-dragonboard.dts | 51 +++++++++++++++++++
->  1 file changed, 51 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/qcom-apq8074-dragonboard.dts b/arch/arm/boot/dts/qcom-apq8074-dragonboard.dts
-> index c893afc00eb4..72f7e09a5bbf 100644
-> --- a/arch/arm/boot/dts/qcom-apq8074-dragonboard.dts
-> +++ b/arch/arm/boot/dts/qcom-apq8074-dragonboard.dts
-> @@ -48,6 +48,57 @@ eeprom: eeprom@52 {
->  	};
->  };
->  
-> +&dsi0 {
-old junk could use some mdss_ prefixing to keep the nodes together
+Yeah, I dunno. That's possible a policy decision more than anything
+else. I don't remember if it was one of your patchsets or elsewhere, but
+I do recall a split between xtheadba etc and vector, where xtheadba was
+defined as a vendor extension, whereas vector is not. Their extension
+spec repo <https://github.com/T-head-Semi/thead-extension-spec> appears
+to be aligned with that view, apart from the CMOs that we have already
+called an erratum.
 
-Could you please take care of that?
+> The binding currently says
+>       Identifies the specific RISC-V instruction set architecture
+>       supported by the hart.  These are documented in the RISC-V
+>       User-Level ISA document, available from
+>       https://riscv.org/specifications/
+>=20
+>=20
+> I guess if we decide to make them part of the isa-string the binding
+> then should get a paragraph mention _xfoo vendor-extensions too.
 
-> +	vdda-supply = <&pm8941_l2>;
-> +	vdd-supply = <&pm8941_l22>;
-> +	vddio-supply = <&pm8941_l12>;
-> +
-> +	status = "okay";
-> +
-> +	panel: panel@0 {
-> +		compatible = "sharp,ls043t1le01-qhd";
-> +		reg = <0>;
-> +
-> +		avdd-supply = <&pm8941_l22>;
-> +		backlight = <&pm8941_wled>;
-> +		reset-gpios = <&pm8941_gpios 19 GPIO_ACTIVE_HIGH>;
-> +
-> +		port {
-> +			panel_in: endpoint {
-> +				remote-endpoint = <&dsi0_out>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&dsi0_out {
-> +	remote-endpoint = <&panel_in>;
-> +	data-lanes = <0 1 2 3>;
-> +};
-> +
-> +&dsi0_phy {
-> +	status = "okay";
-> +
-> +	vddio-supply = <&pm8941_l12>;
-status last
+I have an idea in the works that may allow dealing with this kind of
+thing, but it's a bit of a departure from the existing binding.
+I will hopefully post an early RFC of it later today.
+That said, the binding does currently allow you to put in _xfoo vendor
+extensions as-is.
 
-Konrad
-> +};
-> +
-> +&gpu {
-> +	status = "okay";
-> +};
-> +
-> +&mdss {
-> +	status = "okay";
-> +};
-> +
-> +&pm8941_wled {
-> +	qcom,cs-out;
-> +	qcom,switching-freq = <3200>;
-> +	qcom,ovp = <32>;
-> +	qcom,num-strings = <1>;
-> +
-> +	status = "okay";
-> +};
-> +
->  &remoteproc_adsp {
->  	cx-supply = <&pm8841_s2>;
->  
+> Personally, making these part of the ISA string definitly sounds like
+> the best solution though :-) .
+
+You would say that wouldn't you! In general, I'd rather we filled in as
+much information as possible here, even if it is not currently in use,
+to avoid having to retrofit as support becomes available.
+
+--bEoJ+zKkEnHhY3/3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZFi0WgAKCRB4tDGHoIJi
+0mLjAPwIbkf8ND8bETn28FqkNQUw7WZE4pCwsbtCxP4g9Fa/zAEAx7QdvUgGgoki
+L2lbouRlgh/MWTdnd6MR7meT9HAKNgY=
+=n0NK
+-----END PGP SIGNATURE-----
+
+--bEoJ+zKkEnHhY3/3--
