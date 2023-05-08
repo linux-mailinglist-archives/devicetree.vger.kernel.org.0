@@ -2,75 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4679B6FA260
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 10:36:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76EB66FA24D
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 10:33:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232854AbjEHIgF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 04:36:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55604 "EHLO
+        id S229986AbjEHIdx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 04:33:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229567AbjEHIgE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 04:36:04 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59AC41BEC;
-        Mon,  8 May 2023 01:36:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1683534963; x=1715070963;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Q5ODJunHXC2mcC++rxUZpJJ+DUhK13R4N+xZYOfCDPU=;
-  b=pOEzSwFbIhfUkzwtf80HeQwxd527nDJ9JKvuXVvxIkUAWdhLOLiR+qbG
-   bXRC+Cv/eB+KiYvcYuOnvq1p5rLI1yNkp1XvypkUDBlgnPV0EMpPpcUSd
-   U0fisEJPCrc+EVvcht0S6vltZT7DjtrwwgBSVSjoCvWz2IlrKEwCn9SAK
-   N8o4v1QYp3P3YT+6r8Vw/GXs1MT4E46TnOL4DT+0ZolTwdFFFyS0GnI4/
-   G1YeSJif/PubQJOF6pzpZN6qkGoUcx2d24CJl7utoidknJUiZzxI7kTFW
-   JyxrshFN4tf7UNkjEHhCgQor4NlU87zFJM3ezcFTARK14GjXg5H1VRn5y
-   A==;
-X-IronPort-AV: E=Sophos;i="5.99,258,1677567600"; 
-   d="asc'?scan'208";a="210122642"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 08 May 2023 01:36:01 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Mon, 8 May 2023 01:36:00 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Mon, 8 May 2023 01:35:58 -0700
-Date:   Mon, 8 May 2023 09:35:38 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-CC:     Conor Dooley <conor@kernel.org>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Icenowy Zheng <uwu@icenowy.me>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>, Guo Ren <guoren@kernel.org>
-Subject: Re: [PATCH 3/5] riscv: dts: add initial T-HEAD light SoC device tree
-Message-ID: <20230508-refute-reliable-f50dafa6afbd@wendy>
-References: <20230507182304.2934-1-jszhang@kernel.org>
- <20230507-calamari-gentleman-bbe62af06f92@spud>
- <394696a52bf1d767044e3f990cebfbaf69dabe70.camel@icenowy.me>
- <7518428.EvYhyI6sBW@diego>
+        with ESMTP id S229492AbjEHIdw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 04:33:52 -0400
+Received: from EUR02-VI1-obe.outbound.protection.outlook.com (mail-vi1eur02on2063.outbound.protection.outlook.com [40.107.241.63])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F48A1BEC;
+        Mon,  8 May 2023 01:33:50 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=EjqzjM38LuzhEtkeBVt2GCeexivhIdGPZVrmP1k5ayhlWteD9GXzSgXxAHTHGsJZs/Ym2OyuBaN3FBqMRBd01q7smI4GEf5YOABkhuIa7Z2IbroxccRtbZ9W7l6UMu0EDoCdwEpu3gzoP0ApFGVdLlE8uY5+17JcvO5D254M2uJ12dU4qMBEBXNu1tYHbE6cI7RLwv1U2hldiKRTc1aaNR3pyW4ntPPV8042fi0ko+MdNEosm/m92/35OgtanO6FoKhFIdiSeHNVBWIAnRxq+riIJN0AObbpJp7yMp0tsx89yJ2xxvM/GNNyYTz0WxmfFL+mKDRWaI48OxehUOYOGw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RnmhfxxLO0BbzQgQ4pjNZxxBwcW2UV2hgKfY5USodp0=;
+ b=C2o3j2cqnghb2dqwqqYNuM6yYcDd17kMTxwDQevYB1ejOyqXXjxEplfpD0CH1ds8NN+2hRLa5yoEwkuTcmuQA9GYWAkhESOjKdEuHcaWp4Io2IDxAhOWQi7YELVwPdqEogxZQZ7fmWBncljrQYOCCh8Jo00GmywAncr2Q5uOXfxKEnEX0kH3fn/AfiROAf3ptCryQOP6cZod7xu+01vPBbJ5tu4lilVqm5PSAjD1BDIxjS/GLoOe6j2HKBZRQpc+n19zk7itKvFcVJ44iF0ebFvrkjG151Oj41k1Eve8ulNONl/+hLxZTE0bmLljLYiGBo9n7OSF1cNlhgcAG6aadw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RnmhfxxLO0BbzQgQ4pjNZxxBwcW2UV2hgKfY5USodp0=;
+ b=XjrcZ9Szs5ngXi3116mHYjZAnaMcpmc0FNJmVhRMMipXRoZ1t1Fa40Oktcv9HtWskANCvzZwsIgQgBV28/byITAXjsSDRToASLY/pFwm1Y7e0W9IxIzgTIOY6nl3GS57lfL53QT8Ba9SvMJ4gEEmy3ANEpUigxRr1jJE41l2xU8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+ by AS1PR04MB9408.eurprd04.prod.outlook.com (2603:10a6:20b:4d8::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.32; Mon, 8 May
+ 2023 08:33:47 +0000
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::60e3:2297:61f1:4d1d]) by AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::60e3:2297:61f1:4d1d%4]) with mapi id 15.20.6363.032; Mon, 8 May 2023
+ 08:33:46 +0000
+From:   Liu Ying <victor.liu@nxp.com>
+To:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     neil.armstrong@linaro.org, sam@ravnborg.org, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        thierry.reding@gmail.com, linux-imx@nxp.com,
+        krzysztof.kozlowski@linaro.org
+Subject: [PATCH v2 0/2] drm/panel: panel-simple: Add BOE EV121WXM-N10-1850 panel support
+Date:   Mon,  8 May 2023 16:38:24 +0800
+Message-Id: <20230508083826.1016206-1-victor.liu@nxp.com>
+X-Mailer: git-send-email 2.37.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG2P153CA0045.APCP153.PROD.OUTLOOK.COM (2603:1096:4:c6::14)
+ To AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="bEoJ+zKkEnHhY3/3"
-Content-Disposition: inline
-In-Reply-To: <7518428.EvYhyI6sBW@diego>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|AS1PR04MB9408:EE_
+X-MS-Office365-Filtering-Correlation-Id: ce2218d2-4b25-4939-8ff0-08db4f9ef084
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 12jK8bf8qLpZ5yAc8eKOWQFwgsJie38aS75kz8atH0Xc93Ajk8RYPAqWo3h6hdzdyiAifBm+r+rUjkyhxCZgVGGGfjfpA8Wo7y7qnqQj6NFz+VdmcCPTAqbbFw2YPPp0k0j33CW+G3m54o8/KAN9BMojkg7hBiV2DLG4CiHqUT6jymmBrNCLlUWcDx5Z6Hp+XOijQHu9jh4GF9dTOnnDLm7yUQ3KuN0/7cvbW+qYkgI20c3DE3OV99rOhiJTuQITmdKAww5asiBVPySxivh7ASw44klM8qTVjCIesnm5fUXsNf4f5bkDlDvZI/ZXa7AtAVyEyvfFIDISOnHjp5oWAH1eWIiGdwrZpXwEz4xCG3fYK9IWo2RUhT+D9EZEjaxWDEhld8Cjdza4maZT13xbn7nvHUvQ7zBB7Nl7SKvtAICClU2sMoEhTlAtJYod3Ymq/ghRpQk3fsX+s/haz8K8MYT2QcGKEt9dwUX1BzPBnr1wzHUhdV+xqICHU4aTc6bGEf1BEYI42oD6ULibT82KK+zgkuWqSOicIvTFmVwDb7H8hN0N+6Ik7gXatuOw+cjM3/kwzvWFxhgEL0z2P/0/p+G1N6xoZXHnfVo8aPi77e0V0Xjq7hL2Mvxkxe1woL2D
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(396003)(136003)(376002)(346002)(39860400002)(366004)(451199021)(52116002)(66946007)(66556008)(66476007)(4326008)(478600001)(6486002)(316002)(6666004)(86362001)(36756003)(83380400001)(2616005)(6512007)(6506007)(1076003)(26005)(8676002)(8936002)(5660300002)(41300700001)(7416002)(4744005)(2906002)(186003)(38350700002)(38100700002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?up50DesUkhfZyAB4ySpdSeISHibLLXBYrBKIJjkFvalGDYAupEgQigjS10IA?=
+ =?us-ascii?Q?hYmUGw41MsgNXxPjAQhNXlwzv0uyJdwbFtlb5HIQeCnu5ErRnSqdraMWvrft?=
+ =?us-ascii?Q?yp/v1iXD58VdXEhH22sNj9fGMFfg7c2Tk8ukJ56DyYGvJlEtP5Pp6gFXywGQ?=
+ =?us-ascii?Q?r8/b0jAeKj6WPMab/SXzNSOakgA5ay4EJbzrlR0DyPtWAJ6WMK8tpYsS6OO7?=
+ =?us-ascii?Q?NPykqcTxT7QI94m8ejU8jzueuFPe5+ZRFetlColayKeFLa5K6X3KNmIfWP2e?=
+ =?us-ascii?Q?lVqn/Zdze/uF8D0BGqO8K/lvnQL8AcMKkTAYW1NScd0bWWH/1E7wmj2gyC07?=
+ =?us-ascii?Q?ELul4kROYxdQ3RXJMXJ6EUgtTgCBLOZWkX0JlwDr2dmeAkcOeaNZ1gsmNCpM?=
+ =?us-ascii?Q?Ti7b31/bbKqH3WwJWpCYGRaLVqK2suR27jv52zK6BZS/dKqqEN5ZMSqO3aak?=
+ =?us-ascii?Q?6odiyLSXBvLtUD2gPVb7Z6fb0ZuPCHuWsWofyXwJ1okbLX2pUw+5Pzit39Wn?=
+ =?us-ascii?Q?ftm9BeaHKQaaeBnpc4odXX9w8WSnaOC0dLpiPTIb1OyezwTa+Qh/ue1qd9BA?=
+ =?us-ascii?Q?TfVMtGrochApNGSwCmYujKsx5GJEWlPa1NTlkCdxVasg/O4thKuX/HIEexcd?=
+ =?us-ascii?Q?I0YyX19iUPjmnaLWtxR7u894M3ZZfVDy3n63xW8bblq45D1BQ+LBYI5moAND?=
+ =?us-ascii?Q?WABaojv5pKDdBRrOBP1W6NUgyhbV8b88I/R5KoEMVrs19+pPOsFZOcJbJRYY?=
+ =?us-ascii?Q?eM06KpqNMllEjYDEa76g6BclSoqLU6VOxjrisYdJQD2Ha0SmeRhkITDq+fW0?=
+ =?us-ascii?Q?kumlpRrU8zo8uT1HqD2gPHAlIjwHdDO6RcbrUSsxith5u07dkZ7BSGUkvvRt?=
+ =?us-ascii?Q?Yv3BmpKM1xWwLFy0IlynEPmZADPM/U3Lax3LDQp3ekCMqlosDxp6rdbT3inJ?=
+ =?us-ascii?Q?soPS+SNhkRH2VVF9bCdbgFsSr95s60OSh1Z+OQW1vB0wG1e+UYzImZ9EA0Dt?=
+ =?us-ascii?Q?Xd0nGz2E5exMqk1ozylVogozOsSmpFQdni5LeBc69HNV+MTJyohO7EjkLRbT?=
+ =?us-ascii?Q?rWfVcziTPOmEAgBEwcwtv7zzQgzYdPptXae/BbVOjdPQQBNl3OQzhuvF0SdE?=
+ =?us-ascii?Q?1AvStNswQmtlAtvwjf9mGJxVItoKF3DR/+JIwYMxAZwpAG8Dwy8hhUnDRxVF?=
+ =?us-ascii?Q?aa3vxMiGP6G7FiTfV9D5wO8XPTrMQ08AcT6rLqHI2UbwRm9eLgO6FoMBSr5M?=
+ =?us-ascii?Q?m1JFBBQ86j5KxVPUyvGkv7UkYcuQsXI6Naya9aOD+HHG6lpZi14FbSNNAy3W?=
+ =?us-ascii?Q?UlwBINHJBUgbi0gcxx9k+RuEwkJDALDeqD6aihUYF7ptQ1LZqz7VP5rzxJu1?=
+ =?us-ascii?Q?lIbt0C++hgUgve4v49GLexCnhI5aP3/drCgWMu4kThJw4uTjk44CJFKnzB78?=
+ =?us-ascii?Q?jxYCILN6W7fEvLWuW6q2EArs5ZpdXRVn6WIl+qsOAmuThHBXoIlbn2N9Fj9Q?=
+ =?us-ascii?Q?3i40R9WKtDOvu06q1AySQxUd3h/TJ98N6UFqxJVOJWyFjgtjX3SOAagGbvx4?=
+ =?us-ascii?Q?gLaBbmS0nPzw7LcOCG/DYI6AQX2Z7trpCWO8szhq?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ce2218d2-4b25-4939-8ff0-08db4f9ef084
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 May 2023 08:33:46.4997
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: GjgmUVfoecRJGyGYyQz9Pe6+DxZV2of+nZbflRkgE4XpPc0SQqSVBsW6WqOu3K0ES9dK5ny4oZ6Jna8PlA27Tw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR04MB9408
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,72 +113,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---bEoJ+zKkEnHhY3/3
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi,
 
-On Mon, May 08, 2023 at 10:23:02AM +0200, Heiko St=C3=BCbner wrote:
-> Am Montag, 8. Mai 2023, 05:32:17 CEST schrieb Icenowy Zheng:
-> > =E5=9C=A8 2023-05-07=E6=98=9F=E6=9C=9F=E6=97=A5=E7=9A=84 22:35 +0100=EF=
-=BC=8CConor Dooley=E5=86=99=E9=81=93=EF=BC=9A
-> > > Hey Jisheng,
-> > >=20
-> > > On Mon, May 08, 2023 at 02:23:02AM +0800, Jisheng Zhang wrote:
-> > >=20
-> > > > +               c910_0: cpu@0 {
-> > > > +                       compatible =3D "thead,c910", "riscv";
-> > > > +                       device_type =3D "cpu";
-> > > > +                       riscv,isa =3D "rv64imafdc";
-> > >=20
-> > > Does this support more than "rv64imafdc"?
-> > > I assume there's some _xtheadfoo extensions that it does support,
-> > > although I am not sure how we are proceeding with those - Heiko might
-> > > have a more nuanced take.
->=20
-> I guess the interesting question still is, are these part of the isa
-> string or more of an errata?
+This patch series aims to add BOE EV121WXM-N10-1850 panel support
+in the DRM simple panel driver.
 
-Yeah, I dunno. That's possible a policy decision more than anything
-else. I don't remember if it was one of your patchsets or elsewhere, but
-I do recall a split between xtheadba etc and vector, where xtheadba was
-defined as a vendor extension, whereas vector is not. Their extension
-spec repo <https://github.com/T-head-Semi/thead-extension-spec> appears
-to be aligned with that view, apart from the CMOs that we have already
-called an erratum.
+Patch 1/2 adds dt-bindings support for the panel.
+Patch 2/2 adds the panel support in the DRM simple panel driver.
 
-> The binding currently says
->       Identifies the specific RISC-V instruction set architecture
->       supported by the hart.  These are documented in the RISC-V
->       User-Level ISA document, available from
->       https://riscv.org/specifications/
->=20
->=20
-> I guess if we decide to make them part of the isa-string the binding
-> then should get a paragraph mention _xfoo vendor-extensions too.
+v1->v2:
+* Add Krzysztof's A-b tag on patch 1/2.
+* Use struct display_timing in patch 2/2 to tell minimum and maximum
+  pixel clock rates.
+* Set bus_flags to DRM_BUS_FLAG_DE_HIGH in struct panel_desc in patch 2/2.
 
-I have an idea in the works that may allow dealing with this kind of
-thing, but it's a bit of a departure from the existing binding.
-I will hopefully post an early RFC of it later today.
-That said, the binding does currently allow you to put in _xfoo vendor
-extensions as-is.
+Liu Ying (2):
+  dt-bindings: display: simple: Add BOE EV121WXM-N10-1850 panel
+  drm/panel: panel-simple: Add BOE EV121WXM-N10-1850 panel support
 
-> Personally, making these part of the ISA string definitly sounds like
-> the best solution though :-) .
+ .../bindings/display/panel/panel-simple.yaml  |  2 ++
+ drivers/gpu/drm/panel/panel-simple.c          | 34 +++++++++++++++++++
+ 2 files changed, 36 insertions(+)
 
-You would say that wouldn't you! In general, I'd rather we filled in as
-much information as possible here, even if it is not currently in use,
-to avoid having to retrofit as support becomes available.
+-- 
+2.37.1
 
---bEoJ+zKkEnHhY3/3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZFi0WgAKCRB4tDGHoIJi
-0mLjAPwIbkf8ND8bETn28FqkNQUw7WZE4pCwsbtCxP4g9Fa/zAEAx7QdvUgGgoki
-L2lbouRlgh/MWTdnd6MR7meT9HAKNgY=
-=n0NK
------END PGP SIGNATURE-----
-
---bEoJ+zKkEnHhY3/3--
