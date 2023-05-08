@@ -2,64 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B1AAB6FA242
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 10:30:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C12A56FA243
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 10:31:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229492AbjEHIav (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 04:30:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52932 "EHLO
+        id S229986AbjEHIbC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 04:31:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229779AbjEHIau (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 04:30:50 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15F9A1707
-        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 01:30:49 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1pvwGZ-0001JB-3v; Mon, 08 May 2023 10:30:43 +0200
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1pvwGW-0003y3-LM; Mon, 08 May 2023 10:30:40 +0200
-Date:   Mon, 8 May 2023 10:30:40 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Peng Fan <peng.fan@nxp.com>, Jacky Bai <ping.bai@nxp.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Fabio Estevam <festevam@gmail.com>, linux-clk@vger.kernel.org,
-        Abel Vesa <abelvesa@kernel.org>, Marek Vasut <marex@denx.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        devicetree@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Adam Ford <aford173@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Stephen Boyd <sboyd@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Richard Leitner <richard.leitner@linux.dev>,
-        Lucas Stach <l.stach@pengutronix.de>
-Subject: Re: [PATCH v7 4/5] arm64: dts: imx8mp: Add SAI, SDMA, AudioMIX
-Message-ID: <20230508083040.rjxlxopim2xkypet@pengutronix.de>
-References: <20230301163257.49005-1-marex@denx.de>
- <20230301163257.49005-4-marex@denx.de>
- <ZACNuAOJd+uXBKyJ@g0hl1n.net>
- <20230421092623.jz7qxd7pkj2egzts@pengutronix.de>
+        with ESMTP id S229779AbjEHIbC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 04:31:02 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 896E21707
+        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 01:31:00 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4f139de8cefso26421574e87.0
+        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 01:31:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683534659; x=1686126659;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Bj0Lw2kox19ii2BM01KlnNMvqL1S4dwAiyFt2I0KjpM=;
+        b=JZGSLHB9MIYiGCrQCgu4CqzDve0wTy93hMJVCfnNsIg1e/oqMnEnuKZEjGWR7bs7cw
+         wfJ8mC5hmtQJMzFIerLt205IFxVfsoCteL9MbnHixWLjRat8FN3FHeByYWulJI5nse+n
+         XVxWvVrQgdCTXGXQPid3/2FfcJopHt43b38my1vwvUf01TJiN1YjXn+q37RSFi4TYAO9
+         aDNST8R5MPSiSCKGwws5Qi3bGUiXg+rLaRFlhpUHLtrTpmX3YA1zcsW6vm6FOoXFlgna
+         EWO8+OU0NAQaJXsDR6KfFam/VKu2N9I98M/8QewTteeTKYONYftaD56MxhGplbAFkQwV
+         wHVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683534659; x=1686126659;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Bj0Lw2kox19ii2BM01KlnNMvqL1S4dwAiyFt2I0KjpM=;
+        b=dcWeVISSBUATJsJdoeHxE8rziBNWxNI2BFj5KlfrHJm9KlwvS9e/QKVJ0H8rey9g4k
+         I2d7g+8OmIYuSiA96DsPTZVS/8Yu+oRt6wAn0Not5c5Z32abZ4IZkf+UQLJH4V2Fy2Ok
+         Y9mjl/fRHhl2UgFjVX9elxEijMMxNuve/YrJxL0WSJdVxh5qNRanXuzZN2HrZ2+BiVSf
+         rYOyCreanBNltK/efV0UkmAloycSHWR7ZU5p8C2glM+cqzCSX7FaxzpNBRuNtsBFa/OD
+         a/xizG9np0nzUuNaceg7ukRtxtta0o7rGl7k4wZJtavwIoMoDsURsp6p6q/dGAkEfAzc
+         VUdw==
+X-Gm-Message-State: AC+VfDztYuc9qAx24jPuv5rMN8dbYugx5+9S/awReWckYK3O4JmL2u8x
+        g7kHyRFRDathwEvYOH5E5d2Fcw==
+X-Google-Smtp-Source: ACHHUZ6d24zxoVca00fKR8vFgULu7VtObta6oV9gpaKWuTbbc7CK6t+VDpL4OjXEIRruPoM0kJT4+A==
+X-Received: by 2002:a19:f00d:0:b0:4ee:dc5a:42f7 with SMTP id p13-20020a19f00d000000b004eedc5a42f7mr2907935lfc.24.1683534658808;
+        Mon, 08 May 2023 01:30:58 -0700 (PDT)
+Received: from [192.168.1.101] (abyl248.neoplus.adsl.tpnet.pl. [83.9.31.248])
+        by smtp.gmail.com with ESMTPSA id a17-20020a19f811000000b004f13634da05sm1215359lff.180.2023.05.08.01.30.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 May 2023 01:30:58 -0700 (PDT)
+Message-ID: <8cdecc51-2a42-4b82-9eb3-2ab77860c5d4@linaro.org>
+Date:   Mon, 8 May 2023 10:30:56 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230421092623.jz7qxd7pkj2egzts@pengutronix.de>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH 1/4] ARM: dts: qcom: msm8974: add ocmem clock to GPU
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+References: <20230507190735.2333145-1-dmitry.baryshkov@linaro.org>
+ <20230507190735.2333145-2-dmitry.baryshkov@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230507190735.2333145-2-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,32 +84,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-04-21, Marco Felsch wrote:
-> Hi Shawn,
-> 
-> On 23-03-02, Richard Leitner wrote:
-> > On Wed, Mar 01, 2023 at 05:32:56PM +0100, Marek Vasut wrote:
-> > > Add all SAI nodes, SDMA2 and SDMA3 nodes, and AudioMIX node. This is
-> > > needed to get audio operational on i.MX8MP .
-> > > 
-> > > Acked-by: Peng Fan <peng.fan@nxp.com>
-> > > Reviewed-by: Fabio Estevam <festevam@gmail.com>
-> > > Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> > > Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
-> > > Tested-by: Adam Ford <aford173@gmail.com> #imx8mp-beacon-kit
-> > > Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > > Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> > > Signed-off-by: Marek Vasut <marex@denx.de>
-> > 
-> > Hi Marek,
-> > I've successfully tested this patch on a custom i.MX8MP board. Therefore
-> > please feel free to add:
-> > 
-> > Tested-by: Richard Leitner <richard.leitner@skidata.com>
-> 
-> Can you please pick patch 4 and 5? Patch 1-3 is already picked by Abel.
 
-Gentle ping.
 
-Regards,
-  Marco
+On 7.05.2023 21:07, Dmitry Baryshkov wrote:
+> To get GPU working with the OCMEM, the oxili_ocmemgx_clk clock should be
+> enabled. Pass it to the GPU to get it to work on apq8074/msm8974 boards.
+> 
+> Fixes: fe079442db63 ("ARM: dts: qcom: msm8974: add gpu support")
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+Uhh.. this clock should be managed by RPM with:
+
+type = MEM
+id = 2
+
+just like it's defined for 8994 today.
+
+Could you try adding it in rpmcc and confirming?
+
+Konrad
+>  arch/arm/boot/dts/qcom-msm8974.dtsi | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
+> index 834ad95515b1..fb661c1bd3d5 100644
+> --- a/arch/arm/boot/dts/qcom-msm8974.dtsi
+> +++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
+> @@ -2104,8 +2104,9 @@ gpu: adreno@fdb00000 {
+>  
+>  			clocks = <&mmcc OXILI_GFX3D_CLK>,
+>  				 <&mmcc OXILICX_AHB_CLK>,
+> +				 <&mmcc OXILI_OCMEMGX_CLK>,
+>  				 <&mmcc OXILICX_AXI_CLK>;
+> -			clock-names = "core", "iface", "mem_iface";
+> +			clock-names = "core", "iface", "mem", "mem_iface";
+>  
+>  			sram = <&gmu_sram>;
+>  			power-domains = <&mmcc OXILICX_GDSC>;
