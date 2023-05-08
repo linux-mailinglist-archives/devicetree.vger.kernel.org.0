@@ -2,63 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 421636F9DB7
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 04:26:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83C606F9DD5
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 04:44:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232018AbjEHC0W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 May 2023 22:26:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60000 "EHLO
+        id S230433AbjEHCo4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 May 2023 22:44:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229744AbjEHC0V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 May 2023 22:26:21 -0400
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF85F2697;
-        Sun,  7 May 2023 19:26:19 -0700 (PDT)
-Received: by mail-ot1-f50.google.com with SMTP id 46e09a7af769-6aaffc866c4so219471a34.2;
-        Sun, 07 May 2023 19:26:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683512779; x=1686104779;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=h0nAj/yiEXbegcbKIRioBYUBmK7Tsw8tqmlINwwUydQ=;
-        b=eyMewFlnIes/BMKgcL+bTbQ0qwBWALoi5Oi1OLnNG/jXHVA9onfeeF45RGpWxLJyPm
-         8npmPGePS79lEUXtYV/vw3pMdVy83P5JsHBBcw4c49HeJ+t4pm8fag542exDEZ9W6aYu
-         FtsGn+wnnYjrB1cQXn0wButJVNjFxnD7pCs14nnb/fqKk8hoEX+nFxH5roN283K5pCot
-         oNcOZ2ZHuIwpN9HQLSPVZZ/wYQab9ZKEaZaSJmLhkmH2SZQnfPG2qGx07AIAkjVZoxlx
-         DEtYyz3QIKY6HoMgx904LW3hbNw4WOoJ9zK7zk/5+B9pdwiiXYC7wy9wc6mOiXC4WiYz
-         Pncg==
-X-Gm-Message-State: AC+VfDytIuAaxhMU9SsNq54tS5cE0TNYyXGDf5YHNEkB/8Jg8OlDysLY
-        k5FksbP8TelE2J4njlQsNn/5UIK6Z3SF
-X-Google-Smtp-Source: ACHHUZ6m668jF63TDZnUEWWGd+LLclja4qzSD5cV0i+7Pi8lrfJxUZb9w6fQgcVTo0AqWBMF8tKVZw==
-X-Received: by 2002:a05:6830:130c:b0:6ab:8a:1cd9 with SMTP id p12-20020a056830130c00b006ab008a1cd9mr1217921otq.12.1683512778911;
-        Sun, 07 May 2023 19:26:18 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id m22-20020a9d7e96000000b0069faa14e99fsm461803otp.10.2023.05.07.19.26.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 07 May 2023 19:26:18 -0700 (PDT)
-Received: (nullmailer pid 3963898 invoked by uid 1000);
-        Mon, 08 May 2023 02:26:17 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S229814AbjEHCo4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 May 2023 22:44:56 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D80AE4A;
+        Sun,  7 May 2023 19:44:51 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 4CCD524DBC2;
+        Mon,  8 May 2023 10:44:33 +0800 (CST)
+Received: from EXMBX062.cuchost.com (172.16.6.62) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 8 May
+ 2023 10:44:33 +0800
+Received: from [192.168.125.124] (183.27.98.219) by EXMBX062.cuchost.com
+ (172.16.6.62) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 8 May
+ 2023 10:44:32 +0800
+Message-ID: <54494959-f2cb-d962-ca27-d5d08e70da93@starfivetech.com>
+Date:   Mon, 8 May 2023 10:44:31 +0800
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     alison@she-devel.com
-Cc:     johan@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        achaiken@aurora.tech, devicetree@vger.kernel.org,
-        conor+dt@kernel.org
-In-Reply-To: <20230508011159.263322-3-alison@she-devel.com>
-References: <20230508011159.263322-1-alison@she-devel.com>
- <20230508011159.263322-3-alison@she-devel.com>
-Message-Id: <168351277733.3963882.1322894926524708728.robh@kernel.org>
-Subject: Re: [PATCH 2/2] dt-bindings: gnss: Add U-Blox Zed-F9
-Date:   Sun, 07 May 2023 21:26:17 -0500
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH v3 1/3] dt-bindings: sound: Add TDM for StarFive JH7110
+Content-Language: en-US
+To:     Mark Brown <broonie@kernel.org>
+CC:     Liam Girdwood <lgirdwood@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+References: <20230506090116.9206-1-walker.chen@starfivetech.com>
+ <20230506090116.9206-2-walker.chen@starfivetech.com>
+ <ZFhQujhpbt/7yGGc@finisterre.sirena.org.uk>
+From:   Walker Chen <walker.chen@starfivetech.com>
+In-Reply-To: <ZFhQujhpbt/7yGGc@finisterre.sirena.org.uk>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [183.27.98.219]
+X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX062.cuchost.com
+ (172.16.6.62)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -66,46 +63,19 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Sun, 07 May 2023 18:11:59 -0700, alison@she-devel.com wrote:
-> From: Alison Chaiken <achaiken@aurora.tech>
+
+On 2023/5/8 9:30, Mark Brown wrote:
+> On Sat, May 06, 2023 at 05:01:14PM +0800, Walker Chen wrote:
+>> Add bindings to describe the TDM driver for the StarFive JH7110 SoC.
 > 
-> Add support for the U-Blox Zed-F9P GNSS device.
-> 
-> Signed-off-by: Alison Chaiken <achaiken@aurora.tech>
-> ---
->  Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
+> Please submit patches using subject lines reflecting the style for the
+> subsystem, this makes it easier for people to identify relevant patches.
+> Look at what existing commits in the area you're changing are doing and
+> make sure your subject lines visually resemble what they're doing.
+> There's no need to resubmit to fix this alone.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Thanks for your reminder, I will pay attention to this when submitting
+ patches in the future.
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.example.dtb: camera-sensor@3c: port:endpoint:data-lanes: [[1]] is too short
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/rockchip-isp1.example.dtb: camera@3c: port:endpoint:data-lanes: [[1]] is too short
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.example.dtb: pcie-ep@33800000: Unevaluated properties are not allowed ('assigned-clock-parents', 'assigned-clock-rates', 'assigned-clocks' were unexpected)
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml
-
-doc reference errors (make refcheckdocs):
-Documentation/usb/gadget_uvc.rst: Documentation/userspace-api/media/v4l/pixfmt-packed.yuv.rst
-MAINTAINERS: Documentation/devicetree/bindings/pwm/pwm-apple.yaml
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230508011159.263322-3-alison@she-devel.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Best regards,
+Walker
