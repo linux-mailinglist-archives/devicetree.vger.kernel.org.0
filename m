@@ -2,57 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 259B66FB151
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 15:20:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD1536FB170
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 15:27:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229479AbjEHNUi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 09:20:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39268 "EHLO
+        id S229567AbjEHN10 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 09:27:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233727AbjEHNUh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 09:20:37 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 753E633853;
-        Mon,  8 May 2023 06:20:12 -0700 (PDT)
+        with ESMTP id S234021AbjEHN1V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 09:27:21 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BACBD2FCCE;
+        Mon,  8 May 2023 06:27:13 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 844DC617FB;
-        Mon,  8 May 2023 13:20:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86072C433EF;
-        Mon,  8 May 2023 13:20:07 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6019463D34;
+        Mon,  8 May 2023 13:27:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14B00C433EF;
+        Mon,  8 May 2023 13:27:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1683552007;
-        bh=qxFXyXiRdVLI2aihpdzgvoA6SSxPIdCsgLDWxMdXX5o=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SDESLVfEzhSqWVZXhUfs6uC5deUwcGU3S2WRTAYeCbTYSo11M9ke2xWtgxCkxK/jH
-         zseYJ5kcIgk01/TUw0HouGhrGsR2ro7tLcbpIWXiku1Ftpy5MkGLNkUVysAAJfTl3M
-         CU3Mj5AlTpTjCGuKpcl9EZuV+7HMlFQCqGedxrGWko3yG1uii8CUJJGBxupTa7/Fgo
-         ZGzU6I4xF9fGk1yMeyOPDhzGhrvJUQ2OyuIfsutzEqsvBLTCw2JJJ1ta8e8/JBjT8c
-         I7tBoJOxRHAM0Ui58UKO8Tu7WfOAp4nogSRpFaoSASmVZzzrhMndR8/yhjsExAP5i7
-         Qfwxuzf4IuCnw==
-Date:   Mon, 8 May 2023 22:20:04 +0900
+        s=k20201202; t=1683552432;
+        bh=RlKHn1WfbUhFopUYq+iJPenXx0NBhKVWFakuSC0iDws=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=UMyuP6NmNroiwtG7+UAv502k3AqBkF4wD/7dIL2aDolwyaqaBNGc97EGHkSVUz8nE
+         d1MZz5kkk3cXsTZKyNLPVMgP7c8lUydEwsWeLL1qS/JwyH2F5oYb2MINXAo9vqqTyV
+         ar2/gHt6elxr69pMOAGJDLGtpkZccvTij1i/C28g0Zsm4ZJpHxU9a04psLQLsQPXbQ
+         7shalt1pJVblrl5dU5qwF7u3/0ATlaDn7Nt4GYVYVICfVXFSTbK7k28YYre5JLeROi
+         JV6XrMSH6nL6ITW/P8tURDkfJcuciHamwAkpsaa3BBGprFV1tkq3X1/5rIzj08S/0x
+         siytZi/04hajA==
 From:   Mark Brown <broonie@kernel.org>
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jianmin Lv <lvjianmin@loongson.cn>,
-        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn
-Subject: Re: [PATCH v9 2/2] spi: loongson: add bus driver for the loongson
- spi controller
-Message-ID: <ZFj3BEHCDc/XLBZB@finisterre.sirena.org.uk>
-References: <20230426071045.20753-1-zhuyinbo@loongson.cn>
- <20230426071045.20753-3-zhuyinbo@loongson.cn>
+To:     linux-kernel@vger.kernel.org, monstr@monstr.eu, git@xilinx.com,
+        Michal Simek <michal.simek@amd.com>,
+        Michal Simek <michal.simek@amd.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org
+In-Reply-To: <2afed7285061abbb5d9ad3b1e795b737dcff9693.1683102032.git.michal.simek@amd.com>
+References: <2afed7285061abbb5d9ad3b1e795b737dcff9693.1683102032.git.michal.simek@amd.com>
+Subject: Re: [PATCH v2] dt-bindings: spi: zynqmp-qspi: Add power-domains
+ and iommus properties
+Message-Id: <168355243037.260152.6627127053306597242.b4-ty@kernel.org>
+Date:   Mon, 08 May 2023 22:27:10 +0900
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="XLm4P5IUAz3phiU9"
-Content-Disposition: inline
-In-Reply-To: <20230426071045.20753-3-zhuyinbo@loongson.cn>
-X-Cookie: New customers only.
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-bfdf5
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -61,51 +58,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 03 May 2023 10:20:36 +0200, Michal Simek wrote:
+> ZynqMP QSPI IP core has own power domain and also iommu ID that's why
+> describe optional power-domains and iommus properties.
+> 
+> 
 
---XLm4P5IUAz3phiU9
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Applied to
 
-On Wed, Apr 26, 2023 at 03:10:45PM +0800, Yinbo Zhu wrote:
-> This bus driver supports the Loongson spi hardware controller in the
-> Loongson platforms and supports to use DTS and PCI framework to
-> register spi device resources.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
-This breaks an x86 allmodconfig build:
+Thanks!
 
-/build/stage/linux/drivers/spi/spi-loongson-core.c: In function =E2=80=98lo=
-ongson_spi_init_master=E2=80=99:
-/build/stage/linux/drivers/spi/spi-loongson-core.c:222:31: error: implicit =
-declaration of function =E2=80=98of_node_get=E2=80=99 [-Werror=3Dimplicit-f=
-unction-declaration]
-  222 |         master->dev.of_node =3D of_node_get(dev->of_node);
-      |                               ^~~~~~~~~~~
-/build/stage/linux/drivers/spi/spi-loongson-core.c:222:29: error: assignmen=
-t to =E2=80=98struct device_node *=E2=80=99 from =E2=80=98int=E2=80=99 make=
-s pointer from integer without a cast [-Werror=3Dint-conversion]
-  222 |         master->dev.of_node =3D of_node_get(dev->of_node);
-      |                             ^
-/build/stage/linux/drivers/spi/spi-loongson-core.c:242:13: error: implicit =
-declaration of function =E2=80=98of_get_property=E2=80=99 [-Werror=3Dimplic=
-it-function-declaration]
-  242 |         if (of_get_property(dev->of_node, "spi-nocs", NULL))
-      |             ^~~~~~~~~~~~~~~
-cc1: all warnings being treated as errors
+[1/1] dt-bindings: spi: zynqmp-qspi: Add power-domains and iommus properties
+      commit: 47e0255989560fbfd6cd0e03407982f37fdabe5a
 
---XLm4P5IUAz3phiU9
-Content-Type: application/pgp-signature; name="signature.asc"
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
------BEGIN PGP SIGNATURE-----
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmRY9wMACgkQJNaLcl1U
-h9DhnAf/Rhh0Q9tyOwxp7DdPW2Ys4Rcuq4CES/hgxOKXyxUqTn1HsF0H9VL2/P1w
-KqLKoqzD1+Y24twdKcTh100SonViZqf6xMJSAB0U+RfyLcErUwafjmckjQe0pmEH
-Yigc7BExtn4GY7hK+IeSE3XbUX17Tk6WLcn0t7khwOcpo2KfaeCrea/ZJtlMt1eR
-/PAv/6QL64kBj6j23F/EtzvCTx9yXGPi3oa1sh9D/c/EkkwQhbdDJv1zMW6pRN9T
-A6nyb+wUq+vwN03XnyqWu8cjHd6Y9ExhDjnELm9jbxXr5kARlfK/8rihNL+PDjzT
-xuTS6cmhMfWsXisDtixgKfRf4UBFeQ==
-=z8qJ
------END PGP SIGNATURE-----
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
---XLm4P5IUAz3phiU9--
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
