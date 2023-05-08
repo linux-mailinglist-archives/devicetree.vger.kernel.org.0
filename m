@@ -2,320 +2,477 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 010E86F9F1A
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 07:33:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DDF26F9F29
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 07:45:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232683AbjEHFdi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 01:33:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50274 "EHLO
+        id S229716AbjEHFpV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 01:45:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53870 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232684AbjEHFde (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 01:33:34 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F5B518924;
-        Sun,  7 May 2023 22:33:25 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3484ZLUs019912;
-        Mon, 8 May 2023 05:33:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=bFPmGB0u7Dr2+BTxmqHDHeKdMFaRv76B10VpO7FvjMM=;
- b=KwrJMdo7uPVvmjsVVrfnWxfHVPFVGSO88P3Tv9zZnDpfK7sDYztzrzWQNHMpA1HRMOW0
- vx7LNeo4JO2JUKdiNyKicvyZ/XiU8Uk4RNQZv7z5dfMJ7ZfW5dKemAIkY46eoBXgZMnz
- riG/3dks0gF8SuuwPtuK06Nyzs1wwdT3RKqiQb6GD/ggFOhc2z/AaOn8EhKAMn6zBTRe
- znzkF9P2RJhhf+n8vFtY0iNxAOMoYVqODhv3GNypLyjp7vrvNdHWhO0SxTUk7KdmJNBl
- B0uCIrV5DtO3/0gZG/fuaKAqMpOaFS4g+ZKzex5/a+WjyKvSP+a4NzT+2R+CYM2ctBqy Fw== 
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qesg884mf-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 08 May 2023 05:33:20 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3485XJuj001160
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 8 May 2023 05:33:19 GMT
-Received: from varda-linux.qualcomm.com (10.80.80.8) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Sun, 7 May 2023 22:33:14 -0700
-From:   Varadarajan Narayanan <quic_varada@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <amitk@kernel.org>,
-        <thara.gopinath@gmail.com>, <rafael@kernel.org>,
-        <daniel.lezcano@linaro.org>, <rui.zhang@intel.com>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     Varadarajan Narayanan <quic_varada@quicinc.com>,
-        Praveenkumar I <quic_ipkumar@quicinc.com>
-Subject: [PATCH v2 3/3] arm64: dts: qcom: ipq9574: add thermal zone nodes
-Date:   Mon, 8 May 2023 11:02:40 +0530
-Message-ID: <af01d0887e78b55f2af0a251837f7d13a00905bc.1683523370.git.quic_varada@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <cover.1683523370.git.quic_varada@quicinc.com>
-References: <cover.1683523370.git.quic_varada@quicinc.com>
+        with ESMTP id S229621AbjEHFpU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 01:45:20 -0400
+Received: from n169-112.mail.139.com (n169-112.mail.139.com [120.232.169.112])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C52C313288;
+        Sun,  7 May 2023 22:45:14 -0700 (PDT)
+X-RM-TagInfo: emlType=0                                       
+X-RM-SPAM:                                                                                        
+X-RM-SPAM-FLAG: 00000000
+Received: from localhost.localdomain (unknown[117.136.79.133])
+        by rmsmtp-lg-appmail-22-12025 (RichMail) with SMTP id 2ef964588c5bfb1-342d9;
+        Mon, 08 May 2023 13:45:03 +0800 (CST)
+X-RM-TRANSID: 2ef964588c5bfb1-342d9
+From:   Shenghao Ding <13916275206@139.com>
+To:     broonie@kernel.org, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        lgirdwood@gmail.com, perex@perex.cz,
+        pierre-louis.bossart@linux.intel.com
+Cc:     kevin-lu@ti.com, shenghao-ding@ti.com, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, x1077012@ti.com, peeyush@ti.com,
+        navada@ti.com, gentuser@gmail.com, Ryan_Chu@wistron.com,
+        Sam_Wu@wistron.com, Shenghao Ding <13916275206@139.com>
+Subject: [PATCH v2 1/5] ASoC: tas2781: Add Header file for tas2781 driver
+Date:   Mon,  8 May 2023 13:44:53 +0800
+Message-Id: <20230508054453.700-1-13916275206@139.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: eOmtJKzJsMMY-feRCClXkd4QBelCuwka
-X-Proofpoint-ORIG-GUID: eOmtJKzJsMMY-feRCClXkd4QBelCuwka
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-08_02,2023-05-05_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxscore=0
- adultscore=0 mlxlogscore=999 lowpriorityscore=0 priorityscore=1501
- phishscore=0 impostorscore=0 spamscore=0 suspectscore=0 malwarescore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2305080038
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,FROM_LOCAL_DIGITS,
+        FROM_LOCAL_HEX,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds thermal zone nodes for the various
-sensors present in IPQ9574
+Create Header file for  tas2781 driver.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Co-developed-by: Praveenkumar I <quic_ipkumar@quicinc.com>
-Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
-Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+Signed-off-by: Shenghao Ding <13916275206@139.com>
+
 ---
-[v2]:
-	Rename clusterX nodes as cpussX nodes
-
-[v1]:
-	Fix node names
+Changes in v2:
+ - fixed issue | Reported-by: kernel test robot <lkp@intel.com>
+   | Link: https://lore.kernel.org/oe-kbuild-all/202305022033.LiI7Ojm4-lkp@intel.com/
+ Changes to be committed:
+	new file:   include/sound/tas2781-dsp.h
+	new file:   include/sound/tas2781-tlv.h
+	new file:   include/sound/tas2781.h
 ---
- arch/arm64/boot/dts/qcom/ipq9574.dtsi | 208 ++++++++++++++++++++++++++++++++++
- 1 file changed, 208 insertions(+)
+ include/sound/tas2781-dsp.h | 189 ++++++++++++++++++++++++++++++++++++
+ include/sound/tas2781-tlv.h |  22 +++++
+ include/sound/tas2781.h     | 176 +++++++++++++++++++++++++++++++++
+ 3 files changed, 387 insertions(+)
+ create mode 100644 include/sound/tas2781-dsp.h
+ create mode 100644 include/sound/tas2781-tlv.h
+ create mode 100644 include/sound/tas2781.h
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-index 85bba6a..5a29ee7 100644
---- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-@@ -1067,6 +1067,214 @@
- 		};
- 	};
- 
-+	thermal-zones {
-+		nss-top-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens 3>;
+diff --git a/include/sound/tas2781-dsp.h b/include/sound/tas2781-dsp.h
+new file mode 100644
+index 000000000000..091c3ffade17
+--- /dev/null
++++ b/include/sound/tas2781-dsp.h
+@@ -0,0 +1,189 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++//
++// ALSA SoC Texas Instruments TAS2781 Audio Smart Amplifier
++//
++// Copyright (C) 2022 - 2023 Texas Instruments Incorporated
++// https://www.ti.com
++//
++// The TAS2781 driver implements a flexible and configurable
++// algo coefficient setting for one, two, or even multiple
++// TAS2781 chips.
++//
++// Author: Shenghao Ding <shenghao-ding@ti.com>
++// Author: Kevin Lu <kevin-lu@ti.com>
++//
 +
-+			trips {
-+				nss-top-critical {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
++#ifndef __TASDEVICE_DSP_H__
++#define __TASDEVICE_DSP_H__
 +
-+		ubi-0-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens 4>;
++#define MAIN_ALL_DEVICES			0x0d
++#define MAIN_DEVICE_A				0x01
++#define MAIN_DEVICE_B				0x08
++#define MAIN_DEVICE_C				0x10
++#define MAIN_DEVICE_D				0x14
++#define COEFF_DEVICE_A				0x03
++#define COEFF_DEVICE_B				0x0a
++#define COEFF_DEVICE_C				0x11
++#define COEFF_DEVICE_D				0x15
++#define PRE_DEVICE_A				0x04
++#define PRE_DEVICE_B				0x0b
++#define PRE_DEVICE_C				0x12
++#define PRE_DEVICE_D				0x16
 +
-+			trips {
-+				ubi_0-critical {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
++#define PPC3_VERSION				0x4100
++#define RCA_CONFIGID_BYPASS_ALL			0
++#define TASDEVICE_DEVICE_SUM			8
++#define TASDEVICE_CONFIG_SUM			64
 +
-+		ubi-1-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens 5>;
++enum channel {
++	top_left_Chn,
++	top_right_chn,
++	bottom_left_Chn,
++	bottom_right_chn,
++	max_chn,
++};
 +
-+			trips {
-+				ubi_1-critical {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
++enum tasdevice_dsp_dev_idx {
++	TASDEVICE_DSP_TAS_2555 = 0,
++	TASDEVICE_DSP_TAS_2555_STEREO,
++	TASDEVICE_DSP_TAS_2557_MONO,
++	TASDEVICE_DSP_TAS_2557_DUAL_MONO,
++	TASDEVICE_DSP_TAS_2559,
++	TASDEVICE_DSP_TAS_2563,
++	TASDEVICE_DSP_TAS_2563_DUAL_MONO = 7,
++	TASDEVICE_DSP_TAS_2563_QUAD,
++	TASDEVICE_DSP_TAS_2563_21,
++	TASDEVICE_DSP_TAS_2781,
++	TASDEVICE_DSP_TAS_2781_DUAL_MONO,
++	TASDEVICE_DSP_TAS_2781_21,
++	TASDEVICE_DSP_TAS_2781_QUAD,
++	TASDEVICE_DSP_TAS_MAX_DEVICE
++};
 +
-+		ubi-2-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens 6>;
++struct tasdevice_fw_fixed_hdr {
++	unsigned int fwsize;
++	unsigned int ppcver;
++	unsigned int drv_ver;
++};
 +
-+			trips {
-+				ubi_2-critical {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
++struct tasdevice_dspfw_hdr {
++	struct tasdevice_fw_fixed_hdr fixed_hdr;
++	unsigned short device_family;
++	unsigned short device;
++	unsigned char ndev;
++};
 +
-+		ubi-3-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens 7>;
++struct tasdev_blk {
++	int nr_retry;
++	unsigned int type;
++	unsigned char is_pchksum_present;
++	unsigned char pchksum;
++	unsigned char is_ychksum_present;
++	unsigned char ychksum;
++	unsigned int nr_cmds;
++	unsigned int blk_size;
++	unsigned int nr_subblocks;
++	unsigned char *data;
++};
 +
-+			trips {
-+				ubi_3-critical {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
++struct tasdevice_data {
++	char name[64];
++	unsigned int nr_blk;
++	struct tasdev_blk *dev_blks;
++};
 +
-+		cpuss0-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens 8>;
++struct tasdevice_prog {
++	unsigned int prog_size;
++	struct tasdevice_data dev_data;
++};
 +
-+			trips {
-+				cpu-critical {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
++struct tasdevice_config {
++	unsigned int cfg_size;
++	char name[64];
++	struct tasdevice_data dev_data;
++};
 +
-+		cpuss1-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens 9>;
++struct tasdevice_calibration {
++	struct tasdevice_data dev_data;
++};
 +
-+			trips {
-+				cpu-critical {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
++struct tasdevice_fw {
++	struct tasdevice_dspfw_hdr fw_hdr;
++	unsigned short nr_programs;
++	struct tasdevice_prog *programs;
++	unsigned short nr_configurations;
++	struct tasdevice_config *configs;
++	unsigned short nr_calibrations;
++	struct tasdevice_calibration *calibrations;
++	struct device *dev;
++};
 +
-+		cpu0-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens 10>;
++enum tasdevice_dsp_fw_state {
++	TASDEVICE_DSP_FW_NONE = 0,
++	TASDEVICE_DSP_FW_PENDING,
++	TASDEVICE_DSP_FW_FAIL,
++	TASDEVICE_DSP_FW_ALL_OK,
++};
 +
-+			trips {
-+				cpu-critical {
-+					temperature = <120000>;
-+					hysteresis = <10000>;
-+					type = "critical";
-+				};
++enum tasdevice_bin_blk_type {
++	TASDEVICE_BIN_BLK_COEFF = 1,
++	TASDEVICE_BIN_BLK_POST_POWER_UP,
++	TASDEVICE_BIN_BLK_PRE_SHUTDOWN,
++	TASDEVICE_BIN_BLK_PRE_POWER_UP,
++	TASDEVICE_BIN_BLK_POST_SHUTDOWN
++};
 +
-+				cpu-passive {
-+					temperature = <110000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
++struct tasdevice_rca_hdr {
++	unsigned int img_sz;
++	unsigned int checksum;
++	unsigned int binary_version_num;
++	unsigned int drv_fw_version;
++	unsigned char plat_type;
++	unsigned char dev_family;
++	unsigned char reserve;
++	unsigned char ndev;
++	unsigned char devs[TASDEVICE_DEVICE_SUM];
++	unsigned int nconfig;
++	unsigned int config_size[TASDEVICE_CONFIG_SUM];
++};
 +
-+		cpu1-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens 11>;
++struct tasdev_blk_data {
++	unsigned char dev_idx;
++	unsigned char block_type;
++	unsigned short yram_checksum;
++	unsigned int block_size;
++	unsigned int n_subblks;
++	unsigned char *regdata;
++};
 +
-+			trips {
-+				cpu-critical {
-+					temperature = <120000>;
-+					hysteresis = <10000>;
-+					type = "critical";
-+				};
++struct tasdevice_config_info {
++	unsigned int nblocks;
++	unsigned int real_nblocks;
++	unsigned char active_dev;
++	struct tasdev_blk_data **blk_data;
++};
 +
-+				cpu-passive {
-+					temperature = <110000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
++struct tasdevice_rca {
++	struct tasdevice_rca_hdr fw_hdr;
++	int ncfgs;
++	struct tasdevice_config_info **cfg_info;
++	int profile_cfg_id;
++};
 +
-+		cpu2-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens 12>;
++void tasdevice_select_cfg_blk(void *context, int conf_no,
++	unsigned char block_type);
++void tasdevice_config_info_remove(void *context);
++void tasdevice_dsp_remove(void *context);
++int tasdevice_dsp_parser(void *context);
++int tasdevice_rca_parser(void *context, const struct firmware *fmw);
++void tasdevice_dsp_remove(void *context);
++void tasdevice_calbin_remove(void *context);
++int tasdevice_select_tuningprm_cfg(void *context, int prm,
++	int cfg_no, int rca_conf_no);
++int tasdevice_prmg_load(void *context, int prm_no);
++int tasdevice_prmg_calibdata_load(void *context, int prm_no);
++void tasdevice_tuning_switch(void *context, int state);
++int tas2781_load_calibration(void *context, char *file_name,
++	enum channel i);
 +
-+			trips {
-+				cpu-critical {
-+					temperature = <120000>;
-+					hysteresis = <10000>;
-+					type = "critical";
-+				};
++#endif
+diff --git a/include/sound/tas2781-tlv.h b/include/sound/tas2781-tlv.h
+new file mode 100644
+index 000000000000..f4310dce655a
+--- /dev/null
++++ b/include/sound/tas2781-tlv.h
+@@ -0,0 +1,22 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++//
++// ALSA SoC Texas Instruments TAS2781 Audio Smart Amplifier
++//
++// Copyright (C) 2022 - 2023 Texas Instruments Incorporated
++// https://www.ti.com
++//
++// The TAS2781 driver implements a flexible and configurable
++// algo coefficient setting for one, two, or even multiple
++// TAS2781 chips.
++//
++// Author: Shenghao Ding <shenghao-ding@ti.com>
++// Author: Kevin Lu <kevin-lu@ti.com>
++//
 +
-+				cpu-passive {
-+					temperature = <110000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
++#ifndef __TAS2781_TLV_H__
++#define __TAS2781_TLV_H__
 +
-+		cpu3-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens 13>;
++static const DECLARE_TLV_DB_SCALE(dvc_tlv, -10000, 100, 0);
++static const DECLARE_TLV_DB_SCALE(amp_vol_tlv, 1100, 50, 0);
 +
-+			trips {
-+				cpu-critical {
-+					temperature = <120000>;
-+					hysteresis = <10000>;
-+					type = "critical";
-+				};
++#endif /* __TAS2781_LIB_H__ */
+diff --git a/include/sound/tas2781.h b/include/sound/tas2781.h
+new file mode 100644
+index 000000000000..c98955bda07e
+--- /dev/null
++++ b/include/sound/tas2781.h
+@@ -0,0 +1,176 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++//
++// ALSA SoC Texas Instruments TAS2781 Audio Smart Amplifier
++//
++// Copyright (C) 2022 - 2023 Texas Instruments Incorporated
++// https://www.ti.com
++//
++// The TAS2781 driver implements a flexible and configurable
++// algo coefficient setting for one, two, or even multiple
++// TAS2781 chips.
++//
++// Author: Shenghao Ding <shenghao-ding@ti.com>
++// Author: Kevin Lu <kevin-lu@ti.com>
++//
 +
-+				cpu-passive {
-+					temperature = <110000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
++#ifndef __TAS2781_H__
++#define __TAS2781_H__
 +
-+		wcss-phyb-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens 14>;
++#include <linux/kernel.h>
++#include "tas2781-dsp.h"
 +
-+			trips {
-+				wcss_phyb-critical {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
++/* version number */
++#define TAS2781_DRV_VER			1
++#define SMARTAMP_MODULE_NAME		"tas2781"
++#define TAS2781_GLOBAL_ADDR	0x40
++#define TASDEVICE_RATES			(SNDRV_PCM_RATE_44100 |\
++	SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 |\
++	SNDRV_PCM_RATE_88200)
++#define TASDEVICE_MAX_CHANNELS		8
 +
-+		top-glue-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens 15>;
++#define TASDEVICE_FORMATS		(SNDRV_PCM_FMTBIT_S16_LE | \
++	SNDRV_PCM_FMTBIT_S24_LE | \
++	SNDRV_PCM_FMTBIT_S32_LE)
 +
-+			trips {
-+				top_glue-critical {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+	};
++/*PAGE Control Register (available in page0 of each book) */
++#define TASDEVICE_PAGE_SELECT		0x00
++#define TASDEVICE_BOOKCTL_PAGE		0x00
++#define TASDEVICE_BOOKCTL_REG		127
++#define TASDEVICE_BOOK_ID(reg)		(reg / (256 * 128))
++#define TASDEVICE_PAGE_ID(reg)		((reg % (256 * 128)) / 128)
++#define TASDEVICE_PAGE_REG(reg)		((reg % (256 * 128)) % 128)
++#define TASDEVICE_PGRG(reg)		(reg % (256 * 128))
++#define TASDEVICE_REG(book, page, reg)	(((book * 256 * 128) + \
++					(page * 128)) + reg)
 +
- 	timer {
- 		compatible = "arm,armv8-timer";
- 		interrupts = <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++/*Software Reset */
++#define TAS2781_REG_SWRESET		TASDEVICE_REG(0x0, 0X0, 0x02)
++#define TAS2781_REG_SWRESET_RESET	BIT(0)
++
++/* Enable Global addresses */
++#define TAS2781_MISC_CFG2		TASDEVICE_REG(0x0, 0X0, 0x07)
++#define TAS2781_GLOBAL_ADDR_MASK	BIT(1)
++#define TAS2781_GLOBAL_ADDR_ENABLE	BIT(1)
++
++/*I2C Checksum */
++#define TASDEVICE_I2CChecksum		TASDEVICE_REG(0x0, 0x0, 0x7E)
++
++/* Volume control */
++#define TAS2781_DVC_LVL			TASDEVICE_REG(0x0, 0x0, 0x1A)
++#define TAS2781_AMP_LEVEL		TASDEVICE_REG(0x0, 0x0, 0x03)
++#define TAS2781_AMP_LEVEL_MASK		GENMASK(5, 1)
++
++#define TASDEVICE_CMD_SING_W		0x1
++#define TASDEVICE_CMD_BURST		0x2
++#define TASDEVICE_CMD_DELAY		0x3
++#define TASDEVICE_CMD_FIELD_W		0x4
++
++enum audio_device {
++	TAS2781	= 0,
++};
++
++struct tasdevice {
++	struct tasdevice_fw *cali_data_fmw;
++	unsigned int dev_addr;
++	unsigned int err_code;
++	unsigned char cur_book;
++	short cur_prog;
++	short cur_conf;
++	bool is_loading;
++	bool is_loaderr;
++};
++
++/*
++ * This item is used to store the generic i2c address of
++ * all the tas2781 devices for I2C broadcast during the multi-device
++ * writes, useless in mono case.
++ */
++struct global_addr {
++	int ref_cnt;
++	unsigned int dev_addr;
++	unsigned char cur_book;
++};
++
++struct tasdevice_irqinfo {
++	int irq_gpio;
++	int irq;
++};
++
++struct calidata {
++	unsigned char *data;
++	unsigned long total_sz;
++};
++
++struct tasdevice_priv {
++	struct tasdevice tasdevice[max_chn];
++	struct tasdevice_irqinfo irq_info;
++	struct global_addr glb_addr;
++	struct tasdevice_rca rcabin;
++	struct tasdevice_fw *fmw;
++	struct regmap *regmap;
++	struct mutex codec_lock;
++	struct calidata cali_data;
++	struct gpio_desc *reset;
++	struct device *dev;
++	struct tm tm;
++
++	unsigned char crc8_lkp_tbl[CRC8_TABLE_SIZE];
++	unsigned char cal_binaryname[max_chn][64];
++	unsigned char coef_binaryname[64];
++	unsigned char rca_binaryname[64];
++	unsigned char dev_name[32];
++	unsigned char ndev;
++	unsigned int magic_num;
++	unsigned int chip_id;
++	unsigned int sysclk;
++	const char *acpi_subsystem_id;
++	int index;
++	int cur_prog;
++	int cur_conf;
++	int fw_state;
++	void *client;
++	void *codec;
++	bool isacpi;
++	bool playback_started;
++	void (*set_global_mode)(struct tasdevice_priv *tas_priv);
++	int (*fw_parse_variable_header)(struct tasdevice_priv *tas_priv,
++		const struct firmware *fmw, int offset);
++	int (*fw_parse_program_data)(struct tasdevice_priv *tas_priv,
++		struct tasdevice_fw *tas_fmw,
++		const struct firmware *fmw, int offset);
++	int (*fw_parse_configuration_data)(struct tasdevice_priv *tas_priv,
++		struct tasdevice_fw *tas_fmw,
++		const struct firmware *fmw, int offset);
++	int (*tasdevice_load_block)(struct tasdevice_priv *tas_priv,
++		struct tasdev_blk *block);
++};
++
++void tas2781_reset(struct tasdevice_priv *tas_dev);
++int tascodec_init(struct tasdevice_priv *tas_priv, void *codec,
++	void (*cont)(const struct firmware *fw, void *context));
++struct tasdevice_priv *tasdevice_kzalloc(struct i2c_client *i2c);
++int tasdevice_init(struct tasdevice_priv *tas_priv);
++void tasdevice_remove(struct tasdevice_priv *tas_priv);
++int tasdevice_dev_read(struct tasdevice_priv *tas_priv,
++	enum channel chn, unsigned int reg, unsigned int *value);
++int tasdevice_dev_write(struct tasdevice_priv *tas_priv,
++	enum channel chn, unsigned int reg, unsigned int value);
++int tasdevice_dev_bulk_write(
++	struct tasdevice_priv *tas_priv, enum channel chn,
++	unsigned int reg, unsigned char *p_data, unsigned int n_length);
++int tasdevice_dev_bulk_read(struct tasdevice_priv *tas_priv,
++	enum channel chn, unsigned int reg, unsigned char *p_data,
++	unsigned int n_length);
++int tasdevice_dev_update_bits(
++	struct tasdevice_priv *tasdevice, enum channel chn,
++	unsigned int reg, unsigned int mask, unsigned int value);
++int tasdevice_amp_putvol(struct tasdevice_priv *tas_priv,
++	struct snd_ctl_elem_value *ucontrol, struct soc_mixer_control *mc);
++int tasdevice_amp_getvol(struct tasdevice_priv *tas_priv,
++	struct snd_ctl_elem_value *ucontrol, struct soc_mixer_control *mc);
++int tasdevice_digital_putvol(struct tasdevice_priv *tas_priv,
++	struct snd_ctl_elem_value *ucontrol, struct soc_mixer_control *mc);
++int tasdevice_digital_getvol(struct tasdevice_priv *tas_priv,
++	struct snd_ctl_elem_value *ucontrol, struct soc_mixer_control *mc);
++
++#endif /* __TAS2781_H__ */
 -- 
-2.7.4
+2.34.1
+
 
