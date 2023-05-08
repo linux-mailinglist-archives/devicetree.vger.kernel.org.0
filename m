@@ -2,115 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE4596F9FC5
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 08:22:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B6006F9FD3
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 08:27:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229986AbjEHGWs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 02:22:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47116 "EHLO
+        id S232812AbjEHG1E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 02:27:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232649AbjEHGWr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 02:22:47 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96DD818173;
-        Sun,  7 May 2023 23:22:41 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C7B70611F6;
-        Mon,  8 May 2023 06:22:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E155C433A4;
-        Mon,  8 May 2023 06:22:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1683526960;
-        bh=RRAYVfzWI2CIN+ZmTd/bzNs5d6ZXJ0prYFtjqrq3z2E=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=W4YgewhFTRgROcxCyKuBM88Ro5dZcDfEdqGb2E2BWYtJsRXK80FvMuA7UGFy65kux
-         bAD8oHDIXaIfKFPPtGxUjrkK7huabRA9/6kIkF1a3OlYDam6HMf91YLHBoKvw7YFR4
-         Au+xRTY1OgmQO8DrNfVhmaYZrkkbxbtfwYA9PbK/aAzNL3BiPoC5dMlz6RBCOaq9xh
-         RivPf/taKaKqXy9eBIOXA1/e71am5j/Hmfi+rzqVuvCYr9YXfJ7kje7kGzvGEyq+oz
-         EQP2zvPn1HTq+3z8rsdzuU9Q5l3EUiM1c8Yutb/hkHFVYCk+S4HgrFHUEYoy/YL+uM
-         rRP+4zBcgZGjA==
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-965ddb2093bso486965666b.2;
-        Sun, 07 May 2023 23:22:40 -0700 (PDT)
-X-Gm-Message-State: AC+VfDwc8SPuayNecgN74ze4Fpsd5zSi0Dt3uiyzuUnDfsOMz2PgBtUF
-        HQH0OiJmosiM52GCocOPBu18BykDBNBuey16YB0=
-X-Google-Smtp-Source: ACHHUZ55KUUiXjfH7U+W0+3/jL7jTooOxMmTkX1XEA+KeGqCKoJTXMo5o9ehY/VtsJLfH0v1UixisOeQfdwZzRiJWqE=
-X-Received: by 2002:a17:907:1c05:b0:930:f953:9608 with SMTP id
- nc5-20020a1709071c0500b00930f9539608mr9710495ejc.0.1683526958366; Sun, 07 May
- 2023 23:22:38 -0700 (PDT)
+        with ESMTP id S232723AbjEHG1C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 02:27:02 -0400
+Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE17118179;
+        Sun,  7 May 2023 23:27:00 -0700 (PDT)
+Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-1927718b240so2669187fac.1;
+        Sun, 07 May 2023 23:27:00 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683527220; x=1686119220;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=witHYv1Hkh138s1daDFZMrxf1YGkxRazduMe4ExLmyE=;
+        b=dXE6dbWIyEDgphfGWldzX3/MLgL2MpNogkHJDHwJDR/7hRbj4iOkedeVfT+eJcj5Ns
+         p1JRHXL7gACYEDlTiP4Vyo023TkO5Cdof4g6OZ3qXT34RoqENinJfSl14XePSi7pW/o1
+         9u+2Gtsmi9DcUCPSJXwFzi38U5Ce8iOxZHtwnWbGUwAWRkzUA8r8Elag1sDWbSsLY3pG
+         o1jkmmVOA0KzhwgFWHPNZjJYLhiZUHV1qMKlIXRZbmaj+lKIBl01ZBvJjyvxqAR1zTgU
+         ML/wDNOYCTKs0j2btygzt/OIIm3RNisfl0S4d8cLNTM4elJtJcP2K9WL4tBGrGXZcwac
+         ZiQA==
+X-Gm-Message-State: AC+VfDyEqcu060IISZNtlJrdvGO+SDmoxr6JJqjoX+HrWvDNqQO5dWdH
+        vA3wiBfSw4kFNp7Cezd04g==
+X-Google-Smtp-Source: ACHHUZ4IPcRapdZOKJCWtWLeNloyjZMFnl+3ZMAIwpbyb4CfDyFLDZldO69cTTbbsAhM+OmRQZ8ojg==
+X-Received: by 2002:a05:6870:36c6:b0:17f:17a3:6a53 with SMTP id u6-20020a05687036c600b0017f17a36a53mr4261981oak.53.1683527220047;
+        Sun, 07 May 2023 23:27:00 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id n3-20020a056870034300b00176d49bb898sm4575083oaf.44.2023.05.07.23.26.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 07 May 2023 23:26:59 -0700 (PDT)
+Received: (nullmailer pid 213415 invoked by uid 1000);
+        Mon, 08 May 2023 06:26:53 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-References: <20230507182304.2934-1-jszhang@kernel.org> <20230507182304.2934-6-jszhang@kernel.org>
-In-Reply-To: <20230507182304.2934-6-jszhang@kernel.org>
-From:   Guo Ren <guoren@kernel.org>
-Date:   Mon, 8 May 2023 14:22:27 +0800
-X-Gmail-Original-Message-ID: <CAJF2gTSWgiQOidm5S-XqzfXff1HS+p=V4zUFD0mMBvUa-b0OFw@mail.gmail.com>
-Message-ID: <CAJF2gTSWgiQOidm5S-XqzfXff1HS+p=V4zUFD0mMBvUa-b0OFw@mail.gmail.com>
-Subject: Re: [PATCH 5/5] MAINTAINERS: add entry for T-HEAD RISC-V SoC
-To:     Jisheng Zhang <jszhang@kernel.org>, Wei Fu <wefu@redhat.com>,
-        Wei Fu <tekkamanninja@gmail.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     Shenghao Ding <13916275206@139.com>
+Cc:     Ryan_Chu@wistron.com, navada@ti.com, gentuser@gmail.com,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, shenghao-ding@ti.com, Sam_Wu@wistron.com,
+        lgirdwood@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+        x1077012@ti.com, broonie@kernel.org, kevin-lu@ti.com,
+        perex@perex.cz, devicetree@vger.kernel.org,
+        pierre-louis.bossart@linux.intel.com, peeyush@ti.com
+In-Reply-To: <20230508054512.719-1-13916275206@139.com>
+References: <20230508054512.719-1-13916275206@139.com>
+Message-Id: <168352721271.213340.3578983696891383785.robh@kernel.org>
+Subject: Re: [PATCH v2 2/5] ASoC: dt-bindings: Add tas2781 amplifier
+Date:   Mon, 08 May 2023 01:26:53 -0500
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 8, 2023 at 2:34=E2=80=AFAM Jisheng Zhang <jszhang@kernel.org> w=
-rote:
->
-> I would like to temporarily maintain the T-HEAD RISC-V SoC support.
-Wei Fu is working on TH1520, and maybe you could have a discussion
-with him? Thx.
 
-F.Y.I
-
-Wei Fu <wefu@redhat.com>
-
->
-> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+On Mon, 08 May 2023 13:45:12 +0800, Shenghao Ding wrote:
+> Create tas2781.yaml for tas2781 driver.
+> 
+> Signed-off-by: Shenghao Ding <13916275206@139.com>
+> 
 > ---
->  MAINTAINERS | 6 ++++++
->  1 file changed, 6 insertions(+)
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 7e0b87d5aa2e..e1e51accec4f 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -18155,6 +18155,12 @@ T:     git https://git.kernel.org/pub/scm/linux/=
-kernel/git/conor/linux.git/
->  F:     Documentation/devicetree/bindings/riscv/
->  F:     arch/riscv/boot/dts/
->
-> +RISC-V THEAD SoC SUPPORT
-> +M:     Jisheng Zhang <jszhang@kernel.org>
-> +L:     linux-riscv@lists.infradead.org
-> +S:     Maintained
-> +F:     arch/riscv/boot/dts/thead/
-> +
->  RNBD BLOCK DRIVERS
->  M:     Md. Haris Iqbal <haris.iqbal@ionos.com>
->  M:     Jack Wang <jinpu.wang@ionos.com>
-> --
-> 2.40.0
->
+> Changes in v7:
+>  - Submit together with tas2781 codec driver code
+>  - Add more detail description for ti,audio-slots
+>  - Keep consistent for "I2C"
+>  - remove reset-gpios description
+>  - For reg, express as constraints instead
+>  - remove unnecessary '|'
+>  Changes to be committed:
+> 	new file:   Documentation/devicetree/bindings/sound/ti,tas2781.yaml
+> ---
+>  .../devicetree/bindings/sound/ti,tas2781.yaml | 90 +++++++++++++++++++
+>  1 file changed, 90 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/ti,tas2781.yaml
+> 
 
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
---=20
-Best Regards
- Guo Ren
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/rockchip-isp1.example.dtb: camera@3c: port:endpoint:data-lanes: [[1]] is too short
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.example.dtb: camera-sensor@3c: port:endpoint:data-lanes: [[1]] is too short
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/ovti,ov2685.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.example.dtb: pcie-ep@33800000: Unevaluated properties are not allowed ('assigned-clock-parents', 'assigned-clock-rates', 'assigned-clocks' were unexpected)
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml
+
+doc reference errors (make refcheckdocs):
+Documentation/usb/gadget_uvc.rst: Documentation/userspace-api/media/v4l/pixfmt-packed.yuv.rst
+MAINTAINERS: Documentation/devicetree/bindings/pwm/pwm-apple.yaml
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230508054512.719-1-13916275206@139.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
