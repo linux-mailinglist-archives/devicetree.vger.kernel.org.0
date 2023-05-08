@@ -2,70 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 95D426FB6C5
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 21:33:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82A006FB6D1
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 21:41:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229560AbjEHTdv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 15:33:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53826 "EHLO
+        id S233396AbjEHTlM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 15:41:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229492AbjEHTdv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 15:33:51 -0400
-Received: from mail-vs1-xe35.google.com (mail-vs1-xe35.google.com [IPv6:2607:f8b0:4864:20::e35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80EE655B6
-        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 12:33:50 -0700 (PDT)
-Received: by mail-vs1-xe35.google.com with SMTP id ada2fe7eead31-4360e73d0d4so206131137.1
-        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 12:33:50 -0700 (PDT)
+        with ESMTP id S233079AbjEHTlL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 15:41:11 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E79D55B9D
+        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 12:41:09 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-956ff2399c9so938351966b.3
+        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 12:41:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683574429; x=1686166429;
-        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=C+z24Pl7od6xO10XmMEfecsYemTIfW+XARlPRi62dVY=;
-        b=NKC2xbsrIAqwZnAVNovjf8zjnCsKt/8YyTNqe4ImJn8rgL9ns2ZMrJEkZ34wn0c8rs
-         46gcStl2U/KjyFl4mnFCno9P+lzFVRo7kRqWxYXd+VA8ZOmjrUri2yKB6fB4fz1jZK/A
-         ncjNfzRSPZRLfwdyxwLhhXW8GM7DGs6zxfW0BpQrmCKRjG2Srk6DDG6VNAgioaEwVakp
-         RW15D74SryfFaHEY6Dyp2uTgiwqwzthRK7ACfVvfAmsNxbBh/Nlt3hmHEuv16fZ6fIAq
-         mMzokxLXkm8F3N49ZQlnOCoz2NN35PV6WNqGUQ2F6Rb9GNvaBu1ZM+Dy0opIZlz8agqe
-         sgDA==
+        d=linaro.org; s=google; t=1683574868; x=1686166868;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=u6BHb4xVvMEfgN+9lRCelTqOTmzUYyfbAtctnb7HRBw=;
+        b=CfsYd66/CQThuWNpAvqHi/MJfVOwNKqnCWFXJeAFfvAiraDwp4Jt5CBun22SMkPabl
+         9dRNgNtAykAZuiW4gwbmcz0e/3iJjD34SxhtPshsDAwcYo2rxXe+GO9jALW/IXMeZz+B
+         V1AfCxlclLF2SoyC3fQhoHmw9Ec5a0eya/S4PsSIVCb/RT7/e3U7hmpT4F8TvcsHqO40
+         AsN+FQg9ezOn1IuuyjmcIx4QvNomc33QMqJ4D/Ucu6d8vRpfLfeulS8ZhB/sbhAwuQLT
+         ik2Pzqjuxk7wSTwjyd9TMfq2D/iIPV/kFTKBU0uixzx6PGM6trE/eWWYfdHTjnsqnfhl
+         hEfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683574429; x=1686166429;
-        h=to:subject:message-id:date:from:reply-to:mime-version
+        d=1e100.net; s=20221208; t=1683574868; x=1686166868;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=C+z24Pl7od6xO10XmMEfecsYemTIfW+XARlPRi62dVY=;
-        b=WMXNO+H82IRuRAJ+D2oZjg+Wwf7YNi6fuDFq+17dt6X3vGiGksZGjp/ihq4OH9yJow
-         AEXWsRhtSVXYgCwFworh6RdBPnUQKZJP9A3boLn69BjDhykzA4l54QfhmAQkgKlmWqpa
-         8zxij3cD1QH+8wwQQK3zhgfxAGMyJrMgVvMPXjDPW/Fv7EdZ5McdHzUPDN9U48Iv1bpc
-         F9JE9o7ZAY6wOPxRSxuoDn95tazb54O+NQTV3+8zynPRGZDQMXN6QNG49kKVGrjYjA85
-         nDlCPR82b1T55no8O2BRAFaQ8/aZbEYvueKggbClokv5RV4qwouAH5m+IeSCWOjufAb9
-         n5zQ==
-X-Gm-Message-State: AC+VfDw5fwJffivTxNu1nG6jQW84VnFoAzEUbF3IZ031MXQAupO+ah7o
-        aRY4OXjcOh+3/GfJSstGvNmhquJzWZ/6ERFZgSQ=
-X-Google-Smtp-Source: ACHHUZ4RT2WyYwe1mgXBePxLL+IG5Mbt5GuuADocBhrpxGceOn6PCQr3WQgqkJsr5PMPALjlOfRE/fBIrzNbsicaGmQ=
-X-Received: by 2002:a05:6102:445:b0:42c:59ad:1bc2 with SMTP id
- e5-20020a056102044500b0042c59ad1bc2mr3990874vsq.33.1683574429489; Mon, 08 May
- 2023 12:33:49 -0700 (PDT)
+        bh=u6BHb4xVvMEfgN+9lRCelTqOTmzUYyfbAtctnb7HRBw=;
+        b=BTLqKW1DBfLzLzNFCwmOBHl0UjW+hxTdpMD13JWd47IREiX21ITHG1TtdcmDzsfV3H
+         1b7zqCHVwAajhjo2v6gZTM+fqiT6aewoPUL6eexyp7irU6GDVUvzxFy3O4nBjb0U7ggl
+         Hzs0iA8Il5ynK9RVMV+MUt1L4d+hKTFwCliZJVNwws5A/hUdLh4q/Xvin8gE5u6kO8u/
+         2wF34kk6RJEpOeK8QqgtfXZ9uUHn0H4davAHm48nbiSn6/EBtvIHZwO5+s8YTylAXOLx
+         S2uqHHgEplAsycSGC89FcphfqS//Tq/A5KgPXzTJ89y/UX33iTzJ597OooixGVYMh9cD
+         Ym2w==
+X-Gm-Message-State: AC+VfDwkCaeTP6PG6KbgOGxyhd8CJA9//kFhG23DOZmGXuh5eQpib7sr
+        Yj1g2XgfA11+lw1uycX/Wld3Bw==
+X-Google-Smtp-Source: ACHHUZ4UJvRAHo3YeIqDhqkX6D0qV+reh/JVVWha2vJ3gODEWTvlXChgbwidS5lcWcdtIEGMboCujA==
+X-Received: by 2002:a17:907:7b91:b0:969:bac4:8e22 with SMTP id ne17-20020a1709077b9100b00969bac48e22mr785771ejc.26.1683574868376;
+        Mon, 08 May 2023 12:41:08 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:d19b:4e0f:cfe4:a1ac? ([2a02:810d:15c0:828:d19b:4e0f:cfe4:a1ac])
+        by smtp.gmail.com with ESMTPSA id la26-20020a170906ad9a00b00967a18df1easm352509ejb.117.2023.05.08.12.41.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 May 2023 12:41:07 -0700 (PDT)
+Message-ID: <5cf04ce7-c60a-51c8-c835-58f24e7c8759@linaro.org>
+Date:   Mon, 8 May 2023 21:41:06 +0200
 MIME-Version: 1.0
-Received: by 2002:a59:a74d:0:b0:3cd:9013:43b6 with HTTP; Mon, 8 May 2023
- 12:33:48 -0700 (PDT)
-Reply-To: pmichae7707@gmail.com
-From:   paul michael <paulmichael2124@gmail.com>
-Date:   Mon, 8 May 2023 20:33:48 +0100
-Message-ID: <CABh2_VmzE5iOXC69yFc76G5oBusF-7L-4QT-oWf6p-A6BRxeoA@mail.gmail.com>
-Subject: Greetings
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=4.9 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        UNDISC_FREEM autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: ****
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH] dt-bindings: mt76: support pointing to EEPROM using NVMEM
+ cell
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Felix Fietkau <nbd@nbd.name>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Lorenzo Bianconi <lorenzo@kernel.org>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Shayne Chen <shayne.chen@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Kalle Valo <kvalo@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Christian Marangi <ansuelsmth@gmail.com>
+References: <20230508155820.9963-1-zajec5@gmail.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230508155820.9963-1-zajec5@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Every time I retest your email, it tells me to check with my ISP or
-Log onto incoming mail server (POP3): Your e-mail server rejected .
-Kindly verify if your email is still valid for us to talk.
+On 08/05/2023 17:58, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> All kind of calibration data should be described as NVMEM cells of NVMEM
+> devices. That is more generic solution than "mediatek,mtd-eeprom" which
+> is MTD specific.
+> 
+> Add support for EEPROM NVMEM cells and deprecate existing MTD-based
+> property.
+> 
+> Cc: Christian Marangi <ansuelsmth@gmail.com>
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
