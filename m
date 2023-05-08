@@ -2,192 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DAFD86FA94A
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 12:49:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93E146FA959
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 12:50:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235204AbjEHKtr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 06:49:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47724 "EHLO
+        id S235141AbjEHKuR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 06:50:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234930AbjEHKtX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 06:49:23 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A204483EE;
-        Mon,  8 May 2023 03:48:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1683542925; x=1715078925;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=KdyhFhG+9GXAo1KJeIMjt/HX4WFnDSDwt9SYVMm16NM=;
-  b=VFbQ+wtXG+TUWeaLAP8nkzQzMW/DKQpwt5/QFcyfBLWH0CmBQpFA7OP+
-   XoEmHZiFjgkzzJexBoQEJsN/FO5QV8x/wLf7YO1tOylmQ5n8FzArGxckT
-   N3YESTWKcpWbs6cDGj3YvZT7IT0RIt+IHsp44Yil2BY+TU4RU3nIe5VM3
-   wcjLXrJNV3kGAmJ2IQxOCRkyOwjTDS/+ay9mCGM65n3YmA15bKmExWgk+
-   fkn7kylN1ZaSuKZihj1E4UcWgFEd+Kia7CtiiR9jmO9PPiehNiALS9znL
-   xQvfFCcIe3KHy1NhkT24gQlPsqRxxkkUpLBjzzFyBDTf3xg3e/gEOPgai
-   A==;
-X-IronPort-AV: E=Sophos;i="5.99,258,1677567600"; 
-   d="scan'208";a="212355516"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 08 May 2023 03:48:45 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Mon, 8 May 2023 03:48:44 -0700
-Received: from m18063-ThinkPad-T460p.mchp-main.com (10.10.115.15) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2507.21 via Frontend Transport; Mon, 8 May 2023 03:48:40 -0700
-From:   Claudiu Beznea <claudiu.beznea@microchip.com>
-To:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-        <claudiu.beznea@microchip.com>
-CC:     <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 5/5] dt-bindings: clocks: at91sam9x5-sckc: convert to yaml
-Date:   Mon, 8 May 2023 13:48:01 +0300
-Message-ID: <20230508104801.445261-6-claudiu.beznea@microchip.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230508104801.445261-1-claudiu.beznea@microchip.com>
-References: <20230508104801.445261-1-claudiu.beznea@microchip.com>
+        with ESMTP id S235184AbjEHKtl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 06:49:41 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2554A29FDA
+        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 03:49:09 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4efe8991b8aso5025239e87.0
+        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 03:49:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683542948; x=1686134948;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RXdMsRso+EPSoX8YY6azBZyMDBmxWt4xm3vxGwfWTQY=;
+        b=wKp3ndVrukvtAw0SH+PdVLhZlcNjKc18oRP+1IXN69uXzoFXW2Mwbpfn5GTZN3c1B6
+         yNLSeHKlgrmVLwhOVW0LalhBF/g9flIrFmjfr/DxkLYovekW5HAfyvGtG/HYD9mCKRo3
+         50A7HdoRJ36hqJkFRwdESRJz2ia3nM8yyrKpRVt3dvcpA2ciZaUWWaItLliUpK1UD/36
+         /Agg2glxjXNwINHQbbfGCeWL8qdRUWvkqww3xJYBqb+jqOes1lbS9tPtlp8q2buCsAcb
+         i8vDvT7M2dY+ppYWn+KZCpQw3TEJlp+slyysVOfRGyd4GSZAFoz1Ga/O9PXcQx4DOJNZ
+         e/ug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683542948; x=1686134948;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RXdMsRso+EPSoX8YY6azBZyMDBmxWt4xm3vxGwfWTQY=;
+        b=M4UNeLfWG5H7sBhq033nq+oYM/yWJ5j3EP26MoZVo83LMr67Xifa7jDfEMx0kOmKBZ
+         jeEmlB7dYuZIG39zFUYqJn6l+joWDuQlpCkIYLMuQmX79/UqcGT2AUewKnaApOh5ujrG
+         mqvMUyeXm6Q7we3NK5QYs+ESohd2bTm9ODmelcLQnhAEiDN3vASQNE+3IoRFm+yVsAgL
+         LGeWWBWB6NroEVHr44Fyk9kQI7FNlvS8Ev7T6HywKb3vGGAYm9DIsb7QbpRWMs8VUL94
+         qaSc+nn40AU2d8A+eHQKSIqT3K5fJnuFmRONtjixjxDaGW4xP9Ga++P/Obym/pHrrKWx
+         lsOA==
+X-Gm-Message-State: AC+VfDx7wi/zYvRgdZo0uV4+ybfv5mnZXIpOGRCAe7rXLRuU+UoFUvQy
+        5+smXZyPV9W8ZkIS6wEDnUIDcA==
+X-Google-Smtp-Source: ACHHUZ7kUdyG/5vN8yWIbaBSvV6k8WFUd5GtXPP7rwCKkMG3l2F8jyvQ7D4ToZng4qwebsgRzR0qOA==
+X-Received: by 2002:ac2:530a:0:b0:4f1:3d5f:f54e with SMTP id c10-20020ac2530a000000b004f13d5ff54emr2313936lfh.27.1683542948187;
+        Mon, 08 May 2023 03:49:08 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
+        by smtp.gmail.com with ESMTPSA id 19-20020ac24833000000b004f0049433adsm1255552lft.307.2023.05.08.03.49.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 May 2023 03:49:07 -0700 (PDT)
+Message-ID: <7b90ed61-7789-275d-a743-6065ab6ecdbb@linaro.org>
+Date:   Mon, 8 May 2023 13:49:07 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH 3/4] ARM: dts: qcom: apq8074-dragonboard: enable adsp and
+ MSS
+Content-Language: en-GB
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+References: <20230507190735.2333145-1-dmitry.baryshkov@linaro.org>
+ <20230507190735.2333145-4-dmitry.baryshkov@linaro.org>
+ <a86cfa8b-c205-6887-a64e-d51241b74b15@linaro.org>
+ <ca274ec9-81bf-c426-6ad6-93eb34b52b05@linaro.org>
+ <11863653-84aa-8edf-676f-e55174fb4539@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <11863653-84aa-8edf-676f-e55174fb4539@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert Atmel slow clock controller documentation to yaml.
+On 08/05/2023 13:38, Konrad Dybcio wrote:
+> 
+> 
+> On 8.05.2023 12:33, Dmitry Baryshkov wrote:
+>> On 08/05/2023 11:33, Konrad Dybcio wrote:
+>>>
+>>>
+>>> On 7.05.2023 21:07, Dmitry Baryshkov wrote:
+>>>> Enable ADSP and Modem DSPs on APQ8074 dragonboard. The MSS region
+>>>> differs from the one defined in the msm8974, so it overriden locally.
+>>>>
+>>>> The modem is specified use mba.mbn instead of mbn.b00 (for the sake of
+>>>> similarity with other platforms). This requires a patch for remoteproc
+>>>> to be applied [1].
+>>>>
+>>>> [1] https://lore.kernel.org/all/20230507172041.2320279-1-dmitry.baryshkov@linaro.org/
+>>>>
+>>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>>> ---
+>>>>    .../arm/boot/dts/qcom-apq8074-dragonboard.dts | 28 +++++++++++++++++++
+>>>>    1 file changed, 28 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm/boot/dts/qcom-apq8074-dragonboard.dts b/arch/arm/boot/dts/qcom-apq8074-dragonboard.dts
+>>>> index 6b047c679370..c893afc00eb4 100644
+>>>> --- a/arch/arm/boot/dts/qcom-apq8074-dragonboard.dts
+>>>> +++ b/arch/arm/boot/dts/qcom-apq8074-dragonboard.dts
+>>>> @@ -4,6 +4,8 @@
+>>>>    #include "qcom-pm8841.dtsi"
+>>>>    #include "qcom-pm8941.dtsi"
+>>>>    +/delete-node/ &mpss_region;
+>>>> +
+>>>>    / {
+>>>>        model = "Qualcomm APQ8074 Dragonboard";
+>>>>        compatible = "qcom,apq8074-dragonboard", "qcom,apq8074";
+>>>> @@ -17,6 +19,13 @@ aliases {
+>>>>        chosen {
+>>>>            stdout-path = "serial0:115200n8";
+>>>>        };
+>>>> +
+>>>> +    reserved-memory {
+>>>> +        mpss_region: mpss@ac00000 {
+>>>> +            reg = <0x0ac00000 0x2500000>;
+>>>> +            no-map;
+>>>> +        };
+>>>> +    };
+>>>>    };
+>>>>      &blsp1_uart2 {
+>>>> @@ -39,6 +48,25 @@ eeprom: eeprom@52 {
+>>>>        };
+>>>>    };
+>>>>    +&remoteproc_adsp {
+>>>> +    cx-supply = <&pm8841_s2>;
+>>>> +
+>>>> +    firmware-name = "qcom/apq8074/adsp.mbn";
+>>>> +
+>>>> +    status = "okay";
+>>>> +};
+>>>> +
+>>>> +&remoteproc_mss {
+>>>> +    cx-supply = <&pm8841_s2>;
+>>>> +    mss-supply = <&pm8841_s3>;
+>>>> +    mx-supply = <&pm8841_s1>;
+>>>> +    pll-supply = <&pm8941_l12>;
+>>> High time to move this to rpmpd!
+>>> I won't object to adding this though, as it obviously works
+>>> and is already used on other boards..
+>>
+>> I think the problem is that they are not level-voted on this platform, so they are regulators, not PDs.
+> They're corner-voted.
 
-Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
----
- .../devicetree/bindings/clock/at91-clock.txt  | 30 --------
- .../bindings/clock/atmel,at91sam9x5-sckc.yaml | 70 +++++++++++++++++++
- 2 files changed, 70 insertions(+), 30 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/clock/at91-clock.txt
- create mode 100644 Documentation/devicetree/bindings/clock/atmel,at91sam9x5-sckc.yaml
+Hmm. Indeed. In msm8974-regulators I see both voltage and corner entries 
+for these regulators.
 
-diff --git a/Documentation/devicetree/bindings/clock/at91-clock.txt b/Documentation/devicetree/bindings/clock/at91-clock.txt
-deleted file mode 100644
-index 57394785d3b0..000000000000
---- a/Documentation/devicetree/bindings/clock/at91-clock.txt
-+++ /dev/null
-@@ -1,30 +0,0 @@
--Device Tree Clock bindings for arch-at91
--
--This binding uses the common clock binding[1].
--
--[1] Documentation/devicetree/bindings/clock/clock-bindings.txt
--
--Slow Clock controller:
--
--Required properties:
--- compatible : shall be one of the following:
--	"atmel,at91sam9x5-sckc",
--	"atmel,sama5d3-sckc",
--	"atmel,sama5d4-sckc" or
--	"microchip,sam9x60-sckc":
--		at91 SCKC (Slow Clock Controller)
--- #clock-cells : shall be 1 for "microchip,sam9x60-sckc" otherwise shall be 0.
--- clocks : shall be the input parent clock phandle for the clock.
--
--Optional properties:
--- atmel,osc-bypass : boolean property. Set this when a clock signal is directly
--  provided on XIN.
--
--For example:
--	sckc@fffffe50 {
--		compatible = "atmel,at91sam9x5-sckc";
--		reg = <0xfffffe50 0x4>;
--		clocks = <&slow_xtal>;
--		#clock-cells = <0>;
--	};
--
-diff --git a/Documentation/devicetree/bindings/clock/atmel,at91sam9x5-sckc.yaml b/Documentation/devicetree/bindings/clock/atmel,at91sam9x5-sckc.yaml
-new file mode 100644
-index 000000000000..7be29877e6d2
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/atmel,at91sam9x5-sckc.yaml
-@@ -0,0 +1,70 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/atmel,at91sam9x5-sckc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Atmel Slow Clock Controller (SCKC)
-+
-+maintainers:
-+  - Claudiu Beznea <claudiu.beznea@microchip.com>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - enum:
-+          - atmel,at91sam9x5-sckc
-+          - atmel,sama5d3-sckc
-+          - atmel,sama5d4-sckc
-+          - microchip,sam9x60-sckc
-+      - items:
-+          - const: microchip,sama7g5-sckc
-+          - const: microchip,sam9x60-sckc
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  "#clock-cells":
-+    enum: [0, 1]
-+
-+  atmel,osc-bypass:
-+    type: boolean
-+    description: set when a clock signal is directly provided on XIN
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - "#clock-cells"
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - microchip,sam9x60-sckc
-+    then:
-+      properties:
-+        "#clock-cells":
-+          const: 1
-+    else:
-+      properties:
-+        "#clock-cells":
-+          const: 0
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    clk32k: clock-controller@fffffe50 {
-+        compatible = "microchip,sam9x60-sckc";
-+        reg = <0xfffffe50 0x4>;
-+        clocks = <&slow_xtal>;
-+        #clock-cells = <1>;
-+    };
-+
-+...
+> 
+> Konrad
+>>
+>>>
+>>>> +
+>>>> +    firmware-name = "qcom/apq8074/mba.mbn", "qcom/apq8074/modem.mbn";
+>>> Could you please keep it one entry per line?
+>>
+>> Sure.
+>>
+>>>
+>>> Otherwise,
+>>>
+>>> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>>>
+>>> Konrad
+>>>> +
+>>>> +    status = "okay";
+>>>> +};
+>>>> +
+>>>>    &rpm_requests {
+>>>>        regulators-0 {
+>>>>            compatible = "qcom,rpm-pm8841-regulators";
+>>
+
 -- 
-2.34.1
+With best wishes
+Dmitry
 
