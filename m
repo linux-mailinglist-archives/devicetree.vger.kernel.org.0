@@ -2,25 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B9EA6FB5B9
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 19:09:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EB2F6FB5DE
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 19:23:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231784AbjEHRJ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 13:09:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60076 "EHLO
+        id S233049AbjEHRXy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 13:23:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229464AbjEHRJ1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 13:09:27 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D48D83;
-        Mon,  8 May 2023 10:09:25 -0700 (PDT)
-Received: from ip4d1634d3.dynamic.kabel-deutschland.de ([77.22.52.211] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1pw4MT-0006Oq-Gq; Mon, 08 May 2023 19:09:21 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Jisheng Zhang <jszhang@kernel.org>, Conor Dooley <conor@kernel.org>
+        with ESMTP id S232230AbjEHRXx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 13:23:53 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06D9B49EA;
+        Mon,  8 May 2023 10:23:53 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8D04361F43;
+        Mon,  8 May 2023 17:23:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FBD8C433EF;
+        Mon,  8 May 2023 17:23:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1683566631;
+        bh=o/W/upx1oxojt1pe4iM5As9FLK8IM26SwU7IdjNmdic=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Vavk1aH4LhGTgSh9NkidLrV8NHrkBidhBM6Hidv08ZSmSvHsALg6+qSJIGuAZtCA+
+         z2xbjNHytvlsPBf3kP5dh+ytxtT+FL3EA4bCVAa/8R2KrkCOt/Sk5hT9/BSZO0Ggiu
+         NsnM7UCw+UMMpvY/6Di2BpgcUy2FGjMxHWaPmK3VxxAkumIzwknPgPrzNPF7xZNwmQ
+         CkY07sWgc8xgjrO3e81I2WSgYfUxGHEEcyn6aBFNOIU/fClvvdxLJvagBOr+7PNvL/
+         0Mbu7vnY82GaJsettzFO4ybqJ+gRThiIqtAJBuHJQrI/ZMVZZQ3JqUbD53yVgyZecc
+         l+9/BknBT/rlw==
+Date:   Mon, 8 May 2023 18:23:46 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Jisheng Zhang <jszhang@kernel.org>
 Cc:     Thomas Gleixner <tglx@linutronix.de>,
         Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -31,17 +44,20 @@ Cc:     Thomas Gleixner <tglx@linutronix.de>,
         Albert Ou <aou@eecs.berkeley.edu>,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         linux-riscv@lists.infradead.org, Guo Ren <guoren@kernel.org>
-Subject: Re: [PATCH 3/5] riscv: dts: add initial T-HEAD light SoC device tree
-Date:   Mon, 08 May 2023 19:09:20 +0200
-Message-ID: <2344188.NG923GbCHz@diego>
-In-Reply-To: <20230508-unmoved-unvocal-9a6c5fc0c629@spud>
-References: <20230507182304.2934-1-jszhang@kernel.org> <ZFkiotPacIMUghDP@xhacker>
- <20230508-unmoved-unvocal-9a6c5fc0c629@spud>
+Subject: Re: [PATCH 5/5] MAINTAINERS: add entry for T-HEAD RISC-V SoC
+Message-ID: <20230508-problem-repulsive-939edfdf7663@spud>
+References: <20230507182304.2934-1-jszhang@kernel.org>
+ <20230507182304.2934-6-jszhang@kernel.org>
+ <20230507-woof-eldercare-f1323b10bde6@spud>
+ <ZFkgsHGvEIxGDxXv@xhacker>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="dSqjxm9sPfcjRPhf"
+Content-Disposition: inline
+In-Reply-To: <ZFkgsHGvEIxGDxXv@xhacker>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -49,53 +65,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Montag, 8. Mai 2023, 18:44:04 CEST schrieb Conor Dooley:
-> On Tue, May 09, 2023 at 12:26:10AM +0800, Jisheng Zhang wrote:
-> > On Sun, May 07, 2023 at 10:35:12PM +0100, Conor Dooley wrote:
-> > > On Mon, May 08, 2023 at 02:23:02AM +0800, Jisheng Zhang wrote:
-> > > 
-> > > > +		c910_0: cpu@0 {
-> > > > +			compatible = "thead,c910", "riscv";
-> > > > +			device_type = "cpu";
-> > > > +			riscv,isa = "rv64imafdc";
-> > > 
-> > > Does this support more than "rv64imafdc"?
-> > > I assume there's some _xtheadfoo extensions that it does support,
-> > > although I am not sure how we are proceeding with those - Heiko might
-> > > have a more nuanced take.
-> > > 
-> > > > +		reset: reset-sample {
-> > > > +			compatible = "thead,reset-sample";
-> > > 
-> > > What is a "reset-sample"?
-> > 
-> > This node is only for opensbi. The compatible string is already in
-> > opensbi. Do we also need to add dt-binding for it in linux?
-> 
-> If it's to be included in the kernel's dts, then yes, you do need a
-> dt-binding. If you remove it, then you don't :)
-> 
-> That said, "thead,reset-sample" is a strangely named compatible, so if
-> you do keep it it may end up needing a rename!
 
-and you'll need to justify that this describes actual hardware
-(dt-maintainers iterate all the time that dt is a hardware description, not
-a configuration scheme).
+--dSqjxm9sPfcjRPhf
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-The question also would be if this is part of upstream opensbi at all.
+On Tue, May 09, 2023 at 12:17:52AM +0800, Jisheng Zhang wrote:
+> On Sun, May 07, 2023 at 10:21:26PM +0100, Conor Dooley wrote:
+> > Hey Jisheng,
+>=20
+> Hi Conor,
+>=20
+> >=20
+> > On Mon, May 08, 2023 at 02:23:04AM +0800, Jisheng Zhang wrote:
+> > > I would like to temporarily maintain the T-HEAD RISC-V SoC support.
+> >=20
+> > What does "temporarily" mean?
+>=20
+> I got a Lichee Pi 4A board, and want to mainline its support. Sending
+> the new dts patches needs to touch MAINTAINERS entry, so I added it.
+> But I expected an experienced people from T-HEAD, with many
+> kernel contribuitions in the past, will take the maintainership
+> finally, for example, Ren Guo. He knew this SoC better than me.
 
+I see. I don't mind applying the patches for the platform for now, it's
+not too much more on top of the other vendors that I am doing as things
+are still low enough volume, as long as someone is willing to review
+them as they come in.
 
-In general though, openSBI does something similar with their perf-counter
-description. Describing the mapping and eventids usable in which counter
-via a structure passed from u-boot to openSBI.
+Cheers,
+Conor.
 
-The difference here is, that openSBI then removes the relevant nodes from
-the dt, so that the kernel never sees them [0] .
+--dSqjxm9sPfcjRPhf
+Content-Type: application/pgp-signature; name="signature.asc"
 
-As you reset-sample seems to fall into a similar category, I guess
-it would be better suited in an a foo-u-boot.dtsi ?
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZFkwIgAKCRB4tDGHoIJi
+0tkSAP9xd/XjooRGUlzzIUbh3gmKoz4mYhqIJ9UqthFrEHzv0gEAygtJ+Nsi4GLZ
+kgnge/Y+sUV+cRzazxPcssoUADlu7gE=
+=L9rr
+-----END PGP SIGNATURE-----
 
-[0] https://github.com/riscv-software-src/opensbi/blob/master/lib/utils/fdt/fdt_pmu.c#L42
-
-
+--dSqjxm9sPfcjRPhf--
