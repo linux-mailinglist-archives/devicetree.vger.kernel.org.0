@@ -2,63 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 165B36FB337
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 16:48:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F16FD6FB33F
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 16:50:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233749AbjEHOsc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 10:48:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55748 "EHLO
+        id S234060AbjEHOuf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 10:50:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233408AbjEHOsb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 10:48:31 -0400
-Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F975128
-        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 07:48:29 -0700 (PDT)
-Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-559de1d36a9so66298717b3.1
-        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 07:48:29 -0700 (PDT)
+        with ESMTP id S229764AbjEHOue (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 10:50:34 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBC27A7
+        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 07:50:32 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-965d2749e2eso603324166b.1
+        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 07:50:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683557309; x=1686149309;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dBRDdEMkcJinIhxYo+B9YRkKgZD79DRuOOXoD9mvqrA=;
-        b=iD0hSzpClyLDSlsnaJ2NGcfs5E32cBiwzYfcZo6LCcWAHRSKDUETJfz3+7n45JTCwt
-         douc/nbRktVg+S9fgzdZd9ScZKiQ+MLW3/muv3NLSJFv+HVZ1RbAevD7TlvCK57ZbvsL
-         WbMNsnumNBYCgNcGj9soUX8blE5RPgua8v/9CbQ9T+ZTUmF4CWk5O7uuwGp0/o9HtmFA
-         qyXKiledds2jlCCRcHNZCkTa7gVrJPZ0JjWU86yuchOPpVmmabEi+k8tUyz46CCBxqZu
-         lkwDO47kj1R1h518ubnwuTvtPDxjClD3JFwmyETVbTvSrq7BD1t2WPJWAC3zXBCHpNJT
-         kT/A==
+        d=linaro.org; s=google; t=1683557431; x=1686149431;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=gMmZCKvPSgtFZs9o13Tig/KfWa59Ms4zy6g+NjJ0joQ=;
+        b=XjHfVTNS7RPgE5uMNqBQZYYU1GHP/gHYtMXKaN3iX9Wr5HwDo9N9A3ire6KDFgWwQx
+         nlbUP6YRublx+RB4abMEZRBoYIte1TlgktsGloqxjFzctwAIo0jBLqcc+cGpEit5gmKc
+         nTlteuP2thrdZKg4xeRcw7FsfOtz/L/5d66s6FZj7DNmu6ppfkG2gwoo0ZQz2cxnJmXF
+         pL4qcygEEQGKMQiEQzJ8R9UV38DVSIKsBMOqWTzJNLl3/JtgiYFmdT6MIzoU97qG0MiX
+         2+kzQOVLtcpDBdL9q64Ej8uPgan4p5jpX/m6T83XRFnKRZa+OYlNRrQIICAC+NLaiXds
+         tMKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683557309; x=1686149309;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dBRDdEMkcJinIhxYo+B9YRkKgZD79DRuOOXoD9mvqrA=;
-        b=A5AQAqtWWKiwS9eU0rngHY8sfuH7T1uwB5k/aKU08UxmDdeazBz64ybIHtt6ML5S+/
-         YjDG1KkyWY1iQjfIRewQkOA+Hr+Q34LamXOOBOu5Fi6M+t9+P3nIhCxhYRJKVEhO/6tp
-         ADh4yrI1QnGJgOSD/EgH3end4X+1s96cABVhAID/yhDJbOks9WJ+hnoIRCGKTe+BM2Yj
-         fwcPsaDR7AthNJet/7gB/5a3L4HnGsLp1xCuHlQpJ8cNdv3wy82IoCnplE487aymyfPv
-         IwSlH3GNnO5YmJbZWn6f7I9BBBA9VUizXg4qIQJj6K1J5ql+jWnoVGpSXq2w7DNETlKq
-         nrEg==
-X-Gm-Message-State: AC+VfDx6rH3oafhr6QgTpoUdT6wBGgWqj2MiMsmCM/X+Iam3DwtcqvBe
-        NwqbCOOEEqYuK4IGOJqVJ3BruKKyLj3PnRS75ck9xQ==
-X-Google-Smtp-Source: ACHHUZ5YUrkJZ/Z2beY5zA4zYoasGmvc6Wh2Js2To2GzZo6nfjG/1CfaA4enPcYkeZdCT/H+sD/SeZS62t99vhljdDw=
-X-Received: by 2002:a05:6902:18c6:b0:b99:5707:4e6f with SMTP id
- ck6-20020a05690218c600b00b9957074e6fmr15005818ybb.32.1683557308817; Mon, 08
- May 2023 07:48:28 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1683557431; x=1686149431;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gMmZCKvPSgtFZs9o13Tig/KfWa59Ms4zy6g+NjJ0joQ=;
+        b=c210b27wf6MAl9R+YD1WzZ/f6PNdSkLtTu+jJ+i77QrQT+Xx2sECG/BRViGO6Jb0X/
+         Ja9HefeeQ7xr2g+i7fQhXiiRQ/CrBZ46eMp2MmI4WEW/QjGVz6far4H6h8bq34hNSVi5
+         Bw4hmmVu4SbtscgoHsw4o6TjqpNyT6XxLbIUCjzavr+nUZws/jpEc+/Fa9iTFbtQs1IK
+         RNIImBVQVXZHzhQdZdTMrDmAdsBADkTYIzO4fTifyAGEN4KjAyrtfxyWnGVtr26aEYg0
+         BgEVfT7xlzGL7/l9xkBZvHOMs+lLmBsjD6OMgxqoslBF2ILvJJkyPJB/D2bJ3HdbOgXq
+         5+GQ==
+X-Gm-Message-State: AC+VfDyhNRz+YYRQqqSlCZZzXA0EiMuQYs7+aWqrbPIUni5p+W2JLzoo
+        kX+MKKpA8L2He6IrbGWu6co+yg==
+X-Google-Smtp-Source: ACHHUZ5SG0QojaChuSrchOK7fGRM4vlmbcHOXVXAIXai8UkeYvgifoSmigtg9gE8tLFTKRugSiG76g==
+X-Received: by 2002:a17:907:3faa:b0:966:17b2:5b15 with SMTP id hr42-20020a1709073faa00b0096617b25b15mr7285332ejc.7.1683557431048;
+        Mon, 08 May 2023 07:50:31 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:50e0:ebdf:b755:b300? ([2a02:810d:15c0:828:50e0:ebdf:b755:b300])
+        by smtp.gmail.com with ESMTPSA id rq12-20020a17090788cc00b0094f0f0de1bcsm46430ejc.200.2023.05.08.07.50.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 May 2023 07:50:30 -0700 (PDT)
+Message-ID: <9e637c7e-c7b5-6eb6-c3e0-c7842d2756ac@linaro.org>
+Date:   Mon, 8 May 2023 16:50:27 +0200
 MIME-Version: 1.0
-References: <20230504-arm-dts-mv-v1-0-2c8e51a2b6c4@kernel.org> <20230504-arm-dts-mv-v1-2-2c8e51a2b6c4@kernel.org>
-In-Reply-To: <20230504-arm-dts-mv-v1-2-2c8e51a2b6c4@kernel.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 8 May 2023 16:48:17 +0200
-Message-ID: <CACRpkdbfKdR=ru8dCJL0Tincu2-Smsi56vt=C7OW3K9JuQ=47Q@mail.gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
 Subject: Re: [PATCH 2/4] ARM: dts: Add .dts files missing from the build
-To:     Rob Herring <robh@kernel.org>
+Content-Language: en-US
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh@kernel.org>
 Cc:     soc@kernel.org, Christian Marangi <ansuelsmth@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Russell King <linux@armlinux.org.uk>,
         Masahiro Yamada <masahiroy@kernel.org>,
-        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
+        =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
         Manivannan Sadhasivam <mani@kernel.org>,
         Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
@@ -90,7 +94,7 @@ Cc:     soc@kernel.org, Christian Marangi <ansuelsmth@gmail.com>,
         Matthias Brugger <matthias.bgg@gmail.com>,
         Peter Rosin <peda@axentia.se>, Nancy Yuen <yuenn@google.com>,
         Benjamin Fair <benjaminfair@google.com>,
-        =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.neuschaefer@gmx.net>,
         Thierry Reding <thierry.reding@gmail.com>,
         Bjorn Andersson <andersson@kernel.org>,
         Geert Uytterhoeven <geert+renesas@glider.be>,
@@ -114,11 +118,16 @@ Cc:     soc@kernel.org, Christian Marangi <ansuelsmth@gmail.com>,
         Michal Simek <michal.simek@xilinx.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@axis.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+References: <20230504-arm-dts-mv-v1-0-2c8e51a2b6c4@kernel.org>
+ <20230504-arm-dts-mv-v1-2-2c8e51a2b6c4@kernel.org>
+ <CACRpkdbfKdR=ru8dCJL0Tincu2-Smsi56vt=C7OW3K9JuQ=47Q@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CACRpkdbfKdR=ru8dCJL0Tincu2-Smsi56vt=C7OW3K9JuQ=47Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -126,15 +135,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 5, 2023 at 5:29=E2=80=AFAM Rob Herring <robh@kernel.org> wrote:
+On 08/05/2023 16:48, Linus Walleij wrote:
+> On Fri, May 5, 2023 at 5:29 AM Rob Herring <robh@kernel.org> wrote:
+> 
+>> Comparing .dts files to built .dtb files yielded a few .dts files which
+>> are never built. Add them to the build.
+>>
+>> Signed-off-by: Rob Herring <robh@kernel.org>
+> 
+> Wow weird.
 
-> Comparing .dts files to built .dtb files yielded a few .dts files which
-> are never built. Add them to the build.
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
+I wonder now whether there are such *.c files as well...
 
-Wow weird.
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Best regards,
+Krzysztof
 
-Yours,
-Linus Walleij
