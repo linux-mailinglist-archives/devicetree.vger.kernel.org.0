@@ -2,269 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2EF76FAFEE
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 14:27:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB0326FAFCD
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 14:21:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230415AbjEHM1k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 08:27:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56450 "EHLO
+        id S234095AbjEHMV1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 08:21:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229560AbjEHM1j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 08:27:39 -0400
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2071.outbound.protection.outlook.com [40.107.93.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5DD2348A4;
-        Mon,  8 May 2023 05:27:37 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CNX0gGuzBWuPlAEowkRKR4jiwB7U765KqsZIiumE8YGWuN2QrfkMZ5qXfYarguvM16XOULyCXu8rNfGMfMDny+YbNKyWemOtPVEkLCcL9Atr+WwF4l3d5vaIHnLI+EiQUSWWPuCQwXEj3vUyzzSYZPXgTgr49p4A9Q8422kVEz8+BDIhn9WjX1s9e1RkxceWF7X1SFZch1pvcN7XxqqglXdBJqKTycVp3BBACoJML5DrC8g6x2CixPXfRTggS/xyfVLg8vVIFcWS7OriCeiHqhB7Eh0dBXdG5IqLcsv2lwpt1RMa2kZ78UDArI7I4zd0qXNc39N/cdYq9BD6yCxwug==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ggPzDBoMg+NSkCkSTSGEpJElqU9s0QggF8m3H/JWI40=;
- b=Ugtw8Mdq5lJyjybhsVxtFpLIVI7Bt6t5qfdb7dgveRFTXc4fZxtCqocA0aHssKirfGBgHInusEYb+AbpQLR7FmeVUQ7T2sCaHsqZsJEr4GQmCmYvEDPlATXt+fJJjyTseFEacwwurCRw7jDkOhyjX7+TRebQ2NhjZVNidrBS7PRTPwB6OdnvAUknKG6xzIL4ZUUYoer6ZwoOTmo/nmhXFYqHj4H0Lw/xm3suBTMCImJNavrSVXrZ3pTegoAaycZH/w8yox3TI8aWFCZHJzsih9uts/6T/8vch15lT60zWtPDYRs0ZGyZHtJhKW0duBqZf4AGFDUu35paniKQqDt9Aw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=gmail.com smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ggPzDBoMg+NSkCkSTSGEpJElqU9s0QggF8m3H/JWI40=;
- b=B7cDtL/Z6R4keGK5Q7yfDlpeKjOFS/D3BG5n72h9cpBghajFCkCSecake3Em7FtXJ4xXdv7Jj4ZPeyW3qVzCUi7GZxiSjk24TpIcKmz7mIHJH6vU93TqKlTExKra33mnHCC121LiujQPOXN/V9LC2ANSFlQehG3xk4OOFSPSNLLy8Cuc1iqikvRnTx6YiuBS08lh38aaAUQsH/quSjNSgHEp6XJgePvydf+cjiV9oCd7iHBlSzwDrky3fDF1a43qk8dvsaeIvW1a4j+PmJ34hpH1FLZEv3M2QBdWEZSQezzoRp0WOUd6CFVKLTzrHdzTcbBLXDgf/ebLmmDfJEOTMg==
-Received: from MW4PR03CA0124.namprd03.prod.outlook.com (2603:10b6:303:8c::9)
- by BN9PR12MB5033.namprd12.prod.outlook.com (2603:10b6:408:132::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.32; Mon, 8 May
- 2023 12:27:35 +0000
-Received: from CO1NAM11FT060.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:8c:cafe::31) by MW4PR03CA0124.outlook.office365.com
- (2603:10b6:303:8c::9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.32 via Frontend
- Transport; Mon, 8 May 2023 12:27:34 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- CO1NAM11FT060.mail.protection.outlook.com (10.13.175.132) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6363.32 via Frontend Transport; Mon, 8 May 2023 12:27:33 +0000
-Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.5; Mon, 8 May 2023
- 05:27:27 -0700
-Received: from rnnvmail204.nvidia.com (10.129.68.6) by rnnvmail201.nvidia.com
- (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.37; Mon, 8 May 2023
- 05:27:27 -0700
-Received: from mallet.nvidia.com (10.127.8.10) by mail.nvidia.com
- (10.129.68.6) with Microsoft SMTP Server id 15.2.986.37 via Frontend
- Transport; Mon, 8 May 2023 05:27:25 -0700
-From:   Peter De Schrijver <pdeschrijver@nvidia.com>
-To:     Peter De Schrijver <pdeschrijver@nvidia.com>,
-        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>
-CC:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <stefank@nvidia.com>
-Subject: [PATCH 4/5] dt-bindings: Add bindings to support DRAM MRQ GSCs
-Date:   Mon, 8 May 2023 15:20:52 +0300
-Message-ID: <20230508122048.99953-5-pdeschrijver@nvidia.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230508122048.99953-1-pdeschrijver@nvidia.com>
-References: <20230508122048.99953-1-pdeschrijver@nvidia.com>
+        with ESMTP id S234076AbjEHMVX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 08:21:23 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 948D131565;
+        Mon,  8 May 2023 05:21:22 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 201D563BFA;
+        Mon,  8 May 2023 12:21:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55314C433D2;
+        Mon,  8 May 2023 12:21:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1683548481;
+        bh=uq5dzUvZQoVw3C52vq/DdsRT8oi8aDqjHTKmyLpSfZo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=r0SxYbcZN3jgbBBE4ta+Dzn8/3lyfGNX3BbuOqE8B84X1N1cIKwIzO4SYcQVgH9iH
+         MeLYFhhvGzQSFVyn/1hCKtRerG1EFDNPyCKzUcebDRXTMur1z8zpAnRJwl0lw8Mogq
+         sOC/3m5d9rmB3H2i+skm0YQ4clsnrWhOe552wdOL8Inj8vCFx/gEG6BEUgmZ2j5ZWd
+         XGu5dLYnJ6dLJFJJGn/MyHLMp1rP4A7stireL7O6syT+xGhcl7AfHaaG6P3osBPkxJ
+         V4BsPL7ppePFvF4cfTSD8UPiJXKmGbzY65wl/Kjr2m+jRw3p+7RxsUvyOAocS/MX3+
+         Dg5171/dpRdFw==
+Date:   Mon, 8 May 2023 17:51:09 +0530
+From:   Manivannan Sadhasivam <mani@kernel.org>
+To:     Devi Priya <quic_devipriy@quicinc.com>
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
+        bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org,
+        mturquette@baylibre.com, sboyd@kernel.org, mani@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-clk@vger.kernel.org, quic_srichara@quicinc.com,
+        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
+        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
+        quic_ipkumar@quicinc.com
+Subject: Re: [PATCH V3 6/6] PCI: qcom: Add support for IPQ9574
+Message-ID: <20230508122109.GC4190@thinkpad>
+References: <20230421124938.21974-1-quic_devipriy@quicinc.com>
+ <20230421124938.21974-7-quic_devipriy@quicinc.com>
 MIME-Version: 1.0
-X-NVConfidentiality: public
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT060:EE_|BN9PR12MB5033:EE_
-X-MS-Office365-Filtering-Correlation-Id: cb95df79-fc18-4420-36f1-08db4fbf99d1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: p3/hyzTck2ueF/hTMacXUVfjIUuZWgoi3XV1ZLJ2JDkujds0ARQyPXlGMLl4w9FVh1iMxVkYhHsSb88Y8o7rNUM7VQEYGH4GyC7qc2SvmTcbq7eB7Vg7L1084Vc9CYeeAAG8Kk6WmNSbedVWZR1JaDwtnMsS1FZC0sYJaJuMF4f3eliG8fn/iVR2eCPdy3Q4J5e914E+uP602Yi6ZBWGZDvwnjIdzoaqwNB1/jqHpV84WarUdWeZIzSEv2kBIv3J8iGX1lCqS5Vm4r34S0tOO5nKrij7e2ZWctRKu86wxvSURnbUr/Rb5pC8X35hVRw99B/QaEqhXMWwSvEWZnazQ/Av8D0A06mGDGsR+dbNZhuOy8OQyZ5z4bXdCCqgKHVXDK+2S/3A94tVgf/P/kVjJsbnNBqEvWLFtCLrtyDJ0Z1KPrv76KOmG6icl8zKdw4vcYQMJHj5x4Ins4FcYR/JvLnNODCKstui0Z4+qapnhbA6qJ5PeNo3ES1Xg1EUf9Bvu6U4ny902hQEPSlHQTASCSWD/U3oy/jf2vzuJExjh3xNaAXqKUqczGj8sUnetp8GxNIFwNErAKGEbAfsnDcJPR9TupFccbk6X+amgPZlznrqVdBpC/ZM+ePYB9UYryJgYmBhfyPYf8/7QOO3B+rE6/uje+ox1uuchj3A35+Eacw34m9c4vwX9W21KbnU4Mr7E8wryEGIofpd31BBX9ZechUbFL+lE4Z6kzdBWOQL7LLJd8ke6c457nNrgb/9ZGSm
-X-Forefront-Antispam-Report: CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(346002)(136003)(396003)(376002)(451199021)(46966006)(36840700001)(40470700004)(40460700003)(2906002)(36860700001)(426003)(5660300002)(47076005)(356005)(7636003)(82740400003)(82310400005)(36756003)(86362001)(40480700001)(54906003)(110136005)(478600001)(186003)(26005)(966005)(7696005)(6666004)(1076003)(107886003)(316002)(2616005)(8936002)(336012)(8676002)(41300700001)(70586007)(6636002)(4326008)(83380400001)(70206006);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 May 2023 12:27:33.9936
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: cb95df79-fc18-4420-36f1-08db4fbf99d1
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT060.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5033
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20230421124938.21974-7-quic_devipriy@quicinc.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings for DRAM MRQ GSC support.
+On Fri, Apr 21, 2023 at 06:19:38PM +0530, Devi Priya wrote:
+> The IPQ9574 platform has 4 Gen3 PCIe controllers: two single-lane
+> and two dual-lane based on SNPS core 5.70a
+> The Qcom IP rev is 1.27.0 and Synopsys IP rev is 5.80a
+> Added a new compatible 'qcom,pcie-ipq9574' and 'ops_1_27_0'
+> which reuses all the members of 'ops_2_9_0' except for the post_init
+> as the SLV_ADDR_SPACE_SIZE configuration differs between 2_9_0
+> and 1_27_0.
+> Also, modified get_resources of 'ops 2_9_0' to get the clocks
+> from the device tree and modelled the post init sequence as
+> a common function to avoid code redundancy.
+> 
+> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
+> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
+> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
 
-Co-developed-by: Stefan Kristiansson <stefank@nvidia.com>
-Signed-off-by: Stefan Kristiansson <stefank@nvidia.com>
-Signed-off-by: Peter De Schrijver <pdeschrijver@nvidia.com>
----
- .../firmware/nvidia,tegra186-bpmp.yaml        | 69 ++++++++++++++++++-
- .../nvidia,tegra264-bpmp-shmem.yaml           | 40 +++++++++++
- 2 files changed, 106 insertions(+), 3 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/reserved-memory/nvidia,tegra264-bpmp-shmem.yaml
+One comment below. With that fixed,
 
-diff --git a/Documentation/devicetree/bindings/firmware/nvidia,tegra186-bpmp.yaml b/Documentation/devicetree/bindings/firmware/nvidia,tegra186-bpmp.yaml
-index 833c07f1685c..d818cfe1d783 100644
---- a/Documentation/devicetree/bindings/firmware/nvidia,tegra186-bpmp.yaml
-+++ b/Documentation/devicetree/bindings/firmware/nvidia,tegra186-bpmp.yaml
-@@ -57,8 +57,11 @@ description: |
-   "#address-cells" or "#size-cells" property.
- 
-   The shared memory area for the IPC TX and RX between CPU and BPMP are
--  predefined and work on top of sysram, which is an SRAM inside the
--  chip. See ".../sram/sram.yaml" for the bindings.
-+  predefined and work on top of either sysram, which is an SRAM inside the
-+  chip, or in normal SDRAM.
-+  See ".../sram/sram.yaml" for the bindings for the SRAM case.
-+  See "../reserved-memory/nvidia,tegra264-bpmp-shmem.yaml" for bindings for
-+  the SDRAM case.
- 
- properties:
-   compatible:
-@@ -81,6 +84,11 @@ properties:
-     minItems: 2
-     maxItems: 2
- 
-+  memory-region:
-+    description: phandle to reserved memory region used for IPC between
-+      CPU-NS and BPMP.
-+    maxItems: 1
-+
-   "#clock-cells":
-     const: 1
- 
-@@ -115,10 +123,16 @@ properties:
- 
- additionalProperties: false
- 
-+allOf:
-+  - oneOf:
-+      - required:
-+          - memory-region
-+      - required:
-+          - shmem
-+
- required:
-   - compatible
-   - mboxes
--  - shmem
-   - "#clock-cells"
-   - "#power-domain-cells"
-   - "#reset-cells"
-@@ -184,3 +198,52 @@ examples:
-             #thermal-sensor-cells = <1>;
-         };
-     };
-+
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/mailbox/tegra186-hsp.h>
-+    #include <dt-bindings/memory/tegra186-mc.h>
-+
-+    hsp_top0: hsp@3c00000 {
-+        compatible = "nvidia,tegra186-hsp";
-+        reg = <0x03c00000 0xa0000>;
-+        interrupts = <GIC_SPI 176 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-names = "doorbell";
-+        #mbox-cells = <2>;
-+    };
-+
-+    reserved-memory {
-+        dram_cpu_bpmp_mail: shmem@f1be0000  {
-+            compatible = "nvidia,tegra264-bpmp-shmem";
-+            reg = <0x0 0xf1be0000 0x0 0x2000>;
-+            no-map;
-+        };
-+    };
-+
-+    bpmp {
-+        compatible = "nvidia,tegra186-bpmp";
-+        interconnects = <&mc TEGRA186_MEMORY_CLIENT_BPMPR &emc>,
-+                        <&mc TEGRA186_MEMORY_CLIENT_BPMPW &emc>,
-+                        <&mc TEGRA186_MEMORY_CLIENT_BPMPDMAR &emc>,
-+                        <&mc TEGRA186_MEMORY_CLIENT_BPMPDMAW &emc>;
-+        interconnect-names = "read", "write", "dma-mem", "dma-write";
-+        iommus = <&smmu TEGRA186_SID_BPMP>;
-+        mboxes = <&hsp_top0 TEGRA_HSP_MBOX_TYPE_DB
-+                            TEGRA_HSP_DB_MASTER_BPMP>;
-+        memory-region = <&dram_cpu_bpmp_mail>;
-+        #clock-cells = <1>;
-+        #power-domain-cells = <1>;
-+        #reset-cells = <1>;
-+
-+        i2c {
-+            compatible = "nvidia,tegra186-bpmp-i2c";
-+            nvidia,bpmp-bus-id = <5>;
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+        };
-+
-+        thermal {
-+            compatible = "nvidia,tegra186-bpmp-thermal";
-+            #thermal-sensor-cells = <1>;
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/reserved-memory/nvidia,tegra264-bpmp-shmem.yaml b/Documentation/devicetree/bindings/reserved-memory/nvidia,tegra264-bpmp-shmem.yaml
-new file mode 100644
-index 000000000000..6cd9a61cd31f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/reserved-memory/nvidia,tegra264-bpmp-shmem.yaml
-@@ -0,0 +1,40 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/reserved-memory/nvidia,tegra264-bpmp-shmem.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Tegra CPU-NS - BPMP IPC reserved memory binding
-+
-+maintainers:
-+ - Peter De Schrijver <pdeschrijver@nvidia.com>
-+
-+description: |
-+  Define a memory region used for communication between CPU-NS and BPMP.
-+  Typically this node is created by the bootloader as the physical address
-+  has to be known to both CPU-NS and BPMP for correct IPC operation.
-+  The memory region is defined using a child node under /reserved-memory.
-+  The sub-node is named shmem@<address>.
-+
-+properties:
-+  compatible:
-+    const: nvidia,tegra264-bpmp-shmem
-+
-+  reg:
-+    description: The physical address and size of the shared SDRAM region
-+
-+required:
-+  - compatible
-+  - reg
-+  - no-map
-+
-+examples:
-+  - |
-+    reserved-memory {
-+       dram_cpu_bpmp_mail: shmem@f1be0000  {
-+           compatible = "nvidia,tegra264-bpmp-shmem";
-+           reg = <0x0 0xf1be0000 0x0 0x2000>;
-+           no-map;
-+       };
-+    };
-+...
+Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
+
+- Mani
+
+> ---
+>  Changes in V3:
+> 	- Rebased on top of linux-next/master
+> 
+>  drivers/pci/controller/dwc/pcie-qcom.c | 61 ++++++++++++++++++--------
+>  1 file changed, 43 insertions(+), 18 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> index 4ab30892f6ef..3682ecdead1f 100644
+> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> @@ -107,6 +107,7 @@
+>  
+>  /* PARF_SLV_ADDR_SPACE_SIZE register value */
+>  #define SLV_ADDR_SPACE_SZ			0x10000000
+> +#define SLV_ADDR_SPACE_SZ_1_27_0		0x08000000
+>  
+>  /* PARF_MHI_CLOCK_RESET_CTRL register fields */
+>  #define AHB_CLK_EN				BIT(0)
+> @@ -202,10 +203,10 @@ struct qcom_pcie_resources_2_7_0 {
+>  	struct reset_control *rst;
+>  };
+>  
+> -#define QCOM_PCIE_2_9_0_MAX_CLOCKS		5
+>  struct qcom_pcie_resources_2_9_0 {
+> -	struct clk_bulk_data clks[QCOM_PCIE_2_9_0_MAX_CLOCKS];
+> +	struct clk_bulk_data *clks;
+>  	struct reset_control *rst;
+> +	int num_clks;
+>  };
+>  
+>  union qcom_pcie_resources {
+> @@ -1050,17 +1051,10 @@ static int qcom_pcie_get_resources_2_9_0(struct qcom_pcie *pcie)
+>  	struct qcom_pcie_resources_2_9_0 *res = &pcie->res.v2_9_0;
+>  	struct dw_pcie *pci = pcie->pci;
+>  	struct device *dev = pci->dev;
+> -	int ret;
+>  
+> -	res->clks[0].id = "iface";
+> -	res->clks[1].id = "axi_m";
+> -	res->clks[2].id = "axi_s";
+> -	res->clks[3].id = "axi_bridge";
+> -	res->clks[4].id = "rchng";
+> -
+> -	ret = devm_clk_bulk_get(dev, ARRAY_SIZE(res->clks), res->clks);
+> -	if (ret < 0)
+> -		return ret;
+> +	res->num_clks = devm_clk_bulk_get_all(dev, &res->clks);
+> +	if (res->clks < 0)
+> +		return res->num_clks;
+
+Why not return proper error no?
+
+>  
+>  	res->rst = devm_reset_control_array_get_exclusive(dev);
+>  	if (IS_ERR(res->rst))
+> @@ -1073,7 +1067,7 @@ static void qcom_pcie_deinit_2_9_0(struct qcom_pcie *pcie)
+>  {
+>  	struct qcom_pcie_resources_2_9_0 *res = &pcie->res.v2_9_0;
+>  
+> -	clk_bulk_disable_unprepare(ARRAY_SIZE(res->clks), res->clks);
+> +	clk_bulk_disable_unprepare(res->num_clks, res->clks);
+>  }
+>  
+>  static int qcom_pcie_init_2_9_0(struct qcom_pcie *pcie)
+> @@ -1102,19 +1096,16 @@ static int qcom_pcie_init_2_9_0(struct qcom_pcie *pcie)
+>  
+>  	usleep_range(2000, 2500);
+>  
+> -	return clk_bulk_prepare_enable(ARRAY_SIZE(res->clks), res->clks);
+> +	return clk_bulk_prepare_enable(res->num_clks, res->clks);
+>  }
+>  
+> -static int qcom_pcie_post_init_2_9_0(struct qcom_pcie *pcie)
+> +static int qcom_pcie_post_init(struct qcom_pcie *pcie)
+>  {
+>  	struct dw_pcie *pci = pcie->pci;
+>  	u16 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
+>  	u32 val;
+>  	int i;
+>  
+> -	writel(SLV_ADDR_SPACE_SZ,
+> -		pcie->parf + PARF_SLV_ADDR_SPACE_SIZE);
+> -
+>  	val = readl(pcie->parf + PARF_PHY_CTRL);
+>  	val &= ~PHY_TEST_PWR_DOWN;
+>  	writel(val, pcie->parf + PARF_PHY_CTRL);
+> @@ -1151,6 +1142,26 @@ static int qcom_pcie_post_init_2_9_0(struct qcom_pcie *pcie)
+>  	return 0;
+>  }
+>  
+> +static int qcom_pcie_post_init_1_27_0(struct qcom_pcie *pcie)
+> +{
+> +	writel(SLV_ADDR_SPACE_SZ_1_27_0,
+> +	       pcie->parf + PARF_SLV_ADDR_SPACE_SIZE);
+> +
+> +	qcom_pcie_post_init(pcie);
+> +
+> +	return 0;
+> +}
+> +
+> +static int qcom_pcie_post_init_2_9_0(struct qcom_pcie *pcie)
+> +{
+> +	writel(SLV_ADDR_SPACE_SZ,
+> +	       pcie->parf + PARF_SLV_ADDR_SPACE_SIZE);
+> +
+> +	qcom_pcie_post_init(pcie);
+> +
+> +	return 0;
+> +}
+> +
+>  static int qcom_pcie_link_up(struct dw_pcie *pci)
+>  {
+>  	u16 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
+> @@ -1291,6 +1302,15 @@ static const struct qcom_pcie_ops ops_2_9_0 = {
+>  	.ltssm_enable = qcom_pcie_2_3_2_ltssm_enable,
+>  };
+>  
+> +/* Qcom IP rev.: 1.27.0  Synopsys IP rev.: 5.80a */
+> +static const struct qcom_pcie_ops ops_1_27_0 = {
+> +	.get_resources = qcom_pcie_get_resources_2_9_0,
+> +	.init = qcom_pcie_init_2_9_0,
+> +	.post_init = qcom_pcie_post_init_1_27_0,
+> +	.deinit = qcom_pcie_deinit_2_9_0,
+> +	.ltssm_enable = qcom_pcie_2_3_2_ltssm_enable,
+> +};
+> +
+>  static const struct qcom_pcie_cfg cfg_1_0_0 = {
+>  	.ops = &ops_1_0_0,
+>  };
+> @@ -1323,6 +1343,10 @@ static const struct qcom_pcie_cfg cfg_2_9_0 = {
+>  	.ops = &ops_2_9_0,
+>  };
+>  
+> +static const struct qcom_pcie_cfg cfg_1_27_0 = {
+> +	.ops = &ops_1_27_0,
+> +};
+> +
+>  static const struct dw_pcie_ops dw_pcie_ops = {
+>  	.link_up = qcom_pcie_link_up,
+>  	.start_link = qcom_pcie_start_link,
+> @@ -1607,6 +1631,7 @@ static const struct of_device_id qcom_pcie_match[] = {
+>  	{ .compatible = "qcom,pcie-ipq8064-v2", .data = &cfg_2_1_0 },
+>  	{ .compatible = "qcom,pcie-ipq8074", .data = &cfg_2_3_3 },
+>  	{ .compatible = "qcom,pcie-ipq8074-gen3", .data = &cfg_2_9_0 },
+> +	{ .compatible = "qcom,pcie-ipq9574", .data = &cfg_1_27_0 },
+>  	{ .compatible = "qcom,pcie-msm8996", .data = &cfg_2_3_2 },
+>  	{ .compatible = "qcom,pcie-qcs404", .data = &cfg_2_4_0 },
+>  	{ .compatible = "qcom,pcie-sa8540p", .data = &cfg_1_9_0 },
+> -- 
+> 2.17.1
+> 
+
 -- 
-2.40.0
-
+மணிவண்ணன் சதாசிவம்
