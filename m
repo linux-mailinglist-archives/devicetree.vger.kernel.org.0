@@ -2,68 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C5376F9F9C
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 08:17:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF5576F9FB9
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 08:21:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229448AbjEHGRK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 02:17:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42452 "EHLO
+        id S232792AbjEHGVL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 02:21:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230076AbjEHGRJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 02:17:09 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC72E17DFD;
-        Sun,  7 May 2023 23:17:03 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6E84E61F09;
-        Mon,  8 May 2023 06:17:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6796C433EF;
-        Mon,  8 May 2023 06:17:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1683526622;
-        bh=KxwYxJMc4q2L54lZZg4no2f6ubAF9y02PkE5A4nwysU=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=pT4cZdOK4XiVUv6jE7p0Pd5sKyBhBWy/ukp72AM5241ZvR4d4ILp2TutFJP3hvs/m
-         mk2DmHAA+fS4n6GRwISfwF9vH/CNRwu4IaHQYOksasj4nufkmJBfOJkbRCYvC7nJzs
-         4g+N4jG0jGDA3NYm2motEkn1tDBpvNPf12QKEHd9sx06PF2g38u2HOlqVDqYXea3++
-         qk89PqUvAiDU1xU9I13ZHuxspdKJiMZFjVQpAlESfgVVVHNgLwNzpkryBmHjbtXEaw
-         IpNcN6bMzc5puHeDoiFZSQbWbZkxyLh3QcAvatir0di0v3gpgStxLNQsk5cAely5WM
-         apnP+HpSqwwNA==
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-50bd37ca954so45687007a12.0;
-        Sun, 07 May 2023 23:17:02 -0700 (PDT)
-X-Gm-Message-State: AC+VfDxxnUZtycsGrbLPuOqSML+eOGfofzNUzA3naeyunSZN9mUWTH9e
-        trVwMj0/OrmsrglrAGCW5nrfGst1GQzfEcn/WhA=
-X-Google-Smtp-Source: ACHHUZ4n+NUhxOQEB2cLl1GdPbNVKJ0wiwkd8hT9Ds85PHzuHycN+WrqIpWX2LI39K6y2oNVKhJxTRW5nhjZ4gyxqq8=
-X-Received: by 2002:a17:907:6d22:b0:965:d7c7:24db with SMTP id
- sa34-20020a1709076d2200b00965d7c724dbmr8201147ejc.32.1683526620956; Sun, 07
- May 2023 23:17:00 -0700 (PDT)
+        with ESMTP id S232545AbjEHGVJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 02:21:09 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25C551FEA
+        for <devicetree@vger.kernel.org>; Sun,  7 May 2023 23:21:03 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-965f7bdab6bso526660166b.3
+        for <devicetree@vger.kernel.org>; Sun, 07 May 2023 23:21:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683526861; x=1686118861;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=a0zCtbvyuCZv5ZDHktClt14M1N3Yn1Kq3aOXWGII3Xk=;
+        b=obRN4lQ7yHzsItWJG4sNNHmfey7iO95l0VBtNkqyNMnl86G7pjomhab75YLbaKbRKD
+         d7J1yxq+fKLj4/sPDMuDIXjxAo+SUv5eDxcWFbjTkhF4YWwuvaabWmEy4FhxjwvGo5Wa
+         kIsTsi5TImn74gKb5GZs00vVaOQFMt7OBK3FnzxmzS6qRN/koqzTeZ6wtAyJs8u+qhVb
+         XMuUo7E/lgFVbOdcPWdUUXwiF3kHyGJ147q+SuJyTul+JVYJ6NxNu0xQPEEJBoc4jRdH
+         qQr9j3XOsFF8lSiK+LDLQfUSWjNDTbsSlk6mZv+slmqmJmSh+gIR82sZNW2/xsjw6VCj
+         yvjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683526861; x=1686118861;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=a0zCtbvyuCZv5ZDHktClt14M1N3Yn1Kq3aOXWGII3Xk=;
+        b=WEDAX/iLGSwmTwlgBza/T4csXO8viAgUI/waNZzfZvKRePmLN919h1r8Hp84FqMMcC
+         TVqat294kGMgFQVWgvv0d6zPi1FDJZGe6Q9cKCqjsrT0u8748xqj6BPYW/k39gpr1mE5
+         i35iJj7RlJlnhQNgg5EBRcex0TihWAk8iFyXt0Bb2pztmTsGezluqni0usL4TrldO2sf
+         +DNszhBQr/483u1OAHSVPx5/NGezaQCKm6Ukc9lkwOX0+8Dxq85WKSAwLQeaJggnHNXz
+         HR8imA8y9Va3Lnhe6hcNsGpbF9dzaYdkFYf0OoXC75RhweGmTDPGH1rQ10MGiDp1Nst0
+         z2TQ==
+X-Gm-Message-State: AC+VfDyXHSqbTa3SIW1+JNiuT5hzkJyMPpRLqb1nQfgo43rmBhmabsxX
+        T85GmZ7xMQJPB+upQMi7z/DXgg==
+X-Google-Smtp-Source: ACHHUZ7imTk2GtOBXkQpqz9YJxyQfy/GWd7QwSAHeIMqTup1BE9EF/jBA4+9QziBnqdNtVPsmJ/Q3w==
+X-Received: by 2002:a17:906:58c5:b0:966:58ad:d934 with SMTP id e5-20020a17090658c500b0096658add934mr2980785ejs.0.1683526861596;
+        Sun, 07 May 2023 23:21:01 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:50e0:ebdf:b755:b300? ([2a02:810d:15c0:828:50e0:ebdf:b755:b300])
+        by smtp.gmail.com with ESMTPSA id kg20-20020a17090776f400b0094f3e169ca5sm4511506ejc.158.2023.05.07.23.20.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 07 May 2023 23:21:00 -0700 (PDT)
+Message-ID: <df471efa-9ec5-f323-3892-2505ba782512@linaro.org>
+Date:   Mon, 8 May 2023 08:20:59 +0200
 MIME-Version: 1.0
-References: <20230507182304.2934-1-jszhang@kernel.org>
-In-Reply-To: <20230507182304.2934-1-jszhang@kernel.org>
-From:   Guo Ren <guoren@kernel.org>
-Date:   Mon, 8 May 2023 14:16:49 +0800
-X-Gmail-Original-Message-ID: <CAJF2gTScma2OXQv-2ALkZuuVtJA-tAhhi9B4b0No4DNPkH7Ekw@mail.gmail.com>
-Message-ID: <CAJF2gTScma2OXQv-2ALkZuuVtJA-tAhhi9B4b0No4DNPkH7Ekw@mail.gmail.com>
-Subject: Re: [PATCH 0/5] Add Sipeed Lichee Pi 4A RISC-V board support
-To:     Jisheng Zhang <jszhang@kernel.org>, Wei Fu <wefu@redhat.com>,
-        Wei Fu <tekkamanninja@gmail.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH v7 1/3] dt-bindings: ufs: qcom: Add ICE phandle
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Abel Vesa <abel.vesa@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        "James E . J . Bottomley" <jejb@linux.ibm.com>,
+        "Martin K . Petersen" <martin.petersen@oracle.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Biggers <ebiggers@kernel.org>
+Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+        linux-scsi@vger.kernel.org
+References: <20230408214041.533749-1-abel.vesa@linaro.org>
+ <20230408214041.533749-2-abel.vesa@linaro.org>
+ <316e9ee5-fccc-e199-f727-7b8187e965ff@linaro.org>
+Content-Language: en-US
+In-Reply-To: <316e9ee5-fccc-e199-f727-7b8187e965ff@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,47 +94,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-F.Y.I Wei Fu <wefu@redhat.com>
+On 05/05/2023 20:47, Krzysztof Kozlowski wrote:
+> On 08/04/2023 23:40, Abel Vesa wrote:
+>> Starting with SM8550, the ICE will have its own devicetree node
+>> so add the qcom,ice property to reference it.
+>>
+>> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+>> ---
+>>
+>> The v6 is here:
+>> https://lore.kernel.org/all/20230407105029.2274111-3-abel.vesa@linaro.org/
+>>
+>> Changes since v6:
+>>  * Dropped the minItems for both the qcom,ice and the reg in the
+>>    qcom,ice compatile subschema, like Krzysztof suggested
+>>
+>> Changes since v5:
+>>  * dropped the sm8550 specific subschema and replaced it with one that
+>>    mutually excludes the qcom,ice vs both the ICE specific reg range
+>>    and the ICE clock
+>>
+>> Changes since v4:
+>>  * Added check for sm8550 compatible w.r.t. qcom,ice in order to enforce
+>>    it while making sure none of the other platforms are allowed to use it
+>>
+>> Changes since v3:
+>>  * dropped the "and drop core clock" part from subject line
+>>
+>> Changes since v2:
+>>  * dropped all changes except the qcom,ice property
+>>
+>>
+>>  .../devicetree/bindings/ufs/qcom,ufs.yaml     | 24 +++++++++++++++++++
+>>  1 file changed, 24 insertions(+)
+>>
+> 
+> I see dt_binding_check errors after applying this patch. Are you sure
+> this was tested?
 
+False alarm, it was other patch in my tree.
 
-On Mon, May 8, 2023 at 2:34=E2=80=AFAM Jisheng Zhang <jszhang@kernel.org> w=
-rote:
->
-> Sipeed's Lichee Pi 4A development board uses Lichee Module 4A core
-> module which is powered by T-HEAD's light(a.k.a TH1520) SoC. Add
-> minimal device tree files for the core module and the development
-> board.
->
-> Support basic uart/gpio/dmac drivers, so supports booting to a basic
-> shell.
->
-> Jisheng Zhang (5):
->   irqchip/sifive-plic: Support T-HEAD's C910 PLIC
->   riscv: Add the T-HEAD SoC family Kconfig option
->   riscv: dts: add initial T-HEAD light SoC device tree
->   riscv: dts: thead: add sipeed Lichee Pi 4A board device tree
->   MAINTAINERS: add entry for T-HEAD RISC-V SoC
->
->  .../sifive,plic-1.0.0.yaml                    |   4 +
->  MAINTAINERS                                   |   6 +
->  arch/riscv/Kconfig.socs                       |   6 +
->  arch/riscv/boot/dts/Makefile                  |   1 +
->  arch/riscv/boot/dts/thead/Makefile            |   2 +
->  .../dts/thead/light-lichee-module-4a.dtsi     |  38 ++
->  .../boot/dts/thead/light-lichee-pi-4a.dts     |  32 ++
->  arch/riscv/boot/dts/thead/light.dtsi          | 454 ++++++++++++++++++
->  drivers/irqchip/irq-sifive-plic.c             |   1 +
->  9 files changed, 544 insertions(+)
->  create mode 100644 arch/riscv/boot/dts/thead/Makefile
->  create mode 100644 arch/riscv/boot/dts/thead/light-lichee-module-4a.dtsi
->  create mode 100644 arch/riscv/boot/dts/thead/light-lichee-pi-4a.dts
->  create mode 100644 arch/riscv/boot/dts/thead/light.dtsi
->
-> --
-> 2.40.0
->
+This one is good.
 
+Best regards,
+Krzysztof
 
---
-Best Regards
- Guo Ren
