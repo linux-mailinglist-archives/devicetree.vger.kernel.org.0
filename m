@@ -2,82 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B2886FB26A
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 16:17:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57D7A6FB27F
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 16:23:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234451AbjEHORw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 10:17:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55434 "EHLO
+        id S234549AbjEHOXZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 10:23:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233722AbjEHORv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 10:17:51 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E062A0
-        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 07:17:50 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-96649b412easo229559966b.0
-        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 07:17:50 -0700 (PDT)
+        with ESMTP id S234439AbjEHOXY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 10:23:24 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 950D019B9
+        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 07:23:19 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-3f415a90215so26702985e9.0
+        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 07:23:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683555469; x=1686147469;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ownDs96VmZuf2SD3gS4UazEGTd4JsZ/cGQWhog0hNx8=;
-        b=iu+iZGfPr4HbdXLGQeG5JZH80mbVi4fy7axe2WAwYlOvsmJ3zh2Z5gbnd+Jq//v/RJ
-         hgkUFpB/STejIWxcxxYvXlsQzOd7/aN1Rc7JBXrfLo2FesYT8SOGtYs3VgzN7OXS8amJ
-         ab4KD//BjGTO+eoplp2ZCIMc0gtGbg5EaJqt6yUi39vpfNAue9xvU/THJPbTmsuq9gD2
-         Kb6XtVEKaqleJROnJRNQf4UNxNAwrwrrT+T9w0fWotk8JA5XZdpIqrfK2mUhOAr50Ofj
-         onwKO8p7VFAOku/1HDv8vlyqmSORhuMlo/BK1wfQghwAMW0VlBq12IaQ/ubTIIJUqWHp
-         VuVw==
+        d=linaro.org; s=google; t=1683555798; x=1686147798;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9G1leSGGglMdHgO7DDdvTpSALWNAimDPzEUF6uwyp4I=;
+        b=k9OQsnGndg/I3ixOlbXuY4Ebpreh+Dqad/P+GTsOmi9voRIR57U1oisTqRWZvneoh+
+         jnSjPy4SD/rQbCnuqp3/aCVLk3aq3OGtjFsrkCOmI71HHC/SHcfOq19scCLXhs/zqSXi
+         1k7usU1eFGGkYU4kWseGy3XzRbpyzF0DEcX+a8YtMhnyPLZTb5WHlxFsbqj2PY8cY9bC
+         ntKb0yyetNe7YhTl7QqpysAkxIg+XTw7zv16p6U4ZYjn0K7eUmeynTGszubV43OoOYjt
+         ZEbPUyVY/TLxtlOpuqzFeCVcTVuxRSmF8FRfMtV19wd90lZk6eqaMkit/O8BsNjra3BQ
+         +VCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683555469; x=1686147469;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ownDs96VmZuf2SD3gS4UazEGTd4JsZ/cGQWhog0hNx8=;
-        b=Tqz8IhiSnxRjbr5IgLI5tzYqL7EIbK2NYdhgU78UEBsfyeiJ/1Wo+rJ5wxU+X2EbVU
-         ouH6+YVqCDczwAYY9Xf/GkKc1/BWTRy7kZlesFJy/aF6BiDq0X5UPzWlxPWN2847wUD2
-         FnZWTvnOvFHiN2LCmXaPH3aS7MgT/mAW8t6jpRwMEFAURX96X76VBc1QLFH5Ct0LpiOe
-         ezOJWxSVMLr7/o5Bfrg42yykXVuvfdjut2LezmlubGVSQ+5dmmKNRjCTaqlPQyroaY7g
-         B7Gamiomd1Q/8hz40ATreSn+x3rN7u+TMXcZD6vXr4DUSTy1MAYdwzkfbeyb3kDkIEBt
-         9QKg==
-X-Gm-Message-State: AC+VfDzGfZs29i6KcMM+JVvrdm6/tE2x4jpGM4+6CD5OfbvfgTaW3/br
-        ADLtdkjvcfZTNtgISUwAckl7ow==
-X-Google-Smtp-Source: ACHHUZ560sKldiqrIMjg1ekA7xnXwChXcannOgDV/O9OwzIlwtcHkzpXwhvGDxk9FWQR5cgmnyBKOw==
-X-Received: by 2002:a17:907:2d26:b0:94f:3804:5cd6 with SMTP id gs38-20020a1709072d2600b0094f38045cd6mr9550720ejc.66.1683555468736;
-        Mon, 08 May 2023 07:17:48 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:50e0:ebdf:b755:b300? ([2a02:810d:15c0:828:50e0:ebdf:b755:b300])
-        by smtp.gmail.com with ESMTPSA id v9-20020a170906338900b0094ee99eeb01sm21627eja.150.2023.05.08.07.17.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 May 2023 07:17:48 -0700 (PDT)
-Message-ID: <7e16c25d-ab17-741a-1c7c-6cf1462eef5b@linaro.org>
-Date:   Mon, 8 May 2023 16:17:46 +0200
+        d=1e100.net; s=20221208; t=1683555798; x=1686147798;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9G1leSGGglMdHgO7DDdvTpSALWNAimDPzEUF6uwyp4I=;
+        b=TeVNuo+UGZ0MkzSKlQd0xIg5ojYHGNf+3ag3k52pCd0qxg+iSNEv2p9Kst9328v1El
+         JS9K7VLq6uz15WP4k3MdgGLnj3MNAoy0afLu45xGDilQ+uD92lSfyI7apvIZeoKwVLh1
+         hPvkqoIynq/0YMy4M4FCPnr5ImsZEX7ukH7YAf+5vqHSabo6EpzVRXlhVKEIRGZvD3e4
+         43qzK/xBCFstkwQcYXgEpe/hUiJMLa5Vw/R7bz4RK9yr7HKYo0+UT2hWNtLxeFOH/116
+         jRO6UbTD24zHSyfuSEXqUN6dxQCUq/9exdc6KHqhskxIGgyMo9ZS6XbpqYpiiURdbtEZ
+         aZ3g==
+X-Gm-Message-State: AC+VfDyzKxuQHfMd5UwVT4cWZx1/M3nlIt2Trj8CaLHQBg/H+0wUlwFy
+        Ag7tSz0mkwhIdARzwvq1YR3bfA==
+X-Google-Smtp-Source: ACHHUZ4mlUY3frch+nF2E8SH83KRPctG/UuNn7RmdCSl5YTrd7l2W99kCPoH6tjVi4VUqX4s5PlWxg==
+X-Received: by 2002:a05:600c:b4d:b0:3f4:253f:c3d9 with SMTP id k13-20020a05600c0b4d00b003f4253fc3d9mr2015425wmr.25.1683555797976;
+        Mon, 08 May 2023 07:23:17 -0700 (PDT)
+Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id y25-20020a05600c365900b003f42456c490sm4081544wmq.33.2023.05.08.07.23.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 May 2023 07:23:17 -0700 (PDT)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
+        gregkh@linuxfoundation.org, andersson@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        luca.weiss@fairphone.com, lujianhua000@gmail.com,
+        linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     konrad.dybcio@linaro.org, caleb.connolly@linaro.org,
+        bryan.odonoghue@linaro.org, subbaram@quicinc.com,
+        jackp@quicinc.com, robertom@qti.qualcomm.com
+Subject: [PATCH v7 00/13] Add Qualcomm PMIC TPCM support 
+Date:   Mon,  8 May 2023 15:22:55 +0100
+Message-Id: <20230508142308.1656410-1-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 4/5] dt-bindings: Add bindings to support DRAM MRQ GSCs
-Content-Language: en-US
-To:     Peter De Schrijver <pdeschrijver@nvidia.com>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Stefan Kristiansson <stefank@nvidia.com>
-References: <20230508122048.99953-1-pdeschrijver@nvidia.com>
- <20230508122048.99953-5-pdeschrijver@nvidia.com>
- <43945fad-f57b-cfd9-78bd-9ec9e6628382@linaro.org>
- <MW3PR12MB4346ED32BBE6EAA7CB8C91A8B1719@MW3PR12MB4346.namprd12.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <MW3PR12MB4346ED32BBE6EAA7CB8C91A8B1719@MW3PR12MB4346.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,133 +74,224 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/05/2023 16:12, Peter De Schrijver wrote:
-> 
-> 
-> ________________________________________
-> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Sent: 08 May 2023 17:04
-> To: Peter De Schrijver; thierry.reding@gmail.com; Jonathan Hunter
-> Cc: robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org; devicetree@vger.kernel.org; linux-tegra@vger.kernel.org; linux-kernel@vger.kernel.org; Stefan Kristiansson
-> Subject: Re: [PATCH 4/5] dt-bindings: Add bindings to support DRAM MRQ GSCs
-> 
-> On 08/05/2023 14:20, Peter De Schrijver wrote:
->> Add bindings for DRAM MRQ GSC support.
->>
->> Co-developed-by: Stefan Kristiansson <stefank@nvidia.com>
->> Signed-off-by: Stefan Kristiansson <stefank@nvidia.com>
->> Signed-off-by: Peter De Schrijver <pdeschrijver@nvidia.com>
->> ---
->>  .../firmware/nvidia,tegra186-bpmp.yaml        | 69 ++++++++++++++++++-
->>  .../nvidia,tegra264-bpmp-shmem.yaml           | 40 +++++++++++
-> 
->> Why touching two files?
-> 
-> Because both are needed to support having MRQ GSCs in DRAM.
+I'm dropping the previous V1-V6 log because the text is getting too long
+here's a link to the previous cover letter instead
+Link: https://lore.kernel.org/linux-arm-msm/20230501121111.1058190-1-bryan.odonoghue@linaro.org/
 
-Yeah, but why two in one commit? All patches are needed for full support
-and they are not squashed into one.
+Bootable tree
+Link: https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/linux-next-23-05-07-pm8150b-tcpm-qcom-wrapper-typec-mux-bjorn
 
-> 
->>  2 files changed, 106 insertions(+), 3 deletions(-)
->>  create mode 100644 Documentation/devicetree/bindings/reserved-memory/nvidia,tegra264-bpmp-shmem.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/firmware/nvidia,tegra186-bpmp.yaml b/Documentation/devicetree/bindings/firmware/nvidia,tegra186-bpmp.yaml
->> index 833c07f1685c..d818cfe1d783 100644
->> --- a/Documentation/devicetree/bindings/firmware/nvidia,tegra186-bpmp.yaml
->> +++ b/Documentation/devicetree/bindings/firmware/nvidia,tegra186-bpmp.yaml
->> @@ -57,8 +57,11 @@ description: |
->>    "#address-cells" or "#size-cells" property.
->>
->>    The shared memory area for the IPC TX and RX between CPU and BPMP are
->> -  predefined and work on top of sysram, which is an SRAM inside the
->> -  chip. See ".../sram/sram.yaml" for the bindings.
->> +  predefined and work on top of either sysram, which is an SRAM inside the
->> +  chip, or in normal SDRAM.
->> +  See ".../sram/sram.yaml" for the bindings for the SRAM case.
->> +  See "../reserved-memory/nvidia,tegra264-bpmp-shmem.yaml" for bindings for
->> +  the SDRAM case.
->>
->>  properties:
->>    compatible:
->> @@ -81,6 +84,11 @@ properties:
->>      minItems: 2
->>      maxItems: 2
->>
->> +  memory-region:
->> +    description: phandle to reserved memory region used for IPC between
->> +      CPU-NS and BPMP.
->> +    maxItems: 1
->> +
->>    "#clock-cells":
->>      const: 1
->>
->> @@ -115,10 +123,16 @@ properties:
->>
->>  additionalProperties: false
->>
->> +allOf:
->> +  - oneOf:
-> 
-> Keep just oneOf and drop allOf.
+Please note patch#5 and patch#6 should be merged in tandem not separately.
 
-???
+V7:
+- Adds R/B to "dt-bindings: phy: qcom,sc7180-qmp-usb3-dp-phy: Add input and output ports" - Krzysztof
+- Fixes indicated, adds R/B to "dt-bindings: usb: Add Qualcomm PMIC Type-C" - Krzysztof
+- Fixes indicated, adds R/B to "usb: typec: qcom: Add Qualcomm PMIC Type-C driver" - Guenter
+- Fixes indicated, adds R/B to "usb: typec: qcom: Add Qualcomm PMIC Type-C driver" - Caleb
+- Adds R/B to "arm64: dts: qcom: sm8250: Define ports for qmpphy orientation-switching" - Konrad
+- Adds R/B to "arm64: dts: qcom: qrb5165-rb5: Switch on Type-C VBUS boost" - Konrad
+- Fixes indicated, adds R/B to "arm64: dts: qcom: qrb5165-rb5: Switch on basic TCPM" - Jianhua, Konrad
+- Connector ports/endpoints left inside of connector
+  Documentation/devicetree/bindings/connector/usb-connector.yaml - Jianhua
+- dwc3_role_switch_in -> usb_1_dwc3_role_switch_in
+  qmpphy_typec_mux_in -> usb_1_qmpphy_typec_mux_in
+  Both ports/endpoints defined inside of pm8150b dtsi - Konrad
 
-I wrote this. Fix your mailer.
+  I modified the name of both so that the port/endpoint would be directly
+  adjacent to the containing node in the dtsi file for code locality/readbility - bod
 
-> 
->> +      - required:
->> +          - memory-region
->> +      - required:
->> +          - shmem
->> +
->>  required:
->>    - compatible
->>    - mboxes
->> -  - shmem
->>    - "#clock-cells"
->>    - "#power-domain-cells"
->>    - "#reset-cells"
->> @@ -184,3 +198,52 @@ examples:
->>              #thermal-sensor-cells = <1>;
->>          };
->>      };
->> +
->> +  - |
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +    #include <dt-bindings/mailbox/tegra186-hsp.h>
->> +    #include <dt-bindings/memory/tegra186-mc.h>
->> +
->> +    hsp_top0: hsp@3c00000 {
->> +        compatible = "nvidia,tegra186-hsp";
->> +        reg = <0x03c00000 0xa0000>;
->> +        interrupts = <GIC_SPI 176 IRQ_TYPE_LEVEL_HIGH>;
->> +        interrupt-names = "doorbell";
->> +        #mbox-cells = <2>;
-> 
->> Why HSP example is here?
-> 
-> Because it's referred to further down the example.
+- Fixes newline indicated "arm64: dts: qcom: qrb5165-rb5: Switch on TCPM usb-role-switching for usb_1" - Jianhua, Konrad
+- Fixes newline indicated "arm64: dts: qcom: qrb5165-rb5: Switch on TCPM orientation-switch for usb_1_qmpphy" - Jianhua, Konrad
 
-Not needed.
+- connector
+  I have left the connector defintion and its ports/endpoints in the platform dts
 
-> 
->> +    };
->> +
->> +    reserved-memory {
->> +        dram_cpu_bpmp_mail: shmem@f1be0000  {
->> +            compatible = "nvidia,tegra264-bpmp-shmem";
->> +            reg = <0x0 0xf1be0000 0x0 0x2000>;
->> +            no-map;
->> +        };
->> +    };
-> 
-> Drop, fairly obvious and should be in that binding, not here.
+  The reason for this
+  a) Prior art e.g. arch/arm64/boot/dts/qcom/sc8280xp*
+  b) The connector is really a non-SoC/PMIC component its something that is defined
+     for your platform.
 
-???
+  I'm open to further debate on this topic:
+  Link: https://imgflip.com/i/7kw6ck
 
-Please use mailing list style of replies.
+- port@1 -> port@1 "arm64: dts: qcom: qrb5165-rb5: Switch on TCPM orientation-switch for usb_1_qmpphy" - Jianhua
 
-Best regards,
-Krzysztof
+- OF: graph: no port node found in /soc@0/spmi@c440000/pmic@2/typec@1500
+
+  I left this as-is since the DT model we want is to connect the connector directly to
+  the PHY for orientation or controller for data-role switching
+
+  I similarly didn't put this hack in place to remove the warning but "it would work"
+  &pm8150b_typec {
+        status = "okay";
+ 
+  +       ports {
+  +               port@0 {
+  +                       reg = <0>;
+  +               };
+  +        };
+  +
+
+- Fairphone4 / sm7225
+  pm7250b is a derivative of pm8150b I have the hardware but, haven't booted to test/debug on this hardware yet
+
+- RB3 / sdm845
+  Caleb has a WIP patchset based on this series which is our next likely upstream candidate
+
+Here's how I'm testing using an RB5/SM8250
+
+A) Confirm device mode works in both orientations
+
+- Boot to a Linux shell
+- Run usb-ecm-up.sh [1]
+- This provides usb0 on the device side @ 192.168.8.2
+- Attach Type-C cable to host PC
+- On host PC "sudo ifconfig usb0 192.168.8.1"
+- Ping 192.168.8.2 confirming ping works
+- Switch cable orientation
+- On the PC side re-assign the ip address "sudo ifconfig usb0 192.168.8.1"
+- Ping again confirming connectivity
+
+B) Test automatic host-mode transition, orientation and SuperSpeed
+- Remove cable from PC
+- Attach a Type-C USB key
+- Validate the orientation detection
+  cat /sys/class/typec/port0/orientation 
+  normal 
+- Confirm the RB5 sees the USB key as a SuperSpeed device
+- Remove USB key and physically invert it along the horizontal axis
+- Re-insert the key
+- Confirm the RB5 sees the USB key as a SuperSpeed device
+- Validate the orientation detection
+  cat /sys/class/typec/port0/orientation 
+  reverse
+
+C) Test Type-C accessory automatic host-mode transition, orientation and SuperSpeed
+- Remove USB key from RB5
+- Attach a Type-C USB accessory
+- Validate the orientation detection
+  cat /sys/class/typec/port0/orientation 
+  normal
+- Attach a SuperSpeed capable USB key to the Type-C accessory
+- Confirm the RB5 sees the USB key as a SuperSpeed device
+- Remove the USB key from the Type-C accessory
+- Remove the Type-C accessory from the RB5
+- Physically invert the Type-C accessory along the horizontal axis
+- Re-insert the Type-C accessory
+- Validate the orientation detection
+  cat /sys/class/typec/port0/orientation 
+  reverse
+- Re-insert the key
+- Confirm the RB5 sees the USB key as a SuperSpeed device
+
+D) Goto Test-A
+- Confirming that automatic switch to device mode happens
+- Repeat the above loop in ~ any order
+
+[1] usb-ecm-up.sh 
+#!/usr/bin/env bash
+
+# load libcomposite module
+modprobe libcomposite
+
+# ensure function is loaded
+modprobe usb_f_ecm
+modprobe usb_f_ncm
+
+mount -t configfs none /sys/kernel/config/
+
+# create a gadget
+mkdir /sys/kernel/config/usb_gadget/g0
+
+# cd to its configfs node
+cd /sys/kernel/config/usb_gadget/g0
+
+# configure it (vid/pid can be anything if USB Class is used for driver compat)
+echo 0x0525 > idVendor
+echo 0xa4a4 > idProduct
+
+# configure its serial/mfg/product
+mkdir strings/0x409
+
+echo 0xCAFEBABE > strings/0x409/serialnumber
+echo Linaro > strings/0x409/manufacturer
+echo qrb5165-rb5 > strings/0x409/product
+
+# create configs
+mkdir configs/c.1
+mkdir configs/c.1/strings/0x409
+
+# create the function (name must match a usb_f_<name> module such as 'acm')
+mkdir functions/ncm.0
+
+echo "CDC ECM" > configs/c.1/strings/0x409/configuration
+
+# associate function with config
+ln -s functions/ncm.0 configs/c.1
+
+# Set USB version 3.1
+echo 0x0310 > bcdUSB
+
+echo "super-speed-plus" > max_speed
+
+# enable gadget by binding it to a UDC from /sys/class/udc
+echo a600000.usb > UDC
+# to unbind it: echo "" > UDC; sleep 1; rm -rf /sys/kernel/config/usb_gadget/g0
+
+sleep 1
+
+ifconfig usb0 192.168.8.2
+
+Bryan O'Donoghue (13):
+  dt-bindings: regulator: qcom,usb-vbus-regulator: Mark reg as required
+  dt-bindings: regulator: qcom,usb-vbus-regulator: Mark
+    regulator-*-microamp required
+  dt-bindings: phy: qcom,sc7180-qmp-usb3-dp-phy: Add orientation-switch
+    as optional
+  dt-bindings: phy: qcom,sc7180-qmp-usb3-dp-phy: Add input and output
+    ports
+  dt-bindings: usb: Add Qualcomm PMIC Type-C
+  dt-bindings: mfd: qcom,spmi-pmic: Add typec to SPMI device types
+  usb: typec: qcom: Add Qualcomm PMIC Type-C driver
+  arm64: dts: qcom: sm8250: Define ports for qmpphy
+    orientation-switching
+  arm64: dts: qcom: pm8150b: Add a TCPM description
+  arm64: dts: qcom: qrb5165-rb5: Switch on Type-C VBUS boost
+  arm64: dts: qcom: qrb5165-rb5: Switch on basic TCPM
+  arm64: dts: qcom: qrb5165-rb5: Switch on TCPM usb-role-switching for
+    usb_1
+  arm64: dts: qcom: qrb5165-rb5: Switch on TCPM orientation-switch for
+    usb_1_qmpphy
+
+ .../bindings/mfd/qcom,spmi-pmic.yaml          |   4 +
+ .../phy/qcom,sc7180-qmp-usb3-dp-phy.yaml      |  44 ++
+ .../regulator/qcom,usb-vbus-regulator.yaml    |  10 +-
+ .../bindings/usb/qcom,pmic-typec.yaml         | 190 ++++++
+ MAINTAINERS                                   |  10 +
+ arch/arm64/boot/dts/qcom/pm8150b.dtsi         |  40 ++
+ arch/arm64/boot/dts/qcom/qrb5165-rb5.dts      |  54 +-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          |  18 +
+ drivers/usb/typec/Kconfig                     |  13 -
+ drivers/usb/typec/Makefile                    |   1 -
+ drivers/usb/typec/qcom-pmic-typec.c           | 261 --------
+ drivers/usb/typec/tcpm/Kconfig                |  11 +
+ drivers/usb/typec/tcpm/Makefile               |   1 +
+ drivers/usb/typec/tcpm/qcom/Makefile          |   6 +
+ drivers/usb/typec/tcpm/qcom/qcom_pmic_typec.c | 346 +++++++++++
+ .../typec/tcpm/qcom/qcom_pmic_typec_pdphy.c   | 528 +++++++++++++++++
+ .../typec/tcpm/qcom/qcom_pmic_typec_pdphy.h   | 119 ++++
+ .../typec/tcpm/qcom/qcom_pmic_typec_port.c    | 556 ++++++++++++++++++
+ .../typec/tcpm/qcom/qcom_pmic_typec_port.h    | 195 ++++++
+ 19 files changed, 2130 insertions(+), 277 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/qcom,pmic-typec.yaml
+ delete mode 100644 drivers/usb/typec/qcom-pmic-typec.c
+ create mode 100644 drivers/usb/typec/tcpm/qcom/Makefile
+ create mode 100644 drivers/usb/typec/tcpm/qcom/qcom_pmic_typec.c
+ create mode 100644 drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_pdphy.c
+ create mode 100644 drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_pdphy.h
+ create mode 100644 drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_port.c
+ create mode 100644 drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_port.h
+
+-- 
+2.39.2
 
