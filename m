@@ -2,132 +2,484 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 377AD6FB1D4
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 15:41:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 369B16FB1ED
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 15:45:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232881AbjEHNlM convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 8 May 2023 09:41:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57376 "EHLO
+        id S234148AbjEHNp0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 09:45:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232161AbjEHNlL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 09:41:11 -0400
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E65FF2CD23;
-        Mon,  8 May 2023 06:41:10 -0700 (PDT)
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-55a6efe95c9so66296967b3.1;
-        Mon, 08 May 2023 06:41:10 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683553270; x=1686145270;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YHDxuNfTo4R9AHTimDxxB6DeeQKHVQC82igHr1lClPc=;
-        b=GWE6XrhWERdxGacrg1uG4Y/z4w9xfLsW8jdP3AOGpjWUhfk7rXHCfNZgB1WR7SIZFu
-         bNn5hzeMXV9K9soVkCZ2X+LIEjLKoKmlGZ4mgJiUr4m0IbcWx4fLczyq775lB72H7s54
-         fklvLEoUmoPQpFDJOM44uoioQLCIYtR6jdYNup4mGYTVIcI/oZay5vTGKRBhV0QE8jhD
-         W9zu+ItXgYgm/svCRY9dMojziEndsRwXJEVnz8eZALL7C+hMBc+t/eln8z/gt72YX96O
-         FkX3H/fRejtM7mDmaKUmxM2C8TDXxvN078a+mVid97sjrdeeUHKGnqgtYlmDF+Xq/v1P
-         rnVg==
-X-Gm-Message-State: AC+VfDw9i0htujxKNj+UN8S3gOauXW71P79esca+k8kAouo6S3hHdLxB
-        EKC2gZUd/K1M+zT+lGwXKgr9OLboIVw7Mw==
-X-Google-Smtp-Source: ACHHUZ7yd+AlhN83OylSLZrUuIScApde5FXnt4/h1SNGMKjAiG7es/KsaFWJX7HABjObw/5seLNLcQ==
-X-Received: by 2002:a0d:df94:0:b0:55a:5616:ba35 with SMTP id i142-20020a0ddf94000000b0055a5616ba35mr10025827ywe.37.1683553269813;
-        Mon, 08 May 2023 06:41:09 -0700 (PDT)
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com. [209.85.219.172])
-        by smtp.gmail.com with ESMTPSA id x186-20020a81a0c3000000b0054eff15530asm2509848ywg.90.2023.05.08.06.41.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 May 2023 06:41:09 -0700 (PDT)
-Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-b99efd7c335so5989131276.0;
-        Mon, 08 May 2023 06:41:08 -0700 (PDT)
-X-Received: by 2002:a25:d141:0:b0:b9e:72b0:da22 with SMTP id
- i62-20020a25d141000000b00b9e72b0da22mr9683626ybg.64.1683553268612; Mon, 08
- May 2023 06:41:08 -0700 (PDT)
+        with ESMTP id S233551AbjEHNpY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 09:45:24 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 241BD448C;
+        Mon,  8 May 2023 06:45:23 -0700 (PDT)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3488QU6i005647;
+        Mon, 8 May 2023 13:45:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=Bau6Vk4KRtoXkozOPOGe2vnOzpNzcPXQ2rRpuWJ1IYY=;
+ b=F0yVYJ5XdCILtwgcoRcZ2ql0D3MDgo5g/6NJsXnW2/xAtY9x4uNGuo/QhFjh8GqqzzR+
+ 2kWT66NaXqYW44UUmuwzhfZXi7AX0okMQ33ZpGd2Xtu/aJVJIV3iLezc+c9Irv890K5l
+ Sdztv+bXziLtBPEj+VvtdBg31vxn21DinBOAi6dPKGeLC+4m72sPtC883s000uFoGrQL
+ GthDLk1fktp5xyslanatx2oiWYeH9GSpgr5jmiqBkAuuNQR4I1K+h/pIu3tIEGpM8OnD
+ kYviSv4m2zLwEESeo3JzJztKH11O4eLeqlerkifd3YIO06DMZjRgaHAeP3CaywbsQBMj Ig== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qdf4b3p1h-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 08 May 2023 13:45:15 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 348DjEci015991
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 8 May 2023 13:45:15 GMT
+Received: from [10.242.242.190] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Mon, 8 May 2023
+ 06:45:06 -0700
+Message-ID: <790496d7-98dc-c92e-dedc-1c89395a1ad8@quicinc.com>
+Date:   Mon, 8 May 2023 19:15:03 +0530
 MIME-Version: 1.0
-References: <20230508104557.47889-1-wsa+renesas@sang-engineering.com> <20230508104557.47889-2-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20230508104557.47889-2-wsa+renesas@sang-engineering.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 8 May 2023 15:40:57 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWGaDT_XGpeVm-915hbxa8-w5303QWg0a0iCjqk998unQ@mail.gmail.com>
-Message-ID: <CAMuHMdWGaDT_XGpeVm-915hbxa8-w5303QWg0a0iCjqk998unQ@mail.gmail.com>
-Subject: Re: [RFC PATCH 1/3] dt-bindings: PCI: rcar-pci-host: add optional regulators
-To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc:     linux-renesas-soc@vger.kernel.org,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.2
+Subject: Re: [PATCH 01/11] dt-bindings: remoteproc: qcom: Add support for
+ multipd model
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <jassisinghbrar@gmail.com>,
+        <mathieu.poirier@linaro.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <quic_gurus@quicinc.com>,
+        <loic.poulain@linaro.org>, <quic_eberman@quicinc.com>,
+        <robimarko@gmail.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-remoteproc@vger.kernel.org>, <linux-clk@vger.kernel.org>
+CC:     <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
+        <quic_sjaganat@quicinc.com>, <quic_kathirav@quicinc.com>,
+        <quic_arajkuma@quicinc.com>, <quic_anusha@quicinc.com>,
+        <quic_poovendh@quicinc.com>
+References: <1678164097-13247-1-git-send-email-quic_mmanikan@quicinc.com>
+ <1678164097-13247-2-git-send-email-quic_mmanikan@quicinc.com>
+ <38a5a268-7d8a-6e61-4272-8e9155df0034@linaro.org>
+From:   Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+In-Reply-To: <38a5a268-7d8a-6e61-4272-8e9155df0034@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: _7gJnAhPKd9pxAlK-QhKtJY5FEcnWg-o
+X-Proofpoint-GUID: _7gJnAhPKd9pxAlK-QhKtJY5FEcnWg-o
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-08_10,2023-05-05_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 suspectscore=0
+ clxscore=1011 priorityscore=1501 adultscore=0 impostorscore=0 bulkscore=0
+ mlxscore=0 lowpriorityscore=0 spamscore=0 malwarescore=0 mlxlogscore=999
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2303200000
+ definitions=main-2305080093
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Wolfram,
 
-On Mon, May 8, 2023 at 12:46 PM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> Support regulators found on the e.g. KingFisher board.
 
-... for the mini-PCIe slot.
+On 3/7/2023 8:47 PM, Krzysztof Kozlowski wrote:
+> On 07/03/2023 05:41, Manikanta Mylavarapu wrote:
+>> Add new binding document for multipd model remoteproc.
+>> IPQ5018, IPQ9574 follows multipd model.
+>>
+>> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+>> ---
+>>   .../bindings/remoteproc/qcom,multipd-pil.yaml | 282 ++++++++++++++++++
+>>   1 file changed, 282 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,multipd-pil.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,multipd-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,multipd-pil.yaml
+>> new file mode 100644
+>> index 000000000000..b788607f5abd
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,multipd-pil.yaml
+>> @@ -0,0 +1,282 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/remoteproc/qcom,multipd-pil.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm Multipd Secure Peripheral Image Loader
+>> +
+>> +maintainers:
+>> +  - Bjorn Andersson <andersson@kernel.org>
+>> +  - Mathieu Poirier <mathieu.poirier@linaro.org>
+>> +
+>> +description:
+>> +  Multipd Peripheral Image Loader loads firmware and boots Q6 pd, WCSS pd
+>> +  remoteproc's on the Qualcomm IPQ5018, IPQ9574 SoC.
+> 
+> What is a "pd"?
+> 
+Pd means protection domain.
+It's similar to process in Linux. Here QDSP6 processor runs each wifi 
+radio functionality on a separate process. One process can't access 
+other process resources, so this is termed as PD i.e protection domain.
+Here we have two pd's called root and user pd. We can correlate Root pd
+as root and user pd as user in linux. Root pd has more privileges than
+user pd.
+ From remoteproc driver perspective, root pd corresponds to QDSP6 
+processor bring up and user pd corresponds to Wifi radio (WCSS) bring up.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - qcom,ipq5018-q6-mpd
+>> +      - qcom,ipq9574-q6-mpd
+>> +
+>> +  '#address-cells': true
+>> +
+>> +  '#size-cells': true
+> 
+> Why do you need both?
+> 
+> If really needed, these should be const. >
+It's not required. I am going to remove it.
+>> +
+>> +  'ranges': true
+>> +
+> 
+> Same question - why do you need it?
+> 
+It's not required. I am going to remove it.
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts-extended:
+> 
+> Instead interrupts
+> 
+Sure. I will use 'interrupts'.
 
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+>> +    items:
+>> +      - description: Watchdog interrupt
+>> +      - description: Fatal interrupt
+>> +      - description: Ready interrupt
+>> +      - description: Handover interrupt
+>> +      - description: Stop acknowledge interrupt
+>> +
+>> +  interrupt-names:
+>> +    items:
+>> +      - const: wdog
+>> +      - const: fatal
+>> +      - const: ready
+>> +      - const: handover
+>> +      - const: stop-ack
+>> +
+>> +  clocks:
+>> +    minItems: 25
+>> +    maxItems: 25
+> 
+> Drop both and instead describe the items. Anyway minItems are not needed
+> here.
+> 
+Sure. I will drop min & max items and describe clocks.
 
-Thanks for your patch!
+>> +
+>> +  clock-names:
+>> +    minItems: 25
+>> +    maxItems: 25
+> 
+> Drop both and instead list the names.
+> 
+Sure. I will drop.
 
-> --- a/Documentation/devicetree/bindings/pci/rcar-pci-host.yaml
-> +++ b/Documentation/devicetree/bindings/pci/rcar-pci-host.yaml
-> @@ -68,6 +68,12 @@ properties:
->    phy-names:
->      const: pcie
->
-> +  vpcie1v5-supply:
-> +    description: The 1.5v regulator to use for PCIe.
+>> +
+>> +  assigned-clocks:
+>> +    minItems: 13
+>> +    maxItems: 13
+> 
+> Drop, they do not have to be mentioned in the binding. If you think they
+> need to, then why?
+> 
+>> +
+>> +  assigned-clock-rates:
+>> +    minItems: 13
+>> +    maxItems: 13
+> 
+> Ditto
+> 
+>> +
+>> +  qcom,smem-states:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>> +    description: States used by the AP to signal the remoteprocessor
+>> +    items:
+>> +      - description: Shutdown Q6
+>> +      - description: Stop Q6
+>> +
+>> +  qcom,smem-state-names:
+>> +    description:
+>> +      Names of the states used by the AP to signal the remoteprocessor
+>> +    items:
+>> +      - const: shutdown
+>> +      - const: stop
+>> +
+>> +  memory-region:
+>> +    items:
+>> +      - description: Q6 pd reserved region
+>> +
+>> +  glink-edge:
+>> +    $ref: /schemas/remoteproc/qcom,glink-edge.yaml#
+> 
+> unevaluatedProperties: false
+> 
+Sure, will add.
+>> +    description:
+>> +      Qualcomm G-Link subnode which represents communication edge, channels
+>> +      and devices related to the Modem.
+>> +
+>> +patternProperties:
+>> +  "^remoteproc_pd1|remoteproc_pd2|remoteproc_pd3":
+> 
+> No, underscores are not allowed. Also, what is pd?
+> 
+Sure, will remove underscores.
+>> +    type: object
+>> +    description:
+>> +      In Multipd model, WCSS pd depends on Q6 pd i.e Q6 pd should be up before
+>> +      WCSS. It can be achieved by keeping wcss pd node as subnode of Q6
+>> +      device node.
+>> +
+>> +    properties:
+>> +      compatible:
+>> +        enum:
+>> +          - "qcom,ipq5018-wcss-ahb-mpd"
+>> +          - "qcom,ipq9574-wcss-ahb-mpd"
+>> +          - "qcom,ipq5018-wcss-pcie-mpd"
+> 
+> Drop quotes
+Sure, will remove it.
+> 
+>> +
+>> +      interrupts-extended:
+> 
+> Same as before
+> 
+Sure, will use 'interrupts'.
+>> +        items:
+>> +          - description: Fatal interrupt
+>> +          - description: Ready interrupt
+>> +          - description: Spawn acknowledge interrupt
+>> +          - description: Stop acknowledge interrupt
+>> +
+>> +      interrupt-names:
+>> +        items:
+>> +          - const: fatal
+>> +          - const: ready
+>> +          - const: spawn-ack
+>> +          - const: stop-ack
+>> +
+>> +      qcom,smem-states:
+>> +        $ref: /schemas/types.yaml#/definitions/phandle-array
+>> +        description: States used by the AP to signal the remoteprocessor
+>> +        items:
+>> +          - description: Shutdown WCSS pd
+>> +          - description: Stop WCSS pd
+>> +          - description: Spawn WCSS pd
+>> +
+>> +      qcom,smem-state-names:
+>> +        description:
+>> +          Names of the states used by the AP to signal the remoteprocessor
+> 
+> remote processor
+> 
+I will update.
 
-+1.5V is only present on mini-PCIe slots...
+>> +        items:
+>> +          - const: shutdown
+>> +          - const: stop
+>> +          - const: spawn
+> 
+> This is confusing. Why your children have the same properties as parent?
+> 
+Here both parent & child considered as remote processor. So once they 
+powered up/power down/crashed, they used to do some handshaking with 
+APPS processor. So interrupts are common between parent i.e root pd and 
+child i.e user pd
+>> +
+>> +    required:
+>> +      - compatible
+>> +
+>> +    additionalProperties: false
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interrupts-extended
+> 
+> interrupts
+> 
+Sure. I will use 'interrupts' instead of interrupts-extended
+>> +  - interrupt-names
+>> +  - qcom,smem-states
+>> +  - qcom,smem-state-names
+>> +  - memory-region
+>> +
+>> +additionalProperties: false
+>> +
+>> +allOf:
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          enum:
+>> +            - qcom,ipq9574-q6-mpd
+>> +    then:
+>> +      properties:
+>> +        assigned-clocks:
+>> +          items:
+>> +            - description: Phandle, clock specifier of GCC_ANOC_WCSS_AXI_M_CLK
+>> +            - description: Phandle, clock specifier of GCC_WCSS_AHB_S_CLK
+>> +            - description: Phandle, clock specifier of GCC_WCSS_ECAHB_CLK
+>> +            - description: Phandle, clock specifier of GCC_WCSS_ACMT_CLK
+>> +            - description: Phandle, clock specifier of GCC_WCSS_AXI_M_CLK
+>> +            - description: Phandle, clock specifier of GCC_Q6_AXIM_CLK
+>> +            - description: Phandle, clock specifier of GCC_Q6_AXIM2_CLK
+>> +            - description: Phandle, clock specifier of GCC_Q6_AHB_CLK
+>> +            - description: Phandle, clock specifier of GCC_Q6_AHB_S_CLK
+>> +            - description: Phandle, clock specifier of GCC_Q6SS_BOOT_CLK
+>> +            - description: Phandle, clock specifier of GCC_MEM_NOC_Q6_AXI_CLK
+>> +            - description: Phandle, clock specifier of GCC_WCSS_Q6_TBU_CLK
+>> +            - description: Phandle, clock specifier of GCC_SYS_NOC_WCSS_AHB_CLK
+> 
+> Eh, so here they are. But Why? Do you expect different clocks for
+> others? If so, where are they?
+> 
+> Anyway, drop useless "Phandle, clock specifier of". Clocks cannot be
+> anything else than phandle and a clock specifier. Instead of using some
+> cryptic ACRONYM_OR_SOME_CLK, describe them. Just like we do for other
+> bindings. You have plenty of good examples, so please start from them.
+> 
+> 
+>> +        assigned-clock-rates:
+>> +          items:
+>> +            - description: Must be 266666667 HZ
+>> +            - description: Must be 133333333 HZ
+>> +            - description: Must be 133333333 HZ
+>> +            - description: Must be 133333333 HZ
+>> +            - description: Must be 266666667 HZ
+>> +            - description: Must be 533000000 HZ
+>> +            - description: Must be 342857143 HZ
+>> +            - description: Must be 133333333 HZ
+>> +            - description: Must be 133333333 HZ
+>> +            - description: Must be 342857143 HZ
+>> +            - description: Must be 533000000 HZ
+>> +            - description: Must be 533000000 HZ
+>> +            - description: Must be 133333333 HZ
+> 
+> ???
+> 
+> If these are fixed, why this is in DT? DT is for variable and
+> non-discoverable pieces and you do not have here anything variable, but
+> fixed.
+> 
+>> +
+>> +examples:
+>> +  - |
+>> +        #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +        #include <dt-bindings/clock/qcom,gcc-ipq5018.h>
+>> +        #include <dt-bindings/reset/qcom,gcc-ipq5018.h>
+> 
+> Use 4 spaces for example indentation.
+> 
+Sure, will use 4 spaces.
+>> +
+>> +        q6v5_wcss: remoteproc@cd00000 {
+>> +                compatible = "qcom,ipq5018-q6-mpd";
+>> +                #address-cells = <1>;
+>> +                #size-cells = <1>;
+>> +                ranges;
+>> +                reg = <0x0cd00000 0x4040>;
+>> +                interrupts-extended = <&intc GIC_SPI 291 IRQ_TYPE_EDGE_RISING>,
+>> +                                <&wcss_smp2p_in 0 0>,
+> 
+> Wrong alignment of indentation
+> 
+Sure, will update alignment.
+>> +                                <&wcss_smp2p_in 1 0>,
+>> +                                <&wcss_smp2p_in 2 0>,
+>> +                                <&wcss_smp2p_in 3 0>;
+>> +                interrupt-names = "wdog",
+>> +                                  "fatal",
+>> +                                  "ready",
+>> +                                  "handover",
+>> +                                  "stop-ack";
+>> +
+>> +                qcom,smem-states = <&wcss_smp2p_out 0>,
+>> +                                   <&wcss_smp2p_out 1>;
+>> +                qcom,smem-state-names = "shutdown",
+>> +                                        "stop";
+>> +
+>> +                memory-region = <&q6_region>;
+>> +
+>> +                glink-edge {
+>> +                        interrupts = <GIC_SPI 179 IRQ_TYPE_EDGE_RISING>;
+>> +                        label = "rtr";
+>> +                        qcom,remote-pid = <1>;
+>> +                        mboxes = <&apcs_glb 8>;
+>> +                };
+>> +
+>> +                q6_wcss_pd1: remoteproc_pd1 {
+>> +                        compatible = "qcom,ipq5018-wcss-ahb-mpd";
+>> +                        interrupts-extended = <&wcss_smp2p_in 8 0>,
+>> +                                        <&wcss_smp2p_in 9 0>,
+>> +                                        <&wcss_smp2p_in 12 0>,
+>> +                                        <&wcss_smp2p_in 11 0>;
+>> +                        interrupt-names = "fatal",
+>> +                                          "ready",
+>> +                                          "spawn-ack",
+>> +                                          "stop-ack";
+>> +                        qcom,smem-states = <&wcss_smp2p_out 8>,
+>> +                                           <&wcss_smp2p_out 9>,
+>> +                                           <&wcss_smp2p_out 10>;
+>> +                        qcom,smem-state-names = "shutdown",
+>> +                                                "stop",
+>> +                                                "spawn";
+>> +                };
+>> +
+>> +                q6_wcss_pd2: remoteproc_pd2 {
+>> +                        compatible = "qcom,ipq5018-wcss-pcie-mpd";
+>> +                        interrupts-extended = <&wcss_smp2p_in 16 0>,
+>> +                                        <&wcss_smp2p_in 17 0>,
+>> +                                        <&wcss_smp2p_in 20 0>,
+>> +                                        <&wcss_smp2p_in 19 0>;
+>> +                        interrupt-names = "fatal",
+>> +                                          "ready",
+>> +                                          "spawn-ack",
+>> +                                          "stop-ack";
+>> +
+>> +                        qcom,smem-states = <&wcss_smp2p_out 16>,
+>> +                                           <&wcss_smp2p_out 17>,
+>> +                                           <&wcss_smp2p_out 18>;
+>> +                        qcom,smem-state-names = "shutdown",
+>> +                                                "stop",
+>> +                                                "spawn";
+>> +                        status = "okay";
+> 
+> Drop statuses from the example.
+> 
+Sure, will drop status property.
+> 
+> Best regards,
+> Krzysztof
+> 
 
-> +
-> +  vpcie3v3-supply:
-> +    description: The 3.3v regulator to use for PCIe.
-
-... while +3.3V is present on PCIe, mini-PCIe, and M2 PCIe slots.
-
-In addition, normal PCIe slots also have +12V.
-So I think it would be prudent to add a vpcie12v0-supply property, too.
-
-W.r.t. to the actual naming, I don't know if there's already a (de facto)
-standard for that?
-
-> +
->  required:
->    - compatible
->    - reg
-> @@ -121,5 +127,7 @@ examples:
->               clock-names = "pcie", "pcie_bus";
->               power-domains = <&sysc R8A7791_PD_ALWAYS_ON>;
->               resets = <&cpg 319>;
-> +             vpcie1v5-supply = <&pcie_1v5>;
-> +             vpcie3v3-supply = <&pcie_3v3>;
->           };
->      };
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Thanks & Regards,
+Manikanta.
