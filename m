@@ -2,209 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 344756FB037
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 14:38:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D7D16FB050
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 14:40:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234220AbjEHMiR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 08:38:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39088 "EHLO
+        id S234783AbjEHMki (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 08:40:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233885AbjEHMiQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 08:38:16 -0400
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 620F938F2A;
-        Mon,  8 May 2023 05:38:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1683549490; x=1715085490;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=TGcBs2WMT86YIl2FW8BGGb2rDomhZlvsCn9sqxbnMAI=;
-  b=ZBoJT4slsjhYJpnFDUZvd41ehz1Md5wkogKECTZ2xKyotvfyjWz008a3
-   1lk04J1bpMzAjvqpbTj1LOV2R54o7SePQlI8H46ULcPyvueRgoSeCdbPk
-   NVhMETH3U/E64K97EhpcNLrDREgcGDV+JcOIskl4jVzG5ey56uAG9BBzc
-   4WftOKdYORR+e8A/r7zjZrVYXEGcEN8cenKnxabIjm417JjkOeD9hNrYe
-   8jUUFW9EOk4T1/dVia0fjdWHaDr8xrUfjAqeBjCiVUpbPiltkFvwW5E8q
-   kk7By/NsR5tQwWvmzSZ9VlnFoFpRYZJL/MTnn/M7ssbQlpH+rNYYodkZe
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10703"; a="377724348"
-X-IronPort-AV: E=Sophos;i="5.99,259,1677571200"; 
-   d="scan'208";a="377724348"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 May 2023 05:38:09 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10703"; a="822653340"
-X-IronPort-AV: E=Sophos;i="5.99,259,1677571200"; 
-   d="scan'208";a="822653340"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga004.jf.intel.com with ESMTP; 08 May 2023 05:38:04 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1pw07t-00ArL0-0V;
-        Mon, 08 May 2023 15:38:01 +0300
-Date:   Mon, 8 May 2023 15:38:00 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Ryan Chen <ryan_chen@aspeedtech.com>
-Cc:     "jk@codeconstruct.com.au" <jk@codeconstruct.com.au>,
-        Brendan Higgins <brendan.higgins@linux.dev>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Joel Stanley <joel@jms.id.au>,
+        with ESMTP id S233727AbjEHMkd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 08:40:33 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C12E93989C;
+        Mon,  8 May 2023 05:40:08 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4f14ec8d72aso2993979e87.1;
+        Mon, 08 May 2023 05:40:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1683549607; x=1686141607;
+        h=content-transfer-encoding:in-reply-to:subject:from:content-language
+         :references:cc:to:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=00yoMTErkC+sLR09gilZURKbVPExMwTauOEczXondFk=;
+        b=akyjnrlk1q4NOV5ujdelDX98W3QuN8ReoG/ZmJTynvKxMG5+QghXgSHKzSvXkmPVxu
+         Ay4DLFMZiGXvPBuqcR9m5odIi1uIt9GocBgQ23Oa1z1SVKGIoiNAEEGr+FKVzFLPn8p+
+         +mBIlQo/IisEQ2J7vWMkA/eFH4YPIzbZ+EcHNaimicCpFYCocJfW0bgxqMvnvVyyV2Bk
+         rb+agGkK/A7+WBD1pMuycVO5zV5Sge1t/2EKhTbceDzFPdJpVYpa8pN5awx86tgY31vY
+         y8Vn3TXmbeY/UcuqUOoIPvQM6nMi/hXEMnsa28ESaKDoc1AE0wZ89+aFb+rUqnpKGekK
+         kpHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683549607; x=1686141607;
+        h=content-transfer-encoding:in-reply-to:subject:from:content-language
+         :references:cc:to:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=00yoMTErkC+sLR09gilZURKbVPExMwTauOEczXondFk=;
+        b=NfRJsWoiiyCL9k4tUngDsBvHJ2+flbvoR90n/GJaglyTyYZOpT63eRaREvrADk/G2l
+         UcQceGYFTR1C4ACrmSm3/oRLZ9MRp9hl+bO8GyRxMRqKLn2ueizN+HMZ1WIePlUBpOCJ
+         1UZyAJbjhzr6qIOaG8f2m7EKiJ7Sr1IgpUqtHYdGtD2x68u1R4HVSbT3Tzdm369vdAHk
+         LZTwNrdyv51lYZqJjwwsW3yrMbPeCOKqZKbhcTHJmtvEWlQ/MLzk5I2bqFnKXm79R6P6
+         1orAD6IWulZt6bW2kC+Ub/37yAEW415tYtp0ugsxnzrFU80oogLayTQMaUkVanlQY27x
+         MKaw==
+X-Gm-Message-State: AC+VfDxKp8mrHIGlSgapslPw8UnNbBIm63djU41GFNhrrNJTZvGe49NP
+        i3lz7qsYDkobMN7XIUx/Yms=
+X-Google-Smtp-Source: ACHHUZ6Zt2oagdnODgLNoACtfDZduDWF/+OwUGA1KlTnUul5wPFehpiYcHy/k0oubDLJx4Qm+WuwNA==
+X-Received: by 2002:a05:6512:4c9:b0:4ed:c61d:c8e8 with SMTP id w9-20020a05651204c900b004edc61dc8e8mr2666536lfq.29.1683549606734;
+        Mon, 08 May 2023 05:40:06 -0700 (PDT)
+Received: from [192.168.1.126] (62-78-225-252.bb.dnainternet.fi. [62.78.225.252])
+        by smtp.gmail.com with ESMTPSA id n18-20020ac242d2000000b004f11e965308sm1271227lfl.20.2023.05.08.05.40.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 May 2023 05:40:06 -0700 (PDT)
+Message-ID: <6e2c9f59-296c-7382-6490-8e344f3e0210@gmail.com>
+Date:   Mon, 8 May 2023 15:40:05 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Wolfram Sang <wsa@kernel.org>,
-        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Jean Delvare <jdelvare@suse.de>,
-        William Zhang <william.zhang@broadcom.com>,
-        Tyrone Ting <kfting@nuvoton.com>,
-        Tharun Kumar P <tharunkumar.pasumarthi@microchip.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+        Shreeya Patel <shreeya.patel@collabora.com>,
+        Zhigang Shi <Zhigang.Shi@liteon.com>,
+        Paul Gazzillo <paul@pgazz.com>,
+        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "=linux-kernel@vger.kernel.org" <=linux-kernel@vger.kernel.org>,
-        Andi Shyti <andi.shyti@kernel.org>
-Subject: Re: [PATCH v11 2/2] i2c: aspeed: support ast2600 i2c new register
- mode driver
-Message-ID: <ZFjtKNtR3zveNIvY@smile.fi.intel.com>
-References: <20230430041712.3247998-1-ryan_chen@aspeedtech.com>
- <20230430041712.3247998-3-ryan_chen@aspeedtech.com>
- <ZFFzRL/+73Ftix4Q@smile.fi.intel.com>
- <SEZPR06MB526906C3DAFFE0A8FA924AA7F2709@SEZPR06MB5269.apcprd06.prod.outlook.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <SEZPR06MB526906C3DAFFE0A8FA924AA7F2709@SEZPR06MB5269.apcprd06.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <cover.1683105758.git.mazziesaccount@gmail.com>
+ <6d1e37f95dd039d9c96a992b1855fd193bdded40.1683105758.git.mazziesaccount@gmail.com>
+ <ZFPCUJ81aw/GkJgT@smile.fi.intel.com>
+ <c63c5271-3973-3bd4-c683-ab9ab64b67e4@fi.rohmeurope.com>
+ <ZFjpqwOo3DxnWahM@smile.fi.intel.com>
+Content-Language: en-US, en-GB
+From:   Matti Vaittinen <mazziesaccount@gmail.com>
+Subject: Re: [PATCH v4 4/5] iio: light: ROHM BU27008 color sensor
+In-Reply-To: <ZFjpqwOo3DxnWahM@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, May 07, 2023 at 02:21:10AM +0000, Ryan Chen wrote:
-> > On Sun, Apr 30, 2023 at 12:17:12PM +0800, Ryan Chen wrote:
+Hi Andy,
 
-...
-
-> > > +#define AST2600_GLOBAL_INIT				\
-> > > +			(AST2600_I2CG_CTRL_NEW_REG |	\
-> > > +			AST2600_I2CG_CTRL_NEW_CLK_DIV)
-> > 
-> > Make just a one TAB and put the last two lines on the single one.
+On 5/8/23 15:23, Andy Shevchenko wrote:
+> On Fri, May 05, 2023 at 04:56:47AM +0000, Vaittinen, Matti wrote:
+>> On 5/4/23 17:33, Andy Shevchenko wrote:
+>>> On Wed, May 03, 2023 at 12:50:14PM +0300, Matti Vaittinen wrote:
 > 
-> Update by following. 
+> ...
 > 
-> #define AST2600_GLOBAL_INIT		\
-> 	(AST2600_I2CG_CTRL_NEW_REG |	\
-> 	 AST2600_I2CG_CTRL_NEW_CLK_DIV)
+>>>> +config ROHM_BU27008
+>>>> +	tristate "ROHM BU27008 color (RGB+C/IR) sensor"
+>>>> +	depends on I2C
+>>>> +	select REGMAP_I2C
+>>>> +	select IIO_GTS_HELPER
+>>>> +	help
+>>>> +	  Enable support for the ROHM BU27008 color sensor.
+>>>> +	  The ROHM BU27008 is a sensor with 5 photodiodes (red, green,
+>>>> +	  blue, clear and IR) with four configurable channels. Red and
+>>>> +	  green being always available and two out of the rest three
+>>>> +	  (blue, clear, IR) can be selected to be simultaneously measured.
+>>>> +	  Typical application is adjusting LCD backlight of TVs,
+>>>> +	  mobile phones and tablet PCs.
+>>>
+>>> Module name?
+>>
+>> We have discussed this several times already.
+>>
+>> https://lore.kernel.org/all/10c4663b-dd65-a545-786d-10aed6e6e5e9@fi.rohmeurope.com/
+>>
+>> Module name is completely irrelevant when selecting a kernel configuration.
+> 
+> This option is also selectable by user.
 
-As I mentioned the last two can occupy a single line.
+I don't think the name is selectable. Yes, user selects whether to 
+compile driver as a module or in-kernel - but the module name is 
+completely irrelevant what comes to this decision.
 
-...
+> ...
+> 
+>>> Do you need regmap lock? If so, why (since you have mutex)?
+>>
+>> I believe you know that regmap uses a default lock when no external lock
+>> is given. So, I assume you mean that maybe we could set
+>> 'disable_locking' for the regmap here.
+> 
+> Correct.
+> 
+>> It's nice to be occasionally pushed to think "out of the box". And yes,
+>> disabling regmap lock is really out of my "normal box" :)
+>>
+>> I didn't go through all of the code yet, but I think pretty much all of
+>> the sequences which end up to register writes are indeed protected by
+>> the mutex. (Well, probe is not but it is expected to only update one bit
+>> while rest of the register should stay fixed).
+>>
+>> It may be we could live without regmap_lock when driver is in it's
+>> current state, but I am not convinced the performance improvement is
+>> worth the risk. Having regmap unprotected is not common, and it is also
+>> not easy to spot when making changes to the driver. In my opinion it is
+>> a bit like asking for a nose-bleed unless there is really heavy reasons
+>> to drop the lock... In this case, having the regmap_lock (which is
+>> pretty much never locked because we have the mutex as you said) is
+>> probably not a penalty that matters.
+> 
+> Basically you try to justify a hidden mine field in case somebody will think
+> "oh, we are protected by regmap lock, so why to bother call mutex_lock()" and
+> at the end it become a subtle bugs in the code. With disable_locking = true
+> I can see that code author _carefully thought through_ the locking schema and
+> understands the hardware and the code.
 
-> > > +	/* send start */
-> > > +	dev_dbg(i2c_bus->dev, "[%d] %sing %d byte%s %s 0x%02x\n",
-> > > +		i2c_bus->msgs_index, msg->flags & I2C_M_RD ? "read" : "write",
-> > 
-> > str_read_write() ?
-> Sorry do you mean there have a function call str_read_write?
-> Can you point me where it is for refer?
+I added the disable_locking = true in v5 - but I am not convinced that 
+was a great idea. I am afraid disabling regmap lock is the hidden 
+minefield for average users. I didn't grep the kernel for it but I am 
+afraid the percentage of regmap users who disable locking is very low. 
+Thus, I'd say this is unexpected to many and may lead to bugs although I 
+try to watch out for them. Well, time will tell.
 
-string_helpers.h.
+> P.S. I'm wondering why your lines of text have a single trailing whitespace
+> but the last line.
 
-> > > +		msg->len, msg->len > 1 ? "s" : "",
-> > > +		msg->flags & I2C_M_RD ? "from" : "to", msg->addr);
+I guess it must be Thunderbird client then. Well, at least it can send 
+out plain-text decently well while working with the exchange servers 
+used by ROHM as well as with the gmail. I am not super happy with 
+Thunderbird, it tends to eat way more resources I wished it did, but it 
+is a working compromise for me. I am interested in hearing if anyone 
+knows a way to configure the Thunderbird to drop these extra spaces.
 
-...
-
-> > > +				if (--i % 4 != 3)
-> > > +					writel(*(u32 *)wbuf, i2c_bus->buf_base + i - (i % 4));
-> > 
-> > The above code is ugly. Can you think about it and write in a better way?
-> Sorry, that is because the register only support for 4 byte align write.
-> That the reason I need put for byte write to 4 byte align write.
-
-Yes, that's fine. The problem is in _how_ the driver does it. We have a lot of
-helpers in the kernel to access unaligned data.
-
-...
-
-> > > +	return ast2600_i2c_master_irq(i2c_bus) ? IRQ_HANDLED : IRQ_NONE;
-> > 
-> > IRQ_RETVAL() ?
-> Sorry, most return is handled or not handled.
-> Do you mean replace it just " return IRQ_RETVAL(ret);"
-
-Have you had a chance to look in the implementation of IRQ_RETVAL() ?
-I believe if you do, you will find the answer to your question.
-
-...
-
-> > > +	if (i2c_bus->mode == BUFF_MODE) {
-> > > +		res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
-> > > +		if (res && resource_size(res) >= 2) {
-> > > +			i2c_bus->buf_base = devm_ioremap_resource(dev, res);
-> > > +
-> > > +			if (!IS_ERR_OR_NULL(i2c_bus->buf_base))
-> > > +				i2c_bus->buf_size = resource_size(res) / 2;
-> > > +		} else {
-> > > +			i2c_bus->mode = BYTE_MODE;
-> > > +		}
-> > > +	}
-> > 
-> > Can be done without additional checks and with a simple call to
-> > devm_platform_ioremap_resource(). No?
-> > 
-> Sorry, I can't catch your point, can you guide me more about it?
-
-	if (BUFF_MODE) {
-		void __iomem buf_base;
-
-		buf_base = devm_platform_ioremap_and_get_resource(pdev, 1, &res);
-		if (IS_ERR(buf_base))
-			mode = BYTE_MODE;
-		else {
-			->buf_base = buf_base;
-			->buf_size = ...
-		}
-	}
-
-...
-
-> > > +	ret = of_property_read_u32(dev->of_node, "clock-frequency",
-> > &i2c_bus->bus_frequency);
-> > > +	if (ret < 0) {
-> > > +		dev_warn(dev, "Could not read clock-frequency property\n");
-> > > +		i2c_bus->bus_frequency = 100000;
-> > > +	}
-> > 
-> > There are macro for standard speeds. Moreover, there is a function to parse
-> > properties, no need to open code.
-> > 
-> Will update
-> ret = of_property_read_u32(dev->of_node, "clock-frequency", &bus_freq);
-> if (ret < 0) {
->     dev_warn(dev, "Could not read clock-frequency property\n");
->     i2c_bus->bus_frequency = I2C_SPEED_STANDARD;
-> } else {
->     i2c_bus->bus_frequency = bus_freq;
-> }
-
-No, just use the I2C core API to fill this property in the specific i2c_timings
-structure.
+Yours,
+	-- Matti
 
 -- 
-With Best Regards,
-Andy Shevchenko
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
 
+~~ When things go utterly wrong vim users can always type :help! ~~
 
