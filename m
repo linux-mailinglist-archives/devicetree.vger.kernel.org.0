@@ -2,61 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47A056FB531
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 18:37:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EAC66FB50D
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 18:28:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232876AbjEHQh0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 12:37:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35898 "EHLO
+        id S234114AbjEHQ2B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 12:28:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229616AbjEHQhW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 12:37:22 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEAA11FD5;
-        Mon,  8 May 2023 09:37:18 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8537762DC4;
-        Mon,  8 May 2023 16:37:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E103DC433D2;
-        Mon,  8 May 2023 16:37:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1683563837;
-        bh=No13imuIZB8iPKIc3FPlMAlNo8ULEWUh1zQtfnpcBGs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Vqg3FmxfO7ymJGx6725FjOdi/YUqPtYikEADOIUaV079c/OiMpIyyR6aD8BtlZqCg
-         o6e6DzFt5rM2lkMfUDV1BXWCdvoRkEgQQ8jMKLx84Z1rXi3d/29Wfq6bCUPi2ZAzJC
-         4yL/21PiGI2CYB9Jsfx6wyEC8NepKH5eo4DpSGoh63H1swHW6L9AGRqRmlz08k1ogG
-         EkRYBnHjz62y9TatjG/ewsJWPve+LATc/6bZiB8ME629g+lRN/N+g5TDu7k7HmiNMa
-         jv+eEjro8AVLXSXbkH6a8wc0oyGA6OzxbSgIOowN8v8vW9MeFCR3Qk/zVOliXRulSq
-         gfZ94qHPT8IPQ==
-Date:   Tue, 9 May 2023 00:26:10 +0800
-From:   Jisheng Zhang <jszhang@kernel.org>
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, Guo Ren <guoren@kernel.org>,
-        heiko@sntech.de
-Subject: Re: [PATCH 3/5] riscv: dts: add initial T-HEAD light SoC device tree
-Message-ID: <ZFkiotPacIMUghDP@xhacker>
-References: <20230507182304.2934-1-jszhang@kernel.org>
- <20230507182304.2934-4-jszhang@kernel.org>
- <20230507-calamari-gentleman-bbe62af06f92@spud>
+        with ESMTP id S234075AbjEHQ2B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 12:28:01 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E36526A4B
+        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 09:27:58 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-9660af2499dso526062766b.0
+        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 09:27:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683563277; x=1686155277;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=g/h7eE7lBNuJ7w4njRPFgVZZXrbjnDfdO/62S8a6RFk=;
+        b=bp95qD2SATCc85d2+/5RZbItrXw/jQhI2838uQBXGRKGy4oxzK2zUwuStQKO+PS6aC
+         n0mIyKpbdzibhoT8m65Zt18TKOQkRaEIG3bwdSSwdYhc88fDi6dqRh88A/g+NemdzNAe
+         NeKdd2T/jx1lk+Vr4xOo5i6l97c+UZ33ryQ2vzxTRerrV5WZv8SGBTCbIfpCEw2h3Yzr
+         oZ5svW+c3XFGrsl/v3/UEHVXa2BLV9BLXP+QZuHeuEGnJ8Ixs6vkPmR/GOSvtdKlSlxO
+         D/DmnQN+Rf7aOADOX3DSeZm4qAr/znLjw0lr8d2m1VKpkcFGcjjhKtG+K4ojIn5EBN0I
+         FfKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683563277; x=1686155277;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=g/h7eE7lBNuJ7w4njRPFgVZZXrbjnDfdO/62S8a6RFk=;
+        b=NAe2PKlCisDCgQhbgXpP+94boxmNgyinrakW6k91DMLv+csOH0avTF5Gqb+8Hydmjo
+         nSlVaoyXIUXQSURzSNu/fsIj4HsUPE5nNW0KiM6C0nJHO9NnVpZGr60v3OgW2YvzUHve
+         hdJ1hD+Rc1BbVU4JSnbcXvUWI0BKnEpK4nm4cz57MkgSSHr1NokXMCHQZXRN7XlsCkZy
+         kVKUWLYIhxUw+/dOPReRRrn1Hw5epQ/Ma9VvfEIL7HwoXlfmvdTIqApdTyN2uRg2qP+X
+         vIfMgXuQzOg3EuojcrzDoCO4dNof4es26jFyZzigos7kriQhojMpts8A73w+4iRSHbxn
+         XOCQ==
+X-Gm-Message-State: AC+VfDxHGVghxQktjnOLdNC3Axb0mRq+9Y7XVafleOFWnmLdLd9TsfVE
+        TRCchcXLOcTQ5UTT0FvdfacKNw==
+X-Google-Smtp-Source: ACHHUZ7NC5gZ3eJbGw/lcE2UuBrS77FeWsGT3yUd1Mpr9nMm9IBtV2NIsWJI3eqW76O/Ry4WITjeIA==
+X-Received: by 2002:a17:907:1c01:b0:966:335a:5b0b with SMTP id nc1-20020a1709071c0100b00966335a5b0bmr6576117ejc.18.1683563277296;
+        Mon, 08 May 2023 09:27:57 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:50e0:ebdf:b755:b300? ([2a02:810d:15c0:828:50e0:ebdf:b755:b300])
+        by smtp.gmail.com with ESMTPSA id hf27-20020a1709072c5b00b0096557203071sm144903ejc.217.2023.05.08.09.27.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 May 2023 09:27:56 -0700 (PDT)
+Message-ID: <869548f4-9748-a8a5-1b13-ef267810d80b@linaro.org>
+Date:   Mon, 8 May 2023 18:27:55 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20230507-calamari-gentleman-bbe62af06f92@spud>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v2 5/5] dt-bindings: clocks: at91sam9x5-sckc: convert to
+ yaml
+Content-Language: en-US
+To:     Claudiu Beznea <claudiu.beznea@microchip.com>,
+        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, nicolas.ferre@microchip.com,
+        alexandre.belloni@bootlin.com
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230508104801.445261-1-claudiu.beznea@microchip.com>
+ <20230508104801.445261-6-claudiu.beznea@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230508104801.445261-6-claudiu.beznea@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,81 +79,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, May 07, 2023 at 10:35:12PM +0100, Conor Dooley wrote:
-> Hey Jisheng,
+On 08/05/2023 12:48, Claudiu Beznea wrote:
+> Convert Atmel slow clock controller documentation to yaml.
 > 
-> On Mon, May 08, 2023 at 02:23:02AM +0800, Jisheng Zhang wrote:
-> 
-> > +		c910_0: cpu@0 {
-> > +			compatible = "thead,c910", "riscv";
-> > +			device_type = "cpu";
-> > +			riscv,isa = "rv64imafdc";
-> 
-> Does this support more than "rv64imafdc"?
-> I assume there's some _xtheadfoo extensions that it does support,
-> although I am not sure how we are proceeding with those - Heiko might
-> have a more nuanced take.
-> 
-> > +		reset: reset-sample {
-> > +			compatible = "thead,reset-sample";
-> 
-> What is a "reset-sample"?
-
-This node is only for opensbi. The compatible string is already in
-opensbi. Do we also need to add dt-binding for it in linux?
-
-> 
-> > +			entry-reg = <0xff 0xff019050>;
-> > +			entry-cnt = <4>;
-> > +			control-reg = <0xff 0xff015004>;
-> > +			control-val = <0x1c>;
-> > +			csr-copy = <0x7f3 0x7c0 0x7c1 0x7c2 0x7c3 0x7c5 0x7cc>;
-> > +		};
-> > +
-> > +		plic: interrupt-controller@ffd8000000 {
-> > +			compatible = "thead,c910-plic";
-> > +			reg = <0xff 0xd8000000 0x0 0x01000000>;
-> > +			interrupts-extended = <&cpu0_intc 11>, <&cpu0_intc 9>,
-> > +					      <&cpu1_intc 11>, <&cpu1_intc 9>,
-> > +					      <&cpu2_intc 11>, <&cpu2_intc 9>,
-> > +					      <&cpu3_intc 11>, <&cpu3_intc 9>;
-> > +			interrupt-controller;
-> > +			#interrupt-cells = <1>;
-> > +			riscv,ndev = <240>;
-> > +		};
-> > +
-> > +		clint: timer@ffdc000000 {
-> > +			compatible = "thead,c900-clint";
-> 
-> "c900"? That a typo or intentional. Hard to tell since this compatible
-> is undocumented ;)
-
-Per my understanding, this node is only for opensbi too. Add will add
-dt-binding in v2.
-
-> 
-> > +			reg = <0xff 0xdc000000 0x0 0x00010000>;
-> > +			interrupts-extended = <&cpu0_intc 3>, <&cpu0_intc 7>,
-> > +					      <&cpu1_intc 3>, <&cpu1_intc 7>,
-> > +					      <&cpu2_intc 3>, <&cpu2_intc 7>,
-> > +					      <&cpu3_intc 3>, <&cpu3_intc 7>;
-> > +		};
-> > +
-> > +		uart0: serial@ffe7014000 {
-> > +			compatible = "snps,dw-apb-uart";
-> > +			reg = <0xff 0xe7014000 0x0 0x4000>;
-> > +			interrupts = <36>;
-> > +			clocks = <&uart_sclk>;
-> > +			clock-names = "baudclk";
-> 
-> dtbs_check complains about this clock name.
-> > +
-> > +		dmac0: dmac@ffefc00000 {
-> 
-> dma-controller@
-> 
-> As I mentioned in the other patch, please clean up the dtbs_check
-> complaints for v2.
+> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+> ---
+>  .../devicetree/bindings/clock/at91-clock.txt  | 30 --------
+>  .../bindings/clock/atmel,at91sam9x5-sckc.yaml | 70 +++++++++++++++++++
+>  2 files changed, 70 insertions(+), 30 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/clock/at91-clock.txt
+>  create mode 100644 Documentation/devicetree/bindings/clock/atmel,at91sam9x5-sckc.yaml
 > 
 
-Thanks for the reminding.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
