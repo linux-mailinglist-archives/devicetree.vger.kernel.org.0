@@ -2,35 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8D3C6FB642
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 20:17:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 232A56FB643
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 20:17:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232779AbjEHSRT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 14:17:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57468 "EHLO
+        id S233007AbjEHSRU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 14:17:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233007AbjEHSRS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 14:17:18 -0400
+        with ESMTP id S233074AbjEHSRT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 14:17:19 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF9FB5FC3
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E873F5FC7
         for <devicetree@vger.kernel.org>; Mon,  8 May 2023 11:17:17 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 372A461806
-        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 18:17:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D76CC433EF;
-        Mon,  8 May 2023 18:17:08 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5180A62F14
+        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 18:17:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17C4CC433A1;
+        Mon,  8 May 2023 18:17:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1683569831;
-        bh=VPla/phlxrLYHeG47Y11HycCuElwiwJdnJJp2FxR8K0=;
+        s=k20201202; t=1683569834;
+        bh=BeSBiMW5kmgs7+Z7icdUc3/2UWyKIKrlY/vXI6gIZDU=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=nGQZz+lFtUgvsJNWM6Ro5wavaNIeeMU8SpIkcsNn8wBJMtajmC/SVvaTKx5gcZYSM
-         MjIWhTdy9v46X10zxrgN7QlTCY6uhVRnC2iThRiIGhlNx0Nv+RFiFVFoaVWgYSYHZF
-         Z5Q3ReMFSC5Di+U4HKI7uMNHCukrBYaAPztj51syjFQgePq35Mw77i0sXzwaaJJy87
-         4aWx+Zi7UhejL5eFkouQ8ASVIhl8WVJw/LQyb8zIKPQ9Ia5hdPFVF5t4OqJ1s/m+IB
-         wKR4GriB71PRcwfNnbfVIPlR18QLlUf8ALOCLtJk667MqFwjzA+QrJp/iH4rMQL594
-         O7iX7bR4KTA9Q==
+        b=F850zsgIjLZZIVsp/40NUEh0Et3PjVKwqFK17JJEOj4Qv2WUfB1tB58G2VLPTBQmG
+         8XRfUAi8yafgVdWrpZ1vfyScdT8FxrJOdvC3iwtV1yUA8f0Fgs3Sh1j/iv2AGpGI4d
+         njKbCwX2JHJpJQQPGGD+XLX60EZQdKDiUC2IU4au6A/AIBcr573u3Hti4OBRAJ8+1W
+         SUHRBOJEVon0J31fEDuq7y/ZLzPp539+XRI0PVC2OXYcgCNjQ32XZvIjWYSJB9KhGj
+         64wLFYsidBsWtjUzxndJ0BcJfZRqfopOiA90Meomd/ICeHOkUK6WFLVpwHN9DUXY1m
+         bt/IdqNFsU9lg==
 From:   Conor Dooley <conor@kernel.org>
 To:     linux-riscv@lists.infradead.org
 Cc:     conor@kernel.org, Conor Dooley <conor.dooley@microchip.com>,
@@ -43,14 +43,14 @@ Cc:     conor@kernel.org, Conor Dooley <conor.dooley@microchip.com>,
         Andrew Jones <ajones@ventanamicro.com>,
         Sunil V L <sunilvl@ventanamicro.com>,
         Yangyu Chen <cyy@cyyself.name>, devicetree@vger.kernel.org
-Subject: [RFC 5/6] RISC-V: drop a needless check in print_isa_ext()
-Date:   Mon,  8 May 2023 19:16:25 +0100
-Message-Id: <20230508-strenuous-mustiness-412fdf2402b0@spud>
+Subject: [RFC 6/6] riscv: dts: microchip: use new riscv,isa-extension-* properties for mpfs
+Date:   Mon,  8 May 2023 19:16:26 +0100
+Message-Id: <20230508-elf-dismay-799bb48a635e@spud>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230508-hypnotic-phobia-99598439d828@spud>
 References: <20230508-hypnotic-phobia-99598439d828@spud>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=966; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=hjjIKmNmD+GCRsGjW4UHrUxkJuauuysQYic754s15ng=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDCmRNmWvdKZ9LdmaPeH493SOXR+ETn2+khdVoxVw79WiG zN0E5Smd5SyMIhxMMiKKbIk3u5rkVr/x2WHc89bmDmsTCBDGLg4BWAie9cyMlx8dVJwSlnFfslT 4UXnZDef5Zl9dEPkkVuPe5P+/N7+Y3cfI8NZdt4SzVb+l2bVsufq7+ydv89vwyWOu80PDmj7Vdf xzWQBAA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2933; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=sxz5UhIOaJj8Re9+hSvtSwbaV+pJMl6xzcAp79D9KJ0=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDCmRNmWBZjpFz00vJS05+L9L+f2fzB2CqnuOxv4vyjCY1 aDQqX6io5SFQYyDQVZMkSXxdl+L1Po/Ljuce97CzGFlAhnCwMUpABM5JcXIsDaoQu7ndSPHiFVZ b6r+XVDUX7+QO+WEwN/4JVafG774vWT4n/X1LGvk2k8PHu2w26F8MObA3czOT/KLMu2ezbrw/db +2UwA
 X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
@@ -65,35 +65,92 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Conor Dooley <conor.dooley@microchip.com>
 
-There'll always be elements in the array, even if none of the
-optional bits of support are built into the kernel.
-
 Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- arch/riscv/kernel/cpu.c | 9 +--------
- 1 file changed, 1 insertion(+), 8 deletions(-)
+ arch/riscv/boot/dts/microchip/mpfs.dtsi | 42 ++++++++++++++++++++++---
+ 1 file changed, 37 insertions(+), 5 deletions(-)
 
-diff --git a/arch/riscv/kernel/cpu.c b/arch/riscv/kernel/cpu.c
-index c29643dca0f7..bc32207b7d86 100644
---- a/arch/riscv/kernel/cpu.c
-+++ b/arch/riscv/kernel/cpu.c
-@@ -176,15 +176,8 @@ arch_initcall(riscv_cpuinfo_init);
- #ifdef CONFIG_PROC_FS
- static void print_isa_ext(struct seq_file *f)
- {
--	int i = 0, arr_sz;
+diff --git a/arch/riscv/boot/dts/microchip/mpfs.dtsi b/arch/riscv/boot/dts/microchip/mpfs.dtsi
+index 104504352e99..53efb5e03c64 100644
+--- a/arch/riscv/boot/dts/microchip/mpfs.dtsi
++++ b/arch/riscv/boot/dts/microchip/mpfs.dtsi
+@@ -21,7 +21,11 @@ cpu0: cpu@0 {
+ 			i-cache-sets = <128>;
+ 			i-cache-size = <16384>;
+ 			reg = <0>;
+-			riscv,isa = "rv64imac";
++			riscv,isa-base = "rv64i";
++			riscv,isa-extension-i = "v1.0.0";
++			riscv,isa-extension-m = "v1.0.0";
++			riscv,isa-extension-a = "v1.0.0";
++			riscv,isa-extension-c = "v1.0.0";
+ 			clocks = <&clkcfg CLK_CPU>;
+ 			status = "disabled";
  
--	arr_sz = riscv_isa_extensions_count - 1;
--
--	/* No extension support available */
--	if (arr_sz <= 0)
--		return;
--
--	for (i = 0; i < arr_sz; i++) {
-+	for (int i = 0; i < riscv_isa_extensions_count - 1; i++) {
- 		if (!__riscv_isa_extension_available(NULL, riscv_isa_extensions[i].key))
- 			continue;
- 		if (riscv_isa_extensions[i].multi_letter)
+@@ -47,7 +51,14 @@ cpu1: cpu@1 {
+ 			i-tlb-size = <32>;
+ 			mmu-type = "riscv,sv39";
+ 			reg = <1>;
+-			riscv,isa = "rv64imafdc";
++			riscv,isa-base = "rv64i";
++			riscv,isa-extension-i = "v1.0.0";
++			riscv,isa-extension-m = "v1.0.0";
++			riscv,isa-extension-a = "v1.0.0";
++			riscv,isa-extension-f = "v1.0.0";
++			riscv,isa-extension-d = "v1.0.0";
++			riscv,isa-extension-c = "v1.0.0";
++			riscv,isa-extension-zicsr = "v1.0.0";
+ 			clocks = <&clkcfg CLK_CPU>;
+ 			tlb-split;
+ 			next-level-cache = <&cctrllr>;
+@@ -75,7 +86,14 @@ cpu2: cpu@2 {
+ 			i-tlb-size = <32>;
+ 			mmu-type = "riscv,sv39";
+ 			reg = <2>;
+-			riscv,isa = "rv64imafdc";
++			riscv,isa-base = "rv64i";
++			riscv,isa-extension-i = "v1.0.0";
++			riscv,isa-extension-m = "v1.0.0";
++			riscv,isa-extension-a = "v1.0.0";
++			riscv,isa-extension-f = "v1.0.0";
++			riscv,isa-extension-d = "v1.0.0";
++			riscv,isa-extension-c = "v1.0.0";
++			riscv,isa-extension-zicsr = "v1.0.0";
+ 			clocks = <&clkcfg CLK_CPU>;
+ 			tlb-split;
+ 			next-level-cache = <&cctrllr>;
+@@ -103,7 +121,14 @@ cpu3: cpu@3 {
+ 			i-tlb-size = <32>;
+ 			mmu-type = "riscv,sv39";
+ 			reg = <3>;
+-			riscv,isa = "rv64imafdc";
++			riscv,isa-base = "rv64i";
++			riscv,isa-extension-i = "v1.0.0";
++			riscv,isa-extension-m = "v1.0.0";
++			riscv,isa-extension-a = "v1.0.0";
++			riscv,isa-extension-f = "v1.0.0";
++			riscv,isa-extension-d = "v1.0.0";
++			riscv,isa-extension-c = "v1.0.0";
++			riscv,isa-extension-zicsr = "v1.0.0";
+ 			clocks = <&clkcfg CLK_CPU>;
+ 			tlb-split;
+ 			next-level-cache = <&cctrllr>;
+@@ -131,7 +156,14 @@ cpu4: cpu@4 {
+ 			i-tlb-size = <32>;
+ 			mmu-type = "riscv,sv39";
+ 			reg = <4>;
+-			riscv,isa = "rv64imafdc";
++			riscv,isa-base = "rv64i";
++			riscv,isa-extension-i = "v1.0.0";
++			riscv,isa-extension-m = "v1.0.0";
++			riscv,isa-extension-a = "v1.0.0";
++			riscv,isa-extension-f = "v1.0.0";
++			riscv,isa-extension-d = "v1.0.0";
++			riscv,isa-extension-c = "v1.0.0";
++			riscv,isa-extension-zicsr = "v1.0.0";
+ 			clocks = <&clkcfg CLK_CPU>;
+ 			tlb-split;
+ 			next-level-cache = <&cctrllr>;
 -- 
 2.39.2
 
