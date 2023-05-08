@@ -2,168 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F8086FA796
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 12:32:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BB736FA7A8
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 12:33:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234778AbjEHKcp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 06:32:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33380 "EHLO
+        id S234702AbjEHKdg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 06:33:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234691AbjEHKcL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 06:32:11 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CCAD2676F;
-        Mon,  8 May 2023 03:31:44 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-4f137dbaa4fso4989490e87.2;
-        Mon, 08 May 2023 03:31:44 -0700 (PDT)
+        with ESMTP id S234761AbjEHKdP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 06:33:15 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F0FD2ABDA
+        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 03:32:24 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2ac733b813fso47887701fa.1
+        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 03:32:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683541901; x=1686133901;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZVOcW5KSfysHy4pPWrUvfd7L7A9hkxm02fk2t4xmkTs=;
-        b=midirEziNdd9rEplMPFT2tyoTB62QKPhg8cQcgG/bJ8utNrMkwuS+sZJB/Qb0luBdy
-         rHUpyyrhfQ6FJL8t3rJsbnSmKjJelHAT3C6zod/h+Jl1XC18MN+Q/wbFl9jf0OD0Mi0M
-         LwMfBCubSZgcmNDt94m/6orh2BJv1t6k2zccZhEk2pe+VXxwWQtHnEvl0jUUfiQgIClz
-         ox0IoRVzI3y3WJO4N9TTUhUpBLeCLA+ZJZJVfOux0WrqLtX5gARt4+tsIaljysHAy1ww
-         BH6ViLOreP+HpPmNN7u5uj8lSTlL2mSQYSb+lc9BShqcd3NcDUuxQS44yV7mLU40g1v9
-         QX5g==
+        d=linaro.org; s=google; t=1683541941; x=1686133941;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ScXfOKBt81Z5zV2cG1662UPRXJFST6VZnBC6VouOjSc=;
+        b=GrmDkGJvrRaoi7LAewDtfUAM0YYBpgUMUKRpSX8RbK2obuLwBwfJlk2QZkc/b7PuJo
+         HYWBbWCm6V2TXoHPv+iyQppf1PoYXtBvLAsZFcz5WgJI/QqSZMMF/sXoRZRS7bYhTX7u
+         WwtTxeGprytGUZBpLQVgODKMSnmy8v6+XsCbjnm8J1ZIdM6GP0mN3E6/WvSHAO2l0AWe
+         sgYQkjyPLeHPI4DErBPWlFeYnfWDxB7oN+SGqAUhJRzN1kmhH4kHm55/TPs4VUZPBhBn
+         wWV+Y/Fk3TjSwEnn4WENzWiF0nqRTD6pmpzZdeH9eLGTDKYDM2MpSVAm9Qp2xLqeIZOt
+         wnnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683541901; x=1686133901;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZVOcW5KSfysHy4pPWrUvfd7L7A9hkxm02fk2t4xmkTs=;
-        b=HcdPnQiWt2C7Yaqk1tQ9mpXSllhZPUQqW7jkMPi8JJSd4t5b0tAI5UxV4L/OxiROe8
-         NqOiwaexKNweAzdFxNaQm6uaByCCBioKNCjSNUiC1RsrAhCScYPKtWp1vKddg3j5/4xQ
-         qvUyvK3aKEidsUIYT9veqoMu2TlVb8Dzqu/xUz4HZf+nCM4+1mSWTsZ0LatwhiRpdcA4
-         g9LZxuKEvzJiawZW6AtXm/zKBQXITx6qf7RKxlS11AuAL+kyAUx23pk633UNTj8a/G37
-         bBauPj4Fn1Ef4bBUNTPK6TZE/kFA/UwmbMufuIUKVD0sSQD4GP68QcUxpVVYPOyDhdww
-         qB8w==
-X-Gm-Message-State: AC+VfDxOOwAKD9b8e/pHGd24jdQYL/KY0yzEHNnvShZArQM8fTGmVd+e
-        17herwUnaVRg21Iy1sto5wo=
-X-Google-Smtp-Source: ACHHUZ5Y1Dv01gKb4AgUcpnypAjvvhRaAfmwQuAmjFIf03cSrRcGKdy9Zn0ZVAG5L1WBQLvp5ES84Q==
-X-Received: by 2002:ac2:52b6:0:b0:4f2:5393:b71 with SMTP id r22-20020ac252b6000000b004f253930b71mr18514lfm.17.1683541900903;
-        Mon, 08 May 2023 03:31:40 -0700 (PDT)
-Received: from fedora (62-78-225-252.bb.dnainternet.fi. [62.78.225.252])
-        by smtp.gmail.com with ESMTPSA id v5-20020a197405000000b004eff32d6a21sm1243928lfe.121.2023.05.08.03.31.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 May 2023 03:31:40 -0700 (PDT)
-Date:   Mon, 8 May 2023 13:31:35 +0300
-From:   Matti Vaittinen <mazziesaccount@gmail.com>
-To:     Matti Vaittinen <mazziesaccount@gmail.com>,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matti Vaittinen <mazziesaccount@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Zhigang Shi <Zhigang.Shi@liteon.com>,
-        Paul Gazzillo <paul@pgazz.com>,
-        Shreeya Patel <shreeya.patel@collabora.com>,
-        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v5 3/5] iio: kx022a: Use new iio_validate_own_trigger()
-Message-ID: <cbd585e4787f62dc1a343a51b629ce73dd7d5426.1683541225.git.mazziesaccount@gmail.com>
-References: <cover.1683541225.git.mazziesaccount@gmail.com>
+        d=1e100.net; s=20221208; t=1683541941; x=1686133941;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ScXfOKBt81Z5zV2cG1662UPRXJFST6VZnBC6VouOjSc=;
+        b=Y9vL4M30W0mhRd7tD4UDnhpLnbTRXFZoeY2dadVlrnO73L3PmzN+hisrm4ej2GNYtL
+         va4GZ8gcHUU1S38UbCCgk+EXCMp8jOXdFJkmTwNIiM6IlXAdXnxjPvdTScv/W55tL7ko
+         b8pVVDpQqPSWhceFuBxYyvfevV2CtLK9FDNy3Bije/D5lofPnTaAglGnSuw8j9rBXcgO
+         1Od4bUR7M/1BOZdzLWvsMgxeRn470/sLfxUY9A8mScdkd5eHOuIXnPyo6fSjEPqLAvcW
+         FlTVAvi8HcNcp2ulniQ97sADIs49h59VESIDvncaWJPbn4QM5bkPHQsV6RpYguYLQ4K0
+         68Jw==
+X-Gm-Message-State: AC+VfDxeOA6IoibR8vWyiU4IOExbhioiewLm3WB02fQ6jZWvFqbJE2Dc
+        TndKx1uE0cLRnkRp5kL1AD3WVBWtk/P4tVye0Cw=
+X-Google-Smtp-Source: ACHHUZ4gpZuq2LgpGp2cEbClw5qjF/b0rPeJcLA8iwjKT4SpwOE0zQ62tK/5XBVkS0mkN6iyEv87UA==
+X-Received: by 2002:a05:651c:236:b0:295:9be0:212b with SMTP id z22-20020a05651c023600b002959be0212bmr2763621ljn.8.1683541941628;
+        Mon, 08 May 2023 03:32:21 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
+        by smtp.gmail.com with ESMTPSA id l11-20020a2e3e0b000000b002a8dce82cf6sm1127122lja.32.2023.05.08.03.32.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 May 2023 03:32:21 -0700 (PDT)
+Message-ID: <01fc4065-681f-daba-1c73-cc57768f880e@linaro.org>
+Date:   Mon, 8 May 2023 13:32:20 +0300
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="cRliBzZvdnyxsxOz"
-Content-Disposition: inline
-In-Reply-To: <cover.1683541225.git.mazziesaccount@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH 1/4] ARM: dts: qcom: msm8974: add ocmem clock to GPU
+Content-Language: en-GB
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+References: <20230507190735.2333145-1-dmitry.baryshkov@linaro.org>
+ <20230507190735.2333145-2-dmitry.baryshkov@linaro.org>
+ <8cdecc51-2a42-4b82-9eb3-2ab77860c5d4@linaro.org>
+ <c8144b21-d672-318e-2761-5d1daf384c30@linaro.org>
+ <d357a6f9-d66b-0ba1-138c-4b541c3bebfb@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <d357a6f9-d66b-0ba1-138c-4b541c3bebfb@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 08/05/2023 13:28, Konrad Dybcio wrote:
+> 
+> 
+> On 8.05.2023 12:24, Dmitry Baryshkov wrote:
+>> On 08/05/2023 11:30, Konrad Dybcio wrote:
+>>>
+>>>
+>>> On 7.05.2023 21:07, Dmitry Baryshkov wrote:
+>>>> To get GPU working with the OCMEM, the oxili_ocmemgx_clk clock should be
+>>>> enabled. Pass it to the GPU to get it to work on apq8074/msm8974 boards.
+>>>>
+>>>> Fixes: fe079442db63 ("ARM: dts: qcom: msm8974: add gpu support")
+>>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>>> ---
+>>> Uhh.. this clock should be managed by RPM with:
+>>>
+>>> type = MEM
+>>> id = 2
+>>>
+>>> just like it's defined for 8994 today.
+>>>
+>>> Could you try adding it in rpmcc and confirming?
+>>
+>> There is an RPM_SMD_OCMEMGX_CLK clk already, it is a bus clock for the ocmemnoc.
+> It's wrong.
 
---cRliBzZvdnyxsxOz
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Can you possibly be more specific here?
 
-The new generic iio_validate_own_trigger() can be used as
-validate_trigger callback for verifying the used trigger belongs to same
-device as the iio_dev.
+On 8974 RPM_SMD_OCMEMGX_CLK is a core clock for ocmem and a bus clock 
+for ocmemnoc.
 
-Use the generic function instead of rolling own one.
-
-Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-
----
-Revision history
-v2: New patch
----
- drivers/iio/accel/kionix-kx022a.c | 13 +------------
- 1 file changed, 1 insertion(+), 12 deletions(-)
-
-diff --git a/drivers/iio/accel/kionix-kx022a.c b/drivers/iio/accel/kionix-k=
-x022a.c
-index f98393d74666..09814881f513 100644
---- a/drivers/iio/accel/kionix-kx022a.c
-+++ b/drivers/iio/accel/kionix-kx022a.c
-@@ -516,17 +516,6 @@ static int kx022a_read_raw(struct iio_dev *idev,
- 	return -EINVAL;
- };
-=20
--static int kx022a_validate_trigger(struct iio_dev *idev,
--				   struct iio_trigger *trig)
--{
--	struct kx022a_data *data =3D iio_priv(idev);
--
--	if (data->trig !=3D trig)
--		return -EINVAL;
--
--	return 0;
--}
--
- static int kx022a_set_watermark(struct iio_dev *idev, unsigned int val)
- {
- 	struct kx022a_data *data =3D iio_priv(idev);
-@@ -725,7 +714,7 @@ static const struct iio_info kx022a_info =3D {
- 	.write_raw =3D &kx022a_write_raw,
- 	.read_avail =3D &kx022a_read_avail,
-=20
--	.validate_trigger	=3D kx022a_validate_trigger,
-+	.validate_trigger	=3D iio_validate_own_trigger,
- 	.hwfifo_set_watermark	=3D kx022a_set_watermark,
- 	.hwfifo_flush_to_buffer	=3D kx022a_fifo_flush,
- };
---=20
-2.40.1
+On 8994 this clocks is just a core clock for ocmem, there is no ocmemnoc.
 
 
---=20
-Matti Vaittinen, Linux device drivers
-ROHM Semiconductors, Finland SWDC
-Kiviharjunlenkki 1E
-90220 OULU
-FINLAND
+> 
+> Konrad
+>>
+>>>
+>>> Konrad
+>>>>    arch/arm/boot/dts/qcom-msm8974.dtsi | 3 ++-
+>>>>    1 file changed, 2 insertions(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
+>>>> index 834ad95515b1..fb661c1bd3d5 100644
+>>>> --- a/arch/arm/boot/dts/qcom-msm8974.dtsi
+>>>> +++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
+>>>> @@ -2104,8 +2104,9 @@ gpu: adreno@fdb00000 {
+>>>>                  clocks = <&mmcc OXILI_GFX3D_CLK>,
+>>>>                     <&mmcc OXILICX_AHB_CLK>,
+>>>> +                 <&mmcc OXILI_OCMEMGX_CLK>,
+>>>>                     <&mmcc OXILICX_AXI_CLK>;
+>>>> -            clock-names = "core", "iface", "mem_iface";
+>>>> +            clock-names = "core", "iface", "mem", "mem_iface";
+>>>>                  sram = <&gmu_sram>;
+>>>>                power-domains = <&mmcc OXILICX_GDSC>;
+>>
 
-~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
-Simon says - in Latin please.
-~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
-Thanks to Simon Glass for the translation =3D]=20
+-- 
+With best wishes
+Dmitry
 
---cRliBzZvdnyxsxOz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmRYz4cACgkQeFA3/03a
-ocWVcQf/eA4a8cLJ+0z3LlVxw4mYck1x5vPOsbvAp75RiJ+XF+CCKB7em0lYxYdS
-3v1VhMhIvb3koLpcyYu92YrzuwQiLTxir2RWr3a4RmgTbdFP61C+gjacQHnBu+WN
-B55Qz05gTKh6AS5zPFRUZno4/X5gd6RxEgvvHOvOxSdhyzDfQFVYnjhU0l4l3twr
-/1srDImrafVaSMG6vZF3AwBQ7KDV8fMcXwIoZhu6ahZt5VPj+7q8WWaJDj6+OSKq
-BAvGdFiX1+qI+eBhUQ3PgEXSeG4CQrmM++ZqjVsi7zRVZsDnYYc21GomGwj7OEme
-h4UdopbnCNWT7AQ2f2IQ98N22UQGMQ==
-=8JC5
------END PGP SIGNATURE-----
-
---cRliBzZvdnyxsxOz--
