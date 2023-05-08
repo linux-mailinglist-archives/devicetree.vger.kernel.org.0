@@ -2,105 +2,250 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EB856FB2C9
-	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 16:28:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DAF5E6FB2E5
+	for <lists+devicetree@lfdr.de>; Mon,  8 May 2023 16:30:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232541AbjEHO2w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 10:28:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35784 "EHLO
+        id S235153AbjEHOaX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 10:30:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233734AbjEHO2v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 10:28:51 -0400
-Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75F5B13D
-        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 07:28:50 -0700 (PDT)
-Received: by mail-qt1-x82b.google.com with SMTP id d75a77b69052e-3ef34c49cb9so1463891cf.1
-        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 07:28:50 -0700 (PDT)
+        with ESMTP id S234599AbjEHO35 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 10:29:57 -0400
+Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 115AF2D5E
+        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 07:29:35 -0700 (PDT)
+Received: by mail-pf1-x432.google.com with SMTP id d2e1a72fcca58-64388cf3263so3207903b3a.3
+        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 07:29:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20221208; t=1683556129; x=1686148129;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=ventanamicro.com; s=google; t=1683556174; x=1686148174;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=5OXED9n55OxWngALNZf6Ma29Sbx2jeBepA9KK59dLuM=;
-        b=uMdD8Gv/DiHKg3UTx8w50SiEO1INj2f5NWouy18nCDXkt6MuxF/1R2SPc29+sOotRM
-         ZtRuJNg896/ywYdCGw21nMR91mhF6xtGip3ENDf1YWIrbHYNjnrexvJkwEFm53mAIbN9
-         85H0RbE2SzSfiN1x/4f489xNwLM9p9ODIAo7siG0vZbpknS0JBH8pAPpP1BJJVUbRQz9
-         HdmXhby6Jrgv0YidGLYxAlHGf8JAJO1txyun9lRekLz6S4DIl4VwFBZDwb8iFnX/W7ig
-         76Hz7V6wXbrIKU8Wd6yRl7JsYLJmEqtafbuCtsjucMnErxVPSNt0qgZYXvAfzJvngvdJ
-         VoMA==
+        bh=2E+vPnkV/6+u4KNq32vBTTiL8TGRt65LegkILCc8n2k=;
+        b=KT3ZEhjc9ES8ZVsBr2ikNMw73wtSWzh4Z47d8zPtu1lgyPuFMqA7VwwV9vGZ5SW37y
+         MBSQZQzUOXlqyAH/WPlhJEruUeA6vRH09JsKCeJloRHHdGN+44VRCKznMVlqb6dAACEX
+         rY4QqvEig87kN7V+kDf9uNihu9VwP08GNpbHcAv0sxuZ3WEs8RWfd34N6igOBg/yTMoe
+         7GNzMzfOxpE93Y/1poLdOn9sU0wwciXW+YTUPjnu+jExlWcVkXq8tQ5iwF61Ewdy1p/y
+         7+yJleoMtrVZAc9UDgmKmrkwOMZww8DaLoH7t7SGqTiSON85DurBae5XHh9Q+JFPQp27
+         qWBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683556129; x=1686148129;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20221208; t=1683556174; x=1686148174;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=5OXED9n55OxWngALNZf6Ma29Sbx2jeBepA9KK59dLuM=;
-        b=bZfGzeh7eb64U+jfxXti4QPOH1St4LfZ7r3ghQW66qYjaEEG5XrrCb9+eeJ82vaVec
-         lhcYE35kd+GFI2pQH8i2AomudAh3UijaXSWd3UzO5wEymREBnBwpuP1nNc5WYNZWKPkr
-         s0R4iHH6sjPZ0086cufMT9eVsm9oJeul7YlBHLN0FGdEaAIhLjxfb2/DtTkCZiurlg1A
-         manQ2m59szBAm1pZObOEx8V0g9ic/EzeKlTWGmwj1QqIxUDBuSPprgVCaAuG151HMbGc
-         jlcwiOTrftrPeuCiJcbNXmEM969J6QQzFMn00vg+9xFpyRgDajBgIOM4NgmNFwjYJF1G
-         dzBg==
-X-Gm-Message-State: AC+VfDzUtyU+/4zegAWwapoICjid3unZH5nXElZiJleroUhBG1zP119m
-        xMJw0RR6wqkl6SnIrRK6ajwgjrdFQvxfEFFWUoUwg+R9X/905Gs/Sqo=
-X-Google-Smtp-Source: ACHHUZ7vJmM50NByadABi4nEwTy5WkJIJgvxyyfBL32BsPAITEyEvNHrAPFBUNSoJYtzlqXDLgEfYJoDBy9geLoLL3s=
-X-Received: by 2002:a05:622a:1813:b0:3bf:e4e0:26a0 with SMTP id
- t19-20020a05622a181300b003bfe4e026a0mr542577qtc.14.1683556129072; Mon, 08 May
- 2023 07:28:49 -0700 (PDT)
+        bh=2E+vPnkV/6+u4KNq32vBTTiL8TGRt65LegkILCc8n2k=;
+        b=MpAjTnV9BTMU844tWm3LwGMn4BDSiKDbbAz2Kh3sZ97E38zNIKcUljPDXpV56+haN9
+         EK9JXhj/a8th+SqDFXwysHBy4UFWn+RHXy36jOCbF32qgqizmYahw8eHTk3qiJqDjlCl
+         pJnwQq5HGPb3MxGr60LTCGeOHA1x/VddLuH1nTCCD48QNHSSooLx9muBnX8qMMny8VeP
+         B3R39X51kEFEsl24FiZjO40KVtQV/95sBj0muLALDiugJR55b6StM2syA6/X2sEjwkeo
+         QxpFIpsNkwygKQhXBpyYpbArrfsOLlpWbbWwQ9l7j+VUmoW+RaGtv5pQGS8J7ThPhpzt
+         6aHw==
+X-Gm-Message-State: AC+VfDzdB2K3Tu67Fo1Zz89kwdGlwTbHDg6TP+TvgQ9mclZH4YX66vIA
+        K2ouw4iovVWAqn+ZlhTzOSvTgA==
+X-Google-Smtp-Source: ACHHUZ79hH5wFhuoEuXBKu2QARKi88tLOJJxJ8szDy+oplzBOr9aNkt51Kezumakz3nwNJJ1uxt6YA==
+X-Received: by 2002:a05:6a00:b8a:b0:646:663a:9d60 with SMTP id g10-20020a056a000b8a00b00646663a9d60mr2974528pfj.10.1683556174393;
+        Mon, 08 May 2023 07:29:34 -0700 (PDT)
+Received: from anup-ubuntu-vm.localdomain ([171.76.84.206])
+        by smtp.gmail.com with ESMTPSA id k3-20020aa790c3000000b0063d46ec5777sm6082pfk.158.2023.05.08.07.29.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 May 2023 07:29:34 -0700 (PDT)
+From:   Anup Patel <apatel@ventanamicro.com>
+To:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     Atish Patra <atishp@atishpatra.org>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Anup Patel <anup@brainfault.org>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, iommu@lists.linux.dev,
+        Anup Patel <apatel@ventanamicro.com>,
+        Vincent Chen <vincent.chen@sifive.com>
+Subject: [PATCH v3 07/11] irqchip/riscv-imsic: Improve IOMMU DMA support
+Date:   Mon,  8 May 2023 19:58:38 +0530
+Message-Id: <20230508142842.854564-8-apatel@ventanamicro.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230508142842.854564-1-apatel@ventanamicro.com>
+References: <20230508142842.854564-1-apatel@ventanamicro.com>
 MIME-Version: 1.0
-References: <20230506093243.540406-1-yangcong5@huaqin.corp-partner.google.com>
-In-Reply-To: <20230506093243.540406-1-yangcong5@huaqin.corp-partner.google.com>
-From:   Doug Anderson <dianders@google.com>
-Date:   Mon, 8 May 2023 07:28:37 -0700
-Message-ID: <CAD=FV=WG9L-Fsq6wkmjk19bCPqVJgu41_hmQz0g6kLPvDrt_XQ@mail.gmail.com>
-Subject: Re: [PATCH] drm/panel: Modify innolux hj110iz panel inital code
-To:     Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-Cc:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@linux.ie,
-        daniel@ffwll.ch, hsinyi@google.com,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+We have a separate RISC-V IMSIC MSI address for each CPU so changing
+MSI (or IRQ) affinity results in re-programming of MSI address in
+the PCIe (or platform) device.
 
-On Sat, May 6, 2023 at 2:32=E2=80=AFAM Cong Yang
-<yangcong5@huaqin.corp-partner.google.com> wrote:
->
-> Optimize flickering problem and power off sequence GOP timing at sleep in=
- mode.
-> When display sleep in raise the potential of all GOP signals to VGHO and =
-then
-> lower to GND.
->
-> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-> ---
->  .../gpu/drm/panel/panel-boe-tv101wum-nl6.c    | 397 +++++++++++-------
->  1 file changed, 235 insertions(+), 162 deletions(-)
+Currently, the iommu_dma_prepare_msi() is called only once at the
+time of IRQ allocation so IOMMU DMA domain will only have mapping
+for one MSI page. This means iommu_dma_compose_msi_msg() called
+by imsic_irq_compose_msi_msg() will always use the same MSI page
+irrespective to target CPU MSI address. In other words, changing
+MSI (or IRQ) affinity for device using IOMMU DMA domain will not
+work.
 
-You sent two different patches with the exact same subject and the
-same description but completely different contents. I can't land that.
+To address above issue, we do the following:
+1) Map MSI pages for all CPUs in imsic_irq_domain_alloc()
+   using iommu_dma_prepare_msi().
+2) Add a new iommu_dma_select_msi() API to select a specific
+   MSI page from a set of already mapped MSI pages.
+3) Use iommu_dma_select_msi() to select a specific MSI page
+   before calling iommu_dma_compose_msi_msg() in
+   imsic_irq_compose_msi_msg().
 
-Options:
+Reported-by: Vincent Chen <vincent.chen@sifive.com>
+Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+---
+ drivers/iommu/dma-iommu.c         | 38 +++++++++++++++++++++++++++++++
+ drivers/irqchip/irq-riscv-imsic.c | 27 ++++++++++++----------
+ include/linux/iommu.h             |  6 +++++
+ 3 files changed, 59 insertions(+), 12 deletions(-)
 
-1. Send a two-patch series where each patch has a different subject /
-description.
+diff --git a/drivers/iommu/dma-iommu.c b/drivers/iommu/dma-iommu.c
+index 7a9f0b0bddbd..07782c77a6eb 100644
+--- a/drivers/iommu/dma-iommu.c
++++ b/drivers/iommu/dma-iommu.c
+@@ -1677,6 +1677,44 @@ int iommu_dma_prepare_msi(struct msi_desc *desc, phys_addr_t msi_addr)
+ 	return 0;
+ }
+ 
++/**
++ * iommu_dma_select_msi() - Select a MSI page from a set of
++ * already mapped MSI pages in the IOMMU domain.
++ *
++ * @desc: MSI descriptor prepared by iommu_dma_prepare_msi()
++ * @msi_addr: physical address of the MSI page to be selected
++ *
++ * Return: 0 on success or negative error code if the select failed.
++ */
++int iommu_dma_select_msi(struct msi_desc *desc, phys_addr_t msi_addr)
++{
++	struct device *dev = msi_desc_to_dev(desc);
++	struct iommu_domain *domain = iommu_get_domain_for_dev(dev);
++	const struct iommu_dma_msi_page *msi_page;
++	struct iommu_dma_cookie *cookie;
++
++	if (!domain || !domain->iova_cookie) {
++		desc->iommu_cookie = NULL;
++		return 0;
++	}
++
++	cookie = domain->iova_cookie;
++	msi_addr &= ~(phys_addr_t)(cookie_msi_granule(cookie) - 1);
++
++	msi_page = msi_desc_get_iommu_cookie(desc);
++	if (msi_page && msi_page->phys == msi_addr)
++		return 0;
++
++	list_for_each_entry(msi_page, &cookie->msi_page_list, list) {
++		if (msi_page->phys == msi_addr) {
++			msi_desc_set_iommu_cookie(desc, msi_page);
++			return 0;
++		}
++	}
++
++	return -ENOENT;
++}
++
+ /**
+  * iommu_dma_compose_msi_msg() - Apply translation to an MSI message
+  * @desc: MSI descriptor prepared by iommu_dma_prepare_msi()
+diff --git a/drivers/irqchip/irq-riscv-imsic.c b/drivers/irqchip/irq-riscv-imsic.c
+index 30247c84a6b0..ec61c599e0c5 100644
+--- a/drivers/irqchip/irq-riscv-imsic.c
++++ b/drivers/irqchip/irq-riscv-imsic.c
+@@ -446,6 +446,10 @@ static void imsic_irq_compose_msi_msg(struct irq_data *d,
+ 	if (WARN_ON(err))
+ 		return;
+ 
++	err = iommu_dma_select_msi(desc, msi_addr);
++	if (WARN_ON(err))
++		return;
++
+ 	msg->address_hi = upper_32_bits(msi_addr);
+ 	msg->address_lo = lower_32_bits(msi_addr);
+ 	msg->data = d->hwirq;
+@@ -493,11 +497,18 @@ static int imsic_irq_domain_alloc(struct irq_domain *domain,
+ 	int i, hwirq, err = 0;
+ 	unsigned int cpu;
+ 
+-	err = imsic_get_cpu(&imsic->lmask, false, &cpu);
+-	if (err)
+-		return err;
++	/* Map MSI address of all CPUs */
++	for_each_cpu(cpu, &imsic->lmask) {
++		err = imsic_cpu_page_phys(cpu, 0, &msi_addr);
++		if (err)
++			return err;
+ 
+-	err = imsic_cpu_page_phys(cpu, 0, &msi_addr);
++		err = iommu_dma_prepare_msi(info->desc, msi_addr);
++		if (err)
++			return err;
++	}
++
++	err = imsic_get_cpu(&imsic->lmask, false, &cpu);
+ 	if (err)
+ 		return err;
+ 
+@@ -505,10 +516,6 @@ static int imsic_irq_domain_alloc(struct irq_domain *domain,
+ 	if (hwirq < 0)
+ 		return hwirq;
+ 
+-	err = iommu_dma_prepare_msi(info->desc, msi_addr);
+-	if (err)
+-		goto fail;
+-
+ 	for (i = 0; i < nr_irqs; i++) {
+ 		imsic_id_set_target(hwirq + i, cpu);
+ 		irq_domain_set_info(domain, virq + i, hwirq + i,
+@@ -528,10 +535,6 @@ static int imsic_irq_domain_alloc(struct irq_domain *domain,
+ 	}
+ 
+ 	return 0;
+-
+-fail:
+-	imsic_ids_free(hwirq, get_count_order(nr_irqs));
+-	return err;
+ }
+ 
+ static void imsic_irq_domain_free(struct irq_domain *domain,
+diff --git a/include/linux/iommu.h b/include/linux/iommu.h
+index e8c9a7da1060..41e8613832ab 100644
+--- a/include/linux/iommu.h
++++ b/include/linux/iommu.h
+@@ -1117,6 +1117,7 @@ void iommu_setup_dma_ops(struct device *dev, u64 dma_base, u64 dma_limit);
+ int iommu_get_msi_cookie(struct iommu_domain *domain, dma_addr_t base);
+ 
+ int iommu_dma_prepare_msi(struct msi_desc *desc, phys_addr_t msi_addr);
++int iommu_dma_select_msi(struct msi_desc *desc, phys_addr_t msi_addr);
+ void iommu_dma_compose_msi_msg(struct msi_desc *desc, struct msi_msg *msg);
+ 
+ #else /* CONFIG_IOMMU_DMA */
+@@ -1138,6 +1139,11 @@ static inline int iommu_dma_prepare_msi(struct msi_desc *desc, phys_addr_t msi_a
+ 	return 0;
+ }
+ 
++static inline int iommu_dma_select_msi(struct msi_desc *desc, phys_addr_t msi_addr)
++{
++	return 0;
++}
++
+ static inline void iommu_dma_compose_msi_msg(struct msi_desc *desc, struct msi_msg *msg)
+ {
+ }
+-- 
+2.34.1
 
-2. Since these both touch the same file and (presumably) are trying to
-address the same issue, just combine them into one patch and send
-that.
-
-Please make sure you document everything the patch is doing. I don't
-think anything in the description explains why you need to change the
-clock rate / blanking periods.
-
--Doug
