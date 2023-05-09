@@ -2,89 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E0376FBE27
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 06:21:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01E546FBE37
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 06:33:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234560AbjEIEVL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 00:21:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53364 "EHLO
+        id S229491AbjEIEdF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 00:33:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230258AbjEIEVJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 00:21:09 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB86B44B4;
-        Mon,  8 May 2023 21:21:03 -0700 (PDT)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3493IgP7026433;
-        Tue, 9 May 2023 04:20:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=pCb1PtWoLh2u32tC53xZV7dT9Q6u+VHvvh5VLNOcoEw=;
- b=fiIT2jI1LxQbkKxT/ViyuwvnN2nZPV6NFIUcIU6jgMkAeaqtzTXSu5rGNiRoDAlX2/MY
- H3HlcMGN/jiO5I8x8ipd3mEJPrVJQNmwuMRGZV1G0gHBxIUnW7v8rsWELorhsSnfBMz9
- Ssf6KySYwgasDra3MQ+S0Ul9/SJZw/OHNdlo3FHduoRTNRB5ruRlIAva+zgsT0esEh5b
- urs/mGsQ32TB0jZ3gAIqBTtgVcTVxAXBesJnjSSu5ZmleEX6OmIe44asD8S78iFZeMIt
- dNjNV1KsBwBjYCFBE5eCq7z3KrT8hV2uSJNQWfl3pJc055GebkIL/NRnGJJqJQtlCeh+ 5Q== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qf77h8rgm-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 09 May 2023 04:20:53 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3494KqF1009176
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 9 May 2023 04:20:52 GMT
-Received: from [10.50.37.86] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Mon, 8 May 2023
- 21:20:47 -0700
-Message-ID: <3109fb7a-0050-1b9b-d2aa-e00e26937b72@quicinc.com>
-Date:   Tue, 9 May 2023 09:50:33 +0530
+        with ESMTP id S229460AbjEIEdE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 00:33:04 -0400
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 438E05277;
+        Mon,  8 May 2023 21:33:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1683606782; x=1715142782;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=D+tdjKHbVSB87BfZn+C52EAsogyovLQG3XPKeR6kMiQ=;
+  b=RsAdzfiXkL6XZPbd270bT6sjPvV7ppfRMvwzYwYfXK3sSB6uj2pG1Myb
+   vUTKvmjszR38Z1CB0xANBYMFVCJEIOFhrsHW67CNwoqnOhem3jKEpaAeu
+   xSQed9u01ruXaxGd2pnpTLoqakojFFvGpCJP9Ypt3bJGTfOFNNnwmhoXo
+   kj3J9sBrEWHj9rt7qu4ZmQuQt5kTP9GHYVVTsNqPyaZbyZ96Hr0fy9xVX
+   JlmphJiW58ZV1FWhWkkHwkgMumg65APNz59/65nTksCV0KC5SCLqFTYPA
+   j94EqEfZQmuiuVqWEvhxvMooE72MnKiOHYzjWhKQy8bJfj6xJogZD1huH
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="330167605"
+X-IronPort-AV: E=Sophos;i="5.99,261,1677571200"; 
+   d="scan'208";a="330167605"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 May 2023 21:33:01 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="763668702"
+X-IronPort-AV: E=Sophos;i="5.99,261,1677571200"; 
+   d="scan'208";a="763668702"
+Received: from lkp-server01.sh.intel.com (HELO dea6d5a4f140) ([10.239.97.150])
+  by fmsmga008.fm.intel.com with ESMTP; 08 May 2023 21:32:57 -0700
+Received: from kbuild by dea6d5a4f140 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pwF20-0001hA-2P;
+        Tue, 09 May 2023 04:32:56 +0000
+Date:   Tue, 9 May 2023 12:32:26 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        "Nicolas F . R . A . Prado" <nfraprado@collabora.com>
+Cc:     oe-kbuild-all@lists.linux.dev,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v2] media: mediatek: vcodec: support stateless hevc
+ decoder
+Message-ID: <202305091200.B2bZpLsG-lkp@intel.com>
+References: <20230428082329.28606-1-yunfei.dong@mediatek.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH V4 2/3] soc: qcom: boot_stat: Add Driver Support for Boot
- Stats
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>
-References: <cover.1681742910.git.quic_schowdhu@quicinc.com>
- <C1eDJi-H9uWRAtbInRclmCgPb4EcgaeS3sk5FKO9cw8KscgMCH8dxRSvdPGUMwDFKpte7cBVeaqPhlLog-CRrg==@protonmail.internalid>
- <2ef76ce292c059c144e559123a9a54201ae2d0cf.1681742910.git.quic_schowdhu@quicinc.com>
- <575ee047-c6ce-95c3-8781-8c9a78534bb1@linaro.org>
- <f42637c8-400b-e39f-412d-60328e176585@quicinc.com>
- <35ac64ab-512d-1425-7a1b-6e8d3806c8a8@linaro.org>
-Content-Language: en-US
-From:   Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-In-Reply-To: <35ac64ab-512d-1425-7a1b-6e8d3806c8a8@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 4kYXeBNHYzYa1-7zJLr8FYOQLBm2cn0d
-X-Proofpoint-ORIG-GUID: 4kYXeBNHYzYa1-7zJLr8FYOQLBm2cn0d
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-09_02,2023-05-05_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxscore=0
- bulkscore=0 impostorscore=0 lowpriorityscore=0 malwarescore=0
- priorityscore=1501 suspectscore=0 phishscore=0 mlxlogscore=999
- adultscore=0 clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2305090032
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230428082329.28606-1-yunfei.dong@mediatek.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -92,115 +81,254 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Yunfei,
+
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on media-tree/master]
+[also build test ERROR on linus/master v6.4-rc1 next-20230509]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Yunfei-Dong/media-mediatek-vcodec-support-stateless-hevc-decoder/20230428-162427
+base:   git://linuxtv.org/media_tree.git master
+patch link:    https://lore.kernel.org/r/20230428082329.28606-1-yunfei.dong%40mediatek.com
+patch subject: [PATCH v2] media: mediatek: vcodec: support stateless hevc decoder
+config: parisc-buildonly-randconfig-r001-20230508 (https://download.01.org/0day-ci/archive/20230509/202305091200.B2bZpLsG-lkp@intel.com/config)
+compiler: hppa-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/193b8e8eece4506c90eac97b973ef059aaf5c0e1
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Yunfei-Dong/media-mediatek-vcodec-support-stateless-hevc-decoder/20230428-162427
+        git checkout 193b8e8eece4506c90eac97b973ef059aaf5c0e1
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=parisc olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=parisc SHELL=/bin/bash drivers/media/platform/mediatek/vcodec/
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202305091200.B2bZpLsG-lkp@intel.com/
+
+All error/warnings (new ones prefixed by >>):
+
+   drivers/media/platform/mediatek/vcodec/vdec/vdec_hevc_req_multi_if.c: In function 'vdec_hevc_fill_dpb_info':
+>> drivers/media/platform/mediatek/vcodec/vdec/vdec_hevc_req_multi_if.c:412:24: warning: ordered comparison of pointer with integer zero [-Wextra]
+     412 |                 if (vb < 0) {
+         |                        ^
+   drivers/media/platform/mediatek/vcodec/vdec/vdec_hevc_req_multi_if.c: In function 'vdec_hevc_copy_decode_params':
+>> drivers/media/platform/mediatek/vcodec/vdec/vdec_hevc_req_multi_if.c:587:63: error: 'const struct v4l2_ctrl_hevc_decode_params' has no member named 'num_delta_pocs_of_ref_rps_idx'
+     587 |         dst_params->num_delta_pocs_of_ref_rps_idx = src_params->num_delta_pocs_of_ref_rps_idx;
+         |                                                               ^~
+   drivers/media/platform/mediatek/vcodec/vdec/vdec_hevc_req_multi_if.c: In function 'vdec_hevc_slice_fill_decode_parameters':
+   drivers/media/platform/mediatek/vcodec/vdec/vdec_hevc_req_multi_if.c:630:27: error: 'const struct v4l2_ctrl_hevc_decode_params' has no member named 'num_delta_pocs_of_ref_rps_idx'
+     630 |                 dec_params->num_delta_pocs_of_ref_rps_idx;
+         |                           ^~
 
 
-On 5/4/2023 9:49 PM, Dmitry Baryshkov wrote:
-> On 04/05/2023 09:35, Souradeep Chowdhury wrote:
->>
->>
->> On 5/4/2023 4:23 AM, Caleb Connolly wrote:
->>>
->>>
->>> On 17/04/2023 16:08, Souradeep Chowdhury wrote:
->>>> All of Qualcomm's proprietary Android boot-loaders capture boot time
->>>> stats, like the time when the bootloader started execution and at what
->>>> point the bootloader handed over control to the kernel etc. in the IMEM
->>>> region. This information is captured in a specific format by this 
->>>> driver
->>>> by mapping a structure to the IMEM memory region and then accessing the
->>>> members of the structure to show the information within debugfs file.
->>>> This information is useful in verifying if the existing boot KPIs have
->>>> regressed or not. The information is shown in milliseconds, a sample
->>>> log from sm8450(waipio) device is as follows:-
->>>>
->>>> /sys/kernel/debug/146aa6b0.boot_stats # cat abl_time
->>>> 17898 ms
->>>> /sys/kernel/debug/146aa6b0.boot_stats # cat pre_abl_time
->>>> 2879 ms
->>>>
->>>> The Module Power Manager(MPM) sleep counter starts ticking at the PBL
->>>> stage and the timestamp generated by the sleep counter is logged by
->>>> the Qualcomm proprietary bootloader(ABL) at two points-> First when it
->>>> starts execution which is logged here as "pre_abl_time" and the second
->>>> when it is about to load the kernel logged as "abl_time". Documentation
->>>> details are also added in 
->>>> Documentation/ABI/testing/debugfs-driver-bootstat
->>>>
->>>> Signed-off-by: Souradeep Chowdhury <quic_schowdhu@quicinc.com>
->>>
->>> Hi,
->>>
->>> [...]
->>>> +
->>>> +static int boot_stats_probe(struct platform_device *pdev)
->>>> +{
->>>> +    struct device *bootstat_dev = &pdev->dev;
->>>> +    struct bs_data *drvdata;
->>>> +
->>>> +    drvdata = devm_kzalloc(bootstat_dev, sizeof(*drvdata), 
->>>> GFP_KERNEL);
->>>> +    platform_set_drvdata(pdev, drvdata);
->>>> +
->>>> +    drvdata->dbg_dir = debugfs_create_dir(dev_name(bootstat_dev), 
->>>> NULL);
->>>
->>> This might be better as just "qcom_boot_stats", rather than including
->>> the address.
->>
->> We usually use the dev_name to represent the one to one correspondence 
-> 
-> Who is "we"?
-> 
->> of the debugfs file with the device. Will create the root dir as
->> "qcom_boot_stats" and push the dev_name dir inside it.
-> 
-> No, this doesn't sound logical. Please use just the "qcom_boot_stats" as 
-> Caleb suggested.
+vim +587 drivers/media/platform/mediatek/vcodec/vdec/vdec_hevc_req_multi_if.c
 
-Ack
+   395	
+   396	static void vdec_hevc_fill_dpb_info(struct mtk_vcodec_ctx *ctx,
+   397					    struct slice_api_hevc_decode_param *decode_params,
+   398					    struct mtk_hevc_dpb_info *hevc_dpb_info)
+   399	{
+   400		const struct slice_hevc_dpb_entry *dpb;
+   401		struct vb2_queue *vq;
+   402		struct vb2_buffer *vb;
+   403		int index;
+   404	
+   405		vq = v4l2_m2m_get_vq(ctx->m2m_ctx, V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE);
+   406		for (index = 0; index < V4L2_HEVC_DPB_ENTRIES_NUM_MAX; index++) {
+   407			dpb = &decode_params->dpb[index];
+   408			if (index >= decode_params->num_active_dpb_entries)
+   409				continue;
+   410	
+   411			vb = vb2_find_buffer(vq, dpb->timestamp);
+ > 412			if (vb < 0) {
+   413				dev_err(&ctx->dev->plat_dev->dev,
+   414					"Reference invalid: dpb_index(%d) timestamp(%lld)",
+   415					index, dpb->timestamp);
+   416				continue;
+   417			}
+   418	
+   419			hevc_dpb_info[index].field = dpb->field_pic;
+   420	
+   421			hevc_dpb_info[index].y_dma_addr = vb2_dma_contig_plane_dma_addr(vb, 0);
+   422			if (ctx->q_data[MTK_Q_DATA_DST].fmt->num_planes == 2)
+   423				hevc_dpb_info[index].c_dma_addr = vb2_dma_contig_plane_dma_addr(vb, 1);
+   424			else
+   425				hevc_dpb_info[index].c_dma_addr =
+   426					hevc_dpb_info[index].y_dma_addr + ctx->picinfo.fb_sz[0];
+   427		}
+   428	}
+   429	
+   430	static void vdec_hevc_copy_sps_params(struct mtk_hevc_sps_param *dst_param,
+   431					      const struct v4l2_ctrl_hevc_sps *src_param)
+   432	{
+   433		GET_HEVC_VDEC_PARAM(video_parameter_set_id);
+   434		GET_HEVC_VDEC_PARAM(seq_parameter_set_id);
+   435		GET_HEVC_VDEC_PARAM(pic_width_in_luma_samples);
+   436		GET_HEVC_VDEC_PARAM(pic_height_in_luma_samples);
+   437		GET_HEVC_VDEC_PARAM(bit_depth_luma_minus8);
+   438		GET_HEVC_VDEC_PARAM(bit_depth_chroma_minus8);
+   439		GET_HEVC_VDEC_PARAM(log2_max_pic_order_cnt_lsb_minus4);
+   440		GET_HEVC_VDEC_PARAM(sps_max_dec_pic_buffering_minus1);
+   441		GET_HEVC_VDEC_PARAM(sps_max_num_reorder_pics);
+   442		GET_HEVC_VDEC_PARAM(sps_max_latency_increase_plus1);
+   443		GET_HEVC_VDEC_PARAM(log2_min_luma_coding_block_size_minus3);
+   444		GET_HEVC_VDEC_PARAM(log2_diff_max_min_luma_coding_block_size);
+   445		GET_HEVC_VDEC_PARAM(log2_min_luma_transform_block_size_minus2);
+   446		GET_HEVC_VDEC_PARAM(log2_diff_max_min_luma_transform_block_size);
+   447		GET_HEVC_VDEC_PARAM(max_transform_hierarchy_depth_inter);
+   448		GET_HEVC_VDEC_PARAM(max_transform_hierarchy_depth_intra);
+   449		GET_HEVC_VDEC_PARAM(pcm_sample_bit_depth_luma_minus1);
+   450		GET_HEVC_VDEC_PARAM(pcm_sample_bit_depth_chroma_minus1);
+   451		GET_HEVC_VDEC_PARAM(log2_min_pcm_luma_coding_block_size_minus3);
+   452		GET_HEVC_VDEC_PARAM(log2_diff_max_min_pcm_luma_coding_block_size);
+   453		GET_HEVC_VDEC_PARAM(num_short_term_ref_pic_sets);
+   454		GET_HEVC_VDEC_PARAM(num_long_term_ref_pics_sps);
+   455		GET_HEVC_VDEC_PARAM(chroma_format_idc);
+   456		GET_HEVC_VDEC_PARAM(sps_max_sub_layers_minus1);
+   457	
+   458		GET_HEVC_VDEC_FLAG(separate_colour_plane,
+   459				   V4L2_HEVC_SPS_FLAG_SEPARATE_COLOUR_PLANE);
+   460		GET_HEVC_VDEC_FLAG(scaling_list_enabled,
+   461				   V4L2_HEVC_SPS_FLAG_SCALING_LIST_ENABLED);
+   462		GET_HEVC_VDEC_FLAG(amp_enabled,
+   463				   V4L2_HEVC_SPS_FLAG_AMP_ENABLED);
+   464		GET_HEVC_VDEC_FLAG(sample_adaptive_offset,
+   465				   V4L2_HEVC_SPS_FLAG_SAMPLE_ADAPTIVE_OFFSET);
+   466		GET_HEVC_VDEC_FLAG(pcm_enabled,
+   467				   V4L2_HEVC_SPS_FLAG_PCM_ENABLED);
+   468		GET_HEVC_VDEC_FLAG(pcm_loop_filter_disabled,
+   469				   V4L2_HEVC_SPS_FLAG_PCM_LOOP_FILTER_DISABLED);
+   470		GET_HEVC_VDEC_FLAG(long_term_ref_pics_enabled,
+   471				   V4L2_HEVC_SPS_FLAG_LONG_TERM_REF_PICS_PRESENT);
+   472		GET_HEVC_VDEC_FLAG(sps_temporal_mvp_enabled,
+   473				   V4L2_HEVC_SPS_FLAG_SPS_TEMPORAL_MVP_ENABLED);
+   474		GET_HEVC_VDEC_FLAG(strong_intra_smoothing_enabled,
+   475				   V4L2_HEVC_SPS_FLAG_STRONG_INTRA_SMOOTHING_ENABLED);
+   476	}
+   477	
+   478	static void vdec_hevc_copy_pps_params(struct mtk_hevc_pps_param *dst_param,
+   479					      const struct v4l2_ctrl_hevc_pps *src_param)
+   480	{
+   481		int i;
+   482	
+   483		GET_HEVC_VDEC_PARAM(pic_parameter_set_id);
+   484		GET_HEVC_VDEC_PARAM(num_extra_slice_header_bits);
+   485		GET_HEVC_VDEC_PARAM(num_ref_idx_l0_default_active_minus1);
+   486		GET_HEVC_VDEC_PARAM(num_ref_idx_l1_default_active_minus1);
+   487		GET_HEVC_VDEC_PARAM(init_qp_minus26);
+   488		GET_HEVC_VDEC_PARAM(diff_cu_qp_delta_depth);
+   489		GET_HEVC_VDEC_PARAM(pps_cb_qp_offset);
+   490		GET_HEVC_VDEC_PARAM(pps_cr_qp_offset);
+   491		GET_HEVC_VDEC_PARAM(num_tile_columns_minus1);
+   492		GET_HEVC_VDEC_PARAM(num_tile_rows_minus1);
+   493		GET_HEVC_VDEC_PARAM(init_qp_minus26);
+   494		GET_HEVC_VDEC_PARAM(diff_cu_qp_delta_depth);
+   495		GET_HEVC_VDEC_PARAM(pic_parameter_set_id);
+   496		GET_HEVC_VDEC_PARAM(num_extra_slice_header_bits);
+   497		GET_HEVC_VDEC_PARAM(num_ref_idx_l0_default_active_minus1);
+   498		GET_HEVC_VDEC_PARAM(num_ref_idx_l1_default_active_minus1);
+   499		GET_HEVC_VDEC_PARAM(pps_beta_offset_div2);
+   500		GET_HEVC_VDEC_PARAM(pps_tc_offset_div2);
+   501		GET_HEVC_VDEC_PARAM(log2_parallel_merge_level_minus2);
+   502	
+   503		for (i = 0; i < 20; i++)
+   504			dst_param->column_width_minus1[i] = src_param->column_width_minus1[i];
+   505		for (i = 0; i < 22; i++)
+   506			dst_param->row_height_minus1[i] = src_param->row_height_minus1[i];
+   507	
+   508		GET_HEVC_VDEC_FLAG(dependent_slice_segment_enabled,
+   509				   V4L2_HEVC_PPS_FLAG_DEPENDENT_SLICE_SEGMENT_ENABLED);
+   510		GET_HEVC_VDEC_FLAG(output_flag_present,
+   511				   V4L2_HEVC_PPS_FLAG_OUTPUT_FLAG_PRESENT);
+   512		GET_HEVC_VDEC_FLAG(sign_data_hiding_enabled,
+   513				   V4L2_HEVC_PPS_FLAG_SIGN_DATA_HIDING_ENABLED);
+   514		GET_HEVC_VDEC_FLAG(cabac_init_present,
+   515				   V4L2_HEVC_PPS_FLAG_CABAC_INIT_PRESENT);
+   516		GET_HEVC_VDEC_FLAG(constrained_intra_pred,
+   517				   V4L2_HEVC_PPS_FLAG_CONSTRAINED_INTRA_PRED);
+   518		GET_HEVC_VDEC_FLAG(transform_skip_enabled,
+   519				   V4L2_HEVC_PPS_FLAG_TRANSFORM_SKIP_ENABLED);
+   520		GET_HEVC_VDEC_FLAG(cu_qp_delta_enabled,
+   521				   V4L2_HEVC_PPS_FLAG_CU_QP_DELTA_ENABLED);
+   522		GET_HEVC_VDEC_FLAG(pps_slice_chroma_qp_offsets_present,
+   523				   V4L2_HEVC_PPS_FLAG_PPS_SLICE_CHROMA_QP_OFFSETS_PRESENT);
+   524		GET_HEVC_VDEC_FLAG(weighted_pred,
+   525				   V4L2_HEVC_PPS_FLAG_WEIGHTED_PRED);
+   526		GET_HEVC_VDEC_FLAG(weighted_bipred,
+   527				   V4L2_HEVC_PPS_FLAG_WEIGHTED_BIPRED);
+   528		GET_HEVC_VDEC_FLAG(transquant_bypass_enabled,
+   529				   V4L2_HEVC_PPS_FLAG_TRANSQUANT_BYPASS_ENABLED);
+   530		GET_HEVC_VDEC_FLAG(pps_flag_tiles_enabled,
+   531				   V4L2_HEVC_PPS_FLAG_TILES_ENABLED);
+   532		GET_HEVC_VDEC_FLAG(entropy_coding_sync_enabled,
+   533				   V4L2_HEVC_PPS_FLAG_ENTROPY_CODING_SYNC_ENABLED);
+   534		GET_HEVC_VDEC_FLAG(loop_filter_across_tiles_enabled,
+   535				   V4L2_HEVC_PPS_FLAG_LOOP_FILTER_ACROSS_TILES_ENABLED);
+   536		GET_HEVC_VDEC_FLAG(pps_loop_filter_across_slices_enabled,
+   537				   V4L2_HEVC_PPS_FLAG_PPS_LOOP_FILTER_ACROSS_SLICES_ENABLED);
+   538		GET_HEVC_VDEC_FLAG(deblocking_filter_override_enabled,
+   539				   V4L2_HEVC_PPS_FLAG_DEBLOCKING_FILTER_OVERRIDE_ENABLED);
+   540		GET_HEVC_VDEC_FLAG(pps_disable_deflocking_filter,
+   541				   V4L2_HEVC_PPS_FLAG_PPS_DISABLE_DEBLOCKING_FILTER);
+   542		GET_HEVC_VDEC_FLAG(lists_modification_present,
+   543				   V4L2_HEVC_PPS_FLAG_LISTS_MODIFICATION_PRESENT);
+   544		GET_HEVC_VDEC_FLAG(slice_segment_header_extersion_present,
+   545				   V4L2_HEVC_PPS_FLAG_SLICE_SEGMENT_HEADER_EXTENSION_PRESENT);
+   546		GET_HEVC_VDEC_FLAG(deblocking_filter_control_present,
+   547				   V4L2_HEVC_PPS_FLAG_DEBLOCKING_FILTER_CONTROL_PRESENT);
+   548		GET_HEVC_VDEC_FLAG(uniform_spacing,
+   549				   V4L2_HEVC_PPS_FLAG_UNIFORM_SPACING);
+   550	}
+   551	
+   552	static void vdec_hevc_copy_scaling_matrix(struct slice_api_hevc_scaling_matrix *dst_matrix,
+   553						  const struct v4l2_ctrl_hevc_scaling_matrix *src_matrix)
+   554	{
+   555		memcpy(dst_matrix, src_matrix, sizeof(*src_matrix));
+   556	}
+   557	
+   558	static void
+   559	vdec_hevc_copy_decode_params(struct slice_api_hevc_decode_param *dst_params,
+   560				     const struct v4l2_ctrl_hevc_decode_params *src_params,
+   561				     const struct v4l2_hevc_dpb_entry dpb[V4L2_HEVC_DPB_ENTRIES_NUM_MAX])
+   562	{
+   563		struct slice_hevc_dpb_entry *dst_entry;
+   564		const struct v4l2_hevc_dpb_entry *src_entry;
+   565		int i;
+   566	
+   567		for (i = 0; i < ARRAY_SIZE(dst_params->dpb); i++) {
+   568			dst_entry = &dst_params->dpb[i];
+   569			src_entry = &dpb[i];
+   570	
+   571			dst_entry->timestamp = src_entry->timestamp;
+   572			dst_entry->flags = src_entry->flags;
+   573			dst_entry->field_pic = src_entry->field_pic;
+   574			dst_entry->pic_order_cnt_val = src_entry->pic_order_cnt_val;
+   575	
+   576			dst_params->poc_st_curr_before[i] = src_params->poc_st_curr_before[i];
+   577			dst_params->poc_st_curr_after[i] = src_params->poc_st_curr_after[i];
+   578			dst_params->poc_lt_curr[i] = src_params->poc_lt_curr[i];
+   579		}
+   580	
+   581		dst_params->pic_order_cnt_val = src_params->pic_order_cnt_val;
+   582		dst_params->short_term_ref_pic_set_size = src_params->short_term_ref_pic_set_size;
+   583		dst_params->long_term_ref_pic_set_size = src_params->long_term_ref_pic_set_size;
+   584		dst_params->num_active_dpb_entries = src_params->num_active_dpb_entries;
+   585		dst_params->num_poc_st_curr_before = src_params->num_poc_st_curr_before;
+   586		dst_params->num_poc_st_curr_after = src_params->num_poc_st_curr_after;
+ > 587		dst_params->num_delta_pocs_of_ref_rps_idx = src_params->num_delta_pocs_of_ref_rps_idx;
+   588		dst_params->num_poc_lt_curr = src_params->num_poc_lt_curr;
+   589		dst_params->flags = src_params->flags;
+   590	}
+   591	
 
-> 
->>
->>>
->>> [...]
->>>> +
->>>> +static const struct of_device_id boot_stats_dt_match[] = {
->>>> +    { .compatible = "qcom,sm8450-bootstats" },
->>>
->>> This driver doesn't only support sm8450, I've tested this on sdm845 and
->>> it works just fine. Can we use a generic compatible here instead?
->>
->> We can add soc specific compatibles here to extend support for other 
->> socs. This also captures the SoCs for which the driver is supported 
->> which won't be the case if we use a generic compatible.
-> 
-> No. If there is no difference between SoCs, please don't add 
-> soc-specific compatibles. They pollute the kernel and provide no 
-> additional benefits. Please use generic compatible and add 
-> platform-specific ones only if you have something to override.
-
-Ack
-> 
->>
->>
->>>> +    { }
->>>> +};
->>>> +MODULE_DEVICE_TABLE(of, boot_stats_dt_match);
->>>> +
->>>> +static struct platform_driver boot_stat_driver = {
->>>> +    .probe  = boot_stats_probe,
->>>> +    .remove_new = boot_stats_remove,
->>>> +    .driver = {
->>>> +        .name = "qcom-boot-stats",
->>>> +        .of_match_table = boot_stats_dt_match,
->>>> +    },
->>>> +};
->>>> +module_platform_driver(boot_stat_driver);
->>>> +
->>>> +MODULE_DESCRIPTION("Qualcomm Technologies Inc. Boot Stat driver");
->>>> +MODULE_LICENSE("GPL");
->>>> -- 
->>>> 2.7.4
->>>>
->>>
-> 
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
