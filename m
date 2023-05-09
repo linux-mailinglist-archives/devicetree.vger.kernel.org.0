@@ -2,170 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 40F496FD2D7
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 00:55:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 276186FD2E7
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 01:00:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229595AbjEIWzM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 18:55:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43828 "EHLO
+        id S234267AbjEIXAX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 19:00:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46634 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229489AbjEIWzL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 18:55:11 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59AEC59E7;
-        Tue,  9 May 2023 15:55:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net; s=s31663417;
-        t=1683672871; i=j.neuschaefer@gmx.net;
-        bh=IjOsP3Hl5WOUcxHtKpSlXVU2zmb5sAncILY7B0EhNVs=;
-        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
-        b=ndYA2tf/LPtkgltTOvt7X2+Zi6uiTPSZbAqw/mXBwe2s3qEMYWIHbVw2U7syYOtiu
-         0ByeTgk6m0fQkzncsA2uFg7rs+4GDkYCaq3zleDHMNFIszwJSYZevaNUwCstSv1xs2
-         q2XsYVKyF7xXnp4qsykgKdmrMBdtxCsRttws9I9ls8dUQV5PBqFxC2CHyOsYGjarJ/
-         Rr2m1bZj51r337gAlDvnDkQfA5v+OxXvevYZAHhLDsYKtlfaLNIq481n2v1Dl3mPUG
-         +ciwlK0+ezWRctjT6rrS4cmxjRJOY33gMIuTSxMpaalo6ZUK907KGn7D4ZZQnJjuQD
-         xm3g+5vkab4wA==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from probook ([95.223.44.193]) by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1Ml6m4-1qdIgl1tr2-00lTxs; Wed, 10
- May 2023 00:54:31 +0200
-Date:   Wed, 10 May 2023 00:54:29 +0200
-From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Arnd Bergmann <arnd@arndb.de>, linux-aspeed@lists.ozlabs.org,
-        linux-realtek-soc@lists.infradead.org, linux-arm-kernel@axis.com,
-        linux-stm32@st-md-mailman.stormreply.com,
-        chrome-platform@lists.linux.dev, linux-samsung-soc@vger.kernel.org,
-        openbmc@lists.ozlabs.org, Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-rockchip@lists.infradead.org,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-actions@lists.infradead.org,
-        linux-unisoc@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        linux-rpi-kernel@lists.infradead.org, linux-tegra@vger.kernel.org,
-        linux-amlogic@lists.infradead.org,
-        Linux-OMAP <linux-omap@vger.kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        kernel@dh-electronics.com, Olof Johansson <olof@lixom.net>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "linux-oxnas@groups.io" <linux-oxnas@groups.io>
-Subject: Re: [RFC PATCH 0/1] Categorize ARM dts directory
-Message-ID: <ZFrPJQdwoxqFpzUO@probook>
-References: <20220328000915.15041-1-ansuelsmth@gmail.com>
- <85eb14ec-f465-7447-ad77-a3dabc666f47@kernel.org>
- <YkKRYnN84D9VZhGj@Ansuel-xps.localdomain>
- <CAL_Jsq+RQQ-ADMxLPUFwk6S6kGmb6oNDy4k52fnU0EtbUvqmSA@mail.gmail.com>
- <CAMuHMdWNTE48MFy6fqxAsfMWz9b6E7dVNXtXtESP95sxk2PGwA@mail.gmail.com>
- <CAL_JsqJthKTm8bhRF2B=ae1tvtPeYYXx_Tm76qQtSwLtH5C6VA@mail.gmail.com>
- <720a2829-b6b5-411c-ac69-9a53e881f48d@app.fastmail.com>
- <CAL_JsqKCtmkwzKa01gyG65fH8ye6R3KhR41PJbJhOJ4X9j=znA@mail.gmail.com>
+        with ESMTP id S233820AbjEIXAW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 19:00:22 -0400
+Received: from sonic302-21.consmr.mail.ir2.yahoo.com (sonic302-21.consmr.mail.ir2.yahoo.com [87.248.110.84])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1EF3468F
+        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 16:00:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rocketmail.com; s=s2048; t=1683673217; bh=efwMUGbErxTdtTuyqM6Z+L+G8MnBDN3MVzDgcAgdTLc=; h=Date:Subject:To:Cc:References:From:In-Reply-To:From:Subject:Reply-To; b=un0ekRKOAypG+FJH8UOskd/LrxRVq+2WlQF8SxSt3gwbMsoxbWqQK3+EXrbLbNtMbfmSEe5RbuwJdi3V5H/sM60ORGoMPywmTXe9jKMgk1zLU0NhbKTbeeZBtnlDNr672rQItiJWDtdA5AuX6Sz4L0F8Mk9geIDJuheTqvfBV0CReYGn3iySLLVjPkaGiLkK9hsf9+MnCsB0wVDvsABwLlTfjRyN4V734MIWwq43FsvxT8rK3qI9mhDrVjS3V0Ca/x55j52VX5864stUWnL4BvEWsUnwFqkI9hW+5oVPoML7egFz8LpKBoEo0giylo4bmp4z5nNfPCIKysorIKjHZg==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1683673217; bh=E4he1DJpKd6YHNuO15fjs01Lz4q4U5Xll03swPnt2GG=; h=X-Sonic-MF:Date:Subject:To:From:From:Subject; b=Ioz74w3d3xW/P9Z7Eqpz1S9pxoYwpTK+2IEVgZxsRnXW6EXjsIIC1bKB4sYAgkby1XidJPPJF+DkpfL5CIFgwb0I71lMaZU8OGQ5jGFD6oJehRKbcVC3gtOmn6BlzKPIpZjf5bPPb2uWeizdKG+gVNw+BaXPs352uuJCQGYZekVh3ABxpJ3GU/y5QvTWewDvu1P/vePq098hgvb1ffC9puLjuegqOEFoFAXbaNw3qcA1XCj3K1mCMGNXwCxTHrvmc0V0GbjfZFsZ18uTwNA4RmNRQB2qiqCQe7GvSVa/1hyVY5icJ0xeEYX/a/oqJ1/x22RjzJ1uECfmclwh8fKDRA==
+X-YMail-OSG: Fj6uY6wVM1lqz925VZqg6mq9mq0y0tGUQ2Am8pHJp_c7QrNj5al09L29x__gXe4
+ BhxzCI5_vn86NfBbBOh2dfCCiF1i6oFjG7xg9zCbfpAQAKs8zUj0lBrZkmp98vcYrNyAqhejOh_H
+ PxvXVWpo.1NpzTIHT2i0Pj0wJNeFx2wCArI6cDUsLM6hWRIbTtWi3gVDitRE.q7ZH_0fJD2h9Ey5
+ TI7lv2.guQHY85stdtTpiM937h4FmO1FiJR179HdH8zA3OQQ1HIRM7_qRSrHep_CRltQgi1ZRj20
+ YwZpClrrlYqUz2kTxKtq4RAB7SYYw_uGXjE6.RTFqXHO0JwTBNxnLvxryMcQ5zgAzO4sGZxEWwgs
+ yKyuEDN0ZVWt6k0P8JufoBei_F8hqwAl2hVFj1jVWmd8J0v_zn7AVuZtZHhSRbLRz1D7A2Dy7pow
+ .zWBd3HRa68aa4pjqtdJifbTz0x0gFkzeCE.BBUkfDqDIgmawIdV6Enuvc9ZRjOLtjNv8Wi8CVja
+ 0airdBT2o0BEQ5x5P1vFySiIVHnZ1k94ELFF5NE4V4mVnJN4TlwRoeYWa8sgahcb_ukvTdcvSq55
+ JbMSX8uHBkT9NXwYcKKakOo6wHxZI.tlnK6uSs3iqi_XeU0SQi5o6y17ufjVWa_E6WWTMD.0f1WP
+ FW5GbxB6q9jets8R.UVkFwnsCO_.6gL6O9tGvlzc67_FXVLRlnz1z3yeU6hSt3lc36CMvrfSIGmQ
+ 6iMzzELj7PljsTm8wSm43xr.o3xuixZU3apyaRJoOgWo2xJaEp2Ui2_g0cEUDZqsbn0PKCteMhOY
+ 8vgZHOi0PNTOHvCrRUrMgWMpm1iL2q9RmwZmuwMXXTmaO_LGmcg54DvqCY679HwKuV343SWhpuiM
+ p_AtpPlxLl7xVl9LaLC9shi_wJePWmYZrM.pYa7IX2Tq5iEe.B_83bs6woV.4TK1JM5zKH5gvhtn
+ eeuqFxKfWgciZ08lMYXvKSEVD7g1Jo5_iAV3yScS8WfzveAZ_lIeQSXFKiW72n82WwUIjwc67jPH
+ GNeNRfexmJ9ncwisdd4MR9soa8Hc4h4B.ovvLOvaJUOJ.ftpk6ockFTAAEyfNRSxT.hpfh0Vs33B
+ o4p3AqzakvZI.drwpuMYPOsekQeVmmFsJ5XPzqaOmXBy8ebHD8nas3WmULghCMiHgjyztyKYF8rR
+ spza0twpcHQ2Iwuhzo3Gu4GoKWxY4oPfW1tr4ZoAPQkTqquqPofBAdwUDfec5Ae63K1NUK86MZwB
+ S0IKRVAAzz.h0BK4WarTfvcNjxsb6Y96BS172.g__lwJSG.IvVaQvXTHo3O7ddox2id7gVUiOxU_
+ 7x9jlCISeKXJljAcq8.zDQrZbAtmeUEAf7_3PQd4H9VaVmXGvFPNRbLjG7QtfD1Ji4FPVLVmUygf
+ sCcNe.bEnQLeHI2BkiHFX7tCLdvcK0sIA.tm3YJQz6pLLEnAParQaGonG6_zmLerzO_lj1XcGgBo
+ 5Lxqv8VirCqx2wasKzhebmNkogD81TefIonR_AviH14xbzLhsKa19Dj1cGb02u2drqoQrJgdGzWW
+ oAmg68YeQC8fVvteFwBB1ZuFxWyDMNL39XYyOPLbyGJc3JDE4_ZXu7CB0mtekVo46RiItsaaq2bd
+ 5_zkST_gWMs2.65u4vSvTC27LyOhKVXSsc7GHAeFusTIzzRFHYRsmvdC8a6a9SDyQQWCVs4S7maP
+ GZ9yFSWnIdxt.E4sVuReNOHk5GbQf0YdmgW2VIEnDjef3Fke8JX7mtY8VHSk8G9Q37lkGPjYOtWe
+ xqvP45A30zoQKd9x_ITNp2vVNYc8SJuB_9paWMXFWqsxmt7Rw4Q1aM67mQmajqTHec5ojzqOp0FD
+ 8w1KQCIX1MG.1xCu2w0KANpGtw3UCO9uM5Zi35JdKfDPMw4jlM4w1RBIACYKigkqa9HNEfxPdl3b
+ sySOy8_MPD1S5p74E8aO73zjEAuIdTLcDXep1OW3l8YKyrZKN3uAon_4WBRlWhydXYyd88Fbgb.R
+ 7AFKQave90VbmIRfdSPVV5dft51BICRqxJ8poyCRu0aTFruB5yCdFLbbsYWFQTiIYhO70Vs4vThW
+ rgCtXNWeeF6LLxlkEsZzdZyMBzBDOJJnKoUqTVeKzMdlm7H9gU7GvM7vbeckdrMhqOgL5zDiyyrw
+ T.3J4O87ne65PQ3wUGhlNmBVrRod550SHVuccRu._ugvyGf4..pBEgELuBgEQPE85Gcm2JVBnSON
+ 5JQQv3mN_ynwvDVk5Ch.6dLra.zYL4f6dopmUEf3pFdBMUjQX_HiEJ9jHE7eahZ3gzmVYKvbL8A-
+ -
+X-Sonic-MF: <jahau@rocketmail.com>
+X-Sonic-ID: e0a13fea-ff0a-415b-8570-c46facaa5388
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic302.consmr.mail.ir2.yahoo.com with HTTP; Tue, 9 May 2023 23:00:17 +0000
+Received: by hermes--production-ir2-74cd8fc864-msrld (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 7d1c0b57b762ec8cc7f8c54878d263b3;
+          Tue, 09 May 2023 23:00:15 +0000 (UTC)
+Message-ID: <fb554a6f-6058-a9b3-b39b-eb9f634a212c@rocketmail.com>
+Date:   Wed, 10 May 2023 01:00:13 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ue5Z9u7UyMsdbJpp"
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqKCtmkwzKa01gyG65fH8ye6R3KhR41PJbJhOJ4X9j=znA@mail.gmail.com>
-X-Provags-ID: V03:K1:aR+k41JkL+Jax7RkQK1pXFPVqGsXbknpTCCf601eNGl3xQsbw4B
- lW4IptIuDnFJb+jaCScKg4f1qDLjuoiDEqEJsUWT/Ek6YzDXkULOeXYq9EqgQyN8A6axbG1
- JRKm5mq+iW4e1K1v2w2BOTrGSmAwegcfBLrzES8HGqnWOqrguxalKWu6+fqbhobKFkw7JNy
- qeUuaRpvcFFSSatMddRDg==
-UI-OutboundReport: notjunk:1;M01:P0:NarrxlSjiwo=;5z5rCQykqX1e+FbZ2ba6e5Rh6DH
- bfvBGeIXFywNjKNr0Tn58UPG96wezZLM4+H12pkCrjAC7Mqwg2PXJ70aoM1kBI8o+tAa0/419
- 3XnQYa+XRlKna2zFjBCJKWpZoYii5XtCMCKO105lV0P6vMHckC89sxCK/LdwCvu0lF7OfocC+
- 2ouaaWRHCt4YshSvfh5z/Ja+IC5J4jOv8eNZ6b4Ga79LPwxkC/RJjnB/nQ4E0edaxrobbRSOn
- Mpc/31AKJOkyrRi41IgtGWTEODyE2XZV00pU1y5sHoF3JU/eGsc2doa+Rrzh30STHQZStIaTS
- 0sulR/BBWHEsrZf3LZvhDzOcbQ+0mpl9BfQXNLiDuCZay2ePoIqaUwts7JSoeIsxQHjZrbVOf
- h75oej0aNqoFhgx0M6WDh9xZydkRj4bbDxKZdwcWTSlHLDLbE26jSZC/2Oe+gjXSYJFSqcTIo
- y61XXOKn0w6OleXfF53iuFeaDOuP15yxKD4yYijJGDa3gETH/hjoY9RV4RF3njrNZ9cpp0pyL
- Wt5sq1md9IKuXv5zDNciEDB062aPPEfIdiuOL3ekvbmUkb/y0X/5vyJogDfXW1s/BcAt1Lw7O
- 3fGQXfFWHtWSvKoTsdKwCQNoGLoqEX0ymmlOjO2H6zmOGgpDD61I3NBO058aLG0Ir0rXeho5F
- meMuCSguMavkm9x2cC+ehI31nsDXo/+BF4SlfWoDxIdTlxFojtrUwUJw55+y8lR/UsTKS8nM4
- UfuLe8Un7sHRz/mdblkfo8MYekpfSGy5OF1q4F6ySdpHLnN9/KLwguD2QRIXgxNbN+S3apSzh
- 3RdOKnqeNprc0VYDcOdrgnL7BqsQDF2Rl2MSPh0TxeAydGQ6S6Uk6WUGWH/J/uB0ZIvQUETeq
- 5wpcXi+kJF8q+LL66lQwIIQV2De+d1d5U2u4IhbVKY+H63H0/8T+2HkkllmX/vS+xMdVykkpc
- +lGd2EXuA+PHYRD1FvmkNVjxg7g=
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v4 7/8] power: supply: rt5033_battery: Adopt status
+ property from charger
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Lee Jones <lee@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Beomho Seo <beomho.seo@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Raymond Hackley <raymondhackley@protonmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Axel Lin <axel.lin@ingics.com>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Henrik Grimler <henrik@grimler.se>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+References: <20230506155435.3005-1-jahau@rocketmail.com>
+ <20230506155435.3005-8-jahau@rocketmail.com>
+ <20230508113518.nfwchl5wusmnkjp6@mercury.elektranox.org>
+ <899d6604-7b15-ac37-c624-987a2bb7875e@rocketmail.com>
+ <20230508220605.kderc3nihhezouit@mercury.elektranox.org>
+ <55fd9835-4246-00e8-b641-c8b0ee3f7e22@rocketmail.com>
+ <20230509072520.3e4jibiis654izom@mercury.elektranox.org>
+Content-Language: en-US
+From:   Jakob Hauser <jahau@rocketmail.com>
+In-Reply-To: <20230509072520.3e4jibiis654izom@mercury.elektranox.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailer: WebService/1.1.21471 mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Sebastian,
 
---ue5Z9u7UyMsdbJpp
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 09.05.23 09:25, Sebastian Reichel wrote:
+> On Tue, May 09, 2023 at 03:01:32AM +0200, Jakob Hauser wrote:
+>> On 09.05.23 00:06, Sebastian Reichel wrote:
 
-On Tue, May 02, 2023 at 02:40:19PM -0500, Rob Herring wrote:
-[...]
-> I've dusted off my script and made a branch[1] with the result.
-> There's just a couple of fixes needed after the script is run (see the
-> top commit). The cross arch includes are all fixed up by the script.
-> dtbs_install maintains a flat install. I compared the number of .dtbs
-> before and after to check the script.
->=20
-> I think the only issue remaining is finalizing the mapping of
-> platforms to subdirs. What I have currently is a mixture of SoC
-> families and vendors. The most notable are all the Freescale/NXP
-> platforms, pxa, socfpga, and stm32. It's not consistent with arm64
-> either. Once that's finalized, I still need to go update MAINTAINERS.
->=20
-> Here's the current mapping:
->=20
-> vendor_map =3D {
-[...]
->     'aspeed' : 'aspeed',
->     'ast2' : 'aspeed',
->     'facebook' : 'aspeed',
->     'ibm' : 'aspeed',
+...
 
->     'openbmc' : 'aspeed',
+>>> I suppose your DT is missing the connection between the charger and
+>>> the battery:
+>>>
+>>> rt5033_charger: charger {
+>>>       compatible = "rt5033-charger";
+>>>       ...
+>>> }
+>>>
+>>> fuel-gauge {
+>>>       compatible = "rt5033-battery";
+>>>       ...
+>>>       power-supplies = <&rt5033_charger>; // you are probably missing this
+>>> };
+>>>
+>>> See also Documentation/devicetree/bindings/power/supply/power-supply.yaml
+>>
+>> ...
+>>
+>> Thanks for the hints.
+>>
+>> This leads to updating the dt-bindings because adding the "power-supplies"
+>> property is important to be aware of.
+> 
+> It should already be part of the binding, because richtek,rt5033-battery.yaml has
+> 
+> allOf:
+>    - $ref: power-supply.yaml#
 
-The openbmc flash layouts are currently only used by aspeed devicetrees,
-but they don't really depend on any aspeed details. It would be possible
-to reuse them in Nuvoton BMC devicetrees in the future, for example.
+Uh, I see, you're two steps ahead ;)
 
-In that sense, I think putting them in a separate "openbmc" directory
-would be slightly better.
+>> Btw. first it didn't work. It took me quite some time to debug. I needed to
+>> add "psy_cfg.of_node = client->dev.of_node;" to the rt5033-battery probe
+>> function.
+>>
+>> Now it works. However, there is a new problem. The battery driver gets
+>> probed first. The charger driver a bit later. In the meantime the battery
+>> driver spams dmesg with several "Failed to register power supply" because
+>> the charger driver isn't available yet. Once the charger driver is there, it
+>> works fine and dmesg becomes silent.
+>>
+>> With the current state of the patchset:
+>> dmesg | grep rt5033
+>> [   13.628030] rt5033 6-0034: Device found (rev. 6)
+>> [   13.633552] rt5033-led: Failed to locate of_node [id: -1]
+>> [   13.790478] rt5033-charger rt5033-charger: DMA mask not set
+>>
+>> With the changes discussed here:
+>> dmesg | grep rt5033
+>> [   15.741915] rt5033-battery 4-0035: Failed to register power supply
+>> [   15.752894] rt5033-battery 4-0035: Failed to register power supply
+>> [   15.795458] rt5033-battery 4-0035: Failed to register power supply
+>> [   15.910760] rt5033-battery 4-0035: Failed to register power supply
+>> [   15.913187] rt5033 6-0034: Device found (rev. 6)
+>> [   15.914341] rt5033-led: Failed to locate of_node [id: -1]
+>> [   15.920052] rt5033-battery 4-0035: Failed to register power supply
+>> [   15.927262] rt5033-battery 4-0035: Failed to register power supply
+>> [   16.017131] rt5033-battery 4-0035: Failed to register power supply
+>> [   16.017401] rt5033-charger rt5033-charger: DMA mask not set
+>>
+>> The message is comming from the rt5033-battery probe function, it's the
+>> power_supply_register() that fails.
+>>
+>> Any ideas what could be done about this?
+> 
+> Replace the dev_err() with dev_err_probe():
+> 
+> if (IS_ERR(battery->psy))
+>      return dev_err_probe(&client->dev, PTR_ERR(battery->psy), "Failed to register power supply\n");
+> 
+> That will avoid printing an error for -EPROBE_DEFER.
 
+Confirming, that works. Thanks!
 
-Jonathan
-
-
-
-[...]
->     'nuvo' : 'nuvoton',
-[...]
-> }
->=20
-> Rob
->=20
-> [1] git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git arm-dts-=
-move-v2
-
---ue5Z9u7UyMsdbJpp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmRazv0ACgkQCDBEmo7z
-X9tB/A//Y5MU9b+r/mxCUuxjsa0CB4Ewu8xmc+YTd1pdMEIrJYfgdpXFskBmzFsg
-QFYR1gBnq7P4mhusW4RaYWxpzD3M45B2vIuhgL6t8lqIWae0UuNbPEO4rbCIbvGZ
-PCx1dTAGZ2vg+mxRK0OYouuCE9EvgrC9PGmOcgDkqCLngGsr11gXz0GMNebggmie
-TX8iauQHnzfGaSQWtwIdQRu1gj2d/VO5NSn4CrgvMIuLCSwhTwY+e9H9/+CcrqHK
-wNiMG0W8yY5CMO7ZSYf7EkEidunJ0htwqJmUoLfpqN4NZ/21yno69v+L36ZRu/lq
-+KrZJeaXC3Ar39R2x75Pns5em46uwJJdI5aXumj9xPU3A3rgWCQcrECZJ7i/HEoK
-hzhnsQhJNP4jAPVxdiaWJTYUXHRwafI6/GVvj1BvfgqZ9VHE28iGdDcgVvOfmkDx
-eRZQxcJzFaWZeWTOeM05/dHUDUJXFrYvDsj0+FgneBU/oqEc+H4bR9AP2ttU24hU
-4jBq2I2FlDyKlC0ARS22oRQlZG6KS50d1Nvx6cLr7lxeOHmcW09dPCqHijQVtX3V
-f/Z7MYrDEXgTK8r1wJk6PuvVN+jFX/l/Ali5L/OJqUsZB4bgteXKEWXWMmgik1/I
-d3nr3gTYEaykVkjCJORFKu4G2FHrzWgWpFYsl8Mu+safGLa+rdA=
-=Jzyt
------END PGP SIGNATURE-----
-
---ue5Z9u7UyMsdbJpp--
+Kind regards,
+Jakob
