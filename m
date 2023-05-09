@@ -2,97 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C60D6FCB5F
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 18:34:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A13E06FCB7D
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 18:40:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230029AbjEIQev (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 12:34:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50722 "EHLO
+        id S233712AbjEIQje (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 12:39:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230198AbjEIQet (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 12:34:49 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7FC02719;
-        Tue,  9 May 2023 09:34:47 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 349GYaa5127619;
-        Tue, 9 May 2023 11:34:36 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1683650076;
-        bh=Trbks1TBqJoyKHDqQN1W/FF2lBd35IMrDnskHdmK6Og=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=eMqFgoXV3bNa1TBsWYFAccdwuJJCpVtlImV64ly1fl7CRyRCnv7PROtTKe7alVib6
-         S4wlp/Hi709PPOsWMbwZju0juzdMLeudUUsO1XESyJjcRGJ5RZp9Bs+W1r5TozA0kw
-         1zt3Yeo3lVZUPJlVKrGZJL7lfGYfFJZlV8k5mcQ4=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 349GYaoA029957
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 9 May 2023 11:34:36 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 9
- May 2023 11:34:35 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 9 May 2023 11:34:36 -0500
-Received: from [10.249.131.71] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 349GYVgP090201;
-        Tue, 9 May 2023 11:34:32 -0500
-Message-ID: <5f523657-ae0a-cef2-4de6-762ce365f20a@ti.com>
-Date:   Tue, 9 May 2023 22:04:30 +0530
+        with ESMTP id S233784AbjEIQjQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 12:39:16 -0400
+Received: from hutie.ust.cz (hutie.ust.cz [185.8.165.127])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AF0A421F;
+        Tue,  9 May 2023 09:39:12 -0700 (PDT)
+From:   =?UTF-8?q?Martin=20Povi=C5=A1er?= <povik+lin@cutebit.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
+        t=1683650348; bh=ABTxy/stFVOVt1ZnRJ5L55xUikl5p+QPvUWPKUSFmjk=;
+        h=From:To:Cc:Subject:Date;
+        b=nhq0S7wCSrUJDK+cnhpl+JVIGu2eawlnCHn/smmgpzByShlV32rpleACMS0RKmBfV
+         Ts4/R/5dLoOUeNQA2j/4I295DWWYEyQF/6Y4zTGVYKYciu8dKj9ypXUNR0/+Z3U/A+
+         +gj+p/hOcv+IXy6xyDB29PpJ5drijU/wRkOaib2g=
+To:     =?UTF-8?q?Martin=20Povi=C5=A1er?= <povik+lin@cutebit.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>
+Cc:     asahi@lists.linux.dev, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] ASoC: dt-bindings: Add adi,ssm3515 amp schema
+Date:   Tue,  9 May 2023 18:38:27 +0200
+Message-Id: <20230509163828.86003-1-povik+lin@cutebit.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH 0/2] Add R5F and C7x DSP nodes for AM62a SoC
-Content-Language: en-US
-To:     Hari Nagalla <hnagalla@ti.com>, <nm@ti.com>, <vigneshr@ti.com>
-CC:     <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20230502141416.9924-1-hnagalla@ti.com>
-From:   Devarsh Thakkar <devarsht@ti.com>
-In-Reply-To: <20230502141416.9924-1-hnagalla@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hari,
+Add a DT schema for the SSM3515 amp by Analog Devices. It's a simple
+mono amplifier with digital input.
 
-Thanks for the series.
+Signed-off-by: Martin Povišer <povik+lin@cutebit.org>
+---
+ .../bindings/sound/adi,ssm3515.yaml           | 66 +++++++++++++++++++
+ 1 file changed, 66 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/adi,ssm3515.yaml
 
-On 02/05/23 19:44, Hari Nagalla wrote:
-> This series adds the R5F processor nodes and C7x DSP node for
-> AM62a SoC.
-> 
-> The first patch adds the nodes to the SoC device tree and the second
-> patch reserves the memory for remote rpoc IPCs on AM62a-SK.
-> 
-> Hari Nagalla (2):
->    arm64: dts: ti: k3-am62a: Add remote proc nodes
->    arm64: dts: ti: k3-am62a7-sk: Enable remote proc nodes
-> 
+diff --git a/Documentation/devicetree/bindings/sound/adi,ssm3515.yaml b/Documentation/devicetree/bindings/sound/adi,ssm3515.yaml
+new file mode 100644
+index 000000000000..19b7185ae8e2
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/adi,ssm3515.yaml
+@@ -0,0 +1,66 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) 2019-20 Texas Instruments Incorporated
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/sound/adi,ssm3515.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Analog Devices SSM3515 Audio Amplifier
++
++maintainers:
++  - Martin Povišer <povik+lin@cutebit.org>
++
++description: |
++  SSM3515 is a mono Class-D audio amplifier with digital input.
++
++  https://www.analog.com/media/en/technical-documentation/data-sheets/SSM3515.pdf
++
++allOf:
++  - $ref: dai-common.yaml#
++
++properties:
++  compatible:
++    enum:
++      - adi,ssm3515
++
++  reg:
++    maxItems: 1
++
++  adi,ana-gain:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1, 2, 3]
++    description: |
++      The value to be set in the ANA_GAIN register field on the codec. This determines
++      the full voltage span of the codec's analog output.
++
++      To quote the datasheet on the available options:
++
++        00: 8.4 V Full-Scale Gain Mapping
++        01: 12.6 V Full-Scale Gain Mapping
++        10: 14 V Full-Scale Gain Mapping
++        11: 15 V Full-Scale Gain Mapping
++
++  '#sound-dai-cells':
++    const: 0
++
++required:
++  - compatible
++  - reg
++  - adi,ana-gain
++
++additionalProperties: true
++
++examples:
++  - |
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      codec@14 {
++        compatible = "adi,ssm3515";
++        reg = <0x14>;
++        #sound-dai-cells = <0>;
++        adi,ana-gain = <0>;
++        sound-name-prefix = "Left Tweeter";
++      };
++    };
+-- 
+2.38.3
 
-I think good to preserve the authorship if porting from an existing 
-tree. Also in my opinion good to keep split patches if coming from 
-different authors and to different files.
-
-Regards
-Devarsh
-
->   arch/arm64/boot/dts/ti/k3-am62a-main.dtsi   | 11 ++++
->   arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi    | 23 +++++++
->   arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi | 23 +++++++
->   arch/arm64/boot/dts/ti/k3-am62a7-sk.dts     | 69 +++++++++++++++++++++
->   4 files changed, 126 insertions(+)
-> 
