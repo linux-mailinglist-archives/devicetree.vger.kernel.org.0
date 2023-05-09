@@ -2,97 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 31EC26FCCD6
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 19:34:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AE796FCCE9
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 19:42:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234507AbjEIRea (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 13:34:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45534 "EHLO
+        id S229595AbjEIRmG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 13:42:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229770AbjEIRe3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 13:34:29 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9152740EF
-        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 10:34:28 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-50bc2feb320so9836575a12.3
-        for <devicetree@vger.kernel.org>; Tue, 09 May 2023 10:34:28 -0700 (PDT)
+        with ESMTP id S229667AbjEIRmF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 13:42:05 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB72B40E0
+        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 10:42:01 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-965ab8ed1c0so1004994766b.2
+        for <devicetree@vger.kernel.org>; Tue, 09 May 2023 10:42:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683653667; x=1686245667;
+        d=linaro.org; s=google; t=1683654120; x=1686246120;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=PTIXvNfkjKtQpq2XXehsu1HsxnxlaQ3xo7+7zAhkXmM=;
-        b=cjuLOKiLOLR5pxhcOONPCcRtANMQJPb7Ys5gU0dApU0RVfMZFEblOjNdA93VkQFzcj
-         jxpWKED0Is/hmNFyamWI9aMCNa12qIT49oboP04JLFbvoufEMS51I2/l0o0K9S23lMuo
-         hNTxRQXKfVP/WTK+9xs0q7FSlaVvk4QVXHgX2HLfOmR8Z6W2i1RzEFgJpLuxO0/zDU21
-         LbZZyxaKjDjj86O7xQ0IE5F/SnNdWng1/LzX/OH6WDLTYh8Bb/9GBTpDjx5V8e9uao0u
-         DWG9nrGjQe0bBXmQIodsUSN8PVK6TTr4QSuauRrRI7mXw9RK9lZFM1ghJ8vJXhG2YtaE
-         ZQOQ==
+        bh=mgSfezJnFheHWxl/J/jtAx9CEBA9nZXTq9vupUNGWSQ=;
+        b=lRC7iU5SK3AyepBwA/3/NM8aYtocWUOdo7lkdukNvXDY4Jytb85mFREGFNsTrtQ8+j
+         szziW02hihhrpUODgNheXG3gP74Z8t+sHnn0Eb2icPma5NcrzR5G2rYx+NUOeKP52tEG
+         WIJLi6DQSmFhy59cZx8SugPE+sfAaRzkNp5K/qL3umIoGqQGjgJuPXKcn0BDXRCVBqX2
+         5LMf+vPOpJ/BnboXLCMwO0/mL1b5jyE1uYGfXMzdaR2AcPgbi9SQzOlnFQIdKYq1hVG9
+         jYH+NA48cM96FtvteXPLLgUkYc5Cuk6oeXCP2bfYAG/k6DeHLlFW356ohpQvYXETL/AI
+         LEdA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683653667; x=1686245667;
+        d=1e100.net; s=20221208; t=1683654120; x=1686246120;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PTIXvNfkjKtQpq2XXehsu1HsxnxlaQ3xo7+7zAhkXmM=;
-        b=EtN6wBin/1gbhgK614SLii09TQM9jZiEhHLxCqfqVSbuvtXRx4MNkOvuX1M3vPaj28
-         7bPtuiwkm2ArvtMc1LLziDBc1rP9+zeRQtSItY4xNmRgoOrVhVa47LI8dGDGwc2LLjST
-         Tc8krowTO0hXDolJmButntCzyKWZduGGzePPiWLBkVQfNm1pQBOfybGA1LsP9W7mBN+3
-         DL7f5tuuVVD9HkXMeGk6EyNgsL9YkNNJ0e/HeNKW2ryD44zmET5XDk9HTq0hQP+9jE5v
-         ylXEqodH+MtDYsKSb4pXCvHoZS2qNCEA0uHEPAzGddN3MfDc/R6IszQ6zZmBYHYaICNS
-         pEtA==
-X-Gm-Message-State: AC+VfDyCGZX+un/fEwvbZ8yIpwLH3mICUO44+gUldh96DzNLTefiFnXh
-        SJIKUEheOd8n+3XriMQTY/8WWg==
-X-Google-Smtp-Source: ACHHUZ52VLIsGVBxlWMBxKgxRB6TwF7U/leNeBlqOqPe5hD3rEhEZf0pg4QMHZDcKhoItqXLTlJHaw==
-X-Received: by 2002:aa7:dbc8:0:b0:50b:d305:3788 with SMTP id v8-20020aa7dbc8000000b0050bd3053788mr9734570edt.11.1683653667038;
-        Tue, 09 May 2023 10:34:27 -0700 (PDT)
+        bh=mgSfezJnFheHWxl/J/jtAx9CEBA9nZXTq9vupUNGWSQ=;
+        b=K+AnIBYVyWCra14moN4vOk9btoAmqN8P1NULRTxLca9aVC8MmXTJbOYfKiBLkGnDcP
+         TamSoMaRC8AoTYwWOyJTCFbu1IrzDlACrKxJiRJnDNaPMm5OjGpdZAaUVJ1T5WHcHkot
+         2AsQubXqaSCcZ9yLwwZ3wz5Xq6s1iV0/rwL0koxOGKHwXIAMc/os+9FRTw4L/3JTakpo
+         js0ZjHG1lsG2ZTUM9pHb3L2sGohjvAn7dIvKnxk12DzCD//wlwo9jYXXvZZROplsbUBU
+         QOPlIi2spPZuUUgL7AVavR0guNskpIZZh6pLyDN+fla5sUcZHf+otWM8x91NPrabaKSu
+         5VMw==
+X-Gm-Message-State: AC+VfDxhTZv4NOi+rYaj8+rqbibKridw8v4dfQ2+pLNTCZyLZTKICSkJ
+        G6EitF0Gro8fvTk47J6vYf/QWw==
+X-Google-Smtp-Source: ACHHUZ7eebYnB6rhiI+xoinXTZKwvRZJY07rLy5XPSTfTbZWrjT1idLyIRNVuDPZtkAUIN71D6Aavg==
+X-Received: by 2002:a17:907:6d20:b0:969:e304:441d with SMTP id sa32-20020a1709076d2000b00969e304441dmr3709171ejc.4.1683654120430;
+        Tue, 09 May 2023 10:42:00 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:d0d5:7818:2f46:5e76? ([2a02:810d:15c0:828:d0d5:7818:2f46:5e76])
-        by smtp.gmail.com with ESMTPSA id h10-20020a50ed8a000000b004c2158e87e6sm981825edr.97.2023.05.09.10.34.25
+        by smtp.gmail.com with ESMTPSA id 13-20020a170906328d00b00969f44bbef1sm960264ejw.89.2023.05.09.10.41.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 May 2023 10:34:26 -0700 (PDT)
-Message-ID: <12be228b-b898-f793-5609-db52b287279c@linaro.org>
-Date:   Tue, 9 May 2023 19:34:25 +0200
+        Tue, 09 May 2023 10:41:59 -0700 (PDT)
+Message-ID: <254dcea1-636a-550d-59ae-5889ffe49f6c@linaro.org>
+Date:   Tue, 9 May 2023 19:41:58 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v4 1/3] dt-bindings: iio: potentiometer: Add the Renesas
- X9250 potentiometers
+Subject: Re: [PATCH v3 07/13] Revert "media: exynos4-is: Remove dependency on
+ obsolete SoC support"
 Content-Language: en-US
-To:     Herve Codina <herve.codina@bootlin.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+To:     Artur Weber <aweber.kernel@gmail.com>
+Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20230509160852.158101-1-herve.codina@bootlin.com>
- <20230509160852.158101-2-herve.codina@bootlin.com>
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>, soc@kernel.org,
+        Russell King <linux@armlinux.org.uk>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Kukjin Kim <kgene@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-phy@lists.infradead.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+References: <20230501195525.6268-1-aweber.kernel@gmail.com>
+ <20230501195525.6268-8-aweber.kernel@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230509160852.158101-2-herve.codina@bootlin.com>
+In-Reply-To: <20230501195525.6268-8-aweber.kernel@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/05/2023 18:08, Herve Codina wrote:
-> The Renesas X9250 is a quad digitally controlled potentiometers.
+On 01/05/2023 21:55, Artur Weber wrote:
+> Support for the Exynos4212 SoC was originally dropped as there were
+> no boards using it. We will be adding a device that uses it, so add
+> it back.
 > 
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> This reverts commit 2d41a0c9ae51ac363d107f2510022106e7234b33.
+> 
+> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
 > ---
->  .../iio/potentiometer/renesas,x9250.yaml      | 78 +++++++++++++++++++
->  1 file changed, 78 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/potentiometer/renesas,x9250.yaml
-> 
+>  drivers/media/platform/samsung/exynos4-is/Kconfig     | 2 +-
+>  drivers/media/platform/samsung/exynos4-is/fimc-core.c | 2 +-
+>  drivers/media/platform/samsung/exynos4-is/fimc-lite.c | 2 +-
+
+Subject:
+media: Revert "media: Remove dependency on obsolete SoC support"
+
+I assume this will go via media tree. If not, let me know.
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 Best regards,
 Krzysztof
