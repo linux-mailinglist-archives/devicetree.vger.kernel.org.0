@@ -2,227 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EBA66FCE72
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 21:20:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 491BA6FCEA1
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 21:37:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234572AbjEITUo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 15:20:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48908 "EHLO
+        id S234562AbjEIThv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 15:37:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229734AbjEITUn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 15:20:43 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7395D4239
-        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 12:20:41 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4f14468ef54so7135608e87.0
-        for <devicetree@vger.kernel.org>; Tue, 09 May 2023 12:20:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech-se.20221208.gappssmtp.com; s=20221208; t=1683660040; x=1686252040;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=LtZh4FKqjRIIlvC8PRON5MECQekh/TBXt0NLOJpp3uY=;
-        b=MGrwUJdXzumLTuxDu+/2GyCTFkZdLEylXtQGiWKEny9XOEgcEoFbwtrh9EVosBJtqx
-         iyHhL03wekhcTzw5PcZjPFgZUXOQC/CWdnwQw48ZJMQpDywEuNRMSzumMxOpIQi0XXGW
-         SbHDXU80NA+71Vfh3IK92iJi4t47Kz1OrauTCbT95SKEEtAgKXJWitCMahbaNVp9aHh0
-         eKDXh29lCMqDhTwHQKNt1OZk6oOrwKDdH0wQ9p2Fm8HiGuvfNtmqWPo1uBAA3EwN0CoR
-         BY1l/H6XMaTqYLKC1Yu/bZlz78L+TxG/q6Ei3rTXTkrRyAZAt7Hf41Da/+0f/h3XvOWI
-         /mDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683660040; x=1686252040;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LtZh4FKqjRIIlvC8PRON5MECQekh/TBXt0NLOJpp3uY=;
-        b=LIZL8zIVOb0GMqDVrBJVHvHbzH78Mqxo3uMLEs4Zh76VUa9lhvPYCdZlKIn9ARPcOk
-         koD9+KwY0PitZ9HjysXNZbfD4CfVU+d0syuoRsl9P1AtQ9TWdUKzKQbq6Hflgp66C4ze
-         SxfPcokXVpgE6wVKUjWzvF62L4bfJo8TwqTRLhgrA/NQAKBWY2J/QLhngieXj9uD22C0
-         8GNfToR4O82xpPUtbghQGTyXvi0ImaECgP4dLjXnJnZoOmfwoJxqq7Qqa6iUaKgW31hj
-         Sk8M6k2EjTXbKZlzW//EZiPEH1PNwsn8HsrYLfs+U51mh0YclR4usv5KPr5KhHfynTGX
-         G1sQ==
-X-Gm-Message-State: AC+VfDw9Ae/C2hA2ScevUXAQLW09lhE5oa3Evufa7ewqyZkc5489hUmd
-        HGwz/1U13avFn5O1Vx70yEMbyA==
-X-Google-Smtp-Source: ACHHUZ5aAp2rsdUt1+l84t+X7rbRMNA0iixHc8AC7j0dIVSc+Rgb7LU2zV03RDR2GMZqdtgavKctMA==
-X-Received: by 2002:ac2:46d6:0:b0:4f2:502d:f6c9 with SMTP id p22-20020ac246d6000000b004f2502df6c9mr1023602lfo.13.1683660039713;
-        Tue, 09 May 2023 12:20:39 -0700 (PDT)
-Received: from localhost (h-46-59-89-207.A463.priv.bahnhof.se. [46.59.89.207])
-        by smtp.gmail.com with ESMTPSA id c2-20020a197602000000b004d023090504sm440335lff.84.2023.05.09.12.20.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 May 2023 12:20:39 -0700 (PDT)
-Date:   Tue, 9 May 2023 21:20:38 +0200
-From:   Niklas =?utf-8?Q?S=C3=B6derlund?= 
+        with ESMTP id S229673AbjEIThu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 15:37:50 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71E6D4498;
+        Tue,  9 May 2023 12:37:49 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0046B63699;
+        Tue,  9 May 2023 19:37:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1BBD5C433D2;
+        Tue,  9 May 2023 19:37:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1683661068;
+        bh=akCksvr0VjMzfpNXHRrnyFAk16WkbynjlwtjEJ3KVuI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=uiZaoA0ZMCn8YT38oDVNemHbnOLJJc8Xe0jtAjsS6E8uHSOpT4wAtzVwBrE+JqMW6
+         IAIfcJK9ZtGuIqK/QJUgwhN7tq3tguJRUdNbWzpZ/XWgsy63a/ngeKFl64w3vdyltg
+         8sLW6Ajlqd56aO5WpiEKEkZzEmgZHe4lTbGgsU5yc9T6hc5NnPn+dqxFVyYyVTvXDy
+         vebNZZILxwbArlWJHdS5c+REff+KkgDWVX3d9AgcVFqd11sxBmdFPPsUh/pp+JSAK5
+         k7FiqFjkr5xWLO8G2KrtUxDHOh+Koj8eGtanyGQvO+nOTO7GVpAoHnNyOLisvhpcfW
+         toiXh6KBDtESA==
+Date:   Tue, 9 May 2023 20:37:43 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Niklas =?iso-8859-1?Q?S=F6derlund?= 
         <niklas.soderlund+renesas@ragnatech.se>
-To:     Richard Alpe <richard@bit42.se>
-Cc:     srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/2] nvmem: add new NXP QorIQ eFuse driver
-Message-ID: <ZFqdBhfyUaGRMfw0@oden.dyn.berto.se>
-References: <20230410082051.2948510-1-richard@bit42.se>
- <20230410082051.2948510-2-richard@bit42.se>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Sakari Ailus <sakari.ailus@iki.fi>, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: i2c: maxim,max96712: Require setting
+ bus-type property
+Message-ID: <20230509-entree-gratify-102945de8004@spud>
+References: <20230509190031.769298-1-niklas.soderlund+renesas@ragnatech.se>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="ijz5PjfBL5MnLr2G"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230410082051.2948510-2-richard@bit42.se>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20230509190031.769298-1-niklas.soderlund+renesas@ragnatech.se>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Richard,
 
-Thanks for your work.
+--ijz5PjfBL5MnLr2G
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 2023-04-10 10:20:51 +0200, Richard Alpe wrote:
-> Add SFP (Security Fuse Processor) read support for NXP (Freescale)
-> QorIQ series SOC's.
-> 
-> This patch adds support for the T1023 SOC using the SFP offset from
-> the existing T1023 device tree. In theory this should also work for
-> T1024, T1014 and T1013 which uses the same SFP base offset.
-> 
-> Signed-off-by: Richard Alpe <richard@bit42.se>
+On Tue, May 09, 2023 at 09:00:31PM +0200, Niklas S=F6derlund wrote:
+> The MAX96712 can support both a CSI-2 C-PHY and D-PHY bus. The initial
+> staging driver however only supported D-PHY and the bus-type property
+> was left optional.
+>=20
+> In preparation for adding C-PHY support to the staging driver make the
+> bus-type property mandatory as it is needed to select the correct PHY
+> mode. Without the bus-type property present, the driver falls-back to
+> D-PHY mode, so the change is functionally backward compatible with old
+> DTS files lacking the property.
+>=20
+> The only in-tree DTS file (renesas/r8a779a0-falcon-csi-dsi.dtsi) that
+> lacked the property uses D-PHY and have been updated.
+>=20
+> Signed-off-by: Niklas S=F6derlund <niklas.soderlund+renesas@ragnatech.se>
 
-Looks good.
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-Reviewed-by: Niklas Söderlund <niklas.soderlund@ragnatech.se>
+Thanks,
+Conor.
 
 > ---
-> v2: Rebase.
-> v3: Updates according to feedback from Srinivas.
-> v4,v5: No changes to this patch.
-> 
->  drivers/nvmem/Kconfig       | 12 ++++++
->  drivers/nvmem/Makefile      |  2 +
->  drivers/nvmem/qoriq-efuse.c | 78 +++++++++++++++++++++++++++++++++++++
->  3 files changed, 92 insertions(+)
->  create mode 100644 drivers/nvmem/qoriq-efuse.c
-> 
-> diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
-> index 6dec38805041..43446e5f7d9b 100644
-> --- a/drivers/nvmem/Kconfig
-> +++ b/drivers/nvmem/Kconfig
-> @@ -377,4 +377,16 @@ config NVMEM_ZYNQMP
->  
->  	  If sure, say yes. If unsure, say no.
->  
-> +config NVMEM_QORIQ_EFUSE
-> +	tristate "NXP QorIQ eFuse support"
-> +	depends on PPC_85xx || COMPILE_TEST
-> +	depends on HAS_IOMEM
-> +	help
-> +	  This driver provides read support for the eFuses (SFP) on NXP QorIQ
-> +	  series SoC's. This includes secure boot settings, the globally unique
-> +	  NXP ID 'FUIDR' and the OEM unique ID 'OUIDR'.
-> +
-> +	  This driver can also be built as a module. If so, the module
-> +	  will be called nvmem_qoriq_efuse.
-> +
->  endif
-> diff --git a/drivers/nvmem/Makefile b/drivers/nvmem/Makefile
-> index 6a1efffa88f0..b8fdf9b51953 100644
-> --- a/drivers/nvmem/Makefile
-> +++ b/drivers/nvmem/Makefile
-> @@ -74,3 +74,5 @@ obj-$(CONFIG_NVMEM_VF610_OCOTP)		+= nvmem-vf610-ocotp.o
->  nvmem-vf610-ocotp-y			:= vf610-ocotp.o
->  obj-$(CONFIG_NVMEM_ZYNQMP)		+= nvmem_zynqmp_nvmem.o
->  nvmem_zynqmp_nvmem-y			:= zynqmp_nvmem.o
-> +obj-$(CONFIG_NVMEM_QORIQ_EFUSE)		+= nvmem-qoriq-efuse.o
-> +nvmem-qoriq-efuse-y			:= qoriq-efuse.o
-> diff --git a/drivers/nvmem/qoriq-efuse.c b/drivers/nvmem/qoriq-efuse.c
-> new file mode 100644
-> index 000000000000..e7fd04d6dd94
-> --- /dev/null
-> +++ b/drivers/nvmem/qoriq-efuse.c
-> @@ -0,0 +1,78 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + *  Copyright (C) 2023  Westermo Network Technologies AB
-> + */
-> +
-> +#include <linux/device.h>
-> +#include <linux/io.h>
-> +#include <linux/module.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/nvmem-provider.h>
-> +#include <linux/platform_device.h>
-> +
-> +struct qoriq_efuse_priv {
-> +	void __iomem *base;
-> +};
-> +
-> +static int qoriq_efuse_read(void *context, unsigned int offset, void *val,
-> +			    size_t bytes)
-> +{
-> +	struct qoriq_efuse_priv *priv = context;
-> +
-> +	/* .stride = 4 so offset is guaranteed to be aligned */
-> +	__ioread32_copy(val, priv->base + offset, bytes / 4);
-> +
-> +	/* Ignore trailing bytes (there shouldn't be any) */
-> +
-> +	return 0;
-> +}
-> +
-> +static int qoriq_efuse_probe(struct platform_device *pdev)
-> +{
-> +	struct nvmem_config config = {
-> +		.dev = &pdev->dev,
-> +		.read_only = true,
-> +		.reg_read = qoriq_efuse_read,
-> +		.stride = sizeof(u32),
-> +		.word_size = sizeof(u32),
-> +		.name = "qoriq_efuse_read",
-> +		.id = NVMEM_DEVID_AUTO,
-> +		.root_only = true,
-> +	};
-> +	struct qoriq_efuse_priv *priv;
-> +	struct nvmem_device *nvmem;
-> +	struct resource *res;
-> +
-> +	priv = devm_kzalloc(config.dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	priv->base = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
-> +	if (IS_ERR(priv->base))
-> +		return PTR_ERR(priv->base);
-> +
-> +	config.size = resource_size(res);
-> +	config.priv = priv;
-> +	nvmem = devm_nvmem_register(config.dev, &config);
-> +
-> +	return PTR_ERR_OR_ZERO(nvmem);
-> +}
-> +
-> +static const struct of_device_id qoriq_efuse_of_match[] = {
-> +	{ .compatible = "fsl,t1023-sfp", },
-> +	{/* sentinel */},
-> +};
-> +MODULE_DEVICE_TABLE(of, qoriq_efuse_of_match);
-> +
-> +static struct platform_driver qoriq_efuse_driver = {
-> +	.probe = qoriq_efuse_probe,
-> +	.driver = {
-> +		.name = "qoriq-efuse",
-> +		.of_match_table = qoriq_efuse_of_match,
-> +	},
-> +};
-> +module_platform_driver(qoriq_efuse_driver);
-> +
-> +MODULE_AUTHOR("Richard Alpe <richard.alpe@bit42.se>");
-> +MODULE_DESCRIPTION("NXP QorIQ Security Fuse Processor (SFP) Reader");
-> +MODULE_LICENSE("GPL");
-> -- 
-> 2.34.1
-> 
+> * Changes since v1
+> - Use symbolic names in comments for the bus-type properties.
+> - Improve the commit message.
+> - Rebased to v6.4-rc1.
+> ---
+>  .../devicetree/bindings/media/i2c/maxim,max96712.yaml      | 7 +++++++
+>  1 file changed, 7 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/media/i2c/maxim,max96712.y=
+aml b/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml
+> index 444f24838d3d..6c72e77b927c 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml
+> @@ -65,9 +65,14 @@ properties:
+> =20
+>              properties:
+>                data-lanes: true
+> +              bus-type:
+> +                enum:
+> +                  - 1 # MEDIA_BUS_TYPE_CSI2_CPHY
+> +                  - 4 # MEDIA_BUS_TYPE_CSI2_DPHY
+> =20
+>              required:
+>                - data-lanes
+> +              - bus-type
+> =20
+>      required:
+>        - port@4
+> @@ -82,6 +87,7 @@ additionalProperties: false
+>  examples:
+>    - |
+>      #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/media/video-interfaces.h>
+> =20
+>      i2c@e6508000 {
+>              #address-cells =3D <1>;
+> @@ -101,6 +107,7 @@ examples:
+>                              port@4 {
+>                                      reg =3D <4>;
+>                                      max96712_out0: endpoint {
+> +                                            bus-type =3D <MEDIA_BUS_TYPE=
+_CSI2_DPHY>;
+>                                              clock-lanes =3D <0>;
+>                                              data-lanes =3D <1 2 3 4>;
+>                                              remote-endpoint =3D <&csi40_=
+in>;
+> --=20
+> 2.40.1
+>=20
 
--- 
-Kind Regards,
-Niklas Söderlund
+--ijz5PjfBL5MnLr2G
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZFqhBwAKCRB4tDGHoIJi
+0r38AQDVJu9s/FIx72+R+64/GqQ+NfgcJEGkp/fdhNEm5F0INAD+P8PL/myzv9di
++HO9Xl1q62kKPFmjWmpuUY7kFF9SYg0=
+=PEWr
+-----END PGP SIGNATURE-----
+
+--ijz5PjfBL5MnLr2G--
