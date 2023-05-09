@@ -2,406 +2,301 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AC9A6FC276
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 11:15:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D7776FC287
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 11:18:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234371AbjEIJPH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 05:15:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38568 "EHLO
+        id S234811AbjEIJSp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 05:18:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234146AbjEIJO4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 05:14:56 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19983DC59;
-        Tue,  9 May 2023 02:14:52 -0700 (PDT)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3496sNLM016601;
-        Tue, 9 May 2023 09:14:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=32NsFka5NxTjUhZwkz5YfWn1fveMy+8Ql3+i5UypZIo=;
- b=Nkq6bqvyeYcevv+EXoTxYa9Y5wAhi6OS9L+Wyz5fgQf3cZG5lyB6386J6UqKYaUo3RH/
- 7Djpgw7ZraqF+tUff9W3aB8YSrHEShVmJvJxuW+IlK06SORk9NZ+DMW9ov2ZbQwOl1/f
- SBtr6+rsgYw2l0f0zfnXjFBaMcpY8iVmBcQBNbQF4WYkUblNdpL6A1LdYepNEnPNOJiy
- G7CcYPzAw7QP+ekDWIYL9cvKYhCTYecpdsqgA14yPdPalsqAosIPCbvmZMhrI6jdbg3I
- VflaG5fJuuLdipleH/dHVI6nEjrdmwXNy7OiSuv1Pq9bEjirSRq2g/6mb+Ua0PSvrVVS RA== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qf77j191v-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 09 May 2023 09:14:46 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3499EkHT005374
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 9 May 2023 09:14:46 GMT
-Received: from [10.216.33.39] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Tue, 9 May 2023
- 02:14:40 -0700
-Message-ID: <f9a64c13-a8e4-c84d-cf6d-86f4ddf6d288@quicinc.com>
-Date:   Tue, 9 May 2023 14:44:37 +0530
+        with ESMTP id S234791AbjEIJSe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 05:18:34 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E9A519A3
+        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 02:18:31 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-50bc456cc39so8489013a12.1
+        for <devicetree@vger.kernel.org>; Tue, 09 May 2023 02:18:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683623909; x=1686215909;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=I7FYzpXB4JAY8REQ6N17vUTvC/w9zteq+juJjffaEPw=;
+        b=UUacsfduaEDjEk0zUYDO7xJxrrsNgrmVWgnHsIaXTBKhdhoRSBOS29z6L/WVyViKWg
+         eiO3U10ZPG9+TqsanbULhqMK6vWctoMsZipmmyPjNq4567fWWceEq1idjIQ1AnqqGdkJ
+         ctmHwgityKDDvjP6CrnN1kHU7GIELc+tykk0gQh17QoXeaSh0JMgVDPX2Sogi8RrS7yE
+         ogR9ctz+11I568K64CbVxvB+hBwSeoVr/+dgSU8zceo/Bd0jidxAaKbFwA76vhQLshby
+         DsZe9k1oUEGoWXyZ39gNpZfNVa1RCReUv6TYsRRIK9yY27+5uGfv5hgVJgtf+fv8NnF1
+         kGQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683623909; x=1686215909;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=I7FYzpXB4JAY8REQ6N17vUTvC/w9zteq+juJjffaEPw=;
+        b=E6A+7FI4qxDrA4fqstl1x0WBncTfvZlv+Dp0+wr5xZdr7tQuPvmC/SuS1FLSAJI5C8
+         SYYJhYVwWsrpcoZvodO3qsQ/7SAw42PlFrTNu1drXBGGXw5bAOAlrsyw3bK5o1IdxzoC
+         lQ4hj7F9krgCbx041cGOHc8aehYwqxvMqRsdQqBSRQvEYwPYF0Hp2K6p1v1zyP+iqe17
+         YMmWAFXmhHO5lHiIIyuON4bUv0bY6EG7FEORD+RMkIp1dtRacczTJU7z5jD0+ozG34r0
+         bslt2KCXhAsM26Y5kF8gMBqZU/9CFsZUWLO2tCIpiStV20ep6t5Chb6TvjQKNFO0vuW1
+         GoYw==
+X-Gm-Message-State: AC+VfDyvhhzRXiAjWpktYJNg29Sly+YGstB7m9C4GHMHqEgdrLrbXZfh
+        FXIKDUN74XaLAxyA0BXgLgR9/w==
+X-Google-Smtp-Source: ACHHUZ4EVVEITh4T8aJgcY8S930Dxi8YCadGVtavtGcs/hxxLvRYRvnzqhUfz+9hiFzzvr259Kr4Pw==
+X-Received: by 2002:a17:907:6d20:b0:969:e304:441d with SMTP id sa32-20020a1709076d2000b00969e304441dmr2095523ejc.4.1683623909486;
+        Tue, 09 May 2023 02:18:29 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:d0d5:7818:2f46:5e76? ([2a02:810d:15c0:828:d0d5:7818:2f46:5e76])
+        by smtp.gmail.com with ESMTPSA id s7-20020a170906220700b0096792b56c47sm1048546ejs.167.2023.05.09.02.18.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 May 2023 02:18:28 -0700 (PDT)
+Message-ID: <fbfd02d5-183a-118c-5743-dee6c9367bf6@linaro.org>
+Date:   Tue, 9 May 2023 11:18:27 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Subject: Re: [PATCH 4/4] clk: qcom: Add GCC driver support for SDX75
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v4 8/8] dt-bindings: Add rt5033 mfd, regulator and charger
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
+To:     Jakob Hauser <jahau@rocketmail.com>,
+        Sebastian Reichel <sre@kernel.org>, Lee Jones <lee@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>
-CC:     <quic_skakitap@quicinc.com>,
-        Imran Shaik <quic_imrashai@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_rohiagar@quicinc.com>, <netdev@vger.kernel.org>
-References: <20230419133013.2563-1-quic_tdas@quicinc.com>
- <20230419133013.2563-5-quic_tdas@quicinc.com>
- <af5435c3-b3a4-af46-444e-023d6ee2304a@linaro.org>
-From:   Taniya Das <quic_tdas@quicinc.com>
-In-Reply-To: <af5435c3-b3a4-af46-444e-023d6ee2304a@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: BFzArWZcS3o1RPEdyiyrPO-qLa3W5INw
-X-Proofpoint-GUID: BFzArWZcS3o1RPEdyiyrPO-qLa3W5INw
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-09_05,2023-05-05_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- malwarescore=0 mlxscore=0 bulkscore=0 phishscore=0 lowpriorityscore=0
- clxscore=1015 mlxlogscore=887 adultscore=0 suspectscore=0
- priorityscore=1501 spamscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2304280000 definitions=main-2305090072
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Beomho Seo <beomho.seo@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Raymond Hackley <raymondhackley@protonmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Axel Lin <axel.lin@ingics.com>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Henrik Grimler <henrik@grimler.se>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+References: <20230506155435.3005-1-jahau@rocketmail.com>
+ <20230506155435.3005-9-jahau@rocketmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230506155435.3005-9-jahau@rocketmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks Dmitry for the review.
-
-On 4/20/2023 3:40 PM, Dmitry Baryshkov wrote:
->> +static const struct clk_parent_data gcc_parent_data_5[] = {
->> +    { .fw_name = "emac0_sgmiiphy_rclk" },
+On 06/05/2023 17:54, Jakob Hauser wrote:
+> Add device tree binding documentation for rt5033 multifunction device, voltage
+> regulator and battery charger.
 > 
-> So, this looks like a mixture of fw_name and index clocks. Please 
-> migrate all of fw_names to the .index usage.
+> Cc: Beomho Seo <beomho.seo@samsung.com>
+> Cc: Chanwoo Choi <cw00.choi@samsung.com>
+> Signed-off-by: Jakob Hauser <jahau@rocketmail.com>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> ---
+> The patch is based on next-20230505.
 > 
-
-I will take care of it to move to index, but does it not bind us to use 
-the right index always from DT.
-
-The current approach I was thinking to bind the XO clock to 0th index, 
-but we cannot gurantee these external clocks would be placed at the 
-right index.
-
->> +    { .index = DT_BI_TCXO },
->> +};
->> +
->> +static const struct parent_map gcc_parent_map_6[] = {
->> +    { P_EMAC0_SGMIIPHY_TCLK, 0 },
->> +    { P_BI_TCXO, 2 },
->> +};
->> +
->> +static const struct clk_parent_data gcc_parent_data_6[] = {
->> +    { .fw_name = "emac0_sgmiiphy_tclk" },
->> +    { .index = DT_BI_TCXO },
->> +};
->> +
->> +static const struct parent_map gcc_parent_map_7[] = {
->> +    { P_EMAC0_SGMIIPHY_MAC_RCLK, 0 },
->> +    { P_BI_TCXO, 2 },
->> +};
->> +
->> +static const struct clk_parent_data gcc_parent_data_7[] = {
->> +    { .fw_name = "emac0_sgmiiphy_mac_rclk" },
->> +    { .index = DT_BI_TCXO },
->> +};
->> +
->> +static const struct parent_map gcc_parent_map_8[] = {
->> +    { P_EMAC0_SGMIIPHY_MAC_TCLK, 0 },
->> +    { P_BI_TCXO, 2 },
->> +};
->> +
->> +static const struct clk_parent_data gcc_parent_data_8[] = {
->> +    { .fw_name = "emac0_sgmiiphy_mac_tclk" },
->> +    { .index = DT_BI_TCXO },
->> +};
->> +
->> +static const struct parent_map gcc_parent_map_9[] = {
->> +    { P_EMAC1_SGMIIPHY_RCLK, 0 },
->> +    { P_BI_TCXO, 2 },
->> +};
->> +
->> +static const struct clk_parent_data gcc_parent_data_9[] = {
->> +    { .fw_name = "emac1_sgmiiphy_rclk" },
->> +    { .index = DT_BI_TCXO },
->> +};
->> +
->> +static const struct parent_map gcc_parent_map_10[] = {
->> +    { P_EMAC1_SGMIIPHY_TCLK, 0 },
->> +    { P_BI_TCXO, 2 },
->> +};
->> +
->> +static const struct clk_parent_data gcc_parent_data_10[] = {
->> +    { .fw_name = "emac1_sgmiiphy_tclk" },
->> +    { .index = DT_BI_TCXO },
->> +};
->> +
->> +static const struct parent_map gcc_parent_map_11[] = {
->> +    { P_EMAC1_SGMIIPHY_MAC_RCLK, 0 },
->> +    { P_BI_TCXO, 2 },
->> +};
->> +
->> +static const struct clk_parent_data gcc_parent_data_11[] = {
->> +    { .fw_name = "emac1_sgmiiphy_mac_rclk" },
->> +    { .index = DT_BI_TCXO },
->> +};
->> +
->> +static const struct parent_map gcc_parent_map_12[] = {
->> +    { P_EMAC1_SGMIIPHY_MAC_TCLK, 0 },
->> +    { P_BI_TCXO, 2 },
->> +};
->> +
->> +static const struct clk_parent_data gcc_parent_data_12[] = {
->> +    { .fw_name = "emac1_sgmiiphy_mac_tclk" },
->> +    { .index = DT_BI_TCXO },
->> +};
->> +
->> +static const struct parent_map gcc_parent_map_13[] = {
->> +    { P_PCIE_1_PIPE_CLK, 0 },
->> +    { P_BI_TCXO, 2 },
->> +};
->> +
->> +static const struct clk_parent_data gcc_parent_data_13[] = {
->> +    { .fw_name = "pcie_1_pipe_clk" },
->> +    { .index = DT_BI_TCXO },
->> +};
->> +
->> +static const struct parent_map gcc_parent_map_14[] = {
->> +    { P_PCIE_2_PIPE_CLK, 0 },
->> +    { P_BI_TCXO, 2 },
->> +};
->> +
->> +static const struct clk_parent_data gcc_parent_data_14[] = {
->> +    { .fw_name = "pcie_2_pipe_clk" },
->> +    { .index = DT_BI_TCXO },
->> +};
->> +
->> +static const struct parent_map gcc_parent_map_15[] = {
->> +    { P_PCIE20_PHY_AUX_CLK, 0 },
->> +    { P_BI_TCXO, 2 },
->> +};
->> +
->> +static const struct clk_parent_data gcc_parent_data_15[] = {
->> +    { .fw_name = "pcie20_phy_aux_clk" },
->> +    { .index = DT_BI_TCXO },
->> +};
->> +
->> +static const struct parent_map gcc_parent_map_16[] = {
->> +    { P_PCIE_PIPE_CLK, 0 },
->> +    { P_BI_TCXO, 2 },
->> +};
->> +
->> +static const struct clk_parent_data gcc_parent_data_16[] = {
->> +    { .fw_name = "pcie_pipe_clk" },
->> +    { .index = DT_BI_TCXO },
->> +};
->> +
->> +static const struct parent_map gcc_parent_map_17[] = {
->> +    { P_BI_TCXO, 0 },
->> +    { P_GPLL0_OUT_MAIN, 1 },
->> +    { P_GPLL6_OUT_MAIN, 2 },
->> +    { P_GPLL0_OUT_EVEN, 6 },
->> +};
->> +
->> +static const struct clk_parent_data gcc_parent_data_17[] = {
->> +    { .index = DT_BI_TCXO },
->> +    { .hw = &gpll0.clkr.hw },
->> +    { .hw = &gpll6.clkr.hw },
->> +    { .hw = &gpll0_out_even.clkr.hw },
->> +};
->> +
->> +static const struct parent_map gcc_parent_map_18[] = {
->> +    { P_BI_TCXO, 0 },
->> +    { P_GPLL0_OUT_MAIN, 1 },
->> +    { P_GPLL8_OUT_MAIN, 2 },
->> +    { P_GPLL0_OUT_EVEN, 6 },
->> +};
->> +
->> +static const struct clk_parent_data gcc_parent_data_18[] = {
->> +    { .index = DT_BI_TCXO },
->> +    { .hw = &gpll0.clkr.hw },
->> +    { .hw = &gpll8.clkr.hw },
->> +    { .hw = &gpll0_out_even.clkr.hw },
->> +};
->> +
->> +static const struct parent_map gcc_parent_map_19[] = {
->> +    { P_USB3_PHY_WRAPPER_GCC_USB30_PIPE_CLK, 0 },
->> +    { P_BI_TCXO, 2 },
->> +};
->> +
->> +static const struct clk_parent_data gcc_parent_data_19[] = {
->> +    { .fw_name = "usb3_phy_wrapper_gcc_usb30_pipe_clk" },
->> +    { .index = DT_BI_TCXO },
->> +};
->> +
->> +static struct clk_regmap_mux gcc_emac0_cc_sgmiiphy_rx_clk_src = {
->> +    .reg = 0x71060,
->> +    .shift = 0,
->> +    .width = 2,
->> +    .parent_map = gcc_parent_map_5,
->> +    .clkr = {
->> +        .hw.init = &(const struct clk_init_data) {
->> +            .name = "gcc_emac0_cc_sgmiiphy_rx_clk_src",
->> +            .parent_data = gcc_parent_data_5,
->> +            .num_parents = ARRAY_SIZE(gcc_parent_data_5),
->> +            .ops = &clk_regmap_mux_closest_ops,
->> +        },
->> +    },
->> +};
->> +
->> +static struct clk_regmap_mux gcc_emac0_cc_sgmiiphy_tx_clk_src = {
->> +    .reg = 0x71058,
->> +    .shift = 0,
->> +    .width = 2,
->> +    .parent_map = gcc_parent_map_6,
->> +    .clkr = {
->> +        .hw.init = &(const struct clk_init_data) {
->> +            .name = "gcc_emac0_cc_sgmiiphy_tx_clk_src",
->> +            .parent_data = gcc_parent_data_6,
->> +            .num_parents = ARRAY_SIZE(gcc_parent_data_6),
->> +            .ops = &clk_regmap_mux_closest_ops,
->> +        },
->> +    },
->> +};
->> +
->> +static struct clk_regmap_mux gcc_emac0_sgmiiphy_mac_rclk_src = {
->> +    .reg = 0x71098,
->> +    .shift = 0,
->> +    .width = 2,
->> +    .parent_map = gcc_parent_map_7,
->> +    .clkr = {
->> +        .hw.init = &(const struct clk_init_data) {
->> +            .name = "gcc_emac0_sgmiiphy_mac_rclk_src",
->> +            .parent_data = gcc_parent_data_7,
->> +            .num_parents = ARRAY_SIZE(gcc_parent_data_7),
->> +            .ops = &clk_regmap_mux_closest_ops,
->> +        },
->> +    },
->> +};
->> +
->> +static struct clk_regmap_mux gcc_emac0_sgmiiphy_mac_tclk_src = {
->> +    .reg = 0x71094,
->> +    .shift = 0,
->> +    .width = 2,
->> +    .parent_map = gcc_parent_map_8,
->> +    .clkr = {
->> +        .hw.init = &(const struct clk_init_data) {
->> +            .name = "gcc_emac0_sgmiiphy_mac_tclk_src",
->> +            .parent_data = gcc_parent_data_8,
->> +            .num_parents = ARRAY_SIZE(gcc_parent_data_8),
->> +            .ops = &clk_regmap_mux_closest_ops,
->> +        },
->> +    },
->> +};
->> +
->> +static struct clk_regmap_mux gcc_emac1_cc_sgmiiphy_rx_clk_src = {
->> +    .reg = 0x72060,
->> +    .shift = 0,
->> +    .width = 2,
->> +    .parent_map = gcc_parent_map_9,
->> +    .clkr = {
->> +        .hw.init = &(const struct clk_init_data) {
->> +            .name = "gcc_emac1_cc_sgmiiphy_rx_clk_src",
->> +            .parent_data = gcc_parent_data_9,
->> +            .num_parents = ARRAY_SIZE(gcc_parent_data_9),
->> +            .ops = &clk_regmap_mux_closest_ops,
->> +        },
->> +    },
->> +};
->> +
->> +static struct clk_regmap_mux gcc_emac1_cc_sgmiiphy_tx_clk_src = {
->> +    .reg = 0x72058,
->> +    .shift = 0,
->> +    .width = 2,
->> +    .parent_map = gcc_parent_map_10,
->> +    .clkr = {
->> +        .hw.init = &(const struct clk_init_data) {
->> +            .name = "gcc_emac1_cc_sgmiiphy_tx_clk_src",
->> +            .parent_data = gcc_parent_data_10,
->> +            .num_parents = ARRAY_SIZE(gcc_parent_data_10),
->> +            .ops = &clk_regmap_mux_closest_ops,
->> +        },
->> +    },
->> +};
->> +
->> +static struct clk_regmap_mux gcc_emac1_sgmiiphy_mac_rclk_src = {
->> +    .reg = 0x72098,
->> +    .shift = 0,
->> +    .width = 2,
->> +    .parent_map = gcc_parent_map_11,
->> +    .clkr = {
->> +        .hw.init = &(const struct clk_init_data) {
->> +            .name = "gcc_emac1_sgmiiphy_mac_rclk_src",
->> +            .parent_data = gcc_parent_data_11,
->> +            .num_parents = ARRAY_SIZE(gcc_parent_data_11),
->> +            .ops = &clk_regmap_mux_closest_ops,
->> +        },
->> +    },
->> +};
->> +
->> +static struct clk_regmap_mux gcc_emac1_sgmiiphy_mac_tclk_src = {
->> +    .reg = 0x72094,
->> +    .shift = 0,
->> +    .width = 2,
->> +    .parent_map = gcc_parent_map_12,
->> +    .clkr = {
->> +        .hw.init = &(const struct clk_init_data) {
->> +            .name = "gcc_emac1_sgmiiphy_mac_tclk_src",
->> +            .parent_data = gcc_parent_data_12,
->> +            .num_parents = ARRAY_SIZE(gcc_parent_data_12),
->> +            .ops = &clk_regmap_mux_closest_ops,
->> +        },
->> +    },
->> +};
->> +
->> +static struct clk_regmap_mux gcc_pcie_1_pipe_clk_src = {
->> +    .reg = 0x67084,
->> +    .shift = 0,
->> +    .width = 2,
->> +    .parent_map = gcc_parent_map_13,
->> +    .clkr = {
->> +        .hw.init = &(const struct clk_init_data) {
->> +            .name = "gcc_pcie_1_pipe_clk_src",
->> +            .parent_data = gcc_parent_data_13,
->> +            .num_parents = ARRAY_SIZE(gcc_parent_data_13),
->> +            .ops = &clk_regmap_mux_closest_ops,
+> The drivers for rt5033 (mfd) and rt5033-regulator are existing. Whereas the
+> the driver rt5033-charger is new in this patchset.
 > 
-> Are these clocks a clk_regmap_mux_closest_ops in reality 
-> clk_regmap_phy_mux_ops?
-
-clk_regmap_phy_mux_ops cannot be used here, as multi parent mux requires 
-the .get_parent ops to be supported.
-
+>  .../bindings/mfd/richtek,rt5033.yaml          | 113 ++++++++++++++++++
+>  .../power/supply/richtek,rt5033-charger.yaml  |  64 ++++++++++
+>  2 files changed, 177 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/richtek,rt5033.yaml
+>  create mode 100644 Documentation/devicetree/bindings/power/supply/richtek,rt5033-charger.yaml
 > 
->> +        },
->> +    },
+> diff --git a/Documentation/devicetree/bindings/mfd/richtek,rt5033.yaml b/Documentation/devicetree/bindings/mfd/richtek,rt5033.yaml
+> new file mode 100644
+> index 000000000000..0aa0a556b50f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/richtek,rt5033.yaml
+> @@ -0,0 +1,113 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/richtek,rt5033.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Richtek RT5033 Power Management Integrated Circuit
+> +
+> +maintainers:
+> +  - Jakob Hauser <jahau@rocketmail.com>
+> +
+> +description:
+> +  RT5033 is a multifunction device which includes battery charger, fuel gauge,
+> +  flash LED current source, LDO and synchronous Buck converter for portable
+> +  applications. It is interfaced to host controller using I2C interface. The
+> +  battery fuel gauge uses a separate I2C bus.
+> +
+> +properties:
+> +  compatible:
+> +    const: richtek,rt5033
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  regulators:
+> +    description:
+> +      The regulators of RT5033 have to be instantiated under a sub-node named
+> +      "regulators". For SAFE_LDO voltage there is only one value of 4.9 V. LDO
+> +      voltage ranges from 1.2 V to 3.0 V in 0.1 V steps. BUCK voltage ranges
+> +      from 1.0 V to 3.0 V in 0.1 V steps.
+> +    type: object
+> +    patternProperties:
+> +      "^(SAFE_LDO|LDO|BUCK)$":
+> +        type: object
+> +        $ref: /schemas/regulator/regulator.yaml#
+> +        unevaluatedProperties: false
+> +    additionalProperties: false
+> +
+> +  charger:
+> +    type: object
+> +    $ref: /schemas/power/supply/richtek,rt5033-charger.yaml#
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    battery: battery {
+> +        compatible = "simple-battery";
+> +        precharge-current-microamp = <450000>;
+> +        constant-charge-current-max-microamp = <1000000>;
+> +        charge-term-current-microamp = <150000>;
+> +        precharge-upper-limit-microvolt = <3500000>;
+> +        constant-charge-voltage-max-microvolt = <4350000>;
+> +    };
+> +
+> +    extcon {
+> +        usb_con: connector {
+> +            compatible = "usb-b-connector";
+> +            label = "micro-USB";
+> +            type = "micro";
+> +        };
+> +    };
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        pmic@34 {
+> +            compatible = "richtek,rt5033";
+> +            reg = <0x34>;
+> +
+> +            interrupt-parent = <&msmgpio>;
+> +            interrupts = <62 IRQ_TYPE_EDGE_FALLING>;
+> +
+> +            pinctrl-names = "default";
+> +            pinctrl-0 = <&pmic_int_default>;
+> +
+> +            regulators {
+> +                safe_ldo_reg: SAFE_LDO {
+> +                    regulator-name = "SAFE_LDO";
+> +                    regulator-min-microvolt = <4900000>;
+> +                    regulator-max-microvolt = <4900000>;
+> +                    regulator-always-on;
+> +                };
+> +                ldo_reg: LDO {
+> +                    regulator-name = "LDO";
+> +                    regulator-min-microvolt = <2800000>;
+> +                    regulator-max-microvolt = <2800000>;
+> +                };
+> +                buck_reg: BUCK {
+> +                    regulator-name = "BUCK";
+> +                    regulator-min-microvolt = <1200000>;
+> +                    regulator-max-microvolt = <1200000>;
+> +                };
+> +            };
+> +
+> +            charger {
+> +                compatible = "richtek,rt5033-charger";
+> +                monitored-battery = <&battery>;
+> +                connector = <&usb_con>;
+> +            };
+> +        };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/power/supply/richtek,rt5033-charger.yaml b/Documentation/devicetree/bindings/power/supply/richtek,rt5033-charger.yaml
+> new file mode 100644
+> index 000000000000..b8607cc6ec63
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/power/supply/richtek,rt5033-charger.yaml
+> @@ -0,0 +1,64 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/power/supply/richtek,rt5033-charger.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Richtek RT5033 PIMC Battery Charger
+
+PMIC
+
+> +
+> +maintainers:
+> +  - Jakob Hauser <jahau@rocketmail.com>
+> +
+> +description:
+> +  The battery charger of the multifunction device RT5033 has to be instantiated
+> +  under sub-node named "charger" using the following format.
+> +
+> +properties:
+> +  compatible:
+> +    const: richtek,rt5033-charger
+> +
+> +  monitored-battery:
+> +    description: |
+> +      Phandle to the monitored battery according to battery.yaml. The battery
+> +      node needs to contain five parameters.
+> +
+> +      precharge-current-microamp:
+> +      Current of pre-charge mode. The pre-charge current levels are 350 mA
+> +      to 650 mA programmed by I2C per 100 mA.
+> +
+> +      constant-charge-current-max-microamp:
+> +      Current of fast-charge mode. The fast-charge current levels are 700 mA
+> +      to 2000 mA programmed by I2C per 100 mA.
+> +
+> +      charge-term-current-microamp:
+> +      This property is end of charge current. Its level ranges from 150 mA
+> +      to 600 mA. Between 150 mA and 300 mA in 50 mA steps, between 300 mA and
+> +      600 mA in 100 mA steps.
+> +
+> +      precharge-upper-limit-microvolt:
+> +      Voltage of pre-charge mode. If the battery voltage is below the pre-charge
+> +      threshold voltage, the charger is in pre-charge mode with pre-charge
+> +      current. Its levels are 2.3 V to 3.8 V programmed by I2C per 0.1 V.
+> +
+> +      constant-charge-voltage-max-microvolt:
+> +      Battery regulation voltage of constant voltage mode. This voltage levels
+> +      from 3.65 V to 4.4 V by I2C per 0.025 V.
+> +
+> +  connector:
+> +    description:
+> +      Phandle to a USB connector according to usb-connector.yaml. The connector
+> +      should be a child of the extcon device.
+> +    maxItems: 1
+
+Missing type/ref... but then you will notice you have conflicting ref
+with existing connector. connector is usb-connector.yaml, not phandle. I
+am not sure if we need generic property, so let's go with device
+specific - richtek,usb-connector
 
 
+> +
+> +required:
+> +  - monitored-battery
+Best regards,
+Krzysztof
 
--- 
-Thanks & Regards,
-Taniya Das.
