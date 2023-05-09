@@ -2,278 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2C966FD2B3
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 00:32:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D00856FD2D1
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 00:53:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229770AbjEIWc6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 18:32:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34162 "EHLO
+        id S229734AbjEIWxP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 18:53:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230416AbjEIWc4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 18:32:56 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68B82173D
-        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 15:32:54 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4f25d79f6bfso1155193e87.2
-        for <devicetree@vger.kernel.org>; Tue, 09 May 2023 15:32:54 -0700 (PDT)
+        with ESMTP id S230064AbjEIWxL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 18:53:11 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA6435FCD;
+        Tue,  9 May 2023 15:53:09 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-50bc4bc2880so10321619a12.2;
+        Tue, 09 May 2023 15:53:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683671572; x=1686263572;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=cFW1OU15IbqXpYsuUkMH+3bP+c5PgEdgY9o9m73RVKE=;
-        b=u95LiecvKtnHneogqmaoEKvmLRYm/ZKTtCQyxlXlKpbePXWSU9ea+0ME4Ob79D6xsa
-         wutNTYraqc42tw46oad0QOE1ZuQswJHSdNc26KVCja8AVCk7CMQwvlxKvgp1NP9YPpDI
-         3e4pd1wQ6YhlTUgb2WtFHREXS4hPqLKPENkPF3dS09cFzJgs/+rrdv3MXUS8IARt/Yka
-         sr7rgrXNCvt0Migjqex2P85Fn7caFpTf/O1S7JfGQCIg1zmGU2nfUdk4fjn2lWIgruuA
-         6grSd2wtPLf0m7jMjy0+mZksklHWNE7QrUA2038PqBWjieJrV8MH55sthFedG2621uAd
-         uAEw==
+        d=gmail.com; s=20221208; t=1683672788; x=1686264788;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xK5ASXc7Qk5k53BZegLrLl/LXq90ba90dKCrcJloGco=;
+        b=B6CGl1a7QJIoBWOzbZ1AK71oscdzTgkCseNZl2SM/l2v03d1z+uAqyyfcvFpne5IFF
+         IKyV4J0UXmpTH1ABNNmXXAkwkro6AYCNgeF37HZHrDKRI7XbZk5tePVrDDpIj4a54Mh8
+         zz3G4kyxzzm/l+8gfkUKvl3gnj/a/2qmAFNCAyHS78y5KY/c2OhHMs7mZgw2Utd0KJ3A
+         oEDz6GilQtm3yhrA7OrACPbmyACYAJrg5Mtvpbks+CGq4/6WDFJ+RQqX3/3P6osN3Sn6
+         fcvOmqV4rpPWeipKjYW0b8SYAwy/eErVyQ6P3jaMviq/aDOW7iBhIIjb/tuWfKPH04sM
+         sdBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683671572; x=1686263572;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cFW1OU15IbqXpYsuUkMH+3bP+c5PgEdgY9o9m73RVKE=;
-        b=Vkh87RYIasCXlczym/A4ZZ2fOgOiwUo6U3RManRqg8G7WCbGvhU3yc2DpWU2ZzsHdi
-         c5sBeagYij2tugpMAqxgKmFtZRH33tP9t46Menjh9nQ7/MX/FUUH+p18Yki8RyxeG63D
-         S3Gs/CDHCVBfTxdapuweCzSDA0x+tUeI+CAxU2zRodmK56fQG8ANWafw7c+nfJsVr4fA
-         z//2j2Uj8XArBrlHoqg/Kel6lNgK0lqIoYgDcy0GKidIWosQ+S19aZlXC9s0okmEQDb0
-         pdGxKZl+gGnMqDQM1IY/7XdUfHp7kz8OPqSKCgKeeVVuoKmP4/N/HAZn75SiX3iJORH3
-         xbaA==
-X-Gm-Message-State: AC+VfDyGtST2GtZNMPylu7JPV2bBDMeAT/b8I4TVPEyVIVB9rgUtH+Oc
-        bVKEO3LhN/+RAnbpiAvaTgvv2w==
-X-Google-Smtp-Source: ACHHUZ54rAhXTNw+ZVnp/3LnUbR9U4Or594W+T53dvrDD5klHLA2NotZcFcbFSCllPcc3x/s49Au0A==
-X-Received: by 2002:ac2:4e4e:0:b0:4f2:5393:b7c with SMTP id f14-20020ac24e4e000000b004f253930b7cmr924673lfr.67.1683671572630;
-        Tue, 09 May 2023 15:32:52 -0700 (PDT)
-Received: from [192.168.1.101] (abyl248.neoplus.adsl.tpnet.pl. [83.9.31.248])
-        by smtp.gmail.com with ESMTPSA id b29-20020ac25e9d000000b004edce1d338csm483754lfq.89.2023.05.09.15.32.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 May 2023 15:32:52 -0700 (PDT)
-Message-ID: <f9cfa346-42f8-8061-3517-947440c6f860@linaro.org>
-Date:   Wed, 10 May 2023 00:32:50 +0200
+        d=1e100.net; s=20221208; t=1683672788; x=1686264788;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xK5ASXc7Qk5k53BZegLrLl/LXq90ba90dKCrcJloGco=;
+        b=NHcGq59r3CrsKN7Mvq2jcdolhRovSj7Becn8zicfw2xTecOSx142YCT8V5rv6GaFdR
+         p99d36TasPzoybG+Wa8llhs7AGiXccVOUE4Nrx6x0mkSXs6yiSBpDyzUJC9b3OIDvw8+
+         PtiC/wZY2aoSsVxv27xvjF41xgDBje6IAKeQzeLFAf7g3G4BbZbMBflaY8qb6/omgYMl
+         eRxkEQwtTQsPva6oc3DxWIGhjOUn9UYFg05V+/Qwhba1dQf7NO+A+90PoxpqTA9N+ayt
+         f0hc0h2CIQLv80apnChPFSu1+jQKXroEH8XXb+n67iNkChTOxG6Z9HH9ucaA1nXpT2zF
+         pVIw==
+X-Gm-Message-State: AC+VfDw1bYlC8UlserojwLfKDYE2vHWA4pvTQcOtzx2Qmif2h2IVsYfq
+        57eMt6jPHHgMtTORL3nPsuct47IYPxSLU99saOM=
+X-Google-Smtp-Source: ACHHUZ4BIByOTQ+nZnZj6wMwAWaIjxIQtjE6aNXjYPCQmOchF0FzZGy4iRz1xrpYTOQE6G38v049dtcQ6UDwQjkIrbg=
+X-Received: by 2002:a17:906:4fcf:b0:94e:1764:b09b with SMTP id
+ i15-20020a1709064fcf00b0094e1764b09bmr14500489ejw.45.1683672787994; Tue, 09
+ May 2023 15:53:07 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH 3/6] soc: qcom: ocmem: make iface clock optional
-Content-Language: en-US
-To:     Luca Weiss <luca@z3ntu.xyz>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
+References: <20230424231558.70911-1-quic_eberman@quicinc.com>
+ <20230424231558.70911-7-quic_eberman@quicinc.com> <CABb+yY3ojsGNm1w+QSn2BnbOMdcQZAV+=UYiMiBrs=jujP=pSg@mail.gmail.com>
+ <b4fa7ae9-da5e-7a94-3b82-00d9200aa67e@quicinc.com>
+In-Reply-To: <b4fa7ae9-da5e-7a94-3b82-00d9200aa67e@quicinc.com>
+From:   Jassi Brar <jassisinghbrar@gmail.com>
+Date:   Tue, 9 May 2023 17:52:56 -0500
+Message-ID: <CABb+yY2Pr30uhQzAdd=G2w=_pYYN926dMMAEgmJ436ZxVjziAQ@mail.gmail.com>
+Subject: Re: [PATCH v12 06/25] mailbox: Add Gunyah message queue mailbox
+To:     Elliot Berman <quic_eberman@quicinc.com>
+Cc:     Alex Elder <elder@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Brian Masney <masneyb@onstation.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230506-msm8226-ocmem-v1-0-3e24e2724f01@z3ntu.xyz>
- <3479852.e9J7NaK4W3@z3ntu.xyz>
- <CAA8EJpo_x=q8yBSUV=owYvQqD30YQbhU51iKHUjr-_doLk6HPw@mail.gmail.com>
- <4094905.iIbC2pHGDl@z3ntu.xyz>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <4094905.iIbC2pHGDl@z3ntu.xyz>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Will Deacon <will@kernel.org>, Andy Gross <agross@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, May 9, 2023 at 3:52=E2=80=AFPM Elliot Berman <quic_eberman@quicinc.=
+com> wrote:
+>
+> Hi Jassi,
+>
+> On 5/3/2023 11:21 PM, Jassi Brar wrote:
+> > On Mon, Apr 24, 2023 at 6:16=E2=80=AFPM Elliot Berman <quic_eberman@qui=
+cinc.com> wrote:
+> >>
+> >> Gunyah message queues are a unidirectional inter-VM pipe for messages =
+up
+> >> to 1024 bytes. This driver supports pairing a receiver message queue a=
+nd
+> >> a transmitter message queue to expose a single mailbox channel.
+> >>
+> >> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+> >> ---
+> >>   Documentation/virt/gunyah/message-queue.rst |   8 +
+> >>   drivers/mailbox/Makefile                    |   2 +
+> >>   drivers/mailbox/gunyah-msgq.c               | 210 ++++++++++++++++++=
+++
+> >>   include/linux/gunyah.h                      |  57 ++++++
+> >>
+> > include/linux/gunyah.h  and
+> > Documentation/virt/gunyah/message-queue.rst would need to exist for
+> > this patch to apply.
+> > If you made this patch as the first in series, then I could apply.
+> >
+>
+> The mailbox driver is dependent on patches 3-5. Could [1] be picked up
+> in meantime?
+>
+[1] is already upstream.
 
+> I'll talk with QC Landing team folks about strategies to
+> merge once they finish review.
+>
+OK.
 
-On 9.05.2023 23:41, Luca Weiss wrote:
-> On Dienstag, 9. Mai 2023 19:08:50 CEST Dmitry Baryshkov wrote:
->> On Tue, 9 May 2023 at 19:47, Luca Weiss <luca@z3ntu.xyz> wrote:
->>> On Montag, 8. Mai 2023 13:34:23 CEST Dmitry Baryshkov wrote:
->>>> On 07/05/2023 12:12, Luca Weiss wrote:
->>>>> Some platforms such as msm8226 do not have an iface clk. Since
->>>>> clk_bulk
->>>>> APIs don't offer to a way to treat some clocks as optional simply add
->>>>> core_clk and iface_clk members to our drvdata.
->>>>
->>>> What about using devm_clk_bulk_get_optional()? I think it would be
->>>> simpler this way.
->>>
->>> Using that function both clocks would be optional which may or may not be
->>> a
->>> bad idea. Not sure how much binding yaml and/or driver should try and
->>> catch
->>> bad usages of the driver.
->>
->> The generic rule is that we should not validate the DT unless required
->> (e.g. because of the possibility of legacy DT which used other
->> bindings or contained less information).
-> 
-> Got it.
-> 
-> But since in this driver we use one of the clocks for setting clock rate I'd
-> keep using the two separate struct clk as I've done in this patch if you don't
-> mind too much.
-I'd also advocate for 2x struct clk, using bulk here is like trying to
-spread butter with a fork, it works, but has holes..
-
-Konrad
-> 
-> Regards
-> Luca
-> 
->>
->>> But honestly the current usage of the bulk API seems a bit clunky, we have
->>> a static array of clocks that we use (not in struct ocmem for some
->>> reason) and then we refer to the core clock by index? Feels better to
->>> just have the two clock references in the device struct and then we're
->>> good.
->>>
->>> Let me know.
->>>
->>> Regards
->>> Luca
->>>
->>>>> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
->>>>> ---
->>>>>
->>>>>   drivers/soc/qcom/ocmem.c | 42
->>>>>   ++++++++++++++++++++++++------------------
->>>>>   1 file changed, 24 insertions(+), 18 deletions(-)
->>>>>
->>>>> diff --git a/drivers/soc/qcom/ocmem.c b/drivers/soc/qcom/ocmem.c
->>>>> index a11a955a1327..6235065d3bc9 100644
->>>>> --- a/drivers/soc/qcom/ocmem.c
->>>>> +++ b/drivers/soc/qcom/ocmem.c
->>>>> @@ -54,6 +54,8 @@ struct ocmem {
->>>>>
->>>>>     const struct ocmem_config *config;
->>>>>     struct resource *memory;
->>>>>     void __iomem *mmio;
->>>>>
->>>>> +   struct clk *core_clk;
->>>>> +   struct clk *iface_clk;
->>>>>
->>>>>     unsigned int num_ports;
->>>>>     unsigned int num_macros;
->>>>>     bool interleaved;
->>>>>
->>>>> @@ -91,16 +93,6 @@ struct ocmem {
->>>>>
->>>>>   #define OCMEM_PSGSC_CTL_MACRO2_MODE(val)  FIELD_PREP(0x00000700,
->>>
->>> (val))
->>>
->>>>>   #define OCMEM_PSGSC_CTL_MACRO3_MODE(val)  FIELD_PREP(0x00007000,
->>>
->>> (val))
->>>
->>>>> -#define OCMEM_CLK_CORE_IDX                 0
->>>>> -static struct clk_bulk_data ocmem_clks[] = {
->>>>> -   {
->>>>> -           .id = "core",
->>>>> -   },
->>>>> -   {
->>>>> -           .id = "iface",
->>>>> -   },
->>>>> -};
->>>>> -
->>>>>
->>>>>   static inline void ocmem_write(struct ocmem *ocmem, u32 reg, u32
->>>>>   data)
->>>>>   {
->>>>>   
->>>>>     writel(data, ocmem->mmio + reg);
->>>>>
->>>>> @@ -316,9 +308,15 @@ static int ocmem_dev_probe(struct platform_device
->>>>> *pdev)>
->>>>>
->>>>>     ocmem->dev = dev;
->>>>>     ocmem->config = device_get_match_data(dev);
->>>>>
->>>>> -   ret = devm_clk_bulk_get(dev, ARRAY_SIZE(ocmem_clks), ocmem_clks);
->>>>> -   if (ret)
->>>>> -           return dev_err_probe(dev, ret, "Unable to get clocks\n");
->>>>> +   ocmem->core_clk = devm_clk_get(dev, "core");
->>>>> +   if (IS_ERR(ocmem->core_clk))
->>>>> +           return dev_err_probe(dev, PTR_ERR(ocmem->core_clk),
->>>>> +                                "Unable to get core clock\n");
->>>>> +
->>>>> +   ocmem->iface_clk = devm_clk_get_optional(dev, "iface");
->>>>> +   if (IS_ERR(ocmem->iface_clk))
->>>>> +           return dev_err_probe(dev, PTR_ERR(ocmem->iface_clk),
->>>>> +                                "Unable to get iface clock\n");
->>>>>
->>>>>     ocmem->mmio = devm_platform_ioremap_resource_byname(pdev, "ctrl");
->>>>>     if (IS_ERR(ocmem->mmio))
->>>>>
->>>>> @@ -333,11 +331,15 @@ static int ocmem_dev_probe(struct
->>>>> platform_device
->>>>> *pdev)>
->>>>>
->>>>>     }
->>>>>     
->>>>>     /* The core clock is synchronous with graphics */
->>>>>
->>>>> -   WARN_ON(clk_set_rate(ocmem_clks[OCMEM_CLK_CORE_IDX].clk, 1000) <
->>>>> 0);
->>>>> +   WARN_ON(clk_set_rate(ocmem->core_clk, 1000) < 0);
->>>>> +
->>>>> +   ret = clk_prepare_enable(ocmem->core_clk);
->>>>> +   if (ret)
->>>>> +           return dev_err_probe(ocmem->dev, ret, "Failed to enable
->>>
->>> core clock\n");
->>>
->>>>> -   ret = clk_bulk_prepare_enable(ARRAY_SIZE(ocmem_clks), ocmem_clks);
->>>>> +   ret = clk_prepare_enable(ocmem->iface_clk);
->>>>>
->>>>>     if (ret)
->>>>>
->>>>> -           return dev_err_probe(ocmem->dev, ret, "Failed to enable
->>>
->>> clocks\n");
->>>
->>>>> +           return dev_err_probe(ocmem->dev, ret, "Failed to enable
->>>
->>> iface
->>>
->>>>> clock\n");
->>>>>
->>>>>     if (qcom_scm_restore_sec_cfg_available()) {
->>>>>     
->>>>>             dev_dbg(dev, "configuring scm\n");
->>>>>
->>>>> @@ -396,13 +398,17 @@ static int ocmem_dev_probe(struct
->>>>> platform_device
->>>>> *pdev)>
->>>>>
->>>>>     return 0;
->>>>>   
->>>>>   err_clk_disable:
->>>>> -   clk_bulk_disable_unprepare(ARRAY_SIZE(ocmem_clks), ocmem_clks);
->>>>> +   clk_disable_unprepare(ocmem->core_clk);
->>>>> +   clk_disable_unprepare(ocmem->iface_clk);
->>>>>
->>>>>     return ret;
->>>>>   
->>>>>   }
->>>>>   
->>>>>   static int ocmem_dev_remove(struct platform_device *pdev)
->>>>>   {
->>>>>
->>>>> -   clk_bulk_disable_unprepare(ARRAY_SIZE(ocmem_clks), ocmem_clks);
->>>>> +   struct ocmem *ocmem = platform_get_drvdata(pdev);
->>>>> +
->>>>> +   clk_disable_unprepare(ocmem->core_clk);
->>>>> +   clk_disable_unprepare(ocmem->iface_clk);
->>>>>
->>>>>     return 0;
->>>>>   
->>>>>   }
-> 
-> 
-> 
-> 
+cheers.
