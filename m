@@ -2,218 +2,395 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 07BEA6FC4E6
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 13:23:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EAD786FC4F1
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 13:25:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235469AbjEILXD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 07:23:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41998 "EHLO
+        id S230252AbjEILZE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 07:25:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229664AbjEILWx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 07:22:53 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8017E2D63
-        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 04:22:52 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-3f42711865eso13273935e9.0
-        for <devicetree@vger.kernel.org>; Tue, 09 May 2023 04:22:52 -0700 (PDT)
+        with ESMTP id S233530AbjEILZD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 07:25:03 -0400
+Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E1E149D4
+        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 04:25:01 -0700 (PDT)
+Received: by mail-yb1-xb2e.google.com with SMTP id 3f1490d57ef6-b9a6f17f2b6so29837498276.1
+        for <devicetree@vger.kernel.org>; Tue, 09 May 2023 04:25:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1683631371; x=1686223371;
+        d=linaro.org; s=google; t=1683631500; x=1686223500;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ocwSkJdHP4j799Er+vvDPaV7sinooaWmySEkhdf+W2o=;
-        b=Y4wYBVw88f9PM2XsLE8hBfKwj5VZlv53q9lbMPk6g4RmFIu9C+cc8ssZhavXMydm8H
-         sAq8wdUZOhK9I9uHk/5gtBqZen/MLz4sxN7lWnC7x4p7bOs/2jjPBYS1fyQ4ZwPJtYWA
-         sjQsPNF4Ctxzk41x+XxA+Fqv1dvbUWta0YN2k=
+        bh=zDYwURL6aB5EYY0Cme2ttwuND/PMKWLi8Em3Bv+6xTA=;
+        b=R+/w/DCiQYMNVSHwP8o461Wr84ZWVO+hxSAQb3irmmqSahWvRocgABTOi+O/cdDhGX
+         pEPm1+c/LPdOxAGAiNcq5ke85kYwlYSNAIic8gGJAFkCyRlVSvm+VKOUUtjYTbAKSWVo
+         Uotbe7NXdcUnv/SLsFEUKPcXwhBCwUKu2x0i8/fg7fbbswe0S5ZpN4O2SJ4NPZiwTSUU
+         BUxD22T1Zy3eCOnRdXo/n4H81gWpjctD4zVz9DMBsLRRPOezoS3PtIC5T21h7SJAv5hI
+         mTJwALR0BkRiTQZXhwEmgsqkUebkM5zHHhTcyB2B8mi0enq8r5eOafjjjnacd41W0aWL
+         su7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683631371; x=1686223371;
+        d=1e100.net; s=20221208; t=1683631500; x=1686223500;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ocwSkJdHP4j799Er+vvDPaV7sinooaWmySEkhdf+W2o=;
-        b=dHiNmUGuEprbRqPgPUArlIIPIAAAeZy/toaiUrSKNEjFGKQmShYSzCMJJ/efNBQdYI
-         brarra/bXewxIghteEuhobHZ4zBXWyODBiiH3BsHsDgvyESMfLNng1bMgMcCHKlRVbVT
-         xGPoEo043s/Dq8CGResSixgOMfBFqxVVEnodeCev84CbIIxKBl9h7qzKdRKa8EXGwI9Q
-         MmH4PLehR2HbpiykigskU9lwu8i7Fa12ozyFT+BGoJ1NXSv8jbh8lhNjF9oW3Y9F3YQi
-         5ZCPjRQbEEp57uI0frm4OS6aoPnyV1GjkgHMz4iHB4yjmKA7tjqPNPHQ3OXK0ZnEYuIQ
-         ITNg==
-X-Gm-Message-State: AC+VfDyhljyBpmW3cgmP5pk/hx1R/FeICBx+J06Y/mTSy5V9qvNnKl6j
-        o+UxSCgOMkOt37icaNbetsuvFlJDg1s7ze5+FlofkQ==
-X-Google-Smtp-Source: ACHHUZ4LX+yRSVI7yvo12PRM41l3IarW3dWPdEr0h92rDbgJ5NXrsCdeqrSTA+yTbYljC8iCfDdOBi/6/fj61hdGI1w=
-X-Received: by 2002:a1c:7507:0:b0:3f1:9acf:8682 with SMTP id
- o7-20020a1c7507000000b003f19acf8682mr8574060wmc.17.1683631370963; Tue, 09 May
- 2023 04:22:50 -0700 (PDT)
+        bh=zDYwURL6aB5EYY0Cme2ttwuND/PMKWLi8Em3Bv+6xTA=;
+        b=IxGgBCFcQekPvKacVcNqnbGtzNbv99gAHh53ENifZbweZ8oXT0rFa66X/NGY5tInhE
+         t9o5m80Lrhz+e3L5EhfLaEMjKjjIbGdCJCa/oaYrehQqn+YZiaUFRhI3bwWLyDSEMuq9
+         In27uom0S+XyQCBnUC5/s37YAoWejZfbJy+Fl/HBPR7vAATdCLX0rHB+dLQL7Sd5h3lr
+         YESP4QkQ+3V5wvui6Em8Vu/aAXaeMFAJ7zGYaPI0LYXSq3Pg/8q24y12JxY7cirWtz3u
+         onOKUT3OK6YNPzXJ2JwA6HkjcCEGZ+cOw+OtH+QgEpXe7b4a5tp9IQufBtmKAehbgNY8
+         LQLg==
+X-Gm-Message-State: AC+VfDx+1hpMRNrnJ8i8gSgL875PjFJjjMtwDFbn/+bnVe2Gmg8OjUVl
+        j5Wmqvg5cUK7t09UDbjt+rbqQ3rwv2UyD61ARoo5kg==
+X-Google-Smtp-Source: ACHHUZ6xKbFhdzaGmoiDXeRtSJbtJJiXsPKcmktUy3Wxzk6Ifb3O+E7YLlxBL/iwLSCHIes7iX/slLRG29RsTZMq+JM=
+X-Received: by 2002:a0d:c604:0:b0:55a:3502:d2ca with SMTP id
+ i4-20020a0dc604000000b0055a3502d2camr13380602ywd.13.1683631500305; Tue, 09
+ May 2023 04:25:00 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230508220126.16241-1-jim2101024@gmail.com> <20230509074651.ixcqhhmazjngxur6@mraw.org>
-In-Reply-To: <20230509074651.ixcqhhmazjngxur6@mraw.org>
-From:   Jim Quinlan <james.quinlan@broadcom.com>
-Date:   Tue, 9 May 2023 07:22:39 -0400
-Message-ID: <CA+-6iNzbiYkdG1VBM48izJWEWu0SotqRmmkvwqt82q8y5kGjqw@mail.gmail.com>
-Subject: Re: [PATCH v5 0/5] PCI: brcmstb: Configure appropriate HW CLKREQ# mode
-To:     Cyril Brulebois <kibi@debian.org>
-Cc:     Jim Quinlan <jim2101024@gmail.com>, linux-pci@vger.kernel.org,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Phil Elwell <phil@raspberrypi.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
+References: <20230419133013.2563-1-quic_tdas@quicinc.com> <20230419133013.2563-5-quic_tdas@quicinc.com>
+ <af5435c3-b3a4-af46-444e-023d6ee2304a@linaro.org> <f9a64c13-a8e4-c84d-cf6d-86f4ddf6d288@quicinc.com>
+In-Reply-To: <f9a64c13-a8e4-c84d-cf6d-86f4ddf6d288@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Tue, 9 May 2023 14:24:49 +0300
+Message-ID: <CAA8EJpriwM0Z=q+huhfkHdAG2tGAnVr_BUFkGjJnORia4PfBeg@mail.gmail.com>
+Subject: Re: [PATCH 4/4] clk: qcom: Add GCC driver support for SDX75
+To:     Taniya Das <quic_tdas@quicinc.com>
+Cc:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="000000000000d1775005fb40f9f4"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        Richard Cochran <richardcochran@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        quic_skakitap@quicinc.com, Imran Shaik <quic_imrashai@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_rohiagar@quicinc.com, netdev@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---000000000000d1775005fb40f9f4
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On Tue, 9 May 2023 at 12:14, Taniya Das <quic_tdas@quicinc.com> wrote:
+>
+> Thanks Dmitry for the review.
+>
+> On 4/20/2023 3:40 PM, Dmitry Baryshkov wrote:
+> >> +static const struct clk_parent_data gcc_parent_data_5[] = {
+> >> +    { .fw_name = "emac0_sgmiiphy_rclk" },
+> >
+> > So, this looks like a mixture of fw_name and index clocks. Please
+> > migrate all of fw_names to the .index usage.
+> >
+>
+> I will take care of it to move to index, but does it not bind us to use
+> the right index always from DT.
+>
+> The current approach I was thinking to bind the XO clock to 0th index,
+> but we cannot gurantee these external clocks would be placed at the
+> right index.
 
-On Tue, May 9, 2023 at 3:47=E2=80=AFAM Cyril Brulebois <kibi@debian.org> wr=
-ote:
->
-> Hi Jim,
->
-> Jim Quinlan <jim2101024@gmail.com> (2023-05-08):
-> > v5 -- Remove DT property "brcm,completion-timeout-us" from
-> >       "DT bindings" commit.  Although this error may be reported
-> >       as a completion timeout, its cause was traced to an
-> >       internal bus timeout which may occur even when there is
-> >       no PCIe access being processed.  We set a timeout of four
-> >       seconds only if we are operating in "L1SS CLKREQ#" mode.
-> >    -- Correct CEM 2.0 reference provided by HW engineer,
-> >       s/3.2.5.2.5/3.2.5.2.2/ (Bjorn)
-> >    -- Add newline to dev_info() string (Stefan)
-> >    -- Change variable rval to unsigned (Stefan)
-> >    -- s/implementaion/implementation/ (Bjorn)
-> >    -- s/superpowersave/powersupersave/ (Bjorn)
-> >    -- Slightly modify message on "PERST#" commit.
-> >    -- Rebase to torvalds master
->
-> Same results as with v4: looks good to me!
->
-> Using an official CM4 IO Board, I've successfully tested the same 9
-> setups as before, combining each:
->  - CM4 Lite Rev 1.0
->  - CM4 8/32 Rev 1.0
->  - CM4 4/32 Rev 1.1
->
-> with each off-the-shelf PCIe/USB adapter at my disposal:
->  - SupaHub PCE6U1C-R02, VER 006
->  - SupaHub PCE6U1C-R02, VER 006S
->  - Waveshare based on VIA VL805/806
->
-> Each system boots successfully, exposes the Kingston memory stick
-> plugged onto the PCIe/USB adapter, and happily reads data from it.
->
-> Note: I only tested each CM4 with the upgraded EEPROM (2023-01-11),
-> and without tweaking the DTB (i.e. without adding brcm,enable-l1ss).
->
->
-> Tested-By: Cyril Brulebois <cyril@debamax.com>
+Please define all parent clocks as <0> inside the DT. This way you
+ensure ordering of the external clocks. Replace <0> with proper clock
+references as devices are added to DT.
 
-Thanks a lot for doing this Cyril!
 >
+> >> +    { .index = DT_BI_TCXO },
+> >> +};
+> >> +
+> >> +static const struct parent_map gcc_parent_map_6[] = {
+> >> +    { P_EMAC0_SGMIIPHY_TCLK, 0 },
+> >> +    { P_BI_TCXO, 2 },
+> >> +};
+> >> +
+> >> +static const struct clk_parent_data gcc_parent_data_6[] = {
+> >> +    { .fw_name = "emac0_sgmiiphy_tclk" },
+> >> +    { .index = DT_BI_TCXO },
+> >> +};
+> >> +
+> >> +static const struct parent_map gcc_parent_map_7[] = {
+> >> +    { P_EMAC0_SGMIIPHY_MAC_RCLK, 0 },
+> >> +    { P_BI_TCXO, 2 },
+> >> +};
+> >> +
+> >> +static const struct clk_parent_data gcc_parent_data_7[] = {
+> >> +    { .fw_name = "emac0_sgmiiphy_mac_rclk" },
+> >> +    { .index = DT_BI_TCXO },
+> >> +};
+> >> +
+> >> +static const struct parent_map gcc_parent_map_8[] = {
+> >> +    { P_EMAC0_SGMIIPHY_MAC_TCLK, 0 },
+> >> +    { P_BI_TCXO, 2 },
+> >> +};
+> >> +
+> >> +static const struct clk_parent_data gcc_parent_data_8[] = {
+> >> +    { .fw_name = "emac0_sgmiiphy_mac_tclk" },
+> >> +    { .index = DT_BI_TCXO },
+> >> +};
+> >> +
+> >> +static const struct parent_map gcc_parent_map_9[] = {
+> >> +    { P_EMAC1_SGMIIPHY_RCLK, 0 },
+> >> +    { P_BI_TCXO, 2 },
+> >> +};
+> >> +
+> >> +static const struct clk_parent_data gcc_parent_data_9[] = {
+> >> +    { .fw_name = "emac1_sgmiiphy_rclk" },
+> >> +    { .index = DT_BI_TCXO },
+> >> +};
+> >> +
+> >> +static const struct parent_map gcc_parent_map_10[] = {
+> >> +    { P_EMAC1_SGMIIPHY_TCLK, 0 },
+> >> +    { P_BI_TCXO, 2 },
+> >> +};
+> >> +
+> >> +static const struct clk_parent_data gcc_parent_data_10[] = {
+> >> +    { .fw_name = "emac1_sgmiiphy_tclk" },
+> >> +    { .index = DT_BI_TCXO },
+> >> +};
+> >> +
+> >> +static const struct parent_map gcc_parent_map_11[] = {
+> >> +    { P_EMAC1_SGMIIPHY_MAC_RCLK, 0 },
+> >> +    { P_BI_TCXO, 2 },
+> >> +};
+> >> +
+> >> +static const struct clk_parent_data gcc_parent_data_11[] = {
+> >> +    { .fw_name = "emac1_sgmiiphy_mac_rclk" },
+> >> +    { .index = DT_BI_TCXO },
+> >> +};
+> >> +
+> >> +static const struct parent_map gcc_parent_map_12[] = {
+> >> +    { P_EMAC1_SGMIIPHY_MAC_TCLK, 0 },
+> >> +    { P_BI_TCXO, 2 },
+> >> +};
+> >> +
+> >> +static const struct clk_parent_data gcc_parent_data_12[] = {
+> >> +    { .fw_name = "emac1_sgmiiphy_mac_tclk" },
+> >> +    { .index = DT_BI_TCXO },
+> >> +};
+> >> +
+> >> +static const struct parent_map gcc_parent_map_13[] = {
+> >> +    { P_PCIE_1_PIPE_CLK, 0 },
+> >> +    { P_BI_TCXO, 2 },
+> >> +};
+> >> +
+> >> +static const struct clk_parent_data gcc_parent_data_13[] = {
+> >> +    { .fw_name = "pcie_1_pipe_clk" },
+> >> +    { .index = DT_BI_TCXO },
+> >> +};
+> >> +
+> >> +static const struct parent_map gcc_parent_map_14[] = {
+> >> +    { P_PCIE_2_PIPE_CLK, 0 },
+> >> +    { P_BI_TCXO, 2 },
+> >> +};
+> >> +
+> >> +static const struct clk_parent_data gcc_parent_data_14[] = {
+> >> +    { .fw_name = "pcie_2_pipe_clk" },
+> >> +    { .index = DT_BI_TCXO },
+> >> +};
+> >> +
+> >> +static const struct parent_map gcc_parent_map_15[] = {
+> >> +    { P_PCIE20_PHY_AUX_CLK, 0 },
+> >> +    { P_BI_TCXO, 2 },
+> >> +};
+> >> +
+> >> +static const struct clk_parent_data gcc_parent_data_15[] = {
+> >> +    { .fw_name = "pcie20_phy_aux_clk" },
+> >> +    { .index = DT_BI_TCXO },
+> >> +};
+> >> +
+> >> +static const struct parent_map gcc_parent_map_16[] = {
+> >> +    { P_PCIE_PIPE_CLK, 0 },
+> >> +    { P_BI_TCXO, 2 },
+> >> +};
+> >> +
+> >> +static const struct clk_parent_data gcc_parent_data_16[] = {
+> >> +    { .fw_name = "pcie_pipe_clk" },
+> >> +    { .index = DT_BI_TCXO },
+> >> +};
+> >> +
+> >> +static const struct parent_map gcc_parent_map_17[] = {
+> >> +    { P_BI_TCXO, 0 },
+> >> +    { P_GPLL0_OUT_MAIN, 1 },
+> >> +    { P_GPLL6_OUT_MAIN, 2 },
+> >> +    { P_GPLL0_OUT_EVEN, 6 },
+> >> +};
+> >> +
+> >> +static const struct clk_parent_data gcc_parent_data_17[] = {
+> >> +    { .index = DT_BI_TCXO },
+> >> +    { .hw = &gpll0.clkr.hw },
+> >> +    { .hw = &gpll6.clkr.hw },
+> >> +    { .hw = &gpll0_out_even.clkr.hw },
+> >> +};
+> >> +
+> >> +static const struct parent_map gcc_parent_map_18[] = {
+> >> +    { P_BI_TCXO, 0 },
+> >> +    { P_GPLL0_OUT_MAIN, 1 },
+> >> +    { P_GPLL8_OUT_MAIN, 2 },
+> >> +    { P_GPLL0_OUT_EVEN, 6 },
+> >> +};
+> >> +
+> >> +static const struct clk_parent_data gcc_parent_data_18[] = {
+> >> +    { .index = DT_BI_TCXO },
+> >> +    { .hw = &gpll0.clkr.hw },
+> >> +    { .hw = &gpll8.clkr.hw },
+> >> +    { .hw = &gpll0_out_even.clkr.hw },
+> >> +};
+> >> +
+> >> +static const struct parent_map gcc_parent_map_19[] = {
+> >> +    { P_USB3_PHY_WRAPPER_GCC_USB30_PIPE_CLK, 0 },
+> >> +    { P_BI_TCXO, 2 },
+> >> +};
+> >> +
+> >> +static const struct clk_parent_data gcc_parent_data_19[] = {
+> >> +    { .fw_name = "usb3_phy_wrapper_gcc_usb30_pipe_clk" },
+> >> +    { .index = DT_BI_TCXO },
+> >> +};
+> >> +
+> >> +static struct clk_regmap_mux gcc_emac0_cc_sgmiiphy_rx_clk_src = {
+> >> +    .reg = 0x71060,
+> >> +    .shift = 0,
+> >> +    .width = 2,
+> >> +    .parent_map = gcc_parent_map_5,
+> >> +    .clkr = {
+> >> +        .hw.init = &(const struct clk_init_data) {
+> >> +            .name = "gcc_emac0_cc_sgmiiphy_rx_clk_src",
+> >> +            .parent_data = gcc_parent_data_5,
+> >> +            .num_parents = ARRAY_SIZE(gcc_parent_data_5),
+> >> +            .ops = &clk_regmap_mux_closest_ops,
+> >> +        },
+> >> +    },
+> >> +};
+> >> +
+> >> +static struct clk_regmap_mux gcc_emac0_cc_sgmiiphy_tx_clk_src = {
+> >> +    .reg = 0x71058,
+> >> +    .shift = 0,
+> >> +    .width = 2,
+> >> +    .parent_map = gcc_parent_map_6,
+> >> +    .clkr = {
+> >> +        .hw.init = &(const struct clk_init_data) {
+> >> +            .name = "gcc_emac0_cc_sgmiiphy_tx_clk_src",
+> >> +            .parent_data = gcc_parent_data_6,
+> >> +            .num_parents = ARRAY_SIZE(gcc_parent_data_6),
+> >> +            .ops = &clk_regmap_mux_closest_ops,
+> >> +        },
+> >> +    },
+> >> +};
+> >> +
+> >> +static struct clk_regmap_mux gcc_emac0_sgmiiphy_mac_rclk_src = {
+> >> +    .reg = 0x71098,
+> >> +    .shift = 0,
+> >> +    .width = 2,
+> >> +    .parent_map = gcc_parent_map_7,
+> >> +    .clkr = {
+> >> +        .hw.init = &(const struct clk_init_data) {
+> >> +            .name = "gcc_emac0_sgmiiphy_mac_rclk_src",
+> >> +            .parent_data = gcc_parent_data_7,
+> >> +            .num_parents = ARRAY_SIZE(gcc_parent_data_7),
+> >> +            .ops = &clk_regmap_mux_closest_ops,
+> >> +        },
+> >> +    },
+> >> +};
+> >> +
+> >> +static struct clk_regmap_mux gcc_emac0_sgmiiphy_mac_tclk_src = {
+> >> +    .reg = 0x71094,
+> >> +    .shift = 0,
+> >> +    .width = 2,
+> >> +    .parent_map = gcc_parent_map_8,
+> >> +    .clkr = {
+> >> +        .hw.init = &(const struct clk_init_data) {
+> >> +            .name = "gcc_emac0_sgmiiphy_mac_tclk_src",
+> >> +            .parent_data = gcc_parent_data_8,
+> >> +            .num_parents = ARRAY_SIZE(gcc_parent_data_8),
+> >> +            .ops = &clk_regmap_mux_closest_ops,
+> >> +        },
+> >> +    },
+> >> +};
+> >> +
+> >> +static struct clk_regmap_mux gcc_emac1_cc_sgmiiphy_rx_clk_src = {
+> >> +    .reg = 0x72060,
+> >> +    .shift = 0,
+> >> +    .width = 2,
+> >> +    .parent_map = gcc_parent_map_9,
+> >> +    .clkr = {
+> >> +        .hw.init = &(const struct clk_init_data) {
+> >> +            .name = "gcc_emac1_cc_sgmiiphy_rx_clk_src",
+> >> +            .parent_data = gcc_parent_data_9,
+> >> +            .num_parents = ARRAY_SIZE(gcc_parent_data_9),
+> >> +            .ops = &clk_regmap_mux_closest_ops,
+> >> +        },
+> >> +    },
+> >> +};
+> >> +
+> >> +static struct clk_regmap_mux gcc_emac1_cc_sgmiiphy_tx_clk_src = {
+> >> +    .reg = 0x72058,
+> >> +    .shift = 0,
+> >> +    .width = 2,
+> >> +    .parent_map = gcc_parent_map_10,
+> >> +    .clkr = {
+> >> +        .hw.init = &(const struct clk_init_data) {
+> >> +            .name = "gcc_emac1_cc_sgmiiphy_tx_clk_src",
+> >> +            .parent_data = gcc_parent_data_10,
+> >> +            .num_parents = ARRAY_SIZE(gcc_parent_data_10),
+> >> +            .ops = &clk_regmap_mux_closest_ops,
+> >> +        },
+> >> +    },
+> >> +};
+> >> +
+> >> +static struct clk_regmap_mux gcc_emac1_sgmiiphy_mac_rclk_src = {
+> >> +    .reg = 0x72098,
+> >> +    .shift = 0,
+> >> +    .width = 2,
+> >> +    .parent_map = gcc_parent_map_11,
+> >> +    .clkr = {
+> >> +        .hw.init = &(const struct clk_init_data) {
+> >> +            .name = "gcc_emac1_sgmiiphy_mac_rclk_src",
+> >> +            .parent_data = gcc_parent_data_11,
+> >> +            .num_parents = ARRAY_SIZE(gcc_parent_data_11),
+> >> +            .ops = &clk_regmap_mux_closest_ops,
+> >> +        },
+> >> +    },
+> >> +};
+> >> +
+> >> +static struct clk_regmap_mux gcc_emac1_sgmiiphy_mac_tclk_src = {
+> >> +    .reg = 0x72094,
+> >> +    .shift = 0,
+> >> +    .width = 2,
+> >> +    .parent_map = gcc_parent_map_12,
+> >> +    .clkr = {
+> >> +        .hw.init = &(const struct clk_init_data) {
+> >> +            .name = "gcc_emac1_sgmiiphy_mac_tclk_src",
+> >> +            .parent_data = gcc_parent_data_12,
+> >> +            .num_parents = ARRAY_SIZE(gcc_parent_data_12),
+> >> +            .ops = &clk_regmap_mux_closest_ops,
+> >> +        },
+> >> +    },
+> >> +};
+> >> +
+> >> +static struct clk_regmap_mux gcc_pcie_1_pipe_clk_src = {
+> >> +    .reg = 0x67084,
+> >> +    .shift = 0,
+> >> +    .width = 2,
+> >> +    .parent_map = gcc_parent_map_13,
+> >> +    .clkr = {
+> >> +        .hw.init = &(const struct clk_init_data) {
+> >> +            .name = "gcc_pcie_1_pipe_clk_src",
+> >> +            .parent_data = gcc_parent_data_13,
+> >> +            .num_parents = ARRAY_SIZE(gcc_parent_data_13),
+> >> +            .ops = &clk_regmap_mux_closest_ops,
+> >
+> > Are these clocks a clk_regmap_mux_closest_ops in reality
+> > clk_regmap_phy_mux_ops?
 >
-> Cheers,
-> --
-> Cyril Brulebois (kibi@debian.org)            <https://debamax.com/>
-> D-I release manager -- Release team member -- Freelance Consultant
+> clk_regmap_phy_mux_ops cannot be used here, as multi parent mux requires
+> the .get_parent ops to be supported.
 
---000000000000d1775005fb40f9f4
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
+If we strike out the tcxo (= disable from regmap_phy_mux POV), there
+is only a single parent.
 
-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
-mOAplh6h3nMZUZxBguxG3g2p3iD4EgibUYneEzqOQafIQB/naf2uetKb8y9jKgWJxq2Y4y8Jqg2u
-uVIO1AyOJjWwqdgN+QhuIlat+qZd03P48Gim9ZPEMDUCAwEAAaOCAdswggHXMA4GA1UdDwEB/wQE
-AwIFoDCBowYIKwYBBQUHAQEEgZYwgZMwTgYIKwYBBQUHMAKGQmh0dHA6Ly9zZWN1cmUuZ2xvYmFs
-c2lnbi5jb20vY2FjZXJ0L2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNydDBBBggrBgEFBQcw
-AYY1aHR0cDovL29jc3AuZ2xvYmFsc2lnbi5jb20vZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAw
-TQYDVR0gBEYwRDBCBgorBgEEAaAyASgKMDQwMgYIKwYBBQUHAgEWJmh0dHBzOi8vd3d3Lmdsb2Jh
-bHNpZ24uY29tL3JlcG9zaXRvcnkvMAkGA1UdEwQCMAAwSQYDVR0fBEIwQDA+oDygOoY4aHR0cDov
-L2NybC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAyMC5jcmwwJQYDVR0R
-BB4wHIEaamFtZXMucXVpbmxhbkBicm9hZGNvbS5jb20wEwYDVR0lBAwwCgYIKwYBBQUHAwQwHwYD
-VR0jBBgwFoAUljPR5lgXWzR1ioFWZNW+SN6hj88wHQYDVR0OBBYEFGx/E27aeGBP2eJktrILxlhK
-z8f6MA0GCSqGSIb3DQEBCwUAA4IBAQBdQQukiELsPfse49X4QNy/UN43dPUw0I1asiQ8wye3nAuD
-b3GFmf3SZKlgxBTdWJoaNmmUFW2H3HWOoQBnTeedLtV9M2Tb9vOKMncQD1f9hvWZR6LnZpjBIlKe
-+R+v6CLF07qYmBI6olvOY/Rsv9QpW9W8qZYk+2RkWHz/fR5N5YldKlJHP0NDT4Wjc5fEzV+mZC8A
-AlT80qiuCVv+IQP08ovEVSLPhUp8i1pwsHT9atbWOfXQjbq1B/ditFIbPzwmwJPuGUc7n7vpmtxB
-75sSFMj27j4JXl5W9vORgHR2YzuPBzfzDJU1ul0DIofSWVF6E1dx4tZohRED1Yl/T/ZGMYICbTCC
-AmkCAQEwazBbMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UE
-AxMoR2xvYmFsU2lnbiBHQ0MgUjMgUGVyc29uYWxTaWduIDIgQ0EgMjAyMAIMSO43VW7D5NP1X/KD
-MA0GCWCGSAFlAwQCAQUAoIHUMC8GCSqGSIb3DQEJBDEiBCC6T/jj20ldp9JnksBHwo3opuO7sF2c
-cZZMmpiefyuWHTAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yMzA1
-MDkxMTIyNTFaMGkGCSqGSIb3DQEJDzFcMFowCwYJYIZIAWUDBAEqMAsGCWCGSAFlAwQBFjALBglg
-hkgBZQMEAQIwCgYIKoZIhvcNAwcwCwYJKoZIhvcNAQEKMAsGCSqGSIb3DQEBBzALBglghkgBZQME
-AgEwDQYJKoZIhvcNAQEBBQAEggEAThwmfVOn1Dxwf/rvgZYecJ53AFnONJRl+TvAR/RTQraiIAl1
-GFQ8b11UCx8yt3y7zgjem8MXsfhX8sX98zb5fU6lZqWxRcv/30iiMB8U/2er9xFcznWeDg0/wZOW
-fdR0lsQS1tfRm+Pnn5ZxhZ4+7M57CnlcvvjwZtKLIeiRD23FVk7VyqKowSK8H07NvzJaBhO1DxnZ
-sht4/CPWmjoNOAY5AT/zrVzpt/ER/VRzaA5DKAFzNwbIGPmFXH/a5RCNMJPR3yif2j5jKgURveSz
-k+DuyXOzXnky4nI/2LAWWHFtbQkJdJQzqEfvg/IFrcNkjjKPSlYuVe4cmfrVAKO5Dg==
---000000000000d1775005fb40f9f4--
+-- 
+With best wishes
+Dmitry
