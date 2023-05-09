@@ -2,266 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 049C06FBF40
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 08:32:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C01556FBF4B
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 08:35:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234885AbjEIGcO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 02:32:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40288 "EHLO
+        id S234781AbjEIGfz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 02:35:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234633AbjEIGcN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 02:32:13 -0400
-Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01BF865A4
-        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 23:32:11 -0700 (PDT)
-Received: by mail-pf1-x429.google.com with SMTP id d2e1a72fcca58-643557840e4so5909172b3a.2
-        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 23:32:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683613931; x=1686205931;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=NVlG1bw+1j4LbTAdqRY6la7nACuyIs7ic3d+S0maLdg=;
-        b=l7+WVNEonbYGyuPQDe/2dnITBG4anKFJRqf64Umq3x0dxscO0wKEVtuzRsHGSWJuGq
-         xPhKmFHHICfUBkwhFnHJsIeU7PlQ6TrlDbea3vDI4/g9SZQfhkwUhcjStemQZSaK/0tW
-         v1VmVo+yv50Fhhugioc1tC4FcoMd74sr6GVaE0987oIqY3k6jPK81jHG3lHSslLgLG+i
-         wQKttgHVW2iekTPzdBPSn/0hc35lZEiRked0B68F/FNV0vYilgvruzQ1+dLH+yrCQ05e
-         N2x5KrXcY/ISfaYI7GiDvrvEl9ukyKvRQT32Cgbfi1iZ2DQEpc8h9TN+YMu8jQYIgeEZ
-         wAoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683613931; x=1686205931;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NVlG1bw+1j4LbTAdqRY6la7nACuyIs7ic3d+S0maLdg=;
-        b=IEwaOsL9LPQL9GYCCIovWM51aGJXVN2D4nWhz9RLQF1PrZcSGdsKxGE/ikIZja9plL
-         p6HgigVywDrIdXiQPAAnugXMJoU9FO7hznW6zP8KminslhOxRx16Xapxoc/AAASwa8zb
-         7rXOUcK3o5CGxbO+ek6A4UKNXAaUq0tVDPAdC3nGMx/r4JKBXbefu5ABPgg/luImG4aG
-         WYIuD91qeKDNQ0/d3C1zG05PuzrLWsF7TTQrmd1qUXALsjpLnDwD0+WgRcVjRkFkq842
-         GLG9pM+ERBaD10IiQ+zM4T60qMTyJQMe8AVJ+OWiE5owfsADj93rKSk4zcbQj9TqFrew
-         s6iQ==
-X-Gm-Message-State: AC+VfDz6RgEUB5afYnRXIwHHXy7cnTpTjmfgKqhy4us6F9fr4vm+AUmA
-        xvP8wjon4r/DZpPRdszNpgyh
-X-Google-Smtp-Source: ACHHUZ7cHBR3qQ4g8ZtG7OyT0so7AZGcqCSAkYCTmhwEKpvWlJ/wf91fb7UXkMd7EQGX9nOLDJy6hw==
-X-Received: by 2002:a05:6a00:2442:b0:63b:854c:e0f6 with SMTP id d2-20020a056a00244200b0063b854ce0f6mr17159451pfj.21.1683613931265;
-        Mon, 08 May 2023 23:32:11 -0700 (PDT)
-Received: from thinkpad ([59.92.97.45])
-        by smtp.gmail.com with ESMTPSA id a17-20020aa780d1000000b006372791d708sm974123pfn.104.2023.05.08.23.32.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 May 2023 23:32:10 -0700 (PDT)
-Date:   Tue, 9 May 2023 12:02:05 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S234665AbjEIGfx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 02:35:53 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2896F9012;
+        Mon,  8 May 2023 23:35:52 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9549062FC2;
+        Tue,  9 May 2023 06:35:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD7EDC433D2;
+        Tue,  9 May 2023 06:35:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1683614151;
+        bh=zpOHSdqVCQBn2YAqILJfgbw4dfnb2g8xfAWRoqWAjbE=;
+        h=Date:From:To:CC:Subject:In-Reply-To:References:From;
+        b=JT/X4jPsrFCl2gJQ7d8jDxK0p5UfTg/oyy1MHnUzjjAgEVn9WHYrBBIntVUVkH8Wu
+         59H2HnO1TDxDNSiAmlaL99d/yrr2tAhm8w3QIVUMHSPxsPuLYyiM9UFx/A0djr2FLc
+         jOKADTqF05GzBoJ/XBhO1hWCzhcT2K2+jgRpucDp56FCv/tyLCoq2NDqDxq3MBLKUb
+         WviSYUPRcfq/DRFas9g//bfcOkCSlUZqye0mkzbXkVO0omebzPToapGKZqw8DRNT6t
+         ganRqlzDoi0SzRy5s7iMeEjMlRSY5j6rv8p8sIqyDDH1wwyHDJgxdrVeR+YWiOMpKn
+         wQtUctAEqNQGQ==
+Date:   Tue, 09 May 2023 07:35:46 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Xingyu Wu <xingyu.wu@starfivetech.com>
+CC:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sc8280xp: Add SDC2 and enable on
- CRD
-Message-ID: <20230509063205.GB4823@thinkpad>
-References: <20230509030136.1524860-1-quic_bjorande@quicinc.com>
- <20230509030136.1524860-2-quic_bjorande@quicinc.com>
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        William Qiu <william.qiu@starfivetech.com>,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v3_5/7=5D_dt-bindings=3A_soc=3A?= =?US-ASCII?Q?_starfive=3A_Add_StarFive_syscon_module?=
+User-Agent: K-9 Mail for Android
+In-Reply-To: <014dd7b2-9623-805c-97a6-5b3c5f120b79@starfivetech.com>
+References: <20230414024157.53203-1-xingyu.wu@starfivetech.com> <20230414024157.53203-6-xingyu.wu@starfivetech.com> <20230424-footsie-compost-d6624c8ef4e8@spud> <20230508-margarita-fondling-c9b970ad73a9@spud> <014dd7b2-9623-805c-97a6-5b3c5f120b79@starfivetech.com>
+Message-ID: <7527C059-95A2-49EA-AFE0-B089D3651A6B@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230509030136.1524860-2-quic_bjorande@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 08, 2023 at 08:01:36PM -0700, Bjorn Andersson wrote:
-> The CRD has Micro SD slot, introduce the necessary DeviceTree nodes for
-> enabling this.
-> 
-> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sc8280xp-crd.dts | 80 +++++++++++++++++++++++
->  arch/arm64/boot/dts/qcom/sc8280xp.dtsi    | 39 +++++++++++
->  2 files changed, 119 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-> index 5b25d54b9591..f83411e0e7f8 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-> @@ -308,6 +308,13 @@ vreg_l1c: ldo1 {
->  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->  		};
->  
-> +		vreg_l6c: ldo6 {
-> +			regulator-name = "vreg_l6c";
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <2960000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
->  		vreg_l7c: ldo7 {
->  			regulator-name = "vreg_l7c";
->  			regulator-min-microvolt = <2504000>;
-> @@ -318,6 +325,13 @@ vreg_l7c: ldo7 {
->  						   RPMH_REGULATOR_MODE_HPM>;
->  		};
->  
-> +		vreg_l9c: ldo9 {
-> +			regulator-name = "vreg_l9c";
-> +			regulator-min-microvolt = <2960000>;
-> +			regulator-max-microvolt = <2960000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
->  		vreg_l13c: ldo13 {
->  			regulator-name = "vreg_l13c";
->  			regulator-min-microvolt = <3072000>;
-> @@ -600,6 +614,18 @@ &remoteproc_nsp0 {
->  	status = "okay";
->  };
->  
-> +&sdc2 {
-> +	cd-gpios = <&tlmm 131 GPIO_ACTIVE_LOW>;
-> +	pinctrl-names = "default", "sleep";
-> +	pinctrl-0 = <&sdc2_default_state>;
-> +	pinctrl-1 = <&sdc2_sleep_state>;
-> +	vmmc-supply = <&vreg_l9c>;
-> +	vqmmc-supply = <&vreg_l6c>;
-> +	no-sdio;
-> +	no-mmc;
-> +	status = "okay";
-> +};
-> +
->  &uart17 {
->  	compatible = "qcom,geni-debug-uart";
->  
-> @@ -842,6 +868,60 @@ wake-n-pins {
->  		};
->  	};
->  
-> +	sdc2_default_state: sdc2-default-state {
-> +		clk-pins {
-> +			pins = "sdc2_clk";
-> +			drive-strength = <16>;
-> +			bias-disable;
-> +		};
-> +
-> +		cmd-pins {
-> +			pins = "sdc2_cmd";
-> +			drive-strength = <16>;
-> +			bias-pull-up;
-> +		};
-> +
-> +		data-pins {
-> +			pins = "sdc2_data";
-> +			drive-strength = <16>;
-> +			bias-pull-up;
-> +		};
-> +
-> +		card-detect-pins {
-> +			pins = "gpio131";
-> +			function = "gpio";
-> +			drive-strength = <2>;
-> +			bias-disable;
 
-Since the card detect is active low, shouldn't the pin be pulled high to avoid
-floating? Or is there an external pull up available on the board?
 
-- Mani
+On 9 May 2023 07:23:18 IST, Xingyu Wu <xingyu=2Ewu@starfivetech=2Ecom> wro=
+te:
+>On 2023/5/9 3:24, Conor Dooley wrote:
+>> On Mon, Apr 24, 2023 at 06:15:47PM +0100, Conor Dooley wrote:
+>>> On Fri, Apr 14, 2023 at 10:41:55AM +0800, Xingyu Wu wrote:
+>>> > From: William Qiu <william=2Eqiu@starfivetech=2Ecom>
+>>> >=20
+>>> > Add documentation to describe StarFive System Controller Registers=
+=2E
+>>> >=20
+>>> > Signed-off-by: William Qiu <william=2Eqiu@starfivetech=2Ecom>
+>>> > ---
+>>> >  =2E=2E=2E/soc/starfive/starfive,jh7110-syscon=2Eyaml  | 58 ++++++++=
++++++++++++
+>>> >  MAINTAINERS                                   |  6 ++
+>>> >  2 files changed, 64 insertions(+)
+>>> >  create mode 100644 Documentation/devicetree/bindings/soc/starfive/s=
+tarfive,jh7110-syscon=2Eyaml
+>>> >=20
+>>> > diff --git a/Documentation/devicetree/bindings/soc/starfive/starfive=
+,jh7110-syscon=2Eyaml b/Documentation/devicetree/bindings/soc/starfive/star=
+five,jh7110-syscon=2Eyaml
+>>> > new file mode 100644
+>>> > index 000000000000=2E=2Ede086e74a229
+>>> > --- /dev/null
+>>> > +++ b/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110=
+-syscon=2Eyaml
+>>> > @@ -0,0 +1,58 @@
+>>> > +# SPDX-License-Identifier: (GPL-2=2E0 OR BSD-2-Clause)
+>>> > +%YAML 1=2E2
+>>> > +---
+>>> > +$id: http://devicetree=2Eorg/schemas/soc/starfive/starfive,jh7110-s=
+yscon=2Eyaml#
+>>> > +$schema: http://devicetree=2Eorg/meta-schemas/core=2Eyaml#
+>>> > +
+>>> > +title: StarFive JH7110 SoC system controller
+>>> > +
+>>> > +maintainers:
+>>> > +  - William Qiu <william=2Eqiu@starfivetech=2Ecom>
+>>> > +
+>>> > +description: |
+>>> > +  The StarFive JH7110 SoC system controller provides register infor=
+mation such
+>>> > +  as offset, mask and shift to configure related modules such as MM=
+C and PCIe=2E
+>>> > +
+>>> > +properties:
+>>> > +  compatible:
+>>> > +    oneOf:
+>>> > +      - items:
+>>> > +          - enum:
+>>> > +              - starfive,jh7110-aon-syscon
+>>> > +              - starfive,jh7110-sys-syscon
+>>> > +          - const: syscon
+>>> > +          - const: simple-mfd
+>>> > +      - items:
+>>> > +          - const: starfive,jh7110-stg-syscon
+>>> > +          - const: syscon
+>>> > +
+>>> > +  reg:
+>>> > +    maxItems: 1
+>>> > +
+>>> > +  clock-controller:
+>>> > +    $ref: /schemas/clock/starfive,jh7110-pll=2Eyaml#
+>>> > +    type: object
+>>> > +
+>>> > +  power-controller:
+>>> > +    $ref: /schemas/power/starfive,jh7110-pmu=2Eyaml#
+>>> > +    type: object
+>>>=20
+>>> My plan was to grab this patch after the merge window, but there's bee=
+n
+>>> some back and forth [1] about what exactly should be a power-controlle=
+r
+>>> here=2E Given the merge window is open & I know Emil wants to look at =
+the
+>>> various clock bits for the JH7110, I don't think there's a pressing ne=
+ed
+>>> for you to do anything here, but figured I'd at least mention how thin=
+gs
+>>> are going on this thread too=2E
+>>=20
+>> To follow up on this, it transpired in that thread that this node, not =
+a
+>> child node, should be the power controller=2E
+>>=20
+>> Up to you StarFive folk how you wish to resend, but I am fine with it
+>> being in this series, I shall just not pick up the soc driver patches
+>> until the resent binding is applied by Stephen=2E
+>>=20
+>
+>Thanks=2E I had discussed with changhuang=2Eliang about this=2E And I wil=
+l drop
+>the 'starfive,jh7110-aon-syscon' and 'power-controller' in next patchset=
+=2E
+>Changhuang will take these in his patchset=2E
 
-> +		};
-> +	};
-> +
-> +	sdc2_sleep_state: sdc2-sleep-state {
-> +		clk-pins {
-> +			pins = "sdc2_clk";
-> +			drive-strength = <2>;
-> +			bias-disable;
-> +		};
-> +
-> +		cmd-pins {
-> +			pins = "sdc2_cmd";
-> +			drive-strength = <2>;
-> +			bias-pull-up;
-> +		};
-> +
-> +		data-pins {
-> +			pins = "sdc2_data";
-> +			drive-strength = <2>;
-> +			bias-pull-up;
-> +		};
-> +
-> +		card-detect-pins {
-> +			pins = "gpio131";
-> +			function = "gpio";
-> +			drive-strength = <2>;
-> +			bias-disable;
-> +		};
-> +	};
-> +
->  	tpad_default: tpad-default-state {
->  		int-n-pins {
->  			pins = "gpio182";
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> index 8fa9fbfe5d00..21dfb48d923c 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> @@ -2815,6 +2815,45 @@ data-pins {
->  			};
->  		};
->  
-> +		sdc2: mmc@8804000 {
-> +			compatible = "qcom,sc8280xp-sdhci", "qcom,sdhci-msm-v5";
-> +			reg = <0 0x08804000 0 0x1000>;
-> +
-> +			interrupts = <GIC_SPI 207 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 223 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "hc_irq", "pwr_irq";
-> +
-> +			clocks = <&gcc GCC_SDCC2_AHB_CLK>,
-> +				 <&gcc GCC_SDCC2_APPS_CLK>,
-> +				 <&rpmhcc RPMH_CXO_CLK>;
-> +			clock-names = "iface", "core", "xo";
-> +			resets = <&gcc GCC_SDCC4_BCR>;
-> +			interconnects = <&aggre2_noc MASTER_SDCC_2 0 &mc_virt SLAVE_EBI1 0>,
-> +					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_SDCC_2 0>;
-> +			interconnect-names = "sdhc-ddr","cpu-sdhc";
-> +			iommus = <&apps_smmu 0x4e0 0x0>;
-> +			power-domains = <&rpmhpd SC8280XP_CX>;
-> +			operating-points-v2 = <&sdc2_opp_table>;
-> +			bus-width = <4>;
-> +			dma-coherent;
-> +
-> +			status = "disabled";
-> +
-> +			sdc2_opp_table: opp-table {
-> +				compatible = "operating-points-v2";
-> +
-> +				opp-100000000 {
-> +					opp-hz = /bits/ 64 <100000000>;
-> +					required-opps = <&rpmhpd_opp_low_svs>;
-> +				};
-> +
-> +				opp-202000000 {
-> +					opp-hz = /bits/ 64 <202000000>;
-> +					required-opps = <&rpmhpd_opp_svs_l1>;
-> +				};
-> +			};
-> +		};
-> +
->  		usb_0_qmpphy: phy@88eb000 {
->  			compatible = "qcom,sc8280xp-qmp-usb43dp-phy";
->  			reg = <0 0x088eb000 0 0x4000>;
-> -- 
-> 2.25.1
-> 
+Won't that result in broken bindings, since there's a ref to the pll bindi=
+ng?
+Keeping it in the same series (i=2Ee=2E this one) makes
+the most sense to me=2E
 
--- 
-மணிவண்ணன் சதாசிவம்
+Cheers,
+Conor=2E
+
+>
+>Best regards,
+>Xingyu Wu
+>
