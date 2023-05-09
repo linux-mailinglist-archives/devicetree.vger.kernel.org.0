@@ -2,130 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03F4E6FC7CA
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 15:23:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A0E3F6FC80C
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 15:37:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229550AbjEINXq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 09:23:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49854 "EHLO
+        id S235557AbjEINgx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 09:36:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58042 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229477AbjEINXp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 09:23:45 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCF373C01;
-        Tue,  9 May 2023 06:23:43 -0700 (PDT)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 349Cc06g023990;
-        Tue, 9 May 2023 13:23:39 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=Ztn5cr2+ZzyLZNYlN4HERQHsgAwqhpff8Mu0TMY37L8=;
- b=F7yVdNngGGU/CXbalbwgLhlQEwRt+TdhgqARpq9VknRt30uts4zD3QXJgBI56wFXaGxa
- ygIVkYCstrCZFffzpSG3INe6+/LtMyaFQ1YgwFK/pihRBuQPKxDJ+JqtQQ2VQVjqWml5
- 7jJQStJeXSKnSMpd/deWhjhSEETLpLFU2z9ivmAgo+T7By0innnKhh67rF09Pj+MJWbx
- fWmFz/Zbuxlg3T7YX+fx7crZgn92A8h9F7EHsTvyrQkGad/xZsu/0sd4TfIwy98rttXL
- hpcBqAQ3F1CdurL8KkNp2BwyEHyd0ba5XXSOq07Y41G60v0dJDsRFvlJSct1IdDCRRfz xQ== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qf77kstph-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 09 May 2023 13:23:39 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 349DNcNc025061
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 9 May 2023 13:23:38 GMT
-Received: from [10.242.242.190] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Tue, 9 May 2023
- 06:23:29 -0700
-Message-ID: <1aa64a2f-fa57-2f06-b993-2e158512361c@quicinc.com>
-Date:   Tue, 9 May 2023 18:53:26 +0530
+        with ESMTP id S235567AbjEINgl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 09:36:41 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC8E84682
+        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 06:36:28 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-50bc070c557so11443459a12.0
+        for <devicetree@vger.kernel.org>; Tue, 09 May 2023 06:36:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683639387; x=1686231387;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0Evw3dga/gibF8fahaEbss4hLAv5P7a4VbeIJ10I46g=;
+        b=Q0Qoy1vBCCsWx6o+vkPqODTIV56XOnrE59tHx9WVlys/i5+sT4W1km3Ntl+Kbc0KmO
+         3yazx3SSkEfjWO2aGT2lOtsFovH3xeEtahsLF243M9tMu8bwKP3cl0HyjS5mFMUPvtB3
+         RQHsv2+2dm8Kg8tPrcFZMEBSsgxvhG05dv8HLhuYNKWsjFY3PQyk2gsv3xWZt5YBrfBF
+         QaXj73+x9Vj8TSRXl6DfmiUPz9hwY0y/zJU/ow1cFv2MCTEf+lydErepJdTcK77l69dB
+         OloaDwWsYPp3pndPk4hFCW2sC3rwBEkALgH6uaXfgsRTD7vtW3pzZa4XEr8BLnBJQbOE
+         ywDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683639387; x=1686231387;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0Evw3dga/gibF8fahaEbss4hLAv5P7a4VbeIJ10I46g=;
+        b=EMLLhanyQ/LTUPIFsV9NrdMWnX3p0PkPo0lvFK8g5wo+X6h8Xcn5TUWuZ1jdeHr0WV
+         +U6K3/WSMiCTH7lbKSgG9QKldolNqpGlW33nOElJUj1KL+HeF6cjfTuHbZ8quG3y21e3
+         OwLK6aedH+vmF47HkQwKK7Gnvk6NhcAOwjpIWM0gVCBtP1OCuIcJCpqlLNP8skTxS2N0
+         lzhDeziL+3/v/VGuyc8OeHVTDsG45dbiJWyVFQIcI+i/MQXq6qMqtyLx8ldqYenvBrhi
+         XdcFemVnJ7p1E6UboTRV/x9eQ8PaWK/khfjDjSKBDEzYL6t1L95NGtAmnq1rqIT2w7bK
+         yOoQ==
+X-Gm-Message-State: AC+VfDwngoxRepkIQFDxI8m23htc1xuR5//G1RWWDyJiwILPOJhhjb02
+        fSh8+7KsgMvGlj6vKworoaUu6A==
+X-Google-Smtp-Source: ACHHUZ5ocRej8tN17PvDMcuohKR0erlUrhCW9YWL8mvxWP4AsTF2z21jRWrUuTq+RGaUsNjFBDWwEg==
+X-Received: by 2002:aa7:c3d8:0:b0:50b:d75d:5dca with SMTP id l24-20020aa7c3d8000000b0050bd75d5dcamr10643780edr.42.1683639387446;
+        Tue, 09 May 2023 06:36:27 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:d0d5:7818:2f46:5e76? ([2a02:810d:15c0:828:d0d5:7818:2f46:5e76])
+        by smtp.gmail.com with ESMTPSA id u11-20020a50eacb000000b0050bc7c882bfsm767121edp.65.2023.05.09.06.36.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 May 2023 06:36:26 -0700 (PDT)
+Message-ID: <0815c0b5-304b-568f-5a64-d19d7d2aeb93@linaro.org>
+Date:   Tue, 9 May 2023 15:36:25 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-Subject: Re: [PATCH 01/11] dt-bindings: remoteproc: qcom: Add support for
- multipd model
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [Patch v7 1/8] memory: tegra: add interconnect support for DRAM
+ scaling in Tegra234
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <jassisinghbrar@gmail.com>,
-        <mathieu.poirier@linaro.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <quic_gurus@quicinc.com>,
-        <loic.poulain@linaro.org>, <quic_eberman@quicinc.com>,
-        <robimarko@gmail.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-remoteproc@vger.kernel.org>, <linux-clk@vger.kernel.org>
-CC:     <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
-        <quic_sjaganat@quicinc.com>, <quic_kathirav@quicinc.com>,
-        <quic_arajkuma@quicinc.com>, <quic_anusha@quicinc.com>,
-        <quic_poovendh@quicinc.com>
-References: <1678164097-13247-1-git-send-email-quic_mmanikan@quicinc.com>
- <1678164097-13247-2-git-send-email-quic_mmanikan@quicinc.com>
- <38a5a268-7d8a-6e61-4272-8e9155df0034@linaro.org>
- <790496d7-98dc-c92e-dedc-1c89395a1ad8@quicinc.com>
- <e63a3e34-1f73-3661-8655-e34e1e955804@linaro.org>
- <b8b30b77-31df-15c3-3914-1198f90299e6@quicinc.com>
- <c1833e5b-9397-8a87-07c5-1b8bd84bd457@linaro.org>
-From:   Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-In-Reply-To: <c1833e5b-9397-8a87-07c5-1b8bd84bd457@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Sumit Gupta <sumitg@nvidia.com>, treding@nvidia.com,
+        dmitry.osipenko@collabora.com, viresh.kumar@linaro.org,
+        rafael@kernel.org, jonathanh@nvidia.com, robh+dt@kernel.org,
+        lpieralisi@kernel.org, helgaas@kernel.org
+Cc:     linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pci@vger.kernel.org, mmaddireddy@nvidia.com, kw@linux.com,
+        bhelgaas@google.com, vidyas@nvidia.com, sanjayc@nvidia.com,
+        ksitaraman@nvidia.com, ishah@nvidia.com, bbasu@nvidia.com
+References: <20230424131337.20151-1-sumitg@nvidia.com>
+ <20230424131337.20151-2-sumitg@nvidia.com>
+ <7c6c6584-204a-ada1-d669-2e8bef50e5e5@linaro.org>
+ <3071273b-b03b-5fc8-ffa1-9b18311a3a5d@nvidia.com>
+ <5ab9687e-756d-f94b-b085-931d4ea534c1@nvidia.com>
+ <10b32e55-4d28-5405-035e-c73a514c95e4@linaro.org>
+ <14438cf9-ec78-afb5-107a-4ed954ac0eb7@nvidia.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <14438cf9-ec78-afb5-107a-4ed954ac0eb7@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: zpdH6aWB3suKursu49WPMBHucX_FhXI9
-X-Proofpoint-ORIG-GUID: zpdH6aWB3suKursu49WPMBHucX_FhXI9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-09_08,2023-05-05_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
- lowpriorityscore=0 bulkscore=0 suspectscore=0 clxscore=1015 phishscore=0
- spamscore=0 malwarescore=0 mlxlogscore=598 impostorscore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2304280000
- definitions=main-2305090109
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 5/9/2023 6:31 PM, Krzysztof Kozlowski wrote:
-> On 09/05/2023 12:34, Manikanta Mylavarapu wrote:
->>>> Sure, will add.
->>>>>> +    description:
->>>>>> +      Qualcomm G-Link subnode which represents communication edge, channels
->>>>>> +      and devices related to the Modem.
->>>>>> +
->>>>>> +patternProperties:
->>>>>> +  "^remoteproc_pd1|remoteproc_pd2|remoteproc_pd3":
+On 09/05/2023 15:17, Sumit Gupta wrote:
+>>>>>> +                     /*
+>>>>>> +                      * MC driver probe can't get BPMP reference as
+>>>>>> it gets probed
+>>>>>> +                      * earlier than BPMP. So, save the BPMP ref got
+>>>>>> from the EMC
+>>>>>> +                      * DT node in the mc->bpmp and use it in MC's
+>>>>>> icc_set hook.
+>>>>>> +                      */
+>>>>>> +                     mc->bpmp = emc->bpmp;
 >>>>>
->>>>> No, underscores are not allowed. Also, what is pd?
+>>>>> This (and ()) are called without any locking. You register first the
+>>>>> interconnect, so set() callback can be used, right? Then set() could be
+>>>>> called anytime between tegra_emc_interconnect_init() and assignment
+>>>>> above. How do you synchronize these?
 >>>>>
->>>> Sure, will remove underscores.
->>>
->>> Shouldn't this be just pd-1?
->>>
->>>
->> I think 'pd-1' not enough. Because child's i.e userpd's also considered
->> as remote processor's, so name should be like "remoteproc-pd1".
+>>>>> Best regards,
+>>>>> Krzysztof
+>>>>>
+>>>>
+>>>> Currently, the tegra234_mc_icc_set() has NULL check. So, it will give
+>>>> this error.
+>>>>    if (!mc->bpmp) {
+>>
+>> How does it solve concurrent accesses and re-ordering of instructions by
+>> compiler or CPU?
+>>
 > 
-> "pd-1" is not enough for what? Why the node name has to be more specific?
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+> Now, the "mc->bpmp" is set before tegra_emc_interconnect_init().
+> So, until the EMC interconnect initializes, set() won't be
+> called as the devm_of_icc_get() call will fail.
 
-Sure. "pd-1" also seems fine. I will change child node name to "pd-1".
+What if compiler puts "mc->bpmp" assignment after
+tegra_emc_interconnect_init()?
 
-Thanks & Regards,
-Manikanta.
+What if CPU executes above assignment also after
+tegra_emc_interconnect_init()?
+
+Considering amount of code inside tegra_emc_interconnect_init() second
+case is rather unlikely, but first possible, right?
+
+Best regards,
+Krzysztof
+
