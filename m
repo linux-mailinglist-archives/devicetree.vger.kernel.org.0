@@ -2,126 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85AEC6FC698
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 14:39:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BAF136FC6A3
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 14:42:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235569AbjEIMjP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 08:39:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47106 "EHLO
+        id S234641AbjEIMmC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 08:42:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49468 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235067AbjEIMjO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 08:39:14 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECCDB44A5
-        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 05:39:13 -0700 (PDT)
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1pwMcO-0008Rr-Nx; Tue, 09 May 2023 14:39:00 +0200
-Received: from pengutronix.de (unknown [172.20.34.65])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 44B371C0EEE;
-        Tue,  9 May 2023 12:38:56 +0000 (UTC)
-Date:   Tue, 9 May 2023 14:38:55 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Cc:     linux-kernel@vger.kernel.org, michael@amarulasolutions.com,
-        Amarula patchwork <linux-amarula@amarulasolutions.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-can@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com, netdev@vger.kernel.org
-Subject: Re: [PATCH v2 0/5] can: bxcan: add support for single peripheral
- configuration
-Message-ID: <20230509-silt-gullible-a010971857fc-mkl@pengutronix.de>
-References: <20230427204540.3126234-1-dario.binacchi@amarulasolutions.com>
+        with ESMTP id S229950AbjEIMmB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 08:42:01 -0400
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 6C4E3E53;
+        Tue,  9 May 2023 05:42:00 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.99,262,1677510000"; 
+   d="scan'208";a="158709365"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 09 May 2023 21:41:59 +0900
+Received: from localhost.localdomain (unknown [10.166.15.32])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id B88CF403832D;
+        Tue,  9 May 2023 21:41:59 +0900 (JST)
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     jingoohan1@gmail.com, mani@kernel.org,
+        gustavo.pimentel@synopsys.com, fancer.lancer@gmail.com,
+        lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
+        bhelgaas@google.com, kishon@kernel.org
+Cc:     marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: [PATCH v15 00/22] PCI: rcar-gen4: Add R-Car Gen4 PCIe support
+Date:   Tue,  9 May 2023 21:41:34 +0900
+Message-Id: <20230509124156.150200-1-yoshihiro.shimoda.uh@renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="eomgn2hsx2rjfnda"
-Content-Disposition: inline
-In-Reply-To: <20230427204540.3126234-1-dario.binacchi@amarulasolutions.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add R-Car S4-8 (R-Car Gen4) PCIe Host and Endpoint support.
+To support them, modify PCIe DesignWare common codes.
 
---eomgn2hsx2rjfnda
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Changes from v14:
+https://lore.kernel.org/linux-pci/20230426045557.3613826-1-yoshihiro.shimoda.uh@renesas.com/
+ - Based on next-20230508.
+ - (no change, JFYI) Based on the following cleanups patches:
+   [PATCH v4 00/14] PCI: dwc: Relatively simple fixes and cleanups
+   https://lore.kernel.org/linux-pci/20230414021832.13167-1-Sergey.Semin@baikalelectronics.ru/
+ - Add Reviewed-by from Serge in the patch {4,5,15,}/21.
+ - Drop PCI_EXP_LNKCAP_MLW handling of pcie-tegra194.c because
+   pcie-designware.c takes care of it.
+ - Change subjects in the patch {5,6,7,8,10}/21.
+ - Drop dw_pcie_prog_ep_outbound_atu().
+ - Modify dw_pcie_link_set_max_link_width() to improve code readability.
+ - Move the retrain code to .start_link().
+ - Fix some minor issues.
 
-On 27.04.2023 22:45:35, Dario Binacchi wrote:
->=20
-> The series adds support for managing bxCAN controllers in single peripher=
-al
-> configuration.
-> Unlike stm32f4 SOCs, where bxCAN controllers are only in dual peripheral
-> configuration, stm32f7 SOCs contain three CAN peripherals, CAN1 and CAN2
-> in dual peripheral configuration and CAN3 in single peripheral
-> configuration:
-> - Dual CAN peripheral configuration:
->  * CAN1: Primary bxCAN for managing the communication between a secondary
->    bxCAN and the 512-byte SRAM memory.
->  * CAN2: Secondary bxCAN with no direct access to the SRAM memory.
->    This means that the two bxCAN cells share the 512-byte SRAM memory and
->    CAN2 can't be used without enabling CAN1.
-> - Single CAN peripheral configuration:
->  * CAN3: Primary bxCAN with dedicated Memory Access Controller unit and
->    512-byte SRAM memory.
->=20
-> The driver has been tested on the stm32f769i-discovery board with a
-> kernel version 5.19.0-rc2 in loopback + silent mode:
->=20
-> ip link set can[0-2] type can bitrate 125000 loopback on listen-only on
-> ip link set up can[0-2]
-> candump can[0-2] -L &
-> cansend can[0-2] 300#AC.AB.AD.AE.75.49.AD.D1
+Changes from v13:
+https://lore.kernel.org/linux-pci/20230418122403.3178462-1-yoshihiro.shimoda.uh@renesas.com/
+ - Based on next-20230424.
+ - (no change, JFYI) Based on the following cleanups patches:
+   [PATCH v4 00/14] PCI: dwc: Relatively simple fixes and cleanups
+   https://lore.kernel.org/linux-pci/20230414021832.13167-1-Sergey.Semin@baikalelectronics.ru/
+ - Fix typos in the patch 4/22 and 5/22.
+ - Reviewed-by or Acked-by from Manivannan in the patch {4,5,10,16,18,21,22}/22.
+ - Acked-by from Jesper in the patch 5/22.
+ - Acked-by from Rob in the patch 16/22.
+ - Merge the patch 8/22 to the 6/22.
+ - Change the subject in the patch 9/22.
+ - Fix incorrect implementation in the patch 11/22.
+ - Fix issues in the patch 12/22.
+ - Revise the descriptions in the patch 1[34569]/22.
+ - Update copyright in the patch 1[78]/22.
+ - Fix examples in the patch 1[78]/22.
+ - Fix some minor issues in the patch 22/22.
 
-Applied to linux-can-next.
+Yoshihiro Shimoda (22):
+  PCI: Add PCI_EXP_LNKCAP_MLW macros
+  PCI: Add PCI_HEADER_TYPE_MULTI_FUNC
+  PCI: Add INTx Mechanism Messages macros
+  PCI: Rename PCI_EPC_IRQ_LEGACY to PCI_EPC_IRQ_INTX
+  PCI: dwc: Rename "legacy_irq" to "INTx_irq"
+  PCI: dwc: Change arguments of dw_pcie_prog_outbound_atu()
+  PCI: dwc: Add outbound MSG TLPs support
+  PCI: designware-ep: Add INTx IRQs support
+  PCI: dwc: Add dw_pcie_link_set_max_link_width()
+  PCI: dwc: Modify PCIE_PORT_LINK_CONTROL handling
+  PCI: dwc: Add dw_pcie_link_set_max_cap_width()
+  PCI: tegra194: Drop PCI_EXP_LNKSTA_NLW setting.
+  PCI: dwc: Add EDMA_UNROLL capability flag
+  PCI: dwc: Expose dw_pcie_ep_exit() to module
+  PCI: dwc: Introduce .ep_pre_init() and .ep_deinit()
+  dt-bindings: PCI: dwc: Update maxItems of reg and reg-names
+  dt-bindings: PCI: renesas: Add R-Car Gen4 PCIe Host
+  dt-bindings: PCI: renesas: Add R-Car Gen4 PCIe Endpoint
+  PCI: rcar-gen4: Add R-Car Gen4 PCIe Host support
+  PCI: rcar-gen4-ep: Add R-Car Gen4 PCIe Endpoint support
+  MAINTAINERS: Update PCI DRIVER FOR RENESAS R-CAR for R-Car Gen4
+  misc: pci_endpoint_test: Add Device ID for R-Car S4-8 PCIe controller
 
-Thanks,
-Marc
+ .../bindings/pci/rcar-gen4-pci-ep.yaml        |  98 +++++++++
+ .../bindings/pci/rcar-gen4-pci-host.yaml      | 109 ++++++++++
+ .../bindings/pci/snps,dw-pcie-ep.yaml         |   4 +-
+ .../devicetree/bindings/pci/snps,dw-pcie.yaml |   4 +-
+ MAINTAINERS                                   |   1 +
+ drivers/misc/pci_endpoint_test.c              |   4 +
+ .../pci/controller/cadence/pcie-cadence-ep.c  |   2 +-
+ drivers/pci/controller/dwc/Kconfig            |  18 ++
+ drivers/pci/controller/dwc/Makefile           |   4 +
+ drivers/pci/controller/dwc/pci-dra7xx.c       |   2 +-
+ drivers/pci/controller/dwc/pci-imx6.c         |   4 +-
+ drivers/pci/controller/dwc/pci-keystone.c     |   2 +-
+ .../pci/controller/dwc/pci-layerscape-ep.c    |   4 +-
+ drivers/pci/controller/dwc/pcie-artpec6.c     |   2 +-
+ .../pci/controller/dwc/pcie-designware-ep.c   |  97 +++++++--
+ .../pci/controller/dwc/pcie-designware-host.c |  52 +++--
+ .../pci/controller/dwc/pcie-designware-plat.c |   4 +-
+ drivers/pci/controller/dwc/pcie-designware.c  | 160 ++++++++-------
+ drivers/pci/controller/dwc/pcie-designware.h  |  33 ++-
+ drivers/pci/controller/dwc/pcie-keembay.c     |   2 +-
+ drivers/pci/controller/dwc/pcie-qcom-ep.c     |   4 +-
+ .../pci/controller/dwc/pcie-rcar-gen4-ep.c    | 166 +++++++++++++++
+ .../pci/controller/dwc/pcie-rcar-gen4-host.c  | 141 +++++++++++++
+ drivers/pci/controller/dwc/pcie-rcar-gen4.c   | 190 ++++++++++++++++++
+ drivers/pci/controller/dwc/pcie-rcar-gen4.h   |  46 +++++
+ drivers/pci/controller/dwc/pcie-tegra194.c    |   8 +-
+ drivers/pci/controller/dwc/pcie-uniphier-ep.c |   2 +-
+ drivers/pci/controller/pcie-rcar-ep.c         |   2 +-
+ drivers/pci/controller/pcie-rockchip-ep.c     |   2 +-
+ drivers/pci/endpoint/functions/pci-epf-test.c |  12 +-
+ drivers/pci/pci.h                             |  18 ++
+ drivers/pci/probe.c                           |   2 +-
+ drivers/pci/quirks.c                          |   4 +-
+ include/linux/pci-epc.h                       |   4 +-
+ include/uapi/linux/pci_regs.h                 |   7 +
+ 35 files changed, 1061 insertions(+), 153 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/rcar-gen4-pci-host.yaml
+ create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4-ep.c
+ create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4-host.c
+ create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4.c
+ create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4.h
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+-- 
+2.25.1
 
---eomgn2hsx2rjfnda
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmRaPt0ACgkQvlAcSiqK
-BOhyFwf+PqGLrg+vLzJWWVhXSlxbs7zJUuh4QzPlJkTwI76JjJp5X2Vy/HdpdG7I
-UYyat8KbWFgGyoAmZnSE/wPG00PmUljaDInUuIpn07ESHRle8PsR9ZlUhtfhCtgS
-CoDyuRfQwU7LTkLZ1ZAXqTmYzyCl+LHlk6PAOWZV34tE+QvjJTDxf3IZRN5KrD+O
-xy+AxbVyFd9UUVxygtEIk2DYd2iZZzw/2w3Y8EQa5dqNzNcTa34z/3n/v3nN0ydi
-XOr5ujvuY2ojwirz20QWxVZLCUfzozk73LSqAXbs4EcKYtAZ4zWOtTCFdjJWkA+x
-HcXh9SpoQJIZ/TTCUj6J74pQavg5+A==
-=7c+/
------END PGP SIGNATURE-----
-
---eomgn2hsx2rjfnda--
