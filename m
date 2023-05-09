@@ -2,81 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A8A26FC6E0
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 14:42:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 302D46FC6E9
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 14:43:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235509AbjEIMmW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 08:42:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50138 "EHLO
+        id S230088AbjEIMnJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 08:43:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235665AbjEIMmQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 08:42:16 -0400
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 27A234EF2;
-        Tue,  9 May 2023 05:42:11 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.99,262,1677510000"; 
-   d="scan'208";a="162218238"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 09 May 2023 21:42:03 +0900
-Received: from localhost.localdomain (unknown [10.166.15.32])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 0CADA4038331;
-        Tue,  9 May 2023 21:42:03 +0900 (JST)
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     jingoohan1@gmail.com, mani@kernel.org,
-        gustavo.pimentel@synopsys.com, fancer.lancer@gmail.com,
-        lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
-        bhelgaas@google.com, kishon@kernel.org
-Cc:     marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: [PATCH v15 22/22] misc: pci_endpoint_test: Add Device ID for R-Car S4-8 PCIe controller
-Date:   Tue,  9 May 2023 21:41:56 +0900
-Message-Id: <20230509124156.150200-23-yoshihiro.shimoda.uh@renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230509124156.150200-1-yoshihiro.shimoda.uh@renesas.com>
-References: <20230509124156.150200-1-yoshihiro.shimoda.uh@renesas.com>
+        with ESMTP id S234704AbjEIMnF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 08:43:05 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67E1E4C1A;
+        Tue,  9 May 2023 05:42:49 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-3062db220a3so3753184f8f.0;
+        Tue, 09 May 2023 05:42:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1683636163; x=1686228163;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ogUelxBN/iBvkYaR2z1a5yJ9iiiICSJTX6onuQ39wKc=;
+        b=bP7R25534DGHvBCha1PbVOLFyNyApN14uU0+rqLMNhnVLU10jdo0WpgiD4Fm5V0yAI
+         qB9qqNDTJNCGQpxxKLifFkvcNrAT6QpRIzcuFAQOHfNsG4T1LJkdu9BJqroSTIQuCnSH
+         hVmH8GmS4d3T4uHCkbAxE+GJfb+6wFmAyVPw8Qr8/MJJwoTr0DX3abclrKNkPLwDd3qq
+         QnkES30ONz6qzfN90XpFKCc6PfH1ofxZHL/Kfgi8YzSg/5h5z+MdHLX6fTrmTadngxAg
+         nsULLXonZPl8d+eq1IQ4r5tR/1ucDnjMokuQ606bWx9lLRVU7nOwih+KSmfHz8CWWfn8
+         2Ykw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683636163; x=1686228163;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ogUelxBN/iBvkYaR2z1a5yJ9iiiICSJTX6onuQ39wKc=;
+        b=IhkAgda/IgAVEFTtxKaJ7Z6LrvOQg85j5YFFXU+A+e4dgv4bjcJMlXn8vOiCSDOR8m
+         Ttrmy4lXS8rmzIx44wk4xmUis6tjNyznFha/QS6aXbQap4OtljatYHFs2HUQLfcwyVPb
+         oEKXLH98pYtt8vjuLhZ6x8ombL4uqWnFW6Id3xQ4cmSoGTk7z5TqjhpID1kB7Sio6QAe
+         PZa+pXf75mSLeaHMOuu+elZ76jPDAco1y9C6woaNYccrI2x2eSVDzyjZ7msCU+51LcHZ
+         X7XK5FcfLWt5qbYtTQ1t+moRgAAbc1ux3iOf5A057ibhRvEQghIzjyhL00I30RK5MNwH
+         5ykQ==
+X-Gm-Message-State: AC+VfDzV9AHiEwpazotJBtL/owgvtpbN/sESEuTkcBEa94MCTKfAVdrG
+        4nChmAW5loeJ+60dJDnZ6MI=
+X-Google-Smtp-Source: ACHHUZ4OvsksKT0JGRCaHiq1efo16lO58Z2ioXMGYLZCNfBtE3MpDpTy4POSymXX2RrynXBHt6s39g==
+X-Received: by 2002:a05:6000:1a48:b0:306:34e4:be40 with SMTP id t8-20020a0560001a4800b0030634e4be40mr8884827wry.33.1683636163178;
+        Tue, 09 May 2023 05:42:43 -0700 (PDT)
+Received: from localhost ([167.98.27.226])
+        by smtp.gmail.com with ESMTPSA id i14-20020a5d558e000000b003079f2c2de7sm3058083wrv.112.2023.05.09.05.42.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 May 2023 05:42:42 -0700 (PDT)
+From:   Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+To:     broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        tsbogend@alpha.franken.de, paul@crapouillou.net
+Cc:     lgirdwood@gmail.com, perex@perex.cz, tiwai@suse.com,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
+Subject: [PATCH v1 1/3] ASoC: jz4740-i2s: Add support for X1000 SoC
+Date:   Tue,  9 May 2023 13:42:36 +0100
+Message-Id: <20230509124238.195191-1-aidanmacdonald.0x0@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Renesas R8A779F0 in pci_device_id table so that pci-epf-test
-can be used for testing PCIe EP on R-Car S4-8.
+The X1000's AIC is similar to the AIC found on other Ingenic SoCs.
+It has symmetric playback/capture rates like the JZ4740, but more
+flexible clocking when outputting the system or bit clocks.
 
-Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Acked-by: Manivannan Sadhasivam <mani@kernel.org>
+Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
 ---
- drivers/misc/pci_endpoint_test.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ sound/soc/jz4740/jz4740-i2s.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/drivers/misc/pci_endpoint_test.c b/drivers/misc/pci_endpoint_test.c
-index a7244de081ec..1d8f72b42c0a 100644
---- a/drivers/misc/pci_endpoint_test.c
-+++ b/drivers/misc/pci_endpoint_test.c
-@@ -81,6 +81,7 @@
- #define PCI_DEVICE_ID_RENESAS_R8A774B1		0x002b
- #define PCI_DEVICE_ID_RENESAS_R8A774C0		0x002d
- #define PCI_DEVICE_ID_RENESAS_R8A774E1		0x0025
-+#define PCI_DEVICE_ID_RENESAS_R8A779F0		0x0031
+diff --git a/sound/soc/jz4740/jz4740-i2s.c b/sound/soc/jz4740/jz4740-i2s.c
+index 6d9cfe0a5041..7cb563bb8b09 100644
+--- a/sound/soc/jz4740/jz4740-i2s.c
++++ b/sound/soc/jz4740/jz4740-i2s.c
+@@ -329,6 +329,14 @@ static const struct i2s_soc_info jz4760_i2s_soc_info = {
+ 	.field_i2sdiv_playback	= REG_FIELD(JZ_REG_AIC_CLK_DIV, 0, 3),
+ };
  
- static DEFINE_IDA(pci_endpoint_test_ida);
- 
-@@ -993,6 +994,9 @@ static const struct pci_device_id pci_endpoint_test_tbl[] = {
- 	{ PCI_DEVICE(PCI_VENDOR_ID_RENESAS, PCI_DEVICE_ID_RENESAS_R8A774B1),},
- 	{ PCI_DEVICE(PCI_VENDOR_ID_RENESAS, PCI_DEVICE_ID_RENESAS_R8A774C0),},
- 	{ PCI_DEVICE(PCI_VENDOR_ID_RENESAS, PCI_DEVICE_ID_RENESAS_R8A774E1),},
-+	{ PCI_DEVICE(PCI_VENDOR_ID_RENESAS, PCI_DEVICE_ID_RENESAS_R8A779F0),
-+	  .driver_data = (kernel_ulong_t)&default_data,
-+	},
- 	{ PCI_DEVICE(PCI_VENDOR_ID_TI, PCI_DEVICE_ID_TI_J721E),
- 	  .driver_data = (kernel_ulong_t)&j721e_data,
- 	},
++static const struct i2s_soc_info x1000_i2s_soc_info = {
++	.dai = &jz4740_i2s_dai,
++	.field_rx_fifo_thresh	= REG_FIELD(JZ_REG_AIC_CONF, 24, 27),
++	.field_tx_fifo_thresh	= REG_FIELD(JZ_REG_AIC_CONF, 16, 20),
++	.field_i2sdiv_capture	= REG_FIELD(JZ_REG_AIC_CLK_DIV, 0, 8),
++	.field_i2sdiv_playback	= REG_FIELD(JZ_REG_AIC_CLK_DIV, 0, 8),
++};
++
+ static struct snd_soc_dai_driver jz4770_i2s_dai = {
+ 	.probe = jz4740_i2s_dai_probe,
+ 	.playback = {
+@@ -440,6 +448,7 @@ static const struct of_device_id jz4740_of_matches[] = {
+ 	{ .compatible = "ingenic,jz4760-i2s", .data = &jz4760_i2s_soc_info },
+ 	{ .compatible = "ingenic,jz4770-i2s", .data = &jz4770_i2s_soc_info },
+ 	{ .compatible = "ingenic,jz4780-i2s", .data = &jz4780_i2s_soc_info },
++	{ .compatible = "ingenic,x1000-i2s", .data = &x1000_i2s_soc_info },
+ 	{ /* sentinel */ }
+ };
+ MODULE_DEVICE_TABLE(of, jz4740_of_matches);
 -- 
-2.25.1
+2.39.2
 
