@@ -2,69 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D37F6FCE42
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 21:04:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A7A86FCE51
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 21:11:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235162AbjEITEd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 15:04:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40110 "EHLO
+        id S229667AbjEITLZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 15:11:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235177AbjEITEV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 15:04:21 -0400
-Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F3B765AF;
-        Tue,  9 May 2023 12:03:55 -0700 (PDT)
-Received: by mail-yb1-xb2c.google.com with SMTP id 3f1490d57ef6-b9e7058d52aso1069103276.0;
-        Tue, 09 May 2023 12:03:55 -0700 (PDT)
+        with ESMTP id S229527AbjEITLY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 15:11:24 -0400
+Received: from mail-oa1-x2f.google.com (mail-oa1-x2f.google.com [IPv6:2001:4860:4864:20::2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5F223AA9
+        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 12:11:23 -0700 (PDT)
+Received: by mail-oa1-x2f.google.com with SMTP id 586e51a60fabf-19206edf84cso943114fac.1
+        for <devicetree@vger.kernel.org>; Tue, 09 May 2023 12:11:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683659034; x=1686251034;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=a4pVhTnaf8Rl6eAFxrJXshWawOfUXvMxZ4DJbfzuGoM=;
-        b=Y9LrrkBW+xnGZbwiVXHxWIiGMG6bEk6q3g57gDBWTCNDQ/ZHUCrlD70BcrwFEy0mSn
-         D1ansrRYfwTla1W+OUslExa4rHsGq9eqYYrU15arkTpFK1szJ6Q1R8vyq6fEKuZOWdGx
-         WaucgGgNKrIoveb7erEUO+8enyVwS5Ef2sen7y3KE8DziiU3brELKSq+ZlZBhdNesDZM
-         uFae13J2RIBJsqTRF5Zsj9C+oBsp3iMdwAc7S/uQ2UXKubb9QLBIDBTt30vJ2fFqGdgi
-         AJX9jeiD45O5uwlnWKevM0MY1vnnSqX/I6vkCqlhszdSQTU+u0iTzCec6zjCIB8O/Ww0
-         cTqQ==
+        d=gmail.com; s=20221208; t=1683659483; x=1686251483;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7SBKSnGQTBkLIjNmdaQUl/gJk+HCRRsXzqznc1iL51k=;
+        b=cZpW8zVQjMSQ4WoBPS9QBcy4qxm/DPFssrv5ZQm8++NC3EvLF/eY6VndM66B7+uVX7
+         FbTQT5Nnt3ocW70w7jc3qaSZlqiVb1FAlLLY8t733T1c6kBlLArOQa6pBTUTF4kv/6ot
+         9QkZM7/p90ZzVCYr4W60YNfEIf7X2rBPSLGwtMMTQHY6ikSf6MgeTNcCHHMgs41H4E8q
+         jVQAly2hQMAlVy4KOqbr8nHmDgCxbJjb03H8ugYH96gfzmescTPhMO9CcJS4NGrHEXJd
+         sOyl5X+n2Ebe8yu/l4HtX2UZK9tuqdcNbOiIq+76DF5+TYc+cyYcnd/4AlVtZgYFGwyq
+         T7dQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683659034; x=1686251034;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=a4pVhTnaf8Rl6eAFxrJXshWawOfUXvMxZ4DJbfzuGoM=;
-        b=OLDjCxQ6JGzV3rUT93c6DBbLFl8o133DnJMCTqOpC2DGmYBvp7OWKx2lnXukCJ2Lx5
-         KxPpLJSiaUQjOSUj/yZSIc0BB1QEFVaMyUNa0p+zPTUHwcP78uZqVraY8UizmEBmxghH
-         6o41lmbX4acdWRk8FRNe4rB5BLd1h4QOEQeak+DcX5HrKm49wI154ZFSO3SFIeLU3nU5
-         XcZH0OksZY7ZFVESNhC1YwGLYHdDaBXSSJwLpyuCl47t3NY8c+AqJ456eHt6gHPJ65X/
-         TVsskKCh06uDBV24DZux3guL1LKIpyxZ6YTUy5iGz83aE1tBxHA65w907kDHYexvBlz+
-         gaeQ==
-X-Gm-Message-State: AC+VfDy18/C9VnfkEAGk2B49Es6KoxPblXocz4wD3n2yOHds5ayZf3NV
-        YMrl0xfIM+EcyBPgEVkazK58Ip888+RrwkPIRwk=
-X-Google-Smtp-Source: ACHHUZ71Tzmgnmxn5VXmX3i32j1vEJ1X6Wx/UBAs56zZxdx36a7QG5VKqTKCeMr5GAvN0ZJb4WFqNWzuFo43c7aJfhA=
-X-Received: by 2002:a25:c784:0:b0:b99:4a9:2f5e with SMTP id
- w126-20020a25c784000000b00b9904a92f5emr15102664ybe.0.1683659033781; Tue, 09
- May 2023 12:03:53 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1683659483; x=1686251483;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7SBKSnGQTBkLIjNmdaQUl/gJk+HCRRsXzqznc1iL51k=;
+        b=gHKOUIwX3wQ1P+bUseVk7i0NOSIg6m606SqxSZ+/V/EaRz+Yv4sW5nT+Wq53XxMqBq
+         VxfCb140Ab9f2F2W8cPEE76rYvLW1C+PBkcDY14mtH624EZ2ZCGZY55XKwlG8jDZ6YHP
+         3jAeXS+7WZveuJSwtW3W+pLkJ+rm97GtqJFc3HYvz4q7Ftg9GVmJI0GasfXAIlJKBXqi
+         k669Zu5z5onhVdKc8SyyHbDm9HdmVr9M603jQv8EKpd424sIWc5dr9JXjOI4/a1qWzB0
+         AoF63RSco/nAHsF+tRO62/IsR/biWxQamgSeYJjT8lNKQ8dOtzuGPWSJP0YfCqiQ8Gw/
+         MeTg==
+X-Gm-Message-State: AC+VfDyE8i6sCwMWLj/zKr+hr6rD78K8NPSsEYHCafj4vlmvjUME2EqW
+        fjrQhNcyrL6N2ntOG7N+B58=
+X-Google-Smtp-Source: ACHHUZ7okq0CBstdAFiCtDIdIZh0aPn6yrqa+xXNMaiBiNXOqb43R0HStG8Re0WImLuw/nPHzr1vMQ==
+X-Received: by 2002:a05:6870:42cb:b0:192:5e53:2e64 with SMTP id z11-20020a05687042cb00b001925e532e64mr8965273oah.1.1683659482861;
+        Tue, 09 May 2023 12:11:22 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b69:70eb:d83f:a7c5:b735])
+        by smtp.gmail.com with ESMTPSA id u1-20020a05687004c100b00192843c21b9sm6358134oam.25.2023.05.09.12.11.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 May 2023 12:11:22 -0700 (PDT)
+From:   Fabio Estevam <festevam@gmail.com>
+To:     neil.armstrong@linaro.org
+Cc:     dri-devel@lists.freedesktop.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        jagan@amarulasolutions.com, Fabio Estevam <festevam@denx.de>
+Subject: [PATCH v3 1/2] dt-bindings: samsung,mipi-dsim: Add 'lane-polarities'
+Date:   Tue,  9 May 2023 16:10:58 -0300
+Message-Id: <20230509191059.3327960-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20230509131249.80456-1-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20230509131249.80456-1-biju.das.jz@bp.renesas.com>
-From:   Trent Piepho <tpiepho@gmail.com>
-Date:   Tue, 9 May 2023 12:03:42 -0700
-Message-ID: <CA+7tXig2nwCk3DKwFEKGKVko=YD4e4KCpRVUMMM2pgPRpNgiiQ@mail.gmail.com>
-Subject: Re: [PATCH v4] dt-bindings: rtc: isl1208: Convert to json-schema
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        linux-renesas-soc@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -75,68 +69,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 9, 2023 at 6:12=E2=80=AFAM Biju Das <biju.das.jz@bp.renesas.com=
-> wrote:
-> +
-> +  interrupt-names:
+From: Fabio Estevam <festevam@denx.de>
 
-Shouldn't this have minItems: 1 and maxItems: 2 as well?
+The Samsung DSIM IP block allows the inversion of the clock and
+data lanes.
 
-> +    items:
-> +      - const: irq
-> +      - const: evident
+Add an optional property called 'lane-polarities' that describes the
+polarities of the MIPI DSI clock and data lanes.
 
+This property is useful for properly describing the hardware when the
+board designer decided to switch the polarities of the MIPI DSI
+clock and/or data lanes.
 
-> +
-> +  isil,ev-evienb:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [ 0, 1 ]
-> +    description: |
-> +      Enable or disable internal pull on EVIN pin
-> +      Default will leave the non-volatile configuration of the pullup
-> +      as is.
-> +        <0> : Enables internal pull-up on evin pin
-> +        <1> : Disables internal pull-up on evin pin
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+Changes since v2:
+- Use video-interfaces.yaml (Rob).
 
-It appears this was not clear at first.  The default is not to use the
-reset value, which is 0, but to leave the existing value unchanged.
-The RTC settings are battery-backed and the RTC is not reset on boot
-by the kernel.  The value might have been set on a previous boot, or
-might have already been configured by the bootloader or BIOS.  This
-was a common design in Linux RTC drivers.  The bootloader would
-configure the RTC and then Linux driver was only design to be able to
-get/set the time and alarms.  Stuff like programming the interrupt
-pull-ups or setting calibration registers wasn't done by the kernel.
+ .../display/bridge/samsung,mipi-dsim.yaml     | 29 +++++++++++++++++++
+ 1 file changed, 29 insertions(+)
 
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          maxItems: 2
-> +    else:
-> +      properties:
-> +        interrupts:
-> +          maxItems: 1
+diff --git a/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml b/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
+index e841659e20cd..dad6d06fbdd9 100644
+--- a/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
+@@ -105,6 +105,35 @@ properties:
+           DSI output port node to the panel or the next bridge
+           in the chain.
+ 
++        properties:
++          endpoint:
++            $ref: /schemas/media/video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              data-lanes:
++                oneOf:
++                  - minItems: 1
++                    maxItems: 4
++                    uniqueItems: true
++                    items:
++                      enum: [ 1, 2, 3, 4 ]
++                    description:
++                      See ../../media/video-interfaces.yaml for details.
++
++              lane-polarities:
++                minItems: 1
++                maxItems: 5
++                items:
++                  enum: [ 0, 1 ]
++                description:
++                  See ../../media/video-interfaces.yaml for details.
++                  The Samsung MIPI DSI IP requires that all the data lanes have
++                  the same polarity.
++
++            dependencies:
++              lane-polarities: [data-lanes]
++
+ required:
+   - clock-names
+   - clocks
+-- 
+2.34.1
 
-Add interrupt-names here too.
-
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        rtc_twi: rtc@6f {
-> +            compatible =3D "isil,isl1208";
-> +            reg =3D <0x6f>;
-> +        };
-> +    };
-
-I agree with Geert's original comment about switching from the most
-complex to the simplest example.  It's better to show as much as
-possible.
-
-If it's not possible to make a valid example that shows interrupts and
-evdet pull enable, then doesn't that mean the bindings don't work?
