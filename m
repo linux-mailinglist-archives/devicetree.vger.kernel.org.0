@@ -2,135 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC1CF6FCA60
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 17:39:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA5816FCA67
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 17:42:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229998AbjEIPj4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 11:39:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53106 "EHLO
+        id S235651AbjEIPmq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 11:42:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54614 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235933AbjEIPjo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 11:39:44 -0400
-X-Greylist: delayed 316 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 09 May 2023 08:39:35 PDT
-Received: from hutie.ust.cz (hutie.ust.cz [185.8.165.127])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9759044BB
-        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 08:39:35 -0700 (PDT)
-From:   =?UTF-8?q?Martin=20Povi=C5=A1er?= <povik+lin@cutebit.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
-        t=1683646456; bh=YeoCLA3x3Kq/sVdHXLB1N+q9HKYyS+XbXT1uddFF6sk=;
-        h=From:To:Cc:Subject:Date;
-        b=TiHEPfnVZp4dGTX+Tmw65wXPSrvEHngEiN6n9ZJsIJ5U9BmWIg5qBfGYxSv4hi2lm
-         XXPgUcWMsfn+LPz4OX9hUB6buRSLtEnHhms+jxLSPgh2FM+kRBoU9/io2MFdCm0Egt
-         jexl6Sd9db22cCGzM/78m73nBi24cjHfuSe4GQM8=
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Andrew Davis <afd@ti.com>, Shi Fu <shifu0704@thundersoft.com>,
-        Shenghao Ding <shenghao-ding@ti.com>, kevin-lu@ti.com,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, asahi@lists.linux.dev,
-        =?UTF-8?q?Martin=20Povi=C5=A1er?= <povik+lin@cutebit.org>
-Subject: [PATCH] ASoC: dt-bindings: Adjust #sound-dai-cells on TI's single-DAI codecs
-Date:   Tue,  9 May 2023 17:34:12 +0200
-Message-Id: <20230509153412.62847-1-povik+lin@cutebit.org>
+        with ESMTP id S229572AbjEIPmo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 11:42:44 -0400
+Received: from mail-qt1-x833.google.com (mail-qt1-x833.google.com [IPv6:2607:f8b0:4864:20::833])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E735210CF
+        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 08:42:43 -0700 (PDT)
+Received: by mail-qt1-x833.google.com with SMTP id d75a77b69052e-3f38824a025so222181cf.0
+        for <devicetree@vger.kernel.org>; Tue, 09 May 2023 08:42:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20221208; t=1683646963; x=1686238963;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8fiW2eMPa3JcRn87r8tgH6+Zw6xv+kBmIa1Z3UxaYsE=;
+        b=liBfYH3VMjZJNljdRzneVIXYxFCVvNhvCaa9K+zpTNyp3TSvfKZm2kJBKZdtZrhkHg
+         Jzu9UQbL7+AMMU8OmlymvReEYlwlWi+hcC+p//agUPD59j6myTKw3isrlNBZ4UZ5hhQE
+         66dz8XMYpwnRwahBw1CybEUexL+G77JhdxqKorjS+/gMGredPkW3UzWUdWqpnj77+NJZ
+         ian4cHr+/pkGzTHwMSNr0si20dbCuQL58ABSBzdm1tMqqfDtEWkduMk6wZhowpMawwPp
+         qL/nJlcXAwOmX1Bz8vH3PTllyMYcHUB2V0eupd+7qcEMs7ZqYQ4PIpl7fkRywe1cHKbP
+         VdJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683646963; x=1686238963;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8fiW2eMPa3JcRn87r8tgH6+Zw6xv+kBmIa1Z3UxaYsE=;
+        b=ccySdqokH7G3O62FQqi8QEIZvVfZ0v35ovJFWiIdLQHbIAvo5Tc39OvstaLkSikUoJ
+         jSdesr9Z0IvTrtmdZIoVq2BZSS31JEUMg1KhthU/OEFXKGLZAWDI/MoknvkSeUeNRNmT
+         ef7AYo7oYyFZMJEBc1qlUMRNVxV3Hk3gUpEyqVk0mgc6wy95bVKz7Dae9cmqVasWF/Tn
+         4EXoZp64huxXqUl4Stn6Fvr8u2MGBV5GrFSqyV4WZPCqfkN5OYyxwaFGBvqc7NPqjXcV
+         DDcBBV5W/IazDyzY09ITmmm3n6JZ36dbLylQXBUXGKjD2aHRwbHx3dY/GiwQIueFfB2e
+         V6Fg==
+X-Gm-Message-State: AC+VfDx+NmKI2gt45TA5HSoDkim+s6aZaXStT0oEAZBzEUrKDCsU5hLp
+        LUBkI/av2Sjac/WA6u3sHwKButZRHSpm9ZdGZ4oF1A==
+X-Google-Smtp-Source: ACHHUZ7C7pgU55PCY9BaDVb25aW2mHoo+2xQgp1Pu4YxvFKZXAYbhIAieDk9gBa8KMPxOXLu2jAPL0tYarLvHr5kP50=
+X-Received: by 2002:a05:622a:c7:b0:3ef:3083:a437 with SMTP id
+ p7-20020a05622a00c700b003ef3083a437mr436622qtw.18.1683646962948; Tue, 09 May
+ 2023 08:42:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <CAHwB_NLBLEUiu__fE9F=j0KFssq7Lxfz8WUnbR0C6yi=zsboJw@mail.gmail.com>
+ <20230509025153.1321446-1-yangcong5@huaqin.corp-partner.google.com>
+In-Reply-To: <20230509025153.1321446-1-yangcong5@huaqin.corp-partner.google.com>
+From:   Doug Anderson <dianders@google.com>
+Date:   Tue, 9 May 2023 08:42:30 -0700
+Message-ID: <CAD=FV=Xp_OoxJH38skQswjK_AWwJ5P2OmgjnXLog9bAht0CL6A@mail.gmail.com>
+Subject: Re: [v2] drm/panel: Modify innolux hj110iz panel inital code
+To:     Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+Cc:     thierry.reding@gmail.com, airlied@linux.ie, hsinyi@google.com,
+        sam@ravnborg.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A bunch of TI's codecs have binding schemas which force #sound-dai-cells
-to one despite those codecs only having a single DAI. Allow for bindings
-with zero DAI cells and deprecate the former non-zero value.
+Hi,
 
-Signed-off-by: Martin Povišer <povik+lin@cutebit.org>
----
- Documentation/devicetree/bindings/sound/tas2562.yaml | 6 ++++--
- Documentation/devicetree/bindings/sound/tas2770.yaml | 6 ++++--
- Documentation/devicetree/bindings/sound/tas27xx.yaml | 6 ++++--
- 3 files changed, 12 insertions(+), 6 deletions(-)
+On Mon, May 8, 2023 at 7:52=E2=80=AFPM Cong Yang
+<yangcong5@huaqin.corp-partner.google.com> wrote:
+>
+> There is a problem of screen shake on the old panel. So increase the
+> panel GOP component pull-down circuit size in hardware, and update the
+> initialization code at the same time. The new initialization code mainly
+> modifles the following.
+>
+> a)adjusted for GOP timing. When Display sleep in, raise all GOP signals
+> to VGHO and then drop to GND.
+> b)Increased the Vertical back Porch and Vertical pulse width, so need to
+> update vsync_end and vtotal and CLK in drm_display_mode.
+>
+> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+> ---
+> v2: Modify commit message
+>
+>  .../gpu/drm/panel/panel-boe-tv101wum-nl6.c    | 397 +++++++++++-------
+>  1 file changed, 235 insertions(+), 162 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/sound/tas2562.yaml b/Documentation/devicetree/bindings/sound/tas2562.yaml
-index a5bb561bfcfb..31a3024ea789 100644
---- a/Documentation/devicetree/bindings/sound/tas2562.yaml
-+++ b/Documentation/devicetree/bindings/sound/tas2562.yaml
-@@ -55,7 +55,9 @@ properties:
-     description: TDM TX current sense time slot.
- 
-   '#sound-dai-cells':
--    const: 1
-+    # The codec has a single DAI, the #sound-dai-cells=<1>; case is left in for backward
-+    # compatibility but is deprecated.
-+    enum: [0, 1]
- 
- required:
-   - compatible
-@@ -72,7 +74,7 @@ examples:
-      codec: codec@4c {
-        compatible = "ti,tas2562";
-        reg = <0x4c>;
--       #sound-dai-cells = <1>;
-+       #sound-dai-cells = <0>;
-        interrupt-parent = <&gpio1>;
-        interrupts = <14>;
-        shutdown-gpios = <&gpio1 15 0>;
-diff --git a/Documentation/devicetree/bindings/sound/tas2770.yaml b/Documentation/devicetree/bindings/sound/tas2770.yaml
-index 26088adb9dc2..8908bf1122e9 100644
---- a/Documentation/devicetree/bindings/sound/tas2770.yaml
-+++ b/Documentation/devicetree/bindings/sound/tas2770.yaml
-@@ -57,7 +57,9 @@ properties:
-       - 1 # Falling edge
- 
-   '#sound-dai-cells':
--    const: 1
-+    # The codec has a single DAI, the #sound-dai-cells=<1>; case is left in for backward
-+    # compatibility but is deprecated.
-+    enum: [0, 1]
- 
- required:
-   - compatible
-@@ -74,7 +76,7 @@ examples:
-      codec: codec@41 {
-        compatible = "ti,tas2770";
-        reg = <0x41>;
--       #sound-dai-cells = <1>;
-+       #sound-dai-cells = <0>;
-        interrupt-parent = <&gpio1>;
-        interrupts = <14>;
-        reset-gpio = <&gpio1 15 0>;
-diff --git a/Documentation/devicetree/bindings/sound/tas27xx.yaml b/Documentation/devicetree/bindings/sound/tas27xx.yaml
-index 8cba01316855..a876545ec87d 100644
---- a/Documentation/devicetree/bindings/sound/tas27xx.yaml
-+++ b/Documentation/devicetree/bindings/sound/tas27xx.yaml
-@@ -50,7 +50,9 @@ properties:
-     description: TDM TX voltage sense time slot.
- 
-   '#sound-dai-cells':
--    const: 1
-+    # The codec has a single DAI, the #sound-dai-cells=<1>; case is left in for backward
-+    # compatibility but is deprecated.
-+    enum: [0, 1]
- 
- required:
-   - compatible
-@@ -67,7 +69,7 @@ examples:
-      codec: codec@38 {
-        compatible = "ti,tas2764";
-        reg = <0x38>;
--       #sound-dai-cells = <1>;
-+       #sound-dai-cells = <0>;
-        interrupt-parent = <&gpio1>;
-        interrupts = <14>;
-        reset-gpios = <&gpio1 15 0>;
--- 
-2.38.3
+Every time I see the opaque changes to the pile of "DCS_CMD" arrays I
+feel obliged to grumble a bit, but as I've said before I guess it's
+OK-ish...
 
+Thus, this patch seems fine to me:
+
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
+
+Just to make sure there are no objections, I'll give this ~1 week and
+then I'll land it to drm-misc-next.
+
+-Doug
