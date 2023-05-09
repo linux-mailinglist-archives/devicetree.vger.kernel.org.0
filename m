@@ -2,146 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D8C46FC0AF
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 09:47:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88BF56FC0BB
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 09:49:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234507AbjEIHr0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 03:47:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60458 "EHLO
+        id S233064AbjEIHtf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 03:49:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234413AbjEIHrV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 03:47:21 -0400
-Received: from stravinsky.debian.org (stravinsky.debian.org [IPv6:2001:41b8:202:deb::311:108])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C872DD8D;
-        Tue,  9 May 2023 00:47:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=debian.org;
-        s=smtpauto.stravinsky; h=X-Debian-User:In-Reply-To:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description;
-        bh=9mfOEh12/KcZK8TFY/ZX3oxJrF5qjW2s2MPzvQR6Ugk=; b=ANXdghA1pad72REMAS3MA6NTWc
-        5jN+DUGCfIxMy4hgzzLjDSJTCbQsbFC7bFAXLPPF4uNx2A10yMgN94ZJHTR0eGfW1+Kxd/JO5IRXg
-        kJiqfsKryN+TBskVUgHOi1CkGD+kxtw1fcIdWyxOv6ntwxbXabNM0XN+26fQRfnpzP45ouIOGA/NF
-        FLHEzwwk6JqZ3tA+XWfTJtr459eri2EhsfEZcP3POXSDe2fhKUAvYe2g5hdImx46f6yLDsGCAEGmn
-        H53iYpWbotH2phcQDEqKTTDQzSVgx7OA8shwTeBsYBh3sT+0xwKwZw1DvqMHQwKlYmAQiITk13CJJ
-        a3/e6k3Q==;
-Received: from authenticated user
-        by stravinsky.debian.org with esmtpsa (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
-        (Exim 4.94.2)
-        (envelope-from <kibi@debian.org>)
-        id 1pwI3j-008YQj-Ep; Tue, 09 May 2023 07:46:56 +0000
-Date:   Tue, 9 May 2023 09:46:51 +0200
-From:   Cyril Brulebois <kibi@debian.org>
-To:     Jim Quinlan <jim2101024@gmail.com>
-Cc:     linux-pci@vger.kernel.org,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Phil Elwell <phil@raspberrypi.com>,
-        bcm-kernel-feedback-list@broadcom.com, james.quinlan@broadcom.com,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>
-Subject: Re: [PATCH v5 0/5] PCI: brcmstb: Configure appropriate HW CLKREQ#
- mode
-Message-ID: <20230509074651.ixcqhhmazjngxur6@mraw.org>
-Organization: Debian
-References: <20230508220126.16241-1-jim2101024@gmail.com>
+        with ESMTP id S234515AbjEIHtb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 03:49:31 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 454331BF9
+        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 00:49:30 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-3f42c865535so2185165e9.1
+        for <devicetree@vger.kernel.org>; Tue, 09 May 2023 00:49:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683618569; x=1686210569;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=n5+JiC0I5gP228X6r4a8yAeiJ+ahwljWHkdcn9hVFHU=;
+        b=oCsmEbxcSrS9fTumk/9hNm4iyOc0wgGTiSxcnZMVB1hgfni9OyJKEG/cA4f9ACrlcL
+         cfZSuxFvmmdlHPQ1W7j+vRThfApssKDMwj8lUnyjZevkNaLFryIfvoXmdVEWwFJGxEYl
+         6C4g8CudWx3QtGXZ70q/aM/a6los0WD8o5azEyGCMXWTmJ9WgzzuKnysJZ9UDH0MBHid
+         2HvBPCRRg5eAtqCg3F/oo3hFay+nP2GBdNRa0k8osVaXNwPcO8jRUxHGgjm+58Jkbgx+
+         PoKn0ibZlKwKKR6ZFZbIQ4Obmn+QcCMWXY0rM4JQ7YjawN1GbvJ0Qgp0hNkqHw5SDZMF
+         LvOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683618569; x=1686210569;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=n5+JiC0I5gP228X6r4a8yAeiJ+ahwljWHkdcn9hVFHU=;
+        b=MZP67gv7L8MwtbwXtmvjpzh91n6sn7Eoo79nnju8tfgTP+5Fz2q4EZ8j8CqP1AEBrR
+         sa8FQcaOZYtYOJlyyym/r1tQfKt/rjImBQFVdM6rGg60CoMPhtp48C49R1+71HFtUD/4
+         08G7ye9CCW30fhxffAUZ/l7f8S2mYe4UqhpgqwnbjH0/A1G6LRua00y23Ks0QPFJWYxa
+         6NnkNLWGdN5SU+HqO1V4F/3sMXpdpz4whjDB5hwx4ma6zswlwPRnFx/lifJcz+CA4Si7
+         +2PSmooE2lmngytdn58di5vgNU/FinvsQW3ttObIVTaCqag7kfLgdlTOz/klNRCR0xYj
+         JqFQ==
+X-Gm-Message-State: AC+VfDzwlEEPI/mYWdGIbUWzCG424tb6zbrXXvYZuQ8x13HCfNZn3os2
+        SJyWCAmpUdzoj/PUbLmRSfD7kg==
+X-Google-Smtp-Source: ACHHUZ4yynn9msHKgmLCvEzHT/V+P2Hi9gTLIbA/PMn158nlQNkmuboK7Aq7amfbTaFt2D5kBZyvsA==
+X-Received: by 2002:a05:600c:21c1:b0:3f4:21ff:b91f with SMTP id x1-20020a05600c21c100b003f421ffb91fmr4852606wmj.28.1683618568716;
+        Tue, 09 May 2023 00:49:28 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:79ab:8da0:d16d:9990? ([2a01:e0a:982:cbb0:79ab:8da0:d16d:9990])
+        by smtp.gmail.com with ESMTPSA id n23-20020a7bc5d7000000b003ee74c25f12sm19038405wmk.35.2023.05.09.00.49.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 May 2023 00:49:28 -0700 (PDT)
+Message-ID: <4db4b940-8060-b785-e83a-f13eaae382f0@linaro.org>
+Date:   Tue, 9 May 2023 09:49:27 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="5ogfywygslxit6od"
-Content-Disposition: inline
-In-Reply-To: <20230508220126.16241-1-jim2101024@gmail.com>
-X-Debian-User: kibi
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+From:   neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v2 2/2] drm/panel: panel-simple: Add BOE EV121WXM-N10-1850
+ panel support
+Content-Language: en-US
+To:     Liu Ying <victor.liu@nxp.com>, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     sam@ravnborg.org, airlied@gmail.com, daniel@ffwll.ch,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, thierry.reding@gmail.com, linux-imx@nxp.com,
+        krzysztof.kozlowski@linaro.org
+References: <20230508083826.1016206-1-victor.liu@nxp.com>
+ <20230508083826.1016206-3-victor.liu@nxp.com>
+Organization: Linaro Developer Services
+In-Reply-To: <20230508083826.1016206-3-victor.liu@nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 08/05/2023 10:38, Liu Ying wrote:
+> Add BOE EV121WXM-N10-1850 12.1" WXGA (1280x800) TFT LCD panel support.
+> The panel has a LVDS display interface.
+> 
+> The panel's product specification can be found at:
+> http://www.onetech.com.tw/files/EV121WXM-N10-1850ProductSpecification_20180801.pdf
+> 
+> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> ---
+> v1->v2:
+> * Use struct display_timing to tell minimum and maximum pixel clock rates.
+> * Set bus_flags to DRM_BUS_FLAG_DE_HIGH in struct panel_desc.
+> 
+>   drivers/gpu/drm/panel/panel-simple.c | 34 ++++++++++++++++++++++++++++
+>   1 file changed, 34 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
+> index 065f378bba9d..b1590a7e2cda 100644
+> --- a/drivers/gpu/drm/panel/panel-simple.c
+> +++ b/drivers/gpu/drm/panel/panel-simple.c
+> @@ -1211,6 +1211,37 @@ static const struct panel_desc bananapi_s070wv20_ct16 = {
+>   	},
+>   };
+>   
+> +static const struct display_timing boe_ev121wxm_n10_1850_timing = {
+> +	.pixelclock = { 69922000, 71000000, 72293000 },
+> +	.hactive = { 1280, 1280, 1280 },
+> +	.hfront_porch = { 48, 48, 48 },
+> +	.hback_porch = { 80, 80, 80 },
+> +	.hsync_len = { 32, 32, 32 },
+> +	.vactive = { 800, 800, 800 },
+> +	.vfront_porch = { 3, 3, 3 },
+> +	.vback_porch = { 14, 14, 14 },
+> +	.vsync_len = { 6, 6, 6 },
+> +};
+> +
+> +static const struct panel_desc boe_ev121wxm_n10_1850 = {
+> +	.timings = &boe_ev121wxm_n10_1850_timing,
+> +	.num_timings = 1,
+> +	.bpc = 8,
+> +	.size = {
+> +		.width = 261,
+> +		.height = 163,
+> +	},
+> +	.delay = {
+> +		.prepare = 9,
+> +		.enable = 300,
+> +		.unprepare = 300,
+> +		.disable = 560,
+> +	},
+> +	.bus_format = MEDIA_BUS_FMT_RGB888_1X7X4_SPWG,
+> +	.bus_flags = DRM_BUS_FLAG_DE_HIGH,
+> +	.connector_type = DRM_MODE_CONNECTOR_LVDS,
+> +};
+> +
+>   static const struct drm_display_mode boe_hv070wsa_mode = {
+>   	.clock = 42105,
+>   	.hdisplay = 1024,
+> @@ -3984,6 +4015,9 @@ static const struct of_device_id platform_of_match[] = {
+>   	}, {
+>   		.compatible = "bananapi,s070wv20-ct16",
+>   		.data = &bananapi_s070wv20_ct16,
+> +	}, {
+> +		.compatible = "boe,ev121wxm-n10-1850",
+> +		.data = &boe_ev121wxm_n10_1850,
+>   	}, {
+>   		.compatible = "boe,hv070wsa-100",
+>   		.data = &boe_hv070wsa
 
---5ogfywygslxit6od
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi Jim,
-
-Jim Quinlan <jim2101024@gmail.com> (2023-05-08):
-> v5 -- Remove DT property "brcm,completion-timeout-us" from	=20
->       "DT bindings" commit.  Although this error may be reported	=20
->       as a completion timeout, its cause was traced to an	=20
->       internal bus timeout which may occur even when there is	=20
->       no PCIe access being processed.  We set a timeout of four	=20
->       seconds only if we are operating in "L1SS CLKREQ#" mode.
->    -- Correct CEM 2.0 reference provided by HW engineer,
->       s/3.2.5.2.5/3.2.5.2.2/ (Bjorn)
->    -- Add newline to dev_info() string (Stefan)
->    -- Change variable rval to unsigned (Stefan)
->    -- s/implementaion/implementation/ (Bjorn)
->    -- s/superpowersave/powersupersave/ (Bjorn)
->    -- Slightly modify message on "PERST#" commit.
->    -- Rebase to torvalds master
-
-Same results as with v4: looks good to me!
-
-Using an official CM4 IO Board, I've successfully tested the same 9
-setups as before, combining each:
- - CM4 Lite Rev 1.0
- - CM4 8/32 Rev 1.0
- - CM4 4/32 Rev 1.1
-
-with each off-the-shelf PCIe/USB adapter at my disposal:
- - SupaHub PCE6U1C-R02, VER 006
- - SupaHub PCE6U1C-R02, VER 006S
- - Waveshare based on VIA VL805/806
-
-Each system boots successfully, exposes the Kingston memory stick
-plugged onto the PCIe/USB adapter, and happily reads data from it.
-
-Note: I only tested each CM4 with the upgraded EEPROM (2023-01-11),
-and without tweaking the DTB (i.e. without adding brcm,enable-l1ss).
-
-
-Tested-By: Cyril Brulebois <cyril@debamax.com>
-
-
-Cheers,
---=20
-Cyril Brulebois (kibi@debian.org)            <https://debamax.com/>
-D-I release manager -- Release team member -- Freelance Consultant
-
---5ogfywygslxit6od
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEtg6/KYRFPHDXTPR4/5FK8MKzVSAFAmRZ+mgACgkQ/5FK8MKz
-VSCWQA/8C/o/6Lqq9PIxjWkSNDHEMmI/V+x09sfj0zDIX+56AVJmlYW9PbUrRM+b
-yXjmElnr++pl2ECeXyGgocO3YIfxKqNH+06/2xplScb9PlIfXwiyf5p6uxhiFoTn
-ROH6QqM17MUl3Fv1zYZfvB/AQqAfhi5Fx4kepc3I2wLxZREl6f627+xJ5R7p9bfe
-e4UnFTpQht4CVZj7HJ9KXsTibpeqzR79CnjX9iyFmYcDWSqHQ0jiM9glG6/HgbHp
-wMRHyswZp7sLsDTSkk31pL+VXSRFF5ABGeITw52LJnjNh+i8TYZbxpuYlPP4MlUo
-HzegbF2DdJDFssNkxXeBNRe7L5a82B2Bx5SW+DHNB5dmtaCQrM+2FzV5mBubba/L
-gEsbNLYngQZCoS3jV09mqc56dSpp7B+EC2IoDuJkhFqCB3UjLvimzM9CGDdM5Jm7
-NbQeeo9RUbdEOv9GLQwimp+h7S7N38XMnpTqDol0XQyYOMBRl5Ploi7JJwbGt6N7
-VvyTh5tGVtXycIDJ/+Gwy1RUIokMqHns+FPbJSig7oMdttz6GDk0Hr1QctFtN9CL
-3F61fVxJ+8QsXyrUtcnEPM6F9AmRJAtekOl4EjhJWlWlmXUkYwbcoKquzOUhJd1X
-OYLCHVj4DIA4NlXtump3gi68cW+SxUl/H2o0lBF27vLWGPKBlMU=
-=m9/Z
------END PGP SIGNATURE-----
-
---5ogfywygslxit6od--
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
