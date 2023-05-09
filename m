@@ -2,106 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA5816FCA67
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 17:42:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D382C6FCAA2
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 18:01:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235651AbjEIPmq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 11:42:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54614 "EHLO
+        id S235526AbjEIQBF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 12:01:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59826 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229572AbjEIPmo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 11:42:44 -0400
-Received: from mail-qt1-x833.google.com (mail-qt1-x833.google.com [IPv6:2607:f8b0:4864:20::833])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E735210CF
-        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 08:42:43 -0700 (PDT)
-Received: by mail-qt1-x833.google.com with SMTP id d75a77b69052e-3f38824a025so222181cf.0
-        for <devicetree@vger.kernel.org>; Tue, 09 May 2023 08:42:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20221208; t=1683646963; x=1686238963;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8fiW2eMPa3JcRn87r8tgH6+Zw6xv+kBmIa1Z3UxaYsE=;
-        b=liBfYH3VMjZJNljdRzneVIXYxFCVvNhvCaa9K+zpTNyp3TSvfKZm2kJBKZdtZrhkHg
-         Jzu9UQbL7+AMMU8OmlymvReEYlwlWi+hcC+p//agUPD59j6myTKw3isrlNBZ4UZ5hhQE
-         66dz8XMYpwnRwahBw1CybEUexL+G77JhdxqKorjS+/gMGredPkW3UzWUdWqpnj77+NJZ
-         ian4cHr+/pkGzTHwMSNr0si20dbCuQL58ABSBzdm1tMqqfDtEWkduMk6wZhowpMawwPp
-         qL/nJlcXAwOmX1Bz8vH3PTllyMYcHUB2V0eupd+7qcEMs7ZqYQ4PIpl7fkRywe1cHKbP
-         VdJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683646963; x=1686238963;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8fiW2eMPa3JcRn87r8tgH6+Zw6xv+kBmIa1Z3UxaYsE=;
-        b=ccySdqokH7G3O62FQqi8QEIZvVfZ0v35ovJFWiIdLQHbIAvo5Tc39OvstaLkSikUoJ
-         jSdesr9Z0IvTrtmdZIoVq2BZSS31JEUMg1KhthU/OEFXKGLZAWDI/MoknvkSeUeNRNmT
-         ef7AYo7oYyFZMJEBc1qlUMRNVxV3Hk3gUpEyqVk0mgc6wy95bVKz7Dae9cmqVasWF/Tn
-         4EXoZp64huxXqUl4Stn6Fvr8u2MGBV5GrFSqyV4WZPCqfkN5OYyxwaFGBvqc7NPqjXcV
-         DDcBBV5W/IazDyzY09ITmmm3n6JZ36dbLylQXBUXGKjD2aHRwbHx3dY/GiwQIueFfB2e
-         V6Fg==
-X-Gm-Message-State: AC+VfDx+NmKI2gt45TA5HSoDkim+s6aZaXStT0oEAZBzEUrKDCsU5hLp
-        LUBkI/av2Sjac/WA6u3sHwKButZRHSpm9ZdGZ4oF1A==
-X-Google-Smtp-Source: ACHHUZ7C7pgU55PCY9BaDVb25aW2mHoo+2xQgp1Pu4YxvFKZXAYbhIAieDk9gBa8KMPxOXLu2jAPL0tYarLvHr5kP50=
-X-Received: by 2002:a05:622a:c7:b0:3ef:3083:a437 with SMTP id
- p7-20020a05622a00c700b003ef3083a437mr436622qtw.18.1683646962948; Tue, 09 May
- 2023 08:42:42 -0700 (PDT)
+        with ESMTP id S233731AbjEIQBF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 12:01:05 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2EF9D30DB;
+        Tue,  9 May 2023 09:01:04 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2D440FEC;
+        Tue,  9 May 2023 09:01:48 -0700 (PDT)
+Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B0E7F3F663;
+        Tue,  9 May 2023 09:01:02 -0700 (PDT)
+Date:   Tue, 9 May 2023 17:01:00 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Nikunj Kela <quic_nkela@quicinc.com>
+Cc:     cristian.marussi@arm.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 0/2] Allow parameter in smc/hvc calls
+Message-ID: <20230509160100.2reb4il5enadjaum@bogus>
+References: <20230506182428.25343-1-quic_nkela@quicinc.com>
 MIME-Version: 1.0
-References: <CAHwB_NLBLEUiu__fE9F=j0KFssq7Lxfz8WUnbR0C6yi=zsboJw@mail.gmail.com>
- <20230509025153.1321446-1-yangcong5@huaqin.corp-partner.google.com>
-In-Reply-To: <20230509025153.1321446-1-yangcong5@huaqin.corp-partner.google.com>
-From:   Doug Anderson <dianders@google.com>
-Date:   Tue, 9 May 2023 08:42:30 -0700
-Message-ID: <CAD=FV=Xp_OoxJH38skQswjK_AWwJ5P2OmgjnXLog9bAht0CL6A@mail.gmail.com>
-Subject: Re: [v2] drm/panel: Modify innolux hj110iz panel inital code
-To:     Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-Cc:     thierry.reding@gmail.com, airlied@linux.ie, hsinyi@google.com,
-        sam@ravnborg.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230506182428.25343-1-quic_nkela@quicinc.com>
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Mon, May 8, 2023 at 7:52=E2=80=AFPM Cong Yang
-<yangcong5@huaqin.corp-partner.google.com> wrote:
->
-> There is a problem of screen shake on the old panel. So increase the
-> panel GOP component pull-down circuit size in hardware, and update the
-> initialization code at the same time. The new initialization code mainly
-> modifles the following.
->
-> a)adjusted for GOP timing. When Display sleep in, raise all GOP signals
-> to VGHO and then drop to GND.
-> b)Increased the Vertical back Porch and Vertical pulse width, so need to
-> update vsync_end and vtotal and CLK in drm_display_mode.
->
-> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+On Sat, May 06, 2023 at 11:24:26AM -0700, Nikunj Kela wrote:
+> Currently, smc/hvc calls are made with parameters set
+> to zeros. We are using multiple scmi instances within
+> a VM. We are sharing the same smc-id(func_id) with all
+> scmi instance. The hypervisor needs a way to distinguish
+> among hvc calls made from different instances.
+> 
+> This patch series introduces new compatible string which
+> can be used to pass shmem channel address as parameters
+> to smc/hvc calls.
+> 
 > ---
-> v2: Modify commit message
+> v5 -> avoid computing page and offset in send function
+> Link: https://lore.kernel.org/all/20230418185659.29745-1-quic_nkela@quicinc.com/
 >
->  .../gpu/drm/panel/panel-boe-tv101wum-nl6.c    | 397 +++++++++++-------
->  1 file changed, 235 insertions(+), 162 deletions(-)
 
-Every time I see the opaque changes to the pile of "DCS_CMD" arrays I
-feel obliged to grumble a bit, but as I've said before I guess it's
-OK-ish...
+Thanks for the updated patch. I will pick this up for v6.5 and update
+once queued.
 
-Thus, this patch seems fine to me:
-
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
-
-Just to make sure there are no objections, I'll give this ~1 week and
-then I'll land it to drm-misc-next.
-
--Doug
+-- 
+Regards,
+Sudeep
