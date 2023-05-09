@@ -2,175 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5270E6FCAB3
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 18:04:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F4896FCAC5
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 18:09:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235644AbjEIQEG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 12:04:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33994 "EHLO
+        id S235686AbjEIQJQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 12:09:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230150AbjEIQEF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 12:04:05 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE87C3599
-        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 09:04:03 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-50bd37ca954so60445762a12.0
-        for <devicetree@vger.kernel.org>; Tue, 09 May 2023 09:04:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683648242; x=1686240242;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0W2AbGXoin+5hxz/sFqIGD40a3J1EXdYBNV+hW/GpDI=;
-        b=O+4+Ah3ABLUbCNXJT1RMTBCBbF5rL3gK5S3T1/5rN4g0XuQ3kBpcdFJDQwavIXVfUT
-         MwK9q3k8Wb/+WBOGcEoJVZJv3EC3aL0D/dyWbxvD3CSAMcR9cE4aVU0TM8MHtFckgn3/
-         MrNzUXSbds9aKS7vEmqqe2y9K/HGZS+MV4JXj1zTmp0A2tSAJSP50zxMOWFNsdiwzHOq
-         Eqet0WKojWkrwAguAm84x02vTe2WNS+Qo1eK6dy30V9atUnOBm0MhDF1LiFN9/upPz5m
-         rmQnmvrQPUmqPQpNEhbGTIKj47TFfCKIKZZ3gV9rFSCrlrc5vPfwirGWtT0f+gebLw5S
-         N+yw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683648242; x=1686240242;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0W2AbGXoin+5hxz/sFqIGD40a3J1EXdYBNV+hW/GpDI=;
-        b=WqWdi16lF3cuhRmZx6qhs3oK8CohxR5knM/Uz06RAyCcIUKFABsaEo7b3G10opjuNt
-         wsZ1ceIGy3tTlApxByLXJgX6gajAbQXU/jgBjJ/cG/3C2pvCBAEbX87udYz8CoyPnqDa
-         fLQiLc1FUV0PKxgJeEHFZ2cTlgCIK3/NUHuQxkcPgWKrtJKffPf9nknV24q3KUdN8NnT
-         8VzA0CDnU78z2uvGLEz5avgRh0VNMxdUvvakhRzpqX2yfl1mqVZsKmmnisEfjyUoTqZb
-         7xss2+DPGKNKI5xpEf0AlgpNg03aP5zN+r+H7uX4+yQXiEMiFXOJAxwUQkcLf1Wq38Fs
-         7Qvg==
-X-Gm-Message-State: AC+VfDwqY5w1wFnaGtl7lHQWv05OSU2LjmxIqy57G0ShngEslh7dl1Oq
-        R5lHaC+mIXrtDvHuEIWpYEzJqg==
-X-Google-Smtp-Source: ACHHUZ7jsGZVu6tjUq2cwD0yDjE+mb4ZAnC7nOsl5zt9oE6kmtKM+6HxNI35Ddob1uM3Rt65zodX6g==
-X-Received: by 2002:a17:907:1c25:b0:969:9c0c:4c97 with SMTP id nc37-20020a1709071c2500b009699c0c4c97mr4171312ejc.1.1683648242301;
-        Tue, 09 May 2023 09:04:02 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:d0d5:7818:2f46:5e76? ([2a02:810d:15c0:828:d0d5:7818:2f46:5e76])
-        by smtp.gmail.com with ESMTPSA id la17-20020a170907781100b00957dad777c1sm1484712ejc.107.2023.05.09.09.04.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 May 2023 09:04:01 -0700 (PDT)
-Message-ID: <27232a95-6ef8-1a98-4f5d-7d0ea29c20c4@linaro.org>
-Date:   Tue, 9 May 2023 18:04:00 +0200
+        with ESMTP id S231228AbjEIQJP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 12:09:15 -0400
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02EF818C;
+        Tue,  9 May 2023 09:09:12 -0700 (PDT)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPA id E257FFF816;
+        Tue,  9 May 2023 16:09:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1683648551;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=XDvcIZLjCP+8xu4zO/3UciqUCkhBzDJuHbcBf2HG88E=;
+        b=kG52DJBeAxb2TVi8gOSoH+e2Pijux1idmzZT5Ic5pB3G5nLrsg2h8iiAANCIZH13Y1mILQ
+        VwDl9kIGtc+/ukntzd8ki2eAEwObaSyW0FYV7tPoACU+bcfltKEJIewRaFMQ0GOeHWVRPO
+        Uz78dLipKttcsfdwdHpBWvr7D1Pwu11EbBv+KkeVslt311UlanjEjUgFSonBW1o7mVQz9/
+        wVt5R6yOkSh9mNyWnYiE949Kd7m6YP2TeM/0veQppq6hJMrxx7Mx291zjhSLgQExhHW/E5
+        h4VlD59F8Sbf6Wi4TRTV5KFqpgB9O8SJryfsNStVG3hU8G+8GYzyyPV2vlAF9w==
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Herve Codina <herve.codina@bootlin.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: [PATCH v4 0/3] Add the Renesas X9250 potentiometers IIO support
+Date:   Tue,  9 May 2023 18:08:49 +0200
+Message-Id: <20230509160852.158101-1-herve.codina@bootlin.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v2] dt-bindings: usb: Add binding for Microchip usb5744
- hub controller
-Content-Language: en-US
-To:     Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
-        monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com,
-        ilias.apalodimas@linaro.org
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Piyush Mehta <piyush.mehta@amd.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org
-References: <dd31f987316fb2739644628b5840a6d447b5a587.1683293125.git.michal.simek@amd.com>
- <32aa46df-9ed5-7d2a-868f-a36414f54534@linaro.org>
- <1868d9ae-1376-d91d-a789-9e510bde96a7@amd.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1868d9ae-1376-d91d-a789-9e510bde96a7@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/05/2023 16:19, Michal Simek wrote:
-> 
-> 
-> On 5/7/23 10:07, Krzysztof Kozlowski wrote:
->> On 05/05/2023 15:25, Michal Simek wrote:
->>> The Microchip usb5744 is a SS/HS USB 3.0 hub controller with 4 ports.
->>> The binding describes USB related aspects of the USB5744 hub, it as
->>> well cover the option of connecting the controller as an i2c slave.
->>> When i2c interface is connected hub needs to be initialized first.
->>> Hub itself has fixed i2c address 0x2D but hardcoding address is not good
->>> idea because address can be shifted by i2c address translator in the
->>> middle.
->>>
->>> Signed-off-by: Piyush Mehta <piyush.mehta@amd.com>
->>> Signed-off-by: Michal Simek <michal.simek@amd.com>
->>> ---
->>>
->>> Changes in v2:
->>> - fix i2c-bus property
->>> - swap usb2.0/3.0 compatible strings
->>> - fix indentation in example (4 spaces)
->>> - add new i2c node with microchip,usb5744 compatible property
->>>
->>> It looks like that usb8041 has also an optional i2c interface which is not
->>> covered. But it is mentioned at commit 40e58a8a7ca6 ("dt-bindings: usb:
->>> Add binding for TI USB8041 hub controller").
->>>
->>> i2c-bus name property was suggested by Rob at
->>> https://lore.kernel.org/all/CAL_JsqJedhX6typpUKbnzV7CLK6UZVjq3CyG9iY_j5DLPqvVdw@mail.gmail.com/
->>> and
->>> https://lore.kernel.org/all/CAL_JsqJZBbu+UXqUNdZwg-uv0PAsNg55026PTwhKr5wQtxCjVQ@mail.gmail.com/
->>>
->>> the question is if adding address like this is acceptable.
->>> But it must be specified.
->>>
->>> Driver will follow based on final dt-binding.
->>>
->>> $ref: usb-device.yaml# should be also added but have no idea how to wire it
->>> up to be applied only on usb node not i2c one.
->>>
->>> ---
->>>   .../bindings/usb/microchip,usb5744.yaml       | 110 ++++++++++++++++++
->>>   1 file changed, 110 insertions(+)
->>>   create mode 100644 Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml b/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
->>> new file mode 100644
->>> index 000000000000..7e0a3472ea95
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
->>> @@ -0,0 +1,110 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/usb/microchip,usb5744.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Microchip USB5744 4-port Hub Controller
->>> +
->>> +description:
->>> +  Microchip's USB5744 SmartHubTM IC is a 4 port, SuperSpeed (SS)/Hi-Speed (HS),
->>> +  low power, low pin count configurable and fully compliant with the USB 3.1
->>> +  Gen 1 specification. The USB5744 also supports Full Speed (FS) and Low Speed
->>> +  (LS) USB signaling, offering complete coverage of all defined USB operating
->>> +  speeds. The new SuperSpeed hubs operate in parallel with the USB 2.0
->>> +  controller, so 5 Gbps SuperSpeed data transfers are not affected by slower
->>> +  USB 2.0 traffic.
->>> +
->>> +maintainers:
->>> +  - Piyush Mehta <piyush.mehta@amd.com>
->>> +  - Michal Simek <michal.simek@amd.com>
->>> +
->>> +select:
->>> +  properties:
->>> +    compatible:
->>> +      contains:
->>> +        const: microchip,usb5744
->>> +  required:
->>> +    - compatible
->>
->> I don't understand why do you need this select. It basically disables
->> schema matching for other ones.
-> 
-> I didn't find a way how to have usbXXX,XXXX compatible strings and 
-> microchip,usb5744 compatible in the same file. I am definitely lacking knowledge 
-> how to write it properly that's why any advise is welcome.
+Hi,
 
-Hm, if you just have both of them like you have now, what happens?
+The Renesas X9250 integrated four digitally controlled potentiometers.
+On each potentiometer, the X9250T has a 100 kOhms total resistance and
+the X9250U has a 50 kOhms total resistance.
+
+Compare to the previous iteration
+  https://lore.kernel.org/linux-kernel/20230421085245.302169-1-herve.codina@bootlin.com/
+This v4 series updates the binding, introduced the power-supply
+regulators and the write-protect gpio, uses spi_write_then_read(),
+removes spi_get_device_id(spi)->name, removes spi_set_drvdata() call.
 
 Best regards,
-Krzysztof
+Herve Codina
+
+Changes v3 -> v4
+  - Patch 1
+    Remove iio.yaml.
+    Add 'vcc-supply', 'avp-supply' and 'avn-supply'.
+    Add 'wp-gpios'
+
+  - Patch 2
+    Get and enable the regulators.
+    Manage the write-protect gpio.
+    Use spi_write_then_read().
+    Remove the unneeded spi_setup() call.
+    Get name from field added in struct x9250_cfg instead of
+    spi_get_device_id(spi)->name.
+
+  - Patch 3
+    No changes
+
+Changes v2 -> v3
+  - Patch 1
+    Remove the reg property description
+    Use 'potentiometer' for the node name in the example.
+
+  - Patch 2 and 3
+    No changes
+
+Changes v1 -> v2
+  - Patch 1
+    No changes
+
+  - Patch 2
+    Use a define for the 0x50 value used multiple times.
+
+  - Patch 3
+    No changes
+
+Herve Codina (3):
+  dt-bindings: iio: potentiometer: Add the Renesas X9250 potentiometers
+  iio: potentiometer: Add support for the Renesas X9250 potentiometers
+  MAINTAINERS: add the Renesas X9250 driver entry
+
+ .../iio/potentiometer/renesas,x9250.yaml      |  78 ++++++
+ MAINTAINERS                                   |   7 +
+ drivers/iio/potentiometer/Kconfig             |  10 +
+ drivers/iio/potentiometer/Makefile            |   1 +
+ drivers/iio/potentiometer/x9250.c             | 223 ++++++++++++++++++
+ 5 files changed, 319 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/potentiometer/renesas,x9250.yaml
+ create mode 100644 drivers/iio/potentiometer/x9250.c
+
+-- 
+2.40.1
 
