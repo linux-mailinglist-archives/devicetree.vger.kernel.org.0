@@ -2,52 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B4F66FC5DE
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 14:08:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 940386FC610
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 14:16:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235537AbjEIMIp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 08:08:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51540 "EHLO
+        id S235417AbjEIMQJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 08:16:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233995AbjEIMIo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 08:08:44 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B9F93598
-        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 05:08:42 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1pwM90-0002Zs-FK; Tue, 09 May 2023 14:08:38 +0200
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1pwM8z-0003f6-4P; Tue, 09 May 2023 14:08:37 +0200
-Date:   Tue, 9 May 2023 14:08:37 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
-Cc:     krzysztof.kozlowski@linaro.org, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: Add device tree for the Emtop SOM IMX8MM
-Message-ID: <20230509120837.yekbiz35hfqqugdk@pengutronix.de>
-References: <20230509111754.3301369-1-himanshu.bhavani@siliconsignals.io>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230509111754.3301369-1-himanshu.bhavani@siliconsignals.io>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        with ESMTP id S229741AbjEIMQI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 08:16:08 -0400
+Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com [64.147.123.21])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 160CA3C25;
+        Tue,  9 May 2023 05:16:04 -0700 (PDT)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.west.internal (Postfix) with ESMTP id 846B63200437;
+        Tue,  9 May 2023 08:15:59 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Tue, 09 May 2023 08:16:01 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-transfer-encoding:content-type:content-type:date
+        :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+        :references:reply-to:sender:subject:subject:to:to; s=fm3; t=
+        1683634559; x=1683720959; bh=jMFJATipArZQBRY6U4nByREOOWvUXM2jwlx
+        Y3nY6hu0=; b=ZfsaS5LDJ0o2jzmbku6hsKKp4oObCLeMCqZEuxd7nuCw81w3krt
+        pdTWFMEX9b9NcYaoE/uuu3vGgpdVsc0I0nGzz+Uay2NA7FhED7+e05ZXqfIMk/Iq
+        rRUOymcyzGBMyo3ksf/3lgDJaC63Rx6Z6PhM0P5ZpXPdtU+1Vef4AEsFNAKGdjgg
+        dZw2C//hotodyFWSm0gHFvmcYvhon9wVV5WTGatxB2Pxi5PqN9BABn1MDJV3H/lN
+        KS1YH+4O9/bOqLhy84QRVeo2cnXI0lHp+XiIr9BsL7f3UIotn67VTbPb+fossMxB
+        WuhptkpiWKvn/rtm8Hmdpjb7h8TYrF97bWg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:content-type:date:date:feedback-id:feedback-id
+        :from:from:in-reply-to:in-reply-to:message-id:mime-version
+        :references:reply-to:sender:subject:subject:to:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=
+        1683634559; x=1683720959; bh=jMFJATipArZQBRY6U4nByREOOWvUXM2jwlx
+        Y3nY6hu0=; b=LC89PMaH+NrcQx7ntd8N9c3gGTHk77YGeaxocqDBUZVoNX0vYyy
+        21gcoBEEur2Z3DyJN+3uWL1oRfWL8EAasgFYOdQd/eNjdmqPmI46x8QcC0PjPOtY
+        Y+LEnUCBV6jci5GBm9+zGwL34nXM0OOZbJJ9puBraCNP6/TI3EEEy7ysKv4MZn1X
+        ZEyFb8kmi48FyJ7DV+rdwwABX4tr/MhG5bOXniO3Q5w6h9Jzue030dhaDd2e+8Br
+        InKeJCDAFNq4mzX+WoKT/gaZt/j7n5l1QJ4Zzj9q3UrUC60g4RLBxmXFXbUvmoOU
+        MnwFoU1scv97ZmqrJxT9ne0HWqResTECjDA==
+X-ME-Sender: <xms:fjlaZFpnnWGKp_l1wYq3iNuQN7Gni46QlwMzAqXckS9ufTk7JxjO_w>
+    <xme:fjlaZHr5zZUHXPswqpZWTP0A1G9OqmM--lh3voqG91_qHbZRx1tvIR2pGltEsWAXz
+    BCzQWPPGTasqg4oJJE>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrfeegtddggeelucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtgfesthhqredtreerjeenucfhrhhomhepfdet
+    rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
+    htthgvrhhnpeegfeejhedvledvffeijeeijeeivddvhfeliedvleevheejleetgedukedt
+    gfejveenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    grrhhnugesrghrnhgusgdruggv
+X-ME-Proxy: <xmx:fjlaZCMtr5bwynHlhW4Lm9PXk7yAgi4-S0X3LzOd6BAzENQxRiM8dQ>
+    <xmx:fjlaZA4WS8a8pR5ljQ1U3Vkdw67Ko-30g3NdKzeSocpZ_eKZvDX2dA>
+    <xmx:fjlaZE689Ji7FiV5fy4mmoE47E22b3pwIcqN0eCGmtNGHn9o5JycAQ>
+    <xmx:fzlaZBwXX1FNQxwMzmeJm51odJp-ZEtamFOJuGxX1kWbn4B9CxIZ1w>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 6606FB60086; Tue,  9 May 2023 08:15:58 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-415-gf2b17fe6c3-fm-20230503.001-gf2b17fe6
+Mime-Version: 1.0
+Message-Id: <eeeaf258-8f2b-436a-aba0-b32dc90b359f@app.fastmail.com>
+In-Reply-To: <2ba483e9-267f-2159-1ea8-75a2618fcdf9@linux.intel.com>
+References: <20230508025936.36776-1-ychuang570808@gmail.com>
+ <20230508025936.36776-11-ychuang570808@gmail.com>
+ <2ba483e9-267f-2159-1ea8-75a2618fcdf9@linux.intel.com>
+Date:   Tue, 09 May 2023 14:14:00 +0200
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+        "Jacky Huang" <ychuang570808@gmail.com>
+Cc:     "Rob Herring" <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org, "Lee Jones" <lee@kernel.org>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        "Stephen Boyd" <sboyd@kernel.org>,
+        "Philipp Zabel" <p.zabel@pengutronix.de>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        "Jiri Slaby" <jirislaby@kernel.org>,
+        "Tomer Maimon" <tmaimon77@gmail.com>,
+        "Catalin Marinas" <catalin.marinas@arm.com>,
+        "Will Deacon" <will@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-serial <linux-serial@vger.kernel.org>, schung@nuvoton.com,
+        mjchen@nuvoton.com, "Jacky Huang" <ychuang3@nuvoton.com>
+Subject: Re: [PATCH v10 10/10] tty: serial: Add Nuvoton ma35d1 serial driver support
+Content-Type: text/plain;charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -55,303 +100,75 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bhavani,
+On Tue, May 9, 2023, at 12:17, Ilpo J=C3=A4rvinen wrote:
+> On Mon, 8 May 2023, Jacky Huang wrote:
+>> +
+>> +#define UART_NR			17
+>> +
+>> +#define UART_REG_RBR		0x00
+>> +#define UART_REG_THR		0x00
+>> +#define UART_REG_IER		0x04
+>> +#define UART_REG_FCR		0x08
+>> +#define UART_REG_LCR		0x0C
+>> +#define UART_REG_MCR		0x10
+>
+> These duplicate include/uapi/linux/serial_reg.h ones, use the std ones=20
+> directly.
+>
+> Setup regshift too and use it in serial_in.
 
-thanks for the patch.
+I think this came up in previous reviews, but it turned out that
+only the first six registers are compatible, while the later
+ones are all different, and it's not 8250 compatible.
 
-On 23-05-09, Himanshu Bhavani wrote:
-> Add a device tree file describing the Emtop SOM IMX8MM
-> 
-> Signed-off-by: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> index 198fff3731ae..36590515fbc1 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -54,6 +54,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-beacon-kit.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mm-data-modul-edm-sbc.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mm-ddr4-evk.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mm-emcon-avari.dtb
-> +dtb-$(CONFIG_ARCH_MXC) += imx8mm-emtop.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mm-evk.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mm-icore-mx8mm-ctouch2.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mm-icore-mx8mm-edimm2.2.dtb
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-emtop.dts b/arch/arm64/boot/dts/freescale/imx8mm-emtop.dts
-> new file mode 100644
-> index 000000000000..461e1ef5dcb4
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-emtop.dts
-> @@ -0,0 +1,261 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright 2023 Emtop
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/leds/common.h>
-> +#include <dt-bindings/usb/pd.h>
-> +
-> +#include "imx8mm.dtsi"
-> +
-> +/ {
-> +	model = "Emtop SOM i.MX8MM";
-> +	compatible = "emtop,imx8mm-emtop", "fsl,imx8mm";
+It might be helpful to rename the registers to something
+with a prefix other than UART_REG_*, to avoid the confusion
+and possible namespace clash.
 
-Missing update of
-Documentation/devicetree/bindings/vendor-prefixes.yaml? Also you should
-update Documentation/devicetree/bindings/arm/fsl.yaml.
+>
+>> +/* UART_REG_IER - Interrupt Enable Register */
+>> +#define IER_RDA_IEN		BIT(0)  /* RBR Available Interrupt Enable */
+>> +#define IER_THRE_IEN		BIT(1)  /* THR Empty Interrupt Enable */
+>> +#define IER_RLS_IEN		BIT(2)  /* RX Line Status Interrupt Enable */
+>
+> These look same as UART_IER bits, use the std ones.
+...
+> Are these same as UART_FCR_CLEAR_* functionality wise? If they're use =
+std=20
+> ones.
 
-Regards,
-  Marco
+Again, I'd think we're better off having a distinct naming for
+them than trying to share the definitions with 8250.
 
-> +	chosen {
-> +		stdout-path = &uart2;
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_gpio_led>;
-> +
-> +		led-0 {
-> +			function = LED_FUNCTION_POWER;
-> +			gpios = <&gpio3 16 GPIO_ACTIVE_HIGH>;
-> +			linux,default-trigger = "heartbeat";
-> +		};
-> +	};
-> +};
-> +
-> +&A53_0 {
-> +	cpu-supply = <&buck2>;
-> +};
-> +
-> +&A53_1 {
-> +	cpu-supply = <&buck2>;
-> +};
-> +
-> +&A53_2 {
-> +	cpu-supply = <&buck2>;
-> +};
-> +
-> +&A53_3 {
-> +	cpu-supply = <&buck2>;
-> +};
-> +
-> +&uart2 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart2>;
-> +	status = "okay";
-> +};
-> +
-> +&usdhc3 {
-> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-> +	pinctrl-0 = <&pinctrl_usdhc3>;
-> +	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
-> +	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
-> +	bus-width = <8>;
-> +	non-removable;
-> +	status = "okay";
-> +};
-> +
-> +&wdog1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_wdog>;
-> +	fsl,ext-reset-output;
-> +	status = "okay";
-> +};
-> +
-> +&i2c1 {
-> +	clock-frequency = <400000>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_i2c1>;
-> +	status = "okay";
-> +
-> +	pmic@25 {
-> +		compatible = "nxp,pca9450c";
-> +		reg = <0x25>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_pmic>;
-> +		interrupt-parent = <&gpio1>;
-> +		interrupts = <3 IRQ_TYPE_EDGE_RISING>;
-> +
-> +		regulators {
-> +			buck1: BUCK1 {
-> +				regulator-name = "BUCK1";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <1000000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +				regulator-ramp-delay = <3125>;
-> +			};
-> +
-> +			buck2: BUCK2 {
-> +				regulator-name = "BUCK2";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <900000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +				regulator-ramp-delay = <3125>;
-> +			};
-> +
-> +			buck3: BUCK3 {
-> +				regulator-name = "BUCK3";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <1000000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			buck4: BUCK4 {
-> +				regulator-name = "BUCK4";
-> +				regulator-min-microvolt = <3000000>;
-> +				regulator-max-microvolt = <3600000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			buck5: BUCK5 {
-> +				regulator-name = "BUCK5";
-> +				regulator-min-microvolt = <1650000>;
-> +				regulator-max-microvolt = <1950000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			buck6: BUCK6 {
-> +				regulator-name = "BUCK6";
-> +				regulator-min-microvolt = <1100000>;
-> +				regulator-max-microvolt = <1200000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo1: LDO1 {
-> +				regulator-name = "LDO1";
-> +				regulator-min-microvolt = <1650000>;
-> +				regulator-max-microvolt = <1950000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo2: LDO2 {
-> +				regulator-name = "LDO2";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <945000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo3: LDO3 {
-> +				regulator-name = "LDO3";
-> +				regulator-min-microvolt = <1710000>;
-> +				regulator-max-microvolt = <1890000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo4: LDO4 {
-> +				regulator-name = "LDO4";
-> +				regulator-min-microvolt = <810000>;
-> +				regulator-max-microvolt = <945000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo5: LDO5 {
-> +				regulator-name = "LDO5";
-> +				regulator-min-microvolt = <1650000>;
-> +				regulator-max-microvolt = <3600000>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&iomuxc {
-> +	pinctrl_gpio_led: gpioledgrp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_NAND_READY_B_GPIO3_IO16			0x19
-> +			MX8MM_IOMUXC_SAI3_RXC_GPIO4_IO29			0x19
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c1: i2c1grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_I2C1_SCL_I2C1_SCL				0x400001c3
-> +			MX8MM_IOMUXC_I2C1_SDA_I2C1_SDA				0x400001c3
-> +		>;
-> +	};
-> +
-> +	pinctrl_pmic: pmicirq {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_GPIO1_IO03_GPIO1_IO3			0x41
-> +		>;
-> +	};
-> +
-> +	pinctrl_uart2: uart2grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_UART2_RXD_UART2_DCE_RX			0x140
-> +			MX8MM_IOMUXC_UART2_TXD_UART2_DCE_TX			0x140
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc3: usdhc3grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK			0x190
-> +			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD			0x1d0
-> +			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0			0x1d0
-> +			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1			0x1d0
-> +			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2			0x1d0
-> +			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3			0x1d0
-> +			MX8MM_IOMUXC_NAND_RE_B_USDHC3_DATA4			0x1d0
-> +			MX8MM_IOMUXC_NAND_CE2_B_USDHC3_DATA5			0x1d0
-> +			MX8MM_IOMUXC_NAND_CE3_B_USDHC3_DATA6			0x1d0
-> +			MX8MM_IOMUXC_NAND_CLE_USDHC3_DATA7			0x1d0
-> +			MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE			0x190
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc3_100mhz: usdhc3-100mhzgrp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK			0x194
-> +			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD			0x1d4
-> +			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0			0x1d4
-> +			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1			0x1d4
-> +			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2			0x1d4
-> +			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3			0x1d4
-> +			MX8MM_IOMUXC_NAND_RE_B_USDHC3_DATA4			0x1d4
-> +			MX8MM_IOMUXC_NAND_CE2_B_USDHC3_DATA5			0x1d4
-> +			MX8MM_IOMUXC_NAND_CE3_B_USDHC3_DATA6			0x1d4
-> +			MX8MM_IOMUXC_NAND_CLE_USDHC3_DATA7			0x1d4
-> +			MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE			0x194
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc3_200mhz: usdhc3-200mhzgrp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK			0x196
-> +			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD			0x1d6
-> +			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0			0x1d6
-> +			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1			0x1d6
-> +			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2			0x1d6
-> +			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3			0x1d6
-> +			MX8MM_IOMUXC_NAND_RE_B_USDHC3_DATA4			0x1d6
-> +			MX8MM_IOMUXC_NAND_CE2_B_USDHC3_DATA5			0x1d6
-> +			MX8MM_IOMUXC_NAND_CE3_B_USDHC3_DATA6			0x1d6
-> +			MX8MM_IOMUXC_NAND_CLE_USDHC3_DATA7			0x1d6
-> +			MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE			0x196
-> +		>;
-> +	};
-> +
-> +	pinctrl_wdog: wdoggrp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_GPIO1_IO02_WDOG1_WDOG_B			0xc6
-> +		>;
-> +	};
-> +};
-> -- 
-> 2.25.1
-> 
-> 
-> 
+>> +static struct uart_driver ma35d1serial_reg =3D {
+>> +	.owner        =3D THIS_MODULE,
+>> +	.driver_name  =3D "serial",
+>> +	.dev_name     =3D "ttyS",
+>> +	.major        =3D TTY_MAJOR,
+>> +	.minor        =3D 64,
+>> +	.cons         =3D MA35D1SERIAL_CONSOLE,
+>> +	.nr           =3D UART_NR,
+>> +};
+>
+> This doesn't seem necessary, 8250 core will have the uart_driver for y=
+ou
+> and most of the console stuff too. You just need to setup a few things=20
+> correctly (see the setup functions in 8250_early for ideas/examples).
+>...
+>> +
+>> +	ret =3D uart_add_one_port(&ma35d1serial_reg, &up->port);
+>
+> For 8250, you should be using serial8250_register_8250_port(). See the=20
+> other drivers how to setup the console functions.
+
+Consequently, this should also be kept separate from the serial8250
+driver, I don't see a way to fit the nuvoton code into the existing
+driver without making the resulting driver worse for everyone.
+
+There is one thing that absolutely needs to be changed though:
+the driver_name/dev_name/major/minor fields all clash with the
+8250 driver, so you cannot have a kernel that has both drivers
+built-in. All of these should change to get out of the way of the
+existing drivers.
+
+        Arnd
