@@ -2,155 +2,266 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC48B6FBF37
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 08:28:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 049C06FBF40
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 08:32:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234477AbjEIG16 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 02:27:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38610 "EHLO
+        id S234885AbjEIGcO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 02:32:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233293AbjEIG15 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 02:27:57 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D5EB5FC9;
-        Mon,  8 May 2023 23:27:56 -0700 (PDT)
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3495WGaf024204;
-        Tue, 9 May 2023 08:27:28 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=X5XkLQ4CRDZhwr0Yx/HkKtgzcHNa85elXl0Sl0Fa4Tc=;
- b=KasXnT1MAIKsqJXKafcg0ekWDAM7PGgQttsgEfrRa7mLfwZUl1E0tQfE2XT3MaBiheHk
- L6CYs1vlx86Ig9O567Uts8fS6YmBV19A4J08bs5Ssk2SAH/+9th3MnMGxRzbOW/ZfIpa
- 3nwvblKopoQJd2QkW7gApQH16Ug4olHx7+Q9JOSlEwlYYOjwAGFuKbq4CuID8GkrrB/f
- qDW7YwgJcTsjkCI9rRrYrdMLh39WecnOaAwaygWxqKsDv7Ppj5BAkvg425N9TqUXY/n8
- hlx1Kh+BFlqE4vk3kGOaP5ss8iDv9b050s3YZB/M3oGNmmtOvJKRUt8Hj9HspXJw0xIc Rw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3qf787aevh-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 09 May 2023 08:27:28 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 01B1910002A;
-        Tue,  9 May 2023 08:27:25 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id DCD96210F86;
-        Tue,  9 May 2023 08:27:25 +0200 (CEST)
-Received: from [10.201.21.26] (10.201.21.26) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Tue, 9 May
- 2023 08:27:23 +0200
-Message-ID: <d70d6266-9b93-92af-814a-1b5ec840e4b6@foss.st.com>
-Date:   Tue, 9 May 2023 08:27:23 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH 4/4] ARM: dts: Move .dts files to vendor sub-directories
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>, <soc@kernel.org>,
-        Christian Marangi <ansuelsmth@gmail.com>,
+        with ESMTP id S234633AbjEIGcN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 02:32:13 -0400
+Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01BF865A4
+        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 23:32:11 -0700 (PDT)
+Received: by mail-pf1-x429.google.com with SMTP id d2e1a72fcca58-643557840e4so5909172b3a.2
+        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 23:32:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683613931; x=1686205931;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=NVlG1bw+1j4LbTAdqRY6la7nACuyIs7ic3d+S0maLdg=;
+        b=l7+WVNEonbYGyuPQDe/2dnITBG4anKFJRqf64Umq3x0dxscO0wKEVtuzRsHGSWJuGq
+         xPhKmFHHICfUBkwhFnHJsIeU7PlQ6TrlDbea3vDI4/g9SZQfhkwUhcjStemQZSaK/0tW
+         v1VmVo+yv50Fhhugioc1tC4FcoMd74sr6GVaE0987oIqY3k6jPK81jHG3lHSslLgLG+i
+         wQKttgHVW2iekTPzdBPSn/0hc35lZEiRked0B68F/FNV0vYilgvruzQ1+dLH+yrCQ05e
+         N2x5KrXcY/ISfaYI7GiDvrvEl9ukyKvRQT32Cgbfi1iZ2DQEpc8h9TN+YMu8jQYIgeEZ
+         wAoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683613931; x=1686205931;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NVlG1bw+1j4LbTAdqRY6la7nACuyIs7ic3d+S0maLdg=;
+        b=IEwaOsL9LPQL9GYCCIovWM51aGJXVN2D4nWhz9RLQF1PrZcSGdsKxGE/ikIZja9plL
+         p6HgigVywDrIdXiQPAAnugXMJoU9FO7hznW6zP8KminslhOxRx16Xapxoc/AAASwa8zb
+         7rXOUcK3o5CGxbO+ek6A4UKNXAaUq0tVDPAdC3nGMx/r4JKBXbefu5ABPgg/luImG4aG
+         WYIuD91qeKDNQ0/d3C1zG05PuzrLWsF7TTQrmd1qUXALsjpLnDwD0+WgRcVjRkFkq842
+         GLG9pM+ERBaD10IiQ+zM4T60qMTyJQMe8AVJ+OWiE5owfsADj93rKSk4zcbQj9TqFrew
+         s6iQ==
+X-Gm-Message-State: AC+VfDz6RgEUB5afYnRXIwHHXy7cnTpTjmfgKqhy4us6F9fr4vm+AUmA
+        xvP8wjon4r/DZpPRdszNpgyh
+X-Google-Smtp-Source: ACHHUZ7cHBR3qQ4g8ZtG7OyT0so7AZGcqCSAkYCTmhwEKpvWlJ/wf91fb7UXkMd7EQGX9nOLDJy6hw==
+X-Received: by 2002:a05:6a00:2442:b0:63b:854c:e0f6 with SMTP id d2-20020a056a00244200b0063b854ce0f6mr17159451pfj.21.1683613931265;
+        Mon, 08 May 2023 23:32:11 -0700 (PDT)
+Received: from thinkpad ([59.92.97.45])
+        by smtp.gmail.com with ESMTPSA id a17-20020aa780d1000000b006372791d708sm974123pfn.104.2023.05.08.23.32.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 May 2023 23:32:10 -0700 (PDT)
+Date:   Tue, 9 May 2023 12:02:05 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Bjorn Andersson <quic_bjorande@quicinc.com>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Antoine Tenart <atenart@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Lars Persson <lars.persson@axis.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Baruch Siach <baruch@tkos.co.il>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        Jean-Marie Verdun <verdun@hpe.com>,
-        Nick Hawkins <nick.hawkins@hpe.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Vladimir Zapolskiy <vz@mleia.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Peter Rosin <peda@axentia.se>, Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.neuschaefer@gmx.net>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Daniel Palmer <daniel@thingy.jp>,
-        Romain Perier <romain.perier@gmail.com>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Shiraz Hashim <shiraz.linux.kernel@gmail.com>,
-        Marek Vasut <marex@denx.de>, Qin Jian <qinjian@cqplus1.com>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Paul Barker <paul.barker@sancloud.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Nishanth Menon <nm@ti.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Enric Balletbo i Serra <eballetbo@gmail.com>,
-        Javier Martinez Canillas <javier@dowhile0.org>,
-        Michal Simek <michal.simek@xilinx.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@axis.com>
-References: <20230504-arm-dts-mv-v1-0-2c8e51a2b6c4@kernel.org>
- <20230504-arm-dts-mv-v1-4-2c8e51a2b6c4@kernel.org>
-From:   Patrice CHOTARD <patrice.chotard@foss.st.com>
-In-Reply-To: <20230504-arm-dts-mv-v1-4-2c8e51a2b6c4@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.201.21.26]
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-09_03,2023-05-05_01,2023-02-09_01
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sc8280xp: Add SDC2 and enable on
+ CRD
+Message-ID: <20230509063205.GB4823@thinkpad>
+References: <20230509030136.1524860-1-quic_bjorande@quicinc.com>
+ <20230509030136.1524860-2-quic_bjorande@quicinc.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230509030136.1524860-2-quic_bjorande@quicinc.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, May 08, 2023 at 08:01:36PM -0700, Bjorn Andersson wrote:
+> The CRD has Micro SD slot, introduce the necessary DeviceTree nodes for
+> enabling this.
+> 
+> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sc8280xp-crd.dts | 80 +++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi    | 39 +++++++++++
+>  2 files changed, 119 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
+> index 5b25d54b9591..f83411e0e7f8 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
+> @@ -308,6 +308,13 @@ vreg_l1c: ldo1 {
+>  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>  		};
+>  
+> +		vreg_l6c: ldo6 {
+> +			regulator-name = "vreg_l6c";
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <2960000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+>  		vreg_l7c: ldo7 {
+>  			regulator-name = "vreg_l7c";
+>  			regulator-min-microvolt = <2504000>;
+> @@ -318,6 +325,13 @@ vreg_l7c: ldo7 {
+>  						   RPMH_REGULATOR_MODE_HPM>;
+>  		};
+>  
+> +		vreg_l9c: ldo9 {
+> +			regulator-name = "vreg_l9c";
+> +			regulator-min-microvolt = <2960000>;
+> +			regulator-max-microvolt = <2960000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+>  		vreg_l13c: ldo13 {
+>  			regulator-name = "vreg_l13c";
+>  			regulator-min-microvolt = <3072000>;
+> @@ -600,6 +614,18 @@ &remoteproc_nsp0 {
+>  	status = "okay";
+>  };
+>  
+> +&sdc2 {
+> +	cd-gpios = <&tlmm 131 GPIO_ACTIVE_LOW>;
+> +	pinctrl-names = "default", "sleep";
+> +	pinctrl-0 = <&sdc2_default_state>;
+> +	pinctrl-1 = <&sdc2_sleep_state>;
+> +	vmmc-supply = <&vreg_l9c>;
+> +	vqmmc-supply = <&vreg_l6c>;
+> +	no-sdio;
+> +	no-mmc;
+> +	status = "okay";
+> +};
+> +
+>  &uart17 {
+>  	compatible = "qcom,geni-debug-uart";
+>  
+> @@ -842,6 +868,60 @@ wake-n-pins {
+>  		};
+>  	};
+>  
+> +	sdc2_default_state: sdc2-default-state {
+> +		clk-pins {
+> +			pins = "sdc2_clk";
+> +			drive-strength = <16>;
+> +			bias-disable;
+> +		};
+> +
+> +		cmd-pins {
+> +			pins = "sdc2_cmd";
+> +			drive-strength = <16>;
+> +			bias-pull-up;
+> +		};
+> +
+> +		data-pins {
+> +			pins = "sdc2_data";
+> +			drive-strength = <16>;
+> +			bias-pull-up;
+> +		};
+> +
+> +		card-detect-pins {
+> +			pins = "gpio131";
+> +			function = "gpio";
+> +			drive-strength = <2>;
+> +			bias-disable;
 
+Since the card detect is active low, shouldn't the pin be pulled high to avoid
+floating? Or is there an external pull up available on the board?
 
-On 5/5/23 05:29, Rob Herring wrote:
->  arch/arm/boot/dts/{ => st}/stih407-b2120.dts       |    0
->  arch/arm/boot/dts/{ => st}/stih407-clock.dtsi      |    0
->  arch/arm/boot/dts/{ => st}/stih407-family.dtsi     |    0
->  arch/arm/boot/dts/{ => st}/stih407-pinctrl.dtsi    |    0
->  arch/arm/boot/dts/{ => st}/stih407.dtsi            |    0
->  arch/arm/boot/dts/{ => st}/stih410-b2120.dts       |    0
->  arch/arm/boot/dts/{ => st}/stih410-b2260.dts       |    0
->  arch/arm/boot/dts/{ => st}/stih410-clock.dtsi      |    0
->  arch/arm/boot/dts/{ => st}/stih410-pinctrl.dtsi    |    0
->  arch/arm/boot/dts/{ => st}/stih410.dtsi            |    0
->  arch/arm/boot/dts/{ => st}/stih418-b2199.dts       |    0
->  arch/arm/boot/dts/{ => st}/stih418-b2264.dts       |    0
->  arch/arm/boot/dts/{ => st}/stih418-clock.dtsi      |    0
->  arch/arm/boot/dts/{ => st}/stih418.dtsi            |    0
->  arch/arm/boot/dts/{ => st}/stihxxx-b2120.dtsi      |    0
+- Mani
 
-Acked-by: Patrice Chotard <patrice.chotard@foss.st.com>
+> +		};
+> +	};
+> +
+> +	sdc2_sleep_state: sdc2-sleep-state {
+> +		clk-pins {
+> +			pins = "sdc2_clk";
+> +			drive-strength = <2>;
+> +			bias-disable;
+> +		};
+> +
+> +		cmd-pins {
+> +			pins = "sdc2_cmd";
+> +			drive-strength = <2>;
+> +			bias-pull-up;
+> +		};
+> +
+> +		data-pins {
+> +			pins = "sdc2_data";
+> +			drive-strength = <2>;
+> +			bias-pull-up;
+> +		};
+> +
+> +		card-detect-pins {
+> +			pins = "gpio131";
+> +			function = "gpio";
+> +			drive-strength = <2>;
+> +			bias-disable;
+> +		};
+> +	};
+> +
+>  	tpad_default: tpad-default-state {
+>  		int-n-pins {
+>  			pins = "gpio182";
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> index 8fa9fbfe5d00..21dfb48d923c 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> @@ -2815,6 +2815,45 @@ data-pins {
+>  			};
+>  		};
+>  
+> +		sdc2: mmc@8804000 {
+> +			compatible = "qcom,sc8280xp-sdhci", "qcom,sdhci-msm-v5";
+> +			reg = <0 0x08804000 0 0x1000>;
+> +
+> +			interrupts = <GIC_SPI 207 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 223 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "hc_irq", "pwr_irq";
+> +
+> +			clocks = <&gcc GCC_SDCC2_AHB_CLK>,
+> +				 <&gcc GCC_SDCC2_APPS_CLK>,
+> +				 <&rpmhcc RPMH_CXO_CLK>;
+> +			clock-names = "iface", "core", "xo";
+> +			resets = <&gcc GCC_SDCC4_BCR>;
+> +			interconnects = <&aggre2_noc MASTER_SDCC_2 0 &mc_virt SLAVE_EBI1 0>,
+> +					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_SDCC_2 0>;
+> +			interconnect-names = "sdhc-ddr","cpu-sdhc";
+> +			iommus = <&apps_smmu 0x4e0 0x0>;
+> +			power-domains = <&rpmhpd SC8280XP_CX>;
+> +			operating-points-v2 = <&sdc2_opp_table>;
+> +			bus-width = <4>;
+> +			dma-coherent;
+> +
+> +			status = "disabled";
+> +
+> +			sdc2_opp_table: opp-table {
+> +				compatible = "operating-points-v2";
+> +
+> +				opp-100000000 {
+> +					opp-hz = /bits/ 64 <100000000>;
+> +					required-opps = <&rpmhpd_opp_low_svs>;
+> +				};
+> +
+> +				opp-202000000 {
+> +					opp-hz = /bits/ 64 <202000000>;
+> +					required-opps = <&rpmhpd_opp_svs_l1>;
+> +				};
+> +			};
+> +		};
+> +
+>  		usb_0_qmpphy: phy@88eb000 {
+>  			compatible = "qcom,sc8280xp-qmp-usb43dp-phy";
+>  			reg = <0 0x088eb000 0 0x4000>;
+> -- 
+> 2.25.1
+> 
 
-Thanks
-Patrice
+-- 
+மணிவண்ணன் சதாசிவம்
