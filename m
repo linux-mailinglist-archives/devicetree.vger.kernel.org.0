@@ -2,301 +2,279 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D7776FC287
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 11:18:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FF336FC2AF
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 11:23:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234811AbjEIJSp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 05:18:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40982 "EHLO
+        id S234575AbjEIJXA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 05:23:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234791AbjEIJSe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 05:18:34 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E9A519A3
-        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 02:18:31 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-50bc456cc39so8489013a12.1
-        for <devicetree@vger.kernel.org>; Tue, 09 May 2023 02:18:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683623909; x=1686215909;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=I7FYzpXB4JAY8REQ6N17vUTvC/w9zteq+juJjffaEPw=;
-        b=UUacsfduaEDjEk0zUYDO7xJxrrsNgrmVWgnHsIaXTBKhdhoRSBOS29z6L/WVyViKWg
-         eiO3U10ZPG9+TqsanbULhqMK6vWctoMsZipmmyPjNq4567fWWceEq1idjIQ1AnqqGdkJ
-         ctmHwgityKDDvjP6CrnN1kHU7GIELc+tykk0gQh17QoXeaSh0JMgVDPX2Sogi8RrS7yE
-         ogR9ctz+11I568K64CbVxvB+hBwSeoVr/+dgSU8zceo/Bd0jidxAaKbFwA76vhQLshby
-         DsZe9k1oUEGoWXyZ39gNpZfNVa1RCReUv6TYsRRIK9yY27+5uGfv5hgVJgtf+fv8NnF1
-         kGQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683623909; x=1686215909;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=I7FYzpXB4JAY8REQ6N17vUTvC/w9zteq+juJjffaEPw=;
-        b=E6A+7FI4qxDrA4fqstl1x0WBncTfvZlv+Dp0+wr5xZdr7tQuPvmC/SuS1FLSAJI5C8
-         SYYJhYVwWsrpcoZvodO3qsQ/7SAw42PlFrTNu1drXBGGXw5bAOAlrsyw3bK5o1IdxzoC
-         lQ4hj7F9krgCbx041cGOHc8aehYwqxvMqRsdQqBSRQvEYwPYF0Hp2K6p1v1zyP+iqe17
-         YMmWAFXmhHO5lHiIIyuON4bUv0bY6EG7FEORD+RMkIp1dtRacczTJU7z5jD0+ozG34r0
-         bslt2KCXhAsM26Y5kF8gMBqZU/9CFsZUWLO2tCIpiStV20ep6t5Chb6TvjQKNFO0vuW1
-         GoYw==
-X-Gm-Message-State: AC+VfDyvhhzRXiAjWpktYJNg29Sly+YGstB7m9C4GHMHqEgdrLrbXZfh
-        FXIKDUN74XaLAxyA0BXgLgR9/w==
-X-Google-Smtp-Source: ACHHUZ4EVVEITh4T8aJgcY8S930Dxi8YCadGVtavtGcs/hxxLvRYRvnzqhUfz+9hiFzzvr259Kr4Pw==
-X-Received: by 2002:a17:907:6d20:b0:969:e304:441d with SMTP id sa32-20020a1709076d2000b00969e304441dmr2095523ejc.4.1683623909486;
-        Tue, 09 May 2023 02:18:29 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:d0d5:7818:2f46:5e76? ([2a02:810d:15c0:828:d0d5:7818:2f46:5e76])
-        by smtp.gmail.com with ESMTPSA id s7-20020a170906220700b0096792b56c47sm1048546ejs.167.2023.05.09.02.18.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 May 2023 02:18:28 -0700 (PDT)
-Message-ID: <fbfd02d5-183a-118c-5743-dee6c9367bf6@linaro.org>
-Date:   Tue, 9 May 2023 11:18:27 +0200
+        with ESMTP id S234692AbjEIJWl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 05:22:41 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AD76106C0;
+        Tue,  9 May 2023 02:21:57 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34960gdo009077;
+        Tue, 9 May 2023 09:21:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=jtmJ+i5HRbbl60SILuYyyKayi/NHpbtpA/qZRIgVTOE=;
+ b=M+vmu4xLI+hClmS4gImODLNogxYXwFMWwvDKZh+rYvgMqkhqENmZZGmh/a7J13ywZDFI
+ 2n9SqgtUoW5KB5AO7WsOgJKSR5F4j1Ff6nHsBSzGEc/jVtEnju0jmiuvJ3p2u5Bodr40
+ Xtp6hyKLUtO9KkXnZG2TBDC0LBFSYh4X3lX/KcLc5WsCr+vYJCoxgiO+yVuDnoZO00P5
+ rAsf8pJ6m6ILvTLJgyyiZFK/o9QHrQTbq/gt7yI9eTTBmy1fIkqAIBvyv8pDn67/5fRH
+ oRnAwtk+Ar3mzUoDRgUw5ToS8GGmcitXNWLTX2rgevDesdlrKR1CBF6OcDpzWS3v4bf2 FQ== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qf78899hd-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 09 May 2023 09:21:33 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3499LWZm031511
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 9 May 2023 09:21:32 GMT
+Received: from [10.216.33.39] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Tue, 9 May 2023
+ 02:21:28 -0700
+Message-ID: <721ee430-a8d8-eb60-889e-ee28bf179eb8@quicinc.com>
+Date:   Tue, 9 May 2023 14:51:25 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v4 8/8] dt-bindings: Add rt5033 mfd, regulator and charger
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.1
+Subject: Re: [PATCH V3 2/3] clk: qcom: videocc-sm8450: Add video clock
+ controller driver for SM8450
 Content-Language: en-US
-To:     Jakob Hauser <jahau@rocketmail.com>,
-        Sebastian Reichel <sre@kernel.org>, Lee Jones <lee@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Beomho Seo <beomho.seo@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Raymond Hackley <raymondhackley@protonmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Axel Lin <axel.lin@ingics.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Henrik Grimler <henrik@grimler.se>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-References: <20230506155435.3005-1-jahau@rocketmail.com>
- <20230506155435.3005-9-jahau@rocketmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230506155435.3005-9-jahau@rocketmail.com>
-Content-Type: text/plain; charset=UTF-8
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        "Michael Turquette" <mturquette@baylibre.com>
+CC:     Bjorn Andersson <andersson@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_skakitap@quicinc.com>, <quic_jkona@quicinc.com>
+References: <20230503105937.24911-1-quic_tdas@quicinc.com>
+ <20230503105937.24911-3-quic_tdas@quicinc.com>
+ <4c09119e-2a18-d98f-d3ee-9b88e1b87d8e@linaro.org>
+From:   Taniya Das <quic_tdas@quicinc.com>
+In-Reply-To: <4c09119e-2a18-d98f-d3ee-9b88e1b87d8e@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: HTDy6mpjawZUzcEqnKBe72Of52L3vk93
+X-Proofpoint-GUID: HTDy6mpjawZUzcEqnKBe72Of52L3vk93
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-09_05,2023-05-05_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
+ malwarescore=0 adultscore=0 mlxlogscore=999 lowpriorityscore=0
+ clxscore=1011 priorityscore=1501 mlxscore=0 impostorscore=0 spamscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2305090072
 X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/05/2023 17:54, Jakob Hauser wrote:
-> Add device tree binding documentation for rt5033 multifunction device, voltage
-> regulator and battery charger.
+Thanks for your review.
+
+On 5/4/2023 1:14 PM, Konrad Dybcio wrote:
 > 
-> Cc: Beomho Seo <beomho.seo@samsung.com>
-> Cc: Chanwoo Choi <cw00.choi@samsung.com>
-> Signed-off-by: Jakob Hauser <jahau@rocketmail.com>
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
-> The patch is based on next-20230505.
 > 
-> The drivers for rt5033 (mfd) and rt5033-regulator are existing. Whereas the
-> the driver rt5033-charger is new in this patchset.
+> On 3.05.2023 12:59, Taniya Das wrote:
+>> Add support for the video clock controller driver for peripheral clock
+>> clients to be able to request for video cc clocks.
+>>
+>> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+>> ---
+>> Changes since V2:
+>>   - Update the header file name to match the latest upstream header
+>>     files.
+>>
+>> Changes since V1:
+>>   - Use DT indices instead of fw_name.
+>>   - Replace pm_runtime_enable with devm_pm_runtime_enable.
+>>   - Change license to GPL from GPL V2.
+>>
+>>   drivers/clk/qcom/Kconfig          |   9 +
+>>   drivers/clk/qcom/Makefile         |   1 +
+>>   drivers/clk/qcom/videocc-sm8450.c | 459 ++++++++++++++++++++++++++++++
+>>   3 files changed, 469 insertions(+)
+>>   create mode 100644 drivers/clk/qcom/videocc-sm8450.c
+>>
+>> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
+>> index 12be3e2371b3..927aa5983464 100644
+>> --- a/drivers/clk/qcom/Kconfig
+>> +++ b/drivers/clk/qcom/Kconfig
+>> @@ -962,4 +962,13 @@ config CLK_GFM_LPASS_SM8250
+>>   	  Support for the Glitch Free Mux (GFM) Low power audio
+>>             subsystem (LPASS) clocks found on SM8250 SoCs.
+>>   
+>> +config SM_VIDEOCC_8450
+>> +	tristate "SM8450 Video Clock Controller"
+>> +	select SM_GCC_8450
+>> +	select QCOM_GDSC
+>> +	help
+>> +	  Support for the video clock controller on Qualcomm Technologies, Inc.
+>> +	  SM8450 devices.
+>> +	  Say Y if you want to support video devices and functionality such as
+>> +	  video encode/decode.
+>>   endif
+>> diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
+>> index 9ff4c373ad95..1960ad8e8713 100644
+>> --- a/drivers/clk/qcom/Makefile
+>> +++ b/drivers/clk/qcom/Makefile
+>> @@ -127,6 +127,7 @@ obj-$(CONFIG_SM_GPUCC_8350) += gpucc-sm8350.o
+>>   obj-$(CONFIG_SM_TCSRCC_8550) += tcsrcc-sm8550.o
+>>   obj-$(CONFIG_SM_VIDEOCC_8150) += videocc-sm8150.o
+>>   obj-$(CONFIG_SM_VIDEOCC_8250) += videocc-sm8250.o
+>> +obj-$(CONFIG_SM_VIDEOCC_8450) += videocc-sm8450.o
+>>   obj-$(CONFIG_SPMI_PMIC_CLKDIV) += clk-spmi-pmic-div.o
+>>   obj-$(CONFIG_KPSS_XCC) += kpss-xcc.o
+>>   obj-$(CONFIG_QCOM_HFPLL) += hfpll.o
+>> diff --git a/drivers/clk/qcom/videocc-sm8450.c b/drivers/clk/qcom/videocc-sm8450.c
+>> new file mode 100644
+>> index 000000000000..ce0ab764eb35
+>> --- /dev/null
+>> +++ b/drivers/clk/qcom/videocc-sm8450.c
+>> @@ -0,0 +1,459 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
+>> + */
+>> +
+>> +#include <linux/clk-provider.h>
+>> +#include <linux/module.h>
+>> +#include <linux/of_device.h>
+>> +#include <linux/pm_runtime.h>
+>> +#include <linux/regmap.h>
+>> +
+>> +#include <dt-bindings/clock/qcom,sm8450-videocc.h>
+>> +
+>> +#include "clk-alpha-pll.h"
+>> +#include "clk-branch.h"
+>> +#include "clk-rcg.h"
+>> +#include "clk-regmap.h"
+>> +#include "clk-regmap-divider.h"
+>> +#include "common.h"
+>> +#include "gdsc.h"
+>> +#include "reset.h"
+>> +
+>> +enum {
+>> +	DT_BI_TCXO,
+>> +};
+>> +
+>> +enum {
+>> +	P_BI_TCXO,
+>> +	P_VIDEO_CC_PLL0_OUT_MAIN,
+>> +	P_VIDEO_CC_PLL1_OUT_MAIN,
+>> +};
+>> +
+>> +static const struct pll_vco lucid_evo_vco[] = {
+>> +	{ 249600000, 2020000000, 0 },
+>> +};
+>> +
+>> +static const struct alpha_pll_config video_cc_pll0_config = {
+>> +	.l = 0x1E,
+> lowercase hex, please, everywhere
 > 
->  .../bindings/mfd/richtek,rt5033.yaml          | 113 ++++++++++++++++++
->  .../power/supply/richtek,rt5033-charger.yaml  |  64 ++++++++++
->  2 files changed, 177 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/richtek,rt5033.yaml
->  create mode 100644 Documentation/devicetree/bindings/power/supply/richtek,rt5033-charger.yaml
+
+Sure, will take care.
+
+>> +	.alpha = 0x0,
+>> +	.config_ctl_val = 0x20485699,
+>> +	.config_ctl_hi_val = 0x00182261,
+>> +	.config_ctl_hi1_val = 0x32AA299C,
+>> +	.user_ctl_val = 0x00000000,
+>> +	.user_ctl_hi_val = 0x00000805,
+>> +};
+> [...]
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/richtek,rt5033.yaml b/Documentation/devicetree/bindings/mfd/richtek,rt5033.yaml
-> new file mode 100644
-> index 000000000000..0aa0a556b50f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/richtek,rt5033.yaml
-> @@ -0,0 +1,113 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/richtek,rt5033.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Richtek RT5033 Power Management Integrated Circuit
-> +
-> +maintainers:
-> +  - Jakob Hauser <jahau@rocketmail.com>
-> +
-> +description:
-> +  RT5033 is a multifunction device which includes battery charger, fuel gauge,
-> +  flash LED current source, LDO and synchronous Buck converter for portable
-> +  applications. It is interfaced to host controller using I2C interface. The
-> +  battery fuel gauge uses a separate I2C bus.
-> +
-> +properties:
-> +  compatible:
-> +    const: richtek,rt5033
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  regulators:
-> +    description:
-> +      The regulators of RT5033 have to be instantiated under a sub-node named
-> +      "regulators". For SAFE_LDO voltage there is only one value of 4.9 V. LDO
-> +      voltage ranges from 1.2 V to 3.0 V in 0.1 V steps. BUCK voltage ranges
-> +      from 1.0 V to 3.0 V in 0.1 V steps.
-> +    type: object
-> +    patternProperties:
-> +      "^(SAFE_LDO|LDO|BUCK)$":
-> +        type: object
-> +        $ref: /schemas/regulator/regulator.yaml#
-> +        unevaluatedProperties: false
-> +    additionalProperties: false
-> +
-> +  charger:
-> +    type: object
-> +    $ref: /schemas/power/supply/richtek,rt5033-charger.yaml#
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    battery: battery {
-> +        compatible = "simple-battery";
-> +        precharge-current-microamp = <450000>;
-> +        constant-charge-current-max-microamp = <1000000>;
-> +        charge-term-current-microamp = <150000>;
-> +        precharge-upper-limit-microvolt = <3500000>;
-> +        constant-charge-voltage-max-microvolt = <4350000>;
-> +    };
-> +
-> +    extcon {
-> +        usb_con: connector {
-> +            compatible = "usb-b-connector";
-> +            label = "micro-USB";
-> +            type = "micro";
-> +        };
-> +    };
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        pmic@34 {
-> +            compatible = "richtek,rt5033";
-> +            reg = <0x34>;
-> +
-> +            interrupt-parent = <&msmgpio>;
-> +            interrupts = <62 IRQ_TYPE_EDGE_FALLING>;
-> +
-> +            pinctrl-names = "default";
-> +            pinctrl-0 = <&pmic_int_default>;
-> +
-> +            regulators {
-> +                safe_ldo_reg: SAFE_LDO {
-> +                    regulator-name = "SAFE_LDO";
-> +                    regulator-min-microvolt = <4900000>;
-> +                    regulator-max-microvolt = <4900000>;
-> +                    regulator-always-on;
-> +                };
-> +                ldo_reg: LDO {
-> +                    regulator-name = "LDO";
-> +                    regulator-min-microvolt = <2800000>;
-> +                    regulator-max-microvolt = <2800000>;
-> +                };
-> +                buck_reg: BUCK {
-> +                    regulator-name = "BUCK";
-> +                    regulator-min-microvolt = <1200000>;
-> +                    regulator-max-microvolt = <1200000>;
-> +                };
-> +            };
-> +
-> +            charger {
-> +                compatible = "richtek,rt5033-charger";
-> +                monitored-battery = <&battery>;
-> +                connector = <&usb_con>;
-> +            };
-> +        };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/power/supply/richtek,rt5033-charger.yaml b/Documentation/devicetree/bindings/power/supply/richtek,rt5033-charger.yaml
-> new file mode 100644
-> index 000000000000..b8607cc6ec63
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/power/supply/richtek,rt5033-charger.yaml
-> @@ -0,0 +1,64 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/power/supply/richtek,rt5033-charger.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Richtek RT5033 PIMC Battery Charger
+>> +static int video_cc_sm8450_probe(struct platform_device *pdev)
+>> +{
+>> +	struct regmap *regmap;
+>> +	int ret;
+>> +
+>> +	devm_pm_runtime_enable(&pdev->dev);
+> Please check the return value here and bail out early on failure.
+> 
 
-PMIC
+Will take care in the next patchset.
 
-> +
-> +maintainers:
-> +  - Jakob Hauser <jahau@rocketmail.com>
-> +
-> +description:
-> +  The battery charger of the multifunction device RT5033 has to be instantiated
-> +  under sub-node named "charger" using the following format.
-> +
-> +properties:
-> +  compatible:
-> +    const: richtek,rt5033-charger
-> +
-> +  monitored-battery:
-> +    description: |
-> +      Phandle to the monitored battery according to battery.yaml. The battery
-> +      node needs to contain five parameters.
-> +
-> +      precharge-current-microamp:
-> +      Current of pre-charge mode. The pre-charge current levels are 350 mA
-> +      to 650 mA programmed by I2C per 100 mA.
-> +
-> +      constant-charge-current-max-microamp:
-> +      Current of fast-charge mode. The fast-charge current levels are 700 mA
-> +      to 2000 mA programmed by I2C per 100 mA.
-> +
-> +      charge-term-current-microamp:
-> +      This property is end of charge current. Its level ranges from 150 mA
-> +      to 600 mA. Between 150 mA and 300 mA in 50 mA steps, between 300 mA and
-> +      600 mA in 100 mA steps.
-> +
-> +      precharge-upper-limit-microvolt:
-> +      Voltage of pre-charge mode. If the battery voltage is below the pre-charge
-> +      threshold voltage, the charger is in pre-charge mode with pre-charge
-> +      current. Its levels are 2.3 V to 3.8 V programmed by I2C per 0.1 V.
-> +
-> +      constant-charge-voltage-max-microvolt:
-> +      Battery regulation voltage of constant voltage mode. This voltage levels
-> +      from 3.65 V to 4.4 V by I2C per 0.025 V.
-> +
-> +  connector:
-> +    description:
-> +      Phandle to a USB connector according to usb-connector.yaml. The connector
-> +      should be a child of the extcon device.
-> +    maxItems: 1
+>> +
+>> +	ret = pm_runtime_resume_and_get(&pdev->dev);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	regmap = qcom_cc_map(pdev, &video_cc_sm8450_desc);
+>> +	if (IS_ERR(regmap)) {
+>> +		pm_runtime_put(&pdev->dev);
+>> +		return PTR_ERR(regmap);
+>> +	}
+>> +
+>> +	clk_lucid_evo_pll_configure(&video_cc_pll0, regmap, &video_cc_pll0_config);
+>> +	clk_lucid_evo_pll_configure(&video_cc_pll1, regmap, &video_cc_pll1_config);
+>> +
+>> +	/*
+>> +	 * Keep clocks always enabled:
+>> +	 *	video_cc_ahb_clk
+>> +	 *	video_cc_sleep_clk
+>> +	 *	video_cc_xo_clk
+>> +	 */
+>> +	regmap_update_bits(regmap, 0x80e4, BIT(0), BIT(0));
+>> +	regmap_update_bits(regmap, 0x8130, BIT(0), BIT(0));
+>> +	regmap_update_bits(regmap, 0x8114, BIT(0), BIT(0));
+>> +
+>> +	ret = qcom_cc_really_probe(pdev, &video_cc_sm8450_desc, regmap);
+>> +
+>> +	pm_runtime_put(&pdev->dev);
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +static struct platform_driver video_cc_sm8450_driver = {
+>> +	.probe = video_cc_sm8450_probe,
+>> +	.driver = {
+>> +		.name = "video_cc-sm8450",
+>> +		.of_match_table = video_cc_sm8450_match_table,
+>> +	},
+>> +};
+>> +
+>> +static int __init video_cc_sm8450_init(void)
+>> +{
+>> +	return platform_driver_register(&video_cc_sm8450_driver);
+>> +}
+>> +subsys_initcall(video_cc_sm8450_init);
+> module_platform_driver?
+> 
+> Venus won't probe earlier
+> 
 
-Missing type/ref... but then you will notice you have conflicting ref
-with existing connector. connector is usb-connector.yaml, not phandle. I
-am not sure if we need generic property, so let's go with device
-specific - richtek,usb-connector
+Clock drivers should be earlier than any consumer drivers.
 
+> Konrad
+>> +
+>> +static void __exit video_cc_sm8450_exit(void)
+>> +{
+>> +	platform_driver_unregister(&video_cc_sm8450_driver);
+>> +}
+>> +module_exit(video_cc_sm8450_exit);
+>> +
+>> +MODULE_DESCRIPTION("QTI VIDEO_CC SM8450 Driver");
+>> +MODULE_LICENSE("GPL");
 
-> +
-> +required:
-> +  - monitored-battery
-Best regards,
-Krzysztof
-
+-- 
+Thanks & Regards,
+Taniya Das.
