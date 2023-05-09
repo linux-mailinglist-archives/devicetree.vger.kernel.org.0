@@ -2,187 +2,268 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B19596FC027
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 09:08:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 411E66FC05D
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 09:25:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235213AbjEIHIV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 03:08:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38688 "EHLO
+        id S229699AbjEIHZb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 03:25:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234923AbjEIHIU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 03:08:20 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB29C7AAE
-        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 00:08:18 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-50be17a1eceso10634220a12.2
-        for <devicetree@vger.kernel.org>; Tue, 09 May 2023 00:08:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683616097; x=1686208097;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ijqKQLeIRjvBb3i4iB7l0bYhwmssEZf0GIGJ6UemaFA=;
-        b=NAPiPEacVNMeV/8T7Qyn/B67Q3fDRfn+csLq9mfxJU+3v/exzCRl2ZV0FUDgEArjvC
-         P9hFE8Vp+LTTGw6f/wwv/GeeHYvqO4GzBD4l2W07YBZ9PmzFyBwyXHzhSD3GUrKXFfO2
-         zGwxQHwOgvcB6uBMR2jKiDMPRSDpmm3AK5f8CflcVFNQc8XeCXcT7yLb9/ulSg1+OdMo
-         B/DxccJiNrvy6rq7XvZu20gyrwmxFQ3vIXxSxMHVZ079ahKrB5D1+i0N+txwzNKVLyGH
-         KUjwLbdCfRILMBV0duoIQ0MV+FBjvMpG1XVa2MZu7hfsw6rvPFHyfkzCbrQ1UWDm2ugV
-         xanw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683616097; x=1686208097;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ijqKQLeIRjvBb3i4iB7l0bYhwmssEZf0GIGJ6UemaFA=;
-        b=I95RIwdM+8abAMutQQ7HSxta+1obpcnTlYqlnCJVCwwe0UCDWAe556+wVEfH7CL+OH
-         9QfwamJcb3oOJuj2KCG5r3JXNtZE/Rl5wDq1fY2d/RSQAo63wJDt73XV+dX9rXdKdJ3B
-         P0fG6pwLM1Gzh1zjg/qLRSbVNTFbdKQJ/mK6w7+aqO9VGcs1W25ytWdzoPC5ONUahfKm
-         9apRp9s2iKceWNUIyQmuBumlZCa2pSpJCmDZpJ6284+rb3gBLjZ3lM9XArga8h5ToMW0
-         pDuf+0DJ2UtVodawGcbXhRJaPgmFRJjFEQs+dlF+BAgF6brVjPwX4TsGIZRPVKZfkjqb
-         33tQ==
-X-Gm-Message-State: AC+VfDxxr1Ir6PvxX47KMdS9FNMf+zude+Egcwti/ZbTzRBoQzP9LQ2y
-        qVVzt7r20shNiI/fgHzAvx2m3w==
-X-Google-Smtp-Source: ACHHUZ6oKQbYJQadciEcI19zNNY1h9h3yTo1GwrdDAWBngJN5RZQsYi/bp6k+xH6GRfHLRlP5gCkCA==
-X-Received: by 2002:aa7:d382:0:b0:50b:c3b1:9790 with SMTP id x2-20020aa7d382000000b0050bc3b19790mr10628592edq.16.1683616097109;
-        Tue, 09 May 2023 00:08:17 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:d0d5:7818:2f46:5e76? ([2a02:810d:15c0:828:d0d5:7818:2f46:5e76])
-        by smtp.gmail.com with ESMTPSA id z24-20020aa7d418000000b0050bfa1905f6sm424071edq.30.2023.05.09.00.08.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 May 2023 00:08:16 -0700 (PDT)
-Message-ID: <e63a3e34-1f73-3661-8655-e34e1e955804@linaro.org>
-Date:   Tue, 9 May 2023 09:08:15 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 01/11] dt-bindings: remoteproc: qcom: Add support for
- multipd model
-Content-Language: en-US
-To:     Manikanta Mylavarapu <quic_mmanikan@quicinc.com>,
-        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        jassisinghbrar@gmail.com, mathieu.poirier@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org, quic_gurus@quicinc.com,
-        loic.poulain@linaro.org, quic_eberman@quicinc.com,
-        robimarko@gmail.com, linux-arm-msm@vger.kernel.org,
+        with ESMTP id S229539AbjEIHZa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 03:25:30 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51A833C01;
+        Tue,  9 May 2023 00:25:25 -0700 (PDT)
+Received: from mercury (195-23-45-170.net.novis.pt [195.23.45.170])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 3F4846602E9A;
+        Tue,  9 May 2023 08:25:23 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1683617123;
+        bh=QCGh3lAq+6+hpDBYQxXcBfE6/30zBXbnB7ZBE++m248=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=nbkomN7Tvzin8TZA38FF5NgF4U8q7JxzcIvLI/mS2qExUPWu4K1Pmp/uXSG8nUb5W
+         av1+C2BiCxFT8XMwTFMFSpYFeDTSAQPcJgvWxvizi2KOrleGoHaQrmh4PghboHLNjc
+         jmqnKGNmqZfP5+o+5cFG9IICTO3LWq9J6br3rHIrJgzkag01vr1olRlXwmyGeGga3n
+         85WFg+ihga7Xno16IjeoYU7XL8IXw7V3DkRSNTDkSisbhixWAupiJXYRjyxKDJTkBJ
+         IBoSONEQXINbI6nWEd0kr6rNEzDf7nRk8XKj3yVfB4p4kBH/ImwsAzAga6qJjd5izL
+         prorw28QfDmiA==
+Received: by mercury (Postfix, from userid 1000)
+        id 9F0C71066FA2; Tue,  9 May 2023 09:25:20 +0200 (CEST)
+Date:   Tue, 9 May 2023 09:25:20 +0200
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Jakob Hauser <jahau@rocketmail.com>
+Cc:     Lee Jones <lee@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Beomho Seo <beomho.seo@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Raymond Hackley <raymondhackley@protonmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Axel Lin <axel.lin@ingics.com>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Henrik Grimler <henrik@grimler.se>, linux-pm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, linux-clk@vger.kernel.org
-Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
-        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
-        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
-        quic_poovendh@quicinc.com
-References: <1678164097-13247-1-git-send-email-quic_mmanikan@quicinc.com>
- <1678164097-13247-2-git-send-email-quic_mmanikan@quicinc.com>
- <38a5a268-7d8a-6e61-4272-8e9155df0034@linaro.org>
- <790496d7-98dc-c92e-dedc-1c89395a1ad8@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <790496d7-98dc-c92e-dedc-1c89395a1ad8@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v4 7/8] power: supply: rt5033_battery: Adopt status
+ property from charger
+Message-ID: <20230509072520.3e4jibiis654izom@mercury.elektranox.org>
+References: <20230506155435.3005-1-jahau@rocketmail.com>
+ <20230506155435.3005-8-jahau@rocketmail.com>
+ <20230508113518.nfwchl5wusmnkjp6@mercury.elektranox.org>
+ <899d6604-7b15-ac37-c624-987a2bb7875e@rocketmail.com>
+ <20230508220605.kderc3nihhezouit@mercury.elektranox.org>
+ <55fd9835-4246-00e8-b641-c8b0ee3f7e22@rocketmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="iet7ywalyankg5v4"
+Content-Disposition: inline
+In-Reply-To: <55fd9835-4246-00e8-b641-c8b0ee3f7e22@rocketmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/05/2023 15:45, Manikanta Mylavarapu wrote:
-> 
-> 
-> On 3/7/2023 8:47 PM, Krzysztof Kozlowski wrote:
->> On 07/03/2023 05:41, Manikanta Mylavarapu wrote:
->>> Add new binding document for multipd model remoteproc.
->>> IPQ5018, IPQ9574 follows multipd model.
->>>
->>> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
->>> ---
->>>   .../bindings/remoteproc/qcom,multipd-pil.yaml | 282 ++++++++++++++++++
->>>   1 file changed, 282 insertions(+)
->>>   create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,multipd-pil.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,multipd-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,multipd-pil.yaml
->>> new file mode 100644
->>> index 000000000000..b788607f5abd
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,multipd-pil.yaml
->>> @@ -0,0 +1,282 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/remoteproc/qcom,multipd-pil.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Qualcomm Multipd Secure Peripheral Image Loader
->>> +
->>> +maintainers:
->>> +  - Bjorn Andersson <andersson@kernel.org>
->>> +  - Mathieu Poirier <mathieu.poirier@linaro.org>
->>> +
->>> +description:
->>> +  Multipd Peripheral Image Loader loads firmware and boots Q6 pd, WCSS pd
->>> +  remoteproc's on the Qualcomm IPQ5018, IPQ9574 SoC.
->>
->> What is a "pd"?
->>
-> Pd means protection domain.
-> It's similar to process in Linux. Here QDSP6 processor runs each wifi 
-> radio functionality on a separate process. One process can't access 
-> other process resources, so this is termed as PD i.e protection domain.
-> Here we have two pd's called root and user pd. We can correlate Root pd
-> as root and user pd as user in linux. Root pd has more privileges than
-> user pd.
->  From remoteproc driver perspective, root pd corresponds to QDSP6 
-> processor bring up and user pd corresponds to Wifi radio (WCSS) bring up.
 
-Parts of it should be in description. And definitely "pd" should be
-explained.
+--iet7ywalyankg5v4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - qcom,ipq5018-q6-mpd
->>> +      - qcom,ipq9574-q6-mpd
->>> +
->>> +  '#address-cells': true
->>> +
->>> +  '#size-cells': true
+Hi,
 
-...
+On Tue, May 09, 2023 at 03:01:32AM +0200, Jakob Hauser wrote:
+> On 09.05.23 00:06, Sebastian Reichel wrote:
+> > On Mon, May 08, 2023 at 11:18:28PM +0200, Jakob Hauser wrote:
+> > > On 08.05.23 13:35, Sebastian Reichel wrote:
+> > > > On Sat, May 06, 2023 at 05:54:34PM +0200, Jakob Hauser wrote:
+> > > > > The rt5033-battery fuelgauge can't get a status by itself. The rt=
+5033-charger
+> > > > > can, let's get this value.
+> > > > >=20
+> > > > > Tested-by: Raymond Hackley <raymondhackley@protonmail.com>
+> > > > > Signed-off-by: Jakob Hauser <jahau@rocketmail.com>
+> > > > > ---
+> > > > >    drivers/power/supply/rt5033_battery.c | 24 +++++++++++++++++++=
++++++
+> > > > >    1 file changed, 24 insertions(+)
+> > > > >=20
+> > > > > diff --git a/drivers/power/supply/rt5033_battery.c b/drivers/powe=
+r/supply/rt5033_battery.c
+> > > > > index 5c04cf305219..a6520716d813 100644
+> > > > > --- a/drivers/power/supply/rt5033_battery.c
+> > > > > +++ b/drivers/power/supply/rt5033_battery.c
+> > > > > @@ -12,6 +12,26 @@
+> > > > >    #include <linux/mfd/rt5033-private.h>
+> > > > >    #include <linux/mfd/rt5033.h>
+> > > > > +static int rt5033_battery_get_status(struct i2c_client *client)
+> > > > > +{
+> > > > > +	struct power_supply *charger;
+> > > > > +	union power_supply_propval val;
+> > > > > +	int ret;
+> > > > > +
+> > > > > +	charger =3D power_supply_get_by_name("rt5033-charger");
+> > > > > +	if (!charger)
+> > > > > +		return POWER_SUPPLY_STATUS_UNKNOWN;
+> > > > > +
+> > > > > +	ret =3D power_supply_get_property(charger, POWER_SUPPLY_PROP_ST=
+ATUS, &val);
+> > > > > +	if (ret) {
+> > > > > +		power_supply_put(charger);
+> > > > > +		return POWER_SUPPLY_STATUS_UNKNOWN;
+> > > > > +	}
+> > > >=20
+> > > > struct rt5033_battery *battery =3D i2c_get_clientdata(client);
+> > > > ret =3D power_supply_get_property_from_supplier(battery->psy, POWER=
+_SUPPLY_PROP_STATUS, &val);
+> > > > if (ret)
+> > > >       val.intval =3D POWER_SUPPLY_STATUS_UNKNOWN;
+> > >=20
+> > > I don't think this works. There is no direct relationship between
+> > > rt5033-charger and rt5033-battery. They operate independently from ea=
+ch
+> > > other.
+> >=20
+> > That should be fine as long as the supply dependency is properly declar=
+ed.
+> >=20
+> > > I had a short try and the status property of rt5033-battery was "unkn=
+own".
+> > >=20
+> > > Just for the record, the full function I tried was:
+> > >=20
+> > > static int rt5033_battery_get_status(struct i2c_client *client)
+> > > {
+> > >          struct rt5033_battery *battery =3D i2c_get_clientdata(client=
+);
+> > >          union power_supply_propval val;
+> > >          int ret;
+> > >=20
+> > >          ret =3D power_supply_get_property_from_supplier(battery->psy,
+> > >                                               POWER_SUPPLY_PROP_STATU=
+S,
+> > >                                               &val);
+> > >          if (ret)
+> > >                  val.intval =3D POWER_SUPPLY_STATUS_UNKNOWN;
+> > >=20
+> > >          return val.intval;
+> > > }
+> > >=20
+> > > Later on I added a read-out of the "ret" value. It is "-19". I guess =
+that's
+> > > the "return -ENODEV;" from function
+> > > power_supply_get_property_from_supplier(). [2]
+> > >=20
+> > > [2] https://github.com/torvalds/linux/blob/v6.4-rc1/drivers/power/sup=
+ply/power_supply_core.c#L397-L421
+> >=20
+> > I suppose your DT is missing the connection between the charger and
+> > the battery:
+> >=20
+> > rt5033_charger: charger {
+> >      compatible =3D "rt5033-charger";
+> >      ...
+> > }
+> >=20
+> > fuel-gauge {
+> >      compatible =3D "rt5033-battery";
+> >      ...
+> >      power-supplies =3D <&rt5033_charger>; // you are probably missing =
+this
+> > };
+> >=20
+> > See also Documentation/devicetree/bindings/power/supply/power-supply.ya=
+ml
+>=20
+> ...
+>=20
+> Thanks for the hints.
+>=20
+> This leads to updating the dt-bindings because adding the "power-supplies"
+> property is important to be aware of.
 
->>
-> Sure, will add.
->>> +    description:
->>> +      Qualcomm G-Link subnode which represents communication edge, channels
->>> +      and devices related to the Modem.
->>> +
->>> +patternProperties:
->>> +  "^remoteproc_pd1|remoteproc_pd2|remoteproc_pd3":
->>
->> No, underscores are not allowed. Also, what is pd?
->>
-> Sure, will remove underscores.
+It should already be part of the binding, because richtek,rt5033-battery.ya=
+ml has
 
-Shouldn't this be just pd-1?
+allOf:
+  - $ref: power-supply.yaml#
 
+> Btw. first it didn't work. It took me quite some time to debug. I needed =
+to
+> add "psy_cfg.of_node =3D client->dev.of_node;" to the rt5033-battery probe
+> function.
+>=20
+> Now it works. However, there is a new problem. The battery driver gets
+> probed first. The charger driver a bit later. In the meantime the battery
+> driver spams dmesg with several "Failed to register power supply" because
+> the charger driver isn't available yet. Once the charger driver is there,=
+ it
+> works fine and dmesg becomes silent.
+>=20
+> With the current state of the patchset:
+> dmesg | grep rt5033
+> [   13.628030] rt5033 6-0034: Device found (rev. 6)
+> [   13.633552] rt5033-led: Failed to locate of_node [id: -1]
+> [   13.790478] rt5033-charger rt5033-charger: DMA mask not set
+>=20
+> With the changes discussed here:
+> dmesg | grep rt5033
+> [   15.741915] rt5033-battery 4-0035: Failed to register power supply
+> [   15.752894] rt5033-battery 4-0035: Failed to register power supply
+> [   15.795458] rt5033-battery 4-0035: Failed to register power supply
+> [   15.910760] rt5033-battery 4-0035: Failed to register power supply
+> [   15.913187] rt5033 6-0034: Device found (rev. 6)
+> [   15.914341] rt5033-led: Failed to locate of_node [id: -1]
+> [   15.920052] rt5033-battery 4-0035: Failed to register power supply
+> [   15.927262] rt5033-battery 4-0035: Failed to register power supply
+> [   16.017131] rt5033-battery 4-0035: Failed to register power supply
+> [   16.017401] rt5033-charger rt5033-charger: DMA mask not set
+>=20
+> The message is comming from the rt5033-battery probe function, it's the
+> power_supply_register() that fails.
+>=20
+> Any ideas what could be done about this?
 
->>> +    type: object
->>> +    description:
->>> +      In Multipd model, WCSS pd depends on Q6 pd i.e Q6 pd should be up before
->>> +      WCSS. It can be achieved by keeping wcss pd node as subnode of Q6
->>> +      device node.
->>> +
->>> +    properties:
->>> +      compatible:
->>> +        enum:
->>> +          - "qcom,ipq5018-wcss-ahb-mpd"
->>> +          - "qcom,ipq9574-wcss-ahb-mpd"
->>> +          - "qcom,ipq5018-wcss-pcie-mpd"
+Replace the dev_err() with dev_err_probe():
 
+if (IS_ERR(battery->psy))
+    return dev_err_probe(&client->dev, PTR_ERR(battery->psy), "Failed to re=
+gister power supply\n");
 
+That will avoid printing an error for -EPROBE_DEFER.
 
-Best regards,
-Krzysztof
+Greetings,
 
+-- Sebastian
+
+--iet7ywalyankg5v4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmRZ9VUACgkQ2O7X88g7
++pr/Ag//eBPYQF9XRUneLbrr48ySTBKivB7FqbLJzfJg1llA51Bu95ykEeNTnyFv
+EyrTeoQTUJt+NeXg7wpnNbWSgqpX0pLpuQBe9zekWfHYtPkdzc4zO2C1wngtCZfG
+lldbyh4HdDEU1rFw79EUlWpilgO68BNBl1cPl8RQsztWcNKqTRtoVRga5aTxq8q3
+LkC7j5q2StxkVgKGwbBhYXb+mTQER8lTP05gT9B+173jCtkuOz7Rs+JdJLEbuKVG
+rxFqYNps9oOMzhUXxHJ1zeXvZ8s3oxzt+iWN7wiMMYTgc0GVIlwFo+RCxXSb+boM
+tSQ7PWnhungvLXu+gP9KSzNLWgz+x7Ei+MjJcMvMs95s7sG8G8UtsByooxm9CCxG
+5GMavPtLppwbPTvimy5HuqFWsZmu2dcLRTszVgugceXA1ExCKJ4r75dDyGiRxkiM
+FAD0i4eJ4HPR3i9h9tq8xOGPWNncUlj2xdthdE7qMP3vOtm+1borjIaXL7W53VbM
+WkVE/DO2NTU7dJLS2sGK+IPmMO/pIOwyL/Od6yw7rvZxS5zR7+BsEupr6UYyxiFg
+pcei8d2mAIFtZjVK+90zPeB6BbpHAAbvwycKFE6/wDI1ltA7ym7tvdKVzZYy2It5
+tGOAakYDtqAQjSTHe1iyXnAES3LwG9g5KpPZZT89BZ3vfnLJ2vQ=
+=18VY
+-----END PGP SIGNATURE-----
+
+--iet7ywalyankg5v4--
