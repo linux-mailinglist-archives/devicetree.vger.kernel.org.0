@@ -2,65 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62AE66FC64B
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 14:27:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1153D6FC660
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 14:30:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230012AbjEIM1j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 08:27:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38036 "EHLO
+        id S233731AbjEIMaX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 08:30:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234969AbjEIM1i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 08:27:38 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72E4440F7
-        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 05:27:31 -0700 (PDT)
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1pwMQu-0005KF-Kj; Tue, 09 May 2023 14:27:08 +0200
-Received: from pengutronix.de (unknown [172.20.34.65])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 7F6961C0DEB;
-        Tue,  9 May 2023 12:27:05 +0000 (UTC)
-Date:   Tue, 9 May 2023 14:27:04 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Judith Mendez <jm@ti.com>,
-        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
+        with ESMTP id S235357AbjEIMaV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 08:30:21 -0400
+Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F40502126
+        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 05:30:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=k1; bh=O7ltxVMMcMInBof4d0OnDbKkJnZu
+        QoKhhWJSzl0H97U=; b=Kmeo0nFdRVC8jbGCGJOi5s5nX67DVq31zHV1bQtwOLkg
+        3PEsLemIQd6u1ARAKt+g3MH1VSGZEvX5V1lOlQsGCiOantjk+rYPpzfx9ZlbMib3
+        Xm4C+SbD4ZN2vgb7dLJTBTidFxoe7m6ZdPJeBjCNbNKdD9iN+w30deWzWz2R+8U=
+Received: (qmail 2075146 invoked from network); 9 May 2023 14:30:15 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 9 May 2023 14:30:15 +0200
+X-UD-Smtp-Session: l3s3148p1@JFLc6kH72q0ujnsI
+Date:   Tue, 9 May 2023 14:30:15 +0200
+From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     linux-renesas-soc@vger.kernel.org,
+        Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, linux-can@vger.kernel.org,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Schuyler Patton <spatton@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Oliver Hartkopp <socketcan@hartkopp.net>,
-        Simon Horman <simon.horman@corigine.com>
-Subject: Re: [PATCH v4 1/4] dt-bindings: net: can: Add poll-interval for MCAN
-Message-ID: <20230509-strike-available-6b2378172a59-mkl@pengutronix.de>
-References: <20230501224624.13866-1-jm@ti.com>
- <20230501224624.13866-2-jm@ti.com>
- <20230505212948.GA3590042-robh@kernel.org>
+        Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH 1/3] dt-bindings: PCI: rcar-pci-host: add optional
+ regulators
+Message-ID: <ZFo817TZtIn0Ry+d@ninjato>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        linux-renesas-soc@vger.kernel.org,
+        Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230508104557.47889-1-wsa+renesas@sang-engineering.com>
+ <20230508104557.47889-2-wsa+renesas@sang-engineering.com>
+ <CAMuHMdWGaDT_XGpeVm-915hbxa8-w5303QWg0a0iCjqk998unQ@mail.gmail.com>
+ <ZFlD7x99++k3yfE1@kunai>
+ <CAMuHMdUS56xQbOcRx7kVhL_irQQR2cnDr0Y6p6q8tCjZ2U_dwg@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ruyafeokmkujpvvo"
+        protocol="application/pgp-signature"; boundary="XejAdsIjL01QPq9Q"
 Content-Disposition: inline
-In-Reply-To: <20230505212948.GA3590042-robh@kernel.org>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <CAMuHMdUS56xQbOcRx7kVhL_irQQR2cnDr0Y6p6q8tCjZ2U_dwg@mail.gmail.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -68,95 +72,40 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---ruyafeokmkujpvvo
-Content-Type: text/plain; charset=utf-8
+--XejAdsIjL01QPq9Q
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On 05.05.2023 16:29:48, Rob Herring wrote:
-> On Mon, May 01, 2023 at 05:46:21PM -0500, Judith Mendez wrote:
-> > On AM62x SoC, MCANs on MCU domain do not have hardware interrupt
-> > routed to A53 Linux, instead they will use software interrupt by
-> > hrtimer. To enable timer method, interrupts should be optional so
-> > remove interrupts property from required section and introduce
-> > poll-interval property.
-> >=20
-> > Signed-off-by: Judith Mendez <jm@ti.com>
-> > ---
-> > Changelog:
-> > v3:
-> >  1. Move binding patch to first in series
-> >  2. Update description for poll-interval
-> >  3. Add oneOf to specify using interrupts/interrupt-names or poll-inter=
-val
-> >  4. Fix example property: add comment below 'example'
-> >=20
-> > v2:
-> >   1. Add poll-interval property to enable timer polling method
-> >   2. Add example using poll-interval property
-> >  =20
-> >  .../bindings/net/can/bosch,m_can.yaml         | 36 +++++++++++++++++--
-> >  1 file changed, 34 insertions(+), 2 deletions(-)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml=
- b/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
-> > index 67879aab623b..c024ee49962c 100644
-> > --- a/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
-> > +++ b/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
-> > @@ -14,6 +14,13 @@ maintainers:
-> >  allOf:
-> >    - $ref: can-controller.yaml#
-> > =20
-> > +oneOf:
-> > +  - required:
-> > +      - interrupts
-> > +      - interrupt-names
-> > +  - required:
-> > +      - poll-interval
->=20
-> Move this next to 'required'.
->=20
-> > +
-> >  properties:
-> >    compatible:
-> >      const: bosch,m_can
-> > @@ -40,6 +47,14 @@ properties:
-> >        - const: int1
-> >      minItems: 1
-> > =20
-> > +  poll-interval:
-> > +    $ref: /schemas/types.yaml#/definitions/flag
->=20
-> This is a common property already defined as a uint32. You shouldn't=20
-> define a new type.
->=20
-> A flag doesn't even make sense. If that's all you need, then just enable=
-=20
-> polling if no interrupt is present.
 
-Ok, then it's implicit. No IRQs -> polling.
+> > I couldn't find one and took what I think is the most used pattern. But
+> > I wasn't entirely sure, this is why the series is still RFC.
+>=20
+> Upon second thought, shouldn't these supplies be part of a PCIe
+> connector subnode, as they are not properties of the PCIe host
+> controller itself?
 
-Marc
+Beats me. Current practice is to put it in the host controller.
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
 
---ruyafeokmkujpvvo
+--XejAdsIjL01QPq9Q
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmRaPBYACgkQvlAcSiqK
-BOjU0Af+Ksj/LqHQdcZruoOFgMEePW+7vKeglTP2i2NgKhr1bAPQseZHWsrdZ/2w
-L2heATaiciw3M9roMdccpxRHix2NFMaYoE+yODdLUkEDcDWS+rQ+NKcJ7/MusnaJ
-K65j0alWcKxu2W934e7eP+3/xrf4dwJucPIxsydEbL2+JXBOadhcJTHRjUcuHz8k
-Jig4Xql76vsuccFjZZ1T6anurjbnxVg2lTcw8CBFdjMspC33RJd6QEw9QELrapem
-0s1iBupm+b0uo0X37y31rW6+4OM2sntEKWkhrb2FUzvLMAuJqnr5HOktnbZuiqwr
-Gb2/9REAlzjAgJefVzGeI/eSZtX48w==
-=yn5E
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmRaPNIACgkQFA3kzBSg
+KbYcnA/+Mf7e2Kx1VZ9YMEhvAsnupmI/+OELVuUOwKhEBKroO1ssgozVcim8Bs6X
+HJGf9d2Xgoq2CrKrs3s6V7Bdl/lxQcITIpstFNZ66EcJTlBy6Llqw7eNPPkfIQCq
+OZEyhxKactnfiD1ClQ6LBUqymbclqn2y54yGvnFL5ZUMlOZD1PA561IOgf6f4WOT
+5fVZ3yHi56dDwLzB0trIvCG0Uz55J+BpUhH6VJz5uAEsc3XHmG9EU8T66dGjqorp
+MEGpRDNxh+Xxgl+XociCHks6dOfsuWwIIk0hxto56uZbd+R3zI3IdTvpd3siUy50
+vSV3fY96S3PpUpyY/GpnvA9epf4NskvyATc2IDhUboQjhx/E5F6I4KRFOprP7kDq
+MIJfr2SEk5EFUcVcUdYed6/dUxvJXsnXrzK0HIGvkLvIxQi7ZUEimrvbAnVK9+gT
+Ve1o6LFmRJphDAjH1/JT5dchQQQqTwk2YKV4Fgd3fTJAwMpprmrH2LIaeWSVIQgw
+SwnRcGBc3rGVBhRUuua19JyieEtEUz14ClynDg2uvKc67iqlFwEcH/Tx4lbCAP0+
+uMgAWHfIeONCveBwa6GbDCj6n/cqpDVW+FCos3jSlhuQk+m2P3TTLNUyYsFv4OnA
+lu7E34zT0iSt+FrgmawchAz9qdEUnwgavurNkc2gNUtDWFs1t0Q=
+=d+5H
 -----END PGP SIGNATURE-----
 
---ruyafeokmkujpvvo--
+--XejAdsIjL01QPq9Q--
