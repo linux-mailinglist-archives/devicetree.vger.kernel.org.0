@@ -2,84 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D31696FBC5C
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 03:09:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B58486FBC72
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 03:26:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232571AbjEIBJr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 21:09:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54664 "EHLO
+        id S229800AbjEIB02 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 21:26:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229457AbjEIBJo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 21:09:44 -0400
-Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2108E184;
-        Mon,  8 May 2023 18:09:44 -0700 (PDT)
-Received: by mail-pf1-x431.google.com with SMTP id d2e1a72fcca58-643aad3bc41so4041580b3a.0;
-        Mon, 08 May 2023 18:09:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683594583; x=1686186583;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=oJnx2f3sXSSrhC3+3mHpnxe1r3Cp8bqHnQ2WAmhKzRs=;
-        b=c9G8/lFCDbIQ2Lt8NlDQmzUR4Mmr/H8b9Jc7ZLAYTlteDovE8iEvC9w4jWBQbIZYjR
-         IXHgDo9j85ADaUa9+i3nEby0tmfN1JzuEYQcSIdQgCk50vnENodVlybeUwkjzA5/IZfJ
-         rDlMzv9j/1UuvSUCpYvMdbpRfmAH4IIPv6mJgki25TdmDkfJxQGUkVzPHm0w6GErIrXX
-         WPQHlSoqCzWvx2vSzQ6+isShM7AMLvSWnLnyDM4olfbcu0naoH2jdUc/uJI/2EKgjI+w
-         naBmo1Yg/539FmJk1JUSh/CxYxvPzrku8+NHw0hvdFgZ7CmWBkoCaVMIJD0LBRNJ8/6L
-         qwOg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683594583; x=1686186583;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oJnx2f3sXSSrhC3+3mHpnxe1r3Cp8bqHnQ2WAmhKzRs=;
-        b=WaPZYYayNMCaRwYVj4aYsc5loZiQ0a12HrsvARgMloLMa9/oXrnSHCFLoGMdIlFU+2
-         oq6/GFCtECXj/txWMIMJ4Go+LpZluyii/O244JTefWi7htndc+adHD7G0UxEMH08BrV1
-         NHFMp+UiZTBCpJhK70Cd+ZoINUj+5YbggVIP8+QBgwZ2mddi+AzSf2s6VIkP5J++OWol
-         sPbOfQCvcBBGecmemn7RZe8Fl9LSGIS65z4zswgKgWIGlUJijqA+yTJ/3q67x/HhAeuA
-         OnZWeEtwn8VhLi/NYos6kvZmdydicqKSjTOeNfBosW1xv94k9mJMvBWVnlhpmq82ggQ+
-         GzpA==
-X-Gm-Message-State: AC+VfDwPgCU2KTm0cW/9S/1cV0f85JPrJSn694hJVTxYDkenmGz+kI8b
-        cP9JJeEQydiLDzDNoWS49IA=
-X-Google-Smtp-Source: ACHHUZ5dzwu0YRY8ZNRrpOmdQtDXncyRjy6d0AwRRlWcdeFmjbmAKdW6nVanTZBJugap1961XomYBg==
-X-Received: by 2002:a05:6a20:429b:b0:101:4c8c:d1fa with SMTP id o27-20020a056a20429b00b001014c8cd1famr476055pzj.5.1683594583425;
-        Mon, 08 May 2023 18:09:43 -0700 (PDT)
-Received: from [172.19.1.47] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
-        by smtp.gmail.com with ESMTPSA id t23-20020a62ea17000000b0062cf75a9e6bsm539061pfh.131.2023.05.08.18.09.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 May 2023 18:09:42 -0700 (PDT)
-Message-ID: <a64a2da0-893e-52ce-c784-cac70d7cfeb2@gmail.com>
-Date:   Tue, 9 May 2023 09:09:38 +0800
+        with ESMTP id S229526AbjEIB01 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 21:26:27 -0400
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 7E1BF422E;
+        Mon,  8 May 2023 18:26:25 -0700 (PDT)
+Received: from loongson.cn (unknown [10.20.42.35])
+        by gateway (Coremail) with SMTP id _____8CxvOpAoVlkJs4GAA--.11043S3;
+        Tue, 09 May 2023 09:26:24 +0800 (CST)
+Received: from [10.20.42.35] (unknown [10.20.42.35])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8BxFLU9oVlkO_9RAA--.16520S3;
+        Tue, 09 May 2023 09:26:23 +0800 (CST)
+Subject: Re: [PATCH v9 2/2] spi: loongson: add bus driver for the loongson spi
+ controller
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Jianmin Lv <lvjianmin@loongson.cn>,
+        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
+References: <20230426071045.20753-1-zhuyinbo@loongson.cn>
+ <20230426071045.20753-3-zhuyinbo@loongson.cn>
+ <ZFj3BEHCDc/XLBZB@finisterre.sirena.org.uk>
+From:   zhuyinbo <zhuyinbo@loongson.cn>
+Message-ID: <795a34c3-bf84-9f43-adc9-edab4d91394b@loongson.cn>
+Date:   Tue, 9 May 2023 09:26:21 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH v10 09/10] reset: Add Nuvoton ma35d1 reset driver support
+In-Reply-To: <ZFj3BEHCDc/XLBZB@finisterre.sirena.org.uk>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-To:     =?UTF-8?Q?Ilpo_J=c3=a4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        lee@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        p.zabel@pengutronix.de,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>, tmaimon77@gmail.com,
-        catalin.marinas@arm.com, will@kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        LKML <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-serial <linux-serial@vger.kernel.org>, arnd@arndb.de,
-        schung@nuvoton.com, mjchen@nuvoton.com,
-        Jacky Huang <ychuang3@nuvoton.com>
-References: <20230508025936.36776-1-ychuang570808@gmail.com>
- <20230508025936.36776-10-ychuang570808@gmail.com>
- <1ec43550-9aee-3a36-6ca5-ed56e98628f@linux.intel.com>
-From:   Jacky Huang <ychuang570808@gmail.com>
-In-Reply-To: <1ec43550-9aee-3a36-6ca5-ed56e98628f@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-CM-TRANSID: AQAAf8BxFLU9oVlkO_9RAA--.16520S3
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvJXoW7ZF18Ary5ZF4rXr1rXr1UJrb_yoW8Xr1fpa
+        yYkrZxCw48JrWkGwnay393Ca1Y9393J3y5J3yxK3W7CFWDKa48Xw1DXFy5uwsrJF1jvFyY
+        g348ua1DWF15ZF7anT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        b4AFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
+        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r1I6r4UM28E
+        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Cr0_Gr1UM2
+        8EF7xvwVC2z280aVCY1x0267AKxVW8JVW8Jr1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAq
+        jxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcV
+        AFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG
+        0xvEwIxGrwCYjI0SjxkI62AI1cAE67vIY487MxAIw28IcxkI7VAKI48JMxAIw28IcVCjz4
+        8v1sIEY20_WwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I
+        3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIx
+        AIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIxAI
+        cVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2js
+        IEc7CjxVAFwI0_Jr0_GrUvcSsGvfC2KfnxnUUI43ZEXa7IU1tl1PUUUUU==
+X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -88,60 +71,31 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 2023/5/8 下午 07:00, Ilpo Järvinen wrote:
-> On Mon, 8 May 2023, Jacky Huang wrote:
->
->> From: Jacky Huang <ychuang3@nuvoton.com>
->>
->> This driver supports individual IP reset for ma35d1. The reset
->> control registers is a subset of system control registers.
-> registers are
->
->> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
->> ---
->> diff --git a/drivers/reset/reset-ma35d1.c b/drivers/reset/reset-ma35d1.c
->> new file mode 100644
->> index 000000000000..19ed323981df
->> --- /dev/null
->> +++ b/drivers/reset/reset-ma35d1.c
->> @@ -0,0 +1,234 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +/*
->> + * Copyright (C) 2023 Nuvoton Technology Corp.
->> + * Author: Chi-Fang Li <cfli0@nuvoton.com>
->> + */
->> +
->> +#include <linux/bits.h>
->> +#include <linux/container_of.h>
->> +#include <linux/device.h>
->> +#include <linux/err.h>
->> +#include <linux/io.h>
->> +#include <linux/kernel.h>
->> +#include <linux/of.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/reboot.h>
->> +#include <linux/reset-controller.h>
->> +#include <linux/spinlock.h>
->> +#include <dt-bindings/reset/nuvoton,ma35d1-reset.h>
->> +
->> +struct ma35d1_reset_data {
->> +	struct reset_controller_dev rcdev;
->> +	struct notifier_block restart_handler;
->> +	void __iomem *base;
->> +	spinlock_t lock;
-> Please add a comment about what this protects. After adding that, feel
-> free to add also:
->
-> Reviewed-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
->
->
-Dear Ilpo ,
-
-Thanks for your review. I will fix them in the next version.
+在 2023/5/8 下午9:20, Mark Brown 写道:
+> On Wed, Apr 26, 2023 at 03:10:45PM +0800, Yinbo Zhu wrote:
+>> This bus driver supports the Loongson spi hardware controller in the
+>> Loongson platforms and supports to use DTS and PCI framework to
+>> register spi device resources.
+> 
+> This breaks an x86 allmodconfig build:
+> 
+> /build/stage/linux/drivers/spi/spi-loongson-core.c: In function ‘loongson_spi_init_master’:
+> /build/stage/linux/drivers/spi/spi-loongson-core.c:222:31: error: implicit declaration of function ‘of_node_get’ [-Werror=implicit-function-declaration]
+>    222 |         master->dev.of_node = of_node_get(dev->of_node);
+>        |                               ^~~~~~~~~~~
+> /build/stage/linux/drivers/spi/spi-loongson-core.c:222:29: error: assignment to ‘struct device_node *’ from ‘int’ makes pointer from integer without a cast [-Werror=int-conversion]
+>    222 |         master->dev.of_node = of_node_get(dev->of_node);
+>        |                             ^
+> /build/stage/linux/drivers/spi/spi-loongson-core.c:242:13: error: implicit declaration of function ‘of_get_property’ [-Werror=implicit-function-declaration]
+>    242 |         if (of_get_property(dev->of_node, "spi-nocs", NULL))
+>        |             ^~~~~~~~~~~~~~~
+> cc1: all warnings being treated as errors
 
 
-Best Regards,
-Jacky Huang
+These errors was due to the function of_node_get and of_get_property
+loss a declaration and I will add "#include <linux/of.h>" in
+spi-loongson-core.c to fix it.
 
-
+Thanks.
+> 
 
