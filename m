@@ -2,125 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A039A6FC673
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 14:33:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92EE36FC67B
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 14:34:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235013AbjEIMd5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 08:33:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43254 "EHLO
+        id S235027AbjEIMef (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 08:34:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233731AbjEIMd4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 08:33:56 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D827240D9
-        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 05:33:55 -0700 (PDT)
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1pwMXF-0007bU-NH; Tue, 09 May 2023 14:33:41 +0200
-Received: from pengutronix.de (unknown [172.20.34.65])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 123EA1C0ED2;
-        Tue,  9 May 2023 12:33:39 +0000 (UTC)
-Date:   Tue, 9 May 2023 14:33:38 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Cc:     linux-kernel@vger.kernel.org, michael@amarulasolutions.com,
-        Amarula patchwork <linux-amarula@amarulasolutions.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S234622AbjEIMee (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 08:34:34 -0400
+Received: from baptiste.telenet-ops.be (baptiste.telenet-ops.be [IPv6:2a02:1800:120:4::f00:13])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5BD140DB
+        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 05:34:31 -0700 (PDT)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed30:5484:c4b7:4aff:589c])
+        by baptiste.telenet-ops.be with bizsmtp
+        id ucaT2900C2rLuoZ01caTeG; Tue, 09 May 2023 14:34:27 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtp (Exim 4.95)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1pwMXs-001duD-75;
+        Tue, 09 May 2023 14:34:27 +0200
+Received: from geert by rox.of.borg with local (Exim 4.95)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1pwMXy-00CHJT-Tk;
+        Tue, 09 May 2023 14:34:26 +0200
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Marek Vasut <marek.vasut+renesas@mailbox.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-can@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com, netdev@vger.kernel.org
-Subject: Re: [PATCH v2 0/5] can: bxcan: add support for single peripheral
- configuration
-Message-ID: <20230509-catering-haphazard-069d7e07dd1f-mkl@pengutronix.de>
-References: <20230427204540.3126234-1-dario.binacchi@amarulasolutions.com>
- <20230427-retaining-deeply-fcff70098e7e-mkl@pengutronix.de>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] dt-bindings: iio: adc: renesas,rcar-gyroadc: Fix adi,ad7476 compatible value
+Date:   Tue,  9 May 2023 14:34:22 +0200
+Message-Id: <6b328a3f52657c20759f3a5bb2fe033d47644ba8.1683635404.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="z2tkty3mos6fytzk"
-Content-Disposition: inline
-In-Reply-To: <20230427-retaining-deeply-fcff70098e7e-mkl@pengutronix.de>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The conversion to json-schema accidentally dropped the "ad" part prefix
+from the compatible value.
 
---z2tkty3mos6fytzk
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Fixes: 8c41245872e206ec ("dt-bindings:iio:adc:renesas,rcar-gyroadc: txt to yaml conversion.")
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+ .../devicetree/bindings/iio/adc/renesas,rcar-gyroadc.yaml       | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-On 27.04.2023 23:08:57, Marc Kleine-Budde wrote:
-> On 27.04.2023 22:45:35, Dario Binacchi wrote:
-> >=20
-> > The series adds support for managing bxCAN controllers in single periph=
-eral
-> > configuration.
-> > Unlike stm32f4 SOCs, where bxCAN controllers are only in dual peripheral
-> > configuration, stm32f7 SOCs contain three CAN peripherals, CAN1 and CAN2
-> > in dual peripheral configuration and CAN3 in single peripheral
-> > configuration:
-> > - Dual CAN peripheral configuration:
-> >  * CAN1: Primary bxCAN for managing the communication between a seconda=
-ry
-> >    bxCAN and the 512-byte SRAM memory.
-> >  * CAN2: Secondary bxCAN with no direct access to the SRAM memory.
-> >    This means that the two bxCAN cells share the 512-byte SRAM memory a=
-nd
-> >    CAN2 can't be used without enabling CAN1.
-> > - Single CAN peripheral configuration:
-> >  * CAN3: Primary bxCAN with dedicated Memory Access Controller unit and
-> >    512-byte SRAM memory.
->=20
-> This really looks good! Great work! Who takes the DT changes? I can take
-> the whole series.
+diff --git a/Documentation/devicetree/bindings/iio/adc/renesas,rcar-gyroadc.yaml b/Documentation/devicetree/bindings/iio/adc/renesas,rcar-gyroadc.yaml
+index 1c7aee5ed3e0bfb2..36dff3250ea76fe5 100644
+--- a/Documentation/devicetree/bindings/iio/adc/renesas,rcar-gyroadc.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/renesas,rcar-gyroadc.yaml
+@@ -90,7 +90,7 @@ patternProperties:
+             of the MAX chips to the GyroADC, while MISO line of each Maxim
+             ADC connects to a shared input pin of the GyroADC.
+         enum:
+-          - adi,7476
++          - adi,ad7476
+           - fujitsu,mb88101a
+           - maxim,max1162
+           - maxim,max11100
+-- 
+2.34.1
 
-I've upstreamed the DT changes for the first bxCAN driver, so I'll take
-them this time, too.
-
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---z2tkty3mos6fytzk
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmRaPaAACgkQvlAcSiqK
-BOhJDggAiHTwavVOD9cujYG2SgwoOLLgpy8Ylvw9/eeUQEH1Qg6N2ilNwzkHyEAE
-Q6L0lhNcBy3VO0LyM12q68h/bIu4XmAQT2QxL402O/59g24vXkR2kdsZv1teTTgB
-sRGMukvTADU+KOLNu2VtfYoLVraeGDk+Z6OfYznFlpilwK0QDNjVtItDP/vFUEjF
-ejc0RZ4SoWPH43twlO6t5ggNZkKuQYEj4kUe9JP6QgxElkvsaaipOOnAkcXlN64g
-O9WXHOfZuDiMwRJRwQ/OxVyN8Ra5ZkuLdAM7r1vzjYSQISh7tvpCjH/byB0pQMBW
-8cZztkEv3Kzx69WmUDssu7VvwXTUqA==
-=nqSC
------END PGP SIGNATURE-----
-
---z2tkty3mos6fytzk--
