@@ -2,178 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C01556FBF4B
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 08:35:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA7A66FBF4D
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 08:38:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234781AbjEIGfz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 02:35:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41384 "EHLO
+        id S232888AbjEIGiK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 02:38:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234665AbjEIGfx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 02:35:53 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2896F9012;
-        Mon,  8 May 2023 23:35:52 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9549062FC2;
-        Tue,  9 May 2023 06:35:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD7EDC433D2;
-        Tue,  9 May 2023 06:35:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1683614151;
-        bh=zpOHSdqVCQBn2YAqILJfgbw4dfnb2g8xfAWRoqWAjbE=;
-        h=Date:From:To:CC:Subject:In-Reply-To:References:From;
-        b=JT/X4jPsrFCl2gJQ7d8jDxK0p5UfTg/oyy1MHnUzjjAgEVn9WHYrBBIntVUVkH8Wu
-         59H2HnO1TDxDNSiAmlaL99d/yrr2tAhm8w3QIVUMHSPxsPuLYyiM9UFx/A0djr2FLc
-         jOKADTqF05GzBoJ/XBhO1hWCzhcT2K2+jgRpucDp56FCv/tyLCoq2NDqDxq3MBLKUb
-         WviSYUPRcfq/DRFas9g//bfcOkCSlUZqye0mkzbXkVO0omebzPToapGKZqw8DRNT6t
-         ganRqlzDoi0SzRy5s7iMeEjMlRSY5j6rv8p8sIqyDDH1wwyHDJgxdrVeR+YWiOMpKn
-         wQtUctAEqNQGQ==
-Date:   Tue, 09 May 2023 07:35:46 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Xingyu Wu <xingyu.wu@starfivetech.com>
-CC:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S234665AbjEIGiI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 02:38:08 -0400
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id AD58693C1;
+        Mon,  8 May 2023 23:38:07 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id BC3DC804D;
+        Tue,  9 May 2023 06:38:06 +0000 (UTC)
+Date:   Tue, 9 May 2023 09:38:05 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     Nishanth Menon <nm@ti.com>
+Cc:     Rob Herring <robh@kernel.org>, soc@kernel.org,
+        Christian Marangi <ansuelsmth@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        William Qiu <william.qiu@starfivetech.com>,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v3_5/7=5D_dt-bindings=3A_soc=3A?= =?US-ASCII?Q?_starfive=3A_Add_StarFive_syscon_module?=
-User-Agent: K-9 Mail for Android
-In-Reply-To: <014dd7b2-9623-805c-97a6-5b3c5f120b79@starfivetech.com>
-References: <20230414024157.53203-1-xingyu.wu@starfivetech.com> <20230414024157.53203-6-xingyu.wu@starfivetech.com> <20230424-footsie-compost-d6624c8ef4e8@spud> <20230508-margarita-fondling-c9b970ad73a9@spud> <014dd7b2-9623-805c-97a6-5b3c5f120b79@starfivetech.com>
-Message-ID: <7527C059-95A2-49EA-AFE0-B089D3651A6B@kernel.org>
+        Russell King <linux@armlinux.org.uk>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Andreas =?utf-8?Q?F=C3=A4rber?= <afaerber@suse.de>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Antoine Tenart <atenart@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Lars Persson <lars.persson@axis.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Andre Przywara <andre.przywara@arm.com>,
+        Baruch Siach <baruch@tkos.co.il>,
+        Wei Xu <xuwei5@hisilicon.com>,
+        Jean-Marie Verdun <verdun@hpe.com>,
+        Nick Hawkins <nick.hawkins@hpe.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Vladimir Zapolskiy <vz@mleia.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Peter Rosin <peda@axentia.se>, Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Daniel Palmer <daniel@thingy.jp>,
+        Romain Perier <romain.perier@gmail.com>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Shiraz Hashim <shiraz.linux.kernel@gmail.com>,
+        Patrice Chotard <patrice.chotard@foss.st.com>,
+        Marek Vasut <marex@denx.de>, Qin Jian <qinjian@cqplus1.com>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Paul Barker <paul.barker@sancloud.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Enric Balletbo i Serra <eballetbo@gmail.com>,
+        Javier Martinez Canillas <javier@dowhile0.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@axis.com
+Subject: Re: [PATCH 0/4] ARM: Move dts files to vendor sub-directories
+Message-ID: <20230509063805.GY14287@atomide.com>
+References: <20230504-arm-dts-mv-v1-0-2c8e51a2b6c4@kernel.org>
+ <20230505224722.r73sbti6ugf76c66@mardi>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230505224722.r73sbti6ugf76c66@mardi>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+* Nishanth Menon <nm@ti.com> [230505 22:47]:
+> Tony,
+> 
+> On 22:29-20230504, Rob Herring wrote:
+> > As discussed and attempted several times before[1][2], the flat arm32 
+> > directory of 1553 platforms has grown unwieldy. Past attempts stalled 
+> > out due to plans to move .dts files out of the kernel tree. Doing that 
+> > is no longer planned (any time soon at least), so let's go ahead and 
+> > group .dts files by vendors. This move aligns arm with arm64 .dts file 
+> > structure.
+> [...]
+> 
+> Wondering if it makes to have any sense of grouping per TI SoC arch? at
+> least will be clear as to what is going on?
+> 
+> ti/omap2 or ti/omap ?
+> 
+> >     'am3' : 'ti',
+> ^^ group  as ti/omap ?
+> >     'am4' : 'ti',
+> ^^ group  as ti/omap ?
+> >     'am5' : 'ti',
+> ^^ group  as ti/omap ?
+> >     'dra' : 'ti',
+> ^^ group  as ti/omap ?
+> >     'keystone' : 'ti',
+> ^^ group  as ti/keystone ?
+> >     'omap' : 'ti',
+> ^^ group  as ti/omap ?
+> >     'compulab' : 'ti',
+> ^^ group  as ti/omap ?
+> >     'logicpd' : 'ti',
+> ^^ group  as ti/omap ?
+> >     'elpida' : 'ti',
+> ^^ group  as ti/omap ?
+> >     'motorola' : 'ti',
+> ^^ group  as ti/omap ?
+> >     'twl' : 'ti',
+> ^^ group  as ti/omap ?
+> >     'da' : 'ti',
+> ^^ group  as ti/davinci ?
+> >     'dm' : 'ti',
+> ^^ group  as ti/davinci ?
+> 
+> For me at least, this cleanly seperates things up.
 
+No objections from me to adding TI subdirectories. Rob, any issues with this?
 
-On 9 May 2023 07:23:18 IST, Xingyu Wu <xingyu=2Ewu@starfivetech=2Ecom> wro=
-te:
->On 2023/5/9 3:24, Conor Dooley wrote:
->> On Mon, Apr 24, 2023 at 06:15:47PM +0100, Conor Dooley wrote:
->>> On Fri, Apr 14, 2023 at 10:41:55AM +0800, Xingyu Wu wrote:
->>> > From: William Qiu <william=2Eqiu@starfivetech=2Ecom>
->>> >=20
->>> > Add documentation to describe StarFive System Controller Registers=
-=2E
->>> >=20
->>> > Signed-off-by: William Qiu <william=2Eqiu@starfivetech=2Ecom>
->>> > ---
->>> >  =2E=2E=2E/soc/starfive/starfive,jh7110-syscon=2Eyaml  | 58 ++++++++=
-+++++++++++
->>> >  MAINTAINERS                                   |  6 ++
->>> >  2 files changed, 64 insertions(+)
->>> >  create mode 100644 Documentation/devicetree/bindings/soc/starfive/s=
-tarfive,jh7110-syscon=2Eyaml
->>> >=20
->>> > diff --git a/Documentation/devicetree/bindings/soc/starfive/starfive=
-,jh7110-syscon=2Eyaml b/Documentation/devicetree/bindings/soc/starfive/star=
-five,jh7110-syscon=2Eyaml
->>> > new file mode 100644
->>> > index 000000000000=2E=2Ede086e74a229
->>> > --- /dev/null
->>> > +++ b/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110=
--syscon=2Eyaml
->>> > @@ -0,0 +1,58 @@
->>> > +# SPDX-License-Identifier: (GPL-2=2E0 OR BSD-2-Clause)
->>> > +%YAML 1=2E2
->>> > +---
->>> > +$id: http://devicetree=2Eorg/schemas/soc/starfive/starfive,jh7110-s=
-yscon=2Eyaml#
->>> > +$schema: http://devicetree=2Eorg/meta-schemas/core=2Eyaml#
->>> > +
->>> > +title: StarFive JH7110 SoC system controller
->>> > +
->>> > +maintainers:
->>> > +  - William Qiu <william=2Eqiu@starfivetech=2Ecom>
->>> > +
->>> > +description: |
->>> > +  The StarFive JH7110 SoC system controller provides register infor=
-mation such
->>> > +  as offset, mask and shift to configure related modules such as MM=
-C and PCIe=2E
->>> > +
->>> > +properties:
->>> > +  compatible:
->>> > +    oneOf:
->>> > +      - items:
->>> > +          - enum:
->>> > +              - starfive,jh7110-aon-syscon
->>> > +              - starfive,jh7110-sys-syscon
->>> > +          - const: syscon
->>> > +          - const: simple-mfd
->>> > +      - items:
->>> > +          - const: starfive,jh7110-stg-syscon
->>> > +          - const: syscon
->>> > +
->>> > +  reg:
->>> > +    maxItems: 1
->>> > +
->>> > +  clock-controller:
->>> > +    $ref: /schemas/clock/starfive,jh7110-pll=2Eyaml#
->>> > +    type: object
->>> > +
->>> > +  power-controller:
->>> > +    $ref: /schemas/power/starfive,jh7110-pmu=2Eyaml#
->>> > +    type: object
->>>=20
->>> My plan was to grab this patch after the merge window, but there's bee=
-n
->>> some back and forth [1] about what exactly should be a power-controlle=
-r
->>> here=2E Given the merge window is open & I know Emil wants to look at =
-the
->>> various clock bits for the JH7110, I don't think there's a pressing ne=
-ed
->>> for you to do anything here, but figured I'd at least mention how thin=
-gs
->>> are going on this thread too=2E
->>=20
->> To follow up on this, it transpired in that thread that this node, not =
-a
->> child node, should be the power controller=2E
->>=20
->> Up to you StarFive folk how you wish to resend, but I am fine with it
->> being in this series, I shall just not pick up the soc driver patches
->> until the resent binding is applied by Stephen=2E
->>=20
->
->Thanks=2E I had discussed with changhuang=2Eliang about this=2E And I wil=
-l drop
->the 'starfive,jh7110-aon-syscon' and 'power-controller' in next patchset=
-=2E
->Changhuang will take these in his patchset=2E
+Regards,
 
-Won't that result in broken bindings, since there's a ref to the pll bindi=
-ng?
-Keeping it in the same series (i=2Ee=2E this one) makes
-the most sense to me=2E
-
-Cheers,
-Conor=2E
-
->
->Best regards,
->Xingyu Wu
->
+Tony
