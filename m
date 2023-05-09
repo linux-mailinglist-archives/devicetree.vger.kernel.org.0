@@ -2,51 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AD736FBF5C
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 08:39:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EA256FBF61
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 08:39:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235004AbjEIGjd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 02:39:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44150 "EHLO
+        id S234877AbjEIGj4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 02:39:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234963AbjEIGj0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 02:39:26 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47B0FD076;
-        Mon,  8 May 2023 23:39:09 -0700 (PDT)
+        with ESMTP id S234952AbjEIGjm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 02:39:42 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDFA1AD25;
+        Mon,  8 May 2023 23:39:22 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B2D1C6164F;
-        Tue,  9 May 2023 06:39:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B629C433EF;
-        Tue,  9 May 2023 06:39:05 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 530C162FE1;
+        Tue,  9 May 2023 06:39:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9CFAC433D2;
+        Tue,  9 May 2023 06:39:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1683614348;
-        bh=w22KuX01pMZbO/Eaa6JLtKePa21cyYmG8SwUr9hiNyw=;
+        s=k20201202; t=1683614361;
+        bh=KXkW/Qg8nbm4fuj0v5jtuJso+Jg1YeFUBlNRcgIPRSs=;
         h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=IlTXY2aCEu3Kl2vnXKCZZeoatsDFBy1icDMudOcR8MwKfg8GF4CyU+J0ULOaggod6
-         59qXgpp7PyhhHfp8MCeDCdflybDeEFgRSxfAADu1zRj82SmwmbUwi/xKLXGPhS5Ede
-         aubQxRLVVoym0NzqSpINOLJqvKsgFQsEh/LItG5orBwMH2IyyiG7K+oWGctHrOseRl
-         UD/i/G6Iqj3R4I7zRHKNHIM1I6s/YZnrnqht83bnf/CYkg/pqxf966b5wi6UuSdZ8X
-         A5mesHEWClaSKcI/2OSv4KsK1BHEN8w2xoitPSCpe3hJ0BX3lAzlcudu8gQ8mneJI9
-         gWVMjtPNm86Cw==
+        b=R4VJbUJbQzcgCollmbqeGo9krMqPJxslF6QHynyHq4ogYe2eCTaMsBcgKBPQbK6Ww
+         DXZeFAkZxBA0FfYNEVuwaECUH0YTuV87VER+s5IbD3ZWjlnwUoqbFWr3yAbxZ3oFke
+         2ZCBSV7ImJCg2LJRk+0Ssmrw/+8YB1eEs5fswwLzP6EPezl+EmNRXM/9eoYhj9aHKK
+         Xf93BXQpVif7O/twDRXO4CVIQQ9bOSTK0it6QVjVPpqVQq5sWmc9LpQ2AoWvtZY5FS
+         uSj/5bExDJgQRSE7kEEhgf9AkMW7CWjxf0hrWxn6Qrp1uPfJHhr6uJaNNTcXLzSoGP
+         f0ZNymha3thhA==
 From:   Mark Brown <broonie@kernel.org>
-To:     robh@kernel.org, Anup Sharma <anupnewsmail@gmail.com>
-Cc:     lgirdwood@gmail.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, KCHSU0@nuvoton.com,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <ZFYxWVdE9YkMKvXv@yoga>
-References: <ZFYxWVdE9YkMKvXv@yoga>
-Subject: Re: [PATCH v2] ASoC: dt-bindings: nau8540: Convert to dtschema
-Message-Id: <168361434507.303059.8363951498743127692.b4-ty@kernel.org>
-Date:   Tue, 09 May 2023 15:39:05 +0900
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        =?utf-8?q?M=C3=A5rten_Lindahl?= <marten.lindahl@axis.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel@axis.com
+In-Reply-To: <20230502-tps6287x-driver-v3-0-e25140a023f5@axis.com>
+References: <20230502-tps6287x-driver-v3-0-e25140a023f5@axis.com>
+Subject: Re: [PATCH v3 0/2] regulator: Add support for TPS6287x
+Message-Id: <168361435697.303261.4023695080353832209.b4-ty@kernel.org>
+Date:   Tue, 09 May 2023 15:39:16 +0900
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Mailer: b4 0.13-dev-bfdf5
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -55,25 +57,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 06 May 2023 16:22:09 +0530, Anup Sharma wrote:
-> Convert the NAU8540 audio CODEC bindings to DT schema
+On Mon, 08 May 2023 15:14:06 +0200, Mårten Lindahl wrote:
+> This series adds basic support for TI's TPS62870/TPS62871/TPS62872/
+> TPS62873 high-frequency single-channel step-down converters with an
+> I2C interface.
 > 
-> Signed-off-by: Anup Sharma <anupnewsmail@gmail.com>
-> 
-> Changes:
-> V1 -> V2: Adhere to the correct procedure by including the maintainer's name.
->           Drop Mark from maintainer.
+> The devices can operate in power save mode for maximum efficiency, or
+> forced-PWM mode for best transient performance and lowest output
+> voltage ripple. All chip variants have four output voltage ranges and
+> the driver changes active range depending on the requested voltage
+> setting.
 > 
 > [...]
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
 Thanks!
 
-[1/1] ASoC: dt-bindings: nau8540: Convert to dtschema
-      commit: 0f0d70c2881f8c28e6d449349e057963a742f842
+[1/2] regulator: dt-bindings: Add bindings for TPS6287x
+      commit: 034008dd227877cca1588d66e2df505f5fae26c9
+[2/2] regulator: Add support for TI TPS6287x regulators
+      commit: 7b0518fbf2befd7c4afb81eb06c95c8fc93998be
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
