@@ -2,233 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDE0C6FBC40
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 03:01:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D31696FBC5C
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 03:09:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232812AbjEIBBo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 May 2023 21:01:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51874 "EHLO
+        id S232571AbjEIBJr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 May 2023 21:09:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229699AbjEIBBn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 21:01:43 -0400
-Received: from sonic307-7.consmr.mail.ir2.yahoo.com (sonic307-7.consmr.mail.ir2.yahoo.com [87.248.110.32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F5562729
-        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 18:01:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rocketmail.com; s=s2048; t=1683594099; bh=XZkwtW0u4vlso9cBKVw2n7DK5kOM5HPTovVW04FEo00=; h=Date:Subject:To:Cc:References:From:In-Reply-To:From:Subject:Reply-To; b=AwfGVOOotX883i+WXzgrq7KHucOo81Ufg5IoeIFWfpFBIK/NIHNWNV2j091K5j7iIHMIwWdK01jYkaWCUPc4lZFUTxVQFkiD3NZ3yGfdCNyqQfX258+cFdcVaU4pulmSOg7hcjO9IOuFbvI5cVzh52uxOsaX60MM76YmVFnbvkewuLOsoxUxHM9cS2pwO9JRodFXO19SEOloHzbEMRYE2/maqJ+UObXJeZgFNOqsL8P0k9L1rtS6ULLh8v9mlFrs3/ntKOiLz7roqmdcdaUQGKTBRO2TruS114OlYJdDZyiRVLhEMUcbkXgRb25jiXEEQ9AzJeg5/Z0/7g2TygG5fA==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1683594099; bh=HFTdkLJk4shlQuPS0rdRDeEiD8oh2qhB0+DRkDhThW9=; h=X-Sonic-MF:Date:Subject:To:From:From:Subject; b=gHso3PbgMO4LnnkTicxPFtM7gAUjTXZbioyPMyVTrqy2/xfosvkaVJdlAsAmCNNsXDS8Sj4tVusynNTn/Kc4tg/pvc7v7ylp11xlqAWgpmPnqMO89gTubmS4ZhaaFNPe2MYUhdNhyP61UumrVOTafK+bY3fZWqxqwvQo3F66vhqSdv222Kjz3sxqO4zLjAn/1HB0Had/qLpHiTiSGPQfcd0rL54IV/Nqpe0oSwmNvFx0WyeDNDXpeyGYo3YjtNysei6X2RS+PRNz7Y1purPfEkFs+d2rzPjz3IBOvdYrKbREQWP+LdQz9Fne+ZcnIgbPDZElo/E4LOE3k66NfFG9+w==
-X-YMail-OSG: 1_hNPywVM1nTL7PbYVkmg2L6rc6BT0lZtoH_kr.DF6NQD06IouxMUg68n3uNdi9
- hzV1RcWFaYdrZpTlp6GP6Wjzrx578qp0AfatE1u6LX7HrlS31MRZkfwiwlG.bx5zqYFARlFEMU73
- SYBTPj3RSHBXd3HDz0DIY4Mtx13981MLXRk6h5s9er3z_ukqWKUd9lY28GFAKsbSnJhxQleQlFbQ
- 9geV4QBh_yKwmZ.7KzFsdpX.Ff.zcp7IH.QnWOh6LgC6woE5SOve69NHuwbvK5duZpcBwmmfjh5G
- uwmeCxF7Fj963kz.PQ1yqMcGMab8dI.He6in179dATQP7nq9HQ0s0QPZZ_DYA1CwXzV332RxAlEz
- Yp9NAVJsIDXModPBSFeAZ3lR7vn9lscyY070AkmSUFyiieBSoMuv5nvtUX4D5lX3sGB6jKeEmCKN
- fi5lifWAWxbI77_D6qb2W7VTsGMFLgl3JIu978ob5Yyn97PPiBh4aiTYHDvfiwTcap01S.yb2krr
- 3w5a4TZSJdIw7DNSNu0Xu5ONQBacq0Rm71.8Y2aZhWEbUTYE_dWXQ07IqS8S9rlkq48M0ab7ca15
- JTKZWAa3m0dYzLtvt5tPvX7I8UBDuAuLK5hLQbbKg0L5yi3z35v_Zu9p8MgmZgf6Pl.DHPdbu0Zr
- L0UeUsjtaveTTEpC5FVJkHKdvoa5RebH_29e5OOVoFnDqDCWqOC7ZbFtkVHvkI2zRxPCAJplGrsi
- jBAwhTehzQykdyu8WMBq4WISAhKUDmnyGONxsaGb1hxfSttUkoYs.FaoXCWszaAGoa6vG5MN6mLq
- 5D3easfIAXp4fKhJ0ob7S.ifqL_1xsJHD2bahIwyMj5cNCTs7S9yTygykYVdoQkSc4t1mdsx.hMD
- 8r2.3Lxqn_.9t7U8eOc4D1cwkg5daJ4HLDOkH9o6XvWs5K.3NK6zt0mwNSxzKDs3nEdNanwRAccc
- 8JbMHXWj9ZmpqVnnkIQTYuuPAaBVNr4kkSnLV1PT2zbHj51tf5GPU5luQsol9bjaUrrXdod4XB7_
- d7fAWbulmK3g_BDG7IFM26llAgAhIcTJansZmjtlMf0n53D1KK6UV61d3YT3zrfxznBd6pceuxFY
- ZSimMNpwEUvwllBa61AM6d3D.HgG1PMDjDne3Lf1nI4EtRIH3VBJXx1PTms8L.SRIKMuWmFzYKVS
- OJMwScxBY8_t3NDR0hftcnNEjU9SaoDohZdwgEqAMl1Mv1JSILM.PmNdE2eTqzsGLUxY8qd0iE9f
- e1RdfVMp.Ie2EZ5JVUxBDLSH_ITPeEAKCPUxvazCw9gvR3KYFK8C8Z.aRPaO52vrz50cTAXXUhr1
- wQ6Ci7RmFWMkMn0h9vUNHViv3clicbSAPYQnXTP1UIHBtPo2hoq.If_z3Cur6rejcPmwWxtWUmB9
- gENZBTS_CAHeVZJ6Cwu6HFPQpgiHdk1OJHipjKdPVeWPyb4jPKaj1gdU9w30GcQSat3snqBxSaK1
- TQLbeI.u5Y6opB7DrbhuOSGnzfCErySlIwScjIytmuFod9CkvZdr1l0jYc9CDCK009bndYDH3cvs
- wlHb34iq5GukOh1uXzxHdXJOG5sWuxwfGvF_E2TKKPxk89TuVmAykaHTmt.7OkdAZNkVvIYS7q1.
- UuxMZbj_tGlvx64LDFVwDhVtOYBcNGVCRdZ74KJQMgvpw0WtZytkICtSL5pVJS5ofDQ3Dh67BRZi
- oCQ9knHqoHdTZTMUoJvDIQeq_Q54lx.mlrCXnbcxZ6UJ7IMku3_BUVq0JhAXYGM7SwqSwjAeW.8x
- pSrchPslJBqRVam5DBqr6y8Jueieq35gVvnA07ulvTR98iC1ZE7ApXHhKEQ.m2lpuDS7_gKTae8L
- XMMXhoe1lzIHwrPjxwOasnBMdw83HSfLaGIkeX4ctJIK3q1UHqw.Bz.wxwjD7eGRNblIGLlfAswZ
- Si11MTEpuSdlGcnQlqJk0HeMaptkCynhCHahQjBvWs1i92pQzpLNtE9qlsUG9S90.JsaplDv4IuV
- ok6rO8rK6O9NibcHOrub6a9UV.4m6NraA.EuxrOAKTonLVpoiwrKHv8VNI8QEjkS2f1Wh3FcgMGR
- CaoCyO5d6oDIlePCliSJmAZlhT6ws6hrps7UERWSDTNRd29aQzl4y8iAyV8ifZFf0nXDWYVhS97S
- zD7YDJcN4Nu9gQvwE_GOrR39eM6nYMPb.hyVvudHcQRehtxyx8AK0._8fCp.kb_rGixNz4Abe_UU
- oMXHGZHrsS4qSeXWCAdAb_fmUObkavfvz45NR6mNofJkSv.NNTVjF27.asbEhkmGI6J9IkUyUS7q
- EdDU-
-X-Sonic-MF: <jahau@rocketmail.com>
-X-Sonic-ID: 89fb71b9-7047-47cd-8ce5-db1cef7dbb64
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic307.consmr.mail.ir2.yahoo.com with HTTP; Tue, 9 May 2023 01:01:39 +0000
-Received: by hermes--production-ir2-74cd8fc864-msrld (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID e39504d2ac763bd7ad95b4e52adf3d61;
-          Tue, 09 May 2023 01:01:34 +0000 (UTC)
-Message-ID: <55fd9835-4246-00e8-b641-c8b0ee3f7e22@rocketmail.com>
-Date:   Tue, 9 May 2023 03:01:32 +0200
+        with ESMTP id S229457AbjEIBJo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 May 2023 21:09:44 -0400
+Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2108E184;
+        Mon,  8 May 2023 18:09:44 -0700 (PDT)
+Received: by mail-pf1-x431.google.com with SMTP id d2e1a72fcca58-643aad3bc41so4041580b3a.0;
+        Mon, 08 May 2023 18:09:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1683594583; x=1686186583;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=oJnx2f3sXSSrhC3+3mHpnxe1r3Cp8bqHnQ2WAmhKzRs=;
+        b=c9G8/lFCDbIQ2Lt8NlDQmzUR4Mmr/H8b9Jc7ZLAYTlteDovE8iEvC9w4jWBQbIZYjR
+         IXHgDo9j85ADaUa9+i3nEby0tmfN1JzuEYQcSIdQgCk50vnENodVlybeUwkjzA5/IZfJ
+         rDlMzv9j/1UuvSUCpYvMdbpRfmAH4IIPv6mJgki25TdmDkfJxQGUkVzPHm0w6GErIrXX
+         WPQHlSoqCzWvx2vSzQ6+isShM7AMLvSWnLnyDM4olfbcu0naoH2jdUc/uJI/2EKgjI+w
+         naBmo1Yg/539FmJk1JUSh/CxYxvPzrku8+NHw0hvdFgZ7CmWBkoCaVMIJD0LBRNJ8/6L
+         qwOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683594583; x=1686186583;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=oJnx2f3sXSSrhC3+3mHpnxe1r3Cp8bqHnQ2WAmhKzRs=;
+        b=WaPZYYayNMCaRwYVj4aYsc5loZiQ0a12HrsvARgMloLMa9/oXrnSHCFLoGMdIlFU+2
+         oq6/GFCtECXj/txWMIMJ4Go+LpZluyii/O244JTefWi7htndc+adHD7G0UxEMH08BrV1
+         NHFMp+UiZTBCpJhK70Cd+ZoINUj+5YbggVIP8+QBgwZ2mddi+AzSf2s6VIkP5J++OWol
+         sPbOfQCvcBBGecmemn7RZe8Fl9LSGIS65z4zswgKgWIGlUJijqA+yTJ/3q67x/HhAeuA
+         OnZWeEtwn8VhLi/NYos6kvZmdydicqKSjTOeNfBosW1xv94k9mJMvBWVnlhpmq82ggQ+
+         GzpA==
+X-Gm-Message-State: AC+VfDwPgCU2KTm0cW/9S/1cV0f85JPrJSn694hJVTxYDkenmGz+kI8b
+        cP9JJeEQydiLDzDNoWS49IA=
+X-Google-Smtp-Source: ACHHUZ5dzwu0YRY8ZNRrpOmdQtDXncyRjy6d0AwRRlWcdeFmjbmAKdW6nVanTZBJugap1961XomYBg==
+X-Received: by 2002:a05:6a20:429b:b0:101:4c8c:d1fa with SMTP id o27-20020a056a20429b00b001014c8cd1famr476055pzj.5.1683594583425;
+        Mon, 08 May 2023 18:09:43 -0700 (PDT)
+Received: from [172.19.1.47] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id t23-20020a62ea17000000b0062cf75a9e6bsm539061pfh.131.2023.05.08.18.09.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 May 2023 18:09:42 -0700 (PDT)
+Message-ID: <a64a2da0-893e-52ce-c784-cac70d7cfeb2@gmail.com>
+Date:   Tue, 9 May 2023 09:09:38 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v4 7/8] power: supply: rt5033_battery: Adopt status
- property from charger
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Lee Jones <lee@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Beomho Seo <beomho.seo@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Raymond Hackley <raymondhackley@protonmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Axel Lin <axel.lin@ingics.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Henrik Grimler <henrik@grimler.se>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-References: <20230506155435.3005-1-jahau@rocketmail.com>
- <20230506155435.3005-8-jahau@rocketmail.com>
- <20230508113518.nfwchl5wusmnkjp6@mercury.elektranox.org>
- <899d6604-7b15-ac37-c624-987a2bb7875e@rocketmail.com>
- <20230508220605.kderc3nihhezouit@mercury.elektranox.org>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH v10 09/10] reset: Add Nuvoton ma35d1 reset driver support
 Content-Language: en-US
-From:   Jakob Hauser <jahau@rocketmail.com>
-In-Reply-To: <20230508220605.kderc3nihhezouit@mercury.elektranox.org>
+To:     =?UTF-8?Q?Ilpo_J=c3=a4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lee@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        p.zabel@pengutronix.de,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>, tmaimon77@gmail.com,
+        catalin.marinas@arm.com, will@kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        LKML <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-serial <linux-serial@vger.kernel.org>, arnd@arndb.de,
+        schung@nuvoton.com, mjchen@nuvoton.com,
+        Jacky Huang <ychuang3@nuvoton.com>
+References: <20230508025936.36776-1-ychuang570808@gmail.com>
+ <20230508025936.36776-10-ychuang570808@gmail.com>
+ <1ec43550-9aee-3a36-6ca5-ed56e98628f@linux.intel.com>
+From:   Jacky Huang <ychuang570808@gmail.com>
+In-Reply-To: <1ec43550-9aee-3a36-6ca5-ed56e98628f@linux.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Mailer: WebService/1.1.21417 mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sebastian,
 
-On 09.05.23 00:06, Sebastian Reichel wrote:
-> Hi,
-> 
-> On Mon, May 08, 2023 at 11:18:28PM +0200, Jakob Hauser wrote:
->> On 08.05.23 13:35, Sebastian Reichel wrote:
->>> On Sat, May 06, 2023 at 05:54:34PM +0200, Jakob Hauser wrote:
->>>> The rt5033-battery fuelgauge can't get a status by itself. The rt5033-charger
->>>> can, let's get this value.
->>>>
->>>> Tested-by: Raymond Hackley <raymondhackley@protonmail.com>
->>>> Signed-off-by: Jakob Hauser <jahau@rocketmail.com>
->>>> ---
->>>>    drivers/power/supply/rt5033_battery.c | 24 ++++++++++++++++++++++++
->>>>    1 file changed, 24 insertions(+)
->>>>
->>>> diff --git a/drivers/power/supply/rt5033_battery.c b/drivers/power/supply/rt5033_battery.c
->>>> index 5c04cf305219..a6520716d813 100644
->>>> --- a/drivers/power/supply/rt5033_battery.c
->>>> +++ b/drivers/power/supply/rt5033_battery.c
->>>> @@ -12,6 +12,26 @@
->>>>    #include <linux/mfd/rt5033-private.h>
->>>>    #include <linux/mfd/rt5033.h>
->>>> +static int rt5033_battery_get_status(struct i2c_client *client)
->>>> +{
->>>> +	struct power_supply *charger;
->>>> +	union power_supply_propval val;
->>>> +	int ret;
->>>> +
->>>> +	charger = power_supply_get_by_name("rt5033-charger");
->>>> +	if (!charger)
->>>> +		return POWER_SUPPLY_STATUS_UNKNOWN;
->>>> +
->>>> +	ret = power_supply_get_property(charger, POWER_SUPPLY_PROP_STATUS, &val);
->>>> +	if (ret) {
->>>> +		power_supply_put(charger);
->>>> +		return POWER_SUPPLY_STATUS_UNKNOWN;
->>>> +	}
->>>
->>> struct rt5033_battery *battery = i2c_get_clientdata(client);
->>> ret = power_supply_get_property_from_supplier(battery->psy, POWER_SUPPLY_PROP_STATUS, &val);
->>> if (ret)
->>>       val.intval = POWER_SUPPLY_STATUS_UNKNOWN;
+
+On 2023/5/8 下午 07:00, Ilpo Järvinen wrote:
+> On Mon, 8 May 2023, Jacky Huang wrote:
+>
+>> From: Jacky Huang <ychuang3@nuvoton.com>
 >>
->> I don't think this works. There is no direct relationship between
->> rt5033-charger and rt5033-battery. They operate independently from each
->> other.
-> 
-> That should be fine as long as the supply dependency is properly declared.
-> 
->> I had a short try and the status property of rt5033-battery was "unknown".
->>
->> Just for the record, the full function I tried was:
->>
->> static int rt5033_battery_get_status(struct i2c_client *client)
->> {
->>          struct rt5033_battery *battery = i2c_get_clientdata(client);
->>          union power_supply_propval val;
->>          int ret;
->>
->>          ret = power_supply_get_property_from_supplier(battery->psy,
->>                                               POWER_SUPPLY_PROP_STATUS,
->>                                               &val);
->>          if (ret)
->>                  val.intval = POWER_SUPPLY_STATUS_UNKNOWN;
->>
->>          return val.intval;
->> }
->>
->> Later on I added a read-out of the "ret" value. It is "-19". I guess that's
->> the "return -ENODEV;" from function
->> power_supply_get_property_from_supplier(). [2]
->>
->> [2] https://github.com/torvalds/linux/blob/v6.4-rc1/drivers/power/supply/power_supply_core.c#L397-L421
-> 
-> I suppose your DT is missing the connection between the charger and
-> the battery:
-> 
-> rt5033_charger: charger {
->      compatible = "rt5033-charger";
->      ...
-> }
-> 
-> fuel-gauge {
->      compatible = "rt5033-battery";
->      ...
->      power-supplies = <&rt5033_charger>; // you are probably missing this
-> };
-> 
-> See also Documentation/devicetree/bindings/power/supply/power-supply.yaml
+>> This driver supports individual IP reset for ma35d1. The reset
+>> control registers is a subset of system control registers.
+> registers are
+>
+>> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
+>> ---
+>> diff --git a/drivers/reset/reset-ma35d1.c b/drivers/reset/reset-ma35d1.c
+>> new file mode 100644
+>> index 000000000000..19ed323981df
+>> --- /dev/null
+>> +++ b/drivers/reset/reset-ma35d1.c
+>> @@ -0,0 +1,234 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Copyright (C) 2023 Nuvoton Technology Corp.
+>> + * Author: Chi-Fang Li <cfli0@nuvoton.com>
+>> + */
+>> +
+>> +#include <linux/bits.h>
+>> +#include <linux/container_of.h>
+>> +#include <linux/device.h>
+>> +#include <linux/err.h>
+>> +#include <linux/io.h>
+>> +#include <linux/kernel.h>
+>> +#include <linux/of.h>
+>> +#include <linux/platform_device.h>
+>> +#include <linux/reboot.h>
+>> +#include <linux/reset-controller.h>
+>> +#include <linux/spinlock.h>
+>> +#include <dt-bindings/reset/nuvoton,ma35d1-reset.h>
+>> +
+>> +struct ma35d1_reset_data {
+>> +	struct reset_controller_dev rcdev;
+>> +	struct notifier_block restart_handler;
+>> +	void __iomem *base;
+>> +	spinlock_t lock;
+> Please add a comment about what this protects. After adding that, feel
+> free to add also:
+>
+> Reviewed-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
+>
+>
+Dear Ilpo ,
 
-...
+Thanks for your review. I will fix them in the next version.
 
-Thanks for the hints.
 
-This leads to updating the dt-bindings because adding the 
-"power-supplies" property is important to be aware of.
+Best Regards,
+Jacky Huang
 
-Btw. first it didn't work. It took me quite some time to debug. I needed 
-to add "psy_cfg.of_node = client->dev.of_node;" to the rt5033-battery 
-probe function.
 
-Now it works. However, there is a new problem. The battery driver gets 
-probed first. The charger driver a bit later. In the meantime the 
-battery driver spams dmesg with several "Failed to register power 
-supply" because the charger driver isn't available yet. Once the charger 
-driver is there, it works fine and dmesg becomes silent.
 
-With the current state of the patchset:
-dmesg | grep rt5033
-[   13.628030] rt5033 6-0034: Device found (rev. 6)
-[   13.633552] rt5033-led: Failed to locate of_node [id: -1]
-[   13.790478] rt5033-charger rt5033-charger: DMA mask not set
-
-With the changes discussed here:
-dmesg | grep rt5033
-[   15.741915] rt5033-battery 4-0035: Failed to register power supply
-[   15.752894] rt5033-battery 4-0035: Failed to register power supply
-[   15.795458] rt5033-battery 4-0035: Failed to register power supply
-[   15.910760] rt5033-battery 4-0035: Failed to register power supply
-[   15.913187] rt5033 6-0034: Device found (rev. 6)
-[   15.914341] rt5033-led: Failed to locate of_node [id: -1]
-[   15.920052] rt5033-battery 4-0035: Failed to register power supply
-[   15.927262] rt5033-battery 4-0035: Failed to register power supply
-[   16.017131] rt5033-battery 4-0035: Failed to register power supply
-[   16.017401] rt5033-charger rt5033-charger: DMA mask not set
-
-The message is comming from the rt5033-battery probe function, it's the 
-power_supply_register() that fails.
-
-Any ideas what could be done about this?
-
-Kind regards,
-Jakob
