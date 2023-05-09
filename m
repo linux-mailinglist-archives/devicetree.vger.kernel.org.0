@@ -2,70 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C7296FC435
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 12:49:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5D736FC447
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 12:53:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233624AbjEIKt0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 06:49:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44852 "EHLO
+        id S235386AbjEIKxR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 06:53:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234584AbjEIKtY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 06:49:24 -0400
+        with ESMTP id S234821AbjEIKxN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 06:53:13 -0400
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CECE94ECB
-        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 03:49:23 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD9473A98;
+        Tue,  9 May 2023 03:53:12 -0700 (PDT)
 Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3497lWDe009769;
-        Tue, 9 May 2023 10:49:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : to : cc : from : subject : content-type :
- content-transfer-encoding; s=qcppdkim1;
- bh=BCeZ/E1VqoQKT0irnwgmwVNobiLFCOAuDwM/Kjtrq5A=;
- b=SKMol01bIK63v6VsJciVXy1dc5BoQNY4m0lbS4vfIN4844YBh42lC4XIXb+1PlmSQxnU
- GWYLxfP6IwtDibCaFcvQ/x912gfBi+Br7M9Ww83B1EdqlH9kuY1nUEyXp57JzywIsh7U
- X39/lEpb3uIw3QIG8oS8se62Vwa8PUtPuQ7OzbGLN0/BmC5/4MHG4cyT67zMlDJ63gCI
- oZ1VkbBXRAJT2c2iIKMDUyN+CnphPfCm4dDHXZOi8pn7NvqB1ezRiojayjItFP/5vZ91
- S54O4ot3asplKD2VGBsvya336NUj+xQsto5qSt56yYqusPO3M2cISXnHgiO1d6yio/hq pA== 
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3498KAos023478;
+        Tue, 9 May 2023 10:53:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=imTFoMbEbV8QAXicdsE9c4KO2oktsb6s1YI3AMZ8m5I=;
+ b=DgjqZPd9yzuKQ0QfjeHlDBDjPiiGb2av6HQ8FTWlmgwscqVCaw4hdWwC7lrCChZkNno2
+ lBcKrqjIyfMexwdtDRVIZCs1Av0mBdjraIcQnhczzmFZhopWsl83yEhdmgy34u6lnzCp
+ WgMYSFnJ73zSQFsohvRaAxlPDLxig3yVoi5YDEHro5EZZqZ1qFX72qaGqsuBn9cyFDnj
+ 2AIWmEi+M5G1euVmC0/JsgZoaqLfkSRmpm3CYJdv5JA2csIAVcEMrj7pP4zr7GTIn/k/
+ VNfcu1rhch/33wLAW3ThwXqTR+pann4pzKskGEFD1Ct9vfxL/RcAJFytqxBJNA1mzh9H PQ== 
 Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qf77f1fpn-1
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qf77f1g7k-1
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 09 May 2023 10:49:21 +0000
+        Tue, 09 May 2023 10:53:03 +0000
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 349AnKXB022746
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 349Ar2OT026670
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 9 May 2023 10:49:20 GMT
-Received: from [10.217.216.230] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Tue, 9 May 2023
- 03:49:18 -0700
-Message-ID: <039b19fa-a497-f237-55b3-467b4eda27ea@quicinc.com>
-Date:   Tue, 9 May 2023 16:19:15 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Tue, 9 May 2023 10:53:02 GMT
+Received: from hu-schowdhu-lv.qualcomm.com (10.49.16.6) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Tue, 9 May 2023 03:53:02 -0700
+From:   Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+To:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>
-CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Pratham Pratap <quic_ppratap@quicinc.com>,
-        Udipto Goswami <quic_ugoswami@quicinc.com>
-From:   Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-Subject: Suggestion regarding usage of <Volt, Amp> in yaml
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>,
+        Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+Subject: [PATCH V6 0/3] soc: qcom: boot_stats: Add driver support for boot_stats
+Date:   Tue, 9 May 2023 03:52:20 -0700
+Message-ID: <cover.1683628357.git.quic_schowdhu@quicinc.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: yJfZrWKHEQWkM3QEjqquaUDwCFj1GQCq
-X-Proofpoint-GUID: yJfZrWKHEQWkM3QEjqquaUDwCFj1GQCq
+X-Proofpoint-ORIG-GUID: 8l59SEyQ6FYiENZXHJzb0b_p5aIBZ6pF
+X-Proofpoint-GUID: 8l59SEyQ6FYiENZXHJzb0b_p5aIBZ6pF
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
  definitions=2023-05-09_06,2023-05-05_01,2023-02-09_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxscore=0
  lowpriorityscore=0 priorityscore=1501 spamscore=0 phishscore=0
- mlxlogscore=699 suspectscore=0 malwarescore=0 adultscore=0 impostorscore=0
+ mlxlogscore=987 suspectscore=0 malwarescore=0 adultscore=0 impostorscore=0
  clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
  engine=8.12.0-2304280000 definitions=main-2305090086
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,26 +79,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Team,
+Qualcomm's proprietary Android boot-loaders capture boot time
+stats, like the time when the bootloader started execution and at what
+point the bootloader handed over control to the kernel etc. in the IMEM
+region. This information is captured in a specific format by this driver
+by mapping a structure to the IMEM memory region and then accessing the
+members of the structure to log the information in a debugfs file.
+This information is useful in verifying if existing boot KPIs have
+regressed or not.
 
-  We are trying to read an array of <Volt, Amp> values from DT and use 
-it in one of our downstream drivers and needed to implement the same in 
-yaml file.
+A sample log in SM8450(waipio) device is as follows:-
 
-The below is the format we want to implement in our DT:
+/sys/kernel/debug/qcom_boot_stats # cat abl_time
+17898 ms
+/sys/kernel/debug/qcom_boot_stats # cat pre_abl_time
+2879 ms
 
-   3           qcom,default-sink-caps = <5000 2000>, /* 5V , 2A */
-   2                                    <3000 1500>,
-   1                                    <2300 2500>;
+The Module Power Manager(MPM) sleep counter starts ticking at the PBL
+stage and the timestamp generated by the sleep counter is logged by
+the Qualcomm proprietary bootloader(ABL) at two points-> First when it
+starts execution which is logged here as "pre_abl_time" and the second
+when it is about to load the kernel logged as "abl_time". Both these
+values are read up by the driver from IMEM region and printed as above.
 
-  Is there any ref/schema available for this kind of array ?
+Changes in V6
 
-I believe when we wanted to use basis points as reference for [1], we 
-had to modify dt-schema for the same. Is something like that needed for 
-the above <Volt, Amp> requirement as well or is there some ref available 
-for use.
+*Implemented the comments on V4 and V5 of the patch
 
-[1]: https://github.com/devicetree-org/dt-schema/pull/73
+Souradeep Chowdhury (3):
+  dt-bindings: sram: qcom,imem: Add Boot Stat region within IMEM
+  soc: qcom: boot_stat: Add Driver Support for Boot Stats
+  MAINTAINERS: Add the entry for boot_stats driver support
 
-Regards,
-Krishna,
+ .../ABI/testing/debugfs-driver-bootstat       |  17 +++
+ .../devicetree/bindings/sram/qcom,imem.yaml   |  22 ++++
+ MAINTAINERS                                   |   7 ++
+ drivers/soc/qcom/Kconfig                      |  10 ++
+ drivers/soc/qcom/Makefile                     |   1 +
+ drivers/soc/qcom/boot_stats.c                 | 100 ++++++++++++++++++
+ 6 files changed, 157 insertions(+)
+ create mode 100644 Documentation/ABI/testing/debugfs-driver-bootstat
+ create mode 100644 drivers/soc/qcom/boot_stats.c
+
+-- 
+2.17.1
+
