@@ -2,68 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A7F76FC41F
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 12:42:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 022F86FC42B
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 12:46:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235281AbjEIKmO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 06:42:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41410 "EHLO
+        id S235348AbjEIKqJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 06:46:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235218AbjEIKmN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 06:42:13 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7541C59F1;
-        Tue,  9 May 2023 03:42:12 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 349Ag39D088292;
-        Tue, 9 May 2023 05:42:03 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1683628923;
-        bh=Nomgq3t+4HfebnevX3WGB/j8KKfQAwmWlrWI5nUU5Fw=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=lTS3/k7owXlrwGfPC4vLNdyekhJ75RPL0xWc+6gn7jRhNelAJrXQbuZiaXWhGcZYq
-         0LxOcYW1pXJR43rB9chc47MpPee/E8+mOOkwvqieo5B9sHuHi86ZcodL8dp9OGFdtQ
-         kq2bhF5ZcTkhXsnYB374KXAbmGjyEFM+3+FKmF+8=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 349Ag3fA017716
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 9 May 2023 05:42:03 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 9
- May 2023 05:42:03 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 9 May 2023 05:42:03 -0500
-Received: from [172.24.145.182] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 349Afxh8077375;
-        Tue, 9 May 2023 05:42:00 -0500
-Message-ID: <feddcd03-1848-b667-6a38-ae7c0f6ff160@ti.com>
-Date:   Tue, 9 May 2023 16:11:59 +0530
+        with ESMTP id S235013AbjEIKqI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 06:46:08 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27C8A4ECB;
+        Tue,  9 May 2023 03:46:07 -0700 (PDT)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3499PCw1022180;
+        Tue, 9 May 2023 10:46:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : from : to : cc : references : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=pzrwtycEGGairi7H5VWoKnmQe83IMyYowf+KnIHVI7U=;
+ b=aSBIR3BWOlnHFOfNlLzPuZkUhnpgRQpE/W9lP4KPye4PgdH1Duz8eID3n4R3YU9HFUy9
+ JsK2nIzwWYd6uaZsytY/ybQkB6UP+XzasaAjPiZBLtQuMQsYjxqCwCI6F2S3cycKhdJe
+ L/i/tBB6iIP0fl8sYNgEIfQ0BTtEMDLEOyI2R6fkO7lM1y4EozXARorK9ph846bZmovM
+ IasJxD5USWVqtYuFCY3snImdiFKJsQgAFpSbKvLelOxjcF8PiuSEtW4xiHmeu2YlORvL
+ bgSuSsC2f1F7VbT4746uC797irQRPCC1bwX7ETAGZaiea+jc4JUl2qkSAYp2uHZRs5E3 vw== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qf7859ecm-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 09 May 2023 10:46:02 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 349AjeST000800
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 9 May 2023 10:45:40 GMT
+Received: from [10.242.243.41] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Tue, 9 May 2023
+ 03:45:35 -0700
+Message-ID: <e9680cc0-b11a-e29b-627f-51e771015c5d@quicinc.com>
+Date:   Tue, 9 May 2023 16:15:32 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH v2 3/3] arm64: dts: ti: k3-j7200-mcu-wakeup: Update fss
- node and hbmc_mux
+Subject: Re: [PATCH V3 0/6] Incremental patches on minimal boot support
 Content-Language: en-US
-To:     Vaishnav Achath <vaishnav.a@ti.com>, <nm@ti.com>, <afd@ti.com>,
-        <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>
-References: <20230505115858.7391-1-vaishnav.a@ti.com>
- <20230505115858.7391-4-vaishnav.a@ti.com>
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-In-Reply-To: <20230505115858.7391-4-vaishnav.a@ti.com>
-Content-Type: text/plain; charset="UTF-8"
+From:   Devi Priya <quic_devipriy@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
+CC:     <quic_srichara@quicinc.com>, <quic_sjaganat@quicinc.com>,
+        <quic_kathirav@quicinc.com>, <quic_arajkuma@quicinc.com>,
+        <quic_anusha@quicinc.com>, <quic_poovendh@quicinc.com>
+References: <20230425084010.15581-1-quic_devipriy@quicinc.com>
+In-Reply-To: <20230425084010.15581-1-quic_devipriy@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: TLtl-Mc-cm5LTejOIxc7_nO2tbbyjzKx
+X-Proofpoint-GUID: TLtl-Mc-cm5LTejOIxc7_nO2tbbyjzKx
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-09_06,2023-05-05_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
+ bulkscore=0 adultscore=0 priorityscore=1501 mlxlogscore=999
+ lowpriorityscore=0 malwarescore=0 mlxscore=0 impostorscore=0 clxscore=1015
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2305090085
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -72,93 +86,52 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 05/05/23 17:28, Vaishnav Achath wrote:
-> From: Nishanth Menon <nm@ti.com>
+On 4/25/2023 2:10 PM, Devi Priya wrote:
+> Patchset V9 of the series: Add minimal boot support for IPQ9574 has been
+> merged and is available in linux-next/master.
+> V12 being the latest revision posted in the series, the delta between
+> revisions V9 and V12 is posted as a separate series as suggested by
+> Bjorn to avoid possible confusions.
 > 
-> fss node claims to be a syscon node, while it actually is a simple bus
-
-FSS
-
-> where ospi, hbmc peripherals are located and a mux for path select
-
-OSPI, HBMC
-
-> between OSPI and Hyperbus which can be modelled as a reg-mux. So model
-> it accordingly and use reg-mux to describe the hbmc-mux. Also update
-> the region size to the correct values as per the TRM.
+> This series adds the delta changes between revisions V9 and V12.
 > 
-> Signed-off-by: Nishanth Menon <nm@ti.com>
-> Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
-> ---
+> V9 can be found at:
+> https://lore.kernel.org/linux-arm-msm/20230316072940.29137-1-quic_devipriy@quicinc.com/
 > 
-> V1->V2:
->  * Address feedback from Udit to limit the FSS register region size as
->  per TRM.
->  * Use reg-mux changes to simplify the hbmc-mux modelling.
->  * Update commit message to reflect changes.
+> V12 can be found at:
+> https://lore.kernel.org/linux-arm-msm/20230410135948.11970-1-quic_devipriy@quicinc.com/
 > 
-> Depends on:
->  https://lore.kernel.org/all/20230424184810.29453-1-afd@ti.com/
+> Changes in V3:
+> 	- Detailed change logs are added to the respective patches.
 > 
->  arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi | 13 +++++++------
->  1 file changed, 7 insertions(+), 6 deletions(-)
+> Changes in V2:
+> https://lore.kernel.org/linux-arm-msm/20230417053355.25691-1-quic_devipriy@quicinc.com/
+> 	- Updated the subject & commit message of [PATCH V2 1/4]
+> 	- No changes were made to any other patches
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-> index b58a31371bf3..333564ca9c91 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-> @@ -338,22 +338,23 @@
->  		status = "disabled";
->  	};
->  
-> -	fss: syscon@47000000 {
-> -		compatible = "syscon", "simple-mfd";
-> -		reg = <0x00 0x47000000 0x00 0x100>;
-> +	fss: bus@47000000 {
-> +		compatible = "simple-bus";
-> +		reg = <0x00 0x47000000 0x0 0x7c>;
+> Changes in V1:
+> 	- The Delta between V9 & V12 is added to the change log of
+> 	  the respective patches for quick reference
 
-                                       ^^^^ 0x00
+Gentle Reminder!
 
-I know the registers only go up to 0x7c, but its convention to map
-entire region that is reserved for the IP irrespective of how many
-registers are actually valid (I see this across arm64 SoC Vendors).
-Eg as per TRM,  Table 203 MCU Domain map:
+Thanks,
+Devi Priya
 
-MCU_FSS0_CFG 0x0047000000 - 0x00470000FF (256B)
-
-
-
-
->  		#address-cells = <2>;
->  		#size-cells = <2>;
->  		ranges;
->  
-> -		hbmc_mux: hbmc-mux {
-> -			compatible = "mmio-mux";
-> +		hbmc_mux: mux-controller@47000004 {
-> +			compatible = "reg-mux";
-> +			reg = <0x00 0x47000004 0x00 0x2>;
->  			#mux-control-cells = <1>;
->  			mux-reg-masks = <0x4 0x2>; /* HBMC select */
->  		};
->  
->  		hbmc: hyperbus@47034000 {
->  			compatible = "ti,am654-hbmc";
-> -			reg = <0x00 0x47034000 0x00 0x100>,
-> +			reg = <0x00 0x47034000 0x00 0x0c>,
-
-Hmm, doesn't look correct? I see register addresses up to 0x47034048h in
-TRM?
-
-I prefer to map entire region reserved in the SoC memory map:
-MCU_FSS0_HPB_CTRL 0x0047034000 - 0x00470340FF (256B)
-
-
->  				<0x05 0x00000000 0x01 0x0000000>;
->  			power-domains = <&k3_pds 102 TI_SCI_PD_EXCLUSIVE>;
->  			clocks = <&k3_clks 102 0>;
-
--- 
-Regards
-Vignesh
+> 
+> Devi Priya (6):
+>    arm64: dts: qcom: ipq9574: Update the size of GICC & GICV regions
+>    dt-bindings: clock: qcom,ipq9574-gcc: Add maintainer
+>    clk: qcom: gcc-ipq9574: Clean up included headers
+>    clk: qcom: gcc-ipq9574: constify struct clk_init_data
+>    arm64: dts: qcom: ipq9574: Drop bias_pll_ubi_nc_clk input
+>    arm64: dts: qcom: ipq9574: rename al02-c7 dts to rdp433
+> 
+>   .../bindings/clock/qcom,ipq9574-gcc.yaml      |   1 +
+>   arch/arm64/boot/dts/qcom/Makefile             |   2 +-
+>   ...ipq9574-al02-c7.dts => ipq9574-rdp433.dts} |   2 +-
+>   arch/arm64/boot/dts/qcom/ipq9574.dtsi         |  14 +-
+>   drivers/clk/qcom/gcc-ipq9574.c                | 434 +++++++++---------
+>   5 files changed, 224 insertions(+), 229 deletions(-)
+>   rename arch/arm64/boot/dts/qcom/{ipq9574-al02-c7.dts => ipq9574-rdp433.dts} (97%)
+> 
