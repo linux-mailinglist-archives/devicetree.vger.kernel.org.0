@@ -2,375 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49B0C6FC085
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 09:34:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 830516FC09E
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 09:44:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229650AbjEIHe4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 03:34:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54806 "EHLO
+        id S234296AbjEIHok (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 03:44:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229533AbjEIHez (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 03:34:55 -0400
-Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2046.outbound.protection.outlook.com [40.107.117.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C6F01FE1
-        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 00:34:52 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FJyPF42CvQ8O08JspO6pddpu2qQE/EnoAqVi0vV89/Y/Hp36mXxwU3LpUd4zTllGfJk99Nua416XetskztMJzo/gEGcSEsFgao1kgyJcbvQtipnrH9NsNS8PncI9vFSYXGw0UJxOqito4r4cMjN3MKKQlC68vRjRra8OMofZKqG2G3Rmk2f2RalRMCeeLv2Z1HtCzEy0nLK20synNKhCFakRI+Bv9ZXkjBJQUZw4fSo7tUtkuCeSOb2jLsmsSDpuXzLnZ+xqNa2b6ioM26kRg+3AUMB/BIdZ9BncaVEczccfLVqyK4vBVXamU7H9TSgZHRU52hiamtI3WFzcEwvkkg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5CsX2b7Vi4NGUesB5rDDv1KmlnD1sshJgj8XFygKxgU=;
- b=DvEZvGHFSHIVIPidflWtqNcDWEnqGz8MaB89+zfFc/Qao3Qc3vPbA2Oxlqr4ioxWdzKklvWa/iG+CTyYmDiNoqe+0Ps1GqyA4AuvHxt4MQL3ME/GntU/+vCjz/YHP45SwR7MA5s0TNIXhoKCBUZNbUMcMc4fIH7vGBE+JOwqhmkipcUvA920bchF2U5hJ1bQz4qeNfEKobcTJqHUdNb+O1ecpwVRnsQ5h7kFXQeLQ/TALWgsi9awYR5p80j4xKlgdlvZ5xu0ovOpPkNP5A5z0DKiHk8S/AVxuGf70PZvQqqMjyM1VZArWNLk2dozwkd5lDHh0Pkly8wRbPPfBjw89A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nuvoton.com; dmarc=pass action=none header.from=nuvoton.com;
- dkim=pass header.d=nuvoton.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nuvoton.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5CsX2b7Vi4NGUesB5rDDv1KmlnD1sshJgj8XFygKxgU=;
- b=M47qLf5PETBX9ZWccvKZsHH4PJGa8Aq/6BpT/t4Gh1MgTbuIQN9PlK5Ztj2UVYyDjN0If+usb/ujLxZgS96t0E6XHhhETB+k/9ctEaXPgPE//nuPA/2J3vLfkLV1eP3xIWNdt2Ta/MQCqIALSRgJuxM2P6UXQ6c8HwpVp8dTB60=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nuvoton.com;
-Received: from SG2PR03MB6732.apcprd03.prod.outlook.com (2603:1096:4:1db::11)
- by TYZPR03MB7792.apcprd03.prod.outlook.com (2603:1096:400:45f::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.33; Tue, 9 May
- 2023 07:34:49 +0000
-Received: from SG2PR03MB6732.apcprd03.prod.outlook.com
- ([fe80::3dcc:2a50:b1d4:b953]) by SG2PR03MB6732.apcprd03.prod.outlook.com
- ([fe80::3dcc:2a50:b1d4:b953%4]) with mapi id 15.20.6363.031; Tue, 9 May 2023
- 07:34:49 +0000
-Message-ID: <5b758fcc-5e2e-3a79-db3e-bdcefd94b021@nuvoton.com>
-Date:   Tue, 9 May 2023 15:34:46 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-Subject: Re: [PATCH] ASoC: dt-bindings: nau8825: Convert to dtschema
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        broonie@kernel.org
-Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, YHCHuang@nuvoton.com,
-        KCHSU0@nuvoton.com, WTLI@nuvoton.com, SJLIN0@nuvoton.com,
-        ctlin0.linux@gmail.com
-References: <20230509051054.480412-1-CTLIN0@nuvoton.com>
- <16770b43-9ac2-d261-62fd-bba463b49f6d@linaro.org>
-Content-Language: en-US
-From:   AS50 CTLin0 <ctlin0@nuvoton.com>
-In-Reply-To: <16770b43-9ac2-d261-62fd-bba463b49f6d@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-ClientProxiedBy: SI2PR06CA0012.apcprd06.prod.outlook.com
- (2603:1096:4:186::13) To SG2PR03MB6732.apcprd03.prod.outlook.com
- (2603:1096:4:1db::11)
+        with ESMTP id S233676AbjEIHoi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 03:44:38 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 086597ED5
+        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 00:44:37 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-3f315735514so195733545e9.1
+        for <devicetree@vger.kernel.org>; Tue, 09 May 2023 00:44:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683618275; x=1686210275;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=/tIWIjCU0WB4+s+0CLXZp3rE/hrVxQbRrR7hGm/i1t8=;
+        b=FS045pxekPIy3zvybkfVPHe6eMBCAkuvJgWnUdb31Avcc4yyadf8jCoDTyTn3dQp7X
+         nJeSCyxtCn23b8AEbg8AUd9eRaIq/xYZcwQAk2hEWCjBTHvAeajabpDyQNklwEMZ58DU
+         Kz4J2Htyn4dGPyzXyy70is1VHwsrsSzx8ia/px/eMY4UWpcUu9piuWERmxYqNasXIL08
+         N85eWBxxiQxVr0JUNGHr2szdrhhx7g8JzYJjvO4oMM9gngmxNqPElviZpictdF6A+3EF
+         4wMQzw2SyPMwAPsmI78QFBgadv2JzPwaFe0uk/mPPCK7LBGv3biIhaXQmUyVRtPRVu2Y
+         96eA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683618275; x=1686210275;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/tIWIjCU0WB4+s+0CLXZp3rE/hrVxQbRrR7hGm/i1t8=;
+        b=X4/yg8qtitWZWQSZsFxOnzGYUSiA5fVGyywqMF9T0/HSxRuZrPOpTOeHKpVsRJ4oD9
+         2blNycm2qCdb2JBBLA/0gjTlbuL9OmAuekw1oKWNHfVhFSrD/dkpYYyNPJln3Bgfmtl+
+         QcWk7PimnDqhUIBVjoLheRjpmkB55+2FIunXJkN77MTpbhpSd/x1apVLjKAUmCk5Q6xr
+         YQLE89B3XwwfmBRJIyDMjiqM4ZjbHkTbelA24kyG6UBExo5W7rjEjk0DbKWMzmZ4zihi
+         T8PuMcLUbiHceihKWawQ5s6e5xMyvgsD8TAVJDa3SrIj1dSP18Z05EEonDG5DDJu9Cls
+         lwww==
+X-Gm-Message-State: AC+VfDy9X8/8MsytPlZc3cBIJlc7BVa8LXLzK5ze5OQKUxptlUyyUJWg
+        N1QtH/rxEtDclz1Q5dUigvYSuA==
+X-Google-Smtp-Source: ACHHUZ5azk0AtvIKQkzwUK42XJg0J/YOW/KQyQjpBHJ5Rilppz/v+9dWNUtHMmojYs5nx4Y5u/mbwQ==
+X-Received: by 2002:adf:e483:0:b0:2ff:801b:dec6 with SMTP id i3-20020adfe483000000b002ff801bdec6mr8605708wrm.20.1683618275426;
+        Tue, 09 May 2023 00:44:35 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:79ab:8da0:d16d:9990? ([2a01:e0a:982:cbb0:79ab:8da0:d16d:9990])
+        by smtp.gmail.com with ESMTPSA id e15-20020a5d4e8f000000b0030629536e64sm13492065wru.30.2023.05.09.00.44.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 May 2023 00:44:35 -0700 (PDT)
+Message-ID: <acc5eb75-c6ed-98c7-6d69-f8b0f024c744@linaro.org>
+Date:   Tue, 9 May 2023 09:44:33 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SG2PR03MB6732:EE_|TYZPR03MB7792:EE_
-X-MS-Office365-Filtering-Correlation-Id: e3036c77-e398-4f1b-3117-08db505fde88
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: kI2OdTdTGzdtjgtUX6HUC99Jf3SSSJFug+RicSBRpaL0adDU+sN+VojGAyaT9fzpXstyvcNsNv8XGRr2D1SCevIH6oEm95tDg87nwqb+XR18ayq7lL86e0eeNsEB2+EwEATi3EDw13rkQJP4inwMGuTmY9bkQHq/vQb2p40HlP78SF3VZzQh/7pW26uf7yad3p7SK/phQk+VByHyAoGmqsIGc7bSxPV+THU3zRFrKsXKfT/fBlCagx4Bj1DDZDFW5MXNnipG73Cb+MLvgdE7HnONppkssUM5XdEIJiwn8yLzeFvUqLB9VHSHgXxVg48Gl/6UHrG6BntPpsesxuXeNkVG4O8SImE54A0kb7yfnHRdXTTfjTg9BaiUPTIrkWrZ1KtL2e/SC9nHqUDvKBl1cJ9LvL97WorkSC9fUq1RiuCXg/TKvlqeTXLpBPH6W/KhlSFiIzzbuPmKgISZdGE36lkuNb3HiwAfUqXXvvIz/5r7XZasrZyLvwjga9q8pLY6G/EUpIz7iAPpXV4G52us6SMJsCIB0U3R+dRgfDvA3Rtxiu9GMXq7/17INnqr+NdWATxQbJLxXdRw+kTV/oWy8ImJEPUFzLFSg0UWnFaYgtI=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SG2PR03MB6732.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(346002)(396003)(39860400002)(366004)(376002)(136003)(451199021)(6506007)(53546011)(6512007)(26005)(66946007)(186003)(478600001)(45080400002)(6666004)(966005)(8676002)(5660300002)(8936002)(36756003)(6486002)(4326008)(31696002)(2906002)(316002)(86362001)(66556008)(38100700002)(41300700001)(66476007)(2616005)(83380400001)(31686004)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bE1XVVNQY0VyNEVuWEZGV09majFBK2xDalM3eGUyL0V5dWpHdVNIOXRhcmJq?=
- =?utf-8?B?Z0pwRXh1TTFBVlYrVE1WN0RPcEhwWDQwM0FZS3o0VTM5elZpd0NsNE9tU3Ny?=
- =?utf-8?B?NTUrNjJwNTZ4UFpWV2FzN282b0pFRDJkZmtXL1E3aUxITkh1U1h6MzF6N3J4?=
- =?utf-8?B?WW1zWHBML3dKVUFPMy9KeWZRekh4ODRWeExMYktuclFMcGJTbmVRTm9qNS91?=
- =?utf-8?B?dldORmw0M2tBTnRSWS9yVlNaTWtBdW1BVHp1WjVqWC9FbUVEanhrVFdVVmNw?=
- =?utf-8?B?TXdmMXNCL0pJeVdGSWdBRDJzT2dsZlBXTVg3RUY5MzlnZ0VkcEpMWUN2SE5q?=
- =?utf-8?B?aUsxOGZ2dnVqMHJob2t0ZnNFNm8yeXV2Y2pIL3ZlRlJqdUlIT3FlYzJHbzJM?=
- =?utf-8?B?NzI1ZHhBMnFya3lxd0FHeWtjRFhHcVBkejUwTFJpTksvWGNVcjhoRThydUs5?=
- =?utf-8?B?WllhQ29wN2o4aVYvMmMzQTlEZzdHeGEyYkR6MEtsSENmMjNZVk9iMDQvMm9X?=
- =?utf-8?B?cE41bWVqeUJTYnN6N0ZrOUQ0Um9Ydkg2eFBjd3pKK3JiSVpzN3ZzQmkveUVN?=
- =?utf-8?B?Mm1SY2JlMzVRaUxRWVNXdU9nQ0orcllyWmZnK2c5aFVJUW9SZXRtN3JGVjlB?=
- =?utf-8?B?U3RZZ2xJcTRzenY3ZzR6Nm9WNDZzODNQVlM0alprSmZRWEtDZXZyeHUwdjZ3?=
- =?utf-8?B?bEovZXNSUWRKemdhMFFKYm5BanFBYW1XNUQvSWVjRkxHZXdhYjFjZE1pQzVh?=
- =?utf-8?B?bHFsTUF3eTFRbkhsMXZHRkVCeDBUdlR1Rmo4Uzg1Z0k5Q2F4QWNjRElwZ1lo?=
- =?utf-8?B?b2ZpRzJKQUZXRDFZTjRkV0pRdHFCU204RnhHekszTEdGUFBhT2dsRWdMdXlv?=
- =?utf-8?B?YW9GNE01cGxHaENlajR5L3FCNlpSdENNN3R0UU5lRVdRRVJBajVCYUJXK09O?=
- =?utf-8?B?R3k0NWhuMTFSOVI3T1JWWGpGNm5ZbTV4WEcrVmRtN0RBcnNKS0ZJeno2c09k?=
- =?utf-8?B?OVowc2cxa3FFYlFIV1dpR2tEZEdGekNmcnc2U0VjMStDYVZrbTdkc2JJNzRk?=
- =?utf-8?B?Wjg0dldndVg3eUtVaHZ2bzkwQzQvMDYzd3dKM1Z2QlhxemVEeS9POUNzVXNy?=
- =?utf-8?B?aVRqcUt5RlBIbGl5RjRYWmlSZUFpUjVzYUpyZEc2UlhxWXUxdUx4Uy9wWEtK?=
- =?utf-8?B?ZVp4ZkZ3MGcxSEJXZEtZS1BleTBwaUhVRnpKbzJJY1l3Qmh1V05kRjhhZzl2?=
- =?utf-8?B?N0N5b1BydUNlN282Yi96YVFEd2Y1cUdUbTBETkNCMldsVzlEU0hBUjBxM0FJ?=
- =?utf-8?B?QkM5NXB6VktiNHkvZzZmSmhpMXJNeGQ4TmNITi83bXRSR3JKYk5rbFdnUW16?=
- =?utf-8?B?MkF4R3JoTUw1bDR4RnZCS3VYa3IxS3ZUL3NOUFJUWGJYaE0wTTRLa2FRejVP?=
- =?utf-8?B?eTMwL01kZDU5VU1lU25UblEyZ3AyaEpZWkVobGlrbkI5YWdBZG82QUl5bk9S?=
- =?utf-8?B?Q1p3bGVKaGlJMGFMS0JBb3haRVRsUytKNDZERURGZERMRVN0RHhaL1EyU2Yz?=
- =?utf-8?B?M1dyeUI0dDBwRm1ISTN0clBTVWp4OFU0YVpGMVFHV0NzRE5PTytxYml5THUr?=
- =?utf-8?B?UXpSRzdodUpORTRIMVM5TmNoL04xOWNGZXpHSkF1TXRDV0dwK3BpaStMT1lB?=
- =?utf-8?B?SUVreVNDWGFUQ2NlMmRHcEdkMXdteGMzdmw3bEFnZ3hrWlJIZHJ5NEN6dWFK?=
- =?utf-8?B?THR2MWRrSVpvandpRFNzUWt1OE1QTjVoZEZsTWVPc1hKN2U3cUg4TkV0dWdN?=
- =?utf-8?B?eE04RU5CWExncS9TVlQrbk44THNzdGU1VVY4WTVoalRBVUFHMGwyVGtUa0ll?=
- =?utf-8?B?dmc2Y2xYT1ZvdnZtYzVrMksxT3hyNW9GWFYvNmc3bTViVlBTU3Y4MHRYZFRh?=
- =?utf-8?B?Um5LSHhHTlE0TXRFeGUyc2tnUk1Zd1JpbFpENjU2Ky9WNWFIZm9zT1BLRXJ2?=
- =?utf-8?B?RGh5R05jcnl5ellGMk5mOHlIOEZOVU5idFR0VkdJa1p4NWJmdncwVnpQSVE5?=
- =?utf-8?B?VkpnUGFFMjVWU095bXBxZ2xLbWdNSjhHTDcvbThXZXo4YXZRcXFKR3djL1Bh?=
- =?utf-8?Q?1YBMs/fQ3Ldit/jnq7XkHObuU?=
-X-OriginatorOrg: nuvoton.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e3036c77-e398-4f1b-3117-08db505fde88
-X-MS-Exchange-CrossTenant-AuthSource: SG2PR03MB6732.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 May 2023 07:34:49.0291
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: a3f24931-d403-4b4a-94f1-7d83ac638e07
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Xk6dAd8etkVCZmS6Thmyy09lqWErlabPt/w68HmjPcdh3RX4zj0jVqHk+vE1ZVWDVUAiG8TUXGd93CEpDZ8EDw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR03MB7792
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+From:   neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v3 5/5] arm64: dts: meson: a1: support USB controller in
+ OTG mode
+Content-Language: en-US
+To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>,
+        gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
+        jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
+        mturquette@baylibre.com, vkoul@kernel.org, kishon@kernel.org,
+        hminas@synopsys.com, Thinh.Nguyen@synopsys.com
+Cc:     yue.wang@amlogic.com, hanjie.lin@amlogic.com,
+        kernel@sberdevices.ru, rockosov@gmail.com,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-phy@lists.infradead.org
+References: <20230426102922.19705-1-ddrokosov@sberdevices.ru>
+ <20230426102922.19705-6-ddrokosov@sberdevices.ru>
+Organization: Linaro Developer Services
+In-Reply-To: <20230426102922.19705-6-ddrokosov@sberdevices.ru>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/9/2023 2:22 PM, Krzysztof Kozlowski wrote:
-> On 09/05/2023 07:10, David Lin wrote:
->> Convert the NAU8825 audio CODEC bindings to DT schema.
->>
->> Signed-off-by: David Lin <CTLIN0@nuvoton.com>
->> ---
->>   .../devicetree/bindings/sound/nau8825.txt     | 111 ---------
->>   .../bindings/sound/nuvoton,nau8825.yaml       | 220 ++++++++++++++++++
->>   2 files changed, 220 insertions(+), 111 deletions(-)
->>   delete mode 100644 Documentation/devicetree/bindings/sound/nau8825.txt
->>   create mode 100644 Documentation/devicetree/bindings/sound/nuvoton,nau=
-8825.yaml
-> Does not look like you tested the bindings. Please run `make
-> dt_binding_check` (see
-> Documentation/devicetree/bindings/writing-schema.rst for instructions).
+Hi,
 
-No, I had ever run 'make dt_binding_check', the result is no errors.
+On 26/04/2023 12:29, Dmitry Rokosov wrote:
+> Amlogic A1 SoC family has USB2.0 controller based on dwc2 and dwc3
+> heads. It supports otg/host/peripheral modes.
+> 
+> Signed-off-by: Yue Wang <yue.wang@amlogic.com>
+> Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
+> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> ---
+>   arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 59 +++++++++++++++++++++++
+>   1 file changed, 59 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> index ae7d39cff07a..5588ee602161 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> @@ -8,6 +8,8 @@
+>   #include <dt-bindings/gpio/meson-a1-gpio.h>
+>   #include <dt-bindings/clock/amlogic,a1-pll-clkc.h>
+>   #include <dt-bindings/clock/amlogic,a1-clkc.h>
+> +#include <dt-bindings/power/meson-a1-power.h>
+> +#include <dt-bindings/reset/amlogic,meson-a1-reset.h>
+>   
+>   / {
+>   	compatible = "amlogic,a1";
+> @@ -169,6 +171,17 @@ gpio_intc: interrupt-controller@0440 {
+>   				amlogic,channel-interrupts =
+>   					<49 50 51 52 53 54 55 56>;
+>   			};
+> +
+> +			usb2_phy1: phy@4000 {
+> +				compatible = "amlogic,a1-usb2-phy";
+> +				clocks = <&clkc CLKID_USB_PHY_IN>;
+> +				clock-names = "xtal";
+> +				reg = <0x0 0x4000 0x0 0x60>;
+> +				resets = <&reset RESET_USBPHY>;
+> +				reset-names = "phy";
+> +				#phy-cells = <0>;
+> +				power-domains = <&pwrc PWRC_USB_ID>;
+> +			};
+>   		};
+>   
+>   		gic: interrupt-controller@ff901000 {
+> @@ -192,6 +205,52 @@ spifc: spi@fd000400 {
+>   			#size-cells = <0>;
+>   			status = "disabled";
+>   		};
+> +
+> +		usb: usb@fe004400 {
+> +			status = "disabled";
+> +			compatible = "amlogic,meson-a1-usb-ctrl";
+> +			reg = <0x0 0xfe004400 0x0 0xa0>;
+> +			interrupts = <GIC_SPI 88 IRQ_TYPE_LEVEL_HIGH>;
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges;
+> +
+> +			clocks = <&clkc CLKID_USB_CTRL>,
+> +				 <&clkc CLKID_USB_BUS>,
+> +				 <&clkc CLKID_USB_CTRL_IN>;
+> +			clock-names = "usb_ctrl", "usb_bus", "xtal_usb_ctrl";
+> +			resets = <&reset RESET_USBCTRL>;
+> +			reset-name = "usb_ctrl";
+> +
+> +			dr_mode = "otg";
+> +
+> +			phys = <&usb2_phy1>;
+> +			phy-names = "usb2-phy1";
+> +
+> +			dwc2: usb@ff500000 {
+> +				compatible = "amlogic,meson-a1-usb", "snps,dwc2";
+> +				reg = <0x0 0xff500000 0x0 0x40000>;
+> +				interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
+> +				phys = <&usb2_phy1>;
+> +				phy-names = "usb2-phy";
+> +				clocks = <&clkc CLKID_USB_PHY>;
+> +				clock-names = "otg";
+> +				dr_mode = "peripheral";
+> +				g-rx-fifo-size = <192>;
+> +				g-np-tx-fifo-size = <128>;
+> +				g-tx-fifo-size = <128 128 16 16 16>;
+> +			};
+> +
+> +			dwc3: usb@ff400000 {
+> +				compatible = "snps,dwc3";
+> +				reg = <0x0 0xff400000 0x0 0x100000>;
+> +				interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
+> +				dr_mode = "host";
+> +				snps,dis_u2_susphy_quirk;
+> +				snps,quirk-frame-length-adjustment = <0x20>;
+> +				snps,parkmode-disable-ss-quirk;
+> +			};
+> +		};
+>   	};
+>   
+>   	timer {
 
-However, regarding your bot found the warnings, I check my environment
-is not the latest dtschema and without yamllint.
+This patcj is fine, but depends on clock bindings & dt, so now Vinod took the PHY
+patch, please resend this wiyhout patches 1 & 5, then resend the DT patch later when
+the clock bindings is merged.
 
->> diff --git a/Documentation/devicetree/bindings/sound/nau8825.txt b/Docum=
-entation/devicetree/bindings/sound/nau8825.txt
->> deleted file mode 100644
->> index a9c34526f4cb..000000000000
->> --- a/Documentation/devicetree/bindings/sound/nau8825.txt
->> +++ /dev/null
->> @@ -1,111 +0,0 @@
->> -Nuvoton NAU8825 audio codec
-> (...)
->
->> +  nuvoton,jkdet-enable:
->> +    description:
->> +      Enable jack detection via JKDET pin.
->> +    type: boolean
->> +
->> +  nuvoton,jkdet-pull-enable:
->> +    description:
->> +      Enable JKDET pin pull.
->> +      If set - pin pull enabled, otherwise pin in high impedance state.
->> +    type: boolean
->> +
->> +  nuvoton,jkdet-pull-up:
->> +    description:
->> +      Pull-up JKDET pin.
->> +      If set then JKDET pin is pull up, otherwise pull down.
->> +    type: boolean
->> +
->> +  nuvoton,jkdet-polarity:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description:
->> +      JKDET pin polarity.
->> +    enum:
->> +      - 0 # active high
->> +      - 1 # active low
-> Since this is optional:
-> default: ?
->
-> Same in other places.
-OK~I will add default value to these optional properties.
->> +
->> +  nuvoton,vref-impedance:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description:
->> +      VREF Impedance selection.
->> +    enum:
->> +      - 0 # Open
->> +      - 1 # 25 kOhm
->> +      - 2 # 125 kOhm
->> +      - 3 # 2.5 kOhm
->> +
->> +  nuvoton,micbias-voltage:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description:
->> +      Micbias voltage level.
->> +    enum:
->> +      - 0 # VDDA
->> +      - 1 # VDDA
->> +      - 2 # VDDA * 1.1
->> +      - 3 # VDDA * 1.2
->> +      - 4 # VDDA * 1.3
->> +      - 5 # VDDA * 1.4
->> +      - 6 # VDDA * 1.53
->> +      - 7 # VDDA * 1.53
->> +
->> +  nuvoton,sar-threshold-num:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description:
->> +      Number of buttons supported.
->> +    minimum: 1
->> +    maximum: 4
->> +
->> +  nuvoton,sar-threshold:
->> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->> +    description:
->> +      Impedance threshold for each button. Array that contains up to 8 =
-buttons
->> +      configuration. SAR value is calculated as
->> +      SAR =3D 255 * MICBIAS / SAR_VOLTAGE * R / (2000 + R) where MICBIA=
-S is
->> +      configured by 'nuvoton,micbias-voltage', SAR_VOLTAGE is configure=
-d by
->> +      'nuvoton,sar-voltage', R - button impedance.
->> +      Refer datasheet section 10.2 for more information about threshold
->> +      calculation.
->> +    minItems: 1
->> +    maxItems: 4
->> +    items:
->> +      minimum: 0
->> +      maximum: 255
->> +
->> +  nuvoton,sar-hysteresis:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description:
->> +      Button impedance measurement hysteresis.
->> +
->> +  nuvoton,sar-voltage:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description:
->> +      Reference voltage for button impedance measurement.
->> +    enum:
->> +      - 0 # VDDA
->> +      - 1 # VDDA
->> +      - 2 # VDDA * 1.1
->> +      - 3 # VDDA * 1.2
->> +      - 4 # VDDA * 1.3
->> +      - 5 # VDDA * 1.4
->> +      - 6 # VDDA * 1.53
->> +      - 7 # VDDA * 1.53
->> +
->> +  nuvoton,sar-compare-time:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description:
->> +      SAR compare time.
->> +    enum:
->> +      - 0 # 500ns
->> +      - 1 # 1us
->> +      - 2 # 2us
->> +      - 3 # 4us
->> +
->> +  nuvoton,sar-sampling-time:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description:
->> +      SAR sampling time.
->> +    enum:
->> +      - 0 # 2us
->> +      - 1 # 4us
->> +      - 2 # 8us
->> +      - 3 # 16us
->> +
->> +  nuvoton,short-key-debounce:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description:
->> +      Button short key press debounce time.
->> +    enum:
->> +      - 0 # 30 ms
->> +      - 1 # 50 ms
->> +      - 2 # 100 ms
->> +
->> +  nuvoton,jack-insert-debounce:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description:
->> +      number from 0 to 7 that sets debounce time to 2^(n+2) ms.
-> maximum: 7
->
->> +
->> +  nuvoton,jack-eject-debounce:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description:
->> +      number from 0 to 7 that sets debounce time to 2^(n+2) ms
-> maximum: 7
-Regarding the description have limitation for range, so your comment is
-great.
->
->> +
->> +  nuvoton,crosstalk-enable:
->> +    description:
->> +      make crosstalk function enable if set.
->> +    type: boolean
->> +
->> +  nuvoton,adcout-drive-strong:
->> +    description:
->> +      make the drive strength of ADCOUT IO PIN strong if set.
->> +      Otherwise, the drive keeps normal strength.
->> +    type: boolean
->> +
->> +  nuvoton,adc-delay-ms:
->> +    description:
->> +      Delay (in ms) to make input path stable and avoid pop noise.
->> +      The default value is 125 and range between 125 to 500 ms.
->> +    minimum: 125
->> +    maximum: 500
->> +
->> +  clocks:
->> +   description:
->> +     list of phandle and clock specifier pairs according to common cloc=
-k
->> +     bindings for the clocks described in clock-names.
-> Drop description. maxItems: 1.
-OK~I will add  it.
->
->> +
->> +  clock-names:
->> +   description:
->> +     should include "mclk" for the MCLK master clock.
-> No, you need to list entries with items.
-OK~I will add  it.
->
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +
->> +unevaluatedProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/gpio/tegra-gpio.h>
->> +    #include <dt-bindings/soc/tegra-pmc.h>
->> +    #include <dt-bindings/interrupt-controller/irq.h>
->> +    i2c {
->> +        #address-cells =3D <1>;
->> +        #size-cells =3D <0>;
->> +        headset: nau8825@1a {
-> Node names should be generic, audio-codec for example.
-> https://devicetree-specification.readthedocs.io/en/latest/chapter2-device=
-tree-basics.html#generic-names-recommendation
-OK~I can follow it.
->> +            compatible =3D "nuvoton,nau8825";
->> +            reg =3D <0x1a>;
-> Best regards,
-> Krzysztof
->
-________________________________
-________________________________
- The privileged confidential information contained in this email is intende=
-d for use only by the addressees as indicated by the original sender of thi=
-s email. If you are not the addressee indicated in this email or are not re=
-sponsible for delivery of the email to such a person, please kindly reply t=
-o the sender indicating this fact and delete all copies of it from your com=
-puter and network server immediately. Your cooperation is highly appreciate=
-d. It is advised that any unauthorized use of confidential information of N=
-uvoton is strictly prohibited; and any information in this email irrelevant=
- to the official business of Nuvoton shall be deemed as neither given nor e=
-ndorsed by Nuvoton.
+Thanks,
+Neil
