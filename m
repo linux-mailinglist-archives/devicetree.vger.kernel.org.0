@@ -2,70 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2564B6FCCD2
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 19:33:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31EC26FCCD6
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 19:34:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234478AbjEIRdk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 13:33:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44774 "EHLO
+        id S234507AbjEIRea (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 13:34:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235005AbjEIRdi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 13:33:38 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A8E546B9
-        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 10:33:36 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-50bd2d7ba74so61083589a12.1
-        for <devicetree@vger.kernel.org>; Tue, 09 May 2023 10:33:36 -0700 (PDT)
+        with ESMTP id S229770AbjEIRe3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 13:34:29 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9152740EF
+        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 10:34:28 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-50bc2feb320so9836575a12.3
+        for <devicetree@vger.kernel.org>; Tue, 09 May 2023 10:34:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683653615; x=1686245615;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=linaro.org; s=google; t=1683653667; x=1686245667;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=IUawUbEclVkFSWkDdatFwfaD7oPd7xnurWNNOrUMw2g=;
-        b=hT0VxclnZ+fQxcynoRFujumgdhltCTC19CxX5DLjnn4pJxulVtw304MJaWUTeRdcXi
-         C7dC7FAO+QnpXmHtBVyK1XPid0bEJvGB5W5Bk1UJCoHLLfR4HE/aJB2iALz8ptx1GFAO
-         gAp84bF8QSUT4XwkvC8rCMEeZslw1usLGHoojLBEr0YZ4BHBU61PRG1qW3eZBqMZkujG
-         xEV+Mz6c+vQ+Aja4zrz0IVaZchCoz/i08ry25J3908NQjVv/PskFEtKuxNLAT23AVtNb
-         EDoKWT4qyXhysfpX/WBo5UAVuIzKIgOtVwf3DtgvXMpIoDkdTMJhs7sI74eULaN3Lu3N
-         Ryyg==
+        bh=PTIXvNfkjKtQpq2XXehsu1HsxnxlaQ3xo7+7zAhkXmM=;
+        b=cjuLOKiLOLR5pxhcOONPCcRtANMQJPb7Ys5gU0dApU0RVfMZFEblOjNdA93VkQFzcj
+         jxpWKED0Is/hmNFyamWI9aMCNa12qIT49oboP04JLFbvoufEMS51I2/l0o0K9S23lMuo
+         hNTxRQXKfVP/WTK+9xs0q7FSlaVvk4QVXHgX2HLfOmR8Z6W2i1RzEFgJpLuxO0/zDU21
+         LbZZyxaKjDjj86O7xQ0IE5F/SnNdWng1/LzX/OH6WDLTYh8Bb/9GBTpDjx5V8e9uao0u
+         DWG9nrGjQe0bBXmQIodsUSN8PVK6TTr4QSuauRrRI7mXw9RK9lZFM1ghJ8vJXhG2YtaE
+         ZQOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683653615; x=1686245615;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=1e100.net; s=20221208; t=1683653667; x=1686245667;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IUawUbEclVkFSWkDdatFwfaD7oPd7xnurWNNOrUMw2g=;
-        b=fNmOYyIwqwkBbwUM6WfL/3ZImbc3vCfpc2ysLy3qlTvszOGscfVyfxqbeJ4TWDnR0D
-         C2MZwUTOuCC2aDXlNjQtSYfwu9Qybv5nzmCayV+r3zenK/3atAdN8urfW+tvpTyROWfh
-         gQn+1x1ONyTW87BOA8UcVVRb/ip8S+hv7yywo41nm9vRkWNYSRQJJrs8Uwzxa+pKbw6r
-         k8CLgEPm9LzAylGgh2sdFhtsUWBaoCb52QJeIN1+qDkXefJVoGeF9vUavtl0mafKvl5b
-         BAqQNV4o1xRHWAeOCbwTehmadlmxEAbBts1ZECI+sOyH1auKCnS744LMn0K0MSE3XiuG
-         q2Dw==
-X-Gm-Message-State: AC+VfDwg9oYgraeoQSUbgpNlN1mf02jz+qf2wOlQc7kfG7cZNXy9itTv
-        FVP0LtvUvtA4W9omPa/SkDaiTg==
-X-Google-Smtp-Source: ACHHUZ6WFiMt3dk/BzPRcu3Y6NXiTqRFSfVBopWlJH0LQDMiQjFCxTcqPOgMV+ZWRoTKply56AteKw==
-X-Received: by 2002:a17:907:6d22:b0:965:d7c7:24db with SMTP id sa34-20020a1709076d2200b00965d7c724dbmr13312874ejc.32.1683653614751;
-        Tue, 09 May 2023 10:33:34 -0700 (PDT)
+        bh=PTIXvNfkjKtQpq2XXehsu1HsxnxlaQ3xo7+7zAhkXmM=;
+        b=EtN6wBin/1gbhgK614SLii09TQM9jZiEhHLxCqfqVSbuvtXRx4MNkOvuX1M3vPaj28
+         7bPtuiwkm2ArvtMc1LLziDBc1rP9+zeRQtSItY4xNmRgoOrVhVa47LI8dGDGwc2LLjST
+         Tc8krowTO0hXDolJmButntCzyKWZduGGzePPiWLBkVQfNm1pQBOfybGA1LsP9W7mBN+3
+         DL7f5tuuVVD9HkXMeGk6EyNgsL9YkNNJ0e/HeNKW2ryD44zmET5XDk9HTq0hQP+9jE5v
+         ylXEqodH+MtDYsKSb4pXCvHoZS2qNCEA0uHEPAzGddN3MfDc/R6IszQ6zZmBYHYaICNS
+         pEtA==
+X-Gm-Message-State: AC+VfDyCGZX+un/fEwvbZ8yIpwLH3mICUO44+gUldh96DzNLTefiFnXh
+        SJIKUEheOd8n+3XriMQTY/8WWg==
+X-Google-Smtp-Source: ACHHUZ52VLIsGVBxlWMBxKgxRB6TwF7U/leNeBlqOqPe5hD3rEhEZf0pg4QMHZDcKhoItqXLTlJHaw==
+X-Received: by 2002:aa7:dbc8:0:b0:50b:d305:3788 with SMTP id v8-20020aa7dbc8000000b0050bd3053788mr9734570edt.11.1683653667038;
+        Tue, 09 May 2023 10:34:27 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:d0d5:7818:2f46:5e76? ([2a02:810d:15c0:828:d0d5:7818:2f46:5e76])
-        by smtp.gmail.com with ESMTPSA id bc15-20020a056402204f00b0050b2f588db6sm980998edb.16.2023.05.09.10.33.33
+        by smtp.gmail.com with ESMTPSA id h10-20020a50ed8a000000b004c2158e87e6sm981825edr.97.2023.05.09.10.34.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 May 2023 10:33:33 -0700 (PDT)
-Message-ID: <6310c7a5-f541-b6b7-10bf-680b7c2458d6@linaro.org>
-Date:   Tue, 9 May 2023 19:33:32 +0200
+        Tue, 09 May 2023 10:34:26 -0700 (PDT)
+Message-ID: <12be228b-b898-f793-5609-db52b287279c@linaro.org>
+Date:   Tue, 9 May 2023 19:34:25 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: ipq5332: add support for the RDP442
- variant
+Subject: Re: [PATCH v4 1/3] dt-bindings: iio: potentiometer: Add the Renesas
+ X9250 potentiometers
 Content-Language: en-US
-To:     Kathiravan T <quic_kathirav@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230509160133.3794-1-quic_kathirav@quicinc.com>
- <20230509160133.3794-3-quic_kathirav@quicinc.com>
+To:     Herve Codina <herve.codina@bootlin.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20230509160852.158101-1-herve.codina@bootlin.com>
+ <20230509160852.158101-2-herve.codina@bootlin.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230509160133.3794-3-quic_kathirav@quicinc.com>
+In-Reply-To: <20230509160852.158101-2-herve.codina@bootlin.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,17 +82,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/05/2023 18:01, Kathiravan T wrote:
-> Add the initial device tree support for the Reference Design
-> Platform(RDP) 442 based on IPQ5332 family of SoC. This patch carries
-> the support for Console UART, SPI NOR, eMMC and I2C.
+On 09/05/2023 18:08, Herve Codina wrote:
+> The Renesas X9250 is a quad digitally controlled potentiometers.
 > 
-> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 > ---
->  arch/arm64/boot/dts/qcom/Makefile           |   1 +
->  arch/arm64/boot/dts/qcom/ipq5332-rdp442.dts | 117 ++++++++++++++++++++
->  2 files changed, 118 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/ipq5332-rdp442.dts
+>  .../iio/potentiometer/renesas,x9250.yaml      | 78 +++++++++++++++++++
+>  1 file changed, 78 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/potentiometer/renesas,x9250.yaml
+> 
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
