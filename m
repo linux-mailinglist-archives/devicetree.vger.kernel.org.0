@@ -2,113 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 047126FCCB5
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 19:27:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C4B16FCCB6
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 19:27:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229741AbjEIR1D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 13:27:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41252 "EHLO
+        id S234686AbjEIR1Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 13:27:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235136AbjEIR1C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 13:27:02 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5D983A98
-        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 10:26:58 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-50b37f3e664so11170540a12.1
-        for <devicetree@vger.kernel.org>; Tue, 09 May 2023 10:26:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683653217; x=1686245217;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Yxlpq7K/bU7lZnjiRmgqr2Ygu+qXnLZf5es9J2JbZxo=;
-        b=DeqyNvkjgehdMSRPOcRr052TILwaNCPPa0NkJl2KSusfiApqkG7OJWmjttvN1TYfx4
-         b6lVcaqGh07PbTq0igGHcshdrqOAiPO4vIg0E1SA0kYp3j59PyWsADpOXkRZkWNAP729
-         +xvguaWkFxqC4IZXbmsfKF+D0acyJ7ZLRqaMa/nCKuEfwltEdVEaKv7CqUUsGPypHHLQ
-         hNmde/S3BcUvF74Je1vymaDbQVRP67rqcxzvzRB0miWfyaurKNViWIwvw23DRSX3902t
-         Yi0dGKz4jE2D1Bh2NJwUks+67NRvBv1wVX9G0Fa6BxAkqJDR9W7CmDUxglAJ+Xbt8JiT
-         w2Aw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683653217; x=1686245217;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Yxlpq7K/bU7lZnjiRmgqr2Ygu+qXnLZf5es9J2JbZxo=;
-        b=KipGuZyVRB+rW03LVuXfO74+dTUXL1900VDDDdTXVVqF/CE2q56oPQJEUVGY6hj2G+
-         BuNcPrgnvD9qgaHz/0ajy6aWDpzr48yRb9sX4P5sB3SQK1HpRrscjhU0qLQzKoEFFmSy
-         OEXd+5xoV0N8ef4QDCj77kGElHE3L6vLkydux3Z6lMdSdR6lURCmrHw/JJeNcdf0ux3z
-         5e9kImJW71Z9bfFih1fGL0WdT2QhScMVLsaLRl/B/v39KCyTn53Ikzkr/LNA/c5k6/bj
-         f75GuElo7s4Wo5gB6yKmJSAAubBqE61JRbCi2ahdTaQK2LWFsV+uGLgQBFL74hheDeTj
-         vjNQ==
-X-Gm-Message-State: AC+VfDz8sXrlTyIO1OKFYclBh9LSnX4MZX5sr90ktcwOCrjyBD7TUjjE
-        8oU9kL7DxQS095nd/CN7T2DK3A==
-X-Google-Smtp-Source: ACHHUZ4mYQim4Bq7wbUnWuh6MJfUB1Uy02jFLvYJtR/gmoWE17SyweBq4mewrZ6dVxEhXcsoCFWXfw==
-X-Received: by 2002:a17:907:d86:b0:953:42c0:86e7 with SMTP id go6-20020a1709070d8600b0095342c086e7mr12933092ejc.4.1683653217263;
-        Tue, 09 May 2023 10:26:57 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:d0d5:7818:2f46:5e76? ([2a02:810d:15c0:828:d0d5:7818:2f46:5e76])
-        by smtp.gmail.com with ESMTPSA id hg14-20020a1709072cce00b009662de1937dsm1553651ejc.131.2023.05.09.10.26.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 May 2023 10:26:56 -0700 (PDT)
-Message-ID: <21a23f39-5637-00db-f778-a2e8e333d6b2@linaro.org>
-Date:   Tue, 9 May 2023 19:26:55 +0200
+        with ESMTP id S234680AbjEIR1X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 13:27:23 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19BEB1BE6
+        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 10:27:22 -0700 (PDT)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 349GhhAF027534;
+        Tue, 9 May 2023 17:27:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=dNvRW/FXONhZJY9hxa7gonsrUWJxHt1ejVCocMTfTBk=;
+ b=ffQQhpowDIXIGJAg4MZkS6TCpq08Ad2W3aCrQ6VRuGbjZPpfE5N3Q/m6akjyYpXg/rKV
+ RFmBI8O4KC4HF7cMANwSe6Hk4VBfKuJW9iBwqieBNQ8Yp4RuKZuFYG25zUhiM4l03FPS
+ u7r1pxDtZGxshB4NRPmkBwIIOTtdFnFxhB+pyTVCgfbsDmiLLdky0+8gTBD+lRRL43ue
+ 8yc48p5IDV4+PtPMFX5TcGknIS2JodJQ6hGPPKQhtHpT6VR64EJ+b+Rx9I8hXkBJcOVn
+ +JHFJRkn6RgNW5lH32rhqpJ3l0kpxfEkAJaeTw/QjNgBUabylgM/fbB89E1X+Ldozbr7 pQ== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qf781jgcb-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 09 May 2023 17:27:17 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 349HRGWZ013748
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 9 May 2023 17:27:16 GMT
+Received: from [10.216.46.139] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Tue, 9 May 2023
+ 10:27:14 -0700
+Message-ID: <ba1321d3-c029-04ce-0d1b-18c7740528d8@quicinc.com>
+Date:   Tue, 9 May 2023 22:57:11 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v2 2/2] dt-bindings: phy: cdns,salvo: add property
- usb2-disconnect-threshold-microvolt
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: Suggestion regarding usage of <Volt, Amp> in yaml
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Pratham Pratap <quic_ppratap@quicinc.com>,
+        Udipto Goswami <quic_ugoswami@quicinc.com>
+References: <039b19fa-a497-f237-55b3-467b4eda27ea@quicinc.com>
+ <6672ff2e-3f3a-a2fa-df82-57628884aabd@quicinc.com>
+ <2f927eb1-9088-06b3-a641-b15f6951a087@linaro.org>
 Content-Language: en-US
-To:     Frank Li <Frank.Li@nxp.com>, vkoul@kernel.org, kishon@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        imx@lists.linux.dev, fushi.peng@nxp.com
-References: <20230508131747.1933886-1-Frank.Li@nxp.com>
- <20230508131747.1933886-2-Frank.Li@nxp.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230508131747.1933886-2-Frank.Li@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From:   Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+In-Reply-To: <2f927eb1-9088-06b3-a641-b15f6951a087@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: modLdoUBzhUSN1vT70FG8VoyUSM4bhM9
+X-Proofpoint-ORIG-GUID: modLdoUBzhUSN1vT70FG8VoyUSM4bhM9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-09_10,2023-05-05_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 bulkscore=0
+ suspectscore=0 clxscore=1015 mlxlogscore=713 malwarescore=0 mlxscore=0
+ impostorscore=0 adultscore=0 phishscore=0 lowpriorityscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2305090145
 X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/05/2023 15:17, Frank Li wrote:
-> Add usb2-disconnect-threshold-microvolt property to address fake USB
-> disconnection issue during enumeration or suspend state for difference
-> platform.
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
-> Change from v1 to V2:
-> - fixed subject
-> - fixed dt-binding-check warning
-> 
->  Documentation/devicetree/bindings/phy/cdns,salvo-phy.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/cdns,salvo-phy.yaml b/Documentation/devicetree/bindings/phy/cdns,salvo-phy.yaml
-> index 3a07285b5470..be415b0a6d8b 100644
-> --- a/Documentation/devicetree/bindings/phy/cdns,salvo-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/cdns,salvo-phy.yaml
-> @@ -31,6 +31,12 @@ properties:
->    "#phy-cells":
->      const: 0
->  
-> +  usb2-disconnect-threshold-microvolt:
-> +    description: The microvolt threshold value utilized for detecting
-> +      USB disconnection event.
-> +    enum: [575, 610, 645]
-> +    default: 575
 
-Vendor prefix still missing.
 
-Best regards,
-Krzysztof
+On 5/9/2023 8:38 PM, Krzysztof Kozlowski wrote:
+> On 09/05/2023 13:12, Krishna Kurapati PSSNV wrote:
+>>
+>>
+>> On 5/9/2023 4:19 PM, Krishna Kurapati PSSNV wrote:
+>>> Hi Team,
+>>>
+>>>    We are trying to read an array of <Volt, Amp> values from DT and use
+>>> it in one of our downstream drivers and needed to implement the same in
+>>> yaml file.
+>>>
+>>> The below is the format we want to implement in our DT:
+>>>
+>>>     3           qcom,default-sink-caps = <5000 2000>, /* 5V , 2A */
+>>>     2                                    <3000 1500>,
+>>>     1                                    <2300 2500>;
+>>>
+>>>    Is there any ref/schema available for this kind of array ?
+> 
+> uint32-matrix
+> 
+> Best regards,
+> Krzysztof
+> 
 
+Thanks Krzysztof,
+
+  Thanks for the suggestion. Will try it out.
+
+Regards,
+Krishna,
