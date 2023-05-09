@@ -2,45 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D5A56FBF50
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 08:38:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 772426FBF59
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 08:39:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234747AbjEIGid (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 02:38:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42630 "EHLO
+        id S234971AbjEIGj3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 02:39:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234836AbjEIGid (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 02:38:33 -0400
+        with ESMTP id S234909AbjEIGjK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 02:39:10 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9121893C1;
-        Mon,  8 May 2023 23:38:31 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85F2BAD28;
+        Mon,  8 May 2023 23:39:05 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id CE82E62E90;
-        Tue,  9 May 2023 06:38:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1125C433EF;
-        Tue,  9 May 2023 06:38:26 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2168F62D2D;
+        Tue,  9 May 2023 06:39:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A212DC4339B;
+        Tue,  9 May 2023 06:38:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1683614310;
-        bh=cL/8W1gKYqgUDJCngf9UaX/y9LEB1zjqY7zbcy6iHIc=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=F911bnui9tZ23j84w581GYOVtuVf+6m5FBu99Bn01JKqA6XwayUAgnpmMFMlwgzSR
-         7e2q7jrD9OVYYlXlRfUOBerFOaWZWOZ19FS5ttR2o3b+MBiPgkW568tuaRullTFk6D
-         xzez7fHibdifUwyBoSOnELLRP6JH2zFuMsm7J2Njdq9kJY7uTHvipDPq9b+Fz6fz0T
-         KsCn1kdfeOEcbD/0KSPwckVq1xtAS9ZZpOYM8haMfU8HI2k0UIWCBN3Bj78pULCo8S
-         IiRAJ1wWLX3DTR2r/sMW5wrkdb501s63OALduJUHOYFO1GOpUTvKwwypnR5h+bNZZZ
-         Hn6pRzuSMHdWA==
+        s=k20201202; t=1683614344;
+        bh=YgR5gthn/7Amv3cH003JLPMWgQs5SKsPVqLbkaAxcDo=;
+        h=From:To:In-Reply-To:References:Subject:Date:From;
+        b=Z9/UC3n6pY4XVT4CTaIkUIIzFuxrmzj/nq7QD3yO0hxehH7B+ErA0vZBrpOCZAo7v
+         ZhLROItSmj10A8edWjK6dgFKoeAtfChWz1q592KCGo+vSb79/66s/Gz0Q6NiIKEAhC
+         nmWaNeGgpJ7ZUGuB7KHrItGvfc+HVD8VlQ6LUpq8Fe1IbSvGMrG+sBfN5X4Qiy7ABc
+         HH4YSMrKqbFVf6rtZ6QlNsij7jeodbipG9ExULX/96jZXuuHxsNXpOWOUl8DPyv8IQ
+         jxtg7H5YI3b73J79QQ66PppAXXu3qB3Fhwmxya7wF7bGCaVfNwQJydA/5VU5CMitx6
+         ojubw7W1wwiAg==
 From:   Mark Brown <broonie@kernel.org>
-To:     lgirdwood@gmail.com, robh+dt@kernel.org,
-        Anup Sharma <anupnewsmail@gmail.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        KCHSU0@nuvoton.com, linux-kernel@vger.kernel.org
-In-Reply-To: <ZE9rK6mktPByvRRz@yoga>
-References: <ZE9rK6mktPByvRRz@yoga>
-Subject: Re: [PATCH] ASoC: dt-bindings: nau8540: Convert to dtschema
-Message-Id: <168361430649.303059.2161758713822951358.b4-ty@kernel.org>
-Date:   Tue, 09 May 2023 15:38:26 +0900
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Cheng-Yi Chiang <cychiang@chromium.org>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230507174543.264987-1-krzysztof.kozlowski@linaro.org>
+References: <20230507174543.264987-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: google,sc7180-trogdor: allow up to
+ four codec DAIs
+Message-Id: <168361433934.303059.8293357053687076617.b4-ty@kernel.org>
+Date:   Tue, 09 May 2023 15:38:59 +0900
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
@@ -55,8 +59,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 01 May 2023 13:02:59 +0530, Anup Sharma wrote:
-> Convert the NAU8540 audio CODEC bindings to DT schema
+On Sun, 07 May 2023 19:45:43 +0200, Krzysztof Kozlowski wrote:
+> SC7180 Trogdor sound cards come with multiple audio amplifiers, so allow
+> up to four of them to fix dtbs_check warnings like:
+> 
+>   sc7180-trogdor-homestar-r3.dtb: sound: dai-link@1:codec:sound-dai: [[275], [276], [277], [278]] is too long
 > 
 > 
 
@@ -66,8 +73,8 @@ Applied to
 
 Thanks!
 
-[1/1] ASoC: dt-bindings: nau8540: Convert to dtschema
-      commit: 0f0d70c2881f8c28e6d449349e057963a742f842
+[1/1] ASoC: dt-bindings: google,sc7180-trogdor: allow up to four codec DAIs
+      commit: 853a954bf506c42c91b2d2b0d57be891a659ee5a
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
