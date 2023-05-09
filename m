@@ -2,157 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AEB596FCEF2
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 22:00:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DAEB36FCF20
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 22:10:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234658AbjEIUAL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 16:00:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42110 "EHLO
+        id S230023AbjEIUKC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 16:10:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229695AbjEIUAJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 16:00:09 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 876974486
-        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 13:00:07 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4f13c577e36so6998720e87.1
-        for <devicetree@vger.kernel.org>; Tue, 09 May 2023 13:00:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683662406; x=1686254406;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kVOCE83AC4Gr91kmxIdlrW0vfunolQmhkIU/7LEMiDE=;
-        b=NSrXThnpwz8+ZOFEPNw+j54wWZw7gB2eE9Van5BJqd/Cz3HrmHy0NXEC90QlkYTeS9
-         IcT557kLFTiOkgt/76f+xT/Gg1IZoxLgsK413vjUSU1lioKNML81JYd/yV32t1KS7Dhx
-         iBh+uA7Ftb4Po7J7SSqGIkVbdTfuia5fBt3zpdFV59fO/zKlV8gz24KLcjpVUNx7N665
-         1WoS0kep/R8TGFrknEmtymbEDZ4HnHy1mrUZsJYEkgavgRiOFJQ7sWsc/Z1YcNhY28cq
-         SnImENNqDhvY1gWFH2hmlTCms/bAPLh2qe5pk3PUKJotKFBXVzaJ46GmE1hXeYCTDbM2
-         c6+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683662406; x=1686254406;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kVOCE83AC4Gr91kmxIdlrW0vfunolQmhkIU/7LEMiDE=;
-        b=bVTJUVi0y7/KLyCQ4xIEv0+VtpmQ2HBHdGDYllNmm/rE5WF5uUruTJyqx8GJ05PVmS
-         4w8imkT0+C4TwriaanABvRlZii7Ydy/YoEVEg83lQrOg+bR5wFNk2FZ1vjaUd52+SECl
-         fSnMGKefg/BqsGbcj4Qa+pvhYZQNg1mCGgfGtvzGz9h5qec9TML1sVzoIDc4+ISzhQX6
-         xEhWjzYDDJ2rVxw21agruR1W56G6UJ0oe79pPIOx49jy+1/YWKdsCTSJ2HPi/MPEOki0
-         smsZ5yeHyKv/TvIjYVxar+n3KfzRqNmVKDLFRH+kt13NGlxiaxmMWN1YGpzzjQMYCg6g
-         wvdg==
-X-Gm-Message-State: AC+VfDxeV155tP7JJUXrn52uFAsoy1BUVyAOHCnGJ6dmrvLB7CjrH0zW
-        I4y1LW3NYLEtNVx96dAaCA9zSA==
-X-Google-Smtp-Source: ACHHUZ6qzrmG/Y537HA1L9EPntjH1URRCnYapiYRs8xzhJtOeE/NQ7s6NscPh1CMAuIhRORb0KHxNw==
-X-Received: by 2002:ac2:5389:0:b0:4e9:afb3:d56a with SMTP id g9-20020ac25389000000b004e9afb3d56amr1216663lfh.7.1683662405724;
-        Tue, 09 May 2023 13:00:05 -0700 (PDT)
-Received: from [192.168.1.101] (abyl248.neoplus.adsl.tpnet.pl. [83.9.31.248])
-        by smtp.gmail.com with ESMTPSA id c14-20020a19760e000000b004efe6c36135sm444273lff.299.2023.05.09.13.00.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 May 2023 13:00:05 -0700 (PDT)
-Message-ID: <bac82710-da26-7acf-4375-5c5346c01705@linaro.org>
-Date:   Tue, 9 May 2023 22:00:03 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH 4/6] dt-bindings: sram: qcom,ocmem: Add msm8226 support
-Content-Language: en-US
-To:     Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
-        phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Brian Masney <masneyb@onstation.org>,
+        with ESMTP id S229498AbjEIUKB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 16:10:01 -0400
+X-Greylist: delayed 560 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 09 May 2023 13:10:00 PDT
+Received: from smtp.dudau.co.uk (dliviu.plus.com [80.229.23.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 841CACF;
+        Tue,  9 May 2023 13:10:00 -0700 (PDT)
+Received: from mail.dudau.co.uk (bart.dudau.co.uk [192.168.14.2])
+        by smtp.dudau.co.uk (Postfix) with SMTP id 03D5741D13BF;
+        Tue,  9 May 2023 21:00:38 +0100 (BST)
+Received: by mail.dudau.co.uk (sSMTP sendmail emulation); Tue, 09 May 2023 21:00:38 +0100
+From:   Liviu Dudau <liviu@dudau.co.uk>
+To:     =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>
+Cc:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Paul Burton <paulburton@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230506-msm8226-ocmem-v1-0-3e24e2724f01@z3ntu.xyz>
- <20230506-msm8226-ocmem-v1-4-3e24e2724f01@z3ntu.xyz>
- <29d1d210-8752-56b4-34be-8b078c639d36@linaro.org>
- <2449951.tdWV9SEqCh@z3ntu.xyz>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <2449951.tdWV9SEqCh@z3ntu.xyz>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Liviu Dudau <liviu@dudau.co.uk>
+Subject: [PATCH] mips: dts: ralink: Clarify usage of MT7621 ethernet phy arguments
+Date:   Tue,  9 May 2023 21:00:32 +0100
+Message-Id: <20230509200032.308934-1-liviu@dudau.co.uk>
+X-Mailer: git-send-email 2.40.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The device tree uses numbers as arguments to the phys property that are
+confusing for newcomers. Define names for the values and use them in the
+device tree.
 
+Signed-off-by: Liviu Dudau <liviu@dudau.co.uk>
+---
+ arch/mips/boot/dts/ralink/mt7621.dtsi | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
 
-On 9.05.2023 18:44, Luca Weiss wrote:
-> On Montag, 8. Mai 2023 09:39:22 CEST Konrad Dybcio wrote:
->> On 7.05.2023 11:12, Luca Weiss wrote:
->>> Add the compatible for the OCMEM found on msm8226 which compared to
->>> msm8974 only has a core clock and no iface clock.
->>>
->>> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
->>> ---
->>>
->>>  Documentation/devicetree/bindings/sram/qcom,ocmem.yaml | 6 +++++-
->>>  1 file changed, 5 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/sram/qcom,ocmem.yaml
->>> b/Documentation/devicetree/bindings/sram/qcom,ocmem.yaml index
->>> 4bbf6db0b6bd..515f0d8ec641 100644
->>> --- a/Documentation/devicetree/bindings/sram/qcom,ocmem.yaml
->>> +++ b/Documentation/devicetree/bindings/sram/qcom,ocmem.yaml
->>> @@ -15,7 +15,9 @@ description: |
->>>
->>>  properties:
->>>    compatible:
->>> -    const: qcom,msm8974-ocmem
->>> +    enum:
->>> +      - qcom,msm8226-ocmem
->>> +      - qcom,msm8974-ocmem
->>
->> Any chance you could read the revision field on both and add comments
->> like:
->>
->> - qcom,msm8974-ocmem # vX.Y
-> 
-> Do you mean the OCMEM_REG_HW_VERSION register?
-Yep
+diff --git a/arch/mips/boot/dts/ralink/mt7621.dtsi b/arch/mips/boot/dts/ralink/mt7621.dtsi
+index 7caed0d14f11a..1c584b6d0e1fa 100644
+--- a/arch/mips/boot/dts/ralink/mt7621.dtsi
++++ b/arch/mips/boot/dts/ralink/mt7621.dtsi
+@@ -4,6 +4,9 @@
+ #include <dt-bindings/clock/mt7621-clk.h>
+ #include <dt-bindings/reset/mt7621-reset.h>
+ 
++#define DUAL_PORT   1
++#define SINGLE_PORT 0
++
+ / {
+ 	#address-cells = <1>;
+ 	#size-cells = <1>;
+@@ -455,7 +458,7 @@ pcie@0,0 {
+ 			interrupt-map = <0 0 0 0 &gic GIC_SHARED 4 IRQ_TYPE_LEVEL_HIGH>;
+ 			resets = <&sysc MT7621_RST_PCIE0>;
+ 			clocks = <&sysc MT7621_CLK_PCIE0>;
+-			phys = <&pcie0_phy 1>;
++			phys = <&pcie0_phy DUAL_PORT>;
+ 			phy-names = "pcie-phy0";
+ 			ranges;
+ 		};
+@@ -470,7 +473,7 @@ pcie@1,0 {
+ 			interrupt-map = <0 0 0 0 &gic GIC_SHARED 24 IRQ_TYPE_LEVEL_HIGH>;
+ 			resets = <&sysc MT7621_RST_PCIE1>;
+ 			clocks = <&sysc MT7621_CLK_PCIE1>;
+-			phys = <&pcie0_phy 1>;
++			phys = <&pcie0_phy DUAL_PORT>;
+ 			phy-names = "pcie-phy1";
+ 			ranges;
+ 		};
+@@ -485,7 +488,7 @@ pcie@2,0 {
+ 			interrupt-map = <0 0 0 0 &gic GIC_SHARED 25 IRQ_TYPE_LEVEL_HIGH>;
+ 			resets = <&sysc MT7621_RST_PCIE2>;
+ 			clocks = <&sysc MT7621_CLK_PCIE2>;
+-			phys = <&pcie2_phy 0>;
++			phys = <&pcie2_phy SINGLE_PORT>;
+ 			phy-names = "pcie-phy2";
+ 			ranges;
+ 		};
+-- 
+2.40.0
 
-It's currently not read in the 
-> driver so no idea what the value is - without adding some code.
-Would be appreciated!
-
-Konrad
-> 
->>
->>>    reg:
->>>      items:
->>> @@ -28,11 +30,13 @@ properties:
->>>        - const: mem
->>>    
->>>    clocks:
->>> +    minItems: 1
->>>
->>>      items:
->>>        - description: Core clock
->>>        - description: Interface clock
->>
->> allOf: if: properties: compatible: 8974 / then: clock(s|-names): minItems: 2
-> 
-> Sure, can update
-> 
->>
->> Konrad
->>
->>>    clock-names:
->>> +    minItems: 1
->>>
->>>      items:
->>>        - const: core
->>>        - const: iface
-> 
-> 
-> 
-> 
