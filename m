@@ -2,194 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B86646FBEB4
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 07:29:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA2BF6FBEF6
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 08:03:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234652AbjEIF3J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 01:29:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48286 "EHLO
+        id S234531AbjEIGDE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 02:03:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233293AbjEIF27 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 01:28:59 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1D24D2C7;
-        Mon,  8 May 2023 22:28:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1683610117; x=1715146117;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=N+P7ruCMFEnmOkQ7g7T72yIAucZDvB6nBLPKCGf1wns=;
-  b=fAykelNuG0NH0P73Vbwadje8RjFFa6RO6zDOS4V6VK8FrE+eKjD+cSf5
-   YB5jwwaBAbNHPADlGZMw9cOI5osk1L6LHDoHUYOfWRDJyNJYW7LdR/emO
-   KNAc4+ANW0h5v1Fbfqan+th295DT0tyFUCUg7uBKntwtcZzik/TBW3va+
-   A+1CQPvo1BBAzHQ68ars0DANNI02eYdBsS8ELPYMvHX5dT6S3T42Zk1gO
-   0FANcZgXkjU+WgI+BIZL2LmRr/tVrxzUWpNqeyH05wPxhAWHVYwtB1ql+
-   hyxMRDSQFybvefow0qFCxQjBlNQIq/EXoax+AciEtkr4H/v1hKRbaylV0
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.99,261,1677567600"; 
-   d="scan'208";a="212510231"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 08 May 2023 22:28:36 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Mon, 8 May 2023 22:28:36 -0700
-Received: from m18063-ThinkPad-T460p.mchp-main.com (10.10.115.15) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2507.21 via Frontend Transport; Mon, 8 May 2023 22:28:32 -0700
-From:   Claudiu Beznea <claudiu.beznea@microchip.com>
-To:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>
-CC:     <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        with ESMTP id S233309AbjEIGDD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 02:03:03 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9018E9EE9
+        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 23:03:02 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-50b37f3e664so9866494a12.1
+        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 23:03:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683612179; x=1686204179;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IvYY7AI0meczzDhFBFjCtCVBYRa+GRbOVH4IYY95E3Q=;
+        b=f3vhA8Ly8CPmru0BceCpbgAk9gFMpR4CNReR1mZ/IVO+G0nSTxbhsdMDd/2GcT5G7H
+         9PLRpUhs0Vtfp69AsYivyB+pMBsikdCfAdZ5ZfPJKKSUSatR0bQ1+qnQzHvUptjGnwnG
+         mn3kbq/fda5LJlfktEt9AR+zUCQTDZ/q2ZOJofBODwygaU3PRteUtaFCOe8QrN/fobLv
+         zRBSfUo+ehb6BgIfDTZCD2lQt41MpJmEi8YN8MEHCU4s6OlFjf7DOaVzgee+KRrfVihY
+         7jZ1Rdx5u1+EJry2JyIFVeXoteY+orhJptasmLIfxepw0v+/m8EAtrLk3aLw2Sx+TzmP
+         XvTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683612179; x=1686204179;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=IvYY7AI0meczzDhFBFjCtCVBYRa+GRbOVH4IYY95E3Q=;
+        b=H1Oe0L76EDqJHhTCKOgqEBeLvPJY9DR1JWXlhHyxkIUMDCqDzt0knSHoo1LKY7kAkb
+         7eSWEsQ6iMhp94xGDBCWwjekt37AZKkamM89kkTE2IqaGp7fVp12+2gueYknD4nAQOds
+         lMT9UQHGyutJcc6FobkDo2/4kECobwHksPsxcrA98ovKuXWZBMOKAA/4T8VLPZYHixnf
+         6hxT9+k328TOfOFNc2Kxn1rvCd3uPsp8E6ajzVf2zB4G/CPIrx2H9AX6Uu9txyveQSy6
+         krD86EKnXaTjadEs1BGwW++rggqDK8eUoJn85WcFtScJAnKiVr9mzv+rnvFfxfN+gOGT
+         ZEXw==
+X-Gm-Message-State: AC+VfDwsPXeXmaHcQzyy3s9SakfRq6+f86HowtpQUC+edJieZN1/RoeJ
+        5KLGd03Oo1BgxXV32EdTP9IHbw==
+X-Google-Smtp-Source: ACHHUZ6b+LkL2A2wXFqgBFbw/JA0U/+gh2SJgTeuGDOTtjKAQfmTnswGCKNbnzpuFoffWPwZ1VBXmg==
+X-Received: by 2002:a05:6402:4b:b0:504:7171:4542 with SMTP id f11-20020a056402004b00b0050471714542mr10433647edu.0.1683612179558;
+        Mon, 08 May 2023 23:02:59 -0700 (PDT)
+Received: from krzk-bin.. ([2a02:810d:15c0:828:d0d5:7818:2f46:5e76])
+        by smtp.gmail.com with ESMTPSA id h10-20020a50ed8a000000b004c2158e87e6sm332281edr.97.2023.05.08.23.02.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 May 2023 23:02:58 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Richard Zhu <hongxing.zhu@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3 5/5] dt-bindings: clocks: at91sam9x5-sckc: convert to yaml
-Date:   Tue, 9 May 2023 08:27:57 +0300
-Message-ID: <20230509052757.539274-6-claudiu.beznea@microchip.com>
+Subject: Re: [PATCH fixes] dt-bindings: PCI: fsl,imx6q: fix assigned-clocks warning
+Date:   Tue,  9 May 2023 08:02:56 +0200
+Message-Id: <168361217270.4227.4785750051546558016.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230509052757.539274-1-claudiu.beznea@microchip.com>
-References: <20230509052757.539274-1-claudiu.beznea@microchip.com>
+In-Reply-To: <20230508071837.68552-1-krzysztof.kozlowski@linaro.org>
+References: <20230508071837.68552-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert Atmel slow clock controller documentation to yaml.
 
-Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../devicetree/bindings/clock/at91-clock.txt  | 30 --------
- .../bindings/clock/atmel,at91sam9x5-sckc.yaml | 70 +++++++++++++++++++
- 2 files changed, 70 insertions(+), 30 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/clock/at91-clock.txt
- create mode 100644 Documentation/devicetree/bindings/clock/atmel,at91sam9x5-sckc.yaml
+On Mon, 08 May 2023 09:18:37 +0200, Krzysztof Kozlowski wrote:
+> assigned-clocks are a dependency of clocks, however the dtschema has
+> limitation and expects clocks to be present in the binding using
+> assigned-clocks, not in other referenced bindings.  The clocks were
+> defined in common fsl,imx6q-pcie-common.yaml, which is referenced by fsl,imx6q-pcie-ep.yaml.  The fsl,imx6q-pcie-ep.yaml used assigned-clocks thus leading to warnings:
+> 
+>   Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.example.dtb: pcie-ep@33800000:
+>     Unevaluated properties are not allowed ('assigned-clock-parents', 'assigned-clock-rates', 'assigned-clocks' were unexpected)
+>   From schema: Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml
+> 
+> [...]
 
-diff --git a/Documentation/devicetree/bindings/clock/at91-clock.txt b/Documentation/devicetree/bindings/clock/at91-clock.txt
-deleted file mode 100644
-index 57394785d3b0..000000000000
---- a/Documentation/devicetree/bindings/clock/at91-clock.txt
-+++ /dev/null
-@@ -1,30 +0,0 @@
--Device Tree Clock bindings for arch-at91
--
--This binding uses the common clock binding[1].
--
--[1] Documentation/devicetree/bindings/clock/clock-bindings.txt
--
--Slow Clock controller:
--
--Required properties:
--- compatible : shall be one of the following:
--	"atmel,at91sam9x5-sckc",
--	"atmel,sama5d3-sckc",
--	"atmel,sama5d4-sckc" or
--	"microchip,sam9x60-sckc":
--		at91 SCKC (Slow Clock Controller)
--- #clock-cells : shall be 1 for "microchip,sam9x60-sckc" otherwise shall be 0.
--- clocks : shall be the input parent clock phandle for the clock.
--
--Optional properties:
--- atmel,osc-bypass : boolean property. Set this when a clock signal is directly
--  provided on XIN.
--
--For example:
--	sckc@fffffe50 {
--		compatible = "atmel,at91sam9x5-sckc";
--		reg = <0xfffffe50 0x4>;
--		clocks = <&slow_xtal>;
--		#clock-cells = <0>;
--	};
--
-diff --git a/Documentation/devicetree/bindings/clock/atmel,at91sam9x5-sckc.yaml b/Documentation/devicetree/bindings/clock/atmel,at91sam9x5-sckc.yaml
-new file mode 100644
-index 000000000000..7be29877e6d2
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/atmel,at91sam9x5-sckc.yaml
-@@ -0,0 +1,70 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/atmel,at91sam9x5-sckc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Atmel Slow Clock Controller (SCKC)
-+
-+maintainers:
-+  - Claudiu Beznea <claudiu.beznea@microchip.com>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - enum:
-+          - atmel,at91sam9x5-sckc
-+          - atmel,sama5d3-sckc
-+          - atmel,sama5d4-sckc
-+          - microchip,sam9x60-sckc
-+      - items:
-+          - const: microchip,sama7g5-sckc
-+          - const: microchip,sam9x60-sckc
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  "#clock-cells":
-+    enum: [0, 1]
-+
-+  atmel,osc-bypass:
-+    type: boolean
-+    description: set when a clock signal is directly provided on XIN
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - "#clock-cells"
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - microchip,sam9x60-sckc
-+    then:
-+      properties:
-+        "#clock-cells":
-+          const: 1
-+    else:
-+      properties:
-+        "#clock-cells":
-+          const: 0
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    clk32k: clock-controller@fffffe50 {
-+        compatible = "microchip,sam9x60-sckc";
-+        reg = <0xfffffe50 0x4>;
-+        clocks = <&slow_xtal>;
-+        #clock-cells = <1>;
-+    };
-+
-+...
+Applied, thanks!
+
+[1/1] dt-bindings: PCI: fsl,imx6q: fix assigned-clocks warning
+      https://git.kernel.org/krzk/linux-dt/c/8bbec86ce6d66fb33530c679f7bb3a123fc9e7da
+
+Best regards,
 -- 
-2.34.1
-
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
