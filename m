@@ -2,109 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 37E016FC746
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 14:59:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C03F6FC74B
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 15:00:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235244AbjEIM6z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 08:58:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34220 "EHLO
+        id S235186AbjEINAC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 09:00:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235186AbjEIM6y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 08:58:54 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF3D83A93
-        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 05:58:51 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-9659e9bbff5so1053577466b.1
-        for <devicetree@vger.kernel.org>; Tue, 09 May 2023 05:58:51 -0700 (PDT)
+        with ESMTP id S234887AbjEINAB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 09:00:01 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AAFF3580
+        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 06:00:00 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-50c8d87c775so7421236a12.3
+        for <devicetree@vger.kernel.org>; Tue, 09 May 2023 06:00:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683637130; x=1686229130;
+        d=linaro.org; s=google; t=1683637199; x=1686229199;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=7emZLWmbq57tRJlGtK7gIIvsEhrAEblhjMW33XUy364=;
-        b=xyLx/eX4XTIt7Kqrv9qylXshl/BidRDhODMAA8canOv5pbcfguBeozWKNn76AJ7OBu
-         97tdoa3gbAObnnJ8EDMxBaleLXxe2OaLMm8xXzqyORr5mdZU17ltyhkxAiK9Id7XMfQV
-         cQsJIB5Yhpjahvg9kxLqQE8jnqmAPcqyz7/SN1dhvZJfh+TjYyZpyh93Q0+o+TfApw4r
-         2R1+JQhZdbx2hkOO3aXp49y15GQJmRUZ3b3SbCId+2eocxL6ESuSgOxLBtLhOfd4b7I1
-         bucVbGIyiCiIpqvGHQQ5OIlmSUfWmcRCstQhvmJn8M6KPG9v98WdOG5i2P5/ZA8N9lKa
-         uznQ==
+        bh=G+9mGz2olZyp2vtJ/qJYAQmIIlfabvTCR0scDUZiAOU=;
+        b=szpc91rQUSHtSFdVYHCp9IrJiVFYNxzJdu3PPOzBDFzd+8/EGzWzBMPgLbCwW1vWTD
+         vGNmfDQgx97LfxfQpfwI5xkoEgUMTiZXSMeT9d5F2XfjSHb0RGbKMkesyVmEb331+atJ
+         9P3NKFMTdZmuwnCWCPuGXgmeeACwzWYNIToCjstfxrzh60XzGLTe2bBmnL5Rlskou0dS
+         nrxG/2d8RkW8GNWkBw3kkUuTCk2CQ15B9RD692OlsCDp7R69JUOj8rTDdRIxofxFhhMB
+         UtK9kGzUJ5egTjvaIzk0heIAt2dLwfMZhIFhf80Qbq6AiwVZ1cdv2fIjrTSre/rUoyFc
+         t3ug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683637130; x=1686229130;
+        d=1e100.net; s=20221208; t=1683637199; x=1686229199;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7emZLWmbq57tRJlGtK7gIIvsEhrAEblhjMW33XUy364=;
-        b=hJMXDj2sv4LrVfUySX/GUoREu77QhQgoPCSr1NJWqPIOq2VMY753BeQs4GOoHLlZUd
-         p7vpCziopfF6ibP64u5CnlFvGZ7DtpF+or83jNirCE+TCXnxb1heGw0JkSO7olofd4u2
-         oBdInkrMiHD/SPy2W5Kg/IOn2yFqe/V23jpD2sjeCNmUHIqN5CtLONXwOA3T//jS7OFg
-         j4jbfUcmGE6RDajNCOcop7cdV2wmzE0cWMtNPhHvIBg1kU8eFwcanV08oG4WqoXakfDn
-         REZJpGSCQOT4KOESrkgsBmiril9PbqIkNjqYPK4gguVbo5pL/jE8IK4Zlamr3KekBur0
-         2xSA==
-X-Gm-Message-State: AC+VfDxfinKxq5dJojLg7ERaMgVCKdYEZ3WqGe6HHYWYBrjinoZXWIlN
-        od9SgA1Z2EEVUv7iTjidxn7h+A==
-X-Google-Smtp-Source: ACHHUZ56lTU5iDWQGq+ZkveUT3P5//LKk86sbqcSzvwdNzIfkoaVAn6EDsolvwBPJ88pmwn9fdX2MQ==
-X-Received: by 2002:a17:907:928e:b0:94e:8cdb:bcee with SMTP id bw14-20020a170907928e00b0094e8cdbbceemr10610088ejc.70.1683637130168;
-        Tue, 09 May 2023 05:58:50 -0700 (PDT)
+        bh=G+9mGz2olZyp2vtJ/qJYAQmIIlfabvTCR0scDUZiAOU=;
+        b=UfyqKktcxjnEeM8fN0KfVFJB2OtDxykc2a2p30/gYrHKLZRCb1DSvaCrOVyNhUw/KQ
+         8u/9SjqneKbVI4pGmXn04mxUDz/DSsVZfzkRwalbudDllvsVWkSpd2esC2NcUQAghdWI
+         dXo4ZMsoSHT3XB2STVs7vll2oonWmbBfVHoxdKYFG1uTCtQvReN7SKLIQeZM8dlwZaG6
+         UtISPlY3pZyb7jRwxkabKSVHy5xwLo0/gomPCcNXg/XYEpG59fMzJwieLl24yLwWoKxv
+         iS+D+FAohup/JppSawVu56RbVaieHvpKx+ws1ybjE5F6de/dtNMk+//1kou6p0FwVa5p
+         6zzg==
+X-Gm-Message-State: AC+VfDxC9aR+h+jy65Oy9EFDzLN/CBDz9F/ZRwZGq6U8dcYeAFh1vGWu
+        D5IpK9OjaTm+Cpt8w1TRugNP/A==
+X-Google-Smtp-Source: ACHHUZ4SQOpesLYnHmb7Xa33pnHCKc6mVBqlA8+lVgIBhzI/j2qGHufmwenHfiKhnJrjkSG4mDyYmA==
+X-Received: by 2002:aa7:d659:0:b0:508:14f2:399c with SMTP id v25-20020aa7d659000000b0050814f2399cmr12887901edr.10.1683637198938;
+        Tue, 09 May 2023 05:59:58 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:d0d5:7818:2f46:5e76? ([2a02:810d:15c0:828:d0d5:7818:2f46:5e76])
-        by smtp.gmail.com with ESMTPSA id s3-20020a170906bc4300b0095fde299e83sm1272123ejv.214.2023.05.09.05.58.48
+        by smtp.gmail.com with ESMTPSA id l23-20020aa7c3d7000000b004f9e6495f94sm742609edr.50.2023.05.09.05.59.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 May 2023 05:58:49 -0700 (PDT)
-Message-ID: <da268ca8-0548-748c-0c60-c190dad447d3@linaro.org>
-Date:   Tue, 9 May 2023 14:58:47 +0200
+        Tue, 09 May 2023 05:59:57 -0700 (PDT)
+Message-ID: <78fff833-77a7-f85c-f5a1-8f956db4ff67@linaro.org>
+Date:   Tue, 9 May 2023 14:59:56 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH] dt-bindings: arm: fsl: Enumerate Emtop SOM
+Subject: Re: [PATCH v3] dt-bindings: rtc: isl1208: Convert to json-schema
 Content-Language: en-US
-To:     Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>, Marek Vasut <marex@denx.de>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Stefan Wahren <stefan.wahren@i2se.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Fabio Estevam <festevam@denx.de>,
-        Markus Niebel <Markus.Niebel@tq-group.com>,
-        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230509111920.3301542-1-himanshu.bhavani@siliconsignals.io>
+To:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Trent Piepho <tpiepho@gmail.com>,
+        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+References: <20230505091720.115675-1-biju.das.jz@bp.renesas.com>
+ <a55c7ac8-1037-4509-a16e-83c7894b1a4d@linaro.org>
+ <TYCPR01MB5933076BBF16DB7FE20F56C186769@TYCPR01MB5933.jpnprd01.prod.outlook.com>
+ <TYCPR01MB5933CCFDDD9F1454BDE852E586769@TYCPR01MB5933.jpnprd01.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230509111920.3301542-1-himanshu.bhavani@siliconsignals.io>
+In-Reply-To: <TYCPR01MB5933CCFDDD9F1454BDE852E586769@TYCPR01MB5933.jpnprd01.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/05/2023 13:19, Himanshu Bhavani wrote:
-> Add entries to the list of imx8mm boards denoting
-> the Emtop SOM from Emtop.
+On 09/05/2023 13:18, Biju Das wrote:
+> Hi Krzysztof Kozlowski,
 > 
-> Signed-off-by: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
+>> Subject: RE: [PATCH v3] dt-bindings: rtc: isl1208: Convert to json-schema
+>>
+>> Hi Krzysztof Kozlowski,
+>>
+>> Thanks for the feedback.
+>>
+>>> Subject: Re: [PATCH v3] dt-bindings: rtc: isl1208: Convert to
+>>> json-schema
+>>>
+>>> On 05/05/2023 11:17, Biju Das wrote:
+>>>> Convert the isl1208 RTC device tree binding documentation to json-
+>> schema.
+>>>>
+>>>> Update the example to match reality.
+>>>>
+>>>> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+>>>
+>>> Thank you for your patch. There is something to discuss/improve.
+>>>
+>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
+>>>> +---
+>>>> +$id:
+>>>> +
+>>>> +title: Intersil ISL1209/19 I2C RTC/Alarm chip with event in
+>>>> +
+>>>> +maintainers:
+>>>> +  - Trent Piepho <tpiepho@gmail.com>
+>>>> +
+>>>> +description: |
+>>>
+>>> Do not need '|' unless you need to preserve formatting.
+>>
+>> OK, will remove it.
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> index 442ce8f4d675..06eb2c790f90 100644
-> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> @@ -884,6 +884,7 @@ properties:
->                - beacon,imx8mm-beacon-kit  # i.MX8MM Beacon Development Kit
->                - boundary,imx8mm-nitrogen8mm  # i.MX8MM Nitrogen Board
->                - dmo,imx8mm-data-modul-edm-sbc # i.MX8MM eDM SBC
-> +              - emtop,imx8mm-emtop          # i.MX8MM Emtop SoM
+> I get an error after removing '|'. 
+> 
+> ./Documentation/devicetree/bindings/rtc/isil,isl1208.yaml:13:42: [error] missing starting space in comment (comments)
+> ./Documentation/devicetree/bindings/rtc/isil,isl1208.yaml:14:3: [error] syntax error: expected <block end>, but found '<scalar>' (syntax)
 
-So the name of the board is emtop? Are you sure?
-
-Anyway, organize and version your patches. Your work, which now I found,
-must be one patchset. We have it very nicely documented
-
-https://elixir.bootlin.com/linux/v5.19-rc5/source/Documentation/process/submitting-patches.rst
-https://elixir.bootlin.com/linux/v5.19-rc5/source/Documentation/process/5.Posting.rst
+Drop the # from the pin name.
 
 Best regards,
 Krzysztof
