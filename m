@@ -2,202 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 36A1F6FC407
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 12:35:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CFE86FC40F
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 12:36:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235247AbjEIKfx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 06:35:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37414 "EHLO
+        id S235404AbjEIKgO convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 9 May 2023 06:36:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37682 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235152AbjEIKfw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 06:35:52 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D595DDD9A;
-        Tue,  9 May 2023 03:35:21 -0700 (PDT)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3495GCcF015664;
-        Tue, 9 May 2023 10:35:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=7rAJVFbOA/qLEVTAdfdN8+mkHBM9gPh2AaEOJvYGnm4=;
- b=ILW79M/6Nrxlkh0H98IGbFPKcgyhYGfSc+HWIN4Yatm6wTJSQD3zROsurZIFeF8Efhyt
- OxMG9diTx39C7qtfk/rbzhb7GUZq3NpjF6Thxk6Ryv+Ke2bJ7KY/+SOn64TpqC7grsjl
- PjHqtXaJqi0LTjguBgurfYSVcByBi6touFjiCPNKpJ8bQzpStZQjt6yJFBDkEDVj08kZ
- +M4k1yOFrKZaFi+sp4F/lxAqSeWVjwkYJRYYY+IvTKyeXHKPk9d9pwyx5W4gHqWR3xBt
- TjWjgAdwKa9KD9kLBGK4BpojQx6wVYdS31Py5J2KqcbqrBmQ0/zRTHp41M3/XRmUCfU2 Ag== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qf7851e7y-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 09 May 2023 10:35:01 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 349AYxNM016069
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 9 May 2023 10:35:00 GMT
-Received: from [10.242.242.190] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Tue, 9 May 2023
- 03:34:52 -0700
-Message-ID: <b8b30b77-31df-15c3-3914-1198f90299e6@quicinc.com>
-Date:   Tue, 9 May 2023 16:04:48 +0530
+        with ESMTP id S235258AbjEIKgC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 06:36:02 -0400
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 569D7106E5;
+        Tue,  9 May 2023 03:35:49 -0700 (PDT)
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-55a829411b5so51867797b3.1;
+        Tue, 09 May 2023 03:35:49 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683628539; x=1686220539;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=STRG9z0qGkjgtmp/Ps+FRw09qM+RNYz5SrXCeHI+JvM=;
+        b=LnHcvKDYr8O+nD84jiRRtE+nsuRO+Y79Pj9hGS952uKq/vzJW4s357JFbho8d/M5lO
+         76X51V1AJwLvAs4/huy8Pg5M8j4JixEE6urk8ikVMbcBXZThu8u9E4RZ8K4V9uQaIz0r
+         Mn3xM9XoCbYBnWVWaesGwNPbsCLqU/8se/KmcKnKYeai6Nw6tXRmGB0NTkOqQrIlxxW2
+         r+vUBxXNTT7Icz00gucwnSenXBhZ7dcIXC8EoFxlSBgheJ/46Dt0no5jQsoZXt4fQZAo
+         2uK6/syaXdXedAipo13eA3yFbN/bY5BQmZ4nuyCJO7ocqtrgYVyLaKAWl95TK+w6NR52
+         LFkg==
+X-Gm-Message-State: AC+VfDxMdiLc2KDXaNj8unEAVb36p7BNSWRlCBKQ1FC/WcsjFKQO9Ycc
+        mzMR/+MCiuYfS5uhBwYKENysHU3h+tqtCA==
+X-Google-Smtp-Source: ACHHUZ4pZlGzrTflynDcIgK6hxKFt8Aqe8g8SmveSIhcsigtQrFOUhoAlFdNVE8fnV+ai98Z70b3QQ==
+X-Received: by 2002:a81:4602:0:b0:55a:c42:406d with SMTP id t2-20020a814602000000b0055a0c42406dmr15061368ywa.3.1683628539086;
+        Tue, 09 May 2023 03:35:39 -0700 (PDT)
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com. [209.85.219.177])
+        by smtp.gmail.com with ESMTPSA id a145-20020a0dd897000000b0055a07c7be39sm3199458ywe.31.2023.05.09.03.35.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 May 2023 03:35:38 -0700 (PDT)
+Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-b9e27684b53so4982207276.0;
+        Tue, 09 May 2023 03:35:38 -0700 (PDT)
+X-Received: by 2002:a25:258a:0:b0:b96:e7a6:dbe4 with SMTP id
+ l132-20020a25258a000000b00b96e7a6dbe4mr12470821ybl.21.1683628537827; Tue, 09
+ May 2023 03:35:37 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-Subject: Re: [PATCH 01/11] dt-bindings: remoteproc: qcom: Add support for
- multipd model
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <jassisinghbrar@gmail.com>,
-        <mathieu.poirier@linaro.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <quic_gurus@quicinc.com>,
-        <loic.poulain@linaro.org>, <quic_eberman@quicinc.com>,
-        <robimarko@gmail.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-remoteproc@vger.kernel.org>, <linux-clk@vger.kernel.org>
-CC:     <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
-        <quic_sjaganat@quicinc.com>, <quic_kathirav@quicinc.com>,
-        <quic_arajkuma@quicinc.com>, <quic_anusha@quicinc.com>,
-        <quic_poovendh@quicinc.com>
-References: <1678164097-13247-1-git-send-email-quic_mmanikan@quicinc.com>
- <1678164097-13247-2-git-send-email-quic_mmanikan@quicinc.com>
- <38a5a268-7d8a-6e61-4272-8e9155df0034@linaro.org>
- <790496d7-98dc-c92e-dedc-1c89395a1ad8@quicinc.com>
- <e63a3e34-1f73-3661-8655-e34e1e955804@linaro.org>
-From:   Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-In-Reply-To: <e63a3e34-1f73-3661-8655-e34e1e955804@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: XkErmhbDB5Hgp_TKZN_KEbnzhATsuSLj
-X-Proofpoint-GUID: XkErmhbDB5Hgp_TKZN_KEbnzhATsuSLj
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-09_06,2023-05-05_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 clxscore=1015
- bulkscore=0 mlxlogscore=999 impostorscore=0 spamscore=0 mlxscore=0
- priorityscore=1501 adultscore=0 malwarescore=0 phishscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2305090083
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230508104557.47889-1-wsa+renesas@sang-engineering.com>
+ <20230508104557.47889-2-wsa+renesas@sang-engineering.com> <CAMuHMdWGaDT_XGpeVm-915hbxa8-w5303QWg0a0iCjqk998unQ@mail.gmail.com>
+ <ZFlD7x99++k3yfE1@kunai>
+In-Reply-To: <ZFlD7x99++k3yfE1@kunai>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 9 May 2023 12:35:26 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUS56xQbOcRx7kVhL_irQQR2cnDr0Y6p6q8tCjZ2U_dwg@mail.gmail.com>
+Message-ID: <CAMuHMdUS56xQbOcRx7kVhL_irQQR2cnDr0Y6p6q8tCjZ2U_dwg@mail.gmail.com>
+Subject: Re: [RFC PATCH 1/3] dt-bindings: PCI: rcar-pci-host: add optional regulators
+To:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        linux-renesas-soc@vger.kernel.org,
+        Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Wolfram,
 
+On Mon, May 8, 2023 at 8:48 PM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> > > +  vpcie1v5-supply:
+> > > +    description: The 1.5v regulator to use for PCIe.
+> >
+> > +1.5V is only present on mini-PCIe slots...
+>
+> Since mini-PCIe is a subset of PCIe, I'd think we can leave the
+> description as-is.
 
-On 5/9/2023 12:38 PM, Krzysztof Kozlowski wrote:
-> On 08/05/2023 15:45, Manikanta Mylavarapu wrote:
->>
->>
->> On 3/7/2023 8:47 PM, Krzysztof Kozlowski wrote:
->>> On 07/03/2023 05:41, Manikanta Mylavarapu wrote:
->>>> Add new binding document for multipd model remoteproc.
->>>> IPQ5018, IPQ9574 follows multipd model.
->>>>
->>>> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
->>>> ---
->>>>    .../bindings/remoteproc/qcom,multipd-pil.yaml | 282 ++++++++++++++++++
->>>>    1 file changed, 282 insertions(+)
->>>>    create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,multipd-pil.yaml
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,multipd-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,multipd-pil.yaml
->>>> new file mode 100644
->>>> index 000000000000..b788607f5abd
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,multipd-pil.yaml
->>>> @@ -0,0 +1,282 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/remoteproc/qcom,multipd-pil.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: Qualcomm Multipd Secure Peripheral Image Loader
->>>> +
->>>> +maintainers:
->>>> +  - Bjorn Andersson <andersson@kernel.org>
->>>> +  - Mathieu Poirier <mathieu.poirier@linaro.org>
->>>> +
->>>> +description:
->>>> +  Multipd Peripheral Image Loader loads firmware and boots Q6 pd, WCSS pd
->>>> +  remoteproc's on the Qualcomm IPQ5018, IPQ9574 SoC.
->>>
->>> What is a "pd"?
->>>
->> Pd means protection domain.
->> It's similar to process in Linux. Here QDSP6 processor runs each wifi
->> radio functionality on a separate process. One process can't access
->> other process resources, so this is termed as PD i.e protection domain.
->> Here we have two pd's called root and user pd. We can correlate Root pd
->> as root and user pd as user in linux. Root pd has more privileges than
->> user pd.
->>   From remoteproc driver perspective, root pd corresponds to QDSP6
->> processor bring up and user pd corresponds to Wifi radio (WCSS) bring up.
-> 
-> Parts of it should be in description. And definitely "pd" should be
-> explained.
-> 
-Sure, i will add it in cover page.
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    enum:
->>>> +      - qcom,ipq5018-q6-mpd
->>>> +      - qcom,ipq9574-q6-mpd
->>>> +
->>>> +  '#address-cells': true
->>>> +
->>>> +  '#size-cells': true
-> 
-> ...
-> 
->>>
->> Sure, will add.
->>>> +    description:
->>>> +      Qualcomm G-Link subnode which represents communication edge, channels
->>>> +      and devices related to the Modem.
->>>> +
->>>> +patternProperties:
->>>> +  "^remoteproc_pd1|remoteproc_pd2|remoteproc_pd3":
->>>
->>> No, underscores are not allowed. Also, what is pd?
->>>
->> Sure, will remove underscores.
-> 
-> Shouldn't this be just pd-1?
-> 
-> 
-I think 'pd-1' not enough. Because child's i.e userpd's also considered
-as remote processor's, so name should be like "remoteproc-pd1".
->>>> +    type: object
->>>> +    description:
->>>> +      In Multipd model, WCSS pd depends on Q6 pd i.e Q6 pd should be up before
->>>> +      WCSS. It can be achieved by keeping wcss pd node as subnode of Q6
->>>> +      device node.
->>>> +
->>>> +    properties:
->>>> +      compatible:
->>>> +        enum:
->>>> +          - "qcom,ipq5018-wcss-ahb-mpd"
->>>> +          - "qcom,ipq9574-wcss-ahb-mpd"
->>>> +          - "qcom,ipq5018-wcss-pcie-mpd"
-> 
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+Sure, the description is fine.
 
-Thanks & Regards,
-Manikanta.
+> > > +
+> > > +  vpcie3v3-supply:
+> > > +    description: The 3.3v regulator to use for PCIe.
+> >
+> > ... while +3.3V is present on PCIe, mini-PCIe, and M2 PCIe slots.
+> >
+> > In addition, normal PCIe slots also have +12V.
+> > So I think it would be prudent to add a vpcie12v0-supply property, too.
+>
+> I agree. I can't test it but it is trivial enough to add 12v support as
+> well.
+>
+> > W.r.t. to the actual naming, I don't know if there's already a (de facto)
+> > standard for that?
+>
+> I couldn't find one and took what I think is the most used pattern. But
+> I wasn't entirely sure, this is why the series is still RFC.
+
+Upon second thought, shouldn't these supplies be part of a PCIe
+connector subnode, as they are not properties of the PCIe host
+controller itself?
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
