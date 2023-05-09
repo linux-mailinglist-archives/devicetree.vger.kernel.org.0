@@ -2,235 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DD626FC2F6
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 11:38:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8984E6FC324
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 11:51:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234627AbjEIJic (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 05:38:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55676 "EHLO
+        id S234584AbjEIJuf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 05:50:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234621AbjEIJiV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 05:38:21 -0400
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D4F34225;
-        Tue,  9 May 2023 02:38:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1683625099; x=1715161099;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=U1tu/Ou4injYrbKydLUxfBy7dyxZrBMFc9DZnhXqJmY=;
-  b=iE7+6ttEOB9f0f0h5J1sjbc0YwG7lff7OEwScAgNXk43X5W0HpFLsP2Z
-   DAkCLKTJ4Zy8IRU98c11F05Wxv8zwIJc46d85FaEyhlm9fsTMQNXYktjn
-   8aRTgLsVAj44rqi6Srz1kyR7wpX8BnPvusCKNXalbfM3P5TX23mf4XxTl
-   bbqmK04VCDS+KtkCzl8cLgPCgXf1vd2U15k5IAqn4W6mznl5EwWaMh0Jf
-   gtyokcGkSxGDNDzypu1RDjRthZSoZLNMaA0OrZGQw1aa9Gws0l5OHuqs5
-   a0j4hJlTTtzR09Jo15XfJQ9HZ+FQXN6O1X5b6Se8an6OTXsNOWqSKtZeR
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="436192420"
-X-IronPort-AV: E=Sophos;i="5.99,261,1677571200"; 
-   d="scan'208";a="436192420"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 May 2023 02:38:17 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="768432339"
-X-IronPort-AV: E=Sophos;i="5.99,261,1677571200"; 
-   d="scan'208";a="768432339"
-Received: from lkp-server01.sh.intel.com (HELO dea6d5a4f140) ([10.239.97.150])
-  by fmsmga004.fm.intel.com with ESMTP; 09 May 2023 02:36:51 -0700
-Received: from kbuild by dea6d5a4f140 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pwJm7-00021I-0F;
-        Tue, 09 May 2023 09:36:51 +0000
-Date:   Tue, 9 May 2023 17:36:00 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Bharat Bhushan <bbhushan2@marvell.com>, wim@linux-watchdog.org,
-        linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-watchdog@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        sgoutham@marvell.com
-Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-        Bharat Bhushan <bbhushan2@marvell.com>
-Subject: Re: [PATCH 2/2 v7] Watchdog: Add marvell GTI watchdog driver
-Message-ID: <202305091728.1XZ6IePZ-lkp@intel.com>
-References: <20230508131515.19403-2-bbhushan2@marvell.com>
+        with ESMTP id S233534AbjEIJuA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 05:50:00 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42EE01BF7;
+        Tue,  9 May 2023 02:49:55 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3499nji8034915;
+        Tue, 9 May 2023 04:49:45 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1683625785;
+        bh=/0tpUCP2f1xtcvYtIYbr/9f8Rv4j6HXpySHLSv1mYn8=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=hKihlEYp5zOBaJU8NDdDThOc8Rl5ZS5zWb9AJMekx4ZpaZuogbW2Hl4ByI9THmOBt
+         lsLriqwyFKgxyOLVWHKucImTW+lRobz4BXzws0TfWHaXoep4Regjc9npeRgjBcefen
+         ESt+QyuihwapwVw+RIz88InO/YKphKJP6tQTGTX8=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3499njpj117023
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 9 May 2023 04:49:45 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 9
+ May 2023 04:49:44 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 9 May 2023 04:49:45 -0500
+Received: from [172.24.147.77] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3499nf8S032514;
+        Tue, 9 May 2023 04:49:41 -0500
+Message-ID: <efab17de-aeb4-9fdb-6c97-ab2f2bc8c8f4@ti.com>
+Date:   Tue, 9 May 2023 15:19:40 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230508131515.19403-2-bbhushan2@marvell.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH] arm64: dts: ti: k3-j784s4: Fix wakeup pinmux range and
+ pinctrl node offsets
+To:     Nishanth Menon <nm@ti.com>
+CC:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Andrew Davis <afd@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Apurva Nandan <a-nandan@ti.com>, Udit Kumar <u-kumar1@ti.com>
+References: <20230503083143.32369-1-t-konduru@ti.com>
+ <20230503114625.gqnijd3bog5bwemz@parameter>
+ <31b31af7-6c54-7d05-f7ef-fcceba48580e@ti.com>
+ <20230504115207.h6trzy4mqjcbkcm3@comment>
+ <67eccecb-f4a4-7f15-5316-27fd39e65b51@ti.com>
+ <20230504142239.hqhni2c52k3a3asz@prune>
+Content-Language: en-US
+From:   Thejasvi Konduru <t-konduru@ti.com>
+In-Reply-To: <20230504142239.hqhni2c52k3a3asz@prune>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bharat,
 
-kernel test robot noticed the following build errors:
+On 04/05/23 19:52, Nishanth Menon wrote:
+> On 17:40-20230504, Thejasvi Konduru wrote:
+>> On 04/05/23 17:22, Nishanth Menon wrote:
+>>> On 14:36-20230504, Thejasvi Konduru wrote:
+>>>> On 03/05/23 17:16, Nishanth Menon wrote:
+>>>>> On 14:01-20230503, Thejasvi Konduru wrote:
+>>>>>> The wkup_pmx register region in j784s4 has multiple non-addressable
+>>>>>> regions, hence the existing wkup_pmx region is split as follows to
+>>>>>> avoid the non-addressable regions. The pinctrl node offsets are
+>>>>>> also corrected as per the newly split wkup_pmx* nodes.
+>>>>>>
+>>>>>> wkup_pmx0 -> 13 pins (WKUP_PADCONFIG 0 - 12)
+>>>>>> wkup_pmx1 -> 11 pins (WKUP_PADCONFIG 14 - 24)
+>>>>>> wkup_pmx2 -> 72 pins (WKUP_PADCONFIG 26 - 97)
+>>>>>> wkup_pmx3 -> 1 pin (WKUP_PADCONFIG 100)
+>>>>>>
+>>>>>> Fixes: 4664ebd8346a ("arm64: dts: ti: Add initial support for J784S4 SoC")
+>>>>>> Signed-off-by: Thejasvi Konduru <t-konduru@ti.com>
+>>>>>> ---
+>>>>> Could you provide a link to the output of:
+>>>>> $ cat /sys/kernel/debug/pinctrl/*/pins
+>>>> https://gist.github.com/thejasvikonduru/05b1a8e0fd8176116b7a3cc4e43b244a
+>>> Was this failing prior to this patch? Trying to understand the "Fix"
+>>> aspect of this patch.
+>>>
+>> Yes,it was failing prior to this patch.
+>>
+> next time some asks this question - give summary AND give a log. Even
+> better, please don't make folks even ask the question in the first
+> place by including the logs in the diffstat of the patch.
+>
+> Please share the log to understand what kind of "failure" was occurring.
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on groeck-staging/hwmon-next linus/master v6.4-rc1 next-20230509]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Link to logs:
+Before Fix: https://gist.github.com/thejasvikonduru/e217edf4839c348793a5671aa9331595
+After Fix : https://gist.github.com/thejasvikonduru/05b1a8e0fd8176116b7a3cc4e43b244a
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Bharat-Bhushan/Watchdog-Add-marvell-GTI-watchdog-driver/20230508-211645
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20230508131515.19403-2-bbhushan2%40marvell.com
-patch subject: [PATCH 2/2 v7] Watchdog: Add marvell GTI watchdog driver
-config: hexagon-randconfig-r015-20230508 (https://download.01.org/0day-ci/archive/20230509/202305091728.1XZ6IePZ-lkp@intel.com/config)
-compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project b0fb98227c90adf2536c9ad644a74d5e92961111)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/0b1fbcf987da442c837b205256c6400adf6d298e
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Bharat-Bhushan/Watchdog-Add-marvell-GTI-watchdog-driver/20230508-211645
-        git checkout 0b1fbcf987da442c837b205256c6400adf6d298e
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=hexagon olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=hexagon SHELL=/bin/bash drivers/watchdog/
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202305091728.1XZ6IePZ-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   In file included from drivers/watchdog/marvell_gti_wdt.c:8:
-   In file included from include/linux/interrupt.h:11:
-   In file included from include/linux/hardirq.h:11:
-   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
-   In file included from include/asm-generic/hardirq.h:17:
-   In file included from include/linux/irq.h:20:
-   In file included from include/linux/io.h:13:
-   In file included from arch/hexagon/include/asm/io.h:334:
-   include/asm-generic/io.h:547:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           val = __raw_readb(PCI_IOBASE + addr);
-                             ~~~~~~~~~~ ^
-   include/asm-generic/io.h:560:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
-                                                           ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/little_endian.h:37:51: note: expanded from macro '__le16_to_cpu'
-   #define __le16_to_cpu(x) ((__force __u16)(__le16)(x))
-                                                     ^
-   In file included from drivers/watchdog/marvell_gti_wdt.c:8:
-   In file included from include/linux/interrupt.h:11:
-   In file included from include/linux/hardirq.h:11:
-   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
-   In file included from include/asm-generic/hardirq.h:17:
-   In file included from include/linux/irq.h:20:
-   In file included from include/linux/io.h:13:
-   In file included from arch/hexagon/include/asm/io.h:334:
-   include/asm-generic/io.h:573:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
-                                                           ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/little_endian.h:35:51: note: expanded from macro '__le32_to_cpu'
-   #define __le32_to_cpu(x) ((__force __u32)(__le32)(x))
-                                                     ^
-   In file included from drivers/watchdog/marvell_gti_wdt.c:8:
-   In file included from include/linux/interrupt.h:11:
-   In file included from include/linux/hardirq.h:11:
-   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
-   In file included from include/asm-generic/hardirq.h:17:
-   In file included from include/linux/irq.h:20:
-   In file included from include/linux/io.h:13:
-   In file included from arch/hexagon/include/asm/io.h:334:
-   include/asm-generic/io.h:584:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           __raw_writeb(value, PCI_IOBASE + addr);
-                               ~~~~~~~~~~ ^
-   include/asm-generic/io.h:594:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
-                                                         ~~~~~~~~~~ ^
-   include/asm-generic/io.h:604:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
-                                                         ~~~~~~~~~~ ^
->> drivers/watchdog/marvell_gti_wdt.c:89:2: error: call to undeclared function 'writeq'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-           writeq(GTI_CWD_INT_PENDING_STATUS(priv->wdt_timer_idx),
-           ^
-   drivers/watchdog/marvell_gti_wdt.c:101:2: error: call to undeclared function 'writeq'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-           writeq(GTI_CWD_POKE_VAL,
-           ^
-   drivers/watchdog/marvell_gti_wdt.c:118:2: error: call to undeclared function 'writeq'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-           writeq(GTI_CWD_INT_PENDING_STATUS(priv->wdt_timer_idx),
-           ^
->> drivers/watchdog/marvell_gti_wdt.c:126:11: error: call to undeclared function 'readq'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-           regval = readq(priv->base + GTI_CWD_WDOG(priv->wdt_timer_idx));
-                    ^
-   drivers/watchdog/marvell_gti_wdt.c:139:2: error: call to undeclared function 'writeq'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-           writeq(GTI_CWD_INT_ENA_CLR_VAL(priv->wdt_timer_idx),
-           ^
-   drivers/watchdog/marvell_gti_wdt.c:143:11: error: call to undeclared function 'readq'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-           regval = readq(priv->base + GTI_CWD_WDOG(priv->wdt_timer_idx));
-                    ^
-   drivers/watchdog/marvell_gti_wdt.c:177:11: error: call to undeclared function 'readq'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-           regval = readq(priv->base + GTI_CWD_WDOG(priv->wdt_timer_idx));
-                    ^
-   drivers/watchdog/marvell_gti_wdt.c:181:2: error: call to undeclared function 'writeq'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-           writeq(regval, priv->base + GTI_CWD_WDOG(priv->wdt_timer_idx));
-           ^
-   6 warnings and 8 errors generated.
-
-
-vim +/writeq +89 drivers/watchdog/marvell_gti_wdt.c
-
-    82	
-    83	static irqreturn_t gti_wdt_interrupt(int irq, void *data)
-    84	{
-    85		struct watchdog_device *wdev = data;
-    86		struct gti_wdt_priv *priv = watchdog_get_drvdata(wdev);
-    87	
-    88		/* Clear Interrupt Pending Status */
-  > 89		writeq(GTI_CWD_INT_PENDING_STATUS(priv->wdt_timer_idx),
-    90		       priv->base + GTI_CWD_INT);
-    91	
-    92		watchdog_notify_pretimeout(wdev);
-    93	
-    94		return IRQ_HANDLED;
-    95	}
-    96	
-    97	static int gti_wdt_ping(struct watchdog_device *wdev)
-    98	{
-    99		struct gti_wdt_priv *priv = watchdog_get_drvdata(wdev);
-   100	
-   101		writeq(GTI_CWD_POKE_VAL,
-   102		       priv->base + GTI_CWD_POKE(priv->wdt_timer_idx));
-   103	
-   104		return 0;
-   105	}
-   106	
-   107	static int gti_wdt_start(struct watchdog_device *wdev)
-   108	{
-   109		struct gti_wdt_priv *priv = watchdog_get_drvdata(wdev);
-   110		u64 regval;
-   111	
-   112		if (!wdev->pretimeout)
-   113			return -EINVAL;
-   114	
-   115		set_bit(WDOG_HW_RUNNING, &wdev->status);
-   116	
-   117		/* Clear any pending interrupt */
-   118		writeq(GTI_CWD_INT_PENDING_STATUS(priv->wdt_timer_idx),
-   119		       priv->base + GTI_CWD_INT);
-   120	
-   121		/* Enable Interrupt */
-   122		writeq(GTI_CWD_INT_ENA_SET_VAL(priv->wdt_timer_idx),
-   123		       priv->base + GTI_CWD_INT_ENA_SET);
-   124	
-   125		/* Set (Interrupt + SCP interrupt (DEL3T) + core domain reset) Mode */
- > 126		regval = readq(priv->base + GTI_CWD_WDOG(priv->wdt_timer_idx));
-   127		regval |= GTI_CWD_WDOG_MODE_INT_DEL3T_RST;
-   128		writeq(regval, priv->base + GTI_CWD_WDOG(priv->wdt_timer_idx));
-   129	
-   130		return 0;
-   131	}
-   132	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+>
