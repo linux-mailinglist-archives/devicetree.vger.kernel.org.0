@@ -2,134 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C03F6FC74B
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 15:00:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 421CF6FC74F
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 15:00:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235186AbjEINAC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 09:00:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35342 "EHLO
+        id S233962AbjEINAY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 09:00:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234887AbjEINAB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 09:00:01 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AAFF3580
-        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 06:00:00 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-50c8d87c775so7421236a12.3
-        for <devicetree@vger.kernel.org>; Tue, 09 May 2023 06:00:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683637199; x=1686229199;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=G+9mGz2olZyp2vtJ/qJYAQmIIlfabvTCR0scDUZiAOU=;
-        b=szpc91rQUSHtSFdVYHCp9IrJiVFYNxzJdu3PPOzBDFzd+8/EGzWzBMPgLbCwW1vWTD
-         vGNmfDQgx97LfxfQpfwI5xkoEgUMTiZXSMeT9d5F2XfjSHb0RGbKMkesyVmEb331+atJ
-         9P3NKFMTdZmuwnCWCPuGXgmeeACwzWYNIToCjstfxrzh60XzGLTe2bBmnL5Rlskou0dS
-         nrxG/2d8RkW8GNWkBw3kkUuTCk2CQ15B9RD692OlsCDp7R69JUOj8rTDdRIxofxFhhMB
-         UtK9kGzUJ5egTjvaIzk0heIAt2dLwfMZhIFhf80Qbq6AiwVZ1cdv2fIjrTSre/rUoyFc
-         t3ug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683637199; x=1686229199;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=G+9mGz2olZyp2vtJ/qJYAQmIIlfabvTCR0scDUZiAOU=;
-        b=UfyqKktcxjnEeM8fN0KfVFJB2OtDxykc2a2p30/gYrHKLZRCb1DSvaCrOVyNhUw/KQ
-         8u/9SjqneKbVI4pGmXn04mxUDz/DSsVZfzkRwalbudDllvsVWkSpd2esC2NcUQAghdWI
-         dXo4ZMsoSHT3XB2STVs7vll2oonWmbBfVHoxdKYFG1uTCtQvReN7SKLIQeZM8dlwZaG6
-         UtISPlY3pZyb7jRwxkabKSVHy5xwLo0/gomPCcNXg/XYEpG59fMzJwieLl24yLwWoKxv
-         iS+D+FAohup/JppSawVu56RbVaieHvpKx+ws1ybjE5F6de/dtNMk+//1kou6p0FwVa5p
-         6zzg==
-X-Gm-Message-State: AC+VfDxC9aR+h+jy65Oy9EFDzLN/CBDz9F/ZRwZGq6U8dcYeAFh1vGWu
-        D5IpK9OjaTm+Cpt8w1TRugNP/A==
-X-Google-Smtp-Source: ACHHUZ4SQOpesLYnHmb7Xa33pnHCKc6mVBqlA8+lVgIBhzI/j2qGHufmwenHfiKhnJrjkSG4mDyYmA==
-X-Received: by 2002:aa7:d659:0:b0:508:14f2:399c with SMTP id v25-20020aa7d659000000b0050814f2399cmr12887901edr.10.1683637198938;
-        Tue, 09 May 2023 05:59:58 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:d0d5:7818:2f46:5e76? ([2a02:810d:15c0:828:d0d5:7818:2f46:5e76])
-        by smtp.gmail.com with ESMTPSA id l23-20020aa7c3d7000000b004f9e6495f94sm742609edr.50.2023.05.09.05.59.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 May 2023 05:59:57 -0700 (PDT)
-Message-ID: <78fff833-77a7-f85c-f5a1-8f956db4ff67@linaro.org>
-Date:   Tue, 9 May 2023 14:59:56 +0200
+        with ESMTP id S231544AbjEINAX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 09:00:23 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 477463580;
+        Tue,  9 May 2023 06:00:22 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9F0E5645F4;
+        Tue,  9 May 2023 13:00:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50A1FC433EF;
+        Tue,  9 May 2023 13:00:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1683637220;
+        bh=/gNuNjyjzD94LeQPPBnUSbLHlkRpw/7XLI3M8KSY0B8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=qHeYapALQh/WPbieIv0prg07vJ/QNowDSaROx28vil1Kr/9Fl2ayv8WSHG63XePea
+         GaKQ03lvXRMUya1mEwnOmBWwwXG2WbtgIKm6f7YWQTlp4SIrFQTwc3e7WNvb5b1Oak
+         9cE80UU45ZYo3SKZp1iqT4ThmLAE7UCZhX7Bm8EGRyzR/Zu4kJutfAh1oJxsYoc3uF
+         mkJD+NcGKbFucI/QNOHZG3rRXH/IMMYFNkKCgqA15Zz6IGOOfS43lezGIPTppWZTOt
+         ZRAOMvwGv+QqT6zFoUGpo5q1N0C1rc2WLmIemAi1QeHbvdja9seddcfXaEg/6MqR8G
+         0YL8mjCYiM/OQ==
+Date:   Tue, 9 May 2023 18:30:16 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-phy@lists.infradead.org,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Camelia Alexandra Groza <camelia.groza@nxp.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linuxppc-dev@lists.ozlabs.org,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v14 06/15] clk: Add Lynx 10G SerDes PLL driver
+Message-ID: <ZFpD4I2LK9YIQQat@matsya>
+References: <20230413160607.4128315-1-sean.anderson@seco.com>
+ <20230413160607.4128315-7-sean.anderson@seco.com>
+ <ZFi9t84UoIfUyHhi@matsya>
+ <1012f955-180e-0013-cc13-1da10991b5f5@seco.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v3] dt-bindings: rtc: isl1208: Convert to json-schema
-Content-Language: en-US
-To:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Trent Piepho <tpiepho@gmail.com>,
-        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-References: <20230505091720.115675-1-biju.das.jz@bp.renesas.com>
- <a55c7ac8-1037-4509-a16e-83c7894b1a4d@linaro.org>
- <TYCPR01MB5933076BBF16DB7FE20F56C186769@TYCPR01MB5933.jpnprd01.prod.outlook.com>
- <TYCPR01MB5933CCFDDD9F1454BDE852E586769@TYCPR01MB5933.jpnprd01.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <TYCPR01MB5933CCFDDD9F1454BDE852E586769@TYCPR01MB5933.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1012f955-180e-0013-cc13-1da10991b5f5@seco.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/05/2023 13:18, Biju Das wrote:
-> Hi Krzysztof Kozlowski,
-> 
->> Subject: RE: [PATCH v3] dt-bindings: rtc: isl1208: Convert to json-schema
->>
->> Hi Krzysztof Kozlowski,
->>
->> Thanks for the feedback.
->>
->>> Subject: Re: [PATCH v3] dt-bindings: rtc: isl1208: Convert to
->>> json-schema
->>>
->>> On 05/05/2023 11:17, Biju Das wrote:
->>>> Convert the isl1208 RTC device tree binding documentation to json-
->> schema.
->>>>
->>>> Update the example to match reality.
->>>>
->>>> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
->>>
->>> Thank you for your patch. There is something to discuss/improve.
->>>
->>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
->>>> +---
->>>> +$id:
->>>> +
->>>> +title: Intersil ISL1209/19 I2C RTC/Alarm chip with event in
->>>> +
->>>> +maintainers:
->>>> +  - Trent Piepho <tpiepho@gmail.com>
->>>> +
->>>> +description: |
->>>
->>> Do not need '|' unless you need to preserve formatting.
->>
->> OK, will remove it.
-> 
-> I get an error after removing '|'. 
-> 
-> ./Documentation/devicetree/bindings/rtc/isil,isl1208.yaml:13:42: [error] missing starting space in comment (comments)
-> ./Documentation/devicetree/bindings/rtc/isil,isl1208.yaml:14:3: [error] syntax error: expected <block end>, but found '<scalar>' (syntax)
+On 08-05-23, 11:31, Sean Anderson wrote:
+> On 5/8/23 05:15, Vinod Koul wrote:
 
-Drop the # from the pin name.
+> >> +int lynx_clks_init(struct device *dev, struct regmap *regmap,
+> >> +		   struct clk *plls[2], struct clk *ex_dlys[2], bool compat);
+> > 
+> > so you have an exported symbol for clk driver init in phy driver header?
+> > can you please explain why..?
+> 
+> So that it can be called at the appropriate time during the phy's probe function.
+> 
+> This is really an integral part of the phy driver, but I was directed to split it
+> off and put it in another subsystem's directory.
 
-Best regards,
-Krzysztof
+That is right clock should be belong to clk driver. IIUC the hardware is
+phy along with clocks and you are doing the clk init. I think that may
+not be correct model, you should really have a device tree node to
+represent the clock and the phy node
 
+
+What stops this from being modelled as it is in the hardware?
+
+-- 
+~Vinod
