@@ -2,300 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 185766FC533
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 13:41:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 791D56FC573
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 13:54:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235602AbjEILku (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 07:40:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55260 "EHLO
+        id S235594AbjEILyf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 07:54:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235426AbjEILk1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 07:40:27 -0400
-Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A913F7AB8
-        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 04:40:04 -0700 (PDT)
-Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-55a829411b5so52557687b3.1
-        for <devicetree@vger.kernel.org>; Tue, 09 May 2023 04:40:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683632404; x=1686224404;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=bN0WAPIA5nuw/1zElaEn49wysrmGwuQYJKZRalwsUmw=;
-        b=OnVSNJpVblnnwgiSlmyGmsdKuG3dohMYP320MHE3X4o01oIXybQnQM1iy5Ut3lBakK
-         3sZdLsbhCy3/fxaF9IXvbNmvCCaod8xrxQSf9BLysPEd4r7KrC3YZ3ymJzOUKs0ZeJd5
-         /No/u12ExgDFYUuIYO5EZCmpSO5vboCsfrYqCUKqt3NpsRY4+DFEH+qT7yyC+xxbdhOF
-         LiiDYQuoyqRAjKY4lSobsCTS+gpzpv62+kvCw3f1nO5hv7TobOjOnq1cKV2HKQ+yzQ/q
-         I2GC5Pa1x8CA6p5pl9RLVY7T3VYspAWtYu2RBaN74khJoiDF1wutCQWbz8Yp7AREd2Qh
-         bbvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683632404; x=1686224404;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=bN0WAPIA5nuw/1zElaEn49wysrmGwuQYJKZRalwsUmw=;
-        b=i62ahZDLGDGFRKbY+Br03uCZySqwsY2wZTH9yn50NwUXOVmgS1cjbPPb1UhN1sEG9o
-         RW/JzJbfxXOY1Xj1PzMAfdqlqQLTzOvDexIWAmsamSKi7SAtxb9boeoMsnKs7y40NSrI
-         ZEsS5IHekHxwHuA1qKLtfkh85vLLyowO+KPPcW9l3FbArwxvl/sXggNcC7doRKOYK5xj
-         4Zclo5B0SHFxqugPr88N9GsXJBXaQcf8l4u1KdOB1pcd80foa1sOrLzMTEsoFfqePxwj
-         03PFp+2ZIJKbg59CdXJOm42vd0siNavS2/AQjzjVxYxqLImtu1unw4rjU1WypbjGN2oN
-         1B9Q==
-X-Gm-Message-State: AC+VfDyR3A3/xF4dk+WfO8qjebdZudYSW1vNl1YNweCjEpnya7ziYEWL
-        4hrBzRFQ87z8TUegrP9N0sffGX4Uds4rl8tWWyNKtA==
-X-Google-Smtp-Source: ACHHUZ4IK+Xjjbd0RHBKuyhtmQCkhzk0vW6RReCxJjstJev4rrbrHQHu9S/XcMyRbej258JMZDcoQCQLQVx4GF5b0aQ=
-X-Received: by 2002:a25:40d2:0:b0:b9d:b22e:6080 with SMTP id
- n201-20020a2540d2000000b00b9db22e6080mr14726641yba.7.1683632403741; Tue, 09
- May 2023 04:40:03 -0700 (PDT)
+        with ESMTP id S235423AbjEILye (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 07:54:34 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 237981713;
+        Tue,  9 May 2023 04:54:33 -0700 (PDT)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 349Ajjuo025009;
+        Tue, 9 May 2023 11:54:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=C0IUByqP6P3Y1odG476PVj3s63YZi31x7NmJwEDO1L8=;
+ b=GCQWGwXAhcdNdSW1WjTrW1XVOW1xhEGggDI6Yg0oUx65lU7/JTjE4OeEGkeHtFb6ljix
+ qMsnDMBZ1jKToUsN1G7+5d+iTB0a1vQboPqjNgJHwdtctEVM9DMbX45QmiVmemPrKZXD
+ p5K32PUspRklRp85t/HoVhDT0C0jko2hW4p4w7ITnaXqX1M5OvpBc5V316qbRHa2N8rb
+ r+DmjC+u0Qsi8b09rFEtQTasgYwkWGdifEigtU4tIPjNjklwITKyjr868L7a9xWiQkDe
+ qj3RkQI5JAdpSfuedAAVwIy4l141HnkEb0IQmpHYbCGsXVX1r1brdjfV9WvqYDpgHXth QA== 
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qf7861mak-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 09 May 2023 11:54:22 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+        by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 349BsLo8021268
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 9 May 2023 11:54:21 GMT
+Received: from varda-linux.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Tue, 9 May 2023 04:54:15 -0700
+From:   Varadarajan Narayanan <quic_varada@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <vkoul@kernel.org>,
+        <kishon@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <gregkh@linuxfoundation.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <quic_wcheng@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-clk@vger.kernel.org>
+CC:     Varadarajan Narayanan <quic_varada@quicinc.com>
+Subject: [PATCH v11 0/9] Enable IPQ9754 USB
+Date:   Tue, 9 May 2023 17:24:00 +0530
+Message-ID: <cover.1683630932.git.quic_varada@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-References: <cover.1683628357.git.quic_schowdhu@quicinc.com> <35863b47c04c2edd7ae49c57d23682aba6111d4f.1683628357.git.quic_schowdhu@quicinc.com>
-In-Reply-To: <35863b47c04c2edd7ae49c57d23682aba6111d4f.1683628357.git.quic_schowdhu@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Tue, 9 May 2023 14:39:53 +0300
-Message-ID: <CAA8EJppkqN6cuYUCC-THb8wb=deRv-01pbS0JgSGf-VXnm8qEg@mail.gmail.com>
-Subject: Re: [PATCH V6 2/3] soc: qcom: boot_stat: Add Driver Support for Boot Stats
-To:     Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Sibi Sankar <quic_sibis@quicinc.com>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: JmnXnQMhY8YL3DRQAIbv3Xfm4zeAbTyl
+X-Proofpoint-ORIG-GUID: JmnXnQMhY8YL3DRQAIbv3Xfm4zeAbTyl
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-09_08,2023-05-05_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxscore=0
+ suspectscore=0 clxscore=1011 lowpriorityscore=0 malwarescore=0
+ phishscore=0 impostorscore=0 mlxlogscore=778 bulkscore=0 spamscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2305090095
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 9 May 2023 at 13:53, Souradeep Chowdhury
-<quic_schowdhu@quicinc.com> wrote:
->
-> All of Qualcomm's proprietary Android boot-loaders capture boot time
-> stats, like the time when the bootloader started execution and at what
-> point the bootloader handed over control to the kernel etc. in the IMEM
-> region. This information is captured in a specific format by this driver
-> by mapping a structure to the IMEM memory region and then accessing the
-> members of the structure to show the information within debugfs file.
-> This information is useful in verifying if the existing boot KPIs have
-> regressed or not. The information is shown in milliseconds, a sample
-> log from sm8450(waipio) device is as follows:-
->
-> /sys/kernel/debug/qcom_boot_stats # cat abl_time
-> 17898 ms
-> /sys/kernel/debug/qcom_boot_stats # cat pre_abl_time
-> 2879 ms
->
-> The Module Power Manager(MPM) sleep counter starts ticking at the PBL
-> stage and the timestamp generated by the sleep counter is logged by
-> the Qualcomm proprietary bootloader(ABL) at two points-> First when it
-> starts execution which is logged here as "pre_abl_time" and the second
-> when it is about to load the kernel logged as "abl_time". Documentation
-> details are also added in Documentation/ABI/testing/debugfs-driver-bootstat
->
-> Signed-off-by: Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-> ---
->  .../ABI/testing/debugfs-driver-bootstat       |  17 +++
->  drivers/soc/qcom/Kconfig                      |  10 ++
->  drivers/soc/qcom/Makefile                     |   1 +
->  drivers/soc/qcom/boot_stats.c                 | 100 ++++++++++++++++++
->  4 files changed, 128 insertions(+)
->  create mode 100644 Documentation/ABI/testing/debugfs-driver-bootstat
->  create mode 100644 drivers/soc/qcom/boot_stats.c
->
-> diff --git a/Documentation/ABI/testing/debugfs-driver-bootstat b/Documentation/ABI/testing/debugfs-driver-bootstat
-> new file mode 100644
-> index 000000000000..7127d15d9f15
-> --- /dev/null
-> +++ b/Documentation/ABI/testing/debugfs-driver-bootstat
-> @@ -0,0 +1,17 @@
-> +What:          /sys/kernel/debug/qcom_boot_stats/pre_abl_time
+This patch series adds the relevant phy and controller
+configurations for enabling USB on IPQ9754
 
-Could you please change these bindings to be generic?
+Depends on:
+https://lore.kernel.org/all/20230217142030.16012-1-quic_devipriy@quicinc.com/
+https://lore.kernel.org/lkml/20230407155727.20615-1-quic_devipriy@quicinc.com/T/
 
-s/qcom_boot_stats/boot_stats/
-s/pre_abl_time/pre_bootloader_msec/
-s/abl_time/bootloader_msec/
+[v11]:
+	- Rename dwc_0 -> usb_0_dwc3
+	- Minor change in qcom,sc8280xp-qmp-usb3-uni-phy.yaml to factor in
+	  latest updates to the file
 
-This way other platforms might also use the same file structure.
+[v10]:
+	- Fix regulator definitions
+	- Address couple of other comments
 
-> +Date:           May 2023
-> +Contact:        Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-> +Description:
-> +               This file is used to read the KPI value pre abl time.
-> +               It shows the time in milliseconds from the starting
-> +               point of PBL to the point when the control shifted
-> +               to ABL(Qualcomm proprietary bootloader).
-> +
-> +What:           /sys/kernel/debug/qcom_boot_stats/abl_time
-> +Date:           May 2023
-> +Contact:        Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-> +Description:
-> +               This file is used to read the KPI value abl time.
-> +               It show the duration in milliseconds from the
-> +               time control switched to ABL to the point when
-> +               the linux kernel started getting loaded.
-> diff --git a/drivers/soc/qcom/Kconfig b/drivers/soc/qcom/Kconfig
-> index a491718f8064..04141236dcdd 100644
-> --- a/drivers/soc/qcom/Kconfig
-> +++ b/drivers/soc/qcom/Kconfig
-> @@ -16,6 +16,16 @@ config QCOM_AOSS_QMP
->           subsystems as well as controlling the debug clocks exposed by the Always On
->           Subsystem (AOSS) using Qualcomm Messaging Protocol (QMP).
->
-> +config QCOM_BOOTSTAT
-> +       tristate "Qualcomm Technologies, Boot Stat driver"
-> +       depends on ARCH_QCOM || COMPILE_TEST
-> +       depends on DEBUG_FS
-> +       help
-> +         This option enables driver support for boot stats. Boot stat driver logs
-> +         the kernel bootloader information by accessing the imem region. These
-> +         information are exposed in the form of debugfs files. This is used to
-> +         determine if there is any regression in boot timings.
-> +
->  config QCOM_COMMAND_DB
->         tristate "Qualcomm Command DB"
->         depends on ARCH_QCOM || COMPILE_TEST
-> diff --git a/drivers/soc/qcom/Makefile b/drivers/soc/qcom/Makefile
-> index 0f43a88b4894..ae7bda96a539 100644
-> --- a/drivers/soc/qcom/Makefile
-> +++ b/drivers/soc/qcom/Makefile
-> @@ -1,6 +1,7 @@
->  # SPDX-License-Identifier: GPL-2.0
->  CFLAGS_rpmh-rsc.o := -I$(src)
->  obj-$(CONFIG_QCOM_AOSS_QMP) += qcom_aoss.o
-> +obj-$(CONFIG_QCOM_BOOTSTAT) += boot_stats.o
->  obj-$(CONFIG_QCOM_GENI_SE) +=  qcom-geni-se.o
->  obj-$(CONFIG_QCOM_COMMAND_DB) += cmd-db.o
->  obj-$(CONFIG_QCOM_CPR)         += cpr.o
-> diff --git a/drivers/soc/qcom/boot_stats.c b/drivers/soc/qcom/boot_stats.c
-> new file mode 100644
-> index 000000000000..ca67b6b5d8eb
-> --- /dev/null
-> +++ b/drivers/soc/qcom/boot_stats.c
-> @@ -0,0 +1,100 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2013-2019, 2021 The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#include <linux/debugfs.h>
-> +#include <linux/err.h>
-> +#include <linux/io.h>
-> +#include <linux/init.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_address.h>
-> +#include <linux/platform_device.h>
-> +
-> +#define TO_MS(timestamp) ((timestamp * 1000) / 32768)
+[v9]:
+	- Update bindings to make power-domains as optional since
+	  IPQ9574 doesn't have GDSCs
 
-Quoting v4 question, which got no answer:
+[v8]:
+	- Update bindings for the clock name change
+[v7]:
+	- com_aux -> cfg_ahb in patch 7
 
-Some of the platforms DTs define 32KHz clock instead of 32.768 KHz
-What should be the divisor in this case?
+[v6]:
+        - Incorporated review comments
+	- Resolve make dtbs_check messages
+	- Fixed pcs_usb offset
+	- Board dts file name changed
 
-> +
-> +/**
-> + *  struct boot_stats - timestamp information related to boot stats
-> + *  @abl_start: Time for the starting point of the abl
-> + *  @abl_end: Time when the kernel starts loading from abl
-> + */
-> +struct boot_stats {
-> +       u32 abl_start;
-> +       u32 abl_end;
-> +} __packed;
-> +
-> +struct bs_data {
-> +       struct boot_stats __iomem *b_stats;
-> +       struct dentry *dbg_dir;
-> +};
-> +
-> +static void populate_boot_stats(char *abl_str, char *pre_abl_str, struct bs_data *drvdata)
-> +{
-> +        u32 abl_time, pre_abl_time;
-> +
-> +        abl_time = TO_MS(drvdata->b_stats->abl_end) - TO_MS(drvdata->b_stats->abl_start);
-> +        sprintf(abl_str, "%u ms", abl_time);
-> +
-> +        pre_abl_time =  TO_MS(drvdata->b_stats->abl_start);
-> +        sprintf(pre_abl_str, "%u ms", pre_abl_time);
+[v5]:
+        - Incorporated review comments
+	- 'make dtbs_check' giving the following messages since
+	  ipq9574 doesn't have power domains. Hope this is ok
 
-Another point from v4:
+		/local/mnt/workspace/varada/varda-linux/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dtb: phy@7d000: 'power-domains' is a required property
+        	From schema: /local/mnt/workspace/varada/varda-linux/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml
+		/local/mnt/workspace/varada/varda-linux/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dtb: usb@8a00000: 'power-domains' is a required property
+        	From schema: /local/mnt/workspace/varada/varda-linux/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
 
-It would be better to move the unit to the file name and include just
-the number.
+	- Move qmp phy DT node to newer specification
 
-> +}
-> +
-> +static int boot_stats_probe(struct platform_device *pdev)
-> +{
-> +       char abl_str[20], pre_abl_str[20], *abl, *pre_abl;
-> +       struct device *bootstat_dev = &pdev->dev;
-> +       struct bs_data *drvdata;
-> +
-> +       drvdata = devm_kzalloc(bootstat_dev, sizeof(*drvdata), GFP_KERNEL);
-> +       if (!drvdata)
-> +               return dev_err_probe(bootstat_dev, -ENOMEM, "failed to allocate memory");
-> +       platform_set_drvdata(pdev, drvdata);
-> +
-> +       drvdata->b_stats = devm_of_iomap(bootstat_dev, bootstat_dev->of_node, 0, NULL);
-> +       if (IS_ERR(drvdata->b_stats))
-> +               return dev_err_probe(bootstat_dev, PTR_ERR(drvdata->b_stats),
-> +                                    "failed to map imem region");
-> +
-> +       drvdata->dbg_dir = debugfs_create_dir("qcom_boot_stats", NULL);
-> +       if (IS_ERR(drvdata->dbg_dir))
-> +               return dev_err_probe(bootstat_dev, PTR_ERR(drvdata->dbg_dir),
-> +                                    "failed to create debugfs directory");
-> +
-> +       populate_boot_stats(abl_str, pre_abl_str, drvdata);
-> +       abl = abl_str;
-> +       pre_abl = pre_abl_str;
-> +
-> +       debugfs_create_str("pre_abl_time", 0400, drvdata->dbg_dir, (char **)&pre_abl);
-> +       debugfs_create_str("abl_time", 0400, drvdata->dbg_dir, (char **)&abl);
-> +
-> +       return 0;
-> +}
-> +
-> +void boot_stats_remove(struct platform_device *pdev)
-> +{
-> +       struct bs_data *drvdata = platform_get_drvdata(pdev);
-> +
-> +       debugfs_remove_recursive(drvdata->dbg_dir);
-> +}
-> +
-> +static const struct of_device_id boot_stats_dt_match[] = {
-> +       { .compatible = "qcom,imem-bootstats" },
-> +       { }
-> +};
-> +MODULE_DEVICE_TABLE(of, boot_stats_dt_match);
-> +
-> +static struct platform_driver boot_stat_driver = {
-> +       .probe  = boot_stats_probe,
-> +       .remove_new = boot_stats_remove,
-> +       .driver = {
-> +               .name = "qcom-boot-stats",
-> +               .of_match_table = boot_stats_dt_match,
-> +       },
-> +};
-> +module_platform_driver(boot_stat_driver);
-> +
-> +MODULE_DESCRIPTION("Qualcomm Technologies Inc. Boot Stat driver");
-> +MODULE_LICENSE("GPL");
-> --
-> 2.17.1
->
+[v4]:
+        - Incorporated review comments
+	- Address all 'make dtbs_check' errors
 
+[v3]:
+        - Incorporated review comments regarding coding style
+
+[v2]:
+        - Incorporated review comments regarding coding style,
+          maintaining sorted order of entries and unused phy register
+          offsets
+        - Removed NOC clock entries from DT node (will be implemented
+          later with interconnect support)
+        - Fixed 'make dtbs_check' errors/warnings
+
+[v1]:
+        https://lore.kernel.org/linux-arm-msm/5dac3aa4-8dc7-f9eb-5cf3-b361efdc9494@linaro.org/T/
+
+Varadarajan Narayanan (9):
+  dt-bindings: phy: qcom,qusb2: Document IPQ9574 compatible
+  dt-bindings: phy: qcom,qmp-usb: Add IPQ9574 USB3 PHY
+  dt-bindings: usb: dwc3: Add IPQ9574 compatible
+  clk: qcom: gcc-ipq9574: Add USB related clocks
+  phy: qcom-qusb2: add QUSB2 support for IPQ9574
+  phy: qcom: qmp: Update IPQ9574 USB Phy initialization Sequence
+  arm64: dts: qcom: ipq9574: Add USB related nodes
+  arm64: dts: qcom: ipq9574: Add LDO regulator node
+  arm64: dts: qcom: ipq9574: Enable USB
+
+ .../devicetree/bindings/phy/qcom,qusb2-phy.yaml    |   3 +-
+ .../phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml        |  44 ++++++--
+ .../devicetree/bindings/usb/qcom,dwc3.yaml         |   3 +-
+ arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts        |  30 ++++++
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi              | 104 +++++++++++++++++++
+ drivers/clk/qcom/gcc-ipq9574.c                     |  37 +++++++
+ drivers/phy/qualcomm/phy-qcom-qmp-usb.c            | 115 +++++++++++++++++++++
+ drivers/phy/qualcomm/phy-qcom-qusb2.c              |   3 +
+ include/dt-bindings/clock/qcom,ipq9574-gcc.h       |   2 +
+ 9 files changed, 333 insertions(+), 8 deletions(-)
 
 -- 
-With best wishes
-Dmitry
+2.7.4
+
