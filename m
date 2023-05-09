@@ -2,95 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 32D616FBF05
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 08:07:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E4706FBF10
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 08:13:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234807AbjEIGHr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 02:07:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58856 "EHLO
+        id S233835AbjEIGNk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 02:13:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234762AbjEIGHk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 02:07:40 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75EE8A5F3
-        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 23:07:38 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-50b9ef67f35so9879355a12.2
-        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 23:07:38 -0700 (PDT)
+        with ESMTP id S233401AbjEIGNj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 02:13:39 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DBA493C1
+        for <devicetree@vger.kernel.org>; Mon,  8 May 2023 23:13:38 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-50bc1612940so10235702a12.2
+        for <devicetree@vger.kernel.org>; Mon, 08 May 2023 23:13:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683612457; x=1686204457;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jJwJ3lUCWaeI9xt1H2n4gYB2pq8BNEnon5LHiMEUlm0=;
-        b=oDETymYlpE3eA939L9Tgg9ZoFD35m5Kz2/s9k+Ze/oXILZs7Y8Te45zLnH0VEEU7mg
-         YBPWV1KOVyTFEYgnPTve4frViqbQrJ7JiHLD6bcLuHx7oPM3S79RJbmbQ0thdbiKg0CP
-         spJekN+fPAhKzuonevMBQGXGlf2DKeKVI2Hkj6c5w/p5HkAq2JSKBZCGWA21fEwoQw4x
-         BBR4KoToBRrssN6wtF8LrXpCBz3VXQgj+TP8mNe70JRKEv0xRp22MSa1vI537V+Q9hiw
-         Xj70xIclhRa/wFh4qJvGX5Yf4qGlZuzLm9+2ivNXLHF6IaUu46t5ZtdAFjkZVomQjd9W
-         rUeA==
+        d=linaro.org; s=google; t=1683612817; x=1686204817;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=yy1bnxONg+wwiiP6uKM33WWPud1zRtBGR21Fn/jN2EM=;
+        b=WFoep9EWJKeb9JxyM4rVFgSC7qidYIbBvw4NUHWAvRoqsu2b5z855y6oO7N61KxYr+
+         J8N1bqNDp4vVWPo+PQOeVnVB+ZlK7VbojgNE3sKM6y1Rsa0mgAoZ/6XiRcB+THwmVIfH
+         wrUVYNfEH6QR9xnZom3qRgWkMo5l7zIu6mlOsGPe/W5bfwtl4JXwntT64Bf4VCfK7S63
+         B4hbk6I11i3gzj086D8P4uVT64ykWqHv6EXlx8peUNwLD52YMPJ7/tQ/i1r39S+mOS3Y
+         3ouJw1ZI11fCIdO1y3fsHH0BFWL2zs8ZsHj6hMb8hJ2C6hwZ/mjdgJtyOl9SWkZXSXXz
+         sigw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683612457; x=1686204457;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jJwJ3lUCWaeI9xt1H2n4gYB2pq8BNEnon5LHiMEUlm0=;
-        b=AbTwOBajWQEz0H+GhsKj/tPpe1GQtA9slKi4e9AMhFnIo1BvpV7tnAsy85e8msLoxm
-         s6g079Tq7yk+uDyPTat1pWR+m0lqWL2RoZjYh6z/Q2AfOZb82CdCBIYFM5BaLKYCCizx
-         LqeSqL+CTaotHYBb1kRq6UV6n3OR98IzDc6aFce+tvZwxe/jQ8FvayA5da+uAC2MNna6
-         bhOF09CFhV7P9b4lz1Ba26WcC+yXfo2PgxSCTwEGTivePoGFUJxAFsIantTwZ+5RfUe/
-         MgMfYMh7k2X0XkRWWGhga8sy+uNZ7n+FZ2FII5CsT+a0wT9kQBqp3/fGzRxJkuKLQz0/
-         Ughg==
-X-Gm-Message-State: AC+VfDybs8DS1JSD+d5jscdonMM3uatU7MyPsJUfg7X68oZ5rjNKahhR
-        QQTCq3ljQk5jOkQ424ndmP0OkA==
-X-Google-Smtp-Source: ACHHUZ7AL41IuvXDZ9vfBclUbizEzgEi9z4TdWexztQRYu3SjKmN2WB3INZq2YNBvLZId1k/q7Fcwg==
-X-Received: by 2002:aa7:cccb:0:b0:504:a359:3fa8 with SMTP id y11-20020aa7cccb000000b00504a3593fa8mr10194768edt.20.1683612456917;
-        Mon, 08 May 2023 23:07:36 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:d0d5:7818:2f46:5e76? ([2a02:810d:15c0:828:d0d5:7818:2f46:5e76])
-        by smtp.gmail.com with ESMTPSA id o22-20020aa7d3d6000000b0050696c2d2f6sm328200edr.88.2023.05.08.23.07.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 May 2023 23:07:36 -0700 (PDT)
-Message-ID: <04bd4a18-0b4b-dbbb-d095-1b924b737d8c@linaro.org>
-Date:   Tue, 9 May 2023 08:07:35 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 1/2] dt-bindings: mmc: sdhci-msm: Document SC8280XP SDHCI
-Content-Language: en-US
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <20230509030136.1524860-1-quic_bjorande@quicinc.com>
+        d=1e100.net; s=20221208; t=1683612817; x=1686204817;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yy1bnxONg+wwiiP6uKM33WWPud1zRtBGR21Fn/jN2EM=;
+        b=MeKZUkOOEzy3XWOumS8E4t+y4U2Vd29lhO/T0WlPA0SJ63LiprpH94VPftlpLOHST2
+         aGUExJlbNP//DJ6kpwut2o1oDyZ9aEe+EgMLyaLvtnS8fHZvsiz+wzSB70oaEXy4mVOC
+         Hq1cbDK9eFUbZgXQ+ItBCO76ZNxBiXSScawFpv03M2uHPSYKT/9+p6inB4hCTxwiqlJ/
+         9QMj+wNUmvx1roIsODn1SkJNoFqnRKs1vzzf38YG1UzFhBGKuCnQkxDSNAjmawZXuxK8
+         L1rvTxupNwPUPmB/OXNve4YV+cL8WloURUy+dgEnlqNH7Ynm0yy4KxK2Eq/3E0ppy8xE
+         PwEw==
+X-Gm-Message-State: AC+VfDw4/zEI3yKWrJcp8wlnf+W8wVmhE4PHyejolibgvGoQgpnjYmFi
+        D8xJqSAsvetALJQyQp59pWayjr/Ust4WDAgzmcE=
+X-Google-Smtp-Source: ACHHUZ5K2lDOZ55VJjClCZvXPCey7Pl33EDZmzUP/w8F9xRvsJV5JUvHFUyq3pEiANq0Ke2vW4W7CQ==
+X-Received: by 2002:a17:906:dc93:b0:965:4b44:6f5a with SMTP id cs19-20020a170906dc9300b009654b446f5amr11425421ejc.10.1683612816820;
+        Mon, 08 May 2023 23:13:36 -0700 (PDT)
+Received: from krzk-bin ([2a02:810d:15c0:828:d0d5:7818:2f46:5e76])
+        by smtp.gmail.com with ESMTPSA id hv7-20020a17090760c700b00965be665811sm900429ejc.2.2023.05.08.23.13.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 May 2023 23:13:36 -0700 (PDT)
+Date:   Tue, 9 May 2023 08:13:33 +0200
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230509030136.1524860-1-quic_bjorande@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+To:     David Lin <CTLIN0@nuvoton.com>
+Cc:     YHCHuang@nuvoton.com, ctlin0.linux@gmail.com, broonie@kernel.org,
+        KCHSU0@nuvoton.com, SJLIN0@nuvoton.com,
+        alsa-devel@alsa-project.org, lgirdwood@gmail.com,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, WTLI@nuvoton.com
+Subject: Re: [PATCH] ASoC: dt-bindings: nau8825: Convert to dtschema
+Message-ID: <20230509061333.t7wzu2fl3iatalea@krzk-bin>
+References: <20230509051054.480412-1-CTLIN0@nuvoton.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20230509051054.480412-1-CTLIN0@nuvoton.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/05/2023 05:01, Bjorn Andersson wrote:
-> Add compatible for the SDHCI block found in SC8280XP.
+On Tue, 09 May 2023 13:10:55 +0800, David Lin wrote:
+> Convert the NAU8825 audio CODEC bindings to DT schema.
 > 
-> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> Signed-off-by: David Lin <CTLIN0@nuvoton.com>
 > ---
->  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  .../devicetree/bindings/sound/nau8825.txt     | 111 ---------
+>  .../bindings/sound/nuvoton,nau8825.yaml       | 220 ++++++++++++++++++
+>  2 files changed, 220 insertions(+), 111 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/sound/nau8825.txt
+>  create mode 100644 Documentation/devicetree/bindings/sound/nuvoton,nau8825.yaml
+> 
 
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/sound/nuvoton,nau8825.yaml:172:4: [warning] wrong indentation: expected 4 but found 3 (indentation)
+./Documentation/devicetree/bindings/sound/nuvoton,nau8825.yaml:177:4: [warning] wrong indentation: expected 4 but found 3 (indentation)
 
-Best regards,
-Krzysztof
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/nuvoton,nau8825.example.dtb: nau8825@1a: Unevaluated properties are not allowed ('interrupts' was unexpected)
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/nuvoton,nau8825.yaml
 
+See https://patchwork.ozlabs.org/patch/1778742
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
