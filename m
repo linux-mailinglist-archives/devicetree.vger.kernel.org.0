@@ -2,187 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A3EBE6FC915
-	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 16:34:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B57F36FC96D
+	for <lists+devicetree@lfdr.de>; Tue,  9 May 2023 16:48:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235638AbjEIOem (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 10:34:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45168 "EHLO
+        id S235631AbjEIOsE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 10:48:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52184 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235495AbjEIOel (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 10:34:41 -0400
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2109.outbound.protection.outlook.com [40.107.92.109])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92C68FA;
-        Tue,  9 May 2023 07:34:39 -0700 (PDT)
+        with ESMTP id S235438AbjEIOsD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 10:48:03 -0400
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on20617.outbound.protection.outlook.com [IPv6:2a01:111:f400:7eab::617])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35264E6A;
+        Tue,  9 May 2023 07:48:02 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nx20YU5ue0TAbIhFbPL9jNrvKb9CtfnO60j/0FKO39ln4u/tk7pCLqekFwsCPeioRpQor39oLwEXDbggcl3e+34RnMcjTYf7vaREmJ2JSvMXEZX0SavbueH1FmUtIuTHUqjrUFIzZvlQSvBKl/UUEn4t+8HingnayzfgbNgxjgqF/ud9v8TBxZzXetEpOgk6p08ZPH2opP753DIzq9ULz2CLEx0uhC5XGQfsHM1VadbNZJSvagyc/PaFiXsnzkgPcSpv1zYIJPTcVQx0CVp6/NH9HhntEjF4eCEmbnu9c+LR4k+TnimFasgV/tbcZoMhtaWjbaczV4MWHWDzKMm6VQ==
+ b=jpSbmnyYXAJ3f1Kd8jqrx0UG0j2RWMOULG6Aeza8aRWxfa/6nH/itkJKoZ71q6QyoU8OQ29AgrWifbFjYMK/2zv3F8ntzvdzkvbouyYC0HtI0VPLu+QxI4SLG8kAY2KCcey1C4/FXyh210xzHeaUqTYfGahcHBChe8t64S4S3DGjnvjtlQ8djhPISgL7Q9HPKH4BoNZWn9iFxQLBq35FZYswJRARxMs1sQ2h+i3T84yap6cNiVkXpDdLaaK2S+x2VoOj/jyKUsWeKyBPL6sGYfbiyChvJ/5MyoDGbkPZor+7oilQsCx8V5QTwS5R47wwxnP17qCL6Mkg576qTNDyKA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/vzxucU/wG/FdEeuelKgL/dz/0tFB0CkygPQ0Hx81AQ=;
- b=gCX0XqD+9y4WkwX1gMg0uclR3fxQCIa7X8FwaRmaYcuD/rPMgfrpf5Yld9jacbqACoxBie3RfHsNAjdkm0llqbwAsSTWiMqg08BVg2yJ8iGuPzd+gp7ClNBB6MDh6s5093sBZdHvpPCIzEthhvWRzd/3RVvjdtfb4Nl3oqUViAbf4CY3MCaLLMxqWr+YlEkJME6hekQWXASNwKqpdyQ257DLfKImdd8y95J3rfwNhx0oahx37DlWtZH1tRlNNo0VHTs0ERwcx+5rynzFzf3VtQN2pHmIGSkwYHhQ+RW8Fmr4LcGC+PCdEQN4OSYYSjf/+Z3zGf/NLfeAIINAnrDFww==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=corigine.com; dmarc=pass action=none header.from=corigine.com;
- dkim=pass header.d=corigine.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=corigine.onmicrosoft.com; s=selector2-corigine-onmicrosoft-com;
+ bh=mBMvaTwB/d/bpYmBActCJBpt6VsoE9OlH3gndvwhubk=;
+ b=M9uWp38neQnpAZvqGZTEy0HUon8+FJQ5J8f9Jr1/ys2iORxDLzLkZM5HaL7X6y/dCwjwK3lVJBZ5V7L51NP/OjMWPLgk2rS7A/LgNOxGO5fhe8G0N9csvBFL8F/ndlLRAtLrFQ4rPldR9q09p51h32CA2bdRNON5gQbab1XHxJoOu3t+wobOwEBbLvatdAp/+1fX3mX1tpEaITN/HhMN6KZxRDV3nI5sRUJp41bHCpRjU3tldUxtq5PED3oXlyVyijg/+7tsAsZjeiG1YZ6KOTaPCfKGf5aJbeNa2CR32N4jGwUu2yWQdaExGLlYzgzjIfMi4Yx6eNbEQJ3+gk7oSA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.160) smtp.rcpttodomain=linaro.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/vzxucU/wG/FdEeuelKgL/dz/0tFB0CkygPQ0Hx81AQ=;
- b=L5aUm6jcuPaouRSU6Ag9p1OGD9Qmr8+TN94js/Ufa/x1Gu101tOjZGfUxWuJPf8SNN6JEkhgmmdpxMfb4MERRQU43xu4iYioSxp4Id88PQmgA2a0NV/pOU3UYUWUgAuW+1oU7V04oNmF0pzbWsriANJHjmFJQTQBhgtgLNH736M=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=corigine.com;
-Received: from PH0PR13MB4842.namprd13.prod.outlook.com (2603:10b6:510:78::6)
- by PH0PR13MB4844.namprd13.prod.outlook.com (2603:10b6:510:76::10) with
+ bh=mBMvaTwB/d/bpYmBActCJBpt6VsoE9OlH3gndvwhubk=;
+ b=NMGFiJuA9SN2dLri2AQ4YLPenL9p5yEG7cJc02REIVzh9O3AxfIxydY4PCw4P5K1Phi4dOapFIeL+Hk7w6G0PjmP5z5RW7J2FuieRqLYonw0xWmrpGjHSpkVEPqBqRO5oM6JDGoJNzU6X2uqc1gkRbBhs5nPFZz4F3adFTcKNYdk+w27FzWx3Q1HMwasYwK/naIssoiv8OYsNlMsYBn9XgUHGPLvwo4ijw2ygr7pX/eGMoqIhlL1g+id/+BS8sfmX+0qh+bNh5fQ5x58VrxRCLQoKCFInO/jejez7TY19Wn84LrbZok4B5Cyav25dLq+UTdZQniwEKjIP1oVgGvPVw==
+Received: from BN9P223CA0017.NAMP223.PROD.OUTLOOK.COM (2603:10b6:408:10b::22)
+ by CH2PR12MB4070.namprd12.prod.outlook.com (2603:10b6:610:ae::22) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.18; Tue, 9 May
- 2023 14:34:35 +0000
-Received: from PH0PR13MB4842.namprd13.prod.outlook.com
- ([fe80::f416:544d:18b7:bb34]) by PH0PR13MB4842.namprd13.prod.outlook.com
- ([fe80::f416:544d:18b7:bb34%5]) with mapi id 15.20.6363.032; Tue, 9 May 2023
- 14:34:35 +0000
-Date:   Tue, 9 May 2023 16:34:28 +0200
-From:   Simon Horman <simon.horman@corigine.com>
-To:     Ivan Mikhaylov <fr0st61te@gmail.com>
-Cc:     Samuel Mendoza-Jonas <sam@mendozajonas.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org
-Subject: Re: [PATCH v2 4/5] net/ncsi: add shift MAC address property
-Message-ID: <ZFpZ9Ko5DHWiBXDu@corigine.com>
-References: <20230509143504.30382-1-fr0st61te@gmail.com>
- <20230509143504.30382-5-fr0st61te@gmail.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230509143504.30382-5-fr0st61te@gmail.com>
-X-ClientProxiedBy: AS4P251CA0023.EURP251.PROD.OUTLOOK.COM
- (2603:10a6:20b:5d3::20) To PH0PR13MB4842.namprd13.prod.outlook.com
- (2603:10b6:510:78::6)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.33; Tue, 9 May
+ 2023 14:47:58 +0000
+Received: from BN8NAM11FT029.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:10b:cafe::d7) by BN9P223CA0017.outlook.office365.com
+ (2603:10b6:408:10b::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.18 via Frontend
+ Transport; Tue, 9 May 2023 14:47:58 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.160) by
+ BN8NAM11FT029.mail.protection.outlook.com (10.13.177.68) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6387.18 via Frontend Transport; Tue, 9 May 2023 14:47:58 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
+ (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.5; Tue, 9 May 2023
+ 07:47:49 -0700
+Received: from [10.41.21.79] (10.126.231.37) by rnnvmail201.nvidia.com
+ (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.37; Tue, 9 May 2023
+ 07:47:43 -0700
+Message-ID: <10e2d3b4-d66f-947f-4643-97b1f04e4b31@nvidia.com>
+Date:   Tue, 9 May 2023 20:17:41 +0530
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [Patch v7 1/8] memory: tegra: add interconnect support for DRAM
+ scaling in Tegra234
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <treding@nvidia.com>, <dmitry.osipenko@collabora.com>,
+        <viresh.kumar@linaro.org>, <rafael@kernel.org>,
+        <jonathanh@nvidia.com>, <robh+dt@kernel.org>,
+        <lpieralisi@kernel.org>, <helgaas@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>, <mmaddireddy@nvidia.com>,
+        <kw@linux.com>, <bhelgaas@google.com>, <vidyas@nvidia.com>,
+        <sanjayc@nvidia.com>, <ksitaraman@nvidia.com>, <ishah@nvidia.com>,
+        <bbasu@nvidia.com>, Sumit Gupta <sumitg@nvidia.com>
+References: <20230424131337.20151-1-sumitg@nvidia.com>
+ <20230424131337.20151-2-sumitg@nvidia.com>
+ <7c6c6584-204a-ada1-d669-2e8bef50e5e5@linaro.org>
+ <3071273b-b03b-5fc8-ffa1-9b18311a3a5d@nvidia.com>
+ <5ab9687e-756d-f94b-b085-931d4ea534c1@nvidia.com>
+ <10b32e55-4d28-5405-035e-c73a514c95e4@linaro.org>
+ <14438cf9-ec78-afb5-107a-4ed954ac0eb7@nvidia.com>
+ <0815c0b5-304b-568f-5a64-d19d7d2aeb93@linaro.org>
+Content-Language: en-US
+From:   Sumit Gupta <sumitg@nvidia.com>
+In-Reply-To: <0815c0b5-304b-568f-5a64-d19d7d2aeb93@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.126.231.37]
+X-ClientProxiedBy: rnnvmail202.nvidia.com (10.129.68.7) To
+ rnnvmail201.nvidia.com (10.129.68.8)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH0PR13MB4842:EE_|PH0PR13MB4844:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7e049c3b-ee53-464e-1473-08db509a82a5
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT029:EE_|CH2PR12MB4070:EE_
+X-MS-Office365-Filtering-Correlation-Id: d5d73416-18af-4439-8d07-08db509c6169
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: GJhV6HeVjjhvSz9qUMZ2TjVOqStwzODx8Bg3TK28C1z/eNDO+QX8xT3wYtbLD1115Jd1jL0sI0ashGbP+yAue0wwKN07JsCmu7x/aDYfru98xgFhkIrela4hW98DaEotWeIXrb/s5nFFgVDy2OlXohrXwASph3czRy+LKUpmDrAYC0KrLx80UwPFnhz6YsaCuYR7P8irgCCeiHIohyzUTwX71etBPl8BkAg/BMlnDrgizIB14+zY/IsWSAqE/nrDvsCQZ6oVBPeUI/B9aAtT+sEl57GW050Hdyv+DtlwmgI60PuSE3tQ1oGSTr2X4wYH6TzwWVlyNfNqfoM2KXt5+fvwHk8hDVO6A7WPqlHL/ivVFK5A5NuHfFvxSPJ2W00AOXtxxU3jI1mSnM43A9y+6WqZusxbpfGgUVo4oC5HshF17R+QL7v9mPEe8477e+oubs/ouHbQpdZIPCqR5XFUWWhntMGNOJAplTws8rT3fTonznCQzHpmuN0dQekOrHA+ahw3u5dQY4HXWpSw3pyGtlfpek+mYCVfe/tu0c+7mIgLNCN2O1PxRWTO7m1MTrHWycWrwMNMmaLHSltpT1JQQ2afgRL7pmQOV+XbJdQp9Oo=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR13MB4842.namprd13.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(396003)(39830400003)(346002)(376002)(366004)(136003)(451199021)(2616005)(8936002)(8676002)(38100700002)(186003)(6486002)(6666004)(6506007)(6512007)(36756003)(2906002)(5660300002)(44832011)(478600001)(7416002)(316002)(66946007)(83380400001)(6916009)(66556008)(66476007)(4326008)(54906003)(86362001)(41300700001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?A+aEm8o1+aWPmRk4TqmmScC3t5L+OSGHq8xcVdH/m4qGCj7USCnsEjfQSbyO?=
- =?us-ascii?Q?7TZMrwfbNrOHo9dIK4qtGlx6wdN+/U4icJku22to/HnPXVe3PDbDI5xGjWnV?=
- =?us-ascii?Q?pOTgjxkEhkMK0LIVnn6misFR42vdAULUgQiSxlDfpqZUp0eEhU2kl4E6dAm1?=
- =?us-ascii?Q?hkl0T+m0wbJvJeDHzyNXInNl2xOCBY67o7phEI+U0f0+E3U/nhAVpVbniTmH?=
- =?us-ascii?Q?8kkZ7a855OUV3kqmoS1Y2nkV8cnS+UXxMB1EiErCHdX6SR3I6YJT3P31dRUL?=
- =?us-ascii?Q?yWKfSOUpKiUcLQ3a48iqf3HfHBu1EsQD5uWzXlOFDmmbW0lzQkISBE4FLegn?=
- =?us-ascii?Q?GcKQI8X6QPmaFXYBC6zcfe9Q9U3Ly/xUhhLFbau7vp5RTCFUXd5j+XDze0e9?=
- =?us-ascii?Q?JaE8eK/NwqqLOiJV0leCcaziwCxxKwUHrLOtob6uqEl8bNDpT6DPZQjAFLcZ?=
- =?us-ascii?Q?beFWfA0I8cGlf+v0x3Hp1UDbtY5LerpckP6Z7pBiE7W38LEgcDdqHoVihOn0?=
- =?us-ascii?Q?/028ey0MWQQfkWoooljcS60+aeAX1Hihc7A/2+nYONRcjNWvWyu/1WAagSku?=
- =?us-ascii?Q?jd8tleKrw4ghuxvXlqOEMmamYE+Z3wLKd5qIQc7uPTuxult+1cUO2MfQidU0?=
- =?us-ascii?Q?Ostyyyjw7Kj4mldOZW7/hjNsHH35QCPtiDYGVaxZhkzoI+JyuDokjhr5qg5S?=
- =?us-ascii?Q?REL1pXe21tzITVNEnCi9Opsqb+2Eq1uhLfrzhbvlN7Uxa6hrWeQZL8jojJvK?=
- =?us-ascii?Q?63Gh+svEUIo59z3+B7ajmpxkTs+hNbEUFc/I6i8WPGF4lt5jWktNX2ng298+?=
- =?us-ascii?Q?FU1m0QdVO9O6INI4aSMHCh3RjnD3OO0Hj+/q/dN2Ml7OWdDzhOOxCYgsfaFJ?=
- =?us-ascii?Q?vOXxQ/q+0AlENzMawes0c6LQipB13I19MM5BqzgWvOGT8LEKm3PQnqDauc8v?=
- =?us-ascii?Q?NGdnB33IOYBcYW6R18rF2qb87Eoe1O5vbKsAEiPzT8C3ZMiD65c1MViMIWnN?=
- =?us-ascii?Q?bYKLMUnXAFSV13WiNyjZEA0tvW0qTAuL62ptoSp9gzYdZZTobVeiWky+FVwl?=
- =?us-ascii?Q?+fgvFsINAVaWLs/ORTHv2Ooi7PpDP2f7Wd32Bne2WFSQ49tL3tQQsPtvftOs?=
- =?us-ascii?Q?bTSgu9Zmz1sM1gMhudK9yJ8LBI8HsXvWhFGzuagAuSvJ2HJcI6FMdC0i4/kf?=
- =?us-ascii?Q?D3yDD3AJEP+ARPlt7eV2JqFYiXdP/PAeHCMa1f+XCJFz6QJ/haBE8fFG8xLM?=
- =?us-ascii?Q?sBRfFgMiEX1c4CEbtrDRYXBXW+XrcqK5VgXD9Jtq6fXEgwfUAWbCUHN256Bt?=
- =?us-ascii?Q?m28w7J/kDMWgdlq0fMbEaRt0I9Slhy/WT26v/DDh7xjkthse3JRwsCB3QguG?=
- =?us-ascii?Q?1j376gfJDrU7BkMY5m/w4u1JmxY6T4rFFy8QR4DWMg4+vxtv0pszms2PCuJa?=
- =?us-ascii?Q?AIzmi/+ffNufXMCxg6nIO6qkSPDndxCEoVaIBthuj+ny+4CK2aEy1riFjg0l?=
- =?us-ascii?Q?LMsQfzL8O1JVfmnYoIyeot0s/KWcmGCVZIk31MlJvCFim4ywiVLyFmOINJw5?=
- =?us-ascii?Q?evk9H1Wn+/MjTfZWQy3v5XPBw/+3ZnwCgznMRxir1RSE8RoN1JDENFAWPZV7?=
- =?us-ascii?Q?6jgHsoRkiB8Ir6yAc8+rsGT4m/v9A8dey60FKAt+iaV4SUJXrgtABLBrqDeM?=
- =?us-ascii?Q?olptjQ=3D=3D?=
-X-OriginatorOrg: corigine.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7e049c3b-ee53-464e-1473-08db509a82a5
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR13MB4842.namprd13.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 May 2023 14:34:35.2045
+X-Microsoft-Antispam-Message-Info: Hm1NFOYmdVbEo6lTkAsiNJOGE0sXD2tFlXTp1MY+1JQMSBW4daycBzI78SQhhSdhiFlQY5vRwybVUtd+cuAU7i5cZTZEvmcqZ6hvoByEkFYgAaWrA/Pu9CZwkYv3+70V0YmVxLThSa9HPAQJAND1bPxMsHpNiW0+MQB+q97gOB3S9gVRrW2beJXuH3JlhG5iYl+kIh+ZwPkoV0VGv7bV7M3IEh0Vq804vbR79ob/71irqIjwOniuucNxeb1V3qW/WKmFgLWWlTWHYQYndm4gNFl7CU24CLmNRBuKObDGii5ozPVR++elTCWZj67lyVzO6Hu1h4ECrUkzXfkaI5pTI+BdOwn/Oo/goZkEY7cMe+eZTuXyozLaInFX5d/hUiQMOx9sfVvCIozC2ARYggrYSP3HCRvtqpkKFdKdmLuNQcO1N1LOJu9klDYKFPRpM/djualjMHomIAUW6I+b9RSSmTzzzSVZjvRX192edvOeWgoXLgJRpYDFVFP5/lmEOnm7erRqiny6Pi+F/+in82IcTVx+LmpkZ30S7uCYhJeyJ79w3ubdQ8Hmfr4uSPXmaCmLhdewwMQ3Szw7/MIXh5ztjYGL1EiMEDVPbMmQGBUahJ94GSyC6fqcYW0cPDq3xgSXlCByF8UQqdwzuaEb/RMuY1t20IGVr/Q7BzRMVZabSGacWxVrbXg8RJ4/tGHaHGqTBopMuzeTrXsFq8lSi1EjzvBEBn/B8ZVkSFleXHwk0V8=
+X-Forefront-Antispam-Report: CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230028)(4636009)(376002)(39860400002)(396003)(346002)(136003)(451199021)(46966006)(36840700001)(40470700004)(70586007)(70206006)(356005)(7636003)(4326008)(40480700001)(40460700003)(41300700001)(426003)(336012)(316002)(31696002)(107886003)(82740400003)(16526019)(2906002)(86362001)(186003)(2616005)(36756003)(82310400005)(5660300002)(53546011)(8936002)(8676002)(7416002)(26005)(36860700001)(54906003)(16576012)(110136005)(31686004)(47076005)(478600001)(83380400001)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 May 2023 14:47:58.0609
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: fe128f2c-073b-4c20-818e-7246a585940c
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Zfx61nPNNTddJwWPtQJ95so4rHf4kYT8OVB6DUrzo0x6iDTucjzSMvTimSShKQbX7uKbaiwNZ7GkU+vs83KcWQhS0PF97CnO5vUTap6QlkM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR13MB4844
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-Network-Message-Id: d5d73416-18af-4439-8d07-08db509c6169
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT029.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4070
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        NICE_REPLY_A,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 09, 2023 at 02:35:03PM +0000, Ivan Mikhaylov wrote:
-> Add the shift MAC address property for GMA command which provides which
-> shift should be used but keep old one values for backward compatability.
 
-nit: s/compatability/compatibility/
 
-> 
-> Signed-off-by: Ivan Mikhaylov <fr0st61te@gmail.com>
-> ---
->  net/ncsi/ncsi-rsp.c | 17 ++++++++++++++++-
->  1 file changed, 16 insertions(+), 1 deletion(-)
-> 
-> diff --git a/net/ncsi/ncsi-rsp.c b/net/ncsi/ncsi-rsp.c
-> index 069c2659074b..1f108db34d85 100644
-> --- a/net/ncsi/ncsi-rsp.c
-> +++ b/net/ncsi/ncsi-rsp.c
-> @@ -9,6 +9,8 @@
->  #include <linux/netdevice.h>
->  #include <linux/etherdevice.h>
->  #include <linux/skbuff.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/of.h>
->  
->  #include <net/ncsi.h>
->  #include <net/net_namespace.h>
-> @@ -616,9 +618,12 @@ static int ncsi_rsp_handler_oem_gma(struct ncsi_request *nr, int mfr_id)
->  {
->  	struct ncsi_dev_priv *ndp = nr->ndp;
->  	struct net_device *ndev = ndp->ndev.dev;
-> +	struct platform_device *pdev;
->  	struct ncsi_rsp_oem_pkt *rsp;
->  	struct sockaddr saddr;
->  	u32 mac_addr_off = 0;
-> +	s32 shift_mac_addr = 0;
-> +	u64 mac_addr;
->  	int ret = 0;
-
-nit: please preserve reverse xmas tree - longest line to shortest - order
-     for local variables in networking code. Or in this case,
-     move towards rather than away from that pattern.
-
->  	/* Get the response header */
-> @@ -635,7 +640,17 @@ static int ncsi_rsp_handler_oem_gma(struct ncsi_request *nr, int mfr_id)
->  
->  	memcpy(saddr.sa_data, &rsp->data[mac_addr_off], ETH_ALEN);
->  	if (mfr_id == NCSI_OEM_MFR_BCM_ID || mfr_id == NCSI_OEM_MFR_INTEL_ID)
-> -		eth_addr_inc((u8 *)saddr.sa_data);
-> +		shift_mac_addr = 1;
-> +
-> +	pdev = to_platform_device(ndev->dev.parent);
-> +	if (pdev)
-> +		of_property_read_s32(pdev->dev.of_node,
-> +				     "mac-address-increment", &shift_mac_addr);
-> +
-> +	/* Increase mac address by shift value for BMC's address */
-> +	mac_addr = ether_addr_to_u64((u8 *)saddr.sa_data);
-> +	mac_addr += shift_mac_addr;
-> +	u64_to_ether_addr(mac_addr, (u8 *)saddr.sa_data);
->  	if (!is_valid_ether_addr((const u8 *)saddr.sa_data))
->  		return -ENXIO;
->  
-> -- 
-> 2.40.1
+On 09/05/23 19:06, Krzysztof Kozlowski wrote:
+> External email: Use caution opening links or attachments
 > 
 > 
+> On 09/05/2023 15:17, Sumit Gupta wrote:
+>>>>>>> +                     /*
+>>>>>>> +                      * MC driver probe can't get BPMP reference as
+>>>>>>> it gets probed
+>>>>>>> +                      * earlier than BPMP. So, save the BPMP ref got
+>>>>>>> from the EMC
+>>>>>>> +                      * DT node in the mc->bpmp and use it in MC's
+>>>>>>> icc_set hook.
+>>>>>>> +                      */
+>>>>>>> +                     mc->bpmp = emc->bpmp;
+>>>>>>
+>>>>>> This (and ()) are called without any locking. You register first the
+>>>>>> interconnect, so set() callback can be used, right? Then set() could be
+>>>>>> called anytime between tegra_emc_interconnect_init() and assignment
+>>>>>> above. How do you synchronize these?
+>>>>>>
+>>>>>> Best regards,
+>>>>>> Krzysztof
+>>>>>>
+>>>>>
+>>>>> Currently, the tegra234_mc_icc_set() has NULL check. So, it will give
+>>>>> this error.
+>>>>>     if (!mc->bpmp) {
+>>>
+>>> How does it solve concurrent accesses and re-ordering of instructions by
+>>> compiler or CPU?
+>>>
+>>
+>> Now, the "mc->bpmp" is set before tegra_emc_interconnect_init().
+>> So, until the EMC interconnect initializes, set() won't be
+>> called as the devm_of_icc_get() call will fail.
+> 
+> What if compiler puts "mc->bpmp" assignment after
+> tegra_emc_interconnect_init()?
+> 
+> What if CPU executes above assignment also after
+> tegra_emc_interconnect_init()?
+> 
+> Considering amount of code inside tegra_emc_interconnect_init() second
+> case is rather unlikely, but first possible, right?
+> 
+> Best regards,
+> Krzysztof
+> 
+
+Yes, for protection from compiler re-ordering I can add
+barrier() after the assignment.
+
+   mc->bpmp = emc->bpmp;
+   barrier();
+
+Thank you,
+Sumit Gupta
