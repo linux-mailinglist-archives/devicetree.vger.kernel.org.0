@@ -2,235 +2,300 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 659226FD43F
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 05:26:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1154F6FD484
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 05:42:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235776AbjEJD0c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 23:26:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33450 "EHLO
+        id S235385AbjEJDm2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 23:42:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46870 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235540AbjEJDZj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 23:25:39 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CBE66593;
-        Tue,  9 May 2023 20:22:49 -0700 (PDT)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34A2wf8w019001;
-        Wed, 10 May 2023 03:22:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=jYfWkb3nvw2s1Yb4lS3IVzdPiVJQmcdbojNMM9X1xmM=;
- b=C6DIND7D4p80tv7NPY9tRDm3hYbrIMjUbAKfSsDSPrmlUrs9qjHzmKXhpF0TSIBnH1K2
- lFSYneCz9/C+PTBx3at6sCS+6OwGKTXEOEbqxdOgrMkZZN3bV8IwkxFzJpQnOAprxzCh
- 7MJ+1+E/pFjORRCP4NW7IeU3IiA5ck6IXle5pnUBQ3zieb2J4OhZgi2r+QK/Ri0imWa0
- M2UdVm3SLnVA4JKKeEmuGlhy1tbc8JzW8XIq0AKSlfaZ3YCPiHJctL/IRei6qsmFA2B9
- lP4KvaXIMR9Vt8mEDSLlQuYXGWm1+UB1TnixlKFK9ywdPUX/8MpgcgEj3mJ9InpzB9UY KQ== 
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qfw3d0k1v-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 10 May 2023 03:22:09 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34A3M8HK032683
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 10 May 2023 03:22:08 GMT
-Received: from [10.233.17.245] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Tue, 9 May 2023
- 20:22:02 -0700
-Message-ID: <4535f993-156c-5401-53a8-bcf938bf24b7@quicinc.com>
-Date:   Wed, 10 May 2023 11:21:59 +0800
+        with ESMTP id S235696AbjEJDmY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 23:42:24 -0400
+Received: from mail-il1-x12a.google.com (mail-il1-x12a.google.com [IPv6:2607:f8b0:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21C684EDF
+        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 20:42:06 -0700 (PDT)
+Received: by mail-il1-x12a.google.com with SMTP id e9e14a558f8ab-335394455ecso22995145ab.1
+        for <devicetree@vger.kernel.org>; Tue, 09 May 2023 20:42:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1683690125; x=1686282125;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KoxWVoYqD+4gV3KBow/UtDgyZNAdKql45E4uDHQVhwc=;
+        b=NuuLFcl5w3cPb9iZ5sGP8fjZmIlyvc1bQ8GViAVcWB7JtZ3NFVOoSSk60Q9KsBHS+4
+         Vmb+n7F0Qh3Xn1Tov3uM0952B851pVYVlOOdtXfF8vmaJKWpOqPH4C226ffUerU/p0H/
+         praGBWo1JBM67Uk/D3hq04Y/zktciE6V0rJaE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683690125; x=1686282125;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=KoxWVoYqD+4gV3KBow/UtDgyZNAdKql45E4uDHQVhwc=;
+        b=DU3kcKQaIrSOIId9Lxj8SAWPcOpJfWIZpHTeZHSQI2RzIFLZIx8l66pgRvr6KteWXI
+         AV05Lxsx9YnZ+hZgdmyUSKkw791kCUthA/z+3XJKCmMf8L0PgK51TzQPM30HDzycltiT
+         yXtlMTNCauer9B36luPNcNACHgs4hVH0sOKTMK5npt5o1+E+IvQE1amLiKz7JROUsNEI
+         ptWVU/lasJ+tP1TVXBJfZtyQEijn7EkJFhCGZOpgz3m6RXzAEuHMsVvC7o7O2E7qSpSA
+         zfkckdjj6etGe9r+/orS0JGX+Ay5c0rmM3/3kAvP2UioGOLdSUh0gwWjggye0ZPMwP+2
+         JuaA==
+X-Gm-Message-State: AC+VfDyz31EvJpT9ypPBa7KbN0NBPiXUYeZ4h2rE1lc/NgFzltT2ikwF
+        F+pdxkQya89EIbxcthyOyF7n8h7cmH1d7Vrp/iLgyQ==
+X-Google-Smtp-Source: ACHHUZ6dSzV4MbROWJZLBDrIhEyuEGSOEy8vQrfj49GTj91xnlp3qXPHYE+dNldgd5I1sLr7cDIK1iRzi4s0q6GxRcE=
+X-Received: by 2002:a92:d245:0:b0:330:f7b3:ea4 with SMTP id
+ v5-20020a92d245000000b00330f7b30ea4mr12064340ilg.2.1683690125299; Tue, 09 May
+ 2023 20:42:05 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH v4 2/3] dt-bindings: arm: Add Coresight Dummy Trace
-Content-Language: en-US
-To:     Leo Yan <leo.yan@linaro.org>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        James Clark <james.clark@arm.com>
-CC:     Mike Leach <mike.leach@linaro.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
+References: <20230331091145.737305-1-treapking@chromium.org>
+ <20230331091145.737305-5-treapking@chromium.org> <CAE-0n51E5foFWQAsA73662_5e6XP426wuUCVVmcS5UWwiYpDmw@mail.gmail.com>
+ <CAEXTbpdcbB_z4ZGCGzc-cM74ECKyxekbroKCWFnhH8eR=4HmvA@mail.gmail.com>
+ <CAE-0n50atfmr-bFh5XtTCm4WpSijJGSe0B5JP8ni7CCYk7Bs5A@mail.gmail.com>
+ <CAE-0n51Qy-KDGHOCr4Smpebq1fCURqvJ2RJz6KAtVpv5e+DSGA@mail.gmail.com>
+ <CAEXTbpeKe1dVHp9cauMN-9nQb35oJ-ZhdFV-8BiWzjjhWAy0Zg@mail.gmail.com> <CAE-0n50bj303jou==v6eMabrZ3EL6Cq7tPJmCj9vM_B7FA8s2g@mail.gmail.com>
+In-Reply-To: <CAE-0n50bj303jou==v6eMabrZ3EL6Cq7tPJmCj9vM_B7FA8s2g@mail.gmail.com>
+From:   Pin-yen Lin <treapking@chromium.org>
+Date:   Wed, 10 May 2023 11:41:54 +0800
+Message-ID: <CAEXTbpcWfYV_58pw_VupjhAFZsUU3pkLRN_8JoASyLLBmgTYqQ@mail.gmail.com>
+Subject: Re: [PATCH v15 04/10] dt-bindings: display: bridge: anx7625: Add
+ mode-switch support
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Benson Leung <bleung@chromium.org>,
+        Daniel Scally <djrscally@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        "Paul Walmsley" <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Jonathan Corbet <corbet@lwn.net>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        <coresight@lists.linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Tao Zhang <quic_taozha@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        <linux-doc@vger.kernel.org>
-References: <20230505092422.32217-1-quic_hazha@quicinc.com>
- <20230505092422.32217-3-quic_hazha@quicinc.com>
- <958ae925-dee2-3273-0cd6-b5edc891ba70@arm.com>
- <20230505120529.GB898031@leoy-yangtze.lan>
-From:   Hao Zhang <quic_hazha@quicinc.com>
-In-Reply-To: <20230505120529.GB898031@leoy-yangtze.lan>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: ppfiNE2VQvAMtKiS4ZW5wAhZLyVorj4L
-X-Proofpoint-GUID: ppfiNE2VQvAMtKiS4ZW5wAhZLyVorj4L
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-09_16,2023-05-05_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011
- lowpriorityscore=0 malwarescore=0 impostorscore=0 adultscore=0
- mlxlogscore=999 mlxscore=0 bulkscore=0 suspectscore=0 phishscore=0
- spamscore=0 priorityscore=1501 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2304280000 definitions=main-2305100024
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Prashant Malani <pmalani@chromium.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Xin Ji <xji@analogixsemi.com>, Marek Vasut <marex@denx.de>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Lyude Paul <lyude@redhat.com>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, linux-acpi@vger.kernel.org,
+        chrome-platform@lists.linux.dev,
+        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
+        <nfraprado@collabora.com>,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Chen-Yu Tsai <wenst@chromium.org>, jagan@amarulasolutions.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Suzuki, Leo,
++Jagan who worked on a similar design and initiated the thread.
 
-On 5/5/2023 8:05 PM, Leo Yan wrote:
-> On Fri, May 05, 2023 at 11:54:03AM +0100, Suzuki Kuruppassery Poulose wrote:
-> 
-> [...]
-> 
->>> +title: ARM Coresight Dummy component
->>> +
->>> +description: |
->>> +  Coresight Dummy Trace Module is for the specific devices that kernel
->>> +  don't have permission to access or configure, e.g., CoreSight TPDMs
->>> +  on Qualcomm platforms. So there need driver to register dummy devices
->>> +  as Coresight devices. It may also be used to define components that
->>> +  may not have any programming interfaces (e.g, static links), so that
->>> +  paths can be established in the driver. Provide Coresight API for
->>> +  dummy device operations, such as enabling and disabling dummy devices.
->>> +  Build the Coresight path for dummy sink or dummy source for debugging. > +
->>> +  The primary use case of the coresight dummy is to build path in kernel
->>> +  side for dummy sink and dummy source.
->>> +
->>> +maintainers:
->>> +  - Mao Jinlong <quic_jinlmao@quicinc.com>
->>> +  - Tao Zhang <quic_taozha@quicinc.com>
->>> +  - Hao Zhang <quic_hazha@quicinc.com>
->>> +  - Yuanfang Zhang <quic_yuanfang@quicinc.com>
->>
->> Given this is a generic "CoreSight" component, I would prefer to have the
->> CoreSight subsystem maintainers listed here (too). I don't mind
->> the entries above, but would like to make sure that the subsystem
->> people are aware of the changes happening here. Please use:
->>
->> Mike Leach <mike.leach@linaro.org>
->> Suzuki K Poulose <suzuki.poulose@arm.com>
->> Leo Yan <leo.yan@linaro.org>
->  > Given I am spending little time on CoreSight reviewing, I'd like to
-> use James Clark's email address to replace my own; I believe this
-> would benefit long term maintenance.
-> 
->    James Clark <james.clark@arm.com>
-> 
-> Thanks!
+Hi Stephen,
+
+On Sat, Apr 29, 2023 at 12:47=E2=80=AFPM Stephen Boyd <swboyd@chromium.org>=
+ wrote:
 >
-Thanks for your review. I will update the maintainers in the next patch 
-series.
+> Quoting Pin-yen Lin (2023-04-20 02:10:46)
+> > On Thu, Apr 20, 2023 at 2:10=E2=80=AFPM Stephen Boyd <swboyd@chromium.o=
+rg> wrote:
+> > >
+> > > Quoting Stephen Boyd (2023-04-13 17:22:46)
+> > > > Quoting Pin-yen Lin (2023-04-13 02:50:44)
+> > > > >
+> > > > > Actually the `mode-switch` property here is mainly because
+> > > > > `fwnode_typec_mux_get`[1] and `typec_mux_match`[2] only return ma=
+tches
+> > > > > when the property is present. I am not sure what side effects wou=
+ld be
+> > > > > if I remove the ID-matching condition in `typec_mux_match`, so I =
+added
+> > > > > the property here.
+> > > > >
+> > > > > Is it feasible to remove the `mode-switch` property here given th=
+e
+> > > > > existing implementation of the Type-C framework?
+> > > >
+> > > > Omitting the mode-switch property would require changes to the type=
+-c
+> > > > framework.
+> > > >
+> > > > I'm wondering if we can have this anx driver register mode switches=
+ for
+> > > > however many endpoints exist in the output port all the time when t=
+he
+> > > > aux-bus node doesn't exist. Then the type-c framework can walk from=
+ the
+> > > > usb-c-connector to each connected node looking for a device that is=
+ both
+> > > > a drm_bridge and a mode-switch. When it finds that combination, it =
+knows
+> > > > that the mode-switch has been found. This hinges on the idea that a
+> > > > device that would have the mode-switch property is a drm_bridge and
+> > > > would register a mode-switch with the type-c framework.
+> > > >
+> > > > It may be a little complicated though, because we would only regist=
+er
+> > > > one drm_bridge for the input to this anx device. The type-c walking=
+ code
+> > > > would need to look at the graph endpoint, and find the parent devic=
+e to
+> > > > see if it is a drm_bridge.
+> > >
+> > > I've been thinking more about this. I think we should only have the
+> > > 'mode-switch' property possible when the USB input pins (port@2) are
+> > > connected and the DPI input pins are connected (port@0). Probably you
+> > > don't have that case though?
+> >
+> > No we don't have the use case that uses the USB input pins on anx7625.
+> > >
+> > > In your case, this device should register either one or two drm_bridg=
+es
+> > > that connect to whatever downstream is actually muxing the 2 DP lanes
+> > > with the USB SS lanes onto the usb-c-connector.
+> >
+> > What do you mean by "muxing the 2 DP lanes with the USB SS lanes''? In
+> > our use case, the USB data lanes from both ports are connected to a
+> > USB hub, but the DP lanes are muxed by the crosspoint switch on
+> > anx7625. HPD and AUX for the external display are muxed by the EC. You
+> > can find the diagram at
+> > https://lore.kernel.org/linux-usb/YxGzk6DNAt0aCvIY@chromium.org/
+>
+> I mean that you must have some sort of orientation switch hardware that
+> takes the 2 DP lanes and the 2 USB SuperSpeed "lanes" or "pairs" and
+> puts them all onto a usb-c-connector. The usb-c-connector node can't be
+> connected directly to the anx7625 in your diagram because there must be
+> some sort of "flipper" that does the orientation control. Otherwise the
+> usb-c-connector wouldn't work if the user flipped the cable. Probably
+> this is some TCPC or redriver controlled by the EC.
+>
+> >
+> > > If that is the EC for
+> > > ChromeOS, then the EC should have a binding that accepts some number =
+of
+> > > input ports for DP. The EC would act as a drm_bridge, or in this case
+> > > probably two bridges, and also as two type-c switches for each
+> > > drm_bridge corresponding to the usb-c-connector nodes. When DP is on =
+the
+> > > cable, the type-c switch/mux would signal to the drm_bridge that the
+> > > display is 'connected' via DRM_BRIDGE_OP_DETECT and struct
+> > > drm_bridge_funcs::detect(). Then the drm_bridge in this anx part woul=
+d
+> > > implement struct drm_bridge_funcs::atomic_enable() and configure the
+> > > crosspoint switch the right way depending on the reg property of the
+> > > output node in port@1.
+> >
+> > So there will be two drm bridges that act as the downstreams for
+> > anx7625, and we find the downstream with connector_status_connected to
+> > configure the crosspoint switch? How do we support that kind of
+> > topology given that the drm bridge chain is currently a list? Are you
+> > suggesting making the bridge topology to a tree, or maintaining the
+> > two downstreams inside the anx7625 driver and not attaching them to
+> > the bridge chain?
+>
+> Good point. I'm suggesting to make the drm bridge chain into a tree. We
+> need to teach drm_bridge core about a mux, and have some logic to
+> navigate atomically switching from one output to another. I was talking
+> with dianders@ and he was suggesting to use bridge attach/detach for
+> this. I'm not sure that will work though because that hook is only
+> called when the encoder is attached to the bridge.
+>
+> It may also turn out that this helps with DP multi-stream transport
+> (MST). As far as I can recall DP MST doesn't mesh well with drm_bridge
+> designs because it wants to operate on a drm_connector and
+> drm_bridge_connector_init() wants to make only one drm_connector for a
+> chain of bridges. If you squint, the anx7625 could be an MST "branch"
+> that only supports one drm_connector being enabled at a time. Maybe that
+> is what we should do here, make drm_bridge support creating more than
+> one drm_connector and when there is a mux in the tree it walks both
+> sides and runs a callback similar to struct
+> drm_dp_mst_topology_cbs::add_connector() to tell the encoder that
+> there's another possible drm_connector here.
 
-Thanks,
-Hao
+I have been surveying the approaches to change the bridge chain in
+runtime, and I found this thread[1]. Quoting from Daniel:
+"... exchanging the bridge chain isn't supported, there's no locking
+for that since it's assumed to be invariant over the lifetime of the
+drm_device instance. The simplest way to make that happen right now is to
+have 2 drm_encoder instances, one with the lvds bridge chain, the other
+with the hdmi bridge chain, and select the right encoder/bridge chain
+depending upon which output userspace picks.
+...
+I wouldn't try to make bridge chains exchangeable instead, that's
+headaches - e.g. with dp mst we've also opted for a bunch of fake
+drm_encoders to model that kind of switching."
 
->> With the above:
->>
->> Acked-by: Suzuki K Poulose <suzuki.poulose@arm.com>
->>
->>> +
->>> +properties:
->>> +  compatible:
->>> +    items:
->>> +      - enum:
->>> +          - arm,coresight-dummy-sink
->>> +          - arm,coresight-dummy-source
->>> +
->>> +  out-ports:
->>> +    $ref: /schemas/graph.yaml#/properties/ports
->>> +
->>> +    properties:
->>> +      port:
->>> +        description: Output connection from the source to Coresight
->>> +          Trace bus.
->>> +        $ref: /schemas/graph.yaml#/properties/port
->>> +
->>> +  in-ports:
->>> +    $ref: /schemas/graph.yaml#/properties/ports
->>> +
->>> +    properties:
->>> +      port:
->>> +        description: Input connection from the Coresight Trace bus to
->>> +          dummy sink, such as Embedded USB debugger(EUD).
->>> +        $ref: /schemas/graph.yaml#/properties/port
->>> +
->>> +required:
->>> +  - compatible
->>> +
->>> +if:
->>> +  # If the compatible contains the below value
->>> +  properties:
->>> +    compatible:
->>> +      contains:
->>> +        const: arm,coresight-dummy-sink
->>> +
->>> +then:
->>> +  required:
->>> +    - in-ports
->>> +
->>> +else:
->>> +  required:
->>> +    - out-ports
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  # Minimum dummy sink definition. Dummy sink connect to coresight replicator.
->>> +  - |
->>> +    sink {
->>> +      compatible = "arm,coresight-dummy-sink";
->>> +
->>> +      in-ports {
->>> +        port {
->>> +          eud_in_replicator_swao: endpoint {
->>> +            remote-endpoint = <&replicator_swao_out_eud>;
->>> +          };
->>> +        };
->>> +      };
->>> +    };
->>> +
->>> +  # Minimum dummy source definition. Dummy source connect to coresight funnel.
->>> +  - |
->>> +    source {
->>> +      compatible = "arm,coresight-dummy-source";
->>> +
->>> +      out-ports {
->>> +        port {
->>> +          dummy_riscv_out_funnel_swao: endpoint {
->>> +            remote-endpoint = <&funnel_swao_in_dummy_riscv>;
->>> +          };
->>> +        };
->>> +      };
->>> +    };
->>> +
->>> +...
->>
+I'm not sure how we register two encoders properly, though. Do we make
+the encoder driver check all the downstream bridges and register two
+drm_encoder when a bridge is acting as a mux?
+
+[1]: https://www.spinics.net/lists/dri-devel/msg340511.html
+
+>
+> >
+> > Also, if we still register mode switches on the two downstream
+> > bridges, why do you prefer that over the original approach that
+> > register switches in the anx7625 driver?
+>
+> I prefer to not have a mode-switch property here for a couple reasons:
+>
+>  1. The binding is usb type-c specific, and in the case of the IT6505
+>  part there is nothing that indicates this is a usb type-c piece of
+>  hardware. The IT6505 is simply a display bridge. The anx7625 part
+>  actually does accept usb signals though, but that isn't being used or
+>  described here. That's where my disclaimer about mode-switch making
+>  sense applies when the usb input is used.
+>
+>  2. Putting mode-switch into the graph endpoint nodes is awkward. It is
+>  a device property, and graph nodes are not devices. Some patches in
+>  this series have to work around this fact and special case the graph
+>  walking logic to treat the graph itself as a place to look for the
+>  property.
+>
+>  3. The mode-switch property probably isn't necessary at all. The DT
+>  reviewers have been asking why it is needed. The EC driver that
+>  registers the usb-c-connectors can be the mode-switch and the
+>  orientation-switch. And in reality, it _is_ both. The DP signals and
+>  the USB signals go to the TCPC/redriver that is controlled by the EC
+>  and the EC is the device that's doing the mode switching to push DP and
+>  USB through the TCPC/redriver out on the right pins of the
+>  usb-c-connector.
+>
+> I guess another way to think about it is that the DP signal coming out
+> of the anx7625 part is not "usb type-c" at all, unless the USB signal is
+> coming out on the other side of the crosspoint switch and all four lanes
+> are wired to some usb-c-connector or redriver. Similarly, the situation
+> could look like trogdor, where DP is produced by the DP PHY in the SoC
+> and goes through an analog mux to steer DP to one or the other TCPC
+> that's wired to the usb-c-connector. There isn't any driver to control
+> that mux, but if there was it would be a gpio controlled mux that would
+> be a drm_bridge, because there isn't anything type-c about this
+> hardware.
+>
+> And finally, I can see a possibility where the IT6505 is actually wired
+> to two different dp-connector ports. In that situation, there is no
+> type-c involvement, but we would still want to expose that to userspace
+> as two drm_connectors where only one encoder can be attached to them. If
+> we did that with drm_bridge, then anyone could make these sorts of
+> chains with muxes and it would present a sane userspace interface.
+
+Thanks for the detailed explanation. Yes, our use case in this series
+is not related to the USB-C port from the bridge's perspective. The
+bridge only cares about the output changes, and it doesn't need to
+know whether the downstream is a USB-C port or a DP connector.
+
+Best regards,
+Pin-yen
