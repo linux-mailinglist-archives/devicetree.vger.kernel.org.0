@@ -2,139 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CB0B6FDB9A
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 12:24:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 26DD66FDB9E
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 12:29:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236618AbjEJKYc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 06:24:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43998 "EHLO
+        id S236558AbjEJK3m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 06:29:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236610AbjEJKY2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 06:24:28 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C6C072A6;
-        Wed, 10 May 2023 03:24:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1683714268; x=1715250268;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=0/dKuhBAooiK7NxI6ZJD57YCt/AXZDva/ko2oLS9g9Q=;
-  b=o0ubfRV52ZQg15wS7XmNXQgv59GhwUoCapeccR0aZQHLtV7UaTceYc+v
-   Qgpg+9vENcZgs511IX8w9acpVkc5EQMkTmtx3sDGR9fHOlAo0RkgegCsV
-   umbChr9XtFXTzgdY48XevKD4e+4MyPSJjxtAEzvBue3pYGbTtRomSk52S
-   SblbkZF6ai8GVrWWTSFVTiM5X05tqhh4oRSJtmr8eEF7tT3wFeaIxIPdr
-   CQ69kuY8gCIN2VYhVbdcnlb3xlVRAYWOs+jlMObcdhyGfbrRuy66STTnq
-   g7/h8nvP4c/cUAKFjr56Mvjl58YHTwLp4s6fRburaGW6t9rXmdfLRhMVb
-   w==;
-X-IronPort-AV: E=Sophos;i="5.99,264,1677567600"; 
-   d="asc'?scan'208";a="213245200"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 10 May 2023 03:24:27 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Wed, 10 May 2023 03:24:25 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Wed, 10 May 2023 03:24:22 -0700
-Date:   Wed, 10 May 2023 11:24:03 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Anup Patel <apatel@ventanamicro.com>
-CC:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Atish Patra <atishp@atishpatra.org>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Anup Patel <anup@brainfault.org>,
-        <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <iommu@lists.linux.dev>
-Subject: Re: [PATCH v3 00/11] Linux RISC-V AIA Support
-Message-ID: <20230510-parchment-saxophone-f91f9d96156c@wendy>
-References: <20230508142842.854564-1-apatel@ventanamicro.com>
+        with ESMTP id S236533AbjEJK3l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 06:29:41 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22E6F3582;
+        Wed, 10 May 2023 03:29:40 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 1CE4A846B6;
+        Wed, 10 May 2023 12:29:38 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1683714578;
+        bh=R1m1mR/Dho8oLQpQRXJtga5P52rmazCagd9Sof4muII=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=kVCNbeQg1T58bukb36yrFqqUtuKH/5e/gqQXkfagmRy4z5qtiCzlgqvX5T9wry3jq
+         bWsniRCc2Pt3/oIPNoSq4fH64Wozc77sp5H/3EqBLiMi7W1Lh4n6nKyFQFkU76Xzx/
+         84pxAy8NgP6KZlJDIc/c+8ou/YsQWNhv8Lp3vnPgNwNrJvscd8L33Uqg3w7jsj7C71
+         u2JAX67jmtClB8ygwB1bB3oJFiL+KF0Um5DuVrGy8thZmgh2Pwpi2YNt71zmOsaXOo
+         rDdeybKpO2lzinRki0xc5qhrko7FuY/YLL+2wBe7NfhirO22TMtluJT6kp4R8Jxotu
+         xtdxJ+4v5br7w==
+Message-ID: <b917dd8a-489a-82b4-fd64-81029db594c6@denx.de>
+Date:   Wed, 10 May 2023 12:29:37 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="drOWBx1kyE087zJ+"
-Content-Disposition: inline
-In-Reply-To: <20230508142842.854564-1-apatel@ventanamicro.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v3 2/3] dt-bindings: arm: fsl: Enumerate Emtop SOM
+To:     Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>,
+        "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Fabio Estevam <festevam@denx.de>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Stefan Wahren <stefan.wahren@i2se.com>,
+        Jesse Taube <mr.bossman075@gmail.com>,
+        Li Yang <leoyang.li@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20230510083311.3692416-1-himanshu.bhavani@siliconsignals.io>
+ <f848adde-895e-18d5-0e9a-a29de24ae861@denx.de>
+ <BM1PR01MB4899814FFE961006E01E71D09A779@BM1PR01MB4899.INDPRD01.PROD.OUTLOOK.COM>
+Content-Language: en-US
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <BM1PR01MB4899814FFE961006E01E71D09A779@BM1PR01MB4899.INDPRD01.PROD.OUTLOOK.COM>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---drOWBx1kyE087zJ+
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 5/10/23 11:13, Himanshu Bhavani wrote:
+> Hi Marek Vasut
 
-Hey Anup,
+Hi,
 
-On Mon, May 08, 2023 at 07:58:31PM +0530, Anup Patel wrote:
-> The RISC-V AIA specification is now frozen as-per the RISC-V international
-> process. The latest frozen specifcation can be found at:
-> https://github.com/riscv/riscv-aia/releases/download/1.0-RC1/riscv-interr=
-upts-1.0-RC1.pdf
->=20
-> At a high-level, the AIA specification adds three things:
-> 1) AIA CSRs
->    - Improved local interrupt support
-> 2) Incoming Message Signaled Interrupt Controller (IMSIC)
->    - Per-HART MSI controller
->    - Support MSI virtualization
->    - Support IPI along with virtualization
-> 3) Advanced Platform-Level Interrupt Controller (APLIC)
->    - Wired interrupt controller
->    - In MSI-mode, converts wired interrupt into MSIs (i.e. MSI generator)
->    - In Direct-mode, injects external interrupts directly into HARTs
->=20
-> For an overview of the AIA specification, refer the recent AIA virtualiza=
-tion
-> talk at KVM Forum 2022:
-> https://static.sched.com/hosted_files/kvmforum2022/a1/AIA_Virtualization_=
-in_KVM_RISCV_final.pdf
-> https://www.youtube.com/watch?v=3Dr071dL8Z0yo
->=20
-> The PATCH3 of this series conflicts with the "irqchip/riscv-intc: Add ACPI
-> support" patch of the "Add basic ACPI support for RISC-V" series.
-> (Refer, https://lore.kernel.org/linux-riscv/20230508115237.216337-1-sunil=
-vl@ventanamicro.com/)
+> Yes, it is SOM-IMX8MMLPD4.
 
-This series does not apply for me (or the patchwork automation) on top of
-v6.4-rc1, which was released prior to you sending this & contains the AIA
-definitions this series relies on.
-You note here that there is a *conflict* with Sunil's series, but what
-you actually did, as far as I can tell, is base your series on top of
-theirs?
-If you're going to do that, at least point it out so that reviewers
-don't have to figure out what your intention was :( Better yet, for the
-sake of our automation in particular, don't do it at all.
-
-Thanks,
-Conor.
-
---drOWBx1kyE087zJ+
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZFtwwwAKCRB4tDGHoIJi
-0t1JAQDg/nff4RAapk5rR40Fc9M7gbVoPtea9uxe8wNvwzKrFgD8DzIxMd1/AHTL
-9YZT8pbRkIczFFTrwTSfcWJL2zf7Rg4=
-=T9IK
------END PGP SIGNATURE-----
-
---drOWBx1kyE087zJ+--
+In that case, have a look at e.g. this "dh,imx8mp" system. That's also a 
+SoM and a carrier board (PDK3). Notice the structure, where both carrier 
+board compatible and SoM compatible and imx8mp compatible are listed in 
+the DT. I suspect you want to reproduce the same -- include both SoM and 
+carrier board compatible string.
