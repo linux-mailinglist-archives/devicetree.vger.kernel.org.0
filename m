@@ -2,79 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 516136FD8C2
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 09:58:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0BD96FD8E4
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 10:08:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231402AbjEJH6z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 03:58:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51018 "EHLO
+        id S236538AbjEJIIH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 04:08:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236049AbjEJH6y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 03:58:54 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58A331BB
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 00:58:52 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-9660af2499dso945816066b.0
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 00:58:52 -0700 (PDT)
+        with ESMTP id S229617AbjEJIIG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 04:08:06 -0400
+Received: from mail-yw1-x1129.google.com (mail-yw1-x1129.google.com [IPv6:2607:f8b0:4864:20::1129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6765359D
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 01:08:04 -0700 (PDT)
+Received: by mail-yw1-x1129.google.com with SMTP id 00721157ae682-55c939fb24dso63667897b3.2
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 01:08:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683705531; x=1686297531;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=MovaklLI6W+xrW2iiAzq7kIKbHJ++xEhFeXlkG0vHp8=;
-        b=J2p3RTPy/6viCRfBGAUIk2VkrQl8INxIncGiD0RVJoTE0x9AVApJmofy/DJyq6Fbkx
-         LKSU4ZI2zwdKgbFlxs3vNQ1mdXdfcom/Gkq+oxJNsHiZphKAOTzLzV58bs89t63lkOi/
-         ucrH0BWY79ukCxXHEl3RlIOd7UVF/hyp2nDxAME/xgg1WxJvB6PPJZpJlw2BH81b3y8s
-         Olvodu5huJU7O3C4LBAaZE0Bh2JOjA8PB6R8aVMOt9JxWNcK0Wk4pXKIPPtDW/mx8Re5
-         3MosmIOEmOCRSN0UJE3qtgnF79EvqWWx5ZX10UpAJ5vctVcVG8DuvFQFdH5Po+dqVjMA
-         IDyA==
+        d=linaro.org; s=google; t=1683706084; x=1686298084;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=/jwThnQ8nzpok5U/xS8BVNWwNsnGKUyUosUJ+6RNgc4=;
+        b=uC7KdsY69JLNTVZxKpuCTLqjtRxn5UCaDP2RG8mhwtjzr+knBJvmNYveLl5xOxO7TI
+         h3+H45gwUIZlifNEGfF3QkpPV3XoexrsaI4d824UAHhTkeSq26XGpT700/teXY7pf3RA
+         6sacqBjut0SAMl7m99SnmDrcO3Hqhf6Amv0GkSUtvdGSQXLYp/F5f1Q6mLDLeDEh2Jrj
+         u0iGguP2XGO7WUy4qWotxNVzgKYwTNzoupEdrCgJR4gdEYCRB2AH62fzgkSHNMPZ/AHz
+         2ws+hKpOaVGFBhYsSz08P7R7e2RnuA9etY2dpvbca6EPIMN9UfVRSkHM27SZCIfleqy8
+         rl3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683705531; x=1686297531;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MovaklLI6W+xrW2iiAzq7kIKbHJ++xEhFeXlkG0vHp8=;
-        b=llJl9ums5FTUfizzunEoE2ab1V21Mvc0itYHs8wYVE1zVb2QagzAqIeOMp9EgntcaR
-         eA0uFsIXTEXeRuQjeaES/iFC2r4JcfGDoP9d8sAAabkwMbK4CC/2HFoBnAi95zfdLHYs
-         Yc1uXL7Nski1WBZn7c4MyqVZ+ZT6flyZBivMILG+Luz2CO2x2WS9iLPd9j2xepsjcOb5
-         AEyJklEO22wVnE0dIWLclPDx6Yg9pqQ61CEoI2TiZwavrl1fwDpqL1GFC/iqoqhOIWdm
-         cQ92rzgDMefQZ1AEx0X4AhP4O3H5BZ6/E56Z+fter+iaZ5pxo959r/M7OVdrd1XnQray
-         vYcQ==
-X-Gm-Message-State: AC+VfDzfs8iDEuJ+DWCIFZ8KgDneV8cDHywYhYIa2ICEVzq4djZcaIDQ
-        /f5Rvt+vJcyzgOOypPtoW6Im9w==
-X-Google-Smtp-Source: ACHHUZ4MGszQ7NCz9iagPu2gO48np4OkpzCfXOqnkcQg3RnJVnHCYuH6Ipq/PBN1Va5sr7vU+pi13w==
-X-Received: by 2002:a17:907:6d8f:b0:94f:928a:af0f with SMTP id sb15-20020a1709076d8f00b0094f928aaf0fmr15935756ejc.47.1683705530760;
-        Wed, 10 May 2023 00:58:50 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:c175:a0f9:6928:8c9d? ([2a02:810d:15c0:828:c175:a0f9:6928:8c9d])
-        by smtp.gmail.com with ESMTPSA id ze11-20020a170906ef8b00b00965b0eb7b0csm2316921ejb.103.2023.05.10.00.58.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 May 2023 00:58:50 -0700 (PDT)
-Message-ID: <1c2aa022-348a-8ac2-1a26-eedf57aadb77@linaro.org>
-Date:   Wed, 10 May 2023 09:58:48 +0200
+        d=1e100.net; s=20221208; t=1683706084; x=1686298084;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/jwThnQ8nzpok5U/xS8BVNWwNsnGKUyUosUJ+6RNgc4=;
+        b=EwwH2LvLcgsL5x6N/vXg+PKTva08ztLsZN80kT1FXAi8MVhwFxbXB4bVaXlyzPI635
+         z9T1BWssk0L7GNpg9ZkHz0fvCsbj74n2MFSSvwfAXypJ2CplmUMezO4eAgnsYYHWiFuE
+         BmNvZi0pb9x4MExElNHoBlLyh3MMlA/wx6NqtJH8BOo/EY2VcqiqzFwdiiHzNqVt6e+8
+         /l78taGmF3t8VWNY9aYm6dnKwUng4Ku98C/QRNokxZB7iTFXhdVhL6Y7CQkuBFz51/xu
+         wfC8WY2wopqXY1zRkw1CemAZmr7pqfFyGTvQ2GQqNhgZX1/6ZI85nta79jcFIraN0deV
+         6NPA==
+X-Gm-Message-State: AC+VfDzTTUpyH6U9LV0Up0BQHE8ljDQsd0IoOzt7kFY0Vy2uBbT0JTxR
+        8B28oUqz6Tn4E7cjRmdRuFV30m/VcZajMJNOEd2SMg==
+X-Google-Smtp-Source: ACHHUZ48JTM/PORCfGB1ehZByhVsSyq2yV5nKRFSfcLplxq/yrvBWib1I67KQqpTEU6vTSEDxty8zf0GTpIQuM2zvOE=
+X-Received: by 2002:a0d:e242:0:b0:52e:f109:ba7a with SMTP id
+ l63-20020a0de242000000b0052ef109ba7amr17722282ywe.51.1683706083905; Wed, 10
+ May 2023 01:08:03 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v3 2/5] dt-bindings: clocks: atmel,at91rm9200-pmc: convert
- to yaml
-Content-Language: en-US
-To:     Claudiu.Beznea@microchip.com, mturquette@baylibre.com,
-        sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, Nicolas.Ferre@microchip.com,
-        alexandre.belloni@bootlin.com
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230509052757.539274-1-claudiu.beznea@microchip.com>
- <20230509052757.539274-3-claudiu.beznea@microchip.com>
- <e463eb68-3ea0-5230-76fd-4a2ee66bf397@linaro.org>
- <773d0d90-29c7-b1bd-bd16-898b435eafb6@microchip.com>
- <b3c7db03-6614-47d9-a9e0-a8e51c836d86@linaro.org>
- <a4d934c6-ec28-50d0-b9bb-9b11fee7ebb6@microchip.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <a4d934c6-ec28-50d0-b9bb-9b11fee7ebb6@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+References: <20230407-pm7250b-sid-v1-0-fc648478cc25@fairphone.com>
+ <20230407-pm7250b-sid-v1-2-fc648478cc25@fairphone.com> <f52524da-719b-790f-ad2c-0c3f313d9fe9@linaro.org>
+ <CSIE9TYTQUHL.3E769C2Y4RAAO@otso> <c9eea8ec-b289-334c-9c0b-7c992184a265@linaro.org>
+In-Reply-To: <c9eea8ec-b289-334c-9c0b-7c992184a265@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Wed, 10 May 2023 11:07:53 +0300
+Message-ID: <CAA8EJpoSpytSTm=y7oPD_SC+0-bd735KEczR1JgMc7RuMZ+A+g@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: pm7250b: make SID configurable
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Luca Weiss <luca.weiss@fairphone.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -83,80 +76,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/05/2023 09:14, Claudiu.Beznea@microchip.com wrote:
-> On 10.05.2023 10:06, Krzysztof Kozlowski wrote:
->> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
->>
->> On 10/05/2023 09:00, Claudiu.Beznea@microchip.com wrote:
->>> On 09.05.2023 09:25, Krzysztof Kozlowski wrote:
->>>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
->>>>
->>>> On 09/05/2023 07:27, Claudiu Beznea wrote:
->>>>> Convert Atmel PMC documentation to yaml. Along with it clock names
->>>>> were adapted according to the current available device trees as
->>>>> different controller versions accept different clocks (some of them
->>>>> have 3 clocks as input, some has 2 clocks as inputs and some with 2
->>>>> input clocks uses different clock names).
->>>>>
->>>>
->>>> Thank you for your patch. There is something to discuss/improve.
->>>>
->>>>> +title: Atmel Power Management Controller (PMC)
->>>>> +
->>>>> +maintainers:
->>>>> +  - Claudiu Beznea <claudiu.beznea@microchip.com>
->>>>> +
->>>>> +description:
->>>>> +  The power management controller optimizes power consumption by controlling all
->>>>> +  system and user peripheral clocks. The PMC enables/disables the clock inputs
->>>>> +  to many of the peripherals and to the processor.
->>>>> +
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    oneOf:
->>>>> +      - items:
->>>>> +          - enum:
->>>>> +              - atmel,at91sam9g15-pmc
->>>>> +              - atmel,at91sam9g20-pmc
->>>>> +              - atmel,at91sam9g25-pmc
->>>>> +              - atmel,at91sam9g35-pmc
->>>>> +              - atmel,at91sam9x25-pmc
->>>>> +              - atmel,at91sam9x35-pmc
->>>>> +          - enum:
->>>>> +              - atmel,at91sam9260-pmc
->>>>> +              - atmel,at91sam9x5-pmc
->>>>
->>>> I missed it last time - why you have two enums? We never talked about
->>>> this. It's usually wrong... are you sure this is real hardware:
->>>> atmel,at91sam9g20-pmc, atmel,at91sam9260-pmc
->>>> ?
->>>
->>> I have 2 enums because there are some hardware covered by:
->>> "vendor-name,hardware-v1-pmc", "syscon" and some covered by:
->>> "vendor-name,hardware-v2-pmc", "vendor-name,hardware-v1-pmc", "syscon".
->>
->> The enum does not say this. At all.
->>
->> So again, answer, do not ignore:
->> is this valid setup:
->> atmel,at91sam9g20-pmc, atmel,at91sam9260-pmc
->> ?
-> 
-> Not w/o syscon. This is valid:
+On Wed, 10 May 2023 at 09:55, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 10/05/2023 08:47, Luca Weiss wrote:
+> > Hi Krzysztof,
+> >
+> > On Fri Apr 7, 2023 at 10:27 AM CEST, Krzysztof Kozlowski wrote:
+> >> On 07/04/2023 09:45, Luca Weiss wrote:
+> >>> Like other Qualcomm PMICs the PM7250B can be used on different addresses
+> >>> on the SPMI bus. Use similar defines like the PMK8350 to make this
+> >>> possible.
+> >>>
+> >>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> >>> ---
+> >>>  arch/arm64/boot/dts/qcom/pm7250b.dtsi | 23 ++++++++++++++++-------
+> >>>  1 file changed, 16 insertions(+), 7 deletions(-)
+> >>>
+> >>> diff --git a/arch/arm64/boot/dts/qcom/pm7250b.dtsi b/arch/arm64/boot/dts/qcom/pm7250b.dtsi
+> >>> index daa6f1d30efa..eeb476edc79a 100644
+> >>> --- a/arch/arm64/boot/dts/qcom/pm7250b.dtsi
+> >>> +++ b/arch/arm64/boot/dts/qcom/pm7250b.dtsi
+> >>> @@ -7,6 +7,15 @@
+> >>>  #include <dt-bindings/interrupt-controller/irq.h>
+> >>>  #include <dt-bindings/spmi/spmi.h>
+> >>>
+> >>> +/* This PMIC can be configured to be at different SIDs */
+> >>> +#ifndef PM7250B_SID
+> >>> +   #define PM7250B_SID 2
+> >>
+> >> Drop indentation, although anyway I am against this. Please don't bring
+> >> new patterns of this at least till we settle previous discussion.
+> >>
+> >> https://lore.kernel.org/linux-arm-msm/46658cbb-fff5-e98b-fdad-88fa683a9c75@linaro.org/
+> >
+> > What's the outcome of the discussion? For this PMIC it's totally enough
+> > to have the SID configurable like in this patch, I don't think this PMIC
+> > will be included twice in a board - at least I'm not aware of such a
+> > configuration.
+>
+> We did not reach consensus and I still disagree with complex macros or
+> macros depending on order of inclusion.
 
-Syscon is not important here, but indeed I missed it.
+I still think we should find a way to parametrise PMIC dtsi, however I
+agree with Krzysztof that complex CPP is not a way to go.
 
-> 
-> compatible = "atmel,at91sam9g20-pmc", "atmel,at91sam9260-pmc", "syscon";
-> 
-> available in arch/arm/boot/dts/at91sam9g20.dtsi +45
-
-Nice, so my random choice was actually correct. Ok, so another:
-
-atmel,at91sam9g15-pmc, atmel,at91sam9260-pmc, syscon
-
-Is it valid hardware?
-
-Best regards,
-Krzysztof
-
+-- 
+With best wishes
+Dmitry
