@@ -2,128 +2,239 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D76A46FD75A
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 08:47:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC7596FD76A
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 08:51:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236040AbjEJGrO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 02:47:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48198 "EHLO
+        id S236073AbjEJGvu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 02:51:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236016AbjEJGrN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 02:47:13 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE75D270B
-        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 23:47:10 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-965f7bdab6bso1051800466b.3
-        for <devicetree@vger.kernel.org>; Tue, 09 May 2023 23:47:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1683701229; x=1686293229;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=H//eZGlEJS/35YEhZwhGTWp7oEUZuMDqjOLd1KsW/Dk=;
-        b=je9yKiewPEqrhtPLrQqwPtxJPJwBxoylsg0o6HBvbvHaeaOCMwK2O/K63M9TCx581q
-         KMMEW5t63lQuVAUf1xo+olgAm9NiF6RqPLHCm5i+3249dA9gRah3aSuUILXkeOSWeZbG
-         nfU0EK3FPHsTNEA2Rzwnv+XtlWgxujJ+iefazA07nVnVP+axplHu7lDjdx8lkxhv/I1h
-         z9kYI5FDwrnlSuLvF0oE2woDtXjyXIGcPgE9ii0MybB5S5nbkMhDjAd0K6pMvyE+H0pd
-         xr+vKV4JEGeOhwrPDqHa3bBrM65Isgzv9dun7qEXa6Y9blruDQQRXwqOIl8ZCJ6oRCUs
-         Eu9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683701229; x=1686293229;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=H//eZGlEJS/35YEhZwhGTWp7oEUZuMDqjOLd1KsW/Dk=;
-        b=ckKoStHu+ou+faG1P4NfP9DaTdCW/6zPmUtzrVORCqWVX+IsYEfEhgGkVszIXpPYLv
-         AFGnM+fz7JYOG9bi5DvFziQhYVi2Ze4riY8TVTW5sPGofMZgTdpt2FXggY+9VyNzEIXa
-         mUIfRKRLPnG0omAuQ8m6W9D4KD9XneukIOdPjHnoForAmiAC5Soj5czFQTCYal3JO3Kp
-         JjXD/4CtoBY3020P/N1pU5iAFM3iTLLawQsDZV/iU7oDKak9ahZ4DMrOfhOsf/ehh60X
-         zduvCX7VVa2ipJD7uKK/kJ5Ix+0fN4Em3/s4gPX4qN2pM29vUgYlTGoFOPLOlJmEOnqL
-         k3bQ==
-X-Gm-Message-State: AC+VfDz1vIJwcodQTVyG99sfAZNVzXwl7TspE9B8b5ao/P4ZX7uG2Lko
-        dHoWyE22N74Pkr9Ncx7YD9FZFA==
-X-Google-Smtp-Source: ACHHUZ6oiJs4TBNp02xqpzNHKA1CCtOPDo+5SW3bC6Ts4SsxO/AZwHbz9fCAzOA3jOsEMZHvm8MaFg==
-X-Received: by 2002:a17:906:fd8d:b0:94f:3521:394 with SMTP id xa13-20020a170906fd8d00b0094f35210394mr13259517ejb.51.1683701229329;
-        Tue, 09 May 2023 23:47:09 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id pk25-20020a170906d7b900b00965d9892bafsm2273306ejb.111.2023.05.09.23.47.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 May 2023 23:47:08 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date:   Wed, 10 May 2023 08:47:07 +0200
-Message-Id: <CSIE9TYTQUHL.3E769C2Y4RAAO@otso>
-Cc:     <~postmarketos/upstreaming@lists.sr.ht>,
-        <phone-devel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: pm7250b: make SID configurable
-From:   "Luca Weiss" <luca.weiss@fairphone.com>
-To:     "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
-        "Andy Gross" <agross@kernel.org>,
-        "Bjorn Andersson" <andersson@kernel.org>,
-        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Konrad Dybcio" <konrad.dybcio@somainline.org>
-X-Mailer: aerc 0.15.1
-References: <20230407-pm7250b-sid-v1-0-fc648478cc25@fairphone.com>
- <20230407-pm7250b-sid-v1-2-fc648478cc25@fairphone.com>
- <f52524da-719b-790f-ad2c-0c3f313d9fe9@linaro.org>
-In-Reply-To: <f52524da-719b-790f-ad2c-0c3f313d9fe9@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        with ESMTP id S236041AbjEJGvt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 02:51:49 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E981BB;
+        Tue,  9 May 2023 23:51:45 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 2C36A24E292;
+        Wed, 10 May 2023 14:51:42 +0800 (CST)
+Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 10 May
+ 2023 14:51:42 +0800
+Received: from [192.168.125.124] (183.27.98.219) by EXMBX168.cuchost.com
+ (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 10 May
+ 2023 14:51:41 +0800
+Message-ID: <88660bc1-035c-fa7b-d541-d29bc142e043@starfivetech.com>
+Date:   Wed, 10 May 2023 14:51:40 +0800
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH v3 3/5] soc: starfive: Extract JH7110 pmu private
+ operations
+Content-Language: en-US
+To:     Changhuang Liang <changhuang.liang@starfivetech.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>
+CC:     Hal Feng <hal.feng@starfivetech.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+References: <20230510015311.27505-1-changhuang.liang@starfivetech.com>
+ <20230510015311.27505-4-changhuang.liang@starfivetech.com>
+From:   Walker Chen <walker.chen@starfivetech.com>
+In-Reply-To: <20230510015311.27505-4-changhuang.liang@starfivetech.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [183.27.98.219]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX168.cuchost.com
+ (172.16.6.78)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On 2023/5/10 9:53, Changhuang Liang wrote:
+> Move JH7110 private operation into private data of compatible. Convenient
+> to add AON PMU which would not have interrupts property.
+> 
+> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
 
-On Fri Apr 7, 2023 at 10:27 AM CEST, Krzysztof Kozlowski wrote:
-> On 07/04/2023 09:45, Luca Weiss wrote:
-> > Like other Qualcomm PMICs the PM7250B can be used on different addresse=
-s
-> > on the SPMI bus. Use similar defines like the PMK8350 to make this
-> > possible.
-> >=20
-> > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> > ---
-> >  arch/arm64/boot/dts/qcom/pm7250b.dtsi | 23 ++++++++++++++++-------
-> >  1 file changed, 16 insertions(+), 7 deletions(-)
-> >=20
-> > diff --git a/arch/arm64/boot/dts/qcom/pm7250b.dtsi b/arch/arm64/boot/dt=
-s/qcom/pm7250b.dtsi
-> > index daa6f1d30efa..eeb476edc79a 100644
-> > --- a/arch/arm64/boot/dts/qcom/pm7250b.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/pm7250b.dtsi
-> > @@ -7,6 +7,15 @@
-> >  #include <dt-bindings/interrupt-controller/irq.h>
-> >  #include <dt-bindings/spmi/spmi.h>
-> > =20
-> > +/* This PMIC can be configured to be at different SIDs */
-> > +#ifndef PM7250B_SID
-> > +	#define PM7250B_SID 2
->
-> Drop indentation, although anyway I am against this. Please don't bring
-> new patterns of this at least till we settle previous discussion.
->
-> https://lore.kernel.org/linux-arm-msm/46658cbb-fff5-e98b-fdad-88fa683a9c7=
-5@linaro.org/
+Reviewed-by: Walker Chen <walker.chen@starfivetech.com>
+Thanks!
 
-What's the outcome of the discussion? For this PMIC it's totally enough
-to have the SID configurable like in this patch, I don't think this PMIC
-will be included twice in a board - at least I'm not aware of such a
-configuration.
-
-Regards
-Luca
-
->
->
-> Best regards,
-> Krzysztof
-
+> ---
+>  drivers/soc/starfive/jh71xx_pmu.c | 89 +++++++++++++++++++++----------
+>  1 file changed, 62 insertions(+), 27 deletions(-)
+> 
+> diff --git a/drivers/soc/starfive/jh71xx_pmu.c b/drivers/soc/starfive/jh71xx_pmu.c
+> index 7d5f50d71c0d..0dbdcc0d2c91 100644
+> --- a/drivers/soc/starfive/jh71xx_pmu.c
+> +++ b/drivers/soc/starfive/jh71xx_pmu.c
+> @@ -51,9 +51,17 @@ struct jh71xx_domain_info {
+>  	u8 bit;
+>  };
+>  
+> +struct jh71xx_pmu;
+> +struct jh71xx_pmu_dev;
+> +
+>  struct jh71xx_pmu_match_data {
+>  	const struct jh71xx_domain_info *domain_info;
+>  	int num_domains;
+> +	unsigned int pmu_status;
+> +	int (*pmu_parse_irq)(struct platform_device *pdev,
+> +			     struct jh71xx_pmu *pmu);
+> +	int (*pmu_set_state)(struct jh71xx_pmu_dev *pmd,
+> +			     u32 mask, bool on);
+>  };
+>  
+>  struct jh71xx_pmu {
+> @@ -79,12 +87,12 @@ static int jh71xx_pmu_get_state(struct jh71xx_pmu_dev *pmd, u32 mask, bool *is_o
+>  	if (!mask)
+>  		return -EINVAL;
+>  
+> -	*is_on = readl(pmu->base + JH71XX_PMU_CURR_POWER_MODE) & mask;
+> +	*is_on = readl(pmu->base + pmu->match_data->pmu_status) & mask;
+>  
+>  	return 0;
+>  }
+>  
+> -static int jh71xx_pmu_set_state(struct jh71xx_pmu_dev *pmd, u32 mask, bool on)
+> +static int jh7110_pmu_set_state(struct jh71xx_pmu_dev *pmd, u32 mask, bool on)
+>  {
+>  	struct jh71xx_pmu *pmu = pmd->pmu;
+>  	unsigned long flags;
+> @@ -92,22 +100,8 @@ static int jh71xx_pmu_set_state(struct jh71xx_pmu_dev *pmd, u32 mask, bool on)
+>  	u32 mode;
+>  	u32 encourage_lo;
+>  	u32 encourage_hi;
+> -	bool is_on;
+>  	int ret;
+>  
+> -	ret = jh71xx_pmu_get_state(pmd, mask, &is_on);
+> -	if (ret) {
+> -		dev_dbg(pmu->dev, "unable to get current state for %s\n",
+> -			pmd->genpd.name);
+> -		return ret;
+> -	}
+> -
+> -	if (is_on == on) {
+> -		dev_dbg(pmu->dev, "pm domain [%s] is already %sable status.\n",
+> -			pmd->genpd.name, on ? "en" : "dis");
+> -		return 0;
+> -	}
+> -
+>  	spin_lock_irqsave(&pmu->lock, flags);
+>  
+>  	/*
+> @@ -166,6 +160,29 @@ static int jh71xx_pmu_set_state(struct jh71xx_pmu_dev *pmd, u32 mask, bool on)
+>  	return 0;
+>  }
+>  
+> +static int jh71xx_pmu_set_state(struct jh71xx_pmu_dev *pmd, u32 mask, bool on)
+> +{
+> +	struct jh71xx_pmu *pmu = pmd->pmu;
+> +	const struct jh71xx_pmu_match_data *match_data = pmu->match_data;
+> +	bool is_on;
+> +	int ret;
+> +
+> +	ret = jh71xx_pmu_get_state(pmd, mask, &is_on);
+> +	if (ret) {
+> +		dev_dbg(pmu->dev, "unable to get current state for %s\n",
+> +			pmd->genpd.name);
+> +		return ret;
+> +	}
+> +
+> +	if (is_on == on) {
+> +		dev_dbg(pmu->dev, "pm domain [%s] is already %sable status.\n",
+> +			pmd->genpd.name, on ? "en" : "dis");
+> +		return 0;
+> +	}
+> +
+> +	return match_data->pmu_set_state(pmd, mask, on);
+> +}
+> +
+>  static int jh71xx_pmu_on(struct generic_pm_domain *genpd)
+>  {
+>  	struct jh71xx_pmu_dev *pmd = container_of(genpd,
+> @@ -226,6 +243,25 @@ static irqreturn_t jh71xx_pmu_interrupt(int irq, void *data)
+>  	return IRQ_HANDLED;
+>  }
+>  
+> +static int jh7110_pmu_parse_irq(struct platform_device *pdev, struct jh71xx_pmu *pmu)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	int ret;
+> +
+> +	pmu->irq = platform_get_irq(pdev, 0);
+> +	if (pmu->irq < 0)
+> +		return pmu->irq;
+> +
+> +	ret = devm_request_irq(dev, pmu->irq, jh71xx_pmu_interrupt,
+> +			       0, pdev->name, pmu);
+> +	if (ret)
+> +		dev_err(dev, "failed to request irq\n");
+> +
+> +	jh71xx_pmu_int_enable(pmu, JH71XX_PMU_INT_ALL_MASK & ~JH71XX_PMU_INT_PCH_FAIL, true);
+> +
+> +	return 0;
+> +}
+> +
+>  static int jh71xx_pmu_init_domain(struct jh71xx_pmu *pmu, int index)
+>  {
+>  	struct jh71xx_pmu_dev *pmd;
+> @@ -275,19 +311,18 @@ static int jh71xx_pmu_probe(struct platform_device *pdev)
+>  	if (IS_ERR(pmu->base))
+>  		return PTR_ERR(pmu->base);
+>  
+> -	pmu->irq = platform_get_irq(pdev, 0);
+> -	if (pmu->irq < 0)
+> -		return pmu->irq;
+> -
+> -	ret = devm_request_irq(dev, pmu->irq, jh71xx_pmu_interrupt,
+> -			       0, pdev->name, pmu);
+> -	if (ret)
+> -		dev_err(dev, "failed to request irq\n");
+> +	spin_lock_init(&pmu->lock);
+>  
+>  	match_data = of_device_get_match_data(dev);
+>  	if (!match_data)
+>  		return -EINVAL;
+>  
+> +	ret = match_data->pmu_parse_irq(pdev, pmu);
+> +	if (ret) {
+> +		dev_err(dev, "failed to parse irq\n");
+> +		return ret;
+> +	}
+> +
+>  	pmu->genpd = devm_kcalloc(dev, match_data->num_domains,
+>  				  sizeof(struct generic_pm_domain *),
+>  				  GFP_KERNEL);
+> @@ -307,9 +342,6 @@ static int jh71xx_pmu_probe(struct platform_device *pdev)
+>  		}
+>  	}
+>  
+> -	spin_lock_init(&pmu->lock);
+> -	jh71xx_pmu_int_enable(pmu, JH71XX_PMU_INT_ALL_MASK & ~JH71XX_PMU_INT_PCH_FAIL, true);
+> -
+>  	ret = of_genpd_add_provider_onecell(np, &pmu->genpd_data);
+>  	if (ret) {
+>  		dev_err(dev, "failed to register genpd driver: %d\n", ret);
+> @@ -357,6 +389,9 @@ static const struct jh71xx_domain_info jh7110_power_domains[] = {
+>  static const struct jh71xx_pmu_match_data jh7110_pmu = {
+>  	.num_domains = ARRAY_SIZE(jh7110_power_domains),
+>  	.domain_info = jh7110_power_domains,
+> +	.pmu_status = JH71XX_PMU_CURR_POWER_MODE,
+> +	.pmu_parse_irq = jh7110_pmu_parse_irq,
+> +	.pmu_set_state = jh7110_pmu_set_state,
+>  };
+>  
+>  static const struct of_device_id jh71xx_pmu_of_match[] = {
