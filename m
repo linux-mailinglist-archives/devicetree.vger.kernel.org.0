@@ -2,99 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C7A36FDD9A
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 14:20:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AF9B6FDDD5
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 14:32:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236526AbjEJMU5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 08:20:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57796 "EHLO
+        id S237013AbjEJMcj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 08:32:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234032AbjEJMU4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 08:20:56 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FBB810C;
-        Wed, 10 May 2023 05:20:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1683721255; x=1715257255;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=TcX1IaLwnXYJEIt2VotXZBEoSrQM67d7M4Y9YenCRXg=;
-  b=FpAgL9yTNYfBNnqU9IG46QCbZN3KKHpHtwUMbxxBbw7+BJ+RedQayol/
-   /80a6WjNlSf0XfQSEe4GOJ/5lilJp2NWY8eYPdyG11U+afNMSYfbV3Pcn
-   8hr+3UJA6sdoYM+eLzYztQ/X3e1AAgG12RQGgb0JTlqiWq5EPHB1GCAxF
-   yygx3A8L6FeeDlbZlUWI8LzKM3xz9UmcsL+PapQe9JMpA8WfsSUoxa6Hy
-   ftcbFNmY0BMpJYWJ0deB3f37BEYKYBAqQrXVWaOcDxBqnehL37dFLw1sF
-   Td1Q04I9kerUK/mE+LNJOso7oi7p1CLj+txJgYs18GAq4sHNo/wlzEK2u
-   g==;
-X-IronPort-AV: E=Sophos;i="5.99,264,1677567600"; 
-   d="asc'?scan'208";a="210554051"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 10 May 2023 05:20:54 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Wed, 10 May 2023 05:20:47 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Wed, 10 May 2023 05:20:44 -0700
-Date:   Wed, 10 May 2023 13:20:24 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Anup Patel <apatel@ventanamicro.com>
-CC:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Atish Patra <atishp@atishpatra.org>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Anup Patel <anup@brainfault.org>,
-        <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <iommu@lists.linux.dev>
-Subject: Re: [PATCH v3 10/11] RISC-V: Select APLIC and IMSIC drivers
-Message-ID: <20230510-maybe-wrongly-14914a15c044@wendy>
-References: <20230508142842.854564-1-apatel@ventanamicro.com>
- <20230508142842.854564-11-apatel@ventanamicro.com>
+        with ESMTP id S236600AbjEJMci (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 08:32:38 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A93249F7;
+        Wed, 10 May 2023 05:32:33 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34ACWI1C117236;
+        Wed, 10 May 2023 07:32:18 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1683721938;
+        bh=PZN8WyZ2pR45oUMyI7Bugm98MWZG9HyapnGIPimpSNQ=;
+        h=From:To:CC:Subject:Date;
+        b=ZgxnEsOlHNUf86Hox7DRGThmXU/TkGMRcFNjl9fmjbWEY6Q71xjkswQehsGGZpCsI
+         KaKuFk1owB/x8izZWWhXLoi4gEPpklF/tUTfZ320CreEHtlINEoZze6krHPZqO1WXS
+         aXZwStd5/HNDZx4XSh3538A18iIF9nmu9jOSInVE=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34ACWImE011834
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 10 May 2023 07:32:18 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 10
+ May 2023 07:32:18 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 10 May 2023 07:32:17 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34ACWG9K076795;
+        Wed, 10 May 2023 07:32:17 -0500
+From:   Nitin Yadav <n-yadav@ti.com>
+To:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/2] Add minor updates in device trees
+Date:   Wed, 10 May 2023 18:02:14 +0530
+Message-ID: <20230510123216.3440019-1-n-yadav@ti.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="3u5hYZkmsjkmqqoH"
-Content-Disposition: inline
-In-Reply-To: <20230508142842.854564-11-apatel@ventanamicro.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---3u5hYZkmsjkmqqoH
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Minor Device Tree updates to be able to use common Device
+trees with u-boot. These updates include adding main_uart1
+and wkup_uart1 into k3-am62x-sk-common.dtsi and sa3_secproxy
+node in k3-am62-main.dtsi
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Nitin Yadav (2):
+  arm64: dts: ti: k3-am62x-sk-common: Add main_uart1 and wkup_uart nodes
+  arm64: dts: ti: k3-am62-main: add sa3_secproxy in cbass_main
 
-Thanks,
-Conor.
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi      |  9 +++++++
+ .../arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 26 +++++++++++++++++++
+ 2 files changed, 35 insertions(+)
 
---3u5hYZkmsjkmqqoH
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+2.25.1
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZFuMCAAKCRB4tDGHoIJi
-0peMAPsF88TZqTDIFWCvsuDyzGB5/8W3/VHbAHHmMC5kyZPYzwEAhbStO8c+fjsD
-mgqW/ghiLkALyo3FoMQwSXlsbmYyZw8=
-=HWkU
------END PGP SIGNATURE-----
-
---3u5hYZkmsjkmqqoH--
