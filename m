@@ -2,198 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE0CA6FD7C8
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 09:04:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A9526FD7CE
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 09:06:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236332AbjEJHEc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 03:04:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36290 "EHLO
+        id S236358AbjEJHGR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 03:06:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230467AbjEJHEb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 03:04:31 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43164DB
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 00:04:30 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-50bc1612940so12651410a12.2
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 00:04:30 -0700 (PDT)
+        with ESMTP id S236355AbjEJHGQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 03:06:16 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBC6A10A
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 00:06:14 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-50bceaf07b8so12759051a12.3
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 00:06:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683702268; x=1686294268;
+        d=linaro.org; s=google; t=1683702373; x=1686294373;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=/ZkCFCzZD4JzTnaOmZhJFgRNPCw8xQEqtc/R5QiPjAA=;
-        b=a5yKktjzJci/iih+IbtLEXlWS76EBbag1OAy+gRfRxDFwf5YCvXkJhdSlWypHe87Rh
-         i+wqExTbmndbOdSRWh0veTzHIyCG9zVIYmZW7sS5Y9xdUnHm48iAxjV3x+yAc8ri/ak5
-         Ew6hj8by22Ol1hWCl4QyFoOAZO0yE+90vun71U34mXZl3A4Av+pDZDWOGF1GCqfrQIcF
-         rMikVNcLyAzrb417C9qgmpu+S9Qod32ihXFrQbMl02RcuntS8rWv8LCA2yMd0Ycw2/SC
-         cxynjIaH/9hHH4KspZOxO2ZCd+5a/7+VSNZiwVVyJvvEKWzxux/l4Y6qFp8Is+kFr/5p
-         awtw==
+        bh=Go8yaKpqgsZlAdvQI/LQWWwqe6KsP5Oli03iE2ooAcU=;
+        b=vlzvrRWQ/avkhjSzeR6Hwe19uLhI3iXQ2snEqmaKMwkDupRqkp71nPLM7Vaaha2Mx1
+         C/bQf/CKBb7bt36ofm4+mo9BAj424JRJpsIiKOREBuvonNqR6e4wa5tOT/Ey+Ierbf+p
+         DdlmVUr4fNqUTOFaW0/e4S4qwc1EMjA4lmjkZO6HvvkDQSGlE6CpuPhbGubrpICMNPEK
+         6KKTZsZcISyDiYIAUNchFkXcbpDnGTissj/huEe5hS8m1TyJtmYKcgt51y86j4GzHIKz
+         T961xMnBihtk1HFAxmmvzb0ercUEcvKE5BUf5d8g08/NI+1L8g+ArTNyr8SIDttwOMhm
+         1niA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683702268; x=1686294268;
+        d=1e100.net; s=20221208; t=1683702373; x=1686294373;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/ZkCFCzZD4JzTnaOmZhJFgRNPCw8xQEqtc/R5QiPjAA=;
-        b=ayvKjYGiuiIfsmAlZbuEIdn9KOVQKPmxUSOY7nHdB+AfDTV0Gc5yKl+wAeExq+NP/J
-         SNlUg9iRejwbWhQtQ/2htQjlL3DTs0Qfws0O7UuJL0YfgcAJWC6SzHYOaOJhr33XtTGR
-         CbG0LMnf+7N7yQOThUMKqjopzipJubhRFvyqeafWNWxnmk4iOSiaT2AinjClKHYt7CnP
-         4s9BwPEV7SKr7zu11sGgP+86GPfeZ2Z4y/6fTEVujJjWmqQsdHaXSgm2+C0jzRh+bdM/
-         jV86/bWDkVKLkht7dQV7KiD0rBwFr0b84KYxGjyoTpcG96FI8nGWcnzniUFo5L9rlvlP
-         VCZA==
-X-Gm-Message-State: AC+VfDwIemXFB5YAKokOf9nzgoPcE8vOTiAWyz6WmMM+ETQeatNtBXvW
-        ue0KNqrefUNXtejsakt86WJlug==
-X-Google-Smtp-Source: ACHHUZ4HmhCpVncMbbPtAqVY5vpN5YsolRPIOPz8n6DozDJQEyEQza7ajEOa/3Qm38aLyM5bEpqqIg==
-X-Received: by 2002:a17:906:4fd1:b0:961:8d21:a471 with SMTP id i17-20020a1709064fd100b009618d21a471mr14352353ejw.58.1683702268662;
-        Wed, 10 May 2023 00:04:28 -0700 (PDT)
+        bh=Go8yaKpqgsZlAdvQI/LQWWwqe6KsP5Oli03iE2ooAcU=;
+        b=DrxLeyrn4GIxOobx/TUvd5Ye31c+7DRzj8amCKzCVfJNdYZZtFTrwsP4jSr+RuavV2
+         0LyL0EV4KC09j96iSEKHisXbmVzuofNgC3xAOuK1uN+nMNwLmMm4bDWMO8u8meV+vUyd
+         KFJRdVMnJwYSq7efZ3fO6fkNUaULfyQkT35u6ukM2lhiuigOCaLVLv+fuY94+kF6eqJy
+         soVHqVJxO1EYRtlhFObyKxJzILUoiO9v6BRnauThxMrU+ChWiXBgNaw9gqpI0AHADzg2
+         /jG1sEt/Yoce2Qm75ldfWUFllqszZ1cJ/4po3K0o5A0NLYUBiJ1nYmdpArqW+Mj7hFXF
+         IRHw==
+X-Gm-Message-State: AC+VfDw/EazP56yq2okACM4/PLlePf5lhBMR5pitx20u5HWL4NDVrgCJ
+        6hhG9NQPD1xaoH0/z8bIbFNS0w==
+X-Google-Smtp-Source: ACHHUZ7/mWKLyS9qQp7H1XFrxPQaVKT3NEeKOwHbG6K/TxPep062uNjq2+d+TylBYVFroSkWdUUTzg==
+X-Received: by 2002:a17:907:1c9d:b0:966:3310:50ae with SMTP id nb29-20020a1709071c9d00b00966331050aemr10908657ejc.47.1683702373235;
+        Wed, 10 May 2023 00:06:13 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:c175:a0f9:6928:8c9d? ([2a02:810d:15c0:828:c175:a0f9:6928:8c9d])
-        by smtp.gmail.com with ESMTPSA id b16-20020a170906195000b0094e96e46cc0sm2276891eje.69.2023.05.10.00.04.27
+        by smtp.gmail.com with ESMTPSA id ig2-20020a1709072e0200b00965f31ff894sm2287926ejc.137.2023.05.10.00.06.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 May 2023 00:04:28 -0700 (PDT)
-Message-ID: <ca9d45cf-8a84-4fbc-e1dd-c96eef36fe25@linaro.org>
-Date:   Wed, 10 May 2023 09:04:26 +0200
+        Wed, 10 May 2023 00:06:12 -0700 (PDT)
+Message-ID: <b3c7db03-6614-47d9-a9e0-a8e51c836d86@linaro.org>
+Date:   Wed, 10 May 2023 09:06:11 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v2 2/5] ASoC: dt-bindings: Add tas2781 amplifier
+Subject: Re: [PATCH v3 2/5] dt-bindings: clocks: atmel,at91rm9200-pmc: convert
+ to yaml
 Content-Language: en-US
-To:     Shenghao Ding <13916275206@139.com>, broonie@kernel.org,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, lgirdwood@gmail.com, perex@perex.cz,
-        pierre-louis.bossart@linux.intel.com
-Cc:     kevin-lu@ti.com, shenghao-ding@ti.com, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, x1077012@ti.com, peeyush@ti.com,
-        navada@ti.com, gentuser@gmail.com, Ryan_Chu@wistron.com,
-        Sam_Wu@wistron.com
-References: <20230508054512.719-1-13916275206@139.com>
+To:     Claudiu.Beznea@microchip.com, mturquette@baylibre.com,
+        sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, Nicolas.Ferre@microchip.com,
+        alexandre.belloni@bootlin.com
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230509052757.539274-1-claudiu.beznea@microchip.com>
+ <20230509052757.539274-3-claudiu.beznea@microchip.com>
+ <e463eb68-3ea0-5230-76fd-4a2ee66bf397@linaro.org>
+ <773d0d90-29c7-b1bd-bd16-898b435eafb6@microchip.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230508054512.719-1-13916275206@139.com>
+In-Reply-To: <773d0d90-29c7-b1bd-bd16-898b435eafb6@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/05/2023 07:45, Shenghao Ding wrote:
-> Create tas2781.yaml for tas2781 driver.
+On 10/05/2023 09:00, Claudiu.Beznea@microchip.com wrote:
+> On 09.05.2023 09:25, Krzysztof Kozlowski wrote:
+>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+>>
+>> On 09/05/2023 07:27, Claudiu Beznea wrote:
+>>> Convert Atmel PMC documentation to yaml. Along with it clock names
+>>> were adapted according to the current available device trees as
+>>> different controller versions accept different clocks (some of them
+>>> have 3 clocks as input, some has 2 clocks as inputs and some with 2
+>>> input clocks uses different clock names).
+>>>
+>>
+>> Thank you for your patch. There is something to discuss/improve.
+>>
+>>> +title: Atmel Power Management Controller (PMC)
+>>> +
+>>> +maintainers:
+>>> +  - Claudiu Beznea <claudiu.beznea@microchip.com>
+>>> +
+>>> +description:
+>>> +  The power management controller optimizes power consumption by controlling all
+>>> +  system and user peripheral clocks. The PMC enables/disables the clock inputs
+>>> +  to many of the peripherals and to the processor.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    oneOf:
+>>> +      - items:
+>>> +          - enum:
+>>> +              - atmel,at91sam9g15-pmc
+>>> +              - atmel,at91sam9g20-pmc
+>>> +              - atmel,at91sam9g25-pmc
+>>> +              - atmel,at91sam9g35-pmc
+>>> +              - atmel,at91sam9x25-pmc
+>>> +              - atmel,at91sam9x35-pmc
+>>> +          - enum:
+>>> +              - atmel,at91sam9260-pmc
+>>> +              - atmel,at91sam9x5-pmc
+>>
+>> I missed it last time - why you have two enums? We never talked about
+>> this. It's usually wrong... are you sure this is real hardware:
+>> atmel,at91sam9g20-pmc, atmel,at91sam9260-pmc
+>> ?
 > 
-> Signed-off-by: Shenghao Ding <13916275206@139.com>
+> I have 2 enums because there are some hardware covered by:
+> "vendor-name,hardware-v1-pmc", "syscon" and some covered by:
+> "vendor-name,hardware-v2-pmc", "vendor-name,hardware-v1-pmc", "syscon".
+
+The enum does not say this. At all.
+
+So again, answer, do not ignore:
+is this valid setup:
+atmel,at91sam9g20-pmc, atmel,at91sam9260-pmc
+?
+
 > 
-> ---
-> Changes in v7:
-
-Your subject says it is v2 and previously it was v6. Make it consistent.
-
->  - Submit together with tas2781 codec driver code
-
-Fix your patchset threading. I don't think it's possible to apply your one.
-
->  - Add more detail description for ti,audio-slots
->  - Keep consistent for "I2C"
->  - remove reset-gpios description
->  - For reg, express as constraints instead
->  - remove unnecessary '|'
->  Changes to be committed:
-> 	new file:   Documentation/devicetree/bindings/sound/ti,tas2781.yaml
-> ---
->  .../devicetree/bindings/sound/ti,tas2781.yaml | 90 +++++++++++++++++++
->  1 file changed, 90 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/ti,tas2781.yaml
+> Many AT91 device trees compatibles were written in this way. Thus when new
+> versions of the same IP has been introduced the drivers were not
+> necessarily updated but the compatibles in device trees were updated e.g.
+> with "vendor-name,hardware-v2-pmc" (the full compatible becoming
+> "vendor-name,hardware-v2-pmc", "vendor-name,hardware-v1-pmc", "syscon") and
+> let the drivers fall back to already in driver supported compatible
+> "vendor-name,hardware-v1-pmc", "syscon". In general v2 comes with new
+> features in addition to v1.
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/ti,tas2781.yaml b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
-> new file mode 100644
-> index 000000000000..96c2584855d4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
-> @@ -0,0 +1,90 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2022 - 2023 Texas Instruments Incorporated
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/ti,tas2781.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Texas Instruments TAS2781 SmartAMP
-> +
-> +maintainers:
-> +  - Shenghao Ding <shenghao-ding@ti.com>
-> +
-> +description:
-> +  The TAS2781 is a mono, digital input Class-D audio amplifier
-> +  optimized for efficiently driving high peak power into small
-> +  loudspeakers. Integrated an on-chip DSP supports Texas Instruments
-> +  Smart Amp speaker protection algorithm. The integrated speaker
-> +  voltage and current sense provides for real time
-> +  monitoring of loudspeaker behavior.
-> +
+> That way they AT91 ensures the ABI properties of DT and thus when the
+> drivers were finally updated with the new features of the
+> "vendor-name,hardware-v2-pmc" DT remained in place.
+> 
+> Please let me know if these could be handled better in YAML.
 
-you miss allOf with ref to saound-dai-common.
 
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ti,tas2781
-> +
-> +  reg:
-> +    description: I2C address of the primary device.
-> +    items:
-> +      minimum: 0x38
-> +      maximum: 0x3f
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  ti,audio-slots:
-> +    description:
-> +      Multiple tas2781s aggregate as one Audio Amp to support
-> +      multiple audio slots
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    maxItems: 4
-
-You said you can have here two addresses. You don't allow it, test it.
-
-Missing minItems, but...
-
-> +    items:
-> +      minimum: 0x38
-> +      maximum: 0x3f
-
-... So these are fixed? No need to encode them in such case...
-
-and anyway actually I agree with Rob here - these addresses should be
-put in reg.
-
-> +      description:
-> +        I2C address of the device for different audio slots,
-> +        useless in mono case.
-> +
-> +  ti,broadcast-addr:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Generic I2C address for all the tas2781 devices in
-> +      purpose of I2C broadcast during the multi-device
-> +      writes, useless in mono case.
-
-Probably you can figure it out from previous addresses and there is no
-need for this property.
-
-> +
-> +  '#sound-dai-cells':
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-
+enum + const + syscon, like every binding that type does in all
+bindings. Don't invent some new syntax.
 
 Best regards,
 Krzysztof
