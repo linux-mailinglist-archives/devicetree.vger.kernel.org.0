@@ -2,80 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02C5D6FDB8A
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 12:23:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D9F66FDB8D
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 12:23:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236494AbjEJKXK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 06:23:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42728 "EHLO
+        id S236581AbjEJKX3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 06:23:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235317AbjEJKXJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 06:23:09 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B47B22D7B;
-        Wed, 10 May 2023 03:23:08 -0700 (PDT)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34A9D4ud030035;
-        Wed, 10 May 2023 10:22:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
- cc : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=qcppdkim1; bh=ZoXXvx1KrUmrm6J8q0QWOx2OVpxXGbg1USHSHzeCXcU=;
- b=CO4YWD1spiikNUO4Je2K8BJXaKPi+CDg3zYbv1RgLjGTinejPMxvQiTWueTPCXW1yYOW
- DRd9anPkcomLHFbnIjtU+X2S0k5P9A5vFL53MlrtlD8PZplEInrEmWSdc6ImW52jdd2R
- XB7v6RJD32okUgudOQJq8ViX3zwomb3PnC1Q71BFGYsEFDDyUz/T7XkM7jvYfFJ1pHc/
- AmuxCZuK5oRO7DEDKTrRMR9VMQ7OmqMmzI89c7j5sFwE6R1N9uld+dwvCouA9Z3gmuLU
- T8fesIEp89VMvRuEayGAzA5kmHKdjOhqbfuNa2YUUGdjOEosiUJ0uuvaZpCEEkAuZjqo Kw== 
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qg5mprer1-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 10 May 2023 10:22:55 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34AAMtTd027369
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 10 May 2023 10:22:55 GMT
-Received: from varda-linux.qualcomm.com (10.80.80.8) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Wed, 10 May 2023 03:22:49 -0700
-Date:   Wed, 10 May 2023 15:52:45 +0530
-From:   Varadarajan Narayanan <quic_varada@quicinc.com>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <vkoul@kernel.org>,
-        <kishon@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <gregkh@linuxfoundation.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <quic_wcheng@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-clk@vger.kernel.org>
-Subject: Re: [PATCH v11 8/9] arm64: dts: qcom: ipq9574: Add LDO regulator node
-Message-ID: <20230510102244.GA21530@varda-linux.qualcomm.com>
-References: <cover.1683630932.git.quic_varada@quicinc.com>
- <42bf6244582d6208f51db1a9299fe1c8afab4e14.1683630932.git.quic_varada@quicinc.com>
- <CAA8EJpqkSNzx=73JS1Csw+ivVovhrFeM0R5j2tpruEfNqvT48Q@mail.gmail.com>
+        with ESMTP id S236573AbjEJKX2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 06:23:28 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02F9D30CA;
+        Wed, 10 May 2023 03:23:25 -0700 (PDT)
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 8B4D9846B6;
+        Wed, 10 May 2023 12:23:23 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1683714204;
+        bh=l3nzFfntxHF9pjhdFKzLn4pB7Uc09xfOJyBZjOmwiPM=;
+        h=From:To:Cc:Subject:Date:From;
+        b=GrsJ99EH8/USS/x16SPqIqcI2+8C4svPqGRy/nujr0dStlN5oPB6ugU4QyWZR/9+s
+         UHO8th+l4kn/ggQN8xeHEI93bQ18s2L49EmX18TnrwDLAbkMY2lX2114swfo5Rpvck
+         Y4yCTGB93g2dvFeV/5x2/1T58Nefq9S7AgSZgwqoHT78qqNHLqfNVkogVe4eHjNac/
+         8OZPDVujhO9ssRCXN6CBGUwMNj2XN9j8giMjKl+Z0pjVVTaKYZLaPdiOkfoJ6CEi2Y
+         7nbTQkTzgjN6UqXVz4AYHeZW7SeVSxPsBOGC9mTW1OWzyHc1UYMH9yIXJnE1ZQi/io
+         1dI1gLWauD/QQ==
+From:   Marek Vasut <marex@denx.de>
+To:     linux-iio@vger.kernel.org
+Cc:     Marek Vasut <marex@denx.de>, Crt Mori <cmo@melexis.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH v3 1/6] dt-bindings: iio: temperature: melexis,mlx90614: Document MLX90615 support
+Date:   Wed, 10 May 2023 12:22:46 +0200
+Message-Id: <20230510102251.10118-1-marex@denx.de>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <CAA8EJpqkSNzx=73JS1Csw+ivVovhrFeM0R5j2tpruEfNqvT48Q@mail.gmail.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: n9j7NvPT3oQR1Gs-DzZ4KCoQp_4YgHjt
-X-Proofpoint-GUID: n9j7NvPT3oQR1Gs-DzZ4KCoQp_4YgHjt
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-10_04,2023-05-05_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
- priorityscore=1501 phishscore=0 mlxlogscore=999 clxscore=1015
- suspectscore=0 malwarescore=0 mlxscore=0 adultscore=0 lowpriorityscore=0
- impostorscore=0 spamscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2304280000 definitions=main-2305100081
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -84,60 +57,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 09, 2023 at 04:08:59PM +0300, Dmitry Baryshkov wrote:
-> On Tue, 9 May 2023 at 14:56, Varadarajan Narayanan
-> <quic_varada@quicinc.com> wrote:
-> >
-> > Add LDO regulator node
-> >
-> > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> > ---
-> >  Changes in v10:
-> >         - Add LDO regulator node
-> > ---
-> >  arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts | 7 +++++++
-> >  1 file changed, 7 insertions(+)
->
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->
-> Minor question below:
->
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
-> > index bdc1434..1f5d14f 100644
-> > --- a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
-> > +++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
-> > @@ -60,6 +60,13 @@
-> >                         regulator-min-microvolt = <725000>;
-> >                         regulator-max-microvolt = <1075000>;
-> >                 };
-> > +
-> > +               mp5496_l2: l2 {
-> > +                       regulator-min-microvolt = <1800000>;
-> > +                       regulator-max-microvolt = <1800000>;
-> > +                       regulator-boot-on;
-> > +                       regulator-always-on;
->
-> This usually points out that there are other users which are not yet
-> enabled/properly specified. What users are there for this supply which
-> demand it to be always on?
+Document support for MLX90615 Infra Red Thermometer, which seems to
+be the predecesor of MLX90614 . There are significant differences in
+the register layout compared to MLX90614, but the functionality of
+the device is virtually identical.
 
-The 1.8v rail is used by PCIe PHY, PLL for Ethernet SerDes
-interface and PLLs that generate SoC clocks. The voting for this
-rail is managed by the RPM f/w.
+Acked-by: Crt Mori <cmo@melexis.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: Crt Mori <cmo@melexis.com>
+Cc: Jonathan Cameron <jic23@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>
+Cc: Marek Vasut <marex@denx.de>
+Cc: Peter Meerwald <pmeerw@pmeerw.net>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-iio@vger.kernel.org
+---
+V2: - Add spaces to subject tags
+    - Add AB from Krzysztof
+V3: Add AB from Crt
+---
+ .../bindings/iio/temperature/melexis,mlx90614.yaml          | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-Thanks
-Varada
+diff --git a/Documentation/devicetree/bindings/iio/temperature/melexis,mlx90614.yaml b/Documentation/devicetree/bindings/iio/temperature/melexis,mlx90614.yaml
+index d6965a0c1cf30..654d31f65d360 100644
+--- a/Documentation/devicetree/bindings/iio/temperature/melexis,mlx90614.yaml
++++ b/Documentation/devicetree/bindings/iio/temperature/melexis,mlx90614.yaml
+@@ -4,7 +4,7 @@
+ $id: http://devicetree.org/schemas/iio/temperature/melexis,mlx90614.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title: Melexis MLX90614 contactless IR temperature sensor
++title: Melexis MLX90614/MLX90615 contactless IR temperature sensor
+ 
+ maintainers:
+   - Peter Meerwald <pmeerw@pmeerw.net>
+@@ -15,7 +15,9 @@ description: |
+ 
+ properties:
+   compatible:
+-    const: melexis,mlx90614
++    enum:
++      - melexis,mlx90614
++      - melexis,mlx90615
+ 
+   reg:
+     maxItems: 1
+-- 
+2.39.2
 
-> > +               };
-> >         };
-> >  };
-> >
-> > --
-> > 2.7.4
-> >
->
->
-> --
-> With best wishes
-> Dmitry
