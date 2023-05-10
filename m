@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 580016FE0C4
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 16:48:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C74F6FE0CD
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 16:51:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237607AbjEJOsa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 10:48:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51672 "EHLO
+        id S237409AbjEJOvG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 10:51:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237590AbjEJOsY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 10:48:24 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACC5283FF
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 07:48:15 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-965c3f9af2aso1091499166b.0
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 07:48:15 -0700 (PDT)
+        with ESMTP id S237244AbjEJOvE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 10:51:04 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D4B9A5CD
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 07:51:03 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-50bc4ba28cbso13132126a12.0
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 07:51:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683730094; x=1686322094;
+        d=linaro.org; s=google; t=1683730261; x=1686322261;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=f6J1at/UfOBYlhKmXRcHodshRJDkjuRkHYlvCekUlaQ=;
-        b=iNDBMZ3Qo/Ta40vyO3EF+rrpA6RSS0EQpoiRnrl+XngL9Vmh01gFgTLSCxICapeEsh
-         daMH8kT6BzRJ7tOiLg9BOIyFxoYPKy1UTtBs+KRujHFwX6/TpTkx5ATMWgamCvbFYylZ
-         aeKI2KTncm+HdQIKHtE4wZylBYjc0wfZ8+rZiWy5W5HFuiwZg+SjV0/mWe76xGCfpDX7
-         LneNP04ablGNXFUmnjKXKFWdF5NJ3h57KcmCvVto2kKeI4ELTHFaKoXNu3/oeJZR+8tb
-         Rtb0J4RTHI4GRLVs7ApJvwEjff15qO/3eFmjvYFxR3bdpKaQMpB3bfWDkk0KQJGVmntA
-         VaFA==
+        bh=634QqYCO4e6YYkg9HogXcpMtMk+Nqei671dupMxD3uU=;
+        b=CpQE9gcU+nOsxso1W8WnW0sBuBszcV5bm98RKhg3mQCCf8eXyc1+M76/bUNrX25MV1
+         mjGgjoZTxLCRLZpAcfxGDlG09OjkVFfMol0RuQDpQ+Vp8xfepP78up43AQf0dcSclvlh
+         GZUIiB7z6nN2khwM7CX99SSDulayzIfoJrg9KuwnykbzZhjxMUnu8bvlzlZLAGM5Jgv4
+         AOK1Hy4hWfgUg0gl8PivfB1Ppx6naSp3dR00UIoNLHptCJVF2MrDvRMf8KPC9bq+aeiT
+         pbqaw7h5G4bWYzyuVSyXhGe6yJQZ7LVucbo0VWwcOM/ftnJfg59X7pgDQvaFhQD20kuJ
+         Huaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683730094; x=1686322094;
+        d=1e100.net; s=20221208; t=1683730261; x=1686322261;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=f6J1at/UfOBYlhKmXRcHodshRJDkjuRkHYlvCekUlaQ=;
-        b=MIqy1GYLQ/g7c/raxEo73XnXnRadTMRi514hxcecz76qjOcpQzvylo3PCVlAF4us2N
-         fPnIqwIR5AeHabJB/zX8djCE4rjdBLEeFyP5hFgsUPQWq7RzW4z+xoP+6NcwOZT/n9/8
-         ZS3JqkZLo156btdD78Ovjaw7J6MvAititsOE7OxuTuPY7dRXMHnXOC3dQbDkww75PDq7
-         BsZV0LKbx2Qkgq7KuUFUB95/OXgN+KvHrxMcx0bjHbKpjEFMXBE78KAbxWseo3tyxVO2
-         WpCjS/M7ftC/WJLUA6VxJEFqytW9Hk1h+k3hLY6LkxywGuup6LXNV3aAj+bM05lOfbJs
-         PGvA==
-X-Gm-Message-State: AC+VfDyAINyisJPmlark0e6jc7Pvkny+T4qc+4U8mPcwf2WO/P4Ny4Rm
-        06Ro4MpMzRSm7QzHxCYRTqqSD8QzGG9aT0juAjo=
-X-Google-Smtp-Source: ACHHUZ6nlFU/rkd4wiS8p9XQtJiSjSA/y7NII5AZrzIETV3go8PONFgO0szicvwQF++ebH0pnpxuGg==
-X-Received: by 2002:a17:907:8a02:b0:967:d161:61c6 with SMTP id sc2-20020a1709078a0200b00967d16161c6mr9898351ejc.3.1683730094012;
-        Wed, 10 May 2023 07:48:14 -0700 (PDT)
+        bh=634QqYCO4e6YYkg9HogXcpMtMk+Nqei671dupMxD3uU=;
+        b=batJc/UUx4/xioyh/EAzh1YA2mdqVRBmNQgwUmvwZSQI+tZXevlZbNAhHBptqSkUoL
+         Rb4U+dDIOJCFkd1H7cx8020S7sqh3E7QUqDrRCCyT0FddcCH45/vJyfX80bhUf+TvqJL
+         wYZrbodta8SSp9KT4dR7pFzqq36Mpofby1P0ubToEgIRH16VCAMGvqd9URgHehVAFRzA
+         AaO+5YEO8V9vOkN3qUaTzE1UZg0qhflxgaASGmVJCYYHjXELRzBlUkN8M8eC+IA66Lmr
+         sabhXrAwvrRn5QszZGYw/mccGrhT6+u9Pf5kXwF5AbXIwQu34O6SwU38yEmvz+hJm3Ox
+         xf/w==
+X-Gm-Message-State: AC+VfDwQiVoEf8EYce5kiw9NtTGM1mqobLdH1heJoGuzL/Zuo3O2P6Jx
+        /ilz/5MT+IxRDYWzvEcmsIhxBw==
+X-Google-Smtp-Source: ACHHUZ57l5b3kNlo9y2XGG6tHhsx/v2ViJ/oCrgPAj474IZCIVQl7t5hfSOajPXOPXUzUmyQERnmkA==
+X-Received: by 2002:a17:907:3686:b0:94a:56ec:7f12 with SMTP id bi6-20020a170907368600b0094a56ec7f12mr16731180ejc.30.1683730261473;
+        Wed, 10 May 2023 07:51:01 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:c175:a0f9:6928:8c9d? ([2a02:810d:15c0:828:c175:a0f9:6928:8c9d])
-        by smtp.gmail.com with ESMTPSA id va8-20020a17090711c800b0094f282fc29asm2693778ejb.207.2023.05.10.07.48.12
+        by smtp.gmail.com with ESMTPSA id l19-20020a170906939300b0094e7d196aa4sm2709662ejx.160.2023.05.10.07.51.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 May 2023 07:48:13 -0700 (PDT)
-Message-ID: <6b5be71e-141e-c02a-8cba-a528264b26c2@linaro.org>
-Date:   Wed, 10 May 2023 16:48:12 +0200
+        Wed, 10 May 2023 07:51:00 -0700 (PDT)
+Message-ID: <ec0a3553-2c11-301e-d838-f0bc70353b17@linaro.org>
+Date:   Wed, 10 May 2023 16:50:59 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v2 3/5] dt-bindings: net: add mac-address-increment option
+Subject: Re: [PATCH v2 5/5] dt-bindings: net: ftgmac100: convert to yaml
+ version from txt
 Content-Language: en-US
 To:     Ivan Mikhaylov <fr0st61te@gmail.com>,
         Samuel Mendoza-Jonas <sam@mendozajonas.com>,
@@ -65,12 +66,11 @@ To:     Ivan Mikhaylov <fr0st61te@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
-        Paul Fertser <fercerpav@gmail.com>
+        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org
 References: <20230509143504.30382-1-fr0st61te@gmail.com>
- <20230509143504.30382-4-fr0st61te@gmail.com>
+ <20230509143504.30382-6-fr0st61te@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230509143504.30382-4-fr0st61te@gmail.com>
+In-Reply-To: <20230509143504.30382-6-fr0st61te@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,34 +84,103 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 09/05/2023 16:35, Ivan Mikhaylov wrote:
-> Add the mac-address-increment option for specify MAC address taken by
-> any other sources.
-> 
-> Signed-off-by: Paul Fertser <fercerpav@gmail.com>
 > Signed-off-by: Ivan Mikhaylov <fr0st61te@gmail.com>
-> ---
->  .../devicetree/bindings/net/ethernet-controller.yaml      | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/ethernet-controller.yaml b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-> index 00be387984ac..6900098c5105 100644
-> --- a/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-> +++ b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-> @@ -34,6 +34,14 @@ properties:
->      minItems: 6
->      maxItems: 6
->  
-> +  mac-address-increment:
-> +    $ref: /schemas/types.yaml#/definitions/int32
-> +    description:
-> +      Specifies the MAC address increment to be added to the MAC address.
-> +      Should be used in cases when there is a need to use MAC address
-> +      different from one obtained by any other level, like u-boot or the
-> +      NC-SI stack.
 
-We don't store MAC addresses in DT, but provide simple placeholder for
-firmware or bootloader. Why shall we store static "increment" part of
-MAC address? Can't the firmware give you proper MAC address?
+Need some commit msg.
+
+
+> ---
+>  .../bindings/net/faraday,ftgmac100.yaml       | 110 ++++++++++++++++++
+
+Missing actual conversion (removal).
+
+>  1 file changed, 110 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml b/Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml
+> new file mode 100644
+> index 000000000000..98cd142f74bb
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml
+> @@ -0,0 +1,110 @@
+> +# SPDX-License-Identifier: GPL-2.0
+
+Dual-license, unless you copied some chunks of old binding... but was
+there old binding?
+
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/faraday,ftgmac100.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Faraday Technology FTGMAC100 gigabit ethernet controller
+> +
+> +allOf:
+> +  - $ref: "ethernet-controller.yaml#"
+
+Drop quotes.
+
+
+> +
+> +maintainers:
+> +  - Po-Yu Chuang <ratbert@faraday-tech.com>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: faraday,ftgmac100
+> +      - items:
+> +          - enum:
+> +              - aspeed,ast2400-mac
+> +              - aspeed,ast2500-mac
+> +              - aspeed,ast2600-mac
+> +          - const: faraday,ftgmac100
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    description: |
+> +      In accordance with the generic clock bindings.
+
+Drop this part. Obvious.
+
+>  Must describe the MAC
+> +      IP clock, and optionally an RMII RCLK gate for the AST2500/AST2600. The
+> +      required MAC clock must be the first cell.
+
+The cells depend on clock provider. Do you mean something else?
+
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  clock-names:
+> +    items:
+> +      - enum:
+> +          - MACCLK
+> +          - RCLK
+
+This does not allow two clocks... List all the items and add minItems: 1.
+
+
+> +
+> +  phy-mode:
+> +    enum:
+> +      - rgmii
+> +      - rmii
+> +
+> +  phy-handle: true
+> +
+> +  use-ncsi:
+> +    description: |
+
+Do not need '|' unless you need to preserve formatting.
+
+I will stop review, because it depends whether this is true conversion
+or new binding.
 
 Best regards,
 Krzysztof
