@@ -2,114 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E2646FD793
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 08:57:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3AC06FD79B
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 08:58:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236258AbjEJG5M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 02:57:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56254 "EHLO
+        id S236194AbjEJG6R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 02:58:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236247AbjEJG5I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 02:57:08 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93C2EE0;
-        Tue,  9 May 2023 23:56:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1683701818; x=1715237818;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=qvpvXVoD5oa71/tUsH8l5qk5L7RfOsuYx7ypoqxESoI=;
-  b=pDjFFL8tIfeT0QKCsyPQVjQywHPe4HXm0d1SOI0HSmdwVn/8C7l4KlJX
-   BR0JAgKdFKTs1eoDbP222B9B+F2Iew5BUjPtAnd5A9vvRQvPKJseztvT+
-   61f+CmO/nFv0XrxtLVUl7E3C3WDN3OMayV7joaG2tRu4FgCWEOyQXVi0c
-   Ua/FZb7DM8mIBIpJxBebAGyDO3N8X7jd7iYDWxMiJwyRUOgGoowiSh0rj
-   o27qAJo9RSDpTnXgYYwni3KUjcXIiYz05gyuwAI521kIuaux8x4NAleSd
-   4b2CxmWEzf5Q8j0mf3l4Q4rDhFp3mL4voNc4kZSOKlEJs/LL9uUjldti0
-   A==;
-X-IronPort-AV: E=Sophos;i="5.99,264,1677538800"; 
-   d="scan'208";a="30818406"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 10 May 2023 08:56:46 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Wed, 10 May 2023 08:56:46 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Wed, 10 May 2023 08:56:46 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1683701806; x=1715237806;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=qvpvXVoD5oa71/tUsH8l5qk5L7RfOsuYx7ypoqxESoI=;
-  b=n67dBp73tAttvXWUeBEyqrDA5M+e/WHw6Fk4sh/9atbAheON/QoyWbis
-   Rou1LyN0oy3Uj6Im7NlODb5AkZbiu2j8RXm8r3EW85zcoClpg0MNbK48G
-   jI5kzOKgrxkuIr+5irNljFzogaEpZ6Id5t4ah+J1SoVNALKkAqnUGE62s
-   OyiwRu7Xg0e7045w4R1mUGh23Pv0jIijmvq/sY++UrxsXzd6eU/BuIbAO
-   llI81F0rHFDarwi6cBdGvf7NsS9/0AgoC0BprO+6UKfRgtE2NaFQJJLdg
-   ZR8VXsDcR2QIiMxZOjdgBS49xA+tGspLMNNgR3oQ7kA0aW92eG3+NYG7V
-   g==;
-X-IronPort-AV: E=Sophos;i="5.99,264,1677538800"; 
-   d="scan'208";a="30818405"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 10 May 2023 08:56:46 +0200
-Received: from steina-w.tq-net.de (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 3C46B280073;
-        Wed, 10 May 2023 08:56:46 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S236208AbjEJG6Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 02:58:16 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E05C7693;
+        Tue,  9 May 2023 23:57:56 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (softbank126090219015.bbtec.net [126.90.219.15])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 51741547;
+        Wed, 10 May 2023 08:57:47 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1683701868;
+        bh=7+/BXts4qDsEHDqAfZ4l9gAHxpVe8kPgSlt0NSiOyS0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=PuFbFpEjeSeT1D11a6LOhy8cDMe1K7vQ3ZdSTFa1t8ccFPGCVNsxqRwX29xlc9skO
+         4tHZoar+ch28sXVYQDZtAdQ1HoMDkst2B1GmVicdY1xi87LpB0BjFE9n26B5RR7fZx
+         NW1jzJODc3OUdPJ2c/b+bAVZ+b7fZzz16rT7+4Sk=
+Date:   Wed, 10 May 2023 09:57:50 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Michal Simek <michal.simek@amd.com>
+Cc:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
+        michal.simek@xilinx.com, git@xilinx.com,
+        Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
+        Harini Katakam <harini.katakam@amd.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Michael Grzeschik <m.grzeschik@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robert Hancock <robert.hancock@calian.com>,
+        Tanmay Shah <tanmay.shah@amd.com>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 4/4] arm64: dts: imx8mm: Add CCM interrupts
-Date:   Wed, 10 May 2023 08:56:44 +0200
-Message-Id: <20230510065644.1317577-4-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230510065644.1317577-1-alexander.stein@ew.tq-group.com>
-References: <20230510065644.1317577-1-alexander.stein@ew.tq-group.com>
+Subject: Re: [PATCH 05/23] arm64: zynqmp: Add L2 cache nodes
+Message-ID: <20230510065750.GD11711@pendragon.ideasonboard.com>
+References: <cover.1683034376.git.michal.simek@amd.com>
+ <cf4ced33cb7dc8d43b79bb9d4ad6acd3b8ecc09b.1683034376.git.michal.simek@amd.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <cf4ced33cb7dc8d43b79bb9d4ad6acd3b8ecc09b.1683034376.git.michal.simek@amd.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add both CCM interrupts as mentioned in RM.
+Hi Michal,
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- arch/arm64/boot/dts/freescale/imx8mm.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+Thank you for the patch.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-index d6b36f04f3dc..f56baa52bd10 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-@@ -635,6 +635,8 @@ snvs_lpgpr: snvs-lpgpr {
- 			clk: clock-controller@30380000 {
- 				compatible = "fsl,imx8mm-ccm";
- 				reg = <0x30380000 0x10000>;
-+				interrupts = <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>,
-+					     <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
- 				#clock-cells = <1>;
- 				clocks = <&osc_32k>, <&osc_24m>, <&clk_ext1>, <&clk_ext2>,
- 					 <&clk_ext3>, <&clk_ext4>;
+On Tue, May 02, 2023 at 03:35:33PM +0200, Michal Simek wrote:
+> From: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+> 
+> Linux kernel throws "cacheinfo: Unable to detect cache hierarchy for
+> CPU 0" warning when booting on zu+ Soc. To fix it add the L2 cache
+> node and let each CPU point to it.
+
+The commit message should focus on how this change brings the DT in line
+with the hardware, not on what the Linux kernel does.
+
+> Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+> Signed-off-by: Michal Simek <michal.simek@amd.com>
+> ---
+> 
+>  arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> index bb0d0be30aa0..c2d80c7967e9 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> @@ -33,6 +33,7 @@ cpu0: cpu@0 {
+>  			operating-points-v2 = <&cpu_opp_table>;
+>  			reg = <0x0>;
+>  			cpu-idle-states = <&CPU_SLEEP_0>;
+> +			next-level-cache = <&L2>;
+>  		};
+>  
+>  		cpu1: cpu@1 {
+> @@ -42,6 +43,7 @@ cpu1: cpu@1 {
+>  			reg = <0x1>;
+>  			operating-points-v2 = <&cpu_opp_table>;
+>  			cpu-idle-states = <&CPU_SLEEP_0>;
+> +			next-level-cache = <&L2>;
+>  		};
+>  
+>  		cpu2: cpu@2 {
+> @@ -51,6 +53,7 @@ cpu2: cpu@2 {
+>  			reg = <0x2>;
+>  			operating-points-v2 = <&cpu_opp_table>;
+>  			cpu-idle-states = <&CPU_SLEEP_0>;
+> +			next-level-cache = <&L2>;
+>  		};
+>  
+>  		cpu3: cpu@3 {
+> @@ -60,6 +63,12 @@ cpu3: cpu@3 {
+>  			reg = <0x3>;
+>  			operating-points-v2 = <&cpu_opp_table>;
+>  			cpu-idle-states = <&CPU_SLEEP_0>;
+> +			next-level-cache = <&L2>;
+> +		};
+> +
+> +		L2: l2-cache {
+
+Shouldn't labels be lower-case ?
+
+> +			compatible = "cache";
+> +			cache-level = <2>;
+>  		};
+>  
+>  		idle-states {
+
 -- 
-2.34.1
+Regards,
 
+Laurent Pinchart
