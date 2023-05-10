@@ -2,208 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CBDE86FDE83
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 15:28:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF4786FDEB9
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 15:39:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232226AbjEJN2e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 09:28:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35790 "EHLO
+        id S235752AbjEJNj5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 09:39:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237083AbjEJN2c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 09:28:32 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2D5E44A8;
-        Wed, 10 May 2023 06:28:25 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 74C4124E1B7;
-        Wed, 10 May 2023 21:28:19 +0800 (CST)
-Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 10 May
- 2023 21:28:19 +0800
-Received: from ubuntu.localdomain (183.27.98.219) by EXMBX171.cuchost.com
- (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 10 May
- 2023 21:28:18 +0800
-From:   Minda Chen <minda.chen@starfivetech.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Pawel Laszczak <pawell@cadence.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Peter Chen <peter.chen@kernel.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>,
-        Minda Chen <minda.chen@starfivetech.com>
-Subject: [PATCH v2 2/2] usb: cdns3: cdns3-plat: Add clk and reset init
-Date:   Wed, 10 May 2023 21:28:16 +0800
-Message-ID: <20230510132816.108820-3-minda.chen@starfivetech.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230510132816.108820-1-minda.chen@starfivetech.com>
-References: <20230510132816.108820-1-minda.chen@starfivetech.com>
+        with ESMTP id S231355AbjEJNj4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 09:39:56 -0400
+Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DDD21718
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 06:39:55 -0700 (PDT)
+Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-55a6efe95c9so106901007b3.1
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 06:39:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1683725994; x=1686317994;
+        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=CmlwvXEoimVTfsyyyYai0GQlqo3zzXGhdH5Gfvmx5TY=;
+        b=QA3o0/TmXn9qhFkw/UZaEuxUlT4oQ+TUho9Ec1tIN+nuaJskbDWUzL8a49hjxFFJWe
+         KPWusIjcPmkPFH3l7vwNmYTS/u+h+PmCr41ixnLUFX18N1JT1FuX5MvS9anYT5a680dY
+         3Z90f9kJjZ/E1iVlm5weDAVYEgBK39TdNJIWhNCO0uO0x57ABNOvwuIEto/37Ad8aBzj
+         I6aV4jaqcRgJTYF97mgJGnmuQ/nturZ8qZtePbAz/X6u2lkxlMfku4w/LTukf+rdu/da
+         N16DXDEhRPWy6olUxHLOe8KHaHBXUTW2CvGqwinwP2HovQauOZDAjLOBI6NugEzVetli
+         Uf2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683725994; x=1686317994;
+        h=to:subject:message-id:date:from:reply-to:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=CmlwvXEoimVTfsyyyYai0GQlqo3zzXGhdH5Gfvmx5TY=;
+        b=VmRKDLomLFTNNJJ17ZcMiO1zih8X7GlrqY2iXcxXpmZ9K5wGZdwqQopTAt6k6KM015
+         gLlC9f15VdbR3fM4FJH34Z4ktUq9ylpcFntyw4140Ebavi/S9DZ738kHlxLCkeJlzGgk
+         9vPxfQtavPFciwf0QitgGdv9D1QX3pgIKlW4V5FP6uU57R0O9qK7PbfHGFWdJ9d0zUNS
+         hrGjWoZ3lZzMLa5Wx7yrNHFj1PNmPcYRKwR+5Fwf+s5SaZFGKPbSfP/6Bsq/D7rVRESa
+         05zd1n5SPuDlDbCrrsIfPYrdux4qZUzfvVm1lbi4JW5Qj7RxbllDtPopozqIGvvTwWqI
+         6+PQ==
+X-Gm-Message-State: AC+VfDzJt9vOxWQQJRoW6kN3goxjm+bQftpvkZBxJbSZGuaqfKf/0CFH
+        R3EGv5w2HzodEBW7/rPYZWsfJpEvIoCHUE2JR6s=
+X-Google-Smtp-Source: ACHHUZ41zS9cDm/p/jo6L/juu01I40gpuWz4TxQFGm9m+Ds911osouhqUPqcTJH2YS06P5bUcGWui67CdrVpNijZmTo=
+X-Received: by 2002:a0d:d516:0:b0:55a:f428:e8ea with SMTP id
+ x22-20020a0dd516000000b0055af428e8eamr19071596ywd.41.1683725994056; Wed, 10
+ May 2023 06:39:54 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [183.27.98.219]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX171.cuchost.com
- (172.16.6.91)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Received: by 2002:a05:7000:19d6:b0:4c8:31f6:3644 with HTTP; Wed, 10 May 2023
+ 06:39:53 -0700 (PDT)
+Reply-To: contact.ninacoulibaly@inbox.eu
+From:   nina coulibaly <coulinina15@gmail.com>
+Date:   Wed, 10 May 2023 06:39:53 -0700
+Message-ID: <CANZxeNM3s+5Pm_9SXbP1hM+NE8c852jFd=6dfOEoKHSRKeWVYg@mail.gmail.com>
+Subject: from nina coulibaly
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=0.0 required=5.0 tests=BAYES_40,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add gereric clk and reset init codes to Cadence USBSS
-controller. The codes has been tested by starfive vf2
-board.
+Dear,
 
-Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
----
- drivers/usb/cdns3/cdns3-plat.c | 58 ++++++++++++++++++++++++++++++++++
- drivers/usb/cdns3/core.h       |  3 ++
- 2 files changed, 61 insertions(+)
+Please grant me the permission to share important discussion with you.
+I am looking forward to hearing from you at your earliest convenience.
 
-diff --git a/drivers/usb/cdns3/cdns3-plat.c b/drivers/usb/cdns3/cdns3-plat.c
-index 2bc5d094548b..30da808e0a2f 100644
---- a/drivers/usb/cdns3/cdns3-plat.c
-+++ b/drivers/usb/cdns3/cdns3-plat.c
-@@ -12,11 +12,13 @@
-  *         Roger Quadros <rogerq@ti.com>
-  */
- 
-+#include <linux/clk.h>
- #include <linux/module.h>
- #include <linux/irq.h>
- #include <linux/kernel.h>
- #include <linux/platform_device.h>
- #include <linux/pm_runtime.h>
-+#include <linux/reset.h>
- 
- #include "core.h"
- #include "gadget-export.h"
-@@ -43,6 +45,40 @@ static void set_phy_power_off(struct cdns *cdns)
- 	phy_power_off(cdns->usb2_phy);
- }
- 
-+static int cdns3_clk_rst_init(struct cdns *cdns, bool clk_only)
-+{
-+	int ret = 0;
-+
-+	if (cdns->num_clks) {
-+		ret = clk_bulk_prepare_enable(cdns->num_clks, cdns->clks);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	if (clk_only)
-+		return ret;
-+
-+	ret = reset_control_deassert(cdns->resets);
-+	if (ret)
-+		goto err_clk_init;
-+
-+	return ret;
-+
-+err_clk_init:
-+	if (cdns->num_clks)
-+		clk_bulk_disable_unprepare(cdns->num_clks, cdns->clks);
-+	return ret;
-+}
-+
-+static void cdns3_clk_rst_deinit(struct cdns *cdns, bool clk_only)
-+{
-+	if (!clk_only)
-+		reset_control_assert(cdns->resets);
-+
-+	if (cdns->num_clks)
-+		clk_bulk_disable_unprepare(cdns->num_clks, cdns->clks);
-+}
-+
- /**
-  * cdns3_plat_probe - probe for cdns3 core device
-  * @pdev: Pointer to cdns3 core platform device
-@@ -116,6 +152,16 @@ static int cdns3_plat_probe(struct platform_device *pdev)
- 		cdns->wakeup_irq = 0x0;
- 	}
- 
-+	ret = devm_clk_bulk_get_all(dev, &cdns->clks);
-+	if (ret < 0)
-+		return ret;
-+
-+	cdns->num_clks = ret;
-+
-+	cdns->resets = devm_reset_control_array_get_optional_exclusive(dev);
-+	if (IS_ERR(cdns->resets))
-+		return PTR_ERR(cdns->resets);
-+
- 	cdns->usb2_phy = devm_phy_optional_get(dev, "cdns3,usb2-phy");
- 	if (IS_ERR(cdns->usb2_phy))
- 		return PTR_ERR(cdns->usb2_phy);
-@@ -128,6 +174,10 @@ static int cdns3_plat_probe(struct platform_device *pdev)
- 	if (IS_ERR(cdns->usb3_phy))
- 		return PTR_ERR(cdns->usb3_phy);
- 
-+	ret = cdns3_clk_rst_init(cdns, false);
-+	if (ret)
-+		return ret;
-+
- 	ret = phy_init(cdns->usb3_phy);
- 	if (ret)
- 		goto err_phy3_init;
-@@ -165,6 +215,7 @@ static int cdns3_plat_probe(struct platform_device *pdev)
- 	phy_exit(cdns->usb3_phy);
- err_phy3_init:
- 	phy_exit(cdns->usb2_phy);
-+	cdns3_clk_rst_deinit(cdns, false);
- 
- 	return ret;
- }
-@@ -187,6 +238,8 @@ static int cdns3_plat_remove(struct platform_device *pdev)
- 	set_phy_power_off(cdns);
- 	phy_exit(cdns->usb2_phy);
- 	phy_exit(cdns->usb3_phy);
-+	cdns3_clk_rst_deinit(cdns, false);
-+
- 	return 0;
- }
- 
-@@ -220,6 +273,8 @@ static int cdns3_controller_suspend(struct device *dev, pm_message_t msg)
- 
- 	cdns3_set_platform_suspend(cdns->dev, true, wakeup);
- 	set_phy_power_off(cdns);
-+	if (!PMSG_IS_AUTO(msg))
-+		cdns3_clk_rst_deinit(cdns, true);
- 	spin_lock_irqsave(&cdns->lock, flags);
- 	cdns->in_lpm = true;
- 	spin_unlock_irqrestore(&cdns->lock, flags);
-@@ -237,6 +292,9 @@ static int cdns3_controller_resume(struct device *dev, pm_message_t msg)
- 	if (!cdns->in_lpm)
- 		return 0;
- 
-+	if (!PMSG_IS_AUTO(msg))
-+		cdns3_clk_rst_init(cdns, true);
-+
- 	if (cdns_power_is_lost(cdns)) {
- 		phy_exit(cdns->usb2_phy);
- 		ret = phy_init(cdns->usb2_phy);
-diff --git a/drivers/usb/cdns3/core.h b/drivers/usb/cdns3/core.h
-index 2d332a788871..b894768ee485 100644
---- a/drivers/usb/cdns3/core.h
-+++ b/drivers/usb/cdns3/core.h
-@@ -111,6 +111,9 @@ struct cdns {
- 	struct mutex			mutex;
- 	enum usb_dr_mode		dr_mode;
- 	struct usb_role_switch		*role_sw;
-+	struct reset_control *resets;
-+	struct clk_bulk_data *clks;
-+	int num_clks;
- 	bool				in_lpm;
- 	bool				wakeup_pending;
- 	struct cdns3_platform_data	*pdata;
--- 
-2.17.1
+Best Regards.
 
+Mrs. Nina Coulibaly
