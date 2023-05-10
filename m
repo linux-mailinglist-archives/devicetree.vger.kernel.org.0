@@ -2,300 +2,480 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1154F6FD484
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 05:42:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FF4D6FD48A
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 05:45:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235385AbjEJDm2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 23:42:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46870 "EHLO
+        id S235624AbjEJDpP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 23:45:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49476 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235696AbjEJDmY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 23:42:24 -0400
-Received: from mail-il1-x12a.google.com (mail-il1-x12a.google.com [IPv6:2607:f8b0:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21C684EDF
-        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 20:42:06 -0700 (PDT)
-Received: by mail-il1-x12a.google.com with SMTP id e9e14a558f8ab-335394455ecso22995145ab.1
-        for <devicetree@vger.kernel.org>; Tue, 09 May 2023 20:42:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1683690125; x=1686282125;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KoxWVoYqD+4gV3KBow/UtDgyZNAdKql45E4uDHQVhwc=;
-        b=NuuLFcl5w3cPb9iZ5sGP8fjZmIlyvc1bQ8GViAVcWB7JtZ3NFVOoSSk60Q9KsBHS+4
-         Vmb+n7F0Qh3Xn1Tov3uM0952B851pVYVlOOdtXfF8vmaJKWpOqPH4C226ffUerU/p0H/
-         praGBWo1JBM67Uk/D3hq04Y/zktciE6V0rJaE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683690125; x=1686282125;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KoxWVoYqD+4gV3KBow/UtDgyZNAdKql45E4uDHQVhwc=;
-        b=DU3kcKQaIrSOIId9Lxj8SAWPcOpJfWIZpHTeZHSQI2RzIFLZIx8l66pgRvr6KteWXI
-         AV05Lxsx9YnZ+hZgdmyUSKkw791kCUthA/z+3XJKCmMf8L0PgK51TzQPM30HDzycltiT
-         yXtlMTNCauer9B36luPNcNACHgs4hVH0sOKTMK5npt5o1+E+IvQE1amLiKz7JROUsNEI
-         ptWVU/lasJ+tP1TVXBJfZtyQEijn7EkJFhCGZOpgz3m6RXzAEuHMsVvC7o7O2E7qSpSA
-         zfkckdjj6etGe9r+/orS0JGX+Ay5c0rmM3/3kAvP2UioGOLdSUh0gwWjggye0ZPMwP+2
-         JuaA==
-X-Gm-Message-State: AC+VfDyz31EvJpT9ypPBa7KbN0NBPiXUYeZ4h2rE1lc/NgFzltT2ikwF
-        F+pdxkQya89EIbxcthyOyF7n8h7cmH1d7Vrp/iLgyQ==
-X-Google-Smtp-Source: ACHHUZ6dSzV4MbROWJZLBDrIhEyuEGSOEy8vQrfj49GTj91xnlp3qXPHYE+dNldgd5I1sLr7cDIK1iRzi4s0q6GxRcE=
-X-Received: by 2002:a92:d245:0:b0:330:f7b3:ea4 with SMTP id
- v5-20020a92d245000000b00330f7b30ea4mr12064340ilg.2.1683690125299; Tue, 09 May
- 2023 20:42:05 -0700 (PDT)
+        with ESMTP id S229673AbjEJDpO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 23:45:14 -0400
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2061a.outbound.protection.outlook.com [IPv6:2a01:111:f400:feab::61a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF5891FE7
+        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 20:45:08 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Y/wb4pgYeXRIO10bUR89UhL/Q6sdSz+/vMwJY18AvIvwwTth1IKZnxPZirz4Qp1ZJ0gP/7koaGu4pLmG1yMDK8kBk88tN8ZJ3iswOXyUQ3YrfWQJ0xZJM1bb8nmWpUVUwCRI5bz+9YB3z7ojezPYhgJTTHeI/5zOe8y3+J3ThkpRlm319sSIWrxjezT7i+DPv3YpUr6D8FOZX5CwMETE7bH+WogbA82mWfY/gn/77mTA4e7TRxaKUdDtQLlObXEeDdOVG9hpIdkTofxjaqS3fhAFUSETZWs9k+quOIfoZh82K8+2d2PW8UNe+7Rd1osmS/pDI6oV2nvcjCZMz+CzMg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zHs+j6WXPKVhC28QhrMgjKiltpWgli4u3tRsBl2awXo=;
+ b=XfmvCJmFTxrcXmiHw8LmC74t2oS+3mbqGgVkRHBc98M0QlfaRRvSmzTcbt8oAY0H36cSVxmBwShOsR/i3YV+MbKn6UIHy1MS3GCnlja7wY1+yKH9C4Aths6okMYrcWU/YbJmpeO/Cyne13DgfyaQ8CF6CQskJvA6/wEjhl77GDPCUaRAf4oHz5NAep7FAowbtfvgHGZ15xI2D4cHBsWrEUjZ2O9PDgAaYxanTvI6ulv+BnPV9zcesGMLQy2kADxYHwLMF+6kptEZ61hoYqmDFdUqhJ8o8PhNPTReQ18B7XwrsZs5ZXkvnTFFwZ5ktj7tHQqZrqIlU+WDCbz3Osqi4g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 175.98.123.7) smtp.rcpttodomain=kernel.org smtp.mailfrom=nuvoton.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=nuvoton.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nuvoton.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zHs+j6WXPKVhC28QhrMgjKiltpWgli4u3tRsBl2awXo=;
+ b=cjILHTBWom+V4fz1nHqhjNAkxL6/ZpF66mvApgZl+EHFimY3hjNuElPbWBfzVJLPg6XxXyVwgFtsyOM+JLK/kwu4BEs9YHHXTT1lYsqK0uNLfdNXtPXLjXe0rx5XljsmNGFn2T1jGmApH20xAX9J2Cd/SZqUSzEvbfBkv9NQbzc=
+Received: from TYCPR01CA0126.jpnprd01.prod.outlook.com (2603:1096:400:26d::6)
+ by TY0PR03MB6726.apcprd03.prod.outlook.com (2603:1096:400:214::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.31; Wed, 10 May
+ 2023 03:45:02 +0000
+Received: from TYZAPC01FT058.eop-APC01.prod.protection.outlook.com
+ (2603:1096:400:26d:cafe::53) by TYCPR01CA0126.outlook.office365.com
+ (2603:1096:400:26d::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.33 via Frontend
+ Transport; Wed, 10 May 2023 03:45:02 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 175.98.123.7)
+ smtp.mailfrom=nuvoton.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nuvoton.com;
+Received-SPF: Pass (protection.outlook.com: domain of nuvoton.com designates
+ 175.98.123.7 as permitted sender) receiver=protection.outlook.com;
+ client-ip=175.98.123.7; helo=NTHCCAS04.nuvoton.com; pr=C
+Received: from NTHCCAS04.nuvoton.com (175.98.123.7) by
+ TYZAPC01FT058.mail.protection.outlook.com (10.118.152.155) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id
+ 15.20.6387.20 via Frontend Transport; Wed, 10 May 2023 03:45:02 +0000
+Received: from NTHCCAS04.nuvoton.com (10.1.8.29) by NTHCCAS04.nuvoton.com
+ (10.1.8.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 10
+ May 2023 11:44:56 +0800
+Received: from localhost.localdomain (10.11.36.27) by NTHCCAS04.nuvoton.com
+ (10.1.8.29) with Microsoft SMTP Server id 15.1.2176.2 via Frontend Transport;
+ Wed, 10 May 2023 11:44:56 +0800
+From:   David Lin <CTLIN0@nuvoton.com>
+To:     <broonie@kernel.org>
+CC:     <lgirdwood@gmail.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>, <YHCHuang@nuvoton.com>,
+        <KCHSU0@nuvoton.com>, <WTLI@nuvoton.com>, <SJLIN0@nuvoton.com>,
+        <ctlin0.linux@gmail.com>, David Lin <CTLIN0@nuvoton.com>
+Subject: [PATCH] ASoC: dt-bindings: nau8825: Convert to dtschema
+Date:   Wed, 10 May 2023 11:44:10 +0800
+Message-ID: <20230510034409.585800-1-CTLIN0@nuvoton.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20230331091145.737305-1-treapking@chromium.org>
- <20230331091145.737305-5-treapking@chromium.org> <CAE-0n51E5foFWQAsA73662_5e6XP426wuUCVVmcS5UWwiYpDmw@mail.gmail.com>
- <CAEXTbpdcbB_z4ZGCGzc-cM74ECKyxekbroKCWFnhH8eR=4HmvA@mail.gmail.com>
- <CAE-0n50atfmr-bFh5XtTCm4WpSijJGSe0B5JP8ni7CCYk7Bs5A@mail.gmail.com>
- <CAE-0n51Qy-KDGHOCr4Smpebq1fCURqvJ2RJz6KAtVpv5e+DSGA@mail.gmail.com>
- <CAEXTbpeKe1dVHp9cauMN-9nQb35oJ-ZhdFV-8BiWzjjhWAy0Zg@mail.gmail.com> <CAE-0n50bj303jou==v6eMabrZ3EL6Cq7tPJmCj9vM_B7FA8s2g@mail.gmail.com>
-In-Reply-To: <CAE-0n50bj303jou==v6eMabrZ3EL6Cq7tPJmCj9vM_B7FA8s2g@mail.gmail.com>
-From:   Pin-yen Lin <treapking@chromium.org>
-Date:   Wed, 10 May 2023 11:41:54 +0800
-Message-ID: <CAEXTbpcWfYV_58pw_VupjhAFZsUU3pkLRN_8JoASyLLBmgTYqQ@mail.gmail.com>
-Subject: Re: [PATCH v15 04/10] dt-bindings: display: bridge: anx7625: Add
- mode-switch support
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Benson Leung <bleung@chromium.org>,
-        Daniel Scally <djrscally@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Prashant Malani <pmalani@chromium.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Xin Ji <xji@analogixsemi.com>, Marek Vasut <marex@denx.de>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Lyude Paul <lyude@redhat.com>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-acpi@vger.kernel.org,
-        chrome-platform@lists.linux.dev,
-        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
-        <nfraprado@collabora.com>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Chen-Yu Tsai <wenst@chromium.org>, jagan@amarulasolutions.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-NotSetDelaration: True
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYZAPC01FT058:EE_|TY0PR03MB6726:EE_
+X-MS-Office365-Filtering-Correlation-Id: e175770a-027c-47b7-c3f6-08db5108ef92
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: zocqLjXYR/7YsLd3L0JuF6z7JX0XElvPCgJ84mhyqxNcNofJRKQryiuajL/Q8U2Npq89LBr6NgcSHl4yD6uAe32BKnEGr/oNC54ekM0XdrLgTntp+9b90DGkI4Hyboa2fQuGJMbwTxK232mpSGTHtEVNAxDpsmDmjLr3BukEseWFrcJ01VlnFmmuT5fqOL2jR6NMx5LMJZi3gPpAE8PYuUEFXCsaaUOO/i+2OFwglvUUlL1QdgDytz7htbRYmty+d56rZ2UQvcMlNl+JhKeZ5AlrnxBUi+N91RTVWhqztUhNSCvIf3HoEmodufJHzzVy3tu0RpWqqUUT5585sPRB/1VY7MrQI8CogwyYYypyLwqITl3tXzRHeVqCLUuSKdYtqIysF92b52aFm0LbxZWNbgG48GLaHqMUwM8Be9eXjjmyu/yg70DNDqBtROx++P/QwAg+Bi3sFVNk/I5R26qS/xrXAEQJWiDYuFSOiPn52P53SEZD+TiyRIaeunevAABAY9g9jAR5h+1AYRlRKM6BlWZh2uYybshCE3jEnx4YAgq0K8f4NIl/rP4cnuRZa/k2maFtYAYBqTUyFJEwuyMtFYp2lxt7wmHo4t2rtiuBhMhSqfMSqHZY1mnd/xfZoYZ/etPiYBVwS5zY7PV04wNxo/JFqtc5z3QW3yVdixbWPy7TDQl2W5TJiaDPuR/rxHQf
+X-Forefront-Antispam-Report: CIP:175.98.123.7;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:NTHCCAS04.nuvoton.com;PTR:175-98-123-7.static.tfn.net.tw;CAT:NONE;SFS:(13230028)(4636009)(136003)(39860400002)(396003)(346002)(376002)(451199021)(40470700004)(36840700001)(46966006)(5660300002)(8676002)(4326008)(8936002)(70586007)(70206006)(966005)(6666004)(426003)(336012)(40480700001)(36860700001)(41300700001)(82740400003)(316002)(6916009)(54906003)(33656002)(478600001)(2906002)(82310400005)(107886003)(26005)(186003)(1076003)(36756003)(81166007)(40460700003)(356005)(47076005)(83380400001)(2616005)(86362001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: nuvoton.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 May 2023 03:45:02.3081
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e175770a-027c-47b7-c3f6-08db5108ef92
+X-MS-Exchange-CrossTenant-Id: a3f24931-d403-4b4a-94f1-7d83ac638e07
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=a3f24931-d403-4b4a-94f1-7d83ac638e07;Ip=[175.98.123.7];Helo=[NTHCCAS04.nuvoton.com]
+X-MS-Exchange-CrossTenant-AuthSource: TYZAPC01FT058.eop-APC01.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY0PR03MB6726
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+Jagan who worked on a similar design and initiated the thread.
+Convert the NAU8825 audio CODEC bindings to DT schema.
 
-Hi Stephen,
+Signed-off-by: David Lin <CTLIN0@nuvoton.com>
+---
+ .../devicetree/bindings/sound/nau8825.txt     | 111 --------
+ .../bindings/sound/nuvoton,nau8825.yaml       | 242 ++++++++++++++++++
+ 2 files changed, 242 insertions(+), 111 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/nau8825.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/nuvoton,nau8825.yaml
 
-On Sat, Apr 29, 2023 at 12:47=E2=80=AFPM Stephen Boyd <swboyd@chromium.org>=
- wrote:
->
-> Quoting Pin-yen Lin (2023-04-20 02:10:46)
-> > On Thu, Apr 20, 2023 at 2:10=E2=80=AFPM Stephen Boyd <swboyd@chromium.o=
-rg> wrote:
-> > >
-> > > Quoting Stephen Boyd (2023-04-13 17:22:46)
-> > > > Quoting Pin-yen Lin (2023-04-13 02:50:44)
-> > > > >
-> > > > > Actually the `mode-switch` property here is mainly because
-> > > > > `fwnode_typec_mux_get`[1] and `typec_mux_match`[2] only return ma=
-tches
-> > > > > when the property is present. I am not sure what side effects wou=
-ld be
-> > > > > if I remove the ID-matching condition in `typec_mux_match`, so I =
-added
-> > > > > the property here.
-> > > > >
-> > > > > Is it feasible to remove the `mode-switch` property here given th=
-e
-> > > > > existing implementation of the Type-C framework?
-> > > >
-> > > > Omitting the mode-switch property would require changes to the type=
--c
-> > > > framework.
-> > > >
-> > > > I'm wondering if we can have this anx driver register mode switches=
- for
-> > > > however many endpoints exist in the output port all the time when t=
-he
-> > > > aux-bus node doesn't exist. Then the type-c framework can walk from=
- the
-> > > > usb-c-connector to each connected node looking for a device that is=
- both
-> > > > a drm_bridge and a mode-switch. When it finds that combination, it =
-knows
-> > > > that the mode-switch has been found. This hinges on the idea that a
-> > > > device that would have the mode-switch property is a drm_bridge and
-> > > > would register a mode-switch with the type-c framework.
-> > > >
-> > > > It may be a little complicated though, because we would only regist=
-er
-> > > > one drm_bridge for the input to this anx device. The type-c walking=
- code
-> > > > would need to look at the graph endpoint, and find the parent devic=
-e to
-> > > > see if it is a drm_bridge.
-> > >
-> > > I've been thinking more about this. I think we should only have the
-> > > 'mode-switch' property possible when the USB input pins (port@2) are
-> > > connected and the DPI input pins are connected (port@0). Probably you
-> > > don't have that case though?
-> >
-> > No we don't have the use case that uses the USB input pins on anx7625.
-> > >
-> > > In your case, this device should register either one or two drm_bridg=
-es
-> > > that connect to whatever downstream is actually muxing the 2 DP lanes
-> > > with the USB SS lanes onto the usb-c-connector.
-> >
-> > What do you mean by "muxing the 2 DP lanes with the USB SS lanes''? In
-> > our use case, the USB data lanes from both ports are connected to a
-> > USB hub, but the DP lanes are muxed by the crosspoint switch on
-> > anx7625. HPD and AUX for the external display are muxed by the EC. You
-> > can find the diagram at
-> > https://lore.kernel.org/linux-usb/YxGzk6DNAt0aCvIY@chromium.org/
->
-> I mean that you must have some sort of orientation switch hardware that
-> takes the 2 DP lanes and the 2 USB SuperSpeed "lanes" or "pairs" and
-> puts them all onto a usb-c-connector. The usb-c-connector node can't be
-> connected directly to the anx7625 in your diagram because there must be
-> some sort of "flipper" that does the orientation control. Otherwise the
-> usb-c-connector wouldn't work if the user flipped the cable. Probably
-> this is some TCPC or redriver controlled by the EC.
->
-> >
-> > > If that is the EC for
-> > > ChromeOS, then the EC should have a binding that accepts some number =
-of
-> > > input ports for DP. The EC would act as a drm_bridge, or in this case
-> > > probably two bridges, and also as two type-c switches for each
-> > > drm_bridge corresponding to the usb-c-connector nodes. When DP is on =
-the
-> > > cable, the type-c switch/mux would signal to the drm_bridge that the
-> > > display is 'connected' via DRM_BRIDGE_OP_DETECT and struct
-> > > drm_bridge_funcs::detect(). Then the drm_bridge in this anx part woul=
-d
-> > > implement struct drm_bridge_funcs::atomic_enable() and configure the
-> > > crosspoint switch the right way depending on the reg property of the
-> > > output node in port@1.
-> >
-> > So there will be two drm bridges that act as the downstreams for
-> > anx7625, and we find the downstream with connector_status_connected to
-> > configure the crosspoint switch? How do we support that kind of
-> > topology given that the drm bridge chain is currently a list? Are you
-> > suggesting making the bridge topology to a tree, or maintaining the
-> > two downstreams inside the anx7625 driver and not attaching them to
-> > the bridge chain?
->
-> Good point. I'm suggesting to make the drm bridge chain into a tree. We
-> need to teach drm_bridge core about a mux, and have some logic to
-> navigate atomically switching from one output to another. I was talking
-> with dianders@ and he was suggesting to use bridge attach/detach for
-> this. I'm not sure that will work though because that hook is only
-> called when the encoder is attached to the bridge.
->
-> It may also turn out that this helps with DP multi-stream transport
-> (MST). As far as I can recall DP MST doesn't mesh well with drm_bridge
-> designs because it wants to operate on a drm_connector and
-> drm_bridge_connector_init() wants to make only one drm_connector for a
-> chain of bridges. If you squint, the anx7625 could be an MST "branch"
-> that only supports one drm_connector being enabled at a time. Maybe that
-> is what we should do here, make drm_bridge support creating more than
-> one drm_connector and when there is a mux in the tree it walks both
-> sides and runs a callback similar to struct
-> drm_dp_mst_topology_cbs::add_connector() to tell the encoder that
-> there's another possible drm_connector here.
+diff --git a/Documentation/devicetree/bindings/sound/nau8825.txt b/Documentation/devicetree/bindings/sound/nau8825.txt
+deleted file mode 100644
+index a9c34526f4cb..000000000000
+--- a/Documentation/devicetree/bindings/sound/nau8825.txt
++++ /dev/null
+@@ -1,111 +0,0 @@
+-Nuvoton NAU8825 audio codec
+-
+-This device supports I2C only.
+-
+-Required properties:
+-  - compatible : Must be "nuvoton,nau8825"
+-
+-  - reg : the I2C address of the device. This is either 0x1a (CSB=0) or 0x1b (CSB=1).
+-
+-Optional properties:
+-  - nuvoton,jkdet-enable: Enable jack detection via JKDET pin.
+-  - nuvoton,jkdet-pull-enable: Enable JKDET pin pull. If set - pin pull enabled,
+-      otherwise pin in high impedance state.
+-  - nuvoton,jkdet-pull-up: Pull-up JKDET pin. If set then JKDET pin is pull up, otherwise pull down.
+-  - nuvoton,jkdet-polarity: JKDET pin polarity. 0 - active high, 1 - active low.
+-
+-  - nuvoton,vref-impedance: VREF Impedance selection
+-      0 - Open
+-      1 - 25 kOhm
+-      2 - 125 kOhm
+-      3 - 2.5 kOhm
+-
+-  - nuvoton,micbias-voltage: Micbias voltage level.
+-      0 - VDDA
+-      1 - VDDA
+-      2 - VDDA * 1.1
+-      3 - VDDA * 1.2
+-      4 - VDDA * 1.3
+-      5 - VDDA * 1.4
+-      6 - VDDA * 1.53
+-      7 - VDDA * 1.53
+-
+-  - nuvoton,sar-threshold-num: Number of buttons supported
+-  - nuvoton,sar-threshold: Impedance threshold for each button. Array that contains up to 8 buttons configuration. SAR value is calculated as
+-    SAR = 255 * MICBIAS / SAR_VOLTAGE * R / (2000 + R)
+-    where MICBIAS is configured by 'nuvoton,micbias-voltage', SAR_VOLTAGE is configured by 'nuvoton,sar-voltage', R - button impedance.
+-    Refer datasheet section 10.2 for more information about threshold calculation.
+-
+-  - nuvoton,sar-hysteresis: Button impedance measurement hysteresis.
+-
+-  - nuvoton,sar-voltage: Reference voltage for button impedance measurement.
+-      0 - VDDA
+-      1 - VDDA
+-      2 - VDDA * 1.1
+-      3 - VDDA * 1.2
+-      4 - VDDA * 1.3
+-      5 - VDDA * 1.4
+-      6 - VDDA * 1.53
+-      7 - VDDA * 1.53
+-
+-  - nuvoton,sar-compare-time: SAR compare time
+-      0 - 500 ns
+-      1 - 1 us
+-      2 - 2 us
+-      3 - 4 us
+-
+-  - nuvoton,sar-sampling-time: SAR sampling time
+-      0 - 2 us
+-      1 - 4 us
+-      2 - 8 us
+-      3 - 16 us
+-
+-  - nuvoton,short-key-debounce: Button short key press debounce time.
+-      0 - 30 ms
+-      1 - 50 ms
+-      2 - 100 ms
+-      3 - 30 ms
+-
+-  - nuvoton,jack-insert-debounce: number from 0 to 7 that sets debounce time to 2^(n+2) ms
+-  - nuvoton,jack-eject-debounce: number from 0 to 7 that sets debounce time to 2^(n+2) ms
+-
+-  - nuvoton,crosstalk-enable: make crosstalk function enable if set.
+-
+-  - nuvoton,adcout-drive-strong: make the drive strength of ADCOUT IO PIN strong if set.
+-      Otherwise, the drive keeps normal strength.
+-
+-  - nuvoton,adc-delay-ms: Delay (in ms) to make input path stable and avoid pop noise. The
+-      default value is 125 and range between 125 to 500 ms.
+-
+-  - clocks: list of phandle and clock specifier pairs according to common clock bindings for the
+-      clocks described in clock-names
+-  - clock-names: should include "mclk" for the MCLK master clock
+-
+-Example:
+-
+-  headset: nau8825@1a {
+-      compatible = "nuvoton,nau8825";
+-      reg = <0x1a>;
+-      interrupt-parent = <&gpio>;
+-      interrupts = <TEGRA_GPIO(E, 6) IRQ_TYPE_LEVEL_LOW>;
+-      nuvoton,jkdet-enable;
+-      nuvoton,jkdet-pull-enable;
+-      nuvoton,jkdet-pull-up;
+-      nuvoton,jkdet-polarity = <GPIO_ACTIVE_LOW>;
+-      nuvoton,vref-impedance = <2>;
+-      nuvoton,micbias-voltage = <6>;
+-      // Setup 4 buttons impedance according to Android specification
+-      nuvoton,sar-threshold-num = <4>;
+-      nuvoton,sar-threshold = <0xc 0x1e 0x38 0x60>;
+-      nuvoton,sar-hysteresis = <1>;
+-      nuvoton,sar-voltage = <0>;
+-      nuvoton,sar-compare-time = <0>;
+-      nuvoton,sar-sampling-time = <0>;
+-      nuvoton,short-key-debounce = <2>;
+-      nuvoton,jack-insert-debounce = <7>;
+-      nuvoton,jack-eject-debounce = <7>;
+-      nuvoton,crosstalk-enable;
+-
+-      clock-names = "mclk";
+-      clocks = <&tegra_pmc TEGRA_PMC_CLK_OUT_2>;
+-  };
+diff --git a/Documentation/devicetree/bindings/sound/nuvoton,nau8825.yaml b/Documentation/devicetree/bindings/sound/nuvoton,nau8825.yaml
+new file mode 100644
+index 000000000000..ab352422d48e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/nuvoton,nau8825.yaml
+@@ -0,0 +1,242 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/nuvoton,nau8825.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NAU8825 audio CODEC
++
++maintainers:
++  - John Hsu <KCHSU0@nuvoton.com>
++
++allOf:
++  - $ref: dai-common.yaml#
++
++properties:
++  compatible:
++    enum:
++      - nuvoton,nau8825
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++    description:
++      The CODEC's interrupt output.
++
++  nuvoton,jkdet-enable:
++    description:
++      Enable jack detection via JKDET pin.
++    type: boolean
++
++  nuvoton,jkdet-pull-enable:
++    description:
++      Enable JKDET pin pull.
++      If set - pin pull enabled, otherwise pin in high impedance state.
++    type: boolean
++
++  nuvoton,jkdet-pull-up:
++    description:
++      Pull-up JKDET pin.
++      If set then JKDET pin is pull up, otherwise pull down.
++    type: boolean
++
++  nuvoton,jkdet-polarity:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      JKDET pin polarity.
++    enum:
++      - 0 # active high
++      - 1 # active low
++    default: 1
++
++  nuvoton,vref-impedance:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      VREF Impedance selection.
++    enum:
++      - 0 # Open
++      - 1 # 25 kOhm
++      - 2 # 125 kOhm
++      - 3 # 2.5 kOhm
++    default: 2
++
++  nuvoton,micbias-voltage:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Micbias voltage level.
++    enum:
++      - 0 # VDDA
++      - 1 # VDDA
++      - 2 # VDDA * 1.1
++      - 3 # VDDA * 1.2
++      - 4 # VDDA * 1.3
++      - 5 # VDDA * 1.4
++      - 6 # VDDA * 1.53
++      - 7 # VDDA * 1.53
++    default: 6
++
++  nuvoton,sar-threshold-num:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Number of buttons supported.
++    minimum: 1
++    maximum: 4
++    default: 4
++
++  nuvoton,sar-threshold:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    description:
++      Impedance threshold for each button. Array that contains up to 8 buttons
++      configuration. SAR value is calculated as
++      SAR = 255 * MICBIAS / SAR_VOLTAGE * R / (2000 + R) where MICBIAS is
++      configured by 'nuvoton,micbias-voltage', SAR_VOLTAGE is configured by
++      'nuvoton,sar-voltage', R - button impedance.
++      Refer datasheet section 10.2 for more information about threshold
++      calculation.
++    minItems: 1
++    maxItems: 4
++    items:
++      minimum: 0
++      maximum: 255
++
++  nuvoton,sar-hysteresis:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Button impedance measurement hysteresis.
++    default: 0
++
++  nuvoton,sar-voltage:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Reference voltage for button impedance measurement.
++    enum:
++      - 0 # VDDA
++      - 1 # VDDA
++      - 2 # VDDA * 1.1
++      - 3 # VDDA * 1.2
++      - 4 # VDDA * 1.3
++      - 5 # VDDA * 1.4
++      - 6 # VDDA * 1.53
++      - 7 # VDDA * 1.53
++    default: 6
++
++  nuvoton,sar-compare-time:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      SAR compare time.
++    enum:
++      - 0 # 500 ns
++      - 1 # 1 us
++      - 2 # 2 us
++      - 3 # 4 us
++    default: 1
++
++  nuvoton,sar-sampling-time:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      SAR sampling time.
++    enum:
++      - 0 # 2 us
++      - 1 # 4 us
++      - 2 # 8 us
++      - 3 # 16 us
++    default: 1
++
++  nuvoton,short-key-debounce:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Button short key press debounce time.
++    enum:
++      - 0 # 30 ms
++      - 1 # 50 ms
++      - 2 # 100 ms
++      - 3 # 30 ms
++    default: 3
++
++  nuvoton,jack-insert-debounce:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      number from 0 to 7 that sets debounce time to 2^(n+2) ms.
++    maximum: 7
++    default: 7
++
++  nuvoton,jack-eject-debounce:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      number from 0 to 7 that sets debounce time to 2^(n+2) ms
++    maximum: 7
++    default: 0
++
++  nuvoton,crosstalk-enable:
++    description:
++      make crosstalk function enable if set.
++    type: boolean
++
++  nuvoton,adcout-drive-strong:
++    description:
++      make the drive strength of ADCOUT IO PIN strong if set.
++      Otherwise, the drive keeps normal strength.
++    type: boolean
++
++  nuvoton,adc-delay-ms:
++    description:
++      Delay (in ms) to make input path stable and avoid pop noise.
++      The default value is 125 and range between 125 to 500 ms.
++    minimum: 125
++    maximum: 500
++    default: 125
++
++  clocks:
++    description:
++      list of phandle and clock specifier pairs according to common clock
++      bindings for the clocks described in clock-names.
++    maxItems: 1
++
++  clock-names:
++    description:
++      should include "mclk" for the MCLK master clock.
++    items:
++      - const: mclk
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        nau8825@1a {
++            compatible = "nuvoton,nau8825";
++            reg = <0x1a>;
++            interrupt-parent = <&gpio>;
++            interrupts = <38 IRQ_TYPE_LEVEL_LOW>;
++            nuvoton,jkdet-enable;
++            nuvoton,jkdet-pull-enable;
++            nuvoton,jkdet-pull-up;
++            nuvoton,jkdet-polarity = <GPIO_ACTIVE_LOW>;
++            nuvoton,vref-impedance = <2>;
++            nuvoton,micbias-voltage = <6>;
++            // Setup 4 buttons impedance according to Android specification
++            nuvoton,sar-threshold-num = <4>;
++            nuvoton,sar-threshold = <0xc 0x1e 0x38 0x60>;
++            nuvoton,sar-hysteresis = <1>;
++            nuvoton,sar-voltage = <0>;
++            nuvoton,sar-compare-time = <0>;
++            nuvoton,sar-sampling-time = <0>;
++            nuvoton,short-key-debounce = <2>;
++            nuvoton,jack-insert-debounce = <7>;
++            nuvoton,jack-eject-debounce = <7>;
++            nuvoton,crosstalk-enable;
++
++            clock-names = "mclk";
++            clocks = <&tegra_pmc 1>;
++        };
++    };
+-- 
+2.25.1
 
-I have been surveying the approaches to change the bridge chain in
-runtime, and I found this thread[1]. Quoting from Daniel:
-"... exchanging the bridge chain isn't supported, there's no locking
-for that since it's assumed to be invariant over the lifetime of the
-drm_device instance. The simplest way to make that happen right now is to
-have 2 drm_encoder instances, one with the lvds bridge chain, the other
-with the hdmi bridge chain, and select the right encoder/bridge chain
-depending upon which output userspace picks.
-...
-I wouldn't try to make bridge chains exchangeable instead, that's
-headaches - e.g. with dp mst we've also opted for a bunch of fake
-drm_encoders to model that kind of switching."
-
-I'm not sure how we register two encoders properly, though. Do we make
-the encoder driver check all the downstream bridges and register two
-drm_encoder when a bridge is acting as a mux?
-
-[1]: https://www.spinics.net/lists/dri-devel/msg340511.html
-
->
-> >
-> > Also, if we still register mode switches on the two downstream
-> > bridges, why do you prefer that over the original approach that
-> > register switches in the anx7625 driver?
->
-> I prefer to not have a mode-switch property here for a couple reasons:
->
->  1. The binding is usb type-c specific, and in the case of the IT6505
->  part there is nothing that indicates this is a usb type-c piece of
->  hardware. The IT6505 is simply a display bridge. The anx7625 part
->  actually does accept usb signals though, but that isn't being used or
->  described here. That's where my disclaimer about mode-switch making
->  sense applies when the usb input is used.
->
->  2. Putting mode-switch into the graph endpoint nodes is awkward. It is
->  a device property, and graph nodes are not devices. Some patches in
->  this series have to work around this fact and special case the graph
->  walking logic to treat the graph itself as a place to look for the
->  property.
->
->  3. The mode-switch property probably isn't necessary at all. The DT
->  reviewers have been asking why it is needed. The EC driver that
->  registers the usb-c-connectors can be the mode-switch and the
->  orientation-switch. And in reality, it _is_ both. The DP signals and
->  the USB signals go to the TCPC/redriver that is controlled by the EC
->  and the EC is the device that's doing the mode switching to push DP and
->  USB through the TCPC/redriver out on the right pins of the
->  usb-c-connector.
->
-> I guess another way to think about it is that the DP signal coming out
-> of the anx7625 part is not "usb type-c" at all, unless the USB signal is
-> coming out on the other side of the crosspoint switch and all four lanes
-> are wired to some usb-c-connector or redriver. Similarly, the situation
-> could look like trogdor, where DP is produced by the DP PHY in the SoC
-> and goes through an analog mux to steer DP to one or the other TCPC
-> that's wired to the usb-c-connector. There isn't any driver to control
-> that mux, but if there was it would be a gpio controlled mux that would
-> be a drm_bridge, because there isn't anything type-c about this
-> hardware.
->
-> And finally, I can see a possibility where the IT6505 is actually wired
-> to two different dp-connector ports. In that situation, there is no
-> type-c involvement, but we would still want to expose that to userspace
-> as two drm_connectors where only one encoder can be attached to them. If
-> we did that with drm_bridge, then anyone could make these sorts of
-> chains with muxes and it would present a sane userspace interface.
-
-Thanks for the detailed explanation. Yes, our use case in this series
-is not related to the USB-C port from the bridge's perspective. The
-bridge only cares about the output changes, and it doesn't need to
-know whether the downstream is a USB-C port or a DP connector.
-
-Best regards,
-Pin-yen
