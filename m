@@ -2,108 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BEAC6FE5F1
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 23:05:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77E266FE5FB
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 23:12:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235987AbjEJVFk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 17:05:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59488 "EHLO
+        id S236570AbjEJVMN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 17:12:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231163AbjEJVFj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 17:05:39 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 058DCE61;
-        Wed, 10 May 2023 14:05:35 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-96652cb7673so727296266b.0;
-        Wed, 10 May 2023 14:05:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683752733; x=1686344733;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nFI/AGkZEYwWG8fSHOsXcamR405M2Qv38gjoGfCKNeM=;
-        b=ovchRibZYAQviLH9dX5jb99BxG+AS7aDTIwBB7C8HLtQorCHH4eNTbtCDLiS0fj3nB
-         dR3Pyxh+jKBgm+/Wri7zEvpNZvjdNLI44jE3hjiTVVTh6odErkG0Ns+BUsa3/3UDeyra
-         0BivPjhBTIcC8wSIiJtStqh0XU/kFmBRiD0bq+gyicLBq46gtZZlEaxBhK+NZaciPJ9Q
-         iEEk9WgZY8MiVNzvu/lNc435FXTzL7rreouRg10OjZpVt0uGrwYUvTeQPMMdslu+1QX0
-         ExDrE1yhfPZD5hPkI4oKo1gWQM43H+/lf08JlqKqmn30SXPvwA7SR0Y1kLCJyfuvDgGG
-         wqDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683752733; x=1686344733;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nFI/AGkZEYwWG8fSHOsXcamR405M2Qv38gjoGfCKNeM=;
-        b=M0uFveAPiOkUMUJIEjsI5018pzPMpX2PK3aORG750xndO4J7IY3oVVgz7rvi3UwgDH
-         dMk/8AbPS8A7JZK95MMtqz16JqyhkauqdGCQUIILnCDOYiY7AyoFYIUF6FNZJ0KzYUDt
-         DrB/p31wwqFJQKySr3IAwhpWla/uh9uj1xdARPH272n/2/uf8r/McX8cbcFE8yDdEnRi
-         kzCnq7pbiUdBK5XxrV63jbGGEozmwMWYggEjvuusyk9O/BdPY59vsWBckHcGP5K7+20v
-         zUvQ8CBzpY65x7eyev3hh85DrQGUEIxJebmALW/xecHo2LSlThlcnvhs4TsxVmDrpjWi
-         zR+A==
-X-Gm-Message-State: AC+VfDzEAyUXUtO2108rJ2efwL2gYKl5x4T9fCLZlkfn2JKKSFyPQVor
-        QQnCvRF/4zI3muu5oROn3ws=
-X-Google-Smtp-Source: ACHHUZ61hk+OAcODH4eeT51yIZ3XxxsSviX9vqg5Cf3X9lqBzmuOBS43oBR6cQfmDcqe2MzRJXJCuw==
-X-Received: by 2002:a17:907:26c2:b0:94f:788:6bc with SMTP id bp2-20020a17090726c200b0094f078806bcmr18796096ejc.37.1683752733238;
-        Wed, 10 May 2023 14:05:33 -0700 (PDT)
-Received: from jernej-laptop.localnet (82-149-1-233.dynamic.telemach.net. [82.149.1.233])
-        by smtp.gmail.com with ESMTPSA id n25-20020a056402061900b0050a276e7ba8sm2329786edv.36.2023.05.10.14.05.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 May 2023 14:05:32 -0700 (PDT)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Andre Przywara <andre.przywara@arm.com>,
-        Maksim Kiselev <bigunclemax@gmail.com>
-Cc:     Icenowy Zheng <icenowy@aosc.io>,
-        Maksim Kiselev <bigunclemax@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S229461AbjEJVMM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 17:12:12 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BEBDE53;
+        Wed, 10 May 2023 14:12:11 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C74356358F;
+        Wed, 10 May 2023 21:12:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1710C433EF;
+        Wed, 10 May 2023 21:12:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1683753130;
+        bh=HizRoK5fj7AB/DRhebcy+ie0+Ty6tdVrnKdXSa4wsjM=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=pGqgAfOa2dGWGZoJHS1lFroIibP2K6fxBIvBd+qM9kAnQR7Z9RJk7NSrK09c1DZcD
+         5TrjP2IkYOVMmv/OOAn/Cac2i9uWDMaR2iBqvK4EetkMjQ4MatOjfWnMBLKuFRAr9d
+         tynbPwoBMRFMWws0nMSOOb/lvhedrRQGqMBvbFSe/xg9+cS0rm6nvBv7pQfsnYAFFS
+         Bv5lKlRaySTU+4VIYHETHrP78FwDcbw6l7WbpurBfnskH66piJA/ydlS0UkoNB+3C7
+         hhXNDzmPsxQBgGx+gcouNL6HOSfR4IvMVFGq6XoCIRdXnruDM9l48vr5aagBOlxwXZ
+         +wMEwQU7sChQQ==
+Date:   Wed, 10 May 2023 16:12:08 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Christian Gmeiner <christian.gmeiner@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-        Maxime Ripard <mripard@kernel.org>, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v5 4/5] spi: sun6i: add support for R329/D1/R528/T113s SPI
- controllers
-Date:   Wed, 10 May 2023 23:05:31 +0200
-Message-ID: <3739192.kQq0lBPeGt@jernej-laptop>
-In-Reply-To: <20230510081121.3463710-5-bigunclemax@gmail.com>
-References: <20230510081121.3463710-1-bigunclemax@gmail.com>
- <20230510081121.3463710-5-bigunclemax@gmail.com>
+        Dominic Rath <rath@ibv-augsburg.de>,
+        krzysztof.kozlowski+dt@linaro.org, tjoseph@cadence.com,
+        bhelgaas@google.com, lpieralisi@kernel.org, nm@ti.com,
+        vigneshr@ti.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        bahle@ibv-augsburg.de
+Subject: Re: [PATCH v2 1/3] dt-bindings: phy: cadence-torrent: Add latency
+ properties
+Message-ID: <ZFwIqBRj8in1CaGB@bhelgaas>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6a36a4ad-6d46-4e4e-1724-ed27513a72ef@linaro.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne sreda, 10. maj 2023 ob 10:11:11 CEST je Maksim Kiselev napisal(a):
-> These SoCs has two SPI controllers. One of it is quite similar to previous
-> ones, but with internal clock divider removed; the other added MIPI DBI
-> Type-C offload based on the first one.
+On Wed, May 10, 2023 at 09:08:39AM +0200, Krzysztof Kozlowski wrote:
+> On 09/05/2023 23:57, Bjorn Helgaas wrote:
+> > On Tue, May 09, 2023 at 05:31:19PM +0200, Christian Gmeiner wrote:
+> >>> On Thu, Apr 27, 2023 at 07:50:30AM +0200, Dominic Rath wrote:
+> >>>> From: Alexander Bahle <bahle@ibv-augsburg.de>
+> >>>>
+> >>>> Add "tx-phy-latency-ps" and "rx-phy-latency-ps" DT bindings for
+> >>>> setting the PCIe PHY latencies.
+> >>>> The properties expect a list of uint32 PHY latencies in picoseconds for
+> >>>> every supported speed starting at PCIe Gen1, e.g.:
+> >>>>
+> >>>>   tx-phy-latency-ps = <100000 200000>; /* Gen1: 100ns, Gen2: 200ns */
+> >>>>   rx-phy-latency-ps = <150000 250000>; /* Gen1: 150ns, Gen2: 250ns */
+> >>>
+> >>> Are these things that could/should be described in a more generic
+> >>> place?  They don't look necessarily Cadence-specific.
+> >>
+> >> As there is currently no generic binding, would you like to see a new
+> >> yaml binding
+> >> added (Documentation/devicetree/bindings/phy/phy.yaml) that contains just the
+> >> two phy properties?
+> > 
+> > The whole thing is more a question for Rob.
 > 
-> Add basical support for these controllers. As we're not going to
-> support the DBI functionality now, just implement the two kinds of
-> controllers as the same.
+> For which you might wait a bit currently.
 > 
-> Co-developed-by: Icenowy Zheng <icenowy@aosc.io>
-> Signed-off-by: Maksim Kiselev <bigunclemax@gmail.com>
-> Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+> If the question is only about location of the properties - device schema
+> or something generic - then for now you can keep it here. Moving to
+> generic schema is always easy later.
+> 
+> Better to have proper names for properties.
 
-Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+Good point.  The current names seem fine to me since the names
+themselves aren't Cadence-specific.
 
-Best regards,
-Jernej
-
-
+Bjorn
