@@ -2,94 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DEB26FE163
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 17:16:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 101A16FE18C
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 17:30:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237153AbjEJPQB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 11:16:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43574 "EHLO
+        id S232871AbjEJPaU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 11:30:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237275AbjEJPP7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 11:15:59 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A59E019A6;
-        Wed, 10 May 2023 08:15:49 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-3f42d937d61so16314935e9.3;
-        Wed, 10 May 2023 08:15:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683731748; x=1686323748;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QJwZXQFjVpMj2S27IS+ax8WA5RmmDUnh26i6v4v3GNA=;
-        b=DOs5iepZj6CS5TDUGq5CFHgkXWFpiNAeUOHOxPkeznNHoOzC2NajlszLqZTY54BOHS
-         Ast+IVEzDC+52+KF+lBtUHe5o7Io2TwGA0vCs0kR/3GbSa+BmKacL90xin92w0FGwZ5+
-         nIfPs3n6Ga7raD7WA6TZGWRYw0RkwjMnpxGZLLb7T68NBIlUd0hiEd6cot3mxi2t90zJ
-         Butoegi2cgoSbKNMxvVoT0TAgQ3vetT0f4yE/X4G/QLvnwj2lj+QXdRQuLnd5t2DpcPU
-         G1WtTALvYKmy3dWc0VN1K78TP3B9IwEoP99C66EwDjxVVzjPqhuGoIxUJjxQkk8iLERh
-         xLiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683731748; x=1686323748;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QJwZXQFjVpMj2S27IS+ax8WA5RmmDUnh26i6v4v3GNA=;
-        b=QPxux/5AGQ5gWFEo6sNf81ukgV1CH7dm9DR/V748P4jB1d3gGUO/1Oe/Y94r+Bg8Oe
-         vBmYlIrw6R4uGAk8lr7tP1jZpomYa1hcGnWI7wivr8kmOVYHO7EpPkZsjpf8vLU0mxOM
-         jZJnaYbbrOZuNaxoIiV/ke9SyijkFOQC9U4rXkjWXrwAY8n7wRXYRvR89Gr4qFxX5MDs
-         oPZQ0RKQvWp/zIDLO4ZVhM/szEGC30tOmO0qpC+lzlbrRIU4PUacnTHp22ZzTQLBWdhY
-         Y6u0g5vOn62XQ+S87sx34r3cMZ1g/IMNrWIOOQSSzfryu8qlXp0G8r9cJXA01qYhVEoK
-         SVnQ==
-X-Gm-Message-State: AC+VfDw7cfDUMEp3KWJk2n71/lA4IG/m9nPBqfG2aWSUd4sAJKzHYq54
-        RD8A63zKvJ6z7omJVQv8AUE=
-X-Google-Smtp-Source: ACHHUZ5TunqlvNfMozGWZM6C3uiUnbrnkWSegZveLI2WoxqAaAqnYwmQLBuC4cgcIo5PSi85aVXkZQ==
-X-Received: by 2002:a7b:cb58:0:b0:3ee:b3bf:5f7c with SMTP id v24-20020a7bcb58000000b003eeb3bf5f7cmr12765651wmj.23.1683731748058;
-        Wed, 10 May 2023 08:15:48 -0700 (PDT)
-Received: from localhost ([167.98.27.226])
-        by smtp.gmail.com with ESMTPSA id l2-20020a1c7902000000b003f195d540d9sm22822499wme.14.2023.05.10.08.15.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 May 2023 08:15:47 -0700 (PDT)
-From:   Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
-To:     lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        wens@csie.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v1 2/2] dt-bindings: mfd: add bindings for AXP192 MFD device
-Date:   Wed, 10 May 2023 16:15:42 +0100
-Message-Id: <20230510151542.312588-2-aidanmacdonald.0x0@gmail.com>
-In-Reply-To: <20230510151542.312588-1-aidanmacdonald.0x0@gmail.com>
-References: <20230510151542.312588-1-aidanmacdonald.0x0@gmail.com>
+        with ESMTP id S231941AbjEJPaT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 11:30:19 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 331D530D5;
+        Wed, 10 May 2023 08:30:18 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34AFU9ft025437;
+        Wed, 10 May 2023 10:30:09 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1683732609;
+        bh=DzRXX0V8EZhaDFBcLK4Yf1y6yB+z6JFJVVMC+sc6RgE=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=lU2yp0OkVPSmg0087E2xrevo17EROtc46ogpaePyz2Y98SrmHPDvHK91xX0FU4cjv
+         6LcjZHFrw+PdWYueKXBnqBnN9Rh2vDO1Zp/Th275ZUx8KS9iFHi0gvmazY9rZYzjlP
+         zCGZSSF8C5ZmgS1cipo8ztW4FMmKph9NdrRLTiog=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34AFU91c002952
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 10 May 2023 10:30:09 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 10
+ May 2023 10:30:09 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 10 May 2023 10:30:09 -0500
+Received: from [10.250.221.249] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34AFU8Kc040535;
+        Wed, 10 May 2023 10:30:08 -0500
+Message-ID: <f4826740-0312-7c5e-973e-cab266df2e6a@ti.com>
+Date:   Wed, 10 May 2023 08:30:08 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v2 3/3] arm64: dts: ti: k3-j7200-mcu-wakeup: Update fss
+ node and hbmc_mux
+Content-Language: en-US
+To:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Vaishnav Achath <vaishnav.a@ti.com>, <nm@ti.com>,
+        <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>
+References: <20230505115858.7391-1-vaishnav.a@ti.com>
+ <20230505115858.7391-4-vaishnav.a@ti.com>
+ <feddcd03-1848-b667-6a38-ae7c0f6ff160@ti.com>
+From:   Andrew Davis <afd@ti.com>
+In-Reply-To: <feddcd03-1848-b667-6a38-ae7c0f6ff160@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The AXP192 is another X-Powers PMIC similar to the existing ones.
+On 5/9/23 5:41 AM, Vignesh Raghavendra wrote:
+> 
+> 
+> On 05/05/23 17:28, Vaishnav Achath wrote:
+>> From: Nishanth Menon <nm@ti.com>
+>>
+>> fss node claims to be a syscon node, while it actually is a simple bus
+> 
+> FSS
+> 
+>> where ospi, hbmc peripherals are located and a mux for path select
+> 
+> OSPI, HBMC
+> 
+>> between OSPI and Hyperbus which can be modelled as a reg-mux. So model
+>> it accordingly and use reg-mux to describe the hbmc-mux. Also update
+>> the region size to the correct values as per the TRM.
+>>
+>> Signed-off-by: Nishanth Menon <nm@ti.com>
+>> Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
+>> ---
+>>
+>> V1->V2:
+>>   * Address feedback from Udit to limit the FSS register region size as
+>>   per TRM.
+>>   * Use reg-mux changes to simplify the hbmc-mux modelling.
+>>   * Update commit message to reflect changes.
+>>
+>> Depends on:
+>>   https://lore.kernel.org/all/20230424184810.29453-1-afd@ti.com/
+>>
+>>   arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi | 13 +++++++------
+>>   1 file changed, 7 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+>> index b58a31371bf3..333564ca9c91 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+>> @@ -338,22 +338,23 @@
+>>   		status = "disabled";
+>>   	};
+>>   
+>> -	fss: syscon@47000000 {
+>> -		compatible = "syscon", "simple-mfd";
+>> -		reg = <0x00 0x47000000 0x00 0x100>;
+>> +	fss: bus@47000000 {
+>> +		compatible = "simple-bus";
+>> +		reg = <0x00 0x47000000 0x0 0x7c>;
+> 
+>                                         ^^^^ 0x00
+> 
+> I know the registers only go up to 0x7c, but its convention to map
+> entire region that is reserved for the IP irrespective of how many
+> registers are actually valid (I see this across arm64 SoC Vendors).
+> Eg as per TRM,  Table 203 MCU Domain map:
+> 
+> MCU_FSS0_CFG 0x0047000000 - 0x00470000FF (256B)
+> 
+> 
+> 
+> 
+>>   		#address-cells = <2>;
+>>   		#size-cells = <2>;
+>>   		ranges;
+>>   
+>> -		hbmc_mux: hbmc-mux {
+>> -			compatible = "mmio-mux";
+>> +		hbmc_mux: mux-controller@47000004 {
+>> +			compatible = "reg-mux";
+>> +			reg = <0x00 0x47000004 0x00 0x2>;
+>>   			#mux-control-cells = <1>;
+>>   			mux-reg-masks = <0x4 0x2>; /* HBMC select */
+>>   		};
+>>   
+>>   		hbmc: hyperbus@47034000 {
+>>   			compatible = "ti,am654-hbmc";
+>> -			reg = <0x00 0x47034000 0x00 0x100>,
+>> +			reg = <0x00 0x47034000 0x00 0x0c>,
+> 
+> Hmm, doesn't look correct? I see register addresses up to 0x47034048h in
+> TRM?
+> 
+> I prefer to map entire region reserved in the SoC memory map:
+> MCU_FSS0_HPB_CTRL 0x0047034000 - 0x00470340FF (256B)
+> 
 
-Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
----
- Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml | 1 +
- 1 file changed, 1 insertion(+)
+I do agree here 0x100 is more clean, but we do have to watch for the
+holes we have in memory right after some register spaces which cause
+SErrors on access..
 
-diff --git a/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml b/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
-index f7f0f2c0421a..9ad55746133b 100644
---- a/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
-+++ b/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
-@@ -90,6 +90,7 @@ properties:
-     oneOf:
-       - enum:
-           - x-powers,axp152
-+          - x-powers,axp192
-           - x-powers,axp202
-           - x-powers,axp209
-           - x-powers,axp221
--- 
-2.39.2
+Either way this reg change should have been its own patch, not squashed
+into this otherwise correct s/mmio-mux/reg-mux patch.
 
+Andrew
+
+> 
+>>   				<0x05 0x00000000 0x01 0x0000000>;
+>>   			power-domains = <&k3_pds 102 TI_SCI_PD_EXCLUSIVE>;
+>>   			clocks = <&k3_clks 102 0>;
+> 
