@@ -2,63 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 78A8F6FD9A7
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 10:40:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C54B6FD9AE
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 10:41:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236215AbjEJIkA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 04:40:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53268 "EHLO
+        id S236250AbjEJIlG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 04:41:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236615AbjEJIjg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 04:39:36 -0400
+        with ESMTP id S236550AbjEJIlC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 04:41:02 -0400
 Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADE1C525A;
-        Wed, 10 May 2023 01:39:23 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 129555FF7;
+        Wed, 10 May 2023 01:40:39 -0700 (PDT)
 Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
         (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
         (No client certificate requested)
         (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 177DD847C6;
-        Wed, 10 May 2023 10:39:15 +0200 (CEST)
+        by phobos.denx.de (Postfix) with ESMTPSA id 9360D85FB2;
+        Wed, 10 May 2023 10:40:36 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1683707956;
-        bh=ifV6kOtOMr+sW9m20a/mbeO1rcuLTDom9mda73HleZI=;
+        s=phobos-20191101; t=1683708037;
+        bh=M6jyMMO/z9LqJl4FYKJ/cETxNCTnMLV7qAQJB5zCK68=;
         h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=lhBoFhPJeXxrx90BbiZsNvhUQeDDGECz/iU3QHXyifnhUU3xeqgxKmwgCeHkmrbvd
-         EMIw4gUNNyyoh6kAhE6iLjG5lNIhHZJFFfTbdKJYpUr2hO4J1xM7zB2o5Mqf8BZu45
-         9k8hRO7ufutX4rgnxBEDTi2IQn6jzuRz15dwz62hfUG3bXEcuITMBY+rzjOkiBa/T+
-         44cyXo6Ocgh49jcxzZpvCjq0HQlu53Uic3waYETyai+dy1zSsdCcxwoOT0pd8mKF9p
-         NjvvJ6eA2+548Nn+2TT6A+U6StrBSXJ+MD/SVksfSSXz5sWCe98xVAQWXHryN9E1Cl
-         2uMaX/FohbOkg==
-Message-ID: <f848adde-895e-18d5-0e9a-a29de24ae861@denx.de>
-Date:   Wed, 10 May 2023 10:39:14 +0200
+        b=jz9Oc1PQBFflEWbT+PzimKv17XfvWuctoKOgNESTdQRgti/njaXzryvKY3KA7/z0s
+         qHtkUFAZUptlIt6QihCjLav3y3qfe0O7McdsxvQMfUDtKystN2NVXo/ATp/7TVU2B3
+         Odji6lZ3jkr42aL5KxfcBNamlCzLc0Nzy6C9SsRcfIOlxWjlK9Oi+C4CO4jT/QU1DZ
+         qMse5GbXfRtgrLqFngl936E2hGYXsZZ9cR1QO2+qiJMA2+tDYRUObJAWbOvkYhWlNk
+         MGuNKqYpY5yUfQyAAlvcNvI4IDpPZtYwSYNgrQuUjUWlVDIM0epeY+bDJ5kb3SeCvX
+         vx86zwYBs7nAw==
+Message-ID: <c9dedb24-5714-0301-d8cc-7c56673b07b0@denx.de>
+Date:   Wed, 10 May 2023 10:40:35 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH v3 2/3] dt-bindings: arm: fsl: Enumerate Emtop SOM
-To:     Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>,
-        krzysztof.kozlowski@linaro.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Fabio Estevam <festevam@denx.de>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Stefan Wahren <stefan.wahren@i2se.com>,
-        Jesse Taube <mr.bossman075@gmail.com>,
-        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230510083311.3692416-1-himanshu.bhavani@siliconsignals.io>
+Subject: Re: [PATCH v5 2/6] drm: lcdif: Drop unnecessary NULL pointer check on
+ lcdif->bridge
 Content-Language: en-US
+To:     Ying Liu <gnuiyl@gmail.com>
+Cc:     Liu Ying <victor.liu@nxp.com>, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, conor+dt@kernel.org,
+        alexander.stein@ew.tq-group.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, krzysztof.kozlowski@linaro.org,
+        robh+dt@kernel.org, linux-imx@nxp.com,
+        krzysztof.kozlowski+dt@linaro.org, kernel@pengutronix.de,
+        LW@karo-electronics.de
+References: <20230508055740.635256-1-victor.liu@nxp.com>
+ <20230508055740.635256-3-victor.liu@nxp.com>
+ <05b44685-d6a7-5f6e-0f55-04c96e94a9e1@denx.de>
+ <CAOcKUNXjvOMXtf2FVwjhWNbdwQy82T+wz-QN7ukAOmQo5DKQ2w@mail.gmail.com>
 From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <20230510083311.3692416-1-himanshu.bhavani@siliconsignals.io>
+In-Reply-To: <CAOcKUNXjvOMXtf2FVwjhWNbdwQy82T+wz-QN7ukAOmQo5DKQ2w@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
 X-Virus-Status: Clean
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,URIBL_BLOCKED
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,30 +67,72 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/10/23 10:33, Himanshu Bhavani wrote:
-> Add entries to the list of imx8mm boards denoting
-> the Emtop SOM from Emtop.
+On 5/10/23 10:30, Ying Liu wrote:
+> On Tue, May 9, 2023 at 10:14 AM Marek Vasut <marex@denx.de> wrote:
+>>
+>> On 5/8/23 07:57, Liu Ying wrote:
+>>
+>> Hi,
 > 
-> Signed-off-by: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
-> ---
->   Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
->   1 file changed, 1 insertion(+)
+> Hi,
+
+Hi,
+
+>>> diff --git a/drivers/gpu/drm/mxsfb/lcdif_kms.c b/drivers/gpu/drm/mxsfb/lcdif_kms.c
+>>> index 262bc43b1079..e54200a9fcb9 100644
+>>> --- a/drivers/gpu/drm/mxsfb/lcdif_kms.c
+>>> +++ b/drivers/gpu/drm/mxsfb/lcdif_kms.c
+>>> @@ -394,7 +394,7 @@ static void lcdif_crtc_mode_set_nofb(struct lcdif_drm_private *lcdif,
+>>>        struct drm_display_mode *m = &lcdif->crtc.state->adjusted_mode;
+>>>        u32 bus_flags = 0;
+>>>
+>>> -     if (lcdif->bridge && lcdif->bridge->timings)
+>>> +     if (lcdif->bridge->timings)
+>>>                bus_flags = lcdif->bridge->timings->input_bus_flags;
+>>>        else if (bridge_state)
+>>>                bus_flags = bridge_state->input_bus_cfg.flags;
+>>> @@ -463,30 +463,21 @@ static void lcdif_crtc_atomic_enable(struct drm_crtc *crtc,
+>>>        struct drm_display_mode *m = &lcdif->crtc.state->adjusted_mode;
+>>>        struct drm_bridge_state *bridge_state = NULL;
+>>>        struct drm_device *drm = lcdif->drm;
+>>> -     u32 bus_format = 0;
+>>> +     u32 bus_format;
+>>>        dma_addr_t paddr;
+>>>
+>>> -     /* If there is a bridge attached to the LCDIF, use its bus format */
+>>> -     if (lcdif->bridge) {
+>>> -             bridge_state =
+>>> -                     drm_atomic_get_new_bridge_state(state,
+>>> -                                                     lcdif->bridge);
+>>> -             if (!bridge_state)
+>>> -                     bus_format = MEDIA_BUS_FMT_FIXED;
+>>> -             else
+>>> -                     bus_format = bridge_state->input_bus_cfg.format;
+>>> -
+>>> -             if (bus_format == MEDIA_BUS_FMT_FIXED) {
+>>> -                     dev_warn_once(drm->dev,
+>>> -                                   "Bridge does not provide bus format, assuming MEDIA_BUS_FMT_RGB888_1X24.\n"
+>>> -                                   "Please fix bridge driver by handling atomic_get_input_bus_fmts.\n");
+>>> -                     bus_format = MEDIA_BUS_FMT_RGB888_1X24;
+>>> -             }
+>>> -     }
+>>> +     bridge_state = drm_atomic_get_new_bridge_state(state, lcdif->bridge);
+>>> +     if (!bridge_state)
+>>> +             bus_format = MEDIA_BUS_FMT_FIXED;
+>>> +     else
+>>> +             bus_format = bridge_state->input_bus_cfg.format;
+>>
+>> The code below seems to change the logic slightly.
+>>
+>> Could it happen that:
+>> - bridge_state is valid (i.e. non-NULL)
+>> - bridge_state->input_bus_cfg.format is set to 0 (i.e. not set) ?
+>>     (note that MEDIA_BUS_FMT_FIXED is defined as 0x0001)
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> index 442ce8f4d675..06eb2c790f90 100644
-> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> @@ -884,6 +884,7 @@ properties:
->                 - beacon,imx8mm-beacon-kit  # i.MX8MM Beacon Development Kit
->                 - boundary,imx8mm-nitrogen8mm  # i.MX8MM Nitrogen Board
->                 - dmo,imx8mm-data-modul-edm-sbc # i.MX8MM eDM SBC
-> +              - emtop,imx8mm-emtop          # i.MX8MM Emtop SoM
+> Yes, bridge_state->input_bus_cfg.format could be zero.
+> Will keep the below default MEDIA_BUS_FMT_RGB888_1X24
+> bus format setting in next version.
 
-The pictures I could find via internet search engine make it look like 
-the name of the SoM is
+Thanks for confirming.
 
-SOM-IMX8MMLPD4
-
-or similar. That silkscreen label is right below the EMTOP logo.
-
-Can you please check that on your module ?
+The rest of the series looks good, sorry for the delay in reviews.
