@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EA996FE022
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 16:27:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC4B46FE02F
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 16:29:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237453AbjEJO1N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 10:27:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59718 "EHLO
+        id S237420AbjEJO3D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 10:29:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237454AbjEJO1I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 10:27:08 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 387353C3A
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 07:27:06 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-50bc0ced1d9so10965505a12.0
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 07:27:06 -0700 (PDT)
+        with ESMTP id S237354AbjEJO3C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 10:29:02 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73F0630FB
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 07:29:01 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-50bc4bc2880so11444705a12.2
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 07:29:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683728824; x=1686320824;
+        d=linaro.org; s=google; t=1683728940; x=1686320940;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=R5fqs9Y81ig3TpwIrDEGqHqhJO5UVO6aYGC8XalYxes=;
-        b=xH7fsAxQmiOMEPwPdPPTVNCnDQW2EVH6Jk9bva0QjqcRfboxKPc+DXuYeedLV41s5v
-         Tzny/MXflkypr1NmOwJOm+VSY6hjqfP8KeD/3Xbjfz3cIVQnFwDas7GsWLV0BarVRZ3y
-         FqGmviBpRee3SIf0k4ZW2rNxe5rNYDo9BY/Gru7AEuZZcKzPeuUllvws7yiacaJSD+M5
-         CdRR3zTqi6UTQ3Fn+QXYd1iLFJ2bLZp/I8+IqBNEnM2WjcOcFWFLxJklG6LjXfkGa1SF
-         Qh9cRpjOaeaZtiO2hBhKAaSP/8uQoot6WwG7kkJy+A3DNqHcSpkb2/yfpCL2uUbc7Ho9
-         Qg9g==
+        bh=BiXrt8G2xSgKeJw4e2UfSHGwhEDZUsC+BmNRXk6LRYg=;
+        b=lUQXMO/O587aMC7V45s5twA/ToKSYJ6It8P/sm408H71fJqlx9pzqQ6ogLM/O+Nx0l
+         g6WNGuIiMWF8rkvaXLHYsqlCer/Nn+dntn4EUIV7yQnbLEgZYewA2mqVJo+eW8JxEc/N
+         cFlte9EDFOg8QrQk5Wirisdh/Atjw68lakq89PEwvNaJyqm6KTTDon4boe5isSXDtLEn
+         jtlz7dQTKjnmjzxcQLCZW9i3txi2o9io3mSBmoRJ0ILm12muQHnJN5P27V1GMzSSQGLd
+         jbcVu6Bb5psKr8djbUJuIZOCUU1ZOq1ClCuesEwL7cnGK1WXqQYEHkbHXh3REs48Ka1F
+         Si7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683728824; x=1686320824;
+        d=1e100.net; s=20221208; t=1683728940; x=1686320940;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=R5fqs9Y81ig3TpwIrDEGqHqhJO5UVO6aYGC8XalYxes=;
-        b=WwcIzyAlKEPKOqgu4+lZcIK+yqceI6C5tkFXnIWjC8TDR2OhU4w4C15u3lti/LVTZR
-         rLlawF3RsR0aldzd9i9/n/xQxKVfNTwRWI66aUrYf3mdcA2R5wC3Jrcn0gdKSHvjXFAH
-         B56exkL+AgjOF9lWYoo7VWeLE9Se4Pl1svJwweq6tL0QvdUyKZpBEGtskA9AzxgGQ2F8
-         Kf+QxZCqFkKHJ+0yYQGtoRrn5gPf1xwYoZTqzWmyvtYDBw+B3PcP19ctWt6yW8oZu1OS
-         kLVAfTrmfVeOp/VAzx4f9CobTeaWKFuXW6r6UIGOZ3CwC4XO8wIkjz2RqK2h4dJo901A
-         pN4Q==
-X-Gm-Message-State: AC+VfDzT/j1h4G1kAFEoHf/f5kjdDaOCQvRDqMKz97EqhI2dF2U2DnUR
-        Yht1ea7tIcDYdzuSjDnlHZxp0w==
-X-Google-Smtp-Source: ACHHUZ4eGNGOFkcqZsv2DkqHDoiknTmiRfn50NcREBtwsSikvNTtdlm/miXdxBddhhEuDHXs+wkbNg==
-X-Received: by 2002:aa7:d593:0:b0:50b:cd19:7545 with SMTP id r19-20020aa7d593000000b0050bcd197545mr12095722edq.33.1683728824599;
-        Wed, 10 May 2023 07:27:04 -0700 (PDT)
+        bh=BiXrt8G2xSgKeJw4e2UfSHGwhEDZUsC+BmNRXk6LRYg=;
+        b=TxUkxvkVi6BHru35+A5Pydc1lzOUFO6bSd/0HQczqR8fTAV/t5wL126D+FO35pGnEL
+         swE/JO0iu5rY1o6l4PGbDAN9+NVWvTH/K0F3u51yepJ2xHOj+AFy5lBHCrZrj00hhTAC
+         ZCjWo6uadtGB7jERF0lDBLDx5TYZYpHCf99ObRYO13D1xYzeoleeUVL/2/oVuk0fccLy
+         onWeKgqq9ykFHRX33vOKNUN10uBCRx7NTaqKD1sVIRh1ukdVACmITvA4YPY7rgy4OQu6
+         UVRSdHonruIQgBADUuruuIlZUw5aFxNyjvn+FzVuFRQA+2ICgKA/ZvMXnVU+qFt7hNOO
+         Ih4Q==
+X-Gm-Message-State: AC+VfDwXU+k2BRpLdC1pXx7r4P1cfyu3UktWYNvTHjNBV5tSU+vlnloq
+        Gk2NBGXSDbWpuQV5BZm5tb8K8w==
+X-Google-Smtp-Source: ACHHUZ6bkEO6ysn78nLvaewOqHFg8Ke6jrucAJy9SYzbbaa4FuyWTQGgbTyUqVY0YmWt/D13e4QyXA==
+X-Received: by 2002:a17:907:3e87:b0:969:f433:9b54 with SMTP id hs7-20020a1709073e8700b00969f4339b54mr5862374ejc.39.1683728939934;
+        Wed, 10 May 2023 07:28:59 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:c175:a0f9:6928:8c9d? ([2a02:810d:15c0:828:c175:a0f9:6928:8c9d])
-        by smtp.gmail.com with ESMTPSA id r9-20020a056402018900b0050dab547fc6sm1967824edv.74.2023.05.10.07.27.03
+        by smtp.gmail.com with ESMTPSA id ib10-20020a1709072c6a00b009531d9efcc4sm2734213ejc.133.2023.05.10.07.28.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 May 2023 07:27:04 -0700 (PDT)
-Message-ID: <0b75ca9e-2370-bce4-f7dc-c90b8332bb53@linaro.org>
-Date:   Wed, 10 May 2023 16:27:02 +0200
+        Wed, 10 May 2023 07:28:59 -0700 (PDT)
+Message-ID: <a56e754d-d7f5-ec25-096b-a0c0c7657372@linaro.org>
+Date:   Wed, 10 May 2023 16:28:58 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v4 5/8] dt-bindings: qcom: Add ipq5018 bindings
+Subject: Re: [PATCH v4 6/8] dt-bindings: firmware: document IPQ5018 SCM
 Content-Language: en-US
 To:     Sricharan Ramabadhran <quic_srichara@quicinc.com>,
         agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
@@ -66,15 +66,15 @@ To:     Sricharan Ramabadhran <quic_srichara@quicinc.com>,
         linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
 References: <20230510134121.1232286-1-quic_srichara@quicinc.com>
- <20230510134121.1232286-6-quic_srichara@quicinc.com>
+ <20230510134121.1232286-7-quic_srichara@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230510134121.1232286-6-quic_srichara@quicinc.com>
+In-Reply-To: <20230510134121.1232286-7-quic_srichara@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -82,14 +82,13 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 10/05/2023 15:41, Sricharan Ramabadhran wrote:
-> Document the new ipq5018 SOC/board device tree bindings.
-> 
-> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-> ---
->  [v4] Checked '0' schema warnings.
-> 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+You need commit msg explaining more than what is in subject, e.g. company...
+
+Look for nice examples in history - also for proper subject prefix
+(qcom,scm:)
+
+
 
 Best regards,
 Krzysztof
