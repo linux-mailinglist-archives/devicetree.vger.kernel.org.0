@@ -2,55 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B21256FE1D5
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 17:48:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18BB26FE204
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 18:02:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237575AbjEJPsQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 11:48:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58956 "EHLO
+        id S229487AbjEJQCZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 12:02:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36948 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237496AbjEJPsO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 11:48:14 -0400
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4367619B6;
-        Wed, 10 May 2023 08:48:12 -0700 (PDT)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 073A0C000C;
-        Wed, 10 May 2023 15:48:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1683733690;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=o8C8MXrqjqKXj0eKsxGXL9GkrBq/7JcKAOeht6U8KtQ=;
-        b=jrmGFUr2y+aOVqpJ1iPloWve2lq8N4iHH6SoENv2W/wV94WrcuwK8jOqlG7rPvLt6gckhN
-        gvzm94tlydwTS5IAluF6icZG/5auLBEKIUhgJgnsgZCsJseLP8iZ2duxFoPVJ4FFI8itRm
-        Qqltvlr4+O7bdd/MMgublxvFBUvHaam1Dyc9gIvpT11ca+1kPdL3p56QFa2XGUC9GDbfWR
-        LPr75aieSdqJVFFIkFxE8wtBPDxETpKU28oNQ/9FeOoRq+dpF9Zmn1XihIqsgVtb50GrRw
-        xVSkPb4DRopl5PhnUFfgsGAZWDgZdxOS5uNNF0+QR1Ocw0KLQ5Oq3ITr6KVtvA==
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        devicetree@vger.kernel.org, <linux-kernel@vger.kernel.org>,
-        linux-tegra@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Mikko Perttunen <mperttunen@nvidia.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH 5/5] gpu: host1x: Stop open-coding of_device_uevent()
-Date:   Wed, 10 May 2023 17:48:03 +0200
-Message-Id: <20230510154803.189096-6-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230510154803.189096-1-miquel.raynal@bootlin.com>
-References: <20230510154803.189096-1-miquel.raynal@bootlin.com>
+        with ESMTP id S229461AbjEJQCY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 12:02:24 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 358EB2716;
+        Wed, 10 May 2023 09:02:23 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id BF079635C9;
+        Wed, 10 May 2023 16:02:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8736C433EF;
+        Wed, 10 May 2023 16:02:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1683734542;
+        bh=/kdN4hvAEubjX/gd5V1SzxDj97jeupfrcjnDC/LaMUM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=P4QNUPH06gstoxB2Xv5lXxCbFqU69+iI5ji/rgl9x0BwXHGBJsPadmxRxIKPtZHu5
+         pcsYByxK+HQMEAB7hWDFyPGM0knLjY2OYYLpq8eJYuSDwxGaFcxKsQh5rjW27piSRZ
+         gUHbvgU2KXt1e9JCjsy/Agj5vuSqMF0DjylsjdeRu43emzmee+thbzSUfoAxOWxwDC
+         8pjZMZg7Do7DxEkM3FU8MtA0067jBPXUMxR61fmiJxRAr1TO4RhqcOQ3tum1szPQhV
+         u0JcGMQ6HGhehWuLRrL0s/wcdYO+8ZEKgXXXvsx3wqU8ieEXCl2oF5nNjoQ5n7fQzF
+         StGfO1CVN39cw==
+Date:   Wed, 10 May 2023 17:02:17 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Anup Patel <anup@brainfault.org>, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: timer: sifive,clint: Clean up compatible
+ value section
+Message-ID: <20230510-headsman-deskwork-6826f9f174df@spud>
+References: <40ff1fc7f5220db7d527c57ac4bad16c3945ae08.1683725179.git.geert+renesas@glider.be>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="GwMHLWq4sSBBzPyb"
+Content-Disposition: inline
+In-Reply-To: <40ff1fc7f5220db7d527c57ac4bad16c3945ae08.1683725179.git.geert+renesas@glider.be>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,84 +62,83 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There is apparently no reasons to open-code of_device_uevent() besides:
-- The helper receives a struct device while we want to use the of_node
-  member of the struct device *parent*.
-- of_device_uevent() could not be called by modules because of a missing
-  EXPORT_SYMBOL*().
 
-In practice, the former point is not very constraining, just calling
-of_device_uevent(dev->parent, ...) would have made the trick.
+--GwMHLWq4sSBBzPyb
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-The latter point is more an observation rather than a real blocking
-point because nothing prevented of_uevent() (called by the inline
-function of_device_uevent()) to be exported to modules. In practice,
-this helper is now exported, so nothing prevent us from using
-of_device_uevent() anymore.
+On Wed, May 10, 2023 at 03:27:24PM +0200, Geert Uytterhoeven wrote:
+> Replace the sentences in the description listing some supported variants
+> by comments on the individual compatible values, to ease future
+> maintenance.  While at it, restore alphabetical sort order.
+>=20
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+>  .../bindings/timer/sifive,clint.yaml          | 21 +++++++------------
+>  1 file changed, 8 insertions(+), 13 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/timer/sifive,clint.yaml b/=
+Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> index 94bef9424df1bc6a..34a81510678134eb 100644
+> --- a/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> +++ b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> @@ -29,11 +29,11 @@ properties:
+>      oneOf:
+>        - items:
+>            - enum:
+> -              - sifive,fu540-c000-clint
+> -              - starfive,jh7100-clint
+> -              - starfive,jh7110-clint
+> -              - canaan,k210-clint
+> -          - const: sifive,clint0
+> +              - canaan,k210-clint       # Canaan Kendryte K210
+> +              - sifive,fu540-c000-clint # SiFive FU540
+> +              - starfive,jh7100-clint   # StarFive JH7100
+> +              - starfive,jh7110-clint   # StarFive JH7110
+> +          - const: sifive,clint0        # SiFive CLINT v0 IP block
+>        - items:
+>            - enum:
+>                - allwinner,sun20i-d1-clint
+> @@ -45,14 +45,9 @@ properties:
+>          description: For the QEMU virt machine only
+> =20
+>      description:
+> -      Should be "<vendor>,<chip>-clint" and "sifive,clint<version>".
+> -      Supported compatible strings are -
+> -      "sifive,fu540-c000-clint" for the SiFive CLINT v0 as integrated
+> -      onto the SiFive FU540 chip, "canaan,k210-clint" for the SiFive
+> -      CLINT v0 as integrated onto the Canaan Kendryte K210 chip, and
+> -      "sifive,clint0" for the SiFive CLINT v0 IP block with no chip
+> -      integration tweaks.
+> -      Please refer to sifive-blocks-ip-versioning.txt for details
 
-Let's use the core helper directly instead of open-coding it.
+> +      Should be "<vendor>,<chip>-clint", followed by "sifive,clint<versi=
+on>"
+> +      when compatible with a SiFive CLINT.  Please refer to
+> +      sifive-blocks-ip-versioning.txt for details regarding the latter.
 
-Cc: Thierry Reding <thierry.reding@gmail.com>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: Mikko Perttunen <mperttunen@nvidia.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Frank Rowand <frowand.list@gmail.com>
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+Does this section actually add any value at all?
+By nature of oneOf structure above, such an ordering is required for
+existing entries. For something not here, should we instead be noting
+that sifive,clint0 is to be used when compatible with the SiFive/RISC-V
+clint, rather than doing a sifive-blocks-ip-versioning.txt dance?
 
----
+As it stands though, patch is an improvement, so:
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-This patch depends on the changes performed earlier in the series under
-the drivers/of/ folder.
----
- drivers/gpu/host1x/bus.c | 31 ++++++-------------------------
- 1 file changed, 6 insertions(+), 25 deletions(-)
+Thanks,
+Conor.
 
-diff --git a/drivers/gpu/host1x/bus.c b/drivers/gpu/host1x/bus.c
-index 4d16a3396c4a..6434a183fb72 100644
---- a/drivers/gpu/host1x/bus.c
-+++ b/drivers/gpu/host1x/bus.c
-@@ -338,34 +338,15 @@ static int host1x_device_match(struct device *dev, struct device_driver *drv)
- 	return strcmp(dev_name(dev), drv->name) == 0;
- }
- 
-+/*
-+ * Note that this is really only needed for backwards compatibility
-+ * with libdrm, which parses this information from sysfs and will
-+ * fail if it can't find the OF_FULLNAME, specifically.
-+ */
- static int host1x_device_uevent(const struct device *dev,
- 				struct kobj_uevent_env *env)
- {
--	struct device_node *np = dev->parent->of_node;
--	unsigned int count = 0;
--	struct property *p;
--	const char *compat;
--
--	/*
--	 * This duplicates most of of_device_uevent(), but the latter cannot
--	 * be called from modules and operates on dev->of_node, which is not
--	 * available in this case.
--	 *
--	 * Note that this is really only needed for backwards compatibility
--	 * with libdrm, which parses this information from sysfs and will
--	 * fail if it can't find the OF_FULLNAME, specifically.
--	 */
--	add_uevent_var(env, "OF_NAME=%pOFn", np);
--	add_uevent_var(env, "OF_FULLNAME=%pOF", np);
--
--	of_property_for_each_string(np, "compatible", p, compat) {
--		add_uevent_var(env, "OF_COMPATIBLE_%u=%s", count, compat);
--		count++;
--	}
--
--	add_uevent_var(env, "OF_COMPATIBLE_N=%u", count);
--
--	return 0;
-+	return of_device_uevent((const struct device *)&dev->parent, env);
- }
- 
- static int host1x_dma_configure(struct device *dev)
--- 
-2.34.1
+--GwMHLWq4sSBBzPyb
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZFvACQAKCRB4tDGHoIJi
+0pbRAQDAbbxrMC2lIxCBnXhwZtjnEZDIi/bWp0fhBRIdYDUZQAEAyvpFaWMF0+9C
+U06I53ennxbOhq6qIjq/ueckMobCfgg=
+=GuVy
+-----END PGP SIGNATURE-----
+
+--GwMHLWq4sSBBzPyb--
