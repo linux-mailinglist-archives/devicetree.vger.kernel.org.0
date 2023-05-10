@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DF176FD89D
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 09:52:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 364896FD8A4
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 09:53:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236373AbjEJHwa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 03:52:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44444 "EHLO
+        id S236424AbjEJHx2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 03:53:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236228AbjEJHw2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 03:52:28 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7ACC9DE
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 00:52:27 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-9659f452148so1214963566b.1
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 00:52:27 -0700 (PDT)
+        with ESMTP id S236412AbjEJHx0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 03:53:26 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9375DE
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 00:53:24 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-50bd37ca954so66429825a12.0
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 00:53:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683705146; x=1686297146;
+        d=linaro.org; s=google; t=1683705203; x=1686297203;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=buV1oS+q5zSYMCb+Vk5Sei3x9AdpdZjHmxNoX6GDBRE=;
-        b=Q4XRlsa/ttO62lIK4GlvTimIidf2aZ8yWta4S1EEsfZMxipw4+4vFyoxAMvBO3WFtg
-         SLnrwwacDR91Ltcs6KRK2lB9oz5WNqvkCQ2r6BV2RpFVUuC+bxpxblT5dd1LJ0HuGM1c
-         TZyR+ILO+ItOWB7mfM/2AI9FVgrklZOFMsO7BVyxebCvru0hF4K69Fsh3eWXZrE/vsZD
-         y0IxnpRhuCHlpspg1zMQXxJhTmu+Qy7RveEvP23D77fHuQv/9vJA/T3WaPr1ZxkGLMQv
-         sSPrTIdo2yJeKQnWlS76VfEDyHdcHtENmMxvaKlxhk5Kz2kkyib3R7XGcdbfKOvEZUDW
-         6NhA==
+        bh=d2ao5xRhAW1VmJRMoMN5yofC1btln79yFSHVXnmazOY=;
+        b=vQGYGz+JKKoj0pR444Cmz8AfoMVXi+aedZH2f5tXSguiA5jLuZHv5InQd7y7msUxqw
+         pkkJJE6gXJYKt3xeKyoiUBmQvOVIt/HUyqJK4cnTR7Id3n+8LS4ug1j2erzjuP9g8Kh7
+         Eoq0Tft3rA++bEWy+Rtz7bxVQVt1xTHayNjawaewlwTNzI1icW0GLHqDTennWLI/5hGQ
+         oSLhjz56TdQwhAAFq3M5lmlIt2UfjO5/yaBsdZKxjDIgB5geJ5gMagket7Sh7Z13d1wl
+         JBTh44UnmDwdwNH+K8GYQiHxYZxRIcEiZG3AAbRMeTFcfULLRrbHkinEPAVuOoirq+md
+         aNMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683705146; x=1686297146;
+        d=1e100.net; s=20221208; t=1683705203; x=1686297203;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=buV1oS+q5zSYMCb+Vk5Sei3x9AdpdZjHmxNoX6GDBRE=;
-        b=G0/osZ22sAxHElVsa2bhKZOIWqc8SkXKO4au1ys/tQ6GcZ6LntOk5lVeEdlgwZSgQ1
-         Op/Vatl+qmHs01LRQUxusc4IkrGXYvAMyOzzerBMe6zMRGAxP0P7RhG6S8bXPay6yylg
-         4emTYhV4GEsjjWPNf4Px9il4Frrwh5VVshXW5O2NDVFCpP0buJQ+uHBMW0nWwrcGo0Pg
-         q0GzcxajTmgbl9GbhJFE11R51zX62gYBnJN+z7q2BOvkTmA6GmjdCEkBfI/xOdOi9ftz
-         vZGnwi3CQKNL/spy7F0XrBbmYHXLMop0bxtGSfMraydH+GvLQLJdJWef0UJXTvmdp0Y6
-         IgwQ==
-X-Gm-Message-State: AC+VfDw2ULFWEZRl4jyUJZebucHrDaE2cJxv4RheY1JDcxADQ8E2wmlx
-        WdgkYNn0/z4OpHLn5XvTzq9NZg==
-X-Google-Smtp-Source: ACHHUZ4PkilMztZzdtCbud0lGz7T8NDnLixfG28NHHOUaUz/5BDZAb+4ZEG6FXuOIsei4a4hftLJhQ==
-X-Received: by 2002:a17:906:fe07:b0:953:8249:1834 with SMTP id wy7-20020a170906fe0700b0095382491834mr13901254ejb.16.1683705145939;
-        Wed, 10 May 2023 00:52:25 -0700 (PDT)
+        bh=d2ao5xRhAW1VmJRMoMN5yofC1btln79yFSHVXnmazOY=;
+        b=Zk2CEshda4i2rn38SwJOsF0saqHG+XzaX8Uyy9IltgpwH9Py5jHLbYyqBO0/9cLJYf
+         E5TGyerulwQSMrw8iPMBC31bqurlxFd54Z37ArMXT47ObwG/73Df2OGTWHZ1G0zdJWlc
+         wBi59+M3pv7zsHMGoroP/UXBDVVheYqgKdAdzFb5PUlgguwAgoYuCeWFbn+VNo299J84
+         wrk632bwR36/uFRXsiGeD2/CDtKTc4F13cSju43Kmjqz6tpEzdlcsJa2FuWtVhfwHmSL
+         hCxoSIDfHQ0FMvxaenfobaPuCZgpO891AQVofUEsL3vNz/kZQ+Jm03NoJvLcETIKcz4O
+         w9mw==
+X-Gm-Message-State: AC+VfDxRgooHAjVYdP2sCqUjYz3+dtfFVB+o24lWHvNVjIQ3jDAy81J4
+        hhDVp59jiLoEUWxBwHDvnEomOg==
+X-Google-Smtp-Source: ACHHUZ7GAZREa4gfDODnMUUUqHW0zX13ApjtIjVoMWTiodkH906xmeobt1vPe7yZEyTTrjV8b+utxg==
+X-Received: by 2002:aa7:cb11:0:b0:504:a3ec:eacc with SMTP id s17-20020aa7cb11000000b00504a3eceaccmr14214029edt.4.1683705203156;
+        Wed, 10 May 2023 00:53:23 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:c175:a0f9:6928:8c9d? ([2a02:810d:15c0:828:c175:a0f9:6928:8c9d])
-        by smtp.gmail.com with ESMTPSA id v20-20020a170906b01400b0096165b2703asm2338115ejy.110.2023.05.10.00.52.24
+        by smtp.gmail.com with ESMTPSA id w15-20020a50fa8f000000b0050d89daaa70sm1591780edr.2.2023.05.10.00.53.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 May 2023 00:52:24 -0700 (PDT)
-Message-ID: <a575e8df-4882-79bc-ea1b-005961afb77f@linaro.org>
-Date:   Wed, 10 May 2023 09:52:23 +0200
+        Wed, 10 May 2023 00:53:22 -0700 (PDT)
+Message-ID: <4d1b7563-046c-e62d-6849-5c539575717d@linaro.org>
+Date:   Wed, 10 May 2023 09:53:21 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v4 8/9] ASoC: dt-bindings: mediatek,mt8188-afe: correct
- clock name
+Subject: Re: [PATCH v4 9/9] ASoC: dt-bindings: mediatek,mt8188-afe: add audio
+ properties
 Content-Language: en-US
 To:     Trevor Wu <trevor.wu@mediatek.com>, broonie@kernel.org,
         lgirdwood@gmail.com, tiwai@suse.com, perex@perex.cz,
@@ -65,9 +65,9 @@ Cc:     alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org
 References: <20230510035526.18137-1-trevor.wu@mediatek.com>
- <20230510035526.18137-9-trevor.wu@mediatek.com>
+ <20230510035526.18137-10-trevor.wu@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230510035526.18137-9-trevor.wu@mediatek.com>
+In-Reply-To: <20230510035526.18137-10-trevor.wu@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,19 +81,18 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 10/05/2023 05:55, Trevor Wu wrote:
-> The original clock names are different from the list in driver code.
-> Correct the mismatched binding names in the patch.
+> Add apll1_d4 to clocks for switching the parent of top_a1sys_hp
+> dynamically and add property "mediatek,infracfg" for bus protection.
 > 
-> Because no mt8188 upstream dts exists, it doesn't affect the existing
-> dts file.
+> Because no mt8188 upstream dts exists, the change won't break anything.
+> In addition, apll2_d4, apll12_div4, top_a2sys and top_aud_iec are also
+> included in clocks, because these clocks are possibly used in the future.
 > 
-> Fixes: 692d25b67e10 ("ASoC: dt-bindings: mediatek,mt8188-afe: add audio afe document")
 > Signed-off-by: Trevor Wu <trevor.wu@mediatek.com>
 > ---
->  .../bindings/sound/mediatek,mt8188-afe.yaml   | 36 +++++++++----------
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
