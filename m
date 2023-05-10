@@ -2,98 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EEF046FE09E
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 16:42:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 580016FE0C4
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 16:48:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237497AbjEJOmZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 10:42:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45672 "EHLO
+        id S237607AbjEJOsa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 10:48:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237258AbjEJOmX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 10:42:23 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 711A2BC;
-        Wed, 10 May 2023 07:42:22 -0700 (PDT)
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34AD7v6R020389;
-        Wed, 10 May 2023 14:41:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=yXhxwsbwi+08VkxnQt2ohjYL4NlaY/YYuUapTdI3wxc=;
- b=pOizwmYzf1xO5LUmU3Al0wnCTSwbfrUb5CHD1ZycsEUMxw2pYfz3J5bBh3t1InNutbU1
- mN38a0+vAu2sJCorvbP1IP+6lXU7nN9rRDA1CqaxMXk0IveC0dkq4iyI0rn2IYlQQZ98
- R8dAi6Mp3l7UN4KMC7wdA8WYY+gYSY1Ld7cK8KXnSCItn6u7epFiFAnfdXkJzWhhg+TB
- ZMPTpAgoTId0vPBjeV6MxzdlCtN7HU5shcue7094vM0+hsiDK2Nnhjgo7jqlo8VLphEE
- /OiGMc62NEAV0iEn73qYQ7/1juFy1u12fyogiruWKvE6Y1bUeOR1QVp1WK6VpXgWDlFX mw== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qg79crqqy-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 10 May 2023 14:41:52 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34AEfpKs021064
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 10 May 2023 14:41:51 GMT
-Received: from [10.226.59.182] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Wed, 10 May
- 2023 07:41:50 -0700
-Message-ID: <7e28b8b7-1bc1-bd3a-a198-a0dfaf356c01@quicinc.com>
-Date:   Wed, 10 May 2023 08:41:33 -0600
+        with ESMTP id S237590AbjEJOsY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 10:48:24 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACC5283FF
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 07:48:15 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-965c3f9af2aso1091499166b.0
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 07:48:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683730094; x=1686322094;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=f6J1at/UfOBYlhKmXRcHodshRJDkjuRkHYlvCekUlaQ=;
+        b=iNDBMZ3Qo/Ta40vyO3EF+rrpA6RSS0EQpoiRnrl+XngL9Vmh01gFgTLSCxICapeEsh
+         daMH8kT6BzRJ7tOiLg9BOIyFxoYPKy1UTtBs+KRujHFwX6/TpTkx5ATMWgamCvbFYylZ
+         aeKI2KTncm+HdQIKHtE4wZylBYjc0wfZ8+rZiWy5W5HFuiwZg+SjV0/mWe76xGCfpDX7
+         LneNP04ablGNXFUmnjKXKFWdF5NJ3h57KcmCvVto2kKeI4ELTHFaKoXNu3/oeJZR+8tb
+         Rtb0J4RTHI4GRLVs7ApJvwEjff15qO/3eFmjvYFxR3bdpKaQMpB3bfWDkk0KQJGVmntA
+         VaFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683730094; x=1686322094;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=f6J1at/UfOBYlhKmXRcHodshRJDkjuRkHYlvCekUlaQ=;
+        b=MIqy1GYLQ/g7c/raxEo73XnXnRadTMRi514hxcecz76qjOcpQzvylo3PCVlAF4us2N
+         fPnIqwIR5AeHabJB/zX8djCE4rjdBLEeFyP5hFgsUPQWq7RzW4z+xoP+6NcwOZT/n9/8
+         ZS3JqkZLo156btdD78Ovjaw7J6MvAititsOE7OxuTuPY7dRXMHnXOC3dQbDkww75PDq7
+         BsZV0LKbx2Qkgq7KuUFUB95/OXgN+KvHrxMcx0bjHbKpjEFMXBE78KAbxWseo3tyxVO2
+         WpCjS/M7ftC/WJLUA6VxJEFqytW9Hk1h+k3hLY6LkxywGuup6LXNV3aAj+bM05lOfbJs
+         PGvA==
+X-Gm-Message-State: AC+VfDyAINyisJPmlark0e6jc7Pvkny+T4qc+4U8mPcwf2WO/P4Ny4Rm
+        06Ro4MpMzRSm7QzHxCYRTqqSD8QzGG9aT0juAjo=
+X-Google-Smtp-Source: ACHHUZ6nlFU/rkd4wiS8p9XQtJiSjSA/y7NII5AZrzIETV3go8PONFgO0szicvwQF++ebH0pnpxuGg==
+X-Received: by 2002:a17:907:8a02:b0:967:d161:61c6 with SMTP id sc2-20020a1709078a0200b00967d16161c6mr9898351ejc.3.1683730094012;
+        Wed, 10 May 2023 07:48:14 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:c175:a0f9:6928:8c9d? ([2a02:810d:15c0:828:c175:a0f9:6928:8c9d])
+        by smtp.gmail.com with ESMTPSA id va8-20020a17090711c800b0094f282fc29asm2693778ejb.207.2023.05.10.07.48.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 May 2023 07:48:13 -0700 (PDT)
+Message-ID: <6b5be71e-141e-c02a-8cba-a528264b26c2@linaro.org>
+Date:   Wed, 10 May 2023 16:48:12 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.0
-Subject: Re: [PATCH 2/3] dt-bindings: clock: qcom,mmcc: define
- clocks/clock-names for MSM8226
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v2 3/5] dt-bindings: net: add mac-address-increment option
 Content-Language: en-US
-To:     Luca Weiss <luca@z3ntu.xyz>,
-        <~postmarketos/upstreaming@lists.sr.ht>,
-        <phone-devel@vger.kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+To:     Ivan Mikhaylov <fr0st61te@gmail.com>,
+        Samuel Mendoza-Jonas <sam@mendozajonas.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
-References: <20230509-msm8226-mmcc-parents-v1-0-83a2dfc986ab@z3ntu.xyz>
- <20230509-msm8226-mmcc-parents-v1-2-83a2dfc986ab@z3ntu.xyz>
-From:   Jeffrey Hugo <quic_jhugo@quicinc.com>
-In-Reply-To: <20230509-msm8226-mmcc-parents-v1-2-83a2dfc986ab@z3ntu.xyz>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
+        Paul Fertser <fercerpav@gmail.com>
+References: <20230509143504.30382-1-fr0st61te@gmail.com>
+ <20230509143504.30382-4-fr0st61te@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230509143504.30382-4-fr0st61te@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: XbLxN-6knLr6YD1gg7LF60DfIzBiSfEr
-X-Proofpoint-ORIG-GUID: XbLxN-6knLr6YD1gg7LF60DfIzBiSfEr
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-10_04,2023-05-05_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0
- lowpriorityscore=0 adultscore=0 clxscore=1011 mlxscore=0 suspectscore=0
- bulkscore=0 spamscore=0 priorityscore=1501 mlxlogscore=807 malwarescore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2305100118
 X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/9/2023 3:16 PM, Luca Weiss wrote:
-> Define clock/clock-names properties of the MMCC device node to be used
-> on MSM8226 platform.
+On 09/05/2023 16:35, Ivan Mikhaylov wrote:
+> Add the mac-address-increment option for specify MAC address taken by
+> any other sources.
 > 
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> Signed-off-by: Paul Fertser <fercerpav@gmail.com>
+> Signed-off-by: Ivan Mikhaylov <fr0st61te@gmail.com>
+> ---
+>  .../devicetree/bindings/net/ethernet-controller.yaml      | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/ethernet-controller.yaml b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
+> index 00be387984ac..6900098c5105 100644
+> --- a/Documentation/devicetree/bindings/net/ethernet-controller.yaml
+> +++ b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
+> @@ -34,6 +34,14 @@ properties:
+>      minItems: 6
+>      maxItems: 6
+>  
+> +  mac-address-increment:
+> +    $ref: /schemas/types.yaml#/definitions/int32
+> +    description:
+> +      Specifies the MAC address increment to be added to the MAC address.
+> +      Should be used in cases when there is a need to use MAC address
+> +      different from one obtained by any other level, like u-boot or the
+> +      NC-SI stack.
 
-Acked-by: Jeffrey Hugo <quic_jhugo@quicinc.com>
+We don't store MAC addresses in DT, but provide simple placeholder for
+firmware or bootloader. Why shall we store static "increment" part of
+MAC address? Can't the firmware give you proper MAC address?
+
+Best regards,
+Krzysztof
+
