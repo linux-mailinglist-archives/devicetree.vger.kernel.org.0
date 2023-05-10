@@ -2,182 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 691866FE4E9
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 22:16:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B2166FE4F6
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 22:22:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236019AbjEJUQy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 16:16:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48314 "EHLO
+        id S236358AbjEJUWv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 16:22:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229482AbjEJUQx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 16:16:53 -0400
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 681342D78;
-        Wed, 10 May 2023 13:16:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1683749811; x=1715285811;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=guqjaEs52yzd0jfD4I7W7LOAkjHOHGKuo7Jwzw0kwtU=;
-  b=bmXpmoUgrYHsZH5/M1lCsfZls2zUmsv3+3RxkjqtPT/X6v9zx+/llwsL
-   qeJAj0FY9xAkW/sONi5kjdcdAHGG1eBxI8n9SNdwZKREJWysYKG1uy0uP
-   6RMmyGUbORKIncBsOFDx5aiiKxY1C+NudKQT2C2BJTdTd5yOIxj/+HOFu
-   dT4RW4U3bUoEBlTm5OPC5V5cUj/uOIBCtDKJuUaKXSf7E3yJ87LMMI21O
-   Wbq2UnLCoKeble8L/8sHTGRUWoAePZ3YM7VvJMmPGPsMHt1ivG1/NpRqq
-   x1LnTadcBhgk6bRDf7Cv2EM5/lXQ6NqLO9xTb0J/+FQ5/AbAFiMvmc3gW
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="339565302"
-X-IronPort-AV: E=Sophos;i="5.99,265,1677571200"; 
-   d="scan'208";a="339565302"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 May 2023 13:16:50 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="823658226"
-X-IronPort-AV: E=Sophos;i="5.99,265,1677571200"; 
-   d="scan'208";a="823658226"
-Received: from lkp-server01.sh.intel.com (HELO dea6d5a4f140) ([10.239.97.150])
-  by orsmga004.jf.intel.com with ESMTP; 10 May 2023 13:16:45 -0700
-Received: from kbuild by dea6d5a4f140 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pwqEv-0003YK-09;
-        Wed, 10 May 2023 20:16:45 +0000
-Date:   Thu, 11 May 2023 04:16:30 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Martin =?utf-8?B?WmHFpW92acSN?= <m.zatovic1@gmail.com>,
-        linux-kernel@vger.kernel.org
-Cc:     oe-kbuild-all@lists.linux.dev, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        gregkh@linuxfoundation.org, beanhuo@micron.com,
-        nipun.gupta@amd.com, linus.walleij@linaro.org, mwen@igalia.com,
-        bvanassche@acm.org, arnd@arndb.de, ogabbay@kernel.org,
-        linux@zary.sk, jacek.lawrynowicz@linux.intel.com,
-        geert+renesas@glider.be, benjamin.tissoires@redhat.com,
-        masahiroy@kernel.org, yangyicong@hisilicon.com,
-        devicetree@vger.kernel.org,
-        Martin =?utf-8?B?WmHFpW92acSN?= <m.zatovic1@gmail.com>
-Subject: Re: [PATCHv4 4/4] wiegand: add Wiegand GPIO bitbanged controller
- driver
-Message-ID: <202305110450.jjNwIYfp-lkp@intel.com>
-References: <20230510162243.95820-5-m.zatovic1@gmail.com>
+        with ESMTP id S236348AbjEJUWu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 16:22:50 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DA0E4C12;
+        Wed, 10 May 2023 13:22:49 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 041BB63FD6;
+        Wed, 10 May 2023 20:22:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4E19C433D2;
+        Wed, 10 May 2023 20:22:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1683750168;
+        bh=K0GUlOR4QFLJUalaWA8czdBLmxA0PE/dUqa1IdlNM58=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=TQSM9Jbdo2MKbuEXEtf8mlc1NHfEJWAenPeiZ6OuxEetwTlENaz1zIaRwYfYm8Ybl
+         mFykHJOoMFRz9OcYJXjpEmX9rqgPXAw3sak4bRETTvDhiUaYwVlA3KXUNot/XL1ZM/
+         29aQj849FvN6rVYc6+QrSrevIUkvmUgDYXkwwqulhNuuRljN5Zhm8FP6j4u7OdGIlQ
+         oho0Pg8DGjdD9ccVsy9tnExQr6FOdhaTCaPZS+OVCnE+n5LzfTDGDiM+AlJ9ZL+nGq
+         Yau74pkriEmOH3fDEUkGLRn2Szn8IjR1yj/TCkSDIDk9zPXHGuSMkQyuMt0LnwT+Ut
+         zgnqc0soAI51A==
+Date:   Wed, 10 May 2023 21:22:43 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Walker Chen <walker.chen@starfivetech.com>
+Cc:     Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v3 3/3] riscv: dts: starfive: add tdm node and sound card
+Message-ID: <20230510-riveter-ridden-3f056251e623@spud>
+References: <20230506090116.9206-1-walker.chen@starfivetech.com>
+ <20230506090116.9206-4-walker.chen@starfivetech.com>
+ <a0932e84-3813-bbbe-762d-948d75fbcd8a@starfivetech.com>
+ <20230509-overheat-pliable-00d60523637e@spud>
+ <CAJM55Z9AxMVw=ymfFBb=45nODq89O8dMebzRgo-XD0GKduDBYg@mail.gmail.com>
+ <f27b7ee7-f23a-35a2-3b82-71f50871dfcc@starfivetech.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="R5rGeiM6/5QEp4La"
 Content-Disposition: inline
-In-Reply-To: <20230510162243.95820-5-m.zatovic1@gmail.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <f27b7ee7-f23a-35a2-3b82-71f50871dfcc@starfivetech.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martin,
 
-kernel test robot noticed the following build warnings:
+--R5rGeiM6/5QEp4La
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on linus/master v6.4-rc1 next-20230510]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+On Wed, May 10, 2023 at 05:21:21PM +0800, Walker Chen wrote:
+> On 2023/5/10 16:33, Emil Renner Berthing wrote:
+> > On Tue, 9 May 2023 at 20:05, Conor Dooley <conor@kernel.org> wrote:
+> >>
+> >> On Tue, May 09, 2023 at 08:52:48PM +0800, Walker Chen wrote:
+> >> > Hi Conor/Emil,
+> >> >
+> >> > DT overlay is used to describe combinations of VF2 and hat.
+> >> > Do you have any comments on this patch ?
+> >>
+> >> I seem to recall that he said at the linux-riscv sync-up call that we
+> >> have* that he was not in favour of overlays for hats like this.
+> >> I'll let him confirm that though, I might very well be misinterpreting=
+ or
+> >> misremembering what he said.
+> >=20
+> > What probably meant was that I didn't want a bunch of different device
+> > trees for each combination board * hat. An overlay makes a lot more
+> > sense. However, looking through the kernel tree there is a surprising
+> > lack of overlays for hats committed already, so I suspect there is
+> > some sort of policy around overlays already in place.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Martin-Za-ovi/dt-bindings-wiegand-add-Wiegand-controller-common-properties/20230511-002708
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20230510162243.95820-5-m.zatovic1%40gmail.com
-patch subject: [PATCHv4 4/4] wiegand: add Wiegand GPIO bitbanged controller driver
-config: sparc-allyesconfig (https://download.01.org/0day-ci/archive/20230511/202305110450.jjNwIYfp-lkp@intel.com/config)
-compiler: sparc64-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/3eb47f0de6aecc78d72c144b36ccd97f22d908c5
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Martin-Za-ovi/dt-bindings-wiegand-add-Wiegand-controller-common-properties/20230511-002708
-        git checkout 3eb47f0de6aecc78d72c144b36ccd97f22d908c5
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sparc olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sparc SHELL=/bin/bash drivers/
+> About the specific usage of overlay for this board + hat, referenced to t=
+he following example in kernel:
+> linux/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-imx219.dtso
+> That board is connected with imx219 sensor via mipi_csi interface. That p=
+atch was accepted in 2022.
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202305110450.jjNwIYfp-lkp@intel.com/
+Hmm, so spoke to Emil again today about it. In the interest of being
+fair, I did go looking at that particular board & looked through their
+documentation for more information on why there are overlays.
+They do actually sell the bits required to use the overlays, based on
+what I saw in their datasheet for the board & wiki. That said, what is
+done for one arm64 platform does not necessarily apply elsewhere ;)
 
-All warnings (new ones prefixed by >>):
+I'm not against allowing in-tree overlays for hats/capes/daughter-boards
+that come bundled with a board, but accepting ones for a hat that
+someone decided to use theoretically has no limit! The "someone" in this
+case might be a StarFive developer, but it could be any random one of
+your customers next!
+We've got to draw a line somewhere, so my answer to the overlay *in this
+case* is a no. Sorry.
+When you submit your next version, please drop the overlay from this
+patch.
+Thanks,
+Conor.
 
->> drivers/wiegand/wiegand-gpio.c:70:6: warning: no previous prototype for 'wiegand_gpio_send_bit' [-Wmissing-prototypes]
-      70 | void wiegand_gpio_send_bit(struct wiegand_gpio *wiegand_gpio, bool value, bool last)
-         |      ^~~~~~~~~~~~~~~~~~~~~
->> drivers/wiegand/wiegand-gpio.c:111:5: warning: no previous prototype for 'wiegand_gpio_transfer_message' [-Wmissing-prototypes]
-     111 | int wiegand_gpio_transfer_message(struct wiegand_controller *ctlr)
-         |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--R5rGeiM6/5QEp4La
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
-vim +/wiegand_gpio_send_bit +70 drivers/wiegand/wiegand-gpio.c
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZFv9EwAKCRB4tDGHoIJi
+0pgOAP9eU2ZWh7+ycauV2k2tsHEtiJcGiCvC1lBDQL6aVqzqJQD/St1K7BA7Q9BW
+NSqEGApfEX6ctSZmnzWY8/sp72lCmQI=
+=JAZI
+-----END PGP SIGNATURE-----
 
-    63	
-    64	/*
-    65	 * To send a bit of value 1 following the wiegand protocol, one must set
-    66	 * the wiegand_data_hi to low for the duration of pulse. Similarly to send
-    67	 * a bit of value 0, the wiegand_data_lo is set to low for pulse duration.
-    68	 * This way the two lines are never low at the same time.
-    69	 */
-  > 70	void wiegand_gpio_send_bit(struct wiegand_gpio *wiegand_gpio, bool value, bool last)
-    71	{
-    72		u32 sleep_len;
-    73		u32 pulse_len = wiegand_gpio->ctlr->pulse_len;
-    74		u32 interval_len = wiegand_gpio->ctlr->interval_len;
-    75		u32 frame_gap = wiegand_gpio->ctlr->frame_gap;
-    76		struct gpio_desc *gpio = value ? wiegand_gpio->data1_gpio : wiegand_gpio->data0_gpio;
-    77	
-    78		gpiod_set_value_cansleep(gpio, 0);
-    79		udelay(pulse_len);
-    80		gpiod_set_value_cansleep(gpio, 1);
-    81	
-    82		if (last)
-    83			sleep_len = frame_gap - pulse_len;
-    84		else
-    85			sleep_len = interval_len - pulse_len;
-    86	
-    87		if (sleep_len < 10)
-    88			udelay(sleep_len);
-    89		else if (sleep_len < 100)
-    90			usleep_range(sleep_len - UP_TO_100_USEC_DEVIATION,
-    91				     sleep_len + UP_TO_100_USEC_DEVIATION);
-    92		else
-    93			usleep_range(sleep_len - MORE_THAN_100_USEC_DEVIATION,
-    94				     sleep_len + MORE_THAN_100_USEC_DEVIATION);
-    95	}
-    96	
-    97	static int wiegand_gpio_write_by_bits(struct wiegand_gpio *wiegand_gpio, u16 bitlen)
-    98	{
-    99		size_t i;
-   100		bool bit_value, is_last_bit;
-   101	
-   102		for (i = 0; i < bitlen; i++) {
-   103			bit_value = test_bit(i, wiegand_gpio->ctlr->data_bitmap);
-   104			is_last_bit = (i + 1) == bitlen;
-   105			wiegand_gpio_send_bit(wiegand_gpio, bit_value, is_last_bit);
-   106		}
-   107	
-   108		return 0;
-   109	}
-   110	
- > 111	int wiegand_gpio_transfer_message(struct wiegand_controller *ctlr)
-   112	{
-   113		struct wiegand_gpio *wiegand_gpio = wiegand_primary_get_devdata(ctlr);
-   114		u8 msg_bitlen = ctlr->payload_len;
-   115	
-   116		wiegand_gpio_write_by_bits(wiegand_gpio, msg_bitlen);
-   117	
-   118		return 0;
-   119	}
-   120	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+--R5rGeiM6/5QEp4La--
