@@ -2,157 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C0836FDB66
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 12:13:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C7786FDB6A
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 12:13:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236450AbjEJKNT convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 10 May 2023 06:13:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36210 "EHLO
+        id S236494AbjEJKNj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 06:13:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229500AbjEJKNS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 06:13:18 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 978292118;
-        Wed, 10 May 2023 03:13:12 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4BE051063;
-        Wed, 10 May 2023 03:13:56 -0700 (PDT)
-Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 217DA3F5A1;
-        Wed, 10 May 2023 03:13:09 -0700 (PDT)
-Date:   Wed, 10 May 2023 11:13:06 +0100
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     David Laight <David.Laight@ACULAB.COM>
-Cc:     'Maxim Kiselev' <bigunclemax@gmail.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Samuel Holland <samuel@sholland.org>,
-        Mark Brown <broonie@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
+        with ESMTP id S236315AbjEJKNg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 06:13:36 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C606B30C6
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 03:13:33 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-9619095f479so1119883966b.1
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 03:13:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683713612; x=1686305612;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6jZ+fHuPcf77ZWkOMYSzhjzZYE9ejceZbqeH9Ij4wTc=;
+        b=LpdjGUNDVbH61Ed+LBr4UqA+BqyNaV0+axTYqmHGhhk74H7vX8iAN1BZ6AlhAj00eJ
+         TElIhZ804g8HLaTa8Q1GJfpcBF3JsGynh1cmg1uXLEXdwKd4TAoiJcZ7tySpv3t8KmlR
+         sneAVHKfQSnuF4awNpdgQSCCC6trJ7IbYxcmr0M7i0wP4fggAqOLcc+lvG25rDzzy06j
+         CmmsIO9S/mCf6SOYtQUBTAkDNWvVC7L8IR9yfqR4yjFSDn4hEEUnxZVCrxus1ysWRQHl
+         hnXPc6as5TwiTfqHED8CQ6ithB4RUhnx830EKiL++lrSpF6glNsN6mOfhw33z1VJtxb9
+         7bSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683713612; x=1686305612;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6jZ+fHuPcf77ZWkOMYSzhjzZYE9ejceZbqeH9Ij4wTc=;
+        b=YqPSq0yqURaQCETni9ehmdxjoPegBtAXV9LamHduzVdgN2x+bir1/wRIBTcFR3lO7p
+         7k6gLE7b6CJzQEcNEwEjW+MLOPUvcmMF/9oAbrCjvZivOW0LitxGW55MuOfrXrwmgDjv
+         HBPphKRKWMUR1nwTcn8ovEOTD+b+Li0xq0SrUsqsB4Df5paiQf6vLP3HEgGife1gmcmE
+         RlRul+EoXwhySCX6Cr3EHMmjDVLu3WutTaImL+/yqywwBqxjnltgwwGRlGLxL02cVEE4
+         t1fg3n9OTw77uu7Yy+1dU2TGuQILAauB5D0uwVZDu7DFMQJL53UW0rYnbbi/KJn8Rybj
+         nHtQ==
+X-Gm-Message-State: AC+VfDxHHBkfvtqIefAp4A8UofD0nD/KCh8TDnuFbQpVnaYkzyXPi+5X
+        RM0vkqhsGgJQK4wdg2nG8/jLg4s8UD+Xq9TK9pw=
+X-Google-Smtp-Source: ACHHUZ4q36n8/c/iMTwvJa7Zu8+iDl2FNbh+EC9Sw31ARBn7eWaYWTYF5K113S9ikylsRIcDXtVdIQ==
+X-Received: by 2002:a17:906:478a:b0:969:b88c:b8a2 with SMTP id cw10-20020a170906478a00b00969b88cb8a2mr6921774ejc.10.1683713612238;
+        Wed, 10 May 2023 03:13:32 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:c175:a0f9:6928:8c9d? ([2a02:810d:15c0:828:c175:a0f9:6928:8c9d])
+        by smtp.gmail.com with ESMTPSA id e17-20020a170906845100b0095844605bb8sm2525661ejy.10.2023.05.10.03.13.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 May 2023 03:13:31 -0700 (PDT)
+Message-ID: <d0368328-b2af-e4b8-4374-c9fcb9c376c0@linaro.org>
+Date:   Wed, 10 May 2023 12:13:30 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v4 1/2] dt-bindings: pinctrl: Allow use of pinconf in
+ addition to pinctrl and pinmux
+Content-Language: en-US
+To:     Tony Lindgren <tony@atomide.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        "Paul Walmsley" <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-        Heiko Stuebner <heiko.stuebner@vrull.eu>,
-        Maxime Ripard <mripard@kernel.org>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-sunxi@lists.linux.dev" <linux-sunxi@lists.linux.dev>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
-Subject: Re: [PATCH v3 2/5] spi: sun6i: change OF match data to a struct
-Message-ID: <20230510111306.52e30f26@donnerap.cambridge.arm.com>
-In-Reply-To: <1592f46b0f794b24a87a964d7208da68@AcuMS.aculab.com>
-References: <20230506232616.1792109-1-bigunclemax@gmail.com>
-        <20230506232616.1792109-3-bigunclemax@gmail.com>
-        <702d085b3b814759a344886364c518f8@AcuMS.aculab.com>
-        <CALHCpMh84Q8RAh2Y+cHzAvsm4h5zBZY=9fPF6OVmtLNvX+ePxQ@mail.gmail.com>
-        <1592f46b0f794b24a87a964d7208da68@AcuMS.aculab.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
-MIME-Version: 1.0
+        =?UTF-8?B?77+9ZWNraQ==?= <rafal@milecki.pl>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230510095330.30742-1-tony@atomide.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230510095330.30742-1-tony@atomide.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 10 May 2023 08:55:27 +0000
-David Laight <David.Laight@ACULAB.COM> wrote:
-
-Hi David,
-
-> From: Maxim Kiselev
-> > Sent: 10 May 2023 09:34
-> > 
-> > Hi, David
-> >   
-> > > Is it worth doing a structure copy at this point?
-> > > The 'cfg' data is short and constant and it would make
-
-Sorry, I don't really get the reason for this. Since the data is constant,
-wouldn't it make much more sense to keep it there in the const section,
-which we need anyway? What would a second copy bring us?
-
-> > > the code that uses it smaller and faster.  
-
-Smaller: Do you mean the generated code? Not sure that really matters, but
-your sketch below hints that the C code would get larger, more error prone
-(you mention yourself that you skipped over the error checking) and most
-importantly harder to read.
-
-Faster: Do you have numbers that back that up, or does that solve a
-particular problem of yours?
-This is programming a SPI controller transfer, which runs in the vicinity
-of a few Mbits/s. I doubt that saving a few memory accesses (once
-per transfer, not per word) matters even the slightest?
-The actual MMIO access to program the controller registers already takes
-a few dozen to a few hundred cycles, so I doubt that doing a struct copy
-saves us anything here, in practice.
-
-Besides: Copying the pointer is the most common pattern in the kernel, I
-believe. I just sampled 21 SPI drivers in the tree, 17 out of them do
-this. The other either copy the members of the struct into the driver data
-(which would be an option for us, too), or immediately consume the data in
-the probe() routine.
-
-If you have some good reason to optimise this, please send a patch (on
-top).
-
-Cheers,
-Andre.
-
-> > 
-> > I'm sorry but I don't fully understand what you are suggesting.
-> > In patch 3\5 we extend the sun6i_spi_cfg structure with the has_clk_ctl field.  
+On 10/05/2023 11:53, Tony Lindgren wrote:
+> Some controllers can be just pinconf controllers and we have dts
+> files using pinconf for the node name already.
 > 
-> You are still only adding a second integer.
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Tony Lindgren <tony@atomide.com>
+> ---
+>  Documentation/devicetree/bindings/pinctrl/pinctrl.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> I'm suggesting that instead of sspi->cfg being a pointer to the
-> config data it is a copy of the config data.
-> So the assignment below becomes (ignoring error checks)
-> 	memcpy(&sspi->cfg, of_device_get_match_data(&pdev->dev), sizeof sspi->cfg);
-> and the code that needs the values is:
-> 	sspi->cfg.fifo_depth
-> (etc)
-> 
-> 	David
-> 
-> > 
-> > пн, 8 мая 2023 г. в 12:47, David Laight <David.Laight@aculab.com>:  
-> > >
-> > > From: Maksim Kiselev  
-> > > > Sent: 07 May 2023 00:26
-> > > >
-> > > > As we're adding more properties to the OF match data, convert it to a
-> > > > struct now.
-> > > >  
-> > > ...  
-> > > > -     sspi->fifo_depth = (unsigned long)of_device_get_match_data(&pdev->dev);
-> > > > +     sspi->cfg = of_device_get_match_data(&pdev->dev);  
-> > >
-> > > Is it worth doing a structure copy at this point?
-> > > The 'cfg' data is short and constant and it would make
-> > > the code that uses it smaller and faster.
-> > >
-> > >         David
-> > >
-> > > -
-> > > Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, MK1 1PT, UK
-> > > Registration No: 1397386 (Wales)
-> > >  
-> 
-> -
-> Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, MK1 1PT, UK
-> Registration No: 1397386 (Wales)
+> diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/pinctrl.yaml
+> --- a/Documentation/devicetree/bindings/pinctrl/pinctrl.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/pinctrl.yaml
+> @@ -27,7 +27,7 @@ description: |
+>  
+>  properties:
+>    $nodename:
+> -    pattern: "^(pinctrl|pinmux)(@[0-9a-f]+)?$"
+> +    pattern: "^(pinctrl|pinmux|pinconf)(@[0-9a-f]+)?$"
+
+pinconf appears in three cases. Better just fix DTS.
+
+Best regards,
+Krzysztof
 
