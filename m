@@ -2,68 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C7AB6FDE12
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 14:47:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EBF376FDE17
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 14:48:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237055AbjEJMrv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 08:47:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44582 "EHLO
+        id S236617AbjEJMsn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 08:48:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237050AbjEJMru (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 08:47:50 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05B1F5255
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 05:47:45 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-50b383222f7so10765823a12.3
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 05:47:44 -0700 (PDT)
+        with ESMTP id S236792AbjEJMsm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 08:48:42 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CF935FCA
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 05:48:40 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-50bc456cc39so10772949a12.1
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 05:48:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683722863; x=1686314863;
+        d=linaro.org; s=google; t=1683722919; x=1686314919;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=LoN7UzTWOHRfV6DLizardjz7wWvM7VrRl9MfwBd/glw=;
-        b=VW/vtsUD7aHDTF6FaXs3+2O6249VYRLtH3KLTs9QFnecSiHXDOEQvtqYCVCKIY/eFh
-         9FT7d5g39c9IMLG1h9/MP4b43gdlgytJDJJ8xHo5M6XPXN3ALuGb7oduULFnnwQ2C9jZ
-         HN5KnqpbEI4AWa8GaRp6t9zb9Q1pnJRiBXW4lSaKLltND8fcTXk9eF5AHEpLLfOvNWrA
-         SK41quM3EQCkU4i8FRx3FXU6a6WwyskRI+fdjfbcyLkJbPG0+YmIjcPB+/7SLRxktP6R
-         IwBWiG9h86zGKaUKt1hehWVyMyYL99FyDS/9ZABBf256m8Id6UrEJFyD7h/B3eYI0BNt
-         iCjA==
+        bh=NTb3PFqZjRywOvCruaTWXhoZpVjyn+1Cf6fGgu1FyAA=;
+        b=VMwvLylU7oHixR+Vw7boud6qkZdq99f7ytTvREQcW2PAcYSHJpEdwJmd9RN852zY4E
+         1nTtLoJAcHrxi8QZm97lUota5mrfeEEQQSeaVaNlsR9k/ca4euKz1GkUftrdvLYE/9K7
+         G2IIgzKq4mEKQ8p52/rFs3hPL169BqFeV++ICeLX02HIqh20vIAIaOetw9CvXjaU8EgF
+         j+CFLO6njGI18REzulX+qsuC+UBSUwfA4NgTTxt2rhwkEdiM3aL+VzlNCJ9PAzLRh1E8
+         mIQY/uRsrGmGbuea82e+6VjalOszkIkevhRkXXvZtf+K5Nwa1HH53Bqqb87C90T7KJtC
+         +YeA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683722863; x=1686314863;
+        d=1e100.net; s=20221208; t=1683722919; x=1686314919;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=LoN7UzTWOHRfV6DLizardjz7wWvM7VrRl9MfwBd/glw=;
-        b=YYDC90/S3oktrgUCFDEh7aTC/kBe41tgaSQBJTIfvwOdqd1oMIjebk+FZGWJsp3E4S
-         mRtgg8BLwB4FF3MrYMtmmqerfH+FpTDdwXXs71MZguuEehNchxqXBa5KtRsoAbXBKo8m
-         N8TubBGJaSiQUmQwNvGbcldQX3DUgmbfBOyrOCKdrFlthkFVqZY34+kZefxcqd4pyVHm
-         UU3SeT38LPFYlomXZxP0xetI/iMWrksIR+tM77AI7nVkc4kMCW65dVdBr3g6mf2wTyPt
-         7cELNPeemzEpNL26Kdl399nqNaDANbXSWFhT78IH0sFFHs6SBWCBc68RhXVjRtIC6tAu
-         29zA==
-X-Gm-Message-State: AC+VfDzC5ZDcrBGFygellB1KxG0G/UaoqFRckhYF4J6mjeAOKqsT/NpP
-        n++5DwAkHi8J8Yh9m4KwzSsYyw==
-X-Google-Smtp-Source: ACHHUZ4iOi30Xbasrz4chc7xaV2DeQmJMK4J7neQi6pkPjtC3qtmAjiIcox0YPP/WPvxuMbhLmzdxg==
-X-Received: by 2002:a17:907:2dab:b0:96a:2b4:eb65 with SMTP id gt43-20020a1709072dab00b0096a02b4eb65mr4609370ejc.9.1683722863427;
-        Wed, 10 May 2023 05:47:43 -0700 (PDT)
+        bh=NTb3PFqZjRywOvCruaTWXhoZpVjyn+1Cf6fGgu1FyAA=;
+        b=j325BQHFe1hJkltfF6jCQ3yqvZ862q2oRVREdj3gikAgil/1P/ddosjsTqBZeu2eVW
+         lMll1s1yz+0c6CwICn5ZVDi8B9M51pr2CnAspT2XeKhCgrvj1SEhXvNc6RGOZsbddHSm
+         ONGKnkRNPDr79juz2XfzRJRwjLA7exN04lQt+wYfpSUCVxF7tiSobsZ88yFixxFhx7tl
+         r121UAy4J5zQGAa4V1wAguuCBb4lz+AO4hivrL8LaJRrzy+6YVpXSn5GwMiPiq7bB7Ya
+         /66O98VAsTTLxtZ61P/WWB/vIp9o75/1IOAPFQd3s4MWEhTKuy+NmoxoOqG4l7PiN9vf
+         H9qA==
+X-Gm-Message-State: AC+VfDymh/xiu/uk3ONhTgUxLNHoxXEpEQ/7vO7kyIi04EGDPsx6MGeJ
+        w+3jZcCZuCzmQ0rXn8XNsIH0mQ==
+X-Google-Smtp-Source: ACHHUZ5zs4uO98cPUCdsu7HaNKzqF2WWD5nkbIVuD12iDI8wUC2Ut0meoqoO0vBvWUP451RR8sbmcA==
+X-Received: by 2002:a05:6402:182:b0:50d:abde:c7a3 with SMTP id r2-20020a056402018200b0050dabdec7a3mr6932109edv.42.1683722918754;
+        Wed, 10 May 2023 05:48:38 -0700 (PDT)
 Received: from krzk-bin ([2a02:810d:15c0:828:c175:a0f9:6928:8c9d])
-        by smtp.gmail.com with ESMTPSA id ia21-20020a170907a07500b00966392de4easm2672231ejc.14.2023.05.10.05.47.42
+        by smtp.gmail.com with ESMTPSA id w23-20020aa7cb57000000b0050b57848b01sm1810482edt.82.2023.05.10.05.48.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 May 2023 05:47:42 -0700 (PDT)
-Date:   Wed, 10 May 2023 14:47:40 +0200
+        Wed, 10 May 2023 05:48:38 -0700 (PDT)
+Date:   Wed, 10 May 2023 14:48:36 +0200
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Peter De Schrijver <pdeschrijver@nvidia.com>
-Cc:     robh+dt@kernel.org, thierry.reding@gmail.com,
-        devicetree@vger.kernel.org, jonathanh@nvidia.com,
-        krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
-        stefank@nvidia.com, conor+dt@kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v2 4/6] dt-bindings: Add bindings to support DRAM MRQ GSCs
-Message-ID: <20230510124740.lu7ndc5fvnq6fml6@krzk-bin>
-References: <20230510113129.4167493-1-pdeschrijver@nvidia.com>
- <20230510113129.4167493-5-pdeschrijver@nvidia.com>
+To:     Tony Lindgren <tony@atomide.com>
+Cc:     Conor Dooley <conor+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Nishanth Menon <nm@ti.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-omap@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] dt-bindings: pinctrl: Update pinctrl-single to
+ use yaml
+Message-ID: <20230510124836.thqtol6qac762ggx@krzk-bin>
+References: <20230510095330.30742-1-tony@atomide.com>
+ <20230510095330.30742-2-tony@atomide.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230510113129.4167493-5-pdeschrijver@nvidia.com>
+In-Reply-To: <20230510095330.30742-2-tony@atomide.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
@@ -74,16 +78,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 10 May 2023 14:31:32 +0300, Peter De Schrijver wrote:
-> Add bindings for DRAM MRQ GSC support.
+On Wed, 10 May 2023 12:53:29 +0300, Tony Lindgren wrote:
+> Update binding for yaml and remove the old related txt bindings. Note that
+> we are also adding the undocumented pinctrl-single,slew-rate property. And
+> we only use the first example from the old binding.
 > 
-> Co-developed-by: Stefan Kristiansson <stefank@nvidia.com>
-> Signed-off-by: Stefan Kristiansson <stefank@nvidia.com>
-> Signed-off-by: Peter De Schrijver <pdeschrijver@nvidia.com>
+> Cc: Nishanth Menon <nm@ti.com>
+> Cc: Vignesh Raghavendra <vigneshr@ti.com>
+> Signed-off-by: Tony Lindgren <tony@atomide.com>
 > ---
->  .../nvidia,tegra264-bpmp-shmem.yaml           | 45 +++++++++++++++++++
->  1 file changed, 45 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/reserved-memory/nvidia,tegra264-bpmp-shmem.yaml
+> 
+> Changes since v3:
+> - Fix issues noted by Rob for v2 version that I had missed
+> 
+> - Categorize patternProperties a bit to make fixing dts files easier
+> 
+> Changes since v2:
+> 
+> - Drop old ti,omap-pinctrl.txt in addition to old pinctrl-single.txt
+> 
+> - Replace reference to pinctrl-single.txt to point to the yaml in ctrl.txt
+> 
+> Changes since v1:
+> 
+> - The v1 version was a WIP patch posted as an example in thread
+>   "dt binding check error with hash and comma"
+> 
+> ---
+>  .../devicetree/bindings/arm/omap/ctrl.txt     |   2 +-
+>  .../bindings/pinctrl/pinctrl-single.txt       | 262 ------------------
+>  .../bindings/pinctrl/pinctrl-single.yaml      | 235 ++++++++++++++++
+>  .../bindings/pinctrl/ti,omap-pinctrl.txt      |  13 -
+>  4 files changed, 236 insertions(+), 276 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/pinctrl/ti,omap-pinctrl.txt
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -92,17 +121,45 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/reserved-memory/nvidia,tegra264-bpmp-shmem.example.dts:21.16-50: Warning (reg_format): /example-0/reserved-memory/shmem@f1be0000:reg: property has invalid length (16 bytes) (#address-cells == 2, #size-cells == 1)
-Documentation/devicetree/bindings/reserved-memory/nvidia,tegra264-bpmp-shmem.example.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/reserved-memory/nvidia,tegra264-bpmp-shmem.example.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/reserved-memory/nvidia,tegra264-bpmp-shmem.example.dtb: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/reserved-memory/nvidia,tegra264-bpmp-shmem.example.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/reserved-memory/nvidia,tegra264-bpmp-shmem.example.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/reserved-memory/nvidia,tegra264-bpmp-shmem.example.dts:19.47-23.14: Warning (avoid_default_addr_size): /example-0/reserved-memory/shmem@f1be0000: Relying on default #address-cells value
-Documentation/devicetree/bindings/reserved-memory/nvidia,tegra264-bpmp-shmem.example.dts:19.47-23.14: Warning (avoid_default_addr_size): /example-0/reserved-memory/shmem@f1be0000: Relying on default #size-cells value
-Documentation/devicetree/bindings/reserved-memory/nvidia,tegra264-bpmp-shmem.example.dtb: Warning (unique_unit_address_if_enabled): Failed prerequisite 'avoid_default_addr_size'
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml: patternProperties: 'i2c1-pmx-func' does not match '[\\^$()*@]'
+	hint: Fixed strings belong in 'properties', not 'patternProperties'
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml: patternProperties: '_pmx_func|_pmx_idle|_cfg_func|_cfg_idle|gpio_key_func' does not match '[\\^$()*@]'
+	hint: Fixed strings belong in 'properties', not 'patternProperties'
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml: patternProperties: 'cpsw_default|cpsw_sleep|davinci_mdio_default|davinci_mdio_sleep' does not match '[\\^$()*@]'
+	hint: Fixed strings belong in 'properties', not 'patternProperties'
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml: patternProperties: 'usb1_drvvbus|usb_hub_ctrl|usb2_phy' does not match '[\\^$()*@]'
+	hint: Fixed strings belong in 'properties', not 'patternProperties'
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml: patternProperties: 'gpio_keys_s0|matrix_keypad_default|matrix_keypad_sleep|matrix_keypad_s0' does not match '[\\^$()*@]'
+	hint: Fixed strings belong in 'properties', not 'patternProperties'
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml: patternProperties: 'user_leds_s0|gpio_led_pmx' does not match '[\\^$()*@]'
+	hint: Fixed strings belong in 'properties', not 'patternProperties'
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml: patternProperties: 'nand_flash_x8' does not match '[\\^$()*@]'
+	hint: Fixed strings belong in 'properties', not 'patternProperties'
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.example.dtb: pinmux@4a100040: #pinctrl-cells: [[2]] is not of type 'object'
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.example.dtb: pinmux@4a100040: #pinctrl-cells: [[2]] is not of type 'object'
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.example.dtb: pinmux@4a100040: pinctrl-single,register-width: [[16]] is not of type 'object'
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.example.dtb: pinmux@4a100040: pinctrl-single,register-width: [[16]] is not of type 'object'
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.example.dtb: pinmux@4a100040: pinctrl-single,function-mask: [[65535]] is not of type 'object'
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.example.dtb: pinmux@4a100040: pinctrl-single,function-mask: [[65535]] is not of type 'object'
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.example.dtb: pinmux@4a100040: pinctrl-single,gpio-range: [[1, 0, 3, 0]] is not of type 'object'
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.example.dtb: pinmux@4a100040: pinctrl-single,gpio-range: [[1, 0, 3, 0]] is not of type 'object'
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
 
-See https://patchwork.ozlabs.org/patch/1779405
+See https://patchwork.ozlabs.org/patch/1779341
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
