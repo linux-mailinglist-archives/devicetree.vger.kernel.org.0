@@ -2,141 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B354E6FD7D0
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 09:07:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88D336FD7DA
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 09:08:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236281AbjEJHHA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 03:07:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38162 "EHLO
+        id S236405AbjEJHIs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 03:08:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236056AbjEJHG7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 03:06:59 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C48363AB6;
-        Wed, 10 May 2023 00:06:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1683702417; x=1715238417;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=+8dv/brKBQt1wPqiVrN9ewc+Fk5nJ8ddNHlReu2K9z4=;
-  b=a/Ck5SxajrRKerhTsvvMxoYP4H/UmfOeUcMw/Ehd+KYkKw6K50hljVqD
-   WcC+TMlI3M43EgEyu1Uu8E3Ni7gSqzEgJW2Z4QKDayatBJhpNsC7AKLIk
-   mNfecIBfPW1XT0gnY4SX3TpHvgFyAcRFzmV8mF9BeeZ2Kdkx3QNCgZRkf
-   f8HKLAGXt2qRHIFP0euqrwvHG3FdR1iCm2l9ttt80rymF+1CQlUhmd2OY
-   nUDVihxUbo59/e44pJJ7aE3HLeIg4QE+h2Ckib39yvCoOkKDTTALlOkre
-   9WJCDf4DHA2D421QQkz5X0DBzNtKZ2G2ukVihXOjs8TurcSr8u2z3GaEM
-   A==;
-X-IronPort-AV: E=Sophos;i="5.99,264,1677567600"; 
-   d="asc'?scan'208";a="224659027"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 10 May 2023 00:06:56 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Wed, 10 May 2023 00:06:47 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Wed, 10 May 2023 00:06:45 -0700
-Date:   Wed, 10 May 2023 08:06:25 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Changhuang Liang <changhuang.liang@starfivetech.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Walker Chen <walker.chen@starfivetech.com>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>
-Subject: Re: [PATCH v3 1/5] dt-bindings: power: Add JH7110 AON PMU support
-Message-ID: <20230510-cloning-clapping-e262f00a94e8@wendy>
-References: <20230510015311.27505-1-changhuang.liang@starfivetech.com>
- <20230510015311.27505-2-changhuang.liang@starfivetech.com>
+        with ESMTP id S236396AbjEJHIq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 03:08:46 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0645A4230
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 00:08:43 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-50bd37ca954so66133087a12.0
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 00:08:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683702521; x=1686294521;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=eS3uKPsHcGZIkIwsTVqRC2UstZ20/qzhnJE4KmhckrU=;
+        b=mFvIMsraSpSLac8c2tS5ssp1cJyaxzreWmrSM5dgoDZ2KLfxsrTzpo0m0GX8ob3x3r
+         a36SpBDjTgDS73b4J8appqeHn3S+cpHOFNRFthKUpW6Wur7qLZy6HjRhjJr6U14Ozz3b
+         CK/J0N42wvsZkrFds3y7x+wQTqNR+Uw/0yKLk3rUDXRT5qqDGHkHjLzcsUfjOffg2ZWp
+         CNWW/W3UslpyAXVQNka5yxtt0Pqg7g26hKp97yAR+/jbLqZrTLFZFj2fnxao0mknJJXb
+         Z5fov0AUVpH1cZ+ZFGl2/LrR36hzk9xBgy6atvO5YaHH79rwccDXIgYzEzBb3r2vhEpA
+         B95Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683702521; x=1686294521;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=eS3uKPsHcGZIkIwsTVqRC2UstZ20/qzhnJE4KmhckrU=;
+        b=EA7QrePaiG+zYVMBYeDEFNYoxha18qnN0DkBz61Ly3pSG6uEpp25JOML+CJLRbNYYn
+         S/vJNmyaMHYSY869Rie2O833FvVQbDIAFd5QElq8+E25ItUWbpYDU0gKGr5coT2JRy0e
+         pPYNv2F11538MG+FbxUhq2JNnG0m2n924i3tQTzEjuMxx++U0blsYtjm4e5kALh40cu6
+         HKej1usquhcQOoR6LlN0y5L3KjCdOjgCpay9nQJssy8QIJbgnGRpp7J8dP28uJZpiCEY
+         1aIHwd2jGZG4mkEIMeuVHVT2VgDdE0Kq1slZbVZ+aEwbZONBt90IV9hWYJ908O2vN7rL
+         ysbQ==
+X-Gm-Message-State: AC+VfDw3ducBNeSBw89zWeCxevXTZd/kZmNlFZP58nnJ4l0aW0ZbCLwf
+        sAnl5VqnlGfpvFjPlQsDSO+3Jw==
+X-Google-Smtp-Source: ACHHUZ4+6ytKlhUVP5y89FeW6sU98CuIgCUYoFhX3AKqeJ+z+TpD9k2DS2crnv8ssBOurHYlauHY1Q==
+X-Received: by 2002:a17:907:d0e:b0:94a:57d1:5539 with SMTP id gn14-20020a1709070d0e00b0094a57d15539mr15154034ejc.5.1683702521312;
+        Wed, 10 May 2023 00:08:41 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:c175:a0f9:6928:8c9d? ([2a02:810d:15c0:828:c175:a0f9:6928:8c9d])
+        by smtp.gmail.com with ESMTPSA id w10-20020a170907270a00b00965e9a23f2bsm2263354ejk.134.2023.05.10.00.08.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 May 2023 00:08:40 -0700 (PDT)
+Message-ID: <6a36a4ad-6d46-4e4e-1724-ed27513a72ef@linaro.org>
+Date:   Wed, 10 May 2023 09:08:39 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="E1sIU8pcpx5FtKdh"
-Content-Disposition: inline
-In-Reply-To: <20230510015311.27505-2-changhuang.liang@starfivetech.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v2 1/3] dt-bindings: phy: cadence-torrent: Add latency
+ properties
+Content-Language: en-US
+To:     Bjorn Helgaas <helgaas@kernel.org>,
+        Christian Gmeiner <christian.gmeiner@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Dominic Rath <rath@ibv-augsburg.de>,
+        krzysztof.kozlowski+dt@linaro.org, tjoseph@cadence.com,
+        bhelgaas@google.com, lpieralisi@kernel.org, nm@ti.com,
+        vigneshr@ti.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        bahle@ibv-augsburg.de
+References: <20230509215700.GA1277746@bhelgaas>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230509215700.GA1277746@bhelgaas>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---E1sIU8pcpx5FtKdh
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 09/05/2023 23:57, Bjorn Helgaas wrote:
+> On Tue, May 09, 2023 at 05:31:19PM +0200, Christian Gmeiner wrote:
+>>> On Thu, Apr 27, 2023 at 07:50:30AM +0200, Dominic Rath wrote:
+>>>> From: Alexander Bahle <bahle@ibv-augsburg.de>
+>>>>
+>>>> Add "tx-phy-latency-ps" and "rx-phy-latency-ps" DT bindings for
+>>>> setting the PCIe PHY latencies.
+>>>> The properties expect a list of uint32 PHY latencies in picoseconds for
+>>>> every supported speed starting at PCIe Gen1, e.g.:
+>>>>
+>>>>   tx-phy-latency-ps = <100000 200000>; /* Gen1: 100ns, Gen2: 200ns */
+>>>>   rx-phy-latency-ps = <150000 250000>; /* Gen1: 150ns, Gen2: 250ns */
+>>>
+>>> Are these things that could/should be described in a more generic
+>>> place?  They don't look necessarily Cadence-specific.
+>>
+>> As there is currently no generic binding, would you like to see a new
+>> yaml binding
+>> added (Documentation/devicetree/bindings/phy/phy.yaml) that contains just the
+>> two phy properties?
+> 
+> The whole thing is more a question for Rob.
 
-On Tue, May 09, 2023 at 06:53:07PM -0700, Changhuang Liang wrote:
-> Add AON PMU for StarFive JH7110 SoC, it can be used to turn on/off DPHY
-> rx/tx power switch, and it don't need the property of interrupts. It
-> also can use syscon operation.
->=20
-> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
-> ---
->  .../bindings/power/starfive,jh7110-pmu.yaml   | 28 +++++++++++++++++--
->  .../dt-bindings/power/starfive,jh7110-pmu.h   |  5 +++-
->  2 files changed, 29 insertions(+), 4 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/power/starfive,jh7110-pmu.=
-yaml b/Documentation/devicetree/bindings/power/starfive,jh7110-pmu.yaml
-> index 98eb8b4110e7..0591a4e9db6c 100644
-> --- a/Documentation/devicetree/bindings/power/starfive,jh7110-pmu.yaml
-> +++ b/Documentation/devicetree/bindings/power/starfive,jh7110-pmu.yaml
-> @@ -8,6 +8,7 @@ title: StarFive JH7110 Power Management Unit
-> =20
->  maintainers:
->    - Walker Chen <walker.chen@starfivetech.com>
-> +  - Changhuang Liang <changhuang.liang@starfivetech.com>
-> =20
->  description: |
->    StarFive JH7110 SoC includes support for multiple power domains which =
-can be
-> @@ -15,8 +16,13 @@ description: |
-> =20
->  properties:
->    compatible:
-> -    enum:
-> -      - starfive,jh7110-pmu
-> +    oneOf:
-> +      - enum:
-> +          - starfive,jh7110-pmu
-> +      - items:
-> +          - enum:
-> +              - starfive,jh7110-aon-syscon
-> +          - const: syscon
+For which you might wait a bit currently.
 
-Unfortunately, this is not what was wanted.
-This syscon, of which power domain control is just one of the things that
-it can do, should be documented in
-Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
-alongside it's brethern "starfive,jh7110-sys-syscon" &
-"starfive,jh7110-stg-syscon".
+If the question is only about location of the properties - device schema
+or something generic - then for now you can keep it here. Moving to
+generic schema is always easy later.
 
-Thanks,
-Conor.
+Better to have proper names for properties.
 
---E1sIU8pcpx5FtKdh
-Content-Type: application/pgp-signature; name="signature.asc"
+Best regards,
+Krzysztof
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZFtCZAAKCRB4tDGHoIJi
-0hrGAP45+4QtUN3O67mViY6Se2nDCL4YzvmakMHafqtLg1oFTAD+I/zW+xPAB+gH
-Ql2h5U3oPdpEOUYmunmawFTjoUiHNgE=
-=DRst
------END PGP SIGNATURE-----
-
---E1sIU8pcpx5FtKdh--
