@@ -2,53 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 77E266FE5FB
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 23:12:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 884C36FE613
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 23:20:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236570AbjEJVMN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 17:12:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34840 "EHLO
+        id S231468AbjEJVUe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 17:20:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229461AbjEJVMM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 17:12:12 -0400
+        with ESMTP id S236015AbjEJVUe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 17:20:34 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BEBDE53;
-        Wed, 10 May 2023 14:12:11 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 773FC2D46;
+        Wed, 10 May 2023 14:20:33 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C74356358F;
-        Wed, 10 May 2023 21:12:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1710C433EF;
-        Wed, 10 May 2023 21:12:09 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0FF5363441;
+        Wed, 10 May 2023 21:20:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F40AC433EF;
+        Wed, 10 May 2023 21:20:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1683753130;
-        bh=HizRoK5fj7AB/DRhebcy+ie0+Ty6tdVrnKdXSa4wsjM=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=pGqgAfOa2dGWGZoJHS1lFroIibP2K6fxBIvBd+qM9kAnQR7Z9RJk7NSrK09c1DZcD
-         5TrjP2IkYOVMmv/OOAn/Cac2i9uWDMaR2iBqvK4EetkMjQ4MatOjfWnMBLKuFRAr9d
-         tynbPwoBMRFMWws0nMSOOb/lvhedrRQGqMBvbFSe/xg9+cS0rm6nvBv7pQfsnYAFFS
-         Bv5lKlRaySTU+4VIYHETHrP78FwDcbw6l7WbpurBfnskH66piJA/ydlS0UkoNB+3C7
-         hhXNDzmPsxQBgGx+gcouNL6HOSfR4IvMVFGq6XoCIRdXnruDM9l48vr5aagBOlxwXZ
-         +wMEwQU7sChQQ==
-Date:   Wed, 10 May 2023 16:12:08 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Christian Gmeiner <christian.gmeiner@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Dominic Rath <rath@ibv-augsburg.de>,
-        krzysztof.kozlowski+dt@linaro.org, tjoseph@cadence.com,
-        bhelgaas@google.com, lpieralisi@kernel.org, nm@ti.com,
-        vigneshr@ti.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        bahle@ibv-augsburg.de
-Subject: Re: [PATCH v2 1/3] dt-bindings: phy: cadence-torrent: Add latency
- properties
-Message-ID: <ZFwIqBRj8in1CaGB@bhelgaas>
+        s=k20201202; t=1683753632;
+        bh=6PCycjhSBuykel0Qz6uiSXaWOAyhbmYe/UM3kSHOyqw=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=PJgUUjcyrB10GRVmq0OFFRyugnYOVPkCQ1dowRynzI69QTyJYsb4nUojnTfmKR3JJ
+         zqe4E8bf1i0Qy7iu4y4FEmnp/2NSWOZSCCo7a5/WbGdSUIVTlPh7fYNhFau313+jFs
+         0fRwpikC53dpqkhXUCrUaOWJ46sqPhEdj1C+axUNovRKmxJYq/5omxqFEOuD7hR1oh
+         YVqMpbzLhLp13Pr9uXQ6cUuz6bYbb1OKFJoF6ldESfI8zByzZIuPFNzc8X1wU4tU/M
+         RVFWurDzSoTWRJwuk4a2q5UThFYDZXhxzRvoLBBBDw6Y9NN1G4cGpuQjZNK7sMzdTi
+         NwJ4c5eZwFTXA==
+Message-ID: <ca1e1df877652808ef76851d7f2ed781.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6a36a4ad-6d46-4e4e-1724-ed27513a72ef@linaro.org>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20230505131308.27190-3-runyang.chen@mediatek.com>
+References: <20230505131308.27190-1-runyang.chen@mediatek.com> <20230505131308.27190-3-runyang.chen@mediatek.com>
+Subject: Re: [PATCH v2 2/2] clk: mediatek: reset: add infra_ao reset support for MT8188
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        Runyang Chen <runyang.chen@mediatek.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Runyang Chen <runyang.chen@mediatek.com>
+Date:   Wed, 10 May 2023 14:20:28 -0700
+User-Agent: alot/0.10
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -59,39 +63,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 10, 2023 at 09:08:39AM +0200, Krzysztof Kozlowski wrote:
-> On 09/05/2023 23:57, Bjorn Helgaas wrote:
-> > On Tue, May 09, 2023 at 05:31:19PM +0200, Christian Gmeiner wrote:
-> >>> On Thu, Apr 27, 2023 at 07:50:30AM +0200, Dominic Rath wrote:
-> >>>> From: Alexander Bahle <bahle@ibv-augsburg.de>
-> >>>>
-> >>>> Add "tx-phy-latency-ps" and "rx-phy-latency-ps" DT bindings for
-> >>>> setting the PCIe PHY latencies.
-> >>>> The properties expect a list of uint32 PHY latencies in picoseconds for
-> >>>> every supported speed starting at PCIe Gen1, e.g.:
-> >>>>
-> >>>>   tx-phy-latency-ps = <100000 200000>; /* Gen1: 100ns, Gen2: 200ns */
-> >>>>   rx-phy-latency-ps = <150000 250000>; /* Gen1: 150ns, Gen2: 250ns */
-> >>>
-> >>> Are these things that could/should be described in a more generic
-> >>> place?  They don't look necessarily Cadence-specific.
-> >>
-> >> As there is currently no generic binding, would you like to see a new
-> >> yaml binding
-> >> added (Documentation/devicetree/bindings/phy/phy.yaml) that contains just the
-> >> two phy properties?
-> > 
-> > The whole thing is more a question for Rob.
-> 
-> For which you might wait a bit currently.
-> 
-> If the question is only about location of the properties - device schema
-> or something generic - then for now you can keep it here. Moving to
-> generic schema is always easy later.
-> 
-> Better to have proper names for properties.
+Quoting Runyang Chen (2023-05-05 06:13:08)
+> @@ -176,9 +177,32 @@ static const struct mtk_gate infra_ao_clks[] =3D {
+>                        "infra_ao_aes_msdcfde_0p", "top_aes_msdcfde", 18),
+>  };
+> =20
+> +static u16 infra_ao_rst_ofs[] =3D {
 
-Good point.  The current names seem fine to me since the names
-themselves aren't Cadence-specific.
+const?
 
-Bjorn
+> +       INFRA_RST0_SET_OFFSET,
+> +       INFRA_RST1_SET_OFFSET,
+> +       INFRA_RST2_SET_OFFSET,
+> +       INFRA_RST3_SET_OFFSET,
+> +       INFRA_RST4_SET_OFFSET,
+> +};
+> +
+> +static u16 infra_ao_idx_map[] =3D {
+
+const?
+
+> +       [MT8188_INFRA_RST1_THERMAL_MCU_RST] =3D 1 * RST_NR_PER_BANK + 2,
+> +       [MT8188_INFRA_RST1_THERMAL_CTRL_RST] =3D 1 * RST_NR_PER_BANK + 4,
+> +       [MT8188_INFRA_RST3_PTP_CTRL_RST] =3D 3 * RST_NR_PER_BANK + 5,
+> +};
+> +
+> +static struct mtk_clk_rst_desc infra_ao_rst_desc =3D {
+> +       .version =3D MTK_RST_SET_CLR,
+> +       .rst_bank_ofs =3D infra_ao_rst_ofs,
+> +       .rst_bank_nr =3D ARRAY_SIZE(infra_ao_rst_ofs),
+> +       .rst_idx_map =3D infra_ao_idx_map,
+> +       .rst_idx_map_nr =3D ARRAY_SIZE(infra_ao_idx_map),
+> +};
+> +
+>  static const struct mtk_clk_desc infra_ao_desc =3D {
+>         .clks =3D infra_ao_clks,
+>         .num_clks =3D ARRAY_SIZE(infra_ao_clks),
+> +       .rst_desc =3D &infra_ao_rst_desc,
+>  };
