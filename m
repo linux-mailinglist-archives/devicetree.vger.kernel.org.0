@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 859CF6FE0FF
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 17:01:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98E386FE10E
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 17:02:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237071AbjEJPBd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 11:01:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59862 "EHLO
+        id S237476AbjEJPCl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 11:02:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237192AbjEJPBb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 11:01:31 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE60BD06E
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 08:01:15 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-9659c5b14d8so1199466466b.3
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 08:01:15 -0700 (PDT)
+        with ESMTP id S237388AbjEJPCh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 11:02:37 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15B7076BF
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 08:02:16 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-50db7f0a1b4so3474997a12.3
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 08:02:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683730870; x=1686322870;
+        d=linaro.org; s=google; t=1683730917; x=1686322917;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=vVd0FRReFbXFOhYx5lQ2Gap/VFHzmaCiqe9z4rWLb1I=;
-        b=Z76Uye+WL6zR8S1PJRJcI4sbHKFdwnQZhvZ6YNufRTR0RQ8xl7yYxQCRgwPgb+7nFB
-         Gf3oqye9xFWWaIPAyRinl5vOH16ryJFJd4no8h6feni33/TzWjEfZFNW3gh5alf06aSH
-         Ox7PGNenQwIL/JrZp7W44N5QRsBx4wpNEfJfEpOVCHD1AuwHfDrFYeJodiFkcTv4SmGD
-         dRdMZB856zY/Y/SjsMGQ/9J/amYcXG7nVnDAyqINe9EY/a3+5UIwBEjOM+M/Z7AOTVhX
-         aIG/l2DH4W2+1sP4Rn+2tw0QMMiuoPNvDZnjnA0VBnroORsDSBzaqemaXfPtweGmrVrH
-         F5cg==
+        bh=vg3p9+EGRJAEXW+lb2pr2TiEbOxlAU1YA74V7zh4bos=;
+        b=M88SB/KzbgIQhpqC/kyXt+1PNRgS8AUYhQQORByMu55FQfmiqHybS8gw2fgRLkgzl3
+         /dekZUt7LKyStICSndGc3q7rqegp4v1PSlkiHpRJggD9lv7iVCFLMc/wsrK3/Yqx9KfU
+         ONvU5qx4/TIYG9t8aanwkVrtwvEN6s8m7Mdry9LvDkuuvJydX+DGkyHfCy5PO9WytOGm
+         g3LKaeqjP+fHP++h5SCSTpaEf6pk83rX1Z3DTvtjSLYg4NogI2NPBFFcF0CZmx7PwaDm
+         4ZKIObNqxvzzS+wNE4d1Gu3SZe/4t2aorJFXJdUfMiXHuwNMh5ShMOUy01O29wfj2bzC
+         IPtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683730870; x=1686322870;
+        d=1e100.net; s=20221208; t=1683730917; x=1686322917;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vVd0FRReFbXFOhYx5lQ2Gap/VFHzmaCiqe9z4rWLb1I=;
-        b=WXz66ZB4rCuVib7tetZ+SjaqHi3Sm6HUik5lpaKLx/muMeXop4sN17qE1aXliQVF36
-         hnz+NWWng93WHVRSg+p/sI0XmQ0FfBF8xKjOkPe4qq8zM3aG+eEQn+wg72930/pMJ0VO
-         tJIXpAHR0EzMVohxpw6qlkKT/CGBJdHOYY9BRbWeiYRqA4WqN0V8ypHN23f/W1PzGwlg
-         nPNo5nqcnW7aQQotU0MpHMVDoKiZj/pwT+mJnvSDz5jZ+w9CmnLmwkhjSikwcHOGprKL
-         CI9a2TeJ1H1UjfQm7om4NCW5irckJ+6dcyYwJ6CxdfJEzb1U/JDPVZmcNcy5f7qCzj9A
-         QK2g==
-X-Gm-Message-State: AC+VfDziJJixNc4l225nZh8bnBFXtsdJ6IIyZTm/1L+hb3i+tbOILs4l
-        yssumx8G7zkZoiWpsF3jK8Lemg==
-X-Google-Smtp-Source: ACHHUZ7GiXX4UuZSC2NCohugLiUujJCC7bZc0/nv1q/rRJXQUlxcUI15rUlcsE8El9c2BC1nLuC3+g==
-X-Received: by 2002:a17:906:974b:b0:965:ff38:2fb3 with SMTP id o11-20020a170906974b00b00965ff382fb3mr15745406ejy.74.1683730869782;
-        Wed, 10 May 2023 08:01:09 -0700 (PDT)
+        bh=vg3p9+EGRJAEXW+lb2pr2TiEbOxlAU1YA74V7zh4bos=;
+        b=lfTWOroFKwAhlKEANCyp7hz9exa6c6QIUVJCY9aai6aF9B76exeNeHC85PIe4vaZtA
+         75Q2u598j8Ye8XxyopLgnANetjy9AsW/KmaeFt5Nx0FhSby/6AsZVIn8omHvacWbfFsI
+         UDjFRAMB/mYjAEtzgPU4fURkwUisJYjPCXj4m93OF9o3hQlAj9aF4TapxTQPkQdnoR5w
+         hAyDXaf0W4PXUWkdgWzpwhlNPHXh/AL1UdQ45tpvtQfPA633CwIJ7Ho8ZSW63CMIHOf/
+         VpAA4WpRxmn3lWDBDnlAuNrFhaZDCOV/nMkksNk2Tms3PZnPM897xWwQBmjfgaoY2KAg
+         qDtw==
+X-Gm-Message-State: AC+VfDxMFfyAPTlkqWi5SjlkTqtjCsAm+2zE+S2/Etf2AOE3MOHo85IY
+        qdmqhTzQ7KC/12LME0jMp11Mig==
+X-Google-Smtp-Source: ACHHUZ56LCSGTK3jYzCYiYZma4f2a5iPszWF0J9GennTs19UbKmx2TeMOJsOXVLPpUrVKmCIfOex/A==
+X-Received: by 2002:a17:907:6e9e:b0:931:ad32:79ed with SMTP id sh30-20020a1709076e9e00b00931ad3279edmr19467320ejc.12.1683730917178;
+        Wed, 10 May 2023 08:01:57 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:c175:a0f9:6928:8c9d? ([2a02:810d:15c0:828:c175:a0f9:6928:8c9d])
-        by smtp.gmail.com with ESMTPSA id gf25-20020a170906e21900b0094edfbd475csm2716496ejb.127.2023.05.10.08.01.07
+        by smtp.gmail.com with ESMTPSA id w4-20020a170906b18400b00965fdb9b051sm2789861ejy.115.2023.05.10.08.01.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 May 2023 08:01:08 -0700 (PDT)
-Message-ID: <390d42f2-56ed-1613-7665-ea5cbaf743ee@linaro.org>
-Date:   Wed, 10 May 2023 17:01:06 +0200
+        Wed, 10 May 2023 08:01:56 -0700 (PDT)
+Message-ID: <cdba4bb0-551b-a3b2-9329-139d6cda71be@linaro.org>
+Date:   Wed, 10 May 2023 17:01:55 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v3 4/6] dt-bindings: Add bindings to support DRAM MRQ GSCs
+Subject: Re: [PATCH v3 5/6] dt-bindings: memory-region property for
+ tegra186-bpmp
 Content-Language: en-US
 To:     Peter De Schrijver <pdeschrijver@nvidia.com>,
         thierry.reding@gmail.com, jonathanh@nvidia.com
@@ -63,15 +64,15 @@ Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
         stefank@nvidia.com
 References: <20230510142248.183629-1-pdeschrijver@nvidia.com>
- <20230510142248.183629-5-pdeschrijver@nvidia.com>
+ <20230510142248.183629-6-pdeschrijver@nvidia.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230510142248.183629-5-pdeschrijver@nvidia.com>
+In-Reply-To: <20230510142248.183629-6-pdeschrijver@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -79,24 +80,20 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 10/05/2023 16:22, Peter De Schrijver wrote:
-> Add bindings for DRAM MRQ GSC support.
+> Add memory-region property to the tegra186-bpmp binding to support
+> DRAM MRQ GSCs.
 > 
-> Co-developed-by: Stefan Kristiansson <stefank@nvidia
-
-Subject: drop second/last, redundant "bindings". The "dt-bindings"
-prefix is already stating that these are bindings.
-
-
-Use subject prefixes matching the subsystem (which you can get for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching).
-
-.com>
+> Co-developed-by: Stefan Kristiansson <stefank@nvidia.com>
 > Signed-off-by: Stefan Kristiansson <stefank@nvidia.com>
 > Signed-off-by: Peter De Schrijver <pdeschrijver@nvidia.com>
 > ---
 
-Missing changelog. I am not going to review the same patch.
+Also no changelog. Since I do not see improvements after Thierry
+comments I assume you send the same.
+
+Use subject prefixes matching the subsystem (which you can get for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching).
 
 Best regards,
 Krzysztof
