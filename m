@@ -2,67 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FD9A6FE23E
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 18:19:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7B666FE243
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 18:22:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229586AbjEJQTA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 12:19:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46524 "EHLO
+        id S229487AbjEJQWB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 12:22:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230072AbjEJQSy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 12:18:54 -0400
-Received: from mail-il1-x12e.google.com (mail-il1-x12e.google.com [IPv6:2607:f8b0:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7ABBB7AB2;
-        Wed, 10 May 2023 09:18:53 -0700 (PDT)
-Received: by mail-il1-x12e.google.com with SMTP id e9e14a558f8ab-33494fe24b5so41303545ab.0;
-        Wed, 10 May 2023 09:18:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683735533; x=1686327533;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=voV7s248E7gIvbug1lZfTIuQben9sdww3QQZzGmRsFk=;
-        b=XYEPZf0tfHEEexs2ZzM5vTzkNgJ6QvjxLjn0g3k8Mja50uGvOiDT5PWAQyPXYTgL4Q
-         4Ow7rATx11mY42MgJ7z/zPj1bsKL/usl8PDFd7oAiXQA0HptpwAUHVsDkO1/iSMDrfxi
-         Y4XNPzuuhKECiLHyZALmihESnIPaOWbSoaMmM1HOef+v7gZt45R8iy2I8zTdoF2Sx1Zm
-         4sCxgtMonTNmP0mYa7KYZ5MpP2b1izXtOOdPI8sz4qvci0F1H1UG1nxWecaC1IU8s9xr
-         jSXwf4AohepvXRg9ispxW0MhHvlFeJxzqDnwXWUAmByqQpXOwbWldQicQSulLV27fczt
-         Hmkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683735533; x=1686327533;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=voV7s248E7gIvbug1lZfTIuQben9sdww3QQZzGmRsFk=;
-        b=USVWHcPUkXKIKa+DHt6GR/xb6XztPmrg3dngnV58T2mnlKvnVAIn41R/R3Xitu9ggS
-         IyEVDBBfAfjUrRjtSSV9YearALRvSQ+azN7z9wQSGF0aJ4dv2iasY+m79Een1aCBwBYQ
-         EuCBI2JqkXHzJRHyv5sPcewBn/gd1LrPh7EaobZeMSMrNHm7woX4ceShlDFohFoZ4tx9
-         GBX53ydkrSI8pQIURcD9X3LT/YIWtVHxCTMIJOCPq9jrwLW1tA6KjDd/24PCnMRqT2Uo
-         23MSPPcF5MNL8NYOoVW1Ts+JM1UGVL3JU8hro0Sz9MnqhAaOcSqZLXllPV6+ECjYF8ld
-         1K3g==
-X-Gm-Message-State: AC+VfDxQofALxYHjNu8RXaC2dftb+xM54Qxh6j9sbqxFnyfRzGO7gxu4
-        T1mOePQoIRQMIGV/IpuKp7zR9lcstEv9wQWE
-X-Google-Smtp-Source: ACHHUZ67bHjT+fSIecYQ6lhHmzt9xA6tcO8lP35mP2lEwHtEgEFR968NAIK3gcbaaPTDf0JlDcPvYw==
-X-Received: by 2002:a05:6e02:78a:b0:335:b047:3f62 with SMTP id q10-20020a056e02078a00b00335b0473f62mr3288918ils.10.1683735532649;
-        Wed, 10 May 2023 09:18:52 -0700 (PDT)
-Received: from localhost.localdomain (tunnel785484-pt.tunnel.tserv9.chi1.ipv6.he.net. [2001:470:1f10:aed::2])
-        by smtp.googlemail.com with ESMTPSA id b24-20020a05663801b800b00411b6a4ab7esm3539427jaq.93.2023.05.10.09.18.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 May 2023 09:18:52 -0700 (PDT)
-From:   Tianling Shen <cnsztl@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Tianling Shen <cnsztl@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: rockchip: fix button reset pin for nanopi r5c
-Date:   Thu, 11 May 2023 00:18:50 +0800
-Message-Id: <20230510161850.4866-1-cnsztl@gmail.com>
-X-Mailer: git-send-email 2.40.1
+        with ESMTP id S229468AbjEJQWA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 12:22:00 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B62F173D;
+        Wed, 10 May 2023 09:21:59 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 08E0E85D1E;
+        Wed, 10 May 2023 18:21:55 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1683735717;
+        bh=Dk/OU7wmaNZMLcevPTKhSodBVPmPPaEdH0F0dmzNl2M=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=ZSkl1dXoZsDv1eX3hF75wsrkCvp7b4/rkOSTIjabE6uuoC7CLLQQQ8iCNJPnF2ASq
+         Iir6mJpGphckwT24UkqmYcoKfzsxWTH0NpLPU8nNKII7od7uiPMaZzS79TIYApMb/5
+         6bFLCKg9EQznt86htrJTKdxELxWX07SKYnHN1okVOXlnZmXxeSXE3KjNl2zlELE/K9
+         83eEAAAwfOBlFoftCYEsg+KjOxmh/gpOKZRR9z9QrwWwCg4SGO0vMCzDVop5xYB+0e
+         8f8SReLFliXL5HedAEEGByhAEE2+z7l7pZ+grUHftMTuT9otgoynEkHcNPr1K5DWXh
+         CiwG+azR4dAag==
+Message-ID: <e26ab6fa-a273-81a6-bb28-356deca07563@denx.de>
+Date:   Wed, 10 May 2023 18:21:55 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v6 2/6] drm: lcdif: Drop unnecessary NULL pointer check on
+ lcdif->bridge
+Content-Language: en-US
+To:     Liu Ying <victor.liu@nxp.com>, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     stefan@agner.ch, airlied@gmail.com, daniel@ffwll.ch,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        krzysztof.kozlowski@linaro.org, LW@karo-electronics.de,
+        alexander.stein@ew.tq-group.com
+References: <20230510092450.4024730-1-victor.liu@nxp.com>
+ <20230510092450.4024730-3-victor.liu@nxp.com>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <20230510092450.4024730-3-victor.liu@nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,40 +65,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The reset pin was wrongly assigned due to a copy/paste error,
-fix it to match actual gpio pin.
+On 5/10/23 11:24, Liu Ying wrote:
+> A valid bridge is already found in lcdif_attach_bridge() and set
+> to lcdif->bridge, so lcdif->bridge cannot be a NULL pointer. Drop
+> the unnecessary NULL pointer check in KMS stage.
+> 
+> Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Signed-off-by: Liu Ying <victor.liu@nxp.com>
 
-While at it, remove a blank line from nanopi r5s dts.
-
-Fixes: 05620031408a ("arm64: dts: rockchip: Add FriendlyARM NanoPi R5C")
-Signed-off-by: Tianling Shen <cnsztl@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5c.dts | 2 +-
- arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dts | 1 -
- 2 files changed, 1 insertion(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5c.dts b/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5c.dts
-index f70ca9f0470a..c718b8dbb9c6 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5c.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5c.dts
-@@ -106,7 +106,7 @@ pcie20_reset_pin: pcie20-reset-pin {
- 
- 	rockchip-key {
- 		reset_button_pin: reset-button-pin {
--			rockchip,pins = <4 RK_PA0 RK_FUNC_GPIO &pcfg_pull_up>;
-+			rockchip,pins = <0 RK_PB7 RK_FUNC_GPIO &pcfg_pull_up>;
- 		};
- 	};
- };
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dts b/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dts
-index 2a1118f15c29..b6ad8328c7eb 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dts
-@@ -134,4 +134,3 @@ wan_led_pin: wan-led-pin {
- 		};
- 	};
- };
--
--- 
-2.40.1
-
+Reviewed-by: Marek Vasut <marex@denx.de>
