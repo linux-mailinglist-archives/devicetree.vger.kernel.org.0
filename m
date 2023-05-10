@@ -2,73 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 731B96FE427
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 20:44:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CCA946FE43E
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 20:54:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235378AbjEJSoJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 14:44:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41214 "EHLO
+        id S236033AbjEJSyx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 14:54:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229461AbjEJSoI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 14:44:08 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C368D8F;
-        Wed, 10 May 2023 11:44:07 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-965ddb2093bso1056368966b.2;
-        Wed, 10 May 2023 11:44:07 -0700 (PDT)
+        with ESMTP id S236026AbjEJSyw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 14:54:52 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6AB9128;
+        Wed, 10 May 2023 11:54:50 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-50bc456cc39so11425773a12.1;
+        Wed, 10 May 2023 11:54:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683744246; x=1686336246;
+        d=gmail.com; s=20221208; t=1683744889; x=1686336889;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=wPS2VOYPj9tvhVnf11tmZgqUIiOL0oJR1EZsgcJxV5Y=;
-        b=BrXkYLveWgEDMLIx+hk2YsTKuck1qBJH2+cVNfTxpVbGMw3PO3P9v2ilSoAs2esdyU
-         R+C/jPQPrldO9hwRMTtrYIVggF+Jqn3303ZhYxN+zGIo8OuNGoY7+s8Cf4XHdPcMU+RA
-         FaycWzcf+Y4cls7Z43lP3FRp2gN0yadZlXTq7uGzsDVCMX1ffGmSq83ewYF6TfZHMTTh
-         yJ1GxVV//IT97eW5fvylBXOgnQDycwvpQG5jCUXW4wnB0Tyx5wVe1nWhj+qa56qUHJT+
-         sE/0qaicg19IXMYEEqMvy0o1a5Z4x1dXCIxi6OkBqgYyRollUbHzJ/3JBTrQrNQUbqc/
-         8H/A==
+        bh=Tpps0vuMSlTbVQSBZ3c03u7OEs5zj2+Xyh6XKEwYQRk=;
+        b=T9SSHxghDSA53XZUgiO0MzcDudpZJHg7tVnkzMeB7cDUoCg5Frs9+NwvhbF/9kkoLC
+         klfiu6RIv31S57mDxkeGjsZaZ35N5PjMJ5cPsCAVyHQtgYFzPtjuIW5TDy+OIfiUbe8w
+         4/nMjgBAz/FglLT+02TUMv/Eifaw4d0EynnRH+MjOrK3ZQmVbj+FNscUd8dZaQWrkEdH
+         BN21P7TgTmgPMk/WtxQexmnrCEdV6h7kqz8EUDrrxc3tGUTzOzVHpuAMK1wd4EgOeBxd
+         zX/BgydfsqeCOkarw56CooCg0Ix8QbsWi0kqokBo4eZvppj/QjcggYPgmpCHggCqaRjn
+         Sg+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683744246; x=1686336246;
+        d=1e100.net; s=20221208; t=1683744889; x=1686336889;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=wPS2VOYPj9tvhVnf11tmZgqUIiOL0oJR1EZsgcJxV5Y=;
-        b=DKkVJcPpYMYQ19+w90UtzniMYlc8Q5qZX+1iK+nxw5ILKROUTf3d/YVtoeMQZXwUjW
-         aGzenv943VbQ2uTJeT9e/eeAXa/HMKLdRlQLbs2yutj6HYkCgCg0Dn4CLppn0oZQ+oSX
-         GZhrI+xAHDGEbzv51CUlzQzX1AhL+fyWiQ4zFVVvdj2ThHG4HKkjhaC/EHm5fOasMpjP
-         /RjN3Mgd/AvvKHOw8fCWc7XFAUY7CuewrPGc8sgy0+JP/p2GnOKWORLIT5ZmJ4q58Qbv
-         DwlD5eYt8gDqykhp7rOWyG12O4RDaO7nwvjLuhkUkKBi9Fyuej/IXiEKbF6k9TKh86yU
-         j/AA==
-X-Gm-Message-State: AC+VfDyAFrls+NTR16DduJtB6XS0W8ORinxhcTIqRQ6UqEAn/fFqamqk
-        aEim0m4FkTlNbDBqRHOMlBc=
-X-Google-Smtp-Source: ACHHUZ4hCWeeIeHV2i78urTzM1T1DLqwN/c7QodoCeW4ajn/Fdkro9dtvrwr4zJg5A9dC5Mm+S7kRA==
-X-Received: by 2002:a17:907:25c3:b0:961:b0:3dff with SMTP id ae3-20020a17090725c300b0096100b03dffmr15898231ejc.14.1683744246050;
-        Wed, 10 May 2023 11:44:06 -0700 (PDT)
+        bh=Tpps0vuMSlTbVQSBZ3c03u7OEs5zj2+Xyh6XKEwYQRk=;
+        b=EFveUK3tp1sPwSZMYAtuPyvcbxS/DRn3ALGUCAYWUDy5JCO0n+6hFqQXMDNkIdhdi9
+         PI3c3Na53q6HORmvGC5EYVfTiF5lOJTBu1hhXPeT+DUvelUMOTeUPG9ZTIW79Jp+2qJL
+         cygGG4vZgMt1JUYGILLHWkqlERsxiyVFMXwrM2jJUV7RzcQ9qYVHFfLH0bwupjG7QIYA
+         m1M4ougbdWqzHNGR76lYWFjpz2/xBWgkvK5TaAeMivOc7e92EvF0nfyhSlfldqJD9ps+
+         1qbQUmEDkdTcyN/wJt9f9E1zyHdJIG3eGCfl6HAcfgqkT2LCzYds9DOzHZn4Rnnxyify
+         FHHg==
+X-Gm-Message-State: AC+VfDwfRdsscPXs01DmskOMU/sk3rUhOxiOuCXFD8HmBCgTxw9jtxTT
+        BKb4lpqAOBQEuJ3lpZSKQ10=
+X-Google-Smtp-Source: ACHHUZ4NAD8Wr3jSfg4mRi6MrmEydNrcDgkDp7wpSSCh2F4XtqVw74F5RsRQ5mvzdo/DOMGiZh3FAQ==
+X-Received: by 2002:aa7:cd76:0:b0:50b:c5b0:4de6 with SMTP id ca22-20020aa7cd76000000b0050bc5b04de6mr13966850edb.9.1683744889194;
+        Wed, 10 May 2023 11:54:49 -0700 (PDT)
 Received: from jernej-laptop.localnet (82-149-1-233.dynamic.telemach.net. [82.149.1.233])
-        by smtp.gmail.com with ESMTPSA id h21-20020aa7c615000000b0050bcaedc299sm2151054edq.33.2023.05.10.11.44.04
+        by smtp.gmail.com with ESMTPSA id y15-20020a50e60f000000b0050bc27a4967sm2160813edm.21.2023.05.10.11.54.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 May 2023 11:44:05 -0700 (PDT)
+        Wed, 10 May 2023 11:54:48 -0700 (PDT)
 From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Maxime Ripard <mripard@kernel.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Roman Beranek <me@crly.cz>
-Cc:     Frank Oltmanns <frank@oltmanns.dev>,
-        Icenowy Zheng <icenowy@aosc.io>, Ondrej Jirman <megi@xff.cz>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/4] ARM: dts: sunxi: rename tcon's clock output
-Date:   Wed, 10 May 2023 20:44:03 +0200
-Message-ID: <4830298.31r3eYUQgx@jernej-laptop>
-In-Reply-To: <20230505052110.67514-3-me@crly.cz>
-References: <20230505052110.67514-1-me@crly.cz> <20230505052110.67514-3-me@crly.cz>
+To:     samuel@sholland.org, wens@csie.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, andre.przywara@arm.com,
+        Ludwig Kormann <ludwig.kormann@ict42.de>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v4 1/2] dt-bindings: arm: sunxi: add ICnova A20 ADB4006 binding
+Date:   Wed, 10 May 2023 20:54:41 +0200
+Message-ID: <2284225.ElGaqSPkdT@jernej-laptop>
+In-Reply-To: <20230510111528.2155582-2-ludwig.kormann@ict42.de>
+References: <20230510111528.2155582-1-ludwig.kormann@ict42.de>
+ <20230510111528.2155582-2-ludwig.kormann@ict42.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
@@ -82,13 +75,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne petek, 05. maj 2023 ob 07:21:08 CEST je Roman Beranek napisal(a):
-> While the rate of TCON0's DCLK matches dotclock for parallel and LVDS
-> outputs, this doesn't hold for DSI. According manuals from Allwinner,
-> DCLK is an abbreviation of Data Clock, not dotclock, so go with that
-> instead.
+Dne sreda, 10. maj 2023 ob 13:15:27 CEST je Ludwig Kormann napisal(a):
+> Document board compatible names for In-Circuit ICnova A20 ADB4006
+> development board.
 > 
-> Signed-off-by: Roman Beranek <me@crly.cz>
+> Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Ludwig Kormann <ludwig.kormann@ict42.de>
 
 Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
