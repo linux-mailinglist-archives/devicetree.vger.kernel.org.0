@@ -2,94 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 733D26FDE0A
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 14:46:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C7AB6FDE12
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 14:47:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236727AbjEJMqD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 08:46:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43404 "EHLO
+        id S237055AbjEJMrv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 08:47:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232073AbjEJMqD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 08:46:03 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A803F10C9
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 05:46:01 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-9659443fb56so1112729866b.2
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 05:46:01 -0700 (PDT)
+        with ESMTP id S237050AbjEJMru (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 08:47:50 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05B1F5255
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 05:47:45 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-50b383222f7so10765823a12.3
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 05:47:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683722760; x=1686314760;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4+GAXgKKqLnJrZPTG1dBuVZu539BZ2VsxFnQSgAU5CU=;
-        b=BYx6Cfdzz3EhDB4qUMFWjkjugUsbbEOYVB+6e9+oHXHsePBAOiGIBZfkglBtnmYwZy
-         JG4QbKk0fZSV8i4rnb+VmCJSBlqXDZiGEqEFOkt5rrhbMWPGuLJOzswRX9IIj0u/FRpx
-         aUi3xBXUfBGb1qfxd+teP3TKaMgEXjr3JYd3NcYCFqJnGympnU8eduU4n64S1aEe6AK+
-         BGjuay3kK/DeJWwLjzso2Gl/cS5PUbGcq80meZIPUooh0bR8msETdrSG7/SpUMMJl8DB
-         g2C718dTIvgpKQpAyXMURry3f3AiJlTRZF9DlXSxNpEHzlTJGfPbOX3oWoz5lVOzkPQO
-         aayA==
+        d=linaro.org; s=google; t=1683722863; x=1686314863;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=LoN7UzTWOHRfV6DLizardjz7wWvM7VrRl9MfwBd/glw=;
+        b=VW/vtsUD7aHDTF6FaXs3+2O6249VYRLtH3KLTs9QFnecSiHXDOEQvtqYCVCKIY/eFh
+         9FT7d5g39c9IMLG1h9/MP4b43gdlgytJDJJ8xHo5M6XPXN3ALuGb7oduULFnnwQ2C9jZ
+         HN5KnqpbEI4AWa8GaRp6t9zb9Q1pnJRiBXW4lSaKLltND8fcTXk9eF5AHEpLLfOvNWrA
+         SK41quM3EQCkU4i8FRx3FXU6a6WwyskRI+fdjfbcyLkJbPG0+YmIjcPB+/7SLRxktP6R
+         IwBWiG9h86zGKaUKt1hehWVyMyYL99FyDS/9ZABBf256m8Id6UrEJFyD7h/B3eYI0BNt
+         iCjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683722760; x=1686314760;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4+GAXgKKqLnJrZPTG1dBuVZu539BZ2VsxFnQSgAU5CU=;
-        b=iaoedSeZfuPfSEcwprhwGHmVfYjabedHoP/P4LIQzf0OL34HqeHaSdp7Sn105ZG1tF
-         ZbDD//zeOG1GPZPnCg3unPys8Y77zG691bdMCLCrGeBOjvHD/VCkweTSOHSPynsSJAE9
-         2WFPlRKsPGFaNRVoMoWFXZYVHkvQEJmM8JuRTtyX13QXpeoXH+zNdygukAU0ujM057Jh
-         WLPh80RAccx9TPnW526582DkUDLiuauUjvWv4cjyq8io6/hkvBUK1tK+5xKP/VYAHQc2
-         8vjTwCvMLetQUaAlqcKFGiO/muaOLosuW1cnHJEMX38vLhOND7ZRdZp8rxGLPrgcBk56
-         0IWQ==
-X-Gm-Message-State: AC+VfDz86qcULaQJcKzDTCTioLpd/zmDf1zdKARTxhewLFVmZIWHuhF3
-        EEvG1Cj0IncW0PGGztQvucykGrDp3tdKRR0y9FM=
-X-Google-Smtp-Source: ACHHUZ7GaUKUCqtCApScxrhvWbhNQxQqNb8+624SHR+r6CSp3SP/aW4XVqD1cmULgpBP4VQEU29jpw==
-X-Received: by 2002:a17:907:5c6:b0:939:e870:2b37 with SMTP id wg6-20020a17090705c600b00939e8702b37mr15414063ejb.70.1683722760139;
-        Wed, 10 May 2023 05:46:00 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:c175:a0f9:6928:8c9d? ([2a02:810d:15c0:828:c175:a0f9:6928:8c9d])
-        by smtp.gmail.com with ESMTPSA id mm10-20020a170906cc4a00b00960005e09a3sm2677528ejb.61.2023.05.10.05.45.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 May 2023 05:45:59 -0700 (PDT)
-Message-ID: <b5c48154-134a-11fc-c2ce-47c1579a3de6@linaro.org>
-Date:   Wed, 10 May 2023 14:45:58 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom: document AL02-C2 board based
- on IPQ9574 family
-Content-Language: en-US
-To:     Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     quic_srichara@quicinc.com, quic_sjaganat@quicinc.com,
-        quic_kathirav@quicinc.com, quic_arajkuma@quicinc.com,
-        quic_anusha@quicinc.com, quic_poovendh@quicinc.com
-References: <20230510104359.16678-1-quic_devipriy@quicinc.com>
- <20230510104359.16678-2-quic_devipriy@quicinc.com>
+        d=1e100.net; s=20221208; t=1683722863; x=1686314863;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LoN7UzTWOHRfV6DLizardjz7wWvM7VrRl9MfwBd/glw=;
+        b=YYDC90/S3oktrgUCFDEh7aTC/kBe41tgaSQBJTIfvwOdqd1oMIjebk+FZGWJsp3E4S
+         mRtgg8BLwB4FF3MrYMtmmqerfH+FpTDdwXXs71MZguuEehNchxqXBa5KtRsoAbXBKo8m
+         N8TubBGJaSiQUmQwNvGbcldQX3DUgmbfBOyrOCKdrFlthkFVqZY34+kZefxcqd4pyVHm
+         UU3SeT38LPFYlomXZxP0xetI/iMWrksIR+tM77AI7nVkc4kMCW65dVdBr3g6mf2wTyPt
+         7cELNPeemzEpNL26Kdl399nqNaDANbXSWFhT78IH0sFFHs6SBWCBc68RhXVjRtIC6tAu
+         29zA==
+X-Gm-Message-State: AC+VfDzC5ZDcrBGFygellB1KxG0G/UaoqFRckhYF4J6mjeAOKqsT/NpP
+        n++5DwAkHi8J8Yh9m4KwzSsYyw==
+X-Google-Smtp-Source: ACHHUZ4iOi30Xbasrz4chc7xaV2DeQmJMK4J7neQi6pkPjtC3qtmAjiIcox0YPP/WPvxuMbhLmzdxg==
+X-Received: by 2002:a17:907:2dab:b0:96a:2b4:eb65 with SMTP id gt43-20020a1709072dab00b0096a02b4eb65mr4609370ejc.9.1683722863427;
+        Wed, 10 May 2023 05:47:43 -0700 (PDT)
+Received: from krzk-bin ([2a02:810d:15c0:828:c175:a0f9:6928:8c9d])
+        by smtp.gmail.com with ESMTPSA id ia21-20020a170907a07500b00966392de4easm2672231ejc.14.2023.05.10.05.47.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 May 2023 05:47:42 -0700 (PDT)
+Date:   Wed, 10 May 2023 14:47:40 +0200
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230510104359.16678-2-quic_devipriy@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+To:     Peter De Schrijver <pdeschrijver@nvidia.com>
+Cc:     robh+dt@kernel.org, thierry.reding@gmail.com,
+        devicetree@vger.kernel.org, jonathanh@nvidia.com,
+        krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
+        stefank@nvidia.com, conor+dt@kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v2 4/6] dt-bindings: Add bindings to support DRAM MRQ GSCs
+Message-ID: <20230510124740.lu7ndc5fvnq6fml6@krzk-bin>
+References: <20230510113129.4167493-1-pdeschrijver@nvidia.com>
+ <20230510113129.4167493-5-pdeschrijver@nvidia.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20230510113129.4167493-5-pdeschrijver@nvidia.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/05/2023 12:43, Devi Priya wrote:
-> Document AL02-C2 (Reference Design Platform 418) board based on IPQ9574
-> family of SoCs.
+On Wed, 10 May 2023 14:31:32 +0300, Peter De Schrijver wrote:
+> Add bindings for DRAM MRQ GSC support.
 > 
-> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
+> Co-developed-by: Stefan Kristiansson <stefank@nvidia.com>
+> Signed-off-by: Stefan Kristiansson <stefank@nvidia.com>
+> Signed-off-by: Peter De Schrijver <pdeschrijver@nvidia.com>
+> ---
+>  .../nvidia,tegra264-bpmp-shmem.yaml           | 45 +++++++++++++++++++
+>  1 file changed, 45 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/reserved-memory/nvidia,tegra264-bpmp-shmem.yaml
+> 
 
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+yamllint warnings/errors:
 
-Best regards,
-Krzysztof
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/reserved-memory/nvidia,tegra264-bpmp-shmem.example.dts:21.16-50: Warning (reg_format): /example-0/reserved-memory/shmem@f1be0000:reg: property has invalid length (16 bytes) (#address-cells == 2, #size-cells == 1)
+Documentation/devicetree/bindings/reserved-memory/nvidia,tegra264-bpmp-shmem.example.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/reserved-memory/nvidia,tegra264-bpmp-shmem.example.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/reserved-memory/nvidia,tegra264-bpmp-shmem.example.dtb: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/reserved-memory/nvidia,tegra264-bpmp-shmem.example.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/reserved-memory/nvidia,tegra264-bpmp-shmem.example.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/reserved-memory/nvidia,tegra264-bpmp-shmem.example.dts:19.47-23.14: Warning (avoid_default_addr_size): /example-0/reserved-memory/shmem@f1be0000: Relying on default #address-cells value
+Documentation/devicetree/bindings/reserved-memory/nvidia,tegra264-bpmp-shmem.example.dts:19.47-23.14: Warning (avoid_default_addr_size): /example-0/reserved-memory/shmem@f1be0000: Relying on default #size-cells value
+Documentation/devicetree/bindings/reserved-memory/nvidia,tegra264-bpmp-shmem.example.dtb: Warning (unique_unit_address_if_enabled): Failed prerequisite 'avoid_default_addr_size'
 
+See https://patchwork.ozlabs.org/patch/1779405
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
