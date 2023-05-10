@@ -2,97 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CF256FD855
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 09:35:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B17CC6FD84F
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 09:35:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236086AbjEJHfL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 03:35:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60044 "EHLO
+        id S236035AbjEJHfK convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 10 May 2023 03:35:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236494AbjEJHei (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 03:34:38 -0400
-Received: from hutie.ust.cz (hutie.ust.cz [185.8.165.127])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B15B3AB1;
-        Wed, 10 May 2023 00:34:05 -0700 (PDT)
-Content-Type: text/plain;
-        charset=utf-8
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
-        t=1683704028; bh=KX7K3tWMwUSNfSD7Emzei/zBhnBTyUmdhpZWoZTlsNs=;
-        h=Subject:From:In-Reply-To:Date:Cc:References:To;
-        b=iSEYaO2/qOoYodN2VM4otWvMXPzcr3UM/htHE9RgNKppQDz60o5VRIVkolATnAH1s
-         /Qi1j/leD7dRVRPPLQrC3rdHAG1tT38xg/DIkBoPeB0hH3NOC5xDpP5Y5jbfy3vbo8
-         9VFLOc+HJ0uuEGg/PEr8hkwnPgtQ70Dd11SItWy8=
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.120.41.1.1\))
-Subject: Re: [PATCH] ASoC: dt-bindings: Adjust #sound-dai-cells on TI's
- single-DAI codecs
-From:   =?utf-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>
-In-Reply-To: <A8647EF5-566A-4B99-9020-772810CB2BF7@cutebit.org>
-Date:   Wed, 10 May 2023 09:33:47 +0200
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S236430AbjEJHep (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 03:34:45 -0400
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D36FE7DA2;
+        Wed, 10 May 2023 00:34:10 -0700 (PDT)
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-559de1d36a9so99707607b3.1;
+        Wed, 10 May 2023 00:34:10 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683704047; x=1686296047;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Gkle6MFunZwctXm+NJ0fWmomYZ/EJG5G6Qzbw2JFYGg=;
+        b=E2cWdl2pRtNG/GC+cmf/NGbcNfy6IiAzN0n1RbD7ZGHRCAkZ8ThZXSusqeZ3Rvzlfo
+         MledGIfYRC4pL0HBl+HeyxJd9x5mEZKTxprlYqLTTa91xDS/fs0eoowOlHbfleZ9Wubu
+         6zc8+Onx1rAoKD5gr926mrBAigbrDiwmWDw6A1jmWaweMeeWDQii8mVCzlI3yyaj14Az
+         2/uv5tiof5OIWom2Qld2/oL9aWcKY4b7cr+RlRaf3KHtUlT24FpGAzesJHOAj9T/GVzZ
+         gp9BxHihGjon/PvYPoG0Y68rIsDCT0+pq+AUZ6zoCk2BAZWlhx6TC9nlQgN1mw/m50m6
+         z6/g==
+X-Gm-Message-State: AC+VfDzQgkUptaH0lguQuMHeLihfgkdHR6HrBKK80pnZ7Vage3+i//ZH
+        nvAyn3ffziZiLvKE/ZC2/N4fsgOEBGHk+A==
+X-Google-Smtp-Source: ACHHUZ5MUgZ0Sql8Z/SQAaPBGHEkM961+t2oFpUnOa9UbQzaJeeYevnBCtzq0dEWq4z+c1jHAGLHJQ==
+X-Received: by 2002:a0d:ff81:0:b0:55d:de9e:d913 with SMTP id p123-20020a0dff81000000b0055dde9ed913mr14430198ywf.42.1683704047207;
+        Wed, 10 May 2023 00:34:07 -0700 (PDT)
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com. [209.85.128.175])
+        by smtp.gmail.com with ESMTPSA id q6-20020a0de706000000b0055a07e36659sm3843518ywe.145.2023.05.10.00.34.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 May 2023 00:34:07 -0700 (PDT)
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-559e53d1195so99712137b3.2;
+        Wed, 10 May 2023 00:34:06 -0700 (PDT)
+X-Received: by 2002:a81:6d48:0:b0:55a:881d:e744 with SMTP id
+ i69-20020a816d48000000b0055a881de744mr19194874ywc.47.1683704046354; Wed, 10
+ May 2023 00:34:06 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230509190031.769298-1-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20230509190031.769298-1-niklas.soderlund+renesas@ragnatech.se>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 10 May 2023 09:33:54 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVYY-xMZEF-Nzi=c3R+Cq+ysrdZ0cP10GLg6A_uJ7ukRA@mail.gmail.com>
+Message-ID: <CAMuHMdVYY-xMZEF-Nzi=c3R+Cq+ysrdZ0cP10GLg6A_uJ7ukRA@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: i2c: maxim,max96712: Require setting
+ bus-type property
+To:     =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
-        Shi Fu <shifu0704@thundersoft.com>,
-        Shenghao Ding <shenghao-ding@ti.com>, kevin-lu@ti.com,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, asahi@lists.linux.dev
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <F12DE31C-E167-47F0-BAE0-C09538C5C3C8@cutebit.org>
-References: <20230509153412.62847-1-povik+lin@cutebit.org>
- <baf338a7-1e63-4842-32a1-8f63f850bd2d@linaro.org>
- <A8647EF5-566A-4B99-9020-772810CB2BF7@cutebit.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Sakari Ailus <sakari.ailus@iki.fi>, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, May 9, 2023 at 9:03 PM Niklas Söderlund
+<niklas.soderlund+renesas@ragnatech.se> wrote:
+> The MAX96712 can support both a CSI-2 C-PHY and D-PHY bus. The initial
+> staging driver however only supported D-PHY and the bus-type property
+> was left optional.
+>
+> In preparation for adding C-PHY support to the staging driver make the
+> bus-type property mandatory as it is needed to select the correct PHY
+> mode. Without the bus-type property present, the driver falls-back to
+> D-PHY mode, so the change is functionally backward compatible with old
+> DTS files lacking the property.
+>
+> The only in-tree DTS file (renesas/r8a779a0-falcon-csi-dsi.dtsi) that
+> lacked the property uses D-PHY and have been updated.
 
-> On 10. 5. 2023, at 9:30, Martin Povi=C5=A1er <povik+lin@cutebit.org> =
-wrote:
->=20
->> On 10. 5. 2023, at 9:17, Krzysztof Kozlowski =
-<krzysztof.kozlowski@linaro.org> wrote:
->>=20
->> On 09/05/2023 17:34, Martin Povi=C5=A1er wrote:
->>> A bunch of TI's codecs have binding schemas which force =
-#sound-dai-cells
->>> to one despite those codecs only having a single DAI. Allow for =
-bindings
->>> with zero DAI cells and deprecate the former non-zero value.
->>>=20
->>> Signed-off-by: Martin Povi=C5=A1er <povik+lin@cutebit.org>
->>> ---
+has
 
->>>  '#sound-dai-cells':
->>> -    const: 1
->>> +    # The codec has a single DAI, the #sound-dai-cells=3D<1>; case =
-is left in for backward
->>> +    # compatibility but is deprecated.
->>> +    enum: [0, 1]
->>=20
->> Does it? I see playback and capture.
->=20
-> I think so. Playback and capture are not separate DAIs.
->=20
-> Martin
+>
+> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> ---
+> * Changes since v1
+> - Use symbolic names in comments for the bus-type properties.
+> - Improve the commit message.
+> - Rebased to v6.4-rc1.
 
-I double checked, I am pretty sure. There=E2=80=99s a single =
-snd_soc_dai_driver,
-which becomes a single DAI.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Martin
+Gr{oetje,eeting}s,
 
->=20
->>=20
->> Best regards,
->> Krzysztof
->=20
->=20
+                        Geert
 
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
