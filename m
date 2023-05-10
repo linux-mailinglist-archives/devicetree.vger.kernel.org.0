@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 91D5B6FDB53
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 12:08:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 153276FDB58
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 12:10:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235484AbjEJKIs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 06:08:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33122 "EHLO
+        id S236264AbjEJKKn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 06:10:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230205AbjEJKIs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 06:08:48 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 032EE180
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 03:08:46 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-50bc1612940so12943881a12.2
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 03:08:45 -0700 (PDT)
+        with ESMTP id S235881AbjEJKKm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 06:10:42 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3D59CC
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 03:10:40 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-50bc25f0c7dso12924952a12.3
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 03:10:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683713324; x=1686305324;
+        d=linaro.org; s=google; t=1683713439; x=1686305439;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=jvB4fpU8+So5VWO8ax0y0Ffp0LarCBg3hyDsYVyRDvs=;
-        b=cuJm4LR/uVjYQO2u1k1ggNHX/xrJraHzGQ+vB6zB14LymvptbbR9cV0lrlSG9Kg0+T
-         bU3FQaWGHw0v1wBPJAnuvaQ/VAAPn7Hd8bLjOUdE2fn2uB92qi8cGHplgNVNdyNCl1To
-         LbqWGBz8LHhlNwxgnhnALptjwdZkVYSRXS7z0Jj7KzdZqcWO3AZh3s72oVT5oMVOI3hF
-         AdxdCkoDhsH2mNjQpE3mzkD97LXWlu/hEVuITTpSR4+sDkP8ZGnd9iDh7CixyjXOqk1O
-         jWzeoaNsVAMOGKeO+uJ5u5YDSRO6s3mlDJiszAyVK6392DL2xNWN0mSKOXAwBJ41gtHf
-         7xsQ==
+        bh=A+6oHru7C70uRBlUD0hl5QSN+B+mjxZ6Dk4I39zF6EI=;
+        b=sUmAeBWpzb3WDh9zH4niy04bUeH+g0ngakgbEfHiKmbsrs3voOBKmVGLtwaV1UDz/w
+         5VxEi0oJeAMlc/NIRoGrEu413p9xtc6vGQsYphalKVAoLM1QOoTA64Rg/QiRbGOiI4Ue
+         Sgu4lBsUrhuHXw+yKvVml3I+1X1M9mUyW3HXR5lmnCMDDEbzx2kFkIJQixHdsZUnkJUT
+         xaan/KNxSPIIvyk/TSnXhE3qNGV2JHEOL20B/aKkgR7F95zX1VWnUSSV656DQdAfg2gd
+         pdw1LSM9fWMYsqpgw/ZeUs/1hhb0NYoIIJ8/5YDZ/f1odxe0MB8FctM32Wii6UGGIuVk
+         63Mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683713324; x=1686305324;
+        d=1e100.net; s=20221208; t=1683713439; x=1686305439;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jvB4fpU8+So5VWO8ax0y0Ffp0LarCBg3hyDsYVyRDvs=;
-        b=SDF5oeBdB768lovfqSkXLKC+G5vAE0QiMuJRSkgwW5clFBxuLgLRmRpP9p3uaHZpUF
-         Kc/ZtHCjIPA6y9sYMUtf93wGm695S6KQ3gl+wPqt7jQ7TVlrYsWcTo9ms/hh4Dst3j6v
-         jv8Qqw5IkeIPIUoPEkDbpjjyTra3RR6CxdxqvrYmRa7JDmD3h08HWzhidmLeE/Eyzmu8
-         fo6wWjGVmwVzv/Qg1xTsfan7gxtkYQQSLeKae6kMDEy1Q2hwARh4dxdM/3DAk0A5NwRN
-         XiQihtTX8AuZjtfrg20SSCfmLbKGe7g7CP71O7631xeHPqqYf6IBibI7QWFp1ZTdlbMN
-         ghag==
-X-Gm-Message-State: AC+VfDyGCV5diXxlTIzQjtz7iVPFmQsXrBwCRuY7oU6O1TBGJLHtXxBY
-        eZoChuOvySeKUweUaYHsWsBhog==
-X-Google-Smtp-Source: ACHHUZ6IH9XailMZy2rKRP+9vQEskj9TsR2DXWiq2j6Y56PQOUOUTPxnNJqZrydw1sMMrTb2B7kfDQ==
-X-Received: by 2002:a05:6402:216:b0:50b:bfee:ea26 with SMTP id t22-20020a056402021600b0050bbfeeea26mr11863642edv.35.1683713324445;
-        Wed, 10 May 2023 03:08:44 -0700 (PDT)
+        bh=A+6oHru7C70uRBlUD0hl5QSN+B+mjxZ6Dk4I39zF6EI=;
+        b=h5lpG7VA0cCPmIXK4WjKnqlBtWZQFBFmFLhQ7HC200TTWzWp/vN/AKTCLfGPjQIypU
+         t7ZFddRswRKx741KScl6YEHMGsYfBpCB0nPMLPsXy/I/T4en+Vn+UH6BQzdH7ClyUpVe
+         endhnpwmfqx5hkpshSfF+obCE11d4Oq+J+QF4KzQzq+W919iUBty44wACMrqBJ72JlRp
+         c+r80QqVFujOizk+Jl77pgSkOGpyjgG+/o9y1Y205hdml7ZBIjTqc2On6HOFB/28+eOC
+         uNRIFJhzi+0uuiKjEwxuEvtjMwOtlUr+K26O29wj6LnjcTgxpH/YoPRsdBpk4QRBCl+c
+         AWhg==
+X-Gm-Message-State: AC+VfDz3hpS1p6ge3ve43IFq6YpLmOutFNcyX3kN1jTBFbnrl1pQwVl7
+        xMx2pWDsYR2TI8QSTbr7enB/rg==
+X-Google-Smtp-Source: ACHHUZ59S3F8tS4Fb8+6T/WWQrM0r38Q4aXeTYbnbUuCE1kf9BaB9hkpLvkXrFNpewQE0GQOjz5xrg==
+X-Received: by 2002:a17:907:1687:b0:958:cc8:bd55 with SMTP id hc7-20020a170907168700b009580cc8bd55mr16959522ejc.0.1683713439248;
+        Wed, 10 May 2023 03:10:39 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:c175:a0f9:6928:8c9d? ([2a02:810d:15c0:828:c175:a0f9:6928:8c9d])
-        by smtp.gmail.com with ESMTPSA id w15-20020a50fa8f000000b0050d89daaa70sm1707195edr.2.2023.05.10.03.08.42
+        by smtp.gmail.com with ESMTPSA id s3-20020a170906bc4300b0095fde299e83sm2438459ejv.214.2023.05.10.03.10.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 May 2023 03:08:43 -0700 (PDT)
-Message-ID: <95f61847-2ec3-a4e0-d277-5d68836f66cf@linaro.org>
-Date:   Wed, 10 May 2023 12:08:42 +0200
+        Wed, 10 May 2023 03:10:38 -0700 (PDT)
+Message-ID: <a26c47fc-1915-bfde-2a3d-3902f153892e@linaro.org>
+Date:   Wed, 10 May 2023 12:10:37 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH net-next V3 1/3] dt-bindings: net: xilinx_axienet:
- Introduce dmaengine binding support
+Subject: Re: [PATCH net-next V3 3/3] net: axienet: Introduce dmaengine support
 Content-Language: en-US
 To:     Sarath Babu Naidu Gaddam <sarath.babu.naidu.gaddam@amd.com>,
         davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
@@ -67,9 +66,9 @@ Cc:     linux@armlinux.org.uk, michal.simek@amd.com,
         linux-kernel@vger.kernel.org, anirudha.sarangi@amd.com,
         harini.katakam@amd.com, git@amd.com
 References: <20230510085031.1116327-1-sarath.babu.naidu.gaddam@amd.com>
- <20230510085031.1116327-2-sarath.babu.naidu.gaddam@amd.com>
+ <20230510085031.1116327-4-sarath.babu.naidu.gaddam@amd.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230510085031.1116327-2-sarath.babu.naidu.gaddam@amd.com>
+In-Reply-To: <20230510085031.1116327-4-sarath.babu.naidu.gaddam@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,70 +82,148 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 10/05/2023 10:50, Sarath Babu Naidu Gaddam wrote:
-> From: Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
+> Add dmaengine framework to communicate with the xilinx DMAengine
+> driver(AXIDMA).
 > 
-> The axiethernet driver will use dmaengine framework to communicate
-> with dma controller IP instead of built-in dma programming sequence.
+> Axi ethernet driver uses separate channels for transmit and receive.
+> Add support for these channels to handle TX and RX with skb and
+> appropriate callbacks. Also add axi ethernet core interrupt for
 
-Subject: drop second/last, redundant "bindings". The "dt-bindings"
-prefix is already stating that these are bindings.
 
-Actually also drop "dmaenging" as it is Linuxism. Focus on hardware,
-e.g. "Add DMA support".
 
-> 
-> To request dma transmit and receive channels the axiethernet driver uses
-> generic dmas, dma-names properties.
-> 
-> Also to support the backward compatibility, use "dmas" property to
-> identify as it should use dmaengine framework or legacy
-> driver(built-in dma programming).
-> 
-> At this point it is recommended to use dmaengine framework but it's
-> optional. Once the solution is stable will make dmas as
-> required properties.
-> 
-> Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
-> Signed-off-by: Sarath Babu Naidu Gaddam <sarath.babu.naidu.gaddam@amd.com>
-> ---
-> These changes are on top of below txt to yaml conversion discussion
-> https://lore.kernel.org/all/20230308061223.1358637-1-sarath.babu.naidu.gaddam@amd.com/#Z2e.:20230308061223.1358637-1-sarath.babu.naidu.gaddam::40amd.com:1bindings:net:xlnx::2caxi-ethernet.yaml
-> 
-> Changes in V3:
-> 1) Reverted reg and interrupts property to  support backward compatibility.
-> 2) Moved dmas and dma-names properties from Required properties.
-> 
-> Changes in V2:
-> - None.
-> ---
->  .../devicetree/bindings/net/xlnx,axi-ethernet.yaml   | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/xlnx,axi-ethernet.yaml b/Documentation/devicetree/bindings/net/xlnx,axi-ethernet.yaml
-> index 80843c177029..9dfa1976e260 100644
-> --- a/Documentation/devicetree/bindings/net/xlnx,axi-ethernet.yaml
-> +++ b/Documentation/devicetree/bindings/net/xlnx,axi-ethernet.yaml
-> @@ -122,6 +122,16 @@ properties:
->        modes, where "pcs-handle" should be used to point to the PCS/PMA PHY,
->        and "phy-handle" should point to an external PHY if exists.
->  
-> +  dmas:
-> +    items:
-> +      - description: TX DMA Channel phandle and DMA request line number
-> +      - description: RX DMA Channel phandle and DMA request line number
+> +/**
+> + * axienet_setup_dma_chan - request the dma channels.
+> + * @ndev:       Pointer to net_device structure
+> + *
+> + * Return: 0, on success.
+> + *          non-zero error value on failure
+> + *
+> + * This function requests the TX and RX channels. It also submits the
+> + * allocated skb buffers and call back APIs to dmaengine.
+> + *
+> + */
+> +static int axienet_setup_dma_chan(struct net_device *ndev)
+> +{
+> +	struct axienet_local *lp = netdev_priv(ndev);
+> +	int i, ret;
 > +
-> +  dma-names:
-> +    items:
-> +      - const: tx_chan0
+> +	lp->tx_chan = dma_request_chan(lp->dev, "tx_chan0");
+> +	if (IS_ERR(lp->tx_chan)) {
+> +		ret = PTR_ERR(lp->tx_chan);
+> +		if (ret != -EPROBE_DEFER)
+> +			netdev_err(ndev, "No Ethernet DMA (TX) channel found\n");
 
-tx
+dev_err_probe seems suitable here.
 
-> +      - const: rx_chan0
 
-rx
+> +		return ret;
+> +	}
+> +
+> +	lp->rx_chan = dma_request_chan(lp->dev, "rx_chan0");
+> +	if (IS_ERR(lp->rx_chan)) {
+> +		ret = PTR_ERR(lp->rx_chan);
+> +		if (ret != -EPROBE_DEFER)
+> +			netdev_err(ndev, "No Ethernet DMA (RX) channel found\n");
 
-Why doing these differently than all other devices?
+dev_err_probe
 
+> +		goto err_dma_request_rx;
+> +	}
+> +	lp->skb_cache = kmem_cache_create("ethernet", sizeof(struct axi_skbuff),
+> +					  0, 0, NULL);
+> +	if (!lp->skb_cache) {
+> +		ret =  -ENOMEM;
+> +		goto err_kmem;
+> +	}
+> +	/* TODO: Instead of BD_NUM_DEFAULT use runtime support*/
+> +	for (i = 0; i < RX_BUF_NUM_DEFAULT; i++)
+> +		axienet_rx_submit_desc(ndev);
+> +	dma_async_issue_pending(lp->rx_chan);
+> +
+> +	return 0;
+> +err_kmem:
+> +	dma_release_channel(lp->rx_chan);
+> +err_dma_request_rx:
+> +	dma_release_channel(lp->tx_chan);
+> +	return ret;
+> +}
+> +
+> +/**
+> + * axienet_init_dmaengine - init the dmaengine code.
+> + * @ndev:       Pointer to net_device structure
+> + *
+> + * Return: 0, on success.
+> + *          non-zero error value on failure
+> + *
+> + * This is the dmaengine initialization code.
+> + */
+> +static inline int axienet_init_dmaengine(struct net_device *ndev)
+> +{
+> +	int ret;
+> +
+> +	ret = axienet_setup_dma_chan(ndev);
+> +
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +
+>  /**
+>   * axienet_init_legacy_dma - init the dma legacy code.
+>   * @ndev:       Pointer to net_device structure
+> @@ -1239,7 +1520,20 @@ static int axienet_open(struct net_device *ndev)
+>  
+>  	phylink_start(lp->phylink);
+>  
+> -	if (!AXIENET_USE_DMA(lp)) {
+> +	if (AXIENET_USE_DMA(lp)) {
+> +		ret = axienet_init_dmaengine(ndev);
+> +		if (ret < 0)
+> +			goto error_code;
+> +
+> +		/* Enable interrupts for Axi Ethernet core (if defined) */
+> +		if (lp->eth_irq > 0) {
+> +			ret = request_irq(lp->eth_irq, axienet_eth_irq, IRQF_SHARED,
+> +					  ndev->name, ndev);
+> +			if (ret)
+> +				goto error_code;
+> +		}
+> +
+> +	} else {
+>  		ret = axienet_init_legacy_dma(ndev);
+>  		if (ret)
+>  			goto error_code;
+> @@ -1287,6 +1581,12 @@ static int axienet_stop(struct net_device *ndev)
+>  		free_irq(lp->tx_irq, ndev);
+>  		free_irq(lp->rx_irq, ndev);
+>  		axienet_dma_bd_release(ndev);
+> +	} else {
+> +		dmaengine_terminate_all(lp->tx_chan);
+> +		dmaengine_terminate_all(lp->rx_chan);
+> +
+> +		dma_release_channel(lp->rx_chan);
+> +		dma_release_channel(lp->tx_chan);
+>  	}
+>  
+>  	axienet_iow(lp, XAE_IE_OFFSET, 0);
+> @@ -2136,6 +2436,33 @@ static int axienet_probe(struct platform_device *pdev)
+>  		}
+>  		netif_napi_add(ndev, &lp->napi_rx, axienet_rx_poll);
+>  		netif_napi_add(ndev, &lp->napi_tx, axienet_tx_poll);
+> +	} else {
+> +		struct xilinx_vdma_config cfg;
+> +		struct dma_chan *tx_chan;
+> +
+> +		lp->eth_irq = platform_get_irq_optional(pdev, 0);
+> +		tx_chan = dma_request_chan(lp->dev, "tx_chan0");
+> +
+> +		if (IS_ERR(tx_chan)) {
+> +			ret = PTR_ERR(tx_chan);
+> +			if (ret != -EPROBE_DEFER)
+> +				dev_err(&pdev->dev, "No Ethernet DMA (TX) channel found\n");
+
+dev_err_probe
 
 Best regards,
 Krzysztof
