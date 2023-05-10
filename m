@@ -2,101 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1BA16FD813
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 09:22:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D542C6FD83F
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 09:31:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236465AbjEJHW3 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 10 May 2023 03:22:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49424 "EHLO
+        id S236493AbjEJHb6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 03:31:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236106AbjEJHW2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 03:22:28 -0400
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 512411FFE;
-        Wed, 10 May 2023 00:22:27 -0700 (PDT)
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-559e2051d05so99580817b3.3;
-        Wed, 10 May 2023 00:22:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683703346; x=1686295346;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gmWJGjObZlpSH7bj175xkXQpLYD079UT8mAA0+fHxwg=;
-        b=ARLE56yNrUrqkKZtHeQowvjdwTW1JpAjGEhrAP6UvqQfAwmM2j8HX9rnq6IwmG1Qez
-         gnP5gCjWtGXiWzT9GuWEFWblX8nFSblRDspgBaAs5KWQMeNQUrElN211Ul2cZEbwO4Vc
-         eR9pLc1xErLJe/yTstLJJzOITqk2vYIc1Z4pS23YuEDR12nhkyO8F/nmvw0xyrW3ZlTT
-         7qswi81/v5D+ClLVD+4d2SrH8os28tNK3wHH8sF3PpTRih1g3ALupGELQl5Gb8ElPw6y
-         oAzSwElArWfk3m4cbUwoL1i0s3DJj3Sneo86JOlYKRMcGJh6nRM+89vgFwN7xo3+KRYp
-         cUsQ==
-X-Gm-Message-State: AC+VfDzAbXQROVLZLP9FK0hWoaaJZxuvN5sNAwN2uZRp6/sg5db5R8C9
-        b2uO8fNPOyBgboiUkTxetNhXVi5+Nj6V7g==
-X-Google-Smtp-Source: ACHHUZ47gAO+JBNowDSgjhLfKoTgickdfiVQRH3uAUaWAIZrrTUpqLjnJmRLRszooJOPB0wCGkAVDQ==
-X-Received: by 2002:a0d:df56:0:b0:546:cbe:df90 with SMTP id i83-20020a0ddf56000000b005460cbedf90mr20400617ywe.30.1683703346240;
-        Wed, 10 May 2023 00:22:26 -0700 (PDT)
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com. [209.85.128.169])
-        by smtp.gmail.com with ESMTPSA id q66-20020a0dce45000000b0054f03d75882sm3919603ywd.71.2023.05.10.00.22.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 May 2023 00:22:25 -0700 (PDT)
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-55a10577911so99710367b3.0;
-        Wed, 10 May 2023 00:22:25 -0700 (PDT)
-X-Received: by 2002:a81:9e4f:0:b0:54f:b6af:ac15 with SMTP id
- n15-20020a819e4f000000b0054fb6afac15mr19714426ywj.51.1683703345052; Wed, 10
- May 2023 00:22:25 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230510065819.3987-1-wsa+renesas@sang-engineering.com> <20230510065819.3987-2-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20230510065819.3987-2-wsa+renesas@sang-engineering.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 10 May 2023 09:22:13 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVvKcRhNsSNP_Y=b3L_y7jyXaOErKmqXgr-r_2TTMn6aA@mail.gmail.com>
-Message-ID: <CAMuHMdVvKcRhNsSNP_Y=b3L_y7jyXaOErKmqXgr-r_2TTMn6aA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: PCI: rcar-pci-host: add optional regulators
-To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc:     linux-renesas-soc@vger.kernel.org,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
+        with ESMTP id S236361AbjEJHbj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 03:31:39 -0400
+X-Greylist: delayed 57364 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 10 May 2023 00:30:26 PDT
+Received: from hutie.ust.cz (unknown [IPv6:2a03:3b40:fe:f0::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26E3A7AA7;
+        Wed, 10 May 2023 00:30:25 -0700 (PDT)
+Content-Type: text/plain;
+        charset=utf-8
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
+        t=1683703813; bh=GWMIsJ4hFWrB3lgN/az7Q/TXbt7UazwaDVD2LkZGOec=;
+        h=Subject:From:In-Reply-To:Date:Cc:References:To;
+        b=eMJd4yckLc7wVJTBr2QWpsT+shzcm9YEcAV1PXCmfkRLbWn6K1kra01SLWL4VhYux
+         T3SWgqWGYdq6O/cJDhmPxZcZT11eZ8xdJdpPLd4cFZGeTIgDJ4rtlqlhkVJLXOP8oX
+         QgxH34oxONrFgwsrABTqUvpocwgvFNViTRQSiVPY=
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.120.41.1.1\))
+Subject: Re: [PATCH] ASoC: dt-bindings: Adjust #sound-dai-cells on TI's
+ single-DAI codecs
+From:   =?utf-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>
+In-Reply-To: <baf338a7-1e63-4842-32a1-8f63f850bd2d@linaro.org>
+Date:   Wed, 10 May 2023 09:30:12 +0200
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
+        Shi Fu <shifu0704@thundersoft.com>,
+        Shenghao Ding <shenghao-ding@ti.com>, kevin-lu@ti.com,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, asahi@lists.linux.dev
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <A8647EF5-566A-4B99-9020-772810CB2BF7@cutebit.org>
+References: <20230509153412.62847-1-povik+lin@cutebit.org>
+ <baf338a7-1e63-4842-32a1-8f63f850bd2d@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_FAIL,SPF_HELO_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 10, 2023 at 8:59 AM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> Support regulators found on the e.g. KingFisher board for miniPCIe and
-> add a 12v regulator while we are here.
->
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> ---
->
-> Changes since RFC:
-> * added 12V supply for completeness
-> * use PCIe slot in the example instead of miniPCIe because that is what
->   the Koelsch board offers (just without the regulators ;))
 
-Same for e.g. Salvator-XS.
+> On 10. 5. 2023, at 9:17, Krzysztof Kozlowski =
+<krzysztof.kozlowski@linaro.org> wrote:
+>=20
+> On 09/05/2023 17:34, Martin Povi=C5=A1er wrote:
+>> A bunch of TI's codecs have binding schemas which force =
+#sound-dai-cells
+>> to one despite those codecs only having a single DAI. Allow for =
+bindings
+>> with zero DAI cells and deprecate the former non-zero value.
+>>=20
+>> Signed-off-by: Martin Povi=C5=A1er <povik+lin@cutebit.org>
+>> ---
+>> Documentation/devicetree/bindings/sound/tas2562.yaml | 6 ++++--
+>> Documentation/devicetree/bindings/sound/tas2770.yaml | 6 ++++--
+>> Documentation/devicetree/bindings/sound/tas27xx.yaml | 6 ++++--
+>> 3 files changed, 12 insertions(+), 6 deletions(-)
+>>=20
+>> diff --git a/Documentation/devicetree/bindings/sound/tas2562.yaml =
+b/Documentation/devicetree/bindings/sound/tas2562.yaml
+>> index a5bb561bfcfb..31a3024ea789 100644
+>> --- a/Documentation/devicetree/bindings/sound/tas2562.yaml
+>> +++ b/Documentation/devicetree/bindings/sound/tas2562.yaml
+>> @@ -55,7 +55,9 @@ properties:
+>>     description: TDM TX current sense time slot.
+>>=20
+>>   '#sound-dai-cells':
+>> -    const: 1
+>> +    # The codec has a single DAI, the #sound-dai-cells=3D<1>; case =
+is left in for backward
+>> +    # compatibility but is deprecated.
+>> +    enum: [0, 1]
+>=20
+> Does it? I see playback and capture.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+I think so. Playback and capture are not separate DAIs.
 
-Gr{oetje,eeting}s,
+Martin
 
-                        Geert
+>=20
+> Best regards,
+> Krzysztof
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
