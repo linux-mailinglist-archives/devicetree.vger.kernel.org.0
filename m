@@ -2,26 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 52ABE6FE018
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 16:25:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18AAE6FE01D
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 16:27:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237458AbjEJOZt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 10:25:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57636 "EHLO
+        id S237354AbjEJO1B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 10:27:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237434AbjEJOZn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 10:25:43 -0400
-Received: from fgw22-7.mail.saunalahti.fi (fgw22-7.mail.saunalahti.fi [62.142.5.83])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24891A25D
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 07:25:11 -0700 (PDT)
-Received: from localhost (88-113-26-95.elisa-laajakaista.fi [88.113.26.95])
-        by fgw22.mail.saunalahti.fi (Halon) with ESMTP
-        id 6ec4a200-ef3e-11ed-a9de-005056bdf889;
-        Wed, 10 May 2023 17:24:54 +0300 (EEST)
-From:   andy.shevchenko@gmail.com
-Date:   Wed, 10 May 2023 17:24:54 +0300
-To:     Sricharan Ramabadhran <quic_srichara@quicinc.com>
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        with ESMTP id S237371AbjEJO06 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 10:26:58 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F5AE7AAF
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 07:26:37 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-50bc5197d33so13566860a12.1
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 07:26:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683728795; x=1686320795;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=GIQPhYtqBosQVm2m9V/olCqkEptW6QZ61h/6KfT0E4k=;
+        b=FHQ3FpJPwOTUgYBnspviACSV7j5Qj4QMDvrXoB9NFtLLxIoyqracPXEhrsSUsP4D0E
+         4aKktP8YVVG5JhxiCCfdVrQaShEqAcyXRQ9RcoVOc3poxEDFKSg+h+9xHlWu6VIRy3U0
+         cM/H/4NdAFELm8sAggm9C3c8ucfzXdqTKXXtpSTwjJRBu5z++GIzO6q7VcJLOkVWOQue
+         MYfuMBHwBoZ5kdsCTV3aWyEjqKbkCU/pqgMzU5myPufPVF4123aXsm+imIbMp55CYMgz
+         F7CeZX2KJVZl1fs0OeauaTs1l/Emg8RznE+gsrwZoMy1+1gVx9bLi3SWjzmdaQpVlZsU
+         J7Lg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683728795; x=1686320795;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GIQPhYtqBosQVm2m9V/olCqkEptW6QZ61h/6KfT0E4k=;
+        b=cPjbIHAVZ0SjNk67h1IfvodqccPgw81l3Ua1e6rlbmGOOabMWitL6volMDg+Huvaej
+         P5/NvLK99NzqogsRDoADQC5CFcA2LGnMmmxLFk/zR9+mVmXl8g3vVt4qODwWEumlgPDG
+         fw6lpNm0wXLBdg901/OM/89b4V6InNz9xWPM4y1BS3rREuxbNQ/zqH4aOrRtgmZYFHfH
+         yZA2byRt+TMP6BmNEZ4fXpHwcoE9WZUwg8A3KBtFMdfyLCFfOGYkK40bm8NwpA44wcqu
+         CdV8tA075N90jWt9fUL5dPilDlIelG3wGhXX64m59dvSWfHZAYL6jq1JJgec3FII96tB
+         5vtQ==
+X-Gm-Message-State: AC+VfDzgtPXhxphT0IHlao69UGjujbODvHn7rRxjvH8NIKOUzo8otQrG
+        8hUTYcJvFsst3lX2t42ENfJCFw==
+X-Google-Smtp-Source: ACHHUZ4kFwEQKZh206/3VwiwKyEUVQRybitZ/IwLHqaBtdLRuItDunzkv8CU95Is7HHu9KPxG20ujw==
+X-Received: by 2002:aa7:c0d7:0:b0:50b:d53d:7ceb with SMTP id j23-20020aa7c0d7000000b0050bd53d7cebmr12915261edp.40.1683728795357;
+        Wed, 10 May 2023 07:26:35 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:c175:a0f9:6928:8c9d? ([2a02:810d:15c0:828:c175:a0f9:6928:8c9d])
+        by smtp.gmail.com with ESMTPSA id ay20-20020a056402203400b00502689a06b2sm1911779edb.91.2023.05.10.07.26.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 May 2023 07:26:34 -0700 (PDT)
+Message-ID: <51a332f3-10ec-4fac-971b-4dfd16d018eb@linaro.org>
+Date:   Wed, 10 May 2023 16:26:33 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v4 3/8] dt-bindings: pinctrl: qcom: Add support for
+ ipq5018
+Content-Language: en-US
+To:     Sricharan Ramabadhran <quic_srichara@quicinc.com>,
+        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
         robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         mturquette@baylibre.com, sboyd@kernel.org, ulf.hansson@linaro.org,
         linus.walleij@linaro.org, catalin.marinas@arm.com, will@kernel.org,
@@ -29,57 +66,37 @@ Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 4/8] pinctrl: qcom: Add IPQ5018 pinctrl driver
-Message-ID: <ZFupNrdrcsrIFpYq@surfacebook>
 References: <20230510134121.1232286-1-quic_srichara@quicinc.com>
- <20230510134121.1232286-5-quic_srichara@quicinc.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230510134121.1232286-5-quic_srichara@quicinc.com>
-X-Spam-Status: No, score=0.7 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-        FORGED_GMAIL_RCVD,FREEMAIL_FROM,NML_ADSP_CUSTOM_MED,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+ <20230510134121.1232286-4-quic_srichara@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230510134121.1232286-4-quic_srichara@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Wed, May 10, 2023 at 07:11:17PM +0530, Sricharan Ramabadhran kirjoitti:
-> Add pinctrl definitions for the TLMM of IPQ5018.
+On 10/05/2023 15:41, Sricharan Ramabadhran wrote:
+> Add device tree binding Documentation details for ipq5018
+> pinctrl driver.
+> 
+> Co-developed-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
+> Signed-off-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
+> Co-developed-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+> ---
+>  [v4] Fixed all comments from Krzysztof Kozlowski
 
-...
 
-> +#define FUNCTION(fname)			                \
-> +	[msm_mux_##fname] = {		                \
-> +		.name = #fname,				\
-> +		.groups = fname##_groups,               \
-> +		.ngroups = ARRAY_SIZE(fname##_groups),	\
-> +	}
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Can you coordinate with Rohit Agarwal <quic_rohiagar@quicinc.com> and use
-his work [1] which moves the QCom drivers to use struct pingroup and struct
-pinfunction?
-
-[1]: https://lore.kernel.org/r/1683718725-14869-1-git-send-email-quic_rohiagar@quicinc.com
-
-...
-
-> +static const struct of_device_id ipq5018_pinctrl_of_match[] = {
-> +	{ .compatible = "qcom,ipq5018-tlmm", },
-
-> +	{ },
-
-No comma for the terminator entry.
-
-> +};
-
-Move MODULE_DEVICE_TABLE() here.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+Best regards,
+Krzysztof
 
