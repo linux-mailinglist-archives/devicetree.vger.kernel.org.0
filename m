@@ -2,175 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 552CA6FDB5C
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 12:12:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C0836FDB66
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 12:13:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236097AbjEJKMI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 06:12:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35356 "EHLO
+        id S236450AbjEJKNT convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 10 May 2023 06:13:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235484AbjEJKMH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 06:12:07 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 520651BCA
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 03:12:06 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-965fc25f009so977119366b.3
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 03:12:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683713525; x=1686305525;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8W9wj6II5GTrEem7luB1BRmjIURt5RdoLBLDnnuSaBY=;
-        b=oUOYhwB4kUwcFIrS3FG81XCuZ/NcBiGJ+OUZEGUl7TCsABhBzAx8XiZDuiSpX00e33
-         YH68zgczYjIS7C4nG9aDhS5tokGMTABPQE9BzD41s168vBrBjW8WKHI9Cn8m2FxPkpVs
-         nUVE9wRIhFrpTaFF3mtKLj1Uc5Cpb3Y6+yqBHa6p693u4qYZq+dmwJJRrYZmMqs5uYhs
-         kNElXVoaD4n/xDZIkiPv5K5UUWLv3+ACqsvADtfrJJn12d9TYoVfxyKwkAFGmfqNGKm5
-         71ut/Ru25HT23ufPo0Lry7u9e4/X7nHxq8Nz7XzowsjXj+WqqXNicri1I6MFvLDZaagk
-         xjnw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683713525; x=1686305525;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8W9wj6II5GTrEem7luB1BRmjIURt5RdoLBLDnnuSaBY=;
-        b=eH8O2Flu6MlFCqHp/3NTZif2tqbTpD1apAmbYinI8MQXn7v9wdA0ZfSxTKFucMOVjC
-         2iEMZ7Wa+Bhd9U7F9utXDbsTul2fi9ophKZDnhIh2fZPdznnR+pNJA09muxBUO8EYKgP
-         6Ys/XYVgXfCJAFGehBMtFVyNNyc2Nh6OarGZ9Gbxk9OeLSBdb2wAODRietlDsVPBYMYv
-         MnPcMHjpcu1dQwg2QD7olrdMeg/NWYR9Gar5n+Xpa5Ol2oAtHL0LKFHjLOt3roTQEeJo
-         IMrqXX7c4vNC5T26X9NbU+S25K85GYoEzHyp0TFG/IdUsS5Wfetg435r/uGGizl7HUG4
-         GZWQ==
-X-Gm-Message-State: AC+VfDwU1ygrrdnJQAYvOVwmL+tZ/kgayWnU8fwPJiyhTKi1w77KPFE2
-        PRBMZptKyquETmtKWAqClVDyOQ==
-X-Google-Smtp-Source: ACHHUZ7QAKmL0TacRIZKfIWUdEdjTRxMsMME+brBGTKG2TxMOHIiq7GsjlRzMgperJDfC2U8Whz63Q==
-X-Received: by 2002:a17:907:3d92:b0:969:fc68:fa9a with SMTP id he18-20020a1709073d9200b00969fc68fa9amr4689159ejc.40.1683713524736;
-        Wed, 10 May 2023 03:12:04 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:c175:a0f9:6928:8c9d? ([2a02:810d:15c0:828:c175:a0f9:6928:8c9d])
-        by smtp.gmail.com with ESMTPSA id mh25-20020a170906eb9900b00882f9130eafsm2435335ejb.26.2023.05.10.03.12.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 May 2023 03:12:04 -0700 (PDT)
-Message-ID: <8f21f892-de54-9bc7-d4b9-f36aaa6b4a7c@linaro.org>
-Date:   Wed, 10 May 2023 12:12:02 +0200
+        with ESMTP id S229500AbjEJKNS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 06:13:18 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 978292118;
+        Wed, 10 May 2023 03:13:12 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4BE051063;
+        Wed, 10 May 2023 03:13:56 -0700 (PDT)
+Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 217DA3F5A1;
+        Wed, 10 May 2023 03:13:09 -0700 (PDT)
+Date:   Wed, 10 May 2023 11:13:06 +0100
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     David Laight <David.Laight@ACULAB.COM>
+Cc:     'Maxim Kiselev' <bigunclemax@gmail.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Samuel Holland <samuel@sholland.org>,
+        Mark Brown <broonie@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        "Paul Walmsley" <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+        Heiko Stuebner <heiko.stuebner@vrull.eu>,
+        Maxime Ripard <mripard@kernel.org>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-sunxi@lists.linux.dev" <linux-sunxi@lists.linux.dev>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
+Subject: Re: [PATCH v3 2/5] spi: sun6i: change OF match data to a struct
+Message-ID: <20230510111306.52e30f26@donnerap.cambridge.arm.com>
+In-Reply-To: <1592f46b0f794b24a87a964d7208da68@AcuMS.aculab.com>
+References: <20230506232616.1792109-1-bigunclemax@gmail.com>
+        <20230506232616.1792109-3-bigunclemax@gmail.com>
+        <702d085b3b814759a344886364c518f8@AcuMS.aculab.com>
+        <CALHCpMh84Q8RAh2Y+cHzAvsm4h5zBZY=9fPF6OVmtLNvX+ePxQ@mail.gmail.com>
+        <1592f46b0f794b24a87a964d7208da68@AcuMS.aculab.com>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v3 2/5] dt-bindings: clocks: atmel,at91rm9200-pmc: convert
- to yaml
-Content-Language: en-US
-To:     Claudiu.Beznea@microchip.com, mturquette@baylibre.com,
-        sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, Nicolas.Ferre@microchip.com,
-        alexandre.belloni@bootlin.com
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230509052757.539274-1-claudiu.beznea@microchip.com>
- <20230509052757.539274-3-claudiu.beznea@microchip.com>
- <e463eb68-3ea0-5230-76fd-4a2ee66bf397@linaro.org>
- <773d0d90-29c7-b1bd-bd16-898b435eafb6@microchip.com>
- <b3c7db03-6614-47d9-a9e0-a8e51c836d86@linaro.org>
- <a4d934c6-ec28-50d0-b9bb-9b11fee7ebb6@microchip.com>
- <1c2aa022-348a-8ac2-1a26-eedf57aadb77@linaro.org>
- <71a1e8de-932d-09a1-efeb-af459fee9423@microchip.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <71a1e8de-932d-09a1-efeb-af459fee9423@microchip.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/05/2023 10:31, Claudiu.Beznea@microchip.com wrote:
-> On 10.05.2023 10:58, Krzysztof Kozlowski wrote:
->> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
->>
->> On 10/05/2023 09:14, Claudiu.Beznea@microchip.com wrote:
->>> On 10.05.2023 10:06, Krzysztof Kozlowski wrote:
->>>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
->>>>
->>>> On 10/05/2023 09:00, Claudiu.Beznea@microchip.com wrote:
->>>>> On 09.05.2023 09:25, Krzysztof Kozlowski wrote:
->>>>>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
->>>>>>
->>>>>> On 09/05/2023 07:27, Claudiu Beznea wrote:
->>>>>>> Convert Atmel PMC documentation to yaml. Along with it clock names
->>>>>>> were adapted according to the current available device trees as
->>>>>>> different controller versions accept different clocks (some of them
->>>>>>> have 3 clocks as input, some has 2 clocks as inputs and some with 2
->>>>>>> input clocks uses different clock names).
->>>>>>>
->>>>>>
->>>>>> Thank you for your patch. There is something to discuss/improve.
->>>>>>
->>>>>>> +title: Atmel Power Management Controller (PMC)
->>>>>>> +
->>>>>>> +maintainers:
->>>>>>> +  - Claudiu Beznea <claudiu.beznea@microchip.com>
->>>>>>> +
->>>>>>> +description:
->>>>>>> +  The power management controller optimizes power consumption by controlling all
->>>>>>> +  system and user peripheral clocks. The PMC enables/disables the clock inputs
->>>>>>> +  to many of the peripherals and to the processor.
->>>>>>> +
->>>>>>> +properties:
->>>>>>> +  compatible:
->>>>>>> +    oneOf:
->>>>>>> +      - items:
->>>>>>> +          - enum:
->>>>>>> +              - atmel,at91sam9g15-pmc
->>>>>>> +              - atmel,at91sam9g20-pmc
->>>>>>> +              - atmel,at91sam9g25-pmc
->>>>>>> +              - atmel,at91sam9g35-pmc
->>>>>>> +              - atmel,at91sam9x25-pmc
->>>>>>> +              - atmel,at91sam9x35-pmc
->>>>>>> +          - enum:
->>>>>>> +              - atmel,at91sam9260-pmc
->>>>>>> +              - atmel,at91sam9x5-pmc
->>>>>>
->>>>>> I missed it last time - why you have two enums? We never talked about
->>>>>> this. It's usually wrong... are you sure this is real hardware:
->>>>>> atmel,at91sam9g20-pmc, atmel,at91sam9260-pmc
->>>>>> ?
->>>>>
->>>>> I have 2 enums because there are some hardware covered by:
->>>>> "vendor-name,hardware-v1-pmc", "syscon" and some covered by:
->>>>> "vendor-name,hardware-v2-pmc", "vendor-name,hardware-v1-pmc", "syscon".
->>>>
->>>> The enum does not say this. At all.
->>>>
->>>> So again, answer, do not ignore:
->>>> is this valid setup:
->>>> atmel,at91sam9g20-pmc, atmel,at91sam9260-pmc
->>>> ?
->>>
->>> Not w/o syscon. This is valid:
->>
->> Syscon is not important here, but indeed I missed it.
->>
->>>
->>> compatible = "atmel,at91sam9g20-pmc", "atmel,at91sam9260-pmc", "syscon";
->>>
->>> available in arch/arm/boot/dts/at91sam9g20.dtsi +45
->>
->> Nice, so my random choice was actually correct. Ok, so another:
->>
->> atmel,at91sam9g15-pmc, atmel,at91sam9260-pmc, syscon
->>
->> Is it valid hardware?
+On Wed, 10 May 2023 08:55:27 +0000
+David Laight <David.Laight@ACULAB.COM> wrote:
+
+Hi David,
+
+> From: Maxim Kiselev
+> > Sent: 10 May 2023 09:34
+> > 
+> > Hi, David
+> >   
+> > > Is it worth doing a structure copy at this point?
+> > > The 'cfg' data is short and constant and it would make
+
+Sorry, I don't really get the reason for this. Since the data is constant,
+wouldn't it make much more sense to keep it there in the const section,
+which we need anyway? What would a second copy bring us?
+
+> > > the code that uses it smaller and faster.  
+
+Smaller: Do you mean the generated code? Not sure that really matters, but
+your sketch below hints that the C code would get larger, more error prone
+(you mention yourself that you skipped over the error checking) and most
+importantly harder to read.
+
+Faster: Do you have numbers that back that up, or does that solve a
+particular problem of yours?
+This is programming a SPI controller transfer, which runs in the vicinity
+of a few Mbits/s. I doubt that saving a few memory accesses (once
+per transfer, not per word) matters even the slightest?
+The actual MMIO access to program the controller registers already takes
+a few dozen to a few hundred cycles, so I doubt that doing a struct copy
+saves us anything here, in practice.
+
+Besides: Copying the pointer is the most common pattern in the kernel, I
+believe. I just sampled 21 SPI drivers in the tree, 17 out of them do
+this. The other either copy the members of the struct into the driver data
+(which would be an option for us, too), or immediately consume the data in
+the probe() routine.
+
+If you have some good reason to optimise this, please send a patch (on
+top).
+
+Cheers,
+Andre.
+
+> > 
+> > I'm sorry but I don't fully understand what you are suggesting.
+> > In patch 3\5 we extend the sun6i_spi_cfg structure with the has_clk_ctl field.  
 > 
-> This one, no. So, I guess, the wrong here is that there could be
-> combinations that are not for actual hardware and yet considered valid by
-> changes in this patch?
-
-I just don't understand why you have two enums. This is not a pattern
-which is allowed anywhere. It might appear but only as exception or mistake.
-
-
-Best regards,
-Krzysztof
+> You are still only adding a second integer.
+> 
+> I'm suggesting that instead of sspi->cfg being a pointer to the
+> config data it is a copy of the config data.
+> So the assignment below becomes (ignoring error checks)
+> 	memcpy(&sspi->cfg, of_device_get_match_data(&pdev->dev), sizeof sspi->cfg);
+> and the code that needs the values is:
+> 	sspi->cfg.fifo_depth
+> (etc)
+> 
+> 	David
+> 
+> > 
+> > пн, 8 мая 2023 г. в 12:47, David Laight <David.Laight@aculab.com>:  
+> > >
+> > > From: Maksim Kiselev  
+> > > > Sent: 07 May 2023 00:26
+> > > >
+> > > > As we're adding more properties to the OF match data, convert it to a
+> > > > struct now.
+> > > >  
+> > > ...  
+> > > > -     sspi->fifo_depth = (unsigned long)of_device_get_match_data(&pdev->dev);
+> > > > +     sspi->cfg = of_device_get_match_data(&pdev->dev);  
+> > >
+> > > Is it worth doing a structure copy at this point?
+> > > The 'cfg' data is short and constant and it would make
+> > > the code that uses it smaller and faster.
+> > >
+> > >         David
+> > >
+> > > -
+> > > Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, MK1 1PT, UK
+> > > Registration No: 1397386 (Wales)
+> > >  
+> 
+> -
+> Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, MK1 1PT, UK
+> Registration No: 1397386 (Wales)
 
