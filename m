@@ -2,59 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 83E606FE1BD
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 17:43:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD99A6FE1CC
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 17:48:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237695AbjEJPnF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 11:43:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56494 "EHLO
+        id S237389AbjEJPsL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 11:48:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237575AbjEJPnD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 11:43:03 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7789A35B7;
-        Wed, 10 May 2023 08:42:53 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1546D63DCF;
-        Wed, 10 May 2023 15:42:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D092C433EF;
-        Wed, 10 May 2023 15:42:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1683733372;
-        bh=qnUqwiJXS3T0AYBwpfwJ/sB84/OFu8iJHOIsOMcAIHI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=WE0jKDR1WbbMZ27cXQLaATIX6ziNAZe2kV/z0/LgO6coaqwXFu/tsmJlnyBoLudeI
-         p15ivUkTo5Zt78mg7di+nB+ZjNQcl/i+exYZEb1McaDAe8Qomli4M431f9ZBUMad1/
-         2/q+b9mrS2q3mWwjIRlBf7qPo17EkOp9ntnrsxBa19LnRAbPcAORQQKno4XfvNg52b
-         w/Z/DF/IJ9L9PkFTL7Bzm9Ojh8a2sVP5iG2RUEhVLV/Z4SHQDz8OlrpXyjo9YJuQ9X
-         WceMZoWlIKYjB8q8/A+VqLdTRMAptvXZsA3fOmU+XaepBBZKaqETP/iDHzRck9tiM4
-         XDG9TOHg9NOSg==
-Date:   Wed, 10 May 2023 16:42:47 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: interrupt-controller: sifive,plic: Sort
- compatible values
-Message-ID: <20230510-underage-shield-f9369c92c135@spud>
-References: <9cbf54da1ace03d7a45f28230fd99954d8c0d141.1683725029.git.geert+renesas@glider.be>
+        with ESMTP id S229727AbjEJPsI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 11:48:08 -0400
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6CF494;
+        Wed, 10 May 2023 08:48:05 -0700 (PDT)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 70F2CC0008;
+        Wed, 10 May 2023 15:48:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1683733684;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=WoIOANVWdL0y5NcqhIK3a/G8U5mkm1Ghbop7k5ySOhk=;
+        b=Rd3d4ufks9H8+MFvwd9uWILnq9BHpac5TSVlyaIfx5FiU+NOdCVUKjT0oc43j2oZegyNzn
+        BXnSqpoCr02fjgy25wvCFPaWqaRviURasbmfeDG0aK0GymSBFrrPX5BuKixDem2XayZoF8
+        e5h19iXJm1R87Udx6qlnaYHq9O3zX7RGmXDndSidb3ecZl9f9L5fm2PLqz9JRK1GMG7sZL
+        LaSGFiqdSTwBRmLAIIJe95eA+Du/FtrlAeKDgo/6wW+jIf3/VJpqbAc+CKjlFZOwqn5W7G
+        FfVITgIQ8gYiM5kpYG6EWtadeSaHh2qReOLzrOm02Aoov7drJtk/GPiqPEfcQA==
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        devicetree@vger.kernel.org, <linux-kernel@vger.kernel.org>,
+        linux-tegra@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: [PATCH 0/5] of: More 'device' vs. 'module' cleanups
+Date:   Wed, 10 May 2023 17:47:58 +0200
+Message-Id: <20230510154803.189096-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="ewFZSlucFhs6AvIs"
-Content-Disposition: inline
-In-Reply-To: <9cbf54da1ace03d7a45f28230fd99954d8c0d141.1683725029.git.geert+renesas@glider.be>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,32 +56,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello,
 
---ewFZSlucFhs6AvIs
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+As part of a previous series, Rob suggested that keeping too much logic
+in of/device.c was backward and would benefit from a gradual cleanup
+with the hope some day to move the remaining helpers into inline
+functions wrapping the proper of_*() methods.
 
-On Wed, May 10, 2023 at 03:26:00PM +0200, Geert Uytterhoeven wrote:
-> Restore alphabetical sort order of the supported SiFive-compatible
-> values.
+Link: https://lore.kernel.org/lkml/CAL_JsqJE43qfYzHUuCJsbaPPBTbYX05Q7FFmPTjPFZ3Dmz_mXg@mail.gmail.com/
 
-Whoops, I probably should have noticed this when the StarFive folks
-added their entries.
+A few of these "conversions" happened in the series I was originally
+working on. At this time I actually wrote a few other changes,
+completely unrelated to my original series, but still following Rob's
+cleanup idea: here they are.
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Link: https://lore.kernel.org/lkml/20230307165359.225361-1-miquel.raynal@bootlin.com/
 
-Thanks,
-Conor.
+The last step of this series is to actually remove a copy of one of
+these helpers which I think is not needed. This drivers/gpu/ patch
+depends on the previous changes.
 
---ewFZSlucFhs6AvIs
-Content-Type: application/pgp-signature; name="signature.asc"
+Thanks, Miquèl
 
------BEGIN PGP SIGNATURE-----
+Miquel Raynal (5):
+  of: module: Mutate of_device_modalias() into two helpers
+  of: module: Mutate of_device_uevent() into two helpers
+  of: module: Mutate of_device_uevent_modalias() into two helpers
+  of: module: Export of_uevent()
+  gpu: host1x: Stop open-coding of_device_uevent()
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZFu7dwAKCRB4tDGHoIJi
-0hoxAP4wuKboCTznTD2qanlFZ9dt8/8BBShJiS0DZim4KBDK4QD+PnQ3YWxVudS3
-vyRwpzYgRLIZw8wgxBpO6DxRet77Mg0=
-=aHiw
------END PGP SIGNATURE-----
+ drivers/gpu/host1x/bus.c  | 31 +++-----------
+ drivers/of/device.c       | 90 ---------------------------------------
+ drivers/of/module.c       | 82 +++++++++++++++++++++++++++++++++++
+ include/linux/of.h        | 21 +++++++++
+ include/linux/of_device.h | 39 ++++++++++++++---
+ 5 files changed, 141 insertions(+), 122 deletions(-)
 
---ewFZSlucFhs6AvIs--
+-- 
+2.34.1
+
