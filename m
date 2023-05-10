@@ -2,109 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B17CC6FD84F
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 09:35:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7357A6FD865
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 09:42:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236035AbjEJHfK convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 10 May 2023 03:35:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53978 "EHLO
+        id S231124AbjEJHmN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 03:42:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236430AbjEJHep (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 03:34:45 -0400
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D36FE7DA2;
-        Wed, 10 May 2023 00:34:10 -0700 (PDT)
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-559de1d36a9so99707607b3.1;
-        Wed, 10 May 2023 00:34:10 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683704047; x=1686296047;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Gkle6MFunZwctXm+NJ0fWmomYZ/EJG5G6Qzbw2JFYGg=;
-        b=E2cWdl2pRtNG/GC+cmf/NGbcNfy6IiAzN0n1RbD7ZGHRCAkZ8ThZXSusqeZ3Rvzlfo
-         MledGIfYRC4pL0HBl+HeyxJd9x5mEZKTxprlYqLTTa91xDS/fs0eoowOlHbfleZ9Wubu
-         6zc8+Onx1rAoKD5gr926mrBAigbrDiwmWDw6A1jmWaweMeeWDQii8mVCzlI3yyaj14Az
-         2/uv5tiof5OIWom2Qld2/oL9aWcKY4b7cr+RlRaf3KHtUlT24FpGAzesJHOAj9T/GVzZ
-         gp9BxHihGjon/PvYPoG0Y68rIsDCT0+pq+AUZ6zoCk2BAZWlhx6TC9nlQgN1mw/m50m6
-         z6/g==
-X-Gm-Message-State: AC+VfDzQgkUptaH0lguQuMHeLihfgkdHR6HrBKK80pnZ7Vage3+i//ZH
-        nvAyn3ffziZiLvKE/ZC2/N4fsgOEBGHk+A==
-X-Google-Smtp-Source: ACHHUZ5MUgZ0Sql8Z/SQAaPBGHEkM961+t2oFpUnOa9UbQzaJeeYevnBCtzq0dEWq4z+c1jHAGLHJQ==
-X-Received: by 2002:a0d:ff81:0:b0:55d:de9e:d913 with SMTP id p123-20020a0dff81000000b0055dde9ed913mr14430198ywf.42.1683704047207;
-        Wed, 10 May 2023 00:34:07 -0700 (PDT)
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com. [209.85.128.175])
-        by smtp.gmail.com with ESMTPSA id q6-20020a0de706000000b0055a07e36659sm3843518ywe.145.2023.05.10.00.34.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 May 2023 00:34:07 -0700 (PDT)
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-559e53d1195so99712137b3.2;
-        Wed, 10 May 2023 00:34:06 -0700 (PDT)
-X-Received: by 2002:a81:6d48:0:b0:55a:881d:e744 with SMTP id
- i69-20020a816d48000000b0055a881de744mr19194874ywc.47.1683704046354; Wed, 10
- May 2023 00:34:06 -0700 (PDT)
+        with ESMTP id S230335AbjEJHmL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 03:42:11 -0400
+Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2069.outbound.protection.outlook.com [40.107.117.69])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55B0BE5D
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 00:42:09 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=SqWiLGc+WrJghjE6DsaJXnrm2Mphxn60KC6ipwFWxRlFvYLjbpflBe0O51faHIAiLaCwz1rz5K/DRPUDF/rqAROQonPS2rnxzSslAxOqV7E463Rnw/HoTPZvkt4Ij7tXrUyPJD8ELvLOSvDoWAxm/4dpgK0y2m/AyjtYAhXdBV5+He2QT9qmYsIEmlmpuPK4n4ilxb6r6ZWxUMH2KfLyGtJSiWx6lwgpe9JHquhlpl71lXhjX4zzzLZHNXnyclPa3Agg00/1LSlA+ypPKKtCB6CWYXuru2zlnxO3rrmPs8/LhpnK2Hs5/p7Gj7g8De3VYCrv8oqev61qjv23WNlhTA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8HYK05WY9AhjERXRXAJEtzAQ0PPMPGTvMK2/qVtXNFQ=;
+ b=dMOgAUk8ALSrXaHJFlF2yb47H91ZAVaW5sjbO6lOEsZ3ubC1+AnJtMfIRbfjtW9us2jL+e4vC47M8SD4hd7OuybvWwqY9/CgIrFh6VE2VUwRwbVQrA75QeNxOL1IrcNP2XuJzVYMDC5x3jhUYI94Qm6MqtSxafk/C4ZgMT6NbT2jre3iPOUTkoLcc9p6FgOhPatSH7QQhCxGxO2YEMPT/7+LjsoDhQ1ltbUQ6LGTce30UY8BnbtSGxyzw5rRlyD+kybRTx4c2CT4jljI6BZpm/WHLyO6OC8IMmALxCw/zWHtFptvYlN7vKMf6Tt7L40YjUl796HqqoTInl715o0MFA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nuvoton.com; dmarc=pass action=none header.from=nuvoton.com;
+ dkim=pass header.d=nuvoton.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nuvoton.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8HYK05WY9AhjERXRXAJEtzAQ0PPMPGTvMK2/qVtXNFQ=;
+ b=c64Jpqvc3yHJDTQPRv7K4ZKPSji+Zq9Xi8fqnFVReQDLlBhyq7JOW5NOc+twCVZS+yhe3dw7XnOqVWhb2UxVgE2biNvVjqV9U2AoWA2P3msYpmmHh7G6H5FhEZJTqJYerwXTzizTBxDJMHOSeGl4ovifx8y5M02IZGTEgD841ys=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nuvoton.com;
+Received: from SG2PR03MB6732.apcprd03.prod.outlook.com (2603:1096:4:1db::11)
+ by PSAPR03MB5528.apcprd03.prod.outlook.com (2603:1096:301:4f::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.18; Wed, 10 May
+ 2023 07:42:04 +0000
+Received: from SG2PR03MB6732.apcprd03.prod.outlook.com
+ ([fe80::3dcc:2a50:b1d4:b953]) by SG2PR03MB6732.apcprd03.prod.outlook.com
+ ([fe80::3dcc:2a50:b1d4:b953%4]) with mapi id 15.20.6363.031; Wed, 10 May 2023
+ 07:42:04 +0000
+Message-ID: <36061fee-5491-e829-2c49-27ab81f0aa57@nuvoton.com>
+Date:   Wed, 10 May 2023 15:42:01 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.2
+Subject: Re: [PATCH] ASoC: dt-bindings: nau8825: Convert to dtschema
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        broonie@kernel.org
+Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, YHCHuang@nuvoton.com,
+        KCHSU0@nuvoton.com, WTLI@nuvoton.com, SJLIN0@nuvoton.com,
+        ctlin0.linux@gmail.com
+References: <20230510034409.585800-1-CTLIN0@nuvoton.com>
+ <39afb004-5f28-2633-a8be-412cb5e74404@linaro.org>
+Content-Language: en-US
+From:   AS50 CTLin0 <ctlin0@nuvoton.com>
+In-Reply-To: <39afb004-5f28-2633-a8be-412cb5e74404@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-ClientProxiedBy: SI1PR02CA0044.apcprd02.prod.outlook.com
+ (2603:1096:4:1f6::6) To SG2PR03MB6732.apcprd03.prod.outlook.com
+ (2603:1096:4:1db::11)
 MIME-Version: 1.0
-References: <20230509190031.769298-1-niklas.soderlund+renesas@ragnatech.se>
-In-Reply-To: <20230509190031.769298-1-niklas.soderlund+renesas@ragnatech.se>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 10 May 2023 09:33:54 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVYY-xMZEF-Nzi=c3R+Cq+ysrdZ0cP10GLg6A_uJ7ukRA@mail.gmail.com>
-Message-ID: <CAMuHMdVYY-xMZEF-Nzi=c3R+Cq+ysrdZ0cP10GLg6A_uJ7ukRA@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: i2c: maxim,max96712: Require setting
- bus-type property
-To:     =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Sakari Ailus <sakari.ailus@iki.fi>, devicetree@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SG2PR03MB6732:EE_|PSAPR03MB5528:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3ad4a542-2853-4bb3-5f85-08db512a0c5d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: QCoj8uzpx0AcL3OoukEzBLekIcJVS351ChBYIzFfK27Jw8y2XWyAfGXuvJHK37LO8rDzCdF0e5VbyY0wKctRIJetKxaVNu2qXhNCkfrm5ILgvXBy4yb+D3mmb6es33NVrw7uVATeAbEMJ80WoEfiIjOHItQxdcJHyydqUtVbK7iqj6mD4a7efsduCG+mQx6nKHRxJizGrIYTTbGibGLhAmwqDMEGkkJ0M2fD483SVsDNd/MpsTwyks6+oB5WbzQ9811fbgrh2106EXiGmpM9Rj5K3Kqs7r5BIAGRr14CzQlYBALrpiKsA979Yyoxwg4zyq+SzpR67Rcn01i78G1qFSa+ZWPt7aHbIZ2W0MFbPoD160zFic6bMVnsLsoBfUrimFuItITgMjOCrtyYSZL7vT1cPxY6QASJdIKQ0EYykW6uRZAVz+kME7dn3vl3IB3L7YZfBsWBY9aImsrTKDW8BEuN23PGYzQepw3purvDH+qOccVnbZXzIhpqMNctzPof55azhG+gdN1KZHOnv1wD/Dc3duxVaU8J8QSTCbg0anaKehSI/eVRcKkY6RNpM243KVo0ZRt5jpqlJN1eT3wlhWcOGRl+Bcxy8pz2XkcCASEABsNLkPAb8xovDFFIVaRBheihpV8TDedThQg0RDolJqJ7c8gWpoiyoOSTvIiw1f77kOtyqJUq6wxWisgu0zjl
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SG2PR03MB6732.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(346002)(396003)(376002)(136003)(39860400002)(366004)(451199021)(5660300002)(478600001)(31686004)(6486002)(8936002)(6666004)(41300700001)(316002)(8676002)(53546011)(6512007)(6506007)(26005)(66476007)(66556008)(66946007)(4326008)(2906002)(2616005)(83380400001)(186003)(86362001)(31696002)(36756003)(38100700002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VlFDTFI2cFprOTFGd1hxVzN5R2ZLQ3NQdE5Qb3BxckRkQytlUW1VbFQ1M0Fu?=
+ =?utf-8?B?SUJWNTdwa05CbnB3OW9ZQldnYTdTZGhEWHBZUVVSTHZ5bHhOcEZCRnhMWlJq?=
+ =?utf-8?B?MGhDNlVBMkQ5c3krQWwrMTY0aXJ6ODZWOHJoQ28zbGpKUjJmUEtjM2kvZkE4?=
+ =?utf-8?B?Nk4wdEdPckhsaE1BeWRpeGRqQlIyUDRHK2tnU2RtUDNuaTVqUW00YTJRenR1?=
+ =?utf-8?B?TmJXdCtCU3licEEzaWxGWUUwaEdvYXh6Z0tvb1NjMURjUnU5Y2t5S056bEdC?=
+ =?utf-8?B?UWhlZTRYVWdmY3AzRlN4bkwxZnFqMFBwaHNMcG53R1N1SkYxRkh4SEVqKzc4?=
+ =?utf-8?B?UWVmSlJPclYxWmxoald4aWRoeE1ROHJTTzZSaGNHWkZtRE5KelQ4eFA5bk5a?=
+ =?utf-8?B?UkVXQXpHRlVzL3h2WVhPcjIzWWpsMEdHdDB6SkdkajNOV01rVHpRNEtsU0dy?=
+ =?utf-8?B?bFR1MzBWUk92b1RSL0lLdEhKZ1d4bDhNZkFCSW5POWhCWlF3VmhQTER3R3Qz?=
+ =?utf-8?B?anJmcFFmdmxLYW5pclRnWUlTTm0rQXk3OTlhVis5Z0VxT2U1MVVFRmZIYUFE?=
+ =?utf-8?B?eDVpMVZFeGNrTkljWXFWak9kRG9xSEdyQ24xL2huOFRvVkp0QWp5STlUOUlN?=
+ =?utf-8?B?b3RTNUF0YlA4OCtTcm0wSHlSdUZ6RXoxRHlUekFLRHdPS2VlampqcVU4aXpU?=
+ =?utf-8?B?c2o2Vm13clFwdTFvcjFjczIxNWFESGwra3pxSExWaEZMYXlUdjR6SGdXdTBp?=
+ =?utf-8?B?NFpvUG5mL1d5bVhsdHBBYW4wM0k5RDlId3NiTVBqRWVFNkw5dVQvVGdoUDcv?=
+ =?utf-8?B?cVAzclV3U3dlV09xanE3MmZFR0YvODJFK2tYdjkrYVdYRWMzckIvOTVvdlJh?=
+ =?utf-8?B?TGpYTlMvWHNFYm5ucTJLdHVvWDRkYkFQWTZZZ2g3WVJVK1RiaExNYnpLRDYx?=
+ =?utf-8?B?VVVjV20xcTdIWmtaRXM0b2JWQlgzaDVTak8xcHdSR2w2aFJ3WnJUdENBVFRT?=
+ =?utf-8?B?dXdYUy9xdHNSbmNMVTRPYldkeTB4ZC9jcUFvK2UweDB3RXUyQktwdTliOEgv?=
+ =?utf-8?B?UkpWNTV6QUdrN0VqNUlyRUpuVXY0V1RJMklaRnBxOEZaNzM1MTBUWUpCRnc3?=
+ =?utf-8?B?L2w2K3IwN1VSYWhCa0NPaStJMnhBT1BRbVlLWldqTkkwNzIyL2VIU2g1dVBi?=
+ =?utf-8?B?MVdlbVFnV2hqZWVCRDRLdU1rbG04WE11NCs0cHRCUUt1Yk91RlBuRy8yVUhW?=
+ =?utf-8?B?dUVUWkt5LzZCVGFTbDFjODYvd01OeE5uWThxSHZuMDlhYXMxbjRBSHB3ejhn?=
+ =?utf-8?B?QmRUTUF5V21xRnhnUmxUZFZzbkpxNHdIRGNXcjFHN1JDNTFvNlZHd2RvakNX?=
+ =?utf-8?B?M0dUZUlzb3Bhd3JXUjlRU2VLVVZIY0xFWGVWZnFtaXJVRDFVRTZSQkJhWmFo?=
+ =?utf-8?B?SWV0NnFCanhRY1NXODVIWXdpM2lIVEw4WGFlMS9iNEVxU3BzVGQwTXMwNzds?=
+ =?utf-8?B?L1FyUDdmLzU3cjR4T0s2cWQraVVnVllwQXlvSlJHOHBLVmkwallDYVFXcGJz?=
+ =?utf-8?B?US9yWFArblcwbC9VZjNVYm5CTllheG9MSmFYcnpoT0tNZGdhWWIxTEk5dENY?=
+ =?utf-8?B?VTI1MmJYc3lpc1JjcmFEYjVPQjlGUWx0eDJ2cWNtY0FVQmVndHV1TmF4MXR0?=
+ =?utf-8?B?WEVmRnhQK1EwN1dOZ2J6dk1xeWJUQ2kwT0ZDTDl0aVRhRFN4SW5IYjFNeEFn?=
+ =?utf-8?B?d1cza0ZXVG9aYWswSWVXQWlTMmFnR2h2ZHRhRzl6cjkxenEwYzVBQ3RXM3Rs?=
+ =?utf-8?B?MExzUCtsOFBpT1BZNjhaZWdWeEJvQUkxSlNvTndrKzFVbE1ibnJUYjZmdEdX?=
+ =?utf-8?B?eGxYd3E5SjhIVFFYV1dhUTRlQlJWekVWdWZ1bW1mOHl1TU4rbStXWW9VaWRr?=
+ =?utf-8?B?YVVkbFdPQXhKQUFmOHAwTFM2Rkh6Sk4rTzNQcG8wTXUvMXU2MlZXazEvNkpR?=
+ =?utf-8?B?RlBiaHg3bXJiTUtLQURSQkx5R1ErcHM2VXpQM1BIQ1BUNGl3NUJLdld2QlZG?=
+ =?utf-8?B?Q28wZmhHTWFQTXM3VkNSREt6QVd4M3UzRnh4YU5pUUJtNlhieVNxcDIvdU1k?=
+ =?utf-8?Q?55BnzjjUZriaV0rCnIkdpgqEx?=
+X-OriginatorOrg: nuvoton.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3ad4a542-2853-4bb3-5f85-08db512a0c5d
+X-MS-Exchange-CrossTenant-AuthSource: SG2PR03MB6732.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 May 2023 07:42:04.2471
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: a3f24931-d403-4b4a-94f1-7d83ac638e07
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: HQNm/G9ocpLZbtdHwgLSn28BicK+s2mzyvwDKtNObJlEVnchsduCPAqgn6Z5EshkFF/hWJG4OOLk13ylFjHpiQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PSAPR03MB5528
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 9, 2023 at 9:03 PM Niklas Söderlund
-<niklas.soderlund+renesas@ragnatech.se> wrote:
-> The MAX96712 can support both a CSI-2 C-PHY and D-PHY bus. The initial
-> staging driver however only supported D-PHY and the bus-type property
-> was left optional.
+On 5/10/2023 3:19 PM, Krzysztof Kozlowski wrote:
+> On 10/05/2023 05:44, David Lin wrote:
+>> Convert the NAU8825 audio CODEC bindings to DT schema.
+>>
+>> Signed-off-by: David Lin <CTLIN0@nuvoton.com>
+>> ---
+> Version your patches and provide changelog after ---.
 >
-> In preparation for adding C-PHY support to the staging driver make the
-> bus-type property mandatory as it is needed to select the correct PHY
-> mode. Without the bus-type property present, the driver falls-back to
-> D-PHY mode, so the change is functionally backward compatible with old
-> DTS files lacking the property.
->
-> The only in-tree DTS file (renesas/r8a779a0-falcon-csi-dsi.dtsi) that
-> lacked the property uses D-PHY and have been updated.
+> If you just send the same with the same mistakes, that's a NAK.
 
-has
+I know your meanings is to show change log from v1 to v2, but I see
+previous patch have other missing items.
+
+Therefore, I revise it and included your comments. Anyway, I can back to
+previous patch and re-send v2 patch with changelog.
 
 >
-> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-> ---
-> * Changes since v1
-> - Use symbolic names in comments for the bus-type properties.
-> - Improve the commit message.
-> - Rebased to v6.4-rc1.
+>>   .../devicetree/bindings/sound/nau8825.txt     | 111 --------
+>>   .../bindings/sound/nuvoton,nau8825.yaml       | 242 ++++++++++++++++++
+>>   2 files changed, 242 insertions(+), 111 deletions(-)
+>>   delete mode 100644 Documentation/devicetree/bindings/sound/nau8825.txt
+>>   create mode 100644 Documentation/devicetree/bindings/sound/nuvoton,nau=
+8825.yaml
+>>
+>
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +
+>> +unevaluatedProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/gpio/gpio.h>
+>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>> +    i2c {
+>> +        #address-cells =3D <1>;
+>> +        #size-cells =3D <0>;
+>> +        nau8825@1a {
+> This is a friendly reminder during the review process.
+>
+> It seems my previous comments were not fully addressed. Maybe my
+> feedback got lost between the quotes, maybe you just forgot to apply it.
+> Please go back to the previous discussion and either implement all
+> requested changes or keep discussing them.
+>
+> Thank you.
+>
+> Best regards,
+> Krzysztof
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+About node item, maybe I misunderstand your meanings.
 
-Gr{oetje,eeting}s,
+When I change from headset: nau8825@1a to audio-codec: nau8825@1a, it
+will have compiler error.
 
-                        Geert
+So I use nau8825@1a to submit.However, when I see your latest comment, I
+seems to understand your point for node name.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+The final result will be codec@1a or audio-codec@1a, right?
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+>
+________________________________
+________________________________
+ The privileged confidential information contained in this email is intende=
+d for use only by the addressees as indicated by the original sender of thi=
+s email. If you are not the addressee indicated in this email or are not re=
+sponsible for delivery of the email to such a person, please kindly reply t=
+o the sender indicating this fact and delete all copies of it from your com=
+puter and network server immediately. Your cooperation is highly appreciate=
+d. It is advised that any unauthorized use of confidential information of N=
+uvoton is strictly prohibited; and any information in this email irrelevant=
+ to the official business of Nuvoton shall be deemed as neither given nor e=
+ndorsed by Nuvoton.
