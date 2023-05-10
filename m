@@ -2,117 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9190A6FDB44
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 12:03:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 012C96FDB4B
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 12:05:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236322AbjEJKDx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 06:03:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59000 "EHLO
+        id S236264AbjEJKFx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 06:05:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236286AbjEJKDt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 06:03:49 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 749277A84
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 03:03:45 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-50b9ef67f35so12564195a12.2
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 03:03:45 -0700 (PDT)
+        with ESMTP id S235484AbjEJKFw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 06:05:52 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C32016EA2
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 03:05:45 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-50c8d87c775so9118813a12.3
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 03:05:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683713024; x=1686305024;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=JXkL38+f1ngRUOm18ZpalyUvbkYRXsdB38LEiKs+XYU=;
-        b=R+FWrCYSj/Yeo0NAn+Wnna7pA0/zwlsqYN+KgBHv2JMAqODemnRkTkca3fQYGIo8AY
-         JXPcwd6d/MPp05AEear7jnsOO0UmuSN23Z2h9yvpD/zgeiKwOjYAt9gFs+l2X/wiuOZG
-         rkS/59S89QftcWV+2HqvK4TdV0r1wfABAhEgiQ07O5u5ekq9zHad8U0Z4SO+5k6ryYM9
-         +P8p1bQ8SiREb26IPt7yTjkfHaBY73E9Rc1mgb5cel4StmlMjMM5HiWTU/p7hItZoW/P
-         4NGb1703GpllXae9PyW9QdMB0oLpJhUJsdwumR1uMUTf9FwvCSEh1RhG1pL3u02Uvv64
-         0kag==
+        d=linaro.org; s=google; t=1683713144; x=1686305144;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9jKt286KS5/9lbpQtTUhslsELt909PREUjMgX9aHY/0=;
+        b=ZJhtXTPDbi/qNTFrKEFjdK9wa0NbOmtBAiFmWdwJ4+yB3TAgtsXreIz9C46zJUANnG
+         PtFcuzYgiVVMd4ddD1fo1k2dRnj9JFFmOtgOfXVAy4v9BSQv5lUtMKXXLslhQOyZc54H
+         HMW6/35OjPJV0RtysX0CY14uDchv7N6IOyuVSZM4HEZB24p00Kb9MSyqp0ymQNdgJYf7
+         d/aS4vabah+cej+ReS8uFrUnZwVyNibT5Vk7bt6kTpMMi/aB2Ea4irCb+NoAGzYi+As+
+         YRsE9vFoTTExz5OfkBuqw0FBKBS4/QiHWOonL6z/eH9ClxZLFBvNjfepmzEuuL6LZfzm
+         W77g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683713024; x=1686305024;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JXkL38+f1ngRUOm18ZpalyUvbkYRXsdB38LEiKs+XYU=;
-        b=AM4d6hNSFKTuOogFjB8Lbc32YofnITMd1p9Ehkk7/L+4vuHc0SamTLTNDwzJXO9P1T
-         lVvTYQS+C12nt3TvU0dqZtZ/f7FMfLBfUR+2ePF2LppJ+L/i6soV+e3XTqJMNZpvB/uZ
-         OI3ESJjjIIMsupB+v7G2H2QWUd4uZI8L74LRTVmHQpIQEdlmVy/Bruyvt/Sy4/LaQouk
-         yHlVHvrth2jZme9PtbwBG1HjGrpZU3ZsbH+rmJTUZBiW41Yo3/7RdlPYyHslIaq/64ae
-         LQ1cgZr5dcLCTp3Lm4ATcwMxgUTnzk7O1tCl2GQb2f9IQSyRpLhlOZq4WLEOjHon2DCf
-         6pkg==
-X-Gm-Message-State: AC+VfDx6rmaoaWXmUxWKXDPZShD8WL56UFYB8VBUFjkwq55s25suf1KS
-        6waFhWd4lGopp5w6PLUDtOLOyg==
-X-Google-Smtp-Source: ACHHUZ6Q0SYXkGsPfGGGsxb7netz6Es7bm8EVJED6/gqAeRTS2GlpJPFwUjaOmwqI+c/4TkUt27fMg==
-X-Received: by 2002:aa7:cd53:0:b0:50b:c49b:62d4 with SMTP id v19-20020aa7cd53000000b0050bc49b62d4mr12938066edw.28.1683713023853;
-        Wed, 10 May 2023 03:03:43 -0700 (PDT)
-Received: from krzk-bin ([2a02:810d:15c0:828:c175:a0f9:6928:8c9d])
-        by smtp.gmail.com with ESMTPSA id d16-20020a056402001000b0050bd47f9073sm1720193edu.39.2023.05.10.03.03.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 May 2023 03:03:43 -0700 (PDT)
-Date:   Wed, 10 May 2023 12:03:41 +0200
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     bhelgaas@google.com, gustavo.pimentel@synopsys.com,
-        mani@kernel.org, kw@linux.com, jingoohan1@gmail.com,
-        kishon@kernel.org, linux-pci@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, fancer.lancer@gmail.com,
-        Rob Herring <robh@kernel.org>, robh+dt@kernel.org,
-        marek.vasut+renesas@gmail.com, devicetree@vger.kernel.org,
-        lpieralisi@kernel.org
-Subject: Re: [PATCH v16 17/22] dt-bindings: PCI: renesas: Add R-Car Gen4 PCIe
- Host
-Message-ID: <20230510100341.euimwx7jezgthsuk@krzk-bin>
-References: <20230510062234.201499-1-yoshihiro.shimoda.uh@renesas.com>
- <20230510062234.201499-18-yoshihiro.shimoda.uh@renesas.com>
+        d=1e100.net; s=20221208; t=1683713144; x=1686305144;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9jKt286KS5/9lbpQtTUhslsELt909PREUjMgX9aHY/0=;
+        b=F49nqI4BVUgYhOvwcqUVWr5qP9irXYgIV5pdaS+fiPPXimvD29Ruv3A+F+tSOCFdER
+         OIrDKruKy+4KjBr8smCPeDquiehHyZ4wFYlfCFOVAnqxVJWGsrhDakImnkByZNa8wX1A
+         RCHtG3BAVnjEFPLK05IImXnzb5B6DRtnhljqtzHrfAZ5fHkwPGaxlGuyYP7Dq9FexAto
+         WiXy+NzUlrbl7lFN9yruxwWh4qTi0yPY4j3+h6iKY6WI5JfOKTfeUesEDQuHfaKt7Jjj
+         5IMtKMj+t+s+gY7RRMJDBNkDYMb5sgRzoD56Igwqm0Ko2A72KPKs/HDpRCaf2IZDWfZB
+         uwqw==
+X-Gm-Message-State: AC+VfDzGdEmCifcHgROV0ov7ufKarRbjpmWNZLTQUlqI5DNVIzT0FvAw
+        p8G6EbZAtF+wPcAHGCvNh7qMAw==
+X-Google-Smtp-Source: ACHHUZ6SJaggu0T0c984P/D1GIbEYGJVgoI0k1sVocoNl6b/3/Uew6h6W3G9uDRyFOra5RgbUVd/5A==
+X-Received: by 2002:a50:fb92:0:b0:50b:d270:6b6f with SMTP id e18-20020a50fb92000000b0050bd2706b6fmr15433060edq.4.1683713144236;
+        Wed, 10 May 2023 03:05:44 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:c175:a0f9:6928:8c9d? ([2a02:810d:15c0:828:c175:a0f9:6928:8c9d])
+        by smtp.gmail.com with ESMTPSA id w17-20020aa7d291000000b0050c524253dasm1767577edq.20.2023.05.10.03.05.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 May 2023 03:05:43 -0700 (PDT)
+Message-ID: <9040e9bb-a16c-0186-edba-da986350340c@linaro.org>
+Date:   Wed, 10 May 2023 12:05:42 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20230510062234.201499-18-yoshihiro.shimoda.uh@renesas.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: pm7250b: make SID configurable
+Content-Language: en-US
+To:     Luca Weiss <luca.weiss@fairphone.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230407-pm7250b-sid-v1-0-fc648478cc25@fairphone.com>
+ <20230407-pm7250b-sid-v1-2-fc648478cc25@fairphone.com>
+ <f52524da-719b-790f-ad2c-0c3f313d9fe9@linaro.org>
+ <CSIE9TYTQUHL.3E769C2Y4RAAO@otso>
+ <c9eea8ec-b289-334c-9c0b-7c992184a265@linaro.org>
+ <CAA8EJpoSpytSTm=y7oPD_SC+0-bd735KEczR1JgMc7RuMZ+A+g@mail.gmail.com>
+ <CSIGK60CQSD8.1Q4SOANJRMASF@otso>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CSIGK60CQSD8.1Q4SOANJRMASF@otso>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 10 May 2023 15:22:29 +0900, Yoshihiro Shimoda wrote:
-> Document bindings for Renesas R-Car Gen4 and R-Car S4-8 (R8A779F0)
-> PCIe host module.
+On 10/05/2023 10:34, Luca Weiss wrote:
+> On Wed May 10, 2023 at 10:07 AM CEST, Dmitry Baryshkov wrote:
+>> On Wed, 10 May 2023 at 09:55, Krzysztof Kozlowski
+>> <krzysztof.kozlowski@linaro.org> wrote:
+>>>
+>>> On 10/05/2023 08:47, Luca Weiss wrote:
+>>>> Hi Krzysztof,
+>>>>
+>>>> On Fri Apr 7, 2023 at 10:27 AM CEST, Krzysztof Kozlowski wrote:
+>>>>> On 07/04/2023 09:45, Luca Weiss wrote:
+>>>>>> Like other Qualcomm PMICs the PM7250B can be used on different addresses
+>>>>>> on the SPMI bus. Use similar defines like the PMK8350 to make this
+>>>>>> possible.
+>>>>>>
+>>>>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+>>>>>> ---
+>>>>>>  arch/arm64/boot/dts/qcom/pm7250b.dtsi | 23 ++++++++++++++++-------
+>>>>>>  1 file changed, 16 insertions(+), 7 deletions(-)
+>>>>>>
+>>>>>> diff --git a/arch/arm64/boot/dts/qcom/pm7250b.dtsi b/arch/arm64/boot/dts/qcom/pm7250b.dtsi
+>>>>>> index daa6f1d30efa..eeb476edc79a 100644
+>>>>>> --- a/arch/arm64/boot/dts/qcom/pm7250b.dtsi
+>>>>>> +++ b/arch/arm64/boot/dts/qcom/pm7250b.dtsi
+>>>>>> @@ -7,6 +7,15 @@
+>>>>>>  #include <dt-bindings/interrupt-controller/irq.h>
+>>>>>>  #include <dt-bindings/spmi/spmi.h>
+>>>>>>
+>>>>>> +/* This PMIC can be configured to be at different SIDs */
+>>>>>> +#ifndef PM7250B_SID
+>>>>>> +   #define PM7250B_SID 2
+>>>>>
+>>>>> Drop indentation, although anyway I am against this. Please don't bring
+>>>>> new patterns of this at least till we settle previous discussion.
+>>>>>
+>>>>> https://lore.kernel.org/linux-arm-msm/46658cbb-fff5-e98b-fdad-88fa683a9c75@linaro.org/
+>>>>
+>>>> What's the outcome of the discussion? For this PMIC it's totally enough
+>>>> to have the SID configurable like in this patch, I don't think this PMIC
+>>>> will be included twice in a board - at least I'm not aware of such a
+>>>> configuration.
+>>>
+>>> We did not reach consensus and I still disagree with complex macros or
+>>> macros depending on order of inclusion.
+>>
+>> I still think we should find a way to parametrise PMIC dtsi, however I
+>> agree with Krzysztof that complex CPP is not a way to go.
 > 
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
-> ---
->  .../bindings/pci/rcar-gen4-pci-host.yaml      | 109 ++++++++++++++++++
->  1 file changed, 109 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/rcar-gen4-pci-host.yaml
-> 
+> What about the macro already used in-tree and proposed with this patch?
+> I wouldn't say this is a "complex macro" since it's just a single number
+> being replaced in a few places.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Are you talking about the macro to which I responded: "or macros
+depending on order of inclusion." or something else?
 
-yamllint warnings/errors:
+Best regards,
+Krzysztof
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/rcar-gen4-pci-host.example.dtb: pcie@e65d0000: reg: [[0, 3864854528, 0, 4096], [0, 3864862720, 0, 2048], [0, 3864866816, 0, 8192], [0, 3864875008, 0, 4608], [0, 3864879616, 0, 3584], [0, 4261412864, 0, 4194304]] is too long
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/rcar-gen4-pci-host.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/rcar-gen4-pci-host.example.dtb: pcie@e65d0000: reg-names: ['dbi', 'dbi2', 'atu', 'dma', 'app', 'config'] is too long
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/rcar-gen4-pci-host.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/rcar-gen4-pci-host.example.dtb: pcie@e65d0000: Unevaluated properties are not allowed ('#address-cells', '#interrupt-cells', '#size-cells', 'bus-range', 'device_type', 'dma-ranges', 'interrupt-map', 'interrupt-map-mask', 'ranges', 'snps,enable-cdm-check' were unexpected)
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/rcar-gen4-pci-host.yaml
-
-
-See https://patchwork.ozlabs.org/patch/1779258
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
