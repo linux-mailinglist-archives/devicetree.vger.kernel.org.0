@@ -2,226 +2,283 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC99C6FE115
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 17:04:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 288C96FE14E
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 17:12:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237253AbjEJPEw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 11:04:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35094 "EHLO
+        id S237646AbjEJPMh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 11:12:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236972AbjEJPEs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 11:04:48 -0400
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2072.outbound.protection.outlook.com [40.107.22.72])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9C221B1;
-        Wed, 10 May 2023 08:04:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=topic.nl; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5OA17IWIFruik6KYN7bczpkJgH3LdC++KOSz5ZVJJ2E=;
- b=T2cY+Zbgj45vK4VWxJj8fgxJGrbnJ3udYL8Rv04sdj1xcvoNWsQjGCz2DMp7djYdlV3mXUvJfGgRS/wfHibkgXWJYoJQHFK8wXJH70mYOoSJODrKCjuyPmhCQdWY36oc7Yt3odGmEwDhFA1UdsJnXVTVTACV4thPAHcZ+k8ci7AJ1C/2+DSAaYqPdbg0zyqu/u84YNYnkN3TZQo1kDFLzUqfRQ2G+RCRlHDgCrAq3b438dWElzssxoHWKoP2OrrffvxPEFiWl5jXiF/3SNjpVPiYlh+9mlzhmFqwVF5lsmmR0r3ljj1STA+1NK/t/zryChhmqFrMmvJwcv3udSEkTA==
-Received: from OL1P279CA0010.NORP279.PROD.OUTLOOK.COM (2603:10a6:e10:12::15)
- by PAWPR04MB9959.eurprd04.prod.outlook.com (2603:10a6:102:387::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.32; Wed, 10 May
- 2023 15:04:41 +0000
-Received: from HE1EUR01FT093.eop-EUR01.prod.protection.outlook.com
- (2603:10a6:e10:12:cafe::f2) by OL1P279CA0010.outlook.office365.com
- (2603:10a6:e10:12::15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.33 via Frontend
- Transport; Wed, 10 May 2023 15:04:41 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 20.93.157.195)
- smtp.mailfrom=topicproducts.com; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=topic.nl;
-Received-SPF: Pass (protection.outlook.com: domain of topicproducts.com
- designates 20.93.157.195 as permitted sender)
- receiver=protection.outlook.com; client-ip=20.93.157.195;
- helo=westeu11-emailsignatures-cloud.codetwo.com; pr=C
-Received: from westeu11-emailsignatures-cloud.codetwo.com (20.93.157.195) by
- HE1EUR01FT093.mail.protection.outlook.com (10.152.0.243) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6387.20 via Frontend Transport; Wed, 10 May 2023 15:04:40 +0000
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com (104.47.14.51) by westeu11-emailsignatures-cloud.codetwo.com with CodeTwo SMTP Server (TLS12) via SMTP; Wed, 10 May 2023 15:04:39 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eGhiSPH/pFyTCP5kMKHi1AzN0luUJsHtkOpnL5z1UZ3F4JTeAV4W7nvBY1DujrF2pw7/+BlE6/AonQilsnz3XoJJ78yQVSo6cJlVXJriURcdsXA+r4KnZskJn2XMQ87gvwnaodHVAMJub15EVvZcDQZ2vk1y1VTgL3PHej0YDVvc1CFb/mDE5LIFUazfDgnNOjsYjh/pmZ+Z97XtMr56tLqJkdgh/7gS4g2Z8BYAfz3IgIHg1/jv5q7nA0C8IiVpsht6ZHzl+KUyUWBnZNbrbCvIJftOtOre6F3uAM0bl+c8fjap8pyGPKwalgZYRqPdDsY78OH1Ajk34oX6uIogHg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pO4Ko6m/7vDqD3rYb6ulFk5bwq61O8gngTzIvwgDToQ=;
- b=bBQ6AQpPHOQVuG4ezwd8mudpjExtsKIO1RnhHbfsCyk6AD2e79PiKjXXT0MSIBNI2RU/+9GaLbpXKJofX3UUGHXCum2kLMJos7tRn+gdH8CVs37b4nL7myLu7OS67ulfaFfCdpE8B00AWJeu2Gi6VVwbFWECpi5Cn2t8eHCPMRyD+9tpkFA+4JF/F4nEzpFYpgvOSMh7BlWO/KwW3CI5zxnAIglMvXJABHMQ57bwdu3BoaZBdhUosEdZVzSwqZappb/FbHwBaFTBZNeG2XuGsCQHEdjzfNipM3lQ5yDWNJmVr0ZOjiXnuZ42fOQzL7ZoWVqzPbDanT7mSH/j+Dtd3g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=topicproducts.com; dmarc=pass action=none header.from=topic.nl;
- dkim=pass header.d=topic.nl; arc=none
-Authentication-Results-Original: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=topic.nl;
-Received: from DB8PR04MB6523.eurprd04.prod.outlook.com (2603:10a6:10:10f::26)
- by AM9PR04MB8453.eurprd04.prod.outlook.com (2603:10a6:20b:410::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.19; Wed, 10 May
- 2023 15:04:36 +0000
-Received: from DB8PR04MB6523.eurprd04.prod.outlook.com
- ([fe80::f4fa:8429:9de2:41c3]) by DB8PR04MB6523.eurprd04.prod.outlook.com
- ([fe80::f4fa:8429:9de2:41c3%6]) with mapi id 15.20.6387.018; Wed, 10 May 2023
- 15:04:36 +0000
-Message-ID: <0332e0d2-5b7a-d79f-490b-a8e60e4663f8@topic.nl>
-Date:   Wed, 10 May 2023 17:04:34 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-From:   Mike Looijmans <mike.looijmans@topic.nl>
-Subject: Re: [PATCH 1/2] dt-bindings: usb: misc: Add microchip USB5807 HUB
- driver
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
-References: <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.73717b19-477a-47ab-9efb-48f096304ca8@emailsignatures365.codetwo.com>
- <20230509074621.29774-1-mike.looijmans@topic.nl>
- <9a2c6858-fe1d-121d-aca4-58fa907ee2fb@linaro.org>
-Content-Language: en-US
-Organization: Topic
-In-Reply-To: <9a2c6858-fe1d-121d-aca4-58fa907ee2fb@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-ClientProxiedBy: AS4P192CA0006.EURP192.PROD.OUTLOOK.COM
- (2603:10a6:20b:5da::7) To DB8PR04MB6523.eurprd04.prod.outlook.com
- (2603:10a6:10:10f::26)
+        with ESMTP id S237654AbjEJPMf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 11:12:35 -0400
+Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D4D11713
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 08:12:33 -0700 (PDT)
+Received: by mail-yb1-xb2d.google.com with SMTP id 3f1490d57ef6-b9e2f227640so9347100276.3
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 08:12:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1683731552; x=1686323552;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=coL2h1loXq0Q/LZaipmWI4lWtoYeVShAhhtPPbhWS60=;
+        b=VCdK5z8cv2Z7THcPSi/A9TpzsVtzZLYSNGCd1KHVOqpj7kGN8eMmvzOKdy5SfoLl+v
+         HPFVGx/E7HhvivCqUiusmuNg/5Bs4GcNBlhIy76jRTWJ5hnsb0SWlhKZfgd7HgkwQBHW
+         ZTGextOvASREpFt3mrhVjawrQ0z2J6LXuRbQu/i2rvA1Do5kw6Pa30UyeWVR/pJXG5bu
+         DGr9m8bWLpDXsG95x01bRaYPYHzwLPHwA4t59iN561Bne8vjqwmdL29Rky3QCw6a1UCa
+         MdJ5BbfuPxvaHM2b4xeKyaRtEa2RvhBt+K4zIHGVyVVlhdvQySMuD4u+i4IxKqD94/bP
+         WIGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683731552; x=1686323552;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=coL2h1loXq0Q/LZaipmWI4lWtoYeVShAhhtPPbhWS60=;
+        b=QhCzjOdVf9Bu1Y2fBjYg1BwF9D+YbMk4d4+ycc/jvTWRwNE1Ia63U8+eyuGaQj8P7S
+         8Gn0pK5HjbuLUHISV2mRYg5RzoXJEvUL++/K07CB7M9szjXUQpzVvlv/0ZsJf5SoyC5E
+         hQBiUBQsyMZgHzJNR2VsmZ+4DVKuvaJrfCg5aVrB471ADfHiKOmRDbtJwZKs8mdvyC0+
+         7BcNg7eCp8+TO3I5SHaLkITOvMagaPffEkAr6vDYRI5+oBtkD/0Yk1hgIv8d6iOVjgQM
+         R8DP/nXLtOvNWxG5zTts2BDH+xS0gjdVMvNrdr4XfqzYF300txdRS+snOxU2lIxX7NRm
+         JHtw==
+X-Gm-Message-State: AC+VfDyW+tMw+Z9AemhfzF7b4M6zrzeEse0BwRZP8b6Iaq1NZ9tzCiK9
+        i4Pv1Q2Bs6VS72EApIGwYk/x2dekvDO7bs/OG03s5A==
+X-Google-Smtp-Source: ACHHUZ6mnlT4c0M7cTifPyZmp/HMS67pU1kZjGTFSBdczAlf7VlExTiibdhWUFvuLboPH+Hk5DJwgqnBobM9rfmmm2Y=
+X-Received: by 2002:a25:19d7:0:b0:b97:1e2e:a4e5 with SMTP id
+ 206-20020a2519d7000000b00b971e2ea4e5mr17132767ybz.40.1683731552468; Wed, 10
+ May 2023 08:12:32 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-TrafficTypeDiagnostic: DB8PR04MB6523:EE_|AM9PR04MB8453:EE_|HE1EUR01FT093:EE_|PAWPR04MB9959:EE_
-X-MS-Office365-Filtering-Correlation-Id: 784c9ca9-ad09-4932-e974-08db5167e190
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted: BCL:0;
-X-Microsoft-Antispam-Message-Info-Original: SYllGNeTiAloRhYairXI8PHqxrCuMb163U0HoMYUBE+jB1GoNut6zW7EiUwyWwYJjE8eIgwETnYPO7JAOE3ViYt5mZGYmwGmPqv2WMW71exAVvVhNzRcAOkRKUPM52Vt9Zy8abMuf5/th9AonqgTsaJWXxuAX33DiOHivPvvYphTgnCk24FZFgwuH7rVUadrfGKWMNw3gZnMxq7m0h0LlIAgwtt8Yj82Ie/t9NKJUhtVRN3TO+0FKR0bAJ5Nn2OvVOMr2bhG5iH3UoLHD14uSyL90t2DnDS2zUj0Z42o4FDWgCC3nY6PXGI90xeEWEG1k/skUK3Pkd139dNZD2VsaiQMyBVSZRFe+uYQ7XoayvgaPaUtCdaEZZnObF/dknwuXdnz5tdSn6Ta4REqzm205uqW4hkaH77pCtxmyNPBRO2mW34WvZ7L4qqdoEonOi4p1QnkZv8+HihlYiTqxdxg5BY52z3Ekf7OLJV7AVTxKDSqWOyUW6+ocNmYMMO8OwRK6dtP1DJ8Q2JtInk/bcG+XsH8eoqLFbFe+Naldi+WyZGjxMP/pR9NOILPN0/JXzGnDpSNkf2nVq+Cc5iYpbLwNOa8L8KvygV+zzeRlOxA0BlMLrB3rVJTQo1GNV6mSuFomwD2NYpEa5YEengix46F1k7EGBkkux0YbQzSzT2ZmlA=
-X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6523.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(376002)(346002)(39840400004)(136003)(366004)(396003)(451199021)(83170400001)(38100700002)(38350700002)(36756003)(31696002)(31686004)(52116002)(8936002)(966005)(36916002)(8676002)(5660300002)(6486002)(478600001)(6506007)(26005)(44832011)(186003)(53546011)(2616005)(2906002)(42882007)(41300700001)(316002)(66946007)(66476007)(54906003)(66556008)(4326008)(6512007)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8453
-X-CodeTwo-MessageID: 3d445e79-12b3-496e-afc9-a53947901f75.20230510150439@westeu11-emailsignatures-cloud.codetwo.com
-X-CodeTwoProcessed: true
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped: HE1EUR01FT093.eop-EUR01.prod.protection.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id-Prvs: 7fddf3f4-d525-4645-5af0-08db5167de96
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: W6O98mAte0MF3nGRX/ExUx0F/Ty942tozvw7w0M8lAoHGjwE81utWTHLmZ125dR6pdYCLC5RzLAuDR78AwcWDslmqG9FQQ3bodu1mfdWE1GOddSUuXQmR1dpBZiMxUnTJ7KDy7MLQ3H4dOm4T/Qd7iaGNwBJsDFgu7bP5WiA78WFXwYd4qqEEiQ/22vbgIf9f1qupQUahQ8XAOv7b0H6lIElQlCsBoI+UTRBXTow1q5LHPMyu29/wkxqDM1Jf5cB34P9A5iBfaaSOHb8KEUXN5geqrl1oQViXAvrZDBYh7VzvQM81LKU5f5Mnr2cHmEI8dbJ44L52dLZTCZyn+QNAV1fqxgFbcbofEjWQi5W4F8Ei6vvLG33gZudeGuq6R3BFBIFY0TWOlouV53E4euHkrlEkT10M7aIpXB/l1LZOn+BG4IIJBwVDodjKO0eRQldcXdKZx3DPfmvEdTeu456+UVPiT06y76L8VwCDeERhaC0K+37FaoosCgU/Jl3R5vg0lUfY6HcUIzDfXGvFcuzdFWqHKRQspqzmQj7Lxc7jv6ChDinieHOtRjxSNV8j0p1ORajv0LqSe6Aeqx2ACBtojXDcEXOigGhI4HyQLE1EsCp8TQ9+/d6MBQm7TTTQHNjzip4G9lcrkpvZNFyAwcoT6Z+l8Lue2MGPDtMroyX4eKsxz3FWSrOPHyEf69paIec
-X-Forefront-Antispam-Report: CIP:20.93.157.195;CTRY:NL;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:westeu11-emailsignatures-cloud.codetwo.com;PTR:westeu11-emailsignatures-cloud.codetwo.com;CAT:NONE;SFS:(13230028)(4636009)(346002)(376002)(396003)(136003)(39840400004)(451199021)(36840700001)(46966006)(31686004)(26005)(7596003)(53546011)(356005)(7636003)(478600001)(8936002)(44832011)(54906003)(82310400005)(70586007)(41300700001)(40480700001)(31696002)(966005)(15974865002)(6486002)(8676002)(4326008)(5660300002)(316002)(2616005)(6506007)(186003)(336012)(36916002)(6512007)(47076005)(83170400001)(36756003)(36860700001)(2906002)(42882007)(70206006)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: topic.nl
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 May 2023 15:04:40.7471
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 784c9ca9-ad09-4932-e974-08db5167e190
-X-MS-Exchange-CrossTenant-Id: 449607a5-3517-482d-8d16-41dd868cbda3
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=449607a5-3517-482d-8d16-41dd868cbda3;Ip=[20.93.157.195];Helo=[westeu11-emailsignatures-cloud.codetwo.com]
-X-MS-Exchange-CrossTenant-AuthSource: HE1EUR01FT093.eop-EUR01.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAWPR04MB9959
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20230508142842.854564-1-apatel@ventanamicro.com>
+ <20230508142842.854564-8-apatel@ventanamicro.com> <38cb8b93-6f10-c269-e574-613ae6a9dd87@arm.com>
+In-Reply-To: <38cb8b93-6f10-c269-e574-613ae6a9dd87@arm.com>
+From:   Anup Patel <apatel@ventanamicro.com>
+Date:   Wed, 10 May 2023 20:42:20 +0530
+Message-ID: <CAK9=C2XoJzJBY4Rgxo0WDMOrOPO-ZVCT0J-z867FMCvvzFYFpA@mail.gmail.com>
+Subject: Re: [PATCH v3 07/11] irqchip/riscv-imsic: Improve IOMMU DMA support
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Atish Patra <atishp@atishpatra.org>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Anup Patel <anup@brainfault.org>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, iommu@lists.linux.dev,
+        Vincent Chen <vincent.chen@sifive.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I'll fix the issues and send a v2. I'll add supply/regulators as well.=20
-Will take a few days though.
+On Wed, May 10, 2023 at 4:18=E2=80=AFPM Robin Murphy <robin.murphy@arm.com>=
+ wrote:
+>
+> On 2023-05-08 15:28, Anup Patel wrote:
+> > We have a separate RISC-V IMSIC MSI address for each CPU so changing
+> > MSI (or IRQ) affinity results in re-programming of MSI address in
+> > the PCIe (or platform) device.
+> >
+> > Currently, the iommu_dma_prepare_msi() is called only once at the
+> > time of IRQ allocation so IOMMU DMA domain will only have mapping
+> > for one MSI page. This means iommu_dma_compose_msi_msg() called
+> > by imsic_irq_compose_msi_msg() will always use the same MSI page
+> > irrespective to target CPU MSI address. In other words, changing
+> > MSI (or IRQ) affinity for device using IOMMU DMA domain will not
+> > work.
+> >
+> > To address above issue, we do the following:
+> > 1) Map MSI pages for all CPUs in imsic_irq_domain_alloc()
+> >     using iommu_dma_prepare_msi().
+> > 2) Add a new iommu_dma_select_msi() API to select a specific
+> >     MSI page from a set of already mapped MSI pages.
+> > 3) Use iommu_dma_select_msi() to select a specific MSI page
+> >     before calling iommu_dma_compose_msi_msg() in
+> >     imsic_irq_compose_msi_msg().
+>
+> The high-level design is that prepare ensures any necessary page
+> mappings exist, then compose retrieves the appropriate page for the
+> given message. I think it generalises well enough without needing a new
+> op, it just means that caching a single page in the msi_desc up-front no
+> longer fits, so that wants tweaking to allow compose to do a more
+> general lookup.
 
-Thanks for the quick feedback, much appreciated.
---
+Yes, usage of msi_desc_get/set_iommu_cookie() is the only problem.
 
+To have minimal impact on other irqchip drivers, I added a separate
+iommu_dma_select_msi() API but in the next patch revision I will
+tweak iommu_dma_compose_msi_msg() to lookup msi_page based
+on the existing MSI address in "struct msi_msg".
 
-Met vriendelijke groet / kind regards,=0A=
-=0A=
-Mike Looijmans=0A=
-System Expert=0A=
-=0A=
-=0A=
-TOPIC Embedded Products B.V.=0A=
-Materiaalweg 4, 5681 RJ Best=0A=
-The Netherlands=0A=
-=0A=
-T: +31 (0) 499 33 69 69=0A=
-E: mike.looijmans@topicproducts.com=0A=
-W: www.topic.nl=0A=
-=0A=
-Please consider the environment before printing this e-mail=0A=
-On 09-05-2023 10:02, Krzysztof Kozlowski wrote:
-> On 09/05/2023 09:46, Mike Looijmans wrote:
->> The USB5807 is a 7-port USB 3.1 hub that can be configured by I2C.
->> This driver resets the chip, optionally allows D+/D- lines to be
->> swapped in the devicetree config, and then sends an ATTACH command to
->> put the device in operational mode.
->>
->> Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
->>
-> Subject: drop misc prefix.
-> Subject: drop "driver", you are not adding driver here.
->
->> ---
->>
->>   .../devicetree/bindings/usb/usb5807.yaml      | 51 +++++++++++++++++++
->>   1 file changed, 51 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/usb/usb5807.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/usb/usb5807.yaml b/Docume=
-ntation/devicetree/bindings/usb/usb5807.yaml
->> new file mode 100644
->> index 000000000000..06b94210c281
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/usb/usb5807.yaml
-> Filename like compatible.
->
->> @@ -0,0 +1,51 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/usb/usb5807.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Microchip USB 3.1 SuperSpeed Hub Controller
->> +
->> +maintainers:
->> +  - Mike Looijmans <mike.looijmans@topic.nl>
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - microchip,usb5807
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  reset-gpios:
->> +    description: |
->> +      Should specify the gpio for hub reset
-> Drop description, obvious. maxItems instead. If you decide to add
-> description, then keep it useful, e.g. mention active low.
->
->
->> +
->> +  swap-dx-lanes:
->> +    $ref: /schemas/types.yaml#/definitions/uint8-array
->> +    description: |
-> Do not need '|' unless you need to preserve formatting.
->
->> +      Specifies the ports which will swap the differential-pair (D+/D-)=
-,
->> +      default is not-swapped.
-> maxItems (and minItems if it differs)
->
-> No supply? How does the hub gets power? I see at least two supplies in
-> datasheet.
->
->> +
->> +additionalProperties: false
->> +
->> +required:
->> +  - compatible
->> +  - reg
-> Best regards,
-> Krzysztof
->
+Regards,
+Anup
 
---=20
-Mike Looijmans
-
+>
+> Thanks,
+> Robin.
+>
+> > Reported-by: Vincent Chen <vincent.chen@sifive.com>
+> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> > ---
+> >   drivers/iommu/dma-iommu.c         | 38 ++++++++++++++++++++++++++++++=
++
+> >   drivers/irqchip/irq-riscv-imsic.c | 27 ++++++++++++----------
+> >   include/linux/iommu.h             |  6 +++++
+> >   3 files changed, 59 insertions(+), 12 deletions(-)
+> >
+> > diff --git a/drivers/iommu/dma-iommu.c b/drivers/iommu/dma-iommu.c
+> > index 7a9f0b0bddbd..07782c77a6eb 100644
+> > --- a/drivers/iommu/dma-iommu.c
+> > +++ b/drivers/iommu/dma-iommu.c
+> > @@ -1677,6 +1677,44 @@ int iommu_dma_prepare_msi(struct msi_desc *desc,=
+ phys_addr_t msi_addr)
+> >       return 0;
+> >   }
+> >
+> > +/**
+> > + * iommu_dma_select_msi() - Select a MSI page from a set of
+> > + * already mapped MSI pages in the IOMMU domain.
+> > + *
+> > + * @desc: MSI descriptor prepared by iommu_dma_prepare_msi()
+> > + * @msi_addr: physical address of the MSI page to be selected
+> > + *
+> > + * Return: 0 on success or negative error code if the select failed.
+> > + */
+> > +int iommu_dma_select_msi(struct msi_desc *desc, phys_addr_t msi_addr)
+> > +{
+> > +     struct device *dev =3D msi_desc_to_dev(desc);
+> > +     struct iommu_domain *domain =3D iommu_get_domain_for_dev(dev);
+> > +     const struct iommu_dma_msi_page *msi_page;
+> > +     struct iommu_dma_cookie *cookie;
+> > +
+> > +     if (!domain || !domain->iova_cookie) {
+> > +             desc->iommu_cookie =3D NULL;
+> > +             return 0;
+> > +     }
+> > +
+> > +     cookie =3D domain->iova_cookie;
+> > +     msi_addr &=3D ~(phys_addr_t)(cookie_msi_granule(cookie) - 1);
+> > +
+> > +     msi_page =3D msi_desc_get_iommu_cookie(desc);
+> > +     if (msi_page && msi_page->phys =3D=3D msi_addr)
+> > +             return 0;
+> > +
+> > +     list_for_each_entry(msi_page, &cookie->msi_page_list, list) {
+> > +             if (msi_page->phys =3D=3D msi_addr) {
+> > +                     msi_desc_set_iommu_cookie(desc, msi_page);
+> > +                     return 0;
+> > +             }
+> > +     }
+> > +
+> > +     return -ENOENT;
+> > +}
+> > +
+> >   /**
+> >    * iommu_dma_compose_msi_msg() - Apply translation to an MSI message
+> >    * @desc: MSI descriptor prepared by iommu_dma_prepare_msi()
+> > diff --git a/drivers/irqchip/irq-riscv-imsic.c b/drivers/irqchip/irq-ri=
+scv-imsic.c
+> > index 30247c84a6b0..ec61c599e0c5 100644
+> > --- a/drivers/irqchip/irq-riscv-imsic.c
+> > +++ b/drivers/irqchip/irq-riscv-imsic.c
+> > @@ -446,6 +446,10 @@ static void imsic_irq_compose_msi_msg(struct irq_d=
+ata *d,
+> >       if (WARN_ON(err))
+> >               return;
+> >
+> > +     err =3D iommu_dma_select_msi(desc, msi_addr);
+> > +     if (WARN_ON(err))
+> > +             return;
+> > +
+> >       msg->address_hi =3D upper_32_bits(msi_addr);
+> >       msg->address_lo =3D lower_32_bits(msi_addr);
+> >       msg->data =3D d->hwirq;
+> > @@ -493,11 +497,18 @@ static int imsic_irq_domain_alloc(struct irq_doma=
+in *domain,
+> >       int i, hwirq, err =3D 0;
+> >       unsigned int cpu;
+> >
+> > -     err =3D imsic_get_cpu(&imsic->lmask, false, &cpu);
+> > -     if (err)
+> > -             return err;
+> > +     /* Map MSI address of all CPUs */
+> > +     for_each_cpu(cpu, &imsic->lmask) {
+> > +             err =3D imsic_cpu_page_phys(cpu, 0, &msi_addr);
+> > +             if (err)
+> > +                     return err;
+> >
+> > -     err =3D imsic_cpu_page_phys(cpu, 0, &msi_addr);
+> > +             err =3D iommu_dma_prepare_msi(info->desc, msi_addr);
+> > +             if (err)
+> > +                     return err;
+> > +     }
+> > +
+> > +     err =3D imsic_get_cpu(&imsic->lmask, false, &cpu);
+> >       if (err)
+> >               return err;
+> >
+> > @@ -505,10 +516,6 @@ static int imsic_irq_domain_alloc(struct irq_domai=
+n *domain,
+> >       if (hwirq < 0)
+> >               return hwirq;
+> >
+> > -     err =3D iommu_dma_prepare_msi(info->desc, msi_addr);
+> > -     if (err)
+> > -             goto fail;
+> > -
+> >       for (i =3D 0; i < nr_irqs; i++) {
+> >               imsic_id_set_target(hwirq + i, cpu);
+> >               irq_domain_set_info(domain, virq + i, hwirq + i,
+> > @@ -528,10 +535,6 @@ static int imsic_irq_domain_alloc(struct irq_domai=
+n *domain,
+> >       }
+> >
+> >       return 0;
+> > -
+> > -fail:
+> > -     imsic_ids_free(hwirq, get_count_order(nr_irqs));
+> > -     return err;
+> >   }
+> >
+> >   static void imsic_irq_domain_free(struct irq_domain *domain,
+> > diff --git a/include/linux/iommu.h b/include/linux/iommu.h
+> > index e8c9a7da1060..41e8613832ab 100644
+> > --- a/include/linux/iommu.h
+> > +++ b/include/linux/iommu.h
+> > @@ -1117,6 +1117,7 @@ void iommu_setup_dma_ops(struct device *dev, u64 =
+dma_base, u64 dma_limit);
+> >   int iommu_get_msi_cookie(struct iommu_domain *domain, dma_addr_t base=
+);
+> >
+> >   int iommu_dma_prepare_msi(struct msi_desc *desc, phys_addr_t msi_addr=
+);
+> > +int iommu_dma_select_msi(struct msi_desc *desc, phys_addr_t msi_addr);
+> >   void iommu_dma_compose_msi_msg(struct msi_desc *desc, struct msi_msg =
+*msg);
+> >
+> >   #else /* CONFIG_IOMMU_DMA */
+> > @@ -1138,6 +1139,11 @@ static inline int iommu_dma_prepare_msi(struct m=
+si_desc *desc, phys_addr_t msi_a
+> >       return 0;
+> >   }
+> >
+> > +static inline int iommu_dma_select_msi(struct msi_desc *desc, phys_add=
+r_t msi_addr)
+> > +{
+> > +     return 0;
+> > +}
+> > +
+> >   static inline void iommu_dma_compose_msi_msg(struct msi_desc *desc, s=
+truct msi_msg *msg)
+> >   {
+> >   }
