@@ -2,141 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E7856FDA1E
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 10:55:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F1EC6FDA53
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 11:03:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236841AbjEJIz4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 04:55:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46352 "EHLO
+        id S236775AbjEJJDu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 05:03:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236836AbjEJIzx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 04:55:53 -0400
-Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E912AE72
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 01:55:48 -0700 (PDT)
-Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-559e2051d05so100657597b3.3
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 01:55:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683708948; x=1686300948;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=hoZ8kkN1eS0yykkcRILWwhA511HYhnHiIl1p28gNBmc=;
-        b=sE0SnGa6LPEDuvJL8kk7+DMF5cC3tWhw0haIWIWmyXXxyTFKhNOsSyOAllIZBFOW8h
-         1VoALPXuv4QRHUoSVmdbbICLEmRh/6WZzl0Z1fmcAIf8P8xQ3M8hid6ndSt36nE7xbE4
-         RFaeK452hgYr4Ugbg/8s2+AljLJ/uGdS5qn08eInvWf8PfeLOQCopqUoUkWGDJ2R+wfJ
-         xXkxW806dxeq5UU5+dx/wSIcsqDtkgDNDUmMjfygj/UpsdTWZRKMDG9w9UqAknIZYmNx
-         sYxb/vQ5ZX/HssoUg3z6Mu4gAD4OXZPyQFUXZF9+NqNm0hHryTsvaZlQphHUhhvuX4ZG
-         NtZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683708948; x=1686300948;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hoZ8kkN1eS0yykkcRILWwhA511HYhnHiIl1p28gNBmc=;
-        b=IO6BI3qjhAp9wvu8RCVWb3J99Pel4iDJ3lHK/VkIzm8Y7QIusqjpUo+q6j6nTV25qZ
-         DOVMmmYgcXiPQ394h44Q7S79xSZvYsUTqXXFnxfbr1+cxKxG7WDZZIN6yeuk7iLyfNtL
-         rO0KOwv1wwMBtzFcslgXSN075RFiPGyVRaspWo0z6W+4aPD5VXtIrCDeZDuuN2uGcr8k
-         FHZUIEtlaNRLQDU+a14TuFTPJlGzW/DArDc//oZ3Jl48W+z/vkvkH7RXu7+D59o04D9m
-         5fTvJD+mJdFi7wRtigsiz8LZ5+fqnmH31cC95Sqg33JzDaVPli7yvkBS4EWd+LfTy7k4
-         r+5w==
-X-Gm-Message-State: AC+VfDw9GHtYWozI4BJ7lUK1cqDJ3baipAv2By+Pp04XYM3jhJyOS8AB
-        88tC+EFrTRgbPeEyupdCBbXsgksN4LBj74Gp6TxUyA==
-X-Google-Smtp-Source: ACHHUZ6h/7XbWO9srKHcAZigjp0WAm69hMHMRIsT5c7ivJxUTKLk8WJh1quj3rCkCQMUSSdLD/MBOP4/378bbGqa5zM=
-X-Received: by 2002:a81:8443:0:b0:54f:179:cef2 with SMTP id
- u64-20020a818443000000b0054f0179cef2mr19353393ywf.19.1683708948031; Wed, 10
- May 2023 01:55:48 -0700 (PDT)
+        with ESMTP id S236315AbjEJJDt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 05:03:49 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D4E230F4;
+        Wed, 10 May 2023 02:03:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1683709417; x=1715245417;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=VpdYeJ4G6emHuCE/V9JBrB8r3xgWZqaYPxiXW9vSJIQ=;
+  b=WVn19sWrS15VbXzpf0+KePogrkvJOr2GICPi22azgUjnXFIAUAelwFWy
+   xZetKYzW+g2g8271luC9wI83FHvaKH/irNo517ZjwqW4QL/8S8UQbqwP2
+   kMv/wupCW36T/f+bWOaVnTWgwzqaudSiOOkTADJXRw+2VWZdthgVhfkXm
+   N0h8Z55xY327eDS2SNZcUFZuT2QLoL9pX91btkPAu5hHTesss48znLtoV
+   U2ebux8REAgN5WjCTaiWsiHjlI0eg3Wz6Mo+XjkbizJEHBpG12mHGAwx0
+   n6jqoCe27IpHeu3m2wy9zETwNG7ZopsFu0a0+cKS922Zlg4RTXHRNli7A
+   w==;
+X-IronPort-AV: E=Sophos;i="5.99,264,1677567600"; 
+   d="asc'?scan'208";a="214617575"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 10 May 2023 02:03:35 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Wed, 10 May 2023 02:03:33 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Wed, 10 May 2023 02:03:31 -0700
+Date:   Wed, 10 May 2023 10:03:11 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
+CC:     <krzysztof.kozlowski@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <shawnguo@kernel.org>,
+        <marex@denx.de>, <frieder.schrempf@kontron.de>,
+        <stefan.wahren@i2se.com>, <marcel.ziswiler@toradex.com>,
+        <festevam@denx.de>, <Markus.Niebel@tq-group.com>,
+        <leoyang.li@nxp.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 0/3] arm64: dts: Add initial support for Emtop SOM
+ IMX8MM
+Message-ID: <20230510-grappling-cover-62367950d730@wendy>
+References: <20230510083104.3692006-1-himanshu.bhavani@siliconsignals.io>
 MIME-Version: 1.0
-References: <20230407-pm7250b-sid-v1-0-fc648478cc25@fairphone.com>
- <20230407-pm7250b-sid-v1-2-fc648478cc25@fairphone.com> <f52524da-719b-790f-ad2c-0c3f313d9fe9@linaro.org>
- <CSIE9TYTQUHL.3E769C2Y4RAAO@otso> <c9eea8ec-b289-334c-9c0b-7c992184a265@linaro.org>
- <CAA8EJpoSpytSTm=y7oPD_SC+0-bd735KEczR1JgMc7RuMZ+A+g@mail.gmail.com> <CSIGK60CQSD8.1Q4SOANJRMASF@otso>
-In-Reply-To: <CSIGK60CQSD8.1Q4SOANJRMASF@otso>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Wed, 10 May 2023 11:55:37 +0300
-Message-ID: <CAA8EJpouRet-h0uRx7seLOMk8hy7m3c+XdfN9SnG2yy04y2R=Q@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: pm7250b: make SID configurable
-To:     Luca Weiss <luca.weiss@fairphone.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="OzP8MZ2gRZYgo27s"
+Content-Disposition: inline
+In-Reply-To: <20230510083104.3692006-1-himanshu.bhavani@siliconsignals.io>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 10 May 2023 at 11:34, Luca Weiss <luca.weiss@fairphone.com> wrote:
->
-> On Wed May 10, 2023 at 10:07 AM CEST, Dmitry Baryshkov wrote:
-> > On Wed, 10 May 2023 at 09:55, Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> > >
-> > > On 10/05/2023 08:47, Luca Weiss wrote:
-> > > > Hi Krzysztof,
-> > > >
-> > > > On Fri Apr 7, 2023 at 10:27 AM CEST, Krzysztof Kozlowski wrote:
-> > > >> On 07/04/2023 09:45, Luca Weiss wrote:
-> > > >>> Like other Qualcomm PMICs the PM7250B can be used on different addresses
-> > > >>> on the SPMI bus. Use similar defines like the PMK8350 to make this
-> > > >>> possible.
-> > > >>>
-> > > >>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> > > >>> ---
-> > > >>>  arch/arm64/boot/dts/qcom/pm7250b.dtsi | 23 ++++++++++++++++-------
-> > > >>>  1 file changed, 16 insertions(+), 7 deletions(-)
-> > > >>>
-> > > >>> diff --git a/arch/arm64/boot/dts/qcom/pm7250b.dtsi b/arch/arm64/boot/dts/qcom/pm7250b.dtsi
-> > > >>> index daa6f1d30efa..eeb476edc79a 100644
-> > > >>> --- a/arch/arm64/boot/dts/qcom/pm7250b.dtsi
-> > > >>> +++ b/arch/arm64/boot/dts/qcom/pm7250b.dtsi
-> > > >>> @@ -7,6 +7,15 @@
-> > > >>>  #include <dt-bindings/interrupt-controller/irq.h>
-> > > >>>  #include <dt-bindings/spmi/spmi.h>
-> > > >>>
-> > > >>> +/* This PMIC can be configured to be at different SIDs */
-> > > >>> +#ifndef PM7250B_SID
-> > > >>> +   #define PM7250B_SID 2
-> > > >>
-> > > >> Drop indentation, although anyway I am against this. Please don't bring
-> > > >> new patterns of this at least till we settle previous discussion.
-> > > >>
-> > > >> https://lore.kernel.org/linux-arm-msm/46658cbb-fff5-e98b-fdad-88fa683a9c75@linaro.org/
-> > > >
-> > > > What's the outcome of the discussion? For this PMIC it's totally enough
-> > > > to have the SID configurable like in this patch, I don't think this PMIC
-> > > > will be included twice in a board - at least I'm not aware of such a
-> > > > configuration.
-> > >
-> > > We did not reach consensus and I still disagree with complex macros or
-> > > macros depending on order of inclusion.
-> >
-> > I still think we should find a way to parametrise PMIC dtsi, however I
-> > agree with Krzysztof that complex CPP is not a way to go.
->
-> What about the macro already used in-tree and proposed with this patch?
-> I wouldn't say this is a "complex macro" since it's just a single number
-> being replaced in a few places.
+--OzP8MZ2gRZYgo27s
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-My 2c: in my opinion it is fine (and it follows parameterization that
-we already have for some PMICs).
+On Wed, May 10, 2023 at 02:01:04PM +0530, Himanshu Bhavani wrote:
+> Add the initial device tree support for Emtop SOM based om IMX8MM.
 
-> Could we get this in now, and if we find a new & better way in the
-> future we can adjust all the dtsi upstream?
+In the future, please send this as a threaded patchset. Git's send-email
+will do this automatically if you point it at a directory containing the
+patches. For example, see "Thread overview" in:
+https://lore.kernel.org/all/20230510083346.3692555-1-himanshu.bhavani@silic=
+onsignals.io/
 
-And this depends on the decision of RobH and Krzysztof.
+You can see that there is only one patch in that thread.
 
--- 
-With best wishes
-Dmitry
+Cheers,
+Conor.
+
+>=20
+> Change in v2:
+> - in patch 1/3:
+>         - Update dtb add order in Makefile
+>         - Update proper prefix/name in dts
+>         - Removed stray blank line
+>         - Add pinctrl-names
+>=20
+> - in patch 2/3:
+>         - Update bindings
+>=20
+> Changes in v3:
+> - in patch 1/3:
+> 	- Removed dead code
+> 	- Fixed style and indentations
+>=20
+> - in patch 3/3:
+> 	- Update vendor prefix
+>=20
+>=20
+> Himanshu Bhavani (3):
+>   arm64: dts: Add device tree for the Emtop SOM IMX8MM
+>   dt-bindings: arm: fsl: Enumerate Emtop SOM
+>   dt-bindings: vendor-prefixes: Add Emtop
+>=20
+>  .../devicetree/bindings/arm/fsl.yaml          |   1 +
+>  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+>  arch/arm64/boot/dts/freescale/Makefile        |   1 +
+>  .../arm64/boot/dts/freescale/imx8mm-emtop.dts | 261 ++++++++++++++++++
+>  4 files changed, 265 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-emtop.dts
+>=20
+> --=20
+> 2.25.1
+>=20
+
+--OzP8MZ2gRZYgo27s
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZFtdzwAKCRB4tDGHoIJi
+0g5eAQC92PM9o7VOx2fJQ0cALdDEmHhdy2kkSlzZ71Gw4E3PNAEAoRZuMnToNJ0K
+06Tg5lfLtuEvbvOVE9yjYriUR9RF7gw=
+=mzDc
+-----END PGP SIGNATURE-----
+
+--OzP8MZ2gRZYgo27s--
