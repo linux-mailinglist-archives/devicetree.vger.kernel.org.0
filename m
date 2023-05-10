@@ -2,42 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CEDF6FDA77
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 11:12:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFFF76FDA86
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 11:19:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229529AbjEJJM1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 05:12:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60538 "EHLO
+        id S236375AbjEJJTH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 05:19:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231486AbjEJJM0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 05:12:26 -0400
-Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F6CB30CF;
-        Wed, 10 May 2023 02:11:35 -0700 (PDT)
-Received: from droid01-cd.amlogic.com (10.98.11.200) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Wed, 10 May 2023
- 17:11:25 +0800
-From:   Xianwei Zhao <xianwei.zhao@amlogic.com>
-To:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-amlogic@lists.infradead.org>, <devicetree@vger.kernel.org>
-CC:     Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231486AbjEJJTG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 05:19:06 -0400
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2F6643A85
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 02:19:04 -0700 (PDT)
+Received: from hillo.muru.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTP id 014B18109;
+        Wed, 10 May 2023 09:19:02 +0000 (UTC)
+From:   Tony Lindgren <tony@atomide.com>
+To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Conor Dooley <conor+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Xianwei Zhao <xianwei.zhao@amlogic.com>
-Subject: [PATCH V4] arm64: dts: add support for C3 based Amlogic AW409
-Date:   Wed, 10 May 2023 17:11:29 +0800
-Message-ID: <20230510091129.151669-1-xianwei.zhao@amlogic.com>
-X-Mailer: git-send-email 2.37.1
+        Rob Herring <robh+dt@kernel.org>
+Subject: [PATCH] arm64: dts: ti: Clean up pin node names to avoid warnings
+Date:   Wed, 10 May 2023 12:18:50 +0300
+Message-Id: <20230510091850.28881-1-tony@atomide.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.98.11.200]
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -45,170 +38,95 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Amlogic C3 is an advanced edge AI processor designed for smart IP camera
-applications.
+We should have nodes named pin or pins, and the node names should not
+have a 0x prefix for the hex address. Otherwise we will see warnings
+when the pinctrl-single yaml binding gets merged.
 
-Add basic support for the C3 based Amlogic AW409 board, which describes
-the following components: CPU, GIC, IRQ, Timer, UART. It's capable of
-booting up into the serial console.
-
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
 ---
-Link: https://lore.kernel.org/all/20230407102704.1055152-1-kelvin.zhang@amlogic.com
-Link: https://lore.kernel.org/all/20230307222651.2106615-2-martin.blumenstingl@googlemail.com
+ arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts           | 2 +-
+ arch/arm64/boot/dts/ti/k3-am654-base-board.dts           | 2 +-
+ arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-m2.dts | 4 ++--
+ arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi          | 6 +++---
+ 4 files changed, 7 insertions(+), 7 deletions(-)
 
-V3 -> V4: Move Link under the --- before the changelog.
-V2 -> V3: Remove '256m' from filename;
-          Keep alphabetical order of Makefile.
-V1 -> V2: Remove new arch, and use ARCH_MESON;
-          Modify node name, and delete superfluous blank line.
----
- arch/arm64/boot/dts/amlogic/Makefile          |  1 +
- .../dts/amlogic/amlogic-c3-c302x-aw409.dts    | 29 +++++++
- arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi   | 86 +++++++++++++++++++
- 3 files changed, 116 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409.dts
- create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index cd1c5b04890a..6f61798a109f 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -1,4 +1,5 @@
- # SPDX-License-Identifier: GPL-2.0
-+dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c302x-aw409.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-a1-ad401.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j100.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j110-rev-2.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409.dts b/arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409.dts
-new file mode 100644
-index 000000000000..edce8850b338
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409.dts
-@@ -0,0 +1,29 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
-+ */
-+
-+/dts-v1/;
-+
-+#include "amlogic-c3.dtsi"
-+
-+/ {
-+	model = "Amlogic C302 aw409 Development Board";
-+	compatible = "amlogic,aw409", "amlogic,c3";
-+	interrupt-parent = <&gic>;
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	aliases {
-+		serial0 = &uart_b;
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x10000000>;
-+	};
-+};
-+
-+&uart_b {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-new file mode 100644
-index 000000000000..93b335aef605
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-@@ -0,0 +1,86 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
-+ */
-+
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/gpio/gpio.h>
-+
-+/ {
-+	cpus {
-+		#address-cells = <2>;
-+		#size-cells = <0>;
-+
-+		cpu0: cpu@0 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a35";
-+			reg = <0x0 0x0>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu1: cpu@1 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a35";
-+			reg = <0x0 0x1>;
-+			enable-method = "psci";
-+		};
-+	};
-+
-+	timer {
-+		compatible = "arm,armv8-timer";
-+		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
-+	};
-+
-+	psci {
-+		compatible = "arm,psci-1.0";
-+		method = "smc";
-+	};
-+
-+	xtal: xtal-clk {
-+		compatible = "fixed-clock";
-+		clock-frequency = <24000000>;
-+		clock-output-names = "xtal";
-+		#clock-cells = <0>;
-+	};
-+
-+	soc {
-+		compatible = "simple-bus";
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		gic: interrupt-controller@fff01000 {
-+			compatible = "arm,gic-400";
-+			#interrupt-cells = <3>;
-+			#address-cells = <0>;
-+			interrupt-controller;
-+			reg = <0x0 0xfff01000 0 0x1000>,
-+			      <0x0 0xfff02000 0 0x2000>,
-+			      <0x0 0xfff04000 0 0x2000>,
-+			      <0x0 0xfff06000 0 0x2000>;
-+			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
-+		};
-+
-+		apb4: bus@fe000000 {
-+			compatible = "simple-bus";
-+			reg = <0x0 0xfe000000 0x0 0x480000>;
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
-+
-+			uart_b: serial@7a000 {
-+				compatible = "amlogic,meson-g12a-uart";
-+				reg = <0x0 0x7a000 0x0 0x18>;
-+				interrupts = <GIC_SPI 169 IRQ_TYPE_EDGE_RISING>;
-+				status = "disabled";
-+				clocks = <&xtal>, <&xtal>, <&xtal>;
-+				clock-names = "xtal", "pclk", "baud";
-+			};
-+
-+		};
-+	};
-+};
-
-base-commit: ae68fb187b59bc8645974320808ab2d7c41b1833
+diff --git a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
+--- a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
++++ b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
+@@ -432,7 +432,7 @@ AM62X_MCU_IOPAD(0x0048, PIN_INPUT, 0) /* (D10) MCU_I2C0_SDA */
+ 		>;
+ 	};
+ 
+-	gbe_pmx_obsclk: gbe-pmx-clk-default {
++	gbe_pmx_obsclk: gbe-clk-pins-default {
+ 		pinctrl-single,pins = <
+ 			AM62X_MCU_IOPAD(0x0004, PIN_OUTPUT, 1) /* (B8) MCU_SPI0_CS1.MCU_OBSCLK0 */
+ 		>;
+diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+--- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
++++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+@@ -150,7 +150,7 @@ AM65X_WKUP_IOPAD(0x002c, PIN_OUTPUT, 0) /* (R4) MCU_OSPI0_CSn0 */
+ 		>;
+ 	};
+ 
+-	wkup_pca554_default: wkup-pca554-default {
++	wkup_pca554_default: wkup-pca554-pins-default {
+ 		pinctrl-single,pins = <
+ 			AM65X_WKUP_IOPAD(0x0034, PIN_INPUT, 7) /* (T1) MCU_OSPI1_CLK.WKUP_GPIO0_25 */
+ 		>;
+diff --git a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-m2.dts b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-m2.dts
+--- a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-m2.dts
++++ b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-m2.dts
+@@ -33,7 +33,7 @@ AM65X_IOPAD(0x01c4, PIN_INPUT_PULLUP, 7)  /* (AH13) GPIO1_17 */
+ 		>;
+ 	};
+ 
+-	main_bkey_pcie_reset: main-bkey-pcie-reset {
++	main_bkey_pcie_reset: main-bkey-pcie-reset-pins-default {
+ 		pinctrl-single,pins = <
+ 			AM65X_IOPAD(0x01bc, PIN_OUTPUT_PULLUP, 7)  /* (AG13) GPIO1_15 */
+ 		>;
+@@ -46,7 +46,7 @@ AM65X_IOPAD(0x01cc, PIN_INPUT_PULLUP, 7)  /* (AD13) GPIO1_19 */
+ 		>;
+ 	};
+ 
+-	main_m2_pcie_mux_control: main-m2-pcie-mux-control {
++	main_m2_pcie_mux_control: main-m2-pcie-mux-control-pins-default {
+ 		pinctrl-single,pins = <
+ 			AM65X_IOPAD(0x0148, PIN_INPUT_PULLUP, 7)  /* (AG22) GPIO0_82 */
+ 			AM65X_IOPAD(0x0160, PIN_INPUT_PULLUP, 7)  /* (AE20) GPIO0_88 */
+diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+--- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+@@ -62,7 +62,7 @@ wkup_pmx0: pinctrl@4301c000 {
+ 		pinctrl-single,function-mask = <0xffffffff>;
+ 	};
+ 
+-	wkup_pmx1: pinctrl@0x4301c038 {
++	wkup_pmx1: pinctrl@4301c038 {
+ 		compatible = "pinctrl-single";
+ 		/* Proxy 0 addressing */
+ 		reg = <0x00 0x4301c038 0x00 0x8>;
+@@ -71,7 +71,7 @@ wkup_pmx1: pinctrl@0x4301c038 {
+ 		pinctrl-single,function-mask = <0xffffffff>;
+ 	};
+ 
+-	wkup_pmx2: pinctrl@0x4301c068 {
++	wkup_pmx2: pinctrl@4301c068 {
+ 		compatible = "pinctrl-single";
+ 		/* Proxy 0 addressing */
+ 		reg = <0x00 0x4301c068 0x00 0xec>;
+@@ -80,7 +80,7 @@ wkup_pmx2: pinctrl@0x4301c068 {
+ 		pinctrl-single,function-mask = <0xffffffff>;
+ 	};
+ 
+-	wkup_pmx3: pinctrl@0x4301c174 {
++	wkup_pmx3: pinctrl@4301c174 {
+ 		compatible = "pinctrl-single";
+ 		/* Proxy 0 addressing */
+ 		reg = <0x00 0x4301c174 0x00 0x20>;
 -- 
-2.37.1
-
+2.40.1
