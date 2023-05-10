@@ -2,115 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 88D336FD7DA
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 09:08:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B374A6FD7DF
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 09:10:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236405AbjEJHIs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 03:08:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40188 "EHLO
+        id S236487AbjEJHJ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 03:09:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236396AbjEJHIq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 03:08:46 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0645A4230
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 00:08:43 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-50bd37ca954so66133087a12.0
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 00:08:42 -0700 (PDT)
+        with ESMTP id S236457AbjEJHJy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 03:09:54 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F872525E
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 00:09:51 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-50bcb4a81ceso12235864a12.2
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 00:09:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683702521; x=1686294521;
+        d=linaro.org; s=google; t=1683702590; x=1686294590;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=eS3uKPsHcGZIkIwsTVqRC2UstZ20/qzhnJE4KmhckrU=;
-        b=mFvIMsraSpSLac8c2tS5ssp1cJyaxzreWmrSM5dgoDZ2KLfxsrTzpo0m0GX8ob3x3r
-         a36SpBDjTgDS73b4J8appqeHn3S+cpHOFNRFthKUpW6Wur7qLZy6HjRhjJr6U14Ozz3b
-         CK/J0N42wvsZkrFds3y7x+wQTqNR+Uw/0yKLk3rUDXRT5qqDGHkHjLzcsUfjOffg2ZWp
-         CNWW/W3UslpyAXVQNka5yxtt0Pqg7g26hKp97yAR+/jbLqZrTLFZFj2fnxao0mknJJXb
-         Z5fov0AUVpH1cZ+ZFGl2/LrR36hzk9xBgy6atvO5YaHH79rwccDXIgYzEzBb3r2vhEpA
-         B95Q==
+        bh=BJvf3WnGfiNmFmKHLfiwqmHicsidW15LaCdZqZNR7to=;
+        b=CaBXCo7zlGmZqcb46dpr5dnGUiRLX2GuWsmdUXt/KlWSntoyOknfpMG0/Vilp4leNh
+         ZQNxDXGovRR/jmNIhBVBZAL1ggvoi/MWDP7SGMQTUcO3LIV0vWHcin0oMsAZQSEfs3/W
+         ga/03SxrGNCOzBLAimCOfRBr51ChkvwcjZfu8TRNC7QY8eL20Z6ZTp0HOWXnMJ1uPv2L
+         7FxrL9Z/T0+jLqZsqw88TP3nsPrO3/+yZU7qnZJ6DELwjVGLkjxNOs3QFM7moQVgEsFh
+         oXzCeUPk0FTa/EaV6alI4R8urepPEZm+cDVxzy4P+I6NYdxTraSDR6dA643OR2LM06qj
+         qq3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683702521; x=1686294521;
+        d=1e100.net; s=20221208; t=1683702590; x=1686294590;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eS3uKPsHcGZIkIwsTVqRC2UstZ20/qzhnJE4KmhckrU=;
-        b=EA7QrePaiG+zYVMBYeDEFNYoxha18qnN0DkBz61Ly3pSG6uEpp25JOML+CJLRbNYYn
-         S/vJNmyaMHYSY869Rie2O833FvVQbDIAFd5QElq8+E25ItUWbpYDU0gKGr5coT2JRy0e
-         pPYNv2F11538MG+FbxUhq2JNnG0m2n924i3tQTzEjuMxx++U0blsYtjm4e5kALh40cu6
-         HKej1usquhcQOoR6LlN0y5L3KjCdOjgCpay9nQJssy8QIJbgnGRpp7J8dP28uJZpiCEY
-         1aIHwd2jGZG4mkEIMeuVHVT2VgDdE0Kq1slZbVZ+aEwbZONBt90IV9hWYJ908O2vN7rL
-         ysbQ==
-X-Gm-Message-State: AC+VfDw3ducBNeSBw89zWeCxevXTZd/kZmNlFZP58nnJ4l0aW0ZbCLwf
-        sAnl5VqnlGfpvFjPlQsDSO+3Jw==
-X-Google-Smtp-Source: ACHHUZ4+6ytKlhUVP5y89FeW6sU98CuIgCUYoFhX3AKqeJ+z+TpD9k2DS2crnv8ssBOurHYlauHY1Q==
-X-Received: by 2002:a17:907:d0e:b0:94a:57d1:5539 with SMTP id gn14-20020a1709070d0e00b0094a57d15539mr15154034ejc.5.1683702521312;
-        Wed, 10 May 2023 00:08:41 -0700 (PDT)
+        bh=BJvf3WnGfiNmFmKHLfiwqmHicsidW15LaCdZqZNR7to=;
+        b=EQChBdal8wt+xc+uKKkBMHQMRqwJipOqHpg9NGGULKN3kdpIdVo4hzAyWhI2gJiM/r
+         SK1FwoRysCZ7Vek+Z+K7UBvYrU/5wQUQmSbC8xifjB8DotMeXJny+sMPlPtNnoDQbdrj
+         jlZ6QNDLuktInaxeEGPxXMCivsnv8XXNc2xmfU9jW0iMLYTIFC/+VBAyfjahXY6Sd+oZ
+         Xk6BL+RFFPKUVftQGcKGKX8fobX2vxefBYT0DVYL0OvqEvN5Gr14sEK7/u2pO/St+eeW
+         eLte9U4VnvfgPNuLxSpK6dTRA5ZzcZ+gu0EQ/aHkvZtnVT0TkhnpsklCv0FXO5gbUs98
+         88dw==
+X-Gm-Message-State: AC+VfDx2UrpSOVl7B5UjsOQEsZKJ06nGj69r5tRnRImHnfO6NC00A9z1
+        z39mob6yBWh1dodBeYlpdiaqoA==
+X-Google-Smtp-Source: ACHHUZ45V9nWx+xpymCCTDt+xqMHZN//QImYns3SLixe0knjRClRjdgBA/A6jG8Yv/UnrJA85OvrJg==
+X-Received: by 2002:a17:907:8688:b0:96a:3005:61b7 with SMTP id qa8-20020a170907868800b0096a300561b7mr612454ejc.74.1683702589873;
+        Wed, 10 May 2023 00:09:49 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:c175:a0f9:6928:8c9d? ([2a02:810d:15c0:828:c175:a0f9:6928:8c9d])
-        by smtp.gmail.com with ESMTPSA id w10-20020a170907270a00b00965e9a23f2bsm2263354ejk.134.2023.05.10.00.08.40
+        by smtp.gmail.com with ESMTPSA id w21-20020a170906131500b0096637a19dccsm2277509ejb.210.2023.05.10.00.09.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 May 2023 00:08:40 -0700 (PDT)
-Message-ID: <6a36a4ad-6d46-4e4e-1724-ed27513a72ef@linaro.org>
-Date:   Wed, 10 May 2023 09:08:39 +0200
+        Wed, 10 May 2023 00:09:49 -0700 (PDT)
+Message-ID: <0ffa55bb-9869-f94a-17e8-46530c2d91bd@linaro.org>
+Date:   Wed, 10 May 2023 09:09:47 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v2 1/3] dt-bindings: phy: cadence-torrent: Add latency
- properties
+Subject: Re: [PATCH 2/3] dt-bindings: clock: qcom,mmcc: define
+ clocks/clock-names for MSM8226
 Content-Language: en-US
-To:     Bjorn Helgaas <helgaas@kernel.org>,
-        Christian Gmeiner <christian.gmeiner@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Dominic Rath <rath@ibv-augsburg.de>,
-        krzysztof.kozlowski+dt@linaro.org, tjoseph@cadence.com,
-        bhelgaas@google.com, lpieralisi@kernel.org, nm@ti.com,
-        vigneshr@ti.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        bahle@ibv-augsburg.de
-References: <20230509215700.GA1277746@bhelgaas>
+To:     Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
+        phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Jeffrey Hugo <quic_jhugo@quicinc.com>,
+        Taniya Das <tdas@codeaurora.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+References: <20230509-msm8226-mmcc-parents-v1-0-83a2dfc986ab@z3ntu.xyz>
+ <20230509-msm8226-mmcc-parents-v1-2-83a2dfc986ab@z3ntu.xyz>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230509215700.GA1277746@bhelgaas>
+In-Reply-To: <20230509-msm8226-mmcc-parents-v1-2-83a2dfc986ab@z3ntu.xyz>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/05/2023 23:57, Bjorn Helgaas wrote:
-> On Tue, May 09, 2023 at 05:31:19PM +0200, Christian Gmeiner wrote:
->>> On Thu, Apr 27, 2023 at 07:50:30AM +0200, Dominic Rath wrote:
->>>> From: Alexander Bahle <bahle@ibv-augsburg.de>
->>>>
->>>> Add "tx-phy-latency-ps" and "rx-phy-latency-ps" DT bindings for
->>>> setting the PCIe PHY latencies.
->>>> The properties expect a list of uint32 PHY latencies in picoseconds for
->>>> every supported speed starting at PCIe Gen1, e.g.:
->>>>
->>>>   tx-phy-latency-ps = <100000 200000>; /* Gen1: 100ns, Gen2: 200ns */
->>>>   rx-phy-latency-ps = <150000 250000>; /* Gen1: 150ns, Gen2: 250ns */
->>>
->>> Are these things that could/should be described in a more generic
->>> place?  They don't look necessarily Cadence-specific.
->>
->> As there is currently no generic binding, would you like to see a new
->> yaml binding
->> added (Documentation/devicetree/bindings/phy/phy.yaml) that contains just the
->> two phy properties?
+On 09/05/2023 23:16, Luca Weiss wrote:
+> Define clock/clock-names properties of the MMCC device node to be used
+> on MSM8226 platform.
 > 
-> The whole thing is more a question for Rob.
+> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> ---
 
-For which you might wait a bit currently.
-
-If the question is only about location of the properties - device schema
-or something generic - then for now you can keep it here. Moving to
-generic schema is always easy later.
-
-Better to have proper names for properties.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
