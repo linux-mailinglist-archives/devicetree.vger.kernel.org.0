@@ -2,105 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A2B4E6FDCE2
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 13:38:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FE0C6FDCC3
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 13:34:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236891AbjEJLiA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 07:38:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59392 "EHLO
+        id S236829AbjEJLeh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 07:34:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236870AbjEJLh5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 07:37:57 -0400
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2066.outbound.protection.outlook.com [40.107.237.66])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9057A7D9E;
-        Wed, 10 May 2023 04:37:53 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PgXlKBMqhAHltmK/nDo4Tg6Kh3RI+vDdWKkL8QOkaBjnbk0B4KiQEBf82WfvaJYP5UZSV4IEPF+l02jmI349CvIiqKoZefIaxV4BpP8zFFRrIxKgq7qRwy9u1Lf6nbDUhi62OiERkPy5acZW26V5aASC67GnV3Peh+NjhrntJcSohF+vHKBMlLoZZOD1/k30/V8XYBk4a6/moPPBWigZvZ7vq8hA067hi52kE0FH/lOXAhSdak0jP0R7x2kRHzceU0Zx+NcgHhDyJsfIBJoMsVWgZgkV+7VWDs/B8Ey7pk77vC9J8+JlzymqPg9nYTwmfuzJf9e8vKTI7ZIRaHX89w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dLbpQVxDrVejfcTM/lgsnUfRWa0pYoPEX6QosRNCiXo=;
- b=n76v/JW9RypYb2fmk6SNT6mmVgQk6dkre9ug+snHQfwVv4V9Hhm9nbsuFaDMZcX2dVOwLEgSyPF7d631+Bur7k5/qU6T8lD3NqNjOGJ9o36C3R+uG/GcOARqULZ8E/p5DLNJcmSq8/5RprjNiBOtlE0EIpQ2Lm9fzkcJ/X/hnrBtRrUnDI7/kDTUjKAF2TMyk925tDjQWWpn6611A6GAJ/B9D+yD2ChcVN763lVk+Ywvjop8dIYSF89KHHv4ZfZfozK5RB8/wJYLwdJvGdZYpN/Yedwqihms9zIyWhEyj0Pxw6u/1i8qTa3Ha7mJurLpOos0jiSqpV1fIgXpLWP+Sw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.118.233) smtp.rcpttodomain=gmail.com smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dLbpQVxDrVejfcTM/lgsnUfRWa0pYoPEX6QosRNCiXo=;
- b=DemyLuAXKD4TZtCbfAePxrhyaqlBfWiEZYQc/33nf5sNzbfuSEDJZpARKS3NEkmKCzwIeB02kYVhYL7PNVTLVHsmiL+W7+A6DrAuzj66staN/JRGmYazQf8UDrFWnjnHxGYt6oKqwvmzF/LvvkKBR+Bjv0gM2msXwnh5WSDPkpGTZEug6YCkCGYveFjph3klonFKsYWgjghBdjZE5WfKTcr0ASkVgm0y8I03XDwCzxexYCzX6vyjRDIiR2Hl02EGRKOUFRUBSauql2Z15EWbxygXKlBUaYtYARA3m/viCisWhelIFv8k4EB6H6xiNBZS2ZccI043IZg0tH4todIy2A==
-Received: from BN6PR17CA0055.namprd17.prod.outlook.com (2603:10b6:405:75::44)
- by MW4PR12MB7335.namprd12.prod.outlook.com (2603:10b6:303:22b::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.33; Wed, 10 May
- 2023 11:37:50 +0000
-Received: from BL02EPF0000C406.namprd05.prod.outlook.com
- (2603:10b6:405:75:cafe::af) by BN6PR17CA0055.outlook.office365.com
- (2603:10b6:405:75::44) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.20 via Frontend
- Transport; Wed, 10 May 2023 11:37:50 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.233)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.118.233 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.118.233; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.118.233) by
- BL02EPF0000C406.mail.protection.outlook.com (10.167.241.8) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6387.20 via Frontend Transport; Wed, 10 May 2023 11:37:50 +0000
-Received: from drhqmail201.nvidia.com (10.126.190.180) by mail.nvidia.com
- (10.127.129.6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.5; Wed, 10 May 2023
- 04:37:41 -0700
-Received: from drhqmail201.nvidia.com (10.126.190.180) by
- drhqmail201.nvidia.com (10.126.190.180) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.37; Wed, 10 May 2023 04:37:40 -0700
-Received: from 44189d9-lcedt.nvidia.com (10.127.8.9) by mail.nvidia.com
- (10.126.190.180) with Microsoft SMTP Server id 15.2.986.37 via Frontend
- Transport; Wed, 10 May 2023 04:37:38 -0700
-From:   Peter De Schrijver <pdeschrijver@nvidia.com>
-To:     Peter De Schrijver <pdeschrijver@nvidia.com>,
-        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>
-CC:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <stefank@nvidia.com>
-Subject: [PATCH v2 5/6] dt-bindings: memory-region property for tegra186-bpmp
-Date:   Wed, 10 May 2023 14:31:34 +0300
-Message-ID: <20230510113129.4167493-6-pdeschrijver@nvidia.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230510113129.4167493-1-pdeschrijver@nvidia.com>
-References: <20230510113129.4167493-1-pdeschrijver@nvidia.com>
+        with ESMTP id S236618AbjEJLeg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 07:34:36 -0400
+Received: from the.earth.li (the.earth.li [IPv6:2a00:1098:86:4d:c0ff:ee:15:900d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D69AB26B6;
+        Wed, 10 May 2023 04:34:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=earth.li;
+        s=the; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=Drd9Rp7G3op/c5WB1KWoV3yL4EIRVLpWHq5WHbJVCNU=; b=qSHNEJUMk/o43xuFsiD0NAB/6E
+        x8FIjknL0URrrwRnWQlz+TH5rt5A5Ldxcn6AFWOtJw1A7r2mUDkIzhdxk/jSf5Bs96PEr3mP7h3ec
+        0dGWaRYUTycEsTLlKwctQ6k3XM0AaoKviMz5ikjtdn0pFMiFQPUgMRtO8IY/166Pe3Pmq0Nyn1OZs
+        nohEXghR6kHmvmXnxH0B1GCKPgJ+lcl3wxH2HM5X0UJbOvE43zPj/xskZqaRJcuvE1b5/1z+yNkOO
+        gyzniSlNnUbvd97tXrP3+7YuhEg+bKGCALxfZELY1puJDtg3aJjsLEWk6BRVCaMyLfwVJwOmaTbeD
+        oOX72QNw==;
+Received: from noodles by the.earth.li with local (Exim 4.94.2)
+        (envelope-from <noodles@earth.li>)
+        id 1pwi55-007shm-6B; Wed, 10 May 2023 12:34:03 +0100
+Date:   Wed, 10 May 2023 12:34:03 +0100
+From:   Jonathan McDowell <noodles@earth.li>
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Andre Przywara <andre.przywara@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] ARM: dts: sun5i: chip: Enable bluetooth
+Message-ID: <ZFuBK9HYmsh/J1zZ@earth.li>
+References: <cover.1681580558.git.noodles@earth.li>
+ <f26d11e613df7bd55822ff3fb7689e36bf9e4f7a.1681580558.git.noodles@earth.li>
+ <20230416012421.255bfd19@slackpad.lan>
+ <ZEGOk1isRhaekk3h@earth.li>
+ <CAGETcx-UnEK3CPC38Ef3gmHcq46nXSJbA9QAwEsF+Xt2bDKEWA@mail.gmail.com>
+ <ZEJJGGeIu8QW44mh@earth.li>
+ <CAGETcx8JDYUT2bdDhJ0PN8_CPmHJ37jCfnuoav6CGFJoovfSqA@mail.gmail.com>
+ <ZEa9rcDlIOn+df5h@earth.li>
+ <CAGETcx8OK-DNM2hJb2sz0jDyKBRqtmPRxnk_acKgB0pfrD0_JA@mail.gmail.com>
 MIME-Version: 1.0
-X-NVConfidentiality: public
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0000C406:EE_|MW4PR12MB7335:EE_
-X-MS-Office365-Filtering-Correlation-Id: 82e355ad-7677-4682-adc4-08db514afc55
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: l2LNeSIRkSCZ6tElmX2OlbbPJ1grY9sRkn7aZ/YsfyE75KYJFU077tka78UfKegcvxehWfiX+QaIiBQOYkg7q2bvHTBM+qAKb78HnuBzcjODKXOkdELWyBscjZU99b17SDLHY8oIpKs+GUOItYdPS2H9IgohS6fNhWNcfp8NLRGqESo5uvTZnORS0pQSimm9r1N/ksL92DRJwOWENWz51XNLpDeVdZtyrkrOFXtFE6ni6geq4SvjH4teJkUMlOZ8G1uZ/VPA+fhK6RqTvXU1IlVWJbi+4Ps8Di9xp5v/+Y9bon7RdaBJGt1x9pvRtLwggO+c5FjM9Z8Y8VKgGdq7G+4w8nntTXZYb30QkeaaRm+UBtgIaxDNaa95I5H5t7+Fa32zwjEj+BjO1bd5m9AMc97h9ku/BaUCVTwXhVmQM8kvIcO8jf25Cs18TiP035viH5B2HBlYwPny9JsY4BVnIlqMsrLXfYjuurL4yNPVhGnAQlde3PkiSmZfRYPC3G9Ov95yXDGm7eDDgXXQsu1zM2clHj9h52ckxNohh2BOVLswNVDvV9ZGCMOmYu67XQmApsSODViclpPeSy9e7b3VCgYO3jbI9ynoJApDjHVAANcu249ahLVBb+qujC/uUqa/rX4C0ecxpi6Uq7xG8wnIjiNLS25xPmRRi0dIUY1CSAF4lywIHO/eiOARW4JE8NhtVT8uHRWLqCjTF0DhYl5R7A==
-X-Forefront-Antispam-Report: CIP:216.228.118.233;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge2.nvidia.com;CAT:NONE;SFS:(13230028)(4636009)(396003)(39860400002)(346002)(136003)(376002)(451199021)(46966006)(40470700004)(36840700001)(110136005)(4326008)(70206006)(82740400003)(6636002)(356005)(70586007)(316002)(7636003)(40480700001)(107886003)(336012)(8936002)(426003)(82310400005)(8676002)(47076005)(54906003)(83380400001)(26005)(1076003)(86362001)(41300700001)(5660300002)(36860700001)(478600001)(36756003)(2616005)(6666004)(2906002)(40460700003)(186003)(7696005);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 May 2023 11:37:50.4085
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 82e355ad-7677-4682-adc4-08db514afc55
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.233];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0000C406.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB7335
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
+In-Reply-To: <CAGETcx8OK-DNM2hJb2sz0jDyKBRqtmPRxnk_acKgB0pfrD0_JA@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -108,85 +67,151 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add memory-region property to the tegra186-bpmp binding to support
-DRAM MRQ GSCs.
+On Mon, May 01, 2023 at 02:12:05PM -0700, Saravana Kannan wrote:
+> On Mon, Apr 24, 2023 at 10:34 AM Jonathan McDowell <noodles@earth.li> wrote:
+> >
+> > On Fri, Apr 21, 2023 at 03:45:52PM -0700, Saravana Kannan wrote:
+> > > On Fri, Apr 21, 2023 at 1:28 AM Jonathan McDowell <noodles@earth.li> wrote:
+> > > >
+> > > > On Thu, Apr 20, 2023 at 06:43:06PM -0700, Saravana Kannan wrote:
+> > > > > On Thu, Apr 20, 2023 at 12:12 PM Jonathan McDowell <noodles@earth.li> wrote:
+> > > > > > On Sun, Apr 16, 2023 at 01:24:21AM +0100, Andre Przywara wrote:
+> > > > > > > On Sat, 15 Apr 2023 18:46:03 +0100
+> > > > > > > Jonathan McDowell <noodles@earth.li> wrote:
+> > > > > > >
+> > > > > > > > The C.H.I.P has an rtl8723bs device with the bluetooth interface hooked
+> > > > > > > > up on UART3. Support for this didn't exist in mainline when the DTS was
+> > > > > > > > initially added, but it does now, so enable it.
+> > > > > > > >
+> > > > > > > > Signed-off-by: Jonathan McDowell <noodles@earth.li>
+> > > > > > > > ---
+> > > > > > > >  arch/arm/boot/dts/sun5i-r8-chip.dts | 4 ++++
+> > > > > > > >  1 file changed, 4 insertions(+)
+> > > > > > > >
+> > > > > > > > diff --git a/arch/arm/boot/dts/sun5i-r8-chip.dts b/arch/arm/boot/dts/sun5i-r8-chip.dts
+> > > > > > > > index fd37bd1f3920..4d72a181d8aa 100644
+> > > > > > > > --- a/arch/arm/boot/dts/sun5i-r8-chip.dts
+> > > > > > > > +++ b/arch/arm/boot/dts/sun5i-r8-chip.dts
+> > > > > > > > @@ -255,6 +255,10 @@ &uart3 {
+> > > > > > > >     pinctrl-0 = <&uart3_pg_pins>,
+> > > > > > > >                 <&uart3_cts_rts_pg_pins>;
+> > > > > > > >     status = "okay";
+> > > > > > > > +
+> > > > > > > > +   bluetooth {
+> > > > > > > > +           compatible = "realtek,rtl8723bs-bt";
+> > > > > > > > +   }
+> > > > > > >
+> > > > > > > As the kernel test robot already pointed out, there is a semicolon
+> > > > > > > missing here.
+> > > > > > > Otherwise looks good (dt-validate passes), but don't know if there are
+> > > > > > > any wakeup GPIOs connected (can't seem to find a schematic?).
+> > > > > >
+> > > > > > So there are wakeups, but if I add:
+> > > > > >
+> > > > > >         device-wake-gpios = <&axp_gpio 3 GPIO_ACTIVE_LOW>;
+> > > > > >         host-wake-gpios = <&pio 1 3 GPIO_ACTIVE_HIGH>; /* PB3 */
+> > > > > >
+> > > > > > then some odd sort of dependency issue happens where the serial port
+> > > > > > load is deferred waiting for the GPIO to appear, and then the device
+> > > > > > doesn't work.
+> > > > >
+> > > > > When you say your device doesn't work, are you saying it never probes?
+> > >
+> > > Read your whole email and it's a strange issue. Also, going forward to
+> > > avoid confusion, only reply to questions with respect to 6.3-rc7.
+> 
+> Sorry it took a while to respond. Life got busy.
 
-Co-developed-by: Stefan Kristiansson <stefank@nvidia.com>
-Signed-off-by: Stefan Kristiansson <stefank@nvidia.com>
-Signed-off-by: Peter De Schrijver <pdeschrijver@nvidia.com>
----
- .../firmware/nvidia,tegra186-bpmp.yaml        | 37 +++++++++++++++++--
- 1 file changed, 34 insertions(+), 3 deletions(-)
+No problem, I appreciate you looking into this.
 
-diff --git a/Documentation/devicetree/bindings/firmware/nvidia,tegra186-bpmp.yaml b/Documentation/devicetree/bindings/firmware/nvidia,tegra186-bpmp.yaml
-index 833c07f1685c..f3e02c9d090d 100644
---- a/Documentation/devicetree/bindings/firmware/nvidia,tegra186-bpmp.yaml
-+++ b/Documentation/devicetree/bindings/firmware/nvidia,tegra186-bpmp.yaml
-@@ -57,8 +57,11 @@ description: |
-   "#address-cells" or "#size-cells" property.
- 
-   The shared memory area for the IPC TX and RX between CPU and BPMP are
--  predefined and work on top of sysram, which is an SRAM inside the
--  chip. See ".../sram/sram.yaml" for the bindings.
-+  predefined and work on top of either sysram, which is an SRAM inside the
-+  chip, or in normal SDRAM.
-+  See ".../sram/sram.yaml" for the bindings for the SRAM case.
-+  See "../reserved-memory/nvidia,tegra264-bpmp-shmem.yaml" for bindings for
-+  the SDRAM case.
- 
- properties:
-   compatible:
-@@ -81,6 +84,11 @@ properties:
-     minItems: 2
-     maxItems: 2
- 
-+  memory-region:
-+    description: phandle to reserved memory region used for IPC between
-+      CPU-NS and BPMP.
-+    maxItems: 1
-+
-   "#clock-cells":
-     const: 1
- 
-@@ -115,10 +123,15 @@ properties:
- 
- additionalProperties: false
- 
-+oneOf:
-+  - required:
-+      - memory-region
-+  - required:
-+      - shmem
-+
- required:
-   - compatible
-   - mboxes
--  - shmem
-   - "#clock-cells"
-   - "#power-domain-cells"
-   - "#reset-cells"
-@@ -184,3 +197,21 @@ examples:
-             #thermal-sensor-cells = <1>;
-         };
-     };
-+
-+  - |
-+    #include <dt-bindings/mailbox/tegra186-hsp.h>
-+
-+    bpmp {
-+        compatible = "nvidia,tegra186-bpmp";
-+        interconnects = <&mc TEGRA186_MEMORY_CLIENT_BPMPR &emc>,
-+                        <&mc TEGRA186_MEMORY_CLIENT_BPMPW &emc>,
-+                        <&mc TEGRA186_MEMORY_CLIENT_BPMPDMAR &emc>,
-+                        <&mc TEGRA186_MEMORY_CLIENT_BPMPDMAW &emc>;
-+        interconnect-names = "read", "write", "dma-mem", "dma-write";
-+        mboxes = <&hsp_top1 TEGRA_HSP_MBOX_TYPE_DB
-+                            TEGRA_HSP_DB_MASTER_BPMP>;
-+        memory-region = <&dram_cpu_bpmp_mail>;
-+        #clock-cells = <1>;
-+        #power-domain-cells = <1>;
-+        #reset-cells = <1>;
-+    };
+> > Just to be clear, in my initial mail I referred to 6.1.21 as that's
+> > where I started, but in my reply to you all output was quoted from
+> > 6.3-rc7. 6.3 has been released since, so all details below are based on
+> > that.
+> >
+> > > > The bluetooth device (realtek,rtl8723bs-bt) never appears, apparently
+> > > > because the UART it's attached to never loads - it doesn't even try to
+> > > > load the firmware.
+> > > >
+> > > > > <debugfs>/devices_deferred should tell you what devices have deferred and why.
+> > > >
+> > > > root@chip:~# cat /sys/kernel/debug/devices_deferred
+> > > > serial0-0
+> > >
+> > > Do you see this in 6.3-rc7 too?
+> >
+> > That was under 6.3-rc7. I see it on 6.3 too:
+> >
+> > root@chip:~# cat /sys/kernel/debug/devices_deferred
+> > serial0-0
+> 
+> I somehow didn't connect the dots earlier... but serial0-0 is NOT the
+> uart/serial device. It's the child device of serial0 and in this case,
+> it's the bluetooth device.
+> 
+> So adding those gpios in DT is not breaking serial. It's just
+> preventing the BT device from probing.
+
+Aaaaah.
+
+> Looking at the logs in the non-working case:
+> 
+> [    0.715083] 1c28c00.serial: ttyS1 at MMIO 0x1c28c00 (irq = 53,
+> base_baud = 1500000) is a U6_16550A
+> [    0.724132] device: 'serial0': device_add
+> 
+> I don't know why all of the ttySx are showing up as serial0, but this
+> is the serial port. As you can see 1c28c00 is already probing.
+> 
+> [    0.724228] device: 'serial0-0': device_add
+> 
+> This is the child devices getting populated. In this case this is the BT device.
+> 
+> [    0.724311] device: 'platform:1c20800.pinctrl--serial:serial0-0': device_add
+> 
+> I can tell it's the BT device because we see a device link being
+> created between pinctrl and serial:serial0-0. So it's a device sitting
+> on the serial bus.
+> 
+> [    0.724378] devices_kset: Moving serial0-0 to end of list
+> [    0.724390] serial serial0-0: Linked as a consumer to 1c20800.pinctrl
+> [    0.724401] /soc/serial@1c28c00/bluetooth Dropping the fwnode link
+> to /soc/pinctrl@1c20800
+> 
+> And the fwnode like that was converted to device link clearly shows
+> that the serial0-0 corresponds to the bluetooth node.
+> 
+> [    0.724441] serial serial0: tty port ttyS1 registered
+> 
+> Serial port works.
+> 
+> >
+> > Without the device-wake-gpios line in the device tree it's empty.
+> 
+> I think the issue is at the BT driver level or some other framework.
+> 
+> Add a print at the start of the BT driver to see if the probe() is
+> actually getting called. I'm guessing it is and it's returning an
+> error from within.
+> 
+> If you don't see that print, then debug the really_probe() function to
+> see how far within it the BT device goes through before it errors out.
+> It's possible pinctrl_bind_pins() in really_probe() fails for the BT
+> device because of how the GPIO pins are configured in your DT.
+
+Thank you! That was exactly the pointer I needed to go and find the
+actual issue, which is a real facepalm moment. The AXP209 driver does
+not have support for GPIO3 (which is in a different register and needs a
+bunch of special casing). So the Bluetooth driver tries to request it
+and gets failures, so can't complete the probe.
+
+I've added support to the pinctrl-axp209 driver for GPIO3 and everything
+is working just fine now. I'll get that cleaned up and a v2 patch set
+submitted. Thanks for all your help.
+
+J.
+
 -- 
-2.34.1
-
+101 things you can't have too much of : 49 - Bandwidth.
+This .sig brought to you by the letter V and the number  8
+Product of the Republic of HuggieTag
