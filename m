@@ -2,52 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8698D6FD7AE
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 08:59:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FBB36FD7B3
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 09:00:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236291AbjEJG7B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 02:59:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58678 "EHLO
+        id S236294AbjEJHAt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 03:00:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236314AbjEJG6y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 02:58:54 -0400
+        with ESMTP id S236300AbjEJHAo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 03:00:44 -0400
 Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45E8065AA;
-        Tue,  9 May 2023 23:58:41 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 341CB35AE;
+        Wed, 10 May 2023 00:00:21 -0700 (PDT)
 Received: from pendragon.ideasonboard.com (softbank126090219015.bbtec.net [126.90.219.15])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id D594E547;
-        Wed, 10 May 2023 08:58:31 +0200 (CEST)
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 81A7E547;
+        Wed, 10 May 2023 09:00:11 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1683701913;
-        bh=wKVr1locEFsxOBccteNejWE1+GEN4PEuEBpf3bfDlmc=;
+        s=mail; t=1683702012;
+        bh=4RQz1Ad0wpBZCJyrJ1iwEcnhoii6dJVdb+YGrwVqGE0=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=F/QpRh83DbMyolA8zVLS0gIWkj00asNkPebM17+tnWLSGKmC5fzrJ6oCV74IEwlRO
-         GoXrXjFH9WYc50IGQsnkG6czDdLkrEaUKu7IvLM5rDd31YdHZR2lJy7iteLmHXkNku
-         QIFz9C8qyuQ/S2rGsMSCOEm7vgmu/g4OTbAOPbWo=
-Date:   Wed, 10 May 2023 09:58:35 +0300
+        b=Roca8TdPGdB7WIGLhHaXY997ignzSF1jF1weIf2FFPzZ37Yt+Gmp1pEdP/iMXFEuR
+         24eO2BqBWxffj68mmCkcLbuwuBFG/Rw+U2OY/LXcnyg9oBm9CACNuwdrlff65CEk9A
+         ofzxqke1CKOzWZJINDa5rqdKWCK4T+Q92ZIdX7as=
+Date:   Wed, 10 May 2023 10:00:15 +0300
 From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 To:     Michal Simek <michal.simek@amd.com>
 Cc:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
         michal.simek@xilinx.com, git@xilinx.com,
+        Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
         Harini Katakam <harini.katakam@amd.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Grzeschik <m.grzeschik@pengutronix.de>,
         Parth Gajjar <parth.gajjar@amd.com>,
         Piyush Mehta <piyush.mehta@xilinx.com>,
-        Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
         Rob Herring <robh+dt@kernel.org>,
         Robert Hancock <robert.hancock@calian.com>,
-        Tanmay Shah <tanmay.shah@amd.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 06/23] arm64: zynqmp: Sync node name address with reg
- (mailbox)
-Message-ID: <20230510065835.GE11711@pendragon.ideasonboard.com>
+        Tanmay Shah <tanmay.shah@amd.com>,
+        Vishal Sagar <vishal.sagar@amd.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 07/23] arm64: zynqmp: Add pmu interrupt-affinity
+Message-ID: <20230510070015.GF11711@pendragon.ideasonboard.com>
 References: <cover.1683034376.git.michal.simek@amd.com>
- <5d8e80383912b8ff75409764efb75f3b85917087.1683034376.git.michal.simek@amd.com>
+ <4c6674bf7e048e7370248e50ed3d011d604d020e.1683034376.git.michal.simek@amd.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <5d8e80383912b8ff75409764efb75f3b85917087.1683034376.git.michal.simek@amd.com>
+In-Reply-To: <4c6674bf7e048e7370248e50ed3d011d604d020e.1683034376.git.michal.simek@amd.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
@@ -62,31 +61,41 @@ Hi Michal,
 
 Thank you for the patch.
 
-On Tue, May 02, 2023 at 03:35:34PM +0200, Michal Simek wrote:
-> Address in node name should match with the first reg property in DT.
+On Tue, May 02, 2023 at 03:35:35PM +0200, Michal Simek wrote:
+> From: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
 > 
+> Explicitly specify interrupt affinity to avoid HW perfevents
+> need to guess. This avoids the following error upon linux boot:
+> armv8-pmu pmu: hw perfevents: no interrupt-affinity property,
+> guessing.
+
+As mentioned for some of the previous patches, the commit message should
+explain why this change improves the DT system description. The fact
+that it gets rid of a warning message may be mentioned, but it shouldn't
+be the main focus.
+
+> Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
 > Signed-off-by: Michal Simek <michal.simek@amd.com>
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
 > ---
 > 
->  arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
 > diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> index c2d80c7967e9..61c7045eb992 100644
+> index 61c7045eb992..a117294dc890 100644
 > --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
 > +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> @@ -135,7 +135,7 @@ zynqmp_ipi: zynqmp_ipi {
->  		#size-cells = <2>;
->  		ranges;
+> @@ -161,6 +161,10 @@ pmu {
+>  			     <0 144 4>,
+>  			     <0 145 4>,
+>  			     <0 146 4>;
+> +		interrupt-affinity = <&cpu0>,
+> +				     <&cpu1>,
+> +				     <&cpu2>,
+> +				     <&cpu3>;
+>  	};
 >  
-> -		ipi_mailbox_pmu1: mailbox@ff990400 {
-> +		ipi_mailbox_pmu1: mailbox@ff9905c0 {
->  			reg = <0x0 0xff9905c0 0x0 0x20>,
->  			      <0x0 0xff9905e0 0x0 0x20>,
->  			      <0x0 0xff990e80 0x0 0x20>,
+>  	psci {
 
 -- 
 Regards,
