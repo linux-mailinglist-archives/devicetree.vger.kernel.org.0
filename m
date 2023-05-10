@@ -2,84 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EDE76FE073
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 16:36:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45B256FE090
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 16:40:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235752AbjEJOgF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 10:36:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40134 "EHLO
+        id S237471AbjEJOkm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 10:40:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237332AbjEJOgC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 10:36:02 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2839E7AA8;
-        Wed, 10 May 2023 07:36:01 -0700 (PDT)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34AEEkDP021015;
-        Wed, 10 May 2023 14:35:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=emN30TBHHqWYt8kSsxV70C/rXs0PtRmNhisx1C/akdk=;
- b=NIAjKeZrXdkVo4WZxw2hIvnp1A64nRn841NOyTo7UnnrSNF+Gj1a45Prt7tFynQInn8u
- 0ntDV95Fyd5fJORPwcx5SJt0ekFlFgwg0fBOPUO5yTrfasA6yMMfuDVMDtWUSZ0zLwSK
- 3xGgPfS1K7KzLnWtdtBde4vxx/Bm7p15GkupDiSIAzWx46K/B2GsXISTpFpJIVzaYlu6
- VrQnZc+1JP6l0uPgZTF2fWe4epLBJmB1tt2wQ78QBIJVrIGggUquTVXg+PJ4zlMbhgax
- jI4gyrVfFQLNubgUuun1qr5wDEOBbPO+iAOz9c+RbBouXWwirp0KXfS4e2uR6imrsgJ6 eg== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qg1g11aj4-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 10 May 2023 14:35:56 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34AEZuvS023692
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 10 May 2023 14:35:56 GMT
-Received: from [10.216.41.111] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Wed, 10 May
- 2023 07:35:50 -0700
-Message-ID: <332c114f-51dd-dcfb-687b-439b4bdd6a59@quicinc.com>
-Date:   Wed, 10 May 2023 20:05:47 +0530
+        with ESMTP id S237567AbjEJOkg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 10:40:36 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DDE16EB5;
+        Wed, 10 May 2023 07:40:29 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-50bd2d7ba74so69506404a12.1;
+        Wed, 10 May 2023 07:40:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1683729628; x=1686321628;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BrjfVLE0kuezCEefQF3UAj3/eiXoxjrn3YOUxgzVyC0=;
+        b=KS4LjZzMHiePCh/GlG0eJsCGCU2fZKQLTkHMc3cX0qXb8XVeMLVXo4JF3N/x6oB0l/
+         zib01fii1to6KK0vMrp0mx6cvXCqMajgVn76xQiJ48A8bpgzXsPmOAjlGAsmVqAwxWUE
+         eX3PEdujnMiNGSQZSClyTCS/GKqI245W4cuZ/v+TJiBsvG/rKVcpl4JNQB5vyT9nu+go
+         2qTg3NAw1qCPbXVDo827AlZBfyJCuj25xxjoiJNVssh26HldvJ7FYBCR4LPHzrNd/SUk
+         0h8217Ke2+tSbOpEjMP+PlwRODl8bU2Gok94Rj1Pj8jkuNbyxJ1PK8mi8FEzqrFFzOEH
+         GfgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683729628; x=1686321628;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=BrjfVLE0kuezCEefQF3UAj3/eiXoxjrn3YOUxgzVyC0=;
+        b=PEAKAHmGYICDU/71m8uh8hI/75SvZboypMTOCEm62fXIyIxm0OW1EbxRZ4YouZdCbC
+         ucpkZFyHGkDL+JbgJqukYkLGDMZUQ3Fx4C8Mwj4QznKdQEQZIUY5t8BlvqEItpk5Bz0F
+         Ug7nbL9MU4jNueOsJSxEV+K07xsaTEBRx7hHZp2HZwmv7caael0K19h7plyCF70Yp6sT
+         ukWEYltB1A/FwlhvgHNiZ+GqiBKPQQnqHKEl9rMpmjfvn8zBhaXupjOxwhDWIOSvjdvm
+         hi0CfkJUfULYD+/9BIMo6gBJiYuDCpCUyNVtJZ+dx40D3s4AJAWMUlSJyd35Lv69EitX
+         91/Q==
+X-Gm-Message-State: AC+VfDyOBri9U1i5jkDd94FErQePSC1XI2gHoFioCEy2DkWcGnsvDWYY
+        MuffQpTqrqKTqdTj2gYAAos=
+X-Google-Smtp-Source: ACHHUZ7kHhC6J//zo/saeuRoGlERPc36A71RXJAfB0Vkkt/9CfVbt/HZ6inh7l+XzHKo3smNkcE6iw==
+X-Received: by 2002:aa7:c953:0:b0:50b:c456:a72a with SMTP id h19-20020aa7c953000000b0050bc456a72amr14550883edt.19.1683729628283;
+        Wed, 10 May 2023 07:40:28 -0700 (PDT)
+Received: from orome (p200300e41f305300f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f30:5300:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id a17-20020aa7d751000000b0050d988bf956sm1993955eds.45.2023.05.10.07.40.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 May 2023 07:40:27 -0700 (PDT)
+Date:   Wed, 10 May 2023 16:40:26 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Peter De Schrijver <pdeschrijver@nvidia.com>
+Cc:     jonathanh@nvidia.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org, stefank@nvidia.com
+Subject: Re: [PATCH v2 5/6] dt-bindings: memory-region property for
+ tegra186-bpmp
+Message-ID: <ZFus2s7rdIS4hf0S@orome>
+References: <20230510113129.4167493-1-pdeschrijver@nvidia.com>
+ <20230510113129.4167493-6-pdeschrijver@nvidia.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.0
-Subject: Re: [PATCH v6 4/4] pinctrl: qcom: Add SDX75 pincontrol driver
-Content-Language: en-US
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-CC:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <linus.walleij@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <richardcochran@gmail.com>, <manivannan.sadhasivam@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <netdev@vger.kernel.org>
-References: <1683718725-14869-1-git-send-email-quic_rohiagar@quicinc.com>
- <1683718725-14869-5-git-send-email-quic_rohiagar@quicinc.com>
- <ZFun8m5y-r0yUHhq@surfacebook>
- <1ffc9474-0a05-44d8-0cc0-24a065443b18@quicinc.com>
- <CAHp75VcCYo2uF2VY6x3jFb3v-whXrCW_U_bKnnWAfzg+dAe1zQ@mail.gmail.com>
-From:   Rohit Agarwal <quic_rohiagar@quicinc.com>
-In-Reply-To: <CAHp75VcCYo2uF2VY6x3jFb3v-whXrCW_U_bKnnWAfzg+dAe1zQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: a0WVVcxuQMiDkchGhXCTI9QXDLQMzWGl
-X-Proofpoint-ORIG-GUID: a0WVVcxuQMiDkchGhXCTI9QXDLQMzWGl
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-10_04,2023-05-05_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- mlxlogscore=788 clxscore=1015 spamscore=0 bulkscore=0 phishscore=0
- adultscore=0 suspectscore=0 mlxscore=0 malwarescore=0 priorityscore=1501
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2305100117
-X-Spam-Status: No, score=-6.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="Cys7xdI4J5nU1kTN"
+Content-Disposition: inline
+In-Reply-To: <20230510113129.4167493-6-pdeschrijver@nvidia.com>
+User-Agent: Mutt/2.2.10 (2023-03-25)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,24 +78,50 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 5/10/2023 8:04 PM, Andy Shevchenko wrote:
-> On Wed, May 10, 2023 at 5:31 PM Rohit Agarwal <quic_rohiagar@quicinc.com> wrote:
->> On 5/10/2023 7:49 PM, andy.shevchenko@gmail.com wrote:
->>> Wed, May 10, 2023 at 05:08:45PM +0530, Rohit Agarwal kirjoitti:
-> ...
->
->>>> +#define FUNCTION(n)                                                 \
->>>> +    [msm_mux_##n] = {                                               \
->>>> +                    .func = PINCTRL_PINFUNCTION(#n,                 \
->>>> +                                    n##_groups,                     \
->>>> +                                    ARRAY_SIZE(n##_groups))         \
->>>> +                    }
->>> But don't you now have MSM_PIN_FUNCTION() macro?
->> So Sorry, a mistake from my end. Will immediately update.
-> Don't forget to collect my tags for the other patches.
-Yes Sure.
+--Cys7xdI4J5nU1kTN
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks,
-Rohit
+On Wed, May 10, 2023 at 02:31:34PM +0300, Peter De Schrijver wrote:
+> Add memory-region property to the tegra186-bpmp binding to support
+> DRAM MRQ GSCs.
+>=20
+> Co-developed-by: Stefan Kristiansson <stefank@nvidia.com>
+> Signed-off-by: Stefan Kristiansson <stefank@nvidia.com>
+> Signed-off-by: Peter De Schrijver <pdeschrijver@nvidia.com>
+> ---
+>  .../firmware/nvidia,tegra186-bpmp.yaml        | 37 +++++++++++++++++--
+>  1 file changed, 34 insertions(+), 3 deletions(-)
 
->
+We usually use a longer subject prefix, even though that makes the whole
+subject usually become longer than the recommended 50 (or so)
+characters.
+
+Maybe you also want to add a verb to the subject to make it more
+descriptive. As it is the subject doesn't indicate what's happening with
+the memory-region property. It could equally well get removed.
+
+Thierry
+
+--Cys7xdI4J5nU1kTN
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmRbrNoACgkQ3SOs138+
+s6Forg/+J9Eemk8vswIOaDn+qZ4RRD/PyuaHP2irl7MoioAXpR7tA3qM7x/ltwUz
+odt+2aGX9dR2PfOE/oT6EIHP0Ho8AMyM2R+o9Ii76mqk6GaO0xiluG3PmyZHkkUS
+sziQN5KGVdp74+GiQ8btD6zTn9fO9x9WQ9CXrqU8e/TzlhnPFG3qqEqU5ixH5IH1
+txXMLUuecKr/NAKU0uhEU96hgrw+D7dLPTO877RFhwx4JZ2xcZjTp1qGanfBt+Ep
+K5oXX0NlmcvnG3tYMLTpuwJ4lpIns+PhiANBMRyqH7Fn4fytqb9fmHZPRSPSnT7r
+80+GTZRmd+vXuWI+JkKU714EOkPuJ71XF/hqg/qZHeNeUF/YC0w9GI6KTZQ2d36y
+03yMm3Anvc0VBj2jWJQymgVjZdW5Yc5j1JY9AlJjX2hjNA4fvWwl1fA0YdzGnHxT
+T07cl29tsBBPQlo/1ZtfKaFpcLV8IGfTdokbGirMCse1vaXgF36s1tNFqwp+7Ond
+TFk/AiM91zxDRiN4dUMvpuOmtMN6J6Npj0VZmKLk6RnZn3rbJPJFwarSUJVGYC0r
+A1s2XFEJo8VX5Rb+Pkk7LlTHEG17joDoVm0yCyZQ7Hm/Lvi4JoWJ8tXFqRnlYVIM
+XDWqlm1JQBOZDodV1zxkzK1+19YmGjmB42HmPhS1mchieVU2c50=
+=QylG
+-----END PGP SIGNATURE-----
+
+--Cys7xdI4J5nU1kTN--
