@@ -2,106 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CDDCE6FD8B4
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 09:56:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 516136FD8C2
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 09:58:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236481AbjEJH4U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 03:56:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48472 "EHLO
+        id S231402AbjEJH6z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 03:58:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236506AbjEJH4Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 03:56:16 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3230B6A52
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 00:56:11 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-965c3f9af2aso1017790766b.0
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 00:56:11 -0700 (PDT)
+        with ESMTP id S236049AbjEJH6y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 03:58:54 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58A331BB
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 00:58:52 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-9660af2499dso945816066b.0
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 00:58:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683705369; x=1686297369;
+        d=linaro.org; s=google; t=1683705531; x=1686297531;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=y9RFoN4O5XFIITa1Nf4m95eLoa2elYnCxA/759kt0FU=;
-        b=kLY3wjNehkZwp8cU7rDh4jvPoK+/liRJjcWUMFoEf5+S6QQshsDBVcGbxAUtpXiv4z
-         A5jNkENMTTvKKmMYnZwWvhNsHLv/uXGwpsfOjvmLm8hBMRV4rvqzPkLl5bx2C8ns5L0/
-         AWoeiiC3eCFihew7jxWnppIelC6/6t5guAxfsqUNT77JiZJ2YuI/+4s2eYyhKDNKrbRZ
-         7PFKM1XLFVEXhoV5uATJJlS4vmq4wdBwAXgPOyxMa5rXCCFpdnuSxJF+V8O8zYV473Uh
-         QZbR0qJr+ysdiCeddo8co/bu6Lg8G2ER62CRCfNBRp6rDLQNVqT9r736JrjAUQMzS/Lk
-         nycA==
+        bh=MovaklLI6W+xrW2iiAzq7kIKbHJ++xEhFeXlkG0vHp8=;
+        b=J2p3RTPy/6viCRfBGAUIk2VkrQl8INxIncGiD0RVJoTE0x9AVApJmofy/DJyq6Fbkx
+         LKSU4ZI2zwdKgbFlxs3vNQ1mdXdfcom/Gkq+oxJNsHiZphKAOTzLzV58bs89t63lkOi/
+         ucrH0BWY79ukCxXHEl3RlIOd7UVF/hyp2nDxAME/xgg1WxJvB6PPJZpJlw2BH81b3y8s
+         Olvodu5huJU7O3C4LBAaZE0Bh2JOjA8PB6R8aVMOt9JxWNcK0Wk4pXKIPPtDW/mx8Re5
+         3MosmIOEmOCRSN0UJE3qtgnF79EvqWWx5ZX10UpAJ5vctVcVG8DuvFQFdH5Po+dqVjMA
+         IDyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683705369; x=1686297369;
+        d=1e100.net; s=20221208; t=1683705531; x=1686297531;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=y9RFoN4O5XFIITa1Nf4m95eLoa2elYnCxA/759kt0FU=;
-        b=aVXoJ2A7Y07SJzlERej3V7Voz1nJ97KPfPQfZ5y+uwCTTU0Nf69o2skTC3QpW8UNUb
-         KnSyhQpYhzCm1zunCxsbeEY72b8djAUSyr1nS2ss5K4dE+2Vf95JUbUTfiXi9rTZ5FqH
-         WaQwtMLO1nF4avo1wQsx7cXM95GJHbEs06Xz+xdaCzrjcL2Es0uE2tHyZISAaqNyr1O/
-         GUp9O4zJ0IZaOF8/QzaYFagZOIUMebbfoIkerxpFQ3zT1BcIkAlM6DXSeqIN6xggk8JM
-         4+t/sE8YLxZx/yxU8x1BBez2PhIZHRMfLN44dS8lfso5gRdOS/b0zgWvHSYCZAVoHZr1
-         WgYA==
-X-Gm-Message-State: AC+VfDw+BLyAYl6cEBAs0+SatXCTlPRqnU3X4dmbhn9MRxShsZiGKQ0N
-        fBJ6OomCns+7B5ni58unrbECRg==
-X-Google-Smtp-Source: ACHHUZ4Zsna71INf2aga4IE3V40t03Umq05b0Y5aPtBM2+siS110hJDZd9+0xlxWAcAEXuHQQ8I3Ag==
-X-Received: by 2002:a17:906:eec5:b0:94b:cd7c:59f4 with SMTP id wu5-20020a170906eec500b0094bcd7c59f4mr13529347ejb.16.1683705369733;
-        Wed, 10 May 2023 00:56:09 -0700 (PDT)
+        bh=MovaklLI6W+xrW2iiAzq7kIKbHJ++xEhFeXlkG0vHp8=;
+        b=llJl9ums5FTUfizzunEoE2ab1V21Mvc0itYHs8wYVE1zVb2QagzAqIeOMp9EgntcaR
+         eA0uFsIXTEXeRuQjeaES/iFC2r4JcfGDoP9d8sAAabkwMbK4CC/2HFoBnAi95zfdLHYs
+         Yc1uXL7Nski1WBZn7c4MyqVZ+ZT6flyZBivMILG+Luz2CO2x2WS9iLPd9j2xepsjcOb5
+         AEyJklEO22wVnE0dIWLclPDx6Yg9pqQ61CEoI2TiZwavrl1fwDpqL1GFC/iqoqhOIWdm
+         cQ92rzgDMefQZ1AEx0X4AhP4O3H5BZ6/E56Z+fter+iaZ5pxo959r/M7OVdrd1XnQray
+         vYcQ==
+X-Gm-Message-State: AC+VfDzfs8iDEuJ+DWCIFZ8KgDneV8cDHywYhYIa2ICEVzq4djZcaIDQ
+        /f5Rvt+vJcyzgOOypPtoW6Im9w==
+X-Google-Smtp-Source: ACHHUZ4MGszQ7NCz9iagPu2gO48np4OkpzCfXOqnkcQg3RnJVnHCYuH6Ipq/PBN1Va5sr7vU+pi13w==
+X-Received: by 2002:a17:907:6d8f:b0:94f:928a:af0f with SMTP id sb15-20020a1709076d8f00b0094f928aaf0fmr15935756ejc.47.1683705530760;
+        Wed, 10 May 2023 00:58:50 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:c175:a0f9:6928:8c9d? ([2a02:810d:15c0:828:c175:a0f9:6928:8c9d])
-        by smtp.gmail.com with ESMTPSA id mz11-20020a1709071b8b00b009603d34cfecsm2311183ejc.164.2023.05.10.00.56.07
+        by smtp.gmail.com with ESMTPSA id ze11-20020a170906ef8b00b00965b0eb7b0csm2316921ejb.103.2023.05.10.00.58.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 May 2023 00:56:08 -0700 (PDT)
-Message-ID: <8f9d4228-4414-a299-aa86-07baf5b95af9@linaro.org>
-Date:   Wed, 10 May 2023 09:56:07 +0200
+        Wed, 10 May 2023 00:58:50 -0700 (PDT)
+Message-ID: <1c2aa022-348a-8ac2-1a26-eedf57aadb77@linaro.org>
+Date:   Wed, 10 May 2023 09:58:48 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH 1/2] dt-bindings: PCI: rcar-pci-host: add optional
- regulators
+Subject: Re: [PATCH v3 2/5] dt-bindings: clocks: atmel,at91rm9200-pmc: convert
+ to yaml
 Content-Language: en-US
-To:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        linux-renesas-soc@vger.kernel.org
-Cc:     Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230510065819.3987-1-wsa+renesas@sang-engineering.com>
- <20230510065819.3987-2-wsa+renesas@sang-engineering.com>
+To:     Claudiu.Beznea@microchip.com, mturquette@baylibre.com,
+        sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, Nicolas.Ferre@microchip.com,
+        alexandre.belloni@bootlin.com
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230509052757.539274-1-claudiu.beznea@microchip.com>
+ <20230509052757.539274-3-claudiu.beznea@microchip.com>
+ <e463eb68-3ea0-5230-76fd-4a2ee66bf397@linaro.org>
+ <773d0d90-29c7-b1bd-bd16-898b435eafb6@microchip.com>
+ <b3c7db03-6614-47d9-a9e0-a8e51c836d86@linaro.org>
+ <a4d934c6-ec28-50d0-b9bb-9b11fee7ebb6@microchip.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230510065819.3987-2-wsa+renesas@sang-engineering.com>
+In-Reply-To: <a4d934c6-ec28-50d0-b9bb-9b11fee7ebb6@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/05/2023 08:58, Wolfram Sang wrote:
-> Support regulators found on the e.g. KingFisher board for miniPCIe and
-> add a 12v regulator while we are here.
+On 10/05/2023 09:14, Claudiu.Beznea@microchip.com wrote:
+> On 10.05.2023 10:06, Krzysztof Kozlowski wrote:
+>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+>>
+>> On 10/05/2023 09:00, Claudiu.Beznea@microchip.com wrote:
+>>> On 09.05.2023 09:25, Krzysztof Kozlowski wrote:
+>>>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+>>>>
+>>>> On 09/05/2023 07:27, Claudiu Beznea wrote:
+>>>>> Convert Atmel PMC documentation to yaml. Along with it clock names
+>>>>> were adapted according to the current available device trees as
+>>>>> different controller versions accept different clocks (some of them
+>>>>> have 3 clocks as input, some has 2 clocks as inputs and some with 2
+>>>>> input clocks uses different clock names).
+>>>>>
+>>>>
+>>>> Thank you for your patch. There is something to discuss/improve.
+>>>>
+>>>>> +title: Atmel Power Management Controller (PMC)
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - Claudiu Beznea <claudiu.beznea@microchip.com>
+>>>>> +
+>>>>> +description:
+>>>>> +  The power management controller optimizes power consumption by controlling all
+>>>>> +  system and user peripheral clocks. The PMC enables/disables the clock inputs
+>>>>> +  to many of the peripherals and to the processor.
+>>>>> +
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    oneOf:
+>>>>> +      - items:
+>>>>> +          - enum:
+>>>>> +              - atmel,at91sam9g15-pmc
+>>>>> +              - atmel,at91sam9g20-pmc
+>>>>> +              - atmel,at91sam9g25-pmc
+>>>>> +              - atmel,at91sam9g35-pmc
+>>>>> +              - atmel,at91sam9x25-pmc
+>>>>> +              - atmel,at91sam9x35-pmc
+>>>>> +          - enum:
+>>>>> +              - atmel,at91sam9260-pmc
+>>>>> +              - atmel,at91sam9x5-pmc
+>>>>
+>>>> I missed it last time - why you have two enums? We never talked about
+>>>> this. It's usually wrong... are you sure this is real hardware:
+>>>> atmel,at91sam9g20-pmc, atmel,at91sam9260-pmc
+>>>> ?
+>>>
+>>> I have 2 enums because there are some hardware covered by:
+>>> "vendor-name,hardware-v1-pmc", "syscon" and some covered by:
+>>> "vendor-name,hardware-v2-pmc", "vendor-name,hardware-v1-pmc", "syscon".
+>>
+>> The enum does not say this. At all.
+>>
+>> So again, answer, do not ignore:
+>> is this valid setup:
+>> atmel,at91sam9g20-pmc, atmel,at91sam9260-pmc
+>> ?
 > 
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> ---
-> 
-> Changes since RFC:
-> * added 12V supply for completeness
-> * use PCIe slot in the example instead of miniPCIe because that is what
->   the Koelsch board offers (just without the regulators ;))
-> 
->  .../devicetree/bindings/pci/rcar-pci-host.yaml        | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/rcar-pci-host.yaml
+> Not w/o syscon. This is valid:
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Syscon is not important here, but indeed I missed it.
+
+> 
+> compatible = "atmel,at91sam9g20-pmc", "atmel,at91sam9260-pmc", "syscon";
+> 
+> available in arch/arm/boot/dts/at91sam9g20.dtsi +45
+
+Nice, so my random choice was actually correct. Ok, so another:
+
+atmel,at91sam9g15-pmc, atmel,at91sam9260-pmc, syscon
+
+Is it valid hardware?
 
 Best regards,
 Krzysztof
