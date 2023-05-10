@@ -2,186 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9001A6FD2F3
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 01:08:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 246C96FD334
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 02:03:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234743AbjEIXIg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 May 2023 19:08:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48914 "EHLO
+        id S234887AbjEJADp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 May 2023 20:03:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229615AbjEIXIf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 19:08:35 -0400
-Received: from sonic314-20.consmr.mail.ir2.yahoo.com (sonic314-20.consmr.mail.ir2.yahoo.com [77.238.177.146])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A427D30DB
-        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 16:08:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rocketmail.com; s=s2048; t=1683673712; bh=zp2c2cd4lwZqhHjdjVdFDoJiq8XP9spy5T+/kzV/2H8=; h=Date:Subject:To:Cc:References:From:In-Reply-To:From:Subject:Reply-To; b=YRKXllKXPkJjYzNv9qUn3bC9XiUM23lukQasnHqq2W1UqGsSKqPdxt3V2MnGpmFkQn5zCMYikVz0UGL2SfftP+icM6rtlWT2DLV15u3J/BMv5AW52SGSWmI75e9O7wvdZyQZkDK7QAgrRD/n1A3wrNUPZKYvjzGH236s3NC2S8Uv6xpM/xxmyE0o1yurPIPJhn2Up0a4Y2lviXPa/DDVZZkg17VMxtcE2g4h+TH0fRvD8ChugXD2PAR5ldWCFQ93FBWSBLFYezbtSgn00O7o08IWVmD6fftYErUmupms+baHoPhTTg3fd/wy55YroBPGzJSuiBosPOP1Ew5g2M8WeQ==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1683673712; bh=3bt0fE80k7Rxcpi/4RtFXVoaDMa2eRmUO6BCOqhmq0y=; h=X-Sonic-MF:Date:Subject:To:From:From:Subject; b=nrTo17tYlokj40BgbBijWTlsKKhPeajoeEOjjuEv/3S5IvB/xFzOcKaf7MwNb7hpXqTR2Z1zzvnCRVojZcgpsmN1nOUc7v4gXYsU95vJmV9ZeQLJ+COCzo7H0JDeESFKqvJF3Wpp74cLiA3u9OMQ3dUjEoV8f/TMBW1dloRPRBsGxwnX6YnIWvQ2xBk5GI05FthgKOSaWJjKpj+Y5oEp/i82NTh5WzmB6gttbI6sQMKdQUMb3J1dTkGOHLB0q1Jy0jzxRgNl/76ITfO2TyYWj6Mrpwr2mewnmiGoJ2iiyHIt4TXkgSeBzXwv7u95Y7VFXJEnVCexo+irQFzKdmih5A==
-X-YMail-OSG: dNLcEmYVM1mtV84oVum2i3KZLiY3yU5rrycjCHcF4QT5y8aEcJO1WCu.JAhZAJk
- 40_kCiH9IfTaVjYm0NqQjCcA2qpfNUqXzNWyIyOFsTmSZLvjJwsohVYDTF6vNpTq29o7.sdEu7AB
- 53O4ylzhAbqqpf0L6eswdgvdYHIJ3Hk1r58D4YysDeHRsSN5R2MVhpkqq0DOqHyMjCG.EcrzVov.
- W4.s8kHfFK.nHoa22P4hIz3euAf1Ltpr_BaTG7of6sbMVULOe39l3kQYa7i377._HKFJ.zglwi6U
- OX_fAvFFE7_nJ4sTOorDiAaiM0cSNfhQ4u5WzGpZW3dTqGM3FXHB3CAtrRJkntKvpYy.KI6xEbLT
- JMfo93q9bjfTOjwcVbDuwUeTJPlegnRQ_nbG6Nuvz9fe0s8j5XtLP5DGdtjP20RsP2IptNIxqzUg
- vW8RsF7WxaMCAtPGAkvVUO2ELosASXZOiRmlBdZ.5E5xlGu.sTcqeQwnDOd5VpmxaHM7ls6P8MHW
- UTUKYQdG3xulyFF.x21Z51r8SQ_uk1kgGsWGYzEPHA0WQTeGGadL04gA7zVMjoxU0EzA2sz8IZkD
- DxgWpPXfjXN1fe.wfogCSuPZTrmSVZMjBJ58OMsr2RMmLo0UTmEBKlozjrCyycL_79U7F2IBzVsV
- VI9UMKfIp4oEn.jXqqGxC.T0URthaOeFxXzA5wTe9j4SDgTklBxHWgyMWTfusWW5S2GQCRiIB9BJ
- 9PKk.jOa3bdDtPayGqtbpBp29BckvK0lAuJwc7kKOTulEk4X8QzLDFZH92hNwFhIXjUJwDHpp3Ij
- y15e_oSLqYos6k7ZoBva8KJ7pFGTHrnI4J.ySZsKC.S8y0.9uUC1o7PIAT6UhfpmK3w9QebxUuJC
- iD0nI5bu_fzbS78EcLAYs3.tejdw_R2.ENcO44_af2Dkx2lCAHfWmsURPMy3TdRIFK9wQcXUYux0
- fpM5rEW45S_0taEVQtMPe2giwv.7Y8w.4VHbhYJewXk45ak2O_H8SqJDutZA3NH0jwWuFgnKxAaD
- _1QP8xz65CB2UtKE09WnaLEdMMmxqsMB.DLLHFGXW7vN9STqAVb9cK_vyhtJGyvwDb1QjLA2VTiV
- g02cOsRJMyd0sBFitUkPDIC784qSzdsHODqMj6b3lL7duQLUi_K_LLRhEhNT.O2tSAxOUAgzrJCj
- sjMStT65WIhxYH2XrE1PxD5GjZMhobxnxCLgW8QlUs0.4l1qEcnElGpBT31shBxTNVBletNosGEK
- 7Okt_r.EGK8bNejBShVxsEat_mK58JENr4T6s4MyMPInC1wpoTJ3CqYxHEuRSq_aJR7V8KUHhV5x
- J2IO56F_hRfhbEqvR_rLdVwvRjoXlwdvvA0DrjHTP4eNOvpasxbi_Ta7Mc80FHksioQ60C6PWQig
- QUYR0MCZiEDSJFDlghIPcXVcJihxW27r5V7UAgxpGReJt42m0CQaTUGFFnBtiLRNh6zFBz4Z7DCK
- RPIHTqmeIBJfLgg.8RC18tgEF.PdFRTX9erZ6pYCX2gZn0asuLQzjwkX0XCfa.ULNOl9v9iyRtxK
- ww77YRxvdTl3Z3h1BnzQCIPBEfKOmuD5bZdaDCwK6lMoPvmPlUGOjaKarla7JBgsdJe00g6UtFj3
- QORtP5uUg1O7wGwLgBY0KnzwHqM61zp01xzL3yb9PmCtDhW6zn03SPifG5fSoeYw.PnP7FxZPah8
- CRbvJwymUF2zicLbKhCrDLh1jOHRnEVhMM7Vm3K2qbUIzVZ1_PWghw3mxy6hgaK4nkYWqHflv2Qs
- Nu50Sz1vCAzKh4f0QXDVnJL0Ystr6xsNBzSPV6eGMQsiF0Nou1ASRE5ITbuHRr5vAkIj3VhKdzv2
- GwtMu8dsYltGMhnutjY5YUXeDOazFHbqIgX7mX463.bAXeiyluNUTzphyQfyA19zMuw6X382rNnZ
- dBrDaSv4B_A_f9ypv4_4l.xftl5VBFxUCehWMjymvKirANPwxnwdCSGtLYBctkCt7yOKHxJR3_Ur
- 9qt77GMm7pnuh7csqxXH5C9RuqtWdOeZzRHhJY31PG9bWCaYmI5ZnIweM7U9n0_plz80g1KnT2PJ
- EfBpADrqwPFEoEyZmF0AYFBMvBigM6Hockr58zh.BDyanyUpbgaYNFZ10dvQSftoXv.sCKy1C0Z0
- oA0BssVDZp9x8thtnfLpeXtnlFRuCZet6ailZxPTir0eaDzqgGNin1aRHCiTOa5aVvMyHK8xyG4s
- 4ytzISpX9PsUN1f2E2H0UEivKDl9zL5OsPzPEUcpu6K06Pytv5pFMztSwFSapbDQAHcjDTLqI69a
- gJKLgLQ--
-X-Sonic-MF: <jahau@rocketmail.com>
-X-Sonic-ID: 1c7df8da-ea60-4aad-8ef7-a78a43a32e11
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic314.consmr.mail.ir2.yahoo.com with HTTP; Tue, 9 May 2023 23:08:32 +0000
-Received: by hermes--production-ir2-74cd8fc864-db5p9 (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 837ff3d45b33d672f05185fc55fb6f66;
-          Tue, 09 May 2023 23:08:31 +0000 (UTC)
-Message-ID: <74ab2851-1ca4-dec1-850a-1811e5a7e22f@rocketmail.com>
-Date:   Wed, 10 May 2023 01:08:30 +0200
+        with ESMTP id S229656AbjEJADn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 May 2023 20:03:43 -0400
+Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2102.outbound.protection.outlook.com [40.107.113.102])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AB9C173F;
+        Tue,  9 May 2023 17:03:42 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=mxKNb288XP71PHoD0ytTaA6Yx5HUwtKyAMy04bZTf31VM6NCN6FC++HQ1VLbVAiY1lZIBgwPiLgaucMUDhgr085TOxS68mUhgENBJuA2PyLtcs6p6JiA4Mpq7NuJsRxlwHQLamE85jfOrrspRnw5HxVP78sbN5OF1DWwexEkDM8yOQrEPBywuAQVNEEam2vH4fiws1D5ikA+ZjvY+E9fFEwHXeYe2qC9M3exPjKgiYtrq2DzwxgZVTLyBU1zIB+nFJ/mTah23WYRmYQxh+vixmAE9mMfVvOwN0weYAKO4jrJ3CCFZvo1HU54crDxJ89+mcJiiT/G3TzY10NdfKPYfQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+V9PQVnzH0lITIv6UyP2BRGqI0On14rRg3Tu+F3h/Ms=;
+ b=khs1CLKi2nK3XpyxgElNCG6F+amXLvyI3FZb0ErNX7IIDzQTYA9eqlBbdtUkSdX6RcPymu7KZHyzTuoit0k+Kf8vXm1B06ssv2+Bm6TBozG6VKL7HN8aFpWim3VGsVncM/vHml3IhvPkCzLcMoxUMjasbxdWIS4QQLGjOuRHgiRTQAceDdnOck7J5F3zaFJ4I7tbgByumNQbsMo6/5+cR1dRw6ImAZi8JaRqPqCy51onosL3a1yONjm1QbStoDKhMivLlWCVGG3Na3c2HxZCP6euODUtKiwP35umb0nGgG+Gllfxjvh+qcpyjxyF3TX3FHOhz4EXPavFbi4/oWmrbA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+V9PQVnzH0lITIv6UyP2BRGqI0On14rRg3Tu+F3h/Ms=;
+ b=A7kE+xNtTqJu5TBu4Qr5UQSenshxkcJrvPfuxJ4nDGTDdgU00Pe7OScFk7c/Lq9dflrQE7h8tHwkJ0LH2Kb/Q2uflX/oD54lm0VNvofij+XvIymMvfb+726zwox/ubZJPFcT4SSFEwoHj2EfN9gP3BLAYCGozS48zbICJzC+wxQ=
+Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
+ (2603:1096:404:8028::13) by TYCPR01MB5869.jpnprd01.prod.outlook.com
+ (2603:1096:400:a::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.33; Wed, 10 May
+ 2023 00:03:39 +0000
+Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
+ ([fe80::5198:fdcf:d9b1:6003]) by TYBPR01MB5341.jpnprd01.prod.outlook.com
+ ([fe80::5198:fdcf:d9b1:6003%7]) with mapi id 15.20.6387.018; Wed, 10 May 2023
+ 00:03:39 +0000
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     Frank Li <frank.li@nxp.com>
+CC:     "marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
+        "mani@kernel.org" <mani@kernel.org>,
+        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
+        "fancer.lancer@gmail.com" <fancer.lancer@gmail.com>,
+        "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "kw@linux.com" <kw@linux.com>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "kishon@kernel.org" <kishon@kernel.org>
+Subject: RE: [EXT] [PATCH v15 08/22] PCI: designware-ep: Add INTx IRQs support
+Thread-Topic: [EXT] [PATCH v15 08/22] PCI: designware-ep: Add INTx IRQs
+ support
+Thread-Index: AQHZgnOp1x5vCUHL6UeCCGlO/sd44q9R+AsAgACoYmA=
+Date:   Wed, 10 May 2023 00:03:39 +0000
+Message-ID: <TYBPR01MB5341F528C9C929806E7BC2B1D8779@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+References: <20230509124156.150200-1-yoshihiro.shimoda.uh@renesas.com>
+ <20230509124156.150200-9-yoshihiro.shimoda.uh@renesas.com>
+ <AM6PR04MB4838CA729D82DBB18852F9CB88769@AM6PR04MB4838.eurprd04.prod.outlook.com>
+In-Reply-To: <AM6PR04MB4838CA729D82DBB18852F9CB88769@AM6PR04MB4838.eurprd04.prod.outlook.com>
+Accept-Language: ja-JP, en-US
+Content-Language: ja-JP
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYBPR01MB5341:EE_|TYCPR01MB5869:EE_
+x-ms-office365-filtering-correlation-id: caedc5b7-d410-4a26-2bbe-08db50ea0251
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: fzY4rFak1IhSiZCHUnZLPsmiTiEsPVqPpv0FS0AaWN22rKQFxA1KMBDCYFdcJKEOJ9L8uaAWsQzIk4b/szf4E2vpU+xrDbC/zngMM8jR8Y6Mj4K6H1VOKrygAvMbEKMg8oy4XpotKAOxgNgb5lnIwpOrAz+pihgoXQEUdAjoyvbEMRjN/VKVnXlFZEjzynaCoJijCDlqPEs9/sNuEF2sz7ExL08P26tA5/LFYvp515ct0wFPmjTr/y1z3nxHSDcyL/VLZmNRQhpXqtZi872DXUTtTeCx+ieZCyUc71I3A4s+Z6Zd7k5C+l+odpC2Bwb2s4uq39pB9PTHyM7JQOrsXwn6csoP6IaV4oEFbqG1LXlZFyY7mcxuLOtBvfe4XY4j5vspobE5ETj4okYJ7GfL9IXL+JGvcmfMxhCstvafHHp4wk7z6oVT/XUz4v7CGFvNk5t/na5e7ytpiaZ0AaRIplUfb8kYVnNSh7Ngf/UufYbU0K37wKhU/IX2keMMlj+RYlAzqKKuuQlSTgA8bV+iG6+GmC9b4UExHura8pM9XmlpUbuGMHqgtmr/xUQ/68t21p8zmW/vDLdXAODJAHU9Csmz4cs8QP2uEMDN69qNGc4Y4ys4aQAsIuc996vuJEs8
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYBPR01MB5341.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(366004)(136003)(346002)(396003)(39860400002)(376002)(451199021)(54906003)(86362001)(38070700005)(316002)(71200400001)(7696005)(66446008)(66946007)(6916009)(41300700001)(66556008)(66476007)(76116006)(64756008)(4326008)(52536014)(8936002)(5660300002)(8676002)(478600001)(7416002)(33656002)(9686003)(6506007)(2906002)(4744005)(186003)(122000001)(38100700002)(55016003)(83380400001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?n5qkNL9XF4PK/k4J8+SQGA9eVzS2CJC/8sp18+LeKtObseELmHEfHObQIjPc?=
+ =?us-ascii?Q?oF00NJqHWUrzUfMqQcKzloV0LSQ8+jhrSbjvV8bUvGpZ1G8FIypc07XEo1nk?=
+ =?us-ascii?Q?t59cwKhej5RQy91uEyNh6ldPOsmT5lFtT5kkLQ4UjX0PAwJq6f4e3LtlkdvG?=
+ =?us-ascii?Q?BqmKNEG0B32Ht06SuoQKPMEFb0RE/4V2d5axIJp9olVYuMxsZHE9TRdYnUzJ?=
+ =?us-ascii?Q?/dpeQblOkDLLLrKNH8O4WLyZ1oXXED89k3kxUoqJE1v9RFprnt9140ZCV0xY?=
+ =?us-ascii?Q?mvAE0R/bJq2oY9Nu9Qqu4htzJ+EuC5v4Syb/56+eeMG2pcp7TSY4VrFdbxtP?=
+ =?us-ascii?Q?kLoRv/ZL4ebRXgp8wz6svl7A/+kIr8RI9szJraseC0OqYajJR5ZADmm6Xkn5?=
+ =?us-ascii?Q?RxRCN61rFf+Am3oC9XZnIcWoNa6SlYgGoybba2qrUpU0rVeFKJbD1NUv1R42?=
+ =?us-ascii?Q?2uRe/lmG58NCFT1GtN/V/W5DDtzuoCv5FCuaUuIKbx99CtFv4rAZSqdVOv1V?=
+ =?us-ascii?Q?SNtEJnUdngfOi2ovqdvYK17sIi0EJCMRBzJOB+dr1RQPrCcJ/UIRj9jRMVE2?=
+ =?us-ascii?Q?KKgZjjwu8Iip+I9dCLY2rybHr9zkw3zQYPytnsMdMgUHNgm9ygz7tW8tIsXp?=
+ =?us-ascii?Q?O4QnCdrkHQLQbRpclgIv8kFR3i7NN91yu16Kx33bvCzHltd1msIbEiBpBpX0?=
+ =?us-ascii?Q?CQICOEIXwseFVErgNnnYxrRj8Dxx5GauGwVOZVUJzJXgsgBBGvUAdTXxtyUK?=
+ =?us-ascii?Q?cB5jputIycIF+K2ca9yBO5O/+IoZ02/6YImJnLAkjJsKCj0D2bLwJ0hL5XEP?=
+ =?us-ascii?Q?JhZuoUibUj1WlnipFL0dosegdd4lDUTZ9AlPR1p5+SPUYLwfYd0NNTPan4Zt?=
+ =?us-ascii?Q?3c2Lk4K4iyU6iyahivfhv9aGcRD9rd6T1YzZPq8oXC3snkoNxoyMKYWIigwB?=
+ =?us-ascii?Q?732ZRu+n1wSWhAWmw3Mt4Xq60dr2FcXATlGPp0QN8Wfj+yPcOptPy0+y985u?=
+ =?us-ascii?Q?BaEreg2vyp3BvaTR76856ze9T5CSdVccvheapYJog2DNsSFZLnzlJZh2ae3A?=
+ =?us-ascii?Q?s+ZfW69nJJqDTqmZBYIzB0dLnhkowlXfA55iF4RQmyg1vjvpDJvq9pth6yq6?=
+ =?us-ascii?Q?6c6nMfvgZNTmJQ62EQvWn0btMCY41SpRaJEQyFa7ULDLXZTWKV/xxxJM85Ca?=
+ =?us-ascii?Q?JB81qfPg0Vytq3ZzRIv4EHZedV469ku5CVE4R6a9m2Uc718Fx85lwIJJBdrs?=
+ =?us-ascii?Q?Brd23Ffg3DIr9crqDwyLemOzDe5vkeEa8vYWBGvo5P3J8XDzKJ7VK2jTycJ+?=
+ =?us-ascii?Q?a0emT+iqQ5/KrZFbfPcCCusGxAQoEsFVaOgzH+D6FxBAyJNrC+NQPoUeKdOx?=
+ =?us-ascii?Q?fGAkmHYltEo/1vy14U1VDdQWunUE6d2mKOnn1IyXFa3zRhERvPnivQ5bOCyL?=
+ =?us-ascii?Q?0bfEQZdZjHLy6f42YEuHQwOOAW9R+eCXjE0eWypazZVFmkB3r+QkP4gncGdJ?=
+ =?us-ascii?Q?qJUMaZ/T6E+eyd9WL2gHM4EUj4SbNA+5gChtpkNZl50dHvVwyQ4rsQvpl4iU?=
+ =?us-ascii?Q?AkcNBPtxq2ppr4nu95Qp2MczptBaAKac+2YkDOZOGx9ENIUNHpcy5BJ+l6hQ?=
+ =?us-ascii?Q?GwYZ2tj2gR4T1L1g+wrfr+360YhjQucBbN0iNapMt7Cx3rqwOQfGopdWX7FY?=
+ =?us-ascii?Q?3wXTUg=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v4 8/8] dt-bindings: Add rt5033 mfd, regulator and charger
-Content-Language: de-DE
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Sebastian Reichel <sre@kernel.org>, Lee Jones <lee@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Beomho Seo <beomho.seo@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Raymond Hackley <raymondhackley@protonmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Axel Lin <axel.lin@ingics.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Henrik Grimler <henrik@grimler.se>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-References: <20230506155435.3005-1-jahau@rocketmail.com>
- <20230506155435.3005-9-jahau@rocketmail.com>
- <fbfd02d5-183a-118c-5743-dee6c9367bf6@linaro.org>
-From:   Jakob Hauser <jahau@rocketmail.com>
-In-Reply-To: <fbfd02d5-183a-118c-5743-dee6c9367bf6@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Mailer: WebService/1.1.21471 mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYBPR01MB5341.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: caedc5b7-d410-4a26-2bbe-08db50ea0251
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 May 2023 00:03:39.3887
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: GLCqLXZizRcb+HSIliCMyQs3Od7TEbWM1mI+pV6pziH7SqJGUVF0cHiAb0xGRiIeiDcSHt8DJJcbm53U7cFudXDOPpSZEK2XJ374/cjZV5CmycMBMxNV5ZdLs5JbVbi6
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB5869
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+Hi Frank,
 
-On 09.05.23 11:18, Krzysztof Kozlowski wrote:
-> On 06/05/2023 17:54, Jakob Hauser wrote:
+> From: Frank Li, Sent: Tuesday, May 9, 2023 11:00 PM
+>=20
+> > -       return -EINVAL;
+> > +       ret =3D dw_pcie_ep_send_msg(ep, func_no, PCI_CODE_ASSERT_INTA,
+> > +                                 PCI_MSG_ROUTING_LOCAL);
+> > +       if (ret)
+> > +               return ret;
+> > +
+> > +       /*
+> > +        * The documents of PCIe and the controller don't mention how l=
+ong
+> > +        * the INTx should be asserted. If 10 usec, sometimes it failed=
+.
+> > +        * So, asserted for 50 usec.
+> > +        */
+> > +       usleep_range(50, 100);
+>=20
+> [Frank Li] At least, comments should be updated. It should be level irq.
+> Here is edge trigger because frame still not supported yet.  Will improve
+> Later or some things. Otherwise comments is misleading.
 
-...
+Thank you for your comment! I think so. I'll update the comments on v16.
 
->> diff --git a/Documentation/devicetree/bindings/power/supply/richtek,rt5033-charger.yaml b/Documentation/devicetree/bindings/power/supply/richtek,rt5033-charger.yaml
->> new file mode 100644
->> index 000000000000..b8607cc6ec63
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/power/supply/richtek,rt5033-charger.yaml
->> @@ -0,0 +1,64 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/power/supply/richtek,rt5033-charger.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Richtek RT5033 PIMC Battery Charger
-> 
-> PMIC
+Best regards,
+Yoshihiro Shimoda
 
-Good catch.
+> > +
+> > +       return dw_pcie_ep_send_msg(ep, func_no,
+> > PCI_CODE_DEASSERT_INTA,
+> > +                                  PCI_MSG_ROUTING_LOCAL);
+> >  }
 
->> +
->> +maintainers:
->> +  - Jakob Hauser <jahau@rocketmail.com>
->> +
->> +description:
->> +  The battery charger of the multifunction device RT5033 has to be instantiated
->> +  under sub-node named "charger" using the following format.
->> +
->> +properties:
->> +  compatible:
->> +    const: richtek,rt5033-charger
->> +
->> +  monitored-battery:
->> +    description: |
->> +      Phandle to the monitored battery according to battery.yaml. The battery
->> +      node needs to contain five parameters.
->> +
->> +      precharge-current-microamp:
->> +      Current of pre-charge mode. The pre-charge current levels are 350 mA
->> +      to 650 mA programmed by I2C per 100 mA.
->> +
->> +      constant-charge-current-max-microamp:
->> +      Current of fast-charge mode. The fast-charge current levels are 700 mA
->> +      to 2000 mA programmed by I2C per 100 mA.
->> +
->> +      charge-term-current-microamp:
->> +      This property is end of charge current. Its level ranges from 150 mA
->> +      to 600 mA. Between 150 mA and 300 mA in 50 mA steps, between 300 mA and
->> +      600 mA in 100 mA steps.
->> +
->> +      precharge-upper-limit-microvolt:
->> +      Voltage of pre-charge mode. If the battery voltage is below the pre-charge
->> +      threshold voltage, the charger is in pre-charge mode with pre-charge
->> +      current. Its levels are 2.3 V to 3.8 V programmed by I2C per 0.1 V.
->> +
->> +      constant-charge-voltage-max-microvolt:
->> +      Battery regulation voltage of constant voltage mode. This voltage levels
->> +      from 3.65 V to 4.4 V by I2C per 0.025 V.
->> +
->> +  connector:
->> +    description:
->> +      Phandle to a USB connector according to usb-connector.yaml. The connector
->> +      should be a child of the extcon device.
->> +    maxItems: 1
-> 
-> Missing type/ref... but then you will notice you have conflicting ref
-> with existing connector. connector is usb-connector.yaml, not phandle. I
-> am not sure if we need generic property, so let's go with device
-> specific - richtek,usb-connector
-
-Actually, as we already switched to the connector thing, I would have 
-liked to do it properly, if at all. Again looking for examples how it 
-should be done, the usb-connector.yaml schema gets mostly used in the 
-USB and PHY domain. Those examples don't fit the specific case well. I 
-didn't find examples in the power supply domain.
-
-Therefore, giving in, I'll chage it to richtek,usb-connector.
-
-It's still hard for me to understand why phandle excton shouldn't fit 
-the specific simple case. Now we have neither a proper "connector" thing 
-nor a simple extcon phandle.
-
-...
-
-Kind regards,
-Jakob
