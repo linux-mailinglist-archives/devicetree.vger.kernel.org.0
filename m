@@ -2,176 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB0D86FDCB8
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 13:27:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4B9E6FDCCC
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 13:35:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236703AbjEJL1v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 07:27:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53016 "EHLO
+        id S236921AbjEJLfY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 07:35:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236451AbjEJL1u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 07:27:50 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0B081B7
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 04:27:26 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-50bd2d7ba74so67852712a12.1
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 04:27:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1683718045; x=1686310045;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pNpH9churWtVNXY067utTn5iZTHhfSH7PNSyN7PmDpo=;
-        b=5F5GRep5g811KAguGtS93rVSUgRHqVtSaY9ywuzMtfzQAQFzM9O2V1CdiwqK5/APC8
-         X5erFFpavgIcTEc8AYANnTCtLQCx+RngQ8uRvC1pIOAfb4cxK79NgyN8eT9tiyhRtkQv
-         GTDz+CKk86o3oGNNgNAoO7vsVMS45C7TPYG/KMcTKNSDewe5SW6DOLXWDvUSaYFkAmYg
-         N4Kp5nVhEfMYz3svQsnxGNAK4k/0PXLqiG1tHhKig7elBHB63DkRzPxP0xY+d8pX5bM3
-         QtvvrAZx8VjUTVo5CgJIQUuf+6gqBwFMOVILvfJLUK7ZwwxE/VW9KMTCssntb4HeWeMv
-         Ehdg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683718045; x=1686310045;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=pNpH9churWtVNXY067utTn5iZTHhfSH7PNSyN7PmDpo=;
-        b=fwgJGfh66g/6WlkJpID1e1ioZrGR2XoLsXO8wbBDuFyqcWg87Cj4bcrYDyuMUy24/8
-         XtZ2BXeQxrchg5FWbqjpx/T3vyzFvr+H0U5RsiTICClDJ/WmgDU8yayetLaKUZYj6xGM
-         VwJwbyDO0czT4M5/duw9nZInTQ5Di+5GB3EjTYnybEl4BzQnbE8uQSO0CEqdxSUvdcbq
-         o5BRLjwcmOP0FWLwWkLzyCQRSc+GmzIb1OrQt/PuPtv7PFPLTDbCilKkVgePeRq/IdPz
-         9T89J2+jJmeeuyTw8yVB7qgsssbdfnxYReTFlauf0cZmSk8ibImTGvZvi+V7YBHfV4Vf
-         l/yA==
-X-Gm-Message-State: AC+VfDxffHmq/mJHpRaOUmIYs8NrZ1H9Pzzy+CxqZ8d+m9EZq/ViQrzk
-        HFuVIkGCjtRdo1co5JXdz+UMGw==
-X-Google-Smtp-Source: ACHHUZ7tjOsW38XJxLzNaQXTcPGIml/eKQLTk5/qbm/AqQLokna1fWit8n+3+Gk2VUDLtghCyBe2Sg==
-X-Received: by 2002:a05:6402:27d2:b0:506:71bd:3931 with SMTP id c18-20020a05640227d200b0050671bd3931mr16236880ede.2.1683718045201;
-        Wed, 10 May 2023 04:27:25 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id bc15-20020a056402204f00b0050b2f588db6sm1742156edb.16.2023.05.10.04.27.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 May 2023 04:27:24 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date:   Wed, 10 May 2023 13:27:23 +0200
-Message-Id: <CSIK8F6MTIVE.2K2U2Q1LDA70H@otso>
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: pm7250b: make SID configurable
-From:   "Luca Weiss" <luca.weiss@fairphone.com>
-To:     "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
-        "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>
-Cc:     "Andy Gross" <agross@kernel.org>,
-        "Bjorn Andersson" <andersson@kernel.org>,
-        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Konrad Dybcio" <konrad.dybcio@somainline.org>,
-        <~postmarketos/upstreaming@lists.sr.ht>,
-        <phone-devel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-X-Mailer: aerc 0.15.1
-References: <20230407-pm7250b-sid-v1-0-fc648478cc25@fairphone.com>
- <20230407-pm7250b-sid-v1-2-fc648478cc25@fairphone.com>
- <f52524da-719b-790f-ad2c-0c3f313d9fe9@linaro.org>
- <CSIE9TYTQUHL.3E769C2Y4RAAO@otso>
- <c9eea8ec-b289-334c-9c0b-7c992184a265@linaro.org>
- <CAA8EJpoSpytSTm=y7oPD_SC+0-bd735KEczR1JgMc7RuMZ+A+g@mail.gmail.com>
- <CSIGK60CQSD8.1Q4SOANJRMASF@otso>
- <9040e9bb-a16c-0186-edba-da986350340c@linaro.org>
-In-Reply-To: <9040e9bb-a16c-0186-edba-da986350340c@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S236568AbjEJLfX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 07:35:23 -0400
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2065.outbound.protection.outlook.com [40.107.237.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22AF126BC;
+        Wed, 10 May 2023 04:35:15 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FUs2XBSFtlJC+TgncE+14RuOmdQHR21OgnpSXcwRxgHEHt4DbsHIDdQ7553Iy2vE7Fla/TtmaglUU8GJsE7OXWcJDtpo1H/QRpwBiI8oUOBRyR2bcSLDvxFltwXRRtKx6vkKYIGlaUlmS337ZZeYbiXKkcVZiDLydJijp6JoltXZepGpalWRz7d5P8IRKHPSJR7BPuaUQtrTjXGDlaAWvH+2khg3GmKZmMK/Euav03/LRqVjzZYpkq3SsQHzvrCX4rPRgwcKdqiDUDs/p0k+VatnnTZlihkmrKnb2zhvgaOUEoVGe6fKJfsXTYnZvpWuXBi8b7nKEPwGRN1p50rA0g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9QFbVU4iNqq8Fhl/n5IQ/osELI+lYBnhDbBsHekle3g=;
+ b=avaRsS32PHpvdbJ6XKzkC9TsYAACOXxf7Znam8dfL+laOkZPZB/o9obVd0FAmPqLIKURuZtoQDDOf/75jpe6J9afeLcJhGmjZ8Xboc0CzZ9rXDpF1PWo/JtuCtaowQzTonKn4BDNuxDifguP0m5GymUZhMz/EEPB2to2TLsZk2nVP5vMT4X11qdqhth4szbUjWKPNIhf56Km4Fsbn1pSCtayNidhwKPEv8NeP+d2EwghIds/AwUk16rkdFlcTcJVTLtimioEfTRgR4kRo1yl1mb44oDJqKGXppiDhj4nEffEvbQytqqewn5ze6t2hUS05EXtA62JpiNOfu7L04T+IQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.118.232) smtp.rcpttodomain=gmail.com smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9QFbVU4iNqq8Fhl/n5IQ/osELI+lYBnhDbBsHekle3g=;
+ b=hfnQTJvsO/+ZQ1J28Jh+EZSb8cXbeBvlm1jT/vsf9X75SFCuNLEfzV1LDzBA2d/pcWHPqwVlbou4VSi/ffa8YZZNIIR8i4otN1uPz9xr/ORcStBoGP1f6oT0S5lri6uRiMASa4CsTwAYCb6amJqKEXLvwcqcmC7DUSuoRz/ZD7nQ3jZeberpnc8S37rxiPr+Xlss/FIApQoj/bnAhy4gJtBV7ImY6dUl/GWcXE9faN9dOKsNOl7UP/yXa4FimKx5IlKe3G/qByrRLQx3P1fAfQ3/93fUkxCgf8EKgQwP+zVSc7BvuJFfvzABfcj2gwgO/5Qe5y7IPmUCtQs0V67WIQ==
+Received: from MW4PR03CA0196.namprd03.prod.outlook.com (2603:10b6:303:b8::21)
+ by IA1PR12MB8556.namprd12.prod.outlook.com (2603:10b6:208:452::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.32; Wed, 10 May
+ 2023 11:35:13 +0000
+Received: from CO1NAM11FT072.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:b8:cafe::38) by MW4PR03CA0196.outlook.office365.com
+ (2603:10b6:303:b8::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.20 via Frontend
+ Transport; Wed, 10 May 2023 11:35:12 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.232)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.118.232 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.118.232; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.118.232) by
+ CO1NAM11FT072.mail.protection.outlook.com (10.13.174.106) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6387.18 via Frontend Transport; Wed, 10 May 2023 11:35:12 +0000
+Received: from drhqmail202.nvidia.com (10.126.190.181) by mail.nvidia.com
+ (10.127.129.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.5; Wed, 10 May 2023
+ 04:35:00 -0700
+Received: from drhqmail201.nvidia.com (10.126.190.180) by
+ drhqmail202.nvidia.com (10.126.190.181) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.37; Wed, 10 May 2023 04:34:59 -0700
+Received: from 44189d9-lcedt.nvidia.com (10.127.8.9) by mail.nvidia.com
+ (10.126.190.180) with Microsoft SMTP Server id 15.2.986.37 via Frontend
+ Transport; Wed, 10 May 2023 04:34:57 -0700
+From:   Peter De Schrijver <pdeschrijver@nvidia.com>
+To:     Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>
+CC:     Jassi Brar <jassisinghbrar@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Joe Perches <joe@perches.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>
+Subject: [PATCH v2 1/6] dt-bindings: mailbox: tegra: Document Tegra264 HSP
+Date:   Wed, 10 May 2023 14:31:26 +0300
+Message-ID: <20230510113129.4167493-2-pdeschrijver@nvidia.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230510113129.4167493-1-pdeschrijver@nvidia.com>
+References: <20230510113129.4167493-1-pdeschrijver@nvidia.com>
+MIME-Version: 1.0
+X-NVConfidentiality: public
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT072:EE_|IA1PR12MB8556:EE_
+X-MS-Office365-Filtering-Correlation-Id: c66a60d5-aba0-4861-509d-08db514a9e62
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 4DVYL9hOSyHh9BuJMF8AqVDwLAqqmmjOZ7CNfhUFtUMWQ/+TIW75qBBOKaTCH+vCebOGdo/Wi91AJIZwWZ8wLBMJ4YCxU5hr1ARN18pH+NvF6PfQQ01FX5PWvO/SJPrAm6HZs1XwYyF+tEW4Np0DUzS5dPPEsdn8KnKGXrBxISe9Cq61rRqS7gpUEkhGQtq761G4nwSOVZ7YyPVcT/q1iicuGLvsmHKGlzZFw0b6lTDgZckLAbcv51nmzdsjUqc9J9NxbL/0yB/FLVcLaldqqxehHiv1+/ldWUeGASM3ipPquDD/XBbb+fyYJxXla45+NrN7cj1bBNAPtyDrSGGPtcmEhyQyDgsyWPomaSqGed+D1aCEAkjdr+xjVeM/V5OFMu3Y1exoKqaXtyhiMzqM41QRAbB7F6CxS2uXSK7zzUMU2DKbYTnp9cJ/I/8cSfunn28T43/3XYnyBhEmWq/Jl0j5RQ8vswGdsdzXuDpuy4zbk8ZY4eQI9ph+FSMaguVI7tLJUU0Y6MUiQ6oFsZ5qBvA7iqEn9tOgdVwOZKK7E3Tl4Ub2irc0+DUflRPlMuweMurU2VG5/U3SqZgyM288JJSa+NLM/3RFwJc+Yp9u40xs8ZKhlp0uf9uzc8ZujH8aT1dZgj9dC6HLG5YJbXX8nT5hYFnnle4V1IYHex+qmf9MwDaQgsKBgPz3Xn7syMOAmkMHnAlgQPYhnz1hZXCrmg==
+X-Forefront-Antispam-Report: CIP:216.228.118.232;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge1.nvidia.com;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(396003)(376002)(346002)(136003)(451199021)(46966006)(40470700004)(36840700001)(86362001)(36756003)(6666004)(316002)(54906003)(70586007)(7696005)(6636002)(478600001)(4326008)(110136005)(70206006)(40480700001)(82310400005)(426003)(15650500001)(5660300002)(8676002)(4744005)(47076005)(8936002)(41300700001)(2906002)(356005)(82740400003)(7636003)(186003)(1076003)(36860700001)(26005)(336012)(83380400001)(2616005)(40460700003);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 May 2023 11:35:12.8792
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c66a60d5-aba0-4861-509d-08db514a9e62
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.232];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT072.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB8556
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed May 10, 2023 at 12:05 PM CEST, Krzysztof Kozlowski wrote:
-> On 10/05/2023 10:34, Luca Weiss wrote:
-> > On Wed May 10, 2023 at 10:07 AM CEST, Dmitry Baryshkov wrote:
-> >> On Wed, 10 May 2023 at 09:55, Krzysztof Kozlowski
-> >> <krzysztof.kozlowski@linaro.org> wrote:
-> >>>
-> >>> On 10/05/2023 08:47, Luca Weiss wrote:
-> >>>> Hi Krzysztof,
-> >>>>
-> >>>> On Fri Apr 7, 2023 at 10:27 AM CEST, Krzysztof Kozlowski wrote:
-> >>>>> On 07/04/2023 09:45, Luca Weiss wrote:
-> >>>>>> Like other Qualcomm PMICs the PM7250B can be used on different add=
-resses
-> >>>>>> on the SPMI bus. Use similar defines like the PMK8350 to make this
-> >>>>>> possible.
-> >>>>>>
-> >>>>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> >>>>>> ---
-> >>>>>>  arch/arm64/boot/dts/qcom/pm7250b.dtsi | 23 ++++++++++++++++------=
--
-> >>>>>>  1 file changed, 16 insertions(+), 7 deletions(-)
-> >>>>>>
-> >>>>>> diff --git a/arch/arm64/boot/dts/qcom/pm7250b.dtsi b/arch/arm64/bo=
-ot/dts/qcom/pm7250b.dtsi
-> >>>>>> index daa6f1d30efa..eeb476edc79a 100644
-> >>>>>> --- a/arch/arm64/boot/dts/qcom/pm7250b.dtsi
-> >>>>>> +++ b/arch/arm64/boot/dts/qcom/pm7250b.dtsi
-> >>>>>> @@ -7,6 +7,15 @@
-> >>>>>>  #include <dt-bindings/interrupt-controller/irq.h>
-> >>>>>>  #include <dt-bindings/spmi/spmi.h>
-> >>>>>>
-> >>>>>> +/* This PMIC can be configured to be at different SIDs */
-> >>>>>> +#ifndef PM7250B_SID
-> >>>>>> +   #define PM7250B_SID 2
-> >>>>>
-> >>>>> Drop indentation, although anyway I am against this. Please don't b=
-ring
-> >>>>> new patterns of this at least till we settle previous discussion.
-> >>>>>
-> >>>>> https://lore.kernel.org/linux-arm-msm/46658cbb-fff5-e98b-fdad-88fa6=
-83a9c75@linaro.org/
-> >>>>
-> >>>> What's the outcome of the discussion? For this PMIC it's totally eno=
-ugh
-> >>>> to have the SID configurable like in this patch, I don't think this =
-PMIC
-> >>>> will be included twice in a board - at least I'm not aware of such a
-> >>>> configuration.
-> >>>
-> >>> We did not reach consensus and I still disagree with complex macros o=
-r
-> >>> macros depending on order of inclusion.
-> >>
-> >> I still think we should find a way to parametrise PMIC dtsi, however I
-> >> agree with Krzysztof that complex CPP is not a way to go.
-> >=20
-> > What about the macro already used in-tree and proposed with this patch?
-> > I wouldn't say this is a "complex macro" since it's just a single numbe=
-r
-> > being replaced in a few places.
->
-> Are you talking about the macro to which I responded: "or macros
-> depending on order of inclusion." or something else?
+Add the compatible string for the HSP block found on the Tegra264 SoC.
+The HSP block in Tegra264 is not register compatible with the one in
+Tegra194 or Tegra234 hence there is no fallback compatibility string.
 
-I thought you mean with ..
+Signed-off-by: Peter De Schrijver <pdeschrijver@nvidia.com>
+---
+ .../devicetree/bindings/mailbox/nvidia,tegra186-hsp.yaml         | 1 +
+ 1 file changed, 1 insertion(+)
 
-> >>> We did not reach consensus and I still disagree with complex macros o=
-r
-> >>> macros depending on order of inclusion.
-
-.. the macros proprosed in the patch you linked (that version that also
-adjusts the labels based on the SID).
-
-I was asking if the patch I sent (with #define PM7250B_SID) would be
-okay to take in at least until the bigger discussion has come to a
-conclusion, since we already have upstream occurances of such a macro so
-it's not a new concept.
-
-Otherwise I'll just carry this patch in my local tree until this
-situation has cleared up.
-
-Regards
-Luca
-
->
-> Best regards,
-> Krzysztof
+diff --git a/Documentation/devicetree/bindings/mailbox/nvidia,tegra186-hsp.yaml b/Documentation/devicetree/bindings/mailbox/nvidia,tegra186-hsp.yaml
+index a3e87516d637..2d14fc948999 100644
+--- a/Documentation/devicetree/bindings/mailbox/nvidia,tegra186-hsp.yaml
++++ b/Documentation/devicetree/bindings/mailbox/nvidia,tegra186-hsp.yaml
+@@ -66,6 +66,7 @@ properties:
+     oneOf:
+       - const: nvidia,tegra186-hsp
+       - const: nvidia,tegra194-hsp
++      - const: nvidia,tegra264-hsp
+       - items:
+           - const: nvidia,tegra234-hsp
+           - const: nvidia,tegra194-hsp
+-- 
+2.34.1
 
