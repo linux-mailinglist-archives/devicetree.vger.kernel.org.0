@@ -2,127 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C3AC06FD79B
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 08:58:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B73046FD79F
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 08:58:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236194AbjEJG6R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 02:58:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57710 "EHLO
+        id S236281AbjEJG6c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 02:58:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236208AbjEJG6Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 02:58:16 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E05C7693;
-        Tue,  9 May 2023 23:57:56 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (softbank126090219015.bbtec.net [126.90.219.15])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 51741547;
-        Wed, 10 May 2023 08:57:47 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1683701868;
-        bh=7+/BXts4qDsEHDqAfZ4l9gAHxpVe8kPgSlt0NSiOyS0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PuFbFpEjeSeT1D11a6LOhy8cDMe1K7vQ3ZdSTFa1t8ccFPGCVNsxqRwX29xlc9skO
-         4tHZoar+ch28sXVYQDZtAdQ1HoMDkst2B1GmVicdY1xi87LpB0BjFE9n26B5RR7fZx
-         NW1jzJODc3OUdPJ2c/b+bAVZ+b7fZzz16rT7+4Sk=
-Date:   Wed, 10 May 2023 09:57:50 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Michal Simek <michal.simek@amd.com>
-Cc:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
-        michal.simek@xilinx.com, git@xilinx.com,
-        Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
-        Harini Katakam <harini.katakam@amd.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Michael Grzeschik <m.grzeschik@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robert Hancock <robert.hancock@calian.com>,
-        Tanmay Shah <tanmay.shah@amd.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 05/23] arm64: zynqmp: Add L2 cache nodes
-Message-ID: <20230510065750.GD11711@pendragon.ideasonboard.com>
-References: <cover.1683034376.git.michal.simek@amd.com>
- <cf4ced33cb7dc8d43b79bb9d4ad6acd3b8ecc09b.1683034376.git.michal.simek@amd.com>
+        with ESMTP id S236294AbjEJG62 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 02:58:28 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA1C4618B
+        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 23:58:05 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-50bc1612940so12642809a12.2
+        for <devicetree@vger.kernel.org>; Tue, 09 May 2023 23:58:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683701884; x=1686293884;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=S7jXocIwYPIGzvhOiRzDQAjWhw+CE4Ka5TJvB78q5ew=;
+        b=lk0nB503RUcCn2A04bvqpU9X2MrDHSSHBqrt4SeX+Jc72AYHkiGUiezcuZbNiWI4uh
+         C8i6z5z1v64htX+RGmj/occVpIEc/AKU6wYSkDAmsk+he+lJ4Rm9cdnLaxQ6K0DXqh6r
+         FvLh5zizhBy4aPjHWDR8cz1413ZNfPpWYwYCMqPyYIuDo0Y3QM3EsRFzctyjlC5ulRbf
+         L+X+qFAYuaHYiNZc8g0bsTmrhz8gepwTWYXfrY8NYljyMJJmcToZBW88Ma23p+BZKqPH
+         w2m7DynTpIahwXvfbpD8e6OXBiob9pow+vLekC95ZTu/OLQCcNLnSlHYfn6p4OOu2fXP
+         0buQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683701884; x=1686293884;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=S7jXocIwYPIGzvhOiRzDQAjWhw+CE4Ka5TJvB78q5ew=;
+        b=D7TgXajBfccKMcaYsLmjUzYQrzNamE+Z5D+qFNACJ3LHcq9/y3BWS9APbS3ByiNRww
+         cF9sGcp1PHAisk7lLIvMDOzdfYyjAySwu+NL8gNGg5AWZMqJOGdCzbt7MRWN7pnapqfW
+         Ub+C3MrFMEwhKlAbO0mBz7/mEU7Q4bEuNq0efs2x0nFHfVtE8K5NThfIQzZuJdI8nnwE
+         mXz4QizqPfh0NaOLhXRHmZMYTF0p1VbeVRy+P6mPXgAdglzvfMEXfUeiW12Y47dzmcOy
+         WW3JdYM2QMKNGG870j0ciLvRKMVdIDegNl9Dzuhlol+YgT+t3ElHsOYKA9I6OJKQeH/1
+         H9EQ==
+X-Gm-Message-State: AC+VfDyAZhqjRjMyaNERJi228MhXgfvtt3o48mRRvwswqM6ISbokvo7I
+        OXHiGjRKK4wIwXwIw6B4VNPtrw==
+X-Google-Smtp-Source: ACHHUZ4viiJ0HXKI6HHrPl96hozH38DnYXdgeLQLnyiM39OKQPIL8euG/Y8yd8n5k8wScPzTI0jc8g==
+X-Received: by 2002:a17:906:7310:b0:94a:a419:f382 with SMTP id di16-20020a170906731000b0094aa419f382mr15563263ejc.12.1683701883986;
+        Tue, 09 May 2023 23:58:03 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:c175:a0f9:6928:8c9d? ([2a02:810d:15c0:828:c175:a0f9:6928:8c9d])
+        by smtp.gmail.com with ESMTPSA id de25-20020a1709069bd900b0096664376ec9sm2294419ejc.55.2023.05.09.23.58.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 May 2023 23:58:03 -0700 (PDT)
+Message-ID: <0620e3ef-ece5-550a-43bb-0d6e75de79bf@linaro.org>
+Date:   Wed, 10 May 2023 08:58:02 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <cf4ced33cb7dc8d43b79bb9d4ad6acd3b8ecc09b.1683034376.git.michal.simek@amd.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v4] dt-bindings: rtc: isl1208: Convert to json-schema
+Content-Language: en-US
+To:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Trent Piepho <tpiepho@gmail.com>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+References: <20230509131249.80456-1-biju.das.jz@bp.renesas.com>
+ <CA+7tXig2nwCk3DKwFEKGKVko=YD4e4KCpRVUMMM2pgPRpNgiiQ@mail.gmail.com>
+ <CAMuHMdUOdJrPdcx684zKaSNFMqkRWL_y3jdAor_D0AeDRpRhJQ@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAMuHMdUOdJrPdcx684zKaSNFMqkRWL_y3jdAor_D0AeDRpRhJQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michal,
-
-Thank you for the patch.
-
-On Tue, May 02, 2023 at 03:35:33PM +0200, Michal Simek wrote:
-> From: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+On 10/05/2023 08:52, Geert Uytterhoeven wrote:
+> Hi Trent,
 > 
-> Linux kernel throws "cacheinfo: Unable to detect cache hierarchy for
-> CPU 0" warning when booting on zu+ Soc. To fix it add the L2 cache
-> node and let each CPU point to it.
-
-The commit message should focus on how this change brings the DT in line
-with the hardware, not on what the Linux kernel does.
-
-> Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-> Signed-off-by: Michal Simek <michal.simek@amd.com>
-> ---
+> On Tue, May 9, 2023 at 9:03 PM Trent Piepho <tpiepho@gmail.com> wrote:
+>> On Tue, May 9, 2023 at 6:12 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+>>> +
+>>> +  interrupt-names:
+>>
+>> Shouldn't this have minItems: 1 and maxItems: 2 as well?
 > 
->  arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 9 +++++++++
->  1 file changed, 9 insertions(+)
+>>> +    then:
+>>> +      properties:
+>>> +        interrupts:
+>>> +          maxItems: 2
+>>> +    else:
+>>> +      properties:
+>>> +        interrupts:
+>>> +          maxItems: 1
+>>
+>> Add interrupt-names here too.
 > 
-> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> index bb0d0be30aa0..c2d80c7967e9 100644
-> --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> @@ -33,6 +33,7 @@ cpu0: cpu@0 {
->  			operating-points-v2 = <&cpu_opp_table>;
->  			reg = <0x0>;
->  			cpu-idle-states = <&CPU_SLEEP_0>;
-> +			next-level-cache = <&L2>;
->  		};
->  
->  		cpu1: cpu@1 {
-> @@ -42,6 +43,7 @@ cpu1: cpu@1 {
->  			reg = <0x1>;
->  			operating-points-v2 = <&cpu_opp_table>;
->  			cpu-idle-states = <&CPU_SLEEP_0>;
-> +			next-level-cache = <&L2>;
->  		};
->  
->  		cpu2: cpu@2 {
-> @@ -51,6 +53,7 @@ cpu2: cpu@2 {
->  			reg = <0x2>;
->  			operating-points-v2 = <&cpu_opp_table>;
->  			cpu-idle-states = <&CPU_SLEEP_0>;
-> +			next-level-cache = <&L2>;
->  		};
->  
->  		cpu3: cpu@3 {
-> @@ -60,6 +63,12 @@ cpu3: cpu@3 {
->  			reg = <0x3>;
->  			operating-points-v2 = <&cpu_opp_table>;
->  			cpu-idle-states = <&CPU_SLEEP_0>;
-> +			next-level-cache = <&L2>;
-> +		};
-> +
-> +		L2: l2-cache {
+> Isn't the relation interrupts <=> interrupt-names enforced by the
+> tooling?
 
-Shouldn't labels be lower-case ?
+No, every constrain or schema code for one should be duplicated for
+second. These can be done however in different ways, e.g.
+interrupts:
+  minItems: 1
+  maxitems: 2
+interrupt-names:
+  minItems: 1
+  items:
+    - foo
+    - bar
 
-> +			compatible = "cache";
-> +			cache-level = <2>;
->  		};
->  
->  		idle-states {
+but the outcome - so how many items are expected - must be the same in
+every branch/condition.
 
--- 
-Regards,
+Best regards,
+Krzysztof
 
-Laurent Pinchart
