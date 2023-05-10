@@ -2,97 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D87E56FDD2D
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 13:52:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E716C6FDD5B
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 14:02:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236019AbjEJLwB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 07:52:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40148 "EHLO
+        id S236410AbjEJMCT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 08:02:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237034AbjEJLvx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 07:51:53 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4049A7ABA;
-        Wed, 10 May 2023 04:51:52 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-3f4449fa085so7299595e9.0;
-        Wed, 10 May 2023 04:51:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683719510; x=1686311510;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ytZ68tiM2bcXYJ2+O2GzY517mWAuTLJSh4tOV0KVU9I=;
-        b=ijsTzZaAqckKfvhgTUMbkkTQpxnD4u2W9Cz8veW+Gr9jmU/jrxUmlq8raZiBy4nFCM
-         3aow/CgynVKCibGthN6xjpUjdusD/Ig9UjBh8L7kLKNR/86bIJIMCQNyR2me6qx82d9y
-         q2mEulNjQHMGjXPNfdHVptEckRrwQu4wSjxqQMccuHAibAGRuGdqsOHScATE+6k6xLyt
-         big9awMJzVzofMOVj6DRl9qGVgFCtDqFgsC50bUm1UJycr+jxDggXtVZCPPnVHIsTIzq
-         p0YlGWtufsS++XMr4QUyZaiFIo8OOBGFPJWW5W/J4GEOSWF70v8gso8XpMBzSOypTZRQ
-         5C1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683719510; x=1686311510;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ytZ68tiM2bcXYJ2+O2GzY517mWAuTLJSh4tOV0KVU9I=;
-        b=isFIeX972H1cCuBH0VbvU7tGyauC4Kwv7IRZR043EX8EV8LmBGUeWp9upQAqbrnEmJ
-         3yCEZz6CcqvsY8GfJmDSRVDrktN4bWUojZfImhtLKayOeU4fRSbSU6gDp9HBCJNECIMc
-         0SY3SkneSeIRZKYaW5I9a6dQl8942qe1kRhvcUH7w7GjkG1lHgAePl8FRcEtPK7tUqrL
-         UPGdwgl7MGDOK/+0PjRdFVnGjOBm5v3YNAxCe06uXkYWd/KbvQmaECbxxq/enKAu26Zl
-         ZWWK2JfC5AnpGx8ts2eeVZ+CV/74fFK+K9GNAwaG48iBPqHnQGZAVGowuFUQa5ZTg4Go
-         xMcw==
-X-Gm-Message-State: AC+VfDydgbJIsTvH2lhJSPudKidchOWthK5JLIqZq7tYvIM+nwYfpq1Y
-        k9jYXU2rmk6/ADzLad05lVc=
-X-Google-Smtp-Source: ACHHUZ6vcbM76LKXsjFGd0HyW6zIsdRoJTDdn3zGzmZXAZ52hNkwLHW/umvPRaaOSWIk/jogehugzg==
-X-Received: by 2002:a1c:7406:0:b0:3f4:2e01:83fa with SMTP id p6-20020a1c7406000000b003f42e0183famr2868935wmc.26.1683719510520;
-        Wed, 10 May 2023 04:51:50 -0700 (PDT)
-Received: from localhost ([167.98.27.226])
-        by smtp.gmail.com with ESMTPSA id v13-20020a05600c214d00b003f42461ac75sm9560047wml.12.2023.05.10.04.51.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 May 2023 04:51:50 -0700 (PDT)
-From:   Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
-To:     sre@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        wens@csie.org
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v1 7/7] dt-bindings: power: supply: axp20x: Add AXP192 compatible
-Date:   Wed, 10 May 2023 12:50:46 +0100
-Message-Id: <20230510115046.963432-8-aidanmacdonald.0x0@gmail.com>
-In-Reply-To: <20230510115046.963432-1-aidanmacdonald.0x0@gmail.com>
-References: <20230510115046.963432-1-aidanmacdonald.0x0@gmail.com>
+        with ESMTP id S235752AbjEJMCS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 08:02:18 -0400
+X-Greylist: delayed 61 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 10 May 2023 05:02:17 PDT
+Received: from the.earth.li (the.earth.li [IPv6:2a00:1098:86:4d:c0ff:ee:15:900d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ED444ED7;
+        Wed, 10 May 2023 05:02:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=earth.li;
+        s=the; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:
+        Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=z8H44rBFTZY4TjUWBjN6TrB1XXhRt5aeYvbMpCw9dXc=; b=umz3uG+c8l/FBlg+yh4/xaC1Zx
+        cx6v/g0gitksL1b15tseps4BYnsdNDLhiF7OoeQaBLwqIGYqgmh1f941M6ml9nOgqWxrKDCbOfuTo
+        pAW/eBRHbKiYv+l13qFHxsF3bNiKbvSyiQvMcfyEm2EtGVCYVENtoIWhHjlCh79gbhHdCbONx1DVX
+        KdSy96olRByAMPO4wVSLv28Zu6lJVwnefohEone4TyJ+3BL46inO5h8cQq+nJahXJEtPCIBEmP5hU
+        cRTB25iF6ihoYrci9Hn+PVP1csBmRi5Cp103GdHjFldUKVNIQBxSwPPA3YZTcAUVT7qmDrAC/RcZe
+        DUJp0voQ==;
+Received: from [2001:4d48:ad59:1403::16a3] (helo=earth.li)
+        by the.earth.li with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <noodles@earth.li>)
+        id 1pwiWF-007uiT-CU; Wed, 10 May 2023 13:02:07 +0100
+Date:   Wed, 10 May 2023 13:02:02 +0100
+From:   Jonathan McDowell <noodles@earth.li>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org
+Subject: [PATCH v2 4/5] ARM: dts: sun5i: Add port E pinmux settings for mmc2
+Message-ID: <7949169f581cab37175602188f44bc26e79a45c0.1683719613.git.noodles@earth.li>
+References: <cover.1681580558.git.noodles@earth.li>
+ <cover.1683719613.git.noodles@earth.li>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cover.1683719613.git.noodles@earth.li>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The AXP192 is most similar to the AXP202, but the current
-limits are different and the USB OTG status register has
-a different address (0x04 instead of 0x02).
+These alternate pins for mmc2 are brought out to the 40 pin U14 header
+on the C.H.I.P and can be used to add an external MMC device with a 4
+bit interface. See
 
-Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+https://byteporter.com/ntc-chip-micro-sd-slot/
+
+for further details on how.
+
+Signed-off-by: Jonathan McDowell <noodles@earth.li>
 ---
- .../bindings/power/supply/x-powers,axp20x-usb-power-supply.yaml  | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm/boot/dts/sun5i.dtsi | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/power/supply/x-powers,axp20x-usb-power-supply.yaml b/Documentation/devicetree/bindings/power/supply/x-powers,axp20x-usb-power-supply.yaml
-index 3ce648dd91bd..34b7959d6772 100644
---- a/Documentation/devicetree/bindings/power/supply/x-powers,axp20x-usb-power-supply.yaml
-+++ b/Documentation/devicetree/bindings/power/supply/x-powers,axp20x-usb-power-supply.yaml
-@@ -22,6 +22,7 @@ properties:
-   compatible:
-     oneOf:
-       - enum:
-+          - x-powers,axp192-usb-power-supply
-           - x-powers,axp202-usb-power-supply
-           - x-powers,axp221-usb-power-supply
-           - x-powers,axp223-usb-power-supply
+diff --git a/arch/arm/boot/dts/sun5i.dtsi b/arch/arm/boot/dts/sun5i.dtsi
+index 250d6b87ab4d..ab7f675aeec4 100644
+--- a/arch/arm/boot/dts/sun5i.dtsi
++++ b/arch/arm/boot/dts/sun5i.dtsi
+@@ -517,6 +517,15 @@ mmc2_4bit_pc_pins: mmc2-4bit-pc-pins {
+ 				bias-pull-up;
+ 			};
+ 
++			/omit-if-no-ref/
++			mmc2_4bit_pe_pins: mmc2-4bit-pe-pins {
++				pins = "PE4", "PE5", "PE6", "PE7",
++				       "PE8", "PE9";
++				function = "mmc2";
++				drive-strength = <30>;
++				bias-pull-up;
++			};
++
+ 			mmc2_8bit_pins: mmc2-8bit-pins {
+ 				pins = "PC6", "PC7", "PC8", "PC9",
+ 				       "PC10", "PC11", "PC12", "PC13",
 -- 
 2.39.2
 
