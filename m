@@ -2,115 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C9FA6FDBC5
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 12:33:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EC4F6FDBCC
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 12:38:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236640AbjEJKdy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 06:33:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48680 "EHLO
+        id S236250AbjEJKi3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 06:38:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236369AbjEJKdv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 06:33:51 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 429D535BD;
-        Wed, 10 May 2023 03:33:50 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 70CF11063;
-        Wed, 10 May 2023 03:34:34 -0700 (PDT)
-Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 845DE3F5A1;
-        Wed, 10 May 2023 03:33:47 -0700 (PDT)
-Date:   Wed, 10 May 2023 11:33:45 +0100
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Maksim Kiselev <bigunclemax@gmail.com>
-Cc:     Icenowy Zheng <icenowy@aosc.io>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S235904AbjEJKi1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 06:38:27 -0400
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 7785535B3
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 03:38:26 -0700 (PDT)
+Received: from hillo.muru.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTP id CA2878109;
+        Wed, 10 May 2023 10:38:23 +0000 (UTC)
+From:   Tony Lindgren <tony@atomide.com>
+To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-        Maxime Ripard <mripard@kernel.org>, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v5 1/5] dt-bindings: spi: sun6i: add DT bindings for
- Allwinner R329/D1/R528/T113s SPI
-Message-ID: <20230510113345.0850c7f3@donnerap.cambridge.arm.com>
-In-Reply-To: <20230510081121.3463710-2-bigunclemax@gmail.com>
-References: <20230510081121.3463710-1-bigunclemax@gmail.com>
-        <20230510081121.3463710-2-bigunclemax@gmail.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Wei Xu <xuwei5@hisilicon.com>,
+        Dinh Nguyen <dinguyen@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Niravkumar L Rabara <niravkumar.l.rabara@intel.com>,
+        devicetree@vger.kernel.org
+Subject: [PATCH] arm64: dts: Change pinconf controller node name to pinctrl
+Date:   Wed, 10 May 2023 13:38:15 +0300
+Message-Id: <20230510103816.39015-1-tony@atomide.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 10 May 2023 11:11:08 +0300
-Maksim Kiselev <bigunclemax@gmail.com> wrote:
+According to the pinctrl binding pinmux and pinctrl are valid controller
+names. Let's replace pinconf with pinctrl so we don't get new warnings
+when pinctrl-singl yaml binding gets merged.
 
-Hi,
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Dinh Nguyen <dinguyen@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+Cc: Ray Jui <rjui@broadcom.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Scott Branden <sbranden@broadcom.com>
+Cc: Wei Xu <xuwei5@hisilicon.com>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
+---
+ arch/arm64/boot/dts/broadcom/stingray/stingray-pinctrl.dtsi | 2 +-
+ arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi              | 2 +-
+ arch/arm64/boot/dts/intel/socfpga_agilex.dtsi               | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
 
-> Listed above Allwinner SoCs has two SPI controllers. First is the regular
-> SPI controller and the second one has additional functionality for
-> MIPI-DBI Type C.
-> 
-> Add compatible strings for these controllers
-> 
-> Signed-off-by: Maksim Kiselev <bigunclemax@gmail.com>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-thanks for the changes, looks good now and dt-validate passes.
-
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-
-Cheers,
-Andre
-
-> ---
->  .../bindings/spi/allwinner,sun6i-a31-spi.yaml          | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml b/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml
-> index de36c6a34a0f..fa5260eca531 100644
-> --- a/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml
-> +++ b/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml
-> @@ -19,6 +19,7 @@ properties:
->  
->    compatible:
->      oneOf:
-> +      - const: allwinner,sun50i-r329-spi
->        - const: allwinner,sun6i-a31-spi
->        - const: allwinner,sun8i-h3-spi
->        - items:
-> @@ -28,6 +29,15 @@ properties:
->                - allwinner,sun50i-h616-spi
->                - allwinner,suniv-f1c100s-spi
->            - const: allwinner,sun8i-h3-spi
-> +      - items:
-> +          - enum:
-> +              - allwinner,sun20i-d1-spi
-> +              - allwinner,sun50i-r329-spi-dbi
-> +          - const: allwinner,sun50i-r329-spi
-> +      - items:
-> +          - const: allwinner,sun20i-d1-spi-dbi
-> +          - const: allwinner,sun50i-r329-spi-dbi
-> +          - const: allwinner,sun50i-r329-spi
->  
->    reg:
->      maxItems: 1
-
+diff --git a/arch/arm64/boot/dts/broadcom/stingray/stingray-pinctrl.dtsi b/arch/arm64/boot/dts/broadcom/stingray/stingray-pinctrl.dtsi
+--- a/arch/arm64/boot/dts/broadcom/stingray/stingray-pinctrl.dtsi
++++ b/arch/arm64/boot/dts/broadcom/stingray/stingray-pinctrl.dtsi
+@@ -32,7 +32,7 @@
+ 
+ #include <dt-bindings/pinctrl/brcm,pinctrl-stingray.h>
+ 
+-		pinconf: pinconf@140000 {
++		pinconf: pinctrl@140000 {
+ 			compatible = "pinconf-single";
+ 			reg = <0x00140000 0x250>;
+ 			pinctrl-single,register-width = <32>;
+diff --git a/arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi b/arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi
+--- a/arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi
++++ b/arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi
+@@ -172,7 +172,7 @@ combphy1: phy@858 {
+ 			};
+ 		};
+ 
+-		pmx0: pinconf@8a21000 {
++		pmx0: pinctrl@8a21000 {
+ 			compatible = "pinconf-single";
+ 			reg = <0x8a21000 0x180>;
+ 			pinctrl-single,register-width = <32>;
+diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
+--- a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
++++ b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
+@@ -365,7 +365,7 @@ pinctrl0: pinctrl@ffd13000 {
+ 			pinctrl-single,function-mask = <0x0000000f>;
+ 		};
+ 
+-		pinctrl1: pinconf@ffd13100 {
++		pinctrl1: pinctrl@ffd13100 {
+ 			compatible = "pinctrl-single";
+ 			#pinctrl-cells = <1>;
+ 			reg = <0xffd13100 0x20>;
+-- 
+2.40.1
