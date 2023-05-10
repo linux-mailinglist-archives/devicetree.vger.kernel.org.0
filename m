@@ -2,172 +2,372 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EBF376FDE17
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 14:48:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 474386FDE1F
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 14:52:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236617AbjEJMsn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 08:48:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45286 "EHLO
+        id S231355AbjEJMwN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 08:52:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236792AbjEJMsm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 08:48:42 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CF935FCA
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 05:48:40 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-50bc456cc39so10772949a12.1
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 05:48:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683722919; x=1686314919;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=NTb3PFqZjRywOvCruaTWXhoZpVjyn+1Cf6fGgu1FyAA=;
-        b=VMwvLylU7oHixR+Vw7boud6qkZdq99f7ytTvREQcW2PAcYSHJpEdwJmd9RN852zY4E
-         1nTtLoJAcHrxi8QZm97lUota5mrfeEEQQSeaVaNlsR9k/ca4euKz1GkUftrdvLYE/9K7
-         G2IIgzKq4mEKQ8p52/rFs3hPL169BqFeV++ICeLX02HIqh20vIAIaOetw9CvXjaU8EgF
-         j+CFLO6njGI18REzulX+qsuC+UBSUwfA4NgTTxt2rhwkEdiM3aL+VzlNCJ9PAzLRh1E8
-         mIQY/uRsrGmGbuea82e+6VjalOszkIkevhRkXXvZtf+K5Nwa1HH53Bqqb87C90T7KJtC
-         +YeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683722919; x=1686314919;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NTb3PFqZjRywOvCruaTWXhoZpVjyn+1Cf6fGgu1FyAA=;
-        b=j325BQHFe1hJkltfF6jCQ3yqvZ862q2oRVREdj3gikAgil/1P/ddosjsTqBZeu2eVW
-         lMll1s1yz+0c6CwICn5ZVDi8B9M51pr2CnAspT2XeKhCgrvj1SEhXvNc6RGOZsbddHSm
-         ONGKnkRNPDr79juz2XfzRJRwjLA7exN04lQt+wYfpSUCVxF7tiSobsZ88yFixxFhx7tl
-         r121UAy4J5zQGAa4V1wAguuCBb4lz+AO4hivrL8LaJRrzy+6YVpXSn5GwMiPiq7bB7Ya
-         /66O98VAsTTLxtZ61P/WWB/vIp9o75/1IOAPFQd3s4MWEhTKuy+NmoxoOqG4l7PiN9vf
-         H9qA==
-X-Gm-Message-State: AC+VfDymh/xiu/uk3ONhTgUxLNHoxXEpEQ/7vO7kyIi04EGDPsx6MGeJ
-        w+3jZcCZuCzmQ0rXn8XNsIH0mQ==
-X-Google-Smtp-Source: ACHHUZ5zs4uO98cPUCdsu7HaNKzqF2WWD5nkbIVuD12iDI8wUC2Ut0meoqoO0vBvWUP451RR8sbmcA==
-X-Received: by 2002:a05:6402:182:b0:50d:abde:c7a3 with SMTP id r2-20020a056402018200b0050dabdec7a3mr6932109edv.42.1683722918754;
-        Wed, 10 May 2023 05:48:38 -0700 (PDT)
-Received: from krzk-bin ([2a02:810d:15c0:828:c175:a0f9:6928:8c9d])
-        by smtp.gmail.com with ESMTPSA id w23-20020aa7cb57000000b0050b57848b01sm1810482edt.82.2023.05.10.05.48.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 May 2023 05:48:38 -0700 (PDT)
-Date:   Wed, 10 May 2023 14:48:36 +0200
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     Conor Dooley <conor+dt@kernel.org>,
+        with ESMTP id S236946AbjEJMwL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 08:52:11 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23A005255
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 05:52:06 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1pwjIK-0001K5-6f; Wed, 10 May 2023 14:51:48 +0200
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1pwjIF-0005Aq-TN; Wed, 10 May 2023 14:51:43 +0200
+Date:   Wed, 10 May 2023 14:51:43 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
+Cc:     krzysztof.kozlowski@linaro.org, Heiko Stuebner <heiko@sntech.de>,
+        devicetree@vger.kernel.org,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
         Linus Walleij <linus.walleij@linaro.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nishanth Menon <nm@ti.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-omap@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] dt-bindings: pinctrl: Update pinctrl-single to
- use yaml
-Message-ID: <20230510124836.thqtol6qac762ggx@krzk-bin>
-References: <20230510095330.30742-1-tony@atomide.com>
- <20230510095330.30742-2-tony@atomide.com>
+        Fabio Estevam <festevam@gmail.com>,
+        Marek Vasut <marex@denx.de>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Markus Niebel <Markus.Niebel@tq-group.com>,
+        Stefan Wahren <stefan.wahren@i2se.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Jagan Teki <jagan@edgeble.ai>,
+        Rob Herring <robh+dt@kernel.org>,
+        Chris Morgan <macromorgan@hotmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Li Yang <leoyang.li@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>
+Subject: Re: [PATCH v4 1/3] arm64: dts: Add device tree for the Emtop SOM
+ IMX8MM
+Message-ID: <20230510125143.p7adxxhyttuzshfw@pengutronix.de>
+References: <20230510112347.3766247-1-himanshu.bhavani@siliconsignals.io>
+ <20230510112347.3766247-2-himanshu.bhavani@siliconsignals.io>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230510095330.30742-2-tony@atomide.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <20230510112347.3766247-2-himanshu.bhavani@siliconsignals.io>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 10 May 2023 12:53:29 +0300, Tony Lindgren wrote:
-> Update binding for yaml and remove the old related txt bindings. Note that
-> we are also adding the undocumented pinctrl-single,slew-rate property. And
-> we only use the first example from the old binding.
+Hi,
+
+On 23-05-10, Himanshu Bhavani wrote:
+> Add a device tree file describing the Emtop SOM IMX8MM
 > 
-> Cc: Nishanth Menon <nm@ti.com>
-> Cc: Vignesh Raghavendra <vigneshr@ti.com>
-> Signed-off-by: Tony Lindgren <tony@atomide.com>
+> Signed-off-by: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
 > ---
+>  arch/arm64/boot/dts/freescale/Makefile        |   1 +
+>  .../arm64/boot/dts/freescale/imx8mm-emtop.dts | 261 ++++++++++++++++++
+>  2 files changed, 262 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-emtop.dts
 > 
-> Changes since v3:
-> - Fix issues noted by Rob for v2 version that I had missed
-> 
-> - Categorize patternProperties a bit to make fixing dts files easier
-> 
-> Changes since v2:
-> 
-> - Drop old ti,omap-pinctrl.txt in addition to old pinctrl-single.txt
-> 
-> - Replace reference to pinctrl-single.txt to point to the yaml in ctrl.txt
-> 
-> Changes since v1:
-> 
-> - The v1 version was a WIP patch posted as an example in thread
->   "dt binding check error with hash and comma"
-> 
-> ---
->  .../devicetree/bindings/arm/omap/ctrl.txt     |   2 +-
->  .../bindings/pinctrl/pinctrl-single.txt       | 262 ------------------
->  .../bindings/pinctrl/pinctrl-single.yaml      | 235 ++++++++++++++++
->  .../bindings/pinctrl/ti,omap-pinctrl.txt      |  13 -
->  4 files changed, 236 insertions(+), 276 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/ti,omap-pinctrl.txt
-> 
+> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+> index 198fff3731ae..36590515fbc1 100644
+> --- a/arch/arm64/boot/dts/freescale/Makefile
+> +++ b/arch/arm64/boot/dts/freescale/Makefile
+> @@ -54,6 +54,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-beacon-kit.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mm-data-modul-edm-sbc.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mm-ddr4-evk.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mm-emcon-avari.dtb
+> +dtb-$(CONFIG_ARCH_MXC) += imx8mm-emtop.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mm-evk.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mm-icore-mx8mm-ctouch2.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mm-icore-mx8mm-edimm2.2.dtb
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-emtop.dts b/arch/arm64/boot/dts/freescale/imx8mm-emtop.dts
+> new file mode 100644
+> index 000000000000..461e1ef5dcb4
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-emtop.dts
+> @@ -0,0 +1,261 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright 2023 Emtop
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/leds/common.h>
+> +#include <dt-bindings/usb/pd.h>
+> +
+> +#include "imx8mm.dtsi"
+> +
+> +/ {
+> +	model = "Emtop SOM i.MX8MM";
+> +	compatible = "emtop,imx8mm-emtop", "fsl,imx8mm";
+> +
+> +	chosen {
+> +		stdout-path = &uart2;
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_gpio_led>;
+> +
+> +		led-0 {
+> +			function = LED_FUNCTION_POWER;
+> +			gpios = <&gpio3 16 GPIO_ACTIVE_HIGH>;
+> +			linux,default-trigger = "heartbeat";
+> +		};
+> +	};
+> +};
+> +
+> +&A53_0 {
+> +	cpu-supply = <&buck2>;
+> +};
+> +
+> +&A53_1 {
+> +	cpu-supply = <&buck2>;
+> +};
+> +
+> +&A53_2 {
+> +	cpu-supply = <&buck2>;
+> +};
+> +
+> +&A53_3 {
+> +	cpu-supply = <&buck2>;
+> +};
+> +
+> +&uart2 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_uart2>;
+> +	status = "okay";
+> +};
+> +
+> +&usdhc3 {
+> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+> +	pinctrl-0 = <&pinctrl_usdhc3>;
+> +	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
+> +	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
+> +	bus-width = <8>;
+> +	non-removable;
+> +	status = "okay";
+> +};
+> +
+> +&wdog1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_wdog>;
+> +	fsl,ext-reset-output;
+> +	status = "okay";
+> +};
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+The nodes should be ordered alphabetical only exception is the iomuxc at
+the end.
 
-yamllint warnings/errors:
+Regards,
+  Marco
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml: patternProperties: 'i2c1-pmx-func' does not match '[\\^$()*@]'
-	hint: Fixed strings belong in 'properties', not 'patternProperties'
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml: patternProperties: '_pmx_func|_pmx_idle|_cfg_func|_cfg_idle|gpio_key_func' does not match '[\\^$()*@]'
-	hint: Fixed strings belong in 'properties', not 'patternProperties'
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml: patternProperties: 'cpsw_default|cpsw_sleep|davinci_mdio_default|davinci_mdio_sleep' does not match '[\\^$()*@]'
-	hint: Fixed strings belong in 'properties', not 'patternProperties'
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml: patternProperties: 'usb1_drvvbus|usb_hub_ctrl|usb2_phy' does not match '[\\^$()*@]'
-	hint: Fixed strings belong in 'properties', not 'patternProperties'
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml: patternProperties: 'gpio_keys_s0|matrix_keypad_default|matrix_keypad_sleep|matrix_keypad_s0' does not match '[\\^$()*@]'
-	hint: Fixed strings belong in 'properties', not 'patternProperties'
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml: patternProperties: 'user_leds_s0|gpio_led_pmx' does not match '[\\^$()*@]'
-	hint: Fixed strings belong in 'properties', not 'patternProperties'
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml: patternProperties: 'nand_flash_x8' does not match '[\\^$()*@]'
-	hint: Fixed strings belong in 'properties', not 'patternProperties'
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.example.dtb: pinmux@4a100040: #pinctrl-cells: [[2]] is not of type 'object'
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.example.dtb: pinmux@4a100040: #pinctrl-cells: [[2]] is not of type 'object'
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.example.dtb: pinmux@4a100040: pinctrl-single,register-width: [[16]] is not of type 'object'
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.example.dtb: pinmux@4a100040: pinctrl-single,register-width: [[16]] is not of type 'object'
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.example.dtb: pinmux@4a100040: pinctrl-single,function-mask: [[65535]] is not of type 'object'
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.example.dtb: pinmux@4a100040: pinctrl-single,function-mask: [[65535]] is not of type 'object'
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.example.dtb: pinmux@4a100040: pinctrl-single,gpio-range: [[1, 0, 3, 0]] is not of type 'object'
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.example.dtb: pinmux@4a100040: pinctrl-single,gpio-range: [[1, 0, 3, 0]] is not of type 'object'
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
-
-See https://patchwork.ozlabs.org/patch/1779341
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+> +
+> +&i2c1 {
+> +	clock-frequency = <400000>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_i2c1>;
+> +	status = "okay";
+> +
+> +	pmic@25 {
+> +		compatible = "nxp,pca9450c";
+> +		reg = <0x25>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_pmic>;
+> +		interrupt-parent = <&gpio1>;
+> +		interrupts = <3 IRQ_TYPE_EDGE_RISING>;
+> +
+> +		regulators {
+> +			buck1: BUCK1 {
+> +				regulator-name = "BUCK1";
+> +				regulator-min-microvolt = <800000>;
+> +				regulator-max-microvolt = <1000000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +				regulator-ramp-delay = <3125>;
+> +			};
+> +
+> +			buck2: BUCK2 {
+> +				regulator-name = "BUCK2";
+> +				regulator-min-microvolt = <800000>;
+> +				regulator-max-microvolt = <900000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +				regulator-ramp-delay = <3125>;
+> +			};
+> +
+> +			buck3: BUCK3 {
+> +				regulator-name = "BUCK3";
+> +				regulator-min-microvolt = <800000>;
+> +				regulator-max-microvolt = <1000000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			buck4: BUCK4 {
+> +				regulator-name = "BUCK4";
+> +				regulator-min-microvolt = <3000000>;
+> +				regulator-max-microvolt = <3600000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			buck5: BUCK5 {
+> +				regulator-name = "BUCK5";
+> +				regulator-min-microvolt = <1650000>;
+> +				regulator-max-microvolt = <1950000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			buck6: BUCK6 {
+> +				regulator-name = "BUCK6";
+> +				regulator-min-microvolt = <1100000>;
+> +				regulator-max-microvolt = <1200000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo1: LDO1 {
+> +				regulator-name = "LDO1";
+> +				regulator-min-microvolt = <1650000>;
+> +				regulator-max-microvolt = <1950000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo2: LDO2 {
+> +				regulator-name = "LDO2";
+> +				regulator-min-microvolt = <800000>;
+> +				regulator-max-microvolt = <945000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo3: LDO3 {
+> +				regulator-name = "LDO3";
+> +				regulator-min-microvolt = <1710000>;
+> +				regulator-max-microvolt = <1890000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo4: LDO4 {
+> +				regulator-name = "LDO4";
+> +				regulator-min-microvolt = <810000>;
+> +				regulator-max-microvolt = <945000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo5: LDO5 {
+> +				regulator-name = "LDO5";
+> +				regulator-min-microvolt = <1650000>;
+> +				regulator-max-microvolt = <3600000>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&iomuxc {
+> +	pinctrl_gpio_led: gpioledgrp {
+> +		fsl,pins = <
+> +			MX8MM_IOMUXC_NAND_READY_B_GPIO3_IO16			0x19
+> +			MX8MM_IOMUXC_SAI3_RXC_GPIO4_IO29			0x19
+> +		>;
+> +	};
+> +
+> +	pinctrl_i2c1: i2c1grp {
+> +		fsl,pins = <
+> +			MX8MM_IOMUXC_I2C1_SCL_I2C1_SCL				0x400001c3
+> +			MX8MM_IOMUXC_I2C1_SDA_I2C1_SDA				0x400001c3
+> +		>;
+> +	};
+> +
+> +	pinctrl_pmic: pmicirq {
+> +		fsl,pins = <
+> +			MX8MM_IOMUXC_GPIO1_IO03_GPIO1_IO3			0x41
+> +		>;
+> +	};
+> +
+> +	pinctrl_uart2: uart2grp {
+> +		fsl,pins = <
+> +			MX8MM_IOMUXC_UART2_RXD_UART2_DCE_RX			0x140
+> +			MX8MM_IOMUXC_UART2_TXD_UART2_DCE_TX			0x140
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc3: usdhc3grp {
+> +		fsl,pins = <
+> +			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK			0x190
+> +			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD			0x1d0
+> +			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0			0x1d0
+> +			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1			0x1d0
+> +			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2			0x1d0
+> +			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3			0x1d0
+> +			MX8MM_IOMUXC_NAND_RE_B_USDHC3_DATA4			0x1d0
+> +			MX8MM_IOMUXC_NAND_CE2_B_USDHC3_DATA5			0x1d0
+> +			MX8MM_IOMUXC_NAND_CE3_B_USDHC3_DATA6			0x1d0
+> +			MX8MM_IOMUXC_NAND_CLE_USDHC3_DATA7			0x1d0
+> +			MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE			0x190
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc3_100mhz: usdhc3-100mhzgrp {
+> +		fsl,pins = <
+> +			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK			0x194
+> +			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD			0x1d4
+> +			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0			0x1d4
+> +			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1			0x1d4
+> +			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2			0x1d4
+> +			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3			0x1d4
+> +			MX8MM_IOMUXC_NAND_RE_B_USDHC3_DATA4			0x1d4
+> +			MX8MM_IOMUXC_NAND_CE2_B_USDHC3_DATA5			0x1d4
+> +			MX8MM_IOMUXC_NAND_CE3_B_USDHC3_DATA6			0x1d4
+> +			MX8MM_IOMUXC_NAND_CLE_USDHC3_DATA7			0x1d4
+> +			MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE			0x194
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc3_200mhz: usdhc3-200mhzgrp {
+> +		fsl,pins = <
+> +			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK			0x196
+> +			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD			0x1d6
+> +			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0			0x1d6
+> +			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1			0x1d6
+> +			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2			0x1d6
+> +			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3			0x1d6
+> +			MX8MM_IOMUXC_NAND_RE_B_USDHC3_DATA4			0x1d6
+> +			MX8MM_IOMUXC_NAND_CE2_B_USDHC3_DATA5			0x1d6
+> +			MX8MM_IOMUXC_NAND_CE3_B_USDHC3_DATA6			0x1d6
+> +			MX8MM_IOMUXC_NAND_CLE_USDHC3_DATA7			0x1d6
+> +			MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE			0x196
+> +		>;
+> +	};
+> +
+> +	pinctrl_wdog: wdoggrp {
+> +		fsl,pins = <
+> +			MX8MM_IOMUXC_GPIO1_IO02_WDOG1_WDOG_B			0xc6
+> +		>;
+> +	};
+> +};
+> -- 
+> 2.25.1
+> 
+> 
+> 
