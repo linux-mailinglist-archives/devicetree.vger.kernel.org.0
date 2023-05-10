@@ -2,82 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E22DF6FDE38
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 15:05:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F8736FDE52
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 15:17:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236681AbjEJNF1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 09:05:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52282 "EHLO
+        id S236961AbjEJNRQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 09:17:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231355AbjEJNF0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 09:05:26 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25832E4C
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 06:05:25 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-50bd2d7ba74so68643384a12.1
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 06:05:25 -0700 (PDT)
+        with ESMTP id S236593AbjEJNRM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 09:17:12 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B6DD7A84
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 06:17:10 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-965ac4dd11bso1432696766b.2
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 06:17:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683723923; x=1686315923;
+        d=linaro.org; s=google; t=1683724628; x=1686316628;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=mnIrfY7wG9JswRS/eckq0Sy0CDZ00GQPgS+a22cO2Kc=;
-        b=d+F1N7qWXvPcqkYu1VqKSRPBXLIttpJUO1PpHDjMHJEM/0oufUsDxCK0FiKtmk/d9/
-         n0ZgovaQfkBdga9FQ8Uk4oPTTnO9fkH+UsL8N14M2Xl3IoneAS9OZdC/fCg1iTTAPGFH
-         xsdxOOuPrameJTnYOhO70FpUVQ1myluUxTuczT3d9aCu1WZtmWRyy26eCeN1NUiy/oeB
-         eEXFQTeC1ev2ScrjjnB4dOeI5ZgV8AyT2nYhSYNIm7TOTytfDRmD3VgHhOpROocHQK+V
-         0ZDGrVn8lV8zNDxvEjKKXOXE9PDTgA+ZIPI0foqjFPlOOElZgLr2A+pv2p217fU7+ae+
-         iS2w==
+        bh=V0NNPcaQxaKPxC35q4lb7Q2k/KJXCpc0ipK342+puDU=;
+        b=QnDTCjRVA6jNRLhzY0ZS4HptY0D7fNBaEUgzFrPD+YpobP/gzd5apV3HjsDrqWUN/O
+         6h8DG8keAQkOVidAH87PIwVTNgHDSx3umnzVhSKwntgsd3k3RuHMhjSOVFCG26bVcnej
+         /hDCbk2kWM8yKSn/5XXovixpm9otRI9sOdjXnoG5b7Sg39CC/sV5Q3MSZjuR2g4WWFe6
+         XmaBfrYQqDLbOaFLyrXajhgGngg1kB9HLSC57TV45gIk50oESBIcO8HoAuRtgKTzRxaN
+         R7qAdLOtnX5IgoKpypv7SKn2usmYsrWgqsvamzvZj5YBclikTuJTkL/hvspTQ1J+OQaN
+         7wjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683723923; x=1686315923;
+        d=1e100.net; s=20221208; t=1683724628; x=1686316628;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mnIrfY7wG9JswRS/eckq0Sy0CDZ00GQPgS+a22cO2Kc=;
-        b=cqx0bINjP2ta0tH/DyFfS1CFU31PYGeft2kH8tSVJTPimDlzmVGriHgYr+gy35+Mrq
-         GnRypqCwCkd5WvzCRwhrVW+kwkO8fXr0I9DNEOB5woiKiiY4sF2avi21im/zLt99geu5
-         Ui13qZANl2kR3HxqRyEDZphIDogkHtaBxBbJO+aSDYDR9PQArEQcMWwKKlymK2YLzTPN
-         FBXFJ1hqtjb6Pv24aPCfmhdVVZ9mHgqnwy/291LtVGCGb8aaOGrjkBv9YEGHsFX5UL8k
-         zIZPr1NIa3LTe/m43tTwXtAyHy+sq3myd8NC5Bj97//EVzBXSGJetRGL7mMBpiPKguoL
-         R25w==
-X-Gm-Message-State: AC+VfDwD24jnXxkt/NXnysoOm5ZSvl7ixJbsad2FnApaeatCxB88EdYc
-        eaafcVE0eRRsStT6Abq6B8a0kTZiTasd6y0YuOE=
-X-Google-Smtp-Source: ACHHUZ7NponsOFVSpv4N8O+zgoQDoXtPKWCC0YA8Jsddu624nKYu8fUkkleWuV8g4D0ISA5uhs+AyA==
-X-Received: by 2002:a17:907:7208:b0:966:550f:9bfe with SMTP id dr8-20020a170907720800b00966550f9bfemr9859466ejc.33.1683723923471;
-        Wed, 10 May 2023 06:05:23 -0700 (PDT)
+        bh=V0NNPcaQxaKPxC35q4lb7Q2k/KJXCpc0ipK342+puDU=;
+        b=RTUKjBbo3E1IvMdomYs3BBYe3pxf7UAejtRRI+Mtahz4ngr41n4MSzkaveoPG5hBpd
+         CY6fVZBJBwOks6cC+R5ir3NP+rK6qBs/96LW9sDanOSAJpisbcMt0LZk4/+VVTNdzX5t
+         YEyfL5WMbYeiJaxngvOnpfYOSGax3+QcSVjEuT9r9H2wyyGtXgAcPg5RkORd6XFGvnRL
+         lvUeElQCG579zQHqlOqmeY0c75bry9tGL+p7mhkaXVlkSW1tqSjxYRAlMThdLy0TBnN3
+         YrOhHmTKE88Q7JRiIga/I1UL/5AwyD1E+LXD0cDbV5EL3Ne8tOQyObjDbW2GulvAqti4
+         OqMA==
+X-Gm-Message-State: AC+VfDzLCqxORNwVzGfBzXqyQajxtlbnaeLJ/riI2OXeTPuPp7emqhlk
+        c2QdmSYShsYhbS4k81OYjyN7CQ==
+X-Google-Smtp-Source: ACHHUZ6YL9+LN9HNfDK/e/WVnPK1YCtDvn0BZgkGmj5+wk/gJcPNkGoRrZK92hJdd60Iu9y/EMt5Vg==
+X-Received: by 2002:a17:906:eec9:b0:94e:46ef:1361 with SMTP id wu9-20020a170906eec900b0094e46ef1361mr14978482ejb.34.1683724628495;
+        Wed, 10 May 2023 06:17:08 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:c175:a0f9:6928:8c9d? ([2a02:810d:15c0:828:c175:a0f9:6928:8c9d])
-        by smtp.gmail.com with ESMTPSA id jl2-20020a17090775c200b00965cbcaf31fsm2657505ejc.99.2023.05.10.06.05.22
+        by smtp.gmail.com with ESMTPSA id d21-20020a170906c21500b00965fdb90801sm2687310ejz.153.2023.05.10.06.17.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 May 2023 06:05:22 -0700 (PDT)
-Message-ID: <7e275742-7114-25e1-b45b-ade547487fc0@linaro.org>
-Date:   Wed, 10 May 2023 15:05:21 +0200
+        Wed, 10 May 2023 06:17:07 -0700 (PDT)
+Message-ID: <764ae6a7-cb25-93ac-720a-56c9a831a493@linaro.org>
+Date:   Wed, 10 May 2023 15:17:05 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v4] dt-bindings: rtc: isl1208: Convert to json-schema
+Subject: Re: [PATCH v2] dt-bindings: usb: Add binding for Microchip usb5744
+ hub controller
 Content-Language: en-US
-To:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Trent Piepho <tpiepho@gmail.com>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
+        monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com,
+        ilias.apalodimas@linaro.org
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-References: <20230509131249.80456-1-biju.das.jz@bp.renesas.com>
- <CA+7tXig2nwCk3DKwFEKGKVko=YD4e4KCpRVUMMM2pgPRpNgiiQ@mail.gmail.com>
- <CAMuHMdUOdJrPdcx684zKaSNFMqkRWL_y3jdAor_D0AeDRpRhJQ@mail.gmail.com>
- <0620e3ef-ece5-550a-43bb-0d6e75de79bf@linaro.org>
- <OS0PR01MB59223DA1A4360CC0E97AC2A486779@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+        Piyush Mehta <piyush.mehta@amd.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org
+References: <dd31f987316fb2739644628b5840a6d447b5a587.1683293125.git.michal.simek@amd.com>
+ <32aa46df-9ed5-7d2a-868f-a36414f54534@linaro.org>
+ <1868d9ae-1376-d91d-a789-9e510bde96a7@amd.com>
+ <27232a95-6ef8-1a98-4f5d-7d0ea29c20c4@linaro.org>
+ <882f0cb5-7a5f-fe56-fdd9-f6074c1e359a@amd.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <OS0PR01MB59223DA1A4360CC0E97AC2A486779@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+In-Reply-To: <882f0cb5-7a5f-fe56-fdd9-f6074c1e359a@amd.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
@@ -88,68 +84,126 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/05/2023 13:37, Biju Das wrote:
-> Hi Krzysztof Kozlowski,
+On 10/05/2023 13:00, Michal Simek wrote:
 > 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Sent: Wednesday, May 10, 2023 7:58 AM
->> To: Geert Uytterhoeven <geert@linux-m68k.org>; Trent Piepho
->> <tpiepho@gmail.com>
->> Cc: Biju Das <biju.das.jz@bp.renesas.com>; Alessandro Zummo
->> <a.zummo@towertech.it>; Alexandre Belloni <alexandre.belloni@bootlin.com>;
->> Rob Herring <robh+dt@kernel.org>; Krzysztof Kozlowski
->> <krzysztof.kozlowski+dt@linaro.org>; linux-rtc@vger.kernel.org;
->> devicetree@vger.kernel.org; Geert Uytterhoeven <geert+renesas@glider.be>;
->> Fabrizio Castro <fabrizio.castro.jz@renesas.com>; linux-renesas-
->> soc@vger.kernel.org
->> Subject: Re: [PATCH v4] dt-bindings: rtc: isl1208: Convert to json-schema
->>
->> On 10/05/2023 08:52, Geert Uytterhoeven wrote:
->>> Hi Trent,
+> 
+> On 5/9/23 18:04, Krzysztof Kozlowski wrote:
+>> On 09/05/2023 16:19, Michal Simek wrote:
 >>>
->>> On Tue, May 9, 2023 at 9:03 PM Trent Piepho <tpiepho@gmail.com> wrote:
->>>> On Tue, May 9, 2023 at 6:12 AM Biju Das <biju.das.jz@bp.renesas.com>
->> wrote:
+>>>
+>>> On 5/7/23 10:07, Krzysztof Kozlowski wrote:
+>>>> On 05/05/2023 15:25, Michal Simek wrote:
+>>>>> The Microchip usb5744 is a SS/HS USB 3.0 hub controller with 4 ports.
+>>>>> The binding describes USB related aspects of the USB5744 hub, it as
+>>>>> well cover the option of connecting the controller as an i2c slave.
+>>>>> When i2c interface is connected hub needs to be initialized first.
+>>>>> Hub itself has fixed i2c address 0x2D but hardcoding address is not good
+>>>>> idea because address can be shifted by i2c address translator in the
+>>>>> middle.
+>>>>>
+>>>>> Signed-off-by: Piyush Mehta <piyush.mehta@amd.com>
+>>>>> Signed-off-by: Michal Simek <michal.simek@amd.com>
+>>>>> ---
+>>>>>
+>>>>> Changes in v2:
+>>>>> - fix i2c-bus property
+>>>>> - swap usb2.0/3.0 compatible strings
+>>>>> - fix indentation in example (4 spaces)
+>>>>> - add new i2c node with microchip,usb5744 compatible property
+>>>>>
+>>>>> It looks like that usb8041 has also an optional i2c interface which is not
+>>>>> covered. But it is mentioned at commit 40e58a8a7ca6 ("dt-bindings: usb:
+>>>>> Add binding for TI USB8041 hub controller").
+>>>>>
+>>>>> i2c-bus name property was suggested by Rob at
+>>>>> https://lore.kernel.org/all/CAL_JsqJedhX6typpUKbnzV7CLK6UZVjq3CyG9iY_j5DLPqvVdw@mail.gmail.com/
+>>>>> and
+>>>>> https://lore.kernel.org/all/CAL_JsqJZBbu+UXqUNdZwg-uv0PAsNg55026PTwhKr5wQtxCjVQ@mail.gmail.com/
+>>>>>
+>>>>> the question is if adding address like this is acceptable.
+>>>>> But it must be specified.
+>>>>>
+>>>>> Driver will follow based on final dt-binding.
+>>>>>
+>>>>> $ref: usb-device.yaml# should be also added but have no idea how to wire it
+>>>>> up to be applied only on usb node not i2c one.
+>>>>>
+>>>>> ---
+>>>>>    .../bindings/usb/microchip,usb5744.yaml       | 110 ++++++++++++++++++
+>>>>>    1 file changed, 110 insertions(+)
+>>>>>    create mode 100644 Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml b/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000000..7e0a3472ea95
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
+>>>>> @@ -0,0 +1,110 @@
+>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>>> +%YAML 1.2
+>>>>> +---
+>>>>> +$id: http://devicetree.org/schemas/usb/microchip,usb5744.yaml#
+>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 >>>>> +
->>>>> +  interrupt-names:
+>>>>> +title: Microchip USB5744 4-port Hub Controller
+>>>>> +
+>>>>> +description:
+>>>>> +  Microchip's USB5744 SmartHubTM IC is a 4 port, SuperSpeed (SS)/Hi-Speed (HS),
+>>>>> +  low power, low pin count configurable and fully compliant with the USB 3.1
+>>>>> +  Gen 1 specification. The USB5744 also supports Full Speed (FS) and Low Speed
+>>>>> +  (LS) USB signaling, offering complete coverage of all defined USB operating
+>>>>> +  speeds. The new SuperSpeed hubs operate in parallel with the USB 2.0
+>>>>> +  controller, so 5 Gbps SuperSpeed data transfers are not affected by slower
+>>>>> +  USB 2.0 traffic.
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - Piyush Mehta <piyush.mehta@amd.com>
+>>>>> +  - Michal Simek <michal.simek@amd.com>
+>>>>> +
+>>>>> +select:
+>>>>> +  properties:
+>>>>> +    compatible:
+>>>>> +      contains:
+>>>>> +        const: microchip,usb5744
+>>>>> +  required:
+>>>>> +    - compatible
 >>>>
->>>> Shouldn't this have minItems: 1 and maxItems: 2 as well?
+>>>> I don't understand why do you need this select. It basically disables
+>>>> schema matching for other ones.
 >>>
->>>>> +    then:
->>>>> +      properties:
->>>>> +        interrupts:
->>>>> +          maxItems: 2
->>>>> +    else:
->>>>> +      properties:
->>>>> +        interrupts:
->>>>> +          maxItems: 1
->>>>
->>>> Add interrupt-names here too.
->>>
->>> Isn't the relation interrupts <=> interrupt-names enforced by the
->>> tooling?
+>>> I didn't find a way how to have usbXXX,XXXX compatible strings and
+>>> microchip,usb5744 compatible in the same file. I am definitely lacking knowledge
+>>> how to write it properly that's why any advise is welcome.
 >>
->> No, every constrain or schema code for one should be duplicated for second.
->> These can be done however in different ways, e.g.
->> interrupts:
->>   minItems: 1
->>   maxitems: 2
->> interrupt-names:
->>   minItems: 1
->>   items:
->>     - foo
->>     - bar
->>
->> but the outcome - so how many items are expected - must be the same in every
->> branch/condition.
+>> Hm, if you just have both of them like you have now, what happens?
 > 
-> But this will result in duplication of items in 2 places right?
 > 
-> One like the above and other one in conditional branch.
+> make 
+> DT_SCHEMA_FILES=Documentation/devicetree/bindings/usb/microchip,usb5744.yaml 
+> dt_binding_check
+>    DTEX    Documentation/devicetree/bindings/usb/microchip,usb5744.example.dts
+>    LINT    Documentation/devicetree/bindings
+>    CHKDT   Documentation/devicetree/bindings/processed-schema.json
+>    SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+>    DTC_CHK Documentation/devicetree/bindings/usb/microchip,usb5744.example.dtb
+> /home/monstr/data/disk/linux/Documentation/devicetree/bindings/usb/microchip,usb5744.example.dtb: 
+> hub@1: 'i2c-bus', 'peer-hub', 'reset-gpios' do not match any of the regexes: 
+> 'pinctrl-[0-9]+'
+> 	From schema: 
+> /home/monstr/data/disk/linux/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
+> /home/monstr/data/disk/linux/Documentation/devicetree/bindings/usb/microchip,usb5744.example.dtb: 
+> hub@2: 'i2c-bus', 'peer-hub', 'reset-gpios' do not match any of the regexes: 
+> 'pinctrl-[0-9]+'
+> 	From schema: 
+> /home/monstr/data/disk/linux/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
+> 
+> And this is even without usb-device.yaml wired.
 
+Yeah, you cannot define properties in allOf:if:then. Your select just
+makes the schema not selected thus it is a NOOP and error is hidden.
 
-No. Constraints must be the same, so for example minItems.
+I gave you examples how these should be expressed and the examples *do
+not* define properties in allOf:if:then, right?
 
 Best regards,
 Krzysztof
