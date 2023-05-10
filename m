@@ -2,270 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E2B76FE0F0
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 17:00:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2878D6FE0E9
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 17:00:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237639AbjEJPAm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 11:00:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58526 "EHLO
+        id S237623AbjEJPA3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 11:00:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237628AbjEJPAk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 11:00:40 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6ACFB6A4B;
-        Wed, 10 May 2023 08:00:36 -0700 (PDT)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34AD8U8F027211;
-        Wed, 10 May 2023 15:00:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references; s=qcppdkim1;
- bh=nbX9m9duY4Ccv7LjqF2S0/odDkqSyyaYinMSibystkI=;
- b=YzKvWdqWrvROm8DubrZI7be7/fntWtn+lC/aUBEGmcWQG3VAXuZCTAX7DBR9TVSAIeyE
- g01Dfa8mT2Fz9vObJf4ExP8txH0aclX3mbRsbm4grlMc7v0mvAk6H8lhE3tPZTYgg5XC
- HKDcIKrZuUce77qJDxGeip4cfGykYMHTHJ8yH9jdCMI5J3KmW4U+KrHNVtokYgnsZBsh
- YIZ0TbT56jnR0DDDUOyvznBzPAfsVZSPaUdjldctaPmyju8zhBzwzWImG1CxXQmuGw65
- r0Yp5xGLt+wLk0gd9x4LKOyH6r38I4b7QgzUKanaeyPxaWSMETTxndQIhPrltlX3bjtt Pw== 
-Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qfuna2130-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 10 May 2023 15:00:31 +0000
-Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-        by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 34AF0RwQ024957;
-        Wed, 10 May 2023 15:00:27 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 3qdy59f6hs-1;
-        Wed, 10 May 2023 15:00:27 +0000
-Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 34AF0RuW024948;
-        Wed, 10 May 2023 15:00:27 GMT
-Received: from hu-sgudaval-hyd.qualcomm.com (hu-rohiagar-hyd.qualcomm.com [10.213.106.138])
-        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 34AF0QNv024941;
-        Wed, 10 May 2023 15:00:27 +0000
-Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 3970568)
-        id 581435137; Wed, 10 May 2023 20:30:26 +0530 (+0530)
-From:   Rohit Agarwal <quic_rohiagar@quicinc.com>
-To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        linus.walleij@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, richardcochran@gmail.com,
-        manivannan.sadhasivam@linaro.org, andy.shevchenko@gmail.com
-Cc:     linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, Rohit Agarwal <quic_rohiagar@quicinc.com>
-Subject: [PATCH v7 1/4] dt-bindings: pinctrl: qcom: Add SDX75 pinctrl devicetree compatible
-Date:   Wed, 10 May 2023 20:30:22 +0530
-Message-Id: <1683730825-15668-2-git-send-email-quic_rohiagar@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1683730825-15668-1-git-send-email-quic_rohiagar@quicinc.com>
-References: <1683730825-15668-1-git-send-email-quic_rohiagar@quicinc.com>
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: bpfzxQZi0ZyRq2KXbPF3Z5khznvsm5BY
-X-Proofpoint-GUID: bpfzxQZi0ZyRq2KXbPF3Z5khznvsm5BY
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-10_04,2023-05-05_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- adultscore=0 lowpriorityscore=0 spamscore=0 impostorscore=0 malwarescore=0
- suspectscore=0 mlxlogscore=999 mlxscore=0 clxscore=1015 bulkscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2305100121
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S237428AbjEJPA2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 11:00:28 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E8207696
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 08:00:26 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9659e9bbff5so1332180966b.1
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 08:00:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683730825; x=1686322825;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RtiNrkh2QhwgA/Yef0BWpTiUCIpFoM3AGnkyS7Jdmfs=;
+        b=QDiXouLpaYBg7WPG2ARJAs/YOLbrmwWBubIU82c2PGicvzALpXvwZTAd+OrB8LcOdO
+         qSUDcfHPtS8DJim5uGqsNvKaQAgeEnzmAB5OZ0LbwJYcLNg7kNc2b2qxCbp7yxrot8qB
+         Vmcxm6OFOt96GGiMvWbStmW0ucP1mP1VVnzVNxIRKNh+LKtJkYK+Ujd2Sd6+w9pQHvn5
+         ko2vvSUaxFPI/gbKf7n8RyjpF0PZSleYH3TFb3LXSFv/UZ+tTGid1bce29/AdWA3dB4C
+         b/mCfFelPVzXOpH3Xqvcmcg+sO9fzIHgkatUK7VitQOZL5CHsc0jWi9+OBlTXYtOf2UO
+         6RXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683730825; x=1686322825;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RtiNrkh2QhwgA/Yef0BWpTiUCIpFoM3AGnkyS7Jdmfs=;
+        b=OxfPDVwJCb99Gd6MW58k8v0iHtlQNS3INecPR0JAiSGYX/j4xORZfL2uBo0XTVQBTF
+         kxZTcRKTDPqUrPTEeSwiDLYp1emQw+fZn7z9uVwCxMtFGeL35D5cLAyfqrzWsGv1RXbB
+         ym78swfLyxMVUjUUPaMI0K6skq7g6gQ3Dh44uJ/UjFTM/KS17fxmKGOA3C6udkBVzdV5
+         nap5gshCh6dwwCytE9oAQHGi3n/+3O8KZ82DW1eaqARpKOUNIYyesymf1X9u5AZdJEDM
+         AKdCoJBIB3qrTzrFgSUqOyi5i4i4ayszq5PXpHbsQBWMW5X7Yop9Sordoj3orf6WpUSF
+         TIBA==
+X-Gm-Message-State: AC+VfDycExL6jsoWo/mXFUqUrMphbIJGXw2+0S2vNhEqJRBDdyKzzEqT
+        Iff+j8vw66pU5VK9T2WXdxYmHQ==
+X-Google-Smtp-Source: ACHHUZ7ygoq+P9N7QWkGqQ8akQig23j8CJn8Zam4ACGvB85HbAABfkFwW544ed+C+IjAfprbW9SH1A==
+X-Received: by 2002:a17:907:1b24:b0:94e:5c28:1c19 with SMTP id mp36-20020a1709071b2400b0094e5c281c19mr17526255ejc.5.1683730825073;
+        Wed, 10 May 2023 08:00:25 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:c175:a0f9:6928:8c9d? ([2a02:810d:15c0:828:c175:a0f9:6928:8c9d])
+        by smtp.gmail.com with ESMTPSA id hg8-20020a1709072cc800b00932fa67b48fsm2754259ejc.183.2023.05.10.08.00.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 May 2023 08:00:24 -0700 (PDT)
+Message-ID: <51fc4d85-51bd-90c0-632f-291ef6b02c42@linaro.org>
+Date:   Wed, 10 May 2023 17:00:23 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v3 1/6] dt-bindings: mailbox: tegra: Document Tegra264 HSP
+Content-Language: en-US
+To:     Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>
+Cc:     Jassi Brar <jassisinghbrar@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Joe Perches <joe@perches.com>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+References: <20230510142248.183629-1-pdeschrijver@nvidia.com>
+ <20230510142248.183629-2-pdeschrijver@nvidia.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230510142248.183629-2-pdeschrijver@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree binding Documentation details for Qualcomm SDX75
-pinctrl driver.
+On 10/05/2023 16:22, Peter De Schrijver wrote:
+> Add the compatible string for the HSP block found on the Tegra264 SoC.
+> The HSP block in Tegra264 is not register compatible with the one in
+> Tegra194 or Tegra234 hence there is no fallback compatibility string.
+> 
+> Signed-off-by: Peter De Schrijver <pdeschrijver@nvidia.com>
+> ---
 
-Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../bindings/pinctrl/qcom,sdx75-tlmm.yaml          | 169 +++++++++++++++++++++
- 1 file changed, 169 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sdx75-tlmm.yaml
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sdx75-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sdx75-tlmm.yaml
-new file mode 100644
-index 0000000..7ebc69d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pinctrl/qcom,sdx75-tlmm.yaml
-@@ -0,0 +1,169 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pinctrl/qcom,sdx75-tlmm.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm Technologies, Inc. SDX75 TLMM block
-+
-+maintainers:
-+  - Rohit Agarwal <quic_rohiagar@quicinc.com>
-+
-+description:
-+  Top Level Mode Multiplexer pin controller in Qualcomm SDX75 SoC.
-+
-+allOf:
-+  - $ref: /schemas/pinctrl/qcom,tlmm-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: qcom,sdx75-tlmm
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts: true
-+  interrupt-controller: true
-+  "#interrupt-cells": true
-+  gpio-controller: true
-+
-+  gpio-reserved-ranges:
-+    minItems: 1
-+    maxItems: 67
-+
-+  gpio-line-names:
-+    maxItems: 133
-+
-+  "#gpio-cells": true
-+  gpio-ranges: true
-+  wakeup-parent: true
-+
-+patternProperties:
-+  "-state$":
-+    oneOf:
-+      - $ref: "#/$defs/qcom-sdx75-tlmm-state"
-+      - patternProperties:
-+          "-pins$":
-+            $ref: "#/$defs/qcom-sdx75-tlmm-state"
-+        additionalProperties: false
-+
-+$defs:
-+  qcom-sdx75-tlmm-state:
-+    type: object
-+    description:
-+      Pinctrl node's client devices use subnodes for desired pin configuration.
-+      Client device subnodes use below standard properties.
-+    $ref: qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state
-+    unevaluatedProperties: false
-+
-+    properties:
-+      pins:
-+        description:
-+          List of gpio pins affected by the properties specified in this
-+          subnode.
-+        items:
-+          oneOf:
-+            - pattern: "^gpio([0-9]|[1-9][0-9]|1[0-2][0-9]|13[0-2])$"
-+            - enum: [ sdc1_clk, sdc1_cmd, sdc1_data, sdc1_rclk, sdc2_clk, sdc2_cmd, sdc2_data ]
-+        minItems: 1
-+        maxItems: 36
-+
-+      function:
-+        description:
-+          Specify the alternative function to be configured for the specified
-+          pins.
-+        enum: [ gpio, eth0_mdc, eth0_mdio, eth1_mdc, eth1_mdio,
-+                qlink0_wmss_reset, qlink1_wmss_reset, rgmii_rxc, rgmii_rxd0,
-+                rgmii_rxd1, rgmii_rxd2, rgmii_rxd3, rgmii_rx_ctl, rgmii_txc,
-+                rgmii_txd0, rgmii_txd1, rgmii_txd2, rgmii_txd3, rgmii_tx_ctl,
-+                adsp_ext_vfr, atest_char_start, atest_char_status0,
-+                atest_char_status1, atest_char_status2, atest_char_status3,
-+                audio_ref_clk, bimc_dte_test0, bimc_dte_test1,
-+                char_exec_pending, char_exec_release, coex_uart2_rx,
-+                coex_uart2_tx, coex_uart_rx, coex_uart_tx, cri_trng_rosc,
-+                cri_trng_rosc0, cri_trng_rosc1, dbg_out_clk, ddr_bist_complete,
-+                ddr_bist_fail, ddr_bist_start, ddr_bist_stop, ddr_pxi0_test,
-+                ebi0_wrcdc_dq2, ebi0_wrcdc_dq3, ebi2_a_d, ebi2_lcd_cs,
-+                ebi2_lcd_reset, ebi2_lcd_te, emac0_mcg_pst0, emac0_mcg_pst1,
-+                emac0_mcg_pst2, emac0_mcg_pst3, emac0_ptp_aux, emac0_ptp_pps,
-+                emac1_mcg_pst0, emac1_mcg_pst1, emac1_mcg_pst2, emac1_mcg_pst3,
-+                emac1_ptp_aux0, emac1_ptp_aux1, emac1_ptp_aux2, emac1_ptp_aux3,
-+                emac1_ptp_pps0, emac1_ptp_pps1, emac1_ptp_pps2, emac1_ptp_pps3,
-+                emac_cdc_dtest0, emac_cdc_dtest1, emac_pps_in, ext_dbg_uart,
-+                gcc_125_clk, gcc_gp1_clk, gcc_gp2_clk, gcc_gp3_clk,
-+                gcc_plltest_bypassnl, gcc_plltest_resetn, i2s_mclk,
-+                jitter_bist_ref, ldo_en, ldo_update, m_voc_ext, mgpi_clk_req,
-+                native0, native1, native2, native3, native_char_start,
-+                native_tsens_osc, native_tsense_pwm1, nav_dr_sync, nav_gpio_0,
-+                nav_gpio_1, nav_gpio_2, nav_gpio_3, pa_indicator_1, pci_e_rst,
-+                pcie0_clkreq_n, pcie1_clkreq_n, pcie2_clkreq_n, pll_bist_sync,
-+                pll_clk_aux, pll_ref_clk, pri_mi2s_data0, pri_mi2s_data1,
-+                pri_mi2s_sck, pri_mi2s_ws, prng_rosc_test0, prng_rosc_test1,
-+                prng_rosc_test2, prng_rosc_test3, qdss_cti_trig0,
-+                qdss_cti_trig1, qdss_gpio_traceclk, qdss_gpio_tracectl,
-+                qdss_gpio_tracedata0, qdss_gpio_tracedata1,
-+                qdss_gpio_tracedata10, qdss_gpio_tracedata11,
-+                qdss_gpio_tracedata12, qdss_gpio_tracedata13,
-+                qdss_gpio_tracedata14, qdss_gpio_tracedata15,
-+                qdss_gpio_tracedata2, qdss_gpio_tracedata3,
-+                qdss_gpio_tracedata4, qdss_gpio_tracedata5,
-+                qdss_gpio_tracedata6, qdss_gpio_tracedata7,
-+                qdss_gpio_tracedata8, qdss_gpio_tracedata9, qlink0_b_en,
-+                qlink0_b_req, qlink0_l_en, qlink0_l_req, qlink1_l_en,
-+                qlink1_l_req, qup_se0_l0, qup_se0_l1, qup_se0_l2, qup_se0_l3,
-+                qup_se1_l2, qup_se1_l3, qup_se2_l0, qup_se2_l1, qup_se2_l2,
-+                qup_se2_l3, qup_se3_l0, qup_se3_l1, qup_se3_l2, qup_se3_l3,
-+                qup_se4_l2, qup_se4_l3, qup_se5_l0, qup_se5_l1, qup_se6_l0,
-+                qup_se6_l1, qup_se6_l2, qup_se6_l3, qup_se7_l0, qup_se7_l1,
-+                qup_se7_l2, qup_se7_l3, qup_se8_l2, qup_se8_l3, qup_se1_l2_mira,
-+                qup_se1_l2_mirb, qup_se1_l3_mira, qup_se1_l3_mirb, sdc1_tb_trig,
-+                sdc2_tb_trig, sec_mi2s_data0, sec_mi2s_data1, sec_mi2s_sck,
-+                sec_mi2s_ws, sgmii_phy_intr0, sgmii_phy_intr1, spmi_coex_clk,
-+                spmi_coex_data, spmi_vgi_hwevent, tgu_ch0_trigout,
-+                tri_mi2s_data0, tri_mi2s_data1, tri_mi2s_sck, tri_mi2s_ws,
-+                uim1_clk, uim1_data, uim1_present, uim1_reset, uim2_clk,
-+                uim2_data, uim2_present, uim2_reset, usb2phy_ac_en,
-+                vsense_trigger_mirnat]
-+
-+    required:
-+      - pins
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    tlmm: pinctrl@f100000 {
-+        compatible = "qcom,sdx75-tlmm";
-+        reg = <0x0f100000 0x300000>;
-+        gpio-controller;
-+        #gpio-cells = <2>;
-+        gpio-ranges = <&tlmm 0 0 133>;
-+        interrupt-controller;
-+        #interrupt-cells = <2>;
-+        interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
-+
-+        gpio-wo-state {
-+            pins = "gpio1";
-+            function = "gpio";
-+        };
-+
-+        uart-w-state {
-+            rx-pins {
-+                pins = "gpio12";
-+                function = "qup_se1_l2_mira";
-+                bias-disable;
-+            };
-+
-+            tx-pins {
-+                pins = "gpio13";
-+                function = "qup_se1_l3_mira";
-+                bias-disable;
-+            };
-+        };
-+    };
-+...
--- 
-2.7.4
+Srsly, all tags ignored...
+
+This is a friendly reminder during the review process.
+
+It looks like you received a tag and forgot to add it.
+
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions. However, there's no need to repost patches *only* to add the
+tags. The upstream maintainer will do that for acks received on the
+version they apply.
+
+https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
+
+If a tag was not added on purpose, please state why and what changed.
+
+Best regards,
+Krzysztof
 
