@@ -2,142 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C5276FD91F
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 10:23:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17CC46FD934
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 10:25:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229571AbjEJIXi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 04:23:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38396 "EHLO
+        id S236322AbjEJIZu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 04:25:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236273AbjEJIXh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 04:23:37 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA53335A2
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 01:23:35 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-965ab8ed1fcso1251784066b.2
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 01:23:35 -0700 (PDT)
+        with ESMTP id S236349AbjEJIZs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 04:25:48 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0997735AE
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 01:25:46 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-50bc3088b7aso13226199a12.3
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 01:25:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683707014; x=1686299014;
+        d=linaro.org; s=google; t=1683707144; x=1686299144;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=RCtlG5oNLfTNjucw+rVtjHVln976pj7FRJKPu1vOWCU=;
-        b=stvWBTx3heDqYc8aSgTI3BHDQux4v2TvX7ePqr7TWy2oIwonjSsmQIMNrxBcmC3z4e
-         BS4k/8AWHGaveRJIUw40CJS8WtuwF7UK9jyKzYf5lDNpjykNLco9iQAlUMW1jzbZHQus
-         4Z1wnrGMRNce020lZ7Jh2Oz06Quqe6UasRv48FZHGCtYb9nzgDNLTRvpD6xEIID6lFFm
-         sezv0XEvautL4bFo/dCUFiITpubUrH6Y3pvwek4R6TBZwZwASqGRF3WZLNL3+/jeBiAF
-         n/iTdlisi6g6ypd/IgkQ5KNXl2YjQRCbKvhqCuLWTjwoSd4yCy5uDpIskty2xPlCoZZE
-         HQZA==
+        bh=lcBxflCZfrMCjgNvt/j0zL4iqv8NEVUHpROzuQuWsvU=;
+        b=hr5/zySHXIXGIff9H3bA8jsxCbsANZaRGdo4SpCgBavnSyhTozQf1y2lOj6BzewYce
+         /8VY8Wv/GLlzLA3Q9lCquAhruj103b/XpAvE+XObaBhZPpiqaVRKS8Vcv+HW7EK7w1g2
+         I6cOja1ntQGRBHQGzK4noF8nN3iWIWnPu++5EFQ0gvp2/e6RyaByF8W980HF+CUNO/Qd
+         ZJPp3m3mo6Yt1oCPuOMGzmtsXUjydibThJeyu30NHLcjP4p8kSpgOvtlZzDMKcJlBEAH
+         w67TF3lM+v5X157rzD6Dq6grrAYYNOZrGEUil5VCTyl+TgtZVwVZFTEbf5/uD6IzsPii
+         TFag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683707014; x=1686299014;
+        d=1e100.net; s=20221208; t=1683707144; x=1686299144;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RCtlG5oNLfTNjucw+rVtjHVln976pj7FRJKPu1vOWCU=;
-        b=ZCz+N63tGTcmFBisZSsOZnw5xS0+/0W59Y33idH90EPrUN7VMYjZIZw2/coXbouYO1
-         vKiorgEuETjydzhcTk/6xaJMhGgQ8lrgVC7B7BSeEbZzUcovqUgot6o8qWOnfH1ExdpB
-         1I3yieQUIknas48wAsu9TFT4dFUneztjpgEFcc6BD8p8gBns5vBjEo1iHbkRK7+TunlW
-         jvD5teuIoBX1fmbM1k4yLCFgB8dQjkKRMFrnXSBG+FAdRYRpK3UExnI+v14QANBFBBAB
-         IrAsq0mZ9bKprJR7cS+O8615iABVwjcVyBcUiguAsJBvgbP9fy6SOdtVGeQRiacNLANz
-         2U6Q==
-X-Gm-Message-State: AC+VfDxM72KXlGYWHFTvCJ3ZZxPobCQQCQXN5jS7JSKej2Vj9IEfSjG9
-        KWyFzYkxeeACxpUywjKZMIPG/Q==
-X-Google-Smtp-Source: ACHHUZ5xP/23S+hpnC77/OrnFL6X6B7uO0M1ffqlHOOjvrKIowK3CPXhhGvAtmsSBTpG8NGiLLs0jw==
-X-Received: by 2002:a17:907:971d:b0:966:d59a:4ba6 with SMTP id jg29-20020a170907971d00b00966d59a4ba6mr10431771ejc.43.1683707014305;
-        Wed, 10 May 2023 01:23:34 -0700 (PDT)
+        bh=lcBxflCZfrMCjgNvt/j0zL4iqv8NEVUHpROzuQuWsvU=;
+        b=Rr3qWn7wXzFcwk1Z6fGCpL+hYgrSJuNmC/eTUIO4ck87Frd6mw4fUUtvLKr2fiRBDT
+         2nyzwRkB/kp9bKxW8bfSD6oA08CG9CIS156UkicO/bTOmvgmb4SHVfeOuq0FqmZIVi3w
+         Mypjj2btGYC1epth5DQ2GiqV3swKJE9kIgYnc2n721EhCz+siS+QaZCpXi7RpIfgZXjA
+         HDt+m1A8sj1HqcB4tFI2J9pKk5N2+CaBEynNDTaZ9YIp/LtUIHv4eWQm5f5EkDAQImVu
+         53FCy0a7GOQy2I/FX4abQRKTSVIQcn16eLwq3RKVuuN9ni51qEOWqlkKRgPe7fH+whC3
+         UH+w==
+X-Gm-Message-State: AC+VfDwlvETuRVdpC9xMWMjhv6ITg7n9vQjrNJmfw5mkks1+tqMYGfI0
+        G6v/vKO52Zhxo+sggzU/X9esKA==
+X-Google-Smtp-Source: ACHHUZ6kaSbUUC2+BpCW94hDe2K88nt0WR7YqryzS1N7icFGXU4QXGnLiuAYXhz9sqMWUg6joF4b+g==
+X-Received: by 2002:a17:906:d54b:b0:94f:3980:bf91 with SMTP id cr11-20020a170906d54b00b0094f3980bf91mr18182488ejc.19.1683707144415;
+        Wed, 10 May 2023 01:25:44 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:c175:a0f9:6928:8c9d? ([2a02:810d:15c0:828:c175:a0f9:6928:8c9d])
-        by smtp.gmail.com with ESMTPSA id la26-20020a170906ad9a00b00967a18df1easm2375908ejb.117.2023.05.10.01.23.33
+        by smtp.gmail.com with ESMTPSA id f7-20020a170906494700b00965bf86c00asm2408355ejt.143.2023.05.10.01.25.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 May 2023 01:23:33 -0700 (PDT)
-Message-ID: <627f1739-98b4-9576-4b11-887c8f7e0c52@linaro.org>
-Date:   Wed, 10 May 2023 10:23:32 +0200
+        Wed, 10 May 2023 01:25:43 -0700 (PDT)
+Message-ID: <2b633d0d-4094-7877-b9cb-99795cecb130@linaro.org>
+Date:   Wed, 10 May 2023 10:25:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH 1/2] ASoC: dt-bindings: Add adi,ssm3515 amp schema
+Subject: Re: [PATCH 1/4] dt-bindings: clock: imx8m: Add missing interrupt
+ property
 Content-Language: en-US
-To:     =?UTF-8?Q?Martin_Povi=c5=a1er?= <povik+lin@cutebit.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        =?UTF-8?Q?Nuno_S=c3=a1?= <nuno.sa@analog.com>,
-        asahi@lists.linux.dev, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230509163828.86003-1-povik+lin@cutebit.org>
- <7b8c22e3-75c1-8803-fb32-097d12fbde78@linaro.org>
- <04BB0158-6C7B-400C-A87A-6E9B2835FDC7@cutebit.org>
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>
+Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230510065644.1317577-1-alexander.stein@ew.tq-group.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <04BB0158-6C7B-400C-A87A-6E9B2835FDC7@cutebit.org>
+In-Reply-To: <20230510065644.1317577-1-alexander.stein@ew.tq-group.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/05/2023 10:15, Martin Povišer wrote:
+On 10/05/2023 08:56, Alexander Stein wrote:
+> All i.MX8M SoC have 2 CCM interrupts, called:
+> * Interrupt Request 1
+> * Interrupt Request 2
 > 
->> On 10. 5. 2023, at 9:51, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 09/05/2023 18:38, Martin Povišer wrote:
->>> Add a DT schema for the SSM3515 amp by Analog Devices. It's a simple
->>> mono amplifier with digital input.
->>>
->>> Signed-off-by: Martin Povišer <povik+lin@cutebit.org>
->>
->>
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  adi,ana-gain:
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> +    enum: [0, 1, 2, 3]
->>> +    description: |
->>> +      The value to be set in the ANA_GAIN register field on the codec. This determines
->>> +      the full voltage span of the codec's analog output.
->>> +
->>> +      To quote the datasheet on the available options:
->>> +
->>> +        00: 8.4 V Full-Scale Gain Mapping
->>> +        01: 12.6 V Full-Scale Gain Mapping
->>> +        10: 14 V Full-Scale Gain Mapping
->>> +        11: 15 V Full-Scale Gain Mapping
->>> +
->>> +  '#sound-dai-cells':
->>> +    const: 0
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +  - adi,ana-gain
->>> +
->>> +additionalProperties: true
->>
->> uinevaluatedProperties: false instead, so users can have name-prefix.
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> ---
+> Admittedly despite listing them in the interrupt list, there is no
+> further description.
+> If it is deemed these IRQs are useless, the corresponding property in
+> imx8mq.dtsi should be removed instead.
 > 
-> I actually tweaked this to have the example passing, which has sound-name-prefix,
+>  Documentation/devicetree/bindings/clock/imx8m-clock.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 
-true is not allowed anyway - it makes your schema simply not effective
-almost at all as it allows anything...
 
-> which I guess is what you have in mind. Not that I exactly understand what these
-> options do (both additionalProperties and unevaluatedProperties), the schema docs
-> didn’t enlighten me right away when I looked into it.
-
-The way to go and to start always is to look at example-schema. It tells
-you explicitly to use additionalProperties:false and switch to
-unevaluated "If and only if another schema is referenced".
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
