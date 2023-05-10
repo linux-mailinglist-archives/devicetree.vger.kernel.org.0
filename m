@@ -2,83 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B374A6FD7DF
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 09:10:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 624BB6FD7E4
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 09:11:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236487AbjEJHJ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 03:09:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41396 "EHLO
+        id S236437AbjEJHLc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 03:11:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236457AbjEJHJy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 03:09:54 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F872525E
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 00:09:51 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-50bcb4a81ceso12235864a12.2
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 00:09:51 -0700 (PDT)
+        with ESMTP id S236324AbjEJHLb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 03:11:31 -0400
+Received: from mail-vs1-xe35.google.com (mail-vs1-xe35.google.com [IPv6:2607:f8b0:4864:20::e35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB5BF3A9A
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 00:11:29 -0700 (PDT)
+Received: by mail-vs1-xe35.google.com with SMTP id ada2fe7eead31-434a819c880so1284473137.3
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 00:11:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683702590; x=1686294590;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BJvf3WnGfiNmFmKHLfiwqmHicsidW15LaCdZqZNR7to=;
-        b=CaBXCo7zlGmZqcb46dpr5dnGUiRLX2GuWsmdUXt/KlWSntoyOknfpMG0/Vilp4leNh
-         ZQNxDXGovRR/jmNIhBVBZAL1ggvoi/MWDP7SGMQTUcO3LIV0vWHcin0oMsAZQSEfs3/W
-         ga/03SxrGNCOzBLAimCOfRBr51ChkvwcjZfu8TRNC7QY8eL20Z6ZTp0HOWXnMJ1uPv2L
-         7FxrL9Z/T0+jLqZsqw88TP3nsPrO3/+yZU7qnZJ6DELwjVGLkjxNOs3QFM7moQVgEsFh
-         oXzCeUPk0FTa/EaV6alI4R8urepPEZm+cDVxzy4P+I6NYdxTraSDR6dA643OR2LM06qj
-         qq3Q==
+        d=gmail.com; s=20221208; t=1683702689; x=1686294689;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7DKY1LvQg2kXZg4Zzx0fz4bxRDCh3YNmPlm8DK4I8Rs=;
+        b=D67yxjwK3XvsS+0FUSSdPDPqTLnR4xUUggb6qAnZdZ/ufZvDUwGsPYRzdPmJZedqvc
+         hCIdznBDRT4OGZSNCYdF/HyEvcWuTFl0lp3hiDGgMlVEm1Ma7gz/WsIoq7nbdi+yWKP1
+         Nbe0eqiFq/f3g9pgCNw3/AyO6QvuSoBe5LQ02GkpanTwthzpuXDOFsDjPm3gKgHcXKND
+         M0Vu762+Zyc1KH8yvSSaccccx1x2VeKbK4f9QnunWiJNQGvqcJiNAi8+RSV3WZQa0pwr
+         FWSfY3dCT1JotuGKjDll3Tl818l1q7GhR4l59gnvG23z/9Pp945W6eQqnrIl+8NRSG9c
+         agoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683702590; x=1686294590;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BJvf3WnGfiNmFmKHLfiwqmHicsidW15LaCdZqZNR7to=;
-        b=EQChBdal8wt+xc+uKKkBMHQMRqwJipOqHpg9NGGULKN3kdpIdVo4hzAyWhI2gJiM/r
-         SK1FwoRysCZ7Vek+Z+K7UBvYrU/5wQUQmSbC8xifjB8DotMeXJny+sMPlPtNnoDQbdrj
-         jlZ6QNDLuktInaxeEGPxXMCivsnv8XXNc2xmfU9jW0iMLYTIFC/+VBAyfjahXY6Sd+oZ
-         Xk6BL+RFFPKUVftQGcKGKX8fobX2vxefBYT0DVYL0OvqEvN5Gr14sEK7/u2pO/St+eeW
-         eLte9U4VnvfgPNuLxSpK6dTRA5ZzcZ+gu0EQ/aHkvZtnVT0TkhnpsklCv0FXO5gbUs98
-         88dw==
-X-Gm-Message-State: AC+VfDx2UrpSOVl7B5UjsOQEsZKJ06nGj69r5tRnRImHnfO6NC00A9z1
-        z39mob6yBWh1dodBeYlpdiaqoA==
-X-Google-Smtp-Source: ACHHUZ45V9nWx+xpymCCTDt+xqMHZN//QImYns3SLixe0knjRClRjdgBA/A6jG8Yv/UnrJA85OvrJg==
-X-Received: by 2002:a17:907:8688:b0:96a:3005:61b7 with SMTP id qa8-20020a170907868800b0096a300561b7mr612454ejc.74.1683702589873;
-        Wed, 10 May 2023 00:09:49 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:c175:a0f9:6928:8c9d? ([2a02:810d:15c0:828:c175:a0f9:6928:8c9d])
-        by smtp.gmail.com with ESMTPSA id w21-20020a170906131500b0096637a19dccsm2277509ejb.210.2023.05.10.00.09.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 May 2023 00:09:49 -0700 (PDT)
-Message-ID: <0ffa55bb-9869-f94a-17e8-46530c2d91bd@linaro.org>
-Date:   Wed, 10 May 2023 09:09:47 +0200
+        d=1e100.net; s=20221208; t=1683702689; x=1686294689;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7DKY1LvQg2kXZg4Zzx0fz4bxRDCh3YNmPlm8DK4I8Rs=;
+        b=OQCHyFu3FiMicHw9+cs9s7zXwbnXUY+f380T6x93bw5EOt44dNU7fSp0qMFhoT06eq
+         ZMjlANWKLR1W6tCwQhZeqi15uKD28ADmHQghCLwnQbZ/3UJjf9q34NUgim0GWgzDlpsN
+         YZOWXG7ULjbz3SKuKXCaJksDobajoAUi5ektC/NswdXyvUrfw1XTE7+QnKcvaIFO4XEI
+         LEbEXyKHASru096hoyOAhq+HEgYeR29fuDWeBxF5kXpn8DsEtjWUy79jEb46Wx5OMouq
+         l5yfEFYWY4BtcsqEaIgBmfX/uPmac6jOQlxFrIWQuASYd8KEdnmFEVTxqedXhrEfP1S6
+         z5Fg==
+X-Gm-Message-State: AC+VfDxzlAzNK17jsy3XyCK5ZScwl4bH441AURtdUEX+YHbe4NDLYSER
+        LwJ91KPdSQLfhyBeaFwSxryJA4lO3n8MWHmLdteFP7bJrfc=
+X-Google-Smtp-Source: ACHHUZ5/9ahZ3/93Fzez+U+Zt6l9htG4rBiTxKsFtiIrpjJc6ith4qmKgso2bPTkJHxHoBDETe7YWlklM2OdaUrFWxE=
+X-Received: by 2002:a05:6102:3cd:b0:430:ce0:ae90 with SMTP id
+ n13-20020a05610203cd00b004300ce0ae90mr4967724vsq.14.1683702688833; Wed, 10
+ May 2023 00:11:28 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 2/3] dt-bindings: clock: qcom,mmcc: define
- clocks/clock-names for MSM8226
-Content-Language: en-US
-To:     Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
-        phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Jeffrey Hugo <quic_jhugo@quicinc.com>,
-        Taniya Das <tdas@codeaurora.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-References: <20230509-msm8226-mmcc-parents-v1-0-83a2dfc986ab@z3ntu.xyz>
- <20230509-msm8226-mmcc-parents-v1-2-83a2dfc986ab@z3ntu.xyz>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230509-msm8226-mmcc-parents-v1-2-83a2dfc986ab@z3ntu.xyz>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+References: <20221003073443.1511266-1-paweldembicki@gmail.com> <Y4ahUWz0z8nBRWCN@lunn.ch>
+In-Reply-To: <Y4ahUWz0z8nBRWCN@lunn.ch>
+From:   =?UTF-8?Q?Pawe=C5=82_Dembicki?= <paweldembicki@gmail.com>
+Date:   Wed, 10 May 2023 09:11:17 +0200
+Message-ID: <CAJN1Kkzv2Q76RR5VkV7kU=i13eq_h3ksN5Ob=SF3eVi6MHveYQ@mail.gmail.com>
+Subject: Re: [PATCH v2] ARM: dts: kirkwood: Add Endian 4i Edge 200 board
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Gregory Clement <gregory.clement@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,15 +68,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/05/2023 23:16, Luca Weiss wrote:
-> Define clock/clock-names properties of the MMCC device node to be used
-> on MSM8226 platform.
-> 
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> ---
+=C5=9Br., 30 lis 2022 o 01:18 Andrew Lunn <andrew@lunn.ch> napisa=C5=82(a):
+>
+> On Mon, Oct 03, 2022 at 09:34:43AM +0200, Pawel Dembicki wrote:
+> > Add Endian 4i Edge 200 is 5-port firewall.
+> > It have also clone: Endian UTM Mini (The same hardware, with added WLAN
+> > card).
+> >
+> > Hardware:
+> >   - SoC: Marvell 88F6281-A1 ARMv5TE Processor 1.2GHz
+> >   - Ram: 512MB (4x Nanya NT5TU128M8GE-AC)
+> >   - NAND Flash: 512MB (Micron 29F4G08AAC)
+> >   - Lan 1-4: 4x GBE (Marvell 88E6171R-TFJ2)
+> >   - Lan 5: 1x GBE (Marvell 88E1116R-NNC1)
+> >   - Storage: MicroSD Slot
+> >   - MCPIE: MiniPCIe Slot present [fitted with SparkLan WPEA-110N/E
+> >           (Atheros AR9280 chipset) in Endian UTM Mini WLAN only]
+> >   - USB: 1x USB 2.0 port
+> >   - Console: RJ-45 port
+> >   - LEDs: 3x GPIO controlled
+> >
+> > Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
+>
+> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+>
+>     Andrew
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Hi all,
 
-Best regards,
-Krzysztof
+Gentle reminder for this patch.
 
+Best Regards,
+Pawe=C5=82 Dembicki
