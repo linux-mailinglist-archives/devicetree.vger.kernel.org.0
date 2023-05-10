@@ -2,82 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26DD66FDB9E
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 12:29:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C9FA6FDBC5
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 12:33:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236558AbjEJK3m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 06:29:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45862 "EHLO
+        id S236640AbjEJKdy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 06:33:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236533AbjEJK3l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 06:29:41 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22E6F3582;
-        Wed, 10 May 2023 03:29:40 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 1CE4A846B6;
-        Wed, 10 May 2023 12:29:38 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1683714578;
-        bh=R1m1mR/Dho8oLQpQRXJtga5P52rmazCagd9Sof4muII=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=kVCNbeQg1T58bukb36yrFqqUtuKH/5e/gqQXkfagmRy4z5qtiCzlgqvX5T9wry3jq
-         bWsniRCc2Pt3/oIPNoSq4fH64Wozc77sp5H/3EqBLiMi7W1Lh4n6nKyFQFkU76Xzx/
-         84pxAy8NgP6KZlJDIc/c+8ou/YsQWNhv8Lp3vnPgNwNrJvscd8L33Uqg3w7jsj7C71
-         u2JAX67jmtClB8ygwB1bB3oJFiL+KF0Um5DuVrGy8thZmgh2Pwpi2YNt71zmOsaXOo
-         rDdeybKpO2lzinRki0xc5qhrko7FuY/YLL+2wBe7NfhirO22TMtluJT6kp4R8Jxotu
-         xtdxJ+4v5br7w==
-Message-ID: <b917dd8a-489a-82b4-fd64-81029db594c6@denx.de>
-Date:   Wed, 10 May 2023 12:29:37 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v3 2/3] dt-bindings: arm: fsl: Enumerate Emtop SOM
-To:     Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>,
-        "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S236369AbjEJKdv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 06:33:51 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 429D535BD;
+        Wed, 10 May 2023 03:33:50 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 70CF11063;
+        Wed, 10 May 2023 03:34:34 -0700 (PDT)
+Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 845DE3F5A1;
+        Wed, 10 May 2023 03:33:47 -0700 (PDT)
+Date:   Wed, 10 May 2023 11:33:45 +0100
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Maksim Kiselev <bigunclemax@gmail.com>
+Cc:     Icenowy Zheng <icenowy@aosc.io>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Fabio Estevam <festevam@denx.de>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Stefan Wahren <stefan.wahren@i2se.com>,
-        Jesse Taube <mr.bossman075@gmail.com>,
-        Li Yang <leoyang.li@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20230510083311.3692416-1-himanshu.bhavani@siliconsignals.io>
- <f848adde-895e-18d5-0e9a-a29de24ae861@denx.de>
- <BM1PR01MB4899814FFE961006E01E71D09A779@BM1PR01MB4899.INDPRD01.PROD.OUTLOOK.COM>
-Content-Language: en-US
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <BM1PR01MB4899814FFE961006E01E71D09A779@BM1PR01MB4899.INDPRD01.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Conor Dooley <conor+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+        Maxime Ripard <mripard@kernel.org>, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v5 1/5] dt-bindings: spi: sun6i: add DT bindings for
+ Allwinner R329/D1/R528/T113s SPI
+Message-ID: <20230510113345.0850c7f3@donnerap.cambridge.arm.com>
+In-Reply-To: <20230510081121.3463710-2-bigunclemax@gmail.com>
+References: <20230510081121.3463710-1-bigunclemax@gmail.com>
+        <20230510081121.3463710-2-bigunclemax@gmail.com>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/10/23 11:13, Himanshu Bhavani wrote:
-> Hi Marek Vasut
+On Wed, 10 May 2023 11:11:08 +0300
+Maksim Kiselev <bigunclemax@gmail.com> wrote:
 
 Hi,
 
-> Yes, it is SOM-IMX8MMLPD4.
+> Listed above Allwinner SoCs has two SPI controllers. First is the regular
+> SPI controller and the second one has additional functionality for
+> MIPI-DBI Type C.
+> 
+> Add compatible strings for these controllers
+> 
+> Signed-off-by: Maksim Kiselev <bigunclemax@gmail.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-In that case, have a look at e.g. this "dh,imx8mp" system. That's also a 
-SoM and a carrier board (PDK3). Notice the structure, where both carrier 
-board compatible and SoM compatible and imx8mp compatible are listed in 
-the DT. I suspect you want to reproduce the same -- include both SoM and 
-carrier board compatible string.
+thanks for the changes, looks good now and dt-validate passes.
+
+Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+
+Cheers,
+Andre
+
+> ---
+>  .../bindings/spi/allwinner,sun6i-a31-spi.yaml          | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml b/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml
+> index de36c6a34a0f..fa5260eca531 100644
+> --- a/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml
+> +++ b/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml
+> @@ -19,6 +19,7 @@ properties:
+>  
+>    compatible:
+>      oneOf:
+> +      - const: allwinner,sun50i-r329-spi
+>        - const: allwinner,sun6i-a31-spi
+>        - const: allwinner,sun8i-h3-spi
+>        - items:
+> @@ -28,6 +29,15 @@ properties:
+>                - allwinner,sun50i-h616-spi
+>                - allwinner,suniv-f1c100s-spi
+>            - const: allwinner,sun8i-h3-spi
+> +      - items:
+> +          - enum:
+> +              - allwinner,sun20i-d1-spi
+> +              - allwinner,sun50i-r329-spi-dbi
+> +          - const: allwinner,sun50i-r329-spi
+> +      - items:
+> +          - const: allwinner,sun20i-d1-spi-dbi
+> +          - const: allwinner,sun50i-r329-spi-dbi
+> +          - const: allwinner,sun50i-r329-spi
+>  
+>    reg:
+>      maxItems: 1
+
