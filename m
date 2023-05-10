@@ -2,90 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B61166FD518
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 06:38:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0D0F6FD5A6
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 06:59:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234931AbjEJEie (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 00:38:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42740 "EHLO
+        id S235700AbjEJE7X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 00:59:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229461AbjEJEid (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 00:38:33 -0400
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BBA23C3A;
-        Tue,  9 May 2023 21:38:31 -0700 (PDT)
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4QGMjG03vPz9sbC;
-        Wed, 10 May 2023 06:38:26 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oltmanns.dev;
-        s=MBO0001; t=1683693506;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=0TGqUxEs7+KA0bUhtlK1lVZB5oosirddpuH1iKWN/KY=;
-        b=qZqEMiiK9m96NDdgm0AnO6/mf8bQdwNxo1oktDksIzGixa+60AHTXNKvWfMMF6WhH9gKJs
-        gHE9iAE1unK6VYv+saT9wUn30yAzcKzRIlG8cJVP7esjgJ9/aZGMgkUk6aND/gCVcJXyq6
-        cjd2yXOLsKrff8lUanv5SudV64JiUCdic170HU68nroUZJNAc1lbLCmjfopAQnyfWjrLrB
-        jzLbHb0lFIVJ/13nse6u0rIu6LiDSXGZI9818rUjqHE3n6OJDKN5rTTujXAHXtju3w1USK
-        rX1GF1M7daxUuV1LoOt8h/BWlKNx/oOgMboHfWXshP/Q2fgqZXt9pJBpk/Gxew==
-References: <20230505052110.67514-1-me@crly.cz>
- <87jzxjp5tp.fsf@oltmanns.dev> <CSHP4M31IC80.2WGQC75I3PX71@void.crly.cz>
-From:   Frank Oltmanns <frank@oltmanns.dev>
-To:     Roman Beranek <me@crly.cz>
-Cc:     Maxime Ripard <mripard@kernel.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Icenowy Zheng <icenowy@aosc.io>, Ondrej Jirman <megi@xff.cz>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 0/4] drm: sun4i: set proper TCON0 DCLK rate in DSI mode
-Date:   Wed, 10 May 2023 06:30:04 +0200
-In-reply-to: <CSHP4M31IC80.2WGQC75I3PX71@void.crly.cz>
-Message-ID: <874jokg5sf.fsf@oltmanns.dev>
+        with ESMTP id S235642AbjEJE7W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 00:59:22 -0400
+Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DAE21FE7
+        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 21:59:20 -0700 (PDT)
+Received: by mail-ot1-x32c.google.com with SMTP id 46e09a7af769-6ab0a942f46so1849490a34.2
+        for <devicetree@vger.kernel.org>; Tue, 09 May 2023 21:59:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1683694759; x=1686286759;
+        h=to:subject:message-id:date:from:sender:mime-version:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=hCVSG7q46K/MnVTrWNddrrim86+nwZvgN2GD+/MceXo=;
+        b=kG6jJ34gkB/9to6+W5uYwKN8lI1lmXTgKeIjViaSH9eecAbTkS3aSBsw2j9RqoIJpt
+         vtQugpNXe2g9dyKWz7c9Bv0Y2RzOsgYAPcssUPhs9KaBMATfXx/EjMmqz9NgLc+UeYvx
+         o4s/XMoMgj2Jqtww3pCpiRrDMRaI1aXEkDIuQxCeqc7R17ZMqBp2qH9i0wSoIExufFdJ
+         Ytm2AVwJvnWERp6omoneK4WZ2hZBQVUocmMW/WnicA2AtzFY6QeY8F1SrEpo4FvShImG
+         DSz5oxchTW0BBMpn8XoO9yMf1p39ux//FgXxU/bLqFnziVmD0tXRPAsZDzXJmmrVbhPs
+         JU7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683694759; x=1686286759;
+        h=to:subject:message-id:date:from:sender:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hCVSG7q46K/MnVTrWNddrrim86+nwZvgN2GD+/MceXo=;
+        b=KEbMo2Xa1GXvBD+rpm3oqiAVrVkL0z5hfTWoOAmUDvj7dnLp9byJ1IiZ/Juay6BMrx
+         L8AzzUK4sWEKyIoGtb6fKTIBCoDdR8z1BIQJ2e5988ZQEHx7fy4dfo80+ZwMqeKM0duc
+         69Xthp+PIJcXPzFZvJ0aFTsaJ45pCvx9Y2Y1AGdOuLt4higZ7DGUnzbsKsXspUDPNfAT
+         hJN/+A8fyFXJRvUKUta2M52K0FwUrRmHG4D5xi5FCu2E8xNUBZdYmoT6jibLXVTOFCPa
+         rRdpuYyk9+ZEJbnRDCCX7EYlSADQUPC4PbxEjBu1dJ7Nwmbcn0eI+O0cvHLnQVBQ0SKE
+         1r5g==
+X-Gm-Message-State: AC+VfDyjstkmykkzIx+Rq9uy1yVinzHYE9w907I/K7u/uvBn8sQwYE3b
+        0bTexjKfF7PLimYFBeYhpytc+6aseU4oNJLZU0ffgOj9Csk=
+X-Google-Smtp-Source: ACHHUZ5EUcijPXkdUpsDlmfQFMJ+yjl2P+vcGUGbDqBKjhQ/v/m+xA9NmJnAnQEhvyahaTHSvPrr4yHbgPQcNbN1C5c=
+X-Received: by 2002:a25:1e8b:0:b0:b8e:cb88:1b69 with SMTP id
+ e133-20020a251e8b000000b00b8ecb881b69mr16387760ybe.34.1683694403100; Tue, 09
+ May 2023 21:53:23 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Rspamd-Queue-Id: 4QGMjG03vPz9sbC
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+Sender: tracymrssmith222@gmail.com
+Received: by 2002:a05:7108:4147:b0:2fb:487e:7d69 with HTTP; Tue, 9 May 2023
+ 21:53:22 -0700 (PDT)
+From:   mrsbillchantal <mrsbillchantalhanter@gmail.com>
+Date:   Tue, 9 May 2023 21:53:22 -0700
+X-Google-Sender-Auth: uW2R2UqUyI7Lunw4B01el4F2Deg
+Message-ID: <CA+Mg0AEenxm6YXL_bUO_+uo4VbSzUphX6fMhOo+cWN_czTz6rg@mail.gmail.com>
+Subject: Hello Good Day
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=3.7 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,LOTS_OF_MONEY,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNDISC_MONEY,URIBL_BLOCKED autolearn=no
         autolearn_force=no version=3.4.6
+X-Spam-Level: ***
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Roman,
+Hello Good Day, You have been compensated with the sum of 3.8 million
+dollars in this united nation.
 
-On 2023-05-09 at 13:04:50 +0200, "Roman Beranek" <me@crly.cz> wrote:
-> On Mon May 8, 2023 at 10:47 AM CEST, Frank Oltmanns wrote:
->> I played back a 60 fps video (10 seconds) and recorded the panel's
->> output with a 240 fps camera. I noticed only 2 dropped frames, that I
->> account to the imperfect data rate of 107.8MHz instead of 108 MHz due
->> to pll-video0's rate being 294MHz instead of the 297 MHz for reasons
->> I described in the thread on your v2 of this patch [4]).
->
-> Yes. That's what should happen, right? Or do you report this as a
-> defect?
+The payment will be issue into atm visa card and send to you from the
+santander bank.
 
-Sorry, I didn't communicate more clearly. Without your patch, I'm losing
-a number of frames in the realm of three digits. With your patch I only
-lost 2 frames which is expetcted. Your patches are a big improvement.
+We need your address and your Whatsapp this my email.ID
+(mrsbillchantalhanter@gmail.com ) contact  me
 
-This is the opposite of a defect report. :-)
+Thanks my
 
-Thanks,
-  Frank
-
->
-> Roman
+mrsbillchantalhanter
