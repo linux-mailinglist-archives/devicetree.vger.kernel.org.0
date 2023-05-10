@@ -2,143 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 18BB26FE204
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 18:02:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FD9A6FE23E
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 18:19:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229487AbjEJQCZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 12:02:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36948 "EHLO
+        id S229586AbjEJQTA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 12:19:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229461AbjEJQCY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 12:02:24 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 358EB2716;
-        Wed, 10 May 2023 09:02:23 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BF079635C9;
-        Wed, 10 May 2023 16:02:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8736C433EF;
-        Wed, 10 May 2023 16:02:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1683734542;
-        bh=/kdN4hvAEubjX/gd5V1SzxDj97jeupfrcjnDC/LaMUM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=P4QNUPH06gstoxB2Xv5lXxCbFqU69+iI5ji/rgl9x0BwXHGBJsPadmxRxIKPtZHu5
-         pcsYByxK+HQMEAB7hWDFyPGM0knLjY2OYYLpq8eJYuSDwxGaFcxKsQh5rjW27piSRZ
-         gUHbvgU2KXt1e9JCjsy/Agj5vuSqMF0DjylsjdeRu43emzmee+thbzSUfoAxOWxwDC
-         8pjZMZg7Do7DxEkM3FU8MtA0067jBPXUMxR61fmiJxRAr1TO4RhqcOQ3tum1szPQhV
-         u0JcGMQ6HGhehWuLRrL0s/wcdYO+8ZEKgXXXvsx3wqU8ieEXCl2oF5nNjoQ5n7fQzF
-         StGfO1CVN39cw==
-Date:   Wed, 10 May 2023 17:02:17 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Anup Patel <anup@brainfault.org>, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: timer: sifive,clint: Clean up compatible
- value section
-Message-ID: <20230510-headsman-deskwork-6826f9f174df@spud>
-References: <40ff1fc7f5220db7d527c57ac4bad16c3945ae08.1683725179.git.geert+renesas@glider.be>
+        with ESMTP id S230072AbjEJQSy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 12:18:54 -0400
+Received: from mail-il1-x12e.google.com (mail-il1-x12e.google.com [IPv6:2607:f8b0:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7ABBB7AB2;
+        Wed, 10 May 2023 09:18:53 -0700 (PDT)
+Received: by mail-il1-x12e.google.com with SMTP id e9e14a558f8ab-33494fe24b5so41303545ab.0;
+        Wed, 10 May 2023 09:18:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1683735533; x=1686327533;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=voV7s248E7gIvbug1lZfTIuQben9sdww3QQZzGmRsFk=;
+        b=XYEPZf0tfHEEexs2ZzM5vTzkNgJ6QvjxLjn0g3k8Mja50uGvOiDT5PWAQyPXYTgL4Q
+         4Ow7rATx11mY42MgJ7z/zPj1bsKL/usl8PDFd7oAiXQA0HptpwAUHVsDkO1/iSMDrfxi
+         Y4XNPzuuhKECiLHyZALmihESnIPaOWbSoaMmM1HOef+v7gZt45R8iy2I8zTdoF2Sx1Zm
+         4sCxgtMonTNmP0mYa7KYZ5MpP2b1izXtOOdPI8sz4qvci0F1H1UG1nxWecaC1IU8s9xr
+         jSXwf4AohepvXRg9ispxW0MhHvlFeJxzqDnwXWUAmByqQpXOwbWldQicQSulLV27fczt
+         Hmkg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683735533; x=1686327533;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=voV7s248E7gIvbug1lZfTIuQben9sdww3QQZzGmRsFk=;
+        b=USVWHcPUkXKIKa+DHt6GR/xb6XztPmrg3dngnV58T2mnlKvnVAIn41R/R3Xitu9ggS
+         IyEVDBBfAfjUrRjtSSV9YearALRvSQ+azN7z9wQSGF0aJ4dv2iasY+m79Een1aCBwBYQ
+         EuCBI2JqkXHzJRHyv5sPcewBn/gd1LrPh7EaobZeMSMrNHm7woX4ceShlDFohFoZ4tx9
+         GBX53ydkrSI8pQIURcD9X3LT/YIWtVHxCTMIJOCPq9jrwLW1tA6KjDd/24PCnMRqT2Uo
+         23MSPPcF5MNL8NYOoVW1Ts+JM1UGVL3JU8hro0Sz9MnqhAaOcSqZLXllPV6+ECjYF8ld
+         1K3g==
+X-Gm-Message-State: AC+VfDxQofALxYHjNu8RXaC2dftb+xM54Qxh6j9sbqxFnyfRzGO7gxu4
+        T1mOePQoIRQMIGV/IpuKp7zR9lcstEv9wQWE
+X-Google-Smtp-Source: ACHHUZ67bHjT+fSIecYQ6lhHmzt9xA6tcO8lP35mP2lEwHtEgEFR968NAIK3gcbaaPTDf0JlDcPvYw==
+X-Received: by 2002:a05:6e02:78a:b0:335:b047:3f62 with SMTP id q10-20020a056e02078a00b00335b0473f62mr3288918ils.10.1683735532649;
+        Wed, 10 May 2023 09:18:52 -0700 (PDT)
+Received: from localhost.localdomain (tunnel785484-pt.tunnel.tserv9.chi1.ipv6.he.net. [2001:470:1f10:aed::2])
+        by smtp.googlemail.com with ESMTPSA id b24-20020a05663801b800b00411b6a4ab7esm3539427jaq.93.2023.05.10.09.18.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 May 2023 09:18:52 -0700 (PDT)
+From:   Tianling Shen <cnsztl@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Tianling Shen <cnsztl@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: rockchip: fix button reset pin for nanopi r5c
+Date:   Thu, 11 May 2023 00:18:50 +0800
+Message-Id: <20230510161850.4866-1-cnsztl@gmail.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="GwMHLWq4sSBBzPyb"
-Content-Disposition: inline
-In-Reply-To: <40ff1fc7f5220db7d527c57ac4bad16c3945ae08.1683725179.git.geert+renesas@glider.be>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The reset pin was wrongly assigned due to a copy/paste error,
+fix it to match actual gpio pin.
 
---GwMHLWq4sSBBzPyb
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+While at it, remove a blank line from nanopi r5s dts.
 
-On Wed, May 10, 2023 at 03:27:24PM +0200, Geert Uytterhoeven wrote:
-> Replace the sentences in the description listing some supported variants
-> by comments on the individual compatible values, to ease future
-> maintenance.  While at it, restore alphabetical sort order.
->=20
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
->  .../bindings/timer/sifive,clint.yaml          | 21 +++++++------------
->  1 file changed, 8 insertions(+), 13 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/timer/sifive,clint.yaml b/=
-Documentation/devicetree/bindings/timer/sifive,clint.yaml
-> index 94bef9424df1bc6a..34a81510678134eb 100644
-> --- a/Documentation/devicetree/bindings/timer/sifive,clint.yaml
-> +++ b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
-> @@ -29,11 +29,11 @@ properties:
->      oneOf:
->        - items:
->            - enum:
-> -              - sifive,fu540-c000-clint
-> -              - starfive,jh7100-clint
-> -              - starfive,jh7110-clint
-> -              - canaan,k210-clint
-> -          - const: sifive,clint0
-> +              - canaan,k210-clint       # Canaan Kendryte K210
-> +              - sifive,fu540-c000-clint # SiFive FU540
-> +              - starfive,jh7100-clint   # StarFive JH7100
-> +              - starfive,jh7110-clint   # StarFive JH7110
-> +          - const: sifive,clint0        # SiFive CLINT v0 IP block
->        - items:
->            - enum:
->                - allwinner,sun20i-d1-clint
-> @@ -45,14 +45,9 @@ properties:
->          description: For the QEMU virt machine only
-> =20
->      description:
-> -      Should be "<vendor>,<chip>-clint" and "sifive,clint<version>".
-> -      Supported compatible strings are -
-> -      "sifive,fu540-c000-clint" for the SiFive CLINT v0 as integrated
-> -      onto the SiFive FU540 chip, "canaan,k210-clint" for the SiFive
-> -      CLINT v0 as integrated onto the Canaan Kendryte K210 chip, and
-> -      "sifive,clint0" for the SiFive CLINT v0 IP block with no chip
-> -      integration tweaks.
-> -      Please refer to sifive-blocks-ip-versioning.txt for details
+Fixes: 05620031408a ("arm64: dts: rockchip: Add FriendlyARM NanoPi R5C")
+Signed-off-by: Tianling Shen <cnsztl@gmail.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5c.dts | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dts | 1 -
+ 2 files changed, 1 insertion(+), 2 deletions(-)
 
-> +      Should be "<vendor>,<chip>-clint", followed by "sifive,clint<versi=
-on>"
-> +      when compatible with a SiFive CLINT.  Please refer to
-> +      sifive-blocks-ip-versioning.txt for details regarding the latter.
+diff --git a/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5c.dts b/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5c.dts
+index f70ca9f0470a..c718b8dbb9c6 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5c.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5c.dts
+@@ -106,7 +106,7 @@ pcie20_reset_pin: pcie20-reset-pin {
+ 
+ 	rockchip-key {
+ 		reset_button_pin: reset-button-pin {
+-			rockchip,pins = <4 RK_PA0 RK_FUNC_GPIO &pcfg_pull_up>;
++			rockchip,pins = <0 RK_PB7 RK_FUNC_GPIO &pcfg_pull_up>;
+ 		};
+ 	};
+ };
+diff --git a/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dts b/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dts
+index 2a1118f15c29..b6ad8328c7eb 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dts
+@@ -134,4 +134,3 @@ wan_led_pin: wan-led-pin {
+ 		};
+ 	};
+ };
+-
+-- 
+2.40.1
 
-Does this section actually add any value at all?
-By nature of oneOf structure above, such an ordering is required for
-existing entries. For something not here, should we instead be noting
-that sifive,clint0 is to be used when compatible with the SiFive/RISC-V
-clint, rather than doing a sifive-blocks-ip-versioning.txt dance?
-
-As it stands though, patch is an improvement, so:
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
-Thanks,
-Conor.
-
---GwMHLWq4sSBBzPyb
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZFvACQAKCRB4tDGHoIJi
-0pbRAQDAbbxrMC2lIxCBnXhwZtjnEZDIi/bWp0fhBRIdYDUZQAEAyvpFaWMF0+9C
-U06I53ennxbOhq6qIjq/ueckMobCfgg=
-=GuVy
------END PGP SIGNATURE-----
-
---GwMHLWq4sSBBzPyb--
