@@ -2,162 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 863BD6FD73F
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 08:38:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4457C6FD74F
+	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 08:41:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236085AbjEJGiU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 02:38:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41014 "EHLO
+        id S230192AbjEJGlj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 02:41:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236038AbjEJGiN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 02:38:13 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA95C468B;
-        Tue,  9 May 2023 23:38:08 -0700 (PDT)
-X-UUID: 34fca714eefd11edb20a276fd37b9834-20230510
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=zITZHaBffEXHgQvakViptRVDM6YtdJ7FNpbDESp+DO4=;
-        b=RMy+qCiWsl3rXwmUylt4gMfvkzBz+VaXyQNYgXWSPBOmr6CzS7QTZRJhru9PiyhcgRMq7veYubKgzxuCAaiFeW+6wjuiS0eXkC1x87iea97rpT7ps4P3sGqPbRkQkvYdDJRyZlUTMmdkGh8FL5wgnBydRigCQsxWgcMLjhbSV7c=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.24,REQID:55a57a01-568d-49c8-88df-18e1f754f9eb,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-        :release,TS:95
-X-CID-INFO: VERSION:1.1.24,REQID:55a57a01-568d-49c8-88df-18e1f754f9eb,IP:0,URL
-        :0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTION
-        :quarantine,TS:95
-X-CID-META: VersionHash:178d4d4,CLOUDID:41d0556b-2f20-4998-991c-3b78627e4938,B
-        ulkID:2305101438029ZZL3W1M,BulkQuantity:0,Recheck:0,SF:17|19|48|38|29|28,T
-        C:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-        ,OSI:0,OSA:0,AV:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-UUID: 34fca714eefd11edb20a276fd37b9834-20230510
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
-        (envelope-from <tinghan.shen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 487062167; Wed, 10 May 2023 14:38:00 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.194) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Wed, 10 May 2023 14:37:58 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Wed, 10 May 2023 14:37:58 +0800
-From:   Tinghan Shen <tinghan.shen@mediatek.com>
-To:     Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        with ESMTP id S236056AbjEJGli (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 02:41:38 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 678DE559B
+        for <devicetree@vger.kernel.org>; Tue,  9 May 2023 23:40:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1683700857; x=1715236857;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=yDsXYFn69cYT8ZJ7FLvuYpWejcSC9pirO43SFyHwpLo=;
+  b=UFmh+qadJMoiEuzVpwnRGot1gff+xaBk93C6ob8w93m057ncREwkkRRr
+   elReYC8nhv25X+DD1mCg8ObGYQ5+LBjxf4eUTS4QPcebobtIyEBIP73Fx
+   5n/AI4leI5TxujdX8Ki7+2KhY5JE5WNVtvHALe+7IND8hveFxf7MCMU6/
+   196v8LJwT0RoXbdpnqluR4mH1KU/G7gex4oqCPrRE7LCoNnrLEqTaQoZs
+   AO+FZTrUetDX3ZS36G9lQ8Z5RHK0bEfQW4GVlwSA5H0zeHmxro4jllwzf
+   QCafRrw0AXxC8URok+1MsizjWxbLG10ASllxw9FAdvYR/J9PcPZnQIO04
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.99,263,1677538800"; 
+   d="scan'208";a="30817905"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 10 May 2023 08:40:00 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Wed, 10 May 2023 08:40:00 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Wed, 10 May 2023 08:40:00 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1683700800; x=1715236800;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=yDsXYFn69cYT8ZJ7FLvuYpWejcSC9pirO43SFyHwpLo=;
+  b=KN4PppphGV7I031iNa2WlDybLWFmaAj2w9bYddT0+FV5kQBYlYRhfRPw
+   7ObjL1zZ3WsTYOf6XQWRARgQg4Kn94OulzDLaGaFiF5NkWyk88IacTv/c
+   nAPHJY7AbbrWeEKyivwxzJ3icsSFeF5gmbd1U0raRb2o1lDGeqJcwDIzE
+   L0kx8SMpPiaaCdqItw9DaKsidWn31uKeiGDf2Qq73F/TREKBbzsQkzPGr
+   LQi8/grv8QDI9qNLQ1wAZWSbm/dDZOlwFf57DfmL7Jjqc8nCx1rzWaFRb
+   2mARsw2mJVHjGGueNds27jDXeoyrh8IhGPwqsL2joCy4o8OMEQ9s5UM1T
+   w==;
+X-IronPort-AV: E=Sophos;i="5.99,263,1677538800"; 
+   d="scan'208";a="30817904"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 10 May 2023 08:40:00 +0200
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 20E02280056;
+        Wed, 10 May 2023 08:40:00 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Tinghan Shen <tinghan.shen@mediatek.com>
-CC:     <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v11 11/11] arm64: dts: mediatek: mt8195: Add SCP 2nd core
-Date:   Wed, 10 May 2023 14:37:49 +0800
-Message-ID: <20230510063749.5127-12-tinghan.shen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20230510063749.5127-1-tinghan.shen@mediatek.com>
-References: <20230510063749.5127-1-tinghan.shen@mediatek.com>
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Uwe =?ISO-8859-1?Q?Kleine=2DK=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Subject: Re: [PATCH 0/2] arm64: dts: imx8mp: Add GPT blocks
+Date:   Wed, 10 May 2023 08:40:00 +0200
+Message-ID: <10272942.nUPlyArG6x@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20230328110307.x76wnzejuv342cfu@pengutronix.de>
+References: <20230327173526.851734-1-u.kleine-koenig@pengutronix.de> <20230328110307.x76wnzejuv342cfu@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rewrite the MT8195 SCP device node as a cluster and
-add the SCP 2nd core in it.
+Hi Uwe,
 
-Since the SCP device node is changed to multi-core structure,
-enable SCP cluster to enable probing SCP core 0.
+Am Dienstag, 28. M=E4rz 2023, 13:03:07 CEST schrieb Uwe Kleine-K=F6nig:
+> * PGP Signed by an unknown key
+>=20
+> On Mon, Mar 27, 2023 at 07:35:24PM +0200, Uwe Kleine-K=F6nig wrote:
+> > Hello,
+> >=20
+> > according to the dt binding we have the following major GPT variants:
+> > 	imx1
+> > 	imx21
+> > 	imx31
+> > 	imx6dl
+> >=20
+> > I compared the GPT documentation for i.MX8MP, i.MX6DL and i.MX6Q (which
+> > is a member of the imx31 variant) and didn't spot a difference. So
+> > either these are actually identical, or I missed a detail. In the latter
+> > case i.MX8MP might be a member of the imx31 variant, too, and not as
+> > advertised in the commit logs of the imx6dl.
+>=20
+> TL;DR: I did it right, i.MX8MP has a GPT of the i.MX6DL type.
+>=20
+> > Does someone know (or spot) the relevant difference?
+>=20
+> I found it. The relevant difference is that the i.MX6DL variant has a
+> bit EN_24M in the CR register which is missing on i.MX31. Finding that
+> was a bit complicated by the fact that i.MX6Q in fact has a GPT of the
+> i.MX6DL type starting with rev1.1.
+>=20
+> The only difference betweeen these two types in the gpt driver is:
+>=20
+> static void imx31_gpt_setup_tctl(struct imx_timer *imxtm)
+> {
+>         u32 tctl_val;
+>=20
+>         tctl_val =3D V2_TCTL_FRR | V2_TCTL_WAITEN | MXC_TCTL_TEN;
+>         if (clk_get_rate(imxtm->clk_per) =3D=3D V2_TIMER_RATE_OSC_DIV8)
+>                 tctl_val |=3D V2_TCTL_CLK_OSC_DIV8;
+>         else
+>                 tctl_val |=3D V2_TCTL_CLK_PER;
+>=20
+>         writel_relaxed(tctl_val, imxtm->base + MXC_TCTL);
+> }
+>=20
+> static void imx6dl_gpt_setup_tctl(struct imx_timer *imxtm)
+> {
+>         u32 tctl_val;
+>=20
+>         tctl_val =3D V2_TCTL_FRR | V2_TCTL_WAITEN | MXC_TCTL_TEN;
+>         if (clk_get_rate(imxtm->clk_per) =3D=3D V2_TIMER_RATE_OSC_DIV8) {
+>                 tctl_val |=3D V2_TCTL_CLK_OSC_DIV8;
+>                 /* 24 / 8 =3D 3 MHz */
+>                 writel_relaxed(7 << V2_TPRER_PRE24M, imxtm->base +
+> MXC_TPRER); tctl_val |=3D V2_TCTL_24MEN;
+>         } else {
+>                 tctl_val |=3D V2_TCTL_CLK_PER;
+>         }
+>=20
+>         writel_relaxed(tctl_val, imxtm->base + MXC_TCTL);
+> }
+>=20
+> I wonder about a few things:
+>=20
+>  - Does setting the V2_TCTL_24MEN flag has an effect on the i.MX31
+>    variant? I assume the 24M clk is on unconditionally there?
+>    OTOH in the RM of the i.MX31 (MCIMX31RM Rev. 2.4 12/2008) the value
+>    V2_TCTL_CLK_OSC_DIV8 (i.e. b101) is reserved for the CLKSRC field. So
+>    maybe the 24M clk cannot be used as a clksrc here?
+>=20
+>  - The check
+>=20
+>  	clk_get_rate(imxtm->clk_per) =3D=3D V2_TIMER_RATE_OSC_DIV8
+>=20
+>    looks strange. If the per clk runs at V2_TIMER_RATE_OSC_DIV8
+>    (i.e. 3000000) Hz it's not the 24M clk, is it? So using
+>    V2_TCTL_CLK_OSC_DIV8 has no effect?!
+>=20
+>    If the check is always false, we can handle the i.MX6DL and the
+>    i.MX31 type GPT identically.
 
-Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- .../boot/dts/mediatek/mt8195-cherry.dtsi      |  6 +++-
- arch/arm64/boot/dts/mediatek/mt8195.dtsi      | 32 ++++++++++++++-----
- 2 files changed, 29 insertions(+), 9 deletions(-)
+I think this is related to commit 2b2244a3e7c3 ("ARM: dts: imx6: make gpt p=
+er=20
+clock can be from OSC") where clk_per can be set to 3MHz for imx6qdl. The=20
+commit message also mentions i.mx6q > rev 1.0.
+This 'osc_per' is also currently causing a lot of dtbs_check warnings for=20
+imx6qdl boards.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-index 8ac80a136c37..8addb94a24a1 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-@@ -962,7 +962,11 @@
- 	interrupts-extended = <&pio 222 IRQ_TYPE_LEVEL_HIGH>;
- };
- 
--&scp {
-+&scp_cluster {
-+	status = "okay";
-+};
-+
-+&scp_c0 {
- 	status = "okay";
- 
- 	firmware-name = "mediatek/mt8195/scp.img";
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-index a44aae4ab953..10947b4b4707 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-@@ -916,14 +916,30 @@
- 			clocks = <&infracfg_ao CLK_INFRA_AO_GCE2>;
- 		};
- 
--		scp: scp@10500000 {
--			compatible = "mediatek,mt8195-scp";
--			reg = <0 0x10500000 0 0x100000>,
--			      <0 0x10720000 0 0xe0000>,
--			      <0 0x10700000 0 0x8000>;
--			reg-names = "sram", "cfg", "l1tcm";
--			interrupts = <GIC_SPI 462 IRQ_TYPE_LEVEL_HIGH 0>;
-+		scp_cluster: scp@10500000 {
-+			compatible = "mediatek,mt8195-scp-dual";
-+			reg = <0 0x10720000 0 0xe0000>, <0 0x10700000 0 0x8000>;
-+			reg-names = "cfg", "l1tcm";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0 0 0x10500000 0x100000>;
- 			status = "disabled";
-+
-+			scp_c0: scp@0 {
-+				compatible = "mediatek,scp-core";
-+				reg = <0x0 0xa0000>;
-+				reg-names = "sram";
-+				interrupts = <GIC_SPI 462 IRQ_TYPE_LEVEL_HIGH 0>;
-+				status = "disabled";
-+			};
-+
-+			scp_c1: scp@a0000 {
-+				compatible = "mediatek,scp-core";
-+				reg = <0xa0000 0x20000>;
-+				reg-names = "sram";
-+				interrupts = <GIC_SPI 463 IRQ_TYPE_LEVEL_HIGH 0>;
-+				status = "disabled";
-+			};
- 		};
- 
- 		scp_adsp: clock-controller@10720000 {
-@@ -2464,7 +2480,7 @@
- 				 <&iommu_vdo M4U_PORT_L19_VENC_REF_LUMA>,
- 				 <&iommu_vdo M4U_PORT_L19_VENC_REF_CHROMA>;
- 			interrupts = <GIC_SPI 341 IRQ_TYPE_LEVEL_HIGH 0>;
--			mediatek,scp = <&scp>;
-+			mediatek,scp = <&scp_c0>;
- 			clocks = <&vencsys CLK_VENC_VENC>;
- 			clock-names = "venc_sel";
- 			assigned-clocks = <&topckgen CLK_TOP_VENC>;
--- 
-2.18.0
+Best regards,
+Alexander
+
+>  - Should we change i.MX6Q to use the i.MX6DL type GPT? Is rev1.0 still
+>    relevant?
+>=20
+> Best regards
+> Uwe
+
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
 
