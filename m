@@ -2,371 +2,1087 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8D286FF910
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 19:58:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76AC96FF963
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 20:12:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238791AbjEKR6s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 13:58:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51264 "EHLO
+        id S238870AbjEKSMJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 14:12:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239064AbjEKR61 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 13:58:27 -0400
-Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5622AD07
-        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 10:58:01 -0700 (PDT)
-Received: by mail-pl1-x631.google.com with SMTP id d9443c01a7336-1aad6f2be8eso82903155ad.3
-        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 10:58:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683827873; x=1686419873;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=IE3MRanS9uBZk5iyRYVZ75isIkjN+eRZmeuR+lcRDrE=;
-        b=ZV3QeS/kmnBEFoomfujqKJMQXqTB23DPZHQ+9mNPiDpOiepMc/AAEtbOwvZR10tNme
-         6AJh8fgVjNCdQsxxV1bplKA/zVjMXr6lxy0c+eNFglzPF2MT1x/fzS7CmPvLHZF/qucF
-         /hdf22S8N8Z/fwA7h4OfKgK+BW0+QHJpctXYzLzsY0Oz7a5lRsIeJfpyhD3OESuIhGRh
-         hZRBejnENRSbj7TbeANtpYSqtEWwLObLBzaZaVDCZ7YeGxS9Z3zOlHqgvJJL0HcaB8Ek
-         rBNr9Rw2yOdkWdEtkWmwSj7EnF8IFhTvkfSanoVJ9wXLWao9AmR9xmu5UQSPLZli4Eba
-         zBDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683827873; x=1686419873;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IE3MRanS9uBZk5iyRYVZ75isIkjN+eRZmeuR+lcRDrE=;
-        b=VhDqOcehbX/CzvBbrVQa7Ob6REzBpYFJ12VaPHA26LbHY8bfitB8cH/lhSTlc/89zz
-         Fbtl3eiL+N6w0KJAyP2SFFt4Inbp6lgl62VFnlm7w7fzPhMkYWdMJ4luLv+A+PtMNfZy
-         acfMDRVKgRpVTf8CHAUblgJiSo20KqgBmxbUNvbcGqSICQYGrhP1CoAZxqtdotu9jkU8
-         8k317JMhzY1Wbwl/fp43u8m297+0w3eOQdr8llXT0lSi99s7t4gEmOjRIYRE72S8IghF
-         aveIxirSw/NzVoI2wFGMHSvA2RJcN6+pHXxh62RJurPDX94zbJz9bzrmVI6oGAItvBsQ
-         EQOA==
-X-Gm-Message-State: AC+VfDzUEKFatsu8Q9WfqR8o6c5SjiD8DHsZUE9ggid2F7ESRwI4kwDN
-        wEJIXHO16veE5xURpql39lXELA==
-X-Google-Smtp-Source: ACHHUZ4BC0yUHVwBv3jXzLEPAI6waOCTU8xCnnu3MTIrJFDcdbHI3gYdpy5HFOA0xhcQ+FiCF+rF4Q==
-X-Received: by 2002:a17:902:d487:b0:1a9:9a18:346a with SMTP id c7-20020a170902d48700b001a99a18346amr29636766plg.5.1683827873229;
-        Thu, 11 May 2023 10:57:53 -0700 (PDT)
-Received: from p14s ([2604:3d09:148c:c800:5715:c2a3:1400:98ae])
-        by smtp.gmail.com with ESMTPSA id 17-20020a170902ee5100b001a63ba28052sm6217123plo.69.2023.05.11.10.57.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 May 2023 10:57:52 -0700 (PDT)
-Date:   Thu, 11 May 2023 11:57:50 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Tinghan Shen <tinghan.shen@mediatek.com>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S239142AbjEKSMI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 14:12:08 -0400
+X-Greylist: delayed 1800 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 11 May 2023 11:11:44 PDT
+Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D4FD7696;
+        Thu, 11 May 2023 11:11:44 -0700 (PDT)
+Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
+        by finn.localdomain with esmtp (Exim 4.93)
+        (envelope-from <tharvey@gateworks.com>)
+        id 1px9oT-005LpZ-AA; Thu, 11 May 2023 17:10:45 +0000
+From:   Tim Harvey <tharvey@gateworks.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v11 05/11] remoteproc: mediatek: Introduce cluster on
- single-core SCP
-Message-ID: <ZF0snh07gRNfEoMQ@p14s>
-References: <20230510063749.5127-1-tinghan.shen@mediatek.com>
- <20230510063749.5127-6-tinghan.shen@mediatek.com>
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Tim Harvey <tharvey@gateworks.com>
+Subject: [PATCH 2/2] arm64: dts: freescale: Add imx8mp-venice-gw7905-2x
+Date:   Thu, 11 May 2023 10:10:41 -0700
+Message-Id: <20230511171041.4011087-2-tharvey@gateworks.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230511171041.4011087-1-tharvey@gateworks.com>
+References: <20230511171041.4011087-1-tharvey@gateworks.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230510063749.5127-6-tinghan.shen@mediatek.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Good day,
+The Gateworks imx8mp-venice-gw7905-2x consists of a SOM + baseboard.
 
-On Wed, May 10, 2023 at 02:37:43PM +0800, Tinghan Shen wrote:
-> This is the preliminary step for probing multi-core SCP.
-> The initialization procedure for remoteproc is similar for both
-> single-core and multi-core architectures and is reusing to avoid
-> redundant code.
-> 
-> Adapt the probing flow of single-core SCP to incorporate the 'cluster'
-> concept required for probing multi-core SCP.The main differences are,
-> 
->   - the SCP core object is maintained in the cluster list,
->     instead of in the driver data property.
->   - the cluster information is saved in the driver data property.
->   - To maintain compatibility with exported SCP APIs that get
->     the SCP core object by SCP node phandle, the SCP core object pointers
->     are moved to the platform data property.
-> 
-> The registers of config and l1tcm are shared for multi-core
-> SCP. Reuse the mapped addresses for all cores.
-> 
-> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-> ---
->  drivers/remoteproc/mtk_common.h |   2 +
->  drivers/remoteproc/mtk_scp.c    | 143 ++++++++++++++++++++++----------
->  2 files changed, 103 insertions(+), 42 deletions(-)
-> 
-> diff --git a/drivers/remoteproc/mtk_common.h b/drivers/remoteproc/mtk_common.h
-> index c0905aec3b4b..56395e8664cb 100644
-> --- a/drivers/remoteproc/mtk_common.h
-> +++ b/drivers/remoteproc/mtk_common.h
-> @@ -128,6 +128,8 @@ struct mtk_scp {
->  	size_t dram_size;
->  
->  	struct rproc_subdev *rpmsg_subdev;
-> +
-> +	struct list_head elem;
->  };
->  
->  /**
-> diff --git a/drivers/remoteproc/mtk_scp.c b/drivers/remoteproc/mtk_scp.c
-> index d66822dad943..6c4da7332896 100644
-> --- a/drivers/remoteproc/mtk_scp.c
-> +++ b/drivers/remoteproc/mtk_scp.c
-> @@ -23,6 +23,14 @@
->  #define MAX_CODE_SIZE 0x500000
->  #define SECTION_NAME_IPI_BUFFER ".ipi_buffer"
->  
-> +struct mtk_scp_of_cluster {
-> +	void __iomem *reg_base;
-> +	void __iomem *l1tcm_base;
-> +	size_t l1tcm_size;
-> +	phys_addr_t l1tcm_phys;
-> +	struct list_head mtk_scp_cluster;
+The GW702x SOM contains the following:
+ - i.MX8M Plus SoC
+ - LPDDR4 memory
+ - eMMC Boot device
+ - Gateworks System Controller (GSC) with integrated EEPROM, button
+   controller, and ADC's
+ - PMIC
+ - RGMII PHY (eQoS)
+ - SOM connector providing:
+  - eQoS GbE MII
+  - 1x SPI
+  - 2x I2C
+  - 4x UART
+  - 2x USB 3.0
+  - 1x PCI
+  - 1x SDIO (4-bit 3.3V)
+  - 1x SDIO (4-bit 3.3V/1.8V)
+  - GPIO
 
-struct list_head mtk_scp_list;
+The GW7905 Baseboard contains the following:
+ - GPS
+ - microSD
+ - off-board I/O connector with I2C, SPI, GPIO
+ - EERPOM
+ - PCIe clock generator
+ - 1x full-length miniPCIe socket with PCI/USB3 (via mux) and USB2.0
+ - 1x half-length miniPCIe socket with USB2.0 and USB3.0
+ - USB 3.0 HUB
+ - USB Type-C with USB PD Sink capability and peripheral support
+ - USB Type-C with USB 3.0 host support
 
-> +};
-> +
->  /**
->   * scp_get() - get a reference to SCP.
->   *
-> @@ -51,7 +59,7 @@ struct mtk_scp *scp_get(struct platform_device *pdev)
->  		return NULL;
->  	}
->  
-> -	return platform_get_drvdata(scp_pdev);
-> +	return *(struct mtk_scp **)dev_get_platdata(&scp_pdev->dev);
->  }
->  EXPORT_SYMBOL_GPL(scp_get);
->  
-> @@ -810,14 +818,14 @@ static void scp_unmap_memory_region(struct mtk_scp *scp)
->  static int scp_register_ipi(struct platform_device *pdev, u32 id,
->  			    ipi_handler_t handler, void *priv)
->  {
-> -	struct mtk_scp *scp = platform_get_drvdata(pdev);
-> +	struct mtk_scp *scp = *(struct mtk_scp **)dev_get_platdata(&pdev->dev);
->  
->  	return scp_ipi_register(scp, id, handler, priv);
->  }
->  
->  static void scp_unregister_ipi(struct platform_device *pdev, u32 id)
->  {
-> -	struct mtk_scp *scp = platform_get_drvdata(pdev);
-> +	struct mtk_scp *scp = *(struct mtk_scp **)dev_get_platdata(&pdev->dev);
->  
->  	scp_ipi_unregister(scp, id);
->  }
-> @@ -825,7 +833,7 @@ static void scp_unregister_ipi(struct platform_device *pdev, u32 id)
->  static int scp_send_ipi(struct platform_device *pdev, u32 id, void *buf,
->  			unsigned int len, unsigned int wait)
->  {
-> -	struct mtk_scp *scp = platform_get_drvdata(pdev);
-> +	struct mtk_scp *scp = *(struct mtk_scp **)dev_get_platdata(&pdev->dev);
->  
->  	return scp_ipi_send(scp, id, buf, len, wait);
->  }
-> @@ -855,7 +863,8 @@ static void scp_remove_rpmsg_subdev(struct mtk_scp *scp)
->  	}
->  }
->  
-> -static int scp_probe(struct platform_device *pdev)
-> +static struct mtk_scp *scp_rproc_init(struct platform_device *pdev,
-> +				      struct mtk_scp_of_cluster *scp_cluster)
->  {
->  	struct device *dev = &pdev->dev;
->  	struct device_node *np = dev->of_node;
-> @@ -867,52 +876,42 @@ static int scp_probe(struct platform_device *pdev)
->  
->  	ret = rproc_of_parse_firmware(dev, 0, &fw_name);
->  	if (ret < 0 && ret != -EINVAL)
-> -		return ret;
-> +		return ERR_PTR(ret);
->  
->  	rproc = devm_rproc_alloc(dev, np->name, &scp_ops, fw_name, sizeof(*scp));
-> -	if (!rproc)
-> -		return dev_err_probe(dev, -ENOMEM, "unable to allocate remoteproc\n");
-> +	if (!rproc) {
-> +		dev_err(dev, "unable to allocate remoteproc\n");
-> +		return ERR_PTR(-ENOMEM);
-> +	}
->  
->  	scp = rproc->priv;
->  	scp->rproc = rproc;
->  	scp->dev = dev;
->  	scp->data = of_device_get_match_data(dev);
-> -	platform_set_drvdata(pdev, scp);
-> +	platform_device_add_data(pdev, &scp, sizeof(scp));
-> +
-> +	scp->reg_base = scp_cluster->reg_base;
-> +	scp->l1tcm_base = scp_cluster->l1tcm_base;
-> +	scp->l1tcm_size = scp_cluster->l1tcm_size;
-> +	scp->l1tcm_phys = scp_cluster->l1tcm_phys;
->  
->  	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "sram");
->  	scp->sram_base = devm_ioremap_resource(dev, res);
-> -	if (IS_ERR(scp->sram_base))
-> -		return dev_err_probe(dev, PTR_ERR(scp->sram_base),
-> -				     "Failed to parse and map sram memory\n");
-> +	if (IS_ERR(scp->sram_base)) {
-> +		dev_err(dev, "Failed to parse and map sram memory\n");
-> +		return ERR_PTR(PTR_ERR(scp->sram_base));
-> +	}
->  
->  	scp->sram_size = resource_size(res);
->  	scp->sram_phys = res->start;
->  
-> -	/* l1tcm is an optional memory region */
-> -	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "l1tcm");
-> -	scp->l1tcm_base = devm_ioremap_resource(dev, res);
-> -	if (IS_ERR(scp->l1tcm_base)) {
-> -		ret = PTR_ERR(scp->l1tcm_base);
-> -		if (ret != -EINVAL) {
-> -			return dev_err_probe(dev, ret, "Failed to map l1tcm memory\n");
-> -		}
-> -	} else {
-> -		scp->l1tcm_size = resource_size(res);
-> -		scp->l1tcm_phys = res->start;
-> -	}
-> -
-> -	scp->reg_base = devm_platform_ioremap_resource_byname(pdev, "cfg");
-> -	if (IS_ERR(scp->reg_base))
-> -		return dev_err_probe(dev, PTR_ERR(scp->reg_base),
-> -				     "Failed to parse and map cfg memory\n");
-> -
->  	ret = scp->data->scp_clk_get(scp);
->  	if (ret)
-> -		return ret;
-> +		return ERR_PTR(ret);
->  
->  	ret = scp_map_memory_region(scp);
->  	if (ret)
-> -		return ret;
-> +		return ERR_PTR(ret);
->  
->  	mutex_init(&scp->send_lock);
->  	for (i = 0; i < SCP_IPI_MAX; i++)
-> @@ -943,7 +942,7 @@ static int scp_probe(struct platform_device *pdev)
->  	if (ret)
->  		goto remove_subdev;
->  
-> -	return 0;
-> +	return scp;
->  
->  remove_subdev:
->  	scp_remove_rpmsg_subdev(scp);
-> @@ -954,21 +953,81 @@ static int scp_probe(struct platform_device *pdev)
->  		mutex_destroy(&scp->ipi_desc[i].lock);
->  	mutex_destroy(&scp->send_lock);
->  
-> -	return ret;
-> +	return ERR_PTR(ret);
-> +}
-> +
-> +static int scp_cluster_init(struct platform_device *pdev)
-> +{
-> +	struct mtk_scp *scp;
-> +	struct mtk_scp_of_cluster *scp_cluster = platform_get_drvdata(pdev);
-> +	struct list_head *cluster = &scp_cluster->mtk_scp_cluster;
-> +
-> +	scp = scp_rproc_init(pdev, scp_cluster);
-> +	if (IS_ERR(scp))
-> +		return PTR_ERR(scp);
-> +
-> +	list_add_tail(&scp->elem, cluster);
-> +
-> +	return 0;
-> +}
-> +
-> +static int scp_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct mtk_scp_of_cluster *scp_cluster;
-> +	struct resource *res;
-> +	int ret;
-> +
-> +	scp_cluster = devm_kzalloc(&pdev->dev, sizeof(*scp_cluster), GFP_KERNEL);
+Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+---
+ .../dts/freescale/imx8mp-venice-gw702x.dtsi   | 589 ++++++++++++++++++
+ .../dts/freescale/imx8mp-venice-gw7905-2x.dts |  28 +
+ .../dts/freescale/imx8mp-venice-gw7905.dtsi   | 358 +++++++++++
+ 3 files changed, 975 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-venice-gw702x.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905-2x.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905.dtsi
 
-Please use @dev the same way it was done for dev_err_probe() and
-devm_ioremap_resource() below.
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw702x.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw702x.dtsi
+new file mode 100644
+index 000000000000..4fca4aae8f72
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw702x.dtsi
+@@ -0,0 +1,589 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright 2023 Gateworks Corporation
++ */
++
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/input/linux-event-codes.h>
++#include <dt-bindings/net/ti-dp83867.h>
++
++/ {
++	aliases {
++		ethernet0 = &eqos;
++	};
++
++	memory@40000000 {
++		device_type = "memory";
++		reg = <0x0 0x40000000 0 0x80000000>;
++	};
++
++	gpio-keys {
++		compatible = "gpio-keys";
++
++		key-user-pb {
++			label = "user_pb";
++			gpios = <&gpio 2 GPIO_ACTIVE_LOW>;
++			linux,code = <BTN_0>;
++		};
++
++		key-user-pb1x {
++			label = "user_pb1x";
++			linux,code = <BTN_1>;
++			interrupt-parent = <&gsc>;
++			interrupts = <0>;
++		};
++
++		key-erased {
++			label = "key_erased";
++			linux,code = <BTN_2>;
++			interrupt-parent = <&gsc>;
++			interrupts = <1>;
++		};
++
++		key-eeprom-wp {
++			label = "eeprom_wp";
++			linux,code = <BTN_3>;
++			interrupt-parent = <&gsc>;
++			interrupts = <2>;
++		};
++
++		key-tamper {
++			label = "tamper";
++			linux,code = <BTN_4>;
++			interrupt-parent = <&gsc>;
++			interrupts = <5>;
++		};
++
++		switch-hold {
++			label = "switch_hold";
++			linux,code = <BTN_5>;
++			interrupt-parent = <&gsc>;
++			interrupts = <7>;
++		};
++	};
++};
++
++&A53_0 {
++	cpu-supply = <&buck3_reg>;
++};
++
++&A53_1 {
++	cpu-supply = <&buck3_reg>;
++};
++
++&A53_2 {
++	cpu-supply = <&buck3_reg>;
++};
++
++&A53_3 {
++	cpu-supply = <&buck3_reg>;
++};
++
++&eqos {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_eqos>;
++	phy-mode = "rgmii-id";
++	phy-handle = <&ethphy0>;
++	status = "okay";
++
++	mdio {
++		compatible = "snps,dwmac-mdio";
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		ethphy0: ethernet-phy@0 {
++			compatible = "ethernet-phy-ieee802.3-c22";
++			pinctrl-0 = <&pinctrl_ethphy0>;
++			pinctrl-names = "default";
++			reg = <0x0>;
++			interrupt-parent = <&gpio3>;
++			interrupts = <16 IRQ_TYPE_EDGE_FALLING>;
++			ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
++			ti,tx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
++			tx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
++			rx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
++		};
++	};
++};
++
++&i2c1 {
++	clock-frequency = <100000>;
++	pinctrl-names = "default", "gpio";
++	pinctrl-0 = <&pinctrl_i2c1>;
++	pinctrl-1 = <&pinctrl_i2c1_gpio>;
++	scl-gpios = <&gpio5 14 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++	sda-gpios = <&gpio5 15 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++	status = "okay";
++
++	gsc: gsc@20 {
++		compatible = "gw,gsc";
++		reg = <0x20>;
++		pinctrl-0 = <&pinctrl_gsc>;
++		interrupt-parent = <&gpio2>;
++		interrupts = <6 IRQ_TYPE_EDGE_FALLING>;
++		interrupt-controller;
++		#interrupt-cells = <1>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		adc {
++			compatible = "gw,gsc-adc";
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			channel@6 {
++				gw,mode = <0>;
++				reg = <0x06>;
++				label = "temp";
++			};
++
++			channel@8 {
++				gw,mode = <1>;
++				reg = <0x08>;
++				label = "vdd_bat";
++			};
++
++			channel@16 {
++				gw,mode = <4>;
++				reg = <0x16>;
++				label = "fan_tach";
++			};
++
++			channel@82 {
++				gw,mode = <2>;
++				reg = <0x82>;
++				label = "vdd_vin";
++				gw,voltage-divider-ohms = <22100 1000>;
++			};
++
++			channel@84 {
++				gw,mode = <2>;
++				reg = <0x84>;
++				label = "vdd_adc1";
++				gw,voltage-divider-ohms = <10000 10000>;
++			};
++
++			channel@86 {
++				gw,mode = <2>;
++				reg = <0x86>;
++				label = "vdd_adc2";
++				gw,voltage-divider-ohms = <10000 10000>;
++			};
++
++			channel@88 {
++				gw,mode = <2>;
++				reg = <0x88>;
++				label = "vdd_1p0";
++			};
++
++			channel@8c {
++				gw,mode = <2>;
++				reg = <0x8c>;
++				label = "vdd_1p8";
++			};
++
++			channel@8e {
++				gw,mode = <2>;
++				reg = <0x8e>;
++				label = "vdd_2p5";
++			};
++
++			channel@90 {
++				gw,mode = <2>;
++				reg = <0x90>;
++				label = "vdd_3p3";
++				gw,voltage-divider-ohms = <10000 10000>;
++			};
++
++			channel@92 {
++				gw,mode = <2>;
++				reg = <0x92>;
++				label = "vdd_dram";
++			};
++
++			channel@98 {
++				gw,mode = <2>;
++				reg = <0x98>;
++				label = "vdd_soc";
++			};
++
++			channel@9a {
++				gw,mode = <2>;
++				reg = <0x9a>;
++				label = "vdd_arm";
++			};
++
++			channel@a2 {
++				gw,mode = <2>;
++				reg = <0xa2>;
++				label = "vdd_gsc";
++				gw,voltage-divider-ohms = <10000 10000>;
++			};
++		};
++
++		fan-controller@0 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			compatible = "gw,gsc-fan";
++			reg = <0x0a>;
++		};
++	};
++
++	gpio: gpio@23 {
++		compatible = "nxp,pca9555";
++		reg = <0x23>;
++		gpio-controller;
++		#gpio-cells = <2>;
++		interrupt-parent = <&gsc>;
++		interrupts = <4>;
++	};
++
++	eeprom@50 {
++		compatible = "atmel,24c02";
++		reg = <0x50>;
++		pagesize = <16>;
++	};
++
++	eeprom@51 {
++		compatible = "atmel,24c02";
++		reg = <0x51>;
++		pagesize = <16>;
++	};
++
++	eeprom@52 {
++		compatible = "atmel,24c02";
++		reg = <0x52>;
++		pagesize = <16>;
++	};
++
++	eeprom@53 {
++		compatible = "atmel,24c02";
++		reg = <0x53>;
++		pagesize = <16>;
++	};
++
++	rtc@68 {
++		compatible = "dallas,ds1672";
++		reg = <0x68>;
++	};
++
++	pmic@69 {
++		compatible = "mps,mp5416";
++		reg = <0x69>;
++
++		regulators {
++			/* vdd_soc */
++			buck1 {
++				regulator-name = "buck1";
++				regulator-min-microvolt = <850000>;
++				regulator-max-microvolt = <1000000>;
++				regulator-always-on;
++				regulator-boot-on;
++			};
++
++			/* vdd_dram */
++			buck2 {
++				regulator-name = "buck2";
++				regulator-min-microvolt = <1100000>;
++				regulator-max-microvolt = <1100000>;
++				regulator-always-on;
++				regulator-boot-on;
++			};
++
++			/* vdd_arm */
++			buck3_reg: buck3 {
++				regulator-name = "buck3";
++				regulator-min-microvolt = <850000>;
++				regulator-max-microvolt = <1000000>;
++				regulator-always-on;
++				regulator-boot-on;
++			};
++
++			/* vdd_1p8 */
++			buck4 {
++				regulator-name = "buck4";
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-always-on;
++				regulator-boot-on;
++			};
++
++			/* OUT2: nvcc_snvs_1p8 */
++			ldo1 {
++				regulator-name = "ldo1";
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-always-on;
++				regulator-boot-on;
++			};
++
++			/* OUT3: vdd_1p0 */
++			ldo2 {
++				regulator-name = "ldo2";
++				regulator-min-microvolt = <1000000>;
++				regulator-max-microvolt = <1000000>;
++				regulator-always-on;
++				regulator-boot-on;
++			};
++
++			/* OUT4: vdd_2p5 */
++			ldo3 {
++				regulator-name = "ldo3";
++				regulator-min-microvolt = <2500000>;
++				regulator-max-microvolt = <2500000>;
++				regulator-always-on;
++				regulator-boot-on;
++			};
++
++			/* OUT5: vdd_3p3 */
++			ldo4 {
++				regulator-name = "ldo4";
++				regulator-min-microvolt = <3300000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-always-on;
++				regulator-boot-on;
++			};
++		};
++	};
++};
++
++/* off-board header */
++&i2c2 {
++	clock-frequency = <400000>;
++	pinctrl-names = "default", "gpio";
++	pinctrl-0 = <&pinctrl_i2c2>;
++	pinctrl-1 = <&pinctrl_i2c2_gpio>;
++	scl-gpios = <&gpio5 16 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++	sda-gpios = <&gpio5 17 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++	status = "okay";
++
++	eeprom@52 {
++		compatible = "atmel,24c32";
++		reg = <0x52>;
++		pagesize = <32>;
++	};
++};
++
++/* off-board header */
++&i2c3 {
++	clock-frequency = <400000>;
++	pinctrl-names = "default", "gpio";
++	pinctrl-0 = <&pinctrl_i2c3>;
++	pinctrl-1 = <&pinctrl_i2c3_gpio>;
++	scl-gpios = <&gpio5 18 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++	sda-gpios = <&gpio5 19 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++	status = "okay";
++};
++
++/* off-board header */
++&uart1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_uart1>;
++	status = "okay";
++};
++
++/* console */
++&uart2 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_uart2>;
++	status = "okay";
++};
++
++/* off-board header */
++&uart3 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_uart3>;
++	status = "okay";
++};
++
++/* off-board */
++&usdhc1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_usdhc1>;
++	bus-width = <4>;
++	non-removable;
++	status = "okay";
++	bus-width = <4>;
++	non-removable;
++	status = "okay";
++};
++
++/* eMMC */
++&usdhc3 {
++	pinctrl-names = "default", "state_100mhz", "state_200mhz";
++	pinctrl-0 = <&pinctrl_usdhc3>;
++	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
++	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
++	bus-width = <8>;
++	non-removable;
++	status = "okay";
++};
++
++&wdog1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_wdog>;
++	fsl,ext-reset-output;
++	status = "okay";
++};
++
++&iomuxc {
++	pinctrl_eqos: eqosgrp {
++		fsl,pins = <
++			MX8MP_IOMUXC_ENET_MDC__ENET_QOS_MDC			0x2
++			MX8MP_IOMUXC_ENET_MDIO__ENET_QOS_MDIO			0x2
++			MX8MP_IOMUXC_ENET_RD0__ENET_QOS_RGMII_RD0		0x90
++			MX8MP_IOMUXC_ENET_RD1__ENET_QOS_RGMII_RD1		0x90
++			MX8MP_IOMUXC_ENET_RD2__ENET_QOS_RGMII_RD2		0x90
++			MX8MP_IOMUXC_ENET_RD3__ENET_QOS_RGMII_RD3		0x90
++			MX8MP_IOMUXC_ENET_RXC__CCM_ENET_QOS_CLOCK_GENERATE_RX_CLK	0x90
++			MX8MP_IOMUXC_ENET_RX_CTL__ENET_QOS_RGMII_RX_CTL		0x90
++			MX8MP_IOMUXC_ENET_TD0__ENET_QOS_RGMII_TD0		0x16
++			MX8MP_IOMUXC_ENET_TD1__ENET_QOS_RGMII_TD1		0x16
++			MX8MP_IOMUXC_ENET_TD2__ENET_QOS_RGMII_TD2		0x16
++			MX8MP_IOMUXC_ENET_TD3__ENET_QOS_RGMII_TD3		0x16
++			MX8MP_IOMUXC_ENET_TX_CTL__ENET_QOS_RGMII_TX_CTL		0x16
++			MX8MP_IOMUXC_ENET_TXC__CCM_ENET_QOS_CLOCK_GENERATE_TX_CLK	0x16
++		>;
++	};
++
++	pinctrl_ethphy0: ethphy0grp {
++		fsl,pins = <
++			MX8MP_IOMUXC_NAND_DQS__GPIO3_IO14	0x140 /* RST# */
++			MX8MP_IOMUXC_NAND_READY_B__GPIO3_IO16	0x150 /* IRQ# */
++		>;
++	};
++
++	pinctrl_gsc: gscgrp {
++		fsl,pins = <
++			MX8MP_IOMUXC_SD1_DATA4__GPIO2_IO06	0x150 /* IRQ# */
++		>;
++	};
++
++	pinctrl_i2c1: i2c1grp {
++		fsl,pins = <
++			MX8MP_IOMUXC_I2C1_SCL__I2C1_SCL		0x400001c2
++			MX8MP_IOMUXC_I2C1_SDA__I2C1_SDA		0x400001c2
++		>;
++	};
++
++	pinctrl_i2c1_gpio: i2c1gpiogrp {
++		fsl,pins = <
++			MX8MP_IOMUXC_I2C1_SCL__GPIO5_IO14	0x400001c2
++			MX8MP_IOMUXC_I2C1_SDA__GPIO5_IO15	0x400001c2
++		>;
++	};
++
++	pinctrl_i2c2: i2c2grp {
++		fsl,pins = <
++			MX8MP_IOMUXC_I2C2_SCL__I2C2_SCL		0x400001c2
++			MX8MP_IOMUXC_I2C2_SDA__I2C2_SDA		0x400001c2
++		>;
++	};
++
++	pinctrl_i2c2_gpio: i2c2gpiogrp {
++		fsl,pins = <
++			MX8MP_IOMUXC_I2C2_SCL__GPIO5_IO16	0x400001c2
++			MX8MP_IOMUXC_I2C2_SDA__GPIO5_IO17	0x400001c2
++		>;
++	};
++
++	pinctrl_i2c3: i2c3grp {
++		fsl,pins = <
++			MX8MP_IOMUXC_I2C3_SCL__I2C3_SCL		0x400001c2
++			MX8MP_IOMUXC_I2C3_SDA__I2C3_SDA		0x400001c2
++		>;
++	};
++
++	pinctrl_i2c3_gpio: i2c3gpiogrp {
++		fsl,pins = <
++			MX8MP_IOMUXC_I2C3_SCL__GPIO5_IO18	0x400001c2
++			MX8MP_IOMUXC_I2C3_SDA__GPIO5_IO19	0x400001c2
++		>;
++	};
++
++	pinctrl_uart1: uart1grp {
++		fsl,pins = <
++			MX8MP_IOMUXC_UART1_RXD__UART1_DCE_RX	0x140
++			MX8MP_IOMUXC_UART1_TXD__UART1_DCE_TX	0x140
++		>;
++	};
++
++	pinctrl_uart2: uart2grp {
++		fsl,pins = <
++			MX8MP_IOMUXC_UART2_RXD__UART2_DCE_RX	0x140
++			MX8MP_IOMUXC_UART2_TXD__UART2_DCE_TX	0x140
++		>;
++	};
++
++	pinctrl_uart3: uart3grp {
++		fsl,pins = <
++			MX8MP_IOMUXC_UART3_RXD__UART3_DCE_RX	0x140
++			MX8MP_IOMUXC_UART3_TXD__UART3_DCE_TX	0x140
++		>;
++	};
++
++	pinctrl_usdhc1: usdhc1grp {
++		fsl,pins = <
++			MX8MP_IOMUXC_SD1_CLK__USDHC1_CLK	0x190
++			MX8MP_IOMUXC_SD1_CMD__USDHC1_CMD	0x1d0
++			MX8MP_IOMUXC_SD1_DATA0__USDHC1_DATA0	0x1d0
++			MX8MP_IOMUXC_SD1_DATA1__USDHC1_DATA1	0x1d0
++			MX8MP_IOMUXC_SD1_DATA2__USDHC1_DATA2	0x1d0
++			MX8MP_IOMUXC_SD1_DATA3__USDHC1_DATA3	0x1d0
++		>;
++	};
++
++	pinctrl_usdhc3: usdhc3grp {
++		fsl,pins = <
++			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x190
++			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD	0x1d0
++			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	0x1d0
++			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	0x1d0
++			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	0x1d0
++			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	0x1d0
++			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	0x1d0
++			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	0x1d0
++			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	0x1d0
++			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	0x1d0
++			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE	0x190
++		>;
++	};
++
++	pinctrl_usdhc3_100mhz: usdhc3-100mhzgrp {
++		fsl,pins = <
++			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x194
++			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD	0x1d4
++			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	0x1d4
++			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	0x1d4
++			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	0x1d4
++			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	0x1d4
++			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	0x1d4
++			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	0x1d4
++			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	0x1d4
++			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	0x1d4
++			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE	0x194
++		>;
++	};
++
++	pinctrl_usdhc3_200mhz: usdhc3-200mhzgrp {
++		fsl,pins = <
++			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x196
++			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD	0x1d6
++			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	0x1d6
++			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	0x1d6
++			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	0x1d6
++			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	0x1d6
++			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	0x1d6
++			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	0x1d6
++			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	0x1d6
++			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	0x1d6
++			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE	0x196
++		>;
++	};
++
++	pinctrl_wdog: wdoggrp {
++		fsl,pins = <
++			MX8MP_IOMUXC_GPIO1_IO02__WDOG1_WDOG_B	0x166
++		>;
++	};
++};
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905-2x.dts b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905-2x.dts
+new file mode 100644
+index 000000000000..4a1bbbbe19e6
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905-2x.dts
+@@ -0,0 +1,28 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright 2023 Gateworks Corporation
++ */
++
++/dts-v1/;
++
++#include "imx8mp.dtsi"
++#include "imx8mp-venice-gw702x.dtsi"
++#include "imx8mp-venice-gw7905.dtsi"
++
++/ {
++	model = "Gateworks Venice GW7905-2x i.MX8MP Development Kit";
++	compatible = "gateworks,imx8mp-gw7905-2x", "fsl,imx8mp";
++
++	chosen {
++		stdout-path = &uart2;
++	};
++};
++
++/* Disable SOM interfaces not used on baseboard */
++&eqos {
++	status = "disabled";
++};
++
++&usdhc1 {
++	status = "disabled";
++};
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905.dtsi
+new file mode 100644
+index 000000000000..479190a6391f
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905.dtsi
+@@ -0,0 +1,358 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright 2023 Gateworks Corporation
++ */
++
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/leds/common.h>
++#include <dt-bindings/phy/phy-imx8-pcie.h>
++
++/ {
++	aliases {
++		ethernet0 = &eqos;
++	};
++
++	led-controller {
++		compatible = "gpio-leds";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_gpio_leds>;
++
++		led-0 {
++			function = LED_FUNCTION_STATUS;
++			color = <LED_COLOR_ID_GREEN>;
++			gpios = <&gpio4 22 GPIO_ACTIVE_HIGH>;
++			default-state = "on";
++			linux,default-trigger = "heartbeat";
++		};
++
++		led-1 {
++			function = LED_FUNCTION_STATUS;
++			color = <LED_COLOR_ID_RED>;
++			gpios = <&gpio4 27 GPIO_ACTIVE_HIGH>;
++			default-state = "off";
++		};
++	};
++
++	pcie0_refclk: pcie0-refclk {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <100000000>;
++	};
++
++	pps {
++		compatible = "pps-gpio";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_pps>;
++		gpios = <&gpio4 21 GPIO_ACTIVE_HIGH>;
++		status = "okay";
++	};
++
++	reg_usb2_vbus: regulator-usb2-vbus {
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_reg_usb2_en>;
++		compatible = "regulator-fixed";
++		regulator-name = "usb2_vbus";
++		gpio = <&gpio4 12 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++	};
++
++	reg_usdhc2_vmmc: regulator-usdhc2 {
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_reg_usdhc2_vmmc>;
++		compatible = "regulator-fixed";
++		regulator-name = "SD2_3P3V";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++	};
++
++};
++
++/* off-board header */
++&ecspi2 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_spi2>;
++	cs-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
++	status = "okay";
++};
++
++&gpio4 {
++	gpio-line-names =
++		"", "", "", "",
++		"", "", "", "",
++		"", "", "", "",
++		"", "gpioa", "", "",
++		"", "", "", "",
++		"", "", "", "",
++		"", "", "", "",
++		"", "", "", "";
++};
++
++&gpio4 {
++	gpio-line-names =
++		"", "gpiod", "", "",
++		"gpiob", "gpioc", "", "",
++		"", "", "", "",
++		"", "", "", "",
++		"", "", "", "",
++		"", "", "", "",
++		"som_3p3en", "", "pci_usbsel", "",
++		"pci_wdis#", "", "", "";
++};
++
++&i2c2 {
++	clock-frequency = <400000>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_i2c2>;
++	status = "okay";
++
++	eeprom@52 {
++		compatible = "atmel,24c32";
++		reg = <0x52>;
++		pagesize = <32>;
++	};
++};
++
++/* off-board header */
++&i2c3 {
++	clock-frequency = <400000>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_i2c3>;
++	status = "okay";
++};
++
++&pcie_phy {
++	fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_INPUT>;
++	fsl,clkreq-unsupported;
++	clocks = <&pcie0_refclk>;
++	clock-names = "ref";
++	status = "okay";
++};
++
++&pcie {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_pcie0>;
++	reset-gpio = <&gpio4 29 GPIO_ACTIVE_LOW>;
++	clocks = <&clk IMX8MP_CLK_HSIO_ROOT>,
++		 <&clk IMX8MP_CLK_PCIE_ROOT>,
++		 <&clk IMX8MP_CLK_HSIO_AXI>;
++	clock-names = "pcie", "pcie_aux", "pcie_bus";
++	assigned-clocks = <&clk IMX8MP_CLK_PCIE_AUX>;
++	assigned-clock-rates = <10000000>;
++	assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_50M>;
++	status = "okay";
++};
++
++/* GPS */
++&uart1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_uart1>;
++	status = "okay";
++};
++
++/* USB1 - Type C front panel SINK port J14 */
++&usb3_0 {
++	status = "okay";
++};
++
++&usb3_phy0 {
++	status = "okay";
++};
++
++&usb_dwc3_0 {
++	dr_mode = "peripheral";
++	status = "okay";
++};
++
++/* USB2 4-port USB3.0 HUB:
++ *  P1 - USBC connector (host only)
++ *  P2 - USB2 test connector
++ *  P3 - miniPCIe full card
++ *  P4 - miniPCIe half card
++ *  GPIO4_IO12 is USBHUB_RST# which has an ext p/u
++ */
++&usb3_phy1 {
++	vbus-supply = <&reg_usb2_vbus>;
++	status = "okay";
++};
++
++&usb3_1 {
++	fsl,permanently-attached;
++	fsl,disable-port-power-control;
++	status = "okay";
++};
++
++&usb_dwc3_1 {
++	dr_mode = "host";
++	status = "okay";
++};
++
++/* microSD */
++&usdhc2 {
++	pinctrl-names = "default", "state_100mhz", "state_200mhz";
++	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
++	pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_gpio>;
++	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;
++	cd-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
++	vmmc-supply = <&reg_usdhc2_vmmc>;
++	bus-width = <4>;
++	status = "okay";
++};
++
++&iomuxc {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_hog>;
++
++	pinctrl_hog: hoggrp {
++		fsl,pins = <
++			MX8MP_IOMUXC_GPIO1_IO13__GPIO1_IO13	0x40000040 /* GPIOA */
++			MX8MP_IOMUXC_SAI1_RXC__GPIO4_IO01	0x40000040 /* GPIOD */
++			MX8MP_IOMUXC_SAI1_RXD2__GPIO4_IO04	0x40000040 /* GPIOB */
++			MX8MP_IOMUXC_SAI1_RXD3__GPIO4_IO05	0x40000040 /* GPIOC */
++			MX8MP_IOMUXC_SAI2_TXD0__GPIO4_IO26	0x40000106 /* PCI_USBSEL */
++			MX8MP_IOMUXC_SAI3_RXFS__GPIO4_IO28	0x40000106 /* PCI_WDIS# */
++		>;
++	};
++
++	pinctrl_gpio_leds: gpioledgrp {
++		fsl,pins = <
++			MX8MP_IOMUXC_SAI2_RXC__GPIO4_IO22	0x18	/* LEDG */
++			MX8MP_IOMUXC_SAI2_MCLK__GPIO4_IO27	0x18	/* LEDR */
++		>;
++	};
++
++	pinctrl_i2c2: i2c2grp {
++		fsl,pins = <
++			MX8MP_IOMUXC_I2C2_SCL__I2C2_SCL		0x400001c2
++			MX8MP_IOMUXC_I2C2_SDA__I2C2_SDA		0x400001c2
++		>;
++	};
++
++	pinctrl_i2c3: i2c3grp {
++		fsl,pins = <
++			MX8MP_IOMUXC_I2C3_SCL__I2C3_SCL		0x400001c2
++			MX8MP_IOMUXC_I2C3_SDA__I2C3_SDA		0x400001c2
++		>;
++	};
++
++	pinctrl_pcie0: pciegrp {
++		fsl,pins = <
++			MX8MP_IOMUXC_SAI3_RXC__GPIO4_IO29	0x110
++		>;
++	};
++
++	pinctrl_pps: ppsgrp {
++		fsl,pins = <
++			MX8MP_IOMUXC_SAI2_RXFS__GPIO4_IO21	0x41
++		>;
++	};
++
++	pinctrl_reg_usb2_en: regusb2grp {
++		fsl,pins = <
++			MX8MP_IOMUXC_SAI1_TXD0__GPIO4_IO12	0x40000146 /* USBHUB_RST# (ext p/u) */
++		>;
++	};
++
++	pinctrl_reg_usdhc2_vmmc: regusdhc2vmmcgrp {
++		fsl,pins = <
++			MX8MP_IOMUXC_SD2_RESET_B__GPIO2_IO19	0x40
++		>;
++	};
++
++	pinctrl_spi2: spi2grp {
++		fsl,pins = <
++			MX8MP_IOMUXC_ECSPI2_SCLK__ECSPI2_SCLK	0x82
++			MX8MP_IOMUXC_ECSPI2_MOSI__ECSPI2_MOSI	0x82
++			MX8MP_IOMUXC_ECSPI2_MISO__ECSPI2_MISO	0x82
++			MX8MP_IOMUXC_ECSPI2_SS0__GPIO5_IO13	0x140
++		>;
++	};
++
++	pinctrl_uart1: uart1grp {
++		fsl,pins = <
++			MX8MP_IOMUXC_UART1_RXD__UART1_DCE_RX	0x140
++			MX8MP_IOMUXC_UART1_TXD__UART1_DCE_TX	0x140
++		>;
++	};
++
++	pinctrl_usdhc1: usdhc1grp {
++		fsl,pins = <
++			MX8MP_IOMUXC_SD1_CLK__USDHC1_CLK	0x190
++			MX8MP_IOMUXC_SD1_CMD__USDHC1_CMD	0x1d0
++			MX8MP_IOMUXC_SD1_DATA0__USDHC1_DATA0	0x1d0
++			MX8MP_IOMUXC_SD1_DATA1__USDHC1_DATA1	0x1d0
++			MX8MP_IOMUXC_SD1_DATA2__USDHC1_DATA2	0x1d0
++			MX8MP_IOMUXC_SD1_DATA3__USDHC1_DATA3	0x1d0
++			MX8MP_IOMUXC_GPIO1_IO03__USDHC1_VSELECT	0xc1
++		>;
++	};
++
++	pinctrl_usdhc1_100mhz: usdhc1-100mhzgrp {
++		fsl,pins = <
++			MX8MP_IOMUXC_SD1_CLK__USDHC1_CLK	0x194
++			MX8MP_IOMUXC_SD1_CMD__USDHC1_CMD	0x1d4
++			MX8MP_IOMUXC_SD1_DATA0__USDHC1_DATA0	0x1d4
++			MX8MP_IOMUXC_SD1_DATA1__USDHC1_DATA1	0x1d4
++			MX8MP_IOMUXC_SD1_DATA2__USDHC1_DATA2	0x1d4
++			MX8MP_IOMUXC_SD1_DATA3__USDHC1_DATA3	0x1d4
++			MX8MP_IOMUXC_GPIO1_IO03__USDHC1_VSELECT	0xc1
++		>;
++	};
++
++	pinctrl_usdhc1_200mhz: usdhc1-200mhzgrp {
++		fsl,pins = <
++			MX8MP_IOMUXC_SD1_CLK__USDHC1_CLK	0x196
++			MX8MP_IOMUXC_SD1_CMD__USDHC1_CMD	0x1d6
++			MX8MP_IOMUXC_SD1_DATA0__USDHC1_DATA0	0x1d6
++			MX8MP_IOMUXC_SD1_DATA1__USDHC1_DATA1	0x1d6
++			MX8MP_IOMUXC_SD1_DATA2__USDHC1_DATA2	0x1d6
++			MX8MP_IOMUXC_SD1_DATA3__USDHC1_DATA3	0x1d6
++			MX8MP_IOMUXC_GPIO1_IO03__USDHC1_VSELECT	0xc1
++		>;
++	};
++
++	pinctrl_usdhc2: usdhc2grp {
++		fsl,pins = <
++			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK		0x190
++			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD		0x1d0
++			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0		0x1d0
++			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1		0x1d0
++			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2		0x1d0
++			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3		0x1d0
++			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT		0xc0
++		>;
++	};
++
++	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
++		fsl,pins = <
++			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK		0x194
++			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD		0x1d4
++			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0		0x1d4
++			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1		0x1d4
++			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2		0x1d4
++			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3		0x1d4
++			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT		0xc0
++		>;
++	};
++
++	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
++		fsl,pins = <
++			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK		0x196
++			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD		0x1d6
++			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0		0x1d6
++			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1		0x1d6
++			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2		0x1d6
++			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3		0x1d6
++			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT		0xc0
++		>;
++	};
++
++	pinctrl_usdhc2_gpio: usdhc2gpiogrp {
++		fsl,pins = <
++			MX8MP_IOMUXC_SD2_CD_B__GPIO2_IO12		0x80
++		>;
++	};
++};
+-- 
+2.25.1
 
-More comments to come tomorrow.
-
-Thanks,
-Mathieu
-
-> +	if (!scp_cluster)
-> +		return -ENOMEM;
-> +
-> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "cfg");
-> +	scp_cluster->reg_base = devm_ioremap_resource(dev, res);
-> +	if (IS_ERR(scp_cluster->reg_base))
-> +		return dev_err_probe(dev, PTR_ERR(scp_cluster->reg_base),
-> +				     "Failed to parse and map cfg memory\n");
-> +
-> +	/* l1tcm is an optional memory region */
-> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "l1tcm");
-> +	scp_cluster->l1tcm_base = devm_ioremap_resource(dev, res);
-> +	if (IS_ERR(scp_cluster->l1tcm_base)) {
-> +		ret = PTR_ERR(scp_cluster->l1tcm_base);
-> +		if (ret != -EINVAL)
-> +			return dev_err_probe(dev, ret, "Failed to map l1tcm memory\n");
-> +
-> +		scp_cluster->l1tcm_base = NULL;
-> +	} else {
-> +		scp_cluster->l1tcm_size = resource_size(res);
-> +		scp_cluster->l1tcm_phys = res->start;
-> +	}
-> +
-> +	INIT_LIST_HEAD(&scp_cluster->mtk_scp_cluster);
-> +	platform_set_drvdata(pdev, scp_cluster);
-> +
-> +	ret = scp_cluster_init(pdev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return 0;
->  }
->  
->  static void scp_remove(struct platform_device *pdev)
->  {
-> -	struct mtk_scp *scp = platform_get_drvdata(pdev);
-> +	struct mtk_scp_of_cluster *scp_cluster = platform_get_drvdata(pdev);
-> +	struct mtk_scp *scp, *temp;
->  	int i;
->  
-> -	rproc_del(scp->rproc);
-> -	scp_remove_rpmsg_subdev(scp);
-> -	scp_ipi_unregister(scp, SCP_IPI_INIT);
-> -	scp_unmap_memory_region(scp);
-> -	for (i = 0; i < SCP_IPI_MAX; i++)
-> -		mutex_destroy(&scp->ipi_desc[i].lock);
-> -	mutex_destroy(&scp->send_lock);
-> +	list_for_each_entry_safe_reverse(scp, temp, &scp_cluster->mtk_scp_cluster, elem) {
-> +		list_del(&scp->elem);
-> +		rproc_del(scp->rproc);
-> +		scp_remove_rpmsg_subdev(scp);
-> +		scp_ipi_unregister(scp, SCP_IPI_INIT);
-> +		scp_unmap_memory_region(scp);
-> +		for (i = 0; i < SCP_IPI_MAX; i++)
-> +			mutex_destroy(&scp->ipi_desc[i].lock);
-> +		mutex_destroy(&scp->send_lock);
-> +	}
->  }
->  
->  static const struct mtk_scp_of_data mt8183_of_data = {
-> -- 
-> 2.18.0
-> 
