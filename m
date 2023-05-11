@@ -2,208 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 415EA6FF867
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 19:30:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD9286FF86D
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 19:32:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238720AbjEKRa1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 13:30:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58616 "EHLO
+        id S238620AbjEKRcm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 13:32:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238397AbjEKRa0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 13:30:26 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A052540C1
-        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 10:30:24 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4f13d8f74abso10067962e87.0
-        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 10:30:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1683826223; x=1686418223;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:user-agent
-         :from:references:in-reply-to:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Fg8PRT8lkm3NPG8eSAKVMEE5ErkK9HmIXAxn27oczZs=;
-        b=VTN9N0z2GsuFCm4SJGRZ/zR2tPa24eBCC8JF2Hft6EJmkWPX/s3vIUK4nuG5n5nWJ/
-         nE/e05S270+8cRS2tYdJs2Oq8VIqYR15aXaig9dVHs/hRxEYwBrYUfy1bKvdJlthMIgP
-         nHUCLIrXHx9Fuyug8KFKu9/7cfowMEhPOmw0I=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683826223; x=1686418223;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:user-agent
-         :from:references:in-reply-to:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Fg8PRT8lkm3NPG8eSAKVMEE5ErkK9HmIXAxn27oczZs=;
-        b=MipCd85z+mWScOsoN7Nbv/BDtDedtkAXeWJMQUvtG7ebML/ueIwrc8UX19i68JDqCn
-         4lYP+tuGzmYXCu3LAgGj3iY7usIrj7ROoHGcZ3FRyrNnXnkPZ7slrl3w9rrtx8GQSO11
-         e/ZbGVPUoo6pKobFABmOhlfbW7iCaenQO89DwlZfZjNmC24SJUl/5WjdZTgpNAEiuQVb
-         4pYEXYpGXkAVZbZGnDpIvxcXdV2g6xINldUKjBERK24wl/PsD70EcqoXCl30HxpgYCEO
-         uo/I7tQB0INSJcZ4eSDA/Kv2jleBbKNO0gcZqpRJ6zkKwK2tYIo0bdCyXszDbchbFgty
-         4NiQ==
-X-Gm-Message-State: AC+VfDww2lAkr30fIEA84FNLDnp0ANx/l1C3PmL3RnshwMoLnzfBoXox
-        Vgynf+7PbNsMPhAcIAOk1yN95uCnVvRAqu32op6hdg==
-X-Google-Smtp-Source: ACHHUZ7+DsiBLVL+G+PyPSCvDv2Rf18Jgj9RceQGNCWvdyWZ2Go6iibCk0Ty1ltmNZIOPyj9kaUmS6Hr2h/EYJZZLAM=
-X-Received: by 2002:ac2:4302:0:b0:4f1:26f5:780c with SMTP id
- l2-20020ac24302000000b004f126f5780cmr2687173lfh.13.1683826222788; Thu, 11 May
- 2023 10:30:22 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 11 May 2023 10:30:22 -0700
+        with ESMTP id S238516AbjEKRcl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 13:32:41 -0400
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam02on2074.outbound.protection.outlook.com [40.107.95.74])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 261C03A90;
+        Thu, 11 May 2023 10:32:40 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=MwRYyQv3X6JySs0j5WbvSos/iQBa1ia+QVt4fgy9Nt8CC4jDGx+GMcvX+6L9e3LXQfGshceHg5gBF7uldNc1v32SMs1Ke+VEjBdC63YCWywxp1u3tDDeM7hkHI+mLdBVwLV6Hdz3N399ovdD9lI4PMn/D3owezyxWk41mcHuHte2HEUditl+ZlDLDADt7JUy8p5Q/NnzQDHmPJ7OScs83OG+B/qhOUl4aH7XkCObG+4hF4xnqR+LtwmfZzyfQN++COTW6x8SDPoGi9bOGbK/42PNrb4ukaCxbEhOXdk8yKBMHjk12KrTylq3WtdjRrh/Cm1V9iQa3edtf7okX0/bUw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=a7qIiuuzyhgbheJ34U4LYNL2JtwX+92lrpDqq3PBOvE=;
+ b=D5JE/idJbPFHDAYPGY25XjMOWz1ExpjsozcnX968PHSOc4PCYIodYAToR73eyphwa1QOzVGpWYaxN+VEd7eIXHxUcoXLfQsCTR7cdkiiWKHKtKqZq/kHNnvbhFXMIQuTUpfr0Xk/DJ+Ul/Ta9DMNwm0HMWgYwRdd7qxEb0tZji96BmiCWe94MYilhAMI4OU1aWTLk67fEchTH3LjdfKS7Yj34B+PKcyLpkoqowC/hs8FYWXLN54U561s1u8q7G15hkvDlVFoUWTxTfSwEIsy6WjBmepXBQGo5zBcCr8UEm9SeieiuCjGh6dXDtu/ltt47pAAkIegFrlWIL4S7m0+rg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.118.232) smtp.rcpttodomain=google.com smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=a7qIiuuzyhgbheJ34U4LYNL2JtwX+92lrpDqq3PBOvE=;
+ b=IbZKJ/ZA9rIa2yvB4Xssn7oNazfWp6HgP0aBw9EOrq76EeVctXGSNAW/2NeMF50TQD1ExDAdZqkutDv5WDvWLare7CU/Mo1Z6w518jmw7E30oZUxYgcAgaV9dwccMHCA2UPMqszdHbQhgejxorq6WCUZ8yPQ3p+aGTMHkD6GaK+Abv2/GwNNv/4+o9P6CfftlnZJrUrDTK+lY+6gDPUVU04AOgwsfWKORth/+Wb1tn8u2YS21/ZNQTKtMvwBh13M1Zom2ZYvw1VK/YxYSREY9kGX/kwvVI/Gxcnr2rg5JAZhApgtNsxFCJrDaJqH55pgX8ObRRcH86S0zsPe8MEXXw==
+Received: from BN9PR03CA0781.namprd03.prod.outlook.com (2603:10b6:408:13f::6)
+ by MW4PR12MB6998.namprd12.prod.outlook.com (2603:10b6:303:20a::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.32; Thu, 11 May
+ 2023 17:32:38 +0000
+Received: from BN8NAM11FT011.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:13f:cafe::57) by BN9PR03CA0781.outlook.office365.com
+ (2603:10b6:408:13f::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.22 via Frontend
+ Transport; Thu, 11 May 2023 17:32:37 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.232)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.118.232 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.118.232; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.118.232) by
+ BN8NAM11FT011.mail.protection.outlook.com (10.13.176.140) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6387.22 via Frontend Transport; Thu, 11 May 2023 17:32:37 +0000
+Received: from drhqmail202.nvidia.com (10.126.190.181) by mail.nvidia.com
+ (10.127.129.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.5; Thu, 11 May 2023
+ 10:32:23 -0700
+Received: from drhqmail203.nvidia.com (10.126.190.182) by
+ drhqmail202.nvidia.com (10.126.190.181) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.37; Thu, 11 May 2023 10:32:23 -0700
+Received: from sumitg-l4t.nvidia.com (10.127.8.10) by mail.nvidia.com
+ (10.126.190.182) with Microsoft SMTP Server id 15.2.986.37 via Frontend
+ Transport; Thu, 11 May 2023 10:32:17 -0700
+From:   Sumit Gupta <sumitg@nvidia.com>
+To:     <treding@nvidia.com>, <krzysztof.kozlowski@linaro.org>,
+        <dmitry.osipenko@collabora.com>, <viresh.kumar@linaro.org>,
+        <rafael@kernel.org>, <jonathanh@nvidia.com>, <robh+dt@kernel.org>,
+        <lpieralisi@kernel.org>, <helgaas@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>, <mmaddireddy@nvidia.com>,
+        <kw@linux.com>, <bhelgaas@google.com>, <vidyas@nvidia.com>,
+        <sanjayc@nvidia.com>, <ksitaraman@nvidia.com>, <ishah@nvidia.com>,
+        <bbasu@nvidia.com>, <sumitg@nvidia.com>
+Subject: [Patch v8 0/8] Tegra234 Memory interconnect support
+Date:   Thu, 11 May 2023 23:02:03 +0530
+Message-ID: <20230511173211.9127-1-sumitg@nvidia.com>
+X-Mailer: git-send-email 2.17.1
+X-NVConfidentiality: public
 MIME-Version: 1.0
-In-Reply-To: <CAEXTbpcWfYV_58pw_VupjhAFZsUU3pkLRN_8JoASyLLBmgTYqQ@mail.gmail.com>
-References: <20230331091145.737305-1-treapking@chromium.org>
- <20230331091145.737305-5-treapking@chromium.org> <CAE-0n51E5foFWQAsA73662_5e6XP426wuUCVVmcS5UWwiYpDmw@mail.gmail.com>
- <CAEXTbpdcbB_z4ZGCGzc-cM74ECKyxekbroKCWFnhH8eR=4HmvA@mail.gmail.com>
- <CAE-0n50atfmr-bFh5XtTCm4WpSijJGSe0B5JP8ni7CCYk7Bs5A@mail.gmail.com>
- <CAE-0n51Qy-KDGHOCr4Smpebq1fCURqvJ2RJz6KAtVpv5e+DSGA@mail.gmail.com>
- <CAEXTbpeKe1dVHp9cauMN-9nQb35oJ-ZhdFV-8BiWzjjhWAy0Zg@mail.gmail.com>
- <CAE-0n50bj303jou==v6eMabrZ3EL6Cq7tPJmCj9vM_B7FA8s2g@mail.gmail.com> <CAEXTbpcWfYV_58pw_VupjhAFZsUU3pkLRN_8JoASyLLBmgTYqQ@mail.gmail.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Thu, 11 May 2023 10:30:22 -0700
-Message-ID: <CAE-0n51i0kzSKYeUtzLV93miq2GcN1APDYh18p4wr9XxWGrfWA@mail.gmail.com>
-Subject: Re: [PATCH v15 04/10] dt-bindings: display: bridge: anx7625: Add
- mode-switch support
-To:     Pin-yen Lin <treapking@chromium.org>
-Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Benson Leung <bleung@chromium.org>,
-        Daniel Scally <djrscally@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Prashant Malani <pmalani@chromium.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Xin Ji <xji@analogixsemi.com>, Marek Vasut <marex@denx.de>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Lyude Paul <lyude@redhat.com>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-acpi@vger.kernel.org,
-        chrome-platform@lists.linux.dev,
-        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
-        <nfraprado@collabora.com>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Chen-Yu Tsai <wenst@chromium.org>, jagan@amarulasolutions.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT011:EE_|MW4PR12MB6998:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5ff4cb52-7633-4a43-df64-08db5245b6dd
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: SNuMFL0k5I4iUMsuwJ3nCfx+F/HzhziMhKF1AobdJqLUxQ5H84c0+wIeyxXtJBSn5cIM0L4CDZxiHQDcH3lz+7CzKzUedJ4Ae0FuDGs9DsQ/OfE76vO/bhxz16bKvWAkHh019WMWI4le37mPRwdNVBdPYHVCZvUSiynBQUm9VjpkGqAUOtPkOEiEOKNtxS1zz72A29GXHZ/Ow7sYpIZILpBf1TD24gUUOF5fcT+JJ0RARtNBiBK3uTH7tP1cVMVI5AN9DH4siWjKnVc2Ck9mLSTPna64esIlLNw9/tAJ1BXHJ0TUXObZFo3SbmnzaxCHz2uhShCTOV8n2FgtGSqv3v+hM2f6ssZJ2wAq+2QmV+xTgaKpx6GAIeZBnJzYYIYHTeIgKr7ZRlZl1ByLHaflMIR6pCoyHJ7rnQzvHLLiz3kvPa+ocYkescchByUgVwORFocgDFOpbNV/UDu3jF5bUU0K0xXOnfrBsCJ3l70o+eYJm3mAbjhT91EvBH4l3yq+gz/NamSXfCb1/Agl3fzk79/rwoJ171W65PcgV0FIp9RtArcw3bhMXEmDLoqd7IWI1B4rDCciA0fN2mUVeSB8YZVKF0JH0aCHyWj98eSjEqLDVfIig4xCgq9r27ew0ckq/Mg9XV3e8cDHyBGdreQdZQzjr8vJqyve0bzBsQ54dYN7PE8PU+PnR7dfZmriT8EAGWORW8oRU0DDfTGt5TNwENEDBbCdtHdK+BX3OyI37vyzQeG6U86NsvO9Ibc9VnAPqRLPSWLIzpl5EineVOcsflmE6+BURIScdQPZQSkUnCc=
+X-Forefront-Antispam-Report: CIP:216.228.118.232;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge1.nvidia.com;CAT:NONE;SFS:(13230028)(4636009)(396003)(376002)(39860400002)(346002)(136003)(451199021)(40470700004)(46966006)(36840700001)(107886003)(1076003)(26005)(40480700001)(47076005)(966005)(36756003)(336012)(2616005)(36860700001)(426003)(86362001)(82310400005)(83380400001)(186003)(356005)(7696005)(82740400003)(40460700003)(7636003)(7416002)(110136005)(54906003)(8676002)(41300700001)(316002)(8936002)(478600001)(4326008)(70206006)(5660300002)(2906002)(6666004)(70586007);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 May 2023 17:32:37.5241
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5ff4cb52-7633-4a43-df64-08db5245b6dd
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.232];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT011.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB6998
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Pin-yen Lin (2023-05-09 20:41:54)
-> On Sat, Apr 29, 2023 at 12:47=E2=80=AFPM Stephen Boyd <swboyd@chromium.or=
-g> wrote:
-> >
-> > Good point. I'm suggesting to make the drm bridge chain into a tree. We
-> > need to teach drm_bridge core about a mux, and have some logic to
-> > navigate atomically switching from one output to another. I was talking
-> > with dianders@ and he was suggesting to use bridge attach/detach for
-> > this. I'm not sure that will work though because that hook is only
-> > called when the encoder is attached to the bridge.
-> >
-> > It may also turn out that this helps with DP multi-stream transport
-> > (MST). As far as I can recall DP MST doesn't mesh well with drm_bridge
-> > designs because it wants to operate on a drm_connector and
-> > drm_bridge_connector_init() wants to make only one drm_connector for a
-> > chain of bridges. If you squint, the anx7625 could be an MST "branch"
-> > that only supports one drm_connector being enabled at a time. Maybe tha=
-t
-> > is what we should do here, make drm_bridge support creating more than
-> > one drm_connector and when there is a mux in the tree it walks both
-> > sides and runs a callback similar to struct
-> > drm_dp_mst_topology_cbs::add_connector() to tell the encoder that
-> > there's another possible drm_connector here.
->
-> I have been surveying the approaches to change the bridge chain in
-> runtime, and I found this thread[1]. Quoting from Daniel:
+Hi All,
 
-I find the lore links easier to read.
+Have incorporated the suggestions in v7. Only changed 'patch 1' in v7
+to fix possible race when setting 'mc->bpmp' as pointed by Krzysztof.
+Requesting to merge the patch series.
 
-> "... exchanging the bridge chain isn't supported, there's no locking
-> for that since it's assumed to be invariant over the lifetime of the
-> drm_device instance. The simplest way to make that happen right now is to
-> have 2 drm_encoder instances, one with the lvds bridge chain, the other
-> with the hdmi bridge chain, and select the right encoder/bridge chain
-> depending upon which output userspace picks.
-> ...
-> I wouldn't try to make bridge chains exchangeable instead, that's
-> headaches - e.g. with dp mst we've also opted for a bunch of fake
-> drm_encoders to model that kind of switching."
->
-> I'm not sure how we register two encoders properly, though. Do we make
-> the encoder driver check all the downstream bridges and register two
-> drm_encoder when a bridge is acting as a mux?
+Thank you,
+Sumit Gupta
+============
 
-I honestly don't know because I'm not a DRM expert. Maybe Jagan or DRM
-bridge maintainers can add to the thread here.
+This patch series adds memory interconnect support for Tegra234 SoC.
+It is used to dynamically scale DRAM Frequency as per the bandwidth
+requests from different Memory Controller (MC) clients.
+MC Clients use ICC Framework's icc_set_bw() api to dynamically request
+for the DRAM bandwidth (BW). As per path, the request will be routed
+from MC to the EMC driver. MC driver passes the request info like the
+Client ID, type, and frequency request info to the BPMP-FW which will
+set the final DRAM freq considering all exisiting requests.
 
-I kept reading the thread[2] and I think they settled on 2 drm_encoders
-because they're different display formats (LVDS vs. HDMI) and 2
-drm_connector structures. But then I watched the youtube video from this
-thread[3] and it seems like 1 drm_encoder is actually what should be
-done because there is really only DSI at the root. There's at least
-three people working on this topic of muxing displays though. Good news?
+MC and EMC are the ICC providers. Nodes in path for a request will be:
+     Client[1-n] -> MC -> EMC -> EMEM/DRAM
 
-The analogy between their gpio controlled mux and this anx part with a
-crosspoint switch is that the gpio is like the crosspoint switch, but
-the gpio is like a virtual mux? If the gpio is asserted for them, one
-display bridge is enabled (HDMI) and the other one is not (LVDS).
+The patch series also adds interconnect support in below clients:
+1) CPUFREQ driver for scaling bandwidth with CPU frequency. For that,
+   add per cluster OPP table which will be used in the CPUFREQ driver
+   by requesting the minimum BW respective to the given CPU frequency
+   in the OPP table of it's cluster.
+2) PCIE driver to request BW required for different modes.
 
-In this case, the type-c cables may be connected to both
-usb-c-connectors and HPD may be asserted on both, but only one
-drm_connector will be able to attach to the 1 drm_encoder at a time. If
-we had 2 drm_encoders it would be possible to attach both encoders to
-both drm_connectors at the same time, which is impossible because it's a
-mux. Indicating that each connector is connected is OK when HPD is high
-on both usb-c-connectors. Userspace will have to attach an encoder to
-the drm_connector it wants to use, and the drm_connector will indicate
-which drm_encoders are possible for it, so all the information will be
-provided to userspace in this design.
+---
+v7[7] -> v8:
+- fixed possible race and compiler re-ordering when setting 'mc->bpmp'.
 
-I think it really comes down to implementing the tree walking logic in
-the drm bridge APIs. The problem is things like
-drm_bridge_get_next_bridge(), drm_bridge_get_prev_bridge(), and
-drm_for_each_bridge_in_chain() which will have to operate on a tree
-instead of a list. There's also drm_bridge_chain_get_first_bridge() and
-drm_bridge_attach(). The good news is most of these APIs are used
-sparingly.
+v6[6] -> v7:
+- removed 'Patch 6' from v6 as it has been applied in next by 'Viresh'.
+- changed commit message of PCI patches as suggested by 'Lorenzo'.
+- added ACK from 'Lorenzo' in both PCI patches.
 
-Maybe the simplest way to handle this is to maintain a tree of bridges
-and generate bridge chains when an encoder is attached to a connector in
-the tree. Presumably there is only one connector possible for a leaf of
-the bridge tree, and one encoder at the root of the bridge chain. From
-the drm_bridge structure, you'll only be able to iterate over the bridge
-chain that is currently configured. Same for the encoder, you'll only be
-able to walk the currently configured bridge chain from struct
-drm_encoder::bridge_chain.
+v5[5] -> v6:
+- split PCI patch into two 'patch 7 & 8' as suggested by 'Lorenzo'.
+- added more info into the commit description of PCI patches.
 
-This hinges on the idea that the bridge_chain is a list, not a tree, and
-that it only needs to exist when an encoder is attached to a connector.
-When an encoder isn't attached to a connector the bridges will be in the
-tree, and probably that tree structure will be maintained in the bridge
-driver itself knowing that there is one input side bridge and two output
-side bridges. When the input bridge is attached, it should be able to
-query the output side bridges for the connector that the encoder is
-attaching to and configure the mux and hook the input bridge to the
-correct output bridge.
+v4[4] -> v5:
+- dropped 'patch 1 & 2' from v4 which added "nvidia,bpmp" in MC node.
+- save BPMP ref from EMC node into 'mc->bpmp' and use it in MC driver.
+- added check for array bounds violation in pci suggested by Bjorn.
+- moved DT patch having OPP table to the last 'Patch 8'.
+- did multiple small changes and cleanup suggested by Krzysztof in v4.
 
-[2] https://lore.kernel.org/all/CAPj87rO7a=3DNbarOyZp1pE=3D19Lf2aGjWu7sru-e=
-HwGjX0fpN+-A@mail.gmail.com/
-[3] https://lore.kernel.org/all/CAMty3ZAQyADGLVcB13qJdEy_BiZEKpyDfCr9QrM-uc=
-FLFPZLcw@mail.gmail.com/
+v3[3] -> v4:
+- dropped 'patch 1' from v3 which returns 'struct tegra_bpmp *'.
+- added 'patch 1 & 2' to get bpmp ref using 'nvidia,bpmp' property.
+- dropped 'patch 10 & 11' from v3 and added those changes in 'patch 3'.
+- added static to prototype of 'tegra_cpufreq_init_cpufreq_table()' to
+  fix the warning reported by 'kernel test robot'.
+
+v2[2] -> v3:
+- in 'patch 7', set 'icc_dram_bw_scaling' to false if set_opp call failed
+  to avoid flooding of uart with 'Failed to set bw' messages.
+- added 'patch 10' to handle if the bpmp-fw is old and not support bwmgr mrq.
+- added 'patch 11' to fix interconnect registration in tegra186-emc.
+  ref patch link in linux next:
+  [https://lore.kernel.org/all/20230306075651.2449-21-johan+linaro@kernel.org/]
+
+v1[1] -> v2:
+- moved BW setting to tegra234_mc_icc_set() from EMC driver.
+- moved sw clients to the 'tegra_mc_clients' table.
+- point 'node->data' to the entry within 'tegra_mc_clients'.
+- removed 'struct tegra_icc_node' and get client info using 'node->data'.
+- changed error handling in and around tegra_emc_interconnect_init().
+- moved 'tegra-icc.h' from 'include/soc/tegra' to 'include/linux'.
+- added interconnect support to PCIE driver in 'Patch 9'.
+- merged 'Patch 9 & 10' from [1] to get num_channels and use.
+- merged 'Patch 2 & 3' from [1] to add ISO and NISO clients.
+- added 'Acked-by' of Krzysztof from 'Patch 05/10' of [1].
+- Removed 'Patch 7' from [1] as that is merged now.
+
+Sumit Gupta (8):
+  memory: tegra: add interconnect support for DRAM scaling in Tegra234
+  memory: tegra: add mc clients for Tegra234
+  memory: tegra: add software mc clients in Tegra234
+  dt-bindings: tegra: add icc ids for dummy MC clients
+  memory: tegra: make cpu cluster bw request a multiple of mc channels
+  PCI: tegra194: Fix possible array out of bounds access
+  PCI: tegra194: Add interconnect support in Tegra234
+  arm64: tegra: Add cpu OPP tables and interconnects property
+
+ arch/arm64/boot/dts/nvidia/tegra234.dtsi   | 276 ++++++++++
+ drivers/memory/tegra/mc.c                  |  24 +
+ drivers/memory/tegra/mc.h                  |   1 +
+ drivers/memory/tegra/tegra186-emc.c        | 133 +++++
+ drivers/memory/tegra/tegra234.c            | 595 ++++++++++++++++++++-
+ drivers/pci/controller/dwc/pcie-tegra194.c |  44 +-
+ include/dt-bindings/memory/tegra234-mc.h   |   5 +
+ include/linux/tegra-icc.h                  |  65 +++
+ include/soc/tegra/mc.h                     |   8 +
+ 9 files changed, 1142 insertions(+), 9 deletions(-)
+ create mode 100644 include/linux/tegra-icc.h
+
+[1] https://lore.kernel.org/lkml/20221220160240.27494-1-sumitg@nvidia.com/
+[2] https://lore.kernel.org/lkml/20230220140559.28289-1-sumitg@nvidia.com/
+[3] https://lore.kernel.org/lkml/20230320182441.11904-1-sumitg@nvidia.com/
+[4] https://lore.kernel.org/lkml/20230327161426.32639-1-sumitg@nvidia.com/
+[5] https://lore.kernel.org/lkml/20230330133354.714-1-sumitg@nvidia.com/
+[6] https://lore.kernel.org/lkml/20230411110002.19824-1-sumitg@nvidia.com/
+[7] https://lore.kernel.org/lkml/20230424131337.20151-1-sumitg@nvidia.com/ 
+
+-- 
+2.17.1
+
