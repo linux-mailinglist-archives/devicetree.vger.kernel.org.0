@@ -2,81 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 183AB6FEDEF
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 10:40:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C3EA6FEE02
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 10:48:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229536AbjEKIj6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 04:39:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48980 "EHLO
+        id S229888AbjEKIst (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 04:48:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236402AbjEKIj4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 04:39:56 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E98646B6
-        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 01:39:55 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-50bd2d7ba74so76818733a12.1
-        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 01:39:54 -0700 (PDT)
+        with ESMTP id S229519AbjEKIst (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 04:48:49 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC19A4EF6
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 01:48:47 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-3f42c865534so28005025e9.2
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 01:48:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683794393; x=1686386393;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rI3gU8oVkKaiPnV7pBa9aBcGI6toVfCrnfG0G6zDqkE=;
-        b=k9uJI6+dURy+3pVvbdWprfOltfy6eFPUDt02aa7bNrcwEc5PzuqUlY5AqVsp9fsRtk
-         AH7cFd/PuD3O+fdhdkqXbL8BTbIv65E3cDK3glj4RgCcbASfAgKTYKuuJLr2PcNeArkv
-         ItMl4RFqKb8o41NMx/qX8vLosaKFydSYezOFMl6YqaH4LbelO2gWC8TCAieGswxIIUZ9
-         lUYyA5T19geES8NWNUWWBqHq47AsqJn8X83owShEEcZcvHmMvYLsNZF97gQS9MmllikK
-         kta2swY3q91SJNlpGiYRl+StRu9GNby3zq+1BKeC26+uhfzemAQJroBgnADANRJh8vhi
-         mSYg==
+        d=linaro.org; s=google; t=1683794926; x=1686386926;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MavG6Kk9Pe4HL8j0/etWioEuDmEHCWaEC1JE6orX7J8=;
+        b=NxXdF6IBega8jFYuWRkcRkfYvkDka8+uB3602hlNkRCCOIaUDNICbSKD55cWEW8SJc
+         GCUnzVdCB2GM+oMnpi0pUGK3ZAciq05gaus6Jl415AJDnoYltrMsXoj4gjsukrqg6a+p
+         G86oMsjtNTL6zNdLj5KbG0Eg3xW5MKYfYWDO6ZAFdCkn97UJ5tBJo+cIs1U+8q1Fgv+K
+         3lGonlm90bIZR/9/4+6L47VXHPVWgfDVt2geFOgLMDScX25vPeSlsRCEkHt3V4ESBb5J
+         YpxV4yIJTYxY1/2QYAkGbbLhv8xskuMQB6Iysg9LR44sX5HACNEIXqUNPt6R8wcxC8v9
+         z44A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683794393; x=1686386393;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rI3gU8oVkKaiPnV7pBa9aBcGI6toVfCrnfG0G6zDqkE=;
-        b=Eh4gzBi9FQeQG5p/t4GpdM3WAuXU8Pw+V+VbsZb8VLLiDI5czvSSM4S3xrXm9nNjcs
-         XfNlYob4/bO35sJkKrTUYB3jDjrDRpgyjGqpUijLL/jh6mhYCzFta3/bqeuOUggBWqjI
-         9yr4fGE2ojmlIQWRK5PZIu9I1usMa3SbrqLMMs9LUNUasyQhyq2IEODng9tAFZBmPF/5
-         F1/r301KLvb5HCFmEkZ48nK0ZCeQgh9SxUV8w6nGe83PlddvjOeWmheZwL+Rz2AXMCMk
-         HNwYrP/N3S0eir78Kp76EZd/p1KLN7Hf6keDAs3KiQB560dIFlrkx9jKuIs9FB+2QBTj
-         NHMQ==
-X-Gm-Message-State: AC+VfDyekgqOnjdVJhlPUQJOUWca9SgzhAlX/0p9nlIFPI5Gbvt2bW7k
-        9xxB9OswJYjrpUO2UpaA8qj8bA==
-X-Google-Smtp-Source: ACHHUZ52XVRxdDG3kW7XH9RjlpXoCnQHyjMTsLfBw/b+G7AB7t1Mb+4T+7eafMV1YO3zBfQHVCLR0g==
-X-Received: by 2002:a17:907:a41f:b0:94f:1d54:95d2 with SMTP id sg31-20020a170907a41f00b0094f1d5495d2mr19367749ejc.15.1683794393437;
-        Thu, 11 May 2023 01:39:53 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:7e61:f14a:c3a4:809e? ([2a02:810d:15c0:828:7e61:f14a:c3a4:809e])
-        by smtp.gmail.com with ESMTPSA id n17-20020a170906725100b0096a6bf89259sm374828ejk.167.2023.05.11.01.39.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 May 2023 01:39:52 -0700 (PDT)
-Message-ID: <26d223dc-ed79-5523-923e-8fe413cddf1d@linaro.org>
-Date:   Thu, 11 May 2023 10:39:51 +0200
+        d=1e100.net; s=20221208; t=1683794926; x=1686386926;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=MavG6Kk9Pe4HL8j0/etWioEuDmEHCWaEC1JE6orX7J8=;
+        b=ZPJNGkKvps1ZjPP59a8n9w+XdHCbo+AbXf4519V/tphdS2E1e0h8++0oRqYjCZCGHw
+         hLmmgx46EeyOpKuSpvRpCgH/gzVwBz39P0O6ieUexQF6yDpZmXz5JPqHY9Sezi2lLcdG
+         9gErreZk2sesQmeSpi9AvWs/66FseRpgMLQpgokToQ9FaL9X7/1lvP31xuVpZOUxLiZz
+         +hdqzsVb3gTlKGf6OqJ5Bm4+i9YrYnJKpzM/CeuxesNdLXNdm+8CyZmVfCOFDJ1MDpn3
+         jovk6hmv2zgaJD7DYqcIdMXpqtqUMlKrtQomOW2KvwiO6MmStXInMq6AcMCOqWVPj3Cx
+         xSMg==
+X-Gm-Message-State: AC+VfDxIUvPGL/bdGIg99GsZTUcuwq+w/sKTsj6duCTM/b/geCoraWuO
+        u8pVXC7OFCMsL6nDwI0ITMgntq5W4jkJJMxE9BveBg==
+X-Google-Smtp-Source: ACHHUZ6FxN8xnWtJ2s+Qw/vMfGQbDW2EOFTHMfzqCuWj9Tjx6S+HdeZIbvhZc1lxPKciTJMffPqKPw==
+X-Received: by 2002:a5d:4fd1:0:b0:2f4:e96e:3c86 with SMTP id h17-20020a5d4fd1000000b002f4e96e3c86mr15638478wrw.14.1683794926354;
+        Thu, 11 May 2023 01:48:46 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id z6-20020adff746000000b002f103ca90cdsm19707750wrp.101.2023.05.11.01.48.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 11 May 2023 01:48:46 -0700 (PDT)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+To:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Liu Ying <victor.liu@nxp.com>
+Cc:     sam@ravnborg.org, airlied@gmail.com, daniel@ffwll.ch,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, thierry.reding@gmail.com, linux-imx@nxp.com,
+        krzysztof.kozlowski@linaro.org
+In-Reply-To: <20230508083826.1016206-1-victor.liu@nxp.com>
+References: <20230508083826.1016206-1-victor.liu@nxp.com>
+Subject: Re: [PATCH v2 0/2] drm/panel: panel-simple: Add BOE
+ EV121WXM-N10-1850 panel support
+Message-Id: <168379492556.1992146.7262967209295860985.b4-ty@linaro.org>
+Date:   Thu, 11 May 2023 10:48:45 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v2 5/5] dt-bindings: net: ftgmac100: convert to yaml
- version from txt
-To:     Ivan Mikhaylov <fr0st61te@gmail.com>,
-        Samuel Mendoza-Jonas <sam@mendozajonas.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org
-References: <20230509143504.30382-1-fr0st61te@gmail.com>
- <20230509143504.30382-6-fr0st61te@gmail.com>
- <ec0a3553-2c11-301e-d838-f0bc70353b17@linaro.org>
- <c16f87f8182bdb0a0fe89014e56a32758248baeb.camel@gmail.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <c16f87f8182bdb0a0fe89014e56a32758248baeb.camel@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.2
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -85,31 +76,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/05/2023 02:15, Ivan Mikhaylov wrote:
->>> +  phy-mode:
->>> +    enum:
->>> +      - rgmii
->>> +      - rmii
->>> +
->>> +  phy-handle: true
->>> +
->>> +  use-ncsi:
->>> +    description: |
->>
->> Do not need '|' unless you need to preserve formatting.
->>
->> I will stop review, because it depends whether this is true
->> conversion
->> or new binding.
->>
+Hi,
+
+On Mon, 08 May 2023 16:38:24 +0800, Liu Ying wrote:
+> This patch series aims to add BOE EV121WXM-N10-1850 panel support
+> in the DRM simple panel driver.
 > 
-> I've tried to convert it from ftgmac100.txt, everything is same in it
-> except mac-address-increment option with explanation for which purpose
-> it there, need I divide conversion from that option or is it fine in
-> one?
+> Patch 1/2 adds dt-bindings support for the panel.
+> Patch 2/2 adds the panel support in the DRM simple panel driver.
+> 
+> v1->v2:
+> * Add Krzysztof's A-b tag on patch 1/2.
+> * Use struct display_timing in patch 2/2 to tell minimum and maximum
+>   pixel clock rates.
+> * Set bus_flags to DRM_BUS_FLAG_DE_HIGH in struct panel_desc in patch 2/2.
+> 
+> [...]
 
-As I wrote at beginning, I don't see conversion here, so difficult to judge.
+Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
 
-Best regards,
-Krzysztof
+[1/2] dt-bindings: display: simple: Add BOE EV121WXM-N10-1850 panel
+      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=0bd5bd65cd2e4d1335ea6c17cd2c8664decbc630
+[2/2] drm/panel: panel-simple: Add BOE EV121WXM-N10-1850 panel support
+      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=8bb7c7bca5b70f3cd22d95b4d36029295c4274f6
+
+-- 
+Neil
 
