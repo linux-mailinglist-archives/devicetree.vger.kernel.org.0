@@ -2,169 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4440A6FF9C1
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 21:06:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E70EA6FFA04
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 21:21:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238741AbjEKTG0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 15:06:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35736 "EHLO
+        id S238390AbjEKTVP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 15:21:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233538AbjEKTGZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 15:06:25 -0400
-Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2289E268F;
-        Thu, 11 May 2023 12:06:24 -0700 (PDT)
-Received: by mail-pf1-x436.google.com with SMTP id d2e1a72fcca58-6438d95f447so6340061b3a.3;
-        Thu, 11 May 2023 12:06:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683831983; x=1686423983;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Sh0AlWIaRVTocXAZe3Ut/aMtQv9svxxRfXfLBBk0Wx4=;
-        b=o2ejxLWyLpnih3ioOrAn04UQSQdYjPkDJeiH7zXNuSkUCC+R/d/DMwo+TI/B0IQFrs
-         y0mVfUveezUtVnDpk0WrrodhcLJp9nX/4YtPniMCBtbprHKYnUnXA2tP5UM7kqELA2ZH
-         CkiujqAmi2MkAAm3V8Uz30FKL6OtL5TK+/P6QgmqhHFOHhHElXYtBMnY/JyM2Q6bDktV
-         dMXrmHbab9mjQdJ6s6tv37LDSZ8YJf3oFjLxeChcH8m6GVlgH6gh6KS/HAzgBMd2zERS
-         t54iCg7HvJTT9YpQKQxr3tV6HFE6YckRJLTU9xqxFoscU7nugTpBD7rtEOz+RCbkZy8f
-         PUoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683831983; x=1686423983;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Sh0AlWIaRVTocXAZe3Ut/aMtQv9svxxRfXfLBBk0Wx4=;
-        b=f6q4SDIZJnu6ZS6dYWmQnWjbwJEDrtQCnM05hae8ZSFvHPbG4ZULBil1BZtsi+1DoP
-         U1d9Gr34FUCXL/zH/ZpdGcHguRyYP2ecfPLMqscxtaDzGXa0zHYEVw4iRdj5ya30NBj3
-         vXBjzZCfIBVdvuDBrBpP80D5BmO5+yjxqaFGySqca8qVXAFIZkm6+43+mQ9o52K15y3R
-         hSY2LnrC30jsKVUzwMUw4s3ol7jrklSRdsKpfXQWirfuYY3QNP8wYkfA3enfBYwB3pnW
-         8i+hY/VkcAC7IdZJ2g5M0ir63iV3kkyiM5DHKirQOFs/ZGeJtcdcGXu2mIndYQkH+ne3
-         slLg==
-X-Gm-Message-State: AC+VfDyV4u5GLFcU9fHYByYZNcbODRJ6D5iodF2ai8nTX8WJldfwNAnZ
-        hyKtKsNV3ltcNbtOFeBzCmsRdsFqxEEYAJ7X
-X-Google-Smtp-Source: ACHHUZ4YYyStbfG6gTaisJeeitQLhe2xvGF2dGGEW8SzA7MMR0nGB9Cj7Fyyb749sFiyywv7SzDHiQ==
-X-Received: by 2002:a05:6a20:a113:b0:104:45df:42d8 with SMTP id q19-20020a056a20a11300b0010445df42d8mr1156157pzk.10.1683831983309;
-        Thu, 11 May 2023 12:06:23 -0700 (PDT)
-Received: from yoga ([2400:1f00:13:5d8c:a310:6231:d348:af43])
-        by smtp.gmail.com with ESMTPSA id r11-20020a63fc4b000000b0050be8e0b94csm5272793pgk.90.2023.05.11.12.06.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 May 2023 12:06:22 -0700 (PDT)
-From:   Anup Sharma <anupnewsmail@gmail.com>
-X-Google-Original-From: Anup Sharma <AnupSharma>
-Date:   Fri, 12 May 2023 00:36:15 +0530
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Anup Sharma <anupnewsmail@gmail.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Peter Meerwald <pmeerw@pmeerw.net>, broonie@kernel.org,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: iio: temperature: Add DT bindings for TMP006
-Message-ID: <ZF08pzGPyReL1uAf@yoga>
-References: <ZFvo2TIiPiMFlbXC@yoga>
- <fc104fdd-3894-aa94-12dc-4c73b26d4159@linaro.org>
+        with ESMTP id S231633AbjEKTVO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 15:21:14 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A2EC10C9;
+        Thu, 11 May 2023 12:21:13 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0797B650EA;
+        Thu, 11 May 2023 19:21:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E670C433D2;
+        Thu, 11 May 2023 19:21:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1683832872;
+        bh=MJODu8cjkXd6OoV0TmVTxhOZBvGy+7TMYzFGXyH5VYI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=DlVvLRfwPacQywkHeT/JHDv3yu9Tj//cfXhlpXTon41JA+Nfwjreym7+i2DeCO/wY
+         0iSug93frk80OT1fgPtM77WbI/jEO42Abgbrn378TcHcHqgvUcUooYk7CPYBerqccC
+         JlQRx0icWvUyeuej3XLJK5UJsy53fnx+ZUXmc7Wn8oW2Qd2pijw4DnBTPjJLVz8STq
+         qlNnmFnQiGq6LSm2kqi52xSY3DnXMrWwGE/sNDMwvCzoynASVYpm3rb87m6XutvG1P
+         1cHjhUONgjSXpVn3kwP8lLvcWlDqrda8bVcieH8TWZVDHyqxejWMTPvM/ktJnNynVy
+         oX9/ZwaSE7IBw==
+Date:   Thu, 11 May 2023 20:21:07 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Peter De Schrijver <pdeschrijver@nvidia.com>
+Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org, stefank@nvidia.com
+Subject: Re: [PATCH v4 4/6] dt-bindings: Add support for DRAM MRQ GSCs
+Message-ID: <20230511-carnivore-legend-17206803d713@spud>
+References: <20230511132048.1122075-1-pdeschrijver@nvidia.com>
+ <20230511132048.1122075-5-pdeschrijver@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="ucUeK4weGJVTHNSS"
 Content-Disposition: inline
-In-Reply-To: <fc104fdd-3894-aa94-12dc-4c73b26d4159@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230511132048.1122075-5-pdeschrijver@nvidia.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 11, 2023 at 11:28:50AM +0200, Krzysztof Kozlowski wrote:
-> On 10/05/2023 20:56, Anup Sharma wrote:
-> > Add devicetree binding document for TMP006, IR thermopile sensor.
-> 
-> Why? Where is any user of this? DTS? Driver?
-> 
 
-The support for TMP006 is available at driver/iio/temperature
+--ucUeK4weGJVTHNSS
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> Subject: drop second/last, redundant "DT bindings for". The
-> "dt-bindings" prefix is already stating that these are bindings.
->
+On Thu, May 11, 2023 at 04:20:49PM +0300, Peter De Schrijver wrote:
+> Add bindings for DRAM MRQ GSC support.
+>=20
+> Co-developed-by: Stefan Kristiansson <stefank@nvidia.com>
+> Signed-off-by: Stefan Kristiansson <stefank@nvidia.com>
+> Signed-off-by: Peter De Schrijver <pdeschrijver@nvidia.com>
 
-Okay, will take care in v2. 
+Perhaps Krzysztof will disagree, but looks fine to me, with some minor
+remarks below.
+Just to note, I didn't get the cover letter & therefore didn't get the
+changelog :/
+I know you had a back and forth with him about that, *my* =E2=82=AC0.02 is =
+that
+either you put the changelog in the cover & send it to everyone, or you
+put it in each patch.
 
-> > 
-> > Signed-off-by: Anup Sharma <anupnewsmail@gmail.com>
-> > ---
-> >  .../bindings/iio/temperature/ti,tmp006.yaml   | 38 +++++++++++++++++++
-> >  1 file changed, 38 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/iio/temperature/ti,tmp006.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/iio/temperature/ti,tmp006.yaml b/Documentation/devicetree/bindings/iio/temperature/ti,tmp006.yaml
-> > new file mode 100644
-> > index 000000000000..c6c5a4d10898
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/iio/temperature/ti,tmp006.yaml
-> > @@ -0,0 +1,38 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/iio/temperature/ti,tmp006.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: TI TMP006 IR thermopile sensor
-> > +
-> > +maintainers:
-> > +  - Peter Meerwald <pmeerw@pmeerw.net>
-> > +
-> > +description: |
-> > +  TI TMP006 - Infrared Thermopile Sensor in Chip-Scale Package.
-> > +  https://cdn.sparkfun.com/datasheets/Sensors/Temp/tmp006.pdf
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: ti,tmp006
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> 
-> Missing supply.
->
+> ---
+>  .../nvidia,tegra264-bpmp-shmem.yaml           | 47 +++++++++++++++++++
+>  1 file changed, 47 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/reserved-memory/nvi=
+dia,tegra264-bpmp-shmem.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/reserved-memory/nvidia,teg=
+ra264-bpmp-shmem.yaml b/Documentation/devicetree/bindings/reserved-memory/n=
+vidia,tegra264-bpmp-shmem.yaml
+> new file mode 100644
+> index 000000000000..4087459c01db
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/reserved-memory/nvidia,tegra264-b=
+pmp-shmem.yaml
+> @@ -0,0 +1,47 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/reserved-memory/nvidia,tegra264-bpmp-=
+shmem.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Tegra CPU-NS - BPMP IPC reserved memory
+> +
+> +maintainers:
+> +  - Peter De Schrijver <pdeschrijver@nvidia.com>
+> +
+> +description: |
 
-Will add in v2.
+You don't appear to have any formatting to preserve, so the | is not
+needed.
 
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    i2c {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +        tmp006@40 {
-> 
-> Node names should be generic.
-> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-> 
-> temperature-sensor?
->
+> +  Define a memory region used for communication between CPU-NS and BPMP.
+> +  Typically this node is created by the bootloader as the physical addre=
+ss
+> +  has to be known to both CPU-NS and BPMP for correct IPC operation.
+> +  The memory region is defined using a child node under /reserved-memory.
+> +  The sub-node is named shmem@<address>.
+> +
+> +allOf:
+> +  - $ref: reserved-memory.yaml
+> +
+> +properties:
+> +  compatible:
+> +    const: nvidia,tegra264-bpmp-shmem
+> +
+> +  reg:
+> +    description: The physical address and size of the shared SDRAM region
+> +
+> +unevaluatedProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - no-map
+> +
+> +examples:
+> +  - |
+> +    reserved-memory {
+> +       #address-cells =3D <2>;
+> +       #size-cells =3D <2>;
 
-Thanks, I have noticed that out of the 8 temperature sensor bindings,
-5 are using 'temp-sensor' as the node name, 2 are using 'temperature-sensor',
-and 1 is non-generic. According to this docs generic names recommendation
-'temperature-sensor' seems to be ideal node name. Should I also proceed
-updating all the temperature sensor's node names to a generic format?
+You also do not need these size/address-cells, because...
 
-> > +            compatible = "ti,tmp006";
-> > +            reg = <0x40>;
-> > +        };
-> > +    };
-> 
-> Best regards,
-> Krzysztof
-> 
+> +       dram_cpu_bpmp_mail: shmem@f1be0000  {
+(nit: double space                          ^^)
+
+> +           compatible =3D "nvidia,tegra264-bpmp-shmem";
+> +           reg =3D <0x0 0xf1be0000 0x0 0x2000>;
+
+=2E..the 64-bit registers here are both 0x0.
+
+With those fixed:
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Cheers,
+Conor.
+
+> +           no-map;
+> +       };
+> +    };
+> +...
+> --=20
+> 2.34.1
+>=20
+
+--ucUeK4weGJVTHNSS
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZF1AIwAKCRB4tDGHoIJi
+0hbVAPoC6OwAmplzwpoHvCInrWR1V+vNUoeq0VCpxoxhwlYCiAEAyZ7YPJfcr4GB
+kA8X40rOpyVck/Forfn6KiNw7KrzJgo=
+=+I2s
+-----END PGP SIGNATURE-----
+
+--ucUeK4weGJVTHNSS--
