@@ -2,80 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE6EE6FF857
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 19:23:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 415EA6FF867
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 19:30:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238890AbjEKRXs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 13:23:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55418 "EHLO
+        id S238720AbjEKRa1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 13:30:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238898AbjEKRXq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 13:23:46 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7CE41FF5
-        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 10:23:43 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-50bd2d7ba74so81528309a12.1
-        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 10:23:43 -0700 (PDT)
+        with ESMTP id S238397AbjEKRa0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 13:30:26 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A052540C1
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 10:30:24 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4f13d8f74abso10067962e87.0
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 10:30:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683825822; x=1686417822;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TErA49NYnxkJrT15NELOp4zXx8Zgys2cWf79xIMHURc=;
-        b=AGBX1B84cJTPrv7C77dVONKvFs5a7h9Iq6gULlPPrYDCu5EVPE8/TLOM9lHn4Slmbw
-         yK1Cy8E60Hv4e+y9lqk2vhrfOCKlvG+DeyUzI1y0LyiRzPwcUHZumx9HkT8AbYsgxGlq
-         NI9PtUWXfcTxZzyAXHPlxUFhJAWIksfA/H8WNqTZKX3IraOcU0527ySm7PjW91orc0yP
-         x9iVml5lTljm/vA01qQzm0yw/Fi7w+IAVrpwo6qPlUEQLkhiPXBAqoHs92V7UsMVnH8O
-         0PQcBl/ooM3+SvKsAIFn2d5YyMUZEi63R3dUtCbD0k+imRR6pYNweRblBdA6McaGwA0o
-         6OKA==
+        d=chromium.org; s=google; t=1683826223; x=1686418223;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:user-agent
+         :from:references:in-reply-to:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Fg8PRT8lkm3NPG8eSAKVMEE5ErkK9HmIXAxn27oczZs=;
+        b=VTN9N0z2GsuFCm4SJGRZ/zR2tPa24eBCC8JF2Hft6EJmkWPX/s3vIUK4nuG5n5nWJ/
+         nE/e05S270+8cRS2tYdJs2Oq8VIqYR15aXaig9dVHs/hRxEYwBrYUfy1bKvdJlthMIgP
+         nHUCLIrXHx9Fuyug8KFKu9/7cfowMEhPOmw0I=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683825822; x=1686417822;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TErA49NYnxkJrT15NELOp4zXx8Zgys2cWf79xIMHURc=;
-        b=Jos6cjvHrWbPOC9+ZvWYaPUuFsJcXoVaC0vTtiDyunXNCkmU3vM9c9Dq6DIGNq+7l+
-         wgqSLRDQ9qVnsyyz742svUN32OhivwSOYDTLS1o3ZTieW4eU4+5LjtGlfkZVt+gV8mFQ
-         5GcKtghzIcdN1r5T5LR8oxCDYHA/jEfM4n5Ud7A9+i3GpYb+3LB84SsYyeIoQSSu2hT+
-         4wRnblAo/zMoLiIN//Ny2KXaLmGHKeY+zHyBYYL0TDIHjEWtl/SmxGONWtCNAHBME021
-         eqVucohVoj3f+OdL5wCet789xuGMDVfwfiHvCMkLEkiUjpIvrBoHpie+hFTz6ROLtNi2
-         /N/w==
-X-Gm-Message-State: AC+VfDxBByMeInF0+D1k6P8oFWmXqxFnLRE6A+80JKKsV2tDxqZ50VfU
-        ipeeQji0kpCI9T0YfmDpB2EK3w==
-X-Google-Smtp-Source: ACHHUZ4W7brRdywxNtA1AHqGbss0GVjRpLvl5ZibG8uLHCJ797zlonRIK3xeFxDgGnsU0kfYDzgKow==
-X-Received: by 2002:aa7:cb11:0:b0:504:a3ec:eacc with SMTP id s17-20020aa7cb11000000b00504a3eceaccmr19160559edt.4.1683825822055;
-        Thu, 11 May 2023 10:23:42 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:d7cd:1be6:f89d:7218? ([2a02:810d:15c0:828:d7cd:1be6:f89d:7218])
-        by smtp.gmail.com with ESMTPSA id p2-20020a056402044200b0050bcb6cf16asm3173262edw.41.2023.05.11.10.23.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 May 2023 10:23:41 -0700 (PDT)
-Message-ID: <1b3b58b9-b441-f04f-a3e1-8b5fb7f19f9d@linaro.org>
-Date:   Thu, 11 May 2023 19:23:40 +0200
+        d=1e100.net; s=20221208; t=1683826223; x=1686418223;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:user-agent
+         :from:references:in-reply-to:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Fg8PRT8lkm3NPG8eSAKVMEE5ErkK9HmIXAxn27oczZs=;
+        b=MipCd85z+mWScOsoN7Nbv/BDtDedtkAXeWJMQUvtG7ebML/ueIwrc8UX19i68JDqCn
+         4lYP+tuGzmYXCu3LAgGj3iY7usIrj7ROoHGcZ3FRyrNnXnkPZ7slrl3w9rrtx8GQSO11
+         e/ZbGVPUoo6pKobFABmOhlfbW7iCaenQO89DwlZfZjNmC24SJUl/5WjdZTgpNAEiuQVb
+         4pYEXYpGXkAVZbZGnDpIvxcXdV2g6xINldUKjBERK24wl/PsD70EcqoXCl30HxpgYCEO
+         uo/I7tQB0INSJcZ4eSDA/Kv2jleBbKNO0gcZqpRJ6zkKwK2tYIo0bdCyXszDbchbFgty
+         4NiQ==
+X-Gm-Message-State: AC+VfDww2lAkr30fIEA84FNLDnp0ANx/l1C3PmL3RnshwMoLnzfBoXox
+        Vgynf+7PbNsMPhAcIAOk1yN95uCnVvRAqu32op6hdg==
+X-Google-Smtp-Source: ACHHUZ7+DsiBLVL+G+PyPSCvDv2Rf18Jgj9RceQGNCWvdyWZ2Go6iibCk0Ty1ltmNZIOPyj9kaUmS6Hr2h/EYJZZLAM=
+X-Received: by 2002:ac2:4302:0:b0:4f1:26f5:780c with SMTP id
+ l2-20020ac24302000000b004f126f5780cmr2687173lfh.13.1683826222788; Thu, 11 May
+ 2023 10:30:22 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 11 May 2023 10:30:22 -0700
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 2/2] arm64: dts: freescale: Add imx8mp-venice-gw7905-2x
-Content-Language: en-US
-To:     Tim Harvey <tharvey@gateworks.com>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
+In-Reply-To: <CAEXTbpcWfYV_58pw_VupjhAFZsUU3pkLRN_8JoASyLLBmgTYqQ@mail.gmail.com>
+References: <20230331091145.737305-1-treapking@chromium.org>
+ <20230331091145.737305-5-treapking@chromium.org> <CAE-0n51E5foFWQAsA73662_5e6XP426wuUCVVmcS5UWwiYpDmw@mail.gmail.com>
+ <CAEXTbpdcbB_z4ZGCGzc-cM74ECKyxekbroKCWFnhH8eR=4HmvA@mail.gmail.com>
+ <CAE-0n50atfmr-bFh5XtTCm4WpSijJGSe0B5JP8ni7CCYk7Bs5A@mail.gmail.com>
+ <CAE-0n51Qy-KDGHOCr4Smpebq1fCURqvJ2RJz6KAtVpv5e+DSGA@mail.gmail.com>
+ <CAEXTbpeKe1dVHp9cauMN-9nQb35oJ-ZhdFV-8BiWzjjhWAy0Zg@mail.gmail.com>
+ <CAE-0n50bj303jou==v6eMabrZ3EL6Cq7tPJmCj9vM_B7FA8s2g@mail.gmail.com> <CAEXTbpcWfYV_58pw_VupjhAFZsUU3pkLRN_8JoASyLLBmgTYqQ@mail.gmail.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Thu, 11 May 2023 10:30:22 -0700
+Message-ID: <CAE-0n51i0kzSKYeUtzLV93miq2GcN1APDYh18p4wr9XxWGrfWA@mail.gmail.com>
+Subject: Re: [PATCH v15 04/10] dt-bindings: display: bridge: anx7625: Add
+ mode-switch support
+To:     Pin-yen Lin <treapking@chromium.org>
+Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Benson Leung <bleung@chromium.org>,
+        Daniel Scally <djrscally@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230511171041.4011087-1-tharvey@gateworks.com>
- <20230511171041.4011087-2-tharvey@gateworks.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230511171041.4011087-2-tharvey@gateworks.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Prashant Malani <pmalani@chromium.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Xin Ji <xji@analogixsemi.com>, Marek Vasut <marex@denx.de>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Lyude Paul <lyude@redhat.com>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, linux-acpi@vger.kernel.org,
+        chrome-platform@lists.linux.dev,
+        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
+        <nfraprado@collabora.com>,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Chen-Yu Tsai <wenst@chromium.org>, jagan@amarulasolutions.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,298 +106,104 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/05/2023 19:10, Tim Harvey wrote:
-> The Gateworks imx8mp-venice-gw7905-2x consists of a SOM + baseboard.
-> 
-> The GW702x SOM contains the following:
->  - i.MX8M Plus SoC
->  - LPDDR4 memory
->  - eMMC Boot device
->  - Gateworks System Controller (GSC) with integrated EEPROM, button
->    controller, and ADC's
->  - PMIC
->  - RGMII PHY (eQoS)
->  - SOM connector providing:
->   - eQoS GbE MII
->   - 1x SPI
->   - 2x I2C
->   - 4x UART
->   - 2x USB 3.0
->   - 1x PCI
->   - 1x SDIO (4-bit 3.3V)
->   - 1x SDIO (4-bit 3.3V/1.8V)
->   - GPIO
-> 
-> The GW7905 Baseboard contains the following:
->  - GPS
->  - microSD
->  - off-board I/O connector with I2C, SPI, GPIO
->  - EERPOM
->  - PCIe clock generator
->  - 1x full-length miniPCIe socket with PCI/USB3 (via mux) and USB2.0
->  - 1x half-length miniPCIe socket with USB2.0 and USB3.0
->  - USB 3.0 HUB
->  - USB Type-C with USB PD Sink capability and peripheral support
->  - USB Type-C with USB 3.0 host support
-> 
-> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
-> ---
->  .../dts/freescale/imx8mp-venice-gw702x.dtsi   | 589 ++++++++++++++++++
->  .../dts/freescale/imx8mp-venice-gw7905-2x.dts |  28 +
->  .../dts/freescale/imx8mp-venice-gw7905.dtsi   | 358 +++++++++++
+Quoting Pin-yen Lin (2023-05-09 20:41:54)
+> On Sat, Apr 29, 2023 at 12:47=E2=80=AFPM Stephen Boyd <swboyd@chromium.or=
+g> wrote:
+> >
+> > Good point. I'm suggesting to make the drm bridge chain into a tree. We
+> > need to teach drm_bridge core about a mux, and have some logic to
+> > navigate atomically switching from one output to another. I was talking
+> > with dianders@ and he was suggesting to use bridge attach/detach for
+> > this. I'm not sure that will work though because that hook is only
+> > called when the encoder is attached to the bridge.
+> >
+> > It may also turn out that this helps with DP multi-stream transport
+> > (MST). As far as I can recall DP MST doesn't mesh well with drm_bridge
+> > designs because it wants to operate on a drm_connector and
+> > drm_bridge_connector_init() wants to make only one drm_connector for a
+> > chain of bridges. If you squint, the anx7625 could be an MST "branch"
+> > that only supports one drm_connector being enabled at a time. Maybe tha=
+t
+> > is what we should do here, make drm_bridge support creating more than
+> > one drm_connector and when there is a mux in the tree it walks both
+> > sides and runs a callback similar to struct
+> > drm_dp_mst_topology_cbs::add_connector() to tell the encoder that
+> > there's another possible drm_connector here.
+>
+> I have been surveying the approaches to change the bridge chain in
+> runtime, and I found this thread[1]. Quoting from Daniel:
 
+I find the lore links easier to read.
 
-How do you compile it? Missing Makefile. This also suggests that maybe
-you did not test it with dtbs_check...
+> "... exchanging the bridge chain isn't supported, there's no locking
+> for that since it's assumed to be invariant over the lifetime of the
+> drm_device instance. The simplest way to make that happen right now is to
+> have 2 drm_encoder instances, one with the lvds bridge chain, the other
+> with the hdmi bridge chain, and select the right encoder/bridge chain
+> depending upon which output userspace picks.
+> ...
+> I wouldn't try to make bridge chains exchangeable instead, that's
+> headaches - e.g. with dp mst we've also opted for a bunch of fake
+> drm_encoders to model that kind of switching."
+>
+> I'm not sure how we register two encoders properly, though. Do we make
+> the encoder driver check all the downstream bridges and register two
+> drm_encoder when a bridge is acting as a mux?
 
+I honestly don't know because I'm not a DRM expert. Maybe Jagan or DRM
+bridge maintainers can add to the thread here.
 
->  3 files changed, 975 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-venice-gw702x.dtsi
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905-2x.dts
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905.dtsi
+I kept reading the thread[2] and I think they settled on 2 drm_encoders
+because they're different display formats (LVDS vs. HDMI) and 2
+drm_connector structures. But then I watched the youtube video from this
+thread[3] and it seems like 1 drm_encoder is actually what should be
+done because there is really only DSI at the root. There's at least
+three people working on this topic of muxing displays though. Good news?
 
-...
+The analogy between their gpio controlled mux and this anx part with a
+crosspoint switch is that the gpio is like the crosspoint switch, but
+the gpio is like a virtual mux? If the gpio is asserted for them, one
+display bridge is enabled (HDMI) and the other one is not (LVDS).
 
-> +	gsc: gsc@20 {
-> +		compatible = "gw,gsc";
-> +		reg = <0x20>;
-> +		pinctrl-0 = <&pinctrl_gsc>;
-> +		interrupt-parent = <&gpio2>;
-> +		interrupts = <6 IRQ_TYPE_EDGE_FALLING>;
-> +		interrupt-controller;
-> +		#interrupt-cells = <1>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		adc {
-> +			compatible = "gw,gsc-adc";
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			channel@6 {
-> +				gw,mode = <0>;
-> +				reg = <0x06>;
-> +				label = "temp";
-> +			};
-> +
-> +			channel@8 {
-> +				gw,mode = <1>;
-> +				reg = <0x08>;
-> +				label = "vdd_bat";
-> +			};
-> +
-> +			channel@16 {
-> +				gw,mode = <4>;
-> +				reg = <0x16>;
-> +				label = "fan_tach";
-> +			};
-> +
-> +			channel@82 {
-> +				gw,mode = <2>;
-> +				reg = <0x82>;
-> +				label = "vdd_vin";
-> +				gw,voltage-divider-ohms = <22100 1000>;
-> +			};
-> +
-> +			channel@84 {
-> +				gw,mode = <2>;
-> +				reg = <0x84>;
-> +				label = "vdd_adc1";
-> +				gw,voltage-divider-ohms = <10000 10000>;
-> +			};
-> +
-> +			channel@86 {
-> +				gw,mode = <2>;
-> +				reg = <0x86>;
-> +				label = "vdd_adc2";
-> +				gw,voltage-divider-ohms = <10000 10000>;
-> +			};
-> +
-> +			channel@88 {
-> +				gw,mode = <2>;
-> +				reg = <0x88>;
-> +				label = "vdd_1p0";
-> +			};
-> +
-> +			channel@8c {
-> +				gw,mode = <2>;
-> +				reg = <0x8c>;
-> +				label = "vdd_1p8";
-> +			};
-> +
-> +			channel@8e {
-> +				gw,mode = <2>;
-> +				reg = <0x8e>;
-> +				label = "vdd_2p5";
-> +			};
-> +
-> +			channel@90 {
-> +				gw,mode = <2>;
-> +				reg = <0x90>;
-> +				label = "vdd_3p3";
-> +				gw,voltage-divider-ohms = <10000 10000>;
-> +			};
-> +
-> +			channel@92 {
-> +				gw,mode = <2>;
-> +				reg = <0x92>;
-> +				label = "vdd_dram";
-> +			};
-> +
-> +			channel@98 {
-> +				gw,mode = <2>;
-> +				reg = <0x98>;
-> +				label = "vdd_soc";
-> +			};
-> +
-> +			channel@9a {
-> +				gw,mode = <2>;
-> +				reg = <0x9a>;
-> +				label = "vdd_arm";
-> +			};
-> +
-> +			channel@a2 {
-> +				gw,mode = <2>;
-> +				reg = <0xa2>;
-> +				label = "vdd_gsc";
-> +				gw,voltage-divider-ohms = <10000 10000>;
-> +			};
-> +		};
-> +
-> +		fan-controller@0 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
+In this case, the type-c cables may be connected to both
+usb-c-connectors and HPD may be asserted on both, but only one
+drm_connector will be able to attach to the 1 drm_encoder at a time. If
+we had 2 drm_encoders it would be possible to attach both encoders to
+both drm_connectors at the same time, which is impossible because it's a
+mux. Indicating that each connector is connected is OK when HPD is high
+on both usb-c-connectors. Userspace will have to attach an encoder to
+the drm_connector it wants to use, and the drm_connector will indicate
+which drm_encoders are possible for it, so all the information will be
+provided to userspace in this design.
 
-Why do you need these two? I know binding expects them, but why? Anyway
-compatible is first, reg is second property.
+I think it really comes down to implementing the tree walking logic in
+the drm bridge APIs. The problem is things like
+drm_bridge_get_next_bridge(), drm_bridge_get_prev_bridge(), and
+drm_for_each_bridge_in_chain() which will have to operate on a tree
+instead of a list. There's also drm_bridge_chain_get_first_bridge() and
+drm_bridge_attach(). The good news is most of these APIs are used
+sparingly.
 
+Maybe the simplest way to handle this is to maintain a tree of bridges
+and generate bridge chains when an encoder is attached to a connector in
+the tree. Presumably there is only one connector possible for a leaf of
+the bridge tree, and one encoder at the root of the bridge chain. From
+the drm_bridge structure, you'll only be able to iterate over the bridge
+chain that is currently configured. Same for the encoder, you'll only be
+able to walk the currently configured bridge chain from struct
+drm_encoder::bridge_chain.
 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905-2x.dts b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905-2x.dts
-> new file mode 100644
-> index 000000000000..4a1bbbbe19e6
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905-2x.dts
-> @@ -0,0 +1,28 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright 2023 Gateworks Corporation
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "imx8mp.dtsi"
-> +#include "imx8mp-venice-gw702x.dtsi"
-> +#include "imx8mp-venice-gw7905.dtsi"
-> +
-> +/ {
-> +	model = "Gateworks Venice GW7905-2x i.MX8MP Development Kit";
-> +	compatible = "gateworks,imx8mp-gw7905-2x", "fsl,imx8mp";
-> +
-> +	chosen {
-> +		stdout-path = &uart2;
-> +	};
-> +};
-> +
-> +/* Disable SOM interfaces not used on baseboard */
-> +&eqos {
-> +	status = "disabled";
-> +};
-> +
-> +&usdhc1 {
-> +	status = "disabled";
-> +};
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905.dtsi
-> new file mode 100644
-> index 000000000000..479190a6391f
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905.dtsi
-> @@ -0,0 +1,358 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright 2023 Gateworks Corporation
-> + */
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/leds/common.h>
-> +#include <dt-bindings/phy/phy-imx8-pcie.h>
-> +
-> +/ {
-> +	aliases {
-> +		ethernet0 = &eqos;
-> +	};
-> +
-> +	led-controller {
-> +		compatible = "gpio-leds";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_gpio_leds>;
-> +
-> +		led-0 {
-> +			function = LED_FUNCTION_STATUS;
-> +			color = <LED_COLOR_ID_GREEN>;
-> +			gpios = <&gpio4 22 GPIO_ACTIVE_HIGH>;
-> +			default-state = "on";
-> +			linux,default-trigger = "heartbeat";
-> +		};
-> +
-> +		led-1 {
-> +			function = LED_FUNCTION_STATUS;
-> +			color = <LED_COLOR_ID_RED>;
-> +			gpios = <&gpio4 27 GPIO_ACTIVE_HIGH>;
-> +			default-state = "off";
-> +		};
-> +	};
-> +
-> +	pcie0_refclk: pcie0-refclk {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <100000000>;
-> +	};
-> +
-> +	pps {
-> +		compatible = "pps-gpio";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_pps>;
-> +		gpios = <&gpio4 21 GPIO_ACTIVE_HIGH>;
-> +		status = "okay";
-> +	};
-> +
-> +	reg_usb2_vbus: regulator-usb2-vbus {
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_reg_usb2_en>;
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "usb2_vbus";
-> +		gpio = <&gpio4 12 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +	};
-> +
-> +	reg_usdhc2_vmmc: regulator-usdhc2 {
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_reg_usdhc2_vmmc>;
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "SD2_3P3V";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
-> +
+This hinges on the idea that the bridge_chain is a list, not a tree, and
+that it only needs to exist when an encoder is attached to a connector.
+When an encoder isn't attached to a connector the bridges will be in the
+tree, and probably that tree structure will be maintained in the bridge
+driver itself knowing that there is one input side bridge and two output
+side bridges. When the input bridge is attached, it should be able to
+query the output side bridges for the connector that the encoder is
+attaching to and configure the mux and hook the input bridge to the
+correct output bridge.
 
-Drop stay blank line
-
-> +};
-> +
-> +/* off-board header */
-> +&ecspi2 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_spi2>;
-> +	cs-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
-> +	status = "okay";
-> +};
-
-
-
-Best regards,
-Krzysztof
-
+[2] https://lore.kernel.org/all/CAPj87rO7a=3DNbarOyZp1pE=3D19Lf2aGjWu7sru-e=
+HwGjX0fpN+-A@mail.gmail.com/
+[3] https://lore.kernel.org/all/CAMty3ZAQyADGLVcB13qJdEy_BiZEKpyDfCr9QrM-uc=
+FLFPZLcw@mail.gmail.com/
