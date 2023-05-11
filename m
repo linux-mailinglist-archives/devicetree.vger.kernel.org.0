@@ -2,574 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 69FA76FF56B
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 17:06:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E6686FF589
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 17:09:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238363AbjEKPG1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 11:06:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34386 "EHLO
+        id S238538AbjEKPJW convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 11 May 2023 11:09:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238518AbjEKPG0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 11:06:26 -0400
-Received: from hutie.ust.cz (unknown [IPv6:2a03:3b40:fe:f0::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EC0A10FA;
-        Thu, 11 May 2023 08:06:23 -0700 (PDT)
-From:   =?UTF-8?q?Martin=20Povi=C5=A1er?= <povik+lin@cutebit.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
-        t=1683817579; bh=cV/aQYkR5cM/rKm67ytuepltXaaABvz64sPUV6o+vGU=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=WzEXWxda0oh9aquHqBKdyJNaZKZVnFcTaafbfXT7td/m7mi0JlPLJS6HbhogiRLj1
-         TuuqoavAhCoRER3QMYJO5fPrji7fUS33MU5z0cgLb58N1752i7E3mciy1wzJsqVBiV
-         yaOvFSCcmscxdtkAvhcxSo/Kvs9d5LVYhL+1Pjo4=
-To:     =?UTF-8?q?Martin=20Povi=C5=A1er?= <povik+lin@cutebit.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>
-Cc:     asahi@lists.linux.dev, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] ASoC: ssm3515: Add new amp driver
-Date:   Thu, 11 May 2023 17:05:46 +0200
-Message-Id: <20230511150546.8499-3-povik+lin@cutebit.org>
-In-Reply-To: <20230511150546.8499-1-povik+lin@cutebit.org>
-References: <20230511150546.8499-1-povik+lin@cutebit.org>
+        with ESMTP id S238499AbjEKPJS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 11:09:18 -0400
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD1B03C12
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 08:09:12 -0700 (PDT)
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34BF1fa8001471;
+        Thu, 11 May 2023 11:09:09 -0400
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3qgbybgm1s-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 11 May 2023 11:09:06 -0400
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 34BF8gjb051152
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 11 May 2023 11:08:42 -0400
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Thu, 11 May 2023 11:08:41 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Thu, 11 May 2023 11:08:41 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Thu, 11 May 2023 11:08:41 -0400
+Received: from nsa.ad.analog.com ([10.44.3.102])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 34BF8YRi027099;
+        Thu, 11 May 2023 11:08:37 -0400
+From:   Nuno Sa <nuno.sa@analog.com>
+To:     <devicetree@vger.kernel.org>
+CC:     Frank Rowand <frowand.list@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: [RFC PATCH 0/1] of: dynamic: allow freeing of_nodes after the overlay changeset
+Date:   Thu, 11 May 2023 17:10:46 +0200
+Message-ID: <20230511151047.1779841-1-nuno.sa@analog.com>
+X-Mailer: git-send-email 2.40.1
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_FAIL,SPF_HELO_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8BIT
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: gE4yYpfgToApT9UQrKU9KS_kkmnmbtqM
+X-Proofpoint-GUID: gE4yYpfgToApT9UQrKU9KS_kkmnmbtqM
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-11_12,2023-05-05_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 phishscore=0
+ impostorscore=0 spamscore=0 lowpriorityscore=0 mlxscore=0
+ priorityscore=1501 clxscore=1015 mlxlogscore=378 adultscore=0 bulkscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2305110131
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Analog Devices' SSM3515 is a mono audio amplifier with digital
-input, equipped on Apple's 2021 iMacs. Add an ASoC driver for it, and
-register both the driver code and schema in MAINTAINERS.
+There are valid cases where we might get in here with an unexpected
+refcount. One example are devlinks between suppliers <-> consumers.
+When a link is created, it will grab a reference to both the supplier and
+the consumer devices (which can, potentially, hold a reference to it's
+of_node) and this reference is not synchronously dropped when unbinding the
+device from the driver. Instead, a work item is queued (see
+devlink_dev_release()). This async nature will make that
+__of_changeset_entry_destroy() is reached with a refcount > 1. But,
+eventually, all the refcounts are released and of_node_release() is
+reached.
 
-Signed-off-by: Martin Povišer <povik+lin@cutebit.org>
----
- MAINTAINERS                |   2 +
- sound/soc/codecs/Kconfig   |   6 +
- sound/soc/codecs/Makefile  |   2 +
- sound/soc/codecs/ssm3515.c | 448 +++++++++++++++++++++++++++++++++++++
- 4 files changed, 458 insertions(+)
- create mode 100644 sound/soc/codecs/ssm3515.c
+All the above will lead to leaks and the following dumps:
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 460f953f331b..78136300b026 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1990,9 +1990,11 @@ M:	Martin Povišer <povik+lin@cutebit.org>
- L:	asahi@lists.linux.dev
- L:	alsa-devel@alsa-project.org (moderated for non-subscribers)
- S:	Maintained
-+F:	Documentation/devicetree/bindings/sound/adi,ssm3515.yaml
- F:	Documentation/devicetree/bindings/sound/apple,*
- F:	sound/soc/apple/*
- F:	sound/soc/codecs/cs42l83-i2c.c
-+F:	sound/soc/codecs/ssm3515.c
- 
- ARM/ARTPEC MACHINE SUPPORT
- M:	Jesper Nilsson <jesper.nilsson@axis.com>
-diff --git a/sound/soc/codecs/Kconfig b/sound/soc/codecs/Kconfig
-index 8020097d4e4c..d5665c21b6f3 100644
---- a/sound/soc/codecs/Kconfig
-+++ b/sound/soc/codecs/Kconfig
-@@ -1652,6 +1652,12 @@ config SND_SOC_SSM2602_I2C
- 	select SND_SOC_SSM2602
- 	select REGMAP_I2C
- 
-+config SND_SOC_SSM3515
-+	tristate "Analog Devices SSM3515 amplifier driver"
-+	select REGMAP_I2C
-+	depends on I2C
-+	depends on OF
-+
- config SND_SOC_SSM4567
- 	tristate "Analog Devices ssm4567 amplifier driver support"
- 	depends on I2C
-diff --git a/sound/soc/codecs/Makefile b/sound/soc/codecs/Makefile
-index 5cdbae88e6e3..8a35bc01c486 100644
---- a/sound/soc/codecs/Makefile
-+++ b/sound/soc/codecs/Makefile
-@@ -256,6 +256,7 @@ snd-soc-ssm2518-objs := ssm2518.o
- snd-soc-ssm2602-objs := ssm2602.o
- snd-soc-ssm2602-spi-objs := ssm2602-spi.o
- snd-soc-ssm2602-i2c-objs := ssm2602-i2c.o
-+snd-soc-ssm3515-objs := ssm3515.o
- snd-soc-ssm4567-objs := ssm4567.o
- snd-soc-sta32x-objs := sta32x.o
- snd-soc-sta350-objs := sta350.o
-@@ -623,6 +624,7 @@ obj-$(CONFIG_SND_SOC_SSM2518)	+= snd-soc-ssm2518.o
- obj-$(CONFIG_SND_SOC_SSM2602)	+= snd-soc-ssm2602.o
- obj-$(CONFIG_SND_SOC_SSM2602_SPI)	+= snd-soc-ssm2602-spi.o
- obj-$(CONFIG_SND_SOC_SSM2602_I2C)	+= snd-soc-ssm2602-i2c.o
-+obj-$(CONFIG_SND_SOC_SSM3515)	+= snd-soc-ssm3515.o
- obj-$(CONFIG_SND_SOC_SSM4567)	+= snd-soc-ssm4567.o
- obj-$(CONFIG_SND_SOC_STA32X)   += snd-soc-sta32x.o
- obj-$(CONFIG_SND_SOC_STA350)   += snd-soc-sta350.o
-diff --git a/sound/soc/codecs/ssm3515.c b/sound/soc/codecs/ssm3515.c
-new file mode 100644
-index 000000000000..784e890031a4
---- /dev/null
-+++ b/sound/soc/codecs/ssm3515.c
-@@ -0,0 +1,448 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
-+//
-+// Analog Devices' SSM3515 audio amp driver
-+//
-+// Copyright (C) The Asahi Linux Contributors
-+
-+#include <linux/bits.h>
-+#include <linux/bitfield.h>
-+#include <linux/device.h>
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/regmap.h>
-+
-+#include <sound/pcm.h>
-+#include <sound/pcm_params.h>
-+#include <sound/soc.h>
-+#include <sound/tlv.h>
-+
-+
-+#define SSM3515_PWR		0x00
-+#define SSM3515_PWR_APWDN_EN	BIT(7)
-+#define SSM3515_PWR_BSNS_PWDN	BIT(6)
-+#define SSM3515_PWR_S_RST	BIT(1)
-+#define SSM3515_PWR_SPWDN	BIT(0)
-+
-+#define SSM3515_GEC		0x01
-+#define SSM3515_GEC_EDGE	BIT(4)
-+#define SSM3515_GEC_EDGE_SHIFT	4
-+#define SSM3515_GEC_ANA_GAIN	GENMASK(1, 0)
-+
-+#define SSM3515_DAC		0x02
-+#define SSM3515_DAC_HV		BIT(7)
-+#define SSM3515_DAC_MUTE	BIT(6)
-+#define SSM3515_DAC_HPF		BIT(5)
-+#define SSM3515_DAC_LPM		BIT(4)
-+#define SSM3515_DAC_FS		GENMASK(2, 0)
-+
-+#define SSM3515_DAC_VOL		0x03
-+
-+#define SSM3515_SAI1		0x04
-+#define SSM3515_SAI1_DAC_POL	BIT(7)
-+#define SSM3515_SAI1_BCLK_POL	BIT(6)
-+#define SSM3515_SAI1_TDM_BCLKS	GENMASK(5, 3)
-+#define SSM3515_SAI1_FSYNC_MODE	BIT(2)
-+#define SSM3515_SAI1_SDATA_FMT	BIT(1)
-+#define SSM3515_SAI1_SAI_MODE	BIT(0)
-+
-+#define SSM3515_SAI2		0x05
-+#define SSM3515_SAI2_DATA_WIDTH	BIT(7)
-+#define SSM3515_SAI2_AUTO_SLOT	BIT(4)
-+#define SSM3515_SAI2_TDM_SLOT	GENMASK(3, 0)
-+
-+#define SSM3515_VBAT_OUT	0x06
-+
-+#define SSM3515_STATUS		0x0a
-+#define SSM3515_STATUS_UVLO_REG	BIT(6)
-+#define SSM3515_STATUS_LIM_EG	BIT(5)
-+#define SSM3515_STATUS_CLIP	BIT(4)
-+#define SSM3515_STATUS_AMP_OC	BIT(3)
-+#define SSM3515_STATUS_OTF	BIT(2)
-+#define SSM3515_STATUS_OTW	BIT(1)
-+#define SSM3515_STATUS_BAT_WARN	BIT(0)
-+
-+static bool ssm3515_volatile_reg(struct device *dev, unsigned int reg)
-+{
-+	switch (reg) {
-+	case SSM3515_STATUS:
-+	case SSM3515_VBAT_OUT:
-+		return true;
-+
-+	default:
-+		return false;
-+	}
-+}
-+
-+static const struct reg_default ssm3515_reg_defaults[] = {
-+	{ SSM3515_PWR, 0x81 },
-+	{ SSM3515_GEC, 0x01 },
-+	{ SSM3515_DAC, 0x32 },
-+	{ SSM3515_DAC_VOL, 0x40 },
-+	{ SSM3515_SAI1, 0x11 },
-+	{ SSM3515_SAI2, 0x00 },
-+};
-+
-+static const struct regmap_config ssm3515_i2c_regmap = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.volatile_reg = ssm3515_volatile_reg,
-+	.max_register = 0xb,
-+	.reg_defaults = ssm3515_reg_defaults,
-+	.num_reg_defaults = ARRAY_SIZE(ssm3515_reg_defaults),
-+	.cache_type = REGCACHE_FLAT,
-+};
-+
-+struct ssm3515_data {
-+	struct device *dev;
-+	struct regmap *regmap;
-+};
-+
-+// The specced range is -71.25...24.00 dB with step size of 0.375 dB,
-+// and a mute item below that. This is represented by -71.62...24.00 dB
-+// with the mute item mapped onto the low end.
-+static DECLARE_TLV_DB_MINMAX_MUTE(ssm3515_dac_volume, -7162, 2400);
-+
-+static const char * const ssm3515_ana_gain_text[] = {
-+	"8.4 V Span", "12.6 V Span", "14 V Span", "15 V Span",
-+};
-+
-+static SOC_ENUM_SINGLE_DECL(ssm3515_ana_gain_enum, SSM3515_GEC,
-+			    __bf_shf(SSM3515_GEC_ANA_GAIN),
-+			    ssm3515_ana_gain_text);
-+
-+static const struct snd_kcontrol_new ssm3515_snd_controls[] = {
-+	SOC_SINGLE_TLV("DAC Playback Volume", SSM3515_DAC_VOL,
-+		       0, 255, 1, ssm3515_dac_volume),
-+	SOC_SINGLE("Low EMI Mode Switch", SSM3515_GEC,
-+		   __bf_shf(SSM3515_GEC_EDGE), 1, 0),
-+	SOC_SINGLE("Soft Volume Ramping Switch", SSM3515_DAC,
-+		   __bf_shf(SSM3515_DAC_HV), 1, 1),
-+	SOC_SINGLE("HPF Switch", SSM3515_DAC,
-+		   __bf_shf(SSM3515_DAC_HPF), 1, 0),
-+	SOC_SINGLE("DAC Invert Switch", SSM3515_SAI1,
-+		   __bf_shf(SSM3515_SAI1_DAC_POL), 1, 0),
-+	SOC_ENUM("DAC Analog Gain Select", ssm3515_ana_gain_enum),
-+};
-+
-+static void ssm3515_read_faults(struct snd_soc_component *component)
-+{
-+	int ret;
-+
-+	ret = snd_soc_component_read(component, SSM3515_STATUS);
-+	if (ret <= 0) {
-+		/*
-+		 * If the read was erroneous, ASoC core has printed a message,
-+		 * and that's all that's appropriate in handling the error here.
-+		 */
-+		return;
-+	}
-+
-+	dev_err(component->dev, "device reports:%s%s%s%s%s%s%s\n",
-+		FIELD_GET(SSM3515_STATUS_UVLO_REG, ret) ? " voltage regulator fault" : "",
-+		FIELD_GET(SSM3515_STATUS_LIM_EG, ret)   ? " limiter engaged" : "",
-+		FIELD_GET(SSM3515_STATUS_CLIP, ret)     ? " clipping detected" : "",
-+		FIELD_GET(SSM3515_STATUS_AMP_OC, ret)   ? " amp over-current fault" : "",
-+		FIELD_GET(SSM3515_STATUS_OTF, ret)      ? " overtemperature fault" : "",
-+		FIELD_GET(SSM3515_STATUS_OTW, ret)      ? " overtemperature warning" : "",
-+		FIELD_GET(SSM3515_STATUS_BAT_WARN, ret) ? " bat voltage low warning" : "");
-+}
-+
-+static int ssm3515_probe(struct snd_soc_component *component)
-+{
-+	int ret;
-+
-+	/* Start out muted */
-+	ret = snd_soc_component_update_bits(component, SSM3515_DAC,
-+			SSM3515_DAC_MUTE, SSM3515_DAC_MUTE);
-+	if (ret < 0)
-+		return ret;
-+
-+	/* Disable the 'master power-down' */
-+	ret = snd_soc_component_update_bits(component, SSM3515_PWR,
-+			SSM3515_PWR_SPWDN, 0);
-+	if (ret < 0)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static int ssm3515_mute(struct snd_soc_dai *dai, int mute, int direction)
-+{
-+	int ret;
-+
-+	ret = snd_soc_component_update_bits(dai->component,
-+					    SSM3515_DAC,
-+					    SSM3515_DAC_MUTE,
-+					    FIELD_PREP(SSM3515_DAC_MUTE, mute));
-+	if (ret < 0)
-+		return ret;
-+	return 0;
-+}
-+
-+static int ssm3515_hw_params(struct snd_pcm_substream *substream,
-+			     struct snd_pcm_hw_params *params,
-+			     struct snd_soc_dai *dai)
-+{
-+	struct snd_soc_component *component = dai->component;
-+	int ret, rateval;
-+
-+	switch (params_format(params)) {
-+	case SNDRV_PCM_FORMAT_S16:
-+	case SNDRV_PCM_FORMAT_S24:
-+		ret = snd_soc_component_update_bits(component,
-+				SSM3515_SAI2, SSM3515_SAI2_DATA_WIDTH,
-+				FIELD_PREP(SSM3515_SAI2_DATA_WIDTH,
-+					   params_width(params) == 16));
-+		if (ret < 0)
-+			return ret;
-+		break;
-+
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	switch (params_rate(params)) {
-+	case 8000 ... 12000:
-+		rateval = 0;
-+		break;
-+	case 16000 ... 24000:
-+		rateval = 1;
-+		break;
-+	case 32000 ... 48000:
-+		rateval = 2;
-+		break;
-+	case 64000 ... 96000:
-+		rateval = 3;
-+		break;
-+	case 128000 ... 192000:
-+		rateval = 4;
-+		break;
-+	case 48001 ... 63999: /* this is ...72000 but overlaps */
-+		rateval = 5;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	ret = snd_soc_component_update_bits(component,
-+			SSM3515_DAC, SSM3515_DAC_FS,
-+			FIELD_PREP(SSM3515_DAC_FS, rateval));
-+	if (ret < 0)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static int ssm3515_set_fmt(struct snd_soc_dai *dai, unsigned int fmt)
-+{
-+	struct snd_soc_component *component = dai->component;
-+	bool fpol_inv = false; /* non-inverted: frame starts with low-to-high FSYNC */
-+	int ret;
-+	u8 sai1 = 0;
-+
-+	switch (fmt & SND_SOC_DAIFMT_INV_MASK) {
-+	case SND_SOC_DAIFMT_IB_NF:
-+	case SND_SOC_DAIFMT_IB_IF:
-+		sai1 |= SSM3515_SAI1_BCLK_POL;
-+		break;
-+	}
-+
-+	switch (fmt & SND_SOC_DAIFMT_FORMAT_MASK) {
-+	case SND_SOC_DAIFMT_I2S:
-+		fpol_inv = 1;
-+		sai1 &= ~SSM3515_SAI1_SDATA_FMT; /* 1 bit start delay */
-+		break;
-+	case SND_SOC_DAIFMT_LEFT_J:
-+		fpol_inv = 0;
-+		sai1 |= SSM3515_SAI1_SDATA_FMT; /* no start delay */
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	switch (fmt & SND_SOC_DAIFMT_INV_MASK) {
-+	case SND_SOC_DAIFMT_NB_IF:
-+	case SND_SOC_DAIFMT_IB_IF:
-+		fpol_inv ^= 1;
-+		break;
-+	}
-+
-+	/* Set the serial input to 'TDM mode' */
-+	sai1 |= SSM3515_SAI1_SAI_MODE;
-+
-+	if (fpol_inv) {
-+		/*
-+		 * We configure the codec in a 'TDM mode', in which the
-+		 * FSYNC_MODE bit of SAI1 is supposed to select between
-+		 * what the datasheet calls 'Pulsed FSYNC mode' and '50%
-+		 * FSYNC mode'.
-+		 *
-+		 * Experiments suggest that this bit in fact simply selects
-+		 * the FSYNC polarity, so go with that.
-+		 */
-+		sai1 |= SSM3515_SAI1_FSYNC_MODE;
-+	}
-+
-+	ret = snd_soc_component_update_bits(component, SSM3515_SAI1,
-+			SSM3515_SAI1_BCLK_POL | SSM3515_SAI1_SDATA_FMT |
-+			SSM3515_SAI1_SAI_MODE | SSM3515_SAI1_FSYNC_MODE, sai1);
-+
-+	if (ret < 0)
-+		return ret;
-+	return 0;
-+}
-+
-+static int ssm3515_set_tdm_slot(struct snd_soc_dai *dai,
-+				unsigned int tx_mask,
-+				unsigned int rx_mask,
-+				int slots, int slot_width)
-+{
-+	struct snd_soc_component *component = dai->component;
-+	int slot, tdm_bclks_val, ret;
-+
-+	if (tx_mask == 0 || rx_mask != 0)
-+		return -EINVAL;
-+
-+	slot = __ffs(tx_mask);
-+
-+	if (tx_mask & ~BIT(slot))
-+		return -EINVAL;
-+
-+	switch (slot_width) {
-+	case 16:
-+		tdm_bclks_val = 0;
-+		break;
-+	case 24:
-+		tdm_bclks_val = 1;
-+		break;
-+	case 32:
-+		tdm_bclks_val = 2;
-+		break;
-+	case 48:
-+		tdm_bclks_val = 3;
-+		break;
-+	case 64:
-+		tdm_bclks_val = 4;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	ret = snd_soc_component_update_bits(component, SSM3515_SAI1,
-+			SSM3515_SAI1_TDM_BCLKS,
-+			FIELD_PREP(SSM3515_SAI1_TDM_BCLKS, tdm_bclks_val));
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = snd_soc_component_update_bits(component, SSM3515_SAI2,
-+			SSM3515_SAI2_TDM_SLOT,
-+			FIELD_PREP(SSM3515_SAI2_TDM_SLOT, slot));
-+	if (ret < 0)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static int ssm3515_hw_free(struct snd_pcm_substream *substream,
-+			   struct snd_soc_dai *dai)
-+{
-+	/*
-+	 * We don't get live notification of faults, so at least at
-+	 * this time, when playback is over, check if we have tripped
-+	 * over anything and if so, log it.
-+	 */
-+	ssm3515_read_faults(dai->component);
-+	return 0;
-+}
-+
-+static const struct snd_soc_dai_ops ssm3515_dai_ops = {
-+	.mute_stream	= ssm3515_mute,
-+	.hw_params	= ssm3515_hw_params,
-+	.set_fmt	= ssm3515_set_fmt,
-+	.set_tdm_slot	= ssm3515_set_tdm_slot,
-+	.hw_free	= ssm3515_hw_free,
-+};
-+
-+static struct snd_soc_dai_driver ssm3515_dai_driver = {
-+	.name = "SSM3515 SAI",
-+	.id = 0,
-+	.playback = {
-+		.stream_name = "Playback",
-+		.channels_min = 1,
-+		.channels_max = 1,
-+		.rates = SNDRV_PCM_RATE_CONTINUOUS,
-+		.formats = SNDRV_PCM_FMTBIT_S16_LE | SNDRV_PCM_FMTBIT_S24_LE,
-+	},
-+	.ops = &ssm3515_dai_ops,
-+};
-+
-+static const struct snd_soc_dapm_widget ssm3515_dapm_widgets[] = {
-+	SND_SOC_DAPM_DAC("DAC", NULL, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_OUTPUT("OUT"),
-+};
-+
-+static const struct snd_soc_dapm_route ssm3515_dapm_routes[] = {
-+	{"OUT", NULL, "DAC"},
-+	{"DAC", NULL, "Playback"},
-+};
-+
-+static const struct snd_soc_component_driver ssm3515_asoc_component = {
-+	.probe = ssm3515_probe,
-+	.controls = ssm3515_snd_controls,
-+	.num_controls = ARRAY_SIZE(ssm3515_snd_controls),
-+	.dapm_widgets = ssm3515_dapm_widgets,
-+	.num_dapm_widgets = ARRAY_SIZE(ssm3515_dapm_widgets),
-+	.dapm_routes = ssm3515_dapm_routes,
-+	.num_dapm_routes = ARRAY_SIZE(ssm3515_dapm_routes),
-+	.endianness = 1,
-+};
-+
-+static int ssm3515_i2c_probe(struct i2c_client *client)
-+{
-+	struct ssm3515_data *data;
-+	int ret;
-+
-+	data = devm_kzalloc(&client->dev, sizeof(*data), GFP_KERNEL);
-+	if (!data)
-+		return -ENOMEM;
-+
-+	data->dev = &client->dev;
-+	i2c_set_clientdata(client, data);
-+
-+	data->regmap = devm_regmap_init_i2c(client, &ssm3515_i2c_regmap);
-+	if (IS_ERR(data->regmap))
-+		return dev_err_probe(data->dev, PTR_ERR(data->regmap),
-+				     "initializing register map\n");
-+
-+	/* Perform a reset */
-+	ret = regmap_update_bits(data->regmap, SSM3515_PWR,
-+			SSM3515_PWR_S_RST, SSM3515_PWR_S_RST);
-+	if (ret < 0)
-+		return dev_err_probe(data->dev, ret,
-+				     "performing software reset\n");
-+	regmap_reinit_cache(data->regmap, &ssm3515_i2c_regmap);
-+
-+	return devm_snd_soc_register_component(data->dev,
-+			&ssm3515_asoc_component,
-+			&ssm3515_dai_driver, 1);
-+}
-+
-+static const struct of_device_id ssm3515_of_match[] = {
-+	{ .compatible = "adi,ssm3515" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, ssm3515_of_match);
-+
-+static struct i2c_driver ssm3515_i2c_driver = {
-+	.driver = {
-+		.name = "ssm3515",
-+		.of_match_table = of_match_ptr(ssm3515_of_match),
-+	},
-+	.probe_new = ssm3515_i2c_probe,
-+};
-+module_i2c_driver(ssm3515_i2c_driver);
-+
-+MODULE_AUTHOR("Martin Povišer <povik+lin@cutebit.org>");
-+MODULE_DESCRIPTION("ASoC SSM3515 audio amp driver");
-+MODULE_LICENSE("Dual MIT/GPL");
+[ 1297.035424] OF: ERROR: memory leak, expected refcount 1 instead of 2, of_node_get()/of_node_put() unbalanced - destroy cset entry: attach overlay node /fpga-axi/dummy_dev
+[ 1297.050763] OF: ERROR: memory leak, expected refcount 1 instead of 3, of_node_get()/of_node_put() unbalanced - destroy cset entry: attach overlay node /regulator-vio
+[ 1297.065654] OF: ERROR: memory leak, expected refcount 1 instead of 3, of_node_get()/of_node_put() unbalanced - destroy cset entry: attach overlay node /regulator-vdd-1-8
+[ 1297.080885] OF: ERROR: memory leak, expected refcount 1 instead of 3, of_node_get()/of_node_put() unbalanced - destroy cset entry: attach overlay node /regulator-vref
+
+ 1297.168367] ------------[ cut here ]------------
+[ 1297.173000] WARNING: CPU: 0 PID: 15340 at lib/refcount.c:25 kobject_get+0x9c/0xa0
+[ 1297.180514] refcount_t: addition on 0; use-after-free.
+[ 1297.185661] Modules linked in:
+[ 1297.188727] CPU: 0 PID: 15340 Comm: kworker/0:2 Not tainted 6.3.1-dirty #5
+[ 1297.195617] Hardware name: Xilinx Zynq Platform
+[ 1297.200158] Workqueue: events_long device_link_release_fn
+[ 1297.205600]  unwind_backtrace from show_stack+0x10/0x14
+[ 1297.210880]  show_stack from dump_stack_lvl+0x40/0x4c
+[ 1297.215983]  dump_stack_lvl from __warn+0x78/0x124
+[ 1297.220816]  __warn from warn_slowpath_fmt+0x134/0x18c
+[ 1297.220857]  warn_slowpath_fmt from kobject_get+0x9c/0xa0
+[ 1297.220892]  kobject_get from of_node_get+0x14/0x1c
+[ 1297.236279]  of_node_get from of_fwnode_get+0x34/0x40
+[ 1297.236324]  of_fwnode_get from fwnode_full_name_string+0x34/0xa0
+[ 1297.247455]  fwnode_full_name_string from device_node_string+0x5a8/0x750
+[ 1297.247488]  device_node_string from pointer+0x3d0/0x67c
+[ 1297.259497]  pointer from vsnprintf+0x20c/0x410
+[ 1297.264063]  vsnprintf from vprintk_store+0x12c/0x430
+[ 1297.269176]  vprintk_store from vprintk_emit+0xe0/0x23c
+[ 1297.274454]  vprintk_emit from vprintk_default+0x20/0x28
+[ 1297.274503]  vprintk_default from _printk+0x2c/0x58
+[ 1297.274534]  _printk from kobject_put+0x8c/0x130
+[ 1297.289299]  kobject_put from platform_device_release+0x10/0x3c
+[ 1297.295245]  platform_device_release from device_release+0x30/0xa0
+[ 1297.301458]  device_release from kobject_put+0x8c/0x130
+[ 1297.306718]  kobject_put from device_link_release_fn+0x54/0xa8
+[ 1297.312588]  device_link_release_fn from process_one_work+0x1fc/0x4c8
+[ 1297.319079]  process_one_work from worker_thread+0x50/0x54c
+[ 1297.324684]  worker_thread from kthread+0xd0/0xec
+[ 1297.329421]  kthread from ret_from_fork+0x14/0x2c
+[ 1297.334153] Exception stack(0xe0b95fb0 to 0xe0b95ff8)
+[ 1297.339200] 5fa0:                                     00000000 00000000 00000000 00000000
+[ 1297.347386] 5fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 1297.355577] 5fe0: 00000000 00000000 00000000 00000000 00000013 00000000
+[ 1297.362192] ---[ end trace 0000000000000000 ]---
+[ 1297.366805] ------------[ cut here ]------------
+[ 1297.371416] WARNING: CPU: 0 PID: 15340 at lib/refcount.c:28 fwnode_full_name_string+0x8c/0xa0
+[ 1297.379957] refcount_t: underflow; use-after-free.
+[ 1297.384739] Modules linked in:
+[ 1297.387789] CPU: 0 PID: 15340 Comm: kworker/0:2 Tainted: G        W          6.3.1-dirty #5
+[ 1297.396136] Hardware name: Xilinx Zynq Platform
+[ 1297.400660] Workqueue: events_long device_link_release_fn
+[ 1297.406079]  unwind_backtrace from show_stack+0x10/0x14
+[ 1297.411319]  show_stack from dump_stack_lvl+0x40/0x4c
+[ 1297.416389]  dump_stack_lvl from __warn+0x78/0x124
+[ 1297.421206]  __warn from warn_slowpath_fmt+0x134/0x18c
+[ 1297.426361]  warn_slowpath_fmt from fwnode_full_name_string+0x8c/0xa0
+[ 1297.432820]  fwnode_full_name_string from device_node_string+0x5a8/0x750
+[ 1297.439537]  device_node_string from pointer+0x3d0/0x67c
+[ 1297.444867]  pointer from vsnprintf+0x20c/0x410
+[ 1297.449406]  vsnprintf from vprintk_store+0x12c/0x430
+[ 1297.454484]  vprintk_store from vprintk_emit+0xe0/0x23c
+[ 1297.459727]  vprintk_emit from vprintk_default+0x20/0x28
+[ 1297.465056]  vprintk_default from _printk+0x2c/0x58
+[ 1297.469944]  _printk from kobject_put+0x8c/0x130
+[ 1297.474570]  kobject_put from platform_device_release+0x10/0x3c
+[ 1297.480507]  platform_device_release from device_release+0x30/0xa0
+[ 1297.486705]  device_release from kobject_put+0x8c/0x130
+[ 1297.491947]  kobject_put from device_link_release_fn+0x54/0xa8
+[ 1297.497798]  device_link_release_fn from process_one_work+0x1fc/0x4c8
+[ 1297.504256]  process_one_work from worker_thread+0x50/0x54c
+[ 1297.509828]  worker_thread from kthread+0xd0/0xec
+[ 1297.514550]  kthread from ret_from_fork+0x14/0x2c
+[ 1297.519263] Exception stack(0xe0b95fb0 to 0xe0b95ff8)
+[ 1297.524308] 5fa0:                                     00000000 00000000 00000000 00000000
+[ 1297.532478] 5fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 1297.540653] 5fe0: 00000000 00000000 00000000 00000000 00000013 00000000
+[ 1297.547256] ---[ end trace 0000000000000000 ]---
+[ 1297.168353] OF: ERROR: memory leak before free overlay changeset,  /regulator-vref
+[ 1297.551874] ------------[ cut here ]------------
+[ 1297.551880] WARNING: CPU: 0 PID: 15340 at lib/refcount.c:22 kobject_get+0x88/0xa0
+[ 1297.551903] refcount_t: saturated; leaking memory.
+[ 1297.551908] Modules linked in:
+[ 1297.551918] CPU: 0 PID: 15340 Comm: kworker/0:2 Tainted: G        W          6.3.1-dirty #5
+[ 1297.551931] Hardware name: Xilinx Zynq Platform
+[ 1297.551938] Workqueue: events_long device_link_release_fn
+[ 1297.551965]  unwind_backtrace from show_stack+0x10/0x14
+[ 1297.551994]  show_stack from dump_stack_lvl+0x40/0x4c
+[ 1297.552023]  dump_stack_lvl from __warn+0x78/0x124
+[ 1297.552059]  __warn from warn_slowpath_fmt+0x134/0x18c
+[ 1297.552092]  warn_slowpath_fmt from kobject_get+0x88/0xa0
+[ 1297.552123]  kobject_get from of_node_get+0x14/0x1c
+[ 1297.552146]  of_node_get from of_fwnode_get+0x34/0x40
+[ 1297.552173]  of_fwnode_get from fwnode_full_name_string+0x34/0xa0
+[ 1297.552204]  fwnode_full_name_string from device_node_string+0x5a8/0x750
+[ 1297.552234]  device_node_string from pointer+0x3d0/0x67c
+[ 1297.552262]  pointer from vsnprintf+0x20c/0x410
+[ 1297.552289]  vsnprintf from vscnprintf+0x10/0x24
+[ 1297.552317]  vscnprintf from printk_sprint+0x18/0xf4
+[ 1297.552353]  printk_sprint from vprintk_store+0x2d0/0x430
+[ 1297.552388]  vprintk_store from vprintk_emit+0xe0/0x23c
+[ 1297.552422]  vprintk_emit from vprintk_default+0x20/0x28
+[ 1297.552457]  vprintk_default from _printk+0x2c/0x58
+[ 1297.552483]  _printk from kobject_put+0x8c/0x130
+[ 1297.552507]  kobject_put from platform_device_release+0x10/0x3c
+[ 1297.552539]  platform_device_release from device_release+0x30/0xa0
+[ 1297.552571]  device_release from kobject_put+0x8c/0x130
+[ 1297.552599]  kobject_put from device_link_release_fn+0x54/0xa8
+[ 1297.552630]  device_link_release_fn from process_one_work+0x1fc/0x4c8
+[ 1297.552657]  process_one_work from worker_thread+0x50/0x54c
+[ 1297.552674]  worker_thread from kthread+0xd0/0xec
+[ 1297.552701]  kthread from ret_from_fork+0x14/0x2c
+[ 1297.552724] Exception stack(0xe0b95fb0 to 0xe0b95ff8)
+[ 1297.552736] 5fa0:                                     00000000 00000000 00000000 00000000
+[ 1297.552749] 5fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 1297.552760] 5fe0: 00000000 00000000 00000000 00000000 00000013 00000000
+[ 1297.552768] ---[ end trace 0000000000000000 ]---
+[ 1297.769464] OF: ERROR: memory leak before free overlay changeset,  /regulator-vdd-1-8
+[ 1297.777337] OF: ERROR: memory leak before free overlay changeset,  /fpga-axi/dummy_dev
+[ 1297.777360] OF: ERROR: memory leak before free overlay changeset,  /regulator-vio
+
+the above is easily reproducible with a dummy platform device that just
+gets some regulators (devlinks are created at that point).
+
+The culprit of the above is actually this line:
+
+https://elixir.bootlin.com/linux/v6.4-rc1/source/drivers/of/dynamic.c#L366
+
+This also makes me wonder if we should not have an extra patch just printing
+'node->full_name' instead of '%pOF'. As seen, we should not make any assumptions
+(like parent's being around :)) at this stage.
+
+To fix the issue, I'm adding a new OVERLAY flag to inform that the changeset
+is already gone so if we ever reach of_node_release() we can proceed
+normally. Obviously, I'm not really sure about this and that's the whole reason
+why I'm bringing this as an RFC. This looks like a nasty corner case and I know
+that adding/removing devices dynamically is far from being easy to handle...
+
+Also not sure if the driver core folks should be aware of this...
+
+Lastly, one of workarounding this issue is by manually unbiding the device
+from the driver before removing the overlay which would (potentially) give
+time for the workers to run.
+
+Nuno Sa (1):
+  of: dynamic: allow freeing of_nodes after the overlay changeset
+
+ drivers/of/dynamic.c | 31 +++++++++++++++++++++++++++----
+ include/linux/of.h   |  1 +
+ 2 files changed, 28 insertions(+), 4 deletions(-)
+
 -- 
-2.38.3
+2.40.1
 
