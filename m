@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A42506FEF67
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 11:54:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5B036FEF80
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 11:58:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237424AbjEKJyO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 05:54:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40568 "EHLO
+        id S237338AbjEKJ60 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 05:58:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237273AbjEKJyM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 05:54:12 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8A52D86A
-        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 02:53:27 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-50bd2d7ba74so77404838a12.1
-        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 02:53:27 -0700 (PDT)
+        with ESMTP id S237195AbjEKJ6Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 05:58:25 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B90AFE7C
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 02:58:23 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-9659c5b14d8so1373690766b.3
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 02:58:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683798805; x=1686390805;
+        d=linaro.org; s=google; t=1683799102; x=1686391102;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=S708+pUvDFYWDhg/1ibK1FeSHqXbBxrzbsAmRoBje2E=;
-        b=eBrz8ahOX9Nt+cpSY4jQYBLH5/8Y21ybmI4Eh9suIC0RJIDutSLVZajsfe2MHYqUai
-         1VLRvBSY+RmlnV3e2G7l0JpbLLScjAKzVGl9JsWVUBAvzFnKyorYQW2Av0nar80WqIH0
-         YpEMWTODP+6Ar/59jgsas//85yL2Qd02TbRezUAEQFdq0+gzbvco8VEvqwcfdMXkPft2
-         drRB8JlBsBuFY3Af1cOWInNhg6RKM+U+EXj+vNQFjsUw5tyNnDTzptqZPyWFYeGCH0wO
-         YpRWBhygUjuRcgq0nkOnAfooM75wokQbbhTgr3Jv25BayNbZn+nWjhqcMpXHLTF2hyZR
-         O6KQ==
+        bh=flwRxznwuAYel95+sMOhYZaxHDjgAMi12wSldhudZkk=;
+        b=wLUiy/sKdDyW2vYY1KUBQMZM2bNv7qMq5opS7jaQ39UXL7gYULX908NBz3Hssa3xZF
+         6ct6KCJ6yomPIW6+oJhk6JvsHZAn2zKNPXHjFdtu8+CCyymdKdpgyrUSRfzbJgAasTn/
+         aIhMxdO8fCEFyFg0SIfZBeeZ9iJ6NebnfRppUNhE/E1zek0CZyLBKyMbfQRRHhiwBkgr
+         +LtRfn6rUetGYiJR6QOvyVd+qHMhJhpHuLDPj7qOb/WB55KEDAWK0+s7AeuxNTuk04GU
+         b6Mxk58Z4nld3bpw4UYSjjQ1fzllwXfmroMbUxtaVfAmD6N87EvB89E4/RON0D6UyKrz
+         /3tA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683798805; x=1686390805;
+        d=1e100.net; s=20221208; t=1683799102; x=1686391102;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=S708+pUvDFYWDhg/1ibK1FeSHqXbBxrzbsAmRoBje2E=;
-        b=S4mRGCF6ebbBvRh47ghZEYRZSEOekRKjurMz7rqW99kXuh8R/GosWqAUdae/HqMoGf
-         /VUZKu0wEiLY5Ba5MHApUhLuUpnfK45n8D/ozCsNQ7pn95e4UIGOqM4/irdSd3YlAa6R
-         hmHVb7zMYqN8NfXyqfnPlvZe2SuH3RzjF/2Ut8W68FHAN2+IyZwvK7qVH6VOi23KTHpF
-         LEgsYnEVYhg89nml5seIZXZ2JbniO7c/5dqshpG5nszbFOtSOkqPJWdy4qHC+WoJCYAY
-         xhGFgq5DMwyH0rkccSfQG1Jwz3ZdsvWF6mXsmkrdmKbODu7C/s0vXvVVAPKLIsAXf2G2
-         SSWA==
-X-Gm-Message-State: AC+VfDzjQROnM5aMLkdGuegTYvWJfhzyDzBPnnraSkZMTv4PkEMTcDa4
-        y+l6ApVcAx1DbiNl+dvoMTv0pg==
-X-Google-Smtp-Source: ACHHUZ6qMnGtgj1qfIE8u7lEPm6rTd85pDEMMZFe3OwKKQq8fm4MkTTXhsDjhGsGStHPh3U6GVo/Aw==
-X-Received: by 2002:aa7:d3c3:0:b0:509:f399:278d with SMTP id o3-20020aa7d3c3000000b00509f399278dmr18753088edr.5.1683798805438;
-        Thu, 11 May 2023 02:53:25 -0700 (PDT)
+        bh=flwRxznwuAYel95+sMOhYZaxHDjgAMi12wSldhudZkk=;
+        b=QL1rnDcSUbf6egfL7UptS6JPIN1C2qHNTxjCjbT6DJVueACMoYJM8hHRNDRoeMKV10
+         ZEmiAjnrEltW71LL0mobGF7seD2H1eVmgf9G4Mqg4frO3ijFp+l8Tc1KJ8n79w6OtCON
+         eyPQcoPw5GMyH8U0kT/YjCYe+3w39hMi/kphmBz7K3Xiti9jJzeOXlTznapcRpPvEUPk
+         SdBjo6Ja6QEPZcfoBFfit+4TJUka1DA+qZHr09y0LLYu4DXl0cl7IHjNe2dZ7JI7BVGU
+         BZlMF2H9NRtNdW1qJaus2X/x+C5GoxvGx0q9IsVYNuAVftRlDDtSsOz/apS0uEJWFkA9
+         Gi3w==
+X-Gm-Message-State: AC+VfDzk8mF4QtPdLS0rPTzYXJfFgg1cORPIaAbN0Sjd3KilF5x2pMdo
+        n+2mapY//q2LnLUvW3jfScEZJA==
+X-Google-Smtp-Source: ACHHUZ5wJWqqCfcn013dbmOg6eTV075b5HIvRHopoYyZNADruM2+gIsxKZuktXAltFCkeuOiblIu8Q==
+X-Received: by 2002:a17:907:6eaa:b0:94a:9ae2:1642 with SMTP id sh42-20020a1709076eaa00b0094a9ae21642mr21040424ejc.46.1683799102132;
+        Thu, 11 May 2023 02:58:22 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:7e61:f14a:c3a4:809e? ([2a02:810d:15c0:828:7e61:f14a:c3a4:809e])
-        by smtp.gmail.com with ESMTPSA id q22-20020a056402041600b004ad601533a3sm2777002edv.55.2023.05.11.02.53.24
+        by smtp.gmail.com with ESMTPSA id 13-20020a170906300d00b009659cdb2f98sm3739111ejz.23.2023.05.11.02.58.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 May 2023 02:53:24 -0700 (PDT)
-Message-ID: <23ae905f-cc25-a695-5985-7f9742c4b78a@linaro.org>
-Date:   Thu, 11 May 2023 11:53:23 +0200
+        Thu, 11 May 2023 02:58:21 -0700 (PDT)
+Message-ID: <7b3a37e8-0210-c539-5b5b-bf8e587707ea@linaro.org>
+Date:   Thu, 11 May 2023 11:58:20 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v1 2/3] dt-bindings: vendor-prefixes: Add ESS Technology
- vendor prefix
+Subject: Re: [PATCH v1 3/3] dt-bindings: ASoC: Add ESS ES9218P codec bindings
 Content-Language: en-US
 To:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>,
         lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
@@ -63,9 +62,9 @@ To:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>,
 Cc:     perex@perex.cz, tiwai@suse.com, alsa-devel@alsa-project.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20230510112349.939991-1-aidanmacdonald.0x0@gmail.com>
- <20230510112349.939991-2-aidanmacdonald.0x0@gmail.com>
+ <20230510112349.939991-3-aidanmacdonald.0x0@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230510112349.939991-2-aidanmacdonald.0x0@gmail.com>
+In-Reply-To: <20230510112349.939991-3-aidanmacdonald.0x0@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,12 +78,141 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 10/05/2023 13:23, Aidan MacDonald wrote:
-> Add prefix "ess" for ESS Technology <https://www.esstech.com>.
+> Device tree bindings for the ESS ES9218P codec, which uses an
+> I2C control interface.
 > 
+
+Thank you for your patch. There is something to discuss/improve.
+
+Subject: reverse dt-bindings and ASoC.
+
+Subject: drop second/last, redundant "bindings". The "dt-bindings"
+prefix is already stating that these are bindings.
+
 > Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
 > ---
+>  .../bindings/sound/ess,es9218p.yaml           | 104 ++++++++++++++++++
+>  1 file changed, 104 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/ess,es9218p.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/ess,es9218p.yaml b/Documentation/devicetree/bindings/sound/ess,es9218p.yaml
+> new file mode 100644
+> index 000000000000..d205b6a8bbb2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/ess,es9218p.yaml
+> @@ -0,0 +1,104 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/ess,es9218p.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ESS ES9218P audio codec
+> +
+> +maintainers:
+> +  - Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+> +
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+allOf with ref to dai-common.
+
+> +properties:
+> +  compatible:
+> +    const: ess,es9218p
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#sound-dai-cells":
+> +    const: 0
+> +
+> +  avdd-supply:
+> +    description:
+> +      Definition of the regulator used for digital core power supply.
+
+Drop "Definition of the regulator used for"
+
+> +
+> +  vcca-supply:
+> +    description:
+> +      Definition of the regulator used for oscillator and DAC power supply.
+> +
+
+Ditto
+
+> +  avcc3v3-supply:
+> +    description:
+> +      Definition of the 3.3V regulator for amplifier, switch, and charge pumps.
+
+Drop "Definition of"
+
+
+> +
+> +  avcc1v8-supply:
+> +    description:
+> +      Definition of the 1.8V regulator for amplifier, switch, and charge pumps.
+
+Ditto
+
+> +
+> +  clocks:
+> +    items:
+> +      - description: clock for master clock (MCLK)
+> +
+> +  clock-names:
+> +    items:
+> +      - const: mclk
+
+Drop entire names, not really useful.
+
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +    description:
+> +      Pin used for codec hardware reset, corresponds to the RESETB pin.
+> +
+> +  ess,max-clock-div:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Sets the maximum MCLK divider for generating the internal CLK.
+> +      CLK must be at least 20x the I2C bus speed or I2C transactions
+> +      will fail. The maximum divider should be chosen to ensure that
+> +      CLK will not fall below the limit.
+> +    enum:
+> +      - 1
+> +      - 2
+> +      - 4
+> +      - 8
+> +    default: 1
+
+Why do you need to customize it per board?
+
+> +
+> +  ess,oscillator-pad-bias:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Sets the oscillator pad drive bias. 0 - full bias, 15 - disabled.
+> +    minimum: 0
+> +    maximum: 15
+> +    default: 0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#sound-dai-cells"
+> +  - avdd-supply
+> +  - vcca-supply
+> +  - avcc3v3-supply
+> +  - avcc1v8-supply
+> +  - clocks
+> +  - clock-names
+> +  - reset-gpios
+> +
+> +additionalProperties: false
+
+Instead: unevaluatedProperties: false
+
+
+> +
+> +examples:
 
 Best regards,
 Krzysztof
