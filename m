@@ -2,198 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DCAA6FEE66
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 11:12:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2B0F6FEE75
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 11:15:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237257AbjEKJMt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 05:12:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36960 "EHLO
+        id S235855AbjEKJP6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 05:15:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237224AbjEKJMr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 05:12:47 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 178216E90
-        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 02:12:45 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-50bd875398dso12613903a12.1
-        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 02:12:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683796363; x=1686388363;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lDUjdj+Iypx9FcQl5FOdB2kP0msJAjTr8nwomYPJ6mY=;
-        b=BRhcP4U4WOW6kWSSy8MgyGHENqZQjiqUwKTdvHBaPtcKf4daG31Fd2+X6lHGAZlbuu
-         avIkAnYmDWuCHHJj7GdMBn+i+d12/mAW4QP09B2J226LyqAJ4/6STn632gSF807Q1F5R
-         QCxrcrlFB5tylXAcVb7Ir1H/9Zsb4Q7ASSq+XUApbLpSeNXAg0AFwtYXmu+BNqGJ4r1C
-         rqNr2ldTHfsQzPGihA6x9kbXULyEwE7+sxQrVRbxufd0msQv/uyF22WV8yUf1Ggva7Uu
-         uLc5jMv1WK5pSNerA5gRQq620AqoEw7GAptzNfqRXA5xPMx+KiavJ7oxi13UPZo4MXN5
-         B7Vw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683796363; x=1686388363;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lDUjdj+Iypx9FcQl5FOdB2kP0msJAjTr8nwomYPJ6mY=;
-        b=AmaTjcb9hrB6yJGbHzuwVgxcvF4yhNuy71RUu5w+DMD0VSfnRgV4fpl8JkjdkIasYP
-         WNv8n+dHQ3j3OPwwKow+fddeU01On6wiPL1m8pyFMarWBRfI7bvakqcGLJNgI2xQIKbT
-         1evwvaNrTusOY1+ZvJfC9SA9luX0Mer4IJk6u9agiwwr6/mfyAhNaQJQwHTBOEqL/0Kg
-         d9zsaFjX9vuKVCtijs3DzTVC1YopC3MrjO3ewvBDoPFtcTSOYaiBnME868csrVUFdlHm
-         4w6Kz0svJh/MCsZQyl3uZlvrSUSwzcn0tZx84Cqwnkciuqcjqhyq092dhbal976Bbma3
-         meew==
-X-Gm-Message-State: AC+VfDz5yQjclRLnwAs8aL3uagnjuagNx69dMHm5x9VhtzWZpAEuMa3d
-        1jw6H+jF/V8gUgWZmTIY5xCt2A==
-X-Google-Smtp-Source: ACHHUZ4DOKhebB1vHG765Jc1wnpOXsgULcjllpOZUSAXOrc+LK+vlzdVvo6IB+8wnKK4Bm3FthvJmw==
-X-Received: by 2002:aa7:d705:0:b0:50d:8c5b:86b with SMTP id t5-20020aa7d705000000b0050d8c5b086bmr15489089edq.21.1683796363264;
-        Thu, 11 May 2023 02:12:43 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:7e61:f14a:c3a4:809e? ([2a02:810d:15c0:828:7e61:f14a:c3a4:809e])
-        by smtp.gmail.com with ESMTPSA id k23-20020a05640212d700b0050c0b9d31a7sm2786457edx.22.2023.05.11.02.12.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 May 2023 02:12:42 -0700 (PDT)
-Message-ID: <11ba5878-da04-d4fc-8e22-a20e5986d2ee@linaro.org>
-Date:   Thu, 11 May 2023 11:12:40 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v2 3/5] riscv: dts: thead: add sipeed Lichee Pi 4A board
- device tree
-Content-Language: en-US
-To:     Yangtao Li <frank.li@vivo.com>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229538AbjEKJP5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 05:15:57 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AA5A2735;
+        Thu, 11 May 2023 02:15:53 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 00222828D;
+        Thu, 11 May 2023 17:15:50 +0800 (CST)
+Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 11 May
+ 2023 17:15:51 +0800
+Received: from SD-Server.starfivetech.com (113.72.146.187) by
+ EXMBX168.cuchost.com (172.16.6.78) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.42; Thu, 11 May 2023 17:15:50 +0800
+From:   Walker Chen <walker.chen@starfivetech.com>
+To:     Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Claudiu Beznea <Claudiu.Beznea@microchip.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Jisheng Zhang <jszhang@kernel.org>, Wei Fu <wefu@redhat.com>
-Cc:     Icenowy Zheng <uwu@icenowy.me>, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230510204456.57202-1-frank.li@vivo.com>
- <20230510204456.57202-3-frank.li@vivo.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230510204456.57202-3-frank.li@vivo.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Conor Dooley <conor.dooley@microchip.com>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Walker Chen <walker.chen@starfivetech.com>
+CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+Subject: [PATCH v4 0/3] Add TDM audio on StarFive JH7110
+Date:   Thu, 11 May 2023 17:15:46 +0800
+Message-ID: <20230511091549.28003-1-walker.chen@starfivetech.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [113.72.146.187]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX168.cuchost.com
+ (172.16.6.78)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/05/2023 22:44, Yangtao Li wrote:
-> From: Jisheng Zhang <jszhang@kernel.org>
-> 
-> Sipeed's Lichee Pi 4A development board uses Lichee Module 4A core
-> module which is powered by T-HEAD's light(a.k.a TH1520) SoC. Add
-> minimal device tree files for the core module and the development
-> board.
-> 
-> Support basic uart/gpio/dmac drivers, so supports booting to a basic
-> shell.
-> 
-> Cc: Icenowy Zheng <uwu@icenowy.me>
-> Cc: Wei Fu <wefu@redhat.com>
-> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-> Signed-off-by: Yangtao Li <frank.li@vivo.com>
-> ---
-> v2:
-> -cleanup `light`
->  arch/riscv/boot/dts/Makefile                  |  1 +
->  arch/riscv/boot/dts/thead/Makefile            |  2 +
->  .../dts/thead/th1520-lichee-module-4a.dtsi    | 39 +++++++++++++++++++
->  .../boot/dts/thead/th1520-lichee-pi-4a.dts    | 33 ++++++++++++++++
->  4 files changed, 75 insertions(+)
->  create mode 100644 arch/riscv/boot/dts/thead/Makefile
->  create mode 100644 arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
->  create mode 100644 arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
-> 
-> diff --git a/arch/riscv/boot/dts/Makefile b/arch/riscv/boot/dts/Makefile
-> index f0d9f89054f8..1e884868ccba 100644
-> --- a/arch/riscv/boot/dts/Makefile
-> +++ b/arch/riscv/boot/dts/Makefile
-> @@ -2,6 +2,7 @@
->  subdir-y += allwinner
->  subdir-y += sifive
->  subdir-y += starfive
-> +subdir-y += thead
->  subdir-y += canaan
->  subdir-y += microchip
->  subdir-y += renesas
-> diff --git a/arch/riscv/boot/dts/thead/Makefile b/arch/riscv/boot/dts/thead/Makefile
-> new file mode 100644
-> index 000000000000..e311fc9a5939
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/thead/Makefile
-> @@ -0,0 +1,2 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +dtb-$(CONFIG_ARCH_THEAD) += th1520-lichee-pi-4a.dtb
-> diff --git a/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi b/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-> new file mode 100644
-> index 000000000000..bc5f8677d546
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-> @@ -0,0 +1,39 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
-> + * Copyright (C) 2023 Yangtao Li <frank.li@vivo.com>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "th1520.dtsi"
-> +
-> +/ {
-> +	model = "Sipeed Lichee Module 4A";
-> +	compatible = "sipeed,lichee-module-4a", "thead,th1520";
-> +
-> +	memory@0 {
-> +		device_type = "memory";
-> +		reg = <0x0 0x00000000 0x2 0x00000000>;
-> +	};
-> +};
-> +
-> +&osc {
-> +	clock-frequency = <24000000>;
-> +};
-> +
-> +&osc_32k {
-> +	clock-frequency = <32768>;
-> +};
-> +
-> +&apb_clk {
-> +	clock-frequency = <62500000>;
-> +};
-> +
-> +&uart_sclk {
-> +	clock-frequency = <100000000>;
-> +};
-> +
-> +&dmac0 {
-> +	status = "okay";
-> +};
-> diff --git a/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts b/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
-> new file mode 100644
-> index 000000000000..86d677175feb
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
-> @@ -0,0 +1,33 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
-> + * Copyright (C) 2023 Yangtao Li <frank.li@vivo.com>
-> + */
-> +
-> +#include "th1520-lichee-module-4a.dtsi"
-> +
-> +/ {
-> +	model = "Sipeed Lichee Pi 4A";
-> +	compatible = "sipeed,lichee-pi-4a", "sipeed,lichee-module-4a", "thead,th1520";
+This patchset adds TDM audio driver for the StarFive JH7110 SoC. The
+first patch adds device tree binding for TDM module. The second patch
+adds tdm driver support for JH7110 SoC. The last patch adds device tree
+node and pins configuration of tdm to JH7110 dts.
 
-Missing bindings.
+The series has been tested on the VisionFive 2 board by plugging an
+audio expansion board. 
 
-Best regards,
-Krzysztof
+For more information of audio expansion board, you can take a look
+at the following webpage:
+https://wiki.seeedstudio.com/ReSpeaker_2_Mics_Pi_HAT/
+
+Changes since v3:
+- Modified the subject of patch [1/3] to reflect which subsystem it is.
+- Use the set of functions with 'clk_bulk_' to get/enable/disable clocks. 
+- Dropped the overlay from patch [3/3].
+- Dropped the redundant macro 'CONFIG_PM' and 'CONFIG_PM_SLEEP' around
+  suspend() and resume().
+
+Changes since v2:
+- Use dt-overlay to describe sound card because need to plug the audio
+  expansion board into the VisionFive2 board.
+- Modified the coding style for driver.
+- Moved assignment of stop_dma_first to startup function of dai_driver.
+- Dropped some useless macro definition.
+- Use loops to get/enable/disable clocks. 
+
+Changes since v1:
+- Rebased on Linux 6.3-rc4.
+- Added the dts file dedicated to describe audio card.
+- Added the item for JH7110 audio board to the dt-binding of StarFive
+  SoC-based boards.
+
+---
+v3: https://lore.kernel.org/all/20230506090116.9206-1-walker.chen@starfivetech.com/
+v2: https://lore.kernel.org/all/20230420024118.22677-1-walker.chen@starfivetech.com/
+v1: https://lore.kernel.org/all/20230329153320.31390-1-walker.chen@starfivetech.com/
+
+Walker Chen (3):
+  ASoC: dt-bindings: Add TDM controller bindings for StarFive JH7110
+  ASoC: starfive: Add JH7110 TDM driver
+  riscv: dts: starfive: add the node and pins configuration for tdm
+
+ .../bindings/sound/starfive,jh7110-tdm.yaml   |  98 ++++
+ MAINTAINERS                                   |   6 +
+ .../jh7110-starfive-visionfive-2.dtsi         |  40 ++
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      |  21 +
+ sound/soc/Kconfig                             |   1 +
+ sound/soc/Makefile                            |   1 +
+ sound/soc/starfive/Kconfig                    |  15 +
+ sound/soc/starfive/Makefile                   |   2 +
+ sound/soc/starfive/jh7110_tdm.c               | 554 ++++++++++++++++++
+ sound/soc/starfive/jh7110_tdm.h               | 138 +++++
+ 10 files changed, 876 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/starfive,jh7110-tdm.yaml
+ create mode 100644 sound/soc/starfive/Kconfig
+ create mode 100644 sound/soc/starfive/Makefile
+ create mode 100644 sound/soc/starfive/jh7110_tdm.c
+ create mode 100644 sound/soc/starfive/jh7110_tdm.h
+
+
+base-commit: 197b6b60ae7bc51dd0814953c562833143b292aa
+prerequisite-patch-id: 30bec4dba6f250a6edd0c2cbab2ce09442e50e8a
+prerequisite-patch-id: bb939c0c7c26b08addfccd890f9d3974b6eaec53
+prerequisite-patch-id: 8a6f135bcabdad4a4bfb21f0c6a0ffd2bb57efe7
+prerequisite-patch-id: c2366f993a9d85e28c06d8d09f064dd5e8b29a61
+prerequisite-patch-id: 50d53a21f91f4087fc80b6f1f72864adfb0002b9
+prerequisite-patch-id: 0df3703af91c30f1ca2c47f5609012f2d7200028
+prerequisite-patch-id: 89f049f951e5acf75aab92541992f816fd0acc0d
+prerequisite-patch-id: 551fae54377090044c3612fca9740a9b359abdd2
+prerequisite-patch-id: c7fdf904f398d478f0ed6d57eb878982bc73329d
+prerequisite-patch-id: 1b2d0982b18da060c82134f05bf3ce16425bac8d
+prerequisite-patch-id: 090ba4b78d47bc19204916e76fdbc70021785388
+prerequisite-patch-id: a5d9e0f7d4f8163f566678894cf693015119f2d9
+prerequisite-patch-id: 4637a8fa2334a45fa6b64351f4e9e28d3e2d60d3
+prerequisite-patch-id: 32647ec60a3b614e1c59ec8e54cb511ae832c22f
+prerequisite-patch-id: aa06658ecf89c92d0dfdd6a4ba6d9e6e67532971
+prerequisite-patch-id: 1387a7e87b446329dfc21f3e575ceae7ebcf954c
+prerequisite-patch-id: 258ea5f9b8bf41b6981345dcc81795f25865d38f
+prerequisite-patch-id: 8b6f2c9660c0ac0ee4e73e4c21aca8e6b75e81b9
+prerequisite-patch-id: dbb0c0151b8bdf093e6ce79fd2fe3f60791a6e0b
+prerequisite-patch-id: 9007c8610fdcd387592475949864edde874c20a2
+prerequisite-patch-id: d57e95d31686772abc4c4d5aa1cadc344dc293cd
+prerequisite-patch-id: 9f911969d0a550648493952c99096d26e05d4d83
+prerequisite-patch-id: 2ddada18ab6ea5cd1da14212aaf59632f5203d40
+prerequisite-patch-id: 80042661ff6156ce577a72e9eb8c0b218b624829
+prerequisite-patch-id: 398744c61913c76a35754de867c4f820ca7a8d99
+prerequisite-patch-id: f59269382164b5d642a5e10443ca447f5caa595c
+prerequisite-patch-id: 1babe83d6bf999bad17584dc595480f9070a5369
+prerequisite-patch-id: 77be3d122d66df813f13088141ce27b21107a341
+prerequisite-patch-id: 9fbb7ad1dd258bb8ff5946c4a0e59de4bfd82a04
+prerequisite-patch-id: 6f6984916dffd0cc66aa733c9b6bd3a55495a50c
+prerequisite-patch-id: 39e1be2a3d1593577ab997f55f59367cba665aa7
+prerequisite-patch-id: 584c256c9acb52ee2773d0c81c3f4977fc18155a
+prerequisite-patch-id: b37ac15032973e1fcd918f157c82a0606775c9e9
+prerequisite-patch-id: 32deea16304859842af5c2151bc41d91cf6dfc9b
+prerequisite-patch-id: 20ac2450fb93b3f69f83fc720fd4800a95e618a6
+prerequisite-patch-id: 6abf359fa445f4104432ddee27044dfbfb128417
+-- 
+2.17.1
 
