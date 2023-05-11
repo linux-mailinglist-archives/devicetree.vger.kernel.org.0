@@ -2,139 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B05D86FEFF9
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 12:32:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C72AE6FF023
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 12:50:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237428AbjEKKcb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 06:32:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33638 "EHLO
+        id S237790AbjEKKuN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 06:50:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40484 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237872AbjEKKcI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 06:32:08 -0400
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2072.outbound.protection.outlook.com [40.107.93.72])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2302610D5;
-        Thu, 11 May 2023 03:32:06 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Asmddtcfovd8Dcr46Q5LmyOqcZ81zx5sORTzG4VrjnNSj/g4VoVvh04Snx/7bE0D48j8n14nPlK1xtbumAi3j/pmLiZveRji3TJTOzRzQ0OTqhuI0ePILyusKx8yEZ0KC4Di21giIDYR/YrY/UJK5FmX0DaqjoQdevBU9vjO0vJ+7rVZIdqmz2aBatsaZn2l2m3GUKb+w5rCDFFy2xGxx7msOqMVJnbNo+8NTMyab0CBhJM/ukdf+apoXw9clu3mpRz6atDDehxYN8UVVNme84f1l6Stsely1wo1yCfXB4Z7JcZC/DCqHg6XPGxRiUR5oI+qxAzn5qLNa3DcNhRjFA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wduxcE1BcjP7WBY3RTSDvV4maxZh0PoZ8WAdRRj4/N4=;
- b=SNLw3RIu7wlcE3iOAxsMVtanu3mSve1BGmf+sau38pIQt86ovWfapJ2F5GS4J0x8m7+Zb0DN0KrtlF1bM8d5z2AESYnzCmlTSSOc4SzgWC8hYkJjI5nWxpmev8YzX0IBC8ptOp1/8ziPhtmgWdauzF564k2V3IqPCEhUlJrjij9nAP5r6CzjCPB+6fQYN9BJ2ERG9RBINRIRUnJMgHyuIDbntR5OAph11kep/wm9nds+dqxcOudTLkt8ZFJFeLebafIHzUL28HQbQHqNaZfuqCXXAWlxfMkoZY7FYAOohzmNaSFhbQzlk7wNW50cLSY0G9jItNF1wQoxHoVBha330g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.161) smtp.rcpttodomain=linaro.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wduxcE1BcjP7WBY3RTSDvV4maxZh0PoZ8WAdRRj4/N4=;
- b=cMbbfXjM2Bt+DOB07ljzbVki7eQHf9Nw1Wz7PJq84CaLkpdky7d6NsZznA+eEyloVryOOX5Q4His6A/in3K9URPnPWsyRSFitTGb90XQFDw8guTSrORjVBJAbJinuCSUdVveC9o+9gaLaEYzDSfcLtcjyvk+l1ZKqGWJYKReQLiB8yXG6lePDFObAp2OEM2PlcWdtEX8WCdgz/SsNTWedm6i018gwAwrlzpqenISmD/h3SLJmSTJlfpsKYml5iWiW1Tp0Sx+a81w8nDE0b4CIWWXO6FLuy6/TSyKxMCUniYoij7FKOOcuGW9uhQ68Uyuk6/MHB3RI6ef27I8w/zBnw==
-Received: from MW3PR06CA0009.namprd06.prod.outlook.com (2603:10b6:303:2a::14)
- by SA1PR12MB8948.namprd12.prod.outlook.com (2603:10b6:806:38e::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.22; Thu, 11 May
- 2023 10:32:04 +0000
-Received: from CO1NAM11FT026.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:2a:cafe::79) by MW3PR06CA0009.outlook.office365.com
- (2603:10b6:303:2a::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.20 via Frontend
- Transport; Thu, 11 May 2023 10:32:03 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.161) by
- CO1NAM11FT026.mail.protection.outlook.com (10.13.175.67) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6387.21 via Frontend Transport; Thu, 11 May 2023 10:32:03 +0000
-Received: from rnnvmail203.nvidia.com (10.129.68.9) by mail.nvidia.com
- (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.5; Thu, 11 May 2023
- 03:31:51 -0700
-Received: from rnnvmail205.nvidia.com (10.129.68.10) by rnnvmail203.nvidia.com
- (10.129.68.9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.37; Thu, 11 May
- 2023 03:31:51 -0700
-Received: from localhost (10.127.8.9) by mail.nvidia.com (10.129.68.10) with
- Microsoft SMTP Server id 15.2.986.37 via Frontend Transport; Thu, 11 May 2023
- 03:31:50 -0700
-Date:   Thu, 11 May 2023 13:31:49 +0300
-From:   Peter De Schrijver <pdeschrijver@nvidia.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <stefank@nvidia.com>
-Subject: Re: [PATCH v3 5/6] dt-bindings: memory-region property for
- tegra186-bpmp
-Message-ID: <ZFzEFRBKMcUgrILn@44189d9-lcedt>
-References: <20230510142248.183629-1-pdeschrijver@nvidia.com>
- <20230510142248.183629-6-pdeschrijver@nvidia.com>
- <cdba4bb0-551b-a3b2-9329-139d6cda71be@linaro.org>
- <ZFyhqXhzOUKYUafA@44189d9-lcedt>
- <5d01e717-39f1-798b-dda8-022b8430dc7d@linaro.org>
+        with ESMTP id S237402AbjEKKuM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 06:50:12 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B23944230
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 03:50:10 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-9659e9bbff5so1534684466b.1
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 03:50:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683802209; x=1686394209;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=YYmQOiJo0GwahUuK9YIJi/PO7yGRaao3xUZsJxQQPGw=;
+        b=Qq24/0rH2Wy7PCHvEv6ahBRTBtEhVyh/iSjSwPmN3k920PBQd4sEmegEq9y3Wme/d3
+         2BzG92K6N91pdsVQrwOjolbvpXtAwomgqYwv4rWQuKz3DYTt5BpZuAbjkKsFTvd17FHy
+         utp1kT4EnIqHutSwloEDpRiW1mimUBKo3CJhUwSjy9/dxrFZzwaCai9L/1FkywV78iuU
+         aewPcQBpU3taQJZkatQmOqfwNkWgBGPtENCxlsmJ4EFAjATkWgdVCvA2gpEMDNKej1Ir
+         S8VFm3KAKTQXMmtAMGoUsuGiJSlTurUCdPu6GBjEdh8oU0+OCa1jqJp7rJ4lAOdw5T0u
+         U2iw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683802209; x=1686394209;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YYmQOiJo0GwahUuK9YIJi/PO7yGRaao3xUZsJxQQPGw=;
+        b=kM/rzKtUpZooWEeD58d11remy536pN40W8pLJhNhtWFyMh81YK5CpfxsNDSy6GE42m
+         auuoEWWH+7Asm57UpwRT49ljxAJ4XS3Np3pzsZiOPEqqJs5DZFCnb/WSCG3xZIZbr+QF
+         ziLTaY4Gi7BIMTDp/hClVldKXHtqoS13ggYnLhF18O16IFlfT5FClDp2HEGE7zklab8p
+         KAid37LoakI1ajiJiNMlkeZKbie66dVYoeHGjKBSqVsk0BK1xYFQXF7XAeQ/vCZSjRv+
+         xATStITUXybb3zpx3E/IRB6y0tbYeJsAJo/7+BSIAw0tl4SN+BpcT0818RYmYKJ7qs2I
+         Tbyg==
+X-Gm-Message-State: AC+VfDzgCwIMZFj3mKAWinfYq2R6Pl4vJeHBKpA8OZNlx92oeAQjA1iB
+        PYvSBUBycbVQ0KvC2MLq5I0WJw==
+X-Google-Smtp-Source: ACHHUZ7K5/ZpkInBfiFXdz7ldveY5d6mjUUS7cf4oZPvIEM3vCUsgAbg0ltzrAMTFOgTDPrNbtqv+w==
+X-Received: by 2002:a17:906:fd8c:b0:953:3e29:f35c with SMTP id xa12-20020a170906fd8c00b009533e29f35cmr17143266ejb.45.1683802209171;
+        Thu, 11 May 2023 03:50:09 -0700 (PDT)
+Received: from krzk-bin.. ([2a02:810d:15c0:828:41e7:1b68:d38e:1348])
+        by smtp.gmail.com with ESMTPSA id ia21-20020a170907a07500b00966392de4easm3874389ejc.14.2023.05.11.03.50.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 11 May 2023 03:50:08 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [GIT PULL] Devicetree fixes for v6.4, part 2
+Date:   Thu, 11 May 2023 12:50:06 +0200
+Message-Id: <20230511105006.176979-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <5d01e717-39f1-798b-dda8-022b8430dc7d@linaro.org>
-X-NVConfidentiality: public
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT026:EE_|SA1PR12MB8948:EE_
-X-MS-Office365-Filtering-Correlation-Id: 853d1941-2fee-43f7-c974-08db520af623
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: DS0pa7+Dc7L7QlMsVbc//GwSMPGaxzet3x9HXhGq8jDk7ksu8KiF5j6gO+I80s8E72+jE0UxAlQHLKIUm3BhZIDcVs5YC2udDxx0X8+L3VuOmouZJIDxn042EqrMZH/jANkE5XzUJ0j+KTEPBVNlZC0nXca7xZQ/AEr4+wOfSy+j8tyP286JyjfpOTN2MzBkvd/4M9U9v2+QnM8v0+TiFRY8q76oxct4jiBM3TV2WV18BiHs3EBGPYCE1/+AYgEvyl4fBeMP5hFAnswymCC/nNeJNhO8VaITnhLWQPMA5ImvZYc8rNgOy093rKQ5m/pyWcrEKOImskFV5C99ZrLlBK5VHLUySN8bXg/0uTcYh/hbRTU52bWfNmTGKXbzJ3I5Fx1h6kdYdK7q8pRHPFsg0Kbx5Ghs9swQnM8VXjFBo9Lk0SErwjE4GqZxpqdRosEe3w3HSb7pjm43BuaudzV7zLuk5mb7FpXVzmiCk3WzF8DGCDCMKEX8J1QZ/qgfn5zRyiQz7iHCGPv2QZx7Ksjovx+IZGUjuBGg7yvKn8aIONFtkiLd+ywUPXTmCnEckMKclmhtihgNRpfaXGC7ME40q8ekNDn1dLgyWmaHZf2doIqfb1mcn5u5q1bpswucFaZ3L27Zj987+UepA/crghs1PoERAv99PJj3f7sbjtbzGLi3zTzjGTyTI9Z/gbSyAf2irRt5mFicrs/YW6yEXF4U+twmSeT/ZyF8lFTq6bkYImzJASH7QWgRTHxGHrrV30xN
-X-Forefront-Antispam-Report: CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230028)(7916004)(4636009)(136003)(346002)(396003)(39860400002)(376002)(451199021)(40470700004)(36840700001)(46966006)(426003)(336012)(107886003)(41300700001)(53546011)(26005)(9686003)(36860700001)(47076005)(186003)(478600001)(54906003)(40460700003)(6916009)(82740400003)(4326008)(40480700001)(70206006)(70586007)(7636003)(356005)(316002)(5660300002)(33716001)(86362001)(4744005)(2906002)(82310400005)(8936002)(8676002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 May 2023 10:32:03.4185
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 853d1941-2fee-43f7-c974-08db520af623
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT026.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB8948
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 11, 2023 at 11:03:24AM +0200, Krzysztof Kozlowski wrote:
-> On 11/05/2023 10:04, Peter De Schrijver wrote:
-> > On Wed, May 10, 2023 at 05:01:55PM +0200, Krzysztof Kozlowski wrote:
-> >> On 10/05/2023 16:22, Peter De Schrijver wrote:
-> >>> Add memory-region property to the tegra186-bpmp binding to support
-> >>> DRAM MRQ GSCs.
-> >>>
-> >>> Co-developed-by: Stefan Kristiansson <stefank@nvidia.com>
-> >>> Signed-off-by: Stefan Kristiansson <stefank@nvidia.com>
-> >>> Signed-off-by: Peter De Schrijver <pdeschrijver@nvidia.com>
-> >>> ---
-> >>
-> >> Also no changelog. Since I do not see improvements after Thierry
-> >> comments I assume you send the same.
-> >>
-> > 
-> > The changelog is in the cover letter. I will send it to you next
-> > iteration.
-> 
-> I got only few patches, rest is missing including changelog. Thus it is
-> the same as it did not exist.
-> 
+Hi Linus,
 
-Do you want all of them? Some people seem to object to that so I didn't
-send them to all people.
+It's my first pull for you, so let me introduce myself.  With Rob Herring
+and recently also Conor Dooley, I co-maintain the Devicetree
+bindings [1].  I also maintain few other subsystems, but all my other
+pull requests are going to SoC folks (Arnd and Olof).
 
-Peter.
+The git tag for pull is signed with my usual key which you can get
+from kernel.org pgp keys repo: keys/1B93437D3B41629B.asc
+
+Rob is currently away from keyboard and he also mentioned in last pull
+to you that something might be coming from me [2].  So here it goes - few
+fixes for current cycle.
+
+[1] https://www.kernel.org/doc/html/latest/process/maintainers.html#open-firmware-and-flattened-device-tree-bindings
+[2] https://lore.kernel.org/all/20230505192951.GA3409270-robh@kernel.org/
+
+Best regards,
+Krzysztof
+
+
+The following changes since commit ac9a78681b921877518763ba0e89202254349d1b:
+
+  Linux 6.4-rc1 (2023-05-07 13:34:35 -0700)
+
+are available in the Git repository at:
+
+  https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux-dt.git tags/dt-fixes-6.4
+
+for you to fetch changes up to 8bbec86ce6d66fb33530c679f7bb3a123fc9e7da:
+
+  dt-bindings: PCI: fsl,imx6q: fix assigned-clocks warning (2023-05-09 08:01:49 +0200)
+
+----------------------------------------------------------------
+Devicetree binding fixes for v6.4
+
+Few fixes for Devicetree bindings and related docs, all for issues
+introduced in v6.4-rc1 commits:
+
+1. media/ov2685: fix number of possible data lanes, as old binding
+   explicitly mentioned one data lane. This fixes dt_binding_check
+   warnings like:
+   Documentation/devicetree/bindings/media/rockchip-isp1.example.dtb: camera@3c: port:endpoint:data-lanes: [[1]] is too short
+   From schema: Documentation/devicetree/bindings/media/i2c/ovti,ov2685.yaml
+
+2. Maintainers: correct path of Apple PWM binding. This fixes
+   refcheckdocs warning.
+
+3. PCI/fsl,imx6q: correct parsing of assigned-clocks and related
+   properties and make the clocks more specific per PCI device (host or
+   endpoint).  This fixes dtschema limitation and dt_binding_check
+   warnings like:
+
+   Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.example.dtb: pcie-ep@33800000: Unevaluated properties are not allowed
+   From schema: Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml
+
+----------------------------------------------------------------
+Krzysztof Kozlowski (1):
+      dt-bindings: PCI: fsl,imx6q: fix assigned-clocks warning
+
+Luca Weiss (1):
+      media: dt-bindings: ov2685: Correct data-lanes attribute
+
+Lukas Bulwahn (1):
+      MAINTAINERS: adjust file entry for ARM/APPLE MACHINE SUPPORT
+
+ .../devicetree/bindings/media/i2c/ovti,ov2685.yaml |  1 +
+ .../bindings/pci/fsl,imx6q-pcie-common.yaml        | 13 +---
+ .../devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml | 38 +++++++++++
+ .../devicetree/bindings/pci/fsl,imx6q-pcie.yaml    | 77 ++++++++++++++++++++++
+ MAINTAINERS                                        |  2 +-
+ 5 files changed, 119 insertions(+), 12 deletions(-)
