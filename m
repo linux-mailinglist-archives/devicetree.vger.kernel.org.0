@@ -2,252 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDF7B6FED49
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 09:58:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7EB46FED72
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 10:06:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237708AbjEKH6n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 03:58:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57838 "EHLO
+        id S233233AbjEKIGF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 04:06:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237695AbjEKH6l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 03:58:41 -0400
-Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 657B58A4E
-        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 00:58:34 -0700 (PDT)
-Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-55a8019379fso76892617b3.0
-        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 00:58:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20221208; t=1683791913; x=1686383913;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PkscnF/KTXJ0FECfCsyp1oedck4XNhpkqlVKEGQkMDU=;
-        b=ZigNMeK/lP5H1Z47r2LaTyi0KdLf8+YU/dY5F3l51D8o5Fzrk2imdMYmwQAesGKTwu
-         rEF9pmkHjLhIPV0ZE8b2AGzqpXRVd4M2VcjEz4AZTA2Bihx8n1f1Cbw5GNExtqWHD7eA
-         3jqySoToHxFPANVf5ocDHqtFTjPi9OR7udiEzzYF47ubqq3WFfhyPqpisDrBzhevgAYT
-         BkSXIcEYAb5GUdxWgWyJI0UDXslyE3JtMm2tso66dARf7sGN9BjrTYylI3AiJIyXGzx+
-         nv6wLyN1yu0sBisqjkCXOh4r+yQ0qPEApldhpcqsGYkfxBvmp6b48Fi4IJCkeCe1X2eu
-         +oTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683791913; x=1686383913;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PkscnF/KTXJ0FECfCsyp1oedck4XNhpkqlVKEGQkMDU=;
-        b=U/dbHIMsyJVqvpiHbypnAJEJJHFJxb4iZa3yBksK23jqXX8SXmnxUV5qjR/10Em+VL
-         SbIcAA+2USaINVfIv3/WQY1A+f5FN2FCl6c9Jcw3OVVGHqVYXQqQR6E2Vox1UmBGEBfi
-         zJ/9FNEjfBn3OMu+voaEiLwLOigcGh1SYRfO3PCDMgRj7bpI2cG1Qz5Jqvicu3Ju/PJ0
-         0ky7DH5hwvw5OLudZlBovnQX3GUYUk8hEkD739S1Wu4dGzD3/CI5uj8cKFW8TZ2PQ7La
-         IVBE2YI+IPllV8a4ppEHrxFdhrS2xsHaRtRwYlRFhvx/gs7bsRHEHVdQL/2hEFnxo9Is
-         Sksg==
-X-Gm-Message-State: AC+VfDxx9FbRFFTZ92vUle8vI+iUi48GGCd/Fgor+itm5gJQ2vpG3amP
-        f1JtbfsKD7c0gJb3R3qMZV457n3JEw/1aZ2tWylWZw==
-X-Google-Smtp-Source: ACHHUZ4/zj52rhxmIebfw5gIIU+TlEzSnxJDO6Mk7HaJD2y76ykj/GxLSP1pR7mI1xvpSroW7WN55rqJzibeWkyNkek=
-X-Received: by 2002:a0d:f042:0:b0:559:f026:46d1 with SMTP id
- z63-20020a0df042000000b00559f02646d1mr20497691ywe.40.1683791913445; Thu, 11
- May 2023 00:58:33 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230504145737.286444-1-joychakr@google.com> <20230504145737.286444-8-joychakr@google.com>
- <78616bc1-8d9e-4a1c-70d6-ad62c2cfa8a8@linaro.org> <CAOSNQF15UN2Rckes55UHxbUvN1PJcbj9aWirVGSLDOs5Y5EPnQ@mail.gmail.com>
- <3d9d545d-a620-85f6-b7bd-d57a8729f818@linaro.org> <CAOSNQF0jJLc78_1aGYY3=csJc7WqqvydwxmQ22rvXpLruQ-XRg@mail.gmail.com>
- <83b8d419-9d43-3c81-2014-a4380de45b88@linaro.org>
-In-Reply-To: <83b8d419-9d43-3c81-2014-a4380de45b88@linaro.org>
-From:   Joy Chakraborty <joychakr@google.com>
-Date:   Thu, 11 May 2023 13:28:19 +0530
-Message-ID: <CAOSNQF1NVrOAvzQym1NpSDfUE01Rb7jp79Tu9QLMKB-7m1JCMw@mail.gmail.com>
-Subject: Re: [PATCH 7/7] dt-bindings: dmaengine: pl330: Add new quirks
+        with ESMTP id S232059AbjEKIGE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 04:06:04 -0400
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2047.outbound.protection.outlook.com [40.107.223.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B866444A9;
+        Thu, 11 May 2023 01:06:02 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=GZejId5latthZh4fiiyGRynYlxnJeCaF0d//zlV5panrQw1u3sfoGlx47t373Ve6jr9U32ybLRBr3r77P4lamB/q9Xc1LJGf6lgz4Mip5QZmrC5xYKF0MG7eHENknjhLxk7Lr1TM+SMurH728jzQFgzknDUuTyBl+Q5CyAqV6dmOZrBKBmaM7QNdPHaYyEn+DyTiFb545HneK/xB0HrJowxtOyzfLvOTstqyP3YoR+CXP5ARp+0uEAs+a2YM6Gm/s5CmM62w+S2WAjces2LypjABBkzecmHlrw9FxOTIj4DZNeZLa93P6llg81JPKccoUhdTw2/aBYJTcLaN+3ya5g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9wmIfD9yMWvZtT2ZUnbK+A0CR+cUZO5XWPj7QyFApSY=;
+ b=lWIqj5Mg25NTV95uvwVe71gI7fpvbtXcHfjJNha2QLNxUDqgeJYXO7SL9RkUyMPHZDbq7KFjXiA0N+ilLF9fdce5PkxiTQXNFLIXJF5wfCPYJU7OoRhkGEVOMDvEMYdujT0M7P00sMmotcMR0EyhKRSI0iehpzM0cA0EEn46lPrSEuHCos8SDDwEiixeUhRAovVjniuyyIgjT2zsxdviL+k9B7XnEpXqJsfAxZMITgtjIJ1v0sC3jXLnJLOvYAaoCxJNCd9OD9BlGU2XaA+TD2u+3W7mZAxKEZMsNk9gbxDiVP2R7+Gqjs1jbnvhkf7rehC4QKs2e06xN00kTl70Ag==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.118.232) smtp.rcpttodomain=linaro.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9wmIfD9yMWvZtT2ZUnbK+A0CR+cUZO5XWPj7QyFApSY=;
+ b=Ndn2sIs/CF0egrTucbMmWL1xuOyTCklLEA9yXSKHBV2s7xKbeIlPF7RZWiIRMTgufW7/8RFviUBOGDQOXOG0zBdU3TFCJwKhJqmIvsuWFwPryU7OU5uKmLdzK51xynQK75qdIN3TrOpnpolM7zaUjhwASEKt99KTRbbC7PmR2CHSLWvzbANraq54iHBBrE4KA+Oxw9SdUrRpKVkW/35pE6GFhZ/RR4i7RqrhhgzS2KKu3udFPw6i72AxUaahBisRPxf5xolVL1FvnsBuHejilodH/HBm9wCKkBMHBLTxMVryoIdQim7CafRgsGt8sixRRYvea8l8J4BqCqS4aP0E5w==
+Received: from BN9PR03CA0177.namprd03.prod.outlook.com (2603:10b6:408:f4::32)
+ by CH3PR12MB9027.namprd12.prod.outlook.com (2603:10b6:610:120::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.33; Thu, 11 May
+ 2023 08:04:59 +0000
+Received: from BN8NAM11FT025.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:f4:cafe::c3) by BN9PR03CA0177.outlook.office365.com
+ (2603:10b6:408:f4::32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.22 via Frontend
+ Transport; Thu, 11 May 2023 08:04:59 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.232)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.118.232 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.118.232; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.118.232) by
+ BN8NAM11FT025.mail.protection.outlook.com (10.13.177.136) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6387.22 via Frontend Transport; Thu, 11 May 2023 08:04:58 +0000
+Received: from drhqmail202.nvidia.com (10.126.190.181) by mail.nvidia.com
+ (10.127.129.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.5; Thu, 11 May 2023
+ 01:04:58 -0700
+Received: from drhqmail201.nvidia.com (10.126.190.180) by
+ drhqmail202.nvidia.com (10.126.190.181) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.37; Thu, 11 May 2023 01:04:58 -0700
+Received: from localhost (10.127.8.9) by mail.nvidia.com (10.126.190.180) with
+ Microsoft SMTP Server id 15.2.986.37 via Frontend Transport; Thu, 11 May 2023
+ 01:04:57 -0700
+Date:   Thu, 11 May 2023 11:04:57 +0300
+From:   Peter De Schrijver <pdeschrijver@nvidia.com>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, manugautam@google.com,
-        danielmentz@google.com, sjadavani@google.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=ham autolearn_force=no version=3.4.6
+CC:     <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <stefank@nvidia.com>
+Subject: Re: [PATCH v3 5/6] dt-bindings: memory-region property for
+ tegra186-bpmp
+Message-ID: <ZFyhqXhzOUKYUafA@44189d9-lcedt>
+References: <20230510142248.183629-1-pdeschrijver@nvidia.com>
+ <20230510142248.183629-6-pdeschrijver@nvidia.com>
+ <cdba4bb0-551b-a3b2-9329-139d6cda71be@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <cdba4bb0-551b-a3b2-9329-139d6cda71be@linaro.org>
+X-NVConfidentiality: public
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT025:EE_|CH3PR12MB9027:EE_
+X-MS-Office365-Filtering-Correlation-Id: d19059cd-8cb1-4cc4-acaf-08db51f66a5a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: tbqNA96hfyImjN9b7pPvkGbAsn0AdFTSlS3iqGYZL2peSQL/z9rFg/PK05y5XtHxyZCRP31QD4G3er0zWTVC8p2UC+rT81BpL4kPvYf81I0NuMWMESRGN+JhIcdpmHTpzkE4TC5Qkhi6rrY5r2KsSEiL7XEtAeQkqPZ78Ac3JLVcfW33SvP2hiUXLbrZrAWnzrjo4GUoQzLRdC1oKjQeYLk4R8f0oHeU+lRUZma1GetxgRIf24rzMMd4QaaClLZIbJ2N2IHysLQwzwjMgTksDvYKLfdKSFZYLJHnP7dvMaV5tcDHyNPY5VX0dJlDVkTK48ZN0rGDNjqRjD95RIZ8eVJWSrdZtZ/Zsjo/nUDKBDsOOx24PjD+aOECDTv6vVaLT09twOMvduVKkqq1X3Ia9itCwdd9jTSo0AAh/eHf99Wx+efvVDOCUM9oYVhOJI8VQAdgKODeQnIVY1ccDyEvakmKrXgoIvj6eNsck/hR/uHaZvjOwmSC+1txzGC1Z6cahR5S9DmdPKmKLVwZh8WyFSgz4zr5ivAPUyNq5Cc4+Ab7x09kKcv2qlO9zrSb4oKvUDh20WTBpP6yMaAOQMHFWTAq59ekSfkgbRhWOEWZHSkNg8kJQygdwKq2Zn2NrfZ/uO1vFChb61R9maCunbklIlqkvAkrO96LiPwvw85X+Ursjg1OTf7qXKdJN3osaWMwdoMu7zdFvCjPTSk2pEBj6Q==
+X-Forefront-Antispam-Report: CIP:216.228.118.232;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge1.nvidia.com;CAT:NONE;SFS:(13230028)(7916004)(4636009)(346002)(396003)(39860400002)(136003)(376002)(451199021)(40470700004)(36840700001)(46966006)(107886003)(186003)(47076005)(54906003)(316002)(7636003)(40480700001)(82740400003)(356005)(26005)(9686003)(41300700001)(53546011)(5660300002)(86362001)(36860700001)(8676002)(82310400005)(8936002)(70586007)(70206006)(6916009)(33716001)(4326008)(426003)(336012)(478600001)(40460700003)(2906002)(4744005);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 May 2023 08:04:58.9304
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d19059cd-8cb1-4cc4-acaf-08db51f66a5a
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.232];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT025.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB9027
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 8, 2023 at 10:13=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 08/05/2023 13:58, Joy Chakraborty wrote:
-> > On Fri, May 5, 2023 at 5:53=E2=80=AFPM Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 05/05/2023 11:44, Joy Chakraborty wrote:
-> >>> On Thu, May 4, 2023 at 8:38=E2=80=AFPM Krzysztof Kozlowski
-> >>> <krzysztof.kozlowski@linaro.org> wrote:
-> >>>>
-> >>>> On 04/05/2023 16:57, Joy Chakraborty wrote:
-> >>>>> Add 2 new quirks added to the driver "arm,pl330-optimize-dev2mem-ax=
-size"
-> >>>>> and "arm,pl330-periph-single-dregs"
-> >>>>
-> >>>> This we can see from the diff. You need to answer why?
-> >>>>
-> >>>
-> >>> Sure will change it to:
-> >>> "
-> >>> Addition of following quirks :
-> >>> - "arm,pl330-periph-use-diff-axsize"
-> >>>    AxSize of transactions to peripherals are limited by the periphera=
-l
-> >>> address width which inturn limits the AxSize used for transactions
-> >>> towards memory.
-> >>>    This quirk will make transactions to memory use the maximum
-> >>> possible bus width(AxSize), store data in MFIFO and use narrow
-> >>> multi-beat transactions to move data to peripherals.
-> >>>    This only applies to transfers between memory and peripherals wher=
-e
-> >>> bus widths available are different for memory and the peripheral.
-> >>> - "arm,pl330-periph-complete-with-singles" :
-> >>>    When transfer sizes are not a multiple of a block of burst
-> >>> transfers (AxLen * AxSize configured at the peripheral), certain
-> >>> peripherals might choose not to set the burst request at the
-> >>> peripheral request interface of the DMA.
-> >>>    This quirk moves the remaining bytes to the peripheral using singl=
-e
-> >>> transactions.
-> >>> "
-> >>
-> >> This does not answer why. You just copied again the patch contents.
-> >>
-> > Hi Krzysztof,
-> > Both the changes could be useful for SOC's which have PL330 integrated
-> > with a peripheral
->
-> What do you mean here by "PL330 integrated with a peripheral"?
+On Wed, May 10, 2023 at 05:01:55PM +0200, Krzysztof Kozlowski wrote:
+> On 10/05/2023 16:22, Peter De Schrijver wrote:
+> > Add memory-region property to the tegra186-bpmp binding to support
+> > DRAM MRQ GSCs.
+> > 
+> > Co-developed-by: Stefan Kristiansson <stefank@nvidia.com>
+> > Signed-off-by: Stefan Kristiansson <stefank@nvidia.com>
+> > Signed-off-by: Peter De Schrijver <pdeschrijver@nvidia.com>
+> > ---
+> 
+> Also no changelog. Since I do not see improvements after Thierry
+> comments I assume you send the same.
+> 
 
-Hi Krzysztof,
+The changelog is in the cover letter. I will send it to you next
+iteration.
 
-By integration with peripheral I mean when the PL330 DMA is used to
-copy data to/from memory to a peripheral hardware (e.g. FIFO of a SPI
-master) where flow control of data is managed by the peripheral
-request interface exposed by PL330 :
-https://developer.arm.com/documentation/ddi0424/a/functional-overview/perip=
-heral-request-interface
-
->
-> > but I am not sure if all SOC's need/want this change
-> > hence wanted to keep it as a DT knob to avoid any regressions.
-> > But like you say it might not be the right thing to do.
->
-> Devicetree is for describing hardware, not the contents of registers of
-> a device. Your changes might fit or might not, I don't know this good
-> enough, so I wait for your justification. Without justification this
-> looks like controlling driver from DT...
->
-
-Yes this does control the driver behaviour on how the PL330 DMA
-hardware is programmed but it also is a function of
-   - The bus width available in the soc towards memory and peripheral
-to be different.
-   - The requirement of peripherals interfaced with PL330 on how odd
-transfer sizes are to be copied from memory to peripheral.
-
-But, both changes IMO can be enabled by default as well in the driver
-without devicetree knobs but it carries the risk of regression on
-SOC's which do not have such a requirement.
-
-Hence I was looking for some insight from Vinod Koul to see if it is
-okay to go ahead with the changes without device tree knobs.
-
-> >
-> >>>
-> >>>>>
-> >>>>> Signed-off-by: Joy Chakraborty <joychakr@google.com>
-> >>>>> ---
-> >>>>>  Documentation/devicetree/bindings/dma/arm,pl330.yaml | 8 ++++++++
-> >>>>>  1 file changed, 8 insertions(+)
-> >>>>>
-> >>>>> diff --git a/Documentation/devicetree/bindings/dma/arm,pl330.yaml b=
-/Documentation/devicetree/bindings/dma/arm,pl330.yaml
-> >>>>> index 4a3dd6f5309b..0499a7fba88d 100644
-> >>>>> --- a/Documentation/devicetree/bindings/dma/arm,pl330.yaml
-> >>>>> +++ b/Documentation/devicetree/bindings/dma/arm,pl330.yaml
-> >>>>> @@ -53,6 +53,14 @@ properties:
-> >>>>>      type: boolean
-> >>>>>      description: quirk for performing burst transfer only
-> >>>>>
-> >>>>> +  arm,pl330-optimize-dev2mem-axsize:
-> >>>>> +    type: boolean
-> >>>>> +    description: quirk for optimizing AxSize used between dev<->me=
-m
-> >>>>
-> >>>> This tells me nothing... Neither what it is about nor why this is
-> >>>> property of a board or PL330 hardware implementation. Please describ=
-e
-> >>>> hardware, not drivers.
-> >>>>
-> >>>
-> >>> Will change the name to "arm,pl330-periph-use-diff-axsize" and add de=
-scription:
-> >>> "
-> >>> Quirk to use different AxSize for bursts while accessing source and
-> >>> destination when moving data between memory and peripheral.
-> >>> Maximum possible bus width is used as AxSize for transactions towards
-> >>> memory and transactions towards peripherals use AxSize as per
-> >>> peripheral address width.
-> >>> "
-> >>
-> >> Still no answer. Why this is property of a board or PL330 hardware
-> >> implementation?
-> >> I also asked to describe hardware but I still see "quirk to ...". We u=
-se
-> >> "quirk" as concept in Linux driver. Describe the hardware, not Linux d=
-river.
-> >>
-> >
-> > This comes to use when the bus width requirement between peripheral
-> > and memory is different, but buswidth is something we read from HW
-> > registers so this can be enabled by default.
->
-> Don't add discoverable stuff to DT.
-
-Sure, will not add this to DT.
-
->
-> >
-> >>
-> >>>
-> >>>>> +
-> >>>>> +  arm,pl330-periph-single-dregs:
-> >>>>> +    type: boolean
-> >>>>> +    description: quirk for using dma-singles for peripherals in _d=
-regs()
-> >>>>
-> >>>> Same concerns.
-> >>>>
-> >
-> > An example of such a case is given in the ARM TRM for PL330, so maybe
-> > we can have this by default as well.
-> > Link : https://developer.arm.com/documentation/ddi0424/d/functional-ove=
-rview/peripheral-request-interface/dmac-length-management#:~:text=3DDMAC%20=
-length%20management-,Example%202.3,-shows%20a%20DMAC
->
-> I could not find here a case describing hardware. You pointed out some
-> code. What does the code have anything to do with DT?
->
-
-The instructions mentioned here are consumed by the PL330 Hardware to
-generate AXI transactions on the system bus. The example mentioned in
-the link is similar to how the driver would behave when this is
-enabled.
-
-I shall remove this as well and create a new patch without any DT
-depency for the changes.
-
-Thanks
-Joy
->
-> Best regards,
-> Krzysztof
->
+Peter.
