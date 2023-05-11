@@ -2,87 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50A386FEDE5
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 10:37:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 152FD6FEDE9
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 10:38:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236036AbjEKIh1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 04:37:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47406 "EHLO
+        id S236371AbjEKIia (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 04:38:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235831AbjEKIhY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 04:37:24 -0400
-X-Greylist: delayed 364 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 11 May 2023 01:37:18 PDT
-Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt [193.136.128.21])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E1B949D6;
-        Thu, 11 May 2023 01:37:18 -0700 (PDT)
-Received: from localhost (localhost.localdomain [127.0.0.1])
-        by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id 3F6B66001418;
-        Thu, 11 May 2023 09:31:11 +0100 (WEST)
-X-Virus-Scanned: by amavisd-new-2.11.0 (20160426) (Debian) at
-        tecnico.ulisboa.pt
-Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
-        by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavisd-new, port 10025)
-        with LMTP id TmGA-BY02HpO; Thu, 11 May 2023 09:31:08 +0100 (WEST)
-Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt [193.136.128.10])
-        by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id D3449600142E;
-        Thu, 11 May 2023 09:31:08 +0100 (WEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tecnico.ulisboa.pt;
-        s=mail; t=1683793868;
-        bh=RbjKnd5gHvy7UWuHTMMFYJSF8cHCWLTOFPxaoC4Uq+8=;
-        h=From:To:Subject:Date:In-Reply-To:References;
-        b=UyFte6GCQr0pjmgv9f5ZXwn69ofoZ2GUEoWXhMT1XOVn0l9QeNNb+Zi80u36cAXRb
-         WzwMYebXPWRiuZ8uFN/VPIMoX8x92PJE+QT6m+xbSRwNg+Sf/i0JRM84HloxjKexXB
-         Eu4dekmN4xTOg1aQv2dncXy0MO4ipczjSfHvPzaU=
-Received: from wslaptop.Home (unknown [IPv6:2001:8a0:6a1a:e700:b1f6:8e31:237e:e5dd])
-        (Authenticated sender: ist187313)
-        by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id 9BF44360072;
-        Thu, 11 May 2023 09:31:08 +0100 (WEST)
-From:   Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, diogo.ivo@tecnico.ulisboa.pt,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: tegra: smaug: add GPU node
-Date:   Thu, 11 May 2023 09:31:01 +0100
-Message-Id: <20230511083101.78516-3-diogo.ivo@tecnico.ulisboa.pt>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230511083101.78516-1-diogo.ivo@tecnico.ulisboa.pt>
-References: <20230511083101.78516-1-diogo.ivo@tecnico.ulisboa.pt>
+        with ESMTP id S236382AbjEKIi0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 04:38:26 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 404BD7AA1
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 01:38:23 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4efe8991b8aso9632025e87.0
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 01:38:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683794301; x=1686386301;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FURj9AzValj5QACsSli0Vwx4tsK5MhX+LSZftjhcMSs=;
+        b=lkRhXgWkBGSBpDesK0bqg6v+YDvgBKhgGjN2r+PoBw8mBbRJugn2aoGdfYQoJoFpWk
+         1f+qQ2AKPJS03RABZp9M7oGR0TGRVGWgUkp6p1l3FZqCpMwioCV0qVBABiM4S6iw80+2
+         d9AzDz3uRRgBmevsFpZtNIwqXaIJl8VTEDIKbb5XCCulNk6kqpawCMPnDUi5SZmRRH30
+         KSzE+iZujHXyM/CVrHKqWuy/1osrF77FxcFYzB2iX9iRRrAI9ne/1ZONVS5ETFttVfmD
+         z8aUy0gw6ZeqpZOWNfh5h+5/z9GyX5ygX4IW6n0XZjPwPE+3SjHNu0B7Iu3KSqpCfdYJ
+         9GaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683794301; x=1686386301;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FURj9AzValj5QACsSli0Vwx4tsK5MhX+LSZftjhcMSs=;
+        b=h207Ja1gfAakPXNwTNfpE4/dqYxESTBGK5sWrEaz2rBxaGUIKNRX9vt7o6qkTc5ITK
+         9oTyYcHfWqn/UOxqIGwoTnw1gwWyydqBHolWqwrTttDfnbfRwMcIBkaanL2qLKCCaDe1
+         7CieiBymImznaLdzrF4yL3FXoWcZt5tJQbkWZgtPTCW2cZjtZn24SUgP+gNxpMuAJdOz
+         Fyw/tAPCvfyJlgNNtkkAbcG6wmD7+ueMI/mljDCIlPhb1TbVBgR7gtN1kC5h0NVkijUf
+         PNRv11XGiFTz9KII0nyU/8oGjvCjcS4WV4Tpox1blrqkvxNwAEgOydeGH0h0MCDBh8CY
+         874w==
+X-Gm-Message-State: AC+VfDx5Ipnsysny0tYMTtxOhhBPzQchxOtK06ZUbWW4y52tlWQ+Cvf0
+        JouDf2FR618IwO+RI2FjeYhoYA==
+X-Google-Smtp-Source: ACHHUZ4KZqTl1GAfdpqLRF8PuNBZ3NweOSj0wV85fB2y/9k/HSNqCP2mYm7PItDI5hxP28D6L04hjQ==
+X-Received: by 2002:a05:6512:961:b0:4eb:7e:1fa5 with SMTP id v1-20020a056512096100b004eb007e1fa5mr2554589lft.8.1683794301026;
+        Thu, 11 May 2023 01:38:21 -0700 (PDT)
+Received: from [192.168.1.101] (abxi58.neoplus.adsl.tpnet.pl. [83.9.2.58])
+        by smtp.gmail.com with ESMTPSA id b28-20020ac25e9c000000b004f24ee39661sm1018858lfq.137.2023.05.11.01.38.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 May 2023 01:38:20 -0700 (PDT)
+Message-ID: <cb04d8e1-f2ab-8a5f-5c2c-fde125cbb243@linaro.org>
+Date:   Thu, 11 May 2023 10:38:16 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH 1/3] ARM: dts: qcom: msm8226: Use XO from rpmcc where
+ possible
+Content-Language: en-US
+To:     Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
+        phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Jeffrey Hugo <quic_jhugo@quicinc.com>,
+        Taniya Das <tdas@codeaurora.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+References: <20230509-msm8226-mmcc-parents-v1-0-83a2dfc986ab@z3ntu.xyz>
+ <20230509-msm8226-mmcc-parents-v1-1-83a2dfc986ab@z3ntu.xyz>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230509-msm8226-mmcc-parents-v1-1-83a2dfc986ab@z3ntu.xyz>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the GPU on the Pixel C.
 
-Signed-off-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
----
- arch/arm64/boot/dts/nvidia/tegra210-smaug.dts | 5 +++++
- 1 file changed, 5 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts b/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
-index 8973fcf1e219..709f3f417a19 100644
---- a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
-+++ b/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
-@@ -67,6 +67,11 @@ dpaux: dpaux@545c0000 {
- 		};
- 	};
- 
-+	gpu@57000000 {
-+		vdd-supply = <&max77621_gpu>;
-+		status = "okay";
-+	};
-+
- 	pinmux: pinmux@700008d4 {
- 		pinctrl-names = "boot";
- 		pinctrl-0 = <&state_boot>;
--- 
-2.40.1
+On 9.05.2023 23:16, Luca Weiss wrote:
+> The xo clock being used everywhere actually goes via the RPM. Since the
+> rpmcc driver recently got support for this clock we can use this now.
+> 
+> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
+Konrad
+>  arch/arm/boot/dts/qcom-msm8226.dtsi | 11 ++++++-----
+>  1 file changed, 6 insertions(+), 5 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/qcom-msm8226.dtsi b/arch/arm/boot/dts/qcom-msm8226.dtsi
+> index 42acb9ddb8cc..4dd4e26c73a2 100644
+> --- a/arch/arm/boot/dts/qcom-msm8226.dtsi
+> +++ b/arch/arm/boot/dts/qcom-msm8226.dtsi
+> @@ -176,7 +176,7 @@ sdhc_1: mmc@f9824900 {
+>  			interrupt-names = "hc_irq", "pwr_irq";
+>  			clocks = <&gcc GCC_SDCC1_AHB_CLK>,
+>  				 <&gcc GCC_SDCC1_APPS_CLK>,
+> -				 <&xo_board>;
+> +				 <&rpmcc RPM_SMD_XO_CLK_SRC>;
+>  			clock-names = "iface", "core", "xo";
+>  			pinctrl-names = "default";
+>  			pinctrl-0 = <&sdhc1_default_state>;
+> @@ -192,7 +192,7 @@ sdhc_2: mmc@f98a4900 {
+>  			interrupt-names = "hc_irq", "pwr_irq";
+>  			clocks = <&gcc GCC_SDCC2_AHB_CLK>,
+>  				 <&gcc GCC_SDCC2_APPS_CLK>,
+> -				 <&xo_board>;
+> +				 <&rpmcc RPM_SMD_XO_CLK_SRC>;
+>  			clock-names = "iface", "core", "xo";
+>  			pinctrl-names = "default";
+>  			pinctrl-0 = <&sdhc2_default_state>;
+> @@ -208,7 +208,7 @@ sdhc_3: mmc@f9864900 {
+>  			interrupt-names = "hc_irq", "pwr_irq";
+>  			clocks = <&gcc GCC_SDCC3_AHB_CLK>,
+>  				 <&gcc GCC_SDCC3_APPS_CLK>,
+> -				 <&xo_board>;
+> +				 <&rpmcc RPM_SMD_XO_CLK_SRC>;
+>  			clock-names = "iface", "core", "xo";
+>  			pinctrl-names = "default";
+>  			pinctrl-0 = <&sdhc3_default_state>;
+> @@ -362,7 +362,8 @@ usb_hs_phy: phy {
+>  					compatible = "qcom,usb-hs-phy-msm8226",
+>  						     "qcom,usb-hs-phy";
+>  					#phy-cells = <0>;
+> -					clocks = <&xo_board>, <&gcc GCC_USB2A_PHY_SLEEP_CLK>;
+> +					clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
+> +						 <&gcc GCC_USB2A_PHY_SLEEP_CLK>;
+>  					clock-names = "ref", "sleep";
+>  					resets = <&gcc GCC_USB2A_PHY_BCR>, <&usb 0>;
+>  					reset-names = "phy", "por";
+> @@ -617,7 +618,7 @@ adsp: remoteproc@fe200000 {
+>  			power-domains = <&rpmpd MSM8226_VDDCX>;
+>  			power-domain-names = "cx";
+>  
+> -			clocks = <&xo_board>;
+> +			clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>;
+>  			clock-names = "xo";
+>  
+>  			memory-region = <&adsp_region>;
+> 
