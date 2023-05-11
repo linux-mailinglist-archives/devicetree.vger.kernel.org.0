@@ -2,55 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E005D6FEB7D
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 08:02:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D89A6FEB93
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 08:15:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231621AbjEKGCs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 02:02:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34368 "EHLO
+        id S236708AbjEKGPN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 02:15:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39604 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231183AbjEKGCr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 02:02:47 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0540C138;
-        Wed, 10 May 2023 23:02:46 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 800D464AE3;
-        Thu, 11 May 2023 06:02:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 320E5C433D2;
-        Thu, 11 May 2023 06:02:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1683784964;
-        bh=L4Nnv6gPFOyuLFZDBZsL5VCSsSaGeg9xGtmV+5kvrYo=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=VyqAQJHFu2ZOa6qUeQpMH1Mij3SIUuel5M5juD/3iv6Fi4f3ZPTxuhUzsbHzwgYXp
-         sdAHe2fn/srgdvZTlksC2EgyVJDPdRjkr6FQb/sJ0zBdsVZI6NqtS4mNd9SesYtwbV
-         kYAP7xNLJfLWp2K7gHKdXxvZaGzo5ylVj+bU7B92cYN59jJSw0aD5hV8FYC9ItOH8W
-         zkuu5idA/ma/R/8VlmhTYgeGRE0v4tJxjKRnOPXb7i0WPq3M49XdcQep4xP6KM6oTW
-         kkB9oAcZkJfUp6qfaZTBtH8WVhZTjGzA5RAy3+E24SPb3NDi+SRMdCGDgbtvQsth7O
-         ftLcsshj4LQ1w==
-From:   Mark Brown <broonie@kernel.org>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, tsbogend@alpha.franken.de,
-        paul@crapouillou.net,
-        Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
-Cc:     lgirdwood@gmail.com, perex@perex.cz, tiwai@suse.com,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
-In-Reply-To: <20230509124238.195191-1-aidanmacdonald.0x0@gmail.com>
-References: <20230509124238.195191-1-aidanmacdonald.0x0@gmail.com>
-Subject: Re: (subset) [PATCH v1 1/3] ASoC: jz4740-i2s: Add support for
- X1000 SoC
-Message-Id: <168378495575.334814.10028126851566135486.b4-ty@kernel.org>
-Date:   Thu, 11 May 2023 15:02:35 +0900
+        with ESMTP id S229461AbjEKGPM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 02:15:12 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B56DF19AB;
+        Wed, 10 May 2023 23:15:10 -0700 (PDT)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34B5f0os015361;
+        Thu, 11 May 2023 06:14:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=1ujNE5isnVylS0AXsmsl1bE/LuhN9c0zr4KB6XE0dMk=;
+ b=CtK8gOxgOHa4hs7bgHXjjFvJJKSKoK5s096g+aAoQEWAmlTUAYXmHKC7YIe6wY6iBw1N
+ WJbqAO0mwdyzBE0CtlnJa1KVKNrkeiKiQk4bSK5Vd+WNqfyzv+AGBIzA+AgrdwPEgPWY
+ F7e5yjpnNQI97rZe4E4rRbF65qgZ35FXFFPnMmS/gtakI7tRadltpeoJajlyP6+CxV3J
+ BrQaz9DP8ztc44hZGeE5MCv32PNezI75LFJQIfm9sjxB/lVPujL2LIPhJIYMbvodRmFp
+ /opDbAkT1/LQ7yHzBDXarTu6OWHUtjE4x0smGtvZZyWgcjAF52oQmVuOkUIGrcN/7EIc BA== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qgpfk0ewr-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 11 May 2023 06:14:58 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34B6EvJ3003696
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 11 May 2023 06:14:57 GMT
+Received: from [10.201.3.182] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Wed, 10 May
+ 2023 23:14:51 -0700
+Message-ID: <85cfc50a-7e78-56eb-78e4-a61bdb2b54e8@quicinc.com>
+Date:   Thu, 11 May 2023 11:44:48 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH v4 6/8] dt-bindings: firmware: document IPQ5018 SCM
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <ulf.hansson@linaro.org>,
+        <linus.walleij@linaro.org>, <catalin.marinas@arm.com>,
+        <will@kernel.org>, <p.zabel@pengutronix.de>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20230510134121.1232286-1-quic_srichara@quicinc.com>
+ <20230510134121.1232286-7-quic_srichara@quicinc.com>
+ <a56e754d-d7f5-ec25-096b-a0c0c7657372@linaro.org>
+From:   Sricharan Ramabadhran <quic_srichara@quicinc.com>
+In-Reply-To: <a56e754d-d7f5-ec25-096b-a0c0c7657372@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-bfdf5
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: FK7WJNeRH7eLZninN6r7UpgOpERzOE5q
+X-Proofpoint-GUID: FK7WJNeRH7eLZninN6r7UpgOpERzOE5q
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-10_04,2023-05-05_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 spamscore=0
+ suspectscore=0 mlxlogscore=854 lowpriorityscore=0 adultscore=0
+ malwarescore=0 priorityscore=1501 bulkscore=0 mlxscore=0 phishscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2305110053
+X-Spam-Status: No, score=-6.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -59,40 +88,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 09 May 2023 13:42:36 +0100, Aidan MacDonald wrote:
-> The X1000's AIC is similar to the AIC found on other Ingenic SoCs.
-> It has symmetric playback/capture rates like the JZ4740, but more
-> flexible clocking when outputting the system or bit clocks.
+
+
+On 5/10/2023 7:58 PM, Krzysztof Kozlowski wrote:
+> On 10/05/2023 15:41, Sricharan Ramabadhran wrote:
 > 
+> You need commit msg explaining more than what is in subject, e.g. company...
 > 
+> Look for nice examples in history - also for proper subject prefix
+> (qcom,scm:)
+> 
+   Thanks Krzysztof for all the reviews.
+   Will fix this up.
 
-Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[1/3] ASoC: jz4740-i2s: Add support for X1000 SoC
-      commit: bb1b282da4be8af998de7b5a2c600af6ef01aa4f
-[2/3] ASoC: ingenic: Add compatible string for X1000 SoC
-      commit: d40b28d642d52e4687c73dd098fbd8ac8e2dc1d8
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+Regards,
+  Sricharan
