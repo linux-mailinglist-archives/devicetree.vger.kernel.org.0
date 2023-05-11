@@ -2,76 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 457C46FF4F2
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 16:50:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D13266FF528
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 16:54:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238149AbjEKOuT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 10:50:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42466 "EHLO
+        id S238680AbjEKOxq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 10:53:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238763AbjEKOt7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 10:49:59 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DC9B1163A
-        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 07:49:04 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-50bc0117683so15499943a12.1
-        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 07:49:04 -0700 (PDT)
+        with ESMTP id S238103AbjEKOww (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 10:52:52 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 744C311D88
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 07:52:19 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-9661047f8b8so1191487166b.0
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 07:52:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683816543; x=1686408543;
+        d=linaro.org; s=google; t=1683816738; x=1686408738;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=rfmScQuHDtUIzeUlR/F8RZSBPxoOFtpMv619WIBm4+4=;
-        b=IU/f7ixl4zdQ8gsbp48DMo1UmGVuGpNZ5gaqKJjMdSLL310e9oSEwrSrf1IJSel89i
-         RjJiE8dLS5FK/iGLtLEuc1KerE/Vhyj9vN85P5QnUJZMRwME2z74verzU9vi4X8WVEni
-         oGAI6sw76v3WXcYss1Ydt/FmzjDfoYJ4eC4IpwBXnKz+CzOmxGTNqeYw0bMaBuwOOYlv
-         xVPFnJ8XnKGTCHClOu+c0zKcTGw9bxj3CuZ/foq4YK6Ioen3ScrHZAdJwLhyVzgD13id
-         ePWIF9xgxz1dWKu/QM6n1035+xbe7LxK78DSPzgtMMDYToTzjy0nNEOat2whYE5ONXid
-         UHkw==
+        bh=4ALe41vj8YtdVBlnqq8zTHOZ56VPcsgqX2uPgQ06rBw=;
+        b=YKNszbBPwyuTaC4x8+fmqlUq3UkOe3SrpjrfO1pVPV6U6ohX0OrktU8sb2dFKhEIrg
+         pS2x0J7Ur6O4CfSMWTR0A7LgPcNcz2K+jVbSBkSpffpJGfEDKVJEYKUAQveIyrqUZ4Cm
+         tp3721ZZ++BJHdTV6I311VEZm6r06CBHLGyFKYn+UZCyEE6X82A9c9bzhRCszrjSlAa9
+         VIuZnsX+svsVPIjNwpBC/A1LuiobNdIIeAqW3veF/rf7PLtmHfz2WaqXQaCBdbvJCUe6
+         Vdh2w96riTYAFQTOJ9DT/Y+v03yVeXOiI+2hOLkfQeZKSJ6Xt0sXquZdGPC7oHOasoAk
+         +5EQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683816543; x=1686408543;
+        d=1e100.net; s=20221208; t=1683816738; x=1686408738;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rfmScQuHDtUIzeUlR/F8RZSBPxoOFtpMv619WIBm4+4=;
-        b=TXFLGQXdHS3O+BAHDGSlnN3jiYJ3hAAUxlCtorzXmfUV7s40lCCrVU/e6dGCVUx5iy
-         VAgiRnUVpBvuHXLwsKl4QGFV7aO+vPPNzFjSRZRdPf6L5U+SBpdcOZVf9ka/In1hRfvZ
-         t26EjMHIDpimfP2S2Uh5clrqI+j/lXLq0l/olMJPDSALcCoQgpr/NBDULiWtaA8Wd0AA
-         +efo724F9HMGGSqKPSrnw75lx0rrGKPhl3Z/qrWd5y90NE6+eOoacFMqWdMLDo+gEkK+
-         9kHsBt2K64ctUuNqoJIManzaI4MX1A/q51RdWbn5b1+kG3yT9tcLXo5gd9lNig0sBKE3
-         p3qg==
-X-Gm-Message-State: AC+VfDyb1FHEO4v5dZp/hEO4vBKAKEFig/c8xDiFK9J3YhzV62nafLy7
-        R6wMEjgIAAMG9h8fEArc25j85g==
-X-Google-Smtp-Source: ACHHUZ7r3REokTqrU9qR/UYBky+WbyZ6zPRRmQvruQaNLoxgGEpLy1LeSp4bpsryPfyslW+zo8qhrA==
-X-Received: by 2002:a17:907:2687:b0:961:a67:29c with SMTP id bn7-20020a170907268700b009610a67029cmr18117774ejc.70.1683816543309;
-        Thu, 11 May 2023 07:49:03 -0700 (PDT)
+        bh=4ALe41vj8YtdVBlnqq8zTHOZ56VPcsgqX2uPgQ06rBw=;
+        b=ac1C8ZAetNW/jpvbX4gkfB9NcerIZSSgFX5lXMANt9k0yCZ2id/xdpIDrKFra+qiZz
+         kBe1NROrnawWBW424o4ozwOYOiYQayMKHGDt+0Jsd2x08Ju2sqJoop1MMytHIATteb51
+         cQfPab/nYvmSAXco6lR63JVe3xNA4e9xA5wr8AgKQxvKbdqZsmPUWAIYf2G3xYkLdjCi
+         AlcXVAeJxikWbXdnaJILwncC4+x0gyiBAvvHgHE/NnY2ywYxf5m3pqi/h3FTCy7ZsJ6V
+         ViFZpQQ5yRrv+F3D6B4sjnGKpU++hd5Fygl407bDyOihqbWlQDS3LRVl3o0XeTgoqMKu
+         j8YQ==
+X-Gm-Message-State: AC+VfDxSfNzm1QNlgEE+kyAV+WFEYqFej9V9FkNaAGSxa15EeRvVdC2r
+        H9SlRSa401F/H5z37YO5qurPsQ==
+X-Google-Smtp-Source: ACHHUZ6KCxmSUWU5lQIBkeim3qe8okHY2xnMQYkp2H+AWzgBls0HGNkeCV3uTGhSx4O1AjCt006TuQ==
+X-Received: by 2002:a17:907:6088:b0:949:cb6a:b6f7 with SMTP id ht8-20020a170907608800b00949cb6ab6f7mr21380777ejc.56.1683816737898;
+        Thu, 11 May 2023 07:52:17 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:d7cd:1be6:f89d:7218? ([2a02:810d:15c0:828:d7cd:1be6:f89d:7218])
-        by smtp.gmail.com with ESMTPSA id bz1-20020a1709070aa100b00969e316d8dbsm3810210ejc.225.2023.05.11.07.49.02
+        by smtp.gmail.com with ESMTPSA id kz23-20020a17090777d700b009659fed3612sm4090813ejc.24.2023.05.11.07.52.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 May 2023 07:49:02 -0700 (PDT)
-Message-ID: <028fb8ac-d6cc-6fee-f50b-b965e69e7d0c@linaro.org>
-Date:   Thu, 11 May 2023 16:49:01 +0200
+        Thu, 11 May 2023 07:52:17 -0700 (PDT)
+Message-ID: <0828b8fa-992b-7964-154a-0feeb2ec5091@linaro.org>
+Date:   Thu, 11 May 2023 16:52:15 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: cdns,usb3: Add clock and reset
+Subject: Re: [PATCH v2 1/2] dt-bindings: watchdog: Add Loongson-1 watchdog
 Content-Language: en-US
-To:     Roger Quadros <rogerq@kernel.org>,
-        Minda Chen <minda.chen@starfivetech.com>,
+To:     Keguang Zhang <keguang.zhang@gmail.com>,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Pawel Laszczak <pawell@cadence.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Peter Chen <peter.chen@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org
-References: <20230510132816.108820-1-minda.chen@starfivetech.com>
- <20230510132816.108820-2-minda.chen@starfivetech.com>
- <9cf5965a-8290-dfff-9f92-07ed2df66650@linaro.org>
- <05057f6d-cb38-8e4a-5d30-82863e0cda44@kernel.org>
+        Yang Ling <gnaygnil@gmail.com>
+References: <20230511121159.463645-1-keguang.zhang@gmail.com>
+ <20230511121159.463645-2-keguang.zhang@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <05057f6d-cb38-8e4a-5d30-82863e0cda44@kernel.org>
+In-Reply-To: <20230511121159.463645-2-keguang.zhang@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,54 +80,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/05/2023 14:16, Roger Quadros wrote:
+On 11/05/2023 14:11, Keguang Zhang wrote:
+> Add devicetree binding document for Loongson-1 watchdog.
 > 
-> 
-> On 11/05/2023 12:26, Krzysztof Kozlowski wrote:
->> On 10/05/2023 15:28, Minda Chen wrote:
->>> To support generic clock and reset init in Cadence USBSS
->>> controller, add clock and reset dts configuration.
->>>
->>> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
->>> ---
->>>  .../devicetree/bindings/usb/cdns,usb3.yaml         | 14 ++++++++++++++
->>>  1 file changed, 14 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/usb/cdns,usb3.yaml b/Documentation/devicetree/bindings/usb/cdns,usb3.yaml
->>> index cae46c4982ad..623c6b34dee3 100644
->>> --- a/Documentation/devicetree/bindings/usb/cdns,usb3.yaml
->>> +++ b/Documentation/devicetree/bindings/usb/cdns,usb3.yaml
->>> @@ -42,6 +42,18 @@ properties:
->>>        - const: otg
->>>        - const: wakeup
->>>  
->>> +  clocks:
->>> +    minItems: 1
->>> +    maxItems: 8
->>> +    description:
->>> +      USB controller clocks.
->>
->> You need to list the items. And why is it variable? Your clock choice in
->> the example is poor, I doubt it is real.
->>
->>> +
->>> +  resets:
->>> +    minItems: 1
->>> +    maxItems: 8
->>> +    description:
->>> +      USB controller generic resets.
->>
->> Here as well.
->>
->> You had one clock last time, thus the review was - drop the names. Now
->> you changed it to 8 clocks... I don't understand.
->>
-> 
-> Different platforms may have different number of clocks/resets or none.
-> So I don't think minItems/maxItems should be specified.
+> Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
+> ---
+> V1 -> V2: Replaced the wildcard compatible string with specific ones
+>           Use unevaluatedProperties instead of additionalProperties
+>           (suggested by Krzysztof Kozlowski)
+> ---
 
-Yeah, but we want the clocks to be specific per platform. Not anything
-anywhere.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
