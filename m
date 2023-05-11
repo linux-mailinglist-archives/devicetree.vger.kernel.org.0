@@ -2,60 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7351C6FEB09
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 07:10:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04C636FEB2F
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 07:30:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236953AbjEKFKu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 01:10:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38620 "EHLO
+        id S231610AbjEKFax (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 01:30:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236438AbjEKFKt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 01:10:49 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18BFA3A86;
-        Wed, 10 May 2023 22:10:45 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 895E363A53;
-        Thu, 11 May 2023 05:10:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FA92C433D2;
-        Thu, 11 May 2023 05:10:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1683781843;
-        bh=iFUpQ4D07YSZNO0RTuCRy1luLl+VzUEaBiyc3WJiu8c=;
-        h=Date:From:To:CC:Subject:In-Reply-To:References:From;
-        b=UE1segLWGdZbdEoQ77McrCIOz+FbLlRdwBaCxQsiLp1itu+lnIlvUf5VtI77lCHJH
-         UZIG/AMgKf+Mtt7cGCwyIddO8DVWEZL6Mb6UCzo5n8QRNgpW42hKNKPmMpPMgNo09d
-         Sf8UNSMDpYocIjWpWS/nUWnqa37xWTlUKMPDqEf3eEQ/8CzS454nCsE5SVacdf5XTt
-         StKTJyYJI8Zjf/giCk01Z4zfiHAxTrpGRf2ja174uFeXSq2N7Z7r25cCKoRUFTxf/j
-         rDaAu8kquFwDB5pugszTWO5t7y9KnOxA96dK6ycKIm8yJ1Q0nWdk+WhWEx/W09ggdp
-         GmdWVFzf+fNow==
-Date:   Thu, 11 May 2023 06:10:40 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Walker Chen <walker.chen@starfivetech.com>
-CC:     Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v3 3/3] riscv: dts: starfive: add tdm node and sound card
-User-Agent: K-9 Mail for Android
-In-Reply-To: <ef13177a-2028-9fc9-628a-e3d287758207@starfivetech.com>
-References: <20230506090116.9206-1-walker.chen@starfivetech.com> <20230506090116.9206-4-walker.chen@starfivetech.com> <a0932e84-3813-bbbe-762d-948d75fbcd8a@starfivetech.com> <20230509-overheat-pliable-00d60523637e@spud> <CAJM55Z9AxMVw=ymfFBb=45nODq89O8dMebzRgo-XD0GKduDBYg@mail.gmail.com> <f27b7ee7-f23a-35a2-3b82-71f50871dfcc@starfivetech.com> <20230510-riveter-ridden-3f056251e623@spud> <ef13177a-2028-9fc9-628a-e3d287758207@starfivetech.com>
-Message-ID: <CE38599D-24DF-4FD4-8CDF-F1A70673B972@kernel.org>
+        with ESMTP id S231562AbjEKFav (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 01:30:51 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3E3DE42
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 22:30:49 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-50bcae898b2so14418274a12.0
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 22:30:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683783048; x=1686375048;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=wS8SR9y31c6dnD5LAteD//cxbDMOfkqvXitaCTZlWPw=;
+        b=j/cVE+YAkw8s3fjKcxaw16FENQWhT0YG2JxU8UzSQHE2I5mSpjpeI5nFhH4oANCfNE
+         7+15BWvSUj/cY9/32vvaBPBZkLt0yG8dpc/SA+bJo/KgqfPxB/EgoD/uh5ld6lg+JQTD
+         pBCSLf1iaze/JwcfyHw/inhLhmb9Z4ZUewkTzCNmJacjEs0ggpjkDv/cHCCq6gzwzZ1E
+         eWW6krE4MzKa77GayBwnhyqx9u4KTwE41OkfGd4I440XdM9GidmBgHRIE93nOw4vw/+V
+         gOqimp3aw5dY3S8WHDVicWeTwTGQMZd2YfM9s1HWcE+ZznOuQQLImwidDlwB+oa8qara
+         M3TA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683783048; x=1686375048;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wS8SR9y31c6dnD5LAteD//cxbDMOfkqvXitaCTZlWPw=;
+        b=PC+XjWILmrl8XzmdjjlGvs3B8kdwZktvAalAtfpEMyD2+3uyyqsOdskZEJMMgfI5Kb
+         2vb7q+kD3xRp3bhoD3UENWlLD2POmFgviRLxU0rO7woDNctsNWUgiJF3qJZX8TGowbi6
+         svBPb4a4VJuNuKVEUuIt0SHZ9WYx4tLL2r+tulcHfZ4dmRM4cbiNiRq4GozCjnWx8uja
+         1hVJGF8DkKvgk+VPF80ertOjB1WYOn6ffTTLsA60kK7IrOmjLzM/EkVq8oc+VP2xBYf/
+         b96ndkhlhB34uVMUAtPnQ12rDtmT8AE8DUGj9pmsHjIDL4sJ0CO7AKhr9D9ltkcaNO03
+         r7zw==
+X-Gm-Message-State: AC+VfDwFgRQ15PMmZKEcCAxVKn3fFkxYPmTg77omRRDW3TZ1Fw7J8I6n
+        JXHjLIMEDQUWjmKhRdpfS+Gghg==
+X-Google-Smtp-Source: ACHHUZ62Kd6/mIjS5ts32ZuQpT3uuflQCqqx5uqAB/Ww6qdKZj47Wb+YKPqpge+iEVOG6OSZ8C7fMg==
+X-Received: by 2002:a17:906:7952:b0:969:789d:5948 with SMTP id l18-20020a170906795200b00969789d5948mr10116343ejo.41.1683783048352;
+        Wed, 10 May 2023 22:30:48 -0700 (PDT)
+Received: from krzk-bin ([2a02:810d:15c0:828:a01e:5c6:be3:7baa])
+        by smtp.gmail.com with ESMTPSA id n17-20020a170906725100b0096a6bf89259sm187524ejk.167.2023.05.10.22.30.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 May 2023 22:30:47 -0700 (PDT)
+Date:   Thu, 11 May 2023 07:30:45 +0200
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Martin =?utf-8?B?WmHFpW92acSN?= <m.zatovic1@gmail.com>
+Cc:     arnd@arndb.de, linus.walleij@linaro.org,
+        jacek.lawrynowicz@linux.intel.com, linux-kernel@vger.kernel.org,
+        nipun.gupta@amd.com, conor+dt@kernel.org, geert+renesas@glider.be,
+        krzysztof.kozlowski+dt@linaro.org, beanhuo@micron.com,
+        bvanassche@acm.org, ogabbay@kernel.org, linux@zary.sk,
+        mwen@igalia.com, robh+dt@kernel.org, yangyicong@hisilicon.com,
+        benjamin.tissoires@redhat.com, devicetree@vger.kernel.org,
+        gregkh@linuxfoundation.org, masahiroy@kernel.org
+Subject: Re: [PATCHv4 3/4] dt-bindings: wiegand: add GPIO bitbanged Wiegand
+ controller
+Message-ID: <20230511053045.iuv6a3knfg6sob5b@krzk-bin>
+References: <20230510162243.95820-1-m.zatovic1@gmail.com>
+ <20230510162243.95820-4-m.zatovic1@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <20230510162243.95820-4-m.zatovic1@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,19 +80,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 10 May 2023 18:22:42 +0200, Martin Za=C5=A5ovi=C4=8D wrote:
+> GPIO bitbanged Wiegand controller requires definitions of GPIO
+> lines to be used on top of the common Wiegand properties. Wiegand
+> utilizes two such lines - D0(low data line) and D1(high data line).
+>=20
+> Acked-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Martin Za=C5=A5ovi=C4=8D <m.zatovic1@gmail.com>
+> ---
+>  .../bindings/wiegand/wiegand-gpio.yaml        | 51 +++++++++++++++++++
+>  MAINTAINERS                                   |  5 ++
+>  2 files changed, 56 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/wiegand/wiegand-gpi=
+o.yaml
+>=20
 
+My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
+yamllint warnings/errors:
 
->I'm trying to understand what you mean=2E so the conclusion is that I nee=
-d to drop the file
-> 'jh7110-starfive-visionfive-2-wm8960=2Edtso' from this patch=2E
->When I submit the next version, just keep the TDM node and the pins confi=
-guration for TDM in patch [3/3],
->need to drop the wm8960 stuff=2E
->Right ?
+dtschema/dtc warnings/errors:
+=2E/Documentation/devicetree/bindings/wiegand/wiegand-gpio.yaml: Unable to =
+find schema file matching $id: http://devicetree.org/schemas/wiegand/wiegan=
+d-controller.yaml
+Documentation/devicetree/bindings/wiegand/wiegand-gpio.example.dts:20.21-29=
+=2E11: Warning (unit_address_vs_reg): /example-0/wiegand@f00: node has a un=
+it name, but no reg or ranges property
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/wie=
+gand/wiegand-gpio.example.dtb: wiegand@f00: False schema does not allow {'c=
+ompatible': ['wiegand-gpio'], 'pulse-len-us': [[50]], 'interval-len-us': [[=
+2000]], 'frame-gap-us': [[2000]], 'data-lo-gpios': [[4294967295, 6, 6]], 'd=
+ata-hi-gpios': [[4294967295, 7, 6]], '$nodename': ['wiegand@f00']}
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetre=
+e/bindings/wiegand/wiegand-gpio.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/wie=
+gand/wiegand-gpio.example.dtb: wiegand@f00: Unevaluated properties are not =
+allowed ('frame-gap-us', 'interval-len-us', 'pulse-len-us' were unexpected)
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetre=
+e/bindings/wiegand/wiegand-gpio.yaml
 
-Yes=2E
+See https://patchwork.ozlabs.org/patch/1779628
 
->
->Best regards,
->Walker
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
