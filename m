@@ -2,63 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A6AE6FE911
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 03:11:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 761056FE9B3
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 04:06:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229825AbjEKBLn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 21:11:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46664 "EHLO
+        id S230023AbjEKCGa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 22:06:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229461AbjEKBLm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 21:11:42 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 982E112B;
-        Wed, 10 May 2023 18:11:41 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id F265F640EF;
-        Thu, 11 May 2023 01:11:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC468C433D2;
-        Thu, 11 May 2023 01:11:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1683767500;
-        bh=M9+WbndZqXjkrw+21DO8YKqOQHdc/suzPYKkitzNKlY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=KjtkEhyYGHIKo2TpcTt5re5oaA6f/6cH7RQLUZm9PY5kI6YvvCNnU1eiyAzwO1amW
-         KNb3jYOdqygO8hsd1zOEQ7Z8+H1PhCOBC6jQEFOfynZp/hk7mfXL94XwoNyLr7Db/V
-         sWOvXboJyR7S6GF3/lmtf2zZsZin/0cZf0XU4x1xtmQW2gWlYXYTO52hy7wR1Zpq1t
-         Ukj5M84eN8it2jp3E0Z3q7lU/vxe4sKWqa7Y6Z1gXnaWBxSW0LNu/06Jralk/P5j9B
-         d1D4G2k/LS4K8FUCI8dJMXMV3/dhUU7OFdghiXsuiI+Md5tbo9aZE5tUy52tyasFBR
-         oVqlTFR/DYBwg==
-Date:   Thu, 11 May 2023 10:11:37 +0900
-From:   Mark Brown <broonie@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Conor Dooley <conor@kernel.org>,
-        Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
+        with ESMTP id S230004AbjEKCG3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 22:06:29 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66723173B;
+        Wed, 10 May 2023 19:06:28 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id DDE0E24E0FC;
+        Thu, 11 May 2023 10:06:25 +0800 (CST)
+Received: from EXMBX062.cuchost.com (172.16.6.62) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 11 May
+ 2023 10:06:25 +0800
+Received: from [192.168.125.107] (113.72.146.187) by EXMBX062.cuchost.com
+ (172.16.6.62) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 11 May
+ 2023 10:06:25 +0800
+Message-ID: <2a6add59-981a-f5c1-e744-1cef2b81f29a@starfivetech.com>
+Date:   Thu, 11 May 2023 10:06:23 +0800
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH v3 1/5] dt-bindings: power: Add JH7110 AON PMU support
+Content-Language: en-US
+To:     Conor Dooley <conor@kernel.org>
+CC:     Conor Dooley <conor.dooley@microchip.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-        asahi@lists.linux.dev, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] ASoC: dt-bindings: Add adi,ssm3515 amp schema
-Message-ID: <ZFxAyeOteYo6nGlU@finisterre.sirena.org.uk>
-References: <20230509163828.86003-1-povik+lin@cutebit.org>
- <20230509-marxism-plug-759c99ac601c@spud>
- <f38b984c-e49a-0686-a907-5d86ea93d7bc@linaro.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="dVKFyKievi3KFxqa"
-Content-Disposition: inline
-In-Reply-To: <f38b984c-e49a-0686-a907-5d86ea93d7bc@linaro.org>
-X-Cookie: Avoid contact with eyes.
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Walker Chen <walker.chen@starfivetech.com>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>
+References: <20230510015311.27505-1-changhuang.liang@starfivetech.com>
+ <20230510015311.27505-2-changhuang.liang@starfivetech.com>
+ <20230510-cloning-clapping-e262f00a94e8@wendy>
+ <d80646ae-cf1b-234a-261c-3753f6cc9080@starfivetech.com>
+ <20230510-city-scarf-023705d3c96a@spud>
+From:   Changhuang Liang <changhuang.liang@starfivetech.com>
+In-Reply-To: <20230510-city-scarf-023705d3c96a@spud>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [113.72.146.187]
+X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX062.cuchost.com
+ (172.16.6.62)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -68,42 +67,49 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---dVKFyKievi3KFxqa
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, May 10, 2023 at 09:51:50AM +0200, Krzysztof Kozlowski wrote:
-> On 09/05/2023 20:25, Conor Dooley wrote:
-> > On Tue, May 09, 2023 at 06:38:27PM +0200, Martin Povi=C5=A1er wrote:
+On 2023/5/11 3:51, Conor Dooley wrote:
+> On Wed, May 10, 2023 at 03:20:14PM +0800, Changhuang Liang wrote:
+>> On 2023/5/10 15:06, Conor Dooley wrote:
+>>> On Tue, May 09, 2023 at 06:53:07PM -0700, Changhuang Liang wrote:
+>>>> +          - starfive,jh7110-pmu
+>>>> +      - items:
+>>>> +          - enum:
+>>>> +              - starfive,jh7110-aon-syscon
+>>>> +          - const: syscon
+>>>
+>>> Unfortunately, this is not what was wanted.
+>>> This syscon, of which power domain control is just one of the things that
+>>> it can do, should be documented in
+>>> Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
+>>> alongside it's brethern "starfive,jh7110-sys-syscon" &
+>>> "starfive,jh7110-stg-syscon".
+>>>
+>>
+>> That means that I don't need to modify this original yaml file? 
+> 
+> Does "this original" mean starfive,jh7100-pmu.yaml?
+> If so then...
+> 
 
-> >> +        00: 8.4 V Full-Scale Gain Mapping
-> >> +        01: 12.6 V Full-Scale Gain Mapping
-> >> +        10: 14 V Full-Scale Gain Mapping
-> >> +        11: 15 V Full-Scale Gain Mapping
+Yes.
 
-> > Putting register values into the DT does not seem correct, although
-> > I know nothing about sound and will have to defer to Krzysztof & Co. on
-> > that front.
+>> I just need to move current changes in this patch into 
+>> "Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml"?
+> 
+> Correct.
+> It makes most sense for that binding, as it depends on the pll binding
+> (because it has a ref: to it), to go through the clock tree in Xingyu's
+> series.
+> I'll apply the driver changes once the binding has been applied.
+> 
 
-> Depends whether these are really voltages or something else (e.g. gain)
-> just related to voltage.
+I think that I have to send v4 after Xingyu's series resend new version. 
+If drivers have no other comments. I will make the following changes:
 
-They are configuring the voltage range that the output will generate.
+patch 1/5: Only keep the content in starfive,jh7110-pmu.h, move other content into Xingyu's PLL series.
+patch 5/5: Drop this patch, move the content into Xingyu's PLL series.
+other patch: no change.
 
---dVKFyKievi3KFxqa
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmRcQMUACgkQJNaLcl1U
-h9Am9gf/eDLq7JsOkXRtURy4HihqO7yPqu3e2S1JEHN+SQ+UjhTk6j7moRz3Ou5V
-Jjs+HhwX+qGWzPfogrNZ/ehao/dQ1ztZUdUIAhYVuGLCsWK2cm874fo5Epyk6pNx
-Cjyyq3QqMiarq67+1Qb7zTj6IRVkLccKa0NneZG6+6xwJKYNltPuCm0x9gSajE9S
-YbGwNzraPv1divCYpxxaJbsM9nxStNqrVh8M7oENo2tBnvxkgE2XdHhhr/Kag2Lr
-QV1SPOOvcQJStFp7+jzw91NsmWahwagu3dQd83hk+hfZ/fyBv13jOFbNfJ0iXGAl
-EZtXHVCvKXztB9LCPFE5rRk3W4jKKA==
-=sDMR
------END PGP SIGNATURE-----
-
---dVKFyKievi3KFxqa--
+Thanks,
+Changhuang
