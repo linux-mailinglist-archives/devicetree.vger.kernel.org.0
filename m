@@ -2,190 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FFA86FF2BE
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 15:25:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69D9C6FF2CC
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 15:28:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238215AbjEKNYe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 09:24:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40304 "EHLO
+        id S238193AbjEKN25 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 09:28:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238319AbjEKNYC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 09:24:02 -0400
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2081.outbound.protection.outlook.com [40.107.92.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3062B106EC;
-        Thu, 11 May 2023 06:22:18 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=I5DhZnY3XUchsB+cUYL6JKj79QL/XSQeFz+xqRGcfKVX95VldwLzaNMRv0VFOhpa2OU/3Rdcx81BbGoC5LAzF5s2lWEOmk4wUrp1luvvuJ9pj95XlcLpZeb3uX9yBo9W1DVyfyp7dbn/AU40vNKN11Rqz53G3GY4ANP2LpqwKHTLpCe8pNaatITkXbhlJFHyz67W9kHBoOS9Qyek/l+w2m0/P/dd3Gxngzu5jCGsm9epRLdw/aQ/H/haeQlRQ/B0fNaqrcN6dVJ/k8uwIRgqCWUZK81kLNwyXchIa7hxwiPgcbWh47Z9O/AyMkSQqp0Xgs3IaR1KDpkNp1OSuW1+mA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dLbpQVxDrVejfcTM/lgsnUfRWa0pYoPEX6QosRNCiXo=;
- b=MTsh8RDonbdjN1dvHG6TYlm/2HUrFt8tcxuMTMjEdJ4bL2c+/cq8RmoeP71TXYGZDp1YLa/+9UKUU1hcZNi2zRLi1PLC0LEo5ua8pwvr6WCxccbn0LCTgNOhMTx87o0bReRMrmNXu7GC/K+zca/PJJHnXqexFc+qP1Ub3xDHCMLQl39umOsXxM6hQLCujMF6qATs6MTiLEhxl0v8sVDw0vdmIpewsnp4CVnhjMFlUntacwKjMYqpslIIUpkM4YdQ5OondGnDK/Ga1cXIaB3Hu9oRGvYrXMI1dXstUjlfl6c5XWMEIyxwQzECv2TEvn8X2R3B2Zis72Tgxv3z23HnfQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=gmail.com smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dLbpQVxDrVejfcTM/lgsnUfRWa0pYoPEX6QosRNCiXo=;
- b=iMc4TttV4sDDTovTX2ZXbaX14dufSMZEKuXww/d9B+73Po2PrY6hkcZkbzULdeFv2W3oM637n42EO65UIsmEsJfNAIjY4ldagYCTztQmUCuvVEBqzpE6wfEwta5/FFXx50RyjbYBuKztZNUGOgfHBYc52jI7VL+MYS7ySLofKw8ThRTE8zdcAsf5LO33tTkE0y+JZWCmdXGZhRvgVF9DptjVybD2kM7UKM7NUDC6UEzD6kwtXa5YT1fwAAlCd8FsZt0zeXCvWW1visSYDLPISNjIpTNyH7bhGhW7v31IZCGcVbkct51PKwS/IYx6vkxBQdV4BaXhHYImHATQP68ahQ==
-Received: from DM6PR07CA0113.namprd07.prod.outlook.com (2603:10b6:5:330::16)
- by BL3PR12MB6548.namprd12.prod.outlook.com (2603:10b6:208:38f::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.33; Thu, 11 May
- 2023 13:22:06 +0000
-Received: from DM6NAM11FT008.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:330:cafe::6e) by DM6PR07CA0113.outlook.office365.com
- (2603:10b6:5:330::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.21 via Frontend
- Transport; Thu, 11 May 2023 13:22:06 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- DM6NAM11FT008.mail.protection.outlook.com (10.13.172.85) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6387.20 via Frontend Transport; Thu, 11 May 2023 13:22:05 +0000
-Received: from rnnvmail203.nvidia.com (10.129.68.9) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.5; Thu, 11 May 2023
- 06:21:47 -0700
-Received: from rnnvmail204.nvidia.com (10.129.68.6) by rnnvmail203.nvidia.com
- (10.129.68.9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.37; Thu, 11 May
- 2023 06:21:46 -0700
-Received: from 44189d9-lcedt.nvidia.com (10.127.8.9) by mail.nvidia.com
- (10.129.68.6) with Microsoft SMTP Server id 15.2.986.37 via Frontend
- Transport; Thu, 11 May 2023 06:21:44 -0700
-From:   Peter De Schrijver <pdeschrijver@nvidia.com>
-To:     Peter De Schrijver <pdeschrijver@nvidia.com>,
-        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>
-CC:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <stefank@nvidia.com>
-Subject: [PATCH v4 5/6] dt-bindings: Add support for tegra186-bpmp DRAM MRQ GSCs
-Date:   Thu, 11 May 2023 16:20:50 +0300
-Message-ID: <20230511132048.1122075-6-pdeschrijver@nvidia.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230511132048.1122075-1-pdeschrijver@nvidia.com>
-References: <20230511132048.1122075-1-pdeschrijver@nvidia.com>
+        with ESMTP id S237818AbjEKN23 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 09:28:29 -0400
+Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90ED5100FE;
+        Thu, 11 May 2023 06:27:22 -0700 (PDT)
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+        by mx.sberdevices.ru (Postfix) with ESMTP id 4E1985FD40;
+        Thu, 11 May 2023 16:26:09 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1683811569;
+        bh=X8sp8BnRLsbotgh3wMKDsGz1HrXXLMBA8aUq/cYdwbQ=;
+        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
+        b=I4aAEX5uUuvWnWH4G7i+enK0VORj7KilyLDzU7iPw5S1o3GJ9j4bVsa64oqW7SHlz
+         SLyFMgub3pz4WK4gtokdU54f+eu+BPx24MEREsVgU2ykBzmsr5yGU3fzg25xJzwV+X
+         GruApxhENXfHCBpDhYgnMevjqROnWnBJ8/sTBMTYnFjzuZh9O2inSPIRWfjDKVsg/r
+         VtjGgwtHRJryGOanm6USD9eKGCkeoPGaFQqSCczwAETo4ey9/47sdaHWhhDK+go/pr
+         bt7lIh1uvSZ8mIEt4GiqKVWb5J+hzhvJnFUHDHiQny3sk/wzGpD87MhccCVpUIDWzF
+         WYzuAtIdvzcrg==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+        by mx.sberdevices.ru (Postfix) with ESMTP;
+        Thu, 11 May 2023 16:26:07 +0300 (MSK)
+Date:   Thu, 11 May 2023 16:26:06 +0300
+From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+CC:     <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <khilman@baylibre.com>, <jian.hu@amlogic.com>,
+        <kernel@sberdevices.ru>, <rockosov@gmail.com>,
+        <linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v13 4/6] clk: meson: a1: add Amlogic A1 PLL clock
+ controller driver
+Message-ID: <20230511132606.vk52yorf43alwgew@CAB-WSD-L081021>
+References: <20230405195927.13487-1-ddrokosov@sberdevices.ru>
+ <20230405195927.13487-5-ddrokosov@sberdevices.ru>
+ <CAFBinCA3uZXzr3RgnWnKV5Qr-CPaZQX5joDg319i_cgzhLJy2g@mail.gmail.com>
+ <20230425123304.xjmrkraybp2siwdw@CAB-WSD-L081021>
+ <CAFBinCCqx1oHf+PcXBkeRYHnGQChbTTPRyD8SJU+ait+TG+AjQ@mail.gmail.com>
 MIME-Version: 1.0
-X-NVConfidentiality: public
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT008:EE_|BL3PR12MB6548:EE_
-X-MS-Office365-Filtering-Correlation-Id: 424d933b-8e5e-420a-1087-08db5222b750
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: TS7wAYtTOJjLqaYbPh749jzpHd3lY1JjQ9OauS5JZiX31wnjLxcKaSWPxrVoPAe1Q0tdLhnY+YCqmCYvPshh1xe4dgAuSlgIdXhk3rZTsrouIXukcHJn3gbC7ULkP5+OOwQ1hdiv5KnDSVb2nnI7ov1MVi+PCaqoBANIlKrlwGawNESKiys6r1zBzTBBKOvbS0w7kabgaJVH/wp8ZfcyeYaFzL+JnQ/oj6u9a/JqqWYbIerPHiKd0k64haivhzixCUIHIX0P8+JAR4aE2Gyn7msmP5atV9co3U+HEZkTgmlvXyrlkkvWM8rfv9oZGEgS1Paaojn56PxFUbOSRyYEAScD6aZKwRgDP2RAluFP13iA01nahWSRJq/tUbCtl6X39WcZkU08lwgRiNYngF7oVWgTyZlQvJZen/WAMACtuGc7xag4BFhx2D7mQDZCEWeJO+HssRhS5MyyBlUeOrSdHEqP1TvGz19g4CHDJ56cEzJh39CD0a399H9J3jylhmOJKbI/pWYXxndkc8tRyxQO7BHlPFrA6mcQ925L1gqb/BW/A21Rc8bWzFW1wWG5Bq3Z5nDo5thDT4MqeFRdEp9hnCiTcrLBa1sASRzmN5eMePTob+w35vPa+z10mj0GIa7T+uiBt54ZsEoVXKdJup+p38K1cNs/P1hb3F4E9H88rTS8hZR/U5eRo9np43E5TUKLLFmgJ9SQNrxyfNIUEPLcsg==
-X-Forefront-Antispam-Report: CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230028)(4636009)(136003)(346002)(39860400002)(376002)(396003)(451199021)(40470700004)(36840700001)(46966006)(5660300002)(40480700001)(54906003)(40460700003)(70206006)(6636002)(4326008)(2616005)(8676002)(107886003)(26005)(1076003)(8936002)(186003)(6666004)(41300700001)(82310400005)(2906002)(36756003)(7696005)(316002)(478600001)(70586007)(86362001)(7636003)(356005)(82740400003)(83380400001)(426003)(336012)(36860700001)(110136005)(47076005);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 May 2023 13:22:05.9494
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 424d933b-8e5e-420a-1087-08db5222b750
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT008.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR12MB6548
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <CAFBinCCqx1oHf+PcXBkeRYHnGQChbTTPRyD8SJU+ait+TG+AjQ@mail.gmail.com>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/05/11 10:21:00 #21259776
+X-KSMG-AntiVirus-Status: Clean, skipped
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add memory-region property to the tegra186-bpmp binding to support
-DRAM MRQ GSCs.
+Hello Martin,
 
-Co-developed-by: Stefan Kristiansson <stefank@nvidia.com>
-Signed-off-by: Stefan Kristiansson <stefank@nvidia.com>
-Signed-off-by: Peter De Schrijver <pdeschrijver@nvidia.com>
----
- .../firmware/nvidia,tegra186-bpmp.yaml        | 37 +++++++++++++++++--
- 1 file changed, 34 insertions(+), 3 deletions(-)
+I apologize for the delayed response as I was on vacation without email
+access. I hope this is not a problem.
 
-diff --git a/Documentation/devicetree/bindings/firmware/nvidia,tegra186-bpmp.yaml b/Documentation/devicetree/bindings/firmware/nvidia,tegra186-bpmp.yaml
-index 833c07f1685c..f3e02c9d090d 100644
---- a/Documentation/devicetree/bindings/firmware/nvidia,tegra186-bpmp.yaml
-+++ b/Documentation/devicetree/bindings/firmware/nvidia,tegra186-bpmp.yaml
-@@ -57,8 +57,11 @@ description: |
-   "#address-cells" or "#size-cells" property.
- 
-   The shared memory area for the IPC TX and RX between CPU and BPMP are
--  predefined and work on top of sysram, which is an SRAM inside the
--  chip. See ".../sram/sram.yaml" for the bindings.
-+  predefined and work on top of either sysram, which is an SRAM inside the
-+  chip, or in normal SDRAM.
-+  See ".../sram/sram.yaml" for the bindings for the SRAM case.
-+  See "../reserved-memory/nvidia,tegra264-bpmp-shmem.yaml" for bindings for
-+  the SDRAM case.
- 
- properties:
-   compatible:
-@@ -81,6 +84,11 @@ properties:
-     minItems: 2
-     maxItems: 2
- 
-+  memory-region:
-+    description: phandle to reserved memory region used for IPC between
-+      CPU-NS and BPMP.
-+    maxItems: 1
-+
-   "#clock-cells":
-     const: 1
- 
-@@ -115,10 +123,15 @@ properties:
- 
- additionalProperties: false
- 
-+oneOf:
-+  - required:
-+      - memory-region
-+  - required:
-+      - shmem
-+
- required:
-   - compatible
-   - mboxes
--  - shmem
-   - "#clock-cells"
-   - "#power-domain-cells"
-   - "#reset-cells"
-@@ -184,3 +197,21 @@ examples:
-             #thermal-sensor-cells = <1>;
-         };
-     };
-+
-+  - |
-+    #include <dt-bindings/mailbox/tegra186-hsp.h>
-+
-+    bpmp {
-+        compatible = "nvidia,tegra186-bpmp";
-+        interconnects = <&mc TEGRA186_MEMORY_CLIENT_BPMPR &emc>,
-+                        <&mc TEGRA186_MEMORY_CLIENT_BPMPW &emc>,
-+                        <&mc TEGRA186_MEMORY_CLIENT_BPMPDMAR &emc>,
-+                        <&mc TEGRA186_MEMORY_CLIENT_BPMPDMAW &emc>;
-+        interconnect-names = "read", "write", "dma-mem", "dma-write";
-+        mboxes = <&hsp_top1 TEGRA_HSP_MBOX_TYPE_DB
-+                            TEGRA_HSP_DB_MASTER_BPMP>;
-+        memory-region = <&dram_cpu_bpmp_mail>;
-+        #clock-cells = <1>;
-+        #power-domain-cells = <1>;
-+        #reset-cells = <1>;
-+    };
+On Mon, May 01, 2023 at 08:39:20PM +0200, Martin Blumenstingl wrote:
+> Hello Dmitry,
+> 
+> (I'm aware you already posted a v14 - but I'm still replying here to
+> continue the discussion on one question I had to keep the context)
+> 
+
+Sure, please find, my thoughts below.
+
+> On Tue, Apr 25, 2023 at 2:33 PM Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
+> [...]
+> > > > +/* PLL register offset */
+> > > > +#define ANACTRL_FIXPLL_CTRL0   0x0
+> > > > +#define ANACTRL_FIXPLL_CTRL1   0x4
+> > > > +#define ANACTRL_FIXPLL_STS     0x14
+> > > > +#define ANACTRL_HIFIPLL_CTRL0  0xc0
+> > > > +#define ANACTRL_HIFIPLL_CTRL1  0xc4
+> > > > +#define ANACTRL_HIFIPLL_CTRL2  0xc8
+> > > > +#define ANACTRL_HIFIPLL_CTRL3  0xcc
+> > > > +#define ANACTRL_HIFIPLL_CTRL4  0xd0
+> > > > +#define ANACTRL_HIFIPLL_STS    0xd4
+> > > Here I have a question that will potentially affect patch 3/6
+> > > ("dt-bindings: clock: meson: add A1 PLL clock controller bindings").
+> > > In the cover-letter you mentioned that quite a few clocks have been omitted.
+> > > Any dt-bindings that we create need to be stable going forward. That
+> > > means: the dt-bindings will always need to describe what the hardware
+> > > is capable of, not what the driver implements.
+> > > So my question is: do we have all needed inputs described in the
+> > > dt-bindings (even though we're omitting quite a few registers here
+> > > that will only be added/used in the future)?
+> > > Older SoCs require (temporarily) using the XTAL clock for CPU clock
+> > > tree changes. To make a long story short: I'm wondering if - at least
+> > > - the XTAL clock input is missing.
+> >
+> > The Amlogic A1 clock engine comprises four clock controllers for
+> > peripherals, PLL, CPU, and audio. While the first two have been
+> > introduced in the current patch series, the last two will be sent in the
+> > next iteration.
+> I (think that I) understand this part.
+> 
+> > Presently, the PLL controller driver includes all the required bindings,
+> > and the peripherals controller driver has all bindings except for the
+> > CPU-related clock.
+> Let's stick to the PLL controller bindings for the next part.
+> My understanding is that the PLL clock controller registers
+> (ANACTRL_*) are managing the following clocks:
+> - fixed_pll
+> - sys_pll
+> - hifi_pll
+> - whatever "AUDDDS" is
+> - and some miscellaneous registers like ANACTRL_POR_CNTL and
+> ANACTRL_MISCTOP_CTRL0
+> 
+> I *think* you got the dt-bindings correct:
+> Even though the driver part does not support the hifi_pll yet, this IP
+> block seems to have a "hifipll_in" clock input.
+> Since the dt-bindings describes the hardware it may describe (for
+> example) clock inputs that are not used by the driver yet.
+> 
+> If you agree with my statement from above I'll be able to make my
+> original question more specific:
+> Since we know that we have all the required inputs for fixed_pll,
+> sys_pll and hifi_pll - do you know what AUDDDS is and whether it
+> requires any specific clock inputs (other than "fixpll_in" and
+> "hifipll_in")?
+> 
+
+To be honest, I have prepared A1 peripherals and A1 PLL drivers based on very
+poor Amlogic datasheets and custom 4.19-based vendor drivers.
+The vendor driver has an AUDDDS clock in the PLL clock part, but it is not
+used anywhere. Unfortunately, as usual, the datasheet doesn't provide any
+information or explanation about what it is. However, the driver has a few
+lines of comments that indicate:
+
+    /*
+     * aud dds clock is not pll clock, not divider clock,
+     * No clock model can describe it.
+     * So we regard it as a gate, and the gate ops
+     * should realize lonely.
+     */
+
+Additionally, the vendor driver states that AUDDDS has a 49Mhz clock,
+but I do not see any relationship with other clocks (including the exported
+GENCLK).
+Jian did not include it in the first version of the PLL driver, and I have
+decided not to change it either.
+
+I also noticed a few lines of AUDDDS initialization sequences in the vendor
+driver, which may affect CPU clock objects (from my point of view).
+However, they are currently under development, and I will try to figure it
+out with Amlogic support.
+
+> > However, I do not believe this to be a significant issue. The clock DT
+> > bindings are organized to simplify the process of introducing new bindings,
+> > whether public or private. For instance, we may add new bindings to
+> > include/dt-bindings at the end of the list and increase the overall number,
+> > without disrupting the DT bindings ABI (the old numbers will remain
+> > unchanged).
+> Yep, this part is clear to me. I should have been more specific that I
+> was asking about the inputs that are described in the .yaml file, not
+> the clock IDs.
+
+Actually, AUDDDS has an xtal2dds parent clock, and if we need to have
+the AUDDDS clock in the PLL driver, we should add one more link between
+peripherals and PLL drivers.
+
+Let me know if you have any questions.
+
 -- 
-2.34.1
-
+Thank you,
+Dmitry
