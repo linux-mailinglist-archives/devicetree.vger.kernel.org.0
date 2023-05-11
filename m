@@ -2,226 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 68EAD6FECB3
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 09:24:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CEDC66FECEA
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 09:34:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237261AbjEKHYS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 03:24:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54974 "EHLO
+        id S237470AbjEKHeH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 03:34:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229490AbjEKHX5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 03:23:57 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3D25A244
-        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 00:23:30 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4f13c577e36so9138325e87.1
-        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 00:23:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=melexis.com; s=google; t=1683789807; x=1686381807;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=YZEvavg8L9Olhu+zGHQIGrTsD4WpLJW9jLTEZFpxzDc=;
-        b=YIw4HiKvDXz0ELUJp7eobYKtuLaBjfFj2PWxBmrHZH+QbIVaIiMqHhhso6JMFNfbBO
-         AvDsqmSlik3KLCPxiQYQzlkaii6eSmapVfRQeEaHKnd4augpSAnXiE73HjL9B6nm6Bx8
-         jxf3ZO3EX2jLryrQKVNDlmJWHs/hPzC0S6uJhrZocB0NC40PSSWTrC/aUBD51oI8z4Ie
-         +nIiDwQsBMtuxWHK9t3yXtjmfxHeNigtpE1dCPChD+j0I7hpL1ZQHLcmcld3mE00aHZV
-         oyDd8RDKifrYhu7KaZqSLFOK6HDTurZUYa2LMx1uNXlDete4+yV3wd3LP1Ln/92sHiQP
-         Yc9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683789807; x=1686381807;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=YZEvavg8L9Olhu+zGHQIGrTsD4WpLJW9jLTEZFpxzDc=;
-        b=eMaN+txyeqF3ZmkPnz6iV6ee+p2x+1LZzhZgUGqLlwBgxQIFJ9HrzfO8NjxJmy/Gl3
-         yxeG3ACfop5J8/sljtD+p9SpDeD1tmLOgwSaQtSUNTlTgGdqBpftk73m+4P7PM7lg3bz
-         SvKrjDWHP3HYBwlLxM9y1D/bZ9UBAAJnax+h/war3KctEXazUGo10/eiwyoQQRuh6jIu
-         OFrTYrzF5zky9MGDZ8+hc7wrfNSM4btFcGBQP248yEagh8M32d9EOH9hPct3cDiCoCgy
-         PCVcBwDZcxtim7LSPVY79Ypf92O1NETa5ES2wndQ8H2W68cLDSPwcFqN0RaT+XuGw1n+
-         aWoQ==
-X-Gm-Message-State: AC+VfDxQId+rsd9S9An0scO8GkJTxEMt2i5geCk9JC1MR8M37RnVHZZx
-        6GA5G5B0w9uuG+ti28YaqooqIFtG4KqC432v1JS+Ww==
-X-Google-Smtp-Source: ACHHUZ6ras4LaeY+ZbiwEvfWph/YzwIpGnnO8SBK56IUO3cK+qWgWD2Bspz7GJkSDqG6DyFLIiFLIikYyNUaiuo69Zs=
-X-Received: by 2002:a19:f605:0:b0:4f2:53fb:187 with SMTP id
- x5-20020a19f605000000b004f253fb0187mr2172026lfe.68.1683789807641; Thu, 11 May
- 2023 00:23:27 -0700 (PDT)
+        with ESMTP id S237532AbjEKHd4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 03:33:56 -0400
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (mail-dm6nam04on2061.outbound.protection.outlook.com [40.107.102.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C897A869F;
+        Thu, 11 May 2023 00:33:14 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=kQC85FsypQclvlMZL9zsgf/0Mev44oxBW/rnBYWIgKIVYvTyXlMzfzUnkdJbuoMEhmwj/kF3xK0XJ5RPivyoZzDrRYXfuPwwqQRwHtWKSd3pdJIq0jI8WaoI86pMIgCfPAsHPyCU3q8KDY032r6HZcE5R6KbyRt70uiL1corsiOYxemopHRDwM5YpTQBkJDkLxztTQBZQyAvxIa9gs7EC5Ii8gMg16r5qBzg9QG5o1o6Cmr1CXkfiKLVKBS5Jcdmbq3Nr5RW3YYvwDFujASW9ClULlUwusldMm11T0Y00Q0mhY42qAdF7/vMBA49mADhmPCnMtS6XAeRMQum0tu8RQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=1GS2mb3Sq2RblIllbyYHGLHZ0f/Lu1fa37GzLAgtRV4=;
+ b=YTsc7Ft3VcLpiax+hv+B+hgxpGfOYXIa9cSaDmMnRK1G2KcPLkqljldzx+CN/lYipMgbhYQCIWBxo8z2K7oHX3AaZiKjyCAtw239GXryJFEQ2VMO6/964sTdnEd9gIothYXMCWKZkUsj4KEG5YeskfDAh1EDk8hXdyZODs+Zi4UgX8OYdzvR1vfQ7U7pHdl5Ogu2HJO/XuBdPfE9OyA1hjZ3JZGr2YV10QgY/tyj9pjD9SfYUD6KRwQhCW/eNMaGL20scAKS5jpUoZFhgazpD4QxdlvgXuw7oGpRjgNhcGz1WPxSbOuvz6LDXijECsiWxpSJVL91IkLca/fFXKNi/g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1GS2mb3Sq2RblIllbyYHGLHZ0f/Lu1fa37GzLAgtRV4=;
+ b=5Md4G9P9NumcZ86oQ0O/NythAyvDjDCnl4RsX/qPIMMouVh3LexOp4Aq0za95ypdCbLFV5mqQWIbCc5zAG+uG0QNNeAcVvDx6qZXCaUptLzsXlHRfTpgajdxZ9ulJTb0Uh5Lno6xcu7g2Hnhzzs7pODoeLetJE5Ln6YJEfZrpjo=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BYAPR12MB4758.namprd12.prod.outlook.com (2603:10b6:a03:a5::28)
+ by DS0PR12MB8296.namprd12.prod.outlook.com (2603:10b6:8:f7::6) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6363.33; Thu, 11 May 2023 07:32:57 +0000
+Received: from BYAPR12MB4758.namprd12.prod.outlook.com
+ ([fe80::20b9:d472:1981:cf94]) by BYAPR12MB4758.namprd12.prod.outlook.com
+ ([fe80::20b9:d472:1981:cf94%4]) with mapi id 15.20.6363.032; Thu, 11 May 2023
+ 07:32:57 +0000
+Message-ID: <ede45df2-2282-4331-f5b2-e9b6f49782c9@amd.com>
+Date:   Thu, 11 May 2023 09:26:49 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH 0/2] Add rs485 support to uartps driver
+Content-Language: en-US
+To:     "Guntupalli, Manikanta" <manikanta.guntupalli@amd.com>,
+        "m.brock@vanmierlo.com" <m.brock@vanmierlo.com>
+Cc:     "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "michal.simek@xilinx.com" <michal.simek@xilinx.com>,
+        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "jirislaby@kernel.org" <jirislaby@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "git (AMD-Xilinx)" <git@amd.com>,
+        "Pandey, Radhey Shyam" <radhey.shyam.pandey@amd.com>,
+        "Datta, Shubhrajyoti" <shubhrajyoti.datta@amd.com>,
+        "Goud, Srinivas" <srinivas.goud@amd.com>,
+        "manion05gk@gmail.com" <manion05gk@gmail.com>
+References: <1682512187-8828-1-git-send-email-manikanta.guntupalli@amd.com>
+ <6b72c56e79a44fec348de26d14d9dce0@vanmierlo.com>
+ <DM4PR12MB61098014775DE9950A0E2E588C779@DM4PR12MB6109.namprd12.prod.outlook.com>
+From:   Michal Simek <michal.simek@amd.com>
+In-Reply-To: <DM4PR12MB61098014775DE9950A0E2E588C779@DM4PR12MB6109.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: VI1PR0802CA0014.eurprd08.prod.outlook.com
+ (2603:10a6:800:aa::24) To BYAPR12MB4758.namprd12.prod.outlook.com
+ (2603:10b6:a03:a5::28)
 MIME-Version: 1.0
-References: <20230510102251.10118-1-marex@denx.de> <20230510102251.10118-6-marex@denx.de>
-In-Reply-To: <20230510102251.10118-6-marex@denx.de>
-From:   Crt Mori <cmo@melexis.com>
-Date:   Thu, 11 May 2023 09:22:51 +0200
-Message-ID: <CAKv63utKRXciztsanDOnVs5C0WJFsaqnCuT0Sx21nB3r_KTmcA@mail.gmail.com>
-Subject: Re: [PATCH v3 6/6] iio: mlx90614: Add MLX90615 support
-To:     Marek Vasut <marex@denx.de>
-Cc:     linux-iio@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BYAPR12MB4758:EE_|DS0PR12MB8296:EE_
+X-MS-Office365-Filtering-Correlation-Id: 63ab8fef-a6e4-4442-d8f2-08db51f1f0ca
+X-LD-Processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: jlGSjRBnuMtLnq55aCZRDuOgntKt12YvwikTRJAymq05wOw6zFEq8f0mD/Ap8Z89EmTYOTPOSU46wLVN8qyB+qEmm5ru6acegQWafIeHzTn/7Q3ToPxtSe255F9lxAYnX3LI0U5lUSC0QiIB9348OT5qGsnKWnj0cm0hmVyOwWEg/LauFMYIWqx8yv1TZeTN1Zpx/hezjnUaZcyaXjCSUCGA7pcmNAE1hqjbii6oKM5S7B2yE13XbZVDzLTvjo2vF9kQUOpTCOsRJ0GgeQ3PXijC0Fujy7KZ4QTC7/NrqUkRO35aEPJQZJ3ODhcaae3udGiXYQhiIbQpyuyso4sLIarPuv7c+hPAyI2FRHReh57hh7g98VTJZzuE9M9EH1oaVikHPjNTtJ+S4a4rvmJrwYS4gfoK05hdTfdDf1Atx0RkqZJZICHvoilk55hm20KYBX8tt01Jnqh0h3AOesBOkaACWcnJTlSRIo5XcIjHTjDZhVNQ5DwXtXyfTRNci6HyPSoDvVQyX3NNGQ6KRxMPpJ8OrzYjRlZItgc2F/LrXgSuyg7jZzSzP76JjdjxcziTiriI8TkY42mf+9QNkgn+38/AQNATySTJ2MFY5ZPULJ8vs0Ugwzp/KgEEjgjMzK5UHVeQwtsXiXs00GeiwIKOMQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR12MB4758.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(376002)(136003)(346002)(396003)(366004)(39860400002)(451199021)(2906002)(86362001)(2616005)(83380400001)(186003)(4326008)(66556008)(66946007)(36756003)(66476007)(6506007)(53546011)(6512007)(31696002)(31686004)(26005)(41300700001)(7416002)(5660300002)(6486002)(38100700002)(44832011)(6666004)(54906003)(110136005)(316002)(8936002)(8676002)(478600001)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YmR6OUI2Ymx4WitpbSs3eXhzU2p3OEl6L0lmdUpFU3VMUXBlS21wdDZiSUNr?=
+ =?utf-8?B?cm9zUVlDb3h2c2t1U0R2eXIvaTRLQVVJMXV3S1JpTnpqVkR4V2lVcm0xM3VU?=
+ =?utf-8?B?SUJJdFk4TXhDam9vcmp1VXQ1Z21nZHUvRTVmOHJNODV6Zmg4eHNxelBzOFh2?=
+ =?utf-8?B?TEZVUEd2NGZIMDdzMU1ibHMvR0pLUlNscm1kUVNjQWJqdkJBMjZRQzJIa01G?=
+ =?utf-8?B?T0RXU2RiR0VNb0pJcnJOdzlLRVMvUExEYUoxTlZ2anVtV2ovV0FKaXhzVkxs?=
+ =?utf-8?B?b2MwRVk4QjZxY3JZcXI2NStkNHhhVWFnaHJ1a2kwb1RXOE9uY3h4aHVxaTIz?=
+ =?utf-8?B?WTR3cGcwQUE3WWhUdy9NRHlWcHVyWHNSeHhWbjB1c3Q3MjFSVmVQTjR6OU14?=
+ =?utf-8?B?TmFTdVRlRU5aY0kvNmg3c0txZERLZ05WMm9MWm4yeTh5ejdjdjFWWjkvbldC?=
+ =?utf-8?B?Skkwa2ZBaUVXQ00wckNHV3RZbmZUYW0vRkFyanZ2YnFLSEFxclZocUlYd3Jm?=
+ =?utf-8?B?TitoSG1HVXdReTdpS3NhREwveXVUZWVlZGFiTnZTWFhsS2dQbnBMUWJXdGZk?=
+ =?utf-8?B?eHNWNUltM3Z6c2VNNjUxWitwWTYrVXQyaTYwTEw2QUVJTnVyL2ZPTTQxZ3Vk?=
+ =?utf-8?B?ZkVFRndTWUxoT2UveGZnZWUyMUZsM3BYQWg1QTFoTklrdVZXQ2ZCZWV0WmUz?=
+ =?utf-8?B?djMvVUhzdE43VWp4OGVvU3B0cy9mY1BkbXZpbjc2b1N6SHYzOUJBMWl3Ykll?=
+ =?utf-8?B?VXVTaXEraU5BOFp5ckE5SmpVOHAyeXQ5MmI0ckhzWjBueS8va2I5M3ZXdU55?=
+ =?utf-8?B?SHhuQlpCQ1NEbDRuek1iR2V3NlRVZndwUUpRaTEwY3kzV29NWUljWmhKRFFG?=
+ =?utf-8?B?YWllM3V1bzRBMDB6WHhtcDQxSDdzNUQ4aGViTXVuNDVKR2R0UTJmOXRZaDc1?=
+ =?utf-8?B?aFRKWUowMENVU2FuVFZKK2xETXgzaG00QkJTRWtISm5FRUUrVjZ5Sy8rM1k1?=
+ =?utf-8?B?ZlZqZHVXZGp1QXZqU1REVEpvK0ZrYmdZTHFUTVRFS084eXBreGRsbEV3c3NZ?=
+ =?utf-8?B?b294WWlSaGdPOGw5WGxrZ2h6c3lEZlVyY3lNOGcwUi9uZytGdWZwc0tVdHlH?=
+ =?utf-8?B?L21uZzI0ZTFtYVNGT2xQYXV3WWMxcGEwVnJtZ1pvcDZKNUdPVXFCa2RCZi9m?=
+ =?utf-8?B?Z3hnbzQ4Rno2WkJMWmE5dUliaE16N2VGOWZORWVzSGRVdGZCY3h6NDV2VWdj?=
+ =?utf-8?B?YTVaWWZNZWJPQmtsTHI3V3MzM1hwVldOb2ZDMElSQkRuOTRxaEVxTzN6RXl1?=
+ =?utf-8?B?a1paYjZCK1NJeVdMSUF5ZEQ4Z2tOQnJkSTN6WERCOUdGY0hpK040OVJQbEpJ?=
+ =?utf-8?B?aWJiOVZaeWhHWkRuMm1Hd3lyaSsydWtPamFJc0V6a0c1bHdLM2RVcDVidkpN?=
+ =?utf-8?B?bEtFbTVObU1iZEQ5RDloWGVhQXErUFoxYWpraEY5WXJ6aitZVCszYzYxYSs2?=
+ =?utf-8?B?UExuQklMbVJub05DZ3Z6Y1JhcHVBeTVWUUNXY2FCVUhWTk9VUWdKcTliOTdD?=
+ =?utf-8?B?cUZDUzRRYlhLY1FpQ1pmaHlCb3AyZHU4Tzd3aERlNEhNMzMwa0lxei94c1hu?=
+ =?utf-8?B?ZUhoQjkwRkFTMzJ1ektXT2lrc00xaTNYVCtlcElBNTVIOXVSOEdxbVB3N0tr?=
+ =?utf-8?B?Yk0ySndLbWErb2ZHaG9yamQxdkozR2RkZzR1N0RiMDZGWFEraUJYNTFzTnVL?=
+ =?utf-8?B?dCtwSDdUMzBmNDVLZitvN1IvZmcveW5HVlQ2bkZ0YnRqeVhsd1ExV1d5UEp6?=
+ =?utf-8?B?aWlmbVlFZnp6MGFuVk9nTkw0ZVY3QmpBS2V5U3UvVjhzRW81cXNlNmZDeXJG?=
+ =?utf-8?B?Rjc5TStoaDBNQlpSc1J0YkdJUW1OV3NpL0JMZERPelVkckRFUHpEenZSRWpx?=
+ =?utf-8?B?VTJYYysrSHkxSWJIQ2ZKeS9zQWpvQkNidFlIYng1dHFkNU1IWXU3cTExM3o1?=
+ =?utf-8?B?ZWlWVzR1R09UYmVDYjFQT3FTTnYxdXBhUTJnSzZiWVdRSWdRMTd4RlVINUQr?=
+ =?utf-8?B?eVJJN2d3Z1BTc2Y2dlJYcEJBcFFjSkZuM0g3TS9wSjNhUkNsa0JYM01ZYkty?=
+ =?utf-8?Q?+zUxnAecWp1XNk8oEcLEf5IGS?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 63ab8fef-a6e4-4442-d8f2-08db51f1f0ca
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB4758.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 May 2023 07:32:57.3534
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: EPxTwfxC/WLvUAJjDORQfIJ9KqjPtHhqqe43In3UbtmpPf5W1ml6IUSg60kPMWj/
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8296
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Acked-by: Crt Mori <cmo@melexis.com>
 
-On Wed, 10 May 2023 at 12:23, Marek Vasut <marex@denx.de> wrote:
->
-> Add support for MLX90615 Infra Red Thermometer, which seems to be
-> the predecesor of MLX90614 . There are significant differences in
-> the register layout compared to MLX90614, but the functionality
-> of the device is virtually identical.
->
-> The following differences have been identified:
-> - RAM/EEPROM/SLEEP access opcodes are different
-> - RAM/EEPROM registers are at different offsets
-> - EEPROM emissivity and configuration registers are at different offsets
-> - EEPROM configuration register bits are shuffled around
-> - EEPROM emissivity settings are 14 bit on MLX90615 , 16 bit on MLX90614
-> - MLX90615 can only ever support one sensor, MLX90614 could support two
-> - FIR filter is set to fixed settings on MLX90615
-> - IIR filter coefficients are different
->
-> This patch fills in the MLX90615 specific description and quirk handling.
->
-> The IIR filter coefficients were provided by Melexis as follows:
-> 0b0000 - Forbidden value
-> 0b0001 - 100% - settling time = refresh rate = 205ms (around 5Hz)
-> 0b0010 - 50% - settling time = 2050ms (around 0.5Hz)
-> 0b0011 - 33% - settling time = 36900ms (around 0.3Hz)
-> 0b0100 - 25% - settling time = 5125ms (around 0.2Hz)
-> 0b0101 - 20% - settling time = 6355ms (around 0.15Hz)
-> 0b0110 - 17% - settling time = 7790ms (around 0.13Hz)
-> 0b0111 - 14% - settling time = 9225ms (around 0.1Hz)
->
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Crt Mori <cmo@melexis.com>
-> Cc: Jonathan Cameron <jic23@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Lars-Peter Clausen <lars@metafoo.de>
-> Cc: Marek Vasut <marex@denx.de>
-> Cc: Peter Meerwald <pmeerw@pmeerw.net>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-iio@vger.kernel.org
-> ---
-> V2: Split the patch up into cleanups, abstraction and MLX90615 addition
-> V3: Drop emissivity_res, update IIR filter coefficients per Melexis input
-> ---
->  drivers/iio/temperature/mlx90614.c | 48 +++++++++++++++++++++++++++---
->  1 file changed, 44 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/iio/temperature/mlx90614.c b/drivers/iio/temperature/mlx90614.c
-> index 3aa108a652bb4..b2affcb795e00 100644
-> --- a/drivers/iio/temperature/mlx90614.c
-> +++ b/drivers/iio/temperature/mlx90614.c
-> @@ -1,12 +1,15 @@
->  // SPDX-License-Identifier: GPL-2.0-only
->  /*
-> - * mlx90614.c - Support for Melexis MLX90614 contactless IR temperature sensor
-> + * mlx90614.c - Support for Melexis MLX90614/MLX90615 contactless IR temperature sensor
->   *
->   * Copyright (c) 2014 Peter Meerwald <pmeerw@pmeerw.net>
->   * Copyright (c) 2015 Essensium NV
->   * Copyright (c) 2015 Melexis
->   *
-> - * Driver for the Melexis MLX90614 I2C 16-bit IR thermopile sensor
-> + * Driver for the Melexis MLX90614/MLX90615 I2C 16-bit IR thermopile sensor
-> + *
-> + * MLX90614 - 17-bit ADC + MLX90302 DSP
-> + * MLX90615 - 16-bit ADC + MLX90325 DSP
->   *
->   * (7-bit I2C slave address 0x5a, 100KHz bus speed only!)
->   *
-> @@ -35,6 +38,10 @@
->  #define MLX90614_OP_EEPROM     0x20
->  #define MLX90614_OP_SLEEP      0xff
->
-> +#define MLX90615_OP_EEPROM     0x10
-> +#define MLX90615_OP_RAM                0x20
-> +#define MLX90615_OP_SLEEP      0xc6
-> +
->  /* Control bits in configuration register */
->  #define MLX90614_CONFIG_IIR_SHIFT 0 /* IIR coefficient */
->  #define MLX90614_CONFIG_IIR_MASK (0x7 << MLX90614_CONFIG_IIR_SHIFT)
-> @@ -43,11 +50,16 @@
->  #define MLX90614_CONFIG_FIR_SHIFT 8 /* FIR coefficient */
->  #define MLX90614_CONFIG_FIR_MASK (0x7 << MLX90614_CONFIG_FIR_SHIFT)
->
-> +#define MLX90615_CONFIG_IIR_SHIFT 12 /* IIR coefficient */
-> +#define MLX90615_CONFIG_IIR_MASK (0x7 << MLX90615_CONFIG_IIR_SHIFT)
-> +
->  /* Timings (in ms) */
->  #define MLX90614_TIMING_EEPROM 20 /* time for EEPROM write/erase to complete */
->  #define MLX90614_TIMING_WAKEUP 34 /* time to hold SDA low for wake-up */
->  #define MLX90614_TIMING_STARTUP 250 /* time before first data after wake-up */
->
-> +#define MLX90615_TIMING_WAKEUP 22 /* time to hold SCL low for wake-up */
-> +
->  #define MLX90614_AUTOSLEEP_DELAY 5000 /* default autosleep delay */
->
->  /* Magic constants */
-> @@ -305,8 +317,8 @@ static int mlx90614_read_raw(struct iio_dev *indio_dev,
->                         *val2 = ret * NSEC_PER_SEC / chip_info->emissivity_max;
->                 }
->                 return IIO_VAL_INT_PLUS_NANO;
-> -       case IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY: /* IIR setting with
-> -                                                            FIR = 1024 */
-> +       /* IIR setting with FIR=1024 (MLX90614) or FIR=65536 (MLX90615) */
-> +       case IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY:
->                 ret = mlx90614_power_get(data, false);
->                 if (ret < 0)
->                         return ret;
-> @@ -664,14 +676,42 @@ static const struct mlx_chip_info mlx90614_chip_info = {
->         },
->  };
->
-> +static const struct mlx_chip_info mlx90615_chip_info = {
-> +       .op_eeprom_emissivity           = MLX90615_OP_EEPROM | 0x03,
-> +       .op_eeprom_config1              = MLX90615_OP_EEPROM | 0x02,
-> +       .op_ram_ta                      = MLX90615_OP_RAM | 0x06,
-> +       .op_ram_tobj1                   = MLX90615_OP_RAM | 0x07,
-> +       .op_ram_tobj2                   = MLX90615_OP_RAM | 0x08,
-> +       .op_sleep                       = MLX90615_OP_SLEEP,
-> +       .dual_channel                   = false,
-> +       .wakeup_delay_ms                = MLX90615_TIMING_WAKEUP,
-> +       .emissivity_max                 = 16383,
-> +       .fir_config_mask                = 0,    /* MLX90615 FIR is fixed */
-> +       .iir_config_mask                = MLX90615_CONFIG_IIR_MASK,
-> +       /* IIR value 0 is FORBIDDEN COMBINATION on MLX90615 */
-> +       .iir_valid_offset               = 1,
-> +       .iir_values                     = { 500, 50, 30, 20, 15, 13, 10 },
-> +       .iir_freqs                      = {
-> +               { 0, 100000 },  /* 14% ~= 0.10 Hz */
-> +               { 0, 130000 },  /* 17% ~= 0.13 Hz */
-> +               { 0, 150000 },  /* 20% ~= 0.15 Hz */
-> +               { 0, 200000 },  /* 25% ~= 0.20 Hz */
-> +               { 0, 300000 },  /* 33% ~= 0.30 Hz */
-> +               { 0, 500000 },  /* 50% ~= 0.50 Hz */
-> +               { 5, 000000 },  /* 100% ~= 5.00 Hz */
-> +       },
-> +};
-> +
->  static const struct i2c_device_id mlx90614_id[] = {
->         { "mlx90614", .driver_data = (kernel_ulong_t)&mlx90614_chip_info },
-> +       { "mlx90615", .driver_data = (kernel_ulong_t)&mlx90615_chip_info },
->         { }
->  };
->  MODULE_DEVICE_TABLE(i2c, mlx90614_id);
->
->  static const struct of_device_id mlx90614_of_match[] = {
->         { .compatible = "melexis,mlx90614", .data = &mlx90614_chip_info },
-> +       { .compatible = "melexis,mlx90615", .data = &mlx90615_chip_info },
->         { }
->  };
->  MODULE_DEVICE_TABLE(of, mlx90614_of_match);
-> --
-> 2.39.2
->
+
+On 5/10/23 18:26, Guntupalli, Manikanta wrote:
+> Hi Maarten,
+> 
+>> -----Original Message-----
+>> From: m.brock@vanmierlo.com <m.brock@vanmierlo.com>
+>> Sent: Thursday, May 4, 2023 5:52 PM
+>> To: Guntupalli, Manikanta <manikanta.guntupalli@amd.com>
+>> Cc: gregkh@linuxfoundation.org; robh+dt@kernel.org;
+>> krzysztof.kozlowski+dt@linaro.org; michal.simek@xilinx.com; linux-
+>> serial@vger.kernel.org; devicetree@vger.kernel.org; linux-
+>> kernel@vger.kernel.org; jirislaby@kernel.org; linux-arm-
+>> kernel@lists.infradead.org; Simek, Michal <michal.simek@amd.com>; git
+>> (AMD-Xilinx) <git@amd.com>; Pandey, Radhey Shyam
+>> <radhey.shyam.pandey@amd.com>; Datta, Shubhrajyoti
+>> <shubhrajyoti.datta@amd.com>; Goud, Srinivas <srinivas.goud@amd.com>;
+>> manion05gk@gmail.com
+>> Subject: Re: [PATCH 0/2] Add rs485 support to uartps driver
+>>
+>> Manikanta Guntupalli wrote 2023-04-26 14:29:
+>>> Add optional gpio property to uartps node to support rs485 Add rs485
+>>> support to uartps driver
+>>>
+>>> Manikanta Guntupalli (2):
+>>>    dt-bindings: Add optional gpio property to uartps node to support
+>>>      rs485
+>>>    tty: serial: uartps: Add rs485 support to uartps driver
+>>>
+>>>   .../devicetree/bindings/serial/cdns,uart.yaml |  5 +
+>>>   drivers/tty/serial/xilinx_uartps.c            | 96 ++++++++++++++++++-
+>>>   2 files changed, 100 insertions(+), 1 deletion(-)
+>>
+>> Why would you want to use a GPIO and not RTS for choosing the direction as
+>> is more common in this case?
+> In ZynqMp platform Cadence UART Controller RTS signal routed to external through the PL(Programmable Logic) design not through Multiplexed IO.
+
+Just to extend this a little bit. Cadence IP has modem signals but they are not 
+available over MIOs only over EMIO via PL logic. But board which this feature 
+targets can't have connection to PL pins to be able to use any modem signal for 
+this logic.
+
+Thanks,
+Michal
+
