@@ -2,52 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EDE96FFA1B
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 21:25:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54EB56FFA4B
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 21:38:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238084AbjEKTZM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 15:25:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50054 "EHLO
+        id S239179AbjEKTik (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 15:38:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238397AbjEKTZL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 15:25:11 -0400
+        with ESMTP id S239248AbjEKTif (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 15:38:35 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 291F67DBF;
-        Thu, 11 May 2023 12:25:10 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 537A47DA8;
+        Thu, 11 May 2023 12:38:28 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BE531639CC;
-        Thu, 11 May 2023 19:25:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1DBFFC433EF;
-        Thu, 11 May 2023 19:25:06 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9F5A46511A;
+        Thu, 11 May 2023 19:38:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E322DC4339C;
+        Thu, 11 May 2023 19:38:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1683833109;
-        bh=y/0OoYatmFHPp5Ma0BwB2mBixbDjxt7J7Ig6y1F9nw0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=t6nvDAk+2u7LCFD0Q+y+rdsx6+U6A1UHZ4oYnzmHy6+3I/MH8bXrIpUifRxcej4r0
-         AUiMrhzx9zEeT9DA0+crjKtbQKIhEal5SDtLZ26tz4N8GJoNeUNiuE1+va/LpUXX5n
-         b8NsStma0ut3f1+LXOqlUStvuexn3LJp94y0rA3Z1+pfs86cxGTgQWy4LNljCFUjLb
-         Fnk2PJNYfDeyzTCrJVYUCOA8oGEpOOdUt1QqI2te9QMuxU3HgyEt352PaEGXtAiryT
-         waZyhODVPMex6yWnR08hoDQup8S9/pMNxJ4fRxpbc2kQHFeyJuo39z6na+CzR/wIZW
-         TrhGS9DoWRJEA==
-Date:   Thu, 11 May 2023 20:25:04 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Peter De Schrijver <pdeschrijver@nvidia.com>
-Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org, stefank@nvidia.com
-Subject: Re: [PATCH v4 5/6] dt-bindings: Add support for tegra186-bpmp DRAM
- MRQ GSCs
-Message-ID: <20230511-overcrowd-puzzling-5c588d276158@spud>
-References: <20230511132048.1122075-1-pdeschrijver@nvidia.com>
- <20230511132048.1122075-6-pdeschrijver@nvidia.com>
+        s=k20201202; t=1683833907;
+        bh=eusArGtpQsQ/mI/dj7NQjj77kk6DhjwgGYGdfDlh95U=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=cUFOOxVzusGEU6LqxtMDNV/tkXapWIk0EvGg7MrtmFeo6dO1lgBfl3JQsGn2ikYQt
+         iLGcbv/6yj8YrGNl30268qnMq3IDzP6WaNFW4PYDy4tIzLTtDa5/V39XEhbtN0ycr5
+         rrR0OnQWTTYS45SCtDrc9o7/wRzaCSMKgS7ml7WpuJQIr+UWGsIy5+5iDtVqdKAQxl
+         6j8ynNAEnvLaUf2im4fa+6G0mhpWsTfC/niNOP0aHVMGcI9/WyAyj2VdlqPHawel7m
+         BjPPojSf6dSkdsrpnc/IrAchDjrQmX7Ew8S/osoog4bqww6OiqAE8bA3RcJBwqbNMs
+         4hU9Av3KEUUDA==
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Lucas Tanure <tanure@linux.com>, Rob Herring <robh@kernel.org>,
+        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
+        frowand.list@gmail.com, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 6.3 06/11] of: fdt: Scan /memreserve/ last
+Date:   Thu, 11 May 2023 15:37:49 -0400
+Message-Id: <20230511193757.623114-6-sashal@kernel.org>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230511193757.623114-1-sashal@kernel.org>
+References: <20230511193757.623114-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="dExVlHaTJTfKF/f9"
-Content-Disposition: inline
-In-Reply-To: <20230511132048.1122075-6-pdeschrijver@nvidia.com>
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -58,38 +56,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Lucas Tanure <tanure@linux.com>
 
---dExVlHaTJTfKF/f9
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+[ Upstream commit b413281876292de44ae84e9a9ce9d62e47f266e9 ]
 
-On Thu, May 11, 2023 at 04:20:50PM +0300, Peter De Schrijver wrote:
+Change the scanning /memreserve/ and /reserved-memory node order to fix
+Kernel panic on Khadas Vim3 Board.
 
-> +    bpmp {
-> +        compatible = "nvidia,tegra186-bpmp";
-> +        interconnects = <&mc TEGRA186_MEMORY_CLIENT_BPMPR &emc>,
-> +                        <&mc TEGRA186_MEMORY_CLIENT_BPMPW &emc>,
-> +                        <&mc TEGRA186_MEMORY_CLIENT_BPMPDMAR &emc>,
-> +                        <&mc TEGRA186_MEMORY_CLIENT_BPMPDMAW &emc>;
-> +        interconnect-names = "read", "write", "dma-mem", "dma-write";
-> +        mboxes = <&hsp_top1 TEGRA_HSP_MBOX_TYPE_DB
-> +                            TEGRA_HSP_DB_MASTER_BPMP>;
+If /memreserve/ goes first, the memory is reserved, but nomap can't be
+applied to the region. So the memory won't be used by Linux, but it is
+still present in the linear map as normal memory, which allows
+speculation. Legitimate access to adjacent pages will cause the CPU
+to end up prefetching into them leading to Kernel panic.
 
-FWIW, this fits on one line - although you've just copy-pasted what was
-already there in the other example.
+So /reserved-memory node should go first, as it has a more updated
+description of the memory regions and can apply flags, like nomap.
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Link: https://lore.kernel.org/all/CAJX_Q+1Tjc+-TjZ6JW9X0NxEdFe=82a9626yL63j7uVD4LpxEA@mail.gmail.com/
+Signed-off-by: Lucas Tanure <tanure@linux.com>
+Link: https://lore.kernel.org/r/20230424113846.46382-1-tanure@linux.com
+Signed-off-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/of/fdt.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+index d1a68b6d03b3f..c28aedd7ae1f7 100644
+--- a/drivers/of/fdt.c
++++ b/drivers/of/fdt.c
+@@ -635,6 +635,9 @@ void __init early_init_fdt_scan_reserved_mem(void)
+ 	if (!initial_boot_params)
+ 		return;
+ 
++	fdt_scan_reserved_mem();
++	fdt_reserve_elfcorehdr();
++
+ 	/* Process header /memreserve/ fields */
+ 	for (n = 0; ; n++) {
+ 		fdt_get_mem_rsv(initial_boot_params, n, &base, &size);
+@@ -643,8 +646,6 @@ void __init early_init_fdt_scan_reserved_mem(void)
+ 		memblock_reserve(base, size);
+ 	}
+ 
+-	fdt_scan_reserved_mem();
+-	fdt_reserve_elfcorehdr();
+ 	fdt_init_reserved_mem();
+ }
+ 
+-- 
+2.39.2
 
---dExVlHaTJTfKF/f9
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZF1BEAAKCRB4tDGHoIJi
-0l/OAQDrOsbSFzBKvgPvjho0xJQUKaPLSTofvc6P8KB3HCIDUgEApWO5u+zl5nPW
-xP1fytR5QKiCMZEpohFyfoxmpCWxRQE=
-=wqSg
------END PGP SIGNATURE-----
-
---dExVlHaTJTfKF/f9--
