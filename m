@@ -2,204 +2,379 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 06BD26FF8A9
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 19:46:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE6EE6FF857
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 19:23:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238666AbjEKRqe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 13:46:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40004 "EHLO
+        id S238890AbjEKRXs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 13:23:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238053AbjEKRqb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 13:46:31 -0400
-X-Greylist: delayed 1579 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 11 May 2023 10:46:30 PDT
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E7D24C33;
-        Thu, 11 May 2023 10:46:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
-        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=TTk3hDzsq8jrOobO+C2ER+VkctQV8DlY/d5yba9Ugrg=; b=qCwqfgKpPfb11N+Szsl4oF4jdQ
-        3Rso+DMneS1r7YOAVSu79vGyx2ogHzLDFTR9TlKT97kj0ab/oKRbTxYq2LpLxfQjG/myMgeE5KebQ
-        IQFnKjyIdtTiVV3vXUMf6s8JiH8+qgmHEMl+nPddtjzaipveH4ckF/M4OQOYJ+Qkh/3s=;
-Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:37150 helo=pettiford)
-        by mail.hugovil.com with esmtpa (Exim 4.92)
-        (envelope-from <hugo@hugovil.com>)
-        id 1px9xP-0002Pm-2I; Thu, 11 May 2023 13:20:00 -0400
-Date:   Thu, 11 May 2023 13:19:58 -0400
-From:   Hugo Villeneuve <hugo@hugovil.com>
-To:     Hugo Villeneuve <hugo@hugovil.com>
-Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        a.zummo@towertech.it, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>, hugo@hugovil.com
-Message-Id: <20230511131958.fd82402f8ef43dd8690bee78@hugovil.com>
-In-Reply-To: <20230123155240.2d55fc2f5874a50e2e6252d2@hugovil.com>
-References: <20221215150214.1109074-1-hugo@hugovil.com>
-        <20221215150214.1109074-9-hugo@hugovil.com>
-        <Y8rHx8U4peB+fnW8@mail.local>
-        <20230123155240.2d55fc2f5874a50e2e6252d2@hugovil.com>
-X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+        with ESMTP id S238898AbjEKRXq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 13:23:46 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7CE41FF5
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 10:23:43 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-50bd2d7ba74so81528309a12.1
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 10:23:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683825822; x=1686417822;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TErA49NYnxkJrT15NELOp4zXx8Zgys2cWf79xIMHURc=;
+        b=AGBX1B84cJTPrv7C77dVONKvFs5a7h9Iq6gULlPPrYDCu5EVPE8/TLOM9lHn4Slmbw
+         yK1Cy8E60Hv4e+y9lqk2vhrfOCKlvG+DeyUzI1y0LyiRzPwcUHZumx9HkT8AbYsgxGlq
+         NI9PtUWXfcTxZzyAXHPlxUFhJAWIksfA/H8WNqTZKX3IraOcU0527ySm7PjW91orc0yP
+         x9iVml5lTljm/vA01qQzm0yw/Fi7w+IAVrpwo6qPlUEQLkhiPXBAqoHs92V7UsMVnH8O
+         0PQcBl/ooM3+SvKsAIFn2d5YyMUZEi63R3dUtCbD0k+imRR6pYNweRblBdA6McaGwA0o
+         6OKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683825822; x=1686417822;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TErA49NYnxkJrT15NELOp4zXx8Zgys2cWf79xIMHURc=;
+        b=Jos6cjvHrWbPOC9+ZvWYaPUuFsJcXoVaC0vTtiDyunXNCkmU3vM9c9Dq6DIGNq+7l+
+         wgqSLRDQ9qVnsyyz742svUN32OhivwSOYDTLS1o3ZTieW4eU4+5LjtGlfkZVt+gV8mFQ
+         5GcKtghzIcdN1r5T5LR8oxCDYHA/jEfM4n5Ud7A9+i3GpYb+3LB84SsYyeIoQSSu2hT+
+         4wRnblAo/zMoLiIN//Ny2KXaLmGHKeY+zHyBYYL0TDIHjEWtl/SmxGONWtCNAHBME021
+         eqVucohVoj3f+OdL5wCet789xuGMDVfwfiHvCMkLEkiUjpIvrBoHpie+hFTz6ROLtNi2
+         /N/w==
+X-Gm-Message-State: AC+VfDxBByMeInF0+D1k6P8oFWmXqxFnLRE6A+80JKKsV2tDxqZ50VfU
+        ipeeQji0kpCI9T0YfmDpB2EK3w==
+X-Google-Smtp-Source: ACHHUZ4W7brRdywxNtA1AHqGbss0GVjRpLvl5ZibG8uLHCJ797zlonRIK3xeFxDgGnsU0kfYDzgKow==
+X-Received: by 2002:aa7:cb11:0:b0:504:a3ec:eacc with SMTP id s17-20020aa7cb11000000b00504a3eceaccmr19160559edt.4.1683825822055;
+        Thu, 11 May 2023 10:23:42 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:d7cd:1be6:f89d:7218? ([2a02:810d:15c0:828:d7cd:1be6:f89d:7218])
+        by smtp.gmail.com with ESMTPSA id p2-20020a056402044200b0050bcb6cf16asm3173262edw.41.2023.05.11.10.23.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 May 2023 10:23:41 -0700 (PDT)
+Message-ID: <1b3b58b9-b441-f04f-a3e1-8b5fb7f19f9d@linaro.org>
+Date:   Thu, 11 May 2023 19:23:40 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 2/2] arm64: dts: freescale: Add imx8mp-venice-gw7905-2x
+Content-Language: en-US
+To:     Tim Harvey <tharvey@gateworks.com>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230511171041.4011087-1-tharvey@gateworks.com>
+ <20230511171041.4011087-2-tharvey@gateworks.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230511171041.4011087-2-tharvey@gateworks.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 70.80.174.168
-X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
-Subject: Re: [PATCH v3 08/14] rtc: pcf2127: add support for PCF2131
- interrupts on output INT_A
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 23 Jan 2023 15:52:40 -0500
-Hugo Villeneuve <hugo@hugovil.com> wrote:
-
-> On Fri, 20 Jan 2023 17:56:39 +0100
-> Alexandre Belloni <alexandre.belloni@bootlin.com> wrote:
+On 11/05/2023 19:10, Tim Harvey wrote:
+> The Gateworks imx8mp-venice-gw7905-2x consists of a SOM + baseboard.
 > 
-> > On 15/12/2022 10:02:09-0500, Hugo Villeneuve wrote:
-> > > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > > 
-> > > The PCF2127 and PCF2129 have one output interrupt pin. The PCF2131 has
-> > > two, named INT_A and INT_B. The hardware support that any interrupt
-> > > source can be routed to either one or both of them.
-> > > 
-> > > Force all interrupt sources to go to the INT A pin.
-> > > 
-> > > Support to route any interrupt source to INT A/B pins is not supported
-> > > by this driver at the moment.
-> > > 
-> > 
-> > The main issue with this is that this will created a breaking change
-> > once someone needs support for INTB
+> The GW702x SOM contains the following:
+>  - i.MX8M Plus SoC
+>  - LPDDR4 memory
+>  - eMMC Boot device
+>  - Gateworks System Controller (GSC) with integrated EEPROM, button
+>    controller, and ADC's
+>  - PMIC
+>  - RGMII PHY (eQoS)
+>  - SOM connector providing:
+>   - eQoS GbE MII
+>   - 1x SPI
+>   - 2x I2C
+>   - 4x UART
+>   - 2x USB 3.0
+>   - 1x PCI
+>   - 1x SDIO (4-bit 3.3V)
+>   - 1x SDIO (4-bit 3.3V/1.8V)
+>   - GPIO
 > 
-> We already had a discussion about this a while ago:
+> The GW7905 Baseboard contains the following:
+>  - GPS
+>  - microSD
+>  - off-board I/O connector with I2C, SPI, GPIO
+>  - EERPOM
+>  - PCIe clock generator
+>  - 1x full-length miniPCIe socket with PCI/USB3 (via mux) and USB2.0
+>  - 1x half-length miniPCIe socket with USB2.0 and USB3.0
+>  - USB 3.0 HUB
+>  - USB Type-C with USB PD Sink capability and peripheral support
+>  - USB Type-C with USB 3.0 host support
 > 
->     https://lore.kernel.org/linux-rtc/7be3f9541eaed7e17e334267e49665f442b1b458.camel@dimonoff.com/
-> 
-> What exactly do you suggest? I personnaly don't have any need for INTB at the moment and I would prefer to avoid the great complexity of supporting any combination of routing interrupts to any A ou  pins.
-
-Hi Alexandre,
-a few months later, and I am still waiting for your feedback on this (and other questions/interrogations I raised for other patches related to this series) to submit the next version of this patch series.
-
-Can you have a look at it and provide some answers?
-
-Thank you,
-Hugo.
+> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+> ---
+>  .../dts/freescale/imx8mp-venice-gw702x.dtsi   | 589 ++++++++++++++++++
+>  .../dts/freescale/imx8mp-venice-gw7905-2x.dts |  28 +
+>  .../dts/freescale/imx8mp-venice-gw7905.dtsi   | 358 +++++++++++
 
 
-> > > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > > ---
-> > >  drivers/rtc/rtc-pcf2127.c | 35 +++++++++++++++++++++++++++++++++++
-> > >  1 file changed, 35 insertions(+)
-> > > 
-> > > diff --git a/drivers/rtc/rtc-pcf2127.c b/drivers/rtc/rtc-pcf2127.c
-> > > index 4148e135f935..68af4d0438b8 100644
-> > > --- a/drivers/rtc/rtc-pcf2127.c
-> > > +++ b/drivers/rtc/rtc-pcf2127.c
-> > > @@ -191,6 +191,7 @@ struct pcf21xx_config {
-> > >  	int max_register;
-> > >  	unsigned int has_nvmem:1;
-> > >  	unsigned int has_bit_wd_ctl_cd0:1;
-> > > +	unsigned int has_int_a_b:1; /* PCF2131 supports two interrupt outputs. */
-> > >  	u8 regs_td_base; /* Time/data base registers. */
-> > >  	u8 regs_alarm_base; /* Alarm function base registers. */
-> > >  	u8 reg_wd_ctl; /* Watchdog control register. */
-> > > @@ -879,6 +880,7 @@ static struct pcf21xx_config pcf21xx_cfg[] = {
-> > >  		.max_register = 0x1d,
-> > >  		.has_nvmem = 1,
-> > >  		.has_bit_wd_ctl_cd0 = 1,
-> > > +		.has_int_a_b = 0,
-> > >  		.regs_td_base = PCF2127_REG_TIME_DATE_BASE,
-> > >  		.regs_alarm_base = PCF2127_REG_ALARM_BASE,
-> > >  		.reg_wd_ctl = PCF2127_REG_WD_CTL,
-> > > @@ -902,6 +904,7 @@ static struct pcf21xx_config pcf21xx_cfg[] = {
-> > >  		.max_register = 0x19,
-> > >  		.has_nvmem = 0,
-> > >  		.has_bit_wd_ctl_cd0 = 0,
-> > > +		.has_int_a_b = 0,
-> > >  		.regs_td_base = PCF2127_REG_TIME_DATE_BASE,
-> > >  		.regs_alarm_base = PCF2127_REG_ALARM_BASE,
-> > >  		.reg_wd_ctl = PCF2127_REG_WD_CTL,
-> > > @@ -925,6 +928,7 @@ static struct pcf21xx_config pcf21xx_cfg[] = {
-> > >  		.max_register = 0x36,
-> > >  		.has_nvmem = 0,
-> > >  		.has_bit_wd_ctl_cd0 = 0,
-> > > +		.has_int_a_b = 1,
-> > >  		.regs_td_base = PCF2131_REG_TIME_DATE_BASE,
-> > >  		.regs_alarm_base = PCF2131_REG_ALARM_BASE,
-> > >  		.reg_wd_ctl = PCF2131_REG_WD_CTL,
-> > > @@ -1017,6 +1021,28 @@ static int pcf2127_enable_ts(struct device *dev, int ts_id)
-> > >  	return ret;
-> > >  }
-> > >  
-> > > +/* Route all interrupt sources to INT A pin. */
-> > > +static int pcf2127_configure_interrupt_pins(struct device *dev)
-> > > +{
-> > > +	struct pcf2127 *pcf2127 = dev_get_drvdata(dev);
-> > > +	int ret;
-> > > +
-> > > +	/* Mask bits need to be cleared to enable corresponding
-> > > +	 * interrupt source.
-> > > +	 */
-> > > +	ret = regmap_write(pcf2127->regmap,
-> > > +			   PCF2131_REG_INT_A_MASK1, 0);
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	ret = regmap_write(pcf2127->regmap,
-> > > +			   PCF2131_REG_INT_A_MASK2, 0);
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	return ret;
-> > > +}
-> > > +
-> > >  static int pcf2127_probe(struct device *dev, struct regmap *regmap,
-> > >  			 int alarm_irq, const char *name, const struct pcf21xx_config *config)
-> > >  {
-> > > @@ -1076,6 +1102,15 @@ static int pcf2127_probe(struct device *dev, struct regmap *regmap,
-> > >  		set_bit(RTC_FEATURE_ALARM, pcf2127->rtc->features);
-> > >  	}
-> > >  
-> > > +	if (pcf2127->cfg->has_int_a_b) {
-> > > +		/* Configure int A/B pins, independently of alarm_irq. */
-> > > +		ret = pcf2127_configure_interrupt_pins(dev);
-> > > +		if (ret) {
-> > > +			dev_err(dev, "failed to configure interrupt pins\n");
-> > > +			return ret;
-> > > +		}
-> > > +	}
-> > > +
-> > >  	if (pcf2127->cfg->has_nvmem) {
-> > >  		struct nvmem_config nvmem_cfg = {
-> > >  			.priv = pcf2127,
-> > > -- 
-> > > 2.30.2
-> > > 
-> > 
-> > -- 
-> > Alexandre Belloni, co-owner and COO, Bootlin
-> > Embedded Linux and Kernel engineering
-> > https://bootlin.com
-> > 
-> 
-> 
-> -- 
-> Hugo Villeneuve <hugo@hugovil.com>
+How do you compile it? Missing Makefile. This also suggests that maybe
+you did not test it with dtbs_check...
 
 
--- 
-Hugo Villeneuve
+>  3 files changed, 975 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-venice-gw702x.dtsi
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905-2x.dts
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905.dtsi
+
+...
+
+> +	gsc: gsc@20 {
+> +		compatible = "gw,gsc";
+> +		reg = <0x20>;
+> +		pinctrl-0 = <&pinctrl_gsc>;
+> +		interrupt-parent = <&gpio2>;
+> +		interrupts = <6 IRQ_TYPE_EDGE_FALLING>;
+> +		interrupt-controller;
+> +		#interrupt-cells = <1>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		adc {
+> +			compatible = "gw,gsc-adc";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			channel@6 {
+> +				gw,mode = <0>;
+> +				reg = <0x06>;
+> +				label = "temp";
+> +			};
+> +
+> +			channel@8 {
+> +				gw,mode = <1>;
+> +				reg = <0x08>;
+> +				label = "vdd_bat";
+> +			};
+> +
+> +			channel@16 {
+> +				gw,mode = <4>;
+> +				reg = <0x16>;
+> +				label = "fan_tach";
+> +			};
+> +
+> +			channel@82 {
+> +				gw,mode = <2>;
+> +				reg = <0x82>;
+> +				label = "vdd_vin";
+> +				gw,voltage-divider-ohms = <22100 1000>;
+> +			};
+> +
+> +			channel@84 {
+> +				gw,mode = <2>;
+> +				reg = <0x84>;
+> +				label = "vdd_adc1";
+> +				gw,voltage-divider-ohms = <10000 10000>;
+> +			};
+> +
+> +			channel@86 {
+> +				gw,mode = <2>;
+> +				reg = <0x86>;
+> +				label = "vdd_adc2";
+> +				gw,voltage-divider-ohms = <10000 10000>;
+> +			};
+> +
+> +			channel@88 {
+> +				gw,mode = <2>;
+> +				reg = <0x88>;
+> +				label = "vdd_1p0";
+> +			};
+> +
+> +			channel@8c {
+> +				gw,mode = <2>;
+> +				reg = <0x8c>;
+> +				label = "vdd_1p8";
+> +			};
+> +
+> +			channel@8e {
+> +				gw,mode = <2>;
+> +				reg = <0x8e>;
+> +				label = "vdd_2p5";
+> +			};
+> +
+> +			channel@90 {
+> +				gw,mode = <2>;
+> +				reg = <0x90>;
+> +				label = "vdd_3p3";
+> +				gw,voltage-divider-ohms = <10000 10000>;
+> +			};
+> +
+> +			channel@92 {
+> +				gw,mode = <2>;
+> +				reg = <0x92>;
+> +				label = "vdd_dram";
+> +			};
+> +
+> +			channel@98 {
+> +				gw,mode = <2>;
+> +				reg = <0x98>;
+> +				label = "vdd_soc";
+> +			};
+> +
+> +			channel@9a {
+> +				gw,mode = <2>;
+> +				reg = <0x9a>;
+> +				label = "vdd_arm";
+> +			};
+> +
+> +			channel@a2 {
+> +				gw,mode = <2>;
+> +				reg = <0xa2>;
+> +				label = "vdd_gsc";
+> +				gw,voltage-divider-ohms = <10000 10000>;
+> +			};
+> +		};
+> +
+> +		fan-controller@0 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+
+Why do you need these two? I know binding expects them, but why? Anyway
+compatible is first, reg is second property.
+
+
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905-2x.dts b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905-2x.dts
+> new file mode 100644
+> index 000000000000..4a1bbbbe19e6
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905-2x.dts
+> @@ -0,0 +1,28 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright 2023 Gateworks Corporation
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "imx8mp.dtsi"
+> +#include "imx8mp-venice-gw702x.dtsi"
+> +#include "imx8mp-venice-gw7905.dtsi"
+> +
+> +/ {
+> +	model = "Gateworks Venice GW7905-2x i.MX8MP Development Kit";
+> +	compatible = "gateworks,imx8mp-gw7905-2x", "fsl,imx8mp";
+> +
+> +	chosen {
+> +		stdout-path = &uart2;
+> +	};
+> +};
+> +
+> +/* Disable SOM interfaces not used on baseboard */
+> +&eqos {
+> +	status = "disabled";
+> +};
+> +
+> +&usdhc1 {
+> +	status = "disabled";
+> +};
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905.dtsi
+> new file mode 100644
+> index 000000000000..479190a6391f
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905.dtsi
+> @@ -0,0 +1,358 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright 2023 Gateworks Corporation
+> + */
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/leds/common.h>
+> +#include <dt-bindings/phy/phy-imx8-pcie.h>
+> +
+> +/ {
+> +	aliases {
+> +		ethernet0 = &eqos;
+> +	};
+> +
+> +	led-controller {
+> +		compatible = "gpio-leds";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_gpio_leds>;
+> +
+> +		led-0 {
+> +			function = LED_FUNCTION_STATUS;
+> +			color = <LED_COLOR_ID_GREEN>;
+> +			gpios = <&gpio4 22 GPIO_ACTIVE_HIGH>;
+> +			default-state = "on";
+> +			linux,default-trigger = "heartbeat";
+> +		};
+> +
+> +		led-1 {
+> +			function = LED_FUNCTION_STATUS;
+> +			color = <LED_COLOR_ID_RED>;
+> +			gpios = <&gpio4 27 GPIO_ACTIVE_HIGH>;
+> +			default-state = "off";
+> +		};
+> +	};
+> +
+> +	pcie0_refclk: pcie0-refclk {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <100000000>;
+> +	};
+> +
+> +	pps {
+> +		compatible = "pps-gpio";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_pps>;
+> +		gpios = <&gpio4 21 GPIO_ACTIVE_HIGH>;
+> +		status = "okay";
+> +	};
+> +
+> +	reg_usb2_vbus: regulator-usb2-vbus {
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_reg_usb2_en>;
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "usb2_vbus";
+> +		gpio = <&gpio4 12 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +	};
+> +
+> +	reg_usdhc2_vmmc: regulator-usdhc2 {
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_reg_usdhc2_vmmc>;
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "SD2_3P3V";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +	};
+> +
+
+Drop stay blank line
+
+> +};
+> +
+> +/* off-board header */
+> +&ecspi2 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_spi2>;
+> +	cs-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
+> +	status = "okay";
+> +};
+
+
+
+Best regards,
+Krzysztof
+
