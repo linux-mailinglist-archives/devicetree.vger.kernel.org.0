@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E463C6FFCC3
-	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 00:39:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D3D466FFCC5
+	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 00:39:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239565AbjEKWjH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 18:39:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43030 "EHLO
+        id S239551AbjEKWjd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 18:39:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239571AbjEKWi5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 18:38:57 -0400
-Received: from mail-il1-x136.google.com (mail-il1-x136.google.com [IPv6:2607:f8b0:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 937BD7EEB
-        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 15:38:50 -0700 (PDT)
-Received: by mail-il1-x136.google.com with SMTP id e9e14a558f8ab-3330afe3d2fso587165ab.1
-        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 15:38:50 -0700 (PDT)
+        with ESMTP id S239553AbjEKWjV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 18:39:21 -0400
+Received: from mail-il1-x12a.google.com (mail-il1-x12a.google.com [IPv6:2607:f8b0:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8BDC8A53
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 15:39:10 -0700 (PDT)
+Received: by mail-il1-x12a.google.com with SMTP id e9e14a558f8ab-335d6260e9bso343595ab.1
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 15:39:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1683844730; x=1686436730;
+        d=chromium.org; s=google; t=1683844749; x=1686436749;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
         bh=eb3sWwf5IKoZQzOvkPaaI1IVQ2HjKkCnRKRFnGOH6+c=;
-        b=T1vTFJ3ph99/mqUWGDMVcpfXAbah9+ScQlqestniXFMUKxb/wBJXUihnRBnrW8Uv/0
-         fH6z8fhjj5Qi//2MHMdRmI2TU/wfhwAZt+bYCGUiuVSA81j4VTQt8VPWsdO8hm8Zmc+w
-         AiGP7X43ltgvRm3sW0GR81xRNeT0x52IapZ4w=
+        b=IK8Qf/ccLJxU+5T+78cr9mYEA3NHlKtpeo4eLEHDI+LKnIqxq0+CgI4jg+IqNtrCKD
+         wJvm9j5b6LmPMSHfGoH30tM7uDVOPfCSh/tIE6TNWwbOXKCE/5Mbb069QWjY6wkFJUKH
+         CoOQ9Pw1e2D7/iMrENQ9k5oWe9xpUs6bVT7DQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683844730; x=1686436730;
+        d=1e100.net; s=20221208; t=1683844749; x=1686436749;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
         bh=eb3sWwf5IKoZQzOvkPaaI1IVQ2HjKkCnRKRFnGOH6+c=;
-        b=R08S5lBBrq6G50yUa9kGj5/R5IRR0FyndcerGn4MnamfSDOz2ODMxAZm8g3d0NQiyc
-         lHcAT9NrMHSae/BDyQbH+Z0KIx5+wbpcEgJQpK7HNbIJehCtgBzBURz0FjgIWhX//QwS
-         xLrP7oz9sqTU1AyIH7nV/M+fSDFLIksUftTsj5XIVdjV3Qe6U+edymVQ5rXBUJGVTk6d
-         169qfvkVzB2Ozpnrvf5T/ISf+RcXRyS9ROrUSiqEuXYMmTIjjKRm2kBSVzGUBnrnMsNe
-         BE+dzn6Yy6wQltRPnaZkLfF1zZNwYfuUjwKMMHljGZ26Wx0TKew8VjHgirnmZmu+x86u
-         6ndw==
-X-Gm-Message-State: AC+VfDxSttF4CzbagBuFTQvc/uzYMdKCA/OaVnFMZ2yxyrtHWCo1328O
-        J4RitdWaAlDZZCFa4v/pC2Ll5edkfyzCNIdBp7vvIg==
-X-Google-Smtp-Source: ACHHUZ55cM9yUB5qvcLCownXmJR4ded64n4jlcjav+0Yl1WBeP+3+qojcZXIibi/XadXetaKOEAesxJFvJnVuF24v9U=
-X-Received: by 2002:a05:6e02:174c:b0:330:eb79:91ad with SMTP id
- y12-20020a056e02174c00b00330eb7991admr16655ill.9.1683844729878; Thu, 11 May
- 2023 15:38:49 -0700 (PDT)
+        b=D1ON+SGArsiUN0SlTCuv/b/cOm2HfwicLvIqyOR21b+Hd2eZ3XOXnNWM7C5Uxi7nxz
+         zdFrVLf9QjSA1comsFCt8YKXQ5eD7n2iLeeADwWOZVzLMm0x5ZVHe+ZT8jm6r6aBNYTO
+         odm8m+f3pNop2QPZY3xxorBQp2xMoNuBxEdGbiG9CTzCg+qehIwlYf8Qe+MirIaGkQmC
+         mlreogqql8T4UM9yXlNuvS2R2nJhTas6TLnc/3FbAEu+k1htx0VakZ7SfvWceqj+uge7
+         7LB3natKiThISXft21XbMe8a+3r7O6d6E5XyJAYovl/RIXsD4E2AxPoupNRVRAWjJETJ
+         u3hA==
+X-Gm-Message-State: AC+VfDyiJrlsYWb6HzG4m10YXugC+pcpgYUzokrwlfJhv39fNTDVfBwy
+        g92xSC2OZHInFn2ldOLzhCOdskGHzHpY56xmBjPRpw==
+X-Google-Smtp-Source: ACHHUZ7wqSLEyaaLGQp6CBfVVzxbKSYujepzzVu4d/1ybnzNbLqJzfDbXtwCcob4wHBhXZeVBoSrdMMDDPykJa1Dsbw=
+X-Received: by 2002:a92:c563:0:b0:330:af65:de3d with SMTP id
+ b3-20020a92c563000000b00330af65de3dmr13357ilj.11.1683844749308; Thu, 11 May
+ 2023 15:39:09 -0700 (PDT)
 MIME-Version: 1.0
 References: <20230511150539.6.Ia0b6ebbaa351e3cd67e201355b9ae67783c7d718@changeid>
- <20230511150539.5.Ie7e600278ffbed55a1e5a58178203787b1449b35@changeid>
-In-Reply-To: <20230511150539.5.Ie7e600278ffbed55a1e5a58178203787b1449b35@changeid>
+ <20230511150539.6.Ia0b6ebbaa351e3cd67e201355b9ae67783c7d718@changeid>
+In-Reply-To: <20230511150539.6.Ia0b6ebbaa351e3cd67e201355b9ae67783c7d718@changeid>
 From:   Julius Werner <jwerner@chromium.org>
-Date:   Thu, 11 May 2023 15:38:38 -0700
-Message-ID: <CAODwPW_0s=9Ek3bbsmgvNN0T4X-76k-Q9_wjfCHDZ+441xAVzw@mail.gmail.com>
-Subject: Re: [PATCH 5/6] arm64: dts: mediatek: mt8192: Add mediatek,gicr-save-quirk
+Date:   Thu, 11 May 2023 15:38:57 -0700
+Message-ID: <CAODwPW_au3i3JVAr5zfFB7ZQYrYNhG33gZ8iysijQDWK+PL98g@mail.gmail.com>
+Subject: Re: [PATCH 6/6] arm64: dts: mediatek: mt8195: Add mediatek,gicr-save-quirk
 To:     Douglas Anderson <dianders@chromium.org>
 Cc:     Marc Zyngier <maz@kernel.org>,
         Thomas Gleixner <tglx@linutronix.de>,
