@@ -2,212 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B9B3A6FE604
-	for <lists+devicetree@lfdr.de>; Wed, 10 May 2023 23:15:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BCFF6FE876
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 02:20:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235765AbjEJVPe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 May 2023 17:15:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36528 "EHLO
+        id S236457AbjEKAUO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 May 2023 20:20:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235547AbjEJVPd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 17:15:33 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 358C7E53;
-        Wed, 10 May 2023 14:15:29 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4f004cc54f4so8773682e87.3;
-        Wed, 10 May 2023 14:15:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683753327; x=1686345327;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=d/rus91C04tG29B/ScEf5OKsFh39zkI9m79US8PQUjY=;
-        b=kxU9hqWiGsb6rsgN4sv51cSToVaLDE6+6IgBcxEr62a3B/BMVcBuiVluCaqLMEHwlG
-         BFAM6qG3wuW1WyQ9uhU3Tdd53L3Ny1BPh1yKrKNzyzy8RxWQ22VZ7PSM6LoWJpm1AZzc
-         Gyz+SUfMIhvpvLa+0Uh8jC7FufEwGCFBTw5gycr4IMXnHXhUd4AIUgQ+RoJMT/FlP5IT
-         WoWNoGlUwUETI35+lXLleEM5h+cVoS8tBcsRlEokqWNGiZm6/sGhBDotop8q6jf708MS
-         CiRGnJhbBvnwsfTVHmoW7ZS2yKNMc04seGozJqJkCFhSx3CWaeYjags32ka57rBHgUWV
-         R85w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683753327; x=1686345327;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=d/rus91C04tG29B/ScEf5OKsFh39zkI9m79US8PQUjY=;
-        b=DTsGBndQNgWbXxY/JAfmgWaZ1iJ+RF8CxLvdCSF482xT7DiaKr7Kl4LZXdwQ2oiSx2
-         mAPRSoZxHLPpXOxIK4EH7l7xVIpejIQ+8aOcTlMAqIKzaBgjTHfrMjhvcRcLqk74znHU
-         43mIfN9U7ApzSmS8YInEk7oFSpxMk6n2N3M2A7E/uvIcnooRVBeCjy2gKFFkLVUiv0mG
-         0e+iOednETVeAeuOWXWA3KRU18ptpXvyJFH5ZTjfz6JhEVAzmGqtn2Z4jIuQazrX8fV3
-         EfKRlhWv2HSmyhbH25P3pahMNjY+c/HTelD6JC+homZ5G6mdrwGgK+6wrBMred9NCHdM
-         CfLg==
-X-Gm-Message-State: AC+VfDzk9AtPHzUgkB6d4PKsV2kZXV+dlVbwvhFsGOXdkuggiSHES2Ak
-        d17TfCT8/PvRL6UBLZWnxGo=
-X-Google-Smtp-Source: ACHHUZ7mTLdh7Av90znwfta5PHJDraIwi2lq/a1/0UxCzBCWfwDKpJ8dEBq126g+Wle4n2oXjPdsAg==
-X-Received: by 2002:ac2:5d67:0:b0:4ef:ed49:fcc2 with SMTP id h7-20020ac25d67000000b004efed49fcc2mr1937613lft.26.1683753327073;
-        Wed, 10 May 2023 14:15:27 -0700 (PDT)
-Received: from [100.119.7.139] (95-31-186-150.broadband.corbina.ru. [95.31.186.150])
-        by smtp.gmail.com with ESMTPSA id k12-20020a2ea28c000000b002ab4c9c1514sm2167665lja.41.2023.05.10.14.15.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 May 2023 14:15:26 -0700 (PDT)
-Message-ID: <c16f87f8182bdb0a0fe89014e56a32758248baeb.camel@gmail.com>
-Subject: Re: [PATCH v2 5/5] dt-bindings: net: ftgmac100: convert to yaml
- version from txt
-From:   Ivan Mikhaylov <fr0st61te@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Samuel Mendoza-Jonas <sam@mendozajonas.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S232414AbjEKAUN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 May 2023 20:20:13 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40B365266;
+        Wed, 10 May 2023 17:20:11 -0700 (PDT)
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 3584D860B0;
+        Thu, 11 May 2023 02:20:08 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1683764409;
+        bh=eo6OjRKTPtw7KrsHnlEmccaV42o2lfWM/x3sgpUKhVk=;
+        h=From:To:Cc:Subject:Date:From;
+        b=pL0gKYmEV4vryPnjk0Sj49GSSnvPfBjKOwG/+E1nL6l6LINjbHI96hMKL/HsXFgsn
+         GpopeUKSuWiqGZrOunET/EWq45ZKvx/z0iwq+DmNvD6E7QAYihpAn/fSIYOvdc3Kd3
+         /leAFVAElIp2Jup1RJ4zdrpUuB2kv/1FrVW6yRw6rqeEYYOYX0uPiJwUyd3ZK3e6D2
+         3kgSKWO9wgng4W13r/9/ueqmKesXDN+zbalKIPiXCp5ZYyC8TywOuoV2t1kqbotcYd
+         RWBiC1Ki5veDdyH7N2zaV26+Q4fQZ+qT3em0BT2/c3mfa6Saipr3e+cX6I8TWF2FWB
+         E+H5r4VU1cJ6g==
+From:   Marek Vasut <marex@denx.de>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marek Vasut <marex@denx.de>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Richard Cochran <richardcochran@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org
-Date:   Thu, 11 May 2023 00:15:24 +0000
-In-Reply-To: <ec0a3553-2c11-301e-d838-f0bc70353b17@linaro.org>
-References: <20230509143504.30382-1-fr0st61te@gmail.com>
-         <20230509143504.30382-6-fr0st61te@gmail.com>
-         <ec0a3553-2c11-301e-d838-f0bc70353b17@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.1 
+        Thomas Gleixner <tglx@linutronix.de>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-watchdog@vger.kernel.org
+Subject: [PATCH 1/3] irqchip/stm32-exti: Add STM32MP15xx IWDG2 EXTI to GIC map
+Date:   Thu, 11 May 2023 02:19:47 +0200
+Message-Id: <20230511001949.179521-1-marex@denx.de>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2023-05-10 at 16:50 +0200, Krzysztof Kozlowski wrote:
-> On 09/05/2023 16:35, Ivan Mikhaylov wrote:
-> > Signed-off-by: Ivan Mikhaylov <fr0st61te@gmail.com>
->=20
-> Need some commit msg.
->=20
->=20
-> > ---
-> > =C2=A0.../bindings/net/faraday,ftgmac100.yaml=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 | 110
-> > ++++++++++++++++++
->=20
-> Missing actual conversion (removal).
->=20
-> > =C2=A01 file changed, 110 insertions(+)
-> > =C2=A0create mode 100644
-> > Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml
-> >=20
-> > diff --git
-> > a/Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml
-> > b/Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml
-> > new file mode 100644
-> > index 000000000000..98cd142f74bb
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml
-> > @@ -0,0 +1,110 @@
-> > +# SPDX-License-Identifier: GPL-2.0
->=20
-> Dual-license, unless you copied some chunks of old binding... but was
-> there old binding?
+The EXTI interrupt 46 is mapped to GIC interrupt 151. Add the
+missing mapping, which is used for IWDG2 pretimeout interrupt
+and wake up source.
 
-Krzysztof, I copied a lot from old one ftgmac100.txt.
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: Guenter Roeck <linux@roeck-us.net>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Marc Zyngier <maz@kernel.org>
+Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+Cc: Richard Cochran <richardcochran@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>
+Cc: Wim Van Sebroeck <wim@linux-watchdog.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-stm32@st-md-mailman.stormreply.com
+Cc: linux-watchdog@vger.kernel.org
+---
+ drivers/irqchip/irq-stm32-exti.c | 1 +
+ 1 file changed, 1 insertion(+)
 
->=20
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/net/faraday,ftgmac100.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Faraday Technology FTGMAC100 gigabit ethernet controller
-> > +
-> > +allOf:
-> > +=C2=A0 - $ref: "ethernet-controller.yaml#"
->=20
-> Drop quotes.
->=20
->=20
-> > +
-> > +maintainers:
-> > +=C2=A0 - Po-Yu Chuang <ratbert@faraday-tech.com>
-> > +
-> > +properties:
-> > +=C2=A0 compatible:
-> > +=C2=A0=C2=A0=C2=A0 oneOf:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: faraday,ftgmac100
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - items:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - enum:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 - aspeed,ast2400-mac
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 - aspeed,ast2500-mac
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 - aspeed,ast2600-mac
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: farada=
-y,ftgmac100
-> > +
-> > +=C2=A0 reg:
-> > +=C2=A0=C2=A0=C2=A0 maxItems: 1
-> > +
-> > +=C2=A0 interrupts:
-> > +=C2=A0=C2=A0=C2=A0 maxItems: 1
-> > +
-> > +=C2=A0 clocks:
-> > +=C2=A0=C2=A0=C2=A0 description: |
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 In accordance with the generic clock bi=
-ndings.
->=20
-> Drop this part. Obvious.
->=20
-> > =C2=A0Must describe the MAC
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 IP clock, and optionally an RMII RCLK g=
-ate for the
-> > AST2500/AST2600. The
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 required MAC clock must be the first ce=
-ll.
->=20
-> The cells depend on clock provider. Do you mean something else?
+diff --git a/drivers/irqchip/irq-stm32-exti.c b/drivers/irqchip/irq-stm32-exti.c
+index 6a3f7498ea8ea..f684be77ba378 100644
+--- a/drivers/irqchip/irq-stm32-exti.c
++++ b/drivers/irqchip/irq-stm32-exti.c
+@@ -208,6 +208,7 @@ static const u8 stm32mp1_desc_irq[] = {
+ 	[31] = 53,
+ 	[32] = 82,
+ 	[33] = 83,
++	[46] = 151,
+ 	[47] = 93,
+ 	[48] = 138,
+ 	[50] = 139,
+-- 
+2.39.2
 
-It's exactly from ftgmac100.txt, this section without any changes, I
-didn't add anything new in the sentence.
-
->=20
-> > +=C2=A0=C2=A0=C2=A0 minItems: 1
-> > +=C2=A0=C2=A0=C2=A0 maxItems: 2
-> > +
-> > +=C2=A0 clock-names:
-> > +=C2=A0=C2=A0=C2=A0 items:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - enum:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - MACCLK
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - RCLK
->=20
-> This does not allow two clocks... List all the items and add
-> minItems: 1.
->=20
->=20
-> > +
-> > +=C2=A0 phy-mode:
-> > +=C2=A0=C2=A0=C2=A0 enum:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - rgmii
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - rmii
-> > +
-> > +=C2=A0 phy-handle: true
-> > +
-> > +=C2=A0 use-ncsi:
-> > +=C2=A0=C2=A0=C2=A0 description: |
->=20
-> Do not need '|' unless you need to preserve formatting.
->=20
-> I will stop review, because it depends whether this is true
-> conversion
-> or new binding.
->=20
-
-I've tried to convert it from ftgmac100.txt, everything is same in it
-except mac-address-increment option with explanation for which purpose
-it there, need I divide conversion from that option or is it fine in
-one?
-
-Thanks.
