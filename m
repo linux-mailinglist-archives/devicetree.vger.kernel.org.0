@@ -2,257 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BDE606FF6B8
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 18:03:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 730B96FF6D1
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 18:12:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238320AbjEKQDZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 12:03:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53336 "EHLO
+        id S238320AbjEKQL6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 12:11:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238612AbjEKQDX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 12:03:23 -0400
-Received: from smtp.dudau.co.uk (dliviu.plus.com [80.229.23.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BB7E82683;
-        Thu, 11 May 2023 09:03:20 -0700 (PDT)
-Received: from mail.dudau.co.uk (bart.dudau.co.uk [192.168.14.2])
-        by smtp.dudau.co.uk (Postfix) with SMTP id F2CB441D13BF;
-        Thu, 11 May 2023 17:03:18 +0100 (BST)
-Received: by mail.dudau.co.uk (sSMTP sendmail emulation); Thu, 11 May 2023 17:03:18 +0100
-Date:   Thu, 11 May 2023 17:03:18 +0100
-From:   Liviu Dudau <liviu@dudau.co.uk>
-To:     =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Cc:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Paul Burton <paulburton@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] mips: dts: ralink: Add support for TP-Link HC220 G5 v1
- board.
-Message-ID: <ZF0RxoLRyl78s8sf@bart.dudau.co.uk>
-References: <20230509200125.309026-1-liviu@dudau.co.uk>
- <43301707-8763-2a9f-956d-1ea0ae004a56@arinc9.com>
+        with ESMTP id S237852AbjEKQL6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 12:11:58 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69217E5E;
+        Thu, 11 May 2023 09:11:53 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-9619095f479so1415898766b.1;
+        Thu, 11 May 2023 09:11:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1683821512; x=1686413512;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uWK7qDz8RPMSviiiyfY3G5jruaPWYFOFowQ8o3R6mq8=;
+        b=omJKwP23WFR5KuQff4NgapjomKQAFdT7hovJKKJfj6juTL7gGiotD2u1rCDtvSGdMv
+         iYAx+he6azKGvyO+DKsnm5+lhF+5h2xAfBw4rh9ygDVAVEKKFCbDMGY5oyuzcney19zg
+         MESGtElAM0O8bVjtq9IJ7XxJFCJTVx29y5tWYNw5QeQEM/eJKmmjyVeH9lIPcqFGCup2
+         3kMeLU8NjmyNtwc7PMK0rzgaombuKw+HhjDIpLHTzZ63mkjoBbyPeFQtqIGdD698RwDu
+         mTTkb72bPAR6IhhSG7NbEYWst0nzwXacYO62eAqkaIT3CLD75pLoYdWT6EOFE1AJe8Zz
+         J+VQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683821512; x=1686413512;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=uWK7qDz8RPMSviiiyfY3G5jruaPWYFOFowQ8o3R6mq8=;
+        b=ElucKTSj843rna6dQvL//4PDjfpoAiE0bMf57kHASczdGOMKLpt3NBNZowO3wHl4Sv
+         zwOMZ+hhVIdHmlBfMQ5Gun5UOXHPGxFiG+2a+oZtz0JLgi2ViIpsA+8WCW1Y+Xj90m+V
+         z18FsXlwUEbXsx+djU46SvdCVf++N6adtxvBW8oW1o656DJMuB7WS7rHSD7eHfkfeaKT
+         dDtl86c6J0UEHk632b2VW1nOrI2Ze7r1Wio55cnDyTo1vKZlE6qTPQCIcSgfBnxT+rWC
+         oFrHl48NNk6CxTdHMavh05E3z4AsEeiyTvJOio/cjpLNxlY38ENJyJUQ+Ue8Fc6egcTK
+         isXg==
+X-Gm-Message-State: AC+VfDwqxy5E35Ek0tLkvCHl90XmmEYMc3mKr3g9kfR1gHm0+Zu5r6BS
+        EoyRUwRyYGALjiaVUNtBNxw=
+X-Google-Smtp-Source: ACHHUZ6Lmc3sardBsQBIfPjvoITG/uJxmxJi4Pt78kdGUOrIxAirKu3/SHWWN/4TwxIWq3sUTaAJOA==
+X-Received: by 2002:a17:906:fe01:b0:94f:322d:909d with SMTP id wy1-20020a170906fe0100b0094f322d909dmr19150863ejb.63.1683821511528;
+        Thu, 11 May 2023 09:11:51 -0700 (PDT)
+Received: from jernej-laptop.localnet (82-149-1-233.dynamic.telemach.net. [82.149.1.233])
+        by smtp.gmail.com with ESMTPSA id i18-20020a1709067a5200b009661afd3b86sm4256577ejo.171.2023.05.11.09.11.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 11 May 2023 09:11:51 -0700 (PDT)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jonathan McDowell <noodles@earth.li>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v2 5/5] ARM: dts: axp209: Add iio-hwmon node for internal
+ temperature
+Date:   Thu, 11 May 2023 18:11:49 +0200
+Message-ID: <3421275.QJadu78ljV@jernej-laptop>
+In-Reply-To: <2a9bd53a65c4a154cccba622c60cbffcdceaeb95.1683719613.git.noodles@earth.li>
+References: <cover.1681580558.git.noodles@earth.li>
+ <cover.1683719613.git.noodles@earth.li>
+ <2a9bd53a65c4a154cccba622c60cbffcdceaeb95.1683719613.git.noodles@earth.li>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <43301707-8763-2a9f-956d-1ea0ae004a56@arinc9.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 11, 2023 at 03:41:30PM +0200, Arınç ÜNAL wrote:
-> On 9.05.2023 22:01, Liviu Dudau wrote:
-> > This WiFi AP is based on a MT7621 SoC with 128MiB RAM, 128MiB NAND,
-> > a MT7603 2.4GHz WiFi and a MT7663 5GHz WiFi chips integrated on the board,
-> > connected to the main SoC over PCIe.
-> > 
-> > The GMAC1 on the SoC is connected to PHY0 on the GSW and can be used to
-> > improve routing bandwidth.
-> > 
-> > The device uses NMBM over NAND, which is not currently supported in the
-> > mainline, so NAND node is skipped in this revision.
-> > 
-> > Signed-off-by: Liviu Dudau <liviu@dudau.co.uk>
-> 
-> This is great to see. I'm going to mainline all the MT7621 devicetrees on
-> OpenWrt at some point, this is a good step for this.
+Dne sreda, 10. maj 2023 ob 14:02:28 CEST je Jonathan McDowell napisal(a):
+> This adds a DT node to hook up the internal temperature ADC to the
+> iio-hwmon driver. The various voltage + current ADCs are consumed and
+> exposed by their respective drivers, but this is not and is always
+> available. Naming chosen to match the axp20x_ prefix the power sensors
+> use.
 
-AFAIK this board is not supported by OpenWrt at all. So the flow will be
-the other way this time :)
-
-> 
-> > ---
-> >   arch/mips/boot/dts/ralink/Makefile            |   3 +-
-> >   .../dts/ralink/mt7621-tplink-hc220_g5.dts     | 126 ++++++++++++++++++
-> >   2 files changed, 128 insertions(+), 1 deletion(-)
-> >   create mode 100644 arch/mips/boot/dts/ralink/mt7621-tplink-hc220_g5.dts
-> > 
-> > diff --git a/arch/mips/boot/dts/ralink/Makefile b/arch/mips/boot/dts/ralink/Makefile
-> > index 11732b8c8163a..c57a2b40876b4 100644
-> > --- a/arch/mips/boot/dts/ralink/Makefile
-> > +++ b/arch/mips/boot/dts/ralink/Makefile
-> > @@ -8,6 +8,7 @@ dtb-$(CONFIG_DTB_VOCORE2)	+= vocore2.dtb
-> >   dtb-$(CONFIG_SOC_MT7621) += \
-> >   	mt7621-gnubee-gb-pc1.dtb \
-> > -	mt7621-gnubee-gb-pc2.dtb
-> > +	mt7621-gnubee-gb-pc2.dtb \
-> > +	mt7621-tplink-hc220_g5.dtb
-> >   obj-$(CONFIG_BUILTIN_DTB)	+= $(addsuffix .o, $(dtb-y))
-> > diff --git a/arch/mips/boot/dts/ralink/mt7621-tplink-hc220_g5.dts b/arch/mips/boot/dts/ralink/mt7621-tplink-hc220_g5.dts
-> > new file mode 100644
-> > index 0000000000000..83d15711907d0
-> > --- /dev/null
-> > +++ b/arch/mips/boot/dts/ralink/mt7621-tplink-hc220_g5.dts
-> > @@ -0,0 +1,126 @@
-> > +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +/dts-v1/;
-> > +
-> > +#include "mt7621.dtsi"
-> > +
-> > +#include <dt-bindings/gpio/gpio.h>
-> > +#include <dt-bindings/input/input.h>
-> > +#include <dt-bindings/leds/common.h>
-> > +
-> > +/ {
-> > +	compatible = "tplink,hc220-g5", "mediatek,mt7621-soc";
-> 
-> tplink,hc220-g5-v1 should fit better. Also please make another patch to add
-> the compatible string under Boards with Mediatek/Ralink MT7621 SoC on
-> Documentation/devicetree/bindings/mips/ralink.yaml.
-
-Will do another patch with the documentation update. I will also send a v2
-incorporating all your review comments, thanks for taking the time!
-
-Regarding the full name: I'm quite tempted to drop the v1(.0) entirely as I'm
-not really sure that TP-Link will release another board. Doing a search now
-I fail to find on any TP-Link results the mention of the version.
-
-> 
-> > +	model = "TP-Link HC220 G5 v1.0";
-> 
-> "TP-Link HC220 G5 v1" should be enough.
-> 
-> > +
-> > +	memory@0 {
-> > +		device_type = "memory";
-> > +		reg = <0x0 0x0 0x0 0x8000000>;
-> > +	};
-> > +
-> > +	chosen {
-> > +		/* bootargs = "earlycon=uart8260,mmio32,0x1e000c00 root=/dev/ram0 kgdboc=ttyS0,115200 ip=192.168.88.1:192.168.88.2:::hc220:eth1:none kgdbcon console=ttyS0,115200"; */
-> > +		/* bootargs = "console=ttyS0,115200 earlycon=uart8260,mmio32,0x1e000c00 root=/dev/ram0"; */
-> > +		bootargs = "console=ttyS0,115200 root=/dev/nfs ip=192.168.88.2:192.168.88.5::255.255.255.0:hc220_g5:eth1:none nfsroot=192.168.88.5:/mips,vers=4,sec=sys ro rootwait";
-> > +	};
-> > +
-> > +	gpio-keys {
-> > +		compatible = "gpio-keys";
-> > +
-> > +		key-reset {
-> > +			label = "reset";
-> > +			gpios = <&gpio 8 GPIO_ACTIVE_LOW>;
-> > +			linux,code = <KEY_RESTART>;
-> > +		};
-> > +
-> > +		key-wps {
-> > +			label = "wps";
-> > +			gpios = <&gpio 16 GPIO_ACTIVE_LOW>;
-> > +			linux,code = <KEY_WPS_BUTTON>;
-> > +		};
-> > +	};
-> > +
-> > +	leds {
-> > +		compatible = "gpio-leds";
-> > +
-> > +		red {
-> > +			color = <LED_COLOR_ID_RED>;
-> > +			function = LED_FUNCTION_FAULT;
-> > +			gpios = <&gpio 13 GPIO_ACTIVE_HIGH>;
-> > +		};
-> > +
-> > +		green {
-> > +			color = <LED_COLOR_ID_GREEN>;
-> > +			function = LED_FUNCTION_POWER;
-> > +			gpios = <&gpio 14 GPIO_ACTIVE_HIGH>;
-> > +			linux,default-trigger = "default-on";
-> > +		};
-> > +
-> > +		blue {
-> > +			color = <LED_COLOR_ID_BLUE>;
-> > +			function = LED_FUNCTION_WPS;
-> > +			gpios = <&gpio 15 GPIO_ACTIVE_HIGH>;
-> > +		};
-> > +	};
-> > +
-> > +	resetc: reset-controller {
-> > +		compatible = "ralink,rt2880-reset";
-> > +		#reset-cells = <1>;
-> > +	};
-> > +
-> > +	mtd {
-> > +		compatible = "mediatek,mt7622-nfc";
-> > +	};
-> > +};
-> > +
-> > +&i2c {
-> > +	status = "okay";
-> > +};
-> > +
-> > +&pcie {
-> > +	status = "okay";
-> > +};
-> > +
-> > +&spi0 {
-> > +	status = "okay";
-> > +
-> > +	flash@0 {
-> > +		#address-cells = <1>;
-> > +		#size-cells = <1>;
-> > +		compatible = "jedec,spi-nor";
-> > +		reg = <0>;
-> > +		spi-max-frequency = <50000000>;
-> > +	};
-> > +};
-> > +
-> > +/* gmac1 connected to MT7530's phy0 */
-> > +&gmac1 {
-> > +	status = "okay";
-> > +	phy-handle = <&ethphy0>;
-> > +};
-> > +
-> > +&mdio {
-> > +	/* MT7530's phy0 */
-> > +	ethphy0: ethernet-phy@0 {
-> > +		reg = <0>;
-> > +		phy-mode = "rgmii";
-> > +	};
-> > +};
-> 
-> These are partially wrong, check the mt7621.dtsi on mainline. Or better,
-> don't do it. I'm very close to adding support for changing the DSA conduit
-> for user ports. I suggest you just add port@0 to the DSA switch node below.
->
-
-I don't claim to be an expert on DSA or how MT7530 connects to MT7621, however
-I do remember trying various combinations and failing to make all the ports
-work. I blame TP-Link on having a weird setup, but to be sure I will try your
-suggestion if I manage to understand exactly where I'm "partially wrong" :)
-
-I will also try to remove the node to see what I get and report back here.
+Sorry for maybe obvious thing, but where are other ADC channels exposed?
 
 Best regards,
-Liviu
+Jernej
 
-
-> > +
-> > +&switch0 {
-> > +	/* #gpio-cells = <2>;
-> > +	gpio-controller; */
-> > +
-> > +	ports {
-> > +		/* phy0 is muxed to gmac1 */
-> > +		/delete-node/ port@0;
-> > +
-> > +		port@1 {
-> > +			status = "okay";
-> > +			label = "lan1";
-> > +		};
-> > +
-> > +		port@2 {
-> > +			status = "okay";
-> > +			label = "wan";
-> > +		};
-> > +	};
-> > +};
 > 
-> Arınç
+> Signed-off-by: Jonathan McDowell <noodles@earth.li>
+> ---
+>  arch/arm/boot/dts/axp209.dtsi | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/axp209.dtsi b/arch/arm/boot/dts/axp209.dtsi
+> index ca240cd6f6c3..469d0f7d5185 100644
+> --- a/arch/arm/boot/dts/axp209.dtsi
+> +++ b/arch/arm/boot/dts/axp209.dtsi
+> @@ -48,6 +48,13 @@
+>   * http://dl.linux-sunxi.org/AXP/AXP209%20Datasheet%20v1.0_cn.pdf
+>   */
+> 
+> +/ {
+> +	pmic-temp {
+> +		compatible = "iio-hwmon";
+> +		io-channels = <&axp_adc 4>; /* Internal temperature */
+> +	};
+> +};
+> +
+>  &axp209 {
+>  	compatible = "x-powers,axp209";
+>  	interrupt-controller;
 
--- 
-Everyone who uses computers frequently has had, from time to time,
-a mad desire to attack the precocious abacus with an axe.
-       	   	      	     	  -- John D. Clark, Ignition!
+
+
+
