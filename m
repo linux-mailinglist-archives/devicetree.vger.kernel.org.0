@@ -2,105 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C5786FEECA
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 11:29:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 714436FEECE
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 11:29:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237616AbjEKJ3J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 05:29:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46920 "EHLO
+        id S237458AbjEKJ3Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 05:29:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236438AbjEKJ2h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 05:28:37 -0400
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 996DE6E9D
-        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 02:28:10 -0700 (PDT)
-Received: (Authenticated sender: gregory.clement@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id E182160002;
-        Thu, 11 May 2023 09:28:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1683797289;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=6uPLNGbW4yp7ziUWLP7+hFbqYAf7UUsJem/P457yyI4=;
-        b=FzIY/BRoD2YCFOYQBC6tIBVoPUbfnI+NLJtHitEzFRgTnE4KzwnKpxgd4KlYi27Y2f3Hip
-        fwjyvYDb06v2MXVBsSHFTMPLGJgUfNz3Y4+bfpakQJTwj+mT9AOZmPs6pFxEwGvWyt1up0
-        N0TurHdThBG8NQxdghww52kF58ANn3c2vPFEpDwoly5gfKaZShuU7ZrW3nT+5uBkLDZJes
-        Y72UH0nFqXSBUtgzt48iuenKMIoLzmz4Hvjkd9RPIQ0co/B9hHl8JyRkAKaRBcYQDbcCM5
-        p4T9Sec0omCVy+8dyB6UOlMQmTZitwuozRa1r6y1aIY8bPQPLplGr6QsSNr3SA==
-From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     =?utf-8?Q?Pawe=C5=82?= Dembicki <paweldembicki@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2] ARM: dts: kirkwood: Add Endian 4i Edge 200 board
-In-Reply-To: <CAJN1Kkzv2Q76RR5VkV7kU=i13eq_h3ksN5Ob=SF3eVi6MHveYQ@mail.gmail.com>
-References: <20221003073443.1511266-1-paweldembicki@gmail.com>
- <Y4ahUWz0z8nBRWCN@lunn.ch>
- <CAJN1Kkzv2Q76RR5VkV7kU=i13eq_h3ksN5Ob=SF3eVi6MHveYQ@mail.gmail.com>
-Date:   Thu, 11 May 2023 11:28:08 +0200
-Message-ID: <874jojz07r.fsf@BL-laptop>
+        with ESMTP id S237579AbjEKJ24 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 05:28:56 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EAC67D88
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 02:28:54 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-50bd875398dso12639392a12.1
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 02:28:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683797332; x=1686389332;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4cHA3LraFcmGDTaIqGBRmZ93pU3RzjaRHQjlm2jCEjo=;
+        b=JXsAiFr6M63ygBIRwO4p+SZCq+xy3AGLgKBO7UA59TEBVF4aWxdjr0p4qxNeUEGjpS
+         H81i4v/xaK46iIye8Xmpu01rg7lYSiheY3PIB+CCDzt5YzJjFhlVGK6cDzMN5OFfbk6Y
+         qKV2WIFlFJp7jQ7lDDIFe2H3uDkrFFpqGnljGuXHPaEJmYvNepbTQgYnJgxvDYmfyfYd
+         3+uXm+JJ+GXraAs9LbTUIlft65Y5QMEqEbbojSftk96J3vMHi21VsTEyqW+RljPYrk8v
+         r2Bo7QkGIWN2r2S7i2awUnVRAZU4z/EwTYQqEqAL59gKoQXskq6/gkjUNaET3qd8WgDV
+         JkrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683797332; x=1686389332;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4cHA3LraFcmGDTaIqGBRmZ93pU3RzjaRHQjlm2jCEjo=;
+        b=aXzPMAg0WjI99VSsZnh6uzIqL9JSy65pzqCS5ANc9t21Z5GgxOkH2HGNM9Ms8PAkI8
+         GZOsnt3X3oAVBIIH4vrSXamVgJimnNTwFIgeRiyQboRNWeERPdTIzWuYxfn5ypebIRAe
+         KMJzhGsNIIlHMm85DS5GX2byOHIpjuKoua/GOR8/o4MSLsISiUx8mIQtAAC+v3qwnxrx
+         EiKfdP72DBr016EFGTmJtgqverQyOb04x8ch3o2pX7w6QWZ7Io0dtJJSAaXSZ5TAc6Al
+         1NiEXgjWdSacRcmUHwoUl+JOGbOdlgKgVJ9b0iEgBBt8/BH1Su3FdbQ6/25qiMYdpiko
+         YHVA==
+X-Gm-Message-State: AC+VfDxGDrkiAoRH9vH5IUE3PhhQd2/Vu7dEoFlB0Xv4z/nktkMc0gpS
+        8JYHDXHoA5F0NNhGFda5QGwPtA==
+X-Google-Smtp-Source: ACHHUZ75ta179hLwDGK7JWKKo/Z4TJGh6O9B4U9ZlcNk2gja0S38wokx5miC8QiJ02RLTkBXBTk2LA==
+X-Received: by 2002:aa7:d659:0:b0:508:14f2:399c with SMTP id v25-20020aa7d659000000b0050814f2399cmr19284560edr.10.1683797332595;
+        Thu, 11 May 2023 02:28:52 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:7e61:f14a:c3a4:809e? ([2a02:810d:15c0:828:7e61:f14a:c3a4:809e])
+        by smtp.gmail.com with ESMTPSA id l14-20020a056402028e00b00506addaaab0sm2709963edv.32.2023.05.11.02.28.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 May 2023 02:28:52 -0700 (PDT)
+Message-ID: <fc104fdd-3894-aa94-12dc-4c73b26d4159@linaro.org>
+Date:   Thu, 11 May 2023 11:28:50 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH] dt-bindings: iio: temperature: Add DT bindings for TMP006
+Content-Language: en-US
+To:     Anup Sharma <anupnewsmail@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Peter Meerwald <pmeerw@pmeerw.net>, broonie@kernel.org
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <ZFvo2TIiPiMFlbXC@yoga>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <ZFvo2TIiPiMFlbXC@yoga>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Pawe=C5=82 Dembicki <paweldembicki@gmail.com> writes:
+On 10/05/2023 20:56, Anup Sharma wrote:
+> Add devicetree binding document for TMP006, IR thermopile sensor.
 
-> =C5=9Br., 30 lis 2022 o 01:18 Andrew Lunn <andrew@lunn.ch> napisa=C5=82(a=
-):
->>
->> On Mon, Oct 03, 2022 at 09:34:43AM +0200, Pawel Dembicki wrote:
->> > Add Endian 4i Edge 200 is 5-port firewall.
->> > It have also clone: Endian UTM Mini (The same hardware, with added WLAN
->> > card).
->> >
->> > Hardware:
->> >   - SoC: Marvell 88F6281-A1 ARMv5TE Processor 1.2GHz
->> >   - Ram: 512MB (4x Nanya NT5TU128M8GE-AC)
->> >   - NAND Flash: 512MB (Micron 29F4G08AAC)
->> >   - Lan 1-4: 4x GBE (Marvell 88E6171R-TFJ2)
->> >   - Lan 5: 1x GBE (Marvell 88E1116R-NNC1)
->> >   - Storage: MicroSD Slot
->> >   - MCPIE: MiniPCIe Slot present [fitted with SparkLan WPEA-110N/E
->> >           (Atheros AR9280 chipset) in Endian UTM Mini WLAN only]
->> >   - USB: 1x USB 2.0 port
->> >   - Console: RJ-45 port
->> >   - LEDs: 3x GPIO controlled
->> >
->> > Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
->>
->> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
->>
->>     Andrew
->
-> Hi all,
->
-> Gentle reminder for this patch.
+Why? Where is any user of this? DTS? Driver?
 
+Subject: drop second/last, redundant "DT bindings for". The
+"dt-bindings" prefix is already stating that these are bindings.
 
-Applied on mvebu/dt
+> 
+> Signed-off-by: Anup Sharma <anupnewsmail@gmail.com>
+> ---
+>  .../bindings/iio/temperature/ti,tmp006.yaml   | 38 +++++++++++++++++++
+>  1 file changed, 38 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/temperature/ti,tmp006.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/temperature/ti,tmp006.yaml b/Documentation/devicetree/bindings/iio/temperature/ti,tmp006.yaml
+> new file mode 100644
+> index 000000000000..c6c5a4d10898
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/temperature/ti,tmp006.yaml
+> @@ -0,0 +1,38 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/temperature/ti,tmp006.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TI TMP006 IR thermopile sensor
+> +
+> +maintainers:
+> +  - Peter Meerwald <pmeerw@pmeerw.net>
+> +
+> +description: |
+> +  TI TMP006 - Infrared Thermopile Sensor in Chip-Scale Package.
+> +  https://cdn.sparkfun.com/datasheets/Sensors/Temp/tmp006.pdf
+> +
+> +properties:
+> +  compatible:
+> +    const: ti,tmp006
+> +
+> +  reg:
+> +    maxItems: 1
 
-Sorry to have missed it.
+Missing supply.
 
-Thanks,
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        tmp006@40 {
 
-Gregory
+Node names should be generic.
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
 
+temperature-sensor?
 
->
-> Best Regards,
-> Pawe=C5=82 Dembicki
+> +            compatible = "ti,tmp006";
+> +            reg = <0x40>;
+> +        };
+> +    };
 
---=20
-Gregory Clement, Bootlin
-Embedded Linux and Kernel engineering
-http://bootlin.com
+Best regards,
+Krzysztof
+
