@@ -2,100 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 17BC76FF29C
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 15:23:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB2B46FF2A8
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 15:24:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237798AbjEKNXC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 09:23:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42040 "EHLO
+        id S237937AbjEKNYB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 09:24:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40252 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238061AbjEKNWi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 09:22:38 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71F8B100CF;
-        Thu, 11 May 2023 06:21:12 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34BDJdYC024505;
-        Thu, 11 May 2023 08:19:39 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1683811179;
-        bh=dvtDQ02cGc7qai0bvj3/3r2KD0eHYXuLvZlUe0kvyHw=;
-        h=From:To:CC:Subject:Date:References:In-Reply-To;
-        b=THmbf0tgqqkM1xRVXukDVWcjUNlgfBnIDLLWUUqKneCWk0iQH5uLlEnk0le7vnqc8
-         huf9sNvgujgS2C05LOwQbdLsj2j2HWwdMj06LeUBrTc+IyyouXqpzG5lQHlvuoEGpG
-         QduZP4fVaHXVELMIft612OzX0KxcoU+Qwo4JOLNQ=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34BDJd6q044702
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 11 May 2023 08:19:39 -0500
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 11
- May 2023 08:19:39 -0500
-Received: from DLEE101.ent.ti.com ([fe80::91ee:60bc:bfb7:851c]) by
- DLEE101.ent.ti.com ([fe80::91ee:60bc:bfb7:851c%18]) with mapi id
- 15.01.2507.023; Thu, 11 May 2023 08:19:39 -0500
-From:   "Ding, Shenghao" <shenghao-ding@ti.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Mark Brown <broonie@kernel.org>
-CC:     Shenghao Ding <13916275206@139.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "perex@perex.cz" <perex@perex.cz>,
-        "pierre-louis.bossart@linux.intel.com" 
-        <pierre-louis.bossart@linux.intel.com>,
-        "Lu, Kevin" <kevin-lu@ti.com>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Xu, Baojun" <x1077012@ti.com>, "Gupta, Peeyush" <peeyush@ti.com>,
-        "Navada Kanyana, Mukund" <navada@ti.com>,
-        "gentuser@gmail.com" <gentuser@gmail.com>,
-        "Ryan_Chu@wistron.com" <Ryan_Chu@wistron.com>,
-        "Sam_Wu@wistron.com" <Sam_Wu@wistron.com>
-Subject: RE: [EXTERNAL] Re: [PATCH v2 2/5] ASoC: dt-bindings: Add tas2781
- amplifier
-Thread-Topic: [EXTERNAL] Re: [PATCH v2 2/5] ASoC: dt-bindings: Add tas2781
- amplifier
-Thread-Index: AQHZgw2r46dnAmj+dEya5A38wB/fZK9U5kcAgAA/wgD//+cmsA==
-Date:   Thu, 11 May 2023 13:19:39 +0000
-Message-ID: <3c48d5e47aff478b8ce8998d7efe001b@ti.com>
-References: <20230508054512.719-1-13916275206@139.com>
- <ca9d45cf-8a84-4fbc-e1dd-c96eef36fe25@linaro.org>
- <ZFyBzHWo3ORKAskX@finisterre.sirena.org.uk>
- <ca2ed8e9-850a-56c5-e395-72e5861b9c71@linaro.org>
-In-Reply-To: <ca2ed8e9-850a-56c5-e395-72e5861b9c71@linaro.org>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.250.160.143]
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S238214AbjEKNXX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 09:23:23 -0400
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2071.outbound.protection.outlook.com [40.107.220.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F499173B;
+        Thu, 11 May 2023 06:21:46 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Bbj/5F8rZed22mCLHwqWkyZeDjjczvkwS82SqN8SyQwKvQAktIN/faE9SCi4iZOFtoofQclSoi+lOWoobp3tRVk173YFNbZ4iiRgKcjI6EVsQxCWo3vMyNIZQd9o0Bnp49A90GxoSxFKEQqBfqJE5ymWIpSaSvhirrDgIYce4r8aXObkR+yVp13Aon4jaCWcGZjUvLCiH5g4Fn1GnOFJcDxRVCq/a9gWK56FBRowustvtIMwePISB5VUEMaB4Qz+t9b6XVSgS1QoLUk1q2emLGPn6rAJDEWClg7jPLoUCAXg9VR0WFj1NEItoaTDmqupG+OAeGIEp/McpIxkFdZ/4w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=R8a0SkoIDo6jEczOU5I35DlYbs4SJGSq9k4aQ5+tKx0=;
+ b=FKXX/o5CoiQhQGwpmC0v6wDfs8OcZPaCVh25oED7AirmvntBzqCy7Wu3hyQ0SK7lCUryzu6n0gkfP8QkjW6phYCwj61i6ykzutjyL/GJ1RrxqIKpb4mVPktWB+wht5AzqeksL/pik+pRNTrrkCg3jSZcGs7GCXApxEtPBSqnGsQRbv7lHfQXSPq2mVQrqM1TJkIbpWoQxwWCmxinqt0bJCmYwKkwyKZS3mJ0x2Z/QfHrKn5FfXzR+0Obr3Ecris5KiOMiqxK1x6HVOxgLjNBwOgyLNFr4fqZ8QfpoRMDdKVDSAwRL4QaeOwDLQGVXmiJ8m/5fObdtiG/TwKKT6NzUw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.160) smtp.rcpttodomain=gmail.com smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=R8a0SkoIDo6jEczOU5I35DlYbs4SJGSq9k4aQ5+tKx0=;
+ b=oe47Si0gZSIBgJ3ogx87J2hfYVhJccXPEO/0iE/XhgLXvpOQ2mfhfkC8pDLg6s+vdlEwyzKacuF1EBGxi4bfgpv+utjqp40KursadoPak3cgk9RQwfwMVE/qyL5t3qrKzN6FtlxtCM7SwVcqAutD+gERaR/UZekiEVcncKJ4a6L4Ll5wWW5c4oGxJ3igijCAsSZcVyikmoCRJGZMcTBwblrvQo9lwWeYkJHWyHwDiBY2MXjIXs/GMdEKmZdDt4fhbt91NDoJVof1p3vSB4Wa5deBVc/tZHFOkjlh1iGG0yBnk1Zt6fUA84YbLHg93eziGDP4jfLBge83hOCpT9S/bg==
+Received: from DM6PR13CA0010.namprd13.prod.outlook.com (2603:10b6:5:bc::23) by
+ DM4PR12MB5277.namprd12.prod.outlook.com (2603:10b6:5:390::7) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6387.20; Thu, 11 May 2023 13:21:29 +0000
+Received: from DM6NAM11FT059.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:bc:cafe::e1) by DM6PR13CA0010.outlook.office365.com
+ (2603:10b6:5:bc::23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.7 via Frontend
+ Transport; Thu, 11 May 2023 13:21:29 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.160) by
+ DM6NAM11FT059.mail.protection.outlook.com (10.13.172.92) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6387.22 via Frontend Transport; Thu, 11 May 2023 13:21:29 +0000
+Received: from rnnvmail204.nvidia.com (10.129.68.6) by mail.nvidia.com
+ (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.5; Thu, 11 May 2023
+ 06:21:15 -0700
+Received: from rnnvmail204.nvidia.com (10.129.68.6) by rnnvmail204.nvidia.com
+ (10.129.68.6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.37; Thu, 11 May
+ 2023 06:21:15 -0700
+Received: from 44189d9-lcedt.nvidia.com (10.127.8.9) by mail.nvidia.com
+ (10.129.68.6) with Microsoft SMTP Server id 15.2.986.37 via Frontend
+ Transport; Thu, 11 May 2023 06:21:12 -0700
+From:   Peter De Schrijver <pdeschrijver@nvidia.com>
+To:     Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>
+CC:     Jassi Brar <jassisinghbrar@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Joe Perches <joe@perches.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <krzysztof.kozlowski@linaro.org>,
+        "Thierry Reding" <treding@nvidia.com>
+Subject: [PATCH v4 1/6] dt-bindings: mailbox: tegra: Document Tegra264 HSP
+Date:   Thu, 11 May 2023 16:20:44 +0300
+Message-ID: <20230511132048.1122075-2-pdeschrijver@nvidia.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230511132048.1122075-1-pdeschrijver@nvidia.com>
+References: <20230511132048.1122075-1-pdeschrijver@nvidia.com>
 MIME-Version: 1.0
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-NVConfidentiality: public
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT059:EE_|DM4PR12MB5277:EE_
+X-MS-Office365-Filtering-Correlation-Id: b20d041e-59c0-4710-6e8e-08db5222a174
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: b6N3cjJLA5MD9GQVetRgDtep0JLLo62Sk1ccIn1PhYC7iK4mp41lRW4vOLxqEbfPFDIaWmg7TlXglaaNxZPc9a7wobNpL3FvFB6WQMYRkK45ogKqjcYv7iDqpqKBKcYtFCniCNfM9I4K0ZChzdkxcyRMMmX3lMfHXn8Ub/ycPQ+BQbzsjki1IQPN7rtnzgUTrlH2sApo73CEKSTnF+qSV5TW2kyLBGrvsdXH485DXie8Kw0EXghXb6tKKK8bjB2ikudp0vfWi+zWjPpWIkeD7O9IVXyW9BaUS/XiGz0CsBRinj5OPHiQv32MprBC/YheGE+celMRMjePPm9HNu8keyvRRxu4RLdYsF468mNq1PviwTppO3GbNAQfccKTOpYDv/uGcy16O9e4Z+Bwl91joDzmy78nWOawby5cyVJI7e9VpDN2bgB450X0IZjz6PYXFoLLcUsY+G+kDGp27BoXRfI3Lu4/Kb2mzkBbPpvVfj8D1WUsAaLDaxIXaMRDRwlDhrgZnfHmIzS+dR1eecMAoBitUYgyxPkUhrIGYYZD/XvFy/OMbGmmPTUqWk9M5WU3RE3XAQ/4y/6AoCCu1aSnoQGG+hw0WZ1DSwWOfsSt5/Z5t51a1hsGgLLdnK3rnbvtCiGl7/vRVulXuJl6s8tFbobkIZ05CsDM6nNtN5iEXYmbtng6or/ZPFGegCp8uMQuiUoColh1hPJBBW5KU5C4avxTr8GmbyJRI/8jVC31G6/p9XMYRLu4EsPQaBb+5Y9j
+X-Forefront-Antispam-Report: CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230028)(4636009)(376002)(39860400002)(396003)(346002)(136003)(451199021)(40470700004)(46966006)(36840700001)(70206006)(82310400005)(6636002)(107886003)(8676002)(54906003)(70586007)(110136005)(8936002)(83380400001)(2616005)(4326008)(47076005)(316002)(336012)(426003)(41300700001)(7416002)(40460700003)(1076003)(186003)(40480700001)(478600001)(26005)(2906002)(86362001)(356005)(36756003)(7636003)(82740400003)(15650500001)(7696005)(6666004)(36860700001)(5660300002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 May 2023 13:21:29.2622
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: b20d041e-59c0-4710-6e8e-08db5222a174
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT059.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5277
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQpPbiAxMS8wNS8yMDIzIDA3OjQ5LCBNYXJrIEJyb3duIHdyb3RlOg0KPj4gTWlzc2luZyBtaW5J
-dGVtcywgYnV0Li4uDQo+IA0KPj4+ICsgICAgaXRlbXM6DQo+Pj4gKyAgICAgIG1pbmltdW06IDB4
-MzgNCj4+PiArICAgICAgbWF4aW11bTogMHgzZg0KPiANCj4+IC4uLiBTbyB0aGVzZSBhcmUgZml4
-ZWQ/IE5vIG5lZWQgdG8gZW5jb2RlIHRoZW0gaW4gc3VjaCBjYXNlLi4uDQo+IA0KPiBJJ20gbm90
-IHN1cmUgSSB1bmRlcnN0YW5kIHlvdXIgY29uY2VybiBoZXJlLCB0aGVyZSdzIHVwIHRvIDQgcG9z
-c2libGUgDQo+IHZhbHVlcyBmcm9tIDB4MzgtMHgzZiB3aGljaCBoYXMgbW9yZSB0aGFuIDQgcG9z
-c2libGUgdmFsdWVzLg0KDQpBcmVuJ3QgdGhlIGFkZHJlc3NlcyBnb2luZyB0byBiZSBpbmNyZW1l
-bnRlZCBieSBvbmUgKHVwIHRvIDggb2YgZGV2aWNlcyBpbiB0b3RhbCk/DQoNCk5vLCB0aGUgaTJj
-IGFkZHJlc3Mgb3JkZXIgaXMgbm90IGFsd2F5cyBtb25vdG9uaWMgaW5jcmVhc2Ugb3IgZGVjcmVh
-c2UsIHNvbWV0aW1lIGl0IHdvdWxkIGJlIGRpc29yZGVyLCBhY2NvcmRpbmcgdG8gdGhlIGFwcGxp
-Y2F0aW9uLg0KRWFjaCBkZXZpY2Ugd291bGQgaGF2ZSBlaWdodCBwb3NzaWJsZSBpMmMgYWRkcmVz
-cywgdGhlIGZpbmFsIGFkZHJlc3MgZGVwZW5kcyBvbiB0aGUgaGFyZHdhcmUgY29ubmVjdGlvbnMu
-DQoNCkJlc3QgcmVnYXJkcywNCktyenlzenRvZg0KDQo=
+Add the compatible string for the HSP block found on the Tegra264 SoC.
+The HSP block in Tegra264 is not register compatible with the one in
+Tegra194 or Tegra234 hence there is no fallback compatibility string.
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Thierry Reding <treding@nvidia.com>
+Signed-off-by: Peter De Schrijver <pdeschrijver@nvidia.com>
+---
+ .../devicetree/bindings/mailbox/nvidia,tegra186-hsp.yaml         | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/mailbox/nvidia,tegra186-hsp.yaml b/Documentation/devicetree/bindings/mailbox/nvidia,tegra186-hsp.yaml
+index a3e87516d637..2d14fc948999 100644
+--- a/Documentation/devicetree/bindings/mailbox/nvidia,tegra186-hsp.yaml
++++ b/Documentation/devicetree/bindings/mailbox/nvidia,tegra186-hsp.yaml
+@@ -66,6 +66,7 @@ properties:
+     oneOf:
+       - const: nvidia,tegra186-hsp
+       - const: nvidia,tegra194-hsp
++      - const: nvidia,tegra264-hsp
+       - items:
+           - const: nvidia,tegra234-hsp
+           - const: nvidia,tegra194-hsp
+-- 
+2.34.1
+
