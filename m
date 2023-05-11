@@ -2,224 +2,495 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED9A36FF08C
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 13:32:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23D386FF099
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 13:36:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231358AbjEKLcO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 07:32:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56780 "EHLO
+        id S232333AbjEKLg2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 07:36:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237779AbjEKLcN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 07:32:13 -0400
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2066.outbound.protection.outlook.com [40.107.93.66])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71BA27DA7;
-        Thu, 11 May 2023 04:32:08 -0700 (PDT)
+        with ESMTP id S229548AbjEKLg1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 07:36:27 -0400
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2053.outbound.protection.outlook.com [40.107.215.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B69111726
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 04:36:24 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nLQjENeVdfgdMayV1IKeMEJBRQyYZVv3AgVffum2wlu5k3Us/LuJzR2szrfglqnqEPwh9eXSesEMcjYMqBZ/t968JvaPm++8zLMHH9qjk7A3BE0zbCGrCOscpE9NaFkLeEYmQA1sB0Dlg0897MGC2EAUbewlUsOQrJyi0XGXItWLN5A4qQiPm3qxEbXX3BOsFtPRyvS+n2ynjfSTiqBSIM0hao1WCm2Zw/FSF15zg/czQC9JLxjX29WabTx8sVgAsg7yp1TXkruE7jSojFMJZEnx4phdvK0mQ+Az6Ff78IyJXevNnBuJyMa1OQAHKvBw1UmRsLgRisyHNbDaWgoaqA==
+ b=LlENJP2+PEmD0GfKyz1pCK0yDou+9bvXkrGYLuuqFt0D+sfJgTQDWoPVi2pHjC60Va2DS4sqYWCi2KJzSnY1/kiiYzC6QKVUCAxXuWT3XrN+aEIZlziHu2VGK357SQI+KYxR9XGrlGvQ3qlwfqs2NaStdMJnETRsjZL7QvO9wnd9aurNFXV/l/k9loq3VJ/FOLBOBwD/nP5te+5HD7T+sTaG7aejGpeS9cll9b+P/9z4V/spxR2shQiRnoM58c4IFQPnqGy9/m/EpThAfyPQPrtEvWPzUXbU4Xd/5BBAv5M4yMlK888yzTravwoGn9GRbOaz8OZVpvyKtcnWxSKLnw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3YINjzV6XMjsCgvdfActKj1pInzM54SKP/xQMhjiEsc=;
- b=jxAj+paP0FgQbHux//m4XrdO6Pwis+llGAuZ923i4tZzYKFf7ejozI/Cuv7QUBGZe3lDaHeDnmypmoLB/QewqunNXg4K/7ilB20e5PQjwLk3o3utO1P5qsT236a9KU+b6a+6nJRhSCAOPp5ONhzC+FMaUsrsv5U55dgarb2of+mnKS4bALbIilecLUX9SzyckxAtglSfMqt/9ATldTZ3S+d/RLfdTqxJGcmtwIBA3jBP4sqUSuBerxcM6cSAfu+7VCv0aCsR8Oa4k+aaUIXBDEJUdN1Xyk10MHfxbe9AwcsK+k1LET114tbIbgMFviuDcIv4LO1mNEWgREl25us3RQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ bh=VOEwxjBZ9gmP/xLp1eh06X0kE1lAufZ9XRIzx7Or3wg=;
+ b=XrEyKgK7XIm/0OxQmx7ggQJyTHEN4ECXOf5ySn1SJFTQ8xmyi5sgDIN4Zx3tIBXtSjfPddbYCyl60U78fUnYdvWGeyWW6V49a57f0HXpiemnXFdWwRpJHRngpmRQqj5iuqPT8VWmLuIlm4jGReqKEE/XbWLPDjzdTS4XwsudNfiEJvF3xySnNB6bEYeK8akQ+j7Rq38mH3NvHfCHJX+1ahoR2zPw/zy/t1yss1CE+VWmq+cDUe2LxpvBHv3P06ATOiTla0BJPF3OOeGe8UuJW91h8lQLDuHyK91KcfR3Jwh4qe2JZs62EVneWs7F8q2McBFT2lzCxIIh9PJd4oOjRQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 175.98.123.7) smtp.rcpttodomain=kernel.org smtp.mailfrom=nuvoton.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=nuvoton.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nuvoton.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3YINjzV6XMjsCgvdfActKj1pInzM54SKP/xQMhjiEsc=;
- b=J2uPS0IgH7xza89mH4UPMwKFGBMp5xqhToFOVQILYQ7XrcSIYk64ZBddp+HbAGQwk5eJTmVUCWlGiQ9jye96p3Mh5lGaZv5UU7e6TDlGhT16B4Fv8F9lpP1rNBJQCQ7AH6i5w+4R0cQMS+3eUACL2Z5j8lbp8jA7+baOmwhDPXs=
-Received: from MW5PR12MB5598.namprd12.prod.outlook.com (2603:10b6:303:193::11)
- by IA1PR12MB7662.namprd12.prod.outlook.com (2603:10b6:208:425::20) with
+ bh=VOEwxjBZ9gmP/xLp1eh06X0kE1lAufZ9XRIzx7Or3wg=;
+ b=InyExgGqR+uFGqif8CJ5jObV9PECTE3MgyuXDB3m7jLttX7nNhgLyi2sfXrM/DPfVchxjUSri1sV5NGAzqPheYGcaJhEaQ5ZjwMXsbD+Zg2LasP/4aHtp64qapCU8AYuJTlpFpnMgJfqWMUEueU+omR/IXp1CujYskpuBuSNgBM=
+Received: from TYAPR01CA0105.jpnprd01.prod.outlook.com (2603:1096:404:2a::21)
+ by TYZPR03MB5855.apcprd03.prod.outlook.com (2603:1096:400:122::9) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.32; Thu, 11 May
- 2023 11:32:05 +0000
-Received: from MW5PR12MB5598.namprd12.prod.outlook.com
- ([fe80::8a8d:1887:c17e:4e0c]) by MW5PR12MB5598.namprd12.prod.outlook.com
- ([fe80::8a8d:1887:c17e:4e0c%6]) with mapi id 15.20.6363.033; Thu, 11 May 2023
- 11:32:05 +0000
-From:   "Gaddam, Sarath Babu Naidu" <sarath.babu.naidu.gaddam@amd.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "edumazet@google.com" <edumazet@google.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "Simek, Michal" <michal.simek@amd.com>,
-        "Pandey, Radhey Shyam" <radhey.shyam.pandey@amd.com>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Sarangi, Anirudha" <anirudha.sarangi@amd.com>,
-        "Katakam, Harini" <harini.katakam@amd.com>,
-        "git (AMD-Xilinx)" <git@amd.com>
-Subject: RE: [PATCH net-next V3 1/3] dt-bindings: net: xilinx_axienet:
- Introduce dmaengine binding support
-Thread-Topic: [PATCH net-next V3 1/3] dt-bindings: net: xilinx_axienet:
- Introduce dmaengine binding support
-Thread-Index: AQHZgxyMhcxz4C0Hi06uaEd1rO/7na9TSJIAgAGnKOA=
-Date:   Thu, 11 May 2023 11:32:05 +0000
-Message-ID: <MW5PR12MB55986A4865DB56F7F024EA7687749@MW5PR12MB5598.namprd12.prod.outlook.com>
-References: <20230510085031.1116327-1-sarath.babu.naidu.gaddam@amd.com>
- <20230510085031.1116327-2-sarath.babu.naidu.gaddam@amd.com>
- <95f61847-2ec3-a4e0-d277-5d68836f66cf@linaro.org>
-In-Reply-To: <95f61847-2ec3-a4e0-d277-5d68836f66cf@linaro.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: MW5PR12MB5598:EE_|IA1PR12MB7662:EE_
-x-ms-office365-filtering-correlation-id: c9d5c8f7-bde8-4ea1-69d3-08db521358f7
-x-ld-processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: m723pQbNCkw0HsRZB7Q7nbKv9B1Gj6jsb2JX0F/lyImiVFFPjIpGVZwjYjckIMWdmhFn55SHcJtJrgrFkTPQw+E+G31HFwW6e0QG0YB1gqWuC7xAWrag6bIMGuOCxPjRxyNLbXCC9qK8vIjEFGnw+dADLUoI++hFOtJrx2MsqcwgjE0FKyT7QCI9SUIQu0orlCwGW8IG55Ki4vWWre4lzsu/p7Bd4GUE66IjB295lo/qhNSYDht88creC/0hIUwmn0g5nV2G7RMHB1F3RKB6+tFf/6qGTiiKCEkh9x2E2Qy6QyCwEbkR5M6/CPuHlrYLbvOfz2I+ixcWli3XWMzEFiDwpNKCkwidG4FEyCYe8vgJvDWd4kh7c3thRFrOQL/WwPEk/4tQkdcecgxWvQMr3d+4Sxmk+NvxuiUj+HPvFl78eYqxGdTaWNfcd1TwgUAPjuEwitiJTa+9FqbOaWX1Ja80HZQWBM+0rGH+mYyuPVZaUimeggsmzgDmAsjZ1/ekuBncBZbqpHwPrDINwkEwlcGk6gKN7ucNQJyxfwxFHlZ/mfT9fHJs2PDVOWxWTKm66h+InfqLPL08U7Wq27MLOgFkwN2azSwCJQNtYUyMTbbkVzjf4Qvzcu8NQ6trOvwwgbEjTPerqU+D+FQ94focKw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MW5PR12MB5598.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(366004)(39860400002)(136003)(396003)(346002)(376002)(451199021)(66446008)(33656002)(66556008)(64756008)(966005)(54906003)(316002)(478600001)(76116006)(66476007)(7696005)(4326008)(66946007)(110136005)(5660300002)(55016003)(2906002)(6506007)(8676002)(52536014)(41300700001)(8936002)(7416002)(71200400001)(186003)(38100700002)(122000001)(38070700005)(9686003)(86362001)(26005)(83380400001)(53546011);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?akx3dEsvR2k1Vzc0SkJzdDBMaVpOVktrem9UemJydldxNU1kMVlyYSs5cDBR?=
- =?utf-8?B?d3VwL2xiMnR5Zm01NTZQak4xQ05Vd1RZSGtwMWdiWjUwaVdVLzg4VnRZeHN4?=
- =?utf-8?B?VmRVK0lDRkl0N3UvNXg0cW4ySGVXRXFZaExrVVdXUStnRTUwVjlaaXpyR3pF?=
- =?utf-8?B?L2Rnc0kwcFVKMEY4Yll4TWJCbEdTZTYzdmNqZ2YrL0Z3ODZpYUNlS1Fjdmx5?=
- =?utf-8?B?dWhVTC9Sd1k2dDloM1VUTzRmOFQvZDE1cU1hVm5PbVQrSm1CNklDY2haVlow?=
- =?utf-8?B?OUhzVWxyTTJhYlNvcFBod3hGMk5ERTRBMkRYdjJSdjdCTkJsUTF0SFVyN0Rs?=
- =?utf-8?B?STJVRjB2aUZUVWxrcG5nTnBaNlQyZ0VFQ3AvRGNzeUo0K29IV3kxckt5dTVj?=
- =?utf-8?B?NFA2M0tPUndqdFZIaG9uV2VOVFpQTlcvWVdlcDQ4Y2RjZk9JSEkvWURDTU5q?=
- =?utf-8?B?NWlvWm1MVFFWYTI1VElUbGxZR0RLQ1RjSlRpQzlEUTg2dHBWRW1FR3BtYUVw?=
- =?utf-8?B?M1VibXNqQVJ1bElyY2FLZksvVkdKTTZFY2dUK2JoUlFyNFFMQ3I0M21Zb1No?=
- =?utf-8?B?eS80aXJmU3kzWjFKcDVFUEx6SmJSb0M2Y2F1Y1ZyMGdKUEpJMDkvQTEyQ0Nl?=
- =?utf-8?B?UXhQS2E2cHhNam96WEx0YVJNVHNBaEMzbGh5aDM2N0M1blA2S2VYZ3Q1VjQ4?=
- =?utf-8?B?anBGZkVhMytPOGhobXM2bFFZa055MzNiR2VlZHdQdkRWbHdJWEpNNzFyR2t2?=
- =?utf-8?B?VnpKQTdVajFvQjNvZm5NcXRSUU9JNmFMaU8rRG5CUTl4VkRSbE05WnVqR3lz?=
- =?utf-8?B?V0h0WU5sNlllWTlrV3F4NTBTbUJGejdwMlo5WlF0Q1JqZ0hMNVQwQ2JOUlBv?=
- =?utf-8?B?c0RUWE9ibGlGM2owNGhHL1VrYmxkQU81MWdJYU16bXdHUlYrQ3BncWdhc3Rj?=
- =?utf-8?B?SmJST1YrOE03R015N2JyOXNPODRuWFhvMWJudm91N3JmeWZYR0JBaW5hbDJy?=
- =?utf-8?B?UXRTMnQwVVZWdExrWmptVHM3aERrY3JWd2tMbkwzbXNJbVhLa2hzRDdPaTRG?=
- =?utf-8?B?NkwxYVZMVDlxeXdFTzloV2JkeDc3dy93MCtoRGl2VEY1L0QvbkFzV0V1c3Qw?=
- =?utf-8?B?UnVRMGlHWDVsSVZ5eGEyZ0JEVUNpdno5MmZkNzhEWU40dlZXZklCK2tJcDJ2?=
- =?utf-8?B?RllhNDV0YUhIQTNtTjQzUmdZMG9QTVk2bTJ1U2ZIL015TysyNXUrYzYyZUFM?=
- =?utf-8?B?RHpQblJVL3FqdnNVNDFRMTFUWXhQZUp4N3krYlRwamJyRUtuZHJLSTh1QmNO?=
- =?utf-8?B?QjZGbkV4WStJSWR5THMzVkFHcDJoM3dDaXptc1dBUXBOeVlDelVUTE9FVTFi?=
- =?utf-8?B?WElabmp1U2FVL01sdHRxY0djTGF5Um03UGhtLzI5SlZSWjJ4RnFHN01hRjQ4?=
- =?utf-8?B?SUw3dGhoUUpZMVlndjJvOXU1TTZMVGdtNVFhMTFWUnJSODQ3ZFNNdkpQMzl5?=
- =?utf-8?B?S0tra2pDZVFZMy94RytvSXdML3BXb1paYVhOZ0NaOTB0Y1JoNmVoRFppT2ZK?=
- =?utf-8?B?YzBXOFkrN1U4WTVmc2RkNWhFT2tPRlVETmF5WC94Tis3c0xsUU0vVFRMZHFX?=
- =?utf-8?B?cUhZYWFYZGFlV1p2OHZJcExjcW1qVmMxb2dUaS80NUNSblgrMFMreW9UbFJ1?=
- =?utf-8?B?K1Jsb0lHSVpOVmJFMWwwcmFGT1NnVnJzU09kdDdsUy9HdUxJZi9VS29hK09V?=
- =?utf-8?B?bFVlM05UQ1ViSHdhWWNDaHE0Zmg5UGxKSXRSZHNXVUNSVUpNYlVjS3FFSFNQ?=
- =?utf-8?B?V0cxckxUQ2RNQ1AxL1h5anAzT1V4T3VnSWJwcjlOYzNPTE9uRDFoWkVlWFhM?=
- =?utf-8?B?dTgzcnJlVnFvdWRaeDhRYjk4OEJTQnppSFFNTTNjNnQ1Q3h1R1JTK2toOFVn?=
- =?utf-8?B?RVBNSXlQMktXK1dzTm9ucjV4eGI5NUpTUXNsMWZLZWJub0pZczlVMW51cjlF?=
- =?utf-8?B?ZDVBWHVpRXlWemNhRWQ0OXhkUDRrMkFMdmRlblZEc0RBbDRxRHpxQi9lUkxX?=
- =?utf-8?B?SFJZRzFIYVpUVnltRWFLU0t3V0ZhOUdjcmlQV1p0OGZVYmdDbHQzYkhpRkhE?=
- =?utf-8?Q?vUrs=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.29; Thu, 11 May
+ 2023 11:36:19 +0000
+Received: from TYZAPC01FT055.eop-APC01.prod.protection.outlook.com
+ (2603:1096:404:2a:cafe::cc) by TYAPR01CA0105.outlook.office365.com
+ (2603:1096:404:2a::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.21 via Frontend
+ Transport; Thu, 11 May 2023 11:36:19 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 175.98.123.7)
+ smtp.mailfrom=nuvoton.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nuvoton.com;
+Received-SPF: Pass (protection.outlook.com: domain of nuvoton.com designates
+ 175.98.123.7 as permitted sender) receiver=protection.outlook.com;
+ client-ip=175.98.123.7; helo=NTHCCAS04.nuvoton.com; pr=C
+Received: from NTHCCAS04.nuvoton.com (175.98.123.7) by
+ TYZAPC01FT055.mail.protection.outlook.com (10.118.152.83) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id
+ 15.20.6387.22 via Frontend Transport; Thu, 11 May 2023 11:36:19 +0000
+Received: from NTHCCAS04.nuvoton.com (10.1.8.29) by NTHCCAS04.nuvoton.com
+ (10.1.8.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 11
+ May 2023 19:36:16 +0800
+Received: from localhost.localdomain (10.11.36.27) by NTHCCAS04.nuvoton.com
+ (10.1.8.29) with Microsoft SMTP Server id 15.1.2176.2 via Frontend Transport;
+ Thu, 11 May 2023 19:36:16 +0800
+From:   David Lin <CTLIN0@nuvoton.com>
+To:     <broonie@kernel.org>
+CC:     <lgirdwood@gmail.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>, <YHCHuang@nuvoton.com>,
+        <KCHSU0@nuvoton.com>, <WTLI@nuvoton.com>, <SJLIN0@nuvoton.com>,
+        <ctlin0.linux@gmail.com>, David Lin <CTLIN0@nuvoton.com>
+Subject: [PATCH v4] ASoC: dt-bindings: nau8825: Convert to dtschema
+Date:   Thu, 11 May 2023 19:36:08 +0800
+Message-ID: <20230511113607.595184-1-CTLIN0@nuvoton.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MW5PR12MB5598.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c9d5c8f7-bde8-4ea1-69d3-08db521358f7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 May 2023 11:32:05.3174
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-NotSetDelaration: True
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYZAPC01FT055:EE_|TYZPR03MB5855:EE_
+X-MS-Office365-Filtering-Correlation-Id: 888bdb4e-3386-40e0-ca06-08db5213f04f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: vRGPC6t2YxQAOuNcRZeGScSRyxV5f9Hz1/jW/L/vL/8QCey2gDy0SXfKXGxYSuP+2/KEhSfbltkiExNBMZSce9P8lI6v3QRADs/MvtlZpHOo2nW+mbVRv+IClja0g4NSwlZina0pCVTDqoQZdXm37UNRKIc8gOuPsiKz8qZCqZrDcSKeY/B8Bz2du79dXJfBC63bj1VsrkM4r2idIGEfC6Wsu+z07s5U1SzuHFF+VM6tjGVzpNsPTESEevo0EyqnRdxCm7q9f4/Kt9DSyIY4BWBSpfal+r6GwjK4WzBbWMX3qNiGunWfNdGkgX5Wsf4BBHIlBIZo7xp6Rvi7Dohtals5UJM4r4iDeV2FTd7TJxhhLQJxPpAOgTVPh2TYpD40KGcx4fAKZWgdAHDFGcMEnWCr2WO5QXEGri246dMidBBZnHGt71qPM/MSa5Gii0B2jR7mX808dvkF9IByA2fqaTGql28pdvMzzz7ispCXT9nkflMO6zvfwjssBHgwJZX97IPjVin/rSoBV2aTeZ3R4JFgupN9rwswfrAf3Xbv/CKTkZzTxnoOFKEz2QkMpyH7Vx1pd6zL08ztXWDhEQ4TivN84790mNrLVx6CumkwT8ufUjpBRq6FcBgYpFl2ZUS2HxaP/wQ6OSXcyktgPsR1JyBjJPur00JTs4cMsQkMU7ytWimt4PzxHZK5fZeomSoSIdB3gJ+PbZNaso+WsheQ7bmKQPfHwphbx7SJcypKkyR53pWF7Fm/1dQF9UKPoSx/
+X-Forefront-Antispam-Report: CIP:175.98.123.7;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:NTHCCAS04.nuvoton.com;PTR:175-98-123-7.static.tfn.net.tw;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(396003)(346002)(376002)(136003)(451199021)(40470700004)(46966006)(36840700001)(86362001)(81166007)(8676002)(8936002)(966005)(40480700001)(82310400005)(70586007)(5660300002)(82740400003)(356005)(4326008)(40460700003)(36756003)(83380400001)(426003)(2616005)(26005)(336012)(36860700001)(186003)(41300700001)(30864003)(107886003)(2906002)(47076005)(1076003)(6916009)(54906003)(316002)(33656002)(478600001)(70206006)(6666004);DIR:OUT;SFP:1101;
+X-OriginatorOrg: nuvoton.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 May 2023 11:36:19.1893
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ESJh4YH80tfclEE1ECqcM6n5vxcchQ6okqdCL7H7IUbqWZNGMZOrQ/0BVFivWLTgVo2ZiyuIvb3numSBYTty2A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB7662
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-Network-Message-Id: 888bdb4e-3386-40e0-ca06-08db5213f04f
+X-MS-Exchange-CrossTenant-Id: a3f24931-d403-4b4a-94f1-7d83ac638e07
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=a3f24931-d403-4b4a-94f1-7d83ac638e07;Ip=[175.98.123.7];Helo=[NTHCCAS04.nuvoton.com]
+X-MS-Exchange-CrossTenant-AuthSource: TYZAPC01FT055.eop-APC01.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR03MB5855
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS3J6eXN6dG9mIEtvemxv
-d3NraSA8a3J6eXN6dG9mLmtvemxvd3NraUBsaW5hcm8ub3JnPg0KPiBTZW50OiBXZWRuZXNkYXks
-IE1heSAxMCwgMjAyMyAzOjM5IFBNDQo+IFRvOiBHYWRkYW0sIFNhcmF0aCBCYWJ1IE5haWR1DQo+
-IDxzYXJhdGguYmFidS5uYWlkdS5nYWRkYW1AYW1kLmNvbT47IGRhdmVtQGRhdmVtbG9mdC5uZXQ7
-DQo+IGVkdW1hemV0QGdvb2dsZS5jb207IGt1YmFAa2VybmVsLm9yZzsgcGFiZW5pQHJlZGhhdC5j
-b207DQo+IHJvYmgrZHRAa2VybmVsLm9yZzsga3J6eXN6dG9mLmtvemxvd3NraStkdEBsaW5hcm8u
-b3JnDQo+IENjOiBsaW51eEBhcm1saW51eC5vcmcudWs7IFNpbWVrLCBNaWNoYWwgPG1pY2hhbC5z
-aW1la0BhbWQuY29tPjsNCj4gUGFuZGV5LCBSYWRoZXkgU2h5YW0gPHJhZGhleS5zaHlhbS5wYW5k
-ZXlAYW1kLmNvbT47DQo+IG5ldGRldkB2Z2VyLmtlcm5lbC5vcmc7IGRldmljZXRyZWVAdmdlci5r
-ZXJuZWwub3JnOyBsaW51eC1hcm0tDQo+IGtlcm5lbEBsaXN0cy5pbmZyYWRlYWQub3JnOyBsaW51
-eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnOyBTYXJhbmdpLA0KPiBBbmlydWRoYSA8YW5pcnVkaGEu
-c2FyYW5naUBhbWQuY29tPjsgS2F0YWthbSwgSGFyaW5pDQo+IDxoYXJpbmkua2F0YWthbUBhbWQu
-Y29tPjsgZ2l0IChBTUQtWGlsaW54KSA8Z2l0QGFtZC5jb20+DQo+IFN1YmplY3Q6IFJlOiBbUEFU
-Q0ggbmV0LW5leHQgVjMgMS8zXSBkdC1iaW5kaW5nczogbmV0OiB4aWxpbnhfYXhpZW5ldDoNCj4g
-SW50cm9kdWNlIGRtYWVuZ2luZSBiaW5kaW5nIHN1cHBvcnQNCj4gDQo+IE9uIDEwLzA1LzIwMjMg
-MTA6NTAsIFNhcmF0aCBCYWJ1IE5haWR1IEdhZGRhbSB3cm90ZToNCj4gPiBGcm9tOiBSYWRoZXkg
-U2h5YW0gUGFuZGV5IDxyYWRoZXkuc2h5YW0ucGFuZGV5QHhpbGlueC5jb20+DQo+ID4NCj4gPiBU
-aGUgYXhpZXRoZXJuZXQgZHJpdmVyIHdpbGwgdXNlIGRtYWVuZ2luZSBmcmFtZXdvcmsgdG8gY29t
-bXVuaWNhdGUNCj4gPiB3aXRoIGRtYSBjb250cm9sbGVyIElQIGluc3RlYWQgb2YgYnVpbHQtaW4g
-ZG1hIHByb2dyYW1taW5nIHNlcXVlbmNlLg0KPiANCj4gU3ViamVjdDogZHJvcCBzZWNvbmQvbGFz
-dCwgcmVkdW5kYW50ICJiaW5kaW5ncyIuIFRoZSAiZHQtYmluZGluZ3MiDQo+IHByZWZpeCBpcyBh
-bHJlYWR5IHN0YXRpbmcgdGhhdCB0aGVzZSBhcmUgYmluZGluZ3MuDQo+IA0KPiBBY3R1YWxseSBh
-bHNvIGRyb3AgImRtYWVuZ2luZyIgYXMgaXQgaXMgTGludXhpc20uIEZvY3VzIG9uIGhhcmR3YXJl
-LCBlLmcuDQo+ICJBZGQgRE1BIHN1cHBvcnQiLg0KPiANCj4gPg0KPiA+IFRvIHJlcXVlc3QgZG1h
-IHRyYW5zbWl0IGFuZCByZWNlaXZlIGNoYW5uZWxzIHRoZSBheGlldGhlcm5ldCBkcml2ZXINCj4g
-PiB1c2VzIGdlbmVyaWMgZG1hcywgZG1hLW5hbWVzIHByb3BlcnRpZXMuDQo+ID4NCj4gPiBBbHNv
-IHRvIHN1cHBvcnQgdGhlIGJhY2t3YXJkIGNvbXBhdGliaWxpdHksIHVzZSAiZG1hcyIgcHJvcGVy
-dHkgdG8NCj4gPiBpZGVudGlmeSBhcyBpdCBzaG91bGQgdXNlIGRtYWVuZ2luZSBmcmFtZXdvcmsg
-b3IgbGVnYWN5DQo+ID4gZHJpdmVyKGJ1aWx0LWluIGRtYSBwcm9ncmFtbWluZykuDQo+ID4NCj4g
-PiBBdCB0aGlzIHBvaW50IGl0IGlzIHJlY29tbWVuZGVkIHRvIHVzZSBkbWFlbmdpbmUgZnJhbWV3
-b3JrIGJ1dCBpdCdzDQo+ID4gb3B0aW9uYWwuIE9uY2UgdGhlIHNvbHV0aW9uIGlzIHN0YWJsZSB3
-aWxsIG1ha2UgZG1hcyBhcyByZXF1aXJlZA0KPiA+IHByb3BlcnRpZXMuDQo+ID4NCj4gPiBTaWdu
-ZWQtb2ZmLWJ5OiBSYWRoZXkgU2h5YW0gUGFuZGV5DQo+IDxyYWRoZXkuc2h5YW0ucGFuZGV5QHhp
-bGlueC5jb20+DQo+ID4gU2lnbmVkLW9mZi1ieTogU2FyYXRoIEJhYnUgTmFpZHUgR2FkZGFtDQo+
-ID4gPHNhcmF0aC5iYWJ1Lm5haWR1LmdhZGRhbUBhbWQuY29tPg0KPiA+IC0tLQ0KPiA+IFRoZXNl
-IGNoYW5nZXMgYXJlIG9uIHRvcCBvZiBiZWxvdyB0eHQgdG8geWFtbCBjb252ZXJzaW9uIGRpc2N1
-c3Npb24NCj4gPiBodHRwczovL2xvcmUua2VybmVsLm9yZy9hbGwvMjAyMzAzMDgwNjEyMjMuMTM1
-ODYzNy0xLQ0KPiBzYXJhdGguYmFidS5uYWlkdQ0KPiA+IC5nYWRkYW1AYW1kLmNvbS8jWjJlLjoy
-MDIzMDMwODA2MTIyMy4xMzU4NjM3LTEtDQo+IHNhcmF0aC5iYWJ1Lm5haWR1LmdhZGRhDQo+ID4g
-bTo6NDBhbWQuY29tOjFiaW5kaW5nczpuZXQ6eGxueDo6MmNheGktZXRoZXJuZXQueWFtbA0KPiA+
-DQo+ID4gQ2hhbmdlcyBpbiBWMzoNCj4gPiAxKSBSZXZlcnRlZCByZWcgYW5kIGludGVycnVwdHMg
-cHJvcGVydHkgdG8gIHN1cHBvcnQgYmFja3dhcmQNCj4gY29tcGF0aWJpbGl0eS4NCj4gPiAyKSBN
-b3ZlZCBkbWFzIGFuZCBkbWEtbmFtZXMgcHJvcGVydGllcyBmcm9tIFJlcXVpcmVkIHByb3BlcnRp
-ZXMuDQo+ID4NCj4gPiBDaGFuZ2VzIGluIFYyOg0KPiA+IC0gTm9uZS4NCj4gPiAtLS0NCj4gPiAg
-Li4uL2RldmljZXRyZWUvYmluZGluZ3MvbmV0L3hsbngsYXhpLWV0aGVybmV0LnlhbWwgICB8IDEy
-DQo+ICsrKysrKysrKysrKw0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgMTIgaW5zZXJ0aW9ucygrKQ0K
-PiA+DQo+ID4gZGlmZiAtLWdpdA0KPiA+IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRp
-bmdzL25ldC94bG54LGF4aS1ldGhlcm5ldC55YW1sDQo+ID4gYi9Eb2N1bWVudGF0aW9uL2Rldmlj
-ZXRyZWUvYmluZGluZ3MvbmV0L3hsbngsYXhpLWV0aGVybmV0LnlhbWwNCj4gPiBpbmRleCA4MDg0
-M2MxNzcwMjkuLjlkZmExOTc2ZTI2MCAxMDA2NDQNCj4gPiAtLS0gYS9Eb2N1bWVudGF0aW9uL2Rl
-dmljZXRyZWUvYmluZGluZ3MvbmV0L3hsbngsYXhpLWV0aGVybmV0LnlhbWwNCj4gPiArKysgYi9E
-b2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbmV0L3hsbngsYXhpLWV0aGVybmV0Lnlh
-bWwNCj4gPiBAQCAtMTIyLDYgKzEyMiwxNiBAQCBwcm9wZXJ0aWVzOg0KPiA+ICAgICAgICBtb2Rl
-cywgd2hlcmUgInBjcy1oYW5kbGUiIHNob3VsZCBiZSB1c2VkIHRvIHBvaW50IHRvIHRoZSBQQ1Mv
-UE1BDQo+IFBIWSwNCj4gPiAgICAgICAgYW5kICJwaHktaGFuZGxlIiBzaG91bGQgcG9pbnQgdG8g
-YW4gZXh0ZXJuYWwgUEhZIGlmIGV4aXN0cy4NCj4gPg0KPiA+ICsgIGRtYXM6DQo+ID4gKyAgICBp
-dGVtczoNCj4gPiArICAgICAgLSBkZXNjcmlwdGlvbjogVFggRE1BIENoYW5uZWwgcGhhbmRsZSBh
-bmQgRE1BIHJlcXVlc3QgbGluZQ0KPiBudW1iZXINCj4gPiArICAgICAgLSBkZXNjcmlwdGlvbjog
-UlggRE1BIENoYW5uZWwgcGhhbmRsZSBhbmQgRE1BIHJlcXVlc3QgbGluZQ0KPiA+ICsgbnVtYmVy
-DQo+ID4gKw0KPiA+ICsgIGRtYS1uYW1lczoNCj4gPiArICAgIGl0ZW1zOg0KPiA+ICsgICAgICAt
-IGNvbnN0OiB0eF9jaGFuMA0KPiANCj4gdHgNCj4gDQo+ID4gKyAgICAgIC0gY29uc3Q6IHJ4X2No
-YW4wDQo+IA0KPiByeA0KDQpXZSB3YW50IHRvIHN1cHBvcnQgbW9yZSBjaGFubmVscyBpbiB0aGUg
-ZnV0dXJlLCBjdXJyZW50bHkgd2Ugc3VwcG9ydA0KQVhJIERNQSB3aGljaCBoYXMgb25seSBvbmUg
-dHggYW5kIHJ4IGNoYW5uZWwuIEluIGZ1dHVyZSB3ZSB3YW50IHRvIA0KZXh0ZW5kIHN1cHBvcnQg
-Zm9yIG11bHRpY2hhbm5lbCBETUEgKE1DRE1BKSB3aGljaCBoYXMgMTYgVFggYW5kDQoxNiBSWCBj
-aGFubmVscy4gVG8gdW5pcXVlbHkgaWRlbnRpZnkgZWFjaCBjaGFubmVsLCB3ZSBhcmUgdXNpbmcg
-Y2hhbg0Kc3VmZml4LiBEZXBlbmRpbmcgb24gdGhlIHVzZWNhc2UgQVhJIGV0aGVybmV0IGRyaXZl
-ciBjYW4gcmVxdWVzdCBhbnkNCmNvbWJpbmF0aW9uIG9mIG11bHRpY2hhbm5lbCBETUEgIGNoYW5u
-ZWxzLg0KDQpkbWEtbmFtZXMgPSB0eF9jaGFuMCwgdHhfY2hhbjEsIHJ4X2NoYW4wLCByeF9jaGFu
-MTsNCg0Kd2lsbCB1cGRhdGUgdGhlIGNvbW1pdCBtZXNzYWdlIHdpdGggc2FtZS4NCiANCj4gV2h5
-IGRvaW5nIHRoZXNlIGRpZmZlcmVudGx5IHRoYW4gYWxsIG90aGVyIGRldmljZXM/DQoNClRvIG1h
-a2UgdGhlIGF4aSBldGhlcm5ldCBkcml2ZXIgZ2VuZXJpYyB0byBiZSBob29rZWQgdG8gYW55IGNv
-bXBsYWludA0KZG1hIElQIGkuZSBBWElETUEsIEFYSU1DRE1BIHdpdGhvdXQgYW55IG1vZGlmaWNh
-dGlvbi5UaGUgaW5zcGlyYXRpb24NCmJlaGluZCB0aGlzIGRtYWVuZ2luZSBhZG9wdGlvbiBpcyB0
-byByZXVzZSB0aGUgaW4ta2VybmVsIHhpbGlueCBkbWEgZW5naW5lDQpkcml2ZXIgYW5kIHJlbW92
-ZSByZWR1bmRhbnQgZG1hIHByb2dyYW1taW5nIHNlcXVlbmNlIGZyb20gdGhlDQpldGhlcm5ldCBk
-cml2ZXIuDQoNCkFib3ZlIGluZm9ybWF0aW9uIGlzIGV4cGxhaW5lZCBpbiB0aGUgY292ZXIgbGV0
-dGVyDQpodHRwczovL2xvcmUua2VybmVsLm9yZy9hbGwvMjAyMzA1MTAwODUwMzEuMTExNjMyNy0x
-LXNhcmF0aC5iYWJ1Lm5haWR1LmdhZGRhbUBhbWQuY29tLw0KDQpUaGFua3MsDQpTYXJhdGgNCg0K
+Convert the NAU8825 audio CODEC bindings to DT schema.
+
+Signed-off-by: David Lin <CTLIN0@nuvoton.com>
+
+Changes:
+V3 -> V4:
+  - remove the description from interrupts, clocks and clock-names properites
+  - add sound-dai-cells property and update the dts example
+
+V2 -> V3:
+  - refine node name from "nau8825" to "codec" for generic purpose
+
+V1 -> V2:
+  - add interrupts properties
+  - add maximum to nuvoton,jack-insert-debounce and nuvoton,jack-eject-debounce properites
+  - add a enum item for nuvoton,short-key-debounce properites
+  - add default value for most properites
+  - add maxItems to clocks properites and mclk entries to clock-names properites
+  - refine wrong indentation from clocks and clock-names
+  - refine dts example for interrupts and clocks
+  - remove headset label from dts example
+---
+ .../devicetree/bindings/sound/nau8825.txt     | 111 --------
+ .../bindings/sound/nuvoton,nau8825.yaml       | 239 ++++++++++++++++++
+ 2 files changed, 239 insertions(+), 111 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/nau8825.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/nuvoton,nau8825.yaml
+
+diff --git a/Documentation/devicetree/bindings/sound/nau8825.txt b/Documentation/devicetree/bindings/sound/nau8825.txt
+deleted file mode 100644
+index a9c34526f4cb..000000000000
+--- a/Documentation/devicetree/bindings/sound/nau8825.txt
++++ /dev/null
+@@ -1,111 +0,0 @@
+-Nuvoton NAU8825 audio codec
+-
+-This device supports I2C only.
+-
+-Required properties:
+-  - compatible : Must be "nuvoton,nau8825"
+-
+-  - reg : the I2C address of the device. This is either 0x1a (CSB=0) or 0x1b (CSB=1).
+-
+-Optional properties:
+-  - nuvoton,jkdet-enable: Enable jack detection via JKDET pin.
+-  - nuvoton,jkdet-pull-enable: Enable JKDET pin pull. If set - pin pull enabled,
+-      otherwise pin in high impedance state.
+-  - nuvoton,jkdet-pull-up: Pull-up JKDET pin. If set then JKDET pin is pull up, otherwise pull down.
+-  - nuvoton,jkdet-polarity: JKDET pin polarity. 0 - active high, 1 - active low.
+-
+-  - nuvoton,vref-impedance: VREF Impedance selection
+-      0 - Open
+-      1 - 25 kOhm
+-      2 - 125 kOhm
+-      3 - 2.5 kOhm
+-
+-  - nuvoton,micbias-voltage: Micbias voltage level.
+-      0 - VDDA
+-      1 - VDDA
+-      2 - VDDA * 1.1
+-      3 - VDDA * 1.2
+-      4 - VDDA * 1.3
+-      5 - VDDA * 1.4
+-      6 - VDDA * 1.53
+-      7 - VDDA * 1.53
+-
+-  - nuvoton,sar-threshold-num: Number of buttons supported
+-  - nuvoton,sar-threshold: Impedance threshold for each button. Array that contains up to 8 buttons configuration. SAR value is calculated as
+-    SAR = 255 * MICBIAS / SAR_VOLTAGE * R / (2000 + R)
+-    where MICBIAS is configured by 'nuvoton,micbias-voltage', SAR_VOLTAGE is configured by 'nuvoton,sar-voltage', R - button impedance.
+-    Refer datasheet section 10.2 for more information about threshold calculation.
+-
+-  - nuvoton,sar-hysteresis: Button impedance measurement hysteresis.
+-
+-  - nuvoton,sar-voltage: Reference voltage for button impedance measurement.
+-      0 - VDDA
+-      1 - VDDA
+-      2 - VDDA * 1.1
+-      3 - VDDA * 1.2
+-      4 - VDDA * 1.3
+-      5 - VDDA * 1.4
+-      6 - VDDA * 1.53
+-      7 - VDDA * 1.53
+-
+-  - nuvoton,sar-compare-time: SAR compare time
+-      0 - 500 ns
+-      1 - 1 us
+-      2 - 2 us
+-      3 - 4 us
+-
+-  - nuvoton,sar-sampling-time: SAR sampling time
+-      0 - 2 us
+-      1 - 4 us
+-      2 - 8 us
+-      3 - 16 us
+-
+-  - nuvoton,short-key-debounce: Button short key press debounce time.
+-      0 - 30 ms
+-      1 - 50 ms
+-      2 - 100 ms
+-      3 - 30 ms
+-
+-  - nuvoton,jack-insert-debounce: number from 0 to 7 that sets debounce time to 2^(n+2) ms
+-  - nuvoton,jack-eject-debounce: number from 0 to 7 that sets debounce time to 2^(n+2) ms
+-
+-  - nuvoton,crosstalk-enable: make crosstalk function enable if set.
+-
+-  - nuvoton,adcout-drive-strong: make the drive strength of ADCOUT IO PIN strong if set.
+-      Otherwise, the drive keeps normal strength.
+-
+-  - nuvoton,adc-delay-ms: Delay (in ms) to make input path stable and avoid pop noise. The
+-      default value is 125 and range between 125 to 500 ms.
+-
+-  - clocks: list of phandle and clock specifier pairs according to common clock bindings for the
+-      clocks described in clock-names
+-  - clock-names: should include "mclk" for the MCLK master clock
+-
+-Example:
+-
+-  headset: nau8825@1a {
+-      compatible = "nuvoton,nau8825";
+-      reg = <0x1a>;
+-      interrupt-parent = <&gpio>;
+-      interrupts = <TEGRA_GPIO(E, 6) IRQ_TYPE_LEVEL_LOW>;
+-      nuvoton,jkdet-enable;
+-      nuvoton,jkdet-pull-enable;
+-      nuvoton,jkdet-pull-up;
+-      nuvoton,jkdet-polarity = <GPIO_ACTIVE_LOW>;
+-      nuvoton,vref-impedance = <2>;
+-      nuvoton,micbias-voltage = <6>;
+-      // Setup 4 buttons impedance according to Android specification
+-      nuvoton,sar-threshold-num = <4>;
+-      nuvoton,sar-threshold = <0xc 0x1e 0x38 0x60>;
+-      nuvoton,sar-hysteresis = <1>;
+-      nuvoton,sar-voltage = <0>;
+-      nuvoton,sar-compare-time = <0>;
+-      nuvoton,sar-sampling-time = <0>;
+-      nuvoton,short-key-debounce = <2>;
+-      nuvoton,jack-insert-debounce = <7>;
+-      nuvoton,jack-eject-debounce = <7>;
+-      nuvoton,crosstalk-enable;
+-
+-      clock-names = "mclk";
+-      clocks = <&tegra_pmc TEGRA_PMC_CLK_OUT_2>;
+-  };
+diff --git a/Documentation/devicetree/bindings/sound/nuvoton,nau8825.yaml b/Documentation/devicetree/bindings/sound/nuvoton,nau8825.yaml
+new file mode 100644
+index 000000000000..a54f194a0b49
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/nuvoton,nau8825.yaml
+@@ -0,0 +1,239 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/nuvoton,nau8825.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NAU8825 audio CODEC
++
++maintainers:
++  - John Hsu <KCHSU0@nuvoton.com>
++
++allOf:
++  - $ref: dai-common.yaml#
++
++properties:
++  compatible:
++    enum:
++      - nuvoton,nau8825
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  nuvoton,jkdet-enable:
++    description:
++      Enable jack detection via JKDET pin.
++    type: boolean
++
++  nuvoton,jkdet-pull-enable:
++    description:
++      Enable JKDET pin pull.
++      If set - pin pull enabled, otherwise pin in high impedance state.
++    type: boolean
++
++  nuvoton,jkdet-pull-up:
++    description:
++      Pull-up JKDET pin.
++      If set then JKDET pin is pull up, otherwise pull down.
++    type: boolean
++
++  nuvoton,jkdet-polarity:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      JKDET pin polarity.
++    enum:
++      - 0 # active high
++      - 1 # active low
++    default: 1
++
++  nuvoton,vref-impedance:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      VREF Impedance selection.
++    enum:
++      - 0 # Open
++      - 1 # 25 kOhm
++      - 2 # 125 kOhm
++      - 3 # 2.5 kOhm
++    default: 2
++
++  nuvoton,micbias-voltage:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Micbias voltage level.
++    enum:
++      - 0 # VDDA
++      - 1 # VDDA
++      - 2 # VDDA * 1.1
++      - 3 # VDDA * 1.2
++      - 4 # VDDA * 1.3
++      - 5 # VDDA * 1.4
++      - 6 # VDDA * 1.53
++      - 7 # VDDA * 1.53
++    default: 6
++
++  nuvoton,sar-threshold-num:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Number of buttons supported.
++    minimum: 1
++    maximum: 4
++    default: 4
++
++  nuvoton,sar-threshold:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    description:
++      Impedance threshold for each button. Array that contains up to 8 buttons
++      configuration. SAR value is calculated as
++      SAR = 255 * MICBIAS / SAR_VOLTAGE * R / (2000 + R) where MICBIAS is
++      configured by 'nuvoton,micbias-voltage', SAR_VOLTAGE is configured by
++      'nuvoton,sar-voltage', R - button impedance.
++      Refer datasheet section 10.2 for more information about threshold
++      calculation.
++    minItems: 1
++    maxItems: 4
++    items:
++      minimum: 0
++      maximum: 255
++
++  nuvoton,sar-hysteresis:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Button impedance measurement hysteresis.
++    default: 0
++
++  nuvoton,sar-voltage:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Reference voltage for button impedance measurement.
++    enum:
++      - 0 # VDDA
++      - 1 # VDDA
++      - 2 # VDDA * 1.1
++      - 3 # VDDA * 1.2
++      - 4 # VDDA * 1.3
++      - 5 # VDDA * 1.4
++      - 6 # VDDA * 1.53
++      - 7 # VDDA * 1.53
++    default: 6
++
++  nuvoton,sar-compare-time:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      SAR compare time.
++    enum:
++      - 0 # 500 ns
++      - 1 # 1 us
++      - 2 # 2 us
++      - 3 # 4 us
++    default: 1
++
++  nuvoton,sar-sampling-time:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      SAR sampling time.
++    enum:
++      - 0 # 2 us
++      - 1 # 4 us
++      - 2 # 8 us
++      - 3 # 16 us
++    default: 1
++
++  nuvoton,short-key-debounce:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Button short key press debounce time.
++    enum:
++      - 0 # 30 ms
++      - 1 # 50 ms
++      - 2 # 100 ms
++      - 3 # 30 ms
++    default: 3
++
++  nuvoton,jack-insert-debounce:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      number from 0 to 7 that sets debounce time to 2^(n+2) ms.
++    maximum: 7
++    default: 7
++
++  nuvoton,jack-eject-debounce:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      number from 0 to 7 that sets debounce time to 2^(n+2) ms
++    maximum: 7
++    default: 0
++
++  nuvoton,crosstalk-enable:
++    description:
++      make crosstalk function enable if set.
++    type: boolean
++
++  nuvoton,adcout-drive-strong:
++    description:
++      make the drive strength of ADCOUT IO PIN strong if set.
++      Otherwise, the drive keeps normal strength.
++    type: boolean
++
++  nuvoton,adc-delay-ms:
++    description:
++      Delay (in ms) to make input path stable and avoid pop noise.
++      The default value is 125 and range between 125 to 500 ms.
++    minimum: 125
++    maximum: 500
++    default: 125
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    items:
++      - const: mclk
++
++  '#sound-dai-cells':
++    const: 0
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        codec@1a {
++            #sound-dai-cells = <0>;
++            compatible = "nuvoton,nau8825";
++            reg = <0x1a>;
++            interrupt-parent = <&gpio>;
++            interrupts = <38 IRQ_TYPE_LEVEL_LOW>;
++            nuvoton,jkdet-enable;
++            nuvoton,jkdet-pull-enable;
++            nuvoton,jkdet-pull-up;
++            nuvoton,jkdet-polarity = <GPIO_ACTIVE_LOW>;
++            nuvoton,vref-impedance = <2>;
++            nuvoton,micbias-voltage = <6>;
++            // Setup 4 buttons impedance according to Android specification
++            nuvoton,sar-threshold-num = <4>;
++            nuvoton,sar-threshold = <0xc 0x1e 0x38 0x60>;
++            nuvoton,sar-hysteresis = <1>;
++            nuvoton,sar-voltage = <0>;
++            nuvoton,sar-compare-time = <0>;
++            nuvoton,sar-sampling-time = <0>;
++            nuvoton,short-key-debounce = <2>;
++            nuvoton,jack-insert-debounce = <7>;
++            nuvoton,jack-eject-debounce = <7>;
++            nuvoton,crosstalk-enable;
++
++            clock-names = "mclk";
++            clocks = <&tegra_pmc 1>;
++        };
++    };
+-- 
+2.25.1
+
