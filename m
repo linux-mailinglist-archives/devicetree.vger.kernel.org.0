@@ -2,249 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4E6C6FF345
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 15:43:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 593C76FF342
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 15:43:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238334AbjEKNnJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 09:43:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36084 "EHLO
+        id S238335AbjEKNm6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 09:42:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237718AbjEKNmm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 09:42:42 -0400
-Received: from sender4-op-o10.zoho.com (sender4-op-o10.zoho.com [136.143.188.10])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87C39106FE;
-        Thu, 11 May 2023 06:42:20 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1683812497; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=K671dRJqJ6CcUVcTDR2GrznlYg85PJvfwUuPHVNQTONH+XIWXPEmoWVjgeRAs/P1Mh2Qna2pF2XXjmqoHr0hG51Uhq8WFRPzPl9W3qRm8vAUfBE+DZHvzAiTyJAiT52GtdR/ZMVag+SFF572cABX5VeYY0VcMREeesv8UOHC4Vc=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1683812497; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=NJC90hJhhjD1XBhnChgbIuywfFFmozsScJkdqRfbtqQ=; 
-        b=QlPAIFd/rrIJgQgcfZubrazWVZlDGzQCxgZvo/wpQW7JHd8q34YkNNDSTMlDhEnA4vKsJI2g3GZBTHfT493L4X9WlaaAkH3LkuUN32NI1wBWezshL7utjgfVEf20rLVrUkDM+khWI/3AzF02kY5qbej88P2Hey74sA26LSvE7Ds=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1683812497;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=NJC90hJhhjD1XBhnChgbIuywfFFmozsScJkdqRfbtqQ=;
-        b=fTbs23CUVhdvZ2u6uSsIsvpFnrMVxDkJ8jBLHeCCCYhRnDO+erlpFxQsWvDmxR6m
-        MS48YPnjNPxgQGPBRABS5KjMpy3ym+W8oO9X1ApAJyUYMoPSv3foyDeuiqDAEWX/Na7
-        Qql8YxzyGbe5njMDSB9p+Jf1CqTKjXsdqHF8LHQc=
-Received: from [10.1.111.147] (185.242.250.116-ip.operadors.cat [185.242.250.116]) by mx.zohomail.com
-        with SMTPS id 1683812496359181.1424886960276; Thu, 11 May 2023 06:41:36 -0700 (PDT)
-Message-ID: <43301707-8763-2a9f-956d-1ea0ae004a56@arinc9.com>
-Date:   Thu, 11 May 2023 15:41:30 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH] mips: dts: ralink: Add support for TP-Link HC220 G5 v1
- board.
-Content-Language: en-US
-To:     Liviu Dudau <liviu@dudau.co.uk>
-Cc:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Paul Burton <paulburton@kernel.org>,
+        with ESMTP id S238334AbjEKNmj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 09:42:39 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A1712D2D7;
+        Thu, 11 May 2023 06:42:19 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AEDC6113E;
+        Thu, 11 May 2023 06:43:03 -0700 (PDT)
+Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B86013F5A1;
+        Thu, 11 May 2023 06:42:16 -0700 (PDT)
+Date:   Thu, 11 May 2023 14:42:14 +0100
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Maksim Kiselev <bigunclemax@gmail.com>
+Cc:     Icenowy Zheng <icenowy@aosc.io>, Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230509200125.309026-1-liviu@dudau.co.uk>
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <20230509200125.309026-1-liviu@dudau.co.uk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+        Maxime Ripard <mripard@kernel.org>, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v5 3/5] spi: sun6i: add quirk for in-controller clock
+ divider
+Message-ID: <20230511144214.0731b371@donnerap.cambridge.arm.com>
+In-Reply-To: <20230510081121.3463710-4-bigunclemax@gmail.com>
+References: <20230510081121.3463710-1-bigunclemax@gmail.com>
+        <20230510081121.3463710-4-bigunclemax@gmail.com>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9.05.2023 22:01, Liviu Dudau wrote:
-> This WiFi AP is based on a MT7621 SoC with 128MiB RAM, 128MiB NAND,
-> a MT7603 2.4GHz WiFi and a MT7663 5GHz WiFi chips integrated on the board,
-> connected to the main SoC over PCIe.
-> 
-> The GMAC1 on the SoC is connected to PHY0 on the GSW and can be used to
-> improve routing bandwidth.
-> 
-> The device uses NMBM over NAND, which is not currently supported in the
-> mainline, so NAND node is skipped in this revision.
-> 
-> Signed-off-by: Liviu Dudau <liviu@dudau.co.uk>
+On Wed, 10 May 2023 11:11:10 +0300
+Maksim Kiselev <bigunclemax@gmail.com> wrote:
 
-This is great to see. I'm going to mainline all the MT7621 devicetrees 
-on OpenWrt at some point, this is a good step for this.
+> Previously SPI controllers in Allwinner SoCs has a clock divider inside.
+> However now the clock divider is removed and to set the transfer clock
+> rate it's only needed to set the SPI module clock to the target value
+> and configure a proper work mode.
+> 
+> According to the datasheet there are three work modes:
+> 
+> | SPI Sample Mode         | SDM(bit13) | SDC(bit11) | Run Clock |
+> |-------------------------|------------|------------|-----------|
+> | normal sample           |      1     |      0     | <= 24 MHz |
+> | delay half cycle sample |      0     |      0     | <= 40 MHz |
+> | delay one cycle sample  |      0     |      1     | >= 80 MHz |
+> 
+> Add a quirk for this kind of SPI controllers.
+> 
+> Co-developed-by: Icenowy Zheng <icenowy@aosc.io>
+> Signed-off-by: Maksim Kiselev <bigunclemax@gmail.com>
+
+Looks good now.
+
+Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+
+Cheers,
+Andre
 
 > ---
->   arch/mips/boot/dts/ralink/Makefile            |   3 +-
->   .../dts/ralink/mt7621-tplink-hc220_g5.dts     | 126 ++++++++++++++++++
->   2 files changed, 128 insertions(+), 1 deletion(-)
->   create mode 100644 arch/mips/boot/dts/ralink/mt7621-tplink-hc220_g5.dts
+>  drivers/spi/spi-sun6i.c | 91 +++++++++++++++++++++++++++--------------
+>  1 file changed, 61 insertions(+), 30 deletions(-)
 > 
-> diff --git a/arch/mips/boot/dts/ralink/Makefile b/arch/mips/boot/dts/ralink/Makefile
-> index 11732b8c8163a..c57a2b40876b4 100644
-> --- a/arch/mips/boot/dts/ralink/Makefile
-> +++ b/arch/mips/boot/dts/ralink/Makefile
-> @@ -8,6 +8,7 @@ dtb-$(CONFIG_DTB_VOCORE2)	+= vocore2.dtb
->   
->   dtb-$(CONFIG_SOC_MT7621) += \
->   	mt7621-gnubee-gb-pc1.dtb \
-> -	mt7621-gnubee-gb-pc2.dtb
-> +	mt7621-gnubee-gb-pc2.dtb \
-> +	mt7621-tplink-hc220_g5.dtb
->   
->   obj-$(CONFIG_BUILTIN_DTB)	+= $(addsuffix .o, $(dtb-y))
-> diff --git a/arch/mips/boot/dts/ralink/mt7621-tplink-hc220_g5.dts b/arch/mips/boot/dts/ralink/mt7621-tplink-hc220_g5.dts
-> new file mode 100644
-> index 0000000000000..83d15711907d0
-> --- /dev/null
-> +++ b/arch/mips/boot/dts/ralink/mt7621-tplink-hc220_g5.dts
-> @@ -0,0 +1,126 @@
-> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +/dts-v1/;
+> diff --git a/drivers/spi/spi-sun6i.c b/drivers/spi/spi-sun6i.c
+> index 01a01cd86db5..e4efab310469 100644
+> --- a/drivers/spi/spi-sun6i.c
+> +++ b/drivers/spi/spi-sun6i.c
+> @@ -42,7 +42,9 @@
+>  #define SUN6I_TFR_CTL_CS_MANUAL			BIT(6)
+>  #define SUN6I_TFR_CTL_CS_LEVEL			BIT(7)
+>  #define SUN6I_TFR_CTL_DHB			BIT(8)
+> +#define SUN6I_TFR_CTL_SDC			BIT(11)
+>  #define SUN6I_TFR_CTL_FBS			BIT(12)
+> +#define SUN6I_TFR_CTL_SDM			BIT(13)
+>  #define SUN6I_TFR_CTL_XCH			BIT(31)
+>  
+>  #define SUN6I_INT_CTL_REG		0x10
+> @@ -87,6 +89,7 @@
+>  
+>  struct sun6i_spi_cfg {
+>  	unsigned long		fifo_depth;
+> +	bool			has_clk_ctl;
+>  };
+>  
+>  struct sun6i_spi {
+> @@ -260,7 +263,7 @@ static int sun6i_spi_transfer_one(struct spi_master *master,
+>  				  struct spi_transfer *tfr)
+>  {
+>  	struct sun6i_spi *sspi = spi_master_get_devdata(master);
+> -	unsigned int mclk_rate, div, div_cdr1, div_cdr2, timeout;
+> +	unsigned int div, div_cdr1, div_cdr2, timeout;
+>  	unsigned int start, end, tx_time;
+>  	unsigned int trig_level;
+>  	unsigned int tx_len = 0, rx_len = 0;
+> @@ -350,39 +353,65 @@ static int sun6i_spi_transfer_one(struct spi_master *master,
+>  
+>  	sun6i_spi_write(sspi, SUN6I_TFR_CTL_REG, reg);
+>  
+> -	/* Ensure that we have a parent clock fast enough */
+> -	mclk_rate = clk_get_rate(sspi->mclk);
+> -	if (mclk_rate < (2 * tfr->speed_hz)) {
+> -		clk_set_rate(sspi->mclk, 2 * tfr->speed_hz);
+> -		mclk_rate = clk_get_rate(sspi->mclk);
+> -	}
+> +	if (sspi->cfg->has_clk_ctl) {
+> +		unsigned int mclk_rate = clk_get_rate(sspi->mclk);
+>  
+> -	/*
+> -	 * Setup clock divider.
+> -	 *
+> -	 * We have two choices there. Either we can use the clock
+> -	 * divide rate 1, which is calculated thanks to this formula:
+> -	 * SPI_CLK = MOD_CLK / (2 ^ cdr)
+> -	 * Or we can use CDR2, which is calculated with the formula:
+> -	 * SPI_CLK = MOD_CLK / (2 * (cdr + 1))
+> -	 * Wether we use the former or the latter is set through the
+> -	 * DRS bit.
+> -	 *
+> -	 * First try CDR2, and if we can't reach the expected
+> -	 * frequency, fall back to CDR1.
+> -	 */
+> -	div_cdr1 = DIV_ROUND_UP(mclk_rate, tfr->speed_hz);
+> -	div_cdr2 = DIV_ROUND_UP(div_cdr1, 2);
+> -	if (div_cdr2 <= (SUN6I_CLK_CTL_CDR2_MASK + 1)) {
+> -		reg = SUN6I_CLK_CTL_CDR2(div_cdr2 - 1) | SUN6I_CLK_CTL_DRS;
+> -		tfr->effective_speed_hz = mclk_rate / (2 * div_cdr2);
+> +		/* Ensure that we have a parent clock fast enough */
+> +		if (mclk_rate < (2 * tfr->speed_hz)) {
+> +			clk_set_rate(sspi->mclk, 2 * tfr->speed_hz);
+> +			mclk_rate = clk_get_rate(sspi->mclk);
+> +		}
 > +
-> +#include "mt7621.dtsi"
+> +		/*
+> +		 * Setup clock divider.
+> +		 *
+> +		 * We have two choices there. Either we can use the clock
+> +		 * divide rate 1, which is calculated thanks to this formula:
+> +		 * SPI_CLK = MOD_CLK / (2 ^ cdr)
+> +		 * Or we can use CDR2, which is calculated with the formula:
+> +		 * SPI_CLK = MOD_CLK / (2 * (cdr + 1))
+> +		 * Wether we use the former or the latter is set through the
+> +		 * DRS bit.
+> +		 *
+> +		 * First try CDR2, and if we can't reach the expected
+> +		 * frequency, fall back to CDR1.
+> +		 */
+> +		div_cdr1 = DIV_ROUND_UP(mclk_rate, tfr->speed_hz);
+> +		div_cdr2 = DIV_ROUND_UP(div_cdr1, 2);
+> +		if (div_cdr2 <= (SUN6I_CLK_CTL_CDR2_MASK + 1)) {
+> +			reg = SUN6I_CLK_CTL_CDR2(div_cdr2 - 1) | SUN6I_CLK_CTL_DRS;
+> +			tfr->effective_speed_hz = mclk_rate / (2 * div_cdr2);
+> +		} else {
+> +			div = min(SUN6I_CLK_CTL_CDR1_MASK, order_base_2(div_cdr1));
+> +			reg = SUN6I_CLK_CTL_CDR1(div);
+> +			tfr->effective_speed_hz = mclk_rate / (1 << div);
+> +		}
 > +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/leds/common.h>
+> +		sun6i_spi_write(sspi, SUN6I_CLK_CTL_REG, reg);
+>  	} else {
+> -		div = min(SUN6I_CLK_CTL_CDR1_MASK, order_base_2(div_cdr1));
+> -		reg = SUN6I_CLK_CTL_CDR1(div);
+> -		tfr->effective_speed_hz = mclk_rate / (1 << div);
+> +		clk_set_rate(sspi->mclk, tfr->speed_hz);
+> +		tfr->effective_speed_hz = clk_get_rate(sspi->mclk);
 > +
-> +/ {
-> +	compatible = "tplink,hc220-g5", "mediatek,mt7621-soc";
+> +		/*
+> +		 * Configure work mode.
+> +		 *
+> +		 * There are three work modes depending on the controller clock
+> +		 * frequency:
+> +		 * - normal sample mode           : CLK <= 24MHz SDM=1 SDC=0
+> +		 * - delay half-cycle sample mode : CLK <= 40MHz SDM=0 SDC=0
+> +		 * - delay one-cycle sample mode  : CLK >= 80MHz SDM=0 SDC=1
+> +		 */
+> +		reg = sun6i_spi_read(sspi, SUN6I_TFR_CTL_REG);
+> +		reg &= ~(SUN6I_TFR_CTL_SDM | SUN6I_TFR_CTL_SDC);
+> +
+> +		if (tfr->effective_speed_hz <= 24000000)
+> +			reg |= SUN6I_TFR_CTL_SDM;
+> +		else if (tfr->effective_speed_hz >= 80000000)
+> +			reg |= SUN6I_TFR_CTL_SDC;
+> +
+> +		sun6i_spi_write(sspi, SUN6I_TFR_CTL_REG, reg);
+>  	}
+>  
+> -	sun6i_spi_write(sspi, SUN6I_CLK_CTL_REG, reg);
+>  	/* Finally enable the bus - doing so before might raise SCK to HIGH */
+>  	reg = sun6i_spi_read(sspi, SUN6I_GBL_CTL_REG);
+>  	reg |= SUN6I_GBL_CTL_BUS_ENABLE;
+> @@ -701,10 +730,12 @@ static void sun6i_spi_remove(struct platform_device *pdev)
+>  
+>  static const struct sun6i_spi_cfg sun6i_a31_spi_cfg = {
+>  	.fifo_depth	= SUN6I_FIFO_DEPTH,
+> +	.has_clk_ctl	= true,
+>  };
+>  
+>  static const struct sun6i_spi_cfg sun8i_h3_spi_cfg = {
+>  	.fifo_depth	= SUN8I_FIFO_DEPTH,
+> +	.has_clk_ctl	= true,
+>  };
+>  
+>  static const struct of_device_id sun6i_spi_match[] = {
 
-tplink,hc220-g5-v1 should fit better. Also please make another patch to 
-add the compatible string under Boards with Mediatek/Ralink MT7621 SoC 
-on Documentation/devicetree/bindings/mips/ralink.yaml.
-
-> +	model = "TP-Link HC220 G5 v1.0";
-
-"TP-Link HC220 G5 v1" should be enough.
-
-> +
-> +	memory@0 {
-> +		device_type = "memory";
-> +		reg = <0x0 0x0 0x0 0x8000000>;
-> +	};
-> +
-> +	chosen {
-> +		/* bootargs = "earlycon=uart8260,mmio32,0x1e000c00 root=/dev/ram0 kgdboc=ttyS0,115200 ip=192.168.88.1:192.168.88.2:::hc220:eth1:none kgdbcon console=ttyS0,115200"; */
-> +		/* bootargs = "console=ttyS0,115200 earlycon=uart8260,mmio32,0x1e000c00 root=/dev/ram0"; */
-> +		bootargs = "console=ttyS0,115200 root=/dev/nfs ip=192.168.88.2:192.168.88.5::255.255.255.0:hc220_g5:eth1:none nfsroot=192.168.88.5:/mips,vers=4,sec=sys ro rootwait";
-> +	};
-> +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +
-> +		key-reset {
-> +			label = "reset";
-> +			gpios = <&gpio 8 GPIO_ACTIVE_LOW>;
-> +			linux,code = <KEY_RESTART>;
-> +		};
-> +
-> +		key-wps {
-> +			label = "wps";
-> +			gpios = <&gpio 16 GPIO_ACTIVE_LOW>;
-> +			linux,code = <KEY_WPS_BUTTON>;
-> +		};
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +
-> +		red {
-> +			color = <LED_COLOR_ID_RED>;
-> +			function = LED_FUNCTION_FAULT;
-> +			gpios = <&gpio 13 GPIO_ACTIVE_HIGH>;
-> +		};
-> +
-> +		green {
-> +			color = <LED_COLOR_ID_GREEN>;
-> +			function = LED_FUNCTION_POWER;
-> +			gpios = <&gpio 14 GPIO_ACTIVE_HIGH>;
-> +			linux,default-trigger = "default-on";
-> +		};
-> +
-> +		blue {
-> +			color = <LED_COLOR_ID_BLUE>;
-> +			function = LED_FUNCTION_WPS;
-> +			gpios = <&gpio 15 GPIO_ACTIVE_HIGH>;
-> +		};
-> +	};
-> +
-> +	resetc: reset-controller {
-> +		compatible = "ralink,rt2880-reset";
-> +		#reset-cells = <1>;
-> +	};
-> +
-> +	mtd {
-> +		compatible = "mediatek,mt7622-nfc";
-> +	};
-> +};
-> +
-> +&i2c {
-> +	status = "okay";
-> +};
-> +
-> +&pcie {
-> +	status = "okay";
-> +};
-> +
-> +&spi0 {
-> +	status = "okay";
-> +
-> +	flash@0 {
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		compatible = "jedec,spi-nor";
-> +		reg = <0>;
-> +		spi-max-frequency = <50000000>;
-> +	};
-> +};
-> +
-> +/* gmac1 connected to MT7530's phy0 */
-> +&gmac1 {
-> +	status = "okay";
-> +	phy-handle = <&ethphy0>;
-> +};
-> +
-> +&mdio {
-> +	/* MT7530's phy0 */
-> +	ethphy0: ethernet-phy@0 {
-> +		reg = <0>;
-> +		phy-mode = "rgmii";
-> +	};
-> +};
-
-These are partially wrong, check the mt7621.dtsi on mainline. Or better, 
-don't do it. I'm very close to adding support for changing the DSA 
-conduit for user ports. I suggest you just add port@0 to the DSA switch 
-node below.
-
-> +
-> +&switch0 {
-> +	/* #gpio-cells = <2>;
-> +	gpio-controller; */
-> +
-> +	ports {
-> +		/* phy0 is muxed to gmac1 */
-> +		/delete-node/ port@0;
-> +
-> +		port@1 {
-> +			status = "okay";
-> +			label = "lan1";
-> +		};
-> +
-> +		port@2 {
-> +			status = "okay";
-> +			label = "wan";
-> +		};
-> +	};
-> +};
-
-Arınç
