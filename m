@@ -2,56 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DD456FEE78
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 11:16:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F13A6FEE93
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 11:20:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230200AbjEKJQB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 05:16:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40114 "EHLO
+        id S232935AbjEKJUK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 05:20:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237106AbjEKJQA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 05:16:00 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 617A57DB1;
-        Thu, 11 May 2023 02:15:59 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 21E8E24E272;
-        Thu, 11 May 2023 17:15:53 +0800 (CST)
-Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 11 May
- 2023 17:15:53 +0800
-Received: from SD-Server.starfivetech.com (113.72.146.187) by
- EXMBX168.cuchost.com (172.16.6.78) with Microsoft SMTP Server (TLS) id
- 15.0.1497.42; Thu, 11 May 2023 17:15:52 +0800
-From:   Walker Chen <walker.chen@starfivetech.com>
-To:     Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Claudiu Beznea <Claudiu.Beznea@microchip.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Walker Chen <walker.chen@starfivetech.com>
-CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
-Subject: [PATCH v4 3/3] riscv: dts: starfive: add the node and pins configuration for tdm
-Date:   Thu, 11 May 2023 17:15:49 +0800
-Message-ID: <20230511091549.28003-4-walker.chen@starfivetech.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230511091549.28003-1-walker.chen@starfivetech.com>
-References: <20230511091549.28003-1-walker.chen@starfivetech.com>
+        with ESMTP id S237522AbjEKJTZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 05:19:25 -0400
+Received: from mail-vk1-xa2c.google.com (mail-vk1-xa2c.google.com [IPv6:2607:f8b0:4864:20::a2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A10479EC1
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 02:18:48 -0700 (PDT)
+Received: by mail-vk1-xa2c.google.com with SMTP id 71dfb90a1353d-44fd3c2300dso3010137e0c.1
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 02:18:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1683796727; x=1686388727;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mCpJk3R8UEUc900fWaZ36e4XkCAv/PqWqpOGayqH3do=;
+        b=IJ2xCqITqQxYd2j21guIc8CZ8a3qzOQddlNmBPpwRr3wVfJWaXyJI/ZKssRhmcOTgA
+         ilyj2rg2fCrteFz+fjY/juhlucDO3hu6UGVP/mhHZ/5db2Ph3NG2SEHP5q6avENqPQEw
+         vd7GdnA5jMAlyOsQA09qOdBp7bqPEQ/s8ZXp8QFwSB7RC/I3DqQbtiDdGq6uemVS2Ld0
+         x0bGAOvDLv5PbDm8I88MTMA4AP3yIQlfKTU+4zyo27lkONLtPWZOXMYYdHg9qekj+JYY
+         lSKV46S0nCXogvNJCBGFhU8sEupT0DaXqxj9jwiG6qCwOmNnPzyk2uadn5QFM2mO4lxW
+         LegQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683796727; x=1686388727;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=mCpJk3R8UEUc900fWaZ36e4XkCAv/PqWqpOGayqH3do=;
+        b=Eo68CQpFUejL0WquM94sgZMmPAdRjBEWQNEHTFKOB3P/ApWpHdMyJO++NoHG1RjAVW
+         mXH+IlTvFr0fK7fF+Brt84mmoK+vTHrqExdC8VzFIOfCkeTIuEnFb+X4HCEPFC+efDmm
+         wch6+mkw4yPBPA8fSWC7qChIHXfFwJw3x4LOkRXOukArUWdbGKNRBBfbtEQ2LWAsGZo0
+         TXt+gP+/ZOc+iPMa9ijxji51DNJa7AiZhLNPTIV/krx8nLjJyqw1GuIijsE5wobkG/7l
+         p6wsnncAhU0zONDqrYg0UYDsO07WqPglyTFj/OsEgBaRw1xWhlZvefdxvbJitd++qwSm
+         EHMw==
+X-Gm-Message-State: AC+VfDxcotVKsRAkorhIEPC4Zt0F6r7OfoTy1kgtPyYHEJGNkIToGDpo
+        m3LTrlhn3JNB9nisZC/qSivS0NjyVZ+bKFviWI87qw==
+X-Google-Smtp-Source: ACHHUZ7PfcbhhIISYu9xCWNbAAg7XKAZcsN35LL5BB55uAZP1vndrSeFKFLrjV9j0Mzf8/9C95DuBCkC6LahVX2mBwE=
+X-Received: by 2002:a05:6102:2857:b0:436:158:cf6c with SMTP id
+ az23-20020a056102285700b004360158cf6cmr4794491vsb.6.1683796727674; Thu, 11
+ May 2023 02:18:47 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [113.72.146.187]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX168.cuchost.com
- (172.16.6.78)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+References: <20230413160607.4128315-1-sean.anderson@seco.com> <20230413160607.4128315-4-sean.anderson@seco.com>
+In-Reply-To: <20230413160607.4128315-4-sean.anderson@seco.com>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Thu, 11 May 2023 11:18:36 +0200
+Message-ID: <CAMRc=Mft9a3PNo78jiSGfKaZDhAkpPTrcTfarcr=tSmLWzj-Qw@mail.gmail.com>
+Subject: Re: [PATCH v14 03/15] dt-bindings: Convert gpio-mmio to yaml
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-phy@lists.infradead.org,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Camelia Alexandra Groza <camelia.groza@nxp.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linuxppc-dev@lists.ozlabs.org,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        =?UTF-8?Q?Fern=C3=A1ndez_Rojas?= <noltari@gmail.com>,
+        Jonas Gorski <jonas.gorski@gmail.com>,
+        linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,102 +81,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the tdm controller node and pins configuration of tdm for the
-StarFive JH7110 SoC.
+On Thu, Apr 13, 2023 at 6:06=E2=80=AFPM Sean Anderson <sean.anderson@seco.c=
+om> wrote:
+>
+> This is a generic binding for simple MMIO GPIO controllers. Although we
+> have a single driver for these controllers, they were previously spread
+> over several files. Consolidate them. The register descriptions are
+> adapted from the comments in the source. There is no set order for the
+> registers, and some registers may be omitted. Because of this, reg-names
+> is mandatory, and no order is specified.
+>
+> Rename brcm,bcm6345-gpio to brcm,bcm63xx-gpio to reflect that bcm6345
+> has moved.
+>
+> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> ---
+> Linus or Bartosz, feel free to pick this up as the rest of this series
+> may not be merged any time soon.
+>
 
-Signed-off-by: Walker Chen <walker.chen@starfivetech.com>
----
- .../jh7110-starfive-visionfive-2.dtsi         | 40 +++++++++++++++++++
- arch/riscv/boot/dts/starfive/jh7110.dtsi      | 21 ++++++++++
- 2 files changed, 61 insertions(+)
+Applied, thanks!
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-index 1155b97b593d..19b5954ee72d 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-@@ -214,6 +214,40 @@
- 			slew-rate = <0>;
- 		};
- 	};
-+
-+	tdm0_pins: tdm0-pins {
-+		tdm0-pins-tx {
-+			pinmux = <GPIOMUX(44, GPOUT_SYS_TDM_TXD,
-+					      GPOEN_ENABLE,
-+					      GPI_NONE)>;
-+			bias-pull-up;
-+			drive-strength = <2>;
-+			input-disable;
-+			input-schmitt-disable;
-+			slew-rate = <0>;
-+		};
-+
-+		tdm0-pins-rx {
-+			pinmux = <GPIOMUX(61, GPOUT_HIGH,
-+					      GPOEN_DISABLE,
-+					      GPI_SYS_TDM_RXD)>;
-+			input-enable;
-+		};
-+
-+		tdm0-pins-sync {
-+			pinmux = <GPIOMUX(63, GPOUT_HIGH,
-+					      GPOEN_DISABLE,
-+					      GPI_SYS_TDM_SYNC)>;
-+			input-enable;
-+		};
-+
-+		tdm0-pins-pcmclk {
-+			pinmux = <GPIOMUX(38, GPOUT_HIGH,
-+					      GPOEN_DISABLE,
-+					      GPI_SYS_TDM_CLK)>;
-+			input-enable;
-+		};
-+	};
- };
- 
- &uart0 {
-@@ -221,3 +255,9 @@
- 	pinctrl-0 = <&uart0_pins>;
- 	status = "okay";
- };
-+
-+&tdm {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&tdm0_pins>;
-+	status = "okay";
-+};
-diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-index 866313570a7e..cfda6fb0d91b 100644
---- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-@@ -366,6 +366,27 @@
- 			status = "disabled";
- 		};
- 
-+		tdm: tdm@10090000 {
-+			compatible = "starfive,jh7110-tdm";
-+			reg = <0x0 0x10090000 0x0 0x1000>;
-+			clocks = <&syscrg JH7110_SYSCLK_TDM_AHB>,
-+				 <&syscrg JH7110_SYSCLK_TDM_APB>,
-+				 <&syscrg JH7110_SYSCLK_TDM_INTERNAL>,
-+				 <&syscrg JH7110_SYSCLK_TDM_TDM>,
-+				 <&syscrg JH7110_SYSCLK_MCLK_INNER>,
-+				 <&tdm_ext>;
-+			clock-names = "tdm_ahb", "tdm_apb",
-+				      "tdm_internal", "tdm",
-+				      "mclk_inner", "tdm_ext";
-+			resets = <&syscrg JH7110_SYSRST_TDM_AHB>,
-+				 <&syscrg JH7110_SYSRST_TDM_APB>,
-+				 <&syscrg JH7110_SYSRST_TDM_CORE>;
-+			dmas = <&dma 20>, <&dma 21>;
-+			dma-names = "rx","tx";
-+			#sound-dai-cells = <0>;
-+			status = "disabled";
-+		};
-+
- 		stgcrg: clock-controller@10230000 {
- 			compatible = "starfive,jh7110-stgcrg";
- 			reg = <0x0 0x10230000 0x0 0x10000>;
--- 
-2.17.1
-
+Bart
