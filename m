@@ -2,56 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DA376FF7A7
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 18:42:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61D4D6FF7E0
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 18:58:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238097AbjEKQmv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 12:42:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55854 "EHLO
+        id S238695AbjEKQ6K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 12:58:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237639AbjEKQmu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 12:42:50 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F15985276;
-        Thu, 11 May 2023 09:42:48 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8584564F81;
-        Thu, 11 May 2023 16:42:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCFF8C433EF;
-        Thu, 11 May 2023 16:42:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1683823367;
-        bh=uE+kz1AYO8N2ygn2pwokeA3SP3flf+4d4hGGLmy5QeM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=dKVUmkp4hEg1BL+MtZ6xanqyOZUsx/sj2pLBtZKO7hwdSwF2Af7i4ZDFTfnhlm4ys
-         zCRvb7bkfmDpnr4RAP0n6fwfyUzexD07blJNxAD1dN61EROnz7aYtVCfAFyuZfhU3a
-         ZytISSiLF3yAJPVTVsAF6Eun4XOsTsqYkc4PICCsPduEIzTcclRuQUgYGplO1y1p5Z
-         uRC3oTxhCXjsue6JM3kG0x+gf10uvNiNXaFWpwSl/W4wBKUSpU4B5r886xm/ht/T0w
-         JA5TSscjqhNyOQA8ZnuW8vrrLYnWc3XVAeUZUbuIFbDTut/HHRAQBFTwoUCkDhv7Zj
-         pBK+OWm6ZOf5w==
-Date:   Thu, 11 May 2023 09:46:23 -0700
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Rohit Agarwal <quic_rohiagar@quicinc.com>
-Cc:     agross@kernel.org, konrad.dybcio@linaro.org,
-        linus.walleij@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, richardcochran@gmail.com,
-        manivannan.sadhasivam@linaro.org, andy.shevchenko@gmail.com,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org
-Subject: Re: [PATCH v7 4/4] pinctrl: qcom: Add SDX75 pincontrol driver
-Message-ID: <20230511164623.iaziwwwfyroextce@ripper>
-References: <1683730825-15668-1-git-send-email-quic_rohiagar@quicinc.com>
- <1683730825-15668-5-git-send-email-quic_rohiagar@quicinc.com>
+        with ESMTP id S238672AbjEKQ6J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 12:58:09 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63DDE1FDB
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 09:58:07 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-50bc0117683so15770409a12.1
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 09:58:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683824286; x=1686416286;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=MAcKqyDIPEwD/PLGMdGJdczQtEbvNxxD9j8N9ECA2bQ=;
+        b=v4rZxJGZIaKRbrkBAziJH/KFqQckrf3f3Ic/dMJ/DjgfE7Y+h9TzHqpVBFigbkkppG
+         F+ohsIE1tkrBM9jlIMIelZliNydwg7Jj0wryChw1ekNUmW7oB8ZurTuictbIEyDCUdkA
+         HD+1+kVMqBJS1odtI6rcwqRUclE3ORkjQiXtON9Sp5ROGUYWEfB0rLl+bteVQLJKBga2
+         LfhVj9s9Tq+wGWR5p6l86XRXxW8hdJOT/3PkRKwaLKlfBnq6rLGJzDB0hoc009iJcbKx
+         aEadFGUChT9KZ1G1yZ24dvj5mfic7eXDOKTJcXujCRmFesDQQAYcMirL6/akr567MJQD
+         w36w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683824286; x=1686416286;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MAcKqyDIPEwD/PLGMdGJdczQtEbvNxxD9j8N9ECA2bQ=;
+        b=DPIPhCstsv9mMkdlDkbG41qDG0JhekDyh/BYQtJtc8ixCfrRjhfZ0ETAUC2mpF1pdN
+         IqkHWKwYiIJC4UdYgV3peom2WrRX7LwKSZNIgRef6vEiHRZo3XZPGTKhBglrUH5K5DBA
+         dup10GUZyrt67IgsdYRdr6HKz4TL6cTjrbboUi7I7PT81JiqcUF00cwsThzQKxpxdT/N
+         P15tgE7pxJagqdyHm5DB6tmtIg2R761SMP1fJKXD/kWouBM4fhAsTzBpRKHBMecQm+AD
+         DNuD//myCTdNfzRVsfSk/X8Iz+7K/XaRCcJSCkMUllKwWPUc6oCwHs0ZhMEJwTZZo9WN
+         y7vg==
+X-Gm-Message-State: AC+VfDwRej54j3beSAFzuJYGaDZyhQnoQkDrFmLBsK4lkJqhCRxUlDxd
+        ykgiir/JHq/vqbd4Dhd3djPp8Q==
+X-Google-Smtp-Source: ACHHUZ7hToPLX0AsmAcSxWkOwsPyrnw++so30WZbs8XuIhISNX2QOBPGEpUv7l4RODb/XcZia+2qJg==
+X-Received: by 2002:aa7:df11:0:b0:505:4f7:8a50 with SMTP id c17-20020aa7df11000000b0050504f78a50mr16120093edy.5.1683824285844;
+        Thu, 11 May 2023 09:58:05 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:d7cd:1be6:f89d:7218? ([2a02:810d:15c0:828:d7cd:1be6:f89d:7218])
+        by smtp.gmail.com with ESMTPSA id y24-20020aa7ccd8000000b0050da1edb2e4sm3084718edt.31.2023.05.11.09.58.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 May 2023 09:58:05 -0700 (PDT)
+Message-ID: <7dcd3828-c4ad-bd03-b18e-a6ae4ac5bd50@linaro.org>
+Date:   Thu, 11 May 2023 18:58:04 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1683730825-15668-5-git-send-email-quic_rohiagar@quicinc.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v3 5/6] dt-bindings: memory-region property for
+ tegra186-bpmp
+Content-Language: en-US
+To:     Peter De Schrijver <pdeschrijver@nvidia.com>
+Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org, stefank@nvidia.com
+References: <20230510142248.183629-1-pdeschrijver@nvidia.com>
+ <20230510142248.183629-6-pdeschrijver@nvidia.com>
+ <cdba4bb0-551b-a3b2-9329-139d6cda71be@linaro.org>
+ <ZFyhqXhzOUKYUafA@44189d9-lcedt>
+ <5d01e717-39f1-798b-dda8-022b8430dc7d@linaro.org>
+ <ZFzEFRBKMcUgrILn@44189d9-lcedt>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <ZFzEFRBKMcUgrILn@44189d9-lcedt>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,118 +82,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 10, 2023 at 08:30:25PM +0530, Rohit Agarwal wrote:
-> Add initial Qualcomm SDX75 pinctrl driver to support pin configuration
-> with pinctrl framework for SDX75 SoC.
-> While at it, reordering the SDX65 entry.
+On 11/05/2023 12:31, Peter De Schrijver wrote:
+> On Thu, May 11, 2023 at 11:03:24AM +0200, Krzysztof Kozlowski wrote:
+>> On 11/05/2023 10:04, Peter De Schrijver wrote:
+>>> On Wed, May 10, 2023 at 05:01:55PM +0200, Krzysztof Kozlowski wrote:
+>>>> On 10/05/2023 16:22, Peter De Schrijver wrote:
+>>>>> Add memory-region property to the tegra186-bpmp binding to support
+>>>>> DRAM MRQ GSCs.
+>>>>>
+>>>>> Co-developed-by: Stefan Kristiansson <stefank@nvidia.com>
+>>>>> Signed-off-by: Stefan Kristiansson <stefank@nvidia.com>
+>>>>> Signed-off-by: Peter De Schrijver <pdeschrijver@nvidia.com>
+>>>>> ---
+>>>>
+>>>> Also no changelog. Since I do not see improvements after Thierry
+>>>> comments I assume you send the same.
+>>>>
+>>>
+>>> The changelog is in the cover letter. I will send it to you next
+>>> iteration.
+>>
+>> I got only few patches, rest is missing including changelog. Thus it is
+>> the same as it did not exist.
+>>
 > 
+> Do you want all of them? Some people seem to object to that so I didn't
+> send them to all people.
 
-Nice, some comment below.
+If you do not send entire patchset to everyone, then cover letter should
+reach everyone.
 
-> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
-> ---
-[..]
-> diff --git a/drivers/pinctrl/qcom/pinctrl-sdx75.c b/drivers/pinctrl/qcom/pinctrl-sdx75.c
-> new file mode 100644
-> index 0000000..6f95c0a
-> --- /dev/null
-> +++ b/drivers/pinctrl/qcom/pinctrl-sdx75.c
-> @@ -0,0 +1,1595 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
-> +#include "pinctrl-msm.h"
-> +
-> +#define REG_BASE 0x100000
+Best regards,
+Krzysztof
 
-We typically reference the inner TLMM block and omit this offset... But
-I don't have a strong opinion.
-
-[..]
-
-> +enum sdx75_functions {
-> +	msm_mux_gpio,
-
-Please sort these alphabetically.
-
-> +	msm_mux_eth0_mdc,
-[..]
-> +	msm_mux__,
-> +};
-> +
-[..]
-> +static const struct pinfunction sdx75_functions[] = {
-> +	MSM_PIN_FUNCTION(gpio),
-> +	MSM_PIN_FUNCTION(eth0_mdc),
-
-Please sort these alphabetically, and please squash individual pins into
-their functional group.
-
-[..]
-> +	MSM_PIN_FUNCTION(qup_se0_l0),
-> +	MSM_PIN_FUNCTION(qup_se0_l1),
-> +	MSM_PIN_FUNCTION(qup_se0_l2),
-> +	MSM_PIN_FUNCTION(qup_se0_l3),
-
-E.g. this forces the DT writer to write individual -pins for each
-signal. Better keep it "qup_se0" and the author is free to group the
-pins in their states as they need (and as you know you don't need to
-specify all pins for a given function).
-
-[..]
-> +};
-> +
-> +/* Every pin is maintained as a single group, and missing or non-existing pin
-> + * would be maintained as dummy group to synchronize pin group index with
-> + * pin descriptor registered with pinctrl core.
-> + * Clients would not be able to request these dummy pin groups.
-> + */
-
-Please omit this comment.
-
-> +static const struct msm_pingroup sdx75_groups[] = {
-[..]
-> +	[16] = PINGROUP(16, pri_mi2s_ws, qup_se2_l2, qup_se1_l2_mirb, qdss_cti,
-> +			qdss_cti, _, _, _, _, _),
-
-Please break the rules and leave these lines unwrapped.
-
-> +	[17] = PINGROUP(17, pri_mi2s_data0, qup_se2_l3, qup_se1_l3_mirb,
-> +			qdss_cti, qdss_cti, _, _, _, _, _),
-[..]
-> +	[131] = PINGROUP(131, _, _, _, _, _, _, _, _, _, _),
-> +	[132] =	PINGROUP(132, _, _, _, _, _, _, _, _, _, _),
-> +	[133] = SDC_QDSD_PINGROUP(sdc1_rclk, 0x19A000, 16, 0),
-
-Lowercase hex digits please.
-
-> +	[134] = SDC_QDSD_PINGROUP(sdc1_clk, 0x19A000, 14, 6),
-> +	[135] = SDC_QDSD_PINGROUP(sdc1_cmd, 0x19A000, 11, 3),
-> +	[136] = SDC_QDSD_PINGROUP(sdc1_data, 0x19A000, 9, 0),
-> +	[137] = SDC_QDSD_PINGROUP(sdc2_clk, 0x19B000, 14, 6),
-> +	[138] = SDC_QDSD_PINGROUP(sdc2_cmd, 0x19B000, 11, 3),
-> +	[139] = SDC_QDSD_PINGROUP(sdc2_data, 0x19B000, 9, 0),
-> +};
-[..]
-> +static const struct of_device_id sdx75_pinctrl_of_match[] = {
-> +	{ .compatible = "qcom,sdx75-tlmm", .data = &sdx75_pinctrl },
-> +	{ }
-> +};
-> +
-[..]
-> +
-> +MODULE_DESCRIPTION("QTI sdx75 pinctrl driver");
-> +MODULE_LICENSE("GPL");
-> +MODULE_DEVICE_TABLE(of, sdx75_pinctrl_of_match);
-
-Keep the MODULE_DEVICE_TABLE() just below the sdx75_pinctrl_of_match
-please, so future readers doesn't need to search for it.
-
-Regards,
-Bjorn
