@@ -2,70 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E9F246FFB9C
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 23:05:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4BD86FFBB8
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 23:13:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239120AbjEKVFR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 17:05:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52936 "EHLO
+        id S239049AbjEKVNy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 17:13:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238792AbjEKVFN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 17:05:13 -0400
-Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2A3F7EE9;
-        Thu, 11 May 2023 14:05:11 -0700 (PDT)
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-        by mx.sberdevices.ru (Postfix) with ESMTP id 2567B5FD62;
-        Fri, 12 May 2023 00:05:10 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1683839110;
-        bh=izMKXdTFH1h2UBa+MY3F3v9dqaNkzDFsQICpQYJio5U=;
-        h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
-        b=lAqWEQ3PMUY37Xoo9RjMkqSYFW71Ex4lEIV5r5bPkbSm3VvjG6VN21slRxo3EtFPn
-         NdCJ9UsMt+lb5YdHQLxs9aERJ/MIwokQFNHbCr+pQ5AKLS5NXKbUREgi0py/ifPm5n
-         nV0vIAh783Roh1WO6WU4OjiXjxPCHLNhSNQbeFcdmJCs7H/AehdA0l3dgLy6PWjVm+
-         U3TIRhTuxct1FCuElre23kqogWOUp+7mUkZ4gi9CiBF3KNeho4wJv/TsKP8CYJlm5F
-         aHCBdCx9cBFt5nMbdIlLeAyGEIE0cvEMHQ4npapWjZIomKzH1uRD0vNgVJaz0T23t2
-         0pBkT95bf2kLw==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-        by mx.sberdevices.ru (Postfix) with ESMTP;
-        Fri, 12 May 2023 00:05:10 +0300 (MSK)
-From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To:     <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <neil.armstrong@linaro.org>,
-        <khilman@baylibre.com>, <jbrunet@baylibre.com>,
-        <martin.blumenstingl@googlemail.com>, <mturquette@baylibre.com>,
-        <vkoul@kernel.org>, <kishon@kernel.org>, <hminas@synopsys.com>,
-        <Thinh.Nguyen@synopsys.com>
-CC:     <yue.wang@amlogic.com>, <hanjie.lin@amlogic.com>,
-        <kernel@sberdevices.ru>, <rockosov@gmail.com>,
-        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-phy@lists.infradead.org>,
-        Dmitry Rokosov <ddrokosov@sberdevices.ru>
-Subject: [PATCH v4 3/3] usb: dwc3-meson-g12a: support OTG switch for all IP versions
-Date:   Fri, 12 May 2023 00:04:55 +0300
-Message-ID: <20230511210455.6634-4-ddrokosov@sberdevices.ru>
-X-Mailer: git-send-email 2.36.0
-In-Reply-To: <20230511210455.6634-1-ddrokosov@sberdevices.ru>
-References: <20230511210455.6634-1-ddrokosov@sberdevices.ru>
+        with ESMTP id S238866AbjEKVNx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 17:13:53 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B07891BF2
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 14:13:52 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 448E7651F0
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 21:13:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3865C433EF;
+        Thu, 11 May 2023 21:13:49 +0000 (UTC)
+Date:   Thu, 11 May 2023 22:13:47 +0100
+From:   Catalin Marinas <catalin.marinas@arm.com>
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     James Morse <james.morse@arm.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Will Deacon <will@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Oliver Upton <oliver.upton@linux.dev>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH 0/6] arm64: errata: Disable FWB on parts with non-ARM
+ interconnects
+Message-ID: <ZF1ai79ljnilIMoG@arm.com>
+References: <20230330165128.3237939-1-james.morse@arm.com>
+ <ZF0io4mDjRdm1AxN@arm.com>
+ <86y1lun1zh.wl-maz@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/05/11 10:21:00 #21259776
-X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <86y1lun1zh.wl-maz@kernel.org>
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,111 +52,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From now, the Amlogic A1 USB controller is capable of switching between
-host and gadget modes based on the status of the OTG_ID signal or via
-manual USB role change.
-Previously, only the Amlogic A1 IP version did not use OTG support for
-host only mode, but this is no longer applicable.
-Therefore, the 'otg_switch_supported' option can now be removed as
-it is no longer required.
+On Thu, May 11, 2023 at 07:42:58PM +0100, Marc Zyngier wrote:
+> On Thu, 11 May 2023 18:15:15 +0100,
+> Catalin Marinas <catalin.marinas@arm.com> wrote:
+> > On Thu, Mar 30, 2023 at 05:51:22PM +0100, James Morse wrote:
+> > > When stage1 translation is disabled, the SCTRL_E1.I bit controls the
+> > > attributes used for instruction fetch, one of the options results in a
+> > > non-cacheable access. A whole host of CPUs missed the FWB override
+> > > in this case, meaning a KVM guest could fetch stale/junk data instead of
+> > > instructions.
+> > > 
+> > > The workaround is to disable FWB, and do the required cache maintenance
+> > > instead.
+> > 
+> > I think the workaround can be to only do the required cache maintenance
+> > without disabling FWB. Having FWB on doesn't bring any performance
+> > benefits if we do the cache maintenance anyway but keeping it around may
+> > be useful for other reasons (e.g. KVM device pass-through using
+> > cacheable mappings, though not something KVM supports currently).
+> 
+> But you'd also rely on the guest doing its own cache maintenance for
+> instructions it writes, right?
 
-Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/usb/dwc3/dwc3-meson-g12a.c | 16 +++-------------
- 1 file changed, 3 insertions(+), 13 deletions(-)
+Ah, you are right. It looks like I only considered the host writing
+instructions. If the guest disabled stage 1 and wrote some instructions
+with FWB on, they'd not necessarily reach the PoC while the instructions
+are fetched from PoC with this bug. Even with SCTLR_EL1.I==0, the guest
+is supposed to do an IC IVAU if it wrote instructions but that's not
+sufficient (hint to the micro-architects, add a chicken bit to upgrade
+IC IVAU to also do a DC CVAC ;))
 
-diff --git a/drivers/usb/dwc3/dwc3-meson-g12a.c b/drivers/usb/dwc3/dwc3-meson-g12a.c
-index b282ad0e69c6..a13afdb219e8 100644
---- a/drivers/usb/dwc3/dwc3-meson-g12a.c
-+++ b/drivers/usb/dwc3/dwc3-meson-g12a.c
-@@ -140,7 +140,6 @@ static const char * const meson_a1_phy_names[] = {
- struct dwc3_meson_g12a;
- 
- struct dwc3_meson_g12a_drvdata {
--	bool otg_switch_supported;
- 	bool otg_phy_host_port_disable;
- 	struct clk_bulk_data *clks;
- 	int num_clks;
-@@ -189,7 +188,6 @@ static int dwc3_meson_gxl_usb_post_init(struct dwc3_meson_g12a *priv);
-  */
- 
- static const struct dwc3_meson_g12a_drvdata gxl_drvdata = {
--	.otg_switch_supported = true,
- 	.otg_phy_host_port_disable = true,
- 	.clks = meson_gxl_clocks,
- 	.num_clks = ARRAY_SIZE(meson_g12a_clocks),
-@@ -203,7 +201,6 @@ static const struct dwc3_meson_g12a_drvdata gxl_drvdata = {
- };
- 
- static const struct dwc3_meson_g12a_drvdata gxm_drvdata = {
--	.otg_switch_supported = true,
- 	.otg_phy_host_port_disable = true,
- 	.clks = meson_gxl_clocks,
- 	.num_clks = ARRAY_SIZE(meson_g12a_clocks),
-@@ -217,7 +214,6 @@ static const struct dwc3_meson_g12a_drvdata gxm_drvdata = {
- };
- 
- static const struct dwc3_meson_g12a_drvdata axg_drvdata = {
--	.otg_switch_supported = true,
- 	.clks = meson_gxl_clocks,
- 	.num_clks = ARRAY_SIZE(meson_gxl_clocks),
- 	.phy_names = meson_a1_phy_names,
-@@ -230,7 +226,6 @@ static const struct dwc3_meson_g12a_drvdata axg_drvdata = {
- };
- 
- static const struct dwc3_meson_g12a_drvdata g12a_drvdata = {
--	.otg_switch_supported = true,
- 	.clks = meson_g12a_clocks,
- 	.num_clks = ARRAY_SIZE(meson_g12a_clocks),
- 	.phy_names = meson_g12a_phy_names,
-@@ -242,7 +237,6 @@ static const struct dwc3_meson_g12a_drvdata g12a_drvdata = {
- };
- 
- static const struct dwc3_meson_g12a_drvdata a1_drvdata = {
--	.otg_switch_supported = false,
- 	.clks = meson_a1_clocks,
- 	.num_clks = ARRAY_SIZE(meson_a1_clocks),
- 	.phy_names = meson_a1_phy_names,
-@@ -307,7 +301,7 @@ static int dwc3_meson_g12a_usb2_init_phy(struct dwc3_meson_g12a *priv, int i,
- 			U2P_R0_POWER_ON_RESET,
- 			U2P_R0_POWER_ON_RESET);
- 
--	if (priv->drvdata->otg_switch_supported && i == USB2_OTG_PHY) {
-+	if (i == USB2_OTG_PHY) {
- 		regmap_update_bits(priv->u2p_regmap[i], U2P_R0,
- 				   U2P_R0_ID_PULLUP | U2P_R0_DRV_VBUS,
- 				   U2P_R0_ID_PULLUP | U2P_R0_DRV_VBUS);
-@@ -490,7 +484,7 @@ static int dwc3_meson_g12a_otg_mode_set(struct dwc3_meson_g12a *priv,
- {
- 	int ret;
- 
--	if (!priv->drvdata->otg_switch_supported || !priv->phys[USB2_OTG_PHY])
-+	if (!priv->phys[USB2_OTG_PHY])
- 		return -EINVAL;
- 
- 	if (mode == PHY_MODE_USB_HOST)
-@@ -589,9 +583,6 @@ static int dwc3_meson_g12a_otg_init(struct platform_device *pdev,
- 	int ret, irq;
- 	struct device *dev = &pdev->dev;
- 
--	if (!priv->drvdata->otg_switch_supported)
--		return 0;
--
- 	if (priv->otg_mode == USB_DR_MODE_OTG) {
- 		/* Ack irq before registering */
- 		regmap_update_bits(priv->usb_glue_regmap, USB_R5,
-@@ -841,8 +832,7 @@ static int dwc3_meson_g12a_remove(struct platform_device *pdev)
- 	struct device *dev = &pdev->dev;
- 	int i;
- 
--	if (priv->drvdata->otg_switch_supported)
--		usb_role_switch_unregister(priv->role_switch);
-+	usb_role_switch_unregister(priv->role_switch);
- 
- 	of_platform_depopulate(dev);
- 
+> Which probably means exposing a different CLIDR_EL1 so that
+> LoC/LoUU/LoUIS are consistent with *not* having FWB... I also wonder
+> if keeping FWB set has the potential to change the semantics of the
+> CMOs (the spec seems silent on that front).
+
+Not sure about CMOs, I'd expect them to behave in the same way. However,
+I don't see how faking CLIDR_EL1 can trick the guest into doing DC CVAC
+when its MMU is off.
+
+> > That said, maybe we can reduce the risk further by doing the
+> > vcpu_has_run_once() trick with !FWB and clean the D side to PoC on a
+> > stage 2 exec fault (together with the I-cache invalidation). We can then
+> > ignore any other cache maintenance on S2 faults until someone shouts (we
+> > can maybe recommend forcing FWB off on the command line through the
+> > cpuid override).
+> 
+> You lost me here with your vcpu_has_run_once().
+
+Most likely I lost myself in the code. So the tricks we used in the past
+tracking the guest MMU off/on was only for the D side. If (we hope that)
+the guest only wrote instructions to a page once before executing them
+(and never writing instructions again), we could trap a subsequent exec
+fault and do the D-cache clean to PoC again.
+
+> Keeping the CMOs on exec fault is definitely manageable. But is that
+> enough?
+
+Yeah, not sure it's enough if the guest keeps writing instructions to
+the same page with the MMU off.
+
 -- 
-2.36.0
-
+Catalin
