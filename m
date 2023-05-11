@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B06C76FFC80
-	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 00:07:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 973F46FFC8D
+	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 00:08:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238866AbjEKWHW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 18:07:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56410 "EHLO
+        id S239244AbjEKWHa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 18:07:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238825AbjEKWHV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 18:07:21 -0400
-Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 203386A4B
-        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 15:07:20 -0700 (PDT)
-Received: by mail-pg1-x529.google.com with SMTP id 41be03b00d2f7-517c840f181so4778160a12.3
-        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 15:07:20 -0700 (PDT)
+        with ESMTP id S239118AbjEKWH2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 18:07:28 -0400
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6797B72A3
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 15:07:22 -0700 (PDT)
+Received: by mail-pj1-x1035.google.com with SMTP id 98e67ed59e1d1-24eab83867dso8010674a91.3
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 15:07:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1683842839; x=1686434839;
+        d=chromium.org; s=google; t=1683842842; x=1686434842;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=E8Q+tBaaYskzauPjWFnHayDJlvaj5LMUfZeaf2NrQbQ=;
-        b=jO3XvKkwtvxNz993+Li+17L6pa4w/TVRvEMY4tUBXUiXVgPBB5uE1U72Py0ADFowqw
-         4UhdzKHqnYW3oIJhRX6Ezvcu9lKjTsfbJHjTMphXNHjJgnIFfy0PwACd0pi08JOHNN5O
-         k+3Cb/D+sfCroFVfwv7zboAl4BRPgefSneMLY=
+        bh=7GXLLz1cb9WjUR21vBHXCkRjhHYZlPAU9fn/3rFZSY4=;
+        b=DExkZbfiK7dYHdPhxBr1koLSFcgH+8Qe2mzgYfxjWSP/l0Qrezi1bLqTam26KdtwOY
+         39sMwKChIzmpXPLMiTALhfSPVRkRfcYA+JkOOmLwzXXWNweNCgMnDBwgihE9jkZ+CdoO
+         a5jxyKCc+96tFL1pYbjuJVvHn82u64k8LtHmI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683842839; x=1686434839;
+        d=1e100.net; s=20221208; t=1683842842; x=1686434842;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=E8Q+tBaaYskzauPjWFnHayDJlvaj5LMUfZeaf2NrQbQ=;
-        b=jg3KtaCVK+/n9lLzyClVKvLKZc+pLw/lP6gU4tCqoO1oriP/W+zdk7zTFEHDkPsz6k
-         Puy9rKZOFcfjFvHIDCXt/plwFxWzyFLkBHQ6UWHqX+2gp4sjlj5FLteKbq80R1VNkbfB
-         w2/tdYbwxL1TFHMuxyIvjSqEuO8lpTq9K8QT5JADlwcDPE7kPEKwdr6z/E0KjTrzb56E
-         GRtCr61wf2YFkZV2VaIJqojIs/V2viSIANuwSdLdJvhvMnR4xXykB8CTa4t+iTGV95Tb
-         9YzN63VYSiVB9LUiETe1ArHMXqeYlQ51HYmN+0UokQ4/mrXi0HdYV9E+4B0WxXL4uDSF
-         vJyw==
-X-Gm-Message-State: AC+VfDz3cbjnSWmx4O3MveIs/ze72Q1q4B2Mwjl/hhqOk+UcQJpeM+/N
-        AzepyhrHRac3UMJ9XgwC9b+viA==
-X-Google-Smtp-Source: ACHHUZ69G7krdwEzUJkF+GCEatd/o1CBrA0/WhHGMcIG6ybMy7MqBpZJm1nTPpJLTV07Tq+WcxoYhA==
-X-Received: by 2002:a17:90b:234f:b0:250:2d63:7b79 with SMTP id ms15-20020a17090b234f00b002502d637b79mr23492520pjb.43.1683842839570;
-        Thu, 11 May 2023 15:07:19 -0700 (PDT)
+        bh=7GXLLz1cb9WjUR21vBHXCkRjhHYZlPAU9fn/3rFZSY4=;
+        b=k0LOSsxSLmDBbMsxe3v0qThh4Ixq6AFpKzN09hhD9Cetk5hOMntZRcbk+Ilv8ubTBz
+         Ioqfte1tRQhC+9joBtM9Zm8vAJWWfUrVbm8GLiIa1NvLDMrmWn+V/HwnFO/FDzUyyGFx
+         vY6SP6QBOCh1ekIvWpK70GQlYS4pYAahit7E1ouCzyCjmwqmnSb3YTD1vPnpMBogFMAr
+         3phyJx0bpGaftO52TKEeW7EszSS0p1rLWAp2sPrbewNeRTga7QCdyVQcEhGuNAOoSnuO
+         voyn6s2VWjhBz7dILm1exfnHGgMsIKRo4n8pBS6ITc4CD7zKgnVYtSTQ4kkLWYg1ZFih
+         YjFA==
+X-Gm-Message-State: AC+VfDw3oKlkb9H4hLhyqerEMlAplW+kkOSGj6JqArmz+Lcy+/wmtuxB
+        uYogadUcVTR7ycHwBuYRCHZfww==
+X-Google-Smtp-Source: ACHHUZ4O5zM/KyCHiemx57/c7GppmLu6526CqNtTflW6Intyj5K7H5YpwWAlewMUVbSxiahggfCiOw==
+X-Received: by 2002:a17:90b:28b:b0:246:9ef5:3c45 with SMTP id az11-20020a17090b028b00b002469ef53c45mr23147850pjb.13.1683842841770;
+        Thu, 11 May 2023 15:07:21 -0700 (PDT)
 Received: from tictac2.mtv.corp.google.com ([2620:15c:9d:2:b96a:d776:ee3:e572])
-        by smtp.gmail.com with ESMTPSA id h24-20020a17090a9c1800b00247735d1463sm17589457pjp.39.2023.05.11.15.07.17
+        by smtp.gmail.com with ESMTPSA id h24-20020a17090a9c1800b00247735d1463sm17589457pjp.39.2023.05.11.15.07.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 May 2023 15:07:18 -0700 (PDT)
+        Thu, 11 May 2023 15:07:21 -0700 (PDT)
 From:   Douglas Anderson <dianders@chromium.org>
 To:     Marc Zyngier <maz@kernel.org>,
         Thomas Gleixner <tglx@linutronix.de>,
@@ -63,11 +63,10 @@ Cc:     devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
         Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
         yidilin@chromium.org, Seiya Wang <seiya.wang@mediatek.com>,
         Douglas Anderson <dianders@chromium.org>,
-        Conor Dooley <conor+dt@kernel.org>,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 1/6] dt-bindings: interrupt-controller: arm,gic-v3: Add quirk for Mediatek SoCs w/ broken FW
-Date:   Thu, 11 May 2023 15:05:35 -0700
-Message-ID: <20230511150539.1.Iabe67a827e206496efec6beb5616d5a3b99c1e65@changeid>
+Subject: [PATCH 2/6] irqchip/gic-v3: Disable pseudo NMIs on Mediatek devices w/ firmware issues
+Date:   Thu, 11 May 2023 15:05:36 -0700
+Message-ID: <20230511150539.2.I88dc0a0eb1d9d537de61604cd8994ecc55c0cac1@changeid>
 X-Mailer: git-send-email 2.40.1.606.ga4b1b128d6-goog
 In-Reply-To: <20230511150539.6.Ia0b6ebbaa351e3cd67e201355b9ae67783c7d718@changeid>
 References: <20230511150539.6.Ia0b6ebbaa351e3cd67e201355b9ae67783c7d718@changeid>
@@ -75,7 +74,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,62 +82,128 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When trying to turn on the "pseudo NMI" kernel feature in Linux, it
-was discovered that all Mediatek-based Chromebooks that ever shipped
-(at least ones with GICv3) had a firmware bug where they wouldn't save
-certain GIC "GICR" registers properly. If a processor ever entered a
-suspend/idle mode where the GICR registers lost state then they'd be
-reset to their default state.
+Some Chromebooks with Mediatek SoCs have a problem where the firmware
+doesn't properly save/restore certain GICR registers. Newer
+Chromebooks should fix this issue and we may be able to do firmware
+updates for old Chromebooks. At the moment, the only known issue with
+these Chromebooks is that we can't enable "pseudo NMIs" since the
+priority register can be lost. Enabling "pseudo NMIs" on Chromebooks
+with the problematic firmware causes crashes and freezes.
 
-As a result of the bug, if you try to enable "pseudo NMIs" on the
-affected devices then certain interrupts will unexpectedly get
-promoted to be "pseudo NMIs" and cause crashes / freezes / general
-mayhem.
+Let's detect devices with this problem and then disable "pseudo NMIs"
+on them. We'll detect the problem by looking for the presence of the
+"mediatek,gicr-save-quirk" property in the GIC device tree node. Any
+devices with fixed firmware will not have this property.
 
-ChromeOS is looking to start turning on "pseudo NMIs" in production to
-make crash reports more actionable. To do so, we will release firmware
-updates for at least some of the affected Mediatek Chromebooks.
-However, even when we update the firmware of a Chromebook it's always
-possible that a user will end up booting with old firmware. We need to
-be able to detect when we're running with firmware that will crash and
-burn if pseudo NMIs are enabled.
+Our detection plan works because we never bake a Chromebook's device
+tree into firmware. Instead, device trees are always bundled with the
+kernel. We'll update the device trees of all affected Chromebooks and
+then we'll never enable "pseudo NMI" on a kernel that is bundled with
+old device trees. When a firmware update is shipped that fixes this
+issue it will know to patch the device tree to remove the property.
 
-The current plan is:
-* Update the device trees of all affected Chromebooks to include the
-  'mediatek,gicr-save-quirk' property. The kernel can use this to know
-  not to enable certain features like "pseudo NMI". NOTE: device trees
-  for Chromebooks are never baked into the firmware but are bundled
-  with the kernel. A kernel will never be configured to use "pseudo
-  NMIs" and be bundled with an old device tree.
-* When we get a fixed firmware for one of these Chromebooks, it will
-  patch the device tree to remove this property.
-
-For some details, you can also see the public bug
-<https://issuetracker.google.com/281831288>
+In order to make this work, the quick detection mechanism of the GICv3
+code is extended to be able to look for properties in addition to
+looking at "compatible".
 
 Signed-off-by: Douglas Anderson <dianders@chromium.org>
 ---
 
- .../bindings/interrupt-controller/arm,gic-v3.yaml           | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/irqchip/irq-gic-common.c |  8 ++++++--
+ drivers/irqchip/irq-gic-common.h |  1 +
+ drivers/irqchip/irq-gic-v3.c     | 20 ++++++++++++++++++++
+ 3 files changed, 27 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml b/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
-index 92117261e1e1..8c251caae537 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
-@@ -166,6 +166,12 @@ properties:
-   resets:
-     maxItems: 1
+diff --git a/drivers/irqchip/irq-gic-common.c b/drivers/irqchip/irq-gic-common.c
+index a610821c8ff2..de47b51cdadb 100644
+--- a/drivers/irqchip/irq-gic-common.c
++++ b/drivers/irqchip/irq-gic-common.c
+@@ -16,7 +16,11 @@ void gic_enable_of_quirks(const struct device_node *np,
+ 			  const struct gic_quirk *quirks, void *data)
+ {
+ 	for (; quirks->desc; quirks++) {
+-		if (!of_device_is_compatible(np, quirks->compatible))
++		if (quirks->compatible &&
++		    !of_device_is_compatible(np, quirks->compatible))
++			continue;
++		if (quirks->property &&
++		    !of_property_read_bool(np, quirks->property))
+ 			continue;
+ 		if (quirks->init(data))
+ 			pr_info("GIC: enabling workaround for %s\n",
+@@ -28,7 +32,7 @@ void gic_enable_quirks(u32 iidr, const struct gic_quirk *quirks,
+ 		void *data)
+ {
+ 	for (; quirks->desc; quirks++) {
+-		if (quirks->compatible)
++		if (quirks->compatible || quirks->property)
+ 			continue;
+ 		if (quirks->iidr != (quirks->mask & iidr))
+ 			continue;
+diff --git a/drivers/irqchip/irq-gic-common.h b/drivers/irqchip/irq-gic-common.h
+index 27e3d4ed4f32..3db4592cda1c 100644
+--- a/drivers/irqchip/irq-gic-common.h
++++ b/drivers/irqchip/irq-gic-common.h
+@@ -13,6 +13,7 @@
+ struct gic_quirk {
+ 	const char *desc;
+ 	const char *compatible;
++	const char *property;
+ 	bool (*init)(void *data);
+ 	u32 iidr;
+ 	u32 mask;
+diff --git a/drivers/irqchip/irq-gic-v3.c b/drivers/irqchip/irq-gic-v3.c
+index 6fcee221f201..161cc8957e8b 100644
+--- a/drivers/irqchip/irq-gic-v3.c
++++ b/drivers/irqchip/irq-gic-v3.c
+@@ -39,6 +39,7 @@
  
-+  mediatek,gicr-save-quirk:
-+    type: boolean
-+    description:
-+      Asserts that the firmware on this device has issues saving and restoring
-+      GICR registers when CPUs are powered off.
+ #define FLAGS_WORKAROUND_GICR_WAKER_MSM8996	(1ULL << 0)
+ #define FLAGS_WORKAROUND_CAVIUM_ERRATUM_38539	(1ULL << 1)
++#define FLAGS_WORKAROUND_MTK_GICR_SAVE		(1ULL << 2)
+ 
+ #define GIC_IRQ_TYPE_PARTITION	(GIC_IRQ_TYPE_LPI + 1)
+ 
+@@ -1720,6 +1721,15 @@ static bool gic_enable_quirk_msm8996(void *data)
+ 	return true;
+ }
+ 
++static bool gic_enable_quirk_mtk_gicr(void *data)
++{
++	struct gic_chip_data *d = data;
 +
- dependencies:
-   mbi-ranges: [ msi-controller ]
-   msi-controller: [ mbi-ranges ]
++	d->flags |= FLAGS_WORKAROUND_MTK_GICR_SAVE;
++
++	return true;
++}
++
+ static bool gic_enable_quirk_cavium_38539(void *data)
+ {
+ 	struct gic_chip_data *d = data;
+@@ -1792,6 +1802,11 @@ static const struct gic_quirk gic_quirks[] = {
+ 		.compatible = "qcom,msm8996-gic-v3",
+ 		.init	= gic_enable_quirk_msm8996,
+ 	},
++	{
++		.desc	= "GICv3: Mediatek Chromebook GICR save problem",
++		.property = "mediatek,gicr-save-quirk",
++		.init	= gic_enable_quirk_mtk_gicr,
++	},
+ 	{
+ 		.desc	= "GICv3: HIP06 erratum 161010803",
+ 		.iidr	= 0x0204043b,
+@@ -1834,6 +1849,11 @@ static void gic_enable_nmi_support(void)
+ 	if (!gic_prio_masking_enabled())
+ 		return;
+ 
++	if (gic_data.flags & FLAGS_WORKAROUND_MTK_GICR_SAVE) {
++		pr_warn("Skipping NMI enable due to firmware issues\n");
++		return;
++	}
++
+ 	ppi_nmi_refs = kcalloc(gic_data.ppi_nr, sizeof(*ppi_nmi_refs), GFP_KERNEL);
+ 	if (!ppi_nmi_refs)
+ 		return;
 -- 
 2.40.1.606.ga4b1b128d6-goog
 
