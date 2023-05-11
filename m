@@ -2,124 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 549126FEEC1
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 11:27:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C5786FEECA
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 11:29:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236816AbjEKJ1G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 05:27:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48194 "EHLO
+        id S237616AbjEKJ3J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 05:29:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237123AbjEKJ0a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 05:26:30 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7D3FD068
-        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 02:26:22 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-94f4b911570so1309379766b.0
-        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 02:26:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683797181; x=1686389181;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=X1IslJ7/3eQpHk0/ZONImP6ek9rvCI7d+h3hwQhusW0=;
-        b=A3Lr/820FEisUc53N/6tIVzuEVp+khhimTcSLGsHq/i4fzqx7tp7I5DIC8bO/XwKAj
-         DeCiey9CQk6CwmWdxVDc0ZLz0mFUSFVrXlg5gDkLclK8DPZxwGUd8Yk6O8WeNnw0ZD8n
-         Y/BfVlIyj84qT8f0TXBAstume3ASfUzN6q65DvvZ74VUOE188xiWnitj/+IhI6/eUNgH
-         i4cs5MlkAoXkApk/gkivGx4lkUZfcNoETbCpJEgZmTQtRt1GRkblYskEkCSle1KNUfwd
-         kYSffouJuyUP8LZi2uM6C0wNwsQ+oJ+XUE/aeW0qabBZyLyg45XDKfxconB4I5sjwxsd
-         TJDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683797181; x=1686389181;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=X1IslJ7/3eQpHk0/ZONImP6ek9rvCI7d+h3hwQhusW0=;
-        b=bMo4X0/BjgahbpykS+CLKGke82T6diUmANrX9lr285Ntjibf7ByTmhSNgDUY9x4iPl
-         lYWdjQm2dxHDJx4yFjMOOLB1jIbMQmVfmoMJ2eYJl2nGfn63G1HKAWQ95F+7l2CnFmz7
-         /jRfeoaVyiz+YWYvrjl0OcSrv10HF0EDwSXmuwmQMQVmLJhM50r22m1O7i5JBJWFPVDq
-         FKm+y2k5AYXpW0KOyDppBY5aQ1+PwZqHHrqsCdky011faPbom6sF//61QQhQ27hHpqP4
-         f2LnIz21yViUxMWvRCwMdACuIke3mKYbmncxiCScs4t8eKpRpDgTWCcSK+oRRiiDY+bY
-         EQeg==
-X-Gm-Message-State: AC+VfDw09HqqfHACN4XAgx+u+AveS/ROdBV41msyef9kVfKG/ZPDQLvC
-        R4yrmMTd3xaMp9KwxPG5R8TcAQ==
-X-Google-Smtp-Source: ACHHUZ74t7K+CeQz4z8BQyobf4t7TRb93OAiK2Zks93fMy5n6HFkZY/H0v/9xh4mpxhbpUlCfqdB2A==
-X-Received: by 2002:a17:907:78c:b0:953:43a1:1988 with SMTP id xd12-20020a170907078c00b0095343a11988mr17157850ejb.46.1683797181377;
-        Thu, 11 May 2023 02:26:21 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:7e61:f14a:c3a4:809e? ([2a02:810d:15c0:828:7e61:f14a:c3a4:809e])
-        by smtp.gmail.com with ESMTPSA id n7-20020aa7d047000000b004fbdfbb5acesm2818308edo.89.2023.05.11.02.26.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 May 2023 02:26:20 -0700 (PDT)
-Message-ID: <9cf5965a-8290-dfff-9f92-07ed2df66650@linaro.org>
-Date:   Thu, 11 May 2023 11:26:19 +0200
+        with ESMTP id S236438AbjEKJ2h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 05:28:37 -0400
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 996DE6E9D
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 02:28:10 -0700 (PDT)
+Received: (Authenticated sender: gregory.clement@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id E182160002;
+        Thu, 11 May 2023 09:28:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1683797289;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=6uPLNGbW4yp7ziUWLP7+hFbqYAf7UUsJem/P457yyI4=;
+        b=FzIY/BRoD2YCFOYQBC6tIBVoPUbfnI+NLJtHitEzFRgTnE4KzwnKpxgd4KlYi27Y2f3Hip
+        fwjyvYDb06v2MXVBsSHFTMPLGJgUfNz3Y4+bfpakQJTwj+mT9AOZmPs6pFxEwGvWyt1up0
+        N0TurHdThBG8NQxdghww52kF58ANn3c2vPFEpDwoly5gfKaZShuU7ZrW3nT+5uBkLDZJes
+        Y72UH0nFqXSBUtgzt48iuenKMIoLzmz4Hvjkd9RPIQ0co/B9hHl8JyRkAKaRBcYQDbcCM5
+        p4T9Sec0omCVy+8dyB6UOlMQmTZitwuozRa1r6y1aIY8bPQPLplGr6QsSNr3SA==
+From:   Gregory CLEMENT <gregory.clement@bootlin.com>
+To:     =?utf-8?Q?Pawe=C5=82?= Dembicki <paweldembicki@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2] ARM: dts: kirkwood: Add Endian 4i Edge 200 board
+In-Reply-To: <CAJN1Kkzv2Q76RR5VkV7kU=i13eq_h3ksN5Ob=SF3eVi6MHveYQ@mail.gmail.com>
+References: <20221003073443.1511266-1-paweldembicki@gmail.com>
+ <Y4ahUWz0z8nBRWCN@lunn.ch>
+ <CAJN1Kkzv2Q76RR5VkV7kU=i13eq_h3ksN5Ob=SF3eVi6MHveYQ@mail.gmail.com>
+Date:   Thu, 11 May 2023 11:28:08 +0200
+Message-ID: <874jojz07r.fsf@BL-laptop>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: cdns,usb3: Add clock and reset
-Content-Language: en-US
-To:     Minda Chen <minda.chen@starfivetech.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Pawel Laszczak <pawell@cadence.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Peter Chen <peter.chen@kernel.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org
-References: <20230510132816.108820-1-minda.chen@starfivetech.com>
- <20230510132816.108820-2-minda.chen@starfivetech.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230510132816.108820-2-minda.chen@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/05/2023 15:28, Minda Chen wrote:
-> To support generic clock and reset init in Cadence USBSS
-> controller, add clock and reset dts configuration.
-> 
-> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
-> ---
->  .../devicetree/bindings/usb/cdns,usb3.yaml         | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/cdns,usb3.yaml b/Documentation/devicetree/bindings/usb/cdns,usb3.yaml
-> index cae46c4982ad..623c6b34dee3 100644
-> --- a/Documentation/devicetree/bindings/usb/cdns,usb3.yaml
-> +++ b/Documentation/devicetree/bindings/usb/cdns,usb3.yaml
-> @@ -42,6 +42,18 @@ properties:
->        - const: otg
->        - const: wakeup
->  
-> +  clocks:
-> +    minItems: 1
-> +    maxItems: 8
-> +    description:
-> +      USB controller clocks.
+Pawe=C5=82 Dembicki <paweldembicki@gmail.com> writes:
 
-You need to list the items. And why is it variable? Your clock choice in
-the example is poor, I doubt it is real.
+> =C5=9Br., 30 lis 2022 o 01:18 Andrew Lunn <andrew@lunn.ch> napisa=C5=82(a=
+):
+>>
+>> On Mon, Oct 03, 2022 at 09:34:43AM +0200, Pawel Dembicki wrote:
+>> > Add Endian 4i Edge 200 is 5-port firewall.
+>> > It have also clone: Endian UTM Mini (The same hardware, with added WLAN
+>> > card).
+>> >
+>> > Hardware:
+>> >   - SoC: Marvell 88F6281-A1 ARMv5TE Processor 1.2GHz
+>> >   - Ram: 512MB (4x Nanya NT5TU128M8GE-AC)
+>> >   - NAND Flash: 512MB (Micron 29F4G08AAC)
+>> >   - Lan 1-4: 4x GBE (Marvell 88E6171R-TFJ2)
+>> >   - Lan 5: 1x GBE (Marvell 88E1116R-NNC1)
+>> >   - Storage: MicroSD Slot
+>> >   - MCPIE: MiniPCIe Slot present [fitted with SparkLan WPEA-110N/E
+>> >           (Atheros AR9280 chipset) in Endian UTM Mini WLAN only]
+>> >   - USB: 1x USB 2.0 port
+>> >   - Console: RJ-45 port
+>> >   - LEDs: 3x GPIO controlled
+>> >
+>> > Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
+>>
+>> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+>>
+>>     Andrew
+>
+> Hi all,
+>
+> Gentle reminder for this patch.
 
-> +
-> +  resets:
-> +    minItems: 1
-> +    maxItems: 8
-> +    description:
-> +      USB controller generic resets.
 
-Here as well.
+Applied on mvebu/dt
 
-You had one clock last time, thus the review was - drop the names. Now
-you changed it to 8 clocks... I don't understand.
+Sorry to have missed it.
 
-Best regards,
-Krzysztof
+Thanks,
 
+Gregory
+
+
+>
+> Best Regards,
+> Pawe=C5=82 Dembicki
+
+--=20
+Gregory Clement, Bootlin
+Embedded Linux and Kernel engineering
+http://bootlin.com
