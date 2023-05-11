@@ -2,89 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C2376FFCA7
-	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 00:31:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B7A36FFC7F
+	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 00:07:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239349AbjEKWbR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 18:31:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38394 "EHLO
+        id S238381AbjEKWHT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 18:07:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56390 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238381AbjEKWbQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 18:31:16 -0400
-X-Greylist: delayed 1802 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 11 May 2023 15:31:15 PDT
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a02:c205:3004:2154::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 585692738;
-        Thu, 11 May 2023 15:31:15 -0700 (PDT)
-Received: from p200300ccff36df0080088350021b55c1.dip0.t-ipconnect.de ([2003:cc:ff36:df00:8008:8350:21b:55c1] helo=akair)
-        by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <andreas@kemnade.info>)
-        id 1pxDpi-0005dY-Fw; Thu, 11 May 2023 23:28:18 +0200
-Date:   Thu, 11 May 2023 23:28:12 +0200
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        tony@atomide.com, afd@ti.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
-Subject: Re: [PATCH v6 1/2] dt-bindings: omap: Convert omap.txt to yaml
-Message-ID: <20230511232812.067440cf@akair>
-In-Reply-To: <eb4cf82d-f523-d5af-be18-25c37678a95a@linaro.org>
-References: <20230405161908.4312-1-andreas@kemnade.info>
-        <20230405161908.4312-2-andreas@kemnade.info>
-        <eb4cf82d-f523-d5af-be18-25c37678a95a@linaro.org>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
+        with ESMTP id S232437AbjEKWHT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 18:07:19 -0400
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C90B56A45
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 15:07:17 -0700 (PDT)
+Received: by mail-pl1-x631.google.com with SMTP id d9443c01a7336-1ab0c697c84so70869135ad.3
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 15:07:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1683842837; x=1686434837;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=hpVJsmC3hyyCOV39d1XA4fZrHLIG7rwi+xqTsa1S20U=;
+        b=apOp6wOIiyc0bM0pbLWmLbNrAH8nPimt13/Fe40g/kkmqv/jTh+cIfvOVS/TOb6lzI
+         5tkY/eBXIzTBk4pnxTf0HCjbbXF0A3BUsNBN8s57G4ArflMx2Tgqmn4NmHKNBtXvfrtM
+         Z2MuMp7hMMkWDAATMFaTy931zIfY4ioVVbcuk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683842837; x=1686434837;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hpVJsmC3hyyCOV39d1XA4fZrHLIG7rwi+xqTsa1S20U=;
+        b=ACC0e+1jC1fWADXSN/u4hin6B3FMYhW0iOYvsvbPImPDo/qioK/cGMw0HQEvGNz862
+         H9JauB8KP3MG0bokL9U7WpaJGvS2eoM3i6LurvllBsjLswkrqLUG0XnCc7UaVVl+gvcG
+         HgLwjyC8d6xqvEZfDWvWbmhhDdy7grHkhai1BoId00tvO0D3S1b381w2DdfTZH22YDzH
+         56GTaGXED7HDK7iMigwAcWRCE40qSQ3dZkSVRQwFFpg1VnS25RrSDrLy89DiC3KpBRB2
+         JV78WlRRHeOLqpQC15TQUShhPkVwAGLfhv0jCBQonIsm9HHeE+rG6ssPTTmnWOG9uRei
+         xmXA==
+X-Gm-Message-State: AC+VfDzLDnMgfqYiAg6U0zRnb7v+xLO7gQJPMnGwokyQ301iDSF1zTFG
+        Z4/PGPh+lRC5FY2rgEedbzqDeQ==
+X-Google-Smtp-Source: ACHHUZ7htthqYNJPkIn8G76ac+QLPwd63qP/ae8YFkTLrs+TGcxXUGw4ufIpDY5W75ZqdaFBfXVS3g==
+X-Received: by 2002:a17:903:191:b0:1ac:aaf6:ee48 with SMTP id z17-20020a170903019100b001acaaf6ee48mr11781934plg.67.1683842837318;
+        Thu, 11 May 2023 15:07:17 -0700 (PDT)
+Received: from tictac2.mtv.corp.google.com ([2620:15c:9d:2:b96a:d776:ee3:e572])
+        by smtp.gmail.com with ESMTPSA id h24-20020a17090a9c1800b00247735d1463sm17589457pjp.39.2023.05.11.15.07.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 11 May 2023 15:07:16 -0700 (PDT)
+From:   Douglas Anderson <dianders@chromium.org>
+To:     Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        wenst@chromium.org, Eddie Huang <eddie.huang@mediatek.com>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Ben Ho <Ben.Ho@mediatek.com>, Weiyi Lu <weiyi.lu@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Tinghan Shen <tinghan.shen@mediatek.com>, jwerner@chromium.org,
+        Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
+        yidilin@chromium.org, Seiya Wang <seiya.wang@mediatek.com>,
+        Douglas Anderson <dianders@chromium.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 0/6] irqchip/gic-v3: Disable pseudo NMIs on Mediatek Chromebooks w/ bad FW
+Date:   Thu, 11 May 2023 15:05:34 -0700
+Message-ID: <20230511150539.6.Ia0b6ebbaa351e3cd67e201355b9ae67783c7d718@changeid>
+X-Mailer: git-send-email 2.40.1.606.ga4b1b128d6-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Thu, 6 Apr 2023 10:32:49 +0200
-schrieb Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>:
+As talked about in the bindings patch included in this series
+("dt-bindings: interrupt-controller: arm,gic-v3: Add quirk for
+Mediatek SoCs w/ broken FW"), many Mediatek-based Chromebooks shipped
+with firmware that doesn't properly save/restore some GICR
+registers. This causes the system to crash if "pseudo NMIs" are turned
+on.
 
-> On 05/04/2023 18:19, Andreas Kemnade wrote:
-> > From: Andrew Davis <afd@ti.com>
-> > 
-> > Convert omap.txt to yaml.
-> >   
-> 
-> 
-> > +      - description: TI AM43 SoC based platforms
-> > +        items:
-> > +          - enum:
-> > +              - compulab,am437x-cm-t43
-> > +              - ti,am437x-gp-evm
-> > +              - ti,am437x-idk-evm
-> > +              - ti,am437x-sk-evm
-> > +          - pattern: '^ti,am4372[26789]$'
-> > +          - const: ti,am43
-> > +
-> > +      - description: TI AM57 SoC based platforms
-> > +        items:
-> > +          - enum:
-> > +              - beagle,am5729-beagleboneai
-> > +              - compulab,cl-som-am57x
-> > +              - ti,am5718-idk
-> > +              - ti,am5728-idk
-> > +              - ti,am5748-idk
-> > +          - pattern: '^ti,am57[0124][689]$'  
-> 
-> I don't think my comments were resolved. I asked if it is possible to
-> make a board called "ti,am5718-idk" with "ti,am5749" or with
-> "ti,am5708"?
-> 
-I am preparing a reduced version of this without all that pattern
-matches where I do not know the intention the original author had. 
+This series makes sure that we never allow turning on "pseudo NMIs" if
+we are running with the problematic firmware.
 
-> What's more, you dropped several variations and compatibles against
-> original binding (all the "dra") and it is not explained in commit msg
-> at all.
->
-ok, time to better compare it by scrips, Did not notice
-the dra stuff  with am* in the other compatibles.
+The patches in this series can land in any order and can go through
+entirely different trees. None of the patches are harmful on their
+own, but to get things fixed we need all of them.
+
+
+Douglas Anderson (6):
+  dt-bindings: interrupt-controller: arm,gic-v3: Add quirk for Mediatek
+    SoCs w/ broken FW
+  irqchip/gic-v3: Disable pseudo NMIs on Mediatek devices w/ firmware
+    issues
+  arm64: dts: mediatek: mt8183: Add mediatek,gicr-save-quirk
+  arm64: dts: mediatek: mt8186: Add mediatek,gicr-save-quirk
+  arm64: dts: mediatek: mt8192: Add mediatek,gicr-save-quirk
+  arm64: dts: mediatek: mt8195: Add mediatek,gicr-save-quirk
+
+ .../interrupt-controller/arm,gic-v3.yaml      |  6 ++++++
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi      |  1 +
+ arch/arm64/boot/dts/mediatek/mt8186.dtsi      |  1 +
+ arch/arm64/boot/dts/mediatek/mt8192.dtsi      |  1 +
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi      |  1 +
+ drivers/irqchip/irq-gic-common.c              |  8 ++++++--
+ drivers/irqchip/irq-gic-common.h              |  1 +
+ drivers/irqchip/irq-gic-v3.c                  | 20 +++++++++++++++++++
+ 8 files changed, 37 insertions(+), 2 deletions(-)
+
+-- 
+2.40.1.606.ga4b1b128d6-goog
+
