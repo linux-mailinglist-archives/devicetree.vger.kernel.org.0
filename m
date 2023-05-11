@@ -2,86 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C00286FF985
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 20:38:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A76216FF98D
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 20:43:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238502AbjEKShj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 14:37:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52742 "EHLO
+        id S238741AbjEKSnE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 14:43:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239059AbjEKShQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 14:37:16 -0400
-Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A687735A5;
-        Thu, 11 May 2023 11:37:15 -0700 (PDT)
-Received: by mail-pl1-x629.google.com with SMTP id d9443c01a7336-1ab14cb3aaeso64077005ad.2;
-        Thu, 11 May 2023 11:37:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683830235; x=1686422235;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=mo08lR/lndoev9zDyfO8bS5MbMffpTCzQ0BQI7W4HeU=;
-        b=ZjufzySMFT0IpCJ6hm1J5F0bwBF0SS1P2pZFAkgBRsJlugPRD6HS3z98JKFKriKQvN
-         I+tTybvdohQu/ozmMbzRQwOFNSLvti+M84qRnRO7p4wpJMIeoQ3ckzTZj2EVyj5N1gU3
-         UueF3ecP1mthhXDYlywKGUgvCdNOywp8UwQg6NqBkl+Fm01bs0lk/nm3M3W1kmlbQtyj
-         zfzDAFDaWL1ncb2z6NJfHqrVATquCbPovH3qM3WGRbRpifGrI05zYcb7NDDbn4K+mde2
-         R7D+hT+BAgWQHphdMFc0sqRC2/aWXhZ6rNQDdHILJ7Wvlxxo0dbCZHlQoQatGBBchkNp
-         mS0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683830235; x=1686422235;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mo08lR/lndoev9zDyfO8bS5MbMffpTCzQ0BQI7W4HeU=;
-        b=kxJu11GOcRnHWXxvwW3VrViGWgRw2t5US3Z7yiySv/OV2vZY2iBh/rs/1CZxzvRdYy
-         ONVQTTv9/EMQiu1B3TTkqJx9+S/3c2uG5c1NHJexuamI3KIGbAf29hV+b/8h7Oz72PMV
-         IqKsQBb9xriF87aE+HK0rKjAXXCD2DJ7LJapmUCMBrg8eIZlpU7en5ZeBylMwUcAWLm3
-         kUE5v/DrPmjuyMDLVuiA5ggnAwsExJinHGk4bFYxELAgeGvYhpb5YqnNz4O4ZFZBSI0A
-         pb+Pw2GG10qzAkPmqMfHQuRVJFDOliKDSpnAlD24irtvmsWiKCrmcowzM+Qd4ho40YM8
-         LO5Q==
-X-Gm-Message-State: AC+VfDySssxoycJ5ShvCGM4i8vx6xhA35Sr9EFjZkw7JyerHsYOHH7kR
-        cLjCKJiiP8XlpuKdNRN45Rw=
-X-Google-Smtp-Source: ACHHUZ6y9IQWE9dUS3itkOFqCtNsapKpGul15zAsgOE4bbPy/cpxYsOfeABeBdbyYqd9ZoS1EgdBEQ==
-X-Received: by 2002:a17:902:aa8d:b0:1a6:db0a:8003 with SMTP id d13-20020a170902aa8d00b001a6db0a8003mr22022175plr.23.1683830234878;
-        Thu, 11 May 2023 11:37:14 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:84a:ed9c:4024:c347])
-        by smtp.gmail.com with ESMTPSA id b13-20020a170902b60d00b001aafdf8063dsm6264348pls.157.2023.05.11.11.37.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 May 2023 11:37:13 -0700 (PDT)
-Date:   Thu, 11 May 2023 11:37:10 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: Re: [RESEND PATCH] dt-bindings: input: cypress,cyapa: convert to
- dtschema
-Message-ID: <ZF011h0Ho0qUI/U8@google.com>
-References: <20230511102559.175088-1-krzysztof.kozlowski@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230511102559.175088-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S238407AbjEKSnD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 14:43:03 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43E2AE54
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 11:43:02 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7335F60686
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 18:43:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1FB7C433D2;
+        Thu, 11 May 2023 18:43:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1683830580;
+        bh=Fz7ns3dw4s4B8m22yD4acU8UM/HfzTj11w01+er2SLo=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=Mz9WWIXOMwVt8/OS9NBts8hX2egDqXPWG8WxthDaoFdOgnDLMsOwtoGRk2PO7Zcn9
+         1SC3QJHI0aqx6hZiKTY+JHYS6gBrS2KSI/OC4XegyRl/TkqpiT0tIf8EmrJevuhDd6
+         Z4ftxrWtnr/Y3ieYg9A8tRQ00Be2n/aQmRi2IQCmkwv7LNe0+eXk390iEPG2qqxq5A
+         mzGdvxyCNlU9vmWhDBL3gchFNNi89lRwm1OoDjhszqRPsJh5x6mCYLaKvwVDivMdc2
+         I4mNybGs8vxMgPFRK2eGMWylX+zZ9In2YKQbBc4p6j5FErkLyB4x0Q3rt0OfXFqrQG
+         iq1Hdx0DEsGhg==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1pxBFi-00EPsf-Gr;
+        Thu, 11 May 2023 19:42:58 +0100
+Date:   Thu, 11 May 2023 19:42:58 +0100
+Message-ID: <86y1lun1zh.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Catalin Marinas <catalin.marinas@arm.com>
+Cc:     James Morse <james.morse@arm.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Will Deacon <will@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Oliver Upton <oliver.upton@linux.dev>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH 0/6] arm64: errata: Disable FWB on parts with non-ARM interconnects
+In-Reply-To: <ZF0io4mDjRdm1AxN@arm.com>
+References: <20230330165128.3237939-1-james.morse@arm.com>
+        <ZF0io4mDjRdm1AxN@arm.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/28.2
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: catalin.marinas@arm.com, james.morse@arm.com, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, will@kernel.org, mark.rutland@arm.com, lpieralisi@kernel.org, sudeep.holla@arm.com, oliver.upton@linux.dev, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 11, 2023 at 12:25:59PM +0200, Krzysztof Kozlowski wrote:
-> Convert the Cypress All Points Addressable (APA) I2C Touchpad / Trackpad
-> bindings to DT schema.
+On Thu, 11 May 2023 18:15:15 +0100,
+Catalin Marinas <catalin.marinas@arm.com> wrote:
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Hi James,
+> 
+> On Thu, Mar 30, 2023 at 05:51:22PM +0100, James Morse wrote:
+> > When stage1 translation is disabled, the SCTRL_E1.I bit controls the
+> > attributes used for instruction fetch, one of the options results in a
+> > non-cacheable access. A whole host of CPUs missed the FWB override
+> > in this case, meaning a KVM guest could fetch stale/junk data instead of
+> > instructions.
+> > 
+> > The workaround is to disable FWB, and do the required cache maintenance
+> > instead.
+> 
+> I think the workaround can be to only do the required cache maintenance
+> without disabling FWB. Having FWB on doesn't bring any performance
+> benefits if we do the cache maintenance anyway but keeping it around may
+> be useful for other reasons (e.g. KVM device pass-through using
+> cacheable mappings, though not something KVM supports currently).
 
-Applied, thank you.
+But you'd also rely on the guest doing its own cache maintenance for
+instructions it writes, right?
+
+Which probably means exposing a different CLIDR_EL1 so that
+LoC/LoUU/LoUIS are consistent with *not* having FWB... I also wonder
+if keeping FWB set has the potential to change the semantics of the
+CMOs (the spec seems silent on that front).
+
+> > Unfortunately, no-one has firmware that supports this new interface yet,
+> > and the least surprising thing to do is to enable the workaround by default,
+> > meaning FWB is disabled on all these cores, even for unaffected platforms.
+> > ACPI Platforms that are not-affected can either take a firmware-update to
+> > support the interface, or if the kernel they run will only run on hardware
+> > that is unaffected, disable the workaround at build time.
+> 
+> Given that we know of more platforms that are _not_ affected and vendors
+> are pretty vague on whether they need this, I'd rather swap the default
+> and keep the workaround off with a firmware interface, DT or command
+> line opt-in.
+
+That'd be my preferred way. I really dislike putting the onus on
+working systems to declare themselves safe (although there are some
+Spectre-shaped precedents to that).
+
+> That said, maybe we can reduce the risk further by doing the
+> vcpu_has_run_once() trick with !FWB and clean the D side to PoC on a
+> stage 2 exec fault (together with the I-cache invalidation). We can then
+> ignore any other cache maintenance on S2 faults until someone shouts (we
+> can maybe recommend forcing FWB off on the command line through the
+> cpuid override).
+
+You lost me here with your vcpu_has_run_once().
+
+Keeping the CMOs on exec fault is definitely manageable. But is that
+enough?
+
+Thanks,
+
+	M.
 
 -- 
-Dmitry
+Without deviation from the norm, progress is not possible.
