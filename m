@@ -2,139 +2,226 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A43EC6FECAD
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 09:23:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68EAD6FECB3
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 09:24:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237638AbjEKHXV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 03:23:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55486 "EHLO
+        id S237261AbjEKHYS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 03:24:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237371AbjEKHXC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 03:23:02 -0400
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04on20618.outbound.protection.outlook.com [IPv6:2a01:111:f400:7e8c::618])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A82D65B9;
-        Thu, 11 May 2023 00:22:35 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EPQhF6KxSm0j9BoBtjVstSRGw27BmgsXfAM/xu2xuIyG+IjONHevHDnJCOeGJqZS2CkXclWfogDxGdQKUOpJmoE+WQtbSjz3pPm2nmI4TkCmDhG4GE/XzMNUnuRw7TaLGS/uF5brCrEhfK9hTSsHPc0mG8Ug0XFhz4JIhCSJJESNXmnZzy62JwkRHwhwPaMcEY6k/Wa0fyX0tbpfE1SZHzTvyTYSUFKHNUosn3yoLIROIegbulvYuWSoQC8kDYGwV5cUiefWy/mdReHL/DZdkGYY9AwvAlBRnmG9xY9CUhvukIB/HV9SUgwJQMLGwDUHt/ucTr/oGdtSyuPXcBTPtw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YVl2x1FXQ1jFFMO4lDmqHk2FSQaKo+vqoiDwJHlZGDo=;
- b=M0FcQ3zlATPClQ6FMrbqVkCLiXaeNNwZL5Ppr+oQc5H+nZeanhunWjjzFmxlGPSNvRSPql80W3yOuxtfuFDRMXorkkmPEcqchzYu88T+hNI4id7s4XbSpwi1GioTayCJa3UD4Pue1PNWUncF2leB3Wlw5DJXu1umKhPxg2GKd4B8cb0Rx3xdMxKNcUYNaP/7tvzh+o+GTQ0mHbDUN0p9hhGurCnQUtdHbyJrWygdP3KCAy94xi5lqgKQoN6ST994T3kPcEAl7WT1XiOsMPIlolk8Jj3S3xeaharT4q7lwG9Li4wOZAcofjYiTvF4DKXdqYwIvXDpizo+mtLv8Qlphg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=linuxfoundation.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YVl2x1FXQ1jFFMO4lDmqHk2FSQaKo+vqoiDwJHlZGDo=;
- b=r7fuigB1oUdKsqMeCEuIb7L7dFJOarDMX2PxqU/56RDc7hK4eOsa/I5rXxZ9H2YQr+KQ1qdOv8vG3FazFiNgZk4vZLycNGvnCfFRu7hYGFh45jVlvGmpRM1cVgwID+rd5uM6vRzzw1bMyhxJfHDNL1BryDsqE69y0P2FTSJ5RWk=
-Received: from MW4PR03CA0305.namprd03.prod.outlook.com (2603:10b6:303:dd::10)
- by DS7PR12MB5719.namprd12.prod.outlook.com (2603:10b6:8:72::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.18; Thu, 11 May
- 2023 07:22:23 +0000
-Received: from CO1NAM11FT027.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:dd:cafe::e4) by MW4PR03CA0305.outlook.office365.com
- (2603:10b6:303:dd::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.21 via Frontend
- Transport; Thu, 11 May 2023 07:22:23 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CO1NAM11FT027.mail.protection.outlook.com (10.13.174.224) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6387.21 via Frontend Transport; Thu, 11 May 2023 07:22:23 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Thu, 11 May
- 2023 02:22:21 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB05.amd.com
- (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Thu, 11 May
- 2023 02:22:19 -0500
-Received: from xhdnavam40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
- Transport; Thu, 11 May 2023 02:22:16 -0500
-From:   Piyush Mehta <piyush.mehta@amd.com>
-To:     <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <balbi@kernel.org>, <michal.simek@xilinx.com>
-CC:     <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <michal.simek@amd.com>,
-        <siva.durga.prasad.paladugu@amd.com>, <git@amd.com>,
-        Piyush Mehta <piyush.mehta@amd.com>
-Subject: [PATCH V2] dt-bindings: usb: dwc3: Add interrupt-names property support for wakeup interrupt
-Date:   Thu, 11 May 2023 12:51:54 +0530
-Message-ID: <20230511072154.2030703-1-piyush.mehta@amd.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S229490AbjEKHX5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 03:23:57 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3D25A244
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 00:23:30 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4f13c577e36so9138325e87.1
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 00:23:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=melexis.com; s=google; t=1683789807; x=1686381807;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=YZEvavg8L9Olhu+zGHQIGrTsD4WpLJW9jLTEZFpxzDc=;
+        b=YIw4HiKvDXz0ELUJp7eobYKtuLaBjfFj2PWxBmrHZH+QbIVaIiMqHhhso6JMFNfbBO
+         AvDsqmSlik3KLCPxiQYQzlkaii6eSmapVfRQeEaHKnd4augpSAnXiE73HjL9B6nm6Bx8
+         jxf3ZO3EX2jLryrQKVNDlmJWHs/hPzC0S6uJhrZocB0NC40PSSWTrC/aUBD51oI8z4Ie
+         +nIiDwQsBMtuxWHK9t3yXtjmfxHeNigtpE1dCPChD+j0I7hpL1ZQHLcmcld3mE00aHZV
+         oyDd8RDKifrYhu7KaZqSLFOK6HDTurZUYa2LMx1uNXlDete4+yV3wd3LP1Ln/92sHiQP
+         Yc9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683789807; x=1686381807;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YZEvavg8L9Olhu+zGHQIGrTsD4WpLJW9jLTEZFpxzDc=;
+        b=eMaN+txyeqF3ZmkPnz6iV6ee+p2x+1LZzhZgUGqLlwBgxQIFJ9HrzfO8NjxJmy/Gl3
+         yxeG3ACfop5J8/sljtD+p9SpDeD1tmLOgwSaQtSUNTlTgGdqBpftk73m+4P7PM7lg3bz
+         SvKrjDWHP3HYBwlLxM9y1D/bZ9UBAAJnax+h/war3KctEXazUGo10/eiwyoQQRuh6jIu
+         OFrTYrzF5zky9MGDZ8+hc7wrfNSM4btFcGBQP248yEagh8M32d9EOH9hPct3cDiCoCgy
+         PCVcBwDZcxtim7LSPVY79Ypf92O1NETa5ES2wndQ8H2W68cLDSPwcFqN0RaT+XuGw1n+
+         aWoQ==
+X-Gm-Message-State: AC+VfDxQId+rsd9S9An0scO8GkJTxEMt2i5geCk9JC1MR8M37RnVHZZx
+        6GA5G5B0w9uuG+ti28YaqooqIFtG4KqC432v1JS+Ww==
+X-Google-Smtp-Source: ACHHUZ6ras4LaeY+ZbiwEvfWph/YzwIpGnnO8SBK56IUO3cK+qWgWD2Bspz7GJkSDqG6DyFLIiFLIikYyNUaiuo69Zs=
+X-Received: by 2002:a19:f605:0:b0:4f2:53fb:187 with SMTP id
+ x5-20020a19f605000000b004f253fb0187mr2172026lfe.68.1683789807641; Thu, 11 May
+ 2023 00:23:27 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT027:EE_|DS7PR12MB5719:EE_
-X-MS-Office365-Filtering-Correlation-Id: 076ff5ca-6736-4c22-8321-08db51f07714
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: DyRFuNBClnQihRZv+LvGqoQMIyhE6hWwfQ9xgs54CaOUKhLsh7/veSfBNTI+6VqMDhNI/kFycMF/uaCeZLMpnFBjpU7W0CZJey89Zo5g9aCH6/YG+XOR/1c+3LcsoB90qRxDBoUz0Q3cUMnFOL9TPvNMH6ECH0gBRwnIkJxUH4tmvybh3m+GeMgCmgoC6UrfVlvWV3c/qI9IYXi3car1Q9xDX5Ca8LGh+V/JxTgpHI31TFoNR8MUo1MlxQFrNF22vHWPVXyubRtFsPotcya8QLKomqgjdtmj0CaLkLQ82BlV1lsrH7PQB+7cacvvZLq9WIfkSO3YohBahY6CZ9+Tob/g4nclf/hd7y0R6lWW6HvUQoiDyEvgJ/7FzMuq4bxEARX1Q2H7lr2mYjtfc1zQ8cKGZtifVDgL9OIg/4zAwc9rCYxQtZUiyIbUBZh7db4avHeDVXPv//XMqaZsIqksza8V4sXMtIsLdLyDm88z81w2/JinWW+FShh1p3Xwqglao91XYcgTJ8/+FgFFb60yWCADG8RwvanesZ+5u9XGEjd8rtNwaHFoz0J3ZXSyRxw1MMjEl4DVqmVZv0gwPWZJX1bmprLi5u8VluJu+r80m8XMK5QLGk/QhkRKXX73ZEvgKlc9tXaL8r4ILjZi56ShFCU55UPIzRRAB43XzpALbNTgZZL8TWWVJ6771mAIYfMUGuH5ipnrb330dQPVJs8avMiA1WkL3ZYECeNQTlIXypil3W9GRk1LZYzDArdfSIUW6QnE0vcpT1uYqunwttBKbA==
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(346002)(376002)(396003)(39860400002)(136003)(451199021)(36840700001)(46966006)(40470700004)(8936002)(41300700001)(8676002)(478600001)(316002)(44832011)(70586007)(70206006)(5660300002)(54906003)(110136005)(356005)(86362001)(82740400003)(81166007)(36756003)(2616005)(36860700001)(40480700001)(26005)(1076003)(966005)(186003)(6666004)(4326008)(83380400001)(47076005)(336012)(40460700003)(426003)(2906002)(82310400005)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 May 2023 07:22:23.3484
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 076ff5ca-6736-4c22-8321-08db51f07714
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT027.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB5719
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,SPF_HELO_PASS,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+References: <20230510102251.10118-1-marex@denx.de> <20230510102251.10118-6-marex@denx.de>
+In-Reply-To: <20230510102251.10118-6-marex@denx.de>
+From:   Crt Mori <cmo@melexis.com>
+Date:   Thu, 11 May 2023 09:22:51 +0200
+Message-ID: <CAKv63utKRXciztsanDOnVs5C0WJFsaqnCuT0Sx21nB3r_KTmcA@mail.gmail.com>
+Subject: Re: [PATCH v3 6/6] iio: mlx90614: Add MLX90615 support
+To:     Marek Vasut <marex@denx.de>
+Cc:     linux-iio@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The hibernation feature enabled for Xilinx Versal NET SoC in DWC3 IP.
-As the DWC3 IP supports the hibernation feature, to handle the wakeup
-or hibernation interrupt, add host mode "wakeup" interrupt-names
-optional property in the binding schema to capture remote-wakeup and
-connect/ disconnect event in the hibernation state.
+Acked-by: Crt Mori <cmo@melexis.com>
 
-Signed-off-by: Piyush Mehta <piyush.mehta@amd.com>
----
-Change in V2:
--  Addressed ROB review comments
- - Updated name of interrupt-names property with "wakeup"
- - Move interrupt-names property from dwc3-xilinx core to dwc3 core.
-
-Link: https://lore.kernel.org/all/CAL_JsqK6_7XD7+w+EQvPPmbmSOpfo3JDb0xDN4StuHUm1kgchw@mail.gmail.com/
----
- Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-index 50edc4da780e..db512769bd80 100644
---- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-+++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-@@ -53,6 +53,8 @@ properties:
-       - const: dwc_usb3
-       - items:
-           enum: [host, peripheral, otg]
-+      - items:
-+          enum: [dwc_usb3, otg, wakeup]
- 
-   clocks:
-     description:
--- 
-2.25.1
-
+On Wed, 10 May 2023 at 12:23, Marek Vasut <marex@denx.de> wrote:
+>
+> Add support for MLX90615 Infra Red Thermometer, which seems to be
+> the predecesor of MLX90614 . There are significant differences in
+> the register layout compared to MLX90614, but the functionality
+> of the device is virtually identical.
+>
+> The following differences have been identified:
+> - RAM/EEPROM/SLEEP access opcodes are different
+> - RAM/EEPROM registers are at different offsets
+> - EEPROM emissivity and configuration registers are at different offsets
+> - EEPROM configuration register bits are shuffled around
+> - EEPROM emissivity settings are 14 bit on MLX90615 , 16 bit on MLX90614
+> - MLX90615 can only ever support one sensor, MLX90614 could support two
+> - FIR filter is set to fixed settings on MLX90615
+> - IIR filter coefficients are different
+>
+> This patch fills in the MLX90615 specific description and quirk handling.
+>
+> The IIR filter coefficients were provided by Melexis as follows:
+> 0b0000 - Forbidden value
+> 0b0001 - 100% - settling time = refresh rate = 205ms (around 5Hz)
+> 0b0010 - 50% - settling time = 2050ms (around 0.5Hz)
+> 0b0011 - 33% - settling time = 36900ms (around 0.3Hz)
+> 0b0100 - 25% - settling time = 5125ms (around 0.2Hz)
+> 0b0101 - 20% - settling time = 6355ms (around 0.15Hz)
+> 0b0110 - 17% - settling time = 7790ms (around 0.13Hz)
+> 0b0111 - 14% - settling time = 9225ms (around 0.1Hz)
+>
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
+> Cc: Crt Mori <cmo@melexis.com>
+> Cc: Jonathan Cameron <jic23@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Lars-Peter Clausen <lars@metafoo.de>
+> Cc: Marek Vasut <marex@denx.de>
+> Cc: Peter Meerwald <pmeerw@pmeerw.net>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-iio@vger.kernel.org
+> ---
+> V2: Split the patch up into cleanups, abstraction and MLX90615 addition
+> V3: Drop emissivity_res, update IIR filter coefficients per Melexis input
+> ---
+>  drivers/iio/temperature/mlx90614.c | 48 +++++++++++++++++++++++++++---
+>  1 file changed, 44 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/iio/temperature/mlx90614.c b/drivers/iio/temperature/mlx90614.c
+> index 3aa108a652bb4..b2affcb795e00 100644
+> --- a/drivers/iio/temperature/mlx90614.c
+> +++ b/drivers/iio/temperature/mlx90614.c
+> @@ -1,12 +1,15 @@
+>  // SPDX-License-Identifier: GPL-2.0-only
+>  /*
+> - * mlx90614.c - Support for Melexis MLX90614 contactless IR temperature sensor
+> + * mlx90614.c - Support for Melexis MLX90614/MLX90615 contactless IR temperature sensor
+>   *
+>   * Copyright (c) 2014 Peter Meerwald <pmeerw@pmeerw.net>
+>   * Copyright (c) 2015 Essensium NV
+>   * Copyright (c) 2015 Melexis
+>   *
+> - * Driver for the Melexis MLX90614 I2C 16-bit IR thermopile sensor
+> + * Driver for the Melexis MLX90614/MLX90615 I2C 16-bit IR thermopile sensor
+> + *
+> + * MLX90614 - 17-bit ADC + MLX90302 DSP
+> + * MLX90615 - 16-bit ADC + MLX90325 DSP
+>   *
+>   * (7-bit I2C slave address 0x5a, 100KHz bus speed only!)
+>   *
+> @@ -35,6 +38,10 @@
+>  #define MLX90614_OP_EEPROM     0x20
+>  #define MLX90614_OP_SLEEP      0xff
+>
+> +#define MLX90615_OP_EEPROM     0x10
+> +#define MLX90615_OP_RAM                0x20
+> +#define MLX90615_OP_SLEEP      0xc6
+> +
+>  /* Control bits in configuration register */
+>  #define MLX90614_CONFIG_IIR_SHIFT 0 /* IIR coefficient */
+>  #define MLX90614_CONFIG_IIR_MASK (0x7 << MLX90614_CONFIG_IIR_SHIFT)
+> @@ -43,11 +50,16 @@
+>  #define MLX90614_CONFIG_FIR_SHIFT 8 /* FIR coefficient */
+>  #define MLX90614_CONFIG_FIR_MASK (0x7 << MLX90614_CONFIG_FIR_SHIFT)
+>
+> +#define MLX90615_CONFIG_IIR_SHIFT 12 /* IIR coefficient */
+> +#define MLX90615_CONFIG_IIR_MASK (0x7 << MLX90615_CONFIG_IIR_SHIFT)
+> +
+>  /* Timings (in ms) */
+>  #define MLX90614_TIMING_EEPROM 20 /* time for EEPROM write/erase to complete */
+>  #define MLX90614_TIMING_WAKEUP 34 /* time to hold SDA low for wake-up */
+>  #define MLX90614_TIMING_STARTUP 250 /* time before first data after wake-up */
+>
+> +#define MLX90615_TIMING_WAKEUP 22 /* time to hold SCL low for wake-up */
+> +
+>  #define MLX90614_AUTOSLEEP_DELAY 5000 /* default autosleep delay */
+>
+>  /* Magic constants */
+> @@ -305,8 +317,8 @@ static int mlx90614_read_raw(struct iio_dev *indio_dev,
+>                         *val2 = ret * NSEC_PER_SEC / chip_info->emissivity_max;
+>                 }
+>                 return IIO_VAL_INT_PLUS_NANO;
+> -       case IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY: /* IIR setting with
+> -                                                            FIR = 1024 */
+> +       /* IIR setting with FIR=1024 (MLX90614) or FIR=65536 (MLX90615) */
+> +       case IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY:
+>                 ret = mlx90614_power_get(data, false);
+>                 if (ret < 0)
+>                         return ret;
+> @@ -664,14 +676,42 @@ static const struct mlx_chip_info mlx90614_chip_info = {
+>         },
+>  };
+>
+> +static const struct mlx_chip_info mlx90615_chip_info = {
+> +       .op_eeprom_emissivity           = MLX90615_OP_EEPROM | 0x03,
+> +       .op_eeprom_config1              = MLX90615_OP_EEPROM | 0x02,
+> +       .op_ram_ta                      = MLX90615_OP_RAM | 0x06,
+> +       .op_ram_tobj1                   = MLX90615_OP_RAM | 0x07,
+> +       .op_ram_tobj2                   = MLX90615_OP_RAM | 0x08,
+> +       .op_sleep                       = MLX90615_OP_SLEEP,
+> +       .dual_channel                   = false,
+> +       .wakeup_delay_ms                = MLX90615_TIMING_WAKEUP,
+> +       .emissivity_max                 = 16383,
+> +       .fir_config_mask                = 0,    /* MLX90615 FIR is fixed */
+> +       .iir_config_mask                = MLX90615_CONFIG_IIR_MASK,
+> +       /* IIR value 0 is FORBIDDEN COMBINATION on MLX90615 */
+> +       .iir_valid_offset               = 1,
+> +       .iir_values                     = { 500, 50, 30, 20, 15, 13, 10 },
+> +       .iir_freqs                      = {
+> +               { 0, 100000 },  /* 14% ~= 0.10 Hz */
+> +               { 0, 130000 },  /* 17% ~= 0.13 Hz */
+> +               { 0, 150000 },  /* 20% ~= 0.15 Hz */
+> +               { 0, 200000 },  /* 25% ~= 0.20 Hz */
+> +               { 0, 300000 },  /* 33% ~= 0.30 Hz */
+> +               { 0, 500000 },  /* 50% ~= 0.50 Hz */
+> +               { 5, 000000 },  /* 100% ~= 5.00 Hz */
+> +       },
+> +};
+> +
+>  static const struct i2c_device_id mlx90614_id[] = {
+>         { "mlx90614", .driver_data = (kernel_ulong_t)&mlx90614_chip_info },
+> +       { "mlx90615", .driver_data = (kernel_ulong_t)&mlx90615_chip_info },
+>         { }
+>  };
+>  MODULE_DEVICE_TABLE(i2c, mlx90614_id);
+>
+>  static const struct of_device_id mlx90614_of_match[] = {
+>         { .compatible = "melexis,mlx90614", .data = &mlx90614_chip_info },
+> +       { .compatible = "melexis,mlx90615", .data = &mlx90615_chip_info },
+>         { }
+>  };
+>  MODULE_DEVICE_TABLE(of, mlx90614_of_match);
+> --
+> 2.39.2
+>
