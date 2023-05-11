@@ -2,230 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D48BD6FEE1F
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 10:59:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A4D36FEE2E
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 11:01:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233814AbjEKI7Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 04:59:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55898 "EHLO
+        id S229826AbjEKJBS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 05:01:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233461AbjEKI7Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 04:59:24 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C70E2107;
-        Thu, 11 May 2023 01:59:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1683795563; x=1715331563;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=v42NvPVBKaIwu61SkEdAj1zG9Hx2b4e6U93BhDKvPUs=;
-  b=LUW5f2er9wwUCEqbSHDqBxeLBIdHf1PA+kMCsXgtiNkWLcDRN7WvVztH
-   dXjJ2k/z/5nJ8dcez8gG91jqhqO76cVPfAaqObae8vXoVZV5xDUFaeApe
-   bnvdiz+d4uLuXH8RUQ2HDnJ2qDIXLRekyYfH/q5rllTTT8RTw1ZPfQaq2
-   +mIMJxzBf+yU/eJ1vQoST/G5HfLKdXtvrRo8YDkjMRucP6fcALjkzFjAN
-   GtR0yJLca4OyjtgBb6hmMukJUGnxChHyH0Nq/fVJ7sH0QXpbhTTHGKqGp
-   ZhhLUr0sjAk7WuGQPZLn8Pxs2HaGzqgz3zJVnTA4a2IEUxARKWeT530Ku
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.99,266,1677567600"; 
-   d="asc'?scan'208";a="213392843"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 11 May 2023 01:59:22 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Thu, 11 May 2023 01:59:21 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Thu, 11 May 2023 01:59:19 -0700
-Date:   Thu, 11 May 2023 09:58:59 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     <Claudiu.Beznea@microchip.com>
-CC:     <krzysztof.kozlowski@linaro.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <Nicolas.Ferre@microchip.com>,
-        <alexandre.belloni@bootlin.com>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 2/5] dt-bindings: clocks: atmel,at91rm9200-pmc:
- convert to yaml
-Message-ID: <20230511-strike-viper-f4171c88a040@wendy>
-References: <20230509052757.539274-1-claudiu.beznea@microchip.com>
- <20230509052757.539274-3-claudiu.beznea@microchip.com>
- <e463eb68-3ea0-5230-76fd-4a2ee66bf397@linaro.org>
- <773d0d90-29c7-b1bd-bd16-898b435eafb6@microchip.com>
- <b3c7db03-6614-47d9-a9e0-a8e51c836d86@linaro.org>
- <a4d934c6-ec28-50d0-b9bb-9b11fee7ebb6@microchip.com>
- <1c2aa022-348a-8ac2-1a26-eedf57aadb77@linaro.org>
- <71a1e8de-932d-09a1-efeb-af459fee9423@microchip.com>
- <8f21f892-de54-9bc7-d4b9-f36aaa6b4a7c@linaro.org>
- <e8e2de0e-ca7b-44e3-7853-5693a7926a2b@microchip.com>
+        with ESMTP id S229548AbjEKJBR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 05:01:17 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A3D0211E
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 02:01:16 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-50bd37ca954so77119326a12.0
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 02:01:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683795674; x=1686387674;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0CisL2rUE4Hw6hlxlukZuowP2tixyFGxjkXdRANpN4o=;
+        b=cWCRSOdDgP46O6T1hMKoF/8U0aNMUK8Rt1UUXmAgisr+nnDt24sRYnhmXSx0YMLi83
+         Tv43KqVI7M8dGwOuXmp8wTGaoxcLPIwynVL4gr9HdgdeTAf+OQpE1waZuLzcsxy/sSFg
+         TU91PqWhPY7irbdfC+m/heDD7O5PtIBYYnFatINeBL0Qq6zYPgNdp5yYmK8wLPzMZMeD
+         t3E9QC3y6K9mud1kciwYf5qkS8vVkcXlbeRqutAixTGCkB532igmHdiKaoGRWdZCtOcM
+         3KQQhkOh1Qb5OKi4Ud7op4c9SDpIuOj3br7U2WB85Ik+qmGm2UoSKohftY7lDJ0zsRSl
+         D+/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683795674; x=1686387674;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0CisL2rUE4Hw6hlxlukZuowP2tixyFGxjkXdRANpN4o=;
+        b=Na7wYbAbdE3ZMjIHEJTMP5aneC4PY7NAtMpbfjGGbBPrXe/WpatwgChuZt7TQKwA5O
+         PWsrr4MWZrq6Mzoc0dz8wD//AL0E6v0X1eBKisKw+ZkHjbmuUG0ewJxA2fLlePC/RVzt
+         cXkqi37hOMMsy2vjSkYKALk7HgKklNBDVmwTOsRgr9mzOPDdzfEJEsjaYO/d/cEj6AcY
+         RMyFRjWXPr/eljziSTz0fAPOxW5U60wcFG97Y5PMOoH1cWcPsWMEgkXsHFBq0XMCnCom
+         R72muQkGHQlGLl7c2RSwi6qO4oYtW4LLRoEfmyVRSXHin8PYU7DzrancSpOV0/Ayz3PU
+         7SPg==
+X-Gm-Message-State: AC+VfDys5Me2XPkssjUACfs1MzQrYS1ukCXvPLNaiXG6o1nMmKvZWY9q
+        kHvZRpvUnZTUUFfiX6grjcNINQ==
+X-Google-Smtp-Source: ACHHUZ6KOZWGlcRewxIzNr2yQQxjbZCIQpTw1t3mlu3ayU+bXuAyBCLXZ+Z5vsm6LCoN8NVEKftVCA==
+X-Received: by 2002:a17:907:da4:b0:966:4e4c:a36d with SMTP id go36-20020a1709070da400b009664e4ca36dmr12121142ejc.20.1683795674367;
+        Thu, 11 May 2023 02:01:14 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:7e61:f14a:c3a4:809e? ([2a02:810d:15c0:828:7e61:f14a:c3a4:809e])
+        by smtp.gmail.com with ESMTPSA id w10-20020a170907270a00b00965e9a23f2bsm3679359ejk.134.2023.05.11.02.01.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 May 2023 02:01:13 -0700 (PDT)
+Message-ID: <1959eb8a-d55f-5f62-2b41-0e7ea41b27b2@linaro.org>
+Date:   Thu, 11 May 2023 11:01:12 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="w4yJ+fuYCr9l/xTM"
-Content-Disposition: inline
-In-Reply-To: <e8e2de0e-ca7b-44e3-7853-5693a7926a2b@microchip.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [EXTERNAL] Re: [PATCH v2 2/5] ASoC: dt-bindings: Add tas2781
+ amplifier
+Content-Language: en-US
+To:     "Ding, Shenghao" <shenghao-ding@ti.com>
+Cc:     "Lu, Kevin" <kevin-lu@ti.com>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Xu, Baojun" <x1077012@ti.com>, "Gupta, Peeyush" <peeyush@ti.com>,
+        "Navada Kanyana, Mukund" <navada@ti.com>,
+        "gentuser@gmail.com" <gentuser@gmail.com>,
+        "Ryan_Chu@wistron.com" <Ryan_Chu@wistron.com>,
+        "Sam_Wu@wistron.com" <Sam_Wu@wistron.com>,
+        Shenghao Ding <13916275206@139.com>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "perex@perex.cz" <perex@perex.cz>,
+        "pierre-louis.bossart@linux.intel.com" 
+        <pierre-louis.bossart@linux.intel.com>
+References: <20230508054512.719-1-13916275206@139.com>
+ <ca9d45cf-8a84-4fbc-e1dd-c96eef36fe25@linaro.org>
+ <c088d7dce83a45168d0dc25fee4a9e35@ti.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <c088d7dce83a45168d0dc25fee4a9e35@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---w4yJ+fuYCr9l/xTM
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 10/05/2023 16:03, Ding, Shenghao wrote:
+> 
+>> +    items:
+>> +      minimum: 0x38
+>> +      maximum: 0x3f
+> 
+> ... So these are fixed? No need to encode them in such case...
+> 
+> and anyway actually I agree with Rob here - these addresses should be put in reg.
+> [DING] if all the put in reg, the i2c_probe will be called several time. The code don not want to register several codecs, but one codec including several tas2781s.
 
-On Thu, May 11, 2023 at 06:29:39AM +0000, Claudiu.Beznea@microchip.com wrot=
-e:
-> On 10.05.2023 13:12, Krzysztof Kozlowski wrote:
-> > EXTERNAL EMAIL: Do not click links or open attachments unless you know =
-the content is safe
-> >=20
-> > On 10/05/2023 10:31, Claudiu.Beznea@microchip.com wrote:
-> >> On 10.05.2023 10:58, Krzysztof Kozlowski wrote:
-> >>> EXTERNAL EMAIL: Do not click links or open attachments unless you kno=
-w the content is safe
-> >>>
-> >>> On 10/05/2023 09:14, Claudiu.Beznea@microchip.com wrote:
-> >>>> On 10.05.2023 10:06, Krzysztof Kozlowski wrote:
-> >>>>> EXTERNAL EMAIL: Do not click links or open attachments unless you k=
-now the content is safe
-> >>>>>
-> >>>>> On 10/05/2023 09:00, Claudiu.Beznea@microchip.com wrote:
-> >>>>>> On 09.05.2023 09:25, Krzysztof Kozlowski wrote:
-> >>>>>>> EXTERNAL EMAIL: Do not click links or open attachments unless you=
- know the content is safe
-> >>>>>>>
-> >>>>>>> On 09/05/2023 07:27, Claudiu Beznea wrote:
-> >>>>>>>> Convert Atmel PMC documentation to yaml. Along with it clock nam=
-es
-> >>>>>>>> were adapted according to the current available device trees as
-> >>>>>>>> different controller versions accept different clocks (some of t=
-hem
-> >>>>>>>> have 3 clocks as input, some has 2 clocks as inputs and some wit=
-h 2
-> >>>>>>>> input clocks uses different clock names).
-> >>>>>>>>
-> >>>>>>>
-> >>>>>>> Thank you for your patch. There is something to discuss/improve.
-> >>>>>>>
-> >>>>>>>> +title: Atmel Power Management Controller (PMC)
-> >>>>>>>> +
-> >>>>>>>> +maintainers:
-> >>>>>>>> +  - Claudiu Beznea <claudiu.beznea@microchip.com>
-> >>>>>>>> +
-> >>>>>>>> +description:
-> >>>>>>>> +  The power management controller optimizes power consumption b=
-y controlling all
-> >>>>>>>> +  system and user peripheral clocks. The PMC enables/disables t=
-he clock inputs
-> >>>>>>>> +  to many of the peripherals and to the processor.
-> >>>>>>>> +
-> >>>>>>>> +properties:
-> >>>>>>>> +  compatible:
-> >>>>>>>> +    oneOf:
-> >>>>>>>> +      - items:
-> >>>>>>>> +          - enum:
-> >>>>>>>> +              - atmel,at91sam9g15-pmc
-> >>>>>>>> +              - atmel,at91sam9g20-pmc
-> >>>>>>>> +              - atmel,at91sam9g25-pmc
-> >>>>>>>> +              - atmel,at91sam9g35-pmc
-> >>>>>>>> +              - atmel,at91sam9x25-pmc
-> >>>>>>>> +              - atmel,at91sam9x35-pmc
-> >>>>>>>> +          - enum:
-> >>>>>>>> +              - atmel,at91sam9260-pmc
-> >>>>>>>> +              - atmel,at91sam9x5-pmc
-> >>>>>>>
-> >>>>>>> I missed it last time - why you have two enums? We never talked a=
-bout
-> >>>>>>> this. It's usually wrong... are you sure this is real hardware:
-> >>>>>>> atmel,at91sam9g20-pmc, atmel,at91sam9260-pmc
-> >>>>>>> ?
-> >>>>>>
-> >>>>>> I have 2 enums because there are some hardware covered by:
-> >>>>>> "vendor-name,hardware-v1-pmc", "syscon" and some covered by:
-> >>>>>> "vendor-name,hardware-v2-pmc", "vendor-name,hardware-v1-pmc", "sys=
-con".
-> >>>>>
-> >>>>> The enum does not say this. At all.
-> >>>>>
-> >>>>> So again, answer, do not ignore:
-> >>>>> is this valid setup:
-> >>>>> atmel,at91sam9g20-pmc, atmel,at91sam9260-pmc
-> >>>>> ?
-> >>>>
-> >>>> Not w/o syscon. This is valid:
-> >>>
-> >>> Syscon is not important here, but indeed I missed it.
-> >>>
-> >>>>
-> >>>> compatible =3D "atmel,at91sam9g20-pmc", "atmel,at91sam9260-pmc", "sy=
-scon";
-> >>>>
-> >>>> available in arch/arm/boot/dts/at91sam9g20.dtsi +45
-> >>>
-> >>> Nice, so my random choice was actually correct. Ok, so another:
-> >>>
-> >>> atmel,at91sam9g15-pmc, atmel,at91sam9260-pmc, syscon
-> >>>
-> >>> Is it valid hardware?
-> >>
-> >> This one, no. So, I guess, the wrong here is that there could be
-> >> combinations that are not for actual hardware and yet considered valid=
- by
-> >> changes in this patch?
-> >=20
-> > I just don't understand why you have two enums. This is not a pattern
-> > which is allowed anywhere. It might appear but only as exception or mis=
-take.
->=20
-> I'm not at all an YAML expert and this is how I've managed to make
-> dt_binding_check/dtbs_check happy.
+Eh? Why and what would call probe multiple times for one device? It's
+the first time I hear... I don't know, maybe Linux I2C has some
+specifics, but sounds surprising.
 
-Picking one item at random, do the devicetrees contain stuff like:
-"atmel,at91sam9g35-pmc", "atmel,at91sam9260-pmc", "syscon"
-//AND//
-"atmel,at91sam9g35-pmc", "atmel,at91sam9x5-pmc", "syscon"
-?
+> 
+>> +      description:
+>> +        I2C address of the device for different audio slots,
+>> +        useless in mono case.
+>> +
+>> +  ti,broadcast-addr:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    description:
+>> +      Generic I2C address for all the tas2781 devices in
+>> +      purpose of I2C broadcast during the multi-device
+>> +      writes, useless in mono case.
+> 
+> Probably you can figure it out from previous addresses and there is no need for this property.
+> [Ding] this address is the common address for all the tas2781, it can be used for dsp firmware downloading to all the tas2781s in parallel, which can save more downloading time
 
-If not, why do you not break it down to something like:
-- items:
-    - enum:
-        - atmel,compatible
-        - atmel,with
-        - atmel,sam9260's pmc
-    - const: atmel,at91sam9260-pmc
-    - const: syscon
+So the answer is yes? Then please drop it... If not, say why it cannot
+be deducted from other addresses (e.g. last address + 1).
 
-- items:
-    - enum:
-        - atmel,compatible
-        - atmel,with
-        - atmel,sam9x5's pmc
-    - const: atmel,at91sam9x5-pmc
-    - const: syscon
+Best regards,
+Krzysztof
 
-Cheers,
-Conor.
-
---w4yJ+fuYCr9l/xTM
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZFyuUwAKCRB4tDGHoIJi
-0suRAQDysc87JyYDx/XRfnlXqky2ma5ajlXlcxrFkB2DILD75AEAm51N9jtu/TiC
-JNvrPPBAryZOpPnm/VSyGXlHS7sgJQg=
-=3SaE
------END PGP SIGNATURE-----
-
---w4yJ+fuYCr9l/xTM--
