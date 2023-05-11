@@ -2,69 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD2FD6FEE46
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 11:03:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFC006FEE4C
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 11:03:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235531AbjEKJC6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 05:02:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58680 "EHLO
+        id S237074AbjEKJDa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 05:03:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59344 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236884AbjEKJC4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 05:02:56 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5496AF
-        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 02:02:54 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-50bc25f0c7dso15103371a12.3
-        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 02:02:54 -0700 (PDT)
+        with ESMTP id S237077AbjEKJD3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 05:03:29 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45BFE99
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 02:03:27 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-965ac4dd11bso1650950366b.2
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 02:03:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683795773; x=1686387773;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=linaro.org; s=google; t=1683795806; x=1686387806;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=97uBOFjQQzOvvB8u3OJcbV8ItVcsrJ5cxlVd2KHoK0k=;
-        b=iz6Ud3fHc/LHQGwRDqEU/eUOlamVyRdaJ7jhbVrcRbUK0JylKteuX+Tguz4iQCHyHN
-         PXotHmbMpKnRsrjsNuqaHVm9pWkhBe9us1wmZxGyXMG7RxCvOZ8pI1DBY2E8w3Q3bJdW
-         W3cutSVgzIuXJIOf6CM3HFlvqIdYLTW87uW+VNnBCh6isbqucXDhoW5X75sutgHGFcNk
-         RX3sZHa5f9M4GdLNJcaPnZBuncnRBq9mBdSwU+tPtX/C64mifxibEXcBhY03NouPmih+
-         hXvCtHp/xc9noSP5SARD3xPheNQe56giFts7F2G1DEHMwdfBigpdwEK48OjyIWlkS0Sf
-         htKQ==
+        bh=/gURyFCLGL6qPfte/M38lDLhFR1He2KCfzZXXVoCQbA=;
+        b=iquqBAsAp6khHMo3FwoOGE6v0VsiHMPYSjGjvTKxzosEfZXQ3il8oDqFbO4XkIeKHv
+         FkT2xFPNu5zcoN/xAab+H7GMj/reMx4tM3hgiqvob+pYCfsBi/YWCiT2HOsGcmXjylB8
+         jlyfx4eWElKt7wlyOrfyy6wT7BGgUHGjw/Yh2FKxJsH1cLJL90npjpoTGXKFALSQvmiK
+         viU5l7F8nmUxXwdBCepdJapeGj+RXbAQT9g5poWne8216Bdve7JknHuyGVL7aUPJ3zxh
+         D1JSoze0mGwo3USInbixsY1y9Z7JdB/nsbZfTKlxYZ8RSOJBgs1bl6H4wxAKHlgcuAW+
+         TzeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683795773; x=1686387773;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=1e100.net; s=20221208; t=1683795806; x=1686387806;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=97uBOFjQQzOvvB8u3OJcbV8ItVcsrJ5cxlVd2KHoK0k=;
-        b=mGjF60mFHDpYGYUOKrqiHn+JPTEdz3zsnDKofQRmf32wOl8xbQ71yCnVWWoVQlxpzv
-         J0wnULQ9hEq2TYam8dKIJrXfHBMq9BufiWJItbW7tf7h1elsn7ohXHuUAP/tCkIND/n5
-         4gMkPbkVT/12XjhAheFjan4d9I9U78sCjdgtOkp1agOCrN4Dwo1i5hg4YDoKoedR69Mv
-         DQKdrVgaLBBbQJB22R6OOcqda2KeFSwdiQI66HEpne+Xlr6+6EzAgjfYTJ6SFU2HFPi8
-         AQATykwZE+UEhPdCsyn7MIwR7OAJmpgx9mVo62qM6D/+uECT3YT0P9MYZVB9A5s0crX+
-         pJlQ==
-X-Gm-Message-State: AC+VfDx2K+2v/LpGaR2qEcQIpZQByvCkCfACv1ZvZ3YzKAfDaNXiHnSS
-        Pr9cA9YH7Own2qnX0VM0fr/gxg==
-X-Google-Smtp-Source: ACHHUZ6OK7ykSvjrrZ+YB4oNDuEFF+ghucDyBzdNtJncOI1RhXAGST8r7wzUqhoWVeznvurVkNy5HQ==
-X-Received: by 2002:aa7:dd11:0:b0:50b:c11b:f00c with SMTP id i17-20020aa7dd11000000b0050bc11bf00cmr15314606edv.22.1683795773184;
-        Thu, 11 May 2023 02:02:53 -0700 (PDT)
+        bh=/gURyFCLGL6qPfte/M38lDLhFR1He2KCfzZXXVoCQbA=;
+        b=Y6MZ6pSMteO7Hi+qPFfQeeyDUSefGTtVyMK0BzXO5lxj7i27r0rGteXTzg3eM2E8Am
+         lJ9PmhPTCr+xlFgUBJie9iDLJG73MbGUDjVELY7UwdpkS6eAftiuull+W4+entOreMta
+         82DXBBE/0qR2gRdtdgazQemWs7BwLxQUMttouzmc4vGlOXxAwZ6qE26kjNUu73cSNDr2
+         7wFZOLO3jJnxgtYySD5rTAZNdaV6G5SKXSlcsbxiviFD+Ydw1Kj5pFnCC/0iL/B/Ry49
+         QaJpw0ekdlDMFV0nz3fO/BNPxupldXJ+ybPPaimSkP+nDw46vXZSDR83ohTnZkcX5bnv
+         EzKg==
+X-Gm-Message-State: AC+VfDyl0Vqk6BjCTI3Lil7o6GseYZtKLcODkb6H5d2trzg/naDzchpS
+        DA2tYhVbUEwjLHFksWjhJ2I2xw==
+X-Google-Smtp-Source: ACHHUZ5M9+Dx5f6PabYjCF+Jaeu08L2NV+JAQZZXXwsGJViNaDBFle8VnOu909l4RFYzaIos/HWAYA==
+X-Received: by 2002:a17:907:d01:b0:965:ffda:b9d2 with SMTP id gn1-20020a1709070d0100b00965ffdab9d2mr21532032ejc.11.1683795805683;
+        Thu, 11 May 2023 02:03:25 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:7e61:f14a:c3a4:809e? ([2a02:810d:15c0:828:7e61:f14a:c3a4:809e])
-        by smtp.gmail.com with ESMTPSA id q17-20020a056402033100b00509dfb39b52sm2807668edw.37.2023.05.11.02.02.52
+        by smtp.gmail.com with ESMTPSA id qh20-20020a170906ecb400b009655eb8be26sm3737933ejb.73.2023.05.11.02.03.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 May 2023 02:02:52 -0700 (PDT)
-Message-ID: <e0613d65-145a-4a80-b1eb-2a0e2fd36729@linaro.org>
-Date:   Thu, 11 May 2023 11:02:51 +0200
+        Thu, 11 May 2023 02:03:25 -0700 (PDT)
+Message-ID: <5d01e717-39f1-798b-dda8-022b8430dc7d@linaro.org>
+Date:   Thu, 11 May 2023 11:03:24 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH 1/2] arm64: dts: tegra: smaug: add GPU power rail
- regulator
+Subject: Re: [PATCH v3 5/6] dt-bindings: memory-region property for
+ tegra186-bpmp
 Content-Language: en-US
-To:     Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>, robh+dt@kernel.org,
+To:     Peter De Schrijver <pdeschrijver@nvidia.com>
+Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        thierry.reding@gmail.com, jonathanh@nvidia.com,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-References: <20230511083101.78516-1-diogo.ivo@tecnico.ulisboa.pt>
- <20230511083101.78516-2-diogo.ivo@tecnico.ulisboa.pt>
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org, stefank@nvidia.com
+References: <20230510142248.183629-1-pdeschrijver@nvidia.com>
+ <20230510142248.183629-6-pdeschrijver@nvidia.com>
+ <cdba4bb0-551b-a3b2-9329-139d6cda71be@linaro.org>
+ <ZFyhqXhzOUKYUafA@44189d9-lcedt>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230511083101.78516-2-diogo.ivo@tecnico.ulisboa.pt>
+In-Reply-To: <ZFyhqXhzOUKYUafA@44189d9-lcedt>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,42 +80,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/05/2023 10:31, Diogo Ivo wrote:
-> Add the GPU power rail regulator node for the Pixel C.
+On 11/05/2023 10:04, Peter De Schrijver wrote:
+> On Wed, May 10, 2023 at 05:01:55PM +0200, Krzysztof Kozlowski wrote:
+>> On 10/05/2023 16:22, Peter De Schrijver wrote:
+>>> Add memory-region property to the tegra186-bpmp binding to support
+>>> DRAM MRQ GSCs.
+>>>
+>>> Co-developed-by: Stefan Kristiansson <stefank@nvidia.com>
+>>> Signed-off-by: Stefan Kristiansson <stefank@nvidia.com>
+>>> Signed-off-by: Peter De Schrijver <pdeschrijver@nvidia.com>
+>>> ---
+>>
+>> Also no changelog. Since I do not see improvements after Thierry
+>> comments I assume you send the same.
+>>
 > 
-> Signed-off-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
-> ---
->  arch/arm64/boot/dts/nvidia/tegra210-smaug.dts | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts b/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
-> index e55bff859692..8973fcf1e219 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
-> +++ b/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
-> @@ -1406,6 +1406,23 @@ max77621_cpu: max77621@1b {
->  			maxim,externally-enable;
->  		};
->  
-> +		max77621_gpu: max77621@1c {
+> The changelog is in the cover letter. I will send it to you next
+> iteration.
 
-Node names should be generic.
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+I got only few patches, rest is missing including changelog. Thus it is
+the same as it did not exist.
 
-> +			compatible = "maxim,max77621";
-> +			reg = <0x1c>;
-> +			interrupt-parent = <&gpio>;
-> +			interrupts = <TEGRA_GPIO(A, 6) IRQ_TYPE_LEVEL_LOW>;
-> +			regulator-min-microvolt = <840000>;
-> +			regulator-max-microvolt = <1150000>;
-> +			regulator-name = "PPVAR_GPU";
-> +			regulator-ramp-delay = <12500>;
-> +			maxim,dvs-default-state = <1>;
-> +			maxim,enable-active-discharge;
-> +			maxim,enable-bias-control;
-> +			maxim,disable-etr;
-> +			maxim,enable-gpio = <&pmic 6 0>;
-
-Use defines for GPIO flags.
 
 Best regards,
 Krzysztof
