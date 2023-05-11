@@ -2,129 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8681A6FEA8B
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 06:14:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5C546FEB04
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 07:03:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236019AbjEKEOD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 00:14:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48498 "EHLO
+        id S236955AbjEKFDk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 01:03:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36994 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232376AbjEKENy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 00:13:54 -0400
-Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07B8546B6;
-        Wed, 10 May 2023 21:13:53 -0700 (PDT)
-Received: by mail-ot1-x333.google.com with SMTP id 46e09a7af769-6a5f7341850so5481355a34.2;
-        Wed, 10 May 2023 21:13:52 -0700 (PDT)
+        with ESMTP id S231797AbjEKFDj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 01:03:39 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 064E4358A
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 22:03:38 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-965e93f915aso1331643766b.2
+        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 22:03:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683778432; x=1686370432;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EDH9QUcCMeMca23FE1jt1bCtNZnalbDq2HP2ml5fhuA=;
-        b=DaqmcVByATrZIpuCbgOAbaBMBK6Ujb8MQtVUwCe1la3a/N6IykewNuuaOyF4eKVqs/
-         q6s8VVyBODKC6bXGm0/OTBUhbb9tuJkS37zkhX5+/9b6oUV9F3TQuyIp6JDPuXziY7A1
-         GTBTzhf/Me/uLvgKQ8j9+CioIzpjEnkb3AK2Da1nbxmeXQWJ+RLsHZFuUt34Q43AWwEt
-         dGDPLDDSOTnPl4mZbJLHWhK4MhsOAwugq7wDY0Smf61NvpA7S+pcH+DgfK6Tng93i/iV
-         zL5umxC1ylT5CPW2cfSHNlzy156kNJHQPrZck3UC8fu8pK6SCfvii1K9U1v6SzMgWtLp
-         +3Ug==
+        d=linaro.org; s=google; t=1683781416; x=1686373416;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4sEbxgolIUmjMoQJHrzBiAW9JiPuzPau1FkgVjAr2Lk=;
+        b=JHUlyNtBDmJi7ZyhaZ+2XmG6NGuCZprqL5U1uevdReL5xyrr6B2xPEfWkkm0enqWj6
+         aah0WBF6NxthDPziJHudJfQbdx1qq6KYmOQT3fWX3dHgW8FjP9AppC0CvV6SpY586ne5
+         jr6ba2ncS283K9ja6T9KprKC5uaDfGYwAbRYtjz4GIzJgSXwCQVSx6gKfY9Y9C2hoqDd
+         KvYFL3hbq1V0nQ6PbjoeZrpCDqH3r5B1YQ09/tB0wrjg3Tz9iP2SvjON7nTVzmCeTKm8
+         KmsxIi9K6vivhMHO7hAb8S2fEwLkJj5vi83anB3n28ov1HZBdQDJt1XepOZq9wL/3zsB
+         KCVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683778432; x=1686370432;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EDH9QUcCMeMca23FE1jt1bCtNZnalbDq2HP2ml5fhuA=;
-        b=DeQD2JoyrHCw3vfIipexMX2q2CO+NQI76O5EuIFw4RcDBt8K9L729fCvsmaS9tgpHS
-         l6DB4IQJAr1rOP41aanhe1DgiX4FtphSs+KmcsjcqrHRCODHzdY4DuIXLRG5wJAlEY10
-         fY873wICuNBHQVwBm4niXM24/DRdVtlYL0DGOLPwQVV5/90TIHijkGoCdild4TMVUSWP
-         uk/t6ePe60nWhaEz8kfWJlfF9lz6w5MjM887hKvUstECJ46OAQt32oU3oTmGDzI9uMP6
-         NrWQz5EX+Pebn6VZMxi7PygBrZePr/NVjH3SJyeVpAJpbhij7/Zzxzl446W3nv5jiLem
-         zGXw==
-X-Gm-Message-State: AC+VfDycWbLtnfetaU56HnxIbTK/ttbOoMiKQJ9IN6AiAqvb7z5MW/FR
-        EejxG5jaZ/rnayHdwRteh27bGcOtHJiQsvBdI4JfSdIUgJ0=
-X-Google-Smtp-Source: ACHHUZ5cNk4FiELtWYVUIm9lDNspsAsjoItDP/Zs0NmARUdRJiYDeURdOZ41UBfnJnA9NoVbUzB/8Z9dxm+GJADBxpw=
-X-Received: by 2002:a54:440d:0:b0:38c:647b:e298 with SMTP id
- k13-20020a54440d000000b0038c647be298mr4057148oiw.14.1683778432206; Wed, 10
- May 2023 21:13:52 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1683781416; x=1686373416;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4sEbxgolIUmjMoQJHrzBiAW9JiPuzPau1FkgVjAr2Lk=;
+        b=XVO6khTzdY8dR2bZbSFZBFSm294bKTNjjHogUrtNnGpJIvFlk9FLZz85skfo2sCmqI
+         KNwmLqBBjQ+opYfnHt2ijvDZB0x+KYAdgnxaDbqO2gyD+T6NflVZ34PyBa148pLkrOq1
+         +hge0QflODGyNnJc9VTegMilUQm9yE24s1+I8rcdLNP23Fkeam8B1Mzt0NEJwlLBYI7V
+         t2jOSxN7nGqPycvmps4a11A7SPN83VUZtL5XviFJre7PJ7OIS56tFOcw2va6DFE20OWo
+         0Uw89K13ct3d64MgJwttDOih4y63kdkU6YuC5hs/A/tV7J1lMsZ+Sr+dqBh42xdTVyY3
+         IH/g==
+X-Gm-Message-State: AC+VfDzdiFj1c1WLNXd1DtVgyCJwZa9/mtY53vnMDaePrM1KNxEbRwgv
+        wwKiMrbntDiVHqeguJmFRGS/5w==
+X-Google-Smtp-Source: ACHHUZ6hUvyAqt6ZB1PqKCv8CJoeSHW7WOek/O5ToLGtQQz1dGpJoODgI5zUJ2Sgkiv+nLrL0GwcZA==
+X-Received: by 2002:a17:907:3f88:b0:96a:6e42:7123 with SMTP id hr8-20020a1709073f8800b0096a6e427123mr351552ejc.36.1683781416396;
+        Wed, 10 May 2023 22:03:36 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:a01e:5c6:be3:7baa? ([2a02:810d:15c0:828:a01e:5c6:be3:7baa])
+        by smtp.gmail.com with ESMTPSA id lf23-20020a170906ae5700b0094ee700d8e4sm3435867ejb.44.2023.05.10.22.03.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 May 2023 22:03:35 -0700 (PDT)
+Message-ID: <09988b0a-91cc-1253-2a5a-10922699b4d0@linaro.org>
+Date:   Thu, 11 May 2023 07:03:34 +0200
 MIME-Version: 1.0
-References: <20230509200032.308934-1-liviu@dudau.co.uk> <a5fdd37e-6f42-2f37-357f-ad5bb082fa7d@arinc9.com>
- <ZFvaxVwVOnzVofrU@bart.dudau.co.uk>
-In-Reply-To: <ZFvaxVwVOnzVofrU@bart.dudau.co.uk>
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Thu, 11 May 2023 06:13:41 +0200
-Message-ID: <CAMhs-H8yu9HFte0x53u_Mq8vFzS1ZOKxxR7H=tszfijhtVrU=A@mail.gmail.com>
-Subject: Re: [PATCH] mips: dts: ralink: Clarify usage of MT7621 ethernet phy arguments
-To:     Liviu Dudau <liviu@dudau.co.uk>
-Cc:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Paul Burton <paulburton@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v16 18/22] dt-bindings: PCI: renesas: Add R-Car Gen4 PCIe
+ Endpoint
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
+        "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        "mani@kernel.org" <mani@kernel.org>,
+        "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
+        "kw@linux.com" <kw@linux.com>,
+        "fancer.lancer@gmail.com" <fancer.lancer@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "kishon@kernel.org" <kishon@kernel.org>
+References: <20230510062234.201499-1-yoshihiro.shimoda.uh@renesas.com>
+ <20230510062234.201499-19-yoshihiro.shimoda.uh@renesas.com>
+ <20230510100309.e3ggidtc35xi7jde@krzk-bin>
+ <TYBPR01MB5341D96B3E3F65BD12434F09D8749@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <TYBPR01MB5341D96B3E3F65BD12434F09D8749@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Liviu,
+On 11/05/2023 02:23, Yoshihiro Shimoda wrote:
+> Hi Krzysztof,
+> 
+>> From: Krzysztof Kozlowski, Sent: Wednesday, May 10, 2023 7:03 PM
+>>
+>> On Wed, 10 May 2023 15:22:30 +0900, Yoshihiro Shimoda wrote:
+>>> Document bindings for Renesas R-Car Gen4 and R-Car S4-8 (R8A779F0)
+>>> PCIe endpoint module.
+>>>
+>>> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+>>> Reviewed-by: Rob Herring <robh@kernel.org>
+>>> Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
+>>> Acked-by: Manivannan Sadhasivam <mani@kernel.org>
+>>> ---
+>>>  .../bindings/pci/rcar-gen4-pci-ep.yaml        | 98 +++++++++++++++++++
+>>>  1 file changed, 98 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.yaml
+>>>
+>>
+>> BTW, you keep not-ccing me. Since long time. I don't understand why. I
+>> don't have the emails in inbox, so I won't be responding to your
+>> patchset.
+> 
+> I'm sorry. This is my bad. My using script for sending PCI patches didn't describe
+> your email address and I didn't realize that until now. Today I added your email
+> address and Conor's email address into my script.
+> 
+>>
+>> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+>> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>>
+>> yamllint warnings/errors:
+>>
+>> dtschema/dtc warnings/errors:
+>> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.example.dtb:
+>> pcie-ep@e65d0000: reg: [[0, 3864854528, 0, 8192], [0, 3864864768, 0, 2048], [0, 3864866816, 0, 8192], [0, 3864875008,
+>> 0, 4608], [0, 3864879616, 0, 3584], [0, 4261412864, 0, 4194304]] is too long
+>>       From schema:
+>> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.yaml
+>> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.example.dtb:
+>> pcie-ep@e65d0000: reg-names: ['dbi', 'dbi2', 'atu', 'dma', 'app', 'addr_space'] is too long
+>>       From schema:
+>> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.yaml
+> 
+> I believe these errors disappear if we apply the patch [16/22] of this patch series.
+> So, we can ignore these errors.
 
-On Wed, May 10, 2023 at 7:56=E2=80=AFPM Liviu Dudau <liviu@dudau.co.uk> wro=
-te:
->
-> Hi Ar=C4=B1n=C3=A7,
->
-> On Wed, May 10, 2023 at 02:59:44PM +0200, Ar=C4=B1n=C3=A7 =C3=9CNAL wrote=
-:
-> > On 9.05.2023 22:00, Liviu Dudau wrote:
-> > > The device tree uses numbers as arguments to the phys property that a=
-re
-> > > confusing for newcomers. Define names for the values and use them in =
-the
-> > > device tree.
-> > >
-> > > Signed-off-by: Liviu Dudau <liviu@dudau.co.uk>
-> >
-> > You should document this on
-> > instead of
-> > doing this. Under the phys property, add 'description:' and explain thi=
-s.
->
-> There is already some sort of explanation under
-> Documentation/devicetree/bindings/phy/mediatek,mt7621-pci-phy.yaml, so I'=
-m
-> not sure what I'm improving by adding new text in the /pci/ section.
->
-> Maybe I haven't explained properly in the commit message, this is meant t=
-o
-> give a name to the 1 and 0 values used in the device tree, not to clarify
-> any perceived missing documentation.
+Yes, seems so.
 
-What is that useful for if the bindings are well documented? The
-description in the
-'Documentation/devicetree/bindings/pci/mediatek,mt7621-pcie.yaml' file
-for the '#phy-cells'
-property is already telling you what that cell is used for. It is
-obvious that zero means not dual ported and one means dual ported.
-So for me there is no need to add anything extra but in case you want
-to clarify anything you should modify binding documentation not the
-device tree file at all.
+Best regards,
+Krzysztof
 
-Thanks,
-    Sergio Paracuellos
->
-> >
-> > Ar=C4=B1n=C3=A7
->
-> Best regards,
-> Liviu
->
-> --
-> Everyone who uses computers frequently has had, from time to time,
-> a mad desire to attack the precocious abacus with an axe.
->                                   -- John D. Clark, Ignition!
