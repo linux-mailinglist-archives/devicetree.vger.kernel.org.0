@@ -2,122 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E765B6FEE63
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 11:12:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DCAA6FEE66
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 11:12:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229535AbjEKJMI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 05:12:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36232 "EHLO
+        id S237257AbjEKJMt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 05:12:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229812AbjEKJMH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 05:12:07 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AFB88F;
-        Thu, 11 May 2023 02:12:05 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-3f42b984405so21219555e9.3;
-        Thu, 11 May 2023 02:12:05 -0700 (PDT)
+        with ESMTP id S237224AbjEKJMr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 05:12:47 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 178216E90
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 02:12:45 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-50bd875398dso12613903a12.1
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 02:12:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683796324; x=1686388324;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :references:from:to:cc:subject:date:message-id:reply-to;
-        bh=pnafcl02etMrYNZASMiERvbl/U+JxONMdNxYsuSq0xQ=;
-        b=ol1gXP5tsJHILHK+8uKNFWsFILHNuSYxMMJ3ivVJj0b4v7/d0TJoN+V1Z/iViEXK+p
-         AVl7yS8rvJU1RSheMbowSjCpvzSctqK+l/Pclepi4XPoPWqBTVvc1SrOai0kS1ixVL90
-         dD7VOZuVN2G65q0K9519UUG3zvcTwalWMskx1n6MBrkuOT+Aa1387qwAEYya4ts2zmzz
-         4TZuVR7ECc+z9b5A+QwaxE480n/dOkIVyS07OJ1dh+lRiYEY+tj93JRMR0mwlfHrlX1u
-         nMdoEXkzKtkTVW0Xz7DPpahAw8Zt5u7ssoURwGg1ueqrXD8v/V/EAci8NStGxE++vYtT
-         SMiw==
+        d=linaro.org; s=google; t=1683796363; x=1686388363;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lDUjdj+Iypx9FcQl5FOdB2kP0msJAjTr8nwomYPJ6mY=;
+        b=BRhcP4U4WOW6kWSSy8MgyGHENqZQjiqUwKTdvHBaPtcKf4daG31Fd2+X6lHGAZlbuu
+         avIkAnYmDWuCHHJj7GdMBn+i+d12/mAW4QP09B2J226LyqAJ4/6STn632gSF807Q1F5R
+         QCxrcrlFB5tylXAcVb7Ir1H/9Zsb4Q7ASSq+XUApbLpSeNXAg0AFwtYXmu+BNqGJ4r1C
+         rqNr2ldTHfsQzPGihA6x9kbXULyEwE7+sxQrVRbxufd0msQv/uyF22WV8yUf1Ggva7Uu
+         uLc5jMv1WK5pSNerA5gRQq620AqoEw7GAptzNfqRXA5xPMx+KiavJ7oxi13UPZo4MXN5
+         B7Vw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683796324; x=1686388324;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :references:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pnafcl02etMrYNZASMiERvbl/U+JxONMdNxYsuSq0xQ=;
-        b=Z8AZ75kclua3FkksDlFR4bkcYG2pdRvSEADuR4qTdClXqqIkDcR0dZBqHBevQwU5Aj
-         lbBsUs1tfbz1RZOhwjYY5dN7xzUoAvycLH5QHP8K9lSgYu48aiHG3jDY29n1L9MYtS4G
-         nWRfd60LBy+z/9DKJhKrfUD2zy04hEn00mTHs+7IYEgUeI9cX4h9T2/FFCvuogqnBpOV
-         /spWf7nL/E+C9M6WJR2rj623D9dwxt4t3qtZS/VIndx5w1LFQ2uxDfXhYF7RPgyf2PWX
-         jloSDijebQpliPGC9ac+K7Sya3RT0WBZFAmS1AQ9uqSA/5YSRrHzdDDmjVh7Uc9vvRSf
-         hEQA==
-X-Gm-Message-State: AC+VfDzaA+l7JmvP78rOvagB27Z3zuju/2DPQZ14NTad3ERlo1RSVvTL
-        kHeAY6S2hcG80nARmYd3snU=
-X-Google-Smtp-Source: ACHHUZ6MXl59aa1AWNAr7h3bDg9yAizIbCbY29vLEWjDUq4ITKp4XBManCmNPTvuU/HpS5mgeSXEBQ==
-X-Received: by 2002:a05:600c:204e:b0:3f4:ebfb:7414 with SMTP id p14-20020a05600c204e00b003f4ebfb7414mr794698wmg.1.1683796323506;
-        Thu, 11 May 2023 02:12:03 -0700 (PDT)
-Received: from localhost ([167.98.27.226])
-        by smtp.gmail.com with ESMTPSA id m16-20020a7bca50000000b003f1957ace1fsm24959021wml.13.2023.05.11.02.12.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 May 2023 02:12:03 -0700 (PDT)
-References: <20230510151542.312588-1-aidanmacdonald.0x0@gmail.com>
- <20230510151542.312588-2-aidanmacdonald.0x0@gmail.com>
- <20230510-rage-amazingly-d090d1e838f0@spud>
-From:   Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
-To:     Conor Dooley <conor@kernel.org>
-Cc:     lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        wens@csie.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/2] dt-bindings: mfd: add bindings for AXP192 MFD
- device
-Date:   Thu, 11 May 2023 10:11:23 +0100
-In-reply-to: <20230510-rage-amazingly-d090d1e838f0@spud>
-Message-ID: <zbeLZZMhaBipXvZQZrMkRktJ8jiXpfNG@localhost>
+        d=1e100.net; s=20221208; t=1683796363; x=1686388363;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=lDUjdj+Iypx9FcQl5FOdB2kP0msJAjTr8nwomYPJ6mY=;
+        b=AmaTjcb9hrB6yJGbHzuwVgxcvF4yhNuy71RUu5w+DMD0VSfnRgV4fpl8JkjdkIasYP
+         WNv8n+dHQ3j3OPwwKow+fddeU01On6wiPL1m8pyFMarWBRfI7bvakqcGLJNgI2xQIKbT
+         1evwvaNrTusOY1+ZvJfC9SA9luX0Mer4IJk6u9agiwwr6/mfyAhNaQJQwHTBOEqL/0Kg
+         d9zsaFjX9vuKVCtijs3DzTVC1YopC3MrjO3ewvBDoPFtcTSOYaiBnME868csrVUFdlHm
+         4w6Kz0svJh/MCsZQyl3uZlvrSUSwzcn0tZx84Cqwnkciuqcjqhyq092dhbal976Bbma3
+         meew==
+X-Gm-Message-State: AC+VfDz5yQjclRLnwAs8aL3uagnjuagNx69dMHm5x9VhtzWZpAEuMa3d
+        1jw6H+jF/V8gUgWZmTIY5xCt2A==
+X-Google-Smtp-Source: ACHHUZ4DOKhebB1vHG765Jc1wnpOXsgULcjllpOZUSAXOrc+LK+vlzdVvo6IB+8wnKK4Bm3FthvJmw==
+X-Received: by 2002:aa7:d705:0:b0:50d:8c5b:86b with SMTP id t5-20020aa7d705000000b0050d8c5b086bmr15489089edq.21.1683796363264;
+        Thu, 11 May 2023 02:12:43 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:7e61:f14a:c3a4:809e? ([2a02:810d:15c0:828:7e61:f14a:c3a4:809e])
+        by smtp.gmail.com with ESMTPSA id k23-20020a05640212d700b0050c0b9d31a7sm2786457edx.22.2023.05.11.02.12.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 May 2023 02:12:42 -0700 (PDT)
+Message-ID: <11ba5878-da04-d4fc-8e22-a20e5986d2ee@linaro.org>
+Date:   Thu, 11 May 2023 11:12:40 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v2 3/5] riscv: dts: thead: add sipeed Lichee Pi 4A board
+ device tree
+Content-Language: en-US
+To:     Yangtao Li <frank.li@vivo.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Jisheng Zhang <jszhang@kernel.org>, Wei Fu <wefu@redhat.com>
+Cc:     Icenowy Zheng <uwu@icenowy.me>, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230510204456.57202-1-frank.li@vivo.com>
+ <20230510204456.57202-3-frank.li@vivo.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230510204456.57202-3-frank.li@vivo.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 10/05/2023 22:44, Yangtao Li wrote:
+> From: Jisheng Zhang <jszhang@kernel.org>
+> 
+> Sipeed's Lichee Pi 4A development board uses Lichee Module 4A core
+> module which is powered by T-HEAD's light(a.k.a TH1520) SoC. Add
+> minimal device tree files for the core module and the development
+> board.
+> 
+> Support basic uart/gpio/dmac drivers, so supports booting to a basic
+> shell.
+> 
+> Cc: Icenowy Zheng <uwu@icenowy.me>
+> Cc: Wei Fu <wefu@redhat.com>
+> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> Signed-off-by: Yangtao Li <frank.li@vivo.com>
+> ---
+> v2:
+> -cleanup `light`
+>  arch/riscv/boot/dts/Makefile                  |  1 +
+>  arch/riscv/boot/dts/thead/Makefile            |  2 +
+>  .../dts/thead/th1520-lichee-module-4a.dtsi    | 39 +++++++++++++++++++
+>  .../boot/dts/thead/th1520-lichee-pi-4a.dts    | 33 ++++++++++++++++
+>  4 files changed, 75 insertions(+)
+>  create mode 100644 arch/riscv/boot/dts/thead/Makefile
+>  create mode 100644 arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
+>  create mode 100644 arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
+> 
+> diff --git a/arch/riscv/boot/dts/Makefile b/arch/riscv/boot/dts/Makefile
+> index f0d9f89054f8..1e884868ccba 100644
+> --- a/arch/riscv/boot/dts/Makefile
+> +++ b/arch/riscv/boot/dts/Makefile
+> @@ -2,6 +2,7 @@
+>  subdir-y += allwinner
+>  subdir-y += sifive
+>  subdir-y += starfive
+> +subdir-y += thead
+>  subdir-y += canaan
+>  subdir-y += microchip
+>  subdir-y += renesas
+> diff --git a/arch/riscv/boot/dts/thead/Makefile b/arch/riscv/boot/dts/thead/Makefile
+> new file mode 100644
+> index 000000000000..e311fc9a5939
+> --- /dev/null
+> +++ b/arch/riscv/boot/dts/thead/Makefile
+> @@ -0,0 +1,2 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +dtb-$(CONFIG_ARCH_THEAD) += th1520-lichee-pi-4a.dtb
+> diff --git a/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi b/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
+> new file mode 100644
+> index 000000000000..bc5f8677d546
+> --- /dev/null
+> +++ b/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
+> @@ -0,0 +1,39 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
+> + * Copyright (C) 2023 Yangtao Li <frank.li@vivo.com>
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "th1520.dtsi"
+> +
+> +/ {
+> +	model = "Sipeed Lichee Module 4A";
+> +	compatible = "sipeed,lichee-module-4a", "thead,th1520";
+> +
+> +	memory@0 {
+> +		device_type = "memory";
+> +		reg = <0x0 0x00000000 0x2 0x00000000>;
+> +	};
+> +};
+> +
+> +&osc {
+> +	clock-frequency = <24000000>;
+> +};
+> +
+> +&osc_32k {
+> +	clock-frequency = <32768>;
+> +};
+> +
+> +&apb_clk {
+> +	clock-frequency = <62500000>;
+> +};
+> +
+> +&uart_sclk {
+> +	clock-frequency = <100000000>;
+> +};
+> +
+> +&dmac0 {
+> +	status = "okay";
+> +};
+> diff --git a/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts b/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
+> new file mode 100644
+> index 000000000000..86d677175feb
+> --- /dev/null
+> +++ b/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
+> @@ -0,0 +1,33 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
+> + * Copyright (C) 2023 Yangtao Li <frank.li@vivo.com>
+> + */
+> +
+> +#include "th1520-lichee-module-4a.dtsi"
+> +
+> +/ {
+> +	model = "Sipeed Lichee Pi 4A";
+> +	compatible = "sipeed,lichee-pi-4a", "sipeed,lichee-module-4a", "thead,th1520";
 
-Conor Dooley <conor@kernel.org> writes:
+Missing bindings.
 
-> [[PGP Signed Part:Undecided]]
-> On Wed, May 10, 2023 at 04:15:42PM +0100, Aidan MacDonald wrote:
->> The AXP192 is another X-Powers PMIC similar to the existing ones.
->
-> In the driver patch the commit message says:
-> | The AXP192 PMIC is similar to the AXP202/AXP209, but with different
-> | regulators, additional GPIOs, and a different IRQ register layout.
->
-> That'd be nice to have in the commit message here too, to explain why
-> you're adding to the enum rather than listing a fallback.
-> Otherwise,
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
->
-> Thanks,
-> Conor.
->
+Best regards,
+Krzysztof
 
-Will do, I'll send a v2 shortly.
-
-Regards, Aidan
-
->>
->> Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
->> ---
->>  Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml | 1 +
->>  1 file changed, 1 insertion(+)
->>
->> diff --git a/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml b/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
->> index f7f0f2c0421a..9ad55746133b 100644
->> --- a/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
->> +++ b/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
->> @@ -90,6 +90,7 @@ properties:
->>      oneOf:
->>        - enum:
->>            - x-powers,axp152
->> +          - x-powers,axp192
->>            - x-powers,axp202
->>            - x-powers,axp209
->>            - x-powers,axp221
->> --
->> 2.39.2
->>
->
-> [[End of PGP Signed Part]]
