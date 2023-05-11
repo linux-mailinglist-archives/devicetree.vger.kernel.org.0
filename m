@@ -2,67 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C72AE6FF023
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 12:50:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7997A6FF036
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 12:55:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237790AbjEKKuN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 06:50:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40484 "EHLO
+        id S237901AbjEKKzS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 06:55:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237402AbjEKKuM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 06:50:12 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B23944230
-        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 03:50:10 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-9659e9bbff5so1534684466b.1
-        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 03:50:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683802209; x=1686394209;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=YYmQOiJo0GwahUuK9YIJi/PO7yGRaao3xUZsJxQQPGw=;
-        b=Qq24/0rH2Wy7PCHvEv6ahBRTBtEhVyh/iSjSwPmN3k920PBQd4sEmegEq9y3Wme/d3
-         2BzG92K6N91pdsVQrwOjolbvpXtAwomgqYwv4rWQuKz3DYTt5BpZuAbjkKsFTvd17FHy
-         utp1kT4EnIqHutSwloEDpRiW1mimUBKo3CJhUwSjy9/dxrFZzwaCai9L/1FkywV78iuU
-         aewPcQBpU3taQJZkatQmOqfwNkWgBGPtENCxlsmJ4EFAjATkWgdVCvA2gpEMDNKej1Ir
-         S8VFm3KAKTQXMmtAMGoUsuGiJSlTurUCdPu6GBjEdh8oU0+OCa1jqJp7rJ4lAOdw5T0u
-         U2iw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683802209; x=1686394209;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=YYmQOiJo0GwahUuK9YIJi/PO7yGRaao3xUZsJxQQPGw=;
-        b=kM/rzKtUpZooWEeD58d11remy536pN40W8pLJhNhtWFyMh81YK5CpfxsNDSy6GE42m
-         auuoEWWH+7Asm57UpwRT49ljxAJ4XS3Np3pzsZiOPEqqJs5DZFCnb/WSCG3xZIZbr+QF
-         ziLTaY4Gi7BIMTDp/hClVldKXHtqoS13ggYnLhF18O16IFlfT5FClDp2HEGE7zklab8p
-         KAid37LoakI1ajiJiNMlkeZKbie66dVYoeHGjKBSqVsk0BK1xYFQXF7XAeQ/vCZSjRv+
-         xATStITUXybb3zpx3E/IRB6y0tbYeJsAJo/7+BSIAw0tl4SN+BpcT0818RYmYKJ7qs2I
-         Tbyg==
-X-Gm-Message-State: AC+VfDzgCwIMZFj3mKAWinfYq2R6Pl4vJeHBKpA8OZNlx92oeAQjA1iB
-        PYvSBUBycbVQ0KvC2MLq5I0WJw==
-X-Google-Smtp-Source: ACHHUZ7K5/ZpkInBfiFXdz7ldveY5d6mjUUS7cf4oZPvIEM3vCUsgAbg0ltzrAMTFOgTDPrNbtqv+w==
-X-Received: by 2002:a17:906:fd8c:b0:953:3e29:f35c with SMTP id xa12-20020a170906fd8c00b009533e29f35cmr17143266ejb.45.1683802209171;
-        Thu, 11 May 2023 03:50:09 -0700 (PDT)
-Received: from krzk-bin.. ([2a02:810d:15c0:828:41e7:1b68:d38e:1348])
-        by smtp.gmail.com with ESMTPSA id ia21-20020a170907a07500b00966392de4easm3874389ejc.14.2023.05.11.03.50.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 May 2023 03:50:08 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Linus Torvalds <torvalds@linux-foundation.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [GIT PULL] Devicetree fixes for v6.4, part 2
-Date:   Thu, 11 May 2023 12:50:06 +0200
-Message-Id: <20230511105006.176979-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S237884AbjEKKzO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 06:55:14 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11BA17698;
+        Thu, 11 May 2023 03:55:12 -0700 (PDT)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34BA1s5n016040;
+        Thu, 11 May 2023 10:54:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=8+brlyBNhx/Yq06mLrhP4Dh29gMdRsBtZEDRxZThxMo=;
+ b=Lh+U3Mnss/kr269TBQ/44+rNUHiHG/NiMTnNKqOdj75t3wsy2E2xAMkObEP+pj5XKR9C
+ xkssapMXrm1IrGqGUzsIexTlqVMVzo8fepA6R9dOCCj+BKNFHiu9ggJsc6DxA15TnPwx
+ 0k1BBvCuDUlmytExjLTBswSYPCyH7Xh5nFcRN/o/LXzn2G3ls5S0i4SsAtepsK2d74UX
+ DoSN5MWGbOV0fPzB0mM5UAwy1kj7phctH9zQhpEoEeigs6E2yVr0pgiI4uCXFAnOmDqN
+ 5VazUyadAixmNWSYyPZ7Wkt7suah/VuHg+ooSMw6UMSKwQtyPuCoyjV61ftVB/nCFUsW 3g== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qgj141gqf-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 11 May 2023 10:54:52 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34BAsJ7Y026678
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 11 May 2023 10:54:19 GMT
+Received: from [10.201.3.182] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Thu, 11 May
+ 2023 03:54:14 -0700
+Message-ID: <daff6818-525d-7a99-de08-e289848cadf9@quicinc.com>
+Date:   Thu, 11 May 2023 16:24:11 +0530
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH v4 7/8] arm64: dts: Add ipq5018 SoC and rdp432-c2 board
+ support
+Content-Language: en-US
+To:     Robert Marko <robimarko@gmail.com>, <agross@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <ulf.hansson@linaro.org>, <linus.walleij@linaro.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>,
+        <p.zabel@pengutronix.de>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-mmc@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20230510134121.1232286-1-quic_srichara@quicinc.com>
+ <20230510134121.1232286-8-quic_srichara@quicinc.com>
+ <8f5040e0-169b-554b-c9e6-479b8f098bc6@gmail.com>
+From:   Sricharan Ramabadhran <quic_srichara@quicinc.com>
+In-Reply-To: <8f5040e0-169b-554b-c9e6-479b8f098bc6@gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: tub2K_I1yNaTJ2VTvqXEEh8-_DE6rYDZ
+X-Proofpoint-ORIG-GUID: tub2K_I1yNaTJ2VTvqXEEh8-_DE6rYDZ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-11_06,2023-05-05_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 adultscore=0
+ suspectscore=0 mlxscore=0 lowpriorityscore=0 phishscore=0 mlxlogscore=964
+ clxscore=1011 impostorscore=0 priorityscore=1501 spamscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2305110093
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,75 +88,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
-
-It's my first pull for you, so let me introduce myself.  With Rob Herring
-and recently also Conor Dooley, I co-maintain the Devicetree
-bindings [1].  I also maintain few other subsystems, but all my other
-pull requests are going to SoC folks (Arnd and Olof).
-
-The git tag for pull is signed with my usual key which you can get
-from kernel.org pgp keys repo: keys/1B93437D3B41629B.asc
-
-Rob is currently away from keyboard and he also mentioned in last pull
-to you that something might be coming from me [2].  So here it goes - few
-fixes for current cycle.
-
-[1] https://www.kernel.org/doc/html/latest/process/maintainers.html#open-firmware-and-flattened-device-tree-bindings
-[2] https://lore.kernel.org/all/20230505192951.GA3409270-robh@kernel.org/
-
-Best regards,
-Krzysztof
 
 
-The following changes since commit ac9a78681b921877518763ba0e89202254349d1b:
+On 5/11/2023 3:54 PM, Robert Marko wrote:
+> 
+> On 10. 05. 2023. 15:41, Sricharan Ramabadhran wrote:
+>> Add initial device tree support for the Qualcomm IPQ5018 SoC and
+>> rdp432-c2 board.
+> 
+> Hi, does reboot work for you with this patchset?
+> I have tested on 2 different IPQ5018 boards and they wont reboot,
+> I get the:
+> Requesting system reboot
+> [  321.005977] qcom_scm firmware:scm: No available mechanism for setting 
+> download mode
+> [  321.006128] reboot: Restarting system
+> 
+> And then it just hangs there.
+> 
 
-  Linux 6.4-rc1 (2023-05-07 13:34:35 -0700)
+  Yes, that is because SDI disabling using separate SCM is still not
+  there. I will add support for that in a separate series.
 
-are available in the Git repository at:
-
-  https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux-dt.git tags/dt-fixes-6.4
-
-for you to fetch changes up to 8bbec86ce6d66fb33530c679f7bb3a123fc9e7da:
-
-  dt-bindings: PCI: fsl,imx6q: fix assigned-clocks warning (2023-05-09 08:01:49 +0200)
-
-----------------------------------------------------------------
-Devicetree binding fixes for v6.4
-
-Few fixes for Devicetree bindings and related docs, all for issues
-introduced in v6.4-rc1 commits:
-
-1. media/ov2685: fix number of possible data lanes, as old binding
-   explicitly mentioned one data lane. This fixes dt_binding_check
-   warnings like:
-   Documentation/devicetree/bindings/media/rockchip-isp1.example.dtb: camera@3c: port:endpoint:data-lanes: [[1]] is too short
-   From schema: Documentation/devicetree/bindings/media/i2c/ovti,ov2685.yaml
-
-2. Maintainers: correct path of Apple PWM binding. This fixes
-   refcheckdocs warning.
-
-3. PCI/fsl,imx6q: correct parsing of assigned-clocks and related
-   properties and make the clocks more specific per PCI device (host or
-   endpoint).  This fixes dtschema limitation and dt_binding_check
-   warnings like:
-
-   Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.example.dtb: pcie-ep@33800000: Unevaluated properties are not allowed
-   From schema: Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml
-
-----------------------------------------------------------------
-Krzysztof Kozlowski (1):
-      dt-bindings: PCI: fsl,imx6q: fix assigned-clocks warning
-
-Luca Weiss (1):
-      media: dt-bindings: ov2685: Correct data-lanes attribute
-
-Lukas Bulwahn (1):
-      MAINTAINERS: adjust file entry for ARM/APPLE MACHINE SUPPORT
-
- .../devicetree/bindings/media/i2c/ovti,ov2685.yaml |  1 +
- .../bindings/pci/fsl,imx6q-pcie-common.yaml        | 13 +---
- .../devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml | 38 +++++++++++
- .../devicetree/bindings/pci/fsl,imx6q-pcie.yaml    | 77 ++++++++++++++++++++++
- MAINTAINERS                                        |  2 +-
- 5 files changed, 119 insertions(+), 12 deletions(-)
+Regards,
+  Sricharan
