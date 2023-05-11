@@ -2,172 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 471576FEC20
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 09:01:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA1B06FEC5B
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 09:08:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236364AbjEKHBT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 03:01:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34114 "EHLO
+        id S236570AbjEKHIF convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 11 May 2023 03:08:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237235AbjEKHAz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 03:00:55 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7DB85265;
-        Thu, 11 May 2023 00:00:51 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id BB6A324E1D3;
-        Thu, 11 May 2023 15:00:48 +0800 (CST)
-Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 11 May
- 2023 15:00:48 +0800
-Received: from [192.168.125.131] (113.72.146.187) by EXMBX061.cuchost.com
- (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 11 May
- 2023 15:00:47 +0800
-Message-ID: <2b1c8f8b-eb1f-eca2-8c18-5dd3c8881ee3@starfivetech.com>
-Date:   Thu, 11 May 2023 14:59:13 +0800
+        with ESMTP id S237397AbjEKHHj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 03:07:39 -0400
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F194B65A0;
+        Thu, 11 May 2023 00:07:37 -0700 (PDT)
+Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-b9a6eec8611so39813077276.0;
+        Thu, 11 May 2023 00:07:37 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683788857; x=1686380857;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xsAz4959ASyLH7I3o6usz1e8SUod/Uv6RBV6dCds1Mc=;
+        b=Z1n32LyULtXwk+dijqJqRPOFQgGnc83LPYYaUZdAB4q2MnhQlIOY6u1XBEM4LKGUoz
+         brrafF5A8RTs8S3BR4oxcB7/GxF/43A33pI+JbcDQ6S/NF/F5rKBa7NK+/bVCr78H/p0
+         OltKxSI16wUMXMzKMdfnSvT9q8VvlCsH7A7CwTML3UVBx1v1I4ueIjHVJm3iHXD98pr6
+         IlEM60TzolZX5RO2I3eaKJ38dD4A4XemfXOdOlnODDTzICSfVCuzBYY0E5VbZ2Hnn7Ie
+         26vnIAQ6GkLCEB1xxHiQOhhu4IfFR7V89EUxOHY3hPXBD93RlOnoS1dZGqjHzXx94MTL
+         eg9A==
+X-Gm-Message-State: AC+VfDy+9iowsm345SRanQzAT4QflvFFmlnhzDxpb8JNEhzzEfjoy5QQ
+        l+0EC5ItJcUvUzufsYSyJ7ZBraXL3J7wyw==
+X-Google-Smtp-Source: ACHHUZ5RoQCMP8AYzaLKQJc36sKIhPxpMZo+xXyDii+CPKdXLYXKuSLN49NDomX4XldF3Eh1lbysOg==
+X-Received: by 2002:a25:4ac9:0:b0:ba1:6bad:9270 with SMTP id x192-20020a254ac9000000b00ba16bad9270mr22602848yba.27.1683788856699;
+        Thu, 11 May 2023 00:07:36 -0700 (PDT)
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com. [209.85.219.177])
+        by smtp.gmail.com with ESMTPSA id 7-20020a250a07000000b00b9dcd17cc2dsm4241467ybk.46.2023.05.11.00.07.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 May 2023 00:07:36 -0700 (PDT)
+Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-b9a6f17f2b6so39746388276.1;
+        Thu, 11 May 2023 00:07:35 -0700 (PDT)
+X-Received: by 2002:a25:c086:0:b0:b9e:67ab:4f36 with SMTP id
+ c128-20020a25c086000000b00b9e67ab4f36mr21664777ybf.10.1683788855509; Thu, 11
+ May 2023 00:07:35 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v3 5/7] dt-bindings: soc: starfive: Add StarFive syscon
- module
-Content-Language: en-US
-From:   Xingyu Wu <xingyu.wu@starfivetech.com>
+References: <40ff1fc7f5220db7d527c57ac4bad16c3945ae08.1683725179.git.geert+renesas@glider.be>
+ <20230510-headsman-deskwork-6826f9f174df@spud>
+In-Reply-To: <20230510-headsman-deskwork-6826f9f174df@spud>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 11 May 2023 09:07:23 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVKES1dgTMrLwNA3t37m-wscYETejRBM2aroB_ZF-pbaw@mail.gmail.com>
+Message-ID: <CAMuHMdVKES1dgTMrLwNA3t37m-wscYETejRBM2aroB_ZF-pbaw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: timer: sifive,clint: Clean up compatible
+ value section
 To:     Conor Dooley <conor@kernel.org>
-CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        "Michael Turquette" <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Emil Renner Berthing <kernel@esmil.dk>,
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
         Paul Walmsley <paul.walmsley@sifive.com>,
-        "Palmer Dabbelt" <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        William Qiu <william.qiu@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
-References: <20230414024157.53203-1-xingyu.wu@starfivetech.com>
- <20230414024157.53203-6-xingyu.wu@starfivetech.com>
- <20230424-footsie-compost-d6624c8ef4e8@spud>
- <20230508-margarita-fondling-c9b970ad73a9@spud>
- <014dd7b2-9623-805c-97a6-5b3c5f120b79@starfivetech.com>
- <7527C059-95A2-49EA-AFE0-B089D3651A6B@kernel.org>
- <735dd2fb-107c-5ecf-4477-70b569cad884@starfivetech.com>
-In-Reply-To: <735dd2fb-107c-5ecf-4477-70b569cad884@starfivetech.com>
+        Anup Patel <anup@brainfault.org>, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [113.72.146.187]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX061.cuchost.com
- (172.16.6.61)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023/5/9 14:52, Xingyu Wu wrote:
-> On 2023/5/9 14:35, Conor Dooley wrote:
->> 
->> 
->> On 9 May 2023 07:23:18 IST, Xingyu Wu <xingyu.wu@starfivetech.com> wrote:
->>>On 2023/5/9 3:24, Conor Dooley wrote:
->>>> On Mon, Apr 24, 2023 at 06:15:47PM +0100, Conor Dooley wrote:
->>>>> On Fri, Apr 14, 2023 at 10:41:55AM +0800, Xingyu Wu wrote:
->>>>> > From: William Qiu <william.qiu@starfivetech.com>
->>>>> > 
->>>>> > Add documentation to describe StarFive System Controller Registers.
->>>>> > 
->>>>> > Signed-off-by: William Qiu <william.qiu@starfivetech.com>
->>>>> > ---
->>>>> >  .../soc/starfive/starfive,jh7110-syscon.yaml  | 58 +++++++++++++++++++
->>>>> >  MAINTAINERS                                   |  6 ++
->>>>> >  2 files changed, 64 insertions(+)
->>>>> >  create mode 100644 Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
->>>>> > 
->>>>> > diff --git a/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml b/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
->>>>> > new file mode 100644
->>>>> > index 000000000000..de086e74a229
->>>>> > --- /dev/null
->>>>> > +++ b/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
->>>>> > @@ -0,0 +1,58 @@
->>>>> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>>>> > +%YAML 1.2
->>>>> > +---
->>>>> > +$id: http://devicetree.org/schemas/soc/starfive/starfive,jh7110-syscon.yaml#
->>>>> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>> > +
->>>>> > +title: StarFive JH7110 SoC system controller
->>>>> > +
->>>>> > +maintainers:
->>>>> > +  - William Qiu <william.qiu@starfivetech.com>
->>>>> > +
->>>>> > +description: |
->>>>> > +  The StarFive JH7110 SoC system controller provides register information such
->>>>> > +  as offset, mask and shift to configure related modules such as MMC and PCIe.
->>>>> > +
->>>>> > +properties:
->>>>> > +  compatible:
->>>>> > +    oneOf:
->>>>> > +      - items:
->>>>> > +          - enum:
->>>>> > +              - starfive,jh7110-aon-syscon
->>>>> > +              - starfive,jh7110-sys-syscon
->>>>> > +          - const: syscon
->>>>> > +          - const: simple-mfd
->>>>> > +      - items:
->>>>> > +          - const: starfive,jh7110-stg-syscon
->>>>> > +          - const: syscon
->>>>> > +
->>>>> > +  reg:
->>>>> > +    maxItems: 1
->>>>> > +
->>>>> > +  clock-controller:
->>>>> > +    $ref: /schemas/clock/starfive,jh7110-pll.yaml#
->>>>> > +    type: object
->>>>> > +
->>>>> > +  power-controller:
->>>>> > +    $ref: /schemas/power/starfive,jh7110-pmu.yaml#
->>>>> > +    type: object
->>>>> 
->>>>> My plan was to grab this patch after the merge window, but there's been
->>>>> some back and forth [1] about what exactly should be a power-controller
->>>>> here. Given the merge window is open & I know Emil wants to look at the
->>>>> various clock bits for the JH7110, I don't think there's a pressing need
->>>>> for you to do anything here, but figured I'd at least mention how things
->>>>> are going on this thread too.
->>>> 
->>>> To follow up on this, it transpired in that thread that this node, not a
->>>> child node, should be the power controller.
->>>> 
->>>> Up to you StarFive folk how you wish to resend, but I am fine with it
->>>> being in this series, I shall just not pick up the soc driver patches
->>>> until the resent binding is applied by Stephen.
->>>> 
->>>
->>>Thanks. I had discussed with changhuang.liang about this. And I will drop
->>>the 'starfive,jh7110-aon-syscon' and 'power-controller' in next patchset.
->>>Changhuang will take these in his patchset.
->> 
->> Won't that result in broken bindings, since there's a ref to the pll binding?
->> Keeping it in the same series (i.e. this one) makes
->> the most sense to me.
->> 
-> 
-> I will keep the 'sys-syscon' and 'stg-syscon'. The ref just follows the 'sys-syscon'
-> so I also keep it and the pll binding.
-> I also hope to add the 'aon-syscon' in this same series but it should be the power
-> controller, so I have to give up it.
-> 
+Hi Conor,
 
-I synchronized with Chang Huang. It is decided to keep 'aon-syscon' as the power
-controller in this and do not add child node in 'aon-syscon'.
-And I will update it in the next version of patch.
+On Wed, May 10, 2023 at 6:02 PM Conor Dooley <conor@kernel.org> wrote:
+> On Wed, May 10, 2023 at 03:27:24PM +0200, Geert Uytterhoeven wrote:
+> > Replace the sentences in the description listing some supported variants
+> > by comments on the individual compatible values, to ease future
+> > maintenance.  While at it, restore alphabetical sort order.
+> >
+> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > ---
+> >  .../bindings/timer/sifive,clint.yaml          | 21 +++++++------------
+> >  1 file changed, 8 insertions(+), 13 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/timer/sifive,clint.yaml b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> > index 94bef9424df1bc6a..34a81510678134eb 100644
+> > --- a/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> > +++ b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> > @@ -29,11 +29,11 @@ properties:
+> >      oneOf:
+> >        - items:
+> >            - enum:
+> > -              - sifive,fu540-c000-clint
+> > -              - starfive,jh7100-clint
+> > -              - starfive,jh7110-clint
+> > -              - canaan,k210-clint
+> > -          - const: sifive,clint0
+> > +              - canaan,k210-clint       # Canaan Kendryte K210
+> > +              - sifive,fu540-c000-clint # SiFive FU540
+> > +              - starfive,jh7100-clint   # StarFive JH7100
+> > +              - starfive,jh7110-clint   # StarFive JH7110
+> > +          - const: sifive,clint0        # SiFive CLINT v0 IP block
+> >        - items:
+> >            - enum:
+> >                - allwinner,sun20i-d1-clint
+> > @@ -45,14 +45,9 @@ properties:
+> >          description: For the QEMU virt machine only
+> >
+> >      description:
+> > -      Should be "<vendor>,<chip>-clint" and "sifive,clint<version>".
+> > -      Supported compatible strings are -
+> > -      "sifive,fu540-c000-clint" for the SiFive CLINT v0 as integrated
+> > -      onto the SiFive FU540 chip, "canaan,k210-clint" for the SiFive
+> > -      CLINT v0 as integrated onto the Canaan Kendryte K210 chip, and
+> > -      "sifive,clint0" for the SiFive CLINT v0 IP block with no chip
+> > -      integration tweaks.
+> > -      Please refer to sifive-blocks-ip-versioning.txt for details
+>
+> > +      Should be "<vendor>,<chip>-clint", followed by "sifive,clint<version>"
+> > +      when compatible with a SiFive CLINT.  Please refer to
+> > +      sifive-blocks-ip-versioning.txt for details regarding the latter.
+>
+> Does this section actually add any value at all?
+> By nature of oneOf structure above, such an ordering is required for
+> existing entries. For something not here, should we instead be noting
+> that sifive,clint0 is to be used when compatible with the SiFive/RISC-V
+> clint, rather than doing a sifive-blocks-ip-versioning.txt dance?
 
-Best regards,
-Xingyu Wu
+I considered removing the paragraph.  But I kept it, just not to loose
+the reference to sifive-blocks-ip-versioning.txt, which someone might
+find useful.
+
+> As it stands though, patch is an improvement, so:
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
