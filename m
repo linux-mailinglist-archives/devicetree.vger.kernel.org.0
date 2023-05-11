@@ -2,90 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A4D36FEE2E
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 11:01:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD2FD6FEE46
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 11:03:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229826AbjEKJBS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 05:01:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57222 "EHLO
+        id S235531AbjEKJC6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 05:02:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229548AbjEKJBR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 05:01:17 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A3D0211E
-        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 02:01:16 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-50bd37ca954so77119326a12.0
-        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 02:01:16 -0700 (PDT)
+        with ESMTP id S236884AbjEKJC4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 05:02:56 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5496AF
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 02:02:54 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-50bc25f0c7dso15103371a12.3
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 02:02:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683795674; x=1686387674;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=linaro.org; s=google; t=1683795773; x=1686387773;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=0CisL2rUE4Hw6hlxlukZuowP2tixyFGxjkXdRANpN4o=;
-        b=cWCRSOdDgP46O6T1hMKoF/8U0aNMUK8Rt1UUXmAgisr+nnDt24sRYnhmXSx0YMLi83
-         Tv43KqVI7M8dGwOuXmp8wTGaoxcLPIwynVL4gr9HdgdeTAf+OQpE1waZuLzcsxy/sSFg
-         TU91PqWhPY7irbdfC+m/heDD7O5PtIBYYnFatINeBL0Qq6zYPgNdp5yYmK8wLPzMZMeD
-         t3E9QC3y6K9mud1kciwYf5qkS8vVkcXlbeRqutAixTGCkB532igmHdiKaoGRWdZCtOcM
-         3KQQhkOh1Qb5OKi4Ud7op4c9SDpIuOj3br7U2WB85Ik+qmGm2UoSKohftY7lDJ0zsRSl
-         D+/A==
+        bh=97uBOFjQQzOvvB8u3OJcbV8ItVcsrJ5cxlVd2KHoK0k=;
+        b=iz6Ud3fHc/LHQGwRDqEU/eUOlamVyRdaJ7jhbVrcRbUK0JylKteuX+Tguz4iQCHyHN
+         PXotHmbMpKnRsrjsNuqaHVm9pWkhBe9us1wmZxGyXMG7RxCvOZ8pI1DBY2E8w3Q3bJdW
+         W3cutSVgzIuXJIOf6CM3HFlvqIdYLTW87uW+VNnBCh6isbqucXDhoW5X75sutgHGFcNk
+         RX3sZHa5f9M4GdLNJcaPnZBuncnRBq9mBdSwU+tPtX/C64mifxibEXcBhY03NouPmih+
+         hXvCtHp/xc9noSP5SARD3xPheNQe56giFts7F2G1DEHMwdfBigpdwEK48OjyIWlkS0Sf
+         htKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683795674; x=1686387674;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=1e100.net; s=20221208; t=1683795773; x=1686387773;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0CisL2rUE4Hw6hlxlukZuowP2tixyFGxjkXdRANpN4o=;
-        b=Na7wYbAbdE3ZMjIHEJTMP5aneC4PY7NAtMpbfjGGbBPrXe/WpatwgChuZt7TQKwA5O
-         PWsrr4MWZrq6Mzoc0dz8wD//AL0E6v0X1eBKisKw+ZkHjbmuUG0ewJxA2fLlePC/RVzt
-         cXkqi37hOMMsy2vjSkYKALk7HgKklNBDVmwTOsRgr9mzOPDdzfEJEsjaYO/d/cEj6AcY
-         RMyFRjWXPr/eljziSTz0fAPOxW5U60wcFG97Y5PMOoH1cWcPsWMEgkXsHFBq0XMCnCom
-         R72muQkGHQlGLl7c2RSwi6qO4oYtW4LLRoEfmyVRSXHin8PYU7DzrancSpOV0/Ayz3PU
-         7SPg==
-X-Gm-Message-State: AC+VfDys5Me2XPkssjUACfs1MzQrYS1ukCXvPLNaiXG6o1nMmKvZWY9q
-        kHvZRpvUnZTUUFfiX6grjcNINQ==
-X-Google-Smtp-Source: ACHHUZ6KOZWGlcRewxIzNr2yQQxjbZCIQpTw1t3mlu3ayU+bXuAyBCLXZ+Z5vsm6LCoN8NVEKftVCA==
-X-Received: by 2002:a17:907:da4:b0:966:4e4c:a36d with SMTP id go36-20020a1709070da400b009664e4ca36dmr12121142ejc.20.1683795674367;
-        Thu, 11 May 2023 02:01:14 -0700 (PDT)
+        bh=97uBOFjQQzOvvB8u3OJcbV8ItVcsrJ5cxlVd2KHoK0k=;
+        b=mGjF60mFHDpYGYUOKrqiHn+JPTEdz3zsnDKofQRmf32wOl8xbQ71yCnVWWoVQlxpzv
+         J0wnULQ9hEq2TYam8dKIJrXfHBMq9BufiWJItbW7tf7h1elsn7ohXHuUAP/tCkIND/n5
+         4gMkPbkVT/12XjhAheFjan4d9I9U78sCjdgtOkp1agOCrN4Dwo1i5hg4YDoKoedR69Mv
+         DQKdrVgaLBBbQJB22R6OOcqda2KeFSwdiQI66HEpne+Xlr6+6EzAgjfYTJ6SFU2HFPi8
+         AQATykwZE+UEhPdCsyn7MIwR7OAJmpgx9mVo62qM6D/+uECT3YT0P9MYZVB9A5s0crX+
+         pJlQ==
+X-Gm-Message-State: AC+VfDx2K+2v/LpGaR2qEcQIpZQByvCkCfACv1ZvZ3YzKAfDaNXiHnSS
+        Pr9cA9YH7Own2qnX0VM0fr/gxg==
+X-Google-Smtp-Source: ACHHUZ6OK7ykSvjrrZ+YB4oNDuEFF+ghucDyBzdNtJncOI1RhXAGST8r7wzUqhoWVeznvurVkNy5HQ==
+X-Received: by 2002:aa7:dd11:0:b0:50b:c11b:f00c with SMTP id i17-20020aa7dd11000000b0050bc11bf00cmr15314606edv.22.1683795773184;
+        Thu, 11 May 2023 02:02:53 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:7e61:f14a:c3a4:809e? ([2a02:810d:15c0:828:7e61:f14a:c3a4:809e])
-        by smtp.gmail.com with ESMTPSA id w10-20020a170907270a00b00965e9a23f2bsm3679359ejk.134.2023.05.11.02.01.13
+        by smtp.gmail.com with ESMTPSA id q17-20020a056402033100b00509dfb39b52sm2807668edw.37.2023.05.11.02.02.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 May 2023 02:01:13 -0700 (PDT)
-Message-ID: <1959eb8a-d55f-5f62-2b41-0e7ea41b27b2@linaro.org>
-Date:   Thu, 11 May 2023 11:01:12 +0200
+        Thu, 11 May 2023 02:02:52 -0700 (PDT)
+Message-ID: <e0613d65-145a-4a80-b1eb-2a0e2fd36729@linaro.org>
+Date:   Thu, 11 May 2023 11:02:51 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [EXTERNAL] Re: [PATCH v2 2/5] ASoC: dt-bindings: Add tas2781
- amplifier
+Subject: Re: [PATCH 1/2] arm64: dts: tegra: smaug: add GPU power rail
+ regulator
 Content-Language: en-US
-To:     "Ding, Shenghao" <shenghao-ding@ti.com>
-Cc:     "Lu, Kevin" <kevin-lu@ti.com>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Xu, Baojun" <x1077012@ti.com>, "Gupta, Peeyush" <peeyush@ti.com>,
-        "Navada Kanyana, Mukund" <navada@ti.com>,
-        "gentuser@gmail.com" <gentuser@gmail.com>,
-        "Ryan_Chu@wistron.com" <Ryan_Chu@wistron.com>,
-        "Sam_Wu@wistron.com" <Sam_Wu@wistron.com>,
-        Shenghao Ding <13916275206@139.com>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "perex@perex.cz" <perex@perex.cz>,
-        "pierre-louis.bossart@linux.intel.com" 
-        <pierre-louis.bossart@linux.intel.com>
-References: <20230508054512.719-1-13916275206@139.com>
- <ca9d45cf-8a84-4fbc-e1dd-c96eef36fe25@linaro.org>
- <c088d7dce83a45168d0dc25fee4a9e35@ti.com>
+To:     Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        thierry.reding@gmail.com, jonathanh@nvidia.com,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+References: <20230511083101.78516-1-diogo.ivo@tecnico.ulisboa.pt>
+ <20230511083101.78516-2-diogo.ivo@tecnico.ulisboa.pt>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <c088d7dce83a45168d0dc25fee4a9e35@ti.com>
+In-Reply-To: <20230511083101.78516-2-diogo.ivo@tecnico.ulisboa.pt>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -93,38 +77,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/05/2023 16:03, Ding, Shenghao wrote:
+On 11/05/2023 10:31, Diogo Ivo wrote:
+> Add the GPU power rail regulator node for the Pixel C.
 > 
->> +    items:
->> +      minimum: 0x38
->> +      maximum: 0x3f
+> Signed-off-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+> ---
+>  arch/arm64/boot/dts/nvidia/tegra210-smaug.dts | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
 > 
-> ... So these are fixed? No need to encode them in such case...
-> 
-> and anyway actually I agree with Rob here - these addresses should be put in reg.
-> [DING] if all the put in reg, the i2c_probe will be called several time. The code don not want to register several codecs, but one codec including several tas2781s.
+> diff --git a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts b/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
+> index e55bff859692..8973fcf1e219 100644
+> --- a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
+> +++ b/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
+> @@ -1406,6 +1406,23 @@ max77621_cpu: max77621@1b {
+>  			maxim,externally-enable;
+>  		};
+>  
+> +		max77621_gpu: max77621@1c {
 
-Eh? Why and what would call probe multiple times for one device? It's
-the first time I hear... I don't know, maybe Linux I2C has some
-specifics, but sounds surprising.
+Node names should be generic.
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
 
-> 
->> +      description:
->> +        I2C address of the device for different audio slots,
->> +        useless in mono case.
->> +
->> +  ti,broadcast-addr:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description:
->> +      Generic I2C address for all the tas2781 devices in
->> +      purpose of I2C broadcast during the multi-device
->> +      writes, useless in mono case.
-> 
-> Probably you can figure it out from previous addresses and there is no need for this property.
-> [Ding] this address is the common address for all the tas2781, it can be used for dsp firmware downloading to all the tas2781s in parallel, which can save more downloading time
+> +			compatible = "maxim,max77621";
+> +			reg = <0x1c>;
+> +			interrupt-parent = <&gpio>;
+> +			interrupts = <TEGRA_GPIO(A, 6) IRQ_TYPE_LEVEL_LOW>;
+> +			regulator-min-microvolt = <840000>;
+> +			regulator-max-microvolt = <1150000>;
+> +			regulator-name = "PPVAR_GPU";
+> +			regulator-ramp-delay = <12500>;
+> +			maxim,dvs-default-state = <1>;
+> +			maxim,enable-active-discharge;
+> +			maxim,enable-bias-control;
+> +			maxim,disable-etr;
+> +			maxim,enable-gpio = <&pmic 6 0>;
 
-So the answer is yes? Then please drop it... If not, say why it cannot
-be deducted from other addresses (e.g. last address + 1).
+Use defines for GPIO flags.
 
 Best regards,
 Krzysztof
