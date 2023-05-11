@@ -2,137 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CEDC66FECEA
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 09:34:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1488E6FED4C
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 09:58:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237470AbjEKHeH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 03:34:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40844 "EHLO
+        id S236538AbjEKH6w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 03:58:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237532AbjEKHd4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 03:33:56 -0400
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (mail-dm6nam04on2061.outbound.protection.outlook.com [40.107.102.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C897A869F;
-        Thu, 11 May 2023 00:33:14 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kQC85FsypQclvlMZL9zsgf/0Mev44oxBW/rnBYWIgKIVYvTyXlMzfzUnkdJbuoMEhmwj/kF3xK0XJ5RPivyoZzDrRYXfuPwwqQRwHtWKSd3pdJIq0jI8WaoI86pMIgCfPAsHPyCU3q8KDY032r6HZcE5R6KbyRt70uiL1corsiOYxemopHRDwM5YpTQBkJDkLxztTQBZQyAvxIa9gs7EC5Ii8gMg16r5qBzg9QG5o1o6Cmr1CXkfiKLVKBS5Jcdmbq3Nr5RW3YYvwDFujASW9ClULlUwusldMm11T0Y00Q0mhY42qAdF7/vMBA49mADhmPCnMtS6XAeRMQum0tu8RQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1GS2mb3Sq2RblIllbyYHGLHZ0f/Lu1fa37GzLAgtRV4=;
- b=YTsc7Ft3VcLpiax+hv+B+hgxpGfOYXIa9cSaDmMnRK1G2KcPLkqljldzx+CN/lYipMgbhYQCIWBxo8z2K7oHX3AaZiKjyCAtw239GXryJFEQ2VMO6/964sTdnEd9gIothYXMCWKZkUsj4KEG5YeskfDAh1EDk8hXdyZODs+Zi4UgX8OYdzvR1vfQ7U7pHdl5Ogu2HJO/XuBdPfE9OyA1hjZ3JZGr2YV10QgY/tyj9pjD9SfYUD6KRwQhCW/eNMaGL20scAKS5jpUoZFhgazpD4QxdlvgXuw7oGpRjgNhcGz1WPxSbOuvz6LDXijECsiWxpSJVL91IkLca/fFXKNi/g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1GS2mb3Sq2RblIllbyYHGLHZ0f/Lu1fa37GzLAgtRV4=;
- b=5Md4G9P9NumcZ86oQ0O/NythAyvDjDCnl4RsX/qPIMMouVh3LexOp4Aq0za95ypdCbLFV5mqQWIbCc5zAG+uG0QNNeAcVvDx6qZXCaUptLzsXlHRfTpgajdxZ9ulJTb0Uh5Lno6xcu7g2Hnhzzs7pODoeLetJE5Ln6YJEfZrpjo=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BYAPR12MB4758.namprd12.prod.outlook.com (2603:10b6:a03:a5::28)
- by DS0PR12MB8296.namprd12.prod.outlook.com (2603:10b6:8:f7::6) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6363.33; Thu, 11 May 2023 07:32:57 +0000
-Received: from BYAPR12MB4758.namprd12.prod.outlook.com
- ([fe80::20b9:d472:1981:cf94]) by BYAPR12MB4758.namprd12.prod.outlook.com
- ([fe80::20b9:d472:1981:cf94%4]) with mapi id 15.20.6363.032; Thu, 11 May 2023
- 07:32:57 +0000
-Message-ID: <ede45df2-2282-4331-f5b2-e9b6f49782c9@amd.com>
-Date:   Thu, 11 May 2023 09:26:49 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH 0/2] Add rs485 support to uartps driver
-Content-Language: en-US
-To:     "Guntupalli, Manikanta" <manikanta.guntupalli@amd.com>,
-        "m.brock@vanmierlo.com" <m.brock@vanmierlo.com>
-Cc:     "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "michal.simek@xilinx.com" <michal.simek@xilinx.com>,
-        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "jirislaby@kernel.org" <jirislaby@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "git (AMD-Xilinx)" <git@amd.com>,
-        "Pandey, Radhey Shyam" <radhey.shyam.pandey@amd.com>,
-        "Datta, Shubhrajyoti" <shubhrajyoti.datta@amd.com>,
-        "Goud, Srinivas" <srinivas.goud@amd.com>,
-        "manion05gk@gmail.com" <manion05gk@gmail.com>
-References: <1682512187-8828-1-git-send-email-manikanta.guntupalli@amd.com>
- <6b72c56e79a44fec348de26d14d9dce0@vanmierlo.com>
- <DM4PR12MB61098014775DE9950A0E2E588C779@DM4PR12MB6109.namprd12.prod.outlook.com>
-From:   Michal Simek <michal.simek@amd.com>
-In-Reply-To: <DM4PR12MB61098014775DE9950A0E2E588C779@DM4PR12MB6109.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: VI1PR0802CA0014.eurprd08.prod.outlook.com
- (2603:10a6:800:aa::24) To BYAPR12MB4758.namprd12.prod.outlook.com
- (2603:10b6:a03:a5::28)
+        with ESMTP id S237149AbjEKH6s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 03:58:48 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2275183CE;
+        Thu, 11 May 2023 00:58:45 -0700 (PDT)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34B5w4PT028473;
+        Thu, 11 May 2023 07:58:36 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=yxIaDKbTZyQioRWP53dehZTWKzvQDJYxDuHpbkUnO68=;
+ b=Lg7Ncl9BKwJAyJXi7A2iDoA+IpbSuZl3Ei4ExaRdfdWbQbSr5CkQR0ZYOAARLWFwmO00
+ Cr9Zz4oDdEXEwyKEK4XfkiUMIDCRLyYf2Xoonof/kHFHexChf+g2y6Kga/V14kD6da1h
+ bFacYNrAL3Zb+rCK4GzL2ZAW0BrqoDHB2sh1/h9a7PvDY7FcdW3Le5Go/MuqCIft3A6k
+ fip2ECILfsQ6HWY1J+nbpuuyiqlPyiYpMmyemBgB9rdaop59nvWjyBLvSyKZoSnk3Q2C
+ m9mWG1EuzEaWKjLMMxVfzGcsR0gWSKtXwjRHB6Wq41E9PkEgzOagsXjhqylSQCqE/AoS qw== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qgkxmrwhj-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 11 May 2023 07:58:36 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34B7wZ79012400
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 11 May 2023 07:58:35 GMT
+Received: from poovendh-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Thu, 11 May 2023 00:58:29 -0700
+From:   Poovendhan Selvaraj <quic_poovendh@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <lee@kernel.org>,
+        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     <quic_srichara@quicinc.com>, <uic_gokulsri@quicinc.com>,
+        <quic_sjaganat@quicinc.com>, <quic_kathirav@quicinc.com>,
+        <quic_arajkuma@quicinc.com>, <quic_anusha@quicinc.com>,
+        <quic_devipriy@quicinc.com>
+Subject: [PATCH V7 0/2] Enable crashdump collection support for IPQ9574
+Date:   Thu, 11 May 2023 13:28:12 +0530
+Message-ID: <20230511075814.2370-1-quic_poovendh@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BYAPR12MB4758:EE_|DS0PR12MB8296:EE_
-X-MS-Office365-Filtering-Correlation-Id: 63ab8fef-a6e4-4442-d8f2-08db51f1f0ca
-X-LD-Processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: jlGSjRBnuMtLnq55aCZRDuOgntKt12YvwikTRJAymq05wOw6zFEq8f0mD/Ap8Z89EmTYOTPOSU46wLVN8qyB+qEmm5ru6acegQWafIeHzTn/7Q3ToPxtSe255F9lxAYnX3LI0U5lUSC0QiIB9348OT5qGsnKWnj0cm0hmVyOwWEg/LauFMYIWqx8yv1TZeTN1Zpx/hezjnUaZcyaXjCSUCGA7pcmNAE1hqjbii6oKM5S7B2yE13XbZVDzLTvjo2vF9kQUOpTCOsRJ0GgeQ3PXijC0Fujy7KZ4QTC7/NrqUkRO35aEPJQZJ3ODhcaae3udGiXYQhiIbQpyuyso4sLIarPuv7c+hPAyI2FRHReh57hh7g98VTJZzuE9M9EH1oaVikHPjNTtJ+S4a4rvmJrwYS4gfoK05hdTfdDf1Atx0RkqZJZICHvoilk55hm20KYBX8tt01Jnqh0h3AOesBOkaACWcnJTlSRIo5XcIjHTjDZhVNQ5DwXtXyfTRNci6HyPSoDvVQyX3NNGQ6KRxMPpJ8OrzYjRlZItgc2F/LrXgSuyg7jZzSzP76JjdjxcziTiriI8TkY42mf+9QNkgn+38/AQNATySTJ2MFY5ZPULJ8vs0Ugwzp/KgEEjgjMzK5UHVeQwtsXiXs00GeiwIKOMQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR12MB4758.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(376002)(136003)(346002)(396003)(366004)(39860400002)(451199021)(2906002)(86362001)(2616005)(83380400001)(186003)(4326008)(66556008)(66946007)(36756003)(66476007)(6506007)(53546011)(6512007)(31696002)(31686004)(26005)(41300700001)(7416002)(5660300002)(6486002)(38100700002)(44832011)(6666004)(54906003)(110136005)(316002)(8936002)(8676002)(478600001)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YmR6OUI2Ymx4WitpbSs3eXhzU2p3OEl6L0lmdUpFU3VMUXBlS21wdDZiSUNr?=
- =?utf-8?B?cm9zUVlDb3h2c2t1U0R2eXIvaTRLQVVJMXV3S1JpTnpqVkR4V2lVcm0xM3VU?=
- =?utf-8?B?SUJJdFk4TXhDam9vcmp1VXQ1Z21nZHUvRTVmOHJNODV6Zmg4eHNxelBzOFh2?=
- =?utf-8?B?TEZVUEd2NGZIMDdzMU1ibHMvR0pLUlNscm1kUVNjQWJqdkJBMjZRQzJIa01G?=
- =?utf-8?B?T0RXU2RiR0VNb0pJcnJOdzlLRVMvUExEYUoxTlZ2anVtV2ovV0FKaXhzVkxs?=
- =?utf-8?B?b2MwRVk4QjZxY3JZcXI2NStkNHhhVWFnaHJ1a2kwb1RXOE9uY3h4aHVxaTIz?=
- =?utf-8?B?WTR3cGcwQUE3WWhUdy9NRHlWcHVyWHNSeHhWbjB1c3Q3MjFSVmVQTjR6OU14?=
- =?utf-8?B?TmFTdVRlRU5aY0kvNmg3c0txZERLZ05WMm9MWm4yeTh5ejdjdjFWWjkvbldC?=
- =?utf-8?B?Skkwa2ZBaUVXQ00wckNHV3RZbmZUYW0vRkFyanZ2YnFLSEFxclZocUlYd3Jm?=
- =?utf-8?B?TitoSG1HVXdReTdpS3NhREwveXVUZWVlZGFiTnZTWFhsS2dQbnBMUWJXdGZk?=
- =?utf-8?B?eHNWNUltM3Z6c2VNNjUxWitwWTYrVXQyaTYwTEw2QUVJTnVyL2ZPTTQxZ3Vk?=
- =?utf-8?B?ZkVFRndTWUxoT2UveGZnZWUyMUZsM3BYQWg1QTFoTklrdVZXQ2ZCZWV0WmUz?=
- =?utf-8?B?djMvVUhzdE43VWp4OGVvU3B0cy9mY1BkbXZpbjc2b1N6SHYzOUJBMWl3Ykll?=
- =?utf-8?B?VXVTaXEraU5BOFp5ckE5SmpVOHAyeXQ5MmI0ckhzWjBueS8va2I5M3ZXdU55?=
- =?utf-8?B?SHhuQlpCQ1NEbDRuek1iR2V3NlRVZndwUUpRaTEwY3kzV29NWUljWmhKRFFG?=
- =?utf-8?B?YWllM3V1bzRBMDB6WHhtcDQxSDdzNUQ4aGViTXVuNDVKR2R0UTJmOXRZaDc1?=
- =?utf-8?B?aFRKWUowMENVU2FuVFZKK2xETXgzaG00QkJTRWtISm5FRUUrVjZ5Sy8rM1k1?=
- =?utf-8?B?ZlZqZHVXZGp1QXZqU1REVEpvK0ZrYmdZTHFUTVRFS084eXBreGRsbEV3c3NZ?=
- =?utf-8?B?b294WWlSaGdPOGw5WGxrZ2h6c3lEZlVyY3lNOGcwUi9uZytGdWZwc0tVdHlH?=
- =?utf-8?B?L21uZzI0ZTFtYVNGT2xQYXV3WWMxcGEwVnJtZ1pvcDZKNUdPVXFCa2RCZi9m?=
- =?utf-8?B?Z3hnbzQ4Rno2WkJMWmE5dUliaE16N2VGOWZORWVzSGRVdGZCY3h6NDV2VWdj?=
- =?utf-8?B?YTVaWWZNZWJPQmtsTHI3V3MzM1hwVldOb2ZDMElSQkRuOTRxaEVxTzN6RXl1?=
- =?utf-8?B?a1paYjZCK1NJeVdMSUF5ZEQ4Z2tOQnJkSTN6WERCOUdGY0hpK040OVJQbEpJ?=
- =?utf-8?B?aWJiOVZaeWhHWkRuMm1Hd3lyaSsydWtPamFJc0V6a0c1bHdLM2RVcDVidkpN?=
- =?utf-8?B?bEtFbTVObU1iZEQ5RDloWGVhQXErUFoxYWpraEY5WXJ6aitZVCszYzYxYSs2?=
- =?utf-8?B?UExuQklMbVJub05DZ3Z6Y1JhcHVBeTVWUUNXY2FCVUhWTk9VUWdKcTliOTdD?=
- =?utf-8?B?cUZDUzRRYlhLY1FpQ1pmaHlCb3AyZHU4Tzd3aERlNEhNMzMwa0lxei94c1hu?=
- =?utf-8?B?ZUhoQjkwRkFTMzJ1ektXT2lrc00xaTNYVCtlcElBNTVIOXVSOEdxbVB3N0tr?=
- =?utf-8?B?Yk0ySndLbWErb2ZHaG9yamQxdkozR2RkZzR1N0RiMDZGWFEraUJYNTFzTnVL?=
- =?utf-8?B?dCtwSDdUMzBmNDVLZitvN1IvZmcveW5HVlQ2bkZ0YnRqeVhsd1ExV1d5UEp6?=
- =?utf-8?B?aWlmbVlFZnp6MGFuVk9nTkw0ZVY3QmpBS2V5U3UvVjhzRW81cXNlNmZDeXJG?=
- =?utf-8?B?Rjc5TStoaDBNQlpSc1J0YkdJUW1OV3NpL0JMZERPelVkckRFUHpEenZSRWpx?=
- =?utf-8?B?VTJYYysrSHkxSWJIQ2ZKeS9zQWpvQkNidFlIYng1dHFkNU1IWXU3cTExM3o1?=
- =?utf-8?B?ZWlWVzR1R09UYmVDYjFQT3FTTnYxdXBhUTJnSzZiWVdRSWdRMTd4RlVINUQr?=
- =?utf-8?B?eVJJN2d3Z1BTc2Y2dlJYcEJBcFFjSkZuM0g3TS9wSjNhUkNsa0JYM01ZYkty?=
- =?utf-8?Q?+zUxnAecWp1XNk8oEcLEf5IGS?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 63ab8fef-a6e4-4442-d8f2-08db51f1f0ca
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB4758.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 May 2023 07:32:57.3534
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: EPxTwfxC/WLvUAJjDORQfIJ9KqjPtHhqqe43In3UbtmpPf5W1ml6IUSg60kPMWj/
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8296
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: y13i4iTRejS1SfTvk_4LZnmxTBwtkXZI
+X-Proofpoint-GUID: y13i4iTRejS1SfTvk_4LZnmxTBwtkXZI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-11_04,2023-05-05_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ lowpriorityscore=0 adultscore=0 mlxscore=0 spamscore=0 suspectscore=0
+ bulkscore=0 clxscore=1011 mlxlogscore=539 priorityscore=1501
+ malwarescore=0 phishscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2304280000 definitions=main-2305110068
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -140,48 +78,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Crashdump collection is enabled based on the DLOAD bit in the TCSR register.
+This bit is set during bootup and clearing during shutdown. During crash,
+dload bit is not cleared, due to which uboot starts crashdump collection.
+
+Enable the support for download mode to collect the crashdumps if
+system crashes, to debug crashes extensively.
+
+During the bootup, bootloaders initialize the SMEM. However the bootup
+after crash, SMEM will not be initialized again. If the memory for the
+SMEM is not reserved, linux consumes that region, which leads to the
+loss of SMEM data. So, during the next bootup after crash, bootloaders
+will hang due to invalid data present in the SMEM region. Due to this,
+added the SMEM support along with crashdump collection series.
+
+This patch series adds the support for crashdump collection.
+
+DTS patch depends on the IPQ9574 baseport series
+	  https://lore.kernel.org/linux-arm-msm/20230425084010.15581-1-quic_devipriy@quicinc.com/
+V7:
+	- [1/2] Sorted the firmware node alphabetically
+	- [2/2] No changes
+
+V6 can be found at
+	  https://lore.kernel.org/linux-arm-msm/20230328102013.21361-1-quic_poovendh@quicinc.com/
+	  
+V5 can be found at
+	  https://lore.kernel.org/linux-arm-kernel/20230216120012.28357-1-quic_poovendh@quicinc.com/
+
+V4 can be found at
+	  https://lore.kernel.org/linux-arm-kernel/20230214051414.10740-1-quic_poovendh@quicinc.com/
+
+V3 can be found at
+	  https://lore.kernel.org/linux-arm-msm/20230208053332.16537-1-quic_poovendh@quicinc.com/
+
+Changes in V2:
+	- rebased on linux-next/master
+	- dropped co-developed by tag wherever applicable
+	- V1 can be found at
+	  https://lore.kernel.org/linux-arm-kernel/20230113160012.14893-1-quic_poovendh@quicinc.com/
+
+Poovendhan Selvaraj (2):
+  arm64: dts: qcom: ipq9574: Enable the download mode support
+  arm64: dts: qcom: ipq9574: Add SMEM support
+
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi | 25 +++++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
 
 
-On 5/10/23 18:26, Guntupalli, Manikanta wrote:
-> Hi Maarten,
-> 
->> -----Original Message-----
->> From: m.brock@vanmierlo.com <m.brock@vanmierlo.com>
->> Sent: Thursday, May 4, 2023 5:52 PM
->> To: Guntupalli, Manikanta <manikanta.guntupalli@amd.com>
->> Cc: gregkh@linuxfoundation.org; robh+dt@kernel.org;
->> krzysztof.kozlowski+dt@linaro.org; michal.simek@xilinx.com; linux-
->> serial@vger.kernel.org; devicetree@vger.kernel.org; linux-
->> kernel@vger.kernel.org; jirislaby@kernel.org; linux-arm-
->> kernel@lists.infradead.org; Simek, Michal <michal.simek@amd.com>; git
->> (AMD-Xilinx) <git@amd.com>; Pandey, Radhey Shyam
->> <radhey.shyam.pandey@amd.com>; Datta, Shubhrajyoti
->> <shubhrajyoti.datta@amd.com>; Goud, Srinivas <srinivas.goud@amd.com>;
->> manion05gk@gmail.com
->> Subject: Re: [PATCH 0/2] Add rs485 support to uartps driver
->>
->> Manikanta Guntupalli wrote 2023-04-26 14:29:
->>> Add optional gpio property to uartps node to support rs485 Add rs485
->>> support to uartps driver
->>>
->>> Manikanta Guntupalli (2):
->>>    dt-bindings: Add optional gpio property to uartps node to support
->>>      rs485
->>>    tty: serial: uartps: Add rs485 support to uartps driver
->>>
->>>   .../devicetree/bindings/serial/cdns,uart.yaml |  5 +
->>>   drivers/tty/serial/xilinx_uartps.c            | 96 ++++++++++++++++++-
->>>   2 files changed, 100 insertions(+), 1 deletion(-)
->>
->> Why would you want to use a GPIO and not RTS for choosing the direction as
->> is more common in this case?
-> In ZynqMp platform Cadence UART Controller RTS signal routed to external through the PL(Programmable Logic) design not through Multiplexed IO.
-
-Just to extend this a little bit. Cadence IP has modem signals but they are not 
-available over MIOs only over EMIO via PL logic. But board which this feature 
-targets can't have connection to PL pins to be able to use any modem signal for 
-this logic.
-
-Thanks,
-Michal
+base-commit: aabe491169befbe5481144acf575a0260939764a
+-- 
+2.17.1
 
