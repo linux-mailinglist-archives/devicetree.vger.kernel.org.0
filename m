@@ -2,110 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C8F26FF052
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 12:59:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C6756FF063
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 13:10:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237805AbjEKK7q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 06:59:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45812 "EHLO
+        id S233666AbjEKLKk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 07:10:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237540AbjEKK7o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 06:59:44 -0400
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AB2E5B84;
-        Thu, 11 May 2023 03:59:42 -0700 (PDT)
-Received: by mail-pj1-x1036.google.com with SMTP id 98e67ed59e1d1-24e5d5782edso7983207a91.0;
-        Thu, 11 May 2023 03:59:42 -0700 (PDT)
+        with ESMTP id S231843AbjEKLKj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 07:10:39 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C72B65A5
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 04:10:38 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-966400ee79aso1064459066b.0
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 04:10:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683802781; x=1686394781;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=P7WwGv5KdS3JZFK3LNUp5MC3xbE7T89T2fedtq/0oXc=;
-        b=N26j+VMrYeUL3Ark717FdrXcfToyaCqMS6iY+FeQsEcpY7/CRFjD3pm8JXhDkmG3rx
-         JV0ZiQt4bw3mexLUenLy6ujL4q3ujgm8A+Ky29XFZV3Cj5OOPV1IuAYRDbLkbE8gSwNP
-         ywrBKf0PMdL1wJ+gR09fiRNI/cpEZtY7GuL8jWl0vqi1X94S2LgmJC1/evJ1HdjdJC0K
-         IYgieE/37snCsLXQaF8f5r4cL6BKYkUXVhwaUOBe56uWmG0bvuwHgLD/s6OIf2Tm5q8K
-         NgRDEHB2S0dD5M7Cq5Tn85z0vO5dJ6Om9XNEau6HgDD8HJ0yPSUvBO8Z3w7n6dthvgh3
-         LIVA==
+        d=linaro.org; s=google; t=1683803437; x=1686395437;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=q7KxdBG/NeF6sWMIRS2EQ/HmjBGOWua4oCF2RfFjnYc=;
+        b=Dyi8ve2u1kiMIWDo8UAn+si7P3sNVvuq0CApWRjlvwBj6ZP4dK29ykmg1GNZ8cX4GN
+         HZpNyBjusvuWiJMFksx5I6awxewE+5LnKfpUMIm0iyGrhMLx/Y82PIcsp/u+5VXW8RBm
+         WsLCfujGqUrUAKmQYf8vL9SryPdGqj2+4WZb7yxegaaxUeFfELEY/GQQxzzc8rGBvSlV
+         AlODw0ga1I5pwhKcfjzsqpopLfIVIcaFeRS/SxTDtyMW7b/vuRUbwmGVUQr7eZ0ulQPC
+         veSXvM2/O2gECUGy7KrcaJeHcXgaTjh33oRwi6DrMrD+XjcM2zgBKyG5yfYNcV1CdZAL
+         xgOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683802781; x=1686394781;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=P7WwGv5KdS3JZFK3LNUp5MC3xbE7T89T2fedtq/0oXc=;
-        b=BItbdS9mgDU3PuCUwT91l1oKsxqHaM6N+Zpwi5SP3z7jmm6+ZJrU6NWv59CtprUrJZ
-         pFcQlBZuHWKiYz3/vS6TRAlLoWFyT3kProSTcRyZ3bLRje4jfb1XBFshqDe7XtHCUNpW
-         VAc4w2/RNz9zsAXoQUo+FXQBYBzsFwXd+yBZcOPQ3x1XCiEV4iXKS0Ybyes++iAFQWT4
-         b8Cm/N3UMJ15XZssNPTWrT5sjBId4pnXuLSFkHNzggu7PTVtPipufEGW7RPYSZW+Va/k
-         8rYYghqXQUz6RGEOfK//XmpHjTCl64qkJKtquAY9A/3Kn5U9eFuryxv8UfMPA11l7Xei
-         6d2w==
-X-Gm-Message-State: AC+VfDxZ19aCFhhH9EuDRmVplHosnS/hhQuUnduewqGcep2rMmxHSyhT
-        Omml8tkuq34LywBZ4eK39rvp5MprpFs+YfxBs+0=
-X-Google-Smtp-Source: ACHHUZ4GERe0mUrXPvRcXq786LmJzoOQzwlw+H1gHijJA7ExVdrv/E5/FTfzxC5+hMYC4qyX3FLDtumdrE0sbuVolo4=
-X-Received: by 2002:a17:90b:1296:b0:24e:596:624f with SMTP id
- fw22-20020a17090b129600b0024e0596624fmr20866667pjb.22.1683802781153; Thu, 11
- May 2023 03:59:41 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1683803437; x=1686395437;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=q7KxdBG/NeF6sWMIRS2EQ/HmjBGOWua4oCF2RfFjnYc=;
+        b=HitX9cgsEIybMhYPe80UOBcYFiKxsIWT3OxGwCscuqnY0gVSYhKEauTgfTpmmRm/Us
+         XA2DtnKxniNvkaM/pogfYvHzhMORGw/lwONDplmQsGrQdNIvAoGQ5eFSdEK48VWaWIbC
+         pztmlAvPJ/VrTnAIGun/MbgjiICAjKt/gAhFHNn7cbgFTB6IYoQGF7FMvjar4ATNm0YZ
+         W+CRmGL9NUbWCTOv++luG6uRpWeJLJQm0XOZ9migksnasQ07QMkMKD8wp9R3eeGhpjdW
+         cFBBC+7NMZikjtxmihLHnwtUCmkUV6tghv1ltzmoj+EjErm7MBtrP5WltFnmLl82s3h/
+         bZZw==
+X-Gm-Message-State: AC+VfDwalkEs7p0ZZWmuPOeNp6DSpSwxIkEX4Z2O9nkUiH+XnayiQAlh
+        l8LnblgkrS/G+i26D0kD3HhAHQ==
+X-Google-Smtp-Source: ACHHUZ5nKsEhAnsseBCGuUqg/8Vzj4ZcA5NvGpLmygmAm9j0zZJqO7fOoh4aJ+42swdqT33rFR9mcw==
+X-Received: by 2002:a17:907:3d90:b0:968:236:eb17 with SMTP id he16-20020a1709073d9000b009680236eb17mr12046696ejc.24.1683803436971;
+        Thu, 11 May 2023 04:10:36 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:41e7:1b68:d38e:1348? ([2a02:810d:15c0:828:41e7:1b68:d38e:1348])
+        by smtp.gmail.com with ESMTPSA id ze12-20020a170906ef8c00b009659fa6eeddsm3870844ejb.196.2023.05.11.04.10.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 May 2023 04:10:36 -0700 (PDT)
+Message-ID: <8e98b31a-ef4d-a8bd-32f3-e6f496f2b138@linaro.org>
+Date:   Thu, 11 May 2023 13:10:35 +0200
 MIME-Version: 1.0
-References: <20230510134121.1232286-1-quic_srichara@quicinc.com>
- <20230510134121.1232286-8-quic_srichara@quicinc.com> <8f5040e0-169b-554b-c9e6-479b8f098bc6@gmail.com>
- <daff6818-525d-7a99-de08-e289848cadf9@quicinc.com>
-In-Reply-To: <daff6818-525d-7a99-de08-e289848cadf9@quicinc.com>
-From:   Robert Marko <robimarko@gmail.com>
-Date:   Thu, 11 May 2023 12:59:30 +0200
-Message-ID: <CAOX2RU6_TmOfv5298fs6zgCvivdA6=GK5SnhGu7cDsmGQ2-ATw@mail.gmail.com>
-Subject: Re: [PATCH v4 7/8] arm64: dts: Add ipq5018 SoC and rdp432-c2 board support
-To:     Sricharan Ramabadhran <quic_srichara@quicinc.com>
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org, ulf.hansson@linaro.org,
-        linus.walleij@linaro.org, catalin.marinas@arm.com, will@kernel.org,
-        p.zabel@pengutronix.de, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v1 3/3] dt-bindings: ASoC: Add ESS ES9218P codec bindings
+Content-Language: en-US
+To:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+Cc:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        perex@perex.cz, tiwai@suse.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230510112349.939991-1-aidanmacdonald.0x0@gmail.com>
+ <20230510112349.939991-3-aidanmacdonald.0x0@gmail.com>
+ <7b3a37e8-0210-c539-5b5b-bf8e587707ea@linaro.org>
+ <7Zga7RBqLNcaG5ylTIY4Qn7CUdE1IJsW@localhost>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <7Zga7RBqLNcaG5ylTIY4Qn7CUdE1IJsW@localhost>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 11 May 2023 at 12:54, Sricharan Ramabadhran
-<quic_srichara@quicinc.com> wrote:
->
->
->
-> On 5/11/2023 3:54 PM, Robert Marko wrote:
-> >
-> > On 10. 05. 2023. 15:41, Sricharan Ramabadhran wrote:
-> >> Add initial device tree support for the Qualcomm IPQ5018 SoC and
-> >> rdp432-c2 board.
-> >
-> > Hi, does reboot work for you with this patchset?
-> > I have tested on 2 different IPQ5018 boards and they wont reboot,
-> > I get the:
-> > Requesting system reboot
-> > [  321.005977] qcom_scm firmware:scm: No available mechanism for setting
-> > download mode
-> > [  321.006128] reboot: Restarting system
-> >
-> > And then it just hangs there.
-> >
->
->   Yes, that is because SDI disabling using separate SCM is still not
->   there. I will add support for that in a separate series.
+On 11/05/2023 12:15, Aidan MacDonald wrote:
+> 
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
+> 
+>> On 10/05/2023 13:23, Aidan MacDonald wrote:
+>>> ...
+>>> +  ess,max-clock-div:
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +    description:
+>>> +      Sets the maximum MCLK divider for generating the internal CLK.
+>>> +      CLK must be at least 20x the I2C bus speed or I2C transactions
+>>> +      will fail. The maximum divider should be chosen to ensure that
+>>> +      CLK will not fall below the limit.
+>>> +    enum:
+>>> +      - 1
+>>> +      - 2
+>>> +      - 4
+>>> +      - 8
+>>> +    default: 1
+>>
+>> Why do you need to customize it per board?
+>>
+> 
+> There's no generic API to read or change the bus speed (SCL frequency)
+> for I2C adapters, so it's impossible to calculate a limit on the MCLK
+> divider automatically.
+> 
+> Defaulting to 1 is always safe, but means wasting power at lower sample
+> rates. If you know what the bus speed is you can use a higher divider
+> limit to save power, and it has to be done at the board/firmware level
+> because that's the only place where the bus speed is known.
 
-Do you maybe have a workaround for this, as it's driving me crazy to
-have to pull power?
-Also, it would probably be good to note this in the commit to avoid
-more questions like this.
+If I understand correctly, you only miss a way to get bus_freq_hz from
+i2c_timings to calculate the divider by yourself? This looks like Linux
+limitation, so we shouldn't push it into DT, but rather fix Linux. The
+I2C bus rate is known, the MCLK rate as well, so divider is possible to
+deduce.
 
-Regards,
-Robert
->
-> Regards,
->   Sricharan
+I am actually surprised that I2C core does not store the timings
+anywhere and each bus host has to deal with it on its own.
+
+Best regards,
+Krzysztof
+
