@@ -2,118 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 243316FF363
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 15:50:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 852766FF382
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 16:00:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237937AbjEKNuc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 09:50:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44290 "EHLO
+        id S237757AbjEKOAe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 10:00:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236577AbjEKNub (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 09:50:31 -0400
-Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4DEED9;
-        Thu, 11 May 2023 06:50:29 -0700 (PDT)
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-        by mx.sberdevices.ru (Postfix) with ESMTP id 3C47B5FD5F;
-        Thu, 11 May 2023 16:50:28 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1683813028;
-        bh=RMxJjEHJX0J6cuwdy2YgFZf1Gg52m0VezrZJvqOMaY8=;
-        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-        b=M6GU5ISY3Mv0QEnjh2NKb5xTVGYQYoSeIcRu0VuGPTsEejBDDGUhrGA4rfspJa+T0
-         7oAa8lBpV8UvH3cVvDuf8xotDuykXPT2tDeBgRoz39z+VfTw3Rmkm529NaJ4PZGoG0
-         DUrolTUhKLGN2K5PxUXEkRObkrlvz8zj5U8L7Wu0KQ4p8wTZnH8ES4C3ueCqwFHeZO
-         H1akRIjfHBOaU/8hUfm6NYd12hz56Ate8iIcttopxSTuesYN0aJpW9hrL+TDx7QlTq
-         svJrAC89qTH3UYczt3km/iLdj9cPL3/3TQAGnVlzsXIxrIQEZ18MUDjxmpfXR92dyt
-         EMYvw7TteVwkg==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-        by mx.sberdevices.ru (Postfix) with ESMTP;
-        Thu, 11 May 2023 16:50:28 +0300 (MSK)
-Date:   Thu, 11 May 2023 16:50:22 +0300
-From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     Christian Hewitt <christianshewitt@gmail.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>, <jian.hu@amlogic.com>,
-        <kernel@sberdevices.ru>, <rockosov@gmail.com>,
-        AML <linux-amlogic@lists.infradead.org>,
-        <linux-clk@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v14 5/6] dt-bindings: clock: meson: add A1 Peripherals
- clock controller bindings
-Message-ID: <20230511135022.jzkv4un4bbm375aw@CAB-WSD-L081021>
-References: <20230426095805.15338-1-ddrokosov@sberdevices.ru>
- <20230426095805.15338-6-ddrokosov@sberdevices.ru>
- <CAFBinCCdoaNuQymcjp5j9MHn2jpPWMqXe-+EgBo=5Ot8Bwaofw@mail.gmail.com>
- <2F9DDB93-5EE7-4B5D-AFB5-052968081E0A@gmail.com>
- <e29a7911-065a-04e2-f04f-027a0646362c@linaro.org>
+        with ESMTP id S233998AbjEKOAd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 10:00:33 -0400
+Received: from sender4-op-o10.zoho.com (sender4-op-o10.zoho.com [136.143.188.10])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 619732D5B;
+        Thu, 11 May 2023 07:00:32 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1683813593; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=chZYxiLztGDfjMD2pYB/zEfdBEONq+lFYC/Ft6eqc8HHd+U6MgVh6L3IPY2dbg8IJBss8+zD/bGfRcWb3Vfq4X9lFh2E5dZMlWBTU3Oh3Vrd8TcGSSs2AZcOwTmWKdp0jA3qWnBpcjfXnnoztFQnOh86J2vuYS7x8b4wQ/dMYoY=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1683813593; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=qQbMYUDsKNLkUWpHaNQP5KTAN9kqwWBsuvO7Tkmxnrg=; 
+        b=B3EB078KwObMionflVutgZsfg4L2poFyHMtHGebE/oWqg9P7tbqkb2yUCLOU7lDPvjyjjSg5a+f7sGt4tACbNP9HHDoTwAJOegbPXwPGOdPSI2hGwy9Otbbk8/UVJGHb7WKuDFNAI6IHmvP+R1pJqS1V4yKU/R0sEh7j89E72h8=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1683813593;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+        bh=qQbMYUDsKNLkUWpHaNQP5KTAN9kqwWBsuvO7Tkmxnrg=;
+        b=jyDGGe7HtEGOUSpSq1PJKv5c2Q0d/wUjSTqkEQb9YH6/GKG1RKzK+Nq3v3cteu99
+        d4LaGj8vmsvGiyP/JzHvxxhWkoKbghBoy+L9Z9MEhlvyUfZYTG4JInviGxSDOzJSNQA
+        yibzJ0ZxTmetCXyRSikmJRM0A3o+TvrXLey3Z6LE=
+Received: from [10.1.111.147] (185.242.250.116-ip.operadors.cat [185.242.250.116]) by mx.zohomail.com
+        with SMTPS id 16838135904591003.9773108387027; Thu, 11 May 2023 06:59:50 -0700 (PDT)
+Message-ID: <b6050e71-7ebe-ff3e-5683-b60ce9327c58@arinc9.com>
+Date:   Thu, 11 May 2023 15:59:44 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH] mips: dts: ralink: Add support for TP-Link HC220 G5 v1
+ board.
+To:     Liviu Dudau <liviu@dudau.co.uk>
+Cc:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Paul Burton <paulburton@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230509200125.309026-1-liviu@dudau.co.uk>
+Content-Language: en-US
+From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <20230509200125.309026-1-liviu@dudau.co.uk>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <e29a7911-065a-04e2-f04f-027a0646362c@linaro.org>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/05/11 10:21:00 #21259776
-X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Krzysztof,
+Please remove the dot from the subject. Also check the patches with 
+scripts/checkpatch.pl. At least one of them has got 80 columns on a 
+line, the limit is 75.
 
-Thank you for the review!
-
-On Tue, May 02, 2023 at 09:39:12AM +0200, Krzysztof Kozlowski wrote:
-> On 02/05/2023 03:38, Christian Hewitt wrote:
-> >> On 1 May 2023, at 7:51 pm, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
-> >>
-> >> Hi Dmitry,
-> >>
-> >> On Wed, Apr 26, 2023 at 11:58 AM Dmitry Rokosov
-> >> <ddrokosov@sberdevices.ru> wrote:
-> >>>
-> >>> Add the documentation for Amlogic A1 Peripherals clock driver,
-> >>> and A1 Peripherals clock controller bindings.
-> >> Maybe a native English speaker can comment on whether it's
-> >> "peripheral" or "peripherals".
-> > 
-> > I’m not a grammar specialist, but I would write:
-> > 
-> > “Add documentation and bindings for the Amlogic A1 SoC peripherals
-> > clock driver”
-> > 
-> > Peripherals is the correct plural but reads better when you add
-> > context on the type of peripherals.
-> 
-> Drop the "driver" references - from the binding itself and from commit
-> msg. The bindings are for hardware, not for the driver, so: "for the
-> Amlogic A1 SoC peripherals clock controller.".
-
-Okay, thank you for the suggestion! I will remove it in the next
-version.
-
--- 
-Thank you,
-Dmitry
+Arınç
