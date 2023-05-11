@@ -2,90 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9486B6FF833
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 19:15:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 35AD06FF83C
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 19:17:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238407AbjEKRPW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 13:15:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49562 "EHLO
+        id S238496AbjEKRRu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 13:17:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238617AbjEKRPV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 13:15:21 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 030C565A7
-        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 10:15:20 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7460C63CDA
-        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 17:15:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EEAAEC433D2;
-        Thu, 11 May 2023 17:15:17 +0000 (UTC)
-Date:   Thu, 11 May 2023 18:15:15 +0100
-From:   Catalin Marinas <catalin.marinas@arm.com>
-To:     James Morse <james.morse@arm.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Oliver Upton <oliver.upton@linux.dev>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH 0/6] arm64: errata: Disable FWB on parts with non-ARM
- interconnects
-Message-ID: <ZF0io4mDjRdm1AxN@arm.com>
-References: <20230330165128.3237939-1-james.morse@arm.com>
+        with ESMTP id S238902AbjEKRRp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 13:17:45 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE43D1991
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 10:17:43 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-50db7ec8188so5833466a12.2
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 10:17:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683825462; x=1686417462;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BO10O8iW12DytJ1D0XEr7Txqs1Ww5REXRTxXbIG6fiU=;
+        b=f0A93yTj+verQgVFIIytrLJioCA/4tVJme8XHNExd+sIzhoyQV84OjWUDsBUUu169M
+         O/S8+4wIjd5SZGyvGAOKRcOMuHOIol2/t+DZRVvi5MC1QxG1oPx8cPo/NdVfhdS6LoCk
+         JZAIYkNje4BWbdiUiZjYWRjg5gbqwGgS1tS03dJT0o4meI6/fbo0aXav4T2C3gt4Ibil
+         jXWcr+2DshwGRMuusvMurUtezTIWdW+OyHPQJaM8IyuEqN67y4EaKlmYbTB1X4tKYg3W
+         8RBNzHBN0g/OlZOpUM0/aJjHSr56v89AcmFXjQUaTaa6dyP4/nBO6BbaoCldjgKizamJ
+         zyOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683825462; x=1686417462;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BO10O8iW12DytJ1D0XEr7Txqs1Ww5REXRTxXbIG6fiU=;
+        b=BpzXlWccIOMlBqEakYD2NmtCgk1V6oFBR1H+DSDDHEzTflRPly8i2D5U/p4lVVdBmD
+         4cNkvOopRd7jd9EheZZkx2DzxPjm3nOrvWKeoT49ogWtY5eQeKqrc8tJVN14OjsLQUUG
+         5wpJS8Gz/i6LdKgrWOEt0mqQ+gbvNFjbDRbMuAm97IhoVHwF8j6RZj7HTXN4Klkw98VD
+         odQp726pJjqyuxPC8Mb8KeZ7EW/w6hR0zH5gV1DmbNyZ6Q7ACasIi+XFqrwcsc13ANe2
+         LbBd8WlMbiMHDaXIumNtDW9+XAwA6QflsEiBpAuVDb25RC7DboiWOrqSrbWR7BXbZLm9
+         mQXw==
+X-Gm-Message-State: AC+VfDyqqPJCAqWxViE2yyJgtVV2j5ZooB5kwveDkrW+duSqniia4vpp
+        Llw3irK9EV2lWllfZytYzdwL7w==
+X-Google-Smtp-Source: ACHHUZ5cgkWlTUCHRNisr81AR6zb+e6IL4lRvsjDC57u1GW1gp2L8yVihNq3CkPY229nDynudhkCfA==
+X-Received: by 2002:a17:907:9347:b0:933:3814:e0f4 with SMTP id bv7-20020a170907934700b009333814e0f4mr20280180ejc.16.1683825462143;
+        Thu, 11 May 2023 10:17:42 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:d7cd:1be6:f89d:7218? ([2a02:810d:15c0:828:d7cd:1be6:f89d:7218])
+        by smtp.gmail.com with ESMTPSA id gz4-20020a170907a04400b009571293d6acsm4248476ejc.59.2023.05.11.10.17.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 May 2023 10:17:41 -0700 (PDT)
+Message-ID: <d8544d01-b0a0-f5f6-b0fe-8f6c25bed9bb@linaro.org>
+Date:   Thu, 11 May 2023 19:17:39 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230330165128.3237939-1-james.morse@arm.com>
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: Need suggestions for smp related properties in cpus.yaml to
+ support smpboot for cortex-r52 based platform
+Content-Language: en-US
+To:     Ayan Kumar Halder <ayankuma@amd.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        angelogioacchino.delregno@collabora.com, geert+renesas@glider.be,
+        magnus.damm@gmail.com, konrad.dybcio@linaro.org,
+        andersson@kernel.org, mazziesaccount@gmail.com,
+        conor.dooley@microchip.com, j@jannau.net, mailingradian@gmail.com,
+        me@iskren.info, lpieralisi@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        linux-renesas-soc@vger.kernel.org, Julien Grall <julien@xen.org>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        Michal Orzel <michal.orzel@amd.com>,
+        Michal Simek <michal.simek@xilinx.com>
+References: <c5ed90c7-7126-0757-a0e3-e3d1fcab2ecc@amd.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <c5ed90c7-7126-0757-a0e3-e3d1fcab2ecc@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi James,
-
-On Thu, Mar 30, 2023 at 05:51:22PM +0100, James Morse wrote:
-> When stage1 translation is disabled, the SCTRL_E1.I bit controls the
-> attributes used for instruction fetch, one of the options results in a
-> non-cacheable access. A whole host of CPUs missed the FWB override
-> in this case, meaning a KVM guest could fetch stale/junk data instead of
-> instructions.
+On 11/05/2023 11:35, Ayan Kumar Halder wrote:
+> Hi Device Tree engineers,
 > 
-> The workaround is to disable FWB, and do the required cache maintenance
-> instead.
+> 
+> Recently I have ported Xen on Cortex-R52 (AArch32-V8R processor) for our 
+> AMD platform.
+> 
+> I was discussing with xen-devel community about how we can properly 
+> support smpboot when I was suggested that this might be the correct 
+> forum for discussion.
+> 
+> Please refer 
+> https://lists.xenproject.org/archives/html/xen-devel/2023-05/msg00224.html 
+> and the follow-ups for context.
+> 
+> 
+> The way smpboot works on our platform is as follows:-
+> 
+> 1. core0 writes to register (say regA) the address of the secondary core 
+> initialization routine.
+> 
+> 2. core0 writes to another register (say regB) the value "0x1" to put 
+> the secondary core in reset mode.
+> 
+> 3. core0 writes to regB the value "0x0" to pull the secondary core out 
+> of reset mode.
+> 
+> regA, regB will differ for core1, core2, core3 and so on.
+> 
+> 
+> Currently, I am trying to bringup core1 only.
+> 
+> 
+> I am thinking to use "enable-method=spin-table" in the cpu node for 
+> core1.  So that I can use "cpu-release-address" for regA.
+> 
+> For regB, I am thinking of introducing a new property 
+> "amd-cpu-reset-addr" in the cpu node.
 
-I think the workaround can be to only do the required cache maintenance
-without disabling FWB. Having FWB on doesn't bring any performance
-benefits if we do the cache maintenance anyway but keeping it around may
-be useful for other reasons (e.g. KVM device pass-through using
-cacheable mappings, though not something KVM supports currently).
+Propose a patch, that's how we discuss. Anyway as this is arm then you
+have a machine for your platform right? The address is not fixed?
 
-> Unfortunately, no-one has firmware that supports this new interface yet,
-> and the least surprising thing to do is to enable the workaround by default,
-> meaning FWB is disabled on all these cores, even for unaffected platforms.
-> ACPI Platforms that are not-affected can either take a firmware-update to
-> support the interface, or if the kernel they run will only run on hardware
-> that is unaffected, disable the workaround at build time.
+If the the regb is not a pen release-like, so you cannot use
+secondary-boot-reg, then check how other machines are doing it.
 
-Given that we know of more platforms that are _not_ affected and vendors
-are pretty vague on whether they need this, I'd rather swap the default
-and keep the workaround off with a firmware interface, DT or command
-line opt-in.
+Best regards,
+Krzysztof
 
-That said, maybe we can reduce the risk further by doing the
-vcpu_has_run_once() trick with !FWB and clean the D side to PoC on a
-stage 2 exec fault (together with the I-cache invalidation). We can then
-ignore any other cache maintenance on S2 faults until someone shouts (we
-can maybe recommend forcing FWB off on the command line through the
-cpuid override).
-
--- 
-Catalin
