@@ -2,64 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 035E46FF1BC
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 14:44:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8C826FF1BE
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 14:44:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237394AbjEKMoB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 08:44:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41396 "EHLO
+        id S236695AbjEKMoE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 08:44:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237355AbjEKMoA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 08:44:00 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1510C4EC5
-        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 05:43:59 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9661047f8b8so1160900966b.0
-        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 05:43:58 -0700 (PDT)
+        with ESMTP id S237548AbjEKMoC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 08:44:02 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C55F54C20
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 05:44:00 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-50bd37ca954so79052748a12.0
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 05:44:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683809037; x=1686401037;
+        d=linaro.org; s=google; t=1683809039; x=1686401039;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=B78qU79u+pggk87zvrUws0OM04ktfZG0Nhpeqi3E0n8=;
-        b=VrdiPEZHXAuSQA8o7hWdh19QMusTk5IlknJDmA7J89JNw0CokXkenxV0oNTWnqVtHQ
-         Gd2PoFTa+4+44hjucLWAVdsN70ACrvu7r8jlPZzAZNppbf7a9OflRIePTh2Fx+QmRWvI
-         T/KThbGFtvBPV+UW3UbbSg3oK8l3q5VVP0KNm4cpghruN8pNW9QJ50RTmO8/wEWIhXnL
-         mKxFvLAvINZdsWJd7Mr0vhws1V91ST8WXJDfdxJYDo+bDze18crMXA8zodsUNQ2QpcK6
-         8e3sKwZQf+E3LFbdPxxWrWW1PL4KuFRfQ4k+TSF5CzTLTMa5RheKFhsOlwETvWEKzpqC
-         76+w==
+        bh=PdfQGMlpeoCbkZvcv6OWcFiX2es4qTzJGp0AOHUXJmo=;
+        b=grWIT6g50txZ7coCIaDGI2Psetgs88kWDSl/E/p6y38+eQ1e+3rF9++NyzTATp76rW
+         T1891vrrzmmRyikcP7LBvuZtTvoAqp+lWW9gijjDGE2NreTSd4e0rBOH+Igq2kVgftPL
+         aH9o/dK77YBchBJKeMA80P9dVmIkilyHbwuc3OiNm4npyEhSXmyuqzDoX4duXsAc5uwV
+         9g9ABW6ZdIC/hgHxFfmj3AQvsVrojvGGxcZxK9XoZDyql2AlmIb4+300gLPlTMGAoGGs
+         xtUmr1Fw8wEImYSoeHoSyq6VikfNFEaGoaq/bPAKKOA5+V44r5oF+FGpyrDwBv3n6+ur
+         rttA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683809037; x=1686401037;
+        d=1e100.net; s=20221208; t=1683809039; x=1686401039;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=B78qU79u+pggk87zvrUws0OM04ktfZG0Nhpeqi3E0n8=;
-        b=Kan748fZrha1HUhx6jjMt0EDVTovIPyoOO7VF9knyg7TV+6I/P3ZTzsw1GDSaeVWxY
-         dacN5kAncFj50FWr9cd25hvqgEpvLxB1Ei/8pKh5B6tjis5GOFcrjTmeXUXPGW4hkvFY
-         0upDrG/God+UWPF6clYFDs1PZktJP/oe9ZmbHrtnXtrUhTs3hCWIijjaWkBwDRPqNm3a
-         ullj+JlZLlpqo1eJ8sk5dP4d70ydhkObPfx+KeVlwGwMLu0vqTfGeVI7qtkW4woBnaIc
-         7XzbwKY3TnZRWxwZcxe7FfbvmPh1CzY/X5NhRllOrQuycixrHxhStK7u2IRqjFGVOWrV
-         BDdQ==
-X-Gm-Message-State: AC+VfDxnT3MD/vUeCr3Ii3l32wLwhKR0ZONbTEkeIA1y7+dLY/cMH0uw
-        vnG/qO4gxnbmPWszdXlJryTG6g==
-X-Google-Smtp-Source: ACHHUZ4VDdroTP4QStI01ZbfFBFsbxkbjFxJGhgNLoKlOsYEPxKm1wA+/iiFtAEmZpdlF9EWF00hVg==
-X-Received: by 2002:a17:907:72d1:b0:967:dff4:e0f9 with SMTP id du17-20020a17090772d100b00967dff4e0f9mr12801672ejc.71.1683809037527;
-        Thu, 11 May 2023 05:43:57 -0700 (PDT)
+        bh=PdfQGMlpeoCbkZvcv6OWcFiX2es4qTzJGp0AOHUXJmo=;
+        b=kDBBW4ZV4wFY7ygUY/ecOjI+DwfS7M4wufyIJPFPI/z90k0nN6H3RtKi97bUCHUNmt
+         pnECsWUkBGhYWZYimyYPPOF1P778gpTtc7nRQZDqTv/xC908rBgd9JCUZBMZct4tG1jQ
+         RRO80cSgyJ70lLfEJxrUXxLzH2bVDmODehKMBRoCwsLeu+Wav7fNiOp1m3GdKAem0dGr
+         q7NnBeFDSJlP3uR5gjr0uTWG9za0Bnagv/YbDFLiAj8h6537Vvh1XaYQ9rLMK75fekyq
+         ekUYNdvWRapPuZpn90mta2P5f8ixOif6zddyZeU2dhHq9Ch/NPyD7zKah7aIcjt0+5jn
+         vEPw==
+X-Gm-Message-State: AC+VfDx0MnlZMAXHHLIOSOyVetyoXEAbSMiU3IahacFz8SF0ipclMJBn
+        uNhpm9ukAf36EFl7PFXgqB6oEg==
+X-Google-Smtp-Source: ACHHUZ6qKAnCJZCQBEaCrFhFG4CCkLG66pgdtTElF/udXUIxo92lQeLIN7BSMnJ+7xrwL/M6JH1tDA==
+X-Received: by 2002:a17:907:3f22:b0:96a:2b4:eb69 with SMTP id hq34-20020a1709073f2200b0096a02b4eb69mr7680215ejc.31.1683809039260;
+        Thu, 11 May 2023 05:43:59 -0700 (PDT)
 Received: from krzk-bin.. ([2a02:810d:15c0:828:41e7:1b68:d38e:1348])
-        by smtp.gmail.com with ESMTPSA id t27-20020a170906269b00b0096616aef7e5sm4073675ejc.149.2023.05.11.05.43.56
+        by smtp.gmail.com with ESMTPSA id t27-20020a170906269b00b0096616aef7e5sm4073675ejc.149.2023.05.11.05.43.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 May 2023 05:43:56 -0700 (PDT)
+        Thu, 11 May 2023 05:43:58 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH] arm64: dts: mba6ulx: correct GPIO keys wakeup
-Date:   Thu, 11 May 2023 14:43:53 +0200
-Message-Id: <168380903252.184807.8687658539539135053.b4-ty@linaro.org>
+Subject: Re: [PATCH] ARM: dts: ste: align UART node name with bindings
+Date:   Thu, 11 May 2023 14:43:54 +0200
+Message-Id: <168380903252.184807.5434491458801772510.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230304123341.34223-1-krzysztof.kozlowski@linaro.org>
-References: <20230304123341.34223-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230123151519.369158-1-krzysztof.kozlowski@linaro.org>
+References: <20230123151519.369158-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -74,15 +76,15 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Sat, 04 Mar 2023 13:33:41 +0100, Krzysztof Kozlowski wrote:
-> gpio-keys,wakeup is a deprecated property.
+On Mon, 23 Jan 2023 16:15:18 +0100, Krzysztof Kozlowski wrote:
+> Bindings expect UART/serial node names to be "serial".
 > 
 > 
 
 Applied, thanks!
 
-[1/1] arm64: dts: mba6ulx: correct GPIO keys wakeup
-      https://git.kernel.org/krzk/linux-dt/c/7c4f1f1830648bbdce02b13ff5f215c7400e7ea0
+[1/1] ARM: dts: ste: align UART node name with bindings
+      https://git.kernel.org/krzk/linux-dt/c/cc386f5c670d58fbc41dc7ee8f2281aa74b58f9e
 
 Best regards,
 -- 
