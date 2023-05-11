@@ -2,78 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 60AE16FEED4
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 11:30:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFDD36FEEF3
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 11:35:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235698AbjEKJa3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 05:30:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51510 "EHLO
+        id S237658AbjEKJf1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 05:35:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234840AbjEKJaT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 05:30:19 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4A9A76BC
-        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 02:30:17 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-96649b412easo859416566b.0
-        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 02:30:17 -0700 (PDT)
+        with ESMTP id S237721AbjEKJfK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 05:35:10 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DB938A74
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 02:34:45 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-50bc040c7b8so12692578a12.2
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 02:34:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683797416; x=1686389416;
+        d=linaro.org; s=google; t=1683797684; x=1686389684;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=L1D3DyfgLO2qgpd2r/Ml+/RxBZh1GZB83GE0hqLy2tQ=;
-        b=wlBZemLmgEoqTudarPWQuZoMWjupCJqW8eoiFqUKC2Gp4Kisx9Ypm/BWCaXiB425sb
-         wL6FmizCb+Nd7fbe9eek478fDmJcuVtPFcdEwVMYB987GJkWGbSMVj/hHS2uCkg0tQrn
-         9YI5HRkpAj6RFwa3rml75hjqocghOdYJLPCNazm5LwJ1BsFArBwhvSp6aGiJmGEtV4Om
-         9/FGW40Mp5tcufk2U4PFIwL5Z6k80pflF3Or4zvPjiTdYDkxXYLnIP5nrzM1vZxBTBrz
-         woHO0cWJ14RtUahhbItFWkPChjJIzLh8wRLBCJaaBgBWakKP63eA2STq9jEysM4/CCPr
-         NSfQ==
+        bh=ex/aKjn90EFJWYDLrPJvxbqGHEj9FjzjYBAyGP2XVQo=;
+        b=Asx/w4Edt7+dgdf5Ppv3yBqkvWO6IbtpteydOqqall+rPi2Ep/l/j3tc4P3u6731kP
+         1937bl7xi69PCz8qKjEZF8oPS00d6FF4syxY3CJjh8xt/V1ZxHooU43MTMwSKMPJSfA7
+         4NmcCNwbmLc/+QyFXXFZeuuMJkEmrvcN351F72xRJv6cW2Fa8Zf8fGQ/ekbjq616OJuO
+         QnmQrqSnpBE5kjkrlESag4ORK15TmocBh6zP05JHs/7zt9Pd1JzNLISgtlVr+fRjem3l
+         KmhozfPNr1jznI3p2Q8rxDZNbWRPZgblot04t8lBnbpRQbMLegNJQPaTyySPW+zLcW4d
+         piOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683797416; x=1686389416;
+        d=1e100.net; s=20221208; t=1683797684; x=1686389684;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=L1D3DyfgLO2qgpd2r/Ml+/RxBZh1GZB83GE0hqLy2tQ=;
-        b=ECn+X8xEZ7vjzE+F2AStLW456VOlNmMXRTVY4EHztPUWGYOYQGn7Zf99mbUL+LZXBH
-         naJTVeiaXfoOgdOIf3V3VOtgy8bUajdjVYOojQamXCqR3Fqy10gkYCW+9EhTUm0iwLQx
-         /+bcMoWSn5L7GYh5BJPRnH+SM/lgsDQndy3YtP18PlbZ7q2UyrCkcp15ZiB8wK+cu/j2
-         7GXktRPlEBSGFdYOVn8HNy4M+FAvpMirmprTgYPnR/C/NnHFTbMvpAloFITE5DlG/vhc
-         s6nXLp5ofiVu+z7auVJzox9SSXTC6lSwUuXs7CTLgYRMeJsEr5bja4/5VuC7dco5Zp8o
-         U1sA==
-X-Gm-Message-State: AC+VfDycqZbise7we1gNXt8KxaWk8iXVWNvdXiD0GyHm6AnNqSNiCu1K
-        GHybRo9/NwKjlvpfDu08DjaQkw==
-X-Google-Smtp-Source: ACHHUZ6MCQhIY5WN8mggDOv6ysIWk93HQOiNqbiulZXCxvlq8N7YKfSeITx+13ES2XfyWpsighV8CQ==
-X-Received: by 2002:a17:907:72d6:b0:94e:43ce:95f6 with SMTP id du22-20020a17090772d600b0094e43ce95f6mr20428602ejc.47.1683797416337;
-        Thu, 11 May 2023 02:30:16 -0700 (PDT)
+        bh=ex/aKjn90EFJWYDLrPJvxbqGHEj9FjzjYBAyGP2XVQo=;
+        b=gLe0SJ5wSAIefWw3o7sSsDXN16k+ZyM8svDjiKDDKo92kTehSUUA15DUBikrgnHSH1
+         mNZIOHD3Hunmfjo6WmzS+6ZXQK3Rzs/6BP4pU6cMeT6GmEzY4GSFJbKGnuAQMy3GZ66t
+         hvOdRru127GMiOnfqU//0Sr0JOg6ykVeMD1cZXIpF9xDhACuUnpNklZt3689R5G8ax8w
+         Jdv7SJSO9IVCvTWUSkpxLZRsZwiFJzoS1YSn43+K3D8rYzUTigQxHfNUXcK7vjaHHnhL
+         8CqPVNaenwlhP+O4QISkLeaFpkR3fdRpzxrXFgYXpgJ0/v5IiX++V1IvvmgdIyCKzEQ7
+         jy1Q==
+X-Gm-Message-State: AC+VfDySyVY0YsWwi1jH8gT8G+v6D4OfAk/xdVKnq8SHhXTOiljsTkIB
+        6mV8tU8lLADvpcQO9ql8qQeAcQ==
+X-Google-Smtp-Source: ACHHUZ4qwUJIawM1CqXQt5W8mKyqouVMxGYUzhR1RJbAvGXoVhZeB00zYWSWejWEeEdo6g2JBMNQtA==
+X-Received: by 2002:a17:907:6e9e:b0:931:ad32:79ed with SMTP id sh30-20020a1709076e9e00b00931ad3279edmr22568324ejc.12.1683797684074;
+        Thu, 11 May 2023 02:34:44 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:7e61:f14a:c3a4:809e? ([2a02:810d:15c0:828:7e61:f14a:c3a4:809e])
-        by smtp.gmail.com with ESMTPSA id kn3-20020a1709079b0300b0096a27dbb5b2sm1835416ejc.209.2023.05.11.02.30.14
+        by smtp.gmail.com with ESMTPSA id k21-20020a170906971500b00965ffb8407asm3708531ejx.87.2023.05.11.02.34.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 May 2023 02:30:15 -0700 (PDT)
-Message-ID: <528a82c2-9520-f8c5-c5cc-1084d9083670@linaro.org>
-Date:   Thu, 11 May 2023 11:30:13 +0200
+        Thu, 11 May 2023 02:34:43 -0700 (PDT)
+Message-ID: <ca8b31f5-ce4e-d7b1-d077-3684862083bf@linaro.org>
+Date:   Thu, 11 May 2023 11:34:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v5 1/2] dt-bindings: net: can: Add poll-interval for MCAN
+Subject: Re: [PATCH V2] dt-bindings: usb: dwc3: Add interrupt-names property
+ support for wakeup interrupt
 Content-Language: en-US
-To:     Judith Mendez <jm@ti.com>, linux-can@vger.kernel.org,
-        Chandrasekar Ramakrishnan <rcsekar@samsung.com>
-Cc:     Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Schuyler Patton <spatton@ti.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Oliver Hartkopp <socketcan@hartkopp.net>,
-        linux-arm-kernel@lists.infradead.org
-References: <20230510202952.27111-1-jm@ti.com>
- <20230510202952.27111-2-jm@ti.com>
+To:     Piyush Mehta <piyush.mehta@amd.com>, gregkh@linuxfoundation.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, balbi@kernel.org, michal.simek@xilinx.com
+Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, michal.simek@amd.com,
+        siva.durga.prasad.paladugu@amd.com, git@amd.com
+References: <20230511072154.2030703-1-piyush.mehta@amd.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230510202952.27111-2-jm@ti.com>
+In-Reply-To: <20230511072154.2030703-1-piyush.mehta@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,19 +78,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/05/2023 22:29, Judith Mendez wrote:
-> On AM62x SoC, MCANs on MCU domain do not have hardware interrupt
-> routed to A53 Linux, instead they will use software interrupt by
-> hrtimer.
+On 11/05/2023 09:21, Piyush Mehta wrote:
+> The hibernation feature enabled for Xilinx Versal NET SoC in DWC3 IP.
+> As the DWC3 IP supports the hibernation feature, to handle the wakeup
+> or hibernation interrupt, add host mode "wakeup" interrupt-names
+> optional property in the binding schema to capture remote-wakeup and
+> connect/ disconnect event in the hibernation state.
 > 
-> To enable timer polling method, interrupts should be
-> optional so remove interrupts property from required section and
-> add an example for MCAN node with timer polling enabled.
-> 
-> Signed-off-by: Judith Mendez <jm@ti.com>
+> Signed-off-by: Piyush Mehta <piyush.mehta@amd.com>
 > ---
+> Change in V2:
+> -  Addressed ROB review comments
+>  - Updated name of interrupt-names property with "wakeup"
+>  - Move interrupt-names property from dwc3-xilinx core to dwc3 core.
+> 
+> Link: https://lore.kernel.org/all/CAL_JsqK6_7XD7+w+EQvPPmbmSOpfo3JDb0xDN4StuHUm1kgchw@mail.gmail.com/
+> ---
+>  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> index 50edc4da780e..db512769bd80 100644
+> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> @@ -53,6 +53,8 @@ properties:
+>        - const: dwc_usb3
+>        - items:
+>            enum: [host, peripheral, otg]
+> +      - items:
+> +          enum: [dwc_usb3, otg, wakeup]
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+You didn't add only "wakeup" but also dwc_usb3 which does not look
+correct here as it is common interrupt. The change does not match commit
+msg and I don't know what you actually want to achieve.
 
 Best regards,
 Krzysztof
