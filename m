@@ -2,74 +2,257 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E49506FF67E
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 17:53:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDE606FF6B8
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 18:03:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237590AbjEKPx4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 11:53:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46062 "EHLO
+        id S238320AbjEKQDZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 12:03:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237526AbjEKPxz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 11:53:55 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 726635B80;
-        Thu, 11 May 2023 08:53:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=ibAhBAmHJ6yhyzj5+F05uayDJSz9alO8DnKaHYwkNGo=; b=WJUzN6XHqB3KSjjpPPs4y1a+1f
-        +4zCufedEPT+HZ8vqclGBxP0CAyGN0H+jvhMt9a2eb9PgHF2iNQUbJQ5Lvxm/wL5x3nST4cK154m9
-        PPyDXvF3Xf9khmN1a9rd0w8/qcdQ7urQt3RfgJCyYAcUGb/TkQcvTqRr40VS1tc8Guy4=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1px8bz-00CZfM-6I; Thu, 11 May 2023 17:53:47 +0200
-Date:   Thu, 11 May 2023 17:53:47 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Daniel Golle <daniel@makrotopia.org>
-Cc:     devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        with ESMTP id S238612AbjEKQDX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 12:03:23 -0400
+Received: from smtp.dudau.co.uk (dliviu.plus.com [80.229.23.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BB7E82683;
+        Thu, 11 May 2023 09:03:20 -0700 (PDT)
+Received: from mail.dudau.co.uk (bart.dudau.co.uk [192.168.14.2])
+        by smtp.dudau.co.uk (Postfix) with SMTP id F2CB441D13BF;
+        Thu, 11 May 2023 17:03:18 +0100 (BST)
+Received: by mail.dudau.co.uk (sSMTP sendmail emulation); Thu, 11 May 2023 17:03:18 +0100
+Date:   Thu, 11 May 2023 17:03:18 +0100
+From:   Liviu Dudau <liviu@dudau.co.uk>
+To:     =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Cc:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Paul Burton <paulburton@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Qingfang Deng <dqfext@gmail.com>,
-        SkyLake Huang <SkyLake.Huang@mediatek.com>,
-        Simon Horman <simon.horman@corigine.com>
-Subject: Re: [PATCH net-next v4 1/2] dt-bindings: arm: mediatek: add
- mediatek,boottrap binding
-Message-ID: <55f8ac31-d81d-43de-8877-6a7fac2d37b4@lunn.ch>
-References: <cover.1683813687.git.daniel@makrotopia.org>
- <f2d447d8b836cf9584762465a784185e8fcf651f.1683813687.git.daniel@makrotopia.org>
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] mips: dts: ralink: Add support for TP-Link HC220 G5 v1
+ board.
+Message-ID: <ZF0RxoLRyl78s8sf@bart.dudau.co.uk>
+References: <20230509200125.309026-1-liviu@dudau.co.uk>
+ <43301707-8763-2a9f-956d-1ea0ae004a56@arinc9.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <f2d447d8b836cf9584762465a784185e8fcf651f.1683813687.git.daniel@makrotopia.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <43301707-8763-2a9f-956d-1ea0ae004a56@arinc9.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 11, 2023 at 04:10:20PM +0200, Daniel Golle wrote:
-> The boottrap is used to read implementation details from the SoC, such
-> as the polarity of LED pins. Add bindings for it as we are going to use
-> it for the LEDs connected to MediaTek built-in 1GE PHYs.
+On Thu, May 11, 2023 at 03:41:30PM +0200, Arınç ÜNAL wrote:
+> On 9.05.2023 22:01, Liviu Dudau wrote:
+> > This WiFi AP is based on a MT7621 SoC with 128MiB RAM, 128MiB NAND,
+> > a MT7603 2.4GHz WiFi and a MT7663 5GHz WiFi chips integrated on the board,
+> > connected to the main SoC over PCIe.
+> > 
+> > The GMAC1 on the SoC is connected to PHY0 on the GSW and can be used to
+> > improve routing bandwidth.
+> > 
+> > The device uses NMBM over NAND, which is not currently supported in the
+> > mainline, so NAND node is skipped in this revision.
+> > 
+> > Signed-off-by: Liviu Dudau <liviu@dudau.co.uk>
+> 
+> This is great to see. I'm going to mainline all the MT7621 devicetrees on
+> OpenWrt at some point, this is a good step for this.
 
-What exactly is it? Fuses? Is it memory mapped, or does it need a
-driver to access it? How is it shared between its different users?
+AFAIK this board is not supported by OpenWrt at all. So the flow will be
+the other way this time :)
 
-Thank
-	Andrew
+> 
+> > ---
+> >   arch/mips/boot/dts/ralink/Makefile            |   3 +-
+> >   .../dts/ralink/mt7621-tplink-hc220_g5.dts     | 126 ++++++++++++++++++
+> >   2 files changed, 128 insertions(+), 1 deletion(-)
+> >   create mode 100644 arch/mips/boot/dts/ralink/mt7621-tplink-hc220_g5.dts
+> > 
+> > diff --git a/arch/mips/boot/dts/ralink/Makefile b/arch/mips/boot/dts/ralink/Makefile
+> > index 11732b8c8163a..c57a2b40876b4 100644
+> > --- a/arch/mips/boot/dts/ralink/Makefile
+> > +++ b/arch/mips/boot/dts/ralink/Makefile
+> > @@ -8,6 +8,7 @@ dtb-$(CONFIG_DTB_VOCORE2)	+= vocore2.dtb
+> >   dtb-$(CONFIG_SOC_MT7621) += \
+> >   	mt7621-gnubee-gb-pc1.dtb \
+> > -	mt7621-gnubee-gb-pc2.dtb
+> > +	mt7621-gnubee-gb-pc2.dtb \
+> > +	mt7621-tplink-hc220_g5.dtb
+> >   obj-$(CONFIG_BUILTIN_DTB)	+= $(addsuffix .o, $(dtb-y))
+> > diff --git a/arch/mips/boot/dts/ralink/mt7621-tplink-hc220_g5.dts b/arch/mips/boot/dts/ralink/mt7621-tplink-hc220_g5.dts
+> > new file mode 100644
+> > index 0000000000000..83d15711907d0
+> > --- /dev/null
+> > +++ b/arch/mips/boot/dts/ralink/mt7621-tplink-hc220_g5.dts
+> > @@ -0,0 +1,126 @@
+> > +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +/dts-v1/;
+> > +
+> > +#include "mt7621.dtsi"
+> > +
+> > +#include <dt-bindings/gpio/gpio.h>
+> > +#include <dt-bindings/input/input.h>
+> > +#include <dt-bindings/leds/common.h>
+> > +
+> > +/ {
+> > +	compatible = "tplink,hc220-g5", "mediatek,mt7621-soc";
+> 
+> tplink,hc220-g5-v1 should fit better. Also please make another patch to add
+> the compatible string under Boards with Mediatek/Ralink MT7621 SoC on
+> Documentation/devicetree/bindings/mips/ralink.yaml.
+
+Will do another patch with the documentation update. I will also send a v2
+incorporating all your review comments, thanks for taking the time!
+
+Regarding the full name: I'm quite tempted to drop the v1(.0) entirely as I'm
+not really sure that TP-Link will release another board. Doing a search now
+I fail to find on any TP-Link results the mention of the version.
+
+> 
+> > +	model = "TP-Link HC220 G5 v1.0";
+> 
+> "TP-Link HC220 G5 v1" should be enough.
+> 
+> > +
+> > +	memory@0 {
+> > +		device_type = "memory";
+> > +		reg = <0x0 0x0 0x0 0x8000000>;
+> > +	};
+> > +
+> > +	chosen {
+> > +		/* bootargs = "earlycon=uart8260,mmio32,0x1e000c00 root=/dev/ram0 kgdboc=ttyS0,115200 ip=192.168.88.1:192.168.88.2:::hc220:eth1:none kgdbcon console=ttyS0,115200"; */
+> > +		/* bootargs = "console=ttyS0,115200 earlycon=uart8260,mmio32,0x1e000c00 root=/dev/ram0"; */
+> > +		bootargs = "console=ttyS0,115200 root=/dev/nfs ip=192.168.88.2:192.168.88.5::255.255.255.0:hc220_g5:eth1:none nfsroot=192.168.88.5:/mips,vers=4,sec=sys ro rootwait";
+> > +	};
+> > +
+> > +	gpio-keys {
+> > +		compatible = "gpio-keys";
+> > +
+> > +		key-reset {
+> > +			label = "reset";
+> > +			gpios = <&gpio 8 GPIO_ACTIVE_LOW>;
+> > +			linux,code = <KEY_RESTART>;
+> > +		};
+> > +
+> > +		key-wps {
+> > +			label = "wps";
+> > +			gpios = <&gpio 16 GPIO_ACTIVE_LOW>;
+> > +			linux,code = <KEY_WPS_BUTTON>;
+> > +		};
+> > +	};
+> > +
+> > +	leds {
+> > +		compatible = "gpio-leds";
+> > +
+> > +		red {
+> > +			color = <LED_COLOR_ID_RED>;
+> > +			function = LED_FUNCTION_FAULT;
+> > +			gpios = <&gpio 13 GPIO_ACTIVE_HIGH>;
+> > +		};
+> > +
+> > +		green {
+> > +			color = <LED_COLOR_ID_GREEN>;
+> > +			function = LED_FUNCTION_POWER;
+> > +			gpios = <&gpio 14 GPIO_ACTIVE_HIGH>;
+> > +			linux,default-trigger = "default-on";
+> > +		};
+> > +
+> > +		blue {
+> > +			color = <LED_COLOR_ID_BLUE>;
+> > +			function = LED_FUNCTION_WPS;
+> > +			gpios = <&gpio 15 GPIO_ACTIVE_HIGH>;
+> > +		};
+> > +	};
+> > +
+> > +	resetc: reset-controller {
+> > +		compatible = "ralink,rt2880-reset";
+> > +		#reset-cells = <1>;
+> > +	};
+> > +
+> > +	mtd {
+> > +		compatible = "mediatek,mt7622-nfc";
+> > +	};
+> > +};
+> > +
+> > +&i2c {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&pcie {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&spi0 {
+> > +	status = "okay";
+> > +
+> > +	flash@0 {
+> > +		#address-cells = <1>;
+> > +		#size-cells = <1>;
+> > +		compatible = "jedec,spi-nor";
+> > +		reg = <0>;
+> > +		spi-max-frequency = <50000000>;
+> > +	};
+> > +};
+> > +
+> > +/* gmac1 connected to MT7530's phy0 */
+> > +&gmac1 {
+> > +	status = "okay";
+> > +	phy-handle = <&ethphy0>;
+> > +};
+> > +
+> > +&mdio {
+> > +	/* MT7530's phy0 */
+> > +	ethphy0: ethernet-phy@0 {
+> > +		reg = <0>;
+> > +		phy-mode = "rgmii";
+> > +	};
+> > +};
+> 
+> These are partially wrong, check the mt7621.dtsi on mainline. Or better,
+> don't do it. I'm very close to adding support for changing the DSA conduit
+> for user ports. I suggest you just add port@0 to the DSA switch node below.
+>
+
+I don't claim to be an expert on DSA or how MT7530 connects to MT7621, however
+I do remember trying various combinations and failing to make all the ports
+work. I blame TP-Link on having a weird setup, but to be sure I will try your
+suggestion if I manage to understand exactly where I'm "partially wrong" :)
+
+I will also try to remove the node to see what I get and report back here.
+
+Best regards,
+Liviu
+
+
+> > +
+> > +&switch0 {
+> > +	/* #gpio-cells = <2>;
+> > +	gpio-controller; */
+> > +
+> > +	ports {
+> > +		/* phy0 is muxed to gmac1 */
+> > +		/delete-node/ port@0;
+> > +
+> > +		port@1 {
+> > +			status = "okay";
+> > +			label = "lan1";
+> > +		};
+> > +
+> > +		port@2 {
+> > +			status = "okay";
+> > +			label = "wan";
+> > +		};
+> > +	};
+> > +};
+> 
+> Arınç
+
+-- 
+Everyone who uses computers frequently has had, from time to time,
+a mad desire to attack the precocious abacus with an axe.
+       	   	      	     	  -- John D. Clark, Ignition!
