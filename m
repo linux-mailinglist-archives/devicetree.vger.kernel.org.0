@@ -2,87 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A5C546FEB04
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 07:03:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7351C6FEB09
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 07:10:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236955AbjEKFDk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 01:03:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36994 "EHLO
+        id S236953AbjEKFKu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 01:10:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231797AbjEKFDj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 01:03:39 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 064E4358A
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 22:03:38 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-965e93f915aso1331643766b.2
-        for <devicetree@vger.kernel.org>; Wed, 10 May 2023 22:03:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683781416; x=1686373416;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4sEbxgolIUmjMoQJHrzBiAW9JiPuzPau1FkgVjAr2Lk=;
-        b=JHUlyNtBDmJi7ZyhaZ+2XmG6NGuCZprqL5U1uevdReL5xyrr6B2xPEfWkkm0enqWj6
-         aah0WBF6NxthDPziJHudJfQbdx1qq6KYmOQT3fWX3dHgW8FjP9AppC0CvV6SpY586ne5
-         jr6ba2ncS283K9ja6T9KprKC5uaDfGYwAbRYtjz4GIzJgSXwCQVSx6gKfY9Y9C2hoqDd
-         KvYFL3hbq1V0nQ6PbjoeZrpCDqH3r5B1YQ09/tB0wrjg3Tz9iP2SvjON7nTVzmCeTKm8
-         KmsxIi9K6vivhMHO7hAb8S2fEwLkJj5vi83anB3n28ov1HZBdQDJt1XepOZq9wL/3zsB
-         KCVA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683781416; x=1686373416;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4sEbxgolIUmjMoQJHrzBiAW9JiPuzPau1FkgVjAr2Lk=;
-        b=XVO6khTzdY8dR2bZbSFZBFSm294bKTNjjHogUrtNnGpJIvFlk9FLZz85skfo2sCmqI
-         KNwmLqBBjQ+opYfnHt2ijvDZB0x+KYAdgnxaDbqO2gyD+T6NflVZ34PyBa148pLkrOq1
-         +hge0QflODGyNnJc9VTegMilUQm9yE24s1+I8rcdLNP23Fkeam8B1Mzt0NEJwlLBYI7V
-         t2jOSxN7nGqPycvmps4a11A7SPN83VUZtL5XviFJre7PJ7OIS56tFOcw2va6DFE20OWo
-         0Uw89K13ct3d64MgJwttDOih4y63kdkU6YuC5hs/A/tV7J1lMsZ+Sr+dqBh42xdTVyY3
-         IH/g==
-X-Gm-Message-State: AC+VfDzdiFj1c1WLNXd1DtVgyCJwZa9/mtY53vnMDaePrM1KNxEbRwgv
-        wwKiMrbntDiVHqeguJmFRGS/5w==
-X-Google-Smtp-Source: ACHHUZ6hUvyAqt6ZB1PqKCv8CJoeSHW7WOek/O5ToLGtQQz1dGpJoODgI5zUJ2Sgkiv+nLrL0GwcZA==
-X-Received: by 2002:a17:907:3f88:b0:96a:6e42:7123 with SMTP id hr8-20020a1709073f8800b0096a6e427123mr351552ejc.36.1683781416396;
-        Wed, 10 May 2023 22:03:36 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:a01e:5c6:be3:7baa? ([2a02:810d:15c0:828:a01e:5c6:be3:7baa])
-        by smtp.gmail.com with ESMTPSA id lf23-20020a170906ae5700b0094ee700d8e4sm3435867ejb.44.2023.05.10.22.03.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 May 2023 22:03:35 -0700 (PDT)
-Message-ID: <09988b0a-91cc-1253-2a5a-10922699b4d0@linaro.org>
-Date:   Thu, 11 May 2023 07:03:34 +0200
+        with ESMTP id S236438AbjEKFKt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 01:10:49 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18BFA3A86;
+        Wed, 10 May 2023 22:10:45 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 895E363A53;
+        Thu, 11 May 2023 05:10:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FA92C433D2;
+        Thu, 11 May 2023 05:10:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1683781843;
+        bh=iFUpQ4D07YSZNO0RTuCRy1luLl+VzUEaBiyc3WJiu8c=;
+        h=Date:From:To:CC:Subject:In-Reply-To:References:From;
+        b=UE1segLWGdZbdEoQ77McrCIOz+FbLlRdwBaCxQsiLp1itu+lnIlvUf5VtI77lCHJH
+         UZIG/AMgKf+Mtt7cGCwyIddO8DVWEZL6Mb6UCzo5n8QRNgpW42hKNKPmMpPMgNo09d
+         Sf8UNSMDpYocIjWpWS/nUWnqa37xWTlUKMPDqEf3eEQ/8CzS454nCsE5SVacdf5XTt
+         StKTJyYJI8Zjf/giCk01Z4zfiHAxTrpGRf2ja174uFeXSq2N7Z7r25cCKoRUFTxf/j
+         rDaAu8kquFwDB5pugszTWO5t7y9KnOxA96dK6ycKIm8yJ1Q0nWdk+WhWEx/W09ggdp
+         GmdWVFzf+fNow==
+Date:   Thu, 11 May 2023 06:10:40 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Walker Chen <walker.chen@starfivetech.com>
+CC:     Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v3 3/3] riscv: dts: starfive: add tdm node and sound card
+User-Agent: K-9 Mail for Android
+In-Reply-To: <ef13177a-2028-9fc9-628a-e3d287758207@starfivetech.com>
+References: <20230506090116.9206-1-walker.chen@starfivetech.com> <20230506090116.9206-4-walker.chen@starfivetech.com> <a0932e84-3813-bbbe-762d-948d75fbcd8a@starfivetech.com> <20230509-overheat-pliable-00d60523637e@spud> <CAJM55Z9AxMVw=ymfFBb=45nODq89O8dMebzRgo-XD0GKduDBYg@mail.gmail.com> <f27b7ee7-f23a-35a2-3b82-71f50871dfcc@starfivetech.com> <20230510-riveter-ridden-3f056251e623@spud> <ef13177a-2028-9fc9-628a-e3d287758207@starfivetech.com>
+Message-ID: <CE38599D-24DF-4FD4-8CDF-F1A70673B972@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v16 18/22] dt-bindings: PCI: renesas: Add R-Car Gen4 PCIe
- Endpoint
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
-        "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        "mani@kernel.org" <mani@kernel.org>,
-        "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
-        "kw@linux.com" <kw@linux.com>,
-        "fancer.lancer@gmail.com" <fancer.lancer@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "kishon@kernel.org" <kishon@kernel.org>
-References: <20230510062234.201499-1-yoshihiro.shimoda.uh@renesas.com>
- <20230510062234.201499-19-yoshihiro.shimoda.uh@renesas.com>
- <20230510100309.e3ggidtc35xi7jde@krzk-bin>
- <TYBPR01MB5341D96B3E3F65BD12434F09D8749@TYBPR01MB5341.jpnprd01.prod.outlook.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <TYBPR01MB5341D96B3E3F65BD12434F09D8749@TYBPR01MB5341.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -91,55 +63,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/05/2023 02:23, Yoshihiro Shimoda wrote:
-> Hi Krzysztof,
-> 
->> From: Krzysztof Kozlowski, Sent: Wednesday, May 10, 2023 7:03 PM
->>
->> On Wed, 10 May 2023 15:22:30 +0900, Yoshihiro Shimoda wrote:
->>> Document bindings for Renesas R-Car Gen4 and R-Car S4-8 (R8A779F0)
->>> PCIe endpoint module.
->>>
->>> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
->>> Reviewed-by: Rob Herring <robh@kernel.org>
->>> Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
->>> Acked-by: Manivannan Sadhasivam <mani@kernel.org>
->>> ---
->>>  .../bindings/pci/rcar-gen4-pci-ep.yaml        | 98 +++++++++++++++++++
->>>  1 file changed, 98 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.yaml
->>>
->>
->> BTW, you keep not-ccing me. Since long time. I don't understand why. I
->> don't have the emails in inbox, so I won't be responding to your
->> patchset.
-> 
-> I'm sorry. This is my bad. My using script for sending PCI patches didn't describe
-> your email address and I didn't realize that until now. Today I added your email
-> address and Conor's email address into my script.
-> 
->>
->> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
->> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->>
->> yamllint warnings/errors:
->>
->> dtschema/dtc warnings/errors:
->> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.example.dtb:
->> pcie-ep@e65d0000: reg: [[0, 3864854528, 0, 8192], [0, 3864864768, 0, 2048], [0, 3864866816, 0, 8192], [0, 3864875008,
->> 0, 4608], [0, 3864879616, 0, 3584], [0, 4261412864, 0, 4194304]] is too long
->>       From schema:
->> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.yaml
->> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.example.dtb:
->> pcie-ep@e65d0000: reg-names: ['dbi', 'dbi2', 'atu', 'dma', 'app', 'addr_space'] is too long
->>       From schema:
->> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.yaml
-> 
-> I believe these errors disappear if we apply the patch [16/22] of this patch series.
-> So, we can ignore these errors.
 
-Yes, seems so.
 
-Best regards,
-Krzysztof
 
+>I'm trying to understand what you mean=2E so the conclusion is that I nee=
+d to drop the file
+> 'jh7110-starfive-visionfive-2-wm8960=2Edtso' from this patch=2E
+>When I submit the next version, just keep the TDM node and the pins confi=
+guration for TDM in patch [3/3],
+>need to drop the wm8960 stuff=2E
+>Right ?
+
+Yes=2E
+
+>
+>Best regards,
+>Walker
