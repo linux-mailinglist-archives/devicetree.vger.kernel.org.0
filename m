@@ -2,108 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3B6A6FFD0B
-	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 01:14:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33C976FFD81
+	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 01:57:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239508AbjEKXOb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 19:14:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59314 "EHLO
+        id S238875AbjEKX5z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 19:57:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239506AbjEKXOa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 19:14:30 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 458285B8B;
-        Thu, 11 May 2023 16:14:23 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-969f90d71d4so643798266b.3;
-        Thu, 11 May 2023 16:14:23 -0700 (PDT)
+        with ESMTP id S239160AbjEKX5z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 19:57:55 -0400
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55AF149E8;
+        Thu, 11 May 2023 16:57:54 -0700 (PDT)
+Received: by mail-pf1-x430.google.com with SMTP id d2e1a72fcca58-6436dfa15b3so6239540b3a.1;
+        Thu, 11 May 2023 16:57:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683846861; x=1686438861;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yVrYFiNzfnwEDWJqbz4i6UUhL6F/Njhh8b514wrHy84=;
-        b=bPFE9oQ/v0Bi8HM083WisiVBY7+f0/sS0Zk/5LDwGQhWm99N/KSo36J6pQk4I3pWfZ
-         C7UXARg6DwSbNVlEYfz183Xv9EyR2OHGQCkFLVkq3xuTEdmAKakB7BT+x8JwtiPDLoGG
-         TBPk9msq2VwvsqhIitvVy8F7LXO54gWHwZsTECWiWDq88Cf028vseSVN839GbRxlUcJX
-         SszHwJefkuACQxXotuP1gAl07KPyyXfOqjtbxLirP+95UYpsMAi/0ZWYREWhUJMDpyuY
-         5eLNRzI2cKcEjtFZFqhu545t9u/DwxawjCzagxBCCs1Zv9FCnE+8qTK48t1MfObGPCbP
-         PkSw==
+        d=gmail.com; s=20221208; t=1683849474; x=1686441474;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=L2h69nhToDVZbyjQX2oWwiTb7dkD95akNUfm0wOkfgQ=;
+        b=Um17SmwS45I4PBkU+IOxjjdL8kv/2+KBklavxxKDfc3n5mXlcmws8jlG41ySudtGrG
+         d7R6+3zN4XDOGKNPQlj1jybAwibHwscWHvNdSQITKnmZOuMkSH9LU8A68NcvaD+UFKgd
+         rgB07JW8TNyMaUqGdThxHJaQ6G6B1HKuc7HxcJ4zhezUa+b6rIAZ/fBdPnH90eAMuqOt
+         F9qFyZla+0w18ql4qOrRMEhKNCDyP8xUR4WUL2Tysil8W4/TsZD5GrjaeaKq3C9Rg54c
+         fyOYvfFWs84EqjnLIsWlt7Al+LlGox9F1ijyuEsDtNy8VE052DALCkDxBe6uAFwbgegr
+         74QQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683846861; x=1686438861;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yVrYFiNzfnwEDWJqbz4i6UUhL6F/Njhh8b514wrHy84=;
-        b=S2RCa+1srdZR8EXVr0rjJqWQSQoMmxzll3IHJm7b4vFe1pZF2b3lzW2V3OpG2vrEH8
-         eOuMcXrvgdbgKS5rdcCKuSoa1E4RFFpUzWGJISsRr6+W6tYu7XwyozvGqsX26WnwXH5u
-         p3VwtWk7zzt4Nw80bFW7goBwh+8U+gbMTNNvSlgseybV/bemN2spemaH3D7FGtTXIdd+
-         R08tPtJv0z4a6I4M0M5Lbg+Oeezo42FV5aSAE5roj4u17azzInohpKHHkNIe8ZA4q5HB
-         kVnZ/1foud8RhJbkR3+IaAY0JEnskL8c8HVGg5X9IpVvcUzcSslmURKfDO9YrzRN+Bve
-         8obw==
-X-Gm-Message-State: AC+VfDxvC60KgKyicvyyp9lpgKcMWeuW33p0uzdvvt5kQsih1SCUFdKg
-        hdePqIoUaReTfhtgp0Ifqfs=
-X-Google-Smtp-Source: ACHHUZ7Xiv4uI35j1SY9WriiO/V2ApkipDWS3Xqc4RSksozkyAf90JPpXCmfsp01aS4F1JO3r9CObA==
-X-Received: by 2002:a17:907:2d1f:b0:968:db2f:383 with SMTP id gs31-20020a1709072d1f00b00968db2f0383mr14109865ejc.53.1683846861470;
-        Thu, 11 May 2023 16:14:21 -0700 (PDT)
-Received: from wslxew193.fritz.box (p200300c7874f2f0049cdad3080524d03.dip0.t-ipconnect.de. [2003:c7:874f:2f00:49cd:ad30:8052:4d03])
-        by smtp.gmail.com with ESMTPSA id hx8-20020a170906846800b00965e839f56bsm4543023ejc.182.2023.05.11.16.14.20
+        d=1e100.net; s=20221208; t=1683849474; x=1686441474;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=L2h69nhToDVZbyjQX2oWwiTb7dkD95akNUfm0wOkfgQ=;
+        b=f4Go2+NWimgkkUyP8nF6iQAE5spmcw2RtwgbFqsl1yLw8AddFd5b8ZGgiHCL5UPa4q
+         rJzKeaxXl2d1lIXnBa5JmbzOLngNIKdL7KbvdcqGsMROL23JH8HJDiWinIvUB65x/19J
+         DlF3wbEC7Kzh8VPsjaUpF1f8xYpzwDS6JlYss8wF+C7fTVhIim+vgVl4lF6twugJ025E
+         /n1Iq3PQmtuX/cGKVFG5gfP0fZNa+FTSq9WDKdIIioi8PWBHpkTGYhAEzHWDjd+OgdsE
+         NB1MQG+Qvz8xyaXZGuB/Pa2TeESDQfK/rsmoY+VPIJxxInGfc6nx8VLYKi+XRWLsPRfU
+         kyeg==
+X-Gm-Message-State: AC+VfDxGTbqh0aKJa6nA3CIieUl/sBQoWC/gE8qM3edNZiyZ8LY8iufL
+        QvkDchMazTavv7gzFL61TdI=
+X-Google-Smtp-Source: ACHHUZ44R0EzFOe886ZeR21MsoCAgOCi/FQW/tCP0gvqq46gqRpM2r6NTzviqH023KF6u0AU+lobCw==
+X-Received: by 2002:a05:6a00:22d2:b0:647:e45f:1a4c with SMTP id f18-20020a056a0022d200b00647e45f1a4cmr10749967pfj.11.1683849473542;
+        Thu, 11 May 2023 16:57:53 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:53f7:c9da:338e:6206])
+        by smtp.gmail.com with ESMTPSA id d9-20020aa78149000000b00639eae8816asm5822788pfn.130.2023.05.11.16.57.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 May 2023 16:14:21 -0700 (PDT)
-From:   Boerge Struempfel <boerge.struempfel@gmail.com>
-X-Google-Original-From: Boerge Struempfel <bstruempfel@ultratronik.de>
-Cc:     boerge.struempfel@gmail.com, bstruempfel@ultratronik.de,
-        andy.shevchenko@gmail.com, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 4/4] spi: spidev: add SPI_MOSI_IDLE_LOW mode bit
-Date:   Fri, 12 May 2023 01:13:17 +0200
-Message-Id: <20230511231317.158214-5-bstruempfel@ultratronik.de>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230511231317.158214-1-bstruempfel@ultratronik.de>
-References: <20230511135632.78344-1-bstruempfel@ultratronik.de>
- <20230511231317.158214-1-bstruempfel@ultratronik.de>
+        Thu, 11 May 2023 16:57:52 -0700 (PDT)
+Date:   Thu, 11 May 2023 16:57:49 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Jiri Valek - 2N <jiriv@axis.com>
+Cc:     krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, u.kleine-koenig@pengutronix.de
+Subject: Re: [PATCH 2/2] Input: cap11xx - add advanced sensitivity settings
+Message-ID: <ZF2A/STY66sqoOLX@google.com>
+References: <20230414233815.4004526-1-jiriv@axis.com>
+ <20230414233815.4004526-3-jiriv@axis.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230414233815.4004526-3-jiriv@axis.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allow userspace to set SPI_MOSI_IDLE_LOW mode bit using the
-SPI_IOC_WR_MODE32 ioctl.
+Hi Jiri,
 
-Signed-off-by: Boerge Struempfel <bstruempfel@ultratronik.de>
----
- drivers/spi/spidev.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Sat, Apr 15, 2023 at 01:38:15AM +0200, Jiri Valek - 2N wrote:
+> @@ -474,7 +645,7 @@ static int cap11xx_i2c_probe(struct i2c_client *i2c_client)
+>  	if (error)
+>  		return error;
+>  
+> -	irq = irq_of_parse_and_map(node, 0);
+> +	irq = irq_of_parse_and_map(dev->of_node, 0);
 
-diff --git a/drivers/spi/spidev.c b/drivers/spi/spidev.c
-index 39d94c8508390..e50da54468ec6 100644
---- a/drivers/spi/spidev.c
-+++ b/drivers/spi/spidev.c
-@@ -64,7 +64,7 @@ static_assert(N_SPI_MINORS > 0 && N_SPI_MINORS <= 256);
- 				| SPI_NO_CS | SPI_READY | SPI_TX_DUAL \
- 				| SPI_TX_QUAD | SPI_TX_OCTAL | SPI_RX_DUAL \
- 				| SPI_RX_QUAD | SPI_RX_OCTAL \
--				| SPI_RX_CPHA_FLIP)
-+				| SPI_RX_CPHA_FLIP | SPI_MOSI_IDLE_LOW)
- 
- struct spidev_data {
- 	dev_t			devt;
+Do you know if this is actually needed or we can rely on I2C core to
+figure out the interrupt for us?
+
+Also, could I ask you to move the driver from of_property_*() to
+device_property_*() API?
+
+Thanks.
+
 -- 
-2.25.1
-
+Dmitry
