@@ -2,115 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70C6B6FF4E1
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 16:44:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC0216FF3D3
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 16:16:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238544AbjEKOoc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 10:44:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35918 "EHLO
+        id S238258AbjEKOP6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 10:15:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238268AbjEKOoD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 10:44:03 -0400
-X-Greylist: delayed 1641 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 11 May 2023 07:39:49 PDT
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEDD91156A;
-        Thu, 11 May 2023 07:39:49 -0700 (PDT)
-Received: from local
-        by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-         (Exim 4.96)
-        (envelope-from <daniel@makrotopia.org>)
-        id 1px71g-0000mM-2M;
-        Thu, 11 May 2023 14:12:12 +0000
-Date:   Thu, 11 May 2023 16:10:20 +0200
-From:   Daniel Golle <daniel@makrotopia.org>
-To:     devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S238471AbjEKOPz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 10:15:55 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 734542D46;
+        Thu, 11 May 2023 07:15:28 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 45C7264E17;
+        Thu, 11 May 2023 14:14:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id ACF39C4339E;
+        Thu, 11 May 2023 14:14:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1683814440;
+        bh=bYyc3JPBiuHWS2S6nruVuuoElQU0GWCkiV5Nt0LfaIs=;
+        h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
+        b=k/WodU5XiVdEgCxxECxk+U87jkyGW7ltKiUgYwEOsySjP6DZayrSN4MiyF36hbD6Y
+         yUgBHOP4GCp2nybLq7Ml3vGHeaTKQwl0WJGXdwqnirYSsnNl1Rxe7S5q8o4DYGajpW
+         kx96qa/qkcFHCOBDJVdJctKAPz65c8qwB5aAWWr703mFdTBtGBOzT56FaXlfCGWV8X
+         N+gIN0Kpzfw5ZNANLNB5VXRI2DlFaAukDUAciT+Kkm1ERtNYleAyUsYbp5NgzxXumV
+         mW8NVTWcjWJ5WUAw/ef7KDlLhOPAU5ENKfC0hxpZeFfDq14eNJR6exs4vJ35o0Bjqv
+         Vq9kP9hZxefzQ==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 922A4E26D4C;
+        Thu, 11 May 2023 14:14:00 +0000 (UTC)
+Subject: Re: [GIT PULL] Devicetree fixes for v6.4, part 2
+From:   pr-tracker-bot@kernel.org
+In-Reply-To: <20230511105006.176979-1-krzysztof.kozlowski@linaro.org>
+References: <20230511105006.176979-1-krzysztof.kozlowski@linaro.org>
+X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
+X-PR-Tracked-Message-Id: <20230511105006.176979-1-krzysztof.kozlowski@linaro.org>
+X-PR-Tracked-Remote: https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux-dt.git tags/dt-fixes-6.4
+X-PR-Tracked-Commit-Id: 8bbec86ce6d66fb33530c679f7bb3a123fc9e7da
+X-PR-Merge-Tree: torvalds/linux.git
+X-PR-Merge-Refname: refs/heads/master
+X-PR-Merge-Commit-Id: 105131df9c3b27673392a6b7ff356360188dc869
+Message-Id: <168381444059.1327.12521589062049370697.pr-tracker-bot@kernel.org>
+Date:   Thu, 11 May 2023 14:14:00 +0000
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Qingfang Deng <dqfext@gmail.com>,
-        SkyLake Huang <SkyLake.Huang@mediatek.com>,
-        Simon Horman <simon.horman@corigine.com>
-Subject: [PATCH net-next v4 1/2] dt-bindings: arm: mediatek: add
- mediatek,boottrap binding
-Message-ID: <f2d447d8b836cf9584762465a784185e8fcf651f.1683813687.git.daniel@makrotopia.org>
-References: <cover.1683813687.git.daniel@makrotopia.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1683813687.git.daniel@makrotopia.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The boottrap is used to read implementation details from the SoC, such
-as the polarity of LED pins. Add bindings for it as we are going to use
-it for the LEDs connected to MediaTek built-in 1GE PHYs.
+The pull request you sent on Thu, 11 May 2023 12:50:06 +0200:
 
-Signed-off-by: Daniel Golle <daniel@makrotopia.org>
----
- .../arm/mediatek/mediatek,boottrap.yaml       | 37 +++++++++++++++++++
- 1 file changed, 37 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,boottrap.yaml
+> https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux-dt.git tags/dt-fixes-6.4
 
-diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,boottrap.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,boottrap.yaml
-new file mode 100644
-index 000000000000..460e375320a4
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,boottrap.yaml
-@@ -0,0 +1,37 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/arm/mediatek/mediatek,boottrap.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MediaTek boottrap
-+
-+maintainers:
-+  - Daniel Golle <daniel@makrotopia.org>
-+
-+description:
-+  The boottrap found in some MediaTek SoCs is used to read SoC implementation
-+  details such as LED polarities.
-+
-+properties:
-+  $nodename:
-+    const: boottrap
-+
-+  compatible:
-+    const: mediatek,boottrap
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    boottrap: boottrap@1001f6f0 {
-+      compatible = "mediatek,boottrap";
-+      reg = <0 0x1001f6f0 0 0x20>;
-+    };
+has been merged into torvalds/linux.git:
+https://git.kernel.org/torvalds/c/105131df9c3b27673392a6b7ff356360188dc869
+
+Thank you!
+
 -- 
-2.40.0
-
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/prtracker.html
