@@ -2,57 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 06F856FEB41
-	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 07:36:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20FE86FEB52
+	for <lists+devicetree@lfdr.de>; Thu, 11 May 2023 07:43:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231621AbjEKFg2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 01:36:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50658 "EHLO
+        id S236956AbjEKFnL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 01:43:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230205AbjEKFg1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 01:36:27 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D189A19D;
-        Wed, 10 May 2023 22:36:26 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6FAB364AC0;
-        Thu, 11 May 2023 05:36:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A862FC433EF;
-        Thu, 11 May 2023 05:36:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1683783385;
-        bh=lZHIGykf0/w5SWyGFtUgZIwxhpIradYJaIud1dnBpBc=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=ozh5dAUYF1mfWYlZJO31hcG6KboNE1ojUnqgKeV9ar+mpD2P1YHv6kyN30RLDTclB
-         U8EW63E2dRkW5cmgkZmbrqfRfGm/GEIyls8w8ATk0WHWrq2C410l3GO0oIXAsKRjuu
-         PNaSvVtUHaZgbouset5V9rQtB63HMNFVOyJWUvUhjQO0qj9Tqw5uicfIzw9RHBOOI7
-         sETV0bBCb9oFd59dkKXcEedcB7U4mQV5KCrH8rmoGpi4jVIjqGt+xqK8H97smXGlHq
-         B4U3GDfrhrDROk8EH/hISp2/p1mkh47pOpZfiiof+I33t8IxdVHitWTd/Cp1hbDvNp
-         UezXXq2XEmwdQ==
-From:   Mark Brown <broonie@kernel.org>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        =?utf-8?q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>
-Cc:     Andrew Davis <afd@ti.com>, Shi Fu <shifu0704@thundersoft.com>,
-        Shenghao Ding <shenghao-ding@ti.com>, kevin-lu@ti.com,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, asahi@lists.linux.dev
-In-Reply-To: <20230509153412.62847-1-povik+lin@cutebit.org>
-References: <20230509153412.62847-1-povik+lin@cutebit.org>
-Subject: Re: [PATCH] ASoC: dt-bindings: Adjust #sound-dai-cells on TI's
- single-DAI codecs
-Message-Id: <168378338222.323079.1310653155844733439.b4-ty@kernel.org>
-Date:   Thu, 11 May 2023 14:36:22 +0900
+        with ESMTP id S236848AbjEKFnB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 01:43:01 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72CC32724;
+        Wed, 10 May 2023 22:42:56 -0700 (PDT)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34B4xNR2003776;
+        Thu, 11 May 2023 05:42:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=tqrcFW/Kr4McDM/n3ZZ8jLRl71o2WgEyYzDiI+ikE30=;
+ b=FUd0wl+jaMx23QQDD3GgJKgUzRggjSLc7uaLmtnZN67EX2SiFfkdhuiH1vXlCTqqKRMs
+ m7FhZov4+925S1s8Th0cWMAQ5G3RTlg73pJJ6yT4rp6MYx1ZmFp7uiNH8UO+BINHThAW
+ DFDWjKp33BV62QfBG4HzcS97OKShCGqsQw0sqDBPsj1nfNGNyYDAmyeI2G1YiwRzvilA
+ pdZXzVfYY2JVpnE8XjE13QJo6bL/x61GtKc6kAOokMz/sm9lbZwUdEjIMxT8pEwxkRnj
+ cqiIwAWreilAN3/+myn6Dt0m9ldpHQ3ZUYVfZCNE78peDA/Pyq5/Rbd9DdOA54CLRpEt sA== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qgj140thy-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 11 May 2023 05:42:45 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34B5gioq023481
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 11 May 2023 05:42:44 GMT
+Received: from [10.79.141.17] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Wed, 10 May
+ 2023 22:42:40 -0700
+Message-ID: <d5341357-e0f4-afb1-20db-7c2d926662fe@quicinc.com>
+Date:   Thu, 11 May 2023 11:12:37 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.13-dev-bfdf5
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH V6 2/3] soc: qcom: boot_stat: Add Driver Support for Boot
+ Stats
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>,
+        "Rajendra Nayak" <quic_rjendra@quicinc.com>
+References: <cover.1683628357.git.quic_schowdhu@quicinc.com>
+ <35863b47c04c2edd7ae49c57d23682aba6111d4f.1683628357.git.quic_schowdhu@quicinc.com>
+ <CAA8EJppkqN6cuYUCC-THb8wb=deRv-01pbS0JgSGf-VXnm8qEg@mail.gmail.com>
+ <82fcfc55-2879-2af0-5a91-4e9481d41976@quicinc.com>
+ <CAA8EJprKumrq=Zy0gBqSZ9Dga5mZuauCC4U0GpTs0T4YADrSoA@mail.gmail.com>
+Content-Language: en-US
+From:   Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+In-Reply-To: <CAA8EJprKumrq=Zy0gBqSZ9Dga5mZuauCC4U0GpTs0T4YADrSoA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: RtzTWPkLBjdWOjvtQZgRmx6OQArL97WO
+X-Proofpoint-ORIG-GUID: RtzTWPkLBjdWOjvtQZgRmx6OQArL97WO
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-10_04,2023-05-05_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 adultscore=0
+ suspectscore=0 mlxscore=0 lowpriorityscore=0 phishscore=0 mlxlogscore=999
+ clxscore=1015 impostorscore=0 priorityscore=1501 spamscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2305110047
+X-Spam-Status: No, score=-6.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -61,38 +90,163 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 09 May 2023 17:34:12 +0200, Martin Povišer wrote:
-> A bunch of TI's codecs have binding schemas which force #sound-dai-cells
-> to one despite those codecs only having a single DAI. Allow for bindings
-> with zero DAI cells and deprecate the former non-zero value.
+
+
+On 5/9/2023 6:31 PM, Dmitry Baryshkov wrote:
+> On Tue, 9 May 2023 at 15:27, Souradeep Chowdhury
+> <quic_schowdhu@quicinc.com> wrote:
+>>
+>>
+>>
+>> On 5/9/2023 5:09 PM, Dmitry Baryshkov wrote:
+>>> On Tue, 9 May 2023 at 13:53, Souradeep Chowdhury
+>>> <quic_schowdhu@quicinc.com> wrote:
 > 
 > 
+>>>> diff --git a/drivers/soc/qcom/boot_stats.c b/drivers/soc/qcom/boot_stats.c
+>>>> new file mode 100644
+>>>> index 000000000000..ca67b6b5d8eb
+>>>> --- /dev/null
+>>>> +++ b/drivers/soc/qcom/boot_stats.c
+>>>> @@ -0,0 +1,100 @@
+>>>> +// SPDX-License-Identifier: GPL-2.0-only
+>>>> +/*
+>>>> + * Copyright (c) 2013-2019, 2021 The Linux Foundation. All rights reserved.
+>>>> + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+>>>> + */
+>>>> +
+>>>> +#include <linux/debugfs.h>
+>>>> +#include <linux/err.h>
+>>>> +#include <linux/io.h>
+>>>> +#include <linux/init.h>
+>>>> +#include <linux/kernel.h>
+>>>> +#include <linux/module.h>
+>>>> +#include <linux/of.h>
+>>>> +#include <linux/of_address.h>
+>>>> +#include <linux/platform_device.h>
+>>>> +
+>>>> +#define TO_MS(timestamp) ((timestamp * 1000) / 32768)
+>>>
+>>> Quoting v4 question, which got no answer:
+>>>
+>>> Some of the platforms DTs define 32KHz clock instead of 32.768 KHz
+>>> What should be the divisor in this case?
+>>
+>> This is the standard divisor used to calculate the pre_abl and abl times
+>> across most QCOM SoCs. Can you give an example where the sleep_stat
+>> counter has a different frequency?
+> 
+> Following SoCs declare 37000 as sleep_clk frequency:
+> ipq6018, qdu1000, qru1000, sc7280, sm6125, sm6375, sm8350, sm8450, sm8550.
+> 
+> This might be an error in the dtsi, or might be not.
 
-Applied to
+This sleep_clk is different from the sleep_stats counter of the module 
+power manager(MPM) which is used to log the timestamps. This driver is 
+tested and verified with sm8450(waipio) which uses the same
+frequency(32768).
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-Thanks!
-
-[1/1] ASoC: dt-bindings: Adjust #sound-dai-cells on TI's single-DAI codecs
-      commit: efb2bfd7b3d210c479b9361c176d7426e5eb8663
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+> 
+>>
+>>>
+>>>> +
+>>>> +/**
+>>>> + *  struct boot_stats - timestamp information related to boot stats
+>>>> + *  @abl_start: Time for the starting point of the abl
+>>>> + *  @abl_end: Time when the kernel starts loading from abl
+>>>> + */
+>>>> +struct boot_stats {
+>>>> +       u32 abl_start;
+>>>> +       u32 abl_end;
+>>>> +} __packed;
+>>>> +
+>>>> +struct bs_data {
+>>>> +       struct boot_stats __iomem *b_stats;
+>>>> +       struct dentry *dbg_dir;
+>>>> +};
+>>>> +
+>>>> +static void populate_boot_stats(char *abl_str, char *pre_abl_str, struct bs_data *drvdata)
+>>>> +{
+>>>> +        u32 abl_time, pre_abl_time;
+>>>> +
+>>>> +        abl_time = TO_MS(drvdata->b_stats->abl_end) - TO_MS(drvdata->b_stats->abl_start);
+>>>> +        sprintf(abl_str, "%u ms", abl_time);
+>>>> +
+>>>> +        pre_abl_time =  TO_MS(drvdata->b_stats->abl_start);
+>>>> +        sprintf(pre_abl_str, "%u ms", pre_abl_time);
+>>>
+>>> Another point from v4:
+>>>
+>>> It would be better to move the unit to the file name and include just
+>>> the number.
+>>
+>> Clarified from your first comment
+>>
+>>>
+>>>> +}
+>>>> +
+>>>> +static int boot_stats_probe(struct platform_device *pdev)
+>>>> +{
+>>>> +       char abl_str[20], pre_abl_str[20], *abl, *pre_abl;
+>>>> +       struct device *bootstat_dev = &pdev->dev;
+>>>> +       struct bs_data *drvdata;
+>>>> +
+>>>> +       drvdata = devm_kzalloc(bootstat_dev, sizeof(*drvdata), GFP_KERNEL);
+>>>> +       if (!drvdata)
+>>>> +               return dev_err_probe(bootstat_dev, -ENOMEM, "failed to allocate memory");
+>>>> +       platform_set_drvdata(pdev, drvdata);
+>>>> +
+>>>> +       drvdata->b_stats = devm_of_iomap(bootstat_dev, bootstat_dev->of_node, 0, NULL);
+>>>> +       if (IS_ERR(drvdata->b_stats))
+>>>> +               return dev_err_probe(bootstat_dev, PTR_ERR(drvdata->b_stats),
+>>>> +                                    "failed to map imem region");
+>>>> +
+>>>> +       drvdata->dbg_dir = debugfs_create_dir("qcom_boot_stats", NULL);
+>>>> +       if (IS_ERR(drvdata->dbg_dir))
+>>>> +               return dev_err_probe(bootstat_dev, PTR_ERR(drvdata->dbg_dir),
+>>>> +                                    "failed to create debugfs directory");
+>>>> +
+>>>> +       populate_boot_stats(abl_str, pre_abl_str, drvdata);
+>>>> +       abl = abl_str;
+>>>> +       pre_abl = pre_abl_str;
+>>>> +
+>>>> +       debugfs_create_str("pre_abl_time", 0400, drvdata->dbg_dir, (char **)&pre_abl);
+>>>> +       debugfs_create_str("abl_time", 0400, drvdata->dbg_dir, (char **)&abl);
+>>>> +
+>>>> +       return 0;
+>>>> +}
+>>>> +
+>>>> +void boot_stats_remove(struct platform_device *pdev)
+>>>> +{
+>>>> +       struct bs_data *drvdata = platform_get_drvdata(pdev);
+>>>> +
+>>>> +       debugfs_remove_recursive(drvdata->dbg_dir);
+>>>> +}
+>>>> +
+>>>> +static const struct of_device_id boot_stats_dt_match[] = {
+>>>> +       { .compatible = "qcom,imem-bootstats" },
+>>>> +       { }
+>>>> +};
+>>>> +MODULE_DEVICE_TABLE(of, boot_stats_dt_match);
+>>>> +
+>>>> +static struct platform_driver boot_stat_driver = {
+>>>> +       .probe  = boot_stats_probe,
+>>>> +       .remove_new = boot_stats_remove,
+>>>> +       .driver = {
+>>>> +               .name = "qcom-boot-stats",
+>>>> +               .of_match_table = boot_stats_dt_match,
+>>>> +       },
+>>>> +};
+>>>> +module_platform_driver(boot_stat_driver);
+>>>> +
+>>>> +MODULE_DESCRIPTION("Qualcomm Technologies Inc. Boot Stat driver");
+>>>> +MODULE_LICENSE("GPL");
+>>>> --
+>>>> 2.17.1
+>>>>
+>>>
+>>>
+> 
+> 
+> 
