@@ -2,129 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63592700580
-	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 12:30:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F30C77005BA
+	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 12:38:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240096AbjELKay (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 May 2023 06:30:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57288 "EHLO
+        id S240603AbjELKiG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 May 2023 06:38:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239935AbjELKax (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 06:30:53 -0400
-Received: from the.earth.li (the.earth.li [IPv6:2a00:1098:86:4d:c0ff:ee:15:900d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36899FD;
-        Fri, 12 May 2023 03:30:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=earth.li;
-        s=the; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=XO4oiI1WNZCBGXID74Maj061GJZrrhbmIDz22HJ58gU=; b=wBAyUpI+5/KekxytWPe3rJjhGr
-        GnFgPUT2WkeD4vrpjTvrRLSlb+mVCIVoqQ5/uSIKIk75LIUmbZhQDsrMh5D6yrxXDaYNG0mNd7Bsi
-        3kyhEDKXkZO6QOQKt/7rMjV9FkRm9ABhR8PQM5K+fUGSCwlW4OYxg+5juPqokJJMXz4RryO3gUnZZ
-        yd2yClocyD3omuW3VwwxhiCA+gxonVCejBEbipm8VRU8TSItJH0vCfnL6v2HFEenbtcvnqQQ/whmP
-        njSw0sBxqCiK9aMV0lH2JgLtXILMqL2t3s6kJkkDQp2htNEzaXxLK088p/3Mb7kEETiadBHSkohpD
-        DHKB7Ssw==;
-Received: from noodles by the.earth.li with local (Exim 4.94.2)
-        (envelope-from <noodles@earth.li>)
-        id 1pxQ2i-00AGrY-Rx; Fri, 12 May 2023 11:30:32 +0100
-Date:   Fri, 12 May 2023 11:30:32 +0100
-From:   Jonathan McDowell <noodles@earth.li>
-To:     Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S240319AbjELKiF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 06:38:05 -0400
+Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C62C2173F;
+        Fri, 12 May 2023 03:37:32 -0700 (PDT)
+Received: by mail-pf1-x432.google.com with SMTP id d2e1a72fcca58-64395e2a715so9825416b3a.3;
+        Fri, 12 May 2023 03:37:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1683887851; x=1686479851;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=IgQuUXmZ4WixIr+d0XxzAxPcJbzSxGbi2RXLR6xLwjE=;
+        b=LsZnkVp2z5gmBN59ZR6NmCkIlcYpFR+zYSP8VdW0xUsUued/kO7rFSV40YrS/rVOoa
+         o0cER8YR4yfJKbI3cRE5nCX8gBkMs72tcNKfgzwHO4LCiXniphKa8IqWPFQy+sbxtN/M
+         NegSZrFMIJHKY/5WCPDJLUaHpam+Ke3UQtsFskWqF+AXXqx01LWEV2bRlU9TItWG043w
+         sabR8m3ldxyJgFuyQB+uCOWzR6cxU7PmiHb4s8mjlIkdimL/0zFHlpdsZkgstC28WSel
+         awXDU7wZUkiRfT3AO9oGv8TkBBiSsXYwob3lDvzN7OR9KxCkbEAq4eWgqQBxTNtqb+fw
+         ovJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683887851; x=1686479851;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IgQuUXmZ4WixIr+d0XxzAxPcJbzSxGbi2RXLR6xLwjE=;
+        b=bGih5u31i8chjFPtjBe7o1npu/YWaFjaR9YYcg07Tc8CL9hY5by5zwZm8vSGkNrTe8
+         /GNwbTDO5kHD5QO1WQ4s5g1HTQ5+vTWvCwWNnTesp0jqEKZ38BNhWbEe+9T0uTdlAhyU
+         Y/nf2H+GkmomK7y/umNP9GBQlJPIycTOmHcMb86o6ikNR7JbXtiQYKniQ6Rde5pypMQN
+         16/P0nKpQ5qt7R0vNVgNHIb9f2PB2ejm6cRNPnKB6yU+mpxhf1MX9e+zapKpmbMhUgl2
+         ARNTA76MicqO8cKmsbbQIh0IPM970YSI7CyNXamCGn7MckyLX9IbuCeCBQ/kTum9v8ac
+         xYHQ==
+X-Gm-Message-State: AC+VfDxK2NKrf8r7yaID9F6m/Bl864wbJ508wLRelmAiTwFZomQ0em5N
+        Fcqs4t0JE32tQm5jRD0JSFV481lu/ZBBYn/p
+X-Google-Smtp-Source: ACHHUZ7axvkFryBWCSaFpqkGoWejsIOwOUONkvM7CqGo0HKtZXYBYOzUgOQhiqiU2lcA6/lEPRLw2Q==
+X-Received: by 2002:a05:6a00:b55:b0:648:c1be:496 with SMTP id p21-20020a056a000b5500b00648c1be0496mr11634178pfo.22.1683887850992;
+        Fri, 12 May 2023 03:37:30 -0700 (PDT)
+Received: from kelvin-ThinkPad-L14-Gen-1.lan ([103.184.129.7])
+        by smtp.gmail.com with ESMTPSA id k5-20020aa792c5000000b0063b89300347sm7009485pfa.142.2023.05.12.03.37.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 May 2023 03:37:30 -0700 (PDT)
+From:   Keguang Zhang <keguang.zhang@gmail.com>
+To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v2 5/5] ARM: dts: axp209: Add iio-hwmon node for internal
- temperature
-Message-ID: <ZF4VSCxvb6ihw9JL@earth.li>
-References: <cover.1681580558.git.noodles@earth.li>
- <cover.1683719613.git.noodles@earth.li>
- <2a9bd53a65c4a154cccba622c60cbffcdceaeb95.1683719613.git.noodles@earth.li>
- <3421275.QJadu78ljV@jernej-laptop>
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Keguang Zhang <keguang.zhang@gmail.com>
+Subject: [PATCH v4 0/3] Move Loongson1 PWM timer to clocksource framework
+Date:   Fri, 12 May 2023 18:37:21 +0800
+Message-Id: <20230512103724.587760-1-keguang.zhang@gmail.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <3421275.QJadu78ljV@jernej-laptop>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 11, 2023 at 06:11:49PM +0200, Jernej Škrabec wrote:
-> Dne sreda, 10. maj 2023 ob 14:02:28 CEST je Jonathan McDowell napisal(a):
-> > This adds a DT node to hook up the internal temperature ADC to the
-> > iio-hwmon driver. The various voltage + current ADCs are consumed and
-> > exposed by their respective drivers, but this is not and is always
-> > available. Naming chosen to match the axp20x_ prefix the power sensors
-> > use.
-> 
-> Sorry for maybe obvious thing, but where are other ADC channels exposed?
+Move Loongson1 PWM timer to clocksource framework.
+Adapt the driver to clocksource framework with devicetree support.
+Update the Kconfig/Makefile options accordingly.
 
-In the associated power drivers; e.g. axp20x_ac_power, axp20x_usb_power
-+ axp20x_battery. The internal temperature is the only one that
-logically belongs to the chip as a whole rather than one of the
-subfunctions.
+Changelog
+V3 -> V4: Replaced the wildcard compatible string with specific one
+V2 -> V3: Remove the reference to regs-pwm.h
+V1 -> V2: Delete the obsolete header file regs-pwm.h
 
-root@chip:~# sensors
-axp20x_battery-isa-0000
-Adapter: ISA adapter
-in0:           0.00 V
-curr1:         0.00 A
+Keguang Zhang (3):
+  MIPS: Loongson32: Remove deprecated PWM timer clocksource
+  dt-bindings: timer: Add Loongson-1 clocksource
+  clocksource: loongson1: Move PWM timer to clocksource framework
 
-pmic_temp-isa-0000
-Adapter: ISA adapter
-temp1:        +42.5°C
+ .../timer/loongson,ls1x-pwmtimer.yaml         |  48 ++++
+ .../include/asm/mach-loongson32/loongson1.h   |   1 -
+ .../include/asm/mach-loongson32/regs-pwm.h    |  25 --
+ arch/mips/loongson32/Kconfig                  |  37 ---
+ arch/mips/loongson32/common/time.c            | 210 ----------------
+ drivers/clocksource/Kconfig                   |   9 +
+ drivers/clocksource/Makefile                  |   1 +
+ drivers/clocksource/timer-loongson1-pwm.c     | 236 ++++++++++++++++++
+ 8 files changed, 294 insertions(+), 273 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/timer/loongson,ls1x-pwmtimer.yaml
+ delete mode 100644 arch/mips/include/asm/mach-loongson32/regs-pwm.h
+ create mode 100644 drivers/clocksource/timer-loongson1-pwm.c
 
-axp20x_ac-isa-0000
-Adapter: ISA adapter
-in0:           0.00 V
-curr1:         0.00 A
 
-axp20x_usb-isa-0000
-Adapter: ISA adapter
-in0:           4.93 V  (min =  +4.00 V)
-curr1:       330.00 mA (max =  +0.00 A)
-
-> > Signed-off-by: Jonathan McDowell <noodles@earth.li>
-> > ---
-> >  arch/arm/boot/dts/axp209.dtsi | 7 +++++++
-> >  1 file changed, 7 insertions(+)
-> > 
-> > diff --git a/arch/arm/boot/dts/axp209.dtsi b/arch/arm/boot/dts/axp209.dtsi
-> > index ca240cd6f6c3..469d0f7d5185 100644
-> > --- a/arch/arm/boot/dts/axp209.dtsi
-> > +++ b/arch/arm/boot/dts/axp209.dtsi
-> > @@ -48,6 +48,13 @@
-> >   * http://dl.linux-sunxi.org/AXP/AXP209%20Datasheet%20v1.0_cn.pdf
-> >   */
-> > 
-> > +/ {
-> > +	pmic-temp {
-> > +		compatible = "iio-hwmon";
-> > +		io-channels = <&axp_adc 4>; /* Internal temperature */
-> > +	};
-> > +};
-> > +
-> >  &axp209 {
-> >  	compatible = "x-powers,axp209";
-> >  	interrupt-controller;
-
-J.
-
+base-commit: 31c6ed4e89187beef8fe2f979c8881ca94839427
 -- 
-/-\                             |  Synonym: word used when you can't
-|@/  Debian GNU/Linux Developer |       spell the one you want
-\-                              |
+2.39.2
+
