@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D3FD37000A1
-	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 08:37:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CC337000A7
+	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 08:37:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240067AbjELGg7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 May 2023 02:36:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58854 "EHLO
+        id S240111AbjELGha (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 May 2023 02:37:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240073AbjELGg6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 02:36:58 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AC2D9EEE
-        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 23:36:43 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-50bcb4a81ceso16841486a12.2
-        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 23:36:43 -0700 (PDT)
+        with ESMTP id S240104AbjELGh3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 02:37:29 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 512CFA25A
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 23:37:15 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-50bdd7b229cso17224946a12.0
+        for <devicetree@vger.kernel.org>; Thu, 11 May 2023 23:37:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683873401; x=1686465401;
+        d=linaro.org; s=google; t=1683873434; x=1686465434;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=fHMOSAlolDJzGPoektY7MZE9dXHoLFYx7cEk41VbQNo=;
-        b=Xr7f+3Oug1zfWQ0ZKMKvoULx0EYQbGRf/8rpU+HQJU7rTaam/SMRpcZkqrZY5+RVwQ
-         Av24pr7xVKoCbRxkBjRqHbJ7PG1DorYp1SIjptyMLeXLmwPDRgyGYxdohEuVMwiwbpWA
-         FBXyJNdKanHXVUrNxP1cBhE62XMQ2Vy+i98fuXZ0UQ2a+ewfqSTmzqlgOlCpKQsA/81a
-         kCDT1Vdv/mzDS0yvPzD6kVyRCHQeNqjb2jo3qD1phKN9i9L0LzUk04B5t5i0gBVglxbp
-         B6pslcmEQn1B7+tnW/QEoJoY8trkNLb6AzBagwmrpfckHvld82d2Z0eQ9J05O7PuV4Rt
-         Xr4g==
+        bh=SKQArbr+xtf09epgIWVQVcaD67YWPhsZPgDsQF54Z/Y=;
+        b=X2+gtVsUYPPuW7qdNKW5Y27uqHZ/RayroYk7RhEolPL+QdJq526rPdIj/Nn24VmYMM
+         XGr2lAtGekbx/bx2h9MDx+nn5heWlUi2F1LtoWbz6abxpfDSY0XpWTmaw/O3hUFYEvLc
+         1RSx5oYmYjazJkGlfhXGDE10S7gXfqbnDIcVmWQCJJfNLKqZO/rkZDJeksu7+B69h0rz
+         Uqq3oZOuHuUDGXkQLZSP2hnTgqXLtav2r5KFd9i5/pHM3AA8yl2OR8bSSi0eIgGb2OMl
+         pk314ZM8gMCnfor+NJGY/zmmgrVqI5kbP8/h8pGzQDHSoghB0VpB4MBMamrL3H00TZRG
+         GliQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683873401; x=1686465401;
+        d=1e100.net; s=20221208; t=1683873434; x=1686465434;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fHMOSAlolDJzGPoektY7MZE9dXHoLFYx7cEk41VbQNo=;
-        b=i3Amsx2gYHgKCACqO8tQyZGS3IM/WWeRC4n+Y6k+N6HYs1PDmCuDO2G8mqiIzoFxjY
-         fxxOYEgka6FxWtuCfv+jk9PwJAd+4LEVlh4l4ZcmvJxCT/fNmIIUnOtWPErFSz8HfLHQ
-         H+7KWgKIGI75+xT7moqFfHBTUXHw1iBRGiMixB+IAmRfcLhpSb4P8hCJ5NN0ToZ8kxiL
-         q87wsVIDpkZ+OHYlKBiiveZ2wR04UJ3h6LthOkQGMZ23UNYEv4bTMve91p2qQ8fVEnHZ
-         cFRX9xA/ZAEv0ey4zYLtoVcRJELJSPILpLHOh3o9+03sww9rbLbFsYfLcERdPHnKFhsu
-         FGWw==
-X-Gm-Message-State: AC+VfDxUxphReaPoLQYBqu8nbedcZJb3rqHeGsr9ETi3/SEdpQqoG9ta
-        8VmFFNNZL5jTgyWrD9ZJT+tUYg==
-X-Google-Smtp-Source: ACHHUZ7gC5BEhT5G+mMuFNLabNgMWzL4lmE+SVW1OOiywba73Vfx8aP3OiCsgtB5gUphas7SISEpGA==
-X-Received: by 2002:a17:906:fe0c:b0:961:78c2:1d27 with SMTP id wy12-20020a170906fe0c00b0096178c21d27mr20465597ejb.19.1683873401620;
-        Thu, 11 May 2023 23:36:41 -0700 (PDT)
+        bh=SKQArbr+xtf09epgIWVQVcaD67YWPhsZPgDsQF54Z/Y=;
+        b=dEdMonKPITKzdHr6lNUH4HxxYfT5XwP9oUomQ6m2eH0KWQ38l50/8G52fdpf+N528I
+         CvtGaI5PMAYC9sqVHB3dweP8vp6v+91Gj8dCEgCg3+PQEYzKS7kNk8u+Jl37tKkA/E0a
+         Eqh+uvaO7KREA+I9MVzspHI+NQ1LKkdm+qhmB78ckvQtJJDMZqYH6R9loI9stsn7YDHt
+         pm5iM+kjY5Wa172Ytj3F7Q9YBEsEY/h0f18ioRgnn7xzUI1TH0rXomvEe7ir+2B4txAy
+         W224VaAd85BPTiMcdDOhgcNbHIyjahBc5WOHbvYjQiBSspdchrVWPtNS2FYoDJnah2Cz
+         Ej7Q==
+X-Gm-Message-State: AC+VfDxZWqUGPxZ/vo/w16Ep0NBtnlLmWVdWKwUVgqa/Lvr2ikGmv8GY
+        24qV+LtXLlj8OaF7NMK1aiiVmw==
+X-Google-Smtp-Source: ACHHUZ6Qir9jHw9lbKC6t++22DfOfrTK74YUqakGyuC6Q1hQEyqV2RCesGT5QfSt+aq1kGIfLATB2w==
+X-Received: by 2002:a05:6402:1016:b0:50d:f9b1:6918 with SMTP id c22-20020a056402101600b0050df9b16918mr3020743edu.9.1683873433648;
+        Thu, 11 May 2023 23:37:13 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:7ede:fc7b:2328:3883? ([2a02:810d:15c0:828:7ede:fc7b:2328:3883])
-        by smtp.gmail.com with ESMTPSA id y13-20020a170906070d00b0093313f4fc3csm5038979ejb.70.2023.05.11.23.36.40
+        by smtp.gmail.com with ESMTPSA id ca16-20020aa7cd70000000b0050bc9ffed66sm3740060edb.53.2023.05.11.23.37.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 May 2023 23:36:41 -0700 (PDT)
-Message-ID: <3bb6c544-0b21-4728-683d-70db0f80394f@linaro.org>
-Date:   Fri, 12 May 2023 08:36:39 +0200
+        Thu, 11 May 2023 23:37:13 -0700 (PDT)
+Message-ID: <c432c26b-27d3-80dc-fe6b-457996234871@linaro.org>
+Date:   Fri, 12 May 2023 08:37:11 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v4 6/7] riscv: dts: starfive: jh7110: Add syscon nodes
+Subject: Re: [PATCH v4 7/7] riscv: dts: starfive: jh7110: Add PLL clock node
+ and modify syscrg node
 Content-Language: en-US
 To:     Xingyu Wu <xingyu.wu@starfivetech.com>,
         linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
@@ -72,9 +73,9 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         William Qiu <william.qiu@starfivetech.com>,
         linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
 References: <20230512022036.97987-1-xingyu.wu@starfivetech.com>
- <20230512022036.97987-7-xingyu.wu@starfivetech.com>
+ <20230512022036.97987-8-xingyu.wu@starfivetech.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230512022036.97987-7-xingyu.wu@starfivetech.com>
+In-Reply-To: <20230512022036.97987-8-xingyu.wu@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -88,45 +89,22 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 12/05/2023 04:20, Xingyu Wu wrote:
-> From: William Qiu <william.qiu@starfivetech.com>
-> 
-> Add stg_syscon/sys_syscon/aon_syscon nodes for JH7110 Soc.
-> 
-> Co-developed-by: Xingyu Wu <xingyu.wu@starfivetech.com>
-> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
-> ---
->  arch/riscv/boot/dts/starfive/jh7110.dtsi | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
-> 
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> index 4c5fdb905da8..fa27fd4169a8 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> @@ -353,6 +353,11 @@ i2c2: i2c@10050000 {
->  			status = "disabled";
->  		};
->  
-> +		stg_syscon: syscon@10240000 {
-> +			compatible = "starfive,jh7110-stg-syscon", "syscon";
-> +			reg = <0x0 0x10240000 0x0 0x1000>;
-> +		};
-> +
->  		uart3: serial@12000000 {
->  			compatible = "snps,dw-apb-uart";
->  			reg = <0x0 0x12000000 0x0 0x10000>;
-> @@ -457,6 +462,11 @@ syscrg: clock-controller@13020000 {
->  			#reset-cells = <1>;
->  		};
->  
-> +		sys_syscon: syscon@13030000 {
-> +			compatible = "starfive,jh7110-sys-syscon", "syscon", "simple-mfd";
-> +			reg = <0x0 0x13030000 0x0 0x1000>;
+> Add the PLL clock node for the Starfive JH7110 SoC and
+> modify the SYSCRG node to add PLL clocks input.
 
-No children, drop the simple-mfd. Or your binding is incorrect or your
-DTS is incomplete (you mentioned clock-controller). DTS should be complete.
+
+> @@ -465,6 +469,12 @@ syscrg: clock-controller@13020000 {
+>  		sys_syscon: syscon@13030000 {
+>  			compatible = "starfive,jh7110-sys-syscon", "syscon", "simple-mfd";
+>  			reg = <0x0 0x13030000 0x0 0x1000>;
+> +
+> +			pllclk: clock-controller {
+> +				compatible = "starfive,jh7110-pll";
+> +				clocks = <&osc>;
+> +				#clock-cells = <1>;
+
+This should be part of previous patch. You just added that node. Don't
+add half of devices but entire device.
 
 Best regards,
 Krzysztof
