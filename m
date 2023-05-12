@@ -2,55 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0454E700F61
-	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 21:40:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8082700F8E
+	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 22:13:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238542AbjELTkb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 May 2023 15:40:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49482 "EHLO
+        id S238461AbjELUNV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 May 2023 16:13:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239368AbjELTk2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 15:40:28 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 475C3DC5F
-        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 12:40:16 -0700 (PDT)
+        with ESMTP id S230148AbjELUNV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 16:13:21 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58DB62701;
+        Fri, 12 May 2023 13:13:20 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id AE58965842
-        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 19:40:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A58FCC433EF;
-        Fri, 12 May 2023 19:40:12 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E863C64BA7;
+        Fri, 12 May 2023 20:13:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04DAFC4339B;
+        Fri, 12 May 2023 20:13:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1683920415;
-        bh=aaBkrNcAI9Fks2KrLSk/4P+BUcq6lmzh4CQnyOGX0GU=;
+        s=k20201202; t=1683922399;
+        bh=I4yY6uuFUi8W1ueiAeViUE2wj55FTkfm9RZZf+6X0f0=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=WLQT/OsO9npOonIhubdvh80A8klVtrNwL/7QyHD/Iz8uREPjWWwUhB7yEm6LJOjNf
-         D683SZJQedUBF7xsXr4EmEfiV2JC0D+QjahaFj1pHEsl2xmnur6y7nWu196TbDbCWN
-         TSuPVusY7xmO0ZfPoyTF9A+jN72W21eNfUFct1cQ+xFk9+/VGZY3FaOdi/1sBALVEi
-         RHeNAW7aLrb3AWgdnUQhce6qSGZ+pTWjT53xeEiE2me403l5mxOkUclceNMUG83JG2
-         4GENn0cRgNPSyOiJr9wD3rBgj5NArIUoH6+7a6KV8SCAwdLsCT4tzEySunlBHCSEhv
-         TuQP6Jl3twH4Q==
-Date:   Fri, 12 May 2023 20:40:10 +0100
+        b=q29/ukayynPbKu/6JUt2kxopC1ZGjMTdN6TsFu3ZZOgOb+ikInZVkACxWsNO177y/
+         YqgyxfocCtZtKJmKJUIdddSTNPyo/9qCHOq3oqufjSsUI1DiawVYaPH2ZkrSJhk/Tb
+         miqg/qzkEWfqGJfLx763PqXN+UaMc+tRqtwEd6So8wJX9M3KAURKfdI6JCja3zOM6t
+         AyR0u7wLpoC2cGFp/FXsPuWsO3End1MhKjRgpvqv6dE+Aj3t0x8ExZQGc9P+Z41hJQ
+         JI4dRGp4yF+xofJgjUoOlh5cAjSw4Vasv4kYpUCBviuvrSAYx6bDw+i/NWCa/RfyD3
+         2t6X/moHBpFCA==
+Date:   Fri, 12 May 2023 21:13:13 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     Palmer Dabbelt <palmer@dabbelt.com>
-Cc:     atishp@atishpatra.org, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org, conor+dt@kernel.org, heiko@sntech.de,
-        cyy@cyyself.name, Conor Dooley <conor.dooley@microchip.com>,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        ajones@ventanamicro.com
-Subject: Re: [RFC 0/6] Deprecate riscv,isa DT property?
-Message-ID: <20230512-streak-camper-08a68afb5897@spud>
-References: <20230511-occupancy-cleat-06e532e3ea11@spud>
- <mhng-495c690b-454c-408f-a4f2-287d7ce8a9ea@palmer-ri-x1c9a>
+To:     Jack Zhu <jack.zhu@starfivetech.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Todor Tomov <todor.too@gmail.com>, bryan.odonoghue@linaro.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Eugen Hristev <eugen.hristev@collabora.com>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, changhuang.liang@starfivetech.com
+Subject: Re: [PATCH v5 1/6] media: dt-bindings: Add JH7110 Camera Subsystem
+Message-ID: <20230512-sasquatch-untracked-1587b55c2008@spud>
+References: <20230512102844.51084-1-jack.zhu@starfivetech.com>
+ <20230512102844.51084-2-jack.zhu@starfivetech.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="Hlry0DBSFS6pLHzF"
+        protocol="application/pgp-signature"; boundary="w4zIZVr31S7cT4tc"
 Content-Disposition: inline
-In-Reply-To: <mhng-495c690b-454c-408f-a4f2-287d7ce8a9ea@palmer-ri-x1c9a>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+In-Reply-To: <20230512102844.51084-2-jack.zhu@starfivetech.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -60,57 +67,29 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---Hlry0DBSFS6pLHzF
-Content-Type: text/plain; charset=utf-8
+--w4zIZVr31S7cT4tc
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Fri, May 12, 2023 at 11:01:09AM -0700, Palmer Dabbelt wrote:
-> On Thu, 11 May 2023 15:38:10 PDT (-0700), Conor Dooley wrote:
-> > On Thu, May 11, 2023 at 03:34:24PM -0700, Atish Patra wrote:
-> > > On Thu, May 11, 2023 at 2:47=E2=80=AFPM Conor Dooley <conor@kernel.or=
-g> wrote:
-> > > > On Thu, May 11, 2023 at 02:27:44PM -0700, Atish Patra wrote:
-> >=20
-> > > > That's more than last year at this point, and nothing has changed i=
-n the
-> > > > documentation! Talk's cheap, ehh?
-> > > >
-> > >=20
-> > > Yup. I will poke RVI folks to check if it still is the plan or change=
-d !!
-> >=20
-> > Sounds good, thanks!
+On Fri, May 12, 2023 at 06:28:39PM +0800, Jack Zhu wrote:
 
-There has been some movement on that front, shall see where it goes
-:upsidedown_smile:
+> +description:
+> +  The Starfive CAMSS ISP is a Camera interface for Starfive JH7110 SoC. It
+> +  consists of a VIN controller (Video In Controller, a top-level control until)
+> +  and an ISP.
 
-> > > We will likely have a vendor specific string parsing logic.
-> >=20
-> > Complicating the parsing logic is the exact sort of crap that I want
-> > to avoid.
->=20
-> Ya, I think we're reallly overcomplicating things with the ISA strings.
-> Let's just deprecate them and move to something that doesn't need all the
-> bespoke string parsing.
+Just a minor comment here, "until" is a typo, right?
+I guess it should be "unit".
 
-Versioning aside, although that removes a large part of the motivation,
-the interface becomes quite nice:
-of_property_present(node, "riscv,isa-extension-zicbom")
-
-That also gives us the ability to define what supported vendor
-extensions actually mean in a dt-binding, which to me is a big win in
-terms of the aforementioned "wild west".
-
---Hlry0DBSFS6pLHzF
+--w4zIZVr31S7cT4tc
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZF6WGgAKCRB4tDGHoIJi
-0tSDAP0Uy884EZU8ra/A9tMZDF/H8y6sKV2j3Y/tSxG8um8DlwD/Zeg0BjmIdXDU
-se8CYwnqhCmDITzPbAm4T5pb4tKnyAA=
-=07sr
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZF6d2QAKCRB4tDGHoIJi
+0oLuAP4smoXjKt3fjMTRLR2osZd+qYUbCAMl2rlKilNrGl2d0AEA5wt5gHQN0k4Q
+/c3qxN/AxtV5ZOgirozNHJoV1PmERQY=
+=mha/
 -----END PGP SIGNATURE-----
 
---Hlry0DBSFS6pLHzF--
+--w4zIZVr31S7cT4tc--
