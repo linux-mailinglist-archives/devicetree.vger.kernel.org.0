@@ -2,202 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B21470066E
-	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 13:14:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1919A7006B2
+	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 13:24:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241037AbjELLOZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 May 2023 07:14:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39754 "EHLO
+        id S240949AbjELLYi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 May 2023 07:24:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232174AbjELLOY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 07:14:24 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F31E4C1F
-        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 04:14:21 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-50bc0117683so17328643a12.1
-        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 04:14:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1683890060; x=1686482060;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ubvb9p88+qXd6VOrp401GthxX4aOEOtnz4kgi/kUzHM=;
-        b=0DxQHN51nTkhDMihJi78b3ohzJMoM2rXRuga1g6tw0P6qNiVS4sVaDavvwMIT5/iJ0
-         Gyd4AtWdLZ5WJxMYmdxWl1sgVyeT/fA1AVb4pnZesPs4GAjkzKCCdzj13wDF3ZGCLXgP
-         /cwdnqPJKz2mPmZYNAhyABgUXcoDYYThXQVYyJUox8JCl4sX4QDb29r863JZZN2x5CeK
-         RKkhhEXl7XohTbmdb9Cms9xaWPK4UYp4HK4gfhE8VTjVlxxug2tdQhjIM10LhFv5XJkL
-         XI+ANWqOR1T7qPIYvtmfC7JKuEzDCWvGXQ5LA0LBl7zQmc0N7GhgzmlhRA3//yPTDNA3
-         znnw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683890060; x=1686482060;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=ubvb9p88+qXd6VOrp401GthxX4aOEOtnz4kgi/kUzHM=;
-        b=SBgUwEQdBHJtxSo0jAlyiw9x1Z55R1Y0T30rjLBo87s/yjcX9nowuTr/DUSAeh4vEY
-         R+mHqj1vkNYt63g8yz0gis8Lxak0K1urnOkw8VPCS232Q0MsyYHMaSFLf/AV4uoiXfkm
-         IedHKouVxHysg09eqOwm3f+FNVrbbDbJpEJwDBQP/51yd9ZVKuu5nWpl7hJMFBkJQBaR
-         vKNpTyLhplLphBIJQdeIqxOAWtRiCumxuKNpFxDs7ob37MvFXHdgVHj7kRVJDt314C72
-         tWYElANo+c+r+7For8QPUSKC+fXjWz/q2q7zYFPEB4pWe21K+Qibuc2TLoyGHt5Usl7j
-         yVqw==
-X-Gm-Message-State: AC+VfDxNuB2RCOBvQu5GDKRczi56Xcwtj53WR2ISewlcRn8F+FgPK6Mr
-        +CAO6qQbY8n4Sb7rPxegRUwxTQ==
-X-Google-Smtp-Source: ACHHUZ52Czgk88thyOAzAK6r5gc3rGC6RgqVtFaULcxPliXgWW8mW3g/7ugZKJeeCj8A5U/8Lh8yPw==
-X-Received: by 2002:a17:907:a0e:b0:94e:e6b9:fef2 with SMTP id bb14-20020a1709070a0e00b0094ee6b9fef2mr20395577ejc.67.1683890060020;
-        Fri, 12 May 2023 04:14:20 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id l21-20020a1709062a9500b00969f44bbef3sm4734097eje.11.2023.05.12.04.14.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 May 2023 04:14:19 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date:   Fri, 12 May 2023 13:14:18 +0200
-Message-Id: <CSK97HK2XBSR.1Q5K7TUE55HH7@otso>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        "Eric Dumazet" <edumazet@google.com>,
-        "Jakub Kicinski" <kuba@kernel.org>,
-        "Paolo Abeni" <pabeni@redhat.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Balakrishna Godavarthi" <bgodavar@codeaurora.org>,
-        "Rocky Liao" <rjliao@codeaurora.org>,
-        "Marcel Holtmann" <marcel@holtmann.org>,
-        "Johan Hedberg" <johan.hedberg@gmail.com>,
-        "Luiz Augusto von Dentz" <luiz.dentz@gmail.com>,
-        "Andy Gross" <agross@kernel.org>,
-        "Bjorn Andersson" <andersson@kernel.org>,
-        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
-        <~postmarketos/upstreaming@lists.sr.ht>,
-        <phone-devel@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-bluetooth@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
-Subject: Re: [PATCH RFC 2/4] Bluetooth: btqca: Add WCN3988 support
-From:   "Luca Weiss" <luca.weiss@fairphone.com>
-To:     "Simon Horman" <simon.horman@corigine.com>
-X-Mailer: aerc 0.15.1
-References: <20230421-fp4-bluetooth-v1-0-0430e3a7e0a2@fairphone.com>
- <20230421-fp4-bluetooth-v1-2-0430e3a7e0a2@fairphone.com>
- <ZE+6e7ZxJ2s9DHI1@corigine.com>
-In-Reply-To: <ZE+6e7ZxJ2s9DHI1@corigine.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S240162AbjELLYh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 07:24:37 -0400
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (mail-bn1nam02on2056.outbound.protection.outlook.com [40.107.212.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0AF2BD;
+        Fri, 12 May 2023 04:24:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=aK3kiEHZEyM208l7aH79rNWcKo1TZG5S0hPri5QhJpbJO3SFPqI/gugFJDEgdd/7TF2S+pToElUOi6JafHFCzMoQxv5UNOWtNB1TCj+IR2DOPvNAQ39ZV653Yj6ZHi8S7fGjXnoPocCxEEADx1p6VxEJ2mioQwos8wprVaq74D6sAEniN6drBehPV0CRo2cY2sd8lq/PCezWKcUnZxOo8MILKVz5HNOJKJDW6j6Pvgob101SPlIAut0HitlnTTb+AJRE4rHlzve9Q75ZPnE2rIKkfyaBX6ZPZsBF5NDLQH4AelPMC/zHJQYmxXdpbV3yhNMO86FaeFTSBVKCLF/WXg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SomTogk90u0tBmuXe7zke3jCXDudDWOApikHsZi13ss=;
+ b=DXMest41SM1amWKVanyvzouPconY/HKszeUDTt8UEgDbq8OC4Vym2cfeZUf5IPyIsvWp92iJpFt37WFxeoWDi5VfkcGVSb2DTm6/TH36p+fQXKUo5KfyjBbDTs+WQSAmjU4b+nF+gJ+NoxgKG/aSeag24yYEgLIUoJnj+ruIVxhmeQ7BhjYDy3aH2jKkTRgG3fDw8enWzx3T/jxL9zCl7ZORdTMS99epHJwCOp3KSei58csYqdqwkVJbPuTG3yirtwAeN4T5V+JOrPYk4KPf8YaM9DCLkW8OuRwNSpQ8pnZAGp5KD/mpd6M6ubep9qwNIGLI+qiSY3L/E9mmLYMHIw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SomTogk90u0tBmuXe7zke3jCXDudDWOApikHsZi13ss=;
+ b=vScipHKyQHwhIc0r7gwTpzA7tSkhqUoJedb7tnIYRXR0KvaXehseMtV9gEPKW252lzI1PEfekO/3YPRESFK/+kJfERJci9hPY22G+AZ/38UiN1zcea0NDG8SKro2eTpJ+jQuQhLDMH1e4PWrNjqSlfGGkIEQrHDLePI2ahtEz9E=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BYAPR12MB4758.namprd12.prod.outlook.com (2603:10b6:a03:a5::28)
+ by BY5PR12MB4161.namprd12.prod.outlook.com (2603:10b6:a03:209::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.24; Fri, 12 May
+ 2023 11:24:33 +0000
+Received: from BYAPR12MB4758.namprd12.prod.outlook.com
+ ([fe80::e78e:b7da:7b9a:a578]) by BYAPR12MB4758.namprd12.prod.outlook.com
+ ([fe80::e78e:b7da:7b9a:a578%4]) with mapi id 15.20.6387.022; Fri, 12 May 2023
+ 11:24:33 +0000
+Message-ID: <e77bb07f-57ba-1992-c96f-423c74702f89@amd.com>
+Date:   Fri, 12 May 2023 13:24:19 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: xilinx: Change zc1275 board name
+ to zcu1275
+Content-Language: en-US
+To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
+        michal.simek@xilinx.com, git@xilinx.com
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <4ba0eb85629ec5f07902a93fb75d13fff9697eb8.1683099606.git.michal.simek@amd.com>
+From:   Michal Simek <michal.simek@amd.com>
+In-Reply-To: <4ba0eb85629ec5f07902a93fb75d13fff9697eb8.1683099606.git.michal.simek@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: VE1PR08CA0019.eurprd08.prod.outlook.com
+ (2603:10a6:803:104::32) To BYAPR12MB4758.namprd12.prod.outlook.com
+ (2603:10b6:a03:a5::28)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BYAPR12MB4758:EE_|BY5PR12MB4161:EE_
+X-MS-Office365-Filtering-Correlation-Id: 042c8b17-1a11-4d67-b5ac-08db52db7607
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: xs9ziVNO6Yn/HHgiqReE13IgXRY8zszPpuO5i5AVp8cONzZ5pYLkMYX9zbxA8jUWLSndW5CVlMAedAxHgbPx+Oz4OnkMlMDr+RgM5+BZHZBdgbCgir/Do733pKK9fVQ40aDDYWX917JaeIaZVh77oTWRG+Xnaygfgqevue63/2zsqHbKYCvms1QpEve5cBDAhkDA2rAI991PLinTsXKdQrpmtUEfZklu9iyDU5Io1nWedWzrrQvN6//8ZgTsA9Dx5aFXPFmZPNOHZ0IIZkCDCPJG27FaXL0QW6ZCRfTxVAZ4n5fd39uh3jLTKCCIxoyGw1RPW1CNxXVGXSLrAVdQxoqIbEJwTlNzbwNnQ4tlRjsiin/BwEeqiqQCC5U3VnR46ak6hruL9XT9Q38MKStfiaVPNc/LlroVpHZW6OuZZoXSE+9zCYICylz8tiP7AKxOb79lSxdEt/bIQDSeR2ZjfFhRI1F3T6zchlKrA3izSqbIjDAdvpIO2oiUa0xZYiGVP/gaXs5zv4yL/olBF/mcho6r8REUij4PusoA/EB/s2FHG3ycWjlSco9ZHXGxRs6WfXrkYJTxHrjfCqc5QwivCrJSZYAT6g0tIoNfCYGHqLjty68JM+7MT+gPrPLhPISyWo1i/f8XghAGjThZEA3l3Q==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR12MB4758.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(136003)(366004)(39860400002)(376002)(346002)(396003)(451199021)(38100700002)(36756003)(86362001)(31696002)(31686004)(6486002)(8936002)(8676002)(44832011)(5660300002)(478600001)(6506007)(6512007)(26005)(186003)(2616005)(2906002)(53546011)(83380400001)(316002)(66946007)(66476007)(66556008)(6666004)(54906003)(41300700001)(4326008)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dXpSanJwUWVROWxScWJMSTJ3TGFOYStjbDZDejhCRFhzdFVDOXl2UngydEV3?=
+ =?utf-8?B?WnlFWVU3YVE4dHc4VlM4ZmhRaVBTQmNzeCtyUGNqdlZ2SU15TC9zNUtFellz?=
+ =?utf-8?B?eW42TEJlUFZjdWF4eXFNY3haaDZKelRvYUZDMkdXc2NmaVdxN0VuaUFuKzFu?=
+ =?utf-8?B?bGkrL1hvYlAxYnNJWjUvbzQ4dTdncS9TZ0Q0V1E1ZDl3Y0dhWEhuT1ZDSUVN?=
+ =?utf-8?B?N2NhWGl5RGJRRnBnOEpUakxVVlY1YVVtYVY2emJ1THBQOHQyd3dld3E2cHYr?=
+ =?utf-8?B?c2xXVDZNVXQxdnZLNWRicE9mSVdHL1RWaXh1UTVYMFg1TVlSaUdWR2ZRbTBs?=
+ =?utf-8?B?NmUwcmR6enl3SlVrSW9WRi82ejhGaVIxUnFESnEvdGhkeThtRWNwWXg5RWR0?=
+ =?utf-8?B?YlpYem8vdUZwbktpWjRrdVdNejhPQ1orUmZESkRoU1pObllIeDFxeXlMSWFB?=
+ =?utf-8?B?OUtCb2NpTHVud2VQOC9Mby83OU42a2ltWXRYOFNoS0p1eWliODBobjRHWmJK?=
+ =?utf-8?B?ZEZDRVcwNzh3REhFNTgrU1NEcFVPTEhBZU1Ydk1BMk12ZDVVVFRCb2xJSnVp?=
+ =?utf-8?B?YXlqWDR6cHptNHJvU3VuV2xBY0xvR0dhV0JCc0tlelFIOG5pSW5pM3R4LzJw?=
+ =?utf-8?B?OXhObzI4Z2NHUXpibnovck54QXVteE5kS1hJcGwzK29TcDNsckEwVEh0Uk5C?=
+ =?utf-8?B?Y1hndC93VWlkdERCRUFGRWNRMWQza1JRcGJOa21YSVBkRSt4WWtTbGt6VkY3?=
+ =?utf-8?B?WFZRZG5vV2x3eGJrbVZ2cExPWVBUQlBZSllETkVTOEwwMUJqZG9nRWJxcFR2?=
+ =?utf-8?B?NzRjekM0Z3hmTlR4eWJyblkyVVp0cytsVkpuZDd2SXlCV2MzZWY1QlVNb3da?=
+ =?utf-8?B?NUJYVmFJYkhKYlF0QVJzL055RTJ3MzhwY3JZWjdFNUZlbUV6RXh0QXlaNVI4?=
+ =?utf-8?B?bC93OGN0QUNDRjZ6Znh6VVJocHdCZHN5WG1BRDI5MlRMVGJ2czNXZ1JETjdF?=
+ =?utf-8?B?Y1dGOERWQ0FLTkh1S1RNdndGSU03VFlTMGY3RGpqcUJtN3VTcjlyUHlXbVk1?=
+ =?utf-8?B?NVlXbWtYZmxHM3d6dlIzd0tZRk41Q2VXM0VZd1lXVmNqOGg3MnFRZjVjL1dw?=
+ =?utf-8?B?WkdOZjJEUndTNmFKNnhiYy9oVEFHQUFrcGM1d1NuMFJiaHZWZFB6UFZEcjFR?=
+ =?utf-8?B?cDNlSS9PWmhXM1pISHc5M29WTm5zZ3ZCY1NnZVNPSFFBSU5KUlgyV29YaXN0?=
+ =?utf-8?B?RkJLcFd1U05TN0h5TndCWGM2Q1NXbGczcVQ0aWxFMnRKUW91Yjk4K2xUQmdF?=
+ =?utf-8?B?NnlCVXdYMnNIdDVzVzZIZzhRU3BjM2xqMW1FTWZxbWtvN0ZCWjBxdDhzR2Zp?=
+ =?utf-8?B?SWFSQ2VEK1lrTHRtMm85RWVxS2dKRXFJSjZQQnZyTHY2Y0JrSzhhUEFPaFJm?=
+ =?utf-8?B?eTdvSi93SEZnS2dwTDg5bHB1YldHUWxPdFUxa0ZJM0hCWmtoVldKQWZHR3Js?=
+ =?utf-8?B?cDd5S2VqSnB3TnFaSUV3RDhobzJuNTg1V2x3eXIwS0hJZ3ZSUS85cEJ6ZWNM?=
+ =?utf-8?B?YVlkOXhnWFlEeFFYT09OZEExZ1RWa3NNK2k3ZnZqcS84ODBFS1ZDRXRYL2d5?=
+ =?utf-8?B?bkpzWHRNTFgvYitsdXE0N3BEWDd3SXhxME1LL1RmNDhSd3hzQVZyUm9VdVI2?=
+ =?utf-8?B?YWtFejNCb2w3aXk4Q1N5U3RkOGlDdVdXYXBaTnMyWVcvWUdFdlB1QndDVGVm?=
+ =?utf-8?B?cTQxY1EvTWhDTFMzallrRm1yaUppOTlha1FoQ2lxT0FUN095NFM0RVBHMEZJ?=
+ =?utf-8?B?bjdZU1ZVV0w1ZUpCYnQ2UnFOZU5NRkVCcjZNam45d3RUd0xScXZFTmF3TWc0?=
+ =?utf-8?B?ZndkU3ZFRXZkVWM5T3Z0dnBxSlRZUlBURDgzYXhlS2pmdTFIQUN6VU9mUmc2?=
+ =?utf-8?B?aVN3eW4rbXAvZmhFdGlFeXNscW1mblU1ZmNaelA2cHFwZzFxYmZoa0FFVnlk?=
+ =?utf-8?B?dW83TnpjbGlaMjV2dUZRU3ZLb3VrbUxDb2E5ZkpoUFZrMVh1NkZaNE9BMmg0?=
+ =?utf-8?B?SXh3b0puTlh0clptNXgwY3IxYnNEY3FYWUJBVURRNlVXR0hwczJHeWFsOU9h?=
+ =?utf-8?Q?vW8/4omYwgOktRO0Oz2ZjaJvb?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 042c8b17-1a11-4d67-b5ac-08db52db7607
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB4758.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2023 11:24:33.6337
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: eIqzxZZEwrQtwtAv4ckk7p0A3oW+pf28nAnGGIIxzvKONzgqVClhtW4EqNyEGFRD
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4161
+X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Simon,
 
-On Mon May 1, 2023 at 3:11 PM CEST, Simon Horman wrote:
-> On Fri, Apr 21, 2023 at 04:11:39PM +0200, Luca Weiss wrote:
-> > Add support for the Bluetooth chip codenamed APACHE which is part of
-> > WCN3988.
-> >=20
-> > The firmware for this chip has a slightly different naming scheme
-> > compared to most others. For ROM Version 0x0200 we need to use
-> > apbtfw10.tlv + apnv10.bin and for ROM version 0x201 apbtfw11.tlv +
-> > apnv11.bin
-> >=20
-> > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> > ---
-> >  drivers/bluetooth/btqca.c   | 13 +++++++++++--
-> >  drivers/bluetooth/btqca.h   | 12 ++++++++++--
-> >  drivers/bluetooth/hci_qca.c | 12 ++++++++++++
-> >  3 files changed, 33 insertions(+), 4 deletions(-)
-> >=20
-> > diff --git a/drivers/bluetooth/btqca.c b/drivers/bluetooth/btqca.c
-> > index fd0941fe8608..3ee1ef88a640 100644
-> > --- a/drivers/bluetooth/btqca.c
-> > +++ b/drivers/bluetooth/btqca.c
-> > @@ -594,14 +594,20 @@ int qca_uart_setup(struct hci_dev *hdev, uint8_t =
-baudrate,
-> >  	/* Firmware files to download are based on ROM version.
-> >  	 * ROM version is derived from last two bytes of soc_ver.
-> >  	 */
-> > -	rom_ver =3D ((soc_ver & 0x00000f00) >> 0x04) | (soc_ver & 0x0000000f)=
-;
-> > +	if (soc_type =3D=3D QCA_WCN3988)
-> > +		rom_ver =3D ((soc_ver & 0x00000f00) >> 0x05) | (soc_ver & 0x0000000f=
-);
-> > +	else
-> > +		rom_ver =3D ((soc_ver & 0x00000f00) >> 0x04) | (soc_ver & 0x0000000f=
-);
->
-> Hi Luca,
->
-> perhaps it's just me. But I was wondering if this can be improved on a li=
-ttle.
->
-> * Move the common portion outside of the conditional
-> * And also, I think it's normal to use decimal for shift values.
->
-> e.g.
-> 	unsigned shift;
-> 	...
->
-> 	shift =3D soc_type =3D=3D QCA_WCN3988 ? 5 : 4;
-> 	rom_ver =3D ((soc_ver & 0x00000f00) >> shift) | (soc_ver & 0x0000000f);
->
-> Using some helpers such as GENMASK and FIELD_PREP might also be nice.
 
-While I'm not opposed to the idea, I'm not sure it's worth making
-beautiful macros for this since - to my eyes - how the mapping of
-soc_ver to firmware name works is rather obscure since the sources from
-Qualcomm just have a static lookup table of soc_ver to firmware name so
-doing this dynamically like here is different.
+On 5/3/23 09:40, Michal Simek wrote:
+> Internal board zc1275 was released also to public which ends up with adding
+> missing 'u' to board name. Reflect this change by renaming DT files.
+> 
+> Signed-off-by: Michal Simek <michal.simek@amd.com>
+> ---
+> 
+> Changes in v2:
+> - Separate binding from DT/Makefile change - requested by Krzysztof
+> 
+>   Documentation/devicetree/bindings/arm/xilinx.yaml | 6 +++---
+>   1 file changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/xilinx.yaml b/Documentation/devicetree/bindings/arm/xilinx.yaml
+> index 969cfe6dc434..b3071d10ea65 100644
+> --- a/Documentation/devicetree/bindings/arm/xilinx.yaml
+> +++ b/Documentation/devicetree/bindings/arm/xilinx.yaml
+> @@ -61,10 +61,10 @@ properties:
+>             - const: xlnx,zynqmp-zc1254
+>             - const: xlnx,zynqmp
+>   
+> -      - description: Xilinx internal board zc1275
+> +      - description: Xilinx evaluation board zcu1275
+>           items:
+> -          - const: xlnx,zynqmp-zc1275-revA
+> -          - const: xlnx,zynqmp-zc1275
+> +          - const: xlnx,zynqmp-zcu1275-revA
+> +          - const: xlnx,zynqmp-zcu1275
+>             - const: xlnx,zynqmp
+>   
+>         - description: Xilinx 96boards compatible board zcu100
 
-And I haven't looked at other chips that are covered there to see if
-there's a pattern to this, for the most part it seems the original
-formula works for most chips and the one I added works for WCN3988 (and
-the other "APACHE" chips, whatever they are).
-
-If a third way is added then I would say for sure this line should be
-made nicer but for now I think it's easier to keep this as I sent it
-because we don't know what the future will hold.
-
->
-> > =20
-> >  	if (soc_type =3D=3D QCA_WCN6750)
-> >  		qca_send_patch_config_cmd(hdev);
-> > =20
-> >  	/* Download rampatch file */
-> >  	config.type =3D TLV_TYPE_PATCH;
-> > -	if (qca_is_wcn399x(soc_type)) {
-> > +	if (soc_type =3D=3D QCA_WCN3988) {
-> > +		snprintf(config.fwname, sizeof(config.fwname),
-> > +			 "qca/apbtfw%02x.tlv", rom_ver);
-> > +	} else if (qca_is_wcn399x(soc_type)) {
-> >  		snprintf(config.fwname, sizeof(config.fwname),
-> >  			 "qca/crbtfw%02x.tlv", rom_ver);
-> >  	} else if (soc_type =3D=3D QCA_QCA6390) {
-> > @@ -636,6 +642,9 @@ int qca_uart_setup(struct hci_dev *hdev, uint8_t ba=
-udrate,
-> >  	if (firmware_name)
-> >  		snprintf(config.fwname, sizeof(config.fwname),
-> >  			 "qca/%s", firmware_name);
-> > +	else if (soc_type =3D=3D QCA_WCN3988)
-> > +		snprintf(config.fwname, sizeof(config.fwname),
-> > +			 "qca/apnv%02x.bin", rom_ver);
-> >  	else if (qca_is_wcn399x(soc_type)) {
-> >  		if (ver.soc_id =3D=3D QCA_WCN3991_SOC_ID) {
->
-> Not strictly related to this patch, but while reviewing this I noticed th=
-at
-> ver.soc_id is __le32 but QCA_WCN3991_SOC_ID is in host byteorder.
->
-> Perhaps a cpu_to_le32() or le32_to_cpu() call is in order here?
-
-Good catch, as you've seen I sent a patch separately to fix that. :)
-
-Regards
-Luca
-
->
-> >  			snprintf(config.fwname, sizeof(config.fwname),
->
-> ...
-
+Applied.
+M
