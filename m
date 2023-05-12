@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A3E0D700D65
-	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 18:52:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2270700D69
+	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 18:53:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237517AbjELQwn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 May 2023 12:52:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44716 "EHLO
+        id S231196AbjELQxK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 May 2023 12:53:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237502AbjELQwm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 12:52:42 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 432633C06
-        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 09:52:40 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-965e4be7541so1719817266b.1
-        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 09:52:40 -0700 (PDT)
+        with ESMTP id S236357AbjELQxJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 12:53:09 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BEA310C1
+        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 09:53:07 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-965d2749e2eso1508682066b.1
+        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 09:53:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683910359; x=1686502359;
+        d=linaro.org; s=google; t=1683910386; x=1686502386;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=taY6vqOnlwfgSEUKM+GvHWsmve6rMezjk03XxW2GBtM=;
-        b=YB7mprcJ1M7cWZosUXrcU9KX6AhR1MPra/gLlGmxOPlwn3zgfK5TSnI41JqGAf66p3
-         sthhLP/TYi6Q5EHDYoU0U8tbi0Y0qwrljREJAl0PCaZ8948HKD8WcBe6VUFJA1/LcQQy
-         VU5qmAXELTaZX2VqCkK7ZUBM/hW3JCzs+16ilzayFqwgTPBg5d++VKyinAwkiWMoTeOD
-         v7BAEHU+R4HPKVzfeDWTCy9JWjr/NUTAqSh8UpbRSpgK7bY0A6Et8xcbuCnfjJufh0NN
-         XVjnnjPrWiMlILwDzxOaBk38HCut10BeQFCgvr9+5qdtZx4p5e0bmP3Dh5rPFrI8SDew
-         JbUg==
+        bh=CN6pCJcBzZ51aATWk78TJrmoYzIoOv3jWdHbtYWFl7M=;
+        b=UleUVIttaU4XHJvEB1+6GxxvA45kFC6nR72DdRpYznNa2jmdFVRDxIn86/suJca+1B
+         tIGjCLwyVMCyPpPive1kMoRCAfLVtNELfcRIOO2H52H0HsKTUuOpT2/Zn7KQVyBasbDD
+         6sJwRb+rB3jne30p9niet/wVvcQ7G4zoTy54k//kk8SVuL+i6WmGmUjpKVQ5lLA/3FoL
+         30bQtM5bi+K1Om21XFzqcrOgtUZSNAZAKLWi0TNJzxoYuFsQw1MIFGOpeu19XhHinYrm
+         Elph7pG9udbsnNfrx5/c2AJDFBZpmoG5h/KihNfm+tSIWTMkjzv8D4oeso2eDVY5eV/D
+         fujw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683910359; x=1686502359;
+        d=1e100.net; s=20221208; t=1683910386; x=1686502386;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=taY6vqOnlwfgSEUKM+GvHWsmve6rMezjk03XxW2GBtM=;
-        b=SR91eA1jBZyQTXWKMIK6hWevhMzg0KVOCmGzto81nTM9XrB+qzdJDTGJoRQEOWal4p
-         b2cwgjdHWW1v3hI1u0hTPaG0gdiBFswJEwBvOC67UT/MJs+jIggB2x+UmXJGb8MjpXRE
-         v1VB05+GMmU3WBsUiBC7HYjvteH1lHZoD0J7R/zMbMNDLeHAMZlhdZc9WKE2StjeXb+Y
-         4OzSRxhMpsh3LFTc7Wp9+zKLv4OSmNBECCR6BKZbhqoHNp/xeyHtpj9o8fmefWWW/juB
-         A7r44xhlOklEHEL3Atqtc7ttmjZ6qCI0SclTfzkUG4TvmeCVbtUCiGV1KnI7PYa1Qd0h
-         bUHg==
-X-Gm-Message-State: AC+VfDwwqsRZlEXfez6KF8VEL39vj8AOLjInlOGvE4QqAsJDd+PTOOVC
-        tM/sgOjjQJQmnkss9ocdTUer5Q==
-X-Google-Smtp-Source: ACHHUZ59eFhWe1aXjkUV2GDKtKNfDQ9z13JZWV+UAdinGaGhOsxQrTLgqX2nVUOz8lj6XNB/0/btDw==
-X-Received: by 2002:a17:907:2d0c:b0:966:5c04:2c5a with SMTP id gs12-20020a1709072d0c00b009665c042c5amr18475819ejc.69.1683910358651;
-        Fri, 12 May 2023 09:52:38 -0700 (PDT)
+        bh=CN6pCJcBzZ51aATWk78TJrmoYzIoOv3jWdHbtYWFl7M=;
+        b=HqcTio0NpAOCmA1n7o0qMj3mKJL0usML87wFuC7fpSjaOTbRHngtsFwF73rHQtducz
+         z61efYRSntor61hrHTo/TNlOrYVxHyTzT+GCYUq0TESQzwlSMZzZIcibmLVq79zukM5p
+         ywZmFIUhDS1WmoU+wenmWNzO0vxqTtmcg689F9skWql843qTORfKWBpMssCPz67GjpPB
+         XA9FNOSJxX7cwvKnSnzRbPoVn8JPbsDYr49Ydjl9WGoHBBw1vHQgaMLb/IhP6k+MstfI
+         JZLSLZZdTEM10EzZFD884nQUyvfIoEImhmGUHInu1k37GpkTzVQ0Nq5lhatYzpvBUrJR
+         eBsA==
+X-Gm-Message-State: AC+VfDz0PQHrd+hrUZnJdCOEeTMWpiQIEZBZ44uQTI2QCpK9SKdsumu+
+        /iPWR2w9HVA4RQR9HLqUZzLN/Q==
+X-Google-Smtp-Source: ACHHUZ5giuXLk5Ub8rO6/Ah0SRPh0XXQGplyCO3M/vAYmJSQY6vGyQZ23uiBcc2mrclTGnogm7Tq5w==
+X-Received: by 2002:a17:906:4fcf:b0:94e:1764:b09b with SMTP id i15-20020a1709064fcf00b0094e1764b09bmr24949873ejw.45.1683910386031;
+        Fri, 12 May 2023 09:53:06 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:7ede:fc7b:2328:3883? ([2a02:810d:15c0:828:7ede:fc7b:2328:3883])
-        by smtp.gmail.com with ESMTPSA id y18-20020a170906525200b0094f7acbafe0sm5694243ejm.177.2023.05.12.09.52.37
+        by smtp.gmail.com with ESMTPSA id 13-20020a170906328d00b00969f44bbef1sm4965177ejw.89.2023.05.12.09.53.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 May 2023 09:52:38 -0700 (PDT)
-Message-ID: <e3c36382-f768-bb4d-4a32-dfac079cfd3e@linaro.org>
-Date:   Fri, 12 May 2023 18:52:36 +0200
+        Fri, 12 May 2023 09:53:05 -0700 (PDT)
+Message-ID: <3a4abc55-971f-9e8c-692a-aa9acc4dd7ea@linaro.org>
+Date:   Fri, 12 May 2023 18:53:04 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH V2 2/5] dt-bindings: clock: qcom: Add GCC clocks for SDX75
+Subject: Re: [PATCH V2 3/5] dt-bindings: clock: qcom: Add RPMHCC for SDX75
 Content-Language: en-US
 To:     Taniya Das <quic_tdas@quicinc.com>,
         Michael Turquette <mturquette@baylibre.com>,
@@ -72,15 +72,15 @@ Cc:     Bjorn Andersson <andersson@kernel.org>,
         netdev@vger.kernel.org, jkona@quicinc.com,
         quic_rohiagar@quicinc.com
 References: <20230512122347.1219-1-quic_tdas@quicinc.com>
- <20230512122347.1219-3-quic_tdas@quicinc.com>
+ <20230512122347.1219-4-quic_tdas@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230512122347.1219-3-quic_tdas@quicinc.com>
+In-Reply-To: <20230512122347.1219-4-quic_tdas@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -90,7 +90,7 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 12/05/2023 14:23, Taniya Das wrote:
 > From: Imran Shaik <quic_imrashai@quicinc.com>
 > 
-> Add support for qcom global clock controller bindings for SDX75 platform.
+> Add compatible string for qcom RPMHCC for SDX75 platform.
 > 
 > Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
 > Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
