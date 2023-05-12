@@ -2,181 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12AE5700977
-	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 15:49:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0DB970099F
+	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 15:59:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241326AbjELNtz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 May 2023 09:49:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58522 "EHLO
+        id S241355AbjELN67 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 May 2023 09:58:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241325AbjELNty (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 09:49:54 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 301EF12EA9;
-        Fri, 12 May 2023 06:49:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1683899393; x=1715435393;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=DuNeysYSTXy/mIZofYnY1xvzASlALFjZdE92szRAONc=;
-  b=jalO+Qu1oHnS0FfJgzVsS84HrwTnpOqII992QLCJf1te4pfzAhqA71d3
-   e5/JPXViiWgCfUhnR1J8CEAy42yukDc1X8TG9bMnApgnas6oN3W7KPSs5
-   aqKulDjLCCr9BwzuQgnKEf3Q+yOZ77FTq/igFZJIqzuGcbxg5Y70gfAXc
-   R9TBX7K9THPlkWmm19EqasQavHFWsCmib+rQ/QgBlk4Df4PXoSNonSRZ4
-   r8vc+ZblUVm24cUoemNfMgv3K9olZfevenckc+Z1EJtbsCapoMLG8tn0a
-   3ggUMw88eYK9udVQOx7CmfL2EywPiQSKajicXRKFVDn8P307pNzHHIEY6
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.99,269,1677567600"; 
-   d="asc'?scan'208";a="210975138"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 12 May 2023 06:49:52 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Fri, 12 May 2023 06:49:50 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Fri, 12 May 2023 06:49:48 -0700
-Date:   Fri, 12 May 2023 14:49:27 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Xingyu Wu <xingyu.wu@starfivetech.com>
-CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Conor Dooley <conor@kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        William Qiu <william.qiu@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
-Subject: Re: [PATCH v4 3/7] dt-bindings: clock: jh7110-syscrg: Add PLL clock
- inputs
-Message-ID: <20230512-traffic-popsicle-5c3423b37fab@wendy>
-References: <20230512022036.97987-1-xingyu.wu@starfivetech.com>
- <20230512022036.97987-4-xingyu.wu@starfivetech.com>
- <20230512-uproar-external-49a9e793fbc4@wendy>
- <91e4fd3c-20cb-724b-c9a8-e038600aabb7@starfivetech.com>
- <20230512-backlit-radiated-ded0b38b4a94@wendy>
- <be85aa2a-c72c-5272-ee40-f1265768e7b3@starfivetech.com>
+        with ESMTP id S240835AbjELN65 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 09:58:57 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31E3C30F7
+        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 06:58:54 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-9660af2499dso1556387666b.0
+        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 06:58:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1683899932; x=1686491932;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=s/KFs/2B7m9MZiz0WLTsjGkrH/SBAUtK2lt6sIgh0XA=;
+        b=j8Qzw0Lowk/cxZNFBonlAujktmiNhfOIJJVOfo680Kzh/5Av8OSb/w7fykhFtPAaT/
+         dmtk7+vfzCj6deZEfAtwVWGYBTW2yYJxVxgSXGm0ps69GH93iTzYAjNtu2h3LqW0ULjb
+         xs7947lefsb43rbw1Y4vZ/LJ/mzF59vj3Iesg7bs5UWAD2LVZRo7OY1cgpqZALLuiUve
+         ZmExppHvF5NaXX5OxXybJxpYHpMEodMGrASNNDS4mX8zPuuxkGSC1BfAYREnuMWg9+Ci
+         KUHcXu/yTSMzsA8TT35GrWpi2BL3W3BHIlM20Gly4oHhugLl/s3JpXn3/BJlZxWr4PN2
+         HpiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683899932; x=1686491932;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=s/KFs/2B7m9MZiz0WLTsjGkrH/SBAUtK2lt6sIgh0XA=;
+        b=UubgMygSuBpCx3gXdah5it9gl32sJOvwg7o1gfNcPGAOycjea64d7kCQHo8FAsQJ74
+         jYkwIAKlXLbx5VF0jjqNC8goPSZhmmvkLwrSdJKKqY5fOWC+mmPd/2lqm7/dUl+R6Wdn
+         CF1gCiFkgFbtT6lHLN6yW5zWbA/5uZreilnkR1itHn/xsDfnS2W3rjDng9kocXkpUWtJ
+         BEcJCa2vTGlcAqQcWMuAO2PCigE9Y5nkrd9Qq1/G8JObJ51ZkKceWDOI+jJ9VcEpq7O+
+         vOfDabIkQgmrCBe/sph86pH75rILJD651/rMo5NgYBoMg1siRi5fIJzgSFRECsULL9Rq
+         QgPg==
+X-Gm-Message-State: AC+VfDxWXQp6jD/Y8k8JkPya3+irLd3AhaF8nIHu4QgDoQtUHGBUKdGx
+        vux/AzptgL3sjTlnwn6T6pXr0A==
+X-Google-Smtp-Source: ACHHUZ5gu9z6nIoI4TPFD7yn1Mzc9Dza0XUQXZZ4AyQHtno7HmWHZ9MneOnQYiLcjhLeVX+jeH0cfg==
+X-Received: by 2002:a17:907:9686:b0:966:65ee:beb7 with SMTP id hd6-20020a170907968600b0096665eebeb7mr18927481ejc.71.1683899932573;
+        Fri, 12 May 2023 06:58:52 -0700 (PDT)
+Received: from [172.16.240.113] (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id mc27-20020a170906eb5b00b00966330021e9sm5399061ejb.47.2023.05.12.06.58.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 May 2023 06:58:52 -0700 (PDT)
+From:   Luca Weiss <luca.weiss@fairphone.com>
+Subject: [PATCH v2 0/4] Add WCN3988 Bluetooth support for Fairphone 4
+Date:   Fri, 12 May 2023 15:58:22 +0200
+Message-Id: <20230421-fp4-bluetooth-v2-0-3de840d5483e@fairphone.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="qj/PZxe9T53Afs5A"
-Content-Disposition: inline
-In-Reply-To: <be85aa2a-c72c-5272-ee40-f1265768e7b3@starfivetech.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAP5FXmQC/3WNQQ6CMBBFr2Jm7ZihJYKuvIdh0dbBToItaYFoC
+ He3snf5XvL/WyFzEs5wPayQeJEsMRRQxwM4b8KTUR6FQZHSVKsK+7FGO8w8xTh5tPpsiNvGXlw
+ LZWNNZrTJBOfLKszDUOSYuJf3Hrl3hb3kKabP3lyqn/13v1RISLUm1qZhMurWG0mjj4FPLr6g2
+ 7btC86hTjbDAAAA
+To:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.2
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---qj/PZxe9T53Afs5A
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Add support in the btqca/hci_qca driver for the WCN3988 and add it to
+the sm7225 Fairphone 4 devicetree.
 
-On Fri, May 12, 2023 at 05:56:16PM +0800, Xingyu Wu wrote:
-> On 2023/5/12 17:35, Conor Dooley wrote:
-> > On Fri, May 12, 2023 at 04:07:47PM +0800, Xingyu Wu wrote:
-> >> On 2023/5/12 14:47, Conor Dooley wrote:
-> >> > On Fri, May 12, 2023 at 10:20:32AM +0800, Xingyu Wu wrote:
-> >> >> Add PLL clock inputs from PLL clock generator.
-> >> >>=20
-> >> >> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >> >> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
-> >> >> ---
-> >> >>  .../clock/starfive,jh7110-syscrg.yaml         | 20 +++++++++++++++=
-++--
-> >> >>  1 file changed, 18 insertions(+), 2 deletions(-)
-> >> >=20
-> >> > /tmp/tmp.KDlzwQM5ma/arch/riscv/boot/dts/starfive/jh7110-starfive-vis=
-ionfive-2-v1.3b.dtb: clock-controller@13020000: clocks: 'oneOf' conditional=
- failed, one must be fixed:
-> >> > 	[[19], [20], [21], [22], [23], [24], [25], [26], [27]] is too short
-> >> > 	From schema: /Documentation/devicetree/bindings/clock/starfive,jh71=
-10-syscrg.yaml
-> >> > /tmp/tmp.KDlzwQM5ma/arch/riscv/boot/dts/starfive/jh7110-starfive-vis=
-ionfive-2-v1.3b.dtb: clock-controller@13020000: clock-names: 'oneOf' condit=
-ional failed, one must be fixed:
-> >> > 	['osc', 'gmac1_rmii_refin', 'gmac1_rgmii_rxin', 'i2stx_bclk_ext', '=
-i2stx_lrck_ext', 'i2srx_bclk_ext', 'i2srx_lrck_ext', 'tdm_ext', 'mclk_ext']=
- is too short
-> >> > 	'i2stx_bclk_ext' was expected
-> >> > 	'i2stx_lrck_ext' was expected
-> >> > 	'i2srx_bclk_ext' was expected
-> >> > 	'i2srx_lrck_ext' was expected
-> >> > 	'tdm_ext' was expected
-> >> > 	'mclk_ext' was expected
-> >> > 	'pll0_out' was expected
-> >> > 	From schema: /Documentation/devicetree/bindings/clock/starfive,jh71=
-10-syscrg.yaml
-> >> > /tmp/tmp.KDlzwQM5ma/arch/riscv/boot/dts/starfive/jh7110-starfive-vis=
-ionfive-2-v1.2a.dtb: clock-controller@13020000: clocks: 'oneOf' conditional=
- failed, one must be fixed:
-> >> > 	[[19], [20], [21], [22], [23], [24], [25], [26], [27]] is too short
-> >> > 	From schema: Documentation/devicetree/bindings/clock/starfive,jh711=
-0-syscrg.yaml
-> >> > /tmp/tmp.KDlzwQM5ma/arch/riscv/boot/dts/starfive/jh7110-starfive-vis=
-ionfive-2-v1.2a.dtb: clock-controller@13020000: clock-names: 'oneOf' condit=
-ional failed, one must be fixed:
-> >> > 	['osc', 'gmac1_rmii_refin', 'gmac1_rgmii_rxin', 'i2stx_bclk_ext', '=
-i2stx_lrck_ext', 'i2srx_bclk_ext', 'i2srx_lrck_ext', 'tdm_ext', 'mclk_ext']=
- is too short
-> >> > 	'i2stx_bclk_ext' was expected
-> >> > 	'i2stx_lrck_ext' was expected
-> >> > 	'i2srx_bclk_ext' was expected
-> >> > 	'i2srx_lrck_ext' was expected
-> >> > 	'tdm_ext' was expected
-> >> > 	'mclk_ext' was expected
-> >> > 	'pll0_out' was expected
-> >> > 	Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
-> >> >=20
-> >> > This binding change is incompatible with the existing devicetrees for
-> >> > the visionfive 2.
-> >>=20
-> >> This looks like less clocks about PLL in SYSCRG node. And I add this i=
-n patch 7.
-> >=20
-> > The existing devicetree is a valid, albeit limited, description of the
-> > hardware.
-> > After your changes to the clock driver in this series, but *without* the
-> > changes to the devicetrees, does the system still function?
-> > From a quick check of 4/7, it looks like it will not?
->=20
-> I just tested it on the board and the system still worked without the cha=
-nges
-> about devicetree. But these clocks' rate were 0 because these could not g=
-et
-> the PLL clocks from devicetree.
+Devicetree patches go via Qualcomm tree, the rest via their respective
+trees.
 
-Hmm, that sounds like an issue to me. If all of the clock rates are
-computed based off of parents that incorrectly report 0, are we not in
-for trouble?
-Should the fixed-factor clocks be retained as a fallback for the sake of
-compatibility?
-Emil, Stephen?
+--
+Previously with the RFC version I've had problems before with Bluetooth
+scanning failing like the following:
 
---qj/PZxe9T53Afs5A
-Content-Type: application/pgp-signature; name="signature.asc"
+  [bluetooth]# scan on
+  Failed to start discovery: org.bluez.Error.InProgress
 
------BEGIN PGP SIGNATURE-----
+  [  202.371374] Bluetooth: hci0: Opcode 0x200b failed: -16
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZF5D5wAKCRB4tDGHoIJi
-0ls8AQDZMoyMjXuX37lw7BCSWsU9Gxef0TEiBYOlGG+R1S9i9gEAlqR+XYcFjG8B
-9nGwVdlLV70d09Xp6IjHrhusCQ2QSA4=
-=fsw/
------END PGP SIGNATURE-----
+This appears to only happen with driver built-in (=y) when the supported
+local commands list doesn't get updated in the Bluetooth core and
+use_ext_scan() returning false. I'll try to submit this separately since
+this now works well enough with =m. But in both cases (=y, =m) it's
+behaving a bit weirdly before (re-)setting the MAC address with "sudo
+btmgmt public-addr fo:oo:ba:ar"
 
---qj/PZxe9T53Afs5A--
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+---
+Changes in v2:
+- Add pinctrl & 'tlmm 64' irq to uart node
+- Pick up tags
+- Link to v1: https://lore.kernel.org/r/20230421-fp4-bluetooth-v1-0-0430e3a7e0a2@fairphone.com
+
+---
+Luca Weiss (4):
+      dt-bindings: net: qualcomm: Add WCN3988
+      Bluetooth: btqca: Add WCN3988 support
+      arm64: dts: qcom: sm6350: add uart1 node
+      arm64: dts: qcom: sm7225-fairphone-fp4: Add Bluetooth
+
+ .../bindings/net/bluetooth/qualcomm-bluetooth.yaml |   2 +
+ arch/arm64/boot/dts/qcom/sm6350.dtsi               |  63 +++++++++++++
+ arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts  | 103 +++++++++++++++++++++
+ drivers/bluetooth/btqca.c                          |  13 ++-
+ drivers/bluetooth/btqca.h                          |  12 ++-
+ drivers/bluetooth/hci_qca.c                        |  12 +++
+ 6 files changed, 201 insertions(+), 4 deletions(-)
+---
+base-commit: f2fe50eb7ca6b7bc6c63745f5c26f7c6022fcd4a
+change-id: 20230421-fp4-bluetooth-b36a0e87b9c8
+
+Best regards,
+-- 
+Luca Weiss <luca.weiss@fairphone.com>
+
