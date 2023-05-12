@@ -2,58 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D9960701202
-	for <lists+devicetree@lfdr.de>; Sat, 13 May 2023 00:05:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED9F4701226
+	for <lists+devicetree@lfdr.de>; Sat, 13 May 2023 00:27:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232231AbjELWFd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 May 2023 18:05:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41298 "EHLO
+        id S233430AbjELW1v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 May 2023 18:27:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231325AbjELWFc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 18:05:32 -0400
+        with ESMTP id S229611AbjELW1u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 18:27:50 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BB5810C9
-        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 15:05:31 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7ADE01FDA;
+        Fri, 12 May 2023 15:27:49 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A17FB63CB5
-        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 22:05:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BEE6AC433D2;
-        Fri, 12 May 2023 22:05:26 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 03378652F3;
+        Fri, 12 May 2023 22:27:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0AA94C433D2;
+        Fri, 12 May 2023 22:27:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1683929130;
-        bh=ApJ9Qb4Gro11DEKs8nfF0r47PFHsphmqYBvK21zTLf4=;
+        s=k20201202; t=1683930468;
+        bh=yotOQtdEH6rCCF1UokNJsyz14i9QXPrLX0CaR5Gj1jk=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=U+p0Lpj2nU/h5/tl4sQmISJVp/W/6yiSGwtC5yv+TrVUIuFqxAW8uQVXO2OzEW1zc
-         SMQw5cG5hkMmdScekZWrpqQ7ybed+ThUXFfNSXkYkisbB3Ok83WPD6/jS7vRrAz/8J
-         wlcaR44y3LB2jLM1qSk21K272gX7EMEfxEl2VDZ8q5+V9dNtpmOIXb/zM706OQ7BkM
-         dTclZuJFC2ebWInAKtgIddgWEUAbmhcmm442XpwHYapZcwyo9sSkybWro29wvVdKTf
-         H65eMvseq/TuINFBgOFbo8YJ7XfmIrCnYGbsS3lUgZXdYhDsjOt4aJYROOpE3u99ZL
-         WnFtlQaVTc5/w==
-Date:   Fri, 12 May 2023 23:05:24 +0100
+        b=QOkQfjvbQElQo2Q2BSeL3euoR4smHoogkxZNaHfne7A75YEbUtQYzHRXiX7P1ETxi
+         AJnA0P3BO4rK0q8+YmVSkEQWsGsvGB6pxlSAiTYgLkRukaCPACbi7AMBQlr8TTkNjZ
+         Ep0U58R2PwWtuJSWG5u44UIPOeAH+U5OcRCpJAdENH0tbmZW3+DypvM4peUl6YWCYR
+         TcDAupbBd/yQS0h1q8BuXA+mZLXsKDPBrTjit914UHuvy0fE4FPiLt030zL6GRb1WV
+         L2BduV/N74pCi6Sa8CxsNBNDQzSIzutQHRu1F2KWbzKNudFqgtFycK8/qY6PAEI2oq
+         hrWA5nkASuonw==
+Date:   Fri, 12 May 2023 23:27:43 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     Palmer Dabbelt <palmer@dabbelt.com>
-Cc:     atishp@atishpatra.org, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org, conor+dt@kernel.org, heiko@sntech.de,
-        cyy@cyyself.name, Conor Dooley <conor.dooley@microchip.com>,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+To:     Xingyu Wu <xingyu.wu@starfivetech.com>
+Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
         Paul Walmsley <paul.walmsley@sifive.com>,
-        ajones@ventanamicro.com, Krste Asanovic <krste@sifive.com>,
-        Andrew Waterman <andrew@sifive.com>,
-        Greg Favor <gfavor@ventanamicro.com>,
-        Mark Himelstein <markhimelstein@riscv.org>,
-        Philipp Tomsich <philipp.tomsich@vrull.eu>
-Subject: Re: [RFC 0/6] Deprecate riscv,isa DT property?
-Message-ID: <20230512-exhume-unfold-f104dd4c4cbf@spud>
-References: <20230511-occupancy-cleat-06e532e3ea11@spud>
- <mhng-495c690b-454c-408f-a4f2-287d7ce8a9ea@palmer-ri-x1c9a>
- <20230512-streak-camper-08a68afb5897@spud>
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-kernel@vger.kernel.org, walker.chen@starfivetech.com
+Subject: Re: [PATCH v1 2/2] riscv: dts: starfive: jh7110: Add watchdog node
+Message-ID: <20230512-barrack-catchable-1f4072b9355b@spud>
+References: <20230509151723.84989-1-xingyu.wu@starfivetech.com>
+ <20230509151723.84989-3-xingyu.wu@starfivetech.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="pD0yAV/sPNy+VSlC"
+        protocol="application/pgp-signature"; boundary="8JU6x6woKhLCHwoo"
 Content-Disposition: inline
-In-Reply-To: <20230512-streak-camper-08a68afb5897@spud>
+In-Reply-To: <20230509151723.84989-3-xingyu.wu@starfivetech.com>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -65,100 +62,62 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---pD0yAV/sPNy+VSlC
-Content-Type: text/plain; charset=utf-8
+--8JU6x6woKhLCHwoo
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-+CC Greg, Mark, Krste, Philipp, Andrew,
+On Tue, May 09, 2023 at 11:17:23PM +0800, Xingyu Wu wrote:
+> Add the watchdog node for the Starfive JH7110 SoC.
 
-(this is LKML now, no top posting or html replies)
+Emil or Walker, could I get a review on this please?
+It's the only dts patch on the list right now for the jh7110 that I can
+actually apply, so it'd be nice to do so.
 
-On Fri, May 12, 2023 at 08:40:10PM +0100, Conor Dooley wrote:
-> On Fri, May 12, 2023 at 11:01:09AM -0700, Palmer Dabbelt wrote:
-> > On Thu, 11 May 2023 15:38:10 PDT (-0700), Conor Dooley wrote:
-> > > On Thu, May 11, 2023 at 03:34:24PM -0700, Atish Patra wrote:
-> > > > On Thu, May 11, 2023 at 2:47=E2=80=AFPM Conor Dooley <conor@kernel.=
-org> wrote:
-> > > > > On Thu, May 11, 2023 at 02:27:44PM -0700, Atish Patra wrote:
-> > >=20
-> > > > > That's more than last year at this point, and nothing has changed=
- in the
-> > > > > documentation! Talk's cheap, ehh?
-> > > > >
-> > > >=20
-> > > > Yup. I will poke RVI folks to check if it still is the plan or chan=
-ged !!
-> > >=20
-> > > Sounds good, thanks!
->=20
-> There has been some movement on that front, shall see where it goes
-> :upsidedown_smile:
-
-There's been some off-list discussion prompted by Atish with some of the
-RVI spec folk, from which the upshot __appears__ to be an understanding
-that using version numbering to indicate removal of ISA features is a bad
-idea.
-I'm hoping that this results in the enshrinement of this in the ISA
-specs, so that we have something concrete to point to as the basis for
-not needing to handle version numbering.=20
-Certainly that'd be great for ACPI and remove concerns there.
-
-> > > > We will likely have a vendor specific string parsing logic.
-> > >=20
-> > > Complicating the parsing logic is the exact sort of crap that I want
-> > > to avoid.
-> >=20
-> > Ya, I think we're reallly overcomplicating things with the ISA strings.
-> > Let's just deprecate them and move to something that doesn't need all t=
-he
-> > bespoke string parsing.
->=20
-> Versioning aside, although that removes a large part of the motivation,
-> the interface becomes quite nice:
-> of_property_present(node, "riscv,isa-extension-zicbom")
-
-My current feeling is that, rather than introducing a key-value type of
-property, adding boolean properties for extensions is the way to go
-here. The "riscv,isa" part of the DT ABI pre-dates even the ratification
-of the base extensions (and thus the removal of some features...).
-Starting again with a new property would allow us to define extensions
-as per their ratified state, rather than the intermediate & incompatible
-states that we have currently got with "riscv,isa".
-Such a model does rely on the strengthening of the wording in the
-specification.
-
-This had the advantage of being, as I mention above, even easier to
-parse in software than the key-value pair business - but also is
-trivially implemented in a dt-binding. What I have been trying to do
-with the validation of the key-value stuff does not appear to be readily
-doable!
-
-(Another drawback that has come to mind is that we have no way to
-validate whether mutually exclusive extensions have been added with
-"riscv,isa")
-
-> That also gives us the ability to define what supported vendor
-> extensions actually mean in a dt-binding, which to me is a big win in
-> terms of the aforementioned "wild west".
-
-Vendor extensions etc are oft quoted as one of the strengths of RISC-V,
-and my feeling is that "riscv,isa" is not a mechanism where we can
-easily handle meanings - especially for vendor stuff where there is
-otherwise no centralised location for _xfoo -> feature mappings.
-
-Cheers,
+Thanks,
 Conor.
 
---pD0yAV/sPNy+VSlC
+>=20
+> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+> ---
+>  arch/riscv/boot/dts/starfive/jh7110.dtsi | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+>=20
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/d=
+ts/starfive/jh7110.dtsi
+> index 4c5fdb905da8..47c163ec0bf1 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> @@ -469,6 +469,16 @@ sysgpio: pinctrl@13040000 {
+>  			#gpio-cells =3D <2>;
+>  		};
+> =20
+> +		watchdog@13070000 {
+> +			compatible =3D "starfive,jh7110-wdt";
+> +			reg =3D <0x0 0x13070000 0x0 0x10000>;
+> +			clocks =3D <&syscrg JH7110_SYSCLK_WDT_APB>,
+> +				 <&syscrg JH7110_SYSCLK_WDT_CORE>;
+> +			clock-names =3D "apb", "core";
+> +			resets =3D <&syscrg JH7110_SYSRST_WDT_APB>,
+> +				 <&syscrg JH7110_SYSRST_WDT_CORE>;
+> +		};
+> +
+>  		aoncrg: clock-controller@17000000 {
+>  			compatible =3D "starfive,jh7110-aoncrg";
+>  			reg =3D <0x0 0x17000000 0x0 0x10000>;
+> --=20
+> 2.25.1
+>=20
+
+--8JU6x6woKhLCHwoo
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZF64JAAKCRB4tDGHoIJi
-0uEQAQD0lEiQVpTPAZLb4JIc6zKJZt383lZ8qO42lIGHhyFkfwEApmNL/4VzHCA0
-NRGWyAGbcXWSmiRUKkVBHQRXTFnosQc=
-=yDPz
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZF69XwAKCRB4tDGHoIJi
+0udqAP4tKOaHjuSPwwqts5hXwNP+jpgONumVl4re6oLMfdh5fAEA4kRfEXdNqmD1
+pUcjCp6fw2W4wFgttfmyY+0JRcLSRQ8=
+=nlcN
 -----END PGP SIGNATURE-----
 
---pD0yAV/sPNy+VSlC--
+--8JU6x6woKhLCHwoo--
