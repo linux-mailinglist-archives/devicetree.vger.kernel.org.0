@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3ABC0700D7B
-	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 18:57:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 863C6700D80
+	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 18:58:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237676AbjELQ5D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 May 2023 12:57:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48654 "EHLO
+        id S237706AbjELQ6R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 May 2023 12:58:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237680AbjELQ5D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 12:57:03 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85175A275
-        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 09:57:01 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-50bdd7b229cso18420657a12.0
-        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 09:57:01 -0700 (PDT)
+        with ESMTP id S237708AbjELQ6N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 12:58:13 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 903E0D042
+        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 09:58:11 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-94a342f7c4cso1831487866b.0
+        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 09:58:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683910620; x=1686502620;
+        d=linaro.org; s=google; t=1683910690; x=1686502690;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=KoFgSe/dfR9cPbJoIcRRFNKD0IGyc+Tftfo8TVK6UiY=;
-        b=eMzQ4F4PVJs7BB6ELlNK351hGf6g5cYsZTL7j7iyqKVD2cqTi4wMoeOMYpjCScD3oS
-         vup+AQTrCUahX57GbKgw47MbMsArcI9XwNCxWHTzqfjr1Nr94NcZ6L729E7ikpK2N4+p
-         MbIbOjRYByzP8EAn/shvL8gHEnQyJyYtp+FN0fp+LxMgwjygsU72q9Y0WPJcyu5neJ0I
-         xI+6dNyVxOBv8Sb59l7s8bGT6cZjVO0Rjf15EBYpetACKYRGRpZkKcnph556gZo8r4rC
-         d5rhvmY+1EO/V10zolgfFvrrSyDEY0GyXSWjIZ8sMp5TAo5bkL64v+NZu0UTu7AEmjAf
-         YG7w==
+        bh=FrRZy7k+hmkP8Lh2Yg15UQkRzZXm3nQe96En0tZmJVk=;
+        b=EqMoIRhrmVeXCNMWfkwK41ZjdYG/lVPlDVRRQoVS+0hToVID+a03nbL9URFXFRIXc2
+         T0mj1y4KoExpfH2ZdS/cPnZ4UD7ECvsw/zEKt2/lkEN42ZB3sCPDiepJHXW71otQUB/P
+         BtChxmqWB8MQbrPApetkyW1b9R4dU84j/Ei5iXvJ5l+8ECaa9EYdAMBXpz4ZvTtI/zyf
+         FdFhNhfbKdfyQsDTvu/glrDUiK05i5IJ50QDJ5Ng1aM8lEa66HNi3wYQicnE2iGu1m4z
+         hZYHAdMJzOIT/iy3sOrvyggl3WNoyU5FFxELfSao7aiQoppVG4K+G7VY9QVM3mTSHidw
+         0A8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683910620; x=1686502620;
+        d=1e100.net; s=20221208; t=1683910690; x=1686502690;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KoFgSe/dfR9cPbJoIcRRFNKD0IGyc+Tftfo8TVK6UiY=;
-        b=d3LHPg2LBhVN6sfmV36BUjsvmcriS8zqV656KtKkYaDijxpZoc/bMi5kzpo9rITkZ1
-         unmH3PttUI+YPSmIPo5ly7JueX7Ep4WRuRvHwzNeeNtpcEgtiGTdd/HR+xHSImMcnnbH
-         0vUTTOWGdKhjcbhTCKvCfo2V9IXieWLmoH/U6s+Ft7FHPuQatu2UwN8P87AatWHhX9uB
-         UIpsiUw8LJmbE1C4sKJkwcMFmqxfaw0c4Op0heyreYzJyGjsbU2R2VLeFn7TaiPMxVmw
-         hS46/ZVfvFzhVwu4E/9grl2v9KcpJowrT1qKi7W6p9yLPOLq7QgUr0hjuczDiFIk1btg
-         1aGg==
-X-Gm-Message-State: AC+VfDwA+YeaszqxmdSBLH/cCHDRlnxYCKJFWRfXW4jiMo8hjozzT+w6
-        dH4XGo85RdV6rWYlra66Lt3U4Q==
-X-Google-Smtp-Source: ACHHUZ642+iMIpj37OuG39p+YvMxP3rY6+4CTIA5tKpoMZsQWgp/MuqvAyro2dqBQ2CctZ01VjN1jg==
-X-Received: by 2002:a17:907:2d11:b0:96a:8c13:8dc0 with SMTP id gs17-20020a1709072d1100b0096a8c138dc0mr4959132ejc.37.1683910620061;
-        Fri, 12 May 2023 09:57:00 -0700 (PDT)
+        bh=FrRZy7k+hmkP8Lh2Yg15UQkRzZXm3nQe96En0tZmJVk=;
+        b=NS8t0cB2nQEXJDMzEXDyiqr1c52r9O4Vg0VB2kAbqkHPA90PFll6pb9mbAKXIHzEqz
+         yztW3OvkLcFMWt+I2siSLUanaS9fCT2MWH4N/N573SB1SJzMXsSCRkhlToIM5pfzGC7N
+         knbnErvvEndVRcNTz/b6KCa+j3qY8I+byFPXLk7X8DXjVhc2Ve0DH+h69VBcibStwewG
+         6K10abHzCy6hXBnWfUXeFq/z3kpc95e8wedmYXqpqKI2AyCiCdHTmvFKsPOwd8owaHpJ
+         9X3rFH3mmcZdyWRL4X06u4sP1vQK3vCXLA1iyr4JckZ9aQxYks5huol9mU5HJ16O5Eqg
+         +kUw==
+X-Gm-Message-State: AC+VfDx3b6u/qe1DoG5t6AFWNwpy2fUVk3dazetGw/qiWeGXrehKHHFP
+        pS4VxonnKPS6gCkeXuaQiaeRqQ==
+X-Google-Smtp-Source: ACHHUZ4lobmym7CtlyCou9QfIUS9xOfNDTTYSye6rra7MQiJSJ/zTzraaCZsx976hm7f2OIZ1vQRMA==
+X-Received: by 2002:a17:907:5c5:b0:959:af74:4cf7 with SMTP id wg5-20020a17090705c500b00959af744cf7mr22337129ejb.70.1683910690031;
+        Fri, 12 May 2023 09:58:10 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:7ede:fc7b:2328:3883? ([2a02:810d:15c0:828:7ede:fc7b:2328:3883])
-        by smtp.gmail.com with ESMTPSA id h10-20020a1709070b0a00b00965ac1510f8sm5626529ejl.185.2023.05.12.09.56.59
+        by smtp.gmail.com with ESMTPSA id v16-20020a170906381000b009545230e682sm5630387ejc.91.2023.05.12.09.58.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 May 2023 09:56:59 -0700 (PDT)
-Message-ID: <4766aabc-9b03-3241-82e3-8c4799ea7978@linaro.org>
-Date:   Fri, 12 May 2023 18:56:58 +0200
+        Fri, 12 May 2023 09:58:09 -0700 (PDT)
+Message-ID: <576327d2-14e0-36fc-a758-660cdcacc340@linaro.org>
+Date:   Fri, 12 May 2023 18:58:08 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v3 02/10] dt-bindings: nvmem: qfprom: Add compatible for
- QDU1000/QRU1000
+Subject: Re: [PATCH v3 03/10] arm64: dts: qcom: qdu1000: Add properties to
+ qfprom for multi channel DDR
 Content-Language: en-US
 To:     Komal Bajaj <quic_kbajaj@quicinc.com>,
         Andy Gross <agross@kernel.org>,
@@ -68,9 +68,9 @@ To:     Komal Bajaj <quic_kbajaj@quicinc.com>,
 Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org
 References: <20230512122134.24339-1-quic_kbajaj@quicinc.com>
- <20230512122134.24339-3-quic_kbajaj@quicinc.com>
+ <20230512122134.24339-4-quic_kbajaj@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230512122134.24339-3-quic_kbajaj@quicinc.com>
+In-Reply-To: <20230512122134.24339-4-quic_kbajaj@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,26 +84,39 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 12/05/2023 14:21, Komal Bajaj wrote:
-> Document the QFPROM on QDU1000/QRU1000 SOCs.
+> Add properties to the qfprom node for multi channel DDR.
 > 
 > Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
+
+DTS goes to the end of patchset. Better - to separate patchset with
+links to bindings.
+
+Subject: drop redundant pieces, it's too long without actual need.
+"properties to" can be skipped.
+
 > ---
->  Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  arch/arm64/boot/dts/qcom/qdu1000.dtsi | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
-> index 8d8503dd934b..59082f6e8c9f 100644
-> --- a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
-> +++ b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
-> @@ -26,6 +26,7 @@ properties:
->            - qcom,msm8996-qfprom
->            - qcom,msm8998-qfprom
->            - qcom,qcs404-qfprom
-> +          - qcom,qdu1000-qfprom
+> diff --git a/arch/arm64/boot/dts/qcom/qdu1000.dtsi b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
+> index 734438113bba..418644f396bc 100644
+> --- a/arch/arm64/boot/dts/qcom/qdu1000.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
+> @@ -1333,6 +1333,18 @@
+>  			interrupts = <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>;
+>  			multi-ch-bit-off = <24 2>;
+>  		};
+> +
+> +		qfprom: efuse@221c8000 {
+> +			compatible = "qcom,qdu1000-qfprom", "qcom,qfprom";
+> +			reg = <0 0x221c8000 0 0x1000>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +
+> +			multi_chan_ddr: multi_chan_ddr@12b {
 
-Above qcs, to keep alphabetical order.
+No underscores in node names.
 
-That's a new patch? Nothing in changelog suggested it...
 
 
 Best regards,
