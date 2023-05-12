@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D6798700CF0
-	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 18:25:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81693700CF2
+	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 18:25:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232181AbjELQZ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S232224AbjELQZ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Fri, 12 May 2023 12:25:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54960 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231608AbjELQZ1 (ORCPT
+        with ESMTP id S231864AbjELQZ1 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 12:25:27 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A39B646A5
-        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 09:25:24 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-50b383222f7so15071825a12.3
-        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 09:25:24 -0700 (PDT)
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38D1C5B90
+        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 09:25:26 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-50bd37ca954so91199283a12.0
+        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 09:25:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683908723; x=1686500723;
+        d=linaro.org; s=google; t=1683908724; x=1686500724;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=o8Vpo2Jow16tTvLpB1BAyUoXf/oVQLicLfPhZQQL2iY=;
-        b=EvCTIfLLl3tu6txxsj1jBkd2imFPgNwyWj7Q+QWu+DffLJ2SDP9EEmkmO49icd+Fyz
-         xoqpsmr3+5Uw4EOGGAxSzZXB7Y5IWeCEt9j/0e/5/CtYYZXM1hj9QlmXT9Z3/1Wzy4JW
-         lAyAfalEMmCH1IXXnIgvnL/lBpytkhTFAFP4lHwwGPSfxCPV2P6pjkhxGUDJ9gndMZFf
-         3NGon03xYGtIOQza64IhOGzpeBjRx1EVF4T8MqutECoNWVo9Qm6osRj4UBOnHS7jPGLd
-         Lya0+dwhmX+1cBwSJUfEXzzKiuzlL30Dsz/G79hoTzwC6oGfkBNVz1ZX9fU2SqwvPXsm
-         iEOA==
+        bh=EsVPpvkl9SHbw6j0uhgbjYiOesslFOYL/l/KTorV/LM=;
+        b=Hpzxp6CeADTsP1lr6v+Vpiq6GrsO/+8GPg55tiUQMklEMCp3Nr4ZxbgL0l46/maHRC
+         m6Sj/7934CRGfz4Q1AZyCIcJx5Amni7A1v3sPFD1LQ0AKMTi3h4+zwNxz2eKi6xnqbba
+         ZS4tMk60l9fpT/byLq9f/BSsjXu3c+aahU/4kA5xB2epTbtm26oN/rCH+AvKunJHqXDn
+         4XHquLhhEIYvvYacmHqcV8RiZqy9GO4TaUEoKiCMOc7oowMYDEO3cQDzwn05ynDLPFVc
+         1magCqCqG9+jgXImWtM1hJBfVIHh76ne0/+WOYFOqcz7ODfPG0c9fcY3zgk7A8F7l/v9
+         bSDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683908723; x=1686500723;
+        d=1e100.net; s=20221208; t=1683908724; x=1686500724;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=o8Vpo2Jow16tTvLpB1BAyUoXf/oVQLicLfPhZQQL2iY=;
-        b=YA8pqMZV+TcPugAEJwPKuYXwZKxCspnEs9KW2UILEiSBnIq5pIE1nnePqSZNyJjqbG
-         wI+sZDIUjeWgDtft7HODwpxVCAEWg9Ey99fLr8kowl4fXenASmEs7Pi31TUmLfR3YWTN
-         IHWTqcPN7zIMmr1poXWisx60R0TifkcHs6fTBV/QURvpSRgB5UYLDnRuiBB0JQP+qQrE
-         D+tAgr5N2vVwbhFPR2KT4GHtJvoWOAkYPZDrdbggC3NDMts6WExRa93AG2IPl9aFgW0H
-         CmUDT2mtNYyj2TpaKf+ftQc+Bib7I/Fn+xJ1D1sL0zXkVWCxrokX5B8nDm0JX+68LIZ6
-         6hLA==
-X-Gm-Message-State: AC+VfDy4vN4iQer3D8BtIP3AUYc31cJfOIv03MvBtcgSXehU/cys+6gj
-        jt2kF/cyis9MyUuue4Kdo8g2QQ==
-X-Google-Smtp-Source: ACHHUZ52MOF5+sFRcmlq51wY2NeIrwwBRri0aFmEMbrRTi5DNlYhpCnV5koplj8nrcA2LoSmJgHf6g==
-X-Received: by 2002:a05:6402:b09:b0:50d:889e:8d35 with SMTP id bm9-20020a0564020b0900b0050d889e8d35mr16257630edb.7.1683908723143;
-        Fri, 12 May 2023 09:25:23 -0700 (PDT)
+        bh=EsVPpvkl9SHbw6j0uhgbjYiOesslFOYL/l/KTorV/LM=;
+        b=BK7MQJgpFofObIOdq1fpo00ZzNQT8+l75DpqaKdDt03s8BklWrKAyEPjw372WfcGfP
+         CSXrHCueQf/ex1QG+z/BnunHzwsbDZ2oaOGwAnW/6olfLqb5aEavpIliXA0x9kR9qW1a
+         FmyvxpypLuehhIKG2GiAVY8hUOm/c4OeV4p2OviwKx89mj1GCPlRmeWtPLGggZz1XeKp
+         PE21uir7UXyo/VD+GdCEmiUYe2BVCG8+wfVePDcm+v4v+LgjCTuOY/eEcD732qO/BcU+
+         p+/Dpmu5oYKf111ooSYIha02EbHXCFsw8keCwrpZJzFnlBMdKSfaKYDEzipMxlU1wuA/
+         LZ7g==
+X-Gm-Message-State: AC+VfDyshBJfPO02kMh2IfRgBNzkPmppsQ49l4WA9SX2SqACE6dy8N/i
+        1cCFLw6Go7wcWzemEKmd4NuFvg==
+X-Google-Smtp-Source: ACHHUZ4aIsHlp3QLHKLbVsZYuuWXiERXPitUb8hZdpEnOzuGdmu9qKt5hBFCxICctwTWwnUv4+F43g==
+X-Received: by 2002:a05:6402:3587:b0:50c:1603:654 with SMTP id y7-20020a056402358700b0050c16030654mr23038598edc.16.1683908724657;
+        Fri, 12 May 2023 09:25:24 -0700 (PDT)
 Received: from krzk-bin.. ([2a02:810d:15c0:828:7ede:fc7b:2328:3883])
-        by smtp.gmail.com with ESMTPSA id r23-20020aa7da17000000b00506987c5c71sm4144116eds.70.2023.05.12.09.25.21
+        by smtp.gmail.com with ESMTPSA id r23-20020aa7da17000000b00506987c5c71sm4144116eds.70.2023.05.12.09.25.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 May 2023 09:25:22 -0700 (PDT)
+        Fri, 12 May 2023 09:25:24 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -70,12 +70,12 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: (subset) [PATCH 04/40] dt-bindings: pinctrl: qcom,ipq9574-tlmm: simplify with unevaluatedProperties
-Date:   Fri, 12 May 2023 18:25:15 +0200
-Message-Id: <168390871587.209400.8810729198013675037.b4-ty@linaro.org>
+Subject: Re: (subset) [PATCH 18/40] dt-bindings: pinctrl: qcom,qcm2290-tlmm: simplify with unevaluatedProperties
+Date:   Fri, 12 May 2023 18:25:16 +0200
+Message-Id: <168390871588.209400.13150711518665583777.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230407184546.161168-4-krzysztof.kozlowski@linaro.org>
-References: <20230407184546.161168-1-krzysztof.kozlowski@linaro.org> <20230407184546.161168-4-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230407184546.161168-18-krzysztof.kozlowski@linaro.org>
+References: <20230407184546.161168-1-krzysztof.kozlowski@linaro.org> <20230407184546.161168-18-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -90,7 +90,7 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Fri, 07 Apr 2023 20:45:10 +0200, Krzysztof Kozlowski wrote:
+On Fri, 07 Apr 2023 20:45:24 +0200, Krzysztof Kozlowski wrote:
 > All Qualcomm SoC Top Level Mode Multiplexer pin controllers have similar
 > capabilities regarding pin properties, thus we can just accept entire
 > set provided by qcom,tlmm-common.yaml schema.
@@ -99,8 +99,8 @@ On Fri, 07 Apr 2023 20:45:10 +0200, Krzysztof Kozlowski wrote:
 
 Applied, thanks!
 
-[04/40] dt-bindings: pinctrl: qcom,ipq9574-tlmm: simplify with unevaluatedProperties
-        https://git.kernel.org/krzk/linux-dt/c/8625372628afd9627a28427427037e2b13b75949
+[18/40] dt-bindings: pinctrl: qcom,qcm2290-tlmm: simplify with unevaluatedProperties
+        https://git.kernel.org/krzk/linux-dt/c/f69ba355d32e50a19f37ae6c3a7ee56cfae3e6d8
 
 Best regards,
 -- 
