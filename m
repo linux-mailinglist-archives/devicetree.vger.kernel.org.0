@@ -2,64 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86314700428
-	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 11:43:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AFB0700470
+	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 11:58:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240626AbjELJn5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 May 2023 05:43:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39898 "EHLO
+        id S240562AbjELJ62 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 May 2023 05:58:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240706AbjELJnW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 05:43:22 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E44212096;
-        Fri, 12 May 2023 02:42:47 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C26006544E;
-        Fri, 12 May 2023 09:42:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2264DC433D2;
-        Fri, 12 May 2023 09:42:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1683884535;
-        bh=yqkBQksJWz1nlhMBFkdu1oRQeM3teRj2O0GKq5+R+aM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=o8edDh7r/NmPz6oH0En6zvc+pERhzP/szGDcpodzH8nGrPlczmrOFvRWeJpHd+DBT
-         P+khlYEo+67V5hxKtt+BLWRWtLN6vhkAy1fMdMWikpUGC7Zzj3gSIg8dZCc43iKBcV
-         XWArDtvALWhpxMCQnoEyj7TafjPNNKkdAR162u9GdW4cplUNBuD8vVIurX1BV/KyVn
-         mZ1tvbzhADIYiIiQCpxJNsBpc1wEwGc3o+OGg81UZwzn8xntR7d3NeZg6Ni8OOP4tN
-         fNsE2t+sootR8+Q2f6taAtj4APLe9zrznhWa/893tnMA6/YWPtNSqd29FgmURGhy/R
-         tDy7jy+LavakQ==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1pxPIQ-0003Ev-Tz; Fri, 12 May 2023 11:42:42 +0200
-Date:   Fri, 12 May 2023 11:42:42 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Steev Klimaszewski <steev@kali.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Johan Hovold <johan+linaro@kernel.org>
-Subject: Re: [PATCH v2 8/8] arm64: dts: qcom: sc8280xp-x13s: Add QMP to
- SuperSpeed graph
-Message-ID: <ZF4KErG3G6Svj5LA@hovoldconsulting.com>
-References: <20230510031930.1996020-1-quic_bjorande@quicinc.com>
- <20230510031930.1996020-9-quic_bjorande@quicinc.com>
+        with ESMTP id S240114AbjELJ6T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 05:58:19 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E01911B6D;
+        Fri, 12 May 2023 02:58:01 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id CFD3E24E16F;
+        Fri, 12 May 2023 17:56:41 +0800 (CST)
+Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 12 May
+ 2023 17:57:53 +0800
+Received: from [192.168.125.131] (113.72.146.187) by EXMBX061.cuchost.com
+ (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 12 May
+ 2023 17:57:52 +0800
+Message-ID: <be85aa2a-c72c-5272-ee40-f1265768e7b3@starfivetech.com>
+Date:   Fri, 12 May 2023 17:56:16 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230510031930.1996020-9-quic_bjorande@quicinc.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v4 3/7] dt-bindings: clock: jh7110-syscrg: Add PLL clock
+ inputs
+Content-Language: en-US
+To:     Conor Dooley <conor.dooley@microchip.com>
+CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Conor Dooley <conor@kernel.org>,
+        "Emil Renner Berthing" <kernel@esmil.dk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        William Qiu <william.qiu@starfivetech.com>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
+References: <20230512022036.97987-1-xingyu.wu@starfivetech.com>
+ <20230512022036.97987-4-xingyu.wu@starfivetech.com>
+ <20230512-uproar-external-49a9e793fbc4@wendy>
+ <91e4fd3c-20cb-724b-c9a8-e038600aabb7@starfivetech.com>
+ <20230512-backlit-radiated-ded0b38b4a94@wendy>
+From:   Xingyu Wu <xingyu.wu@starfivetech.com>
+In-Reply-To: <20230512-backlit-radiated-ded0b38b4a94@wendy>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [113.72.146.187]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX061.cuchost.com
+ (172.16.6.61)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -68,19 +70,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 09, 2023 at 08:19:30PM -0700, Bjorn Andersson wrote:
-> Following the CRD, connect the two QMP phys inbetween the USB Type-C
-> connectors and the DisplayPort controller, to handle orientation
-> switching.
+On 2023/5/12 17:35, Conor Dooley wrote:
+> On Fri, May 12, 2023 at 04:07:47PM +0800, Xingyu Wu wrote:
+>> On 2023/5/12 14:47, Conor Dooley wrote:
+>> > On Fri, May 12, 2023 at 10:20:32AM +0800, Xingyu Wu wrote:
+>> >> Add PLL clock inputs from PLL clock generator.
+>> >> 
+>> >> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> >> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+>> >> ---
+>> >>  .../clock/starfive,jh7110-syscrg.yaml         | 20 +++++++++++++++++--
+>> >>  1 file changed, 18 insertions(+), 2 deletions(-)
+>> > 
+>> > /tmp/tmp.KDlzwQM5ma/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.3b.dtb: clock-controller@13020000: clocks: 'oneOf' conditional failed, one must be fixed:
+>> > 	[[19], [20], [21], [22], [23], [24], [25], [26], [27]] is too short
+>> > 	From schema: /Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
+>> > /tmp/tmp.KDlzwQM5ma/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.3b.dtb: clock-controller@13020000: clock-names: 'oneOf' conditional failed, one must be fixed:
+>> > 	['osc', 'gmac1_rmii_refin', 'gmac1_rgmii_rxin', 'i2stx_bclk_ext', 'i2stx_lrck_ext', 'i2srx_bclk_ext', 'i2srx_lrck_ext', 'tdm_ext', 'mclk_ext'] is too short
+>> > 	'i2stx_bclk_ext' was expected
+>> > 	'i2stx_lrck_ext' was expected
+>> > 	'i2srx_bclk_ext' was expected
+>> > 	'i2srx_lrck_ext' was expected
+>> > 	'tdm_ext' was expected
+>> > 	'mclk_ext' was expected
+>> > 	'pll0_out' was expected
+>> > 	From schema: /Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
+>> > /tmp/tmp.KDlzwQM5ma/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.2a.dtb: clock-controller@13020000: clocks: 'oneOf' conditional failed, one must be fixed:
+>> > 	[[19], [20], [21], [22], [23], [24], [25], [26], [27]] is too short
+>> > 	From schema: Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
+>> > /tmp/tmp.KDlzwQM5ma/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.2a.dtb: clock-controller@13020000: clock-names: 'oneOf' conditional failed, one must be fixed:
+>> > 	['osc', 'gmac1_rmii_refin', 'gmac1_rgmii_rxin', 'i2stx_bclk_ext', 'i2stx_lrck_ext', 'i2srx_bclk_ext', 'i2srx_lrck_ext', 'tdm_ext', 'mclk_ext'] is too short
+>> > 	'i2stx_bclk_ext' was expected
+>> > 	'i2stx_lrck_ext' was expected
+>> > 	'i2srx_bclk_ext' was expected
+>> > 	'i2srx_lrck_ext' was expected
+>> > 	'tdm_ext' was expected
+>> > 	'mclk_ext' was expected
+>> > 	'pll0_out' was expected
+>> > 	Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
+>> > 
+>> > This binding change is incompatible with the existing devicetrees for
+>> > the visionfive 2.
+>> 
+>> This looks like less clocks about PLL in SYSCRG node. And I add this in patch 7.
 > 
-> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> Tested-by: Abel Vesa <abel.vesa@linaro.org>
-> Tested-by: Steev Klimaszewski <steev@kali.org>
-> Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on HDK8450
-> Tested-by: Johan Hovold <johan+linaro@kernel.org>	# X13s
-> ---
-> 
-> Changes since v1:
-> - None
+> The existing devicetree is a valid, albeit limited, description of the
+> hardware.
+> After your changes to the clock driver in this series, but *without* the
+> changes to the devicetrees, does the system still function?
+> From a quick check of 4/7, it looks like it will not?
 
-Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
+I just tested it on the board and the system still worked without the changes
+about devicetree. But these clocks' rate were 0 because these could not get
+the PLL clocks from devicetree.
+
+Best regards,
+Xingyu Wu
