@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38BCD700508
-	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 12:15:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE853700513
+	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 12:18:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240482AbjELKPU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 May 2023 06:15:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43892 "EHLO
+        id S240526AbjELKR6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 May 2023 06:17:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229670AbjELKPT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 06:15:19 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BCB4D2CC
-        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 03:14:56 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-3078d1c8828so6727833f8f.3
-        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 03:14:56 -0700 (PDT)
+        with ESMTP id S240508AbjELKR5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 06:17:57 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D951310FB
+        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 03:17:55 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-30639daee76so6356178f8f.1
+        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 03:17:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683886494; x=1686478494;
+        d=linaro.org; s=google; t=1683886674; x=1686478674;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=YHnhA3bsFZjXjI2KBvdNTkEA6cTI4PkTEh92A9BH1zM=;
-        b=S8PGo4cc5Tz3LuPdUzGu4UWFwpneiq8+NePyuExEpbZppz9MgmNbLXYf33dvKz0YLo
-         d4/qmKqyLjzw6a3BU2WKQvlqXn4gifQN24rDWez4wTBHJ2tapij7WUx7/4cvj6mF/M5b
-         ZB532RByd26rQWs4+HeLmm2+QloO6j/7mklzHVfrD4m+iRGkphjlUfGTX/bTlDqAZwwp
-         2ao3ae5gelXdnq99DEPoH2kEqq7TGn38vRmQprgTbA87YYp/8JoiwvleLwhOcvKQBy6O
-         j/godrhrygCcvOf8aX0UW2wMgNx4vQr0eOin1sGzJ07L7h+HnHohC8jMDV0Mve0tQ0MQ
-         LjEw==
+        bh=14BJIVNMULvhbAa0IJTwVfQ7hLurTBIHPZW7PjkOaVo=;
+        b=m2GjFHJp3L+cd9d3hGN4nHKQtF447dleqW6dVU0mLF5QhG6X7nDyRw9/ubCErmyDoW
+         C4qeM2JSjRv/MA+gXisM1hgky1EumqjImqb2SsWwySSCLEfTFyqp/2zg2z6wfoQbo9Sw
+         dxu5dhk+afgKtozHKPFxG9zMWdfMVsmG62SAZSrmKuRy5LrMd41GHRK1E0LE0IFT9gU9
+         JrRuvAaeKdvKywhK6LmI2bWVdKqPWeszpVSFaFJ6GKDsEBk4Xv0rlYZO3ewsXQbVsZvx
+         VK1FKPc1S8arPxXdMgLjOcYHE/psbNSC34JarSN7vp+PdnJM8OLVA2c37kD5ByYOML1I
+         7mdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683886494; x=1686478494;
+        d=1e100.net; s=20221208; t=1683886674; x=1686478674;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YHnhA3bsFZjXjI2KBvdNTkEA6cTI4PkTEh92A9BH1zM=;
-        b=EXQImeLgxZXDR3DRKhykmuCtw50wt+/hsRkV9Ck4RoR1Yy+QESxKKUczIbwT9Xx6d9
-         m/9bxVTkW7apz7TrObZMMjBFwFNFKKJQFdjZg1dcmjp/OvG3YYduijVZvRFbO30KIGRK
-         VxHPVaHsVqm9aR1tmzMSBaWsKNIf+AQKE0mAEDRB519HrL64Cy87wAu9wlQsydxRO4MN
-         Lf1qY6KJPSyqAJt79G+bMCYun2yMLbqmsBQi5R6dSFRiZ3XSK4NCU5Q1uTJyUy4Avh+y
-         zNY05/iKNq0rViFOjNd3bJW4lzqe0IYEaNHh/uaUCliDErbpZdxoaJ71rEJIJPb+QMpw
-         aA0g==
-X-Gm-Message-State: AC+VfDy8O4rW2BlyIV5otzhtdC3DD3nbEuD6vJ2+QM/LrqxuOGSxlqCV
-        BqR9XtuPWsv3E/G48go4srGX/6KG4SjYjWCtKnA=
-X-Google-Smtp-Source: ACHHUZ6SwFMkMNcp6yW+rNENGPX7CBBWtFxzW+G296zfPURSmofZ5GhZUA/Pxczsz5Ob23whxcz/rA==
-X-Received: by 2002:a05:6000:1191:b0:306:462a:b78d with SMTP id g17-20020a056000119100b00306462ab78dmr15388534wrx.53.1683886494530;
-        Fri, 12 May 2023 03:14:54 -0700 (PDT)
+        bh=14BJIVNMULvhbAa0IJTwVfQ7hLurTBIHPZW7PjkOaVo=;
+        b=cxpeN+R/15NfHa2kagboDFMXAyX+7H6X36VXel1Xjs0rKM63jW1xrlEOsloIrTMAJv
+         N4MS0TxgfU4A+k8Bp7/+47unUS68Ssyy7i35L2uNBEVjtv9u02ur5EOXTvvfDx0YEWBZ
+         pzEBmA+zg+cQRI5bZ1zjA8k/ktXZR60D1zHZDbPtFAZ4LCVp3KaGeLfyYzHJtPtqSj0P
+         dXpAO81zXxGoCVl2Ks4byMSHx0uJuZeSy556al7vzoWlQQ2KG801kVjIutuUVcKzsvxR
+         GqdvRPdW0WmaZs5UYaSeE7+rtFqqE5XnNx0mqfjNRvYnG77BAzDpe+55ZFcbD4edhZID
+         Yi4Q==
+X-Gm-Message-State: AC+VfDzhPw5XkXqRapsHm2YrC0+I65Hh6jdQ0qTFN0fITaERG3/BeSFM
+        iqWV1k9ZousAFdif8RY+pkt9K4s26xttL8w9nd4=
+X-Google-Smtp-Source: ACHHUZ7Nl4tlDQMNUHZVBv7fk43XYLJwOflZ3jsWjnvqzd5OWriCsZwDUTX6lXf5yUaigorw8h9FXQ==
+X-Received: by 2002:a5d:5503:0:b0:306:2d3d:a108 with SMTP id b3-20020a5d5503000000b003062d3da108mr17239296wrv.11.1683886674383;
+        Fri, 12 May 2023 03:17:54 -0700 (PDT)
 Received: from [192.168.1.195] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id h8-20020a1ccc08000000b003f17eaae2c9sm28317794wmb.1.2023.05.12.03.14.53
+        by smtp.googlemail.com with ESMTPSA id k1-20020a7bc301000000b003eddc6aa5fasm28401011wmj.39.2023.05.12.03.17.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 May 2023 03:14:53 -0700 (PDT)
-Message-ID: <68aa0f6d-db89-8e01-264d-95d3839fb648@linaro.org>
-Date:   Fri, 12 May 2023 11:14:51 +0100
+        Fri, 12 May 2023 03:17:53 -0700 (PDT)
+Message-ID: <3c98ed14-11cc-a4ba-16b9-1aea1c7ba255@linaro.org>
+Date:   Fri, 12 May 2023 11:17:51 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH V2 1/3] dt-bindings: nvmem: brcm,nvram: add
- #nvmem-cell-cells for MACs
+Subject: Re: [PATCH V2 2/3] nvmem: brcm_nvram: add .read_post_process() for
+ MACs
 Content-Language: en-US
 To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -65,17 +65,17 @@ Cc:     Florian Fainelli <f.fainelli@gmail.com>,
         linux-arm-kernel@lists.infradead.org,
         bcm-kernel-feedback-list@broadcom.com,
         linux-kernel@vger.kernel.org,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Rob Herring <robh@kernel.org>
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
 References: <20230421084312.27932-1-zajec5@gmail.com>
+ <20230421084312.27932-2-zajec5@gmail.com>
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20230421084312.27932-1-zajec5@gmail.com>
+In-Reply-To: <20230421084312.27932-2-zajec5@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -87,66 +87,81 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 21/04/2023 09:43, Rafał Miłecki wrote:
 > From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> Broadcom's NVRAM contains MACs for Ethernet interfaces. Those MACs are
-> usually base addresses that are also used for calculating other MACs.
-> 
-> For example if a router vendor decided to use gmac0 it most likely
-> programmed NVRAM of each unit with a proper "et0macaddr" value. That is
-> a base.
-> 
-> Ethernet interface is usually connected to switch port. Switch usually
-> includes few LAN ports and a WAN port. MAC of WAN port gets calculated
-> as relative address to the interface one. Offset varies depending on
-> device model.
-> 
-> Wireless MACs may also need to be calculated using relevant offsets.
-> 
-> To support all those scenarios let MAC NVMEM cells be referenced with an
-> index specifying MAC offset. Disallow additionalProperties while at it.
+> 1. Parse ASCII MAC format into byte based
+> 2. Calculate relative addresses based on index argument
 > 
 > Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> Reviewed-by: Rob Herring <robh@kernel.org>
 > ---
 
 Applied thanks,
 
 --srini
-> V2: Add additionalProperties: false
-> ---
->   .../devicetree/bindings/nvmem/brcm,nvram.yaml     | 15 +++++++++++++++
->   1 file changed, 15 insertions(+)
+>   drivers/nvmem/Kconfig      |  1 +
+>   drivers/nvmem/brcm_nvram.c | 28 ++++++++++++++++++++++++++++
+>   2 files changed, 29 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/nvmem/brcm,nvram.yaml b/Documentation/devicetree/bindings/nvmem/brcm,nvram.yaml
-> index 36def7128fca..13412af7f046 100644
-> --- a/Documentation/devicetree/bindings/nvmem/brcm,nvram.yaml
-> +++ b/Documentation/devicetree/bindings/nvmem/brcm,nvram.yaml
-> @@ -36,14 +36,29 @@ properties:
->     et0macaddr:
->       type: object
->       description: First Ethernet interface's MAC address
-> +    properties:
-> +      "#nvmem-cell-cells":
-> +        description: The first argument is a MAC address offset.
-> +        const: 1
-> +    additionalProperties: false
+> diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
+> index b291b27048c7..688b70ba4826 100644
+> --- a/drivers/nvmem/Kconfig
+> +++ b/drivers/nvmem/Kconfig
+> @@ -55,6 +55,7 @@ config NVMEM_BRCM_NVRAM
+>   	tristate "Broadcom's NVRAM support"
+>   	depends on ARCH_BCM_5301X || COMPILE_TEST
+>   	depends on HAS_IOMEM
+> +	select GENERIC_NET_UTILS
+>   	help
+>   	  This driver provides support for Broadcom's NVRAM that can be accessed
+>   	  using I/O mapping.
+> diff --git a/drivers/nvmem/brcm_nvram.c b/drivers/nvmem/brcm_nvram.c
+> index 39aa27942f28..4567c597c87f 100644
+> --- a/drivers/nvmem/brcm_nvram.c
+> +++ b/drivers/nvmem/brcm_nvram.c
+> @@ -4,6 +4,8 @@
+>    */
 >   
->     et1macaddr:
->       type: object
->       description: Second Ethernet interface's MAC address
-> +    properties:
-> +      "#nvmem-cell-cells":
-> +        description: The first argument is a MAC address offset.
-> +        const: 1
-> +    additionalProperties: false
+>   #include <linux/bcm47xx_nvram.h>
+> +#include <linux/etherdevice.h>
+> +#include <linux/if_ether.h>
+>   #include <linux/io.h>
+>   #include <linux/mod_devicetable.h>
+>   #include <linux/module.h>
+> @@ -42,6 +44,25 @@ static int brcm_nvram_read(void *context, unsigned int offset, void *val,
+>   	return 0;
+>   }
 >   
->     et2macaddr:
->       type: object
->       description: Third Ethernet interface's MAC address
-> +    properties:
-> +      "#nvmem-cell-cells":
-> +        description: The first argument is a MAC address offset.
-> +        const: 1
-> +    additionalProperties: false
+> +static int brcm_nvram_read_post_process_macaddr(void *context, const char *id, int index,
+> +						unsigned int offset, void *buf, size_t bytes)
+> +{
+> +	u8 mac[ETH_ALEN];
+> +
+> +	if (bytes != 3 * ETH_ALEN - 1)
+> +		return -EINVAL;
+> +
+> +	if (!mac_pton(buf, mac))
+> +		return -EINVAL;
+> +
+> +	if (index)
+> +		eth_addr_add(mac, index);
+> +
+> +	ether_addr_copy(buf, mac);
+> +
+> +	return 0;
+> +}
+> +
+>   static int brcm_nvram_add_cells(struct brcm_nvram *priv, uint8_t *data,
+>   				size_t len)
+>   {
+> @@ -75,6 +96,13 @@ static int brcm_nvram_add_cells(struct brcm_nvram *priv, uint8_t *data,
+>   		priv->cells[idx].offset = value - (char *)data;
+>   		priv->cells[idx].bytes = strlen(value);
+>   		priv->cells[idx].np = of_get_child_by_name(dev->of_node, priv->cells[idx].name);
+> +		if (!strcmp(var, "et0macaddr") ||
+> +		    !strcmp(var, "et1macaddr") ||
+> +		    !strcmp(var, "et2macaddr")) {
+> +			priv->cells[idx].raw_len = strlen(value);
+> +			priv->cells[idx].bytes = ETH_ALEN;
+> +			priv->cells[idx].read_post_process = brcm_nvram_read_post_process_macaddr;
+> +		}
+>   	}
 >   
->   unevaluatedProperties: false
->   
+>   	return 0;
