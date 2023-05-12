@@ -2,101 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 396C6700CC3
-	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 18:18:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C800700CCC
+	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 18:18:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229482AbjELQST (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 May 2023 12:18:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51122 "EHLO
+        id S231449AbjELQSh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 May 2023 12:18:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229447AbjELQSS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 12:18:18 -0400
-Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE3FF19A6;
-        Fri, 12 May 2023 09:18:17 -0700 (PDT)
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-        by mx0a-001ae601.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34CF0mCP031838;
-        Fri, 12 May 2023 11:18:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=PODMain02222019;
- bh=cYDZFBjy9xn0CeTo2bB3Xkf+o7JVqsijVPAIa/NvjQ4=;
- b=HnkKmBnvrttAdUDiM9W1SJNOa40uZpodP+TjixTD0o4bn664DEStR4IGc/eJKrNH5hH+
- WgCImN9/5vnrkSo28NtbPzA/PXnDVFiFMHEi6SaggnGHBN/jHwY7fE83EiZ8OC6UBqqc
- KZ/KLYG4Qo4Iid24Z4J6JGfeXywaJbvNHRkshYEKuxPBnHCBuPma3DzKNfD7lpi+S6Wk
- R69APWtrZ7MDaJI9kmXKrTLOWeKvaQgrz0+ZpLmO5BHqhqNPR3pcr7jQshZv/kdwdBkt
- SoqffvcF3n4dwLz9lA+Qe2oT0n7P2cFO97pSz6osEZqZ/G/QzwaTSpDdOTf3a6zvJJ5n tg== 
-Received: from ediex02.ad.cirrus.com ([84.19.233.68])
-        by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3qf7nb5qaf-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 12 May 2023 11:18:05 -0500
-Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.26; Fri, 12 May
- 2023 11:18:03 -0500
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by
- anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Fri, 12 May 2023 11:18:03 -0500
-Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 7E57445;
-        Fri, 12 May 2023 16:18:03 +0000 (UTC)
-Date:   Fri, 12 May 2023 16:18:03 +0000
-From:   Charles Keepax <ckeepax@opensource.cirrus.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     <broonie@kernel.org>, <lee@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <tglx@linutronix.de>, <maz@kernel.org>, <linus.walleij@linaro.org>,
-        <vkoul@kernel.org>, <lgirdwood@gmail.com>,
-        <yung-chuan.liao@linux.intel.com>, <sanyog.r.kale@intel.com>,
-        <pierre-louis.bossart@linux.intel.com>,
-        <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
-        <devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <linux-spi@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 05/10] dt-bindings: mfd: cirrus,cs42l43: Add initial DT
- binding
-Message-ID: <20230512161803.GM68926@ediswmail.ad.cirrus.com>
-References: <20230512122838.243002-1-ckeepax@opensource.cirrus.com>
- <20230512122838.243002-6-ckeepax@opensource.cirrus.com>
- <5969fe82-69cd-34d6-edd1-d16ea741d9cb@linaro.org>
+        with ESMTP id S229538AbjELQSf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 12:18:35 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A41B255AC
+        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 09:18:27 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-96598a7c5e0so1638181666b.3
+        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 09:18:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683908306; x=1686500306;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qrz9w0tFb2bEDTavGbd5fDgs1thiabqypf9MHkMZM7E=;
+        b=az2gzunWnoFGTedzrfM2TIbgTMGezLZi0Pxftg0z4G7WBcjClypX1MFYbz8i8Ffkpy
+         rIPd+p9IvKeMHmW8j0rdOgWCBsgeKRSnUSDfyt1Vi+6WnmNExmMvNKsjWXnRovJQXfKW
+         448lS9q5BRTaRG5axAPCUHKPpTDMtBNaadOB56e9URD71wbzPywTpB6wAAkG89cJmDrs
+         BGIDgPXrsRgwWJ5tFqT1Ijehw1cql0A+ytkZnF6yCl/IyGvkD3S5HckHcMHX66OWzRz3
+         zXAksm8dqrKTDHLbPan7w3A5gRaD13FQcWspRlIoW4Nysu8LdJMknrr3IeNo+/koT/M1
+         jpJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683908306; x=1686500306;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qrz9w0tFb2bEDTavGbd5fDgs1thiabqypf9MHkMZM7E=;
+        b=Jf149WQxCPbi9HmQq38MbZ0HQw8uKOpe1KVVfUwg+AhqqxDGOM3+aNQgZtt7YvRVy8
+         skFJaJuHvkBJHokdrobQyxaX8b8WzCWWBM4mElMYK1dxC1Vv8j6e02JnHMuhW40Mp2gH
+         JHYnvBbYASantSde2WWhvw5qBTTDgyUvXWFf8xGtAXPY7ymNWpKi9OEjqsnLTzo8MYBM
+         zvBUaiiKuQtAHBcze3SOsRpxzVISTIcdNrE5vpOcENVzS2kqYty05RVLRbfR0Amb+VLc
+         MFicH7hR5s/A5imkWus77ctGx2g9ftPShMMpGVed15hfw4tvM2oZEuIvBImFsCHE5Mdn
+         /t1A==
+X-Gm-Message-State: AC+VfDwLegJ8eL4M9vo9JBO6zQvWw/nNNLutK3uavTuR378YrZHH9Tuy
+        NUkuwU4tB58jooe/0EWg0Ugvtg==
+X-Google-Smtp-Source: ACHHUZ503Yw3/dALYytrKZ2MlhWOUd6bkVlyqT/PlDFv2HMBJY003CZ/7QJHED8qAmAK9YRj0Ft2Mw==
+X-Received: by 2002:a17:907:6e12:b0:96a:78ee:7e27 with SMTP id sd18-20020a1709076e1200b0096a78ee7e27mr5822051ejc.59.1683908306071;
+        Fri, 12 May 2023 09:18:26 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:7ede:fc7b:2328:3883? ([2a02:810d:15c0:828:7ede:fc7b:2328:3883])
+        by smtp.gmail.com with ESMTPSA id ci18-20020a170907267200b00959c6cb82basm5544589ejc.105.2023.05.12.09.18.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 May 2023 09:18:24 -0700 (PDT)
+Message-ID: <3b382277-e992-39a0-a4ba-c3fd88bfc41e@linaro.org>
+Date:   Fri, 12 May 2023 18:18:23 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <5969fe82-69cd-34d6-edd1-d16ea741d9cb@linaro.org>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Proofpoint-ORIG-GUID: cKKLR5NHv2LkYDuUMNf4OaRfgWUBfsrC
-X-Proofpoint-GUID: cKKLR5NHv2LkYDuUMNf4OaRfgWUBfsrC
-X-Proofpoint-Spam-Reason: safe
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH] ASoC: da7219: Add Jack insertion detection polarity
+ selection
+Content-Language: en-US
+To:     David Rau <David.Rau.opensource@dm.renesas.com>, broonie@kernel.org
+Cc:     support.opensource@diasemi.com, lgirdwood@gmail.com,
+        perex@perex.cz, tiwai@suse.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org
+References: <20230512081030.5138-1-David.Rau.opensource@dm.renesas.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230512081030.5138-1-David.Rau.opensource@dm.renesas.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 12, 2023 at 05:25:52PM +0200, Krzysztof Kozlowski wrote:
-> On 12/05/2023 14:28, Charles Keepax wrote:
-> > The CS42L43 is an audio CODEC with integrated MIPI SoundWire interface
-> > (Version 1.2.1 compliant), I2C, SPI, and I2S/TDM interfaces designed
-> > for portable applications. It provides a high dynamic range, stereo
-> > DAC for headphone output, two integrated Class D amplifiers for
+On 12/05/2023 10:10, David Rau wrote:
+> DA7219 can support 2 kinds of insertion detection polarity
+> - Default polarity (Low)
+> - Inverted polarity (High)
 > 
-> ...
+> This patch adds support for selecting insertion detection
+> polarity to the DT binding.
 > 
-> > +
-> > +  interrupt-controller: true
-> > +
-> > +  '#interrupt-cells':
-> > +    const: 2
-> 
-> Hm, are you sure? Who is the consumer/user of this interrupt controller?
-> 
+> Signed-off-by: David Rau <David.Rau.opensource@dm.renesas.com>
+> ---
+>  .../devicetree/bindings/sound/da7219.txt      |  3 ++
 
-Anyone who wants the device has GPIOs that can signal IRQs. Some
-of the other IRQs could be more generally useful, such as some of
-the jack detection ones.
+Bindings are always separate patches.
 
-Thanks,
-Charles
+Consider also converting them to DT schema first.
+
+>  include/sound/da7219-aad.h                    |  6 ++++
+>  sound/soc/codecs/da7219-aad.c                 | 34 +++++++++++++++++++
+>  3 files changed, 43 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/da7219.txt b/Documentation/devicetree/bindings/sound/da7219.txt
+> index add1caf26ac2..357d1f61de1d 100644
+> --- a/Documentation/devicetree/bindings/sound/da7219.txt
+> +++ b/Documentation/devicetree/bindings/sound/da7219.txt
+
+
+
+Best regards,
+Krzysztof
+
