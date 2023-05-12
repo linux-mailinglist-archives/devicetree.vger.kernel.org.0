@@ -2,153 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D34F670014E
-	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 09:21:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44DCD700158
+	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 09:22:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240225AbjELHVE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 May 2023 03:21:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59840 "EHLO
+        id S239955AbjELHWq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 May 2023 03:22:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240227AbjELHUO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 03:20:14 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D271319AC
-        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 00:20:06 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-50bcb4a81ceso16903410a12.2
-        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 00:20:06 -0700 (PDT)
+        with ESMTP id S239918AbjELHWp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 03:22:45 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F013F10DC
+        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 00:22:43 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-965cc5170bdso1436363266b.2
+        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 00:22:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683876005; x=1686468005;
+        d=linaro.org; s=google; t=1683876162; x=1686468162;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=WlguJbcdCNMathxuQaT8K1ShmJFBrwncaunh1gm2DMA=;
-        b=zjZZlcSx9bRLm7NbRTThmkTzkg6bZAe2fzIMzQG7yK9ZQxEGgMdJ8YRXv/ExXqGGy8
-         53J76c6RZ01PDztd4+wRS0qnQSuOAU4EuKqJXt7v7XxfFaW+rKLUMg4AQKIYwxzeo3yf
-         87d0MBoshdRtjOD17HdXHQyXlDgAfPceSbwvKHR6ObXMAuwkpXdQ8E9ktapySertXzwO
-         3m8tZUo6x+WYJNmmUet/uYBaikJHufa3SwQpXD4fxDJJlaYSzvlupAKQsgjUs7hxK3ZW
-         rPR4Knx4coKMiNgrZM6ex39R8Ka2NvwFNjQNYHniVJRt5zP5Nj+om9GAh9I6DS7787HX
-         1d2w==
+        bh=2/aA9jsvMbpCOcwE4/U6yU5Ge888LhQRk+VU/TYiZuA=;
+        b=ewIWYIPJ8NTOphY0GZu6ffx9FkoFeva5FYwZc7xleZNadJ3RtRWP4OIeBvPanFW9o9
+         02AqkiutjULhqvpof3ywrhMZL0A6xlgd4tWElwu5GVmaBYLbkt30VZ2hOe1ZqxM6PZyu
+         jNzYQKg8tTCxC7hSjp64kgjVcTLlKmKB7egs7a6wcrW8mP1dI8rgvPK8GWzXkXqcQLxH
+         JbKlNiBCPzMdpCHnqMBoiGtCszsOXjT4vS6stbyvd7BtgQdTMayk0GuTnrwh3kJswg8h
+         hM/One6Zuc/QUFJk8taEpmR8EIndNsrQaAxnIwq0JADW6YSJH1UGutk1n13Dc2L2bm37
+         K0JA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683876005; x=1686468005;
+        d=1e100.net; s=20221208; t=1683876162; x=1686468162;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WlguJbcdCNMathxuQaT8K1ShmJFBrwncaunh1gm2DMA=;
-        b=VAQr6IQpr7xFG8yCvyZax+RJkYy5JxKfNuv6/J2390GuWu2xldDupUcIRfDO3Bsu7C
-         FlrxJloZaLFHMriOJ2xSmwchsq9S937roWy2PWz/ty+3IKfjjm3w31z/koD2RqoYA5bQ
-         v2W+AxsL2aKfgCNIUEyLVQD65GYp2/SXPdc4rdKJOoFOJMtb8QGAOI6lwHcKx88W1pCN
-         4IrA8QwCq91CaX/8lB5y+q8E2Iwmyig0UkI7gPGmmbdTxZuk0MQlKLK10gxg4zznFkhj
-         D0d4VF0D2yDOG6YtrYqlzfC9dWpf/Ur9pI/fyEU9JrE5OVmGEhuPGowZkEOXI5PvONn/
-         kavw==
-X-Gm-Message-State: AC+VfDwiRApJt+dMjUYkwUgIV4fjNjXGYf9AwKqlGyG5J9ri5rCk3Uy5
-        dh0DJV73LevIt/5vgrLR6M/Lgw==
-X-Google-Smtp-Source: ACHHUZ6kHpYm/ztsDr4Tt/aKxMxZJ/ipvJtZl7+U0eec21VCikd5eB6PtaLIK6EKdEJz94Ji8ssSxA==
-X-Received: by 2002:a17:907:94d3:b0:96a:58a:6cd8 with SMTP id dn19-20020a17090794d300b0096a058a6cd8mr11609156ejc.9.1683876005348;
-        Fri, 12 May 2023 00:20:05 -0700 (PDT)
+        bh=2/aA9jsvMbpCOcwE4/U6yU5Ge888LhQRk+VU/TYiZuA=;
+        b=GfmypVHKdUv5lrUDquI8z7dAlBX3+/W8n1rGdQaL0jV+76KtFzmC8ZEHDYtr4Dth8c
+         UAPbjlw3lOSK4FxWYftw6E+FxsRzugg5q9Uhjaa+oUUZNB/KfTYdSmt4YwTtsjLYZXZz
+         qip2L+FiWeLW6oWUM7KsjtDjU/qIR3KgZ7phQfDlX094p5a3e+VD+agVDapMhHUsuGxP
+         AbCmzXfnTXV0MOgVkx+2PE05iX+weNowfTgwRiM71loHpquQR+0zEKa0hGKPelV8Jn/B
+         HFjPIZpAv9wLOliOKEr50EoJFkEEysxyQuyIOZE19BVbUOYJvMOU7X1WAQ/3k+FSwl/Q
+         weSw==
+X-Gm-Message-State: AC+VfDxC2EVLkYwDa3+ZOTyOjmGAbENSgZs+4V25DKkzJfZ7AyFdOyzz
+        hYfhPO0QwWOD+WD948sdtamiRw==
+X-Google-Smtp-Source: ACHHUZ5u/Ss9b/bDnf30cMr1Nmq4PVgDVeqifi4CE7DHWwxByGSpw/29SsjXdeKlZd4l1OONhLjuyQ==
+X-Received: by 2002:a17:907:26c1:b0:94a:6071:d613 with SMTP id bp1-20020a17090726c100b0094a6071d613mr20353616ejc.64.1683876162474;
+        Fri, 12 May 2023 00:22:42 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:7ede:fc7b:2328:3883? ([2a02:810d:15c0:828:7ede:fc7b:2328:3883])
-        by smtp.gmail.com with ESMTPSA id r16-20020a170906c29000b0094f3e169ca5sm4998094ejz.158.2023.05.12.00.20.04
+        by smtp.gmail.com with ESMTPSA id gz20-20020a170907a05400b0095342bfb701sm5115319ejc.16.2023.05.12.00.22.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 May 2023 00:20:04 -0700 (PDT)
-Message-ID: <cdcd5656-2c7f-23bf-d016-fff79a279ebb@linaro.org>
-Date:   Fri, 12 May 2023 09:20:03 +0200
+        Fri, 12 May 2023 00:22:41 -0700 (PDT)
+Message-ID: <72c8f49e-ad3e-9241-f2dc-cd523ea19d14@linaro.org>
+Date:   Fri, 12 May 2023 09:22:40 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH 2/4] dt-bindings: touchscreen: add virtual-touchscreen and
- virtual-buttons properties
+Subject: Re: [PATCH v4 7/7] riscv: dts: starfive: jh7110: Add PLL clock node
+ and modify syscrg node
 Content-Language: en-US
-To:     Michael Riesch <michael.riesch@wolfvision.net>,
-        Javier Carrasco <javier.carrasco@wolfvision.net>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+To:     Xingyu Wu <xingyu.wu@starfivetech.com>,
+        Conor Dooley <conor@kernel.org>
+Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Emil Renner Berthing <kernel@esmil.dk>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Henrik Rydberg <rydberg@bitmath.org>,
-        Bastian Hecht <hechtb@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230510-feature-ts_virtobj_patch-v1-0-5ae5e81bc264@wolfvision.net>
- <20230510-feature-ts_virtobj_patch-v1-2-5ae5e81bc264@wolfvision.net>
- <280ab18d-bbfa-9920-5f1b-d069fd866e1f@linaro.org>
- <18526d2a-ac5f-2b26-9ed3-5a82f20cac86@wolfvision.net>
- <a7261bc1-902d-99f9-aa3e-2c90dd264c8d@linaro.org>
- <eb3f40e6-a604-39f2-eb49-8b41590a65d4@wolfvision.net>
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        William Qiu <william.qiu@starfivetech.com>,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+References: <20230512022036.97987-1-xingyu.wu@starfivetech.com>
+ <20230512022036.97987-8-xingyu.wu@starfivetech.com>
+ <c432c26b-27d3-80dc-fe6b-457996234871@linaro.org>
+ <0463378b-60d8-ee05-2a2e-1e709b882bae@starfivetech.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <eb3f40e6-a604-39f2-eb49-8b41590a65d4@wolfvision.net>
+In-Reply-To: <0463378b-60d8-ee05-2a2e-1e709b882bae@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/05/2023 09:08, Michael Riesch wrote:
-> Hi Krzysztof,
-> 
->>> These buttons are actually physical i.e. printed and with a given
->>> functionality, but still part of the touchscreen as the physical device
->>> is not aware of them. Therefore they only make sense in the touchscreen
->>> context.
+On 12/05/2023 09:15, Xingyu Wu wrote:
+> On 2023/5/12 14:37, Krzysztof Kozlowski wrote:
+>> On 12/05/2023 04:20, Xingyu Wu wrote:
+>>> Add the PLL clock node for the Starfive JH7110 SoC and
+>>> modify the SYSCRG node to add PLL clocks input.
 >>
->> So basically you still have the same touchscreen under the buttons and
->> these are not separate devices. Whether someone put a sticker on
->> touchscreen, does not really change hardware behavior and it's up to
->> system to handle this. What you are trying to do here is to create
->> virtual buttons through Devicetree and DT is not for that.
+>>
+>>> @@ -465,6 +469,12 @@ syscrg: clock-controller@13020000 {
+>>>  		sys_syscon: syscon@13030000 {
+>>>  			compatible = "starfive,jh7110-sys-syscon", "syscon", "simple-mfd";
+>>>  			reg = <0x0 0x13030000 0x0 0x1000>;
+>>> +
+>>> +			pllclk: clock-controller {
+>>> +				compatible = "starfive,jh7110-pll";
+>>> +				clocks = <&osc>;
+>>> +				#clock-cells = <1>;
+>>
+>> This should be part of previous patch. You just added that node. Don't
+>> add half of devices but entire device.
+>>
 > 
-> I have already addressed a similar statement here:
-> https://lore.kernel.org/lkml/20230504042927.GA1129520@quokka/t/#m1a93595c36535312df0061459a1da5e062de6c44
-> but let me extend this comment a bit.
-> 
-> The notion of "someone putting a sticker on touchscreen" does not really
-> reflect the use case we have in mind. We are talking about devices that
-> are shipped from the factory in a particular configuration, e.g.,
-> 
-> +-----------------------+---------+
-> |                       |  power  |
-> |                       |  button |
-> |   touchscreen         +---------+
-> |   (behind: display)   |  return |
-> |                       |  button |
-> +-----------------------+---------+
-> 
-> Here, the real touchscreen is larger than the display. The display is
-> behind the "touchscreen" part. Behind the buttons there are symbols
-> engraved in metal or printed foils or what not. I just would like to
-> make it clear that these symbols are not going to change.
-> 
-> We believe that the engraved or printed symbols actually define the
-> (expected) hardware behavior. Of course there is a virtual notion to
-> that, and of course it would be possible to let the power button work as
-> return button and vice versa in software. However, the user sees the
-> engraved or printed symbols (which are not going to change) and expects
-> the device to react appropriately.
+> So do I merge the patch 6 and patch 7 into one patch and add syscon and
+> clock-controller together?
 
-OK, I actually missed the concept that display is not equal to the
-touchscreen ("screen" actually suggests display :) ). In your case here
-it sounds good, but please put some parts of this description into this
-common binding. The sketch above is nice, especially if you can point
-where the virtual origin x/y are. Picture is thousands words.
-
-> 
-> Now if you suggest that the system (that is user space, right?) should
-> handle this, then the question would be which component is supposed to
-> handle the touchscreen events and react accordingly. I don't have an
-> answer to that and hope I don't need to find one. But independent of
-> that, a configuration file is required that defines the area of the
-> virtual buttons etc. Wouldn't this be similar to the (mostly) beloved
-> xorg.conf containing the definitions of input devices?
-
-If the case was a bit different - e.g. display is everywhere - I could
-easily imagine that on the device rotation you want to move
-(re-position) the buttons. Or if user has some accessibility option
-enabled, you want bigger buttons. Then it would be a prove that it must
-be configured and managed from user-space. How, I don't know.
+I am okay with adding users of clocks in separate patch, but the clock
+controller - so part of SYS - should be added when adding SYS.
 
 Best regards,
 Krzysztof
