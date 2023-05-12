@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7097D700CD2
+	by mail.lfdr.de (Postfix) with ESMTP id EB601700CD3
 	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 18:20:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229463AbjELQUx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S229535AbjELQUx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Fri, 12 May 2023 12:20:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52816 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229473AbjELQUw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 12:20:52 -0400
-Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EC0B423A
+        with ESMTP id S229527AbjELQUx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 12:20:53 -0400
+Received: from mail-yw1-x1131.google.com (mail-yw1-x1131.google.com [IPv6:2607:f8b0:4864:20::1131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0FE04488
         for <devicetree@vger.kernel.org>; Fri, 12 May 2023 09:20:50 -0700 (PDT)
-Received: by mail-yb1-xb2d.google.com with SMTP id 3f1490d57ef6-ba6f8e0b39cso1761907276.0
+Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-559ded5e170so147841777b3.3
         for <devicetree@vger.kernel.org>; Fri, 12 May 2023 09:20:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683908449; x=1686500449;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=MMVTnr8Vefnpi5C8EzpY/O3BecS6QP6Gaw9C1p/VYIs=;
-        b=qwX63S8xTYoMdnB2iIIxSqGk3GwAWs/li2a+p8Df+ITO+547+aXtFfzBCqWwzTjsOv
-         xdI0rbvR9RplkWWhwP+W6wORl8JWcTUyQYZ7534Qq5Q36dPtFplKujdZkQwm8hSF7aZi
-         HAXoQhT4J5vme6F3R85x5aScax/hKBZ2iqF8g4CvTiWGO/SFslvHddDUmqaCgl8T75Oy
-         8MKA+UcAUkbtFcJrmEykBKKTrIy2WRiZhneGYcpUrkRBSP68WXWxADuCCqel/V5cZR5M
-         eFRwFKRNyHfx8l0OsWLif/WNDkD1IZG/i1hXBRLucJgThUMgFlvk8DDNtbIo1nBzhi+2
-         POiA==
+        d=gmail.com; s=20221208; t=1683908450; x=1686500450;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+u/Q2BQN9a7YozVknL12KsnGjDJPaozy74q2a85XcJo=;
+        b=pBhAiTMTnAZBJUgUDPOx7fnBrB5rAoB8S7WJhzqPKojku1Y5KbKba5aYY95NznlrgH
+         EiNUGI8/JJSV6G83+nKyKwsZKBelWKcImmdtniSkOZfG6kDAOEG0vxtNKAfq4LRxkO/V
+         OKgN52DF0LTt/tTVgKJTsK/GUiAbwse9j55bt/K9t6DRvH26x5XsIJFXAievPbG1hwFa
+         CS/oyZKpViFY6Uiq1akDHbr7lcb2AKSjmirO9NEkTwUrJQGhlTJGnmm/c5Yz3eBudRf0
+         8YsPJ37NdpwM1AF8SNyVFJiIsVU8BZE1f/AKBvOdsohG/9vXhNZhcp1S2ZCwlg2t4k3E
+         6DjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683908449; x=1686500449;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MMVTnr8Vefnpi5C8EzpY/O3BecS6QP6Gaw9C1p/VYIs=;
-        b=Qttkml1ILRw+QEnbdPT3/65ixY85Ayz6CU8uSd78O6cWuyowEdJt5HhRCRh9teNyrU
-         wXnz9XyTSsPJqbEqO8T3Wre2OgiBmLtd1UqgD25VxwdDxWn0Il8h+JEBgOhIkbB1TqLJ
-         N0Linv1DczRYWObNEW5Djc98Kh+u1ec2cKATEjgvKyUEEn0snIH4a8jjjgbJrQXr72G3
-         hkeGLITUyKxj+0uj1LYYD/BHsVPtNliX3OPmO9fi0+07Jw5Kn+Zityt706FT1wREPw1c
-         AoecVo/L8UgY3vVOwZ3npRGghtUEr6CodsAJFvIKVu43r6PtNVitHyKnQHu1YPOKmFV6
-         VB6g==
-X-Gm-Message-State: AC+VfDyVIG8ZZsdWOrsrcP0zYNq8dMqY0hv9gLtRhD3lAdUF8ZcuYgLY
-        kJWD5hd8PcMPj3KpSQZnPg8=
-X-Google-Smtp-Source: ACHHUZ5lleiTBEjcTQkLpcX0fx6sBkIMc8ts+CFvVp8q6vyGmE2vokPM/dQuFAg0LlsFG13YPu0RyA==
-X-Received: by 2002:a25:1542:0:b0:b9e:84b0:bfa6 with SMTP id 63-20020a251542000000b00b9e84b0bfa6mr21839025ybv.25.1683908449221;
+        d=1e100.net; s=20221208; t=1683908450; x=1686500450;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+u/Q2BQN9a7YozVknL12KsnGjDJPaozy74q2a85XcJo=;
+        b=ZKXF71Scr3vi9LmMexmr7CjjE14suhvtwcOjvSw8dHT+/6JGcBtJBHEGWfWcAVhw14
+         eJisaj7gr4r8kUt4JJ2wDVoq2n+8hjLGVsRVX2qXLXGA8x/vwYb+Qi1kLpFf+vMpqmzx
+         kddIbX5fuu0w4kaPADMFtvj5nSUbnJj07gFGw32yRbaEu+E05YHMRpnqmbnPdpA/7I+e
+         hApLt1RjfWaU16vD31QtmVt2GLVWTNJDoE0GWn3JuF0aTJ1LQSL0n5Ms5D4eHZYJXxJf
+         G2izFT1RSTMkhz2M/aOA1TvvaGDtX5tJFblJNtbFArkc8Z/2GUNjwUcXXfeiUKpfOvr6
+         vrTg==
+X-Gm-Message-State: AC+VfDxSv3xR8FVsbdky7WSzAK9ZPoc/wineWB8gfMq+1koekyuO52lJ
+        HhD6wI/uKcO/4SGWEsoB+ZM=
+X-Google-Smtp-Source: ACHHUZ4eQeBfZ9WUdXqu6q7U271Y+ob2Jn+mu3kLqsC7EKMmD3/BGSeNNy3eshcvYF1RYCbRFS3K0g==
+X-Received: by 2002:a25:e78a:0:b0:b8f:2047:181a with SMTP id e132-20020a25e78a000000b00b8f2047181amr21552185ybh.24.1683908449968;
         Fri, 12 May 2023 09:20:49 -0700 (PDT)
 Received: from localhost.localdomain ([76.244.6.13])
-        by smtp.gmail.com with ESMTPSA id s19-20020a257713000000b00ba71e594cafsm340129ybc.62.2023.05.12.09.20.48
+        by smtp.gmail.com with ESMTPSA id s19-20020a257713000000b00ba71e594cafsm340129ybc.62.2023.05.12.09.20.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 May 2023 09:20:48 -0700 (PDT)
+        Fri, 12 May 2023 09:20:49 -0700 (PDT)
 From:   Chris Morgan <macroalpha82@gmail.com>
 To:     linux-rockchip@lists.infradead.org
 Cc:     devicetree@vger.kernel.org, maccraft123mc@gmail.com,
@@ -55,10 +56,12 @@ Cc:     devicetree@vger.kernel.org, maccraft123mc@gmail.com,
         heiko@sntech.de, conor+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
         Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH 0/2] rockchip: Add Anbernic RG353PS
-Date:   Fri, 12 May 2023 11:20:37 -0500
-Message-Id: <20230512162039.31132-1-macroalpha82@gmail.com>
+Subject: [PATCH 1/2] dt-bindings: arm: rockchip: add Anbernic RG353PS
+Date:   Fri, 12 May 2023 11:20:38 -0500
+Message-Id: <20230512162039.31132-2-macroalpha82@gmail.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230512162039.31132-1-macroalpha82@gmail.com>
+References: <20230512162039.31132-1-macroalpha82@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -73,19 +76,33 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Chris Morgan <macromorgan@hotmail.com>
 
-Add support for the Anbernic RG353PS, which is a cheaper variant of the
-Anbernic RG353P.
+Add devicetree binding for Anbernic RG353PS. This device is identical
+to the RG353P, except it does not have a touchscreen, does not have
+an eMMC, only includes 1GB of RAM, and ships with only the 2nd
+revision panel based on a Sitronix ST7703 controller. Support for the
+panel has been added in a separate commit.
 
-Chris Morgan (2):
-  dt-bindings: arm: rockchip: add Anbernic RG353PS
-  arm64: dts: rockchip: add Anbernic RG353PS
+Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+---
+ Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
- .../devicetree/bindings/arm/rockchip.yaml     |   5 +
- arch/arm64/boot/dts/rockchip/Makefile         |   1 +
- .../dts/rockchip/rk3566-anbernic-rg353ps.dts  | 116 ++++++++++++++++++
- 3 files changed, 122 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353ps.dts
-
+diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+index ec141c937b8b..362df3f2a037 100644
+--- a/Documentation/devicetree/bindings/arm/rockchip.yaml
++++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+@@ -40,6 +40,11 @@ properties:
+           - const: anbernic,rg353p
+           - const: rockchip,rk3566
+ 
++      - description: Anbernic RG353PS
++        items:
++          - const: anbernic,rg353ps
++          - const: rockchip,rk3566
++
+       - description: Anbernic RG353V
+         items:
+           - const: anbernic,rg353v
 -- 
 2.34.1
 
