@@ -2,128 +2,486 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CDE0700AF9
-	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 17:05:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0C1E700B05
+	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 17:08:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241697AbjELPFE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 May 2023 11:05:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52830 "EHLO
+        id S241303AbjELPIP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 May 2023 11:08:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241733AbjELPEy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 11:04:54 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 130F61FC7
-        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 08:04:52 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-50bcae898b2so17794671a12.0
-        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 08:04:52 -0700 (PDT)
+        with ESMTP id S231273AbjELPIO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 11:08:14 -0400
+Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D164146A5
+        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 08:08:11 -0700 (PDT)
+Received: by mail-yb1-xb2b.google.com with SMTP id 3f1490d57ef6-ba67d34350aso4018596276.3
+        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 08:08:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683903890; x=1686495890;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Izo9VyuS3FYVOaF5kDuL/kD/h+2fgLodxAQ6aVvs7H0=;
-        b=sKyoYjJI3MITFAQvCWjifmcHx6zBpuP0ztPuFznpYfThmM4g0xW4O99Wbgwehrfo6l
-         ii+axgB4VFElG7ydQPiDBK1S147zQN9q5NdLomm5nadH9LrR8FvWrHOsCQp+CkAX3+4k
-         FXhFb1hJR93yOwuvwtRm0qy5VdMYjP5FTlWr1OciXu4KAHGKLCWxtzDAy3g1oqSo/HTt
-         ZYVdq9jk3D9bkee4kFctBMIt2TzyU/vpXhH2r4fcixZoaW0+24Yzh7W/qfIg4lhvkgTz
-         iRZgZeJ36ZUn/iOJCEJFFxb06e9X1/qr357MQjoTpMTFXOuCHQBDQU0Vr3ZnThyooDUG
-         1kJA==
+        d=gateworks-com.20221208.gappssmtp.com; s=20221208; t=1683904091; x=1686496091;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5zfq1bNLkPksle3YwDBy0byBIEq/1R4JLNCSq5qN0ok=;
+        b=ZYMP5tFOdEjYWlgkfRJdkPMkllYyRSXSIsXADlkNKDgNOHSL8KrJRfwAqdLsHDKJaO
+         Yd4MMIklYgEoZMESeGi0s6CUmKV8dSluijqHTuSpmynlzLOhnqK7m6H77d5SR2jcoB7g
+         Mht9KPyIaQFN6FxvvKlf2Yfd3SYUyx2K2J0kXwEJesbgvwzVHRuRZJDRG5FdSF4PyvNM
+         e2OdsjCgtm1Y1K7BChUxtG4dd3IpyuRj697apngLRPgEdSVmikQBO6O7Y0VpRcBo9/Ze
+         G7MOIpvuKX3XZr70zrv19NqmNXNfKTGMXmy6lgzULBnbQqZVMXc4JhOP+WrZKy8EOLrb
+         JOAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683903890; x=1686495890;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Izo9VyuS3FYVOaF5kDuL/kD/h+2fgLodxAQ6aVvs7H0=;
-        b=eR1dt6yi4oPiIdZ2qjk0eVcYTWxOTqY9K8qQjlsxo+F1LGEEZuNyzmydJd21vHjCeG
-         UkwjB3tQqwhJ2+o1ZyZbnRxlHcIhW1IIs8MiL9ZQgyODJ51lxkeiS/uem3eQUrB+SUMz
-         apW17n7Uhzw+JYpots1uW46aheFwRR2IxIqVAHLx9hyZbYUwI3o5vp+12QK1c0r+nCgZ
-         nMgXkEg7klxt7e6GaOd3pg+2i3vbmWsbLCx2Y+Feqyd4Upr/+xrrURBmaHOLY5WQaofm
-         meVuKk0yBOZRqNwtAtwIXx/7glgnFKrydrzUbzCLNk9ABX2mPiD4qYVpFZliVlLnw6FJ
-         GnBw==
-X-Gm-Message-State: AC+VfDzIqD2J9a77VW5WqynnRq7smPhfz4QwMlIyJ1ttY3o7NZSUyZ4X
-        ugpt8LIAQv8NlsAircFSLpMrNg==
-X-Google-Smtp-Source: ACHHUZ6M194Dg8rWd+r2CKNK1pmDrJfHYbuczNjD43YKU8yr9uviJFXyK7iwoTpVM06NfGGU6TJtHA==
-X-Received: by 2002:a17:907:169f:b0:96a:6723:da47 with SMTP id hc31-20020a170907169f00b0096a6723da47mr6872111ejc.43.1683903890512;
-        Fri, 12 May 2023 08:04:50 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:7ede:fc7b:2328:3883? ([2a02:810d:15c0:828:7ede:fc7b:2328:3883])
-        by smtp.gmail.com with ESMTPSA id hg8-20020a1709072cc800b00932fa67b48fsm5487124ejc.183.2023.05.12.08.04.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 May 2023 08:04:49 -0700 (PDT)
-Message-ID: <67a2f8d6-104b-e7dd-d1b6-3791d5298284@linaro.org>
-Date:   Fri, 12 May 2023 17:04:47 +0200
+        d=1e100.net; s=20221208; t=1683904091; x=1686496091;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=5zfq1bNLkPksle3YwDBy0byBIEq/1R4JLNCSq5qN0ok=;
+        b=A8GThFgRVU6r3k5OnqJdwmtRrit1laxSrFGdTIFxRyw8UuudUSxT3AYlnBAgjAWEgO
+         jqlCCvcMl7s3gE4oZMw8D7WWKEv0NxQ+sLFZoI5Cb+j4q3L7Lc/wzD1/f4JEBrfcybl4
+         EP2xyeRJjRLL+GipWOGCA0yKUs/7pYgslB01uAM8yZdJdMV74FyUqWEIIvM05Nthybw1
+         Av2LdnYO+0kOAn3d97lvK/jvnUuqutOPF6Dsxol70/V7VTUcW3XjkFk0bmwghsxgYf/E
+         W8luFGVlgvga5DX3FPrFuH1RaWUV2kHpiHPSG5M4F5sBFvhM+DQeBg+4f9D7fNv+x8Az
+         0DQw==
+X-Gm-Message-State: AC+VfDyPC0torYX9qxtNw9nULIBug4itV0dmi0Vk/KL1CvyUEdqGdyj6
+        WTTwR7TmShNWPUw6N5w1y6RdgCJV364IgBsm11lFvw==
+X-Google-Smtp-Source: ACHHUZ6Zr3Frz8r0DxpQrkmBfJWU62YT6rWrplPlREpUN+ogx46ExKLmzR/d/BJ4NDIRyG3/CFimypH0X/36lJTcpFs=
+X-Received: by 2002:a25:40d4:0:b0:b9d:ea9c:d3b9 with SMTP id
+ n203-20020a2540d4000000b00b9dea9cd3b9mr22436590yba.32.1683904090900; Fri, 12
+ May 2023 08:08:10 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH RFC 3/4] arm64: dts: qcom: sm6350: add uart1 node
-Content-Language: en-US
-To:     Luca Weiss <luca.weiss@fairphone.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+References: <20230511171041.4011087-1-tharvey@gateworks.com>
+ <20230511171041.4011087-2-tharvey@gateworks.com> <1b3b58b9-b441-f04f-a3e1-8b5fb7f19f9d@linaro.org>
+In-Reply-To: <1b3b58b9-b441-f04f-a3e1-8b5fb7f19f9d@linaro.org>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Fri, 12 May 2023 08:07:59 -0700
+Message-ID: <CAJ+vNU3VBnhy_u-t_161V6Rr9MEs558dg=Sa_wNBEB-Bqq6wkg@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: freescale: Add imx8mp-venice-gw7905-2x
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-arm-kernel@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Balakrishna Godavarthi <bgodavar@codeaurora.org>,
-        Rocky Liao <rjliao@codeaurora.org>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-References: <20230421-fp4-bluetooth-v1-0-0430e3a7e0a2@fairphone.com>
- <20230421-fp4-bluetooth-v1-3-0430e3a7e0a2@fairphone.com>
- <8f312ded-8456-eced-85cc-0ae32a0c8bba@linaro.org>
- <CSKDDFPXC6FD.1TAU3XXOSGA0K@otso>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CSKDDFPXC6FD.1TAU3XXOSGA0K@otso>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/05/2023 16:30, Luca Weiss wrote:
-> On Sun Apr 23, 2023 at 12:51 PM CEST, Krzysztof Kozlowski wrote:
->> On 21/04/2023 16:11, Luca Weiss wrote:
->>> Add the node describing uart1 incl. opp table and pinctrl.
->>>
->>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->>> ---
->>>  arch/arm64/boot/dts/qcom/sm6350.dtsi | 63 ++++++++++++++++++++++++++++++++++++
->>>  1 file changed, 63 insertions(+)
->>
->> Please do not send DTS patches for net-next. DTS must go via Qualcomm
->> SoC. Split the series and mention where is the bindings change in DTS
->> patchset.
-> 
-> Sorry, just saw now after already sending v2.
-> 
-> Is this a special rule for linux-bluetooth@ / netdev@? Isn't it easier
-> to keep it together so the status of series can be assessed easier? I've
-> always submitted patches by topic, like input patches + dts patches and
-> it was never mentioned.
+On Thu, May 11, 2023 at 10:23=E2=80=AFAM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 11/05/2023 19:10, Tim Harvey wrote:
+> > The Gateworks imx8mp-venice-gw7905-2x consists of a SOM + baseboard.
+> >
+> > The GW702x SOM contains the following:
+> >  - i.MX8M Plus SoC
+> >  - LPDDR4 memory
+> >  - eMMC Boot device
+> >  - Gateworks System Controller (GSC) with integrated EEPROM, button
+> >    controller, and ADC's
+> >  - PMIC
+> >  - RGMII PHY (eQoS)
+> >  - SOM connector providing:
+> >   - eQoS GbE MII
+> >   - 1x SPI
+> >   - 2x I2C
+> >   - 4x UART
+> >   - 2x USB 3.0
+> >   - 1x PCI
+> >   - 1x SDIO (4-bit 3.3V)
+> >   - 1x SDIO (4-bit 3.3V/1.8V)
+> >   - GPIO
+> >
+> > The GW7905 Baseboard contains the following:
+> >  - GPS
+> >  - microSD
+> >  - off-board I/O connector with I2C, SPI, GPIO
+> >  - EERPOM
+> >  - PCIe clock generator
+> >  - 1x full-length miniPCIe socket with PCI/USB3 (via mux) and USB2.0
+> >  - 1x half-length miniPCIe socket with USB2.0 and USB3.0
+> >  - USB 3.0 HUB
+> >  - USB Type-C with USB PD Sink capability and peripheral support
+> >  - USB Type-C with USB 3.0 host support
+> >
+> > Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+> > ---
+> >  .../dts/freescale/imx8mp-venice-gw702x.dtsi   | 589 ++++++++++++++++++
+> >  .../dts/freescale/imx8mp-venice-gw7905-2x.dts |  28 +
+> >  .../dts/freescale/imx8mp-venice-gw7905.dtsi   | 358 +++++++++++
+>
 
-The rule that DTS must go via Qualcomm SoC (arm-soc) was there always,
-but other maintainers often do not pay attention to this. I don't blame
-them, don't get me wrong. I am just stating the observed actions.
-Usually netdev folks and Greg will take everything you throw at them, so
-for these subsystems it is recommended to split DTS to different patchset.
+Hi Krzysztof,
 
-For other maintainers it is usually also more useful to split, because
-then they can apply entire patchset with one command, instead of picking
-up specific patches (omitting DTS).
+Thanks for the review!
 
-Best regards,
-Krzysztof
+>
+> How do you compile it? Missing Makefile. This also suggests that maybe
+> you did not test it with dtbs_check...
+>
 
+I am in the habbit of using 'make dtbs W=3D1' and 'make dtbs_check' but
+I accidently put the Makefile change in a future commit. With this new
+board we add a new SOM compatible with 3 other baseboards and a new
+baseboard compatible with one other SOM so there will be 4 more boards
+added shortly: imx8mm-venice-gw7905-0x, imx8mp-venice-gw71xx-2x,
+imx8mp-venice-gw72xx-2x, imx8mp-venice-gw73xx-2x. I assume its still
+best to submit each of those as a 2-part series (add the binding, then
+add the dt) instead of bulking multiple boards into one submission
+correct?
+
+>
+> >  3 files changed, 975 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-venice-gw702x.=
+dtsi
+> >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905-=
+2x.dts
+> >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905.=
+dtsi
+>
+> ...
+>
+> > +     gsc: gsc@20 {
+> > +             compatible =3D "gw,gsc";
+> > +             reg =3D <0x20>;
+> > +             pinctrl-0 =3D <&pinctrl_gsc>;
+> > +             interrupt-parent =3D <&gpio2>;
+> > +             interrupts =3D <6 IRQ_TYPE_EDGE_FALLING>;
+> > +             interrupt-controller;
+> > +             #interrupt-cells =3D <1>;
+> > +             #address-cells =3D <1>;
+> > +             #size-cells =3D <0>;
+> > +
+> > +             adc {
+> > +                     compatible =3D "gw,gsc-adc";
+> > +                     #address-cells =3D <1>;
+> > +                     #size-cells =3D <0>;
+> > +
+> > +                     channel@6 {
+> > +                             gw,mode =3D <0>;
+> > +                             reg =3D <0x06>;
+> > +                             label =3D "temp";
+> > +                     };
+> > +
+> > +                     channel@8 {
+> > +                             gw,mode =3D <1>;
+> > +                             reg =3D <0x08>;
+> > +                             label =3D "vdd_bat";
+> > +                     };
+> > +
+> > +                     channel@16 {
+> > +                             gw,mode =3D <4>;
+> > +                             reg =3D <0x16>;
+> > +                             label =3D "fan_tach";
+> > +                     };
+> > +
+> > +                     channel@82 {
+> > +                             gw,mode =3D <2>;
+> > +                             reg =3D <0x82>;
+> > +                             label =3D "vdd_vin";
+> > +                             gw,voltage-divider-ohms =3D <22100 1000>;
+> > +                     };
+> > +
+> > +                     channel@84 {
+> > +                             gw,mode =3D <2>;
+> > +                             reg =3D <0x84>;
+> > +                             label =3D "vdd_adc1";
+> > +                             gw,voltage-divider-ohms =3D <10000 10000>=
+;
+> > +                     };
+> > +
+> > +                     channel@86 {
+> > +                             gw,mode =3D <2>;
+> > +                             reg =3D <0x86>;
+> > +                             label =3D "vdd_adc2";
+> > +                             gw,voltage-divider-ohms =3D <10000 10000>=
+;
+> > +                     };
+> > +
+> > +                     channel@88 {
+> > +                             gw,mode =3D <2>;
+> > +                             reg =3D <0x88>;
+> > +                             label =3D "vdd_1p0";
+> > +                     };
+> > +
+> > +                     channel@8c {
+> > +                             gw,mode =3D <2>;
+> > +                             reg =3D <0x8c>;
+> > +                             label =3D "vdd_1p8";
+> > +                     };
+> > +
+> > +                     channel@8e {
+> > +                             gw,mode =3D <2>;
+> > +                             reg =3D <0x8e>;
+> > +                             label =3D "vdd_2p5";
+> > +                     };
+> > +
+> > +                     channel@90 {
+> > +                             gw,mode =3D <2>;
+> > +                             reg =3D <0x90>;
+> > +                             label =3D "vdd_3p3";
+> > +                             gw,voltage-divider-ohms =3D <10000 10000>=
+;
+> > +                     };
+> > +
+> > +                     channel@92 {
+> > +                             gw,mode =3D <2>;
+> > +                             reg =3D <0x92>;
+> > +                             label =3D "vdd_dram";
+> > +                     };
+> > +
+> > +                     channel@98 {
+> > +                             gw,mode =3D <2>;
+> > +                             reg =3D <0x98>;
+> > +                             label =3D "vdd_soc";
+> > +                     };
+> > +
+> > +                     channel@9a {
+> > +                             gw,mode =3D <2>;
+> > +                             reg =3D <0x9a>;
+> > +                             label =3D "vdd_arm";
+> > +                     };
+> > +
+> > +                     channel@a2 {
+> > +                             gw,mode =3D <2>;
+> > +                             reg =3D <0xa2>;
+> > +                             label =3D "vdd_gsc";
+> > +                             gw,voltage-divider-ohms =3D <10000 10000>=
+;
+> > +                     };
+> > +             };
+> > +
+> > +             fan-controller@0 {
+> > +                     #address-cells =3D <1>;
+> > +                     #size-cells =3D <0>;
+>
+> Why do you need these two? I know binding expects them, but why? Anyway
+> compatible is first, reg is second property.
+
+I never needed them for GSC functionality but ended up having to add
+them to the gateworks-gsc.yaml to make binding checks happy.
+
+When I was working on gateworks-gsc.yaml I was getting the following
+error until I added #address-cells=3D1 and #size-cells=3D0:
+> $ make dt_binding_check DT_SCHEMA_FILES=3DDocumentation/devicetree/bindin=
+gs/mfd/gateworks-gsc.yaml
+>   CHKDT   Documentation/devicetree/bindings/mfd/gateworks-gsc.yaml
+>   SCHEMA  Documentation/devicetree/bindings/processed-schema.yaml
+>   DTC     Documentation/devicetree/bindings/mfd/gateworks-gsc.example.dt.=
+yaml
+> Documentation/devicetree/bindings/mfd/gateworks-gsc.example.dts:58.21-34:=
+ Warning (reg_format): /example-0/i2c/gsc@20/fan-controller@2c:reg: propert=
+y has invalid length (4 bytes) (#address-cells =3D=3D 2, #size-cells =3D=3D=
+ 1)
+
+I didn't completely understand the issue and dt_binding_check no
+longer complains with the above if I remove the requirement so it
+seems I should submit the following patch along with removing the
+properties from all the dt's that have the fan-controller node:
+diff --git a/Documentation/devicetree/bindings/mfd/gateworks-gsc.yaml
+b/Documentation/devicetree/bindings/mfd/gateworks-gsc.yaml
+index acb9c54942d9..dc379f3ebf24 100644
+--- a/Documentation/devicetree/bindings/mfd/gateworks-gsc.yaml
++++ b/Documentation/devicetree/bindings/mfd/gateworks-gsc.yaml
+@@ -122,12 +122,6 @@ patternProperties:
+       compatible:
+         const: gw,gsc-fan
+
+-      "#address-cells":
+-        const: 1
+-
+-      "#size-cells":
+-        const: 0
+-
+       reg:
+         description: The fan controller base address
+         maxItems: 1
+@@ -135,8 +129,6 @@ patternProperties:
+     required:
+       - compatible
+       - reg
+-      - "#address-cells"
+-      - "#size-cells"
+
+ required:
+   - compatible
+@@ -194,8 +186,6 @@ examples:
+             };
+
+             fan-controller@2c {
+-                #address-cells =3D <1>;
+-                #size-cells =3D <0>;
+                 compatible =3D "gw,gsc-fan";
+                 reg =3D <0x2c>;
+             };
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw702x.dtsi b/arch=
+/arm6
+4/boot/dts/freescale/imx8mp-venice-gw702x.dtsi
+index 4fca4aae8f72..74b0fda235ed 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw702x.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw702x.dtsi
+@@ -222,8 +222,6 @@ channel@a2 {
+                };
+
+                fan-controller@0 {
+-                       #address-cells =3D <1>;
+-                       #size-cells =3D <0>;
+                        compatible =3D "gw,gsc-fan";
+                        reg =3D <0x0a>;
+                };
+
+Would that make sense?
+
+Is it that the fan-controller because it does not have addressable
+child nodes does not need address-cells?
+
+>
+>
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905-2x.dts =
+b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905-2x.dts
+> > new file mode 100644
+> > index 000000000000..4a1bbbbe19e6
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905-2x.dts
+> > @@ -0,0 +1,28 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +/*
+> > + * Copyright 2023 Gateworks Corporation
+> > + */
+> > +
+> > +/dts-v1/;
+> > +
+> > +#include "imx8mp.dtsi"
+> > +#include "imx8mp-venice-gw702x.dtsi"
+> > +#include "imx8mp-venice-gw7905.dtsi"
+> > +
+> > +/ {
+> > +     model =3D "Gateworks Venice GW7905-2x i.MX8MP Development Kit";
+> > +     compatible =3D "gateworks,imx8mp-gw7905-2x", "fsl,imx8mp";
+> > +
+> > +     chosen {
+> > +             stdout-path =3D &uart2;
+> > +     };
+> > +};
+> > +
+> > +/* Disable SOM interfaces not used on baseboard */
+> > +&eqos {
+> > +     status =3D "disabled";
+> > +};
+> > +
+> > +&usdhc1 {
+> > +     status =3D "disabled";
+> > +};
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905.dtsi b/=
+arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905.dtsi
+> > new file mode 100644
+> > index 000000000000..479190a6391f
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905.dtsi
+> > @@ -0,0 +1,358 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +/*
+> > + * Copyright 2023 Gateworks Corporation
+> > + */
+> > +
+> > +#include <dt-bindings/gpio/gpio.h>
+> > +#include <dt-bindings/leds/common.h>
+> > +#include <dt-bindings/phy/phy-imx8-pcie.h>
+> > +
+> > +/ {
+> > +     aliases {
+> > +             ethernet0 =3D &eqos;
+> > +     };
+> > +
+> > +     led-controller {
+> > +             compatible =3D "gpio-leds";
+> > +             pinctrl-names =3D "default";
+> > +             pinctrl-0 =3D <&pinctrl_gpio_leds>;
+> > +
+> > +             led-0 {
+> > +                     function =3D LED_FUNCTION_STATUS;
+> > +                     color =3D <LED_COLOR_ID_GREEN>;
+> > +                     gpios =3D <&gpio4 22 GPIO_ACTIVE_HIGH>;
+> > +                     default-state =3D "on";
+> > +                     linux,default-trigger =3D "heartbeat";
+> > +             };
+> > +
+> > +             led-1 {
+> > +                     function =3D LED_FUNCTION_STATUS;
+> > +                     color =3D <LED_COLOR_ID_RED>;
+> > +                     gpios =3D <&gpio4 27 GPIO_ACTIVE_HIGH>;
+> > +                     default-state =3D "off";
+> > +             };
+> > +     };
+> > +
+> > +     pcie0_refclk: pcie0-refclk {
+> > +             compatible =3D "fixed-clock";
+> > +             #clock-cells =3D <0>;
+> > +             clock-frequency =3D <100000000>;
+> > +     };
+> > +
+> > +     pps {
+> > +             compatible =3D "pps-gpio";
+> > +             pinctrl-names =3D "default";
+> > +             pinctrl-0 =3D <&pinctrl_pps>;
+> > +             gpios =3D <&gpio4 21 GPIO_ACTIVE_HIGH>;
+> > +             status =3D "okay";
+> > +     };
+> > +
+> > +     reg_usb2_vbus: regulator-usb2-vbus {
+> > +             pinctrl-names =3D "default";
+> > +             pinctrl-0 =3D <&pinctrl_reg_usb2_en>;
+> > +             compatible =3D "regulator-fixed";
+> > +             regulator-name =3D "usb2_vbus";
+> > +             gpio =3D <&gpio4 12 GPIO_ACTIVE_HIGH>;
+> > +             enable-active-high;
+> > +             regulator-min-microvolt =3D <5000000>;
+> > +             regulator-max-microvolt =3D <5000000>;
+> > +     };
+> > +
+> > +     reg_usdhc2_vmmc: regulator-usdhc2 {
+> > +             pinctrl-names =3D "default";
+> > +             pinctrl-0 =3D <&pinctrl_reg_usdhc2_vmmc>;
+> > +             compatible =3D "regulator-fixed";
+> > +             regulator-name =3D "SD2_3P3V";
+> > +             regulator-min-microvolt =3D <3300000>;
+> > +             regulator-max-microvolt =3D <3300000>;
+> > +             gpio =3D <&gpio2 19 GPIO_ACTIVE_HIGH>;
+> > +             enable-active-high;
+> > +     };
+> > +
+>
+> Drop stay blank line
+
+will do in v2.
+
+Best Regards,
+
+Tim
+
+
+>
+> > +};
+> > +
+> > +/* off-board header */
+> > +&ecspi2 {
+> > +     pinctrl-names =3D "default";
+> > +     pinctrl-0 =3D <&pinctrl_spi2>;
+> > +     cs-gpios =3D <&gpio5 13 GPIO_ACTIVE_LOW>;
+> > +     status =3D "okay";
+> > +};
+>
+>
+>
+> Best regards,
+> Krzysztof
+>
