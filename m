@@ -2,98 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25E35700669
-	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 13:11:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B21470066E
+	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 13:14:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240603AbjELLL4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 May 2023 07:11:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38130 "EHLO
+        id S241037AbjELLOZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 May 2023 07:14:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240867AbjELLLw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 07:11:52 -0400
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC4464C1F;
-        Fri, 12 May 2023 04:11:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1683889910; x=1715425910;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=EJIGwqmtTqGzB0hVJQVc6DByGb0fLVxLbAJzTYeq0qo=;
-  b=nYx/D1y3l6jTMtDNrdj2R9CBemeC6Qqm2e5QDHCQWb3oIjZ9xr2i3Soa
-   JaOxFm1bOdRLoFbud+MbcSkJU9p5HN15ch6D9JmHS9YWcoJ+zswirtbIs
-   1MgRJWXeB9D2D4f9fFmSEaDguwcE4rH3Lx3VzSD0KDCy4kUTS5M+QHrxM
-   hTwVS1NKdkEPvIqzZkDy8NH9tyNy4eLtYrL5lvTrZbRxzJe8P1jgcpV3Z
-   4YWGgPkb2ygh4L47+QRnFCPvvRoNvbkHSyrKskl+mMkvv1aTM8aql/yj/
-   u+hXh0iUSd5HZnco3FQgw6UUpJqfoEwPURGja6IfD2DeZJatZAD4Sn6E3
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10707"; a="331130646"
-X-IronPort-AV: E=Sophos;i="5.99,269,1677571200"; 
-   d="scan'208";a="331130646"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 May 2023 04:11:50 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10707"; a="677628493"
-X-IronPort-AV: E=Sophos;i="5.99,269,1677571200"; 
-   d="scan'208";a="677628493"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga006.jf.intel.com with ESMTP; 12 May 2023 04:11:47 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1pxQgc-0004ax-0Q;
-        Fri, 12 May 2023 14:11:46 +0300
-Date:   Fri, 12 May 2023 14:11:45 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     dinh.nguyen@linux.intel.com, linux-hwmon@vger.kernel.org,
-        dinguyen@kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-kernel@vger.kernel.org, jdelvare@suse.com, linux@roeck-us.net
-Subject: Re: [PATCHv2 3/6] hwmon: (socfpga) Add hardware monitoring support
- on SoCFPGA platforms
-Message-ID: <ZF4e8YdAqHwmONzS@smile.fi.intel.com>
-References: <20230508212852.8413-1-dinh.nguyen@linux.intel.com>
- <20230508212852.8413-3-dinh.nguyen@linux.intel.com>
- <9459547a-0ff9-9972-602d-3098b616602b@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9459547a-0ff9-9972-602d-3098b616602b@linaro.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S232174AbjELLOY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 07:14:24 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F31E4C1F
+        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 04:14:21 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-50bc0117683so17328643a12.1
+        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 04:14:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1683890060; x=1686482060;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ubvb9p88+qXd6VOrp401GthxX4aOEOtnz4kgi/kUzHM=;
+        b=0DxQHN51nTkhDMihJi78b3ohzJMoM2rXRuga1g6tw0P6qNiVS4sVaDavvwMIT5/iJ0
+         Gyd4AtWdLZ5WJxMYmdxWl1sgVyeT/fA1AVb4pnZesPs4GAjkzKCCdzj13wDF3ZGCLXgP
+         /cwdnqPJKz2mPmZYNAhyABgUXcoDYYThXQVYyJUox8JCl4sX4QDb29r863JZZN2x5CeK
+         RKkhhEXl7XohTbmdb9Cms9xaWPK4UYp4HK4gfhE8VTjVlxxug2tdQhjIM10LhFv5XJkL
+         XI+ANWqOR1T7qPIYvtmfC7JKuEzDCWvGXQ5LA0LBl7zQmc0N7GhgzmlhRA3//yPTDNA3
+         znnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683890060; x=1686482060;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=ubvb9p88+qXd6VOrp401GthxX4aOEOtnz4kgi/kUzHM=;
+        b=SBgUwEQdBHJtxSo0jAlyiw9x1Z55R1Y0T30rjLBo87s/yjcX9nowuTr/DUSAeh4vEY
+         R+mHqj1vkNYt63g8yz0gis8Lxak0K1urnOkw8VPCS232Q0MsyYHMaSFLf/AV4uoiXfkm
+         IedHKouVxHysg09eqOwm3f+FNVrbbDbJpEJwDBQP/51yd9ZVKuu5nWpl7hJMFBkJQBaR
+         vKNpTyLhplLphBIJQdeIqxOAWtRiCumxuKNpFxDs7ob37MvFXHdgVHj7kRVJDt314C72
+         tWYElANo+c+r+7For8QPUSKC+fXjWz/q2q7zYFPEB4pWe21K+Qibuc2TLoyGHt5Usl7j
+         yVqw==
+X-Gm-Message-State: AC+VfDxNuB2RCOBvQu5GDKRczi56Xcwtj53WR2ISewlcRn8F+FgPK6Mr
+        +CAO6qQbY8n4Sb7rPxegRUwxTQ==
+X-Google-Smtp-Source: ACHHUZ52Czgk88thyOAzAK6r5gc3rGC6RgqVtFaULcxPliXgWW8mW3g/7ugZKJeeCj8A5U/8Lh8yPw==
+X-Received: by 2002:a17:907:a0e:b0:94e:e6b9:fef2 with SMTP id bb14-20020a1709070a0e00b0094ee6b9fef2mr20395577ejc.67.1683890060020;
+        Fri, 12 May 2023 04:14:20 -0700 (PDT)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id l21-20020a1709062a9500b00969f44bbef3sm4734097eje.11.2023.05.12.04.14.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 May 2023 04:14:19 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Fri, 12 May 2023 13:14:18 +0200
+Message-Id: <CSK97HK2XBSR.1Q5K7TUE55HH7@otso>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        "Eric Dumazet" <edumazet@google.com>,
+        "Jakub Kicinski" <kuba@kernel.org>,
+        "Paolo Abeni" <pabeni@redhat.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "Balakrishna Godavarthi" <bgodavar@codeaurora.org>,
+        "Rocky Liao" <rjliao@codeaurora.org>,
+        "Marcel Holtmann" <marcel@holtmann.org>,
+        "Johan Hedberg" <johan.hedberg@gmail.com>,
+        "Luiz Augusto von Dentz" <luiz.dentz@gmail.com>,
+        "Andy Gross" <agross@kernel.org>,
+        "Bjorn Andersson" <andersson@kernel.org>,
+        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
+        <~postmarketos/upstreaming@lists.sr.ht>,
+        <phone-devel@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-bluetooth@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
+Subject: Re: [PATCH RFC 2/4] Bluetooth: btqca: Add WCN3988 support
+From:   "Luca Weiss" <luca.weiss@fairphone.com>
+To:     "Simon Horman" <simon.horman@corigine.com>
+X-Mailer: aerc 0.15.1
+References: <20230421-fp4-bluetooth-v1-0-0430e3a7e0a2@fairphone.com>
+ <20230421-fp4-bluetooth-v1-2-0430e3a7e0a2@fairphone.com>
+ <ZE+6e7ZxJ2s9DHI1@corigine.com>
+In-Reply-To: <ZE+6e7ZxJ2s9DHI1@corigine.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 09, 2023 at 08:57:26AM +0200, Krzysztof Kozlowski wrote:
-> On 08/05/2023 23:28, dinh.nguyen@linux.intel.com wrote:
+Hi Simon,
 
-...
+On Mon May 1, 2023 at 3:11 PM CEST, Simon Horman wrote:
+> On Fri, Apr 21, 2023 at 04:11:39PM +0200, Luca Weiss wrote:
+> > Add support for the Bluetooth chip codenamed APACHE which is part of
+> > WCN3988.
+> >=20
+> > The firmware for this chip has a slightly different naming scheme
+> > compared to most others. For ROM Version 0x0200 we need to use
+> > apbtfw10.tlv + apnv10.bin and for ROM version 0x201 apbtfw11.tlv +
+> > apnv11.bin
+> >=20
+> > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> > ---
+> >  drivers/bluetooth/btqca.c   | 13 +++++++++++--
+> >  drivers/bluetooth/btqca.h   | 12 ++++++++++--
+> >  drivers/bluetooth/hci_qca.c | 12 ++++++++++++
+> >  3 files changed, 33 insertions(+), 4 deletions(-)
+> >=20
+> > diff --git a/drivers/bluetooth/btqca.c b/drivers/bluetooth/btqca.c
+> > index fd0941fe8608..3ee1ef88a640 100644
+> > --- a/drivers/bluetooth/btqca.c
+> > +++ b/drivers/bluetooth/btqca.c
+> > @@ -594,14 +594,20 @@ int qca_uart_setup(struct hci_dev *hdev, uint8_t =
+baudrate,
+> >  	/* Firmware files to download are based on ROM version.
+> >  	 * ROM version is derived from last two bytes of soc_ver.
+> >  	 */
+> > -	rom_ver =3D ((soc_ver & 0x00000f00) >> 0x04) | (soc_ver & 0x0000000f)=
+;
+> > +	if (soc_type =3D=3D QCA_WCN3988)
+> > +		rom_ver =3D ((soc_ver & 0x00000f00) >> 0x05) | (soc_ver & 0x0000000f=
+);
+> > +	else
+> > +		rom_ver =3D ((soc_ver & 0x00000f00) >> 0x04) | (soc_ver & 0x0000000f=
+);
+>
+> Hi Luca,
+>
+> perhaps it's just me. But I was wondering if this can be improved on a li=
+ttle.
+>
+> * Move the common portion outside of the conditional
+> * And also, I think it's normal to use decimal for shift values.
+>
+> e.g.
+> 	unsigned shift;
+> 	...
+>
+> 	shift =3D soc_type =3D=3D QCA_WCN3988 ? 5 : 4;
+> 	rom_ver =3D ((soc_ver & 0x00000f00) >> shift) | (soc_ver & 0x0000000f);
+>
+> Using some helpers such as GENMASK and FIELD_PREP might also be nice.
 
-> > +	struct device_node *child;
-> > +	int ret = 0;
-> > +
-> > +	for_each_child_of_node(np, child) {
-> > +		ret = socfpga_probe_child_from_dt(dev, child, priv);
-> > +		if (ret)
-> > +			break;
-> > +	}
-> > +	of_node_put(child);
-> 
-> Hm, and if the loop does not break, is this still correct?
+While I'm not opposed to the idea, I'm not sure it's worth making
+beautiful macros for this since - to my eyes - how the mapping of
+soc_ver to firmware name works is rather obscure since the sources from
+Qualcomm just have a static lookup table of soc_ver to firmware name so
+doing this dynamically like here is different.
 
-Yes, since NULL is okay for of_node_put(). However the explicit call inside the
-if (ret) can be more obvious on what's going on.
+And I haven't looked at other chips that are covered there to see if
+there's a pattern to this, for the most part it seems the original
+formula works for most chips and the one I added works for WCN3988 (and
+the other "APACHE" chips, whatever they are).
 
-> > +	return ret;
+If a third way is added then I would say for sure this line should be
+made nicer but for now I think it's easier to keep this as I sent it
+because we don't know what the future will hold.
 
--- 
-With Best Regards,
-Andy Shevchenko
+>
+> > =20
+> >  	if (soc_type =3D=3D QCA_WCN6750)
+> >  		qca_send_patch_config_cmd(hdev);
+> > =20
+> >  	/* Download rampatch file */
+> >  	config.type =3D TLV_TYPE_PATCH;
+> > -	if (qca_is_wcn399x(soc_type)) {
+> > +	if (soc_type =3D=3D QCA_WCN3988) {
+> > +		snprintf(config.fwname, sizeof(config.fwname),
+> > +			 "qca/apbtfw%02x.tlv", rom_ver);
+> > +	} else if (qca_is_wcn399x(soc_type)) {
+> >  		snprintf(config.fwname, sizeof(config.fwname),
+> >  			 "qca/crbtfw%02x.tlv", rom_ver);
+> >  	} else if (soc_type =3D=3D QCA_QCA6390) {
+> > @@ -636,6 +642,9 @@ int qca_uart_setup(struct hci_dev *hdev, uint8_t ba=
+udrate,
+> >  	if (firmware_name)
+> >  		snprintf(config.fwname, sizeof(config.fwname),
+> >  			 "qca/%s", firmware_name);
+> > +	else if (soc_type =3D=3D QCA_WCN3988)
+> > +		snprintf(config.fwname, sizeof(config.fwname),
+> > +			 "qca/apnv%02x.bin", rom_ver);
+> >  	else if (qca_is_wcn399x(soc_type)) {
+> >  		if (ver.soc_id =3D=3D QCA_WCN3991_SOC_ID) {
+>
+> Not strictly related to this patch, but while reviewing this I noticed th=
+at
+> ver.soc_id is __le32 but QCA_WCN3991_SOC_ID is in host byteorder.
+>
+> Perhaps a cpu_to_le32() or le32_to_cpu() call is in order here?
 
+Good catch, as you've seen I sent a patch separately to fix that. :)
+
+Regards
+Luca
+
+>
+> >  			snprintf(config.fwname, sizeof(config.fwname),
+>
+> ...
 
