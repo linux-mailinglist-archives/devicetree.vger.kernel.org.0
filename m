@@ -2,111 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B7AB26FFEE3
-	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 04:22:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F8D76FFF4F
+	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 05:31:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239802AbjELCW2 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 11 May 2023 22:22:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58190 "EHLO
+        id S239861AbjELDbE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 23:31:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239784AbjELCWX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 22:22:23 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA0DE5BA9;
-        Thu, 11 May 2023 19:22:20 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 36DD824E290;
-        Fri, 12 May 2023 10:22:19 +0800 (CST)
-Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 12 May
- 2023 10:22:19 +0800
-Received: from localhost.localdomain (113.72.146.187) by EXMBX061.cuchost.com
- (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 12 May
- 2023 10:22:18 +0800
-From:   Xingyu Wu <xingyu.wu@starfivetech.com>
-To:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        "Michael Turquette" <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S239886AbjELDak (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 23:30:40 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EA4E4C20;
+        Thu, 11 May 2023 20:30:37 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6C9C464D0F;
+        Fri, 12 May 2023 03:30:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 887BAC433D2;
+        Fri, 12 May 2023 03:30:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1683862236;
+        bh=3wHs1m5GP/R3tyHlMdTHhowVdnHSnCWrWzt8b5NMDXU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=dY+uogn1+76Wu2PraxhO6Z3mS3VHZDd9NVpSxUuCYXt3aPqmmrzPyQ/Wz7MdjtpaX
+         Hxd3w06J/yh9cN4w46sQnv4DbiSlUHPx3YXVHjir+kaa2CDKYCFeoMBxMzEL/fueFr
+         n4ccKHVIrudsQoAJREsTv0Z0K9aTSYh3djJjmAuOD/0DbaZfCvdKhbr56muVm0DV08
+         l9Rz0BO8pUqvkBStUuan7jKkWF5Axs+oaAReEnyYmQhQCMRd1m85TBvYdA7FHlTGih
+         jqKgombIxYS1Wgpr9Qws25YjIOawl4/SHASHvnuTVF/OHmKfETjBCQxX8yuvJ23VVJ
+         J4RKOVwxEIXQg==
+Date:   Fri, 12 May 2023 12:30:29 +0900
+From:   Mark Brown <broonie@kernel.org>
+To:     Boerge Struempfel <boerge.struempfel@gmail.com>
+Cc:     bstruempfel@ultratronik.de, andy.shevchenko@gmail.com,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Conor Dooley <conor@kernel.org>,
-        "Emil Renner Berthing" <kernel@esmil.dk>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        Xingyu Wu <xingyu.wu@starfivetech.com>,
-        William Qiu <william.qiu@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
-Subject: [PATCH v4 7/7] riscv: dts: starfive: jh7110: Add PLL clock node and modify syscrg node
-Date:   Fri, 12 May 2023 10:20:36 +0800
-Message-ID: <20230512022036.97987-8-xingyu.wu@starfivetech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230512022036.97987-1-xingyu.wu@starfivetech.com>
-References: <20230512022036.97987-1-xingyu.wu@starfivetech.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/4] spi: dt-bindings: Introduce spi-mosi-idle-low flag
+Message-ID: <ZF2y1YNkSbXzRm4V@finisterre.sirena.org.uk>
+References: <20230511135632.78344-1-bstruempfel@ultratronik.de>
+ <20230511231317.158214-1-bstruempfel@ultratronik.de>
+ <20230511231317.158214-2-bstruempfel@ultratronik.de>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [113.72.146.187]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX061.cuchost.com
- (172.16.6.61)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="crcVxhkxf83g7XbZ"
+Content-Disposition: inline
+In-Reply-To: <20230511231317.158214-2-bstruempfel@ultratronik.de>
+X-Cookie: Avoid contact with eyes.
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the PLL clock node for the Starfive JH7110 SoC and
-modify the SYSCRG node to add PLL clocks input.
 
-Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
----
- arch/riscv/boot/dts/starfive/jh7110.dtsi | 14 ++++++++++++--
- 1 file changed, 12 insertions(+), 2 deletions(-)
+--crcVxhkxf83g7XbZ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-index fa27fd4169a8..cdfd036a0e6c 100644
---- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-@@ -452,12 +452,16 @@ syscrg: clock-controller@13020000 {
- 				 <&gmac1_rgmii_rxin>,
- 				 <&i2stx_bclk_ext>, <&i2stx_lrck_ext>,
- 				 <&i2srx_bclk_ext>, <&i2srx_lrck_ext>,
--				 <&tdm_ext>, <&mclk_ext>;
-+				 <&tdm_ext>, <&mclk_ext>,
-+				 <&pllclk JH7110_CLK_PLL0_OUT>,
-+				 <&pllclk JH7110_CLK_PLL1_OUT>,
-+				 <&pllclk JH7110_CLK_PLL2_OUT>;
- 			clock-names = "osc", "gmac1_rmii_refin",
- 				      "gmac1_rgmii_rxin",
- 				      "i2stx_bclk_ext", "i2stx_lrck_ext",
- 				      "i2srx_bclk_ext", "i2srx_lrck_ext",
--				      "tdm_ext", "mclk_ext";
-+				      "tdm_ext", "mclk_ext",
-+				      "pll0_out", "pll1_out", "pll2_out";
- 			#clock-cells = <1>;
- 			#reset-cells = <1>;
- 		};
-@@ -465,6 +469,12 @@ syscrg: clock-controller@13020000 {
- 		sys_syscon: syscon@13030000 {
- 			compatible = "starfive,jh7110-sys-syscon", "syscon", "simple-mfd";
- 			reg = <0x0 0x13030000 0x0 0x1000>;
-+
-+			pllclk: clock-controller {
-+				compatible = "starfive,jh7110-pll";
-+				clocks = <&osc>;
-+				#clock-cells = <1>;
-+			};
- 		};
- 
- 		sysgpio: pinctrl@13040000 {
--- 
-2.25.1
+On Fri, May 12, 2023 at 01:13:14AM +0200, Boerge Struempfel wrote:
+> Some spi controller switch the mosi line to high, whenever they are
+> idle. This may not be desired in all use cases. For example neopixel
+> leds can get confused and flicker due to misinterpreting the idle state.
+> Therefore, we introduce a new spi-mode bit, with which the idle behaviour
+> can be overwritten on a per device basis.
+>=20
+> Signed-off-by: Boerge Struempfel <bstruempfel@ultratronik.de>
+> ---
+>  .../devicetree/bindings/spi/spi-peripheral-props.yaml       | 6 ++++++
 
+If this is always required for a given device (which I'd expect to be
+the case) why configure it through DT?  I know we've got some legacy
+stuff like that but not all legacy DT choices were good and no need to
+continue the pattern.
+
+--crcVxhkxf83g7XbZ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmRdssoACgkQJNaLcl1U
+h9C1fAf+OxB7rCOtlPof7FqZqSfBXMUMxSO9PukmbYkdxUV/iKlWoo+TI2D946t/
+buUcDGkK2j+ubWF0uwQUuLyCbzsL4O2oRnKi5CJgEZeiCkRAhbddWFSYLCyEaKNq
+fp1MiV5/2bdtfD/WIz0CvQD4YIB7mSNj1o1U7/+K8BD9a2oACXnmlW1p2sFafi5a
+AOtv1AssMLY8nxnUZD68d7CKqVxRdFpR0NGhhdmOqViDY/Vwt3Hig/zgbegBTHWh
+CAsMZz8WWmRXq2dIJIjHOd5QKloNlSsCgtlEQFMX/35ZCXTRKLlimYwBN1wUtaN4
+XWLyuvm5QH8uHDoseqY+1dteVb0Csg==
+=Cu0M
+-----END PGP SIGNATURE-----
+
+--crcVxhkxf83g7XbZ--
