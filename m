@@ -2,120 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 44DCD700158
-	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 09:22:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CEC4700168
+	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 09:25:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239955AbjELHWq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 May 2023 03:22:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36424 "EHLO
+        id S240064AbjELHZx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 May 2023 03:25:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239918AbjELHWp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 03:22:45 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F013F10DC
-        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 00:22:43 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-965cc5170bdso1436363266b.2
-        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 00:22:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683876162; x=1686468162;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2/aA9jsvMbpCOcwE4/U6yU5Ge888LhQRk+VU/TYiZuA=;
-        b=ewIWYIPJ8NTOphY0GZu6ffx9FkoFeva5FYwZc7xleZNadJ3RtRWP4OIeBvPanFW9o9
-         02AqkiutjULhqvpof3ywrhMZL0A6xlgd4tWElwu5GVmaBYLbkt30VZ2hOe1ZqxM6PZyu
-         jNzYQKg8tTCxC7hSjp64kgjVcTLlKmKB7egs7a6wcrW8mP1dI8rgvPK8GWzXkXqcQLxH
-         JbKlNiBCPzMdpCHnqMBoiGtCszsOXjT4vS6stbyvd7BtgQdTMayk0GuTnrwh3kJswg8h
-         hM/One6Zuc/QUFJk8taEpmR8EIndNsrQaAxnIwq0JADW6YSJH1UGutk1n13Dc2L2bm37
-         K0JA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683876162; x=1686468162;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2/aA9jsvMbpCOcwE4/U6yU5Ge888LhQRk+VU/TYiZuA=;
-        b=GfmypVHKdUv5lrUDquI8z7dAlBX3+/W8n1rGdQaL0jV+76KtFzmC8ZEHDYtr4Dth8c
-         UAPbjlw3lOSK4FxWYftw6E+FxsRzugg5q9Uhjaa+oUUZNB/KfTYdSmt4YwTtsjLYZXZz
-         qip2L+FiWeLW6oWUM7KsjtDjU/qIR3KgZ7phQfDlX094p5a3e+VD+agVDapMhHUsuGxP
-         AbCmzXfnTXV0MOgVkx+2PE05iX+weNowfTgwRiM71loHpquQR+0zEKa0hGKPelV8Jn/B
-         HFjPIZpAv9wLOliOKEr50EoJFkEEysxyQuyIOZE19BVbUOYJvMOU7X1WAQ/3k+FSwl/Q
-         weSw==
-X-Gm-Message-State: AC+VfDxC2EVLkYwDa3+ZOTyOjmGAbENSgZs+4V25DKkzJfZ7AyFdOyzz
-        hYfhPO0QwWOD+WD948sdtamiRw==
-X-Google-Smtp-Source: ACHHUZ5u/Ss9b/bDnf30cMr1Nmq4PVgDVeqifi4CE7DHWwxByGSpw/29SsjXdeKlZd4l1OONhLjuyQ==
-X-Received: by 2002:a17:907:26c1:b0:94a:6071:d613 with SMTP id bp1-20020a17090726c100b0094a6071d613mr20353616ejc.64.1683876162474;
-        Fri, 12 May 2023 00:22:42 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:7ede:fc7b:2328:3883? ([2a02:810d:15c0:828:7ede:fc7b:2328:3883])
-        by smtp.gmail.com with ESMTPSA id gz20-20020a170907a05400b0095342bfb701sm5115319ejc.16.2023.05.12.00.22.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 May 2023 00:22:41 -0700 (PDT)
-Message-ID: <72c8f49e-ad3e-9241-f2dc-cd523ea19d14@linaro.org>
-Date:   Fri, 12 May 2023 09:22:40 +0200
+        with ESMTP id S239970AbjELHZw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 03:25:52 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BFEE171C;
+        Fri, 12 May 2023 00:25:51 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id C42DA24E2CF;
+        Fri, 12 May 2023 15:25:48 +0800 (CST)
+Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 12 May
+ 2023 15:25:48 +0800
+Received: from [192.168.125.131] (113.72.146.187) by EXMBX061.cuchost.com
+ (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 12 May
+ 2023 15:25:47 +0800
+Message-ID: <ebc3a1e9-06cd-7316-8cf3-945bec910a7c@starfivetech.com>
+Date:   Fri, 12 May 2023 15:24:12 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v4 7/7] riscv: dts: starfive: jh7110: Add PLL clock node
- and modify syscrg node
+Subject: Re: [PATCH v4 5/7] dt-bindings: soc: starfive: Add StarFive syscon
+ module
 Content-Language: en-US
-To:     Xingyu Wu <xingyu.wu@starfivetech.com>,
-        Conor Dooley <conor@kernel.org>
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Conor Dooley <conor.dooley@microchip.com>
+CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        "Michael Turquette" <mturquette@baylibre.com>,
         Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Philipp Zabel <p.zabel@pengutronix.de>,
-        Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor@kernel.org>,
+        "Emil Renner Berthing" <kernel@esmil.dk>,
         Rob Herring <robh+dt@kernel.org>,
         Paul Walmsley <paul.walmsley@sifive.com>,
         Palmer Dabbelt <palmer@dabbelt.com>,
         Albert Ou <aou@eecs.berkeley.edu>,
         Hal Feng <hal.feng@starfivetech.com>,
         William Qiu <william.qiu@starfivetech.com>,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
 References: <20230512022036.97987-1-xingyu.wu@starfivetech.com>
- <20230512022036.97987-8-xingyu.wu@starfivetech.com>
- <c432c26b-27d3-80dc-fe6b-457996234871@linaro.org>
- <0463378b-60d8-ee05-2a2e-1e709b882bae@starfivetech.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <0463378b-60d8-ee05-2a2e-1e709b882bae@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8
+ <20230512022036.97987-6-xingyu.wu@starfivetech.com>
+ <2fb8c88a-dab5-791b-eefe-c983decad5e8@linaro.org>
+ <20230512-brewery-spouse-86350c9664d8@wendy>
+ <b0133bcb-9c46-643a-5eda-dfdd816296fa@linaro.org>
+From:   Xingyu Wu <xingyu.wu@starfivetech.com>
+In-Reply-To: <b0133bcb-9c46-643a-5eda-dfdd816296fa@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Originating-IP: [113.72.146.187]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX061.cuchost.com
+ (172.16.6.61)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/05/2023 09:15, Xingyu Wu wrote:
-> On 2023/5/12 14:37, Krzysztof Kozlowski wrote:
->> On 12/05/2023 04:20, Xingyu Wu wrote:
->>> Add the PLL clock node for the Starfive JH7110 SoC and
->>> modify the SYSCRG node to add PLL clocks input.
->>
->>
->>> @@ -465,6 +469,12 @@ syscrg: clock-controller@13020000 {
->>>  		sys_syscon: syscon@13030000 {
->>>  			compatible = "starfive,jh7110-sys-syscon", "syscon", "simple-mfd";
->>>  			reg = <0x0 0x13030000 0x0 0x1000>;
->>> +
->>> +			pllclk: clock-controller {
->>> +				compatible = "starfive,jh7110-pll";
->>> +				clocks = <&osc>;
->>> +				#clock-cells = <1>;
->>
->> This should be part of previous patch. You just added that node. Don't
->> add half of devices but entire device.
->>
+On 2023/5/12 14:50, Krzysztof Kozlowski wrote:
+> On 12/05/2023 08:43, Conor Dooley wrote:
+>> On Fri, May 12, 2023 at 08:35:43AM +0200, Krzysztof Kozlowski wrote:
+>>> On 12/05/2023 04:20, Xingyu Wu wrote:
+>>>> From: William Qiu <william.qiu@starfivetech.com>
+>> 
+>>>> +  "#power-domain-cells":
+>>>> +    const: 1
+>>>
+>>> Add it to the existing examples.
+>>>
+>>> This part confuses me... why aon appeared here?  Why power-controller
+>>> disappeared? I don't think that Rob or me proposed any of this.
+>> 
+>> Rob did actually suggest this, as the power-controller child node had no
+>> properties other than #power-domain-cells.
 > 
-> So do I merge the patch 6 and patch 7 into one patch and add syscon and
-> clock-controller together?
+> He suggested it for aon, but not for stg or sys... aon is not a child of
+> sys, is it? Then why power-controller disappeared from sys?
+> 
 
-I am okay with adding users of clocks in separate patch, but the clock
-controller - so part of SYS - should be added when adding SYS.
+The power-controller is only for aon, but now just use power-domain-cells instead.
+The sys only have the clock-controller child node not power-controller.
+And stg has neither.
 
 Best regards,
-Krzysztof
+Xingyu Wu
 
