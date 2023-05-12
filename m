@@ -2,110 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 823B0700C7C
-	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 18:02:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E100700C8E
+	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 18:06:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241898AbjELQCp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 May 2023 12:02:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42400 "EHLO
+        id S241943AbjELQG2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 May 2023 12:06:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241611AbjELQCn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 12:02:43 -0400
-Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C8C626BF;
-        Fri, 12 May 2023 09:02:42 -0700 (PDT)
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-        by mx0a-001ae601.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34CF338N001679;
-        Fri, 12 May 2023 11:02:28 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=PODMain02222019;
- bh=sxTNfTIyW/nEcDvx6yT+yObQ3uEy7YzQuDGF0VMrRAs=;
- b=JStZksNPNYMIMqczfGRO7suA6nUHCLyVAvjikIsNtGK3qRIujoBL8uvkontvfzxZWr74
- 5FtZ/M4ek4dcfvpD47Vk7jy9nW0nrdwIOoYAfhL1Objhv64VvCLr4vGRGJ2rBaWkHfqC
- eo74uPqtgAHuO2RXdtv+R9Pf+f4twQDMIxKaAKmYablqQakylypjArbdj2iY70hpL4fJ
- 6Pe0FNXVf0EtynUX4t2kU8JGKDT23dgjD6JZ8DFF5ybHqz8gwDFBHrgVvJ+/6IgGnVUC
- h+l8XA1yw9KrIEeD2sRjY4+f2j5QlwilDcmzZSRdkvErhTGCBLuwYhr0GdEWl/kNa0ZL 6A== 
-Received: from ediex02.ad.cirrus.com ([84.19.233.68])
-        by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3qf7nb5pe5-1
+        with ESMTP id S241966AbjELQG2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 12:06:28 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA9A64C12;
+        Fri, 12 May 2023 09:06:26 -0700 (PDT)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34CCmZ1l032495;
+        Fri, 12 May 2023 16:06:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=m7q8RppMGVew27onlmLTY7+KOzuH6c8ILee3vZlACKU=;
+ b=RXWbD5xMarq1JaIEoZs1d71k6RPXne0ETBSlNXx3JzZphTv1CSIx6A9130reU+014E8v
+ 0zKroafgyFwU5vKr6GfLpZ7WuX3gVs81Yj2Qr+j6gTGTQDN/WF51CX3L1Vcaq2wCH0Qj
+ FbRrynxNIEzyoz505VBBYcpxzOl4ZoLaqTuCOXb7mVorABWDkcl5xHqYWqpMKNLZ1czi
+ Hf02Xkw48eNfFjrTVxYqd3MBcjWTPKB6GGNYUdn6FfMXvS0sJnxGzWpEI4LGDduheqv+
+ 3DKlqyP88FHJA45aD1DYjPz20Z4kDF5eFt+Cp1a2Dd/FzGEjDUYEQPrIpNVKYoyuP9yV Rw== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qhfww16r8-1
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 12 May 2023 11:02:27 -0500
-Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.26; Fri, 12 May
- 2023 11:02:24 -0500
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by
- anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Fri, 12 May 2023 11:02:24 -0500
-Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 4000D11A8;
-        Fri, 12 May 2023 16:02:24 +0000 (UTC)
-Date:   Fri, 12 May 2023 16:02:24 +0000
-From:   Charles Keepax <ckeepax@opensource.cirrus.com>
-To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-CC:     <broonie@kernel.org>, <lee@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <tglx@linutronix.de>, <maz@kernel.org>, <linus.walleij@linaro.org>,
-        <vkoul@kernel.org>, <lgirdwood@gmail.com>,
-        <yung-chuan.liao@linux.intel.com>, <sanyog.r.kale@intel.com>,
-        <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
-        <devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <linux-spi@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 01/10] soundwire: bus: Allow SoundWire peripherals to
- register IRQ handlers
-Message-ID: <20230512160224.GK68926@ediswmail.ad.cirrus.com>
-References: <20230512122838.243002-1-ckeepax@opensource.cirrus.com>
- <20230512122838.243002-2-ckeepax@opensource.cirrus.com>
- <0471f085-14bf-c159-9b92-62983af6c19a@linux.intel.com>
+        Fri, 12 May 2023 16:06:23 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34CG6Me9016721
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 12 May 2023 16:06:22 GMT
+Received: from [10.216.40.14] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Fri, 12 May
+ 2023 09:06:19 -0700
+Message-ID: <3d6cc32a-d538-22c0-677a-285c00ca63d3@quicinc.com>
+Date:   Fri, 12 May 2023 21:32:44 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <0471f085-14bf-c159-9b92-62983af6c19a@linux.intel.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Proofpoint-ORIG-GUID: 4w6vreW3yXhaxD8tHcn7X6KMWwrZKHrP
-X-Proofpoint-GUID: 4w6vreW3yXhaxD8tHcn7X6KMWwrZKHrP
-X-Proofpoint-Spam-Reason: safe
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH 0/3] Minor updates in the IPQ5332 DTS files
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20230412164920.21862-1-quic_kathirav@quicinc.com>
+Content-Language: en-US
+From:   Kathiravan T <quic_kathirav@quicinc.com>
+In-Reply-To: <20230412164920.21862-1-quic_kathirav@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: TwPISFiEyjLxxjKnyJl9X3BsFbQq79WC
+X-Proofpoint-GUID: TwPISFiEyjLxxjKnyJl9X3BsFbQq79WC
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-12_10,2023-05-05_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ priorityscore=1501 lowpriorityscore=0 mlxlogscore=706 malwarescore=0
+ spamscore=0 clxscore=1015 adultscore=0 mlxscore=0 phishscore=0 bulkscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2305120133
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 12, 2023 at 08:45:51AM -0500, Pierre-Louis Bossart wrote:
-> > @@ -1711,6 +1739,9 @@ static int sdw_handle_slave_alerts(struct sdw_slave *slave)
-> >  				struct device *dev = &slave->dev;
-> >  				struct sdw_driver *drv = drv_to_sdw_driver(dev->driver);
-> >  
-> > +				if (slave->prop.use_domain_irq && slave->irq)
-> > +					handle_nested_irq(slave->irq);
-> > +
-> 
-> I am a bit lost here, I can understand that alerts would be handled by a
-> dedicated handler, but here the code continues and will call the
-> existing interrupt_callback.
-> 
-> Is this intentional? I wonder if there's a risk with two entities
-> dealing with the same event and programming the same registers.
-> Shouldn't there be some sort of 'either or' rule?
-> 
 
-I guess there is a risk of them "handling" the IRQ twice,
-although it is hard to see why you would write the driver that
-way. Also since they are sequencial the second would I guess
-just see that no IRQs are pending.
+On 4/12/2023 10:19 PM, Kathiravan T wrote:
+> Rename the MI01.2 DTS after Reference Design Platform(RDP) number to align
+> with ipq5332-rdp468.dts, add UART1 node and reserve memory for U-boot
+> and SBL to avoid loosing the RAM contents which will be used in post
+> morterm analysis.
+>
+> Bjorn, since these are minor updates, it would be great if you could
+> possibly pick up this series for v6.4.
+>
+> Kathiravan T (3):
+>    arm64: dts: qcom: ipq5332: rename mi01.2 dts to rdp441
+>    arm64: dts: qcom: ipq5332: define UART1
+>    arm64: dts: qcom: ipq5332: add few more reserved memory region
 
-The intention for calling both is that it facilitates using
-the same IRQ handler for I2C and SoundWire. At least on the
-Cirrus devices there are a bunch of chip specific registers
-that need treated exactly the same on I2C and SoundWire, but
-then a couple of extra registers that need handled in the
-SoundWire case. This way the handling of those can be kept
-completely in the SoundWire part of the code and not ifdef-ed
-into the main IRQ path.
 
-Thanks,
-Charles
+Gentle Reminder...
+
+
+>
+>   arch/arm64/boot/dts/qcom/Makefile             |  2 +-
+>   ...{ipq5332-mi01.2.dts => ipq5332-rdp441.dts} |  0
+>   arch/arm64/boot/dts/qcom/ipq5332.dtsi         | 20 +++++++++++++++++++
+>   3 files changed, 21 insertions(+), 1 deletion(-)
+>   rename arch/arm64/boot/dts/qcom/{ipq5332-mi01.2.dts => ipq5332-rdp441.dts} (100%)
+>
