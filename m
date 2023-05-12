@@ -2,121 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EC67700D8C
-	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 19:01:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E7F4700DE0
+	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 19:31:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237550AbjELRBa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 May 2023 13:01:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51308 "EHLO
+        id S237487AbjELRbn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 May 2023 13:31:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237700AbjELRB3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 13:01:29 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60D95A250
-        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 10:01:28 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-50bd2d7ba74so91341982a12.1
-        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 10:01:28 -0700 (PDT)
+        with ESMTP id S230388AbjELRbm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 13:31:42 -0400
+Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E744E3ABF
+        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 10:31:40 -0700 (PDT)
+Received: by mail-yb1-xb2d.google.com with SMTP id 3f1490d57ef6-b9e6ec482b3so13006630276.3
+        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 10:31:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683910887; x=1686502887;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=WgyCZc0+du4N+dTZkKE4PbFdEgp5xlJtk0+36+OFtLs=;
-        b=aq1mpL/CYYPyVxxuT1synoTadOINqfKrW4ajIyM2WqaRyGAkJGBxsYYe/2Y2cQ97Yh
-         UWUYdRoH2SuCArWPH8YMFDrus8laLXbW3HNV/AAO/tdION23+5QleTt9IsGGvVHYkAlJ
-         beTwgJ5WwjCdlCb4/warYmKtSammHAffCzLoEVeFj57dvbn1PZ5p21FxSKiBTTUGeIvu
-         V+Z+/4/o6lotQ6wygwrus+wbKRQFc2xnD5hx46LWCiVHYkcSQbgkvkS8VV6dWZuXMa1j
-         rg0/SZJvig9ulJ9NP5vM78uqaQizjpCrBC0ku4t2rM4YwS+JGOMAlH0LjyEDJDfh/3TO
-         aFGA==
+        d=linaro.org; s=google; t=1683912700; x=1686504700;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=pOBiYL4MwkPBAdAa0oljolb6gFlLduUl+hv8/gzGBww=;
+        b=Ljb2Ic9b8AFxQ3m1p0awPhm6nnq3HpWkJcsg1631eUZzTO/5hnV2HsKfisYyDtDb17
+         V8552imBkDLbXmsjLctugQqCfKAMaR1wmUD2LIEePT6ZNVq93DcGJLaEMO0Tg7q3XRzg
+         T+nmAgGCDQwI673WZ51nYlxKCCAy2VMVN2QaC8MNO1MZB2PKR/oZt4bUuHyFpaovvBTd
+         i1ik1UyIy1Bz/rJ9JxXZVeeRzgUhQXNnk4CVj4XcxqPEUUnuO/i6PmIQbM8+3Zac0zc7
+         0DSoAHA7T0OB84VFnq7RXQfc9uK0QfUBRdYFXUF4fSZnsREIgHwm2mIyXcHRdciVZvUA
+         fy1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683910887; x=1686502887;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WgyCZc0+du4N+dTZkKE4PbFdEgp5xlJtk0+36+OFtLs=;
-        b=fWqk7Mr4LRy3/4FngNyTCIYOJ1Ck3mqyZ46jwIoOkWTdEafJ2DYnyYjgIHG11PZRML
-         eUhiSUWBhqWpXcq3YYadK8uXdu7jXjBpvQdUx2oEDStZ7D0MNfoQFBXQH/kc7UsnfFu4
-         vEskQJ+44+ES0vgQRTMv3M5GHlsXmlz6E9nEKFOlQIWOgHLqVp3XLtKjamIMztX/iwvq
-         F937133+ZVEIR+WvubigDgEvMqJqaTrrONmepGJxO9EB0WtMzynOR4/TgK7v04BIwxmQ
-         Mw4OY1CId7+q+BCFn2PpcOnSvGhpNCTGOw1fA5YIRfMeSaRDghBqV0lOXq2ZHmnJZPGe
-         V9Qg==
-X-Gm-Message-State: AC+VfDwFv/9wf1cruyMQUsZ4K2dVQDn9xEbLuiqA38w9D79oOL5p609Q
-        O7lXL86Gs1UfXcTSOdGYf4JVw5EAdkd6K0hfNXQ=
-X-Google-Smtp-Source: ACHHUZ5uUqEBoBhIS5B1WUsaCYWCtvoNEX8tDn3L5tF8EV6C9KWlEcA+qH+cE9OxMmohcdB6Kr5Ifw==
-X-Received: by 2002:a17:906:db04:b0:960:175a:3af7 with SMTP id xj4-20020a170906db0400b00960175a3af7mr20987144ejb.19.1683910886814;
-        Fri, 12 May 2023 10:01:26 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:7ede:fc7b:2328:3883? ([2a02:810d:15c0:828:7ede:fc7b:2328:3883])
-        by smtp.gmail.com with ESMTPSA id hy25-20020a1709068a7900b0096607baaf19sm5635497ejc.101.2023.05.12.10.01.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 May 2023 10:01:26 -0700 (PDT)
-Message-ID: <68f9bee2-5a5b-2962-6c3d-e73ade371545@linaro.org>
-Date:   Fri, 12 May 2023 19:01:24 +0200
+        d=1e100.net; s=20221208; t=1683912700; x=1686504700;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pOBiYL4MwkPBAdAa0oljolb6gFlLduUl+hv8/gzGBww=;
+        b=bsnfuR+xXxl5G4q9tq3QL+oRu+qiaLPoBFa015Wopcbj4NAdBXNqOy551gpMOL/7je
+         jWneoashFEkMkFhhgQ4XHpsoMcUdEgTwaZ+iQLjRjQtqWZ3UEI2qkVvYeJFVlDMWieVW
+         sQQ2ybKeFhaG+1Me0PHb02krrPdUNDNRZqKwwy2loSQprNe6ilddnkjaQcQNmTwQ7C/4
+         sOHliobRJkx/muQqUZy7wraCB85D5QPqtBLqFMVnGQzuvoleQIi/SreMIp8dguVpNWXF
+         /DgjnrYkrVXn5bWjhVFcu/4/lAboqoRjmySb1tHvdBpjUVN/fYLEQlXpPRz+dTixxYMM
+         Qd6A==
+X-Gm-Message-State: AC+VfDwCNMfH4axPb6ZzVhTyuHzDNitneFUAEXFbgOKQ0X0dvR/jUAn9
+        YE/0c952+zwWGKFc1Si9U4nZILCeU4H2fCzPhbWxpw==
+X-Google-Smtp-Source: ACHHUZ5QiUFPYw4G5Vzfw9NyzYMR98hObzlMHs6fX4n4VbtBCGWAHhsTIfoiD8WdkQP2k/IguG8OB9exVS+Jukb8ijM=
+X-Received: by 2002:a25:d38c:0:b0:ba6:a813:f19e with SMTP id
+ e134-20020a25d38c000000b00ba6a813f19emr5660000ybf.50.1683912699977; Fri, 12
+ May 2023 10:31:39 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v3 04/10] nvmem: qfprom: Add support for secure reading on
- QDU1000/QRU1000
-Content-Language: en-US
-To:     Komal Bajaj <quic_kbajaj@quicinc.com>,
+References: <20230512122134.24339-1-quic_kbajaj@quicinc.com>
+ <20230512122134.24339-5-quic_kbajaj@quicinc.com> <68f9bee2-5a5b-2962-6c3d-e73ade371545@linaro.org>
+In-Reply-To: <68f9bee2-5a5b-2962-6c3d-e73ade371545@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Fri, 12 May 2023 20:31:29 +0300
+Message-ID: <CAA8EJppObh3h8sxB_f9SQy7EQ1Gfhe9EbzV=wsUbVNj9PtX=GA@mail.gmail.com>
+Subject: Re: [PATCH v3 04/10] nvmem: qfprom: Add support for secure reading on QDU1000/QRU1000
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Komal Bajaj <quic_kbajaj@quicinc.com>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org
-References: <20230512122134.24339-1-quic_kbajaj@quicinc.com>
- <20230512122134.24339-5-quic_kbajaj@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230512122134.24339-5-quic_kbajaj@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/05/2023 14:21, Komal Bajaj wrote:
-> Add qfprom driver support for QDU1000/QRU1000 SOCs.
-> 
-> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
-> ---
->  drivers/nvmem/qfprom.c | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/drivers/nvmem/qfprom.c b/drivers/nvmem/qfprom.c
-> index 20662e2d3732..12a7981a8a71 100644
-> --- a/drivers/nvmem/qfprom.c
-> +++ b/drivers/nvmem/qfprom.c
-> @@ -109,6 +109,10 @@ struct qfprom_soc_compatible_data {
->  	bool secure;
->  };
-> 
-> +static const struct qfprom_soc_compatible_data qdu1000_qfprom = {
-> +	.secure = true
-> +};
-> +
->  static const struct nvmem_keepout sc7180_qfprom_keepout[] = {
->  	{.start = 0x128, .end = 0x148},
->  	{.start = 0x220, .end = 0x228}
-> @@ -490,6 +494,7 @@ static int qfprom_probe(struct platform_device *pdev)
-> 
->  static const struct of_device_id qfprom_of_match[] = {
->  	{ .compatible = "qcom,qfprom",},
-> +	{ .compatible = "qcom,qdu1000-qfprom", .data = &qdu1000_qfprom},
->  	{ .compatible = "qcom,sc7180-qfprom", .data = &sc7180_qfprom},
+On Fri, 12 May 2023 at 20:01, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 12/05/2023 14:21, Komal Bajaj wrote:
+> > Add qfprom driver support for QDU1000/QRU1000 SOCs.
+> >
+> > Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
+> > ---
+> >  drivers/nvmem/qfprom.c | 5 +++++
+> >  1 file changed, 5 insertions(+)
+> >
+> > diff --git a/drivers/nvmem/qfprom.c b/drivers/nvmem/qfprom.c
+> > index 20662e2d3732..12a7981a8a71 100644
+> > --- a/drivers/nvmem/qfprom.c
+> > +++ b/drivers/nvmem/qfprom.c
+> > @@ -109,6 +109,10 @@ struct qfprom_soc_compatible_data {
+> >       bool secure;
+> >  };
+> >
+> > +static const struct qfprom_soc_compatible_data qdu1000_qfprom = {
+> > +     .secure = true
+> > +};
+> > +
+> >  static const struct nvmem_keepout sc7180_qfprom_keepout[] = {
+> >       {.start = 0x128, .end = 0x148},
+> >       {.start = 0x220, .end = 0x228}
+> > @@ -490,6 +494,7 @@ static int qfprom_probe(struct platform_device *pdev)
+> >
+> >  static const struct of_device_id qfprom_of_match[] = {
+> >       { .compatible = "qcom,qfprom",},
+> > +     { .compatible = "qcom,qdu1000-qfprom", .data = &qdu1000_qfprom},
+> >       { .compatible = "qcom,sc7180-qfprom", .data = &sc7180_qfprom},
+>
+> I have doubts that this is still compatible with qcom,qfprom. It uses
+> entirely different read method. That's why generic fallbacks are bad,
+> one more case to my growing list of awesome examples. :)
 
-I have doubts that this is still compatible with qcom,qfprom. It uses
-entirely different read method. That's why generic fallbacks are bad,
-one more case to my growing list of awesome examples. :)
+Yes, it looks like it should be 'qcom,qdu1000-qfprom",
+"qcom,scm-qfprom". And possibly a separate driver for scm-qfprom.
 
-Best regards,
-Krzysztof
 
+-- 
+With best wishes
+Dmitry
