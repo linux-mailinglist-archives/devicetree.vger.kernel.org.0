@@ -2,56 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B30BD700A11
-	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 16:15:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A793E700A14
+	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 16:15:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241528AbjELOPd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 May 2023 10:15:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47296 "EHLO
+        id S241493AbjELOPh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 May 2023 10:15:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241490AbjELOPY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 10:15:24 -0400
-Received: from mail-yw1-x1149.google.com (mail-yw1-x1149.google.com [IPv6:2607:f8b0:4864:20::1149])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC28914922
-        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 07:15:16 -0700 (PDT)
-Received: by mail-yw1-x1149.google.com with SMTP id 00721157ae682-55a40d32a6bso110425187b3.2
-        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 07:15:16 -0700 (PDT)
+        with ESMTP id S241512AbjELOPa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 10:15:30 -0400
+Received: from mail-yb1-xb4a.google.com (mail-yb1-xb4a.google.com [IPv6:2607:f8b0:4864:20::b4a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B2CF14901
+        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 07:15:20 -0700 (PDT)
+Received: by mail-yb1-xb4a.google.com with SMTP id 3f1490d57ef6-b8f324b3ef8so12331117276.0
+        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 07:15:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20221208; t=1683900916; x=1686492916;
+        d=google.com; s=20221208; t=1683900920; x=1686492920;
         h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
          :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=AwCGXSf8iY+/DH2QgsH2WgzsBbqjZwTLYrp1XXczDUM=;
-        b=OY9dkKT5GQA0dusKiKaS7jrpoAGc7STMoAC5iq8ZfQ23vIfNvff8zDGgoY30mJ/5tD
-         9i5nx/eeF4spSmwJa6idZkSXZNinZO9XvLfzF6UvdZkIqXG9NT4b8J8zNPdj8LzTmHxk
-         7REBcii9VONQpxmUV1ZgJuykuVbQPVtAhPWlMybn7UfMyv8CfnQ7ky/YyFRHSkAev3PK
-         MeZXSlsVN9NAYV0dajL373J8mY+unWtwU0Y3WI1cw/zYGoJPInHFFssN72jUC6uC7mFG
-         TIRG8oqiyD1k+RdxYwV8T1XyV86Lt927tbp7/DrwyLP1upxf9Pd2O0L0eEZ2NhxUSfZf
-         BmbA==
+        bh=FfQ+/r7s1P5a9jjV8O7nCqUbRdU0vkaUxYBVOduQXjQ=;
+        b=IBQZt7JbR+LudSxsdF3I2W7xeLwAEvXnvns938oEU3VVcdBX8lAvplQRg7xLBCUB4C
+         ibIFadhFDSBkJSFTFTmgkfksiGNjcAaBORXO437XVKfkkkB7GVcSGu6rsigHjTGBODI2
+         MWcaHPbDRpwxLs0HJz0hA8eAfv1TccaO1pNBYr0ZBV3LwULnXcqNv9myVmpjESVEcG90
+         rhWaoqsxTJHrZkCQSCr4y7iMc0j6LT/JRTEqunc/ujfyQ6IMSf8X5LprFe5Wp7uTzytW
+         vsyHe3eB7xsk7CNt0uDT/dS0HwFRgH1fmlICo8/Fz7mDK/QHxJGzWVWNDSZTPj2tG6tN
+         kyog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683900916; x=1686492916;
+        d=1e100.net; s=20221208; t=1683900920; x=1686492920;
         h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
          :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AwCGXSf8iY+/DH2QgsH2WgzsBbqjZwTLYrp1XXczDUM=;
-        b=eEcJ6iDozfqMPwA6ZuJNjCzoseVFjVe8erbKhnoyLMWYIrXU7E4HZDR1V8C5JsmyNL
-         iBc5spWgkMUrvPPFj2AgdFFGcxU8kOkEafLfppBxaW5at6un0xdGw6VGGNqC+ZJTYlCh
-         YKCNI19SMfuHAE8vJuLYPiyFt955E2viaoR++6MSJG6/HaBWxYZqIZrga23dM8zZFib/
-         kQxQC2S/hf155R+HDngCAnbjpCiuzhjn8Nv63+PaJmvKby9ih+9FPHFVtojnIhhYmUdz
-         I0AYUmTsRA2f49UnvmL5Au6ikBNUkbn63UhwV018BZv+YEzgR7B6s2uiq5JRP43HqHaS
-         IIeg==
-X-Gm-Message-State: AC+VfDyyZFRti1qiVhXAiKJMbHUHAPHPV56o5lyctC0lUYg7xz79weep
-        WzvwsGzjDedSx6XYrFQP3pTTuiXsfcQpZg==
-X-Google-Smtp-Source: ACHHUZ6vj73ZJJY9u+8pIa7SQmcBCLaiwjS1XLKrddb4JGDp5BRcKH1etJcsBSg/adpZUKOfhQdn8y9RDHibrQ==
+        bh=FfQ+/r7s1P5a9jjV8O7nCqUbRdU0vkaUxYBVOduQXjQ=;
+        b=abbaZqqWuJr1vKtdlUmZP/BqejLu+30vNFDxdmtTGtEg45zUZg51SzFnGDfBj4PZxS
+         MgtlQ1z75CH1+iRKXaWQu+Otzqro9feJF6xYYeJxqPA4eB2zYi4NKMG4IChCZaOGRVrL
+         LhPs/t6c+Y7uyrCNMgxCSROqw194rGtJ9Q8Qtb55yScf6xpC0nkdeyzxJBRt3I4JiIA+
+         VCkTsfb5I+uIujUhQha3AQbUtnFPeYC3p+/yIWLC2kO2123LdS8T8W6/RHHpHm2oW8ic
+         25B0OJaLsk0zLqmSRWZ8XJ6YyEmhmCARokjR9eduJI0r0XTVDblSCXBWmD97u5H4WnFv
+         TiqQ==
+X-Gm-Message-State: AC+VfDxRZQOuWJVFL6twW08zXkIb525cu6Ui05NaT6I1JsIHMW8k9+ON
+        K+wzDOZyjK5vZkVX01x4XKS/8BzJ5hrv8g==
+X-Google-Smtp-Source: ACHHUZ5ymR5y6St7F++9mZcC0W4aDFurpqueRtd+CJ72Z1j3cHVCDRUWUF25Pc7VzIilNjjP/KgcUj6STOExXg==
 X-Received: from joychakr.c.googlers.com ([fda3:e722:ac3:cc00:4f:4b78:c0a8:6ea])
- (user=joychakr job=sendgmr) by 2002:a81:a9c3:0:b0:54c:a67:90b with SMTP id
- g186-20020a81a9c3000000b0054c0a67090bmr16185230ywh.5.1683900915935; Fri, 12
- May 2023 07:15:15 -0700 (PDT)
-Date:   Fri, 12 May 2023 14:14:42 +0000
+ (user=joychakr job=sendgmr) by 2002:a25:1d84:0:b0:ba2:526a:c84e with SMTP id
+ d126-20020a251d84000000b00ba2526ac84emr12761168ybd.9.1683900920221; Fri, 12
+ May 2023 07:15:20 -0700 (PDT)
+Date:   Fri, 12 May 2023 14:14:43 +0000
 In-Reply-To: <20230512141445.2026660-1-joychakr@google.com>
 Mime-Version: 1.0
 References: <20230512141445.2026660-1-joychakr@google.com>
 X-Mailer: git-send-email 2.40.1.606.ga4b1b128d6-goog
-Message-ID: <20230512141445.2026660-4-joychakr@google.com>
-Subject: [PATCH v2 3/6] dmaengine: pl330: Change if-else to switch-case for consistency
+Message-ID: <20230512141445.2026660-5-joychakr@google.com>
+Subject: [PATCH v2 4/6] dmaengine: pl330: Change unused arg "len" from get_burst_len()
 From:   Joy Chakraborty <joychakr@google.com>
 To:     Vinod Koul <vkoul@kernel.org>
 Cc:     dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org,
@@ -69,42 +69,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Change if-else to switch-case in pl330_prep_slave_sg() function for
-consistency with other peripheral transfer functions in the driver.
+Remove unused length argument from get_burst_len() and add burst size as
+an argument to allow usage of this function in other places as source and
+destination burst sizes are handled separately.
 
 Signed-off-by: Joy Chakraborty <joychakr@google.com>
 ---
- drivers/dma/pl330.c | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
+ drivers/dma/pl330.c | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/dma/pl330.c b/drivers/dma/pl330.c
-index 39a66ff29e27..746da0bbea92 100644
+index 746da0bbea92..e5e610c91f18 100644
 --- a/drivers/dma/pl330.c
 +++ b/drivers/dma/pl330.c
-@@ -2883,16 +2883,21 @@ pl330_prep_slave_sg(struct dma_chan *chan, struct scatterlist *sgl,
- 		else
- 			list_add_tail(&desc->node, &first->node);
+@@ -2660,8 +2660,7 @@ __pl330_prep_dma_memcpy(struct dma_pl330_chan *pch, dma_addr_t dst,
+ 	return desc;
+ }
  
--		if (direction == DMA_MEM_TO_DEV) {
-+		switch (direction) {
-+		case DMA_MEM_TO_DEV:
- 			desc->rqcfg.src_inc = 1;
- 			desc->rqcfg.dst_inc = 0;
- 			fill_px(&desc->px, pch->fifo_dma, sg_dma_address(sg),
- 				sg_dma_len(sg));
--		} else {
-+			break;
-+		case DMA_DEV_TO_MEM:
- 			desc->rqcfg.src_inc = 0;
- 			desc->rqcfg.dst_inc = 1;
- 			fill_px(&desc->px, sg_dma_address(sg), pch->fifo_dma,
- 				sg_dma_len(sg));
-+			break;
-+		default:
-+			break;
- 		}
+-/* Call after fixing burst size */
+-static inline int get_burst_len(struct dma_pl330_desc *desc, size_t len)
++static inline int get_burst_len(struct dma_pl330_desc *desc, unsigned int brst_size)
+ {
+ 	struct dma_pl330_chan *pch = desc->pchan;
+ 	struct pl330_dmac *pl330 = pch->dmac;
+@@ -2669,7 +2668,7 @@ static inline int get_burst_len(struct dma_pl330_desc *desc, size_t len)
  
- 		desc->rqcfg.src_brst_size = pch->burst_sz;
+ 	burst_len = pl330->pcfg.data_bus_width / 8;
+ 	burst_len *= pl330->pcfg.data_buf_dep / pl330->pcfg.num_chan;
+-	burst_len >>= desc->rqcfg.src_brst_size;
++	burst_len >>= brst_size;
+ 
+ 	/* src/dst_burst_len can't be more than 16 */
+ 	if (burst_len > PL330_MAX_BURST)
+@@ -2805,7 +2804,7 @@ pl330_prep_dma_memcpy(struct dma_chan *chan, dma_addr_t dst,
+ 		burst /= 2;
+ 
+ 	desc->rqcfg.src_brst_size = __ffs(burst);
+-	desc->rqcfg.src_brst_len = get_burst_len(desc, len);
++	desc->rqcfg.src_brst_len = get_burst_len(desc, desc->rqcfg.src_brst_size);
+ 	/*
+ 	 * If burst size is smaller than bus width then make sure we only
+ 	 * transfer one at a time to avoid a burst stradling an MFIFO entry.
 -- 
 2.40.1.606.ga4b1b128d6-goog
 
