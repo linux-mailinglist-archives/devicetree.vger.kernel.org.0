@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 79DBD6FFDED
-	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 02:32:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EBD946FFDF1
+	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 02:32:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239637AbjELAch (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 May 2023 20:32:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43334 "EHLO
+        id S239365AbjELAci (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 May 2023 20:32:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239620AbjELAcf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 20:32:35 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CD1859DC
+        with ESMTP id S229654AbjELAch (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 May 2023 20:32:37 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F096C5B90
         for <devicetree@vger.kernel.org>; Thu, 11 May 2023 17:32:34 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4f1fe1208a4so7580244e87.2
+Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-4f24cfb8539so6962760e87.3
         for <devicetree@vger.kernel.org>; Thu, 11 May 2023 17:32:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683851552; x=1686443552;
+        d=linaro.org; s=google; t=1683851553; x=1686443553;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=RzC/S26FfX2KBobwpdwOfCvN/amobbf96cFrDJ/wC6A=;
-        b=fkMyWui9qjhtPN3UucqAj0YDgghgrr7ix+K6WBtwGUceg+JTjgwZf0kFsEUDhQTmB+
-         slvZ0dv8xZEOhDXZvZggMIDjv7ECm7yozeC17rIBrcTeFcZX/taGr122d3qJNVcsYEli
-         oWnvmn/tgmko30sV5mlCWFfp7Nqi7wvm7SSBHaGUlSfL2YZGDyZSsDK8LIrYY2r0aI+v
-         y1NEZr9Cdfu35HCjOBEHoyAO8Tfx/q6L0PwOqsza8z7NV4hpvxNo3XZofrm83nHQOgT7
-         uTMgvMOaKUCyJxC9DtBLEQ7x9v3NmoWJ6Ak0a0VNCysLFdSscxEnEne6RRI9Nhm7/Kim
-         /AZg==
+        bh=zzmUcAFcZdFCEwI+FLrPfYHPtwRzIfK4E9usXEvVYb8=;
+        b=nSdfj1AusN4D4fXIV7azWczHB3vWgf0G6CvZuKLPIiUlKV8zxSgIrCGejGRbt6KEKd
+         0LWUR4/q8gfMpRf17qxJpDFAkvyfT1i/T48Ga8OloQJuxjXctLJlFpR9pozklbWD8Ak0
+         W+lm4H+O55fqGQTJXeV5T3QT8wvJftRbU56j4vZvwd1n6x5P4Ws65s3Mcu5pbMgMAmL+
+         GE+OYQeBZfJOh4GGcwawhJPqCB8raAImzjImT5ohm3jz21ZsFHtu2V3uRnjMv7ZM9eS0
+         1FC4weVvWenh3IYZgLpj5maZDRe4ajdgcsH32C6mhU64jclFjHa3smL4UJLZ8TWvT4wo
+         d3Hw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683851552; x=1686443552;
+        d=1e100.net; s=20221208; t=1683851553; x=1686443553;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=RzC/S26FfX2KBobwpdwOfCvN/amobbf96cFrDJ/wC6A=;
-        b=KiX51FssySMkcJRXTF+sFVibNk98Le0eNBHFGLKSdcjR21r0sBWprf4yiSIf+e1giZ
-         rdTzP7/S/n+/vQJyCiw58FPxkkz7KE7Ah6//M+Zb0Oyer9UtOX301GWdvzJJLj4psWyu
-         jtHbCa8BueAwMxFEEh0l5CrOwrX5g5Ev4U1IBF38I0n28Z3ukLUmjhcNGnWUHd5kVFZi
-         zqd20KJ/asuvJCLJoM82yGewV7d1nNIRM6lbHmCpvl5TiSxuf9qrSc+gmmkxn0JiZ2hG
-         Psmk6fKK0MxIqIROP2hFgEjd33g5PpbIsKf3OEDvB2yyntfbkLryxkaoh5WMx+D0Vpp3
-         7rAg==
-X-Gm-Message-State: AC+VfDwGnM2yiZDhHT1HXBpZdD8gALSKBQtby8anHgo9IByFA6aI5p40
-        nuchk82gdLZtOien+0Zn8/VmJQ==
-X-Google-Smtp-Source: ACHHUZ6s7Y0KFS2o3h0R8qGGin1sTFHn0NyW1jVuQeQQDAHY9SEThMUg+YfbmkchsoShgGIEG3R20g==
-X-Received: by 2002:ac2:4a75:0:b0:4f1:444e:6c5a with SMTP id q21-20020ac24a75000000b004f1444e6c5amr3023901lfp.8.1683851552416;
-        Thu, 11 May 2023 17:32:32 -0700 (PDT)
+        bh=zzmUcAFcZdFCEwI+FLrPfYHPtwRzIfK4E9usXEvVYb8=;
+        b=JGjiVdtXeKJ89WJ0XCvkghecII6ejivz3KqMrb98vtOFddzSmhaTZmR3/oCBqbswgo
+         l81r4dRniFa46CnVA5r7+S6PTQN5Yl/w0nOUMlX4WVaZGd3bIPTuLVmPK3g5JO287N7h
+         xzhpPIelOJM9IVr1R8yvhKNQj9F8G96mY1l02brQZCAdlVNhTtHmo/yaHVFDBh+ERWFf
+         DuGH3RpOATxIpaVxta2qigAEuYcqLjViXNIE3sSQud52gGNyIsUIETN47frpblK6/iAa
+         wQJxMgnOf6LSk1DBHdCbjmh/SjDkALaQBgISVrAdYfFAeL7fqJ4Z2EM0oHabX8bdhFTs
+         yVgg==
+X-Gm-Message-State: AC+VfDytp3a9Gb2HKaGXzsZdWmtzzkc3ggUKaajVUQQCUi54ZuJVqjM1
+        L00tzoYbzwpk1R+FDuLKphXdCw==
+X-Google-Smtp-Source: ACHHUZ7lc8hdp/YMBka+KN58HpBeEOK5I1UMUYKXzz6REkRekLL68Sr+IywqabAfBF+oWPE7OijnUg==
+X-Received: by 2002:a05:6512:6c:b0:4f0:6a4:1386 with SMTP id i12-20020a056512006c00b004f006a41386mr3061220lfo.2.1683851553239;
+        Thu, 11 May 2023 17:32:33 -0700 (PDT)
 Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id i7-20020a056512006700b004f13cd61ebbsm1282708lfo.175.2023.05.11.17.32.31
+        by smtp.gmail.com with ESMTPSA id i7-20020a056512006700b004f13cd61ebbsm1282708lfo.175.2023.05.11.17.32.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Thu, 11 May 2023 17:32:32 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
@@ -61,9 +61,9 @@ To:     Andy Gross <agross@kernel.org>,
 Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 01/10] dt-bindings: clock: qcom,lcc.yaml: describe clocks for lcc,qcom-mdm9615
-Date:   Fri, 12 May 2023 03:32:21 +0300
-Message-Id: <20230512003230.3043284-2-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v2 02/10] dt-bindings: clock: drop qcom,lcc-mdm9615 header file
+Date:   Fri, 12 May 2023 03:32:22 +0300
+Message-Id: <20230512003230.3043284-3-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230512003230.3043284-1-dmitry.baryshkov@linaro.org>
 References: <20230512003230.3043284-1-dmitry.baryshkov@linaro.org>
@@ -72,68 +72,88 @@ Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Describe parent clocks used by the LCC on the MDM9615 platform. It is
-the list as the one for msm8960/apq8064, with only difference being
-pxo/cxo replacement.
+The header file for qcom,lcc-mdm9615 and qcom,lcc-msm8960 is the same
+(as well as the drivers). Drop the qcom,lcc-mdm9615.h in favour of
+qcom,lcc-msm8960.h
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- .../devicetree/bindings/clock/qcom,lcc.yaml   | 34 +++++++++++++++++++
- 1 file changed, 34 insertions(+)
+ drivers/clk/qcom/lcc-mdm9615.c               |  2 +-
+ include/dt-bindings/clock/qcom,lcc-mdm9615.h | 44 --------------------
+ 2 files changed, 1 insertion(+), 45 deletions(-)
+ delete mode 100644 include/dt-bindings/clock/qcom,lcc-mdm9615.h
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,lcc.yaml b/Documentation/devicetree/bindings/clock/qcom,lcc.yaml
-index 8c783823e93c..55985e562a34 100644
---- a/Documentation/devicetree/bindings/clock/qcom,lcc.yaml
-+++ b/Documentation/devicetree/bindings/clock/qcom,lcc.yaml
-@@ -76,6 +76,40 @@ allOf:
-         - clocks
-         - clock-names
+diff --git a/drivers/clk/qcom/lcc-mdm9615.c b/drivers/clk/qcom/lcc-mdm9615.c
+index 8d243e880d95..c17caffdc349 100644
+--- a/drivers/clk/qcom/lcc-mdm9615.c
++++ b/drivers/clk/qcom/lcc-mdm9615.c
+@@ -15,7 +15,7 @@
+ #include <linux/clk-provider.h>
+ #include <linux/regmap.h>
  
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,lcc-mdm9615
-+    then:
-+      properties:
-+        clocks:
-+          items:
-+            - description: Board CXO source
-+            - description: PLL 4 Vote clock
-+            - description: MI2S codec clock
-+            - description: Mic I2S codec clock
-+            - description: Mic I2S spare clock
-+            - description: Speaker I2S codec clock
-+            - description: Speaker I2S spare clock
-+            - description: PCM codec clock
-+
-+        clock-names:
-+          items:
-+            - const: cxo
-+            - const: pll4_vote
-+            - const: mi2s_codec_clk
-+            - const: codec_i2s_mic_codec_clk
-+            - const: spare_i2s_mic_codec_clk
-+            - const: codec_i2s_spkr_codec_clk
-+            - const: spare_i2s_spkr_codec_clk
-+            - const: pcm_codec_clk
-+
-+      required:
-+        - clocks
-+        - clock-names
-+
- examples:
-   - |
-     clock-controller@28000000 {
+-#include <dt-bindings/clock/qcom,lcc-mdm9615.h>
++#include <dt-bindings/clock/qcom,lcc-msm8960.h>
+ 
+ #include "common.h"
+ #include "clk-regmap.h"
+diff --git a/include/dt-bindings/clock/qcom,lcc-mdm9615.h b/include/dt-bindings/clock/qcom,lcc-mdm9615.h
+deleted file mode 100644
+index 299338ee1d88..000000000000
+--- a/include/dt-bindings/clock/qcom,lcc-mdm9615.h
++++ /dev/null
+@@ -1,44 +0,0 @@
+-/* SPDX-License-Identifier: GPL-2.0-only */
+-/*
+- * Copyright (c) 2014, The Linux Foundation. All rights reserved.
+- * Copyright (c) BayLibre, SAS.
+- * Author : Neil Armstrong <narmstrong@baylibre.com>
+- */
+-
+-#ifndef _DT_BINDINGS_CLK_LCC_MDM9615_H
+-#define _DT_BINDINGS_CLK_LCC_MDM9615_H
+-
+-#define PLL4				0
+-#define MI2S_OSR_SRC			1
+-#define MI2S_OSR_CLK			2
+-#define MI2S_DIV_CLK			3
+-#define MI2S_BIT_DIV_CLK		4
+-#define MI2S_BIT_CLK			5
+-#define PCM_SRC				6
+-#define PCM_CLK_OUT			7
+-#define PCM_CLK				8
+-#define SLIMBUS_SRC			9
+-#define AUDIO_SLIMBUS_CLK		10
+-#define SPS_SLIMBUS_CLK			11
+-#define CODEC_I2S_MIC_OSR_SRC		12
+-#define CODEC_I2S_MIC_OSR_CLK		13
+-#define CODEC_I2S_MIC_DIV_CLK		14
+-#define CODEC_I2S_MIC_BIT_DIV_CLK	15
+-#define CODEC_I2S_MIC_BIT_CLK		16
+-#define SPARE_I2S_MIC_OSR_SRC		17
+-#define SPARE_I2S_MIC_OSR_CLK		18
+-#define SPARE_I2S_MIC_DIV_CLK		19
+-#define SPARE_I2S_MIC_BIT_DIV_CLK	20
+-#define SPARE_I2S_MIC_BIT_CLK		21
+-#define CODEC_I2S_SPKR_OSR_SRC		22
+-#define CODEC_I2S_SPKR_OSR_CLK		23
+-#define CODEC_I2S_SPKR_DIV_CLK		24
+-#define CODEC_I2S_SPKR_BIT_DIV_CLK	25
+-#define CODEC_I2S_SPKR_BIT_CLK		26
+-#define SPARE_I2S_SPKR_OSR_SRC		27
+-#define SPARE_I2S_SPKR_OSR_CLK		28
+-#define SPARE_I2S_SPKR_DIV_CLK		29
+-#define SPARE_I2S_SPKR_BIT_DIV_CLK	30
+-#define SPARE_I2S_SPKR_BIT_CLK		31
+-
+-#endif
 -- 
 2.39.2
 
