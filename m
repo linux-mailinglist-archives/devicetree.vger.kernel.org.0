@@ -2,154 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C698F700631
-	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 13:02:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BF2F700653
+	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 13:08:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240954AbjELLCG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 May 2023 07:02:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58080 "EHLO
+        id S240881AbjELLIj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 May 2023 07:08:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240810AbjELLBy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 07:01:54 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4FD91720;
-        Fri, 12 May 2023 04:01:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1683889310; x=1715425310;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=rdr/QboOutQujzta21veyhN/BFRkmZJcWYh0ih36U+Q=;
-  b=zIQ/9N2kjPHNNlw+ni2pYeDyfOLGkYik7ImpXU2KqaDjdMo0VeSs9KDe
-   ggql0dme7VgPCfO7uZQlv4RDHrHCfv80/4UYb6OQTyGSlUmWiG9YAnJtp
-   Vp8SVKG5WkHdD32WTWU+pgLd3gDIxhqzta1InmHTV6GkYQW22SvgtwZRH
-   r2iZVkwxObqo1thavJ9gtQWfrctTL1V4pAlpI/f0rxZVilyeDEtngnhvu
-   SbAwpHGArzru1XcIeC+T7IhJ1RSvW28JSyQ7gQrAfkalM9cQ/UyPspVg+
-   N0oPMpvaXbz1cg1fltZziwwSpK07M80fT71uXaURQUJrLSww7TZzMxEt5
-   g==;
-X-IronPort-AV: E=Sophos;i="5.99,269,1677567600"; 
-   d="asc'?scan'208";a="215055820"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 12 May 2023 04:01:48 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Fri, 12 May 2023 04:01:43 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Fri, 12 May 2023 04:01:39 -0700
-Date:   Fri, 12 May 2023 12:01:18 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Yi-De Wu =?utf-8?B?KOWQs+S4gOW+tyk=?= <Yi-De.Wu@mediatek.com>
-CC:     "robh@kernel.org" <robh@kernel.org>,
-        "corbet@lwn.net" <corbet@lwn.net>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        MY Chuang =?utf-8?B?KOiOiuaYjui6jSk=?= <MY.Chuang@mediatek.com>,
-        "linux-arch@vger.kernel.org" <linux-arch@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "quic_tsoni@quicinc.com" <quic_tsoni@quicinc.com>,
-        Shawn Hsiao =?utf-8?B?KOiVreW/l+elpSk=?= 
-        <shawn.hsiao@mediatek.com>,
-        Miles Chen =?utf-8?B?KOmZs+awkeaouik=?= 
-        <Miles.Chen@mediatek.com>,
-        PeiLun Suei =?utf-8?B?KOmai+WfueWAqyk=?= 
-        <PeiLun.Suei@mediatek.com>,
-        Liju-clr Chen =?utf-8?B?KOmZs+m6l+Wmgik=?= 
-        <Liju-clr.Chen@mediatek.com>,
-        Jades Shih =?utf-8?B?KOaWveWQkeeOqCk=?= 
-        <jades.shih@mediatek.com>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "dbrazdil@google.com" <dbrazdil@google.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Yingshiuan Pan =?utf-8?B?KOa9mOepjui7kik=?= 
-        <Yingshiuan.Pan@mediatek.com>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "arnd@arndb.de" <arnd@arndb.de>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-        Ze-yu Wang =?utf-8?B?KOeOi+a+pOWuhyk=?= 
-        <Ze-yu.Wang@mediatek.com>, "will@kernel.org" <will@kernel.org>,
-        Ivan Tseng =?utf-8?B?KOabvuW/l+i7kik=?= 
-        <ivan.tseng@mediatek.com>
-Subject: Re: [PATCH v2 2/7] dt-bindings: hypervisor: Add MediaTek GenieZone
- hypervisor
-Message-ID: <20230512-marine-kilowatt-44a642124ac7@wendy>
-References: <20230428103622.18291-1-yi-de.wu@mediatek.com>
- <20230428103622.18291-3-yi-de.wu@mediatek.com>
- <20230428212411.GA292303-robh@kernel.org>
- <ec4cae2e6da4a64bc3983ffdde03f51e185d3609.camel@mediatek.com>
+        with ESMTP id S240591AbjELLIh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 07:08:37 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2F71100E2;
+        Fri, 12 May 2023 04:08:35 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5CFCD60BBA;
+        Fri, 12 May 2023 11:08:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29AC6C433EF;
+        Fri, 12 May 2023 11:08:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1683889714;
+        bh=9uveR+4HYlpo1o+OKWBaWxTrmSSdNHP4bkHON+B5Ca4=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=eZDFxVHWMJnaWOukTLVUSpkhBXwrNDHdPhZFxbpxgbEbGOQZGH0Ti3Nr0r2iKfCsG
+         s3yH9nCaIFpVL+fSqouciEkGPOrRRe7jWDt1WeavYEA97j5PhRgfUBC7JInsW0EnUV
+         fYwLxf00oDA9dS76n8MS52KBqrw5LvzEsjAvCnj4rWa/jS/Eh6EQk8XUBwm0sxbMs0
+         IUhMQ5D4dxQrufUL7/AU7eo2T6QozVrKa03b6A5YSmyBjWAld/kZyoXhhPoPjCAmjR
+         zo3ryU55J8OzNKIPsTfIkuewUq9SlkOfWbwmcjpuOOE1kRlOpPuw3S1j7bnKEotS9W
+         zhgFEstL2dEsQ==
+Message-ID: <40592737-4330-101b-5425-091572e61c6f@kernel.org>
+Date:   Fri, 12 May 2023 14:08:29 +0300
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="SGI1uxhA9flSLqZg"
-Content-Disposition: inline
-In-Reply-To: <ec4cae2e6da4a64bc3983ffdde03f51e185d3609.camel@mediatek.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v2 1/2] dt-bindings: cdns,usb3: Add clock and reset
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Minda Chen <minda.chen@starfivetech.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Pawel Laszczak <pawell@cadence.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Peter Chen <peter.chen@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org
+References: <20230510132816.108820-1-minda.chen@starfivetech.com>
+ <20230510132816.108820-2-minda.chen@starfivetech.com>
+ <9cf5965a-8290-dfff-9f92-07ed2df66650@linaro.org>
+ <05057f6d-cb38-8e4a-5d30-82863e0cda44@kernel.org>
+ <028fb8ac-d6cc-6fee-f50b-b965e69e7d0c@linaro.org>
+Content-Language: en-US
+From:   Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <028fb8ac-d6cc-6fee-f50b-b965e69e7d0c@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-9.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---SGI1uxhA9flSLqZg
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, May 12, 2023 at 06:42:51AM +0000, Yi-De Wu (=E5=90=B3=E4=B8=80=E5=
-=BE=B7) wrote:
-> On Fri, 2023-04-28 at 16:24 -0500, Rob Herring wrote:
-> > External email : Please do not click links or open attachments until
-> > you have verified the sender or the content.
-> >=20
-> >=20
-> > On Fri, Apr 28, 2023 at 06:36:17PM +0800, Yi-De Wu wrote:
-> > > From: "Yingshiuan Pan" <yingshiuan.pan@mediatek.com>
-> > >=20
-> > > Add documentation for GenieZone(gzvm) node. This node informs gzvm
-> > > driver to start probing if geniezone hypervisor is available and
-> > > able to do virtual machine operations.
-> >=20
-> > Why can't the driver just try and do virtual machine operations to
-> > see
-> > if the hypervisor is there? IOW, make your software interfaces
-> > discoverable. DT is for non-discoverable hardware.
-> >=20
-> > Rob
->=20
-> Can do, our hypervisor is discoverable through invoking probing
-> hypercall, and we use the device tree to prevent unnecessary module
-> loading on all systems.
-
-Please do not wait until immediately prior to submitting version N+1
-before replying to any of the comments on version N.
-This creates a confusing scenario, where some review comments may be
-missed due to parallel discussion.
-
-Thanks,
-Conor.
 
 
---SGI1uxhA9flSLqZg
-Content-Type: application/pgp-signature; name="signature.asc"
+On 11/05/2023 17:49, Krzysztof Kozlowski wrote:
+> On 11/05/2023 14:16, Roger Quadros wrote:
+>>
+>>
+>> On 11/05/2023 12:26, Krzysztof Kozlowski wrote:
+>>> On 10/05/2023 15:28, Minda Chen wrote:
+>>>> To support generic clock and reset init in Cadence USBSS
+>>>> controller, add clock and reset dts configuration.
+>>>>
+>>>> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+>>>> ---
+>>>>  .../devicetree/bindings/usb/cdns,usb3.yaml         | 14 ++++++++++++++
+>>>>  1 file changed, 14 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/usb/cdns,usb3.yaml b/Documentation/devicetree/bindings/usb/cdns,usb3.yaml
+>>>> index cae46c4982ad..623c6b34dee3 100644
+>>>> --- a/Documentation/devicetree/bindings/usb/cdns,usb3.yaml
+>>>> +++ b/Documentation/devicetree/bindings/usb/cdns,usb3.yaml
+>>>> @@ -42,6 +42,18 @@ properties:
+>>>>        - const: otg
+>>>>        - const: wakeup
+>>>>  
+>>>> +  clocks:
+>>>> +    minItems: 1
+>>>> +    maxItems: 8
+>>>> +    description:
+>>>> +      USB controller clocks.
+>>>
+>>> You need to list the items. And why is it variable? Your clock choice in
+>>> the example is poor, I doubt it is real.
+>>>
+>>>> +
+>>>> +  resets:
+>>>> +    minItems: 1
+>>>> +    maxItems: 8
+>>>> +    description:
+>>>> +      USB controller generic resets.
+>>>
+>>> Here as well.
+>>>
+>>> You had one clock last time, thus the review was - drop the names. Now
+>>> you changed it to 8 clocks... I don't understand.
+>>>
+>>
+>> Different platforms may have different number of clocks/resets or none.
+>> So I don't think minItems/maxItems should be specified.
+> 
+> Yeah, but we want the clocks to be specific per platform. Not anything
+> anywhere.
+> 
 
------BEGIN PGP SIGNATURE-----
+Agreed. So we don't specify min/maxItems at top level but use conditional
+constraints per platform?
+Which means we will need to add platform specific compatibles as well.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZF4cfgAKCRB4tDGHoIJi
-0sIUAQCB81kFCDM+sykANmi0tAinLKojHS+RwXtrVqk3OUoxcAEA06+Iy8V0A75T
-x/4Pd33AIh4X9j7/BLZ90YVbOSYWVQ0=
-=ydlj
------END PGP SIGNATURE-----
-
---SGI1uxhA9flSLqZg--
+-- 
+cheers,
+-roger
