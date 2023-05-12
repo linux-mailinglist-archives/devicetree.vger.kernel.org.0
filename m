@@ -2,109 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C800700CCC
-	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 18:18:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7097D700CD2
+	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 18:20:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231449AbjELQSh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 May 2023 12:18:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51586 "EHLO
+        id S229463AbjELQUx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 May 2023 12:20:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229538AbjELQSf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 12:18:35 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A41B255AC
-        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 09:18:27 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-96598a7c5e0so1638181666b.3
-        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 09:18:27 -0700 (PDT)
+        with ESMTP id S229473AbjELQUw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 12:20:52 -0400
+Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EC0B423A
+        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 09:20:50 -0700 (PDT)
+Received: by mail-yb1-xb2d.google.com with SMTP id 3f1490d57ef6-ba6f8e0b39cso1761907276.0
+        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 09:20:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683908306; x=1686500306;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qrz9w0tFb2bEDTavGbd5fDgs1thiabqypf9MHkMZM7E=;
-        b=az2gzunWnoFGTedzrfM2TIbgTMGezLZi0Pxftg0z4G7WBcjClypX1MFYbz8i8Ffkpy
-         rIPd+p9IvKeMHmW8j0rdOgWCBsgeKRSnUSDfyt1Vi+6WnmNExmMvNKsjWXnRovJQXfKW
-         448lS9q5BRTaRG5axAPCUHKPpTDMtBNaadOB56e9URD71wbzPywTpB6wAAkG89cJmDrs
-         BGIDgPXrsRgwWJ5tFqT1Ijehw1cql0A+ytkZnF6yCl/IyGvkD3S5HckHcMHX66OWzRz3
-         zXAksm8dqrKTDHLbPan7w3A5gRaD13FQcWspRlIoW4Nysu8LdJMknrr3IeNo+/koT/M1
-         jpJw==
+        d=gmail.com; s=20221208; t=1683908449; x=1686500449;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MMVTnr8Vefnpi5C8EzpY/O3BecS6QP6Gaw9C1p/VYIs=;
+        b=qwX63S8xTYoMdnB2iIIxSqGk3GwAWs/li2a+p8Df+ITO+547+aXtFfzBCqWwzTjsOv
+         xdI0rbvR9RplkWWhwP+W6wORl8JWcTUyQYZ7534Qq5Q36dPtFplKujdZkQwm8hSF7aZi
+         HAXoQhT4J5vme6F3R85x5aScax/hKBZ2iqF8g4CvTiWGO/SFslvHddDUmqaCgl8T75Oy
+         8MKA+UcAUkbtFcJrmEykBKKTrIy2WRiZhneGYcpUrkRBSP68WXWxADuCCqel/V5cZR5M
+         eFRwFKRNyHfx8l0OsWLif/WNDkD1IZG/i1hXBRLucJgThUMgFlvk8DDNtbIo1nBzhi+2
+         POiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683908306; x=1686500306;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qrz9w0tFb2bEDTavGbd5fDgs1thiabqypf9MHkMZM7E=;
-        b=Jf149WQxCPbi9HmQq38MbZ0HQw8uKOpe1KVVfUwg+AhqqxDGOM3+aNQgZtt7YvRVy8
-         skFJaJuHvkBJHokdrobQyxaX8b8WzCWWBM4mElMYK1dxC1Vv8j6e02JnHMuhW40Mp2gH
-         JHYnvBbYASantSde2WWhvw5qBTTDgyUvXWFf8xGtAXPY7ymNWpKi9OEjqsnLTzo8MYBM
-         zvBUaiiKuQtAHBcze3SOsRpxzVISTIcdNrE5vpOcENVzS2kqYty05RVLRbfR0Amb+VLc
-         MFicH7hR5s/A5imkWus77ctGx2g9ftPShMMpGVed15hfw4tvM2oZEuIvBImFsCHE5Mdn
-         /t1A==
-X-Gm-Message-State: AC+VfDwLegJ8eL4M9vo9JBO6zQvWw/nNNLutK3uavTuR378YrZHH9Tuy
-        NUkuwU4tB58jooe/0EWg0Ugvtg==
-X-Google-Smtp-Source: ACHHUZ503Yw3/dALYytrKZ2MlhWOUd6bkVlyqT/PlDFv2HMBJY003CZ/7QJHED8qAmAK9YRj0Ft2Mw==
-X-Received: by 2002:a17:907:6e12:b0:96a:78ee:7e27 with SMTP id sd18-20020a1709076e1200b0096a78ee7e27mr5822051ejc.59.1683908306071;
-        Fri, 12 May 2023 09:18:26 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:7ede:fc7b:2328:3883? ([2a02:810d:15c0:828:7ede:fc7b:2328:3883])
-        by smtp.gmail.com with ESMTPSA id ci18-20020a170907267200b00959c6cb82basm5544589ejc.105.2023.05.12.09.18.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 May 2023 09:18:24 -0700 (PDT)
-Message-ID: <3b382277-e992-39a0-a4ba-c3fd88bfc41e@linaro.org>
-Date:   Fri, 12 May 2023 18:18:23 +0200
+        d=1e100.net; s=20221208; t=1683908449; x=1686500449;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MMVTnr8Vefnpi5C8EzpY/O3BecS6QP6Gaw9C1p/VYIs=;
+        b=Qttkml1ILRw+QEnbdPT3/65ixY85Ayz6CU8uSd78O6cWuyowEdJt5HhRCRh9teNyrU
+         wXnz9XyTSsPJqbEqO8T3Wre2OgiBmLtd1UqgD25VxwdDxWn0Il8h+JEBgOhIkbB1TqLJ
+         N0Linv1DczRYWObNEW5Djc98Kh+u1ec2cKATEjgvKyUEEn0snIH4a8jjjgbJrQXr72G3
+         hkeGLITUyKxj+0uj1LYYD/BHsVPtNliX3OPmO9fi0+07Jw5Kn+Zityt706FT1wREPw1c
+         AoecVo/L8UgY3vVOwZ3npRGghtUEr6CodsAJFvIKVu43r6PtNVitHyKnQHu1YPOKmFV6
+         VB6g==
+X-Gm-Message-State: AC+VfDyVIG8ZZsdWOrsrcP0zYNq8dMqY0hv9gLtRhD3lAdUF8ZcuYgLY
+        kJWD5hd8PcMPj3KpSQZnPg8=
+X-Google-Smtp-Source: ACHHUZ5lleiTBEjcTQkLpcX0fx6sBkIMc8ts+CFvVp8q6vyGmE2vokPM/dQuFAg0LlsFG13YPu0RyA==
+X-Received: by 2002:a25:1542:0:b0:b9e:84b0:bfa6 with SMTP id 63-20020a251542000000b00b9e84b0bfa6mr21839025ybv.25.1683908449221;
+        Fri, 12 May 2023 09:20:49 -0700 (PDT)
+Received: from localhost.localdomain ([76.244.6.13])
+        by smtp.gmail.com with ESMTPSA id s19-20020a257713000000b00ba71e594cafsm340129ybc.62.2023.05.12.09.20.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 May 2023 09:20:48 -0700 (PDT)
+From:   Chris Morgan <macroalpha82@gmail.com>
+To:     linux-rockchip@lists.infradead.org
+Cc:     devicetree@vger.kernel.org, maccraft123mc@gmail.com,
+        sebastian.reichel@collabora.com, jagan@amarulasolutions.com,
+        heiko@sntech.de, conor+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH 0/2] rockchip: Add Anbernic RG353PS
+Date:   Fri, 12 May 2023 11:20:37 -0500
+Message-Id: <20230512162039.31132-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH] ASoC: da7219: Add Jack insertion detection polarity
- selection
-Content-Language: en-US
-To:     David Rau <David.Rau.opensource@dm.renesas.com>, broonie@kernel.org
-Cc:     support.opensource@diasemi.com, lgirdwood@gmail.com,
-        perex@perex.cz, tiwai@suse.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org
-References: <20230512081030.5138-1-David.Rau.opensource@dm.renesas.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230512081030.5138-1-David.Rau.opensource@dm.renesas.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/05/2023 10:10, David Rau wrote:
-> DA7219 can support 2 kinds of insertion detection polarity
-> - Default polarity (Low)
-> - Inverted polarity (High)
-> 
-> This patch adds support for selecting insertion detection
-> polarity to the DT binding.
-> 
-> Signed-off-by: David Rau <David.Rau.opensource@dm.renesas.com>
-> ---
->  .../devicetree/bindings/sound/da7219.txt      |  3 ++
+From: Chris Morgan <macromorgan@hotmail.com>
 
-Bindings are always separate patches.
+Add support for the Anbernic RG353PS, which is a cheaper variant of the
+Anbernic RG353P.
 
-Consider also converting them to DT schema first.
+Chris Morgan (2):
+  dt-bindings: arm: rockchip: add Anbernic RG353PS
+  arm64: dts: rockchip: add Anbernic RG353PS
 
->  include/sound/da7219-aad.h                    |  6 ++++
->  sound/soc/codecs/da7219-aad.c                 | 34 +++++++++++++++++++
->  3 files changed, 43 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/da7219.txt b/Documentation/devicetree/bindings/sound/da7219.txt
-> index add1caf26ac2..357d1f61de1d 100644
-> --- a/Documentation/devicetree/bindings/sound/da7219.txt
-> +++ b/Documentation/devicetree/bindings/sound/da7219.txt
+ .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../dts/rockchip/rk3566-anbernic-rg353ps.dts  | 116 ++++++++++++++++++
+ 3 files changed, 122 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353ps.dts
 
-
-
-Best regards,
-Krzysztof
+-- 
+2.34.1
 
