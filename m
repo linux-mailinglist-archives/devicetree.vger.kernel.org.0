@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 01C2A7008C3
-	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 15:13:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE3FD7008D9
+	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 15:13:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241214AbjELNM6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 May 2023 09:12:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33662 "EHLO
+        id S241277AbjELNNA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 May 2023 09:13:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241209AbjELNM1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 09:12:27 -0400
+        with ESMTP id S241216AbjELNM2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 09:12:28 -0400
 Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34E101491F
-        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 06:12:06 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-3f427118644so57716155e9.0
-        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 06:12:06 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 486011163B
+        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 06:12:07 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-3f450815d0bso36145485e9.0
+        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 06:12:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683897124; x=1686489124;
+        d=linaro.org; s=google; t=1683897125; x=1686489125;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=tU0B69j9oYl9odVdfBAPIMS59aKUXC4/g/SkHuPw6SM=;
-        b=DEa+d+uKQoEMQZGIs4gTTO3/X9AWlIU/3Qsb08OsEOQBhbyjHHtbjWpY/JAwJqya1Y
-         4mF+izVr5PGl/ffs2k+N9LVtcSr4qARAKN8GGXsfKBMmVeDgZ7zc+1WXgOzwLvwLy1wR
-         VY3jucYZBSMd+uRMN+HXUIhlEtXsDsnvKvN5MgAW2Mr8BrEdGFMcVq1HWcrliq7zgJVD
-         84FEvJMjO4QjEMBgisKxSQqAK6qQefxO+kfR3wwjROVch7eBWT8QRN6OiLe/7hjFbxTm
-         I90p5aWmr3LC9j7g06WfIqFi1tcRw06pH8QMQnoBEYAELhAeN3Y1YlUFN/dLpatWrfYe
-         pEoA==
+        bh=SLBWgiMNwkyCqNWdGx1K4+ygLk3VG9D6DZvu6fKUhDY=;
+        b=kYz0ju11D6jUTa4HLXMUI85kDspC8Jjx1paZ1AgUvlNEARse9VXMp67EppR0eALwn+
+         rON/U5JQf1qFpk72jiCjxTvJ+mMPKvQLO84oXFvSd+f8Uf3sHhp8Aj0FT0EaiCJ2G9Ug
+         8u9OhYquKpxtVOHwm4MOEmS65MpzV7bRgKTlYHC7l0ss5eYzgP71CRacXDtsys6US5e3
+         ckFtgA8JfPVM06HtNNLE9cE41REzpGjbgtBDRzGubaWC7Dfu9UEx3Sb6dqXVXT7YzhDQ
+         wyh5BrdOZuANfwrWAvJY7RdWfXkNTeHZ2+kcDhoZxfGIapZv3iAmKzCAObbGks2C4asp
+         seKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683897124; x=1686489124;
+        d=1e100.net; s=20221208; t=1683897125; x=1686489125;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=tU0B69j9oYl9odVdfBAPIMS59aKUXC4/g/SkHuPw6SM=;
-        b=P+Nes1AreKo3h/38rnfOElpUYDQLMU9TZYfTr79r3wMWsfN9YYM+xH1OZum7ZqgqZ6
-         hnnmbqzrj+JylNhXvHgHmZV7kxhxmSMKtzkmAZ2/hT6caS2ihn+mqF8UWZr+Xg9jX3s4
-         +yo+3e23Bx9hjVQnnwh+H4ikh4SxoJKIDlBseMGyf+UUs3TQN3gBR58lAWE43tXYrs69
-         Hy8KHlzPUzkNr+UFirWpfk2eO8Dw1J3/7f6cOPPFGxDswKM9/kQxRGNQGTouSSgu36+n
-         nHI27Ve+AWChf6rJQh5MOOMOuqYydaLqJJjmYLKtNGYc/xE5yKf+1yG6Ftd3IoHtq60M
-         ur+w==
-X-Gm-Message-State: AC+VfDzqDK0LPmj/zotCEvP+20+Sb23z7pJ48IP+xVM/VdEG/yrd7WLB
-        Ls9y7ytTcPAMckf370Hk4teDmw==
-X-Google-Smtp-Source: ACHHUZ7W/9YsLoXfyrpzR/TWkwhUIMNI3MoJdC2qky03ik8PdsAnXNDdYPZQPGK2elAOg3IC4k1+4g==
-X-Received: by 2002:a05:600c:228e:b0:3f4:2174:b28a with SMTP id 14-20020a05600c228e00b003f42174b28amr16472329wmf.15.1683897124428;
-        Fri, 12 May 2023 06:12:04 -0700 (PDT)
+        bh=SLBWgiMNwkyCqNWdGx1K4+ygLk3VG9D6DZvu6fKUhDY=;
+        b=HJuC2kAp5KIK+LesGmPZ31KOkEjB3D3TM2TW0nuGHAOIRto81B/g/BJA74ab97jKdu
+         Jh4f1CJpIVxuVI5eyfo9TnOnLKQjaUCAIhemHg6pcXulCWfoQ46QkzpTz1+sLC3tdVTY
+         ly58CUMBjSvK43Yf7W/ztSNOtG4VPbp23aMnNiaCOVVxGMECuU2lLK+M2Z92YVwVCfdz
+         Js+usrDiYljxX2om/WrcYDjTHHm2/WpKAIdtYP17Bo1M3IZz8T5rnc1hPk/0CFHv5LT9
+         Yk19FsXhrGv2wBs85j8EoEwvnEHREC8mHuyN3FMyY9tiP3kHCxgBfG8d/3ap6aixmcsC
+         +H8w==
+X-Gm-Message-State: AC+VfDyqOvVKplsEHqcIer10eHwoFI1xOnqSKnT9JmHkpuhvonTo1Stu
+        QOFqTLW++lwUaG3+EWb69NFzsg==
+X-Google-Smtp-Source: ACHHUZ5uobz/omWHn5suWrUkzrTkBzpmD/f63IcO56rfuCbjWofaJT0wtqRIazvDS1RzoQKBzvVilA==
+X-Received: by 2002:a05:600c:214f:b0:3f4:23cd:6dcf with SMTP id v15-20020a05600c214f00b003f423cd6dcfmr14235255wml.15.1683897125511;
+        Fri, 12 May 2023 06:12:05 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id v10-20020a5d610a000000b0030647449730sm23461965wrt.74.2023.05.12.06.12.03
+        by smtp.gmail.com with ESMTPSA id v10-20020a5d610a000000b0030647449730sm23461965wrt.74.2023.05.12.06.12.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 May 2023 06:12:04 -0700 (PDT)
+        Fri, 12 May 2023 06:12:05 -0700 (PDT)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Fri, 12 May 2023 15:11:41 +0200
-Subject: [PATCH v4 10/13] phy: amlogic: phy-meson-g12a-mipi-dphy-analog:
- fix CNTL2_DIF_TX_CTL0 value
+Date:   Fri, 12 May 2023 15:11:42 +0200
+Subject: [PATCH v4 11/13] drm/panel: khadas-ts050: update timings to
+ achieve 60Hz refresh rate
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-10-2592c29ea263@linaro.org>
+Message-Id: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-11-2592c29ea263@linaro.org>
 References: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-0-2592c29ea263@linaro.org>
 In-Reply-To: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-0-2592c29ea263@linaro.org>
 To:     Jerome Brunet <jbrunet@baylibre.com>,
@@ -80,54 +80,76 @@ Cc:     Nicolas Belin <nbelin@baylibre.com>,
         linux-phy@lists.infradead.org,
         Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1015;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1576;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=zfbNtn4eYfFGUuzqUqrrZy+ybT8YTEYYfxc76QqCk+c=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkXjsVuLo7LVxLSfdfUja2xovTbvm0HNpj1ysIYkBZ
- K/S7KECJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZF47FQAKCRB33NvayMhJ0TVREA
- DOsrTgakHLrmGmB/wyrUhMoEXsbiUZVaeV97gzXwbUe/GUy+SedCos1HUur2UmewFphaZyJe+pL0Xv
- pYIXKuMNXIEQLQM4LH1wUbC8p/bvtECbcdUl8j3T9v50w/8okOh+JH/e8OvCagm18Ptj81p7CjtAt2
- B+podPJKhWvlV32zY9od6Y64uyflWC5bbTtP7iQHo5vTLnkwedbtSfg5aKNcaNb2Ibg8MDP1IHFJLq
- RP6wAGI//oUb3XmJ6kRtVCvV1MtcCwp7kk8F0AjnJ+hj8VpXIGQ8kSyxrlCk7JasfbudOpGlYMiX7+
- BWmvwaPjr3tOmUPAKsV5yzVeqb1ZQwvBJD8NDoemCvCW/4S4VRWvcg4caMDQCedK2/NZowXRP+LUzD
- uTq/oNzOgfgHSMlRMQhLoBhRLs3NAcukf7RbkNejIA4UnGZ967/URvq+tpFnXw4KW04PWsP6dbFIKQ
- h7iQD+FNh7PS2cAICGSV3G9duG0Is/ZsrU78dVxotPqBIQcthVuzB524J0T/fooqK0gYdG3LAloQXB
- q6pURKiBKYM0eglBEDUYiKDuqLVWo6QWuykfhtkAYYtUbJgDddhhe9Yu625L8uZlOGPnDXWRuYkXCg
- E8NbJOPkv/k7P0GWvBJo2joJmh8z4HAIzEau29jrsfXk7M11F/h14v/sDdnw==
+ bh=PM1rVoTLiKdVLACMoQ2eP/3H3+GG4xHNSxcdM1deMu0=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkXjsWCqwAYpj12TIzbwlkf9rcKbazvmpNPhFYFGGi
+ 4wO5G1CJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZF47FgAKCRB33NvayMhJ0VpWD/
+ 9DOHdC5AgFrJ1Q9ndeQRh8i4b4H6g8HoCtu/gw1crViqRJUFlOcGhexl5J2mfmiB6r7lsT9+dO/n5b
+ rjMPRX/2S8rSw3L15zq+0Ru0idzsr3SCRWs9U0b6xd2EAu0/XKtJdnavjO/nSqVUXbnW0VDZGTW3Pd
+ vqcYT0xocfyBd+3kFjqsTRTq7zW9/0+0i7rYYJGfXedE6QIZc5P2NzcfecyBxtltL/o9IMVcDriJqV
+ Ox5v4fHagv2aC5O2OrqeqbUdl7i3MnB5W3eshagZwHdXPsWSFeiw8I7WqZ+r2zHe0uD0Ms/oQzgWC9
+ nzqUOwazrnR4UBkpkmAOinQDVXpOoviv7qB9TrvIUB37UMJbgmo/wGgPnvbX7aF1RgUQ9ywHDEwmmv
+ pvr7YIuF+sMUbDfQGeYfTnjVNYjXWaDRQbbqkZRuLrUaKhKhXOOxmzTfaaRVue4aMXMgNKB3pgwT/3
+ IJMg+o4O7TrsSIArWSik5wlsf+pFcT6oDxrKsVqoGzoK3EwAWZZgDcCwskZv/S/Bn8g/86Jh1NX0U0
+ uY33smO/L190yI4FYLJd917+c6M7PFebcRd7Lm3+zVYFuFcx9FHYNkhsMqU6d3ZoV4mXrQe0EkDUMs
+ F25zx1aZ+UIoKSCg/Ji5H8mByAcYHjH6hn5ziy2VenKxjpoZvIKultpyvFiw==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use the same CNTL2_DIF_TX_CTL0 value used by the vendor, it was reported
-fixing timings issues.
+This updates the panel timings to achieve a clean 60Hz refresh rate.
 
-Fixes: 2a56dc650e54 ("phy: amlogic: Add G12A Analog MIPI D-PHY driver")
+Link: https://lore.kernel.org/r/20221025-ts050-timings-v1-1-5c824bbb24d9@linaro.org
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- drivers/phy/amlogic/phy-meson-g12a-mipi-dphy-analog.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/panel/panel-khadas-ts050.c | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/phy/amlogic/phy-meson-g12a-mipi-dphy-analog.c b/drivers/phy/amlogic/phy-meson-g12a-mipi-dphy-analog.c
-index c14089fa7db4..cabdddbbabfd 100644
---- a/drivers/phy/amlogic/phy-meson-g12a-mipi-dphy-analog.c
-+++ b/drivers/phy/amlogic/phy-meson-g12a-mipi-dphy-analog.c
-@@ -70,7 +70,7 @@ static int phy_g12a_mipi_dphy_analog_power_on(struct phy *phy)
- 		     HHI_MIPI_CNTL1_BANDGAP);
+diff --git a/drivers/gpu/drm/panel/panel-khadas-ts050.c b/drivers/gpu/drm/panel/panel-khadas-ts050.c
+index 1ab1ebe30882..b942a0162274 100644
+--- a/drivers/gpu/drm/panel/panel-khadas-ts050.c
++++ b/drivers/gpu/drm/panel/panel-khadas-ts050.c
+@@ -568,7 +568,7 @@ static const struct khadas_ts050_panel_cmd init_code[] = {
+ 	{0xfb, 0x01},
+ 	/* Select CMD1 */
+ 	{0xff, 0x00},
+-	{0xd3, 0x05}, /* RGBMIPICTRL: VSYNC back porch = 5 */
++	{0xd3, 0x22}, /* RGBMIPICTRL: VSYNC back porch = 34 */
+ 	{0xd4, 0x04}, /* RGBMIPICTRL: VSYNC front porch = 4 */
+ };
  
- 	regmap_write(priv->regmap, HHI_MIPI_CNTL2,
--		     FIELD_PREP(HHI_MIPI_CNTL2_DIF_TX_CTL0, 0x459) |
-+		     FIELD_PREP(HHI_MIPI_CNTL2_DIF_TX_CTL0, 0x45a) |
- 		     FIELD_PREP(HHI_MIPI_CNTL2_DIF_TX_CTL1, 0x2680));
+@@ -717,15 +717,15 @@ static int khadas_ts050_panel_disable(struct drm_panel *panel)
+ }
  
- 	reg = DSI_LANE_CLK;
+ static const struct drm_display_mode default_mode = {
+-	.clock = 120000,
+-	.hdisplay = 1088,
+-	.hsync_start = 1088 + 104,
+-	.hsync_end = 1088 + 104 + 4,
+-	.htotal = 1088 + 104 + 4 + 127,
++	.clock = 160000,
++	.hdisplay = 1080,
++	.hsync_start = 1080 + 117,
++	.hsync_end = 1080 + 117 + 5,
++	.htotal = 1080 + 117 + 5 + 160,
+ 	.vdisplay = 1920,
+ 	.vsync_start = 1920 + 4,
+-	.vsync_end = 1920 + 4 + 2,
+-	.vtotal = 1920 + 4 + 2 + 3,
++	.vsync_end = 1920 + 4 + 3,
++	.vtotal = 1920 + 4 + 3 + 31,
+ 	.flags = DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
+ };
+ 
 
 -- 
 2.34.1
