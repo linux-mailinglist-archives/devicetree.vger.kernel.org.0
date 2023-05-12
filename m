@@ -2,150 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 400E8700FF9
-	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 22:53:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 50809701012
+	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 23:06:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233853AbjELUxq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 May 2023 16:53:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55952 "EHLO
+        id S238637AbjELVGl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 May 2023 17:06:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229611AbjELUxp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 16:53:45 -0400
+        with ESMTP id S238595AbjELVGk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 17:06:40 -0400
 Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 938331FE5;
-        Fri, 12 May 2023 13:53:42 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4f00d41df22so55366219e87.1;
-        Fri, 12 May 2023 13:53:42 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FC203596
+        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 14:06:39 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4f139de8cefso54408052e87.0
+        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 14:06:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683924821; x=1686516821;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dK9pTU3dCszxfhakIo6H9xZVLUDy3fIcZSz6A27TG8M=;
-        b=FD/zAsysSg3L3OXq9M6zoEHXlfE7Zfisk0oebJg9PxeK9WD3m7uBHxhWl00zt77u+z
-         0tUZ4noCfxhvkE0k3KBAqdr6hd/MIfK7l6RCJC5VXN0uA6dKVGWFLnIKdlHEpNsfYARY
-         N5BPheqRnYf8SWrvmYRPSDLSWEVrx6KNGuVl0Sm7yzG5k+XyxctahUO6aWQyG6j3WcHL
-         TjFAnpxP8mTK2AVe9C1aOf7iAXfQg9+e2lfBpBFMX1bD2A2DQAzihjZRhv1n+/q20MbV
-         iQxoBV3Z5SgOkCWqzEhXleobkJpZw1Wxo2FgVZky9NuWoS5Sf6gx3O6rYux5izXhmZPy
-         w9EA==
+        d=linaro.org; s=google; t=1683925595; x=1686517595;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=EsiWgLFZscJzjm/g92UOpjZeba02UZH+himRJmD+dtQ=;
+        b=n7IF88ZdZYqRZGDuqB/Dv/16wx9vbg/x6e6+WHnd+UnbMzZqXokFm4Zq4gQP1BbKnN
+         tNLJwgsQfXJS6GMaLTz0LhuaVvVZCSlr8kSJXGdZ8vnh8u+/g2XgwzFX+lqHFgyHn+QZ
+         Rt2CtSAwpZtGyeFxSXT0dpr72NRG/FXJ4mpk7iYevcaub0dspdK5RE+yZY6xSC0Pp/SB
+         B3U5gGJCnXn8knfNef6eKHQ7y89OGuYPouv63+OGgG4EuBIx3+88ekszxw9oNwQ0CBIC
+         O3HWeP5vLiM7afGd+dPZzyXZoRa8t5+MJ4CtOqGoZ8ycbTOnYIF89rGIr2kn0SUoSSpy
+         72xg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683924821; x=1686516821;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dK9pTU3dCszxfhakIo6H9xZVLUDy3fIcZSz6A27TG8M=;
-        b=fRVTNlfiLiDtne+VJahvV2rIQ7nmma2LiYl5cTXIG22FRgxQ/IPx8hw23fLylYBS1l
-         /GITN6Pus8wX1xGrB76kCqh4n/UB/fLzFWZlNOJ61wWJs8UxNTumf0swVVAlmV+BHFZi
-         +/+GKzFEklpAFyo/oMjm4jsVT/wJa6UlHpkYnYf+yskTefnp6/g8wwzNuHi3z77Fx9R6
-         lwpVqd2skXDq7Nm8uf4dcuw42K/OcIOdR8REumbWZwr0bHpEXtjcw9DwM7En3XjoC2ma
-         dgvQ4TsJtPfrPbh3XsZIFpBe4riGuXSve7CsBEICJ/Xpw2aNuFs7VVIge72O2craF4C2
-         CUMw==
-X-Gm-Message-State: AC+VfDxUUvj234Hr65zNvhku1e6pctP9DyuQvzqMHCl1DlhYo1F/Dsai
-        H942MTRdPnLc6R6GeX9cWTSuUTrR6EdghdvcQfk=
-X-Google-Smtp-Source: ACHHUZ4QVh0Plexs1KGYcEgkQrE+RKTmMsf2h41mEIoiKb7iyK0IcQzM41HYhHzu7YrAE3Za0Omy3humMqCta3K95Ik=
-X-Received: by 2002:a2e:9355:0:b0:293:4b60:419c with SMTP id
- m21-20020a2e9355000000b002934b60419cmr3647191ljh.18.1683924820549; Fri, 12
- May 2023 13:53:40 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1683925595; x=1686517595;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=EsiWgLFZscJzjm/g92UOpjZeba02UZH+himRJmD+dtQ=;
+        b=JsLjbWsgm5rGzXZHMeoCJ6MAz+gj64jb063HCZUL8KD8q3bGAglvtjudcugpBCfex/
+         e7irvOflCCDR5Kjq5SHGOeA46w3D8HCz/3GHyCawk4YHodNis1uvG4aspNiLrt335+H4
+         yWDsjb563EgXGXZ+C0qzG6b5sTxyNFqF/mY5khkbmWsoET+2Ps6lbaqQpheTuJl5fqEs
+         WW076pRIoQKOh8Rpqk3dA+YiyylHUoTRP/bqsAzqnDXzNRjdfjxQhAwQNG3durGMG7lX
+         6HAfNWcQcgccl7sn7gTRZ5OqjiDk1BoRTL1iu356qxjrAQXPZ3msVLXi+/OHyzcEilze
+         3now==
+X-Gm-Message-State: AC+VfDwZx4v0EH489ApWwCpoBNTzkR9y2yVUODArFQSTNi3U8SW3IaVS
+        aGkTB3vRYgeqSgjnz2oTezpA1g==
+X-Google-Smtp-Source: ACHHUZ4CwKOHCsRb0bfIwwJbnr+PWrGViaDjdBuMWsTm/HnJwmySw0sQnF4fsrwMPM5AfAloglKfUg==
+X-Received: by 2002:a2e:a377:0:b0:2ac:826a:efae with SMTP id i23-20020a2ea377000000b002ac826aefaemr4628424ljn.5.1683925594723;
+        Fri, 12 May 2023 14:06:34 -0700 (PDT)
+Received: from [192.168.2.40] ([194.204.33.9])
+        by smtp.gmail.com with ESMTPSA id g9-20020a2eb0c9000000b002ac8164d77fsm2895728ljl.86.2023.05.12.14.06.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 May 2023 14:06:34 -0700 (PDT)
+Message-ID: <1351c7b9-ab70-f6ec-3d0e-2b56af42c5c8@linaro.org>
+Date:   Sat, 13 May 2023 00:06:32 +0300
 MIME-Version: 1.0
-References: <20230421-fp4-bluetooth-v2-0-3de840d5483e@fairphone.com>
-In-Reply-To: <20230421-fp4-bluetooth-v2-0-3de840d5483e@fairphone.com>
-From:   Luiz Augusto von Dentz <luiz.dentz@gmail.com>
-Date:   Fri, 12 May 2023 13:53:28 -0700
-Message-ID: <CABBYNZJPw=Oxi+J2oA=6aosEZjCBK=u=8HEJywzRJCCrmGnkGA@mail.gmail.com>
-Subject: Re: [PATCH v2 0/4] Add WCN3988 Bluetooth support for Fairphone 4
-To:     Luca Weiss <luca.weiss@fairphone.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v2 03/10] dt-bindings: clock: provide separate bindings
+ for qcom,gcc-mdm9615
+Content-Language: en-GB
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230512003230.3043284-1-dmitry.baryshkov@linaro.org>
+ <20230512003230.3043284-4-dmitry.baryshkov@linaro.org>
+ <d3daccb6-8b4e-7016-5545-097dba2188b2@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <d3daccb6-8b4e-7016-5545-097dba2188b2@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Luca,
+On 12/05/2023 09:52, Krzysztof Kozlowski wrote:
+> On 12/05/2023 02:32, Dmitry Baryshkov wrote:
+>> The global clock controller on MDM9615 uses external CXO and PLL7
+>> clocks. Split the qcom,gcc-mdm9615 to the separate schema file.
+>>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> ---
+>>   .../bindings/clock/qcom,gcc-mdm9615.yaml      | 48 +++++++++++++++++++
+>>   .../bindings/clock/qcom,gcc-other.yaml        |  3 --
+>>   2 files changed, 48 insertions(+), 3 deletions(-)
+>>   create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-mdm9615.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-mdm9615.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-mdm9615.yaml
+>> new file mode 100644
+>> index 000000000000..bc9786f2c1d5
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-mdm9615.yaml
+>> @@ -0,0 +1,48 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/clock/qcom,gcc-mdm9615.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm Global Clock & Reset Controller on MDM9615
+>> +
+>> +maintainers:
+>> +  - Stephen Boyd <sboyd@kernel.org>
+>> +  - Taniya Das <quic_tdas@quicinc.com>
+>> +
+>> +description: |
+>> +  Qualcomm global clock control module provides the clocks, resets and power
+>> +  domains on MDM9615.
+>> +
+>> +  See also::
+>> +    include/dt-bindings/clock/qcom,gcc-mdm9615.h
+>> +    include/dt-bindings/reset/qcom,gcc-mdm9615.h
+>> +
+>> +allOf:
+>> +  - $ref: qcom,gcc.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: qcom,gcc-mdm9615
+>> +
+>> +  clocks:
+>> +    maxItems: 2
+> 
+> Does not look like you tested the bindings. Please run `make
+> dt_binding_check` (see
+> Documentation/devicetree/bindings/writing-schema.rst for instructions).
 
-On Fri, May 12, 2023 at 6:58=E2=80=AFAM Luca Weiss <luca.weiss@fairphone.co=
-m> wrote:
->
-> Add support in the btqca/hci_qca driver for the WCN3988 and add it to
-> the sm7225 Fairphone 4 devicetree.
->
-> Devicetree patches go via Qualcomm tree, the rest via their respective
-> trees.
+Indeed. I did this when preparing v1 and then skipped it when sending 
+v2. Mea culpa.
 
-Just to be sure, patches 1-2 shall be applied to bluetooth-next the
-remaining are going to be handled elsewhere?
+-- 
+With best wishes
+Dmitry
 
-> --
-> Previously with the RFC version I've had problems before with Bluetooth
-> scanning failing like the following:
->
->   [bluetooth]# scan on
->   Failed to start discovery: org.bluez.Error.InProgress
->
->   [  202.371374] Bluetooth: hci0: Opcode 0x200b failed: -16
->
-> This appears to only happen with driver built-in (=3Dy) when the supporte=
-d
-> local commands list doesn't get updated in the Bluetooth core and
-> use_ext_scan() returning false. I'll try to submit this separately since
-> this now works well enough with =3Dm. But in both cases (=3Dy, =3Dm) it's
-> behaving a bit weirdly before (re-)setting the MAC address with "sudo
-> btmgmt public-addr fo:oo:ba:ar"
->
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> ---
-> Changes in v2:
-> - Add pinctrl & 'tlmm 64' irq to uart node
-> - Pick up tags
-> - Link to v1: https://lore.kernel.org/r/20230421-fp4-bluetooth-v1-0-0430e=
-3a7e0a2@fairphone.com
->
-> ---
-> Luca Weiss (4):
->       dt-bindings: net: qualcomm: Add WCN3988
->       Bluetooth: btqca: Add WCN3988 support
->       arm64: dts: qcom: sm6350: add uart1 node
->       arm64: dts: qcom: sm7225-fairphone-fp4: Add Bluetooth
->
->  .../bindings/net/bluetooth/qualcomm-bluetooth.yaml |   2 +
->  arch/arm64/boot/dts/qcom/sm6350.dtsi               |  63 +++++++++++++
->  arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts  | 103 +++++++++++++++=
-++++++
->  drivers/bluetooth/btqca.c                          |  13 ++-
->  drivers/bluetooth/btqca.h                          |  12 ++-
->  drivers/bluetooth/hci_qca.c                        |  12 +++
->  6 files changed, 201 insertions(+), 4 deletions(-)
-> ---
-> base-commit: f2fe50eb7ca6b7bc6c63745f5c26f7c6022fcd4a
-> change-id: 20230421-fp4-bluetooth-b36a0e87b9c8
->
-> Best regards,
-> --
-> Luca Weiss <luca.weiss@fairphone.com>
->
-
-
---=20
-Luiz Augusto von Dentz
