@@ -2,206 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ABD90700955
-	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 15:40:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12AE5700977
+	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 15:49:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240487AbjELNkt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 May 2023 09:40:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54110 "EHLO
+        id S241326AbjELNtz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 May 2023 09:49:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240443AbjELNks (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 09:40:48 -0400
-Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com [IPv6:2607:f8b0:4864:20::f34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5509C11DB6
-        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 06:40:46 -0700 (PDT)
-Received: by mail-qv1-xf34.google.com with SMTP id 6a1803df08f44-61b72fd8cc0so47576506d6.3
-        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 06:40:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1683898843; x=1686490843;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GHh7THGmNUX1NDYtIMVbnhFwwspK0WwD8hBv2/VAAYc=;
-        b=Psj29r1PlOCjFjEjYy36UNnuxRGVCbA+oN3zRgS/1CmXy5q9iaPDkcVBJldBqpQgwP
-         nwiRechmADrRLsnrZNcLqkumXhH+vhE091PGeLM9rBeixwT0mFOZM/Q04F2QRrqaVwuX
-         k3+CUAJiPxa1n9N8FdpnnNscy4yJSHolggdMM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683898843; x=1686490843;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GHh7THGmNUX1NDYtIMVbnhFwwspK0WwD8hBv2/VAAYc=;
-        b=RXy+dNwoF4dCyZIUMoNz8/2JB1dtwnJcDwuyTvV0Zkiz1QBQZqlDCq+AoItZ+c60/I
-         nXpLQ5b+q+SBuRyEpaqE27Hg4jIoBlZfArBVk0Gebcywsq3kJUkESNr18mWk82kJZLuf
-         ZOiXCvMJTYuaJwEIu3ynEsLJYj22Xq8P8OSYE3aFyXOepLXiwYudWnu51WeY8I5olx0Y
-         l/f+ce/rqNKiIEGviTnjE4CGcgda3962UuA0fEQLMcCRyAmHVXMeJO9iK5VpSUPiuoQj
-         /HnT8JH4J5rMTKRtlFyEV/hLM2BIrW6hI9Za3qAKlYYMjXqxJds8CpSo3OOdrQm23vMM
-         NPVw==
-X-Gm-Message-State: AC+VfDzdMzgsD5/MkjpBJNAc80MCDIQD2BY3eCaI2j5duDvdSDAczQ41
-        UDPH5bcrZsA2ouzNQWi+AFWni1kFzNvXj/bnK/k=
-X-Google-Smtp-Source: ACHHUZ7t2nmFZNGVDl+7Cq26YqzG/9YMzuFfF24CasK2rAZdAuvALPA6a3uQiRQmKJfA1EIOIf9K/g==
-X-Received: by 2002:a05:6214:1c46:b0:5ce:6636:a45 with SMTP id if6-20020a0562141c4600b005ce66360a45mr41871581qvb.25.1683898842700;
-        Fri, 12 May 2023 06:40:42 -0700 (PDT)
-Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com. [209.85.160.179])
-        by smtp.gmail.com with ESMTPSA id e25-20020a0cb459000000b0062142017f4csm2419959qvf.143.2023.05.12.06.40.39
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 May 2023 06:40:40 -0700 (PDT)
-Received: by mail-qt1-f179.google.com with SMTP id d75a77b69052e-3f38a9918d1so1015571cf.1
-        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 06:40:39 -0700 (PDT)
-X-Received: by 2002:a05:622a:1812:b0:3ef:1c85:5b5e with SMTP id
- t18-20020a05622a181200b003ef1c855b5emr253424qtc.19.1683898839232; Fri, 12 May
- 2023 06:40:39 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230511150539.6.Ia0b6ebbaa351e3cd67e201355b9ae67783c7d718@changeid>
- <20230511150539.1.Iabe67a827e206496efec6beb5616d5a3b99c1e65@changeid> <86v8gym0ys.wl-maz@kernel.org>
-In-Reply-To: <86v8gym0ys.wl-maz@kernel.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Fri, 12 May 2023 06:40:27 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=VnNaRc7D3nZ658KD18fDSQCBODS-16gpERkKcb7v793w@mail.gmail.com>
-Message-ID: <CAD=FV=VnNaRc7D3nZ658KD18fDSQCBODS-16gpERkKcb7v793w@mail.gmail.com>
-Subject: Re: [PATCH 1/6] dt-bindings: interrupt-controller: arm,gic-v3: Add
- quirk for Mediatek SoCs w/ broken FW
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S241325AbjELNty (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 09:49:54 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 301EF12EA9;
+        Fri, 12 May 2023 06:49:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1683899393; x=1715435393;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=DuNeysYSTXy/mIZofYnY1xvzASlALFjZdE92szRAONc=;
+  b=jalO+Qu1oHnS0FfJgzVsS84HrwTnpOqII992QLCJf1te4pfzAhqA71d3
+   e5/JPXViiWgCfUhnR1J8CEAy42yukDc1X8TG9bMnApgnas6oN3W7KPSs5
+   aqKulDjLCCr9BwzuQgnKEf3Q+yOZ77FTq/igFZJIqzuGcbxg5Y70gfAXc
+   R9TBX7K9THPlkWmm19EqasQavHFWsCmib+rQ/QgBlk4Df4PXoSNonSRZ4
+   r8vc+ZblUVm24cUoemNfMgv3K9olZfevenckc+Z1EJtbsCapoMLG8tn0a
+   3ggUMw88eYK9udVQOx7CmfL2EywPiQSKajicXRKFVDn8P307pNzHHIEY6
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.99,269,1677567600"; 
+   d="asc'?scan'208";a="210975138"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 12 May 2023 06:49:52 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Fri, 12 May 2023 06:49:50 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Fri, 12 May 2023 06:49:48 -0700
+Date:   Fri, 12 May 2023 14:49:27 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Xingyu Wu <xingyu.wu@starfivetech.com>
+CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        wenst@chromium.org, Eddie Huang <eddie.huang@mediatek.com>,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Ben Ho <Ben.Ho@mediatek.com>, Weiyi Lu <weiyi.lu@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Tinghan Shen <tinghan.shen@mediatek.com>, jwerner@chromium.org,
-        Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
-        yidilin@chromium.org, Seiya Wang <seiya.wang@mediatek.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Conor Dooley <conor@kernel.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        William Qiu <william.qiu@starfivetech.com>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
+Subject: Re: [PATCH v4 3/7] dt-bindings: clock: jh7110-syscrg: Add PLL clock
+ inputs
+Message-ID: <20230512-traffic-popsicle-5c3423b37fab@wendy>
+References: <20230512022036.97987-1-xingyu.wu@starfivetech.com>
+ <20230512022036.97987-4-xingyu.wu@starfivetech.com>
+ <20230512-uproar-external-49a9e793fbc4@wendy>
+ <91e4fd3c-20cb-724b-c9a8-e038600aabb7@starfivetech.com>
+ <20230512-backlit-radiated-ded0b38b4a94@wendy>
+ <be85aa2a-c72c-5272-ee40-f1265768e7b3@starfivetech.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="qj/PZxe9T53Afs5A"
+Content-Disposition: inline
+In-Reply-To: <be85aa2a-c72c-5272-ee40-f1265768e7b3@starfivetech.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+--qj/PZxe9T53Afs5A
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, May 12, 2023 at 1:02=E2=80=AFAM Marc Zyngier <maz@kernel.org> wrote=
-:
->
-> On Thu, 11 May 2023 23:05:35 +0100,
-> Douglas Anderson <dianders@chromium.org> wrote:
-> >
-> > When trying to turn on the "pseudo NMI" kernel feature in Linux, it
-> > was discovered that all Mediatek-based Chromebooks that ever shipped
-> > (at least ones with GICv3) had a firmware bug where they wouldn't save
-> > certain GIC "GICR" registers properly. If a processor ever entered a
-> > suspend/idle mode where the GICR registers lost state then they'd be
-> > reset to their default state.
-> >
-> > As a result of the bug, if you try to enable "pseudo NMIs" on the
-> > affected devices then certain interrupts will unexpectedly get
-> > promoted to be "pseudo NMIs" and cause crashes / freezes / general
-> > mayhem.
-> >
-> > ChromeOS is looking to start turning on "pseudo NMIs" in production to
-> > make crash reports more actionable. To do so, we will release firmware
-> > updates for at least some of the affected Mediatek Chromebooks.
-> > However, even when we update the firmware of a Chromebook it's always
-> > possible that a user will end up booting with old firmware. We need to
-> > be able to detect when we're running with firmware that will crash and
-> > burn if pseudo NMIs are enabled.
-> >
-> > The current plan is:
-> > * Update the device trees of all affected Chromebooks to include the
-> >   'mediatek,gicr-save-quirk' property. The kernel can use this to know
-> >   not to enable certain features like "pseudo NMI". NOTE: device trees
-> >   for Chromebooks are never baked into the firmware but are bundled
-> >   with the kernel. A kernel will never be configured to use "pseudo
-> >   NMIs" and be bundled with an old device tree.
-> > * When we get a fixed firmware for one of these Chromebooks, it will
-> >   patch the device tree to remove this property.
->
-> Since you're in control of distributing the FW together with the
-> kernel, I assume you're also in control of the command line. Why can't
-> that firmware pass the option enabling the pseudo-NMI support,
-> dispensing ourselves from all of this?
+On Fri, May 12, 2023 at 05:56:16PM +0800, Xingyu Wu wrote:
+> On 2023/5/12 17:35, Conor Dooley wrote:
+> > On Fri, May 12, 2023 at 04:07:47PM +0800, Xingyu Wu wrote:
+> >> On 2023/5/12 14:47, Conor Dooley wrote:
+> >> > On Fri, May 12, 2023 at 10:20:32AM +0800, Xingyu Wu wrote:
+> >> >> Add PLL clock inputs from PLL clock generator.
+> >> >>=20
+> >> >> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >> >> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+> >> >> ---
+> >> >>  .../clock/starfive,jh7110-syscrg.yaml         | 20 +++++++++++++++=
+++--
+> >> >>  1 file changed, 18 insertions(+), 2 deletions(-)
+> >> >=20
+> >> > /tmp/tmp.KDlzwQM5ma/arch/riscv/boot/dts/starfive/jh7110-starfive-vis=
+ionfive-2-v1.3b.dtb: clock-controller@13020000: clocks: 'oneOf' conditional=
+ failed, one must be fixed:
+> >> > 	[[19], [20], [21], [22], [23], [24], [25], [26], [27]] is too short
+> >> > 	From schema: /Documentation/devicetree/bindings/clock/starfive,jh71=
+10-syscrg.yaml
+> >> > /tmp/tmp.KDlzwQM5ma/arch/riscv/boot/dts/starfive/jh7110-starfive-vis=
+ionfive-2-v1.3b.dtb: clock-controller@13020000: clock-names: 'oneOf' condit=
+ional failed, one must be fixed:
+> >> > 	['osc', 'gmac1_rmii_refin', 'gmac1_rgmii_rxin', 'i2stx_bclk_ext', '=
+i2stx_lrck_ext', 'i2srx_bclk_ext', 'i2srx_lrck_ext', 'tdm_ext', 'mclk_ext']=
+ is too short
+> >> > 	'i2stx_bclk_ext' was expected
+> >> > 	'i2stx_lrck_ext' was expected
+> >> > 	'i2srx_bclk_ext' was expected
+> >> > 	'i2srx_lrck_ext' was expected
+> >> > 	'tdm_ext' was expected
+> >> > 	'mclk_ext' was expected
+> >> > 	'pll0_out' was expected
+> >> > 	From schema: /Documentation/devicetree/bindings/clock/starfive,jh71=
+10-syscrg.yaml
+> >> > /tmp/tmp.KDlzwQM5ma/arch/riscv/boot/dts/starfive/jh7110-starfive-vis=
+ionfive-2-v1.2a.dtb: clock-controller@13020000: clocks: 'oneOf' conditional=
+ failed, one must be fixed:
+> >> > 	[[19], [20], [21], [22], [23], [24], [25], [26], [27]] is too short
+> >> > 	From schema: Documentation/devicetree/bindings/clock/starfive,jh711=
+0-syscrg.yaml
+> >> > /tmp/tmp.KDlzwQM5ma/arch/riscv/boot/dts/starfive/jh7110-starfive-vis=
+ionfive-2-v1.2a.dtb: clock-controller@13020000: clock-names: 'oneOf' condit=
+ional failed, one must be fixed:
+> >> > 	['osc', 'gmac1_rmii_refin', 'gmac1_rgmii_rxin', 'i2stx_bclk_ext', '=
+i2stx_lrck_ext', 'i2srx_bclk_ext', 'i2srx_lrck_ext', 'tdm_ext', 'mclk_ext']=
+ is too short
+> >> > 	'i2stx_bclk_ext' was expected
+> >> > 	'i2stx_lrck_ext' was expected
+> >> > 	'i2srx_bclk_ext' was expected
+> >> > 	'i2srx_lrck_ext' was expected
+> >> > 	'tdm_ext' was expected
+> >> > 	'mclk_ext' was expected
+> >> > 	'pll0_out' was expected
+> >> > 	Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
+> >> >=20
+> >> > This binding change is incompatible with the existing devicetrees for
+> >> > the visionfive 2.
+> >>=20
+> >> This looks like less clocks about PLL in SYSCRG node. And I add this i=
+n patch 7.
+> >=20
+> > The existing devicetree is a valid, albeit limited, description of the
+> > hardware.
+> > After your changes to the clock driver in this series, but *without* the
+> > changes to the devicetrees, does the system still function?
+> > From a quick check of 4/7, it looks like it will not?
+>=20
+> I just tested it on the board and the system still worked without the cha=
+nges
+> about devicetree. But these clocks' rate were 0 because these could not g=
+et
+> the PLL clocks from devicetree.
 
-I considered the option, but it gets really awkward. Specifically:
+Hmm, that sounds like an issue to me. If all of the clock rates are
+computed based off of parents that incorrectly report 0, are we not in
+for trouble?
+Should the fixed-factor clocks be retained as a fallback for the sake of
+compatibility?
+Emil, Stephen?
 
-1. We can't have old firmwares "take away" the kernel command line
-option enabling pseudoNMI, obviously.
+--qj/PZxe9T53Afs5A
+Content-Type: application/pgp-signature; name="signature.asc"
 
-2. Having new firmware inject `irqchip.gicv3_pseudo_nmi=3D1` into the
-kernel command line feels really awkward from an abstraction point of
-view. This bakes into the firmware an implementation detail about how
-something is implemented / enabled in the kernel, which feels wrong.
-In general I'm not a fan of needing the kernel command line argument
-to begin with and I'd hope that eventually it could go away.
+-----BEGIN PGP SIGNATURE-----
 
-3. Having the firmware inject `irqchip.gicv3_pseudo_nmi=3D1` into the
-kernel command line also makes it awkward when you consider
-non-affected boards. On Qualcomm boards, Rockchip boards, and x86
-boards we want to enable pseudo NMI without needing to spin the
-firmware to have it add this option. ...so we have to add this option
-to the "default" command line for every board _except_ affected
-Mediatek boards? Is this weird convention something that our build
-system carries as we move to newer Mediatek SoCs that aren't affected?
-What if we want a single build for Mediatek and Qulcomm boards (which
-is something that has been bandied about, even if we haven't done it
-yet).
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZF5D5wAKCRB4tDGHoIJi
+0ls8AQDZMoyMjXuX37lw7BCSWsU9Gxef0TEiBYOlGG+R1S9i9gEAlqR+XYcFjG8B
+9nGwVdlLV70d09Xp6IjHrhusCQ2QSA4=
+=fsw/
+-----END PGP SIGNATURE-----
 
-Considering all the above, I think trying to use the
-`irqchip.gicv3_pseudo_nmi=3D1` like this wouldn't fly.
-
-
-> > For some details, you can also see the public bug
-> > <https://issuetracker.google.com/281831288>
-> >
-> > Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> > ---
-> >
-> >  .../bindings/interrupt-controller/arm,gic-v3.yaml           | 6 ++++++
-> >  1 file changed, 6 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/arm=
-,gic-v3.yaml b/Documentation/devicetree/bindings/interrupt-controller/arm,g=
-ic-v3.yaml
-> > index 92117261e1e1..8c251caae537 100644
-> > --- a/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3=
-.yaml
-> > +++ b/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3=
-.yaml
-> > @@ -166,6 +166,12 @@ properties:
-> >    resets:
-> >      maxItems: 1
-> >
-> > +  mediatek,gicr-save-quirk:
->
-> I think this deserves something *much* stronger that outlines what is
-> wrong, because this is not just a quirk. This is a failure to even
-> remotely grasp the requirements of the architecture (and to use
-> standard, public code that would have done it correctly). Something
-> like "mediatek,broken-save-restore-fw" would be more adequate.
-
-Sure, I'll rename it in the next spin. Unless we get into a big
-discussion somewhere else in this patch, I'll plan that for early next
-week.
-
-
-> > +    type: boolean
-> > +    description:
-> > +      Asserts that the firmware on this device has issues saving and r=
-estoring
-> > +      GICR registers when CPUs are powered off.
->
-> Nit: not the the CPUs, but the GIC redistributors.
-
-Ah, good point. I'll update.
+--qj/PZxe9T53Afs5A--
