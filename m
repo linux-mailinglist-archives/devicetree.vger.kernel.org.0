@@ -2,133 +2,286 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 176EC700605
-	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 12:52:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9167F7004FB
+	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 12:13:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240603AbjELKwN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 May 2023 06:52:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52506 "EHLO
+        id S240575AbjELKNN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 May 2023 06:13:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240697AbjELKwK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 06:52:10 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C07BD1FCE;
-        Fri, 12 May 2023 03:51:47 -0700 (PDT)
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34C82PwY015048;
-        Fri, 12 May 2023 11:39:32 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-transfer-encoding :
- content-type; s=selector1;
- bh=3cg3EVB9ewH286o8slPPUl1HT2sepf8ePI6K7LlsZTk=;
- b=Bnz/gsasrj/TaS8+u/rC2ZjFtOBNRBURDfpwDLM19uzxH2yggqpkSYMZuwr/W/DoCKpI
- U4xPWZ42lRH9kQJLG7WGx9gCrR4Zm6UXcyKGnpKZMw6ZEpSceYvPNJAF1YycFB6OA8y6
- KX1AV+yrSQPi7NV9J3W/mixaUEJ6J5BZCTaUgfiZ/KTrbBCWhNUqUvnCjv5f+TAZreHY
- CAMbUxtzuvAM7hj5F/HQA/GPAVn/gbZg2d50Dq+f6lhlwieY62YdJZzPRgEEwyzWeCmg
- 1zSQZW61vaFQhSdbTPHM1/wcDJt/A09PITR7D7hXxEazjLlj9kgx7C0rGvecfM+DNP1q KA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3qg90px1xq-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 12 May 2023 11:39:32 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id A276C10002A;
-        Fri, 12 May 2023 11:39:29 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 79DE12248B0;
-        Fri, 12 May 2023 11:39:29 +0200 (CEST)
-Received: from localhost (10.201.21.213) by SHFDAG1NODE2.st.com (10.75.129.70)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Fri, 12 May
- 2023 11:39:29 +0200
-From:   Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-Subject: [PATCH v3 0/4] stm32mp15: update remoteproc to support SCMI Device tree
-Date:   Fri, 12 May 2023 11:39:22 +0200
-Message-ID: <20230512093926.661509-1-arnaud.pouliquen@foss.st.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S240492AbjELKNC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 06:13:02 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C80AD12E9F
+        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 03:12:34 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-30789a4c537so4852127f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 03:12:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1683886353; x=1686478353;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=TSlZKJ919JRC2x/Kcyg1XoCSxvFxqofhm3tIejqbIEw=;
+        b=ZeRSSQ22T2vPKZNx8m1VSLUIamkTmCCuTt5yN1ud+13hbzqlf6JgM5E1mQLZSxlAXh
+         Wz7JvkOVQ22QeNP2/RNI9DVXAE3fm3I7eDALbUvc8Q8sS3EY703ARNWsDFE42HztqU7F
+         znUJascx6YQXCwRb8oxjJX4aGP4tnjtKpIY9KdmXc6QSGMq2wyOmey9Ofgw7yja02VA+
+         WONBRldr4lycA0JWO9hNtEmZHoCpztiFchSQvMvP62veIj6kJggVNp8tz7vW80hZv3yO
+         EGXd4qZLTyz92jC6XOpXnbgKKD2tAplzKpI1ykiKLCLClgx67nsusWXuesVIVP0sNhtV
+         5G4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683886353; x=1686478353;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TSlZKJ919JRC2x/Kcyg1XoCSxvFxqofhm3tIejqbIEw=;
+        b=X39suj94QNcqZdD1ySVbfDej3BDHiEK/atCL4wAPdgWTfHagHsdZNx7HJb4+ZoUZYw
+         ix8ZDg3FUHJXCoTx7WIveFTqyHpnh52ErWdMLOjgQs0HVvLArkjEeGBAplpPQ9goHwEK
+         S9t+UbF8hm3tUWgNhC41i9j7lgWLlvXF/40znCzAwE2YizUHgXOI2jMLFZ7lRMZdWxWn
+         wOHTGhO8SZTEcHOKPOzDeZJOAVoTLT28ZC9dyw8BeA7Z4EjpKmYmWeUzjF1mOZJysCb7
+         o56ovjSXbf0pdL1i2l68OlS0mHy8XiAzoxpa5/ZaPlQTuAg3BrE8HFV/Hglek084/ZEL
+         WUUA==
+X-Gm-Message-State: AC+VfDwFpJGBfSGu1LJ7RhFV332i/LirRbOCs67KZ4vU0gpmg9eabGV3
+        YIWQogh8S7tM6MhBkz1WdjX4Jw==
+X-Google-Smtp-Source: ACHHUZ75ItjGV2J7MS/g2zgOpvjGZ/pYtVX4M+qKqib7xt9l8s55QKND0IhTKqbCLMGnvaUWRNM3jw==
+X-Received: by 2002:a5d:5082:0:b0:307:a36b:e7a5 with SMTP id a2-20020a5d5082000000b00307a36be7a5mr8349933wrt.60.1683886352845;
+        Fri, 12 May 2023 03:12:32 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:95e3:a02f:1d34:8191? ([2a01:e0a:982:cbb0:95e3:a02f:1d34:8191])
+        by smtp.gmail.com with ESMTPSA id k9-20020adfe8c9000000b0030642f5da27sm22872525wrn.37.2023.05.12.03.12.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 May 2023 03:12:32 -0700 (PDT)
+Message-ID: <db8bc4e8-3b41-43d5-6bc9-fb958635ce90@linaro.org>
+Date:   Fri, 12 May 2023 12:12:31 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+From:   neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH V4] arm64: dts: add support for C3 based Amlogic AW409
+Content-Language: en-US
+To:     "xianwei.zhao" <xianwei.zhao@amlogic.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+References: <20230510091129.151669-1-xianwei.zhao@amlogic.com>
+ <b2bdb00f-63de-40a9-ebe6-32f83607b5d8@linaro.org>
+ <d588b62f-970d-a974-814d-5b116bc547f9@amlogic.com>
+Organization: Linaro Developer Services
+In-Reply-To: <d588b62f-970d-a974-814d-5b116bc547f9@amlogic.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.201.21.213]
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-12_06,2023-05-05_01,2023-02-09_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update vs V2[1]:
----------------
-- update yaml to remove label in examples
-- fix error management for  devm_reset_control_get_optional(dev, "hold_boot")
-- rebased on commit ac9a78681b92 ("Linux 6.4-rc1")
+On 12/05/2023 09:03, xianwei.zhao wrote:
+> Hi Neil,
+>       Thank you for your reply.
+> 
+> On 2023/5/11 16:39, Neil Armstrong wrote:
+>> [ EXTERNAL EMAIL ]
+>>
+>> Hi,
+>>
+>> On 10/05/2023 11:11, Xianwei Zhao wrote:
+>>> Amlogic C3 is an advanced edge AI processor designed for smart IP camera
+>>> applications.
+>>>
+>>> Add basic support for the C3 based Amlogic AW409 board, which describes
+>>> the following components: CPU, GIC, IRQ, Timer, UART. It's capable of
+>>> booting up into the serial console.
+>>>
+>>> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>>> ---
+>>> Link: https://lore.kernel.org/all/20230407102704.1055152-1-kelvin.zhang@amlogic.com
+>>> Link: https://lore.kernel.org/all/20230307222651.2106615-2-martin.blumenstingl@googlemail.com
+>>>
+>>> V3 -> V4: Move Link under the --- before the changelog.
+>>> V2 -> V3: Remove '256m' from filename;
+>>>            Keep alphabetical order of Makefile.
+>>> V1 -> V2: Remove new arch, and use ARCH_MESON;
+>>>            Modify node name, and delete superfluous blank line.
+>>> ---
+>>>   arch/arm64/boot/dts/amlogic/Makefile          |  1 +
+>>>   .../dts/amlogic/amlogic-c3-c302x-aw409.dts    | 29 +++++++
+>>>   arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi   | 86 +++++++++++++++++++
+>>>   3 files changed, 116 insertions(+)
+>>>   create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409.dts
+>>>   create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
+>>>
+>>> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+>>> index cd1c5b04890a..6f61798a109f 100644
+>>> --- a/arch/arm64/boot/dts/amlogic/Makefile
+>>> +++ b/arch/arm64/boot/dts/amlogic/Makefile
+>>> @@ -1,4 +1,5 @@
+>>>   # SPDX-License-Identifier: GPL-2.0
+>>> +dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c302x-aw409.dtb
+>>>   dtb-$(CONFIG_ARCH_MESON) += meson-a1-ad401.dtb
+>>>   dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j100.dtb
+>>>   dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j110-rev-2.dtb
+>>> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409.dts b/arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409.dts
+>>> new file mode 100644
+>>> index 000000000000..edce8850b338
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409.dts
+>>> @@ -0,0 +1,29 @@
+>>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>>> +/*
+>>> + * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
+>>> + */
+>>> +
+>>> +/dts-v1/;
+>>> +
+>>> +#include "amlogic-c3.dtsi"
+>>> +
+>>> +/ {
+>>> +     model = "Amlogic C302 aw409 Development Board";
+>>> +     compatible = "amlogic,aw409", "amlogic,c3";
+>>> +     interrupt-parent = <&gic>;
+>>> +     #address-cells = <2>;
+>>> +     #size-cells = <2>;
+>>> +
+>>> +     aliases {
+>>> +             serial0 = &uart_b;
+>>> +     };
+>>> +
+>>> +     memory@0 {
+>>> +             device_type = "memory";
+>>> +             reg = <0x0 0x0 0x0 0x10000000>;
+>>> +     };
+>>> +};
+>>> +
+>>> +&uart_b {
+>>> +     status = "okay";
+>>> +};
+>>> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
+>>> new file mode 100644
+>>> index 000000000000..93b335aef605
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
+>>> @@ -0,0 +1,86 @@
+>>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>>> +/*
+>>> + * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
+>>> + */
+>>> +
+>>> +#include <dt-bindings/interrupt-controller/irq.h>
+>>> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+>>> +#include <dt-bindings/gpio/gpio.h>
+>>> +
+>>> +/ {
+>>> +     cpus {
+>>> +             #address-cells = <2>;
+>>> +             #size-cells = <0>;
+>>> +
+>>> +             cpu0: cpu@0 {
+>>> +                     device_type = "cpu";
+>>> +                     compatible = "arm,cortex-a35";
+>>> +                     reg = <0x0 0x0>;
+>>> +                     enable-method = "psci";
+>>> +             };
+>>> +
+>>> +             cpu1: cpu@1 {
+>>> +                     device_type = "cpu";
+>>> +                     compatible = "arm,cortex-a35";
+>>> +                     reg = <0x0 0x1>;
+>>> +                     enable-method = "psci";
+>>> +             };
+>>> +     };
+>>> +
+>>> +     timer {
+>>> +             compatible = "arm,armv8-timer";
+>>> +             interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+>>> +                          <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+>>> +                          <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+>>> +                          <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
+>>> +     };
+>>> +
+>>> +     psci {
+>>> +             compatible = "arm,psci-1.0";
+>>> +             method = "smc";
+>>> +     };
+>>> +
+>>> +     xtal: xtal-clk {
+>>> +             compatible = "fixed-clock";
+>>> +             clock-frequency = <24000000>;
+>>> +             clock-output-names = "xtal";
+>>> +             #clock-cells = <0>;
+>>> +     };
+>>> +
+>>> +     soc {
+>>> +             compatible = "simple-bus";
+>>> +             #address-cells = <2>;
+>>> +             #size-cells = <2>;
+>>> +             ranges;
+>>> +
+>>> +             gic: interrupt-controller@fff01000 {
+>>> +                     compatible = "arm,gic-400";
+>>> +                     #interrupt-cells = <3>;
+>>> +                     #address-cells = <0>;
+>>> +                     interrupt-controller;
+>>> +                     reg = <0x0 0xfff01000 0 0x1000>,
+>>> +                           <0x0 0xfff02000 0 0x2000>,
+>>> +                           <0x0 0xfff04000 0 0x2000>,
+>>> +                           <0x0 0xfff06000 0 0x2000>;
+>>> +                     interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
+>>> +             };
+>>> +
+>>> +             apb4: bus@fe000000 {
+>>> +                     compatible = "simple-bus";
+>>> +                     reg = <0x0 0xfe000000 0x0 0x480000>;
+>>> +                     #address-cells = <2>;
+>>> +                     #size-cells = <2>;
+>>> +                     ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
+>>> +
+>>> +                     uart_b: serial@7a000 {
+>>> +                             compatible = "amlogic,meson-g12a-uart";
+>>
+>> This should be:
+>>
+>>         compatible = "amlogic,meson-g12a-uart", "amlogic,meson-gx-uart"
+>>
+>> to match the amlogic,meson-uart.yaml bindings.
+>>
+> 
+> I will use strings 'amlogic,meson-s4-uart' instead of these, because of board C3 is only use 12M clock source for serial, the same as s4 series.
 
-[1]https://lore.kernel.org/lkml/20230504094641.870378-1-arnaud.pouliquen@foss.st.com/T/
+Sure.
 
+Neil
 
-Description:
------------
-This series updates the stm32_rproc driver and associated DT node to
-support device tree configuration with and without SCMI server. 
-The impact is mainly on the MCU hold boot management.
-
-Three configurations have to be supported:
-
-1) Configuration without OP-TEE SCMI (legacy): Trusted context not activated
-- The MCU reset is controlled through the Linux RCC reset driver.
-- The MCU HOLD BOOT is controlled through The RCC sysconf.
-
-2) Configuration with SCMI server: Trusted context activated
-- The MCU reset is controlled through the SCMI reset service.
-- The MCU HOLD BOOT is no more controlled through a SMC call service but
-  through the SCMI reset service.
-
-3) Configuration with OP-TEE SMC call (deprecated): Trusted context activated
-- The MCU reset is controlled through the Linux RCC reset driver.
-- The MCU HOLD BOOT is controlled through The SMC call.
-
-In consequence this series:
-- adds the use of the SCMI reset service to manage the MCU hold boot,
-- determines the configuration to use depending on the presence of the
-  "reset-names" property
-  if ( "reset-names" property contains "hold_boot")
-  then use reset_control services
-  else use regmap access based on "st,syscfg-holdboot" property.
-- set the DT st,syscfg-tz property as deprecated
-
-Arnaud Pouliquen (4):
-  dt-bindings: remoteproc: st,stm32-rproc: Rework reset declarations
-  remoteproc: stm32: Allow hold boot management by the SCMI reset
-    controller
-  ARM: dts: stm32: Update reset declarations
-  ARM: dts: stm32: fix m4_rproc references to use SCMI
-
- .../bindings/remoteproc/st,stm32-rproc.yaml   | 44 +++++++++--
- arch/arm/boot/dts/stm32mp151.dtsi             |  2 +-
- arch/arm/boot/dts/stm32mp157a-dk1-scmi.dts    |  6 +-
- arch/arm/boot/dts/stm32mp157c-dk2-scmi.dts    |  6 +-
- arch/arm/boot/dts/stm32mp157c-ed1-scmi.dts    |  6 +-
- arch/arm/boot/dts/stm32mp157c-ev1-scmi.dts    |  6 +-
- drivers/remoteproc/stm32_rproc.c              | 76 ++++++++++++++-----
- 7 files changed, 111 insertions(+), 35 deletions(-)
-
--- 
-2.25.1
+> 
+>> Please run :
+>> make CHECK_DTBS=1 amlogic/amlogic-c3-c302x-aw409.dtb
+>>
+>> With that fixed, please add on v5:
+> 
+> Will do.
+> 
+>>
+>> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+>>
+>>> +                             reg = <0x0 0x7a000 0x0 0x18>;
+>>> +                             interrupts = <GIC_SPI 169 IRQ_TYPE_EDGE_RISING>;
+>>> +                             status = "disabled";
+>>> +                             clocks = <&xtal>, <&xtal>, <&xtal>;
+>>> +                             clock-names = "xtal", "pclk", "baud";
+>>> +                     };
+>>> +
+>>> +             };
+>>> +     };
+>>> +};
+>>>
+>>> base-commit: ae68fb187b59bc8645974320808ab2d7c41b1833
+>>
 
