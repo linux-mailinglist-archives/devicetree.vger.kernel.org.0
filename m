@@ -2,171 +2,330 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A672700701
-	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 13:40:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0364700721
+	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 13:47:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240546AbjELLkp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 May 2023 07:40:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59492 "EHLO
+        id S240461AbjELLrQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 May 2023 07:47:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35486 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240467AbjELLkn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 07:40:43 -0400
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2079.outbound.protection.outlook.com [40.107.220.79])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C08431718;
-        Fri, 12 May 2023 04:40:41 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TfCoOzWMoDiBubJVH0iAOPbVu0zU35vJxd7YvLpiiyR0iKgV2Lqn4rEmj9qreBgRNwIETrgICEBBZacARk1c0fdt7LdptU/NTPZ+fGVnsPBwj38hSUYVTEharRPg0gMJdgHIMrc2tMD7DZybmIbAMJYIChOmpk4azVX6drgRXtu+lQdIK23BHJMCkNG4t+JtpcXLv9Kp5wGHh02m5kPM+RWsjacS9n3wTs0aCtY5WTHwlWqTlAbdoOUzBhG3O38OV/E0WiMIlKY/xEZIZRADb9cZ3PJdTdEBDjo5gXKqMXODA0Xfvx2He4Dy7PN9cjAaVGdlnzKGIZduDazIUyL7sQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4RO1e1MNOQiwDLgRRKBRobTnqUinqglMRRvmWsmndGQ=;
- b=OliYRuXC0t1URLc6avuJ9LREv/LFWcAYtk2/bZMKfK+aGB2+aSdaI8ae/zbcQmy1MVPHTf9Ud0KjYqp+USTD19lUQzxQt1ujpMQ+ncs8nJvG9CTVPh4uDFzEILwdYU6QMv2NUDIKrBT9g8qQbM2erdLvn73e9pVSnp7SMa662UP5Ybxo21Ag/LTuNKdM3i2MnszJAHpV5B1JcfNZyFhcg7LcWUnxsRkcNtdeIgcHDYe+qlkha02ob6OIqjXr/yApjzHkCDFeFd3YKAnv9t2ESknU7BdxXk4wgSfWQPkNrDVn37vf97I0M6ulCGdE7HKWYeYUinntkxuNBeeCq4Im/g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4RO1e1MNOQiwDLgRRKBRobTnqUinqglMRRvmWsmndGQ=;
- b=4GaxmPqKTpbRD9I4OSrb9XZixRogzo1V7WUAnHijmWR1+SMXFHyeWzLe8UaPHP8q9SFaZcxN0aNe9SYmG5mnF3xo0eBEqCJ/4bOdjE7PWF5uu6uVP0oaZzyDJyupbpJZotQnKXJtIfjvrnNHfY5NHfI5dVyeuFzX5moelPV5UMo=
-Received: from MW4PR04CA0186.namprd04.prod.outlook.com (2603:10b6:303:86::11)
- by BN9PR12MB5365.namprd12.prod.outlook.com (2603:10b6:408:102::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.24; Fri, 12 May
- 2023 11:40:39 +0000
-Received: from CO1NAM11FT110.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:86:cafe::1c) by MW4PR04CA0186.outlook.office365.com
- (2603:10b6:303:86::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.24 via Frontend
- Transport; Fri, 12 May 2023 11:40:38 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT110.mail.protection.outlook.com (10.13.175.125) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6387.24 via Frontend Transport; Fri, 12 May 2023 11:40:38 +0000
-Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Fri, 12 May
- 2023 06:40:36 -0500
-From:   Michal Simek <michal.simek@amd.com>
-To:     <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
-        <michal.simek@xilinx.com>, <git@xilinx.com>
-CC:     Conor Dooley <conor+dt@kernel.org>,
-        Hyun Kwon <hyun.kwon@xilinx.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>, <devicetree@vger.kernel.org>,
-        <dmaengine@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH v3] dt-bindings: dma: xilinx: Add power-domains to xlnx,zynqmp-dpdma
-Date:   Fri, 12 May 2023 13:40:33 +0200
-Message-ID: <8f5651634df338743f95a7253a741f9ddc92487d.1683891609.git.michal.simek@amd.com>
-X-Mailer: git-send-email 2.36.1
+        with ESMTP id S231890AbjELLrO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 07:47:14 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B14F10A1B;
+        Fri, 12 May 2023 04:47:11 -0700 (PDT)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34CB4r7A005520;
+        Fri, 12 May 2023 11:46:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=Jt51dYl/wNg7MsBYQTQvFM6GGZ9cO3DdrttGps86SvM=;
+ b=gT7R3mqeShwqwWcLDracfU0/fCygVSUAyqtns8bciK25hNLj1wEIMN6MtTqJeXOkShfw
+ AQ+xcMWhgtIkM4juKBy2y+UjlB3dhbYN6BOsEre2l3dCox3w0JkfMxsphzfKqYimUBtK
+ w5dwkJnRxoQjSaejpOj30eiemLJhSLicrFRredSstVvg9slhQgtaEAqFnl208BenZPua
+ I9SyO39nMWMpoW6WYtbuaC92hRftDhOw6ZcB8HOPsAxgAC1fU4g4wm5Pg4YOUdc9ZS2Q
+ zLImyUeWGYjhirbsGoQkuOC2jsURtiq+sKtm4k9ZQjeeRvmkDVUMlZmp2PWwfePhhFnS NA== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qhayt17hk-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 12 May 2023 11:46:46 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34CBkjh6019594
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 12 May 2023 11:46:45 GMT
+Received: from [10.50.57.156] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Fri, 12 May
+ 2023 04:46:41 -0700
+Message-ID: <de9e8440-9c6b-2763-de79-5af9aeb8287c@quicinc.com>
+Date:   Fri, 12 May 2023 17:16:38 +0530
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1862; i=michal.simek@amd.com; h=from:subject:message-id; bh=CIzqKqEHuEC95EL4d11sbyDsplKRyRHucX4oxoB26zI=; b=owGbwMvMwCR4yjP1tKYXjyLjabUkhpQ41Vlf7iwMffAt28yIf968sOmZx3Si2TTTjQxN3h6X7 fj3pEG5I5aFQZCJQVZMkUXa5sqZvZUzpghfPCwHM4eVCWQIAxenAEwk6zXDPLO8nf7N5z6VL9/y QXMiR1OywYPz1gzzDM0PC5YUe0+5uj8m6Kt4RZy106dlAA==
-X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT110:EE_|BN9PR12MB5365:EE_
-X-MS-Office365-Filtering-Correlation-Id: 097abc62-935f-4cbf-e5a2-08db52ddb577
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: d6p9LjLOKUqyVt5UKq6BBheBA4u3aUoW/TRx7c0nJ+FVpNjBTDJAfN2ljiJ9s2gJGuLzvfTA1N4GzUQWB4r223FJnJrkJzYGO8ydZZ1emASA13M2+fqZJp4elvpxqmao0vF3eVKsi+0uaYz0JiX6pqLmrSy50PFPd1cxOIVkwbcr4v/BEpkLBJWRu8bF+LCzoGk54rK8mJkQ/1UVHNhuXAaNJaB+ylWa7RqGJOgz99klFIsORdAWOpLKzJl8Vx10gnmFEKj+ohbsLuq5FyUaVyFzzuhCKIOWu2Us2g3sfzd7sdQzbzwpoCPcPOZ4OinH54iu4sMY/jcId2QcwgbIJwMNiy3wb6cYHIyEu9FFu8cEbSlRHTKv4fp3OMKJA0K9ttB994cX4RwZeJuT4BwnceW3tJGNC2Y/KJ2TLbrJs4FQyPCVqQx2vTr2rYjoFKV8JzIXw73e84FEs2jD4v9ObBE/YuK6V5M2VJ2pgtyj5LfWuKdUE8xtbjbnqjBZZ5zJ6xHJxKgXKWH3I4oAFn5YPnwQSNE093KaBniILZ/9eGPJZAMHuwX7Pjio0los6FEVaOAg/JURWY05N0cc4uVWDdzANiXQZsPgy3nyGLVhBekbN3m+vuIqJbr/6IN0Bggsyy0bcWMQKwg1M3fbAK13wk1p4yjU3Qe7anuejHvaPCBkERK0ig/RHGVnc/W1vIRpNOn+Q+v+8+0L9jtikBXGCTQKGOTrBaWYOgVcA12eH6vZXd3xUdKYqU7UCZt5X12qibyvRa8/9d+5FUvwX+eh9Sy/61ZOQH8TONDB93rP2rE=
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(396003)(39860400002)(376002)(346002)(136003)(451199021)(36840700001)(40470700004)(46966006)(4326008)(81166007)(356005)(426003)(336012)(82740400003)(26005)(40480700001)(2616005)(966005)(186003)(16526019)(83380400001)(36860700001)(47076005)(2906002)(8676002)(5660300002)(7416002)(8936002)(44832011)(36756003)(478600001)(54906003)(110136005)(40460700003)(6666004)(316002)(41300700001)(70206006)(70586007)(86362001)(82310400005)(36900700001)(2101003);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2023 11:40:38.7122
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 097abc62-935f-4cbf-e5a2-08db52ddb577
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT110.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5365
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH V6 2/3] soc: qcom: boot_stat: Add Driver Support for Boot
+ Stats
+To:     Bjorn Andersson <andersson@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>
+CC:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>
+References: <cover.1683628357.git.quic_schowdhu@quicinc.com>
+ <35863b47c04c2edd7ae49c57d23682aba6111d4f.1683628357.git.quic_schowdhu@quicinc.com>
+ <20230511170744.cyex75e5d6md5rtm@ripper>
+Content-Language: en-US
+From:   Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+In-Reply-To: <20230511170744.cyex75e5d6md5rtm@ripper>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: kImsigrcMcPFrOWb4PVzDrrhlX30RJsX
+X-Proofpoint-GUID: kImsigrcMcPFrOWb4PVzDrrhlX30RJsX
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-12_08,2023-05-05_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 mlxlogscore=999
+ phishscore=0 priorityscore=1501 suspectscore=0 spamscore=0 adultscore=0
+ impostorscore=0 bulkscore=0 malwarescore=0 clxscore=1015
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2305120098
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DP DMA has own power domain that's why describe required power-domain
-property.
 
-Signed-off-by: Michal Simek <michal.simek@amd.com>
----
 
-Changes in v3:
-- make power-domains as required property
-- also update commit message
+On 5/11/2023 10:37 PM, Bjorn Andersson wrote:
+> On Tue, May 09, 2023 at 03:52:22AM -0700, Souradeep Chowdhury wrote:
+>> All of Qualcomm's proprietary Android boot-loaders capture boot time
+>> stats, like the time when the bootloader started execution and at what
+>> point the bootloader handed over control to the kernel etc. in the IMEM
+>> region. This information is captured in a specific format by this driver
+>> by mapping a structure to the IMEM memory region and then accessing the
+>> members of the structure to show the information within debugfs file.
+>> This information is useful in verifying if the existing boot KPIs have
+>> regressed or not. The information is shown in milliseconds, a sample
+>> log from sm8450(waipio) device is as follows:-
+>>
+>> /sys/kernel/debug/qcom_boot_stats # cat abl_time
+>> 17898 ms
+>> /sys/kernel/debug/qcom_boot_stats # cat pre_abl_time
+>> 2879 ms
+>>
+>> The Module Power Manager(MPM) sleep counter starts ticking at the PBL
+>> stage and the timestamp generated by the sleep counter is logged by
+>> the Qualcomm proprietary bootloader(ABL) at two points-> First when it
+>> starts execution which is logged here as "pre_abl_time" and the second
+>> when it is about to load the kernel logged as "abl_time". Documentation
+>> details are also added in Documentation/ABI/testing/debugfs-driver-bootstat
+>>
+> 
+> I would have preferred some way to implement this without spending
+> countless kB of RAM to occasionally read out two u32 values...
+> 
+> But pulling them out of /dev/mem is the only suggestion that comes to
+> mind... Perhaps dropping the MODULE_DEVICE_TABLE() to rely on an
+> explicit modprobe/insmod in the few cases where it's needed?
+> 
+> @Arnd, do you have any suggestion about how to handle this kind of debug
+> drivers?
+> 
+>> Signed-off-by: Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+>> ---
+>>   .../ABI/testing/debugfs-driver-bootstat       |  17 +++
+>>   drivers/soc/qcom/Kconfig                      |  10 ++
+>>   drivers/soc/qcom/Makefile                     |   1 +
+>>   drivers/soc/qcom/boot_stats.c                 | 100 ++++++++++++++++++
+>>   4 files changed, 128 insertions(+)
+>>   create mode 100644 Documentation/ABI/testing/debugfs-driver-bootstat
+>>   create mode 100644 drivers/soc/qcom/boot_stats.c
+>>
+>> diff --git a/Documentation/ABI/testing/debugfs-driver-bootstat b/Documentation/ABI/testing/debugfs-driver-bootstat
+>> new file mode 100644
+>> index 000000000000..7127d15d9f15
+>> --- /dev/null
+>> +++ b/Documentation/ABI/testing/debugfs-driver-bootstat
+>> @@ -0,0 +1,17 @@
+>> +What:		/sys/kernel/debug/qcom_boot_stats/pre_abl_time
+>> +Date:           May 2023
+>> +Contact:        Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+>> +Description:
+>> +		This file is used to read the KPI value pre abl time.
+>> +		It shows the time in milliseconds from the starting
+>> +		point of PBL to the point when the control shifted
+>> +		to ABL(Qualcomm proprietary bootloader).
+>> +
+>> +What:           /sys/kernel/debug/qcom_boot_stats/abl_time
+>> +Date:           May 2023
+>> +Contact:        Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+>> +Description:
+>> +		This file is used to read the KPI value abl time.
+>> +		It show the duration in milliseconds from the
+>> +		time control switched to ABL to the point when
+>> +		the linux kernel started getting loaded.
+>> diff --git a/drivers/soc/qcom/Kconfig b/drivers/soc/qcom/Kconfig
+>> index a491718f8064..04141236dcdd 100644
+>> --- a/drivers/soc/qcom/Kconfig
+>> +++ b/drivers/soc/qcom/Kconfig
+>> @@ -16,6 +16,16 @@ config QCOM_AOSS_QMP
+>>   	  subsystems as well as controlling the debug clocks exposed by the Always On
+>>   	  Subsystem (AOSS) using Qualcomm Messaging Protocol (QMP).
+>>   
+>> +config QCOM_BOOTSTAT
+>> +	tristate "Qualcomm Technologies, Boot Stat driver"
+>> +	depends on ARCH_QCOM || COMPILE_TEST
+>> +	depends on DEBUG_FS
+>> +	help
+>> +	  This option enables driver support for boot stats. Boot stat driver logs
+>> +	  the kernel bootloader information by accessing the imem region. These
+>> +	  information are exposed in the form of debugfs files. This is used to
+>> +	  determine if there is any regression in boot timings.
+>> +
+>>   config QCOM_COMMAND_DB
+>>   	tristate "Qualcomm Command DB"
+>>   	depends on ARCH_QCOM || COMPILE_TEST
+>> diff --git a/drivers/soc/qcom/Makefile b/drivers/soc/qcom/Makefile
+>> index 0f43a88b4894..ae7bda96a539 100644
+>> --- a/drivers/soc/qcom/Makefile
+>> +++ b/drivers/soc/qcom/Makefile
+>> @@ -1,6 +1,7 @@
+>>   # SPDX-License-Identifier: GPL-2.0
+>>   CFLAGS_rpmh-rsc.o := -I$(src)
+>>   obj-$(CONFIG_QCOM_AOSS_QMP) +=	qcom_aoss.o
+>> +obj-$(CONFIG_QCOM_BOOTSTAT) += boot_stats.o
+>>   obj-$(CONFIG_QCOM_GENI_SE) +=	qcom-geni-se.o
+>>   obj-$(CONFIG_QCOM_COMMAND_DB) += cmd-db.o
+>>   obj-$(CONFIG_QCOM_CPR)		+= cpr.o
+>> diff --git a/drivers/soc/qcom/boot_stats.c b/drivers/soc/qcom/boot_stats.c
+>> new file mode 100644
+>> index 000000000000..ca67b6b5d8eb
+>> --- /dev/null
+>> +++ b/drivers/soc/qcom/boot_stats.c
+>> @@ -0,0 +1,100 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Copyright (c) 2013-2019, 2021 The Linux Foundation. All rights reserved.
+>> + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+>> + */
+>> +
+>> +#include <linux/debugfs.h>
+>> +#include <linux/err.h>
+>> +#include <linux/io.h>
+>> +#include <linux/init.h>
+>> +#include <linux/kernel.h>
+>> +#include <linux/module.h>
+>> +#include <linux/of.h>
+>> +#include <linux/of_address.h>
+>> +#include <linux/platform_device.h>
+>> +
+>> +#define TO_MS(timestamp) ((timestamp * 1000) / 32768)
+>> +
+>> +/**
+>> + *  struct boot_stats - timestamp information related to boot stats
+>> + *  @abl_start: Time for the starting point of the abl
+>> + *  @abl_end: Time when the kernel starts loading from abl
+>> + */
+>> +struct boot_stats {
+>> +	u32 abl_start;
+>> +	u32 abl_end;
+>> +} __packed;
+>> +
+>> +struct bs_data {
+>> +	struct boot_stats __iomem *b_stats;
+>> +	struct dentry *dbg_dir;
+>> +};
+>> +
+>> +static void populate_boot_stats(char *abl_str, char *pre_abl_str, struct bs_data *drvdata)
+>> +{
+>> +	 u32 abl_time, pre_abl_time;
+>> +
+>> +	 abl_time = TO_MS(drvdata->b_stats->abl_end) - TO_MS(drvdata->b_stats->abl_start);
+>> +	 sprintf(abl_str, "%u ms", abl_time);
+>> +
+>> +	 pre_abl_time =  TO_MS(drvdata->b_stats->abl_start);
+>> +	 sprintf(pre_abl_str, "%u ms", pre_abl_time);
+>> +}
+>> +
+>> +static int boot_stats_probe(struct platform_device *pdev)
+>> +{
+>> +	char abl_str[20], pre_abl_str[20], *abl, *pre_abl;
+>> +	struct device *bootstat_dev = &pdev->dev;
+>> +	struct bs_data *drvdata;
+>> +
+>> +	drvdata = devm_kzalloc(bootstat_dev, sizeof(*drvdata), GFP_KERNEL);
+>> +	if (!drvdata)
+>> +		return dev_err_probe(bootstat_dev, -ENOMEM, "failed to allocate memory");
+>> +	platform_set_drvdata(pdev, drvdata);
+>> +
+>> +	drvdata->b_stats = devm_of_iomap(bootstat_dev, bootstat_dev->of_node, 0, NULL);
+> 
+> You don't use this region past probe, so no need to keep it mapped, or
+> hang onto the pointer.
+> 
+> This means that you don't need struct bs_data, you can just stuff the
+> dentry pointer directly in the drvdata.
 
-Changes in v2:
-- rewrite commit message - requested by Krzysztof
+Ack
 
-The commit b06112cd5e08 ("arm64: dts: zynqmp: Add power domain for the
-DisplayPort DMA controller") added this property already in Linux that's
-why the patch is also fixing dts_check warnings.
+> 
+>> +	if (IS_ERR(drvdata->b_stats))
+>> +		return dev_err_probe(bootstat_dev, PTR_ERR(drvdata->b_stats),
+>> +				     "failed to map imem region");
+>> +
+>> +	drvdata->dbg_dir = debugfs_create_dir("qcom_boot_stats", NULL);
+>> +	if (IS_ERR(drvdata->dbg_dir))
+> 
+> Please omit error handling in the debugfs api.
 
-In v2 I got ack from Krzysztof but not adding it because of additional
-discussion about required property in v3.
-https://lore.kernel.org/r/029ba923-d13e-ea7c-018d-95e179dda2e5@linaro.org
+Ack
 
----
- .../devicetree/bindings/dma/xilinx/xlnx,zynqmp-dpdma.yaml   | 6 ++++++
- 1 file changed, 6 insertions(+)
+> 
+>> +		return dev_err_probe(bootstat_dev, PTR_ERR(drvdata->dbg_dir),
+>> +				     "failed to create debugfs directory");
+>> +
+>> +	populate_boot_stats(abl_str, pre_abl_str, drvdata);
+>> +	abl = abl_str;
+>> +	pre_abl = pre_abl_str;
+>> +
+>> +	debugfs_create_str("pre_abl_time", 0400, drvdata->dbg_dir, (char **)&pre_abl);
+> 
+> abl lives on the stack, pre_abl is a pointer to the stack, &pre_abl is a
+> pointer to this pointer and if I read the code correctly, in
+> __debugfs_create_file this value is stored in inode->i_private.
+> 
+> So I think this will only work if your stack isn't resused...
 
-diff --git a/Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dpdma.yaml b/Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dpdma.yaml
-index d6cbd95ec26d..2128f4645c98 100644
---- a/Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dpdma.yaml
-+++ b/Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dpdma.yaml
-@@ -41,6 +41,9 @@ properties:
-   clock-names:
-     const: axi_clk
- 
-+  power-domains:
-+    maxItems: 1
-+
- required:
-   - "#dma-cells"
-   - compatible
-@@ -48,12 +51,14 @@ required:
-   - interrupts
-   - clocks
-   - clock-names
-+  - power-domains
- 
- additionalProperties: false
- 
- examples:
-   - |
-     #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/power/xlnx-zynqmp-power.h>
- 
-     dma: dma-controller@fd4c0000 {
-       compatible = "xlnx,zynqmp-dpdma";
-@@ -63,6 +68,7 @@ examples:
-       clocks = <&dpdma_clk>;
-       clock-names = "axi_clk";
-       #dma-cells = <1>;
-+      power-domains = <&zynqmp_firmware PD_DP>;
-     };
- 
- ...
--- 
-2.36.1
+Ack
 
+> 
+> Regards,
+> Bjorn
+> 
+>> +	debugfs_create_str("abl_time", 0400, drvdata->dbg_dir, (char **)&abl);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +void boot_stats_remove(struct platform_device *pdev)
+>> +{
+>> +	struct bs_data *drvdata = platform_get_drvdata(pdev);
+>> +
+>> +	debugfs_remove_recursive(drvdata->dbg_dir);
+>> +}
+>> +
+>> +static const struct of_device_id boot_stats_dt_match[] = {
+>> +	{ .compatible = "qcom,imem-bootstats" },
+>> +	{ }
+>> +};
+>> +MODULE_DEVICE_TABLE(of, boot_stats_dt_match);
+>> +
+>> +static struct platform_driver boot_stat_driver = {
+>> +	.probe  = boot_stats_probe,
+>> +	.remove_new = boot_stats_remove,
+>> +	.driver = {
+>> +		.name = "qcom-boot-stats",
+>> +		.of_match_table = boot_stats_dt_match,
+>> +	},
+>> +};
+>> +module_platform_driver(boot_stat_driver);
+>> +
+>> +MODULE_DESCRIPTION("Qualcomm Technologies Inc. Boot Stat driver");
+>> +MODULE_LICENSE("GPL");
+>> -- 
+>> 2.17.1
+>>
