@@ -2,128 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BF2F700653
-	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 13:08:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF84C70065F
+	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 13:10:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240881AbjELLIj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 May 2023 07:08:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34850 "EHLO
+        id S241004AbjELLJ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 May 2023 07:09:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240591AbjELLIh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 07:08:37 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2F71100E2;
-        Fri, 12 May 2023 04:08:35 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5CFCD60BBA;
-        Fri, 12 May 2023 11:08:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29AC6C433EF;
-        Fri, 12 May 2023 11:08:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1683889714;
-        bh=9uveR+4HYlpo1o+OKWBaWxTrmSSdNHP4bkHON+B5Ca4=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=eZDFxVHWMJnaWOukTLVUSpkhBXwrNDHdPhZFxbpxgbEbGOQZGH0Ti3Nr0r2iKfCsG
-         s3yH9nCaIFpVL+fSqouciEkGPOrRRe7jWDt1WeavYEA97j5PhRgfUBC7JInsW0EnUV
-         fYwLxf00oDA9dS76n8MS52KBqrw5LvzEsjAvCnj4rWa/jS/Eh6EQk8XUBwm0sxbMs0
-         IUhMQ5D4dxQrufUL7/AU7eo2T6QozVrKa03b6A5YSmyBjWAld/kZyoXhhPoPjCAmjR
-         zo3ryU55J8OzNKIPsTfIkuewUq9SlkOfWbwmcjpuOOE1kRlOpPuw3S1j7bnKEotS9W
-         zhgFEstL2dEsQ==
-Message-ID: <40592737-4330-101b-5425-091572e61c6f@kernel.org>
-Date:   Fri, 12 May 2023 14:08:29 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: cdns,usb3: Add clock and reset
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Minda Chen <minda.chen@starfivetech.com>,
+        with ESMTP id S241065AbjELLJz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 07:09:55 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EF6510C;
+        Fri, 12 May 2023 04:09:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1683889794; x=1715425794;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=NxJCDzIA48b//fv9e6rdygKudsP+QYXovUJ5vLhRsUU=;
+  b=u8980ssifBnHGiqIV01O8e6weHk1OvwNfrI8T8FSZYeZs/QGhb9w2hT9
+   ndXC9V5shifpMc/ygvA5u6tYhD1ylHyR4vx9PgtHP3UzS30Hupa+/CfDf
+   c5Z4c7gbXO6CDFTKJgfmwFOq98HpcimYyetO6Rynw8CxOxnSZt1UgSdUS
+   5PO/sUTsyewB+9zZb1+5IwBbFP3wOru1FyJUwlU0v8A031O0VgtD4b8Cy
+   6aGiV4/XN1OAsCqcwsL2hUBwTcJUgbJtHLqk/zhT0u5MDAOVO5svidrcy
+   1cLpP4R5zfqsVYZgJHIoqQIYx3v2e8OejD3mu2MgP83GLNP7MzqrsU6WG
+   g==;
+X-IronPort-AV: E=Sophos;i="5.99,269,1677567600"; 
+   d="asc'?scan'208";a="213036513"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 12 May 2023 04:09:52 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Fri, 12 May 2023 04:09:51 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Fri, 12 May 2023 04:09:47 -0700
+Date:   Fri, 12 May 2023 12:09:27 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Yi-De Wu <yi-de.wu@mediatek.com>
+CC:     Yingshiuan Pan <yingshiuan.pan@mediatek.com>,
+        Ze-Yu Wang <ze-yu.wang@mediatek.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Pawel Laszczak <pawell@cadence.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Peter Chen <peter.chen@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org
-References: <20230510132816.108820-1-minda.chen@starfivetech.com>
- <20230510132816.108820-2-minda.chen@starfivetech.com>
- <9cf5965a-8290-dfff-9f92-07ed2df66650@linaro.org>
- <05057f6d-cb38-8e4a-5d30-82863e0cda44@kernel.org>
- <028fb8ac-d6cc-6fee-f50b-b965e69e7d0c@linaro.org>
-Content-Language: en-US
-From:   Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <028fb8ac-d6cc-6fee-f50b-b965e69e7d0c@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-9.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-arch@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        David Bradil <dbrazdil@google.com>,
+        Jade Shih <jades.shih@mediatek.com>,
+        Miles Chen <miles.chen@mediatek.com>,
+        Ivan Tseng <ivan.tseng@mediatek.com>,
+        My Chuang <my.chuang@mediatek.com>,
+        Shawn Hsiao <shawn.hsiao@mediatek.com>,
+        PeiLun Suei <peilun.suei@mediatek.com>,
+        Liju Chen <liju-clr.chen@mediatek.com>
+Subject: Re: [PATCH v3 2/7] dt-bindings: hypervisor: Add MediaTek GenieZone
+ hypervisor
+Message-ID: <20230512-kudos-stunt-489ee651bdd8@wendy>
+References: <20230512080405.12043-1-yi-de.wu@mediatek.com>
+ <20230512080405.12043-3-yi-de.wu@mediatek.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="jm8a6vav6fCrVMuQ"
+Content-Disposition: inline
+In-Reply-To: <20230512080405.12043-3-yi-de.wu@mediatek.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+--jm8a6vav6fCrVMuQ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Fri, May 12, 2023 at 04:04:00PM +0800, Yi-De Wu wrote:
+> From: "Yingshiuan Pan" <yingshiuan.pan@mediatek.com>
+>=20
+> Add documentation for GenieZone(gzvm) node. This node informs gzvm
+> driver to start probing if geniezone hypervisor is available and
+> able to do virtual machine operations.
 
-On 11/05/2023 17:49, Krzysztof Kozlowski wrote:
-> On 11/05/2023 14:16, Roger Quadros wrote:
->>
->>
->> On 11/05/2023 12:26, Krzysztof Kozlowski wrote:
->>> On 10/05/2023 15:28, Minda Chen wrote:
->>>> To support generic clock and reset init in Cadence USBSS
->>>> controller, add clock and reset dts configuration.
->>>>
->>>> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
->>>> ---
->>>>  .../devicetree/bindings/usb/cdns,usb3.yaml         | 14 ++++++++++++++
->>>>  1 file changed, 14 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/usb/cdns,usb3.yaml b/Documentation/devicetree/bindings/usb/cdns,usb3.yaml
->>>> index cae46c4982ad..623c6b34dee3 100644
->>>> --- a/Documentation/devicetree/bindings/usb/cdns,usb3.yaml
->>>> +++ b/Documentation/devicetree/bindings/usb/cdns,usb3.yaml
->>>> @@ -42,6 +42,18 @@ properties:
->>>>        - const: otg
->>>>        - const: wakeup
->>>>  
->>>> +  clocks:
->>>> +    minItems: 1
->>>> +    maxItems: 8
->>>> +    description:
->>>> +      USB controller clocks.
->>>
->>> You need to list the items. And why is it variable? Your clock choice in
->>> the example is poor, I doubt it is real.
->>>
->>>> +
->>>> +  resets:
->>>> +    minItems: 1
->>>> +    maxItems: 8
->>>> +    description:
->>>> +      USB controller generic resets.
->>>
->>> Here as well.
->>>
->>> You had one clock last time, thus the review was - drop the names. Now
->>> you changed it to 8 clocks... I don't understand.
->>>
->>
->> Different platforms may have different number of clocks/resets or none.
->> So I don't think minItems/maxItems should be specified.
-> 
-> Yeah, but we want the clocks to be specific per platform. Not anything
-> anywhere.
-> 
+Propagated from v2:
+> > Why can't the driver just try and do virtual machine operations to
+> > see
+> > if the hypervisor is there? IOW, make your software interfaces
+> > discoverable. DT is for non-discoverable hardware.
+>=20
+> Can do, our hypervisor is discoverable through invoking probing
+> hypercall, and we use the device tree to prevent unnecessary module
+> loading on all systems.
 
-Agreed. So we don't specify min/maxItems at top level but use conditional
-constraints per platform?
-Which means we will need to add platform specific compatibles as well.
+Rob is out of office at the moment, but that appears to be a request to
+drop the use of devicetree entirely. Mainly re-posting so that that
+conversation appears on the latest version of the patchset, given you
+only replied to Rob today.
 
--- 
-cheers,
--roger
+Thanks,
+Conor.
+
+--jm8a6vav6fCrVMuQ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZF4eZwAKCRB4tDGHoIJi
+0heIAQCuxzD4xO33tzAFrZou3AdawoxEN1YCIboEGZHW1IgEtQEA26XugE38j868
+giM/FmO9kzgghTusFmhvQtjaEFFiPww=
+=t/9L
+-----END PGP SIGNATURE-----
+
+--jm8a6vav6fCrVMuQ--
