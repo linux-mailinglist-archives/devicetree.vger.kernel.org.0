@@ -2,106 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E2204700CFD
-	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 18:25:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E5B2700D10
+	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 18:35:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233014AbjELQZk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 May 2023 12:25:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55092 "EHLO
+        id S231580AbjELQfB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 May 2023 12:35:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232666AbjELQZb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 12:25:31 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F34386B9
-        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 09:25:29 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-50bc5197d33so18599543a12.1
-        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 09:25:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683908728; x=1686500728;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zvQk+svCP50HKElKrlCVyAJgzuwb5SdFt55hE/Eiezk=;
-        b=EaWN1rYIfwhZ2E/kWq48ltb87MtkqMX9ZbP2nuz6SIw1KHQy7OsUXIvuZNzURxaIsr
-         Q+hWdqd1GxScSw3+Gk8K0nzdmcpGvow9Oyb4Dh4W1TK7wSvtmSr09fo+saXcey5DXlPU
-         CKWSb/6Lv0ECb5d+qACJvT2O/uV+6oH9ywFjM2hVMdATC8htjq32Wk7dneV1C6+1sJEL
-         Dp+2IqhmsDciECq2WatDBTfycfz/s3xJaCSXtxLfmdC9LrGYMBbuZQHUTwI/inQkPvXm
-         /IkK47r/zbGy5RWewzQj//8F9WyEVIykRRSprLe2R6rXLfBRCwKdbCvp7js413Z7ENP0
-         8Hxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683908728; x=1686500728;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zvQk+svCP50HKElKrlCVyAJgzuwb5SdFt55hE/Eiezk=;
-        b=ckIpOlwNsNdFiUHg6Ulcu73+IKFMQsmfkgmwuhj443SwAfUR1JAeIj2iLLSz31xML6
-         Ezclq0YPxMCkSwNbInPjGrWFV6rWtx/sdXexy4ix/Zfio+1kuIfteRym/IItKUqLj8zB
-         9R12+d0c10ANWN3k1MG4cgQZave7j5qM5vECXp7PNcfdtQlI6gEvPc7E8VkhxXNneU16
-         +W3hRGK0K4RL8c8d9SEZeVeeeqLCzBB2lN7vdNAFSfF+y0DZ2+VS0Xd5XvBNV0P3yKsd
-         YlK2q/qyGXpQ+R7ekgRc6mq0D54nK/NnOiMIo6EATmbjNJto4rJ01WXjHFG4CpAovfhl
-         0DnA==
-X-Gm-Message-State: AC+VfDyWz3X+LAFwect4kRt/brg3yWEUGfqEYBZGROlBHAcyqq+qek+x
-        9g5/RyB6JXPaI416qgRu0Zn9zw==
-X-Google-Smtp-Source: ACHHUZ6uXUT0lW+LFVr4KL5Jm5mw4HaigdvvK4SmfDrSMK0reRn9kNg11GffukuojXCHJ+5xydomtA==
-X-Received: by 2002:a50:ed0b:0:b0:50b:d83b:9c61 with SMTP id j11-20020a50ed0b000000b0050bd83b9c61mr20007419eds.32.1683908727795;
-        Fri, 12 May 2023 09:25:27 -0700 (PDT)
-Received: from krzk-bin.. ([2a02:810d:15c0:828:7ede:fc7b:2328:3883])
-        by smtp.gmail.com with ESMTPSA id r23-20020aa7da17000000b00506987c5c71sm4144116eds.70.2023.05.12.09.25.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 May 2023 09:25:27 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Shawn Guo <shawn.guo@linaro.org>,
-        Melody Olvera <quic_molvera@quicinc.com>,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Richard Acayan <mailingradian@gmail.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        krishna Lanka <quic_vamslank@quicinc.com>,
-        Iskren Chernev <me@iskren.info>,
-        Martin Botka <martin.botka@somainline.org>,
-        Danila Tikhonov <danila@jiaxyga.com>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: (subset) [PATCH 35/40] dt-bindings: pinctrl: qcom,sm7150-tlmm: simplify with unevaluatedProperties
-Date:   Fri, 12 May 2023 18:25:18 +0200
-Message-Id: <168390871588.209400.11438301358631937951.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230407184546.161168-35-krzysztof.kozlowski@linaro.org>
-References: <20230407184546.161168-1-krzysztof.kozlowski@linaro.org> <20230407184546.161168-35-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S231358AbjELQfA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 12:35:00 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9705E1BF2;
+        Fri, 12 May 2023 09:34:58 -0700 (PDT)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34CFq5EG018240;
+        Fri, 12 May 2023 16:34:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=9WU0F0MVcux5FDfZibYYwUshorLv1fpr3rzhFkYzNIc=;
+ b=O9B69os5SZA5qhp167TQ5XWT88Oq8SDYSMWCuRs6UGYTBfBoF0z3KDif0pKinr4JBjZV
+ DRt1STuNVlA6L4JQBog1iGdV1mbkKbfQDXXhWcpAX9DAJMZVne60azJiWKYPNaHBL9SJ
+ Vre4xVNDOVQyxI4K303Ihp2UFIooGB9CEmgedys0FOFj4udFdfUzBX1WP3JBucQhrdk6
+ oDsFzL/0wf4QydTbBfMQiEqjjJhWBnb78xt/U5ntlkXMBykuY5f8gxDBWqrEn/Ew1Wlc
+ grwu5MTkrjnPWa771bpwoCWEbm40qqt7W0DBlzcWHdfCthB366HgMgsESY9a7ggrJYps og== 
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qhrdsg3hv-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 12 May 2023 16:34:41 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+        by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34CGYeRD018537
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 12 May 2023 16:34:40 GMT
+Received: from [10.110.80.184] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Fri, 12 May
+ 2023 09:34:39 -0700
+Message-ID: <169ecb01-0ab6-93d7-7350-0c551b69e7ae@quicinc.com>
+Date:   Fri, 12 May 2023 09:34:39 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2 2/7] dt-bindings: hypervisor: Add MediaTek GenieZone
+ hypervisor
+To:     =?UTF-8?B?WWktRGUgV3UgKOWQs+S4gOW+tyk=?= <Yi-De.Wu@mediatek.com>,
+        "robh@kernel.org" <robh@kernel.org>
+CC:     "corbet@lwn.net" <corbet@lwn.net>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        =?UTF-8?B?TVkgQ2h1YW5nICjojormmI7ouo0p?= <MY.Chuang@mediatek.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "angelogioacchino.delregno@collabora.com" 
+        <angelogioacchino.delregno@collabora.com>,
+        =?UTF-8?B?UGVpTHVuIFN1ZWkgKOmai+WfueWAqyk=?= 
+        <PeiLun.Suei@mediatek.com>,
+        =?UTF-8?B?TGlqdS1jbHIgQ2hlbiAo6Zmz6bqX5aaCKQ==?= 
+        <Liju-clr.Chen@mediatek.com>,
+        =?UTF-8?B?SmFkZXMgU2hpaCAo5pa95ZCR546oKQ==?= 
+        <jades.shih@mediatek.com>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "dbrazdil@google.com" <dbrazdil@google.com>,
+        =?UTF-8?B?U2hhd24gSHNpYW8gKOiVreW/l+elpSk=?= 
+        <shawn.hsiao@mediatek.com>,
+        =?UTF-8?B?WWluZ3NoaXVhbiBQYW4gKOa9mOepjui7kik=?= 
+        <Yingshiuan.Pan@mediatek.com>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        =?UTF-8?B?TWlsZXMgQ2hlbiAo6Zmz5rCR5qi6KQ==?= 
+        <Miles.Chen@mediatek.com>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+        =?UTF-8?B?SXZhbiBUc2VuZyAo5pu+5b+X6LuSKQ==?= 
+        <ivan.tseng@mediatek.com>,
+        =?UTF-8?B?WmUteXUgV2FuZyAo546L5r6k5a6HKQ==?= 
+        <Ze-yu.Wang@mediatek.com>,
+        "linux-arch@vger.kernel.org" <linux-arch@vger.kernel.org>,
+        "will@kernel.org" <will@kernel.org>
+References: <20230428103622.18291-1-yi-de.wu@mediatek.com>
+ <20230428103622.18291-3-yi-de.wu@mediatek.com>
+ <168269352006.3076.11433928748883862569.robh@kernel.org>
+ <c0b590711516f5bb0e9db688685e09a8e73abd5e.camel@mediatek.com>
+Content-Language: en-US
+From:   Trilok Soni <quic_tsoni@quicinc.com>
+In-Reply-To: <c0b590711516f5bb0e9db688685e09a8e73abd5e.camel@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: PHlsf2qDKrQvOQgX44F-Xv2J-6oVnwUP
+X-Proofpoint-GUID: PHlsf2qDKrQvOQgX44F-Xv2J-6oVnwUP
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-12_10,2023-05-05_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ phishscore=0 mlxlogscore=999 suspectscore=0 spamscore=0 malwarescore=0
+ adultscore=0 mlxscore=0 priorityscore=1501 clxscore=1011 bulkscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2305120138
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Fri, 07 Apr 2023 20:45:41 +0200, Krzysztof Kozlowski wrote:
-> All Qualcomm SoC Top Level Mode Multiplexer pin controllers have similar
-> capabilities regarding pin properties, thus we can just accept entire
-> set provided by qcom,tlmm-common.yaml schema.
+On 5/11/2023 11:42 PM, Yi-De Wu (吳一德) wrote:
+> On Fri, 2023-04-28 at 09:52 -0500, Rob Herring wrote:
+>> External email : Please do not click links or open attachments until
+>> you have verified the sender or the content.
+>> 
+>> 
+>> On Fri, 28 Apr 2023 18:36:17 +0800, Yi-De Wu wrote:
+>> > From: "Yingshiuan Pan" <yingshiuan.pan@mediatek.com>
+>> > 
+>> > Add documentation for GenieZone(gzvm) node. This node informs gzvm
+>> > driver to start probing if geniezone hypervisor is available and
+>> > able to do virtual machine operations.
+>> > 
+>> > Signed-off-by: Yingshiuan Pan <yingshiuan.pan@mediatek.com>
+>> > Signed-off-by: Yi-De Wu <yi-de.wu@mediatek.com>
+>> > ---
+>> >  .../hypervisor/mediatek,geniezone-hyp.yaml    | 31
+>> > +++++++++++++++++++
+>> >  MAINTAINERS                                   |  1 +
+>> >  2 files changed, 32 insertions(+)
+>> >  create mode 100644
+>> > Documentation/devicetree/bindings/hypervisor/mediatek,geniezone-
+>> > hyp.yaml
+>> > 
+>> 
+>> My bot found errors running 'make DT_CHECKER_FLAGS=-m
+>> dt_binding_check'
+>> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>> 
+>> yamllint warnings/errors:
+>> 
+>> dtschema/dtc warnings/errors:
+>> ./Documentation/devicetree/bindings/hypervisor/mediatek,geniezone-
+>> hyp.yaml: $id: relative path/filename doesn't match actual path or
+>> filename
+>>         expected: 
+>> https://urldefense.com/v3/__http://devicetree.org/schemas/hypervisor/mediatek,geniezone-hyp.yaml*__;Iw!!CTRNKA9wMg0ARbw!joIOXbICM7UGvy3XBEJvfzSKO7s61efB87_NX5cqpUqpu5ot5cuzw50A8-8ledZT9_7ifsB2sKzxSD0$
+>> 
+>> doc reference errors (make refcheckdocs):
+>> 
+>> See 
+>> https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230428103622.18291-3-yi-de.wu@mediatek.com
+>> 
+>> The base for the series is generally the latest rc1. A different
+>> dependency
+>> should be noted in *this* patch.
+>> 
+>> If you already ran 'make dt_binding_check' and didn't see the above
+>> error(s), then make sure 'yamllint' is installed and dt-schema is up
+>> to
+>> date:
+>> 
+>> pip3 install dtschema --upgrade
+>> 
+>> Please check and re-submit after running the above command yourself.
+>> Note
+>> that DT_SCHEMA_FILES can be set to your schema file to speed up
+>> checking
+>> your schema. However, it must be unset to test all examples with your
+>> schema.
+>> 
 > 
+> Noted, we've run the yaml check and we are going to re-submit the
+> latest version in v3.
 > 
+> ************* MEDIATEK Confidentiality Notice ********************
+> The information contained in this e-mail message (including any
+> attachments) may be confidential, proprietary, privileged, or otherwise
+> exempt from disclosure under applicable laws. It is intended to be
+> conveyed only to the designated recipient(s). Any use, dissemination,
+> distribution, printing, retaining or copying of this e-mail (including its
+> attachments) by unintended recipient(s) is strictly prohibited and may
+> be unlawful. If you are not an intended recipient of this e-mail, or believe
+> that you have received this e-mail in error, please notify the sender
+> immediately (by replying to this e-mail), delete any and all copies of
+> this e-mail (including any attachments) from your system, and do not
+> disclose the content of this e-mail to any other person. Thank you!
 
-Applied, thanks!
+Do you want us to reply w/ such a big confidentiality notice?
 
-[35/40] dt-bindings: pinctrl: qcom,sm7150-tlmm: simplify with unevaluatedProperties
-        https://git.kernel.org/krzk/linux-dt/c/647c16ac7b15fc8fe6ab679690ac2ffe7c53abd3
-
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
