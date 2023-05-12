@@ -2,216 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 55B40700A1A
-	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 16:16:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E5D8700A3A
+	for <lists+devicetree@lfdr.de>; Fri, 12 May 2023 16:23:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241479AbjELOP7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 May 2023 10:15:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47498 "EHLO
+        id S241541AbjELOXB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 May 2023 10:23:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241492AbjELOPu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 10:15:50 -0400
-Received: from mail-yb1-xb49.google.com (mail-yb1-xb49.google.com [IPv6:2607:f8b0:4864:20::b49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4A8A14910
-        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 07:15:32 -0700 (PDT)
-Received: by mail-yb1-xb49.google.com with SMTP id 3f1490d57ef6-b8f6bef3d4aso19623685276.0
-        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 07:15:32 -0700 (PDT)
+        with ESMTP id S241503AbjELOXA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 May 2023 10:23:00 -0400
+Received: from mail-il1-x12e.google.com (mail-il1-x12e.google.com [IPv6:2607:f8b0:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD6A7132B9
+        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 07:22:53 -0700 (PDT)
+Received: by mail-il1-x12e.google.com with SMTP id e9e14a558f8ab-3318961b385so97331295ab.1
+        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 07:22:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20221208; t=1683900932; x=1686492932;
-        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
-         :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ghbGq9THJREEhkrSIStzO+A3rtDBCJPDalH7s9571pA=;
-        b=vF0Us9UlMXGLXLj1s1tWk3AyVw8tBCXUEnr9XNTtQ8N7JaOIqkdLiflH0w9EI9IaKU
-         6scnMtkiKb8kdFRAbRJ8uxb3wv8c6l6s7HCInpDhGo+HHup+aVHJfh4DVLtoEXs8+qni
-         31D/glRmakh4+sRhXNpuME3k1C7c6RRwKOgO3Ge3+dpvH6Q/HAPQnxd2uQd/C0VpSRN8
-         uX7KyG2x8Krb+3eoDO31JgPReMPbtHBoNpgSOMel1zh64Cr/kYop3aOITI3teaPF++Vz
-         /HbNprO+LkKJ90JAZ3vjXe1sy8vKkJEPoTgkCpGzg2tNwx4lnwcWwdQFQYzSE446QO5S
-         QX3Q==
+        d=chromium.org; s=google; t=1683901373; x=1686493373;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kFiBEzqnUEk+6sTrPSpLHjEFJM2vHqqsIpaf2EaeOcM=;
+        b=nTM3lqkznJ+1Igc1quslNeXNf215+ayv1bGkWys3T2VEUoUbIeBoMeIL7S10KRTIoP
+         G7fFBHULK03QcpPcuMw5c76Mko37g2Kc/DTEwmLZk6GzvXE9TQZs2RXzp1spnrTIkQur
+         CPMFYAcX0NZoWuAWUvx1bjNDDCnoW4sJ0FQdw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683900932; x=1686492932;
-        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
-         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ghbGq9THJREEhkrSIStzO+A3rtDBCJPDalH7s9571pA=;
-        b=ASaBALcd3V8sUJvbUcZmEU7MdGSLWSMf6WDkOtYJ56H3Rf/Ga1jSVbzLdh60Ir3Igp
-         BlJ4XahhGbel+WnjDXqW8JsoCWtCfhnOYt+Hw/gLJfAvLDkBEqR8FbI4CpNVqc1EkqtE
-         yWwadMZ7iCox9Xm9/T5hHRgxiUid9eX7vP1Tnz9Zj0VpG+BMlNxPfcbdC4/X2GzvmZmQ
-         iuxJX3oHJo/Gg33BNNX23/0kbjXifQSYQDkOuH5X7ITZqfVIXPrmCIrwnB++xbY5lx7y
-         t3LnnMa7vVRIkQ6/9dhzKJnAEZ7qN8kTHQHNcifxM66+jP7zBB7FmTJGkLBzGyhpMyiq
-         Teuw==
-X-Gm-Message-State: AC+VfDzgvS0BRxA4oK3U0dOr55W8FRQeOF6t4rrVUZRi4iBs03GUlLca
-        bPKiT46KFGseZRf/RBo4E40wbkvYnwu7yw==
-X-Google-Smtp-Source: ACHHUZ5n4GOwp+yXNZiY6lRiLp1LINyIY9W5VlLM4zkXtJJ0m6OA3RidwExCa/CyBYADnz8F1YZwsAkCUT1AKw==
-X-Received: from joychakr.c.googlers.com ([fda3:e722:ac3:cc00:4f:4b78:c0a8:6ea])
- (user=joychakr job=sendgmr) by 2002:a25:c7d0:0:b0:ba7:1cea:ee12 with SMTP id
- w199-20020a25c7d0000000b00ba71ceaee12mr954256ybe.12.1683900931853; Fri, 12
- May 2023 07:15:31 -0700 (PDT)
-Date:   Fri, 12 May 2023 14:14:45 +0000
-In-Reply-To: <20230512141445.2026660-1-joychakr@google.com>
-Mime-Version: 1.0
-References: <20230512141445.2026660-1-joychakr@google.com>
-X-Mailer: git-send-email 2.40.1.606.ga4b1b128d6-goog
-Message-ID: <20230512141445.2026660-7-joychakr@google.com>
-Subject: [PATCH v2 6/6] dmaengine: pl330: Use dma singles for peripheral _dregs
-From:   Joy Chakraborty <joychakr@google.com>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, manugautam@google.com,
-        danielmentz@google.com, sjadavani@google.com,
-        Joy Chakraborty <joychakr@google.com>
+        d=1e100.net; s=20221208; t=1683901373; x=1686493373;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=kFiBEzqnUEk+6sTrPSpLHjEFJM2vHqqsIpaf2EaeOcM=;
+        b=IQ9hValLK+Id385S8ydJExN4PBxccinhiK6uJIfSSAv1oQqHGeXtDKDKKouJD+Iwzw
+         KU0BiRq7Kg90S2tc4UtYXObATjplP6o3+E3nyGhAZkOhGd7jJQtq1qJMo3TV5WYMKIkz
+         sJT8ps+fAosbwNM4vyp6j23WljlquFfUToPhpaErzJ1kxMo6nylTDx3wLdvJhU6GxGal
+         Ez8FVGG2OduuEhFgnRL3Xe0vrQvID0KL12FBPlMJANv9NBmKYNWAQ1jIpIwPY6XKTqQo
+         /HhcMDszLu/Bvy3hDDOxM6kSHeIkL281fXrBLhOBJ3tsPtxaFyP49FGE2TLeTq3Rjha4
+         zpmQ==
+X-Gm-Message-State: AC+VfDwUphKNqGYNlVlZR3g0sUVQBN/S0ZN/seLQYKlGdGRLwjM8DhI2
+        l/vANQGgFq/y+BX5hoQFvQNyqNRDHxBYAUI6gRQ=
+X-Google-Smtp-Source: ACHHUZ6B0WJAZ+roycFvF88Os6PyzrnPLlnEUDlGylZirYwG8nDELhPh8YvQpSjCfGhSoDTTWo1+iA==
+X-Received: by 2002:a92:c26a:0:b0:326:1d7e:1238 with SMTP id h10-20020a92c26a000000b003261d7e1238mr18273256ild.16.1683901372752;
+        Fri, 12 May 2023 07:22:52 -0700 (PDT)
+Received: from mail-il1-f175.google.com (mail-il1-f175.google.com. [209.85.166.175])
+        by smtp.gmail.com with ESMTPSA id k16-20020a92c9d0000000b00330c46b823bsm4976252ilq.59.2023.05.12.07.22.52
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 May 2023 07:22:52 -0700 (PDT)
+Received: by mail-il1-f175.google.com with SMTP id e9e14a558f8ab-33164ec77ccso710895ab.0
+        for <devicetree@vger.kernel.org>; Fri, 12 May 2023 07:22:52 -0700 (PDT)
+X-Received: by 2002:a05:622a:1188:b0:3ef:a55:7f39 with SMTP id
+ m8-20020a05622a118800b003ef0a557f39mr473643qtk.12.1683900932805; Fri, 12 May
+ 2023 07:15:32 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230511150539.6.Ia0b6ebbaa351e3cd67e201355b9ae67783c7d718@changeid>
+ <20230511150539.3.I525a2ed4260046d43c885ee1275e91707743df1c@changeid> <86ttwim0h9.wl-maz@kernel.org>
+In-Reply-To: <86ttwim0h9.wl-maz@kernel.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 12 May 2023 07:15:21 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=U63oWO+jSdSPN9ruRyyaFKQOMPOGHwio5+6j4vvygS-Q@mail.gmail.com>
+Message-ID: <CAD=FV=U63oWO+jSdSPN9ruRyyaFKQOMPOGHwio5+6j4vvygS-Q@mail.gmail.com>
+Subject: Re: [PATCH 3/6] arm64: dts: mediatek: mt8183: Add mediatek,gicr-save-quirk
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        wenst@chromium.org, Eddie Huang <eddie.huang@mediatek.com>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Ben Ho <Ben.Ho@mediatek.com>, Weiyi Lu <weiyi.lu@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Tinghan Shen <tinghan.shen@mediatek.com>, jwerner@chromium.org,
+        Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
+        yidilin@chromium.org, Seiya Wang <seiya.wang@mediatek.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-9.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL
-        autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use DMA singles in a loop to load/store data to the peripheral for
-the remaining bytes left after chucks of bursts are done, which is
-handled by the _dregs() function.
+Hi,
 
-If the transfer length is not a multiple of (AxLen*AxSize) then the
-_dregs function takes care of setting up CCR with residual burst
-required to complete the transaction. It does so by changing the
-AxLen in CCR and 1 burst of Load and Store.
-But some peripherals might not set the burst request signal to the DMA
-controller since the number of bytes to transfer is less then the
-initial size of burst requested i.e. AxLen*AxSize leading to a forever
-wait.
+On Fri, May 12, 2023 at 1:13=E2=80=AFAM Marc Zyngier <maz@kernel.org> wrote=
+:
+>
+> On Thu, 11 May 2023 23:05:37 +0100,
+> Douglas Anderson <dianders@chromium.org> wrote:
+> >
+> > Firmware shipped on mt8183 Chromebooks is affected by the GICR
+> > save/restore issue as described by the patch ("dt-bindings:
+> > interrupt-controller: arm,gic-v3: Add quirk for Mediatek SoCs w/
+> > broken FW"). Add the quirk property.
+> >
+> > Fixes: e526c9bc11f8 ("arm64: dts: Add Mediatek SoC MT8183 and evaluatio=
+n board dts and Makefile")
+> > Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> > ---
+> >
+> >  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 1 +
+> >  1 file changed, 1 insertion(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot=
+/dts/mediatek/mt8183.dtsi
+> > index 5169779d01df..39545172fce5 100644
+> > --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> > +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> > @@ -709,6 +709,7 @@ gic: interrupt-controller@c000000 {
+> >                             <0 0x0c400000 0 0x2000>,   /* GICC */
+> >                             <0 0x0c410000 0 0x1000>,   /* GICH */
+> >                             <0 0x0c420000 0 0x2000>;   /* GICV */
+> > +                     mediatek,gicr-save-quirk;
+>
+> Is that something you can safely generalise at the SoC level? Are
+> these SoC solely used on Chromebooks, and/or
 
-Example of such a case :
-    Considering a peripheral having an RX FIFO of n bytes and a sw
-    configurable threshold level logic which drives the RX burst req
-    signal to PL330 i.e. when data in the RX fifo crosses the threshold
-    value the peripheral asserts the RX burst request to PL330 to copy
-    data from the fifo in bursts.
-    Taking an example say the Rx Fifo is 256 bytes in depth, the max
-    AxLen is 16, max AxSize is 4bytes and 304 bytes had to copied from
-    peripheral to memory.
-    In this case the peripheral SW driver would configure the threshold
-    to the maximum possible burst size (AxLen*AxSize) i.e. 64 bytes and
-    pass the same to pl330 driver using src/dst_maxburst variable.
-    PL330 would copy the first 256 bytes with 4 burst transactions and
-    the 48 remaining bytes would be handled by _dregs().
-    Currently _dregs() would setup a burst for AxLen=3 and AxSize=16 to
-    copy the 48bytes but since 48bytes is below the threshold configured
-    at the peripheral the Rx burst request signal would not get set
-    leading to a forever wait and timeout.
-    This logic will copy the remaining 48bytes using single transactions
-    of 4bytes each which would not depend on the burst req signal from
-    the peripheral.
+Hmmm, I thought I checked to make sure that the only users of these
+upstream were Chromebooks, but I just double-checked and I obviously
+was blind yesterday. You're right that I need to fix this. I will move
+these to:
 
-Instructions generated for above example with logic change:
-    DMAMOV CCR 0xbd0239
-    DMAMOV SAR 0xffffe000
-    DMAMOV DAR 0xffffc860
-    DMALP_1 3
-    DMAFLUSHP 0
-    DMAWFPB 0
-    DMALDB
-    DMASTPB 0
-    DMALPENDA_1 bjmpto_7
-    DMAMOV CCR 0xad0229
-    DMALDA
-    DMALP_0 11
-    DMAFLUSHP 0
-    DMAWFPS 0
-    DMASTPS 0
-    DMALPENDA_0 bjmpto_6
-    DMASEV 3
-    DMAEND
+mt8195-cherry.dtsi
+mt8192-asurada.dtsi
+mt8183-kukui.dtsi
 
-Signed-off-by: Joy Chakraborty <joychakr@google.com>
----
- drivers/dma/pl330.c | 65 +++++++++++++++++++++++++++++++++++++++++++--
- 1 file changed, 63 insertions(+), 2 deletions(-)
+...it looks as if the common "baseboard" dtsi for mt8186 Chromebooks
+hasn't been upstreamed yet, so we'll have to keep an eye on that and
+make sure it gets the property.
 
-diff --git a/drivers/dma/pl330.c b/drivers/dma/pl330.c
-index 46e254fd4007..2145f601939e 100644
---- a/drivers/dma/pl330.c
-+++ b/drivers/dma/pl330.c
-@@ -1208,6 +1208,67 @@ static inline int _ldst_peripheral(struct pl330_dmac *pl330,
- 	return off;
- }
- 
-+/*
-+ * Sets up transfers to peripheral using DMA Singles instead of Bursts.
-+ * Data is moved between fifo and memory in bursts following which it is
-+ * loaded/stored to peripheral using Loops of DMA singles based on
-+ * transfer direction.
-+ */
-+static inline int _ldst_periph_single_dregs(struct pl330_dmac *pl330,
-+					    unsigned int dry_run, u8 buf[],
-+					    const struct _xfer_spec *pxs,
-+					    int src_length, int dst_length)
-+{
-+	int off = 0;
-+	unsigned int ljmp, lpcnt;
-+	struct _arg_LPEND lpend;
-+	enum dma_transfer_direction direction = pxs->desc->rqtype;
-+
-+	if (direction == DMA_MEM_TO_DEV) {
-+		off += _emit_load(dry_run, &buf[off], ALWAYS, direction,
-+				  pxs->desc->peri);
-+		lpcnt = dst_length;
-+	} else {
-+		lpcnt = src_length;
-+	}
-+
-+	/*
-+	 * Use Loop Cnt 0 to load/store from/to peripheral in single transactions
-+	 * since Burst Req might not be set as pending transfer length maybe less
-+	 * size of bytes to burst (AxSize * AxLen).
-+	 */
-+	off += _emit_LP(dry_run, &buf[off], 0, lpcnt);
-+	ljmp = off;
-+
-+	/*
-+	 * do FLUSHP at beginning to clear any stale dma requests before the
-+	 * first WFP.
-+	 */
-+	if (!(pl330->quirks & PL330_QUIRK_BROKEN_NO_FLUSHP))
-+		off += _emit_FLUSHP(dry_run, &buf[off], pxs->desc->peri);
-+
-+	off += _emit_WFP(dry_run, &buf[off], SINGLE, pxs->desc->peri);
-+
-+	if (direction == DMA_MEM_TO_DEV)
-+		off += _emit_store(dry_run, &buf[off], SINGLE, direction,
-+				   pxs->desc->peri);
-+	else
-+		off += _emit_load(dry_run, &buf[off], SINGLE, direction,
-+				  pxs->desc->peri);
-+
-+	lpend.cond = ALWAYS;
-+	lpend.forever = false;
-+	lpend.loop = 0;
-+	lpend.bjump = off - ljmp;
-+	off += _emit_LPEND(dry_run, &buf[off], &lpend);
-+
-+	if (direction == DMA_DEV_TO_MEM)
-+		off += _emit_store(dry_run, &buf[off], ALWAYS, direction,
-+				   pxs->desc->peri);
-+
-+	return off;
-+}
-+
- static int _bursts(struct pl330_dmac *pl330, unsigned dry_run, u8 buf[],
- 		const struct _xfer_spec *pxs, int cyc)
- {
-@@ -1273,8 +1334,8 @@ static int _dregs(struct pl330_dmac *pl330, unsigned int dry_run, u8 buf[],
- 	case DMA_MEM_TO_DEV:
- 	case DMA_DEV_TO_MEM:
- 		off += _emit_MOV(dry_run, &buf[off], CCR, dregs_ccr);
--		off += _ldst_peripheral(pl330, dry_run, &buf[off], pxs, 1,
--					BURST);
-+		off += _ldst_periph_single_dregs(pl330, dry_run, &buf[off],
-+							 pxs, src_length, dst_length);
- 		break;
- 
- 	case DMA_MEM_TO_MEM:
--- 
-2.40.1.606.ga4b1b128d6-goog
+When I spin this series early next week I'll make that change.
 
+
+> without any hope of
+> seeing any alternative FW being already in use?
+
+I haven't seen anyone try to fully replace the firmware of a
+Chromebook in the past. It would be a lot of work, certainly. More
+common, I'd think, would be someone chaining an extra level of loader
+between the existing firmware and the OS. I _think_ I've seen people
+use a stripped down U-Boot for this. However, the "resident" firmware
+would still be the one that the Chromebook ships with.
+
+Certainly someone could prove me wrong and re-implement the firmware
+on one of these Chromebooks. That person would need to follow the same
+convention or accept that their kernel won't be enabling pseudoNMIs.
+
+-Doug
