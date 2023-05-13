@@ -2,78 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26EBC701891
-	for <lists+devicetree@lfdr.de>; Sat, 13 May 2023 19:42:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A16F8701897
+	for <lists+devicetree@lfdr.de>; Sat, 13 May 2023 19:44:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229473AbjEMRmR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 May 2023 13:42:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59010 "EHLO
+        id S230501AbjEMRoL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 May 2023 13:44:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232271AbjEMRmQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 13 May 2023 13:42:16 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C17226B5
-        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 10:42:13 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-96ab81aa68dso305922266b.3
-        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 10:42:13 -0700 (PDT)
+        with ESMTP id S229704AbjEMRoK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 13 May 2023 13:44:10 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 215122707
+        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 10:44:09 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-50bc0117683so19749272a12.1
+        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 10:44:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683999731; x=1686591731;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1EPLQBB2GBeM0JhJNupUXh7QXE7qM2moBT4BpqtzLKg=;
-        b=oODy6h5jG9SUBf+aIIvWE97lvjJakoMZ+QZqPXqefm5+lvTscoIdfzXZW+IWkJ0ek/
-         /l/bRdbtu/PN5lDTB6VZaHZdry0DM6vdmagDg0hSk3Kilcxg8m2HxIdo5vjNYlYOdKkY
-         j6LMeS1t6+vlUyJYkxiDaiq9ZqtHYP8MscQWXhMWyC5zN8+L1rhZaxxSufvyM8kT+pZu
-         f+m3Kdqd3RK06IBI1mo529GxyBhcrWPmX9eqrXMK60tkOrJMb8YwjlFhCFrhyBmX/fZk
-         Gw6ykEa4bXdpmtvAtpvHNh+zwJ10DnKN0QVnGgjKU/IIOkZ6VmICvufj9scuBcP5vO1w
-         ox4w==
+        d=linaro.org; s=google; t=1683999847; x=1686591847;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lxTtUDm+8ou584/2PmcOCqqyTDmWQsU6koZsih9S3hg=;
+        b=R8lGQJnI7Afv0qArQE6/5ZvAS1i21ub75gRJjfxko3JuJ/Yk5oH5GrZZfiwz2rsTLD
+         rHrgV3+RU3/lZLspsIhEDA1EptnimLODZEnk8Z61Lj4/IkP+2Jj0r+gCclwvTlmDN6ye
+         R/Z+IiUWSuufXhg0krKiKfT/nI/T9x23Otrvo6fHvDxrQ9f8e9YV7jR2rKWLfPeCcuzS
+         Fe5XQQZpS2DjlO+yh5Nm7gVtxlfi9z0ebYeJ/+D9l2+Oc8oSSAQgjLz1kqSNrLjXMoK9
+         QCePyYRJwCtn88IPHiKpdOAd2RXYASHf34NrIZetXS4fpuMt7S07IZX0rp+dH1aNLbYQ
+         UoNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683999731; x=1686591731;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1EPLQBB2GBeM0JhJNupUXh7QXE7qM2moBT4BpqtzLKg=;
-        b=gtL7xrJdGvZUszZDxdi37aGtV9Ag/bfSCMrZeM4oo4ekOjA0F/qFpV+uSvpguorF5v
-         VL8Zr+SMUdh99HtHHMfCgQVFE1fpyxQEWYPjMrPA74NcGXT+QSizsTdXzrBpVwnB6vqR
-         TLUPkZ8K9xgmXVYPhqBAp1LLFVaYzCKR+JE395SBoMULigw3PQDVinlyAYmWSi/mB95F
-         W5bCCpWSgzDkzHgx+UXdP5+lrsAWmoj8aiUGgv+oK5a8pH0Da6Nc2JTSJ5pX2ctnZbWf
-         M3Q5Rh/veMbvsy+WFB3Y8u1TVA6cXJ5FgP85M8Tmq7bFY3mqEO4/sB0ixXWmVsIqaZqm
-         EsWw==
-X-Gm-Message-State: AC+VfDxixHW9Yw7RghX0LS3+sLtRZaB0l7sikZXPcFWky0O72G8H2ck6
-        tdirq4HiC4hCqw40JZyEHgfuwA==
-X-Google-Smtp-Source: ACHHUZ4KckdzIN9YVVpYV11NF6S3LYjc2DL/mCzjw1npS3Buhdnr5DUezOv6AibXv0XhTS/+UcSrTA==
-X-Received: by 2002:a17:906:974b:b0:957:943e:7416 with SMTP id o11-20020a170906974b00b00957943e7416mr29305305ejy.15.1683999731473;
-        Sat, 13 May 2023 10:42:11 -0700 (PDT)
-Received: from krzk-bin.. ([2a02:810d:15c0:828:bc2d:23f8:43c2:2aed])
-        by smtp.gmail.com with ESMTPSA id hy25-20020a1709068a7900b0096607baaf19sm7032021ejc.101.2023.05.13.10.42.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 13 May 2023 10:42:10 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Aakarsh Jain <aakarsh.jain@samsung.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        m.szyprowski@samsung.com, andrzej.hajda@intel.com,
-        mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
-        ezequiel@vanguardiasur.com.ar, jernej.skrabec@gmail.com,
-        benjamin.gaignard@collabora.com, krzysztof.kozlowski+dt@linaro.org,
-        stanimir.varbanov@linaro.org, dillon.minfei@gmail.com,
-        david.plowman@raspberrypi.com, mark.rutland@arm.com,
-        robh+dt@kernel.org, krzk+dt@kernel.org, andi@etezian.org,
-        alim.akhtar@samsung.com, aswani.reddy@samsung.com,
-        pankaj.dubey@samsung.com
-Subject: Re: [Patch v7] dt-bindings: media: s5p-mfc: convert bindings to json-schema
-Date:   Sat, 13 May 2023 19:42:06 +0200
-Message-Id: <168399972073.5154.5669328924762682011.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230328114729.61436-1-aakarsh.jain@samsung.com>
-References: <CGME20230328114738epcas5p475b8fa1d1e86bbb86d004afe365e0259@epcas5p4.samsung.com> <20230328114729.61436-1-aakarsh.jain@samsung.com>
+        d=1e100.net; s=20221208; t=1683999847; x=1686591847;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=lxTtUDm+8ou584/2PmcOCqqyTDmWQsU6koZsih9S3hg=;
+        b=Rvmvyv6UHatKTRNYbirOwSiTXTm1GQ/+jAog0f1YcDmpQdoS72iSlw8MHImFj/LxAJ
+         CyEdrqmM2MHqurDVqZnFitpOxiq4bskydTSqfG8LveszSCkoy2uq28vqK3gbXCUUGLOE
+         m+KVBa8riJtKE5ICFGIyMLK9mIItR5T9coRnw9lx3cqGvcpXnGB+/Z6ati1D9h5kc5od
+         0HdrHEiIjxvq3pn25mXQUxFrAd2wujRnOH21w1/SFJfjoamMlR16Q6LWYGdvHvqj9Feh
+         idyCVuGni0gWR5FnNPT117wAwZN1tPE7mffd05sJXukfQP2d1Cwk6w+b0Ef/zpFzSaH+
+         EVgw==
+X-Gm-Message-State: AC+VfDxhDeYi8TtN8GPdpJKyHcC8Wm8gfjg/xpV9JJ0C6YljBIuwSW+y
+        xirHuIm8D9Kq+Q+9UWk+x7FXFg==
+X-Google-Smtp-Source: ACHHUZ5+CR3tsAYzZ5F0kEiOibJ7/J4feyJFCr7T+QZfec2o9eYeSCN3VwhP6J2BjYwUAyDXTNLikw==
+X-Received: by 2002:a05:6402:181:b0:50b:d18c:620a with SMTP id r1-20020a056402018100b0050bd18c620amr21929621edv.25.1683999847561;
+        Sat, 13 May 2023 10:44:07 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:bc2d:23f8:43c2:2aed? ([2a02:810d:15c0:828:bc2d:23f8:43c2:2aed])
+        by smtp.gmail.com with ESMTPSA id r23-20020aa7da17000000b00506987c5c71sm5220723eds.70.2023.05.13.10.44.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 13 May 2023 10:44:07 -0700 (PDT)
+Message-ID: <ec5dee0f-7579-3425-6f7e-1ac123c380f4@linaro.org>
+Date:   Sat, 13 May 2023 19:44:05 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v5 3/3] dt-bindings: vendor-prefixes: Add Emtop
+Content-Language: en-US
+To:     Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Marek Vasut <marex@denx.de>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Stefan Wahren <stefan.wahren@i2se.com>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Markus Niebel <Markus.Niebel@tq-group.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Chris Morgan <macromorgan@hotmail.com>,
+        Jagan Teki <jagan@edgeble.ai>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20230513113133.1913736-1-himanshu.bhavani@siliconsignals.io>
+ <20230513113133.1913736-4-himanshu.bhavani@siliconsignals.io>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230513113133.1913736-4-himanshu.bhavani@siliconsignals.io>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -82,17 +92,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Tue, 28 Mar 2023 17:17:29 +0530, Aakarsh Jain wrote:
-> Convert s5p-mfc bindings to DT schema format using json-schema.
+On 13/05/2023 13:31, Himanshu Bhavani wrote:
+> Add vendor prefix for Emtop Embedded Solutions
+> (https://www.emtop-tech.com/)
 > 
-> 
+> Signed-off-by: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
+> ---
 
-Applied, thanks!
 
-[1/1] dt-bindings: media: s5p-mfc: convert bindings to json-schema
-      https://git.kernel.org/krzk/linux/c/538af6e5856b1aa971975c747a2974a74db48928
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Krzysztof
+
