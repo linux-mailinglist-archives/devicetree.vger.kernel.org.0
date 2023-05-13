@@ -2,77 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA06E701590
-	for <lists+devicetree@lfdr.de>; Sat, 13 May 2023 11:20:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 67A4C701593
+	for <lists+devicetree@lfdr.de>; Sat, 13 May 2023 11:22:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235372AbjEMJUl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 May 2023 05:20:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56438 "EHLO
+        id S233212AbjEMJWV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 May 2023 05:22:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233804AbjEMJUl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 13 May 2023 05:20:41 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D83573583
-        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 02:20:39 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-965fc25f009so1702561766b.3
-        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 02:20:39 -0700 (PDT)
+        with ESMTP id S232997AbjEMJWU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 13 May 2023 05:22:20 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF56640FB
+        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 02:22:18 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-50bc3088b7aso20205830a12.3
+        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 02:22:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683969638; x=1686561638;
+        d=linaro.org; s=google; t=1683969737; x=1686561737;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=vBP0dMjWKo7R4JgqVzM+i/HyrAzIyY6+GQBm2IEiqzM=;
-        b=Fgb5s9Pmpctbn5xKp5IWHh9OUUyJcDvHGT+e46MqI1Zi42OOKrnalAyOkzixWdb4Hm
-         kMQ8vE0ddTlteF0S197eV81d5cukTfOBXM7YPic5o8VJZDFbcK6qKpz/AbyNyv6mX2H6
-         wTgNnjWn8uaL6DCGJWIuCJT22g8lCUkR+OysrLAteuRwzwsuIDMHR/QxnnAZiyJe1epV
-         Sv4kYDJUkWwzlq0Frvr9bJngP+Uf8FH+4ygxL+R7haU9Im0RyV8+O/zMz7lzrvjdDyvC
-         q31u8sxxvrNRi1L99Vf+0pIZauVyu/wf6l8bAKiRNqpR08UrFZExP4gv9HEzEwz+hfLq
-         pvqQ==
+        bh=X/AyN+pSX6V+W2W3DFmYrRbubSg9FzRGpPpoe+UxihQ=;
+        b=pHCu4vLr1CqNxmg5sdDSTwYmGk2BlttdYTi0UKE8iFDEyy0ccWrZ2bwGJVHLJ9f4+0
+         gDBYAxx/MJlhzFkojrIpcYdHa1+z5iBM5+zwlxRaUZ7bYLIf88mG3LVslI709qc62clr
+         8mDvFgwL8lUBRkt+u8c3w19F7tg1qm4SE9dMw3F7U1VOAPCMQiR9q6sLBCtYsA4AoKeg
+         OiuALSCcwqe1V20SXGYn7lLv+lVg1GeeF7rMjmVHlhtULOoO0MoX/WsU1zkYBSfFkOvV
+         M7HlIlWmSxBFdXMQlRSifBoH8LPytqD0qpu9eePOZ7j8rc798vnCsvOay/KHXPn09Xwa
+         p3FQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683969638; x=1686561638;
+        d=1e100.net; s=20221208; t=1683969737; x=1686561737;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vBP0dMjWKo7R4JgqVzM+i/HyrAzIyY6+GQBm2IEiqzM=;
-        b=GwUVwUN5WEcO7T3la+5eYgqetCtthMdq6FEFPtHPTIcnFS5VEsWFzHgIoRawnyQ8F+
-         1WahyFfdAgTK/Z0oSw6B7zahnmZqvr6iyHVgg76VhsYGXDnkJiZUS3IYlR2i2Iy+s6tb
-         /Q7k+XX1J+tl4JaGtheFu1uD8ZwJ9N7gP84FDwoP6WeOjsDVPPjg3etXPyfLQsGwGtSi
-         JZgBeW8Q5O2ZUWi83q2st6/hnw0NifxfwD/mrefP1gawYi1jEO0HBxkOdgIk+UAz9A/t
-         vu0Vr8jU9ErmtyyxSkUsLjLkqqrANAelu88QLtcrauh5JJ4u8hfLjXyCOfiGQDZqxWCw
-         GkkQ==
-X-Gm-Message-State: AC+VfDynGGL93mcqDyKhGAbFoCFlVGzHfGZ55VTclvfn9i8IOllwKzAx
-        KLUYPxcaSiJLOZOUvj8kOsqfdw==
-X-Google-Smtp-Source: ACHHUZ5Hsfzy0RPgtk019w6qQaf8LB/U2dJtRDkaxFgsrN0NXrR7jDYm/aA9cW4Y72Y4W5vgb4bFaw==
-X-Received: by 2002:a17:907:2d2a:b0:965:b087:8002 with SMTP id gs42-20020a1709072d2a00b00965b0878002mr24741750ejc.0.1683969638386;
-        Sat, 13 May 2023 02:20:38 -0700 (PDT)
+        bh=X/AyN+pSX6V+W2W3DFmYrRbubSg9FzRGpPpoe+UxihQ=;
+        b=AkIPQxG7g/AOBYIZv0Idl+SzRfXf0Np+CyuEGpmOnCZiLpR/FNch28qUuvUHd4FRv8
+         L24HqczYi4oS7DbKgJCJL38ZvWsh3tIur3vFhHO5xDXWVavATODg+++iM2o6ZKv/ysrT
+         0yK1mctrXn6a/NA7Gwd25pcZ6KdOQ1IcIC0cSgxbJAi9ms2YDtPut/PvRnlv3jv8Vlul
+         t5wzGjpCkd+YEiZHLp9BlQTYtoT+zbmOglkq4kvmQirIO2abewfLOLxxByoe3LApKG5/
+         K/MDj7YS0Cau6p4TV0jDaX6viPuwsUI6e+4QNF6RcnkF/NivZ+XnsgnAGg9FxFIXlITf
+         GHdA==
+X-Gm-Message-State: AC+VfDzKF8fHN+VblX1yROixwhuRwlTzGstVNbidT3SsI/hYgSwkmQww
+        Jd7hcNAXvm+ntdeTudb2hWB2DA==
+X-Google-Smtp-Source: ACHHUZ5aG0BoNuZuL5bKtYiF+NSrux0Sek8SQj9YSzB/DxrgPCqs5mpDLxny2uhcnVV8MZwJRjJu6g==
+X-Received: by 2002:aa7:dd0f:0:b0:50c:4b1:8912 with SMTP id i15-20020aa7dd0f000000b0050c04b18912mr23189219edv.15.1683969737479;
+        Sat, 13 May 2023 02:22:17 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:1d0:810a:586c:c5ba? ([2a02:810d:15c0:828:1d0:810a:586c:c5ba])
-        by smtp.gmail.com with ESMTPSA id e28-20020a170906845c00b0094e84314762sm6573709ejy.187.2023.05.13.02.20.37
+        by smtp.gmail.com with ESMTPSA id h10-20020a50ed8a000000b004c2158e87e6sm4733883edr.97.2023.05.13.02.22.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 13 May 2023 02:20:37 -0700 (PDT)
-Message-ID: <0954a80d-9151-4be3-dcee-e42ddc0b5300@linaro.org>
-Date:   Sat, 13 May 2023 11:20:36 +0200
+        Sat, 13 May 2023 02:22:17 -0700 (PDT)
+Message-ID: <6a1bdc48-a65f-43c3-0a41-bd45c0c3b0aa@linaro.org>
+Date:   Sat, 13 May 2023 11:22:16 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v3 09/10] ARM: dts: qcom-mdm9615: specify clocks for the
- lcc device
+Subject: Re: [PATCH] arm64: dts: imx8mq-mnt-reform2: drop simple-panel
+ compatible
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+        linux-kernel@vger.kernel.org
+Cc:     Conor Dooley <conor+dt@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
-References: <20230512211727.3445575-1-dmitry.baryshkov@linaro.org>
- <20230512211727.3445575-10-dmitry.baryshkov@linaro.org>
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230512204627.3304342-1-dario.binacchi@amarulasolutions.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230512211727.3445575-10-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230512204627.3304342-1-dario.binacchi@amarulasolutions.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,27 +83,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/05/2023 23:17, Dmitry Baryshkov wrote:
-> Specify clocks used by the LCC device on the MDM9615 platform.
+On 12/05/2023 22:46, Dario Binacchi wrote:
+> The "simple-panel" compatible is not documented and nothing in Linux
+> kernel binds to it.
 > 
-> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 > ---
->  arch/arm/boot/dts/qcom-mdm9615.dtsi | 16 +++++++++++++++-
->  1 file changed, 15 insertions(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm/boot/dts/qcom-mdm9615.dtsi b/arch/arm/boot/dts/qcom-mdm9615.dtsi
-> index b40c52ddf9b4..556abe90cf5b 100644
-> --- a/arch/arm/boot/dts/qcom-mdm9615.dtsi
-> +++ b/arch/arm/boot/dts/qcom-mdm9615.dtsi
-> @@ -39,7 +39,7 @@ cpu-pmu {
->  	};
->  
->  	clocks {
-> -		cxo_board {
-> +		cxo_board: cxo_board {
+>  arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dts | 2 +-
 
-Maybe it is possible now to change the node name to cxo-board-clk?
+I already sent it:
+
+https://lore.kernel.org/all/20230326204502.80794-1-krzysztof.kozlowski@linaro.org/
+
 
 Best regards,
 Krzysztof
