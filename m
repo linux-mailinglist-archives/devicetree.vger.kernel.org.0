@@ -2,120 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BC7E701910
-	for <lists+devicetree@lfdr.de>; Sat, 13 May 2023 20:13:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E32B7018E8
+	for <lists+devicetree@lfdr.de>; Sat, 13 May 2023 20:02:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229530AbjEMSNd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 May 2023 14:13:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53298 "EHLO
+        id S237370AbjEMSC4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 May 2023 14:02:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229485AbjEMSNM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 13 May 2023 14:13:12 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9ED8946B8
-        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 11:13:08 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-50bc4ba28cbso19790833a12.0
-        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 11:13:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684001587; x=1686593587;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SdRy69fIEsxIBR9NIDENofSkdxQv1jnZ0R7WuYlxvmg=;
-        b=cswtIRS11QeGOspQbIax2cbUnxPMuwqMCUQ+AgRqEZadVfHxZzrTHBrkyAg8yKXDbW
-         YieljDi0i5askQoY4OEeuGhZT+ZCgZOs/lfQ04xcGM2GxBYJoavC1fwDCiZBz3YOU9G+
-         69/M19hNO0j6J3rYI2UKq0Y7D5Fel5YS2Xa5KUgxcGkfASu+gO8HdrWLUqnGy7+iaKcS
-         GgDgB4AQ1N8yQjn/nLICeOWTeV8M4MBX6/v+CtRIuxoKXRKcMzl8veSs04NzMpZbs51/
-         Hfe7SeHHOfLgcRnu74iLTF2U/Q8QnlMBhOmAgqullUeXchuOB3VuekRtsXG/BSDbpi8j
-         moSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684001587; x=1686593587;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SdRy69fIEsxIBR9NIDENofSkdxQv1jnZ0R7WuYlxvmg=;
-        b=VET+JVltlvgwOvIR34ZwlNrVqkrxE61Pvmot750GJpCfBwAznfFFXKb2Fmb9w35LXg
-         vSuHP5LE8/u4WL0l4K9eTmCZ4hehKOixWSe9nNaCokSdyxZcSyeL2leZM3cKMxbvyJ0i
-         tD3e0zOai6FaS0MjqfVMrw8Div5ckYPkc/1HoRSI1z4tlSr2ZQykmvpbRl4uwoZ2hCNS
-         96Rrxw0BHYUaTvTQI3Pc/z+8arVw1diV7gH6Wm66Wslro1cD8aaADFZAH7Rs346pFB5W
-         6MhA6GasDUalgY3G1WrM4F4Q07BUU6xXBjkvJZL5uLF0q23UEIaTLF5Mp+gO22IZ8ty3
-         KhRA==
-X-Gm-Message-State: AC+VfDwu8aUNc/yiOE2cl/Vdw1GXjq1KNcR9XMMW8u7SWOJ10h5dWPx2
-        NwqiYCeSS6tbl0q6XE/iqGeKa5PbATq36z05xTOHtw==
-X-Google-Smtp-Source: ACHHUZ4m7lCl8p2Q7EHaoUU/9iQg5m8GgeAPaGDj82d7+DhAw/jzqEtERboZRuZ59/7bEz4RKl+kkg==
-X-Received: by 2002:a17:907:7f94:b0:969:e9ec:9a0 with SMTP id qk20-20020a1709077f9400b00969e9ec09a0mr20377665ejc.77.1684000807359;
-        Sat, 13 May 2023 11:00:07 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:ba68:e5c9:694e:c6e4? ([2a02:810d:15c0:828:ba68:e5c9:694e:c6e4])
-        by smtp.gmail.com with ESMTPSA id u24-20020a056402111800b0050bc4eb9846sm5105168edv.1.2023.05.13.11.00.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 13 May 2023 11:00:06 -0700 (PDT)
-Message-ID: <633b305e-a311-3334-3d4e-30d5d09ebb6a@linaro.org>
-Date:   Sat, 13 May 2023 20:00:05 +0200
+        with ESMTP id S237520AbjEMSCg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 13 May 2023 14:02:36 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA0F42D5B
+        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 11:01:49 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id EE39D61B63
+        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 18:00:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B36F6C433D2;
+        Sat, 13 May 2023 18:00:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684000839;
+        bh=cRm0MQi7YAIbwZp7hUzWj9ox4SWbb/lO1iti+PZt1+g=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=tvw6uXW7iASonTRQJCOuCXlSkPLSfq5GK2E+f15KT54whDftiNN+AIqDGqUtyra3f
+         0hHCOYVYKPtq6LicQ1PKqxJIVp+2Tonwwjp4/FbaM9SgbgR3teve1C9Oa9uTKBEiSl
+         jVwA3PZXRHBHxOvHraKA0LpI/qXlJTudl+xz41ieu7m8uIHb9ziHUxyNtRRzCQN0IU
+         UvJHg7KEWPp7dYqGjDzsasraxq0RSYSHo/krf3L9pgzxwYK8s8CfcWfVopwty254CF
+         rlSJQfdO6wOU1EEZy3pX8lKMiFRXqjyND7KnyWJifJOJKfPDcwayuozNtBe0xEri3l
+         ZYruYzAh2cWEA==
+Date:   Sat, 13 May 2023 19:00:34 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-riscv@lists.infradead.org,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Sunil V L <sunilvl@ventanamicro.com>,
+        Yangyu Chen <cyy@cyyself.name>, devicetree@vger.kernel.org
+Subject: Re: [RFC 2/6] dt-bindings: riscv: add riscv,isa-extension-* property
+ and incompatible example
+Message-ID: <20230513-sixth-pushing-7fb12ee62410@spud>
+References: <20230508-hypnotic-phobia-99598439d828@spud>
+ <20230508-sneeze-cesarean-d1aff8be9cc8@spud>
+ <90f24883-4653-d099-14cc-38e2ecbbd189@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 08/10] pinctrl: cs42l43: Add support for the cs42l43
-Content-Language: en-US
-To:     Charles Keepax <ckeepax@opensource.cirrus.com>
-Cc:     broonie@kernel.org, lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        tglx@linutronix.de, maz@kernel.org, linus.walleij@linaro.org,
-        vkoul@kernel.org, lgirdwood@gmail.com,
-        yung-chuan.liao@linux.intel.com, sanyog.r.kale@intel.com,
-        pierre-louis.bossart@linux.intel.com, alsa-devel@alsa-project.org,
-        patches@opensource.cirrus.com, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230512122838.243002-1-ckeepax@opensource.cirrus.com>
- <20230512122838.243002-9-ckeepax@opensource.cirrus.com>
- <9591999e-9d7f-2a4a-29df-d9c42dfa736b@linaro.org>
- <20230512155426.GJ68926@ediswmail.ad.cirrus.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230512155426.GJ68926@ediswmail.ad.cirrus.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="zcUWM9LxFOFmjxdp"
+Content-Disposition: inline
+In-Reply-To: <90f24883-4653-d099-14cc-38e2ecbbd189@linaro.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/05/2023 17:54, Charles Keepax wrote:
-> On Fri, May 12, 2023 at 05:30:37PM +0200, Krzysztof Kozlowski wrote:
->> On 12/05/2023 14:28, Charles Keepax wrote:
->>> +	priv->gpio_chip.fwnode = dev_fwnode(cs42l43->dev);
 
-What's also a bit confusing is that gpio_chip is the parent's node, but
-pinctrl is not...
+--zcUWM9LxFOFmjxdp
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->>> +
->>> +	if (is_of_node(dev_fwnode(cs42l43->dev))) {
->>> +		device_set_node(priv->dev,
->>> +				fwnode_get_named_child_node(dev_fwnode(cs42l43->dev),
->>> +							    "pinctrl"));
->>
->> That's something unusual. It seems you want to bind to a DT node because
->> you miss compatible in DT node?
->>
-> 
-> Kinda, I don't really want to add multiple compatibles for the
-> device. This is just a CODEC device, even in device tree it
-> seems a little weird to have multiple compatibles for a single
-> I2C device. On ACPI I am pretty sure it would be considered flat
-> out right wrong. The fact Linux supports the device using multiple
-> drivers is seemed to be a Linux implementation detail, rather than
-> describing the hardware.
-> 
+On Sat, May 13, 2023 at 07:50:22PM +0200, Krzysztof Kozlowski wrote:
+> On 08/05/2023 20:16, Conor Dooley wrote:
+> > From: Conor Dooley <conor.dooley@microchip.com>
+> >=20
+> > This dt-binding is illustrative *only*, it doesn't yet do what I want it
+> > to do in terms of enforcement etc. I am yet to figure out exactly how to
+> > wrangle the binding such that the individual properties have more
+> > generous versions than the generic pattern property.
+> > This binding *will* generate errors, and needs rework before it can
+> > seriously be considered.
+> > Nevertheless, it should demonstrate how I intend such a property be
+> > used.
 
-I think if you do not have compatible, then the device node should be
-rather the parent (so the main node with compatible), not the child.
-Child is just a wrapper for pinctrls, but not something representing a
-device.
+> > +    oneOf:
+> > +      - const: v1.0.0
+> > +        description: the original incarnation
+> > +      - const: v1.0.1
+> > +        description: backwards compat was broken here
+> > +
+> > +patternProperties:
+> > +  "^riscv,isa-extension-*":
+>=20
+> Are all these -i/-m/-a extensions obvious/known to RISC-V folks? I have
+> no clue what's this, so the question is: do they need some explanation
+> in the bindings?
 
-Best regards,
-Krzysztof
+Yes, these should be well known. In the same way that "neon" should mean
+something to someone doing arm64. Nevertheless, the plan is to drop the
+string side of this entirely & actually document the meaning of -i/-m/-a
+etc.
 
+> > +    description:
+> > +      Catch-all property for ISA extensions that do not need any speci=
+al
+> > +      handling, and of which all known versions are compatible with th=
+eir
+> > +      original revision.
+> > +    $ref: "/schemas/types.yaml#/definitions/string"
+>=20
+> Drop quotes.
+>=20
+> > +    enum:
+> > +      - v1.0.0
+>=20
+> Your example should not validate here... you have there v2.0.0 and v1.0.1
+
+As noted in the commit message, this is illustrative only & cannot work.
+There doesn't appear to be a way to make the patternProperty fallback
+more specific than the explicitly defined properties.
+I wanted to get something out for initial thoughts before trying to do
+further wrangling, lest it be a complete waste of time.
+Consensus seems to be that versions are a thing of the past and that
+property-presence based probing is a better idea. See the discussion
+on the cover for that.
+It does conveniently mean that all this complexity can be thrown in the
+bin.
+
+Cheers,
+Conor.
+
+--zcUWM9LxFOFmjxdp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZF/QQgAKCRB4tDGHoIJi
+0sYDAP0ZxrGsgo+DHXtLrkTV5KSGFz1w+5RyzsrFhyfkJeOvkwEA/nOZ3HL/4L9R
+h97MiW43ULDBeIrMaddFAm1yluImLQk=
+=a1mF
+-----END PGP SIGNATURE-----
+
+--zcUWM9LxFOFmjxdp--
