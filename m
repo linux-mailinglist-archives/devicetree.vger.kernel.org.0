@@ -2,552 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D9740701481
-	for <lists+devicetree@lfdr.de>; Sat, 13 May 2023 07:40:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 310A5701495
+	for <lists+devicetree@lfdr.de>; Sat, 13 May 2023 08:16:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230102AbjEMFkQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 May 2023 01:40:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53928 "EHLO
+        id S232578AbjEMGQP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 May 2023 02:16:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229547AbjEMFkP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 13 May 2023 01:40:15 -0400
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97965273A;
-        Fri, 12 May 2023 22:40:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1683956411; x=1715492411;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=gk9jQWisQbrgedeuc/WFJtxZpDTaCuHHb1I2wjZ0MnA=;
-  b=cNNZ+ppOxBmIPjXjBgKiaE+iXnM9Y/KcJc2IeUsqekItFvAzLX3J4oXU
-   w3JNlDa+bQgmiB6Ig/mXgSNXkgCwf/q0cKcLH4b/OaPvy2InHGsZxpimy
-   RahszV82Co6S0kxLttPe1QVHtfMaqaaulkiI0unoBtjCzDOkA7s6i1q7r
-   Zs1JTW+axWBl3mAHRy1S5cTYa1wfOfe2r2LQImhDxHVfOzuKhKPK4+Qtb
-   04zSp169wzRP02NekHtz2DNKUz7I+EELt0/9GSrywKzGohnclBKsCRY68
-   4LhaRkcLnTgd0MhXva1P0qk6rLr6i7ujyFBFmaxx0mwXAw2bksuJ6Y15S
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10708"; a="437265560"
-X-IronPort-AV: E=Sophos;i="5.99,271,1677571200"; 
-   d="scan'208";a="437265560"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 May 2023 22:40:10 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10708"; a="731052174"
-X-IronPort-AV: E=Sophos;i="5.99,271,1677571200"; 
-   d="scan'208";a="731052174"
-Received: from lkp-server01.sh.intel.com (HELO dea6d5a4f140) ([10.239.97.150])
-  by orsmga008.jf.intel.com with ESMTP; 12 May 2023 22:40:06 -0700
-Received: from kbuild by dea6d5a4f140 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pxhzB-0005MF-2h;
-        Sat, 13 May 2023 05:40:05 +0000
-Date:   Sat, 13 May 2023 13:39:07 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org,
-        linus.walleij@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, richardcochran@gmail.com,
-        manivannan.sadhasivam@linaro.org, andy.shevchenko@gmail.com
-Cc:     oe-kbuild-all@lists.linux.dev, linux-arm-msm@vger.kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-        Rohit Agarwal <quic_rohiagar@quicinc.com>
-Subject: Re: [PATCH 2/2] pinctrl: qcom: Refactor generic qcom pinctrl driver
-Message-ID: <202305131327.hT8CxYAe-lkp@intel.com>
-References: <1683892553-19882-3-git-send-email-quic_rohiagar@quicinc.com>
+        with ESMTP id S229463AbjEMGQO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 13 May 2023 02:16:14 -0400
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B2A6B1BD3;
+        Fri, 12 May 2023 23:16:10 -0700 (PDT)
+Received: from loongson.cn (unknown [10.20.42.35])
+        by gateway (Coremail) with SMTP id _____8DxyOkoK19khmkIAA--.14525S3;
+        Sat, 13 May 2023 14:16:08 +0800 (CST)
+Received: from [10.20.42.35] (unknown [10.20.42.35])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8Bxi7YnK19kOG1ZAA--.26362S3;
+        Sat, 13 May 2023 14:16:07 +0800 (CST)
+Subject: Re: [PATCH v9 2/2] spi: loongson: add bus driver for the loongson spi
+ controller
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Jianmin Lv <lvjianmin@loongson.cn>,
+        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
+References: <20230426071045.20753-1-zhuyinbo@loongson.cn>
+ <20230426071045.20753-3-zhuyinbo@loongson.cn> <ZFkPZhF8QqScXAmH@surfacebook>
+ <ZFnOZptCM7JDFTQz@finisterre.sirena.org.uk>
+ <CAHp75VcqQR0fFdkWG2QgXG0+SnKDs6_Zze6GMt+pHHEdE+8hkg@mail.gmail.com>
+ <f03977b9-884c-93a1-d1cf-81e6fcf51dfc@loongson.cn>
+ <CAHp75VeUiR_V0P6QhhqKGcoJKHviCC8wJZf+3KVBtWj+4q-=ig@mail.gmail.com>
+From:   zhuyinbo <zhuyinbo@loongson.cn>
+Message-ID: <c965a906-952c-2592-dad6-9d4eb3dffa66@loongson.cn>
+Date:   Sat, 13 May 2023 14:16:07 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1683892553-19882-3-git-send-email-quic_rohiagar@quicinc.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <CAHp75VeUiR_V0P6QhhqKGcoJKHviCC8wJZf+3KVBtWj+4q-=ig@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8Bxi7YnK19kOG1ZAA--.26362S3
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
+        ZEXasCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29K
+        BjDU0xBIdaVrnRJUUUv01xkIjI8I6I8E6xAIw20EY4v20xvaj40_Wr0E3s1l1IIY67AEw4
+        v_JrI_Jryl8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2x7M28EF7xvwVC0I7IYx2IY
+        67AKxVWUJVWUCwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwA2z4x0Y4vEx4A2js
+        IE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4UJVWxJr1le2I262IYc4CY
+        6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrV
+        C2j2WlYx0E2Ix0cI8IcVAFwI0_JrI_JrylYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE
+        7xkEbVWUJVW8JwACjcxG0xvEwIxGrwCYjI0SjxkI62AI1cAE67vIY487MxAIw28IcxkI7V
+        AKI48JMxAIw28IcVCjz48v1sIEY20_WwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02
+        F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GF
+        ylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7Cj
+        xVAFwI0_Jr0_Gr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r
+        1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Jr0_GrUvcSsGvfC2KfnxnUUI43ZEXa7IU1VW
+        lDUUUUU==
+X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rohit,
-
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on linusw-pinctrl/devel]
-[also build test ERROR on linusw-pinctrl/for-next linus/master v6.4-rc1 next-20230512]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Rohit-Agarwal/pinctrl-qcom-Remove-the-msm_function-struct/20230512-195910
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git devel
-patch link:    https://lore.kernel.org/r/1683892553-19882-3-git-send-email-quic_rohiagar%40quicinc.com
-patch subject: [PATCH 2/2] pinctrl: qcom: Refactor generic qcom pinctrl driver
-config: arm-allyesconfig (https://download.01.org/0day-ci/archive/20230513/202305131327.hT8CxYAe-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/1894575a5b0f681fb8697a05ac2aa68ef97e48e8
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Rohit-Agarwal/pinctrl-qcom-Remove-the-msm_function-struct/20230512-195910
-        git checkout 1894575a5b0f681fb8697a05ac2aa68ef97e48e8
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202305131327.hT8CxYAe-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:969:34: error: array type has incomplete element type 'struct msm_function'
-     969 | static const struct msm_function sm7150_functions[] = {
-         |                                  ^~~~~~~~~~~~~~~~
->> drivers/pinctrl/qcom/pinctrl-sm7150.c:37:18: error: 'const struct msm_pingroup' has no member named 'name'
-      37 |                 .name = "gpio" #id,                     \
-         |                  ^~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1089:15: note: in expansion of macro 'PINGROUP'
-    1089 |         [0] = PINGROUP(0, SOUTH, qup01, _, phase_flag, _, _, _, _, _, _),
-         |               ^~~~~~~~
->> drivers/pinctrl/qcom/pinctrl-sm7150.c:38:18: error: 'const struct msm_pingroup' has no member named 'pins'
-      38 |                 .pins = gpio##id##_pins,                \
-         |                  ^~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1089:15: note: in expansion of macro 'PINGROUP'
-    1089 |         [0] = PINGROUP(0, SOUTH, qup01, _, phase_flag, _, _, _, _, _, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:38:25: warning: initialization discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
-      38 |                 .pins = gpio##id##_pins,                \
-         |                         ^~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1089:15: note: in expansion of macro 'PINGROUP'
-    1089 |         [0] = PINGROUP(0, SOUTH, qup01, _, phase_flag, _, _, _, _, _, _),
-         |               ^~~~~~~~
->> drivers/pinctrl/qcom/pinctrl-sm7150.c:39:18: error: 'const struct msm_pingroup' has no member named 'npins'
-      39 |                 .npins = ARRAY_SIZE(gpio##id##_pins),   \
-         |                  ^~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1089:15: note: in expansion of macro 'PINGROUP'
-    1089 |         [0] = PINGROUP(0, SOUTH, qup01, _, phase_flag, _, _, _, _, _, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:40:26: warning: initialized field overwritten [-Woverride-init]
-      40 |                 .funcs = (int[]){                       \
-         |                          ^
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1089:15: note: in expansion of macro 'PINGROUP'
-    1089 |         [0] = PINGROUP(0, SOUTH, qup01, _, phase_flag, _, _, _, _, _, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:40:26: note: (near initialization for 'sm7150_groups[0].funcs')
-      40 |                 .funcs = (int[]){                       \
-         |                          ^
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1089:15: note: in expansion of macro 'PINGROUP'
-    1089 |         [0] = PINGROUP(0, SOUTH, qup01, _, phase_flag, _, _, _, _, _, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:52:27: warning: initialized field overwritten [-Woverride-init]
-      52 |                 .nfuncs = 10,                           \
-         |                           ^~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1089:15: note: in expansion of macro 'PINGROUP'
-    1089 |         [0] = PINGROUP(0, SOUTH, qup01, _, phase_flag, _, _, _, _, _, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:52:27: note: (near initialization for 'sm7150_groups[0].nfuncs')
-      52 |                 .nfuncs = 10,                           \
-         |                           ^~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1089:15: note: in expansion of macro 'PINGROUP'
-    1089 |         [0] = PINGROUP(0, SOUTH, qup01, _, phase_flag, _, _, _, _, _, _),
-         |               ^~~~~~~~
->> drivers/pinctrl/qcom/pinctrl-sm7150.c:37:18: error: 'const struct msm_pingroup' has no member named 'name'
-      37 |                 .name = "gpio" #id,                     \
-         |                  ^~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1090:15: note: in expansion of macro 'PINGROUP'
-    1090 |         [1] = PINGROUP(1, SOUTH, qup01, _, phase_flag, _, _, _, _, _, _),
-         |               ^~~~~~~~
->> drivers/pinctrl/qcom/pinctrl-sm7150.c:38:18: error: 'const struct msm_pingroup' has no member named 'pins'
-      38 |                 .pins = gpio##id##_pins,                \
-         |                  ^~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1090:15: note: in expansion of macro 'PINGROUP'
-    1090 |         [1] = PINGROUP(1, SOUTH, qup01, _, phase_flag, _, _, _, _, _, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:38:25: warning: initialization discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
-      38 |                 .pins = gpio##id##_pins,                \
-         |                         ^~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1090:15: note: in expansion of macro 'PINGROUP'
-    1090 |         [1] = PINGROUP(1, SOUTH, qup01, _, phase_flag, _, _, _, _, _, _),
-         |               ^~~~~~~~
->> drivers/pinctrl/qcom/pinctrl-sm7150.c:39:18: error: 'const struct msm_pingroup' has no member named 'npins'
-      39 |                 .npins = ARRAY_SIZE(gpio##id##_pins),   \
-         |                  ^~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1090:15: note: in expansion of macro 'PINGROUP'
-    1090 |         [1] = PINGROUP(1, SOUTH, qup01, _, phase_flag, _, _, _, _, _, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:40:26: warning: initialized field overwritten [-Woverride-init]
-      40 |                 .funcs = (int[]){                       \
-         |                          ^
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1090:15: note: in expansion of macro 'PINGROUP'
-    1090 |         [1] = PINGROUP(1, SOUTH, qup01, _, phase_flag, _, _, _, _, _, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:40:26: note: (near initialization for 'sm7150_groups[1].funcs')
-      40 |                 .funcs = (int[]){                       \
-         |                          ^
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1090:15: note: in expansion of macro 'PINGROUP'
-    1090 |         [1] = PINGROUP(1, SOUTH, qup01, _, phase_flag, _, _, _, _, _, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:52:27: warning: initialized field overwritten [-Woverride-init]
-      52 |                 .nfuncs = 10,                           \
-         |                           ^~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1090:15: note: in expansion of macro 'PINGROUP'
-    1090 |         [1] = PINGROUP(1, SOUTH, qup01, _, phase_flag, _, _, _, _, _, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:52:27: note: (near initialization for 'sm7150_groups[1].nfuncs')
-      52 |                 .nfuncs = 10,                           \
-         |                           ^~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1090:15: note: in expansion of macro 'PINGROUP'
-    1090 |         [1] = PINGROUP(1, SOUTH, qup01, _, phase_flag, _, _, _, _, _, _),
-         |               ^~~~~~~~
->> drivers/pinctrl/qcom/pinctrl-sm7150.c:37:18: error: 'const struct msm_pingroup' has no member named 'name'
-      37 |                 .name = "gpio" #id,                     \
-         |                  ^~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1091:15: note: in expansion of macro 'PINGROUP'
-    1091 |         [2] = PINGROUP(2, SOUTH, qup01, _, phase_flag, _, _, _, _, _, _),
-         |               ^~~~~~~~
->> drivers/pinctrl/qcom/pinctrl-sm7150.c:38:18: error: 'const struct msm_pingroup' has no member named 'pins'
-      38 |                 .pins = gpio##id##_pins,                \
-         |                  ^~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1091:15: note: in expansion of macro 'PINGROUP'
-    1091 |         [2] = PINGROUP(2, SOUTH, qup01, _, phase_flag, _, _, _, _, _, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:38:25: warning: initialization discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
-      38 |                 .pins = gpio##id##_pins,                \
-         |                         ^~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1091:15: note: in expansion of macro 'PINGROUP'
-    1091 |         [2] = PINGROUP(2, SOUTH, qup01, _, phase_flag, _, _, _, _, _, _),
-         |               ^~~~~~~~
->> drivers/pinctrl/qcom/pinctrl-sm7150.c:39:18: error: 'const struct msm_pingroup' has no member named 'npins'
-      39 |                 .npins = ARRAY_SIZE(gpio##id##_pins),   \
-         |                  ^~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1091:15: note: in expansion of macro 'PINGROUP'
-    1091 |         [2] = PINGROUP(2, SOUTH, qup01, _, phase_flag, _, _, _, _, _, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:40:26: warning: initialized field overwritten [-Woverride-init]
-      40 |                 .funcs = (int[]){                       \
-         |                          ^
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1091:15: note: in expansion of macro 'PINGROUP'
-    1091 |         [2] = PINGROUP(2, SOUTH, qup01, _, phase_flag, _, _, _, _, _, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:40:26: note: (near initialization for 'sm7150_groups[2].funcs')
-      40 |                 .funcs = (int[]){                       \
-         |                          ^
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1091:15: note: in expansion of macro 'PINGROUP'
-    1091 |         [2] = PINGROUP(2, SOUTH, qup01, _, phase_flag, _, _, _, _, _, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:52:27: warning: initialized field overwritten [-Woverride-init]
-      52 |                 .nfuncs = 10,                           \
-         |                           ^~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1091:15: note: in expansion of macro 'PINGROUP'
-    1091 |         [2] = PINGROUP(2, SOUTH, qup01, _, phase_flag, _, _, _, _, _, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:52:27: note: (near initialization for 'sm7150_groups[2].nfuncs')
-      52 |                 .nfuncs = 10,                           \
-         |                           ^~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1091:15: note: in expansion of macro 'PINGROUP'
-    1091 |         [2] = PINGROUP(2, SOUTH, qup01, _, phase_flag, _, _, _, _, _, _),
-         |               ^~~~~~~~
->> drivers/pinctrl/qcom/pinctrl-sm7150.c:37:18: error: 'const struct msm_pingroup' has no member named 'name'
-      37 |                 .name = "gpio" #id,                     \
-         |                  ^~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1092:15: note: in expansion of macro 'PINGROUP'
-    1092 |         [3] = PINGROUP(3, SOUTH, qup01, dbg_out, _, _, _, _, _, _, _),
-         |               ^~~~~~~~
->> drivers/pinctrl/qcom/pinctrl-sm7150.c:38:18: error: 'const struct msm_pingroup' has no member named 'pins'
-      38 |                 .pins = gpio##id##_pins,                \
-         |                  ^~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1092:15: note: in expansion of macro 'PINGROUP'
-    1092 |         [3] = PINGROUP(3, SOUTH, qup01, dbg_out, _, _, _, _, _, _, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:38:25: warning: initialization discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
-      38 |                 .pins = gpio##id##_pins,                \
-         |                         ^~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1092:15: note: in expansion of macro 'PINGROUP'
-    1092 |         [3] = PINGROUP(3, SOUTH, qup01, dbg_out, _, _, _, _, _, _, _),
-         |               ^~~~~~~~
->> drivers/pinctrl/qcom/pinctrl-sm7150.c:39:18: error: 'const struct msm_pingroup' has no member named 'npins'
-      39 |                 .npins = ARRAY_SIZE(gpio##id##_pins),   \
-         |                  ^~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1092:15: note: in expansion of macro 'PINGROUP'
-    1092 |         [3] = PINGROUP(3, SOUTH, qup01, dbg_out, _, _, _, _, _, _, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:40:26: warning: initialized field overwritten [-Woverride-init]
-      40 |                 .funcs = (int[]){                       \
-         |                          ^
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1092:15: note: in expansion of macro 'PINGROUP'
-    1092 |         [3] = PINGROUP(3, SOUTH, qup01, dbg_out, _, _, _, _, _, _, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:40:26: note: (near initialization for 'sm7150_groups[3].funcs')
-      40 |                 .funcs = (int[]){                       \
-         |                          ^
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1092:15: note: in expansion of macro 'PINGROUP'
-    1092 |         [3] = PINGROUP(3, SOUTH, qup01, dbg_out, _, _, _, _, _, _, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:52:27: warning: initialized field overwritten [-Woverride-init]
-      52 |                 .nfuncs = 10,                           \
-         |                           ^~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1092:15: note: in expansion of macro 'PINGROUP'
-    1092 |         [3] = PINGROUP(3, SOUTH, qup01, dbg_out, _, _, _, _, _, _, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:52:27: note: (near initialization for 'sm7150_groups[3].nfuncs')
-      52 |                 .nfuncs = 10,                           \
-         |                           ^~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1092:15: note: in expansion of macro 'PINGROUP'
-    1092 |         [3] = PINGROUP(3, SOUTH, qup01, dbg_out, _, _, _, _, _, _, _),
-         |               ^~~~~~~~
->> drivers/pinctrl/qcom/pinctrl-sm7150.c:37:18: error: 'const struct msm_pingroup' has no member named 'name'
-      37 |                 .name = "gpio" #id,                     \
-         |                  ^~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1093:15: note: in expansion of macro 'PINGROUP'
-    1093 |         [4] = PINGROUP(4, NORTH, _, qdss_cti, _, _, _, _, _, _, _),
-         |               ^~~~~~~~
->> drivers/pinctrl/qcom/pinctrl-sm7150.c:38:18: error: 'const struct msm_pingroup' has no member named 'pins'
-      38 |                 .pins = gpio##id##_pins,                \
-         |                  ^~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1093:15: note: in expansion of macro 'PINGROUP'
-    1093 |         [4] = PINGROUP(4, NORTH, _, qdss_cti, _, _, _, _, _, _, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:38:25: warning: initialization discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
-      38 |                 .pins = gpio##id##_pins,                \
-         |                         ^~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1093:15: note: in expansion of macro 'PINGROUP'
-    1093 |         [4] = PINGROUP(4, NORTH, _, qdss_cti, _, _, _, _, _, _, _),
-         |               ^~~~~~~~
->> drivers/pinctrl/qcom/pinctrl-sm7150.c:39:18: error: 'const struct msm_pingroup' has no member named 'npins'
-      39 |                 .npins = ARRAY_SIZE(gpio##id##_pins),   \
-         |                  ^~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1093:15: note: in expansion of macro 'PINGROUP'
-    1093 |         [4] = PINGROUP(4, NORTH, _, qdss_cti, _, _, _, _, _, _, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:40:26: warning: initialized field overwritten [-Woverride-init]
-      40 |                 .funcs = (int[]){                       \
-         |                          ^
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1093:15: note: in expansion of macro 'PINGROUP'
-    1093 |         [4] = PINGROUP(4, NORTH, _, qdss_cti, _, _, _, _, _, _, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:40:26: note: (near initialization for 'sm7150_groups[4].funcs')
-      40 |                 .funcs = (int[]){                       \
-         |                          ^
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1093:15: note: in expansion of macro 'PINGROUP'
-    1093 |         [4] = PINGROUP(4, NORTH, _, qdss_cti, _, _, _, _, _, _, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:52:27: warning: initialized field overwritten [-Woverride-init]
-      52 |                 .nfuncs = 10,                           \
-         |                           ^~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1093:15: note: in expansion of macro 'PINGROUP'
-    1093 |         [4] = PINGROUP(4, NORTH, _, qdss_cti, _, _, _, _, _, _, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:52:27: note: (near initialization for 'sm7150_groups[4].nfuncs')
-      52 |                 .nfuncs = 10,                           \
-         |                           ^~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1093:15: note: in expansion of macro 'PINGROUP'
-    1093 |         [4] = PINGROUP(4, NORTH, _, qdss_cti, _, _, _, _, _, _, _),
-         |               ^~~~~~~~
->> drivers/pinctrl/qcom/pinctrl-sm7150.c:37:18: error: 'const struct msm_pingroup' has no member named 'name'
-      37 |                 .name = "gpio" #id,                     \
-         |                  ^~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1094:15: note: in expansion of macro 'PINGROUP'
-    1094 |         [5] = PINGROUP(5, NORTH, _, qdss_cti, _, _, _, _, _, _, _),
-         |               ^~~~~~~~
->> drivers/pinctrl/qcom/pinctrl-sm7150.c:38:18: error: 'const struct msm_pingroup' has no member named 'pins'
-      38 |                 .pins = gpio##id##_pins,                \
-         |                  ^~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1094:15: note: in expansion of macro 'PINGROUP'
-    1094 |         [5] = PINGROUP(5, NORTH, _, qdss_cti, _, _, _, _, _, _, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:38:25: warning: initialization discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
-      38 |                 .pins = gpio##id##_pins,                \
-         |                         ^~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1094:15: note: in expansion of macro 'PINGROUP'
-    1094 |         [5] = PINGROUP(5, NORTH, _, qdss_cti, _, _, _, _, _, _, _),
-         |               ^~~~~~~~
->> drivers/pinctrl/qcom/pinctrl-sm7150.c:39:18: error: 'const struct msm_pingroup' has no member named 'npins'
-      39 |                 .npins = ARRAY_SIZE(gpio##id##_pins),   \
-         |                  ^~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1094:15: note: in expansion of macro 'PINGROUP'
-    1094 |         [5] = PINGROUP(5, NORTH, _, qdss_cti, _, _, _, _, _, _, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:40:26: warning: initialized field overwritten [-Woverride-init]
-      40 |                 .funcs = (int[]){                       \
-         |                          ^
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1094:15: note: in expansion of macro 'PINGROUP'
-    1094 |         [5] = PINGROUP(5, NORTH, _, qdss_cti, _, _, _, _, _, _, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:40:26: note: (near initialization for 'sm7150_groups[5].funcs')
-      40 |                 .funcs = (int[]){                       \
-         |                          ^
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1094:15: note: in expansion of macro 'PINGROUP'
-    1094 |         [5] = PINGROUP(5, NORTH, _, qdss_cti, _, _, _, _, _, _, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:52:27: warning: initialized field overwritten [-Woverride-init]
-      52 |                 .nfuncs = 10,                           \
-         |                           ^~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1094:15: note: in expansion of macro 'PINGROUP'
-    1094 |         [5] = PINGROUP(5, NORTH, _, qdss_cti, _, _, _, _, _, _, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:52:27: note: (near initialization for 'sm7150_groups[5].nfuncs')
-      52 |                 .nfuncs = 10,                           \
-         |                           ^~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1094:15: note: in expansion of macro 'PINGROUP'
-    1094 |         [5] = PINGROUP(5, NORTH, _, qdss_cti, _, _, _, _, _, _, _),
-         |               ^~~~~~~~
->> drivers/pinctrl/qcom/pinctrl-sm7150.c:37:18: error: 'const struct msm_pingroup' has no member named 'name'
-      37 |                 .name = "gpio" #id,                     \
-         |                  ^~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1095:15: note: in expansion of macro 'PINGROUP'
-    1095 |         [6] = PINGROUP(6, NORTH, qup11, _, phase_flag, ddr_pxi0, _, _, _, _, _),
-         |               ^~~~~~~~
->> drivers/pinctrl/qcom/pinctrl-sm7150.c:38:18: error: 'const struct msm_pingroup' has no member named 'pins'
-      38 |                 .pins = gpio##id##_pins,                \
-         |                  ^~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1095:15: note: in expansion of macro 'PINGROUP'
-    1095 |         [6] = PINGROUP(6, NORTH, qup11, _, phase_flag, ddr_pxi0, _, _, _, _, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:38:25: warning: initialization discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
-      38 |                 .pins = gpio##id##_pins,                \
-         |                         ^~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1095:15: note: in expansion of macro 'PINGROUP'
-    1095 |         [6] = PINGROUP(6, NORTH, qup11, _, phase_flag, ddr_pxi0, _, _, _, _, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:39:18: error: 'const struct msm_pingroup' has no member named 'npins'
-      39 |                 .npins = ARRAY_SIZE(gpio##id##_pins),   \
-         |                  ^~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1095:15: note: in expansion of macro 'PINGROUP'
-    1095 |         [6] = PINGROUP(6, NORTH, qup11, _, phase_flag, ddr_pxi0, _, _, _, _, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:40:26: warning: initialized field overwritten [-Woverride-init]
-      40 |                 .funcs = (int[]){                       \
-         |                          ^
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1095:15: note: in expansion of macro 'PINGROUP'
-    1095 |         [6] = PINGROUP(6, NORTH, qup11, _, phase_flag, ddr_pxi0, _, _, _, _, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:40:26: note: (near initialization for 'sm7150_groups[6].funcs')
-      40 |                 .funcs = (int[]){                       \
-         |                          ^
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1095:15: note: in expansion of macro 'PINGROUP'
-    1095 |         [6] = PINGROUP(6, NORTH, qup11, _, phase_flag, ddr_pxi0, _, _, _, _, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:52:27: warning: initialized field overwritten [-Woverride-init]
-      52 |                 .nfuncs = 10,                           \
-         |                           ^~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1095:15: note: in expansion of macro 'PINGROUP'
-    1095 |         [6] = PINGROUP(6, NORTH, qup11, _, phase_flag, ddr_pxi0, _, _, _, _, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:52:27: note: (near initialization for 'sm7150_groups[6].nfuncs')
-      52 |                 .nfuncs = 10,                           \
-         |                           ^~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1095:15: note: in expansion of macro 'PINGROUP'
-    1095 |         [6] = PINGROUP(6, NORTH, qup11, _, phase_flag, ddr_pxi0, _, _, _, _, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:37:18: error: 'const struct msm_pingroup' has no member named 'name'
-      37 |                 .name = "gpio" #id,                     \
-         |                  ^~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1096:15: note: in expansion of macro 'PINGROUP'
-    1096 |         [7] = PINGROUP(7, NORTH, qup11, ddr_bist, _, phase_flag, atest_tsens2, vsense_trigger, atest_usb1, ddr_pxi0, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:38:18: error: 'const struct msm_pingroup' has no member named 'pins'
-      38 |                 .pins = gpio##id##_pins,                \
-         |                  ^~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1096:15: note: in expansion of macro 'PINGROUP'
-    1096 |         [7] = PINGROUP(7, NORTH, qup11, ddr_bist, _, phase_flag, atest_tsens2, vsense_trigger, atest_usb1, ddr_pxi0, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:38:25: warning: initialization discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
-      38 |                 .pins = gpio##id##_pins,                \
-         |                         ^~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1096:15: note: in expansion of macro 'PINGROUP'
-    1096 |         [7] = PINGROUP(7, NORTH, qup11, ddr_bist, _, phase_flag, atest_tsens2, vsense_trigger, atest_usb1, ddr_pxi0, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:39:18: error: 'const struct msm_pingroup' has no member named 'npins'
-      39 |                 .npins = ARRAY_SIZE(gpio##id##_pins),   \
-         |                  ^~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1096:15: note: in expansion of macro 'PINGROUP'
-    1096 |         [7] = PINGROUP(7, NORTH, qup11, ddr_bist, _, phase_flag, atest_tsens2, vsense_trigger, atest_usb1, ddr_pxi0, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:40:26: warning: initialized field overwritten [-Woverride-init]
-      40 |                 .funcs = (int[]){                       \
-         |                          ^
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1096:15: note: in expansion of macro 'PINGROUP'
-    1096 |         [7] = PINGROUP(7, NORTH, qup11, ddr_bist, _, phase_flag, atest_tsens2, vsense_trigger, atest_usb1, ddr_pxi0, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:40:26: note: (near initialization for 'sm7150_groups[7].funcs')
-      40 |                 .funcs = (int[]){                       \
-         |                          ^
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1096:15: note: in expansion of macro 'PINGROUP'
-    1096 |         [7] = PINGROUP(7, NORTH, qup11, ddr_bist, _, phase_flag, atest_tsens2, vsense_trigger, atest_usb1, ddr_pxi0, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:52:27: warning: initialized field overwritten [-Woverride-init]
-      52 |                 .nfuncs = 10,                           \
-         |                           ^~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1096:15: note: in expansion of macro 'PINGROUP'
-    1096 |         [7] = PINGROUP(7, NORTH, qup11, ddr_bist, _, phase_flag, atest_tsens2, vsense_trigger, atest_usb1, ddr_pxi0, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:52:27: note: (near initialization for 'sm7150_groups[7].nfuncs')
-      52 |                 .nfuncs = 10,                           \
-         |                           ^~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1096:15: note: in expansion of macro 'PINGROUP'
-    1096 |         [7] = PINGROUP(7, NORTH, qup11, ddr_bist, _, phase_flag, atest_tsens2, vsense_trigger, atest_usb1, ddr_pxi0, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:37:18: error: 'const struct msm_pingroup' has no member named 'name'
-      37 |                 .name = "gpio" #id,                     \
-         |                  ^~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1097:15: note: in expansion of macro 'PINGROUP'
-    1097 |         [8] = PINGROUP(8, NORTH, qup11, gp_pdm1, ddr_bist, _, _, _, _, _, _),
-         |               ^~~~~~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:38:18: error: 'const struct msm_pingroup' has no member named 'pins'
-      38 |                 .pins = gpio##id##_pins,                \
-         |                  ^~~~
-   drivers/pinctrl/qcom/pinctrl-sm7150.c:1097:15: note: in expansion of macro 'PINGROUP'
-    1097 |         [8] = PINGROUP(8, NORTH, qup11, gp_pdm1, ddr_bist, _, _, _, _, _, _),
 
 
-vim +37 drivers/pinctrl/qcom/pinctrl-sm7150.c
+在 2023/5/12 下午5:40, Andy Shevchenko 写道:
+> On Fri, May 12, 2023 at 11:12 AM zhuyinbo <zhuyinbo@loongson.cn> wrote:
+>> 在 2023/5/10 下午3:03, Andy Shevchenko 写道:
+> 
+> ...
+> 
+>> so, I think it is better
+>> to confiure clk and mode separately.
+> 
+> Agree, but at the same time you can split the conditional bodies to
+> the separate functions. In this case the indentation of each of them
+> can be decreased.
 
-b915395c9e0436 Danila Tikhonov 2023-03-12  34  
-b915395c9e0436 Danila Tikhonov 2023-03-12  35  #define PINGROUP(id, _tile, f1, f2, f3, f4, f5, f6, f7, f8, f9) \
-b915395c9e0436 Danila Tikhonov 2023-03-12  36  	{						\
-b915395c9e0436 Danila Tikhonov 2023-03-12 @37  		.name = "gpio" #id,			\
-b915395c9e0436 Danila Tikhonov 2023-03-12 @38  		.pins = gpio##id##_pins,		\
-b915395c9e0436 Danila Tikhonov 2023-03-12 @39  		.npins = ARRAY_SIZE(gpio##id##_pins),	\
-b915395c9e0436 Danila Tikhonov 2023-03-12  40  		.funcs = (int[]){			\
-b915395c9e0436 Danila Tikhonov 2023-03-12  41  			msm_mux_gpio, /* gpio mode */	\
-b915395c9e0436 Danila Tikhonov 2023-03-12  42  			msm_mux_##f1,			\
-b915395c9e0436 Danila Tikhonov 2023-03-12  43  			msm_mux_##f2,			\
-b915395c9e0436 Danila Tikhonov 2023-03-12  44  			msm_mux_##f3,			\
-b915395c9e0436 Danila Tikhonov 2023-03-12  45  			msm_mux_##f4,			\
-b915395c9e0436 Danila Tikhonov 2023-03-12  46  			msm_mux_##f5,			\
-b915395c9e0436 Danila Tikhonov 2023-03-12  47  			msm_mux_##f6,			\
-b915395c9e0436 Danila Tikhonov 2023-03-12  48  			msm_mux_##f7,			\
-b915395c9e0436 Danila Tikhonov 2023-03-12  49  			msm_mux_##f8,			\
-b915395c9e0436 Danila Tikhonov 2023-03-12  50  			msm_mux_##f9			\
-b915395c9e0436 Danila Tikhonov 2023-03-12  51  		},					\
-b915395c9e0436 Danila Tikhonov 2023-03-12  52  		.nfuncs = 10,				\
-b915395c9e0436 Danila Tikhonov 2023-03-12  53  		.ctl_reg = REG_SIZE * id,		\
-b915395c9e0436 Danila Tikhonov 2023-03-12  54  		.io_reg = 0x4 + REG_SIZE * id,		\
-b915395c9e0436 Danila Tikhonov 2023-03-12  55  		.intr_cfg_reg = 0x8 + REG_SIZE * id,	\
-b915395c9e0436 Danila Tikhonov 2023-03-12  56  		.intr_status_reg = 0xc + REG_SIZE * id,	\
-b915395c9e0436 Danila Tikhonov 2023-03-12  57  		.intr_target_reg = 0x8 + REG_SIZE * id,	\
-b915395c9e0436 Danila Tikhonov 2023-03-12  58  		.tile = _tile,				\
-b915395c9e0436 Danila Tikhonov 2023-03-12  59  		.mux_bit = 2,				\
-b915395c9e0436 Danila Tikhonov 2023-03-12  60  		.pull_bit = 0,				\
-b915395c9e0436 Danila Tikhonov 2023-03-12  61  		.drv_bit = 6,				\
-b915395c9e0436 Danila Tikhonov 2023-03-12  62  		.oe_bit = 9,				\
-b915395c9e0436 Danila Tikhonov 2023-03-12  63  		.in_bit = 0,				\
-b915395c9e0436 Danila Tikhonov 2023-03-12  64  		.out_bit = 1,				\
-b915395c9e0436 Danila Tikhonov 2023-03-12  65  		.intr_enable_bit = 0,			\
-b915395c9e0436 Danila Tikhonov 2023-03-12  66  		.intr_status_bit = 0,			\
-b915395c9e0436 Danila Tikhonov 2023-03-12  67  		.intr_target_bit = 5,			\
-b915395c9e0436 Danila Tikhonov 2023-03-12  68  		.intr_target_kpss_val = 3,		\
-b915395c9e0436 Danila Tikhonov 2023-03-12  69  		.intr_raw_status_bit = 4,		\
-b915395c9e0436 Danila Tikhonov 2023-03-12  70  		.intr_polarity_bit = 1,			\
-b915395c9e0436 Danila Tikhonov 2023-03-12  71  		.intr_detection_bit = 2,		\
-b915395c9e0436 Danila Tikhonov 2023-03-12  72  		.intr_detection_width = 2,		\
-b915395c9e0436 Danila Tikhonov 2023-03-12  73  	}
-b915395c9e0436 Danila Tikhonov 2023-03-12  74  
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+okay, I got it.
+
+Thanks.
+> 
+
