@@ -2,43 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FF8E7017AF
+	by mail.lfdr.de (Postfix) with ESMTP id DCB497017B0
 	for <lists+devicetree@lfdr.de>; Sat, 13 May 2023 16:17:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239190AbjEMORb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 May 2023 10:17:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43344 "EHLO
+        id S239485AbjEMORc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 May 2023 10:17:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239199AbjEMOR2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 13 May 2023 10:17:28 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 569D8213E;
-        Sat, 13 May 2023 07:17:25 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34DEHJCZ092981;
-        Sat, 13 May 2023 09:17:19 -0500
+        with ESMTP id S239292AbjEMOR3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 13 May 2023 10:17:29 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86E4726B3;
+        Sat, 13 May 2023 07:17:28 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34DEHMgT005751;
+        Sat, 13 May 2023 09:17:22 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1683987439;
-        bh=Wqr5u/RldaRTwXy/Ndar1RQLuXUF8bzeJnE/KH+c1IA=;
+        s=ti-com-17Q1; t=1683987442;
+        bh=ABJClZqOZxMXInTQef0ixgPzIqPSyo+n0ClPLX6q9zI=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=lPS2UovSkw+16R2CAqLmzElb7r0Ks8zYgEvgX1zJa2iCQjMkxrZSwXBXZn8jTPjBx
-         WSdpy14SVRWuCk/qo7DgTMfNfhvveYk8AW9z/++NP9+PIq2uWtSvu2qGHovUkAn3k6
-         YzuvRA3FGk4625W4ry3J61XO8NQJaOOk+QO8YG88=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34DEHJi9128655
+        b=ufl68ReowbSNLSY8ba15pWtCo71Hvbdy24FoTS9dIUAcaBYFtSsErU3LD2D4OCahx
+         4ebjiPVM+WL3hcA2Jp5wFkWKfFuWad4uBbNnT1757c1nrm8+Es3brcD+715PHSomwq
+         Rm0CZAuGNyJ0gUoq6idh6hG9OsGyq67M6End+kSk=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34DEHMFi092845
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sat, 13 May 2023 09:17:19 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sat, 13
- May 2023 09:17:19 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE112.ent.ti.com
+        Sat, 13 May 2023 09:17:22 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE112.ent.ti.com
  (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sat, 13
+ May 2023 09:17:21 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sat, 13 May 2023 09:17:19 -0500
+ Frontend Transport; Sat, 13 May 2023 09:17:21 -0500
 Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34DEHHDw047419;
-        Sat, 13 May 2023 09:17:18 -0500
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34DEHJpv013982;
+        Sat, 13 May 2023 09:17:20 -0500
 From:   Vaishnav Achath <vaishnav.a@ti.com>
 To:     <vigneshr@ti.com>, <nm@ti.com>, <kristo@kernel.org>,
         <conor+dt@kernel.org>, <robh+dt@kernel.org>,
@@ -46,9 +46,9 @@ To:     <vigneshr@ti.com>, <nm@ti.com>, <kristo@kernel.org>,
 CC:     <vaishnav.a@ti.com>, <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
         <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>
-Subject: [PATCH v2 3/6] arm64: dts: ti: k3-j7200-som: Describe OSPI and Hyperflash partition info
-Date:   Sat, 13 May 2023 19:47:09 +0530
-Message-ID: <20230513141712.27346-4-vaishnav.a@ti.com>
+Subject: [PATCH v2 4/6] arm64: dts: ti: k3-am654-baseboard: Describe OSPI flash partition info
+Date:   Sat, 13 May 2023 19:47:10 +0530
+Message-ID: <20230513141712.27346-5-vaishnav.a@ti.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20230513141712.27346-1-vaishnav.a@ti.com>
 References: <20230513141712.27346-1-vaishnav.a@ti.com>
@@ -65,66 +65,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Describe OSPI and Hyperflash partition information through device tree,
-this helps to remove passing partition information through the mtdparts
-commandline parameter which requires maintaining the partition information
-in a string format. J7200 SoM has a S28 64 MiB OSPI flash with sector size
-of 256 KiB thus the size of the smallest partition is chosen as 256 KiB,
-the SoM also has a 64 MiB Hyperflash present on it, the partition names
-and offsets are chosen according to the corresponding name and offsets
+Describe OSPI flash partition information through device tree, this
+helps to remove passing partition information through the mtdparts
+commandline parameter which requires maintaining the partition
+information in a string format. AM654 baseboard has a MT35XU512ABA
+64 MiB OSPI flash with sector size of 128 KiB thus the size of the
+smallest partition is chosen as 128 KiB, the partition names and
+offsets are chosen according to the corresponding name and offsets
 in bootloader.
 
 Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
 ---
- arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi | 72 +++++++++++++++++++++
- 1 file changed, 72 insertions(+)
+ .../arm64/boot/dts/ti/k3-am654-base-board.dts | 46 +++++++++++++++++++
+ 1 file changed, 46 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-index 269424154771..2a743b895074 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-@@ -149,6 +149,37 @@
- 	flash@0,0 {
- 		compatible = "cypress,hyperflash", "cfi-flash";
- 		reg = <0x00 0x00 0x4000000>;
-+
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			partition@0 {
-+				label = "hbmc.tiboot3";
-+				reg = <0x0 0x100000>;
-+			};
-+
-+			partition@100000 {
-+				label = "hbmc.tispl";
-+				reg = <0x100000 0x200000>;
-+			};
-+
-+			partition@300000 {
-+				label = "hbmc.u-boot";
-+				reg = <0x300000 0x400000>;
-+			};
-+
-+			partition@700000 {
-+				label = "hbmc.env";
-+				reg = <0x700000 0x40000>;
-+			};
-+
-+			partition@800000 {
-+				label = "hbmc.rootfs";
-+				reg = <0x800000 0x3800000>;
-+			};
-+		};
- 	};
- };
- 
-@@ -250,5 +281,46 @@
+diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+index 15524cf71b58..b49911efebc6 100644
+--- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
++++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+@@ -544,6 +544,52 @@
  		cdns,tchsh-ns = <60>;
  		cdns,tslch-ns = <60>;
- 		cdns,read-delay = <4>;
+ 		cdns,read-delay = <0>;
 +
 +		partitions {
 +			compatible = "fixed-partitions";
@@ -133,27 +95,32 @@ index 269424154771..2a743b895074 100644
 +
 +			partition@0 {
 +				label = "ospi.tiboot3";
-+				reg = <0x0 0x100000>;
++				reg = <0x0 0x80000>;
 +			};
 +
-+			partition@100000 {
++			partition@80000 {
 +				label = "ospi.tispl";
-+				reg = <0x100000 0x200000>;
++				reg = <0x80000 0x200000>;
 +			};
 +
-+			partition@300000 {
++			partition@280000 {
 +				label = "ospi.u-boot";
-+				reg = <0x300000 0x400000>;
++				reg = <0x280000 0x400000>;
 +			};
 +
-+			partition@700000 {
++			partition@680000 {
 +				label = "ospi.env";
-+				reg = <0x700000 0x40000>;
++				reg = <0x680000 0x20000>;
 +			};
 +
-+			partition@740000 {
++			partition@6a0000 {
 +				label = "ospi.env.backup";
-+				reg = <0x740000 0x40000>;
++				reg = <0x6a0000 0x20000>;
++			};
++
++			partition@6c0000 {
++				label = "ospi.sysfw";
++				reg = <0x6c0000 0x100000>;
 +			};
 +
 +			partition@800000 {
@@ -161,13 +128,14 @@ index 269424154771..2a743b895074 100644
 +				reg = <0x800000 0x37c0000>;
 +			};
 +
-+			partition@3fc0000 {
++			partition@3fe0000 {
 +				label = "ospi.phypattern";
-+				reg = <0x3fc0000 0x40000>;
++				reg = <0x3fe0000 0x20000>;
 +			};
 +		};
  	};
  };
+ 
 -- 
 2.17.1
 
