@@ -2,208 +2,318 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34D697018A0
-	for <lists+devicetree@lfdr.de>; Sat, 13 May 2023 19:50:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28EE6701880
+	for <lists+devicetree@lfdr.de>; Sat, 13 May 2023 19:36:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231890AbjEMRu2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 May 2023 13:50:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34232 "EHLO
+        id S230369AbjEMRgj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 May 2023 13:36:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229473AbjEMRu1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 13 May 2023 13:50:27 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DE071A2
-        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 10:50:26 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-50bc3088b7aso20858977a12.3
-        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 10:50:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684000224; x=1686592224;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=X8d2KXRCGDR3c/BQhN0FBkqec9oklx/aHt7TQaWGLAE=;
-        b=yqy+K5qOjT2HCUMgVZL5+yMNzrG3KIxCwUpr2HYmbWgn/pIpSv7MSlHYzEBaDSQN0F
-         hcd0nFHL7GSn6kDMuSvLQJ3oIrbnrcpsfHWwnN+/5uMO9pZctvz4rBs5qQPhthQ0D4y5
-         adkGcNDy37/0RSeb61daDvkdYQmhUomwp9pv4Mmpm5k66dL1S8n0UZJe17nOeKPkEG78
-         TBLX1qlNGQzK478yaEIPa9wLscIOIHzhQWql64Ex5CyP29IL2wZXonctlKs/Q1RJNcYB
-         vEsYD0eyKAq9YtSU6+PVaG3aNX3St3mMrAfUcKBagV5oPeuEGROMstunKotTRsBnMenS
-         ++DA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684000224; x=1686592224;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=X8d2KXRCGDR3c/BQhN0FBkqec9oklx/aHt7TQaWGLAE=;
-        b=f8dC/LsI8AiBDT+jedET62ayJNWpCgdbadUzQz+rr6Ain/EtjTDgUG2Qeani8LdRbS
-         RISKIV8ZxDkDy/uvaobiZUDlGBvKchpdFB0Cs7FSeQRwQNIgyHKzJga2PTcYvBgpZ02b
-         0OmLPxNyYuJGeGCGExUZHlvwLuOe0hUhK9oOfraqBtBvJ9k6j0V3b7RV4wfJk9A9s2qk
-         lBMc3tPhRU0x1fqwSOcw+6bVAPgBXJGbi4dgOlzOSTYoQgMLY5rUPeFE51PVC/1ZIu42
-         /UKMSpLB+nfn93Bw4Chqqt9V50H0UZpd7UyfqCOTrfjBLv9NO4Y8PdyI9KqjdIk85Nw4
-         aUkw==
-X-Gm-Message-State: AC+VfDz1Mc57xQpCwKdZRvj2LWfi6H4UGAWA7jnpMS+V4r/MGcfJvSSW
-        XOwpkbtYO7wogGH4AZbGjiI5Aw==
-X-Google-Smtp-Source: ACHHUZ5XkUMcRaZZmMQwIXdNF25tNNfnaVOKYKwuDAexzMiguHzUPXzwxlxCIgOBN3x+LkOTwpISHQ==
-X-Received: by 2002:aa7:c744:0:b0:50d:89a3:d909 with SMTP id c4-20020aa7c744000000b0050d89a3d909mr19430241eds.30.1684000224482;
-        Sat, 13 May 2023 10:50:24 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:bc2d:23f8:43c2:2aed? ([2a02:810d:15c0:828:bc2d:23f8:43c2:2aed])
-        by smtp.gmail.com with ESMTPSA id r9-20020a056402018900b0050dab547fc6sm5248943edv.74.2023.05.13.10.50.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 13 May 2023 10:50:23 -0700 (PDT)
-Message-ID: <90f24883-4653-d099-14cc-38e2ecbbd189@linaro.org>
-Date:   Sat, 13 May 2023 19:50:22 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [RFC 2/6] dt-bindings: riscv: add riscv,isa-extension-* property
- and incompatible example
-Content-Language: en-US
-To:     Conor Dooley <conor@kernel.org>, linux-riscv@lists.infradead.org
-Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        with ESMTP id S229704AbjEMRgj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 13 May 2023 13:36:39 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9A242686;
+        Sat, 13 May 2023 10:36:37 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5ECF1601DB;
+        Sat, 13 May 2023 17:36:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74121C433D2;
+        Sat, 13 May 2023 17:36:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1683999396;
+        bh=Up3kRvV2utStQ+dNNUIlZUZeRXb35QvlSL9rahOYgKI=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=SOyhOemMlsKTzAJWuSChiWXJKvqLR0iGhozNoq/El3xAyrGsW8Us1DpqUV+biuLvv
+         oGvHtE2rrzkCTpuW+seXAFtnsYQIhXOdL6AEgv17KT2bJAIVkYVA1pUN4YBEjgPrRp
+         oxGTNAjD57Svw/sR/Fz/q4w8tzhXCxLu2LCjvFiSBfM8iXS0eH7civkQs+t1ajVI6O
+         s6rJ8HrPZjF1lDAFusLAROsw0MOixEW7ycB6qayfoDAh6H4bjqqeAJlpMGuabezIC5
+         hWYxTHcgpr9XbBpGQyVuPdQHCdZXFCAqjbc9F/umTFNK6WsEJIqiyjcqZQWNUR1rRC
+         9+WZXdDkPPhYQ==
+Date:   Sat, 13 May 2023 18:52:36 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Matti Vaittinen <mazziesaccount@gmail.com>
+Cc:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Sunil V L <sunilvl@ventanamicro.com>,
-        Yangyu Chen <cyy@cyyself.name>, devicetree@vger.kernel.org
-References: <20230508-hypnotic-phobia-99598439d828@spud>
- <20230508-sneeze-cesarean-d1aff8be9cc8@spud>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230508-sneeze-cesarean-d1aff8be9cc8@spud>
-Content-Type: text/plain; charset=UTF-8
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Shreeya Patel <shreeya.patel@collabora.com>,
+        Zhigang Shi <Zhigang.Shi@liteon.com>,
+        Paul Gazzillo <paul@pgazz.com>,
+        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 4/5] iio: light: ROHM BU27008 color sensor
+Message-ID: <20230513185236.39bbface@jic23-huawei>
+In-Reply-To: <dca5df2f-b7c0-b5af-f374-7cc5ef854cdb@gmail.com>
+References: <cover.1683105758.git.mazziesaccount@gmail.com>
+        <6d1e37f95dd039d9c96a992b1855fd193bdded40.1683105758.git.mazziesaccount@gmail.com>
+        <20230507155434.3d05daa5@jic23-huawei>
+        <dca5df2f-b7c0-b5af-f374-7cc5ef854cdb@gmail.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/05/2023 20:16, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
+On Mon, 8 May 2023 09:32:28 +0300
+Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+
+> Hi Jonathan,
 > 
-> This dt-binding is illustrative *only*, it doesn't yet do what I want it
-> to do in terms of enforcement etc. I am yet to figure out exactly how to
-> wrangle the binding such that the individual properties have more
-> generous versions than the generic pattern property.
-> This binding *will* generate errors, and needs rework before it can
-> seriously be considered.
-> Nevertheless, it should demonstrate how I intend such a property be
-> used.
+> On 5/7/23 17:54, Jonathan Cameron wrote:
+> > On Wed, 3 May 2023 12:50:14 +0300
+> > Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+> >   
+> >> The ROHM BU27008 is a sensor with 5 photodiodes (red, green, blue, clear
+> >> and IR) with four configurable channels. Red and green being always
+> >> available and two out of the rest three (blue, clear, IR) can be
+> >> selected to be simultaneously measured. Typical application is adjusting
+> >> LCD backlight of TVs, mobile phones and tablet PCs.
+> >>
+> >> Add initial support for the ROHM BU27008 color sensor.
+> >>   - raw_read() of RGB and clear channels
+> >>   - triggered buffer w/ DRDY interrtupt
+> >>
+> >> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> >>  
+> > Mostly stuff that you asked about in response to earlier version but
+> > which I hadn't replied to until today.
+> > 
+> > Upshot, don't need the manual irq handling in here.
+> > 
+> > Whilst you aren't setting IRQF_ONESHOT for the pollfunc side of the trigger
+> > (the downstream IRQ / IRQ thread) the IIO utility functions are.  
 > 
-> Not-signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  .../devicetree/bindings/riscv/cpus.yaml       | 61 ++++++++++++++++++-
->  1 file changed, 60 insertions(+), 1 deletion(-)
+> I tried doing:
 > 
-> diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> index 405915b04d69..cccb3b2ae23d 100644
-> --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-> +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> @@ -100,6 +100,15 @@ properties:
->        lowercase.
->      $ref: "/schemas/types.yaml#/definitions/string"
->      pattern: ^rv(?:64|32)imaf?d?q?c?b?k?j?p?v?h?(?:[hsxz](?:[a-z])+)?(?:_[hsxz](?:[a-z])+)*$
-> +    deprecated: true
-> +
-> +  riscv,isa-base:
-> +    description:
-> +      Identifies the base ISA supported by a hart.
-> +    $ref: "/schemas/types.yaml#/definitions/string"
+> static int bu27008_setup_trigger(struct bu27008_data *data, struct 
+> iio_dev *idev)
+> {
+> 	struct iio_trigger *itrig;
+> 	char *name;
+> 	int ret;
+> 
+> 	ret = devm_iio_triggered_buffer_setup(data->dev, idev,
+> 					      &iio_pollfunc_store_time,
+> 					      bu27008_trigger_handler,
+> 					      &bu27008_buffer_ops);
+> 	if (ret)
+> 		return dev_err_probe(data->dev, ret,
+> 			     "iio_triggered_buffer_setup_ext FAIL\n");
+> 
+> 	itrig = devm_iio_trigger_alloc(data->dev, "%sdata-rdy-dev%d",
+> 				       idev->name, iio_device_id(idev));
+> 	if (!itrig)
+> 		return -ENOMEM;
+> 
+> 	data->trig = itrig;
+> 
+> 	itrig->ops = &bu27008_trigger_ops;
+> 	iio_trigger_set_drvdata(itrig, data);
+> 
+> 	name = devm_kasprintf(data->dev, GFP_KERNEL, "%s-bu27008",
+> 			      dev_name(data->dev));
+> 
+> 	ret = devm_request_irq(data->dev, data->irq,
+> 				/* No IRQ disabling */
+> 			       &iio_trigger_generic_data_rdy_poll,
+> 			       0, name, itrig);
+> 	if (ret)
+> 		return dev_err_probe(data->dev, ret, "Could not request IRQ\n");
+> 
+> 	ret = devm_iio_trigger_register(data->dev, itrig);
+> 	if (ret)
+> 		return dev_err_probe(data->dev, ret,
+> 				     "Trigger registration failed\n");
+> 
+> 	/* set default trigger */
+> 	idev->trig = iio_trigger_get(itrig);
+> 
+> 	return 0;
+> }
+> 
+> It seems to me we get IRQ storm out of it, bu27008_trigger_handler never 
+> being called. My assumption is that as soon as the IRQ handling code 
+> exits the iio_trigger_generic_data_rdy_poll, it re-enables the IRQ - and 
+> because we have level active IRQ and because the 
+> bu27008_trigger_handler() has not yet had a chance to read the VALID bit 
+> which restores the IRQ-line - we will immediately enter back to the IRQ 
+> handling.
 
-Drop quotes.
+Ah. I'd miss understood what was going on here. I thought we were talking
+race conditions only - not a level interrupt. Sorry for confusion / being
+half asleep. If it has an Ack like this I'd argue this is really an edge
+interrupt but that would require a guaranteed drop in the signal.
+I am assuming the sensor merrily carries on grabbing data, whether or
+not anyone reads it and so if we treated this as an edge interrupt then
+the clear to set cycle could be very short (and hence not detected).
+If it instead doesn't read new data until previous has been read, then things
+are much simpler.
 
-> +    enum:
-> +      - rv32i
-> +      - rv64i
->  
->    # RISC-V requires 'timebase-frequency' in /cpus, so disallow it here
->    timebase-frequency: false
-> @@ -136,8 +145,32 @@ properties:
->        DMIPS/MHz, relative to highest capacity-dmips-mhz
->        in the system.
->  
-> +  riscv,isa-extension-v:
-> +    description: RISC-V Vector extension
-> +    $ref: "/schemas/types.yaml#/definitions/string"
+Hmm. How to make this work cleanly assuming it's case 1. It might be that your
+current approach is the best though it would be nice to do something in the
+IIO code (with risk of breaking everyone  :()  I don't think we can though
+as we have no way from the trigger implementation side to know if we might
+get threaded interrupt handling or not on the downstream side.
 
-Drop quotes.
+We have reference counting to reenable a trigger that actually has a hardware
+mask at the device end when all consumers are done - that should be used for
+the reenable, not do it in the pollfunc handler.  As it's a level interrupt
+you avoid need to do a bonus read in there I think (sometimes that's necessary
+because of an edge trigger and a slow read back on a possible unrelated device).
 
-> +    oneOf:
-> +      - const: v1.0.0
-> +        description: the original incarnation
-> +      - const: v1.0.1
-> +        description: backwards compat was broken here
-> +
-> +patternProperties:
-> +  "^riscv,isa-extension-*":
+The subtle difference between IRQF_ONESHOT and irq_disable is one uses
+the irq_mask / unmask callbacks on the irq chip and the other is using
+the enable / disable ones.  That may make no practical difference - I'm not
+entirely sure.  A quick glance at some drivers suggests masking is usually
+lighter weight as less state is rewrite on reenable.
 
-Are all these -i/-m/-a extensions obvious/known to RISC-V folks? I have
-no clue what's this, so the question is: do they need some explanation
-in the bindings?
+So in short, move the irq_enable() into the iio_trig->reenable() callback.
 
-> +    description:
-> +      Catch-all property for ISA extensions that do not need any special
-> +      handling, and of which all known versions are compatible with their
-> +      original revision.
-> +    $ref: "/schemas/types.yaml#/definitions/string"
 
-Drop quotes.
+> 
+> This problem does not occur when I use bu27008_data_rdy_poll() (which is 
+> the same but disables the IRQ) instead of 
+> iio_trigger_generic_data_rdy_poll(), and re-enable the IRQ only after 
+> the handler bu27008_trigger_handler() has restored the IRQ line.
+> 
+> Does the sequence above (bu27008_setup_trigger()) look sane?
+> 
+> > 
+> >   
+> >> +static irqreturn_t bu27008_trigger_handler(int irq, void *p)
+> >> +{
+> >> +	struct iio_poll_func *pf = p;
+> >> +	struct iio_dev *idev = pf->indio_dev;
+> >> +	struct bu27008_data *data = iio_priv(idev);
+> >> +	struct {
+> >> +		__le16 chan[BU27008_NUM_HW_CHANS];
+> >> +		s64 ts __aligned(8);
+> >> +	} raw;
+> >> +	int ret, dummy;
+> >> +
+> >> +	memset(&raw, 0, sizeof(raw));
+> >> +
+> >> +	/*
+> >> +	 * After some measurements, it seems reading the
+> >> +	 * BU27008_REG_MODE_CONTROL3 debounces the IRQ line
+> >> +	 */
+> >> +	ret = regmap_read(data->regmap, BU27008_REG_MODE_CONTROL3, &dummy);
+> >> +	if (ret < 0)
+> >> +		goto err_read;
+> >> +
+> >> +	ret = regmap_bulk_read(data->regmap, BU27008_REG_DATA0_LO, &raw.chan,
+> >> +			       sizeof(raw.chan));
+> >> +	if (ret < 0)
+> >> +		goto err_read;
+> >> +
+> >> +	iio_push_to_buffers_with_timestamp(idev, &raw, pf->timestamp);
+> >> +err_read:
+> >> +	iio_trigger_notify_done(idev->trig);
+> >> +
+> >> +	enable_irq(data->irq);  
+> > 
+> > As below. This shouldn't be needed (and if it was it should be in the
+> > reenable path that is ultimately a result of that notify_done above and
+> > some reference counting fun).  
+> 
+> I will see the reenable callback, thanks!
 
-> +    enum:
-> +      - v1.0.0
+Great
 
-Your example should not validate here... you have there v2.0.0 and v1.0.1
+> 
+> >   
+> >> +
+> >> +	return IRQ_HANDLED;
+> >> +}
+> >> +
+> >> +static int bu27008_buffer_preenable(struct iio_dev *idev)
+> >> +{
+> >> +	struct bu27008_data *data = iio_priv(idev);
+> >> +	int chan_sel, ret;
+> >> +
+> >> +	/* Configure channel selection */
+> >> +	if (test_bit(BU27008_BLUE, idev->active_scan_mask)) {
+> >> +		if (test_bit(BU27008_CLEAR, idev->active_scan_mask))
+> >> +			chan_sel = BU27008_BLUE2_CLEAR3;
+> >> +		else
+> >> +			chan_sel = BU27008_BLUE2_IR3;
+> >> +	} else {
+> >> +		chan_sel = BU27008_CLEAR2_IR3;
+> >> +	}
+> >> +
+> >> +	chan_sel = FIELD_PREP(BU27008_MASK_CHAN_SEL, chan_sel);
+> >> +
+> >> +	ret = regmap_update_bits(data->regmap, BU27008_REG_MODE_CONTROL3,
+> >> +				 BU27008_MASK_CHAN_SEL, chan_sel);
+> >> +	if (ret)
+> >> +		return ret;  
+> > 
+> > Hmm. I'd missed this before but. This is in the wrong place really
+> > (though it probably doesn't make much difference), stuff related to
+> > enabling particular channels should be in iio_info->update_scan_mode()  
+> 
+> Oh. I'll check this out as well.
+> 
+> > 
+> > It's arguable that the actual measurement mode setting might come
+> > in the postenable callback (after the update_scan_mode() call which
+> > in turn follows the preenable callback).
+> > 
+> > All these callbacks have become a bit blurry over time as we end
+> > up with devices that need to do nasty thing in one place.  In this
+> > particular case it's pretty simple though, so nicer to move
+> > the scan mask stuff to the callback that is given the active_scan
+> > mask as a parameter.
+> >   
+> >> +
+> >> +	return bu27008_meas_set(data, BU27008_MEAS_EN);
+> >> +}
+> >> +
+> >> +static int bu27008_buffer_postdisable(struct iio_dev *idev)
+> >> +{
+> >> +	struct bu27008_data *data = iio_priv(idev);
+> >> +
+> >> +	return bu27008_meas_set(data, BU27008_MEAS_DIS);
+> >> +}
+> >> +
+> >> +static const struct iio_buffer_setup_ops bu27008_buffer_ops = {
+> >> +	.preenable = bu27008_buffer_preenable,
+> >> +	.postdisable = bu27008_buffer_postdisable,
+> >> +};
+> >> +
+> >> +static irqreturn_t bu27008_data_rdy_poll(int irq, void *private)
+> >> +{
+> >> +	/*
+> >> +	 * The BU27008 keeps IRQ asserted until we read the VALID bit from
+> >> +	 * a register. We need to keep the IRQ disabled until this
+> >> +	 */
+> >> +	disable_irq_nosync(irq);  
+> > 
+> > As per my late reply to your question on this, shouldn't be needed
+> > as IRQF_ONESHOT is ultimately set for the interrupts nested below this
+> > so they'll get the resulting queuing on the threads which is fine.  
+> 
+> I see an IRQ storm if I omit this. The threaded trigger handler which 
+> 'ACKs' the IRQ gets never ran. I'll see the reenable though! Thanks!
 
-> +
-> +oneOf:
-> +  - required:
-> +      - riscv,isa-base
-> +  - required:
-> +      - riscv,isa
-> +
->  required:
-> -  - riscv,isa
->    - interrupt-controller
->  
->  additionalProperties: true
-> @@ -208,4 +241,30 @@ examples:
->                  };
->          };
->      };
-> +
-> +  - |
-> +    // Example 3: Extension specification
-> +    cpus {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        cpu@0 {
-> +                device_type = "cpu";
-> +                reg = <0>;
-> +                compatible = "riscv";
-> +                riscv,isa-base = "rv64i";
-> +                riscv,isa-extension-i = "v1.0.0";
-> +                riscv,isa-extension-m = "v1.0.0";
-> +                riscv,isa-extension-a = "v1.0.0";
-> +                riscv,isa-extension-f = "v1.0.0";
-> +                riscv,isa-extension-d = "v1.0.0";
-> +                riscv,isa-extension-c = "v2.0.0";
-> +                riscv,isa-extension-v = "v1.0.1";
-> +                mmu-type = "riscv,sv48";
-> +                interrupt-controller {
-> +                        #interrupt-cells = <1>;
-> +                        interrupt-controller;
-> +                        compatible = "riscv,cpu-intc";
-> +                };
-> +        };
-> +    };
->  ...
+As you probably figured, I was wrong. Reenable bit stands though!.
 
-Best regards,
-Krzysztof
+Jonathan
+
+> 
+> Yours,
+> 	-- Matti
+> 
 
