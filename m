@@ -2,77 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC17D701576
-	for <lists+devicetree@lfdr.de>; Sat, 13 May 2023 11:00:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44E7370157F
+	for <lists+devicetree@lfdr.de>; Sat, 13 May 2023 11:09:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229463AbjEMJAD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 May 2023 05:00:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49292 "EHLO
+        id S235208AbjEMJJO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 May 2023 05:09:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229882AbjEMJAC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 13 May 2023 05:00:02 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AAC24EEB
-        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 01:59:59 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2ad9f2926adso64517521fa.1
-        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 01:59:59 -0700 (PDT)
+        with ESMTP id S229639AbjEMJJM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 13 May 2023 05:09:12 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCAF61FDD
+        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 02:09:10 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2ac836f4447so110956871fa.2
+        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 02:09:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683968398; x=1686560398;
+        d=linaro.org; s=google; t=1683968949; x=1686560949;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=YV/mnZ4/4r3AbGxzYpTnL7fXn/4PhGDzkVnVht6PIUY=;
-        b=hydG02x8sN3Dc1uuIrMUyEL0Lbr9XO80nlza33L7ih1cLxw/mJf97Bf8dZAljcKrs7
-         HZVxeGdtJxKwBoKaSTNTgpl2Abp0QVtYNe3x3AHzqb0yVJKbKpGXea4xsSZWNEuE6O9i
-         B6TBd8wKi0FO4ehtxmdFpaC4cyTmMrLd+yWJOK7TEhWLwGiaKuCWlGAUt+78urdCs4+S
-         X8vD+wk5DIyELX/JzrJN78k+ekM3nQ0Gp8WHWHCZzWggEMEX1WeN/ibAb/4z9QFWjS4n
-         MmgOY0zYcC/GbWBCohV7VoamXoQQyzBCp+rduT/FWHJvFPYFSXY0PUMUOG/+nE1rDW4Q
-         Wj2g==
+        bh=0XVnXZFvQEsqa79rEwn5T6CH1CtUAwGaKR7PKUSsQxA=;
+        b=aVMq4tqniH5yF4T4yGJrOBgFXvLGdMrWlb0GBvJH80rQXMatI3bZmWpSRBTq4v4xc+
+         c9CxLS9fN4j4om/4dP+q/JXrFqQ04A2BD4ZxpGV1JqMUIyfDEq1yOtleTo+1N4IrhVIT
+         I36J/Yz0dF5rZPPKr8eYAJBpwrshqL11+ROQowRrKv9Dd9hQbAYsZI0pX9dNJMtymzw3
+         y/6PPRZOwy3vZ3cIc2kybyyBna/Hh9R24QPfsjzszWuBgVWnA/AWgymA6eohTK/JDzYC
+         N29jCrLNs2L4PvGpgpN10k4ZkMBNxwJa7x0UxZ+20gs5y6qt0dcOMJeH8d50Pq6/IZoz
+         5Yzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683968398; x=1686560398;
+        d=1e100.net; s=20221208; t=1683968949; x=1686560949;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YV/mnZ4/4r3AbGxzYpTnL7fXn/4PhGDzkVnVht6PIUY=;
-        b=SgbWfHw9jwqBpfc4o7+oIOIsevfZ/J9uqmaF5WHGCpYoQVu5i/Ba/zT11x7bO/NYlK
-         wUgVynZ4+b9YryXyAOFQx8QlsNdnT2njhHzCqYEHqPctyacJdXUf3vS+dQjEQ3y7GJj1
-         kmGmpKM4NRANDpv3+i3Fkr4Aq9W625KFHpVGvaThQdYDCa0pDzbkHt2E+Fk7ow8ksBYm
-         HT0GSIQmxQmDMhMDqq5MvuUGAmAAFeppmeoKhfyK90b93U5iLYlqRuHaUwv3F/xSrkPh
-         xgFq0XOwp9B2nMLX7WLYHtv0WjwBvUPZ4TBQtlc7NjHNfO034yZtBs3/55I9SngbQnW8
-         Yhvg==
-X-Gm-Message-State: AC+VfDwJbf+sYXHQLyUbGf+GiIDvYGNuuVYIMQCEJLyf7uzCVqLuu7Zv
-        uXnEGeKq1O8Pxt65hrXLkPF5kOjmYUMlJpuWjJg=
-X-Google-Smtp-Source: ACHHUZ5/oqXsjheRMdwkquVqrIgZ9TCHtwYEIipwgHc9qOwzW5KHHGhiProtciW738juU+Gtz6MOyw==
-X-Received: by 2002:a2e:9bd7:0:b0:2ad:9161:7aca with SMTP id w23-20020a2e9bd7000000b002ad91617acamr5113901ljj.41.1683968397737;
-        Sat, 13 May 2023 01:59:57 -0700 (PDT)
+        bh=0XVnXZFvQEsqa79rEwn5T6CH1CtUAwGaKR7PKUSsQxA=;
+        b=H8JAKi/oISRHo2J038EVe28nnKLMI5u1KtBMhxM/AoUpQnKRMXjfPOcnOGGSHj2Vdj
+         9pOqRfz/Yk3JOIMXH2aZy8AU0U1smekpMX0dOjaBLQyqb+B36hbn1jkv8382l5sM+Efo
+         wgl/E2NKUQ98J/Nig9YrKM5e2Gr4msyufGgyaXEqRsuJbuooiC5oaW1KKhNnpbAOB5qI
+         GTZikvAj4BMQlqI0goq22OM/4hkDwSPOzBb0ALrF0GOuSWXWbW7R0EuB8UP3YTl4aa6m
+         L0NHoGuzjABQG1qzDNRpyeHd12Lo1XvLIObPodp0FGQS99eimvrGlJdcM67+QSCzWdci
+         BfFA==
+X-Gm-Message-State: AC+VfDw7IToPErAgI5chmFek7r28cb/tNdCDes1JgcKxGoy6VwxUOklj
+        92M5GagBQADHiYLyczv7osJ20Q==
+X-Google-Smtp-Source: ACHHUZ4lx1tK0JmxHrSwGsh+USwsUSWqrEyW+hhjDwc9ajC0E7CF+X+qUy5/dyk9B2CzwLh4gYGmDg==
+X-Received: by 2002:a2e:2c09:0:b0:2ad:bb53:8b9a with SMTP id s9-20020a2e2c09000000b002adbb538b9amr3370782ljs.20.1683968949108;
+        Sat, 13 May 2023 02:09:09 -0700 (PDT)
 Received: from [192.168.1.101] (abxi58.neoplus.adsl.tpnet.pl. [83.9.2.58])
-        by smtp.gmail.com with ESMTPSA id y5-20020a2e95c5000000b002addbc16a54sm342220ljh.41.2023.05.13.01.59.56
+        by smtp.gmail.com with ESMTPSA id v21-20020a2e87d5000000b002adb10a6620sm1369608ljj.107.2023.05.13.02.09.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 13 May 2023 01:59:57 -0700 (PDT)
-Message-ID: <9c07e0a1-d3a6-03df-87a0-f2bdbac7d8f3@linaro.org>
-Date:   Sat, 13 May 2023 10:59:55 +0200
+        Sat, 13 May 2023 02:09:08 -0700 (PDT)
+Message-ID: <f6ecd66b-e207-0ed9-0ff3-1febfdf5bce9@linaro.org>
+Date:   Sat, 13 May 2023 11:09:07 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
-Subject: Re: [PATCH v6 2/4] interconnect: add clk-based icc provider support
+Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp: Flush RSC sleep & wake votes
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+To:     Bjorn Andersson <quic_bjorande@quicinc.com>,
         Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        Georgi Djakov <djakov@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Yassine Oudjana <y.oudjana@protonmail.com>,
-        linux-pm@vger.kernel.org
-References: <20230512001334.2983048-1-dmitry.baryshkov@linaro.org>
- <20230512001334.2983048-3-dmitry.baryshkov@linaro.org>
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230512150425.3171122-1-quic_bjorande@quicinc.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230512001334.2983048-3-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230512150425.3171122-1-quic_bjorande@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -87,114 +81,37 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 12.05.2023 02:13, Dmitry Baryshkov wrote:
-> For some devices it is useful to export clocks as interconnect providers,
-> if the clock corresponds to bus bandwidth.
+On 12.05.2023 17:04, Bjorn Andersson wrote:
+> The rpmh driver will cache sleep and wake votes until the cluster
+> power-domain is about to enter idle, to avoid unnecessary writes. So
+> associate the apps_rsc with the cluster pd, so that it can be notified
+> about this event.
 > 
-> For example, on MSM8996 the cluster interconnect clock should be scaled
-> according to the cluster frequencies. Exporting it as an interconnect
-> allows one to properly describe this as the cluster bandwidth
-> requirements.
+> Without this, only AMC votes are being commited.
+Ouch.
+
+Should we make this required: in bindings and add it to all
+platforms?
+
 > 
-> Tested-by: Yassine Oudjana <y.oudjana@protonmail.com>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
 > ---
-[...]
-
-> +
-> +	for (i = 0, j = 0; i < num_clocks; i++) {
-> +		qp->clocks[i].clk = data[i].clk;
-> +
-> +		node = icc_node_create(first_id + j);
-> +		if (IS_ERR(node)) {
-> +			ret = PTR_ERR(node);
-> +			goto err;
-> +		}
-> +
-> +		node->name = devm_kasprintf(dev, GFP_KERNEL, "%s_master", data[i].name);
-> +		node->data = &qp->clocks[i];
-> +		icc_node_add(node, provider);
-> +		/* link to the next node, slave */
-> +		icc_link_create(node, first_id + j + 1);
-> +		onecell->nodes[j++] = node;
-> +
-> +		node = icc_node_create(first_id + j);
-> +		if (IS_ERR(node)) {
-> +			ret = PTR_ERR(node);
-> +			goto err;
-> +		}
-> +
-> +		node->name = devm_kasprintf(dev, GFP_KERNEL, "%s_slave", data[i].name);
-> +		/* no data for slave node */
-> +		icc_node_add(node, provider);
-> +		onecell->nodes[j++] = node;
-I'm still not very into using 2 iterators and modifying one
-on the flight, but I don't think I have any other issues with
-this driver..
-
-Some sort of a Mostly-Acked-by tag would be helpful here!
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Fixes: 152d1faf1e2f ("arm64: dts: qcom: add SC8280XP platform")
 
 Konrad
-> +	}
-> +
-> +	onecell->num_nodes = j;
-> +
-> +	ret = icc_provider_register(provider);
-> +	if (ret)
-> +		goto err;
-> +
-> +	return provider;
-> +
-> +err:
-> +	icc_nodes_remove(provider);
-> +
-> +	return ERR_PTR(ret);
-> +}
-> +
-> +/**
-> + * icc_clk_unregister() - unregister a previously registered clk interconnect provider
-> + * @provider: provider returned by icc_clk_register()
-> + */
-> +void icc_clk_unregister(struct icc_provider *provider)
-> +{
-> +	struct icc_clk_provider *qp = container_of(provider, struct icc_clk_provider, provider);
-> +	int i;
-> +
-> +	icc_provider_deregister(&qp->provider);
-> +	icc_nodes_remove(&qp->provider);
-> +
-> +	for (i = 0; i < qp->num_clocks; i++) {
-> +		struct icc_clk_node *qn = &qp->clocks[i];
-> +
-> +		if (qn->enabled)
-> +			clk_disable_unprepare(qn->clk);
-> +	}
-> +}
-> diff --git a/include/linux/interconnect-clk.h b/include/linux/interconnect-clk.h
-> new file mode 100644
-> index 000000000000..0cd80112bea5
-> --- /dev/null
-> +++ b/include/linux/interconnect-clk.h
-> @@ -0,0 +1,22 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Copyright (c) 2023, Linaro Ltd.
-> + */
-> +
-> +#ifndef __LINUX_INTERCONNECT_CLK_H
-> +#define __LINUX_INTERCONNECT_CLK_H
-> +
-> +struct device;
-> +
-> +struct icc_clk_data {
-> +	struct clk *clk;
-> +	const char *name;
-> +};
-> +
-> +struct icc_provider *icc_clk_register(struct device *dev,
-> +				      unsigned int first_id,
-> +				      unsigned int num_clocks,
-> +				      const struct icc_clk_data *data);
-> +void icc_clk_unregister(struct icc_provider *provider);
-> +
-> +#endif
+>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> index 8fa9fbfe5d00..5c68f2182c2f 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> @@ -3982,6 +3982,7 @@ apps_rsc: rsc@18200000 {
+>  			qcom,tcs-config = <ACTIVE_TCS  2>, <SLEEP_TCS   3>,
+>  					  <WAKE_TCS    3>, <CONTROL_TCS 1>;
+>  			label = "apps_rsc";
+> +			power-domains = <&CLUSTER_PD>;
+>  
+>  			apps_bcm_voter: bcm-voter {
+>  				compatible = "qcom,bcm-voter";
