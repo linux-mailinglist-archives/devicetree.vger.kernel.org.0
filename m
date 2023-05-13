@@ -2,39 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B5D5A70183A
-	for <lists+devicetree@lfdr.de>; Sat, 13 May 2023 18:46:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3563D70183E
+	for <lists+devicetree@lfdr.de>; Sat, 13 May 2023 18:49:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229756AbjEMQqG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 May 2023 12:46:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44008 "EHLO
+        id S229882AbjEMQtg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 May 2023 12:49:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229654AbjEMQqF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 13 May 2023 12:46:05 -0400
+        with ESMTP id S229508AbjEMQtf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 13 May 2023 12:49:35 -0400
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C0242D6D;
-        Sat, 13 May 2023 09:46:03 -0700 (PDT)
-Received: from p508fce4f.dip0.t-ipconnect.de ([80.143.206.79] helo=phil.localnet)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 063EA2D68;
+        Sat, 13 May 2023 09:49:33 -0700 (PDT)
+Received: from p508fce4f.dip0.t-ipconnect.de ([80.143.206.79] helo=phil.fritz.box)
         by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
         (Exim 4.94.2)
         (envelope-from <heiko@sntech.de>)
-        id 1pxsNb-0000Un-KP; Sat, 13 May 2023 18:45:59 +0200
+        id 1pxsR0-0000Vh-Cn; Sat, 13 May 2023 18:49:30 +0200
 From:   Heiko Stuebner <heiko@sntech.de>
-To:     devicetree@vger.kernel.org, Chris Morgan <macroalpha82@gmail.com>
-Cc:     linux-rockchip@lists.infradead.org, netdev@vger.kernel.org,
-        anarsoul@gmail.com, alistair@alistair23.me, conor+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        pabeni@redhat.com, kuba@kernel.org, edumazet@google.com,
-        davem@davemloft.net, Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: net: realtek-bluetooth: Fix RTL8821CS binding
-Date:   Sat, 13 May 2023 18:45:58 +0200
-Message-ID: <4827925.31r3eYUQgx@phil>
-In-Reply-To: <20230508160811.3568213-2-macroalpha82@gmail.com>
-References: <20230508160811.3568213-1-macroalpha82@gmail.com>
- <20230508160811.3568213-2-macroalpha82@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Tianling Shen <cnsztl@gmail.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: fix button reset pin for nanopi r5c
+Date:   Sat, 13 May 2023 18:49:24 +0200
+Message-Id: <168399655509.610817.9447804188799510954.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.39.0
+In-Reply-To: <20230510161850.4866-1-cnsztl@gmail.com>
+References: <20230510161850.4866-1-cnsztl@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
         T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
         autolearn_force=no version=3.4.6
@@ -44,19 +43,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Montag, 8. Mai 2023, 18:08:10 CEST schrieb Chris Morgan:
-> From: Chris Morgan <macromorgan@hotmail.com>
+On Thu, 11 May 2023 00:18:50 +0800, Tianling Shen wrote:
+> The reset pin was wrongly assigned due to a copy/paste error,
+> fix it to match actual gpio pin.
 > 
-> Update the fallback string for the RTL8821CS from realtek,rtl8822cs-bt
-> to realtek,rtl8723bs-bt. The difference between these two strings is
-> that the 8822cs enables power saving features that the 8723bs does not,
-> and in testing the 8821cs seems to have issues with these power saving
-> modes enabled.
+> While at it, remove a blank line from nanopi r5s dts.
 > 
-> Fixes: 95ee3a93239e ("dt-bindings: net: realtek-bluetooth: Add RTL8821CS")
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> 
 
-Acked-by: Heiko Stuebner <heiko@sntech.de>
+Applied, thanks!
 
+[1/1] arm64: dts: rockchip: fix button reset pin for nanopi r5c
+      commit: 5325593377f07de31f7e473a9677a28a04c891f3
 
-
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
