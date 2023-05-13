@@ -2,126 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC103701550
-	for <lists+devicetree@lfdr.de>; Sat, 13 May 2023 10:50:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3930C701552
+	for <lists+devicetree@lfdr.de>; Sat, 13 May 2023 10:51:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232883AbjEMIum (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 May 2023 04:50:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43396 "EHLO
+        id S232564AbjEMIvK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 May 2023 04:51:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43826 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229463AbjEMIul (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 13 May 2023 04:50:41 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEB5D4C10
-        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 01:50:38 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2ad714536cfso88585591fa.0
-        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 01:50:38 -0700 (PDT)
+        with ESMTP id S229463AbjEMIvJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 13 May 2023 04:51:09 -0400
+Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CA6646BC
+        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 01:51:09 -0700 (PDT)
+Received: by mail-yb1-xb33.google.com with SMTP id 3f1490d57ef6-ba6fffc5524so2638885276.3
+        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 01:51:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683967837; x=1686559837;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZA+KVArcmXjb5W6mmCGUzDH85J25BuQco6W+6t2c4RM=;
-        b=jeo/gJrKUI0IM8cpVDGXdRLOySjJYBKq46qyfunJdWGTofoXMFtLlVZNWK5jKIwmrc
-         Jkb4JFU10nJ/S+lKp5mzoj7w5Bi6irzmRwad1/yihy3jGHZCeLIm/plOEkKhHhdqLDeH
-         ZRuz8kJpW7LFknwxpccUDtYFdG5J5k/cSLPJiHe7USy22OaB1dZKsuYw7ohlsOY3OLJy
-         MXWLNhtK6IEUVqv1dI+2w6FLgg92yEBewDVq94eTSMkv7wpnHf793rG1AaEed2mn/lqi
-         8JLF9+RMgPrNyiXLNNoxxKVLP2PyaJijENINQkFT+7TDemICgTeb4MpaxnSdHir7+wVF
-         G0hQ==
+        d=gmail.com; s=20221208; t=1683967868; x=1686559868;
+        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zYlqmqzmZQIzuckqyml+D+cUQfB/LAmhyfGQVjeCZAE=;
+        b=fBy+bVnvXyp5nt8dyaQa1jrqetVUWB6vS+JWPi6U05DWuPSOv6YJRfIzrtScKI9mFe
+         9KNEpILByCMXsb17ExcJN1alDSdWGRlvgn2aN+SEXwuVVQBgR62UrQABIU3bPaV0NtC9
+         1JNvW09ZGCVHtFraTsABaWZ5AAZW9FNtjhjwmVTCZGcUJobXLpaA5k9ErrQ4oj75cjiS
+         cagOk3qb4zTImtQxPqqTszxAdbfDwBK+QAMt6qnfmy4sxD8GL/a5HaWOzEjYqd9i+UYp
+         LVk1UKixKwGgZU43prON8Ide4O7eIEPOnKeUKmpYbFv+J6EUylYPKHhgBOnw51HLd9hX
+         CKmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683967837; x=1686559837;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1683967868; x=1686559868;
+        h=to:subject:message-id:date:from:reply-to:mime-version
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZA+KVArcmXjb5W6mmCGUzDH85J25BuQco6W+6t2c4RM=;
-        b=CIJFczs0ixxLhFgGmsXj9qU+op3VGKZP/4UdBfejTQdbCZf/7YZGb+jIY3CyWlm9QV
-         kswpN26uTqa3dWC+WWDu8NnLT8Jqr3eRPmkx22vzDZCCCuxPcwVcOlxdB7tcwayrZKON
-         S/nX8xe/ReyitF2PZBOKwyyOrBIp7UPuiD4m8Tawo/kn9qRPDjkIZtfXAgYIKmeCs7Jk
-         IiEchnegVCOMW5Qi4sBOSKHK8ars9Oh/gYThrT4sUyvtm6+oIewet/w4uSKXxgNudzSZ
-         3NJLKkHjLrTI/VWrvIGE4TCBwkHlPViUnvAjrSgqlOYpMZl/vCqkoAt9eApPG5jSPQRt
-         Ud7g==
-X-Gm-Message-State: AC+VfDyN4xCJYqwbHHlfM3XO9xOhohIKSZH/qWy6iRAqd/EDJ1VPIw9p
-        eekNLxWRalWDFQHpv1E8dIFHdQ==
-X-Google-Smtp-Source: ACHHUZ5l3WP6SXF4/TAtrgwSMcYwjtbVgGIN2dCv9it8ot2NpYp2tlqdQ/CGgy9I7uZ+fnv0945pfA==
-X-Received: by 2002:a05:651c:82:b0:2a8:ba49:a811 with SMTP id 2-20020a05651c008200b002a8ba49a811mr4673879ljq.25.1683967836975;
-        Sat, 13 May 2023 01:50:36 -0700 (PDT)
-Received: from [192.168.1.101] (abxi58.neoplus.adsl.tpnet.pl. [83.9.2.58])
-        by smtp.gmail.com with ESMTPSA id x15-20020a2e9dcf000000b002adb566dc10sm1316566ljj.129.2023.05.13.01.50.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 13 May 2023 01:50:36 -0700 (PDT)
-Message-ID: <ff01b0d2-6e00-40dc-37bc-236c5510aaf5@linaro.org>
-Date:   Sat, 13 May 2023 10:50:34 +0200
+        bh=zYlqmqzmZQIzuckqyml+D+cUQfB/LAmhyfGQVjeCZAE=;
+        b=BRq98ucn3FFGtTOICXn3fzyuUDwlLQqGVS6Bs0S+kGuOHfG9OfYX6d0ASf87ECvINF
+         zCzzhkZPBvyI4I4uT6t1hXpe+JPlMQbDjDD3D6AzNv79auQMqU5ACnim/omtit/J652R
+         Bpbcq8ytvMC9bJGVlQGDsDEJPBSppLuhWZJSpCk/Oz8PbYdPWa9DqpxM+H3VVETFn6mV
+         /nR9RK/BXSm/24Sx4OzNsa9VpNFZBMBeKwjZtlmnxCmRXk4g/cCwd3kGlWm0fIrxrSyT
+         WdihVjvkqxa7qOfkdxOBjTCXCKl9e8lN1ul8V2+wiby+96/E6L4MHD6p0uMnlqyVe0M2
+         Brdg==
+X-Gm-Message-State: AC+VfDz0AzwRzafPGbQQXLiK5JroIKaOR2NyxLtRDPkxUcUl9TlyZq3J
+        2rodTycgPKMyvTlwK960dqhvbiNeKo/S8T2Pzls=
+X-Google-Smtp-Source: ACHHUZ5W4oCdZWCodKLBGuHs3eW6tibA6PljsnqVLBW6NyjAalKzIPRFDNITfzjQGStBqSrM86Pjz5jbDIDSti1HxWk=
+X-Received: by 2002:a05:6902:70d:b0:ba7:50d4:d914 with SMTP id
+ k13-20020a056902070d00b00ba750d4d914mr1838206ybt.5.1683967868148; Sat, 13 May
+ 2023 01:51:08 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH 3/3] ARM: dts: qcom: msm8226: Provide clocks to mmcc node
-To:     Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
-        phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Jeffrey Hugo <quic_jhugo@quicinc.com>,
-        Taniya Das <tdas@codeaurora.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-References: <20230509-msm8226-mmcc-parents-v1-0-83a2dfc986ab@z3ntu.xyz>
- <20230509-msm8226-mmcc-parents-v1-3-83a2dfc986ab@z3ntu.xyz>
-Content-Language: en-US
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230509-msm8226-mmcc-parents-v1-3-83a2dfc986ab@z3ntu.xyz>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Received: by 2002:a05:7108:52a0:b0:2f2:90f8:f42c with HTTP; Sat, 13 May 2023
+ 01:51:07 -0700 (PDT)
+Reply-To: ninacoulibaly03@hotmail.com
+From:   nina coulibaly <nina.coulibaly011@gmail.com>
+Date:   Sat, 13 May 2023 01:51:07 -0700
+Message-ID: <CAJe7QkqpkKY_YvcNdU7_wvCnYkpkU=vUn7jK3VmJusO7SEc6TQ@mail.gmail.com>
+Subject: from nina coulibaly
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=4.9 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        UNDISC_FREEM autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: ****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Dear,
 
+Please grant me permission to share a very crucial discussion with
+you. I am looking forward to hearing from you at your earliest
+convenience.
 
-On 9.05.2023 23:16, Luca Weiss wrote:
-> The mmcc needs several clocks that are being used as parents. Provide
-> them in dt.
-> 
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-
-Konrad
->  arch/arm/boot/dts/qcom-msm8226.dtsi | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/qcom-msm8226.dtsi b/arch/arm/boot/dts/qcom-msm8226.dtsi
-> index 4dd4e26c73a2..3187b6853445 100644
-> --- a/arch/arm/boot/dts/qcom-msm8226.dtsi
-> +++ b/arch/arm/boot/dts/qcom-msm8226.dtsi
-> @@ -392,6 +392,21 @@ mmcc: clock-controller@fd8c0000 {
->  			#clock-cells = <1>;
->  			#reset-cells = <1>;
->  			#power-domain-cells = <1>;
-> +
-> +			clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
-> +				 <&gcc GCC_MMSS_GPLL0_CLK_SRC>,
-> +				 <&gcc GPLL0_VOTE>,
-> +				 <&gcc GPLL1_VOTE>,
-> +				 <&rpmcc RPM_SMD_GFX3D_CLK_SRC>,
-> +				 <0>,
-> +				 <0>;
-> +			clock-names = "xo",
-> +				      "mmss_gpll0_vote",
-> +				      "gpll0_vote",
-> +				      "gpll1_vote",
-> +				      "gfx3d_clk_src",
-> +				      "dsi0pll",
-> +				      "dsi0pllbyte";
->  		};
->  
->  		tlmm: pinctrl@fd510000 {
-> 
+Mrs. Nina Coulibaly
