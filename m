@@ -2,85 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 172BE701935
-	for <lists+devicetree@lfdr.de>; Sat, 13 May 2023 20:32:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B68570193E
+	for <lists+devicetree@lfdr.de>; Sat, 13 May 2023 20:35:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231465AbjEMScL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 May 2023 14:32:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59824 "EHLO
+        id S230317AbjEMSfJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 May 2023 14:35:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230342AbjEMScK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 13 May 2023 14:32:10 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D480F1FE7
-        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 11:32:07 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-50bc4ba28cbso19815029a12.0
-        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 11:32:07 -0700 (PDT)
+        with ESMTP id S229506AbjEMSfH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 13 May 2023 14:35:07 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F11781FDA
+        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 11:35:05 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-965e93f915aso1945412766b.2
+        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 11:35:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684002726; x=1686594726;
+        d=linaro.org; s=google; t=1684002904; x=1686594904;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=c6owmun2vUtEZB5TOq0wkGp9DGK60/+9Z1ayq9n03Xc=;
-        b=hhHHv5WrwPvBhaZFdIPSYJ+Jmoii6SjBu9RgdknR/t3A9a/M7OrKPvapzvZsQZGO2y
-         Gy92hotVu5kusAnWhXWRQyMG97KTjoAl/VB6nG5qejmgRTAxWP6LDUhkYsxDsg2D1OoE
-         xGg462JkwPlJ0tUXplsWebMSfPDXRO2itFBc7//5hSmhXKVwUBe5RbPRdWDbJmnal4OJ
-         PdSrNmefKHCD9C1K+/GQPai9nqJZthC6jjeaO5TQZj4MSSM2rb2oGn/SbiI07L406HJz
-         fehwp3yivQ1NCF2rR0GkoPq0M6F+tJR9UoCuOAORXfCcr+WrA/lCEHZ+86tge2DTdh3E
-         dg+A==
+        bh=gdtpFQqstRJ3vQRASjBOgJ5qnuinsCRYsDOrfHec77Y=;
+        b=qA/3CS9xhwjPEF75DF/vWV+L5BA6D15IADzPvrMDxWZBO2zZBXgwHiwlvrybq5C+au
+         9GhKNd6wvSbEQim/ecxv07dIb+yxxo/BX2WwYvWYZPEOIFdEPE07y8EB+0k5QPi/e1nG
+         XIe20Y/gk62SGhLaFXvlIOWdar4csSSxuDuozWRe6hbZuyvxOlzz6Amga3dBOXFtu6vv
+         UUP8ufqLOHsF9jguVFR1sDJTFSvfuCrOHx6kCXo6j/tMgZg2+DqML7w+ZQ6Tk6kS03Mv
+         9dhtN2680J1LQxXQ7IKU86yhyccYxHrFrJvtzeVcRc6MVUYVJn4p8r0hpF+Mwu8gkkPz
+         hgIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684002726; x=1686594726;
+        d=1e100.net; s=20221208; t=1684002904; x=1686594904;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=c6owmun2vUtEZB5TOq0wkGp9DGK60/+9Z1ayq9n03Xc=;
-        b=h2XbDJxTCEiF2HQE5MeES+NDE3O1UxiLpIWn/F153wIWWKvIwDHedt21P6RetJcwtL
-         FjQKrAOqjdP5PYHXFFk7cHa8NTVEvCx8aOe4R8cZCWvcf9ncRPuawouGT7YC3dGM3E1Y
-         b8jHl6a0W08kOCYe/ncO54WXG9nb69j2fa53E3Sp8NV3j98owINmJTQlk0+uSwjGtpCC
-         K4McfnE0UsuKE5EniZzSeTIGRrVGW51Kbn3ve7fJnn7Rrp6Xy2j93YvQ+A6rX91YW3j2
-         7e/B5xLD9noiWN7nQ61ydrkW5ryncJNNpQt6qKDCouHiuO0h67mDaYaIgqKZD0pGLoGH
-         iTzg==
-X-Gm-Message-State: AC+VfDwIjzHl7szPJFFKDYPJ3CovgF8vu2FhHcvzuGwk4QDNYsweNYOQ
-        fJYy/2/gvRND90RLVptT4jioSA==
-X-Google-Smtp-Source: ACHHUZ6/MJmpQfYL6g1FK30ruhqexm9LOEc7dgLzIBfHIjDo/z+aM8STzBTfNpMl4RM6pAkC6SjPjg==
-X-Received: by 2002:a17:907:628c:b0:94f:2a13:4e01 with SMTP id nd12-20020a170907628c00b0094f2a134e01mr26298987ejc.74.1684002726245;
-        Sat, 13 May 2023 11:32:06 -0700 (PDT)
+        bh=gdtpFQqstRJ3vQRASjBOgJ5qnuinsCRYsDOrfHec77Y=;
+        b=WM5KFX+Cquxsq6yr50HPkymBM46HNYFu6muguzWJBuE+JzH396/AnBH8bBppV/lkko
+         qJXt/zGbB5ROMXjmH6lW0w9ZC75PBMqcyHQB4MtVSaMMC4SRrAvXwMG579FdbJS0DT0n
+         YzBltsIC4QpxYF0ULPlkYy2aF7gVQc7iiM9wcKSidF74Mz7zAJHLzR05NUxu4w3dNDii
+         cbBzo9bZCNX9NQ062JSiMRJIyKBQUefuWyxQHQc9GrgCVab7+6lKUbTj6wGPgyJPdZeX
+         HtOWvRmHbND1ZmC+OQtjqMT8qLGetCZLGCYVAlji4zwtVAH7vUTTY8ujyrU03qe1wec2
+         T+Gw==
+X-Gm-Message-State: AC+VfDyhgPDikC+8rBaGgavnyBu1KGGnrUrugyrGYMaW2JIef0RmdskR
+        1VvdPd3P07sT/Yauv60kCLrzng==
+X-Google-Smtp-Source: ACHHUZ7lS3yHb3bOhLpg+8//bcoESb9TvvyfZpFniFz/1SOnr+tYtsNn3cQnvoT7TpDTZTrqzgSo0w==
+X-Received: by 2002:a17:907:1c03:b0:94e:4489:f24d with SMTP id nc3-20020a1709071c0300b0094e4489f24dmr27661968ejc.61.1684002904485;
+        Sat, 13 May 2023 11:35:04 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:ba68:e5c9:694e:c6e4? ([2a02:810d:15c0:828:ba68:e5c9:694e:c6e4])
-        by smtp.gmail.com with ESMTPSA id ml17-20020a170906cc1100b009661484e84esm7099003ejb.191.2023.05.13.11.32.04
+        by smtp.gmail.com with ESMTPSA id v9-20020a170906380900b0094e1344ddfdsm6998534ejc.34.2023.05.13.11.35.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 13 May 2023 11:32:05 -0700 (PDT)
-Message-ID: <fe2f22c7-8c39-faf3-bc65-a7c089200134@linaro.org>
-Date:   Sat, 13 May 2023 20:32:04 +0200
+        Sat, 13 May 2023 11:35:03 -0700 (PDT)
+Message-ID: <ccbf7ae3-5d52-070a-ba19-3ff54e6161e8@linaro.org>
+Date:   Sat, 13 May 2023 20:35:02 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v4 04/13] dt-bindings: display: add Amlogic MIPI DSI Host
- Controller bindings
+Subject: Re: [PATCH] dt-bindings: iio: temperature: Add DT bindings for TMP006
 Content-Language: en-US
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Anup Sharma <anupnewsmail@gmail.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>
-Cc:     Nicolas Belin <nbelin@baylibre.com>,
-        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-phy@lists.infradead.org
-References: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-0-2592c29ea263@linaro.org>
- <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-4-2592c29ea263@linaro.org>
+        Peter Meerwald <pmeerw@pmeerw.net>, broonie@kernel.org,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <ZFvo2TIiPiMFlbXC@yoga>
+ <fc104fdd-3894-aa94-12dc-4c73b26d4159@linaro.org> <ZF08pzGPyReL1uAf@yoga>
+ <4d18eb55-a44c-4033-93cd-35c02cb179b3@linaro.org>
+ <20230513195030.57b7939e@jic23-huawei>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-4-2592c29ea263@linaro.org>
+In-Reply-To: <20230513195030.57b7939e@jic23-huawei>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -93,135 +83,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/05/2023 15:11, Neil Armstrong wrote:
-> The Amlogic G12A, G12B & SM1 SoCs embeds a Synopsys DW-MIPI-DSI transceiver (ver 1.21a),
-> with a custom glue managing the IP resets, clock and data input similar to the DW-HDMI Glue
-> on the same Amlogic SoCs.
+On 13/05/2023 20:50, Jonathan Cameron wrote:
+> On Fri, 12 May 2023 08:28:29 +0200
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> 
+>> On 11/05/2023 21:06, Anup Sharma wrote:
+>>> On Thu, May 11, 2023 at 11:28:50AM +0200, Krzysztof Kozlowski wrote:  
+>>>> On 10/05/2023 20:56, Anup Sharma wrote:  
+>>>>> Add devicetree binding document for TMP006, IR thermopile sensor.  
+>>>>
+>>>> Why? Where is any user of this? DTS? Driver?
+>>>>  
+>>>
+>>> The support for TMP006 is available at driver/iio/temperature  
+>>
+>> There is no such compatible in the kernel. If you add OF support, you
+>> should change the driver.
+> 
+> (Very) old driver, so it uses the fallback method that i2c provides to bind to
+> the compatible with the vendor id dropped via i2c_device_id entry.
 
-Please wrap commit message according to Linux coding style / submission
-process (neither too early nor over the limit):
-https://elixir.bootlin.com/linux/v5.18-rc4/source/Documentation/process/submitting-patches.rst#L586
-
-Subject: drop second/last, redundant "bindings". The "dt-bindings"
-prefix is already stating that these are bindings.
+Yeah, I know it works... but is very confusing :)
 
 > 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  .../display/amlogic,meson-g12a-dw-mipi-dsi.yaml    | 117 +++++++++++++++++++++
->  1 file changed, 117 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/amlogic,meson-g12a-dw-mipi-dsi.yaml b/Documentation/devicetree/bindings/display/amlogic,meson-g12a-dw-mipi-dsi.yaml
-> new file mode 100644
-> index 000000000000..8169c7e93ff5
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/amlogic,meson-g12a-dw-mipi-dsi.yaml
-> @@ -0,0 +1,117 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright 2020 BayLibre, SAS
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/amlogic,meson-g12a-dw-mipi-dsi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Amlogic specific extensions to the Synopsys Designware MIPI DSI Host Controller
-> +
-> +maintainers:
-> +  - Neil Armstrong <neil.armstrong@linaro.org>
-> +
-> +description: |
-> +  The Amlogic Meson Synopsys Designware Integration is composed of
-> +  - A Synopsys DesignWare MIPI DSI Host Controller IP
-> +  - A TOP control block controlling the Clocks & Resets of the IP
-> +
-> +allOf:
-> +  - $ref: dsi-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - amlogic,meson-g12a-dw-mipi-dsi
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    minItems: 3
-
-Missing maxItems
-
-> +
-> +  clock-names:
-> +    minItems: 3
-> +    items:
-> +      - const: pclk
-> +      - const: bit_clk
-> +      - const: px_clk
-> +      - const: meas_clk
-
-Drop _clk suffixes. pclk can stay, it's a bit odd but recently Rob
-clarified that suffix with underscore should not be there.
-
-> +
-> +  resets:
-> +    minItems: 1
-
-maxItems instead
-
-> +
-> +  reset-names:
-> +    items:
-> +      - const: top
-> +
-> +  phys:
-> +    minItems: 1
-
-Ditto
-
-> +
-> +  phy-names:
-> +    items:
-> +      - const: dphy
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Input node to receive pixel data.
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: DSI output node to panel.
-> +
-> +    required:
-> +      - port@0
-> +      - port@1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - reset-names
-> +  - phys
-> +  - phy-names
-> +  - ports
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    dsi@7000 {
-> +          compatible = "amlogic,meson-g12a-dw-mipi-dsi";
-> +          reg = <0x6000 0x400>;
-
-Your reg does not match unit address. The dt_binding_check should
-actually complain about it.
-
+> Having said that, I'd also prefer the addition of an explicit of_device_id table.
+> As there is only one supported device in this driver should be trivial.
 Best regards,
 Krzysztof
 
